@@ -15,9 +15,9 @@ OBJECTS_DIR += build
 MOC_DIR += build
 UI_DIR += build
 
+HEADERS  += src/mainwindow.h
+
 SOURCES += src/main.cpp\
         src/mainwindow.cpp
-
-HEADERS  += src/mainwindow.h
 
 FORMS    += ui/mainwindow.ui
