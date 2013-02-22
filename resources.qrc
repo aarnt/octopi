@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/resorces/icons">
+        <file>resources/icons/octopi_yellow.png</file>
+    </qresource>
+</RCC>

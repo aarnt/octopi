@@ -1,24 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
  <class>MainWindow</class>
- <widget class="QMainWindow" name="MainWindow" >
-  <property name="geometry" >
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>300</height>
+    <width>552</width>
+    <height>404</height>
    </rect>
   </property>
-  <property name="windowTitle" >
-   <string>MainWindow</string>
+  <property name="windowTitle">
+   <string>Octopi</string>
   </property>
-  <widget class="QMenuBar" name="menuBar" />
-  <widget class="QToolBar" name="mainToolBar" />
-  <widget class="QWidget" name="centralWidget" />
-  <widget class="QStatusBar" name="statusBar" />
+  <property name="windowIcon">
+   <iconset resource="../resources.qrc">
+    <normaloff>:/resorces/icons/resources/icons/octopi_yellow.png</normaloff>:/resorces/icons/resources/icons/octopi_yellow.png</iconset>
+  </property>
+  <widget class="QWidget" name="centralWidget">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <layout class="QGridLayout" name="gridLayout">
+    <property name="margin">
+     <number>0</number>
+    </property>
+    <property name="spacing">
+     <number>0</number>
+    </property>
+    <item row="0" column="0">
+     <layout class="QVBoxLayout" name="verticalLayout">
+      <property name="spacing">
+       <number>0</number>
+      </property>
+      <item>
+       <widget class="QLineEdit" name="lineEdit">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>25</height>
+         </size>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QSplitter" name="splitter">
+        <property name="lineWidth">
+         <number>1</number>
+        </property>
+        <property name="orientation">
+         <enum>Qt::Vertical</enum>
+        </property>
+        <widget class="QTreeView" name="tvPackages">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="MinimumExpanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>16777215</height>
+          </size>
+         </property>
+         <property name="frameShape">
+          <enum>QFrame::NoFrame</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Plain</enum>
+         </property>
+         <property name="indentation">
+          <number>20</number>
+         </property>
+        </widget>
+        <widget class="QTabWidget" name="twProperties">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Maximum">
+           <horstretch>0</horstretch>
+           <verstretch>1</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>150</height>
+          </size>
+         </property>
+         <property name="currentIndex">
+          <number>1</number>
+         </property>
+         <widget class="QWidget" name="tabInfo">
+          <attribute name="title">
+           <string>Info</string>
+          </attribute>
+         </widget>
+         <widget class="QWidget" name="tbFiles">
+          <attribute name="title">
+           <string>Files</string>
+          </attribute>
+         </widget>
+        </widget>
+       </widget>
+      </item>
+     </layout>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menuBar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>552</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuHelp">
+    <property name="title">
+     <string>Help</string>
+    </property>
+    <addaction name="actionAbout"/>
+   </widget>
+   <widget class="QMenu" name="menuView">
+    <property name="title">
+     <string>View</string>
+    </property>
+    <addaction name="actionInstalled_pkgs"/>
+    <addaction name="actionNon_installed_pkgs"/>
+   </widget>
+   <widget class="QMenu" name="menuTransaction">
+    <property name="title">
+     <string>Transaction</string>
+    </property>
+    <addaction name="actionCommit"/>
+    <addaction name="actionRollback"/>
+   </widget>
+   <addaction name="menuView"/>
+   <addaction name="menuTransaction"/>
+   <addaction name="menuHelp"/>
+  </widget>
+  <widget class="QToolBar" name="mainToolBar">
+   <property name="movable">
+    <bool>false</bool>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+  </widget>
+  <widget class="QStatusBar" name="statusBar"/>
+  <action name="actionAbout">
+   <property name="text">
+    <string>About</string>
+   </property>
+  </action>
+  <action name="actionInstalled_pkgs">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Installed pkgs</string>
+   </property>
+  </action>
+  <action name="actionNon_installed_pkgs">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Non installed pkgs</string>
+   </property>
+  </action>
+  <action name="actionCommit">
+   <property name="text">
+    <string>Commit</string>
+   </property>
+  </action>
+  <action name="actionRollback">
+   <property name="text">
+    <string>Rollback</string>
+   </property>
+  </action>
  </widget>
- <layoutDefault spacing="6" margin="11" />
- <pixmapfunction></pixmapfunction>
- <resources/>
+ <layoutdefault spacing="6" margin="11"/>
+ <tabstops>
+  <tabstop>tvPackages</tabstop>
+  <tabstop>twProperties</tabstop>
+ </tabstops>
+ <resources>
+  <include location="../resources.qrc"/>
+ </resources>
  <connections/>
 </ui>

@@ -21,3 +21,6 @@ SOURCES += src/main.cpp\
         src/mainwindow.cpp
 
 FORMS    += ui/mainwindow.ui
+
+RESOURCES += \
+    resources.qrc
