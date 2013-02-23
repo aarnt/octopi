@@ -2,5 +2,10 @@
     <qresource prefix="/">
         <file>resources/images/octopi_red.png</file>
         <file>resources/images/octopi_yellow.png</file>
+        <file>resources/images/esf-search.png</file>
+        <file>resources/images/esf-clear-active.png</file>
+        <file>resources/images/esf-clear-hover.png</file>
+        <file>resources/images/esf-border.png</file>
+        <file>resources/images/esf-clear.png</file>
     </qresource>
 </RCC>

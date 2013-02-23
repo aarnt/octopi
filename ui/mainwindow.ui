@@ -7,14 +7,14 @@
     <x>0</x>
     <y>0</y>
     <width>552</width>
-    <height>404</height>
+    <height>430</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Octopi</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="../resources.qrc">
+   <iconset>
     <normaloff>:/resorces/icons/resources/icons/octopi_yellow.png</normaloff>:/resorces/icons/resources/icons/octopi_yellow.png</iconset>
   </property>
   <widget class="QWidget" name="centralWidget">
@@ -34,7 +34,7 @@
        <number>0</number>
       </property>
       <item>
-       <widget class="QLineEdit" name="lineEdit">
+       <widget class="SearchLineEdit" name="lineEdit">
         <property name="minimumSize">
          <size>
           <width>0</width>
@@ -94,7 +94,7 @@
           </size>
          </property>
          <property name="currentIndex">
-          <number>1</number>
+          <number>0</number>
          </property>
          <widget class="QWidget" name="tabInfo">
           <attribute name="title">
@@ -104,6 +104,11 @@
          <widget class="QWidget" name="tbFiles">
           <attribute name="title">
            <string>Files</string>
+          </attribute>
+         </widget>
+         <widget class="QWidget" name="tabOutput">
+          <attribute name="title">
+           <string>Output</string>
           </attribute>
          </widget>
         </widget>
@@ -142,6 +147,15 @@
     <addaction name="actionCommit"/>
     <addaction name="actionRollback"/>
    </widget>
+   <widget class="QMenu" name="menuFile">
+    <property name="title">
+     <string>File</string>
+    </property>
+    <addaction name="actionSync_packages"/>
+    <addaction name="separator"/>
+    <addaction name="actionExit"/>
+   </widget>
+   <addaction name="menuFile"/>
    <addaction name="menuView"/>
    <addaction name="menuTransaction"/>
    <addaction name="menuHelp"/>
@@ -189,14 +203,29 @@
     <string>Rollback</string>
    </property>
   </action>
+  <action name="actionSync_packages">
+   <property name="text">
+    <string>Sync packages</string>
+   </property>
+  </action>
+  <action name="actionExit">
+   <property name="text">
+    <string>Exit</string>
+   </property>
+  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
+ <customwidgets>
+  <customwidget>
+   <class>SearchLineEdit</class>
+   <extends>QLineEdit</extends>
+   <header>src/searchlineedit.h</header>
+  </customwidget>
+ </customwidgets>
  <tabstops>
   <tabstop>tvPackages</tabstop>
   <tabstop>twProperties</tabstop>
  </tabstops>
- <resources>
-  <include location="../resources.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>
