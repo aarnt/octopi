@@ -1,5 +1,5 @@
 <RCC>
-    <qresource prefix="/resorces/images">
+    <qresource prefix="/">
         <file>resources/images/octopi_red.png</file>
         <file>resources/images/octopi_yellow.png</file>
     </qresource>

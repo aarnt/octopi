@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
+QT       += core gui network
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -15,10 +15,22 @@ OBJECTS_DIR += build
 MOC_DIR += build
 UI_DIR += build
 
-HEADERS  += src/mainwindow.h
+HEADERS  += src/QtSolutions/qtsingleapplication.h \
+        src/QtSolutions/qtlocalpeer.h \
+        src/mainwindow.h \
+        src/strconstants.h \
+        src/searchlineedit.h \
+        src/argumentlist.h \
+        src/settingsmanager.h \
+        src/uihelper.h
 
-SOURCES += src/main.cpp\
-        src/mainwindow.cpp
+SOURCES += src/QtSolutions/qtsingleapplication.cpp \
+        src/QtSolutions/qtlocalpeer.cpp \
+        src/main.cpp\
+        src/mainwindow.cpp \
+        src/searchlineedit.cpp \
+        src/argumentlist.cpp \
+        src/settingsmanager.cpp
 
 FORMS    += ui/mainwindow.ui
 
