@@ -1,16 +1,15 @@
 #include <QCoreApplication>
 #include "argumentlist.h"
 //#include <QDebug>
+
 /**
   Obtain the command line arguments from the currently
   running QApplication */
 
 ArgumentList::ArgumentList() {
-    if (qApp != NULL)  /* a global pointer to the current
-        qApplication */
+    if (qApp != NULL)  /* a global pointer to the current qApplication */
         *this = qApp->arguments();
 }
-
 
 void ArgumentList::argsToStringlist(int argc, char * argv []) {
     for (int i=0; i < argc; ++i) {

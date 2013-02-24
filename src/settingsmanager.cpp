@@ -19,7 +19,7 @@
 */
 
 #include "settingsmanager.h"
-//#include "unixcommand.h"
+#include "unixcommand.h"
 #include "uihelper.h"
 #include <QString>
 #include <QStringList>
@@ -67,12 +67,12 @@ QString SettingsManager::getUpdaterMirror(){
   return updaterDir;
 }
 
-/*QString SettingsManager::getPrivilegeEscalationTool(){
+QString SettingsManager::getPrivilegeEscalationTool(){
   QString privilegeEscalationTool =
       instance()->getSYSsettings()->value( ctn_KEY_PRIVILEGE_ESCALATION_TOOL, ctn_AUTOMATIC).toString();
 
   return privilegeEscalationTool;
-}*/
+}
 
 int SettingsManager::getFourPanelOrganizing(){
   return instance()->getSYSsettings()->value( ctn_KEY_FOUR_PANEL_ORGANIZING, ectn_NORMAL ).toInt();
