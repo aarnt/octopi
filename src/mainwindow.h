@@ -50,6 +50,7 @@ private:
   int m_PackageListOrderedCol;
   Qt::SortOrder m_PackageListSortOrder;
 
+  void initAppIcon();
   void initLineEditFilterPackages();
   void initPackageTreeView();
   void initTabInfo();

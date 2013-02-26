@@ -41,9 +41,9 @@ MainWindow::MainWindow(QWidget *parent) :
   m_PackageListSortOrder=Qt::AscendingOrder;
 
   setWindowTitle(StrConstants::getApplicationName());
-  setWindowIcon(QIcon(":/resources/images/octopi_yellow.png"));
   setMinimumSize(QSize(850, 600));
 
+  initAppIcon();
   initTabInfo();
   initTabFiles();
   initLineEditFilterPackages();
@@ -57,6 +57,21 @@ MainWindow::MainWindow(QWidget *parent) :
 MainWindow::~MainWindow()
 {
   delete ui;
+}
+
+/*
+ * If we have some outdated packages, let's put octopi in a red face angry state ;-)
+ */
+void MainWindow::initAppIcon()
+{
+  if(Package::getOutdatedPackageList()->count() > 0)
+  {
+    setWindowIcon(QIcon(":/resources/images/octopi_red.png"));
+  }
+  else
+  {
+    setWindowIcon(QIcon(":/resources/images/octopi_yellow.png"));
+  }
 }
 
 void MainWindow::initLineEditFilterPackages(){
@@ -284,25 +299,24 @@ void MainWindow::refreshTabInfo()
   /* Appends all info from the selected package! */
   QString pkgName=siName->text();
   PackageInfoData pid = Package::getInformation(pkgName);
-  int justification = 25;
 
-  QString repository = StrConstants::getRepository().leftJustified(justification) + ": ";
-  QString name = StrConstants::getName().leftJustified(justification) + ": ";
-  QString version = StrConstants::getVersion().leftJustified(justification) + ": ";
-  QString url = StrConstants::getURL().leftJustified(justification) + ": ";
-  QString licenses = StrConstants::getLicenses().leftJustified(justification) + ": ";
-  QString groups = StrConstants::getGroups().leftJustified(justification) + ": ";
-  QString provides = StrConstants::getProvides().leftJustified(justification) + ": ";
-  QString dependsOn = StrConstants::getDependsOn().leftJustified(justification) + ": ";
-  QString optionalDeps = StrConstants::getOptionalDeps().leftJustified(justification) + ": ";
-  QString conflictsWith = StrConstants::getConflictsWith().leftJustified(justification) + ": ";
-  QString replaces = StrConstants::getReplaces().leftJustified(justification) + ": ";
-  QString downloadSize = StrConstants::getDownloadSize().leftJustified(justification) + ": ";
-  QString installedSize = StrConstants::getInstalledSize().leftJustified(justification) + ": ";
-  QString packager = StrConstants::getPackager().leftJustified(justification) + ": ";
-  QString architecture = StrConstants::getArchitecture().leftJustified(justification) + ": ";
-  QString buildDate = StrConstants::getBuildDate().leftJustified(justification) + ": ";
-  QString description = StrConstants::getDescription().leftJustified(justification) + ": ";
+  QString repository = StrConstants::getRepository();
+  QString name = StrConstants::getName();
+  QString version = StrConstants::getVersion();
+  QString url = StrConstants::getURL();
+  QString licenses = StrConstants::getLicenses();
+  QString groups = StrConstants::getGroups();
+  QString provides = StrConstants::getProvides();
+  QString dependsOn = StrConstants::getDependsOn();
+  QString optionalDeps = StrConstants::getOptionalDeps();
+  QString conflictsWith = StrConstants::getConflictsWith();
+  QString replaces = StrConstants::getReplaces();
+  QString downloadSize = StrConstants::getDownloadSize();
+  QString installedSize = StrConstants::getInstalledSize();
+  QString packager = StrConstants::getPackager();
+  QString architecture = StrConstants::getArchitecture();
+  QString buildDate = StrConstants::getBuildDate();
+  QString description = StrConstants::getDescription();
 
   QTextBrowser *text = ui->twProperties->widget(0)->findChild<QTextBrowser*>("textBrowser");
 
@@ -319,36 +333,43 @@ void MainWindow::refreshTabInfo()
     QString anchorBegin = "anchorBegin";
     html += "<a id=\"" + anchorBegin + "\"></a>";
 
-    html += "<pre>" + description + "<strong>" + pid.description + "</strong></pre>";
-    html += "<pre>" + repository + siRepository->text() + "</pre>";
-    html += "<pre>" + name + siName->text() + "</pre>";
+    html += "<table border=\"0\">";
+
+    html += "<tr><th width=\"20%\"></th><th width=\"80%\"></th></tr>";
+    html += "<tr><td>" + description + "</td><td style=\"font-size:20px;\">" + pid.description + "</td></tr>";
+    html += "<tr><td>" + url + "</td><td style=\"font-size:14px;\">" + pid.url + "</td></tr>";
+
+    //html += "<tr><td>" + repository + "</td><td>" + siRepository->text() + "</td></tr>";
+    //html += "<tr><td>" + name + "</td><td>" + siName->text() + "</td></tr>";
 
     int mark = siIcon->text().indexOf('^');
     if (mark >= 0)
     {
       QString outdatedVersion = siIcon->text().right(siIcon->text().size()-mark-1);
-      html += "<pre>" + version + siVersion->text() + "<b><font color=\"red\">"
+      html += "<tr><td>" + version + "</td><td>" + siVersion->text() + "<b><font color=\"red\">"
                        + StrConstants::getOutdatedInstalledVersion().arg(outdatedVersion) +
-                       "</b></pre></font>";
+                       "</b></font></td></tr>";
     }
     else
     {
-      html += "<pre>" + version + siVersion->text() + "</pre>";
+      html += "<tr><td>" + version + "</td><td>" + siVersion->text() + "</td></tr>";
     }
 
-    html += "<pre>" + url + pid.url + "<pre>";
-    html += "<pre>" + licenses + pid.license + "</pre>";
-    html += "<pre>" + groups + pid.group + "</pre>";
-    html += "<pre>" + provides + pid.provides + "</pre>";
-    html += "<pre>" + dependsOn + pid.dependsOn + "</pre>";
-    html += "<pre>" + optionalDeps + pid.optDepends + "</pre>";
-    html += "<font color=\"red\"><pre>" + conflictsWith + pid.conflictsWith + "</pre></font>";
-    html += "<pre>" + replaces + pid.replaces + "</pre></h4>";
-    html += "<pre>" + downloadSize + valDownloadSize + "</pre>";
-    html += "<pre>" + installedSize + valInstalledSize + "</pre>";
-    html += "<pre>" + packager + pid.packager + "</pre>";
-    html += "<pre>" + architecture + pid.arch + "</pre>";
-    html += "<pre>" + buildDate + pid.buildDate.toString("ddd - dd/MM/yyyy hh:mm:ss") + "</pre>";
+    html += "<tr><td>" + licenses + "</td><td>" + pid.license + "</td></tr>";
+    html += "<tr><td>" + groups + "</td><td>" + pid.group + "</td></tr>";
+    html += "<tr><td>" + provides + "</td><td>" + pid.provides + "</td></tr>";
+    html += "<tr><td>" + dependsOn + "</td><td>" + pid.dependsOn + "</td></tr>";
+    html += "<tr><td>" + optionalDeps + "</td><td>" + pid.optDepends + "</td></tr>";
+    html += "<tr><td><font color=\"red\"><b>" + conflictsWith +
+        "</b></font></td><td><font color=\"red\"><b>" + pid.conflictsWith + "</b></font></td></tr>";
+    html += "<tr><td>" + replaces + "</td><td>" + pid.replaces + "</td></tr>";
+    html += "<tr><td>" + downloadSize + "</td><td>" + valDownloadSize + "</td></tr>";
+    html += "<tr><td>" + installedSize + "</td><td>" + valInstalledSize + "</td></tr>";
+    html += "<tr><td>" + packager + "</td><td>" + pid.packager + "</td></tr>";
+    html += "<tr><td>" + architecture + "</td><td>" + pid.arch + "</td></tr>";
+    html += "<tr><td>" + buildDate + "</td><td>" + pid.buildDate.toString("ddd - dd/MM/yyyy hh:mm:ss") + "</td></tr>";
+
+    html += "</table>";
 
     text->insertHtml(html);
     text->scrollToAnchor(anchorBegin);
@@ -551,7 +572,7 @@ void MainWindow::reapplyPackageFilter()
 }
 
 /*
- * Whenever a user clicks on the Sort indicator of the package treeview, we keep the values to mantain his choices
+ * Whenever a user clicks on the Sort indicator of the package treeview, we keep values to mantain his choices
  */
 void MainWindow::headerViewPackageListSortIndicatorClicked( int col, Qt::SortOrder order )
 {
