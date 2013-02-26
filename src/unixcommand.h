@@ -71,6 +71,7 @@ public:
   static QString runCurlCommand(const QString& commandToRun);
   static QString discoverBinaryPath(const QString&);
 
+  static QByteArray getOutdatedPackageList();
   static QByteArray getPackageList();
   static QByteArray getPackageInformation(const QString &pkgName);
   static QByteArray getPackageContents(const QString &pkgName);
@@ -107,17 +108,12 @@ public:
 
   static void removeTemporaryFiles();
 
-  static QString executeDiffToEachOther( QString pkg1, QString pkg2 );
-  static QString executeDiffToInstalled( QString pkg, QString installedPackage );
   static QString getPkgInstallCommand();
   static QString getPkgUpgradeCommand();
   static QString getPkgRemoveCommand();
   static QString getPkgReinstallCommand();
 
   void executePackageActions(const QStringList& commandList);
-  void transformTGZinLZM(const QStringList& commandList, LZMCommand commandUsed);
-  void transformRPMinTGZ(const QStringList& commandList);
-  void transformRPMinTXZ(const QStringList& commandList);
 
   QString readAllStandardOutput();
   QString readAllStandardError();

@@ -18,5 +18,8 @@
         <file>resources/images/noninstalled.png</file>
         <file>resources/images/toinstall.png</file>
         <file>resources/images/toremove.png</file>
+        <file>resources/images/folder.png</file>
+        <file>resources/images/binary.png</file>
+        <file>resources/images/outdated.png</file>
     </qresource>
 </RCC>

@@ -118,6 +118,10 @@ public:
     return QObject::tr("Password");
   }
 
+  static QString getOutdatedInstalledVersion(){
+    return QObject::tr(" (outdated installed version is %1)");
+  }
+
   static QString getEnterAdministratorsPassword(){
     return QObject::tr(
           "Please, enter the administrator's password");

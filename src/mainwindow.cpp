@@ -37,11 +37,15 @@ MainWindow::MainWindow(QWidget *parent) :
 {
   ui->setupUi(this);
 
+  m_PackageListOrderedCol=1;
+  m_PackageListSortOrder=Qt::AscendingOrder;
+
   setWindowTitle(StrConstants::getApplicationName());
   setWindowIcon(QIcon(":/resources/images/octopi_yellow.png"));
   setMinimumSize(QSize(850, 600));
 
   initTabInfo();
+  initTabFiles();
   initLineEditFilterPackages();
   initPackageTreeView();
   refreshPackageList();
@@ -121,12 +125,57 @@ void MainWindow::initTabInfo(){
   text->setFocus();
 }
 
+void MainWindow::initTabFiles()
+{
+  QWidget *tabPkgFileList = new QWidget(this);
+  QGridLayout *gridLayoutX = new QGridLayout ( tabPkgFileList );
+  gridLayoutX->setSpacing ( 0 );
+  gridLayoutX->setMargin ( 0 );
+  QStandardItemModel *modelPkgFileList = new QStandardItemModel(this);
+  QTreeView *tvPkgFileList = new QTreeView(tabPkgFileList);
+  tvPkgFileList->setEditTriggers(QAbstractItemView::NoEditTriggers);
+  tvPkgFileList->setDropIndicatorShown(false);
+  tvPkgFileList->setAcceptDrops(false);
+  tvPkgFileList->header()->setSortIndicatorShown(false);
+  tvPkgFileList->header()->setClickable(false);
+  tvPkgFileList->header()->setMovable(false);
+  tvPkgFileList->setFrameShape(QFrame::NoFrame);
+  tvPkgFileList->setFrameShadow(QFrame::Plain);
+  tvPkgFileList->setObjectName("tvPkgFileList");
+  tvPkgFileList->setStyleSheet(StrConstants::getTreeViewCSS(SettingsManager::getPkgListFontSize()));
+
+  modelPkgFileList->setSortRole(0);
+  modelPkgFileList->setColumnCount(0);
+  gridLayoutX->addWidget ( tvPkgFileList, 0, 0, 1, 1 );
+
+  tvPkgFileList->setModel(modelPkgFileList);
+
+  QString aux(tr("Files"));
+  ui->twProperties->removeTab(1);
+  /*int tindex =*/ ui->twProperties->insertTab( 1, tabPkgFileList, QApplication::translate (
+                                                  "MainWindow", aux.toUtf8(), 0, QApplication::UnicodeUTF8 ) );
+  /*twTODO->setTabText(twTODO->indexOf(tabPkgFileList), QApplication::translate(
+      "MainWindow", tabName.toUtf8(), 0, QApplication::UnicodeUTF8));*/
+
+  /*tvPkgFileList->setContextMenuPolicy(Qt::CustomContextMenu);
+  connect(tvPkgFileList, SIGNAL(customContextMenuRequested(QPoint)),
+          this, SLOT(execContextMenuPkgFileList(QPoint)));
+  connect(tvPkgFileList, SIGNAL(clicked (const QModelIndex&)),
+          this, SLOT(showFullPathOfObject(const QModelIndex&)));
+  connect(tvPkgFileList, SIGNAL(doubleClicked (const QModelIndex&)),
+          this, SLOT(openFileOrDirectory(const QModelIndex&)));
+  connect(tvPkgFileList, SIGNAL(pressed (const QModelIndex&)),
+          tvPkgFileList, SIGNAL(clicked (const QModelIndex&)));
+  connect(tvPkgFileList, SIGNAL(activated(const QModelIndex)), tvPkgFileList,
+          SIGNAL(clicked(const QModelIndex)));*/
+}
+
 /*
  * Populates the list of packages available (installed [+ non-installed])
  */
-void MainWindow::refreshPackageList(){
+void MainWindow::refreshPackageList()
+{
   CPUIntensiveComputing cic;
-
   m_modelPackages->clear();
   QStringList sl;
 
@@ -137,15 +186,25 @@ void MainWindow::refreshPackageList(){
 
   while(it != list->end()){
     PackageListData pld = *it;
-    if (!pld.installed && !ui->actionNon_installed_pkgs->isChecked()){
+    if (pld.status == ectn_NON_INSTALLED && !ui->actionNon_installed_pkgs->isChecked()){
       it++;
       continue;
     }
 
-    if (pld.installed)
+    //If this is an installed package, it can be also outdated!
+    switch (pld.status)
+    {
+    case ectn_OUTDATED:
+      lIcons << new QStandardItem(IconHelper::getIconOutdated(), "_OutDated^"+pld.outatedVersion);
+      break;
+    case ectn_INSTALLED:
       lIcons << new QStandardItem(IconHelper::getIconInstalled(), "_Installed");
-    else
+      break;
+    case ectn_NON_INSTALLED:
       lIcons << new QStandardItem(IconHelper::getIconNonInstalled(), "_NonInstalled");
+      break;
+    default:;
+    }
 
     lNames << new QStandardItem(pld.name);
     lVersions << new QStandardItem(pld.version);
@@ -162,7 +221,7 @@ void MainWindow::refreshPackageList(){
   ui->tvPackages->setColumnWidth(0, 24);
   ui->tvPackages->setColumnWidth(1, 500);
   ui->tvPackages->setColumnWidth(2, 160);
-  ui->tvPackages->sortByColumn(1, Qt::AscendingOrder);
+  ui->tvPackages->sortByColumn(m_PackageListOrderedCol, m_PackageListSortOrder);
 
   m_modelPackages->setHorizontalHeaderLabels(
         sl << "" << tr("Name") << tr("Version") << tr("Repository"));
@@ -174,6 +233,7 @@ void MainWindow::refreshPackageList(){
   ui->tvPackages->scrollTo(maux, QAbstractItemView::PositionAtCenter);
   ui->tvPackages->selectionModel()->setCurrentIndex(maux, QItemSelectionModel::Select);
 
+  list->clear();
   refreshTabInfo();
   ui->tvPackages->setFocus();
 }
@@ -181,12 +241,26 @@ void MainWindow::refreshPackageList(){
 /*
  * Re-populates the HTML view with selected package's information (tab ONE)
  */
-void MainWindow::refreshTabInfo(){
-  if(ui->twProperties->currentIndex() != 0) return;
-
+void MainWindow::refreshTabInfo()
+{
   static QString strSelectedPackage;
+
+  if(ui->twProperties->currentIndex() != 0) return;
+  if (ui->tvPackages->selectionModel()->selectedRows(ctn_PACKAGE_NAME).count() == 0)
+  {
+    QTextBrowser *text = ui->twProperties->widget(0)->findChild<QTextBrowser*>("textBrowser");
+    if (text)
+    {
+      text->clear();
+    }
+
+    strSelectedPackage="";
+    return;
+  }
+
   QModelIndex item = ui->tvPackages->selectionModel()->selectedRows(ctn_PACKAGE_NAME).first();
   QModelIndex mi = m_proxyModelPackages->mapToSource(item);
+  QStandardItem *siIcon = m_modelPackages->item( mi.row(), ctn_PACKAGE_ICON );
   QStandardItem *siName = m_modelPackages->item( mi.row(), ctn_PACKAGE_NAME );
   QStandardItem *siRepository = m_modelPackages->item( mi.row(), ctn_PACKAGE_REPOSITORY );
   QStandardItem *siVersion = m_modelPackages->item( mi.row(), ctn_PACKAGE_VERSION );
@@ -222,7 +296,9 @@ void MainWindow::refreshTabInfo(){
 
   QTextBrowser *text = ui->twProperties->widget(0)->findChild<QTextBrowser*>("textBrowser");
 
-  if (text){
+  if (text)
+  {
+    QString html;
     QString valDownloadSize =
         QString("%1 KB").arg(pid.downloadSize, 6, 'f', 2);
 
@@ -231,26 +307,40 @@ void MainWindow::refreshTabInfo(){
 
     text->clear();
     QString anchorBegin = "anchorBegin";
-    text->insertHtml("<a id=\"" + anchorBegin + "\"></a>");
+    html += "<a id=\"" + anchorBegin + "\"></a>";
 
-    text->insertHtml("<pre>" + description + pid.description + "</pre><br>");
-    text->insertHtml("<pre>" + repository + siRepository->text() + "</pre><br>");
-    text->insertHtml("<pre>" + name + siName->text() + "</pre><br>");
-    text->insertHtml("<pre>" + version + siVersion->text() + "</pre><br>");
-    text->insertHtml("<pre>" + url + pid.url + "<pre><br>");
-    text->insertHtml("<pre>" + licenses + pid.license + "</pre><br>");
-    text->insertHtml("<pre>" + groups + pid.group + "</pre><br>");
-    text->insertHtml("<pre>" + provides + pid.provides + "</pre><br>");
-    text->insertHtml("<pre>" + dependsOn + pid.dependsOn + "</pre><br>");
-    text->insertHtml("<pre>" + optionalDeps + pid.optDepends + "</pre><br>");
-    text->insertHtml("<font color=\"red\"><pre>" + conflictsWith + pid.conflictsWith + "</pre></font><br>");
-    text->insertHtml("<pre>" + replaces + pid.replaces + "</pre></h4><br>");
-    text->insertHtml("<pre>" + downloadSize + valDownloadSize + "</pre><br>");
-    text->insertHtml("<pre>" + installedSize + valInstalledSize + "</pre><br>");
-    text->insertHtml("<pre>" + packager + pid.packager + "</pre><br>");
-    text->insertHtml("<pre>" + architecture + pid.arch + "</pre><br>");
-    text->insertHtml("<pre>" + buildDate + pid.buildDate.toString("ddd - dd/MM/yyyy hh:mm:ss") + "</pre><br>");
+    html += "<pre>" + description + "<strong>" + pid.description + "</strong></pre>";
+    html += "<pre>" + repository + siRepository->text() + "</pre>";
+    html += "<pre>" + name + siName->text() + "</pre>";
 
+    int mark = siIcon->text().indexOf('^');
+    if (mark >= 0)
+    {
+      QString outdatedVersion = siIcon->text().right(siIcon->text().size()-mark-1);
+      html += "<pre>" + version + siVersion->text() + "<b><font color=\"red\">"
+                       + StrConstants::getOutdatedInstalledVersion().arg(outdatedVersion) +
+                       "</b></pre></font>";
+    }
+    else
+    {
+      html += "<pre>" + version + siVersion->text() + "</pre>";
+    }
+
+    html += "<pre>" + url + pid.url + "<pre>";
+    html += "<pre>" + licenses + pid.license + "</pre>";
+    html += "<pre>" + groups + pid.group + "</pre>";
+    html += "<pre>" + provides + pid.provides + "</pre>";
+    html += "<pre>" + dependsOn + pid.dependsOn + "</pre>";
+    html += "<pre>" + optionalDeps + pid.optDepends + "</pre>";
+    html += "<font color=\"red\"><pre>" + conflictsWith + pid.conflictsWith + "</pre></font>";
+    html += "<pre>" + replaces + pid.replaces + "</pre></h4>";
+    html += "<pre>" + downloadSize + valDownloadSize + "</pre>";
+    html += "<pre>" + installedSize + valInstalledSize + "</pre>";
+    html += "<pre>" + packager + pid.packager + "</pre>";
+    html += "<pre>" + architecture + pid.arch + "</pre>";
+    html += "<pre>" + buildDate + pid.buildDate.toString("ddd - dd/MM/yyyy hh:mm:ss") + "</pre>";
+
+    text->insertHtml(html);
     text->scrollToAnchor(anchorBegin);
   }
 
@@ -260,14 +350,143 @@ void MainWindow::refreshTabInfo(){
 /*
  * Re-populates the treeview with file list of selected package (tab TWO)
  */
-void MainWindow::refreshTabFiles(){
+void MainWindow::refreshTabFiles()
+{
+  static QString strSelectedPackage;
 
+  if(ui->twProperties->currentIndex() != 1) return;
+  if (ui->tvPackages->selectionModel()->selectedRows(ctn_PACKAGE_NAME).count() == 0){
+    QTreeView *tvPkgFileList = ui->twProperties->widget(1)->findChild<QTreeView*>("tvPkgFileList");
+    if(tvPkgFileList)
+    {
+      QStandardItemModel *modelPkgFileList = qobject_cast<QStandardItemModel*>(tvPkgFileList->model());
+      modelPkgFileList->clear();
+      strSelectedPackage="";
+      return;
+    }
+  }
+
+  QModelIndex item = ui->tvPackages->selectionModel()->selectedRows(ctn_PACKAGE_NAME).first();
+  QModelIndex mi = m_proxyModelPackages->mapToSource(item);
+  QStandardItem *siName = m_modelPackages->item( mi.row(), ctn_PACKAGE_NAME );
+  QStandardItem *siRepository = m_modelPackages->item( mi.row(), ctn_PACKAGE_REPOSITORY );
+  QStandardItem *siVersion = m_modelPackages->item( mi.row(), ctn_PACKAGE_VERSION );
+
+  //If we are trying to refresh an already displayed package...
+  if (strSelectedPackage == siRepository->text()+"#"+siName->text()+"#"+siVersion->text())
+    return;
+
+  //Maybe this is a non-installed package...
+  bool nonInstalled = (m_modelPackages->item(mi.row(), ctn_PACKAGE_ICON)->text() == "_NonInstalled");
+
+  QTreeView *tvPkgFileList = ui->twProperties->widget(1)->findChild<QTreeView*>("tvPkgFileList");
+  if(tvPkgFileList){
+    CPUIntensiveComputing cic;
+
+    QString pkgName = siName->text();
+    QStringList fileList = Package::getContents(pkgName);
+
+    QStandardItemModel *fakeModelPkgFileList = new QStandardItemModel(this);
+    QStandardItemModel *modelPkgFileList = qobject_cast<QStandardItemModel*>(tvPkgFileList->model());
+    modelPkgFileList->clear();
+    QStandardItem *fakeRoot = fakeModelPkgFileList->invisibleRootItem();
+    QStandardItem *root = modelPkgFileList->invisibleRootItem();
+    QStandardItem *bkpDir, *item, *bkpItem=root, *parent;
+    bool first=true;
+    bkpDir = root;
+
+
+    if(nonInstalled){
+      strSelectedPackage="";
+      return;
+    }
+
+    /*foreach(QString line, fileList){
+      std::cout << line.toAscii().data() << std::endl;
+    }*/
+
+    foreach ( QString file, fileList ){
+      QFileInfo fi ( file );
+      //if ( file.endsWith ( '/' ) ){
+      if(fi.isDir()){
+        if ( first == true ){
+          item = new QStandardItem ( IconHelper::getIconFolder(), file );
+          item->setAccessibleDescription("directory " + item->text());
+          fakeRoot->appendRow ( item );
+        }
+        else{
+          if ( file.indexOf ( bkpDir->text() ) != -1 ){
+            item = new QStandardItem ( IconHelper::getIconFolder(), file );
+            item->setAccessibleDescription("directory " + item->text());
+            bkpDir->appendRow ( item );
+          }
+          else{
+            parent = bkpItem->parent();
+            do{
+              if ( parent == 0 || file.indexOf ( parent->text() ) != -1 ) break;
+              parent = parent->parent();
+            }
+            while ( parent != fakeRoot );
+
+            item = new QStandardItem ( IconHelper::getIconFolder(), file );
+            item->setAccessibleDescription("directory " + item->text());
+            if ( parent != 0 ) parent->appendRow ( item );
+            else fakeRoot->appendRow ( item );
+          }
+        }
+        bkpDir = item;
+      }
+      else{
+        item = new QStandardItem ( IconHelper::getIconBinary(), fi.fileName() );
+        item->setAccessibleDescription("file " + item->text());
+        parent = bkpDir;
+
+        do{
+          if ( parent == 0 || file.indexOf ( parent->text() ) != -1 ) break;
+          parent = parent->parent();
+        }
+        while ( parent != fakeRoot );
+
+        parent->appendRow ( item );
+      }
+
+      bkpItem = item;
+      first = false;
+    }
+
+    //tabPkgFileList->setStatusTip(pkgName);
+    QFileInfo info(pkgName);
+    //QString tabName(info.fileName());
+
+    root = fakeRoot;
+    fakeModelPkgFileList->sort(0);
+    modelPkgFileList = fakeModelPkgFileList;
+    tvPkgFileList->setModel(modelPkgFileList);
+    tvPkgFileList->header()->setDefaultAlignment( Qt::AlignCenter );
+    modelPkgFileList->setHorizontalHeaderLabels( QStringList() <<
+                                                 tr("Contents of \"%1\"").arg(pkgName));
+
+    QList<QStandardItem*> lit = modelPkgFileList->findItems( "/", Qt::MatchStartsWith | Qt::MatchRecursive );
+
+    foreach( QStandardItem* it, lit ){
+      QFileInfo fi( it->text() );
+      if ( fi.isFile() == false ){
+        QString s( it->text() );
+        s.remove(s.size()-1, 1);
+        s = s.right(s.size() - s.lastIndexOf('/') -1);
+        it->setText( s );
+      }
+    }
+  }
+
+  strSelectedPackage = siRepository->text()+"#"+siName->text()+"#"+siVersion->text();
 }
 
 /*
  * When the user changes the current selected tab, we must take care of data refresh.
  */
-void MainWindow::changedTabIndex(){
+void MainWindow::changedTabIndex()
+{
   if(ui->twProperties->currentIndex() == 0)
     refreshTabInfo();
   else if (ui->twProperties->currentIndex() == 1)
@@ -277,7 +496,8 @@ void MainWindow::changedTabIndex(){
 /*
  * This SLOT is called every time we press a key at FilterLineEdit
  */
-void MainWindow::reapplyPackageFilter(){
+void MainWindow::reapplyPackageFilter()
+{
   CPUIntensiveComputing cic;
 
   bool isFilterPackageSelected = ui->leFilterPackage->hasFocus();
@@ -305,7 +525,10 @@ void MainWindow::reapplyPackageFilter(){
     dockPackages->setWindowTitle(tr("0 Packages in Directory"));*/
 
   if (isFilterPackageSelected) ui->leFilterPackage->setFocus();
-  m_proxyModelPackages->sort(1, Qt::AscendingOrder);
+  m_proxyModelPackages->sort(m_PackageListOrderedCol, m_PackageListSortOrder);
+
+  disconnect(ui->tvPackages->selectionModel(), SIGNAL(selectionChanged(QItemSelection,QItemSelection)), this,
+             SLOT(changedTabIndex()));
 
   ui->tvPackages->selectionModel()->clear();
   QModelIndex mi = m_proxyModelPackages->index(0, 0);
@@ -313,16 +536,32 @@ void MainWindow::reapplyPackageFilter(){
   ui->tvPackages->scrollTo(mi);
 
   changedTabIndex();
+
+  connect(ui->tvPackages->selectionModel(), SIGNAL(selectionChanged(QItemSelection,QItemSelection)), this,
+          SLOT(changedTabIndex()));
 }
 
+/*
+ * Whenever a user clicks on the Sort indicator of the package treeview, we keep the values to mantain his choices
+ */
+void MainWindow::headerViewPackageListSortIndicatorClicked( int col, Qt::SortOrder order )
+{
+  m_PackageListOrderedCol = col;
+  m_PackageListSortOrder = order;
+}
 
-void MainWindow::initActions(){
+void MainWindow::initActions()
+{
   connect(ui->actionExit, SIGNAL(triggered()), this, SLOT(close()));
   connect(ui->actionNon_installed_pkgs, SIGNAL(changed()), this, SLOT(refreshPackageList()));
 
-  //connect(ui->tvPackages, SIGNAL(entered(QModelIndex)), ui->tvPackages, SIGNAL(clicked(QModelIndex)));
   connect(ui->tvPackages, SIGNAL(activated(QModelIndex)), ui->tvPackages, SIGNAL(clicked(QModelIndex)));
-  connect(ui->tvPackages, SIGNAL(clicked(QModelIndex)), this, SLOT(refreshTabInfo()));
+  connect(ui->tvPackages, SIGNAL(clicked(QModelIndex)), this, SLOT(changedTabIndex()));
+  connect(ui->tvPackages->header(), SIGNAL(sortIndicatorChanged(int,Qt::SortOrder)), this,
+          SLOT(headerViewPackageListSortIndicatorClicked(int,Qt::SortOrder)));
+
+  connect(ui->tvPackages->selectionModel(), SIGNAL(selectionChanged(QItemSelection,QItemSelection)), this,
+          SLOT(changedTabIndex()));
 
   connect(ui->twProperties, SIGNAL(currentChanged(int)), this, SLOT(changedTabIndex()));
 }

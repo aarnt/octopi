@@ -47,6 +47,8 @@ private:
   Ui::MainWindow *ui;
   QSortFilterProxyModel *m_proxyModelPackages;
   QStandardItemModel *m_modelPackages;
+  int m_PackageListOrderedCol;
+  Qt::SortOrder m_PackageListSortOrder;
 
   void initLineEditFilterPackages();
   void initPackageTreeView();
@@ -57,6 +59,7 @@ private:
 private slots:
   void refreshPackageList();
   void reapplyPackageFilter();
+  void headerViewPackageListSortIndicatorClicked(int col, Qt::SortOrder order);
 
   void refreshTabInfo();
   void refreshTabFiles();

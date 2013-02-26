@@ -28,7 +28,8 @@
 InstalledPkgListSingleton *InstalledPkgListSingleton::m_pinstance = 0;
 //FrozenPkgListSingleton *FrozenPkgListSingleton::m_pinstance = 0;
 
-QStringList Package::getInstalledPackageNames(){
+QStringList Package::getInstalledPackageNames()
+{
   QDir d(ctn_PACKAGES_DIR);
   d.setSorting(QDir::Name);
   d.setFilter(QDir::Files);
@@ -36,13 +37,15 @@ QStringList Package::getInstalledPackageNames(){
   return d.entryList();
 }
 
-bool Package::isValid( const QString& pkgName ){
+bool Package::isValid( const QString& pkgName )
+{
 	QFileInfo fi(pkgName);
   if (fi.size() < 100) return false;
   else return true;
 }
 
-QString Package::getBaseName( const QString& p ){
+QString Package::getBaseName( const QString& p )
+{
 	QString packageBaseName="";
 	QString aux(p);
 	int numberOfSegments = p.count('-')+1;
@@ -60,7 +63,8 @@ QString Package::getBaseName( const QString& p ){
 	return packageBaseName;
 }
 
-QString Package::dumpInstalledPackageList(DumpInstalledPackageListOptions options){
+QString Package::dumpInstalledPackageList(DumpInstalledPackageListOptions options)
+{
 	QDateTime now = QDateTime::currentDateTime();
   QString dumpFileName = ctn_DUMP_FILE + now.toString ("dd_MM_yyyy_hh_mm_ss") + ".txt"; 
   QFile file(SettingsManager::getDefaultDirectory() + QDir::separator() + dumpFileName);
@@ -86,7 +90,8 @@ QString Package::dumpInstalledPackageList(DumpInstalledPackageListOptions option
 }
 
 //Here, we do the URL html link tag addition
-QString Package::makeURLClickable( const QString &s ){
+QString Package::makeURLClickable( const QString &s )
+{
 	QString sb = s;
 
 	QRegExp rx("((ht|f)tp(s?))://(\\S)+[^\"|)|(|.|\\s|\\n]");
@@ -125,7 +130,8 @@ QString Package::makeURLClickable( const QString &s ){
   return sb;
 }
 
-/* a pow() implementation that is specialized for an integer base and small,
+/* This function was copied from ArchLinux Pacman project
+ * A pow() implementation that is specialized for an integer base and small,
  * positive-only integer exponents. */
 double Package::simplePow(int base, int exp)
 {
@@ -136,7 +142,9 @@ double Package::simplePow(int base, int exp)
   return result;
 }
 
-/** Converts sizes in bytes into human readable units.
+/**
+ * This function was copied from ArchLinux Pacman project
+ * Converts sizes in bytes into human readable units.
  *
  * @param bytes the size in bytes
  * @param target_unit '\0' or a short label. If equal to one of the short unit
@@ -185,58 +193,85 @@ double Package::humanizeSize(off_t bytes, const char target_unit, int precision,
   return val;
 }
 
-QList<PackageListData> * Package::getPackageList(){
-  QString pkgList = UnixCommand::getPackageList();
-  QStringList packageTuples = pkgList.split(QRegExp("\n"));
-  QList<PackageListData> * res = new QList<PackageListData>();
+QStringList *Package::getOutdatedPackageList()
+{
+  QString outPkgList = UnixCommand::getOutdatedPackageList();
+  QStringList packageTuples = outPkgList.split(QRegExp("\\n"), QString::SkipEmptyParts);
+  QStringList * res = new QStringList();
 
-  foreach(QString packageTuple, packageTuples){
+  foreach(QString packageTuple, packageTuples)
+  {
     QStringList parts = packageTuple.split(' ');
-
-    if(parts.size() > 1){
-      if(parts.size() == 4){
-        //This is an installed package!
-        res->append(PackageListData(parts[1], parts[0], parts[2], true));
-      }
-      else
-        res->append(PackageListData(parts[1], parts[0], parts[2], false));
+    {
+      res->append(parts[0]); //We only need the package name!
     }
   }
 
   return res;
 }
 
-QString Package::extractFieldFromInfo(const QString &field, const QString &pkgInfo){
+QList<PackageListData> * Package::getPackageList()
+{
+  QString pkgList = UnixCommand::getPackageList();
+  QStringList packageTuples = pkgList.split(QRegExp("\\n"), QString::SkipEmptyParts);
+  QList<PackageListData> * res = new QList<PackageListData>();
+
+  foreach(QString packageTuple, packageTuples)
+  {
+    QStringList parts = packageTuple.split(' ');
+
+    if(parts.size() == 4)
+    {
+      //This is an installed package!
+      res->append(PackageListData(parts[1], parts[0], parts[2], ectn_INSTALLED));
+    }
+    else if(parts.size() == 5)
+    {
+      //This is an outdated package!
+      QString outVersion = parts[4];
+      outVersion.remove(']').trimmed();
+      res->append(PackageListData(parts[1], parts[0], parts[2], ectn_OUTDATED, outVersion));
+    }
+    else
+    {
+      //This is an non-installed package!
+      res->append(PackageListData(parts[1], parts[0], parts[2], ectn_NON_INSTALLED));
+    }
+  }
+
+  return res;
+}
+
+QString Package::extractFieldFromInfo(const QString &field, const QString &pkgInfo)
+{
   int fieldPos = pkgInfo.indexOf(field);
+  int fieldEnd;
   QString aux;
-  int i,j;
 
-  if (fieldPos > 0){
-    for(i=fieldPos+1; pkgInfo.at(i) != ':'; i++){
-    }
-
-    aux = pkgInfo.mid(++i).trimmed();
-
-    if (aux.indexOf('\n') > 0){
-      for(j=0; aux.at(j) != '\n'; j++){
-      }
-
-      aux = aux.mid(0, j).trimmed();
-    }
+  if (fieldPos > 0)
+  {
+    fieldPos = pkgInfo.indexOf(":", fieldPos+1);
+    fieldPos+=2;
+    aux = pkgInfo.mid(fieldPos);
+    fieldEnd = aux.indexOf('\n');
+    aux = aux.left(fieldEnd).trimmed();
   }
 
   return aux;
 }
 
-QString Package::getVersion(const QString &pkgInfo){
+QString Package::getVersion(const QString &pkgInfo)
+{
   return extractFieldFromInfo("Version", pkgInfo);
 }
 
-QString Package::getRepository(const QString &pkgInfo){
+QString Package::getRepository(const QString &pkgInfo)
+{
   return extractFieldFromInfo("Repository", pkgInfo);
 }
 
-QString Package::getURL(const QString &pkgInfo){
+QString Package::getURL(const QString &pkgInfo)
+{
   QString URL = extractFieldFromInfo("URL", pkgInfo);
   if (!URL.isEmpty())
     return makeURLClickable(URL);
@@ -244,48 +279,59 @@ QString Package::getURL(const QString &pkgInfo){
     return URL;
 }
 
-QString Package::getLicense(const QString &pkgInfo){
+QString Package::getLicense(const QString &pkgInfo)
+{
   return extractFieldFromInfo("Licenses", pkgInfo);
 }
 
-QString Package::getGroup(const QString &pkgInfo){
+QString Package::getGroup(const QString &pkgInfo)
+{
   return extractFieldFromInfo("Groups", pkgInfo);
 }
 
-QString Package::getProvides(const QString &pkgInfo){
+QString Package::getProvides(const QString &pkgInfo)
+{
   return extractFieldFromInfo("Provides", pkgInfo);
 }
 
-QString Package::getDependsOn(const QString &pkgInfo){
+QString Package::getDependsOn(const QString &pkgInfo)
+{
   return extractFieldFromInfo("Depends On", pkgInfo);
 }
 
-QString Package::getOptDepends(const QString &pkgInfo){
+QString Package::getOptDepends(const QString &pkgInfo)
+{
   return extractFieldFromInfo("Optional Deps", pkgInfo);
 }
 
-QString Package::getConflictsWith(const QString &pkgInfo){
+QString Package::getConflictsWith(const QString &pkgInfo)
+{
   return extractFieldFromInfo("Conflicts With", pkgInfo);
 }
 
-QString Package::getReplaces(const QString &pkgInfo){
+QString Package::getReplaces(const QString &pkgInfo)
+{
   return extractFieldFromInfo("Replaces", pkgInfo);
 }
 
-QString Package::getPackager(const QString &pkgInfo){
+QString Package::getPackager(const QString &pkgInfo)
+{
 return extractFieldFromInfo("Packager", pkgInfo);
 }
 
-QString Package::getArch(const QString &pkgInfo){
+QString Package::getArch(const QString &pkgInfo)
+{
   return extractFieldFromInfo("Architecture", pkgInfo);
 }
 
-QDateTime Package::getBuildDate(const QString &pkgInfo){
+QDateTime Package::getBuildDate(const QString &pkgInfo)
+{
   QString aux = extractFieldFromInfo("Build Date", pkgInfo);
   return QDateTime::fromString(aux); //"ddd MMM d hh:mm:ss yyyy");
 }
 
-double Package::getDownloadSize(const QString &pkgInfo){
+double Package::getDownloadSize(const QString &pkgInfo)
+{
   QString aux = extractFieldFromInfo("Download Size", pkgInfo);
   aux = aux.section(QRegExp("\\s"), 0, 0);
 
@@ -298,7 +344,8 @@ double Package::getDownloadSize(const QString &pkgInfo){
     return 0;
 }
 
-double Package::getInstalledSize(const QString &pkgInfo){
+double Package::getInstalledSize(const QString &pkgInfo)
+{
   QString aux = extractFieldFromInfo("Installed Size", pkgInfo);
   aux = aux.section(QRegExp("\\s"), 0, 0);
 
@@ -311,13 +358,13 @@ double Package::getInstalledSize(const QString &pkgInfo){
     return 0;
 }
 
-QString Package::getDescription(const QString &pkgInfo){
+QString Package::getDescription(const QString &pkgInfo)
+{
   return extractFieldFromInfo("Description", pkgInfo);
 }
 
-
-// Regular expression for "http://" -> ^((ht|f)tp(s?))\://([0-9a-zA-Z\-]+\.)+[a-zA-Z]{2,6}(\:[0-9]+)?(/\S*)?$
-PackageInfoData Package::getInformation(QString pkgName){
+PackageInfoData Package::getInformation(QString pkgName)
+{
   PackageInfoData res;
   QString pkgInfo = UnixCommand::getPackageInformation(pkgName);
 
@@ -341,13 +388,15 @@ PackageInfoData Package::getInformation(QString pkgName){
   return res;
 }
 
-QString Package::showRegExp( const QString& a, const QString& re ){
+QString Package::showRegExp( const QString& a, const QString& re )
+{
 	QRegExp rex(re);	
   QString res = rex.indexIn(a) > -1 ? rex.cap(0) : ctn_NO_MATCH;
 	return res;
 }
 
-bool Package::isValidArch(const QString &packageArch){
+bool Package::isValidArch(const QString &packageArch)
+{
   bool result = false;
   for(uint c=0; c<sizeof(ctn_KNOWN_ARCHS)/sizeof(ctn_KNOWN_ARCHS[0]); c++){
     if (packageArch == ctn_KNOWN_ARCHS[c]){
@@ -358,7 +407,6 @@ bool Package::isValidArch(const QString &packageArch){
   return result;
 }
 
-
 /**
  * This function was copied from ArchLinux Pacman project
  *
@@ -367,7 +415,8 @@ bool Package::isValidArch(const QString &packageArch){
  *        0: a and b are the same version
  *       -1: b is newer than a
  */
-static int rpmvercmp(const char *a, const char *b){
+static int rpmvercmp(const char *a, const char *b)
+{
   char oldch1, oldch2;
   char *str1, *str2;
   char *ptr1, *ptr2;
@@ -501,11 +550,12 @@ cleanup:
   return ret;
 }
 
-Result Package::getStatus( const QString& pkgToVerify ){
+/*Result Package::getStatus( const QString& pkgToVerify )
+{
   bool newPackageExtension = false;
   QString arqBaseName = Package::getBaseName(pkgToVerify);
 
-  /*if ( FrozenPkgListSingleton::instance()->indexOf( QRegExp(QRegExp::escape(arqBaseName)), 0 ) != -1){
+  if ( FrozenPkgListSingleton::instance()->indexOf( QRegExp(QRegExp::escape(arqBaseName)), 0 ) != -1){
     QString installedPackage = InstalledPkgListSingleton::instance()->getFileList().
                                filter( QRegExp(QRegExp::escape(arqBaseName)) )[0];
 
@@ -513,7 +563,7 @@ Result Package::getStatus( const QString& pkgToVerify ){
         QRegExp( QRegExp::escape(installedPackage)) );
 
     return(Result(ectn_FROZEN, InstalledPkgListSingleton::instance()->getFileList().value(i)));
-  }*/
+  }
 
   //If it's a dumped snapshot list of installed packages file...
   if (pkgToVerify.startsWith(ctn_DUMP_FILE)){
@@ -621,9 +671,10 @@ Result Package::getStatus( const QString& pkgToVerify ){
 	}        
   
   return res; 						
-}
+}*/
 
-QStringList Package::getContents(const QString& pkgName){
+QStringList Package::getContents(const QString& pkgName)
+{
   QStringList rsl;
   QByteArray result = UnixCommand::getPackageContents(pkgName);
 
@@ -641,7 +692,8 @@ QStringList Package::getContents(const QString& pkgName){
   return rsl;
 }
 
-QString Package::parseSearchString(QString searchStr, bool exactMatch){
+QString Package::parseSearchString(QString searchStr, bool exactMatch)
+{
   if (searchStr.indexOf("*.") == 0){
     searchStr = searchStr.remove(0, 2);
     searchStr.insert(0, "\\S+\\.");
@@ -671,7 +723,8 @@ QString Package::parseSearchString(QString searchStr, bool exactMatch){
   return searchStr;
 }
 
-QDateTime Package::_getModificationDate(const QString packageName){
+QDateTime Package::_getModificationDate(const QString packageName)
+{
   QFileInfo fi(ctn_PACKAGES_DIR + QDir::separator() + packageName);
   if (fi.exists())
     return fi.lastModified();
@@ -679,7 +732,8 @@ QDateTime Package::_getModificationDate(const QString packageName){
     return QDateTime();
 }
 
-QString Package::getModificationDate(const QString packageName){
+QString Package::getModificationDate(const QString packageName)
+{
   QDateTime md = _getModificationDate(packageName);
   if (md.isValid()){
     return md.toString("dd/MM/yyyy - hh:mm:ss");
@@ -688,7 +742,8 @@ QString Package::getModificationDate(const QString packageName){
     return "";
 }
 
-SnapshotList Package::processSnapshotOfInstalledPackageList(QString pDumpedFile){
+/*SnapshotList Package::processSnapshotOfInstalledPackageList(QString pDumpedFile)
+{
   SnapshotList snapList;
   QStringList resList;
   QStringList newPackages;
@@ -728,7 +783,8 @@ SnapshotList Package::processSnapshotOfInstalledPackageList(QString pDumpedFile)
   int cDowngraded=0;
   int cOtherVersion=0;
 
-  foreach (QString pkg, InstalledPkgListSingleton::instance()->getFileList()){
+  foreach (QString pkg, InstalledPkgListSingleton::instance()->getFileList())
+  {
     if (!dumpedList.contains(getBaseName(pkg))){
       resList.append(pkg.leftJustified(value, ' ') + "[<i>++ " + QObject::tr("installed") + " ++</i>]");
       newPackages.append(pkg);
@@ -737,7 +793,8 @@ SnapshotList Package::processSnapshotOfInstalledPackageList(QString pDumpedFile)
     //This package is already installed. But maybe it's been reinstalled...
     else if (dumpedListExt.contains(pkg)){
       QString datetime = dumpedList.value(getBaseName(pkg));
-      if (QDateTime::fromString(datetime, "dd/MM/yyyy hh:mm:ss") < _getModificationDate(pkg)){
+      if (QDateTime::fromString(datetime, "dd/MM/yyyy hh:mm:ss") < _getModificationDate(pkg))
+      {
         resList.append(pkg.leftJustified(value, ' ') + " [ " + QObject::tr("reinstalled") + " ]");
         cReinstalled++;
       }
@@ -745,7 +802,8 @@ SnapshotList Package::processSnapshotOfInstalledPackageList(QString pDumpedFile)
   }
 
   //Print the rest of the list...
-  foreach (QString pkg, dumpedListExt){
+  foreach (QString pkg, dumpedListExt)
+  {
     Result res = Package::getStatus(pkg);
 
     switch(res.getClassification()){    
@@ -790,9 +848,10 @@ SnapshotList Package::processSnapshotOfInstalledPackageList(QString pDumpedFile)
   snapList.setNewPackagesList(newPackages);
   snapList.setDetails(resList);
   return snapList;
-}
+}*/
 
-void Package::removeTempFiles(){
+void Package::removeTempFiles()
+{
   QDir d(QDir::tempPath());
   QStringList sl;
   sl << ctn_TEMP_OPEN_FILE_PREFIX + "*";
@@ -803,26 +862,31 @@ void Package::removeTempFiles(){
   }
 }
 
-InstalledPkgListSingleton* InstalledPkgListSingleton::instance(){
+InstalledPkgListSingleton* InstalledPkgListSingleton::instance()
+{
   if (m_pinstance == 0) m_pinstance = new InstalledPkgListSingleton();
   return m_pinstance;
 }
 
-QStringList InstalledPkgListSingleton::getFileList(){
+QStringList InstalledPkgListSingleton::getFileList()
+{
   return m_pkgList;
 }
 
-void InstalledPkgListSingleton::setFileSystemWatcher(QFileSystemWatcher* fsw){
+void InstalledPkgListSingleton::setFileSystemWatcher(QFileSystemWatcher* fsw)
+{
   connect (fsw, SIGNAL(directoryChanged(const QString)),
                     this, SLOT(installedPkgDirChanged()));
 }
 
-InstalledPkgListSingleton::InstalledPkgListSingleton():QObject(){
+InstalledPkgListSingleton::InstalledPkgListSingleton():QObject()
+{
   QDir scanPackages = QDir(ctn_PACKAGES_DIR);
   scanPackages.setFilter(QDir::Files);
   m_pkgList = scanPackages.entryList();
 }
 
-void InstalledPkgListSingleton::installedPkgDirChanged(){
+void InstalledPkgListSingleton::installedPkgDirChanged()
+{
   m_pinstance = 0;
 }

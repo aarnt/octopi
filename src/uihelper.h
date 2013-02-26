@@ -41,6 +41,7 @@ public:
   static QIcon getIconOtherArch(){ return QIcon(":/resources/images/cpu.png"); }
   static QIcon getIconInstalled(){ return QIcon(":/resources/images/installed.png"); }
   static QIcon getIconNonInstalled(){ return QIcon(":/resources/images/noninstalled.png"); }
+  static QIcon getIconOutdated(){ return QIcon(":/resources/images/outdated.png"); }
   static QIcon getIconRemove(){ return QIcon(":/resources/images/close.png"); }
 
   static QIcon getIconExit(){ return QIcon(":/resources/images/exit.png"); }

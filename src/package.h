@@ -70,24 +70,28 @@ const QString ctn_SPKG_REINSTALL     = " --verbose --reinstall";
 const int ctn_KNOWN_ARCHS_LEN = 8;
 const int ctn_KNOWN_NAMES_LEN = 3;
 
-enum Classification { ectn_NOT_INSTALLED, ectn_INSTALLED, ectn_INFERIOR_VERSION, ectn_SUPERIOR_VERSION,
-                      ectn_OTHER_VERSION, ectn_OTHER_ARCH, ectn_INTERNAL_ERROR, ectn_FROZEN, ectn_RPM, ectn_DUMP_FILE };
+/*enum Classification { ectn_NOT_INSTALLED, ectn_INSTALLED, ectn_INFERIOR_VERSION, ectn_SUPERIOR_VERSION,
+                      ectn_OTHER_VERSION, ectn_OTHER_ARCH, ectn_INTERNAL_ERROR, ectn_FROZEN, ectn_RPM, ectn_DUMP_FILE };*/
 
 enum SearchPlace { ectn_INSIDE_INSTALLED_PACKAGES, ectn_INSIDE_DIRECTORY, ectn_INSIDE_QSTDITEMMODEL };
 
 enum DumpInstalledPackageListOptions { ectn_WITH_MODIFIED_DATE, ectn_NO_MODIFIED_DATE };
 
+enum PackageStatus { ectn_INSTALLED, ectn_NON_INSTALLED, ectn_OUTDATED };
+
 struct PackageListData{
   QString name;
   QString repository;
   QString version;
-  bool installed;
+  QString outatedVersion;
+  PackageStatus status;
 
-  PackageListData(QString n, QString r, QString v, bool isInstalled){
+  PackageListData(QString n, QString r, QString v, PackageStatus pkgStatus, QString outVersion=""){
     name=n;
     repository=r;
     version=v;
-    installed=isInstalled;
+    status=pkgStatus;
+    outatedVersion=outVersion;
   }
 };
 
@@ -142,6 +146,7 @@ class Package{
     static double simplePow(int base, int exp);
 
 	public:
+    static QStringList * getOutdatedPackageList();
     static QList<PackageListData> * getPackageList();
     static PackageInfoData getInformation(QString pkgName);
     static QStringList getContents(const QString &pkgName);
@@ -168,17 +173,17 @@ class Package{
     static QString getBaseName( const QString& pkgName );
     static bool isValid( const QString& pkgName );
     static QString dumpInstalledPackageList(DumpInstalledPackageListOptions options = ectn_WITH_MODIFIED_DATE);
-    static Result getStatus( const QString& pkgToVerify );
+    //static Result getStatus( const QString& pkgToVerify );
     static QString parseSearchString( QString searchStr, bool exactMatch = false );
     static bool isSlackPackage(const QString &filePath);
-    static SnapshotList processSnapshotOfInstalledPackageList(QString dumpedList);
+    //static SnapshotList processSnapshotOfInstalledPackageList(QString dumpedList);
     static QString getModificationDate(const QString packageName);
     static void removeTempFiles(); //Remove the temporary opened files from uninstalled packages
 };
 
-class Result{
+/*class Result{
   private:
-		Classification classification; 
+    //Classification classification;
 		QString installedPackage;
 	
 	public:
@@ -194,7 +199,7 @@ class Result{
 		QString getInstalledPackage(){
 			return installedPackage;
 		}
-};
+};*/
 
 class InstalledPkgListSingleton: public QObject {
   Q_OBJECT

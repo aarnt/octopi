@@ -35,7 +35,8 @@
 QFile *UnixCommand::m_temporaryFile = 0;
 
 //Execute the given command and returns the StandardError Output.
-QString UnixCommand::runCommand(const QString& commandToRun){
+QString UnixCommand::runCommand(const QString& commandToRun)
+{
   QProcess proc;
 
 #if QT_VERSION >= 0x040600
@@ -103,7 +104,29 @@ QString UnixCommand::discoverBinaryPath(const QString& binary){
   return res;
 }
 
-QByteArray UnixCommand::getPackageList(){
+QByteArray UnixCommand::getOutdatedPackageList()
+{
+  QByteArray result("");
+  QProcess pacman;
+  QStringList args;
+
+#if QT_VERSION >= 0x040600
+  QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
+  env.insert("LANG", "us_EN");
+  pacman.setProcessEnvironment(env);
+#endif
+
+  args << "-Qu";
+  pacman.start("pacman", args);
+
+  pacman.waitForFinished(-1);
+  result = pacman.readAllStandardOutput();
+
+  return result;
+}
+
+QByteArray UnixCommand::getPackageList()
+{
   QByteArray result("");
   QProcess pacman;
   QStringList args;
@@ -123,7 +146,8 @@ QByteArray UnixCommand::getPackageList(){
   return result;
 }
 
-QByteArray UnixCommand::getPackageInformation(const QString &pkgName){
+QByteArray UnixCommand::getPackageInformation(const QString &pkgName)
+{
   QByteArray result("");
   QProcess pacman;
   QStringList args;
@@ -145,7 +169,8 @@ QByteArray UnixCommand::getPackageInformation(const QString &pkgName){
   return result;
 }
 
-QByteArray UnixCommand::getPackageContents(const QString& pkgName){
+QByteArray UnixCommand::getPackageContents(const QString& pkgName)
+{
   QByteArray res;
   QProcess pacman;
 
@@ -167,7 +192,8 @@ QByteArray UnixCommand::getPackageContents(const QString& pkgName){
   return res;
 }
 
-QString UnixCommand::getSystemArchitecture(){
+QString UnixCommand::getSystemArchitecture()
+{
   QStringList slParam;
   QProcess proc;
 
@@ -187,7 +213,8 @@ QString UnixCommand::getSystemArchitecture(){
   return out;
 }
 
-bool UnixCommand::hasInternetConnection(){
+bool UnixCommand::hasInternetConnection()
+{
   QList<QNetworkInterface> ifaces = QNetworkInterface::allInterfaces();
   bool result = false;
 
@@ -212,33 +239,9 @@ bool UnixCommand::hasInternetConnection(){
   return result;
 }
 
-/*bool UnixCommand::hasSlackGPGKeyInstalled(QString slackVersion){
-  QProcess gpgProcess;
-
-#if QT_VERSION >= 0x040600
-  QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
-  env.insert("LANG", "us_EN");
-  gpgProcess.setProcessEnvironment(env);
-#endif
-
-  QString gpgCommand = "gpg --fingerprint";
-  gpgProcess.start(gpgCommand);
-  gpgProcess.waitForFinished(-1);
-
-  QString output = gpgProcess.readAllStandardOutput();
-  gpgProcess.close();
-
-  //If we have Slackware for ARM archs...
-  if (slackVersion.contains("arm", Qt::CaseInsensitive)){
-    return (output.indexOf(ctn_LIST_GPG_SLACKWARE_ARM_KEY) != -1);
-  }
-  else { //Otherwise, we are dealing with 32 or 64 bit intel/AMD
-    return (output.indexOf(ctn_LIST_GPG_SLACKWARE_KEY) != -1);
-  }
-}*/
-
 //We must check if KTSUSS version is 1.3 or 1.4.
-bool UnixCommand::isKtsussVersionOK(){
+bool UnixCommand::isKtsussVersionOK()
+{
   QProcess proc;
 
 #if QT_VERSION >= 0x040600
@@ -260,7 +263,8 @@ bool UnixCommand::isKtsussVersionOK(){
     return false;
 }
 
-bool UnixCommand::hasTheExecutable( const QString& exeName ){
+bool UnixCommand::hasTheExecutable( const QString& exeName )
+{
   QProcess* proc = new QProcess();
   proc->setProcessChannelMode(QProcess::MergedChannels);
   QString sParam = "\"which " + exeName + "\"";
@@ -275,7 +279,8 @@ bool UnixCommand::hasTheExecutable( const QString& exeName ){
   else return true;
 }
 
-void UnixCommand::removeTemporaryFiles(){
+void UnixCommand::removeTemporaryFiles()
+{
   QDir tempDir(QDir::tempPath());
   QStringList nameFilters;
   nameFilters << "qtsingleapp*" << "gpg*";
@@ -303,7 +308,8 @@ void UnixCommand::removeTemporaryFiles(){
   }
 }
 
-bool UnixCommand::isTextFile( const QString& fileName ){
+bool UnixCommand::isTextFile(const QString& fileName)
+{
   QProcess *p = new QProcess();
 
 #if QT_VERSION >= 0x040600
@@ -328,93 +334,8 @@ bool UnixCommand::isTextFile( const QString& fileName ){
           (output.indexOf( "executable", from) == -1));
 }
 
-QString UnixCommand::executeDiffToEachOther( QString pkg1, QString pkg2 ){
-  QStringList sl = Package::getContents(pkg1);
-  QCoreApplication::processEvents();
-  QStringList sl2 = Package::getContents(pkg2);
-  QCoreApplication::processEvents();
-
-  if ( sl.isEmpty() && sl2.isEmpty() ) return 0;
-
-  sl.sort();
-  sl2.sort();
-  QFile fPkg("/tmp/tempPkg");
-  QFile fIPkg("/tmp/tempIPkg");
-
-  fPkg.open(QIODevice::ReadWrite | QIODevice::Text);
-  fIPkg.open(QIODevice::ReadWrite | QIODevice::Text);
-  QTextStream tsp(&fPkg);
-  QTextStream tsip(&fIPkg);
-
-  foreach(QString s, sl) tsp << s << endl;
-  foreach(QString s, sl2) tsip << s << endl;
-
-  QStringList slParam;
-  QProcess proc;
-
-  slParam << "--suppress-common-lines";
-  slParam << fPkg.fileName();
-  slParam << fIPkg.fileName();
-
-  proc.start("diff", slParam);
-  proc.waitForStarted();
-  proc.waitForFinished();
-
-  fPkg.close();
-  fIPkg.close();
-  fPkg.remove();
-  fIPkg.remove();
-
-  QString result = proc.readAllStandardOutput();
-
-  if (result != 0)
-    return result;
-  else
-    return ctn_PACKAGES_WITH_SAME_CONTENT;
-}
-
-QString UnixCommand::executeDiffToInstalled( QString pkg, QString installedPackage ){
-  QStringList sl = Package::getContents(ctn_PACKAGES_DIR + QDir::separator() + installedPackage);
-  QCoreApplication::processEvents();
-  QStringList sl2 = Package::getContents(pkg);
-  QCoreApplication::processEvents();
-
-  if ( sl2.isEmpty() ) return 0;
-
-  sl.sort();
-  sl2.sort();
-
-  QFile fPkg("/tmp/tempPkg");
-  QFile fIPkg("/tmp/tempIPkg");
-
-  fPkg.open(QIODevice::ReadWrite | QIODevice::Text);
-  fIPkg.open(QIODevice::ReadWrite | QIODevice::Text);
-  QTextStream tsp(&fPkg);
-  QTextStream tsip(&fIPkg);
-
-  foreach(QString s, sl2) tsp << s << endl;
-  foreach(QString s, sl) tsip << s << endl;
-
-  //Here, we execute the diff
-  QStringList slParam;
-  QProcess proc;
-
-  slParam << "--suppress-common-lines";
-  slParam << fPkg.fileName();
-  slParam << fIPkg.fileName();
-  proc.start("diff", slParam);
-  proc.waitForStarted();
-  proc.waitForFinished();
-
-  fPkg.close();
-  fIPkg.close();
-  fPkg.remove();
-  fIPkg.remove();
-
-  return proc.readAllStandardOutput();
-}
-
-void UnixCommand::executePackageActions( const QStringList& commandList ){
+void UnixCommand::executePackageActions( const QStringList& commandList )
+{
   QFile *ftemp = getTemporaryFile();
   QTextStream out(ftemp);
 
@@ -428,98 +349,34 @@ void UnixCommand::executePackageActions( const QStringList& commandList ){
   m_process->start(command);
 }
 
-void UnixCommand::transformTGZinLZM( const QStringList& commandList, LZMCommand commandUsed ){
-  QFile *ftemp = getTemporaryFile();
-  QTextStream out(ftemp);
-  QFileInfo fi(commandList[0]);
-  m_process->setWorkingDirectory(fi.absolutePath());
-
-  if (commandUsed == ectn_TXZ2SB) {
-    foreach(QString line, commandList){
-      out << "echo -e " << StrConstants::getExecutingCommand() <<
-             " \\\x27" << "txz2sb " << line << "\\\x27...\n";
-      out << "txz2sb " << line << "\n";
-    }
-  }
-  else if (commandUsed == ectn_TGZ2LZM) {
-    foreach(QString line, commandList){
-      QFileInfo fi(line);
-      QString newFile = fi.fileName();
-      newFile = newFile.replace(".tgz", ".lzm");
-      out << "echo -e " << StrConstants::getExecutingCommand() <<
-             " \\\x27" << "tgz2lzm " << line << " " << newFile << "\\\x27...\n";
-      out << "tgz2lzm " << line << " " << newFile << "\n";
-    }
-  }
-  else if (commandUsed == ectn_MAKELZM) {
-    foreach(QString line, commandList){
-      out << "echo -e " << StrConstants::getExecutingCommand() <<
-             " \\\x27" << "make-lzm " << line << "\\\x27...\n";
-      out << "make-lzm " << line << "\n";
-    }
-  }
-
-  out.flush();
-  ftemp->close();
-  m_process->start(WMHelper::getSUCommand() + " " + ftemp->fileName());
-}
-
-void UnixCommand::transformRPMinTGZ(const QStringList& commandList){
-  QFile *ftemp = getTemporaryFile();
-  QTextStream out(ftemp);
-  QFileInfo fi(commandList[0]);
-  m_process->setWorkingDirectory(fi.absolutePath());
-
-  foreach(QString line, commandList){
-    out << "echo -e " << StrConstants::getExecutingCommand() <<
-           " \\\x27" << "/usr/bin/rpm2tgz " << line << "\\\x27...\n";
-    out << "/usr/bin/rpm2tgz " << line << "\n";
-  }
-
-  out.flush();
-  ftemp->close();
-  m_process->start(WMHelper::getSUCommand() + " " + ftemp->fileName());
-}
-
-void UnixCommand::transformRPMinTXZ(const QStringList &commandList){
-  QFile *ftemp = getTemporaryFile();
-  QTextStream out(ftemp);
-  QFileInfo fi(commandList[0]);
-  m_process->setWorkingDirectory(fi.absolutePath());
-
-  foreach(QString line, commandList){
-    out << "echo -e " << StrConstants::getExecutingCommand() <<
-           " \\\x27" << "/usr/bin/rpm2txz " << line << "\\\x27...\n";
-    out << "/usr/bin/rpm2txz " << line << "\n";
-  }
-
-  out.flush();
-  ftemp->close();
-  m_process->start(WMHelper::getSUCommand() + " " + ftemp->fileName());
-}
-
-void UnixCommand::processReadyReadStandardOutput(){
+void UnixCommand::processReadyReadStandardOutput()
+{
   m_readAllStandardOutput = m_process->readAllStandardOutput();
 }
 
-void UnixCommand::processReadyReadStandardError(){
+void UnixCommand::processReadyReadStandardError()
+{
   m_readAllStandardError = m_process->readAllStandardError();
   m_errorString = m_process->errorString();
 }
 
-QString UnixCommand::readAllStandardOutput(){
+QString UnixCommand::readAllStandardOutput()
+{
   return m_readAllStandardOutput;
 }
 
-QString UnixCommand::readAllStandardError(){
+QString UnixCommand::readAllStandardError()
+{
   return m_readAllStandardError;
 }
 
-QString UnixCommand::errorString(){
+QString UnixCommand::errorString()
+{
   return m_errorString;
 }
 
-UnixCommand::UnixCommand(QObject *parent): QObject(){
+UnixCommand::UnixCommand(QObject *parent): QObject()
+{
   m_process = new QProcess(parent);
 
   QObject::connect(m_process, SIGNAL( started() ), this,
@@ -543,28 +400,32 @@ UnixCommand::UnixCommand(QObject *parent): QObject(){
                    SLOT( processReadyReadStandardError() ));
 }
 
-QString UnixCommand::getPkgRemoveCommand(){
+QString UnixCommand::getPkgRemoveCommand()
+{
   if (SettingsManager::getUsePkgTools() == true)
     return ctn_PKGTOOLS_REMOVE;
   else
     return discoverBinaryPath(ctn_SPKG) + ctn_SPKG_REMOVE;
 }
 
-QString UnixCommand::getPkgInstallCommand(){
+QString UnixCommand::getPkgInstallCommand()
+{
   if (SettingsManager::getUsePkgTools() == true)
     return ctn_PKGTOOLS_INSTALL;
   else
     return discoverBinaryPath(ctn_SPKG) + ctn_SPKG_INSTALL;
 }
 
-QString UnixCommand::getPkgUpgradeCommand(){
+QString UnixCommand::getPkgUpgradeCommand()
+{
   if (SettingsManager::getUsePkgTools() == true)
     return ctn_PKGTOOLS_UPGRADE;
   else
     return discoverBinaryPath(ctn_SPKG) + ctn_SPKG_UPGRADE;
 }
 
-QString UnixCommand::getPkgReinstallCommand(){
+QString UnixCommand::getPkgReinstallCommand()
+{
   if (SettingsManager::getUsePkgTools() == true)
     return ctn_PKGTOOLS_REINSTALL;
   else
