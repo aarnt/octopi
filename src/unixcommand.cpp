@@ -103,113 +103,71 @@ QString UnixCommand::discoverBinaryPath(const QString& binary){
   return res;
 }
 
-//Verifies if SPKG is installed correctly. Returns TRUE or FALSE.
-bool UnixCommand::isSpkgInstalled(){
-  return (discoverBinaryPath(ctn_SPKG) != "");
-}
-
-bool UnixCommand::isSlackPackage(const QString& filePath){
-  bool bResult = false;
-
-  QProcess tar;
+QByteArray UnixCommand::getPackageList(){
+  QByteArray result("");
+  QProcess pacman;
+  QStringList args;
 
 #if QT_VERSION >= 0x040600
   QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
   env.insert("LANG", "us_EN");
-  tar.setProcessEnvironment(env);
+  pacman.setProcessEnvironment(env);
 #endif
 
-  QStringList args;
-  args << "-Otf";
-  args << filePath;
-  args << "install/";
-  tar.start("tar", args);
+  args << "-Sl";
+  pacman.start("pacman", args);
 
-  QString result("");
-  tar.waitForFinished(-1);
-  result = tar.readAllStandardOutput();
+  pacman.waitForFinished(-1);
+  result = pacman.readAllStandardOutput();
 
-  if (result == ""){
-    result = tar.readAllStandardError();
-    if (result == "")
-      bResult = false;
-    else if (result.contains("install/") || result.contains("not found", Qt::CaseInsensitive) >= 0)
-      bResult = true;
-  }
-  else
-    bResult = true;
-
-  tar.close();
-  return bResult;
+  return result;
 }
 
-QByteArray UnixCommand::getPackageInformation( const QString &pkgName, bool installed ){
+QByteArray UnixCommand::getPackageInformation(const QString &pkgName){
   QByteArray result("");
-  QProcess tar;
+  QProcess pacman;
+  QStringList args;
 
-  if ( installed == false ) {
-    //"tar -Oxzf lives-0.9.8-i486-1gas.tgz install/slack-desc > slack-desc"
-    QStringList args;
+#if QT_VERSION >= 0x040600
+  QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
+  env.insert("LANG", "us_EN");
+  pacman.setProcessEnvironment(env);
+#endif
 
-    if (pkgName.endsWith(ctn_TGZ_PACKAGE_EXTENSION)) args << "-Oxzf";
-    else args << "-OxJf";
+  args << "-Si";
+  args << pkgName;
+  pacman.start("pacman", args);
 
-    args << pkgName;
-    args << "install/slack-desc";
-    tar.start("tar", args);
+  pacman.waitForFinished(-1);
+  result = pacman.readAllStandardOutput();
 
-    if (!tar.waitForFinished(100)){
-      result = tar.readAllStandardOutput();
-      if (result == ""){
-        tar.waitForFinished();
-        result = tar.readAllStandardOutput();
-      }
-    }
-
-    if (result == "") result = tar.readAllStandardOutput();
-  }
-
-  else if ( installed == true ){
-    QStringList args;
-
-    args << pkgName;
-    tar.start("cat", args);
-    if (!(tar.waitForStarted())) return "";
-    if (!(tar.waitForFinished())) return "";
-    result = tar.readAll();
-  }
-
-  tar.close();
+  pacman.close();
   return result;
 }
 
 QByteArray UnixCommand::getPackageContents(const QString& pkgName){
   QByteArray res;
-  QProcess tar;
+  QProcess pacman;
 
 #if QT_VERSION >= 0x040600
   QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
   env.insert("LANG", "us_EN");
-  tar.setProcessEnvironment(env);
+  pacman.setProcessEnvironment(env);
 #endif
 
   QStringList args;
-  args << "-Otf";
+  args << "-Ql";
   args << pkgName;
 
-  tar.start ( "tar", args );
-  if ( !( tar.waitForStarted() ) ) return ctn_PKG_CONTENT_ERROR.toAscii();
-  if ( !( tar.waitForFinished(-1) ) ) return ctn_PKG_CONTENT_ERROR.toAscii();
-
-  res = tar.readAllStandardError();
-  tar.close();
-
-  if (res == ctn_XZ_TAR_ERROR || res == ctn_GZ_TAR_ERROR) return ctn_PKG_CONTENT_ERROR.toAscii();
+  pacman.start ( "pacman", args );
+  pacman.waitForFinished(-1);
+  res = pacman.readAllStandardOutput();
+  pacman.close();
 
   return res;
 }
 
-QString UnixCommand::getSlackArchitecture(){
+QString UnixCommand::getSystemArchitecture(){
   QStringList slParam;
   QProcess proc;
 
@@ -227,33 +185,6 @@ QString UnixCommand::getSlackArchitecture(){
   proc.close();
 
   return out;
-}
-
-/*bool UnixCommand::isAuthenticPackage(const QString& packageName){
-  QProcess gpgProcess;
-
-#if QT_VERSION >= 0x040600
-  QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
-  env.insert("LANG", "us_EN");
-  gpgProcess.setProcessEnvironment(env);
-#endif
-
-  gpgProcess.start("gpg --status-fd 1 --verify " + packageName + ctn_GPG_SIGNATURE_EXTENSION);
-  gpgProcess.waitForFinished(-1);
-
-  int exitCode = gpgProcess.exitCode();
-  gpgProcess.close();
-
-  return (exitCode == 0);
-}*/
-
-void UnixCommand::installSlackGPGKey(const QString& gpgKeyPath){
-  QProcess gpgProcess;
-  QString gpgCommand = "gpg --import " + gpgKeyPath;
-
-  gpgProcess.start(gpgCommand);
-  gpgProcess.waitForFinished(-1);
-  gpgProcess.close();
 }
 
 bool UnixCommand::hasInternetConnection(){
@@ -443,7 +374,7 @@ QString UnixCommand::executeDiffToEachOther( QString pkg1, QString pkg2 ){
 }
 
 QString UnixCommand::executeDiffToInstalled( QString pkg, QString installedPackage ){
-  QStringList sl = Package::getContents(ctn_PACKAGES_DIR + QDir::separator() + installedPackage, true);
+  QStringList sl = Package::getContents(ctn_PACKAGES_DIR + QDir::separator() + installedPackage);
   QCoreApplication::processEvents();
   QStringList sl2 = Package::getContents(pkg);
   QCoreApplication::processEvents();

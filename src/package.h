@@ -26,6 +26,7 @@
 #include <QSettings>
 #include <QDir>
 #include <QFileSystemWatcher>
+#include <QDateTime>
 
 const QString ctn_ROOT_HOME("/root");
 const char* const ctn_INSTALLED_PACKAGES_DIR 	= "/var/log/packages/";
@@ -76,6 +77,40 @@ enum SearchPlace { ectn_INSIDE_INSTALLED_PACKAGES, ectn_INSIDE_DIRECTORY, ectn_I
 
 enum DumpInstalledPackageListOptions { ectn_WITH_MODIFIED_DATE, ectn_NO_MODIFIED_DATE };
 
+struct PackageListData{
+  QString name;
+  QString repository;
+  QString version;
+  bool installed;
+
+  PackageListData(QString n, QString r, QString v, bool isInstalled){
+    name=n;
+    repository=r;
+    version=v;
+    installed=isInstalled;
+  }
+};
+
+struct PackageInfoData{
+  QString name;
+  QString repository;
+  QString version;
+  QString url;
+  QString license;
+  QString group;
+  QString provides;
+  QString dependsOn;
+  QString optDepends;
+  QString conflictsWith;
+  QString replaces;
+  QString packager;
+  QString arch;
+  QString description;
+  QDateTime buildDate;
+  double downloadSize;
+  double installedSize;
+};
+
 //Holds the information obtained by the process of opening a snapshot.
 struct SnapshotList{
   private:
@@ -93,34 +128,52 @@ struct SnapshotList{
 
 class Result;
 
-class QStandardItemModel;
-
 class Package{  
   private:
     static QString showRegExp( const QString&, const QString& );
     static Result verifyPreReleasePackage(const QStringList &versao1,
                                           const QStringList &versao2, const QString &pacote);
     static QDateTime _getModificationDate(const QString packageName);
-
     static bool isValidArch(const QString &packageArch);
 
+    static QString extractFieldFromInfo(const QString &field, const QString &pkgInfo);
+    static QString makeURLClickable(const QString &information);
+
+    static double simplePow(int base, int exp);
+
 	public:
+    static QList<PackageListData> * getPackageList();
+    static PackageInfoData getInformation(QString pkgName);
+    static QStringList getContents(const QString &pkgName);
+
+    static QString getVersion(const QString &pkgInfo);
+    static QString getRepository(const QString &pkgInfo);
+    static QString getURL(const QString &pkgInfo);
+    static QString getLicense(const QString &pkgInfo);
+    static QString getGroup(const QString &pkgInfo);
+    static QString getProvides(const QString &pkgInfo);
+    static QString getDependsOn(const QString &pkgInfo);
+    static QString getOptDepends(const QString &pkgInfo);
+    static QString getConflictsWith(const QString &pkgInfo);
+    static QString getReplaces(const QString &pkgInfo);
+    static QString getPackager(const QString &pkgInfo);
+    static QString getArch(const QString &pkgInfo);
+    static QString getDescription(const QString &pkgInfo);
+    static QDateTime getBuildDate(const QString &pkgInfo);
+    static double getDownloadSize(const QString &pkgInfo);
+    static double getInstalledSize(const QString &pkgInfo);
+    static double humanizeSize(off_t bytes, const char target_unit, int precision, const char **label);
+
     static QStringList getInstalledPackageNames();
     static QString getBaseName( const QString& pkgName );
-    static QString makeURLClickable( const QString & information );
-    static QString getInformation( QString pkgName, bool installed = false );
-		static QStringList getContents( const QString& pkgName, bool installed = false );	
-		static bool isValid( const QString& pkgName );
+    static bool isValid( const QString& pkgName );
     static QString dumpInstalledPackageList(DumpInstalledPackageListOptions options = ectn_WITH_MODIFIED_DATE);
     static Result getStatus( const QString& pkgToVerify );
     static QString parseSearchString( QString searchStr, bool exactMatch = false );
     static bool isSlackPackage(const QString &filePath);
-
     static SnapshotList processSnapshotOfInstalledPackageList(QString dumpedList);
-
-    static void removeTempFiles(); //Remove the temporary opened files from uninstalled packages
-
     static QString getModificationDate(const QString packageName);
+    static void removeTempFiles(); //Remove the temporary opened files from uninstalled packages
 };
 
 class Result{
@@ -163,7 +216,8 @@ class InstalledPkgListSingleton: public QObject {
     void installedPkgDirChanged();
 };
 
-class FrozenPkgListSingleton : public QStringList {
+
+/*class FrozenPkgListSingleton : public QStringList {
   private:
 		static FrozenPkgListSingleton *m_pinstance;
 		
@@ -183,6 +237,6 @@ class FrozenPkgListSingleton : public QStringList {
       if (m_pinstance == 0) m_pinstance = new FrozenPkgListSingleton();
       return m_pinstance;
 		}		
-};
+};*/
 
 #endif

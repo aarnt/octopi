@@ -22,10 +22,11 @@
 #include "unixcommand.h"
 #include "stdlib.h"
 #include <QTextStream>
+#include <QList>
 #include <iostream>
 
 InstalledPkgListSingleton *InstalledPkgListSingleton::m_pinstance = 0;
-FrozenPkgListSingleton *FrozenPkgListSingleton::m_pinstance = 0;
+//FrozenPkgListSingleton *FrozenPkgListSingleton::m_pinstance = 0;
 
 QStringList Package::getInstalledPackageNames(){
   QDir d(ctn_PACKAGES_DIR);
@@ -121,111 +122,223 @@ QString Package::makeURLClickable( const QString &s ){
 	}
 
 	sb.replace(QRegExp("\n"), "<br>");
-  return "<p align='left'>" + sb + "</p>"; //p style='white-space:pre
+  return sb;
 }
 
-//Test if the file is indeed a Slackware compatible package
-bool Package::isSlackPackage(const QString &filePath) {
-  return UnixCommand::isSlackPackage(filePath);
+/* a pow() implementation that is specialized for an integer base and small,
+ * positive-only integer exponents. */
+double Package::simplePow(int base, int exp)
+{
+  double result = 1.0;
+  for(; exp > 0; exp--) {
+    result *= base;
+  }
+  return result;
 }
+
+/** Converts sizes in bytes into human readable units.
+ *
+ * @param bytes the size in bytes
+ * @param target_unit '\0' or a short label. If equal to one of the short unit
+ * labels ('B', 'K', ...) bytes is converted to target_unit; if '\0', the first
+ * unit which will bring the value to below a threshold of 2048 will be chosen.
+ * @param precision number of decimal places, ensures -0.00 gets rounded to
+ * 0.00; -1 if no rounding desired
+ * @param label will be set to the appropriate unit label
+ *
+ * @return the size in the appropriate unit
+ */
+
+/*An example call:
+  human_size = humanize_size(size, 'M', 2, &label);
+  pm_asprintf(&str, "%.2f %s", human_size, label);*/
+
+double Package::humanizeSize(off_t bytes, const char target_unit, int precision,
+    const char **label)
+{
+  static const char *labels[] = {"B", "KiB", "MiB", "GiB",
+    "TiB", "PiB", "EiB", "ZiB", "YiB"};
+  static const int unitcount = sizeof(labels) / sizeof(labels[0]);
+
+  double val = (double)bytes;
+  int index;
+
+  for(index = 0; index < unitcount - 1; index++) {
+    if(target_unit != '\0' && labels[index][0] == target_unit) {
+      break;
+    } else if(target_unit == '\0' && val <= 2048.0 && val >= -2048.0) {
+      break;
+    }
+    val /= 1024.0;
+  }
+
+  if(label) {
+    *label = labels[index];
+  }
+
+  /* fix FS#27924 so that it doesn't display negative zeroes */
+  if(precision >= 0 && val < 0.0 &&
+      val > (-0.5 / simplePow(10, precision))) {
+    val = 0.0;
+  }
+
+  return val;
+}
+
+QList<PackageListData> * Package::getPackageList(){
+  QString pkgList = UnixCommand::getPackageList();
+  QStringList packageTuples = pkgList.split(QRegExp("\n"));
+  QList<PackageListData> * res = new QList<PackageListData>();
+
+  foreach(QString packageTuple, packageTuples){
+    QStringList parts = packageTuple.split(' ');
+
+    if(parts.size() > 1){
+      if(parts.size() == 4){
+        //This is an installed package!
+        res->append(PackageListData(parts[1], parts[0], parts[2], true));
+      }
+      else
+        res->append(PackageListData(parts[1], parts[0], parts[2], false));
+    }
+  }
+
+  return res;
+}
+
+QString Package::extractFieldFromInfo(const QString &field, const QString &pkgInfo){
+  int fieldPos = pkgInfo.indexOf(field);
+  QString aux;
+  int i,j;
+
+  if (fieldPos > 0){
+    for(i=fieldPos+1; pkgInfo.at(i) != ':'; i++){
+    }
+
+    aux = pkgInfo.mid(++i).trimmed();
+
+    if (aux.indexOf('\n') > 0){
+      for(j=0; aux.at(j) != '\n'; j++){
+      }
+
+      aux = aux.mid(0, j).trimmed();
+    }
+  }
+
+  return aux;
+}
+
+QString Package::getVersion(const QString &pkgInfo){
+  return extractFieldFromInfo("Version", pkgInfo);
+}
+
+QString Package::getRepository(const QString &pkgInfo){
+  return extractFieldFromInfo("Repository", pkgInfo);
+}
+
+QString Package::getURL(const QString &pkgInfo){
+  QString URL = extractFieldFromInfo("URL", pkgInfo);
+  if (!URL.isEmpty())
+    return makeURLClickable(URL);
+  else
+    return URL;
+}
+
+QString Package::getLicense(const QString &pkgInfo){
+  return extractFieldFromInfo("Licenses", pkgInfo);
+}
+
+QString Package::getGroup(const QString &pkgInfo){
+  return extractFieldFromInfo("Groups", pkgInfo);
+}
+
+QString Package::getProvides(const QString &pkgInfo){
+  return extractFieldFromInfo("Provides", pkgInfo);
+}
+
+QString Package::getDependsOn(const QString &pkgInfo){
+  return extractFieldFromInfo("Depends On", pkgInfo);
+}
+
+QString Package::getOptDepends(const QString &pkgInfo){
+  return extractFieldFromInfo("Optional Deps", pkgInfo);
+}
+
+QString Package::getConflictsWith(const QString &pkgInfo){
+  return extractFieldFromInfo("Conflicts With", pkgInfo);
+}
+
+QString Package::getReplaces(const QString &pkgInfo){
+  return extractFieldFromInfo("Replaces", pkgInfo);
+}
+
+QString Package::getPackager(const QString &pkgInfo){
+return extractFieldFromInfo("Packager", pkgInfo);
+}
+
+QString Package::getArch(const QString &pkgInfo){
+  return extractFieldFromInfo("Architecture", pkgInfo);
+}
+
+QDateTime Package::getBuildDate(const QString &pkgInfo){
+  QString aux = extractFieldFromInfo("Build Date", pkgInfo);
+  return QDateTime::fromString(aux); //"ddd MMM d hh:mm:ss yyyy");
+}
+
+double Package::getDownloadSize(const QString &pkgInfo){
+  QString aux = extractFieldFromInfo("Download Size", pkgInfo);
+  aux = aux.section(QRegExp("\\s"), 0, 0);
+
+  bool ok;
+  double res = aux.toDouble(&ok);
+
+  if (ok)
+    return res;
+  else
+    return 0;
+}
+
+double Package::getInstalledSize(const QString &pkgInfo){
+  QString aux = extractFieldFromInfo("Installed Size", pkgInfo);
+  aux = aux.section(QRegExp("\\s"), 0, 0);
+
+  bool ok;
+  double res = aux.toDouble(&ok);
+
+  if (ok)
+    return res;
+  else
+    return 0;
+}
+
+QString Package::getDescription(const QString &pkgInfo){
+  return extractFieldFromInfo("Description", pkgInfo);
+}
+
 
 // Regular expression for "http://" -> ^((ht|f)tp(s?))\://([0-9a-zA-Z\-]+\.)+[a-zA-Z]{2,6}(\:[0-9]+)?(/\S*)?$
-QString Package::getInformation( QString pkgName, bool installed ) {
-	QFileInfo fi( pkgName );    
+PackageInfoData Package::getInformation(QString pkgName){
+  PackageInfoData res;
+  QString pkgInfo = UnixCommand::getPackageInformation(pkgName);
 
-	if ( installed == false ) {
-    QString pname = Package::getBaseName( fi.fileName() );
-    QString sb = UnixCommand::getPackageInformation(pkgName, installed);
-    QString t = pname + ":";
-    //tar.close();
-    int x = sb.indexOf(t, 0);
-   	if (x > 0) sb.remove(0, x);
-   	int begin=0;
-   	x = sb.indexOf(t);
+  res.name = pkgName;
+  res.version = getVersion(pkgInfo);
+  res.url = getURL(pkgInfo);
+  res.license = getLicense(pkgInfo);
+  res.dependsOn = getDependsOn(pkgInfo);
+  res.optDepends = getOptDepends(pkgInfo);
+  res.group = getGroup(pkgInfo);
+  res.provides = getProvides(pkgInfo);
+  res.replaces = getReplaces(pkgInfo);
+  res.conflictsWith = getConflictsWith(pkgInfo);
+  res.packager = getPackager(pkgInfo);
+  res.arch = getArch(pkgInfo);
+  res.buildDate = getBuildDate(pkgInfo);
+  res.description = getDescription(pkgInfo);
+  res.downloadSize = getDownloadSize(pkgInfo);
+  res.installedSize = getInstalledSize(pkgInfo);
 
-    while(x >= 0){
-   		if (x==0) sb.remove(x, x+t.length()+1);
-   		else {
-        if (!sb.mid(x-1, x).contains("\\S")) sb.remove(x, (x+t.length()+1)-x);
-        else begin += pname.size();
-   		}
-    	x = sb.indexOf(t, begin);
-    }	
-
-		if ( !sb.isEmpty() ) return makeURLClickable(sb);
-		else return 0;
-	}
-	else if ( installed == true ){
-    QString pname = Package::getBaseName( fi.fileName() );
-    QString sb = UnixCommand::getPackageInformation(pkgName, installed);
-    QString pkgSize;
-    bool sizeInMegaBytes = false;
-
-		int y = sb.indexOf("UNCOMPRESSED PACKAGE SIZE", 0);
-		if (y > 0) {
-			y += 26;			
-			while ( sb[y] != '\n' ){
-        if ( sb[y].isDigit() || sb[y] == '.' )
-          pkgSize += sb[y];
-        else if ( !(sb[y].isSpace()) && (sb[y].isLetter()) && (sb[y] == 'M') )
-          sizeInMegaBytes = true;
-
-				y++;
-			}
-		}
-		if (!pkgSize.isEmpty()){
-			bool ok;
-			double d = pkgSize.toDouble( &ok );
-			if ( ok == true ){
-				if ( d > 1024 ){
-					d /= 1024;
-					pkgSize = QString::number( d, '.', 2 ) + " MB";
-				}
-        else if (sizeInMegaBytes)
-          pkgSize += " MB";
-        else
-          pkgSize += " KB";
-			} 				
-		}
-
-    QString t = pname + ":";
-
-    int x = sb.indexOf(t, 0);
-  	if (x > 0) sb.remove(0, x);
-      
-    x = sb.indexOf("FILE LIST:", 0);
-  	if (x > 0){
-  		sb.remove(x, (sb.size()-1)-x);
-   	}                      
-   	
-   	int begn=0;
-   	x = sb.indexOf(t);
-       
-   	if (x == -1){
-			if (pkgSize.isEmpty()) return "";
-			else return QObject::tr("Installed size: %1").arg(pkgSize);
-   	}
-   		
-   	while(x >= 0){        
-   		if (x==0) sb.remove(x, (x+t.size()+1)-x);
-   		else {
-   			if (!sb.mid(x-1, x).contains("\\S")) sb.remove(x, (x+t.length()+1)-x);
-   			else begn += pname.length();
-   		}
-     	x = sb.indexOf(t, begn);
-    }	
-
-		int z = sb.lastIndexOf(QRegExp("[\\n]{2,}"));
-		if (z >= 0) sb.remove(z, sb.size()-z);
-		
-		if (!pkgSize.isEmpty()) sb += "\n\n" + QObject::tr("Installed size: %1").arg(pkgSize);
-		
-    if ( !sb.isEmpty() )
-      return makeURLClickable(sb);
-		else return 0;
-	}
-	
-	return 0;
+  return res;
 }
 
 QString Package::showRegExp( const QString& a, const QString& re ){
@@ -244,6 +357,7 @@ bool Package::isValidArch(const QString &packageArch){
   }
   return result;
 }
+
 
 /**
  * This function was copied from ArchLinux Pacman project
@@ -391,7 +505,7 @@ Result Package::getStatus( const QString& pkgToVerify ){
   bool newPackageExtension = false;
   QString arqBaseName = Package::getBaseName(pkgToVerify);
 
-  if ( FrozenPkgListSingleton::instance()->indexOf( QRegExp(QRegExp::escape(arqBaseName)), 0 ) != -1){
+  /*if ( FrozenPkgListSingleton::instance()->indexOf( QRegExp(QRegExp::escape(arqBaseName)), 0 ) != -1){
     QString installedPackage = InstalledPkgListSingleton::instance()->getFileList().
                                filter( QRegExp(QRegExp::escape(arqBaseName)) )[0];
 
@@ -399,7 +513,7 @@ Result Package::getStatus( const QString& pkgToVerify ){
         QRegExp( QRegExp::escape(installedPackage)) );
 
     return(Result(ectn_FROZEN, InstalledPkgListSingleton::instance()->getFileList().value(i)));
-	}
+  }*/
 
   //If it's a dumped snapshot list of installed packages file...
   if (pkgToVerify.startsWith(ctn_DUMP_FILE)){
@@ -509,67 +623,23 @@ Result Package::getStatus( const QString& pkgToVerify ){
   return res; 						
 }
 
-QStringList Package::getContents( const QString& pkgName, bool installed ){
-  QStringList sl;
-  if (pkgName.endsWith(ctn_RPM_PACKAGE_EXTENSION)) return sl;
+QStringList Package::getContents(const QString& pkgName){
+  QStringList rsl;
+  QByteArray result = UnixCommand::getPackageContents(pkgName);
 
-  FILE *file;
-  char linebuf[1024];
-  QString st, fn; 
+  QString aux(result);
+  rsl = aux.split("\n", QString::SkipEmptyParts);
 
-	if ( installed ){
-		fn = pkgName;
-		file = fopen ( QFile::encodeName ( fn ),"r" );
-		if ( file ){
-			while ( fgets ( linebuf,sizeof ( linebuf ),file ) ){
-        if ( !strcmp ( linebuf, ctn_FILELIST ) ){
-					break;
-				}
-			}
-			while ( fgets ( linebuf,sizeof ( linebuf ),file ) ){
-				st = "/";
-				st += linebuf;
-				st.truncate ( st.length() -1 );
-				if ( st.left ( 8 ) != "/install" && st.left ( 3 ) != "/./" ){
-					sl << st;
-				}
-			}
-			fclose ( file );
-		}
-	}
-	else{
-    if (!isSlackPackage(pkgName)){
-      return sl;
+  if ( !rsl.isEmpty() ){
+    if (rsl.at(0) == "./"){
+      rsl.removeFirst();
     }
+    rsl.replaceInStrings(QRegExp(pkgName + " "), "");
+    rsl.sort();
+  }
 
-    QStringList rsl;
-    QByteArray result = UnixCommand::getPackageContents(pkgName);
-
-    if (result == ctn_PKG_CONTENT_ERROR) return QStringList();
-
-    QString aux(result);
-		rsl = aux.split("\n", QString::SkipEmptyParts);
-		
-    if ( !rsl.isEmpty() ){
-      if (rsl.at(0) == "./"){
-        rsl.removeFirst();
-      }
-			rsl.replaceInStrings(QRegExp("^"), "/");
-			rsl.sort();
-    }
-		
-    if (!rsl.contains("/gzip: stdin: unexpected end of file") &&
-        !rsl.contains("/xz: (stdin): Unexpected end of input") &&
-        !rsl.contains("/tar: Child returned status 1")) return rsl;
-		else{ 
-			rsl.clear();
-			return rsl;
-		}
-	}
-	
-	sl.sort();
-	return sl;
-}	
+  return rsl;
+}
 
 QString Package::parseSearchString(QString searchStr, bool exactMatch){
   if (searchStr.indexOf("*.") == 0){

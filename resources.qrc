@@ -7,5 +7,16 @@
         <file>resources/images/esf-clear-hover.png</file>
         <file>resources/images/esf-border.png</file>
         <file>resources/images/esf-clear.png</file>
+        <file>resources/styles/branch-closed_BW.png</file>
+        <file>resources/styles/branch-closed.png</file>
+        <file>resources/styles/branch-end.png</file>
+        <file>resources/styles/branch-more.png</file>
+        <file>resources/styles/branch-open_BW.png</file>
+        <file>resources/styles/branch-open.png</file>
+        <file>resources/styles/vline.png</file>
+        <file>resources/images/installed.png</file>
+        <file>resources/images/noninstalled.png</file>
+        <file>resources/images/toinstall.png</file>
+        <file>resources/images/toremove.png</file>
     </qresource>
 </RCC>

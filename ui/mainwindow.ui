@@ -34,7 +34,7 @@
        <number>0</number>
       </property>
       <item>
-       <widget class="SearchLineEdit" name="lineEdit">
+       <widget class="SearchLineEdit" name="leFilterPackage">
         <property name="minimumSize">
          <size>
           <width>0</width>
@@ -137,7 +137,6 @@
     <property name="title">
      <string>View</string>
     </property>
-    <addaction name="actionInstalled_pkgs"/>
     <addaction name="actionNon_installed_pkgs"/>
    </widget>
    <widget class="QMenu" name="menuTransaction">
@@ -181,12 +180,18 @@
    <property name="checkable">
     <bool>true</bool>
    </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
    <property name="text">
     <string>Installed pkgs</string>
    </property>
   </action>
   <action name="actionNon_installed_pkgs">
    <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
     <bool>true</bool>
    </property>
    <property name="text">
@@ -205,7 +210,7 @@
   </action>
   <action name="actionSync_packages">
    <property name="text">
-    <string>Sync packages</string>
+    <string>Sync database</string>
    </property>
   </action>
   <action name="actionExit">

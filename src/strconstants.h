@@ -38,6 +38,74 @@ public:
     return str;
   }
 
+  static QString getName(){
+    return QObject::tr("Name");
+  }
+
+  static QString getVersion(){
+    return QObject::tr("Version");
+  }
+
+  static QString getURL(){
+    return QObject::tr("URL");
+  }
+
+  static QString getRepository(){
+    return QObject::tr("Repository");
+  }
+
+  static QString getLicenses(){
+    return QObject::tr("Licenses");
+  }
+
+  static QString getGroups(){
+    return QObject::tr("Groups");
+  }
+
+  static QString getProvides(){
+    return QObject::tr("Provides");
+  }
+
+  static QString getDependsOn(){
+    return QObject::tr("Depends On");
+  }
+
+  static QString getOptionalDeps(){
+    return QObject::tr("Optional Deps");
+  }
+
+  static QString getConflictsWith(){
+    return QObject::tr("Conflicts With");
+  }
+
+  static QString getReplaces(){
+    return QObject::tr("Replaces");
+  }
+
+  static QString getDownloadSize(){
+    return QObject::tr("Download Size");
+  }
+
+  static QString getInstalledSize(){
+    return QObject::tr("Installed Size");
+  }
+
+  static QString getPackager(){
+    return QObject::tr("Packager");
+  }
+
+  static QString getArchitecture(){
+    return QObject::tr("Architecture");
+  }
+
+  static QString getBuildDate(){
+    return QObject::tr("Build Date");
+  }
+
+  static QString getDescription(){
+    return QObject::tr("Description");
+  }
+
   static QString getAttention(){
     return QObject::tr("Attention");
   }

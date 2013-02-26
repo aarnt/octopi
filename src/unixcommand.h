@@ -56,86 +56,82 @@ class QStringList;
 class UnixCommand : public QObject{
   Q_OBJECT
 
-  private:    
-    QString m_readAllStandardOutput;
-    QString m_readAllStandardError;
-    QString m_errorString;
-    QProcess *m_process;
-    static QFile *m_temporaryFile;
+private:
+  QString m_readAllStandardOutput;
+  QString m_readAllStandardError;
+  QString m_errorString;
+  QProcess *m_process;
+  static QFile *m_temporaryFile;
 
-  public:
-    UnixCommand(QObject *parent);
+public:
+  UnixCommand(QObject *parent);
 
-    //Delegations from Package class (due to QProcess use)
-    static QString runCommand(const QString& commandToRun);
-    static QString runCurlCommand(const QString& commandToRun);
-    static QString discoverBinaryPath(const QString&);
-    static void installSlackGPGKey(const QString& gpgKeyPath);
-    static bool isSpkgInstalled();
+  //Delegations from Package class (due to QProcess use)
+  static QString runCommand(const QString& commandToRun);
+  static QString runCurlCommand(const QString& commandToRun);
+  static QString discoverBinaryPath(const QString&);
 
-    static QByteArray getPackageInformation(const QString &pkgName, bool installed);
-    static QByteArray getPackageContents(const QString &pkgName);
-    static QString getSlackArchitecture();
+  static QByteArray getPackageList();
+  static QByteArray getPackageInformation(const QString &pkgName);
+  static QByteArray getPackageContents(const QString &pkgName);
 
-    static bool isSlackPackage( const QString& filePath );
-    static bool isAuthenticPackage(const QString& packageName);
-    static bool hasInternetConnection();
-    static bool hasSlackGPGKeyInstalled(QString slackVersion);
-    static bool isTextFile( const QString& fileName ); //fileName is Path + Name
+  static QString getSystemArchitecture();
+  static bool hasInternetConnection();
+  static bool isTextFile( const QString& fileName ); //fileName is Path + Name
 
-    static bool isKtsussVersionOK();
-    static bool hasTheExecutable( const QString& exeName );
+  static bool isKtsussVersionOK();
+  static bool hasTheExecutable( const QString& exeName );
 
-    static bool isRootRunning(){
-      int uid = geteuid();
-      return (uid == 0); //Returns TRUE if root is running QTGZ
+  static bool isRootRunning(){
+    int uid = geteuid();
+    return (uid == 0); //Returns TRUE if root is running QTGZ
+  }
+
+  static QFile* getTemporaryFile(){
+    QTime time = QTime::currentTime();
+    qsrand(time.minute() + time.second() + time.msec());
+    m_temporaryFile = new QFile(ctn_TEMP_ACTIONS_FILE + QString::number(qrand()));
+    m_temporaryFile->open(QIODevice::ReadWrite|QIODevice::Text);
+    m_temporaryFile->setPermissions(QFile::ExeOwner);
+
+    return m_temporaryFile;
+  }
+
+  static void removeTemporaryActionFile(){
+    if (m_temporaryFile != 0){
+      m_temporaryFile->close();
+      m_temporaryFile->remove();
+      delete m_temporaryFile;
     }
+  }
 
-    static QFile* getTemporaryFile(){
-      QTime time = QTime::currentTime();
-      qsrand(time.minute() + time.second() + time.msec());
-      m_temporaryFile = new QFile(ctn_TEMP_ACTIONS_FILE + QString::number(qrand()));
-      m_temporaryFile->open(QIODevice::ReadWrite|QIODevice::Text);
-      m_temporaryFile->setPermissions(QFile::ExeOwner);
+  static void removeTemporaryFiles();
 
-      return m_temporaryFile;
-    }
+  static QString executeDiffToEachOther( QString pkg1, QString pkg2 );
+  static QString executeDiffToInstalled( QString pkg, QString installedPackage );
+  static QString getPkgInstallCommand();
+  static QString getPkgUpgradeCommand();
+  static QString getPkgRemoveCommand();
+  static QString getPkgReinstallCommand();
 
-    static void removeTemporaryActionFile(){
-      if (m_temporaryFile != 0){
-        m_temporaryFile->close();
-        m_temporaryFile->remove();
-        delete m_temporaryFile;
-      }
-    }
+  void executePackageActions(const QStringList& commandList);
+  void transformTGZinLZM(const QStringList& commandList, LZMCommand commandUsed);
+  void transformRPMinTGZ(const QStringList& commandList);
+  void transformRPMinTXZ(const QStringList& commandList);
 
-    static void removeTemporaryFiles();
+  QString readAllStandardOutput();
+  QString readAllStandardError();
+  QString errorString();
 
-    static QString executeDiffToEachOther( QString pkg1, QString pkg2 );
-    static QString executeDiffToInstalled( QString pkg, QString installedPackage );
-    static QString getPkgInstallCommand();
-    static QString getPkgUpgradeCommand();
-    static QString getPkgRemoveCommand();
-    static QString getPkgReinstallCommand();
+public slots:
+  void processReadyReadStandardOutput();
+  void processReadyReadStandardError();
 
-    void executePackageActions(const QStringList& commandList);
-    void transformTGZinLZM(const QStringList& commandList, LZMCommand commandUsed);   
-    void transformRPMinTGZ(const QStringList& commandList);
-    void transformRPMinTXZ(const QStringList& commandList);
-
-    QString readAllStandardOutput();
-    QString readAllStandardError();
-    QString errorString();
-
-  public slots:
-    void processReadyReadStandardOutput();
-    void processReadyReadStandardError();
-
-  signals:
-    void started();
-    void readyReadStandardOutput();
-    void finished ( int, QProcess::ExitStatus );
-    void readyReadStandardError();
+signals:
+  void started();
+  void readyReadStandardOutput();
+  void finished ( int, QProcess::ExitStatus );
+  void readyReadStandardError();
 };
 
 #endif // UNIXCOMMAND_H

@@ -23,20 +23,45 @@
 
 #include <QMainWindow>
 
+class QSortFilterProxyModel;
+class QStandardItemModel;
+
+const int ctn_PACKAGE_ICON(0);
+const int ctn_PACKAGE_NAME(1);
+const int ctn_PACKAGE_VERSION(2);
+const int ctn_PACKAGE_REPOSITORY(3);
+
 namespace Ui {
 class MainWindow;
 }
 
 class MainWindow : public QMainWindow
 {
-    Q_OBJECT
-    
+  Q_OBJECT
+
 public:
-    explicit MainWindow(QWidget *parent = 0);
-    ~MainWindow();
-    
+  explicit MainWindow(QWidget *parent = 0);
+  ~MainWindow();
+
 private:
-    Ui::MainWindow *ui;
+  Ui::MainWindow *ui;
+  QSortFilterProxyModel *m_proxyModelPackages;
+  QStandardItemModel *m_modelPackages;
+
+  void initLineEditFilterPackages();
+  void initPackageTreeView();
+  void initTabInfo();
+  void initTabFiles();
+  void initActions();
+
+private slots:
+  void refreshPackageList();
+  void reapplyPackageFilter();
+
+  void refreshTabInfo();
+  void refreshTabFiles();
+  void changedTabIndex();
+
 };
 
 #endif // MAINWINDOW_H
