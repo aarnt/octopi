@@ -193,6 +193,23 @@ double Package::humanizeSize(off_t bytes, const char target_unit, int precision,
   return val;
 }
 
+QStringList *Package::getUnrequiredPackageList()
+{
+  QString unrequiredPkgList = UnixCommand::getUnrequiredPakcageList();
+  QStringList packageTuples = unrequiredPkgList.split(QRegExp("\\n"), QString::SkipEmptyParts);
+  QStringList * res = new QStringList();
+
+  foreach(QString packageTuple, packageTuples)
+  {
+    QStringList parts = packageTuple.split(' ');
+    {
+      res->append(parts[0]); //We only need the package name!
+    }
+  }
+
+  return res;
+}
+
 QStringList *Package::getOutdatedPackageList()
 {
   QString outPkgList = UnixCommand::getOutdatedPackageList();

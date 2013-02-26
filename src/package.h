@@ -146,6 +146,7 @@ class Package{
     static double simplePow(int base, int exp);
 
 	public:
+    static QStringList * getUnrequiredPackageList();
     static QStringList * getOutdatedPackageList();
     static QList<PackageListData> * getPackageList();
     static PackageInfoData getInformation(QString pkgName);

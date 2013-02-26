@@ -179,6 +179,7 @@ void MainWindow::refreshPackageList()
   m_modelPackages->clear();
   QStringList sl;
 
+  QStringList *unrequiredPackageList = Package::getUnrequiredPackageList();
   QList<PackageListData> *list = Package::getPackageList();
   QStandardItem *parentItem = m_modelPackages->invisibleRootItem();
   QList<QStandardItem*> lIcons, lNames, lVersions, lRepositories;
@@ -198,7 +199,16 @@ void MainWindow::refreshPackageList()
       lIcons << new QStandardItem(IconHelper::getIconOutdated(), "_OutDated^"+pld.outatedVersion);
       break;
     case ectn_INSTALLED:
-      lIcons << new QStandardItem(IconHelper::getIconInstalled(), "_Installed");
+      //Is this package unrequired too?
+      if (unrequiredPackageList->contains(pld.name))
+      {
+        lIcons << new QStandardItem(IconHelper::getIconUnrequired(), "_Unrequired");
+      }
+      else
+      {
+        lIcons << new QStandardItem(IconHelper::getIconInstalled(), "_Installed");
+      }
+
       break;
     case ectn_NON_INSTALLED:
       lIcons << new QStandardItem(IconHelper::getIconNonInstalled(), "_NonInstalled");
@@ -394,7 +404,6 @@ void MainWindow::refreshTabFiles()
     QStandardItem *bkpDir, *item, *bkpItem=root, *parent;
     bool first=true;
     bkpDir = root;
-
 
     if(nonInstalled){
       strSelectedPackage="";

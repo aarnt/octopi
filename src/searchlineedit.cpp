@@ -101,8 +101,8 @@ void SearchLineEdit::setNotFoundStyle(){
   style += QString("padding-right: %1px;").arg(this->mSearchButton->sizeHint().width() + 2);
   style += "border-width: 3px;";
   style += "border-image: url(:/resources/images/esf-border.png) 3 3 3 3 stretch;";
-  style += "color: black; ";
-  style += "background-color: lightgray;"; //palette(mid);"; //rgb(207, 135, 142);";
+  style += "color: white; ";
+  style += "background-color: rgb(255, 108, 108);"; //lightgray;"; //palette(mid);"; //rgb(207, 135, 142);";
   style += "border-color: rgb(206, 204, 197);}";
 
   setStyleSheet(style);

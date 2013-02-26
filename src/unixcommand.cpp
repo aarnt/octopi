@@ -104,6 +104,27 @@ QString UnixCommand::discoverBinaryPath(const QString& binary){
   return res;
 }
 
+QByteArray UnixCommand::getUnrequiredPakcageList()
+{
+  QByteArray result("");
+  QProcess pacman;
+  QStringList args;
+
+#if QT_VERSION >= 0x040600
+  QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
+  env.insert("LANG", "us_EN");
+  pacman.setProcessEnvironment(env);
+#endif
+
+  args << "-Qt";
+  pacman.start("pacman", args);
+
+  pacman.waitForFinished(-1);
+  result = pacman.readAllStandardOutput();
+
+  return result;
+}
+
 QByteArray UnixCommand::getOutdatedPackageList()
 {
   QByteArray result("");
