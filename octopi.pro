@@ -28,7 +28,12 @@ HEADERS  += src/QtSolutions/qtsingleapplication.h \
         src/package.h \
         src/packagecontroller.h \
         src/unixcommand.h \
-        src/wmhelper.h
+        src/wmhelper.h \
+    src/QtSolutions/qtsinglecoreapplication.h \
+    src/QtSolutions/QtSingleApplication \
+    src/QtSolutions/qtlockedfile.h \
+    src/QtSolutions/QtLockedFile \
+    src/treeviewpackagesitemdelegate.h
 
 SOURCES += src/QtSolutions/qtsingleapplication.cpp \
         src/QtSolutions/qtlocalpeer.cpp \
@@ -40,9 +45,18 @@ SOURCES += src/QtSolutions/qtsingleapplication.cpp \
         src/package.cpp \
         src/packagecontroller.cpp \
         src/unixcommand.cpp \
-        src/wmhelper.cpp
+        src/wmhelper.cpp \
+    src/QtSolutions/qtsinglecoreapplication.cpp \
+    src/QtSolutions/qtlockedfile.cpp \
+    src/QtSolutions/qtlockedfile_win.cpp \
+    src/QtSolutions/qtlockedfile_unix.cpp \
+    src/treeviewpackagesitemdelegate.cpp
 
 FORMS    += ui/mainwindow.ui
 
 RESOURCES += \
     resources.qrc
+
+OTHER_FILES += \
+    src/QtSolutions/qtsinglecoreapplication.pri \
+    src/QtSolutions/qtsingleapplication.pri

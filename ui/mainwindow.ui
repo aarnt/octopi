@@ -176,17 +176,6 @@
     <string>About</string>
    </property>
   </action>
-  <action name="actionInstalled_pkgs">
-   <property name="checkable">
-    <bool>true</bool>
-   </property>
-   <property name="checked">
-    <bool>true</bool>
-   </property>
-   <property name="text">
-    <string>Installed pkgs</string>
-   </property>
-  </action>
   <action name="actionNon_installed_pkgs">
    <property name="checkable">
     <bool>true</bool>

@@ -380,7 +380,7 @@ QString Package::getDescription(const QString &pkgInfo)
   return extractFieldFromInfo("Description", pkgInfo);
 }
 
-PackageInfoData Package::getInformation(QString pkgName)
+PackageInfoData Package::getInformation(const QString &pkgName)
 {
   PackageInfoData res;
   QString pkgInfo = UnixCommand::getPackageInformation(pkgName);
@@ -403,6 +403,12 @@ PackageInfoData Package::getInformation(QString pkgName)
   res.installedSize = getInstalledSize(pkgInfo);
 
   return res;
+}
+
+QString Package::getInformationDescription(const QString &pkgName)
+{
+  QString pkgInfo = UnixCommand::getPackageInformation(pkgName);
+  return getDescription(pkgInfo);
 }
 
 QString Package::showRegExp( const QString& a, const QString& re )

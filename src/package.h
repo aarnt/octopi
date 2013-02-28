@@ -149,7 +149,9 @@ class Package{
     static QStringList * getUnrequiredPackageList();
     static QStringList * getOutdatedPackageList();
     static QList<PackageListData> * getPackageList();
-    static PackageInfoData getInformation(QString pkgName);
+
+    static PackageInfoData getInformation(const QString &pkgName);
+    static QString getInformationDescription(const QString &pkgName);
     static QStringList getContents(const QString &pkgName);
 
     static QString getVersion(const QString &pkgInfo);

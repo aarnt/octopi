@@ -25,6 +25,7 @@
 
 class QSortFilterProxyModel;
 class QStandardItemModel;
+class QTimer;
 
 const int ctn_PACKAGE_ICON(0);
 const int ctn_PACKAGE_NAME(1);
@@ -46,9 +47,16 @@ public:
 private:
   Ui::MainWindow *ui;
   QSortFilterProxyModel *m_proxyModelPackages;
+
+  //This model provides the list of ALL packages (installed + non-installed)
   QStandardItemModel *m_modelPackages;
+
+  //This model privides the list of ONLY installed packages
+  QStandardItemModel *m_modelInstalledPackages;
+
   int m_PackageListOrderedCol;
   Qt::SortOrder m_PackageListSortOrder;
+  QTimer *timer;
 
   void initAppIcon();
   void initLineEditFilterPackages();
@@ -57,14 +65,22 @@ private:
   void initTabFiles();
   void initActions();
 
+protected:
+  void keyPressEvent(QKeyEvent* ke);
+
 private slots:
-  void refreshPackageList();
+  void buildPackageList();
+
+  void changePackageListModel();
   void reapplyPackageFilter();
   void headerViewPackageListSortIndicatorClicked(int col, Qt::SortOrder order);
 
-  void refreshTabInfo();
-  void refreshTabFiles();
+  void refreshTabInfo(bool clearContents=false);
+  void refreshTabFiles(bool clearContents=false);
   void changedTabIndex();
+
+  //This method clears the current information showed on tab.
+  void invalidateTabs();
 
 };
 

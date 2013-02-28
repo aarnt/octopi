@@ -122,6 +122,10 @@ public:
     return QObject::tr(" (outdated installed version is %1)");
   }
 
+  static QString getBuildingPackageList(){
+    return QObject::tr("Building package list...");
+  }
+
   static QString getEnterAdministratorsPassword(){
     return QObject::tr(
           "Please, enter the administrator's password");

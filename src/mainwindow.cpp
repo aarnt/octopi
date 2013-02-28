@@ -21,14 +21,17 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "strconstants.h"
-
 #include "package.h"
 #include "uihelper.h"
+#include "treeviewpackagesitemdelegate.h"
+
 #include <QDebug>
 #include <QSortFilterProxyModel>
 #include <QStandardItemModel>
 #include <QString>
 #include <QTextBrowser>
+#include <QKeyEvent>
+#include <QProgressDialog>
 #include <iostream>
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -48,7 +51,7 @@ MainWindow::MainWindow(QWidget *parent) :
   initTabFiles();
   initLineEditFilterPackages();
   initPackageTreeView();
-  refreshPackageList();
+  buildPackageList();
 
   initActions();
 
@@ -82,11 +85,12 @@ void MainWindow::initPackageTreeView()
 {
   m_proxyModelPackages = new QSortFilterProxyModel(this);
   m_modelPackages = new QStandardItemModel(this);
+  m_modelInstalledPackages = new QStandardItemModel(this);
   m_proxyModelPackages->setSourceModel(m_modelPackages);
   m_proxyModelPackages->setFilterKeyColumn(1);
 
-  //if (SettingsManager::instance()->getShowPackageTooltip())
-  //  tvPackages->setItemDelegate(new tvPackagesItemDelegate(tvPackage));
+  //if (SettingsManager::instance()->getShowPackageTooltip())  
+  ui->tvPackages->setItemDelegate(new TreeViewPackagesItemDelegate(ui->tvPackages));
 
   ui->tvPackages->setEditTriggers(QAbstractItemView::NoEditTriggers);
   ui->tvPackages->setVerticalScrollMode(QAbstractItemView::ScrollPerItem);
@@ -169,6 +173,7 @@ void MainWindow::initTabFiles()
   ui->twProperties->removeTab(1);
   /*int tindex =*/ ui->twProperties->insertTab( 1, tabPkgFileList, QApplication::translate (
                                                   "MainWindow", aux.toUtf8(), 0, QApplication::UnicodeUTF8 ) );
+
   /*twTODO->setTabText(twTODO->indexOf(tabPkgFileList), QApplication::translate(
       "MainWindow", tabName.toUtf8(), 0, QApplication::UnicodeUTF8));*/
 
@@ -188,7 +193,7 @@ void MainWindow::initTabFiles()
 /*
  * Populates the list of packages available (installed [+ non-installed])
  */
-void MainWindow::refreshPackageList()
+void MainWindow::buildPackageList()
 {
   CPUIntensiveComputing cic;
   m_modelPackages->clear();
@@ -196,10 +201,21 @@ void MainWindow::refreshPackageList()
 
   QStringList *unrequiredPackageList = Package::getUnrequiredPackageList();
   QList<PackageListData> *list = Package::getPackageList();
+
   QStandardItem *parentItem = m_modelPackages->invisibleRootItem();
-  QList<QStandardItem*> lIcons, lNames, lVersions, lRepositories;
+  QStandardItem *parentItemInstalledPackages = m_modelInstalledPackages->invisibleRootItem();
+
   QList<PackageListData>::const_iterator it = list->begin();
 
+  QList<QStandardItem*> lIcons, lNames, lVersions, lRepositories;
+  QList<QStandardItem*> lIcons2, lNames2, lVersions2, lRepositories2;
+
+  QProgressDialog progress(StrConstants::getBuildingPackageList(), "", 0, list->count(), this);
+  progress.setValue(0);
+  progress.setCancelButton(0);
+  progress.setWindowModality(Qt::WindowModal);
+
+  int counter=0;
   while(it != list->end()){
     PackageListData pld = *it;
     if (pld.status == ectn_NON_INSTALLED && !ui->actionNon_installed_pkgs->isChecked()){
@@ -235,13 +251,29 @@ void MainWindow::refreshPackageList()
     lVersions << new QStandardItem(pld.version);
     lRepositories << new QStandardItem(pld.repository);
 
+    //If this is an INSTALLED package, we add it to the model view of installed packages!
+    if (pld.status != ectn_NON_INSTALLED)
+    {
+      lIcons2 << lIcons.last()->clone();
+      lNames2 << lNames.last()->clone();
+      lVersions2 << lVersions.last()->clone();
+      lRepositories2 << lRepositories.last()->clone();
+    }
+
+    counter++;
+    progress.setValue(counter);
     it++;
   }
 
-  parentItem->insertColumn(0, lIcons );
-  parentItem->insertColumn(1, lNames );
+  parentItem->insertColumn(0, lIcons);
+  parentItem->insertColumn(1, lNames);
   parentItem->insertColumn(2, lVersions);
   parentItem->insertColumn(3, lRepositories);
+
+  parentItemInstalledPackages->insertColumn(0, lIcons2);
+  parentItemInstalledPackages->insertColumn(1, lNames2);
+  parentItemInstalledPackages->insertColumn(2, lVersions2);
+  parentItemInstalledPackages->insertColumn(3, lRepositories2);
 
   ui->tvPackages->setColumnWidth(0, 24);
   ui->tvPackages->setColumnWidth(1, 500);
@@ -250,6 +282,9 @@ void MainWindow::refreshPackageList()
 
   m_modelPackages->setHorizontalHeaderLabels(
         sl << "" << tr("Name") << tr("Version") << tr("Repository"));
+
+  //m_modelInstalledPackages->setHorizontalHeaderLabels(
+  //      sl << "" << tr("Name") << tr("Version") << tr("Repository"));
 
   if (ui->leFilterPackage->text() != "") reapplyPackageFilter();
 
@@ -264,14 +299,43 @@ void MainWindow::refreshPackageList()
 }
 
 /*
+ * Whenever the user changes the checkbox menu to show non installed packages,
+ * we have to change the model from the treeview of packages...
+ */
+void MainWindow::changePackageListModel()
+{
+  QStringList sl;
+
+  if (ui->actionNon_installed_pkgs->isChecked())
+  {
+    m_modelPackages->setHorizontalHeaderLabels(
+          sl << "" << tr("Name") << tr("Version") << tr("Repository"));
+    m_proxyModelPackages->setSourceModel(m_modelPackages);
+  }
+  else
+  {
+    m_modelInstalledPackages->setHorizontalHeaderLabels(
+          sl << "" << tr("Name") << tr("Version") << tr("Repository"));
+    m_proxyModelPackages->setSourceModel(m_modelInstalledPackages);
+  }
+
+  if (ui->leFilterPackage->text() != "") reapplyPackageFilter();
+
+  QModelIndex maux = m_proxyModelPackages->index(0, 0);
+  ui->tvPackages->setCurrentIndex(maux);
+  ui->tvPackages->scrollTo(maux, QAbstractItemView::PositionAtCenter);
+  ui->tvPackages->selectionModel()->setCurrentIndex(maux, QItemSelectionModel::Select);
+}
+
+/*
  * Re-populates the HTML view with selected package's information (tab ONE)
  */
-void MainWindow::refreshTabInfo()
+void MainWindow::refreshTabInfo(bool clearContents)
 {
   static QString strSelectedPackage;
 
   if(ui->twProperties->currentIndex() != 0) return;
-  if (ui->tvPackages->selectionModel()->selectedRows(ctn_PACKAGE_NAME).count() == 0)
+  if (clearContents || ui->tvPackages->selectionModel()->selectedRows(ctn_PACKAGE_NAME).count() == 0)
   {
     QTextBrowser *text = ui->twProperties->widget(0)->findChild<QTextBrowser*>("textBrowser");
     if (text)
@@ -285,10 +349,26 @@ void MainWindow::refreshTabInfo()
 
   QModelIndex item = ui->tvPackages->selectionModel()->selectedRows(ctn_PACKAGE_NAME).first();
   QModelIndex mi = m_proxyModelPackages->mapToSource(item);
-  QStandardItem *siIcon = m_modelPackages->item( mi.row(), ctn_PACKAGE_ICON );
-  QStandardItem *siName = m_modelPackages->item( mi.row(), ctn_PACKAGE_NAME );
-  QStandardItem *siRepository = m_modelPackages->item( mi.row(), ctn_PACKAGE_REPOSITORY );
-  QStandardItem *siVersion = m_modelPackages->item( mi.row(), ctn_PACKAGE_VERSION );
+
+  QStandardItem *siIcon;
+  QStandardItem *siName;
+  QStandardItem *siRepository;
+  QStandardItem *siVersion;
+
+  if (ui->actionNon_installed_pkgs->isChecked())
+  {
+    siIcon = m_modelPackages->item( mi.row(), ctn_PACKAGE_ICON);
+    siName = m_modelPackages->item( mi.row(), ctn_PACKAGE_NAME);
+    siRepository = m_modelPackages->item( mi.row(), ctn_PACKAGE_REPOSITORY);
+    siVersion = m_modelPackages->item( mi.row(), ctn_PACKAGE_VERSION);
+  }
+  else
+  {
+    siIcon = m_modelInstalledPackages->item( mi.row(), ctn_PACKAGE_ICON);
+    siName = m_modelInstalledPackages->item( mi.row(), ctn_PACKAGE_NAME);
+    siRepository = m_modelInstalledPackages->item( mi.row(), ctn_PACKAGE_REPOSITORY);
+    siVersion = m_modelInstalledPackages->item( mi.row(), ctn_PACKAGE_VERSION);
+  }
 
   //If we are trying to refresh an already displayed package...
   if (strSelectedPackage == siRepository->text()+"#"+siName->text()+"#"+siVersion->text())
@@ -298,10 +378,11 @@ void MainWindow::refreshTabInfo()
 
   /* Appends all info from the selected package! */
   QString pkgName=siName->text();
+
   PackageInfoData pid = Package::getInformation(pkgName);
 
-  QString repository = StrConstants::getRepository();
-  QString name = StrConstants::getName();
+  //QString repository = StrConstants::getRepository();
+  //QString name = StrConstants::getName();
   QString version = StrConstants::getVersion();
   QString url = StrConstants::getURL();
   QString licenses = StrConstants::getLicenses();
@@ -331,6 +412,8 @@ void MainWindow::refreshTabInfo()
 
     text->clear();
     QString anchorBegin = "anchorBegin";
+
+    html += "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">";
     html += "<a id=\"" + anchorBegin + "\"></a>";
 
     html += "<table border=\"0\">";
@@ -371,7 +454,7 @@ void MainWindow::refreshTabInfo()
 
     html += "</table>";
 
-    text->insertHtml(html);
+    text->setHtml(html);
     text->scrollToAnchor(anchorBegin);
   }
 
@@ -381,12 +464,13 @@ void MainWindow::refreshTabInfo()
 /*
  * Re-populates the treeview with file list of selected package (tab TWO)
  */
-void MainWindow::refreshTabFiles()
+void MainWindow::refreshTabFiles(bool clearContents)
 {
+
   static QString strSelectedPackage;
 
   if(ui->twProperties->currentIndex() != 1) return;
-  if (ui->tvPackages->selectionModel()->selectedRows(ctn_PACKAGE_NAME).count() == 0){
+  if (clearContents || ui->tvPackages->selectionModel()->selectedRows(ctn_PACKAGE_NAME).count() == 0){
     QTreeView *tvPkgFileList = ui->twProperties->widget(1)->findChild<QTreeView*>("tvPkgFileList");
     if(tvPkgFileList)
     {
@@ -523,6 +607,21 @@ void MainWindow::changedTabIndex()
     refreshTabFiles();
 }
 
+//This method clears the current information showed on tab.
+void MainWindow::invalidateTabs()
+{
+  if(ui->twProperties->currentIndex() == 0) //This is TabInfo
+  {
+    refreshTabInfo(true);
+    return;
+  }
+  else if(ui->twProperties->currentIndex() == 1) //This is TabFiles
+  {
+    refreshTabFiles(true);
+    return;
+  }
+}
+
 /*
  * This SLOT is called every time we press a key at FilterLineEdit
  */
@@ -544,7 +643,7 @@ void MainWindow::reapplyPackageFilter()
   }
   else{
     ui->leFilterPackage->initStyleSheet();;
-    refreshPackageList();
+    m_proxyModelPackages->setFilterRegExp("");
   }
 
   /*if (numPkgs > 1)
@@ -557,18 +656,19 @@ void MainWindow::reapplyPackageFilter()
   if (isFilterPackageSelected) ui->leFilterPackage->setFocus();
   m_proxyModelPackages->sort(m_PackageListOrderedCol, m_PackageListSortOrder);
 
-  disconnect(ui->tvPackages->selectionModel(), SIGNAL(selectionChanged(QItemSelection,QItemSelection)), this,
-             SLOT(changedTabIndex()));
+  /*disconnect(ui->tvPackages->selectionModel(), SIGNAL(selectionChanged(QItemSelection,QItemSelection)), this,
+             SLOT(changedTabIndex()));*/
 
   ui->tvPackages->selectionModel()->clear();
   QModelIndex mi = m_proxyModelPackages->index(0, 0);
   ui->tvPackages->setCurrentIndex(mi);
   ui->tvPackages->scrollTo(mi);
 
-  changedTabIndex();
+  //changedTabIndex();
+  invalidateTabs();
 
-  connect(ui->tvPackages->selectionModel(), SIGNAL(selectionChanged(QItemSelection,QItemSelection)), this,
-          SLOT(changedTabIndex()));
+  /*connect(ui->tvPackages->selectionModel(), SIGNAL(selectionChanged(QItemSelection,QItemSelection)), this,
+          SLOT(changedTabIndex()));*/
 }
 
 /*
@@ -582,16 +682,25 @@ void MainWindow::headerViewPackageListSortIndicatorClicked( int col, Qt::SortOrd
 
 void MainWindow::initActions()
 {
-  connect(ui->actionExit, SIGNAL(triggered()), this, SLOT(close()));
-  connect(ui->actionNon_installed_pkgs, SIGNAL(changed()), this, SLOT(refreshPackageList()));
+  connect(ui->tvPackages->selectionModel(), SIGNAL(selectionChanged(QItemSelection,QItemSelection)), this,
+          SLOT(invalidateTabs()));
 
-  connect(ui->tvPackages, SIGNAL(activated(QModelIndex)), ui->tvPackages, SIGNAL(clicked(QModelIndex)));
+  connect(ui->actionExit, SIGNAL(triggered()), this, SLOT(close()));
+  connect(ui->actionNon_installed_pkgs, SIGNAL(changed()), this, SLOT(changePackageListModel()));
+
+  connect(ui->tvPackages, SIGNAL(activated(QModelIndex)), this, SLOT(changedTabIndex()));
+          //ui->tvPackages, SIGNAL(clicked(QModelIndex)));
   connect(ui->tvPackages, SIGNAL(clicked(QModelIndex)), this, SLOT(changedTabIndex()));
   connect(ui->tvPackages->header(), SIGNAL(sortIndicatorChanged(int,Qt::SortOrder)), this,
           SLOT(headerViewPackageListSortIndicatorClicked(int,Qt::SortOrder)));
 
-  connect(ui->tvPackages->selectionModel(), SIGNAL(selectionChanged(QItemSelection,QItemSelection)), this,
-          SLOT(changedTabIndex()));
-
   connect(ui->twProperties, SIGNAL(currentChanged(int)), this, SLOT(changedTabIndex()));
+}
+
+void MainWindow::keyPressEvent(QKeyEvent* ke)
+{
+  if(ke->key() == Qt::Key_L && ke->modifiers() == Qt::ControlModifier)
+  {
+    ui->leFilterPackage->setFocus();
+  }
 }
