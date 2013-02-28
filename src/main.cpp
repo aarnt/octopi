@@ -28,30 +28,29 @@
 
 int main(int argc, char *argv[])
 {
+  ArgumentList *argList = new ArgumentList(argc, argv);
+  QApplication::setGraphicsSystem(QLatin1String("raster"));
 
-    ArgumentList *argList = new ArgumentList(argc, argv);
-    QApplication::setGraphicsSystem(QLatin1String("raster"));
+  if (!argList->getSwitch("-style"))
+    QApplication::setStyle(new QCleanlooksStyle());
 
-    if (!argList->getSwitch("-style"))
-        QApplication::setStyle(new QCleanlooksStyle());
+  QtSingleApplication app( StrConstants::getApplicationName(), argc, argv );
 
-    QtSingleApplication app( StrConstants::getApplicationName(), argc, argv );
+  //This sends a message just to awake the socket-based QtSinleApplication engine
+  app.sendMessage("ping app...");
 
-    //This sends a message just to awake the socket-based QtSinleApplication engine
-    app.sendMessage("ping app...");
+  if (app.isRunning())
+    return 0;
 
-    if (app.isRunning())
-      return 0;
-
-    /*QTranslator appTranslator;
+  /*QTranslator appTranslator;
     appTranslator.load(":/resources/translations/qtgzmanager_" +
       QLocale::system().name());
     app.installTranslator(&appTranslator);*/
 
-    MainWindow w;
-    w.show();
-    
-    QResource::registerResource("./resources.qrc");
+  MainWindow w;
+  w.show();
 
-    return app.exec();
+  QResource::registerResource("./resources.qrc");
+
+  return app.exec();
 }
