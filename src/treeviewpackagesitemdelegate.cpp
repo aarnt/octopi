@@ -53,15 +53,19 @@ bool TreeViewPackagesItemDelegate::helpEvent ( QHelpEvent *event, QAbstractItemV
     QModelIndex ind = sfp->mapToSource(index);
     QStandardItem *si = sim->itemFromIndex(ind);
 
-    if (si->column() != ctn_PACKAGE_NAME) return false;
+    if (si)
+    {
+      if (si->column() != ctn_PACKAGE_NAME) return false;
 
-    QPoint p;
-    gPoint = tvPackages->mapToGlobal(event->pos());
-    QFuture<QString> f;
+      QPoint p;
+      gPoint = tvPackages->mapToGlobal(event->pos());
+      QFuture<QString> f;
 
-    f = run(showPackageInfo, si->text());
-    fw.setFuture(f);
-    connect(&fw, SIGNAL(finished()), this, SLOT(execToolTip()));
+      f = run(showPackageInfo, si->text());
+      fw.setFuture(f);
+      connect(&fw, SIGNAL(finished()), this, SLOT(execToolTip()));
+    }
+    else return false;
   }
 
   return true;

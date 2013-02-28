@@ -54,6 +54,8 @@ MainWindow::MainWindow(QWidget *parent) :
   initPackageTreeView();
 
   initActions();
+
+  /* This timer is needed to beautify GUI initialization... */
   timer = new QTimer();
   connect(timer, SIGNAL(timeout()), this, SLOT(buildPackageList()));
   timer->start(40);
@@ -201,6 +203,7 @@ void MainWindow::buildPackageList()
 
   CPUIntensiveComputing cic;
   m_modelPackages->clear();
+  m_modelInstalledPackages->clear();
   QStringList sl;
 
   QStringList *unrequiredPackageList = Package::getUnrequiredPackageList();
@@ -267,6 +270,7 @@ void MainWindow::buildPackageList()
 
     counter++;
     progress.setValue(counter);
+    qApp->processEvents();
     it++;
   }
 
@@ -305,7 +309,7 @@ void MainWindow::buildPackageList()
 
 /*
  * Whenever the user changes the checkbox menu to show non installed packages,
- * we have to change the model from the treeview of packages...
+ * we have to change the model from the Packages treeview...
  */
 void MainWindow::changePackageListModel()
 {
@@ -330,6 +334,8 @@ void MainWindow::changePackageListModel()
   ui->tvPackages->setCurrentIndex(maux);
   ui->tvPackages->scrollTo(maux, QAbstractItemView::PositionAtCenter);
   ui->tvPackages->selectionModel()->setCurrentIndex(maux, QItemSelectionModel::Select);
+
+  changedTabIndex();
 }
 
 /*
@@ -424,7 +430,7 @@ void MainWindow::refreshTabInfo(bool clearContents)
     html += "<table border=\"0\">";
 
     html += "<tr><th width=\"20%\"></th><th width=\"80%\"></th></tr>";
-    html += "<tr><td>" + description + "</td><td style=\"font-size:20px;\">" + pid.description + "</td></tr>";
+    html += "<tr><td>" + description + "</td><td style=\"font-size:16px;\">" + pid.description + "</td></tr>";
     html += "<tr><td>" + url + "</td><td style=\"font-size:14px;\">" + pid.url + "</td></tr>";
 
     //html += "<tr><td>" + repository + "</td><td>" + siRepository->text() + "</td></tr>";
@@ -471,7 +477,6 @@ void MainWindow::refreshTabInfo(bool clearContents)
  */
 void MainWindow::refreshTabFiles(bool clearContents)
 {
-
   static QString strSelectedPackage;
 
   if(ui->twProperties->currentIndex() != 1) return;
@@ -704,7 +709,12 @@ void MainWindow::initActions()
 
 void MainWindow::keyPressEvent(QKeyEvent* ke)
 {
-  if(ke->key() == Qt::Key_L && ke->modifiers() == Qt::ControlModifier)
+  if(ke->key() == Qt::Key_F5)
+  {
+    buildPackageList();
+  }
+
+  else if(ke->key() == Qt::Key_L && ke->modifiers() == Qt::ControlModifier)
   {
     ui->leFilterPackage->setFocus();
   }
