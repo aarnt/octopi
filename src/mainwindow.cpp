@@ -814,6 +814,9 @@ void MainWindow::initActions()
   connect(ui->twProperties, SIGNAL(currentChanged(int)), this, SLOT(changedTabIndex()));
 }
 
+/*
+ * A helper method which writes the given string to the Output tab
+ */
 void MainWindow::writeToTabOutput(const QString &msg)
 {
   QTextEdit *text = ui->twProperties->widget(2)->findChild<QTextEdit*>("textOutputEdit");
