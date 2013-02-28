@@ -64,6 +64,10 @@ private:
   QTimer *timer;
   QStringList *m_outdatedPackageList;
 
+  int m_numberOfInstalledPackages;
+  int m_numberOfAvailablePackages;
+  int m_numberOfOutdatedPackages;
+
   void initAppIcon();
   void initLineEditFilterPackages();
 
@@ -74,6 +78,7 @@ private:
   void initTabInfo();
   void initTabFiles();
   void initActions();
+  void refreshStatusBar();
 
   //Tab Output related methods
   void initTabOutput();

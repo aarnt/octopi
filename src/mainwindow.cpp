@@ -33,6 +33,7 @@
 #include <QKeyEvent>
 #include <QProgressDialog>
 #include <QTimer>
+#include <QLabel>
 #include <iostream>
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -89,7 +90,9 @@ void MainWindow::initAppIcon()
  */
 void MainWindow::outputOutdatedPackageList()
 {
-  if(m_outdatedPackageList->count() > 0)
+  m_numberOfOutdatedPackages = m_outdatedPackageList->count();
+
+  if(m_numberOfOutdatedPackages > 0)
   {
     clearTabOutput();
 
@@ -396,13 +399,35 @@ void MainWindow::buildPackageList()
   QModelIndex maux = m_proxyModelPackages->index(0, 0);
   ui->tvPackages->setCurrentIndex(maux);
   ui->tvPackages->scrollTo(maux, QAbstractItemView::PositionAtCenter);
-  ui->tvPackages->selectionModel()->setCurrentIndex(maux, QItemSelectionModel::Select);
+  ui->tvPackages->selectionModel()->setCurrentIndex(maux, QItemSelectionModel::Select);    
 
   list->clear();
   refreshTabInfo();
   ui->tvPackages->setFocus();
 
+  //Refresh counters
+  m_numberOfInstalledPackages = m_modelInstalledPackages->invisibleRootItem()->rowCount();
+  m_numberOfAvailablePackages = m_modelPackages->invisibleRootItem()->rowCount() - m_numberOfInstalledPackages;
+
   outputOutdatedPackageList();
+
+  //Refresh statusbar widget
+  refreshStatusBar();
+}
+
+/*
+ * This method prints the values of the package counters at the right of the statusBar
+ */
+void MainWindow::refreshStatusBar()
+{
+  static QLabel *lblCounters = new QLabel(this);
+
+  QString text = StrConstants::getNumberInstalledPackages().arg(m_numberOfInstalledPackages) + " | " +
+      StrConstants::getNumberOutdatedPackages().arg(m_numberOfOutdatedPackages) + " | " +
+      StrConstants::getNumberAvailablePackages().arg(m_numberOfAvailablePackages);
+
+  lblCounters->setText(text);
+  ui->statusBar->addPermanentWidget(lblCounters);
 }
 
 /*

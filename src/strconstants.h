@@ -138,6 +138,18 @@ public:
     return QObject::tr("(version %1 is available)");
   }
 
+  static QString getNumberInstalledPackages(){
+    return QObject::tr("%1 installed");
+  }
+
+  static QString getNumberOutdatedPackages(){
+    return QObject::tr("%1 outdated");
+  }
+
+  static QString getNumberAvailablePackages(){
+    return QObject::tr("%1 available");
+  }
+
   static QString getEnterAdministratorsPassword(){
     return QObject::tr(
           "Please, enter the administrator's password");
