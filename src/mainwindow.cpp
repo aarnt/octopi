@@ -32,6 +32,7 @@
 #include <QTextBrowser>
 #include <QKeyEvent>
 #include <QProgressDialog>
+#include <QTimer>
 #include <iostream>
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -51,10 +52,11 @@ MainWindow::MainWindow(QWidget *parent) :
   initTabFiles();
   initLineEditFilterPackages();
   initPackageTreeView();
-  buildPackageList();
 
   initActions();
-
+  timer = new QTimer();
+  connect(timer, SIGNAL(timeout()), this, SLOT(buildPackageList()));
+  timer->start(40);
 }
 
 MainWindow::~MainWindow()
@@ -195,6 +197,8 @@ void MainWindow::initTabFiles()
  */
 void MainWindow::buildPackageList()
 {
+  timer->stop();
+
   CPUIntensiveComputing cic;
   m_modelPackages->clear();
   QStringList sl;
@@ -212,6 +216,7 @@ void MainWindow::buildPackageList()
 
   QProgressDialog progress(StrConstants::getBuildingPackageList(), "", 0, list->count(), this);
   progress.setValue(0);
+  progress.setMinimumDuration(10);
   progress.setCancelButton(0);
   progress.setWindowModality(Qt::WindowModal);
 
