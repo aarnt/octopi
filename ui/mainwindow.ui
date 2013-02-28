@@ -184,7 +184,7 @@
     <bool>true</bool>
    </property>
    <property name="text">
-    <string>Non installed pkgs</string>
+    <string>Non installed packages</string>
    </property>
   </action>
   <action name="actionCommit">

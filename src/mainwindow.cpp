@@ -72,29 +72,44 @@ MainWindow::~MainWindow()
  */
 void MainWindow::initAppIcon()
 {
-  QStringList *outdatedPackages = Package::getOutdatedPackageList();
+  m_outdatedPackageList = Package::getOutdatedPackageList();
 
-  if(outdatedPackages->count() > 0)
+  if(m_outdatedPackageList->count() > 0)
   {
     setWindowIcon(QIcon(":/resources/images/octopi_red.png"));
+  }
+  else
+  {
+    setWindowIcon(QIcon(":/resources/images/octopi_yellow.png"));
+  }
+}
 
-    if(outdatedPackages->count()==1){
+/*
+ * Prints the list of outdated packages to the Output tab.
+ */
+void MainWindow::outputOutdatedPackageList()
+{
+  if(m_outdatedPackageList->count() > 0)
+  {
+    clearTabOutput();
+
+    if(m_outdatedPackageList->count()==1){
       writeToTabOutput(StrConstants::getOneOutdatedPackage() + "\n");
     }
     else
     {
       writeToTabOutput("<b><font color=\"red\">" +
-                       StrConstants::getOutdatedPackages().arg(outdatedPackages->count()) + "</font></b><br>");
+                       StrConstants::getOutdatedPackages().arg(m_outdatedPackageList->count()) + "</font></b><br>");
     }
 
-    for (int c=0; c < outdatedPackages->count(); c++)
+    for (int c=0; c < m_outdatedPackageList->count(); c++)
     {
-      writeToTabOutput("<font color=\"red\">" + outdatedPackages->at(c));
+      writeToTabOutput("<font color=\"red\">" + m_outdatedPackageList->at(c) + "</font> " +
+                       StrConstants::getNewVersionAvailable().arg(getInstalledPackageVersionByName(m_outdatedPackageList->at(c))));
     }
-  }
-  else
-  {
-    setWindowIcon(QIcon(":/resources/images/octopi_yellow.png"));
+
+    writeToTabOutput("<br>");
+    ui->twProperties->setCurrentIndex(ctn_TABINDEX_OUTPUT);
   }
 }
 
@@ -160,7 +175,7 @@ void MainWindow::initTabInfo(){
   //ui->twProperties->setTabText(ui->twProperties->indexOf(tabInfo), QApplication::translate(
   //    "MainWindow", aux.toUtf8(), 0, QApplication::UnicodeUTF8));
 
-  ui->twProperties->setCurrentIndex(0);
+  ui->twProperties->setCurrentIndex(ctn_TABINDEX_INFORMATION);
   text->show();
   text->setFocus();
 }
@@ -235,14 +250,51 @@ void MainWindow::initTabOutput()
   //ui->twProperties->setTabText(ui->twProperties->indexOf(tabInfo), QApplication::translate(
   //    "MainWindow", aux.toUtf8(), 0, QApplication::UnicodeUTF8));
 
-  ui->twProperties->setCurrentIndex(2);
+  ui->twProperties->setCurrentIndex(ctn_TABINDEX_OUTPUT);
   text->show();
   text->setFocus();
 
 }
 
+void MainWindow::clearTabOutput()
+{
+  QTextEdit *text = ui->twProperties->widget(2)->findChild<QTextEdit*>("textOutputEdit");
+  if (text)
+  {
+    text->clear();
+  }
+}
+
 /*
- * Populates the list of packages available (installed [+ non-installed])
+ * This method searchs model modelInstalledPackages by a package name and returns it's version
+ */
+QString MainWindow::getInstalledPackageVersionByName(const QString &pkgName)
+{
+  QList<QStandardItem *> foundItems = m_modelInstalledPackages->findItems(pkgName, Qt::MatchExactly, ctn_PACKAGE_NAME_COLUMN);
+  QString res;
+
+  if (foundItems.count() > 0)
+  {
+    QStandardItem * si = foundItems.first();
+    QStandardItem * aux = m_modelInstalledPackages->item(si->row(), ctn_PACKAGE_VERSION_COLUMN);
+    res = aux->text();
+  }
+
+  return res;
+}
+
+/*
+ * This method searchs model modelInstalledPackages by a package name and returns if it is already installed
+ */
+bool MainWindow::isPackageInstalled(const QString &pkgName)
+{
+  QList<QStandardItem *> foundItems = m_modelInstalledPackages->findItems(pkgName, Qt::MatchExactly, ctn_PACKAGE_NAME_COLUMN);
+
+  return (foundItems.count() > 0);
+}
+
+/*
+ * Populates the list of available packages (installed [+ non-installed])
  */
 void MainWindow::buildPackageList()
 {
@@ -339,9 +391,6 @@ void MainWindow::buildPackageList()
   m_modelPackages->setHorizontalHeaderLabels(
         sl << "" << tr("Name") << tr("Version") << tr("Repository"));
 
-  //m_modelInstalledPackages->setHorizontalHeaderLabels(
-  //      sl << "" << tr("Name") << tr("Version") << tr("Repository"));
-
   if (ui->leFilterPackage->text() != "") reapplyPackageFilter();
 
   QModelIndex maux = m_proxyModelPackages->index(0, 0);
@@ -352,6 +401,8 @@ void MainWindow::buildPackageList()
   list->clear();
   refreshTabInfo();
   ui->tvPackages->setFocus();
+
+  outputOutdatedPackageList();
 }
 
 /*
@@ -392,8 +443,8 @@ void MainWindow::refreshTabInfo(bool clearContents)
 {
   static QString strSelectedPackage;
 
-  if(ui->twProperties->currentIndex() != 0) return;
-  if (clearContents || ui->tvPackages->selectionModel()->selectedRows(ctn_PACKAGE_NAME).count() == 0)
+  if(ui->twProperties->currentIndex() != ctn_TABINDEX_INFORMATION) return;
+  if (clearContents || ui->tvPackages->selectionModel()->selectedRows(ctn_PACKAGE_NAME_COLUMN).count() == 0)
   {
     QTextBrowser *text = ui->twProperties->widget(0)->findChild<QTextBrowser*>("textBrowser");
     if (text)
@@ -405,7 +456,7 @@ void MainWindow::refreshTabInfo(bool clearContents)
     return;
   }
 
-  QModelIndex item = ui->tvPackages->selectionModel()->selectedRows(ctn_PACKAGE_NAME).first();
+  QModelIndex item = ui->tvPackages->selectionModel()->selectedRows(ctn_PACKAGE_NAME_COLUMN).first();
   QModelIndex mi = m_proxyModelPackages->mapToSource(item);
 
   QStandardItem *siIcon;
@@ -415,17 +466,17 @@ void MainWindow::refreshTabInfo(bool clearContents)
 
   if (ui->actionNon_installed_pkgs->isChecked())
   {
-    siIcon = m_modelPackages->item( mi.row(), ctn_PACKAGE_ICON);
-    siName = m_modelPackages->item( mi.row(), ctn_PACKAGE_NAME);
-    siRepository = m_modelPackages->item( mi.row(), ctn_PACKAGE_REPOSITORY);
-    siVersion = m_modelPackages->item( mi.row(), ctn_PACKAGE_VERSION);
+    siIcon = m_modelPackages->item( mi.row(), ctn_COLUMN_PACKAGE_ICON);
+    siName = m_modelPackages->item( mi.row(), ctn_PACKAGE_NAME_COLUMN);
+    siRepository = m_modelPackages->item( mi.row(), ctn_PACKAGE_REPOSITORY_COLUMN);
+    siVersion = m_modelPackages->item( mi.row(), ctn_PACKAGE_VERSION_COLUMN);
   }
   else
   {
-    siIcon = m_modelInstalledPackages->item( mi.row(), ctn_PACKAGE_ICON);
-    siName = m_modelInstalledPackages->item( mi.row(), ctn_PACKAGE_NAME);
-    siRepository = m_modelInstalledPackages->item( mi.row(), ctn_PACKAGE_REPOSITORY);
-    siVersion = m_modelInstalledPackages->item( mi.row(), ctn_PACKAGE_VERSION);
+    siIcon = m_modelInstalledPackages->item( mi.row(), ctn_COLUMN_PACKAGE_ICON);
+    siName = m_modelInstalledPackages->item( mi.row(), ctn_PACKAGE_NAME_COLUMN);
+    siRepository = m_modelInstalledPackages->item( mi.row(), ctn_PACKAGE_REPOSITORY_COLUMN);
+    siVersion = m_modelInstalledPackages->item( mi.row(), ctn_PACKAGE_VERSION_COLUMN);
   }
 
   //If we are trying to refresh an already displayed package...
@@ -526,8 +577,8 @@ void MainWindow::refreshTabFiles(bool clearContents)
 {
   static QString strSelectedPackage;
 
-  if(ui->twProperties->currentIndex() != 1) return;
-  if (clearContents || ui->tvPackages->selectionModel()->selectedRows(ctn_PACKAGE_NAME).count() == 0){
+  if(ui->twProperties->currentIndex() != ctn_TABINDEX_FILES) return;
+  if (clearContents || ui->tvPackages->selectionModel()->selectedRows(ctn_PACKAGE_NAME_COLUMN).count() == 0){
     QTreeView *tvPkgFileList = ui->twProperties->widget(1)->findChild<QTreeView*>("tvPkgFileList");
     if(tvPkgFileList)
     {
@@ -538,7 +589,7 @@ void MainWindow::refreshTabFiles(bool clearContents)
     }
   }
 
-  QModelIndex item = ui->tvPackages->selectionModel()->selectedRows(ctn_PACKAGE_NAME).first();
+  QModelIndex item = ui->tvPackages->selectionModel()->selectedRows(ctn_PACKAGE_NAME_COLUMN).first();
   QModelIndex mi = m_proxyModelPackages->mapToSource(item);
   QStandardItem *siName;
   QStandardItem *siRepository;
@@ -546,15 +597,15 @@ void MainWindow::refreshTabFiles(bool clearContents)
 
   if (ui->actionNon_installed_pkgs->isChecked())
   {
-    siName = m_modelPackages->item( mi.row(), ctn_PACKAGE_NAME);
-    siRepository = m_modelPackages->item( mi.row(), ctn_PACKAGE_REPOSITORY);
-    siVersion = m_modelPackages->item( mi.row(), ctn_PACKAGE_VERSION);
+    siName = m_modelPackages->item( mi.row(), ctn_PACKAGE_NAME_COLUMN);
+    siRepository = m_modelPackages->item( mi.row(), ctn_PACKAGE_REPOSITORY_COLUMN);
+    siVersion = m_modelPackages->item( mi.row(), ctn_PACKAGE_VERSION_COLUMN);
   }
   else
   {
-    siName = m_modelInstalledPackages->item( mi.row(), ctn_PACKAGE_NAME);
-    siRepository = m_modelInstalledPackages->item( mi.row(), ctn_PACKAGE_REPOSITORY);
-    siVersion = m_modelInstalledPackages->item( mi.row(), ctn_PACKAGE_VERSION);
+    siName = m_modelInstalledPackages->item( mi.row(), ctn_PACKAGE_NAME_COLUMN);
+    siRepository = m_modelInstalledPackages->item( mi.row(), ctn_PACKAGE_REPOSITORY_COLUMN);
+    siVersion = m_modelInstalledPackages->item( mi.row(), ctn_PACKAGE_VERSION_COLUMN);
   }
 
   //If we are trying to refresh an already displayed package...
@@ -562,7 +613,7 @@ void MainWindow::refreshTabFiles(bool clearContents)
     return;
 
   //Maybe this is a non-installed package...
-  bool nonInstalled = (ui->actionNon_installed_pkgs->isChecked() && (m_modelPackages->item(mi.row(), ctn_PACKAGE_ICON)->text() == "_NonInstalled"));
+  bool nonInstalled = (ui->actionNon_installed_pkgs->isChecked() && (m_modelPackages->item(mi.row(), ctn_COLUMN_PACKAGE_ICON)->text() == "_NonInstalled"));
 
   QTreeView *tvPkgFileList = ui->twProperties->widget(1)->findChild<QTreeView*>("tvPkgFileList");
   if(tvPkgFileList){
@@ -584,10 +635,6 @@ void MainWindow::refreshTabFiles(bool clearContents)
       strSelectedPackage="";
       return;
     }
-
-    /*foreach(QString line, fileList){
-      std::cout << line.toAscii().data() << std::endl;
-    }*/
 
     foreach ( QString file, fileList ){
       QFileInfo fi ( file );
@@ -671,21 +718,21 @@ void MainWindow::refreshTabFiles(bool clearContents)
  */
 void MainWindow::changedTabIndex()
 {
-  if(ui->twProperties->currentIndex() == 0)
+  if(ui->twProperties->currentIndex() == ctn_TABINDEX_INFORMATION)
     refreshTabInfo();
-  else if (ui->twProperties->currentIndex() == 1)
+  else if (ui->twProperties->currentIndex() == ctn_TABINDEX_FILES)
     refreshTabFiles();
 }
 
 //This method clears the current information showed on tab.
 void MainWindow::invalidateTabs()
 {
-  if(ui->twProperties->currentIndex() == 0) //This is TabInfo
+  if(ui->twProperties->currentIndex() == ctn_TABINDEX_INFORMATION) //This is TabInfo
   {
     refreshTabInfo(true);
     return;
   }
-  else if(ui->twProperties->currentIndex() == 1) //This is TabFiles
+  else if(ui->twProperties->currentIndex() == ctn_TABINDEX_FILES) //This is TabFiles
   {
     refreshTabFiles(true);
     return;
@@ -773,7 +820,7 @@ void MainWindow::writeToTabOutput(const QString &msg)
   if (text)
   {
     text->append(msg);
-    ui->twProperties->setCurrentIndex(2);
+    ui->twProperties->setCurrentIndex(ctn_TABINDEX_OUTPUT);
     text->setFocus();
   }
 }
@@ -789,5 +836,6 @@ void MainWindow::keyPressEvent(QKeyEvent* ke)
   else if(ke->key() == Qt::Key_L && ke->modifiers() == Qt::ControlModifier)
   {
     ui->leFilterPackage->setFocus();
+    ui->leFilterPackage->selectAll();
   }
 }

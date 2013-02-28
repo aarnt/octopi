@@ -134,6 +134,10 @@ public:
     return QObject::tr("There are %1 outdated packages in your system:");
   }
 
+  static QString getNewVersionAvailable(){
+    return QObject::tr("(version %1 is available)");
+  }
+
   static QString getEnterAdministratorsPassword(){
     return QObject::tr(
           "Please, enter the administrator's password");

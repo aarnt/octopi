@@ -25,12 +25,17 @@
 
 class QSortFilterProxyModel;
 class QStandardItemModel;
+
 class QTimer;
 
-const int ctn_PACKAGE_ICON(0);
-const int ctn_PACKAGE_NAME(1);
-const int ctn_PACKAGE_VERSION(2);
-const int ctn_PACKAGE_REPOSITORY(3);
+const int ctn_COLUMN_PACKAGE_ICON(0);
+const int ctn_PACKAGE_NAME_COLUMN(1);
+const int ctn_PACKAGE_VERSION_COLUMN(2);
+const int ctn_PACKAGE_REPOSITORY_COLUMN(3);
+
+const int ctn_TABINDEX_INFORMATION(0);
+const int ctn_TABINDEX_FILES(1);
+const int ctn_TABINDEX_OUTPUT(2);
 
 namespace Ui {
 class MainWindow;
@@ -57,32 +62,43 @@ private:
   int m_PackageListOrderedCol;
   Qt::SortOrder m_PackageListSortOrder;
   QTimer *timer;
+  QStringList *m_outdatedPackageList;
 
   void initAppIcon();
   void initLineEditFilterPackages();
+
+  QString getInstalledPackageVersionByName(const QString &pkgName);
+  bool isPackageInstalled(const QString &pkgName);
   void initPackageTreeView();
+
   void initTabInfo();
   void initTabFiles();
-  void initTabOutput();
   void initActions();
+
+  //Tab Output related methods
+  void initTabOutput();
+  void clearTabOutput();
   void writeToTabOutput(const QString &msg);
+  void outputOutdatedPackageList();
 
 protected:
   void keyPressEvent(QKeyEvent* ke);
 
 private slots:
+
+  //TreeView methods
   void buildPackageList();
-
-  void changePackageListModel();
-  void reapplyPackageFilter();
   void headerViewPackageListSortIndicatorClicked(int col, Qt::SortOrder order);
+  void changePackageListModel();
 
+  //SearchLineEdit methods
+  void reapplyPackageFilter();
+
+  //TabWidget methods
   void refreshTabInfo(bool clearContents=false);
   void refreshTabFiles(bool clearContents=false);
   void changedTabIndex();
-
-  //This method clears the current information showed on tab.
-  void invalidateTabs();
+  void invalidateTabs(); //This method clears the current information showed on tab.
 
 };
 

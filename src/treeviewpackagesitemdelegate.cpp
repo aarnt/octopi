@@ -55,7 +55,7 @@ bool TreeViewPackagesItemDelegate::helpEvent ( QHelpEvent *event, QAbstractItemV
 
     if (si)
     {
-      if (si->column() != ctn_PACKAGE_NAME) return false;
+      if (si->column() != ctn_PACKAGE_NAME_COLUMN) return false;
 
       QPoint p;
       gPoint = tvPackages->mapToGlobal(event->pos());
