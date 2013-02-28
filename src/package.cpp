@@ -227,6 +227,23 @@ QStringList *Package::getOutdatedPackageList()
   return res;
 }
 
+QStringList *Package::getPackagesOfGroup(const QString &groupName)
+{
+  QString packagesFromGroup = UnixCommand::getPackagesFromGroup(groupName);
+  QStringList packageTuples = packagesFromGroup.split(QRegExp("\\n"), QString::SkipEmptyParts);
+  QStringList * res = new QStringList();
+
+  foreach(QString packageTuple, packageTuples)
+  {
+    QStringList parts = packageTuple.split(' ');
+    {
+      res->append(parts[1]); //We only need the package name!
+    }
+  }
+
+  return res;
+}
+
 QList<PackageListData> * Package::getPackageList()
 {
   QString pkgList = UnixCommand::getPackageList();

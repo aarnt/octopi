@@ -213,6 +213,29 @@ QByteArray UnixCommand::getPackageContents(const QString& pkgName)
   return res;
 }
 
+QByteArray UnixCommand::getPackagesFromGroup(const QString &groupName)
+{
+  QByteArray res;
+  QProcess pacman;
+
+#if QT_VERSION >= 0x040600
+  QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
+  env.insert("LANG", "us_EN");
+  pacman.setProcessEnvironment(env);
+#endif
+
+  QStringList args;
+  args << "-Sg";
+  args << groupName;
+
+  pacman.start ( "pacman", args );
+  pacman.waitForFinished(-1);
+  res = pacman.readAllStandardOutput();
+  pacman.close();
+
+  return res;
+}
+
 QString UnixCommand::getSystemArchitecture()
 {
   QStringList slParam;

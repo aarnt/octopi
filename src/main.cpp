@@ -48,6 +48,7 @@ int main(int argc, char *argv[])
     app.installTranslator(&appTranslator);*/
 
   MainWindow w;
+  app.setActivationWindow(&w);
   w.show();
 
   QResource::registerResource("./resources.qrc");

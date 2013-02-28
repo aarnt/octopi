@@ -47,8 +47,6 @@ const QString ctn_TXZ2SBBIN("txz2sb");
 const QString ctn_PACKAGES_WITH_SAME_CONTENT("The packages have the same content!");
 const QString ctn_AUTOMATIC("automatic");
 
-enum LZMCommand { ectn_MAKELZM, ectn_TGZ2LZM, ectn_TXZ2SB };
-
 //Forward class declarations.
 class QString;
 class QStringList;
@@ -76,6 +74,7 @@ public:
   static QByteArray getPackageList();
   static QByteArray getPackageInformation(const QString &pkgName);
   static QByteArray getPackageContents(const QString &pkgName);
+  static QByteArray getPackagesFromGroup(const QString &groupName);
 
   static QString getSystemArchitecture();
   static bool hasInternetConnection();
