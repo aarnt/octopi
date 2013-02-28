@@ -63,7 +63,9 @@ private:
   void initPackageTreeView();
   void initTabInfo();
   void initTabFiles();
+  void initTabOutput();
   void initActions();
+  void writeToTabOutput(const QString &msg);
 
 protected:
   void keyPressEvent(QKeyEvent* ke);

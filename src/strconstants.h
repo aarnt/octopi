@@ -126,6 +126,14 @@ public:
     return QObject::tr("Building package list...");
   }
 
+  static QString getOneOutdatedPackage(){
+    return QObject::tr("There is one outdated package in your system:");
+  }
+
+  static QString getOutdatedPackages(){
+    return QObject::tr("There are %1 outdated packages in your system:");
+  }
+
   static QString getEnterAdministratorsPassword(){
     return QObject::tr(
           "Please, enter the administrator's password");

@@ -47,13 +47,14 @@ MainWindow::MainWindow(QWidget *parent) :
   setWindowTitle(StrConstants::getApplicationName());
   setMinimumSize(QSize(850, 600));
 
-  initAppIcon();
+  initTabOutput();
   initTabInfo();
   initTabFiles();
   initLineEditFilterPackages();
   initPackageTreeView();
 
   initActions();
+  initAppIcon();
 
   /* This timer is needed to beautify GUI initialization... */
   timer = new QTimer();
@@ -71,9 +72,25 @@ MainWindow::~MainWindow()
  */
 void MainWindow::initAppIcon()
 {
-  if(Package::getOutdatedPackageList()->count() > 0)
+  QStringList *outdatedPackages = Package::getOutdatedPackageList();
+
+  if(outdatedPackages->count() > 0)
   {
     setWindowIcon(QIcon(":/resources/images/octopi_red.png"));
+
+    if(outdatedPackages->count()==1){
+      writeToTabOutput(StrConstants::getOneOutdatedPackage() + "\n");
+    }
+    else
+    {
+      writeToTabOutput("<b><font color=\"red\">" +
+                       StrConstants::getOutdatedPackages().arg(outdatedPackages->count()) + "</font></b><br>");
+    }
+
+    for (int c=0; c < outdatedPackages->count(); c++)
+    {
+      writeToTabOutput("<font color=\"red\">" + outdatedPackages->at(c));
+    }
   }
   else
   {
@@ -192,6 +209,36 @@ void MainWindow::initTabFiles()
           tvPkgFileList, SIGNAL(clicked (const QModelIndex&)));
   connect(tvPkgFileList, SIGNAL(activated(const QModelIndex)), tvPkgFileList,
           SIGNAL(clicked(const QModelIndex)));*/
+}
+
+void MainWindow::initTabOutput()
+{
+  QWidget *tabOutput = new QWidget();
+  QGridLayout *gridLayoutX = new QGridLayout ( tabOutput );
+  gridLayoutX->setSpacing ( 0 );
+  gridLayoutX->setMargin ( 0 );
+
+  QTextEdit *text = new QTextEdit(tabOutput);
+  text->setObjectName("textOutputEdit");
+  text->setReadOnly(true);
+  text->setFrameShape(QFrame::NoFrame);
+  text->setFrameShadow(QFrame::Plain);
+  //text->setOpenExternalLinks(true);
+  gridLayoutX->addWidget ( text, 0, 0, 1, 1 );
+
+  QString aux(tr("Output"));
+  //QString translated_about = QApplication::translate ( "MainWindow", aux.toUtf8(), 0, QApplication::UnicodeUTF8 );
+
+  ui->twProperties->removeTab(2);
+  /*int tindex =*/ ui->twProperties->insertTab(2, tabOutput, QApplication::translate (
+      "MainWindow", aux.toUtf8(), 0, QApplication::UnicodeUTF8 ) );
+  //ui->twProperties->setTabText(ui->twProperties->indexOf(tabInfo), QApplication::translate(
+  //    "MainWindow", aux.toUtf8(), 0, QApplication::UnicodeUTF8));
+
+  ui->twProperties->setCurrentIndex(2);
+  text->show();
+  text->setFocus();
+
 }
 
 /*
@@ -493,16 +540,29 @@ void MainWindow::refreshTabFiles(bool clearContents)
 
   QModelIndex item = ui->tvPackages->selectionModel()->selectedRows(ctn_PACKAGE_NAME).first();
   QModelIndex mi = m_proxyModelPackages->mapToSource(item);
-  QStandardItem *siName = m_modelPackages->item( mi.row(), ctn_PACKAGE_NAME );
-  QStandardItem *siRepository = m_modelPackages->item( mi.row(), ctn_PACKAGE_REPOSITORY );
-  QStandardItem *siVersion = m_modelPackages->item( mi.row(), ctn_PACKAGE_VERSION );
+  QStandardItem *siName;
+  QStandardItem *siRepository;
+  QStandardItem *siVersion;
+
+  if (ui->actionNon_installed_pkgs->isChecked())
+  {
+    siName = m_modelPackages->item( mi.row(), ctn_PACKAGE_NAME);
+    siRepository = m_modelPackages->item( mi.row(), ctn_PACKAGE_REPOSITORY);
+    siVersion = m_modelPackages->item( mi.row(), ctn_PACKAGE_VERSION);
+  }
+  else
+  {
+    siName = m_modelInstalledPackages->item( mi.row(), ctn_PACKAGE_NAME);
+    siRepository = m_modelInstalledPackages->item( mi.row(), ctn_PACKAGE_REPOSITORY);
+    siVersion = m_modelInstalledPackages->item( mi.row(), ctn_PACKAGE_VERSION);
+  }
 
   //If we are trying to refresh an already displayed package...
   if (strSelectedPackage == siRepository->text()+"#"+siName->text()+"#"+siVersion->text())
     return;
 
   //Maybe this is a non-installed package...
-  bool nonInstalled = (m_modelPackages->item(mi.row(), ctn_PACKAGE_ICON)->text() == "_NonInstalled");
+  bool nonInstalled = (ui->actionNon_installed_pkgs->isChecked() && (m_modelPackages->item(mi.row(), ctn_PACKAGE_ICON)->text() == "_NonInstalled"));
 
   QTreeView *tvPkgFileList = ui->twProperties->widget(1)->findChild<QTreeView*>("tvPkgFileList");
   if(tvPkgFileList){
@@ -707,10 +767,22 @@ void MainWindow::initActions()
   connect(ui->twProperties, SIGNAL(currentChanged(int)), this, SLOT(changedTabIndex()));
 }
 
+void MainWindow::writeToTabOutput(const QString &msg)
+{
+  QTextEdit *text = ui->twProperties->widget(2)->findChild<QTextEdit*>("textOutputEdit");
+  if (text)
+  {
+    text->append(msg);
+    ui->twProperties->setCurrentIndex(2);
+    text->setFocus();
+  }
+}
+
 void MainWindow::keyPressEvent(QKeyEvent* ke)
 {
   if(ke->key() == Qt::Key_F5)
   {
+    invalidateTabs();
     buildPackageList();
   }
 
