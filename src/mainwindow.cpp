@@ -56,6 +56,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
   initActions();
   initAppIcon();
+  initToolBar();
 
   //Let's watch for changes in the pacman db dir!
   m_pacmanDatabaseSystemWatcher = new QFileSystemWatcher(QStringList() << ctn_PACMAN_DATABASE_DIR, this);
@@ -87,6 +88,15 @@ void MainWindow::initAppIcon()
   {
     setWindowIcon(QIcon(":/resources/images/octopi_yellow.png"));
   }
+}
+
+void MainWindow::initToolBar()
+{
+  ui->mainToolBar->addAction(ui->actionSync_packages);
+  ui->mainToolBar->addAction(ui->actionCommit);
+  ui->mainToolBar->addAction(ui->actionRollback);
+  ui->mainToolBar->addSeparator();
+  ui->mainToolBar->addAction(ui->actionExit);  
 }
 
 /*
@@ -865,6 +875,9 @@ void MainWindow::initActions()
           SLOT(headerViewPackageListSortIndicatorClicked(int,Qt::SortOrder)));
 
   connect(ui->twProperties, SIGNAL(currentChanged(int)), this, SLOT(changedTabIndex()));
+
+  ui->actionCommit->setEnabled(false);
+  ui->actionRollback->setEnabled(false);
 }
 
 /*

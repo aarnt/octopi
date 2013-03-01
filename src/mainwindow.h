@@ -70,6 +70,7 @@ private:
   int m_numberOfOutdatedPackages;
 
   void initAppIcon();
+  void initToolBar();
   void initLineEditFilterPackages();
 
   QString getInstalledPackageVersionByName(const QString &pkgName);

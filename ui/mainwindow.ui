@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>552</width>
-    <height>430</height>
+    <height>515</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -175,6 +175,12 @@
    <property name="text">
     <string>About</string>
    </property>
+   <property name="iconText">
+    <string>About</string>
+   </property>
+   <property name="iconVisibleInMenu">
+    <bool>false</bool>
+   </property>
   </action>
   <action name="actionNon_installed_pkgs">
    <property name="checkable">
@@ -188,21 +194,37 @@
    </property>
   </action>
   <action name="actionCommit">
+   <property name="icon">
+    <iconset resource="../resources.qrc">
+     <normaloff>:/resources/images/commit.png</normaloff>:/resources/images/commit.png</iconset>
+   </property>
    <property name="text">
     <string>Commit</string>
    </property>
   </action>
   <action name="actionRollback">
+   <property name="icon">
+    <iconset resource="../resources.qrc">
+     <normaloff>:/resources/images/rollback.png</normaloff>:/resources/images/rollback.png</iconset>
+   </property>
    <property name="text">
     <string>Rollback</string>
    </property>
   </action>
   <action name="actionSync_packages">
+   <property name="icon">
+    <iconset resource="../resources.qrc">
+     <normaloff>:/resources/images/refresh.png</normaloff>:/resources/images/refresh.png</iconset>
+   </property>
    <property name="text">
     <string>Sync database</string>
    </property>
   </action>
   <action name="actionExit">
+   <property name="icon">
+    <iconset resource="../resources.qrc">
+     <normaloff>:/resources/images/exit.png</normaloff>:/resources/images/exit.png</iconset>
+   </property>
    <property name="text">
     <string>Exit</string>
    </property>
@@ -220,6 +242,8 @@
   <tabstop>tvPackages</tabstop>
   <tabstop>twProperties</tabstop>
  </tabstops>
- <resources/>
+ <resources>
+  <include location="../resources.qrc"/>
+ </resources>
  <connections/>
 </ui>
