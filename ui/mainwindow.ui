@@ -29,92 +29,91 @@
      <number>0</number>
     </property>
     <item row="0" column="0">
-     <layout class="QVBoxLayout" name="verticalLayout">
-      <property name="spacing">
-       <number>0</number>
+     <widget class="QSplitter" name="splitter">
+      <property name="orientation">
+       <enum>Qt::Vertical</enum>
       </property>
-      <item>
-       <widget class="SearchLineEdit" name="leFilterPackage">
-        <property name="minimumSize">
-         <size>
-          <width>0</width>
-          <height>25</height>
-         </size>
+      <widget class="QWidget" name="">
+       <layout class="QVBoxLayout" name="verticalLayout">
+        <property name="spacing">
+         <number>0</number>
         </property>
+        <item>
+         <widget class="SearchLineEdit" name="leFilterPackage">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>25</height>
+           </size>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QTreeView" name="tvPackages">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Expanding" vsizetype="MinimumExpanding">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>16777215</width>
+            <height>16777215</height>
+           </size>
+          </property>
+          <property name="frameShape">
+           <enum>QFrame::NoFrame</enum>
+          </property>
+          <property name="frameShadow">
+           <enum>QFrame::Plain</enum>
+          </property>
+          <property name="indentation">
+           <number>20</number>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QTabWidget" name="twProperties">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>235</height>
+        </size>
+       </property>
+       <property name="currentIndex">
+        <number>1</number>
+       </property>
+       <widget class="QWidget" name="tabInfo">
+        <attribute name="title">
+         <string>Info</string>
+        </attribute>
        </widget>
-      </item>
-      <item>
-       <widget class="QSplitter" name="splitter">
-        <property name="lineWidth">
-         <number>1</number>
-        </property>
-        <property name="orientation">
-         <enum>Qt::Vertical</enum>
-        </property>
-        <widget class="QTreeView" name="tvPackages">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Expanding" vsizetype="MinimumExpanding">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="minimumSize">
-          <size>
-           <width>0</width>
-           <height>0</height>
-          </size>
-         </property>
-         <property name="maximumSize">
-          <size>
-           <width>16777215</width>
-           <height>16777215</height>
-          </size>
-         </property>
-         <property name="frameShape">
-          <enum>QFrame::NoFrame</enum>
-         </property>
-         <property name="frameShadow">
-          <enum>QFrame::Plain</enum>
-         </property>
-         <property name="indentation">
-          <number>20</number>
-         </property>
-        </widget>
-        <widget class="QTabWidget" name="twProperties">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="minimumSize">
-          <size>
-           <width>0</width>
-           <height>235</height>
-          </size>
-         </property>
-         <property name="currentIndex">
-          <number>0</number>
-         </property>
-         <widget class="QWidget" name="tabInfo">
-          <attribute name="title">
-           <string>Info</string>
-          </attribute>
-         </widget>
-         <widget class="QWidget" name="tbFiles">
-          <attribute name="title">
-           <string>Files</string>
-          </attribute>
-         </widget>
-         <widget class="QWidget" name="tabOutput">
-          <attribute name="title">
-           <string>Output</string>
-          </attribute>
-         </widget>
-        </widget>
+       <widget class="QWidget" name="tbFiles">
+        <attribute name="title">
+         <string>Files</string>
+        </attribute>
        </widget>
-      </item>
-     </layout>
+       <widget class="QWidget" name="tabOutput">
+        <attribute name="title">
+         <string>Output</string>
+        </attribute>
+       </widget>
+      </widget>
+     </widget>
     </item>
    </layout>
   </widget>
