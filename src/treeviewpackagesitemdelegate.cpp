@@ -55,7 +55,12 @@ bool TreeViewPackagesItemDelegate::helpEvent ( QHelpEvent *event, QAbstractItemV
 
     if (si)
     {
-      if (si->column() != ctn_PACKAGE_NAME_COLUMN) return false;
+      //If the user's mouse is not positioned above the name column, let's give him a little help...
+      if (si->column() != ctn_PACKAGE_NAME_COLUMN)
+      {
+        QModelIndex miName = sim->index(si->row(), ctn_PACKAGE_NAME_COLUMN);
+        si = sim->itemFromIndex(miName);
+      }
 
       QPoint p;
       gPoint = tvPackages->mapToGlobal(event->pos());
