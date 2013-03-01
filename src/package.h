@@ -67,6 +67,8 @@ const QString ctn_SPKG_UPGRADE       = " --verbose --upgrade";
 const QString ctn_SPKG_INSTALL       = " --verbose --install";
 const QString ctn_SPKG_REINSTALL     = " --verbose --reinstall";
 
+const QString ctn_PACMAN_DATABASE_DIR = "/var/lib/pacman";
+
 const int ctn_KNOWN_ARCHS_LEN = 8;
 const int ctn_KNOWN_NAMES_LEN = 3;
 
@@ -77,7 +79,7 @@ enum SearchPlace { ectn_INSIDE_INSTALLED_PACKAGES, ectn_INSIDE_DIRECTORY, ectn_I
 
 enum DumpInstalledPackageListOptions { ectn_WITH_MODIFIED_DATE, ectn_NO_MODIFIED_DATE };
 
-enum PackageStatus { ectn_INSTALLED, ectn_NON_INSTALLED, ectn_OUTDATED };
+enum PackageStatus { ectn_INSTALLED, ectn_NON_INSTALLED, ectn_OUTDATED, ectn_FOREIGN };
 
 struct PackageListData{
   QString name;
@@ -149,10 +151,12 @@ class Package{
     static QStringList * getUnrequiredPackageList();
     static QStringList * getOutdatedPackageList();
     static QStringList * getPackagesOfGroup(const QString &groupName);
+
+    static QList<PackageListData> * getForeignPackageList();
     static QList<PackageListData> * getPackageList();
 
-    static PackageInfoData getInformation(const QString &pkgName);
-    static QString getInformationDescription(const QString &pkgName);
+    static PackageInfoData getInformation(const QString &pkgName, bool foreignPackage = false);
+    static QString getInformationDescription(const QString &pkgName, bool foreignPackage = false);
     static QStringList getContents(const QString &pkgName);
 
     static QString getVersion(const QString &pkgInfo);

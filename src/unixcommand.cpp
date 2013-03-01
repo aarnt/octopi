@@ -146,6 +146,27 @@ QByteArray UnixCommand::getOutdatedPackageList()
   return result;
 }
 
+QByteArray UnixCommand::getForeignPackageList()
+{
+  QByteArray result("");
+  QProcess pacman;
+  QStringList args;
+
+#if QT_VERSION >= 0x040600
+  QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
+  env.insert("LANG", "us_EN");
+  pacman.setProcessEnvironment(env);
+#endif
+
+  args << "-Qm";
+  pacman.start("pacman", args);
+
+  pacman.waitForFinished(-1);
+  result = pacman.readAllStandardOutput();
+
+  return result;
+}
+
 QByteArray UnixCommand::getPackageList()
 {
   QByteArray result("");
@@ -167,7 +188,7 @@ QByteArray UnixCommand::getPackageList()
   return result;
 }
 
-QByteArray UnixCommand::getPackageInformation(const QString &pkgName)
+QByteArray UnixCommand::getPackageInformation(const QString &pkgName, bool foreignPackage = false)
 {
   QByteArray result("");
   QProcess pacman;
@@ -179,7 +200,15 @@ QByteArray UnixCommand::getPackageInformation(const QString &pkgName)
   pacman.setProcessEnvironment(env);
 #endif
 
-  args << "-Si";
+  if(foreignPackage)
+  {
+    args << "-Qi";
+  }
+  else
+  {
+    args << "-Si";
+  }
+
   args << pkgName;
   pacman.start("pacman", args);
 

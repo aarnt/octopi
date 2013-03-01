@@ -244,6 +244,24 @@ QStringList *Package::getPackagesOfGroup(const QString &groupName)
   return res;
 }
 
+QList<PackageListData> *Package::getForeignPackageList()
+{
+  QString foreignPkgList = UnixCommand::getForeignPackageList();
+  QStringList packageTuples = foreignPkgList.split(QRegExp("\\n"), QString::SkipEmptyParts);
+  QList<PackageListData> * res = new QList<PackageListData>();
+
+  foreach(QString packageTuple, packageTuples)
+  {
+    QStringList parts = packageTuple.split(' ');
+    if (parts.size() == 2)
+    {
+      res->append(PackageListData(parts[0], "", parts[1], ectn_FOREIGN));
+    }
+  }
+
+  return res;
+}
+
 QList<PackageListData> * Package::getPackageList()
 {
   QString pkgList = UnixCommand::getPackageList();
@@ -397,10 +415,10 @@ QString Package::getDescription(const QString &pkgInfo)
   return extractFieldFromInfo("Description", pkgInfo);
 }
 
-PackageInfoData Package::getInformation(const QString &pkgName)
+PackageInfoData Package::getInformation(const QString &pkgName, bool foreignPackage)
 {
   PackageInfoData res;
-  QString pkgInfo = UnixCommand::getPackageInformation(pkgName);
+  QString pkgInfo = UnixCommand::getPackageInformation(pkgName, foreignPackage);
 
   res.name = pkgName;
   res.version = getVersion(pkgInfo);
@@ -422,9 +440,9 @@ PackageInfoData Package::getInformation(const QString &pkgName)
   return res;
 }
 
-QString Package::getInformationDescription(const QString &pkgName)
+QString Package::getInformationDescription(const QString &pkgName, bool foreignPackage)
 {
-  QString pkgInfo = UnixCommand::getPackageInformation(pkgName);
+  QString pkgInfo = UnixCommand::getPackageInformation(pkgName, foreignPackage);
   return getDescription(pkgInfo);
 }
 

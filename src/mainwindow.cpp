@@ -57,6 +57,10 @@ MainWindow::MainWindow(QWidget *parent) :
   initActions();
   initAppIcon();
 
+  //Let's watch for changes in the pacman db dir!
+  m_pacmanDatabaseSystemWatcher = new QFileSystemWatcher(QStringList() << ctn_PACMAN_DATABASE_DIR, this);
+  connect(m_pacmanDatabaseSystemWatcher, SIGNAL(directoryChanged(QString)), this, SLOT(buildPackageList()));
+
   /* This timer is needed to beautify GUI initialization... */
   timer = new QTimer();
   connect(timer, SIGNAL(timeout()), this, SLOT(buildPackageList()));
@@ -107,8 +111,10 @@ void MainWindow::outputOutdatedPackageList()
 
     for (int c=0; c < m_outdatedPackageList->count(); c++)
     {
-      writeToTabOutput("<font color=\"red\">" + m_outdatedPackageList->at(c) + "</font> " +
-                       StrConstants::getNewVersionAvailable().arg(getInstalledPackageVersionByName(m_outdatedPackageList->at(c))));
+      QString pkg = m_outdatedPackageList->at(c);
+      pkg = pkg.leftJustified(40, QChar(' '));
+      writeToTabOutput("<pre><font color=\"red\">" + pkg + "</font> " +
+                       StrConstants::getNewVersionAvailable().arg(getInstalledPackageVersionByName(m_outdatedPackageList->at(c))) + "</pre>");
     }
 
     writeToTabOutput("<br>");
@@ -311,6 +317,15 @@ void MainWindow::buildPackageList()
   QStringList *unrequiredPackageList = Package::getUnrequiredPackageList();
   QList<PackageListData> *list = Package::getPackageList();
 
+  QList<PackageListData> *listForeign = Package::getForeignPackageList();
+  QList<PackageListData>::const_iterator itForeign = listForeign->begin();
+
+  while (itForeign != listForeign->end())
+  {
+    list->append(*itForeign);
+    itForeign++;
+  }
+
   QStandardItem *parentItem = m_modelPackages->invisibleRootItem();
   QStandardItem *parentItemInstalledPackages = m_modelInstalledPackages->invisibleRootItem();
 
@@ -326,7 +341,8 @@ void MainWindow::buildPackageList()
   progress.setWindowModality(Qt::WindowModal);
 
   int counter=0;
-  while(it != list->end()){
+  while(it != list->end())
+  {
     PackageListData pld = *it;
     if (pld.status == ectn_NON_INSTALLED && !ui->actionNon_installed_pkgs->isChecked()){
       it++;
@@ -336,6 +352,10 @@ void MainWindow::buildPackageList()
     //If this is an installed package, it can be also outdated!
     switch (pld.status)
     {
+    case ectn_FOREIGN:
+      lIcons << new QStandardItem(IconHelper::getIconForeign(), "_Foreign");
+      break;
+
     case ectn_OUTDATED:
       lIcons << new QStandardItem(IconHelper::getIconOutdated(), "_OutDated^"+pld.outatedVersion);
       break;
@@ -512,8 +532,15 @@ void MainWindow::refreshTabInfo(bool clearContents)
 
   /* Appends all info from the selected package! */
   QString pkgName=siName->text();
+  PackageInfoData pid;
 
-  PackageInfoData pid = Package::getInformation(pkgName);
+  if (!siRepository->text().isEmpty()){
+    pid = Package::getInformation(pkgName);
+  }
+  else
+  {
+    pid = Package::getInformation(pkgName, true); //This is a foreign package!!!
+  }
 
   //QString repository = StrConstants::getRepository();
   //QString name = StrConstants::getName();
@@ -577,8 +604,8 @@ void MainWindow::refreshTabInfo(bool clearContents)
     html += "<tr><td>" + provides + "</td><td>" + pid.provides + "</td></tr>";
     html += "<tr><td>" + dependsOn + "</td><td>" + pid.dependsOn + "</td></tr>";
     html += "<tr><td>" + optionalDeps + "</td><td>" + pid.optDepends + "</td></tr>";
-    html += "<tr><td><font color=\"red\"><b>" + conflictsWith +
-        "</b></font></td><td><font color=\"red\"><b>" + pid.conflictsWith + "</b></font></td></tr>";
+    html += "<tr><td><b>" /*<font color=\"red\">*/ + conflictsWith +
+        "</b></td><td><b>" /*<font color=\"red\"><b>"*/ + pid.conflictsWith + "</b></font></td></tr>";
     html += "<tr><td>" + replaces + "</td><td>" + pid.replaces + "</td></tr>";
     html += "<tr><td>" + downloadSize + "</td><td>" + valDownloadSize + "</td></tr>";
     html += "<tr><td>" + installedSize + "</td><td>" + valInstalledSize + "</td></tr>";
@@ -638,7 +665,8 @@ void MainWindow::refreshTabFiles(bool clearContents)
     return;
 
   //Maybe this is a non-installed package...
-  bool nonInstalled = (ui->actionNon_installed_pkgs->isChecked() && (m_modelPackages->item(mi.row(), ctn_COLUMN_PACKAGE_ICON)->text() == "_NonInstalled"));
+  bool nonInstalled = (ui->actionNon_installed_pkgs->isChecked() &&
+                       (m_modelPackages->item(mi.row(), ctn_COLUMN_PACKAGE_ICON)->text() == "_NonInstalled"));
 
   QTreeView *tvPkgFileList = ui->twProperties->widget(1)->findChild<QTreeView*>("tvPkgFileList");
   if(tvPkgFileList){

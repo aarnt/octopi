@@ -25,8 +25,8 @@
 
 class QSortFilterProxyModel;
 class QStandardItemModel;
-
 class QTimer;
+class QFileSystemWatcher;
 
 const int ctn_COLUMN_PACKAGE_ICON(0);
 const int ctn_PACKAGE_NAME_COLUMN(1);
@@ -52,6 +52,7 @@ public:
 private:
   Ui::MainWindow *ui;
   QSortFilterProxyModel *m_proxyModelPackages;
+  QFileSystemWatcher *m_pacmanDatabaseSystemWatcher;
 
   //This model provides the list of ALL packages (installed + non-installed)
   QStandardItemModel *m_modelPackages;

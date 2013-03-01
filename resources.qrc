@@ -22,5 +22,6 @@
         <file>resources/images/binary.png</file>
         <file>resources/images/outdated.png</file>
         <file>resources/images/unrequired.png</file>
+        <file>resources/images/foreign.png</file>
     </qresource>
 </RCC>

@@ -32,8 +32,8 @@ QPoint gPoint;
 QFutureWatcher<QString> fw;
 using namespace QtConcurrent;
 
-QString showPackageInfo(QString pkgName){
-  return(Package::getInformationDescription(pkgName));
+QString showPackageInfo(QString pkgName, bool foreignPackage = false){
+  return(Package::getInformationDescription(pkgName, foreignPackage));
 }
 
 TreeViewPackagesItemDelegate::TreeViewPackagesItemDelegate(QObject *parent): QStyledItemDelegate(parent){  
@@ -61,7 +61,16 @@ bool TreeViewPackagesItemDelegate::helpEvent ( QHelpEvent *event, QAbstractItemV
       gPoint = tvPackages->mapToGlobal(event->pos());
       QFuture<QString> f;
 
-      f = run(showPackageInfo, si->text());
+      QModelIndex mi = sim->index(si->row(), ctn_PACKAGE_REPOSITORY_COLUMN);
+      QStandardItem *siRepo = sim->itemFromIndex(mi);
+
+      bool foreignPackage = false;
+      if(siRepo)
+      {
+        if (siRepo->text().isEmpty()) foreignPackage = true;
+      }
+
+      f = run(showPackageInfo, si->text(), foreignPackage);
       fw.setFuture(f);
       connect(&fw, SIGNAL(finished()), this, SLOT(execToolTip()));
     }

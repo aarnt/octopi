@@ -71,8 +71,9 @@ public:
 
   static QByteArray getUnrequiredPakcageList();
   static QByteArray getOutdatedPackageList();
+  static QByteArray getForeignPackageList();
   static QByteArray getPackageList();
-  static QByteArray getPackageInformation(const QString &pkgName);
+  static QByteArray getPackageInformation(const QString &pkgName, bool foreignPackage);
   static QByteArray getPackageContents(const QString &pkgName);
   static QByteArray getPackagesFromGroup(const QString &groupName);
 
