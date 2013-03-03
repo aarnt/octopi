@@ -265,6 +265,38 @@ QByteArray UnixCommand::getPackagesFromGroup(const QString &groupName)
   return res;
 }
 
+//Retrieves the list of targets needed to update the entire system or a given package
+QByteArray UnixCommand::getTargetUpgradeList(const QString &pkgName)
+{
+  QByteArray res;
+  QProcess pacman;
+
+#if QT_VERSION >= 0x040600
+  QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
+  env.insert("LANG", "us_EN");
+  pacman.setProcessEnvironment(env);
+#endif
+
+  QStringList args;
+
+  if(!pkgName.isEmpty())
+  {
+    args << "-Sp";
+    args << pkgName;
+  }
+  else
+  {
+    args << "-Spu"; //this is the complete system upgrade!
+  }
+
+  pacman.start ( "pacman", args );
+  pacman.waitForFinished(-1);
+  res = pacman.readAllStandardOutput();
+  pacman.close();
+
+  return res;
+}
+
 QString UnixCommand::getSystemArchitecture()
 {
   QStringList slParam;
@@ -422,6 +454,12 @@ void UnixCommand::executePackageActions( const QStringList& commandList )
   m_process->start(command);
 }
 
+void UnixCommand::executeCommand(const QString &command)
+{
+  //QString strCommand = WMHelper::getSUCommand() + " " + command;
+  m_process->start(command);
+}
+
 void UnixCommand::processReadyReadStandardOutput()
 {
   m_readAllStandardOutput = m_process->readAllStandardOutput();
@@ -451,6 +489,12 @@ QString UnixCommand::errorString()
 UnixCommand::UnixCommand(QObject *parent): QObject()
 {
   m_process = new QProcess(parent);
+
+#if QT_VERSION >= 0x040600
+  QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
+  env.insert("LANG", "us_EN");
+  m_process->setProcessEnvironment(env);
+#endif
 
   QObject::connect(m_process, SIGNAL( started() ), this,
                    SIGNAL( started() ));

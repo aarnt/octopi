@@ -236,9 +236,28 @@ QStringList *Package::getPackagesOfGroup(const QString &groupName)
   foreach(QString packageTuple, packageTuples)
   {
     QStringList parts = packageTuple.split(' ');
-    {
-      res->append(parts[1]); //We only need the package name!
-    }
+    res->append(parts[1]); //We only need the package name!
+  }
+
+  return res;
+}
+
+//Retrieves the list of targets needed to upgrade the entire system or a install/upgrade a given package
+QStringList *Package::getTargetUpgradeList(const QString &pkgName)
+{
+  QString targets = UnixCommand::getTargetUpgradeList(pkgName);
+  QStringList packageTuples = targets.split(QRegExp("\\n"), QString::SkipEmptyParts);
+  QStringList * res = new QStringList();
+
+  foreach(QString packageTuple, packageTuples)
+  {
+    if(packageTuple.indexOf("::")!=-1) continue;
+
+    int pos = packageTuple.lastIndexOf("/");
+    QString target = packageTuple.mid(pos+1, packageTuple.size()-pos);
+    int end = target.lastIndexOf("-");
+    target = target.left(end);
+    res->append(target);
   }
 
   return res;

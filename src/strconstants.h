@@ -150,6 +150,37 @@ public:
     return QObject::tr("%1 available");
   }
 
+  static QString getSyncDatabases(){
+    return QObject::tr(":: Synchronizing package databases...");    
+  }
+  static QString getSystemUpgrade(){
+    return QObject::tr(":: Starting full system upgrade...");
+  }
+
+  static QString getCommandFinishedOK(){
+    return QObject::tr("Command finished OK!");
+  }
+
+  static QString getCommandFinishedWithErrors(){
+    return QObject::tr("Command finished with errors...");
+  }
+
+  static QString geRetrievingTarget(){
+    return QObject::tr("Retrieving %1 (%2/%3)...");
+  }
+
+  static QString getRetrieveTarget(){
+    return QObject::tr("The following target needs to be retrieved");
+  }
+
+  static QString getRetrieveTargets(){
+    return QObject::tr("The following %1 targets need to be retrieved");
+  }
+
+  static QString getConfirmation(){
+    return QObject::tr("Confirm?");
+  }
+
   static QString getEnterAdministratorsPassword(){
     return QObject::tr(
           "Please, enter the administrator's password");

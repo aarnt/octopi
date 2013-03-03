@@ -23,6 +23,7 @@
 #include "strconstants.h"
 #include "package.h"
 #include "uihelper.h"
+#include "wmhelper.h"
 #include "treeviewpackagesitemdelegate.h"
 
 #include <QDebug>
@@ -34,6 +35,7 @@
 #include <QProgressDialog>
 #include <QTimer>
 #include <QLabel>
+#include <QMessageBox>
 #include <iostream>
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -44,6 +46,9 @@ MainWindow::MainWindow(QWidget *parent) :
 
   m_PackageListOrderedCol=1;
   m_PackageListSortOrder=Qt::AscendingOrder;
+  m_currentTarget=0;
+  m_commandExecuting=ectn_NONE;
+  m_commandQueued=ectn_NONE;
 
   setWindowTitle(StrConstants::getApplicationName());
   setMinimumSize(QSize(850, 600));
@@ -92,7 +97,7 @@ void MainWindow::initAppIcon()
 
 void MainWindow::initToolBar()
 {
-  ui->mainToolBar->addAction(ui->actionSync_packages);
+  ui->mainToolBar->addAction(ui->actionSyncPackages);
   ui->mainToolBar->addAction(ui->actionCommit);
   ui->mainToolBar->addAction(ui->actionRollback);
   ui->mainToolBar->addSeparator();
@@ -108,15 +113,15 @@ void MainWindow::outputOutdatedPackageList()
 
   if(m_numberOfOutdatedPackages > 0)
   {
-    clearTabOutput();
+    //clearTabOutput();
 
     if(m_outdatedPackageList->count()==1){
-      writeToTabOutput(StrConstants::getOneOutdatedPackage() + "\n");
+      writeToTabOutput("<b>" + StrConstants::getOneOutdatedPackage() + "</b><br>");
     }
     else
     {
-      writeToTabOutput("<b><font color=\"red\">" +
-                       StrConstants::getOutdatedPackages().arg(m_outdatedPackageList->count()) + "</font></b><br>");
+      writeToTabOutput("<b>" +
+                       StrConstants::getOutdatedPackages().arg(m_outdatedPackageList->count()) + "</b><br>");
     }
 
     for (int c=0; c < m_outdatedPackageList->count(); c++)
@@ -354,7 +359,7 @@ void MainWindow::buildPackageList()
   while(it != list->end())
   {
     PackageListData pld = *it;
-    if (pld.status == ectn_NON_INSTALLED && !ui->actionNon_installed_pkgs->isChecked()){
+    if (pld.status == ectn_NON_INSTALLED && !ui->actionNonInstalledPackages->isChecked()){
       it++;
       continue;
     }
@@ -468,7 +473,7 @@ void MainWindow::changePackageListModel()
 {
   QStringList sl;
 
-  if (ui->actionNon_installed_pkgs->isChecked())
+  if (ui->actionNonInstalledPackages->isChecked())
   {
     m_modelPackages->setHorizontalHeaderLabels(
           sl << "" << tr("Name") << tr("Version") << tr("Repository"));
@@ -519,7 +524,7 @@ void MainWindow::refreshTabInfo(bool clearContents)
   QStandardItem *siRepository;
   QStandardItem *siVersion;
 
-  if (ui->actionNon_installed_pkgs->isChecked())
+  if (ui->actionNonInstalledPackages->isChecked())
   {
     siIcon = m_modelPackages->item( mi.row(), ctn_COLUMN_PACKAGE_ICON);
     siName = m_modelPackages->item( mi.row(), ctn_PACKAGE_NAME_COLUMN);
@@ -657,7 +662,7 @@ void MainWindow::refreshTabFiles(bool clearContents)
   QStandardItem *siRepository;
   QStandardItem *siVersion;
 
-  if (ui->actionNon_installed_pkgs->isChecked())
+  if (ui->actionNonInstalledPackages->isChecked())
   {
     siName = m_modelPackages->item( mi.row(), ctn_PACKAGE_NAME_COLUMN);
     siRepository = m_modelPackages->item( mi.row(), ctn_PACKAGE_REPOSITORY_COLUMN);
@@ -675,7 +680,7 @@ void MainWindow::refreshTabFiles(bool clearContents)
     return;
 
   //Maybe this is a non-installed package...
-  bool nonInstalled = (ui->actionNon_installed_pkgs->isChecked() &&
+  bool nonInstalled = (ui->actionNonInstalledPackages->isChecked() &&
                        (m_modelPackages->item(mi.row(), ctn_COLUMN_PACKAGE_ICON)->text() == "_NonInstalled"));
 
   QTreeView *tvPkgFileList = ui->twProperties->widget(1)->findChild<QTreeView*>("tvPkgFileList");
@@ -787,7 +792,9 @@ void MainWindow::changedTabIndex()
     refreshTabFiles();
 }
 
-//This method clears the current information showed on tab.
+/*
+ * This method clears the information showed on the current tab (Info or Files).
+ */
 void MainWindow::invalidateTabs()
 {
   if(ui->twProperties->currentIndex() == ctn_TABINDEX_INFORMATION) //This is TabInfo
@@ -799,6 +806,243 @@ void MainWindow::invalidateTabs()
   {
     refreshTabFiles(true);
     return;
+  }
+}
+
+/*
+ * This method does a repository sync with "pacman -Sy" !
+ */
+void MainWindow::doSyncDatabase()
+{
+  //If there are no means to run the actions, we must warn!
+  if (WMHelper::getSUCommand() == ctn_NO_SU_COMMAND){
+    QMessageBox::critical( 0, StrConstants::getApplicationName(), StrConstants::getErrorNoSuCommand());
+    return;
+  }
+
+  m_commandExecuting = ectn_SYNC_DATABASE;
+
+  disconnect(m_pacmanDatabaseSystemWatcher, SIGNAL(directoryChanged(QString)), this, SLOT(buildPackageList()));
+
+  writeToTabOutput("<B>" + StrConstants::getSyncDatabases() + "</B>");
+
+  m_unixCommand = new UnixCommand(this);
+
+  QObject::connect(m_unixCommand, SIGNAL( started() ), this, SLOT( actionsProcessStarted()));
+  QObject::connect(m_unixCommand, SIGNAL( readyReadStandardOutput()),
+                   this, SLOT( actionsProcessReadOutput() ));
+  QObject::connect(m_unixCommand, SIGNAL( finished ( int, QProcess::ExitStatus )),
+                   this, SLOT( actionsProcessFinished(int, QProcess::ExitStatus) ));
+  QObject::connect(m_unixCommand, SIGNAL( readyReadStandardError() ),
+                   this, SLOT( actionsProcessRaisedError() ));
+
+  QString command = "pacman -Sy";
+  m_unixCommand->executeCommand(command);
+}
+
+/*
+ * This method does a system upgrade with "pacman -Su" !
+ */
+void MainWindow::doSystemUpgrade(bool syncDatabase)
+{
+  if(syncDatabase)
+  {
+    m_commandQueued = ectn_SYSTEM_UPGRADE;
+    doSyncDatabase();
+  }
+  else
+  {
+    //Shows a dialog indicating the targets needed to be retrieved and asks the user's permission.
+    m_targets = Package::getTargetUpgradeList();
+    m_currentTarget=0;
+    QString list;
+
+    foreach(QString target, *m_targets)
+    {
+      list = list + target + "\n";
+    }
+    list.remove(list.size()-1, 1);
+
+    QMessageBox question;
+
+    if(m_targets->count()==1)
+      question.setText(StrConstants::getRetrieveTarget());
+    else
+      question.setText(StrConstants::getRetrieveTargets().arg(m_targets->count()));
+
+    question.setInformativeText(StrConstants::getConfirmation());
+    question.setDetailedText(list);
+    question.setStandardButtons(QMessageBox::Yes|QMessageBox::No);
+    question.setDefaultButton(QMessageBox::No);
+
+    int result = question.exec();
+    if(result == QMessageBox::Yes)
+    {
+      //If there are no means to run the actions, we must warn!
+      if (WMHelper::getSUCommand() == ctn_NO_SU_COMMAND){
+        QMessageBox::critical( 0, StrConstants::getApplicationName(), StrConstants::getErrorNoSuCommand());
+        return;
+      }
+
+      m_commandExecuting = ectn_SYSTEM_UPGRADE;
+
+      disconnect(m_pacmanDatabaseSystemWatcher, SIGNAL(directoryChanged(QString)), this, SLOT(buildPackageList()));
+
+      writeToTabOutput("<B>" + StrConstants::getSystemUpgrade() + "</B><br>");
+
+      m_unixCommand = new UnixCommand(this);
+
+      QObject::connect(m_unixCommand, SIGNAL( started() ), this, SLOT( actionsProcessStarted()));
+      QObject::connect(m_unixCommand, SIGNAL( readyReadStandardOutput()),
+                       this, SLOT( actionsProcessReadOutput() ));
+      QObject::connect(m_unixCommand, SIGNAL( finished ( int, QProcess::ExitStatus )),
+                       this, SLOT( actionsProcessFinished(int, QProcess::ExitStatus) ));
+      QObject::connect(m_unixCommand, SIGNAL( readyReadStandardError() ),
+                       this, SLOT( actionsProcessRaisedError() ));
+
+      m_currentTarget = 0;
+
+      QString command = "pacman -Su --noconfirm";
+      m_unixCommand->executeCommand(command);
+      m_commandQueued = ectn_NONE;
+    }
+  }
+}
+
+void MainWindow::actionsProcessStarted()
+{
+  QString str = m_unixCommand->readAllStandardOutput();
+  writeToTabOutput("<B>" + str + "</B><br>");
+}
+
+void MainWindow::actionsProcessFinished(int exitCode, QProcess::ExitStatus exitStatus)
+{
+  ui->twProperties->setTabText(ctn_TABINDEX_OUTPUT, tr("Output"));
+
+  if (exitCode == 0){
+    writeToTabOutput("<B>:: " +
+                     StrConstants::getCommandFinishedOK() + "</B><br><br>");
+  }
+  else
+  {
+    writeToTabOutput("<br><B><font color=\"red\">:: " +
+                     StrConstants::getCommandFinishedWithErrors() + "</B></font><br><br>");
+  }
+
+  if(m_commandQueued == ectn_SYSTEM_UPGRADE)
+  {
+    doSystemUpgrade(false);
+  }
+  else if (m_commandQueued == ectn_NONE)
+  {
+    //After the command, we can refresh the package list, so any change can be seem.
+    buildPackageList();
+    connect(m_pacmanDatabaseSystemWatcher, SIGNAL(directoryChanged(QString)), this, SLOT(buildPackageList()));
+  }
+}
+
+void MainWindow::actionsProcessReadOutput()
+{
+  QString str = m_unixCommand->readAllStandardOutput().trimmed();
+  //std::cout << str.toAscii().data() << std::endl;
+
+  if(!str.isEmpty() &&
+     str.indexOf(":: Synchronizing package databases...") == -1 &&
+     str.indexOf(":: Starting full system upgrade...") == -1)
+  {
+    writeToTabOutput(str);
+  }
+}
+
+void MainWindow::actionsProcessRaisedError()
+{
+  static QString lastNumber;
+  static bool printedTargetOne = false;
+
+  QString str = m_unixCommand->readAllStandardError();
+
+  //If it is a percentage, we are talking about curl...
+  if (str.indexOf("#") != -1)
+  {
+    QString perc = str.right(7).trimmed();
+    if(!perc.isEmpty() && perc[0] != '#' && perc.indexOf("%") > 0)
+    {
+      if (perc != lastNumber)
+      {
+        if(lastNumber=="100.0%")
+        {
+          qApp->processEvents();
+          ui->twProperties->setTabText(ctn_TABINDEX_OUTPUT, tr("Output"));
+          qApp->processEvents();
+
+          if (m_commandExecuting == ectn_SYSTEM_UPGRADE || m_commandExecuting == ectn_INSTALL)
+          {
+            m_currentTarget++;
+            if (m_currentTarget < m_targets->size())
+            {
+              writeToTabOutput(
+                  StrConstants::geRetrievingTarget().arg(
+                    m_targets->at(m_currentTarget)).arg(m_currentTarget+1).arg(m_targets->size()));
+            }
+          }
+        }
+        else
+        {
+          if ((m_commandExecuting == ectn_SYSTEM_UPGRADE || m_commandExecuting == ectn_INSTALL) && !printedTargetOne)
+          {
+            writeToTabOutput(
+                  StrConstants::geRetrievingTarget().arg(
+                  m_targets->at(m_currentTarget)).arg(m_currentTarget+1).arg(m_targets->size()));
+            printedTargetOne = true;
+          }
+
+          qApp->processEvents();
+          ui->twProperties->setTabText(ctn_TABINDEX_OUTPUT, tr("Output") + " (" + perc + ")");
+          qApp->processEvents();
+        }
+
+        lastNumber = perc;
+      }
+    }
+  }
+  else if(m_commandExecuting != ectn_SYNC_DATABASE) //It's another error, so we have to output it
+  {
+    qApp->processEvents();
+    str.remove(QRegExp("error:"));
+    if(str.trimmed() != "" && str.size() > 1)
+    {
+      str.remove(QRegExp("\b"));
+      writeToTabOutput("<font color=\"red\">" + str + "<\font><br>");
+    }
+    //qApp->processEvents();
+  }
+
+  if ((m_commandExecuting == ectn_SYSTEM_UPGRADE || m_commandExecuting == ectn_INSTALL) &&
+      m_currentTarget == m_targets->size()){
+    printedTargetOne = false;
+    m_commandQueued = ectn_NONE;
+  }
+}
+
+/*
+ * This method maximizes/de-maximizes the lower pane (tabwidget)
+ */
+void MainWindow::maximizeTabWidget()
+{
+  static QList<int> savedSizes = ui->splitterHorizontal->sizes();
+
+  QList<int> l, rl;
+  rl = ui->splitterHorizontal->sizes();
+
+  if ( rl[0] != 0 )
+  {
+    ui->splitterHorizontal->setSizes( l << 0 << ui->twProperties->maximumHeight());
+    if(ui->tvPackages->hasFocus())
+      ui->twProperties->currentWidget()->setFocus();
+  }
+  else
+  {
+    ui->splitterHorizontal->setSizes(savedSizes);
   }
 }
 
@@ -825,13 +1069,6 @@ void MainWindow::reapplyPackageFilter()
     ui->leFilterPackage->initStyleSheet();;
     m_proxyModelPackages->setFilterRegExp("");
   }
-
-  /*if (numPkgs > 1)
-    dockPackages->setWindowTitle(tr("%1 Packages in Directory").arg(QString::number(numPkgs)));
-  else if (numPkgs == 1)
-    dockPackages->setWindowTitle(tr("1 Package in Directory"));
-  else
-    dockPackages->setWindowTitle(tr("0 Packages in Directory"));*/
 
   if (isFilterPackageSelected) ui->leFilterPackage->setFocus();
   m_proxyModelPackages->sort(m_PackageListOrderedCol, m_PackageListSortOrder);
@@ -866,7 +1103,7 @@ void MainWindow::initActions()
           SLOT(invalidateTabs()));
 
   connect(ui->actionExit, SIGNAL(triggered()), this, SLOT(close()));
-  connect(ui->actionNon_installed_pkgs, SIGNAL(changed()), this, SLOT(changePackageListModel()));
+  connect(ui->actionNonInstalledPackages, SIGNAL(changed()), this, SLOT(changePackageListModel()));
 
   connect(ui->tvPackages, SIGNAL(activated(QModelIndex)), this, SLOT(changedTabIndex()));
           //ui->tvPackages, SIGNAL(clicked(QModelIndex)));
@@ -875,6 +1112,9 @@ void MainWindow::initActions()
           SLOT(headerViewPackageListSortIndicatorClicked(int,Qt::SortOrder)));
 
   connect(ui->twProperties, SIGNAL(currentChanged(int)), this, SLOT(changedTabIndex()));
+
+  connect(ui->actionSyncPackages, SIGNAL(triggered()), this, SLOT(doSyncDatabase()));
+  connect(ui->actionSystemUpgrade, SIGNAL(triggered()), this, SLOT(doSystemUpgrade()));
 
   ui->actionCommit->setEnabled(false);
   ui->actionRollback->setEnabled(false);
@@ -896,9 +1136,14 @@ void MainWindow::writeToTabOutput(const QString &msg)
 
 void MainWindow::keyPressEvent(QKeyEvent* ke)
 {
-  if(ke->key() == Qt::Key_F5)
+  if (ke->key() == Qt::Key_F12)
+  {
+    maximizeTabWidget();
+  }
+  else if(ke->key() == Qt::Key_F5)
   {
     invalidateTabs();
+    clearTabOutput();
     buildPackageList();
   }
 

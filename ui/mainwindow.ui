@@ -29,11 +29,11 @@
      <number>0</number>
     </property>
     <item row="0" column="0">
-     <widget class="QSplitter" name="splitter">
+     <widget class="QSplitter" name="splitterHorizontal">
       <property name="orientation">
        <enum>Qt::Vertical</enum>
       </property>
-      <widget class="QWidget" name="">
+      <widget class="QWidget" name="layoutWidget">
        <layout class="QVBoxLayout" name="verticalLayout">
         <property name="spacing">
          <number>0</number>
@@ -136,7 +136,7 @@
     <property name="title">
      <string>View</string>
     </property>
-    <addaction name="actionNon_installed_pkgs"/>
+    <addaction name="actionNonInstalledPackages"/>
    </widget>
    <widget class="QMenu" name="menuTransaction">
     <property name="title">
@@ -149,7 +149,8 @@
     <property name="title">
      <string>File</string>
     </property>
-    <addaction name="actionSync_packages"/>
+    <addaction name="actionSyncPackages"/>
+    <addaction name="actionSystemUpgrade"/>
     <addaction name="separator"/>
     <addaction name="actionExit"/>
    </widget>
@@ -181,7 +182,7 @@
     <bool>false</bool>
    </property>
   </action>
-  <action name="actionNon_installed_pkgs">
+  <action name="actionNonInstalledPackages">
    <property name="checkable">
     <bool>true</bool>
    </property>
@@ -210,7 +211,7 @@
     <string>Rollback</string>
    </property>
   </action>
-  <action name="actionSync_packages">
+  <action name="actionSyncPackages">
    <property name="icon">
     <iconset resource="../resources.qrc">
      <normaloff>:/resources/images/refresh.png</normaloff>:/resources/images/refresh.png</iconset>
@@ -226,6 +227,38 @@
    </property>
    <property name="text">
     <string>Exit</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Q</string>
+   </property>
+  </action>
+  <action name="actionSystemUpgrade">
+   <property name="text">
+    <string>System upgrade</string>
+   </property>
+  </action>
+  <action name="actionInstall">
+   <property name="icon">
+    <iconset resource="../resources.qrc">
+     <normaloff>:/resources/images/toinstall.png</normaloff>:/resources/images/toinstall.png</iconset>
+   </property>
+   <property name="text">
+    <string>Install</string>
+   </property>
+   <property name="toolTip">
+    <string>Install</string>
+   </property>
+  </action>
+  <action name="actionRemove">
+   <property name="icon">
+    <iconset resource="../resources.qrc">
+     <normaloff>:/resources/images/toremove.png</normaloff>:/resources/images/toremove.png</iconset>
+   </property>
+   <property name="text">
+    <string>Remove</string>
+   </property>
+   <property name="toolTip">
+    <string>Remove</string>
    </property>
   </action>
  </widget>

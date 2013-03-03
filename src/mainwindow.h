@@ -22,6 +22,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include "unixcommand.h"
 
 class QSortFilterProxyModel;
 class QStandardItemModel;
@@ -51,6 +52,8 @@ public:
 
 private:
   Ui::MainWindow *ui;
+  UnixCommand *m_unixCommand;
+
   QSortFilterProxyModel *m_proxyModelPackages;
   QFileSystemWatcher *m_pacmanDatabaseSystemWatcher;
 
@@ -59,6 +62,16 @@ private:
 
   //This model privides the list of ONLY installed packages
   QStandardItemModel *m_modelInstalledPackages;
+
+  //This member holds the target list retrieved by the pacman command which will be executed
+  QStringList *m_targets;
+
+  //Holds the current index of the target being processing
+  int m_currentTarget;
+
+  //This member holds the current command being executed by Octopi
+  CommandExecuting m_commandExecuting;
+  CommandExecuting m_commandQueued;
 
   int m_PackageListOrderedCol;
   Qt::SortOrder m_PackageListSortOrder;
@@ -106,6 +119,16 @@ private slots:
   void refreshTabFiles(bool clearContents=false);
   void changedTabIndex();
   void invalidateTabs(); //This method clears the current information showed on tab.
+
+  void doSyncDatabase();
+  void doSystemUpgrade(bool syncDatabase = true);
+
+  void actionsProcessStarted();
+  void actionsProcessFinished(int exitCode, QProcess::ExitStatus exitStatus);
+  void actionsProcessReadOutput();
+  void actionsProcessRaisedError();
+
+  void maximizeTabWidget();
 
 };
 

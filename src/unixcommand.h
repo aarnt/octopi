@@ -47,10 +47,11 @@ const QString ctn_TXZ2SBBIN("txz2sb");
 const QString ctn_PACKAGES_WITH_SAME_CONTENT("The packages have the same content!");
 const QString ctn_AUTOMATIC("automatic");
 
+enum CommandExecuting { ectn_NONE, ectn_SYNC_DATABASE, ectn_SYSTEM_UPGRADE, ectn_INSTALL, ectn_REMOVE };
+
 //Forward class declarations.
 class QString;
 class QStringList;
-
 class UnixCommand : public QObject{
   Q_OBJECT
 
@@ -64,6 +65,8 @@ private:
 public:
   UnixCommand(QObject *parent);
 
+  inline QProcess * getProcess(){ return m_process; }
+
   //Delegations from Package class (due to QProcess use)
   static QString runCommand(const QString& commandToRun);
   static QString runCurlCommand(const QString& commandToRun);
@@ -76,6 +79,13 @@ public:
   static QByteArray getPackageInformation(const QString &pkgName, bool foreignPackage);
   static QByteArray getPackageContents(const QString &pkgName);
   static QByteArray getPackagesFromGroup(const QString &groupName);
+
+  //Retrieves the list of targets needed to update the entire system or a given package
+  static QByteArray getTargetUpgradeList(const QString &pkgName = "");
+
+  //Retrieves the list of targets needed to remove a given package
+  static QByteArray getTargetRemovalList(const QString &pkgName);
+
 
   static QString getSystemArchitecture();
   static bool hasInternetConnection();
@@ -115,6 +125,7 @@ public:
   static QString getPkgReinstallCommand();
 
   void executePackageActions(const QStringList& commandList);
+  void executeCommand(const QString& command);
 
   QString readAllStandardOutput();
   QString readAllStandardError();
