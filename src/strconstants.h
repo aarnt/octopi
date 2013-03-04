@@ -173,8 +173,20 @@ public:
     return QObject::tr("The following target needs to be retrieved");
   }
 
+  static QString getRemoveTarget(){
+    return QObject::tr("The following target will be removed");
+  }
+
   static QString getRetrieveTargets(){
     return QObject::tr("The following %1 targets need to be retrieved");
+  }
+
+  static QString getRemoveTargets(){
+    return QObject::tr("The following %1 targets will be removed");
+  }
+
+  static QString getWarnHoldPkgFound() {
+    return QObject::tr("There are forbidden packages in the removal list!");
   }
 
   static QString getConfirmation(){

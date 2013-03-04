@@ -26,6 +26,7 @@
 
 class QSortFilterProxyModel;
 class QStandardItemModel;
+class QStandardItem;
 class QTimer;
 class QFileSystemWatcher;
 
@@ -36,7 +37,8 @@ const int ctn_PACKAGE_REPOSITORY_COLUMN(3);
 
 const int ctn_TABINDEX_INFORMATION(0);
 const int ctn_TABINDEX_FILES(1);
-const int ctn_TABINDEX_OUTPUT(2);
+const int ctn_TABINDEX_TRANSACTION(2);
+const int ctn_TABINDEX_OUTPUT(3);
 
 namespace Ui {
 class MainWindow;
@@ -62,6 +64,9 @@ private:
 
   //This model privides the list of ONLY installed packages
   QStandardItemModel *m_modelInstalledPackages;
+
+  //This model provides the list of pending actions of a transaction
+  QStandardItemModel *m_modelTransaction;
 
   //This member holds the target list retrieved by the pacman command which will be executed
   QStringList *m_targets;
@@ -101,6 +106,18 @@ private:
   void writeToTabOutput(const QString &msg);
   void outputOutdatedPackageList();
 
+  //Tab Transaction related methods
+  void initTabTransaction();
+  QStandardItem * getRemoveTransactionParentItem();
+  QStandardItem * getInstallTransactionParentItem();
+  void insertRemovePackageInTransaction(const QString &pkgName);
+  void insertInstallPackageInTransaction(const QString &pkgName);
+  void removePackagesFromRemoveTransaction();
+  void removePackagesFromInstallTransaction();
+
+  QString getToBeRemovedPackages();
+  QString getToBeInstalledPackages();
+
 protected:
   void keyPressEvent(QKeyEvent* ke);
 
@@ -110,6 +127,7 @@ private slots:
   void buildPackageList();
   void headerViewPackageListSortIndicatorClicked(int col, Qt::SortOrder order);
   void changePackageListModel();
+  void execContextMenuPackages(QPoint point);
 
   //SearchLineEdit methods
   void reapplyPackageFilter();
@@ -122,13 +140,25 @@ private slots:
 
   void doSyncDatabase();
   void doSystemUpgrade(bool syncDatabase = true);
+  void doRemove();
+  void doInstall();
+
+  void commitTransaction();
+  void rollbackTransaction();
 
   void actionsProcessStarted();
   void actionsProcessFinished(int exitCode, QProcess::ExitStatus exitStatus);
   void actionsProcessReadOutput();
   void actionsProcessRaisedError();
 
+  void insertINRemovePackage();
+  void insertINInstallPackage();
+  void deleteINRemovePackage();
+  void deleteINInstallPackage();
+
   void maximizeTabWidget();
+
+  void onPressDelete();
 
 };
 

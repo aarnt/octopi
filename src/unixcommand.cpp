@@ -297,6 +297,25 @@ QByteArray UnixCommand::getTargetUpgradeList(const QString &pkgName)
   return res;
 }
 
+QByteArray UnixCommand::getTargetRemovalList(const QString &pkgName)
+{
+  QByteArray res;
+  QProcess pacman;
+
+#if QT_VERSION >= 0x040600
+  QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
+  env.insert("LANG", "us_EN");
+  pacman.setProcessEnvironment(env);
+#endif
+
+  pacman.start ( "pacman -Rpc " + pkgName );
+  pacman.waitForFinished(-1);
+  res = pacman.readAllStandardOutput();
+  pacman.close();
+
+  return res;
+}
+
 QString UnixCommand::getSystemArchitecture()
 {
   QStringList slParam;

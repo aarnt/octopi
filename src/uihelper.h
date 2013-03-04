@@ -44,6 +44,8 @@ public:
   static QIcon getIconOutdated(){ return QIcon(":/resources/images/outdated.png"); }
   static QIcon getIconUnrequired(){ return QIcon(":/resources/images/unrequired.png"); }
   static QIcon getIconForeign(){ return QIcon(":/resources/images/foreign.png"); }
+  static QIcon getIconToRemove(){ return QIcon(":/resources/images/toremove.png"); }
+  static QIcon getIconToInstall(){ return QIcon(":/resources/images/toinstall.png"); }
   static QIcon getIconRemove(){ return QIcon(":/resources/images/close.png"); }
 
   static QIcon getIconExit(){ return QIcon(":/resources/images/exit.png"); }

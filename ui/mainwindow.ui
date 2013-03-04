@@ -95,7 +95,7 @@
         </size>
        </property>
        <property name="currentIndex">
-        <number>1</number>
+        <number>2</number>
        </property>
        <widget class="QWidget" name="tabInfo">
         <attribute name="title">
@@ -105,6 +105,11 @@
        <widget class="QWidget" name="tbFiles">
         <attribute name="title">
          <string>Files</string>
+        </attribute>
+       </widget>
+       <widget class="QWidget" name="tabTransaction">
+        <attribute name="title">
+         <string>Transaction</string>
         </attribute>
        </widget>
        <widget class="QWidget" name="tabOutput">

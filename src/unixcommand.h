@@ -86,7 +86,6 @@ public:
   //Retrieves the list of targets needed to remove a given package
   static QByteArray getTargetRemovalList(const QString &pkgName);
 
-
   static QString getSystemArchitecture();
   static bool hasInternetConnection();
   static bool isTextFile( const QString& fileName ); //fileName is Path + Name

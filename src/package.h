@@ -152,6 +152,7 @@ class Package{
     static QStringList * getOutdatedPackageList();
     static QStringList * getPackagesOfGroup(const QString &groupName);
     static QStringList * getTargetUpgradeList(const QString &pkgName="");
+    static QStringList * getTargetRemovalList(const QString &pkgName);
 
     static QList<PackageListData> * getForeignPackageList();
     static QList<PackageListData> * getPackageList();

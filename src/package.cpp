@@ -263,6 +263,20 @@ QStringList *Package::getTargetUpgradeList(const QString &pkgName)
   return res;
 }
 
+QStringList *Package::getTargetRemovalList(const QString &pkgName)
+{
+  QString targets = UnixCommand::getTargetRemovalList(pkgName);
+  QStringList packageTuples = targets.split(QRegExp("\\n"), QString::SkipEmptyParts);
+  QStringList * res = new QStringList();
+
+  foreach(QString packageTuple, packageTuples)
+  {
+    res->append(packageTuple);
+  }
+
+  return res;
+}
+
 QList<PackageListData> *Package::getForeignPackageList()
 {
   QString foreignPkgList = UnixCommand::getForeignPackageList();

@@ -56,6 +56,7 @@ MainWindow::MainWindow(QWidget *parent) :
   initTabOutput();
   initTabInfo();
   initTabFiles();
+  initTabTransaction();
   initLineEditFilterPackages();
   initPackageTreeView();
 
@@ -137,6 +138,158 @@ void MainWindow::outputOutdatedPackageList()
   }
 }
 
+/*
+ * This is the 4th and LAST tab.
+ * It pops up whenever the user selects a remove/install action on a selected package
+ */
+void MainWindow::initTabTransaction()
+{
+  m_modelTransaction = new QStandardItemModel(this);
+  QWidget *tabTransaction = new QWidget();
+  QGridLayout *gridLayoutX = new QGridLayout ( tabTransaction );
+  gridLayoutX->setSpacing ( 0 );
+  gridLayoutX->setMargin ( 0 );
+
+  QTreeView *tvTransaction = new QTreeView(tabTransaction);
+  tvTransaction->setObjectName("tvTransaction");
+  tvTransaction->setEditTriggers(QAbstractItemView::NoEditTriggers);
+  tvTransaction->setDropIndicatorShown(false);
+  tvTransaction->setAcceptDrops(false);
+  tvTransaction->header()->setSortIndicatorShown(false);
+  tvTransaction->header()->setClickable(false);
+  tvTransaction->header()->setMovable(false);
+  tvTransaction->setFrameShape(QFrame::NoFrame);
+  tvTransaction->setFrameShadow(QFrame::Plain);
+  tvTransaction->setStyleSheet(StrConstants::getTreeViewCSS(SettingsManager::getPkgListFontSize()));
+  tvTransaction->expandAll();
+
+  m_modelTransaction->setSortRole(0);
+  m_modelTransaction->setColumnCount(0);
+
+  QStringList sl;
+  m_modelTransaction->setHorizontalHeaderLabels(sl << "Package");
+
+  QStandardItem *siToBeRemoved = new QStandardItem(IconHelper::getIconToRemove(), StrConstants::getTodoRemoveText());
+  QStandardItem *siToBeInstalled = new QStandardItem(IconHelper::getIconToInstall(), StrConstants::getTodoInstallText());
+
+  m_modelTransaction->appendRow(siToBeRemoved);
+  m_modelTransaction->appendRow(siToBeInstalled);
+
+  gridLayoutX->addWidget ( tvTransaction, 0, 0, 1, 1 );
+
+  tvTransaction->setModel(m_modelTransaction);
+
+  QString aux(tr("Transaction"));
+
+  ui->twProperties->removeTab(ctn_TABINDEX_TRANSACTION);
+  ui->twProperties->insertTab(ctn_TABINDEX_TRANSACTION, tabTransaction, QApplication::translate (
+                                "MainWindow", aux.toUtf8(), 0, QApplication::UnicodeUTF8 ));
+}
+
+QStandardItem * MainWindow::getRemoveTransactionParentItem()
+{
+  QTreeView *tvTransaction = ui->twProperties->widget(ctn_TABINDEX_TRANSACTION)->findChild<QTreeView*>("tvTransaction");
+  QStandardItemModel *sim = qobject_cast<QStandardItemModel *>(tvTransaction->model());
+  QStandardItem *si;
+
+  if(sim)
+  {
+    si = sim->item(0, 0);
+  }
+
+  return si;
+}
+
+QStandardItem * MainWindow::getInstallTransactionParentItem()
+{
+  QTreeView *tvTransaction = ui->twProperties->widget(ctn_TABINDEX_TRANSACTION)->findChild<QTreeView*>("tvTransaction");
+  QStandardItemModel *sim = qobject_cast<QStandardItemModel *>(tvTransaction->model());
+  QStandardItem *si;
+
+  if(sim)
+  {
+    si = sim->item(1, 0);
+  }
+
+  return si;
+}
+
+void MainWindow::insertRemovePackageInTransaction(const QString &pkgName)
+{
+  QTreeView *tvTransaction = ui->twProperties->widget(ctn_TABINDEX_TRANSACTION)->findChild<QTreeView*>("tvTransaction");
+  QStandardItem * si = getRemoveTransactionParentItem();
+  QStandardItem * siRemove = new QStandardItem(pkgName);
+  QStandardItemModel *sim = qobject_cast<QStandardItemModel *>(si->model());
+
+  QList<QStandardItem *> foundItems = sim->findItems(pkgName, Qt::MatchRecursive | Qt::MatchExactly);
+  if (foundItems.size() == 0) si->appendRow(siRemove);
+  ui->twProperties->setCurrentIndex(ctn_TABINDEX_TRANSACTION);
+  tvTransaction->expandAll();
+}
+
+void MainWindow::insertInstallPackageInTransaction(const QString &pkgName)
+{
+  QTreeView *tvTransaction = ui->twProperties->widget(ctn_TABINDEX_TRANSACTION)->findChild<QTreeView*>("tvTransaction");
+  QStandardItem * si = getInstallTransactionParentItem();
+  QStandardItem * siInstall = new QStandardItem(pkgName);
+  QStandardItemModel *sim = qobject_cast<QStandardItemModel *>(si->model());
+
+  QList<QStandardItem *> foundItems = sim->findItems(pkgName, Qt::MatchRecursive | Qt::MatchExactly);
+  if (foundItems.size() == 0) si->appendRow(siInstall);
+  ui->twProperties->setCurrentIndex(ctn_TABINDEX_TRANSACTION);
+  tvTransaction->expandAll();
+}
+
+void MainWindow::removePackagesFromRemoveTransaction()
+{
+  QStandardItem * siRemove = getRemoveTransactionParentItem();
+  //QStandardItemModel *sim = qobject_cast<QStandardItemModel *>(siRemove->model());
+
+  siRemove->removeRows(0, siRemove->rowCount());
+}
+
+void MainWindow::removePackagesFromInstallTransaction()
+{
+  QStandardItem * siInstall = getInstallTransactionParentItem();
+  //QStandardItemModel *sim = qobject_cast<QStandardItemModel *>(siInstall->model());
+
+  siInstall->removeRows(0, siInstall->rowCount());
+}
+
+/*
+ * Retrieve the list of all packages scheduled to be removed
+ */
+QString MainWindow::getToBeRemovedPackages()
+{
+  QStandardItem * siRemoval = getRemoveTransactionParentItem();
+  QString res;
+
+  for(int c=0; c < siRemoval->rowCount(); c++)
+  {
+    res += siRemoval->child(c)->text() + " ";
+  }
+
+  res = res.trimmed();
+  return res;
+}
+
+/*
+ * Retrieve the list of all packages scheduled to be installed
+ */
+QString MainWindow::getToBeInstalledPackages()
+{
+  QStandardItem * siInstall = getInstallTransactionParentItem();
+  QString res;
+
+  for(int c=0; c < siInstall->rowCount(); c++)
+  {
+    res += siInstall->child(c)->text() + " ";
+  }
+
+  return res;
+}
+
+
 void MainWindow::initLineEditFilterPackages(){
   connect(ui->leFilterPackage, SIGNAL(textChanged(QString)), this, SLOT(reapplyPackageFilter()));
 }
@@ -148,10 +301,9 @@ void MainWindow::initPackageTreeView()
   m_modelInstalledPackages = new QStandardItemModel(this);
   m_proxyModelPackages->setSourceModel(m_modelPackages);
   m_proxyModelPackages->setFilterKeyColumn(1);
-
-  //if (SettingsManager::instance()->getShowPackageTooltip())  
   ui->tvPackages->setItemDelegate(new TreeViewPackagesItemDelegate(ui->tvPackages));
-
+  ui->tvPackages->setContextMenuPolicy(Qt::CustomContextMenu);
+  ui->tvPackages->setSelectionMode(QAbstractItemView::ExtendedSelection);
   ui->tvPackages->setEditTriggers(QAbstractItemView::NoEditTriggers);
   ui->tvPackages->setVerticalScrollMode(QAbstractItemView::ScrollPerItem);
   ui->tvPackages->setAllColumnsShowFocus( true );
@@ -193,8 +345,8 @@ void MainWindow::initTabInfo(){
   QString aux(tr("Info"));
   //QString translated_about = QApplication::translate ( "MainWindow", aux.toUtf8(), 0, QApplication::UnicodeUTF8 );
 
-  ui->twProperties->removeTab(0);
-  /*int tindex =*/ ui->twProperties->insertTab(0, tabInfo, QApplication::translate (
+  ui->twProperties->removeTab(ctn_TABINDEX_INFORMATION);
+  /*int tindex =*/ ui->twProperties->insertTab(ctn_TABINDEX_INFORMATION, tabInfo, QApplication::translate (
       "MainWindow", aux.toUtf8(), 0, QApplication::UnicodeUTF8 ) );
   //ui->twProperties->setTabText(ui->twProperties->indexOf(tabInfo), QApplication::translate(
   //    "MainWindow", aux.toUtf8(), 0, QApplication::UnicodeUTF8));
@@ -230,8 +382,8 @@ void MainWindow::initTabFiles()
   tvPkgFileList->setModel(modelPkgFileList);
 
   QString aux(tr("Files"));
-  ui->twProperties->removeTab(1);
-  /*int tindex =*/ ui->twProperties->insertTab( 1, tabPkgFileList, QApplication::translate (
+  ui->twProperties->removeTab(ctn_TABINDEX_FILES);
+  /*int tindex =*/ ui->twProperties->insertTab(ctn_TABINDEX_FILES, tabPkgFileList, QApplication::translate (
                                                   "MainWindow", aux.toUtf8(), 0, QApplication::UnicodeUTF8 ) );
 
   /*twTODO->setTabText(twTODO->indexOf(tabPkgFileList), QApplication::translate(
@@ -268,8 +420,8 @@ void MainWindow::initTabOutput()
   QString aux(tr("Output"));
   //QString translated_about = QApplication::translate ( "MainWindow", aux.toUtf8(), 0, QApplication::UnicodeUTF8 );
 
-  ui->twProperties->removeTab(2);
-  /*int tindex =*/ ui->twProperties->insertTab(2, tabOutput, QApplication::translate (
+  ui->twProperties->removeTab(ctn_TABINDEX_OUTPUT);
+  /*int tindex =*/ ui->twProperties->insertTab(ctn_TABINDEX_OUTPUT, tabOutput, QApplication::translate (
       "MainWindow", aux.toUtf8(), 0, QApplication::UnicodeUTF8 ) );
   //ui->twProperties->setTabText(ui->twProperties->indexOf(tabInfo), QApplication::translate(
   //    "MainWindow", aux.toUtf8(), 0, QApplication::UnicodeUTF8));
@@ -282,7 +434,7 @@ void MainWindow::initTabOutput()
 
 void MainWindow::clearTabOutput()
 {
-  QTextEdit *text = ui->twProperties->widget(2)->findChild<QTextEdit*>("textOutputEdit");
+  QTextEdit *text = ui->twProperties->widget(ctn_TABINDEX_OUTPUT)->findChild<QTextEdit*>("textOutputEdit");
   if (text)
   {
     text->clear();
@@ -427,7 +579,7 @@ void MainWindow::buildPackageList()
   ui->tvPackages->sortByColumn(m_PackageListOrderedCol, m_PackageListSortOrder);
 
   m_modelPackages->setHorizontalHeaderLabels(
-        sl << "" << tr("Name") << tr("Version") << tr("Repository"));
+        sl << "" << StrConstants::getName() << StrConstants::getVersion() << StrConstants::getRepository());
 
   if (ui->leFilterPackage->text() != "") reapplyPackageFilter();
 
@@ -476,13 +628,13 @@ void MainWindow::changePackageListModel()
   if (ui->actionNonInstalledPackages->isChecked())
   {
     m_modelPackages->setHorizontalHeaderLabels(
-          sl << "" << tr("Name") << tr("Version") << tr("Repository"));
+          sl << "" << StrConstants::getName() << StrConstants::getVersion() << StrConstants::getRepository());
     m_proxyModelPackages->setSourceModel(m_modelPackages);
   }
   else
   {
     m_modelInstalledPackages->setHorizontalHeaderLabels(
-          sl << "" << tr("Name") << tr("Version") << tr("Repository"));
+          sl << "" << StrConstants::getName() << StrConstants::getVersion() << StrConstants::getRepository());
     m_proxyModelPackages->setSourceModel(m_modelInstalledPackages);
   }
 
@@ -497,6 +649,75 @@ void MainWindow::changePackageListModel()
 }
 
 /*
+ * Brings the context menu when the user clicks the right button above the package list
+ */
+void MainWindow::execContextMenuPackages(QPoint point)
+{
+  if(ui->tvPackages->selectionModel()->selectedRows().count() > 0)
+  {
+    //QIcon lastType;
+    QStandardItemModel * sim;
+    bool allSameType = true;
+    bool allInstallable = true;
+    bool allRemovable = true;
+
+    if(ui->actionNonInstalledPackages->isChecked())
+    {
+      sim = m_modelPackages;
+    }
+    else
+    {
+      sim = m_modelInstalledPackages;
+    }
+
+    foreach(QModelIndex item, ui->tvPackages->selectionModel()->selectedRows())
+    {
+      QModelIndex mi = m_proxyModelPackages->mapToSource(item);
+      QStandardItem *si = sim->item(mi.row(), ctn_COLUMN_PACKAGE_ICON);
+
+      /*if ((lastType.cacheKey()!=0 )&&
+          (lastType.pixmap(QSize(22,22)).toImage()) != si->icon().pixmap(QSize(22,22)).toImage())
+      {
+        allSameType = false;
+      }*/
+
+      if((si->icon().pixmap(QSize(22,22)).toImage()) == IconHelper::getIconForeign().pixmap(QSize(22,22)).toImage())
+      {
+        allInstallable = false;
+      }
+      else if((si->icon().pixmap(QSize(22,22)).toImage()) == IconHelper::getIconNonInstalled().pixmap(QSize(22,22)).toImage())
+      {
+        allRemovable = false;
+      }
+
+      //lastType = si->icon();
+    }
+
+    if (allSameType)
+    {
+      QMenu *menu = new QMenu(this);
+
+      if(allInstallable)
+      {
+        menu->addAction(ui->actionInstall);
+      }
+
+      if(allRemovable)
+      {
+        menu->addAction(ui->actionRemove);
+      }
+
+      if(menu->actions().count() > 0)
+      {
+        QPoint pt2 = ui->tvPackages->mapToGlobal(point);
+        pt2.setY(pt2.y() + ui->tvPackages->header()->height());
+        menu->exec(pt2);
+      }
+    }
+  }
+}
+
+/*
  * Re-populates the HTML view with selected package's information (tab ONE)
  */
 void MainWindow::refreshTabInfo(bool clearContents)
@@ -506,7 +727,7 @@ void MainWindow::refreshTabInfo(bool clearContents)
   if(ui->twProperties->currentIndex() != ctn_TABINDEX_INFORMATION) return;
   if (clearContents || ui->tvPackages->selectionModel()->selectedRows(ctn_PACKAGE_NAME_COLUMN).count() == 0)
   {
-    QTextBrowser *text = ui->twProperties->widget(0)->findChild<QTextBrowser*>("textBrowser");
+    QTextBrowser *text = ui->twProperties->widget(ctn_TABINDEX_INFORMATION)->findChild<QTextBrowser*>("textBrowser");
     if (text)
     {
       text->clear();
@@ -575,7 +796,7 @@ void MainWindow::refreshTabInfo(bool clearContents)
   QString buildDate = StrConstants::getBuildDate();
   QString description = StrConstants::getDescription();
 
-  QTextBrowser *text = ui->twProperties->widget(0)->findChild<QTextBrowser*>("textBrowser");
+  QTextBrowser *text = ui->twProperties->widget(ctn_TABINDEX_INFORMATION)->findChild<QTextBrowser*>("textBrowser");
 
   if (text)
   {
@@ -646,7 +867,7 @@ void MainWindow::refreshTabFiles(bool clearContents)
 
   if(ui->twProperties->currentIndex() != ctn_TABINDEX_FILES) return;
   if (clearContents || ui->tvPackages->selectionModel()->selectedRows(ctn_PACKAGE_NAME_COLUMN).count() == 0){
-    QTreeView *tvPkgFileList = ui->twProperties->widget(1)->findChild<QTreeView*>("tvPkgFileList");
+    QTreeView *tvPkgFileList = ui->twProperties->widget(ctn_TABINDEX_FILES)->findChild<QTreeView*>("tvPkgFileList");
     if(tvPkgFileList)
     {
       QStandardItemModel *modelPkgFileList = qobject_cast<QStandardItemModel*>(tvPkgFileList->model());
@@ -683,7 +904,7 @@ void MainWindow::refreshTabFiles(bool clearContents)
   bool nonInstalled = (ui->actionNonInstalledPackages->isChecked() &&
                        (m_modelPackages->item(mi.row(), ctn_COLUMN_PACKAGE_ICON)->text() == "_NonInstalled"));
 
-  QTreeView *tvPkgFileList = ui->twProperties->widget(1)->findChild<QTreeView*>("tvPkgFileList");
+  QTreeView *tvPkgFileList = ui->twProperties->widget(ctn_TABINDEX_FILES)->findChild<QTreeView*>("tvPkgFileList");
   if(tvPkgFileList){
     CPUIntensiveComputing cic;
 
@@ -852,7 +1073,7 @@ void MainWindow::doSystemUpgrade(bool syncDatabase)
   }
   else
   {
-    //Shows a dialog indicating the targets needed to be retrieved and asks the user's permission.
+    //Shows a dialog indicating the targets needed to be retrieved and asks for the user's permission.
     m_targets = Package::getTargetUpgradeList();
     m_currentTarget=0;
     QString list;
@@ -909,6 +1130,98 @@ void MainWindow::doSystemUpgrade(bool syncDatabase)
   }
 }
 
+/*
+ * This method removes ALL the packages selected by the user with "pacman -Rc (CASCADE)" !
+ */
+void MainWindow::doRemove()
+{
+  //Shows a dialog indicating the targets which will be removed and asks for the user's permission.
+  QString listOfTargets = getToBeRemovedPackages();
+  m_targets = Package::getTargetRemovalList(listOfTargets);
+  m_currentTarget=0;
+  QString list;
+
+  foreach(QString target, *m_targets)
+  {
+    list = list + target + "\n";
+  }
+  list.remove(list.size()-1, 1);
+
+  QMessageBox question;
+
+  Q_ASSERT(m_targets->count() > 0);
+
+  if(m_targets->count()==1)
+  {
+    if (m_targets->at(0).indexOf("HoldPkg was found in target list.") != -1)
+    {
+      QMessageBox::warning(this, StrConstants::getAttention(), StrConstants::getWarnHoldPkgFound(), QMessageBox::Ok);
+      return;
+    }
+    else question.setText(StrConstants::getRemoveTarget());
+  }
+  else
+    question.setText(StrConstants::getRemoveTargets().arg(m_targets->count()));
+
+  question.setInformativeText(StrConstants::getConfirmation());
+  question.setDetailedText(list);
+  question.setStandardButtons(QMessageBox::Yes|QMessageBox::No);
+  question.setDefaultButton(QMessageBox::No);
+
+  int result = question.exec();
+  if(result == QMessageBox::Yes)
+  {
+    //If there are no means to run the actions, we must warn!
+    if (WMHelper::getSUCommand() == ctn_NO_SU_COMMAND){
+      QMessageBox::critical( 0, StrConstants::getApplicationName(), StrConstants::getErrorNoSuCommand());
+      return;
+    }
+
+    m_commandExecuting = ectn_INSTALL;
+
+    disconnect(m_pacmanDatabaseSystemWatcher, SIGNAL(directoryChanged(QString)), this, SLOT(buildPackageList()));
+
+    //writeToTabOutput("<B>" + StrConstants::getSyncDatabases() + "</B>");
+
+    m_unixCommand = new UnixCommand(this);
+
+    QObject::connect(m_unixCommand, SIGNAL( started() ), this, SLOT( actionsProcessStarted()));
+    QObject::connect(m_unixCommand, SIGNAL( readyReadStandardOutput()),
+                     this, SLOT( actionsProcessReadOutput() ));
+    QObject::connect(m_unixCommand, SIGNAL( finished ( int, QProcess::ExitStatus )),
+                     this, SLOT( actionsProcessFinished(int, QProcess::ExitStatus) ));
+    QObject::connect(m_unixCommand, SIGNAL( readyReadStandardError() ),
+                     this, SLOT( actionsProcessRaisedError() ));
+
+    QString command = "pacman -Rc --noconfirm " + listOfTargets;
+    m_unixCommand->executeCommand(command);
+  }
+}
+
+/*
+ * This method installs ALL the packages selected by the user with "pacman -S (INCLUDING DEPENDENCIES)" !
+ */
+void MainWindow::doInstall()
+{
+}
+
+void MainWindow::commitTransaction()
+{
+  //Are there any remove actions to be commited?
+  if(getRemoveTransactionParentItem()->rowCount() > 0)
+  {
+    doRemove();
+  }
+  if(getInstallTransactionParentItem()->rowCount() > 0)
+  {
+    m_commandQueued = ectn_INSTALL;
+  }
+}
+
+void MainWindow::rollbackTransaction()
+{
+}
+
 void MainWindow::actionsProcessStarted()
 {
   QString str = m_unixCommand->readAllStandardOutput();
@@ -932,6 +1245,13 @@ void MainWindow::actionsProcessFinished(int exitCode, QProcess::ExitStatus exitS
   if(m_commandQueued == ectn_SYSTEM_UPGRADE)
   {
     doSystemUpgrade(false);
+  }
+  else if (m_commandQueued == ectn_INSTALL)
+  {
+    if(exitCode == 0) //If the removal actions were OK...
+    {
+      removePackagesFromRemoveTransaction();
+    }
   }
   else if (m_commandQueued == ectn_NONE)
   {
@@ -1025,6 +1345,61 @@ void MainWindow::actionsProcessRaisedError()
 }
 
 /*
+ * This method inserts the current selected packages for removal into the Transaction Treeview
+ */
+void MainWindow::insertINRemovePackage()
+{
+  QStandardItemModel *sim;
+  if(ui->actionNonInstalledPackages->isChecked())
+  {
+    sim = m_modelPackages;
+  }
+  else
+  {
+    sim = m_modelInstalledPackages;
+  }
+
+  foreach(QModelIndex item, ui->tvPackages->selectionModel()->selectedRows())
+  {
+
+    QModelIndex mi = m_proxyModelPackages->mapToSource(item);
+    QStandardItem *si = sim->item(mi.row(), ctn_PACKAGE_NAME_COLUMN);
+
+    insertRemovePackageInTransaction(si->text());
+  }
+}
+
+void MainWindow::insertINInstallPackage()
+{
+  QStandardItemModel *sim;
+  if(ui->actionNonInstalledPackages->isChecked())
+  {
+    sim = m_modelPackages;
+  }
+  else
+  {
+    sim = m_modelInstalledPackages;
+  }
+
+  foreach(QModelIndex item, ui->tvPackages->selectionModel()->selectedRows())
+  {
+
+    QModelIndex mi = m_proxyModelPackages->mapToSource(item);
+    QStandardItem *si = sim->item(mi.row(), ctn_PACKAGE_NAME_COLUMN);
+
+    insertInstallPackageInTransaction(si->text());
+  }
+}
+
+void MainWindow::deleteINRemovePackage()
+{
+}
+
+void MainWindow::deleteINInstallPackage()
+{
+}
+
+/*
  * This method maximizes/de-maximizes the lower pane (tabwidget)
  */
 void MainWindow::maximizeTabWidget()
@@ -1106,15 +1481,18 @@ void MainWindow::initActions()
   connect(ui->actionNonInstalledPackages, SIGNAL(changed()), this, SLOT(changePackageListModel()));
 
   connect(ui->tvPackages, SIGNAL(activated(QModelIndex)), this, SLOT(changedTabIndex()));
-          //ui->tvPackages, SIGNAL(clicked(QModelIndex)));
   connect(ui->tvPackages, SIGNAL(clicked(QModelIndex)), this, SLOT(changedTabIndex()));
   connect(ui->tvPackages->header(), SIGNAL(sortIndicatorChanged(int,Qt::SortOrder)), this,
           SLOT(headerViewPackageListSortIndicatorClicked(int,Qt::SortOrder)));
+  connect(ui->tvPackages, SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(execContextMenuPackages(QPoint)));
 
   connect(ui->twProperties, SIGNAL(currentChanged(int)), this, SLOT(changedTabIndex()));
 
   connect(ui->actionSyncPackages, SIGNAL(triggered()), this, SLOT(doSyncDatabase()));
   connect(ui->actionSystemUpgrade, SIGNAL(triggered()), this, SLOT(doSystemUpgrade()));
+
+  connect(ui->actionRemove, SIGNAL(triggered()), this, SLOT(insertINRemovePackage()));
+  connect(ui->actionInstall, SIGNAL(triggered()), this, SLOT(insertINInstallPackage()));
 
   ui->actionCommit->setEnabled(false);
   ui->actionRollback->setEnabled(false);
@@ -1125,7 +1503,7 @@ void MainWindow::initActions()
  */
 void MainWindow::writeToTabOutput(const QString &msg)
 {
-  QTextEdit *text = ui->twProperties->widget(2)->findChild<QTextEdit*>("textOutputEdit");
+  QTextEdit *text = ui->twProperties->widget(ctn_TABINDEX_OUTPUT)->findChild<QTextEdit*>("textOutputEdit");
   if (text)
   {
     text->append(msg);
@@ -1134,9 +1512,39 @@ void MainWindow::writeToTabOutput(const QString &msg)
   }
 }
 
-void MainWindow::keyPressEvent(QKeyEvent* ke)
+/*
+ * Whenever the user presses DEL over the Transaction TreeView...
+ */
+void MainWindow::onPressDelete()
 {
-  if (ke->key() == Qt::Key_F12)
+  QTreeView *tvTransaction = ui->twProperties->widget(ctn_TABINDEX_TRANSACTION)->findChild<QTreeView*>("tvTransaction");
+  QStandardItemModel *sim = qobject_cast<QStandardItemModel *>(tvTransaction->model());
+  QStandardItem *si;
+
+  if (tvTransaction->hasFocus())
+  {
+    if(tvTransaction->currentIndex() == getRemoveTransactionParentItem()->index()){
+      removePackagesFromRemoveTransaction();
+    }
+    else if(tvTransaction->currentIndex() == getInstallTransactionParentItem()->index()){
+      removePackagesFromInstallTransaction();
+    }
+    else
+      sim->removeRow(tvTransaction->currentIndex().row(), tvTransaction->currentIndex().parent());
+  }
+}
+
+void MainWindow::keyPressEvent(QKeyEvent* ke)
+{    
+  if(ke->key() == Qt::Key_Delete)
+  {
+    onPressDelete();
+  }
+  else if (ke->key() == Qt::Key_F10)
+  {
+    commitTransaction();
+  }
+  else if (ke->key() == Qt::Key_F12)
   {
     maximizeTabWidget();
   }
@@ -1146,7 +1554,6 @@ void MainWindow::keyPressEvent(QKeyEvent* ke)
     clearTabOutput();
     buildPackageList();
   }
-
   else if(ke->key() == Qt::Key_L && ke->modifiers() == Qt::ControlModifier)
   {
     ui->leFilterPackage->setFocus();
