@@ -157,6 +157,14 @@ public:
     return QObject::tr(":: Starting full system upgrade...");
   }
 
+  static QString getInstallingPackages(){
+    return QObject::tr(":: Installing selected packages...");
+  }
+
+  static QString getRemovingPackages(){
+    return QObject::tr(":: Removing selected packages...");
+  }
+
   static QString getCommandFinishedOK(){
     return QObject::tr("Command finished OK!");
   }
@@ -189,8 +197,16 @@ public:
     return QObject::tr("There are forbidden packages in the removal list!");
   }
 
-  static QString getConfirmation(){
+  static QString getConfirmationQuestion(){
     return QObject::tr("Confirm?");
+  }
+
+  static QString getConfirmation(){
+    return QObject::tr("Confirmation");
+  }
+
+  static QString getRollbackTransactionConfirmation(){
+    return QObject::tr("Do you really want to rollback the transaction?");
   }
 
   static QString getEnterAdministratorsPassword(){

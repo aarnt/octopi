@@ -28,7 +28,7 @@
 
 #include <QDebug>
 #include <QSortFilterProxyModel>
-#include <QStandardItemModel>
+//#include <QStandardItemModel>
 #include <QString>
 #include <QTextBrowser>
 #include <QKeyEvent>
@@ -53,6 +53,7 @@ MainWindow::MainWindow(QWidget *parent) :
   setWindowTitle(StrConstants::getApplicationName());
   setMinimumSize(QSize(850, 600));
 
+  initStatusBar();
   initTabOutput();
   initTabInfo();
   initTabFiles();
@@ -80,11 +81,12 @@ MainWindow::~MainWindow()
 }
 
 /*
- * If we have some outdated packages, let's put octopi in a red face angry state ;-)
+ * If we have some outdated packages, let's put octopi in a red face/angry state ;-)
  */
 void MainWindow::initAppIcon()
 {
   m_outdatedPackageList = Package::getOutdatedPackageList();
+  m_numberOfOutdatedPackages = m_outdatedPackageList->count();
 
   if(m_outdatedPackageList->count() > 0)
   {
@@ -102,7 +104,12 @@ void MainWindow::initToolBar()
   ui->mainToolBar->addAction(ui->actionCommit);
   ui->mainToolBar->addAction(ui->actionRollback);
   ui->mainToolBar->addSeparator();
-  ui->mainToolBar->addAction(ui->actionExit);  
+  ui->mainToolBar->addAction(ui->actionExit);
+}
+
+void MainWindow::initStatusBar()
+{
+  m_lblCounters = new QLabel(this);
 }
 
 /*
@@ -225,6 +232,8 @@ void MainWindow::insertRemovePackageInTransaction(const QString &pkgName)
   if (foundItems.size() == 0) si->appendRow(siRemove);
   ui->twProperties->setCurrentIndex(ctn_TABINDEX_TRANSACTION);
   tvTransaction->expandAll();
+
+  changeTransactionActionsState();
 }
 
 void MainWindow::insertInstallPackageInTransaction(const QString &pkgName)
@@ -238,22 +247,22 @@ void MainWindow::insertInstallPackageInTransaction(const QString &pkgName)
   if (foundItems.size() == 0) si->appendRow(siInstall);
   ui->twProperties->setCurrentIndex(ctn_TABINDEX_TRANSACTION);
   tvTransaction->expandAll();
+
+  changeTransactionActionsState();
 }
 
 void MainWindow::removePackagesFromRemoveTransaction()
 {
   QStandardItem * siRemove = getRemoveTransactionParentItem();
-  //QStandardItemModel *sim = qobject_cast<QStandardItemModel *>(siRemove->model());
-
   siRemove->removeRows(0, siRemove->rowCount());
+  changeTransactionActionsState();
 }
 
 void MainWindow::removePackagesFromInstallTransaction()
 {
   QStandardItem * siInstall = getInstallTransactionParentItem();
-  //QStandardItemModel *sim = qobject_cast<QStandardItemModel *>(siInstall->model());
-
   siInstall->removeRows(0, siInstall->rowCount());
+  changeTransactionActionsState();
 }
 
 /*
@@ -286,6 +295,7 @@ QString MainWindow::getToBeInstalledPackages()
     res += siInstall->child(c)->text() + " ";
   }
 
+  res = res.trimmed();
   return res;
 }
 
@@ -294,6 +304,9 @@ void MainWindow::initLineEditFilterPackages(){
   connect(ui->leFilterPackage, SIGNAL(textChanged(QString)), this, SLOT(reapplyPackageFilter()));
 }
 
+/*
+ * This is the package treeview, it lists the installed [and not installed] packages in the system.
+ */
 void MainWindow::initPackageTreeView()
 {
   m_proxyModelPackages = new QSortFilterProxyModel(this);
@@ -356,6 +369,9 @@ void MainWindow::initTabInfo(){
   text->setFocus();
 }
 
+/*
+ * This is the files treeview, which shows the directory structure of ONLY installed packages's files.
+ */
 void MainWindow::initTabFiles()
 {
   QWidget *tabPkgFileList = new QWidget(this);
@@ -383,25 +399,31 @@ void MainWindow::initTabFiles()
 
   QString aux(tr("Files"));
   ui->twProperties->removeTab(ctn_TABINDEX_FILES);
-  /*int tindex =*/ ui->twProperties->insertTab(ctn_TABINDEX_FILES, tabPkgFileList, QApplication::translate (
+  ui->twProperties->insertTab(ctn_TABINDEX_FILES, tabPkgFileList, QApplication::translate (
                                                   "MainWindow", aux.toUtf8(), 0, QApplication::UnicodeUTF8 ) );
 
   /*twTODO->setTabText(twTODO->indexOf(tabPkgFileList), QApplication::translate(
       "MainWindow", tabName.toUtf8(), 0, QApplication::UnicodeUTF8));*/
 
-  /*tvPkgFileList->setContextMenuPolicy(Qt::CustomContextMenu);
-  connect(tvPkgFileList, SIGNAL(customContextMenuRequested(QPoint)),
-          this, SLOT(execContextMenuPkgFileList(QPoint)));
-  connect(tvPkgFileList, SIGNAL(clicked (const QModelIndex&)),
-          this, SLOT(showFullPathOfObject(const QModelIndex&)));
+  tvPkgFileList->setContextMenuPolicy(Qt::CustomContextMenu);
+
+  //connect(tvPkgFileList, SIGNAL(customContextMenuRequested(QPoint)),
+  //        this, SLOT(execContextMenuPkgFileList(QPoint)));
+  //connect(tvPkgFileList, SIGNAL(clicked (const QModelIndex&)),
+  //        this, SLOT(showFullPathOfObject(const QModelIndex&)));
+
   connect(tvPkgFileList, SIGNAL(doubleClicked (const QModelIndex&)),
-          this, SLOT(openFileOrDirectory(const QModelIndex&)));
-  connect(tvPkgFileList, SIGNAL(pressed (const QModelIndex&)),
-          tvPkgFileList, SIGNAL(clicked (const QModelIndex&)));
-  connect(tvPkgFileList, SIGNAL(activated(const QModelIndex)), tvPkgFileList,
-          SIGNAL(clicked(const QModelIndex)));*/
+          this, SLOT(openFile(const QModelIndex&)));
+  //connect(tvPkgFileList, SIGNAL(activated(const QModelIndex)),
+  //        this, SLOT(openFileOrDirectory(QModelIndex)));
+
+  //connect(tvPkgFileList, SIGNAL(pressed (const QModelIndex&)),
+  //        tvPkgFileList, SIGNAL(clicked (const QModelIndex&)));
 }
 
+/*
+ * This is the TextEdit output pane, which shows the output of pacman commands.
+ */
 void MainWindow::initTabOutput()
 {
   QWidget *tabOutput = new QWidget();
@@ -414,14 +436,13 @@ void MainWindow::initTabOutput()
   text->setReadOnly(true);
   text->setFrameShape(QFrame::NoFrame);
   text->setFrameShadow(QFrame::Plain);
-  //text->setOpenExternalLinks(true);
   gridLayoutX->addWidget ( text, 0, 0, 1, 1 );
 
   QString aux(tr("Output"));
   //QString translated_about = QApplication::translate ( "MainWindow", aux.toUtf8(), 0, QApplication::UnicodeUTF8 );
 
   ui->twProperties->removeTab(ctn_TABINDEX_OUTPUT);
-  /*int tindex =*/ ui->twProperties->insertTab(ctn_TABINDEX_OUTPUT, tabOutput, QApplication::translate (
+  ui->twProperties->insertTab(ctn_TABINDEX_OUTPUT, tabOutput, QApplication::translate (
       "MainWindow", aux.toUtf8(), 0, QApplication::UnicodeUTF8 ) );
   //ui->twProperties->setTabText(ui->twProperties->indexOf(tabInfo), QApplication::translate(
   //    "MainWindow", aux.toUtf8(), 0, QApplication::UnicodeUTF8));
@@ -429,7 +450,6 @@ void MainWindow::initTabOutput()
   ui->twProperties->setCurrentIndex(ctn_TABINDEX_OUTPUT);
   text->show();
   text->setFocus();
-
 }
 
 void MainWindow::clearTabOutput()
@@ -474,12 +494,21 @@ bool MainWindow::isPackageInstalled(const QString &pkgName)
  */
 void MainWindow::buildPackageList()
 {
+  static bool firstTime = true;
   timer->stop();
 
-  CPUIntensiveComputing cic;
+  CPUIntensiveComputing cic;  
   m_modelPackages->clear();
   m_modelInstalledPackages->clear();
   QStringList sl;
+
+  if(!firstTime) //If it's not the starting of the app...
+  {
+    //Let's get outdatedPackages list again!
+    //m_outdatedPackageList->clear();
+    m_outdatedPackageList = Package::getOutdatedPackageList();
+    m_numberOfOutdatedPackages = m_outdatedPackageList->count();
+  }
 
   QStringList *unrequiredPackageList = Package::getUnrequiredPackageList();
   QList<PackageListData> *list = Package::getPackageList();
@@ -497,7 +526,6 @@ void MainWindow::buildPackageList()
   QStandardItem *parentItemInstalledPackages = m_modelInstalledPackages->invisibleRootItem();
 
   QList<PackageListData>::const_iterator it = list->begin();
-
   QList<QStandardItem*> lIcons, lNames, lVersions, lRepositories;
   QList<QStandardItem*> lIcons2, lNames2, lVersions2, lRepositories2;
 
@@ -596,10 +624,11 @@ void MainWindow::buildPackageList()
   m_numberOfInstalledPackages = m_modelInstalledPackages->invisibleRootItem()->rowCount();
   m_numberOfAvailablePackages = m_modelPackages->invisibleRootItem()->rowCount() - m_numberOfInstalledPackages;
 
-  outputOutdatedPackageList();
+  //outputOutdatedPackageList();
 
   //Refresh statusbar widget
   refreshStatusBar();
+  firstTime = false;
 }
 
 /*
@@ -607,14 +636,15 @@ void MainWindow::buildPackageList()
  */
 void MainWindow::refreshStatusBar()
 {
-  static QLabel *lblCounters = new QLabel(this);
+  //static QLabel *lblCounters = new QLabel(this);
 
-  QString text = StrConstants::getNumberInstalledPackages().arg(m_numberOfInstalledPackages) + " | " +
-      StrConstants::getNumberOutdatedPackages().arg(m_numberOfOutdatedPackages) + " | " +
+  QString text = StrConstants::getNumberInstalledPackages().arg(m_numberOfInstalledPackages) +
+      " | <font color=\"red\"><a href=\"dummy\" style=\"color:\'red\'\">" +
+      StrConstants::getNumberOutdatedPackages().arg(m_numberOfOutdatedPackages) + "</a></font> | " +
       StrConstants::getNumberAvailablePackages().arg(m_numberOfAvailablePackages);
 
-  lblCounters->setText(text);
-  ui->statusBar->addPermanentWidget(lblCounters);
+  m_lblCounters->setText(text);
+  ui->statusBar->addPermanentWidget(m_lblCounters);
 }
 
 /*
@@ -1042,6 +1072,7 @@ void MainWindow::doSyncDatabase()
   }
 
   m_commandExecuting = ectn_SYNC_DATABASE;
+  ui->actionSyncPackages->setEnabled(false);
 
   disconnect(m_pacmanDatabaseSystemWatcher, SIGNAL(directoryChanged(QString)), this, SLOT(buildPackageList()));
 
@@ -1057,8 +1088,9 @@ void MainWindow::doSyncDatabase()
   QObject::connect(m_unixCommand, SIGNAL( readyReadStandardError() ),
                    this, SLOT( actionsProcessRaisedError() ));
 
-  QString command = "pacman -Sy";
-  m_unixCommand->executeCommand(command);
+  QStringList commands;
+  commands << "pacman -Sy";
+  m_unixCommand->executePackageActions(commands);
 }
 
 /*
@@ -1091,7 +1123,7 @@ void MainWindow::doSystemUpgrade(bool syncDatabase)
     else
       question.setText(StrConstants::getRetrieveTargets().arg(m_targets->count()));
 
-    question.setInformativeText(StrConstants::getConfirmation());
+    question.setInformativeText(StrConstants::getConfirmationQuestion());
     question.setDetailedText(list);
     question.setStandardButtons(QMessageBox::Yes|QMessageBox::No);
     question.setDefaultButton(QMessageBox::No);
@@ -1106,6 +1138,7 @@ void MainWindow::doSystemUpgrade(bool syncDatabase)
       }
 
       m_commandExecuting = ectn_SYSTEM_UPGRADE;
+      ui->actionSystemUpgrade->setEnabled(false);
 
       disconnect(m_pacmanDatabaseSystemWatcher, SIGNAL(directoryChanged(QString)), this, SLOT(buildPackageList()));
 
@@ -1163,10 +1196,12 @@ void MainWindow::doRemove()
   else
     question.setText(StrConstants::getRemoveTargets().arg(m_targets->count()));
 
-  question.setInformativeText(StrConstants::getConfirmation());
+  question.setInformativeText(StrConstants::getConfirmationQuestion());
   question.setDetailedText(list);
   question.setStandardButtons(QMessageBox::Yes|QMessageBox::No);
   question.setDefaultButton(QMessageBox::No);
+
+  m_commandExecuting = ectn_REMOVE;
 
   int result = question.exec();
   if(result == QMessageBox::Yes)
@@ -1177,11 +1212,9 @@ void MainWindow::doRemove()
       return;
     }
 
-    m_commandExecuting = ectn_INSTALL;
-
     disconnect(m_pacmanDatabaseSystemWatcher, SIGNAL(directoryChanged(QString)), this, SLOT(buildPackageList()));
 
-    //writeToTabOutput("<B>" + StrConstants::getSyncDatabases() + "</B>");
+    writeToTabOutput("<B>" + StrConstants::getRemovingPackages() + "</B>");
 
     m_unixCommand = new UnixCommand(this);
 
@@ -1203,23 +1236,99 @@ void MainWindow::doRemove()
  */
 void MainWindow::doInstall()
 {
+  //Shows a dialog indicating the targets which will be removed and asks for the user's permission.
+  QString listOfTargets = getToBeInstalledPackages();
+  m_targets = Package::getTargetUpgradeList(listOfTargets);
+  m_currentTarget=0;
+  QString list;
+
+  foreach(QString target, *m_targets)
+  {
+    list = list + target + "\n";
+  }
+  list.remove(list.size()-1, 1);
+
+  QMessageBox question;
+
+  Q_ASSERT(m_targets->count() > 0);
+
+  if(m_targets->count()==1)
+  {
+    if (m_targets->at(0).indexOf("HoldPkg was found in target list.") != -1)
+    {
+      QMessageBox::warning(this, StrConstants::getAttention(), StrConstants::getWarnHoldPkgFound(), QMessageBox::Ok);
+      return;
+    }
+    else question.setText(StrConstants::getRetrieveTarget());
+  }
+  else
+    question.setText(StrConstants::getRetrieveTargets().arg(m_targets->count()));
+
+  question.setInformativeText(StrConstants::getConfirmationQuestion());
+  question.setDetailedText(list);
+  question.setStandardButtons(QMessageBox::Yes|QMessageBox::No);
+  question.setDefaultButton(QMessageBox::No);
+
+  m_commandExecuting = ectn_INSTALL;
+
+  int result = question.exec();
+  if(result == QMessageBox::Yes)
+  {
+    //If there are no means to run the actions, we must warn!
+    if (WMHelper::getSUCommand() == ctn_NO_SU_COMMAND){
+      QMessageBox::critical( 0, StrConstants::getApplicationName(), StrConstants::getErrorNoSuCommand());
+      return;
+    }
+
+    disconnect(m_pacmanDatabaseSystemWatcher, SIGNAL(directoryChanged(QString)), this, SLOT(buildPackageList()));
+
+    writeToTabOutput("<B>" + StrConstants::getInstallingPackages() + "</B>");
+
+    m_unixCommand = new UnixCommand(this);
+
+    QObject::connect(m_unixCommand, SIGNAL( started() ), this, SLOT( actionsProcessStarted()));
+    QObject::connect(m_unixCommand, SIGNAL( readyReadStandardOutput()),
+                     this, SLOT( actionsProcessReadOutput() ));
+    QObject::connect(m_unixCommand, SIGNAL( finished ( int, QProcess::ExitStatus )),
+                     this, SLOT( actionsProcessFinished(int, QProcess::ExitStatus) ));
+    QObject::connect(m_unixCommand, SIGNAL( readyReadStandardError() ),
+                     this, SLOT( actionsProcessRaisedError() ));
+
+    QString command = "pacman -S --noconfirm " + listOfTargets;
+    m_unixCommand->executeCommand(command);
+  }
 }
 
 void MainWindow::commitTransaction()
 {
   //Are there any remove actions to be commited?
-  if(getRemoveTransactionParentItem()->rowCount() > 0)
+  if(getRemoveTransactionParentItem()->rowCount() > 0 && getInstallTransactionParentItem()->rowCount() > 0)
+  {
+    doRemove();
+    m_commandQueued = ectn_INSTALL;
+  }
+  else if(getRemoveTransactionParentItem()->rowCount() > 0)
   {
     doRemove();
   }
-  if(getInstallTransactionParentItem()->rowCount() > 0)
+  else if(getInstallTransactionParentItem()->rowCount() > 0)
   {
-    m_commandQueued = ectn_INSTALL;
+    doInstall();
   }
 }
 
 void MainWindow::rollbackTransaction()
 {
+  int res = QMessageBox::question(this,
+                        StrConstants::getConfirmation(),
+                        StrConstants::getRollbackTransactionConfirmation(),
+                        QMessageBox::Yes|QMessageBox::No,
+                        QMessageBox::No);
+
+  if(res == QMessageBox::Yes)
+  {
+    clearTransactionTreeView();
+  }
 }
 
 void MainWindow::actionsProcessStarted()
@@ -1228,12 +1337,12 @@ void MainWindow::actionsProcessStarted()
   writeToTabOutput("<B>" + str + "</B><br>");
 }
 
-void MainWindow::actionsProcessFinished(int exitCode, QProcess::ExitStatus exitStatus)
+void MainWindow::actionsProcessFinished(int exitCode, QProcess::ExitStatus)
 {
   ui->twProperties->setTabText(ctn_TABINDEX_OUTPUT, tr("Output"));
 
   if (exitCode == 0){
-    writeToTabOutput("<B>:: " +
+    writeToTabOutput("<br><B>:: " +
                      StrConstants::getCommandFinishedOK() + "</B><br><br>");
   }
   else
@@ -1244,20 +1353,36 @@ void MainWindow::actionsProcessFinished(int exitCode, QProcess::ExitStatus exitS
 
   if(m_commandQueued == ectn_SYSTEM_UPGRADE)
   {
-    doSystemUpgrade(false);
+    doSystemUpgrade(false);    
+    m_commandQueued = ectn_NONE;
   }
   else if (m_commandQueued == ectn_INSTALL)
   {
     if(exitCode == 0) //If the removal actions were OK...
     {
       removePackagesFromRemoveTransaction();
+      doInstall();
+      removePackagesFromInstallTransaction();
+      m_commandQueued = ectn_NONE;
     }
   }
   else if (m_commandQueued == ectn_NONE)
   {
-    //After the command, we can refresh the package list, so any change can be seem.
-    buildPackageList();
-    connect(m_pacmanDatabaseSystemWatcher, SIGNAL(directoryChanged(QString)), this, SLOT(buildPackageList()));
+    if(exitCode == 0)
+    {
+      //After the command, we can refresh the package list, so any change can be seem.
+      buildPackageList();
+      connect(m_pacmanDatabaseSystemWatcher, SIGNAL(directoryChanged(QString)), this, SLOT(buildPackageList()));
+
+      clearTransactionTreeView();
+    }
+  }
+
+  if (m_commandExecuting == ectn_SYNC_DATABASE){
+    ui->actionSyncPackages->setEnabled(true);
+  }
+  else if (m_commandExecuting == ectn_SYSTEM_UPGRADE){
+    ui->actionSystemUpgrade->setEnabled(true);
   }
 }
 
@@ -1325,7 +1450,8 @@ void MainWindow::actionsProcessRaisedError()
       }
     }
   }
-  else if(m_commandExecuting != ectn_SYNC_DATABASE) //It's another error, so we have to output it
+  //It's another error, so we have to output it
+  else if(m_commandExecuting != ectn_SYNC_DATABASE && m_commandExecuting != ectn_INSTALL)
   {
     qApp->processEvents();
     str.remove(QRegExp("error:"));
@@ -1334,13 +1460,11 @@ void MainWindow::actionsProcessRaisedError()
       str.remove(QRegExp("\b"));
       writeToTabOutput("<font color=\"red\">" + str + "<\font><br>");
     }
-    //qApp->processEvents();
   }
 
   if ((m_commandExecuting == ectn_SYSTEM_UPGRADE || m_commandExecuting == ectn_INSTALL) &&
       m_currentTarget == m_targets->size()){
     printedTargetOne = false;
-    m_commandQueued = ectn_NONE;
   }
 }
 
@@ -1389,14 +1513,6 @@ void MainWindow::insertINInstallPackage()
 
     insertInstallPackageInTransaction(si->text());
   }
-}
-
-void MainWindow::deleteINRemovePackage()
-{
-}
-
-void MainWindow::deleteINInstallPackage()
-{
 }
 
 /*
@@ -1494,6 +1610,11 @@ void MainWindow::initActions()
   connect(ui->actionRemove, SIGNAL(triggered()), this, SLOT(insertINRemovePackage()));
   connect(ui->actionInstall, SIGNAL(triggered()), this, SLOT(insertINInstallPackage()));
 
+  connect(ui->actionCommit, SIGNAL(triggered()), this, SLOT(commitTransaction()));
+  connect(ui->actionRollback, SIGNAL(triggered()), this, SLOT(rollbackTransaction()));
+
+  connect(m_lblCounters, SIGNAL(linkActivated(QString)), this, SLOT(outputOutdatedPackageList()));
+
   ui->actionCommit->setEnabled(false);
   ui->actionRollback->setEnabled(false);
 }
@@ -1507,19 +1628,21 @@ void MainWindow::writeToTabOutput(const QString &msg)
   if (text)
   {
     text->append(msg);
+    text->ensureCursorVisible();
     ui->twProperties->setCurrentIndex(ctn_TABINDEX_OUTPUT);
     text->setFocus();
   }
 }
 
 /*
- * Whenever the user presses DEL over the Transaction TreeView...
+ * Whenever the user presses DEL over the Transaction TreeView, we:
+ * - Delete the package if it's bellow of "To be removed" or "To be installed" parent;
+ * - Delete all the parent's packages if the user clicked in "To be removed" or "To be installed" items.
  */
 void MainWindow::onPressDelete()
 {
   QTreeView *tvTransaction = ui->twProperties->widget(ctn_TABINDEX_TRANSACTION)->findChild<QTreeView*>("tvTransaction");
   QStandardItemModel *sim = qobject_cast<QStandardItemModel *>(tvTransaction->model());
-  QStandardItem *si;
 
   if (tvTransaction->hasFocus())
   {
@@ -1534,15 +1657,38 @@ void MainWindow::onPressDelete()
   }
 }
 
+/*
+ * Watches the state of the tvTransaction treeview to see if Commit/Rollback actions must be activated/deactivated
+ */
+void MainWindow::changeTransactionActionsState()
+{
+  bool state = (getRemoveTransactionParentItem()->hasChildren() || getInstallTransactionParentItem()->hasChildren());
+
+  ui->actionCommit->setEnabled(state);
+  ui->actionRollback->setEnabled(state);
+}
+
+void MainWindow::clearTransactionTreeView()
+{
+  removePackagesFromRemoveTransaction();
+  removePackagesFromInstallTransaction();
+}
+
 void MainWindow::keyPressEvent(QKeyEvent* ke)
 {    
-  if(ke->key() == Qt::Key_Delete)
+  if (ke->key() == Qt::Key_Return)
+  {
+    QTreeView *tvPkgFileList = ui->twProperties->widget(ctn_TABINDEX_FILES)->findChild<QTreeView*>("tvPkgFileList");
+    if(tvPkgFileList)
+    {
+      if(tvPkgFileList->hasFocus())
+      {
+        openFile(tvPkgFileList->currentIndex());
+    } }
+  }
+  else if(ke->key() == Qt::Key_Delete)
   {
     onPressDelete();
-  }
-  else if (ke->key() == Qt::Key_F10)
-  {
-    commitTransaction();
   }
   else if (ke->key() == Qt::Key_F12)
   {
@@ -1551,7 +1697,6 @@ void MainWindow::keyPressEvent(QKeyEvent* ke)
   else if(ke->key() == Qt::Key_F5)
   {
     invalidateTabs();
-    clearTabOutput();
     buildPackageList();
   }
   else if(ke->key() == Qt::Key_L && ke->modifiers() == Qt::ControlModifier)
@@ -1559,4 +1704,53 @@ void MainWindow::keyPressEvent(QKeyEvent* ke)
     ui->leFilterPackage->setFocus();
     ui->leFilterPackage->selectAll();
   }
+}
+
+/*
+ * This helper method opens an existing file using the available program/DE.
+ */
+void MainWindow::openFile(const QModelIndex& mi){
+  const QStandardItemModel *sim = qobject_cast<const QStandardItemModel*>(mi.model());
+  QStandardItem *si = sim->itemFromIndex(mi);
+
+  if ((si->icon().pixmap(QSize(22,22)).toImage() ==
+       IconHelper::getIconBinary().pixmap(QSize(22,22)).toImage()))
+  {
+    QString path = showFullPathOfObject(si->index());
+    QFileInfo selectedFile(path);
+
+    if (selectedFile.exists())
+    {
+      WMHelper::openFile(path);
+    }
+  }
+}
+
+/*
+ * This method returns the full path of the selected file in any given TreeView.
+ */
+QString MainWindow::showFullPathOfObject(const QModelIndex & index){
+  if (!index.isValid()) return "";
+
+  const QStandardItemModel *sim = qobject_cast<const QStandardItemModel*>( index.model() );
+
+  QStringList sl;
+  QModelIndex nindex;
+  QString str;
+  sl << sim->itemFromIndex( index )->text();
+  nindex = index;
+
+  while (1){
+    nindex = sim->parent( nindex );
+    if ( nindex != sim->invisibleRootItem()->index() ) sl << sim->itemFromIndex( nindex )->text();
+    else break;
+  }
+  str = QDir::separator() + str;
+
+  for ( int i=sl.count()-1; i>=0; i-- ){
+    if ( i < sl.count()-1 ) str += QDir::separator();
+    str += sl[i];
+  }
+
+  return str;
 }

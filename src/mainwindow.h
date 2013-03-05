@@ -22,13 +22,14 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QStandardItemModel>
 #include "unixcommand.h"
 
 class QSortFilterProxyModel;
-class QStandardItemModel;
 class QStandardItem;
 class QTimer;
 class QFileSystemWatcher;
+class QLabel;
 
 const int ctn_COLUMN_PACKAGE_ICON(0);
 const int ctn_PACKAGE_NAME_COLUMN(1);
@@ -83,12 +84,15 @@ private:
   QTimer *timer;
   QStringList *m_outdatedPackageList;
 
+  QLabel * m_lblCounters;
+
   int m_numberOfInstalledPackages;
   int m_numberOfAvailablePackages;
   int m_numberOfOutdatedPackages;
 
   void initAppIcon();
   void initToolBar();
+  void initStatusBar();
   void initLineEditFilterPackages();
 
   QString getInstalledPackageVersionByName(const QString &pkgName);
@@ -104,7 +108,6 @@ private:
   void initTabOutput();
   void clearTabOutput();
   void writeToTabOutput(const QString &msg);
-  void outputOutdatedPackageList();
 
   //Tab Transaction related methods
   void initTabTransaction();
@@ -117,6 +120,8 @@ private:
 
   QString getToBeRemovedPackages();
   QString getToBeInstalledPackages();
+
+  QString showFullPathOfObject(const QModelIndex & index);
 
 protected:
   void keyPressEvent(QKeyEvent* ke);
@@ -147,18 +152,21 @@ private slots:
   void rollbackTransaction();
 
   void actionsProcessStarted();
-  void actionsProcessFinished(int exitCode, QProcess::ExitStatus exitStatus);
+  void actionsProcessFinished(int exitCode, QProcess::ExitStatus);
   void actionsProcessReadOutput();
   void actionsProcessRaisedError();
 
   void insertINRemovePackage();
   void insertINInstallPackage();
-  void deleteINRemovePackage();
-  void deleteINInstallPackage();
 
   void maximizeTabWidget();
+  void outputOutdatedPackageList();
 
   void onPressDelete();
+  void changeTransactionActionsState();
+  void clearTransactionTreeView();
+
+  void openFile(const QModelIndex& mi);
 
 };
 
