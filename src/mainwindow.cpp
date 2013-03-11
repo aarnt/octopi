@@ -65,7 +65,7 @@ MainWindow::MainWindow(QWidget *parent) :
   initAppIcon();
   initToolBar();
 
-  //Let's watch for changes in the pacman db dir!
+  //Let's watch for changes in the Pacman db dir!
   m_pacmanDatabaseSystemWatcher = new QFileSystemWatcher(QStringList() << ctn_PACMAN_DATABASE_DIR, this);
   connect(m_pacmanDatabaseSystemWatcher, SIGNAL(directoryChanged(QString)), this, SLOT(buildPackageList()));
 
@@ -337,9 +337,7 @@ void MainWindow::initPackageTreeView()
         StrConstants::getTreeViewCSS(SettingsManager::getPackagesInDirFontSize()));
 
   //Prepare it for drag operations
-  //tvPackage->setSelectionMode(QAbstractItemView::ExtendedSelection);
   //tvPackage->setDragEnabled(true);
-  //dockPackages->setWindowTitle(ctn_LABEL_TREEVIEW_PACKAGES);
 }
 
 /*
@@ -1124,6 +1122,15 @@ void MainWindow::doSystemUpgrade(bool syncDatabase)
   {
     //Shows a dialog indicating the targets needed to be retrieved and asks for the user's permission.
     m_targets = Package::getTargetUpgradeList();
+
+    //There are no new updates to install!
+    if (m_targets->count() == 0)
+    {
+      clearTabOutput();
+      writeToTabOutput("<b>" + StrConstants::getNoNewUpdatesAvailable() + "</b>");
+      return;
+    }
+
     m_currentTarget=0;
     QString list;
 
@@ -1411,6 +1418,9 @@ void MainWindow::actionsProcessFinished(int exitCode, QProcess::ExitStatus)
     ui->actionSyncPackages->setEnabled(true);
     ui->actionSystemUpgrade->setEnabled(true);
   }
+
+  m_commandExecuting = ectn_NONE;
+  m_unixCommand->removeTemporaryActionFile();
 }
 
 void MainWindow::actionsProcessReadOutput()
@@ -1443,19 +1453,6 @@ void MainWindow::_treatProcessOutput(const QString &pMsg)
     perc = msg.right(4).trimmed();
     //std::cout << "Percentage: " << perc.toAscii().data() << std::endl;
 
-
-    /*if(m_commandExecuting == ectn_SYSTEM_UPGRADE)
-    {
-      int pos = msg.indexOf(" ");
-      target = msg.left(pos);
-
-      if(target.size() > 4 && !target.contains(QRegExp(lastTarget)))
-      {
-        writeToTabOutput("<font color=\"blue\">" +
-                         StrConstants::geRetrievingTarget().arg(target) + "</font>");
-      }
-    }*/
-
     if (m_commandExecuting == ectn_SYSTEM_UPGRADE || m_commandExecuting == ectn_SYNC_DATABASE)
     {
       int ini = msg.indexOf("(");
@@ -1471,7 +1468,13 @@ void MainWindow::_treatProcessOutput(const QString &pMsg)
           //std::cout << "target: " << target.toAscii().data() << std::endl;
 
           if(!_textInTabOutput(target))
-            writeToTabOutput("<font color=\"blue\">" + target + "</font>");
+          {
+            if(m_commandExecuting == ectn_SYNC_DATABASE)
+            {
+              writeToTabOutput("<font color=\"blue\">" + StrConstants::getSynchronizing() + " " + target + "</font>");
+            }
+            else writeToTabOutput("<font color=\"blue\">" + target + "</font>");
+          }
         }
         else if (!_textInTabOutput(msg))
           writeToTabOutput("<font color=\"blue\">" + msg + "</font>");
@@ -1542,7 +1545,7 @@ void MainWindow::_treatProcessOutput(const QString &pMsg)
       if(perc=="100%")
       {
         qApp->processEvents();
-        ui->twProperties->setTabText(ctn_TABINDEX_OUTPUT, tr("Output"));
+        ui->twProperties->setTabText(ctn_TABINDEX_OUTPUT, tr("Output (100%)"));
         qApp->processEvents();
       }
       else
@@ -1566,6 +1569,9 @@ void MainWindow::_treatProcessOutput(const QString &pMsg)
     if (!_textInTabOutput(msg))
       writeToTabOutput("<b><font color=\"black\">" + msg + "</font></b>");
   }
+
+  if(m_commandExecuting == ectn_NONE)
+    ui->twProperties->setTabText(ctn_TABINDEX_OUTPUT, tr("Output"));
 }
 
 void MainWindow::actionsProcessRaisedError()

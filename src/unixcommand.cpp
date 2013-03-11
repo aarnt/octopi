@@ -470,6 +470,7 @@ void UnixCommand::executePackageActions( const QStringList& commandList )
   ftemp->close(); 
 
   QString command = WMHelper::getSUCommand() + " " + ftemp->fileName();
+
   m_process->start(command);
 }
 

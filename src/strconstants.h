@@ -150,6 +150,10 @@ public:
     return QObject::tr("%1 available");
   }
 
+  static QString getSynchronizing(){
+    return QObject::tr("Synchronizing");
+  }
+
   static QString getSyncDatabases(){
     return QObject::tr(":: Synchronizing package databases...");    
   }
@@ -195,6 +199,10 @@ public:
 
   static QString getWarnHoldPkgFound() {
     return QObject::tr("There are forbidden packages in the removal list!");
+  }
+
+  static QString getNoNewUpdatesAvailable(){
+    return QObject::tr("There are no new updates available!");
   }
 
   static QString getConfirmationQuestion(){
