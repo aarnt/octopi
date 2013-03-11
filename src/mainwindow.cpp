@@ -28,7 +28,7 @@
 
 #include <QDebug>
 #include <QSortFilterProxyModel>
-//#include <QStandardItemModel>
+#include <QStandardItemModel>
 #include <QString>
 #include <QTextBrowser>
 #include <QKeyEvent>
@@ -80,14 +80,8 @@ MainWindow::~MainWindow()
   delete ui;
 }
 
-/*
- * If we have some outdated packages, let's put octopi in a red face/angry state ;-)
- */
-void MainWindow::initAppIcon()
+void MainWindow::refreshAppIcon()
 {
-  m_outdatedPackageList = Package::getOutdatedPackageList();
-  m_numberOfOutdatedPackages = m_outdatedPackageList->count();
-
   if(m_outdatedPackageList->count() > 0)
   {
     setWindowIcon(QIcon(":/resources/images/octopi_red.png"));
@@ -96,6 +90,16 @@ void MainWindow::initAppIcon()
   {
     setWindowIcon(QIcon(":/resources/images/octopi_yellow.png"));
   }
+}
+
+/*
+ * If we have some outdated packages, let's put octopi in a red face/angry state ;-)
+ */
+void MainWindow::initAppIcon()
+{
+  m_outdatedPackageList = Package::getOutdatedPackageList();
+  m_numberOfOutdatedPackages = m_outdatedPackageList->count();
+  refreshAppIcon();
 }
 
 void MainWindow::initToolBar()
@@ -121,7 +125,7 @@ void MainWindow::outputOutdatedPackageList()
 
   if(m_numberOfOutdatedPackages > 0)
   {
-    //clearTabOutput();
+    clearTabOutput();
 
     if(m_outdatedPackageList->count()==1){
       writeToTabOutput("<b>" + StrConstants::getOneOutdatedPackage() + "</b><br>");
@@ -494,6 +498,8 @@ bool MainWindow::isPackageInstalled(const QString &pkgName)
  */
 void MainWindow::buildPackageList()
 {
+  disconnect(m_pacmanDatabaseSystemWatcher, SIGNAL(directoryChanged(QString)), this, SLOT(buildPackageList()));
+
   static bool firstTime = true;
   timer->stop();
 
@@ -505,14 +511,12 @@ void MainWindow::buildPackageList()
   if(!firstTime) //If it's not the starting of the app...
   {
     //Let's get outdatedPackages list again!
-    //m_outdatedPackageList->clear();
     m_outdatedPackageList = Package::getOutdatedPackageList();
     m_numberOfOutdatedPackages = m_outdatedPackageList->count();
   }
 
   QStringList *unrequiredPackageList = Package::getUnrequiredPackageList();
   QList<PackageListData> *list = Package::getPackageList();
-
   QList<PackageListData> *listForeign = Package::getForeignPackageList();
   QList<PackageListData>::const_iterator itForeign = listForeign->begin();
 
@@ -624,11 +628,14 @@ void MainWindow::buildPackageList()
   m_numberOfInstalledPackages = m_modelInstalledPackages->invisibleRootItem()->rowCount();
   m_numberOfAvailablePackages = m_modelPackages->invisibleRootItem()->rowCount() - m_numberOfInstalledPackages;
 
-  //outputOutdatedPackageList();
-
   //Refresh statusbar widget
   refreshStatusBar();
   firstTime = false;
+
+  //Refresh application icon
+  refreshAppIcon();
+
+  connect(m_pacmanDatabaseSystemWatcher, SIGNAL(directoryChanged(QString)), this, SLOT(buildPackageList()));
 }
 
 /*
@@ -636,12 +643,20 @@ void MainWindow::buildPackageList()
  */
 void MainWindow::refreshStatusBar()
 {
-  //static QLabel *lblCounters = new QLabel(this);
+  QString text;
 
-  QString text = StrConstants::getNumberInstalledPackages().arg(m_numberOfInstalledPackages) +
-      " | <font color=\"red\"><a href=\"dummy\" style=\"color:\'red\'\">" +
-      StrConstants::getNumberOutdatedPackages().arg(m_numberOfOutdatedPackages) + "</a></font> | " +
-      StrConstants::getNumberAvailablePackages().arg(m_numberOfAvailablePackages);
+  if(m_numberOfOutdatedPackages > 0)
+  {
+    text = StrConstants::getNumberInstalledPackages().arg(m_numberOfInstalledPackages) +
+        " | <font color=\"red\"><a href=\"dummy\" style=\"color:\'red\'\">" +
+        StrConstants::getNumberOutdatedPackages().arg(m_numberOfOutdatedPackages) + "</a></font> | " +
+        StrConstants::getNumberAvailablePackages().arg(m_numberOfAvailablePackages);
+  }
+  else
+  {
+    text = StrConstants::getNumberInstalledPackages().arg(m_numberOfInstalledPackages) +
+        " | " + StrConstants::getNumberAvailablePackages().arg(m_numberOfAvailablePackages);
+  }
 
   m_lblCounters->setText(text);
   ui->statusBar->addPermanentWidget(m_lblCounters);
@@ -1073,7 +1088,9 @@ void MainWindow::doSyncDatabase()
 
   m_commandExecuting = ectn_SYNC_DATABASE;
   ui->actionSyncPackages->setEnabled(false);
+  ui->actionSystemUpgrade->setEnabled(false);
 
+  clearTabOutput();
   disconnect(m_pacmanDatabaseSystemWatcher, SIGNAL(directoryChanged(QString)), this, SLOT(buildPackageList()));
 
   writeToTabOutput("<B>" + StrConstants::getSyncDatabases() + "</B>");
@@ -1138,8 +1155,10 @@ void MainWindow::doSystemUpgrade(bool syncDatabase)
       }
 
       m_commandExecuting = ectn_SYSTEM_UPGRADE;
+      ui->actionSyncPackages->setEnabled(false);
       ui->actionSystemUpgrade->setEnabled(false);
 
+      clearTabOutput();
       disconnect(m_pacmanDatabaseSystemWatcher, SIGNAL(directoryChanged(QString)), this, SLOT(buildPackageList()));
 
       writeToTabOutput("<B>" + StrConstants::getSystemUpgrade() + "</B><br>");
@@ -1156,8 +1175,9 @@ void MainWindow::doSystemUpgrade(bool syncDatabase)
 
       m_currentTarget = 0;
 
-      QString command = "pacman -Su --noconfirm";
-      m_unixCommand->executeCommand(command);
+      QStringList command;
+      command << "pacman -Su --noconfirm";
+      m_unixCommand->executePackageActions(command);
       m_commandQueued = ectn_NONE;
     }
   }
@@ -1212,6 +1232,7 @@ void MainWindow::doRemove()
       return;
     }
 
+    clearTabOutput();
     disconnect(m_pacmanDatabaseSystemWatcher, SIGNAL(directoryChanged(QString)), this, SLOT(buildPackageList()));
 
     writeToTabOutput("<B>" + StrConstants::getRemovingPackages() + "</B>");
@@ -1226,8 +1247,9 @@ void MainWindow::doRemove()
     QObject::connect(m_unixCommand, SIGNAL( readyReadStandardError() ),
                      this, SLOT( actionsProcessRaisedError() ));
 
-    QString command = "pacman -Rc --noconfirm " + listOfTargets;
-    m_unixCommand->executeCommand(command);
+    QStringList command;
+    command << "pacman -Rcs --noconfirm " + listOfTargets;
+    m_unixCommand->executePackageActions(command);
   }
 }
 
@@ -1280,6 +1302,7 @@ void MainWindow::doInstall()
       return;
     }
 
+    clearTabOutput();
     disconnect(m_pacmanDatabaseSystemWatcher, SIGNAL(directoryChanged(QString)), this, SLOT(buildPackageList()));
 
     writeToTabOutput("<B>" + StrConstants::getInstallingPackages() + "</B>");
@@ -1294,8 +1317,9 @@ void MainWindow::doInstall()
     QObject::connect(m_unixCommand, SIGNAL( readyReadStandardError() ),
                      this, SLOT( actionsProcessRaisedError() ));
 
-    QString command = "pacman -S --noconfirm " + listOfTargets;
-    m_unixCommand->executeCommand(command);
+    QStringList command;
+    command << "pacman -S --noconfirm " + listOfTargets;
+    m_unixCommand->executePackageActions(command);
   }
 }
 
@@ -1333,8 +1357,9 @@ void MainWindow::rollbackTransaction()
 
 void MainWindow::actionsProcessStarted()
 {
-  QString str = m_unixCommand->readAllStandardOutput();
-  writeToTabOutput("<B>" + str + "</B><br>");
+  QString msg = m_unixCommand->readAllStandardOutput();
+  msg.remove(QRegExp("\\b"));
+  writeToTabOutput(msg);
 }
 
 void MainWindow::actionsProcessFinished(int exitCode, QProcess::ExitStatus)
@@ -1348,7 +1373,7 @@ void MainWindow::actionsProcessFinished(int exitCode, QProcess::ExitStatus)
   else
   {
     writeToTabOutput("<br><B><font color=\"red\">:: " +
-                     StrConstants::getCommandFinishedWithErrors() + "</B></font><br><br>");
+                     StrConstants::getCommandFinishedWithErrors() + "</font></B><br><br>");
   }
 
   if(m_commandQueued == ectn_SYSTEM_UPGRADE)
@@ -1380,91 +1405,198 @@ void MainWindow::actionsProcessFinished(int exitCode, QProcess::ExitStatus)
 
   if (m_commandExecuting == ectn_SYNC_DATABASE){
     ui->actionSyncPackages->setEnabled(true);
+    ui->actionSystemUpgrade->setEnabled(true);
   }
   else if (m_commandExecuting == ectn_SYSTEM_UPGRADE){
+    ui->actionSyncPackages->setEnabled(true);
     ui->actionSystemUpgrade->setEnabled(true);
   }
 }
 
 void MainWindow::actionsProcessReadOutput()
 {
-  QString str = m_unixCommand->readAllStandardOutput().trimmed();
-  //std::cout << str.toAscii().data() << std::endl;
+  QString msg = m_unixCommand->readAllStandardOutput();
+  msg.remove(QRegExp("\\b"));
 
-  if(!str.isEmpty() &&
-     str.indexOf(":: Synchronizing package databases...") == -1 &&
-     str.indexOf(":: Starting full system upgrade...") == -1)
+  if(!msg.isEmpty() &&
+     msg.indexOf(":: Synchronizing package databases...") == -1 &&
+     msg.indexOf(":: Starting full system upgrade...") == -1)
   {
-    writeToTabOutput(str);
+    writeToTabOutput(msg);
+  }
+}
+
+void MainWindow::_treatProcessOutput(const QString &pMsg)
+{
+  QString perc;
+  QString msg = pMsg;
+  msg.remove(QRegExp(".+\\[Y/n\\].+"));
+
+  //If it is a percentage, we are talking about curl output...
+  if(msg.indexOf("#]") != -1)
+  {
+    perc = "100%";
+  }
+  else if (msg.indexOf("-]") != -1)
+  {
+    QString target;
+    perc = msg.right(4).trimmed();
+    //std::cout << "Percentage: " << perc.toAscii().data() << std::endl;
+
+
+    /*if(m_commandExecuting == ectn_SYSTEM_UPGRADE)
+    {
+      int pos = msg.indexOf(" ");
+      target = msg.left(pos);
+
+      if(target.size() > 4 && !target.contains(QRegExp(lastTarget)))
+      {
+        writeToTabOutput("<font color=\"blue\">" +
+                         StrConstants::geRetrievingTarget().arg(target) + "</font>");
+      }
+    }*/
+
+    if (m_commandExecuting == ectn_SYSTEM_UPGRADE || m_commandExecuting == ectn_SYNC_DATABASE)
+    {
+      int ini = msg.indexOf("(");
+      if (ini >= 0)
+      {
+        msg = msg.remove(0, 6);
+
+        int pos = msg.indexOf(" ");
+        if (pos >=0)
+        {
+          target = msg.left(pos);
+          target = target.trimmed();
+          //std::cout << "target: " << target.toAscii().data() << std::endl;
+
+          if(!_textInTabOutput(target))
+            writeToTabOutput("<font color=\"blue\">" + target + "</font>");
+        }
+        else if (!_textInTabOutput(msg))
+          writeToTabOutput("<font color=\"blue\">" + msg + "</font>");
+      }
+      else if (ini == -1)
+      {
+        int pos = msg.indexOf(" ");
+        if (pos >=0)
+        {
+          target = msg.left(pos);
+          target = target.trimmed();
+          //std::cout << "target: " << target.toAscii().data() << std::endl;
+
+          if(!_textInTabOutput(target))
+            writeToTabOutput("<font color=\"blue\">" + target + "</font>");
+
+        }
+        else if (!_textInTabOutput(msg))
+          writeToTabOutput("<font color=\"blue\">" + msg + "</font>");
+      }
+    }
+    else if (m_commandExecuting == ectn_INSTALL)
+    {
+      int ini = msg.indexOf("(");
+      if (ini >= 0)
+      {
+        msg = msg.remove(0, 6);
+      }
+
+      int pos = msg.indexOf("[");
+      if (pos >=0)
+      {
+        target = msg.left(pos);
+        target = target.trimmed();
+        //std::cout << "target: " << target.toAscii().data() << std::endl;
+
+        if(!_textInTabOutput(target))
+          writeToTabOutput("<font color=\"blue\">" + target + "</font>");
+      }
+      else if (!_textInTabOutput(msg))
+        writeToTabOutput("<font color=\"blue\">" + msg + "</font>");
+    }
+    else if (m_commandExecuting == ectn_REMOVE)
+    {
+      int ini = msg.indexOf("(");
+      if (ini >= 0)
+      {
+        msg = msg.remove(0, 6);
+      }
+
+      int pos = msg.indexOf("[");
+      if (pos >=0)
+      {
+        target = msg.left(pos);
+        target = target.trimmed();
+        //std::cout << "target: " << target.toAscii().data() << std::endl;
+
+        if(!_textInTabOutput(target))
+          writeToTabOutput("<font color=\"red\">" + target + "</font>");
+
+      }
+      else if (!_textInTabOutput(msg))
+        writeToTabOutput("<font color=\"red\">" + msg + "</font>");
+    }
+
+    if(!perc.isEmpty() && perc.indexOf("%") > 0)
+    {
+      if(perc=="100%")
+      {
+        qApp->processEvents();
+        ui->twProperties->setTabText(ctn_TABINDEX_OUTPUT, tr("Output"));
+        qApp->processEvents();
+      }
+      else
+      {
+        qApp->processEvents();
+        ui->twProperties->setTabText(ctn_TABINDEX_OUTPUT, tr("Output") + " (" + perc + ")");
+        qApp->processEvents();
+      }
+    }
+  }
+  //It's another error, so we have to output it
+  else
+  {
+    //(process:21527): Gtk-WARNING **: Locale not supported by C library. Using the fallback 'C' locale.
+    //Gkr-Message: secret service operation failed: The name org.freedesktop.secrets was not provided by any .service files
+    msg.remove(QRegExp("\\(process.+"));
+    msg.remove(QRegExp("Using the fallback.+"));
+    msg.remove(QRegExp("Gkr-Message: secret service operation failed: The name org.freedesktop.secrets was not provided by any .service files"));
+    msg.remove(QRegExp("Do you want.+"));
+
+    if (!_textInTabOutput(msg))
+      writeToTabOutput("<b><font color=\"black\">" + msg + "</font></b>");
   }
 }
 
 void MainWindow::actionsProcessRaisedError()
 {
-  static QString lastNumber;
-  static bool printedTargetOne = false;
+  QString msg = m_unixCommand->readAllStandardError();
+  msg = msg.trimmed();
+  QStringList msgs = msg.split(QRegExp("\\n"), QString::SkipEmptyParts);
 
-  QString str = m_unixCommand->readAllStandardError();
-
-  //If it is a percentage, we are talking about curl...
-  if (str.indexOf("#") != -1)
+  foreach (QString m, msgs)
   {
-    QString perc = str.right(7).trimmed();
-    if(!perc.isEmpty() && perc[0] != '#' && perc.indexOf("%") > 0)
+
+    QStringList m2 = m.split(QRegExp("\\(\\d/\\d\\) "));
+    if (m2.count() <= 1)
     {
-      if (perc != lastNumber)
+      if (!m.isEmpty())
       {
-        if(lastNumber=="100.0%")
-        {
-          qApp->processEvents();
-          ui->twProperties->setTabText(ctn_TABINDEX_OUTPUT, tr("Output"));
-          qApp->processEvents();
-
-          if (m_commandExecuting == ectn_SYSTEM_UPGRADE || m_commandExecuting == ectn_INSTALL)
-          {
-            m_currentTarget++;
-            if (m_currentTarget < m_targets->size())
-            {
-              writeToTabOutput(
-                  StrConstants::geRetrievingTarget().arg(
-                    m_targets->at(m_currentTarget)).arg(m_currentTarget+1).arg(m_targets->size()));
-            }
-          }
-        }
-        else
-        {
-          if ((m_commandExecuting == ectn_SYSTEM_UPGRADE || m_commandExecuting == ectn_INSTALL) && !printedTargetOne)
-          {
-            writeToTabOutput(
-                  StrConstants::geRetrievingTarget().arg(
-                  m_targets->at(m_currentTarget)).arg(m_currentTarget+1).arg(m_targets->size()));
-            printedTargetOne = true;
-          }
-
-          qApp->processEvents();
-          ui->twProperties->setTabText(ctn_TABINDEX_OUTPUT, tr("Output") + " (" + perc + ")");
-          qApp->processEvents();
-        }
-
-        lastNumber = perc;
+        //std::cout << "Error: " << m.toAscii().data() << std::endl;
+        _treatProcessOutput(m);
       }
     }
-  }
-  //It's another error, so we have to output it
-  else if(m_commandExecuting != ectn_SYNC_DATABASE && m_commandExecuting != ectn_INSTALL)
-  {
-    qApp->processEvents();
-    str.remove(QRegExp("error:"));
-    if(str.trimmed() != "" && str.size() > 1)
+    else
     {
-      str.remove(QRegExp("\b"));
-      writeToTabOutput("<font color=\"red\">" + str + "<\font><br>");
+      foreach (QString m3, m2)
+      {
+        if (!m3.isEmpty())
+        {
+          //std::cout << "Error: " << m3.toAscii().data() << std::endl;
+          _treatProcessOutput(m3);
+        }
+      }
     }
-  }
-
-  if ((m_commandExecuting == ectn_SYSTEM_UPGRADE || m_commandExecuting == ectn_INSTALL) &&
-      m_currentTarget == m_targets->size()){
-    printedTargetOne = false;
   }
 }
 
@@ -1620,6 +1752,36 @@ void MainWindow::initActions()
 }
 
 /*
+ * Helper method to position the text cursor always in the end of doc
+ */
+void MainWindow::_positionTextEditCursorAtEnd()
+{
+  QTextEdit *textEdit = ui->twProperties->widget(ctn_TABINDEX_OUTPUT)->findChild<QTextEdit*>("textOutputEdit");
+  if (textEdit){
+    QTextCursor tc = textEdit->textCursor();
+    tc.clearSelection();
+    tc.movePosition(QTextCursor::End);
+    textEdit->setTextCursor(tc);
+  }
+}
+
+/*
+ * Helper method to find the given "findText" in the Output TextEdit
+ */
+bool MainWindow::_textInTabOutput(const QString& findText)
+{
+  bool res;
+  QTextEdit *text = ui->twProperties->widget(ctn_TABINDEX_OUTPUT)->findChild<QTextEdit*>("textOutputEdit");
+  if (text)
+  {
+    res = text->find(findText, QTextDocument::FindBackward);
+    _positionTextEditCursorAtEnd();
+  }
+
+  return res;
+}
+
+/*
  * A helper method which writes the given string to the Output tab
  */
 void MainWindow::writeToTabOutput(const QString &msg)
@@ -1627,6 +1789,7 @@ void MainWindow::writeToTabOutput(const QString &msg)
   QTextEdit *text = ui->twProperties->widget(ctn_TABINDEX_OUTPUT)->findChild<QTextEdit*>("textOutputEdit");
   if (text)
   {
+    _positionTextEditCursorAtEnd();    
     text->append(msg);
     text->ensureCursorVisible();
     ui->twProperties->setCurrentIndex(ctn_TABINDEX_OUTPUT);

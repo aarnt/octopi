@@ -308,7 +308,7 @@ QByteArray UnixCommand::getTargetRemovalList(const QString &pkgName)
   pacman.setProcessEnvironment(env);
 #endif
 
-  pacman.start ( "pacman -Rpc " + pkgName );
+  pacman.start ( "pacman -Rpcs " + pkgName );
   pacman.waitForFinished(-1);
   res = pacman.readAllStandardOutput();
   pacman.close();

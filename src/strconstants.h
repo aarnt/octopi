@@ -174,7 +174,7 @@ public:
   }
 
   static QString geRetrievingTarget(){
-    return QObject::tr("Retrieving %1 (%2/%3)...");
+    return QObject::tr("Retrieving %1");
   }
 
   static QString getRetrieveTarget(){

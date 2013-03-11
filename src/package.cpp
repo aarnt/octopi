@@ -207,6 +207,7 @@ QStringList *Package::getUnrequiredPackageList()
     }
   }
 
+  res->sort();
   return res;
 }
 
@@ -224,6 +225,7 @@ QStringList *Package::getOutdatedPackageList()
     }
   }
 
+  res->sort();
   return res;
 }
 
@@ -260,6 +262,7 @@ QStringList *Package::getTargetUpgradeList(const QString &pkgName)
     res->append(target);
   }
 
+  res->sort();
   return res;
 }
 
@@ -274,6 +277,7 @@ QStringList *Package::getTargetRemovalList(const QString &pkgName)
     res->append(packageTuple);
   }
 
+  res->sort();
   return res;
 }
 

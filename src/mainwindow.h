@@ -22,11 +22,12 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include <QStandardItemModel>
 #include "unixcommand.h"
 
 class QSortFilterProxyModel;
+class QStandardItemModel;
 class QStandardItem;
+class QModelIndex;
 class QTimer;
 class QFileSystemWatcher;
 class QLabel;
@@ -91,6 +92,7 @@ private:
   int m_numberOfOutdatedPackages;
 
   void initAppIcon();
+  void refreshAppIcon();
   void initToolBar();
   void initStatusBar();
   void initLineEditFilterPackages();
@@ -107,6 +109,10 @@ private:
   //Tab Output related methods
   void initTabOutput();
   void clearTabOutput();
+
+  void _positionTextEditCursorAtEnd();
+  bool _textInTabOutput(const QString& findText);
+  void _treatProcessOutput(const QString &pMsg);
   void writeToTabOutput(const QString &msg);
 
   //Tab Transaction related methods
@@ -144,7 +150,7 @@ private slots:
   void invalidateTabs(); //This method clears the current information showed on tab.
 
   void doSyncDatabase();
-  void doSystemUpgrade(bool syncDatabase = true);
+  void doSystemUpgrade(bool syncDatabase = false);
   void doRemove();
   void doInstall();
 
