@@ -1453,50 +1453,82 @@ void MainWindow::_treatProcessOutput(const QString &pMsg)
     perc = msg.right(4).trimmed();
     //std::cout << "Percentage: " << perc.toAscii().data() << std::endl;
 
-    if (m_commandExecuting == ectn_SYSTEM_UPGRADE || m_commandExecuting == ectn_SYNC_DATABASE)
+    if (m_commandExecuting == ectn_INSTALL || m_commandExecuting == ectn_SYSTEM_UPGRADE || m_commandExecuting == ectn_SYNC_DATABASE)
     {
       int ini = msg.indexOf("(");
       if (ini >= 0)
       {
         msg = msg.remove(0, 6);
 
-        int pos = msg.indexOf(" ");
-        if (pos >=0)
+        if (msg.contains(QRegExp("checking ")) ||
+            msg.contains(QRegExp("loading ")) ||
+            msg.contains(QRegExp("installing ")) ||
+            msg.contains(QRegExp("removing ")))
         {
-          target = msg.left(pos);
-          target = target.trimmed();
-          //std::cout << "target: " << target.toAscii().data() << std::endl;
+          int end = msg.indexOf("[");
+          msg = msg.remove(end, msg.size()-end).trimmed();
 
-          if(!_textInTabOutput(target))
-          {
-            if(m_commandExecuting == ectn_SYNC_DATABASE)
-            {
-              writeToTabOutput("<font color=\"blue\">" + StrConstants::getSynchronizing() + " " + target + "</font>");
-            }
-            else writeToTabOutput("<font color=\"blue\">" + target + "</font>");
-          }
+          if(!_textInTabOutput(msg))
+            writeToTabOutput("<font color=\"blue\">" + msg + "</font>");
         }
-        else if (!_textInTabOutput(msg))
-          writeToTabOutput("<font color=\"blue\">" + msg + "</font>");
+        else
+        {
+          int pos = msg.indexOf(" ");
+          if (pos >=0)
+          {
+            target = msg.left(pos);
+            target = target.trimmed();
+            //std::cout << "target: " << target.toAscii().data() << std::endl;
+
+            if(!_textInTabOutput(target))
+            {
+              writeToTabOutput("<font color=\"blue\">" + target + "</font>");
+            }
+          }
+          else if (!_textInTabOutput(msg))
+            writeToTabOutput("<font color=\"blue\">" + msg + "</font>");
+        }
       }
       else if (ini == -1)
       {
-        int pos = msg.indexOf(" ");
-        if (pos >=0)
+        if (msg.contains(QRegExp("checking ")) ||
+            msg.contains(QRegExp("loading ")) ||
+            msg.contains(QRegExp("installing ")) ||
+            msg.contains(QRegExp("removing ")))
         {
-          target = msg.left(pos);
-          target = target.trimmed();
-          //std::cout << "target: " << target.toAscii().data() << std::endl;
+          int end = msg.indexOf("[");
+          msg = msg.remove(end, msg.size()-end).trimmed();
 
-          if(!_textInTabOutput(target))
-            writeToTabOutput("<font color=\"blue\">" + target + "</font>");
-
+          if(!_textInTabOutput(msg))
+            writeToTabOutput("<font color=\"blue\">" + msg + "</font>");
         }
-        else if (!_textInTabOutput(msg))
-          writeToTabOutput("<font color=\"blue\">" + msg + "</font>");
+        else
+        {
+          int pos = msg.indexOf(" ");
+          if (pos >=0)
+          {
+            target = msg.left(pos);
+            target = target.trimmed();
+            //std::cout << "target: " << target.toAscii().data() << std::endl;
+
+            if(!_textInTabOutput(target))
+            {
+              if(m_commandExecuting == ectn_SYNC_DATABASE)
+              {
+                writeToTabOutput("<font color=\"blue\">" + StrConstants::getSynchronizing() + " " + target + "</font>");
+              }
+              else
+              {
+                writeToTabOutput("<font color=\"blue\">" + target + "</font>");
+              }
+            }
+          }
+          else if (!_textInTabOutput(msg))
+            writeToTabOutput("<font color=\"blue\">" + msg + "</font>");
+        }
       }
     }
-    else if (m_commandExecuting == ectn_INSTALL)
+    /*else if (m_commandExecuting == ectn_INSTALL)
     {
       int ini = msg.indexOf("(");
       if (ini >= 0)
@@ -1516,7 +1548,7 @@ void MainWindow::_treatProcessOutput(const QString &pMsg)
       }
       else if (!_textInTabOutput(msg))
         writeToTabOutput("<font color=\"blue\">" + msg + "</font>");
-    }
+    }*/
     else if (m_commandExecuting == ectn_REMOVE)
     {
       int ini = msg.indexOf("(");
@@ -1582,23 +1614,41 @@ void MainWindow::actionsProcessRaisedError()
 
   foreach (QString m, msgs)
   {
+    QStringList m2 = m.split(QRegExp("\\(\\d/\\d\\) "), QString::SkipEmptyParts);
 
-    QStringList m2 = m.split(QRegExp("\\(\\d/\\d\\) "));
-    if (m2.count() <= 1)
+    if (m2.count() == 1)
     {
-      if (!m.isEmpty())
+      //Let's try another test... if it doesn't work, we give up.
+      QStringList maux = m.split(QRegExp("%"), QString::SkipEmptyParts);
+      if (maux.count() > 1)
       {
-        //std::cout << "Error: " << m.toAscii().data() << std::endl;
-        _treatProcessOutput(m);
+        foreach (QString aux, maux)
+        {
+          aux = aux.trimmed();
+          if (!aux.isEmpty())
+          {
+            aux += "%";
+            //std::cout << "Error1: " << aux.toAscii().data() << std::endl;
+            _treatProcessOutput(aux);
+          }
+        }
+      }
+      else if (maux.count() == 1)
+      {
+        if (!m.isEmpty())
+        {
+          //std::cout << "Error2: " << m.toAscii().data() << std::endl;
+          _treatProcessOutput(m);
+        }
       }
     }
-    else
+    else if (m2.count() > 1)
     {
       foreach (QString m3, m2)
       {
         if (!m3.isEmpty())
         {
-          //std::cout << "Error: " << m3.toAscii().data() << std::endl;
+          //std::cout << "Error3: " << m3.toAscii().data() << std::endl;
           _treatProcessOutput(m3);
         }
       }
