@@ -119,8 +119,8 @@ private:
   void initTabTransaction();
   QStandardItem * getRemoveTransactionParentItem();
   QStandardItem * getInstallTransactionParentItem();
-  void insertRemovePackageInTransaction(const QString &pkgName);
-  void insertInstallPackageInTransaction(const QString &pkgName);
+  void insertRemovePackageIntoTransaction(const QString &pkgName);
+  void insertInstallPackageIntoTransaction(const QString &pkgName);
   void removePackagesFromRemoveTransaction();
   void removePackagesFromInstallTransaction();
 
@@ -154,6 +154,9 @@ private slots:
   void doRemove();
   void doInstall();
 
+  void disableTransactionActions();
+  void enableTransactionActions();
+  void toggleTransactionActions(const bool value);
   void commitTransaction();
   void rollbackTransaction();
 
@@ -162,8 +165,8 @@ private slots:
   void actionsProcessReadOutput();
   void actionsProcessRaisedError();
 
-  void insertINRemovePackage();
-  void insertINInstallPackage();
+  void insertIntoRemovePackage();
+  void insertIntoInstallPackage();
 
   void maximizeTabWidget();
   void outputOutdatedPackageList();

@@ -109,6 +109,8 @@ void MainWindow::initToolBar()
   ui->mainToolBar->addAction(ui->actionRollback);
   ui->mainToolBar->addSeparator();
   ui->mainToolBar->addAction(ui->actionExit);
+  ui->mainToolBar->toggleViewAction()->setEnabled(false);
+  ui->mainToolBar->toggleViewAction()->setVisible(false);
 }
 
 void MainWindow::initStatusBar()
@@ -197,6 +199,9 @@ void MainWindow::initTabTransaction()
                                 "MainWindow", aux.toUtf8(), 0, QApplication::UnicodeUTF8 ));
 }
 
+/*
+ * Retrieves the Remove parent item of the Transaction treeview
+ */
 QStandardItem * MainWindow::getRemoveTransactionParentItem()
 {
   QTreeView *tvTransaction = ui->twProperties->widget(ctn_TABINDEX_TRANSACTION)->findChild<QTreeView*>("tvTransaction");
@@ -211,6 +216,9 @@ QStandardItem * MainWindow::getRemoveTransactionParentItem()
   return si;
 }
 
+/*
+ * Retrieves the Install parent item of the Transaction treeview
+ */
 QStandardItem * MainWindow::getInstallTransactionParentItem()
 {
   QTreeView *tvTransaction = ui->twProperties->widget(ctn_TABINDEX_TRANSACTION)->findChild<QTreeView*>("tvTransaction");
@@ -225,7 +233,10 @@ QStandardItem * MainWindow::getInstallTransactionParentItem()
   return si;
 }
 
-void MainWindow::insertRemovePackageInTransaction(const QString &pkgName)
+/*
+ * Inserts the given package into the Remove parent item of the Transaction treeview
+ */
+void MainWindow::insertRemovePackageIntoTransaction(const QString &pkgName)
 {
   QTreeView *tvTransaction = ui->twProperties->widget(ctn_TABINDEX_TRANSACTION)->findChild<QTreeView*>("tvTransaction");
   QStandardItem * si = getRemoveTransactionParentItem();
@@ -240,7 +251,10 @@ void MainWindow::insertRemovePackageInTransaction(const QString &pkgName)
   changeTransactionActionsState();
 }
 
-void MainWindow::insertInstallPackageInTransaction(const QString &pkgName)
+/*
+ * Inserts the given package into the Install parent item of the Transaction treeview
+ */
+void MainWindow::insertInstallPackageIntoTransaction(const QString &pkgName)
 {
   QTreeView *tvTransaction = ui->twProperties->widget(ctn_TABINDEX_TRANSACTION)->findChild<QTreeView*>("tvTransaction");
   QStandardItem * si = getInstallTransactionParentItem();
@@ -255,6 +269,9 @@ void MainWindow::insertInstallPackageInTransaction(const QString &pkgName)
   changeTransactionActionsState();
 }
 
+/*
+ * Removes all packages from the Remove parent item of the Transaction treeview
+ */
 void MainWindow::removePackagesFromRemoveTransaction()
 {
   QStandardItem * siRemove = getRemoveTransactionParentItem();
@@ -262,6 +279,9 @@ void MainWindow::removePackagesFromRemoveTransaction()
   changeTransactionActionsState();
 }
 
+/*
+ * Removes all packages from the Install parent item of the Transaction treeview
+ */
 void MainWindow::removePackagesFromInstallTransaction()
 {
   QStandardItem * siInstall = getInstallTransactionParentItem();
@@ -464,7 +484,7 @@ void MainWindow::clearTabOutput()
 }
 
 /*
- * This method searchs model modelInstalledPackages by a package name and returns it's version
+ * Searchs model modelInstalledPackages by a package name and returns it's version
  */
 QString MainWindow::getInstalledPackageVersionByName(const QString &pkgName)
 {
@@ -482,7 +502,7 @@ QString MainWindow::getInstalledPackageVersionByName(const QString &pkgName)
 }
 
 /*
- * This method searchs model modelInstalledPackages by a package name and returns if it is already installed
+ * Searchs model modelInstalledPackages by a package name and returns if it is already installed
  */
 bool MainWindow::isPackageInstalled(const QString &pkgName)
 {
@@ -637,7 +657,7 @@ void MainWindow::buildPackageList()
 }
 
 /*
- * This method prints the values of the package counters at the right of the statusBar
+ * Prints the values of the package counters at the right of the statusBar
  */
 void MainWindow::refreshStatusBar()
 {
@@ -698,7 +718,6 @@ void MainWindow::execContextMenuPackages(QPoint point)
 {
   if(ui->tvPackages->selectionModel()->selectedRows().count() > 0)
   {
-    //QIcon lastType;
     QStandardItemModel * sim;
     bool allSameType = true;
     bool allInstallable = true;
@@ -718,12 +737,6 @@ void MainWindow::execContextMenuPackages(QPoint point)
       QModelIndex mi = m_proxyModelPackages->mapToSource(item);
       QStandardItem *si = sim->item(mi.row(), ctn_COLUMN_PACKAGE_ICON);
 
-      /*if ((lastType.cacheKey()!=0 )&&
-          (lastType.pixmap(QSize(22,22)).toImage()) != si->icon().pixmap(QSize(22,22)).toImage())
-      {
-        allSameType = false;
-      }*/
-
       if((si->icon().pixmap(QSize(22,22)).toImage()) == IconHelper::getIconForeign().pixmap(QSize(22,22)).toImage())
       {
         allInstallable = false;
@@ -732,8 +745,6 @@ void MainWindow::execContextMenuPackages(QPoint point)
       {
         allRemovable = false;
       }
-
-      //lastType = si->icon();
     }
 
     if (allSameType)
@@ -1017,10 +1028,6 @@ void MainWindow::refreshTabFiles(bool clearContents)
       first = false;
     }
 
-    //tabPkgFileList->setStatusTip(pkgName);
-    QFileInfo info(pkgName);
-    //QString tabName(info.fileName());
-
     root = fakeRoot;
     fakeModelPkgFileList->sort(0);
     modelPkgFileList = fakeModelPkgFileList;
@@ -1057,7 +1064,7 @@ void MainWindow::changedTabIndex()
 }
 
 /*
- * This method clears the information showed on the current tab (Info or Files).
+ * Clears the information showed on the current tab (Info or Files).
  */
 void MainWindow::invalidateTabs()
 {
@@ -1074,7 +1081,7 @@ void MainWindow::invalidateTabs()
 }
 
 /*
- * This method does a repository sync with "pacman -Sy" !
+ * Does a repository sync with "pacman -Sy" !
  */
 void MainWindow::doSyncDatabase()
 {
@@ -1085,13 +1092,11 @@ void MainWindow::doSyncDatabase()
   }
 
   m_commandExecuting = ectn_SYNC_DATABASE;
-  ui->actionSyncPackages->setEnabled(false);
-  ui->actionSystemUpgrade->setEnabled(false);
-
+  disableTransactionActions();
   clearTabOutput();
   disconnect(m_pacmanDatabaseSystemWatcher, SIGNAL(directoryChanged(QString)), this, SLOT(buildPackageList()));
 
-  writeToTabOutput("<B>" + StrConstants::getSyncDatabases() + "</B>");
+  //writeToTabOutput("<B>" + StrConstants::getSyncDatabases() + "</B>");
 
   m_unixCommand = new UnixCommand(this);
 
@@ -1109,7 +1114,7 @@ void MainWindow::doSyncDatabase()
 }
 
 /*
- * This method does a system upgrade with "pacman -Su" !
+ * Does a system upgrade with "pacman -Su" !
  */
 void MainWindow::doSystemUpgrade(bool syncDatabase)
 {
@@ -1162,13 +1167,12 @@ void MainWindow::doSystemUpgrade(bool syncDatabase)
       }
 
       m_commandExecuting = ectn_SYSTEM_UPGRADE;
-      ui->actionSyncPackages->setEnabled(false);
-      ui->actionSystemUpgrade->setEnabled(false);
 
+      disableTransactionActions();
       clearTabOutput();
       disconnect(m_pacmanDatabaseSystemWatcher, SIGNAL(directoryChanged(QString)), this, SLOT(buildPackageList()));
 
-      writeToTabOutput("<B>" + StrConstants::getSystemUpgrade() + "</B><br>");
+      //writeToTabOutput("<B>" + StrConstants::getSystemUpgrade() + "</B><br>");
 
       m_unixCommand = new UnixCommand(this);
 
@@ -1191,7 +1195,7 @@ void MainWindow::doSystemUpgrade(bool syncDatabase)
 }
 
 /*
- * This method removes ALL the packages selected by the user with "pacman -Rc (CASCADE)" !
+ * Removes ALL the packages selected by the user with "pacman -Rcs (CASCADE)" !
  */
 void MainWindow::doRemove()
 {
@@ -1239,10 +1243,11 @@ void MainWindow::doRemove()
       return;
     }
 
+    disableTransactionActions();
     clearTabOutput();
     disconnect(m_pacmanDatabaseSystemWatcher, SIGNAL(directoryChanged(QString)), this, SLOT(buildPackageList()));
 
-    writeToTabOutput("<B>" + StrConstants::getRemovingPackages() + "</B>");
+    //writeToTabOutput("<B>" + StrConstants::getRemovingPackages() + "</B>");
 
     m_unixCommand = new UnixCommand(this);
 
@@ -1261,7 +1266,7 @@ void MainWindow::doRemove()
 }
 
 /*
- * This method installs ALL the packages selected by the user with "pacman -S (INCLUDING DEPENDENCIES)" !
+ * Installs ALL the packages selected by the user with "pacman -S (INCLUDING DEPENDENCIES)" !
  */
 void MainWindow::doInstall()
 {
@@ -1309,10 +1314,11 @@ void MainWindow::doInstall()
       return;
     }
 
+    disableTransactionActions();
     clearTabOutput();
     disconnect(m_pacmanDatabaseSystemWatcher, SIGNAL(directoryChanged(QString)), this, SLOT(buildPackageList()));
 
-    writeToTabOutput("<B>" + StrConstants::getInstallingPackages() + "</B>");
+    //writeToTabOutput("<B>" + StrConstants::getInstallingPackages() + "</B>");
 
     m_unixCommand = new UnixCommand(this);
 
@@ -1330,8 +1336,53 @@ void MainWindow::doInstall()
   }
 }
 
+/*
+ * Disables all Transaction related actions
+ */
+void MainWindow::disableTransactionActions()
+{
+  toggleTransactionActions(false);
+}
+
+/*
+ * Enables all Transaction related actions
+ */
+void MainWindow::enableTransactionActions()
+{
+  toggleTransactionActions(true);
+}
+
+/*
+ * Sets with the given boolean the state of all Transaction related actions
+ */
+void MainWindow::toggleTransactionActions(const bool value)
+{
+  bool state = (getRemoveTransactionParentItem()->hasChildren() ||
+                getInstallTransactionParentItem()->hasChildren());
+
+  if (value == true && state == true)
+  {
+    ui->actionCommit->setEnabled(true);
+    ui->actionRollback->setEnabled(true);
+  }
+  else if ((value == true && state == false) || value == false)
+  {
+    ui->actionCommit->setEnabled(false);
+    ui->actionRollback->setEnabled(false);
+  }
+
+  ui->actionInstall->setEnabled(value);
+  ui->actionRemove->setEnabled(value);
+  ui->actionSyncPackages->setEnabled(value);
+  ui->actionSystemUpgrade->setEnabled(value);
+}
+
+/*
+ * Triggers the especific methods that need to be called given the packages in the transaction
+ */
 void MainWindow::commitTransaction()
 {
+
   //Are there any remove actions to be commited?
   if(getRemoveTransactionParentItem()->rowCount() > 0 && getInstallTransactionParentItem()->rowCount() > 0)
   {
@@ -1348,6 +1399,9 @@ void MainWindow::commitTransaction()
   }
 }
 
+/*
+ * Clears the transaction treeview
+ */
 void MainWindow::rollbackTransaction()
 {
   int res = QMessageBox::question(this,
@@ -1364,9 +1418,31 @@ void MainWindow::rollbackTransaction()
 
 void MainWindow::actionsProcessStarted()
 {
+  //First we output the name of action we are starting to execute!
+  if (m_commandExecuting == ectn_SYNC_DATABASE)
+  {
+    writeToTabOutput("<B>" + StrConstants::getSyncDatabases() + "</B><br>");
+  }
+  else if (m_commandExecuting == ectn_SYSTEM_UPGRADE)
+  {
+    writeToTabOutput("<B>" + StrConstants::getSystemUpgrade() + "</B><br>");
+  }
+  else if (m_commandExecuting == ectn_REMOVE)
+  {
+    writeToTabOutput("<B>" + StrConstants::getRemovingPackages() + "</B><br>");
+  }
+  else if (m_commandExecuting == ectn_INSTALL)
+  {
+    writeToTabOutput("<B>" + StrConstants::getInstallingPackages() + "</B><br>");
+  }
+
   QString msg = m_unixCommand->readAllStandardOutput();
-  msg.remove(QRegExp("\\b"));
-  writeToTabOutput(msg);
+  msg = msg.trimmed();
+
+  if (!msg.isEmpty())
+  {
+    writeToTabOutput(msg);
+  }
 }
 
 void MainWindow::actionsProcessFinished(int exitCode, QProcess::ExitStatus)
@@ -1410,14 +1486,7 @@ void MainWindow::actionsProcessFinished(int exitCode, QProcess::ExitStatus)
     }
   }
 
-  if (m_commandExecuting == ectn_SYNC_DATABASE){
-    ui->actionSyncPackages->setEnabled(true);
-    ui->actionSystemUpgrade->setEnabled(true);
-  }
-  else if (m_commandExecuting == ectn_SYSTEM_UPGRADE){
-    ui->actionSyncPackages->setEnabled(true);
-    ui->actionSystemUpgrade->setEnabled(true);
-  }
+  enableTransactionActions();
 
   m_commandExecuting = ectn_NONE;
   m_unixCommand->removeTemporaryActionFile();
@@ -1426,7 +1495,7 @@ void MainWindow::actionsProcessFinished(int exitCode, QProcess::ExitStatus)
 void MainWindow::actionsProcessReadOutput()
 {
   QString msg = m_unixCommand->readAllStandardOutput();
-  msg.remove(QRegExp("\\b"));
+  msg = msg.trimmed();
 
   if(!msg.isEmpty() &&
      msg.indexOf(":: Synchronizing package databases...") == -1 &&
@@ -1436,6 +1505,9 @@ void MainWindow::actionsProcessReadOutput()
   }
 }
 
+/*
+ * Processes the output of the 'pacman process' so we can update percentages and messages at real time
+ */
 void MainWindow::_treatProcessOutput(const QString &pMsg)
 {
   QString perc;
@@ -1451,7 +1523,6 @@ void MainWindow::_treatProcessOutput(const QString &pMsg)
   {
     QString target;
     perc = msg.right(4).trimmed();
-    //std::cout << "Percentage: " << perc.toAscii().data() << std::endl;
 
     if (m_commandExecuting == ectn_INSTALL || m_commandExecuting == ectn_SYSTEM_UPGRADE || m_commandExecuting == ectn_SYNC_DATABASE)
     {
@@ -1596,9 +1667,12 @@ void MainWindow::_treatProcessOutput(const QString &pMsg)
     msg.remove(QRegExp("\\(process.+"));
     msg.remove(QRegExp("Using the fallback.+"));
     msg.remove(QRegExp("Gkr-Message: secret service operation failed: The name org.freedesktop.secrets was not provided by any .service files"));
-    msg.remove(QRegExp("Do you want.+"));
+    msg.remove(QRegExp("gksu-run.+"));
+    //msg.remove(QRegExp("Do you want.+"));
 
-    if (!_textInTabOutput(msg))
+    msg = msg.trimmed();
+
+    if (!msg.isEmpty() && !_textInTabOutput(msg))
       writeToTabOutput("<b><font color=\"black\">" + msg + "</font></b>");
   }
 
@@ -1627,7 +1701,11 @@ void MainWindow::actionsProcessRaisedError()
           aux = aux.trimmed();
           if (!aux.isEmpty())
           {
-            aux += "%";
+            if (aux.at(aux.count()-1).isDigit())
+            {
+              aux += "%";
+            }
+
             //std::cout << "Error1: " << aux.toAscii().data() << std::endl;
             _treatProcessOutput(aux);
           }
@@ -1657,9 +1735,9 @@ void MainWindow::actionsProcessRaisedError()
 }
 
 /*
- * This method inserts the current selected packages for removal into the Transaction Treeview
+ * Inserts the current selected packages for removal into the Transaction Treeview
  */
-void MainWindow::insertINRemovePackage()
+void MainWindow::insertIntoRemovePackage()
 {
   QStandardItemModel *sim;
   if(ui->actionNonInstalledPackages->isChecked())
@@ -1677,34 +1755,37 @@ void MainWindow::insertINRemovePackage()
     QModelIndex mi = m_proxyModelPackages->mapToSource(item);
     QStandardItem *si = sim->item(mi.row(), ctn_PACKAGE_NAME_COLUMN);
 
-    insertRemovePackageInTransaction(si->text());
-  }
-}
-
-void MainWindow::insertINInstallPackage()
-{
-  QStandardItemModel *sim;
-  if(ui->actionNonInstalledPackages->isChecked())
-  {
-    sim = m_modelPackages;
-  }
-  else
-  {
-    sim = m_modelInstalledPackages;
-  }
-
-  foreach(QModelIndex item, ui->tvPackages->selectionModel()->selectedRows())
-  {
-
-    QModelIndex mi = m_proxyModelPackages->mapToSource(item);
-    QStandardItem *si = sim->item(mi.row(), ctn_PACKAGE_NAME_COLUMN);
-
-    insertInstallPackageInTransaction(si->text());
+    insertRemovePackageIntoTransaction(si->text());
   }
 }
 
 /*
- * This method maximizes/de-maximizes the lower pane (tabwidget)
+ * Inserts the current selected packages for installation into the Transaction Treeview
+ */
+void MainWindow::insertIntoInstallPackage()
+{
+  QStandardItemModel *sim;
+  if(ui->actionNonInstalledPackages->isChecked())
+  {
+    sim = m_modelPackages;
+  }
+  else
+  {
+    sim = m_modelInstalledPackages;
+  }
+
+  foreach(QModelIndex item, ui->tvPackages->selectionModel()->selectedRows())
+  {
+
+    QModelIndex mi = m_proxyModelPackages->mapToSource(item);
+    QStandardItem *si = sim->item(mi.row(), ctn_PACKAGE_NAME_COLUMN);
+
+    insertInstallPackageIntoTransaction(si->text());
+  }
+}
+
+/*
+ * Maximizes/de-maximizes the lower pane (tabwidget)
  */
 void MainWindow::maximizeTabWidget()
 {
@@ -1752,19 +1833,12 @@ void MainWindow::reapplyPackageFilter()
   if (isFilterPackageSelected) ui->leFilterPackage->setFocus();
   m_proxyModelPackages->sort(m_PackageListOrderedCol, m_PackageListSortOrder);
 
-  /*disconnect(ui->tvPackages->selectionModel(), SIGNAL(selectionChanged(QItemSelection,QItemSelection)), this,
-             SLOT(changedTabIndex()));*/
-
   ui->tvPackages->selectionModel()->clear();
   QModelIndex mi = m_proxyModelPackages->index(0, 0);
   ui->tvPackages->setCurrentIndex(mi);
   ui->tvPackages->scrollTo(mi);
 
-  //changedTabIndex();
   invalidateTabs();
-
-  /*connect(ui->tvPackages->selectionModel(), SIGNAL(selectionChanged(QItemSelection,QItemSelection)), this,
-          SLOT(changedTabIndex()));*/
 }
 
 /*
@@ -1795,8 +1869,8 @@ void MainWindow::initActions()
   connect(ui->actionSyncPackages, SIGNAL(triggered()), this, SLOT(doSyncDatabase()));
   connect(ui->actionSystemUpgrade, SIGNAL(triggered()), this, SLOT(doSystemUpgrade()));
 
-  connect(ui->actionRemove, SIGNAL(triggered()), this, SLOT(insertINRemovePackage()));
-  connect(ui->actionInstall, SIGNAL(triggered()), this, SLOT(insertINInstallPackage()));
+  connect(ui->actionRemove, SIGNAL(triggered()), this, SLOT(insertIntoRemovePackage()));
+  connect(ui->actionInstall, SIGNAL(triggered()), this, SLOT(insertIntoInstallPackage()));
 
   connect(ui->actionCommit, SIGNAL(triggered()), this, SLOT(commitTransaction()));
   connect(ui->actionRollback, SIGNAL(triggered()), this, SLOT(rollbackTransaction()));
@@ -1877,7 +1951,7 @@ void MainWindow::onPressDelete()
 }
 
 /*
- * Watches the state of the tvTransaction treeview to see if Commit/Rollback actions must be activated/deactivated
+ * Watches the state of tvTransaction treeview to see if Commit/Rollback actions must be activated/deactivated
  */
 void MainWindow::changeTransactionActionsState()
 {
@@ -1887,6 +1961,9 @@ void MainWindow::changeTransactionActionsState()
   ui->actionRollback->setEnabled(state);
 }
 
+/*
+ * Removes all packages from the current transaction
+ */
 void MainWindow::clearTransactionTreeView()
 {
   removePackagesFromRemoveTransaction();
@@ -1926,7 +2003,7 @@ void MainWindow::keyPressEvent(QKeyEvent* ke)
 }
 
 /*
- * This helper method opens an existing file using the available program/DE.
+ * Helper method that opens an existing file using the available program/DE.
  */
 void MainWindow::openFile(const QModelIndex& mi){
   const QStandardItemModel *sim = qobject_cast<const QStandardItemModel*>(mi.model());
@@ -1946,7 +2023,7 @@ void MainWindow::openFile(const QModelIndex& mi){
 }
 
 /*
- * This method returns the full path of the selected file in any given TreeView.
+ * Returns the full path of the selected file in any given TreeView that represents a directory path.
  */
 QString MainWindow::showFullPathOfObject(const QModelIndex & index){
   if (!index.isValid()) return "";
