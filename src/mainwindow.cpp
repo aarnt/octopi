@@ -870,7 +870,8 @@ void MainWindow::refreshTabInfo(bool clearContents)
     html += "<table border=\"0\">";
 
     html += "<tr><th width=\"20%\"></th><th width=\"80%\"></th></tr>";
-    html += "<tr><td>" + description + "</td><td style=\"font-size:16px;\">" + pid.description + "</td></tr>";
+    html += "<tr><td>" + description + "</td><td style=\"font-size:16px;\">" +
+        pkgName + ": " + pid.description + "</td></tr>";
     html += "<tr><td>" + url + "</td><td style=\"font-size:14px;\">" + pid.url + "</td></tr>";
 
     //html += "<tr><td>" + repository + "</td><td>" + siRepository->text() + "</td></tr>";
