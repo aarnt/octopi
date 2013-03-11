@@ -110,8 +110,10 @@ private:
   void initTabOutput();
   void clearTabOutput();
 
+  bool _isThereAPendingTransaction();
   void _positionTextEditCursorAtEnd();
   bool _textInTabOutput(const QString& findText);
+  bool _searchForKeyVerbs(const QString& msg);
   void _treatProcessOutput(const QString &pMsg);
   void writeToTabOutput(const QString &msg);
 
@@ -124,12 +126,14 @@ private:
   void removePackagesFromRemoveTransaction();
   void removePackagesFromInstallTransaction();
 
-  QString getToBeRemovedPackages();
-  QString getToBeInstalledPackages();
+  int getNumberOfTobeRemovedPackages();
+  QString getTobeRemovedPackages();
+  QString getTobeInstalledPackages();
 
   QString showFullPathOfObject(const QModelIndex & index);
 
 protected:
+  void closeEvent(QCloseEvent *event);
   void keyPressEvent(QKeyEvent* ke);
 
 private slots:
@@ -157,8 +161,8 @@ private slots:
   void disableTransactionActions();
   void enableTransactionActions();
   void toggleTransactionActions(const bool value);
-  void commitTransaction();
-  void rollbackTransaction();
+  void doCommitTransaction();
+  void doRollbackTransaction();
 
   void actionsProcessStarted();
   void actionsProcessFinished(int exitCode, QProcess::ExitStatus);

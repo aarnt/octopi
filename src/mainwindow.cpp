@@ -60,7 +60,6 @@ MainWindow::MainWindow(QWidget *parent) :
   initTabTransaction();
   initLineEditFilterPackages();
   initPackageTreeView();
-
   initActions();
   initAppIcon();
   initToolBar();
@@ -73,6 +72,9 @@ MainWindow::MainWindow(QWidget *parent) :
   timer = new QTimer();
   connect(timer, SIGNAL(timeout()), this, SLOT(buildPackageList()));
   timer->start(40);
+
+  //Let's garbage collect transaction files...
+  m_unixCommand->removeTemporaryFiles();
 }
 
 MainWindow::~MainWindow()
@@ -290,9 +292,18 @@ void MainWindow::removePackagesFromInstallTransaction()
 }
 
 /*
- * Retrieve the list of all packages scheduled to be removed
+ * Retrieves the number of "to be removed" packages
  */
-QString MainWindow::getToBeRemovedPackages()
+int MainWindow::getNumberOfTobeRemovedPackages()
+{
+  QStandardItem * siRemoval = getRemoveTransactionParentItem();
+  return siRemoval->rowCount();
+}
+
+/*
+ * Retrieves the list of all packages scheduled to be removed
+ */
+QString MainWindow::getTobeRemovedPackages()
 {
   QStandardItem * siRemoval = getRemoveTransactionParentItem();
   QString res;
@@ -309,7 +320,7 @@ QString MainWindow::getToBeRemovedPackages()
 /*
  * Retrieve the list of all packages scheduled to be installed
  */
-QString MainWindow::getToBeInstalledPackages()
+QString MainWindow::getTobeInstalledPackages()
 {
   QStandardItem * siInstall = getInstallTransactionParentItem();
   QString res;
@@ -323,13 +334,15 @@ QString MainWindow::getToBeInstalledPackages()
   return res;
 }
 
-
+/*
+ * This is the LineEdit widget used to filter the package list
+ */
 void MainWindow::initLineEditFilterPackages(){
   connect(ui->leFilterPackage, SIGNAL(textChanged(QString)), this, SLOT(reapplyPackageFilter()));
 }
 
 /*
- * This is the package treeview, it lists the installed [and not installed] packages in the system.
+ * This is the package treeview, it lists the installed [and not installed] packages in the system
  */
 void MainWindow::initPackageTreeView()
 {
@@ -474,6 +487,9 @@ void MainWindow::initTabOutput()
   text->setFocus();
 }
 
+/*
+ * Removes all text inside the TabOutput editor
+ */
 void MainWindow::clearTabOutput()
 {
   QTextEdit *text = ui->twProperties->widget(ctn_TABINDEX_OUTPUT)->findChild<QTextEdit*>("textOutputEdit");
@@ -561,10 +577,10 @@ void MainWindow::buildPackageList()
   while(it != list->end())
   {
     PackageListData pld = *it;
-    if (pld.status == ectn_NON_INSTALLED && !ui->actionNonInstalledPackages->isChecked()){
+    /*if (pld.status == ectn_NON_INSTALLED && !ui->actionNonInstalledPackages->isChecked()){
       it++;
       continue;
-    }
+    }*/
 
     //If this is an installed package, it can be also outdated!
     switch (pld.status)
@@ -631,6 +647,10 @@ void MainWindow::buildPackageList()
   m_modelPackages->setHorizontalHeaderLabels(
         sl << "" << StrConstants::getName() << StrConstants::getVersion() << StrConstants::getRepository());
 
+  sl.clear();
+  m_modelInstalledPackages->setHorizontalHeaderLabels(
+        sl << "" << StrConstants::getName() << StrConstants::getVersion() << StrConstants::getRepository());
+
   if (ui->leFilterPackage->text() != "") reapplyPackageFilter();
 
   QModelIndex maux = m_proxyModelPackages->index(0, 0);
@@ -643,7 +663,7 @@ void MainWindow::buildPackageList()
   ui->tvPackages->setFocus();
 
   //Refresh counters
-  m_numberOfInstalledPackages = m_modelInstalledPackages->invisibleRootItem()->rowCount();
+  m_numberOfInstalledPackages = m_modelInstalledPackages->invisibleRootItem()->rowCount(); 
   m_numberOfAvailablePackages = m_modelPackages->invisibleRootItem()->rowCount() - m_numberOfInstalledPackages;
 
   //Refresh statusbar widget
@@ -705,8 +725,12 @@ void MainWindow::changePackageListModel()
 
   QModelIndex maux = m_proxyModelPackages->index(0, 0);
   ui->tvPackages->setCurrentIndex(maux);
-  ui->tvPackages->scrollTo(maux, QAbstractItemView::PositionAtCenter);
-  ui->tvPackages->selectionModel()->setCurrentIndex(maux, QItemSelectionModel::Select);
+  ui->tvPackages->scrollTo(maux, QAbstractItemView::PositionAtTop);
+
+  if (ui->leFilterPackage->text() == "")
+    ui->tvPackages->selectionModel()->setCurrentIndex(maux, QItemSelectionModel::Select);
+  else
+    ui->tvPackages->selectionModel()->setCurrentIndex(maux, QItemSelectionModel::SelectCurrent);
 
   changedTabIndex();
 }
@@ -982,7 +1006,7 @@ void MainWindow::refreshTabFiles(bool clearContents)
 
     foreach ( QString file, fileList ){
       QFileInfo fi ( file );
-      //if ( file.endsWith ( '/' ) ){
+
       if(fi.isDir()){
         if ( first == true ){
           item = new QStandardItem ( IconHelper::getIconFolder(), file );
@@ -1094,10 +1118,7 @@ void MainWindow::doSyncDatabase()
 
   m_commandExecuting = ectn_SYNC_DATABASE;
   disableTransactionActions();
-  clearTabOutput();
   disconnect(m_pacmanDatabaseSystemWatcher, SIGNAL(directoryChanged(QString)), this, SLOT(buildPackageList()));
-
-  //writeToTabOutput("<B>" + StrConstants::getSyncDatabases() + "</B>");
 
   m_unixCommand = new UnixCommand(this);
 
@@ -1132,7 +1153,6 @@ void MainWindow::doSystemUpgrade(bool syncDatabase)
     //There are no new updates to install!
     if (m_targets->count() == 0)
     {
-      clearTabOutput();
       writeToTabOutput("<b>" + StrConstants::getNoNewUpdatesAvailable() + "</b>");
       return;
     }
@@ -1153,6 +1173,7 @@ void MainWindow::doSystemUpgrade(bool syncDatabase)
     else
       question.setText(StrConstants::getRetrieveTargets().arg(m_targets->count()));
 
+    question.setWindowTitle(StrConstants::getConfirmation());
     question.setInformativeText(StrConstants::getConfirmationQuestion());
     question.setDetailedText(list);
     question.setStandardButtons(QMessageBox::Yes|QMessageBox::No);
@@ -1170,11 +1191,7 @@ void MainWindow::doSystemUpgrade(bool syncDatabase)
       m_commandExecuting = ectn_SYSTEM_UPGRADE;
 
       disableTransactionActions();
-      clearTabOutput();
       disconnect(m_pacmanDatabaseSystemWatcher, SIGNAL(directoryChanged(QString)), this, SLOT(buildPackageList()));
-
-      //writeToTabOutput("<B>" + StrConstants::getSystemUpgrade() + "</B><br>");
-
       m_unixCommand = new UnixCommand(this);
 
       QObject::connect(m_unixCommand, SIGNAL( started() ), this, SLOT( actionsProcessStarted()));
@@ -1201,7 +1218,7 @@ void MainWindow::doSystemUpgrade(bool syncDatabase)
 void MainWindow::doRemove()
 {
   //Shows a dialog indicating the targets which will be removed and asks for the user's permission.
-  QString listOfTargets = getToBeRemovedPackages();
+  QString listOfTargets = getTobeRemovedPackages();
   m_targets = Package::getTargetRemovalList(listOfTargets);
   m_currentTarget=0;
   QString list;
@@ -1228,6 +1245,11 @@ void MainWindow::doRemove()
   else
     question.setText(StrConstants::getRemoveTargets().arg(m_targets->count()));
 
+  if (getNumberOfTobeRemovedPackages() < m_targets->count())
+    question.setWindowTitle(StrConstants::getWarning());
+  else
+    question.setWindowTitle(StrConstants::getConfirmation());
+
   question.setInformativeText(StrConstants::getConfirmationQuestion());
   question.setDetailedText(list);
   question.setStandardButtons(QMessageBox::Yes|QMessageBox::No);
@@ -1245,11 +1267,7 @@ void MainWindow::doRemove()
     }
 
     disableTransactionActions();
-    clearTabOutput();
     disconnect(m_pacmanDatabaseSystemWatcher, SIGNAL(directoryChanged(QString)), this, SLOT(buildPackageList()));
-
-    //writeToTabOutput("<B>" + StrConstants::getRemovingPackages() + "</B>");
-
     m_unixCommand = new UnixCommand(this);
 
     QObject::connect(m_unixCommand, SIGNAL( started() ), this, SLOT( actionsProcessStarted()));
@@ -1272,7 +1290,7 @@ void MainWindow::doRemove()
 void MainWindow::doInstall()
 {
   //Shows a dialog indicating the targets which will be removed and asks for the user's permission.
-  QString listOfTargets = getToBeInstalledPackages();
+  QString listOfTargets = getTobeInstalledPackages();
   m_targets = Package::getTargetUpgradeList(listOfTargets);
   m_currentTarget=0;
   QString list;
@@ -1299,6 +1317,7 @@ void MainWindow::doInstall()
   else
     question.setText(StrConstants::getRetrieveTargets().arg(m_targets->count()));
 
+  question.setWindowTitle(StrConstants::getConfirmation());
   question.setInformativeText(StrConstants::getConfirmationQuestion());
   question.setDetailedText(list);
   question.setStandardButtons(QMessageBox::Yes|QMessageBox::No);
@@ -1316,11 +1335,7 @@ void MainWindow::doInstall()
     }
 
     disableTransactionActions();
-    clearTabOutput();
     disconnect(m_pacmanDatabaseSystemWatcher, SIGNAL(directoryChanged(QString)), this, SLOT(buildPackageList()));
-
-    //writeToTabOutput("<B>" + StrConstants::getInstallingPackages() + "</B>");
-
     m_unixCommand = new UnixCommand(this);
 
     QObject::connect(m_unixCommand, SIGNAL( started() ), this, SLOT( actionsProcessStarted()));
@@ -1358,8 +1373,7 @@ void MainWindow::enableTransactionActions()
  */
 void MainWindow::toggleTransactionActions(const bool value)
 {
-  bool state = (getRemoveTransactionParentItem()->hasChildren() ||
-                getInstallTransactionParentItem()->hasChildren());
+  bool state = _isThereAPendingTransaction();
 
   if (value == true && state == true)
   {
@@ -1381,7 +1395,7 @@ void MainWindow::toggleTransactionActions(const bool value)
 /*
  * Triggers the especific methods that need to be called given the packages in the transaction
  */
-void MainWindow::commitTransaction()
+void MainWindow::doCommitTransaction()
 {
 
   //Are there any remove actions to be commited?
@@ -1403,7 +1417,7 @@ void MainWindow::commitTransaction()
 /*
  * Clears the transaction treeview
  */
-void MainWindow::rollbackTransaction()
+void MainWindow::doRollbackTransaction()
 {
   int res = QMessageBox::question(this,
                         StrConstants::getConfirmation(),
@@ -1419,6 +1433,8 @@ void MainWindow::rollbackTransaction()
 
 void MainWindow::actionsProcessStarted()
 {
+  clearTabOutput();
+
   //First we output the name of action we are starting to execute!
   if (m_commandExecuting == ectn_SYNC_DATABASE)
   {
@@ -1465,7 +1481,7 @@ void MainWindow::actionsProcessFinished(int exitCode, QProcess::ExitStatus)
     doSystemUpgrade(false);    
     m_commandQueued = ectn_NONE;
   }
-  else if (m_commandQueued == ectn_INSTALL)
+  else if (m_commandQueued == ectn_INSTALL && m_commandExecuting == ectn_REMOVE)
   {
     if(exitCode == 0) //If the removal actions were OK...
     {
@@ -1473,6 +1489,7 @@ void MainWindow::actionsProcessFinished(int exitCode, QProcess::ExitStatus)
       doInstall();
       removePackagesFromInstallTransaction();
       m_commandQueued = ectn_NONE;
+      return;
     }
   }
   else if (m_commandQueued == ectn_NONE)
@@ -1507,6 +1524,20 @@ void MainWindow::actionsProcessReadOutput()
 }
 
 /*
+ * Searches the given msg for a series of verbs that a Pacman transaction may produce
+ */
+bool MainWindow::_searchForKeyVerbs(const QString &msg)
+{
+  return (msg.contains(QRegExp("checking ")) ||
+          msg.contains(QRegExp("loading ")) ||
+          msg.contains(QRegExp("installing ")) ||
+          msg.contains(QRegExp("upgrading ")) ||
+          msg.contains(QRegExp("resolving ")) ||
+          msg.contains(QRegExp("looking ")) ||
+          msg.contains(QRegExp("removing ")));
+}
+
+/*
  * Processes the output of the 'pacman process' so we can update percentages and messages at real time
  */
 void MainWindow::_treatProcessOutput(const QString &pMsg)
@@ -1527,15 +1558,12 @@ void MainWindow::_treatProcessOutput(const QString &pMsg)
 
     if (m_commandExecuting == ectn_INSTALL || m_commandExecuting == ectn_SYSTEM_UPGRADE || m_commandExecuting == ectn_SYNC_DATABASE)
     {
-      int ini = msg.indexOf("(");
+      int ini = msg.indexOf(QRegExp("\\(\\d/\\d\\) ")); //"(");
       if (ini >= 0)
       {
         msg = msg.remove(0, 6);
 
-        if (msg.contains(QRegExp("checking ")) ||
-            msg.contains(QRegExp("loading ")) ||
-            msg.contains(QRegExp("installing ")) ||
-            msg.contains(QRegExp("removing ")))
+        if (_searchForKeyVerbs(msg))
         {
           int end = msg.indexOf("[");
           msg = msg.remove(end, msg.size()-end).trimmed();
@@ -1563,10 +1591,7 @@ void MainWindow::_treatProcessOutput(const QString &pMsg)
       }
       else if (ini == -1)
       {
-        if (msg.contains(QRegExp("checking ")) ||
-            msg.contains(QRegExp("loading ")) ||
-            msg.contains(QRegExp("installing ")) ||
-            msg.contains(QRegExp("removing ")))
+        if (_searchForKeyVerbs(msg))
         {
           int end = msg.indexOf("[");
           msg = msg.remove(end, msg.size()-end).trimmed();
@@ -1623,7 +1648,7 @@ void MainWindow::_treatProcessOutput(const QString &pMsg)
     }*/
     else if (m_commandExecuting == ectn_REMOVE)
     {
-      int ini = msg.indexOf("(");
+      int ini = msg.indexOf(QRegExp("\\(\\d/\\d\\) ")); //"(");
       if (ini >= 0)
       {
         msg = msg.remove(0, 6);
@@ -1669,12 +1694,18 @@ void MainWindow::_treatProcessOutput(const QString &pMsg)
     msg.remove(QRegExp("Using the fallback.+"));
     msg.remove(QRegExp("Gkr-Message: secret service operation failed:.+"));
     msg.remove(QRegExp("gksu-run.+"));
-    //msg.remove(QRegExp("Do you want.+"));
+    msg.remove(QRegExp("Do you want.+"));
 
     msg = msg.trimmed();
 
+    int ini = msg.indexOf(QRegExp("\\(\\d/\\d\\) ")); //"(");
+    if (ini >= 0)
+    {
+      msg = msg.remove(0, 6);
+    }
+
     if (!msg.isEmpty() && !_textInTabOutput(msg))
-      writeToTabOutput("<b><font color=\"black\">" + msg + "</font></b>");
+      writeToTabOutput("<font color=\"black\">" + msg + "</font>");
   }
 
   if(m_commandExecuting == ectn_NONE)
@@ -1873,8 +1904,8 @@ void MainWindow::initActions()
   connect(ui->actionRemove, SIGNAL(triggered()), this, SLOT(insertIntoRemovePackage()));
   connect(ui->actionInstall, SIGNAL(triggered()), this, SLOT(insertIntoInstallPackage()));
 
-  connect(ui->actionCommit, SIGNAL(triggered()), this, SLOT(commitTransaction()));
-  connect(ui->actionRollback, SIGNAL(triggered()), this, SLOT(rollbackTransaction()));
+  connect(ui->actionCommit, SIGNAL(triggered()), this, SLOT(doCommitTransaction()));
+  connect(ui->actionRollback, SIGNAL(triggered()), this, SLOT(doRollbackTransaction()));
 
   connect(m_lblCounters, SIGNAL(linkActivated(QString)), this, SLOT(outputOutdatedPackageList()));
 
@@ -1956,7 +1987,7 @@ void MainWindow::onPressDelete()
  */
 void MainWindow::changeTransactionActionsState()
 {
-  bool state = (getRemoveTransactionParentItem()->hasChildren() || getInstallTransactionParentItem()->hasChildren());
+  bool state = _isThereAPendingTransaction();
 
   ui->actionCommit->setEnabled(state);
   ui->actionRollback->setEnabled(state);
@@ -1971,6 +2002,40 @@ void MainWindow::clearTransactionTreeView()
   removePackagesFromInstallTransaction();
 }
 
+bool MainWindow::_isThereAPendingTransaction()
+{
+  return (getRemoveTransactionParentItem()->hasChildren() ||
+          getInstallTransactionParentItem()->hasChildren());
+}
+
+/*
+ * Before we close the application, let's confirm if there is a pending transaction...
+ */
+void MainWindow::closeEvent(QCloseEvent *event)
+{
+  if(_isThereAPendingTransaction())
+  {
+    int res = QMessageBox::question(this, StrConstants::getConfirmation(),
+                                    StrConstants::getThereIsAPendingTransaction() + "\n" +
+                                    StrConstants::getDoYouReallyWantToQuit(),
+                                    QMessageBox::Yes | QMessageBox::No,
+                                    QMessageBox::No);
+
+    if (res == QMessageBox::Yes)
+    {
+      event->accept();
+    }
+    else
+    {
+      event->ignore();
+    }
+  }
+  else
+  {
+    event->accept();
+  }
+}
+
 void MainWindow::keyPressEvent(QKeyEvent* ke)
 {    
   if (ke->key() == Qt::Key_Return)
@@ -1982,6 +2047,13 @@ void MainWindow::keyPressEvent(QKeyEvent* ke)
       {
         openFile(tvPkgFileList->currentIndex());
     } }
+  }
+  else if(ke->key() == Qt::Key_Escape)
+  {
+    if(ui->leFilterPackage->hasFocus())
+    {
+      ui->leFilterPackage->clear();
+    }
   }
   else if(ke->key() == Qt::Key_Delete)
   {

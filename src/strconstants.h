@@ -31,10 +31,10 @@ public:
 
   static QString getApplicationCliHelp(){
     QString str =
-        "\n" + QObject::tr("QTGZManager help usage:") + "\n\n" +
+        "\n" + QObject::tr("Octopi help usage:") + "\n\n" +
         "-version: " + QObject::tr("show application version.") + "\n" +
-        "-style <Qt4-style>: " + QObject::tr("use a different Qt4 style (ex: -style gtk).") + "\n" +
-        "-no-patch-download: " + QObject::tr("disable patch download from Slackware mirror.") +"\n";
+        "-style <Qt4-style>: " + QObject::tr("use a different Qt4 style (ex: -style gtk).") + "\n";
+
     return str;
   }
 
@@ -209,6 +209,10 @@ public:
     return QObject::tr("Confirm?");
   }
 
+  static QString getWarning(){
+    return QObject::tr("Warning!!!");
+  }
+
   static QString getConfirmation(){
     return QObject::tr("Confirmation");
   }
@@ -228,12 +232,16 @@ public:
       QObject::tr("You'll need to run this application as root.");
   }
 
-  static QString getExecutingCommand(){
-    return QObject::tr("Executing command");
+  static QString getThereIsAPendingTransaction(){
+    return QObject::tr("There is a pending transaction");
   }
 
-  static QString getErrorAlreadyRunning(){
-    return QObject::tr("There is already one instance of this application running!");
+  static QString getDoYouReallyWantToQuit(){
+    return QObject::tr("Do you really want to quit?");
+  }
+
+  static QString getExecutingCommand(){
+    return QObject::tr("Executing command");
   }
 
   static QString getNeedsAppRestart(){
@@ -244,15 +252,11 @@ public:
     return QObject::tr("These changes need application restart to take effect!");
   }
 
-  static QString getForMoreInformation(){
+  /*static QString getForMoreInformation(){
     return "<small>" + QObject::tr("For more information about QTGZManager visit:") +
         " <a href=\"http://qtgzmanager.wordpress.com\" target=\"_blank\">" +
         "http://qtgzmanager.wordpress.com</a></small>";
-  }
-
-  static QString getUpdaterTabTitle(){
-    return QObject::tr("Check for Slackware patches");
-  }
+  }*/
 
   static QString getTodoInstallText(){
     return QObject::tr("To be installed");

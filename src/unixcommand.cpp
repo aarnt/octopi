@@ -277,19 +277,18 @@ QByteArray UnixCommand::getTargetUpgradeList(const QString &pkgName)
   pacman.setProcessEnvironment(env);
 #endif
 
-  QStringList args;
+  QString args;
 
   if(!pkgName.isEmpty())
   {
-    args << "-Sp";
-    args << pkgName;
+    args += "-Sp " + pkgName;
   }
   else
   {
-    args << "-Spu"; //this is the complete system upgrade!
+    args += "-Spu"; //this is the complete system upgrade!
   }
 
-  pacman.start ( "pacman", args );
+  pacman.start ( "pacman " + args );
   pacman.waitForFinished(-1);
   res = pacman.readAllStandardOutput();
   pacman.close();
@@ -407,8 +406,8 @@ void UnixCommand::removeTemporaryFiles()
 {
   QDir tempDir(QDir::tempPath());
   QStringList nameFilters;
-  nameFilters << "qtsingleapp*" << "gpg*";
-  QFileInfoList list = tempDir.entryInfoList(nameFilters, QDir::Dirs | QDir::Files | QDir::System);
+  nameFilters << "qtsingleapp*" << "gpg*" << ".qt_temp_*";
+  QFileInfoList list = tempDir.entryInfoList(nameFilters, QDir::Dirs | QDir::Files | QDir::System | QDir::Hidden);
 
   foreach(QFileInfo file, list){
     QFile fileAux(file.filePath());

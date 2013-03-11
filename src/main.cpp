@@ -18,13 +18,14 @@
 *
 */
 
+#include "QtSolutions/qtsingleapplication.h"
 #include "mainwindow.h"
-#include <QApplication>
-
 #include "argumentlist.h"
 #include "strconstants.h"
-#include "QtSolutions/qtsingleapplication.h"
+
+#include <iostream>
 #include <QtGui>
+#include <QApplication>
 
 int main(int argc, char *argv[])
 {
@@ -46,6 +47,15 @@ int main(int argc, char *argv[])
     appTranslator.load(":/resources/translations/qtgzmanager_" +
       QLocale::system().name());
     app.installTranslator(&appTranslator);*/
+
+  if (argList->getSwitch("-help")){
+    std::cout << StrConstants::getApplicationCliHelp().toAscii().data() << std::endl;
+    return(0);
+  }
+  else if (argList->getSwitch("-version")){
+    std::cout << "\n" << StrConstants::getApplicationName().toAscii().data() << "\n" << std::endl;
+    return(0);
+  }
 
   MainWindow w;
   app.setActivationWindow(&w);

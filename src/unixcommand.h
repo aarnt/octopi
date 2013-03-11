@@ -113,6 +113,7 @@ public:
       m_temporaryFile->close();
       m_temporaryFile->remove();
       delete m_temporaryFile;
+      m_temporaryFile = 0;
     }
   }
 
