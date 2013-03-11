@@ -1666,7 +1666,7 @@ void MainWindow::_treatProcessOutput(const QString &pMsg)
     //Gkr-Message: secret service operation failed: The name org.freedesktop.secrets was not provided by any .service files
     msg.remove(QRegExp("\\(process.+"));
     msg.remove(QRegExp("Using the fallback.+"));
-    msg.remove(QRegExp("Gkr-Message: secret service operation failed: The name org.freedesktop.secrets was not provided by any .service files"));
+    msg.remove(QRegExp("Gkr-Message: secret service operation failed:.+"));
     msg.remove(QRegExp("gksu-run.+"));
     //msg.remove(QRegExp("Do you want.+"));
 
