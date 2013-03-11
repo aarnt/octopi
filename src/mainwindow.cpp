@@ -50,7 +50,7 @@ MainWindow::MainWindow(QWidget *parent) :
   m_commandExecuting=ectn_NONE;
   m_commandQueued=ectn_NONE;
 
-  setWindowTitle(StrConstants::getApplicationName());
+  setWindowTitle(StrConstants::getApplicationName() + " " + StrConstants::getApplicationVersion());
   setMinimumSize(QSize(850, 600));
 
   initStatusBar();
@@ -796,13 +796,25 @@ void MainWindow::execContextMenuPackages(QPoint point)
 }
 
 /*
+ * Returns true if tabWidget height is greater than 0. Otherwise, returns false
+ */
+bool MainWindow::_isTabWidgetVisible()
+{
+  QList<int> rl;
+  rl = ui->splitterHorizontal->sizes();
+
+  return (rl[1] > 0);
+}
+
+/*
  * Re-populates the HTML view with selected package's information (tab ONE)
  */
 void MainWindow::refreshTabInfo(bool clearContents)
 {
   static QString strSelectedPackage;
 
-  if(ui->twProperties->currentIndex() != ctn_TABINDEX_INFORMATION) return;
+  if(ui->twProperties->currentIndex() != ctn_TABINDEX_INFORMATION || !_isTabWidgetVisible()) return;
+
   if (clearContents || ui->tvPackages->selectionModel()->selectedRows(ctn_PACKAGE_NAME_COLUMN).count() == 0)
   {
     QTextBrowser *text = ui->twProperties->widget(ctn_TABINDEX_INFORMATION)->findChild<QTextBrowser*>("textBrowser");
@@ -944,7 +956,8 @@ void MainWindow::refreshTabFiles(bool clearContents)
 {
   static QString strSelectedPackage;
 
-  if(ui->twProperties->currentIndex() != ctn_TABINDEX_FILES) return;
+  if(ui->twProperties->currentIndex() != ctn_TABINDEX_FILES || !_isTabWidgetVisible()) return;
+
   if (clearContents || ui->tvPackages->selectionModel()->selectedRows(ctn_PACKAGE_NAME_COLUMN).count() == 0){
     QTreeView *tvPkgFileList = ui->twProperties->widget(ctn_TABINDEX_FILES)->findChild<QTreeView*>("tvPkgFileList");
     if(tvPkgFileList)
@@ -1817,11 +1830,29 @@ void MainWindow::insertIntoInstallPackage()
 }
 
 /*
+ * Ensures that TabOutput is visible, so the user can see the messages!
+ */
+void MainWindow::_ensureTabOutputVisible()
+{
+  QList<int> rl;
+  rl = ui->splitterHorizontal->sizes();
+  if(rl[1] <= 50)
+  {
+    rl.clear();
+    rl << 200 << 235;
+    ui->splitterHorizontal->setSizes(rl);
+    ui->twProperties->setCurrentIndex(ctn_TABINDEX_OUTPUT);
+  }
+}
+
+/*
  * Maximizes/de-maximizes the lower pane (tabwidget)
  */
 void MainWindow::maximizeTabWidget()
 {
-  static QList<int> savedSizes = ui->splitterHorizontal->sizes();
+  //static QList<int> savedSizes = ui->splitterHorizontal->sizes();
+  QList<int> savedSizes;
+  savedSizes << 200 << 235;
 
   QList<int> l, rl;
   rl = ui->splitterHorizontal->sizes();
@@ -1951,7 +1982,8 @@ void MainWindow::writeToTabOutput(const QString &msg)
   QTextEdit *text = ui->twProperties->widget(ctn_TABINDEX_OUTPUT)->findChild<QTextEdit*>("textOutputEdit");
   if (text)
   {
-    _positionTextEditCursorAtEnd();    
+    _ensureTabOutputVisible();
+    _positionTextEditCursorAtEnd();
     text->append(msg);
     text->ensureCursorVisible();
     ui->twProperties->setCurrentIndex(ctn_TABINDEX_OUTPUT);

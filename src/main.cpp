@@ -22,6 +22,7 @@
 #include "mainwindow.h"
 #include "argumentlist.h"
 #include "strconstants.h"
+#include "unixcommand.h"
 
 #include <iostream>
 #include <QtGui>
@@ -55,6 +56,11 @@ int main(int argc, char *argv[])
   else if (argList->getSwitch("-version")){
     std::cout << "\n" << StrConstants::getApplicationName().toAscii().data() << "\n" << std::endl;
     return(0);
+  }
+
+  if (UnixCommand::isRootRunning()){
+    QMessageBox::critical( 0, StrConstants::getApplicationName(), StrConstants::getErrorRunningWithRoot());
+    return ( -2 );
   }
 
   MainWindow w;

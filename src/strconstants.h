@@ -26,7 +26,11 @@
 class StrConstants{
 public:
   static QString getApplicationName(){
-    return "Octopi 0.1";
+    return "Octopi";
+  }
+
+  static QString getApplicationVersion(){
+    return "0.1";
   }
 
   static QString getApplicationCliHelp(){
@@ -228,8 +232,11 @@ public:
 
   static QString getErrorNoSuCommand(){
     return
-      QObject::tr("There are no means to get administrator's credentials.") + "\n" +
-      QObject::tr("You'll need to run this application as root.");
+      QObject::tr("There are no means to get administrator's credentials.");
+  }
+
+  static QString getErrorRunningWithRoot(){
+    return QObject::tr("You can not run Octopi with administrator's credentials.");
   }
 
   static QString getThereIsAPendingTransaction(){

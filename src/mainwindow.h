@@ -115,6 +115,8 @@ private:
   bool _textInTabOutput(const QString& findText);
   bool _searchForKeyVerbs(const QString& msg);
   void _treatProcessOutput(const QString &pMsg);
+  void _ensureTabOutputVisible();
+  bool _isTabWidgetVisible();
   void writeToTabOutput(const QString &msg);
 
   //Tab Transaction related methods
