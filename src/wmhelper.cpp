@@ -256,9 +256,8 @@ void WMHelper::openFile( const QString& fileName, const QString& package ){
   //The user is trying to open a file from an already installed package
   if (package == ""){
     if (!UnixCommand::isTextFile(fileToOpen)){
-      int res = QMessageBox::question(qApp->activeWindow(), QObject::tr("Confirmation"),
-                                      QObject::tr("This file does not appear to be a simple text.\n"
-                                                  "Are you sure you want to run it?"),
+      int res = QMessageBox::question(qApp->activeWindow(), StrConstants::getConfirmation(),
+                                      StrConstants::getThisIsNotATextFile(),
                                       QMessageBox::Yes | QMessageBox::No,
                                       QMessageBox::No);
 
@@ -302,9 +301,8 @@ void WMHelper::openFile( const QString& fileName, const QString& package ){
 
     QFile f(fileToOpen);
     if (!UnixCommand::isTextFile(fileToOpen)){
-      int res = QMessageBox::question(qApp->activeWindow(), QObject::tr("Confirmation"),
-                                      QObject::tr("This file does not appear to be a simple text.\n"
-                                                  "Are you sure you want to run it?"),
+      int res = QMessageBox::question(qApp->activeWindow(), StrConstants::getConfirmation(),
+                                      StrConstants::getThisIsNotATextFile(),
                                       QMessageBox::Yes | QMessageBox::No,
                                       QMessageBox::No);
 

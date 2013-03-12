@@ -32,7 +32,7 @@ class QTimer;
 class QFileSystemWatcher;
 class QLabel;
 
-const int ctn_COLUMN_PACKAGE_ICON(0);
+const int ctn_PACKAGE_ICON_COLUMN(0);
 const int ctn_PACKAGE_NAME_COLUMN(1);
 const int ctn_PACKAGE_VERSION_COLUMN(2);
 const int ctn_PACKAGE_REPOSITORY_COLUMN(3);
@@ -97,6 +97,7 @@ private:
   void initStatusBar();
   void initLineEditFilterPackages();
 
+  QString getOutdatedPackageVersionByName(const QString &pkgName);
   QString getInstalledPackageVersionByName(const QString &pkgName);
   bool isPackageInstalled(const QString &pkgName);
   void initPackageTreeView();
@@ -132,6 +133,7 @@ private:
   QString getTobeRemovedPackages();
   QString getTobeInstalledPackages();
 
+  QString getSelectedDirectory();
   QString showFullPathOfObject(const QModelIndex & index);
 
 protected:
@@ -174,7 +176,8 @@ private slots:
   void insertIntoRemovePackage();
   void insertIntoInstallPackage();
 
-  void maximizeTabWidget();
+  void maximizePackagesTreeView();
+  void maximizePropertiesTabWidget();
   void outputOutdatedPackageList();
 
   void onPressDelete();

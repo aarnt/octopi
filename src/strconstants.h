@@ -50,6 +50,14 @@ public:
     return QObject::tr("Version");
   }
 
+  static QString getOutdatedVersion(){
+    return QObject::tr("Outdated version");
+  }
+
+  static QString getAvailableVersion(){
+    return QObject::tr("Available version");
+  }
+
   static QString getURL(){
     return QObject::tr("URL");
   }
@@ -98,6 +106,10 @@ public:
     return QObject::tr("Packager");
   }
 
+  static QString getPackage(){
+    return QObject::tr("Package");
+  }
+
   static QString getArchitecture(){
     return QObject::tr("Architecture");
   }
@@ -120,6 +132,34 @@ public:
 
   static QString getPassword(){
     return QObject::tr("Password");
+  }
+
+  static QString getTabInfoName(){
+    return QObject::tr("Info");
+  }
+
+  static QString getTabFilesName(){
+    return QObject::tr("Files");
+  }
+
+  static QString getTabTransactionName(){
+    return QObject::tr("Transaction");
+  }
+
+  static QString getTabOutputName(){
+    return QObject::tr("Output");
+  }
+
+  static QString getContentsOf(){
+    return QObject::tr("Contents of \"%1\"");
+  }
+
+  static QString getFind(){
+    return QObject::tr("Find");
+  }
+
+  static QString getClear(){
+    return QObject::tr("Clear");
   }
 
   static QString getOutdatedInstalledVersion(){
@@ -265,6 +305,11 @@ public:
         "http://qtgzmanager.wordpress.com</a></small>";
   }*/
 
+  static QString getThisIsNotATextFile(){
+    return QObject::tr("This file does not appear to be a simple text.\n"
+                       "Are you sure you want to run it?");
+  }
+
   static QString getTodoInstallText(){
     return QObject::tr("To be installed");
   }
@@ -273,7 +318,7 @@ public:
     return QObject::tr("To be removed");
   }
 
-  static QString getTodoDowngradeText(){
+  /*static QString getTodoDowngradeText(){
     return QObject::tr("To be downgraded");
   }
 
@@ -283,7 +328,7 @@ public:
 
   static QString getTodoReinstallText(){
     return QObject::tr("To be reinstalled");
-  }
+  }*/
 
   //Style Sheets ---------------------------------
 

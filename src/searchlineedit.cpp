@@ -7,6 +7,7 @@
 */
 
 #include "searchlineedit.h"
+#include "strconstants.h"
 #include <QToolButton>
 #include <QStyle>
 
@@ -24,9 +25,9 @@ SearchLineEdit::SearchLineEdit(QWidget *parent) :
 
   // Some stylesheet and size corrections for the text box
 #if QT_VERSION >= 0x040700
-  this->setPlaceholderText(QObject::tr("Find"));
+  this->setPlaceholderText(StrConstants::getFind());
 #else
-  this->setToolTip(QObject::tr("Find"));
+  this->setToolTip(StrConstants::getFind());
 #endif
 
   this->setStyleSheet(this->styleSheetForCurrentState());
@@ -116,10 +117,11 @@ QString SearchLineEdit::buttonStyleSheetForCurrentState() const
   style += QString("background-image: url(:/resources/images/esf-%1.png);").arg(this->text().isEmpty() ? "search" : "clear");
   style += "}";
 
-  if (!this->text().isEmpty()){
+  if (!this->text().isEmpty())
+  {
     style += "QToolButton:hover { background-image: url(:/resources/images/esf-clear-hover.png); }";
     style += "QToolButton:pressed { background-image: url(:/resources/images/esf-clear-active.png); }";
-    this->mSearchButton->setToolTip(tr("Clear"));
+    this->mSearchButton->setToolTip(StrConstants::getClear());
   }
   else this->mSearchButton->setToolTip("");
 

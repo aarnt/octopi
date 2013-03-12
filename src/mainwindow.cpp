@@ -94,11 +94,11 @@ void MainWindow::refreshAppIcon()
 {
   if(m_outdatedPackageList->count() > 0)
   {
-    setWindowIcon(QIcon(":/resources/images/octopi_red.png"));
+    setWindowIcon(IconHelper::getIconOctopiRed());
   }
   else
   {
-    setWindowIcon(QIcon(":/resources/images/octopi_yellow.png"));
+    setWindowIcon(IconHelper::getIconOctopiYellow());
   }
 }
 
@@ -147,27 +147,41 @@ void MainWindow::outputOutdatedPackageList()
 
   if(m_numberOfOutdatedPackages > 0)
   {
+    QString html;
+
     clearTabOutput();
 
     if(m_outdatedPackageList->count()==1){
-      writeToTabOutput("<b>" + StrConstants::getOneOutdatedPackage() + "</b><br>");
+      html += "<b>" + StrConstants::getOneOutdatedPackage() + "</b>";
     }
     else
     {
-      writeToTabOutput("<b>" +
-                       StrConstants::getOutdatedPackages().arg(m_outdatedPackageList->count()) + "</b><br>");
+      html += "<b>" +
+          StrConstants::getOutdatedPackages().arg(m_outdatedPackageList->count()) + "</b>";
     }
+
+    html += "<br><br><meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">";
+    html += "<table border=\"0\">";
+    html += "<tr><th width=\"25%\" align=\"left\">" + StrConstants::getName() +
+        "</th><th width=\"18%\" align=\"right\">" +
+        StrConstants::getOutdatedVersion() +
+        "</th><th width=\"18%\" align=\"right\">" +
+        StrConstants::getAvailableVersion() + "</th></tr>";
 
     for (int c=0; c < m_outdatedPackageList->count(); c++)
     {
       QString pkg = m_outdatedPackageList->at(c);
-      pkg = pkg.leftJustified(40, QChar(' '));
-      writeToTabOutput("<pre><font color=\"red\">" + pkg + "</font> " +
-                       StrConstants::getNewVersionAvailable().arg(
-                         getInstalledPackageVersionByName(m_outdatedPackageList->at(c))) + "</pre>");
+      QString outdatedVersion = getOutdatedPackageVersionByName(m_outdatedPackageList->at(c));
+      QString availableVersion = getInstalledPackageVersionByName(m_outdatedPackageList->at(c));
+
+      html += "<tr><td>" + pkg +
+          "</td><td align=\"right\"><font color=\"red\">" +
+          outdatedVersion +
+          "</font></td><td align=\"right\">" +
+          availableVersion + "</td></tr>";
     }
 
-    writeToTabOutput("<br>");
+    writeToTabOutput(html);
     ui->twProperties->setCurrentIndex(ctn_TABINDEX_OUTPUT);
   }
 }
@@ -201,7 +215,7 @@ void MainWindow::initTabTransaction()
   m_modelTransaction->setColumnCount(0);
 
   QStringList sl;
-  m_modelTransaction->setHorizontalHeaderLabels(sl << "Package");
+  m_modelTransaction->setHorizontalHeaderLabels(sl << StrConstants::getPackage());
 
   QStandardItem *siToBeRemoved = new QStandardItem(IconHelper::getIconToRemove(),
                                                    StrConstants::getTodoRemoveText());
@@ -215,7 +229,7 @@ void MainWindow::initTabTransaction()
 
   tvTransaction->setModel(m_modelTransaction);
 
-  QString aux(tr("Transaction"));
+  QString aux(StrConstants::getTabTransactionName());
 
   ui->twProperties->removeTab(ctn_TABINDEX_TRANSACTION);
   ui->twProperties->insertTab(ctn_TABINDEX_TRANSACTION, tabTransaction, QApplication::translate (
@@ -411,7 +425,7 @@ void MainWindow::initTabInfo(){
   text->setOpenExternalLinks(true);
   gridLayoutX->addWidget ( text, 0, 0, 1, 1 );
 
-  QString aux(tr("Info"));
+  QString aux(StrConstants::getTabInfoName());
   //QString translated_about = QApplication::translate ( "MainWindow", aux.toUtf8(), 0, QApplication::UnicodeUTF8 );
 
   ui->twProperties->removeTab(ctn_TABINDEX_INFORMATION);
@@ -453,7 +467,7 @@ void MainWindow::initTabFiles()
 
   tvPkgFileList->setModel(modelPkgFileList);
 
-  QString aux(tr("Files"));
+  QString aux(StrConstants::getTabFilesName());
   ui->twProperties->removeTab(ctn_TABINDEX_FILES);
   ui->twProperties->insertTab(ctn_TABINDEX_FILES, tabPkgFileList, QApplication::translate (
                                                   "MainWindow", aux.toUtf8(), 0, QApplication::UnicodeUTF8 ) );
@@ -487,14 +501,14 @@ void MainWindow::initTabOutput()
   gridLayoutX->setSpacing ( 0 );
   gridLayoutX->setMargin ( 0 );
 
-  QTextEdit *text = new QTextEdit(tabOutput);
+  QTextBrowser *text = new QTextBrowser(tabOutput);
   text->setObjectName("textOutputEdit");
   text->setReadOnly(true);
   text->setFrameShape(QFrame::NoFrame);
   text->setFrameShadow(QFrame::Plain);
   gridLayoutX->addWidget ( text, 0, 0, 1, 1 );
 
-  QString aux(tr("Output"));
+  QString aux(StrConstants::getTabOutputName());
   //QString translated_about = QApplication::translate ( "MainWindow", aux.toUtf8(), 0, QApplication::UnicodeUTF8 );
 
   ui->twProperties->removeTab(ctn_TABINDEX_OUTPUT);
@@ -513,7 +527,7 @@ void MainWindow::initTabOutput()
  */
 void MainWindow::clearTabOutput()
 {
-  QTextEdit *text = ui->twProperties->widget(ctn_TABINDEX_OUTPUT)->findChild<QTextEdit*>("textOutputEdit");
+  QTextBrowser *text = ui->twProperties->widget(ctn_TABINDEX_OUTPUT)->findChild<QTextBrowser*>("textOutputEdit");
   if (text)
   {
     text->clear();
@@ -521,7 +535,31 @@ void MainWindow::clearTabOutput()
 }
 
 /*
- * Searchs model modelInstalledPackages by a package name and returns it's version
+ * Searchs model modelInstalledPackages by a package name and returns it's OUTDATED version
+ */
+QString MainWindow::getOutdatedPackageVersionByName(const QString &pkgName)
+{
+  QList<QStandardItem *> foundItems =
+      m_modelInstalledPackages->findItems(pkgName, Qt::MatchExactly, ctn_PACKAGE_NAME_COLUMN);
+  QString res;
+
+  if (foundItems.count() > 0)
+  {
+    QStandardItem * si = foundItems.first();
+    QStandardItem * siIcon = m_modelInstalledPackages->item(si->row(), ctn_PACKAGE_ICON_COLUMN);
+
+    int mark = siIcon->text().indexOf('^');
+    if (mark >= 0)
+    {
+      res = siIcon->text().right(siIcon->text().size()-mark-1);
+    }
+  }
+
+  return res;
+}
+
+/*
+ * Searchs model modelInstalledPackages by a package name and returns it's AVAILABLE version
  */
 QString MainWindow::getInstalledPackageVersionByName(const QString &pkgName)
 {
@@ -782,7 +820,7 @@ void MainWindow::execContextMenuPackages(QPoint point)
     foreach(QModelIndex item, ui->tvPackages->selectionModel()->selectedRows())
     {
       QModelIndex mi = m_proxyModelPackages->mapToSource(item);
-      QStandardItem *si = sim->item(mi.row(), ctn_COLUMN_PACKAGE_ICON);
+      QStandardItem *si = sim->item(mi.row(), ctn_PACKAGE_ICON_COLUMN);
 
       if((si->icon().pixmap(QSize(22,22)).toImage()) ==
          IconHelper::getIconForeign().pixmap(QSize(22,22)).toImage())
@@ -862,14 +900,14 @@ void MainWindow::refreshTabInfo(bool clearContents)
 
   if (ui->actionNonInstalledPackages->isChecked())
   {
-    siIcon = m_modelPackages->item( mi.row(), ctn_COLUMN_PACKAGE_ICON);
+    siIcon = m_modelPackages->item( mi.row(), ctn_PACKAGE_ICON_COLUMN);
     siName = m_modelPackages->item( mi.row(), ctn_PACKAGE_NAME_COLUMN);
     siRepository = m_modelPackages->item( mi.row(), ctn_PACKAGE_REPOSITORY_COLUMN);
     siVersion = m_modelPackages->item( mi.row(), ctn_PACKAGE_VERSION_COLUMN);
   }
   else
   {
-    siIcon = m_modelInstalledPackages->item( mi.row(), ctn_COLUMN_PACKAGE_ICON);
+    siIcon = m_modelInstalledPackages->item( mi.row(), ctn_PACKAGE_ICON_COLUMN);
     siName = m_modelInstalledPackages->item( mi.row(), ctn_PACKAGE_NAME_COLUMN);
     siRepository = m_modelInstalledPackages->item( mi.row(), ctn_PACKAGE_REPOSITORY_COLUMN);
     siVersion = m_modelInstalledPackages->item( mi.row(), ctn_PACKAGE_VERSION_COLUMN);
@@ -909,7 +947,7 @@ void MainWindow::refreshTabInfo(bool clearContents)
   QString packager = StrConstants::getPackager();
   QString architecture = StrConstants::getArchitecture();
   QString buildDate = StrConstants::getBuildDate();
-  QString description = StrConstants::getDescription();
+  //QString description = StrConstants::getDescription();
 
   QTextBrowser *text = ui->twProperties->widget(ctn_TABINDEX_INFORMATION)->findChild<QTextBrowser*>("textBrowser");
 
@@ -928,11 +966,14 @@ void MainWindow::refreshTabInfo(bool clearContents)
     html += "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">";
     html += "<a id=\"" + anchorBegin + "\"></a>";
 
+    html += "<h2>" + pkgName + "</h2>";
+    html += "<a style=\"font-size:16px;\">" + pid.description + "</a>";
+
     html += "<table border=\"0\">";
 
     html += "<tr><th width=\"20%\"></th><th width=\"80%\"></th></tr>";
-    html += "<tr><td>" + description + "</td><td style=\"font-size:16px;\">" +
-        pkgName + ": " + pid.description + "</td></tr>";
+    /*html += "<tr><td>" + description + "</td><td style=\"font-size:16px;\">" +
+        pid.description + "</td></tr>";*/
     html += "<tr><td>" + url + "</td><td style=\"font-size:14px;\">" + pid.url + "</td></tr>";
 
     //html += "<tr><td>" + repository + "</td><td>" + siRepository->text() + "</td></tr>";
@@ -1019,7 +1060,7 @@ void MainWindow::refreshTabFiles(bool clearContents)
 
   //Maybe this is a non-installed package...
   bool nonInstalled = (ui->actionNonInstalledPackages->isChecked() &&
-                       (m_modelPackages->item(mi.row(), ctn_COLUMN_PACKAGE_ICON)->text() == "_NonInstalled"));
+                       (m_modelPackages->item(mi.row(), ctn_PACKAGE_ICON_COLUMN)->text() == "_NonInstalled"));
 
   QTreeView *tvPkgFileList = ui->twProperties->widget(ctn_TABINDEX_FILES)->findChild<QTreeView*>("tvPkgFileList");
   if(tvPkgFileList){
@@ -1097,7 +1138,7 @@ void MainWindow::refreshTabFiles(bool clearContents)
     tvPkgFileList->setModel(modelPkgFileList);
     tvPkgFileList->header()->setDefaultAlignment( Qt::AlignCenter );
     modelPkgFileList->setHorizontalHeaderLabels( QStringList() <<
-                                                 tr("Contents of \"%1\"").arg(pkgName));
+                                                 StrConstants::getContentsOf().arg(pkgName));
 
     QList<QStandardItem*> lit = modelPkgFileList->findItems( "/", Qt::MatchStartsWith | Qt::MatchRecursive );
 
@@ -1293,8 +1334,6 @@ void MainWindow::doRemove()
   question.setStandardButtons(QMessageBox::Yes|QMessageBox::No|QMessageBox::Close);
   question.setDefaultButton(QMessageBox::No);
 
-  m_commandExecuting = ectn_REMOVE;
-
   int result = question.exec();
   if(result == QMessageBox::Yes)
   {
@@ -1303,6 +1342,8 @@ void MainWindow::doRemove()
       QMessageBox::critical( 0, StrConstants::getApplicationName(), StrConstants::getErrorNoSuCommand());
       return;
     }
+
+    m_commandExecuting = ectn_REMOVE;
 
     disableTransactionActions();
     disconnect(m_pacmanDatabaseSystemWatcher, SIGNAL(directoryChanged(QString)), this, SLOT(buildPackageList()));
@@ -1360,8 +1401,6 @@ void MainWindow::doInstall()
   question.setStandardButtons(QMessageBox::Yes|QMessageBox::No|QMessageBox::Close);
   question.setDefaultButton(QMessageBox::No);
 
-  m_commandExecuting = ectn_INSTALL;
-
   int result = question.exec();
   if(result == QMessageBox::Yes)
   {
@@ -1370,6 +1409,8 @@ void MainWindow::doInstall()
       QMessageBox::critical( 0, StrConstants::getApplicationName(), StrConstants::getErrorNoSuCommand());
       return;
     }
+
+    m_commandExecuting = ectn_INSTALL;
 
     disableTransactionActions();
     disconnect(m_pacmanDatabaseSystemWatcher, SIGNAL(directoryChanged(QString)), this, SLOT(buildPackageList()));
@@ -1506,7 +1547,7 @@ void MainWindow::actionsProcessStarted()
  */
 void MainWindow::actionsProcessFinished(int exitCode, QProcess::ExitStatus)
 {
-  ui->twProperties->setTabText(ctn_TABINDEX_OUTPUT, tr("Output"));
+  ui->twProperties->setTabText(ctn_TABINDEX_OUTPUT, StrConstants::getTabOutputName());
 
   if (exitCode == 0){
     writeToTabOutput("<br>:: " +
@@ -1591,12 +1632,14 @@ void MainWindow::_treatProcessOutput(const QString &pMsg)
   QString msg = pMsg;
   msg.remove(QRegExp(".+\\[Y/n\\].+"));
 
-  std::cout << "out: " << msg.toAscii().data() << std::endl;
+  //std::cout << "out: " << msg.toAscii().data() << std::endl;
 
   //If it is a percentage, we are talking about curl output...
   if(msg.indexOf("#]") != -1)
   {
     perc = "100%";
+    ui->twProperties->setTabText(ctn_TABINDEX_OUTPUT, StrConstants::getTabOutputName() + " (100%)");
+    qApp->processEvents();
   }
   else if (msg.indexOf("-]") != -1)
   {
@@ -1636,11 +1679,11 @@ void MainWindow::_treatProcessOutput(const QString &pMsg)
 
             if(!target.isEmpty() && !_textInTabOutput(target))
             {
-              writeToTabOutput("<font color=\"blue\">" + target + "</font>");
+              writeToTabOutput("<font color=\"brown\">" + target + "</font>");
             }
           }
           else if (!_textInTabOutput(msg))
-            writeToTabOutput("<font color=\"blue\">" + msg + "</font>");
+            writeToTabOutput("<font color=\"brown\">" + msg + "</font>");
         }
       }
       else if (ini == -1)
@@ -1671,7 +1714,7 @@ void MainWindow::_treatProcessOutput(const QString &pMsg)
               }
               else
               {
-                writeToTabOutput("<font color=\"blue\">" + target + "</font>");
+                writeToTabOutput("<font color=\"brown\">" + target + "</font>");
               }
             }
           }
@@ -1700,33 +1743,26 @@ void MainWindow::_treatProcessOutput(const QString &pMsg)
 
         if(!target.isEmpty() && !_textInTabOutput(target))
           writeToTabOutput("<font color=\"red\">" + target + "</font>");
-
       }
-      else if (!_textInTabOutput(msg))
-        writeToTabOutput("<font color=\"red\">" + msg + "</font>");
+      else
+      {
+        msg = msg.trimmed();
+        if (!_textInTabOutput(msg))
+          writeToTabOutput("<font color=\"red\">" + msg + "</font>");
+      }
     }
 
     if(!perc.isEmpty() && perc.indexOf("%") > 0)
     {
-      if(perc=="100%")
-      {
-        qApp->processEvents();
-        ui->twProperties->setTabText(ctn_TABINDEX_OUTPUT, tr("Output (100%)"));
-        qApp->processEvents();
-      }
-      else
-      {
-        qApp->processEvents();
-        ui->twProperties->setTabText(ctn_TABINDEX_OUTPUT, tr("Output") + " (" + perc + ")");
-        qApp->processEvents();
-      }
+      qApp->processEvents();
+      ui->twProperties->setTabText(ctn_TABINDEX_OUTPUT, StrConstants::getTabOutputName() + " (" + perc + ")");
+      qApp->processEvents();
     }
   }
   //It's another error, so we have to output it
   else
   {
-    //(process:21527): Gtk-WARNING **: Locale not supported by C library. Using the fallback 'C' locale.
-    //Gkr-Message: secret service operation failed: The name org.freedesktop.secrets was not provided by any .service files
+    //Let's supress some annoying string bugs...
     msg.remove(QRegExp("\\(process.+"));
     msg.remove(QRegExp("Using the fallback.+"));
     msg.remove(QRegExp("Gkr-Message: secret service operation failed:.+"));
@@ -1746,7 +1782,7 @@ void MainWindow::_treatProcessOutput(const QString &pMsg)
 
     if (!msg.isEmpty() && !_textInTabOutput(msg))
     {
-      if (msg.contains("removing "))
+      if (msg.contains(QRegExp("removing ")))
         writeToTabOutput("<font color=\"red\">" + msg + "</font>");
       else
         writeToTabOutput(msg); //it was font color = black
@@ -1754,7 +1790,7 @@ void MainWindow::_treatProcessOutput(const QString &pMsg)
   }
 
   if(m_commandExecuting == ectn_NONE)
-    ui->twProperties->setTabText(ctn_TABINDEX_OUTPUT, tr("Output"));
+    ui->twProperties->setTabText(ctn_TABINDEX_OUTPUT, StrConstants::getTabOutputName());
 }
 
 /*
@@ -1768,7 +1804,7 @@ void MainWindow::actionsProcessRaisedError()
 
   foreach (QString m, msgs)
   {
-    QStringList m2 = m.split(QRegExp("\\(\\d/\\d\\) "), QString::SkipEmptyParts);
+    QStringList m2 = m.split(QRegExp("\\(\\s{0,3}[0-9]{1,4}/[0-9]{1,4}\\) "), QString::SkipEmptyParts);
 
     if (m2.count() == 1)
     {
@@ -1883,11 +1919,35 @@ void MainWindow::_ensureTabOutputVisible()
 }
 
 /*
+ * Maximizes/de-maximizes the upper pane (tvPackages)
+ */
+void MainWindow::maximizePackagesTreeView()
+{
+  QList<int> savedSizes;
+  savedSizes << 200 << 235;
+
+  QList<int> l, rl;
+  rl = ui->splitterHorizontal->sizes();
+
+  if ( rl[1] != 0 )
+  {
+    ui->splitterHorizontal->setSizes( l << ui->tvPackages->maximumHeight() << 0);
+    if(!ui->tvPackages->hasFocus())
+      ui->tvPackages->setFocus();
+  }
+  else
+  {
+    ui->splitterHorizontal->setSizes(savedSizes);
+    ui->tvPackages->scrollTo(ui->tvPackages->currentIndex());
+    ui->tvPackages->setFocus();
+  }
+}
+
+/*
  * Maximizes/de-maximizes the lower pane (tabwidget)
  */
-void MainWindow::maximizeTabWidget()
+void MainWindow::maximizePropertiesTabWidget()
 {
-  //static QList<int> savedSizes = ui->splitterHorizontal->sizes();
   QList<int> savedSizes;
   savedSizes << 200 << 235;
 
@@ -1903,6 +1963,8 @@ void MainWindow::maximizeTabWidget()
   else
   {
     ui->splitterHorizontal->setSizes(savedSizes);
+    ui->tvPackages->scrollTo(ui->tvPackages->currentIndex());
+    ui->tvPackages->setFocus();
   }
 }
 
@@ -1990,7 +2052,7 @@ void MainWindow::initActions()
  */
 void MainWindow::_positionTextEditCursorAtEnd()
 {
-  QTextEdit *textEdit = ui->twProperties->widget(ctn_TABINDEX_OUTPUT)->findChild<QTextEdit*>("textOutputEdit");
+  QTextBrowser *textEdit = ui->twProperties->widget(ctn_TABINDEX_OUTPUT)->findChild<QTextBrowser*>("textOutputEdit");
   if (textEdit){
     QTextCursor tc = textEdit->textCursor();
     tc.clearSelection();
@@ -2005,7 +2067,7 @@ void MainWindow::_positionTextEditCursorAtEnd()
 bool MainWindow::_textInTabOutput(const QString& findText)
 {
   bool res;
-  QTextEdit *text = ui->twProperties->widget(ctn_TABINDEX_OUTPUT)->findChild<QTextEdit*>("textOutputEdit");
+  QTextBrowser *text = ui->twProperties->widget(ctn_TABINDEX_OUTPUT)->findChild<QTextBrowser*>("textOutputEdit");
   if (text)
   {
     res = text->find(findText, QTextDocument::FindBackward);
@@ -2020,39 +2082,40 @@ bool MainWindow::_textInTabOutput(const QString& findText)
  */
 void MainWindow::writeToTabOutput(const QString &msg)
 {
-  QTextEdit *text = ui->twProperties->widget(ctn_TABINDEX_OUTPUT)->findChild<QTextEdit*>("textOutputEdit");
+  QTextBrowser *text = ui->twProperties->widget(ctn_TABINDEX_OUTPUT)->findChild<QTextBrowser*>("textOutputEdit");
   if (text)
   {
     QString newMsg = msg;
-    //text->setFocus();
     _ensureTabOutputVisible();
     _positionTextEditCursorAtEnd();
 
     if(newMsg.contains(QRegExp("<font color")))
     {
-      std::cout << "I was coloured" << newMsg.toAscii().data() << std::endl;
+      //std::cout << "Already coloured: " << newMsg.toAscii().data() << std::endl;
       newMsg += "<br>";
     }
     else
     {
-      if(
-         (newMsg.contains("removing ") ||
-         newMsg.contains("error") ||
-         newMsg.contains("warning")))
+      if(newMsg.contains("removing ") ||
+         newMsg.contains("error"))
       {
         newMsg = "<font color=\"red\">" + newMsg + "</font><br>";
       }
-      else if(
-              (newMsg.contains("checking ") ||
-               newMsg.contains("installing ") ||
-               newMsg.contains("upgrading ") ||
-               newMsg.contains("loading ") ||
-               newMsg.contains("resolving ") ||
-               newMsg.contains("looking ")))
+      else if(newMsg.contains("checking ") ||
+              newMsg.contains("installing ") ||
+              newMsg.contains("upgrading ") ||
+              newMsg.contains("loading ") ||
+              newMsg.contains("resolving ") ||
+              newMsg.contains("looking "))
        {
-         newMsg = "<font color=\"blue\">" + newMsg + "</font><br>";
-         std::cout << "alt: " << newMsg.toAscii().data() << std::endl;
+         newMsg = "<font color=\"green\">" + newMsg + "</font><br>";
+         //std::cout << "alt: " << newMsg.toAscii().data() << std::endl;
        }
+      else if (newMsg.contains("warning") ||
+               newMsg.contains("-- reinstalling"))
+      {
+        newMsg = "<font color=\"blue\">" + newMsg + "</font><br>";
+      }
       else
       {
         newMsg += "<br>";
@@ -2091,6 +2154,8 @@ void MainWindow::onPressDelete()
     }
     else
       sim->removeRow(tvTransaction->currentIndex().row(), tvTransaction->currentIndex().parent());
+
+    changeTransactionActionsState();
   }
 }
 
@@ -2183,14 +2248,30 @@ void MainWindow::keyPressEvent(QKeyEvent* ke)
   {
     onPressDelete();
   }
-  else if (ke->key() == Qt::Key_F12)
+  else if(ke->key() == Qt::Key_F4)
   {
-    maximizeTabWidget();
+    QString dir = getSelectedDirectory();
+    if (!dir.isEmpty())
+      WMHelper::openTerminal(dir);
   }
   else if(ke->key() == Qt::Key_F5)
   {
     invalidateTabs();
     buildPackageList();
+  }
+  else if(ke->key() == Qt::Key_F6)
+  {
+    QString dir = getSelectedDirectory();
+    if (!dir.isEmpty())
+      WMHelper::openDirectory(dir);
+  }
+  else if (ke->key() == Qt::Key_F10)
+  {
+    maximizePackagesTreeView();
+  }
+  else if (ke->key() == Qt::Key_F12)
+  {
+    maximizePropertiesTabWidget();
   }
   else if(ke->key() == Qt::Key_L && ke->modifiers() == Qt::ControlModifier)
   {
@@ -2222,6 +2303,31 @@ void MainWindow::openFile(const QModelIndex& mi){
       WMHelper::openFile(path);
     }
   }
+}
+
+/*
+ * Returns the current selected directory of the FileList treeview in FilesTab
+ * In case nothing is selected, return an empty string
+ */
+QString MainWindow::getSelectedDirectory()
+{
+  QString targetDir;
+
+  if (_isTabWidgetVisible() && ui->twProperties->currentIndex() == ctn_TABINDEX_FILES)
+  {
+    QTreeView *t = ui->twProperties->currentWidget()->findChild<QTreeView*>("tvPkgFileList");
+    if(t && t->currentIndex().isValid())
+    {
+      QString itemPath = showFullPathOfObject(t->currentIndex());
+      QFileInfo fi(itemPath);
+
+      if (fi.isDir())
+        targetDir = itemPath;
+      else targetDir = fi.path();
+    }
+  }
+
+  return targetDir;
 }
 
 /*
