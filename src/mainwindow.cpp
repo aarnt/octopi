@@ -141,6 +141,9 @@ void MainWindow::initStatusBar()
  */
 void MainWindow::outputOutdatedPackageList()
 {
+  //We cannot output any list if there is a running transaction!
+  if (m_commandExecuting != ectn_NONE) return;
+
   m_numberOfOutdatedPackages = m_outdatedPackageList->count();
 
   if(m_numberOfOutdatedPackages > 0)
@@ -1212,7 +1215,7 @@ void MainWindow::doSystemUpgrade(bool syncDatabase)
     question.setWindowTitle(StrConstants::getConfirmation());
     question.setInformativeText(StrConstants::getConfirmationQuestion());
     question.setDetailedText(list);
-    question.setStandardButtons(QMessageBox::Yes|QMessageBox::No);
+    question.setStandardButtons(QMessageBox::Yes|QMessageBox::No|QMessageBox::Close);
     question.setDefaultButton(QMessageBox::No);
 
     int result = question.exec();
@@ -1288,7 +1291,7 @@ void MainWindow::doRemove()
 
   question.setInformativeText(StrConstants::getConfirmationQuestion());
   question.setDetailedText(list);
-  question.setStandardButtons(QMessageBox::Yes|QMessageBox::No);
+  question.setStandardButtons(QMessageBox::Yes|QMessageBox::No|QMessageBox::Close);
   question.setDefaultButton(QMessageBox::No);
 
   m_commandExecuting = ectn_REMOVE;
@@ -1355,7 +1358,7 @@ void MainWindow::doInstall()
   question.setWindowTitle(StrConstants::getConfirmation());
   question.setInformativeText(StrConstants::getConfirmationQuestion());
   question.setDetailedText(list);
-  question.setStandardButtons(QMessageBox::Yes|QMessageBox::No);
+  question.setStandardButtons(QMessageBox::Yes|QMessageBox::No|QMessageBox::Close);
   question.setDefaultButton(QMessageBox::No);
 
   m_commandExecuting = ectn_INSTALL;
@@ -1589,6 +1592,8 @@ void MainWindow::_treatProcessOutput(const QString &pMsg)
   QString msg = pMsg;
   msg.remove(QRegExp(".+\\[Y/n\\].+"));
 
+  std::cout << msg.toAscii().data() << std::endl;
+
   //If it is a percentage, we are talking about curl output...
   if(msg.indexOf("#]") != -1)
   {
@@ -1603,10 +1608,13 @@ void MainWindow::_treatProcessOutput(const QString &pMsg)
         m_commandExecuting == ectn_SYSTEM_UPGRADE ||
         m_commandExecuting == ectn_SYNC_DATABASE)
     {
-      int ini = msg.indexOf(QRegExp("\\(\\d/\\d\\) ")); //"(");
-      if (ini >= 0)
+      QString order;
+      int ini = msg.indexOf(QRegExp("\\(\\s{0,3}[0-9]{1,4}/[0-9]{1,4}\\) "));
+      if (ini == 0)
       {
-        msg = msg.remove(0, 6);
+        int rp = msg.indexOf(")");
+        order = msg.left(rp+2);
+        msg = msg.remove(0, rp+2);
 
         if (_searchForKeyVerbs(msg))
         {
@@ -1614,7 +1622,9 @@ void MainWindow::_treatProcessOutput(const QString &pMsg)
           msg = msg.remove(end, msg.size()-end).trimmed();
 
           if(!_textInTabOutput(msg))
+          {
             writeToTabOutput("<font color=\"blue\">" + msg + "</font>");
+          }
         }
         else
         {
@@ -1639,7 +1649,8 @@ void MainWindow::_treatProcessOutput(const QString &pMsg)
         if (_searchForKeyVerbs(msg))
         {
           int end = msg.indexOf("[");
-          msg = msg.remove(end, msg.size()-end).trimmed();
+          msg = msg.remove(end, msg.size()-end);
+          msg = msg.trimmed();
 
           if(!_textInTabOutput(msg))
             writeToTabOutput("<font color=\"blue\">" + msg + "</font>");
@@ -1672,10 +1683,13 @@ void MainWindow::_treatProcessOutput(const QString &pMsg)
     }
     else if (m_commandExecuting == ectn_REMOVE)
     {
-      int ini = msg.indexOf(QRegExp("\\(\\d/\\d\\) ")); //"(");
-      if (ini >= 0)
+      QString order;
+      int ini = msg.indexOf(QRegExp("\\(\\s{0,3}[0-9]{1,4}/[0-9]{1,4}\\) "));
+      if (ini == 0)
       {
-        msg = msg.remove(0, 6);
+        int rp = msg.indexOf(")");
+        order = msg.left(rp+2);
+        msg = msg.remove(0, rp+2);
       }
 
       int pos = msg.indexOf("[");
@@ -1722,10 +1736,13 @@ void MainWindow::_treatProcessOutput(const QString &pMsg)
 
     msg = msg.trimmed();
 
-    int ini = msg.indexOf(QRegExp("\\(\\d/\\d\\) ")); //"(");
-    if (ini >= 0)
+    QString order;
+    int ini = msg.indexOf(QRegExp("\\(\\s{0,3}[0-9]{1,4}/[0-9]{1,4}\\) "));
+    if (ini == 0)
     {
-      msg = msg.remove(0, 6);
+      int rp = msg.indexOf(")");
+      order = msg.left(rp+2);
+      msg = msg.remove(0, rp+2);
     }
 
     if (!msg.isEmpty() && !_textInTabOutput(msg))
@@ -1855,12 +1872,14 @@ void MainWindow::_ensureTabOutputVisible()
 {
   QList<int> rl;
   rl = ui->splitterHorizontal->sizes();
+
+  ui->twProperties->setCurrentIndex(ctn_TABINDEX_OUTPUT);
+
   if(rl[1] <= 50)
   {
     rl.clear();
     rl << 200 << 235;
     ui->splitterHorizontal->setSizes(rl);
-    ui->twProperties->setCurrentIndex(ctn_TABINDEX_OUTPUT);
   }
 }
 
@@ -1932,6 +1951,9 @@ void MainWindow::headerViewPackageListSortIndicatorClicked( int col, Qt::SortOrd
   m_PackageListSortOrder = order;
 }
 
+/*
+ * Initialize QAction objects
+ */
 void MainWindow::initActions()
 {
   connect(ui->tvPackages->selectionModel(), SIGNAL(selectionChanged(QItemSelection,QItemSelection)), this,
@@ -2002,12 +2024,11 @@ void MainWindow::writeToTabOutput(const QString &msg)
   QTextEdit *text = ui->twProperties->widget(ctn_TABINDEX_OUTPUT)->findChild<QTextEdit*>("textOutputEdit");
   if (text)
   {
+    //text->setFocus();
     _ensureTabOutputVisible();
     _positionTextEditCursorAtEnd();
-    text->append(msg);
+    text->insertHtml(msg + "<br>"); //text->append(msg);
     text->ensureCursorVisible();
-    ui->twProperties->setCurrentIndex(ctn_TABINDEX_OUTPUT);
-    text->setFocus();
   }
 }
 
@@ -2068,7 +2089,12 @@ bool MainWindow::_isThereAPendingTransaction()
  */
 void MainWindow::closeEvent(QCloseEvent *event)
 {
-  if(_isThereAPendingTransaction())
+  //We cannot quit while there is a running transaction!
+  if(m_commandExecuting != ectn_NONE)
+  {
+    event->ignore();
+  }
+  else if(_isThereAPendingTransaction())
   {
     int res = QMessageBox::question(this, StrConstants::getConfirmation(),
                                     StrConstants::getThereIsAPendingTransaction() + "\n" +
