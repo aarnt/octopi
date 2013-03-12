@@ -195,7 +195,7 @@ double Package::humanizeSize(off_t bytes, const char target_unit, int precision,
 
 QStringList *Package::getUnrequiredPackageList()
 {
-  QString unrequiredPkgList = UnixCommand::getUnrequiredPakcageList();
+  QString unrequiredPkgList = UnixCommand::getUnrequiredPackageList();
   QStringList packageTuples = unrequiredPkgList.split(QRegExp("\\n"), QString::SkipEmptyParts);
   QStringList * res = new QStringList();
 

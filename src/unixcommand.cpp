@@ -19,7 +19,6 @@
 */
 
 #include "unixcommand.h"
-#include "package.h"
 #include "strconstants.h"
 #include "wmhelper.h"
 #include <iostream>
@@ -27,14 +26,14 @@
 #include <QFile>
 #include <QFileInfo>
 #include <QByteArray>
-#include <QApplication>
-#include <QMessageBox>
 #include <QTextStream>
 #include <QtNetwork/QNetworkInterface>
 
 QFile *UnixCommand::m_temporaryFile = 0;
 
-//Execute the given command and returns the StandardError Output.
+/*
+ * Executes given command and returns the StandardError Output.
+ */
 QString UnixCommand::runCommand(const QString& commandToRun)
 {
   QProcess proc;
@@ -53,7 +52,9 @@ QString UnixCommand::runCommand(const QString& commandToRun)
   return res;
 }
 
-//Execute the CURL command and returns the StandardError Output, if result code <> 0.
+/*
+ * Executes the CURL command and returns the StandardError Output, if result code <> 0.
+ */
 QString UnixCommand::runCurlCommand(const QString& commandToRun){
   QProcess proc;
 
@@ -75,7 +76,9 @@ QString UnixCommand::runCurlCommand(const QString& commandToRun){
   return res;
 }
 
-//Returns the path of a given executable
+/*
+ * Returns the path of given executable
+ */
 QString UnixCommand::discoverBinaryPath(const QString& binary){
   QProcess *proc = new QProcess;
 
@@ -104,7 +107,41 @@ QString UnixCommand::discoverBinaryPath(const QString& binary){
   return res;
 }
 
-QByteArray UnixCommand::getUnrequiredPakcageList()
+/*
+ * Cleans Pacman's package cache
+ */
+void UnixCommand::cleanPacmanCache()
+{
+  QProcess pacman;
+  QStringList args;
+
+#if QT_VERSION >= 0x040600
+  QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
+  env.insert("LANG", "us_EN");
+  pacman.setProcessEnvironment(env);
+#endif
+
+  QFile *ftemp = getTemporaryFile();
+  QTextStream out(ftemp);
+  out << "pacman -Sc --noconfirm";
+  out.flush();
+  ftemp->close();
+
+  QString command = WMHelper::getSUCommand() + " " + ftemp->fileName();
+  pacman.start(command);
+  pacman.waitForStarted();
+
+  //pacman.write("y"); //Yes, we want to remove ALL files from cache
+  //pacman.write("n"); //No, we do not want to remove unused repositories
+  //pacman.closeWriteChannel();
+
+  pacman.waitForFinished();
+}
+
+/*
+ * Returns a string containing all packages no one depends on
+ */
+QByteArray UnixCommand::getUnrequiredPackageList()
 {
   QByteArray result("");
   QProcess pacman;
@@ -125,6 +162,9 @@ QByteArray UnixCommand::getUnrequiredPakcageList()
   return result;
 }
 
+/*
+ * Returns a string containing all packages that are outdated since last DB sync
+ */
 QByteArray UnixCommand::getOutdatedPackageList()
 {
   QByteArray result("");
@@ -146,6 +186,10 @@ QByteArray UnixCommand::getOutdatedPackageList()
   return result;
 }
 
+/*
+ * Returns a string containing all packages that are not contained in any repository
+ * (probably the ones installed by a tool such as yaourt)
+ */
 QByteArray UnixCommand::getForeignPackageList()
 {
   QByteArray result("");
@@ -167,6 +211,10 @@ QByteArray UnixCommand::getForeignPackageList()
   return result;
 }
 
+/*
+ * Returns a string with the list of all packages available in all repositories
+ * (installed + not installed)
+ */
 QByteArray UnixCommand::getPackageList()
 {
   QByteArray result("");
@@ -188,6 +236,11 @@ QByteArray UnixCommand::getPackageList()
   return result;
 }
 
+/*
+ * Given a package name and if it is default to the official repositories,
+ * returns a string containing all the fields of its information
+ * (ex: name, description, version, dependsOn...)
+ */
 QByteArray UnixCommand::getPackageInformation(const QString &pkgName, bool foreignPackage = false)
 {
   QByteArray result("");
@@ -219,6 +272,9 @@ QByteArray UnixCommand::getPackageInformation(const QString &pkgName, bool forei
   return result;
 }
 
+/*
+ * Given a package name, returns a string containing all the files inside it
+ */
 QByteArray UnixCommand::getPackageContents(const QString& pkgName)
 {
   QByteArray res;
@@ -242,6 +298,9 @@ QByteArray UnixCommand::getPackageContents(const QString& pkgName)
   return res;
 }
 
+/*
+ * Given a group name, returns a string containing all packages from it
+ */
 QByteArray UnixCommand::getPackagesFromGroup(const QString &groupName)
 {
   QByteArray res;
@@ -265,7 +324,9 @@ QByteArray UnixCommand::getPackagesFromGroup(const QString &groupName)
   return res;
 }
 
-//Retrieves the list of targets needed to update the entire system or a given package
+/*
+ * Retrieves the list of targets needed to update the entire system or a given package
+ */
 QByteArray UnixCommand::getTargetUpgradeList(const QString &pkgName)
 {
   QByteArray res;
@@ -296,6 +357,9 @@ QByteArray UnixCommand::getTargetUpgradeList(const QString &pkgName)
   return res;
 }
 
+/*
+ * Given a package name, retrieves the list of all targets needed for its removal
+ */
 QByteArray UnixCommand::getTargetRemovalList(const QString &pkgName)
 {
   QByteArray res;
@@ -315,6 +379,9 @@ QByteArray UnixCommand::getTargetRemovalList(const QString &pkgName)
   return res;
 }
 
+/*
+ * Retrieves the system arch
+ */
 QString UnixCommand::getSystemArchitecture()
 {
   QStringList slParam;
@@ -336,6 +403,9 @@ QString UnixCommand::getSystemArchitecture()
   return out;
 }
 
+/*
+ * Checks if we have internet access!
+ */
 bool UnixCommand::hasInternetConnection()
 {
   QList<QNetworkInterface> ifaces = QNetworkInterface::allInterfaces();
@@ -362,7 +432,9 @@ bool UnixCommand::hasInternetConnection()
   return result;
 }
 
-//We must check if KTSUSS version is 1.3 or 1.4.
+/*
+ * We must check if KTSUSS version is 1.3 or 1.4.
+ */
 bool UnixCommand::isKtsussVersionOK()
 {
   QProcess proc;
@@ -386,6 +458,9 @@ bool UnixCommand::isKtsussVersionOK()
     return false;
 }
 
+/*
+ * Checks if the given executable is available somewhere in the system
+ */
 bool UnixCommand::hasTheExecutable( const QString& exeName )
 {
   QProcess* proc = new QProcess();
@@ -402,6 +477,9 @@ bool UnixCommand::hasTheExecutable( const QString& exeName )
   else return true;
 }
 
+/*
+ * Does some garbage collection, removing uneeded files
+ */
 void UnixCommand::removeTemporaryFiles()
 {
   QDir tempDir(QDir::tempPath());
@@ -431,6 +509,9 @@ void UnixCommand::removeTemporaryFiles()
   }
 }
 
+/*
+ * Given a filename, checks if it is a text file
+ */
 bool UnixCommand::isTextFile(const QString& fileName)
 {
   QProcess *p = new QProcess();
@@ -457,6 +538,9 @@ bool UnixCommand::isTextFile(const QString& fileName)
           (output.indexOf( "executable", from) == -1));
 }
 
+/*
+ * Executes the given commandlist using QProcess async technology
+ */
 void UnixCommand::executePackageActions( const QStringList& commandList )
 {
   QFile *ftemp = getTemporaryFile();
@@ -473,38 +557,50 @@ void UnixCommand::executePackageActions( const QStringList& commandList )
   m_process->start(command);
 }
 
-void UnixCommand::executeCommand(const QString &command)
-{
-  //QString strCommand = WMHelper::getSUCommand() + " " + command;
-  m_process->start(command);
-}
-
+/*
+ * Puts all Standard output of the member process into a member string
+ */
 void UnixCommand::processReadyReadStandardOutput()
 {
   m_readAllStandardOutput = m_process->readAllStandardOutput();
 }
 
+/*
+ * Puts all StandardError output of the member process into a member string
+ */
 void UnixCommand::processReadyReadStandardError()
 {
   m_readAllStandardError = m_process->readAllStandardError();
   m_errorString = m_process->errorString();
 }
 
+/*
+ * Retrieves Standard output of member process
+ */
 QString UnixCommand::readAllStandardOutput()
 {
   return m_readAllStandardOutput;
 }
 
+/*
+ * Retrieves StandardError output of member process
+ */
 QString UnixCommand::readAllStandardError()
 {
   return m_readAllStandardError;
 }
 
+/*
+ * Retrieves ErrorString of member process
+ */
 QString UnixCommand::errorString()
 {
   return m_errorString;
 }
 
+/*
+ * UnixCommand's constructor: the relevant environment english setting and the connectors
+ */
 UnixCommand::UnixCommand(QObject *parent): QObject()
 {
   m_process = new QProcess(parent);
@@ -534,36 +630,4 @@ UnixCommand::UnixCommand(QObject *parent): QObject()
                    SIGNAL( readyReadStandardError() ));
   QObject::connect(this, SIGNAL( readyReadStandardError() ), this,
                    SLOT( processReadyReadStandardError() ));
-}
-
-QString UnixCommand::getPkgRemoveCommand()
-{
-  if (SettingsManager::getUsePkgTools() == true)
-    return ctn_PKGTOOLS_REMOVE;
-  else
-    return discoverBinaryPath(ctn_SPKG) + ctn_SPKG_REMOVE;
-}
-
-QString UnixCommand::getPkgInstallCommand()
-{
-  if (SettingsManager::getUsePkgTools() == true)
-    return ctn_PKGTOOLS_INSTALL;
-  else
-    return discoverBinaryPath(ctn_SPKG) + ctn_SPKG_INSTALL;
-}
-
-QString UnixCommand::getPkgUpgradeCommand()
-{
-  if (SettingsManager::getUsePkgTools() == true)
-    return ctn_PKGTOOLS_UPGRADE;
-  else
-    return discoverBinaryPath(ctn_SPKG) + ctn_SPKG_UPGRADE;
-}
-
-QString UnixCommand::getPkgReinstallCommand()
-{
-  if (SettingsManager::getUsePkgTools() == true)
-    return ctn_PKGTOOLS_REINSTALL;
-  else
-    return discoverBinaryPath(ctn_SPKG) + ctn_SPKG_REINSTALL;
 }

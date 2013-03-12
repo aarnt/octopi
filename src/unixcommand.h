@@ -27,23 +27,7 @@
 #include <unistd.h>
 #include "package.h"
 
-const QString ctn_XZ_TAR_ERROR("/usr/bin/tar: This does not look like a tar archive\n"
-                               "xz: (stdin): File format not recognized\n"
-                               "/usr/bin/tar: Child returned status 1\n"
-                               "/usr/bin/tar: Error is not recoverable: exiting now\n");
-
-const QString ctn_GZ_TAR_ERROR("/usr/bin/tar: This does not look like a tar archive\n\n"
-                               "gzip: stdin: not in gzip format\n"
-                               "/usr/bin/tar: Child returned status 1\n"
-                               "/usr/bin/tar: Error is not recoverable: exiting now\n");
-
 const QString ctn_COMMAND_NOT_FOUND("command not found");
-const QString ctn_MAKELZMBIN("make-lzm");
-const QString ctn_RPM2TGZBIN("rpm2tgz");
-const QString ctn_RPM2TXZBIN("rpm2txz");
-const QString ctn_TGZ2LZMBIN("tgz2lzm");
-const QString ctn_TXZ2SBBIN("txz2sb");
-
 const QString ctn_PACKAGES_WITH_SAME_CONTENT("The packages have the same content!");
 const QString ctn_AUTOMATIC("automatic");
 
@@ -72,18 +56,15 @@ public:
   static QString runCurlCommand(const QString& commandToRun);
   static QString discoverBinaryPath(const QString&);
 
-  static QByteArray getUnrequiredPakcageList();
+  static void cleanPacmanCache();
+  static QByteArray getUnrequiredPackageList();
   static QByteArray getOutdatedPackageList();
   static QByteArray getForeignPackageList();
   static QByteArray getPackageList();
   static QByteArray getPackageInformation(const QString &pkgName, bool foreignPackage);
   static QByteArray getPackageContents(const QString &pkgName);
   static QByteArray getPackagesFromGroup(const QString &groupName);
-
-  //Retrieves the list of targets needed to update the entire system or a given package
   static QByteArray getTargetUpgradeList(const QString &pkgName = "");
-
-  //Retrieves the list of targets needed to remove a given package
   static QByteArray getTargetRemovalList(const QString &pkgName);
 
   static QString getSystemArchitecture();
@@ -119,14 +100,7 @@ public:
 
   static void removeTemporaryFiles();
 
-  static QString getPkgInstallCommand();
-  static QString getPkgUpgradeCommand();
-  static QString getPkgRemoveCommand();
-  static QString getPkgReinstallCommand();
-
   void executePackageActions(const QStringList& commandList);
-  void executeCommand(const QString& command);
-
   QString readAllStandardOutput();
   QString readAllStandardError();
   QString errorString();
