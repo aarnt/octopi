@@ -75,9 +75,6 @@ MainWindow::MainWindow(QWidget *parent) :
   timer = new QTimer();
   connect(timer, SIGNAL(timeout()), this, SLOT(buildPackageList()));
   timer->start(40);
-
-  //Let's garbage collect transaction files...
-  m_unixCommand->removeTemporaryFiles();
 }
 
 /*
@@ -85,6 +82,8 @@ MainWindow::MainWindow(QWidget *parent) :
  */
 MainWindow::~MainWindow()
 {
+  //Let's garbage collect transaction files...
+  m_unixCommand->removeTemporaryFiles();
   delete ui;
 }
 
@@ -1478,19 +1477,19 @@ void MainWindow::actionsProcessStarted()
   //First we output the name of action we are starting to execute!
   if (m_commandExecuting == ectn_SYNC_DATABASE)
   {
-    writeToTabOutput("<B>" + StrConstants::getSyncDatabases() + "</B><br>");
+    writeToTabOutput(StrConstants::getSyncDatabases());
   }
   else if (m_commandExecuting == ectn_SYSTEM_UPGRADE)
   {
-    writeToTabOutput("<B>" + StrConstants::getSystemUpgrade() + "</B><br>");
+    writeToTabOutput(StrConstants::getSystemUpgrade());
   }
   else if (m_commandExecuting == ectn_REMOVE)
   {
-    writeToTabOutput("<B>" + StrConstants::getRemovingPackages() + "</B><br>");
+    writeToTabOutput(StrConstants::getRemovingPackages());
   }
   else if (m_commandExecuting == ectn_INSTALL)
   {
-    writeToTabOutput("<B>" + StrConstants::getInstallingPackages() + "</B><br>");
+    writeToTabOutput(StrConstants::getInstallingPackages());
   }
 
   QString msg = m_unixCommand->readAllStandardOutput();
@@ -1510,13 +1509,13 @@ void MainWindow::actionsProcessFinished(int exitCode, QProcess::ExitStatus)
   ui->twProperties->setTabText(ctn_TABINDEX_OUTPUT, tr("Output"));
 
   if (exitCode == 0){
-    writeToTabOutput("<br><B>:: " +
-                     StrConstants::getCommandFinishedOK() + "</B><br><br>");
+    writeToTabOutput("<br>:: " +
+                     StrConstants::getCommandFinishedOK() + "<br>");
   }
   else
   {
-    writeToTabOutput("<br><B><font color=\"red\">:: " +
-                     StrConstants::getCommandFinishedWithErrors() + "</font></B><br><br>");
+    writeToTabOutput("<br>:: " +
+                     StrConstants::getCommandFinishedWithErrors() + "<br>");
   }
 
   if(m_commandQueued == ectn_SYSTEM_UPGRADE)
@@ -1592,7 +1591,7 @@ void MainWindow::_treatProcessOutput(const QString &pMsg)
   QString msg = pMsg;
   msg.remove(QRegExp(".+\\[Y/n\\].+"));
 
-  std::cout << msg.toAscii().data() << std::endl;
+  std::cout << "out: " << msg.toAscii().data() << std::endl;
 
   //If it is a percentage, we are talking about curl output...
   if(msg.indexOf("#]") != -1)
@@ -1623,7 +1622,7 @@ void MainWindow::_treatProcessOutput(const QString &pMsg)
 
           if(!_textInTabOutput(msg))
           {
-            writeToTabOutput("<font color=\"blue\">" + msg + "</font>");
+            writeToTabOutput(msg);
           }
         }
         else
@@ -1653,7 +1652,7 @@ void MainWindow::_treatProcessOutput(const QString &pMsg)
           msg = msg.trimmed();
 
           if(!_textInTabOutput(msg))
-            writeToTabOutput("<font color=\"blue\">" + msg + "</font>");
+            writeToTabOutput(msg);
         }
         else
         {
@@ -1750,7 +1749,7 @@ void MainWindow::_treatProcessOutput(const QString &pMsg)
       if (msg.contains("removing "))
         writeToTabOutput("<font color=\"red\">" + msg + "</font>");
       else
-        writeToTabOutput("<font color=\"black\">" + msg + "</font>");
+        writeToTabOutput(msg); //it was font color = black
     }
   }
 
@@ -2024,10 +2023,50 @@ void MainWindow::writeToTabOutput(const QString &msg)
   QTextEdit *text = ui->twProperties->widget(ctn_TABINDEX_OUTPUT)->findChild<QTextEdit*>("textOutputEdit");
   if (text)
   {
+    QString newMsg = msg;
     //text->setFocus();
     _ensureTabOutputVisible();
     _positionTextEditCursorAtEnd();
-    text->insertHtml(msg + "<br>"); //text->append(msg);
+
+    if(newMsg.contains(QRegExp("<font color")))
+    {
+      std::cout << "I was coloured" << newMsg.toAscii().data() << std::endl;
+      newMsg += "<br>";
+    }
+    else
+    {
+      if(
+         (newMsg.contains("removing ") ||
+         newMsg.contains("error") ||
+         newMsg.contains("warning")))
+      {
+        newMsg = "<font color=\"red\">" + newMsg + "</font><br>";
+      }
+      else if(
+              (newMsg.contains("checking ") ||
+               newMsg.contains("installing ") ||
+               newMsg.contains("upgrading ") ||
+               newMsg.contains("loading ") ||
+               newMsg.contains("resolving ") ||
+               newMsg.contains("looking ")))
+       {
+         newMsg = "<font color=\"blue\">" + newMsg + "</font><br>";
+         std::cout << "alt: " << newMsg.toAscii().data() << std::endl;
+       }
+      else
+      {
+        newMsg += "<br>";
+      }
+    }
+    if(!newMsg.contains("<b>", Qt::CaseInsensitive))
+    {
+      if(newMsg.contains("::"))
+      {
+        newMsg = "<B>" + newMsg + "</B><br>";
+      }
+    }
+
+    text->insertHtml(newMsg);
     text->ensureCursorVisible();
   }
 }

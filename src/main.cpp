@@ -18,15 +18,13 @@
 *
 */
 
-#include "QtSolutions/qtsingleapplication.h"
 #include "mainwindow.h"
 #include "argumentlist.h"
 #include "strconstants.h"
 #include "unixcommand.h"
-
 #include <iostream>
+#include "QtSolutions/qtsingleapplication.h"
 #include <QtGui>
-#include <QApplication>
 
 int main(int argc, char *argv[])
 {
