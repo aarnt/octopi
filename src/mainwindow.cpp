@@ -847,8 +847,7 @@ void MainWindow::maximizePropertiesTabWidget()
   if ( rl[0] != 0 )
   {
     ui->splitterHorizontal->setSizes( l << 0 << ui->twProperties->maximumHeight());
-    if(ui->tvPackages->hasFocus())
-      ui->twProperties->currentWidget()->setFocus();
+    ui->twProperties->currentWidget()->childAt(1,1)->setFocus();
   }
   else
   {
