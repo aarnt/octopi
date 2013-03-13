@@ -576,19 +576,19 @@ void MainWindow::actionsProcessStarted()
   //First we output the name of action we are starting to execute!
   if (m_commandExecuting == ectn_SYNC_DATABASE)
   {
-    writeToTabOutput(StrConstants::getSyncDatabases());
+    writeToTabOutput("<b>" + StrConstants::getSyncDatabases() + "</b>");
   }
   else if (m_commandExecuting == ectn_SYSTEM_UPGRADE)
   {
-    writeToTabOutput(StrConstants::getSystemUpgrade());
+    writeToTabOutput("<b>" + StrConstants::getSystemUpgrade() + "</b>");
   }
   else if (m_commandExecuting == ectn_REMOVE)
   {
-    writeToTabOutput(StrConstants::getRemovingPackages());
+    writeToTabOutput("<b>" + StrConstants::getRemovingPackages() + "</b>");
   }
   else if (m_commandExecuting == ectn_INSTALL)
   {
-    writeToTabOutput(StrConstants::getInstallingPackages());
+    writeToTabOutput("<b>" + StrConstants::getInstallingPackages() + "</b>");
   }
 
   QString msg = m_unixCommand->readAllStandardOutput();
@@ -608,13 +608,13 @@ void MainWindow::actionsProcessFinished(int exitCode, QProcess::ExitStatus)
   ui->twProperties->setTabText(ctn_TABINDEX_OUTPUT, StrConstants::getTabOutputName());
 
   if (exitCode == 0){
-    writeToTabOutput("<br>:: " +
-                     StrConstants::getCommandFinishedOK() + "<br>");
+    writeToTabOutput("<br><b>" +
+                     StrConstants::getCommandFinishedOK() + "</b><br>");
   }
   else
   {
-    writeToTabOutput("<br>:: " +
-                     StrConstants::getCommandFinishedWithErrors() + "<br>");
+    writeToTabOutput("<br><b>" +
+                     StrConstants::getCommandFinishedWithErrors() + "</b><br>");
   }
 
   if(m_commandQueued == ectn_SYSTEM_UPGRADE)
@@ -843,7 +843,13 @@ void MainWindow::_treatProcessOutput(const QString &pMsg)
       if (msg.contains(QRegExp("removing ")))
         writeToTabOutput("<font color=\"red\">" + msg + "</font>");
       else
-        writeToTabOutput(msg); //it was font color = black
+      {
+        if (msg.indexOf(":: Synchronizing package databases...") == -1 &&
+            msg.indexOf(":: Starting full system upgrade...") == -1)
+        {
+          writeToTabOutput(msg); //it was font color = black
+        }
+      }
     }
   }
 

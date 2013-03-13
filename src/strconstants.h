@@ -199,18 +199,18 @@ public:
   }
 
   static QString getSyncDatabases(){
-    return QObject::tr(":: Synchronizing package databases...");    
+    return QObject::tr("Synchronizing databases...");
   }
   static QString getSystemUpgrade(){
-    return QObject::tr(":: Starting full system upgrade...");
+    return QObject::tr("Starting full system upgrade...");
   }
 
   static QString getInstallingPackages(){
-    return QObject::tr(":: Installing selected packages...");
+    return QObject::tr("Installing selected packages...");
   }
 
   static QString getRemovingPackages(){
-    return QObject::tr(":: Removing selected packages...");
+    return QObject::tr("Removing selected packages...");
   }
 
   static QString getCommandFinishedOK(){
@@ -218,7 +218,7 @@ public:
   }
 
   static QString getCommandFinishedWithErrors(){
-    return QObject::tr("Command finished with errors...");
+    return QObject::tr("Command finished with errors!");
   }
 
   static QString geRetrievingTarget(){

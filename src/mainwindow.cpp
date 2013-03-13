@@ -998,8 +998,12 @@ void MainWindow::writeToTabOutput(const QString &msg)
     {
       if(newMsg.contains("::"))
       {
-        newMsg = "<B>" + newMsg + "</B><br>";
+        newMsg = "<br><B>" + newMsg + "</B><br>";
       }
+    }
+    else
+    {
+      newMsg += "<br>";
     }
 
     text->insertHtml(newMsg);
