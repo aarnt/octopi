@@ -50,7 +50,10 @@ SOURCES += src/QtSolutions/qtsingleapplication.cpp \
     src/QtSolutions/qtlockedfile.cpp \
     src/QtSolutions/qtlockedfile_win.cpp \
     src/QtSolutions/qtlockedfile_unix.cpp \
-    src/treeviewpackagesitemdelegate.cpp
+    src/treeviewpackagesitemdelegate.cpp \
+    src/mainwindow_init.cpp \
+    src/mainwindow_transaction.cpp \
+    src/mainwindow_events.cpp
 
 FORMS    += ui/mainwindow.ui
 
