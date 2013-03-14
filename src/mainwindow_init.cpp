@@ -31,6 +31,7 @@
 #include <QStandardItemModel>
 #include <QSortFilterProxyModel>
 #include <QTextBrowser>
+#include <QResource>
 
 /*
  * If we have some outdated packages, let's put octopi in a red face/angry state ;-)
@@ -288,9 +289,14 @@ void MainWindow::initTabHelpAbout()
   gridLayoutX->addWidget(text, 0, 0, 1, 1);
 
   QString url = "qrc:/resources/help/help_" + QLocale::system().name() + ".html";
-  text->setSource(QUrl(url));
+  QResource resource(url);
 
-  if (text->document()->isEmpty()){
+  if(resource.isValid())
+  {
+    text->setSource(QUrl(url));
+  }
+  else
+  {
     url = "qrc:/resources/help/help_en_US.html";
     text->setSource(QUrl(url));
   }

@@ -1,0 +1,43 @@
+<h3>Octopi</h3>
+<p>A Qt4-based ArchLinux Pacman fronted,
+licensed under the terms of <a href="http://www.gnu.org/licenses/gpl-2.0.html">GPL v2</a>.
+</p>
+<br>
+Package classification:
+<ul type="square">
+<li><img height="16" width="16" src=":/resources/images/installed.png"> This is an installed package</li>
+<li><img height="16" width="16" src=":/resources/images/unrequired.png"> This is an unrequired installed package (no other package depends on it)</li>
+<li><img height="16" width="16" src=":/resources/images/foreign.png"> This is a foreign package, installed from an unknown repository source (probably by yaourt)</li>
+<li><img height="16" width="16" src=":/resources/images/noninstalled.png"> This is a non installed package</li>
+<li><img height="16" width="16" src=":/resources/images/outdated.png"> This is an outdated package</li>
+</ul>
+Basic usage help:
+<ul>
+<li>Position the mouse over a package to see it's description</li>
+<li>Right click over a package to install/reinstall or remove it</li>
+</ul>
+Control+key sequences:
+<ul>
+<li>Ctrl+D or "File/Sync database" to sync the local database with latest remote changes (pacman -Sy)</li>
+<li>Ctrl+U or "File/System upgrade" to make a full system upgrade (pacman -Su)</li>
+<li>Ctrl+L to find a package in the package list</li>
+<li>Ctrl+N or "View/Non installed" to show/hide non installed packages</li>
+<li>Ctrl+M or "Transaction/Commit" to start installation/removal of selected packages</li>
+<li>Ctrl+B or "Transaction/Rollback" to clear the selection of to be removed/installed packages</li>
+<li>Ctrl+Q or "File/Exit" to exit the application</li>
+</ul>
+Control+shift+key sequences:
+<ul>
+<li>Ctrl+Shift+C to clean local packages cache (pacman -Sc)</li>
+</ul>
+F+key sequences:
+<ul>
+<li>F1 to show this help page</li>
+<li>F4 to open a Terminal within the selected directory at Files tab</li>
+<li>F6 to open a File Manager whitin the selected directory at Files tab</li>
+<li>F10 to maximize/demaximize package list view</li>
+<li>F12 to maximize/demaximize Tab's view</li>
+</ul>
+<p>
+<br>
+<i>Alexandre Albuquerque Arnt - Author</i>
