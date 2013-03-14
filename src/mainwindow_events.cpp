@@ -90,7 +90,7 @@ void MainWindow::keyPressEvent(QKeyEvent* ke)
   else if(ke->key() == Qt::Key_Delete)
   {
     onPressDelete();
-  }
+  }    
   else if(ke->key() == Qt::Key_F4)
   {
     QString dir = getSelectedDirectory();

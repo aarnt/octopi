@@ -42,6 +42,10 @@ public:
     return str;
   }
 
+  static QString getHelp(){
+    return QObject::tr("Help");
+  }
+
   static QString getName(){
     return QObject::tr("Name");
   }
@@ -108,6 +112,10 @@ public:
 
   static QString getPackage(){
     return QObject::tr("Package");
+  }
+
+  static QString getPackages(){
+    return QObject::tr("Packages");
   }
 
   static QString getArchitecture(){

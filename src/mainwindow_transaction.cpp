@@ -99,12 +99,23 @@ QStandardItem * MainWindow::getInstallTransactionParentItem()
 void MainWindow::insertRemovePackageIntoTransaction(const QString &pkgName)
 {
   QTreeView *tvTransaction = ui->twProperties->widget(ctn_TABINDEX_TRANSACTION)->findChild<QTreeView*>("tvTransaction");
-  QStandardItem * si = getRemoveTransactionParentItem();
-  QStandardItem * siRemove = new QStandardItem(pkgName);
-  QStandardItemModel *sim = qobject_cast<QStandardItemModel *>(si->model());
+  QStandardItem * siRemoveParent = getRemoveTransactionParentItem();
+  QStandardItem * siInstallParent = getInstallTransactionParentItem();
+  QStandardItem * siPackageToRemove = new QStandardItem(pkgName);
+  QStandardItemModel *sim = qobject_cast<QStandardItemModel *>(siRemoveParent->model());
 
   QList<QStandardItem *> foundItems = sim->findItems(pkgName, Qt::MatchRecursive | Qt::MatchExactly);
-  if (foundItems.size() == 0) si->appendRow(siRemove);
+
+  if (foundItems.size() == 0)
+  {
+    siRemoveParent->appendRow(siPackageToRemove);
+  }
+  else if (foundItems.size() == 1 && foundItems.at(0)->parent() == siInstallParent)
+  {
+    siInstallParent->removeRow(foundItems.at(0)->row());
+    siRemoveParent->appendRow(siPackageToRemove);
+  }
+
   ui->twProperties->setCurrentIndex(ctn_TABINDEX_TRANSACTION);
   tvTransaction->expandAll();
 
@@ -117,12 +128,23 @@ void MainWindow::insertRemovePackageIntoTransaction(const QString &pkgName)
 void MainWindow::insertInstallPackageIntoTransaction(const QString &pkgName)
 {
   QTreeView *tvTransaction = ui->twProperties->widget(ctn_TABINDEX_TRANSACTION)->findChild<QTreeView*>("tvTransaction");
-  QStandardItem * si = getInstallTransactionParentItem();
-  QStandardItem * siInstall = new QStandardItem(pkgName);
-  QStandardItemModel *sim = qobject_cast<QStandardItemModel *>(si->model());
+  QStandardItem * siInstallParent = getInstallTransactionParentItem();
+  QStandardItem * siPackageToInstall = new QStandardItem(pkgName);
+  QStandardItem * siRemoveParent = getRemoveTransactionParentItem();
+  QStandardItemModel *sim = qobject_cast<QStandardItemModel *>(siInstallParent->model());
 
   QList<QStandardItem *> foundItems = sim->findItems(pkgName, Qt::MatchRecursive | Qt::MatchExactly);
-  if (foundItems.size() == 0) si->appendRow(siInstall);
+
+  if (foundItems.size() == 0)
+  {
+    siInstallParent->appendRow(siPackageToInstall);
+  }
+  else if (foundItems.size() == 1 && foundItems.at(0)->parent() == siRemoveParent)
+  {
+    siRemoveParent->removeRow(foundItems.at(0)->row());
+    siInstallParent->appendRow(siPackageToInstall);
+  }
+
   ui->twProperties->setCurrentIndex(ctn_TABINDEX_TRANSACTION);
   tvTransaction->expandAll();
 
@@ -689,6 +711,7 @@ void MainWindow::_treatProcessOutput(const QString &pMsg)
   QString perc;
   QString msg = pMsg;
   msg.remove(QRegExp(".+\\[Y/n\\].+"));
+  msg.remove(QRegExp("warning:\\S{0}"));
 
   //std::cout << "out: " << msg.toAscii().data() << std::endl;
 

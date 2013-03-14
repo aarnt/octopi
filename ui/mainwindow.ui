@@ -147,7 +147,7 @@
     <property name="title">
      <string>Help</string>
     </property>
-    <addaction name="actionAbout"/>
+    <addaction name="actionHelpAbout"/>
    </widget>
    <widget class="QMenu" name="menuView">
     <property name="title">
@@ -191,12 +191,15 @@
    </attribute>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
-  <action name="actionAbout">
+  <action name="actionHelpAbout">
    <property name="text">
     <string>About</string>
    </property>
    <property name="iconText">
     <string>About</string>
+   </property>
+   <property name="shortcut">
+    <string>F1</string>
    </property>
    <property name="iconVisibleInMenu">
     <bool>false</bool>

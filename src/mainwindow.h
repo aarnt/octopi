@@ -21,6 +21,7 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+#include <QApplication>
 #include <QMainWindow>
 #include "unixcommand.h"
 
@@ -41,6 +42,7 @@ const int ctn_TABINDEX_INFORMATION(0);
 const int ctn_TABINDEX_FILES(1);
 const int ctn_TABINDEX_TRANSACTION(2);
 const int ctn_TABINDEX_OUTPUT(3);
+const int ctn_TABINDEX_HELPABOUT(4);
 
 namespace Ui {
 class MainWindow;
@@ -53,6 +55,21 @@ class MainWindow : public QMainWindow
 public:
   explicit MainWindow(QWidget *parent = 0);
   ~MainWindow();
+
+
+  static MainWindow* returnMainWindow()
+  {
+    static MainWindow *w=0;
+    if (w != 0) return w;
+    foreach (QWidget *widget, QApplication::topLevelWidgets())
+    {
+      if (widget->objectName() == "MainWindow")
+        w = (MainWindow*) widget;
+    }
+    return w;
+  }
+
+  QStandardItemModel *getModelPackages(){ return m_modelPackages; }
 
 private:
   Ui::MainWindow *ui;
@@ -103,22 +120,14 @@ private:
   void initPackageTreeView();
 
   void initTabInfo();
+
+  //Tab Files related methods
+  QString getSelectedDirectory();
+  QString showFullPathOfObject(const QModelIndex & index);
+
   void initTabFiles();
   void initActions();
   void refreshStatusBar();
-
-  //Tab Output related methods
-  void initTabOutput();
-  void clearTabOutput();
-
-  bool _isThereAPendingTransaction();
-  void _positionTextEditCursorAtEnd();
-  bool _textInTabOutput(const QString& findText);
-  bool _searchForKeyVerbs(const QString& msg);
-  void _treatProcessOutput(const QString &pMsg);
-  void _ensureTabOutputVisible();
-  bool _isPropertiesTabWidgetVisible();
-  void writeToTabOutput(const QString &msg);
 
   //Tab Transaction related methods
   void initTabTransaction();
@@ -133,8 +142,20 @@ private:
   QString getTobeRemovedPackages();
   QString getTobeInstalledPackages();
 
-  QString getSelectedDirectory();
-  QString showFullPathOfObject(const QModelIndex & index);
+  //Tab Output related methods
+  bool _isThereAPendingTransaction();
+  void _positionTextEditCursorAtEnd();
+  bool _textInTabOutput(const QString& findText);
+  bool _searchForKeyVerbs(const QString& msg);
+  void _treatProcessOutput(const QString &pMsg);
+  void _ensureTabOutputVisible();
+  bool _isPropertiesTabWidgetVisible();
+  void writeToTabOutput(const QString &msg);
+
+  void initTabOutput();
+  void clearTabOutput();
+
+  void initTabHelpAbout();
 
 protected:
   void closeEvent(QCloseEvent *event);
@@ -180,6 +201,7 @@ private slots:
   void maximizePropertiesTabWidget();
   void outputOutdatedPackageList();
 
+  void onHelpAbout();
   void onPressDelete();
   void changeTransactionActionsState();
   void clearTransactionTreeView();

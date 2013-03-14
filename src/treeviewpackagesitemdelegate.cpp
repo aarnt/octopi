@@ -81,6 +81,44 @@ bool TreeViewPackagesItemDelegate::helpEvent ( QHelpEvent *event, QAbstractItemV
     }
     else return false;
   }
+  else if (this->parent()->objectName() == "tvTransaction")
+  {
+    QTreeView* tvTransaction = qobject_cast<QTreeView*>(this->parent());
+    QStandardItemModel *sim = qobject_cast<QStandardItemModel*>(tvTransaction->model());
+
+    if (sim->rowCount() == 0) return false;
+
+    QStandardItem *si = sim->itemFromIndex(index);
+
+    if (si)
+    {
+      if (si->icon().isNull()) //If it's really a package in the Transaction treeview...
+      {
+        QStandardItemModel *modelPackages = MainWindow::returnMainWindow()->getModelPackages();
+        QList<QStandardItem*> foundItems = modelPackages->findItems(si->text(), Qt::MatchExactly, ctn_PACKAGE_NAME_COLUMN);
+
+        if (foundItems.count() > 0)
+        {
+          QStandardItem *siFound = foundItems.at(0);
+          QStandardItem *siRepository = modelPackages->item(siFound->row(), ctn_PACKAGE_REPOSITORY_COLUMN);
+
+          bool foreignPackage = (siRepository->text().isEmpty());
+
+          QPoint p;
+          gPoint = tvTransaction->mapToGlobal(event->pos());
+          QFuture<QString> f;
+
+          f = run(showPackageInfo, siFound->text(), foreignPackage);
+          fw.setFuture(f);
+          connect(&fw, SIGNAL(finished()), this, SLOT(execToolTip()));
+        }
+      }
+      else
+      {
+        QToolTip::hideText();
+      }
+    }
+  }
 
   return true;
 

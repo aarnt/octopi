@@ -82,6 +82,7 @@ void MainWindow::initTabTransaction()
   tvTransaction->setEditTriggers(QAbstractItemView::NoEditTriggers);
   tvTransaction->setDropIndicatorShown(false);
   tvTransaction->setAcceptDrops(false);
+  tvTransaction->setItemDelegate(new TreeViewPackagesItemDelegate(tvTransaction));
   tvTransaction->header()->setSortIndicatorShown(false);
   tvTransaction->header()->setClickable(false);
   tvTransaction->header()->setMovable(false);
@@ -94,7 +95,7 @@ void MainWindow::initTabTransaction()
   m_modelTransaction->setColumnCount(0);
 
   QStringList sl;
-  m_modelTransaction->setHorizontalHeaderLabels(sl << StrConstants::getPackage());
+  m_modelTransaction->setHorizontalHeaderLabels(sl << StrConstants::getPackages());
 
   QStandardItem *siToBeRemoved = new QStandardItem(IconHelper::getIconToRemove(),
                                                    StrConstants::getTodoRemoveText());
@@ -268,6 +269,71 @@ void MainWindow::initTabOutput()
 }
 
 /*
+ * Initialize the Help tab with basic information about using Octopi
+ */
+void MainWindow::initTabHelpAbout()
+{
+  QString aux(StrConstants::getHelp());
+  QWidget *tabHelpAbout = new QWidget();
+  QGridLayout *gridLayoutX = new QGridLayout(tabHelpAbout);
+  gridLayoutX->setSpacing(0);
+  gridLayoutX->setMargin(0);
+
+  QTextBrowser *text = new QTextBrowser(tabHelpAbout);
+  text->setObjectName("textBrowser");
+  text->setReadOnly(true);
+  text->setFrameShape(QFrame::NoFrame);
+  text->setFrameShadow(QFrame::Plain);
+  text->setOpenExternalLinks(true);
+  gridLayoutX->addWidget(text, 0, 0, 1, 1);
+
+  QString url = "qrc:/resources/help/help_" + QLocale::system().name() + ".html";
+  text->setSource(QUrl(url));
+
+  if (text->document()->isEmpty()){
+    url = "qrc:/resources/help/help_en_US.html";
+    text->setSource(QUrl(url));
+  }
+
+  text->show();
+
+  int tindex = ui->twProperties->addTab(tabHelpAbout, QApplication::translate (
+      "MainWindow", aux.toUtf8(), 0, QApplication::UnicodeUTF8 ) );
+  ui->twProperties->setTabText(ui->twProperties->indexOf(tabHelpAbout), QApplication::translate(
+      "MainWindow", aux.toUtf8(), 0, QApplication::UnicodeUTF8));
+
+  //QWidget *w = m_tabBar->tabButton(tindex, QTabBar::RightSide);
+  //w->setToolTip(tr("Close tab"));
+  //w->setObjectName("toolButton");
+
+  //SearchBar *searchBar = new SearchBar(this);
+  //MyHighlighter *highlighter = new MyHighlighter(text, "");
+
+  /*
+  connect(searchBar, SIGNAL(textChanged(QString)), this, SLOT(searchBarTextChanged(QString)));
+  connect(searchBar, SIGNAL(closed()), this, SLOT(searchBarClosed()));
+  connect(searchBar, SIGNAL(findNext()), this, SLOT(searchBarFindNext()));
+  connect(searchBar, SIGNAL(findNextButtonClicked()), this, SLOT(searchBarFindNext()));
+  connect(searchBar, SIGNAL(findPreviousButtonClicked()), this, SLOT(searchBarFindPrevious()));
+
+  gridLayoutX->addWidget(searchBar, 1, 0, 1, 1);
+  gridLayoutX->addWidget(new SyntaxHighlighterWidget(this, highlighter));
+  */
+
+  text->show();
+  ui->twProperties->setCurrentIndex(tindex);
+  text->setFocus();
+}
+
+/*
+ * Slot to position twProperties at Help About tab
+ */
+void MainWindow::onHelpAbout()
+{
+  ui->twProperties->setCurrentIndex(ctn_TABINDEX_HELPABOUT);
+}
+
+/*
  * Initialize QAction objects
  */
 void MainWindow::initActions()
@@ -295,6 +361,7 @@ void MainWindow::initActions()
 
   connect(ui->actionCommit, SIGNAL(triggered()), this, SLOT(doCommitTransaction()));
   connect(ui->actionRollback, SIGNAL(triggered()), this, SLOT(doRollbackTransaction()));
+  connect(ui->actionHelpAbout, SIGNAL(triggered()), this, SLOT(onHelpAbout()));
 
   connect(m_lblCounters, SIGNAL(linkActivated(QString)), this, SLOT(outputOutdatedPackageList()));
 

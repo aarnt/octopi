@@ -25,7 +25,6 @@
 #include "uihelper.h"
 #include "wmhelper.h"
 #include "treeviewpackagesitemdelegate.h"
-
 #include <QDebug>
 #include <QSortFilterProxyModel>
 #include <QStandardItemModel>
@@ -61,11 +60,14 @@ MainWindow::MainWindow(QWidget *parent) :
   initTabInfo();
   initTabFiles();
   initTabTransaction();
+  initTabHelpAbout();
   initLineEditFilterPackages();
   initPackageTreeView();
   initActions();
   initAppIcon();
   initToolBar();
+
+  ui->twProperties->setCurrentIndex(ctn_TABINDEX_INFORMATION);
 
   //Let's watch for changes in the Pacman db dir!
   m_pacmanDatabaseSystemWatcher = new QFileSystemWatcher(QStringList() << ctn_PACMAN_DATABASE_DIR, this);
@@ -969,6 +971,7 @@ void MainWindow::writeToTabOutput(const QString &msg)
     else
     {
       if(newMsg.contains("removing ") ||
+         newMsg.contains("could not ") ||
          newMsg.contains("error"))
       {
         newMsg = "<font color=\"red\">" + newMsg + "</font><br>";
