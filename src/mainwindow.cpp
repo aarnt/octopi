@@ -952,7 +952,7 @@ bool MainWindow::_textInTabOutput(const QString& findText)
 }
 
 /*
- * A helper method which writes the given string to the Output tab
+ * A helper method which writes the given string to OutputTab's textbrowser
  */
 void MainWindow::writeToTabOutput(const QString &msg)
 {

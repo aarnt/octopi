@@ -182,6 +182,7 @@ private slots:
   void doSystemUpgrade(bool syncDatabase = false);
   void doRemove();
   void doInstall();
+  void doCleanCache();
 
   void disableTransactionActions();
   void enableTransactionActions();

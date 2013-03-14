@@ -24,6 +24,7 @@
 
 #include "ui_mainwindow.h"
 #include "mainwindow.h"
+#include "uihelper.h"
 #include "wmhelper.h"
 #include "strconstants.h"
 #include <QMessageBox>
@@ -508,6 +509,16 @@ void MainWindow::doInstall()
     command << "pacman -S --noconfirm " + listOfTargets;
     m_unixCommand->executePackageActions(command);
   }
+}
+
+/*
+ * Clears the local package cache using "pacman -Sc"
+ */
+void MainWindow::doCleanCache()
+{
+  CPUIntensiveComputing cic;
+  UnixCommand::cleanPacmanCache();
+  UnixCommand::removeTemporaryActionFile();
 }
 
 /*

@@ -78,7 +78,8 @@ void MainWindow::keyPressEvent(QKeyEvent* ke)
       if(tvPkgFileList->hasFocus())
       {
         openFile(tvPkgFileList->currentIndex());
-    } }
+      }
+    }
   }
   else if(ke->key() == Qt::Key_Escape)
   {
@@ -123,7 +124,6 @@ void MainWindow::keyPressEvent(QKeyEvent* ke)
   }
   else if(ke->key() == Qt::Key_C && ke->modifiers() == (Qt::ShiftModifier|Qt::ControlModifier))
   {
-    CPUIntensiveComputing cic;
-    UnixCommand::cleanPacmanCache();
+    doCleanCache();
   }
 }
