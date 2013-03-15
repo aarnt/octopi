@@ -1090,8 +1090,7 @@ void MainWindow::refreshTabFiles(bool clearContents, bool neverQuit)
 
   if (neverQuit)
   {
-    _ensureTabVisible(ctn_TABINDEX_FILES);
-    ui->twProperties->setCurrentIndex(ctn_TABINDEX_FILES);
+    _changeTabWidgetPropertiesIndex(ctn_TABINDEX_FILES);
   }
 }
 

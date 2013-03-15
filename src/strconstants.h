@@ -47,7 +47,7 @@ public:
   }
 
   static QString getNewsErrorMessage(){
-    return QObject::tr("No news could be found! Try Ctrl+N to download the latest news.");
+    return QObject::tr("No news could be found! Press Ctrl+G to download the latest news.");
   }
 
   static QString getInternetUnavailableError(){

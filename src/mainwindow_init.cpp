@@ -390,10 +390,13 @@ QString MainWindow::retrieveArchNews(bool searchForLatestNews)
   QString contentsRss;
 
   QFile fileRss(rssPath);
-  if (!fileRss.open(QIODevice::ReadOnly | QIODevice::Text)) res = "";
-  QTextStream in2(&fileRss);
-  contentsRss = in2.readAll();
-  fileRss.close();
+  if (fileRss.exists())
+  {
+    if (!fileRss.open(QIODevice::ReadOnly | QIODevice::Text)) res = "";
+    QTextStream in2(&fileRss);
+    contentsRss = in2.readAll();
+    fileRss.close();
+  }
 
   if(searchForLatestNews && UnixCommand::hasInternetConnection())
   {
@@ -408,6 +411,13 @@ QString MainWindow::retrieveArchNews(bool searchForLatestNews)
       if (!fileRss.exists())
       {
         fileTmpRss.rename(tmpRssPath, rssPath);
+
+        if (!fileRss.open(QIODevice::ReadOnly | QIODevice::Text)) res = "";
+        QTextStream in2(&fileRss);
+        contentsRss = in2.readAll();
+        fileRss.close();
+
+        res = contentsRss;
       }
       else
       {
