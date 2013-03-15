@@ -261,7 +261,7 @@ void MainWindow::buildPackageList()
   QList<QStandardItem*> lIcons, lNames, lVersions, lRepositories;
   QList<QStandardItem*> lIcons2, lNames2, lVersions2, lRepositories2;
 
-  QProgressDialog progress(StrConstants::getBuildingPackageList(), "", 0, list->count(), this);
+  QProgressDialog progress(StrConstants::getBuildingPackageList(), "", 0, list->count()+2, this);
   progress.setValue(0);
   progress.setMinimumDuration(10);
   progress.setCancelButton(0);
@@ -348,6 +348,8 @@ void MainWindow::buildPackageList()
   list->clear();
   refreshTabInfo();
   ui->tvPackages->setFocus();
+  counter+=2;
+  progress.setValue(counter);
 
   //Refresh counters
   m_numberOfInstalledPackages = m_modelInstalledPackages->invisibleRootItem()->rowCount(); 
@@ -361,6 +363,8 @@ void MainWindow::buildPackageList()
   refreshAppIcon();
 
   connect(m_pacmanDatabaseSystemWatcher, SIGNAL(directoryChanged(QString)), this, SLOT(buildPackageList()));
+  counter++;
+  progress.setValue(counter);
 }
 
 /*

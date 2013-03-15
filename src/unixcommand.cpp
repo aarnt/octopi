@@ -269,6 +269,7 @@ QByteArray UnixCommand::getPackageInformation(const QString &pkgName, bool forei
   result = pacman.readAllStandardOutput();
 
   pacman.close();
+
   return result;
 }
 
