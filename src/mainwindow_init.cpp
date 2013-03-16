@@ -32,6 +32,11 @@
 #include <QSortFilterProxyModel>
 #include <QTextBrowser>
 #include <QResource>
+#include <QCryptographicHash>
+#include <QTextStream>
+#include <QDomDocument>
+#include <QFile>
+#include <iostream>
 
 /*
  * If we have some outdated packages, let's put octopi in a red face/angry state ;-)
@@ -67,16 +72,33 @@ void MainWindow::initStatusBar()
 }
 
 /*
- * This is the 4th and LAST tab.
+ * Sets the TabWidget Properties to the given index/tab and change app focus to its child widget
+ */
+void MainWindow::_changeTabWidgetPropertiesIndex(const int newIndex)
+{
+  ui->twProperties->setCurrentIndex(newIndex);
+  ui->twProperties->currentWidget()->childAt(1,1)->setFocus();
+}
+
+/*
+ * Sets the current tabWidget index, based on last user session
+ */
+void MainWindow::initTabWidgetPropertiesIndex()
+{
+  ui->twProperties->setCurrentIndex(ctn_TABINDEX_INFORMATION);
+}
+
+/*
+ * This is the 4th tab (Transaction).
  * It pops up whenever the user selects a remove/install action on a selected package
  */
 void MainWindow::initTabTransaction()
 {
   m_modelTransaction = new QStandardItemModel(this);
   QWidget *tabTransaction = new QWidget();
-  QGridLayout *gridLayoutX = new QGridLayout ( tabTransaction );
-  gridLayoutX->setSpacing ( 0 );
-  gridLayoutX->setMargin ( 0 );
+  QGridLayout *gridLayoutX = new QGridLayout(tabTransaction);
+  gridLayoutX->setSpacing(0);
+  gridLayoutX->setMargin(0);
 
   QTreeView *tvTransaction = new QTreeView(tabTransaction);
   tvTransaction->setObjectName("tvTransaction");
@@ -106,7 +128,7 @@ void MainWindow::initTabTransaction()
   m_modelTransaction->appendRow(siToBeRemoved);
   m_modelTransaction->appendRow(siToBeInstalled);
 
-  gridLayoutX->addWidget ( tvTransaction, 0, 0, 1, 1 );
+  gridLayoutX->addWidget(tvTransaction, 0, 0, 1, 1);
 
   tvTransaction->setModel(m_modelTransaction);
 
@@ -239,12 +261,283 @@ void MainWindow::initTabFiles()
 }
 
 /*
- * This is the TextEdit output pane, which shows the output of pacman commands.
+ * Retrieves the RSS news feed from "https://www.archlinux.org/feeds/news/"
+ * If it fails to connect to the internet, uses the available "./.config/octopi/arch_rss.xml"
+ * The result is a QString containing the RSS News Feed XML code
+ */
+QString MainWindow::retrieveArchNews(bool searchForLatestNews)
+{
+  QString res;
+  QString tmpRssPath = QDir::homePath() + QDir::separator() + ".config/octopi/.tmp_arch_rss.xml";
+  QString rssPath = QDir::homePath() + QDir::separator() + ".config/octopi/arch_rss.xml";
+  QString contentsRss;
+
+  QFile fileRss(rssPath);
+  if (!fileRss.open(QIODevice::ReadOnly | QIODevice::Text)) res = "";
+  QTextStream in2(&fileRss);
+  contentsRss = in2.readAll();
+  fileRss.close();
+
+  if(searchForLatestNews && UnixCommand::hasInternetConnection())
+  {
+    QString curlCommand = "curl %1 -o %2";
+
+    curlCommand = curlCommand.arg("https://www.archlinux.org/feeds/news/").arg(tmpRssPath);
+    if (UnixCommand::runCurlCommand(curlCommand) == 0)
+    {
+      QFile fileTmpRss(tmpRssPath);
+      QFile fileRss(rssPath);
+
+      if (!fileRss.exists())
+      {
+        fileTmpRss.rename(tmpRssPath, rssPath);
+      }
+      else
+      {
+        //A rss file already exists. We have to make a SHA1 hash to compare the contents
+        QString tmpRssSHA1;
+        QString rssSHA1;
+        QString contentsTmpRss;
+
+        QFile fileTmpRss(tmpRssPath);
+        if (!fileTmpRss.open(QIODevice::ReadOnly | QIODevice::Text)) res = "";
+        QTextStream in(&fileTmpRss);
+        contentsTmpRss = in.readAll();
+        fileTmpRss.close();
+
+        tmpRssSHA1 = QCryptographicHash::hash(contentsTmpRss.toAscii(), QCryptographicHash::Sha1);
+        rssSHA1 = QCryptographicHash::hash(contentsRss.toAscii(), QCryptographicHash::Sha1);
+
+        if (tmpRssSHA1 != rssSHA1){
+          fileRss.remove();
+          fileTmpRss.rename(tmpRssPath, rssPath);
+
+          res = "*" + contentsTmpRss; //The asterisk indicates there is a MORE updated rss!
+        }
+        else
+        {
+          fileTmpRss.remove();
+          res = contentsRss;
+        }
+      }
+    }
+  }
+  //Either we don't have internet or we weren't asked to retrieve the latest news
+  else
+  {
+    QFile fileRss(rssPath);
+
+    //Maybe we have a file in "./.config/octopi/arch_rss.xml"
+    if (fileRss.exists())
+    {
+      res = contentsRss;
+    }
+    else if (searchForLatestNews)
+    {
+      res = "<h3><font color=\"red\">" + StrConstants::getInternetUnavailableError() + "</font></h3>";
+    }
+    else
+    {
+      res = "<h3><font color=\"red\">" + StrConstants::getNewsErrorMessage() + "</font></h3>";
+    }
+  }
+
+  return res;
+}
+
+/*
+ * Parses the raw XML contents from the ArchLinux RSS news feed
+ * Creates and returns a string containing a HTML code with latest 10 news
+ */
+QString MainWindow::parseArchNews()
+{
+  QString html = "<p align=\"center\"><h2>" + StrConstants::getArchLinuxNews() + "</h2></p><ul>";
+  QString lastBuildDate;
+  QString rssPath = QDir::homePath() + QDir::separator() + ".config/octopi/arch_rss.xml";
+  QDomDocument doc("rss");
+  int itemCounter=0;
+
+  QFile file(rssPath);
+  if (!file.open(QIODevice::ReadOnly)) return "";
+  if (!doc.setContent(&file)) {
+      file.close();
+      return "";
+  }
+  file.close();
+
+  QDomElement docElem = doc.documentElement(); //This is rss
+  QDomNode n = docElem.firstChild(); //This is channel
+  n = n.firstChild();
+
+  while(!n.isNull()) {
+    QDomElement e = n.toElement();
+
+    if(!e.isNull())
+    {
+      if (e.tagName() == "lastBuildDate")
+      {
+        lastBuildDate = e.text();
+      }
+      else if(e.tagName() == "item")
+      {
+        //Let's iterate over the 10 lastest "item" news
+        if (itemCounter == 10) break;
+
+        QDomNode text = e.firstChild();
+
+        while(!text.isNull())
+        {
+          QDomElement eText = text.toElement();
+
+          if(!eText.isNull())
+          {
+            if (eText.tagName() == "title")
+            {
+              html += "<li><h3>" + eText.text() + "</h3><br>";
+            }
+            else if (eText.tagName() == "link")
+            {
+              html += Package::makeURLClickable(eText.text()) ;
+            }
+            else if (eText.tagName() == "description")
+            {
+              QString description = eText.text();
+              description = description.remove(QRegExp("\\n"));
+              html += description + "<br></li>";
+            }
+          }
+
+          text = text.nextSibling();
+        }
+
+        itemCounter++;
+      }
+    }
+
+    n = n.nextSibling();
+  }
+
+  html += "</ul>";
+  return html;
+}
+
+/*
+ * This is the high level method that orquestrates the ArchLinux RSS News printing in tabNews
+ */
+void MainWindow::refreshArchNews(bool searchForLatestNews)
+{
+  qApp->processEvents();
+  CPUIntensiveComputing cic;
+  QString archRSSXML = retrieveArchNews(searchForLatestNews);
+  QString html;
+
+  if (archRSSXML.count() >= 200)
+  {
+    if (archRSSXML.at(0)=='*')
+    {
+      //If this is an updated RSS, we must warn the user!
+      ui->twProperties->setTabText(ctn_TABINDEX_NEWS, "** " + StrConstants::getTabNewsName() + " **");
+      ui->twProperties->setCurrentIndex(ctn_TABINDEX_NEWS);
+    }
+    else
+    {
+      ui->twProperties->setTabText(ctn_TABINDEX_NEWS, StrConstants::getTabNewsName());
+    }
+
+    //First, we have to parse the raw RSS XML...
+    html = parseArchNews();
+  }
+  else
+  {
+    ui->twProperties->setTabText(ctn_TABINDEX_NEWS, StrConstants::getTabNewsName());
+    html = archRSSXML;
+  }
+
+  //Now that we have the html table code, let's put it into TextBrowser's News tab
+  QTextBrowser *text = ui->twProperties->widget(ctn_TABINDEX_NEWS)->findChild<QTextBrowser*>("textBrowser");
+  if (text)
+  {
+    text->clear();
+    text->setHtml(html);
+  }
+}
+
+/*
+ * This SLOT is called every time the user clicks a url inside newsTab textBrowser
+ */
+void MainWindow::onTabNewsSourceChanged(QUrl newSource)
+{
+  if(newSource.isRelative())
+  {
+    //If the user clicked a relative and impossible to display link...
+    QTextBrowser *text = ui->twProperties->widget(ctn_TABINDEX_NEWS)->findChild<QTextBrowser*>("textBrowser");
+    if (text)
+    {
+      disconnect(text, SIGNAL(sourceChanged(QUrl)), this, SLOT(onTabNewsSourceChanged(QUrl)));
+      text->setHtml(parseArchNews());
+      connect(text, SIGNAL(sourceChanged(QUrl)), this, SLOT(onTabNewsSourceChanged(QUrl)));
+    }
+  }
+}
+
+/*
+ * This is the TextBrowser News tab, which shows the latest news from Archlinux news feed
+ */
+void MainWindow::initTabNews()
+{
+  QString aux(StrConstants::getTabNewsName());
+  QWidget *tabNews = new QWidget();
+  QGridLayout *gridLayoutX = new QGridLayout(tabNews);
+  gridLayoutX->setSpacing(0);
+  gridLayoutX->setMargin(0);
+
+  QTextBrowser *text = new QTextBrowser(tabNews);
+  text->setObjectName("textBrowser");
+  text->setReadOnly(true);
+  text->setFrameShape(QFrame::NoFrame);
+  text->setFrameShadow(QFrame::Plain);
+  text->setOpenExternalLinks(true);
+  gridLayoutX->addWidget(text, 0, 0, 1, 1);
+
+  text->show();
+
+  int tindex = ui->twProperties->insertTab(ctn_TABINDEX_NEWS, tabNews, QApplication::translate (
+      "MainWindow", aux.toUtf8(), 0, QApplication::UnicodeUTF8 ) );
+  ui->twProperties->setTabText(ui->twProperties->indexOf(tabNews), QApplication::translate(
+      "MainWindow", aux.toUtf8(), 0, QApplication::UnicodeUTF8));
+
+  //QWidget *w = m_tabBar->tabButton(tindex, QTabBar::RightSide);
+  //w->setToolTip(tr("Close tab"));
+  //w->setObjectName("toolButton");
+
+  //SearchBar *searchBar = new SearchBar(this);
+  //MyHighlighter *highlighter = new MyHighlighter(text, "");
+
+  /*
+  connect(searchBar, SIGNAL(textChanged(QString)), this, SLOT(searchBarTextChanged(QString)));
+  connect(searchBar, SIGNAL(closed()), this, SLOT(searchBarClosed()));
+  connect(searchBar, SIGNAL(findNext()), this, SLOT(searchBarFindNext()));
+  connect(searchBar, SIGNAL(findNextButtonClicked()), this, SLOT(searchBarFindNext()));
+  connect(searchBar, SIGNAL(findPreviousButtonClicked()), this, SLOT(searchBarFindPrevious()));
+
+  gridLayoutX->addWidget(searchBar, 1, 0, 1, 1);
+  gridLayoutX->addWidget(new SyntaxHighlighterWidget(this, highlighter));
+  */
+
+  connect(text, SIGNAL(sourceChanged(QUrl)), this, SLOT(onTabNewsSourceChanged(QUrl)));
+
+  text->show();
+  ui->twProperties->setCurrentIndex(tindex);
+  text->setFocus();
+}
+
+/*
+ * This is the TextEdit output tab, which shows the output of pacman commands.
  */
 void MainWindow::initTabOutput()
 {
   QWidget *tabOutput = new QWidget();
-  QGridLayout *gridLayoutX = new QGridLayout ( tabOutput );
+  QGridLayout *gridLayoutX = new QGridLayout(tabOutput);
   gridLayoutX->setSpacing ( 0 );
   gridLayoutX->setMargin ( 0 );
 
@@ -253,7 +546,7 @@ void MainWindow::initTabOutput()
   text->setReadOnly(true);
   text->setFrameShape(QFrame::NoFrame);
   text->setFrameShadow(QFrame::Plain);
-  gridLayoutX->addWidget ( text, 0, 0, 1, 1 );
+  gridLayoutX->addWidget (text, 0, 0, 1, 1);
 
   QString aux(StrConstants::getTabOutputName());
   //QString translated_about = QApplication::translate ( "MainWindow", aux.toUtf8(), 0, QApplication::UnicodeUTF8 );
@@ -336,7 +629,10 @@ void MainWindow::initTabHelpAbout()
  */
 void MainWindow::onHelpAbout()
 {
-  ui->twProperties->setCurrentIndex(ctn_TABINDEX_HELPABOUT);
+  if (_isPropertiesTabWidgetVisible())
+  {
+    _changeTabWidgetPropertiesIndex(ctn_TABINDEX_HELPABOUT);
+  }
 }
 
 /*
@@ -368,6 +664,7 @@ void MainWindow::initActions()
   connect(ui->actionCommit, SIGNAL(triggered()), this, SLOT(doCommitTransaction()));
   connect(ui->actionRollback, SIGNAL(triggered()), this, SLOT(doRollbackTransaction()));
   connect(ui->actionHelpAbout, SIGNAL(triggered()), this, SLOT(onHelpAbout()));
+  connect(ui->actionGetNews, SIGNAL(triggered()), this, SLOT(refreshArchNews()));
 
   connect(m_lblCounters, SIGNAL(linkActivated(QString)), this, SLOT(outputOutdatedPackageList()));
 

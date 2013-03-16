@@ -61,13 +61,14 @@ MainWindow::MainWindow(QWidget *parent) :
   initTabFiles();
   initTabTransaction();
   initTabHelpAbout();
+  initTabNews();
   initLineEditFilterPackages();
   initPackageTreeView();
   initActions();
   initAppIcon();
   initToolBar();
 
-  ui->twProperties->setCurrentIndex(ctn_TABINDEX_INFORMATION);
+  initTabWidgetPropertiesIndex();
 
   //Let's watch for changes in the Pacman db dir!
   m_pacmanDatabaseSystemWatcher = new QFileSystemWatcher(QStringList() << ctn_PACMAN_DATABASE_DIR, this);
@@ -116,21 +117,22 @@ void MainWindow::outputOutdatedPackageList()
 
   if(m_numberOfOutdatedPackages > 0)
   {
-    QString html;
+    QString html = "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">";
+    QString anchorBegin = "anchorBegin";
+    html += "<a id=\"" + anchorBegin + "\"></a>";
 
     clearTabOutput();
 
     if(m_outdatedPackageList->count()==1){
-      html += "<b>" + StrConstants::getOneOutdatedPackage() + "</b>";
+      html += "<h3>" + StrConstants::getOneOutdatedPackage() + "</h3>";
     }
     else
     {
-      html += "<b>" +
-          StrConstants::getOutdatedPackages().arg(m_outdatedPackageList->count()) + "</b>";
+      html += "<h3>" +
+          StrConstants::getOutdatedPackages().arg(m_outdatedPackageList->count()) + "</h3>";
     }
 
-    html += "<br><br><meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">";
-    html += "<table border=\"0\">";
+    html += "<br><table border=\"0\">";
     html += "<tr><th width=\"25%\" align=\"left\">" + StrConstants::getName() +
         "</th><th width=\"18%\" align=\"right\">" +
         StrConstants::getOutdatedVersion() +
@@ -151,6 +153,13 @@ void MainWindow::outputOutdatedPackageList()
     }
 
     writeToTabOutput(html);
+
+    QTextBrowser *text = ui->twProperties->widget(ctn_TABINDEX_OUTPUT)->findChild<QTextBrowser*>("textOutputEdit");
+    if (text)
+    {
+      text->scrollToAnchor(anchorBegin);
+    }
+
     ui->twProperties->setCurrentIndex(ctn_TABINDEX_OUTPUT);
   }
 }
@@ -348,7 +357,7 @@ void MainWindow::buildPackageList()
   list->clear();
   refreshTabInfo();
   ui->tvPackages->setFocus();
-  counter+=2;
+  counter++;
   progress.setValue(counter);
 
   //Refresh counters
@@ -357,14 +366,24 @@ void MainWindow::buildPackageList()
 
   //Refresh statusbar widget
   refreshStatusBar();
-  firstTime = false;
 
   //Refresh application icon
   refreshAppIcon();
 
   connect(m_pacmanDatabaseSystemWatcher, SIGNAL(directoryChanged(QString)), this, SLOT(buildPackageList()));
-  counter++;
-  progress.setValue(counter);
+
+  if (firstTime)
+  {
+    //Retrieves the RSS News from ArchLinux site... ONLY ONE TIME!
+    progress.setLabelText(StrConstants::getSearchingForArchLinuxNews());
+    qApp->processEvents();
+    refreshArchNews();
+    qApp->processEvents();
+    progress.setValue(++counter);
+    progress.close();
+  }
+
+  firstTime = false;
 }
 
 /*

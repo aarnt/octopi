@@ -23,6 +23,7 @@
 
 #include <QApplication>
 #include <QMainWindow>
+#include <QUrl>
 #include "unixcommand.h"
 
 class QSortFilterProxyModel;
@@ -33,16 +34,19 @@ class QTimer;
 class QFileSystemWatcher;
 class QLabel;
 
+//Column indices for Package's treeview
 const int ctn_PACKAGE_ICON_COLUMN(0);
 const int ctn_PACKAGE_NAME_COLUMN(1);
 const int ctn_PACKAGE_VERSION_COLUMN(2);
 const int ctn_PACKAGE_REPOSITORY_COLUMN(3);
 
+//Tab indices for Properties' tabview
 const int ctn_TABINDEX_INFORMATION(0);
 const int ctn_TABINDEX_FILES(1);
 const int ctn_TABINDEX_TRANSACTION(2);
 const int ctn_TABINDEX_OUTPUT(3);
-const int ctn_TABINDEX_HELPABOUT(4);
+const int ctn_TABINDEX_NEWS(4);
+const int ctn_TABINDEX_HELPABOUT(5);
 
 namespace Ui {
 class MainWindow;
@@ -55,7 +59,6 @@ class MainWindow : public QMainWindow
 public:
   explicit MainWindow(QWidget *parent = 0);
   ~MainWindow();
-
 
   static MainWindow* returnMainWindow()
   {
@@ -73,6 +76,7 @@ public:
 
 private:
   Ui::MainWindow *ui;
+
   UnixCommand *m_unixCommand;
 
   QSortFilterProxyModel *m_proxyModelPackages;
@@ -101,8 +105,7 @@ private:
   Qt::SortOrder m_PackageListSortOrder;
   QTimer *timer;
   QStringList *m_outdatedPackageList;
-
-  QLabel * m_lblCounters;
+  QLabel *m_lblCounters;
 
   int m_numberOfInstalledPackages;
   int m_numberOfAvailablePackages;
@@ -119,6 +122,8 @@ private:
   bool isPackageInstalled(const QString &pkgName);
   void initPackageTreeView();
 
+  void _changeTabWidgetPropertiesIndex(const int newIndex);
+  void initTabWidgetPropertiesIndex();
   void initTabInfo();
 
   //Tab Files related methods
@@ -151,9 +156,12 @@ private:
   void _ensureTabOutputVisible();
   bool _isPropertiesTabWidgetVisible();
   void writeToTabOutput(const QString &msg);
-
   void initTabOutput();
   void clearTabOutput();
+
+  QString retrieveArchNews(bool searchForLatestNews = true);
+  QString parseArchNews();
+  void initTabNews();
 
   void initTabHelpAbout();
 
@@ -202,6 +210,8 @@ private slots:
   void maximizePropertiesTabWidget();
   void outputOutdatedPackageList();
 
+  void onTabNewsSourceChanged(QUrl newSource);
+
   void onHelpAbout();
   void onPressDelete();
   void changeTransactionActionsState();
@@ -209,6 +219,7 @@ private slots:
 
   void openFile(const QModelIndex& mi);
 
+  void refreshArchNews(bool searchForLatestNews = true);
 };
 
 #endif // MAINWINDOW_H

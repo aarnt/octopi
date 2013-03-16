@@ -42,8 +42,20 @@ public:
     return str;
   }
 
+  static QString getArchLinuxNews(){
+    return QObject::tr("ArchLinux news");
+  }
+
+  static QString getNewsErrorMessage(){
+    return QObject::tr("No news could be found! Try Ctrl+N to download the latest news.");
+  }
+
+  static QString getInternetUnavailableError(){
+    return QObject::tr("Internet seems anavailable!");
+  }
+
   static QString getHelp(){
-    return QObject::tr("Help");
+    return QObject::tr("About");
   }
 
   static QString getName(){
@@ -158,6 +170,10 @@ public:
     return QObject::tr("Output");
   }
 
+  static QString getTabNewsName(){
+    return QObject::tr("News");
+  }
+
   static QString getContentsOf(){
     return QObject::tr("Contents of \"%1\"");
   }
@@ -176,6 +192,10 @@ public:
 
   static QString getBuildingPackageList(){
     return QObject::tr("Building package list...");
+  }
+
+  static QString getSearchingForArchLinuxNews(){
+    return QObject::tr("Searching for ArchLinux latest news...");
   }
 
   static QString getOneOutdatedPackage(){

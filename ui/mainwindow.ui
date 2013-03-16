@@ -166,6 +166,7 @@
     <property name="title">
      <string>File</string>
     </property>
+    <addaction name="actionGetNews"/>
     <addaction name="actionSyncPackages"/>
     <addaction name="actionSystemUpgrade"/>
     <addaction name="separator"/>
@@ -302,6 +303,14 @@
   <action name="actionOutdated_packages">
    <property name="text">
     <string>Outdated packages</string>
+   </property>
+  </action>
+  <action name="actionGetNews">
+   <property name="text">
+    <string>Get latest Arch news</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+G</string>
    </property>
   </action>
  </widget>

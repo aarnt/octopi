@@ -143,8 +143,6 @@ class Package{
     static bool isValidArch(const QString &packageArch);
 
     static QString extractFieldFromInfo(const QString &field, const QString &pkgInfo);
-    static QString makeURLClickable(const QString &information);
-
     static double simplePow(int base, int exp);
 
 	public:
@@ -178,6 +176,8 @@ class Package{
     static double getDownloadSize(const QString &pkgInfo);
     static double getInstalledSize(const QString &pkgInfo);
     static double humanizeSize(off_t bytes, const char target_unit, int precision, const char **label);
+
+    static QString makeURLClickable(const QString &information);
 
     static QStringList getInstalledPackageNames();
     static QString getBaseName( const QString& pkgName );
