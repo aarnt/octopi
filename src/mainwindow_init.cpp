@@ -26,6 +26,7 @@
 #include "mainwindow.h"
 #include "strconstants.h"
 #include "uihelper.h"
+#include "settingsmanager.h"
 #include "treeviewpackagesitemdelegate.h"
 #include <QLabel>
 #include <QStandardItemModel>
@@ -37,6 +38,72 @@
 #include <QDomDocument>
 #include <QFile>
 #include <iostream>
+
+/*
+ * Loads various application settings configured in ~/.config/octopi/octopi.conf
+ */
+void MainWindow::loadSettings(){
+  m_PackageListOrderedCol = SettingsManager::instance()->getPackageListOrderedCol();
+  m_PackageListSortOrder = (Qt::SortOrder) SettingsManager::instance()->getPackageListSortOrder();
+  //m_actionIconifyOnStart->setChecked(SettingsManager::instance()->getStartIconified());
+
+  ui->tvPackages->header()->setSortIndicator( m_PackageListOrderedCol, m_PackageListSortOrder );
+  ui->tvPackages->sortByColumn( m_PackageListOrderedCol, m_PackageListSortOrder );
+}
+
+/*
+ * This method only retrieve the App saved panels settings
+ */
+void MainWindow::loadPanelSettings(){
+  int panelOrganizing = SettingsManager::instance()->getPanelOrganizing();
+  switch(panelOrganizing){
+    case ectn_MAXIMIZE_PACKAGES:
+      maximizePackagesTreeView(false);
+      break;
+    case ectn_MAXIMIZE_PROPERTIES:
+      maximizePropertiesTabWidget(false);
+      break;
+    case ectn_NORMAL:
+      ui->splitterHorizontal->restoreState(SettingsManager::instance()->getSplitterHorizontalState());
+      break;
+  }
+}
+
+/*
+ * Saves all application settings to ~/.config/octopi/octopi.conf
+ */
+void MainWindow::saveSettings(int saveSettingsReason){
+  //int panelOrganizing = 0;
+
+  switch(saveSettingsReason){
+    case ectn_CurrentTabIndex:
+      SettingsManager::instance()->setCurrentTabIndex(ui->twProperties->currentIndex());
+      break;
+
+    case ectn_MAXIMIZE_PACKAGES:
+      SettingsManager::instance()->setPanelOrganizing(ectn_MAXIMIZE_PACKAGES);
+      break;
+
+    case ectn_MAXIMIZE_PROPERTIES:
+      SettingsManager::instance()->setPanelOrganizing(ectn_MAXIMIZE_PROPERTIES);
+      break;
+
+    case ectn_NORMAL:
+      SettingsManager::instance()->setPanelOrganizing(ectn_NORMAL);
+      SettingsManager::instance()->setSplitterHorizontalState(ui->splitterHorizontal->saveState());
+      //std::cout << "Just saved 30!" << std::endl;
+      break;
+
+    case ectn_PackageList:
+      SettingsManager::instance()->setPackageListOrderedCol(m_PackageListOrderedCol);
+      SettingsManager::instance()->setPackageListSortOrder(m_PackageListSortOrder);
+      break;
+
+    case ectn_IconifyOnStart:
+      //SettingsManager::instance()->setStartIconified(m_actionIconifyOnStart->isChecked());
+      break;
+  }
+}
 
 /*
  * If we have some outdated packages, let's put octopi in a red face/angry state ;-)
@@ -69,6 +136,8 @@ void MainWindow::initToolBar()
 void MainWindow::initStatusBar()
 {
   m_lblCounters = new QLabel(this);
+
+  connect(m_lblCounters, SIGNAL(linkActivated(QString)), this, SLOT(outputOutdatedPackageList()));
 }
 
 /*
@@ -85,7 +154,7 @@ void MainWindow::_changeTabWidgetPropertiesIndex(const int newIndex)
  */
 void MainWindow::initTabWidgetPropertiesIndex()
 {
-  ui->twProperties->setCurrentIndex(ctn_TABINDEX_INFORMATION);
+  ui->twProperties->setCurrentIndex(SettingsManager::getCurrentTabIndex());
 }
 
 /*
@@ -111,7 +180,7 @@ void MainWindow::initTabTransaction()
   tvTransaction->header()->setMovable(false);
   tvTransaction->setFrameShape(QFrame::NoFrame);
   tvTransaction->setFrameShadow(QFrame::Plain);
-  tvTransaction->setStyleSheet(StrConstants::getTreeViewCSS(SettingsManager::getPkgListFontSize()));
+  tvTransaction->setStyleSheet(StrConstants::getTreeViewCSS()); //SettingsManager::getPkgListFontSize()));
   tvTransaction->expandAll();
 
   m_modelTransaction->setSortRole(0);
@@ -172,7 +241,14 @@ void MainWindow::initPackageTreeView()
   ui->tvPackages->header()->setDefaultAlignment( Qt::AlignLeft );
   ui->tvPackages->header()->setResizeMode( QHeaderView::Fixed );
   ui->tvPackages->setStyleSheet(
-        StrConstants::getTreeViewCSS(SettingsManager::getPackagesInDirFontSize()));
+        StrConstants::getTreeViewCSS()); //SettingsManager::getPackagesInDirFontSize()));
+
+  connect(ui->tvPackages, SIGNAL(activated(QModelIndex)), this, SLOT(changedTabIndex()));
+  connect(ui->tvPackages, SIGNAL(clicked(QModelIndex)), this, SLOT(changedTabIndex()));
+  connect(ui->tvPackages->header(), SIGNAL(sortIndicatorChanged(int,Qt::SortOrder)), this,
+          SLOT(headerViewPackageListSortIndicatorClicked(int,Qt::SortOrder)));
+  connect(ui->tvPackages, SIGNAL(customContextMenuRequested(QPoint)), this,
+          SLOT(execContextMenuPackages(QPoint)));
 
   //Prepare it for drag operations
   //tvPackage->setDragEnabled(true);
@@ -229,7 +305,7 @@ void MainWindow::initTabFiles()
   tvPkgFileList->setFrameShape(QFrame::NoFrame);
   tvPkgFileList->setFrameShadow(QFrame::Plain);
   tvPkgFileList->setObjectName("tvPkgFileList");
-  tvPkgFileList->setStyleSheet(StrConstants::getTreeViewCSS(SettingsManager::getPkgListFontSize()));
+  tvPkgFileList->setStyleSheet(StrConstants::getTreeViewCSS()); //SettingsManager::getPkgListFontSize()));
 
   modelPkgFileList->setSortRole(0);
   modelPkgFileList->setColumnCount(0);
@@ -646,15 +722,6 @@ void MainWindow::initActions()
   connect(ui->actionExit, SIGNAL(triggered()), this, SLOT(close()));
   connect(ui->actionNonInstalledPackages, SIGNAL(changed()), this, SLOT(changePackageListModel()));
 
-  connect(ui->tvPackages, SIGNAL(activated(QModelIndex)), this, SLOT(changedTabIndex()));
-  connect(ui->tvPackages, SIGNAL(clicked(QModelIndex)), this, SLOT(changedTabIndex()));
-  connect(ui->tvPackages->header(), SIGNAL(sortIndicatorChanged(int,Qt::SortOrder)), this,
-          SLOT(headerViewPackageListSortIndicatorClicked(int,Qt::SortOrder)));
-  connect(ui->tvPackages, SIGNAL(customContextMenuRequested(QPoint)), this,
-          SLOT(execContextMenuPackages(QPoint)));
-
-  connect(ui->twProperties, SIGNAL(currentChanged(int)), this, SLOT(changedTabIndex()));
-
   connect(ui->actionSyncPackages, SIGNAL(triggered()), this, SLOT(doSyncDatabase()));
   connect(ui->actionSystemUpgrade, SIGNAL(triggered()), this, SLOT(doSystemUpgrade()));
 
@@ -666,7 +733,7 @@ void MainWindow::initActions()
   connect(ui->actionHelpAbout, SIGNAL(triggered()), this, SLOT(onHelpAbout()));
   connect(ui->actionGetNews, SIGNAL(triggered()), this, SLOT(refreshArchNews()));
 
-  connect(m_lblCounters, SIGNAL(linkActivated(QString)), this, SLOT(outputOutdatedPackageList()));
+  connect(ui->twProperties, SIGNAL(currentChanged(int)), this, SLOT(changedTabIndex()));
 
   ui->actionCommit->setEnabled(false);
   ui->actionRollback->setEnabled(false);

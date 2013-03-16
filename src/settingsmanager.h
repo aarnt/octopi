@@ -25,8 +25,9 @@
 #include <QVariant>
 #include <QSettings>
 
-const QString ctn_ORGANIZATION("QTGZManager");
-const QString ctn_APPLICATION("QTGZManager");
+const QString ctn_ORGANIZATION("octopi");
+const QString ctn_APPLICATION("octopi");
+const QString ctn_KEY_CURRENT_TAB_INDEX("Current_Tab_Index");
 const QString ctn_KEY_WINDOW_CLOSE_HIDES_APP("Window_Close_Hides_App");
 const QString ctn_KEY_WINDOW_SIZE("Window_Size");
 const QString ctn_KEY_FROZEN_PACKAGES_LIST("Frozen_Packages");
@@ -34,11 +35,12 @@ const QString ctn_KEY_DEFAULT_DIRECTORY("Default_Directory");
 const QString ctn_KEY_UPDATER_DIRECTORY("Updater_Directory");
 const QString ctn_KEY_UPDATER_MIRROR("Updater_Mirror");
 const QString ctn_KEY_AUTOMATIC_CHECK_UPDATES("Automatic_Check_Updates");
-const QString ctn_KEY_FOUR_PANEL_ORGANIZING("Four_Panel_Organizing");
+const QString ctn_KEY_PANEL_ORGANIZING("Panel_Organizing");
 const QString ctn_KEY_PACKAGE_LIST_ORDERED_COL("PackageList_Ordered_Col");
 const QString ctn_KEY_INSTALLED_PACKAGE_LIST_ORDERED_COL("InstalledPackageList_Ordered_Col");
 const QString ctn_KEY_PACKAGE_LIST_SORT_ORDER("PackageList_Sort_Order");
 const QString ctn_KEY_INSTALLED_PACKAGE_LIST_SORT_ORDER("InstalledPackageList_Sort_Order");
+const QString ctn_KEY_SPLITTER_HORIZONTAL_STATE("Splitter_Horizontal_State");
 const QString ctn_KEY_SHOW_TOOLBAR("Show_ToolBar");
 const QString ctn_KEY_SHOW_STATUSBAR("Show_StatusBar");
 const QString ctn_KEY_SHOW_PACKAGE_TOOLTIP("Show_Package_Tooltip");
@@ -49,7 +51,11 @@ const QString ctn_KEY_USE_PKGTOOLS("Use_PkgTools");
 const QString ctn_KEY_USE_SILENT_ACTION_OUTPUT("Use_Silent_Action_Output");
 const QString ctn_KEY_PRIVILEGE_ESCALATION_TOOL("Privilege_Escalation_Tool");
 
-enum FourPanelOrganizing { ectn_HIDE_RIGHT=1, ectn_NORMAL=2, ectn_HIDE_BOTTON=4, ectn_MAXIMIZED=6 };
+enum PanelOrganizing { ectn_NORMAL=30, ectn_MAXIMIZE_PACKAGES=40, ectn_MAXIMIZE_PROPERTIES=50 };
+
+enum SaveSettingsReason { ectn_FourPanelOrganizing, ectn_PackageList, ectn_InstalledPackageList,
+                          ectn_ToolBar, ectn_DefaultDirectory, ectn_IconifyOnStart, ectn_CurrentTabIndex,
+                          ectn_DontSave, ectn_Save };
 
 class QStringList;
 
@@ -76,7 +82,8 @@ class SettingsManager {
     static QString getUpdaterMirror();
     static QString getPrivilegeEscalationTool();
 
-    static int getFourPanelOrganizing();
+    static int getCurrentTabIndex();
+    static int getPanelOrganizing();
     static int getPackageListOrderedCol();
     static int getInstalledPackageListOrderedCol();
     static int getPackageListSortOrder();
@@ -101,7 +108,9 @@ class SettingsManager {
     static int getMenuFontSize() { return 12 + getFontSizeFactor(); }
 
     static QByteArray getWindowSize();
+    static QByteArray getSplitterHorizontalState();
 
+    static void setCurrentTabIndex(int newValue);
     static void setFrozenPkgList(QStringList newValue);
     static void setDefaultDirectory(QString newValue);
     static void setUpdaterDirectory(QString newValue);
@@ -109,7 +118,7 @@ class SettingsManager {
     static void setAutomaticCheckUpdates(bool newValue);
     static void setWindowCloseHidesApp(bool newValue);
     static void setPrivilegeEscalationTool(QString newValue);
-    static void setFourPanelOrganizing(int newValue);
+    static void setPanelOrganizing(int newValue);
     static void setPackageListOrderedCol(int newValue);
     static void setInstalledPackageListOrderedCol(int newValue);
     static void setPackageListSortOrder(int newValue);
@@ -122,7 +131,9 @@ class SettingsManager {
     static void setUsePkgTools(bool newValue);
     static void setUseSilentActionOutput(bool newValue);
     static void setFontSizeFactor(int newValue);
+
     static void setWindowSize(QByteArray newValue);
+    static void setSplitterHorizontalState(QByteArray newValue);
 
     static void moveUpdaterDirContents();
 };

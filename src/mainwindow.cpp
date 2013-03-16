@@ -46,12 +46,33 @@ MainWindow::MainWindow(QWidget *parent) :
 {
   ui->setupUi(this);
 
-  m_PackageListOrderedCol=1;
-  m_PackageListSortOrder=Qt::AscendingOrder;
-  m_currentTarget=0;
+  //m_PackageListOrderedCol=1;
+  //m_PackageListSortOrder=Qt::AscendingOrder;
+}
+
+/*
+ * MainWindow's destructor
+ */
+MainWindow::~MainWindow()
+{
+  //Let's garbage collect transaction files...
+  m_unixCommand->removeTemporaryFiles();
+  delete ui;
+}
+
+/*
+ * The show() public SLOT, when the app is being drawing!!!
+ */
+void MainWindow::show()
+{
+  QMainWindow::show();
+  loadSettings();
+
+  m_initializationCompleted=false;
   m_commandExecuting=ectn_NONE;
   m_commandQueued=ectn_NONE;
 
+  restoreGeometry(SettingsManager::getWindowSize());
   setWindowTitle(StrConstants::getApplicationName() + " " + StrConstants::getApplicationVersion());
   setMinimumSize(QSize(850, 600));
 
@@ -70,6 +91,8 @@ MainWindow::MainWindow(QWidget *parent) :
 
   initTabWidgetPropertiesIndex();
 
+  loadPanelSettings();
+
   //Let's watch for changes in the Pacman db dir!
   m_pacmanDatabaseSystemWatcher = new QFileSystemWatcher(QStringList() << ctn_PACMAN_DATABASE_DIR, this);
   connect(m_pacmanDatabaseSystemWatcher, SIGNAL(directoryChanged(QString)), this, SLOT(buildPackageList()));
@@ -78,16 +101,6 @@ MainWindow::MainWindow(QWidget *parent) :
   timer = new QTimer();
   connect(timer, SIGNAL(timeout()), this, SLOT(buildPackageList()));
   timer->start(5);
-}
-
-/*
- * MainWindow's destructor
- */
-MainWindow::~MainWindow()
-{
-  //Let's garbage collect transaction files...
-  m_unixCommand->removeTemporaryFiles();
-  delete ui;
 }
 
 /*
@@ -381,6 +394,8 @@ void MainWindow::buildPackageList()
     qApp->processEvents();
     progress.setValue(++counter);
     progress.close();
+
+    m_initializationCompleted = true;
   }
 
   firstTime = false;
@@ -814,6 +829,9 @@ void MainWindow::changedTabIndex()
     refreshTabInfo();
   else if (ui->twProperties->currentIndex() == ctn_TABINDEX_FILES)
     refreshTabFiles();
+
+  if(m_initializationCompleted)
+    saveSettings(ectn_CurrentTabIndex);
 }
 
 /*
@@ -836,7 +854,7 @@ void MainWindow::invalidateTabs()
 /*
  * Maximizes/de-maximizes the upper pane (tvPackages)
  */
-void MainWindow::maximizePackagesTreeView()
+void MainWindow::maximizePackagesTreeView(bool pSaveSettings)
 {
   QList<int> savedSizes;
   savedSizes << 200 << 235;
@@ -849,19 +867,25 @@ void MainWindow::maximizePackagesTreeView()
     ui->splitterHorizontal->setSizes( l << ui->tvPackages->maximumHeight() << 0);
     if(!ui->tvPackages->hasFocus())
       ui->tvPackages->setFocus();
+
+    if(pSaveSettings)
+      saveSettings(ectn_MAXIMIZE_PACKAGES);
   }
   else
   {
     ui->splitterHorizontal->setSizes(savedSizes);
     ui->tvPackages->scrollTo(ui->tvPackages->currentIndex());
     ui->tvPackages->setFocus();
+
+    if(pSaveSettings)
+      saveSettings(ectn_NORMAL);
   }
 }
 
 /*
  * Maximizes/de-maximizes the lower pane (tabwidget)
  */
-void MainWindow::maximizePropertiesTabWidget()
+void MainWindow::maximizePropertiesTabWidget(bool pSaveSettings)
 {
   QList<int> savedSizes;
   savedSizes << 200 << 235;
@@ -873,12 +897,18 @@ void MainWindow::maximizePropertiesTabWidget()
   {
     ui->splitterHorizontal->setSizes( l << 0 << ui->twProperties->maximumHeight());
     ui->twProperties->currentWidget()->childAt(1,1)->setFocus();
+
+    if(pSaveSettings)
+      saveSettings(ectn_MAXIMIZE_PROPERTIES);
   }
   else
   {
     ui->splitterHorizontal->setSizes(savedSizes);
     ui->tvPackages->scrollTo(ui->tvPackages->currentIndex());
     ui->tvPackages->setFocus();
+
+    if(pSaveSettings)
+      saveSettings(ectn_NORMAL);
   }
 }
 
@@ -924,6 +954,8 @@ void MainWindow::headerViewPackageListSortIndicatorClicked( int col, Qt::SortOrd
 {
   m_PackageListOrderedCol = col;
   m_PackageListSortOrder = order;
+
+  saveSettings(ectn_PackageList);
 }
 
 /*

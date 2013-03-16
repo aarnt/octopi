@@ -317,7 +317,6 @@ void MainWindow::doSystemUpgrade(bool syncDatabase)
       return;
     }
 
-    m_currentTarget=0;
     QString list;
 
     foreach(QString target, *m_targets)
@@ -362,7 +361,6 @@ void MainWindow::doSystemUpgrade(bool syncDatabase)
       QObject::connect(m_unixCommand, SIGNAL( readyReadStandardError() ),
                        this, SLOT( actionsProcessRaisedError() ));
 
-      m_currentTarget = 0;
 
       QStringList command;
       command << "pacman -Su --noconfirm";
@@ -379,7 +377,6 @@ void MainWindow::doRemove()
 {
   QString listOfTargets = getTobeRemovedPackages();
   m_targets = Package::getTargetRemovalList(listOfTargets);
-  m_currentTarget=0;
   QString list;
 
   foreach(QString target, *m_targets)
@@ -451,7 +448,6 @@ void MainWindow::doInstall()
 {
   QString listOfTargets = getTobeInstalledPackages();
   m_targets = Package::getTargetUpgradeList(listOfTargets);
-  m_currentTarget=0;
   QString list;
 
   foreach(QString target, *m_targets)

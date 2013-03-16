@@ -37,6 +37,11 @@ SettingsManager::~SettingsManager(){
   delete m_SYSsettings;
 }
 
+int SettingsManager::getCurrentTabIndex(){
+  return instance()->getSYSsettings()->value(
+        ctn_KEY_CURRENT_TAB_INDEX, 0).toInt();
+}
+
 QStringList SettingsManager::getFrozenPkgList(){
   return instance()->getSYSsettings()->value(
         ctn_KEY_FROZEN_PACKAGES_LIST, QVariant(QStringList())).toStringList() ;
@@ -74,8 +79,8 @@ QString SettingsManager::getPrivilegeEscalationTool(){
   return privilegeEscalationTool;
 }
 
-int SettingsManager::getFourPanelOrganizing(){
-  return instance()->getSYSsettings()->value( ctn_KEY_FOUR_PANEL_ORGANIZING, ectn_NORMAL ).toInt();
+int SettingsManager::getPanelOrganizing(){
+  return instance()->getSYSsettings()->value( ctn_KEY_PANEL_ORGANIZING, ectn_NORMAL ).toInt();
 }
 
 int SettingsManager::getPackageListOrderedCol(){
@@ -141,6 +146,15 @@ QByteArray SettingsManager::getWindowSize(){
   return (instance()->getSYSsettings()->value( ctn_KEY_WINDOW_SIZE, 0).toByteArray());
 }
 
+QByteArray SettingsManager::getSplitterHorizontalState(){
+  return (instance()->getSYSsettings()->value( ctn_KEY_SPLITTER_HORIZONTAL_STATE, 0).toByteArray());
+}
+
+void SettingsManager::setCurrentTabIndex(int newValue){
+  instance()->getSYSsettings()->setValue( ctn_KEY_CURRENT_TAB_INDEX, newValue);
+  instance()->getSYSsettings()->sync();
+}
+
 void SettingsManager::setPackageListOrderedCol(int newValue){
   instance()->getSYSsettings()->setValue( ctn_KEY_PACKAGE_LIST_ORDERED_COL, newValue);
   instance()->getSYSsettings()->sync();
@@ -161,8 +175,8 @@ void SettingsManager::setInstalledPackageListSortOrder(int newValue){
   instance()->getSYSsettings()->sync();
 }
 
-void SettingsManager::setFourPanelOrganizing(int newValue){
-  instance()->getSYSsettings()->setValue( ctn_KEY_FOUR_PANEL_ORGANIZING, newValue);
+void SettingsManager::setPanelOrganizing(int newValue){
+  instance()->getSYSsettings()->setValue( ctn_KEY_PANEL_ORGANIZING, newValue);
   instance()->getSYSsettings()->sync();
 }
 
@@ -290,6 +304,11 @@ void SettingsManager::setFontSizeFactor(int newValue){
 
 void SettingsManager::setWindowSize(QByteArray newValue){
   instance()->getSYSsettings()->setValue( ctn_KEY_WINDOW_SIZE, newValue);
+  instance()->getSYSsettings()->sync();
+}
+
+void SettingsManager::setSplitterHorizontalState(QByteArray newValue){
+  instance()->getSYSsettings()->setValue( ctn_KEY_SPLITTER_HORIZONTAL_STATE, newValue);
   instance()->getSYSsettings()->sync();
 }
 

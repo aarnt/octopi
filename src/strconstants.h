@@ -475,7 +475,7 @@ public:
                    );
   }
 
-  static QString getTreeViewCSS(const int fontSize){
+  static QString getTreeViewCSS(){ //const int fontSize){
     return QString("QTreeView::branch:has-siblings:!adjoins-item {"
                    "   border-image: url(:/resources/styles/vline.png) 0;}"
                    "QTreeView::branch:has-siblings:adjoins-item {"
@@ -514,10 +514,10 @@ public:
                    "QTreeView::item:selected:!active {"
                    "    background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #6b9be8, stop: 1 #577fbf)"
                    "}"
-                   "QTreeView {"
+                   /*"QTreeView {"
                    "    font-family: \"Verdana\";"
                    "    font-size: " + QString::number(fontSize+5) + "px;"
-                   "}"
+                   "}"*/
                    );
   }
 };

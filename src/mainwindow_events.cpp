@@ -51,6 +51,9 @@ void MainWindow::closeEvent(QCloseEvent *event)
 
     if (res == QMessageBox::Yes)
     {
+      QByteArray windowSize=saveGeometry();
+      SettingsManager::setWindowSize(windowSize);
+      SettingsManager::setSplitterHorizontalState(ui->splitterHorizontal->saveState());
       event->accept();
     }
     else
@@ -60,6 +63,9 @@ void MainWindow::closeEvent(QCloseEvent *event)
   }
   else
   {
+    QByteArray windowSize=saveGeometry();
+    SettingsManager::setWindowSize(windowSize);
+    SettingsManager::setSplitterHorizontalState(ui->splitterHorizontal->saveState());
     event->accept();
   }
 }

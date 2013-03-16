@@ -79,6 +79,8 @@ private:
 
   UnixCommand *m_unixCommand;
 
+  bool m_initializationCompleted;
+
   QSortFilterProxyModel *m_proxyModelPackages;
   QFileSystemWatcher *m_pacmanDatabaseSystemWatcher;
 
@@ -94,9 +96,6 @@ private:
   //This member holds the target list retrieved by the pacman command which will be executed
   QStringList *m_targets;
 
-  //Holds the current index of the target being processing
-  int m_currentTarget;
-
   //This member holds the current command being executed by Octopi
   CommandExecuting m_commandExecuting;
   CommandExecuting m_commandQueued;
@@ -106,10 +105,15 @@ private:
   QTimer *timer;
   QStringList *m_outdatedPackageList;
   QLabel *m_lblCounters;
+  QByteArray m_horizontalSplit;
 
   int m_numberOfInstalledPackages;
   int m_numberOfAvailablePackages;
   int m_numberOfOutdatedPackages;
+
+  void loadSettings();
+  void loadPanelSettings();
+  void saveSettings(int);
 
   void initAppIcon();
   void refreshAppIcon();
@@ -165,6 +169,9 @@ private:
 
   void initTabHelpAbout();
 
+public slots:
+  void show();
+
 protected:
   void closeEvent(QCloseEvent *event);
   void keyPressEvent(QKeyEvent* ke);
@@ -206,8 +213,8 @@ private slots:
   void insertIntoRemovePackage();
   void insertIntoInstallPackage();
 
-  void maximizePackagesTreeView();
-  void maximizePropertiesTabWidget();
+  void maximizePackagesTreeView(bool pSaveSettings = true);
+  void maximizePropertiesTabWidget(bool pSaveSettings = true);
   void outputOutdatedPackageList();
 
   void onTabNewsSourceChanged(QUrl newSource);
