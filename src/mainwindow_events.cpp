@@ -100,42 +100,42 @@ void MainWindow::keyPressEvent(QKeyEvent* ke)
   }    
   else if(ke->key() == Qt::Key_1 && ke->modifiers() == Qt::AltModifier)
   {
-    if(_isPropertiesTabWidgetVisible())
+    //if(_isPropertiesTabWidgetVisible())
     {
       _changeTabWidgetPropertiesIndex(ctn_TABINDEX_INFORMATION);
     }
   }
   else if(ke->key() == Qt::Key_2 && ke->modifiers() == Qt::AltModifier)
   {
-    if(_isPropertiesTabWidgetVisible())
+    //if(_isPropertiesTabWidgetVisible())
     {
       _changeTabWidgetPropertiesIndex(ctn_TABINDEX_FILES);
     }
   }
   else if(ke->key() == Qt::Key_3 && ke->modifiers() == Qt::AltModifier)
   {
-    if(_isPropertiesTabWidgetVisible())
+    //if(_isPropertiesTabWidgetVisible())
     {
       _changeTabWidgetPropertiesIndex(ctn_TABINDEX_TRANSACTION);
     }
   }
   else if(ke->key() == Qt::Key_4 && ke->modifiers() == Qt::AltModifier)
   {
-    if(_isPropertiesTabWidgetVisible())
+    //if(_isPropertiesTabWidgetVisible())
     {
       _changeTabWidgetPropertiesIndex(ctn_TABINDEX_OUTPUT);
     }
   }
   else if(ke->key() == Qt::Key_5 && ke->modifiers() == Qt::AltModifier)
   {
-    if(_isPropertiesTabWidgetVisible())
+    //if(_isPropertiesTabWidgetVisible())
     {
       _changeTabWidgetPropertiesIndex(ctn_TABINDEX_NEWS);
     }
   }
   else if(ke->key() == Qt::Key_6 && ke->modifiers() == Qt::AltModifier)
   {
-    if(_isPropertiesTabWidgetVisible())
+    //if(_isPropertiesTabWidgetVisible())
     {
       _changeTabWidgetPropertiesIndex(ctn_TABINDEX_HELPABOUT);
     }
@@ -143,8 +143,15 @@ void MainWindow::keyPressEvent(QKeyEvent* ke)
   else if(ke->key() == Qt::Key_F4)
   {
     QString dir = getSelectedDirectory();
+
     if (!dir.isEmpty())
+    {
       WMHelper::openTerminal(dir);
+    }
+    else
+    {
+      WMHelper::openTerminal(QDir::home().absolutePath());
+    }
   }
   else if(ke->key() == Qt::Key_F5)
   {

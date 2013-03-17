@@ -182,7 +182,8 @@ void MainWindow::_changeTabWidgetPropertiesIndex(const int newIndex)
 {
   ui->twProperties->setCurrentIndex(newIndex);
   ui->twProperties->currentWidget()->childAt(1,1)->setFocus();
-  saveSettings(ectn_CurrentTabIndex);
+
+  _ensureTabVisible(newIndex);
 }
 
 /*
@@ -587,6 +588,11 @@ void MainWindow::refreshArchNews(bool searchForLatestNews)
 
   clearTabOutput();
   qApp->processEvents();
+
+  if (searchForLatestNews)
+  {
+    _changeTabWidgetPropertiesIndex(ctn_TABINDEX_NEWS);
+  }
 }
 
 /*
@@ -756,7 +762,7 @@ void MainWindow::initTabHelpAbout()
  */
 void MainWindow::onHelpAbout()
 {
-  if (_isPropertiesTabWidgetVisible())
+  //if (_isPropertiesTabWidgetVisible())
   {
     _changeTabWidgetPropertiesIndex(ctn_TABINDEX_HELPABOUT);
   }
