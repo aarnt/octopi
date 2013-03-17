@@ -552,9 +552,16 @@ void MainWindow::doInstall()
  */
 void MainWindow::doCleanCache()
 {
-  CPUIntensiveComputing cic;
-  UnixCommand::cleanPacmanCache();
-  UnixCommand::removeTemporaryActionFile();
+  int res = QMessageBox::question(this, StrConstants::getConfirmation(),
+                                  StrConstants::getCleanCacheConfirmation(),
+                                  QMessageBox::Yes|QMessageBox::No, QMessageBox::No);
+
+  if (res == QMessageBox::Yes)
+  {
+    CPUIntensiveComputing cic;
+    UnixCommand::cleanPacmanCache();
+    UnixCommand::removeTemporaryActionFile();
+  }
 }
 
 /*

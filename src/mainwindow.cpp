@@ -83,13 +83,16 @@ void MainWindow::show()
   initTabNews();
   initLineEditFilterPackages();
   initPackageTreeView();
+
+  loadPanelSettings();
+
   initActions();
   initAppIcon();
   initToolBar();
   initTabWidgetPropertiesIndex();
   refreshArchNews(false);
 
-  loadPanelSettings();
+  //loadPanelSettings();
 
   //Let's watch for changes in the Pacman db dir!
   m_pacmanDatabaseSystemWatcher = new QFileSystemWatcher(QStringList() << ctn_PACMAN_DATABASE_DIR, this);
@@ -909,11 +912,15 @@ void MainWindow::refreshTabInfo(bool clearContents)
 /*
  * Re-populates the treeview with file list of selected package (tab TWO)
  */
-void MainWindow::refreshTabFiles(bool clearContents)
+void MainWindow::refreshTabFiles(bool clearContents, bool neverQuit)
 {
   static QString strSelectedPackage;
 
-  if(ui->twProperties->currentIndex() != ctn_TABINDEX_FILES || !_isPropertiesTabWidgetVisible()) return;
+  if(neverQuit == false &&
+     (ui->twProperties->currentIndex() != ctn_TABINDEX_FILES || !_isPropertiesTabWidgetVisible()))
+  {
+    return;
+  }
 
   if (clearContents || ui->tvPackages->selectionModel()->selectedRows(ctn_PACKAGE_NAME_COLUMN).count() == 0){
     QTreeView *tvPkgFileList = ui->twProperties->widget(ctn_TABINDEX_FILES)->findChild<QTreeView*>("tvPkgFileList");
@@ -965,7 +972,15 @@ void MainWindow::refreshTabFiles(bool clearContents)
 
   //If we are trying to refresh an already displayed package...
   if (strSelectedPackage == siRepository->text()+"#"+siName->text()+"#"+siVersion->text())
+  {
+    if (neverQuit)
+    {
+      _ensureTabVisible(ctn_TABINDEX_FILES);
+      ui->twProperties->setCurrentIndex(ctn_TABINDEX_FILES);
+    }
+
     return;
+  }
 
   //Maybe this is a non-installed package...
   bool nonInstalled = ((ui->actionNonInstalledPackages->isChecked() &&
@@ -1069,9 +1084,23 @@ void MainWindow::refreshTabFiles(bool clearContents)
         it->setText( s );
       }
     }
-  }
+  } 
 
   strSelectedPackage = siRepository->text()+"#"+siName->text()+"#"+siVersion->text();
+
+  if (neverQuit)
+  {
+    _ensureTabVisible(ctn_TABINDEX_FILES);
+    ui->twProperties->setCurrentIndex(ctn_TABINDEX_FILES);
+  }
+}
+
+/*
+ * Whenever user double clicks the package list items, app shows the contents of the selected package
+ */
+void MainWindow::onDoubleClickPackageList()
+{
+  refreshTabFiles(false, true);
 }
 
 /*

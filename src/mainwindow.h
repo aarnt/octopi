@@ -205,7 +205,8 @@ private slots:
 
   //TabWidget methods
   void refreshTabInfo(bool clearContents=false);
-  void refreshTabFiles(bool clearContents=false);
+  void refreshTabFiles(bool clearContents=false, bool neverQuit=false);
+  void onDoubleClickPackageList();
   void changedTabIndex();
   void invalidateTabs(); //This method clears the current information showed on tab.
 

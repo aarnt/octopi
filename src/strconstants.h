@@ -297,6 +297,10 @@ public:
     return QObject::tr("Confirmation");
   }
 
+  static QString getCleanCacheConfirmation(){
+    return QObject::tr("Do you really want to clean the package cache?");
+  }
+
   static QString getRollbackTransactionConfirmation(){
     return QObject::tr("Do you really want to rollback the transaction?");
   }

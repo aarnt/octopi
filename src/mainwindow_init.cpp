@@ -288,6 +288,7 @@ void MainWindow::initPackageTreeView()
           SLOT(headerViewPackageListSortIndicatorClicked(int,Qt::SortOrder)));
   connect(ui->tvPackages, SIGNAL(customContextMenuRequested(QPoint)), this,
           SLOT(execContextMenuPackages(QPoint)));
+  connect(ui->tvPackages, SIGNAL(doubleClicked(QModelIndex)), this, SLOT(onDoubleClickPackageList()));
 
   //Prepare it for drag operations
   //tvPackage->setDragEnabled(true);
