@@ -1,6 +1,6 @@
 /*
-* This file is part of Octopi, an open-source GUI for ArchLinux pacman.
-* Copyright (C) 2013  Alexandre Albuquerque Arnt
+* This file is part of Octopi, an open-source GUI for pacman.
+* Copyright (C) 2013 Alexandre Albuquerque Arnt
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -119,49 +119,6 @@ bool WMHelper::isMATERunning(){
     return false;
 }
 
-void WMHelper::editFile( const QString& fileName ){
-  QProcess *process = new QProcess(qApp->activeWindow());
-  QStringList s;
-
-  if (!UnixCommand::isRootRunning()){
-    if (isXFCERunning() && (UnixCommand::hasTheExecutable(ctn_XFCE_EDITOR) ||
-                             UnixCommand::hasTheExecutable(ctn_XFCE_EDITOR_ALT))){
-
-      QString p = getXFCEEditor() + " " + fileName;
-      process->startDetached(getSUCommand() + p);
-    }
-    else if (isKDERunning() && UnixCommand::hasTheExecutable(ctn_KDE_EDITOR)){
-      QString p = " -d -t --noignorebutton ";
-      p += ctn_KDE_EDITOR + " " + fileName;
-      process->startDetached(getSUCommand() + p);
-    }
-    else if (isTDERunning() && UnixCommand::hasTheExecutable(ctn_TDE_EDITOR)){
-      QString p = " -d -t --noignorebutton ";
-      p += ctn_TDE_EDITOR + " " + fileName;
-      process->startDetached(getSUCommand() + p);
-    }
-    else if (isMATERunning() && UnixCommand::hasTheExecutable(ctn_MATE_EDITOR)){
-      QString p = ctn_MATE_EDITOR + " " + fileName;
-      process->startDetached(getSUCommand() + p);
-    }
-    else if (UnixCommand::hasTheExecutable(ctn_XFCE_EDITOR) || UnixCommand::hasTheExecutable(ctn_XFCE_EDITOR_ALT)){
-      QString p = getXFCEEditor() + " " + fileName;
-      process->startDetached(getSUCommand() + p);
-    }
-  }
-  //QTGZManager was started by root account.
-  else{
-    if (UnixCommand::hasTheExecutable(ctn_XFCE_EDITOR) || UnixCommand::hasTheExecutable(ctn_XFCE_EDITOR_ALT))
-      s << getXFCEEditor() + " " + fileName;
-    else if (UnixCommand::hasTheExecutable(ctn_KDE_EDITOR))
-      s << ctn_KDE_EDITOR + " " + fileName;
-    else if (UnixCommand::hasTheExecutable(ctn_TDE_EDITOR))
-      s << ctn_TDE_EDITOR + " " + fileName;
-
-    process->startDetached("/bin/sh", s);
-  }
-}
-
 QString WMHelper::getXFCEEditor(){
   if (UnixCommand::hasTheExecutable(ctn_XFCE_EDITOR))
     return ctn_XFCE_EDITOR;
@@ -250,65 +207,8 @@ QString WMHelper::getSUCommand(){
   return result;
 }
 
-void WMHelper::openFile( const QString& fileName, const QString& package ){
+void WMHelper::openFile(const QString& fileName){
   QString fileToOpen(fileName);
-
-  //The user is trying to open a file from an already installed package
-  if (package == ""){
-    if (!UnixCommand::isTextFile(fileToOpen)){
-      int res = QMessageBox::question(qApp->activeWindow(), StrConstants::getConfirmation(),
-                                      StrConstants::getThisIsNotATextFile(),
-                                      QMessageBox::Yes | QMessageBox::No,
-                                      QMessageBox::No);
-
-      if ( res == QMessageBox::No ) return;
-    }
-  }
-  //The user is trying to open a file from an uninstalled package
-  else{
-    //First, we have to extract the target file to a temp directory
-    QProcess tar;
-
-#if QT_VERSION >= 0x040600
-    QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
-    env.insert("LANG", "us_EN");
-    tar.setProcessEnvironment(env);
-#endif
-
-    QFileInfo info(fileToOpen);
-    QFileInfo infoPackage(package);
-    tar.setStandardOutputFile(QDir::tempPath() + QDir::separator() + ctn_TEMP_OPEN_FILE_PREFIX +
-                              infoPackage.fileName() + "_" + info.fileName());
-
-    QString args;
-    QString extension = package.right(4);
-
-    if (extension == ctn_TGZ_PACKAGE_EXTENSION)
-      args += "tar -Oxzf";
-    else if (extension == ctn_TXZ_PACKAGE_EXTENSION)
-      args += "tar -Oxf";
-
-    fileToOpen = fileToOpen.right(fileToOpen.length()-1);
-
-    args += " " + package;
-    args += " " + fileToOpen;
-    tar.start(args);
-    tar.waitForFinished();
-    tar.close();
-
-    fileToOpen = QDir::tempPath() + QDir::separator() + ctn_TEMP_OPEN_FILE_PREFIX +
-        infoPackage.fileName() + "_" + info.fileName();
-
-    QFile f(fileToOpen);
-    if (!UnixCommand::isTextFile(fileToOpen)){
-      int res = QMessageBox::question(qApp->activeWindow(), StrConstants::getConfirmation(),
-                                      StrConstants::getThisIsNotATextFile(),
-                                      QMessageBox::Yes | QMessageBox::No,
-                                      QMessageBox::No);
-
-      if ( res == QMessageBox::No ) return;
-    }
-  }
 
   QProcess *p = new QProcess(qApp->activeWindow());
   QStringList s;
@@ -338,6 +238,49 @@ void WMHelper::openFile( const QString& fileName, const QString& package ){
   else if (UnixCommand::hasTheExecutable(ctn_LXDE_FILE_MANAGER)){
     s << fileToOpen;
     p->startDetached( ctn_LXDE_FILE_MANAGER, s );
+  }
+}
+
+void WMHelper::editFile( const QString& fileName ){
+  QProcess *process = new QProcess(qApp->activeWindow());
+  QStringList s;
+
+  if (!UnixCommand::isRootRunning()){
+    if (isXFCERunning() && (UnixCommand::hasTheExecutable(ctn_XFCE_EDITOR) ||
+                             UnixCommand::hasTheExecutable(ctn_XFCE_EDITOR_ALT))){
+
+      QString p = getXFCEEditor() + " " + fileName;
+      process->startDetached(getSUCommand() + p);
+    }
+    else if (isKDERunning() && UnixCommand::hasTheExecutable(ctn_KDE_EDITOR)){
+      QString p = " -d -t --noignorebutton ";
+      p += ctn_KDE_EDITOR + " " + fileName;
+      process->startDetached(getSUCommand() + p);
+    }
+    else if (isTDERunning() && UnixCommand::hasTheExecutable(ctn_TDE_EDITOR)){
+      QString p = " -d -t --noignorebutton ";
+      p += ctn_TDE_EDITOR + " " + fileName;
+      process->startDetached(getSUCommand() + p);
+    }
+    else if (isMATERunning() && UnixCommand::hasTheExecutable(ctn_MATE_EDITOR)){
+      QString p = ctn_MATE_EDITOR + " " + fileName;
+      process->startDetached(getSUCommand() + p);
+    }
+    else if (UnixCommand::hasTheExecutable(ctn_XFCE_EDITOR) || UnixCommand::hasTheExecutable(ctn_XFCE_EDITOR_ALT)){
+      QString p = getXFCEEditor() + " " + fileName;
+      process->startDetached(getSUCommand() + p);
+    }
+  }
+  //QTGZManager was started by root account.
+  else{
+    if (UnixCommand::hasTheExecutable(ctn_XFCE_EDITOR) || UnixCommand::hasTheExecutable(ctn_XFCE_EDITOR_ALT))
+      s << getXFCEEditor() + " " + fileName;
+    else if (UnixCommand::hasTheExecutable(ctn_KDE_EDITOR))
+      s << ctn_KDE_EDITOR + " " + fileName;
+    else if (UnixCommand::hasTheExecutable(ctn_TDE_EDITOR))
+      s << ctn_TDE_EDITOR + " " + fileName;
+
+    process->startDetached("/bin/sh", s);
   }
 }
 

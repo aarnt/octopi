@@ -1,5 +1,5 @@
 /*
-* This file is part of Octopi, an open-source GUI for ArchLinux pacman.
+* This file is part of Octopi, an open-source GUI for pacman.
 * Copyright (C) 2013  Alexandre Albuquerque Arnt
 *
 * This program is free software; you can redistribute it and/or modify
@@ -92,7 +92,6 @@ void MainWindow::saveSettings(int saveSettingsReason){
     case ectn_NORMAL:
       SettingsManager::instance()->setPanelOrganizing(ectn_NORMAL);
       SettingsManager::instance()->setSplitterHorizontalState(ui->splitterHorizontal->saveState());
-      //std::cout << "Just saved 30!" << std::endl;
       break;
 
     case ectn_PackageList:
@@ -378,15 +377,19 @@ void MainWindow::initTabFiles()
 }
 
 /*
- * Retrieves the RSS news feed from "https://www.archlinux.org/feeds/news/"
- * If it fails to connect to the internet, uses the available "./.config/octopi/arch_rss.xml"
+ * Retrieves the distro RSS news feed from it's respective site
+ * If it fails to connect to the internet, uses the available "./.config/octopi/distro_rss.xml"
  * The result is a QString containing the RSS News Feed XML code
  */
-QString MainWindow::retrieveArchNews(bool searchForLatestNews)
+QString MainWindow::retrieveDistroNews(bool searchForLatestNews)
 {
+  const QString ctn_ARCH_LINUX_RSS = "https://www.archlinux.org/feeds/news/";
+  const QString ctn_MANJARO_LINUX_RSS = "http://manjaro.org/feed/";
+  LinuxDistro distro = UnixCommand::getLinuxDistro();
+
   QString res;
-  QString tmpRssPath = QDir::homePath() + QDir::separator() + ".config/octopi/.tmp_arch_rss.xml";
-  QString rssPath = QDir::homePath() + QDir::separator() + ".config/octopi/arch_rss.xml";
+  QString tmpRssPath = QDir::homePath() + QDir::separator() + ".config/octopi/.tmp_distro_rss.xml";
+  QString rssPath = QDir::homePath() + QDir::separator() + ".config/octopi/distro_rss.xml";
   QString contentsRss;
 
   QFile fileRss(rssPath);
@@ -398,11 +401,19 @@ QString MainWindow::retrieveArchNews(bool searchForLatestNews)
     fileRss.close();
   }
 
-  if(searchForLatestNews && UnixCommand::hasInternetConnection())
+  if(searchForLatestNews && UnixCommand::hasInternetConnection() && distro != ectn_UNKNOWN)
   {
     QString curlCommand = "curl %1 -o %2";
 
-    curlCommand = curlCommand.arg("https://www.archlinux.org/feeds/news/").arg(tmpRssPath);
+    if (distro == ectn_ARCHLINUX)
+    {
+      curlCommand = curlCommand.arg(ctn_ARCH_LINUX_RSS).arg(tmpRssPath);
+    }
+    else if (distro == ectn_MANJAROLINUX)
+    {
+      curlCommand = curlCommand.arg(ctn_MANJARO_LINUX_RSS).arg(tmpRssPath);
+    }
+
     if (UnixCommand::runCurlCommand(curlCommand) == 0)
     {
       QFile fileTmpRss(tmpRssPath);
@@ -454,7 +465,7 @@ QString MainWindow::retrieveArchNews(bool searchForLatestNews)
   {
     QFile fileRss(rssPath);
 
-    //Maybe we have a file in "./.config/octopi/arch_rss.xml"
+    //Maybe we have a file in "./.config/octopi/distro_rss.xml"
     if (fileRss.exists())
     {
       res = contentsRss;
@@ -463,9 +474,13 @@ QString MainWindow::retrieveArchNews(bool searchForLatestNews)
     {
       res = "<h3><font color=\"red\">" + StrConstants::getInternetUnavailableError() + "</font></h3>";
     }
-    else
+    else if (distro != ectn_UNKNOWN)
     {
       res = "<h3><font color=\"red\">" + StrConstants::getNewsErrorMessage() + "</font></h3>";
+    }
+    else
+    {
+      res = "<h3><font color=\"red\">" + StrConstants::getIncompatibleLinuxDistroError() + "</font></h3>";
     }
   }
 
@@ -473,14 +488,25 @@ QString MainWindow::retrieveArchNews(bool searchForLatestNews)
 }
 
 /*
- * Parses the raw XML contents from the ArchLinux RSS news feed
+ * Parses the raw XML contents from the Distro RSS news feed
  * Creates and returns a string containing a HTML code with latest 10 news
  */
-QString MainWindow::parseArchNews()
+QString MainWindow::parseDistroNews()
 {
-  QString html = "<p align=\"center\"><h2>" + StrConstants::getArchLinuxNews() + "</h2></p><ul>";
+  QString html;
+
+  LinuxDistro distro = UnixCommand::getLinuxDistro();
+  if (distro == ectn_ARCHLINUX)
+  {
+    html = "<p align=\"center\"><h2>" + StrConstants::getArchLinuxNews() + "</h2></p><ul>";
+  }
+  else if (distro == ectn_MANJAROLINUX)
+  {
+    html = "<p align=\"center\"><h2>" + StrConstants::getManjaroLinuxNews() + "</h2></p><ul>";
+  }
+
   QString lastBuildDate;
-  QString rssPath = QDir::homePath() + QDir::separator() + ".config/octopi/arch_rss.xml";
+  QString rssPath = QDir::homePath() + QDir::separator() + ".config/octopi/distro_rss.xml";
   QDomDocument doc("rss");
   int itemCounter=0;
 
@@ -524,7 +550,8 @@ QString MainWindow::parseArchNews()
             }
             else if (eText.tagName() == "link")
             {
-              html += Package::makeURLClickable(eText.text()) ;
+              html += Package::makeURLClickable(eText.text());
+              if (UnixCommand::getLinuxDistro() == ectn_MANJAROLINUX) html += "<br>";
             }
             else if (eText.tagName() == "description")
             {
@@ -549,26 +576,37 @@ QString MainWindow::parseArchNews()
 }
 
 /*
- * This is the high level method that orquestrates the ArchLinux RSS News printing in tabNews
+ * This is the high level method that orquestrates the Distro RSS News printing in tabNews
  */
-void MainWindow::refreshArchNews(bool searchForLatestNews)
+void MainWindow::refreshDistroNews(bool searchForLatestNews, bool gotoNewsTab)
 {
   qApp->processEvents();
 
   if (searchForLatestNews)
   {
+    LinuxDistro distro = UnixCommand::getLinuxDistro();
+
     clearTabOutput();
-    writeToTabOutput("<b>" + StrConstants::getSearchingForArchLinuxNews() + "</b>");
+
+    if (distro == ectn_ARCHLINUX)
+    {
+      writeToTabOutput("<b>" + StrConstants::getSearchingForArchLinuxNews() + "</b>");
+    }
+    else if (distro == ectn_MANJAROLINUX)
+    {
+      writeToTabOutput("<b>" + StrConstants::getSearchingForManjaroLinuxNews() + "</b>");
+    }
+
     qApp->processEvents();
   }
 
   CPUIntensiveComputing cic;
-  QString archRSSXML = retrieveArchNews(searchForLatestNews);
+  QString distroRSSXML = retrieveDistroNews(searchForLatestNews);
   QString html;
 
-  if (archRSSXML.count() >= 200)
+  if (distroRSSXML.count() >= 200)
   {
-    if (archRSSXML.at(0)=='*')
+    if (distroRSSXML.at(0)=='*')
     {
       //If this is an updated RSS, we must warn the user!
       ui->twProperties->setTabText(ctn_TABINDEX_NEWS, "** " + StrConstants::getTabNewsName() + " **");
@@ -580,12 +618,12 @@ void MainWindow::refreshArchNews(bool searchForLatestNews)
     }
 
     //First, we have to parse the raw RSS XML...
-    html = parseArchNews();
+    html = parseDistroNews();
   }
   else
   {
     if(searchForLatestNews) ui->twProperties->setTabText(ctn_TABINDEX_NEWS, StrConstants::getTabNewsName());
-    html = archRSSXML;
+    html = distroRSSXML;
   }
 
   //Now that we have the html table code, let's put it into TextBrowser's News tab
@@ -599,7 +637,7 @@ void MainWindow::refreshArchNews(bool searchForLatestNews)
   clearTabOutput();
   qApp->processEvents();
 
-  if (searchForLatestNews)
+  if (searchForLatestNews && gotoNewsTab)
   {
     _changeTabWidgetPropertiesIndex(ctn_TABINDEX_NEWS);
   }
@@ -617,14 +655,14 @@ void MainWindow::onTabNewsSourceChanged(QUrl newSource)
     if (text)
     {
       disconnect(text, SIGNAL(sourceChanged(QUrl)), this, SLOT(onTabNewsSourceChanged(QUrl)));
-      text->setHtml(parseArchNews());
+      text->setHtml(parseDistroNews());
       connect(text, SIGNAL(sourceChanged(QUrl)), this, SLOT(onTabNewsSourceChanged(QUrl)));
     }
   }
 }
 
 /*
- * This is the TextBrowser News tab, which shows the latest news from Archlinux news feed
+ * This is the TextBrowser News tab, which shows the latest news from Distro news feed
  */
 void MainWindow::initTabNews()
 {
@@ -800,7 +838,7 @@ void MainWindow::initActions()
   connect(ui->actionCommit, SIGNAL(triggered()), this, SLOT(doCommitTransaction()));
   connect(ui->actionRollback, SIGNAL(triggered()), this, SLOT(doRollbackTransaction()));
   connect(ui->actionHelpAbout, SIGNAL(triggered()), this, SLOT(onHelpAbout()));
-  connect(ui->actionGetNews, SIGNAL(triggered()), this, SLOT(refreshArchNews()));
+  connect(ui->actionGetNews, SIGNAL(triggered()), this, SLOT(refreshDistroNews()));
 
   connect(ui->twProperties, SIGNAL(currentChanged(int)), this, SLOT(changedTabIndex()));
 

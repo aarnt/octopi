@@ -1,6 +1,6 @@
 /*
-* This file is part of Octopi, an open-source GUI for ArchLinux pacman.
-* Copyright (C) 2013  Alexandre Albuquerque Arnt
+* This file is part of Octopi, an open-source GUI for pacman.
+* Copyright (C) 2013 Alexandre Albuquerque Arnt
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -33,6 +33,8 @@ const QString ctn_AUTOMATIC("automatic");
 
 enum CommandExecuting { ectn_NONE, ectn_SYNC_DATABASE, ectn_SYSTEM_UPGRADE, ectn_INSTALL, ectn_REMOVE };
 
+enum LinuxDistro { ectn_ARCHLINUX, ectn_MANJAROLINUX, ectn_UNKNOWN };
+
 //Forward class declarations.
 class QString;
 class QStringList;
@@ -50,6 +52,9 @@ public:
   UnixCommand(QObject *parent);
 
   inline QProcess * getProcess(){ return m_process; }
+
+  //Returns the Linux Distro where Octopi is running on
+  static LinuxDistro getLinuxDistro();
 
   //Delegations from Package class (due to QProcess use)
   static QString runCommand(const QString& commandToRun);

@@ -1,6 +1,6 @@
 /*
-* This file is part of Octopi, an open-source GUI for ArchLinux pacman.
-* Copyright (C) 2013  Alexandre Albuquerque Arnt
+* This file is part of Octopi, an open-source GUI for pacman.
+* Copyright (C) 2013 Alexandre Albuquerque Arnt
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -218,6 +218,7 @@ QString MainWindow::getTobeInstalledPackages()
 
 /*
  * Inserts the current selected packages for removal into the Transaction Treeview
+ * This is the SLOT, it needs to call insertRemovePackageIntoTransaction(PackageName) to work!
  */
 void MainWindow::insertIntoRemovePackage()
 {
@@ -239,9 +240,19 @@ void MainWindow::insertIntoRemovePackage()
       sim = m_modelInstalledPackagesFromGroup;
   }
 
+  //First, let's see if we are dealing with a package group
+  if(m_cbGroups->currentIndex() != 0)
+  {
+    //If we are trying to remove all the group's packages, why not remove the entire group?
+    if(ui->tvPackages->selectionModel()->selectedRows().count() == sim->rowCount())
+    {
+      insertRemovePackageIntoTransaction(m_cbGroups->currentText());
+      return;
+    }
+  }
+
   foreach(QModelIndex item, ui->tvPackages->selectionModel()->selectedRows())
   {
-
     QModelIndex mi = m_proxyModelPackages->mapToSource(item);
     QStandardItem *si = sim->item(mi.row(), ctn_PACKAGE_NAME_COLUMN);
 
@@ -261,6 +272,7 @@ void MainWindow::insertGroupIntoRemovePackage()
 
 /*
  * Inserts the current selected packages for installation into the Transaction Treeview
+ * This is the SLOT, it needs to call insertInstallPackageIntoTransaction(PackageName) to work!
  */
 void MainWindow::insertIntoInstallPackage()
 {
@@ -282,9 +294,19 @@ void MainWindow::insertIntoInstallPackage()
       sim = m_modelInstalledPackagesFromGroup;
   }
 
+  //First, let's see if we are dealing with a package group
+  if(m_cbGroups->currentIndex() != 0)
+  {
+    //If we are trying to insert all the group's packages, why not insert the entire group?
+    if(ui->tvPackages->selectionModel()->selectedRows().count() == sim->rowCount())
+    {
+      insertInstallPackageIntoTransaction(m_cbGroups->currentText());
+      return;
+    }
+  }
+
   foreach(QModelIndex item, ui->tvPackages->selectionModel()->selectedRows())
   {
-
     QModelIndex mi = m_proxyModelPackages->mapToSource(item);
     QStandardItem *si = sim->item(mi.row(), ctn_PACKAGE_NAME_COLUMN);
 
@@ -313,8 +335,8 @@ void MainWindow::doSyncDatabase()
     return;
   }
 
-  //Retrieves the RSS News from ArchLinux site...
-  refreshArchNews();
+  //Retrieves the RSS News from respective Distro site...
+  refreshDistroNews(true, false);
 
   m_commandExecuting = ectn_SYNC_DATABASE;
   disableTransactionActions();

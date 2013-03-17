@@ -1,0 +1,10 @@
+Installing Octopi is a pretty straightforward task. 
+
+Assuming you have updated Qt4 libs installed in your system, just:
+
+	1) ./qmake
+	2) make
+	
+Octopi's binary will be generated in "./bin" dir.
+
+Enjoy!

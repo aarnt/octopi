@@ -1,6 +1,6 @@
 /*
-* This file is part of Octopi, an open-source GUI for ArchLinux pacman.
-* Copyright (C) 2013  Alexandre Albuquerque Arnt
+* This file is part of Octopi, an open-source GUI for pacman.
+* Copyright (C) 2013 Alexandre Albuquerque Arnt
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -656,4 +656,30 @@ UnixCommand::UnixCommand(QObject *parent): QObject()
                    SIGNAL( readyReadStandardError() ));
   QObject::connect(this, SIGNAL( readyReadStandardError() ), this,
                    SLOT( processReadyReadStandardError() ));
+}
+
+/*
+ * Retrieves the LinuxDistro where Octopi is running on!
+ * Reads file "/etc/os-release" and searchs for compatible Octopi distros
+ */
+LinuxDistro UnixCommand::getLinuxDistro()
+{
+  QFile file("/etc/os-release");
+  if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
+      return ectn_UNKNOWN;
+
+  QString contents = file.readAll();
+
+  if (contents.contains(QRegExp("Arch")))
+  {
+    return ectn_ARCHLINUX;
+  }
+  else if (contents.contains(QRegExp("Manjaro")))
+  {
+    return ectn_MANJAROLINUX;
+  }
+  else
+  {
+    return ectn_UNKNOWN;
+  }
 }

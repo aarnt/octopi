@@ -1,6 +1,6 @@
 /*
-* This file is part of Octopi, an open-source GUI for ArchLinux pacman.
-* Copyright (C) 2013  Alexandre Albuquerque Arnt
+* This file is part of Octopi, an open-source GUI for pacman.
+* Copyright (C) 2013 Alexandre Albuquerque Arnt
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -141,7 +141,7 @@ QMap<QString, QStringList> PackageController::findFile( const QString& name, con
   return m;
 }
 
-QMap<QString, QStringList> PackageController::findPackage( const QString& name, const QString& searchDir ){
+/*QMap<QString, QStringList> PackageController::findPackage( const QString& name, const QString& searchDir ){
   QMap<QString, QStringList> m;
 
   QStringList nameFilters;
@@ -178,10 +178,10 @@ QMap<QString, QStringList> PackageController::findPackage( const QString& name, 
 
   delete targetDir;
   return m;
-}
+}*/
 
 void PackageController::testSearchInDir(){
-  QMap<QString, QStringList> map = findPackage("qt-", "/home/arnt/Packages");
+  /*QMap<QString, QStringList> map = findPackage("qt-", "/home/arnt/Packages");
 
   foreach (QString k, map.keys()){
     foreach( QStringList sl, map.values(k) ){
@@ -190,5 +190,5 @@ void PackageController::testSearchInDir(){
         std::cout << "Found!" << k.toAscii().data() << "/" << found.toAscii().data() << std::endl;
       }
     }
-  }
+  }*/
 }

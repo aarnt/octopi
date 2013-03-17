@@ -1,6 +1,6 @@
 /*
-* This file is part of Octopi, an open-source GUI for ArchLinux pacman.
-* Copyright (C) 2013  Alexandre Albuquerque Arnt
+* This file is part of Octopi, an open-source GUI for pacman.
+* Copyright (C) 2013 Alexandre Albuquerque Arnt
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -39,7 +39,7 @@
 #include <iostream>
 
 /*
- * MainWindow's constructor: init the UI and member variables as well as remove garbage files
+ * MainWindow's constructor: basic UI init
  */
 MainWindow::MainWindow(QWidget *parent) :
   QMainWindow(parent),
@@ -59,18 +59,19 @@ MainWindow::~MainWindow()
 }
 
 /*
- * The show() public SLOT, when the app is being drawing!!!
+ * The show() public SLOT, when the app is being drawn!!!
+ * Init member variables and all UI widgets
  */
 void MainWindow::show()
 {
-  QMainWindow::show();
   loadSettings();
+  restoreGeometry(SettingsManager::getWindowSize());
+  QMainWindow::show();
 
   m_initializationCompleted=false;
   m_commandExecuting=ectn_NONE;
   m_commandQueued=ectn_NONE;
 
-  restoreGeometry(SettingsManager::getWindowSize());
   setWindowTitle(StrConstants::getApplicationName() + " " + StrConstants::getApplicationVersion());
   setMinimumSize(QSize(850, 600));
 
@@ -90,7 +91,7 @@ void MainWindow::show()
   initAppIcon();
   initToolBar();
   initTabWidgetPropertiesIndex();
-  refreshArchNews(false);
+  refreshDistroNews(false);
 
   //loadPanelSettings();
 

@@ -1,6 +1,6 @@
 /*
-* This file is part of Octopi, an open-source GUI for ArchLinux pacman.
-* Copyright (C) 2013  Alexandre Albuquerque Arnt
+* This file is part of Octopi, an open-source GUI for pacman.
+* Copyright (C) 2013 Alexandre Albuquerque Arnt
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -75,7 +75,7 @@ public:
   static QString getXFCEEditor();
   static QString getSUCommand();
 
-  static void openFile( const QString& fileName, const QString& package="" ); //fileName is Path + Name
+  static void openFile(const QString& fileName); //fileName is Path + Name
   static void editFile( const QString& fileName ); //fileName is Path + Name
   static void openDirectory( const QString& dirName );
   static void openTerminal( const QString& dirName );

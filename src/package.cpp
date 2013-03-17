@@ -1,6 +1,6 @@
 /*
-* This file is part of Octopi, an open-source GUI for ArchLinux pacman.
-* Copyright (C) 2013  Alexandre Albuquerque Arnt
+* This file is part of Octopi, an open-source GUI for pacman.
+* Copyright (C) 2013 Alexandre Albuquerque Arnt
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -24,18 +24,6 @@
 #include <QTextStream>
 #include <QList>
 #include <iostream>
-
-InstalledPkgListSingleton *InstalledPkgListSingleton::m_pinstance = 0;
-//FrozenPkgListSingleton *FrozenPkgListSingleton::m_pinstance = 0;
-
-QStringList Package::getInstalledPackageNames()
-{
-  QDir d(ctn_PACKAGES_DIR);
-  d.setSorting(QDir::Name);
-  d.setFilter(QDir::Files);
-
-  return d.entryList();
-}
 
 bool Package::isValid( const QString& pkgName )
 {
@@ -61,32 +49,6 @@ QString Package::getBaseName( const QString& p )
 
 	if (packageBaseName == "") packageBaseName += p.left(p.indexOf("-"));
 	return packageBaseName;
-}
-
-QString Package::dumpInstalledPackageList(DumpInstalledPackageListOptions options)
-{
-	QDateTime now = QDateTime::currentDateTime();
-  QString dumpFileName = ctn_DUMP_FILE + now.toString ("dd_MM_yyyy_hh_mm_ss") + ".txt"; 
-  QFile file(SettingsManager::getDefaultDirectory() + QDir::separator() + dumpFileName);
-
-  if (!file.open(QIODevice::WriteOnly | QIODevice::Text)) return "";
-  QTextStream out(&file);
-
-  foreach (QString fileName, InstalledPkgListSingleton::instance()->getFileList()){
-    if (options == ectn_WITH_MODIFIED_DATE){
-      QFileInfo fi( ctn_PACKAGES_DIR + QDir::separator() + fileName );
-      QDateTime lastModifiedDate = fi.lastModified();
-      out << fileName << " " << lastModifiedDate.toString("dd/MM/yyyy hh:mm:ss") << "\n";
-    }
-    else if (options == ectn_NO_MODIFIED_DATE){
-      out << fileName << "\n";
-    }
-	}
-
-	file.flush();
-	file.close();
-
-  return SettingsManager::getDefaultDirectory() + QDir::separator() + dumpFileName;
 }
 
 //Here, we do the URL html link tag addition
@@ -243,6 +205,7 @@ QStringList *Package::getPackageGroups()
     res->append(packageTuple); //We only need the package name!
   }
 
+  res->removeDuplicates();
   res->sort();
   return res;
 }
@@ -668,129 +631,6 @@ cleanup:
   return ret;
 }
 
-/*Result Package::getStatus( const QString& pkgToVerify )
-{
-  bool newPackageExtension = false;
-  QString arqBaseName = Package::getBaseName(pkgToVerify);
-
-  if ( FrozenPkgListSingleton::instance()->indexOf( QRegExp(QRegExp::escape(arqBaseName)), 0 ) != -1){
-    QString installedPackage = InstalledPkgListSingleton::instance()->getFileList().
-                               filter( QRegExp(QRegExp::escape(arqBaseName)) )[0];
-
-    int i = InstalledPkgListSingleton::instance()->getFileList().indexOf(
-        QRegExp( QRegExp::escape(installedPackage)) );
-
-    return(Result(ectn_FROZEN, InstalledPkgListSingleton::instance()->getFileList().value(i)));
-  }
-
-  //If it's a dumped snapshot list of installed packages file...
-  if (pkgToVerify.startsWith(ctn_DUMP_FILE)){
-    return(Result(ectn_DUMP_FILE, ""));
-  }
-  else if (pkgToVerify.endsWith(ctn_RPM_PACKAGE_EXTENSION)){
-    return(Result(ectn_RPM, ""));
-  }
-  else{
-    if (pkgToVerify.endsWith(ctn_TXZ_PACKAGE_EXTENSION))
-      newPackageExtension = true;
-    else if (pkgToVerify.endsWith(ctn_TGZ_PACKAGE_EXTENSION))
-      newPackageExtension = false;
-
-    else{ //This package has no extension, which means it is probably in the Installed Package tv
-      int i = InstalledPkgListSingleton::instance()->getFileList().indexOf(pkgToVerify);
-      if (i != -1)
-        return(Result(ectn_INSTALLED, InstalledPkgListSingleton::instance()->getFileList().value(i)));
-    }
-
-    int i = InstalledPkgListSingleton::instance()->getFileList().indexOf(pkgToVerify.left(pkgToVerify.length()-4));
-    if (i != -1){
-      return(Result(ectn_INSTALLED, InstalledPkgListSingleton::instance()->getFileList().value(i)));
-    }
-  }
-
-  Result res(ectn_NOT_INSTALLED, "");
-  bool goAhead=false;
-
-  QString res1 = showRegExp(pkgToVerify, ctn_ER);
-  if (res1 == ctn_NO_MATCH) {
-    return Result(ectn_INTERNAL_ERROR, "");
-  }
-
-	QRegExp raux;
-  QStringList lPackages2 = InstalledPkgListSingleton::instance()->getFileList().
-                           filter( QRegExp(raux.escape( arqBaseName ) ));
-
-  foreach ( QString installedPackage, lPackages2 ){
-    if ((pkgToVerify == ".") || (pkgToVerify == "..")) continue;
-               
-    QString res2 = showRegExp(installedPackage, ctn_ER3);
-
-    int a = res1.indexOf(res2);        
-    if (a == 0){
-      //It must first make the "brake string" test... 
-      QStringList c = pkgToVerify.split("-");
-      QStringList d = installedPackage.split("-");
-
-      //If it doens't have: name, version, arch and release, then we discard this package!
-      if (c.count() < 4)
-        return Result(ectn_INTERNAL_ERROR, "");
-
-      //Are we dealing with a package from a different architecture?
-      QString arqBaseNameInstalled = getBaseName(installedPackage);
-
-      if (arqBaseName == arqBaseNameInstalled){
-        QString arq1 = c[c.size()-2];
-        QString arq2 = d[c.size()-2];
-        //if the architectures are different, return immediately!
-        if ((arq1 != arq2) && isValidArch(arq1))
-          return Result(ectn_OTHER_ARCH, installedPackage);
-        else if ((arq1 != arq2) && !isValidArch(arq1))
-          return Result(ectn_INTERNAL_ERROR, installedPackage);
-      }
-
-      //If the architectures are the same, we can test versions...
-      if ((c.size() != 0) && (d.size() != 0) && (c.size() == d.size())){
-        goAhead=true;
-        for (int k = 0; k < c.size()-3; k++) {
-	        if (c[k] != (d[k])) goAhead = false;  
-        }
-
-        if (goAhead){
-          QString st1(c[c.size()-3]);
-          QString st2(d[c.size()-3]);
-
-          int versionTest = rpmvercmp(st1.toAscii().data(), st2.toAscii().data());
-
-          if (versionTest == 1)
-            return Result(ectn_SUPERIOR_VERSION, installedPackage);
-          else if (versionTest == -1)
-            return Result(ectn_INFERIOR_VERSION, installedPackage);
-          else if (versionTest == 0){
-            //Here comes the release test!
-            if (newPackageExtension)
-              c[c.size()-1] = c[c.size()-1].replace(ctn_TXZ_PACKAGE_EXTENSION, "");
-            else
-              c[c.size()-1] = c[c.size()-1].replace(ctn_TGZ_PACKAGE_EXTENSION, "");
-
-            QString sn1, sn2;
-            sn1 = showRegExp(c[c.size()-1], "[0-9]*");
-            sn2 = showRegExp(d[c.size()-1], "[0-9]*");
-
-            int releaseTest = rpmvercmp(sn1.toAscii().data(), sn2.toAscii().data());
-
-            if (releaseTest == 1)
-              return Result(ectn_SUPERIOR_VERSION, installedPackage);
-            else if (releaseTest == -1)
-              return Result(ectn_INFERIOR_VERSION, installedPackage);
-          }
-        }
-      }
-    }
-	}        
-  
-  return res; 						
-}*/
-
 QStringList Package::getContents(const QString& pkgName)
 {
   QStringList rsl;
@@ -841,133 +681,6 @@ QString Package::parseSearchString(QString searchStr, bool exactMatch)
   return searchStr;
 }
 
-QDateTime Package::_getModificationDate(const QString packageName)
-{
-  QFileInfo fi(ctn_PACKAGES_DIR + QDir::separator() + packageName);
-  if (fi.exists())
-    return fi.lastModified();
-  else
-    return QDateTime();
-}
-
-QString Package::getModificationDate(const QString packageName)
-{
-  QDateTime md = _getModificationDate(packageName);
-  if (md.isValid()){
-    return md.toString("dd/MM/yyyy - hh:mm:ss");
-  }
-  else
-    return "";
-}
-
-/*SnapshotList Package::processSnapshotOfInstalledPackageList(QString pDumpedFile)
-{
-  SnapshotList snapList;
-  QStringList resList;
-  QStringList newPackages;
-  QHash<QString, QString> dumpedList;
-  QStringList dumpedListExt;
-
-  //First, open the dumpedList
-  QFile dumpedFile(pDumpedFile);
-  dumpedFile.open(QIODevice::ReadOnly | QIODevice::Text);
-
-  QTextStream in(&dumpedFile);
-
-  while (!in.atEnd()){
-    QString line = in.readLine();
-    QString package;
-    QString modificationDate;
-
-    int pos = line.indexOf(" ");
-    if (pos > 0){
-      package = line.left(pos);
-      modificationDate = line.mid(pos+1);
-    }
-    else
-      package = line;
-
-    dumpedList.insert(getBaseName(package), modificationDate);
-    dumpedListExt.append(package);
-  }
-
-  const int value=65; //justification value
-
-  //Print the list of installed packages
-  int cRemoved=0;
-  int cInstalled=0;
-  int cReinstalled=0;
-  int cUpgraded=0;
-  int cDowngraded=0;
-  int cOtherVersion=0;
-
-  foreach (QString pkg, InstalledPkgListSingleton::instance()->getFileList())
-  {
-    if (!dumpedList.contains(getBaseName(pkg))){
-      resList.append(pkg.leftJustified(value, ' ') + "[<i>++ " + QObject::tr("installed") + " ++</i>]");
-      newPackages.append(pkg);
-      cInstalled++;
-    }
-    //This package is already installed. But maybe it's been reinstalled...
-    else if (dumpedListExt.contains(pkg)){
-      QString datetime = dumpedList.value(getBaseName(pkg));
-      if (QDateTime::fromString(datetime, "dd/MM/yyyy hh:mm:ss") < _getModificationDate(pkg))
-      {
-        resList.append(pkg.leftJustified(value, ' ') + " [ " + QObject::tr("reinstalled") + " ]");
-        cReinstalled++;
-      }
-    }
-  }
-
-  //Print the rest of the list...
-  foreach (QString pkg, dumpedListExt)
-  {
-    Result res = Package::getStatus(pkg);
-
-    switch(res.getClassification()){    
-
-    case ectn_INFERIOR_VERSION :
-      resList.append(res.getInstalledPackage().leftJustified(value, ' ') + " [ > " + QObject::tr("upgraded") + " ]");
-      cUpgraded++;
-      break;
-
-    case ectn_SUPERIOR_VERSION:
-      resList.append(res.getInstalledPackage().leftJustified(value, ' ') + " [ &lt; " + QObject::tr("downgraded") + " ]");
-      cDowngraded++;
-      break;
-
-    case ectn_OTHER_VERSION:
-      //resList.append(res.getInstalledPackage().leftJustified(value, ' ') + " [ ? " + QObject::tr("other version") + " ]");
-      cOtherVersion++;
-      break;
-
-    case ectn_NOT_INSTALLED :
-      resList.append(pkg.leftJustified(value, ' ') + " [ <s>" + QObject::tr("removed") + "</s> ]");
-      cRemoved++;
-      break;
-
-    default:
-      break;
-    }
-  }
-
-  resList.sort();
-
-  if (resList.count() >= 1)
-    resList.append("= (" + QString::number(cInstalled) + " " + QObject::tr("installed") + ") + " +
-                 "(" + QString::number(cReinstalled) + " " + QObject::tr("reinstalled") + ") + " +
-                 "(" + QString::number(cDowngraded) + " " + QObject::tr("downgraded") + ") + " +
-                 "(" + QString::number(cUpgraded) + " " + QObject::tr("upgraded") + ") + " +
-                 //"(" + QString::number(cOtherVersion) + " " + QObject::tr("other version") + ") + " +
-                 "(" + QString::number(cRemoved) + " " + QObject::tr("removed") + ") = " +
-                 QString::number(cInstalled+cReinstalled+cDowngraded+cUpgraded+cOtherVersion+cRemoved) + " " +
-                 QObject::tr("changes"));
-
-  snapList.setNewPackagesList(newPackages);
-  snapList.setDetails(resList);
-  return snapList;
-}*/
-
 void Package::removeTempFiles()
 {
   QDir d(QDir::tempPath());
@@ -978,33 +691,4 @@ void Package::removeTempFiles()
   foreach(QFileInfo fi, il){
     QFile::remove(fi.filePath());
   }
-}
-
-InstalledPkgListSingleton* InstalledPkgListSingleton::instance()
-{
-  if (m_pinstance == 0) m_pinstance = new InstalledPkgListSingleton();
-  return m_pinstance;
-}
-
-QStringList InstalledPkgListSingleton::getFileList()
-{
-  return m_pkgList;
-}
-
-void InstalledPkgListSingleton::setFileSystemWatcher(QFileSystemWatcher* fsw)
-{
-  connect (fsw, SIGNAL(directoryChanged(const QString)),
-                    this, SLOT(installedPkgDirChanged()));
-}
-
-InstalledPkgListSingleton::InstalledPkgListSingleton():QObject()
-{
-  QDir scanPackages = QDir(ctn_PACKAGES_DIR);
-  scanPackages.setFilter(QDir::Files);
-  m_pkgList = scanPackages.entryList();
-}
-
-void InstalledPkgListSingleton::installedPkgDirChanged()
-{
-  m_pinstance = 0;
 }

@@ -22,16 +22,7 @@
     <bool>true</bool>
    </property>
    <layout class="QGridLayout" name="gridLayout">
-    <property name="leftMargin">
-     <number>0</number>
-    </property>
-    <property name="topMargin">
-     <number>0</number>
-    </property>
-    <property name="rightMargin">
-     <number>0</number>
-    </property>
-    <property name="bottomMargin">
+    <property name="margin">
      <number>0</number>
     </property>
     <property name="spacing">
@@ -137,7 +128,7 @@
      <x>0</x>
      <y>0</y>
      <width>552</width>
-     <height>23</height>
+     <height>22</height>
     </rect>
    </property>
    <property name="contextMenuPolicy">
@@ -307,7 +298,7 @@
   </action>
   <action name="actionGetNews">
    <property name="text">
-    <string>Get latest Arch news</string>
+    <string>Get latest distro news</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+G</string>

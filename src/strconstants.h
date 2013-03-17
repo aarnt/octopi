@@ -1,6 +1,6 @@
 /*
-* This file is part of Octopi, an open-source GUI for ArchLinux pacman.
-* Copyright (C) 2013  Alexandre Albuquerque Arnt
+* This file is part of Octopi, an open-source GUI for pacman.
+* Copyright (C) 2013 Alexandre Albuquerque Arnt
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -30,7 +30,7 @@ public:
   }
 
   static QString getApplicationVersion(){
-    return "0.1";
+    return "0.1.1";
   }
 
   static QString getApplicationCliHelp(){
@@ -46,8 +46,16 @@ public:
     return QObject::tr("ArchLinux news");
   }
 
+  static QString getManjaroLinuxNews(){
+    return QObject::tr("Manjaro Linux news");
+  }
+
   static QString getNewsErrorMessage(){
     return QObject::tr("No news could be found! Press Ctrl+G to download the latest news.");
+  }
+
+  static QString getIncompatibleLinuxDistroError(){
+    return QObject::tr("This Linux distro seems to be incompatible with Octopi!");
   }
 
   static QString getInternetUnavailableError(){
@@ -204,6 +212,10 @@ public:
 
   static QString getSearchingForArchLinuxNews(){
     return QObject::tr("Searching for ArchLinux latest news...");
+  }
+
+  static QString getSearchingForManjaroLinuxNews(){
+    return QObject::tr("Searching for Manjaro Linux latest news...");
   }
 
   static QString getOneOutdatedPackage(){
