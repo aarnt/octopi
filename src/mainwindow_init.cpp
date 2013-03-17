@@ -37,6 +37,7 @@
 #include <QTextStream>
 #include <QDomDocument>
 #include <QFile>
+#include <QComboBox>
 #include <iostream>
 
 /*
@@ -116,13 +117,47 @@ void MainWindow::initAppIcon()
 }
 
 /*
+ * Inserts the group names into the Groups comboBox
+ */
+void MainWindow::refreshComboBoxGroups()
+{
+  disconnect(m_cbGroups, SIGNAL(currentIndexChanged(QString)), this, SLOT(buildPackagesFromGroupList(QString)));
+
+  m_cbGroups->clear();
+
+  m_cbGroups->addItem("<" + StrConstants::getAll() + ">");
+  m_cbGroups->addItems(*Package::getPackageGroups());
+
+  connect(m_cbGroups, SIGNAL(currentIndexChanged(QString)), this, SLOT(buildPackagesFromGroupList(QString)));
+}
+
+/*
+ * Inits the Groups combobox, so it can be added in app's toolBar
+ */
+void MainWindow::initComboBoxGroups()
+{
+  //m_lblGroups = new QLabel(StrConstants::getGroup(), this);
+  m_cbGroups = new QComboBox(this);
+  m_cbGroups->setMinimumWidth(200);
+  m_cbGroups->setAutoCompletion(true);
+
+  connect(m_cbGroups, SIGNAL(currentIndexChanged(QString)), this, SLOT(buildPackagesFromGroupList(QString)));
+}
+
+/*
  * Inits the toolbar, including taking that annoying default view action out of the game
  */
 void MainWindow::initToolBar()
 {
+  initComboBoxGroups();
+  //ui->mainToolBar->addWidget(m_lblGroups);
+  ui->mainToolBar->addWidget(m_cbGroups);
+
+  ui->mainToolBar->addSeparator();
   ui->mainToolBar->addAction(ui->actionSyncPackages);
   ui->mainToolBar->addAction(ui->actionCommit);
   ui->mainToolBar->addAction(ui->actionRollback);
+
   ui->mainToolBar->addSeparator();
   ui->mainToolBar->addAction(ui->actionExit);
 
@@ -147,6 +182,7 @@ void MainWindow::_changeTabWidgetPropertiesIndex(const int newIndex)
 {
   ui->twProperties->setCurrentIndex(newIndex);
   ui->twProperties->currentWidget()->childAt(1,1)->setFocus();
+  saveSettings(ectn_CurrentTabIndex);
 }
 
 /*
@@ -223,6 +259,9 @@ void MainWindow::initPackageTreeView()
   m_proxyModelPackages = new QSortFilterProxyModel(this);
   m_modelPackages = new QStandardItemModel(this);
   m_modelInstalledPackages = new QStandardItemModel(this);
+  m_modelPackagesFromGroup = new QStandardItemModel(this);
+  m_modelInstalledPackagesFromGroup = new QStandardItemModel(this);
+
   m_proxyModelPackages->setSourceModel(m_modelPackages);
   m_proxyModelPackages->setFilterKeyColumn(1);
   ui->tvPackages->setItemDelegate(new TreeViewPackagesItemDelegate(ui->tvPackages));
@@ -503,6 +542,14 @@ QString MainWindow::parseArchNews()
 void MainWindow::refreshArchNews(bool searchForLatestNews)
 {
   qApp->processEvents();
+
+  if (searchForLatestNews)
+  {
+    clearTabOutput();
+    writeToTabOutput("<b>" + StrConstants::getSearchingForArchLinuxNews() + "</b>");
+    qApp->processEvents();
+  }
+
   CPUIntensiveComputing cic;
   QString archRSSXML = retrieveArchNews(searchForLatestNews);
   QString html;
@@ -517,7 +564,7 @@ void MainWindow::refreshArchNews(bool searchForLatestNews)
     }
     else
     {
-      ui->twProperties->setTabText(ctn_TABINDEX_NEWS, StrConstants::getTabNewsName());
+      if(searchForLatestNews) ui->twProperties->setTabText(ctn_TABINDEX_NEWS, StrConstants::getTabNewsName());
     }
 
     //First, we have to parse the raw RSS XML...
@@ -525,7 +572,7 @@ void MainWindow::refreshArchNews(bool searchForLatestNews)
   }
   else
   {
-    ui->twProperties->setTabText(ctn_TABINDEX_NEWS, StrConstants::getTabNewsName());
+    if(searchForLatestNews) ui->twProperties->setTabText(ctn_TABINDEX_NEWS, StrConstants::getTabNewsName());
     html = archRSSXML;
   }
 
@@ -536,6 +583,9 @@ void MainWindow::refreshArchNews(bool searchForLatestNews)
     text->clear();
     text->setHtml(html);
   }
+
+  clearTabOutput();
+  qApp->processEvents();
 }
 
 /*
@@ -727,6 +777,8 @@ void MainWindow::initActions()
 
   connect(ui->actionRemove, SIGNAL(triggered()), this, SLOT(insertIntoRemovePackage()));
   connect(ui->actionInstall, SIGNAL(triggered()), this, SLOT(insertIntoInstallPackage()));
+  connect(ui->actionRemoveGroup, SIGNAL(triggered()), this, SLOT(insertGroupIntoRemovePackage()));
+  connect(ui->actionInstallGroup, SIGNAL(triggered()), this, SLOT(insertGroupIntoInstallPackage()));
 
   connect(ui->actionCommit, SIGNAL(triggered()), this, SLOT(doCommitTransaction()));
   connect(ui->actionRollback, SIGNAL(triggered()), this, SLOT(doRollbackTransaction()));

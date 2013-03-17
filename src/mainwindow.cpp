@@ -35,6 +35,7 @@
 #include <QTimer>
 #include <QLabel>
 #include <QMessageBox>
+#include <QComboBox>
 #include <iostream>
 
 /*
@@ -45,9 +46,6 @@ MainWindow::MainWindow(QWidget *parent) :
   ui(new Ui::MainWindow)
 {
   ui->setupUi(this);
-
-  //m_PackageListOrderedCol=1;
-  //m_PackageListSortOrder=Qt::AscendingOrder;
 }
 
 /*
@@ -88,8 +86,8 @@ void MainWindow::show()
   initActions();
   initAppIcon();
   initToolBar();
-
   initTabWidgetPropertiesIndex();
+  refreshArchNews(false);
 
   loadPanelSettings();
 
@@ -233,6 +231,25 @@ QString MainWindow::getInstalledPackageVersionByName(const QString &pkgName)
 }
 
 /*
+ * Returns the QStandardItem available in the row that pkgName is found
+ */
+QStandardItem *MainWindow::getAvailablePackage(const QString &pkgName, const int index)
+{
+  QList<QStandardItem *> foundItems =
+      m_modelPackages->findItems(pkgName, Qt::MatchExactly, ctn_PACKAGE_NAME_COLUMN);
+  QStandardItem *res;
+
+  if (foundItems.count() > 0)
+  {
+    QStandardItem * si = foundItems.first();
+    QStandardItem * aux = m_modelPackages->item(si->row(), index);
+    res = aux->clone();
+  }
+
+  return res;
+}
+
+/*
  * Searchs model modelInstalledPackages by a package name and returns if it is already installed
  */
 bool MainWindow::isPackageInstalled(const QString &pkgName)
@@ -244,7 +261,148 @@ bool MainWindow::isPackageInstalled(const QString &pkgName)
 }
 
 /*
+ * Populates the list of available packages from the given groupName
+ */
+void MainWindow::buildPackagesFromGroupList(const QString &groupName)
+{
+  if (m_cbGroups->currentIndex() == 0)
+  {
+    QStringList sl;
+    m_modelPackagesFromGroup->setHorizontalHeaderLabels(
+          sl << "" << StrConstants::getName() << StrConstants::getVersion() << StrConstants::getRepository());
+
+    sl.clear();
+    m_modelInstalledPackagesFromGroup->setHorizontalHeaderLabels(
+          sl << "" << StrConstants::getName() << StrConstants::getVersion() << StrConstants::getRepository());
+
+    if (ui->leFilterPackage->text() != "") reapplyPackageFilter();
+
+    if (ui->actionNonInstalledPackages->isChecked())
+    {
+      m_proxyModelPackages->setSourceModel(m_modelPackages);
+    }
+    else
+    {
+      m_proxyModelPackages->setSourceModel(m_modelInstalledPackages);
+    }
+
+    QModelIndex maux = m_proxyModelPackages->index(0, 0);
+    ui->tvPackages->setCurrentIndex(maux);
+    ui->tvPackages->scrollTo(maux, QAbstractItemView::PositionAtCenter);
+    ui->tvPackages->selectionModel()->setCurrentIndex(maux, QItemSelectionModel::Select);
+
+    refreshTabInfo();
+    refreshTabFiles();
+    ui->tvPackages->setFocus();
+
+    return;
+  }
+
+  disconnect(m_pacmanDatabaseSystemWatcher, SIGNAL(directoryChanged(QString)), this, SLOT(buildPackagesFromGroupList(QString)));
+
+  CPUIntensiveComputing cic;
+
+  m_modelPackagesFromGroup->clear();
+  m_modelInstalledPackagesFromGroup->clear();
+
+  QStringList sl;
+  QList<QString> *list = Package::getPackagesOfGroup(groupName);
+
+  QStandardItem *parentItemPackagesFromGroup = m_modelPackagesFromGroup->invisibleRootItem();
+  QStandardItem *parentItemInstalledPackagesFromGroup = m_modelInstalledPackagesFromGroup->invisibleRootItem();
+
+  QList<QString>::const_iterator it = list->begin();
+  QList<QStandardItem*> lIcons, lNames, lVersions, lRepositories;
+  QList<QStandardItem*> lIcons2, lNames2, lVersions2, lRepositories2;
+
+  QProgressDialog progress(StrConstants::getBuildingPackageList(), "", 0, list->count()+2, this);
+  progress.setValue(0);
+  progress.setMinimumDuration(10);
+  progress.setCancelButton(0);
+  progress.setWindowModality(Qt::WindowModal);
+
+  int counter=0;
+  while(it != list->end())
+  {
+    QString packageName = *it;
+
+    QStandardItem *siIcon = getAvailablePackage(packageName, ctn_PACKAGE_ICON_COLUMN);
+    QStandardItem *siName = getAvailablePackage(packageName, ctn_PACKAGE_NAME_COLUMN);
+    QStandardItem *siVersion = getAvailablePackage(packageName, ctn_PACKAGE_VERSION_COLUMN);
+    QStandardItem *siRepository = getAvailablePackage(packageName, ctn_PACKAGE_REPOSITORY_COLUMN);
+
+    lIcons << siIcon;
+    lNames << siName;
+    lVersions << siVersion;
+    lRepositories << siRepository;
+
+    //If this is an INSTALLED package, we add it to the model view of installed packages!
+    if (siIcon->icon().pixmap(QSize(22,22)).toImage() != IconHelper::getIconNonInstalled().pixmap(QSize(22,22)).toImage())
+    {
+      lIcons2 << lIcons.last()->clone();
+      lNames2 << lNames.last()->clone();
+      lVersions2 << lVersions.last()->clone();
+      lRepositories2 << lRepositories.last()->clone();
+    }
+
+    counter++;
+    progress.setValue(counter);
+    qApp->processEvents();
+    it++;
+  }
+
+  parentItemPackagesFromGroup->insertColumn(0, lIcons);
+  parentItemPackagesFromGroup->insertColumn(1, lNames);
+  parentItemPackagesFromGroup->insertColumn(2, lVersions);
+  parentItemPackagesFromGroup->insertColumn(3, lRepositories);
+
+  parentItemInstalledPackagesFromGroup->insertColumn(0, lIcons2);
+  parentItemInstalledPackagesFromGroup->insertColumn(1, lNames2);
+  parentItemInstalledPackagesFromGroup->insertColumn(2, lVersions2);
+  parentItemInstalledPackagesFromGroup->insertColumn(3, lRepositories2);
+
+  ui->tvPackages->setColumnWidth(0, 24);
+  ui->tvPackages->setColumnWidth(1, 500);
+  ui->tvPackages->setColumnWidth(2, 160);
+  ui->tvPackages->sortByColumn(m_PackageListOrderedCol, m_PackageListSortOrder);
+
+  m_modelPackagesFromGroup->setHorizontalHeaderLabels(
+        sl << "" << StrConstants::getName() << StrConstants::getVersion() << StrConstants::getRepository());
+
+  sl.clear();
+  m_modelInstalledPackagesFromGroup->setHorizontalHeaderLabels(
+        sl << "" << StrConstants::getName() << StrConstants::getVersion() << StrConstants::getRepository());
+
+  if (ui->leFilterPackage->text() != "") reapplyPackageFilter();
+
+  if (ui->actionNonInstalledPackages->isChecked())
+  {
+    m_proxyModelPackages->setSourceModel(m_modelPackagesFromGroup);
+  }
+  else
+  {
+    m_proxyModelPackages->setSourceModel(m_modelInstalledPackagesFromGroup);
+  }
+
+  QModelIndex maux = m_proxyModelPackages->index(0, 0);
+  ui->tvPackages->setCurrentIndex(maux);
+  ui->tvPackages->scrollTo(maux, QAbstractItemView::PositionAtCenter);
+  ui->tvPackages->selectionModel()->setCurrentIndex(maux, QItemSelectionModel::Select);
+
+  list->clear();
+  refreshTabInfo();
+  refreshTabFiles();
+  ui->tvPackages->setFocus();
+  counter++;
+  progress.setValue(counter);
+
+  connect(m_pacmanDatabaseSystemWatcher, SIGNAL(directoryChanged(QString)), this, SLOT(buildPackagesFromGroupList(QString)));
+}
+
+/*
  * Populates the list of available packages (installed [+ non-installed])
+ *
+ * It's called Only: when the selected group is <All> !
  */
 void MainWindow::buildPackageList()
 {
@@ -254,8 +412,24 @@ void MainWindow::buildPackageList()
   timer->stop();
 
   CPUIntensiveComputing cic;  
+
+  //Refresh the list of Group names
+  refreshComboBoxGroups();
+
   m_modelPackages->clear();
   m_modelInstalledPackages->clear();
+  m_modelInstalledPackagesFromGroup->clear();
+  m_modelPackagesFromGroup->clear();
+
+  if (ui->actionNonInstalledPackages->isChecked())
+  {
+    m_proxyModelPackages->setSourceModel(m_modelPackages);
+  }
+  else
+  {
+    m_proxyModelPackages->setSourceModel(m_modelInstalledPackages);
+  }
+
   QStringList sl;
 
   if(!firstTime) //If it's not the starting of the app...
@@ -353,6 +527,9 @@ void MainWindow::buildPackageList()
   ui->tvPackages->setColumnWidth(2, 160);
   ui->tvPackages->sortByColumn(m_PackageListOrderedCol, m_PackageListSortOrder);
 
+  m_modelPackages->sort(m_PackageListOrderedCol, m_PackageListSortOrder);
+  m_modelInstalledPackages->sort(m_PackageListOrderedCol, m_PackageListSortOrder);
+
   m_modelPackages->setHorizontalHeaderLabels(
         sl << "" << StrConstants::getName() << StrConstants::getVersion() << StrConstants::getRepository());
 
@@ -369,6 +546,7 @@ void MainWindow::buildPackageList()
 
   list->clear();
   refreshTabInfo();
+  refreshTabFiles();
   ui->tvPackages->setFocus();
   counter++;
   progress.setValue(counter);
@@ -387,14 +565,6 @@ void MainWindow::buildPackageList()
 
   if (firstTime)
   {
-    //Retrieves the RSS News from ArchLinux site... ONLY ONE TIME!
-    progress.setLabelText(StrConstants::getSearchingForArchLinuxNews());
-    qApp->processEvents();
-    refreshArchNews();
-    qApp->processEvents();
-    progress.setValue(++counter);
-    progress.close();
-
     m_initializationCompleted = true;
   }
 
@@ -435,15 +605,33 @@ void MainWindow::changePackageListModel()
 
   if (ui->actionNonInstalledPackages->isChecked())
   {
-    m_modelPackages->setHorizontalHeaderLabels(
-          sl << "" << StrConstants::getName() << StrConstants::getVersion() << StrConstants::getRepository());
-    m_proxyModelPackages->setSourceModel(m_modelPackages);
+    if(m_cbGroups->currentIndex() == 0)
+    {
+      m_modelPackages->setHorizontalHeaderLabels(
+          sl << "" << StrConstants::getName() << StrConstants::getVersion() << StrConstants::getRepository());     
+      m_proxyModelPackages->setSourceModel(m_modelPackages);
+    }
+    else
+    {
+      m_modelPackagesFromGroup->setHorizontalHeaderLabels(
+            sl << "" << StrConstants::getName() << StrConstants::getVersion() << StrConstants::getRepository());
+      m_proxyModelPackages->setSourceModel(m_modelPackagesFromGroup);
+    }
   }
   else
   {
-    m_modelInstalledPackages->setHorizontalHeaderLabels(
+    if(m_cbGroups->currentIndex() == 0)
+    {
+      m_modelInstalledPackages->setHorizontalHeaderLabels(
           sl << "" << StrConstants::getName() << StrConstants::getVersion() << StrConstants::getRepository());
-    m_proxyModelPackages->setSourceModel(m_modelInstalledPackages);
+      m_proxyModelPackages->setSourceModel(m_modelInstalledPackages);
+    }
+    else
+    {
+      m_modelInstalledPackagesFromGroup->setHorizontalHeaderLabels(
+            sl << "" << StrConstants::getName() << StrConstants::getVersion() << StrConstants::getRepository());
+      m_proxyModelPackages->setSourceModel(m_modelInstalledPackagesFromGroup);
+    }
   }
 
   if (ui->leFilterPackage->text() != "") reapplyPackageFilter();
@@ -474,11 +662,17 @@ void MainWindow::execContextMenuPackages(QPoint point)
 
     if(ui->actionNonInstalledPackages->isChecked())
     {
-      sim = m_modelPackages;
+      if(m_cbGroups->currentIndex() == 0)
+        sim = m_modelPackages;
+      else
+        sim = m_modelPackagesFromGroup;
     }
     else
     {
-      sim = m_modelInstalledPackages;
+      if(m_cbGroups->currentIndex() == 0)
+        sim = m_modelInstalledPackages;
+      else
+        sim = m_modelInstalledPackagesFromGroup;
     }
 
     foreach(QModelIndex item, ui->tvPackages->selectionModel()->selectedRows())
@@ -505,11 +699,25 @@ void MainWindow::execContextMenuPackages(QPoint point)
       if(allInstallable)
       {
         menu->addAction(ui->actionInstall);
+
+        if (m_cbGroups->currentIndex() != 0)
+        {
+          menu->addAction(ui->actionInstallGroup);
+        }
       }
 
       if(allRemovable)
       {
         menu->addAction(ui->actionRemove);
+
+        if (m_cbGroups->currentIndex() != 0)
+        {
+          //Is this group already installed?
+          if (m_modelInstalledPackagesFromGroup->rowCount() == m_modelPackagesFromGroup->rowCount())
+          {
+            menu->addAction(ui->actionRemoveGroup);
+          }
+        }
       }
 
       if(menu->actions().count() > 0)
@@ -564,19 +772,38 @@ void MainWindow::refreshTabInfo(bool clearContents)
 
   if (ui->actionNonInstalledPackages->isChecked())
   {
-    siIcon = m_modelPackages->item( mi.row(), ctn_PACKAGE_ICON_COLUMN);
-    siName = m_modelPackages->item( mi.row(), ctn_PACKAGE_NAME_COLUMN);
-    siRepository = m_modelPackages->item( mi.row(), ctn_PACKAGE_REPOSITORY_COLUMN);
-    siVersion = m_modelPackages->item( mi.row(), ctn_PACKAGE_VERSION_COLUMN);
+    if (m_cbGroups->currentIndex() == 0)
+    {
+      siIcon = m_modelPackages->item( mi.row(), ctn_PACKAGE_ICON_COLUMN);
+      siName = m_modelPackages->item( mi.row(), ctn_PACKAGE_NAME_COLUMN);
+      siRepository = m_modelPackages->item( mi.row(), ctn_PACKAGE_REPOSITORY_COLUMN);
+      siVersion = m_modelPackages->item( mi.row(), ctn_PACKAGE_VERSION_COLUMN);
+    }
+    else
+    {
+      siIcon = m_modelPackagesFromGroup->item( mi.row(), ctn_PACKAGE_ICON_COLUMN);
+      siName = m_modelPackagesFromGroup->item( mi.row(), ctn_PACKAGE_NAME_COLUMN);
+      siRepository = m_modelPackagesFromGroup->item( mi.row(), ctn_PACKAGE_REPOSITORY_COLUMN);
+      siVersion = m_modelPackagesFromGroup->item( mi.row(), ctn_PACKAGE_VERSION_COLUMN);
+    }
   }
   else
   {
-    siIcon = m_modelInstalledPackages->item( mi.row(), ctn_PACKAGE_ICON_COLUMN);
-    siName = m_modelInstalledPackages->item( mi.row(), ctn_PACKAGE_NAME_COLUMN);
-    siRepository = m_modelInstalledPackages->item( mi.row(), ctn_PACKAGE_REPOSITORY_COLUMN);
-    siVersion = m_modelInstalledPackages->item( mi.row(), ctn_PACKAGE_VERSION_COLUMN);
+    if (m_cbGroups->currentIndex() == 0)
+    {
+      siIcon = m_modelInstalledPackages->item( mi.row(), ctn_PACKAGE_ICON_COLUMN);
+      siName = m_modelInstalledPackages->item( mi.row(), ctn_PACKAGE_NAME_COLUMN);
+      siRepository = m_modelInstalledPackages->item( mi.row(), ctn_PACKAGE_REPOSITORY_COLUMN);
+      siVersion = m_modelInstalledPackages->item( mi.row(), ctn_PACKAGE_VERSION_COLUMN);
+    }
+    else
+    {
+      siIcon = m_modelInstalledPackagesFromGroup->item( mi.row(), ctn_PACKAGE_ICON_COLUMN);
+      siName = m_modelInstalledPackagesFromGroup->item( mi.row(), ctn_PACKAGE_NAME_COLUMN);
+      siRepository = m_modelInstalledPackagesFromGroup->item( mi.row(), ctn_PACKAGE_REPOSITORY_COLUMN);
+      siVersion = m_modelInstalledPackagesFromGroup->item( mi.row(), ctn_PACKAGE_VERSION_COLUMN);
+    }
   }
-
   //If we are trying to refresh an already displayed package...
   if (strSelectedPackage == siRepository->text()+"#"+siName->text()+"#"+siVersion->text())
     return;
@@ -707,15 +934,33 @@ void MainWindow::refreshTabFiles(bool clearContents)
 
   if (ui->actionNonInstalledPackages->isChecked())
   {
-    siName = m_modelPackages->item( mi.row(), ctn_PACKAGE_NAME_COLUMN);
-    siRepository = m_modelPackages->item( mi.row(), ctn_PACKAGE_REPOSITORY_COLUMN);
-    siVersion = m_modelPackages->item( mi.row(), ctn_PACKAGE_VERSION_COLUMN);
+    if (m_cbGroups->currentIndex() == 0)
+    {
+      siName = m_modelPackages->item( mi.row(), ctn_PACKAGE_NAME_COLUMN);
+      siRepository = m_modelPackages->item( mi.row(), ctn_PACKAGE_REPOSITORY_COLUMN);
+      siVersion = m_modelPackages->item( mi.row(), ctn_PACKAGE_VERSION_COLUMN);
+    }
+    else
+    {
+      siName = m_modelPackagesFromGroup->item( mi.row(), ctn_PACKAGE_NAME_COLUMN);
+      siRepository = m_modelPackagesFromGroup->item( mi.row(), ctn_PACKAGE_REPOSITORY_COLUMN);
+      siVersion = m_modelPackagesFromGroup->item( mi.row(), ctn_PACKAGE_VERSION_COLUMN);
+    }
   }
   else
   {
-    siName = m_modelInstalledPackages->item( mi.row(), ctn_PACKAGE_NAME_COLUMN);
-    siRepository = m_modelInstalledPackages->item( mi.row(), ctn_PACKAGE_REPOSITORY_COLUMN);
-    siVersion = m_modelInstalledPackages->item( mi.row(), ctn_PACKAGE_VERSION_COLUMN);
+    if (m_cbGroups->currentIndex() == 0)
+    {
+      siName = m_modelInstalledPackages->item( mi.row(), ctn_PACKAGE_NAME_COLUMN);
+      siRepository = m_modelInstalledPackages->item( mi.row(), ctn_PACKAGE_REPOSITORY_COLUMN);
+      siVersion = m_modelInstalledPackages->item( mi.row(), ctn_PACKAGE_VERSION_COLUMN);
+    }
+    else
+    {
+      siName = m_modelInstalledPackagesFromGroup->item( mi.row(), ctn_PACKAGE_NAME_COLUMN);
+      siRepository = m_modelInstalledPackagesFromGroup->item( mi.row(), ctn_PACKAGE_REPOSITORY_COLUMN);
+      siVersion = m_modelInstalledPackagesFromGroup->item( mi.row(), ctn_PACKAGE_VERSION_COLUMN);
+    }
   }
 
   //If we are trying to refresh an already displayed package...
@@ -723,8 +968,17 @@ void MainWindow::refreshTabFiles(bool clearContents)
     return;
 
   //Maybe this is a non-installed package...
-  bool nonInstalled = (ui->actionNonInstalledPackages->isChecked() &&
+  bool nonInstalled = ((ui->actionNonInstalledPackages->isChecked() &&
+                        m_cbGroups->currentIndex() == 0) &&
                        (m_modelPackages->item(mi.row(), ctn_PACKAGE_ICON_COLUMN)->text() == "_NonInstalled"));
+
+  if (!nonInstalled)
+  {
+    //Let's try another test...
+    nonInstalled = ((ui->actionNonInstalledPackages->isChecked() &&
+                            m_cbGroups->currentIndex() != 0) &&
+                           (m_modelPackagesFromGroup->item(mi.row(), ctn_PACKAGE_ICON_COLUMN)->text() == "_NonInstalled"));
+  }
 
   QTreeView *tvPkgFileList = ui->twProperties->widget(ctn_TABINDEX_FILES)->findChild<QTreeView*>("tvPkgFileList");
   if(tvPkgFileList){
@@ -975,18 +1229,20 @@ void MainWindow::_positionTextEditCursorAtEnd()
 /*
  * Ensures that TabOutput is visible, so the user can see the messages!
  */
-void MainWindow::_ensureTabOutputVisible()
+void MainWindow::_ensureTabVisible(const int index)
 {
   QList<int> rl;
   rl = ui->splitterHorizontal->sizes();
 
-  ui->twProperties->setCurrentIndex(ctn_TABINDEX_OUTPUT);
+  ui->twProperties->setCurrentIndex(index);
 
   if(rl[1] <= 50)
   {
     rl.clear();
     rl << 200 << 235;
     ui->splitterHorizontal->setSizes(rl);
+
+    saveSettings(ectn_NORMAL);
   }
 }
 
@@ -1015,7 +1271,7 @@ void MainWindow::writeToTabOutput(const QString &msg)
   if (text)
   {
     QString newMsg = msg;
-    _ensureTabOutputVisible();
+    _ensureTabVisible(ctn_TABINDEX_OUTPUT);
     _positionTextEditCursorAtEnd();
 
     if(newMsg.contains(QRegExp("<font color")))

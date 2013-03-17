@@ -63,6 +63,7 @@ public:
   static QByteArray getPackageList();
   static QByteArray getPackageInformation(const QString &pkgName, bool foreignPackage);
   static QByteArray getPackageContents(const QString &pkgName);
+  static QByteArray getPackageGroups();
   static QByteArray getPackagesFromGroup(const QString &groupName);
   static QByteArray getTargetUpgradeList(const QString &pkgName = "");
   static QByteArray getTargetRemovalList(const QString &pkgName);

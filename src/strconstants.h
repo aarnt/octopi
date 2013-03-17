@@ -54,6 +54,10 @@ public:
     return QObject::tr("Internet seems anavailable!");
   }
 
+  static QString getAll(){
+    return QObject::tr("Display all groups");
+  }
+
   static QString getHelp(){
     return QObject::tr("About");
   }
@@ -84,6 +88,10 @@ public:
 
   static QString getLicenses(){
     return QObject::tr("Licenses");
+  }
+
+  static QString getGroup(){
+    return QObject::tr("Group");
   }
 
   static QString getGroups(){

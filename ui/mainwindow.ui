@@ -313,6 +313,24 @@
     <string>Ctrl+G</string>
    </property>
   </action>
+  <action name="actionRemoveGroup">
+   <property name="icon">
+    <iconset resource="../resources.qrc">
+     <normaloff>:/resources/images/toremove.png</normaloff>:/resources/images/toremove.png</iconset>
+   </property>
+   <property name="text">
+    <string>Remove group</string>
+   </property>
+  </action>
+  <action name="actionInstallGroup">
+   <property name="icon">
+    <iconset resource="../resources.qrc">
+     <normaloff>:/resources/images/toinstall.png</normaloff>:/resources/images/toinstall.png</iconset>
+   </property>
+   <property name="text">
+    <string>Install group</string>
+   </property>
+  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <customwidgets>

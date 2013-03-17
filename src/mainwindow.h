@@ -33,6 +33,7 @@ class QModelIndex;
 class QTimer;
 class QFileSystemWatcher;
 class QLabel;
+class QComboBox;
 
 //Column indices for Package's treeview
 const int ctn_PACKAGE_ICON_COLUMN(0);
@@ -87,8 +88,14 @@ private:
   //This model provides the list of ALL packages (installed + non-installed)
   QStandardItemModel *m_modelPackages;
 
-  //This model privides the list of ONLY installed packages
+  //This model provides the list of ONLY installed packages
   QStandardItemModel *m_modelInstalledPackages;
+
+  //This model provides the list of ALL packages from the selected group
+  QStandardItemModel *m_modelPackagesFromGroup;
+
+  //This model provides the list of ONLY installed packages from the selected group
+  QStandardItemModel *m_modelInstalledPackagesFromGroup;
 
   //This model provides the list of pending actions of a transaction
   QStandardItemModel *m_modelTransaction;
@@ -100,11 +107,14 @@ private:
   CommandExecuting m_commandExecuting;
   CommandExecuting m_commandQueued;
 
+  QLabel *m_lblGroups;
+  QComboBox *m_cbGroups;
+
   int m_PackageListOrderedCol;
   Qt::SortOrder m_PackageListSortOrder;
   QTimer *timer;
   QStringList *m_outdatedPackageList;
-  QLabel *m_lblCounters;
+  QLabel *m_lblCounters;    
   QByteArray m_horizontalSplit;
 
   int m_numberOfInstalledPackages;
@@ -117,12 +127,17 @@ private:
 
   void initAppIcon();
   void refreshAppIcon();
+  void initComboBoxGroups();
+  void refreshComboBoxGroups();
   void initToolBar();
   void initStatusBar();
   void initLineEditFilterPackages();
 
   QString getOutdatedPackageVersionByName(const QString &pkgName);
   QString getInstalledPackageVersionByName(const QString &pkgName);
+
+  QStandardItem *getAvailablePackage(const QString &pkgName, const int index);
+
   bool isPackageInstalled(const QString &pkgName);
   void initPackageTreeView();
 
@@ -157,7 +172,7 @@ private:
   bool _textInTabOutput(const QString& findText);
   bool _searchForKeyVerbs(const QString& msg);
   void _treatProcessOutput(const QString &pMsg);
-  void _ensureTabOutputVisible();
+  void _ensureTabVisible(const int index);
   bool _isPropertiesTabWidgetVisible();
   void writeToTabOutput(const QString &msg);
   void initTabOutput();
@@ -179,6 +194,7 @@ protected:
 private slots:
 
   //TreeView methods
+  void buildPackagesFromGroupList(const QString &groupName);
   void buildPackageList();
   void headerViewPackageListSortIndicatorClicked(int col, Qt::SortOrder order);
   void changePackageListModel();
@@ -212,6 +228,8 @@ private slots:
 
   void insertIntoRemovePackage();
   void insertIntoInstallPackage();
+  void insertGroupIntoRemovePackage();
+  void insertGroupIntoInstallPackage();
 
   void maximizePackagesTreeView(bool pSaveSettings = true);
   void maximizePropertiesTabWidget(bool pSaveSettings = true);

@@ -229,6 +229,27 @@ QStringList *Package::getOutdatedPackageList()
   return res;
 }
 
+/*
+ * Retrieves the list of all package groups available
+ */
+QStringList *Package::getPackageGroups()
+{
+  QString packagesFromGroup = UnixCommand::getPackageGroups();
+  QStringList packageTuples = packagesFromGroup.split(QRegExp("\\n"), QString::SkipEmptyParts);
+  QStringList * res = new QStringList();
+
+  foreach(QString packageTuple, packageTuples)
+  {
+    res->append(packageTuple); //We only need the package name!
+  }
+
+  res->sort();
+  return res;
+}
+
+/*
+ * Retrieves the list of packages from a given group name
+ */
 QStringList *Package::getPackagesOfGroup(const QString &groupName)
 {
   QString packagesFromGroup = UnixCommand::getPackagesFromGroup(groupName);
@@ -244,7 +265,9 @@ QStringList *Package::getPackagesOfGroup(const QString &groupName)
   return res;
 }
 
-//Retrieves the list of targets needed to upgrade the entire system or a install/upgrade a given package
+/*
+ * Retrieves the list of targets needed to upgrade the entire system or a install/upgrade a given package
+ */
 QStringList *Package::getTargetUpgradeList(const QString &pkgName)
 {
   QString targets = UnixCommand::getTargetUpgradeList(pkgName);

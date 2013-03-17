@@ -27,6 +27,7 @@
 #include "uihelper.h"
 #include "wmhelper.h"
 #include "strconstants.h"
+#include <QComboBox>
 #include <QMessageBox>
 #include <QStandardItem>
 #include <QSortFilterProxyModel>
@@ -220,14 +221,22 @@ QString MainWindow::getTobeInstalledPackages()
  */
 void MainWindow::insertIntoRemovePackage()
 {
+  _ensureTabVisible(ctn_TABINDEX_TRANSACTION);
+
   QStandardItemModel *sim;
   if(ui->actionNonInstalledPackages->isChecked())
   {
-    sim = m_modelPackages;
+    if(m_cbGroups->currentIndex() == 0)
+      sim = m_modelPackages;
+    else
+      sim = m_modelPackagesFromGroup;
   }
   else
   {
-    sim = m_modelInstalledPackages;
+    if(m_cbGroups->currentIndex() == 0)
+      sim = m_modelInstalledPackages;
+    else
+      sim = m_modelInstalledPackagesFromGroup;
   }
 
   foreach(QModelIndex item, ui->tvPackages->selectionModel()->selectedRows())
@@ -241,18 +250,36 @@ void MainWindow::insertIntoRemovePackage()
 }
 
 /*
+ * Inserts the current selected group for removal into the Transaction Treeview
+ */
+void MainWindow::insertGroupIntoRemovePackage()
+{
+  _ensureTabVisible(ctn_TABINDEX_TRANSACTION);
+
+  insertRemovePackageIntoTransaction(m_cbGroups->currentText());
+}
+
+/*
  * Inserts the current selected packages for installation into the Transaction Treeview
  */
 void MainWindow::insertIntoInstallPackage()
 {
+  _ensureTabVisible(ctn_TABINDEX_TRANSACTION);
+
   QStandardItemModel *sim;
   if(ui->actionNonInstalledPackages->isChecked())
   {
-    sim = m_modelPackages;
+    if(m_cbGroups->currentIndex() == 0)
+      sim = m_modelPackages;
+    else
+      sim = m_modelPackagesFromGroup;
   }
   else
   {
-    sim = m_modelInstalledPackages;
+    if(m_cbGroups->currentIndex() == 0)
+      sim = m_modelInstalledPackages;
+    else
+      sim = m_modelInstalledPackagesFromGroup;
   }
 
   foreach(QModelIndex item, ui->tvPackages->selectionModel()->selectedRows())
@@ -266,6 +293,16 @@ void MainWindow::insertIntoInstallPackage()
 }
 
 /*
+ * Inserts the current selected group for removal into the Transaction Treeview
+ */
+void MainWindow::insertGroupIntoInstallPackage()
+{
+  _ensureTabVisible(ctn_TABINDEX_TRANSACTION);
+
+  insertInstallPackageIntoTransaction(m_cbGroups->currentText());
+}
+
+/*
  * Does a repository sync with "pacman -Sy" !
  */
 void MainWindow::doSyncDatabase()
@@ -275,6 +312,9 @@ void MainWindow::doSyncDatabase()
     QMessageBox::critical( 0, StrConstants::getApplicationName(), StrConstants::getErrorNoSuCommand());
     return;
   }
+
+  //Retrieves the RSS News from ArchLinux site...
+  refreshArchNews();
 
   m_commandExecuting = ectn_SYNC_DATABASE;
   disableTransactionActions();

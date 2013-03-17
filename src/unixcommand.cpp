@@ -300,6 +300,31 @@ QByteArray UnixCommand::getPackageContents(const QString& pkgName)
 }
 
 /*
+ * Retrives the list of package groups
+ */
+QByteArray UnixCommand::getPackageGroups()
+{
+  QByteArray res;
+  QProcess pacman;
+
+#if QT_VERSION >= 0x040600
+  QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
+  env.insert("LANG", "us_EN");
+  pacman.setProcessEnvironment(env);
+#endif
+
+  QStringList args;
+  args << "-Sg";
+
+  pacman.start ( "pacman", args );
+  pacman.waitForFinished(-1);
+  res = pacman.readAllStandardOutput();
+  pacman.close();
+
+  return res;
+}
+
+/*
  * Given a group name, returns a string containing all packages from it
  */
 QByteArray UnixCommand::getPackagesFromGroup(const QString &groupName)
