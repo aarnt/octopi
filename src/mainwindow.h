@@ -139,6 +139,7 @@ private:
   QStandardItem *getAvailablePackage(const QString &pkgName, const int index);
 
   bool isPackageInstalled(const QString &pkgName);
+  bool _isPackageTreeViewVisible();
   void initPackageTreeView();
 
   void _changeTabWidgetPropertiesIndex(const int newIndex);

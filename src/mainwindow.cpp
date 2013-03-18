@@ -569,6 +569,7 @@ void MainWindow::buildPackageList()
 
   if (firstTime)
   {
+    if (_isPackageTreeViewVisible()) ui->leFilterPackage->setFocus();
     m_initializationCompleted = true;
   }
 
@@ -735,7 +736,7 @@ void MainWindow::execContextMenuPackages(QPoint point)
 }
 
 /*
- * Returns true if tabWidget height is greater than 0. Otherwise, returns false
+ * Returns true if tabWidget height is greater than 0. Otherwise, returns false.
  */
 bool MainWindow::_isPropertiesTabWidgetVisible()
 {
@@ -743,6 +744,17 @@ bool MainWindow::_isPropertiesTabWidgetVisible()
   rl = ui->splitterHorizontal->sizes();
 
   return (rl[1] > 0);
+}
+
+/*
+ * Returns true if tvPackages height is greater than 0. Otherwise, returns false.
+ */
+bool MainWindow::_isPackageTreeViewVisible()
+{
+  QList<int> rl;
+  rl = ui->splitterHorizontal->sizes();
+
+  return (rl[0] > 0);
 }
 
 /*
