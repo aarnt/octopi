@@ -43,7 +43,7 @@ public:
   }
 
   static QString getArchLinuxNews(){
-    return QObject::tr("ArchLinux news");
+    return QObject::tr("Arch Linux news");
   }
 
   static QString getManjaroLinuxNews(){
@@ -211,7 +211,7 @@ public:
   }
 
   static QString getSearchingForArchLinuxNews(){
-    return QObject::tr("Searching for ArchLinux latest news...");
+    return QObject::tr("Searching for Arch Linux latest news...");
   }
 
   static QString getSearchingForManjaroLinuxNews(){

@@ -27,6 +27,7 @@
 #include "uihelper.h"
 #include "wmhelper.h"
 #include "strconstants.h"
+#include <iostream>
 #include <QComboBox>
 #include <QMessageBox>
 #include <QStandardItem>
@@ -757,6 +758,8 @@ void MainWindow::actionsProcessReadOutput()
   QString msg = m_unixCommand->readAllStandardOutput();
   msg = msg.trimmed();
 
+  //std::cout << "Out: " << msg.toAscii().data() << std::endl;
+
   if(!msg.isEmpty() &&
      msg.indexOf(":: Synchronizing package databases...") == -1 &&
      msg.indexOf(":: Starting full system upgrade...") == -1)
@@ -964,6 +967,8 @@ void MainWindow::actionsProcessRaisedError()
   QString msg = m_unixCommand->readAllStandardError();
   msg = msg.trimmed();
   QStringList msgs = msg.split(QRegExp("\\n"), QString::SkipEmptyParts);
+
+  //std::cout << "Error: " << msg.toAscii().data() << std::endl;
 
   foreach (QString m, msgs)
   {

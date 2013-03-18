@@ -21,7 +21,6 @@
 #include "unixcommand.h"
 #include "strconstants.h"
 #include "wmhelper.h"
-#include <iostream>
 #include <QProcess>
 #include <QFile>
 #include <QFileInfo>
@@ -131,9 +130,9 @@ void UnixCommand::cleanPacmanCache()
   pacman.start(command);
   pacman.waitForStarted();
 
-  //pacman.write("y"); //Yes, we want to remove ALL files from cache
-  //pacman.write("n"); //No, we do not want to remove unused repositories
-  //pacman.closeWriteChannel();
+  pacman.write("y\n"); //Yes, we want to remove ALL files from cache
+  pacman.write("n\n"); //No, we do not want to remove unused repositories
+  pacman.closeWriteChannel();
 
   pacman.waitForFinished();
 }
@@ -670,7 +669,7 @@ LinuxDistro UnixCommand::getLinuxDistro()
 
   QString contents = file.readAll();
 
-  if (contents.contains(QRegExp("Arch")))
+  if (contents.contains(QRegExp("Arch Linux")))
   {
     return ectn_ARCHLINUX;
   }
