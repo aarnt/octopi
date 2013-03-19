@@ -374,18 +374,6 @@ public:
     return QObject::tr("To be removed");
   }
 
-  /*static QString getTodoDowngradeText(){
-    return QObject::tr("To be downgraded");
-  }
-
-  static QString getTodoUpgradeText(){
-    return QObject::tr("To be upgraded");
-  }
-
-  static QString getTodoReinstallText(){
-    return QObject::tr("To be reinstalled");
-  }*/
-
   //Style Sheets ---------------------------------
 
   static QString getToolTipNormalCSS(){

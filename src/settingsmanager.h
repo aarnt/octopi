@@ -134,8 +134,6 @@ class SettingsManager {
 
     static void setWindowSize(QByteArray newValue);
     static void setSplitterHorizontalState(QByteArray newValue);
-
-    static void moveUpdaterDirContents();
 };
 
 #endif // SETTINGSMANAGER_H

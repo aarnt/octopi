@@ -18,6 +18,11 @@
 *
 */
 
+/*
+ * This SettingsManager class holds the getters and setters needed to deal with the database
+ * in which all Octopi configuration is saved and retrieved (~/.config/octopi/)
+ */
+
 #include "settingsmanager.h"
 #include "unixcommand.h"
 #include "uihelper.h"
@@ -185,32 +190,6 @@ void SettingsManager::setFrozenPkgList(QStringList newValue){
                                           QVariant( static_cast<QStringList>(newValue)) );
   instance()->getSYSsettings()->sync();
 }
-
-/*void SettingsManager::moveUpdaterDirContents(){
-  QString slackVersion = Updater::getSlackVersion(Updater::getSlackArchitecture());
-  QString oldUpdaterDir = getDefaultDirectory() + QDir::separator() + ctn_PATCHES_DIR_PREFIX + slackVersion;
-
-  QDir dir(oldUpdaterDir);
-  if (!dir.exists())
-    return;
-
-  CPUIntensiveComputing cic;
-
-  QString newUpdaterDir = "/tmp/" + ctn_PATCHES_DIR_PREFIX + slackVersion;
-  dir.mkdir(newUpdaterDir);
-
-  QStringList files = dir.entryList(QDir::Files | QDir::NoDotAndDotDot);
-  if (files.count() > 0) {
-    foreach (QString file, files){
-      if (QFile::copy(oldUpdaterDir + QDir::separator() + file,
-                      newUpdaterDir + QDir::separator() + file))
-        QFile::remove(oldUpdaterDir + QDir::separator() + file);
-    }
-  }
-
-  dir.rmpath(oldUpdaterDir);
-  setUpdaterDirectory(newUpdaterDir);
-}*/
 
 void SettingsManager::setDefaultDirectory(QString newValue){
   instance()->getSYSsettings()->setValue( ctn_KEY_DEFAULT_DIRECTORY, newValue);

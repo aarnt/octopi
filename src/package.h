@@ -103,7 +103,6 @@ class Result;
 
 class Package{  
   private:
-    static QString showRegExp( const QString&, const QString& );
     static Result verifyPreReleasePackage(const QStringList &versao1,
                                           const QStringList &versao2, const QString &pacote);
     static bool isValidArch(const QString &packageArch);
@@ -147,7 +146,6 @@ class Package{
     static QString makeURLClickable(const QString &information);
 
     static QString getBaseName( const QString& pkgName );
-    static bool isValid( const QString& pkgName );
     static QString dumpInstalledPackageList(DumpInstalledPackageListOptions options = ectn_WITH_MODIFIED_DATE);
     static QString parseSearchString( QString searchStr, bool exactMatch = false );
     static bool isSlackPackage(const QString &filePath);

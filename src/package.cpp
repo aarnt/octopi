@@ -25,13 +25,9 @@
 #include <QList>
 #include <iostream>
 
-bool Package::isValid( const QString& pkgName )
-{
-	QFileInfo fi(pkgName);
-  if (fi.size() < 100) return false;
-  else return true;
-}
-
+/*
+ * Retrieves the basic paclage name, without version numbers
+ */
 QString Package::getBaseName( const QString& p )
 {
 	QString packageBaseName="";
@@ -51,7 +47,10 @@ QString Package::getBaseName( const QString& p )
 	return packageBaseName;
 }
 
-//Here, we do the URL html link tag addition
+/*
+ * Given a QString, this method searches for a link pattern and inserts an URL html/ftp link tag
+ * Returns the modified (or not) QString
+ */
 QString Package::makeURLClickable( const QString &s )
 {
 	QString sb = s;
@@ -92,9 +91,11 @@ QString Package::makeURLClickable( const QString &s )
   return sb;
 }
 
-/* This function was copied from ArchLinux Pacman project
+/*
+ * This function was copied from ArchLinux Pacman project
  * A pow() implementation that is specialized for an integer base and small,
- * positive-only integer exponents. */
+ * positive-only integer exponents.
+ */
 double Package::simplePow(int base, int exp)
 {
   double result = 1.0;
@@ -119,10 +120,14 @@ double Package::simplePow(int base, int exp)
  * @return the size in the appropriate unit
  */
 
-/*An example call:
-  human_size = humanize_size(size, 'M', 2, &label);
-  pm_asprintf(&str, "%.2f %s", human_size, label);*/
-
+/*
+ * This function was copied from ArchLinux Pacman project
+ * Given a file size, it makes this value easier for human reading :-)
+ *
+ * An example call:
+ * human_size = humanize_size(size, 'M', 2, &label);
+ * pm_asprintf(&str, "%.2f %s", human_size, label);
+ */
 double Package::humanizeSize(off_t bytes, const char target_unit, int precision,
     const char **label)
 {
@@ -155,6 +160,9 @@ double Package::humanizeSize(off_t bytes, const char target_unit, int precision,
   return val;
 }
 
+/*
+ * Retrieves the list of unrequired packages (those no other packages depends on)
+ */
 QStringList *Package::getUnrequiredPackageList()
 {
   QString unrequiredPkgList = UnixCommand::getUnrequiredPackageList();
@@ -173,6 +181,9 @@ QStringList *Package::getUnrequiredPackageList()
   return res;
 }
 
+/*
+ * Retrieves the list of outdated packages (those which have newer versions available to download)
+ */
 QStringList *Package::getOutdatedPackageList()
 {
   QString outPkgList = UnixCommand::getOutdatedPackageList();
@@ -252,6 +263,9 @@ QStringList *Package::getTargetUpgradeList(const QString &pkgName)
   return res;
 }
 
+/*
+ * Retrieves the list of targets needed to be remove with the given package
+ */
 QStringList *Package::getTargetRemovalList(const QString &pkgName)
 {
   QString targets = UnixCommand::getTargetRemovalList(pkgName);
@@ -267,6 +281,9 @@ QStringList *Package::getTargetRemovalList(const QString &pkgName)
   return res;
 }
 
+/*
+ *Retrieves the list of foreign packages (those installed from unknown repositories like AUR)
+ */
 QList<PackageListData> *Package::getForeignPackageList()
 {
   QString foreignPkgList = UnixCommand::getForeignPackageList();
@@ -285,6 +302,9 @@ QList<PackageListData> *Package::getForeignPackageList()
   return res;
 }
 
+/*
+ * Retrieves the list of all available packages in the database (installed + non-installed)
+ */
 QList<PackageListData> * Package::getPackageList()
 {
   QString pkgList = UnixCommand::getPackageList();
@@ -317,6 +337,10 @@ QList<PackageListData> * Package::getPackageList()
   return res;
 }
 
+/*
+ * Given a QString containing the output of pacman -Si/Qi (pkgInfo),
+ * this method returns the contents of the given field (ex: description)
+ */
 QString Package::extractFieldFromInfo(const QString &field, const QString &pkgInfo)
 {
   int fieldPos = pkgInfo.indexOf(field);
@@ -335,16 +359,25 @@ QString Package::extractFieldFromInfo(const QString &field, const QString &pkgIn
   return aux;
 }
 
+/*
+ * Retrieves "Version" field of the given package information string represented by pkgInfo
+ */
 QString Package::getVersion(const QString &pkgInfo)
 {
   return extractFieldFromInfo("Version", pkgInfo);
 }
 
+/*
+ * Retrieves "Repository" field of the given package information string represented by pkgInfo
+ */
 QString Package::getRepository(const QString &pkgInfo)
 {
   return extractFieldFromInfo("Repository", pkgInfo);
 }
 
+/*
+ * Retrieves "URL" field of the given package information string represented by pkgInfo
+ */
 QString Package::getURL(const QString &pkgInfo)
 {
   QString URL = extractFieldFromInfo("URL", pkgInfo);
@@ -354,57 +387,90 @@ QString Package::getURL(const QString &pkgInfo)
     return URL;
 }
 
+/*
+ * Retrieves "Licenses" field of the given package information string represented by pkgInfo
+ */
 QString Package::getLicense(const QString &pkgInfo)
 {
   return extractFieldFromInfo("Licenses", pkgInfo);
 }
 
+/*
+ * Retrieves "Groups" field of the given package information string represented by pkgInfo
+ */
 QString Package::getGroup(const QString &pkgInfo)
 {
   return extractFieldFromInfo("Groups", pkgInfo);
 }
 
+/*
+ * Retrieves "Provides" field of the given package information string represented by pkgInfo
+ */
 QString Package::getProvides(const QString &pkgInfo)
 {
   return extractFieldFromInfo("Provides", pkgInfo);
 }
 
+/*
+ * Retrieves "Depends On" field of the given package information string represented by pkgInfo
+ */
 QString Package::getDependsOn(const QString &pkgInfo)
 {
   return extractFieldFromInfo("Depends On", pkgInfo);
 }
 
+/*
+ * Retrieves "Optional Deps" field of the given package information string represented by pkgInfo
+ */
 QString Package::getOptDepends(const QString &pkgInfo)
 {
   return extractFieldFromInfo("Optional Deps", pkgInfo);
 }
 
+/*
+ * Retrieves "Conflicts With" field of the given package information string represented by pkgInfo
+ */
 QString Package::getConflictsWith(const QString &pkgInfo)
 {
   return extractFieldFromInfo("Conflicts With", pkgInfo);
 }
 
+/*
+ * Retrieves "Replaces" field of the given package information string represented by pkgInfo
+ */
 QString Package::getReplaces(const QString &pkgInfo)
 {
   return extractFieldFromInfo("Replaces", pkgInfo);
 }
 
+/*
+ * Retrieves "Packager" field of the given package information string represented by pkgInfo
+ */
 QString Package::getPackager(const QString &pkgInfo)
 {
 return extractFieldFromInfo("Packager", pkgInfo);
 }
 
+/*
+ * Retrieves "Architecture" field of the given package information string represented by pkgInfo
+ */
 QString Package::getArch(const QString &pkgInfo)
 {
   return extractFieldFromInfo("Architecture", pkgInfo);
 }
 
+/*
+ * Retrieves "Build Date" field of the given package information string represented by pkgInfo
+ */
 QDateTime Package::getBuildDate(const QString &pkgInfo)
 {
   QString aux = extractFieldFromInfo("Build Date", pkgInfo);
   return QDateTime::fromString(aux); //"ddd MMM d hh:mm:ss yyyy");
 }
 
+/*
+ * Retrieves "Download Size" field of the given package information string represented by pkgInfo
+ */
 double Package::getDownloadSize(const QString &pkgInfo)
 {
   QString aux = extractFieldFromInfo("Download Size", pkgInfo);
@@ -419,6 +485,9 @@ double Package::getDownloadSize(const QString &pkgInfo)
     return 0;
 }
 
+/*
+ * Retrieves "Installed Size" field of the given package information string represented by pkgInfo
+ */
 double Package::getInstalledSize(const QString &pkgInfo)
 {
   QString aux = extractFieldFromInfo("Installed Size", pkgInfo);
@@ -433,11 +502,17 @@ double Package::getInstalledSize(const QString &pkgInfo)
     return 0;
 }
 
+/*
+ * Retrieves "Description" field of the given package information string represented by pkgInfo
+ */
 QString Package::getDescription(const QString &pkgInfo)
 {
   return extractFieldFromInfo("Description", pkgInfo);
 }
 
+/*
+ * Retrieves all information for a given package name
+ */
 PackageInfoData Package::getInformation(const QString &pkgName, bool foreignPackage)
 {
   PackageInfoData res;
@@ -463,19 +538,18 @@ PackageInfoData Package::getInformation(const QString &pkgName, bool foreignPack
   return res;
 }
 
+/*
+ * Helper to get only the Description field of package information, for use in tooltips
+ */
 QString Package::getInformationDescription(const QString &pkgName, bool foreignPackage)
 {
   QString pkgInfo = UnixCommand::getPackageInformation(pkgName, foreignPackage);
   return getDescription(pkgInfo);
 }
 
-QString Package::showRegExp( const QString& a, const QString& re )
-{
-	QRegExp rex(re);	
-  QString res = rex.indexIn(a) > -1 ? rex.cap(0) : ctn_NO_MATCH;
-	return res;
-}
-
+/*
+ * Given packageArch, returns if it's a valid one
+ */
 bool Package::isValidArch(const QString &packageArch)
 {
   bool result = false;
@@ -631,6 +705,9 @@ cleanup:
   return ret;
 }
 
+/*
+ * Retrieves the file list content of the given package
+ */
 QStringList Package::getContents(const QString& pkgName)
 {
   QStringList rsl;
@@ -650,6 +727,9 @@ QStringList Package::getContents(const QString& pkgName)
   return rsl;
 }
 
+/*
+ * Returns a modified RegExp-based string given the string entered by the user
+ */
 QString Package::parseSearchString(QString searchStr, bool exactMatch)
 {
   if (searchStr.indexOf("*.") == 0){
@@ -681,6 +761,9 @@ QString Package::parseSearchString(QString searchStr, bool exactMatch)
   return searchStr;
 }
 
+/*
+ * Removes all temporary files used by the app
+ */
 void Package::removeTempFiles()
 {
   QDir d(QDir::tempPath());
