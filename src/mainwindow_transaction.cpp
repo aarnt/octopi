@@ -585,6 +585,7 @@ void MainWindow::doCleanCache()
 
   if (res == QMessageBox::Yes)
   {
+    qApp->processEvents();
     CPUIntensiveComputing cic;
     UnixCommand::cleanPacmanCache();
     UnixCommand::removeTemporaryActionFile();

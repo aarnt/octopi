@@ -43,7 +43,7 @@ int main(int argc, char *argv[])
     return 0;
 
   /*QTranslator appTranslator;
-    appTranslator.load(":/resources/translations/qtgzmanager_" +
+    appTranslator.load(":/resources/translations/octopi_" +
       QLocale::system().name());
     app.installTranslator(&appTranslator);*/
 

@@ -123,6 +123,7 @@ void UnixCommand::cleanPacmanCache()
   QFile *ftemp = getTemporaryFile();
   QTextStream out(ftemp);
   out << "pacman -Sc --noconfirm";
+  //out << "pacman -Scc";
   out.flush();
   ftemp->close();
 
@@ -130,9 +131,11 @@ void UnixCommand::cleanPacmanCache()
   pacman.start(command);
   pacman.waitForStarted();
 
-  pacman.write("y\n"); //Yes, we want to remove ALL files from cache
-  pacman.write("n\n"); //No, we do not want to remove unused repositories
-  pacman.closeWriteChannel();
+  /*pacman.write("y"); //Yes, we want to remove ALL files from cache
+  pacman.write("\n");
+  pacman.write("n"); //No, we do not want to remove unused repositories
+  pacman.write("\n");
+  pacman.closeWriteChannel();*/
 
   pacman.waitForFinished();
 }
