@@ -26,6 +26,7 @@
 #include <QUrl>
 #include "unixcommand.h"
 
+class QTreeView;
 class QSortFilterProxyModel;
 class QStandardItemModel;
 class QStandardItem;
@@ -168,6 +169,9 @@ private:
   QString getTobeInstalledPackages();
 
   //Tab Output related methods
+  void _collapseItem(QTreeView* tv, QStandardItemModel* sim, QModelIndex mi);
+  void _expandItem(QTreeView* tv, QStandardItemModel* sim, QModelIndex* mi);
+
   bool _isThereAPendingTransaction();
   void _positionTextEditCursorAtEnd();
   bool _textInTabOutput(const QString& findText);
@@ -195,11 +199,23 @@ protected:
 private slots:
 
   //TreeView methods
+  void collapseAllContentItems();
+  void collapseThisContentItems();
+  void expandAllContentItems();
+  void expandThisContentItems();
+  void openFile();
+  void editFile();
+  void openTerminal();
+  void openDirectory();
+
   void buildPackagesFromGroupList(const QString &groupName);
   void buildPackageList();
   void headerViewPackageListSortIndicatorClicked(int col, Qt::SortOrder order);
   void changePackageListModel();
+
   void execContextMenuPackages(QPoint point);
+  void execContextMenuPkgFileList(QPoint point);
+  void execContextMenuTransaction(QPoint point);
 
   //SearchLineEdit methods
   void reapplyPackageFilter();
@@ -243,8 +259,6 @@ private slots:
   void onPressDelete();
   void changeTransactionActionsState();
   void clearTransactionTreeView();
-
-  void openFile(const QModelIndex& mi);
 
   void refreshDistroNews(bool searchForLatestNews = true, bool gotoNewsTab = true);
 };

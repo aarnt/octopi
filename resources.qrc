@@ -28,5 +28,10 @@
         <file>resources/images/exit.png</file>
         <file>resources/images/rollback.png</file>
         <file>resources/help/help_en_US.html</file>
+        <file>resources/images/editfile.png</file>
+        <file>resources/images/collapse.png</file>
+        <file>resources/images/expand.png</file>
+        <file>resources/images/terminal.png</file>
+        <file>resources/images/window_close.png</file>
     </qresource>
 </RCC>

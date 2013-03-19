@@ -22,7 +22,16 @@
     <bool>true</bool>
    </property>
    <layout class="QGridLayout" name="gridLayout">
-    <property name="margin">
+    <property name="leftMargin">
+     <number>0</number>
+    </property>
+    <property name="topMargin">
+     <number>0</number>
+    </property>
+    <property name="rightMargin">
+     <number>0</number>
+    </property>
+    <property name="bottomMargin">
      <number>0</number>
     </property>
     <property name="spacing">
@@ -128,7 +137,7 @@
      <x>0</x>
      <y>0</y>
      <width>552</width>
-     <height>22</height>
+     <height>23</height>
     </rect>
    </property>
    <property name="contextMenuPolicy">
@@ -320,6 +329,102 @@
    </property>
    <property name="text">
     <string>Install group</string>
+   </property>
+  </action>
+  <action name="actionCollapseItem">
+   <property name="icon">
+    <iconset resource="../resources.qrc">
+     <normaloff>:/resources/images/collapse.png</normaloff>:/resources/images/collapse.png</iconset>
+   </property>
+   <property name="text">
+    <string>Collapse item</string>
+   </property>
+  </action>
+  <action name="actionExpandItem">
+   <property name="icon">
+    <iconset resource="../resources.qrc">
+     <normaloff>:/resources/images/expand.png</normaloff>:/resources/images/expand.png</iconset>
+   </property>
+   <property name="text">
+    <string>Expand item</string>
+   </property>
+  </action>
+  <action name="actionCollapseAllItems">
+   <property name="icon">
+    <iconset resource="../resources.qrc">
+     <normaloff>:/resources/images/collapse.png</normaloff>:/resources/images/collapse.png</iconset>
+   </property>
+   <property name="text">
+    <string>Collapse all items</string>
+   </property>
+  </action>
+  <action name="actionExpandAllItems">
+   <property name="icon">
+    <iconset resource="../resources.qrc">
+     <normaloff>:/resources/images/expand.png</normaloff>:/resources/images/expand.png</iconset>
+   </property>
+   <property name="text">
+    <string>Expand all items</string>
+   </property>
+  </action>
+  <action name="actionOpenFile">
+   <property name="icon">
+    <iconset resource="../resources.qrc">
+     <normaloff>:/resources/images/binary.png</normaloff>:/resources/images/binary.png</iconset>
+   </property>
+   <property name="text">
+    <string>Open file</string>
+   </property>
+  </action>
+  <action name="actionEditFile">
+   <property name="icon">
+    <iconset resource="../resources.qrc">
+     <normaloff>:/resources/images/editfile.png</normaloff>:/resources/images/editfile.png</iconset>
+   </property>
+   <property name="text">
+    <string>Edit file</string>
+   </property>
+  </action>
+  <action name="actionOpenDirectory">
+   <property name="icon">
+    <iconset resource="../resources.qrc">
+     <normaloff>:/resources/images/folder.png</normaloff>:/resources/images/folder.png</iconset>
+   </property>
+   <property name="text">
+    <string>Open directory</string>
+   </property>
+  </action>
+  <action name="actionOpenTerminal">
+   <property name="icon">
+    <iconset resource="../resources.qrc">
+     <normaloff>:/resources/images/terminal.png</normaloff>:/resources/images/terminal.png</iconset>
+   </property>
+   <property name="text">
+    <string>Open terminal here</string>
+   </property>
+  </action>
+  <action name="actionRemoveTransactionItem">
+   <property name="icon">
+    <iconset resource="../resources.qrc">
+     <normaloff>:/resources/images/window_close.png</normaloff>:/resources/images/window_close.png</iconset>
+   </property>
+   <property name="text">
+    <string>Remove item</string>
+   </property>
+   <property name="iconVisibleInMenu">
+    <bool>true</bool>
+   </property>
+  </action>
+  <action name="actionRemoveTransactionItems">
+   <property name="icon">
+    <iconset resource="../resources.qrc">
+     <normaloff>:/resources/images/window_close.png</normaloff>:/resources/images/window_close.png</iconset>
+   </property>
+   <property name="text">
+    <string>Remove items</string>
+   </property>
+   <property name="iconVisibleInMenu">
+    <bool>true</bool>
    </property>
   </action>
  </widget>

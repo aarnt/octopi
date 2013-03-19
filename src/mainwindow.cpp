@@ -741,6 +741,169 @@ void MainWindow::execContextMenuPackages(QPoint point)
 }
 
 /*
+ * This SLOT collapses all treeview items
+ */
+void MainWindow::collapseAllContentItems(){
+  QTreeView *tv = ui->twProperties->currentWidget()->findChild<QTreeView *>("tvPkgFileList") ;
+  if ( tv != 0 ) tv->collapseAll();
+}
+
+/*
+ * This SLOT collapses only the currently selected item
+ */
+void MainWindow::collapseThisContentItems(){
+  QTreeView *tv = ui->twProperties->currentWidget()->findChild<QTreeView *>("tvPkgFileList") ;
+  if ( tv != 0 ){
+    tv->repaint(tv->rect());
+    QCoreApplication::processEvents();
+    QStandardItemModel *sim = qobject_cast<QStandardItemModel*>(tv->model());
+    QModelIndex mi = tv->currentIndex();
+    if (sim->hasChildren(mi))	_collapseItem(tv, sim, mi);
+  }
+}
+
+/*
+ * This SLOT expands all treeview items
+ */
+void MainWindow::expandAllContentItems(){
+  QTreeView *tv = ui->twProperties->currentWidget()->findChild<QTreeView *>("tvPkgFileList") ;
+  if ( tv != 0 ){
+    tv->repaint(tv->rect());
+    QCoreApplication::processEvents();
+    tv->expandAll();
+  }
+}
+
+/*
+ * This SLOT expands only the currently selected item
+ */
+void MainWindow::expandThisContentItems(){
+  QTreeView *tv = ui->twProperties->currentWidget()->findChild<QTreeView *>("tvPkgFileList") ;
+  if ( tv != 0 ){
+    tv->repaint(tv->rect());
+    QCoreApplication::processEvents();
+    QStandardItemModel *sim = qobject_cast<QStandardItemModel*>(tv->model());
+    QModelIndex mi = tv->currentIndex();
+    if (sim->hasChildren(mi))	_expandItem(tv, sim, &mi);
+  }
+}
+
+/*
+ * This method does the job of collapsing the given item and it's children
+ */
+void MainWindow::_collapseItem(QTreeView* tv, QStandardItemModel* sim, QModelIndex mi){
+  for (int i=0; i<sim->rowCount(mi); i++){
+    if (sim->hasChildren(mi)){
+      QCoreApplication::processEvents();
+      tv->collapse(mi);
+      QModelIndex mi2 = mi.child(i, 0);
+      _collapseItem(tv, sim, mi2);
+    }
+  }
+}
+
+/*
+ * This method does the job of expanding the given item and it's children
+ */
+void MainWindow::_expandItem(QTreeView* tv, QStandardItemModel* sim, QModelIndex* mi){
+  for (int i=0; i<sim->rowCount(*mi); i++){
+    if (sim->hasChildren(*mi)){
+      tv->expand(*mi);
+      QModelIndex mi2 = mi->child(i, 0);
+      _expandItem(tv, sim, &mi2);
+    }
+  }
+}
+
+/*
+ * Brings the context menu when the user clicks the right button
+ * above the Files treeview in "Files" Tab
+ */
+void MainWindow::execContextMenuPkgFileList(QPoint point)
+{
+  QTreeView *tvPkgFileList = ui->twProperties->currentWidget()->findChild<QTreeView*>("tvPkgFileList");
+  if (tvPkgFileList == 0) return;
+
+  QModelIndex mi = tvPkgFileList->currentIndex();
+  QString selectedPath = showFullPathOfObject(mi);
+
+  QMenu menu(this);
+  QStandardItemModel *sim = qobject_cast<QStandardItemModel*>(tvPkgFileList->model());
+  QStandardItem *si = sim->itemFromIndex(mi);
+  if (si == 0) return;
+  if (si->hasChildren() && (!tvPkgFileList->isExpanded(mi)))
+    menu.addAction(ui->actionExpandItem);
+
+  if (si->hasChildren() && (tvPkgFileList->isExpanded(mi)))
+    menu.addAction(ui->actionCollapseItem);
+
+  if (menu.actions().count() > 0)
+    menu.addSeparator();
+
+  menu.addAction(ui->actionCollapseAllItems);
+  menu.addAction(ui->actionExpandAllItems);
+  menu.addSeparator();
+
+  QDir d;
+  QFile f(selectedPath);
+
+  if (si->icon().pixmap(QSize(22,22)).toImage() == IconHelper::getIconFolder().pixmap(QSize(22,22)).toImage()){
+    if (d.exists(selectedPath))
+    {
+      menu.addAction(ui->actionOpenDirectory);
+      menu.addAction(ui->actionOpenTerminal);
+    }
+
+    //if (sim->hasChildren(mi) && (!isFindDisabled()))
+    //  menu.addAction(actionFindFileInPkgFileList);
+  }
+  else if (f.exists())
+  {
+    menu.addAction(ui->actionOpenFile);
+  }
+  if (f.exists() && UnixCommand::isTextFile(selectedPath))
+  {
+    menu.addAction(ui->actionEditFile);
+  }
+
+  QPoint pt2 = tvPkgFileList->mapToGlobal(point);
+  pt2.setY(pt2.y() + tvPkgFileList->header()->height());
+  menu.exec(pt2);
+}
+
+/*
+ * Brings the context menu when the user clicks the right button
+ * above the Transaction treeview in "Transaction" Tab
+ */
+void MainWindow::execContextMenuTransaction(QPoint point)
+{
+  QTreeView *tvTransaction = ui->twProperties->currentWidget()->findChild<QTreeView*>("tvTransaction");
+  if (!tvTransaction) return;
+
+  if ((tvTransaction->currentIndex() == getRemoveTransactionParentItem()->index() &&
+      tvTransaction->model()->hasChildren(tvTransaction->currentIndex())) ||
+      (tvTransaction->currentIndex() == getInstallTransactionParentItem()->index() &&
+            tvTransaction->model()->hasChildren(tvTransaction->currentIndex())))
+  {
+    QMenu menu(this);
+    menu.addAction(ui->actionRemoveTransactionItems);
+    QPoint pt2 = tvTransaction->mapToGlobal(point);
+    pt2.setY(pt2.y() + tvTransaction->header()->height());
+    menu.exec(pt2);
+  }
+  else if (tvTransaction->currentIndex() != getRemoveTransactionParentItem()->index() &&
+           tvTransaction->currentIndex() != getInstallTransactionParentItem()->index() &&
+           tvTransaction->currentIndex().isValid())
+  {
+    QMenu menu(this);
+    menu.addAction(ui->actionRemoveTransactionItem);
+    QPoint pt2 = tvTransaction->mapToGlobal(point);
+    pt2.setY(pt2.y() + tvTransaction->header()->height());
+    menu.exec(pt2);
+  }
+}
+
+/*
  * Returns true if tabWidget height is greater than 0. Otherwise, returns false.
  */
 bool MainWindow::_isPropertiesTabWidgetVisible()
@@ -993,8 +1156,9 @@ void MainWindow::refreshTabFiles(bool clearContents, bool neverQuit)
   {
     if (neverQuit)
     {
-      _ensureTabVisible(ctn_TABINDEX_FILES);
-      ui->twProperties->setCurrentIndex(ctn_TABINDEX_FILES);
+      //_ensureTabVisible(ctn_TABINDEX_FILES);
+      //ui->twProperties->setCurrentIndex(ctn_TABINDEX_FILES);
+      _changeTabWidgetPropertiesIndex(ctn_TABINDEX_FILES);
     }
 
     return;
@@ -1015,8 +1179,6 @@ void MainWindow::refreshTabFiles(bool clearContents, bool neverQuit)
 
   QTreeView *tvPkgFileList = ui->twProperties->widget(ctn_TABINDEX_FILES)->findChild<QTreeView*>("tvPkgFileList");
   if(tvPkgFileList){
-    CPUIntensiveComputing cic;
-
     QString pkgName = siName->text();
     QStringList fileList = Package::getContents(pkgName);
 
@@ -1033,6 +1195,8 @@ void MainWindow::refreshTabFiles(bool clearContents, bool neverQuit)
       strSelectedPackage="";
       return;
     }
+
+    CPUIntensiveComputing cic;
 
     foreach ( QString file, fileList ){
       QFileInfo fi ( file );
@@ -1398,20 +1562,55 @@ void MainWindow::onPressDelete()
 /*
  * Helper method that opens an existing file using the available program/DE.
  */
-void MainWindow::openFile(const QModelIndex& mi){
-  const QStandardItemModel *sim = qobject_cast<const QStandardItemModel*>(mi.model());
-  QStandardItem *si = sim->itemFromIndex(mi);
-
-  if ((si->icon().pixmap(QSize(22,22)).toImage() ==
-       IconHelper::getIconBinary().pixmap(QSize(22,22)).toImage()))
+void MainWindow::openFile()
+{
+  QTreeView *tv = ui->twProperties->currentWidget()->findChild<QTreeView *>("tvPkgFileList") ;
+  if (tv)
   {
-    QString path = showFullPathOfObject(si->index());
-    QFileInfo selectedFile(path);
+    QString path = showFullPathOfObject(tv->currentIndex());
+    WMHelper::openFile(path);
+  }
+}
 
-    if (selectedFile.exists())
-    {
-      WMHelper::openFile(path);
-    }
+/*
+ * Helper method that edits an existing file using the available program/DE.
+ */
+void MainWindow::editFile()
+{
+  QTreeView *tv = ui->twProperties->currentWidget()->findChild<QTreeView *>("tvPkgFileList") ;
+  if (tv)
+  {
+    QString path = showFullPathOfObject(tv->currentIndex());
+    WMHelper::openFile(path);
+  }
+}
+
+/*
+ * Helper method that opens a terminal in the selected directory, using the available program/DE.
+ */
+void MainWindow::openTerminal()
+{
+  QString dir = getSelectedDirectory();
+
+  if (!dir.isEmpty())
+  {
+    WMHelper::openTerminal(dir);
+  }
+  /*else
+  {
+    WMHelper::openTerminal(QDir::home().absolutePath());
+  }*/
+}
+
+/*
+ * Helper method that opens an existing directory using the available program/DE.
+ */
+void MainWindow::openDirectory(){
+  QString dir = getSelectedDirectory();
+
+  if (!dir.isEmpty())
+  {
+    WMHelper::openDirectory(dir);
   }
 }
 

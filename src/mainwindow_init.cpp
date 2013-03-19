@@ -180,7 +180,21 @@ void MainWindow::initStatusBar()
 void MainWindow::_changeTabWidgetPropertiesIndex(const int newIndex)
 {
   ui->twProperties->setCurrentIndex(newIndex);
-  ui->twProperties->currentWidget()->childAt(1,1)->setFocus();
+
+  if (newIndex == ctn_TABINDEX_FILES)
+  {
+    QTreeView *tvPkgFileList = ui->twProperties->widget(ctn_TABINDEX_FILES)->findChild<QTreeView*>("tvPkgFileList");
+    if(tvPkgFileList)
+    {
+      tvPkgFileList->setFocus();
+      tvPkgFileList->setCurrentIndex(tvPkgFileList->currentIndex());
+    }
+  }
+  else
+  {
+    //For any other tab... just doing the following is enough
+    ui->twProperties->currentWidget()->childAt(1,1)->setFocus();
+  }
 
   _ensureTabVisible(newIndex);
 }
@@ -207,6 +221,7 @@ void MainWindow::initTabTransaction()
 
   QTreeView *tvTransaction = new QTreeView(tabTransaction);
   tvTransaction->setObjectName("tvTransaction");
+  tvTransaction->setContextMenuPolicy(Qt::CustomContextMenu);
   tvTransaction->setEditTriggers(QAbstractItemView::NoEditTriggers);
   tvTransaction->setDropIndicatorShown(false);
   tvTransaction->setAcceptDrops(false);
@@ -242,6 +257,8 @@ void MainWindow::initTabTransaction()
   ui->twProperties->removeTab(ctn_TABINDEX_TRANSACTION);
   ui->twProperties->insertTab(ctn_TABINDEX_TRANSACTION, tabTransaction, QApplication::translate (
                                 "MainWindow", aux.toUtf8(), 0, QApplication::UnicodeUTF8 ));
+
+  connect(tvTransaction, SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(execContextMenuTransaction(QPoint)));
 }
 
 /*
@@ -362,13 +379,13 @@ void MainWindow::initTabFiles()
 
   tvPkgFileList->setContextMenuPolicy(Qt::CustomContextMenu);
 
-  //connect(tvPkgFileList, SIGNAL(customContextMenuRequested(QPoint)),
-  //        this, SLOT(execContextMenuPkgFileList(QPoint)));
+  connect(tvPkgFileList, SIGNAL(customContextMenuRequested(QPoint)),
+          this, SLOT(execContextMenuPkgFileList(QPoint)));
   //connect(tvPkgFileList, SIGNAL(clicked (const QModelIndex&)),
   //        this, SLOT(showFullPathOfObject(const QModelIndex&)));
 
   connect(tvPkgFileList, SIGNAL(doubleClicked (const QModelIndex&)),
-          this, SLOT(openFile(const QModelIndex&)));
+          this, SLOT(openFile()));
   //connect(tvPkgFileList, SIGNAL(activated(const QModelIndex)),
   //        this, SLOT(openFileOrDirectory(QModelIndex)));
 
@@ -843,8 +860,14 @@ void MainWindow::onHelpAbout()
  */
 void MainWindow::initActions()
 {
-  connect(ui->tvPackages->selectionModel(), SIGNAL(selectionChanged(QItemSelection,QItemSelection)), this,
-          SLOT(invalidateTabs()));
+  ui->actionCommit->setEnabled(false);
+  ui->actionRollback->setEnabled(false);
+
+  connect(ui->tvPackages->selectionModel(), SIGNAL(selectionChanged(QItemSelection,QItemSelection)),
+          this, SLOT(invalidateTabs()));
+
+  connect(ui->actionRemoveTransactionItem, SIGNAL(triggered()), this, SLOT(onPressDelete()));
+  connect(ui->actionRemoveTransactionItems, SIGNAL(triggered()), this, SLOT(onPressDelete()));
 
   connect(ui->actionExit, SIGNAL(triggered()), this, SLOT(close()));
   connect(ui->actionNonInstalledPackages, SIGNAL(changed()), this, SLOT(changePackageListModel()));
@@ -864,6 +887,13 @@ void MainWindow::initActions()
 
   connect(ui->twProperties, SIGNAL(currentChanged(int)), this, SLOT(changedTabIndex()));
 
-  ui->actionCommit->setEnabled(false);
-  ui->actionRollback->setEnabled(false);
+  //Actions from tvPkgFileList context menu
+  connect(ui->actionCollapseAllItems, SIGNAL(triggered()), this, SLOT(collapseAllContentItems()));
+  connect(ui->actionExpandAllItems, SIGNAL(triggered()), this, SLOT(expandAllContentItems()));
+  connect(ui->actionCollapseItem, SIGNAL(triggered()), this, SLOT(collapseThisContentItems()));
+  connect(ui->actionExpandItem, SIGNAL(triggered()), this, SLOT(expandThisContentItems()));
+  connect(ui->actionOpenFile, SIGNAL(triggered()), this, SLOT(openFile()));
+  connect(ui->actionEditFile, SIGNAL(triggered()), this, SLOT(editFile()));
+  connect(ui->actionOpenDirectory, SIGNAL(triggered()), this, SLOT(openDirectory()));
+  connect(ui->actionOpenTerminal, SIGNAL(triggered()), this, SLOT(openTerminal()));
 }

@@ -79,11 +79,12 @@ void MainWindow::keyPressEvent(QKeyEvent* ke)
   {
     QTreeView *tvPkgFileList =
         ui->twProperties->widget(ctn_TABINDEX_FILES)->findChild<QTreeView*>("tvPkgFileList");
+
     if(tvPkgFileList)
     {
       if(tvPkgFileList->hasFocus())
       {
-        openFile(tvPkgFileList->currentIndex());
+        openFile();
       }
     }
   }
@@ -142,16 +143,7 @@ void MainWindow::keyPressEvent(QKeyEvent* ke)
   }
   else if(ke->key() == Qt::Key_F4)
   {
-    QString dir = getSelectedDirectory();
-
-    if (!dir.isEmpty())
-    {
-      WMHelper::openTerminal(dir);
-    }
-    else
-    {
-      WMHelper::openTerminal(QDir::home().absolutePath());
-    }
+    openTerminal();
   }
   else if(ke->key() == Qt::Key_F5)
   {
@@ -160,9 +152,7 @@ void MainWindow::keyPressEvent(QKeyEvent* ke)
   }
   else if(ke->key() == Qt::Key_F6)
   {
-    QString dir = getSelectedDirectory();
-    if (!dir.isEmpty())
-      WMHelper::openDirectory(dir);
+    openDirectory();
   }
   else if (ke->key() == Qt::Key_F10)
   {
