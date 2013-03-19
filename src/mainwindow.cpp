@@ -551,7 +551,12 @@ void MainWindow::buildPackageList()
   list->clear();
   refreshTabInfo();
   refreshTabFiles();
-  ui->tvPackages->setFocus();
+
+  if (_isPackageTreeViewVisible())
+  {
+    ui->tvPackages->setFocus();
+  }
+
   counter++;
   progress.setValue(counter);
 

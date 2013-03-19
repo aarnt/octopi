@@ -332,7 +332,8 @@ void MainWindow::doSyncDatabase()
 {
   //If there are no means to run the actions, we must warn!
   if (WMHelper::getSUCommand() == ctn_NO_SU_COMMAND){
-    QMessageBox::critical( 0, StrConstants::getApplicationName(), StrConstants::getErrorNoSuCommand());
+    QMessageBox::critical( 0, StrConstants::getApplicationName(), StrConstants::getErrorNoSuCommand() +
+                           "\n" + StrConstants::getYoullNeedSuFrontend());
     return;
   }
 
@@ -406,7 +407,8 @@ void MainWindow::doSystemUpgrade(bool syncDatabase)
     {
       //If there are no means to run the actions, we must warn!
       if (WMHelper::getSUCommand() == ctn_NO_SU_COMMAND){
-        QMessageBox::critical( 0, StrConstants::getApplicationName(), StrConstants::getErrorNoSuCommand());
+        QMessageBox::critical( 0, StrConstants::getApplicationName(), StrConstants::getErrorNoSuCommand() +
+                               "\n" + StrConstants::getYoullNeedSuFrontend());
         return;
       }
 
@@ -480,7 +482,8 @@ void MainWindow::doRemove()
   {
     //If there are no means to run the actions, we must warn!
     if (WMHelper::getSUCommand() == ctn_NO_SU_COMMAND){
-      QMessageBox::critical( 0, StrConstants::getApplicationName(), StrConstants::getErrorNoSuCommand());
+      QMessageBox::critical( 0, StrConstants::getApplicationName(), StrConstants::getErrorNoSuCommand() +
+                             "\n" + StrConstants::getYoullNeedSuFrontend());
       return;
     }
 
@@ -546,7 +549,8 @@ void MainWindow::doInstall()
   {
     //If there are no means to run the actions, we must warn!
     if (WMHelper::getSUCommand() == ctn_NO_SU_COMMAND){
-      QMessageBox::critical( 0, StrConstants::getApplicationName(), StrConstants::getErrorNoSuCommand());
+      QMessageBox::critical( 0, StrConstants::getApplicationName(), StrConstants::getErrorNoSuCommand() +
+                             "\n" + StrConstants::getYoullNeedSuFrontend());
       return;
     }
 

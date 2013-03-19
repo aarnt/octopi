@@ -30,7 +30,7 @@ public:
   }
 
   static QString getApplicationVersion(){
-    return "0.1.1";
+    return "0.1.2";
   }
 
   static QString getApplicationCliHelp(){
@@ -325,6 +325,10 @@ public:
   static QString getErrorNoSuCommand(){
     return
       QObject::tr("There are no means to get administrator's credentials.");
+  }
+
+  static QString getYoullNeedSuFrontend(){
+    return QObject::tr("You'll need to install a su frontend like gksu or kdesu.");
   }
 
   static QString getErrorRunningWithRoot(){

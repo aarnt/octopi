@@ -538,6 +538,11 @@ QString MainWindow::parseDistroNews()
 
         QDomNode text = e.firstChild();
 
+        QString itemTitle;
+        QString itemLink;
+        QString itemDescription;
+        QString itemPubDate;
+
         while(!text.isNull())
         {
           QDomElement eText = text.toElement();
@@ -546,24 +551,36 @@ QString MainWindow::parseDistroNews()
           {
             if (eText.tagName() == "title")
             {
-              html += "<li><h3>" + eText.text() + "</h3><br>";
+              itemTitle = "<h3>" + eText.text() + "</h3>";
             }
             else if (eText.tagName() == "link")
             {
-              html += Package::makeURLClickable(eText.text());
-              if (UnixCommand::getLinuxDistro() == ectn_MANJAROLINUX) html += "<br>";
+              itemLink = Package::makeURLClickable(eText.text());
+              if (UnixCommand::getLinuxDistro() == ectn_MANJAROLINUX) itemLink += "<br>";
             }
             else if (eText.tagName() == "description")
             {
-              QString description = eText.text();
-              description = description.remove(QRegExp("\\n"));
-              html += description + "<br></li>";
+              itemDescription = eText.text();
+              itemDescription = itemDescription.remove(QRegExp("\\n"));
+              itemDescription += "<br>";
+            }
+            else if (eText.tagName() == "pubDate")
+            {
+              itemPubDate = eText.text();
+              itemPubDate = itemPubDate.remove(QRegExp("\\n"));
+              int pos = itemPubDate.indexOf("+");
+
+              if (pos > -1)
+              {
+                itemPubDate = itemPubDate.mid(0, pos-1).trimmed() + "<br>";
+              }
             }
           }
 
           text = text.nextSibling();
         }
 
+        html += "<li><p>" + itemTitle + " " + itemPubDate + "<br>" + itemLink + itemDescription + "</p></li>";
         itemCounter++;
       }
     }
@@ -577,6 +594,11 @@ QString MainWindow::parseDistroNews()
 
 /*
  * This is the high level method that orquestrates the Distro RSS News printing in tabNews
+ *
+ * boolean parameter searchForLatestNews:
+ *    controls whether this method tries to connect to the remote RSS News Feed (default is true)
+ * boolean parameter gotoNewsTab:
+ *    controls whether this method must set the mainwindow focus to NewsTab (default is true)
  */
 void MainWindow::refreshDistroNews(bool searchForLatestNews, bool gotoNewsTab)
 {
