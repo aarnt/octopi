@@ -567,6 +567,16 @@ bool UnixCommand::isTextFile(const QString& fileName)
 }
 
 /*
+ * Executes the given command using QProcess async technology
+ */
+void UnixCommand::executeCommand(const QString &pCommand)
+{
+  QString command = WMHelper::getSUCommand() + " \"" + pCommand + "\"";
+
+  m_process->start(command);
+}
+
+/*
  * Executes the given commandlist using QProcess async technology
  */
 void UnixCommand::executePackageActions( const QStringList& commandList )

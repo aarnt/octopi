@@ -354,9 +354,8 @@ void MainWindow::doSyncDatabase()
   QObject::connect(m_unixCommand, SIGNAL( readyReadStandardError() ),
                    this, SLOT( actionsProcessRaisedError() ));
 
-  QStringList commands;
-  commands << "pacman -Sy";
-  m_unixCommand->executePackageActions(commands);
+  QString command = "pacman -Sy";
+  m_unixCommand->executeCommand(command);
 }
 
 /*
@@ -377,6 +376,7 @@ void MainWindow::doSystemUpgrade(bool syncDatabase)
     //There are no new updates to install!
     if (m_targets->count() == 0)
     {
+      clearTabOutput();
       writeToTabOutput("<b>" + StrConstants::getNoNewUpdatesAvailable() + "</b>");
       return;
     }
@@ -427,9 +427,9 @@ void MainWindow::doSystemUpgrade(bool syncDatabase)
                        this, SLOT( actionsProcessRaisedError() ));
 
 
-      QStringList command;
-      command << "pacman -Su --noconfirm";
-      m_unixCommand->executePackageActions(command);
+      QString command;
+      command = "pacman -Su --noconfirm";
+      m_unixCommand->executeCommand(command);
       m_commandQueued = ectn_NONE;
     }
   }
@@ -501,9 +501,9 @@ void MainWindow::doRemove()
     QObject::connect(m_unixCommand, SIGNAL( readyReadStandardError() ),
                      this, SLOT( actionsProcessRaisedError() ));
 
-    QStringList command;
-    command << "pacman -Rcs --noconfirm " + listOfTargets;
-    m_unixCommand->executePackageActions(command);
+    QString command;
+    command = "pacman -Rcs --noconfirm " + listOfTargets;
+    m_unixCommand->executeCommand(command);
   }
 }
 
@@ -568,9 +568,9 @@ void MainWindow::doInstall()
     QObject::connect(m_unixCommand, SIGNAL( readyReadStandardError() ),
                      this, SLOT( actionsProcessRaisedError() ));
 
-    QStringList command;
-    command << "pacman -S --noconfirm " + listOfTargets;
-    m_unixCommand->executePackageActions(command);
+    QString command;
+    command = "pacman -S --noconfirm " + listOfTargets;
+    m_unixCommand->executeCommand(command);
   }
 }
 
@@ -710,6 +710,15 @@ void MainWindow::actionsProcessStarted()
 void MainWindow::actionsProcessFinished(int exitCode, QProcess::ExitStatus)
 {
   ui->twProperties->setTabText(ctn_TABINDEX_OUTPUT, StrConstants::getTabOutputName());
+
+  //Is there any message awaiting for being outputed?
+  QString msg = m_unixCommand->readAllStandardOutput();
+  msg = msg.trimmed();
+
+  if (!msg.isEmpty())
+  {
+    writeToTabOutput(msg);
+  }
 
   if (exitCode == 0){
     writeToTabOutput("<br><b>" +

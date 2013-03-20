@@ -106,6 +106,7 @@ public:
 
   static void removeTemporaryFiles();
 
+  void executeCommand(const QString &pCommand);
   void executePackageActions(const QStringList& commandList);
   QString readAllStandardOutput();
   QString readAllStandardError();
