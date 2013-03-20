@@ -32,6 +32,7 @@
 #include <QMessageBox>
 #include <QStandardItem>
 #include <QSortFilterProxyModel>
+#include <QTextBrowser>
 
 /*
  * Watches the state of tvTransaction treeview to see if Commit/Rollback actions must be activated/deactivated
@@ -579,6 +580,13 @@ void MainWindow::doInstall()
  */
 void MainWindow::doCleanCache()
 {
+  //If there are no means to run the actions, we must warn!
+  if (WMHelper::getSUCommand() == ctn_NO_SU_COMMAND){
+    QMessageBox::critical( 0, StrConstants::getApplicationName(), StrConstants::getErrorNoSuCommand() +
+                           "\n" + StrConstants::getYoullNeedSuFrontend());
+    return;
+  }
+
   int res = QMessageBox::question(this, StrConstants::getConfirmation(),
                                   StrConstants::getCleanCacheConfirmation(),
                                   QMessageBox::Yes|QMessageBox::No, QMessageBox::No);
@@ -1029,5 +1037,72 @@ void MainWindow::actionsProcessRaisedError()
         }
       }
     }
+  }
+}
+
+/*
+ * A helper method which writes the given string to OutputTab's textbrowser
+ */
+void MainWindow::writeToTabOutput(const QString &msg)
+{
+  QTextBrowser *text = ui->twProperties->widget(ctn_TABINDEX_OUTPUT)->findChild<QTextBrowser*>("textOutputEdit");
+  if (text)
+  {
+    if(_textInTabOutput(msg))
+    {
+      return;
+    }
+
+    QString newMsg = msg;
+    _ensureTabVisible(ctn_TABINDEX_OUTPUT);
+    _positionTextEditCursorAtEnd();
+
+    if(newMsg.contains(QRegExp("<font color")))
+    {
+      //std::cout << "Already coloured: " << newMsg.toAscii().data() << std::endl;
+      newMsg += "<br>";
+    }
+    else
+    {
+      if(newMsg.contains("removing ") ||
+         newMsg.contains("could not ") ||
+         newMsg.contains("error"))
+      {
+        newMsg = "<font color=\"red\">" + newMsg + "</font><br>";
+      }
+      else if(newMsg.contains("checking ") ||
+              newMsg.contains("installing ") ||
+              newMsg.contains("upgrading ") ||
+              newMsg.contains("loading ") ||
+              newMsg.contains("resolving ") ||
+              newMsg.contains("looking "))
+       {
+         newMsg = "<font color=\"green\">" + newMsg + "</font><br>";
+         //std::cout << "alt: " << newMsg.toAscii().data() << std::endl;
+       }
+      else if (newMsg.contains("warning") ||
+               newMsg.contains("-- reinstalling"))
+      {
+        newMsg = "<font color=\"blue\">" + newMsg + "</font><br>";
+      }
+      else
+      {
+        newMsg += "<br>";
+      }
+    }
+    if(!newMsg.contains("<b>", Qt::CaseInsensitive))
+    {
+      if(newMsg.contains("::"))
+      {
+        newMsg = "<br><B>" + newMsg + "</B><br>";
+      }
+    }
+    else
+    {
+      newMsg += "<br>";
+    }
+
+    text->insertHtml(newMsg);
+    text->ensureCursorVisible();
   }
 }

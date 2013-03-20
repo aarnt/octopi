@@ -457,7 +457,36 @@ bool UnixCommand::hasInternetConnection()
       }
     }
   }
+
+  //It seems to be alright, but let's make a ping to see the result
+  if (result == true)
+  {
+    result = UnixCommand::doInternetPingTest();
+  }
+
   return result;
+}
+
+/*
+ * Pings google site, to make sure internet is OK
+ */
+bool UnixCommand::doInternetPingTest()
+{
+  QProcess ping;
+
+#if QT_VERSION >= 0x040600
+  QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
+  env.insert("LANG", "us_EN");
+  ping.setProcessEnvironment(env);
+#endif
+
+  ping.start("ping -c 1 -W 3 www.google.com");
+  ping.waitForFinished();
+
+  int res = ping.exitCode();
+  ping.close();
+
+  return (res == 0);
 }
 
 /*

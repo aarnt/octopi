@@ -645,7 +645,7 @@ void MainWindow::refreshDistroNews(bool searchForLatestNews, bool gotoNewsTab)
 
   if (distroRSSXML.count() >= 200)
   {
-    if (distroRSSXML.at(0)=='*')
+    if (distroRSSXML.at(0)=='*' && gotoNewsTab)
     {
       //If this is an updated RSS, we must warn the user!
       ui->twProperties->setTabText(ctn_TABINDEX_NEWS, "** " + StrConstants::getTabNewsName() + " **");
@@ -653,7 +653,8 @@ void MainWindow::refreshDistroNews(bool searchForLatestNews, bool gotoNewsTab)
     }
     else
     {
-      if(searchForLatestNews) ui->twProperties->setTabText(ctn_TABINDEX_NEWS, StrConstants::getTabNewsName());
+      if(searchForLatestNews)
+        ui->twProperties->setTabText(ctn_TABINDEX_NEWS, StrConstants::getTabNewsName());
     }
 
     //First, we have to parse the raw RSS XML...
@@ -661,7 +662,9 @@ void MainWindow::refreshDistroNews(bool searchForLatestNews, bool gotoNewsTab)
   }
   else
   {
-    if(searchForLatestNews) ui->twProperties->setTabText(ctn_TABINDEX_NEWS, StrConstants::getTabNewsName());
+    if(searchForLatestNews)
+      ui->twProperties->setTabText(ctn_TABINDEX_NEWS, StrConstants::getTabNewsName());
+
     html = distroRSSXML;
   }
 
