@@ -242,6 +242,10 @@ public:
     return QObject::tr("%1 available");
   }
 
+  static QString getCleaningPackageCache(){
+    return QObject::tr("Cleaning package cache...");
+  }
+
   static QString getSynchronizing(){
     return QObject::tr("Synchronizing");
   }
@@ -363,7 +367,7 @@ public:
 
   static QString getThisIsNotATextFile(){
     return QObject::tr("This file does not appear to be a simple text.\n"
-                       "Are you sure you want to run it?");
+                       "Are you sure you want to open it?");
   }
 
   static QString getTodoInstallText(){

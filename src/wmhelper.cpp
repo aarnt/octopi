@@ -131,6 +131,7 @@ QString WMHelper::getKDESUCommand(){
   result += " -d ";
   result += " -t ";
   result += " --noignorebutton ";
+  result += " -c";
 
   return result;
 }
@@ -163,7 +164,6 @@ QString WMHelper::getGKSUCommand(){
 
 QString WMHelper::getSUCommand(){
   QString result(ctn_NO_SU_COMMAND);
-
   if (UnixCommand::isRootRunning()){
     result = ctn_ROOT_SH;
   }

@@ -176,6 +176,7 @@ private:
   void _positionTextEditCursorAtEnd();
   bool _textInTabOutput(const QString& findText);
   bool _searchForKeyVerbs(const QString& msg);
+  void _splitOutputStrings(const QString &output);
   void _treatProcessOutput(const QString &pMsg);
   void _ensureTabVisible(const int index);
   bool _isPropertiesTabWidgetVisible();

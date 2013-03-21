@@ -1471,7 +1471,7 @@ bool MainWindow::_textInTabOutput(const QString& findText)
   if (text)
   {
     _positionTextEditCursorAtEnd();
-    res = text->find(findText, QTextDocument::FindBackward);
+    res = text->find(findText, QTextDocument::FindBackward | QTextDocument::FindWholeWords);
     _positionTextEditCursorAtEnd();
   }
 
@@ -1529,7 +1529,7 @@ void MainWindow::editFile()
   if (tv)
   {
     QString path = showFullPathOfObject(tv->currentIndex());
-    WMHelper::openFile(path);
+    WMHelper::editFile(path);
   }
 }
 
