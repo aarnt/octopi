@@ -30,6 +30,9 @@
 #include <QCloseEvent>
 #include <QMessageBox>
 #include <QTreeView>
+#include <QComboBox>
+#include <QStandardItem>
+#include <QSortFilterProxyModel>
 
 /*
  * Before we close the application, let's confirm if there is a pending transaction...
@@ -171,4 +174,84 @@ void MainWindow::keyPressEvent(QKeyEvent* ke)
   {
     doCleanCache();
   }
+}
+
+/*
+ * This Event method is called whenever the user releases a key
+ * (useful to navigate in the packagelist)
+ */
+void MainWindow::keyReleaseEvent(QKeyEvent *ke)
+{
+  static int i=0;
+  static int k=-9999;
+  static int k_count=0;
+  QStandardItemModel *sim;
+
+  if ((ui->tvPackages->hasFocus()) &&
+      (((ke->key() >= Qt::Key_A) && (ke->key() <= Qt::Key_Z)) ||
+       ((ke->key() >= Qt::Key_0 && (ke->key() <= Qt::Key_9)))))
+  {
+    //Which model of tbPackage is being used?
+    if(ui->actionNonInstalledPackages->isChecked())
+    {
+      if(m_cbGroups->currentIndex() == 0)
+        sim = m_modelPackages;
+      else
+        sim = m_modelPackagesFromGroup;
+    }
+    else
+    {
+      if(m_cbGroups->currentIndex() == 0)
+        sim = m_modelInstalledPackages;
+      else
+        sim = m_modelInstalledPackagesFromGroup;
+    }
+
+    QList<QStandardItem*> fi = sim->findItems( ke->text(), Qt::MatchStartsWith, ctn_PACKAGE_NAME_COLUMN );
+    if (fi.count() > 0){
+      if ( (ke->key() != k) || (fi.count() != k_count) ) i=0;
+
+      foreach (QStandardItem* si, fi){
+        QModelIndex mi = si->index();
+        mi = m_proxyModelPackages->mapFromSource(mi);
+        if (!m_proxyModelPackages->hasIndex(mi.row(), mi.column())) fi.removeAll(si);
+      }
+
+      if (fi.count()==0)
+      {
+        return;
+      }
+
+      /*QList<SelectedPackage> sp = getSelectedPackage();
+      if (sp.count() == 1) {
+        int a=0;
+        while (a<=fi.count()-1) {
+          QStandardItem* si = fi[a];
+          if (si->text() == sp[sp.count()-1].getFileName()) break;
+          a++;
+          i=a;
+        }
+        if((a+1)<=fi.count()-1) { a++; i=a; }
+        else { a=i=0; }
+      }*/
+
+      ui->tvPackages->selectionModel()->clear();
+      QModelIndex mi = fi[i]->index();
+      mi = m_proxyModelPackages->mapFromSource(mi);
+      ui->tvPackages->scrollTo(mi);
+
+      QModelIndex maux = m_proxyModelPackages->index( mi.row(), ctn_PACKAGE_ICON_COLUMN );
+      ui->tvPackages->selectionModel()->setCurrentIndex(mi, QItemSelectionModel::Select);
+      ui->tvPackages->selectionModel()->setCurrentIndex(maux, QItemSelectionModel::Select);
+      ui->tvPackages->setCurrentIndex(mi);
+
+      if ((i <= fi.count()-1)) i++;
+      if (i == fi.count()) i = 0;
+    }
+
+    k = ke->key();
+    k_count = fi.count();
+  }
+
+  else ke->ignore();
 }

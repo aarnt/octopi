@@ -252,6 +252,6 @@ void TreeViewPackagesItemDelegate::execToolTip(){
   else if (m_PkgClassification == ectn_FROZEN)
     qApp->setStyleSheet(StrConstants::getToolTipBlueCSS());*/
 
-  qApp->setStyleSheet(StrConstants::getToolTipNormalCSS());
+  //qApp->setStyleSheet(StrConstants::getToolTipNormalCSS());
   QToolTip::showText(gPoint, fw.result());
 }

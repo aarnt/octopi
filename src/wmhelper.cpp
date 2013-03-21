@@ -262,7 +262,7 @@ void WMHelper::editFile( const QString& fileName ){
       process->startDetached(getSUCommand() + p);
     }
     else if (isKDERunning() && UnixCommand::hasTheExecutable(ctn_KDE_EDITOR)){
-      QString p = " -d -t --noignorebutton ";
+      QString p = " -d -t --noignorebutton -c ";
       p += ctn_KDE_EDITOR + " " + fileName;
       process->startDetached(getSUCommand() + p);
     }

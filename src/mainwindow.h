@@ -196,6 +196,7 @@ public slots:
 protected:
   void closeEvent(QCloseEvent *event);
   void keyPressEvent(QKeyEvent* ke);
+  void keyReleaseEvent(QKeyEvent *ke);
 
 private slots:
 
