@@ -210,6 +210,15 @@ QString WMHelper::getSUCommand(){
 void WMHelper::openFile(const QString& fileName){
   QString fileToOpen(fileName);
 
+  if (!UnixCommand::isTextFile(fileToOpen)){
+    int res = QMessageBox::question(qApp->activeWindow(), StrConstants::getConfirmation(),
+                                    StrConstants::getThisIsNotATextFile(),
+                                    QMessageBox::Yes | QMessageBox::No,
+                                    QMessageBox::No);
+
+    if ( res == QMessageBox::No ) return;
+  }
+
   QProcess *p = new QProcess(qApp->activeWindow());
   QStringList s;
 

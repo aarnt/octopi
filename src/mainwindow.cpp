@@ -456,7 +456,6 @@ void MainWindow::buildPackageList()
 
   QStandardItem *parentItem = m_modelPackages->invisibleRootItem();
   QStandardItem *parentItemInstalledPackages = m_modelInstalledPackages->invisibleRootItem();
-
   QList<PackageListData>::const_iterator it = list->begin();
   QList<QStandardItem*> lIcons, lNames, lVersions, lRepositories;
   QList<QStandardItem*> lIcons2, lNames2, lVersions2, lRepositories2;
@@ -1067,6 +1066,12 @@ void MainWindow::refreshTabInfo(bool clearContents)
       html += "<tr><td>" + version + "</td><td>" + siVersion->text() + "</td></tr>";
     }
 
+    //This is needed as packager names could be encoded in different charsets, resulting in an error
+    QString packagerName = pid.packager;
+    packagerName = packagerName.replace("<", "&lt;");
+    packagerName = packagerName.replace(">", "&gt;");
+    packagerName = packagerName.fromUtf8(packagerName.toAscii().data());
+
     html += "<tr><td>" + licenses + "</td><td>" + pid.license + "</td></tr>";
     html += "<tr><td>" + groups + "</td><td>" + pid.group + "</td></tr>";
     html += "<tr><td>" + provides + "</td><td>" + pid.provides + "</td></tr>";
@@ -1077,7 +1082,7 @@ void MainWindow::refreshTabInfo(bool clearContents)
     html += "<tr><td>" + replaces + "</td><td>" + pid.replaces + "</td></tr>";
     html += "<tr><td>" + downloadSize + "</td><td>" + valDownloadSize + "</td></tr>";
     html += "<tr><td>" + installedSize + "</td><td>" + valInstalledSize + "</td></tr>";
-    html += "<tr><td>" + packager + "</td><td>" + pid.packager + "</td></tr>";
+    html += "<tr><td>" + packager + "</td><td>" + packagerName + "</td></tr>";
     html += "<tr><td>" + architecture + "</td><td>" + pid.arch + "</td></tr>";
     html += "<tr><td>" + buildDate + "</td><td>" + pid.buildDate.toString("ddd - dd/MM/yyyy hh:mm:ss") + "</td></tr>";
 
@@ -1091,7 +1096,7 @@ void MainWindow::refreshTabInfo(bool clearContents)
 }
 
 /*
- * Re-populates the treeview with file list of selected package (tab TWO)
+ * Re-populates the treeview which contains the file list of selected package (tab TWO)
  */
 void MainWindow::refreshTabFiles(bool clearContents, bool neverQuit)
 {
@@ -1437,7 +1442,7 @@ void MainWindow::_positionTextEditCursorAtEnd()
 }
 
 /*
- * Ensures that TabOutput is visible, so the user can see the messages!
+ * Ensures the given index tab is visible
  */
 void MainWindow::_ensureTabVisible(const int index)
 {
@@ -1465,73 +1470,12 @@ bool MainWindow::_textInTabOutput(const QString& findText)
   QTextBrowser *text = ui->twProperties->widget(ctn_TABINDEX_OUTPUT)->findChild<QTextBrowser*>("textOutputEdit");
   if (text)
   {
+    _positionTextEditCursorAtEnd();
     res = text->find(findText, QTextDocument::FindBackward);
     _positionTextEditCursorAtEnd();
   }
 
   return res;
-}
-
-/*
- * A helper method which writes the given string to OutputTab's textbrowser
- */
-void MainWindow::writeToTabOutput(const QString &msg)
-{
-  QTextBrowser *text = ui->twProperties->widget(ctn_TABINDEX_OUTPUT)->findChild<QTextBrowser*>("textOutputEdit");
-  if (text)
-  {
-    QString newMsg = msg;
-    _ensureTabVisible(ctn_TABINDEX_OUTPUT);
-    _positionTextEditCursorAtEnd();
-
-    if(newMsg.contains(QRegExp("<font color")))
-    {
-      //std::cout << "Already coloured: " << newMsg.toAscii().data() << std::endl;
-      newMsg += "<br>";
-    }
-    else
-    {
-      if(newMsg.contains("removing ") ||
-         newMsg.contains("could not ") ||
-         newMsg.contains("error"))
-      {
-        newMsg = "<font color=\"red\">" + newMsg + "</font><br>";
-      }
-      else if(newMsg.contains("checking ") ||
-              newMsg.contains("installing ") ||
-              newMsg.contains("upgrading ") ||
-              newMsg.contains("loading ") ||
-              newMsg.contains("resolving ") ||
-              newMsg.contains("looking "))
-       {
-         newMsg = "<font color=\"green\">" + newMsg + "</font><br>";
-         //std::cout << "alt: " << newMsg.toAscii().data() << std::endl;
-       }
-      else if (newMsg.contains("warning") ||
-               newMsg.contains("-- reinstalling"))
-      {
-        newMsg = "<font color=\"blue\">" + newMsg + "</font><br>";
-      }
-      else
-      {
-        newMsg += "<br>";
-      }
-    }
-    if(!newMsg.contains("<b>", Qt::CaseInsensitive))
-    {
-      if(newMsg.contains("::"))
-      {
-        newMsg = "<br><B>" + newMsg + "</B><br>";
-      }
-    }
-    else
-    {
-      newMsg += "<br>";
-    }
-
-    text->insertHtml(newMsg);
-    text->ensureCursorVisible();
-  }
 }
 
 /*
@@ -1568,7 +1512,11 @@ void MainWindow::openFile()
   if (tv)
   {
     QString path = showFullPathOfObject(tv->currentIndex());
-    WMHelper::openFile(path);
+    QFileInfo file(path);
+    if (file.isFile())
+    {
+      WMHelper::openFile(path);
+    }
   }
 }
 
@@ -1596,10 +1544,6 @@ void MainWindow::openTerminal()
   {
     WMHelper::openTerminal(dir);
   }
-  /*else
-  {
-    WMHelper::openTerminal(QDir::home().absolutePath());
-  }*/
 }
 
 /*
