@@ -19,7 +19,7 @@
 */
 
 /*
- * This is a MainWindows' events code
+ * This is MainWindow events code
  */
 
 #include "ui_mainwindow.h"
@@ -104,45 +104,27 @@ void MainWindow::keyPressEvent(QKeyEvent* ke)
   }    
   else if(ke->key() == Qt::Key_1 && ke->modifiers() == Qt::AltModifier)
   {
-    //if(_isPropertiesTabWidgetVisible())
-    {
-      _changeTabWidgetPropertiesIndex(ctn_TABINDEX_INFORMATION);
-    }
+    _changeTabWidgetPropertiesIndex(ctn_TABINDEX_INFORMATION);
   }
   else if(ke->key() == Qt::Key_2 && ke->modifiers() == Qt::AltModifier)
   {
-    //if(_isPropertiesTabWidgetVisible())
-    {
-      _changeTabWidgetPropertiesIndex(ctn_TABINDEX_FILES);
-    }
+    _changeTabWidgetPropertiesIndex(ctn_TABINDEX_FILES);
   }
   else if(ke->key() == Qt::Key_3 && ke->modifiers() == Qt::AltModifier)
   {
-    //if(_isPropertiesTabWidgetVisible())
-    {
-      _changeTabWidgetPropertiesIndex(ctn_TABINDEX_TRANSACTION);
-    }
+    _changeTabWidgetPropertiesIndex(ctn_TABINDEX_TRANSACTION);
   }
   else if(ke->key() == Qt::Key_4 && ke->modifiers() == Qt::AltModifier)
   {
-    //if(_isPropertiesTabWidgetVisible())
-    {
-      _changeTabWidgetPropertiesIndex(ctn_TABINDEX_OUTPUT);
-    }
+    _changeTabWidgetPropertiesIndex(ctn_TABINDEX_OUTPUT);
   }
   else if(ke->key() == Qt::Key_5 && ke->modifiers() == Qt::AltModifier)
   {
-    //if(_isPropertiesTabWidgetVisible())
-    {
-      _changeTabWidgetPropertiesIndex(ctn_TABINDEX_NEWS);
-    }
+    _changeTabWidgetPropertiesIndex(ctn_TABINDEX_NEWS);
   }
   else if(ke->key() == Qt::Key_6 && ke->modifiers() == Qt::AltModifier)
   {
-    //if(_isPropertiesTabWidgetVisible())
-    {
-      _changeTabWidgetPropertiesIndex(ctn_TABINDEX_HELPABOUT);
-    }
+    _changeTabWidgetPropertiesIndex(ctn_TABINDEX_HELPABOUT);
   }
   else if(ke->key() == Qt::Key_F4)
   {
@@ -169,6 +151,14 @@ void MainWindow::keyPressEvent(QKeyEvent* ke)
   {
     ui->leFilterPackage->setFocus();
     ui->leFilterPackage->selectAll();
+  }
+  else if(ke->key() == Qt::Key_G && ke->modifiers() == (Qt::ShiftModifier|Qt::ControlModifier))
+  {
+    //The user wants to go to "Display All groups"
+    if (m_cbGroups->currentIndex() != 0)
+    {
+      m_cbGroups->setCurrentIndex(0);
+    }
   }
   else if(ke->key() == Qt::Key_C && ke->modifiers() == (Qt::ShiftModifier|Qt::ControlModifier))
   {
