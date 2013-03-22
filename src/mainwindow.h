@@ -22,6 +22,7 @@
 #define MAINWINDOW_H
 
 #include <QApplication>
+#include <QItemSelection>
 #include <QMainWindow>
 #include <QUrl>
 #include "unixcommand.h"
@@ -108,14 +109,15 @@ private:
   CommandExecuting m_commandExecuting;
   CommandExecuting m_commandQueued;
 
-  QLabel *m_lblGroups;
   QComboBox *m_cbGroups;
 
   int m_PackageListOrderedCol;
   Qt::SortOrder m_PackageListSortOrder;
   QTimer *timer;
   QStringList *m_outdatedPackageList;
-  QLabel *m_lblCounters;    
+
+  QLabel *m_lblSelCounter; //Holds the number of selected packages
+  QLabel *m_lblTotalCounters; //Holds the total number of packages
   QByteArray m_horizontalSplit;
 
   int m_numberOfInstalledPackages;
@@ -156,6 +158,9 @@ private:
   void refreshStatusBar();
 
   //Tab Transaction related methods
+  void _tvTransactionAdjustItemText(QStandardItem *item);
+  void _tvTransactionRowsChanged(const QModelIndex& parent);
+
   void initTabTransaction();
   QStandardItem * getRemoveTransactionParentItem();
   QStandardItem * getInstallTransactionParentItem();
@@ -176,7 +181,7 @@ private:
   void _positionTextEditCursorAtEnd();
   bool _textInTabOutput(const QString& findText);
   bool _searchForKeyVerbs(const QString& msg);
-  void _splitOutputStrings(const QString &output);
+  bool _splitOutputStrings(const QString &output);
   void _treatProcessOutput(const QString &pMsg);
   void _ensureTabVisible(const int index);
   bool _isPropertiesTabWidgetVisible();
@@ -199,7 +204,6 @@ protected:
   void keyReleaseEvent(QKeyEvent *ke);
 
 private slots:
-
   //TreeView methods
   void collapseAllContentItems();
   void collapseThisContentItems();
@@ -209,6 +213,11 @@ private slots:
   void editFile();
   void openTerminal();
   void openDirectory();
+
+  void tvPackagesSelectionChanged(const QItemSelection&, const QItemSelection&);
+  void tvTransactionSelectionChanged (const QItemSelection&, const QItemSelection&);
+  void tvTransactionRowsInserted(const QModelIndex& parent, int, int);
+  void tvTransactionRowsRemoved(const QModelIndex& parent, int, int);
 
   void buildPackagesFromGroupList(const QString &groupName);
   void buildPackageList();

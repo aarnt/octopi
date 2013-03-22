@@ -230,6 +230,10 @@ public:
     return QObject::tr("(version %1 is available)");
   }
 
+  static QString getSelectedPackages(){
+    return QObject::tr("%1 (%2) packages");
+  }
+
   static QString getNumberInstalledPackages(){
     return QObject::tr("%1 installed");
   }
@@ -370,12 +374,20 @@ public:
                        "Are you sure you want to open it?");
   }
 
-  static QString getTodoInstallText(){
+  static QString getTransactionInstallText(){
     return QObject::tr("To be installed");
   }
 
-  static QString getTodoRemoveText(){
+  static QString getTransactionRemoveText(){
     return QObject::tr("To be removed");
+  }
+
+  static QString getRemoveItem(){
+    return QObject::tr("Remove item");
+  }
+
+  static QString getRemoveItems(){
+    return QObject::tr("Remove items");
   }
 
   //Style Sheets ---------------------------------

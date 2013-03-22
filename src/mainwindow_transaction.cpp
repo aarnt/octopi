@@ -268,7 +268,6 @@ void MainWindow::insertIntoRemovePackage()
 void MainWindow::insertGroupIntoRemovePackage()
 {
   _ensureTabVisible(ctn_TABINDEX_TRANSACTION);
-
   insertRemovePackageIntoTransaction(m_cbGroups->currentText());
 }
 
@@ -322,8 +321,128 @@ void MainWindow::insertIntoInstallPackage()
 void MainWindow::insertGroupIntoInstallPackage()
 {
   _ensureTabVisible(ctn_TABINDEX_TRANSACTION);
-
   insertInstallPackageIntoTransaction(m_cbGroups->currentText());
+}
+
+/*
+ * Adjust the count and selection count status of the selected tvTransaction item (Remove or Insert parents)
+ */
+void MainWindow::_tvTransactionAdjustItemText(QStandardItem *item)
+{
+  int countSelected=0;
+
+  QTreeView *tvTransaction = ui->twProperties->currentWidget()->findChild<QTreeView*>("tvTransaction");
+  if (!tvTransaction) return;
+
+  for(int c=0; c < item->rowCount(); c++)
+  {
+    if(tvTransaction->selectionModel()->isSelected(item->child(c)->index()))
+    {
+      countSelected++;
+    }
+  }
+
+  QString itemText = item->text();
+  int slash = itemText.indexOf("/");
+  int pos = itemText.indexOf(")");
+
+  if (slash > 0){
+    itemText.remove(slash, pos-slash);
+  }
+
+  pos = itemText.indexOf(")");
+  itemText.insert(pos, "/" + QString::number(countSelected));
+  item->setText(itemText);
+}
+
+/*
+ * SLOT called each time the selection of items in tvTransaction is changed
+ */
+void MainWindow::tvTransactionSelectionChanged(const QItemSelection&, const QItemSelection&)
+{
+  _tvTransactionAdjustItemText(getRemoveTransactionParentItem());
+  _tvTransactionAdjustItemText(getInstallTransactionParentItem());
+}
+
+/*
+ * Method called every time some item is inserted or removed in tvTransaction treeview
+ */
+void MainWindow::_tvTransactionRowsChanged(const QModelIndex& parent)
+{
+  QStandardItem *item = m_modelTransaction->itemFromIndex(parent);
+  QString count = QString::number(item->rowCount());
+
+  QStandardItem * itemRemove = getRemoveTransactionParentItem();
+  QStandardItem * itemInstall = getInstallTransactionParentItem();
+
+  if (item == itemRemove)
+  {
+    if (item->rowCount() > 0)
+    {
+      itemRemove->setText(StrConstants::getTransactionRemoveText() + " (" + count + ")");
+      _tvTransactionAdjustItemText(itemRemove);
+    }
+    else itemRemove->setText(StrConstants::getTransactionRemoveText());
+  }
+  else if (item == itemInstall)
+  {
+    if (item->rowCount() > 0)
+    {
+      itemInstall->setText(StrConstants::getTransactionInstallText() + " (" + count + ")");
+      _tvTransactionAdjustItemText(itemInstall);
+    }
+    else itemInstall->setText(StrConstants::getTransactionInstallText());
+  }
+}
+
+/*
+ * SLOT called each time some item is inserted into tvTransaction
+ */
+void MainWindow::tvTransactionRowsInserted(const QModelIndex& parent, int, int)
+{
+  _tvTransactionRowsChanged(parent);
+}
+
+/*
+ * SLOT called each time some item is removed from tvTransaction
+ */
+void MainWindow::tvTransactionRowsRemoved(const QModelIndex& parent, int, int)
+{
+  _tvTransactionRowsChanged(parent);
+}
+
+/*
+ * Whenever the user presses DEL over the Transaction TreeView, we:
+ * - Delete the package if it's bellow of "To be removed" or "To be installed" parent;
+ * - Delete all the parent's packages if the user clicked in "To be removed" or "To be installed" items.
+ */
+void MainWindow::onPressDelete()
+{
+  QTreeView *tvTransaction =
+      ui->twProperties->widget(ctn_TABINDEX_TRANSACTION)->findChild<QTreeView*>("tvTransaction");
+
+  if (tvTransaction->hasFocus())
+  {
+    if(tvTransaction->currentIndex() == getRemoveTransactionParentItem()->index()){
+      removePackagesFromRemoveTransaction();
+    }
+    else if(tvTransaction->currentIndex() == getInstallTransactionParentItem()->index()){
+      removePackagesFromInstallTransaction();
+    }
+    else
+    {
+      for(int c=tvTransaction->selectionModel()->selectedIndexes().count()-1; c>=0; c--)
+      {
+        const QModelIndex mi = tvTransaction->selectionModel()->selectedIndexes().at(c);
+        if (m_modelTransaction->itemFromIndex(mi)->parent() != 0)
+        {
+          m_modelTransaction->removeRow(mi.row(), mi.parent());
+        }
+      }
+    }
+
+    changeTransactionActionsState();
+  }
 }
 
 /*
@@ -593,9 +712,9 @@ void MainWindow::doCleanCache()
 
   if (res == QMessageBox::Yes)
   {
-    qApp->processEvents();
     clearTabOutput();
     writeToTabOutput("<b>" + StrConstants::getCleaningPackageCache() + "</b>");
+    qApp->processEvents();
     CPUIntensiveComputing cic;
     UnixCommand::cleanPacmanCache();
     UnixCommand::removeTemporaryActionFile();
@@ -821,28 +940,35 @@ bool MainWindow::_searchForKeyVerbs(const QString &msg)
  */
 void MainWindow::_treatProcessOutput(const QString &pMsg)
 {
+  bool continueTesting = false;
   QString perc;
   QString msg = pMsg;
   msg.remove(QRegExp(".+\\[Y/n\\].+"));
   msg.remove(QRegExp("warning:\\S{0}"));
 
-  //std::cout << "_treat: " << msg.toAscii().data() << std::endl;
+  //if (msg.contains("removing")) std::cout << "_treat: " << msg.toAscii().data() << std::endl;
 
   //If it is a percentage, we are talking about curl output...
   if(msg.indexOf("#]") != -1)
   {
     perc = "100%";
-    ui->twProperties->setTabText(ctn_TABINDEX_OUTPUT, StrConstants::getTabOutputName() + " (100%)");
-    qApp->processEvents();
+    ui->twProperties->setTabText(ctn_TABINDEX_OUTPUT, StrConstants::getTabOutputName() + " (100%)");    
+    continueTesting = true;
   }
-  else if (msg.indexOf("-]") != -1)
-  {
-    QString target;
-    perc = msg.right(4).trimmed();
 
+  if (msg.indexOf("-]") != -1 || continueTesting) //IT WAS AN ELSE HERE!!!
+  {
+    if (!continueTesting){
+      perc = msg.right(4).trimmed();
+    }
+
+    continueTesting = false;
+
+    QString target;
     if (m_commandExecuting == ectn_INSTALL ||
         m_commandExecuting == ectn_SYSTEM_UPGRADE ||
-        m_commandExecuting == ectn_SYNC_DATABASE)
+        m_commandExecuting == ectn_SYNC_DATABASE ||
+        m_commandExecuting == ectn_REMOVE)
     {
       QString order;
       int ini = msg.indexOf(QRegExp("\\(\\s{0,3}[0-9]{1,4}/[0-9]{1,4}\\) "));
@@ -852,6 +978,7 @@ void MainWindow::_treatProcessOutput(const QString &pMsg)
         order = msg.left(rp+2);
         msg = msg.remove(0, rp+2);
 
+        //std::cout << "Finding for: " << msg.toAscii().data() << std::endl;
         if (_searchForKeyVerbs(msg))
         {
           int end = msg.indexOf("[");
@@ -859,13 +986,15 @@ void MainWindow::_treatProcessOutput(const QString &pMsg)
 
           //std::cout << "Finding for: " << msg.toAscii().data() << std::endl;
 
-          if(!_textInTabOutput(msg))
+          //if(!_textInTabOutput(msg))
           {
             writeToTabOutput(msg);
           }
         }
         else
         {
+          //std::cout << "test1: " << target.toAscii().data() << std::endl;
+
           int pos = msg.indexOf(" ");
           if (pos >=0)
           {
@@ -873,27 +1002,30 @@ void MainWindow::_treatProcessOutput(const QString &pMsg)
             target = target.trimmed() + " ";
             //std::cout << "target: " << target.toAscii().data() << std::endl;
 
-            if(!target.isEmpty() && !_textInTabOutput(target))
+            if(!target.isEmpty() /*&& !_textInTabOutput(target)*/)
             {
-              writeToTabOutput("<font color=\"brown\">" + target + "</font>");
+              writeToTabOutput("<font color=\"#C9BE62\">" + target + "</font>");
             }
           }
-          else if (!_textInTabOutput(msg))
-            writeToTabOutput("<font color=\"brown\">" + msg + "</font>");
+          else /*if (!_textInTabOutput(msg))*/
+            writeToTabOutput("<font color=\"#C9BE62\">" + msg + "</font>");
         }
       }
       else if (ini == -1)
       {
+        //std::cout << "test2: " << msg.toAscii().data() << std::endl;
         if (_searchForKeyVerbs(msg))
         {
+          //std::cout << "test2: " << msg.toAscii().data() << std::endl;
+
           int end = msg.indexOf("[");
           msg = msg.remove(end, msg.size()-end);
           msg = msg.trimmed() + " ";
 
-          if(!_textInTabOutput(msg))
+          //if(!_textInTabOutput(msg))
             writeToTabOutput(msg);
         }
-        else
+        else //NOT HERE
         {
           int pos = msg.indexOf(" ");
           if (pos >=0)
@@ -906,21 +1038,23 @@ void MainWindow::_treatProcessOutput(const QString &pMsg)
             {
               if(m_commandExecuting == ectn_SYNC_DATABASE)
               {
-                writeToTabOutput("<font color=\"blue\">" + StrConstants::getSynchronizing() + " " + target + "</font>");
+                writeToTabOutput("<font color=\"#FF8040\">" + StrConstants::getSynchronizing() + " " + target + "</font>");
               }
               else
               {
-                writeToTabOutput("<font color=\"brown\">" + target + "</font>");
+                writeToTabOutput("<font color=\"#C9BE62\">" + target + "</font>");
               }
             }
           }
-          else if (!_textInTabOutput(msg))
+          else /*if (!_textInTabOutput(msg))*/
             writeToTabOutput("<font color=\"blue\">" + msg + "</font>");
         }
       }
     }
-    else if (m_commandExecuting == ectn_REMOVE)
+    /*else if (m_commandExecuting == ectn_REMOVE)
     {
+      std::cout << "remove: " << msg.toAscii().data() << std::endl;
+
       QString order;
       int ini = msg.indexOf(QRegExp("\\(\\s{0,3}[0-9]{1,4}/[0-9]{1,4}\\) "));
       if (ini == 0)
@@ -939,26 +1073,28 @@ void MainWindow::_treatProcessOutput(const QString &pMsg)
         //std::cout << "Finding for: " << target.toAscii().data() << std::endl;
 
         if(!target.isEmpty() && !_textInTabOutput(target))
-          writeToTabOutput("<font color=\"red\">" + target + "</font>");
+        {
+          writeToTabOutput("<font color=\"#E55451\">" + target + "</font>");
+        }
       }
       else
       {
-        msg = msg.trimmed();
+        msg = msg.trimmed() + " ";
         if (!_textInTabOutput(msg))
-          writeToTabOutput("<font color=\"red\">" + msg + "</font>");
+        {
+          writeToTabOutput("<font color=\"#E55451\">" + msg + "</font>");
+        }
       }
-    }
+    }*/
 
     if(!perc.isEmpty() && perc.indexOf("%") > 0)
     {
-      qApp->processEvents();
       ui->twProperties->setTabText(ctn_TABINDEX_OUTPUT, StrConstants::getTabOutputName() + " (" + perc + ")");
-      qApp->processEvents();
     }
   }
   //It's another error, so we have to output it
   else
-  {
+  {      
     //Let's supress some annoying string bugs...
     msg.remove(QRegExp("\\(process.+"));
     msg.remove(QRegExp("Using the fallback.+"));
@@ -972,6 +1108,8 @@ void MainWindow::_treatProcessOutput(const QString &pMsg)
 
     msg = msg.trimmed();
 
+    //std::cout << "Another: " << msg.toAscii().data() << std::endl;
+
     QString order;
     int ini = msg.indexOf(QRegExp("\\(\\s{0,3}[0-9]{1,4}/[0-9]{1,4}\\) "));
     if (ini == 0)
@@ -981,10 +1119,10 @@ void MainWindow::_treatProcessOutput(const QString &pMsg)
       msg = msg.remove(0, rp+2);
     }
 
-    if (!msg.isEmpty() && !_textInTabOutput(msg))
+    if (!msg.isEmpty() /*&& !_textInTabOutput(msg)*/)
     {
       if (msg.contains(QRegExp("removing ")))
-        writeToTabOutput("<font color=\"red\">" + msg + "</font>");
+        writeToTabOutput("<font color=\"#E55451\">" + msg + "</font>");
       else
       {
         if (msg.indexOf(":: Synchronizing package databases...") == -1 &&
@@ -1003,13 +1141,14 @@ void MainWindow::_treatProcessOutput(const QString &pMsg)
 /*
  * Breaks the output generated by QProcess so we can parse the strings
  * and give a better feedback to our users (including showing percentages)
+ *
+ * Returns true if the given output was split
  */
-void MainWindow::_splitOutputStrings(const QString &output)
+bool MainWindow::_splitOutputStrings(const QString &output)
 {
+  bool res = true;
   QString msg = output.trimmed();
   QStringList msgs = msg.split(QRegExp("\\n"), QString::SkipEmptyParts);
-
-  //std::cout << "Error: " << msg.toAscii().data() << std::endl;
 
   foreach (QString m, msgs)
   {
@@ -1056,7 +1195,10 @@ void MainWindow::_splitOutputStrings(const QString &output)
         }
       }
     }
+    else res = false;
   }
+
+  return res;
 }
 
 /*
@@ -1073,6 +1215,7 @@ void MainWindow::actionsProcessRaisedError()
  */
 void MainWindow::writeToTabOutput(const QString &msg)
 {
+  //std::cout << "Print: " << msg.toAscii().data() << std::endl;
   QTextBrowser *text = ui->twProperties->widget(ctn_TABINDEX_OUTPUT)->findChild<QTextBrowser*>("textOutputEdit");
   if (text)
   {
@@ -1096,22 +1239,22 @@ void MainWindow::writeToTabOutput(const QString &msg)
          newMsg.contains("could not ") ||
          newMsg.contains("error"))
       {
-        newMsg = "<font color=\"red\">" + newMsg + "</font><br>";
+        newMsg = "<font color=\"#E55451\">" + newMsg + "</font><br>"; //RED
       }
       else if(newMsg.contains("checking ") ||
+              newMsg.contains("-- reinstalling") ||
               newMsg.contains("installing ") ||
               newMsg.contains("upgrading ") ||
               newMsg.contains("loading ") ||
               newMsg.contains("resolving ") ||
               newMsg.contains("looking "))
        {
-         newMsg = "<font color=\"green\">" + newMsg + "</font><br>";
+         newMsg = "<font color=\"#59E817\">" + newMsg + "</font><br>"; //GREEN
          //std::cout << "alt: " << newMsg.toAscii().data() << std::endl;
        }
-      else if (newMsg.contains("warning") ||
-               newMsg.contains("-- reinstalling"))
+      else if (newMsg.contains("warning"))
       {
-        newMsg = "<font color=\"blue\">" + newMsg + "</font><br>";
+        newMsg = "<font color=\"#FF8040\">" + newMsg + "</font><br>"; //ORANGE
       }
       else
       {
@@ -1131,6 +1274,6 @@ void MainWindow::writeToTabOutput(const QString &msg)
     }
 
     text->insertHtml(newMsg);
-    text->ensureCursorVisible();
+    text->ensureCursorVisible();    
   }
 }

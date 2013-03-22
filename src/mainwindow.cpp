@@ -96,7 +96,8 @@ void MainWindow::show()
   //loadPanelSettings();
 
   //Let's watch for changes in the Pacman db dir!
-  m_pacmanDatabaseSystemWatcher = new QFileSystemWatcher(QStringList() << ctn_PACMAN_DATABASE_DIR, this);
+  m_pacmanDatabaseSystemWatcher =
+      new QFileSystemWatcher(QStringList() << ctn_PACMAN_DATABASE_DIR, this);
   connect(m_pacmanDatabaseSystemWatcher, SIGNAL(directoryChanged(QString)), this, SLOT(buildPackageList()));
 
   /* This timer is needed to beautify GUI initialization... */
@@ -161,7 +162,7 @@ void MainWindow::outputOutdatedPackageList()
       QString availableVersion = getInstalledPackageVersionByName(m_outdatedPackageList->at(c));
 
       html += "<tr><td>" + pkg +
-          "</td><td align=\"right\"><font color=\"red\">" +
+          "</td><td align=\"right\"><font color=\"#E55451\">" +
           outdatedVersion +
           "</font></td><td align=\"right\">" +
           availableVersion + "</td></tr>";
@@ -169,7 +170,9 @@ void MainWindow::outputOutdatedPackageList()
 
     writeToTabOutput(html);
 
-    QTextBrowser *text = ui->twProperties->widget(ctn_TABINDEX_OUTPUT)->findChild<QTextBrowser*>("textOutputEdit");
+    QTextBrowser *text =
+        ui->twProperties->widget(ctn_TABINDEX_OUTPUT)->findChild<QTextBrowser*>("textOutputEdit");
+
     if (text)
     {
       text->scrollToAnchor(anchorBegin);
@@ -302,7 +305,8 @@ void MainWindow::buildPackagesFromGroupList(const QString &groupName)
     return;
   }
 
-  disconnect(m_pacmanDatabaseSystemWatcher, SIGNAL(directoryChanged(QString)), this, SLOT(buildPackagesFromGroupList(QString)));
+  disconnect(m_pacmanDatabaseSystemWatcher,
+             SIGNAL(directoryChanged(QString)), this, SLOT(buildPackagesFromGroupList(QString)));
 
   CPUIntensiveComputing cic;
 
@@ -341,7 +345,8 @@ void MainWindow::buildPackagesFromGroupList(const QString &groupName)
     lRepositories << siRepository;
 
     //If this is an INSTALLED package, we add it to the model view of installed packages!
-    if (siIcon->icon().pixmap(QSize(22,22)).toImage() != IconHelper::getIconNonInstalled().pixmap(QSize(22,22)).toImage())
+    if (siIcon->icon().pixmap(QSize(22,22)).toImage() !=
+        IconHelper::getIconNonInstalled().pixmap(QSize(22,22)).toImage())
     {
       lIcons2 << lIcons.last()->clone();
       lNames2 << lNames.last()->clone();
@@ -400,7 +405,8 @@ void MainWindow::buildPackagesFromGroupList(const QString &groupName)
   counter++;
   progress.setValue(counter);
 
-  connect(m_pacmanDatabaseSystemWatcher, SIGNAL(directoryChanged(QString)), this, SLOT(buildPackagesFromGroupList(QString)));
+  connect(m_pacmanDatabaseSystemWatcher,
+          SIGNAL(directoryChanged(QString)), this, SLOT(buildPackagesFromGroupList(QString)));
 }
 
 /*
@@ -590,7 +596,7 @@ void MainWindow::refreshStatusBar()
   if(m_numberOfOutdatedPackages > 0)
   {
     text = StrConstants::getNumberInstalledPackages().arg(m_numberOfInstalledPackages) +
-        " | <font color=\"red\"><a href=\"dummy\" style=\"color:\'red\'\">" +
+        " | <font color=\"#E55451\"><a href=\"dummy\" style=\"color:\'#E55451\'\">" +
         StrConstants::getNumberOutdatedPackages().arg(m_numberOfOutdatedPackages) + "</a></font> | " +
         StrConstants::getNumberAvailablePackages().arg(m_numberOfAvailablePackages);
   }
@@ -600,8 +606,8 @@ void MainWindow::refreshStatusBar()
         " | " + StrConstants::getNumberAvailablePackages().arg(m_numberOfAvailablePackages);
   }
 
-  m_lblCounters->setText(text);
-  ui->statusBar->addPermanentWidget(m_lblCounters);
+  m_lblTotalCounters->setText(text);
+  ui->statusBar->addPermanentWidget(m_lblTotalCounters);
 }
 
 /*
@@ -820,8 +826,13 @@ void MainWindow::_expandItem(QTreeView* tv, QStandardItemModel* sim, QModelIndex
  */
 void MainWindow::execContextMenuPkgFileList(QPoint point)
 {
-  QTreeView *tvPkgFileList = ui->twProperties->currentWidget()->findChild<QTreeView*>("tvPkgFileList");
-  if (tvPkgFileList == 0) return;
+  QTreeView *tvPkgFileList =
+      ui->twProperties->currentWidget()->findChild<QTreeView*>("tvPkgFileList");
+
+  if (tvPkgFileList == 0)
+  {
+    return;
+  }
 
   QModelIndex mi = tvPkgFileList->currentIndex();
   QString selectedPath = showFullPathOfObject(mi);
@@ -846,7 +857,9 @@ void MainWindow::execContextMenuPkgFileList(QPoint point)
   QDir d;
   QFile f(selectedPath);
 
-  if (si->icon().pixmap(QSize(22,22)).toImage() == IconHelper::getIconFolder().pixmap(QSize(22,22)).toImage()){
+  if (si->icon().pixmap(QSize(22,22)).toImage() ==
+      IconHelper::getIconFolder().pixmap(QSize(22,22)).toImage())
+  {
     if (d.exists(selectedPath))
     {
       menu.addAction(ui->actionOpenDirectory);
@@ -895,6 +908,16 @@ void MainWindow::execContextMenuTransaction(QPoint point)
            tvTransaction->currentIndex().isValid())
   {
     QMenu menu(this);
+
+    if (tvTransaction->selectionModel()->selectedIndexes().count() == 1)
+    {
+      ui->actionRemoveTransactionItem->setText(StrConstants::getRemoveItem());
+    }
+    else
+    {
+      ui->actionRemoveTransactionItem->setText(StrConstants::getRemoveItems());
+    }
+
     menu.addAction(ui->actionRemoveTransactionItem);
     QPoint pt2 = tvTransaction->mapToGlobal(point);
     pt2.setY(pt2.y() + tvTransaction->header()->height());
@@ -935,7 +958,9 @@ void MainWindow::refreshTabInfo(bool clearContents)
 
   if (clearContents || ui->tvPackages->selectionModel()->selectedRows(ctn_PACKAGE_NAME_COLUMN).count() == 0)
   {
-    QTextBrowser *text = ui->twProperties->widget(ctn_TABINDEX_INFORMATION)->findChild<QTextBrowser*>("textBrowser");
+    QTextBrowser *text =
+        ui->twProperties->widget(ctn_TABINDEX_INFORMATION)->findChild<QTextBrowser*>("textBrowser");
+
     if (text)
     {
       text->clear();
@@ -1023,7 +1048,8 @@ void MainWindow::refreshTabInfo(bool clearContents)
   QString buildDate = StrConstants::getBuildDate();
   //QString description = StrConstants::getDescription();
 
-  QTextBrowser *text = ui->twProperties->widget(ctn_TABINDEX_INFORMATION)->findChild<QTextBrowser*>("textBrowser");
+  QTextBrowser *text = ui->twProperties->widget(
+        ctn_TABINDEX_INFORMATION)->findChild<QTextBrowser*>("textBrowser");
 
   if (text)
   {
@@ -1057,7 +1083,7 @@ void MainWindow::refreshTabInfo(bool clearContents)
     if (mark >= 0)
     {
       QString outdatedVersion = siIcon->text().right(siIcon->text().size()-mark-1);
-      html += "<tr><td>" + version + "</td><td>" + siVersion->text() + "<b><font color=\"red\">"
+      html += "<tr><td>" + version + "</td><td>" + siVersion->text() + "<b><font color=\"#E55451\">"
                        + StrConstants::getOutdatedInstalledVersion().arg(outdatedVersion) +
                        "</b></font></td></tr>";
     }
@@ -1077,8 +1103,8 @@ void MainWindow::refreshTabInfo(bool clearContents)
     html += "<tr><td>" + provides + "</td><td>" + pid.provides + "</td></tr>";
     html += "<tr><td>" + dependsOn + "</td><td>" + pid.dependsOn + "</td></tr>";
     html += "<tr><td>" + optionalDeps + "</td><td>" + pid.optDepends + "</td></tr>";
-    html += "<tr><td><b>" /*<font color=\"red\">*/ + conflictsWith +
-        "</b></td><td><b>" /*<font color=\"red\"><b>"*/ + pid.conflictsWith + "</b></font></td></tr>";
+    html += "<tr><td><b>" /*<font color=\"#E55451\">*/ + conflictsWith +
+        "</b></td><td><b>" /*<font color=\"#E55451\"><b>"*/ + pid.conflictsWith + "</b></font></td></tr>";
     html += "<tr><td>" + replaces + "</td><td>" + pid.replaces + "</td></tr>";
     html += "<tr><td>" + downloadSize + "</td><td>" + valDownloadSize + "</td></tr>";
     html += "<tr><td>" + installedSize + "</td><td>" + valInstalledSize + "</td></tr>";
@@ -1108,8 +1134,12 @@ void MainWindow::refreshTabFiles(bool clearContents, bool neverQuit)
     return;
   }
 
-  if (clearContents || ui->tvPackages->selectionModel()->selectedRows(ctn_PACKAGE_NAME_COLUMN).count() == 0){
-    QTreeView *tvPkgFileList = ui->twProperties->widget(ctn_TABINDEX_FILES)->findChild<QTreeView*>("tvPkgFileList");
+  if (clearContents ||
+      ui->tvPackages->selectionModel()->selectedRows(ctn_PACKAGE_NAME_COLUMN).count() == 0)
+  {
+    QTreeView *tvPkgFileList =
+        ui->twProperties->widget(ctn_TABINDEX_FILES)->findChild<QTreeView*>("tvPkgFileList");
+
     if(tvPkgFileList)
     {
       QStandardItemModel *modelPkgFileList = qobject_cast<QStandardItemModel*>(tvPkgFileList->model());
@@ -1179,7 +1209,8 @@ void MainWindow::refreshTabFiles(bool clearContents, bool neverQuit)
     //Let's try another test...
     nonInstalled = ((ui->actionNonInstalledPackages->isChecked() &&
                             m_cbGroups->currentIndex() != 0) &&
-                           (m_modelPackagesFromGroup->item(mi.row(), ctn_PACKAGE_ICON_COLUMN)->text() == "_NonInstalled"));
+                           (m_modelPackagesFromGroup->item(
+                              mi.row(), ctn_PACKAGE_ICON_COLUMN)->text() == "_NonInstalled"));
   }
 
   QTreeView *tvPkgFileList = ui->twProperties->widget(ctn_TABINDEX_FILES)->findChild<QTreeView*>("tvPkgFileList");
@@ -1432,7 +1463,8 @@ void MainWindow::headerViewPackageListSortIndicatorClicked( int col, Qt::SortOrd
  */
 void MainWindow::_positionTextEditCursorAtEnd()
 {
-  QTextBrowser *textEdit = ui->twProperties->widget(ctn_TABINDEX_OUTPUT)->findChild<QTextBrowser*>("textOutputEdit");
+  QTextBrowser *textEdit =
+      ui->twProperties->widget(ctn_TABINDEX_OUTPUT)->findChild<QTextBrowser*>("textOutputEdit");
   if (textEdit){
     QTextCursor tc = textEdit->textCursor();
     tc.clearSelection();
@@ -1467,7 +1499,8 @@ void MainWindow::_ensureTabVisible(const int index)
 bool MainWindow::_textInTabOutput(const QString& findText)
 {
   bool res;
-  QTextBrowser *text = ui->twProperties->widget(ctn_TABINDEX_OUTPUT)->findChild<QTextBrowser*>("textOutputEdit");
+  QTextBrowser *text =
+      ui->twProperties->widget(ctn_TABINDEX_OUTPUT)->findChild<QTextBrowser*>("textOutputEdit");
   if (text)
   {
     _positionTextEditCursorAtEnd();
@@ -1476,31 +1509,6 @@ bool MainWindow::_textInTabOutput(const QString& findText)
   }
 
   return res;
-}
-
-/*
- * Whenever the user presses DEL over the Transaction TreeView, we:
- * - Delete the package if it's bellow of "To be removed" or "To be installed" parent;
- * - Delete all the parent's packages if the user clicked in "To be removed" or "To be installed" items.
- */
-void MainWindow::onPressDelete()
-{
-  QTreeView *tvTransaction = ui->twProperties->widget(ctn_TABINDEX_TRANSACTION)->findChild<QTreeView*>("tvTransaction");
-  QStandardItemModel *sim = qobject_cast<QStandardItemModel *>(tvTransaction->model());
-
-  if (tvTransaction->hasFocus())
-  {
-    if(tvTransaction->currentIndex() == getRemoveTransactionParentItem()->index()){
-      removePackagesFromRemoveTransaction();
-    }
-    else if(tvTransaction->currentIndex() == getInstallTransactionParentItem()->index()){
-      removePackagesFromInstallTransaction();
-    }
-    else
-      sim->removeRow(tvTransaction->currentIndex().row(), tvTransaction->currentIndex().parent());
-
-    changeTransactionActionsState();
-  }
 }
 
 /*
@@ -1581,6 +1589,18 @@ QString MainWindow::getSelectedDirectory()
   }
 
   return targetDir;
+}
+
+/*
+ * Changes the number of selected items in tvPackages: YY in XX(YY) Packages
+ */
+void MainWindow::tvPackagesSelectionChanged(const QItemSelection&, const QItemSelection&)
+{
+  QString newMessage = StrConstants::getSelectedPackages().arg(
+        QString::number(m_proxyModelPackages->rowCount())).
+      arg(QString::number(ui->tvPackages->selectionModel()->selectedRows().count()));
+
+  m_lblSelCounter->setText(newMessage);
 }
 
 /*

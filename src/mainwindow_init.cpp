@@ -149,7 +149,6 @@ void MainWindow::initComboBoxGroups()
 void MainWindow::initToolBar()
 {
   initComboBoxGroups();
-  //ui->mainToolBar->addWidget(m_lblGroups);
   ui->mainToolBar->addWidget(m_cbGroups);
 
   ui->mainToolBar->addSeparator();
@@ -169,9 +168,11 @@ void MainWindow::initToolBar()
  */
 void MainWindow::initStatusBar()
 {
-  m_lblCounters = new QLabel(this);
+  m_lblSelCounter = new QLabel(this);
+  m_lblTotalCounters = new QLabel(this);
 
-  connect(m_lblCounters, SIGNAL(linkActivated(QString)), this, SLOT(outputOutdatedPackageList()));
+  ui->statusBar->addWidget(m_lblSelCounter);
+  connect(m_lblTotalCounters, SIGNAL(linkActivated(QString)), this, SLOT(outputOutdatedPackageList()));
 }
 
 /*
@@ -225,6 +226,7 @@ void MainWindow::initTabTransaction()
   tvTransaction->setEditTriggers(QAbstractItemView::NoEditTriggers);
   tvTransaction->setDropIndicatorShown(false);
   tvTransaction->setAcceptDrops(false);
+  tvTransaction->setSelectionMode(QAbstractItemView::ExtendedSelection);
   tvTransaction->setItemDelegate(new TreeViewPackagesItemDelegate(tvTransaction));
   tvTransaction->header()->setSortIndicatorShown(false);
   tvTransaction->header()->setClickable(false);
@@ -241,9 +243,9 @@ void MainWindow::initTabTransaction()
   m_modelTransaction->setHorizontalHeaderLabels(sl << StrConstants::getPackages());
 
   QStandardItem *siToBeRemoved = new QStandardItem(IconHelper::getIconToRemove(),
-                                                   StrConstants::getTodoRemoveText());
+                                                   StrConstants::getTransactionRemoveText());
   QStandardItem *siToBeInstalled = new QStandardItem(IconHelper::getIconToInstall(),
-                                                     StrConstants::getTodoInstallText());
+                                                     StrConstants::getTransactionInstallText());
 
   m_modelTransaction->appendRow(siToBeRemoved);
   m_modelTransaction->appendRow(siToBeInstalled);
@@ -259,6 +261,13 @@ void MainWindow::initTabTransaction()
                                 "MainWindow", aux.toUtf8(), 0, QApplication::UnicodeUTF8 ));
 
   connect(tvTransaction, SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(execContextMenuTransaction(QPoint)));
+  connect(tvTransaction->selectionModel(), SIGNAL(selectionChanged(QItemSelection,QItemSelection)),
+          this, SLOT(tvTransactionSelectionChanged(QItemSelection,QItemSelection)));
+
+  connect(tvTransaction->model(), SIGNAL(rowsInserted ( const QModelIndex , int, int )),
+          this, SLOT(tvTransactionRowsInserted(QModelIndex,int,int)));
+  connect(tvTransaction->model(), SIGNAL(rowsRemoved ( const QModelIndex , int, int )),
+          this, SLOT(tvTransactionRowsRemoved(QModelIndex,int,int)));
 }
 
 /*
@@ -299,6 +308,8 @@ void MainWindow::initPackageTreeView()
   ui->tvPackages->setStyleSheet(
         StrConstants::getTreeViewCSS()); //SettingsManager::getPackagesInDirFontSize()));
 
+  connect(ui->tvPackages->selectionModel(), SIGNAL(selectionChanged(QItemSelection,QItemSelection)),
+          this, SLOT(tvPackagesSelectionChanged(QItemSelection,QItemSelection)));
   connect(ui->tvPackages, SIGNAL(activated(QModelIndex)), this, SLOT(changedTabIndex()));
   connect(ui->tvPackages, SIGNAL(clicked(QModelIndex)), this, SLOT(changedTabIndex()));
   connect(ui->tvPackages->header(), SIGNAL(sortIndicatorChanged(int,Qt::SortOrder)), this,
@@ -489,15 +500,15 @@ QString MainWindow::retrieveDistroNews(bool searchForLatestNews)
     }
     else if (searchForLatestNews)
     {
-      res = "<h3><font color=\"red\">" + StrConstants::getInternetUnavailableError() + "</font></h3>";
+      res = "<h3><font color=\"#E55451\">" + StrConstants::getInternetUnavailableError() + "</font></h3>";
     }
     else if (distro != ectn_UNKNOWN)
     {
-      res = "<h3><font color=\"red\">" + StrConstants::getNewsErrorMessage() + "</font></h3>";
+      res = "<h3><font color=\"#E55451\">" + StrConstants::getNewsErrorMessage() + "</font></h3>";
     }
     else
     {
-      res = "<h3><font color=\"red\">" + StrConstants::getIncompatibleLinuxDistroError() + "</font></h3>";
+      res = "<h3><font color=\"#E55451\">" + StrConstants::getIncompatibleLinuxDistroError() + "</font></h3>";
     }
   }
 
