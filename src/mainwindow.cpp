@@ -194,7 +194,7 @@ void MainWindow::clearTabOutput()
 }
 
 /*
- * Searchs model modelInstalledPackages by a package name and returns it's OUTDATED version
+ * Searchs model modelInstalledPackages by a package name and returns its OUTDATED version
  */
 QString MainWindow::getOutdatedPackageVersionByName(const QString &pkgName)
 {
@@ -218,7 +218,7 @@ QString MainWindow::getOutdatedPackageVersionByName(const QString &pkgName)
 }
 
 /*
- * Searchs model modelInstalledPackages by a package name and returns it's AVAILABLE version
+ * Searchs model modelInstalledPackages by a package name and returns its AVAILABLE version
  */
 QString MainWindow::getInstalledPackageVersionByName(const QString &pkgName)
 {
@@ -402,16 +402,6 @@ void MainWindow::buildPackagesFromGroupList(const QString &groupName)
   refreshTabFiles();
   ui->tvPackages->setFocus();
   progress.setValue(list->count());
-
-  //Refresh counters
-  m_numberOfInstalledPackages = m_modelInstalledPackages->invisibleRootItem()->rowCount();
-  m_numberOfAvailablePackages = m_modelPackages->invisibleRootItem()->rowCount() - m_numberOfInstalledPackages;
-
-  //Refresh statusbar widget
-  refreshStatusBar();
-
-  //Refresh application icon
-  refreshAppIcon();
 
   connect(m_pacmanDatabaseSystemWatcher,
           SIGNAL(directoryChanged(QString)), this, SLOT(metaBuildPackageList()));
@@ -824,7 +814,7 @@ void MainWindow::expandThisContentItems(){
 }
 
 /*
- * This method does the job of collapsing the given item and it's children
+ * This method does the job of collapsing the given item and its children
  */
 void MainWindow::_collapseItem(QTreeView* tv, QStandardItemModel* sim, QModelIndex mi){
   for (int i=0; i<sim->rowCount(mi); i++){
@@ -838,7 +828,7 @@ void MainWindow::_collapseItem(QTreeView* tv, QStandardItemModel* sim, QModelInd
 }
 
 /*
- * This method does the job of expanding the given item and it's children
+ * This method does the job of expanding the given item and its children
  */
 void MainWindow::_expandItem(QTreeView* tv, QStandardItemModel* sim, QModelIndex* mi){
   for (int i=0; i<sim->rowCount(*mi); i++){

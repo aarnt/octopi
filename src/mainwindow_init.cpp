@@ -417,7 +417,7 @@ void MainWindow::initTabFiles()
 }
 
 /*
- * Retrieves the distro RSS news feed from it's respective site
+ * Retrieves the distro RSS news feed from its respective site
  * If it fails to connect to the internet, uses the available "./.config/octopi/distro_rss.xml"
  * The result is a QString containing the RSS News Feed XML code
  */
