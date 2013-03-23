@@ -888,9 +888,11 @@ void MainWindow::actionsProcessFinished(int exitCode, QProcess::ExitStatus)
       //After the command, we can refresh the package list, so any change can be seem.
       if (m_commandExecuting == ectn_SYNC_DATABASE)
       {
+        int oldIndex = m_cbGroups->currentIndex();
         m_cbGroups->setCurrentIndex(0);
         refreshComboBoxGroups();
-        buildPackageList();
+
+        if (oldIndex == 0) buildPackageList();
       }
       else
       {

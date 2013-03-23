@@ -1051,7 +1051,6 @@ void MainWindow::refreshTabInfo(bool clearContents)
   }
 
   //QString repository = StrConstants::getRepository();
-  //QString name = StrConstants::getName();
   QString version = StrConstants::getVersion();
   QString url = StrConstants::getURL();
   QString licenses = StrConstants::getLicenses();
@@ -1066,7 +1065,6 @@ void MainWindow::refreshTabInfo(bool clearContents)
   QString packager = StrConstants::getPackager();
   QString architecture = StrConstants::getArchitecture();
   QString buildDate = StrConstants::getBuildDate();
-  //QString description = StrConstants::getDescription();
 
   QTextBrowser *text = ui->twProperties->widget(
         ctn_TABINDEX_INFORMATION)->findChild<QTextBrowser*>("textBrowser");
@@ -1092,12 +1090,7 @@ void MainWindow::refreshTabInfo(bool clearContents)
     html += "<table border=\"0\">";
 
     html += "<tr><th width=\"20%\"></th><th width=\"80%\"></th></tr>";
-    /*html += "<tr><td>" + description + "</td><td style=\"font-size:16px;\">" +
-        pid.description + "</td></tr>";*/
     html += "<tr><td>" + url + "</td><td style=\"font-size:14px;\">" + pid.url + "</td></tr>";
-
-    //html += "<tr><td>" + repository + "</td><td>" + siRepository->text() + "</td></tr>";
-    //html += "<tr><td>" + name + "</td><td>" + siName->text() + "</td></tr>";
 
     int mark = siIcon->text().indexOf('^');
     if (mark >= 0)
@@ -1225,8 +1218,6 @@ void MainWindow::refreshTabFiles(bool clearContents, bool neverQuit)
   {
     if (neverQuit)
     {
-      //_ensureTabVisible(ctn_TABINDEX_FILES);
-      //ui->twProperties->setCurrentIndex(ctn_TABINDEX_FILES);
       _changeTabWidgetPropertiesIndex(ctn_TABINDEX_FILES);
       _selectFirstItemOfPkgFileList();
     }
