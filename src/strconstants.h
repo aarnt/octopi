@@ -42,6 +42,10 @@ public:
     return str;
   }
 
+  static QString getForeignRepositoryName(){
+    return "AUR";
+  }
+
   static QString getArchLinuxNews(){
     return QObject::tr("Arch Linux news");
   }

@@ -72,7 +72,7 @@ bool TreeViewPackagesItemDelegate::helpEvent ( QHelpEvent *event, QAbstractItemV
       bool foreignPackage = false;
       if(siRepo)
       {
-        if (siRepo->text().isEmpty()) foreignPackage = true;
+        if (siRepo->text() == StrConstants::getForeignRepositoryName()) foreignPackage = true;
       }
 
       f = run(showPackageInfo, si->text(), foreignPackage);

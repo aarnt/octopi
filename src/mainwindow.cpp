@@ -511,7 +511,13 @@ void MainWindow::buildPackageList()
 
     lNames << new QStandardItem(pld.name);
     lVersions << new QStandardItem(pld.version);
-    lRepositories << new QStandardItem(pld.repository);
+
+    if (pld.repository.isEmpty())
+    {
+      lRepositories << new QStandardItem(StrConstants::getForeignRepositoryName());
+    }
+    else
+      lRepositories << new QStandardItem(pld.repository);
 
     //If this is an INSTALLED package, we add it to the model view of installed packages!
     if (pld.status != ectn_NON_INSTALLED)
@@ -1045,7 +1051,7 @@ void MainWindow::refreshTabInfo(bool clearContents)
   QString pkgName=siName->text();
   PackageInfoData pid;
 
-  if (!siRepository->text().isEmpty()){
+  if (siRepository->text() != StrConstants::getForeignRepositoryName()){
     pid = Package::getInformation(pkgName);
   }
   else
