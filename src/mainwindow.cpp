@@ -1473,6 +1473,8 @@ void MainWindow::reapplyPackageFilter()
   ui->tvPackages->setCurrentIndex(mi);
   ui->tvPackages->scrollTo(mi);
 
+  //We need to call this method to refresh package selection counters
+  tvPackagesSelectionChanged(QItemSelection(),QItemSelection());
   invalidateTabs();
 }
 

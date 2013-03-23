@@ -570,9 +570,15 @@ void MainWindow::doRemove()
   }
   list.remove(list.size()-1, 1);
 
+  if (list.count() == 0)
+  {
+    m_targets->append(listOfTargets);
+    list.append(listOfTargets);
+  }
+
   QMessageBox question;
 
-  Q_ASSERT(m_targets->count() > 0);
+  //Q_ASSERT(m_targets->count() > 0);
 
   //Shows a dialog indicating the targets which will be removed and asks for the user's permission.
   if(m_targets->count()==1)
@@ -641,9 +647,15 @@ void MainWindow::doInstall()
   }
   list.remove(list.size()-1, 1);
 
+  if (list.count() == 0)
+  {
+    m_targets->append(listOfTargets);
+    list.append(listOfTargets);
+  }
+
   QMessageBox question;
 
-  Q_ASSERT(m_targets->count() > 0);
+  //Q_ASSERT(m_targets->count() > 0);
 
   if(m_targets->count()==1)
   {
