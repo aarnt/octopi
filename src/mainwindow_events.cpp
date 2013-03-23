@@ -162,7 +162,10 @@ void MainWindow::keyPressEvent(QKeyEvent* ke)
   }
   else if(ke->key() == Qt::Key_C && ke->modifiers() == (Qt::ShiftModifier|Qt::ControlModifier))
   {
-    doCleanCache();
+    if (m_commandExecuting == ectn_NONE)
+    {
+      doCleanCache(); //If we are not executing any command, let's clean the cache
+    }
   }
 }
 
@@ -211,19 +214,6 @@ void MainWindow::keyReleaseEvent(QKeyEvent *ke)
       {
         return;
       }
-
-      /*QList<SelectedPackage> sp = getSelectedPackage();
-      if (sp.count() == 1) {
-        int a=0;
-        while (a<=fi.count()-1) {
-          QStandardItem* si = fi[a];
-          if (si->text() == sp[sp.count()-1].getFileName()) break;
-          a++;
-          i=a;
-        }
-        if((a+1)<=fi.count()-1) { a++; i=a; }
-        else { a=i=0; }
-      }*/
 
       ui->tvPackages->selectionModel()->clear();
       QModelIndex mi = fi[i]->index();

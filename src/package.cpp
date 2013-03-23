@@ -87,7 +87,7 @@ QString Package::makeURLClickable( const QString &s )
 		search = ini + (2*s1.length()) + 15;	
 	}
 
-	sb.replace(QRegExp("\n"), "<br>");
+  //sb.replace(QRegExp("\n"), "<br>");
   return sb;
 }
 

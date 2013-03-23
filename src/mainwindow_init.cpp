@@ -790,6 +790,7 @@ void MainWindow::initTabOutput()
   QTextBrowser *text = new QTextBrowser(tabOutput);
   text->setObjectName("textOutputEdit");
   text->setReadOnly(true);
+  text->setOpenExternalLinks(true);
   text->setFrameShape(QFrame::NoFrame);
   text->setFrameShadow(QFrame::Plain);
   gridLayoutX->addWidget (text, 0, 0, 1, 1);

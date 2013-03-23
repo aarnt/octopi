@@ -482,6 +482,8 @@ void MainWindow::doSyncDatabase()
  */
 void MainWindow::doSystemUpgrade(bool syncDatabase)
 {
+  qApp->processEvents();
+
   if(syncDatabase)
   {
     m_commandQueued = ectn_SYSTEM_UPGRADE;
@@ -757,6 +759,7 @@ void MainWindow::toggleTransactionActions(const bool value)
   ui->actionRemove->setEnabled(value);
   ui->actionSyncPackages->setEnabled(value);
   ui->actionSystemUpgrade->setEnabled(value);
+  ui->actionGetNews->setEnabled(value);
 }
 
 /*
@@ -1218,7 +1221,6 @@ void MainWindow::actionsProcessRaisedError()
  */
 void MainWindow::writeToTabOutput(const QString &msg)
 {
-  //std::cout << "Print: " << msg.toAscii().data() << std::endl;
   QTextBrowser *text = ui->twProperties->widget(ctn_TABINDEX_OUTPUT)->findChild<QTextBrowser*>("textOutputEdit");
   if (text)
   {
@@ -1279,7 +1281,7 @@ void MainWindow::writeToTabOutput(const QString &msg)
       newMsg += "<br>";
     }
 
-    text->insertHtml(newMsg);
+    text->insertHtml(Package::makeURLClickable(newMsg));
     text->ensureCursorVisible();    
   }
 }

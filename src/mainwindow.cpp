@@ -402,6 +402,16 @@ void MainWindow::buildPackagesFromGroupList(const QString &groupName)
   ui->tvPackages->setFocus();
   progress.setValue(list->count());
 
+  //Refresh counters
+  m_numberOfInstalledPackages = m_modelInstalledPackages->invisibleRootItem()->rowCount();
+  m_numberOfAvailablePackages = m_modelPackages->invisibleRootItem()->rowCount() - m_numberOfInstalledPackages;
+
+  //Refresh statusbar widget
+  refreshStatusBar();
+
+  //Refresh application icon
+  refreshAppIcon();
+
   connect(m_pacmanDatabaseSystemWatcher,
           SIGNAL(directoryChanged(QString)), this, SLOT(metaBuildPackageList()));
 }
