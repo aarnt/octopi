@@ -39,8 +39,7 @@ int main(int argc, char *argv[])
   //This sends a message just to awake the socket-based QtSinleApplication engine
   app.sendMessage("ping app...");
 
-  if (app.isRunning())
-    return 0;
+  if (app.isRunning()) return 0;
 
   /*QTranslator appTranslator;
     appTranslator.load(":/resources/translations/octopi_" +
@@ -52,7 +51,8 @@ int main(int argc, char *argv[])
     return(0);
   }
   else if (argList->getSwitch("-version")){
-    std::cout << "\n" << StrConstants::getApplicationName().toAscii().data() << "\n" << std::endl;
+    std::cout << "\n" << StrConstants::getApplicationName().toAscii().data() <<
+                 " " << StrConstants::getApplicationVersion().toAscii().data() << "\n" << std::endl;
     return(0);
   }
 

@@ -46,7 +46,7 @@ const QString ctn_XFCE_DESKTOP("xfdesktop");
 const QString ctn_XFCE_EDITOR("mousepad");
 const QString ctn_XFCE_EDITOR_ALT("leafpad");
 const QString ctn_XFCE_FILE_MANAGER("thunar");
-const QString ctn_XFCE_TERMINAL("terminal");
+const QString ctn_XFCE_TERMINAL("xfce4-terminal");
 
 const QString ctn_LXDE_DESKTOP("lxsession");
 const QString ctn_LXDE_TERMINAL("lxterminal");
