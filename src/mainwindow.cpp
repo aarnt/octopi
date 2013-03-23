@@ -36,6 +36,7 @@
 #include <QLabel>
 #include <QMessageBox>
 #include <QComboBox>
+#include <QModelIndex>
 #include <iostream>
 
 /*
@@ -1151,6 +1152,20 @@ void MainWindow::refreshTabInfo(bool clearContents)
 }
 
 /*
+ * Selects the very first item in the tvPkgFileList treeview
+ */
+void MainWindow::_selectFirstItemOfPkgFileList()
+{
+  QTreeView *tvPkgFileList = ui->twProperties->widget(ctn_TABINDEX_FILES)->findChild<QTreeView*>("tvPkgFileList");
+  if(tvPkgFileList)
+  {
+    tvPkgFileList->setFocus();
+    QModelIndex maux = tvPkgFileList->model()->index(0, 0);
+    tvPkgFileList->setCurrentIndex(maux);
+  }
+}
+
+/*
  * Re-populates the treeview which contains the file list of selected package (tab TWO)
  */
 void MainWindow::refreshTabFiles(bool clearContents, bool neverQuit)
@@ -1223,6 +1238,7 @@ void MainWindow::refreshTabFiles(bool clearContents, bool neverQuit)
       //_ensureTabVisible(ctn_TABINDEX_FILES);
       //ui->twProperties->setCurrentIndex(ctn_TABINDEX_FILES);
       _changeTabWidgetPropertiesIndex(ctn_TABINDEX_FILES);
+      _selectFirstItemOfPkgFileList();
     }
 
     return;
@@ -1338,6 +1354,7 @@ void MainWindow::refreshTabFiles(bool clearContents, bool neverQuit)
   if (neverQuit)
   {
     _changeTabWidgetPropertiesIndex(ctn_TABINDEX_FILES);
+    _selectFirstItemOfPkgFileList();
   }
 }
 

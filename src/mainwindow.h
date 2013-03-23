@@ -150,6 +150,7 @@ private:
   void initTabInfo();
 
   //Tab Files related methods
+  void _selectFirstItemOfPkgFileList();
   QString getSelectedDirectory();
   QString showFullPathOfObject(const QModelIndex & index);
 

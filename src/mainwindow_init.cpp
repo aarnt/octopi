@@ -196,7 +196,7 @@ void MainWindow::_changeTabWidgetPropertiesIndex(const int newIndex)
 
     ui->twProperties->currentWidget()->childAt(1,1)->setFocus();
   }
-  else if (newIndex == ctn_TABINDEX_FILES)
+  /*else if (newIndex == ctn_TABINDEX_FILES)
   {
     QTreeView *tvPkgFileList = ui->twProperties->widget(ctn_TABINDEX_FILES)->findChild<QTreeView*>("tvPkgFileList");
     if(tvPkgFileList)
@@ -204,7 +204,7 @@ void MainWindow::_changeTabWidgetPropertiesIndex(const int newIndex)
       tvPkgFileList->setFocus();
       tvPkgFileList->setCurrentIndex(tvPkgFileList->currentIndex());
     }
-  }
+  }*/
   else
   {
     //For any other tab... just doing the following is enough

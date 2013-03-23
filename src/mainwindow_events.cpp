@@ -108,7 +108,8 @@ void MainWindow::keyPressEvent(QKeyEvent* ke)
   }
   else if(ke->key() == Qt::Key_2 && ke->modifiers() == Qt::AltModifier)
   {
-    _changeTabWidgetPropertiesIndex(ctn_TABINDEX_FILES);
+    ui->twProperties->setCurrentIndex(ctn_TABINDEX_FILES);
+    refreshTabFiles(false, true);
   }
   else if(ke->key() == Qt::Key_3 && ke->modifiers() == Qt::AltModifier)
   {
