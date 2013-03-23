@@ -133,7 +133,7 @@ void MainWindow::keyPressEvent(QKeyEvent* ke)
   else if(ke->key() == Qt::Key_F5)
   {
     invalidateTabs();
-    buildPackageList();
+    metaBuildPackageList();
   }
   else if(ke->key() == Qt::Key_F6)
   {

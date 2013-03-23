@@ -38,6 +38,7 @@
 #include <QDomDocument>
 #include <QFile>
 #include <QComboBox>
+#include <QPalette>
 #include <iostream>
 
 /*
@@ -120,14 +121,13 @@ void MainWindow::initAppIcon()
  */
 void MainWindow::refreshComboBoxGroups()
 {
-  disconnect(m_cbGroups, SIGNAL(currentIndexChanged(QString)), this, SLOT(buildPackagesFromGroupList(QString)));
+  disconnect(m_cbGroups, SIGNAL(currentIndexChanged(QString)), this, SLOT(metaBuildPackageList()));
 
   m_cbGroups->clear();
-
   m_cbGroups->addItem("<" + StrConstants::getAll() + ">");
   m_cbGroups->addItems(*Package::getPackageGroups());
 
-  connect(m_cbGroups, SIGNAL(currentIndexChanged(QString)), this, SLOT(buildPackagesFromGroupList(QString)));
+  connect(m_cbGroups, SIGNAL(currentIndexChanged(QString)), this, SLOT(metaBuildPackageList()));
 }
 
 /*
@@ -140,7 +140,7 @@ void MainWindow::initComboBoxGroups()
   m_cbGroups->setMinimumWidth(200);
   m_cbGroups->setAutoCompletion(true);
 
-  connect(m_cbGroups, SIGNAL(currentIndexChanged(QString)), this, SLOT(buildPackagesFromGroupList(QString)));
+  connect(m_cbGroups, SIGNAL(currentIndexChanged(QString)), this, SLOT(metaBuildPackageList()));
 }
 
 /*
@@ -180,9 +180,23 @@ void MainWindow::initStatusBar()
  */
 void MainWindow::_changeTabWidgetPropertiesIndex(const int newIndex)
 {
-  ui->twProperties->setCurrentIndex(newIndex);
+  int oldTabIndex = ui->twProperties->currentIndex();
+  _ensureTabVisible(newIndex);
 
-  if (newIndex == ctn_TABINDEX_FILES)
+  if (newIndex == oldTabIndex)
+  {
+    if (oldTabIndex == ctn_TABINDEX_INFORMATION)
+    {
+      refreshTabInfo();
+    }
+    else if (oldTabIndex == ctn_TABINDEX_FILES)
+    {
+      refreshTabFiles();
+    }
+
+    ui->twProperties->currentWidget()->childAt(1,1)->setFocus();
+  }
+  else if (newIndex == ctn_TABINDEX_FILES)
   {
     QTreeView *tvPkgFileList = ui->twProperties->widget(ctn_TABINDEX_FILES)->findChild<QTreeView*>("tvPkgFileList");
     if(tvPkgFileList)
@@ -196,8 +210,6 @@ void MainWindow::_changeTabWidgetPropertiesIndex(const int newIndex)
     //For any other tab... just doing the following is enough
     ui->twProperties->currentWidget()->childAt(1,1)->setFocus();
   }
-
-  _ensureTabVisible(newIndex);
 }
 
 /*
@@ -882,18 +894,14 @@ void MainWindow::initActions()
 
   connect(ui->actionRemoveTransactionItem, SIGNAL(triggered()), this, SLOT(onPressDelete()));
   connect(ui->actionRemoveTransactionItems, SIGNAL(triggered()), this, SLOT(onPressDelete()));
-
   connect(ui->actionExit, SIGNAL(triggered()), this, SLOT(close()));
   connect(ui->actionNonInstalledPackages, SIGNAL(changed()), this, SLOT(changePackageListModel()));
-
   connect(ui->actionSyncPackages, SIGNAL(triggered()), this, SLOT(doSyncDatabase()));
   connect(ui->actionSystemUpgrade, SIGNAL(triggered()), this, SLOT(doSystemUpgrade()));
-
   connect(ui->actionRemove, SIGNAL(triggered()), this, SLOT(insertIntoRemovePackage()));
   connect(ui->actionInstall, SIGNAL(triggered()), this, SLOT(insertIntoInstallPackage()));
   connect(ui->actionRemoveGroup, SIGNAL(triggered()), this, SLOT(insertGroupIntoRemovePackage()));
   connect(ui->actionInstallGroup, SIGNAL(triggered()), this, SLOT(insertGroupIntoInstallPackage()));
-
   connect(ui->actionCommit, SIGNAL(triggered()), this, SLOT(doCommitTransaction()));
   connect(ui->actionRollback, SIGNAL(triggered()), this, SLOT(doRollbackTransaction()));
   connect(ui->actionHelpAbout, SIGNAL(triggered()), this, SLOT(onHelpAbout()));

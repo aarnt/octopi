@@ -462,7 +462,6 @@ void MainWindow::doSyncDatabase()
 
   m_commandExecuting = ectn_SYNC_DATABASE;
   disableTransactionActions();
-  disconnect(m_pacmanDatabaseSystemWatcher, SIGNAL(directoryChanged(QString)), this, SLOT(buildPackageList()));
 
   m_unixCommand = new UnixCommand(this);
 
@@ -535,7 +534,6 @@ void MainWindow::doSystemUpgrade(bool syncDatabase)
       m_commandExecuting = ectn_SYSTEM_UPGRADE;
 
       disableTransactionActions();
-      disconnect(m_pacmanDatabaseSystemWatcher, SIGNAL(directoryChanged(QString)), this, SLOT(buildPackageList()));
       m_unixCommand = new UnixCommand(this);
 
       QObject::connect(m_unixCommand, SIGNAL( started() ), this, SLOT( actionsProcessStarted()));
@@ -610,7 +608,6 @@ void MainWindow::doRemove()
     m_commandExecuting = ectn_REMOVE;
 
     disableTransactionActions();
-    disconnect(m_pacmanDatabaseSystemWatcher, SIGNAL(directoryChanged(QString)), this, SLOT(buildPackageList()));
     m_unixCommand = new UnixCommand(this);
 
     QObject::connect(m_unixCommand, SIGNAL( started() ), this, SLOT( actionsProcessStarted()));
@@ -677,7 +674,6 @@ void MainWindow::doInstall()
     m_commandExecuting = ectn_INSTALL;
 
     disableTransactionActions();
-    disconnect(m_pacmanDatabaseSystemWatcher, SIGNAL(directoryChanged(QString)), this, SLOT(buildPackageList()));
     m_unixCommand = new UnixCommand(this);
 
     QObject::connect(m_unixCommand, SIGNAL( started() ), this, SLOT( actionsProcessStarted()));
@@ -806,24 +802,26 @@ void MainWindow::doRollbackTransaction()
  */
 void MainWindow::actionsProcessStarted()
 {
+  disconnect(m_pacmanDatabaseSystemWatcher, SIGNAL(directoryChanged(QString)), this, SLOT(metaBuildPackageList()));
+
   clearTabOutput();
 
   //First we output the name of action we are starting to execute!
   if (m_commandExecuting == ectn_SYNC_DATABASE)
   {
-    writeToTabOutput("<b>" + StrConstants::getSyncDatabases() + "</b>");
+    writeToTabOutput("<b>" + StrConstants::getSyncDatabases() + "</b><br>");
   }
   else if (m_commandExecuting == ectn_SYSTEM_UPGRADE)
   {
-    writeToTabOutput("<b>" + StrConstants::getSystemUpgrade() + "</b>");
+    writeToTabOutput("<b>" + StrConstants::getSystemUpgrade() + "</b><br>");
   }
   else if (m_commandExecuting == ectn_REMOVE)
   {
-    writeToTabOutput("<b>" + StrConstants::getRemovingPackages() + "</b>");
+    writeToTabOutput("<b>" + StrConstants::getRemovingPackages() + "</b><br>");
   }
   else if (m_commandExecuting == ectn_INSTALL)
   {
-    writeToTabOutput("<b>" + StrConstants::getInstallingPackages() + "</b>");
+    writeToTabOutput("<b>" + StrConstants::getInstallingPackages() + "</b><br>");
   }
 
   QString msg = m_unixCommand->readAllStandardOutput();
@@ -843,13 +841,13 @@ void MainWindow::actionsProcessFinished(int exitCode, QProcess::ExitStatus)
   ui->twProperties->setTabText(ctn_TABINDEX_OUTPUT, StrConstants::getTabOutputName());
 
   //Is there any message awaiting for being outputed?
-  QString msg = m_unixCommand->readAllStandardOutput();
+  /*QString msg = m_unixCommand->readAllStandardOutput();
   msg = msg.trimmed();
 
   if (!msg.isEmpty())
   {
     writeToTabOutput(msg);
-  }
+  }*/
 
   if (exitCode == 0){
     writeToTabOutput("<br><b>" +
@@ -882,11 +880,13 @@ void MainWindow::actionsProcessFinished(int exitCode, QProcess::ExitStatus)
     if(exitCode == 0)
     {
       //After the command, we can refresh the package list, so any change can be seem.
-      buildPackageList();
-      connect(m_pacmanDatabaseSystemWatcher, SIGNAL(directoryChanged(QString)), this, SLOT(buildPackageList()));
+      metaBuildPackageList();
+      connect(m_pacmanDatabaseSystemWatcher, SIGNAL(directoryChanged(QString)), this, SLOT(metaBuildPackageList()));
 
       clearTransactionTreeView();
     }
+    else
+      connect(m_pacmanDatabaseSystemWatcher, SIGNAL(directoryChanged(QString)), this, SLOT(metaBuildPackageList()));
   }
 
   enableTransactionActions();
@@ -1004,11 +1004,11 @@ void MainWindow::_treatProcessOutput(const QString &pMsg)
 
             if(!target.isEmpty() /*&& !_textInTabOutput(target)*/)
             {
-              writeToTabOutput("<font color=\"#C9BE62\">" + target + "</font>");
+              writeToTabOutput("<b><font color=\"#b4ab58\">" + target + "</font></b>"); //#C9BE62
             }
           }
           else /*if (!_textInTabOutput(msg))*/
-            writeToTabOutput("<font color=\"#C9BE62\">" + msg + "</font>");
+            writeToTabOutput("<b><font color=\"#b4ab58\">" + msg + "</font></b>"); //#C9BE62
         }
       }
       else if (ini == -1)
@@ -1038,16 +1038,16 @@ void MainWindow::_treatProcessOutput(const QString &pMsg)
             {
               if(m_commandExecuting == ectn_SYNC_DATABASE)
               {
-                writeToTabOutput("<font color=\"#FF8040\">" + StrConstants::getSynchronizing() + " " + target + "</font>");
+                writeToTabOutput("<b><font color=\"#FF8040\">" + StrConstants::getSynchronizing() + " " + target + "</font></b>");
               }
               else
               {
-                writeToTabOutput("<font color=\"#C9BE62\">" + target + "</font>");
+                writeToTabOutput("<b><font color=\"#b4ab58\">" + target + "</font></b>"); //#C9BE62
               }
             }
           }
           else /*if (!_textInTabOutput(msg))*/
-            writeToTabOutput("<font color=\"blue\">" + msg + "</font>");
+            writeToTabOutput("<b><font color=\"blue\">" + msg + "</font></b>");
         }
       }
     }
@@ -1122,7 +1122,7 @@ void MainWindow::_treatProcessOutput(const QString &pMsg)
     if (!msg.isEmpty() /*&& !_textInTabOutput(msg)*/)
     {
       if (msg.contains(QRegExp("removing ")))
-        writeToTabOutput("<font color=\"#E55451\">" + msg + "</font>");
+        writeToTabOutput("<b><font color=\"#E55451\">" + msg + "</font></b>");
       else
       {
         if (msg.indexOf(":: Synchronizing package databases...") == -1 &&
@@ -1228,7 +1228,7 @@ void MainWindow::writeToTabOutput(const QString &msg)
     _ensureTabVisible(ctn_TABINDEX_OUTPUT);
     _positionTextEditCursorAtEnd();
 
-    if(newMsg.contains(QRegExp("<font color")))
+    if(newMsg.contains(QRegExp("<font color"))) //&& !newMsg.contains(QRegExp("<br")))
     {
       //std::cout << "Already coloured: " << newMsg.toAscii().data() << std::endl;
       newMsg += "<br>";
@@ -1239,7 +1239,7 @@ void MainWindow::writeToTabOutput(const QString &msg)
          newMsg.contains("could not ") ||
          newMsg.contains("error"))
       {
-        newMsg = "<font color=\"#E55451\">" + newMsg + "</font><br>"; //RED
+        newMsg = "<b><font color=\"#E55451\">" + newMsg + "</font></b>"; //RED
       }
       else if(newMsg.contains("checking ") ||
               newMsg.contains("-- reinstalling") ||
@@ -1249,26 +1249,29 @@ void MainWindow::writeToTabOutput(const QString &msg)
               newMsg.contains("resolving ") ||
               newMsg.contains("looking "))
        {
-         newMsg = "<font color=\"#59E817\">" + newMsg + "</font><br>"; //GREEN
+         newMsg = "<b><font color=\"#59E817\">" + newMsg + "</font></b>"; //GREEN
          //std::cout << "alt: " << newMsg.toAscii().data() << std::endl;
        }
       else if (newMsg.contains("warning"))
       {
-        newMsg = "<font color=\"#FF8040\">" + newMsg + "</font><br>"; //ORANGE
+        newMsg = "<b><font color=\"#FF8040\">" + newMsg + "</font></b>"; //ORANGE
       }
       else
       {
         newMsg += "<br>";
       }
     }
-    if(!newMsg.contains("<b>", Qt::CaseInsensitive))
+    if(!newMsg.contains(QRegExp("</b")))
     {
       if(newMsg.contains("::"))
       {
-        newMsg = "<br><B>" + newMsg + "</B><br>";
+        if (!newMsg.contains(QRegExp("<br")))
+          newMsg = "<br><B>" + newMsg + "</B><br>";
+        else
+          newMsg = "<br><B>" + newMsg + "</B>";
       }
     }
-    else
+    else if (!newMsg.contains(QRegExp("<br")))
     {
       newMsg += "<br>";
     }

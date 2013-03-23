@@ -221,6 +221,8 @@ private slots:
 
   void buildPackagesFromGroupList(const QString &groupName);
   void buildPackageList();
+  void metaBuildPackageList();
+
   void headerViewPackageListSortIndicatorClicked(int col, Qt::SortOrder order);
   void changePackageListModel();
 

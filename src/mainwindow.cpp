@@ -93,12 +93,10 @@ void MainWindow::show()
   initTabWidgetPropertiesIndex();
   refreshDistroNews(false);
 
-  //loadPanelSettings();
-
   //Let's watch for changes in the Pacman db dir!
   m_pacmanDatabaseSystemWatcher =
       new QFileSystemWatcher(QStringList() << ctn_PACMAN_DATABASE_DIR, this);
-  connect(m_pacmanDatabaseSystemWatcher, SIGNAL(directoryChanged(QString)), this, SLOT(buildPackageList()));
+  connect(m_pacmanDatabaseSystemWatcher, SIGNAL(directoryChanged(QString)), this, SLOT(metaBuildPackageList()));
 
   /* This timer is needed to beautify GUI initialization... */
   timer = new QTimer();
@@ -162,9 +160,9 @@ void MainWindow::outputOutdatedPackageList()
       QString availableVersion = getInstalledPackageVersionByName(m_outdatedPackageList->at(c));
 
       html += "<tr><td>" + pkg +
-          "</td><td align=\"right\"><font color=\"#E55451\">" +
+          "</td><td align=\"right\"><b><font color=\"#E55451\">" +
           outdatedVersion +
-          "</font></td><td align=\"right\">" +
+          "</b></font></td><td align=\"right\">" +
           availableVersion + "</td></tr>";
     }
 
@@ -306,7 +304,7 @@ void MainWindow::buildPackagesFromGroupList(const QString &groupName)
   }
 
   disconnect(m_pacmanDatabaseSystemWatcher,
-             SIGNAL(directoryChanged(QString)), this, SLOT(buildPackagesFromGroupList(QString)));
+             SIGNAL(directoryChanged(QString)), this, SLOT(metaBuildPackageList()));
 
   CPUIntensiveComputing cic;
 
@@ -323,7 +321,7 @@ void MainWindow::buildPackagesFromGroupList(const QString &groupName)
   QList<QStandardItem*> lIcons, lNames, lVersions, lRepositories;
   QList<QStandardItem*> lIcons2, lNames2, lVersions2, lRepositories2;
 
-  QProgressDialog progress(StrConstants::getBuildingPackageList(), "", 0, list->count()+2, this);
+  QProgressDialog progress(StrConstants::getBuildingPackageList(), "", 0, list->count(), this);
   progress.setValue(0);
   progress.setMinimumDuration(10);
   progress.setCancelButton(0);
@@ -402,11 +400,10 @@ void MainWindow::buildPackagesFromGroupList(const QString &groupName)
   refreshTabInfo();
   refreshTabFiles();
   ui->tvPackages->setFocus();
-  counter++;
-  progress.setValue(counter);
+  progress.setValue(list->count());
 
   connect(m_pacmanDatabaseSystemWatcher,
-          SIGNAL(directoryChanged(QString)), this, SLOT(buildPackagesFromGroupList(QString)));
+          SIGNAL(directoryChanged(QString)), this, SLOT(metaBuildPackageList()));
 }
 
 /*
@@ -416,7 +413,7 @@ void MainWindow::buildPackagesFromGroupList(const QString &groupName)
  */
 void MainWindow::buildPackageList()
 {
-  disconnect(m_pacmanDatabaseSystemWatcher, SIGNAL(directoryChanged(QString)), this, SLOT(buildPackageList()));
+  disconnect(m_pacmanDatabaseSystemWatcher, SIGNAL(directoryChanged(QString)), this, SLOT(metaBuildPackageList()));
 
   static bool firstTime = true;
   timer->stop();
@@ -466,7 +463,7 @@ void MainWindow::buildPackageList()
   QList<QStandardItem*> lIcons, lNames, lVersions, lRepositories;
   QList<QStandardItem*> lIcons2, lNames2, lVersions2, lRepositories2;
 
-  QProgressDialog progress(StrConstants::getBuildingPackageList(), "", 0, list->count()+2, this);
+  QProgressDialog progress(StrConstants::getBuildingPackageList(), "", 0, list->count(), this);
   progress.setValue(0);
   progress.setMinimumDuration(10);
   progress.setCancelButton(0);
@@ -562,9 +559,6 @@ void MainWindow::buildPackageList()
     ui->tvPackages->setFocus();
   }
 
-  counter++;
-  progress.setValue(counter);
-
   //Refresh counters
   m_numberOfInstalledPackages = m_modelInstalledPackages->invisibleRootItem()->rowCount(); 
   m_numberOfAvailablePackages = m_modelPackages->invisibleRootItem()->rowCount() - m_numberOfInstalledPackages;
@@ -575,7 +569,7 @@ void MainWindow::buildPackageList()
   //Refresh application icon
   refreshAppIcon();
 
-  connect(m_pacmanDatabaseSystemWatcher, SIGNAL(directoryChanged(QString)), this, SLOT(buildPackageList()));
+  connect(m_pacmanDatabaseSystemWatcher, SIGNAL(directoryChanged(QString)), this, SLOT(metaBuildPackageList()));
 
   if (firstTime)
   {
@@ -583,7 +577,26 @@ void MainWindow::buildPackageList()
     m_initializationCompleted = true;
   }
 
+  counter = list->count();
+  progress.setValue(counter);
+
   firstTime = false;
+}
+
+/*
+ * Decides which SLOT to call: buildPackageList or buildPackagesFromGroupList
+ */
+void MainWindow::metaBuildPackageList()
+{
+  qApp->processEvents();
+  if (m_cbGroups->currentIndex() != 0)
+  {
+    buildPackagesFromGroupList(m_cbGroups->currentText());
+  }
+  else
+  {
+    buildPackageList();
+  }
 }
 
 /*
@@ -596,8 +609,8 @@ void MainWindow::refreshStatusBar()
   if(m_numberOfOutdatedPackages > 0)
   {
     text = StrConstants::getNumberInstalledPackages().arg(m_numberOfInstalledPackages) +
-        " | <font color=\"#E55451\"><a href=\"dummy\" style=\"color:\'#E55451\'\">" +
-        StrConstants::getNumberOutdatedPackages().arg(m_numberOfOutdatedPackages) + "</a></font> | " +
+        " | <b><font color=\"#E55451\"><a href=\"dummy\" style=\"color:\'#E55451\'\">" +
+        StrConstants::getNumberOutdatedPackages().arg(m_numberOfOutdatedPackages) + "</a></font></b> | " +
         StrConstants::getNumberAvailablePackages().arg(m_numberOfAvailablePackages);
   }
   else
@@ -1481,8 +1494,6 @@ void MainWindow::_ensureTabVisible(const int index)
   QList<int> rl;
   rl = ui->splitterHorizontal->sizes();
 
-  ui->twProperties->setCurrentIndex(index);
-
   if(rl[1] <= 50)
   {
     rl.clear();
@@ -1491,6 +1502,8 @@ void MainWindow::_ensureTabVisible(const int index)
 
     saveSettings(ectn_NORMAL);
   }
+
+  ui->twProperties->setCurrentIndex(index);
 }
 
 /*
