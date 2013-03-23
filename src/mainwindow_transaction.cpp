@@ -840,15 +840,6 @@ void MainWindow::actionsProcessFinished(int exitCode, QProcess::ExitStatus)
 {
   ui->twProperties->setTabText(ctn_TABINDEX_OUTPUT, StrConstants::getTabOutputName());
 
-  //Is there any message awaiting for being outputed?
-  /*QString msg = m_unixCommand->readAllStandardOutput();
-  msg = msg.trimmed();
-
-  if (!msg.isEmpty())
-  {
-    writeToTabOutput(msg);
-  }*/
-
   if (exitCode == 0){
     writeToTabOutput("<br><b>" +
                      StrConstants::getCommandFinishedOK() + "</b><br>");
@@ -880,7 +871,19 @@ void MainWindow::actionsProcessFinished(int exitCode, QProcess::ExitStatus)
     if(exitCode == 0)
     {
       //After the command, we can refresh the package list, so any change can be seem.
-      metaBuildPackageList();
+      if (m_commandExecuting == ectn_SYNC_DATABASE)
+      {
+        int oldIndex = m_cbGroups->currentIndex();
+        m_cbGroups->setCurrentIndex(0);
+        refreshComboBoxGroups();
+
+        if (oldIndex == 0) buildPackageList();
+      }
+      else
+      {
+        metaBuildPackageList();
+      }
+
       connect(m_pacmanDatabaseSystemWatcher, SIGNAL(directoryChanged(QString)), this, SLOT(metaBuildPackageList()));
 
       clearTransactionTreeView();

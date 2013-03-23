@@ -1635,6 +1635,7 @@ QString MainWindow::showFullPathOfObject(const QModelIndex & index){
     if ( nindex != sim->invisibleRootItem()->index() ) sl << sim->itemFromIndex( nindex )->text();
     else break;
   }
+
   str = QDir::separator() + str;
 
   for ( int i=sl.count()-1; i>=0; i-- ){
