@@ -22,6 +22,8 @@
 #define STRCONSTANTS_H
 
 #include "settingsmanager.h"
+#include "wmhelper.h"
+#include "unixcommand.h"
 
 class StrConstants{
 public:
@@ -511,8 +513,49 @@ public:
                    );
   }
 
-  static QString getTreeViewCSS(){ //const int fontSize){
-    return QString("QTreeView::branch:has-siblings:!adjoins-item {"
+  static QString getMenuCSS(){
+    QString res;
+
+    if (UnixCommand::getLinuxDistro() == ectn_MANJAROLINUX && !WMHelper::isKDERunning())
+    {
+      res = "QMenu::item { padding: 2px 25px 2px 20px; }"
+          "QListView::item:selected { background: #81ac44; color: #ffffff; }"
+          "QMenu::item:selected, QMenuBar::item:selected, QMenu::selected {"
+          "background: #81ac44; color: #ffffff;}"
+          " QTabBar::tab { /* The tab widget frame */"
+          //"background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,"
+          //                            "stop: 0 #E1E1E1, stop: 0.4 #DDDDDD,"
+          //                            "stop: 0.5 #D8D8D8, stop: 1.0 #D3D3D3);"
+          "border: 1px solid #C4C4C3;"
+          "border-bottom-color: #C2C7CB; /* same as the pane color */"
+          "border-top-left-radius: 4px;"
+          "border-top-right-radius: 4px;"
+          "min-width: 8ex;"
+          "padding: 2px;}"
+
+      "QTabBar::tab:selected, QTabBar::tab:hover {"
+          "background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,"
+                                      "stop: 0 #fafafa, stop: 0.4 #f4f4f4,"
+                                      "stop: 0.5 #e7e7e7, stop: 1.0 #fafafa); color: #000000;}"
+      "QProgressBar::chunk {"
+          "background-color: #81ac44;}"
+          //"width: 20px;}";
+      "QProgressBar {"
+          "text-align: center;"
+          "border: 2px;}";
+    }
+
+    else res = "";
+
+    return res;
+  }
+
+  static QString getTreeViewCSS(){
+    QString res;    
+
+    if (UnixCommand::getLinuxDistro() == ectn_MANJAROLINUX && !WMHelper::isKDERunning())
+    {
+      res = "QTreeView::branch:has-siblings:!adjoins-item {"
                    "   border-image: url(:/resources/styles/vline.png) 0;}"
                    "QTreeView::branch:has-siblings:adjoins-item {"
                    "    border-image: url(:/resources/styles/branch-more.png) 0;}"
@@ -526,9 +569,8 @@ public:
                    "QTreeView::branch:open:has-children:has-siblings  {"
                    "       border-image: none;"
                    "       image: url(:/resources/styles/branch-open_BW.png);}"
-
                    "QTreeView {"
-                       "selection-background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #6ea1f1, stop: 1 #567dbc);"
+                       "selection-background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #81ac44, stop: 1 #6b9039);"
                        "show-decoration-selected: 1;"
                    "}"
                    "QTreeView::item {"
@@ -537,24 +579,64 @@ public:
                        "border-bottom-color: transparent;"
                    "}"
                    "QTreeView::item:hover {"
-                       "background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #e7effd, stop: 1 #cbdaf1);"
-                       "border: 1px solid #bfcde4;"
-                       "color: #000000;"
+                       "background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #a7c976, stop: 1 #9bc264);"
+                       "border: 1px solid #95be5a;"
+                       "color: #191919;"
                    "}"
                    "QTreeView::item:selected {"
-                       "border: 1px solid #567dbc;"
+                       "border: 1px solid #6d9039;"
                    "}"
                    "QTreeView::item:selected:active{"
-                       "background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #6ea1f1, stop: 1 #567dbc)"
+                       "background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #81ac44, stop: 1 #6b9039)"
                    "}"
                    "QTreeView::item:selected:!active {"
-                   "    background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #6b9be8, stop: 1 #577fbf)"
-                   "}"
-                   /*"QTreeView {"
-                   "    font-family: \"Verdana\";"
-                   "    font-size: " + QString::number(fontSize+5) + "px;"
-                   "}"*/
-                   );
+                       "background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #81ac44, stop: 1 #6c9039);"
+                       "color: #cecece;"
+                   "}";
+    }
+    else
+    {
+      res = "QTreeView::branch:has-siblings:!adjoins-item {"
+                     " border-image: url(:/resources/styles/vline.png) 0;}"
+                     "QTreeView::branch:has-siblings:adjoins-item {"
+                     " border-image: url(:/resources/styles/branch-more.png) 0;}"
+                     "QTreeView::branch:!has-children:!has-siblings:adjoins-item {"
+                     " border-image: url(:/resources/styles/branch-end.png) 0;}"
+                     "QTreeView::branch:has-children:!has-siblings:closed,"
+                     "QTreeView::branch:closed:has-children:has-siblings {"
+                     " border-image: none;"
+                     " image: url(:/resources/styles/branch-closed_BW.png);}"
+                     "QTreeView::branch:open:has-children:!has-siblings,"
+                     "QTreeView::branch:open:has-children:has-siblings {"
+                     " border-image: none;"
+                     " image: url(:/resources/styles/branch-open_BW.png);}"
+
+                     "QTreeView {"
+                         "selection-background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #6ea1f1, stop: 1 #567dbc);"
+                         "show-decoration-selected: 1;"
+                     "}"
+                     "QTreeView::item {"
+                         "border: 1px solid #d9d9d9;"
+                         "border-top-color: transparent;"
+                         "border-bottom-color: transparent;"
+                     "}"
+                     "QTreeView::item:hover {"
+                         "background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #e7effd, stop: 1 #cbdaf1);"
+                         "border: 1px solid #bfcde4;"
+                         "color: #000000;"
+                     "}"
+                     "QTreeView::item:selected {"
+                         "border: 1px solid #567dbc;"
+                     "}"
+                     "QTreeView::item:selected:active{"
+                         "background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #6ea1f1, stop: 1 #567dbc)"
+                     "}"
+                     "QTreeView::item:selected:!active {"
+                     " background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #6b9be8, stop: 1 #577fbf)"
+                     "}";
+    }
+
+    return res;
   }
 };
 

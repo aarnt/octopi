@@ -250,7 +250,13 @@ QStringList *Package::getTargetUpgradeList(const QString &pkgName)
 
   foreach(QString packageTuple, packageTuples)
   {
-    if(packageTuple.indexOf("::")!=-1) continue;
+    //TODO: Need to handle when this list has "::" conflict items!
+    if(packageTuple.indexOf("::")!=-1)
+    {
+
+      continue;
+
+    }
 
     int pos = packageTuple.lastIndexOf("/");
     QString target = packageTuple.mid(pos+1, packageTuple.size()-pos);

@@ -1116,7 +1116,7 @@ void MainWindow::_treatProcessOutput(const QString &pMsg)
     //Let's supress some annoying string bugs...
     msg.remove(QRegExp("\\(process.+"));
     msg.remove(QRegExp("Using the fallback.+"));
-    msg.remove(QRegExp("Gkr-Message: secret service operation failed:.+"));
+    msg.remove(QRegExp("Gkr-Message:.+"));
     msg.remove(QRegExp("kdesu.+"));
     msg.remove(QRegExp("kbuildsycoca.+"));
     msg.remove(QRegExp("Connecting to deprecated signal.+"));

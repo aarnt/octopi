@@ -36,6 +36,7 @@ class QTimer;
 class QFileSystemWatcher;
 class QLabel;
 class QComboBox;
+class QListView;
 
 //Column indices for Package's treeview
 const int ctn_PACKAGE_ICON_COLUMN(0);
@@ -110,6 +111,7 @@ private:
   CommandExecuting m_commandQueued;
 
   QComboBox *m_cbGroups;
+  QListView *m_lvGroups;
 
   int m_PackageListOrderedCol;
   Qt::SortOrder m_PackageListSortOrder;

@@ -38,6 +38,7 @@
 #include <QDomDocument>
 #include <QFile>
 #include <QComboBox>
+#include <QListView>
 #include <QPalette>
 #include <iostream>
 
@@ -137,8 +138,13 @@ void MainWindow::initComboBoxGroups()
 {
   //m_lblGroups = new QLabel(StrConstants::getGroup(), this);
   m_cbGroups = new QComboBox(this);
+  m_lvGroups = new QListView(m_cbGroups);
   m_cbGroups->setMinimumWidth(200);
   m_cbGroups->setAutoCompletion(true);
+  m_cbGroups->setIconSize(QSize(0, 0));
+  m_cbGroups->setView(m_lvGroups);
+  m_cbGroups->setMaxVisibleItems(15);
+  m_cbGroups->setStyleSheet(StrConstants::getMenuCSS());
 
   connect(m_cbGroups, SIGNAL(currentIndexChanged(QString)), this, SLOT(metaBuildPackageList()));
 }
@@ -150,6 +156,8 @@ void MainWindow::initToolBar()
 {
   initComboBoxGroups();
   ui->mainToolBar->addWidget(m_cbGroups);
+
+  qApp->setStyleSheet(StrConstants::getMenuCSS());
 
   ui->mainToolBar->addSeparator();
   ui->mainToolBar->addAction(ui->actionSyncPackages);
@@ -889,6 +897,8 @@ void MainWindow::initActions()
 {
   ui->actionCommit->setEnabled(false);
   ui->actionRollback->setEnabled(false);
+
+  ui->actionOpenDirectory->setIcon(IconHelper::getIconFolder());
 
   connect(ui->tvPackages->selectionModel(), SIGNAL(selectionChanged(QItemSelection,QItemSelection)),
           this, SLOT(invalidateTabs()));

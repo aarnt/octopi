@@ -33,5 +33,6 @@
         <file>resources/images/terminal.png</file>
         <file>resources/images/window_close.png</file>
         <file>resources/help/help_en_US.html</file>
+        <file>resources/images/folder_gnome.png</file>
     </qresource>
 </RCC>

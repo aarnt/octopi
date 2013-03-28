@@ -119,7 +119,7 @@ QString SearchLineEdit::buttonStyleSheetForCurrentState() const
 
   if (!this->text().isEmpty())
   {
-    style += "QToolButton:hover { background-image: url(:/resources/images/esf-clear-hover.png); }";
+    //style += "QToolButton:hover { background-image: url(:/resources/images/esf-clear-hover.png); }";
     style += "QToolButton:pressed { background-image: url(:/resources/images/esf-clear-active.png); }";
     this->mSearchButton->setToolTip(StrConstants::getClear());
   }

@@ -22,6 +22,7 @@
 #include "argumentlist.h"
 #include "strconstants.h"
 #include "unixcommand.h"
+#include "wmhelper.h"
 #include <iostream>
 #include "QtSolutions/qtsingleapplication.h"
 #include <QtGui>
@@ -32,7 +33,12 @@ int main(int argc, char *argv[])
   QApplication::setGraphicsSystem(QLatin1String("raster"));
 
   if (!argList->getSwitch("-style"))
-    QApplication::setStyle(new QCleanlooksStyle());
+  {
+    //if (!WMHelper::isKDERunning())
+    {
+      QApplication::setStyle(new QCleanlooksStyle());
+    }
+  }
 
   QtSingleApplication app( StrConstants::getApplicationName(), argc, argv );
 

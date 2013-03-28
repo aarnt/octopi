@@ -21,6 +21,7 @@
 #ifndef ICONHELPER_H
 #define ICONHELPER_H
 
+#include "wmhelper.h"
 #include <QDir>
 #include <QIcon>
 #include <QApplication>
@@ -32,7 +33,12 @@ public:
   static QIcon getIconOctopiRed(){ return QIcon(":/resources/images/octopi_red.png"); }
   static QIcon getIconOctopiYellow(){ return QIcon(":/resources/images/octopi_yellow.png"); }
   static QIcon getIconInternalError(){ return QIcon(":/resources/images/internalerror.png"); }
-  static QIcon getIconFolder(){ return QIcon(":/resources/images/folder.png"); }
+  static QIcon getIconFolder(){
+    if (WMHelper::isKDERunning())
+      return QIcon(":/resources/images/folder.png");
+    else
+      return QIcon(":/resources/images/folder_gnome.png");
+  }
   static QIcon getIconBinary(){ return QIcon(":/resources/images/binary.png"); }
   static QIcon getIconFrozen(){ return QIcon(":/resources/images/tgz_frozen_flat.png"); }
   static QIcon getIconUnFrozen(){ return QIcon(":/resources/images/tgz4_flat.png"); }
