@@ -32,7 +32,7 @@ public:
   }
 
   static QString getApplicationVersion(){
-    return "0.1.3";
+    return "0.1.4";
   }
 
   static QString getApplicationCliHelp(){
@@ -593,7 +593,7 @@ public:
                    "}"
                    "QTreeView::item:selected:!active {"
                        "background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #81ac44, stop: 1 #6c9039);"
-                       "color: #cecece;"
+                       "color: #ebebeb;"
                    "}";
     }
     else
