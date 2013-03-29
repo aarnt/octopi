@@ -23,6 +23,7 @@
  */
 
 #include "ui_mainwindow.h"
+#include "searchlineedit.h"
 #include "mainwindow.h"
 #include "strconstants.h"
 #include "wmhelper.h"
@@ -93,9 +94,9 @@ void MainWindow::keyPressEvent(QKeyEvent* ke)
   }
   else if(ke->key() == Qt::Key_Escape)
   {
-    if(ui->leFilterPackage->hasFocus())
+    if(m_leFilterPackage->hasFocus())
     {
-      ui->leFilterPackage->clear();
+      m_leFilterPackage->clear();
     }
   }
   else if(ke->key() == Qt::Key_Delete)
@@ -150,8 +151,8 @@ void MainWindow::keyPressEvent(QKeyEvent* ke)
   }
   else if(ke->key() == Qt::Key_L && ke->modifiers() == Qt::ControlModifier)
   {
-    ui->leFilterPackage->setFocus();
-    ui->leFilterPackage->selectAll();
+    m_leFilterPackage->setFocus();
+    m_leFilterPackage->selectAll();
   }
   else if(ke->key() == Qt::Key_G && ke->modifiers() == (Qt::ShiftModifier|Qt::ControlModifier))
   {

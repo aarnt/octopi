@@ -19,6 +19,7 @@
 */
 
 #include "mainwindow.h"
+#include "searchlineedit.h"
 #include "ui_mainwindow.h"
 #include "strconstants.h"
 #include "package.h"
@@ -72,6 +73,7 @@ void MainWindow::show()
   m_initializationCompleted=false;
   m_commandExecuting=ectn_NONE;
   m_commandQueued=ectn_NONE;
+  m_leFilterPackage = new SearchLineEdit(this);
 
   setWindowTitle(StrConstants::getApplicationName() + " " + StrConstants::getApplicationVersion());
   setMinimumSize(QSize(850, 600));
@@ -281,7 +283,7 @@ void MainWindow::buildPackagesFromGroupList(const QString &groupName)
     m_modelInstalledPackagesFromGroup->setHorizontalHeaderLabels(
           sl << "" << StrConstants::getName() << StrConstants::getVersion() << StrConstants::getRepository());
 
-    if (ui->leFilterPackage->text() != "") reapplyPackageFilter();
+    if (m_leFilterPackage->text() != "") reapplyPackageFilter();
 
     if (ui->actionNonInstalledPackages->isChecked())
     {
@@ -381,7 +383,7 @@ void MainWindow::buildPackagesFromGroupList(const QString &groupName)
   m_modelInstalledPackagesFromGroup->setHorizontalHeaderLabels(
         sl << "" << StrConstants::getName() << StrConstants::getVersion() << StrConstants::getRepository());
 
-  if (ui->leFilterPackage->text() != "") reapplyPackageFilter();
+  if (m_leFilterPackage->text() != "") reapplyPackageFilter();
 
   if (ui->actionNonInstalledPackages->isChecked())
   {
@@ -550,7 +552,7 @@ void MainWindow::buildPackageList()
   m_modelInstalledPackages->setHorizontalHeaderLabels(
         sl << "" << StrConstants::getName() << StrConstants::getVersion() << StrConstants::getRepository());
 
-  if (ui->leFilterPackage->text() != "") reapplyPackageFilter();
+  if (m_leFilterPackage->text() != "") reapplyPackageFilter();
 
   QModelIndex maux = m_proxyModelPackages->index(0, 0);
   ui->tvPackages->setCurrentIndex(maux);
@@ -580,7 +582,7 @@ void MainWindow::buildPackageList()
 
   if (firstTime)
   {
-    if (_isPackageTreeViewVisible()) ui->leFilterPackage->setFocus();
+    if (_isPackageTreeViewVisible()) m_leFilterPackage->setFocus();
     m_initializationCompleted = true;
   }
 
@@ -669,13 +671,13 @@ void MainWindow::changePackageListModel()
     }
   }
 
-  if (ui->leFilterPackage->text() != "") reapplyPackageFilter();
+  if (m_leFilterPackage->text() != "") reapplyPackageFilter();
 
   QModelIndex maux = m_proxyModelPackages->index(0, 0);
   ui->tvPackages->setCurrentIndex(maux);
   ui->tvPackages->scrollTo(maux, QAbstractItemView::PositionAtTop);
 
-  if (ui->leFilterPackage->text() == "")
+  if (m_leFilterPackage->text() == "")
     ui->tvPackages->selectionModel()->setCurrentIndex(maux, QItemSelectionModel::Select);
   else
     ui->tvPackages->selectionModel()->setCurrentIndex(maux, QItemSelectionModel::SelectCurrent);
@@ -1446,24 +1448,24 @@ void MainWindow::reapplyPackageFilter()
 {
   CPUIntensiveComputing cic;
 
-  bool isFilterPackageSelected = ui->leFilterPackage->hasFocus();
-  QString search = Package::parseSearchString(ui->leFilterPackage->text());
+  bool isFilterPackageSelected = m_leFilterPackage->hasFocus();
+  QString search = Package::parseSearchString(m_leFilterPackage->text());
   QRegExp regExp(search, Qt::CaseInsensitive, QRegExp::RegExp);
 
   m_proxyModelPackages->setFilterRegExp(regExp);
   int numPkgs = m_proxyModelPackages->rowCount();
 
-  if (ui->leFilterPackage->text() != ""){
+  if (m_leFilterPackage->text() != ""){
     if (numPkgs > 0)
-      ui->leFilterPackage->setFoundStyle();
-    else ui->leFilterPackage->setNotFoundStyle();
+      m_leFilterPackage->setFoundStyle();
+    else m_leFilterPackage->setNotFoundStyle();
   }
   else{
-    ui->leFilterPackage->initStyleSheet();;
+    m_leFilterPackage->initStyleSheet();;
     m_proxyModelPackages->setFilterRegExp("");
   }
 
-  if (isFilterPackageSelected) ui->leFilterPackage->setFocus();
+  if (isFilterPackageSelected) m_leFilterPackage->setFocus();
   m_proxyModelPackages->sort(m_PackageListOrderedCol, m_PackageListSortOrder);
 
   ui->tvPackages->selectionModel()->clear();

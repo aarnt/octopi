@@ -27,6 +27,7 @@
 #include "strconstants.h"
 #include "uihelper.h"
 #include "settingsmanager.h"
+#include "searchlineedit.h"
 #include "treeviewpackagesitemdelegate.h"
 #include <QLabel>
 #include <QStandardItemModel>
@@ -155,17 +156,17 @@ void MainWindow::initComboBoxGroups()
 void MainWindow::initToolBar()
 {
   initComboBoxGroups();
-  ui->mainToolBar->addWidget(m_cbGroups);
-
   qApp->setStyleSheet(StrConstants::getMenuCSS());
 
-  ui->mainToolBar->addSeparator();
   ui->mainToolBar->addAction(ui->actionSyncPackages);
   ui->mainToolBar->addAction(ui->actionCommit);
   ui->mainToolBar->addAction(ui->actionRollback);
 
-  ui->mainToolBar->addSeparator();
-  ui->mainToolBar->addAction(ui->actionExit);
+  m_leFilterPackage->setMinimumHeight(24);
+  ui->mainToolBar->addWidget(m_leFilterPackage);
+  ui->mainToolBar->addWidget(m_cbGroups);
+
+  //ui->mainToolBar->addAction(ui->actionExit);
 
   ui->mainToolBar->toggleViewAction()->setEnabled(false);
   ui->mainToolBar->toggleViewAction()->setVisible(false);
@@ -294,7 +295,7 @@ void MainWindow::initTabTransaction()
  * This is the LineEdit widget used to filter the package list
  */
 void MainWindow::initLineEditFilterPackages(){
-  connect(ui->leFilterPackage, SIGNAL(textChanged(QString)), this, SLOT(reapplyPackageFilter()));
+  connect(m_leFilterPackage, SIGNAL(textChanged(QString)), this, SLOT(reapplyPackageFilter()));
 }
 
 /*

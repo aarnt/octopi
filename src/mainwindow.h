@@ -37,6 +37,7 @@ class QFileSystemWatcher;
 class QLabel;
 class QComboBox;
 class QListView;
+class SearchLineEdit;
 
 //Column indices for Package's treeview
 const int ctn_PACKAGE_ICON_COLUMN(0);
@@ -84,6 +85,8 @@ private:
   UnixCommand *m_unixCommand;
 
   bool m_initializationCompleted;
+
+  SearchLineEdit *m_leFilterPackage;
 
   QSortFilterProxyModel *m_proxyModelPackages;
   QFileSystemWatcher *m_pacmanDatabaseSystemWatcher;

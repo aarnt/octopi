@@ -66,8 +66,14 @@ QString Package::makeURLClickable( const QString &s )
 	//First we search for the 1st pattern: rx
 	while ( (ini = rx.indexIn( sb, search )) != -1 ){
 		QString s1 = rx.cap();
-		QString ns = "<a href=\"" + s1 + "\">" + s1 + "</a>";
-		sb.replace( ini, s1.length(), ns);
+    QString ns;
+
+    if (UnixCommand::getLinuxDistro() == ectn_MANJAROLINUX)
+      ns = "<a style=\"color:\'#425823\'\" href=\"" + s1 + "\">" + s1 + "</a>";
+    else
+      ns = "<a href=\"" + s1 + "\">" + s1 + "</a>";
+
+    sb.replace( ini, s1.length(), ns);
 		search = ini + (2*s1.length()) + 15;	
 	}
 
@@ -82,7 +88,14 @@ QString Package::makeURLClickable( const QString &s )
 		int blanks = s1.count(	QRegExp("^|[\\s]+") );
 		for (int i=0; i<blanks; i++) ns += " ";
 
-		ns += "<a href=\"http://" + s1.trimmed() + "\">" + s1.trimmed() + "</a>";
+    if (UnixCommand::getLinuxDistro() == ectn_MANJAROLINUX)
+    {
+      ns += "<a style=\"color:\'#425823\'\" href=\"http://" +
+          s1.trimmed() + "\">" + s1.trimmed() + "</a>";
+    }
+    else
+      ns += "<a href=\"http://" + s1.trimmed() + "\">" + s1.trimmed() + "</a>";
+
 		sb.replace( ini, s1.length(), ns);
 		search = ini + (2*s1.length()) + 15;	
 	}

@@ -22,16 +22,7 @@
     <bool>true</bool>
    </property>
    <layout class="QGridLayout" name="gridLayout">
-    <property name="leftMargin">
-     <number>0</number>
-    </property>
-    <property name="topMargin">
-     <number>0</number>
-    </property>
-    <property name="rightMargin">
-     <number>0</number>
-    </property>
-    <property name="bottomMargin">
+    <property name="margin">
      <number>0</number>
     </property>
     <property name="spacing">
@@ -47,16 +38,6 @@
         <property name="spacing">
          <number>0</number>
         </property>
-        <item>
-         <widget class="SearchLineEdit" name="leFilterPackage">
-          <property name="minimumSize">
-           <size>
-            <width>0</width>
-            <height>25</height>
-           </size>
-          </property>
-         </widget>
-        </item>
         <item>
          <widget class="QTreeView" name="tvPackages">
           <property name="sizePolicy">
@@ -137,7 +118,7 @@
      <x>0</x>
      <y>0</y>
      <width>552</width>
-     <height>23</height>
+     <height>22</height>
     </rect>
    </property>
    <property name="contextMenuPolicy">
@@ -429,13 +410,6 @@
   </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
- <customwidgets>
-  <customwidget>
-   <class>SearchLineEdit</class>
-   <extends>QLineEdit</extends>
-   <header>src/searchlineedit.h</header>
-  </customwidget>
- </customwidgets>
  <tabstops>
   <tabstop>tvPackages</tabstop>
   <tabstop>twProperties</tabstop>
