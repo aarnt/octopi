@@ -112,7 +112,6 @@ QString UnixCommand::discoverBinaryPath(const QString& binary){
 void UnixCommand::cleanPacmanCache()
 {
   QProcess pacman;
-  QStringList args;
 
 #if QT_VERSION >= 0x040600
   QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
@@ -120,14 +119,8 @@ void UnixCommand::cleanPacmanCache()
   pacman.setProcessEnvironment(env);
 #endif
 
-  QFile *ftemp = getTemporaryFile();
-  QTextStream out(ftemp);
-  out << "pacman -Sc --noconfirm";
-  //out << "pacman -Scc";
-  out.flush();
-  ftemp->close();
-
-  QString command = WMHelper::getSUCommand() + " " + ftemp->fileName();
+  QString commandStr = "pacman -Sc --noconfirm";
+  QString command = WMHelper::getSUCommand() + " " + commandStr;
   pacman.start(command);
   pacman.waitForStarted();
 
