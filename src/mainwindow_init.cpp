@@ -153,7 +153,6 @@ void MainWindow::initComboBoxGroups()
 void MainWindow::initToolBar()
 {
   initComboBoxGroups();
-  qApp->setStyleSheet(StrConstants::getMenuCSS());
 
   ui->mainToolBar->addAction(ui->actionSyncPackages);
   ui->mainToolBar->addAction(ui->actionCommit);

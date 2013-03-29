@@ -78,6 +78,8 @@ void MainWindow::show()
   setWindowTitle(StrConstants::getApplicationName() + " " + StrConstants::getApplicationVersion());
   setMinimumSize(QSize(850, 600));
 
+  qApp->setStyleSheet(StrConstants::getMenuCSS());
+
   initStatusBar();
   initTabOutput();
   initTabInfo();
