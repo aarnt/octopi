@@ -77,8 +77,6 @@ void MainWindow::loadPanelSettings(){
  * Saves all application settings to ~/.config/octopi/octopi.conf
  */
 void MainWindow::saveSettings(int saveSettingsReason){
-  //int panelOrganizing = 0;
-
   switch(saveSettingsReason){
     case ectn_CurrentTabIndex:
       SettingsManager::instance()->setCurrentTabIndex(ui->twProperties->currentIndex());
@@ -137,7 +135,6 @@ void MainWindow::refreshComboBoxGroups()
  */
 void MainWindow::initComboBoxGroups()
 {
-  //m_lblGroups = new QLabel(StrConstants::getGroup(), this);
   m_cbGroups = new QComboBox(this);
   m_lvGroups = new QListView(m_cbGroups);
   m_cbGroups->setMinimumWidth(200);
@@ -165,6 +162,12 @@ void MainWindow::initToolBar()
   m_leFilterPackage->setMinimumHeight(24);
   ui->mainToolBar->addWidget(m_leFilterPackage);
   ui->mainToolBar->addWidget(m_cbGroups);
+
+  QWidget * hSpacer = new QWidget(this);
+  hSpacer->setMinimumHeight(22);
+  hSpacer->setMinimumWidth(6);
+  hSpacer->setVisible(true);
+  ui->mainToolBar->addWidget(hSpacer);
 
   //ui->mainToolBar->addAction(ui->actionExit);
 
