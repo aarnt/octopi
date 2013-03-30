@@ -32,7 +32,7 @@ public:
   }
 
   static QString getApplicationVersion(){
-    return "0.1.4.1";
+    return "0.1.4.2";
   }
 
   static QString getApplicationCliHelp(){
@@ -256,8 +256,8 @@ public:
     return QObject::tr("Cleaning package cache...");
   }
 
-  static QString getSynchronizing(){
-    return QObject::tr("Synchronizing");
+  static QString getSyncing(){
+    return QObject::tr("Syncing");
   }
 
   static QString getSyncDatabases(){

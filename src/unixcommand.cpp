@@ -119,17 +119,11 @@ void UnixCommand::cleanPacmanCache()
   pacman.setProcessEnvironment(env);
 #endif
 
-  QString commandStr = "pacman -Sc --noconfirm";
+  //QString commandStr = "pacman -Sc --noconfirm";
+  QString commandStr = "\"yes | pacman -Scc\"";
+
   QString command = WMHelper::getSUCommand() + " " + commandStr;
   pacman.start(command);
-  pacman.waitForStarted();
-
-  /*pacman.write("y"); //Yes, we want to remove ALL files from cache
-  pacman.write("\n");
-  pacman.write("n"); //No, we do not want to remove unused repositories
-  pacman.write("\n");
-  pacman.closeWriteChannel();*/
-
   pacman.waitForFinished();
 }
 

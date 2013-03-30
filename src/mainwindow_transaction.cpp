@@ -899,11 +899,18 @@ void MainWindow::actionsProcessFinished(int exitCode, QProcess::ExitStatus)
       //After the command, we can refresh the package list, so any change can be seem.
       if (m_commandExecuting == ectn_SYNC_DATABASE)
       {
-        int oldIndex = m_cbGroups->currentIndex();
-        m_cbGroups->setCurrentIndex(0);
-        refreshComboBoxGroups();
+        //Did it synchronize any repo? If so, let's refresh some things...
+        if (_textInTabOutput(StrConstants::getSyncing()))
+        {
+          int oldIndex = m_cbGroups->currentIndex();
+          m_cbGroups->setCurrentIndex(0);
+          refreshComboBoxGroups();
 
-        if (oldIndex == 0) buildPackageList();
+          if (oldIndex == 0)
+          {
+            buildPackageList();
+          }
+        }
       }
       else
       {
@@ -975,8 +982,6 @@ void MainWindow::_treatProcessOutput(const QString &pMsg)
   msg.remove(QRegExp(".+\\[Y/n\\].+"));
   msg.remove(QRegExp("warning:\\S{0}"));
 
-  //if (msg.contains("removing")) std::cout << "_treat: " << msg.toAscii().data() << std::endl;
-
   //If it is a percentage, we are talking about curl output...
   if(msg.indexOf("#]") != -1)
   {
@@ -985,7 +990,7 @@ void MainWindow::_treatProcessOutput(const QString &pMsg)
     continueTesting = true;
   }
 
-  if (msg.indexOf("-]") != -1 || continueTesting) //IT WAS AN ELSE HERE!!!
+  if (msg.indexOf("-]") != -1 || continueTesting)
   {
     if (!continueTesting){
       perc = msg.right(4).trimmed();
@@ -1015,10 +1020,7 @@ void MainWindow::_treatProcessOutput(const QString &pMsg)
 
           //std::cout << "Finding for: " << msg.toAscii().data() << std::endl;
 
-          //if(!_textInTabOutput(msg))
-          {
-            writeToTabOutput(msg);
-          }
+          writeToTabOutput(msg);
         }
         else
         {
@@ -1031,13 +1033,15 @@ void MainWindow::_treatProcessOutput(const QString &pMsg)
             target = target.trimmed() + " ";
             //std::cout << "target: " << target.toAscii().data() << std::endl;
 
-            if(!target.isEmpty() /*&& !_textInTabOutput(target)*/)
+            if(!target.isEmpty())
             {
               writeToTabOutput("<b><font color=\"#b4ab58\">" + target + "</font></b>"); //#C9BE62
             }
           }
-          else /*if (!_textInTabOutput(msg))*/
+          else
+          {
             writeToTabOutput("<b><font color=\"#b4ab58\">" + msg + "</font></b>"); //#C9BE62
+          }
         }
       }
       else if (ini == -1)
@@ -1051,10 +1055,9 @@ void MainWindow::_treatProcessOutput(const QString &pMsg)
           msg = msg.remove(end, msg.size()-end);
           msg = msg.trimmed() + " ";
 
-          //if(!_textInTabOutput(msg))
-            writeToTabOutput(msg);
+          writeToTabOutput(msg);
         }
-        else //NOT HERE
+        else
         {
           int pos = msg.indexOf(" ");
           if (pos >=0)
@@ -1067,7 +1070,7 @@ void MainWindow::_treatProcessOutput(const QString &pMsg)
             {
               if(m_commandExecuting == ectn_SYNC_DATABASE)
               {
-                writeToTabOutput("<b><font color=\"#FF8040\">" + StrConstants::getSynchronizing() + " " + target + "</font></b>");
+                writeToTabOutput("<b><font color=\"#FF8040\">" + StrConstants::getSyncing() + " " + target + "</font></b>");
               }
               else
               {
@@ -1075,8 +1078,10 @@ void MainWindow::_treatProcessOutput(const QString &pMsg)
               }
             }
           }
-          else /*if (!_textInTabOutput(msg))*/
+          else
+          {
             writeToTabOutput("<b><font color=\"blue\">" + msg + "</font></b>");
+          }
         }
       }
     }
@@ -1148,7 +1153,7 @@ void MainWindow::_treatProcessOutput(const QString &pMsg)
       msg = msg.remove(0, rp+2);
     }
 
-    if (!msg.isEmpty() /*&& !_textInTabOutput(msg)*/)
+    if (!msg.isEmpty())
     {
       if (msg.contains(QRegExp("removing ")))
         writeToTabOutput("<b><font color=\"#E55451\">" + msg + "</font></b>");
