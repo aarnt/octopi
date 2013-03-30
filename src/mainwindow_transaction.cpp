@@ -1281,7 +1281,7 @@ void MainWindow::writeToTabOutput(const QString &msg)
               newMsg.contains("resolving ") ||
               newMsg.contains("looking "))
        {
-         newMsg = "<b><font color=\"#59E817\">" + newMsg + "</font></b>"; //GREEN
+         newMsg = "<b><font color=\"#4BC413\">" + newMsg + "</font></b>"; //GREEN
          //std::cout << "alt: " << newMsg.toAscii().data() << std::endl;
        }
       else if (newMsg.contains("warning"))
