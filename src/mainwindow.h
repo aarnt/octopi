@@ -191,6 +191,7 @@ private:
   void _treatProcessOutput(const QString &pMsg);
   void _ensureTabVisible(const int index);
   bool _isPropertiesTabWidgetVisible();
+  bool _isSUAvailable();
   void writeToTabOutput(const QString &msg);
   void initTabOutput();
   void clearTabOutput();
@@ -198,7 +199,6 @@ private:
   QString retrieveDistroNews(bool searchForLatestNews = true);
   QString parseDistroNews();
   void initTabNews();
-
   void initTabHelpAbout();
 
 public slots:

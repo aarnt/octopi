@@ -287,6 +287,10 @@ public:
     return QObject::tr("Retrieving %1");
   }
 
+  static QString getTotalDownloadSize(){
+    return QObject::tr("Total download size: %1 KB");
+  }
+
   static QString getRetrieveTarget(){
     return QObject::tr("The following target needs to be retrieved");
   }

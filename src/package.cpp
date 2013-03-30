@@ -255,11 +255,13 @@ QStringList *Package::getPackagesOfGroup(const QString &groupName)
 /*
  * Retrieves the list of targets needed to upgrade the entire system or a install/upgrade a given package
  */
-QStringList *Package::getTargetUpgradeList(const QString &pkgName)
+QList<PackageListData> *Package::getTargetUpgradeList(const QString &pkgName)
 {
   QString targets = UnixCommand::getTargetUpgradeList(pkgName);
   QStringList packageTuples = targets.split(QRegExp("\\n"), QString::SkipEmptyParts);
-  QStringList * res = new QStringList();
+
+  QList<PackageListData> *res = new QList<PackageListData>();
+  packageTuples.sort();
 
   foreach(QString packageTuple, packageTuples)
   {
@@ -271,14 +273,25 @@ QStringList *Package::getTargetUpgradeList(const QString &pkgName)
 
     }
 
-    int pos = packageTuple.lastIndexOf("/");
+    /*int pos = packageTuple.lastIndexOf("/");
     QString target = packageTuple.mid(pos+1, packageTuple.size()-pos);
-    int end = target.lastIndexOf("-");
-    target = target.left(end);
-    res->append(target);
+    int end = target.lastIndexOf("-");*/
+
+    PackageListData ld;
+
+    QStringList data = packageTuple.split(" ");
+    if (data.count() == 3)
+    {
+      ld = PackageListData(data.at(0), data.at(1), data.at(2));
+    }
+    else if (data.count() == 1)
+    {
+      ld = PackageListData(data.at(0), "", 0);
+    }
+
+    res->append(ld);
   }
 
-  res->sort();
   return res;
 }
 
@@ -555,6 +568,15 @@ PackageInfoData Package::getInformation(const QString &pkgName, bool foreignPack
   res.installedSize = getInstalledSize(pkgInfo);
 
   return res;
+}
+
+/*
+ * Helper to get only the Download Size field of package information
+ */
+double Package::getDownloadSizeDescription(const QString &pkgName)
+{
+  QString pkgInfo = UnixCommand::getPackageInformation(pkgName, false);
+  return getDownloadSize(pkgInfo);
 }
 
 /*

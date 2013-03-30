@@ -446,16 +446,29 @@ void MainWindow::onPressDelete()
 }
 
 /*
+ * Checks if some SU utility is available...
+ * Returns false if not!
+ */
+bool MainWindow::_isSUAvailable()
+{
+  //If there are no means to run the actions, we must warn!
+  if (WMHelper::getSUCommand() == ctn_NO_SU_COMMAND){
+    QMessageBox::critical( 0, StrConstants::getApplicationName(),
+                           StrConstants::getErrorNoSuCommand() +
+                           "\n" + StrConstants::getYoullNeedSuFrontend());
+    return false;
+  }
+  else
+    return true;
+}
+
+/*
  * Does a repository sync with "pacman -Sy" !
  */
 void MainWindow::doSyncDatabase()
 {
   //If there are no means to run the actions, we must warn!
-  if (WMHelper::getSUCommand() == ctn_NO_SU_COMMAND){
-    QMessageBox::critical( 0, StrConstants::getApplicationName(), StrConstants::getErrorNoSuCommand() +
-                           "\n" + StrConstants::getYoullNeedSuFrontend());
-    return;
-  }
+  if (!_isSUAvailable()) return;
 
   //Retrieves the RSS News from respective Distro site...
   refreshDistroNews(true, false);
@@ -492,10 +505,10 @@ void MainWindow::doSystemUpgrade(bool syncDatabase)
   else
   {
     //Shows a dialog indicating the targets needed to be retrieved and asks for the user's permission.
-    m_targets = Package::getTargetUpgradeList();
+    QList<PackageListData> * targets = Package::getTargetUpgradeList();
 
     //There are no new updates to install!
-    if (m_targets->count() == 0)
+    if (targets->count() == 0)
     {
       clearTabOutput();
       writeToTabOutput("<b>" + StrConstants::getNoNewUpdatesAvailable() + "</b>");
@@ -504,18 +517,25 @@ void MainWindow::doSystemUpgrade(bool syncDatabase)
 
     QString list;
 
-    foreach(QString target, *m_targets)
+    double totalDownloadSize = 0;
+    foreach(PackageListData target, *targets)
     {
-      list = list + target + "\n";
+      totalDownloadSize += target.downloadSize;
+      list = list + target.name + "-" + target.version + "\n";
     }
     list.remove(list.size()-1, 1);
 
+    totalDownloadSize = totalDownloadSize / 1024;
+    QString ds = QString::number(totalDownloadSize, 'f', 2);
+
     QMessageBox question;
 
-    if(m_targets->count()==1)
-      question.setText(StrConstants::getRetrieveTarget());
+    if(targets->count()==1)
+      question.setText(StrConstants::getRetrieveTarget() +
+                       "\n" + StrConstants::getTotalDownloadSize().arg(ds));
     else
-      question.setText(StrConstants::getRetrieveTargets().arg(m_targets->count()));
+      question.setText(StrConstants::getRetrieveTargets().arg(targets->count()) +
+                       "\n" + StrConstants::getTotalDownloadSize().arg(ds));
 
     question.setWindowTitle(StrConstants::getConfirmation());
     question.setInformativeText(StrConstants::getConfirmationQuestion());
@@ -527,11 +547,7 @@ void MainWindow::doSystemUpgrade(bool syncDatabase)
     if(result == QMessageBox::Yes)
     {
       //If there are no means to run the actions, we must warn!
-      if (WMHelper::getSUCommand() == ctn_NO_SU_COMMAND){
-        QMessageBox::critical( 0, StrConstants::getApplicationName(), StrConstants::getErrorNoSuCommand() +
-                               "\n" + StrConstants::getYoullNeedSuFrontend());
-        return;
-      }
+      if (!_isSUAvailable()) return;
 
       m_commandExecuting = ectn_SYSTEM_UPGRADE;
 
@@ -607,11 +623,7 @@ void MainWindow::doRemove()
   if(result == QMessageBox::Yes)
   {
     //If there are no means to run the actions, we must warn!
-    if (WMHelper::getSUCommand() == ctn_NO_SU_COMMAND){
-      QMessageBox::critical( 0, StrConstants::getApplicationName(), StrConstants::getErrorNoSuCommand() +
-                             "\n" + StrConstants::getYoullNeedSuFrontend());
-      return;
-    }
+    if (!_isSUAvailable()) return;
 
     m_commandExecuting = ectn_REMOVE;
 
@@ -638,18 +650,23 @@ void MainWindow::doRemove()
 void MainWindow::doInstall()
 {
   QString listOfTargets = getTobeInstalledPackages();
-  m_targets = Package::getTargetUpgradeList(listOfTargets);
+  QList<PackageListData> *targets = Package::getTargetUpgradeList(listOfTargets);
   QString list;
 
-  foreach(QString target, *m_targets)
+  double totalDownloadSize = 0;
+  foreach(PackageListData target, *targets)
   {
-    list = list + target + "\n";
+    totalDownloadSize += target.downloadSize;
+    list = list + target.name + "-" + target.version + "\n";
   }
   list.remove(list.size()-1, 1);
 
+  totalDownloadSize = totalDownloadSize / 1024;
+  QString ds = QString::number(totalDownloadSize, 'f', 2);
+
   if (list.count() == 0)
   {
-    m_targets->append(listOfTargets);
+    targets->append(PackageListData(listOfTargets, "", 0));
     list.append(listOfTargets);
   }
 
@@ -657,17 +674,19 @@ void MainWindow::doInstall()
 
   //Q_ASSERT(m_targets->count() > 0);
 
-  if(m_targets->count()==1)
+  if(targets->count()==1)
   {
-    if (m_targets->at(0).indexOf("HoldPkg was found in target list.") != -1)
+    if (targets->at(0).name.indexOf("HoldPkg was found in target list.") != -1)
     {
       QMessageBox::warning(this, StrConstants::getAttention(), StrConstants::getWarnHoldPkgFound(), QMessageBox::Ok);
       return;
     }
-    else question.setText(StrConstants::getRetrieveTarget());
+    else question.setText(StrConstants::getRetrieveTarget() +
+                          "\n" + StrConstants::getTotalDownloadSize().arg(ds));
   }
   else
-    question.setText(StrConstants::getRetrieveTargets().arg(m_targets->count()));
+    question.setText(StrConstants::getRetrieveTargets().arg(targets->count()) +
+                     "\n" + StrConstants::getTotalDownloadSize().arg(ds));
 
   question.setWindowTitle(StrConstants::getConfirmation());
   question.setInformativeText(StrConstants::getConfirmationQuestion());
@@ -679,11 +698,7 @@ void MainWindow::doInstall()
   if(result == QMessageBox::Yes)
   {
     //If there are no means to run the actions, we must warn!
-    if (WMHelper::getSUCommand() == ctn_NO_SU_COMMAND){
-      QMessageBox::critical( 0, StrConstants::getApplicationName(), StrConstants::getErrorNoSuCommand() +
-                             "\n" + StrConstants::getYoullNeedSuFrontend());
-      return;
-    }
+    if (!_isSUAvailable()) return;
 
     m_commandExecuting = ectn_INSTALL;
 
@@ -710,11 +725,7 @@ void MainWindow::doInstall()
 void MainWindow::doCleanCache()
 {
   //If there are no means to run the actions, we must warn!
-  if (WMHelper::getSUCommand() == ctn_NO_SU_COMMAND){
-    QMessageBox::critical( 0, StrConstants::getApplicationName(), StrConstants::getErrorNoSuCommand() +
-                           "\n" + StrConstants::getYoullNeedSuFrontend());
-    return;
-  }
+  if (!_isSUAvailable()) return;
 
   int res = QMessageBox::question(this, StrConstants::getConfirmation(),
                                   StrConstants::getCleanCacheConfirmation(),
@@ -1247,7 +1258,6 @@ void MainWindow::writeToTabOutput(const QString &msg)
 
     if(newMsg.contains(QRegExp("<font color"))) //&& !newMsg.contains(QRegExp("<br")))
     {
-      //std::cout << "Already coloured: " << newMsg.toAscii().data() << std::endl;
       newMsg += "<br>";
     }
     else

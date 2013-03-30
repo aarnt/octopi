@@ -363,11 +363,11 @@ QByteArray UnixCommand::getTargetUpgradeList(const QString &pkgName)
 
   if(!pkgName.isEmpty())
   {
-    args += "-Sp " + pkgName;
+    args += "--print-format \"%n %v %s\" -Sp " + pkgName;
   }
   else
   {
-    args += "-Spu"; //this is the complete system upgrade!
+    args += "--print-format \"%n %v %s\" -Spu"; //this is the complete system upgrade!
   }
 
   pacman.start ( "pacman " + args );

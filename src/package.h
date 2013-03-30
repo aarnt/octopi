@@ -68,7 +68,18 @@ struct PackageListData{
   QString repository;
   QString version;
   QString outatedVersion;
+  double downloadSize;
   PackageStatus status;
+
+  PackageListData(){
+    name="";
+  }
+
+  PackageListData(QString n, QString v, QString dSize){
+    name=n;
+    version=v;
+    downloadSize=QString(dSize).toDouble();
+  }
 
   PackageListData(QString n, QString r, QString v, PackageStatus pkgStatus, QString outVersion=""){
     name=n;
@@ -115,13 +126,14 @@ class Package{
     static QStringList * getOutdatedPackageList();
     static QStringList * getPackageGroups();
     static QStringList * getPackagesOfGroup(const QString &groupName);
-    static QStringList * getTargetUpgradeList(const QString &pkgName="");
+    static QList<PackageListData> * getTargetUpgradeList(const QString &pkgName="");
     static QStringList * getTargetRemovalList(const QString &pkgName);
 
     static QList<PackageListData> * getForeignPackageList();
     static QList<PackageListData> * getPackageList();
 
     static PackageInfoData getInformation(const QString &pkgName, bool foreignPackage = false);
+    static double getDownloadSizeDescription(const QString &pkgName);
     static QString getInformationDescription(const QString &pkgName, bool foreignPackage = false);
     static QStringList getContents(const QString &pkgName);
 
