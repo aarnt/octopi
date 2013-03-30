@@ -1471,7 +1471,7 @@ void MainWindow::reapplyPackageFilter()
   m_proxyModelPackages->sort(m_PackageListOrderedCol, m_PackageListSortOrder);
 
   ui->tvPackages->selectionModel()->clear();
-  QModelIndex mi = m_proxyModelPackages->index(0, 0);
+  QModelIndex mi = m_proxyModelPackages->index(0, ctn_PACKAGE_NAME_COLUMN);
   ui->tvPackages->setCurrentIndex(mi);
   ui->tvPackages->scrollTo(mi);
 

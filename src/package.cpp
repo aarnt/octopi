@@ -253,7 +253,8 @@ QStringList *Package::getPackagesOfGroup(const QString &groupName)
 }
 
 /*
- * Retrieves the list of targets needed to upgrade the entire system or a install/upgrade a given package
+ * Retrieves the list of targets needed to upgrade the entire system OR
+ * to install/reinstall/upgrade a given package
  */
 QList<PackageListData> *Package::getTargetUpgradeList(const QString &pkgName)
 {
@@ -272,10 +273,6 @@ QList<PackageListData> *Package::getTargetUpgradeList(const QString &pkgName)
       continue;
 
     }
-
-    /*int pos = packageTuple.lastIndexOf("/");
-    QString target = packageTuple.mid(pos+1, packageTuple.size()-pos);
-    int end = target.lastIndexOf("-");*/
 
     PackageListData ld;
 
@@ -296,7 +293,7 @@ QList<PackageListData> *Package::getTargetUpgradeList(const QString &pkgName)
 }
 
 /*
- * Retrieves the list of targets needed to be remove with the given package
+ * Retrieves the list of targets needed to be removed with the given package
  */
 QStringList *Package::getTargetRemovalList(const QString &pkgName)
 {
