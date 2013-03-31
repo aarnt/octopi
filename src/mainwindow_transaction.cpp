@@ -737,10 +737,14 @@ void MainWindow::doCleanCache()
     writeToTabOutput("<b>" + StrConstants::getCleaningPackageCache() + "</b>");
     qApp->processEvents();
     CPUIntensiveComputing cic;
-    UnixCommand::cleanPacmanCache();
-    UnixCommand::removeTemporaryActionFile();
+
+    bool res = UnixCommand::cleanPacmanCache();
     qApp->processEvents();
-    writeToTabOutput("<b>" + StrConstants::getCommandFinishedOK() + "</b>");
+
+    if (res)
+      writeToTabOutput("<b>" + StrConstants::getCommandFinishedOK() + "</b>");
+    else
+      writeToTabOutput("<b>" + StrConstants::getCommandFinishedWithErrors() + "</b>");
   }
 }
 
@@ -1155,13 +1159,16 @@ void MainWindow::_treatProcessOutput(const QString &pMsg)
 
     if (!msg.isEmpty())
     {
-      if (msg.contains(QRegExp("removing ")))
+      if (msg.contains(QRegExp("removing ")) && !_textInTabOutput(msg + " "))
+      {
         writeToTabOutput("<b><font color=\"#E55451\">" + msg + "</font></b>");
+      }
       else
       {
         if (msg.indexOf(":: Synchronizing package databases...") == -1 &&
             msg.indexOf(":: Starting full system upgrade...") == -1)
         {
+          //std::cout << "Entered here: " << msg.toAscii().data() << std::endl;
           writeToTabOutput(msg); //it was font color = black
         }
       }
@@ -1251,7 +1258,18 @@ void MainWindow::writeToTabOutput(const QString &msg)
 {
   QTextBrowser *text = ui->twProperties->widget(ctn_TABINDEX_OUTPUT)->findChild<QTextBrowser*>("textOutputEdit");
   if (text)
-  {
+  {    
+    //std::cout << msg.toAscii().data() << std::endl;
+
+    //If the msg waiting to being print is from curl status...
+    if(msg.indexOf("[") != -1 ||
+       msg.indexOf("]") != -1 ||
+       msg.indexOf(QRegExp("\\-{2,}")) != -1)
+    {
+      return;
+    }
+
+    //If the msg waiting to being print has not yet been printed...
     if(_textInTabOutput(msg))
     {
       return;
@@ -1280,35 +1298,30 @@ void MainWindow::writeToTabOutput(const QString &msg)
               newMsg.contains("loading ") ||
               newMsg.contains("resolving ") ||
               newMsg.contains("looking "))
-       {
+      {
          newMsg = "<b><font color=\"#4BC413\">" + newMsg + "</font></b>"; //GREEN
-         //std::cout << "alt: " << newMsg.toAscii().data() << std::endl;
-       }
+      }
       else if (newMsg.contains("warning"))
       {
         newMsg = "<b><font color=\"#FF8040\">" + newMsg + "</font></b>"; //ORANGE
       }
-      else
+      else if (!newMsg.contains("::"))
       {
         newMsg += "<br>";
       }
     }
-    if(!newMsg.contains(QRegExp("</b")))
+
+    if (newMsg.contains("::"))
     {
-      if(newMsg.contains("::"))
-      {
-        if (!newMsg.contains(QRegExp("<br")))
-          newMsg = "<br><B>" + newMsg + "</B><br>";
-        else
-          newMsg = "<br><B>" + newMsg + "</B>";
-      }
+      newMsg = "<br><B>" + newMsg + "</B><br><br>";
     }
-    else if (!newMsg.contains(QRegExp("<br")))
+
+    if (!newMsg.contains(QRegExp("<br"))) //It was an else!
     {
       newMsg += "<br>";
     }
 
     text->insertHtml(Package::makeURLClickable(newMsg));
-    text->ensureCursorVisible();    
+    text->ensureCursorVisible();
   }
 }

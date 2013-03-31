@@ -107,9 +107,10 @@ QString UnixCommand::discoverBinaryPath(const QString& binary){
 }
 
 /*
- * Cleans Pacman's package cache
+ * Cleans Pacman's package cache.
+ * Returns true if finished OK
  */
-void UnixCommand::cleanPacmanCache()
+bool UnixCommand::cleanPacmanCache()
 {
   QProcess pacman;
 
@@ -125,6 +126,8 @@ void UnixCommand::cleanPacmanCache()
   QString command = WMHelper::getSUCommand() + " " + commandStr;
   pacman.start(command);
   pacman.waitForFinished();
+
+  return (pacman.exitCode() == 0);
 }
 
 /*

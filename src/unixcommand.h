@@ -61,7 +61,7 @@ public:
   static QString runCurlCommand(const QString& commandToRun);
   static QString discoverBinaryPath(const QString&);
 
-  static void cleanPacmanCache();
+  static bool cleanPacmanCache();
   static QByteArray getUnrequiredPackageList();
   static QByteArray getOutdatedPackageList();
   static QByteArray getForeignPackageList();
