@@ -77,6 +77,7 @@ public:
   static void openFile(const QString& fileName); //fileName is Path + Name
   static void editFile( const QString& fileName ); //fileName is Path + Name
   static void openDirectory( const QString& dirName );
+  static void runCommandInTerminal(const QString& commandToRun);
   static void openTerminal( const QString& dirName );
 };
 

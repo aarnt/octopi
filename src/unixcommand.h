@@ -31,7 +31,7 @@ const QString ctn_COMMAND_NOT_FOUND("command not found");
 const QString ctn_PACKAGES_WITH_SAME_CONTENT("The packages have the same content!");
 const QString ctn_AUTOMATIC("automatic");
 
-enum CommandExecuting { ectn_NONE, ectn_SYNC_DATABASE, ectn_SYSTEM_UPGRADE, ectn_INSTALL, ectn_REMOVE };
+enum CommandExecuting { ectn_NONE, ectn_SYNC_DATABASE, ectn_SYSTEM_UPGRADE, ectn_INSTALL, ectn_REMOVE, ectn_REMOVE_INSTALL };
 
 enum LinuxDistro { ectn_ARCHLINUX, ectn_MANJAROLINUX, ectn_UNKNOWN };
 
@@ -106,6 +106,8 @@ public:
   }
 
   static void removeTemporaryFiles();
+
+  static void runCommandInTerminal(const QStringList& commandList);
 
   void executeCommand(const QString &pCommand);
   void executePackageActions(const QStringList& commandList);

@@ -109,9 +109,12 @@ private:
   //This member holds the target list retrieved by the pacman command which will be executed
   QStringList *m_targets;
 
-  //This member holds the current command being executed by Octopi
+  //This member holds the current command type being executed by Octopi
   CommandExecuting m_commandExecuting;
   CommandExecuting m_commandQueued;
+
+  //This member holds the last command string executed by Octopi
+  QStringList m_lastCommandList;
 
   QComboBox *m_cbGroups;
   QListView *m_lvGroups;
@@ -193,6 +196,7 @@ private:
   bool _isPropertiesTabWidgetVisible();
   bool _isSUAvailable();
   void writeToTabOutput(const QString &msg);
+  void writeToTabOutputExt(const QString &msg);
   void initTabOutput();
   void clearTabOutput();
 
@@ -248,6 +252,7 @@ private slots:
 
   void doSyncDatabase();
   void doSystemUpgrade(bool syncDatabase = false);
+  void doRemoveAndInstall();
   void doRemove();
   void doInstall();
   void doCleanCache();

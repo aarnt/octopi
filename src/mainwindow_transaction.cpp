@@ -487,6 +487,12 @@ void MainWindow::doSyncDatabase()
                    this, SLOT( actionsProcessRaisedError() ));
 
   QString command = "pacman -Sy";
+
+  m_lastCommandList.clear();
+  m_lastCommandList.append("pacman -Sy;");
+  m_lastCommandList.append("echo -e;");
+  m_lastCommandList.append("read -n1 -p \"" + StrConstants::getPressAnyKey() + "\"");
+
   m_unixCommand->executeCommand(command);
 }
 
@@ -511,7 +517,7 @@ void MainWindow::doSystemUpgrade(bool syncDatabase)
     if (targets->count() == 0)
     {
       clearTabOutput();
-      writeToTabOutput("<b>" + StrConstants::getNoNewUpdatesAvailable() + "</b>");
+      writeToTabOutputExt("<b>" + StrConstants::getNoNewUpdatesAvailable() + "</b>");
       return;
     }
 
@@ -562,12 +568,127 @@ void MainWindow::doSystemUpgrade(bool syncDatabase)
       QObject::connect(m_unixCommand, SIGNAL( readyReadStandardError() ),
                        this, SLOT( actionsProcessRaisedError() ));
 
-
       QString command;
       command = "pacman -Su --noconfirm";
+
+      m_lastCommandList.clear();
+      m_lastCommandList.append("pacman -Su;");
+      m_lastCommandList.append("echo -e;");
+      m_lastCommandList.append("read -n1 -p \"" + StrConstants::getPressAnyKey() + "\"");
+
       m_unixCommand->executeCommand(command);
       m_commandQueued = ectn_NONE;
     }
+  }
+}
+
+/*
+ * Removes and Install all selected packages in one transaction just using:
+ * "pacman -R alltoRemove; pacman -S alltoInstall"
+ */
+void MainWindow::doRemoveAndInstall()
+{
+  QString listOfRemoveTargets = getTobeRemovedPackages();
+  QStringList *removeTargets = Package::getTargetRemovalList(listOfRemoveTargets);
+  QString removeList;
+  QString allLists;
+  QMessageBox question;
+  QString dialogText;
+
+  foreach(QString removeTarget, *removeTargets)
+  {
+    removeList = removeList + StrConstants::getRemove() + " "  + removeTarget + "\n";
+  }
+
+  if (removeList.count() == 0)
+  {
+    removeTargets->append(listOfRemoveTargets);
+    removeList.append(StrConstants::getRemove() + " "  + listOfRemoveTargets);
+  }
+
+  QString listOfInstallTargets = getTobeInstalledPackages();
+  QList<PackageListData> *installTargets = Package::getTargetUpgradeList(listOfInstallTargets);
+  QString installList;
+
+  double totalDownloadSize = 0;
+  foreach(PackageListData installTarget, *installTargets)
+  {
+    totalDownloadSize += installTarget.downloadSize;
+    installList.append(StrConstants::getInstall() + " " +
+                       installTarget.name + "-" + installTarget.version + "\n");
+  }
+  installList.remove(installList.size()-1, 1);
+
+  totalDownloadSize = totalDownloadSize / 1024;
+  QString ds = QString::number(totalDownloadSize, 'f', 2);
+
+  if (installList.count() == 0)
+  {
+    installTargets->append(PackageListData(listOfInstallTargets, "", 0));
+    installList.append(StrConstants::getInstall() + " " + listOfInstallTargets);
+  }
+
+  allLists.append(removeList);
+  allLists.append(installList);
+
+  if(removeTargets->count()==1)
+  {
+    if (removeTargets->at(0).indexOf("HoldPkg was found in target list.") != -1)
+    {
+      QMessageBox::warning(this, StrConstants::getAttention(), StrConstants::getWarnHoldPkgFound(), QMessageBox::Ok);
+      return;
+    }
+  }
+  else if(installTargets->count()==1)
+  {
+    if (installTargets->at(0).name.indexOf("HoldPkg was found in target list.") != -1)
+    {
+      QMessageBox::warning(this, StrConstants::getAttention(), StrConstants::getWarnHoldPkgFound(), QMessageBox::Ok);
+      return;
+    }
+  }
+
+  dialogText = StrConstants::getRemoveTargets().arg(removeTargets->count()) + "\n";
+  dialogText += StrConstants::getRetrieveTargets().arg(installTargets->count()) +
+      "\n" + StrConstants::getTotalDownloadSize().arg(ds);
+
+  question.setText(dialogText);
+
+  question.setInformativeText(StrConstants::getConfirmationQuestion());
+  question.setDetailedText(allLists);
+  question.setStandardButtons(QMessageBox::Yes|QMessageBox::No|QMessageBox::Close);
+  question.setDefaultButton(QMessageBox::No);
+
+  int result = question.exec();
+  if(result == QMessageBox::Yes)
+  {
+    //If there are no means to run the actions, we must warn!
+    if (!_isSUAvailable()) return;
+
+    m_commandExecuting = ectn_REMOVE_INSTALL;
+
+    disableTransactionActions();
+    m_unixCommand = new UnixCommand(this);
+
+    QObject::connect(m_unixCommand, SIGNAL( started() ), this, SLOT( actionsProcessStarted()));
+    QObject::connect(m_unixCommand, SIGNAL( readyReadStandardOutput()),
+                     this, SLOT( actionsProcessReadOutput() ));
+    QObject::connect(m_unixCommand, SIGNAL( finished ( int, QProcess::ExitStatus )),
+                     this, SLOT( actionsProcessFinished(int, QProcess::ExitStatus) ));
+    QObject::connect(m_unixCommand, SIGNAL( readyReadStandardError() ),
+                     this, SLOT( actionsProcessRaisedError() ));
+
+    QString command;
+    command = "pacman -Rcs --noconfirm " + listOfRemoveTargets +
+        "; pacman -S --noconfirm " + listOfInstallTargets;
+
+    m_lastCommandList.clear();
+    m_lastCommandList.append("pacman -Rcs " + listOfRemoveTargets + ";");
+    m_lastCommandList.append("pacman -S " + listOfInstallTargets + ";");
+    m_lastCommandList.append("echo -e;");
+    m_lastCommandList.append("read -n1 -p \"" + StrConstants::getPressAnyKey() + "\"");
+
+    m_unixCommand->executeCommand(command);
   }
 }
 
@@ -640,6 +761,12 @@ void MainWindow::doRemove()
 
     QString command;
     command = "pacman -Rcs --noconfirm " + listOfTargets;
+
+    m_lastCommandList.clear();
+    m_lastCommandList.append("pacman -Rcs " + listOfTargets + ";");
+    m_lastCommandList.append("echo -e;");
+    m_lastCommandList.append("read -n1 -p \"" + StrConstants::getPressAnyKey() + "\"");
+
     m_unixCommand->executeCommand(command);
   }
 }
@@ -715,6 +842,12 @@ void MainWindow::doInstall()
 
     QString command;
     command = "pacman -S --noconfirm " + listOfTargets;
+
+    m_lastCommandList.clear();
+    m_lastCommandList.append("pacman -S " + listOfTargets + ";");
+    m_lastCommandList.append("echo -e;");
+    m_lastCommandList.append("read -n1 -p \"" + StrConstants::getPressAnyKey() + "\"");
+
     m_unixCommand->executeCommand(command);
   }
 }
@@ -734,7 +867,7 @@ void MainWindow::doCleanCache()
   if (res == QMessageBox::Yes)
   {
     clearTabOutput();
-    writeToTabOutput("<b>" + StrConstants::getCleaningPackageCache() + "</b>");
+    writeToTabOutputExt("<b>" + StrConstants::getCleaningPackageCache() + "</b>");
     qApp->processEvents();
     CPUIntensiveComputing cic;
 
@@ -742,9 +875,9 @@ void MainWindow::doCleanCache()
     qApp->processEvents();
 
     if (res)
-      writeToTabOutput("<b>" + StrConstants::getCommandFinishedOK() + "</b>");
+      writeToTabOutputExt("<b>" + StrConstants::getCommandFinishedOK() + "</b>");
     else
-      writeToTabOutput("<b>" + StrConstants::getCommandFinishedWithErrors() + "</b>");
+      writeToTabOutputExt("<b>" + StrConstants::getCommandFinishedWithErrors() + "</b>");
   }
 }
 
@@ -797,8 +930,7 @@ void MainWindow::doCommitTransaction()
   //Are there any remove actions to be commited?
   if(getRemoveTransactionParentItem()->rowCount() > 0 && getInstallTransactionParentItem()->rowCount() > 0)
   {
-    doRemove();
-    m_commandQueued = ectn_INSTALL;
+    doRemoveAndInstall();
   }
   else if(getRemoveTransactionParentItem()->rowCount() > 0)
   {
@@ -839,19 +971,23 @@ void MainWindow::actionsProcessStarted()
   //First we output the name of action we are starting to execute!
   if (m_commandExecuting == ectn_SYNC_DATABASE)
   {
-    writeToTabOutput("<b>" + StrConstants::getSyncDatabases() + "</b><br>");
+    writeToTabOutput("<b>" + StrConstants::getSyncDatabases() + "</b><br><br>");
   }
   else if (m_commandExecuting == ectn_SYSTEM_UPGRADE)
   {
-    writeToTabOutput("<b>" + StrConstants::getSystemUpgrade() + "</b><br>");
+    writeToTabOutput("<b>" + StrConstants::getSystemUpgrade() + "</b><br><br>");
   }
   else if (m_commandExecuting == ectn_REMOVE)
   {
-    writeToTabOutput("<b>" + StrConstants::getRemovingPackages() + "</b><br>");
+    writeToTabOutput("<b>" + StrConstants::getRemovingPackages() + "</b><br><br>");
   }
   else if (m_commandExecuting == ectn_INSTALL)
   {
-    writeToTabOutput("<b>" + StrConstants::getInstallingPackages() + "</b><br>");
+    writeToTabOutput("<b>" + StrConstants::getInstallingPackages() + "</b><br><br>");
+  }
+  else if (m_commandExecuting == ectn_REMOVE_INSTALL)
+  {
+    writeToTabOutput("<b>" + StrConstants::getRemovingAndInstallingPackages() + "</b><br><br>");
   }
 
   QString msg = m_unixCommand->readAllStandardOutput();
@@ -859,7 +995,7 @@ void MainWindow::actionsProcessStarted()
 
   if (!msg.isEmpty())
   {
-    writeToTabOutput(msg);
+    writeToTabOutputExt(msg);
   }
 }
 
@@ -871,12 +1007,12 @@ void MainWindow::actionsProcessFinished(int exitCode, QProcess::ExitStatus)
   ui->twProperties->setTabText(ctn_TABINDEX_OUTPUT, StrConstants::getTabOutputName());
 
   if (exitCode == 0){
-    writeToTabOutput("<br><b>" +
+    writeToTabOutputExt("<br><b>" +
                      StrConstants::getCommandFinishedOK() + "</b><br>");
   }
   else
   {
-    writeToTabOutput("<br><b>" +
+    writeToTabOutputExt("<br><b>" +
                      StrConstants::getCommandFinishedWithErrors() + "</b><br>");
   }
 
@@ -884,17 +1020,6 @@ void MainWindow::actionsProcessFinished(int exitCode, QProcess::ExitStatus)
   {
     doSystemUpgrade(false);
     m_commandQueued = ectn_NONE;
-  }
-  else if (m_commandQueued == ectn_INSTALL && m_commandExecuting == ectn_REMOVE)
-  {
-    if(exitCode == 0) //If the removal actions were OK...
-    {
-      removePackagesFromRemoveTransaction();
-      doInstall();
-      removePackagesFromInstallTransaction();
-      m_commandQueued = ectn_NONE;
-      return;
-    }
   }
   else if (m_commandQueued == ectn_NONE)
   {
@@ -929,6 +1054,20 @@ void MainWindow::actionsProcessFinished(int exitCode, QProcess::ExitStatus)
       connect(m_pacmanDatabaseSystemWatcher, SIGNAL(directoryChanged(QString)), this, SLOT(metaBuildPackageList()));
   }
 
+  if (exitCode != 0 && _textInTabOutput("conflict"))
+  {
+    int res = QMessageBox::question(this, StrConstants::getThereHasBeenAConflict(),
+                                    StrConstants::getConfirmExecuteTransactionInTerminal(),
+                                    QMessageBox::Yes|QMessageBox::No, QMessageBox::No);
+
+    if (res == QMessageBox::Yes)
+    {
+      qApp->processEvents();
+      UnixCommand::runCommandInTerminal(m_lastCommandList);
+      clearTransactionTreeView();
+    }
+  }
+
   enableTransactionActions();
 
   m_commandExecuting = ectn_NONE;
@@ -956,7 +1095,7 @@ void MainWindow::actionsProcessReadOutput()
        msg.indexOf(":: Synchronizing package databases...") == -1 &&
        msg.indexOf(":: Starting full system upgrade...") == -1)
     {
-      writeToTabOutput(msg);
+      writeToTabOutputExt(msg);
     }
   }
 }
@@ -986,6 +1125,8 @@ void MainWindow::_treatProcessOutput(const QString &pMsg)
   msg.remove(QRegExp(".+\\[Y/n\\].+"));
   msg.remove(QRegExp("warning:\\S{0}"));
 
+  //std::cout << "_treat: " << msg.toAscii().data() << std::endl;
+
   //If it is a percentage, we are talking about curl output...
   if(msg.indexOf("#]") != -1)
   {
@@ -1006,25 +1147,20 @@ void MainWindow::_treatProcessOutput(const QString &pMsg)
     if (m_commandExecuting == ectn_INSTALL ||
         m_commandExecuting == ectn_SYSTEM_UPGRADE ||
         m_commandExecuting == ectn_SYNC_DATABASE ||
-        m_commandExecuting == ectn_REMOVE)
+        m_commandExecuting == ectn_REMOVE ||
+        m_commandExecuting == ectn_REMOVE_INSTALL)
     {
-      QString order;
       int ini = msg.indexOf(QRegExp("\\(\\s{0,3}[0-9]{1,4}/[0-9]{1,4}\\) "));
       if (ini == 0)
       {
         int rp = msg.indexOf(")");
-        order = msg.left(rp+2);
         msg = msg.remove(0, rp+2);
 
-        //std::cout << "Finding for: " << msg.toAscii().data() << std::endl;
         if (_searchForKeyVerbs(msg))
         {
           int end = msg.indexOf("[");
           msg = msg.remove(end, msg.size()-end).trimmed() + " ";
-
-          //std::cout << "Finding for: " << msg.toAscii().data() << std::endl;
-
-          writeToTabOutput(msg);
+          writeToTabOutputExt(msg);
         }
         else
         {
@@ -1039,18 +1175,17 @@ void MainWindow::_treatProcessOutput(const QString &pMsg)
 
             if(!target.isEmpty())
             {
-              writeToTabOutput("<b><font color=\"#b4ab58\">" + target + "</font></b>"); //#C9BE62
+              writeToTabOutputExt("<b><font color=\"#b4ab58\">" + target + "</font></b>"); //#C9BE62
             }
           }
           else
           {
-            writeToTabOutput("<b><font color=\"#b4ab58\">" + msg + "</font></b>"); //#C9BE62
+            writeToTabOutputExt("<b><font color=\"#b4ab58\">" + msg + "</font></b>"); //#C9BE62
           }
         }
       }
       else if (ini == -1)
       {
-        //std::cout << "test2: " << msg.toAscii().data() << std::endl;
         if (_searchForKeyVerbs(msg))
         {
           //std::cout << "test2: " << msg.toAscii().data() << std::endl;
@@ -1059,7 +1194,7 @@ void MainWindow::_treatProcessOutput(const QString &pMsg)
           msg = msg.remove(end, msg.size()-end);
           msg = msg.trimmed() + " ";
 
-          writeToTabOutput(msg);
+          writeToTabOutputExt(msg);
         }
         else
         {
@@ -1072,59 +1207,28 @@ void MainWindow::_treatProcessOutput(const QString &pMsg)
 
             if(!target.isEmpty() && !_textInTabOutput(target))
             {
-              if(m_commandExecuting == ectn_SYNC_DATABASE)
+              if (target.indexOf(QRegExp("[a-z]+")) != -1)
               {
-                writeToTabOutput("<b><font color=\"#FF8040\">" + StrConstants::getSyncing() + " " + target + "</font></b>");
-              }
-              else
-              {
-                writeToTabOutput("<b><font color=\"#b4ab58\">" + target + "</font></b>"); //#C9BE62
+                if(m_commandExecuting == ectn_SYNC_DATABASE)
+                {
+                  writeToTabOutputExt("<b><font color=\"#FF8040\">" + StrConstants::getSyncing() + " " + target + "</font></b>");
+                }
+                else
+                {
+                  writeToTabOutputExt("<b><font color=\"#b4ab58\">" + target + "</font></b>"); //#C9BE62
+                }
               }
             }
           }
           else
           {
-            writeToTabOutput("<b><font color=\"blue\">" + msg + "</font></b>");
+            writeToTabOutputExt("<b><font color=\"blue\">" + msg + "</font></b>");
           }
         }
       }
     }
-    /*else if (m_commandExecuting == ectn_REMOVE)
-    {
-      std::cout << "remove: " << msg.toAscii().data() << std::endl;
 
-      QString order;
-      int ini = msg.indexOf(QRegExp("\\(\\s{0,3}[0-9]{1,4}/[0-9]{1,4}\\) "));
-      if (ini == 0)
-      {
-        int rp = msg.indexOf(")");
-        order = msg.left(rp+2);
-        msg = msg.remove(0, rp+2);
-      }
-
-      int pos = msg.indexOf("[");
-      if (pos >=0)
-      {
-        target = msg.left(pos);
-        target = target.trimmed() + " ";
-        //std::cout << "target: " << target.toAscii().data() << std::endl;
-        //std::cout << "Finding for: " << target.toAscii().data() << std::endl;
-
-        if(!target.isEmpty() && !_textInTabOutput(target))
-        {
-          writeToTabOutput("<font color=\"#E55451\">" + target + "</font>");
-        }
-      }
-      else
-      {
-        msg = msg.trimmed() + " ";
-        if (!_textInTabOutput(msg))
-        {
-          writeToTabOutput("<font color=\"#E55451\">" + msg + "</font>");
-        }
-      }
-    }*/
-
+    //Here we print the transaction percentage updating
     if(!perc.isEmpty() && perc.indexOf("%") > 0)
     {
       ui->twProperties->setTabText(ctn_TABINDEX_OUTPUT, StrConstants::getTabOutputName() + " (" + perc + ")");
@@ -1146,7 +1250,7 @@ void MainWindow::_treatProcessOutput(const QString &pMsg)
 
     msg = msg.trimmed();
 
-    //std::cout << "Another: " << msg.toAscii().data() << std::endl;
+    //std::cout << "debug: " << msg.toAscii().data() << std::endl;
 
     QString order;
     int ini = msg.indexOf(QRegExp("\\(\\s{0,3}[0-9]{1,4}/[0-9]{1,4}\\) "));
@@ -1161,7 +1265,16 @@ void MainWindow::_treatProcessOutput(const QString &pMsg)
     {
       if (msg.contains(QRegExp("removing ")) && !_textInTabOutput(msg + " "))
       {
-        writeToTabOutput("<b><font color=\"#E55451\">" + msg + "</font></b>");
+        //Does this package exist or is it a proccessOutput buggy string???
+        QString pkgName = msg.mid(9).trimmed();
+
+        if (pkgName.indexOf("...") != -1 ||
+            m_modelInstalledPackages->findItems(pkgName,
+                                                Qt::MatchExactly,
+                                                ctn_PACKAGE_NAME_COLUMN).count() != 0)
+        {
+          writeToTabOutputExt("<b><font color=\"#E55451\">" + msg + "</font></b>"); //RED
+        }
       }
       else
       {
@@ -1169,7 +1282,7 @@ void MainWindow::_treatProcessOutput(const QString &pMsg)
             msg.indexOf(":: Starting full system upgrade...") == -1)
         {
           //std::cout << "Entered here: " << msg.toAscii().data() << std::endl;
-          writeToTabOutput(msg); //it was font color = black
+          writeToTabOutputExt(msg); //it was font color = black
         }
       }
     }
@@ -1258,13 +1371,33 @@ void MainWindow::writeToTabOutput(const QString &msg)
 {
   QTextBrowser *text = ui->twProperties->widget(ctn_TABINDEX_OUTPUT)->findChild<QTextBrowser*>("textOutputEdit");
   if (text)
-  {    
-    //std::cout << msg.toAscii().data() << std::endl;
+  {
+    _ensureTabVisible(ctn_TABINDEX_OUTPUT);
+    _positionTextEditCursorAtEnd();
+    text->insertHtml(Package::makeURLClickable(msg));
+    text->ensureCursorVisible();
+  }
+}
 
-    //If the msg waiting to being print is from curl status...
-    if(msg.indexOf("[") != -1 ||
-       msg.indexOf("]") != -1 ||
-       msg.indexOf(QRegExp("\\-{2,}")) != -1)
+
+/*
+ * A helper method which writes the given string to OutputTab's textbrowser
+ * This is the EXTENDED version, it checks lots of things before writing msg
+ */
+void MainWindow::writeToTabOutputExt(const QString &msg)
+{
+  QTextBrowser *text = ui->twProperties->widget(ctn_TABINDEX_OUTPUT)->findChild<QTextBrowser*>("textOutputEdit");
+  if (text)
+  {    
+    //If the msg waiting to being print is from curl status OR any other unwanted string...
+    if ((msg.contains(QRegExp("\\(\\d")) && (!msg.contains("target", Qt::CaseInsensitive))) ||
+       (msg.contains(QRegExp("\\d\\)")) && (!msg.contains("target", Qt::CaseInsensitive))) ||
+        msg.indexOf("Enter a selection", Qt::CaseInsensitive) == 0 ||
+        msg.indexOf("Proceed with", Qt::CaseInsensitive) == 0 ||
+        msg.indexOf("%") != -1 ||
+        msg.indexOf("[") != -1 ||
+        msg.indexOf("]") != -1 ||
+        msg.indexOf("---") != -1)
     {
       return;
     }
@@ -1289,7 +1422,7 @@ void MainWindow::writeToTabOutput(const QString &msg)
          newMsg.contains("could not ") ||
          newMsg.contains("error"))
       {
-        newMsg = "<b><font color=\"#E55451\">" + newMsg + "</font></b>"; //RED
+        newMsg = "<b><font color=\"#E55451\">" + newMsg + "&nbsp;</font></b>"; //RED
       }
       else if(newMsg.contains("checking ") ||
               newMsg.contains("-- reinstalling") ||

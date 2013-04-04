@@ -27,6 +27,7 @@
 #include <QByteArray>
 #include <QTextStream>
 #include <QtNetwork/QNetworkInterface>
+#include "iostream"
 
 QFile *UnixCommand::m_temporaryFile = 0;
 
@@ -586,11 +587,58 @@ bool UnixCommand::isTextFile(const QString& fileName)
 }
 
 /*
+ * Executes given commandToRun inside a terminal, so the user can interact
+ */
+void UnixCommand::runCommandInTerminal(const QStringList& commandList){
+  QFile *ftemp = getTemporaryFile();
+  QTextStream out(ftemp);
+
+  foreach(QString line, commandList)
+    out << line;
+
+  out.flush();
+  ftemp->close();
+
+  QProcess p;
+  //QStringList s;
+
+  if(WMHelper::isXFCERunning() && UnixCommand::hasTheExecutable(ctn_XFCE_TERMINAL)){
+    QString cmd = WMHelper::getSUCommand() + " \"" + ctn_XFCE_TERMINAL + " -e \'bash -c " + ftemp->fileName() + "'\"";
+    p.execute(cmd);
+  }
+  else if (WMHelper::isKDERunning() && UnixCommand::hasTheExecutable(ctn_KDE_TERMINAL)){
+    QString cmd = WMHelper::getSUCommand() + " \"" + ctn_KDE_TERMINAL + " --nofork -e bash -c " + ftemp->fileName() + "\"";
+    //std::cout << cmd.toAscii().data() << std::endl;
+    p.execute(cmd);
+  }
+  else if (WMHelper::isTDERunning() && UnixCommand::hasTheExecutable(ctn_TDE_TERMINAL)){
+    //TODO
+
+  }
+  else if (WMHelper::isLXDERunning() && UnixCommand::hasTheExecutable(ctn_LXDE_TERMINAL)){
+    QString cmd = WMHelper::getSUCommand() + " \"" + ctn_LXDE_TERMINAL + " -e \'bash -c " + ftemp->fileName() + "'\"";
+    p.execute(cmd);
+  }
+  else if (WMHelper::isMATERunning() && UnixCommand::hasTheExecutable(ctn_MATE_TERMINAL)){
+    //TODO
+
+  }
+  else if (UnixCommand::hasTheExecutable(ctn_XFCE_TERMINAL)){
+    QString cmd = WMHelper::getSUCommand() + " \"" + ctn_XFCE_TERMINAL + " -e \'bash -c " + ftemp->fileName() + "'\"";
+    p.execute(cmd);
+  }
+  else if (UnixCommand::hasTheExecutable(ctn_LXDE_TERMINAL)){
+    QString cmd = WMHelper::getSUCommand() + " \"" + ctn_LXDE_TERMINAL + " -e \'bash -c " + ftemp->fileName() + "'\"";
+    p.execute(cmd);
+  }
+}
+
+/*
  * Executes the given command using QProcess async technology
  */
 void UnixCommand::executeCommand(const QString &pCommand)
 {
-  QString command = WMHelper::getSUCommand() + " \"" + pCommand + "\"";
+  QString command = WMHelper::getSUCommand() + "\"" + pCommand + "\"";
 
   m_process->start(command);
 }

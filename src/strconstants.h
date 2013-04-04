@@ -260,6 +260,10 @@ public:
     return QObject::tr("Syncing");
   }
 
+  static QString getPressAnyKey(){
+    return QObject::tr("Press any key to continue...");
+  }
+
   static QString getSyncDatabases(){
     return QObject::tr("Synchronizing databases...");
   }
@@ -273,6 +277,10 @@ public:
 
   static QString getRemovingPackages(){
     return QObject::tr("Removing selected packages...");
+  }
+
+  static QString getRemovingAndInstallingPackages(){
+    return QObject::tr("Removing/installing selected packages...");
   }
 
   static QString getCommandFinishedOK(){
@@ -325,6 +333,14 @@ public:
 
   static QString getConfirmation(){
     return QObject::tr("Confirmation");
+  }
+
+  static QString getThereHasBeenAConflict(){
+    return QObject::tr("There has been a conflict!");
+  }
+
+  static QString getConfirmExecuteTransactionInTerminal(){
+    return QObject::tr("Do you want to execute this transaction in a Terminal?");
   }
 
   static QString getCleanCacheConfirmation(){
@@ -390,6 +406,14 @@ public:
 
   static QString getTransactionRemoveText(){
     return QObject::tr("To be removed");
+  }
+
+  static QString getRemove(){
+    return QObject::tr("remove");
+  }
+
+  static QString getInstall(){
+    return QObject::tr("install");
   }
 
   static QString getRemoveItem(){

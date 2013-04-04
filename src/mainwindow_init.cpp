@@ -663,11 +663,11 @@ void MainWindow::refreshDistroNews(bool searchForLatestNews, bool gotoNewsTab)
 
     if (distro == ectn_ARCHLINUX)
     {
-      writeToTabOutput("<b>" + StrConstants::getSearchingForArchLinuxNews() + "</b>");
+      writeToTabOutputExt("<b>" + StrConstants::getSearchingForArchLinuxNews() + "</b>");
     }
     else if (distro == ectn_MANJAROLINUX)
     {
-      writeToTabOutput("<b>" + StrConstants::getSearchingForManjaroLinuxNews() + "</b>");
+      writeToTabOutputExt("<b>" + StrConstants::getSearchingForManjaroLinuxNews() + "</b>");
     }
 
     qApp->processEvents();

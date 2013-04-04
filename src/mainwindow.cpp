@@ -675,14 +675,26 @@ void MainWindow::changePackageListModel()
 
   if (m_leFilterPackage->text() != "") reapplyPackageFilter();
 
-  QModelIndex maux = m_proxyModelPackages->index(0, 0);
-  ui->tvPackages->setCurrentIndex(maux);
-  ui->tvPackages->scrollTo(maux, QAbstractItemView::PositionAtTop);
+  QModelIndex cIcon = m_proxyModelPackages->index(0, ctn_PACKAGE_ICON_COLUMN);
+  QModelIndex cName = m_proxyModelPackages->index(0, ctn_PACKAGE_NAME_COLUMN);
+  QModelIndex cVersion = m_proxyModelPackages->index(0, ctn_PACKAGE_VERSION_COLUMN);
+  QModelIndex cRepository = m_proxyModelPackages->index(0, ctn_PACKAGE_REPOSITORY_COLUMN);
+
+  ui->tvPackages->setCurrentIndex(cIcon);
+
+  ui->tvPackages->scrollTo(cIcon, QAbstractItemView::PositionAtTop);
 
   if (m_leFilterPackage->text() == "")
-    ui->tvPackages->selectionModel()->setCurrentIndex(maux, QItemSelectionModel::Select);
+  {
+    ui->tvPackages->selectionModel()->setCurrentIndex(cIcon, QItemSelectionModel::Select);
+  }
   else
-    ui->tvPackages->selectionModel()->setCurrentIndex(maux, QItemSelectionModel::SelectCurrent);
+  {
+    ui->tvPackages->selectionModel()->setCurrentIndex(cIcon, QItemSelectionModel::SelectCurrent);
+    ui->tvPackages->selectionModel()->setCurrentIndex(cName, QItemSelectionModel::Select);
+    ui->tvPackages->selectionModel()->setCurrentIndex(cVersion, QItemSelectionModel::Select);
+    ui->tvPackages->selectionModel()->setCurrentIndex(cRepository, QItemSelectionModel::Select);
+  }
 
   changedTabIndex();
 }
