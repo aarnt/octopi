@@ -335,8 +335,8 @@ public:
     return QObject::tr("Confirmation");
   }
 
-  static QString getThereHasBeenAConflict(){
-    return QObject::tr("There has been a conflict!");
+  static QString getThereHasBeenATransactionError(){
+    return QObject::tr("There has been a transaction error!");
   }
 
   static QString getConfirmExecuteTransactionInTerminal(){
