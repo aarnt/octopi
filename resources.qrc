@@ -34,5 +34,7 @@
         <file>resources/images/window_close.png</file>
         <file>resources/help/help_en_US.html</file>
         <file>resources/images/folder_gnome.png</file>
+        <file>resources/images/install_item.png</file>
+        <file>resources/images/remove_item.png</file>
     </qresource>
 </RCC>

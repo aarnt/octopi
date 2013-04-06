@@ -87,7 +87,11 @@ bool TreeViewPackagesItemDelegate::helpEvent ( QHelpEvent *event, QAbstractItemV
 
     if (si)
     {
-      if (si->icon().isNull()) //If it's really a package in the Transaction treeview...
+      //If it's really a package in the Transaction treeview...
+      if (si->icon().pixmap(22, 22).toImage() ==
+          IconHelper::getIconInstallItem().pixmap(22, 22).toImage() ||
+          si->icon().pixmap(22, 22).toImage() ==
+          IconHelper::getIconRemoveItem().pixmap(22, 22).toImage())
       {
         QStandardItemModel *modelPackages = MainWindow::returnMainWindow()->getModelPackages();
         QList<QStandardItem*> foundItems = modelPackages->findItems(si->text(), Qt::MatchExactly, ctn_PACKAGE_NAME_COLUMN);

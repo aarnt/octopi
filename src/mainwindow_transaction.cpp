@@ -105,7 +105,7 @@ void MainWindow::insertRemovePackageIntoTransaction(const QString &pkgName)
   QTreeView *tvTransaction = ui->twProperties->widget(ctn_TABINDEX_TRANSACTION)->findChild<QTreeView*>("tvTransaction");
   QStandardItem * siRemoveParent = getRemoveTransactionParentItem();
   QStandardItem * siInstallParent = getInstallTransactionParentItem();
-  QStandardItem * siPackageToRemove = new QStandardItem(pkgName);
+  QStandardItem * siPackageToRemove = new QStandardItem(IconHelper::getIconRemoveItem(), pkgName);
   QStandardItemModel *sim = qobject_cast<QStandardItemModel *>(siRemoveParent->model());
 
   QList<QStandardItem *> foundItems = sim->findItems(pkgName, Qt::MatchRecursive | Qt::MatchExactly);
@@ -133,7 +133,7 @@ void MainWindow::insertInstallPackageIntoTransaction(const QString &pkgName)
 {
   QTreeView *tvTransaction = ui->twProperties->widget(ctn_TABINDEX_TRANSACTION)->findChild<QTreeView*>("tvTransaction");
   QStandardItem * siInstallParent = getInstallTransactionParentItem();
-  QStandardItem * siPackageToInstall = new QStandardItem(pkgName);
+  QStandardItem * siPackageToInstall = new QStandardItem(IconHelper::getIconInstallItem(), pkgName);
   QStandardItem * siRemoveParent = getRemoveTransactionParentItem();
   QStandardItemModel *sim = qobject_cast<QStandardItemModel *>(siInstallParent->model());
 
@@ -510,10 +510,10 @@ void MainWindow::doSystemUpgrade(bool syncDatabase)
 
     if(targets->count()==1)
       question.setText(StrConstants::getRetrieveTarget() +
-                       "\n" + StrConstants::getTotalDownloadSize().arg(ds));
+                       "\n\n" + StrConstants::getTotalDownloadSize().arg(ds));
     else
       question.setText(StrConstants::getRetrieveTargets().arg(targets->count()) +
-                       "\n" + StrConstants::getTotalDownloadSize().arg(ds));
+                       "\n\n" + StrConstants::getTotalDownloadSize().arg(ds));
 
     question.setWindowTitle(StrConstants::getConfirmation());
     question.setInformativeText(StrConstants::getConfirmationQuestion());
@@ -605,7 +605,7 @@ void MainWindow::doRemoveAndInstall()
 
   if(removeTargets->count()==1)
   {
-    if (removeTargets->at(0).indexOf("HoldPkg was found in target list.") != -1)
+    if (removeTargets->at(0).indexOf("HoldPkg was found in") != -1)
     {
       QMessageBox::warning(this, StrConstants::getAttention(), StrConstants::getWarnHoldPkgFound(), QMessageBox::Ok);
       return;
@@ -613,7 +613,7 @@ void MainWindow::doRemoveAndInstall()
   }
   else if(installTargets->count()==1)
   {
-    if (installTargets->at(0).name.indexOf("HoldPkg was found in target list.") != -1)
+    if (installTargets->at(0).name.indexOf("HoldPkg was found in") != -1)
     {
       QMessageBox::warning(this, StrConstants::getAttention(), StrConstants::getWarnHoldPkgFound(), QMessageBox::Ok);
       return;
@@ -622,7 +622,7 @@ void MainWindow::doRemoveAndInstall()
 
   dialogText = StrConstants::getRemoveTargets().arg(removeTargets->count()) + "\n";
   dialogText += StrConstants::getRetrieveTargets().arg(installTargets->count()) +
-      "\n" + StrConstants::getTotalDownloadSize().arg(ds);
+      "\n\n" + StrConstants::getTotalDownloadSize().arg(ds);
 
   question.setText(dialogText);
 
@@ -692,7 +692,7 @@ void MainWindow::doRemove()
   //Shows a dialog indicating the targets which will be removed and asks for the user's permission.
   if(m_targets->count()==1)
   {
-    if (m_targets->at(0).indexOf("HoldPkg was found in target list.") != -1)
+    if (m_targets->at(0).indexOf("HoldPkg was found in") != -1)
     {
       QMessageBox::warning(this, StrConstants::getAttention(), StrConstants::getWarnHoldPkgFound(), QMessageBox::Ok);
       return;
@@ -775,17 +775,17 @@ void MainWindow::doInstall()
 
   if(targets->count()==1)
   {
-    if (targets->at(0).name.indexOf("HoldPkg was found in target list.") != -1)
+    if (targets->at(0).name.indexOf("HoldPkg was found in") != -1)
     {
       QMessageBox::warning(this, StrConstants::getAttention(), StrConstants::getWarnHoldPkgFound(), QMessageBox::Ok);
       return;
     }
     else question.setText(StrConstants::getRetrieveTarget() +
-                          "\n" + StrConstants::getTotalDownloadSize().arg(ds));
+                          "\n\n" + StrConstants::getTotalDownloadSize().arg(ds));
   }
   else
     question.setText(StrConstants::getRetrieveTargets().arg(targets->count()) +
-                     "\n" + StrConstants::getTotalDownloadSize().arg(ds));
+                     "\n\n" + StrConstants::getTotalDownloadSize().arg(ds));
 
   question.setWindowTitle(StrConstants::getConfirmation());
   question.setInformativeText(StrConstants::getConfirmationQuestion());
@@ -1040,7 +1040,7 @@ void MainWindow::actionsProcessFinished(int exitCode, QProcess::ExitStatus)
       connect(m_pacmanDatabaseSystemWatcher, SIGNAL(directoryChanged(QString)), this, SLOT(metaBuildPackageList()));
   }
 
-  if (exitCode != 0 && _textInTabOutput("conflict"))
+  if (exitCode != 0 && (_textInTabOutput("conflict"))) //|| _textInTabOutput("could not satisfy dependencies")))
   {
     int res = QMessageBox::question(this, StrConstants::getThereHasBeenATransactionError(),
                                     StrConstants::getConfirmExecuteTransactionInTerminal(),
@@ -1371,12 +1371,19 @@ void MainWindow::writeToTabOutput(const QString &msg)
  */
 void MainWindow::writeToTabOutputExt(const QString &msg)
 {
+  //std::cout << "To print: " << msg.toAscii().data() << std::endl;
+
   QTextBrowser *text = ui->twProperties->widget(ctn_TABINDEX_OUTPUT)->findChild<QTextBrowser*>("textOutputEdit");
   if (text)
   {    
     //If the msg waiting to being print is from curl status OR any other unwanted string...
-    if ((msg.contains(QRegExp("\\(\\d")) && (!msg.contains("target", Qt::CaseInsensitive))) ||
-       (msg.contains(QRegExp("\\d\\)")) && (!msg.contains("target", Qt::CaseInsensitive))) ||
+    if ((msg.contains(QRegExp("\\(\\d")) &&
+         (!msg.contains("target", Qt::CaseInsensitive)) &&
+         (!msg.contains("package", Qt::CaseInsensitive))) ||
+       (msg.contains(QRegExp("\\d\\)")) &&
+        (!msg.contains("target", Qt::CaseInsensitive)) &&
+        (!msg.contains("package", Qt::CaseInsensitive))) ||
+
         msg.indexOf("Enter a selection", Qt::CaseInsensitive) == 0 ||
         msg.indexOf("Proceed with", Qt::CaseInsensitive) == 0 ||
         msg.indexOf("%") != -1 ||

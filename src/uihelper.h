@@ -56,6 +56,9 @@ public:
   static QIcon getIconToInstall(){ return QIcon(":/resources/images/toinstall.png"); }
   static QIcon getIconRemove(){ return QIcon(":/resources/images/close.png"); }
 
+  static QIcon getIconRemoveItem() { return QIcon(":/resources/images/remove_item.png"); }
+  static QIcon getIconInstallItem() { return QIcon(":/resources/images/install_item.png"); }
+
   static QIcon getIconExit(){ return QIcon(":/resources/images/exit.png"); }
 };
 

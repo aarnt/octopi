@@ -352,7 +352,7 @@ QList<PackageListData> * Package::getPackageList()
   {
     if (!packageTuple[0].isSpace())
     {
-      //Do we already have a description??
+      //Do we already have a description?
       if (pkgDescription != "")
       {
         pkgDescription = pkgName + " " + pkgDescription;
@@ -402,39 +402,13 @@ QList<PackageListData> * Package::getPackageList()
     }
   }
 
-  return res;
-
-  /*
-  QString pkgList = UnixCommand::getPackageList();
-  QStringList packageTuples = pkgList.split(QRegExp("\\n"), QString::SkipEmptyParts);
-  QList<PackageListData> * res = new QList<PackageListData>();
-
-  foreach(QString packageTuple, packageTuples)
-  {
-    QStringList parts = packageTuple.split(' ');
-
-    if(parts.size() == 4)
-    {
-      //This is an installed package!
-      res->append(PackageListData(parts[1], parts[0], parts[2], ectn_INSTALLED));
-    }
-    else if(parts.size() == 5)
-    {
-      //This is an outdated package!
-      QString outVersion = parts[4];
-      outVersion.remove(']').trimmed();
-      res->append(PackageListData(parts[1], parts[0], parts[2], ectn_OUTDATED, outVersion));
-    }
-    else
-    {
-      //This is an non-installed package!
-      res->append(PackageListData(parts[1], parts[0], parts[2], ectn_NON_INSTALLED));
-    }
-  }
+  //And adds the very last package...
+  pkgDescription = pkgName + " " + pkgDescription;
+  PackageListData pld =
+      PackageListData(pkgName, pkgRepository, pkgVersion, pkgDescription, pkgStatus, pkgOutVersion);
+  res->append(pld);
 
   return res;
-  */
-
 }
 
 /*
