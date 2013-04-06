@@ -128,26 +128,50 @@ bool UnixCommand::cleanPacmanCache()
 }
 
 /*
+ * Performs a pacman query
+ */
+QByteArray UnixCommand::performQuery(const QStringList args)
+{
+  QByteArray result("");
+  QProcess pacman;
+
+  QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
+  env.insert("LANG", "us_EN");
+  pacman.setProcessEnvironment(env);
+
+  pacman.start("pacman", args);
+  pacman.waitForFinished(-1);
+  result = pacman.readAllStandardOutput();
+
+  return result;
+}
+
+/*
+ * Performs a pacman query
+ * Overloaded with QString parameter
+ */
+QByteArray UnixCommand::performQuery(const QString &args)
+{
+  QByteArray result("");
+  QProcess pacman;
+
+  QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
+  env.insert("LANG", "us_EN");
+  pacman.setProcessEnvironment(env);
+
+  pacman.start("pacman " + args);
+  pacman.waitForFinished(-1);
+  result = pacman.readAllStandardOutput();
+
+  return result;
+}
+
+/*
  * Returns a string containing all packages no one depends on
  */
 QByteArray UnixCommand::getUnrequiredPackageList()
 {
-  QByteArray result("");
-  QProcess pacman;
-  QStringList args;
-
-#if QT_VERSION >= 0x040600
-  QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
-  env.insert("LANG", "us_EN");
-  pacman.setProcessEnvironment(env);
-#endif
-
-  args << "-Qt";
-  pacman.start("pacman", args);
-
-  pacman.waitForFinished(-1);
-  result = pacman.readAllStandardOutput();
-
+  QByteArray result = performQuery(QStringList("-Qt"));
   return result;
 }
 
@@ -156,22 +180,7 @@ QByteArray UnixCommand::getUnrequiredPackageList()
  */
 QByteArray UnixCommand::getOutdatedPackageList()
 {
-  QByteArray result("");
-  QProcess pacman;
-  QStringList args;
-
-#if QT_VERSION >= 0x040600
-  QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
-  env.insert("LANG", "us_EN");
-  pacman.setProcessEnvironment(env);
-#endif
-
-  args << "-Qu";
-  pacman.start("pacman", args);
-
-  pacman.waitForFinished(-1);
-  result = pacman.readAllStandardOutput();
-
+  QByteArray result = performQuery(QStringList("-Qu"));
   return result;
 }
 
@@ -181,22 +190,7 @@ QByteArray UnixCommand::getOutdatedPackageList()
  */
 QByteArray UnixCommand::getForeignPackageList()
 {
-  QByteArray result("");
-  QProcess pacman;
-  QStringList args;
-
-#if QT_VERSION >= 0x040600
-  QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
-  env.insert("LANG", "us_EN");
-  pacman.setProcessEnvironment(env);
-#endif
-
-  args << "-Qm";
-  pacman.start("pacman", args);
-
-  pacman.waitForFinished(-1);
-  result = pacman.readAllStandardOutput();
-
+  QByteArray result = performQuery(QStringList("-Qm"));
   return result;
 }
 
@@ -206,22 +200,7 @@ QByteArray UnixCommand::getForeignPackageList()
  */
 QByteArray UnixCommand::getPackageList()
 {
-  QByteArray result("");
-  QProcess pacman;
-  QStringList args;
-
-#if QT_VERSION >= 0x040600
-  QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
-  env.insert("LANG", "us_EN");
-  pacman.setProcessEnvironment(env);
-#endif
-
-  args << "-Ss"; //It was -Sl...
-  pacman.start("pacman", args);
-
-  pacman.waitForFinished(-1);
-  result = pacman.readAllStandardOutput();
-
+  QByteArray result = performQuery(QStringList("-Ss"));
   return result;
 }
 
@@ -232,33 +211,16 @@ QByteArray UnixCommand::getPackageList()
  */
 QByteArray UnixCommand::getPackageInformation(const QString &pkgName, bool foreignPackage = false)
 {
-  QByteArray result("");
-  QProcess pacman;
   QStringList args;
 
-#if QT_VERSION >= 0x040600
-  QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
-  env.insert("LANG", "us_EN");
-  pacman.setProcessEnvironment(env);
-#endif
-
   if(foreignPackage)
-  {
     args << "-Qi";
-  }
   else
-  {
     args << "-Si";
-  }
 
   args << pkgName;
-  pacman.start("pacman", args);
 
-  pacman.waitForFinished(-1);
-  result = pacman.readAllStandardOutput();
-
-  pacman.close();
-
+  QByteArray result = performQuery(args);
   return result;
 }
 
@@ -267,24 +229,11 @@ QByteArray UnixCommand::getPackageInformation(const QString &pkgName, bool forei
  */
 QByteArray UnixCommand::getPackageContents(const QString& pkgName)
 {
-  QByteArray res;
-  QProcess pacman;
-
-#if QT_VERSION >= 0x040600
-  QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
-  env.insert("LANG", "us_EN");
-  pacman.setProcessEnvironment(env);
-#endif
-
   QStringList args;
   args << "-Ql";
   args << pkgName;
 
-  pacman.start ( "pacman", args );
-  pacman.waitForFinished(-1);
-  res = pacman.readAllStandardOutput();
-  pacman.close();
-
+  QByteArray res = performQuery(args);
   return res;
 }
 
@@ -293,23 +242,7 @@ QByteArray UnixCommand::getPackageContents(const QString& pkgName)
  */
 QByteArray UnixCommand::getPackageGroups()
 {
-  QByteArray res;
-  QProcess pacman;
-
-#if QT_VERSION >= 0x040600
-  QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
-  env.insert("LANG", "us_EN");
-  pacman.setProcessEnvironment(env);
-#endif
-
-  QStringList args;
-  args << "-Sg";
-
-  pacman.start ( "pacman", args );
-  pacman.waitForFinished(-1);
-  res = pacman.readAllStandardOutput();
-  pacman.close();
-
+  QByteArray res = performQuery(QStringList("-Sg"));
   return res;
 }
 
@@ -318,24 +251,11 @@ QByteArray UnixCommand::getPackageGroups()
  */
 QByteArray UnixCommand::getPackagesFromGroup(const QString &groupName)
 {
-  QByteArray res;
-  QProcess pacman;
-
-#if QT_VERSION >= 0x040600
-  QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
-  env.insert("LANG", "us_EN");
-  pacman.setProcessEnvironment(env);
-#endif
-
   QStringList args;
   args << "-Sg";
   args << groupName;
 
-  pacman.start ( "pacman", args );
-  pacman.waitForFinished(-1);
-  res = pacman.readAllStandardOutput();
-  pacman.close();
-
+  QByteArray res = performQuery(args);
   return res;
 }
 
@@ -344,31 +264,18 @@ QByteArray UnixCommand::getPackagesFromGroup(const QString &groupName)
  */
 QByteArray UnixCommand::getTargetUpgradeList(const QString &pkgName)
 {
-  QByteArray res;
-  QProcess pacman;
-
-#if QT_VERSION >= 0x040600
-  QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
-  env.insert("LANG", "us_EN");
-  pacman.setProcessEnvironment(env);
-#endif
-
   QString args;
 
   if(!pkgName.isEmpty())
   {
-    args += "--print-format \"%n %v %s\" -Sp " + pkgName;
+    args = "--print-format \"%n %v %s\" -Sp " + pkgName;
   }
   else
   {
-    args += "--print-format \"%n %v %s\" -Spu"; //this is the complete system upgrade!
+    args = "--print-format \"%n %v %s\" -Spu";
   }
 
-  pacman.start ( "pacman " + args );
-  pacman.waitForFinished(-1);
-  res = pacman.readAllStandardOutput();
-  pacman.close();
-
+  QByteArray res = performQuery(args);
   return res;
 }
 
@@ -377,20 +284,10 @@ QByteArray UnixCommand::getTargetUpgradeList(const QString &pkgName)
  */
 QByteArray UnixCommand::getTargetRemovalList(const QString &pkgName)
 {
-  QByteArray res;
-  QProcess pacman;
+  QString args;
+  args = "-Rpcs " + pkgName;
 
-#if QT_VERSION >= 0x040600
-  QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
-  env.insert("LANG", "us_EN");
-  pacman.setProcessEnvironment(env);
-#endif
-
-  pacman.start ( "pacman -Rpcs " + pkgName );
-  pacman.waitForFinished(-1);
-  res = pacman.readAllStandardOutput();
-  pacman.close();
-
+  QByteArray res = performQuery(args);
   return res;
 }
 
@@ -739,6 +636,7 @@ UnixCommand::UnixCommand(QObject *parent): QObject()
 LinuxDistro UnixCommand::getLinuxDistro()
 {
   QFile file("/etc/os-release");
+
   if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
       return ectn_UNKNOWN;
 

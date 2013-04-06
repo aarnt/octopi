@@ -153,8 +153,16 @@
     <addaction name="separator"/>
     <addaction name="actionExit"/>
    </widget>
+   <widget class="QMenu" name="menuSearch">
+    <property name="title">
+     <string>Search</string>
+    </property>
+    <addaction name="actionSearchByDescription"/>
+    <addaction name="actionSearchByName"/>
+   </widget>
    <addaction name="menuFile"/>
    <addaction name="menuView"/>
+   <addaction name="menuSearch"/>
    <addaction name="menuTransaction"/>
    <addaction name="menuHelp"/>
   </widget>
@@ -406,6 +414,22 @@
    </property>
    <property name="iconVisibleInMenu">
     <bool>true</bool>
+   </property>
+  </action>
+  <action name="actionSearchByDescription">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>By description</string>
+   </property>
+  </action>
+  <action name="actionSearchByName">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>By name</string>
    </property>
   </action>
  </widget>

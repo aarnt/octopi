@@ -271,6 +271,23 @@ bool MainWindow::isPackageInstalled(const QString &pkgName)
 }
 
 /*
+ * User changed the search column used by the SortFilterProxyModel in tvPackages
+ */
+void MainWindow::tvPackagesSearchColumnChanged(QAction *actionSelected)
+{
+  //We are in the realm of tradictional NAME search
+  if (actionSelected->objectName() == ui->actionSearchByName->objectName())
+  {
+    m_proxyModelPackages->setFilterKeyColumn(ctn_PACKAGE_NAME_COLUMN);
+  }
+  //We are talking about slower 'search by description'...
+  else
+  {
+    m_proxyModelPackages->setFilterKeyColumn(ctn_PACKAGE_DESCRIPTION_COLUMN);
+  }
+}
+
+/*
  * Populates the list of available packages from the given groupName
  */
 void MainWindow::buildPackagesFromGroupList(const QString &groupName)
@@ -328,7 +345,7 @@ void MainWindow::buildPackagesFromGroupList(const QString &groupName)
 
   QProgressDialog progress(StrConstants::getBuildingPackageList(), "", 0, list->count(), this);
   progress.setValue(0);
-  progress.setMinimumDuration(10);
+  //progress.setMinimumDuration(10);
   progress.setCancelButton(0);
   progress.setWindowModality(Qt::WindowModal);
 
@@ -357,7 +374,7 @@ void MainWindow::buildPackagesFromGroupList(const QString &groupName)
       lNames2 << lNames.last()->clone();
       lVersions2 << lVersions.last()->clone();
       lRepositories2 << lRepositories.last()->clone();
-      lDescriptions2 << lDescriptions;
+      lDescriptions2 << lDescriptions.last()->clone();
     }
 
     counter++;
@@ -366,22 +383,22 @@ void MainWindow::buildPackagesFromGroupList(const QString &groupName)
     it++;
   }
 
-  parentItemPackagesFromGroup->insertColumn(0, lIcons);
-  parentItemPackagesFromGroup->insertColumn(1, lNames);
-  parentItemPackagesFromGroup->insertColumn(2, lVersions);
-  parentItemPackagesFromGroup->insertColumn(3, lRepositories);
-  parentItemPackagesFromGroup->insertColumn(4, lDescriptions);
+  parentItemPackagesFromGroup->insertColumn(ctn_PACKAGE_ICON_COLUMN, lIcons);
+  parentItemPackagesFromGroup->insertColumn(ctn_PACKAGE_NAME_COLUMN, lNames);
+  parentItemPackagesFromGroup->insertColumn(ctn_PACKAGE_VERSION_COLUMN, lVersions);
+  parentItemPackagesFromGroup->insertColumn(ctn_PACKAGE_REPOSITORY_COLUMN, lRepositories);
+  parentItemPackagesFromGroup->insertColumn(ctn_PACKAGE_DESCRIPTION_COLUMN, lDescriptions);
 
-  parentItemInstalledPackagesFromGroup->insertColumn(0, lIcons2);
-  parentItemInstalledPackagesFromGroup->insertColumn(1, lNames2);
-  parentItemInstalledPackagesFromGroup->insertColumn(2, lVersions2);
-  parentItemInstalledPackagesFromGroup->insertColumn(3, lRepositories2);
-  parentItemInstalledPackagesFromGroup->insertColumn(4, lDescriptions2);
+  parentItemInstalledPackagesFromGroup->insertColumn(ctn_PACKAGE_ICON_COLUMN, lIcons2);
+  parentItemInstalledPackagesFromGroup->insertColumn(ctn_PACKAGE_NAME_COLUMN, lNames2);
+  parentItemInstalledPackagesFromGroup->insertColumn(ctn_PACKAGE_VERSION_COLUMN, lVersions2);
+  parentItemInstalledPackagesFromGroup->insertColumn(ctn_PACKAGE_REPOSITORY_COLUMN, lRepositories2);
+  parentItemInstalledPackagesFromGroup->insertColumn(ctn_PACKAGE_DESCRIPTION_COLUMN, lDescriptions2);
 
-  ui->tvPackages->setColumnWidth(0, 24);
-  ui->tvPackages->setColumnWidth(1, 500);
-  ui->tvPackages->setColumnWidth(2, 160);
-  ui->tvPackages->header()->setSectionHidden(4, true);
+  ui->tvPackages->setColumnWidth(ctn_PACKAGE_ICON_COLUMN, 24);
+  ui->tvPackages->setColumnWidth(ctn_PACKAGE_NAME_COLUMN, 500);
+  ui->tvPackages->setColumnWidth(ctn_PACKAGE_VERSION_COLUMN, 160);
+  ui->tvPackages->header()->setSectionHidden(ctn_PACKAGE_DESCRIPTION_COLUMN, true);
 
   ui->tvPackages->sortByColumn(m_PackageListOrderedCol, m_PackageListSortOrder);
 
@@ -463,8 +480,19 @@ void MainWindow::buildPackageList()
   QList<PackageListData> *listForeign = Package::getForeignPackageList();
   QList<PackageListData>::const_iterator itForeign = listForeign->begin();
 
+  QProgressDialog progress(StrConstants::getBuildingPackageList(),
+                           "", 0, list->count() + listForeign->count(), this);
+  progress.setValue(0);
+  progress.setCancelButton(0);
+  progress.setWindowModality(Qt::WindowModal);
+
+  int counter=0;
   while (itForeign != listForeign->end())
   {
+    counter++;
+    progress.setValue(counter);
+    //qApp->processEvents();
+
     //list->append(*itForeign);
     PackageListData pld = PackageListData(
           itForeign->name, itForeign->repository, itForeign->version,
@@ -481,13 +509,6 @@ void MainWindow::buildPackageList()
   QList<QStandardItem*> lIcons, lNames, lVersions, lRepositories, lDescriptions;
   QList<QStandardItem*> lIcons2, lNames2, lVersions2, lRepositories2, lDescriptions2;
 
-  QProgressDialog progress(StrConstants::getBuildingPackageList(), "", 0, list->count(), this);
-  progress.setValue(0);
-  progress.setMinimumDuration(10);
-  progress.setCancelButton(0);
-  progress.setWindowModality(Qt::WindowModal);
-
-  int counter=0;
   while(it != list->end())
   {
     PackageListData pld = *it;
@@ -540,7 +561,7 @@ void MainWindow::buildPackageList()
 
     counter++;
     progress.setValue(counter);
-    qApp->processEvents();
+    //qApp->processEvents();
     it++;
   }
 
@@ -550,16 +571,16 @@ void MainWindow::buildPackageList()
   parentItem->insertColumn(3, lRepositories);
   parentItem->insertColumn(4, lDescriptions);
 
-  parentItemInstalledPackages->insertColumn(0, lIcons2);
-  parentItemInstalledPackages->insertColumn(1, lNames2);
-  parentItemInstalledPackages->insertColumn(2, lVersions2);
-  parentItemInstalledPackages->insertColumn(3, lRepositories2);
-  parentItemInstalledPackages->insertColumn(4, lDescriptions2);
+  parentItemInstalledPackages->insertColumn(ctn_PACKAGE_ICON_COLUMN, lIcons2);
+  parentItemInstalledPackages->insertColumn(ctn_PACKAGE_NAME_COLUMN, lNames2);
+  parentItemInstalledPackages->insertColumn(ctn_PACKAGE_VERSION_COLUMN, lVersions2);
+  parentItemInstalledPackages->insertColumn(ctn_PACKAGE_REPOSITORY_COLUMN, lRepositories2);
+  parentItemInstalledPackages->insertColumn(ctn_PACKAGE_DESCRIPTION_COLUMN, lDescriptions2);
 
-  ui->tvPackages->setColumnWidth(0, 24);
-  ui->tvPackages->setColumnWidth(1, 500);
-  ui->tvPackages->setColumnWidth(2, 160);
-  ui->tvPackages->header()->setSectionHidden(4, true);
+  ui->tvPackages->setColumnWidth(ctn_PACKAGE_ICON_COLUMN, 24);
+  ui->tvPackages->setColumnWidth(ctn_PACKAGE_NAME_COLUMN, 500);
+  ui->tvPackages->setColumnWidth(ctn_PACKAGE_VERSION_COLUMN, 160);
+  ui->tvPackages->header()->setSectionHidden(ctn_PACKAGE_DESCRIPTION_COLUMN, true);
 
   ui->tvPackages->sortByColumn(m_PackageListOrderedCol, m_PackageListSortOrder);
 
@@ -572,7 +593,6 @@ void MainWindow::buildPackageList()
   sl.clear();
   m_modelInstalledPackages->setHorizontalHeaderLabels(
         sl << "" << StrConstants::getName() << StrConstants::getVersion() << StrConstants::getRepository() << "");
-
 
   if (m_leFilterPackage->text() != "") reapplyPackageFilter();
 
@@ -608,7 +628,7 @@ void MainWindow::buildPackageList()
     m_initializationCompleted = true;
   }
 
-  counter = list->count();
+  counter = list->count() + listForeign->count();
   progress.setValue(counter);
 
   firstTime = false;
@@ -720,31 +740,41 @@ void MainWindow::changePackageListModel()
 }
 
 /*
+ * Returns the current selected StandardItemModel, based on groups and installed packages switches
+ */
+QStandardItemModel *MainWindow::_getCurrentSelectedModel()
+{
+  QStandardItemModel *sim=0;
+
+  if(ui->actionNonInstalledPackages->isChecked())
+  {
+    if(m_cbGroups->currentIndex() == 0)
+      sim = m_modelPackages;
+    else
+      sim = m_modelPackagesFromGroup;
+  }
+  else
+  {
+    if(m_cbGroups->currentIndex() == 0)
+      sim = m_modelInstalledPackages;
+    else
+      sim = m_modelInstalledPackagesFromGroup;
+  }
+
+  return sim;
+}
+
+/*
  * Brings the context menu when the user clicks the right button above the package list
  */
 void MainWindow::execContextMenuPackages(QPoint point)
 {
   if(ui->tvPackages->selectionModel()->selectedRows().count() > 0)
   {
-    QStandardItemModel * sim;
+    QStandardItemModel * sim = _getCurrentSelectedModel();
     bool allSameType = true;
     bool allInstallable = true;
     bool allRemovable = true;
-
-    if(ui->actionNonInstalledPackages->isChecked())
-    {
-      if(m_cbGroups->currentIndex() == 0)
-        sim = m_modelPackages;
-      else
-        sim = m_modelPackagesFromGroup;
-    }
-    else
-    {
-      if(m_cbGroups->currentIndex() == 0)
-        sim = m_modelInstalledPackages;
-      else
-        sim = m_modelInstalledPackagesFromGroup;
-    }
 
     foreach(QModelIndex item, ui->tvPackages->selectionModel()->selectedRows())
     {
@@ -1006,11 +1036,12 @@ bool MainWindow::_isPackageTreeViewVisible()
 /*
  * Re-populates the HTML view with selected package's information (tab ONE)
  */
-void MainWindow::refreshTabInfo(bool clearContents)
+void MainWindow::refreshTabInfo(bool clearContents, bool neverQuit)
 {
   static QString strSelectedPackage;
 
-  if(ui->twProperties->currentIndex() != ctn_TABINDEX_INFORMATION || !_isPropertiesTabWidgetVisible()) return;
+  if(neverQuit == false &&
+     (ui->twProperties->currentIndex() != ctn_TABINDEX_INFORMATION || !_isPropertiesTabWidgetVisible())) return;
 
   if (clearContents || ui->tvPackages->selectionModel()->selectedRows(ctn_PACKAGE_NAME_COLUMN).count() == 0)
   {
@@ -1070,7 +1101,14 @@ void MainWindow::refreshTabInfo(bool clearContents)
   }
   //If we are trying to refresh an already displayed package...
   if (strSelectedPackage == siRepository->text()+"#"+siName->text()+"#"+siVersion->text())
+  {
+    if (neverQuit)
+    {
+      _changeTabWidgetPropertiesIndex(ctn_TABINDEX_INFORMATION);
+    }
+
     return;
+  }
 
   CPUIntensiveComputing cic;
 
@@ -1168,6 +1206,11 @@ void MainWindow::refreshTabInfo(bool clearContents)
   }
 
   strSelectedPackage = siRepository->text()+"#"+siName->text()+"#"+siVersion->text();
+
+  if (neverQuit)
+  {
+    _changeTabWidgetPropertiesIndex(ctn_TABINDEX_INFORMATION);
+  }
 }
 
 /*
@@ -1380,7 +1423,16 @@ void MainWindow::refreshTabFiles(bool clearContents, bool neverQuit)
  */
 void MainWindow::onDoubleClickPackageList()
 {
-  refreshTabFiles(false, true);
+  QStandardItemModel *sim=_getCurrentSelectedModel();
+  QStandardItem * siName = sim->item(ui->tvPackages->currentIndex().row(), ctn_PACKAGE_NAME_COLUMN);
+  if (isPackageInstalled(siName->text()))
+  {
+    refreshTabFiles(false, true);
+  }
+  else
+  {
+    refreshTabInfo(false, true);
+  }
 }
 
 /*

@@ -226,21 +226,7 @@ void MainWindow::insertIntoRemovePackage()
 {
   _ensureTabVisible(ctn_TABINDEX_TRANSACTION);
 
-  QStandardItemModel *sim;
-  if(ui->actionNonInstalledPackages->isChecked())
-  {
-    if(m_cbGroups->currentIndex() == 0)
-      sim = m_modelPackages;
-    else
-      sim = m_modelPackagesFromGroup;
-  }
-  else
-  {
-    if(m_cbGroups->currentIndex() == 0)
-      sim = m_modelInstalledPackages;
-    else
-      sim = m_modelInstalledPackagesFromGroup;
-  }
+  QStandardItemModel *sim=_getCurrentSelectedModel();
 
   //First, let's see if we are dealing with a package group
   if(m_cbGroups->currentIndex() != 0)
@@ -279,21 +265,7 @@ void MainWindow::insertIntoInstallPackage()
 {
   _ensureTabVisible(ctn_TABINDEX_TRANSACTION);
 
-  QStandardItemModel *sim;
-  if(ui->actionNonInstalledPackages->isChecked())
-  {
-    if(m_cbGroups->currentIndex() == 0)
-      sim = m_modelPackages;
-    else
-      sim = m_modelPackagesFromGroup;
-  }
-  else
-  {
-    if(m_cbGroups->currentIndex() == 0)
-      sim = m_modelInstalledPackages;
-    else
-      sim = m_modelInstalledPackagesFromGroup;
-  }
+  QStandardItemModel *sim=_getCurrentSelectedModel();
 
   //First, let's see if we are dealing with a package group
   if(m_cbGroups->currentIndex() != 0)
@@ -918,7 +890,21 @@ void MainWindow::toggleTransactionActions(const bool value)
   ui->actionInstall->setEnabled(value);
   ui->actionRemove->setEnabled(value);
   ui->actionSyncPackages->setEnabled(value);
-  ui->actionSystemUpgrade->setEnabled(value);
+
+  if (value == false)
+  {
+    ui->actionSystemUpgrade->setEnabled(false);
+  }
+  else
+  {
+    // Enable or disble system upgrade
+    QList<PackageListData> * targets = Package::getTargetUpgradeList();
+    if (targets->count() == 0)
+      ui->actionSystemUpgrade->setEnabled(false);
+    else
+      ui->actionSystemUpgrade->setEnabled(true);
+  }
+
   ui->actionGetNews->setEnabled(value);
 }
 
@@ -1054,7 +1040,7 @@ void MainWindow::actionsProcessFinished(int exitCode, QProcess::ExitStatus)
       connect(m_pacmanDatabaseSystemWatcher, SIGNAL(directoryChanged(QString)), this, SLOT(metaBuildPackageList()));
   }
 
-  if (exitCode != 0 && _textInTabOutput("conflict")) //|| _textInTabOutput("could not satisfy dependencies"))))
+  if (exitCode != 0 && _textInTabOutput("conflict"))
   {
     int res = QMessageBox::question(this, StrConstants::getThereHasBeenATransactionError(),
                                     StrConstants::getConfirmExecuteTransactionInTerminal(),

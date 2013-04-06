@@ -81,6 +81,12 @@ void MainWindow::keyPressEvent(QKeyEvent* ke)
 {
   if (ke->key() == Qt::Key_Return)
   {
+    /*if (m_leFilterPackage->hasFocus())
+    {
+      reapplyPackageFilter();
+      return;
+    }*/
+
     QTreeView *tvPkgFileList =
         ui->twProperties->widget(ctn_TABINDEX_FILES)->findChild<QTreeView*>("tvPkgFileList");
 
@@ -180,28 +186,12 @@ void MainWindow::keyReleaseEvent(QKeyEvent *ke)
   static int i=0;
   static int k=-9999;
   static int k_count=0;
-  QStandardItemModel *sim;
+  QStandardItemModel *sim=_getCurrentSelectedModel();
 
   if ((ui->tvPackages->hasFocus()) &&
       (((ke->key() >= Qt::Key_A) && (ke->key() <= Qt::Key_Z)) ||
        ((ke->key() >= Qt::Key_0 && (ke->key() <= Qt::Key_9)))))
   {
-    //Which model of tbPackage is being used?
-    if(ui->actionNonInstalledPackages->isChecked())
-    {
-      if(m_cbGroups->currentIndex() == 0)
-        sim = m_modelPackages;
-      else
-        sim = m_modelPackagesFromGroup;
-    }
-    else
-    {
-      if(m_cbGroups->currentIndex() == 0)
-        sim = m_modelInstalledPackages;
-      else
-        sim = m_modelInstalledPackagesFromGroup;
-    }
-
     QList<QStandardItem*> fi = sim->findItems( ke->text(), Qt::MatchStartsWith, ctn_PACKAGE_NAME_COLUMN );
     if (fi.count() > 0){
       if ( (ke->key() != k) || (fi.count() != k_count) ) i=0;

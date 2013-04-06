@@ -149,6 +149,7 @@ private:
   QString getOutdatedPackageVersionByName(const QString &pkgName);
   QString getInstalledPackageVersionByName(const QString &pkgName);
 
+  QStandardItemModel *_getCurrentSelectedModel();
   bool isPackageInstalled(const QString &pkgName);
   bool _isPackageTreeViewVisible();
   void initPackageTreeView();
@@ -224,6 +225,7 @@ private slots:
   void openTerminal();
   void openDirectory();
 
+  void tvPackagesSearchColumnChanged(QAction*);
   void tvPackagesSelectionChanged(const QItemSelection&, const QItemSelection&);
   void tvTransactionSelectionChanged (const QItemSelection&, const QItemSelection&);
   void tvTransactionRowsInserted(const QModelIndex& parent, int, int);
@@ -244,7 +246,7 @@ private slots:
   void reapplyPackageFilter();
 
   //TabWidget methods
-  void refreshTabInfo(bool clearContents=false);
+  void refreshTabInfo(bool clearContents=false, bool neverQuit=false);
   void refreshTabFiles(bool clearContents=false, bool neverQuit=false);
   void onDoubleClickPackageList();
   void changedTabIndex();

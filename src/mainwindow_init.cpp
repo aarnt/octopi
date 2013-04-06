@@ -207,15 +207,6 @@ void MainWindow::_changeTabWidgetPropertiesIndex(const int newIndex)
 
     ui->twProperties->currentWidget()->childAt(1,1)->setFocus();
   }
-  /*else if (newIndex == ctn_TABINDEX_FILES)
-  {
-    QTreeView *tvPkgFileList = ui->twProperties->widget(ctn_TABINDEX_FILES)->findChild<QTreeView*>("tvPkgFileList");
-    if(tvPkgFileList)
-    {
-      tvPkgFileList->setFocus();
-      tvPkgFileList->setCurrentIndex(tvPkgFileList->currentIndex());
-    }
-  }*/
   else
   {
     //For any other tab... just doing the following is enough
@@ -312,7 +303,7 @@ void MainWindow::initPackageTreeView()
   m_modelInstalledPackagesFromGroup = new QStandardItemModel(this);
 
   m_proxyModelPackages->setSourceModel(m_modelPackages);
-  m_proxyModelPackages->setFilterKeyColumn(4);
+  m_proxyModelPackages->setFilterKeyColumn(ctn_PACKAGE_NAME_COLUMN);
   ui->tvPackages->setItemDelegate(new TreeViewPackagesItemDelegate(ui->tvPackages));
   ui->tvPackages->setContextMenuPolicy(Qt::CustomContextMenu);
   ui->tvPackages->setSelectionMode(QAbstractItemView::ExtendedSelection);
@@ -321,7 +312,7 @@ void MainWindow::initPackageTreeView()
   ui->tvPackages->setAllColumnsShowFocus( true );
   ui->tvPackages->setModel(m_proxyModelPackages);
   ui->tvPackages->setSortingEnabled( true );
-  ui->tvPackages->sortByColumn( 1, Qt::AscendingOrder);
+  ui->tvPackages->sortByColumn(ctn_PACKAGE_NAME_COLUMN, Qt::AscendingOrder);
   ui->tvPackages->setIndentation( 0 );
   ui->tvPackages->header()->setSortIndicatorShown(true);
   ui->tvPackages->header()->setClickable(true);
@@ -904,8 +895,15 @@ void MainWindow::onHelpAbout()
  */
 void MainWindow::initActions()
 {
-  ui->actionCommit->setEnabled(false);
-  ui->actionRollback->setEnabled(false);
+  toggleTransactionActions(true);
+
+  QActionGroup *actionGroup = new QActionGroup(this);
+  actionGroup->addAction(ui->actionSearchByDescription);
+  actionGroup->addAction(ui->actionSearchByName);
+  ui->actionSearchByName->setChecked(true);
+  actionGroup->setExclusive(true);
+
+  connect(actionGroup, SIGNAL(selected(QAction*)), this, SLOT(tvPackagesSearchColumnChanged(QAction*)));
 
   ui->actionOpenDirectory->setIcon(IconHelper::getIconFolder());
 

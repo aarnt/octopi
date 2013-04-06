@@ -62,6 +62,10 @@ public:
   static QString discoverBinaryPath(const QString&);
 
   static bool cleanPacmanCache();
+
+  static QByteArray performQuery(const QStringList args);
+  static QByteArray performQuery(const QString &args);
+
   static QByteArray getUnrequiredPackageList();
   static QByteArray getOutdatedPackageList();
   static QByteArray getForeignPackageList();
