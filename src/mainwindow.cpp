@@ -285,6 +285,33 @@ void MainWindow::tvPackagesSearchColumnChanged(QAction *actionSelected)
   {
     m_proxyModelPackages->setFilterKeyColumn(ctn_PACKAGE_DESCRIPTION_COLUMN);
   }
+
+  QModelIndex cIcon = m_proxyModelPackages->index(0, ctn_PACKAGE_ICON_COLUMN);
+  QModelIndex cName = m_proxyModelPackages->index(0, ctn_PACKAGE_NAME_COLUMN);
+  QModelIndex cVersion = m_proxyModelPackages->index(0, ctn_PACKAGE_VERSION_COLUMN);
+  QModelIndex cRepository = m_proxyModelPackages->index(0, ctn_PACKAGE_REPOSITORY_COLUMN);
+
+  ui->tvPackages->setCurrentIndex(cIcon);
+
+  ui->tvPackages->scrollTo(cIcon, QAbstractItemView::PositionAtTop);
+
+  if (m_leFilterPackage->text() == "")
+  {
+    ui->tvPackages->selectionModel()->setCurrentIndex(cIcon, QItemSelectionModel::Select);
+  }
+  else
+  {
+    ui->tvPackages->selectionModel()->setCurrentIndex(cIcon, QItemSelectionModel::SelectCurrent);
+    ui->tvPackages->selectionModel()->setCurrentIndex(cName, QItemSelectionModel::Select);
+    ui->tvPackages->selectionModel()->setCurrentIndex(cVersion, QItemSelectionModel::Select);
+    ui->tvPackages->selectionModel()->setCurrentIndex(cRepository, QItemSelectionModel::Select);
+  }
+
+  QModelIndex mi = m_proxyModelPackages->index(0, ctn_PACKAGE_NAME_COLUMN);
+  ui->tvPackages->setCurrentIndex(mi);
+  ui->tvPackages->scrollTo(mi);
+
+  changedTabIndex();
 }
 
 /*
