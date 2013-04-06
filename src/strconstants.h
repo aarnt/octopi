@@ -566,7 +566,7 @@ public:
           "QTabBar::tab:selected, QTabBar::tab:hover {"
           "background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,"
                                       "stop: 0 #fafafa, stop: 0.4 #f4f4f4,"
-                                      "stop: 0.5 #e7e7e7, stop: 1.0 #fafafa); border: 2px solid #C4C4C3; color: #000000;}"
+                                      "stop: 0.5 #e7e7e7, stop: 1.0 #fafafa); border: 2px solid #81ac44; color: #000000;}"
       "QProgressBar::chunk {"
           "background-color: #81ac44;}"
           //"width: 20px;}";

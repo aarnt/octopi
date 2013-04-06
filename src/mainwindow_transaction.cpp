@@ -1054,7 +1054,7 @@ void MainWindow::actionsProcessFinished(int exitCode, QProcess::ExitStatus)
       connect(m_pacmanDatabaseSystemWatcher, SIGNAL(directoryChanged(QString)), this, SLOT(metaBuildPackageList()));
   }
 
-  if (exitCode != 0 && ((_textInTabOutput("conflict") || _textInTabOutput("could not satisfy dependencies"))))
+  if (exitCode != 0 && _textInTabOutput("conflict")) //|| _textInTabOutput("could not satisfy dependencies"))))
   {
     int res = QMessageBox::question(this, StrConstants::getThereHasBeenATransactionError(),
                                     StrConstants::getConfirmExecuteTransactionInTerminal(),

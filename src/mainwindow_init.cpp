@@ -371,6 +371,7 @@ void MainWindow::initTabInfo(){
   //ui->twProperties->setTabText(ui->twProperties->indexOf(tabInfo), QApplication::translate(
   //    "MainWindow", aux.toUtf8(), 0, QApplication::UnicodeUTF8));
 
+  ui->twProperties->setUsesScrollButtons(false);
   ui->twProperties->setCurrentIndex(ctn_TABINDEX_INFORMATION);
   text->show();
   text->setFocus();
@@ -679,16 +680,21 @@ void MainWindow::refreshDistroNews(bool searchForLatestNews, bool gotoNewsTab)
 
   if (distroRSSXML.count() >= 200)
   {
-    if (distroRSSXML.at(0)=='*' && gotoNewsTab)
+    if (distroRSSXML.at(0)=='*')
     {
       //If this is an updated RSS, we must warn the user!
       ui->twProperties->setTabText(ctn_TABINDEX_NEWS, "** " + StrConstants::getTabNewsName() + " **");
-      ui->twProperties->setCurrentIndex(ctn_TABINDEX_NEWS);
+      if (gotoNewsTab)
+      {
+        ui->twProperties->setCurrentIndex(ctn_TABINDEX_NEWS);
+      }
     }
     else
     {
       if(searchForLatestNews)
+      {
         ui->twProperties->setTabText(ctn_TABINDEX_NEWS, StrConstants::getTabNewsName());
+      }
     }
 
     //First, we have to parse the raw RSS XML...
