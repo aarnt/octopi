@@ -468,7 +468,7 @@ void MainWindow::buildPackageList()
     //list->append(*itForeign);
     PackageListData pld = PackageListData(
           itForeign->name, itForeign->repository, itForeign->version,
-          Package::getInformationDescription(itForeign->name, true),
+          itForeign->name + " " + Package::getInformationDescription(itForeign->name, true),
           ectn_FOREIGN);
 
     list->append(pld);
