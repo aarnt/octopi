@@ -323,8 +323,8 @@ void MainWindow::buildPackagesFromGroupList(const QString &groupName)
   QStandardItem *parentItemInstalledPackagesFromGroup = m_modelInstalledPackagesFromGroup->invisibleRootItem();
 
   QList<QString>::const_iterator it = list->begin();
-  QList<QStandardItem*> lIcons, lNames, lVersions, lRepositories;
-  QList<QStandardItem*> lIcons2, lNames2, lVersions2, lRepositories2;
+  QList<QStandardItem*> lIcons, lNames, lVersions, lRepositories, lDescriptions;
+  QList<QStandardItem*> lIcons2, lNames2, lVersions2, lRepositories2, lDescriptions2;
 
   QProgressDialog progress(StrConstants::getBuildingPackageList(), "", 0, list->count(), this);
   progress.setValue(0);
@@ -341,11 +341,13 @@ void MainWindow::buildPackagesFromGroupList(const QString &groupName)
     QStandardItem *siName = getAvailablePackage(packageName, ctn_PACKAGE_NAME_COLUMN);
     QStandardItem *siVersion = getAvailablePackage(packageName, ctn_PACKAGE_VERSION_COLUMN);
     QStandardItem *siRepository = getAvailablePackage(packageName, ctn_PACKAGE_REPOSITORY_COLUMN);
+    QStandardItem *siDescription = getAvailablePackage(packageName, ctn_PACKAGE_DESCRIPTION_COLUMN);
 
     lIcons << siIcon;
     lNames << siName;
     lVersions << siVersion;
     lRepositories << siRepository;
+    lDescriptions << siDescription;
 
     //If this is an INSTALLED package, we add it to the model view of installed packages!
     if (siIcon->icon().pixmap(QSize(22,22)).toImage() !=
@@ -355,6 +357,7 @@ void MainWindow::buildPackagesFromGroupList(const QString &groupName)
       lNames2 << lNames.last()->clone();
       lVersions2 << lVersions.last()->clone();
       lRepositories2 << lRepositories.last()->clone();
+      lDescriptions2 << lDescriptions;
     }
 
     counter++;
@@ -367,23 +370,27 @@ void MainWindow::buildPackagesFromGroupList(const QString &groupName)
   parentItemPackagesFromGroup->insertColumn(1, lNames);
   parentItemPackagesFromGroup->insertColumn(2, lVersions);
   parentItemPackagesFromGroup->insertColumn(3, lRepositories);
+  parentItemPackagesFromGroup->insertColumn(4, lDescriptions);
 
   parentItemInstalledPackagesFromGroup->insertColumn(0, lIcons2);
   parentItemInstalledPackagesFromGroup->insertColumn(1, lNames2);
   parentItemInstalledPackagesFromGroup->insertColumn(2, lVersions2);
   parentItemInstalledPackagesFromGroup->insertColumn(3, lRepositories2);
+  parentItemInstalledPackagesFromGroup->insertColumn(4, lDescriptions2);
 
   ui->tvPackages->setColumnWidth(0, 24);
   ui->tvPackages->setColumnWidth(1, 500);
   ui->tvPackages->setColumnWidth(2, 160);
+  ui->tvPackages->header()->setSectionHidden(4, true);
+
   ui->tvPackages->sortByColumn(m_PackageListOrderedCol, m_PackageListSortOrder);
 
   m_modelPackagesFromGroup->setHorizontalHeaderLabels(
-        sl << "" << StrConstants::getName() << StrConstants::getVersion() << StrConstants::getRepository());
+        sl << "" << StrConstants::getName() << StrConstants::getVersion() << StrConstants::getRepository() << "");
 
   sl.clear();
   m_modelInstalledPackagesFromGroup->setHorizontalHeaderLabels(
-        sl << "" << StrConstants::getName() << StrConstants::getVersion() << StrConstants::getRepository());
+        sl << "" << StrConstants::getName() << StrConstants::getVersion() << StrConstants::getRepository() << "");
 
   if (m_leFilterPackage->text() != "") reapplyPackageFilter();
 
@@ -458,15 +465,21 @@ void MainWindow::buildPackageList()
 
   while (itForeign != listForeign->end())
   {
-    list->append(*itForeign);
+    //list->append(*itForeign);
+    PackageListData pld = PackageListData(
+          itForeign->name, itForeign->repository, itForeign->version,
+          Package::getInformationDescription(itForeign->name, true),
+          ectn_FOREIGN);
+
+    list->append(pld);
     itForeign++;
   }
 
   QStandardItem *parentItem = m_modelPackages->invisibleRootItem();
   QStandardItem *parentItemInstalledPackages = m_modelInstalledPackages->invisibleRootItem();
   QList<PackageListData>::const_iterator it = list->begin();
-  QList<QStandardItem*> lIcons, lNames, lVersions, lRepositories;
-  QList<QStandardItem*> lIcons2, lNames2, lVersions2, lRepositories2;
+  QList<QStandardItem*> lIcons, lNames, lVersions, lRepositories, lDescriptions;
+  QList<QStandardItem*> lIcons2, lNames2, lVersions2, lRepositories2, lDescriptions2;
 
   QProgressDialog progress(StrConstants::getBuildingPackageList(), "", 0, list->count(), this);
   progress.setValue(0);
@@ -506,6 +519,7 @@ void MainWindow::buildPackageList()
 
     lNames << new QStandardItem(pld.name);
     lVersions << new QStandardItem(pld.version);
+    lDescriptions << new QStandardItem(pld.description);
 
     if (pld.repository.isEmpty())
     {
@@ -521,6 +535,7 @@ void MainWindow::buildPackageList()
       lNames2 << lNames.last()->clone();
       lVersions2 << lVersions.last()->clone();
       lRepositories2 << lRepositories.last()->clone();
+      lDescriptions2 << lDescriptions.last()->clone();
     }
 
     counter++;
@@ -533,26 +548,31 @@ void MainWindow::buildPackageList()
   parentItem->insertColumn(1, lNames);
   parentItem->insertColumn(2, lVersions);
   parentItem->insertColumn(3, lRepositories);
+  parentItem->insertColumn(4, lDescriptions);
 
   parentItemInstalledPackages->insertColumn(0, lIcons2);
   parentItemInstalledPackages->insertColumn(1, lNames2);
   parentItemInstalledPackages->insertColumn(2, lVersions2);
   parentItemInstalledPackages->insertColumn(3, lRepositories2);
+  parentItemInstalledPackages->insertColumn(4, lDescriptions2);
 
   ui->tvPackages->setColumnWidth(0, 24);
   ui->tvPackages->setColumnWidth(1, 500);
   ui->tvPackages->setColumnWidth(2, 160);
+  ui->tvPackages->header()->setSectionHidden(4, true);
+
   ui->tvPackages->sortByColumn(m_PackageListOrderedCol, m_PackageListSortOrder);
 
   m_modelPackages->sort(m_PackageListOrderedCol, m_PackageListSortOrder);
   m_modelInstalledPackages->sort(m_PackageListOrderedCol, m_PackageListSortOrder);
 
   m_modelPackages->setHorizontalHeaderLabels(
-        sl << "" << StrConstants::getName() << StrConstants::getVersion() << StrConstants::getRepository());
+        sl << "" << StrConstants::getName() << StrConstants::getVersion() << StrConstants::getRepository() << "");
 
   sl.clear();
   m_modelInstalledPackages->setHorizontalHeaderLabels(
-        sl << "" << StrConstants::getName() << StrConstants::getVersion() << StrConstants::getRepository());
+        sl << "" << StrConstants::getName() << StrConstants::getVersion() << StrConstants::getRepository() << "");
+
 
   if (m_leFilterPackage->text() != "") reapplyPackageFilter();
 

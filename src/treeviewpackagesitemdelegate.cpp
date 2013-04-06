@@ -32,8 +32,12 @@ QPoint gPoint;
 QFutureWatcher<QString> fw;
 using namespace QtConcurrent;
 
-QString showPackageInfo(QString pkgName, bool foreignPackage = false){
-  return(Package::getInformationDescription(pkgName, foreignPackage));
+QString showPackageInfo(QString pkgName){
+  QString description =
+      MainWindow::returnMainWindow()->getAvailablePackage(pkgName, ctn_PACKAGE_DESCRIPTION_COLUMN)->text();
+
+  int space = description.indexOf(" ");
+  return description.mid(space+1);
 }
 
 TreeViewPackagesItemDelegate::TreeViewPackagesItemDelegate(QObject *parent): QStyledItemDelegate(parent){  
@@ -66,16 +70,7 @@ bool TreeViewPackagesItemDelegate::helpEvent ( QHelpEvent *event, QAbstractItemV
       gPoint = tvPackages->mapToGlobal(event->pos());
       QFuture<QString> f;
 
-      QModelIndex mi = sim->index(si->row(), ctn_PACKAGE_REPOSITORY_COLUMN);
-      QStandardItem *siRepo = sim->itemFromIndex(mi);
-
-      bool foreignPackage = false;
-      if(siRepo)
-      {
-        if (siRepo->text() == StrConstants::getForeignRepositoryName()) foreignPackage = true;
-      }
-
-      f = run(showPackageInfo, si->text(), foreignPackage);
+      f = run(showPackageInfo, si->text());
       fw.setFuture(f);
       connect(&fw, SIGNAL(finished()), this, SLOT(execToolTip()));
     }
@@ -100,15 +95,12 @@ bool TreeViewPackagesItemDelegate::helpEvent ( QHelpEvent *event, QAbstractItemV
         if (foundItems.count() > 0)
         {
           QStandardItem *siFound = foundItems.at(0);
-          QStandardItem *siRepository = modelPackages->item(siFound->row(), ctn_PACKAGE_REPOSITORY_COLUMN);
-
-          bool foreignPackage = (siRepository->text().isEmpty());
 
           QPoint p;
           gPoint = tvTransaction->mapToGlobal(event->pos());
           QFuture<QString> f;
 
-          f = run(showPackageInfo, siFound->text(), foreignPackage);
+          f = run(showPackageInfo, siFound->text());
           fw.setFuture(f);
           connect(&fw, SIGNAL(finished()), this, SLOT(execToolTip()));
         }
@@ -129,19 +121,5 @@ void TreeViewPackagesItemDelegate::execToolTip(){
   gPoint.setX(gPoint.x() + 25);
 	gPoint.setY(gPoint.y() + 25);
 
-  /*if (m_PkgClassification == ectn_INSTALLED || m_PkgClassification == ectn_OTHER_ARCH )
-    qApp->setStyleSheet(StrConstants::getToolTipNormalCSS());
-  else if (m_PkgClassification == ectn_OTHER_VERSION)
-    qApp->setStyleSheet(StrConstants::getToolTipYellowCSS());
-  else if (m_PkgClassification == ectn_INFERIOR_VERSION)
-    qApp->setStyleSheet(StrConstants::getToolTipRedCSS());
-  else if (m_PkgClassification == ectn_SUPERIOR_VERSION)
-    qApp->setStyleSheet(StrConstants::getToolTipGreenCSS());
-  else if (m_PkgClassification == ectn_NOT_INSTALLED)
-    qApp->setStyleSheet(StrConstants::getToolTipBlankCSS());
-  else if (m_PkgClassification == ectn_FROZEN)
-    qApp->setStyleSheet(StrConstants::getToolTipBlueCSS());*/
-
-  //qApp->setStyleSheet(StrConstants::getToolTipNormalCSS());
   QToolTip::showText(gPoint, fw.result());
 }

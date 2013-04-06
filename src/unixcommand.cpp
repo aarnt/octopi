@@ -114,14 +114,10 @@ QString UnixCommand::discoverBinaryPath(const QString& binary){
 bool UnixCommand::cleanPacmanCache()
 {
   QProcess pacman;
-
-#if QT_VERSION >= 0x040600
   QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
   env.insert("LANG", "us_EN");
   pacman.setProcessEnvironment(env);
-#endif
 
-  //QString commandStr = "pacman -Sc --noconfirm";
   QString commandStr = "\"yes | pacman -Scc\"";
 
   QString command = WMHelper::getSUCommand() + " " + commandStr;
@@ -220,7 +216,7 @@ QByteArray UnixCommand::getPackageList()
   pacman.setProcessEnvironment(env);
 #endif
 
-  args << "-Sl";
+  args << "-Ss"; //It was -Sl...
   pacman.start("pacman", args);
 
   pacman.waitForFinished(-1);
@@ -600,7 +596,6 @@ void UnixCommand::runCommandInTerminal(const QStringList& commandList){
   ftemp->close();
 
   QProcess p;
-  //QStringList s;
 
   if(WMHelper::isXFCERunning() && UnixCommand::hasTheExecutable(ctn_XFCE_TERMINAL)){
     QString cmd = WMHelper::getSUCommand() + " \"" + ctn_XFCE_TERMINAL + " -e \'bash -c " + ftemp->fileName() + "'\"";

@@ -1379,7 +1379,6 @@ void MainWindow::writeToTabOutput(const QString &msg)
   }
 }
 
-
 /*
  * A helper method which writes the given string to OutputTab's textbrowser
  * This is the EXTENDED version, it checks lots of things before writing msg

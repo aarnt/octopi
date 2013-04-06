@@ -44,6 +44,7 @@ const int ctn_PACKAGE_ICON_COLUMN(0);
 const int ctn_PACKAGE_NAME_COLUMN(1);
 const int ctn_PACKAGE_VERSION_COLUMN(2);
 const int ctn_PACKAGE_REPOSITORY_COLUMN(3);
+const int ctn_PACKAGE_DESCRIPTION_COLUMN(4);
 
 //Tab indices for Properties' tabview
 const int ctn_TABINDEX_INFORMATION(0);
@@ -78,6 +79,7 @@ public:
   }
 
   QStandardItemModel *getModelPackages(){ return m_modelPackages; }
+  QStandardItem *getAvailablePackage(const QString &pkgName, const int index);
 
 private:
   Ui::MainWindow *ui;
@@ -146,8 +148,6 @@ private:
 
   QString getOutdatedPackageVersionByName(const QString &pkgName);
   QString getInstalledPackageVersionByName(const QString &pkgName);
-
-  QStandardItem *getAvailablePackage(const QString &pkgName, const int index);
 
   bool isPackageInstalled(const QString &pkgName);
   bool _isPackageTreeViewVisible();

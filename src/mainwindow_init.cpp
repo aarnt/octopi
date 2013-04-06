@@ -312,7 +312,7 @@ void MainWindow::initPackageTreeView()
   m_modelInstalledPackagesFromGroup = new QStandardItemModel(this);
 
   m_proxyModelPackages->setSourceModel(m_modelPackages);
-  m_proxyModelPackages->setFilterKeyColumn(1);
+  m_proxyModelPackages->setFilterKeyColumn(4);
   ui->tvPackages->setItemDelegate(new TreeViewPackagesItemDelegate(ui->tvPackages));
   ui->tvPackages->setContextMenuPolicy(Qt::CustomContextMenu);
   ui->tvPackages->setSelectionMode(QAbstractItemView::ExtendedSelection);

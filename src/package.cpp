@@ -336,6 +336,75 @@ QList<PackageListData> *Package::getForeignPackageList()
  */
 QList<PackageListData> * Package::getPackageList()
 {
+  //archlinuxfr/yaourt 1.2.2-1 [installed]
+  //    A pacman wrapper with extended features and AUR support
+
+  //community/libfm 1.1.0-4 (lxde) [installed: 1.1.0-3]
+
+  QString pkgName, pkgRepository, pkgVersion, pkgDescription, pkgOutVersion;
+  PackageStatus pkgStatus;
+  QString pkgList = UnixCommand::getPackageList();
+  QStringList packageTuples = pkgList.split(QRegExp("\\n"), QString::SkipEmptyParts);
+  QList<PackageListData> * res = new QList<PackageListData>();
+
+  pkgDescription = "";
+  foreach(QString packageTuple, packageTuples)
+  {
+    if (!packageTuple[0].isSpace())
+    {
+      //Do we already have a description??
+      if (pkgDescription != "")
+      {
+        pkgDescription = pkgName + " " + pkgDescription;
+
+        PackageListData pld =
+            PackageListData(pkgName, pkgRepository, pkgVersion, pkgDescription, pkgStatus, pkgOutVersion);
+
+        res->append(pld);
+
+        pkgDescription = "";
+      }
+
+      //First we get repository and name!
+      QStringList parts = packageTuple.split(' ');
+      QString repoName = parts[0];
+      int a = repoName.indexOf("/");
+      pkgRepository = repoName.left(a);
+      pkgName = repoName.mid(a+1);
+      pkgVersion = parts[1];
+
+      if(packageTuple.indexOf("[installed]") != -1)
+      {
+        //This is an installed package
+        pkgStatus = ectn_INSTALLED;
+        pkgOutVersion = "";
+      }
+      else if (packageTuple.indexOf("[installed:") != -1)
+      {
+        //This is an outdated installed package
+        pkgStatus = ectn_OUTDATED;
+
+        int i = packageTuple.indexOf("[installed:");
+        pkgOutVersion = packageTuple.mid(i+11);
+        pkgOutVersion.remove(']').trimmed();
+      }
+      else
+      {
+        //This is an uninstalled package
+        pkgStatus = ectn_NON_INSTALLED;
+        pkgOutVersion = "";
+      }
+    }
+    else
+    {
+      //This is a description!
+      pkgDescription += packageTuple.trimmed();
+    }
+  }
+
+  return res;
+
+  /*
   QString pkgList = UnixCommand::getPackageList();
   QStringList packageTuples = pkgList.split(QRegExp("\\n"), QString::SkipEmptyParts);
   QList<PackageListData> * res = new QList<PackageListData>();
@@ -364,6 +433,8 @@ QList<PackageListData> * Package::getPackageList()
   }
 
   return res;
+  */
+
 }
 
 /*
