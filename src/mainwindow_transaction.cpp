@@ -897,7 +897,7 @@ void MainWindow::toggleTransactionActions(const bool value)
   }
   else
   {
-    // Enable or disble system upgrade
+    //Let's see if we can enable system upgrade
     QList<PackageListData> * targets = Package::getTargetUpgradeList();
     if (targets->count() == 0)
       ui->actionSystemUpgrade->setEnabled(false);
