@@ -1218,16 +1218,17 @@ void MainWindow::refreshTabInfo(bool clearContents, bool neverQuit)
     html += "<tr><td>" + dependsOn + "</td><td>" + pid.dependsOn + "</td></tr>";
     html += "<tr><td>" + optionalDeps + "</td><td>" + pid.optDepends + "</td></tr>";
     html += "<tr><td><b>" /*<font color=\"#E55451\">*/ + conflictsWith +
-        "</b></td><td><b>" /*<font color=\"#E55451\"><b>"*/ + pid.conflictsWith + "</b></font></td></tr>";
+        "</b></td><td><b>" /*<font color=\"#E55451\"><b>"*/ +
+        pid.conflictsWith + "</b></font></td></tr>";
     html += "<tr><td>" + replaces + "</td><td>" + pid.replaces + "</td></tr>";
     html += "<tr><td>" + downloadSize + "</td><td>" + valDownloadSize + "</td></tr>";
     html += "<tr><td>" + installedSize + "</td><td>" + valInstalledSize + "</td></tr>";
     html += "<tr><td>" + packager + "</td><td>" + packagerName + "</td></tr>";
     html += "<tr><td>" + architecture + "</td><td>" + pid.arch + "</td></tr>";
-    html += "<tr><td>" + buildDate + "</td><td>" + pid.buildDate.toString("ddd - dd/MM/yyyy hh:mm:ss") + "</td></tr>";
+    html += "<tr><td>" + buildDate + "</td><td>" +
+        pid.buildDate.toString("ddd - dd/MM/yyyy hh:mm:ss") + "</td></tr>";
 
     html += "</table>";
-
     text->setHtml(html);
     text->scrollToAnchor(anchorBegin);
   }
@@ -1292,30 +1293,30 @@ void MainWindow::refreshTabFiles(bool clearContents, bool neverQuit)
   {
     if (m_cbGroups->currentIndex() == 0)
     {
-      siName = m_modelPackages->item( mi.row(), ctn_PACKAGE_NAME_COLUMN);
-      siRepository = m_modelPackages->item( mi.row(), ctn_PACKAGE_REPOSITORY_COLUMN);
+      siName = m_modelPackages->item(mi.row(), ctn_PACKAGE_NAME_COLUMN);
+      siRepository = m_modelPackages->item(mi.row(), ctn_PACKAGE_REPOSITORY_COLUMN);
       siVersion = m_modelPackages->item( mi.row(), ctn_PACKAGE_VERSION_COLUMN);
     }
     else
     {
-      siName = m_modelPackagesFromGroup->item( mi.row(), ctn_PACKAGE_NAME_COLUMN);
-      siRepository = m_modelPackagesFromGroup->item( mi.row(), ctn_PACKAGE_REPOSITORY_COLUMN);
-      siVersion = m_modelPackagesFromGroup->item( mi.row(), ctn_PACKAGE_VERSION_COLUMN);
+      siName = m_modelPackagesFromGroup->item(mi.row(), ctn_PACKAGE_NAME_COLUMN);
+      siRepository = m_modelPackagesFromGroup->item(mi.row(), ctn_PACKAGE_REPOSITORY_COLUMN);
+      siVersion = m_modelPackagesFromGroup->item(mi.row(), ctn_PACKAGE_VERSION_COLUMN);
     }
   }
   else
   {
     if (m_cbGroups->currentIndex() == 0)
     {
-      siName = m_modelInstalledPackages->item( mi.row(), ctn_PACKAGE_NAME_COLUMN);
-      siRepository = m_modelInstalledPackages->item( mi.row(), ctn_PACKAGE_REPOSITORY_COLUMN);
-      siVersion = m_modelInstalledPackages->item( mi.row(), ctn_PACKAGE_VERSION_COLUMN);
+      siName = m_modelInstalledPackages->item(mi.row(), ctn_PACKAGE_NAME_COLUMN);
+      siRepository = m_modelInstalledPackages->item(mi.row(), ctn_PACKAGE_REPOSITORY_COLUMN);
+      siVersion = m_modelInstalledPackages->item(mi.row(), ctn_PACKAGE_VERSION_COLUMN);
     }
     else
     {
-      siName = m_modelInstalledPackagesFromGroup->item( mi.row(), ctn_PACKAGE_NAME_COLUMN);
-      siRepository = m_modelInstalledPackagesFromGroup->item( mi.row(), ctn_PACKAGE_REPOSITORY_COLUMN);
-      siVersion = m_modelInstalledPackagesFromGroup->item( mi.row(), ctn_PACKAGE_VERSION_COLUMN);
+      siName = m_modelInstalledPackagesFromGroup->item(mi.row(), ctn_PACKAGE_NAME_COLUMN);
+      siRepository = m_modelInstalledPackagesFromGroup->item(mi.row(), ctn_PACKAGE_REPOSITORY_COLUMN);
+      siVersion = m_modelInstalledPackagesFromGroup->item(mi.row(), ctn_PACKAGE_VERSION_COLUMN);
     }
   }
 
@@ -1451,7 +1452,9 @@ void MainWindow::refreshTabFiles(bool clearContents, bool neverQuit)
 void MainWindow::onDoubleClickPackageList()
 {
   QStandardItemModel *sim=_getCurrentSelectedModel();
-  QStandardItem * siName = sim->item(ui->tvPackages->currentIndex().row(), ctn_PACKAGE_NAME_COLUMN);
+  QModelIndex mi = m_proxyModelPackages->mapToSource(ui->tvPackages->currentIndex());
+  QStandardItem *siName = sim->item(mi.row(), ctn_PACKAGE_NAME_COLUMN);
+
   if (isPackageInstalled(siName->text()))
   {
     refreshTabFiles(false, true);
