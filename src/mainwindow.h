@@ -168,26 +168,23 @@ private:
   void refreshStatusBar();
 
   //Tab Transaction related methods
+  bool _isThereAPendingTransaction();
   void _tvTransactionAdjustItemText(QStandardItem *item);
   void _tvTransactionRowsChanged(const QModelIndex& parent);
-
-  void initTabTransaction();
   QStandardItem * getRemoveTransactionParentItem();
   QStandardItem * getInstallTransactionParentItem();
   void insertRemovePackageIntoTransaction(const QString &pkgName);
   void insertInstallPackageIntoTransaction(const QString &pkgName);
   void removePackagesFromRemoveTransaction();
   void removePackagesFromInstallTransaction();
-
   int getNumberOfTobeRemovedPackages();
   QString getTobeRemovedPackages();
   QString getTobeInstalledPackages();
+  void initTabTransaction();
 
   //Tab Output related methods
   void _collapseItem(QTreeView* tv, QStandardItemModel* sim, QModelIndex mi);
   void _expandItem(QTreeView* tv, QStandardItemModel* sim, QModelIndex* mi);
-
-  bool _isThereAPendingTransaction();
   void _positionTextEditCursorAtEnd();
   bool _textInTabOutput(const QString& findText);
   bool _searchForKeyVerbs(const QString& msg);

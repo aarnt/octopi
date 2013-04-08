@@ -567,7 +567,12 @@ void MainWindow::buildPackageList()
 
     lNames << new QStandardItem(pld.name);
     lVersions << new QStandardItem(pld.version);
-    lDescriptions << new QStandardItem(pld.description);
+
+    //Let's put package description in UTF-8 format
+    QString pkgDescription = pld.description;
+    pkgDescription = pkgDescription.fromUtf8(pkgDescription.toAscii().data());
+
+    lDescriptions << new QStandardItem(pkgDescription);
 
     if (pld.repository.isEmpty())
     {
@@ -588,7 +593,6 @@ void MainWindow::buildPackageList()
 
     counter++;
     progress.setValue(counter);
-    //qApp->processEvents();
     it++;
   }
 
@@ -1151,7 +1155,10 @@ void MainWindow::refreshTabInfo(bool clearContents, bool neverQuit)
     pid = Package::getInformation(pkgName, true); //This is a foreign package!!!
   }
 
-  //QString repository = StrConstants::getRepository();
+  //Let's put package description in UTF-8 format
+  QString pkgDescription = pid.description;
+  pkgDescription = pkgDescription.fromUtf8(pkgDescription.toAscii().data());
+
   QString version = StrConstants::getVersion();
   QString url = StrConstants::getURL();
   QString licenses = StrConstants::getLicenses();
@@ -1186,7 +1193,7 @@ void MainWindow::refreshTabInfo(bool clearContents, bool neverQuit)
     html += "<a id=\"" + anchorBegin + "\"></a>";
 
     html += "<h2>" + pkgName + "</h2>";
-    html += "<a style=\"font-size:16px;\">" + pid.description + "</a>";
+    html += "<a style=\"font-size:16px;\">" + pkgDescription + "</a>";
 
     html += "<table border=\"0\">";
 
@@ -1213,14 +1220,21 @@ void MainWindow::refreshTabInfo(bool clearContents, bool neverQuit)
     packagerName = packagerName.fromUtf8(packagerName.toAscii().data());
 
     html += "<tr><td>" + licenses + "</td><td>" + pid.license + "</td></tr>";
-    html += "<tr><td>" + groups + "</td><td>" + pid.group + "</td></tr>";
-    html += "<tr><td>" + provides + "</td><td>" + pid.provides + "</td></tr>";
-    html += "<tr><td>" + dependsOn + "</td><td>" + pid.dependsOn + "</td></tr>";
-    html += "<tr><td>" + optionalDeps + "</td><td>" + pid.optDepends + "</td></tr>";
-    html += "<tr><td><b>" /*<font color=\"#E55451\">*/ + conflictsWith +
-        "</b></td><td><b>" /*<font color=\"#E55451\"><b>"*/ +
-        pid.conflictsWith + "</b></font></td></tr>";
-    html += "<tr><td>" + replaces + "</td><td>" + pid.replaces + "</td></tr>";
+
+    //Show this info only if there's something to show
+    if(! pid.group.contains("None"))
+      html += "<tr><td>" + groups + "</td><td>" + pid.group + "</td></tr>";
+    if(! pid.provides.contains("None"))
+      html += "<tr><td>" + provides + "</td><td>" + pid.provides + "</td></tr>";
+    if(! pid.dependsOn.contains("None"))
+      html += "<tr><td>" + dependsOn + "</td><td>" + pid.dependsOn + "</td></tr>";
+    if(! pid.optDepends.contains("None"))
+      html += "<tr><td>" + optionalDeps + "</td><td>" + pid.optDepends + "</td></tr>";
+    if(! pid.conflictsWith.contains("None"))
+      html += "<tr><td><b>" + conflictsWith + "</b></td><td><b>" + pid.conflictsWith + "</b></font></td></tr>";
+    if(! pid.replaces.contains("None"))
+      html += "<tr><td>" + replaces + "</td><td>" + pid.replaces + "</td></tr>";
+
     html += "<tr><td>" + downloadSize + "</td><td>" + valDownloadSize + "</td></tr>";
     html += "<tr><td>" + installedSize + "</td><td>" + valInstalledSize + "</td></tr>";
     html += "<tr><td>" + packager + "</td><td>" + packagerName + "</td></tr>";

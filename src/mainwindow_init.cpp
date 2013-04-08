@@ -56,7 +56,7 @@ void MainWindow::loadSettings(){
 }
 
 /*
- * This method only retrieve the App saved panels settings
+ * This method only retrieves the App saved panels settings
  */
 void MainWindow::loadPanelSettings(){
   int panelOrganizing = SettingsManager::instance()->getPanelOrganizing();
@@ -167,9 +167,6 @@ void MainWindow::initToolBar()
   hSpacer->setMinimumWidth(6);
   hSpacer->setVisible(true);
   ui->mainToolBar->addWidget(hSpacer);
-
-  //ui->mainToolBar->addAction(ui->actionExit);
-
   ui->mainToolBar->toggleViewAction()->setEnabled(false);
   ui->mainToolBar->toggleViewAction()->setVisible(false);
 }
@@ -353,14 +350,10 @@ void MainWindow::initTabInfo(){
   text->setOpenExternalLinks(true);
   gridLayoutX->addWidget ( text, 0, 0, 1, 1 );
 
-  QString aux(StrConstants::getTabInfoName());
-  //QString translated_about = QApplication::translate ( "MainWindow", aux.toUtf8(), 0, QApplication::UnicodeUTF8 );
-
+  QString tabName(StrConstants::getTabInfoName());
   ui->twProperties->removeTab(ctn_TABINDEX_INFORMATION);
-  /*int tindex =*/ ui->twProperties->insertTab(ctn_TABINDEX_INFORMATION, tabInfo, QApplication::translate (
-      "MainWindow", aux.toUtf8(), 0, QApplication::UnicodeUTF8 ) );
-  //ui->twProperties->setTabText(ui->twProperties->indexOf(tabInfo), QApplication::translate(
-  //    "MainWindow", aux.toUtf8(), 0, QApplication::UnicodeUTF8));
+  ui->twProperties->insertTab(ctn_TABINDEX_INFORMATION, tabInfo, QApplication::translate (
+      "MainWindow", tabName.toUtf8(), 0, QApplication::UnicodeUTF8 ) );
 
   ui->twProperties->setUsesScrollButtons(false);
   ui->twProperties->setCurrentIndex(ctn_TABINDEX_INFORMATION);
@@ -399,9 +392,6 @@ void MainWindow::initTabFiles()
   ui->twProperties->removeTab(ctn_TABINDEX_FILES);
   ui->twProperties->insertTab(ctn_TABINDEX_FILES, tabPkgFileList, QApplication::translate (
                                                   "MainWindow", aux.toUtf8(), 0, QApplication::UnicodeUTF8 ) );
-
-  /*twTODO->setTabText(twTODO->indexOf(tabPkgFileList), QApplication::translate(
-      "MainWindow", tabName.toUtf8(), 0, QApplication::UnicodeUTF8));*/
 
   tvPkgFileList->setContextMenuPolicy(Qt::CustomContextMenu);
 
@@ -809,8 +799,6 @@ void MainWindow::initTabOutput()
   ui->twProperties->removeTab(ctn_TABINDEX_OUTPUT);
   ui->twProperties->insertTab(ctn_TABINDEX_OUTPUT, tabOutput, QApplication::translate (
       "MainWindow", aux.toUtf8(), 0, QApplication::UnicodeUTF8 ) );
-  //ui->twProperties->setTabText(ui->twProperties->indexOf(tabInfo), QApplication::translate(
-  //    "MainWindow", aux.toUtf8(), 0, QApplication::UnicodeUTF8));
 
   ui->twProperties->setCurrentIndex(ctn_TABINDEX_OUTPUT);
   text->show();
@@ -869,7 +857,6 @@ void MainWindow::initTabHelpAbout()
   connect(searchBar, SIGNAL(findNext()), this, SLOT(searchBarFindNext()));
   connect(searchBar, SIGNAL(findNextButtonClicked()), this, SLOT(searchBarFindNext()));
   connect(searchBar, SIGNAL(findPreviousButtonClicked()), this, SLOT(searchBarFindPrevious()));
-
   gridLayoutX->addWidget(searchBar, 1, 0, 1, 1);
   gridLayoutX->addWidget(new SyntaxHighlighterWidget(this, highlighter));
   */
@@ -884,10 +871,7 @@ void MainWindow::initTabHelpAbout()
  */
 void MainWindow::onHelpAbout()
 {
-  //if (_isPropertiesTabWidgetVisible())
-  {
-    _changeTabWidgetPropertiesIndex(ctn_TABINDEX_HELPABOUT);
-  }
+  _changeTabWidgetPropertiesIndex(ctn_TABINDEX_HELPABOUT);
 }
 
 /*
