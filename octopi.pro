@@ -33,7 +33,8 @@ HEADERS  += src/QtSolutions/qtsingleapplication.h \
     src/QtSolutions/QtSingleApplication \
     src/QtSolutions/qtlockedfile.h \
     src/QtSolutions/QtLockedFile \
-    src/treeviewpackagesitemdelegate.h
+    src/treeviewpackagesitemdelegate.h \
+    src/searchbar.h
 
 SOURCES += src/QtSolutions/qtsingleapplication.cpp \
         src/QtSolutions/qtlocalpeer.cpp \
@@ -54,7 +55,8 @@ SOURCES += src/QtSolutions/qtsingleapplication.cpp \
     src/mainwindow_init.cpp \
     src/mainwindow_transaction.cpp \
     src/mainwindow_events.cpp \
-    src/mainwindow_help.cpp
+    src/mainwindow_help.cpp \
+    src/searchbar.cpp
 
 FORMS    += ui/mainwindow.ui
 

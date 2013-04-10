@@ -28,12 +28,15 @@
 #include "strconstants.h"
 #include "wmhelper.h"
 #include "uihelper.h"
+#include "searchbar.h"
+
 #include <QCloseEvent>
 #include <QMessageBox>
 #include <QTreeView>
 #include <QComboBox>
 #include <QStandardItem>
 #include <QSortFilterProxyModel>
+#include <QTextBrowser>
 
 /*
  * Before we close the application, let's confirm if there is a pending transaction...
@@ -160,6 +163,19 @@ void MainWindow::keyPressEvent(QKeyEvent* ke)
     m_leFilterPackage->setFocus();
     m_leFilterPackage->selectAll();
   }
+  else if(ke->key() == Qt::Key_F && ke->modifiers() == Qt::ControlModifier)
+  {
+    QTextBrowser *tb = ui->twProperties->currentWidget()->findChild<QTextBrowser*>("textBrowser");
+    if (!tb) tb = ui->twProperties->currentWidget()->findChild<QTextBrowser*>("updaterOutput");
+    SearchBar *searchBar = ui->twProperties->currentWidget()->findChild<SearchBar*>("searchbar");
+
+    if (tb && tb->toPlainText().size() > 0 && (tb->hasFocus() ||
+               ((searchBar) && (searchBar->hasFocus())))){ //||
+               //((!actionMinimizeLowerView->isChecked()) && (actionHideRightView->isChecked())))){
+      if (searchBar) searchBar->show();
+    }
+  }
+
   else if(ke->key() == Qt::Key_G && ke->modifiers() == (Qt::ShiftModifier|Qt::ControlModifier))
   {
     //The user wants to go to "Display All groups"

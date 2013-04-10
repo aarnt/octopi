@@ -29,6 +29,7 @@
 #include "settingsmanager.h"
 #include "searchlineedit.h"
 #include "treeviewpackagesitemdelegate.h"
+#include "searchbar.h"
 #include <QLabel>
 #include <QStandardItemModel>
 #include <QSortFilterProxyModel>
@@ -41,6 +42,7 @@
 #include <QComboBox>
 #include <QListView>
 #include <QPalette>
+#include <QTabBar>
 #include <iostream>
 
 /*
@@ -594,7 +596,7 @@ QString MainWindow::parseDistroNews()
             else if (eText.tagName() == "description")
             {
               itemDescription = eText.text();
-              itemDescription = itemDescription.remove(QRegExp("\\n"));
+              //itemDescription = itemDescription.remove(QRegExp("\\n"));
               itemDescription += "<br>";
             }
             else if (eText.tagName() == "pubDate")
@@ -724,6 +726,103 @@ void MainWindow::onTabNewsSourceChanged(QUrl newSource)
   }
 }
 
+
+void MainWindow::searchBarTextChanged(const QString textToSearch){
+  qApp->processEvents();
+  QTextBrowser *tb = ui->twProperties->currentWidget()->findChild<QTextBrowser*>("textBrowser");
+  if (!tb) tb = ui->twProperties->currentWidget()->findChild<QTextBrowser*>("updaterOutput");
+  QList<QTextEdit::ExtraSelection> extraSelections;
+
+  if (tb){
+    static int limit = SettingsManager::getHighlightedSearchItems();
+
+    SearchBar *sb = ui->twProperties->currentWidget()->findChild<SearchBar*>("searchbar");
+    if (textToSearch.isEmpty() || textToSearch.length() < 2){
+      sb->getSearchLineEdit()->initStyleSheet();
+      tb->setExtraSelections(extraSelections);
+      QTextCursor tc = tb->textCursor();
+      tc.clearSelection();
+      tb->setTextCursor(tc);
+      tb->moveCursor(QTextCursor::Start);
+      if (sb && sb->isHidden()) tb->setFocus();
+      return;
+    }
+
+    if (textToSearch.length() < 2) return;
+
+    tb->setExtraSelections(extraSelections);
+    tb->moveCursor(QTextCursor::Start);
+    QColor color = QColor(Qt::yellow).lighter(130);
+
+    while(tb->find(textToSearch)){
+      QTextEdit::ExtraSelection extra;
+      extra.format.setBackground(color);
+      extra.cursor = tb->textCursor();
+      extraSelections.append(extra);
+
+      if (limit > 0 && extraSelections.count() == limit)
+        break;
+    }
+
+    if (extraSelections.count()>0){
+      tb->setExtraSelections(extraSelections);
+      tb->setTextCursor(extraSelections.at(0).cursor);
+      QTextCursor tc = tb->textCursor();
+      tc.clearSelection();
+      tb->setTextCursor(tc);
+      _positionInFirstMatch();
+    }
+    else sb->getSearchLineEdit()->setNotFoundStyle();
+  }
+}
+
+void MainWindow::searchBarFindNext(){
+  QTextBrowser *tb = ui->twProperties->currentWidget()->findChild<QTextBrowser*>("textBrowser");
+  if (!tb) tb = ui->twProperties->currentWidget()->findChild<QTextBrowser*>("updaterOutput");
+  SearchBar *sb = ui->twProperties->currentWidget()->findChild<SearchBar*>("searchbar");
+
+  if (tb && sb && !sb->getTextToSearch().isEmpty()){
+    if (!tb->find(sb->getTextToSearch())){
+      tb->moveCursor(QTextCursor::Start);
+      tb->find(sb->getTextToSearch());
+    }
+  }
+}
+
+void MainWindow::searchBarFindPrevious(){
+  QTextBrowser *tb = ui->twProperties->currentWidget()->findChild<QTextBrowser*>("textBrowser");
+  if (!tb) tb = ui->twProperties->currentWidget()->findChild<QTextBrowser*>("updaterOutput");
+  SearchBar *sb = ui->twProperties->currentWidget()->findChild<SearchBar*>("searchbar");
+
+  if (tb && sb && !sb->getTextToSearch().isEmpty()){
+    if (!tb->find(sb->getTextToSearch(), QTextDocument::FindBackward)){
+      tb->moveCursor(QTextCursor::End);
+      tb->find(sb->getTextToSearch(), QTextDocument::FindBackward);
+    }
+  }
+}
+
+void MainWindow::searchBarClosed(){
+  searchBarTextChanged("");
+  QTextBrowser *tb = ui->twProperties->currentWidget()->findChild<QTextBrowser*>("textBrowser");
+  if (!tb) tb = ui->twProperties->currentWidget()->findChild<QTextBrowser*>("updaterOutput");
+  tb->setFocus();
+}
+
+void MainWindow::_positionInFirstMatch(){
+  QTextBrowser *tb = ui->twProperties->currentWidget()->findChild<QTextBrowser*>("textBrowser");
+  if (!tb) tb = ui->twProperties->currentWidget()->findChild<QTextBrowser*>("updaterOutput");
+  SearchBar *sb = ui->twProperties->currentWidget()->findChild<SearchBar*>("searchbar");
+
+  if (tb && sb && sb->isVisible() && !sb->getTextToSearch().isEmpty()){
+    tb->moveCursor(QTextCursor::Start);
+    if (tb->find(sb->getTextToSearch()))
+      sb->getSearchLineEdit()->setFoundStyle();
+    else
+      sb->getSearchLineEdit()->setNotFoundStyle();
+  }
+}
+
 /*
  * This is the TextBrowser News tab, which shows the latest news from Distro news feed
  */
@@ -754,10 +853,9 @@ void MainWindow::initTabNews()
   //w->setToolTip(tr("Close tab"));
   //w->setObjectName("toolButton");
 
-  //SearchBar *searchBar = new SearchBar(this);
-  //MyHighlighter *highlighter = new MyHighlighter(text, "");
+  SearchBar *searchBar = new SearchBar(this);
+  MyHighlighter *highlighter = new MyHighlighter(text, "");
 
-  /*
   connect(searchBar, SIGNAL(textChanged(QString)), this, SLOT(searchBarTextChanged(QString)));
   connect(searchBar, SIGNAL(closed()), this, SLOT(searchBarClosed()));
   connect(searchBar, SIGNAL(findNext()), this, SLOT(searchBarFindNext()));
@@ -766,7 +864,6 @@ void MainWindow::initTabNews()
 
   gridLayoutX->addWidget(searchBar, 1, 0, 1, 1);
   gridLayoutX->addWidget(new SyntaxHighlighterWidget(this, highlighter));
-  */
 
   connect(text, SIGNAL(sourceChanged(QUrl)), this, SLOT(onTabNewsSourceChanged(QUrl)));
 

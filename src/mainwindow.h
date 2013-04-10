@@ -38,6 +38,7 @@ class QLabel;
 class QComboBox;
 class QListView;
 class SearchLineEdit;
+class QTabBar;
 
 //Column indices for Package's treeview
 const int ctn_PACKAGE_ICON_COLUMN(0);
@@ -85,6 +86,8 @@ private:
   Ui::MainWindow *ui;
 
   UnixCommand *m_unixCommand;
+
+  QTabBar *m_tabBar;
 
   bool m_initializationCompleted;
 
@@ -284,6 +287,13 @@ private slots:
   void clearTransactionTreeView();
 
   void refreshDistroNews(bool searchForLatestNews = true, bool gotoNewsTab = true);
+
+  void _positionInFirstMatch();
+  void searchBarTextChanged(const QString textToSearch);
+  void searchBarFindNext();
+  void searchBarFindPrevious();
+  void searchBarClosed();
+
 };
 
 #endif // MAINWINDOW_H
