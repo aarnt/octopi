@@ -53,7 +53,8 @@ SOURCES += src/QtSolutions/qtsingleapplication.cpp \
     src/treeviewpackagesitemdelegate.cpp \
     src/mainwindow_init.cpp \
     src/mainwindow_transaction.cpp \
-    src/mainwindow_events.cpp
+    src/mainwindow_events.cpp \
+    src/mainwindow_help.cpp
 
 FORMS    += ui/mainwindow.ui
 

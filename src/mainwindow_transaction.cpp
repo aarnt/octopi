@@ -243,8 +243,9 @@ void MainWindow::insertIntoRemovePackage()
   {
     QModelIndex mi = m_proxyModelPackages->mapToSource(item);
     QStandardItem *si = sim->item(mi.row(), ctn_PACKAGE_NAME_COLUMN);
+    QStandardItem *siRepository = sim->item(mi.row(), ctn_PACKAGE_REPOSITORY_COLUMN);
 
-    insertRemovePackageIntoTransaction(si->text());
+    insertRemovePackageIntoTransaction(siRepository->text() + "/" + si->text());
   }
 }
 
@@ -282,8 +283,9 @@ void MainWindow::insertIntoInstallPackage()
   {
     QModelIndex mi = m_proxyModelPackages->mapToSource(item);
     QStandardItem *si = sim->item(mi.row(), ctn_PACKAGE_NAME_COLUMN);
+    QStandardItem *siRepository = sim->item(mi.row(), ctn_PACKAGE_REPOSITORY_COLUMN);
 
-    insertInstallPackageIntoTransaction(si->text());
+    insertInstallPackageIntoTransaction(siRepository->text() + "/" + si->text());
   }
 }
 

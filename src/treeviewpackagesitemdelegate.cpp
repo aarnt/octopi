@@ -32,19 +32,24 @@ QPoint gPoint;
 QFutureWatcher<QString> fw;
 using namespace QtConcurrent;
 
-QString showPackageInfo(QString pkgName){
+QString showPackageInfo(QString pkgName)
+{
   QString description =
-      MainWindow::returnMainWindow()->getAvailablePackage(pkgName, ctn_PACKAGE_DESCRIPTION_COLUMN)->text();
+      MainWindow::returnMainWindow()->getAvailablePackage(
+        pkgName, ctn_PACKAGE_DESCRIPTION_COLUMN)->text();
 
   int space = description.indexOf(" ");
   return description.mid(space+1);
 }
 
-TreeViewPackagesItemDelegate::TreeViewPackagesItemDelegate(QObject *parent): QStyledItemDelegate(parent){  
+TreeViewPackagesItemDelegate::TreeViewPackagesItemDelegate(QObject *parent):
+  QStyledItemDelegate(parent)
+{
 }
 
 bool TreeViewPackagesItemDelegate::helpEvent ( QHelpEvent *event, QAbstractItemView*,
-		const QStyleOptionViewItem&, const QModelIndex &index ){
+    const QStyleOptionViewItem&, const QModelIndex &index )
+{
 
   if (this->parent()->objectName() == "tvPackages")
   {
@@ -88,13 +93,20 @@ bool TreeViewPackagesItemDelegate::helpEvent ( QHelpEvent *event, QAbstractItemV
     if (si)
     {
       //If it's really a package in the Transaction treeview...
+      QString pkgName=si->text();
+
+      //We have to separate Repository from Package Name, first
+      int slash = pkgName.indexOf("/");
+      pkgName = pkgName.mid(slash+1);
+
       if (si->icon().pixmap(22, 22).toImage() ==
           IconHelper::getIconInstallItem().pixmap(22, 22).toImage() ||
           si->icon().pixmap(22, 22).toImage() ==
           IconHelper::getIconRemoveItem().pixmap(22, 22).toImage())
       {
         QStandardItemModel *modelPackages = MainWindow::returnMainWindow()->getModelPackages();
-        QList<QStandardItem*> foundItems = modelPackages->findItems(si->text(), Qt::MatchExactly, ctn_PACKAGE_NAME_COLUMN);
+        QList<QStandardItem*> foundItems =
+            modelPackages->findItems(pkgName, Qt::MatchExactly, ctn_PACKAGE_NAME_COLUMN);
 
         if (foundItems.count() > 0)
         {
@@ -119,8 +131,10 @@ bool TreeViewPackagesItemDelegate::helpEvent ( QHelpEvent *event, QAbstractItemV
   return true;
 }
 
-void TreeViewPackagesItemDelegate::execToolTip(){
-  if (fw.result().isEmpty()) return;
+void TreeViewPackagesItemDelegate::execToolTip()
+{
+  if (fw.result().isEmpty())
+    return;
 
   gPoint.setX(gPoint.x() + 25);
 	gPoint.setY(gPoint.y() + 25);
