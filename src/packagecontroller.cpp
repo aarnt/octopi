@@ -141,6 +141,29 @@ QMap<QString, QStringList> PackageController::findFile( const QString& name, con
   return m;
 }
 
+QList<QModelIndex> * PackageController::findFileEx( const QString& name, const QStandardItemModel *sim)
+{
+  QList<QModelIndex> * res = new QList<QModelIndex>();
+  QList<QStandardItem *> foundItems;
+
+  if (name.isEmpty() || sim->rowCount() == 0)
+  {
+    return res;
+  }
+
+  foundItems = sim->findItems(Package::parseSearchString(name), Qt::MatchRegExp|Qt::MatchRecursive);
+  foreach(QStandardItem *item, foundItems)
+  {
+    //QCoreApplication::processEvents();
+
+    if (item->accessibleDescription().contains("directory")) continue;
+
+    res->append(item->index());
+  }
+
+  return res;
+}
+
 /*QMap<QString, QStringList> PackageController::findPackage( const QString& name, const QString& searchDir ){
   QMap<QString, QStringList> m;
 

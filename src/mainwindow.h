@@ -24,6 +24,7 @@
 #include <QApplication>
 #include <QItemSelection>
 #include <QMainWindow>
+#include <QList>
 #include <QUrl>
 #include "unixcommand.h"
 
@@ -92,6 +93,7 @@ private:
   bool m_initializationCompleted;
 
   SearchLineEdit *m_leFilterPackage;
+  QList<QModelIndex> *m_foundFilesInPkgFileList;
 
   QSortFilterProxyModel *m_proxyModelPackages;
   QFileSystemWatcher *m_pacmanDatabaseSystemWatcher;
@@ -293,6 +295,9 @@ private slots:
   void searchBarFindNext();
   void searchBarFindPrevious();
   void searchBarClosed();
+
+  void searchBarTextChangedEx(const QString textToSearch);
+  void searchBarClosedEx();
 
 };
 

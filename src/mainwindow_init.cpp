@@ -30,6 +30,8 @@
 #include "searchlineedit.h"
 #include "treeviewpackagesitemdelegate.h"
 #include "searchbar.h"
+#include "packagecontroller.h"
+
 #include <QLabel>
 #include <QStandardItemModel>
 #include <QSortFilterProxyModel>
@@ -397,6 +399,18 @@ void MainWindow::initTabFiles()
 
   tvPkgFileList->setContextMenuPolicy(Qt::CustomContextMenu);
 
+
+  SearchBar *searchBar = new SearchBar(this);
+
+  connect(searchBar, SIGNAL(textChanged(QString)), this, SLOT(searchBarTextChangedEx(QString)));
+  connect(searchBar, SIGNAL(closed()), this, SLOT(searchBarClosedEx()));
+  //connect(searchBar, SIGNAL(findNext()), this, SLOT(searchBarFindNext()));
+  //connect(searchBar, SIGNAL(findNextButtonClicked()), this, SLOT(searchBarFindNext()));
+  connect(searchBar, SIGNAL(findPreviousButtonClicked()), this, SLOT(searchBarFindPrevious()));
+
+  gridLayoutX->addWidget(searchBar, 1, 0, 1, 1);
+
+
   connect(tvPkgFileList, SIGNAL(customContextMenuRequested(QPoint)),
           this, SLOT(execContextMenuPkgFileList(QPoint)));
   //connect(tvPkgFileList, SIGNAL(clicked (const QModelIndex&)),
@@ -727,7 +741,34 @@ void MainWindow::onTabNewsSourceChanged(QUrl newSource)
 }
 
 
-void MainWindow::searchBarTextChanged(const QString textToSearch){
+void MainWindow::searchBarTextChangedEx(const QString textToSearch)
+{
+  m_foundFilesInPkgFileList->clear();
+
+  QTreeView *tvPkgFileList =
+    ui->twProperties->widget(ctn_TABINDEX_FILES)->findChild<QTreeView*>("tvPkgFileList");
+  QStandardItemModel *sim = qobject_cast<QStandardItemModel *>(tvPkgFileList->model());
+  SearchBar *sb = ui->twProperties->currentWidget()->findChild<SearchBar*>("searchbar");
+
+  m_foundFilesInPkgFileList = PackageController::findFileEx(textToSearch, sim);
+
+  if (m_foundFilesInPkgFileList->count() > 0)
+  {
+    tvPkgFileList->setCurrentIndex(m_foundFilesInPkgFileList->at(0));
+    tvPkgFileList->scrollTo(m_foundFilesInPkgFileList->at(0));
+    sb->getSearchLineEdit()->setFoundStyle();
+  }
+  else
+  {
+    tvPkgFileList->setCurrentIndex(sim->index(0,0));
+    sb->getSearchLineEdit()->setNotFoundStyle();
+
+  }
+
+}
+
+void MainWindow::searchBarTextChanged(const QString textToSearch)
+{
   qApp->processEvents();
   QTextBrowser *tb = ui->twProperties->currentWidget()->findChild<QTextBrowser*>("textBrowser");
   if (!tb) tb = ui->twProperties->currentWidget()->findChild<QTextBrowser*>("updaterOutput");
@@ -776,7 +817,8 @@ void MainWindow::searchBarTextChanged(const QString textToSearch){
   }
 }
 
-void MainWindow::searchBarFindNext(){
+void MainWindow::searchBarFindNext()
+{
   QTextBrowser *tb = ui->twProperties->currentWidget()->findChild<QTextBrowser*>("textBrowser");
   if (!tb) tb = ui->twProperties->currentWidget()->findChild<QTextBrowser*>("updaterOutput");
   SearchBar *sb = ui->twProperties->currentWidget()->findChild<SearchBar*>("searchbar");
@@ -789,7 +831,8 @@ void MainWindow::searchBarFindNext(){
   }
 }
 
-void MainWindow::searchBarFindPrevious(){
+void MainWindow::searchBarFindPrevious()
+{
   QTextBrowser *tb = ui->twProperties->currentWidget()->findChild<QTextBrowser*>("textBrowser");
   if (!tb) tb = ui->twProperties->currentWidget()->findChild<QTextBrowser*>("updaterOutput");
   SearchBar *sb = ui->twProperties->currentWidget()->findChild<SearchBar*>("searchbar");
@@ -802,14 +845,23 @@ void MainWindow::searchBarFindPrevious(){
   }
 }
 
-void MainWindow::searchBarClosed(){
+void MainWindow::searchBarClosed()
+{
   searchBarTextChanged("");
   QTextBrowser *tb = ui->twProperties->currentWidget()->findChild<QTextBrowser*>("textBrowser");
   if (!tb) tb = ui->twProperties->currentWidget()->findChild<QTextBrowser*>("updaterOutput");
   tb->setFocus();
 }
 
-void MainWindow::_positionInFirstMatch(){
+void MainWindow::searchBarClosedEx()
+{
+  searchBarTextChangedEx("");
+  QTreeView *tb = ui->twProperties->currentWidget()->findChild<QTreeView*>("tvPkgFileList");
+  tb->setFocus();
+}
+
+void MainWindow::_positionInFirstMatch()
+{
   QTextBrowser *tb = ui->twProperties->currentWidget()->findChild<QTextBrowser*>("textBrowser");
   if (!tb) tb = ui->twProperties->currentWidget()->findChild<QTextBrowser*>("updaterOutput");
   SearchBar *sb = ui->twProperties->currentWidget()->findChild<SearchBar*>("searchbar");

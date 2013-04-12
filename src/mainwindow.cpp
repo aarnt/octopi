@@ -47,6 +47,7 @@ MainWindow::MainWindow(QWidget *parent) :
   QMainWindow(parent),
   ui(new Ui::MainWindow)
 {
+  m_foundFilesInPkgFileList = new QList<QModelIndex>();
   ui->setupUi(this);
 }
 

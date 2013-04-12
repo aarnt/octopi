@@ -1,6 +1,6 @@
 /*
-* This file is part of QTGZManager, an open-source GUI for Slackware pkgtools.
-* Copyright (C) 2006  Alexandre Albuquerque Arnt
+* This file is part of Octopi, an open-source GUI for Slackware pkgtools.
+* Copyright (C) 2013 Alexandre Albuquerque Arnt
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -15,9 +15,6 @@
 * You should have received a copy of the GNU General Public License
 * along with this program; if not, write to the Free Software
 * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-*
-* Contact e-mail : Alexandre Albuquerque Arnt <qtgzmanager@gmail.com>
-* Program URL   : http://jtgzmanager.sf.net
 *
 */
 
@@ -94,7 +91,9 @@ void SearchBar::close()
   emit closed();
 }
 
-//It's necessary to override this event in order to get stylesheets working in QWidget derived classes.
+/*
+ * Overriden in order to get stylesheets working in QWidget derived classes
+ */
 void SearchBar::paintEvent(QPaintEvent *)
 {
   QStyleOption styleOption;
