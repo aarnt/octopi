@@ -317,6 +317,7 @@ void MainWindow::tvPackagesSearchColumnChanged(QAction *actionSelected)
   ui->tvPackages->scrollTo(mi);
 
   changedTabIndex();
+  m_leFilterPackage->setFocus();
 }
 
 /*
