@@ -110,9 +110,17 @@ void MainWindow::insertRemovePackageIntoTransaction(const QString &pkgName)
 
   QList<QStandardItem *> foundItems = sim->findItems(pkgName, Qt::MatchRecursive | Qt::MatchExactly);
 
+  int slash = pkgName.indexOf("/");
+  QString pkg = pkgName.mid(slash+1);
+  siPackageToRemove->setText(pkg);
+
   if (foundItems.size() == 0)
   {
-    siRemoveParent->appendRow(siPackageToRemove);
+    int slash = pkgName.indexOf("/");
+    QString pkg = pkgName.mid(slash+1);
+    QList<QStandardItem *> aux = sim->findItems(pkg, Qt::MatchRecursive | Qt::MatchExactly);
+
+    if (aux.count() == 0) siRemoveParent->appendRow(siPackageToRemove);
   }
   else if (foundItems.size() == 1 && foundItems.at(0)->parent() == siInstallParent)
   {
@@ -141,6 +149,11 @@ void MainWindow::insertInstallPackageIntoTransaction(const QString &pkgName)
 
   if (foundItems.size() == 0)
   {
+    int slash = pkgName.indexOf("/");
+    QString pkg = pkgName.mid(slash+1);
+    QList<QStandardItem *> aux = sim->findItems(pkg, Qt::MatchRecursive | Qt::MatchExactly);
+
+    if (aux.count() > 0) siRemoveParent->removeRow(aux.at(0)->row());
     siInstallParent->appendRow(siPackageToInstall);
   }
   else if (foundItems.size() == 1 && foundItems.at(0)->parent() == siRemoveParent)
@@ -243,10 +256,10 @@ void MainWindow::insertIntoRemovePackage()
   {
     QModelIndex mi = m_proxyModelPackages->mapToSource(item);
     QStandardItem *si = sim->item(mi.row(), ctn_PACKAGE_NAME_COLUMN);
-    //QStandardItem *siRepository = sim->item(mi.row(), ctn_PACKAGE_REPOSITORY_COLUMN);
+    QStandardItem *siRepository = sim->item(mi.row(), ctn_PACKAGE_REPOSITORY_COLUMN);
 
-    //insertRemovePackageIntoTransaction(siRepository->text() + "/" + si->text());
-    insertRemovePackageIntoTransaction(si->text());
+    insertRemovePackageIntoTransaction(siRepository->text() + "/" + si->text());
+    //insertRemovePackageIntoTransaction(si->text());
   }
 }
 
@@ -284,10 +297,10 @@ void MainWindow::insertIntoInstallPackage()
   {
     QModelIndex mi = m_proxyModelPackages->mapToSource(item);
     QStandardItem *si = sim->item(mi.row(), ctn_PACKAGE_NAME_COLUMN);
-    //QStandardItem *siRepository = sim->item(mi.row(), ctn_PACKAGE_REPOSITORY_COLUMN);
+    QStandardItem *siRepository = sim->item(mi.row(), ctn_PACKAGE_REPOSITORY_COLUMN);
 
-    //insertInstallPackageIntoTransaction(siRepository->text() + "/" + si->text());
-    insertInstallPackageIntoTransaction(si->text());
+    insertInstallPackageIntoTransaction(siRepository->text() + "/" + si->text());
+    //insertInstallPackageIntoTransaction(si->text());
   }
 }
 

@@ -50,7 +50,6 @@ TreeViewPackagesItemDelegate::TreeViewPackagesItemDelegate(QObject *parent):
 bool TreeViewPackagesItemDelegate::helpEvent ( QHelpEvent *event, QAbstractItemView*,
     const QStyleOptionViewItem&, const QModelIndex &index )
 {
-
   if (this->parent()->objectName() == "tvPackages")
   {
     QTreeView* tvPackages = qobject_cast<QTreeView*>(this->parent());
@@ -96,8 +95,11 @@ bool TreeViewPackagesItemDelegate::helpEvent ( QHelpEvent *event, QAbstractItemV
       QString pkgName=si->text();
 
       //We have to separate Repository from Package Name, first
-      //int slash = pkgName.indexOf("/");
-      //pkgName = pkgName.mid(slash+1);
+      int slash = pkgName.indexOf("/");
+      if (slash != -1)
+      {
+        pkgName = pkgName.mid(slash+1);
+      }
 
       if (si->icon().pixmap(22, 22).toImage() ==
           IconHelper::getIconInstallItem().pixmap(22, 22).toImage() ||
