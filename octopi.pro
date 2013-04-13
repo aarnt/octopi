@@ -56,7 +56,8 @@ SOURCES += src/QtSolutions/qtsingleapplication.cpp \
     src/mainwindow_transaction.cpp \
     src/mainwindow_events.cpp \
     src/mainwindow_help.cpp \
-    src/searchbar.cpp
+    src/searchbar.cpp \
+    src/mainwindow_searchbar.cpp
 
 FORMS    += ui/mainwindow.ui
 

@@ -1,5 +1,5 @@
 /*
-* This file is part of Oktopi, an open-source GUI for pacman.
+* This file is part of Octopi, an open-source GUI for pacman.
 * Copyright (C) 2013  Alexandre Albuquerque Arnt
 *               2013  Manuel Tortosa
 *
@@ -19,15 +19,18 @@
 *
 */
 
-#include <QString>
-#include <QTextBrowser>
 #include "strconstants.h"
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include "searchbar.h"
+
+#include <QString>
+#include <QTextBrowser>
 
 /*
- * Initialize the Help tab with basic information about using Oktopi
+ * Initialize the Help tab with basic information about using Octopi
  */
+
 void MainWindow::initTabHelpAbout()
 {
   QWidget *tabHelpHelp = new QWidget();
@@ -101,6 +104,8 @@ void MainWindow::initTabHelpAbout()
   QString("</li><li>") +
      tr("Ctrl+L to find a package in the package list") +
   QString("</li><li>") +
+     tr("Ctrl+F to search for text inside tab Files, News and About") +
+  QString("</li><li>") +
      tr("Ctrl+N or 'View/Non installed' to show/hide non installed packages") +
   QString("</li><li>") +
      tr("Ctrl+M or 'Transaction/Commit' to start installation/removal of selected packages") +
@@ -136,20 +141,14 @@ void MainWindow::initTabHelpAbout()
   int tindex = ui->twProperties->addTab(tabHelpHelp, StrConstants::getHelp() );
   ui->twProperties->setTabText(ui->twProperties->indexOf(tabHelpHelp), StrConstants::getHelp());
 
-  /*
-  QWidget *w = m_tabBar->tabButton(tindex, QTabBar::RightSide);
-  w->setToolTip(tr("Close tab"));
-  w->setObjectName("toolButton");
   SearchBar *searchBar = new SearchBar(this);
   MyHighlighter *highlighter = new MyHighlighter(text, "");
   connect(searchBar, SIGNAL(textChanged(QString)), this, SLOT(searchBarTextChanged(QString)));
   connect(searchBar, SIGNAL(closed()), this, SLOT(searchBarClosed()));
   connect(searchBar, SIGNAL(findNext()), this, SLOT(searchBarFindNext()));
-  connect(searchBar, SIGNAL(findNextButtonClicked()), this, SLOT(searchBarFindNext()));
-  connect(searchBar, SIGNAL(findPreviousButtonClicked()), this, SLOT(searchBarFindPrevious()));
+  connect(searchBar, SIGNAL(findPrevious()), this, SLOT(searchBarFindPrevious()));
   gridLayoutX->addWidget(searchBar, 1, 0, 1, 1);
   gridLayoutX->addWidget(new SyntaxHighlighterWidget(this, highlighter));
-  */
 
   text->show();
   ui->twProperties->setCurrentIndex(tindex);

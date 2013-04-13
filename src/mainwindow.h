@@ -21,12 +21,12 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+#include "unixcommand.h"
 #include <QApplication>
 #include <QItemSelection>
 #include <QMainWindow>
 #include <QList>
 #include <QUrl>
-#include "unixcommand.h"
 
 class QTreeView;
 class QSortFilterProxyModel;
@@ -39,7 +39,6 @@ class QLabel;
 class QComboBox;
 class QListView;
 class SearchLineEdit;
-class QTabBar;
 
 //Column indices for Package's treeview
 const int ctn_PACKAGE_ICON_COLUMN(0);
@@ -88,12 +87,11 @@ private:
 
   UnixCommand *m_unixCommand;
 
-  QTabBar *m_tabBar;
-
   bool m_initializationCompleted;
 
   SearchLineEdit *m_leFilterPackage;
   QList<QModelIndex> *m_foundFilesInPkgFileList;
+  int m_indFoundFilesInPkgFileList;
 
   QSortFilterProxyModel *m_proxyModelPackages;
   QFileSystemWatcher *m_pacmanDatabaseSystemWatcher;
@@ -166,7 +164,6 @@ private:
   //Tab Files related methods
   void _selectFirstItemOfPkgFileList();
   QString getSelectedDirectory();
-  QString showFullPathOfObject(const QModelIndex & index);
 
   void initTabFiles();
   void initActions();
@@ -282,13 +279,12 @@ private slots:
   void outputOutdatedPackageList();
 
   void onTabNewsSourceChanged(QUrl newSource);
+  void refreshDistroNews(bool searchForLatestNews = true, bool gotoNewsTab = true);
 
   void onHelpAbout();
   void onPressDelete();
   void changeTransactionActionsState();
   void clearTransactionTreeView();
-
-  void refreshDistroNews(bool searchForLatestNews = true, bool gotoNewsTab = true);
 
   void _positionInFirstMatch();
   void searchBarTextChanged(const QString textToSearch);
@@ -297,8 +293,9 @@ private slots:
   void searchBarClosed();
 
   void searchBarTextChangedEx(const QString textToSearch);
+  void searchBarFindNextEx();
+  void searchBarFindPreviousEx();
   void searchBarClosedEx();
-
 };
 
 #endif // MAINWINDOW_H

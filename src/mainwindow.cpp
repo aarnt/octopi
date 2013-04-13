@@ -26,6 +26,9 @@
 #include "uihelper.h"
 #include "wmhelper.h"
 #include "treeviewpackagesitemdelegate.h"
+#include "searchbar.h"
+#include "packagecontroller.h"
+
 #include <QDebug>
 #include <QSortFilterProxyModel>
 #include <QStandardItemModel>
@@ -48,6 +51,7 @@ MainWindow::MainWindow(QWidget *parent) :
   ui(new Ui::MainWindow)
 {
   m_foundFilesInPkgFileList = new QList<QModelIndex>();
+  m_indFoundFilesInPkgFileList = 0;
   ui->setupUi(this);
 }
 
@@ -613,7 +617,6 @@ void MainWindow::buildPackageList()
   ui->tvPackages->setColumnWidth(ctn_PACKAGE_NAME_COLUMN, 500);
   ui->tvPackages->setColumnWidth(ctn_PACKAGE_VERSION_COLUMN, 160);
   ui->tvPackages->header()->setSectionHidden(ctn_PACKAGE_DESCRIPTION_COLUMN, true);
-
   ui->tvPackages->sortByColumn(m_PackageListOrderedCol, m_PackageListSortOrder);
 
   m_modelPackages->sort(m_PackageListOrderedCol, m_PackageListSortOrder);
@@ -953,7 +956,7 @@ void MainWindow::execContextMenuPkgFileList(QPoint point)
   }
 
   QModelIndex mi = tvPkgFileList->currentIndex();
-  QString selectedPath = showFullPathOfObject(mi);
+  QString selectedPath = PackageController::showFullPathOfItem(mi);
 
   QMenu menu(this);
   QStandardItemModel *sim = qobject_cast<QStandardItemModel*>(tvPkgFileList->model());
@@ -1343,6 +1346,12 @@ void MainWindow::refreshTabFiles(bool clearContents, bool neverQuit)
       _changeTabWidgetPropertiesIndex(ctn_TABINDEX_FILES);
       _selectFirstItemOfPkgFileList();
     }
+    else
+    {
+      QTreeView *tv = ui->twProperties->currentWidget()->findChild<QTreeView *>("tvPkgFileList") ;
+      if (tv)
+        tv->scrollTo(tv->currentIndex());
+    }
 
     return;
   }
@@ -1359,6 +1368,12 @@ void MainWindow::refreshTabFiles(bool clearContents, bool neverQuit)
                             m_cbGroups->currentIndex() != 0) &&
                            (m_modelPackagesFromGroup->item(
                               mi.row(), ctn_PACKAGE_ICON_COLUMN)->text() == "_NonInstalled"));
+  }
+
+  SearchBar *searchBar = ui->twProperties->currentWidget()->findChild<SearchBar*>("searchbar");
+  if (searchBar)
+  {
+    searchBar->close();
   }
 
   QTreeView *tvPkgFileList = ui->twProperties->widget(ctn_TABINDEX_FILES)->findChild<QTreeView*>("tvPkgFileList");
@@ -1567,6 +1582,13 @@ void MainWindow::maximizePropertiesTabWidget(bool pSaveSettings)
     ui->tvPackages->scrollTo(ui->tvPackages->currentIndex());
     ui->tvPackages->setFocus();
 
+    if (ui->twProperties->currentIndex() == ctn_TABINDEX_FILES)
+    {
+      QTreeView *tv = ui->twProperties->currentWidget()->findChild<QTreeView *>("tvPkgFileList") ;
+      if (tv)
+        tv->scrollTo(tv->currentIndex());
+    }
+
     if(pSaveSettings)
       saveSettings(ectn_NORMAL);
   }
@@ -1681,7 +1703,7 @@ void MainWindow::openFile()
   QTreeView *tv = ui->twProperties->currentWidget()->findChild<QTreeView *>("tvPkgFileList") ;
   if (tv)
   {
-    QString path = showFullPathOfObject(tv->currentIndex());
+    QString path = PackageController::showFullPathOfItem(tv->currentIndex());
     QFileInfo file(path);
     if (file.isFile())
     {
@@ -1698,7 +1720,7 @@ void MainWindow::editFile()
   QTreeView *tv = ui->twProperties->currentWidget()->findChild<QTreeView *>("tvPkgFileList") ;
   if (tv)
   {
-    QString path = showFullPathOfObject(tv->currentIndex());
+    QString path = PackageController::showFullPathOfItem(tv->currentIndex());
     WMHelper::editFile(path);
   }
 }
@@ -1741,7 +1763,7 @@ QString MainWindow::getSelectedDirectory()
     QTreeView *t = ui->twProperties->currentWidget()->findChild<QTreeView*>("tvPkgFileList");
     if(t && t->currentIndex().isValid())
     {
-      QString itemPath = showFullPathOfObject(t->currentIndex());
+      QString itemPath = PackageController::showFullPathOfItem(t->currentIndex());
       QFileInfo fi(itemPath);
 
       if (fi.isDir())
@@ -1763,34 +1785,4 @@ void MainWindow::tvPackagesSelectionChanged(const QItemSelection&, const QItemSe
       arg(QString::number(ui->tvPackages->selectionModel()->selectedRows().count()));
 
   m_lblSelCounter->setText(newMessage);
-}
-
-/*
- * Returns the full path of the selected file in any given TreeView that represents a directory path.
- */
-QString MainWindow::showFullPathOfObject(const QModelIndex & index){
-  if (!index.isValid()) return "";
-
-  const QStandardItemModel *sim = qobject_cast<const QStandardItemModel*>( index.model() );
-
-  QStringList sl;
-  QModelIndex nindex;
-  QString str;
-  sl << sim->itemFromIndex( index )->text();
-  nindex = index;
-
-  while (1){
-    nindex = sim->parent( nindex );
-    if ( nindex != sim->invisibleRootItem()->index() ) sl << sim->itemFromIndex( nindex )->text();
-    else break;
-  }
-
-  str = QDir::separator() + str;
-
-  for ( int i=sl.count()-1; i>=0; i-- ){
-    if ( i < sl.count()-1 ) str += QDir::separator();
-    str += sl[i];
-  }
-
-  return str;
 }

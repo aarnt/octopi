@@ -165,24 +165,26 @@ void MainWindow::keyPressEvent(QKeyEvent* ke)
   }
   else if(ke->key() == Qt::Key_F && ke->modifiers() == Qt::ControlModifier)
   {
-    if (ui->twProperties->currentIndex() == ctn_TABINDEX_NEWS)
+    if (_isPropertiesTabWidgetVisible() &&
+        (ui->twProperties->currentIndex() == ctn_TABINDEX_NEWS ||
+         ui->twProperties->currentIndex() == ctn_TABINDEX_HELPABOUT))
     {
       QTextBrowser *tb = ui->twProperties->currentWidget()->findChild<QTextBrowser*>("textBrowser");
-      if (!tb) tb = ui->twProperties->currentWidget()->findChild<QTextBrowser*>("updaterOutput");
+      //if (!tb) tb = ui->twProperties->currentWidget()->findChild<QTextBrowser*>("updaterOutput");
       SearchBar *searchBar = ui->twProperties->currentWidget()->findChild<SearchBar*>("searchbar");
 
-      if (tb && tb->toPlainText().size() > 0 && (tb->hasFocus() ||
-                                                 ((searchBar) && (searchBar->hasFocus())))){ //||
-        //((!actionMinimizeLowerView->isChecked()) && (actionHideRightView->isChecked())))){
+      if (tb && tb->toPlainText().size() > 0 && searchBar)
+      {
         if (searchBar) searchBar->show();
       }
     }
-    else if (ui->twProperties->currentIndex() == ctn_TABINDEX_FILES)
+    else if (_isPropertiesTabWidgetVisible() && ui->twProperties->currentIndex() == ctn_TABINDEX_FILES)
     {
       QTreeView *tb = ui->twProperties->currentWidget()->findChild<QTreeView*>("tvPkgFileList");
       SearchBar *searchBar = ui->twProperties->currentWidget()->findChild<SearchBar*>("searchbar");
 
-      if ((tb->hasFocus() || ((searchBar) && (searchBar->hasFocus())))){ //||
+      if (tb && tb->model()->rowCount() > 0 && searchBar)
+      {
         //((!actionMinimizeLowerView->isChecked()) && (actionHideRightView->isChecked())))){
         if (searchBar) searchBar->show();
       }

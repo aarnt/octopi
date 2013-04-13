@@ -1,5 +1,5 @@
 /*
-* This file is part of Octopi, an open-source GUI for Slackware pkgtools.
+* This file is part of Octopi, an open-source GUI for pacman.
 * Copyright (C) 2013 Alexandre Albuquerque Arnt
 *
 * This program is free software; you can redistribute it and/or modify
@@ -80,8 +80,8 @@ void SearchBar::init()
 
   connect(tbClose, SIGNAL(clicked()), this, SLOT(close()));
   connect(m_searchLineEdit, SIGNAL(textChanged(QString)), this, SIGNAL(textChanged(QString)));
-  connect(m_previousButton, SIGNAL(clicked()), this, SIGNAL(findPreviousButtonClicked()));
-  connect(m_nextButton, SIGNAL(clicked()), this, SIGNAL(findNextButtonClicked()));
+  connect(m_previousButton, SIGNAL(clicked()), this, SIGNAL(findPrevious()));
+  connect(m_nextButton, SIGNAL(clicked()), this, SIGNAL(findNext()));
 }
 
 void SearchBar::close()
@@ -104,13 +104,23 @@ void SearchBar::paintEvent(QPaintEvent *)
 
 bool SearchBar::eventFilter(QObject *obj, QEvent *event)
 {
-  if (obj->objectName() == m_searchLineEdit->objectName()){
-    if (event->type() == QEvent::KeyPress)   {
+  if (obj->objectName() == m_searchLineEdit->objectName())
+  {
+    if (event->type() == QEvent::KeyPress)
+    {
       QKeyEvent *ke = static_cast<QKeyEvent*>(event);
-      if (ke->key() == Qt::Key_Enter || ke->key() == Qt::Key_Return)
+      if (ke->key() == Qt::Key_F3 && ke->modifiers() == Qt::ShiftModifier)
+      {
+        emit findPrevious();
+      }
+      else if (ke->key() == Qt::Key_Enter || ke->key() == Qt::Key_Return || ke->key() == Qt::Key_F3)
+      {
         emit findNext();
+      }
       else if (ke->key() == Qt::Key_Escape)
+      {
         close();
+      }
     }
   }
 

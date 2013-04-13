@@ -385,7 +385,7 @@ void MainWindow::initTabFiles()
   tvPkgFileList->setFrameShape(QFrame::NoFrame);
   tvPkgFileList->setFrameShadow(QFrame::Plain);
   tvPkgFileList->setObjectName("tvPkgFileList");
-  tvPkgFileList->setStyleSheet(StrConstants::getTreeViewCSS()); //SettingsManager::getPkgListFontSize()));
+  tvPkgFileList->setStyleSheet(StrConstants::getTreeViewCSS());
 
   modelPkgFileList->setSortRole(0);
   modelPkgFileList->setColumnCount(0);
@@ -404,12 +404,10 @@ void MainWindow::initTabFiles()
 
   connect(searchBar, SIGNAL(textChanged(QString)), this, SLOT(searchBarTextChangedEx(QString)));
   connect(searchBar, SIGNAL(closed()), this, SLOT(searchBarClosedEx()));
-  //connect(searchBar, SIGNAL(findNext()), this, SLOT(searchBarFindNext()));
-  //connect(searchBar, SIGNAL(findNextButtonClicked()), this, SLOT(searchBarFindNext()));
-  connect(searchBar, SIGNAL(findPreviousButtonClicked()), this, SLOT(searchBarFindPrevious()));
+  connect(searchBar, SIGNAL(findNext()), this, SLOT(searchBarFindNextEx()));
+  connect(searchBar, SIGNAL(findPrevious()), this, SLOT(searchBarFindPreviousEx()));
 
   gridLayoutX->addWidget(searchBar, 1, 0, 1, 1);
-
 
   connect(tvPkgFileList, SIGNAL(customContextMenuRequested(QPoint)),
           this, SLOT(execContextMenuPkgFileList(QPoint)));
@@ -740,141 +738,6 @@ void MainWindow::onTabNewsSourceChanged(QUrl newSource)
   }
 }
 
-
-void MainWindow::searchBarTextChangedEx(const QString textToSearch)
-{
-  m_foundFilesInPkgFileList->clear();
-
-  QTreeView *tvPkgFileList =
-    ui->twProperties->widget(ctn_TABINDEX_FILES)->findChild<QTreeView*>("tvPkgFileList");
-  QStandardItemModel *sim = qobject_cast<QStandardItemModel *>(tvPkgFileList->model());
-  SearchBar *sb = ui->twProperties->currentWidget()->findChild<SearchBar*>("searchbar");
-
-  m_foundFilesInPkgFileList = PackageController::findFileEx(textToSearch, sim);
-
-  if (m_foundFilesInPkgFileList->count() > 0)
-  {
-    tvPkgFileList->setCurrentIndex(m_foundFilesInPkgFileList->at(0));
-    tvPkgFileList->scrollTo(m_foundFilesInPkgFileList->at(0));
-    sb->getSearchLineEdit()->setFoundStyle();
-  }
-  else
-  {
-    tvPkgFileList->setCurrentIndex(sim->index(0,0));
-    sb->getSearchLineEdit()->setNotFoundStyle();
-
-  }
-
-}
-
-void MainWindow::searchBarTextChanged(const QString textToSearch)
-{
-  qApp->processEvents();
-  QTextBrowser *tb = ui->twProperties->currentWidget()->findChild<QTextBrowser*>("textBrowser");
-  if (!tb) tb = ui->twProperties->currentWidget()->findChild<QTextBrowser*>("updaterOutput");
-  QList<QTextEdit::ExtraSelection> extraSelections;
-
-  if (tb){
-    static int limit = SettingsManager::getHighlightedSearchItems();
-
-    SearchBar *sb = ui->twProperties->currentWidget()->findChild<SearchBar*>("searchbar");
-    if (textToSearch.isEmpty() || textToSearch.length() < 2){
-      sb->getSearchLineEdit()->initStyleSheet();
-      tb->setExtraSelections(extraSelections);
-      QTextCursor tc = tb->textCursor();
-      tc.clearSelection();
-      tb->setTextCursor(tc);
-      tb->moveCursor(QTextCursor::Start);
-      if (sb && sb->isHidden()) tb->setFocus();
-      return;
-    }
-
-    if (textToSearch.length() < 2) return;
-
-    tb->setExtraSelections(extraSelections);
-    tb->moveCursor(QTextCursor::Start);
-    QColor color = QColor(Qt::yellow).lighter(130);
-
-    while(tb->find(textToSearch)){
-      QTextEdit::ExtraSelection extra;
-      extra.format.setBackground(color);
-      extra.cursor = tb->textCursor();
-      extraSelections.append(extra);
-
-      if (limit > 0 && extraSelections.count() == limit)
-        break;
-    }
-
-    if (extraSelections.count()>0){
-      tb->setExtraSelections(extraSelections);
-      tb->setTextCursor(extraSelections.at(0).cursor);
-      QTextCursor tc = tb->textCursor();
-      tc.clearSelection();
-      tb->setTextCursor(tc);
-      _positionInFirstMatch();
-    }
-    else sb->getSearchLineEdit()->setNotFoundStyle();
-  }
-}
-
-void MainWindow::searchBarFindNext()
-{
-  QTextBrowser *tb = ui->twProperties->currentWidget()->findChild<QTextBrowser*>("textBrowser");
-  if (!tb) tb = ui->twProperties->currentWidget()->findChild<QTextBrowser*>("updaterOutput");
-  SearchBar *sb = ui->twProperties->currentWidget()->findChild<SearchBar*>("searchbar");
-
-  if (tb && sb && !sb->getTextToSearch().isEmpty()){
-    if (!tb->find(sb->getTextToSearch())){
-      tb->moveCursor(QTextCursor::Start);
-      tb->find(sb->getTextToSearch());
-    }
-  }
-}
-
-void MainWindow::searchBarFindPrevious()
-{
-  QTextBrowser *tb = ui->twProperties->currentWidget()->findChild<QTextBrowser*>("textBrowser");
-  if (!tb) tb = ui->twProperties->currentWidget()->findChild<QTextBrowser*>("updaterOutput");
-  SearchBar *sb = ui->twProperties->currentWidget()->findChild<SearchBar*>("searchbar");
-
-  if (tb && sb && !sb->getTextToSearch().isEmpty()){
-    if (!tb->find(sb->getTextToSearch(), QTextDocument::FindBackward)){
-      tb->moveCursor(QTextCursor::End);
-      tb->find(sb->getTextToSearch(), QTextDocument::FindBackward);
-    }
-  }
-}
-
-void MainWindow::searchBarClosed()
-{
-  searchBarTextChanged("");
-  QTextBrowser *tb = ui->twProperties->currentWidget()->findChild<QTextBrowser*>("textBrowser");
-  if (!tb) tb = ui->twProperties->currentWidget()->findChild<QTextBrowser*>("updaterOutput");
-  tb->setFocus();
-}
-
-void MainWindow::searchBarClosedEx()
-{
-  searchBarTextChangedEx("");
-  QTreeView *tb = ui->twProperties->currentWidget()->findChild<QTreeView*>("tvPkgFileList");
-  tb->setFocus();
-}
-
-void MainWindow::_positionInFirstMatch()
-{
-  QTextBrowser *tb = ui->twProperties->currentWidget()->findChild<QTextBrowser*>("textBrowser");
-  if (!tb) tb = ui->twProperties->currentWidget()->findChild<QTextBrowser*>("updaterOutput");
-  SearchBar *sb = ui->twProperties->currentWidget()->findChild<SearchBar*>("searchbar");
-
-  if (tb && sb && sb->isVisible() && !sb->getTextToSearch().isEmpty()){
-    tb->moveCursor(QTextCursor::Start);
-    if (tb->find(sb->getTextToSearch()))
-      sb->getSearchLineEdit()->setFoundStyle();
-    else
-      sb->getSearchLineEdit()->setNotFoundStyle();
-  }
-}
-
 /*
  * This is the TextBrowser News tab, which shows the latest news from Distro news feed
  */
@@ -901,18 +764,13 @@ void MainWindow::initTabNews()
   ui->twProperties->setTabText(ui->twProperties->indexOf(tabNews), QApplication::translate(
       "MainWindow", aux.toUtf8(), 0, QApplication::UnicodeUTF8));
 
-  //QWidget *w = m_tabBar->tabButton(tindex, QTabBar::RightSide);
-  //w->setToolTip(tr("Close tab"));
-  //w->setObjectName("toolButton");
-
   SearchBar *searchBar = new SearchBar(this);
   MyHighlighter *highlighter = new MyHighlighter(text, "");
 
   connect(searchBar, SIGNAL(textChanged(QString)), this, SLOT(searchBarTextChanged(QString)));
   connect(searchBar, SIGNAL(closed()), this, SLOT(searchBarClosed()));
   connect(searchBar, SIGNAL(findNext()), this, SLOT(searchBarFindNext()));
-  connect(searchBar, SIGNAL(findNextButtonClicked()), this, SLOT(searchBarFindNext()));
-  connect(searchBar, SIGNAL(findPreviousButtonClicked()), this, SLOT(searchBarFindPrevious()));
+  connect(searchBar, SIGNAL(findPrevious()), this, SLOT(searchBarFindPrevious()));
 
   gridLayoutX->addWidget(searchBar, 1, 0, 1, 1);
   gridLayoutX->addWidget(new SyntaxHighlighterWidget(this, highlighter));
