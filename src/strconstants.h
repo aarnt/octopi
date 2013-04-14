@@ -378,7 +378,11 @@ public:
   }
 
   static QString getExecutingCommand(){
-    return QObject::tr("Executing command");
+    return QObject::tr("Executing command");    
+  }
+
+  static QString getRunInTerminal(){
+    return QObject::tr("Run in terminal");
   }
 
   static QString getNeedsAppRestart(){

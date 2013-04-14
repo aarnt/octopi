@@ -111,7 +111,7 @@ public:
 
   static void removeTemporaryFiles();
 
-  static void runCommandInTerminal(const QStringList& commandList);
+  static int runCommandInTerminal(const QStringList& commandList);
 
   void executeCommand(const QString &pCommand);
   void executePackageActions(const QStringList& commandList);

@@ -68,7 +68,8 @@ bool MainWindow::_isThereAPendingTransaction()
  */
 QStandardItem * MainWindow::getRemoveTransactionParentItem()
 {
-  QTreeView *tvTransaction = ui->twProperties->widget(ctn_TABINDEX_TRANSACTION)->findChild<QTreeView*>("tvTransaction");
+  QTreeView *tvTransaction =
+      ui->twProperties->widget(ctn_TABINDEX_TRANSACTION)->findChild<QTreeView*>("tvTransaction");
   QStandardItemModel *sim = qobject_cast<QStandardItemModel *>(tvTransaction->model());
   QStandardItem *si;
 
@@ -85,7 +86,8 @@ QStandardItem * MainWindow::getRemoveTransactionParentItem()
  */
 QStandardItem * MainWindow::getInstallTransactionParentItem()
 {
-  QTreeView *tvTransaction = ui->twProperties->widget(ctn_TABINDEX_TRANSACTION)->findChild<QTreeView*>("tvTransaction");
+  QTreeView *tvTransaction =
+      ui->twProperties->widget(ctn_TABINDEX_TRANSACTION)->findChild<QTreeView*>("tvTransaction");
   QStandardItemModel *sim = qobject_cast<QStandardItemModel *>(tvTransaction->model());
   QStandardItem *si;
 
@@ -102,7 +104,8 @@ QStandardItem * MainWindow::getInstallTransactionParentItem()
  */
 void MainWindow::insertRemovePackageIntoTransaction(const QString &pkgName)
 {
-  QTreeView *tvTransaction = ui->twProperties->widget(ctn_TABINDEX_TRANSACTION)->findChild<QTreeView*>("tvTransaction");
+  QTreeView *tvTransaction =
+      ui->twProperties->widget(ctn_TABINDEX_TRANSACTION)->findChild<QTreeView*>("tvTransaction");
   QStandardItem * siRemoveParent = getRemoveTransactionParentItem();
   QStandardItem * siInstallParent = getInstallTransactionParentItem();
   QStandardItem * siPackageToRemove = new QStandardItem(IconHelper::getIconRemoveItem(), pkgName);
@@ -139,7 +142,8 @@ void MainWindow::insertRemovePackageIntoTransaction(const QString &pkgName)
  */
 void MainWindow::insertInstallPackageIntoTransaction(const QString &pkgName)
 {
-  QTreeView *tvTransaction = ui->twProperties->widget(ctn_TABINDEX_TRANSACTION)->findChild<QTreeView*>("tvTransaction");
+  QTreeView *tvTransaction =
+      ui->twProperties->widget(ctn_TABINDEX_TRANSACTION)->findChild<QTreeView*>("tvTransaction");
   QStandardItem * siInstallParent = getInstallTransactionParentItem();
   QStandardItem * siPackageToInstall = new QStandardItem(IconHelper::getIconInstallItem(), pkgName);
   QStandardItem * siRemoveParent = getRemoveTransactionParentItem();
@@ -215,7 +219,7 @@ QString MainWindow::getTobeRemovedPackages()
 }
 
 /*
- * Retrieve the list of all packages scheduled to be installed
+ * Retrieves the list of all packages scheduled to be installed
  */
 QString MainWindow::getTobeInstalledPackages()
 {
@@ -320,7 +324,8 @@ void MainWindow::_tvTransactionAdjustItemText(QStandardItem *item)
 {
   int countSelected=0;
 
-  QTreeView *tvTransaction = ui->twProperties->currentWidget()->findChild<QTreeView*>("tvTransaction");
+  QTreeView *tvTransaction =
+      ui->twProperties->currentWidget()->findChild<QTreeView*>("tvTransaction");
   if (!tvTransaction) return;
 
   for(int c=0; c < item->rowCount(); c++)
@@ -537,36 +542,45 @@ void MainWindow::doSystemUpgrade(bool syncDatabase)
     question.setDetailedText(list);
     question.setStandardButtons(QMessageBox::Yes|QMessageBox::No|QMessageBox::Close);
     question.setDefaultButton(QMessageBox::No);
+    question.addButton(StrConstants::getRunInTerminal(), QMessageBox::AcceptRole);
 
     int result = question.exec();
-    if(result == QMessageBox::Yes)
+    if(result == QMessageBox::Yes || result == QMessageBox::AcceptRole)
     {
       //If there are no means to run the actions, we must warn!
       if (!_isSUAvailable()) return;
-
-      m_commandExecuting = ectn_SYSTEM_UPGRADE;
-
-      disableTransactionActions();
-      m_unixCommand = new UnixCommand(this);
-
-      QObject::connect(m_unixCommand, SIGNAL( started() ), this, SLOT( actionsProcessStarted()));
-      QObject::connect(m_unixCommand, SIGNAL( readyReadStandardOutput()),
-                       this, SLOT( actionsProcessReadOutput() ));
-      QObject::connect(m_unixCommand, SIGNAL( finished ( int, QProcess::ExitStatus )),
-                       this, SLOT( actionsProcessFinished(int, QProcess::ExitStatus) ));
-      QObject::connect(m_unixCommand, SIGNAL( readyReadStandardError() ),
-                       this, SLOT( actionsProcessRaisedError() ));
-
-      QString command;
-      command = "pacman -Su --noconfirm";
 
       m_lastCommandList.clear();
       m_lastCommandList.append("pacman -Su;");
       m_lastCommandList.append("echo -e;");
       m_lastCommandList.append("read -n1 -p \"" + StrConstants::getPressAnyKey() + "\"");
 
-      m_unixCommand->executeCommand(command);
-      m_commandQueued = ectn_NONE;
+      if (result == QMessageBox::Yes)
+      {
+        m_commandExecuting = ectn_SYSTEM_UPGRADE;
+
+        disableTransactionActions();
+        m_unixCommand = new UnixCommand(this);
+
+        QObject::connect(m_unixCommand, SIGNAL( started() ), this, SLOT( actionsProcessStarted()));
+        QObject::connect(m_unixCommand, SIGNAL( readyReadStandardOutput()),
+                         this, SLOT( actionsProcessReadOutput() ));
+        QObject::connect(m_unixCommand, SIGNAL( finished ( int, QProcess::ExitStatus )),
+                         this, SLOT( actionsProcessFinished(int, QProcess::ExitStatus) ));
+        QObject::connect(m_unixCommand, SIGNAL( readyReadStandardError() ),
+                         this, SLOT( actionsProcessRaisedError() ));
+
+        QString command;
+        command = "pacman -Su --noconfirm";
+
+        m_unixCommand->executeCommand(command);
+        m_commandQueued = ectn_NONE;
+      }
+      else if (result == QMessageBox::AcceptRole)
+      {
+        UnixCommand::runCommandInTerminal(m_lastCommandList);
+        clearTransactionTreeView();
+      }
     }
   }
 }
@@ -624,7 +638,8 @@ void MainWindow::doRemoveAndInstall()
   {
     if (removeTargets->at(0).indexOf("HoldPkg was found in") != -1)
     {
-      QMessageBox::warning(this, StrConstants::getAttention(), StrConstants::getWarnHoldPkgFound(), QMessageBox::Ok);
+      QMessageBox::warning(
+            this, StrConstants::getAttention(), StrConstants::getWarnHoldPkgFound(), QMessageBox::Ok);
       return;
     }
   }
@@ -632,7 +647,8 @@ void MainWindow::doRemoveAndInstall()
   {
     if (installTargets->at(0).name.indexOf("HoldPkg was found in") != -1)
     {
-      QMessageBox::warning(this, StrConstants::getAttention(), StrConstants::getWarnHoldPkgFound(), QMessageBox::Ok);
+      QMessageBox::warning(
+            this, StrConstants::getAttention(), StrConstants::getWarnHoldPkgFound(), QMessageBox::Ok);
       return;
     }
   }
@@ -647,25 +663,13 @@ void MainWindow::doRemoveAndInstall()
   question.setDetailedText(allLists);
   question.setStandardButtons(QMessageBox::Yes|QMessageBox::No|QMessageBox::Close);
   question.setDefaultButton(QMessageBox::No);
+  question.addButton(StrConstants::getRunInTerminal(), QMessageBox::AcceptRole);
 
   int result = question.exec();
-  if(result == QMessageBox::Yes)
+  if(result == QMessageBox::Yes || result == QMessageBox::AcceptRole)
   {
     //If there are no means to run the actions, we must warn!
     if (!_isSUAvailable()) return;
-
-    m_commandExecuting = ectn_REMOVE_INSTALL;
-
-    disableTransactionActions();
-    m_unixCommand = new UnixCommand(this);
-
-    QObject::connect(m_unixCommand, SIGNAL( started() ), this, SLOT( actionsProcessStarted()));
-    QObject::connect(m_unixCommand, SIGNAL( readyReadStandardOutput()),
-                     this, SLOT( actionsProcessReadOutput() ));
-    QObject::connect(m_unixCommand, SIGNAL( finished ( int, QProcess::ExitStatus )),
-                     this, SLOT( actionsProcessFinished(int, QProcess::ExitStatus) ));
-    QObject::connect(m_unixCommand, SIGNAL( readyReadStandardError() ),
-                     this, SLOT( actionsProcessRaisedError() ));
 
     QString command;
     command = "pacman -Rcs --noconfirm " + listOfRemoveTargets +
@@ -677,7 +681,27 @@ void MainWindow::doRemoveAndInstall()
     m_lastCommandList.append("echo -e;");
     m_lastCommandList.append("read -n1 -p \"" + StrConstants::getPressAnyKey() + "\"");
 
-    m_unixCommand->executeCommand(command);
+    if (result == QMessageBox::Yes)
+    {
+      m_commandExecuting = ectn_REMOVE_INSTALL;
+      disableTransactionActions();
+      m_unixCommand = new UnixCommand(this);
+
+      QObject::connect(m_unixCommand, SIGNAL( started() ), this, SLOT( actionsProcessStarted()));
+      QObject::connect(m_unixCommand, SIGNAL( readyReadStandardOutput()),
+                       this, SLOT( actionsProcessReadOutput() ));
+      QObject::connect(m_unixCommand, SIGNAL( finished ( int, QProcess::ExitStatus )),
+                       this, SLOT( actionsProcessFinished(int, QProcess::ExitStatus) ));
+      QObject::connect(m_unixCommand, SIGNAL( readyReadStandardError() ),
+                       this, SLOT( actionsProcessRaisedError() ));
+
+      m_unixCommand->executeCommand(command);
+    }
+    else if (result == QMessageBox::AcceptRole)
+    {
+      UnixCommand::runCommandInTerminal(m_lastCommandList);
+      clearTransactionTreeView();
+    }
   }
 }
 
@@ -704,14 +728,13 @@ void MainWindow::doRemove()
 
   QMessageBox question;
 
-  //Q_ASSERT(m_targets->count() > 0);
-
   //Shows a dialog indicating the targets which will be removed and asks for the user's permission.
   if(m_targets->count()==1)
   {
     if (m_targets->at(0).indexOf("HoldPkg was found in") != -1)
     {
-      QMessageBox::warning(this, StrConstants::getAttention(), StrConstants::getWarnHoldPkgFound(), QMessageBox::Ok);
+      QMessageBox::warning(
+            this, StrConstants::getAttention(), StrConstants::getWarnHoldPkgFound(), QMessageBox::Ok);
       return;
     }
     else question.setText(StrConstants::getRemoveTarget());
@@ -728,25 +751,13 @@ void MainWindow::doRemove()
   question.setDetailedText(list);
   question.setStandardButtons(QMessageBox::Yes|QMessageBox::No|QMessageBox::Close);
   question.setDefaultButton(QMessageBox::No);
+  question.addButton(StrConstants::getRunInTerminal(), QMessageBox::AcceptRole);
 
   int result = question.exec();
-  if(result == QMessageBox::Yes)
+  if(result == QMessageBox::Yes || result == QMessageBox::AcceptRole)
   {
     //If there are no means to run the actions, we must warn!
     if (!_isSUAvailable()) return;
-
-    m_commandExecuting = ectn_REMOVE;
-
-    disableTransactionActions();
-    m_unixCommand = new UnixCommand(this);
-
-    QObject::connect(m_unixCommand, SIGNAL( started() ), this, SLOT( actionsProcessStarted()));
-    QObject::connect(m_unixCommand, SIGNAL( readyReadStandardOutput()),
-                     this, SLOT( actionsProcessReadOutput() ));
-    QObject::connect(m_unixCommand, SIGNAL( finished ( int, QProcess::ExitStatus )),
-                     this, SLOT( actionsProcessFinished(int, QProcess::ExitStatus) ));
-    QObject::connect(m_unixCommand, SIGNAL( readyReadStandardError() ),
-                     this, SLOT( actionsProcessRaisedError() ));
 
     QString command;
     command = "pacman -Rcs --noconfirm " + listOfTargets;
@@ -756,7 +767,29 @@ void MainWindow::doRemove()
     m_lastCommandList.append("echo -e;");
     m_lastCommandList.append("read -n1 -p \"" + StrConstants::getPressAnyKey() + "\"");
 
-    m_unixCommand->executeCommand(command);
+    if (result == QMessageBox::Yes)
+    {
+      m_commandExecuting = ectn_REMOVE;
+
+      disableTransactionActions();
+      m_unixCommand = new UnixCommand(this);
+
+      QObject::connect(m_unixCommand, SIGNAL( started() ), this, SLOT( actionsProcessStarted()));
+      QObject::connect(m_unixCommand, SIGNAL( readyReadStandardOutput()),
+                       this, SLOT( actionsProcessReadOutput() ));
+      QObject::connect(m_unixCommand, SIGNAL( finished ( int, QProcess::ExitStatus )),
+                       this, SLOT( actionsProcessFinished(int, QProcess::ExitStatus) ));
+      QObject::connect(m_unixCommand, SIGNAL( readyReadStandardError() ),
+                       this, SLOT( actionsProcessRaisedError() ));
+
+      m_unixCommand->executeCommand(command);
+    }
+
+    if (result == QMessageBox::AcceptRole)
+    {
+      UnixCommand::runCommandInTerminal(m_lastCommandList);
+      clearTransactionTreeView();
+    }
   }
 }
 
@@ -788,13 +821,12 @@ void MainWindow::doInstall()
 
   QMessageBox question;
 
-  //Q_ASSERT(m_targets->count() > 0);
-
   if(targets->count()==1)
   {
     if (targets->at(0).name.indexOf("HoldPkg was found in") != -1)
     {
-      QMessageBox::warning(this, StrConstants::getAttention(), StrConstants::getWarnHoldPkgFound(), QMessageBox::Ok);
+      QMessageBox::warning(
+            this, StrConstants::getAttention(), StrConstants::getWarnHoldPkgFound(), QMessageBox::Ok);
       return;
     }
     else question.setText(StrConstants::getRetrieveTarget() +
@@ -809,25 +841,13 @@ void MainWindow::doInstall()
   question.setDetailedText(list);
   question.setStandardButtons(QMessageBox::Yes|QMessageBox::No|QMessageBox::Close);
   question.setDefaultButton(QMessageBox::No);
+  question.addButton(StrConstants::getRunInTerminal(), QMessageBox::AcceptRole);
 
   int result = question.exec();
-  if(result == QMessageBox::Yes)
+  if(result == QMessageBox::Yes || result == QMessageBox::AcceptRole)
   {
     //If there are no means to run the actions, we must warn!
     if (!_isSUAvailable()) return;
-
-    m_commandExecuting = ectn_INSTALL;
-
-    disableTransactionActions();
-    m_unixCommand = new UnixCommand(this);
-
-    QObject::connect(m_unixCommand, SIGNAL( started() ), this, SLOT( actionsProcessStarted()));
-    QObject::connect(m_unixCommand, SIGNAL( readyReadStandardOutput()),
-                     this, SLOT( actionsProcessReadOutput() ));
-    QObject::connect(m_unixCommand, SIGNAL( finished ( int, QProcess::ExitStatus )),
-                     this, SLOT( actionsProcessFinished(int, QProcess::ExitStatus) ));
-    QObject::connect(m_unixCommand, SIGNAL( readyReadStandardError() ),
-                     this, SLOT( actionsProcessRaisedError() ));
 
     QString command;
     command = "pacman -S --noconfirm " + listOfTargets;
@@ -837,7 +857,28 @@ void MainWindow::doInstall()
     m_lastCommandList.append("echo -e;");
     m_lastCommandList.append("read -n1 -p \"" + StrConstants::getPressAnyKey() + "\"");
 
-    m_unixCommand->executeCommand(command);
+    if (result == QMessageBox::Yes)
+    {
+      m_commandExecuting = ectn_INSTALL;
+
+      disableTransactionActions();
+      m_unixCommand = new UnixCommand(this);
+
+      QObject::connect(m_unixCommand, SIGNAL( started() ), this, SLOT( actionsProcessStarted()));
+      QObject::connect(m_unixCommand, SIGNAL( readyReadStandardOutput()),
+                       this, SLOT( actionsProcessReadOutput() ));
+      QObject::connect(m_unixCommand, SIGNAL( finished ( int, QProcess::ExitStatus )),
+                       this, SLOT( actionsProcessFinished(int, QProcess::ExitStatus) ));
+      QObject::connect(m_unixCommand, SIGNAL( readyReadStandardError() ),
+                       this, SLOT( actionsProcessRaisedError() ));
+
+      m_unixCommand->executeCommand(command);
+    }
+    else if (result == QMessageBox::AcceptRole)
+    {
+      UnixCommand::runCommandInTerminal(m_lastCommandList);
+      clearTransactionTreeView();
+    }
   }
 }
 
@@ -1214,11 +1255,13 @@ void MainWindow::_treatProcessOutput(const QString &pMsg)
               {
                 if(m_commandExecuting == ectn_SYNC_DATABASE)
                 {
-                  writeToTabOutputExt("<b><font color=\"#FF8040\">" + StrConstants::getSyncing() + " " + target + "</font></b>");
+                  writeToTabOutputExt("<b><font color=\"#FF8040\">" +
+                                      StrConstants::getSyncing() + " " + target + "</font></b>");
                 }
                 else
                 {
-                  writeToTabOutputExt("<b><font color=\"#b4ab58\">" + target + "</font></b>"); //#C9BE62
+                  writeToTabOutputExt("<b><font color=\"#b4ab58\">" +
+                                      target + "</font></b>"); //#C9BE62
                 }
               }
             }
@@ -1234,7 +1277,8 @@ void MainWindow::_treatProcessOutput(const QString &pMsg)
     //Here we print the transaction percentage updating
     if(!perc.isEmpty() && perc.indexOf("%") > 0)
     {
-      ui->twProperties->setTabText(ctn_TABINDEX_OUTPUT, StrConstants::getTabOutputName() + " (" + perc + ")");
+      ui->twProperties->setTabText(
+            ctn_TABINDEX_OUTPUT, StrConstants::getTabOutputName() + " (" + perc + ")");
     }
   }
   //It's another error, so we have to output it
@@ -1421,7 +1465,7 @@ void MainWindow::writeToTabOutputExt(const QString &msg)
     _ensureTabVisible(ctn_TABINDEX_OUTPUT);
     _positionTextEditCursorAtEnd();
 
-    if(newMsg.contains(QRegExp("<font color"))) //&& !newMsg.contains(QRegExp("<br")))
+    if(newMsg.contains(QRegExp("<font color")))
     {
       newMsg += "<br>";
     }
