@@ -73,7 +73,6 @@ void MainWindow::show()
 {
   loadSettings();
   restoreGeometry(SettingsManager::getWindowSize());
-  QMainWindow::show();
 
   m_initializationCompleted=false;
   m_commandExecuting=ectn_NONE;
@@ -83,8 +82,6 @@ void MainWindow::show()
   setWindowTitle(StrConstants::getApplicationName() + " " + StrConstants::getApplicationVersion());
   setMinimumSize(QSize(850, 600));
 
-  qApp->setStyleSheet(StrConstants::getMenuCSS());
-
   initStatusBar();
   initTabOutput();
   initTabInfo();
@@ -93,7 +90,17 @@ void MainWindow::show()
   initTabHelpAbout();
   initTabNews();
   initLineEditFilterPackages();
+
+  QMainWindow::show();
+
   initPackageTreeView();
+
+  //Let's watch for changes in the Pacman db dir!
+  m_pacmanDatabaseSystemWatcher =
+      new QFileSystemWatcher(QStringList() << ctn_PACMAN_DATABASE_DIR, this);
+  connect(m_pacmanDatabaseSystemWatcher, SIGNAL(directoryChanged(QString)), this, SLOT(metaBuildPackageList()));
+
+  qApp->setStyleSheet(StrConstants::getMenuCSS());
 
   loadPanelSettings();
 
@@ -103,15 +110,10 @@ void MainWindow::show()
   initTabWidgetPropertiesIndex();
   refreshDistroNews(false);
 
-  //Let's watch for changes in the Pacman db dir!
-  m_pacmanDatabaseSystemWatcher =
-      new QFileSystemWatcher(QStringList() << ctn_PACMAN_DATABASE_DIR, this);
-  connect(m_pacmanDatabaseSystemWatcher, SIGNAL(directoryChanged(QString)), this, SLOT(metaBuildPackageList()));
-
   /* This timer is needed to beautify GUI initialization... */
   timer = new QTimer();
   connect(timer, SIGNAL(timeout()), this, SLOT(buildPackageList()));
-  timer->start(5);
+  timer->start(0.1);
 }
 
 /*
