@@ -633,6 +633,38 @@ UnixCommand::UnixCommand(QObject *parent): QObject()
 }
 
 /*
+ * Searches "/etc/pacman.conf" to see if ILoveCandy is enabled
+ */
+bool UnixCommand::isILoveCandyEnabled()
+{
+  bool res=false;
+  QFile file("/etc/pacman.conf");
+
+  if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
+    return false;
+
+  QString contents = file.readAll();
+  int end = contents.indexOf("ILoveCandy");
+  int start=0;
+
+  if (end != -1)
+  {
+    //Does it contains a # before it???
+    start = end;
+    do{
+      start--;
+    }while (contents.at(start) != '\n');
+
+    QString str = contents.mid(start+1, (end-start-1)).trimmed();
+
+    if (str.isEmpty()) res = true;
+    else res = false;
+  }
+
+  return res;
+}
+
+/*
  * Retrieves the LinuxDistro where Octopi is running on!
  * Reads file "/etc/os-release" and searchs for compatible Octopi distros
  */

@@ -38,6 +38,7 @@ class QFileSystemWatcher;
 class QLabel;
 class QComboBox;
 class QListView;
+class QProgressBar;
 class SearchLineEdit;
 
 //Column indices for Package's treeview
@@ -96,6 +97,9 @@ private:
   QSortFilterProxyModel *m_proxyModelPackages;
   QFileSystemWatcher *m_pacmanDatabaseSystemWatcher;
 
+  //Searches /etc/pacman.conf to see if ILoveCandy is there
+  bool m_iLoveCandy;
+
   //This model provides the list of ALL packages (installed + non-installed)
   QStandardItemModel *m_modelPackages;
 
@@ -131,6 +135,8 @@ private:
 
   QLabel *m_lblSelCounter; //Holds the number of selected packages
   QLabel *m_lblTotalCounters; //Holds the total number of packages
+  QProgressBar *m_progressWidget;
+
   QByteArray m_horizontalSplit;
 
   int m_numberOfInstalledPackages;

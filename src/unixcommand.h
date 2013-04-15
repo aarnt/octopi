@@ -38,6 +38,7 @@ enum LinuxDistro { ectn_ARCHLINUX, ectn_MANJAROLINUX, ectn_UNKNOWN };
 //Forward class declarations.
 class QString;
 class QStringList;
+
 class UnixCommand : public QObject{
   Q_OBJECT
 
@@ -52,6 +53,9 @@ public:
   UnixCommand(QObject *parent);
 
   inline QProcess * getProcess(){ return m_process; }
+
+  //Returns true if ILoveCandy is enabled in "/etc/pacman.conf"
+  static bool isILoveCandyEnabled();
 
   //Returns the Linux Distro where Octopi is running on
   static LinuxDistro getLinuxDistro();

@@ -29,6 +29,7 @@
 #include "strconstants.h"
 #include <iostream>
 #include <QComboBox>
+#include <QProgressBar>
 #include <QMessageBox>
 #include <QStandardItem>
 #include <QSortFilterProxyModel>
@@ -578,8 +579,13 @@ void MainWindow::doSystemUpgrade(bool syncDatabase)
       }
       else if (result == QMessageBox::AcceptRole)
       {
+        disconnect(m_pacmanDatabaseSystemWatcher,
+                   SIGNAL(directoryChanged(QString)), this, SLOT(metaBuildPackageList()));
+
         UnixCommand::runCommandInTerminal(m_lastCommandList);
         clearTransactionTreeView();
+
+        metaBuildPackageList();
       }
     }
   }
@@ -699,8 +705,13 @@ void MainWindow::doRemoveAndInstall()
     }
     else if (result == QMessageBox::AcceptRole)
     {
+      disconnect(m_pacmanDatabaseSystemWatcher,
+                 SIGNAL(directoryChanged(QString)), this, SLOT(metaBuildPackageList()));
+
       UnixCommand::runCommandInTerminal(m_lastCommandList);
       clearTransactionTreeView();
+
+      metaBuildPackageList();
     }
   }
 }
@@ -787,8 +798,13 @@ void MainWindow::doRemove()
 
     if (result == QMessageBox::AcceptRole)
     {
+      disconnect(m_pacmanDatabaseSystemWatcher,
+                 SIGNAL(directoryChanged(QString)), this, SLOT(metaBuildPackageList()));
+
       UnixCommand::runCommandInTerminal(m_lastCommandList);
       clearTransactionTreeView();
+
+      metaBuildPackageList();
     }
   }
 }
@@ -876,8 +892,13 @@ void MainWindow::doInstall()
     }
     else if (result == QMessageBox::AcceptRole)
     {
+      disconnect(m_pacmanDatabaseSystemWatcher,
+                 SIGNAL(directoryChanged(QString)), this, SLOT(metaBuildPackageList()));
+
       UnixCommand::runCommandInTerminal(m_lastCommandList);
       clearTransactionTreeView();
+
+      metaBuildPackageList();
     }
   }
 }
@@ -896,6 +917,7 @@ void MainWindow::doCleanCache()
 
   if (res == QMessageBox::Yes)
   {
+    disconnect(m_pacmanDatabaseSystemWatcher, SIGNAL(directoryChanged(QString)), this, SLOT(metaBuildPackageList()));
     clearTabOutput();
     writeToTabOutputExt("<b>" + StrConstants::getCleaningPackageCache() + "</b>");
     qApp->processEvents();
@@ -905,7 +927,10 @@ void MainWindow::doCleanCache()
     qApp->processEvents();
 
     if (res)
+    {
       writeToTabOutputExt("<b>" + StrConstants::getCommandFinishedOK() + "</b>");
+      metaBuildPackageList();
+    }
     else
       writeToTabOutputExt("<b>" + StrConstants::getCommandFinishedWithErrors() + "</b>");
   }
@@ -1008,6 +1033,10 @@ void MainWindow::doRollbackTransaction()
  */
 void MainWindow::actionsProcessStarted()
 {
+  m_progressWidget->setValue(0);
+  m_progressWidget->setMaximum(100);
+  m_iLoveCandy = UnixCommand::isILoveCandyEnabled();
+
   disconnect(m_pacmanDatabaseSystemWatcher, SIGNAL(directoryChanged(QString)), this, SLOT(metaBuildPackageList()));
 
   clearTabOutput();
@@ -1048,6 +1077,8 @@ void MainWindow::actionsProcessStarted()
  */
 void MainWindow::actionsProcessFinished(int exitCode, QProcess::ExitStatus)
 {
+  m_progressWidget->close();
+
   ui->twProperties->setTabText(ctn_TABINDEX_OUTPUT, StrConstants::getTabOutputName());
 
   if (exitCode == 0){
@@ -1162,30 +1193,49 @@ bool MainWindow::_searchForKeyVerbs(const QString &msg)
  * Processes the output of the 'pacman process' so we can update percentages and messages at real time
  */
 void MainWindow::_treatProcessOutput(const QString &pMsg)
-{
+{  
   bool continueTesting = false;
   QString perc;
   QString msg = pMsg;
+
+  QString progressRun;
+  QString progressEnd;
+
   msg.remove(QRegExp(".+\\[Y/n\\].+"));
   msg.remove(QRegExp("warning:\\S{0}"));
 
   //std::cout << "_treat: " << msg.toAscii().data() << std::endl;
 
+  if (m_iLoveCandy)
+  {
+    progressRun = "m]";
+    progressEnd = "100%";
+  }
+  else
+  {
+    progressRun = "-]";
+    progressEnd = "#]";
+  }
+
   //If it is a percentage, we are talking about curl output...
-  if(msg.indexOf("#]") != -1)
+  if(msg.indexOf(progressEnd) != -1) //indexOf("#]") != -1)
   {
     perc = "100%";
-    ui->twProperties->setTabText(ctn_TABINDEX_OUTPUT, StrConstants::getTabOutputName() + " (100%)");    
+    if (!m_progressWidget->isVisible()) m_progressWidget->show();
+    m_progressWidget->setValue(100);
     continueTesting = true;
   }
 
-  if (msg.indexOf("-]") != -1 || continueTesting)
+  if (msg.indexOf(progressRun) != -1 /*indexOf("-]") != -1*/ || continueTesting)
   {
     if (!continueTesting){
       perc = msg.right(4).trimmed();
     }
 
     continueTesting = false;
+
+    int aux = msg.indexOf("[");
+    if (aux > 0 && !msg.at(aux-1).isSpace()) return;
 
     QString target;
     if (m_commandExecuting == ectn_INSTALL ||
@@ -1277,8 +1327,10 @@ void MainWindow::_treatProcessOutput(const QString &pMsg)
     //Here we print the transaction percentage updating
     if(!perc.isEmpty() && perc.indexOf("%") > 0)
     {
-      ui->twProperties->setTabText(
-            ctn_TABINDEX_OUTPUT, StrConstants::getTabOutputName() + " (" + perc + ")");
+      int percentage = perc.left(perc.size()-1).toInt();
+      std::cout << "percentage is: " << percentage << std::endl;
+      if (!m_progressWidget->isVisible()) m_progressWidget->show();
+      m_progressWidget->setValue(percentage);
     }
   }
   //It's another error, so we have to output it
@@ -1329,7 +1381,15 @@ void MainWindow::_treatProcessOutput(const QString &pMsg)
             msg.indexOf(":: Starting full system upgrade...") == -1)
         {
           //std::cout << "Entered here: " << msg.toAscii().data() << std::endl;
-          writeToTabOutputExt(msg); //it was font color = black
+
+          if (m_commandExecuting == ectn_SYNC_DATABASE &&
+              msg.indexOf("is up to date"))
+          {
+            if (!m_progressWidget->isVisible()) m_progressWidget->show();
+            m_progressWidget->setValue(100);
+          }
+
+          writeToTabOutputExt(msg); //BLACK
         }
       }
     }

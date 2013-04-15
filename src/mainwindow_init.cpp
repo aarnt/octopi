@@ -45,6 +45,7 @@
 #include <QListView>
 #include <QPalette>
 #include <QTabBar>
+#include <QProgressBar>
 #include <iostream>
 
 /*
@@ -182,8 +183,13 @@ void MainWindow::initStatusBar()
 {
   m_lblSelCounter = new QLabel(this);
   m_lblTotalCounters = new QLabel(this);
+  m_progressWidget = new QProgressBar(this);
+  m_progressWidget->setMaximumWidth(250);
 
   ui->statusBar->addWidget(m_lblSelCounter);
+  ui->statusBar->addWidget(m_lblTotalCounters);
+  ui->statusBar->addPermanentWidget(m_progressWidget);
+
   connect(m_lblTotalCounters, SIGNAL(linkActivated(QString)), this, SLOT(outputOutdatedPackageList()));
 }
 

@@ -29,13 +29,12 @@
 #include "searchbar.h"
 #include "packagecontroller.h"
 
-#include <QDebug>
 #include <QSortFilterProxyModel>
 #include <QStandardItemModel>
 #include <QString>
 #include <QTextBrowser>
 #include <QKeyEvent>
-#include <QProgressDialog>
+#include <QProgressBar>
 #include <QTimer>
 #include <QLabel>
 #include <QMessageBox>
@@ -90,9 +89,6 @@ void MainWindow::show()
   initTabHelpAbout();
   initTabNews();
   initLineEditFilterPackages();
-
-  QMainWindow::show();
-
   initPackageTreeView();
 
   //Let's watch for changes in the Pacman db dir!
@@ -109,6 +105,8 @@ void MainWindow::show()
   initToolBar();
   initTabWidgetPropertiesIndex();
   refreshDistroNews(false);
+
+  QMainWindow::show();
 
   /* This timer is needed to beautify GUI initialization... */
   timer = new QTimer();
@@ -327,6 +325,8 @@ void MainWindow::tvPackagesSearchColumnChanged(QAction *actionSelected)
  */
 void MainWindow::buildPackagesFromGroupList(const QString &groupName)
 {
+  m_progressWidget->show();
+
   if (m_cbGroups->currentIndex() == 0)
   {
     QStringList sl;
@@ -378,11 +378,8 @@ void MainWindow::buildPackagesFromGroupList(const QString &groupName)
   QList<QStandardItem*> lIcons, lNames, lVersions, lRepositories, lDescriptions;
   QList<QStandardItem*> lIcons2, lNames2, lVersions2, lRepositories2, lDescriptions2;
 
-  QProgressDialog progress(StrConstants::getBuildingPackageList(), "", 0, list->count(), this);
-  progress.setValue(0);
-  //progress.setMinimumDuration(10);
-  progress.setCancelButton(0);
-  progress.setWindowModality(Qt::WindowModal);
+  m_progressWidget->setRange(0, list->count());
+  m_progressWidget->setValue(0);
 
   int counter=0;
   while(it != list->end())
@@ -413,7 +410,7 @@ void MainWindow::buildPackagesFromGroupList(const QString &groupName)
     }
 
     counter++;
-    progress.setValue(counter);
+    m_progressWidget->setValue(counter);
     qApp->processEvents();
     it++;
   }
@@ -464,10 +461,12 @@ void MainWindow::buildPackagesFromGroupList(const QString &groupName)
   refreshTabInfo();
   refreshTabFiles();
   ui->tvPackages->setFocus();
-  progress.setValue(list->count());
+  m_progressWidget->setValue(list->count());
 
   connect(m_pacmanDatabaseSystemWatcher,
           SIGNAL(directoryChanged(QString)), this, SLOT(metaBuildPackageList()));
+
+  m_progressWidget->close();
 }
 
 /*
@@ -477,6 +476,7 @@ void MainWindow::buildPackagesFromGroupList(const QString &groupName)
  */
 void MainWindow::buildPackageList()
 {
+  m_progressWidget->show();
   disconnect(m_pacmanDatabaseSystemWatcher, SIGNAL(directoryChanged(QString)), this, SLOT(metaBuildPackageList()));
 
   static bool firstTime = true;
@@ -515,20 +515,15 @@ void MainWindow::buildPackageList()
   QList<PackageListData> *listForeign = Package::getForeignPackageList();
   QList<PackageListData>::const_iterator itForeign = listForeign->begin();
 
-  QProgressDialog progress(StrConstants::getBuildingPackageList(),
-                           "", 0, list->count() + listForeign->count(), this);
-  progress.setValue(0);
-  progress.setCancelButton(0);
-  progress.setWindowModality(Qt::WindowModal);
+  m_progressWidget->setRange(0, list->count() + listForeign->count());
+  m_progressWidget->setValue(0);
 
   int counter=0;
   while (itForeign != listForeign->end())
   {
     counter++;
-    progress.setValue(counter);
-    //qApp->processEvents();
+    m_progressWidget->setValue(counter);
 
-    //list->append(*itForeign);
     PackageListData pld = PackageListData(
           itForeign->name, itForeign->repository, itForeign->version,
           itForeign->name + " " + Package::getInformationDescription(itForeign->name, true),
@@ -600,7 +595,7 @@ void MainWindow::buildPackageList()
     }
 
     counter++;
-    progress.setValue(counter);
+    m_progressWidget->setValue(counter);
     it++;
   }
 
@@ -667,9 +662,10 @@ void MainWindow::buildPackageList()
   }
 
   counter = list->count() + listForeign->count();
-  progress.setValue(counter);
+  m_progressWidget->setValue(counter);
 
   firstTime = false;
+  m_progressWidget->close();
 }
 
 /*
@@ -697,19 +693,20 @@ void MainWindow::refreshStatusBar()
 
   if(m_numberOfOutdatedPackages > 0)
   {
-    text = StrConstants::getNumberInstalledPackages().arg(m_numberOfInstalledPackages) +
+    text = " | " + StrConstants::getNumberInstalledPackages().arg(m_numberOfInstalledPackages) +
         " | <b><font color=\"#E55451\"><a href=\"dummy\" style=\"color:\'#E55451\'\">" +
-        StrConstants::getNumberOutdatedPackages().arg(m_numberOfOutdatedPackages) + "</a></font></b> | " +
-        StrConstants::getNumberAvailablePackages().arg(m_numberOfAvailablePackages);
+        StrConstants::getNumberOutdatedPackages().arg(m_numberOfOutdatedPackages) + "</a></font></b>";
+        //StrConstants::getNumberAvailablePackages().arg(m_numberOfAvailablePackages);
   }
   else
   {
-    text = StrConstants::getNumberInstalledPackages().arg(m_numberOfInstalledPackages) +
-        " | " + StrConstants::getNumberAvailablePackages().arg(m_numberOfAvailablePackages);
+    text = StrConstants::getNumberInstalledPackages().arg(m_numberOfInstalledPackages); // +
+        //" | " + StrConstants::getNumberAvailablePackages().arg(m_numberOfAvailablePackages);
   }
 
   m_lblTotalCounters->setText(text);
-  ui->statusBar->addPermanentWidget(m_lblTotalCounters);
+  //ui->statusBar->addPermanentWidget(m_lblTotalCounters);
+  ui->statusBar->addWidget(m_lblTotalCounters);
 }
 
 /*
@@ -874,7 +871,8 @@ void MainWindow::execContextMenuPackages(QPoint point)
  */
 void MainWindow::collapseAllContentItems(){
   QTreeView *tv = ui->twProperties->currentWidget()->findChild<QTreeView *>("tvPkgFileList") ;
-  if ( tv != 0 ) tv->collapseAll();
+  if (tv != 0)
+    tv->collapseAll();
 }
 
 /*
@@ -989,9 +987,6 @@ void MainWindow::execContextMenuPkgFileList(QPoint point)
       menu.addAction(ui->actionOpenDirectory);
       menu.addAction(ui->actionOpenTerminal);
     }
-
-    //if (sim->hasChildren(mi) && (!isFindDisabled()))
-    //  menu.addAction(actionFindFileInPkgFileList);
   }
   else if (f.exists())
   {
@@ -1373,14 +1368,8 @@ void MainWindow::refreshTabFiles(bool clearContents, bool neverQuit)
                               mi.row(), ctn_PACKAGE_ICON_COLUMN)->text() == "_NonInstalled"));
   }
 
-  SearchBar *searchBar = ui->twProperties->currentWidget()->findChild<SearchBar*>("searchbar");
-  if (searchBar)
-  {
-    searchBar->close();
-  }
-
   QTreeView *tvPkgFileList = ui->twProperties->widget(ctn_TABINDEX_FILES)->findChild<QTreeView*>("tvPkgFileList");
-  if(tvPkgFileList){
+  if (tvPkgFileList){
     QString pkgName = siName->text();
     QStringList fileList = Package::getContents(pkgName);
 
@@ -1393,7 +1382,7 @@ void MainWindow::refreshTabFiles(bool clearContents, bool neverQuit)
     bool first=true;
     bkpDir = root;
 
-    if(nonInstalled){
+    if (nonInstalled){
       strSelectedPackage="";
       return;
     }
@@ -1476,6 +1465,15 @@ void MainWindow::refreshTabFiles(bool clearContents, bool neverQuit)
   {
     _changeTabWidgetPropertiesIndex(ctn_TABINDEX_FILES);
     _selectFirstItemOfPkgFileList();
+  }
+
+  SearchBar *searchBar = ui->twProperties->widget(ctn_TABINDEX_FILES)->findChild<SearchBar*>("searchbar");
+  if (searchBar)
+  {
+    if (ui->twProperties->currentIndex() == ctn_TABINDEX_FILES)
+    {
+      searchBar->close();
+    }
   }
 }
 
@@ -1755,7 +1753,7 @@ void MainWindow::openDirectory(){
 
 /*
  * Returns the current selected directory of the FileList treeview in FilesTab
- * In case nothing is selected, return an empty string
+ * In case nothing is selected, returns an empty string
  */
 QString MainWindow::getSelectedDirectory()
 {
