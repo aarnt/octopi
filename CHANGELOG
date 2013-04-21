@@ -1,0 +1,38 @@
+0.1.6
+  Added a new Transaction Dialog.
+  Added a Firefox-like search inside Files, News and About tabs.
+  Added support for Chakra.
+  Added support for ILoveCandy pacman option.
+  Added option to execute any transaction inside a terminal.
+  Changed ProgressDialog to a progressBar at the screen bottom.
+  
+0.1.5
+  Added option to search packages by description and name.
+  Added support for pacman version 4.1.
+  Transactions with conflict errors can be re-executed inside a terminal.
+  Reworked Manjaro Linux theme.
+
+0.1.4.1
+  Bugfix release
+  Added total download size information in transaction dialog.
+
+0.1.4
+  Added a Manjaro Linux theme.
+  Changed position of filter line edit to the toolbar.
+
+0.1.3
+  Added better support to Qt dark themes.
+  Added context menu support inside Files tab.
+  Made URLs clickable inside output tab.
+  Fixed the annoying Packager information display bug.
+
+0.1.2
+  Tons of refactorings and bugfixes.
+  Small changes in UI.
+
+0.1.1 
+  Added all six tabs.
+  Added support for groups of packages.
+
+0.1.0 
+  Initial Proof of Concept release.
