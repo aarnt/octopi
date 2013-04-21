@@ -91,6 +91,11 @@ void SearchBar::close()
   emit closed();
 }
 
+void SearchBar::clear()
+{
+  m_searchLineEdit->setText("");
+}
+
 /*
  * Overriden in order to get stylesheets working in QWidget derived classes
  */

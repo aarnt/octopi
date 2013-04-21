@@ -19,7 +19,7 @@
 */
 
 /*
- * This is a MainWindow's Transaction related code
+ * This is MainWindow's Transaction related code
  */
 
 #include "ui_mainwindow.h"
@@ -1505,7 +1505,8 @@ void MainWindow::writeToTabOutputExt(const QString &msg)
     {
       if(newMsg.contains("removing ") ||
          newMsg.contains("could not ") ||
-         newMsg.contains("error"))
+         newMsg.contains("error") ||
+         newMsg.contains("failed"))
       {
         newMsg = "<b><font color=\"#E55451\">" + newMsg + "&nbsp;</font></b>"; //RED
       }

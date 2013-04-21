@@ -57,6 +57,8 @@ public slots:
   void show();
   void close();
 
+  void clear();
+
 };
 
 class MyHighlighter : public QSyntaxHighlighter{

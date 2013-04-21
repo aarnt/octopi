@@ -60,7 +60,8 @@ SOURCES += src/QtSolutions/qtsingleapplication.cpp \
     src/searchbar.cpp \
     src/mainwindow_searchbar.cpp \
     src/transactiondialog.cpp \
-    src/mainwindow_news.cpp
+    src/mainwindow_news.cpp \
+    src/mainwindow_refresh.cpp
 
 FORMS    += ui/mainwindow.ui \
     ui/transactiondialog.ui

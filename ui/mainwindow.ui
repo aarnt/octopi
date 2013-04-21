@@ -22,7 +22,16 @@
     <bool>true</bool>
    </property>
    <layout class="QGridLayout" name="gridLayout">
-    <property name="margin">
+    <property name="leftMargin">
+     <number>0</number>
+    </property>
+    <property name="topMargin">
+     <number>0</number>
+    </property>
+    <property name="rightMargin">
+     <number>0</number>
+    </property>
+    <property name="bottomMargin">
      <number>0</number>
     </property>
     <property name="spacing">
@@ -118,7 +127,7 @@
      <x>0</x>
      <y>0</y>
      <width>552</width>
-     <height>22</height>
+     <height>23</height>
     </rect>
    </property>
    <property name="contextMenuPolicy">
@@ -430,6 +439,15 @@
    </property>
    <property name="text">
     <string>By name</string>
+   </property>
+  </action>
+  <action name="actionFindFileInPackage">
+   <property name="icon">
+    <iconset resource="../resources.qrc">
+     <normaloff>:/resources/images/find.png</normaloff>:/resources/images/find.png</iconset>
+   </property>
+   <property name="text">
+    <string>Find a file</string>
    </property>
   </action>
  </widget>

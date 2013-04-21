@@ -19,6 +19,10 @@
 *
 */
 
+/*
+ * This is MainWindow's Help related code
+ */
+
 #include "strconstants.h"
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
@@ -30,7 +34,6 @@
 /*
  * Initialize the Help tab with basic information about using Octopi
  */
-
 void MainWindow::initTabHelpAbout()
 {
   QWidget *tabHelpHelp = new QWidget();

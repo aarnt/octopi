@@ -35,5 +35,6 @@
         <file>resources/images/folder_gnome.png</file>
         <file>resources/images/install_item.png</file>
         <file>resources/images/remove_item.png</file>
+        <file>resources/images/find.png</file>
     </qresource>
 </RCC>

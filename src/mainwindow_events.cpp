@@ -19,7 +19,7 @@
 */
 
 /*
- * This is MainWindow events code
+ * This is MainWindow's event related code
  */
 
 #include "ui_mainwindow.h"
@@ -84,12 +84,6 @@ void MainWindow::keyPressEvent(QKeyEvent* ke)
 {
   if (ke->key() == Qt::Key_Return)
   {
-    /*if (m_leFilterPackage->hasFocus())
-    {
-      reapplyPackageFilter();
-      return;
-    }*/
-
     QTreeView *tvPkgFileList =
         ui->twProperties->widget(ctn_TABINDEX_FILES)->findChild<QTreeView*>("tvPkgFileList");
 

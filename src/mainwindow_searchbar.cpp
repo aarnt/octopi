@@ -19,7 +19,7 @@
 */
 
 /*
- * This is a MainWindow's searchbar slots code
+ * This is MainWindow's searchbar slots related code
  */
 
 #include "ui_mainwindow.h"

@@ -87,7 +87,6 @@ private:
   Ui::MainWindow *ui;
 
   UnixCommand *m_unixCommand;
-
   bool m_initializationCompleted;
 
   SearchLineEdit *m_leFilterPackage;
@@ -168,6 +167,7 @@ private:
   void initTabInfo();
 
   //Tab Files related methods
+  void _closeTabFilesSearchBar();
   void _selectFirstItemOfPkgFileList();
   QString getSelectedDirectory();
 
@@ -229,6 +229,8 @@ private slots:
   void editFile();
   void openTerminal();
   void openDirectory();
+
+  void findFileInPackage();
 
   void tvPackagesSearchColumnChanged(QAction*);
   void tvPackagesSelectionChanged(const QItemSelection&, const QItemSelection&);
