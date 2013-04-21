@@ -22,6 +22,7 @@
 #define ICONHELPER_H
 
 #include "wmhelper.h"
+
 #include <QDir>
 #include <QIcon>
 #include <QApplication>
@@ -52,82 +53,15 @@ public:
   static QIcon getIconOutdated(){ return QIcon(":/resources/images/outdated.png"); }
   static QIcon getIconUnrequired(){ return QIcon(":/resources/images/unrequired.png"); }
   static QIcon getIconForeign(){ return QIcon(":/resources/images/foreign.png"); }
-  static QIcon getIconToRemove(){ return QIcon(":/resources/images/toremove.png"); }
+  static QIcon getIconToRemove(){ return QIcon(":/resources/images/toremove.png"); }  
   static QIcon getIconToInstall(){ return QIcon(":/resources/images/toinstall.png"); }
   static QIcon getIconRemove(){ return QIcon(":/resources/images/close.png"); }
+  static QIcon getIconTerminal(){ return QIcon(":/resources/images/terminal.png"); }
 
   static QIcon getIconRemoveItem() { return QIcon(":/resources/images/remove_item.png"); }
   static QIcon getIconInstallItem() { return QIcon(":/resources/images/install_item.png"); }
 
   static QIcon getIconExit(){ return QIcon(":/resources/images/exit.png"); }
-};
-
-//SelectedPackage abstracts a package that is currently selected at the "Packages in a directory" view
-class SelectedPackage{
-private:
-  QString path;
-  QString fileName;
-  QIcon icon;
-
-public:
-  SelectedPackage(QString path, QString fileName, QIcon icon){
-    this->path = path;
-    this->fileName = fileName;
-    this->icon = icon;
-  }
-
-  SelectedPackage(QString path, QString fileName){
-    this->path = path;
-    this->fileName = fileName;
-  }
-
-  SelectedPackage(){}
-
-  QString getCompleteFileName(){
-    return path + QDir::separator() + fileName;
-  }
-
-  QString getFileName() {
-    return fileName;
-  }
-
-  void setFileName(QString fileName) {
-    this->fileName = fileName;
-  }
-
-  QString getPath() {
-    return path;
-  }
-
-  QIcon getIcon(){
-    return icon;
-  }
-
-  void setPath(QString path) {
-    this->path = path;
-  }
-
-  void setIcon(QIcon icon) {
-    this->icon = icon;
-  }
-};
-
-//PackagesClipBoard implements a ClipBoard feature for "Packages in a directory" view
-struct PackagesClipBoard{
-private:
-  QStringList m_packageList;
-  QString m_sourceDir;
-  bool m_cutOperation;
-
-public:
-  inline void setCutOperation(bool param){ m_cutOperation = param; }
-  inline bool getCutOperation(){ return m_cutOperation; }
-  inline QStringList getPackageList(){ return m_packageList; }
-  inline void setSourceDir(QString param){ m_sourceDir = param; }
-  inline QString getSourceDir(){ return m_sourceDir; }
-  inline void add(QString pkg){ m_packageList.append(pkg); }
-  inline int count(){ return m_packageList.count(); }
-  inline void clear(){ m_packageList.clear(); }
 };
 
 //This is a RAII class used when the GUI is going to face a very CPU intensive action

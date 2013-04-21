@@ -399,7 +399,7 @@ void MainWindow::buildPackagesFromGroupList(const QString &groupName)
     lDescriptions << siDescription;
 
     //If this is an INSTALLED package, we add it to the model view of installed packages!
-    if (siIcon->icon().pixmap(QSize(22,22)).toImage() !=
+    if (siIcon && siIcon->icon().pixmap(QSize(22,22)).toImage() !=
         IconHelper::getIconNonInstalled().pixmap(QSize(22,22)).toImage())
     {
       lIcons2 << lIcons.last()->clone();

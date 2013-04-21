@@ -251,11 +251,14 @@ QByteArray UnixCommand::getPackageGroups()
  */
 QByteArray UnixCommand::getPackagesFromGroup(const QString &groupName)
 {
-  QStringList args;
+  /*QStringList args;
   args << "-Sg";
   args << groupName;
+  QByteArray res = performQuery(args);*/
 
-  QByteArray res = performQuery(args);
+  QByteArray res =
+      performQuery(QString("--print-format \"%r %n\" -Spg " ) + groupName);
+
   return res;
 }
 
@@ -482,10 +485,9 @@ bool UnixCommand::isTextFile(const QString& fileName)
 /*
  * Executes given commandToRun inside a terminal, so the user can interact
  */
-int UnixCommand::runCommandInTerminal(const QStringList& commandList){
+void UnixCommand::runCommandInTerminal(const QStringList& commandList){
   QFile *ftemp = getTemporaryFile();
   QTextStream out(ftemp);
-  int ret;
 
   foreach(QString line, commandList)
     out << line;
@@ -493,39 +495,34 @@ int UnixCommand::runCommandInTerminal(const QStringList& commandList){
   out.flush();
   ftemp->close();
 
-  QProcess p;
-
   if(WMHelper::isXFCERunning() && UnixCommand::hasTheExecutable(ctn_XFCE_TERMINAL)){
     QString cmd = WMHelper::getSUCommand() + " \"" + ctn_XFCE_TERMINAL + " -e \'bash -c " + ftemp->fileName() + "'\"";
-    ret = p.execute(cmd);
+    m_process->start(cmd);
   }
   else if (WMHelper::isKDERunning() && UnixCommand::hasTheExecutable(ctn_KDE_TERMINAL)){
     QString cmd = WMHelper::getSUCommand() + " \"" + ctn_KDE_TERMINAL + " --nofork -e bash -c " + ftemp->fileName() + "\"";
-    //std::cout << cmd.toAscii().data() << std::endl;
-    ret = p.execute(cmd);
+    m_process->start(cmd);
   }
   else if (WMHelper::isTDERunning() && UnixCommand::hasTheExecutable(ctn_TDE_TERMINAL)){
-    //TODO
-
+    QString cmd = WMHelper::getSUCommand() + " \"" + ctn_TDE_TERMINAL + " --nofork -e bash -c " + ftemp->fileName() + "\"";
+    m_process->start(cmd);
   }
   else if (WMHelper::isLXDERunning() && UnixCommand::hasTheExecutable(ctn_LXDE_TERMINAL)){
     QString cmd = WMHelper::getSUCommand() + " \"" + ctn_LXDE_TERMINAL + " -e \'bash -c " + ftemp->fileName() + "'\"";
-    ret = p.execute(cmd);
+    m_process->start(cmd);
   }
   else if (WMHelper::isMATERunning() && UnixCommand::hasTheExecutable(ctn_MATE_TERMINAL)){
-    //TODO
-
+    QString cmd = WMHelper::getSUCommand() + " \"" + ctn_MATE_TERMINAL + " -e \'bash -c " + ftemp->fileName() + "'\"";
+    m_process->start(cmd);
   }
   else if (UnixCommand::hasTheExecutable(ctn_XFCE_TERMINAL)){
     QString cmd = WMHelper::getSUCommand() + " \"" + ctn_XFCE_TERMINAL + " -e \'bash -c " + ftemp->fileName() + "'\"";
-    ret = p.execute(cmd);
+    m_process->start(cmd);
   }
   else if (UnixCommand::hasTheExecutable(ctn_LXDE_TERMINAL)){
     QString cmd = WMHelper::getSUCommand() + " \"" + ctn_LXDE_TERMINAL + " -e \'bash -c " + ftemp->fileName() + "'\"";
-    ret = p.execute(cmd);
+    m_process->start(cmd);
   }
-
-  return ret;
 }
 
 /*
@@ -680,6 +677,10 @@ LinuxDistro UnixCommand::getLinuxDistro()
   if (contents.contains(QRegExp("Arch Linux")))
   {
     return ectn_ARCHLINUX;
+  }
+  else if (contents.contains(QRegExp("Chakra")))
+  {
+    return ectn_CHAKRA;
   }
   else if (contents.contains(QRegExp("Manjaro")))
   {

@@ -52,6 +52,10 @@ public:
     return QObject::tr("Arch Linux news");
   }
 
+  static QString getChakraNews(){
+    return QObject::tr("Chakra news");
+  }
+
   static QString getManjaroLinuxNews(){
     return QObject::tr("Manjaro Linux news");
   }
@@ -90,6 +94,10 @@ public:
 
   static QString getAvailableVersion(){
     return QObject::tr("Available version");
+  }
+
+  static QString getNoDescriptionAvailabe(){
+    return QObject::tr("No description available.");
   }
 
   static QString getURL(){
@@ -216,12 +224,8 @@ public:
     return QObject::tr("Building package list...");
   }
 
-  static QString getSearchingForArchLinuxNews(){
-    return QObject::tr("Searching for Arch Linux latest news...");
-  }
-
-  static QString getSearchingForManjaroLinuxNews(){
-    return QObject::tr("Searching for Manjaro Linux latest news...");
+  static QString getSearchingForDistroNews(){
+    return QObject::tr("Searching for %1 latest news...");
   }
 
   static QString getOneOutdatedPackage(){
@@ -281,6 +285,10 @@ public:
 
   static QString getRemovingAndInstallingPackages(){
     return QObject::tr("Removing/installing selected packages...");
+  }
+
+  static QString getRunningCommandInTerminal(){
+    return QObject::tr("Running command in terminal...");
   }
 
   static QString getCommandFinishedOK(){

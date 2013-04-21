@@ -27,6 +27,7 @@
 #include "uihelper.h"
 #include "wmhelper.h"
 #include "strconstants.h"
+#include "transactiondialog.h"
 #include <iostream>
 #include <QComboBox>
 #include <QProgressBar>
@@ -517,7 +518,6 @@ void MainWindow::doSystemUpgrade(bool syncDatabase)
     }
 
     QString list;
-
     double totalDownloadSize = 0;
     foreach(PackageListData target, *targets)
     {
@@ -529,7 +529,7 @@ void MainWindow::doSystemUpgrade(bool syncDatabase)
     totalDownloadSize = totalDownloadSize / 1024;
     QString ds = QString::number(totalDownloadSize, 'f', 2);
 
-    QMessageBox question;
+    TransactionDialog question(this);
 
     if(targets->count()==1)
       question.setText(StrConstants::getRetrieveTarget() +
@@ -541,12 +541,9 @@ void MainWindow::doSystemUpgrade(bool syncDatabase)
     question.setWindowTitle(StrConstants::getConfirmation());
     question.setInformativeText(StrConstants::getConfirmationQuestion());
     question.setDetailedText(list);
-    question.setStandardButtons(QMessageBox::Yes|QMessageBox::No|QMessageBox::Close);
-    question.setDefaultButton(QMessageBox::No);
-    question.addButton(StrConstants::getRunInTerminal(), QMessageBox::AcceptRole);
-
     int result = question.exec();
-    if(result == QMessageBox::Yes || result == QMessageBox::AcceptRole)
+
+    if(result == QDialogButtonBox::Yes || result == QDialogButtonBox::AcceptRole)
     {
       //If there are no means to run the actions, we must warn!
       if (!_isSUAvailable()) return;
@@ -556,20 +553,21 @@ void MainWindow::doSystemUpgrade(bool syncDatabase)
       m_lastCommandList.append("echo -e;");
       m_lastCommandList.append("read -n1 -p \"" + StrConstants::getPressAnyKey() + "\"");
 
-      if (result == QMessageBox::Yes)
+      m_unixCommand = new UnixCommand(this);
+
+      QObject::connect(m_unixCommand, SIGNAL( started() ), this, SLOT( actionsProcessStarted()));
+      QObject::connect(m_unixCommand, SIGNAL( readyReadStandardOutput()),
+                       this, SLOT( actionsProcessReadOutput() ));
+      QObject::connect(m_unixCommand, SIGNAL( finished ( int, QProcess::ExitStatus )),
+                       this, SLOT( actionsProcessFinished(int, QProcess::ExitStatus) ));
+      QObject::connect(m_unixCommand, SIGNAL( readyReadStandardError() ),
+                       this, SLOT( actionsProcessRaisedError() ));
+
+      disableTransactionActions();
+
+      if (result == QDialogButtonBox::Yes)
       {
         m_commandExecuting = ectn_SYSTEM_UPGRADE;
-
-        disableTransactionActions();
-        m_unixCommand = new UnixCommand(this);
-
-        QObject::connect(m_unixCommand, SIGNAL( started() ), this, SLOT( actionsProcessStarted()));
-        QObject::connect(m_unixCommand, SIGNAL( readyReadStandardOutput()),
-                         this, SLOT( actionsProcessReadOutput() ));
-        QObject::connect(m_unixCommand, SIGNAL( finished ( int, QProcess::ExitStatus )),
-                         this, SLOT( actionsProcessFinished(int, QProcess::ExitStatus) ));
-        QObject::connect(m_unixCommand, SIGNAL( readyReadStandardError() ),
-                         this, SLOT( actionsProcessRaisedError() ));
 
         QString command;
         command = "pacman -Su --noconfirm";
@@ -577,22 +575,17 @@ void MainWindow::doSystemUpgrade(bool syncDatabase)
         m_unixCommand->executeCommand(command);
         m_commandQueued = ectn_NONE;
       }
-      else if (result == QMessageBox::AcceptRole)
+      else if (result == QDialogButtonBox::AcceptRole)
       {
-        disconnect(m_pacmanDatabaseSystemWatcher,
-                   SIGNAL(directoryChanged(QString)), this, SLOT(metaBuildPackageList()));
-
-        UnixCommand::runCommandInTerminal(m_lastCommandList);
-        clearTransactionTreeView();
-
-        metaBuildPackageList();
+        m_commandExecuting = ectn_RUN_IN_TERMINAL;
+        m_unixCommand->runCommandInTerminal(m_lastCommandList);
       }
     }
   }
 }
 
 /*
- * Removes and Install all selected packages in one transaction just using:
+ * Removes and Installs all selected packages in one transaction just using:
  * "pacman -R alltoRemove; pacman -S alltoInstall"
  */
 void MainWindow::doRemoveAndInstall()
@@ -601,7 +594,7 @@ void MainWindow::doRemoveAndInstall()
   QStringList *removeTargets = Package::getTargetRemovalList(listOfRemoveTargets);
   QString removeList;
   QString allLists;
-  QMessageBox question;
+  TransactionDialog question(this);
   QString dialogText;
 
   foreach(QString removeTarget, *removeTargets)
@@ -664,15 +657,11 @@ void MainWindow::doRemoveAndInstall()
       "\n\n" + StrConstants::getTotalDownloadSize().arg(ds);
 
   question.setText(dialogText);
-
   question.setInformativeText(StrConstants::getConfirmationQuestion());
   question.setDetailedText(allLists);
-  question.setStandardButtons(QMessageBox::Yes|QMessageBox::No|QMessageBox::Close);
-  question.setDefaultButton(QMessageBox::No);
-  question.addButton(StrConstants::getRunInTerminal(), QMessageBox::AcceptRole);
-
   int result = question.exec();
-  if(result == QMessageBox::Yes || result == QMessageBox::AcceptRole)
+
+  if(result == QDialogButtonBox::Yes || result == QDialogButtonBox::AcceptRole)
   {
     //If there are no means to run the actions, we must warn!
     if (!_isSUAvailable()) return;
@@ -687,31 +676,27 @@ void MainWindow::doRemoveAndInstall()
     m_lastCommandList.append("echo -e;");
     m_lastCommandList.append("read -n1 -p \"" + StrConstants::getPressAnyKey() + "\"");
 
-    if (result == QMessageBox::Yes)
+    m_unixCommand = new UnixCommand(this);
+
+    QObject::connect(m_unixCommand, SIGNAL( started() ), this, SLOT( actionsProcessStarted()));
+    QObject::connect(m_unixCommand, SIGNAL( readyReadStandardOutput()),
+                     this, SLOT( actionsProcessReadOutput() ));
+    QObject::connect(m_unixCommand, SIGNAL( finished ( int, QProcess::ExitStatus )),
+                     this, SLOT( actionsProcessFinished(int, QProcess::ExitStatus) ));
+    QObject::connect(m_unixCommand, SIGNAL( readyReadStandardError() ),
+                     this, SLOT( actionsProcessRaisedError() ));
+
+    disableTransactionActions();
+
+    if (result == QDialogButtonBox::Yes)
     {
       m_commandExecuting = ectn_REMOVE_INSTALL;
-      disableTransactionActions();
-      m_unixCommand = new UnixCommand(this);
-
-      QObject::connect(m_unixCommand, SIGNAL( started() ), this, SLOT( actionsProcessStarted()));
-      QObject::connect(m_unixCommand, SIGNAL( readyReadStandardOutput()),
-                       this, SLOT( actionsProcessReadOutput() ));
-      QObject::connect(m_unixCommand, SIGNAL( finished ( int, QProcess::ExitStatus )),
-                       this, SLOT( actionsProcessFinished(int, QProcess::ExitStatus) ));
-      QObject::connect(m_unixCommand, SIGNAL( readyReadStandardError() ),
-                       this, SLOT( actionsProcessRaisedError() ));
-
       m_unixCommand->executeCommand(command);
     }
-    else if (result == QMessageBox::AcceptRole)
+    else if (result == QDialogButtonBox::AcceptRole)
     {
-      disconnect(m_pacmanDatabaseSystemWatcher,
-                 SIGNAL(directoryChanged(QString)), this, SLOT(metaBuildPackageList()));
-
-      UnixCommand::runCommandInTerminal(m_lastCommandList);
-      clearTransactionTreeView();
-
-      metaBuildPackageList();
+      m_commandExecuting = ectn_RUN_IN_TERMINAL;
+      m_unixCommand->runCommandInTerminal(m_lastCommandList);
     }
   }
 }
@@ -737,7 +722,7 @@ void MainWindow::doRemove()
     list.append(listOfTargets);
   }
 
-  QMessageBox question;
+  TransactionDialog question(this);
 
   //Shows a dialog indicating the targets which will be removed and asks for the user's permission.
   if(m_targets->count()==1)
@@ -760,12 +745,9 @@ void MainWindow::doRemove()
 
   question.setInformativeText(StrConstants::getConfirmationQuestion());
   question.setDetailedText(list);
-  question.setStandardButtons(QMessageBox::Yes|QMessageBox::No|QMessageBox::Close);
-  question.setDefaultButton(QMessageBox::No);
-  question.addButton(StrConstants::getRunInTerminal(), QMessageBox::AcceptRole);
-
   int result = question.exec();
-  if(result == QMessageBox::Yes || result == QMessageBox::AcceptRole)
+
+  if(result == QDialogButtonBox::Yes || result == QDialogButtonBox::AcceptRole)
   {
     //If there are no means to run the actions, we must warn!
     if (!_isSUAvailable()) return;
@@ -778,33 +760,28 @@ void MainWindow::doRemove()
     m_lastCommandList.append("echo -e;");
     m_lastCommandList.append("read -n1 -p \"" + StrConstants::getPressAnyKey() + "\"");
 
-    if (result == QMessageBox::Yes)
+    m_unixCommand = new UnixCommand(this);
+
+    QObject::connect(m_unixCommand, SIGNAL( started() ), this, SLOT( actionsProcessStarted()));
+    QObject::connect(m_unixCommand, SIGNAL( readyReadStandardOutput()),
+                     this, SLOT( actionsProcessReadOutput() ));
+    QObject::connect(m_unixCommand, SIGNAL( finished ( int, QProcess::ExitStatus )),
+                     this, SLOT( actionsProcessFinished(int, QProcess::ExitStatus) ));
+    QObject::connect(m_unixCommand, SIGNAL( readyReadStandardError() ),
+                     this, SLOT( actionsProcessRaisedError() ));
+
+    disableTransactionActions();
+
+    if (result == QDialogButtonBox::Yes)
     {
       m_commandExecuting = ectn_REMOVE;
-
-      disableTransactionActions();
-      m_unixCommand = new UnixCommand(this);
-
-      QObject::connect(m_unixCommand, SIGNAL( started() ), this, SLOT( actionsProcessStarted()));
-      QObject::connect(m_unixCommand, SIGNAL( readyReadStandardOutput()),
-                       this, SLOT( actionsProcessReadOutput() ));
-      QObject::connect(m_unixCommand, SIGNAL( finished ( int, QProcess::ExitStatus )),
-                       this, SLOT( actionsProcessFinished(int, QProcess::ExitStatus) ));
-      QObject::connect(m_unixCommand, SIGNAL( readyReadStandardError() ),
-                       this, SLOT( actionsProcessRaisedError() ));
-
       m_unixCommand->executeCommand(command);
     }
 
-    if (result == QMessageBox::AcceptRole)
+    if (result == QDialogButtonBox::AcceptRole)
     {
-      disconnect(m_pacmanDatabaseSystemWatcher,
-                 SIGNAL(directoryChanged(QString)), this, SLOT(metaBuildPackageList()));
-
-      UnixCommand::runCommandInTerminal(m_lastCommandList);
-      clearTransactionTreeView();
-
-      metaBuildPackageList();
+      m_commandExecuting = ectn_RUN_IN_TERMINAL;
+      m_unixCommand->runCommandInTerminal(m_lastCommandList);
     }
   }
 }
@@ -835,7 +812,7 @@ void MainWindow::doInstall()
     list.append(listOfTargets);
   }
 
-  QMessageBox question;
+  TransactionDialog question(this);
 
   if(targets->count()==1)
   {
@@ -855,12 +832,9 @@ void MainWindow::doInstall()
   question.setWindowTitle(StrConstants::getConfirmation());
   question.setInformativeText(StrConstants::getConfirmationQuestion());
   question.setDetailedText(list);
-  question.setStandardButtons(QMessageBox::Yes|QMessageBox::No|QMessageBox::Close);
-  question.setDefaultButton(QMessageBox::No);
-  question.addButton(StrConstants::getRunInTerminal(), QMessageBox::AcceptRole);
-
   int result = question.exec();
-  if(result == QMessageBox::Yes || result == QMessageBox::AcceptRole)
+
+  if(result == QDialogButtonBox::Yes || result == QDialogButtonBox::AcceptRole)
   {
     //If there are no means to run the actions, we must warn!
     if (!_isSUAvailable()) return;
@@ -873,32 +847,26 @@ void MainWindow::doInstall()
     m_lastCommandList.append("echo -e;");
     m_lastCommandList.append("read -n1 -p \"" + StrConstants::getPressAnyKey() + "\"");
 
-    if (result == QMessageBox::Yes)
+    disableTransactionActions();
+    m_unixCommand = new UnixCommand(this);
+
+    QObject::connect(m_unixCommand, SIGNAL( started() ), this, SLOT( actionsProcessStarted()));
+    QObject::connect(m_unixCommand, SIGNAL( readyReadStandardOutput()),
+                     this, SLOT( actionsProcessReadOutput() ));
+    QObject::connect(m_unixCommand, SIGNAL( finished ( int, QProcess::ExitStatus )),
+                     this, SLOT( actionsProcessFinished(int, QProcess::ExitStatus) ));
+    QObject::connect(m_unixCommand, SIGNAL( readyReadStandardError() ),
+                     this, SLOT( actionsProcessRaisedError() ));
+
+    if (result == QDialogButtonBox::Yes)
     {
       m_commandExecuting = ectn_INSTALL;
-
-      disableTransactionActions();
-      m_unixCommand = new UnixCommand(this);
-
-      QObject::connect(m_unixCommand, SIGNAL( started() ), this, SLOT( actionsProcessStarted()));
-      QObject::connect(m_unixCommand, SIGNAL( readyReadStandardOutput()),
-                       this, SLOT( actionsProcessReadOutput() ));
-      QObject::connect(m_unixCommand, SIGNAL( finished ( int, QProcess::ExitStatus )),
-                       this, SLOT( actionsProcessFinished(int, QProcess::ExitStatus) ));
-      QObject::connect(m_unixCommand, SIGNAL( readyReadStandardError() ),
-                       this, SLOT( actionsProcessRaisedError() ));
-
       m_unixCommand->executeCommand(command);
     }
-    else if (result == QMessageBox::AcceptRole)
+    else if (result == QDialogButtonBox::AcceptRole)
     {
-      disconnect(m_pacmanDatabaseSystemWatcher,
-                 SIGNAL(directoryChanged(QString)), this, SLOT(metaBuildPackageList()));
-
-      UnixCommand::runCommandInTerminal(m_lastCommandList);
-      clearTransactionTreeView();
-
-      metaBuildPackageList();
+      m_commandExecuting = ectn_RUN_IN_TERMINAL;
+      m_unixCommand->runCommandInTerminal(m_lastCommandList);
     }
   }
 }
@@ -1062,6 +1030,10 @@ void MainWindow::actionsProcessStarted()
   {
     writeToTabOutput("<b>" + StrConstants::getRemovingAndInstallingPackages() + "</b><br><br>");
   }
+  else if (m_commandExecuting == ectn_RUN_IN_TERMINAL)
+  {
+    writeToTabOutput("<b>" + StrConstants::getRunningCommandInTerminal() + "</b><br><br>");
+  }
 
   QString msg = m_unixCommand->readAllStandardOutput();
   msg = msg.trimmed();
@@ -1137,14 +1109,12 @@ void MainWindow::actionsProcessFinished(int exitCode, QProcess::ExitStatus)
 
     if (res == QMessageBox::Yes)
     {
-      qApp->processEvents();
-      UnixCommand::runCommandInTerminal(m_lastCommandList);
-      clearTransactionTreeView();
+      m_unixCommand->runCommandInTerminal(m_lastCommandList);
+      return;
     }
   }
 
   enableTransactionActions();
-
   m_commandExecuting = ectn_NONE;
   m_unixCommand->removeTemporaryActionFile();
 }
@@ -1194,6 +1164,8 @@ bool MainWindow::_searchForKeyVerbs(const QString &msg)
  */
 void MainWindow::_treatProcessOutput(const QString &pMsg)
 {  
+  if (m_commandExecuting == ectn_RUN_IN_TERMINAL) return;
+
   bool continueTesting = false;
   QString perc;
   QString msg = pMsg;
@@ -1328,7 +1300,7 @@ void MainWindow::_treatProcessOutput(const QString &pMsg)
     if(!perc.isEmpty() && perc.indexOf("%") > 0)
     {
       int percentage = perc.left(perc.size()-1).toInt();
-      std::cout << "percentage is: " << percentage << std::endl;
+      //std::cout << "percentage is: " << percentage << std::endl;
       if (!m_progressWidget->isVisible()) m_progressWidget->show();
       m_progressWidget->setValue(percentage);
     }

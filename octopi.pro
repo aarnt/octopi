@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui network xml
+QT += core gui network xml
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -34,7 +34,8 @@ HEADERS  += src/QtSolutions/qtsingleapplication.h \
     src/QtSolutions/qtlockedfile.h \
     src/QtSolutions/QtLockedFile \
     src/treeviewpackagesitemdelegate.h \
-    src/searchbar.h
+    src/searchbar.h \
+    src/transactiondialog.h
 
 SOURCES += src/QtSolutions/qtsingleapplication.cpp \
         src/QtSolutions/qtlocalpeer.cpp \
@@ -57,9 +58,12 @@ SOURCES += src/QtSolutions/qtsingleapplication.cpp \
     src/mainwindow_events.cpp \
     src/mainwindow_help.cpp \
     src/searchbar.cpp \
-    src/mainwindow_searchbar.cpp
+    src/mainwindow_searchbar.cpp \
+    src/transactiondialog.cpp \
+    src/mainwindow_news.cpp
 
-FORMS    += ui/mainwindow.ui
+FORMS    += ui/mainwindow.ui \
+    ui/transactiondialog.ui
 
 RESOURCES += \
     resources.qrc

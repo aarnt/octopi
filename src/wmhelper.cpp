@@ -286,7 +286,7 @@ void WMHelper::editFile( const QString& fileName ){
       process->startDetached(getSUCommand() + p);
     }
   }
-  //QTGZManager was started by root account.
+  //Octopi was started by root account.
   else{
     if (UnixCommand::hasTheExecutable(ctn_XFCE_EDITOR) || UnixCommand::hasTheExecutable(ctn_XFCE_EDITOR_ALT))
       s << getXFCEEditor() + " " + fileName;

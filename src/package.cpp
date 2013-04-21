@@ -21,9 +21,11 @@
 #include "package.h"
 #include "unixcommand.h"
 #include "stdlib.h"
+#include "strconstants.h"
+#include <iostream>
+
 #include <QTextStream>
 #include <QList>
-#include <iostream>
 
 /*
  * Retrieves the basic paclage name, without version numbers
@@ -398,7 +400,10 @@ QList<PackageListData> * Package::getPackageList()
     else
     {
       //This is a description!
-      pkgDescription += packageTuple.trimmed();
+      if (!packageTuple.trimmed().isEmpty())
+        pkgDescription += packageTuple.trimmed();
+      else
+        pkgDescription += StrConstants::getNoDescriptionAvailabe();
     }
   }
 
