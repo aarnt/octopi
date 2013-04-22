@@ -640,7 +640,11 @@ void MainWindow::refreshTabFiles(bool clearContents, bool neverQuit)
       QStandardItemModel *modelPkgFileList = qobject_cast<QStandardItemModel*>(tvPkgFileList->model());
       modelPkgFileList->clear();
       strSelectedPackage="";
+
+      bool filterHasFocus = m_leFilterPackage->hasFocus();
       _closeTabFilesSearchBar();
+      if (filterHasFocus) m_leFilterPackage->setFocus();
+
       return;
     }
   }
