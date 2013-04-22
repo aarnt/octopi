@@ -47,10 +47,10 @@ int main(int argc, char *argv[])
 
   if (app.isRunning()) return 0;
 
-  /*QTranslator appTranslator;
-    appTranslator.load(":/resources/translations/octopi_" +
-      QLocale::system().name());
-    app.installTranslator(&appTranslator);*/
+  QTranslator appTranslator;
+  appTranslator.load(":/resources/translations/octopi_" +
+                     QLocale::system().name());
+  app.installTranslator(&appTranslator);
 
   if (argList->getSwitch("-help")){
     std::cout << StrConstants::getApplicationCliHelp().toAscii().data() << std::endl;
