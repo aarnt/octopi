@@ -93,7 +93,7 @@
     <message>
         <location filename="../../ui/mainwindow.ui" line="251"/>
         <source>Sync database</source>
-        <translation>Sincronizar base de pacotes</translation>
+        <translation>Sincronizar bases de dados</translation>
     </message>
     <message>
         <location filename="../../ui/mainwindow.ui" line="254"/>
@@ -333,7 +333,7 @@
     <message>
         <location filename="../../src/mainwindow_help.cpp" line="104"/>
         <source>Ctrl+D or &apos;File/Sync database&apos; to sync the local database with latest remote changes (pacman -Sy)</source>
-        <translation>Ctrl+D ou &apos;Arquivo/Sincronizar base de dados&apos; para sincronizar a base de dados local com as últimas mudanças remotas (pacman -Sy)</translation>
+        <translation>Ctrl+D ou &apos;Arquivo/Sincronizar bases de dados&apos; para sincronizar a base de dados local com as últimas mudanças remotas (pacman -Sy)</translation>
     </message>
     <message>
         <location filename="../../src/mainwindow_help.cpp" line="106"/>
