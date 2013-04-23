@@ -271,6 +271,11 @@ public:
   static QString getSyncDatabases(){
     return QObject::tr("Synchronizing databases...");
   }
+
+  static QString getIsUpToDate(){
+    return QObject::tr("is up to date");
+  }
+
   static QString getSystemUpgrade(){
     return QObject::tr("Starting full system upgrade...");
   }

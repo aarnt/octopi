@@ -52,13 +52,13 @@ void MainWindow::initTabHelpAbout()
   QString iconPath = "<img height=\"16\" width=\"16\" src=\":/resources/images/";
 
   QString html =
-  QString("<h2>Octopi</h2>") +
-  QString("<h3><p>") + tr("A Qt4-based Pacman frontend, ") +
-     tr("licensed under the terms of ") +
-      QString("<a style=\"color:'#4BC413'\" href=\"http://www.gnu.org/licenses/gpl-2.0.html\">GPL v2</a>.</p></h3>") +
-  QString("<h4><p>") + tr("For more information, visit: ") +
-  QString("<a style=\"color:'#4BC413'\" href=\"http://octopiproject.wordpress.com\">http://octopiproject.wordpress.com</a>.</p></h4><br>") +
-     tr("Package classification:") +
+    QString("<h2>Octopi</h2>") +
+    QString("<h3><p>") + tr("A Qt4-based Pacman frontend,") + " " +
+    tr("licensed under the terms of") + " " +
+    QString("<a style=\"color:'#4BC413'\" href=\"http://www.gnu.org/licenses/gpl-2.0.html\">GPL v2</a>.</p></h3>") +
+    QString("<h4><p>") + tr("For more information, visit:") + " " +
+    QString("<a style=\"color:'#4BC413'\" href=\"http://octopiproject.wordpress.com\">http://octopiproject.wordpress.com</a>.</p></h4><br>") +
+    tr("Package classification:") +
 
   QString("<ul type=\"square\"><li>") + iconPath + "installed.png\"/> " +
      tr("An installed package") + QString("</li>") +
@@ -131,7 +131,7 @@ void MainWindow::initTabHelpAbout()
   QString("<ul><li>") +
      tr("F1 to show this help page") +
   QString("</li><li>") +
-     tr("F4 to set the Konsole tab within the selected directory at Files tab") +
+     tr("F4 to open a Terminal whitin the selected directory at Files tab") +
   QString("</li><li>") +
      tr("F6 to open a File Manager whitin the selected directory at Files tab") +
   QString("</li><li>") +

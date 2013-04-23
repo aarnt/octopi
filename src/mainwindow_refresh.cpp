@@ -565,7 +565,7 @@ void MainWindow::refreshTabInfo(bool clearContents, bool neverQuit)
     if (mark >= 0)
     {
       QString outdatedVersion = siIcon->text().right(siIcon->text().size()-mark-1);
-      html += "<tr><td>" + version + "</td><td>" + siVersion->text() + "<b><font color=\"#E55451\">"
+      html += "<tr><td>" + version + "</td><td>" + siVersion->text() + " <b><font color=\"#E55451\">"
                        + StrConstants::getOutdatedInstalledVersion().arg(outdatedVersion) +
                        "</b></font></td></tr>";
     }

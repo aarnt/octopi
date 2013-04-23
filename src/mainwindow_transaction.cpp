@@ -1349,6 +1349,8 @@ void MainWindow::_treatProcessOutput(const QString &pMsg)
       }
       else
       {
+        QString altMsg = msg;
+
         if (msg.indexOf(":: Synchronizing package databases...") == -1 &&
             msg.indexOf(":: Starting full system upgrade...") == -1)
         {
@@ -1359,9 +1361,14 @@ void MainWindow::_treatProcessOutput(const QString &pMsg)
           {
             if (!m_progressWidget->isVisible()) m_progressWidget->show();
             m_progressWidget->setValue(100);
+
+            int blank = msg.indexOf(" ");
+            QString repo = msg.left(blank);
+
+            altMsg = repo + " " + StrConstants::getIsUpToDate();
           }
 
-          writeToTabOutputExt(msg); //BLACK
+          writeToTabOutputExt(altMsg); //BLACK
         }
       }
     }

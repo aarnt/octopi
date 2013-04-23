@@ -72,3 +72,5 @@ RESOURCES += \
 OTHER_FILES += \
     src/QtSolutions/qtsinglecoreapplication.pri \
     src/QtSolutions/qtsingleapplication.pri
+
+TRANSLATIONS += resources/translations/octopi_pt_BR.ts
