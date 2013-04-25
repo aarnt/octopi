@@ -957,6 +957,14 @@ void MainWindow::openDirectory(){
 }
 
 /*
+ * Helper method which opens a root terminal
+ */
+void MainWindow::openRootTerminal()
+{
+  m_unixCommand->openRootTerminal();
+}
+
+/*
  * Brings the user to the tab Files and position cursor inside searchBar
  * so he can find any file the selected package may have
  */

@@ -230,6 +230,8 @@ private slots:
   void openTerminal();
   void openDirectory();
 
+  void openRootTerminal();
+
   void findFileInPackage();
 
   void tvPackagesSearchColumnChanged(QAction*);

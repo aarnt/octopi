@@ -483,6 +483,40 @@ bool UnixCommand::isTextFile(const QString& fileName)
 }
 
 /*
+ * Opens a root terminal
+ */
+void UnixCommand::openRootTerminal(){
+  if(WMHelper::isXFCERunning() && UnixCommand::hasTheExecutable(ctn_XFCE_TERMINAL)){
+    QString cmd = WMHelper::getSUCommand() + " \"" + ctn_XFCE_TERMINAL + "\"";
+    m_process->startDetached(cmd);
+  }
+  else if (WMHelper::isKDERunning() && UnixCommand::hasTheExecutable(ctn_KDE_TERMINAL)){
+    QString cmd = WMHelper::getSUCommand() + " \"" + ctn_KDE_TERMINAL + "\"";
+    m_process->startDetached(cmd);
+  }
+  else if (WMHelper::isTDERunning() && UnixCommand::hasTheExecutable(ctn_TDE_TERMINAL)){
+    QString cmd = WMHelper::getSUCommand() + " \"" + ctn_TDE_TERMINAL + "\"";
+    m_process->startDetached(cmd);
+  }
+  else if (WMHelper::isLXDERunning() && UnixCommand::hasTheExecutable(ctn_LXDE_TERMINAL)){
+    QString cmd = WMHelper::getSUCommand() + " \"" + ctn_LXDE_TERMINAL + "\"";
+    m_process->startDetached(cmd);
+  }
+  else if (WMHelper::isMATERunning() && UnixCommand::hasTheExecutable(ctn_MATE_TERMINAL)){
+    QString cmd = WMHelper::getSUCommand() + " \"" + ctn_MATE_TERMINAL + "\"";
+    m_process->startDetached(cmd);
+  }
+  else if (UnixCommand::hasTheExecutable(ctn_XFCE_TERMINAL)){
+    QString cmd = WMHelper::getSUCommand() + " \"" + ctn_XFCE_TERMINAL + "\"";
+    m_process->startDetached(cmd);
+  }
+  else if (UnixCommand::hasTheExecutable(ctn_LXDE_TERMINAL)){
+    QString cmd = WMHelper::getSUCommand() + " \"" + ctn_LXDE_TERMINAL + "\"";
+    m_process->startDetached(cmd);
+  }
+}
+
+/*
  * Executes given commandToRun inside a terminal, so the user can interact
  */
 void UnixCommand::runCommandInTerminal(const QStringList& commandList){

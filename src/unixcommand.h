@@ -117,6 +117,8 @@ public:
 
   static void removeTemporaryFiles();
 
+  void openRootTerminal();
+
   void runCommandInTerminal(const QStringList& commandList);
 
   void executeCommand(const QString &pCommand);

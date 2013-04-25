@@ -491,4 +491,5 @@ void MainWindow::initActions()
   connect(ui->actionEditFile, SIGNAL(triggered()), this, SLOT(editFile()));
   connect(ui->actionOpenDirectory, SIGNAL(triggered()), this, SLOT(openDirectory()));
   connect(ui->actionOpenTerminal, SIGNAL(triggered()), this, SLOT(openTerminal()));
+  connect(ui->actionOpenRootTerminal, SIGNAL(triggered()), this, SLOT(openRootTerminal()));
 }
