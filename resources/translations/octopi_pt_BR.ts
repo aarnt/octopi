@@ -9,218 +9,223 @@
         <translation>Octopi</translation>
     </message>
     <message>
-        <location filename="../../ui/mainwindow.ui" line="101"/>
+        <location filename="../../ui/mainwindow.ui" line="92"/>
         <source>Info</source>
         <translation>Informações</translation>
     </message>
     <message>
-        <location filename="../../ui/mainwindow.ui" line="106"/>
+        <location filename="../../ui/mainwindow.ui" line="97"/>
         <source>Files</source>
         <translation>Arquivos</translation>
     </message>
     <message>
-        <location filename="../../ui/mainwindow.ui" line="111"/>
-        <location filename="../../ui/mainwindow.ui" line="150"/>
+        <location filename="../../ui/mainwindow.ui" line="102"/>
+        <location filename="../../ui/mainwindow.ui" line="141"/>
         <source>Transaction</source>
         <translation>Transação</translation>
     </message>
     <message>
-        <location filename="../../ui/mainwindow.ui" line="116"/>
+        <location filename="../../ui/mainwindow.ui" line="107"/>
         <source>Output</source>
         <translation>Saída</translation>
     </message>
     <message>
-        <location filename="../../ui/mainwindow.ui" line="138"/>
+        <location filename="../../ui/mainwindow.ui" line="129"/>
         <source>Help</source>
         <translation>Ajuda</translation>
     </message>
     <message>
-        <location filename="../../ui/mainwindow.ui" line="144"/>
+        <location filename="../../ui/mainwindow.ui" line="135"/>
         <source>View</source>
         <translation>Visualizar</translation>
     </message>
     <message>
-        <location filename="../../ui/mainwindow.ui" line="157"/>
+        <location filename="../../ui/mainwindow.ui" line="148"/>
         <source>File</source>
         <translation>Arquivo</translation>
     </message>
     <message>
-        <location filename="../../ui/mainwindow.ui" line="167"/>
+        <location filename="../../ui/mainwindow.ui" line="160"/>
         <source>Search</source>
         <translation>Pesquisar</translation>
     </message>
     <message>
-        <location filename="../../ui/mainwindow.ui" line="195"/>
-        <location filename="../../ui/mainwindow.ui" line="198"/>
+        <location filename="../../ui/mainwindow.ui" line="188"/>
+        <location filename="../../ui/mainwindow.ui" line="191"/>
         <source>About</source>
         <translation>Sobre</translation>
     </message>
     <message>
-        <location filename="../../ui/mainwindow.ui" line="201"/>
+        <location filename="../../ui/mainwindow.ui" line="194"/>
         <source>F1</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
-        <location filename="../../ui/mainwindow.ui" line="215"/>
+        <location filename="../../ui/mainwindow.ui" line="208"/>
         <source>Non installed</source>
         <translation>Não Instalado</translation>
     </message>
     <message>
-        <location filename="../../ui/mainwindow.ui" line="218"/>
+        <location filename="../../ui/mainwindow.ui" line="211"/>
         <source>Ctrl+N</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ui/mainwindow.ui" line="227"/>
+        <location filename="../../ui/mainwindow.ui" line="220"/>
         <source>Commit</source>
         <translation>Comitar</translation>
     </message>
     <message>
-        <location filename="../../ui/mainwindow.ui" line="230"/>
+        <location filename="../../ui/mainwindow.ui" line="223"/>
         <source>Ctrl+M</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ui/mainwindow.ui" line="239"/>
+        <location filename="../../ui/mainwindow.ui" line="232"/>
         <source>Rollback</source>
         <translation>Desfazer</translation>
     </message>
     <message>
-        <location filename="../../ui/mainwindow.ui" line="242"/>
+        <location filename="../../ui/mainwindow.ui" line="235"/>
         <source>Ctrl+B</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ui/mainwindow.ui" line="251"/>
+        <location filename="../../ui/mainwindow.ui" line="244"/>
         <source>Sync database</source>
         <translation>Sincronizar bases de dados</translation>
     </message>
     <message>
-        <location filename="../../ui/mainwindow.ui" line="254"/>
+        <location filename="../../ui/mainwindow.ui" line="247"/>
         <source>Ctrl+D</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ui/mainwindow.ui" line="263"/>
+        <location filename="../../ui/mainwindow.ui" line="256"/>
         <source>Exit</source>
         <translation>Sair</translation>
     </message>
     <message>
-        <location filename="../../ui/mainwindow.ui" line="266"/>
+        <location filename="../../ui/mainwindow.ui" line="259"/>
         <source>Ctrl+Q</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ui/mainwindow.ui" line="271"/>
+        <location filename="../../ui/mainwindow.ui" line="264"/>
         <source>System upgrade</source>
         <translation>Atualizar sistema</translation>
     </message>
     <message>
-        <location filename="../../ui/mainwindow.ui" line="274"/>
+        <location filename="../../ui/mainwindow.ui" line="267"/>
         <source>Ctrl+U</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ui/mainwindow.ui" line="283"/>
-        <location filename="../../ui/mainwindow.ui" line="286"/>
+        <location filename="../../ui/mainwindow.ui" line="276"/>
+        <location filename="../../ui/mainwindow.ui" line="279"/>
         <source>Install</source>
         <translation>Instalar</translation>
     </message>
     <message>
-        <location filename="../../ui/mainwindow.ui" line="295"/>
-        <location filename="../../ui/mainwindow.ui" line="298"/>
+        <location filename="../../ui/mainwindow.ui" line="288"/>
+        <location filename="../../ui/mainwindow.ui" line="291"/>
         <source>Remove</source>
         <translation>Remover</translation>
     </message>
     <message>
-        <location filename="../../ui/mainwindow.ui" line="303"/>
+        <location filename="../../ui/mainwindow.ui" line="296"/>
         <source>Outdated packages</source>
         <translation>Pacotes desatualizados</translation>
     </message>
     <message>
-        <location filename="../../ui/mainwindow.ui" line="308"/>
+        <location filename="../../ui/mainwindow.ui" line="301"/>
         <source>Get latest distro news</source>
         <translation>Baixar últimas notícias da distro</translation>
     </message>
     <message>
-        <location filename="../../ui/mainwindow.ui" line="311"/>
+        <location filename="../../ui/mainwindow.ui" line="304"/>
         <source>Ctrl+G</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ui/mainwindow.ui" line="320"/>
+        <location filename="../../ui/mainwindow.ui" line="313"/>
         <source>Remove group</source>
         <translation>Remover grupo</translation>
     </message>
     <message>
-        <location filename="../../ui/mainwindow.ui" line="329"/>
+        <location filename="../../ui/mainwindow.ui" line="322"/>
         <source>Install group</source>
         <translation>Instalar grupo</translation>
     </message>
     <message>
-        <location filename="../../ui/mainwindow.ui" line="338"/>
+        <location filename="../../ui/mainwindow.ui" line="331"/>
         <source>Collapse item</source>
         <translation>Comprimir item</translation>
     </message>
     <message>
-        <location filename="../../ui/mainwindow.ui" line="347"/>
+        <location filename="../../ui/mainwindow.ui" line="340"/>
         <source>Expand item</source>
         <translation>Expandir item</translation>
     </message>
     <message>
-        <location filename="../../ui/mainwindow.ui" line="356"/>
+        <location filename="../../ui/mainwindow.ui" line="349"/>
         <source>Collapse all items</source>
         <translation>Comprimir todos os itens</translation>
     </message>
     <message>
-        <location filename="../../ui/mainwindow.ui" line="365"/>
+        <location filename="../../ui/mainwindow.ui" line="358"/>
         <source>Expand all items</source>
         <translation>Expandir todos os itens</translation>
     </message>
     <message>
-        <location filename="../../ui/mainwindow.ui" line="374"/>
+        <location filename="../../ui/mainwindow.ui" line="367"/>
         <source>Open file</source>
         <translation>Abrir arquivo</translation>
     </message>
     <message>
-        <location filename="../../ui/mainwindow.ui" line="383"/>
+        <location filename="../../ui/mainwindow.ui" line="376"/>
         <source>Edit file</source>
         <translation>Editar arquivo</translation>
     </message>
     <message>
-        <location filename="../../ui/mainwindow.ui" line="392"/>
+        <location filename="../../ui/mainwindow.ui" line="385"/>
         <source>Open directory</source>
         <translation>Abrir diretório</translation>
     </message>
     <message>
-        <location filename="../../ui/mainwindow.ui" line="401"/>
+        <location filename="../../ui/mainwindow.ui" line="394"/>
         <source>Open terminal here</source>
         <translation>Abrir terminal aqui</translation>
     </message>
     <message>
-        <location filename="../../ui/mainwindow.ui" line="410"/>
+        <location filename="../../ui/mainwindow.ui" line="403"/>
         <source>Remove item</source>
         <translation>Remover item</translation>
     </message>
     <message>
-        <location filename="../../ui/mainwindow.ui" line="422"/>
+        <location filename="../../ui/mainwindow.ui" line="415"/>
         <source>Remove items</source>
         <translation>Remover itens</translation>
     </message>
     <message>
-        <location filename="../../ui/mainwindow.ui" line="433"/>
+        <location filename="../../ui/mainwindow.ui" line="426"/>
         <source>By description</source>
         <translation>Por descrição</translation>
     </message>
     <message>
-        <location filename="../../ui/mainwindow.ui" line="441"/>
+        <location filename="../../ui/mainwindow.ui" line="434"/>
         <source>By name</source>
         <translation>Por nome</translation>
     </message>
     <message>
-        <location filename="../../ui/mainwindow.ui" line="450"/>
+        <location filename="../../ui/mainwindow.ui" line="443"/>
         <source>Find a file</source>
         <translation>Procurar um arquivo</translation>
+    </message>
+    <message>
+        <location filename="../../ui/mainwindow.ui" line="452"/>
+        <source>Open root terminal</source>
+        <translation>Abrir um terminal root</translation>
     </message>
     <message>
         <location filename="../../src/mainwindow_help.cpp" line="56"/>
@@ -947,7 +952,7 @@ Tem certeza que deseja abri-lo?</translation>
         <translation>Form</translation>
     </message>
     <message>
-        <location filename="../../ui/transactiondialog.ui" line="117"/>
+        <location filename="../../ui/transactiondialog.ui" line="133"/>
         <source>Run in terminal</source>
         <translation>Executar em um terminal</translation>
     </message>
