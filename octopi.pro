@@ -73,4 +73,7 @@ OTHER_FILES += \
     src/QtSolutions/qtsinglecoreapplication.pri \
     src/QtSolutions/qtsingleapplication.pri
 
-TRANSLATIONS += resources/translations/octopi_pt_BR.ts
+TRANSLATIONS += resources/translations/octopi_pt_BR.ts \
+    resources/translations/octopi_fr_FR.ts \
+    resources/translations/octopi_es_ES.ts \
+    resources/translations/octopi_el.ts

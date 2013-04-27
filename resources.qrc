@@ -38,5 +38,7 @@
         <file>resources/images/find.png</file>
         <file>resources/translations/octopi_pt_BR.qm</file>
         <file>resources/translations/octopi_fr_FR.qm</file>
+        <file>resources/translations/octopi_es_ES.qm</file>
+        <file>resources/translations/octopi_el.qm</file>
     </qresource>
 </RCC>
