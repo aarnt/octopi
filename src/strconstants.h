@@ -32,7 +32,7 @@ public:
   }
 
   static QString getApplicationVersion(){
-    return "0.1.6.1";
+    return "0.1.6.2";
   }
 
   static QString getApplicationCliHelp(){

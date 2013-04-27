@@ -1,3 +1,10 @@
+0.1.6.2
+  Added "-sysupgrade" command line option.
+  Added fr_FR translation.
+
+0.1.6.1
+  Added pt_BR translation.
+
 0.1.6
   Added a new Transaction Dialog.
   Added a Firefox-like search inside Files, News and About tabs.
