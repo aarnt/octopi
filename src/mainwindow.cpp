@@ -50,6 +50,7 @@ MainWindow::MainWindow(QWidget *parent) :
 {
   m_foundFilesInPkgFileList = new QList<QModelIndex>();
   m_indFoundFilesInPkgFileList = 0;
+  m_callSystemUpgrade = false;
   ui->setupUi(this);
 }
 
@@ -261,6 +262,14 @@ QStandardItem *MainWindow::getAvailablePackage(const QString &pkgName, const int
   }
 
   return res;
+}
+
+/*
+ * Sets a flag to call the System Upgrade action as soom as it's possible
+ */
+void MainWindow::setCallSystemUpgrade()
+{
+  m_callSystemUpgrade = true;
 }
 
 /*

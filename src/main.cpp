@@ -69,6 +69,12 @@ int main(int argc, char *argv[])
 
   MainWindow w;
   app.setActivationWindow(&w);
+
+  if (argList->getSwitch("-sysupgrade"))
+  {
+    w.setCallSystemUpgrade();
+  }
+
   w.show();
 
   QResource::registerResource("./resources.qrc");

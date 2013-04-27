@@ -82,6 +82,7 @@ public:
 
   QStandardItemModel *getModelPackages(){ return m_modelPackages; }
   QStandardItem *getAvailablePackage(const QString &pkgName, const int index);
+  void setCallSystemUpgrade();
 
 private:
   Ui::MainWindow *ui;
@@ -98,6 +99,9 @@ private:
 
   //Searches /etc/pacman.conf to see if ILoveCandy is there
   bool m_iLoveCandy;
+
+  //Controls the calling of System Upgrade action
+  bool m_callSystemUpgrade;
 
   //This model provides the list of ALL packages (installed + non-installed)
   QStandardItemModel *m_modelPackages;

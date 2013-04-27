@@ -198,7 +198,7 @@ void MainWindow::buildPackageList()
   static bool firstTime = true;
   timer->stop();
 
-  CPUIntensiveComputing cic;
+  CPUIntensiveComputing *cic = new CPUIntensiveComputing();
 
   //Refresh the list of Group names
   refreshComboBoxGroups();
@@ -340,6 +340,8 @@ void MainWindow::buildPackageList()
         sl << "" << StrConstants::getName() << StrConstants::getVersion() << StrConstants::getRepository() << "");
 
   sl.clear();
+  delete cic;
+
   m_modelInstalledPackages->setHorizontalHeaderLabels(
         sl << "" << StrConstants::getName() << StrConstants::getVersion() << StrConstants::getRepository() << "");
 
@@ -371,17 +373,25 @@ void MainWindow::buildPackageList()
 
   connect(m_pacmanDatabaseSystemWatcher, SIGNAL(directoryChanged(QString)), this, SLOT(metaBuildPackageList()));
 
-  if (firstTime)
-  {
-    if (_isPackageTreeViewVisible()) m_leFilterPackage->setFocus();
-    m_initializationCompleted = true;
-  }
-
   counter = list->count() + listForeign->count();
   m_progressWidget->setValue(counter);
-
-  firstTime = false;
   m_progressWidget->close();
+
+  if (firstTime)
+  {
+    if (_isPackageTreeViewVisible())
+    {
+      m_leFilterPackage->setFocus();
+    }
+
+    m_initializationCompleted = true;
+    firstTime = false;
+
+    if (m_callSystemUpgrade)
+    {
+      doSystemUpgrade();
+    }
+  }
 }
 
 /*
