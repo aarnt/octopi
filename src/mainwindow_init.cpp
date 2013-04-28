@@ -429,10 +429,14 @@ void MainWindow::initTabOutput()
   QTextBrowser *text = new QTextBrowser(tabOutput);
   text->setObjectName("textOutputEdit");
   text->setReadOnly(true);
-  text->setOpenExternalLinks(true);
+  text->setOpenLinks(false);
+  //text->setOpenExternalLinks(true);
   text->setFrameShape(QFrame::NoFrame);
   text->setFrameShadow(QFrame::Plain);
-  gridLayoutX->addWidget (text, 0, 0, 1, 1);
+
+  connect(text, SIGNAL(anchorClicked(QUrl)), this, SLOT(outputTextBrowserAnchorClicked(QUrl)));
+
+  gridLayoutX->addWidget (text, 0, 0, 1, 1);  
 
   QString aux(StrConstants::getTabOutputName());
   ui->twProperties->removeTab(ctn_TABINDEX_OUTPUT);

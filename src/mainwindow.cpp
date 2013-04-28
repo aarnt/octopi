@@ -39,6 +39,7 @@
 #include <QMessageBox>
 #include <QComboBox>
 #include <QModelIndex>
+#include <QDesktopServices>
 #include <iostream>
 
 /*
@@ -130,6 +131,51 @@ void MainWindow::refreshAppIcon()
 }
 
 /*
+ * Retrieves a pointer to Output's QTextBrowser object
+ */
+QTextBrowser *MainWindow::_getOutputTextBrowser()
+{
+  QTextBrowser *ret=0;
+  QTextBrowser *text =
+      ui->twProperties->widget(ctn_TABINDEX_OUTPUT)->findChild<QTextBrowser*>("textOutputEdit");
+
+  if (text)
+  {
+    ret = text;
+  }
+
+  return ret;
+}
+
+/*
+ * This SLOT is called whenever user clicks a url inside output's textBrowser
+ */
+void MainWindow::outputTextBrowserAnchorClicked(const QUrl &link)
+{
+  if (link.toString().contains("goto:"))
+  {
+    QString pkgName = link.toString().mid(5);
+
+    QList<QStandardItem*> foundItems =
+        m_modelPackages->findItems(pkgName, Qt::MatchExactly, ctn_PACKAGE_NAME_COLUMN);
+
+    if (foundItems.count() > 0)
+    {
+      QStandardItem * si = foundItems.first();
+      QModelIndex indexIcon = m_modelPackages->index(si->row(), ctn_PACKAGE_ICON_COLUMN);
+      QModelIndex proxyIndex = m_proxyModelPackages->mapFromSource(indexIcon);
+      ui->tvPackages->scrollTo(proxyIndex, QAbstractItemView::PositionAtCenter);
+      ui->tvPackages->setCurrentIndex(proxyIndex);
+      _changeTabWidgetPropertiesIndex(ctn_TABINDEX_INFORMATION);
+    }
+  }
+  else
+  {
+    QDesktopServices::openUrl(link);
+  }
+}
+
+/*
  * Prints the list of outdated packages to the Output tab.
  */
 void MainWindow::outputOutdatedPackageList()
@@ -169,7 +215,7 @@ void MainWindow::outputOutdatedPackageList()
       QString outdatedVersion = getOutdatedPackageVersionByName(m_outdatedPackageList->at(c));
       QString availableVersion = getInstalledPackageVersionByName(m_outdatedPackageList->at(c));
 
-      html += "<tr><td>" + pkg +
+      html += "<tr><td><a href=\"goto:" + pkg + "\">" + pkg +
           "</td><td align=\"right\"><b><font color=\"#E55451\">" +
           outdatedVersion +
           "</b></font></td><td align=\"right\">" +

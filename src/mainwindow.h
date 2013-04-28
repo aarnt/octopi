@@ -39,6 +39,7 @@ class QLabel;
 class QComboBox;
 class QListView;
 class QProgressBar;
+class QTextBrowser;
 class SearchLineEdit;
 
 //Column indices for Package's treeview
@@ -84,6 +85,14 @@ public:
   QStandardItem *getAvailablePackage(const QString &pkgName, const int index);
   void setCallSystemUpgrade();
   void setRemoveCommand(const QString &removeCommand);
+
+public slots:
+  void show();
+
+protected:
+  void closeEvent(QCloseEvent *event);
+  void keyPressEvent(QKeyEvent* ke);
+  void keyReleaseEvent(QKeyEvent *ke);
 
 private:
   Ui::MainWindow *ui;
@@ -199,6 +208,7 @@ private:
   void initTabTransaction();
 
   //Tab Output related methods
+  QTextBrowser *_getOutputTextBrowser();
   void _collapseItem(QTreeView* tv, QStandardItemModel* sim, QModelIndex mi);
   void _expandItem(QTreeView* tv, QStandardItemModel* sim, QModelIndex* mi);
   void _positionTextEditCursorAtEnd();
@@ -218,14 +228,6 @@ private:
   QString parseDistroNews();
   void initTabNews();
   void initTabHelpAbout();
-
-public slots:
-  void show();
-
-protected:
-  void closeEvent(QCloseEvent *event);
-  void keyPressEvent(QKeyEvent* ke);
-  void keyReleaseEvent(QKeyEvent *ke);
 
 private slots:
   //TreeView methods
@@ -314,6 +316,8 @@ private slots:
   void searchBarFindNextEx();
   void searchBarFindPreviousEx();
   void searchBarClosedEx();
+
+  void outputTextBrowserAnchorClicked(const QUrl & link);
 };
 
 #endif // MAINWINDOW_H
