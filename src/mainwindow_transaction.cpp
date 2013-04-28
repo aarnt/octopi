@@ -591,7 +591,7 @@ void MainWindow::doSystemUpgrade(bool syncDatabase)
 void MainWindow::doRemoveAndInstall()
 {
   QString listOfRemoveTargets = getTobeRemovedPackages();
-  QStringList *removeTargets = Package::getTargetRemovalList(listOfRemoveTargets);
+  QStringList *removeTargets = Package::getTargetRemovalList(listOfRemoveTargets, m_removeCommand);
   QString removeList;
   QString allLists;
   TransactionDialog question(this);
@@ -667,11 +667,11 @@ void MainWindow::doRemoveAndInstall()
     if (!_isSUAvailable()) return;
 
     QString command;
-    command = "pacman -Rcs --noconfirm " + listOfRemoveTargets +
+    command = "pacman -" + m_removeCommand + " --noconfirm " + listOfRemoveTargets +
         "; pacman -S --noconfirm " + listOfInstallTargets;
 
     m_lastCommandList.clear();
-    m_lastCommandList.append("pacman -Rcs " + listOfRemoveTargets + ";");
+    m_lastCommandList.append("pacman -" + m_removeCommand + " " + listOfRemoveTargets + ";");
     m_lastCommandList.append("pacman -S " + listOfInstallTargets + ";");
     m_lastCommandList.append("echo -e;");
     m_lastCommandList.append("read -n1 -p \"" + StrConstants::getPressAnyKey() + "\"");
@@ -707,7 +707,7 @@ void MainWindow::doRemoveAndInstall()
 void MainWindow::doRemove()
 {
   QString listOfTargets = getTobeRemovedPackages();
-  m_targets = Package::getTargetRemovalList(listOfTargets);
+  m_targets = Package::getTargetRemovalList(listOfTargets, m_removeCommand);
   QString list;
 
   foreach(QString target, *m_targets)
@@ -753,10 +753,10 @@ void MainWindow::doRemove()
     if (!_isSUAvailable()) return;
 
     QString command;
-    command = "pacman -Rcs --noconfirm " + listOfTargets;
+    command = "pacman -" + m_removeCommand + " --noconfirm " + listOfTargets;
 
     m_lastCommandList.clear();
-    m_lastCommandList.append("pacman -Rcs " + listOfTargets + ";");
+    m_lastCommandList.append("pacman -" + m_removeCommand + " " + listOfTargets + ";");
     m_lastCommandList.append("echo -e;");
     m_lastCommandList.append("read -n1 -p \"" + StrConstants::getPressAnyKey() + "\"");
 

@@ -75,6 +75,8 @@ int main(int argc, char *argv[])
     w.setCallSystemUpgrade();
   }
 
+  w.setRemoveCommand(argList->getSwitchArg("-removecmd", "Rcs"));
+
   w.show();
 
   QResource::registerResource("./resources.qrc");

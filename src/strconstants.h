@@ -39,7 +39,9 @@ public:
     QString str =
         "\n" + QObject::tr("Octopi help usage:") + "\n\n" +
         "-version: " + QObject::tr("show application version.") + "\n" +
-        "-style <Qt4-style>: " + QObject::tr("use a different Qt4 style (ex: -style gtk).") + "\n";
+        "-style <Qt4-style>: " + QObject::tr("use a different Qt4 style (ex: -style gtk).") + "\n" +
+        "-removecmd <Remove-command>: " + QObject::tr("use a different remove command (ex: -removecmd R).") + "\n" +
+        "-sysupgrade: " + QObject::tr("force a system upgrade at startup.") + "\n";
 
     return str;
   }

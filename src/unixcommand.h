@@ -81,7 +81,7 @@ public:
   static QByteArray getPackageGroups();
   static QByteArray getPackagesFromGroup(const QString &groupName);
   static QByteArray getTargetUpgradeList(const QString &pkgName = "");
-  static QByteArray getTargetRemovalList(const QString &pkgName);
+  static QByteArray getTargetRemovalList(const QString &pkgName, const QString &removeCommand);
 
   static QString getSystemArchitecture();
   static bool hasInternetConnection();

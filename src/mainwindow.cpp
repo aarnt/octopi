@@ -273,6 +273,16 @@ void MainWindow::setCallSystemUpgrade()
 }
 
 /*
+ * Sets a flag that holds the remove command to be used in transactions
+ */
+void MainWindow::setRemoveCommand(const QString &removeCommand)
+{
+  m_removeCommand = removeCommand;
+  m_removeCommand.remove("=");
+  m_removeCommand.remove("-");
+}
+
+/*
  * Searchs model modelInstalledPackages by a package name and returns if it is already installed
  */
 bool MainWindow::isPackageInstalled(const QString &pkgName)

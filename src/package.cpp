@@ -297,9 +297,9 @@ QList<PackageListData> *Package::getTargetUpgradeList(const QString &pkgName)
 /*
  * Retrieves the list of targets needed to be removed with the given package
  */
-QStringList *Package::getTargetRemovalList(const QString &pkgName)
+QStringList *Package::getTargetRemovalList(const QString &pkgName, const QString &removeCommand)
 {
-  QString targets = UnixCommand::getTargetRemovalList(pkgName);
+  QString targets = UnixCommand::getTargetRemovalList(pkgName, removeCommand);
   QStringList packageTuples = targets.split(QRegExp("\\n"), QString::SkipEmptyParts);
   QStringList * res = new QStringList();
 

@@ -285,10 +285,10 @@ QByteArray UnixCommand::getTargetUpgradeList(const QString &pkgName)
 /*
  * Given a package name, retrieves the list of all targets needed for its removal
  */
-QByteArray UnixCommand::getTargetRemovalList(const QString &pkgName)
+QByteArray UnixCommand::getTargetRemovalList(const QString &pkgName, const QString &removeCommand)
 {
   QString args;
-  args = "-Rpcs " + pkgName;
+  args = "-" + removeCommand + "p " + pkgName;
 
   QByteArray res = performQuery(args);
   return res;

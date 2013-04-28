@@ -83,6 +83,7 @@ public:
   QStandardItemModel *getModelPackages(){ return m_modelPackages; }
   QStandardItem *getAvailablePackage(const QString &pkgName, const int index);
   void setCallSystemUpgrade();
+  void setRemoveCommand(const QString &removeCommand);
 
 private:
   Ui::MainWindow *ui;
@@ -102,6 +103,9 @@ private:
 
   //Controls the calling of System Upgrade action
   bool m_callSystemUpgrade;
+
+  //Holds the remove command to be used: -Rcs/-R/-Rs or whichever the user has choosen
+  QString m_removeCommand;
 
   //This model provides the list of ALL packages (installed + non-installed)
   QStandardItemModel *m_modelPackages;
