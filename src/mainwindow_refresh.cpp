@@ -426,12 +426,11 @@ void MainWindow::refreshStatusBar()
   }
   else
   {
-    text = StrConstants::getNumberInstalledPackages().arg(m_numberOfInstalledPackages); // +
+    text = " | " + StrConstants::getNumberInstalledPackages().arg(m_numberOfInstalledPackages); // +
         //" | " + StrConstants::getNumberAvailablePackages().arg(m_numberOfAvailablePackages);
   }
 
   m_lblTotalCounters->setText(text);
-  //ui->statusBar->addPermanentWidget(m_lblTotalCounters);
   ui->statusBar->addWidget(m_lblTotalCounters);
 }
 

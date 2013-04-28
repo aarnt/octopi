@@ -156,13 +156,14 @@ void MainWindow::outputTextBrowserAnchorClicked(const QUrl &link)
   {
     QString pkgName = link.toString().mid(5);
 
+    QStandardItemModel * sim = _getCurrentSelectedModel();
     QList<QStandardItem*> foundItems =
-        m_modelPackages->findItems(pkgName, Qt::MatchExactly, ctn_PACKAGE_NAME_COLUMN);
+        sim->findItems(pkgName, Qt::MatchExactly, ctn_PACKAGE_NAME_COLUMN);
 
     if (foundItems.count() > 0)
     {
       QStandardItem * si = foundItems.first();
-      QModelIndex indexIcon = m_modelPackages->index(si->row(), ctn_PACKAGE_ICON_COLUMN);
+      QModelIndex indexIcon = sim->index(si->row(), ctn_PACKAGE_ICON_COLUMN);
       QModelIndex proxyIndex = m_proxyModelPackages->mapFromSource(indexIcon);
       ui->tvPackages->scrollTo(proxyIndex, QAbstractItemView::PositionAtCenter);
       ui->tvPackages->setCurrentIndex(proxyIndex);
