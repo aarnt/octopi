@@ -1,4 +1,6 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="el" version="2.0">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.0" language="it">
 <context>
     <name>MainWindow</name>
     <message>
@@ -9,49 +11,49 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="92"/>
         <source>Info</source>
-        <translation>Πληροφορίες</translation>
+        <translation>Dettagli</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="97"/>
         <source>Files</source>
-        <translation>Αρχεία</translation>
+        <translation>Files</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="102"/>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="141"/>
         <source>Transaction</source>
-        <translation>Διενέργεια</translation>
+        <translation>Operazione</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="107"/>
         <source>Output</source>
-        <translation>Αποτέλεσμα</translation>
+        <translation>Output</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="129"/>
         <source>Help</source>
-        <translation>Βοήθεια</translation>
+        <translation>Aiuto</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="135"/>
         <source>View</source>
-        <translation>Προβολή</translation>
+        <translation>Vedi</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="148"/>
         <source>File</source>
-        <translation>Αρχείο</translation>
+        <translation>File</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="160"/>
         <source>Search</source>
-        <translation>Αναζήτηση</translation>
+        <translation>Cerca</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="188"/>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="191"/>
         <source>About</source>
-        <translation>Σχετικά</translation>
+        <translation>Info</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="194"/>
@@ -61,7 +63,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="208"/>
         <source>Non installed</source>
-        <translation>Μη εγκατεστημένα</translation>
+        <translation>Non installato</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="211"/>
@@ -71,7 +73,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="220"/>
         <source>Commit</source>
-        <translation>Εφαρμογή</translation>
+        <translation>Applica</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="223"/>
@@ -81,7 +83,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="232"/>
         <source>Rollback</source>
-        <translation>Επαναφορά</translation>
+        <translation>Annulla</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="235"/>
@@ -91,7 +93,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="244"/>
         <source>Sync database</source>
-        <translation>Συγχρονισμός βάσης δεδομένων</translation>
+        <translation>Sincronizza database</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="247"/>
@@ -101,7 +103,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="256"/>
         <source>Exit</source>
-        <translation>Έξοδος</translation>
+        <translation>Esci</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="259"/>
@@ -111,34 +113,34 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="264"/>
         <source>System upgrade</source>
-        <translation>Αναβάθμιση συστήματος</translation>
+        <translation>Aggiorna sistema</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="267"/>
         <source>Ctrl+U</source>
-        <translation>Ctrl+Q</translation>
+        <translation>Ctrl+U</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="276"/>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="279"/>
         <source>Install</source>
-        <translation>Εγκατάσταση</translation>
+        <translation>Installa</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="288"/>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="291"/>
         <source>Remove</source>
-        <translation>Απεγκατάσταση</translation>
+        <translation>Rimuove</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="296"/>
         <source>Outdated packages</source>
-        <translation>Παρωχημένα πακέτα</translation>
+        <translation>Pacchetti obsoleti</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="301"/>
         <source>Get latest distro news</source>
-        <translation>Λήψη των τελευταίων νέων της διανομής</translation>
+        <translation>Ottieni notizie sulla distro</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="304"/>
@@ -148,277 +150,277 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="313"/>
         <source>Remove group</source>
-        <translation>Αφαίρεση ομάδας</translation>
+        <translation>Rimuovi gruppo</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="322"/>
         <source>Install group</source>
-        <translation>Εγκατάσταση ομάδας</translation>
+        <translation>Installa gruppo</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="331"/>
         <source>Collapse item</source>
-        <translation>Ελαχιστοποίηση αντικειμένου</translation>
+        <translation>Riduci voce</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="340"/>
         <source>Expand item</source>
-        <translation>Επέκταση αντικειμένου</translation>
+        <translation>Espandi voce</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="349"/>
         <source>Collapse all items</source>
-        <translation>Ελαχιστοποίηση όλων των αντικειμένων</translation>
+        <translation>Riduci tutte le voci</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="358"/>
         <source>Expand all items</source>
-        <translation>Επέκταση όλων των αντικειμένων</translation>
+        <translation>Espandi tutte le voci</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="367"/>
         <source>Open file</source>
-        <translation>Άνοιγμα αρχείου</translation>
+        <translation>Apri file</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="376"/>
         <source>Edit file</source>
-        <translation>Επεξεργασία αρχείου</translation>
+        <translation>Edita file</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="385"/>
         <source>Open directory</source>
-        <translation>Άνοιγμα φακέλου</translation>
+        <translation>Apre directory</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="394"/>
         <source>Open terminal here</source>
-        <translation>Άνοιγμα τερματικού εδώ</translation>
+        <translation>Apri terminale qui</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="403"/>
         <source>Remove item</source>
-        <translation>Απεγκατάσταση αντικειμένου</translation>
+        <translation>Rimuovi voce</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="415"/>
         <source>Remove items</source>
-        <translation>Απεγκατάσταση αντικειμένων</translation>
+        <translation>Rimuovi voci</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="426"/>
         <source>By description</source>
-        <translation>Με περιγραφή</translation>
+        <translation>Per descrizione</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="434"/>
         <source>By name</source>
-        <translation>Με όνομα</translation>
+        <translation>Per nome</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="443"/>
         <source>Find a file</source>
-        <translation>Βρείτε ένα αρχείο</translation>
+        <translation>Trova un file</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="452"/>
         <source>Open root terminal</source>
-        <translation>Άνοιγμα τερματικού με δικαιώματα root</translation>
+        <translation>Apri terminale di Root</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="56"/>
         <source>A Qt4-based Pacman frontend,</source>
-        <translation>Ένα Pacman frontend βασισμένο σε Qt4</translation>
+        <translation>Una interfaccia grafica di Pacman in Qt4</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="57"/>
         <source>licensed under the terms of</source>
-        <translation>άδεια υπό τους όρους των </translation>
+        <translation>con licenza sotto i termini della</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="59"/>
         <source>For more information, visit:</source>
-        <translation>Για περισσότερες πληροφορίες, επισκεφτείτε:</translation>
+        <translation>Per ulteriori informazioni, visita:</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="61"/>
         <source>Package classification:</source>
-        <translation>Κατηγοριοποίηση πακέτου:</translation>
+        <translation>Classificazione dei pacchetti:</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="64"/>
         <source>An installed package</source>
-        <translation>Ένα εγκατεστημένο πακέτο</translation>
+        <translation>Pacchetto installato</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="66"/>
         <source>An installed package (not required by others)</source>
-        <translation>Ένα εγκατεστημένο πακέτο (που δεν απαιτείτε από τα υπόλοιπα)</translation>
+        <translation>Pacchetto installato (non richiesto da altri)</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="69"/>
         <source>A foreign package, installed from</source>
-        <translation>Ένα ξένο πακέτο, εγκατεστημένο από</translation>
+        <translation>Pacchetto esterno, installato via</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="72"/>
         <source>A non installed package</source>
-        <translation>Ένα μη εγκατεστημένο πακέτο</translation>
+        <translation>Pacchetto non installato</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="75"/>
         <source>An outdated package</source>
-        <translation>Ένα παρωχημένο πακέτο</translation>
+        <translation>Pacchetto obsoleto</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="78"/>
         <source>Basic usage help:</source>
-        <translation>Βασική βοήθεια χρήσης:</translation>
+        <translation>Utilizzo base, aiuto:</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="80"/>
         <source>Position the mouse over a package to see its description</source>
-        <translation>Τοποθετήστε το ποντίκι πάνω από κάποιο πακέτο για να δείτε την περιγραφή του</translation>
+        <translation>Posizionare il mouse su un pacchetto per vedere la sua descrizione</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="82"/>
         <source>Double click an installed package to see its contents</source>
-        <translation>Κάντε διπλό κλικ σε ένα εγκατεστημένο πακέτο για να δείτε τα περιεχόμενα του</translation>
+        <translation>Doppio clic su un pacchetto installato per vedere il contenuto</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="84"/>
         <source>Right click package to install/reinstall or remove it</source>
-        <translation>Κάντε διπλό κλικ σε ένα πακέτο για να εγκαταστήσετε/ επανεγκαταστήσετε ή για να το απεγκαταστήσετε</translation>
+        <translation>Clic destro su un pacchetto per installare/reinstallare o rimuovere</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="87"/>
         <source>Alt+key sequences:</source>
-        <translation>Συντομεύσεις Alt+πλήκτρο:</translation>
+        <translation>Alt+combinazioni di tasti:</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="89"/>
         <source>Alt+1 to switch to &apos;Info&apos; tab</source>
-        <translation>Alt+1 για να πάτε στην καρτέλα &apos;Πληροφορίες&apos;</translation>
+        <translation>Alt+1 per passare alla scheda &apos;Info&apos;</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="91"/>
         <source>Alt+2 to switch to &apos;Files&apos; tab</source>
-        <translation>Alt+2 για να πάτε στην καρτέλα &apos;Αρχεία&apos;</translation>
+        <translation>Alt+2 per passare alla scheda &apos;Files&apos;</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="93"/>
         <source>Alt+3 to switch to &apos;Transaction&apos; tab</source>
-        <translation>Alt+3 για να πάτε στην καρτέλα &apos;Διενέργεια&apos;</translation>
+        <translation>Alt+3 per passare alla scheda &apos;Operazione&apos;</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="95"/>
         <source>Alt+4 to switch to &apos;Output&apos; tab</source>
-        <translation>Alt+4 για να πάτε στην καρτέλα &apos;Αποτέλεσμα&apos; </translation>
+        <translation>Alt+4 per passare alla scheda &apos;Output&apos;</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="97"/>
         <source>Alt+5 to switch to &apos;News&apos; tab</source>
-        <translation>Alt+5 για να πάτε στην καρτέλα &apos;Νέα&apos; </translation>
+        <translation>Alt+5 per passare alla scheda &apos;Notizie&apos;</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="99"/>
         <source>Alt+6 or &apos;F1&apos; to show this help page</source>
-        <translation>Alt+6 ή &apos;F1&apos; για να εμφανίσετε αυτή τη σελίδα βοήθειας</translation>
+        <translation>Alt+6 per vedere questa pàgina di aiuto</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="102"/>
         <source>Control+key sequences:</source>
-        <translation>Συντομεύσεις Control+πλήκτρο:</translation>
+        <translation>Ctrl+combinazioni di tasti:</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="104"/>
         <source>Ctrl+D or &apos;File/Sync database&apos; to sync the local database with latest remote changes (pacman -Sy)</source>
-        <translation>Ctrl+D ή &apos;Αρχείο/Συγχρονισμός βάσης δεδομένων&apos; για να συγχρονιστεί η τοπική βάση δεδομένων με τις τελευταίες αλλαγές (pacman -Sy)</translation>
+        <translation>Ctrl+D o &apos;File/Sincronizza database&apos; per sincronizzare il database locale con le ultime modifiche remote (pacman -Sy)</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="106"/>
         <source>Ctrl+U or &apos;File/System upgrade&apos; to make a full system upgrade (pacman -Su)</source>
-        <translation>Ctrl+U ή &apos;Αρχείο/Αναβάθμιση συστήματος&apos; για να πραγματοποιήσετε πλήρη αναβάθμιση συστήματος (pacman -Su)</translation>
+        <translation>Ctrl+U o &apos;File/Aggiorna sistema&apos; per fare un aggiornamento completo del sistema (pacma -Su)</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="108"/>
         <source>Ctrl+L to find a package in the package list</source>
-        <translation>Ctrl+L για να αναζητήσετε ένα πακέτο στην λίστα πακέτων</translation>
+        <translation>Ctrl+L per trovare un pacchetto nella lista dei pacchetti</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="110"/>
         <source>Ctrl+F to search for text inside tab Files, News and About</source>
-        <translation>Ctrl+F για να αναζητήσετε κείμενο στις καρτέλες Αρχεία, Νέα και Σχετικά</translation>
+        <translation>Ctrl+F per cercare del testo all&apos;interno delle schede Files, Notizie e Info</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="112"/>
         <source>Ctrl+N or &apos;View/Non installed&apos; to show/hide non installed packages</source>
-        <translation>Ctrl+N ή &apos;Προβολή/Μη εγκατεστημένα&apos; για να δείτε/αποκρύψετε μη εγκατεστημένα πακέτα</translation>
+        <translation>Ctrl+N o &apos;Vedi/Non installati&apos; per vedere/nascondere i pacchetti non installati</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="114"/>
         <source>Ctrl+M or &apos;Transaction/Commit&apos; to start installation/removal of selected packages</source>
-        <translation>Ctrl+M ή &apos;Διενέργεια/Εφαρμογή&apos; για να εκκινήσετε προσθαφαίρεση των συγκεκριμένων πακέτων</translation>
+        <translation>Ctrl+M o &apos;Operazione/Applica&apos; per avviare l&apos;installazione/rimozione dei pacchetti selezionati</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="116"/>
         <source>Ctrl+B or &apos;Transaction/Rollback&apos; to clear the selection of to be removed/installed packages</source>
-        <translation>Ctrl+B ή &apos;Διενέργεια/Επαναφορά&apos; για να καθαρίσετε των επιλεγμένων προς προσθαφαίρεση πακέτων</translation>
+        <translation>Ctrl+B o &apos;Operazione/Annulla&apos; per cancellare la selezione dei pacchetti da rimuovere/installare</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="118"/>
         <source>Ctrl+G or &apos;File/Get latest distro news&apos; to retrieve the latest RSS based distro news</source>
-        <translation>Ctrl+G ή &apos;Αρχείο/Λήψη των τελευταίων νέων της διανομής&apos; για να λάβετε τα τελευταία RSS νέα της διανομής</translation>
+        <translation>Ctrl+G o &apos;File/Ottieni notizie sulla distro&apos; per ottenere le ultime notizie sulla distro via RSS</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="120"/>
         <source>Ctrl+Q or &apos;File/Exit&apos; to exit the application</source>
-        <translation>Ctrl+Q ή &apos;Αρχείο/Έξοδος&apos; για να εξέλθετε της εφαρμογής</translation>
+        <translation>Ctrl+Q o &apos;File/Esci&apos; per chiudere l&apos;applicazione</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="123"/>
         <source>Control+shift+key sequences:</source>
-        <translation>Συντομεύσεις Control+shift+πλήκτρο:</translation>
+        <translation>Ctrl+Shift+combinazioni di tasti:</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="125"/>
         <source>Ctrl+Shift+C to clean local packages cache (pacman -Sc)</source>
-        <translation>Ctrl+Shift+C για να καθαρίσετε την κρυφή μνήμη των τοπικών πακέτων (pacman -Sc)</translation>
+        <translation>Ctrl+Shift+C per pulire la cache dei pacchetti locali (pacman -Sc)</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="127"/>
         <source>Ctrl+Shift+G to display all package groups</source>
-        <translation>Ctrl+Shift+G για να προβάλετε όλες τις ομάδες των πακέτων</translation>
+        <translation>Ctrl+Shift+G per visualizzare tutti i gruppi di pacchetti</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="130"/>
         <source>F+key sequences:</source>
-        <translation>Συντομεύσεις F+πλήκτρο:</translation>
+        <translation>F+combinazione di tasti:</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="132"/>
         <source>F1 to show this help page</source>
-        <translation>F1για να εμφανίσετε αυτή τη σελίδα βοήθειας</translation>
+        <translation>F1 per vedere questa pagina di aiuto</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="134"/>
         <source>F4 to open a Terminal whitin the selected directory at Files tab</source>
-        <translation>F4 για να ανοίξετε ένα τερματικό στον επιλεγμένο φάκελο στην καρτέλα Αρχείων</translation>
+        <translation>F4 per aprire un terminale all&apos;interno della directory selezionata nella scheda Files</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="136"/>
         <source>F6 to open a File Manager whitin the selected directory at Files tab</source>
-        <translation>F6 για να ανοίξετε έναν Διαχειριστή Αρχείων στον επιλεγμένο φάκελο στην καρτέλα Αρχείων</translation>
+        <translation>F6 per aprire un file-manager all&apos;interno della directory selezionata nella scheda Files</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="138"/>
         <source>F10 to maximize/demaximize package list view</source>
-        <translation>F10 για να μεγιστοποιήσετε/απομεγιστοποιήσετε την προβολή λίστας πακέτων</translation>
+        <translation>F10 per massimizzare/minimizzare la vista della lista dei pacchetti</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="140"/>
         <source>F12 to maximize/demaximize Tab&apos;s view</source>
-        <translation>F12 για να μεγιστοποιήσετε/απομεγιστοποιήσετε την προβολή των καρτέλων</translation>
+        <translation>F12 per massimizzare/minimizzare la vista delle schede</translation>
     </message>
 </context>
 <context>
@@ -426,92 +428,92 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="40"/>
         <source>Octopi help usage:</source>
-        <translation>Βοήθεια χρήσης Octopi:</translation>
+        <translation>Aiuto per l&apos;utilizzo di Octopi:</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="41"/>
         <source>show application version.</source>
-        <translation>εμφάνιση έκδοσης της εφαρμογής.</translation>
+        <translation>mostra versione dell&apos;applicazione.</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="42"/>
         <source>use a different Qt4 style (ex: -style gtk).</source>
-        <translation>χρησιμοποιήστε ένα διαφορετικό στυλ Qt4 (πχ: -style gtk).</translation>
+        <translation>usa uno stile diverso da Qt4 (p.e: -style gtk).</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="43"/>
         <source>use a different remove command (ex: -removecmd R).</source>
-        <translation>χρησιμοποιήστε μια διαφορετική εντολή (πχ: -removecmd R).</translation>
+        <translation>usa un comando diverso per rimuovere (p.e: -removedcmd R).</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="44"/>
         <source>force a system upgrade at startup.</source>
-        <translation>εξαναγκάστε μια αναβάθμιση συστήματος κατά την εκκίνηση. </translation>
+        <translation>forza l&apos;aggiornamento del sistema all&apos;avvio.</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="54"/>
         <source>Arch Linux news</source>
-        <translation>Νέα Arch Linux</translation>
+        <translation>Notizie su Arch Linux</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="58"/>
         <source>Chakra news</source>
-        <translation>Νέα Chakra</translation>
+        <translation>Notizie su Chakra</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="62"/>
         <source>Manjaro Linux news</source>
-        <translation>Νέα Manjaro Linux</translation>
+        <translation>Notizie su Manjaro Linux</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="66"/>
         <source>No news could be found! Press Ctrl+G to download the latest news.</source>
-        <translation>Δεν βρέθηκαν νέα! Πατήστε Ctrl+G για να κατεβάσετε τα τελευταία νέα.</translation>
+        <translation>Nessuna notizia è stata trovata! Premere Ctrl+G per scaricare le ultime notizie.</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="70"/>
         <source>This Linux distro seems to be incompatible with Octopi!</source>
-        <translation>Αυτή η διανομή Linux φαίνεται να μην είναι συμβατή με το Octopi!</translation>
+        <translation>Questa distro Linux sembra essere incompatibile con Octopi!</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="74"/>
         <source>Internet seems anavailable!</source>
-        <translation>Δεν φαίνετε να υπάρχει σύνδεση στο διαδίκτυο!</translation>
+        <translation>Internet sembra non disponibile!</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="78"/>
         <source>Display all groups</source>
-        <translation>Εμφάνιση όλων των ομάδων</translation>
+        <translation>Mostra tutti i gruppi</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="82"/>
         <source>About</source>
-        <translation>Σχετικά</translation>
+        <translation>Info</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="86"/>
         <source>Name</source>
-        <translation>Όνομα</translation>
+        <translation>Nome</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="90"/>
         <source>Version</source>
-        <translation>Έκδοση</translation>
+        <translation>Versione</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="94"/>
         <source>Outdated version</source>
-        <translation>Παρωχημένη έκδοση</translation>
+        <translation>Versione obsoleta</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="98"/>
         <source>Available version</source>
-        <translation>Διαθέσιμη έκδοση</translation>
+        <translation>Versione disponibile</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="102"/>
         <source>No description available.</source>
-        <translation>Δεν υπάρχει διαθέσιμη περιγραφή.</translation>
+        <translation>Descrizione non disponibile.</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="106"/>
@@ -521,414 +523,414 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="110"/>
         <source>Repository</source>
-        <translation>Αποθετήριο</translation>
+        <translation>Repository</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="114"/>
         <source>Licenses</source>
-        <translation>Άδειες</translation>
+        <translation>Licenze</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="118"/>
         <source>Group</source>
-        <translation>Ομάδα</translation>
+        <translation>Gruppo</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="122"/>
         <source>Groups</source>
-        <translation>Ομάδες</translation>
+        <translation>Gruppi</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="126"/>
         <source>Provides</source>
-        <translation>Παρέχει</translation>
+        <translation>Fornisce</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="130"/>
         <source>Depends On</source>
-        <translation>Εξαρτάτε από</translation>
+        <translation>Dipende di</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="134"/>
         <source>Optional Deps</source>
-        <translation>Προαιρετικές εξαρτήσεις</translation>
+        <translation>Dipendenze opzionali</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="138"/>
         <source>Conflicts With</source>
-        <translation>Διένεξη με</translation>
+        <translation>In conflitto con</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="142"/>
         <source>Replaces</source>
-        <translation>Αντικαθιστά</translation>
+        <translation>Sostituisce</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="146"/>
         <source>Download Size</source>
-        <translation>Μέγεθος για κατέβασμα</translation>
+        <translation>Dimensione scaricato</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="150"/>
         <source>Installed Size</source>
-        <translation>Μέγεθος εγκατεστημένου</translation>
+        <translation>Dimensione installato</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="154"/>
         <source>Packager</source>
-        <translation>Δημιουργός πακέτου</translation>
+        <translation>Packager</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="158"/>
         <source>Package</source>
-        <translation>Πακέτο</translation>
+        <translation>Pacchetto</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="162"/>
         <source>Packages</source>
-        <translation>Πακέτα</translation>
+        <translation>Pacchetti</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="166"/>
         <source>Architecture</source>
-        <translation>Αρχιτεκτονική</translation>
+        <translation>Architettura</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="170"/>
         <source>Build Date</source>
-        <translation>Ημερομηνία δημιουργίας</translation>
+        <translation>Data di costruzione</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="174"/>
         <source>Description</source>
-        <translation>Περιγραφή</translation>
+        <translation>Descrizione</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="178"/>
         <source>Attention</source>
-        <translation>Προσοχή</translation>
+        <translation>Attenzione</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="182"/>
         <source>automatic</source>
-        <translation>αυτόματα</translation>
+        <translation>automatico</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="186"/>
         <source>Password</source>
-        <translation>Κωδικός</translation>
+        <translation>Password</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="190"/>
         <source>Info</source>
-        <translation>Πληροφορίες</translation>
+        <translation>Info</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="194"/>
         <source>Files</source>
-        <translation>Αρχεία</translation>
+        <translation>Files</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="198"/>
         <source>Transaction</source>
-        <translation>Διενέργεια</translation>
+        <translation>Operazione</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="202"/>
         <source>Output</source>
-        <translation>Αποτέλεσμα</translation>
+        <translation>Output</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="206"/>
         <source>News</source>
-        <translation>Νέα</translation>
+        <translation>Notizie</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="210"/>
         <source>Contents of &quot;%1&quot;</source>
-        <translation> Περιεχόμενα του &quot;%1&quot;</translation>
+        <translation>Contenuto di &quot;%1&quot;</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="214"/>
         <source>Find</source>
-        <translation>Εύρεση</translation>
+        <translation>Trova</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="218"/>
         <source>Clear</source>
-        <translation>Καθαρισμός</translation>
+        <translation>Pulisci</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="222"/>
         <source> (outdated installed version is %1)</source>
-        <translation>(η παρωχημένη εγκατεστημένη έκδοση είναι η %1)</translation>
+        <translation> (versione obsoleta installata è %1)</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="226"/>
         <source>Building package list...</source>
-        <translation>Δημιουργία λίστας πακέτων...</translation>
+        <translation>Creando lista dei pacchetti...</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="230"/>
         <source>Searching for %1 latest news...</source>
-        <translation>Αναζήτηση για τα %1 τελευταία νέα...</translation>
+        <translation>Cercando ultime notizie di %1...</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="234"/>
         <source>There is one outdated package in your system:</source>
-        <translation>Υπάρχει ένα παρωχημένο πακέτο στο σύστημα σας:</translation>
+        <translation>C&apos;è un pacchetto obsoleto nel sistema:</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="238"/>
         <source>There are %1 outdated packages in your system:</source>
-        <translation>Υπάρχουν  %1 παρωχημένα πακέτα στο σύστημα σας:</translation>
+        <translation>C&apos;i sono %1 pacchetti obsoleti nel sistema:</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="242"/>
         <source>(version %1 is available)</source>
-        <translation>(η έκδοση %1 είναι διαθέσιμη)</translation>
+        <translation>(la versione %1 é disponibile)</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="246"/>
         <source>%1 (%2) packages</source>
-        <translation>%1 (%2) πακέτα</translation>
+        <translation>%1 (%2) pacchetti</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="250"/>
         <source>%1 installed</source>
-        <translation>%1 εγκατεστημένα</translation>
+        <translation>%1 installati</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="254"/>
         <source>%1 outdated</source>
-        <translation>%1 παρωχημένα</translation>
+        <translation>%1 obsoleti</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="258"/>
         <source>%1 available</source>
-        <translation>%1 διαθέσιμα</translation>
+        <translation>%1 disponibili</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="262"/>
         <source>Cleaning package cache...</source>
-        <translation>Καθαρισμός κρυφής μνήμης πακέτων...</translation>
+        <translation>Pulizia cache dei pacchetti...</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="266"/>
         <source>Syncing</source>
-        <translation>Συγχρονισμός</translation>
+        <translation>Sincronizzazione</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="270"/>
         <source>Press any key to continue...</source>
-        <translation>Πατήστε οποιοδήποτε πλήκτρο για να συνεχίσετε...</translation>
+        <translation>Premere un tasto qualsiasi per continuare...</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="274"/>
         <source>Synchronizing databases...</source>
-        <translation>Συγχρονισμός βάσεων δεδομένων...</translation>
+        <translation>Sincronizzazione database...</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="278"/>
         <source>is up to date</source>
-        <translation>είναι ενημερωμένο</translation>
+        <translation>è aggiornato</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="282"/>
         <source>Starting full system upgrade...</source>
-        <translation>Έναρξη πλήρους αναβάθμισης συστήματος...</translation>
+        <translation>Avvio aggiornamento completo del sistema...</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="286"/>
         <source>Installing selected packages...</source>
-        <translation>Εγκατάσταση επιλεγμένων πακέτων...</translation>
+        <translation>Installo pacchetti selezionati...</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="290"/>
         <source>Removing selected packages...</source>
-        <translation>Απεγκατάσταση επιλεγμένων πακέτων...</translation>
+        <translation>Rimuovo pacchetti selezionati...</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="294"/>
         <source>Removing/installing selected packages...</source>
-        <translation>Εγκατάσταση/απεγκατάσταση επιλεγμένων πακέτων...</translation>
+        <translation>Rimuovo/Installo pacchetti selezionati...</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="298"/>
         <source>Running command in terminal...</source>
-        <translation>Εκτέλεση εντολής σε τερματικό...</translation>
+        <translation>Eseguo comando nel treminale...</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="302"/>
         <source>Command finished OK!</source>
-        <translation>Η εντολή τελείωσε!</translation>
+        <translation>Comando terminato OK!</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="306"/>
         <source>Command finished with errors!</source>
-        <translation>Η εντολή τελείωσε με σφάλματα!</translation>
+        <translation>Comando terminato con degli errori!</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="310"/>
         <source>Retrieving %1</source>
-        <translation>Ανάκτηση %1</translation>
+        <translation>Recupero %1</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="314"/>
         <source>Total download size: %1 KB</source>
-        <translation>Συνολικό μέγεθος για κατέβασμα: %1 KB</translation>
+        <translation>Totale del download: %1 KB</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="318"/>
         <source>The following target needs to be retrieved</source>
-        <translation>Το ακόλουθο πρέπει να ανακτηθεί</translation>
+        <translation>Il seguente elemento deve essere recuperato</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="322"/>
         <source>The following target will be removed</source>
-        <translation>Το ακόλουθο πρέπει να απεγκατασταθεί</translation>
+        <translation>Il seguente elemento verrà rimosso</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="326"/>
         <source>The following %1 targets need to be retrieved</source>
-        <translation>Τα ακόλουθα %1 πρέπει να ανακτηθούν</translation>
+        <translation>I seguenti %1 elementi devono essere recuperati</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="330"/>
         <source>The following %1 targets will be removed</source>
-        <translation>Τα ακόλουθα %1 πρέπει να απεγκαταστηθούν</translation>
+        <translation>I seguenti %1 elementi verranno rimossi</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="334"/>
         <source>There are forbidden packages in the removal list!</source>
-        <translation>Υπάρχουν απαγορευμένα πακέτα στην λίστα προς απεγκατάσταση!</translation>
+        <translation>Ci sono dei pacchetti vietati nella lista di rimozione!</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="338"/>
         <source>There are no new updates available!</source>
-        <translation>Δεν υπάρχουν καινούργιες ενημερώσεις!</translation>
+        <translation>Non ci sono nuovi aggiornamenti disponibili!</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="342"/>
         <source>Confirm?</source>
-        <translation>Επιβεβαίωση?</translation>
+        <translation>Confermare?</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="346"/>
         <source>Warning!!!</source>
-        <translation>Προσοχή!!!</translation>
+        <translation>Attenzione!!!</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="350"/>
         <source>Confirmation</source>
-        <translation>Επιβεβαίωση</translation>
+        <translation>Conferma</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="354"/>
         <source>There has been a transaction error!</source>
-        <translation>Υπήρξε σφάλμα κατά την διενέργεια!</translation>
+        <translation>C&apos;è stato un errore di transazione!</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="358"/>
         <source>Do you want to execute this transaction in a Terminal?</source>
-        <translation>Θέλετε να εκτελέσετε αυτήν την διενέργεια σε ένα Τερματικό?</translation>
+        <translation>Vuoi eseguire questa operazione in un terminale?</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="362"/>
         <source>Do you really want to clean the package cache?</source>
-        <translation>Θέλετε σίγουρα να καθαρίσετε την κρυφή μνήμη των πακέτων?</translation>
+        <translation>Vuoi davvero pulire la cache dei pacchetti?</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="366"/>
         <source>Do you really want to rollback the transaction?</source>
-        <translation>Θέλετε σίγουρα να ακυρώσετε την διενέργεια?</translation>
+        <translation>Vuoi veramente annullare l&apos;operazione?</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="370"/>
         <source>Please, enter the administrator&apos;s password</source>
-        <translation>Παρακαλώ, εισάγετε τον κωδικό διαχειριστή</translation>
+        <translation>Si prega di inserire la password di amministratore</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="376"/>
         <source>There are no means to get administrator&apos;s credentials.</source>
-        <translation>Δεν υπάρχει τρόπος να αποκτήσετε δικαιώματα διαχειριστή.</translation>
+        <translation>Non ci sono mezzi per ottenere le credenziali di amministratore.</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="380"/>
         <source>You&apos;ll need to install a su frontend like gksu or kdesu.</source>
-        <translation>Θα χρειαστεί να εγκαταστήσετε ένα su frontend όπως το gksu ή το kdesu.</translation>
+        <translation>Dovrai installare un frontend &apos;su&apos; come gksu o kdesu.</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="384"/>
         <source>You can not run Octopi with administrator&apos;s credentials.</source>
-        <translation>Δεν μπορείτε να εκτελέσετε το Octopi χωρίς δικαιώματα διαχειριστή.</translation>
+        <translation>Non puoi eseguire Octopi con le credenziali di amministratore.</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="388"/>
         <source>There is a pending transaction</source>
-        <translation>Υπάρχει μία διενέργεια σε αναμονή</translation>
+        <translation>C&apos;è una operazione in sospeso</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="392"/>
         <source>Do you really want to quit?</source>
-        <translation>Είστε σίγουροι ότι θέλετε να εξέλθετε?</translation>
+        <translation>Sei sicuro di voler uscire?</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="396"/>
         <source>Executing command</source>
-        <translation>Εκτέλεση εντολής</translation>
+        <translation>Esecuzione del comando</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="400"/>
         <source>Run in terminal</source>
-        <translation>Εκτέλεση σε τερματικό</translation>
+        <translation>Esegui nel terminale</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="404"/>
         <source>Needs application restart to take effect</source>
-        <translation>Η εφαρμογή χρειάζετε επανεκκίνηση για να εφαρμοστεί</translation>
+        <translation>Bisogna riavviare l&apos;applicazione per renderle effettive</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="408"/>
         <source>These changes need application restart to take effect!</source>
-        <translation>Η εφαρμογή χρειάζετε επανεκκίνηση για να εφαρμοστουν οι αλλαγες!</translation>
+        <translation>Bisogna riavviare l&apos;applicazione per rendere effettive queste modifiche!</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="418"/>
         <source>This file does not appear to be a simple text.
 Are you sure you want to open it?</source>
-        <translation>Το αρχείο δεν φαίνεται να είναι απλό κείμενο.⏎
-Είστε σίγουροι ότι θέλετε να το ανοίξετε?</translation>
+        <translation>Questo file non sembra essere un semplice testo..
+Sei sicuro di volerlo aprire?</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="423"/>
         <source>To be installed</source>
-        <translation>Προς εγκατάσταση</translation>
+        <translation>da installare</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="427"/>
         <source>To be removed</source>
-        <translation>Προς απεγκατάσταση</translation>
+        <translation>Da rimuovere</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="431"/>
         <source>remove</source>
-        <translation>απεγκατάσταση</translation>
+        <translation>rimuovo</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="435"/>
         <source>install</source>
-        <translation>εγκατάσταση</translation>
+        <translation>installo</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="439"/>
         <source>Remove item</source>
-        <translation>Απεγκατάσταση αντικειμένου</translation>
+        <translation>Rimuovere voce</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="443"/>
         <source>Remove items</source>
-        <translation>Απεγκατάσταση αντικειμένων</translation>
+        <translation>Rimuovere voci</translation>
     </message>
 </context>
 <context>
@@ -936,17 +938,17 @@ Are you sure you want to open it?</source>
     <message>
         <location filename="Projects/octopi/src/searchbar.cpp" line="55"/>
         <source>Previous</source>
-        <translation>Προηγούμενο</translation>
+        <translation>Precedente</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/searchbar.cpp" line="57"/>
         <source>Next</source>
-        <translation>Επόμενο</translation>
+        <translation>Successivo</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/searchbar.cpp" line="68"/>
         <source>Close</source>
-        <translation>Κλείσιμο</translation>
+        <translation>Chiudi</translation>
     </message>
 </context>
 <context>
@@ -954,12 +956,12 @@ Are you sure you want to open it?</source>
     <message>
         <location filename="Projects/octopi/ui/transactiondialog.ui" line="20"/>
         <source>Form</source>
-        <translation>Μορφή</translation>
+        <translation>Form</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/transactiondialog.ui" line="133"/>
         <source>Run in terminal</source>
-        <translation>Εκτέλεση σε τερματικό</translation>
+        <translation>Esegui in un terminale</translation>
     </message>
 </context>
 </TS>

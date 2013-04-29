@@ -40,5 +40,7 @@
         <file>resources/translations/octopi_fr_FR.qm</file>
         <file>resources/translations/octopi_es_ES.qm</file>
         <file>resources/translations/octopi_el.qm</file>
+        <file>resources/translations/octopi_de.qm</file>
+        <file>resources/translations/octopi_it.qm</file>
     </qresource>
 </RCC>

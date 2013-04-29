@@ -426,7 +426,7 @@ void MainWindow::refreshStatusBar()
   }
   else
   {
-    text = " | " + StrConstants::getNumberInstalledPackages().arg(m_numberOfInstalledPackages); // +
+    text = "| " + StrConstants::getNumberInstalledPackages().arg(m_numberOfInstalledPackages); // +
         //" | " + StrConstants::getNumberAvailablePackages().arg(m_numberOfAvailablePackages);
   }
 
