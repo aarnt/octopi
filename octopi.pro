@@ -78,4 +78,6 @@ TRANSLATIONS += resources/translations/octopi_pt_BR.ts \
     resources/translations/octopi_es_ES.ts \
     resources/translations/octopi_el.ts \
     resources/translations/octopi_de.ts \
-    resources/translations/octopi_it.ts
+    resources/translations/octopi_it.ts \
+    resources/translations/octopi_ro.ts \
+    resources/translations/octopi_tr_TR.ts

@@ -1,4 +1,4 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="fr_FR" version="2.0">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="ro" version="2.0">
 <context>
     <name>MainWindow</name>
     <message>
@@ -14,44 +14,44 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="97"/>
         <source>Files</source>
-        <translation>Fichiers</translation>
+        <translation>Fișiere</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="102"/>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="141"/>
         <source>Transaction</source>
-        <translation>Opération</translation>
+        <translation>Tranzacție</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="107"/>
         <source>Output</source>
-        <translation>Sortie</translation>
+        <translation>Rezultat</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="129"/>
         <source>Help</source>
-        <translation>Aide</translation>
+        <translation>Ajutor</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="135"/>
         <source>View</source>
-        <translation>Affichage</translation>
+        <translation>Mod afișare</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="148"/>
         <source>File</source>
-        <translation>Fichier</translation>
+        <translation>Fișier</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="160"/>
         <source>Search</source>
-        <translation>Recherche</translation>
+        <translation>Căutare</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="188"/>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="191"/>
         <source>About</source>
-        <translation>À propos</translation>
+        <translation>Despre</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="194"/>
@@ -61,7 +61,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="208"/>
         <source>Non installed</source>
-        <translation>Pas installés</translation>
+        <translation>Neinstalate</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="211"/>
@@ -71,7 +71,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="220"/>
         <source>Commit</source>
-        <translation>Appliquer</translation>
+        <translation>Comite</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="223"/>
@@ -81,7 +81,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="232"/>
         <source>Rollback</source>
-        <translation>Annuler</translation>
+        <translation>Anulează</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="235"/>
@@ -91,7 +91,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="244"/>
         <source>Sync database</source>
-        <translation>Synchroniser</translation>
+        <translation>Sincronizează baza de date</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="247"/>
@@ -101,7 +101,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="256"/>
         <source>Exit</source>
-        <translation>Sortir</translation>
+        <translation>Ieșire</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="259"/>
@@ -111,7 +111,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="264"/>
         <source>System upgrade</source>
-        <translation>Mise à jour système</translation>
+        <translation>Actualizare de sistem</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="267"/>
@@ -122,23 +122,23 @@
         <location filename="Projects/octopi/ui/mainwindow.ui" line="276"/>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="279"/>
         <source>Install</source>
-        <translation>Installation</translation>
+        <translation>Instalează</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="288"/>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="291"/>
         <source>Remove</source>
-        <translation>Suppression</translation>
+        <translation>Șterge</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="296"/>
         <source>Outdated packages</source>
-        <translation>Paquets obsolètes</translation>
+        <translation>Pachete învechite</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="301"/>
         <source>Get latest distro news</source>
-        <translation>Mettre à jour les actualités</translation>
+        <translation>Obține ultimele știri ale distribuției</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="304"/>
@@ -148,277 +148,277 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="313"/>
         <source>Remove group</source>
-        <translation>Suppression du groupe</translation>
+        <translation>Șterge grupa</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="322"/>
         <source>Install group</source>
-        <translation>Installation du groupe</translation>
+        <translation>Instalează grupa</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="331"/>
         <source>Collapse item</source>
-        <translation>Replier l&apos;élément</translation>
+        <translation>Pliază elementul</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="340"/>
         <source>Expand item</source>
-        <translation>Déplier l&apos;élément</translation>
+        <translation>Desfășoară elementul</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="349"/>
         <source>Collapse all items</source>
-        <translation>Replier tous les éléments</translation>
+        <translation>Pliază toate elementele</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="358"/>
         <source>Expand all items</source>
-        <translation>Déplier tous les éléments</translation>
+        <translation>Desfășoară toate elementele</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="367"/>
         <source>Open file</source>
-        <translation>Ouvrir le fichier</translation>
+        <translation>Deschide fișier</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="376"/>
         <source>Edit file</source>
-        <translation>Éditer le fichier</translation>
+        <translation>Editează fișier</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="385"/>
         <source>Open directory</source>
-        <translation>Ouvrir le dossier</translation>
+        <translation>Deschide director</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="394"/>
         <source>Open terminal here</source>
-        <translation>Ouvrir un terminal ici</translation>
+        <translation>Deschide un terminal aici</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="403"/>
         <source>Remove item</source>
-        <translation>Suppression de l&apos;élément</translation>
+        <translation>Șterge element</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="415"/>
         <source>Remove items</source>
-        <translation>Suppression des éléments</translation>
+        <translation>Șterge elemente</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="426"/>
         <source>By description</source>
-        <translation>Par description</translation>
+        <translation>După descriere</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="434"/>
         <source>By name</source>
-        <translation>Par nom</translation>
+        <translation>După nume</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="443"/>
         <source>Find a file</source>
-        <translation>Trouver un fichier</translation>
+        <translation>Găsește un fișier</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="452"/>
         <source>Open root terminal</source>
-        <translation>Ouvrir un terminal administrateur</translation>
+        <translation>Deschide terminal rădăcină</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="56"/>
         <source>A Qt4-based Pacman frontend,</source>
-        <translation>Une interface en Qt4 pour Pacman,</translation>
+        <translation>O interfață Pacman bazată pe Qt4,</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="57"/>
         <source>licensed under the terms of</source>
-        <translation>publié sous la licence</translation>
+        <translation>licențiată în termenii</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="59"/>
         <source>For more information, visit:</source>
-        <translation>Pour plus d&apos;informations, visitez :</translation>
+        <translation>Pentru mai multe informații vizitați:</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="61"/>
         <source>Package classification:</source>
-        <translation>Classement des paquets :</translation>
+        <translation>Clasificarea pachetelor:</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="64"/>
         <source>An installed package</source>
-        <translation>Paquet installé</translation>
+        <translation>Un pachet instalat</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="66"/>
         <source>An installed package (not required by others)</source>
-        <translation>Paquet installé (requis par aucun autre)</translation>
+        <translation>Un pachet instalat (ce nu e necesitat de altele)</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="69"/>
         <source>A foreign package, installed from</source>
-        <translation>Paquet étranger, installé depuis</translation>
+        <translation>Un pachet străin, instalat din</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="72"/>
         <source>A non installed package</source>
-        <translation>Paquet non-installé</translation>
+        <translation>Un pachet neinstalat</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="75"/>
         <source>An outdated package</source>
-        <translation>Paquet obsolète</translation>
+        <translation>Un pachet învechit</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="78"/>
         <source>Basic usage help:</source>
-        <translation>Aide pour l&apos;utilisation:</translation>
+        <translation>Ajutor de bază:</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="80"/>
         <source>Position the mouse over a package to see its description</source>
-        <translation>Placer la souris sur le paquet pour voir sa description</translation>
+        <translation>Poziționați cursorul pe un pachet pentru a-i vedea descrierea</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="82"/>
         <source>Double click an installed package to see its contents</source>
-        <translation>Double-cliquer sur un paquet installé pour voir son contenu</translation>
+        <translation>Dublu-clic pe un pachet instalat pentru a-i vedea conținutul</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="84"/>
         <source>Right click package to install/reinstall or remove it</source>
-        <translation>Clique-droit sur un paquet pour l&apos;installer/ré-installer ou le supprimer</translation>
+        <translation>Clic-dreapta pe un pachet pentru a-l (dez)instala sau șterge</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="87"/>
         <source>Alt+key sequences:</source>
-        <translation>Raccourcis Alt+touche :</translation>
+        <translation>Secvențe cu tasta Alt:</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="89"/>
         <source>Alt+1 to switch to &apos;Info&apos; tab</source>
-        <translation>Alt+1 pour passer à l&apos;onglet &apos;Info&apos;</translation>
+        <translation>Alt+1 pentru a trece la fila „Info”</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="91"/>
         <source>Alt+2 to switch to &apos;Files&apos; tab</source>
-        <translation>Alt+2 pour passer à l&apos;onglet &apos;Fichiers&apos;</translation>
+        <translation>Alt+2 pentru a trece la file „Fișiere”</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="93"/>
         <source>Alt+3 to switch to &apos;Transaction&apos; tab</source>
-        <translation>Alt+3 pour passer à l&apos;onglet &apos;Opération&apos;</translation>
+        <translation>Alt+3 pentru a trece la fila „Tranzacții”</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="95"/>
         <source>Alt+4 to switch to &apos;Output&apos; tab</source>
-        <translation>Alt+4 pour passer à l&apos;onglet &apos;Sortie&apos;</translation>
+        <translation>Alt+4 pentru a trece la fila „Rezultat”</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="97"/>
         <source>Alt+5 to switch to &apos;News&apos; tab</source>
-        <translation>Alt+5 pour passer à l&apos;onglet &apos;Actualités&apos;</translation>
+        <translation>Alt+5 pentru a trece la fila „Știri”</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="99"/>
         <source>Alt+6 or &apos;F1&apos; to show this help page</source>
-        <translation>Alt+6 ou &apos;F1&apos; pour voir cette page d&apos;aide</translation>
+        <translation>Alt+6 sau F1 pentru a reveni aici</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="102"/>
         <source>Control+key sequences:</source>
-        <translation>Raccourcis Ctrl+touche :</translation>
+        <translation>Secvențe cu tasta Ctrl:</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="104"/>
         <source>Ctrl+D or &apos;File/Sync database&apos; to sync the local database with latest remote changes (pacman -Sy)</source>
-        <translation>Ctrl+D ou &apos;Fichier/Synchroniser&apos; pour mettre à jour la base de données locale (pacman -Sy) </translation>
+        <translation>Ctrl+D sau „Fișier/Sincronizează baza de date” pentru a sincroniza baza de date locală cu ultimele schimbări de la distanță (pacman -Sy)</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="106"/>
         <source>Ctrl+U or &apos;File/System upgrade&apos; to make a full system upgrade (pacman -Su)</source>
-        <translation>Ctrl+U ou &apos;Fichier/Mise à jour système&apos; pour mettre à jour le système (pacman -Su)</translation>
+        <translation>Ctrl+U sau „Fișier/Actualizare de sistem” pentru a face o actualizare de sistem completă (pacman -Su)</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="108"/>
         <source>Ctrl+L to find a package in the package list</source>
-        <translation>Ctrl+L pour trouver un paquet dans la liste</translation>
+        <translation>Ctrl+L pentru a găsi un pachet în lista de pachete</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="110"/>
         <source>Ctrl+F to search for text inside tab Files, News and About</source>
-        <translation>Ctrl+F pour chercher un texte dans les onglets Fichiers, Actualités et À propos</translation>
+        <translation>Ctrl+F pentru a căuta text în filele Fișier, Știri și Despre</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="112"/>
         <source>Ctrl+N or &apos;View/Non installed&apos; to show/hide non installed packages</source>
-        <translation>Ctrl+N ou &apos;Affichage/Non-installés&apos; pour montrer/cacher les paquets non-installés</translation>
+        <translation>Ctrl+N sau „Mod afișare/Neinstalate” pentru a arăta/ascunde pachetele neinstalate</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="114"/>
         <source>Ctrl+M or &apos;Transaction/Commit&apos; to start installation/removal of selected packages</source>
-        <translation>Ctrl+M ou &apos;Opération/Appliquer&apos; pour lancer les installations/suppressions en attente</translation>
+        <translation>Ctrl+M sau „Tranzacție/Comite” pentru a începe instalarea/ștergerea pachetelor selectate</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="116"/>
         <source>Ctrl+B or &apos;Transaction/Rollback&apos; to clear the selection of to be removed/installed packages</source>
-        <translation>Ctrl+B ou &apos;Opération/Annuler&apos; pour effacer les installations/suppressions en attente</translation>
+        <translation>Ctrl+B sau „Tranzacție/Anulează” pentru a goli selecția din pachetele de instalat/șters</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="118"/>
         <source>Ctrl+G or &apos;File/Get latest distro news&apos; to retrieve the latest RSS based distro news</source>
-        <translation>Ctrl+G ou &apos;Fichier/Mettre à jour les actualités&apos; pour télécharger le flux RSS de la distribution</translation>
+        <translation>Ctrl+G sai „Fișier/Obține ultimele știri ale distribuției” pentru a oține ultimele știri pe RSS</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="120"/>
         <source>Ctrl+Q or &apos;File/Exit&apos; to exit the application</source>
-        <translation>Ctrl+Q ou &apos;Fichier/Sortir&apos; pour fermer l&apos;application</translation>
+        <translation>Ctrl+Q sau „Fișier/Ieșire” pentru a ieși din aplicație</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="123"/>
         <source>Control+shift+key sequences:</source>
-        <translation>Raccourcis Ctrl+Shift+touche :</translation>
+        <translation>Secvențe cu tastele Ctrl+Shift:</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="125"/>
         <source>Ctrl+Shift+C to clean local packages cache (pacman -Sc)</source>
-        <translation>Ctrl+Shift+C pour nettoyer le cache local des paquets (pacman -Sc)</translation>
+        <translation>Ctrl+Shift+C pentru a curăța cache-ul local de pachete (pacman -Sc)</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="127"/>
         <source>Ctrl+Shift+G to display all package groups</source>
-        <translation>Ctrl+Shift+G pour afficher tous les groupes de paquets</translation>
+        <translation>Ctrl+Shift+G pentru a arăta toate grupele de pachete</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="130"/>
         <source>F+key sequences:</source>
-        <translation>Raccourcis touches F :</translation>
+        <translation>Secvențe cu tastele de funcții:</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="132"/>
         <source>F1 to show this help page</source>
-        <translation>F1 pour afficher cette page d&apos;aide</translation>
+        <translation>F1 pentru a reveni aici</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="134"/>
         <source>F4 to open a Terminal whitin the selected directory at Files tab</source>
-        <translation>F4 pour ouvrir un terminal dans le dossier sélectionné de l&apos;onglet Fichiers</translation>
+        <translation>F4 pentru a deschide un terminal în directorul selectat în fila Fișiere</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="136"/>
         <source>F6 to open a File Manager whitin the selected directory at Files tab</source>
-        <translation>F6 pour ouvrir l&apos;explorateur de fichiers dans le dossier sélectionné de l&apos;onglet Fichiers</translation>
+        <translation>F6 pentru a deschide administratorul de fișiere în directorul selectat în fila Fișiere</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="138"/>
         <source>F10 to maximize/demaximize package list view</source>
-        <translation>F10 pour maximiser/minimiser la liste de paquets</translation>
+        <translation>F10 pentru a maximiza/demaximiza afișajul listei de pachete</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="140"/>
         <source>F12 to maximize/demaximize Tab&apos;s view</source>
-        <translation>F12 pour maximiser/minimiser les onglets</translation>
+        <translation>F12 pentru a maximiza/demaximiza afișajul filelor</translation>
     </message>
 </context>
 <context>
@@ -426,92 +426,92 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="40"/>
         <source>Octopi help usage:</source>
-        <translation>Aide pour l&apos;utilisation d&apos;Octopi :</translation>
+        <translation>Ajutor de utilizare Octopi:</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="41"/>
         <source>show application version.</source>
-        <translation>Afficher la version de l&apos;application.</translation>
+        <translation>arată versiunea aplicației.</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="42"/>
         <source>use a different Qt4 style (ex: -style gtk).</source>
-        <translation>utiliser un style Qt4 différent (ex: -style gtk).</translation>
+        <translation>folosește un stil Qt4 diferit (ex.: -style gtk).</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="43"/>
         <source>use a different remove command (ex: -removecmd R).</source>
-        <translation>utiliser une commande de suppression différente (ex: -removecmd R).</translation>
+        <translation>folosește o comandă disferită de ștergere (ex.: -removecmd R).</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="44"/>
         <source>force a system upgrade at startup.</source>
-        <translation>forcer la mise à jour système au lancement.</translation>
+        <translation>forțează o actualizare de sistem la pornire.</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="54"/>
         <source>Arch Linux news</source>
-        <translation>Actualités Arch Linux</translation>
+        <translation>Știri Arch Linux</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="58"/>
         <source>Chakra news</source>
-        <translation>Actualités Chakra</translation>
+        <translation>Știri Chakra</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="62"/>
         <source>Manjaro Linux news</source>
-        <translation>Actualités Manjaro linux</translation>
+        <translation>Știri Manjaro Linux</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="66"/>
         <source>No news could be found! Press Ctrl+G to download the latest news.</source>
-        <translation>Aucune actualité n&apos;a été trouvée ! Appuyez sur Ctrl+G pour les télécharger.</translation>
+        <translation>Nu s-au găsit știri! Apăsați Ctrl+G pentru a descărca ultimele știri.</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="70"/>
         <source>This Linux distro seems to be incompatible with Octopi!</source>
-        <translation>Cette distribution Linux semble incompatible avec Octopi !</translation>
+        <translation>Această distribuție Linux pare incompatibilă cu Octopi!</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="74"/>
         <source>Internet seems anavailable!</source>
-        <translation>Internet semble indisponible !</translation>
+        <translation>Internetul pare nedisponibil!</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="78"/>
         <source>Display all groups</source>
-        <translation>Afficher tous les groupes</translation>
+        <translation>Arată toate grupele</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="82"/>
         <source>About</source>
-        <translation>À propos</translation>
+        <translation>Despre</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="86"/>
         <source>Name</source>
-        <translation>Nom</translation>
+        <translation>Nume</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="90"/>
         <source>Version</source>
-        <translation>Version</translation>
+        <translation>Versiune</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="94"/>
         <source>Outdated version</source>
-        <translation>Version obsolète</translation>
+        <translation>Versiune învechită</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="98"/>
         <source>Available version</source>
-        <translation>Version disponible</translation>
+        <translation>Versiune disponibilă</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="102"/>
         <source>No description available.</source>
-        <translation>Aucune description disponible.</translation>
+        <translation>Nu există descriere.</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="106"/>
@@ -521,102 +521,102 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="110"/>
         <source>Repository</source>
-        <translation>Dépôt</translation>
+        <translation>Depozit</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="114"/>
         <source>Licenses</source>
-        <translation>Licences</translation>
+        <translation>Licențe</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="118"/>
         <source>Group</source>
-        <translation>Groupe</translation>
+        <translation>Grup</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="122"/>
         <source>Groups</source>
-        <translation>Groupes</translation>
+        <translation>Grupe</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="126"/>
         <source>Provides</source>
-        <translation>Fournit</translation>
+        <translation>Furnizează</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="130"/>
         <source>Depends On</source>
-        <translation>Dépend de</translation>
+        <translation>Depinde de</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="134"/>
         <source>Optional Deps</source>
-        <translation>Dépendances optionnelles</translation>
+        <translation>Dependențe opționale</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="138"/>
         <source>Conflicts With</source>
-        <translation>En conflit avec</translation>
+        <translation>În conflict cu</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="142"/>
         <source>Replaces</source>
-        <translation>Remplace</translation>
+        <translation>Înlocuiește</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="146"/>
         <source>Download Size</source>
-        <translation>Taille du téléchargement</translation>
+        <translation>Mărime descărcare</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="150"/>
         <source>Installed Size</source>
-        <translation>Taille installé</translation>
+        <translation>Mărime instalată</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="154"/>
         <source>Packager</source>
-        <translation>Empaqueteur </translation>
+        <translation>Împachetator</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="158"/>
         <source>Package</source>
-        <translation>Paquet</translation>
+        <translation>Pachet</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="162"/>
         <source>Packages</source>
-        <translation>Paquets</translation>
+        <translation>Pachete</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="166"/>
         <source>Architecture</source>
-        <translation>Architecture</translation>
+        <translation>Arhitectură</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="170"/>
         <source>Build Date</source>
-        <translation>Date de construction</translation>
+        <translation>Data generării</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="174"/>
         <source>Description</source>
-        <translation>Description</translation>
+        <translation>Descriere</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="178"/>
         <source>Attention</source>
-        <translation>Attention</translation>
+        <translation>Atenție</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="182"/>
         <source>automatic</source>
-        <translation>automatique</translation>
+        <translation>automat</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="186"/>
         <source>Password</source>
-        <translation>Mot de passe</translation>
+        <translation>Parolă</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="190"/>
@@ -626,309 +626,309 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="194"/>
         <source>Files</source>
-        <translation>Fichiers</translation>
+        <translation>Fișiere</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="198"/>
         <source>Transaction</source>
-        <translation>Opération</translation>
+        <translation>Tranzacție</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="202"/>
         <source>Output</source>
-        <translation>Sortie</translation>
+        <translation>Rezultat</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="206"/>
         <source>News</source>
-        <translation>Actualités</translation>
+        <translation>Știri</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="210"/>
         <source>Contents of &quot;%1&quot;</source>
-        <translation>Contenu de &quot;%1&quot;</translation>
+        <translation>Conținutul lui „%1”</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="214"/>
         <source>Find</source>
-        <translation>Trouver</translation>
+        <translation>Găsește</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="218"/>
         <source>Clear</source>
-        <translation>Effacer</translation>
+        <translation>Golește</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="222"/>
         <source> (outdated installed version is %1)</source>
-        <translation>(la version obsolète installée est %1)</translation>
+        <translation>(versiunea învechită ionstalată este %1)</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="226"/>
         <source>Building package list...</source>
-        <translation>Construction de la liste des paquets...</translation>
+        <translation>Se generează lista de pachete...</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="230"/>
         <source>Searching for %1 latest news...</source>
-        <translation>Recherche des %1 dernières actualités...</translation>
+        <translation>Se caută ultimele %1 știri...</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="234"/>
         <source>There is one outdated package in your system:</source>
-        <translation>Un paquet de votre système est obsolète :</translation>
+        <translation>Există un pachet învechit în sistemul vostru:</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="238"/>
         <source>There are %1 outdated packages in your system:</source>
-        <translation>%1 paquets de votre système sont obsolètes :</translation>
+        <translation>Există %1 pachete învechite în sistemul vostru:</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="242"/>
         <source>(version %1 is available)</source>
-        <translation>(version %1 disponible)</translation>
+        <translation>(versiunea %1 este disponibilă)</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="246"/>
         <source>%1 (%2) packages</source>
-        <translation>%1 (%2) paquets</translation>
+        <translation>%1 (%2) pachete</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="250"/>
         <source>%1 installed</source>
-        <translation>%1 installé</translation>
+        <translation>%1 instalat</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="254"/>
         <source>%1 outdated</source>
-        <translation>%1 obsolète</translation>
+        <translation>%1 învechit</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="258"/>
         <source>%1 available</source>
-        <translation>%1 disponible</translation>
+        <translation>%1 disponibil</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="262"/>
         <source>Cleaning package cache...</source>
-        <translation>Nettoyage du cache des paquets...</translation>
+        <translation>Se curăță cache-ul pachetelor...</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="266"/>
         <source>Syncing</source>
-        <translation>Synchronisation</translation>
+        <translation>Se sincronizează</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="270"/>
         <source>Press any key to continue...</source>
-        <translation>Appuyez sur une touche pour continuer...</translation>
+        <translation>Apăsați orice tastă pentru a continua...</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="274"/>
         <source>Synchronizing databases...</source>
-        <translation>Mise à jour des bases de données...</translation>
+        <translation>Se sincronizează bazele de date...</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="278"/>
         <source>is up to date</source>
-        <translation>est à jour</translation>
+        <translation>este actualizat</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="282"/>
         <source>Starting full system upgrade...</source>
-        <translation>Démarrage de la mise à jour complète...</translation>
+        <translation>Începe actualizarea sistemului...</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="286"/>
         <source>Installing selected packages...</source>
-        <translation>Installation des paquets sélectionnés...</translation>
+        <translation>Se instalează pachetele selectate...</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="290"/>
         <source>Removing selected packages...</source>
-        <translation>Suppression des paquets sélectionnés...</translation>
+        <translation>Se șterg pachetele selectate...</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="294"/>
         <source>Removing/installing selected packages...</source>
-        <translation>Suppression/installation des paquets sélectionnés...</translation>
+        <translation>Se șterg/se instalează pachetele selectate...</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="298"/>
         <source>Running command in terminal...</source>
-        <translation>Exécution de la commande dans le terminal...</translation>
+        <translation>Se rulează comanda în teminal...</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="302"/>
         <source>Command finished OK!</source>
-        <translation>Commande terminée OK !</translation>
+        <translation>Comanda s-a terminat bine!</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="306"/>
         <source>Command finished with errors!</source>
-        <translation>Commande terminée avec des erreurs !</translation>
+        <translation>Comanda s-a terminat cu erori!</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="310"/>
         <source>Retrieving %1</source>
-        <translation>Récupération %1</translation>
+        <translation>Se preia %1</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="314"/>
         <source>Total download size: %1 KB</source>
-        <translation>Taille totale du téléchargement : %1 KB</translation>
+        <translation>Mărime totală a descărcării: %1 KB</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="318"/>
         <source>The following target needs to be retrieved</source>
-        <translation>L&apos;élément suivant doit être récupéré</translation>
+        <translation>Următoarea țintă trebuie să fie preluată</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="322"/>
         <source>The following target will be removed</source>
-        <translation>L&apos;élément suivant va être supprimé</translation>
+        <translation>Următoarea țintă va fi ștearsă</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="326"/>
         <source>The following %1 targets need to be retrieved</source>
-        <translation>Les %1 éléments suivants doivent être récupérés</translation>
+        <translation>Următoarele %1 ținte trebuie să fie preluate</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="330"/>
         <source>The following %1 targets will be removed</source>
-        <translation>Les %1 éléments suivants vont être supprimés</translation>
+        <translation>Următoarele %1 ținte vor fi șterse</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="334"/>
         <source>There are forbidden packages in the removal list!</source>
-        <translation>La liste de suppression contient des paquets interdits !</translation>
+        <translation>Există pachete interzise în lista de ștergere!</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="338"/>
         <source>There are no new updates available!</source>
-        <translation>Il n&apos;y a aucune nouvelle mise à jour disponible !</translation>
+        <translation>Nu există actualizări disponibile!</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="342"/>
         <source>Confirm?</source>
-        <translation>Confirmer ?</translation>
+        <translation>Confirmați?</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="346"/>
         <source>Warning!!!</source>
-        <translation>Attention !!!</translation>
+        <translation>Avertizare!!!</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="350"/>
         <source>Confirmation</source>
-        <translation>Confirmation</translation>
+        <translation>Confirmare</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="354"/>
         <source>There has been a transaction error!</source>
-        <translation>Une erreur est survenue pendant l&apos;opération !</translation>
+        <translation>S-a produs o eroare de tranzacție!</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="358"/>
         <source>Do you want to execute this transaction in a Terminal?</source>
-        <translation>Voulez-vous exécuter cette opération dans un terminal ? </translation>
+        <translation>Vreți să executați această tranzacție în terminal?</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="362"/>
         <source>Do you really want to clean the package cache?</source>
-        <translation>Voulez-vous vraiment nettoyer le cache des paquets ?</translation>
+        <translation>Vreți să curățați cache-ul pachetelor?</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="366"/>
         <source>Do you really want to rollback the transaction?</source>
-        <translation>Voulez-vous vraiment annuler l&apos;opération ?</translation>
+        <translation>Vreți să anulați tranzacția?</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="370"/>
         <source>Please, enter the administrator&apos;s password</source>
-        <translation>Veuillez saisir le mot de passe Administrateur</translation>
+        <translation>Introduceți parola de administrator</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="376"/>
         <source>There are no means to get administrator&apos;s credentials.</source>
-        <translation>Il n&apos;y a aucun moyen d&apos;obtenir les privilèges Administrateur.</translation>
+        <translation>Nu există mijloace pentru a obține certificarea de administrator.</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="380"/>
         <source>You&apos;ll need to install a su frontend like gksu or kdesu.</source>
-        <translation>Vous devez installer une interface pour su comme gksu ou kdesu.</translation>
+        <translation>Va trebui să instalați o interfață su, precum gksu sau kdesu.</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="384"/>
         <source>You can not run Octopi with administrator&apos;s credentials.</source>
-        <translation>Vous ne pouvez pas lancer Octopi en tant qu&apos;administrateur.</translation>
+        <translation>Nu puteți rula Octopi cu certificare de administrator.</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="388"/>
         <source>There is a pending transaction</source>
-        <translation>Une opération est en attente</translation>
+        <translation>Există o tranzacție în așteptare</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="392"/>
         <source>Do you really want to quit?</source>
-        <translation>Voulez-vous vraiment quitter ?</translation>
+        <translation>Vreți să ieșiți?</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="396"/>
         <source>Executing command</source>
-        <translation>Exécution de la commande</translation>
+        <translation>Se execută comanda</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="400"/>
         <source>Run in terminal</source>
-        <translation>Lancer dans un terminal</translation>
+        <translation>Rulează în terminal</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="404"/>
         <source>Needs application restart to take effect</source>
-        <translation>Nécessite un redémarrage de l&apos;application</translation>
+        <translation>E nevoie de repornirea aplicației pentru a avea efect</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="408"/>
         <source>These changes need application restart to take effect!</source>
-        <translation>Ces changements nécessitent un redémarrage de l&apos;application !</translation>
+        <translation>Aceste schimbări au nevoie de repornirea aplicației pentru a avea efect!</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="418"/>
         <source>This file does not appear to be a simple text.
 Are you sure you want to open it?</source>
-        <translation>Ce fichier semble ne pas contenir que du texte.⏎
-Êtes-vous sûr de vouloir l&apos;ouvrir ?</translation>
+        <translation>Acest fișier nu pare a fi un simplu text.
+Sunteți sigur că vreți să-l deschideți?</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="423"/>
         <source>To be installed</source>
-        <translation>À installer</translation>
+        <translation>De instalat</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="427"/>
         <source>To be removed</source>
-        <translation>À supprimer</translation>
+        <translation>De șters</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="431"/>
         <source>remove</source>
-        <translation>suppression</translation>
+        <translation>șterge</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="435"/>
         <source>install</source>
-        <translation>installation</translation>
+        <translation>instalează</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="439"/>
         <source>Remove item</source>
-        <translation>Suppression de l&apos;élément</translation>
+        <translation>Șterge elementul</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="443"/>
         <source>Remove items</source>
-        <translation>Suppression des éléments</translation>
+        <translation>Șterge elementele</translation>
     </message>
 </context>
 <context>
@@ -936,17 +936,17 @@ Are you sure you want to open it?</source>
     <message>
         <location filename="Projects/octopi/src/searchbar.cpp" line="55"/>
         <source>Previous</source>
-        <translation>Précédent</translation>
+        <translation>Înapoi</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/searchbar.cpp" line="57"/>
         <source>Next</source>
-        <translation>Suivant</translation>
+        <translation>Înainte</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/searchbar.cpp" line="68"/>
         <source>Close</source>
-        <translation>Fermer</translation>
+        <translation>Închide</translation>
     </message>
 </context>
 <context>
@@ -954,12 +954,12 @@ Are you sure you want to open it?</source>
     <message>
         <location filename="Projects/octopi/ui/transactiondialog.ui" line="20"/>
         <source>Form</source>
-        <translation>Formulaire</translation>
+        <translation>Formular</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/transactiondialog.ui" line="133"/>
         <source>Run in terminal</source>
-        <translation>Lancer dans un terminal</translation>
+        <translation>Rulează în terminal</translation>
     </message>
 </context>
 </TS>

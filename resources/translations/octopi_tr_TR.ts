@@ -1,4 +1,4 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="fr_FR" version="2.0">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="tr_TR" version="2.0">
 <context>
     <name>MainWindow</name>
     <message>
@@ -9,49 +9,49 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="92"/>
         <source>Info</source>
-        <translation>Info</translation>
+        <translation>Bilgi</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="97"/>
         <source>Files</source>
-        <translation>Fichiers</translation>
+        <translation>Dosyalar</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="102"/>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="141"/>
         <source>Transaction</source>
-        <translation>Opération</translation>
+        <translation>İşlem</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="107"/>
         <source>Output</source>
-        <translation>Sortie</translation>
+        <translation>Çıktı</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="129"/>
         <source>Help</source>
-        <translation>Aide</translation>
+        <translation>Yardım</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="135"/>
         <source>View</source>
-        <translation>Affichage</translation>
+        <translation>Görünüm</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="148"/>
         <source>File</source>
-        <translation>Fichier</translation>
+        <translation>Dosya</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="160"/>
         <source>Search</source>
-        <translation>Recherche</translation>
+        <translation>Ara</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="188"/>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="191"/>
         <source>About</source>
-        <translation>À propos</translation>
+        <translation>Hakkında</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="194"/>
@@ -61,7 +61,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="208"/>
         <source>Non installed</source>
-        <translation>Pas installés</translation>
+        <translation>Kurulmamış</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="211"/>
@@ -71,7 +71,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="220"/>
         <source>Commit</source>
-        <translation>Appliquer</translation>
+        <translation>İşlemek</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="223"/>
@@ -81,7 +81,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="232"/>
         <source>Rollback</source>
-        <translation>Annuler</translation>
+        <translation>Geri Almak</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="235"/>
@@ -91,7 +91,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="244"/>
         <source>Sync database</source>
-        <translation>Synchroniser</translation>
+        <translation>Veritabanı Eşleştirme</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="247"/>
@@ -101,7 +101,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="256"/>
         <source>Exit</source>
-        <translation>Sortir</translation>
+        <translation>Çıkış</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="259"/>
@@ -111,7 +111,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="264"/>
         <source>System upgrade</source>
-        <translation>Mise à jour système</translation>
+        <translation>Sistem Yükseltme</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="267"/>
@@ -122,23 +122,23 @@
         <location filename="Projects/octopi/ui/mainwindow.ui" line="276"/>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="279"/>
         <source>Install</source>
-        <translation>Installation</translation>
+        <translation>Kur</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="288"/>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="291"/>
         <source>Remove</source>
-        <translation>Suppression</translation>
+        <translation>Kaldır</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="296"/>
         <source>Outdated packages</source>
-        <translation>Paquets obsolètes</translation>
+        <translation>Güncelliğini Yitirmiş Paketler</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="301"/>
         <source>Get latest distro news</source>
-        <translation>Mettre à jour les actualités</translation>
+        <translation>Dağıtımın son bilgilerini getir</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="304"/>
@@ -148,277 +148,277 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="313"/>
         <source>Remove group</source>
-        <translation>Suppression du groupe</translation>
+        <translation>Grubu kaldır</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="322"/>
         <source>Install group</source>
-        <translation>Installation du groupe</translation>
+        <translation>Grup kur</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="331"/>
         <source>Collapse item</source>
-        <translation>Replier l&apos;élément</translation>
+        <translation>Öğe daralt</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="340"/>
         <source>Expand item</source>
-        <translation>Déplier l&apos;élément</translation>
+        <translation>Öe genişlet</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="349"/>
         <source>Collapse all items</source>
-        <translation>Replier tous les éléments</translation>
+        <translation>Bütün öğeleri daralt</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="358"/>
         <source>Expand all items</source>
-        <translation>Déplier tous les éléments</translation>
+        <translation>Bütün öğeleri genişlet</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="367"/>
         <source>Open file</source>
-        <translation>Ouvrir le fichier</translation>
+        <translation>Dosya aç</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="376"/>
         <source>Edit file</source>
-        <translation>Éditer le fichier</translation>
+        <translation>Dosya düzenle</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="385"/>
         <source>Open directory</source>
-        <translation>Ouvrir le dossier</translation>
+        <translation>Dizin aç</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="394"/>
         <source>Open terminal here</source>
-        <translation>Ouvrir un terminal ici</translation>
+        <translation>Burada uçbirim aç</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="403"/>
         <source>Remove item</source>
-        <translation>Suppression de l&apos;élément</translation>
+        <translation>Öğe kaldır</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="415"/>
         <source>Remove items</source>
-        <translation>Suppression des éléments</translation>
+        <translation>Öğeleri kaldır</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="426"/>
         <source>By description</source>
-        <translation>Par description</translation>
+        <translation>Açıklamaya göre</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="434"/>
         <source>By name</source>
-        <translation>Par nom</translation>
+        <translation>İsme göre</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="443"/>
         <source>Find a file</source>
-        <translation>Trouver un fichier</translation>
+        <translation>Dosya bul</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="452"/>
         <source>Open root terminal</source>
-        <translation>Ouvrir un terminal administrateur</translation>
+        <translation>Yetkili kullanıcı hakları ile terminal aç</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="56"/>
         <source>A Qt4-based Pacman frontend,</source>
-        <translation>Une interface en Qt4 pour Pacman,</translation>
+        <translation>QT4 temelli Pacman arayüzü</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="57"/>
         <source>licensed under the terms of</source>
-        <translation>publié sous la licence</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="59"/>
         <source>For more information, visit:</source>
-        <translation>Pour plus d&apos;informations, visitez :</translation>
+        <translation>Daha fazla bilgi için ziyaret edin</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="61"/>
         <source>Package classification:</source>
-        <translation>Classement des paquets :</translation>
+        <translation>Paket sınıflandorması</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="64"/>
         <source>An installed package</source>
-        <translation>Paquet installé</translation>
+        <translation>Kurulu paket yok</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="66"/>
         <source>An installed package (not required by others)</source>
-        <translation>Paquet installé (requis par aucun autre)</translation>
+        <translation>Kurulu paket ( diğerlerince gereksinim duyulmayan)</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="69"/>
         <source>A foreign package, installed from</source>
-        <translation>Paquet étranger, installé depuis</translation>
+        <translation>Yabancı paket, kurulumu yapan</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="72"/>
         <source>A non installed package</source>
-        <translation>Paquet non-installé</translation>
+        <translation>Kurulmamış paket</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="75"/>
         <source>An outdated package</source>
-        <translation>Paquet obsolète</translation>
+        <translation>Güncelliğini yitirmiş paket</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="78"/>
         <source>Basic usage help:</source>
-        <translation>Aide pour l&apos;utilisation:</translation>
+        <translation>Temel kullanım yardımı:</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="80"/>
         <source>Position the mouse over a package to see its description</source>
-        <translation>Placer la souris sur le paquet pour voir sa description</translation>
+        <translation>Paketle ilgili bilgi için fareyi üzerine getirin</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="82"/>
         <source>Double click an installed package to see its contents</source>
-        <translation>Double-cliquer sur un paquet installé pour voir son contenu</translation>
+        <translation>Paket içeriğini görmek için çift tıklayın</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="84"/>
         <source>Right click package to install/reinstall or remove it</source>
-        <translation>Clique-droit sur un paquet pour l&apos;installer/ré-installer ou le supprimer</translation>
+        <translation>Paketi kaldırmak/yüklemek yeniden yüklemek için sağ tıklayın</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="87"/>
         <source>Alt+key sequences:</source>
-        <translation>Raccourcis Alt+touche :</translation>
+        <translation>Alt+key sıralaması</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="89"/>
         <source>Alt+1 to switch to &apos;Info&apos; tab</source>
-        <translation>Alt+1 pour passer à l&apos;onglet &apos;Info&apos;</translation>
+        <translation>Bilgi bölümüne geçiş için Alt+1</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="91"/>
         <source>Alt+2 to switch to &apos;Files&apos; tab</source>
-        <translation>Alt+2 pour passer à l&apos;onglet &apos;Fichiers&apos;</translation>
+        <translation>Dosyalar bölümüne geçiş için Alt+2</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="93"/>
         <source>Alt+3 to switch to &apos;Transaction&apos; tab</source>
-        <translation>Alt+3 pour passer à l&apos;onglet &apos;Opération&apos;</translation>
+        <translation>İşlem süreci bölümüne geçiş için Alt+3</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="95"/>
         <source>Alt+4 to switch to &apos;Output&apos; tab</source>
-        <translation>Alt+4 pour passer à l&apos;onglet &apos;Sortie&apos;</translation>
+        <translation>Çıktı bölümüne geçiş için Alt+4</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="97"/>
         <source>Alt+5 to switch to &apos;News&apos; tab</source>
-        <translation>Alt+5 pour passer à l&apos;onglet &apos;Actualités&apos;</translation>
+        <translation>Yenilikler bölümüne geçiş için Alt+5</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="99"/>
         <source>Alt+6 or &apos;F1&apos; to show this help page</source>
-        <translation>Alt+6 ou &apos;F1&apos; pour voir cette page d&apos;aide</translation>
+        <translation>Yardım bölümüne geçiş için Alt+6 veya F1</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="102"/>
         <source>Control+key sequences:</source>
-        <translation>Raccourcis Ctrl+touche :</translation>
+        <translation>Ctrl+Key sıralaması</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="104"/>
         <source>Ctrl+D or &apos;File/Sync database&apos; to sync the local database with latest remote changes (pacman -Sy)</source>
-        <translation>Ctrl+D ou &apos;Fichier/Synchroniser&apos; pour mettre à jour la base de données locale (pacman -Sy) </translation>
+        <translation>Yerel depoları güncel kaynak depolarla eşleştirme için Ctrl+D veya veritabanı Dosya/Eşleştirme (pacman -Sy)</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="106"/>
         <source>Ctrl+U or &apos;File/System upgrade&apos; to make a full system upgrade (pacman -Su)</source>
-        <translation>Ctrl+U ou &apos;Fichier/Mise à jour système&apos; pour mettre à jour le système (pacman -Su)</translation>
+        <translation>Tam sistem yükseltmesi için Ctrl+U veya Dosya/Sistem yükseltmesi (pacman -Su)</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="108"/>
         <source>Ctrl+L to find a package in the package list</source>
-        <translation>Ctrl+L pour trouver un paquet dans la liste</translation>
+        <translation>Paket listesinde bir paket bulmak için Ctrl+L</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="110"/>
         <source>Ctrl+F to search for text inside tab Files, News and About</source>
-        <translation>Ctrl+F pour chercher un texte dans les onglets Fichiers, Actualités et À propos</translation>
+        <translation>Yenilikler ve Hakkında bölümlerinde arama için Ctrl+F</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="112"/>
         <source>Ctrl+N or &apos;View/Non installed&apos; to show/hide non installed packages</source>
-        <translation>Ctrl+N ou &apos;Affichage/Non-installés&apos; pour montrer/cacher les paquets non-installés</translation>
+        <translation>Kurulu veya kurulu olmayan paketleri görüntülemek/gizlemek için Ctrl+N</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="114"/>
         <source>Ctrl+M or &apos;Transaction/Commit&apos; to start installation/removal of selected packages</source>
-        <translation>Ctrl+M ou &apos;Opération/Appliquer&apos; pour lancer les installations/suppressions en attente</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="116"/>
         <source>Ctrl+B or &apos;Transaction/Rollback&apos; to clear the selection of to be removed/installed packages</source>
-        <translation>Ctrl+B ou &apos;Opération/Annuler&apos; pour effacer les installations/suppressions en attente</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="118"/>
         <source>Ctrl+G or &apos;File/Get latest distro news&apos; to retrieve the latest RSS based distro news</source>
-        <translation>Ctrl+G ou &apos;Fichier/Mettre à jour les actualités&apos; pour télécharger le flux RSS de la distribution</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="120"/>
         <source>Ctrl+Q or &apos;File/Exit&apos; to exit the application</source>
-        <translation>Ctrl+Q ou &apos;Fichier/Sortir&apos; pour fermer l&apos;application</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="123"/>
         <source>Control+shift+key sequences:</source>
-        <translation>Raccourcis Ctrl+Shift+touche :</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="125"/>
         <source>Ctrl+Shift+C to clean local packages cache (pacman -Sc)</source>
-        <translation>Ctrl+Shift+C pour nettoyer le cache local des paquets (pacman -Sc)</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="127"/>
         <source>Ctrl+Shift+G to display all package groups</source>
-        <translation>Ctrl+Shift+G pour afficher tous les groupes de paquets</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="130"/>
         <source>F+key sequences:</source>
-        <translation>Raccourcis touches F :</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="132"/>
         <source>F1 to show this help page</source>
-        <translation>F1 pour afficher cette page d&apos;aide</translation>
+        <translation>F1 Yardım sayfasını görüntüler</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="134"/>
         <source>F4 to open a Terminal whitin the selected directory at Files tab</source>
-        <translation>F4 pour ouvrir un terminal dans le dossier sélectionné de l&apos;onglet Fichiers</translation>
+        <translation>F4 Seçili dizin veya bölümde uçbirim açar</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="136"/>
         <source>F6 to open a File Manager whitin the selected directory at Files tab</source>
-        <translation>F6 pour ouvrir l&apos;explorateur de fichiers dans le dossier sélectionné de l&apos;onglet Fichiers</translation>
+        <translation>F6 Bulunulan dizin veya bölümde dosya yöneticisini açar</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="138"/>
         <source>F10 to maximize/demaximize package list view</source>
-        <translation>F10 pour maximiser/minimiser la liste de paquets</translation>
+        <translation>F10 Paket listesi görünümünü Maximize/Minimize eder</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="140"/>
         <source>F12 to maximize/demaximize Tab&apos;s view</source>
-        <translation>F12 pour maximiser/minimiser les onglets</translation>
+        <translation>F12 bölüm görünümünü Maximize/Minimize eder</translation>
     </message>
 </context>
 <context>
@@ -426,92 +426,92 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="40"/>
         <source>Octopi help usage:</source>
-        <translation>Aide pour l&apos;utilisation d&apos;Octopi :</translation>
+        <translation>Octopi yardım kullanımı</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="41"/>
         <source>show application version.</source>
-        <translation>Afficher la version de l&apos;application.</translation>
+        <translation>Uygulama sürümünü göster</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="42"/>
         <source>use a different Qt4 style (ex: -style gtk).</source>
-        <translation>utiliser un style Qt4 différent (ex: -style gtk).</translation>
+        <translation>Farklı bir QT4 stili kullan (örn: -gtk stili)</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="43"/>
         <source>use a different remove command (ex: -removecmd R).</source>
-        <translation>utiliser une commande de suppression différente (ex: -removecmd R).</translation>
+        <translation>Farklı bir kaldırma komutu kullanın (örn: -removecmd R)</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="44"/>
         <source>force a system upgrade at startup.</source>
-        <translation>forcer la mise à jour système au lancement.</translation>
+        <translation>Açılışta sistem güncellenmesini sağlayın</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="54"/>
         <source>Arch Linux news</source>
-        <translation>Actualités Arch Linux</translation>
+        <translation>Arch Linux haberleri</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="58"/>
         <source>Chakra news</source>
-        <translation>Actualités Chakra</translation>
+        <translation>Chakra haberleri</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="62"/>
         <source>Manjaro Linux news</source>
-        <translation>Actualités Manjaro linux</translation>
+        <translation>Manjaro Linux haberleri</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="66"/>
         <source>No news could be found! Press Ctrl+G to download the latest news.</source>
-        <translation>Aucune actualité n&apos;a été trouvée ! Appuyez sur Ctrl+G pour les télécharger.</translation>
+        <translation>Yeni haberler bulunamadı. Son haberleri almak için Ctrl+G </translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="70"/>
         <source>This Linux distro seems to be incompatible with Octopi!</source>
-        <translation>Cette distribution Linux semble incompatible avec Octopi !</translation>
+        <translation>Bu Linux dağıtımı Octopi ile uyumsuz görünüyor.</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="74"/>
         <source>Internet seems anavailable!</source>
-        <translation>Internet semble indisponible !</translation>
+        <translation>İnternet erişilemez durumda görünüyor.</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="78"/>
         <source>Display all groups</source>
-        <translation>Afficher tous les groupes</translation>
+        <translation>Bütün grupşarı göster</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="82"/>
         <source>About</source>
-        <translation>À propos</translation>
+        <translation>Hakkında</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="86"/>
         <source>Name</source>
-        <translation>Nom</translation>
+        <translation>İsim</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="90"/>
         <source>Version</source>
-        <translation>Version</translation>
+        <translation>Sürüm</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="94"/>
         <source>Outdated version</source>
-        <translation>Version obsolète</translation>
+        <translation>Güncellliğini kaybetmiş sürüm</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="98"/>
         <source>Available version</source>
-        <translation>Version disponible</translation>
+        <translation>Erişilebilir sürüm</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="102"/>
         <source>No description available.</source>
-        <translation>Aucune description disponible.</translation>
+        <translation>Bir açıklama yok</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="106"/>
@@ -521,414 +521,413 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="110"/>
         <source>Repository</source>
-        <translation>Dépôt</translation>
+        <translation>Depo</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="114"/>
         <source>Licenses</source>
-        <translation>Licences</translation>
+        <translation>Lisanslar</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="118"/>
         <source>Group</source>
-        <translation>Groupe</translation>
+        <translation>Grup</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="122"/>
         <source>Groups</source>
-        <translation>Groupes</translation>
+        <translation>Gruplar</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="126"/>
         <source>Provides</source>
-        <translation>Fournit</translation>
+        <translation>Sağlar</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="130"/>
         <source>Depends On</source>
-        <translation>Dépend de</translation>
+        <translation>Bağımlı olduğu</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="134"/>
         <source>Optional Deps</source>
-        <translation>Dépendances optionnelles</translation>
+        <translation>Seçimli bağımlılıklar</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="138"/>
         <source>Conflicts With</source>
-        <translation>En conflit avec</translation>
+        <translation>Çakışıyor</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="142"/>
         <source>Replaces</source>
-        <translation>Remplace</translation>
+        <translation>Yer değiştirecek</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="146"/>
         <source>Download Size</source>
-        <translation>Taille du téléchargement</translation>
+        <translation>Yükleme boyutu</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="150"/>
         <source>Installed Size</source>
-        <translation>Taille installé</translation>
+        <translation>Kurulmuş boyut</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="154"/>
         <source>Packager</source>
-        <translation>Empaqueteur </translation>
+        <translation>Paketçi</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="158"/>
         <source>Package</source>
-        <translation>Paquet</translation>
+        <translation>Paket</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="162"/>
         <source>Packages</source>
-        <translation>Paquets</translation>
+        <translation>Paketler</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="166"/>
         <source>Architecture</source>
-        <translation>Architecture</translation>
+        <translation>Mimari</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="170"/>
         <source>Build Date</source>
-        <translation>Date de construction</translation>
+        <translation>İnşa tarihi</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="174"/>
         <source>Description</source>
-        <translation>Description</translation>
+        <translation>Açıklama</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="178"/>
         <source>Attention</source>
-        <translation>Attention</translation>
+        <translation>Dikkat</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="182"/>
         <source>automatic</source>
-        <translation>automatique</translation>
+        <translation>Otomatik</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="186"/>
         <source>Password</source>
-        <translation>Mot de passe</translation>
+        <translation>Parola</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="190"/>
         <source>Info</source>
-        <translation>Info</translation>
+        <translation>Bilgi</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="194"/>
         <source>Files</source>
-        <translation>Fichiers</translation>
+        <translation>Dosyalar</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="198"/>
         <source>Transaction</source>
-        <translation>Opération</translation>
+        <translation>İşlem</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="202"/>
         <source>Output</source>
-        <translation>Sortie</translation>
+        <translation>Çıktı</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="206"/>
         <source>News</source>
-        <translation>Actualités</translation>
+        <translation>Yenilikler</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="210"/>
         <source>Contents of &quot;%1&quot;</source>
-        <translation>Contenu de &quot;%1&quot;</translation>
+        <translation>İçerik &quot;%1&quot;</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="214"/>
         <source>Find</source>
-        <translation>Trouver</translation>
+        <translation>Bul</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="218"/>
         <source>Clear</source>
-        <translation>Effacer</translation>
+        <translation>Temizle</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="222"/>
         <source> (outdated installed version is %1)</source>
-        <translation>(la version obsolète installée est %1)</translation>
+        <translation>Güncel olmayan kurulu sürüm %1</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="226"/>
         <source>Building package list...</source>
-        <translation>Construction de la liste des paquets...</translation>
+        <translation>Paket listesi inşa ediliyor...</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="230"/>
         <source>Searching for %1 latest news...</source>
-        <translation>Recherche des %1 dernières actualités...</translation>
+        <translation>Son haberlerin %1 i aranıyor</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="234"/>
         <source>There is one outdated package in your system:</source>
-        <translation>Un paquet de votre système est obsolète :</translation>
+        <translation>Güncel olmayan paket sisteminizde yok</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="238"/>
         <source>There are %1 outdated packages in your system:</source>
-        <translation>%1 paquets de votre système sont obsolètes :</translation>
+        <translation>Sisteminizde %1 güncel olmayan paket var</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="242"/>
         <source>(version %1 is available)</source>
-        <translation>(version %1 disponible)</translation>
+        <translation>%1 sürümü kullanılabilir durumda</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="246"/>
         <source>%1 (%2) packages</source>
-        <translation>%1 (%2) paquets</translation>
+        <translation>%1 (%2) paketler</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="250"/>
         <source>%1 installed</source>
-        <translation>%1 installé</translation>
+        <translation>%1 kuruldu</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="254"/>
         <source>%1 outdated</source>
-        <translation>%1 obsolète</translation>
+        <translation>%1 güncel değil</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="258"/>
         <source>%1 available</source>
-        <translation>%1 disponible</translation>
+        <translation>%1 mevcut</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="262"/>
         <source>Cleaning package cache...</source>
-        <translation>Nettoyage du cache des paquets...</translation>
+        <translation>Paket belleği temizleniyor</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="266"/>
         <source>Syncing</source>
-        <translation>Synchronisation</translation>
+        <translation>Eşleştiriliyor</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="270"/>
         <source>Press any key to continue...</source>
-        <translation>Appuyez sur une touche pour continuer...</translation>
+        <translation>Devam etmek için bir tuşa basın...</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="274"/>
         <source>Synchronizing databases...</source>
-        <translation>Mise à jour des bases de données...</translation>
+        <translation>Veritabanı eşleştiriliyor...</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="278"/>
         <source>is up to date</source>
-        <translation>est à jour</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="282"/>
         <source>Starting full system upgrade...</source>
-        <translation>Démarrage de la mise à jour complète...</translation>
+        <translation>Tüm sistem güncellemesi başlatılıyor...</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="286"/>
         <source>Installing selected packages...</source>
-        <translation>Installation des paquets sélectionnés...</translation>
+        <translation>Seçili paketler kuruluyor...</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="290"/>
         <source>Removing selected packages...</source>
-        <translation>Suppression des paquets sélectionnés...</translation>
+        <translation>Seçili paketler kaldırılıyor...</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="294"/>
         <source>Removing/installing selected packages...</source>
-        <translation>Suppression/installation des paquets sélectionnés...</translation>
+        <translation>Seçili paketler kuruluyor/kaldırılıyor...</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="298"/>
         <source>Running command in terminal...</source>
-        <translation>Exécution de la commande dans le terminal...</translation>
+        <translation>Komut uçbirimden yürütülüyor...</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="302"/>
         <source>Command finished OK!</source>
-        <translation>Commande terminée OK !</translation>
+        <translation>Komut tamamlandı!</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="306"/>
         <source>Command finished with errors!</source>
-        <translation>Commande terminée avec des erreurs !</translation>
+        <translation>Komut hatasız tamamlandı!</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="310"/>
         <source>Retrieving %1</source>
-        <translation>Récupération %1</translation>
+        <translation>%1 Kurtarılıyor</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="314"/>
         <source>Total download size: %1 KB</source>
-        <translation>Taille totale du téléchargement : %1 KB</translation>
+        <translation>Toplam indirilen boyut: %1 KB</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="318"/>
         <source>The following target needs to be retrieved</source>
-        <translation>L&apos;élément suivant doit être récupéré</translation>
+        <translation>Sıradaki hedef kurtarılmalı</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="322"/>
         <source>The following target will be removed</source>
-        <translation>L&apos;élément suivant va être supprimé</translation>
+        <translation>Sıradaki hedef kaldırılacak</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="326"/>
         <source>The following %1 targets need to be retrieved</source>
-        <translation>Les %1 éléments suivants doivent être récupérés</translation>
+        <translation>Sıradaki %1 hedef kurtarılmalı</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="330"/>
         <source>The following %1 targets will be removed</source>
-        <translation>Les %1 éléments suivants vont être supprimés</translation>
+        <translation>Sıradaki %1 hedefler kaldırılacak</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="334"/>
         <source>There are forbidden packages in the removal list!</source>
-        <translation>La liste de suppression contient des paquets interdits !</translation>
+        <translation>Kaldırılıacaklar lstesinde yasaklı paketler var</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="338"/>
         <source>There are no new updates available!</source>
-        <translation>Il n&apos;y a aucune nouvelle mise à jour disponible !</translation>
+        <translation>Yeni güncelleme yok</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="342"/>
         <source>Confirm?</source>
-        <translation>Confirmer ?</translation>
+        <translation>Doğrula?</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="346"/>
         <source>Warning!!!</source>
-        <translation>Attention !!!</translation>
+        <translation>Dikkat!!!</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="350"/>
         <source>Confirmation</source>
-        <translation>Confirmation</translation>
+        <translation>Onaylama</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="354"/>
         <source>There has been a transaction error!</source>
-        <translation>Une erreur est survenue pendant l&apos;opération !</translation>
+        <translation>İşlem sürecinde hata var!</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="358"/>
         <source>Do you want to execute this transaction in a Terminal?</source>
-        <translation>Voulez-vous exécuter cette opération dans un terminal ? </translation>
+        <translation>Bu işlemi uçbirimde görüntülemek istiyor musunuz?</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="362"/>
         <source>Do you really want to clean the package cache?</source>
-        <translation>Voulez-vous vraiment nettoyer le cache des paquets ?</translation>
+        <translation>Paket cache belleğini temizlemek istiyor musunuz?</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="366"/>
         <source>Do you really want to rollback the transaction?</source>
-        <translation>Voulez-vous vraiment annuler l&apos;opération ?</translation>
+        <translation>İşlemi geri almak istediğinizden emin misiniz?</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="370"/>
         <source>Please, enter the administrator&apos;s password</source>
-        <translation>Veuillez saisir le mot de passe Administrateur</translation>
+        <translation>Lütfen yönetici parolasını girin</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="376"/>
         <source>There are no means to get administrator&apos;s credentials.</source>
-        <translation>Il n&apos;y a aucun moyen d&apos;obtenir les privilèges Administrateur.</translation>
+        <translation>Yetkili kullanıcı haklarını edinmenizi gerektirecek bir durum yok</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="380"/>
         <source>You&apos;ll need to install a su frontend like gksu or kdesu.</source>
-        <translation>Vous devez installer une interface pour su comme gksu ou kdesu.</translation>
+        <translation>Yetkili kullanıcı için gtksu veya kdesu gibi bir arayüz yüklemen,z gerekiyor.</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="384"/>
         <source>You can not run Octopi with administrator&apos;s credentials.</source>
-        <translation>Vous ne pouvez pas lancer Octopi en tant qu&apos;administrateur.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="388"/>
         <source>There is a pending transaction</source>
-        <translation>Une opération est en attente</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="392"/>
         <source>Do you really want to quit?</source>
-        <translation>Voulez-vous vraiment quitter ?</translation>
+        <translation>Çıkmak istediğinizden emin misiniz?</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="396"/>
         <source>Executing command</source>
-        <translation>Exécution de la commande</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="400"/>
         <source>Run in terminal</source>
-        <translation>Lancer dans un terminal</translation>
+        <translation>Uçbirimde yürüt</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="404"/>
         <source>Needs application restart to take effect</source>
-        <translation>Nécessite un redémarrage de l&apos;application</translation>
+        <translation>Efektleri etkinleştirmek için uygulamayı yeniden başlatın</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="408"/>
         <source>These changes need application restart to take effect!</source>
-        <translation>Ces changements nécessitent un redémarrage de l&apos;application !</translation>
+        <translation>Bu değişiklikler, efektlerin etkin olması için uygulamanın yeniden başlatılmasını gerektirir!</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="418"/>
         <source>This file does not appear to be a simple text.
 Are you sure you want to open it?</source>
-        <translation>Ce fichier semble ne pas contenir que du texte.⏎
-Êtes-vous sûr de vouloir l&apos;ouvrir ?</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="423"/>
         <source>To be installed</source>
-        <translation>À installer</translation>
+        <translation>kurulacak</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="427"/>
         <source>To be removed</source>
-        <translation>À supprimer</translation>
+        <translation>Kaldırılacak</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="431"/>
         <source>remove</source>
-        <translation>suppression</translation>
+        <translation>Kaldır</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="435"/>
         <source>install</source>
-        <translation>installation</translation>
+        <translation>Kur</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="439"/>
         <source>Remove item</source>
-        <translation>Suppression de l&apos;élément</translation>
+        <translation>Öğe kaldır</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="443"/>
         <source>Remove items</source>
-        <translation>Suppression des éléments</translation>
+        <translation>Öğeleri kaldır</translation>
     </message>
 </context>
 <context>
@@ -936,17 +935,17 @@ Are you sure you want to open it?</source>
     <message>
         <location filename="Projects/octopi/src/searchbar.cpp" line="55"/>
         <source>Previous</source>
-        <translation>Précédent</translation>
+        <translation>Önceki</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/searchbar.cpp" line="57"/>
         <source>Next</source>
-        <translation>Suivant</translation>
+        <translation>Sonraki</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/searchbar.cpp" line="68"/>
         <source>Close</source>
-        <translation>Fermer</translation>
+        <translation>Kapat</translation>
     </message>
 </context>
 <context>
@@ -954,12 +953,12 @@ Are you sure you want to open it?</source>
     <message>
         <location filename="Projects/octopi/ui/transactiondialog.ui" line="20"/>
         <source>Form</source>
-        <translation>Formulaire</translation>
+        <translation>Biçim</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/transactiondialog.ui" line="133"/>
         <source>Run in terminal</source>
-        <translation>Lancer dans un terminal</translation>
+        <translation>Uçbirimde yürüt</translation>
     </message>
 </context>
 </TS>
