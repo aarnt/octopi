@@ -942,7 +942,7 @@ void MainWindow::toggleTransactionActions(const bool value)
   ui->actionRemove->setEnabled(value);
   ui->actionSyncPackages->setEnabled(value);
 
-  if (value == false)
+  /*if (value == false)
   {
     ui->actionSystemUpgrade->setEnabled(false);
   }
@@ -954,7 +954,9 @@ void MainWindow::toggleTransactionActions(const bool value)
       ui->actionSystemUpgrade->setEnabled(false);
     else
       ui->actionSystemUpgrade->setEnabled(true);
-  }
+  }*/
+
+  ui->actionSystemUpgrade->setEnabled(value);
 
   ui->actionGetNews->setEnabled(value);
 }
@@ -1364,6 +1366,8 @@ void MainWindow::_treatProcessOutput(const QString &pMsg)
 
             int blank = msg.indexOf(" ");
             QString repo = msg.left(blank);
+
+            if (repo.contains("error")) return;
 
             altMsg = repo + " " + StrConstants::getIsUpToDate();
           }
