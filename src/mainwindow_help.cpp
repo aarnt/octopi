@@ -30,18 +30,19 @@
 
 #include <QString>
 #include <QTextBrowser>
+#include <QMessageBox>
 
 /*
  * Initialize the Help tab with basic information about using Octopi
  */
-void MainWindow::initTabHelpAbout()
+void MainWindow::initTabHelpUsage()
 {
-  QWidget *tabHelpHelp = new QWidget();
-  QGridLayout *gridLayoutX = new QGridLayout(tabHelpHelp);
+  QWidget *tabHelpUsage = new QWidget();
+  QGridLayout *gridLayoutX = new QGridLayout(tabHelpUsage);
   gridLayoutX->setSpacing(0);
   gridLayoutX->setMargin(0);
 
-  QTextBrowser *text = new QTextBrowser(tabHelpHelp);
+  QTextBrowser *text = new QTextBrowser(tabHelpUsage);
   text->setObjectName("textBrowser");
   text->setReadOnly(true);
   text->setFrameShape(QFrame::NoFrame);
@@ -107,7 +108,7 @@ void MainWindow::initTabHelpAbout()
   QString("</li><li>") +
      tr("Ctrl+L to find a package in the package list") +
   QString("</li><li>") +
-     tr("Ctrl+F to search for text inside tab Files, News and About") +
+     tr("Ctrl+F to search for text inside tab Files, News and Usage") +
   QString("</li><li>") +
      tr("Ctrl+N or 'View/Non installed' to show/hide non installed packages") +
   QString("</li><li>") +
@@ -141,8 +142,8 @@ void MainWindow::initTabHelpAbout()
   QString("</li></ul>");
 
   text->setText(html);
-  int tindex = ui->twProperties->addTab(tabHelpHelp, StrConstants::getHelp() );
-  ui->twProperties->setTabText(ui->twProperties->indexOf(tabHelpHelp), StrConstants::getHelp());
+  int tindex = ui->twProperties->addTab(tabHelpUsage, StrConstants::getHelpUsage() );
+  ui->twProperties->setTabText(ui->twProperties->indexOf(tabHelpUsage), StrConstants::getHelpUsage());
 
   SearchBar *searchBar = new SearchBar(this);
   MyHighlighter *highlighter = new MyHighlighter(text, "");
@@ -161,7 +162,20 @@ void MainWindow::initTabHelpAbout()
 /*
  * Slot to position twProperties at Help tab
  */
+void MainWindow::onHelpUsage()
+{
+  _changeTabWidgetPropertiesIndex(ctn_TABINDEX_HELPUSAGE);
+}
+
+/*
+ * Slot which opens the About dialog
+ */
 void MainWindow::onHelpAbout()
 {
-  _changeTabWidgetPropertiesIndex(ctn_TABINDEX_HELPABOUT);
+  QString aboutText = "<b>" + StrConstants::getApplicationName() +
+      " - " + StrConstants::getApplicationVersion() + "</b><br><br>";
+  aboutText += "&copy; Alexandre Albuquerque Arnt<br>";
+  aboutText += "<a href=\"http://octopiproject.wordpress.com/\">http://octopiproject.wordpress.com</a>";
+
+  QMessageBox::about(this, StrConstants::getHelpAbout(), aboutText);
 }

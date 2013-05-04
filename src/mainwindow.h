@@ -55,7 +55,7 @@ const int ctn_TABINDEX_FILES(1);
 const int ctn_TABINDEX_TRANSACTION(2);
 const int ctn_TABINDEX_OUTPUT(3);
 const int ctn_TABINDEX_NEWS(4);
-const int ctn_TABINDEX_HELPABOUT(5);
+const int ctn_TABINDEX_HELPUSAGE(5);
 
 namespace Ui {
 class MainWindow;
@@ -227,7 +227,7 @@ private:
   QString retrieveDistroNews(bool searchForLatestNews = true);
   QString parseDistroNews();
   void initTabNews();
-  void initTabHelpAbout();
+  void initTabHelpUsage();
 
 private slots:
   //TreeView methods
@@ -301,7 +301,9 @@ private slots:
   void onTabNewsSourceChanged(QUrl newSource);
   void refreshDistroNews(bool searchForLatestNews = true, bool gotoNewsTab = true);
 
+  void onHelpUsage();
   void onHelpAbout();
+
   void onPressDelete();
   void changeTransactionActionsState();
   void clearTransactionTreeView();

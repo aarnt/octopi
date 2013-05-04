@@ -78,7 +78,11 @@ public:
     return QObject::tr("Display all groups");
   }
 
-  static QString getHelp(){
+  static QString getHelpUsage(){
+    return QObject::tr("Usage");
+  }
+
+  static QString getHelpAbout(){
     return QObject::tr("About");
   }
 

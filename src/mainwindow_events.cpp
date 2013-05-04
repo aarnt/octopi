@@ -129,7 +129,7 @@ void MainWindow::keyPressEvent(QKeyEvent* ke)
   }
   else if(ke->key() == Qt::Key_6 && ke->modifiers() == Qt::AltModifier)
   {
-    _changeTabWidgetPropertiesIndex(ctn_TABINDEX_HELPABOUT);
+    _changeTabWidgetPropertiesIndex(ctn_TABINDEX_HELPUSAGE);
   }
   else if(ke->key() == Qt::Key_F4)
   {
@@ -161,7 +161,7 @@ void MainWindow::keyPressEvent(QKeyEvent* ke)
   {
     if (_isPropertiesTabWidgetVisible() &&
         (ui->twProperties->currentIndex() == ctn_TABINDEX_NEWS ||
-         ui->twProperties->currentIndex() == ctn_TABINDEX_HELPABOUT))
+         ui->twProperties->currentIndex() == ctn_TABINDEX_HELPUSAGE))
     {
       QTextBrowser *tb = ui->twProperties->currentWidget()->findChild<QTextBrowser*>("textBrowser");
       //if (!tb) tb = ui->twProperties->currentWidget()->findChild<QTextBrowser*>("updaterOutput");

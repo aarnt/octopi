@@ -481,10 +481,10 @@ void MainWindow::initActions()
   connect(ui->actionInstallGroup, SIGNAL(triggered()), this, SLOT(insertGroupIntoInstallPackage()));
   connect(ui->actionCommit, SIGNAL(triggered()), this, SLOT(doCommitTransaction()));
   connect(ui->actionRollback, SIGNAL(triggered()), this, SLOT(doRollbackTransaction()));
-  connect(ui->actionHelpAbout, SIGNAL(triggered()), this, SLOT(onHelpAbout()));
   connect(ui->actionGetNews, SIGNAL(triggered()), this, SLOT(refreshDistroNews()));
-
   connect(ui->twProperties, SIGNAL(currentChanged(int)), this, SLOT(changedTabIndex()));
+  connect(ui->actionHelpUsage, SIGNAL(triggered()), this, SLOT(onHelpUsage()));
+  connect(ui->actionHelpAbout, SIGNAL(triggered()), this, SLOT(onHelpAbout()));
 
   //Actions from tvPkgFileList context menu
   connect(ui->actionCollapseAllItems, SIGNAL(triggered()), this, SLOT(collapseAllContentItems()));

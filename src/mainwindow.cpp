@@ -79,7 +79,7 @@ void MainWindow::show()
   m_commandQueued=ectn_NONE;
   m_leFilterPackage = new SearchLineEdit(this);
 
-  setWindowTitle(StrConstants::getApplicationName() + " " + StrConstants::getApplicationVersion());
+  setWindowTitle(StrConstants::getApplicationName());
   setMinimumSize(QSize(850, 600));
 
   initStatusBar();
@@ -87,7 +87,7 @@ void MainWindow::show()
   initTabInfo();
   initTabFiles();
   initTabTransaction();
-  initTabHelpAbout();
+  initTabHelpUsage();
   initTabNews();
   initLineEditFilterPackages();
   initPackageTreeView();

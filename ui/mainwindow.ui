@@ -22,7 +22,16 @@
     <bool>true</bool>
    </property>
    <layout class="QGridLayout" name="gridLayout">
-    <property name="margin">
+    <property name="leftMargin">
+     <number>0</number>
+    </property>
+    <property name="topMargin">
+     <number>0</number>
+    </property>
+    <property name="rightMargin">
+     <number>0</number>
+    </property>
+    <property name="bottomMargin">
      <number>0</number>
     </property>
     <property name="spacing">
@@ -118,7 +127,7 @@
      <x>0</x>
      <y>0</y>
      <width>552</width>
-     <height>22</height>
+     <height>23</height>
     </rect>
    </property>
    <property name="contextMenuPolicy">
@@ -128,6 +137,8 @@
     <property name="title">
      <string>Help</string>
     </property>
+    <addaction name="actionHelpUsage"/>
+    <addaction name="separator"/>
     <addaction name="actionHelpAbout"/>
    </widget>
    <widget class="QMenu" name="menuView">
@@ -189,9 +200,6 @@
    </property>
    <property name="iconText">
     <string>About</string>
-   </property>
-   <property name="shortcut">
-    <string>F1</string>
    </property>
    <property name="iconVisibleInMenu">
     <bool>false</bool>
@@ -450,6 +458,14 @@
    </property>
    <property name="text">
     <string>Open root terminal</string>
+   </property>
+  </action>
+  <action name="actionHelpUsage">
+   <property name="text">
+    <string>Usage</string>
+   </property>
+   <property name="shortcut">
+    <string>F1</string>
    </property>
   </action>
  </widget>
