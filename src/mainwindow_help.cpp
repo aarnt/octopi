@@ -173,9 +173,9 @@ void MainWindow::onHelpUsage()
 void MainWindow::onHelpAbout()
 {
   QString aboutText = "<b>" + StrConstants::getApplicationName() +
-      " - " + StrConstants::getApplicationVersion() + "</b><br><br>";
-  aboutText += "&copy; Alexandre Albuquerque Arnt<br>";
-  aboutText += "<a href=\"http://octopiproject.wordpress.com/\">http://octopiproject.wordpress.com</a>";
+      " - " + StrConstants::getApplicationVersion() + "</b><br>";
+  aboutText += "<a href=\"http://octopiproject.wordpress.com/\">http://octopiproject.wordpress.com</a><br><br>";
+  aboutText += "&copy; Alexandre Albuquerque Arnt";
 
   QMessageBox::about(this, StrConstants::getHelpAbout(), aboutText);
 }
