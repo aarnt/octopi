@@ -1,6 +1,10 @@
-0.1.6.2
+0.1.7
   Added "-sysupgrade" command line option.
-  Added fr_FR translation.
+  Added "-removecmd" command line option.
+  Added lots of translations.
+  Added links to outdated package names in outdated package list.
+  Added an About dialog.
+  Changed the old About tab to Usage tab.
 
 0.1.6.1
   Added pt_BR translation.
