@@ -164,33 +164,29 @@ QString WMHelper::getGKSUCommand(){
 
 QString WMHelper::getSUCommand(){
   QString result(ctn_NO_SU_COMMAND);
-  if (UnixCommand::isRootRunning()){
-    result = ctn_ROOT_SH;
-  }
-  else{
-    if (SettingsManager::getPrivilegeEscalationTool() == ctn_AUTOMATIC){
-      //User wants QTGZ to automatically choose Privilege escalation tool
-      if (isXFCERunning() && (UnixCommand::hasTheExecutable(ctn_GKSU_2))){
-        result = getGKSUCommand();
-      }
-      else if (isKDERunning() && UnixCommand::hasTheExecutable(ctn_KDESU)){
-        result = getKDESUCommand();
-      }
-      else if (isTDERunning() && UnixCommand::hasTheExecutable(ctn_TDESU)){
-        result = getTDESUCommand();
-      }
-      else if (UnixCommand::hasTheExecutable(ctn_GKSU_2)){
-        result = getGKSUCommand();
-      }
-      else if (UnixCommand::isKtsussVersionOK()){
-        result = getKTSUSSCommand();
-      }
-      else if (UnixCommand::hasTheExecutable(ctn_KDESU)){
-        result = getKDESUCommand();
-      }
-      else if (UnixCommand::hasTheExecutable(ctn_TDESU)){
-        result = getTDESUCommand();
-      }
+
+  if (SettingsManager::getPrivilegeEscalationTool() == ctn_AUTOMATIC){
+    //User wants the app to automatically choose Privilege escalation tool
+    if (isXFCERunning() && (UnixCommand::hasTheExecutable(ctn_GKSU_2))){
+      result = getGKSUCommand();
+    }
+    else if (isKDERunning() && UnixCommand::hasTheExecutable(ctn_KDESU)){
+      result = getKDESUCommand();
+    }
+    else if (isTDERunning() && UnixCommand::hasTheExecutable(ctn_TDESU)){
+      result = getTDESUCommand();
+    }
+    else if (UnixCommand::hasTheExecutable(ctn_GKSU_2)){
+      result = getGKSUCommand();
+    }
+    else if (UnixCommand::isKtsussVersionOK()){
+      result = getKTSUSSCommand();
+    }
+    else if (UnixCommand::hasTheExecutable(ctn_KDESU)){
+      result = getKDESUCommand();
+    }
+    else if (UnixCommand::hasTheExecutable(ctn_TDESU)){
+      result = getTDESUCommand();
     }
     //Otherwise, user chose his own privilege escalation tool...
     else if (SettingsManager::getPrivilegeEscalationTool() == ctn_GKSU_2)

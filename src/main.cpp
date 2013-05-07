@@ -62,7 +62,7 @@ int main(int argc, char *argv[])
     return(0);
   }
 
-  if (UnixCommand::isRootRunning()){
+  if (UnixCommand::isRootRunning() && !WMHelper::isKDERunning()){
     QMessageBox::critical( 0, StrConstants::getApplicationName(), StrConstants::getErrorRunningWithRoot());
     return ( -2 );
   }
