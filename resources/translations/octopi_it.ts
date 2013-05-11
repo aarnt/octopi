@@ -303,7 +303,7 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="90"/>
         <source>Alt+1 to switch to &apos;Info&apos; tab</source>
-        <translation>Alt+1 per passare alla scheda &apos;Info&apos;</translation>
+        <translation>Alt+1 per passare alla scheda &apos;Dettagli&apos;</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="92"/>

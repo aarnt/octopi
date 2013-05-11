@@ -353,7 +353,7 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="111"/>
         <source>Ctrl+F to search for text inside tab Files, News and Usage</source>
-        <translation type="unfinished"/>
+        <translation>Bölüm içinde, Haberlerde ve Kullanımda arama yapmak için Ctrl+F</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="113"/>
@@ -363,42 +363,42 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="115"/>
         <source>Ctrl+M or &apos;Transaction/Commit&apos; to start installation/removal of selected packages</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+M ya da seçilmiş paketlerin kurulması/kaldırılması için İşlem/Sürdür</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="117"/>
         <source>Ctrl+B or &apos;Transaction/Rollback&apos; to clear the selection of to be removed/installed packages</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+B ya da kurulmuş/kaldırılmış paketlerin temizlenmesi için İşlem/Geri Al</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="119"/>
         <source>Ctrl+G or &apos;File/Get latest distro news&apos; to retrieve the latest RSS based distro news</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+G ya da RSS besleyiciden dağıtım ile ilgili son haberleri almak için &apos;Dosya/Son haberleri indir&apos;</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="121"/>
         <source>Ctrl+Q or &apos;File/Exit&apos; to exit the application</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+Q ya da uygulamadan çıkmak için &apos;Dosya/Çık&apos;</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="124"/>
         <source>Control+shift+key sequences:</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+Shift+Tuş İşlevleri</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="126"/>
         <source>Ctrl+Shift+C to clean local packages cache (pacman -Sc)</source>
-        <translation type="unfinished"/>
+        <translation>Yerel paketleri temizlemek ( pacman -Sc) için Ctrl+Shift+C </translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="128"/>
         <source>Ctrl+Shift+G to display all package groups</source>
-        <translation type="unfinished"/>
+        <translation>Tüm paket gruplarını görüntülemek için Ctrl+Shift+G</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="131"/>
         <source>F+key sequences:</source>
-        <translation type="unfinished"/>
+        <translation>F+Tuş İşlevleri</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="133"/>
@@ -907,12 +907,13 @@
         <location filename="Projects/octopi/src/strconstants.h" line="422"/>
         <source>This file does not appear to be a simple text.
 Are you sure you want to open it?</source>
-        <translation type="unfinished"/>
+        <translation>Bu dosya basit bir metin olarak görünmüyor.
+Açmak istediğinizden emin misiniz?</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="427"/>
         <source>To be installed</source>
-        <translation>kurulacak</translation>
+        <translation>Kurulacak</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="431"/>
