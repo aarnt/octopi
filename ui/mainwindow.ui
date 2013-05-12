@@ -202,7 +202,7 @@
     <string>About</string>
    </property>
    <property name="iconVisibleInMenu">
-    <bool>false</bool>
+    <bool>true</bool>
    </property>
   </action>
   <action name="actionNonInstalledPackages">
@@ -466,6 +466,9 @@
    </property>
    <property name="shortcut">
     <string>F1</string>
+   </property>
+   <property name="iconVisibleInMenu">
+    <bool>true</bool>
    </property>
   </action>
  </widget>
