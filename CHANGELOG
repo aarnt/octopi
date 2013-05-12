@@ -1,3 +1,6 @@
+0.1.7.1
+  Bugfix: menu icons were not being shown while in Xfce.
+
 0.1.7
   Added "-sysupgrade" command line option.
   Added "-removecmd" command line option.

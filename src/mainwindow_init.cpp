@@ -496,4 +496,9 @@ void MainWindow::initActions()
   connect(ui->actionOpenDirectory, SIGNAL(triggered()), this, SLOT(openDirectory()));
   connect(ui->actionOpenTerminal, SIGNAL(triggered()), this, SLOT(openTerminal()));
   connect(ui->actionOpenRootTerminal, SIGNAL(triggered()), this, SLOT(openRootTerminal()));
+
+  //Loop through all actions and set their icons (if any) visible to menus.
+  foreach(QAction* ac, this->findChildren<QAction*>(QRegExp("(m_a|a)ction\\S*"))){
+    ac->setIconVisibleInMenu(true);
+  }
 }
