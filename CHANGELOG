@@ -1,3 +1,7 @@
+0.1.7.2
+  Bugfix: added catalan translation.
+  Bugfix: updated new binary translation files to the resources.
+
 0.1.7.1
   Bugfix: menu icons were not being shown while in Xfce.
 
