@@ -93,7 +93,7 @@ public:
 
   static bool isRootRunning(){
     int uid = geteuid();
-    return (uid == 0); //Returns TRUE if root is running QTGZ
+    return (uid == 0); //Returns TRUE if root is running Octopi
   }
 
   static QFile* getTemporaryFile(){

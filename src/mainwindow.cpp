@@ -682,7 +682,7 @@ void MainWindow::execContextMenuPkgFileList(QPoint point)
   {
     menu.addAction(ui->actionOpenFile);
   }
-  if (f.exists() && UnixCommand::isTextFile(selectedPath))
+  if (!UnixCommand::isRootRunning() && f.exists() && UnixCommand::isTextFile(selectedPath))
   {
     menu.addAction(ui->actionEditFile);
   }
