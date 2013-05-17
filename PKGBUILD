@@ -13,17 +13,17 @@ conflicts=('octopi')
 md5sums=()
 _gitroot="git://github.com/aarnt/octopi.git"
 _gitname="octopi"
-_projpath="$HOME/Projects/$pkgname"
 
 build() {
      cpucount=$(grep -c processor /proc/cpuinfo 2>/dev/null)
   jc=$((${cpucount:-1}))
 
-    #cd "$srcdir"
-   
+    #cd "$srcdir"  
     msg "Starting build..."
 
-    qmake-qt4 $_projpath/$pkgname.pro
+    cd $startdir
+    qmake-qt4 $pkgname.pro 	
+
     #"CONFIG+=LINUX_INTEGRATED" \
     #"INSTALL_ROOT_PATH=$pkgdir/usr/" \
     #"LOWERED_APPNAME=$pkgname"
@@ -32,12 +32,12 @@ build() {
 }
 
 package() {
-   # cd "$srcdir/$pkgname"
+   #cd "$srcdir/$pkgname"
  
-   install -D -m755 $_projpath/bin/$pkgname ${pkgdir}/usr/bin/$pkgname
-   install -D -m644 $_projpath/$pkgname.desktop ${pkgdir}/usr/share/applications/$pkgname.desktop
-   install -D -m644 $_projpath/resources/images/${pkgname}_yellow.png ${pkgdir}/usr/share/icons/$pkgname.png
+   install -D -m755 $startdir/bin/$pkgname ${pkgdir}/usr/bin/$pkgname
+   install -D -m644 $startdir/$pkgname.desktop ${pkgdir}/usr/share/applications/$pkgname.desktop
+   install -D -m644 $startdir/resources/images/${pkgname}_yellow.png ${pkgdir}/usr/share/icons/$pkgname.png
 
-    #make DESTDIR="${pkgdir}" install
-    #make INSTALL_ROOT=${pkgdir} install
+   #make DESTDIR="${pkgdir}" install
+   #make INSTALL_ROOT=${pkgdir} install
 }
