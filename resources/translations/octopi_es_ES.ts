@@ -76,7 +76,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="228"/>
         <source>Commit</source>
-        <translation>Cometer</translation>
+        <translation>Aplicar</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="231"/>
