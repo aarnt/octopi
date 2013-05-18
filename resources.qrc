@@ -46,5 +46,6 @@
         <file>resources/translations/octopi_tr_TR.qm</file>
         <file>resources/translations/octopi_ar.qm</file>
         <file>resources/translations/octopi_ca.qm</file>
+        <file>resources/translations/octopi_bg.qm</file>
     </qresource>
 </RCC>
