@@ -51,7 +51,7 @@
         <location filename="Projects/octopi/ui/mainwindow.ui" line="199"/>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="202"/>
         <source>About</source>
-        <translation>Sobre</translation>
+        <translation>Acerca de</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="465"/>
@@ -496,7 +496,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="86"/>
         <source>About</source>
-        <translation>Sobre</translation>
+        <translation>Acerca de</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="90"/>
