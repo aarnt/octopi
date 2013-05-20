@@ -581,7 +581,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="154"/>
         <source>Installed Size</source>
-        <translation>حجم التثبين</translation>
+        <translation>حجم التثبيت</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="158"/>
