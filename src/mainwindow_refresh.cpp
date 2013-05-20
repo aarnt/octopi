@@ -389,7 +389,7 @@ void MainWindow::buildPackageList()
 
     if (m_callSystemUpgrade)
     {
-      doSystemUpgrade();
+      doSystemUpgrade(true);
     }
   }
 }

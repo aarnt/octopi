@@ -577,7 +577,7 @@ void MainWindow::doSystemUpgrade(bool syncDatabase)
       }
       else if (result == QDialogButtonBox::AcceptRole)
       {
-        m_commandExecuting = ectn_RUN_IN_TERMINAL;
+        m_commandExecuting = ectn_RUN_SYSTEM_UPGRADE_IN_TERMINAL;
         m_unixCommand->runCommandInTerminal(m_lastCommandList);
       }
     }
@@ -957,7 +957,6 @@ void MainWindow::toggleTransactionActions(const bool value)
   }*/
 
   ui->actionSystemUpgrade->setEnabled(value);
-
   ui->actionGetNews->setEnabled(value);
 }
 
@@ -1016,7 +1015,7 @@ void MainWindow::actionsProcessStarted()
   {
     writeToTabOutput("<b>" + StrConstants::getSyncDatabases() + "</b><br><br>");
   }
-  else if (m_commandExecuting == ectn_SYSTEM_UPGRADE)
+  else if (m_commandExecuting == ectn_SYSTEM_UPGRADE || m_commandExecuting == ectn_RUN_SYSTEM_UPGRADE_IN_TERMINAL)
   {
     writeToTabOutput("<b>" + StrConstants::getSystemUpgrade() + "</b><br><br>");
   }
@@ -1096,8 +1095,19 @@ void MainWindow::actionsProcessFinished(int exitCode, QProcess::ExitStatus)
       }
 
       connect(m_pacmanDatabaseSystemWatcher, SIGNAL(directoryChanged(QString)), this, SLOT(metaBuildPackageList()));
-
       clearTransactionTreeView();
+
+      //Does it still need to upgrade another packages due to SyncFirst issues???
+      if ((m_commandExecuting == ectn_SYSTEM_UPGRADE ||
+           m_commandExecuting == ectn_RUN_SYSTEM_UPGRADE_IN_TERMINAL)
+          && m_outdatedPackageList->count() > 0)
+      {
+        m_commandExecuting = ectn_NONE;
+        m_unixCommand->removeTemporaryActionFile();
+
+        doSystemUpgrade();
+        return;
+      }
     }
     else
       connect(m_pacmanDatabaseSystemWatcher, SIGNAL(directoryChanged(QString)), this, SLOT(metaBuildPackageList()));
@@ -1166,7 +1176,8 @@ bool MainWindow::_searchForKeyVerbs(const QString &msg)
  */
 void MainWindow::_treatProcessOutput(const QString &pMsg)
 {  
-  if (m_commandExecuting == ectn_RUN_IN_TERMINAL) return;
+  if (m_commandExecuting == ectn_RUN_IN_TERMINAL ||
+      m_commandExecuting == ectn_RUN_SYSTEM_UPGRADE_IN_TERMINAL) return;
 
   bool continueTesting = false;
   QString perc;
@@ -1192,7 +1203,7 @@ void MainWindow::_treatProcessOutput(const QString &pMsg)
   }
 
   //If it is a percentage, we are talking about curl output...
-  if(msg.indexOf(progressEnd) != -1) //indexOf("#]") != -1)
+  if(msg.indexOf(progressEnd) != -1)
   {
     perc = "100%";
     if (!m_progressWidget->isVisible()) m_progressWidget->show();
@@ -1302,7 +1313,6 @@ void MainWindow::_treatProcessOutput(const QString &pMsg)
     if(!perc.isEmpty() && perc.indexOf("%") > 0)
     {
       int percentage = perc.left(perc.size()-1).toInt();
-      //std::cout << "percentage is: " << percentage << std::endl;
       if (!m_progressWidget->isVisible()) m_progressWidget->show();
       m_progressWidget->setValue(percentage);
     }
