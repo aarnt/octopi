@@ -1066,6 +1066,19 @@ void MainWindow::actionsProcessFinished(int exitCode, QProcess::ExitStatus)
 
   if(m_commandQueued == ectn_SYSTEM_UPGRADE)
   {
+    //Did it synchronize any repo? If so, let's refresh some things...
+    if (_textInTabOutput(StrConstants::getSyncing()))
+    {
+      int oldIndex = m_cbGroups->currentIndex();
+      m_cbGroups->setCurrentIndex(0);
+      refreshComboBoxGroups();
+
+      if (oldIndex == 0)
+      {
+        buildPackageList();
+      }
+    }
+
     doSystemUpgrade(false);
     m_commandQueued = ectn_NONE;
   }
@@ -1244,7 +1257,6 @@ void MainWindow::_treatProcessOutput(const QString &pMsg)
         else
         {
           //std::cout << "test1: " << target.toAscii().data() << std::endl;
-
           int pos = msg.indexOf(" ");
           if (pos >=0)
           {

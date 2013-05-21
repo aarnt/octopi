@@ -1,5 +1,11 @@
+0.1.7.3
+  Added bulgarian translation.
+  sysupgrade command line option now synchronizes database.
+  Bugfix: sysupgrade must refresh packagelist after syncdatabase.
+  Bugfix: if sysupgrade uses SyncFirst, makes it automatically start a second upgrade.
+
 0.1.7.2
-  Bugfix: added catalan translation.
+  Added catalan translation.
   Bugfix: updated new binary translation files to the resources.
 
 0.1.7.1
