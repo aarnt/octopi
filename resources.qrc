@@ -49,5 +49,6 @@
         <file>resources/translations/octopi_bg.qm</file>
         <file>resources/images/rss.png</file>
         <file>resources/translations/octopi_pl.qm</file>
+        <file>resources/translations/octopi_id.qm</file>
     </qresource>
 </RCC>
