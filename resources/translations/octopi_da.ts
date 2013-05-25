@@ -283,12 +283,12 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="81"/>
         <source>Position the mouse over a package to see its description</source>
-        <translation>Placer musen over en pakke for at se dets beskrivelse</translation>
+        <translation>Placer musen over en pakke for at se dens beskrivelse</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="83"/>
         <source>Double click an installed package to see its contents</source>
-        <translation>Dobbelt-klik på en installeret pakke for at se dets indhold</translation>
+        <translation>Dobbelt-klik på en installeret pakke for at se dens indhold</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="85"/>
@@ -318,7 +318,7 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="96"/>
         <source>Alt+4 to switch to &apos;Output&apos; tab</source>
-        <translation>Alt+4 for at skiftr til &apos;Output&apos; tab</translation>
+        <translation>Alt+4 for at skifte til &apos;Output&apos; tab</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="98"/>
@@ -373,7 +373,7 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="119"/>
         <source>Ctrl+G or &apos;File/Get latest distro news&apos; to retrieve the latest RSS based distro news</source>
-        <translation>Ctrl+G eller &apos;File/Get latest distro news&apos; for at hente den seneste RSS baserede distronyt</translation>
+        <translation>Ctrl+G eller &apos;File/Get latest distro news&apos; for at hente det seneste RSS baserede distronyt</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="121"/>
@@ -651,7 +651,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="210"/>
         <source>News</source>
-        <translation>Neheder</translation>
+        <translation>Nyheder</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="214"/>
@@ -676,12 +676,12 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="230"/>
         <source>Building package list...</source>
-        <translation>Bygge pakkeliste ...</translation>
+        <translation>Bygger pakkeliste ...</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="234"/>
         <source>Searching for %1 latest news...</source>
-        <translation>Søge efter %1 senest nyt...</translation>
+        <translation>Søger efter %1 senest nyt...</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="238"/>
@@ -890,7 +890,7 @@ Bekræft?</translation>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="400"/>
         <source>Executing command</source>
-        <translation>Udføre kommando</translation>
+        <translation>Udfører kommando</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="404"/>
@@ -917,12 +917,12 @@ Er du sikker du vil åbne det?</translation>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="427"/>
         <source>To be installed</source>
-        <translation>At blive installeret</translation>
+        <translation>Vil blive installeret</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="431"/>
         <source>To be removed</source>
-        <translation>At blive fjernet</translation>
+        <translation>Vil blive fjernet</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="435"/>
