@@ -1224,7 +1224,7 @@ void MainWindow::_treatProcessOutput(const QString &pMsg)
     continueTesting = true;
   }
 
-  if (msg.indexOf(progressRun) != -1 /*indexOf("-]") != -1*/ || continueTesting)
+  if (msg.indexOf(progressRun) != -1 || continueTesting)
   {
     if (!continueTesting){
       perc = msg.right(4).trimmed();
