@@ -1,0 +1,4 @@
+[D-BUS Service]
+Name=org.octopi.pacmanhelper
+Exec=/lib/octopi/pacmanhelper
+User=root

@@ -37,6 +37,33 @@
 #include <QSortFilterProxyModel>
 
 /*
+ * If we have some outdated packages, let's put an angry red face icon in this app!
+ */
+void MainWindow::refreshAppIcon()
+{
+  if(m_outdatedPackageList->count() > 0)
+  {
+    setWindowIcon(IconHelper::getIconOctopiRed());
+  }
+  else
+  {
+    setWindowIcon(IconHelper::getIconOctopiYellow());
+  }
+}
+
+/*
+ * Refreshes SystemTray icon and tooltip, according to the outdatedPackageList
+ */
+void MainWindow::refreshSystemTrayIcon()
+{
+  m_systemTrayIcon->setIcon(this->windowIcon());
+  if(m_outdatedPackageList->count() == 0)
+  {
+    m_systemTrayIcon->setToolTip(StrConstants::getApplicationName());
+  }
+}
+
+/*
  * Populates the list of available packages from the given groupName
  */
 void MainWindow::buildPackagesFromGroupList(const QString &groupName)
@@ -370,6 +397,9 @@ void MainWindow::buildPackageList()
 
   //Refresh application icon
   refreshAppIcon();
+
+  //Refresh SystemTray icon
+  refreshSystemTrayIcon();
 
   connect(m_pacmanDatabaseSystemWatcher, SIGNAL(directoryChanged(QString)), this, SLOT(metaBuildPackageList()));
 

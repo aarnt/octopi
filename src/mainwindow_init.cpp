@@ -42,6 +42,7 @@
 #include <QListView>
 #include <QTabBar>
 #include <QProgressBar>
+#include <QSystemTrayIcon>
 #include <iostream>
 
 /*
@@ -115,6 +116,64 @@ void MainWindow::initAppIcon()
   m_outdatedPackageList = Package::getOutdatedPackageList();
   m_numberOfOutdatedPackages = m_outdatedPackageList->count();
   refreshAppIcon();
+}
+
+/*
+ * Initializes the Systray icon (with the same app icon)
+ */
+void MainWindow::initSystemTrayIcon()
+{
+  m_systemTrayIcon = new QSystemTrayIcon(this->windowIcon(), this);
+  m_systemTrayIcon->setObjectName("systemTrayIcon");
+
+  if (m_numberOfOutdatedPackages == 0)
+  {
+    m_systemTrayIcon->setToolTip(StrConstants::getApplicationName());
+  }
+  else if (m_numberOfOutdatedPackages > 0)
+  {
+    if (m_numberOfAvailablePackages == 1)
+    {
+      m_systemTrayIcon->setToolTip(StrConstants::getOneNewUpdate());
+    }
+    else if (m_numberOfOutdatedPackages > 1)
+    {
+      m_systemTrayIcon->setToolTip(StrConstants::getNewUpdates().arg(m_numberOfOutdatedPackages));
+    }
+  }
+
+  m_systemTrayIcon->show();
+
+  m_systemTrayIconMenu = new QMenu( this );
+  m_systemTrayIconMenu->addAction(ui->actionHelpAbout);
+  m_systemTrayIconMenu->addAction(ui->actionExit);
+  m_systemTrayIcon->setContextMenu(m_systemTrayIconMenu);
+
+  connect ( m_systemTrayIcon , SIGNAL( activated( QSystemTrayIcon::ActivationReason ) ),
+            this, SLOT( execSystemTrayActivated ( QSystemTrayIcon::ActivationReason ) ) );
+}
+
+/*
+ * Whenever user clicks the SystemTrayIcon area...
+ */
+void MainWindow::execSystemTrayActivated(QSystemTrayIcon::ActivationReason ar)
+{
+  switch (ar)
+  {
+  case QSystemTrayIcon::Trigger:
+  case QSystemTrayIcon::DoubleClick:
+    if ( this->isHidden() ){
+      //this->restoreGeometry( m_savedGeometry );
+      if (this->isMinimized()) this->setWindowState(Qt::WindowNoState);
+      this->show();
+    }
+    else {
+      //m_savedGeometry = this->saveGeometry();
+      this->hide();
+    }
+    break;
+  default: break;
+  }
 }
 
 /*

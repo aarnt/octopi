@@ -69,6 +69,7 @@ int main(int argc, char *argv[])
 
   MainWindow w;
   app.setActivationWindow(&w);
+  app.setQuitOnLastWindowClosed(false);
 
   if (argList->getSwitch("-sysupgrade"))
   {

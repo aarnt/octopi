@@ -28,6 +28,7 @@
 #include "treeviewpackagesitemdelegate.h"
 #include "searchbar.h"
 #include "packagecontroller.h"
+#include "pacmanhelperclient.h"
 
 #include <QSortFilterProxyModel>
 #include <QStandardItemModel>
@@ -52,6 +53,7 @@ MainWindow::MainWindow(QWidget *parent) :
   m_foundFilesInPkgFileList = new QList<QModelIndex>();
   m_indFoundFilesInPkgFileList = 0;
   m_callSystemUpgrade = false;
+  m_initializationCompleted=false;
   ui->setupUi(this);
 }
 
@@ -71,62 +73,113 @@ MainWindow::~MainWindow()
  */
 void MainWindow::show()
 {
-  loadSettings();
-  restoreGeometry(SettingsManager::getWindowSize());
+  if(m_initializationCompleted == false)
+  {
 
-  m_initializationCompleted=false;
-  m_commandExecuting=ectn_NONE;
-  m_commandQueued=ectn_NONE;
-  m_leFilterPackage = new SearchLineEdit(this);
+    loadSettings();
+    restoreGeometry(SettingsManager::getWindowSize());
 
-  setWindowTitle(StrConstants::getApplicationName());
-  setMinimumSize(QSize(850, 600));
+    m_commandExecuting=ectn_NONE;
+    m_commandQueued=ectn_NONE;
+    m_leFilterPackage = new SearchLineEdit(this);
 
-  initStatusBar();
-  initTabOutput();
-  initTabInfo();
-  initTabFiles();
-  initTabTransaction();
-  initTabHelpUsage();
-  initTabNews();
-  initLineEditFilterPackages();
-  initPackageTreeView();
+    setWindowTitle(StrConstants::getApplicationName());
+    setMinimumSize(QSize(850, 600));
 
-  //Let's watch for changes in the Pacman db dir!
-  m_pacmanDatabaseSystemWatcher =
-      new QFileSystemWatcher(QStringList() << ctn_PACMAN_DATABASE_DIR, this);
-  connect(m_pacmanDatabaseSystemWatcher, SIGNAL(directoryChanged(QString)), this, SLOT(metaBuildPackageList()));
+    initStatusBar();
+    initTabOutput();
+    initTabInfo();
+    initTabFiles();
+    initTabTransaction();
+    initTabHelpUsage();
+    initTabNews();
+    initLineEditFilterPackages();
+    initPackageTreeView();
 
-  qApp->setStyleSheet(StrConstants::getMenuCSS());
+    //Let's watch for changes in the Pacman db dir!
+    m_pacmanDatabaseSystemWatcher =
+        new QFileSystemWatcher(QStringList() << ctn_PACMAN_DATABASE_DIR, this);
+    connect(m_pacmanDatabaseSystemWatcher, SIGNAL(directoryChanged(QString)), this, SLOT(metaBuildPackageList()));
 
-  loadPanelSettings();
+    qApp->setStyleSheet(StrConstants::getMenuCSS());
 
-  initActions();
-  initAppIcon();
-  initToolBar();
-  initTabWidgetPropertiesIndex();
-  refreshDistroNews(false);
+    loadPanelSettings();
 
-  QMainWindow::show();
+    initActions();
+    initAppIcon();
+    initSystemTrayIcon();
+    initToolBar();
+    initTabWidgetPropertiesIndex();
+    refreshDistroNews(false);
 
-  /* This timer is needed to beautify GUI initialization... */
-  timer = new QTimer();
-  connect(timer, SIGNAL(timeout()), this, SLOT(buildPackageList()));
-  timer->start(0.1);
+    QMainWindow::show();
+
+    /* This timer is needed to beautify GUI initialization... */
+    timer = new QTimer();
+    connect(timer, SIGNAL(timeout()), this, SLOT(buildPackageList()));
+    timer->start(0.1);
+
+    m_pacmanHelperTimer = new QTimer();
+    connect(m_pacmanHelperTimer, SIGNAL(timeout()), this, SLOT(pacmanHelperTimerTimeout()));
+    m_pacmanHelperTimer->start(2000);
+  }
+  else QMainWindow::show();
 }
 
 /*
- * If we have some outdated packages, let's put an angry red face icon in this app!
+ * Whenever this timer ticks, we need to call the PacmanHelper DBus interface to sync Pacman's dbs
  */
-void MainWindow::refreshAppIcon()
+void MainWindow::pacmanHelperTimerTimeout()
 {
-  if(m_outdatedPackageList->count() > 0)
-  {
-    setWindowIcon(IconHelper::getIconOctopiRed());
+  m_pacmanHelperTimer->setInterval(1000 * 60 * 30); //30 minutes
+
+  disconnect(m_pacmanDatabaseSystemWatcher,
+             SIGNAL(directoryChanged(QString)), this, SLOT(metaBuildPackageList()));
+
+  PacmanHelperClient *client =
+      new PacmanHelperClient("org.octopi.pacmanhelper", "/", QDBusConnection::systemBus(), 0);
+  QObject::connect(client, SIGNAL(syncdbcompleted()), this, SLOT(afterPacmanHelperSyncDatabase()));
+  client->syncdb();
+}
+
+/*
+ * Called right after the PacmanHelper syncdb() method has finished!
+ */
+void MainWindow::afterPacmanHelperSyncDatabase()
+{
+  connect(m_pacmanDatabaseSystemWatcher,
+          SIGNAL(directoryChanged(QString)), this, SLOT(metaBuildPackageList()));
+
+  int numberOfOutdatedPackages = m_numberOfOutdatedPackages;
+  m_outdatedPackageList = Package::getOutdatedPackageList();
+  m_numberOfOutdatedPackages = m_outdatedPackageList->count();
+
+  if (numberOfOutdatedPackages != m_numberOfOutdatedPackages){
+    refreshDistroNews();
+    metaBuildPackageList();
+
+    if (m_numberOfOutdatedPackages > 0)
+    {
+      if (m_numberOfAvailablePackages == 1)
+      {
+        m_systemTrayIcon->setToolTip(StrConstants::getOneNewUpdate());
+      }
+      else if (m_numberOfOutdatedPackages > 1)
+      {
+        m_systemTrayIcon->setToolTip(StrConstants::getNewUpdates().arg(m_numberOfOutdatedPackages));
+      }
+    }
   }
   else
   {
-    setWindowIcon(IconHelper::getIconOctopiYellow());
+    if (numberOfOutdatedPackages == 1)
+    {
+      m_systemTrayIcon->setToolTip(StrConstants::getOneNewUpdate());
+    }
+    else if (numberOfOutdatedPackages > 1)
+    {
+      m_systemTrayIcon->setToolTip(StrConstants::getNewUpdates().arg(numberOfOutdatedPackages));
+    }
   }
 }
 

@@ -24,6 +24,7 @@
 #include "unixcommand.h"
 #include <QApplication>
 #include <QItemSelection>
+#include <QSystemTrayIcon>
 #include <QMainWindow>
 #include <QList>
 #include <QUrl>
@@ -40,6 +41,7 @@ class QComboBox;
 class QListView;
 class QProgressBar;
 class QTextBrowser;
+class QMenu;
 class SearchLineEdit;
 
 //Column indices for Package's treeview
@@ -134,6 +136,9 @@ private:
   //This member holds the target list retrieved by the pacman command which will be executed
   QStringList *m_targets;
 
+  QSystemTrayIcon *m_systemTrayIcon;
+  QMenu *m_systemTrayIconMenu;
+
   //This member holds the current command type being executed by Octopi
   CommandExecuting m_commandExecuting;
   CommandExecuting m_commandQueued;
@@ -146,7 +151,10 @@ private:
 
   int m_PackageListOrderedCol;
   Qt::SortOrder m_PackageListSortOrder;
+
   QTimer *timer;
+  QTimer *m_pacmanHelperTimer; //Triggers the DBus SyncDB technology magic!
+
   QStringList *m_outdatedPackageList;
 
   QLabel *m_lblSelCounter; //Holds the number of selected packages
@@ -165,6 +173,8 @@ private:
 
   void initAppIcon();
   void refreshAppIcon();
+  void refreshSystemTrayIcon();
+  void initSystemTrayIcon();
   void initComboBoxGroups();
   void refreshComboBoxGroups();
   void initToolBar();
@@ -230,6 +240,12 @@ private:
   void initTabHelpUsage();
 
 private slots:
+  //PacmanHelper timer SLOT
+  void pacmanHelperTimerTimeout();
+
+  //Called right after the PacmanHelper syncdb() method has finished!
+  void afterPacmanHelperSyncDatabase();
+
   //TreeView methods
   void collapseAllContentItems();
   void collapseThisContentItems();
@@ -260,6 +276,8 @@ private slots:
   void execContextMenuPackages(QPoint point);
   void execContextMenuPkgFileList(QPoint point);
   void execContextMenuTransaction(QPoint point);
+
+  void execSystemTrayActivated(QSystemTrayIcon::ActivationReason);
 
   //SearchLineEdit methods
   void reapplyPackageFilter();

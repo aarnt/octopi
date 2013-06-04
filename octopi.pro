@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT += core gui network xml
+QT += core gui network xml dbus
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -35,7 +35,8 @@ HEADERS  += src/QtSolutions/qtsingleapplication.h \
     src/QtSolutions/QtLockedFile \
     src/treeviewpackagesitemdelegate.h \
     src/searchbar.h \
-    src/transactiondialog.h
+    src/transactiondialog.h \
+    src/pacmanhelperclient.h
 
 SOURCES += src/QtSolutions/qtsingleapplication.cpp \
         src/QtSolutions/qtlocalpeer.cpp \
@@ -61,7 +62,8 @@ SOURCES += src/QtSolutions/qtsingleapplication.cpp \
     src/mainwindow_searchbar.cpp \
     src/transactiondialog.cpp \
     src/mainwindow_news.cpp \
-    src/mainwindow_refresh.cpp
+    src/mainwindow_refresh.cpp \
+    src/pacmanhelperclient.cpp
 
 FORMS    += ui/mainwindow.ui \
     ui/transactiondialog.ui

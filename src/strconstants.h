@@ -32,7 +32,7 @@ public:
   }
 
   static QString getApplicationVersion(){
-    return "0.1.7.3";
+    return "0.1.8";
   }
 
   static QString getApplicationCliHelp(){
@@ -340,6 +340,14 @@ public:
 
   static QString getNoNewUpdatesAvailable(){
     return QObject::tr("There are no new updates available!");
+  }
+
+  static QString getOneNewUpdate(){
+    return QObject::tr("There is an update available!");
+  }
+
+  static QString getNewUpdates(){
+    return QObject::tr("There are %1 updates available!");
   }
 
   static QString getConfirmationQuestion(){

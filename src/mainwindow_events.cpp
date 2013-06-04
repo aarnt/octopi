@@ -62,6 +62,7 @@ void MainWindow::closeEvent(QCloseEvent *event)
       SettingsManager::setWindowSize(windowSize);
       SettingsManager::setSplitterHorizontalState(ui->splitterHorizontal->saveState());
       event->accept();
+      qApp->quit();
     }
     else
     {
@@ -74,6 +75,7 @@ void MainWindow::closeEvent(QCloseEvent *event)
     SettingsManager::setWindowSize(windowSize);
     SettingsManager::setSplitterHorizontalState(ui->splitterHorizontal->saveState());
     event->accept();
+    qApp->quit();
   }
 }
 
