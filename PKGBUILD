@@ -1,5 +1,5 @@
 pkgname=octopi
-pkgver=0.1.7.3
+pkgver=0.1.8
 pkgrel=1
 pkgdesc="a powerful Pacman frontend using Qt libs"
 arch=('i686' 'x86_64')
@@ -11,33 +11,35 @@ depends=('qt4')
 provides=('octopi')
 conflicts=('octopi')
 md5sums=()
-_gitroot="git://github.com/aarnt/octopi.git"
-_gitname="octopi"
 
 build() {
-     cpucount=$(grep -c processor /proc/cpuinfo 2>/dev/null)
-  jc=$((${cpucount:-1}))
+    cpucount=$(grep -c processor /proc/cpuinfo 2>/dev/null)
+    jc=$((${cpucount:-1}))
 
     #cd "$srcdir"  
     msg "Starting build..."
 
     cd $startdir
     qmake-qt4 $pkgname.pro 	
-
-    #"CONFIG+=LINUX_INTEGRATED" \
-    #"INSTALL_ROOT_PATH=$pkgdir/usr/" \
-    #"LOWERED_APPNAME=$pkgname"
-    
     make -j $jc
+
+    cd $startdir/notifier/pacmanhelper
+    msg "Building pacmanhelper..."
+    qmake-qt4 pacmanhelper.pro
+    make -j $jc    
 }
 
-package() {
-   #cd "$srcdir/$pkgname"
- 
+package() {   
+   #Octopi main files
    install -D -m755 $startdir/bin/$pkgname ${pkgdir}/usr/bin/$pkgname
    install -D -m644 $startdir/$pkgname.desktop ${pkgdir}/usr/share/applications/$pkgname.desktop
    install -D -m644 $startdir/resources/images/${pkgname}_yellow.png ${pkgdir}/usr/share/icons/$pkgname.png
 
-   #make DESTDIR="${pkgdir}" install
-   #make INSTALL_ROOT=${pkgdir} install
+   #Pacmanhelper service files
+   install -D -m755 $startdir/notifier/bin/pacmanhelper ${pkgdir}/lib/octopi/pacmanhelper
+
+   install -D -m644 $startdir/notifier/pacmanhelper/polkit/org.octopi.pacman.policy ${pkgdir}/usr/share/polkit-1/actions/org.octopi.pacman.policy
+   install -D -m644 $startdir/notifier/pacmanhelper/polkit/org.octopi.pacmanhelper.conf ${pkgdir}/etc/dbus-1/system.d/org.octopi.pacmanhelper.conf
+   install -D -m644 $startdir/notifier/pacmanhelper/polkit/org.octopi.pacmanhelper.xml ${pkgdir}/usr/share/dbus-1/interfaces/org.octopi.pacmanhelper.xml
+   install -D -m644 $startdir/notifier/pacmanhelper/polkit/org.octopi.pacmanhelper.service ${pkgdir}/usr/share/dbus-1/system-services/org.octopi.pacmanhelper.service
 }

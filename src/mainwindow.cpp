@@ -150,12 +150,13 @@ void MainWindow::afterPacmanHelperSyncDatabase()
   connect(m_pacmanDatabaseSystemWatcher,
           SIGNAL(directoryChanged(QString)), this, SLOT(metaBuildPackageList()));
 
+  refreshDistroNews();
+
   int numberOfOutdatedPackages = m_numberOfOutdatedPackages;
   m_outdatedPackageList = Package::getOutdatedPackageList();
   m_numberOfOutdatedPackages = m_outdatedPackageList->count();
 
   if (numberOfOutdatedPackages != m_numberOfOutdatedPackages){
-    refreshDistroNews();
     metaBuildPackageList();
 
     if (m_numberOfOutdatedPackages > 0)
