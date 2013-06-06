@@ -57,9 +57,18 @@ void MainWindow::refreshAppIcon()
 void MainWindow::refreshSystemTrayIcon()
 {
   m_systemTrayIcon->setIcon(this->windowIcon());
+
   if(m_outdatedPackageList->count() == 0)
   {
     m_systemTrayIcon->setToolTip(StrConstants::getApplicationName());
+  }
+  else if (m_numberOfAvailablePackages == 1)
+  {
+    m_systemTrayIcon->setToolTip(StrConstants::getOneNewUpdate());
+  }
+  else if (m_numberOfOutdatedPackages > 1)
+  {
+    m_systemTrayIcon->setToolTip(StrConstants::getNewUpdates().arg(m_numberOfOutdatedPackages));
   }
 }
 
