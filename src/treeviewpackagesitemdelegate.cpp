@@ -39,7 +39,15 @@ QString showPackageInfo(QString pkgName)
         pkgName, ctn_PACKAGE_DESCRIPTION_COLUMN)->text();
 
   int space = description.indexOf(" ");
-  return description.mid(space+1);
+  QString desc = description.mid(space+1);
+  int size = desc.size();
+  if (desc.size() > 120)
+  {
+    desc.chop(size - 120);
+    desc = desc + " ...";
+  }
+
+  return desc;
 }
 
 TreeViewPackagesItemDelegate::TreeViewPackagesItemDelegate(QObject *parent):
