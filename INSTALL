@@ -1,10 +1,16 @@
 Installing Octopi is a pretty straightforward task. 
 
-Assuming you have updated Qt4 libs installed in your system, just:
+Assuming you have updated Qt4 libs installed in your system, just run:
 
-	1) ./qmake
-	2) make
-	
-Octopi's binary will be generated in "./bin" dir.
+	makepkg -f
+
+Wait for the compilation and then install the generated package (as 
+root), using:
+
+	pacman -U --force <nameOfTheGeneratedOctopiPackage.tar.xz>
+
+Octopi is located at the system utilities menu of your Desktop 
+Environment.
+
 
 Enjoy!
