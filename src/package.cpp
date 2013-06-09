@@ -209,7 +209,10 @@ QStringList *Package::getOutdatedPackageList()
   {
     QStringList parts = packageTuple.split(' ');
     {
-      res->append(parts[0]); //We only need the package name!
+      if (!parts[0].contains("octopi"))
+      {
+        res->append(parts[0]); //We only need the package name!
+      }
     }
   }
 

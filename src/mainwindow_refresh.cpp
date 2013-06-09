@@ -294,6 +294,13 @@ void MainWindow::buildPackageList()
   while(it != list->end())
   {
     PackageListData pld = *it;
+
+    if (pld.name == "octopi")
+    {
+      it++;
+      continue;
+    }
+
     //If this is an installed package, it can be also outdated!
     switch (pld.status)
     {
@@ -567,7 +574,6 @@ void MainWindow::refreshTabInfo(bool clearContents, bool neverQuit)
   //Let's put package description in UTF-8 format
   QString pkgDescription = pid.description;
   pkgDescription = pkgDescription.fromUtf8(pkgDescription.toAscii().data());
-
   QString version = StrConstants::getVersion();
   QString url = StrConstants::getURL();
   QString licenses = StrConstants::getLicenses();
