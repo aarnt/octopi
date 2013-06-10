@@ -304,7 +304,13 @@ void MainWindow::refreshDistroNews(bool searchForLatestNews, bool gotoNewsTab)
   {
     if (distroRSSXML.at(0)=='*')
     {
-      //If this is an updated RSS, we must warn the user!
+      /* If this is an updated RSS, we must warn the user!
+         And if the main window is hidden... */
+      if (isHidden())
+      {
+        show();
+      }
+
       ui->twProperties->setTabText(ctn_TABINDEX_NEWS, "** " + StrConstants::getTabNewsName() + " **");
       if (gotoNewsTab)
       {
