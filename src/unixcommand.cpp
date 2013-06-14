@@ -708,7 +708,8 @@ LinuxDistro UnixCommand::getLinuxDistro()
 
   QString contents = file.readAll();
 
-  if (contents.contains(QRegExp("Arch Linux")))
+  if (contents.contains(QRegExp("Arch Linux")) ||
+      contents.contains(QRegExp("ArchBang")))
   {
     return ectn_ARCHLINUX;
   }
