@@ -1,0 +1,5 @@
+Command used to generate the PacmanHelperAdaptor:
+
+qdbusxml2cpp -c PacmanHelperAdaptor 
+	-a pacmanhelperadaptor.h:pacmanhelperadaptor.cpp 
+	polkit/org.octopi.pacmanhelper.xml
