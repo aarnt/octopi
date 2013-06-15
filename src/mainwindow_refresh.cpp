@@ -228,8 +228,8 @@ void MainWindow::buildPackagesFromGroupList(const QString &groupName)
  */
 void MainWindow::buildPackageList()
 {
-  //This flag tells us if we have to increase the installed package number by 1 :-)
-  bool countOctopi=false;
+  //This variable counts how many octopi* packages we have installed :-)
+  int countOctopi=0;
 
   m_progressWidget->show();
   disconnect(m_pacmanDatabaseSystemWatcher, SIGNAL(directoryChanged(QString)), this, SLOT(metaBuildPackageList()));
@@ -301,7 +301,7 @@ void MainWindow::buildPackageList()
     if (pld.name == "octopi")
     {
       it++;
-      countOctopi=true;
+      countOctopi++;
       continue;
     }
 
@@ -412,7 +412,7 @@ void MainWindow::buildPackageList()
   m_numberOfInstalledPackages = m_modelInstalledPackages->invisibleRootItem()->rowCount();
   m_numberOfAvailablePackages = m_modelPackages->invisibleRootItem()->rowCount() - m_numberOfInstalledPackages;
 
-  if(countOctopi) m_numberOfInstalledPackages++;
+  m_numberOfInstalledPackages += countOctopi;
 
   //Refresh statusbar widget
   refreshStatusBar();
