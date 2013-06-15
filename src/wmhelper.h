@@ -42,6 +42,10 @@ const QString ctn_TDE_TERMINAL("konsole");
 const QString ctn_KTSUSS("ktsuss");
 const QString ctn_GKSU_1("/usr/libexec/gksu");
 const QString ctn_GKSU_2("gksu");
+
+const QString ctn_ARCHBANG_EDITOR("medit");
+const QString ctn_ARCHBANG_FILE_MANAGER("spacefm");
+
 const QString ctn_XFCE_DESKTOP("xfdesktop");
 const QString ctn_XFCE_EDITOR("mousepad");
 const QString ctn_XFCE_EDITOR_ALT("leafpad");

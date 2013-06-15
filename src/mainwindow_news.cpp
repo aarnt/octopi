@@ -65,7 +65,7 @@ QString MainWindow::retrieveDistroNews(bool searchForLatestNews)
   {
     QString curlCommand = "curl %1 -o %2";
 
-    if (distro == ectn_ARCHLINUX)
+    if (distro == ectn_ARCHLINUX || distro == ectn_ARCHBANGLINUX)
     {
       curlCommand = curlCommand.arg(ctn_ARCH_LINUX_RSS).arg(tmpRssPath);
     }
@@ -160,7 +160,7 @@ QString MainWindow::parseDistroNews()
   QString html;
 
   LinuxDistro distro = UnixCommand::getLinuxDistro();
-  if (distro == ectn_ARCHLINUX)
+  if (distro == ectn_ARCHLINUX || distro == ectn_ARCHBANGLINUX)
   {
     html = "<p align=\"center\"><h2>" + StrConstants::getArchLinuxNews() + "</h2></p><ul>";
   }
@@ -277,7 +277,7 @@ void MainWindow::refreshDistroNews(bool searchForLatestNews, bool gotoNewsTab)
     LinuxDistro distro = UnixCommand::getLinuxDistro();
     clearTabOutput();
 
-    if (distro == ectn_ARCHLINUX)
+    if (distro == ectn_ARCHLINUX || distro == ectn_ARCHBANGLINUX)
     {
       writeToTabOutputExt("<b>" +
                           StrConstants::getSearchingForDistroNews().arg("Arch Linux") + "</b>");
