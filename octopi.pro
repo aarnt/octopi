@@ -88,4 +88,5 @@ TRANSLATIONS += resources/translations/octopi_pt_BR.ts \
     resources/translations/octopi_bg.ts \
     resources/translations/octopi_pl.ts \
     resources/translations/octopi_id.ts \
-    resources/translations/octopi_da.ts
+    resources/translations/octopi_da.ts \
+    resources/translations/octopi_cs.ts
