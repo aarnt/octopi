@@ -36,7 +36,7 @@ package() {
    install -D -m644 $startdir/resources/images/${pkgname}_yellow.png ${pkgdir}/usr/share/icons/$pkgname.png
 
    #Pacmanhelper service files
-   install -D -m755 $startdir/notifier/bin/pacmanhelper ${pkgdir}/lib/octopi/pacmanhelper
+   install -D -m755 $startdir/notifier/bin/pacmanhelper ${pkgdir}/usr/lib/octopi/pacmanhelper
 
    install -D -m644 $startdir/notifier/pacmanhelper/polkit/org.octopi.pacman.policy ${pkgdir}/usr/share/polkit-1/actions/org.octopi.pacman.policy
    install -D -m644 $startdir/notifier/pacmanhelper/polkit/org.octopi.pacmanhelper.conf ${pkgdir}/etc/dbus-1/system.d/org.octopi.pacmanhelper.conf
