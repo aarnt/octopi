@@ -119,7 +119,7 @@ void MainWindow::show()
 
     m_pacmanHelperTimer = new QTimer();
     connect(m_pacmanHelperTimer, SIGNAL(timeout()), this, SLOT(pacmanHelperTimerTimeout()));
-    m_pacmanHelperTimer->start(2000);
+    m_pacmanHelperTimer->start(1000 * 60 * 5); //Five minutes after launching Octopi...
   }
   else QMainWindow::show();
 }

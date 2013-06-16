@@ -296,8 +296,10 @@ void MainWindow::refreshDistroNews(bool searchForLatestNews, bool gotoNewsTab)
     qApp->processEvents();
   }
 
-  CPUIntensiveComputing cic;
+  CPUIntensiveComputing *cic = new CPUIntensiveComputing;
   QString distroRSSXML = retrieveDistroNews(searchForLatestNews);
+  delete cic;
+
   QString html;
 
   if (distroRSSXML.count() >= 200)
