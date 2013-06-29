@@ -131,6 +131,12 @@ void MainWindow::show()
  */
 void MainWindow::pacmanHelperTimerTimeout()
 {
+  //If Octopi is executing another task, let it finish it first!
+  if(m_commandExecuting != ectn_NONE)
+  {
+    return;
+  }
+
   m_pacmanHelperTimer->setInterval(1000 * 60 * 30); //30 minutes
 
   disconnect(m_pacmanDatabaseSystemWatcher,
