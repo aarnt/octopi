@@ -228,6 +228,9 @@ void MainWindow::buildPackagesFromGroupList(const QString &groupName)
  */
 void MainWindow::buildPackageList()
 {
+  //This variable counts how many octopi* packages we have installed :-)
+  int countOctopi=0;
+
   m_progressWidget->show();
   disconnect(m_pacmanDatabaseSystemWatcher, SIGNAL(directoryChanged(QString)), this, SLOT(metaBuildPackageList()));
 
@@ -298,6 +301,7 @@ void MainWindow::buildPackageList()
     if (pld.name == "octopi")
     {
       it++;
+      countOctopi++;
       continue;
     }
 
@@ -408,6 +412,8 @@ void MainWindow::buildPackageList()
   m_numberOfInstalledPackages = m_modelInstalledPackages->invisibleRootItem()->rowCount();
   m_numberOfAvailablePackages = m_modelPackages->invisibleRootItem()->rowCount() - m_numberOfInstalledPackages;
 
+  m_numberOfInstalledPackages += countOctopi;
+
   //Refresh statusbar widget
   refreshStatusBar();
 
@@ -467,13 +473,11 @@ void MainWindow::refreshStatusBar()
   {
     text = " | " + StrConstants::getNumberInstalledPackages().arg(m_numberOfInstalledPackages) +
         " | <b><font color=\"#E55451\"><a href=\"dummy\" style=\"color:\'#E55451\'\">" +
-        StrConstants::getNumberOutdatedPackages().arg(m_numberOfOutdatedPackages) + "</a></font></b>";
-        //StrConstants::getNumberAvailablePackages().arg(m_numberOfAvailablePackages);
+        StrConstants::getNumberOutdatedPackages().arg(m_numberOfOutdatedPackages) + "</a></font></b>";        
   }
   else
   {
-    text = "| " + StrConstants::getNumberInstalledPackages().arg(m_numberOfInstalledPackages); // +
-        //" | " + StrConstants::getNumberAvailablePackages().arg(m_numberOfAvailablePackages);
+    text = "| " + StrConstants::getNumberInstalledPackages().arg(m_numberOfInstalledPackages);
   }
 
   m_lblTotalCounters->setText(text);

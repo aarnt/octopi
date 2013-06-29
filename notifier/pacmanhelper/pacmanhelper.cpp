@@ -28,7 +28,7 @@ void PacmanHelper::syncdb()
   env.insert("LANG", "us_EN");
   pacman.setProcessEnvironment(env);
 
-  QString command = "pacman -Sy";
+  QString command = "pacman -Syy";
   pacman.execute(command);
 
   emit syncdbcompleted();

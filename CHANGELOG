@@ -1,4 +1,6 @@
 0.1.8
+  Added czech translation.
+  Added support to ArchBang Linux.
   Added a systemtray icon notifier feature using DBus technology.
 
 0.1.7.3

@@ -1,4 +1,4 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="de" version="2.0">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="cs" version="2.0">
 <context>
     <name>MainWindow</name>
     <message>
@@ -7,43 +7,43 @@
     </message>
     <message>
         <source>Info</source>
-        <translation>Info</translation>
+        <translation>Informace</translation>
     </message>
     <message>
         <source>Files</source>
-        <translation>Dateien</translation>
+        <translation>Soubory</translation>
     </message>
     <message>
         <source>Transaction</source>
-        <translation>Transaktionen</translation>
+        <translation>Transakce</translation>
     </message>
     <message>
         <source>Output</source>
-        <translation>Output</translation>
+        <translation>Výstup</translation>
     </message>
     <message>
         <source>Help</source>
-        <translation>Hilfe</translation>
+        <translation>Nápověda</translation>
     </message>
     <message>
         <source>View</source>
-        <translation>Ansicht</translation>
+        <translation>Pohled</translation>
     </message>
     <message>
         <source>File</source>
-        <translation>Datei</translation>
+        <translation>Soubor</translation>
     </message>
     <message>
         <source>Search</source>
-        <translation>Suchen</translation>
+        <translation>Hledat</translation>
     </message>
     <message>
         <source>About</source>
-        <translation>Über</translation>
+        <translation>O</translation>
     </message>
     <message>
         <source>Non installed</source>
-        <translation>Nicht installiert</translation>
+        <translation>Nenainstalováno</translation>
     </message>
     <message>
         <source>Ctrl+N</source>
@@ -51,7 +51,7 @@
     </message>
     <message>
         <source>Commit</source>
-        <translation>Anwenden</translation>
+        <translation>Použít</translation>
     </message>
     <message>
         <source>Ctrl+M</source>
@@ -59,7 +59,7 @@
     </message>
     <message>
         <source>Rollback</source>
-        <translation>Rückgängig</translation>
+        <translation>Vrátit zpět</translation>
     </message>
     <message>
         <source>Ctrl+B</source>
@@ -67,7 +67,7 @@
     </message>
     <message>
         <source>Sync database</source>
-        <translation>Datenbank synchronisieren</translation>
+        <translation>Seřídit databázi</translation>
     </message>
     <message>
         <source>Ctrl+D</source>
@@ -75,7 +75,7 @@
     </message>
     <message>
         <source>Exit</source>
-        <translation>Beenden</translation>
+        <translation>Ukončit</translation>
     </message>
     <message>
         <source>Ctrl+Q</source>
@@ -83,7 +83,7 @@
     </message>
     <message>
         <source>System upgrade</source>
-        <translation>System Upgrade</translation>
+        <translation>Povýšení systému</translation>
     </message>
     <message>
         <source>Ctrl+U</source>
@@ -91,19 +91,19 @@
     </message>
     <message>
         <source>Install</source>
-        <translation>Installiere</translation>
+        <translation>Instalovat</translation>
     </message>
     <message>
         <source>Remove</source>
-        <translation>Entferne</translation>
+        <translation>Odstranit</translation>
     </message>
     <message>
         <source>Outdated packages</source>
-        <translation>Veraltete Pakete</translation>
+        <translation>Zastaralé balíčky</translation>
     </message>
     <message>
         <source>Get latest distro news</source>
-        <translation>Distro-Nachrichten abrufen</translation>
+        <translation>Dostat nejnovější distribuční zprávy</translation>
     </message>
     <message>
         <source>Ctrl+G</source>
@@ -111,71 +111,71 @@
     </message>
     <message>
         <source>Remove group</source>
-        <translation>Gruppe entfernen</translation>
+        <translation>Odstranit skupinu</translation>
     </message>
     <message>
         <source>Install group</source>
-        <translation>Gruppe installieren</translation>
+        <translation>Instalovat skupinu</translation>
     </message>
     <message>
         <source>Collapse item</source>
-        <translation>verdecken</translation>
+        <translation>Sbalit položku</translation>
     </message>
     <message>
         <source>Expand item</source>
-        <translation>erweitern</translation>
+        <translation>Rozbalit položku</translation>
     </message>
     <message>
         <source>Collapse all items</source>
-        <translation>Alles verdecken</translation>
+        <translation>Sbalit všechny položky</translation>
     </message>
     <message>
         <source>Expand all items</source>
-        <translation>Alles erweitern</translation>
+        <translation>Rozbalit všechny položky</translation>
     </message>
     <message>
         <source>Open file</source>
-        <translation>Datei öffnen</translation>
+        <translation>Otevřít soubor</translation>
     </message>
     <message>
         <source>Edit file</source>
-        <translation>Datei bearbeiten</translation>
+        <translation>Upravit soubor</translation>
     </message>
     <message>
         <source>Open directory</source>
-        <translation>Verzeichnis öffnen</translation>
+        <translation>Otevřít adresář</translation>
     </message>
     <message>
         <source>Open terminal here</source>
-        <translation>Terminal hier öffnen</translation>
+        <translation>Otevřít terminál zde</translation>
     </message>
     <message>
         <source>Remove item</source>
-        <translation>Paket entfernen</translation>
+        <translation>Odstranit položku</translation>
     </message>
     <message>
         <source>Remove items</source>
-        <translation>Pakete entfernen</translation>
+        <translation>Odstranit položky</translation>
     </message>
     <message>
         <source>By description</source>
-        <translation>Nach Beschreibung</translation>
+        <translation>Podle popisu</translation>
     </message>
     <message>
         <source>By name</source>
-        <translation>Nach Name</translation>
+        <translation>Podle názvu</translation>
     </message>
     <message>
         <source>Find a file</source>
-        <translation>Datei finden</translation>
+        <translation>Najít soubor</translation>
     </message>
     <message>
         <source>Open root terminal</source>
-        <translation>Einen Terminal als root öffnen</translation>
+        <translation>Otevřít terminál (root)</translation>
     </message>
     <message>
         <source>Usage</source>
-        <translation>Verwendung</translation>
+        <translation>Použití</translation>
     </message>
     <message>
         <source>F1</source>
@@ -183,606 +183,606 @@
     </message>
     <message>
         <source>A Qt4-based Pacman frontend,</source>
-        <translation>Ein Qt4-basiertes Frontend für Pacman,</translation>
+        <translation>Na Qt4 založené rozhraní pro Pacman,</translation>
     </message>
     <message>
         <source>licensed under the terms of</source>
-        <translation>lizensiert unter den Bedingungen von</translation>
+        <translation>licencováno za podmínek</translation>
     </message>
     <message>
         <source>For more information, visit:</source>
-        <translation>Für mehr Informationen besuchen Sie:</translation>
+        <translation>Další informace najdete na:</translation>
     </message>
     <message>
         <source>Package classification:</source>
-        <translation>Einordnung des Paketes:</translation>
+        <translation>Zařazení balíčku:</translation>
     </message>
     <message>
         <source>An installed package</source>
-        <translation>Ein installiertes Paket</translation>
+        <translation>Nainstalovaný balíček</translation>
     </message>
     <message>
         <source>An installed package (not required by others)</source>
-        <translation>Ein installiertes Paket (von dem keine Pakete abhängen)</translation>
+        <translation>Nainstalovaný balíček (nepožadovaný dalšími)</translation>
     </message>
     <message>
         <source>A foreign package, installed from</source>
-        <translation>Ein fremdes Paket, installiert von</translation>
+        <translation>Cizí balíček, instalován z</translation>
     </message>
     <message>
         <source>A non installed package</source>
-        <translation>Ein nicht installiertes Paket</translation>
+        <translation>Nenainstalovaný balíček</translation>
     </message>
     <message>
         <source>An outdated package</source>
-        <translation>Ein veraltetes Paket</translation>
+        <translation>Zastaralý balíček</translation>
     </message>
     <message>
         <source>Basic usage help:</source>
-        <translation>Grundsätzliche Bedienungshilfe:</translation>
+        <translation>Základní nápověda k používání:</translation>
     </message>
     <message>
         <source>Position the mouse over a package to see its description</source>
-        <translation>Positioinieren Sie die Maus über einem Paket um seine Beschreibung zu sehen</translation>
+        <translation>Umístěte myš nad balíček pro zobrazení jeho popisu</translation>
     </message>
     <message>
         <source>Double click an installed package to see its contents</source>
-        <translation>Doppelklicken Sie auf ein installiertes Paket um seinen Inhalt zu sehen</translation>
+        <translation>Dvakrát klepněte na nainstalovaný balíček pro zobrazení jeho obsahu</translation>
     </message>
     <message>
         <source>Right click package to install/reinstall or remove it</source>
-        <translation>Klicken Sie mit der rechten Maustaste auf ein Paket um es installieren oder zu entfernen</translation>
+        <translation>Klepněte pravým tlačítkem myši na balíček pro jeho nainstalování/přeinstalování nebo odinstalování</translation>
     </message>
     <message>
         <source>Alt+key sequences:</source>
-        <translation>Alt+Taste Kombinationen:</translation>
+        <translation>Alt+sled kláves:</translation>
     </message>
     <message>
         <source>Alt+1 to switch to &apos;Info&apos; tab</source>
-        <translation>Alt+1 um zum &apos;Info&apos;-Fenster zu wechseln</translation>
+        <translation>Alt+1 pro přepnutí na kartu Informace</translation>
     </message>
     <message>
         <source>Alt+2 to switch to &apos;Files&apos; tab</source>
-        <translation>Alt+2 to um zum &apos;Dateien&apos;-Fenster zu wechseln</translation>
+        <translation>Alt+2 pro přepnutí na kartu Soubory</translation>
     </message>
     <message>
         <source>Alt+3 to switch to &apos;Transaction&apos; tab</source>
-        <translation>Alt+3 um zum &apos;Ausführen&apos; Fenster zu wechseln</translation>
+        <translation>Alt+3 pro přepnutí na kartu Transakce</translation>
     </message>
     <message>
         <source>Alt+4 to switch to &apos;Output&apos; tab</source>
-        <translation>Alt+4 um zum &apos;Ausgabe&apos;-Fenster zu wechseln</translation>
+        <translation>Alt+4 pro přepnutí na kartu Výstup</translation>
     </message>
     <message>
         <source>Alt+5 to switch to &apos;News&apos; tab</source>
-        <translation>Alt+5 um zum &apos;Nachrichten&apos;-Fenster zu wechseln</translation>
+        <translation>Alt+5 pro přepnutí na kartu Zprávy</translation>
     </message>
     <message>
         <source>Alt+6 or &apos;F1&apos; to show this help page</source>
-        <translation>Alt+6 oder &apos;F1&apos; um diese Hilfeseite anzuzeigen</translation>
+        <translation>Alt+6 nebo F1 pro ukázání této stránky s nápovědou</translation>
     </message>
     <message>
         <source>Control+key sequences:</source>
-        <translation>Strg+Taste Kombinationen:</translation>
+        <translation>Ctrl+sled kláves:</translation>
     </message>
     <message>
         <source>Ctrl+D or &apos;File/Sync database&apos; to sync the local database with latest remote changes (pacman -Sy)</source>
-        <translation>Strg+D oder &quot;Datei/Datenbank synchronisieren&quot; um die lokale Datenbank mit den letzten Änderungen auf dem Server zu synchronisieren (pacman Sy)</translation>
+        <translation>Ctrl+D nebo &apos;Soubor/Seřídit databázi&apos; pro seřízení místní databáze s posledními vzdálenými změnami (pacman -Sy)</translation>
     </message>
     <message>
         <source>Ctrl+U or &apos;File/System upgrade&apos; to make a full system upgrade (pacman -Su)</source>
-        <translation>Strg+U oder &quot;Datei/System-Upgrade&quot; um ein vollständiges System-Upgrade durchzuführen (pacman -Su)</translation>
+        <translation>Ctrl+U nebo &apos;Soubor/Aktualizace systému&apos; pro provedení úplné aktualizace systému (pacman -Su)</translation>
     </message>
     <message>
         <source>Ctrl+L to find a package in the package list</source>
-        <translation>Strg+L um ein Paket in der Paketliste zu finden</translation>
+        <translation>Ctrl+L pro nalezení balíčku v seznamu balíčků</translation>
     </message>
     <message>
         <source>Ctrl+F to search for text inside tab Files, News and Usage</source>
-        <translation>Strg+F um nach Text in Dateien, News und Verwendung zu suchen</translation>
+        <translation>Ctrl+F pro hledání textu v souborech, zprávách a používání</translation>
     </message>
     <message>
         <source>Ctrl+N or &apos;View/Non installed&apos; to show/hide non installed packages</source>
-        <translation>Strg+N oder &quot;Zeigen/Nicht installiert&quot; um nicht installierte Pakete zu zeigen</translation>
+        <translation>Ctrl+N nebo &quot;Pohled/Nenainstalováno&quot; pro zobrazení/skrytí nenainstalovaných balíčků</translation>
     </message>
     <message>
         <source>Ctrl+M or &apos;Transaction/Commit&apos; to start installation/removal of selected packages</source>
-        <translation>Strg+M oder &quot;Ausführen/Start&quot; um die Installation oder die Deinstallation der markierten Pakete zu beginnen</translation>
+        <translation>Ctrl+M nebo &apos;Transakce/Použít&apos; pro spuštění instalace/odstranění vybraných balíčků</translation>
     </message>
     <message>
         <source>Ctrl+B or &apos;Transaction/Rollback&apos; to clear the selection of to be removed/installed packages</source>
-        <translation>Strg+b oder &quot;Befehl/Rückgängig&quot; um die Auswahl zu installierender oder zu entfernender Pakete rückgängig zu machen</translation>
+        <translation>Ctrl+B nebo &apos;Transakce/Vrátit zpět&apos; pro smazání výběru balíčků určených k odstranění/instalaci</translation>
     </message>
     <message>
         <source>Ctrl+G or &apos;File/Get latest distro news&apos; to retrieve the latest RSS based distro news</source>
-        <translation>Strg+G oder &quot;Datei/Die neusten Distro-Nachrichten&quot; um die neusten RSS-basierten Nachrichten abzurufen</translation>
+        <translation>Ctrl+G nebo &apos;Soubor/Dostat nejnovější distribuční zprávy&apos; pro získání nejnovějších distribučních zpráv založených na RSS</translation>
     </message>
     <message>
         <source>Ctrl+Q or &apos;File/Exit&apos; to exit the application</source>
-        <translation>Strg+Q oder &quot;Date/Beenden&quot; um das Programm zu beenden</translation>
+        <translation>Ctrl+Q nebo &apos;Soubor/Ukončit&apos; pro ukončení programu</translation>
     </message>
     <message>
         <source>Control+shift+key sequences:</source>
-        <translation>Strg+Shift+Taste Kombinationen:</translation>
+        <translation>Ctrl+Shift+sled kláves:</translation>
     </message>
     <message>
         <source>Ctrl+Shift+C to clean local packages cache (pacman -Sc)</source>
-        <translation>Strg+Shift+c um den lokalen Paket-Cache zu leeren (pacman -Sc)</translation>
+        <translation>Ctrl+Shift+C pro smazání místní vyrovnávací paměti balíčků (pacman -Sc)</translation>
     </message>
     <message>
         <source>Ctrl+Shift+G to display all package groups</source>
-        <translation>Strg+Shift+G um alle Paketgruppen anzuzeigen</translation>
+        <translation>Ctrl+Shift+G pro zobrazení všech skupin balíčků</translation>
     </message>
     <message>
         <source>F+key sequences:</source>
-        <translation>F-Tasten:</translation>
+        <translation>F+sled kláves:</translation>
     </message>
     <message>
         <source>F1 to show this help page</source>
-        <translation>F1 um diese Hilfe anzuzeigen</translation>
+        <translation>F1 pro ukázání této stránky s nápovědou</translation>
     </message>
     <message>
         <source>F4 to open a Terminal whitin the selected directory at Files tab</source>
-        <translation>F4 um einen Terminal in dem im Dateien-Tab ausgewählten Verzeichnis zu öffnen</translation>
+        <translation>F4 pro otevření terminálu ve vybraném adresáři na kartě Soubory</translation>
     </message>
     <message>
         <source>F6 to open a File Manager whitin the selected directory at Files tab</source>
-        <translation>F6 um einen File Manager in dem im Dateien-Tab ausgewählten Verzeichnis zu öffnen</translation>
+        <translation>F6 pro otevření správce souborů ve vybraném adresáři na kartě Soubory</translation>
     </message>
     <message>
         <source>F10 to maximize/demaximize package list view</source>
-        <translation>F10 um den Paketlisten-Tab zu vergrößern oder zu verkleinern</translation>
+        <translation>F10 pro zvětšení/zmenšení zobrazení seznamu balíčků</translation>
     </message>
     <message>
         <source>F12 to maximize/demaximize Tab&apos;s view</source>
-        <translation>F12 um den Tab zu vergrößern oder zu verkleinen</translation>
+        <translation>F12 pro zvětšení/zmenšení zobrazení karet</translation>
     </message>
 </context>
 <context>
     <name>QObject</name>
     <message>
         <source>Octopi help usage:</source>
-        <translation>Benutzung der Octopi-Hilfe:</translation>
+        <translation>Nápověda k používání Octopi:</translation>
     </message>
     <message>
         <source>show application version.</source>
-        <translation>Programmversion anzeigen.</translation>
+        <translation>Ukázat verzi programu.</translation>
     </message>
     <message>
         <source>use a different Qt4 style (ex: -style gtk).</source>
-        <translation>einen anderen Qt4-Stil benutzen (z.B. -style gtk).</translation>
+        <translation>Použít jiný styl Qt4 (např. -style gtk).</translation>
     </message>
     <message>
         <source>use a different remove command (ex: -removecmd R).</source>
-        <translation>Benutzen Sie einen anderen Befehl um zu entfernen (z.B. -removecmd R).</translation>
+        <translation>Použít jiný příkaz pro odstranění (např. -removecmd R).</translation>
     </message>
     <message>
         <source>force a system upgrade at startup.</source>
-        <translation>Eine System-Upgrade beim Neustart erzwingen.</translation>
+        <translation>Vynutit povýšení systému při spuštění.</translation>
     </message>
     <message>
         <source>Arch Linux news</source>
-        <translation>Arch Linux Nachrichten</translation>
+        <translation>Zprávy Arch Linuxu</translation>
     </message>
     <message>
         <source>Chakra news</source>
-        <translation>Chakra Nachrichten</translation>
+        <translation>Zprávy Chakry</translation>
     </message>
     <message>
         <source>Manjaro Linux news</source>
-        <translation>Manjaro Linux Nachrichten</translation>
+        <translation>Zprávy Manjaro Linuxu</translation>
     </message>
     <message>
         <source>No news could be found! Press Ctrl+G to download the latest news.</source>
-        <translation>Es konnten keine Nachrichten gefunden werden ! Drücken Sie Strg+G um die neusten Nachrichten herunterzuladen.</translation>
+        <translation>Nepodařilo se najít žádné zprávy! Stiskněte Ctrl+G  pro stažení posledních zpráv.</translation>
     </message>
     <message>
         <source>This Linux distro seems to be incompatible with Octopi!</source>
-        <translation>Diese Linux-Distribution scheint mit Octopi nicht kompatibel zu sein !</translation>
+        <translation>Zdá se, že linuxová distribuce není slučitelná s Octopi!</translation>
     </message>
     <message>
         <source>Internet seems anavailable!</source>
-        <translation>Internet scheint nicht verfügbar zu sein !</translation>
+        <translation>Zdá se, že internet není dostupný!</translation>
     </message>
     <message>
         <source>Display all groups</source>
-        <translation>Alle Gruppen anzeigen</translation>
+        <translation>Zobrazit všechny skupiny</translation>
     </message>
     <message>
         <source>Usage</source>
-        <translation>Verwendung</translation>
+        <translation>Použití</translation>
     </message>
     <message>
         <source>About</source>
-        <translation>Über</translation>
+        <translation>O</translation>
     </message>
     <message>
         <source>Name</source>
-        <translation>Name</translation>
+        <translation>Název</translation>
     </message>
     <message>
         <source>Version</source>
-        <translation>Version</translation>
+        <translation>Verze</translation>
     </message>
     <message>
         <source>Outdated version</source>
-        <translation>Veraltete Version</translation>
+        <translation>Zastaralá verze</translation>
     </message>
     <message>
         <source>Available version</source>
-        <translation>Verfügbare Version</translation>
+        <translation>Dostupná verze</translation>
     </message>
     <message>
         <source>No description available.</source>
-        <translation>Keine Beschreibung verfügbar.</translation>
+        <translation>Popis není dostupný.</translation>
     </message>
     <message>
         <source>URL</source>
-        <translation>Internetseite/URL</translation>
+        <translation>Adresa (URL)</translation>
     </message>
     <message>
         <source>Repository</source>
-        <translation>Repository</translation>
+        <translation>Úložiště</translation>
     </message>
     <message>
         <source>Licenses</source>
-        <translation>Lizenzen</translation>
+        <translation>Licence</translation>
     </message>
     <message>
         <source>Group</source>
-        <translation>Gruppe</translation>
+        <translation>Skupina</translation>
     </message>
     <message>
         <source>Groups</source>
-        <translation>Gruppen</translation>
+        <translation>Skupiny</translation>
     </message>
     <message>
         <source>Provides</source>
-        <translation>Stellt zur Verfügung</translation>
+        <translation>Poskytuje</translation>
     </message>
     <message>
         <source>Depends On</source>
-        <translation>Hängt ab von</translation>
+        <translation>Závisí na</translation>
     </message>
     <message>
         <source>Optional Deps</source>
-        <translation>Optionelle Abhängigkeiten</translation>
+        <translation>Volitelné závislosti</translation>
     </message>
     <message>
         <source>Conflicts With</source>
-        <translation>Steht in Konflikt mit</translation>
+        <translation>Střetává se s</translation>
     </message>
     <message>
         <source>Replaces</source>
-        <translation>Ersetzt</translation>
+        <translation>Nahrazuje</translation>
     </message>
     <message>
         <source>Download Size</source>
-        <translation>Größe des Downloads</translation>
+        <translation>Stažená velikost</translation>
     </message>
     <message>
         <source>Installed Size</source>
-        <translation>Größe bei Installation</translation>
+        <translation>Nainstalovaná velikost</translation>
     </message>
     <message>
         <source>Packager</source>
-        <translation>Packager</translation>
+        <translation>Tvůrce balíčku</translation>
     </message>
     <message>
         <source>Package</source>
-        <translation>Paket</translation>
+        <translation>Balíček</translation>
     </message>
     <message>
         <source>Packages</source>
-        <translation>Pakete</translation>
+        <translation>Balíčky</translation>
     </message>
     <message>
         <source>Architecture</source>
-        <translation>Architektur</translation>
+        <translation>Architektura</translation>
     </message>
     <message>
         <source>Build Date</source>
-        <translation>Bild Datum</translation>
+        <translation>Datum sestavení</translation>
     </message>
     <message>
         <source>Description</source>
-        <translation>Beschreibung</translation>
+        <translation>Popis</translation>
     </message>
     <message>
         <source>Attention</source>
-        <translation>Achtung</translation>
+        <translation>Pozor</translation>
     </message>
     <message>
         <source>automatic</source>
-        <translation>automatisch</translation>
+        <translation>automaticky</translation>
     </message>
     <message>
         <source>Password</source>
-        <translation>Passwort</translation>
+        <translation>Heslo</translation>
     </message>
     <message>
         <source>Info</source>
-        <translation>Info</translation>
+        <translation>Informace</translation>
     </message>
     <message>
         <source>Files</source>
-        <translation>Dateien</translation>
+        <translation>Soubory</translation>
     </message>
     <message>
         <source>Transaction</source>
-        <translation>Vorgang</translation>
+        <translation>Transakce</translation>
     </message>
     <message>
         <source>Output</source>
-        <translation>Ausgabe</translation>
+        <translation>Výstup</translation>
     </message>
     <message>
         <source>News</source>
-        <translation>Nachrichten</translation>
+        <translation>Zprávy</translation>
     </message>
     <message>
         <source>Contents of &quot;%1&quot;</source>
-        <translation>Inhalt von &quot;%1&quot;</translation>
+        <translation>Obsah &quot;%1&quot;</translation>
     </message>
     <message>
         <source>Find</source>
-        <translation>Finden</translation>
+        <translation>Najít</translation>
     </message>
     <message>
         <source>Clear</source>
-        <translation>Löschen</translation>
+        <translation>Smazat</translation>
     </message>
     <message>
         <source> (outdated installed version is %1)</source>
-        <translation>(veraltete installierte Version ist %1)</translation>
+        <translation> (zastaralá nainstalovaná verze je %1)</translation>
     </message>
     <message>
         <source>Building package list...</source>
-        <translation>Erstelle Paketliste...</translation>
+        <translation>Sestavuje se seznam balíčků...</translation>
     </message>
     <message>
         <source>Searching for %1 latest news...</source>
-        <translation>Suche nach neusten Nachrichten für %1...</translation>
+        <translation>Hledají se %1 nejnovější zprávy...</translation>
     </message>
     <message>
         <source>There is one outdated package in your system:</source>
-        <translation>Es gibt ein veraltetes Paket in Ihrem System:</translation>
+        <translation>Ve vašem systému je zastaralý balíček:</translation>
     </message>
     <message>
         <source>There are %1 outdated packages in your system:</source>
-        <translation>Es gibt %1 veraltete Pakete in Ihrem System:</translation>
+        <translation>Ve vašem systému je %1 zastaralých balíčků:</translation>
     </message>
     <message>
         <source>(version %1 is available)</source>
-        <translation>(Version %1 ist verfügbar)</translation>
+        <translation>(je dostupná verze %1)</translation>
     </message>
     <message>
         <source>%1 (%2) packages</source>
-        <translation>%1 (%2) Pakete</translation>
+        <translation>%1 (%2) balíčků</translation>
     </message>
     <message>
         <source>%1 installed</source>
-        <translation>%1 installiert</translation>
+        <translation>%1 nainstalováno</translation>
     </message>
     <message>
         <source>%1 outdated</source>
-        <translation>%1 veraltet</translation>
+        <translation>%1 zastaralé</translation>
     </message>
     <message>
         <source>%1 available</source>
-        <translation>%1 verfügbar</translation>
+        <translation>%1 dostupné</translation>
     </message>
     <message>
         <source>Cleaning package cache...</source>
-        <translation>Lösche den Paket-Cache...</translation>
+        <translation>Maže se vyrovnávací paměť balíčku...</translation>
     </message>
     <message>
         <source>Syncing</source>
-        <translation>Synchronisiere</translation>
+        <translation>Synchronizuje se</translation>
     </message>
     <message>
         <source>Press any key to continue...</source>
-        <translation>Drücken Sie eine beliebige Taste um fortzufahren...</translation>
+        <translation>Stiskněte kteroukoli klávesu pro pokračování...</translation>
     </message>
     <message>
         <source>Synchronizing databases...</source>
-        <translation>Synchronisiere Datenbank...</translation>
+        <translation>Seřizují se databáze...</translation>
     </message>
     <message>
         <source>is up to date</source>
-        <translation>ist aktuell</translation>
+        <translation>je aktuální</translation>
     </message>
     <message>
         <source>Starting full system upgrade...</source>
-        <translation>Starte vollständiges System-Upgrade...</translation>
+        <translation>Spouští se úplné povýšení systému...</translation>
     </message>
     <message>
         <source>Installing selected packages...</source>
-        <translation>Installiere ausgwählte Pakete...</translation>
+        <translation>Instalují se vybrané balíčky...</translation>
     </message>
     <message>
         <source>Removing selected packages...</source>
-        <translation>Entferne ausgewählte Pakete...</translation>
+        <translation>Odstraňují se vybrané balíčky...</translation>
     </message>
     <message>
         <source>Removing/installing selected packages...</source>
-        <translation>Entferne/installiere ausgewählte Pakete...</translation>
+        <translation>Odstraňují/Instalují se se vybrané balíčky...</translation>
     </message>
     <message>
         <source>Running command in terminal...</source>
-        <translation>Führe Befehl im Terminal aus...</translation>
+        <translation>Spouští se příkaz v terminálu...</translation>
     </message>
     <message>
         <source>Command finished OK!</source>
-        <translation>Befehl erfolgreich ausgeführt!</translation>
+        <translation>Příkaz skončen OK!</translation>
     </message>
     <message>
         <source>Command finished with errors!</source>
-        <translation>Befehl endete mit FEHLERN !</translation>
+        <translation>Příkaz skončen s chybami!|</translation>
     </message>
     <message>
         <source>Retrieving %1</source>
-        <translation>%1 heruntergeladen</translation>
+        <translation>Získává se %1</translation>
     </message>
     <message>
         <source>Total download size: %1 KB</source>
-        <translation>Insgesamt herunterzuladen: %1 KB</translation>
+        <translation>Celková stažená velikost: %1 KB</translation>
     </message>
     <message>
         <source>The following target needs to be retrieved</source>
-        <translation>Das folgende Paket muss heruntergeladen werden</translation>
+        <translation>Je potřeba získat následující cíl</translation>
     </message>
     <message>
         <source>The following target will be removed</source>
-        <translation>Das folgende Paket wird entfernt</translation>
+        <translation>Následující cíl bude odstraněn</translation>
     </message>
     <message>
         <source>The following %1 targets need to be retrieved</source>
-        <translation>Die folgenden %1 Pakete müssen heruntergeladen werden</translation>
+        <translation>Je potřeba získat následující %1 cíle</translation>
     </message>
     <message>
         <source>The following %1 targets will be removed</source>
-        <translation>Die folgenden %1 Pakete werden entfernt</translation>
+        <translation>Následující %1 cíle budou odstraněny</translation>
     </message>
     <message>
         <source>There are forbidden packages in the removal list!</source>
-        <translation>Es befinden sich Pakete in der Liste zu entfernender Pakete, die nicht entfernt werden dürfen !</translation>
+        <translation>V seznamu k balíčků k odstranění jsou zakázané balíčky!</translation>
     </message>
     <message>
         <source>There are no new updates available!</source>
-        <translation>Es sind keine Updates verfügbar!</translation>
+        <translation>Nejsou dostupné žádné aktualizace!</translation>
     </message>
     <message>
         <source>There is an update available!</source>
-        <translation>Es ist ein Update verfügbar!</translation>
+        <translation>Je dostupná aktualizace</translation>
     </message>
     <message>
         <source>There are %1 updates available!</source>
-        <translation>Es sind %1 updates verfügbar!</translation>
+        <translation>Jsou dostupné %1 aktualizace</translation>
     </message>
     <message>
         <source>Confirm?</source>
-        <translation>Weiter ?</translation>
+        <translation>Potvrdit?</translation>
     </message>
     <message>
         <source>Warning!!!</source>
-        <translation>ACHTUNG !</translation>
+        <translation>Varování!</translation>
     </message>
     <message>
         <source>Confirmation</source>
-        <translation>Weiter</translation>
+        <translation>Potvrzení</translation>
     </message>
     <message>
         <source>There has been a transaction error!</source>
-        <translation>Es ist ein Anwendungsfehler aufgetreten !</translation>
+        <translation>Při transakci se vyskytla chyba !</translation>
     </message>
     <message>
         <source>Do you want to execute this transaction in a Terminal?</source>
-        <translation>Wollen sie diesen Befehl im Terminal ausführen ?</translation>
+        <translation>Opravdu chcete tento příkaz provést v terminálu?</translation>
     </message>
     <message>
         <source>Do you really want to clean the package cache?</source>
-        <translation>Wollen Sie wirklich den Paket-Cache leeren ?</translation>
+        <translation>Opravdu chcete smazat vyrovnávací paměť balíčku?</translation>
     </message>
     <message>
         <source>Do you really want to rollback the transaction?</source>
-        <translation>Wollen sie wirklich die Befehle rückgängig machen ?</translation>
+        <translation>Opravdu chcete vrátit transakci zpět?</translation>
     </message>
     <message>
         <source>Please, enter the administrator&apos;s password</source>
-        <translation>Bitte geben Sie das Kennwort des Administrators ein</translation>
+        <translation>Zadejte, prosím, heslo správce</translation>
     </message>
     <message>
         <source>There are no means to get administrator&apos;s credentials.</source>
-        <translation>Fehler bei der Identifizierung.</translation>
+        <translation>Nejsou tu žádné prostředky, jak získat oprávnění správce systému.</translation>
     </message>
     <message>
         <source>You&apos;ll need to install a su frontend like gksu or kdesu.</source>
-        <translation>Sie benötigen ein Frontend für su wie gksu oder kdesu.</translation>
+        <translation>Je potřeba nainstalovat rozhraní pro su jako gksu nebo kdesu.</translation>
     </message>
     <message>
         <source>You can not run Octopi with administrator&apos;s credentials.</source>
-        <translation>Sie können Octopi nicht mit Administratorrechten ausführen.</translation>
+        <translation>Octopi nemůžete spustit s oprávněními správce.</translation>
     </message>
     <message>
         <source>There is a pending transaction</source>
-        <translation>Ein anderer Befehl muss vorher noch ausgeführt werden</translation>
+        <translation>Jedna transakce čeká na vyřízení</translation>
     </message>
     <message>
         <source>Do you really want to quit?</source>
-        <translation>Wollen Sie wirklich das Programm beenden ?</translation>
+        <translation>Opravdu chcete skončit?</translation>
     </message>
     <message>
         <source>Executing command</source>
-        <translation>Befehl wird ausgeführt</translation>
+        <translation>Provádí se příkaz</translation>
     </message>
     <message>
         <source>Run in terminal</source>
-        <translation>Im Terminal ausführen</translation>
+        <translation>Spustit v terminálu</translation>
     </message>
     <message>
         <source>Needs application restart to take effect</source>
-        <translation>Ein Neustart dieser Anwendung ist notwendig, damit die Änderungen wirksam werden</translation>
+        <translation>Aby se změny projevily, je potřeba tento program spustit znovu</translation>
     </message>
     <message>
         <source>These changes need application restart to take effect!</source>
-        <translation>Diese Änderungen erfordern zum Wirksamwerden einen Neustart des Computers !</translation>
+        <translation>Aby se tyto změny projevily, je potřeba program spustit znovu!</translation>
     </message>
     <message>
         <source>This file does not appear to be a simple text.
 Are you sure you want to open it?</source>
-        <translation>Diese Datei scheint keine reine Textdatei zu sein.
-Wollen Sie sie wirklich öffnen ?</translation>
+        <translation>Zdá se, že tento soubor není prostým textem.
+Opravdu jej chcete otevřít?</translation>
     </message>
     <message>
         <source>To be installed</source>
-        <translation>Zu installieren</translation>
+        <translation>K instalování</translation>
     </message>
     <message>
         <source>To be removed</source>
-        <translation>Zu entfernen</translation>
+        <translation>K odstranění</translation>
     </message>
     <message>
         <source>remove</source>
-        <translation>entferne</translation>
+        <translation>Odstranit</translation>
     </message>
     <message>
         <source>install</source>
-        <translation>installiere</translation>
+        <translation>Instalovat</translation>
     </message>
     <message>
         <source>Remove item</source>
-        <translation>Entferne Paket</translation>
+        <translation>Odstranit položku</translation>
     </message>
     <message>
         <source>Remove items</source>
-        <translation>Entferne Pakete</translation>
+        <translation>Odstranit položky</translation>
     </message>
 </context>
 <context>
     <name>SearchBar</name>
     <message>
         <source>Previous</source>
-        <translation>Zurück</translation>
+        <translation>Předchozí</translation>
     </message>
     <message>
         <source>Next</source>
-        <translation>Weiter</translation>
+        <translation>Další</translation>
     </message>
     <message>
         <source>Close</source>
-        <translation>Schließen</translation>
+        <translation>Zavřít</translation>
     </message>
 </context>
 <context>
     <name>TransactionDialog</name>
     <message>
         <source>Form</source>
-        <translation>Form</translation>
+        <translation>Formulář</translation>
     </message>
     <message>
         <source>Run in terminal</source>
-        <translation>Im Terminal ausführen</translation>
+        <translation>Spustit v terminálu</translation>
     </message>
 </context>
 </TS>

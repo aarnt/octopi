@@ -75,7 +75,6 @@ void MainWindow::show()
 {
   if(m_initializationCompleted == false)
   {
-
     loadSettings();
     restoreGeometry(SettingsManager::getWindowSize());
 
@@ -104,7 +103,6 @@ void MainWindow::show()
     qApp->setStyleSheet(StrConstants::getMenuCSS());
 
     loadPanelSettings();
-
     initActions();
     initAppIcon();
     initSystemTrayIcon();
@@ -121,7 +119,7 @@ void MainWindow::show()
 
     m_pacmanHelperTimer = new QTimer();
     connect(m_pacmanHelperTimer, SIGNAL(timeout()), this, SLOT(pacmanHelperTimerTimeout()));
-    m_pacmanHelperTimer->start(2000);
+    m_pacmanHelperTimer->start(1000 * 60 * 5); //Five minutes after launching Octopi...
   }
   else QMainWindow::show();
 }
@@ -137,7 +135,7 @@ void MainWindow::pacmanHelperTimerTimeout()
     return;
   }
 
-  m_pacmanHelperTimer->setInterval(1000 * 60 * 30); //30 minutes
+  m_pacmanHelperTimer->setInterval(1000 * 60 * 60 * 1); //the last number stand for hours
 
   disconnect(m_pacmanDatabaseSystemWatcher,
              SIGNAL(directoryChanged(QString)), this, SLOT(metaBuildPackageList()));

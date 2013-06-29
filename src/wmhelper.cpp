@@ -224,7 +224,14 @@ void WMHelper::openFile(const QString& fileName){
   QProcess *p = new QProcess(qApp->activeWindow());
   QStringList s;
 
-  if (isXFCERunning() && UnixCommand::hasTheExecutable(ctn_XFCE_FILE_MANAGER)){
+  LinuxDistro distro = UnixCommand::getLinuxDistro();
+  if (distro == ectn_ARCHBANGLINUX && UnixCommand::hasTheExecutable(ctn_ARCHBANG_FILE_MANAGER))
+  {
+    s << fileToOpen;
+    p->startDetached( ctn_ARCHBANG_FILE_MANAGER, s );
+  }
+
+  else if (isXFCERunning() && UnixCommand::hasTheExecutable(ctn_XFCE_FILE_MANAGER)){
     s << fileToOpen;
     p->startDetached( ctn_XFCE_FILE_MANAGER, s );
   }
@@ -257,7 +264,13 @@ void WMHelper::editFile( const QString& fileName ){
   QStringList s;
 
   if (!UnixCommand::isRootRunning()){
-    if (isXFCERunning() && (UnixCommand::hasTheExecutable(ctn_XFCE_EDITOR) ||
+    LinuxDistro distro = UnixCommand::getLinuxDistro();
+    if (distro == ectn_ARCHBANGLINUX && UnixCommand::hasTheExecutable(ctn_ARCHBANG_EDITOR))
+    {
+      QString p = ctn_ARCHBANG_EDITOR + " " + fileName;
+      process->startDetached(getSUCommand() + p);
+    }
+    else if (isXFCERunning() && (UnixCommand::hasTheExecutable(ctn_XFCE_EDITOR) ||
                              UnixCommand::hasTheExecutable(ctn_XFCE_EDITOR_ALT))){
 
       QString p = getXFCEEditor() + " " + fileName;
@@ -302,43 +315,60 @@ void WMHelper::openDirectory( const QString& dirName ){
 
   //Is it really a directory?
   QFileInfo f(dirName);
-  if (!f.isDir()){
+  if (!f.isDir())
+  {
     dir = f.absolutePath();
     f = QFileInfo(dir);
   }
 
-  if (f.exists()){
-    if(isXFCERunning() && UnixCommand::hasTheExecutable(ctn_XFCE_FILE_MANAGER)){
+  if (f.exists())
+  {
+    LinuxDistro distro = UnixCommand::getLinuxDistro();
+    if (distro == ectn_ARCHBANGLINUX && UnixCommand::hasTheExecutable(ctn_ARCHBANG_FILE_MANAGER))
+    {
+      s << dir;
+      p->startDetached( ctn_ARCHBANG_FILE_MANAGER, s );
+    }
+    else if(isXFCERunning() && UnixCommand::hasTheExecutable(ctn_XFCE_FILE_MANAGER))
+    {
       s << dir;
       p->startDetached( ctn_XFCE_FILE_MANAGER, s );
     }
-    else if (isKDERunning()){
-      if (UnixCommand::hasTheExecutable(ctn_KDE4_FILE_MANAGER)){
+    else if (isKDERunning())
+    {
+      if (UnixCommand::hasTheExecutable(ctn_KDE4_FILE_MANAGER))
+      {
         s << dir;
         p->startDetached( ctn_KDE4_FILE_MANAGER, s);
       }
-      else if (UnixCommand::hasTheExecutable(ctn_KDE_FILE_MANAGER)){
+      else if (UnixCommand::hasTheExecutable(ctn_KDE_FILE_MANAGER))
+      {
         s << "newTab";
         s << dir;
         p->startDetached( ctn_KDE_FILE_MANAGER, s );
       }
     }
-    else if (isTDERunning()){
-      if (UnixCommand::hasTheExecutable(ctn_TDE_FILE_MANAGER)){
+    else if (isTDERunning())
+    {
+      if (UnixCommand::hasTheExecutable(ctn_TDE_FILE_MANAGER))
+      {
         s << "newTab";
         s << dir;
         p->startDetached( ctn_TDE_FILE_MANAGER, s );
       }
     }
-    else if (isMATERunning() && UnixCommand::hasTheExecutable(ctn_MATE_FILE_MANAGER)){
+    else if (isMATERunning() && UnixCommand::hasTheExecutable(ctn_MATE_FILE_MANAGER))
+    {
       s << dir;
       p->startDetached( ctn_MATE_FILE_MANAGER, s );
     }
-    else if (UnixCommand::hasTheExecutable(ctn_XFCE_FILE_MANAGER)){
+    else if (UnixCommand::hasTheExecutable(ctn_XFCE_FILE_MANAGER))
+    {
       s << dir;
       p->startDetached( ctn_XFCE_FILE_MANAGER, s );
     }
-    else if (UnixCommand::hasTheExecutable(ctn_LXDE_FILE_MANAGER)){
+    else if (UnixCommand::hasTheExecutable(ctn_LXDE_FILE_MANAGER))
+    {
       s << dir;
       p->startDetached( ctn_LXDE_FILE_MANAGER, s );
     }
