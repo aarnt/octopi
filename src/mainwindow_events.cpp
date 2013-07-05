@@ -202,6 +202,16 @@ void MainWindow::keyPressEvent(QKeyEvent* ke)
       m_cbGroups->setCurrentIndex(0);
     }
   }
+  else if(ke->key() == Qt::Key_Y && ke->modifiers() == (Qt::ShiftModifier|Qt::ControlModifier))
+  {
+    //The user wants to go to fake "Yaourt" group
+    if (m_cbGroups->currentText() != StrConstants::getYaourtGroup())
+    {
+      m_cbGroups->setCurrentIndex(1);
+      //...and let us focus the search edit!
+      m_leFilterPackage->setFocus();
+    }
+  }
   else if(ke->key() == Qt::Key_C && ke->modifiers() == (Qt::ShiftModifier|Qt::ControlModifier))
   {
     if (m_commandExecuting == ectn_NONE)

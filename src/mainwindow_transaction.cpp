@@ -1225,6 +1225,11 @@ void MainWindow::actionsProcessFinished(int exitCode, QProcess::ExitStatus)
   }
 
   enableTransactionActions();
+  if (m_cbGroups->currentText() == StrConstants::getYaourtGroup())
+  {
+    toggleSystemActions(false);
+  }
+
   m_commandExecuting = ectn_NONE;
   m_unixCommand->removeTemporaryActionFile();
 }

@@ -523,7 +523,7 @@ QList<PackageListData> * Package::getYaourtPackageList(const QString& searchStri
     res->append(pld);
   }
 
-  if (res->at(0).repository != "AUR") res->removeAt(0);
+  if (res->count() > 0 && res->at(0).repository != "AUR") res->removeAt(0);
 
   return res;
 }

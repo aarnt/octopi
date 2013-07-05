@@ -701,22 +701,6 @@ void MainWindow::buildYaourtPackageList()
   counter = list->count(); //+ listForeign->count();
   m_progressWidget->setValue(counter);
   m_progressWidget->close();
-
-  /*if (firstTime)
-  {
-    if (_isPackageTreeViewVisible())
-    {
-      m_leFilterPackage->setFocus();
-    }
-
-    m_initializationCompleted = true;
-    firstTime = false;
-
-    if (m_callSystemUpgrade)
-    {
-      doSystemUpgrade(true);
-    }
-  }*/
 }
 
 /*
