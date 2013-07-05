@@ -544,7 +544,7 @@ void MainWindow::doSystemUpgrade(bool syncDatabase)
 
     TransactionDialog question(this);
 
-    question.removeYesButton(); //TESTING
+    question.removeYesButton(); //This is a more prudent behaviour!
 
     if(targets->count()==1)
       question.setText(StrConstants::getRetrieveTarget() +
