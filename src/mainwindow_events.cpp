@@ -29,7 +29,6 @@
 #include "wmhelper.h"
 #include "uihelper.h"
 #include "searchbar.h"
-
 #include <QCloseEvent>
 #include <QMessageBox>
 #include <QTreeView>
@@ -173,7 +172,6 @@ void MainWindow::keyPressEvent(QKeyEvent* ke)
          ui->twProperties->currentIndex() == ctn_TABINDEX_HELPUSAGE))
     {
       QTextBrowser *tb = ui->twProperties->currentWidget()->findChild<QTextBrowser*>("textBrowser");
-      //if (!tb) tb = ui->twProperties->currentWidget()->findChild<QTextBrowser*>("updaterOutput");
       SearchBar *searchBar = ui->twProperties->currentWidget()->findChild<SearchBar*>("searchbar");
 
       if (tb && tb->toPlainText().size() > 0 && searchBar)
@@ -188,7 +186,6 @@ void MainWindow::keyPressEvent(QKeyEvent* ke)
 
       if (tb && tb->model()->rowCount() > 0 && searchBar)
       {
-        //((!actionMinimizeLowerView->isChecked()) && (actionHideRightView->isChecked())))){
         if (searchBar) searchBar->show();
       }
     }
@@ -202,7 +199,8 @@ void MainWindow::keyPressEvent(QKeyEvent* ke)
       m_cbGroups->setCurrentIndex(0);
     }
   }
-  else if(ke->key() == Qt::Key_Y && ke->modifiers() == (Qt::ShiftModifier|Qt::ControlModifier))
+  else if(ke->key() == Qt::Key_Y && ke->modifiers() == (Qt::ShiftModifier|Qt::ControlModifier)
+          && UnixCommand::hasTheExecutable("yaourt"))
   {
     //The user wants to go to fake "Yaourt" group
     if (m_cbGroups->currentText() != StrConstants::getYaourtGroup())

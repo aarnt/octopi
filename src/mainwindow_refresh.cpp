@@ -81,7 +81,12 @@ void MainWindow::refreshComboBoxGroups()
 
   m_cbGroups->clear();
   m_cbGroups->addItem("<" + StrConstants::getAll() + ">");
-  m_cbGroups->addItem(StrConstants::getYaourtGroup());
+
+  if (UnixCommand::hasTheExecutable("yaourt"))
+  {
+    m_cbGroups->addItem(StrConstants::getYaourtGroup());
+  }
+
   m_cbGroups->addItems(*Package::getPackageGroups());
 
   connect(m_cbGroups, SIGNAL(currentIndexChanged(QString)), this, SLOT(metaBuildPackageList()));
