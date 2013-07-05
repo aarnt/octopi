@@ -38,6 +38,8 @@ public:
   void setInformativeText(const QString text);
   void setDetailedText(const QString detailedtext);
 
+  void removeYesButton();
+
 public slots:
   virtual void reject();
 

@@ -63,6 +63,12 @@ void TransactionDialog::setDetailedText(const QString detailedtext)
   ui->detailedText->setText(detailedtext);
 }
 
+void TransactionDialog::removeYesButton()
+{
+  QPushButton *yesButton = ui->buttonBox->button(QDialogButtonBox::Yes);
+  ui->buttonBox->removeButton(yesButton);
+}
+
 void TransactionDialog::reject()
 {
   done(QDialogButtonBox::No);

@@ -544,6 +544,8 @@ void MainWindow::doSystemUpgrade(bool syncDatabase)
 
     TransactionDialog question(this);
 
+    question.removeYesButton(); //TESTING
+
     if(targets->count()==1)
       question.setText(StrConstants::getRetrieveTarget() +
                        "\n\n" + StrConstants::getTotalDownloadSize().arg(ds));
