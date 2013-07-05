@@ -420,6 +420,115 @@ QList<PackageListData> * Package::getPackageList()
 }
 
 /*
+ * Retrieves the list of all yaourt packages in the database (installed + non-installed)
+ * given the search parameter
+ */
+QList<PackageListData> * Package::getYaourtPackageList(const QString& searchString)
+{
+  //aur/yaourt 1.2.2-1 [installed]
+  //    A pacman wrapper with extended features and AUR support
+
+  //aur/libfm 1.1.0-4 (lxde) [installed: 1.1.0-3]
+
+  QString pkgName, pkgRepository, pkgVersion, pkgDescription, pkgOutVersion;
+  PackageStatus pkgStatus;
+  QList<PackageListData> * res = new QList<PackageListData>();
+
+  if (searchString.isEmpty())
+    return res;
+
+  QString pkgList = UnixCommand::getYaourtPackageList(searchString);
+  QStringList packageTuples = pkgList.split(QRegExp("\\n"), QString::SkipEmptyParts);
+
+  pkgDescription = "";
+  foreach(QString packageTuple, packageTuples)
+  {
+    if (packageTuple[0].isNumber())
+    {
+      int space=packageTuple.indexOf(" ");
+      packageTuple = packageTuple.mid(space+1);
+    }
+
+    if (!packageTuple[0].isSpace())
+    {
+      //Do we already have a description?
+      if (pkgDescription != "")
+      {
+        pkgDescription = pkgName + " " + pkgDescription;
+
+        PackageListData pld =
+            PackageListData(pkgName, pkgRepository, pkgVersion, pkgDescription, pkgStatus, pkgOutVersion);
+
+        res->append(pld);
+
+        pkgDescription = "";
+      }
+
+      //First we get repository and name!
+      QStringList parts = packageTuple.split(' ');
+      QString repoName = parts[0];
+      int a = repoName.indexOf("/");
+      pkgRepository = repoName.left(a);
+
+      if (pkgRepository != "aur")
+      {
+        //if (res->count() == 1) res->removeFirst();
+        res->removeAt(res->count()-1);
+        continue;
+      }
+
+      pkgRepository = "AUR";
+
+      pkgName = repoName.mid(a+1);
+      pkgVersion = parts[1];
+
+      if(packageTuple.indexOf("[installed]") != -1)
+      {
+        //This is an installed package
+        pkgStatus = ectn_INSTALLED;
+        pkgOutVersion = "";
+      }
+      else if (packageTuple.indexOf("[installed:") != -1)
+      {
+        //This is an outdated installed package
+        pkgStatus = ectn_OUTDATED;
+
+        int i = packageTuple.indexOf("[installed:");
+        pkgOutVersion = packageTuple.mid(i+11);
+        pkgOutVersion.remove(QRegExp("\\].*")).trimmed();
+      }
+      else
+      {
+        //This is an uninstalled package
+        pkgStatus = ectn_NON_INSTALLED;
+        pkgOutVersion = "";
+      }
+    }
+    else
+    {
+      //This is a description!
+      if (!packageTuple.trimmed().isEmpty())
+        pkgDescription += packageTuple.trimmed();
+      else
+        pkgDescription += StrConstants::getNoDescriptionAvailabe();
+    }
+  }
+
+  //And adds the very last package...
+  if (packageTuples.count() > 1)
+  {
+    pkgDescription = pkgName + " " + pkgDescription;
+    PackageListData pld =
+        PackageListData(pkgName, pkgRepository, pkgVersion, pkgDescription, pkgStatus, pkgOutVersion);
+    res->append(pld);
+  }
+
+  if (res->at(0).repository != "AUR") res->removeAt(0);
+
+  return res;
+}
+
+/*
  * Given a QString containing the output of pacman -Si/Qi (pkgInfo),
  * this method returns the contents of the given field (ex: description)
  */

@@ -355,14 +355,24 @@ QString MainWindow::getInstalledPackageVersionByName(const QString &pkgName)
  */
 QStandardItem *MainWindow::getAvailablePackage(const QString &pkgName, const int index)
 {
+  QStandardItemModel *sim;
+  if(m_modelPackages->rowCount() > 0)
+  {
+    sim = m_modelPackages;
+  }
+  else if(m_modelPackagesClone->rowCount() > 0)
+  {
+    sim = m_modelPackagesClone;
+  }
+
   QList<QStandardItem *> foundItems =
-      m_modelPackages->findItems(pkgName, Qt::MatchExactly, ctn_PACKAGE_NAME_COLUMN);
+      sim->findItems(pkgName, Qt::MatchExactly, ctn_PACKAGE_NAME_COLUMN);
   QStandardItem *res;
 
   if (foundItems.count() > 0)
   {
     QStandardItem * si = foundItems.first();
-    QStandardItem * aux = m_modelPackages->item(si->row(), index);
+    QStandardItem * aux = sim->item(si->row(), index);
     res = aux->clone();
   }
 
@@ -453,7 +463,7 @@ void MainWindow::changePackageListModel()
 
   if (ui->actionNonInstalledPackages->isChecked())
   {
-    if(m_cbGroups->currentIndex() == 0)
+    if(m_cbGroups->currentIndex() == 0 || m_cbGroups->currentText() == StrConstants::getYaourtGroup())
     {
       m_modelPackages->setHorizontalHeaderLabels(
           sl << "" << StrConstants::getName() << StrConstants::getVersion() << StrConstants::getRepository());     
@@ -468,7 +478,7 @@ void MainWindow::changePackageListModel()
   }
   else
   {
-    if(m_cbGroups->currentIndex() == 0)
+    if(m_cbGroups->currentIndex() == 0 || m_cbGroups->currentText() == StrConstants::getYaourtGroup())
     {
       m_modelInstalledPackages->setHorizontalHeaderLabels(
           sl << "" << StrConstants::getName() << StrConstants::getVersion() << StrConstants::getRepository());
@@ -517,14 +527,14 @@ QStandardItemModel *MainWindow::_getCurrentSelectedModel()
 
   if(ui->actionNonInstalledPackages->isChecked())
   {
-    if(m_cbGroups->currentIndex() == 0)
+    if(m_cbGroups->currentIndex() == 0 || m_cbGroups->currentText() == StrConstants::getYaourtGroup())
       sim = m_modelPackages;
     else
       sim = m_modelPackagesFromGroup;
   }
   else
   {
-    if(m_cbGroups->currentIndex() == 0)
+    if(m_cbGroups->currentIndex() == 0 || m_cbGroups->currentText() == StrConstants::getYaourtGroup())
       sim = m_modelInstalledPackages;
     else
       sim = m_modelInstalledPackagesFromGroup;
@@ -584,7 +594,7 @@ void MainWindow::execContextMenuPackages(QPoint point)
       {
         menu->addAction(ui->actionInstall);
 
-        if (m_cbGroups->currentIndex() != 0)
+        if (m_cbGroups->currentIndex() != 0 && m_cbGroups->currentText() != StrConstants::getYaourtGroup())
         {
           menu->addAction(ui->actionInstallGroup);
         }
@@ -594,7 +604,7 @@ void MainWindow::execContextMenuPackages(QPoint point)
       {
         menu->addAction(ui->actionRemove);
 
-        if (m_cbGroups->currentIndex() != 0)
+        if (m_cbGroups->currentIndex() != 0 && m_cbGroups->currentText() != StrConstants::getYaourtGroup())
         {
           //Is this group already installed?
           if (m_modelInstalledPackagesFromGroup->rowCount() == m_modelPackagesFromGroup->rowCount())

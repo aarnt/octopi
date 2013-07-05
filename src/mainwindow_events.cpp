@@ -86,14 +86,21 @@ void MainWindow::keyPressEvent(QKeyEvent* ke)
 {
   if (ke->key() == Qt::Key_Return)
   {
-    QTreeView *tvPkgFileList =
-        ui->twProperties->widget(ctn_TABINDEX_FILES)->findChild<QTreeView*>("tvPkgFileList");
-
-    if(tvPkgFileList)
+    if (m_cbGroups->currentText() == StrConstants::getYaourtGroup() && m_leFilterPackage->hasFocus())
     {
-      if(tvPkgFileList->hasFocus())
+      buildYaourtPackageList();
+    }
+    else
+    {
+      QTreeView *tvPkgFileList =
+          ui->twProperties->widget(ctn_TABINDEX_FILES)->findChild<QTreeView*>("tvPkgFileList");
+
+      if(tvPkgFileList)
       {
-        openFile();
+        if(tvPkgFileList->hasFocus())
+        {
+          openFile();
+        }
       }
     }
   }

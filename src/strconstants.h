@@ -27,12 +27,13 @@
 
 class StrConstants{
 public:
+
   static QString getApplicationName(){
     return "Octopi";
   }
 
   static QString getApplicationVersion(){
-    return "0.1.8";
+    return "0.1.9";
   }
 
   static QString getApplicationCliHelp(){
@@ -76,6 +77,10 @@ public:
 
   static QString getAll(){
     return QObject::tr("Display all groups");
+  }
+
+  static QString getYaourtGroup(){
+    return "< Yaourt >";
   }
 
   static QString getHelpUsage(){

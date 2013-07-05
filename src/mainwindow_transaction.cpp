@@ -243,29 +243,36 @@ QString MainWindow::getTobeInstalledPackages()
  */
 void MainWindow::insertIntoRemovePackage()
 {
-  _ensureTabVisible(ctn_TABINDEX_TRANSACTION);
-
-  QStandardItemModel *sim=_getCurrentSelectedModel();
-
-  //First, let's see if we are dealing with a package group
-  if(m_cbGroups->currentIndex() != 0)
+  if (m_cbGroups->currentText() != StrConstants::getYaourtGroup())
   {
-    //If we are trying to remove all the group's packages, why not remove the entire group?
-    if(ui->tvPackages->selectionModel()->selectedRows().count() == sim->rowCount())
+    _ensureTabVisible(ctn_TABINDEX_TRANSACTION);
+
+    QStandardItemModel *sim=_getCurrentSelectedModel();
+
+    //First, let's see if we are dealing with a package group
+    if(m_cbGroups->currentIndex() != 0)
     {
-      insertRemovePackageIntoTransaction(m_cbGroups->currentText());
-      return;
+      //If we are trying to remove all the group's packages, why not remove the entire group?
+      if(ui->tvPackages->selectionModel()->selectedRows().count() == sim->rowCount())
+      {
+        insertRemovePackageIntoTransaction(m_cbGroups->currentText());
+        return;
+      }
+    }
+
+    foreach(QModelIndex item, ui->tvPackages->selectionModel()->selectedRows())
+    {
+      QModelIndex mi = m_proxyModelPackages->mapToSource(item);
+      QStandardItem *si = sim->item(mi.row(), ctn_PACKAGE_NAME_COLUMN);
+      QStandardItem *siRepository = sim->item(mi.row(), ctn_PACKAGE_REPOSITORY_COLUMN);
+
+      insertRemovePackageIntoTransaction(siRepository->text() + "/" + si->text());
+      //insertRemovePackageIntoTransaction(si->text());
     }
   }
-
-  foreach(QModelIndex item, ui->tvPackages->selectionModel()->selectedRows())
+  else
   {
-    QModelIndex mi = m_proxyModelPackages->mapToSource(item);
-    QStandardItem *si = sim->item(mi.row(), ctn_PACKAGE_NAME_COLUMN);
-    QStandardItem *siRepository = sim->item(mi.row(), ctn_PACKAGE_REPOSITORY_COLUMN);
-
-    insertRemovePackageIntoTransaction(siRepository->text() + "/" + si->text());
-    //insertRemovePackageIntoTransaction(si->text());
+    doRemoveYaourtPackage();
   }
 }
 
@@ -284,29 +291,35 @@ void MainWindow::insertGroupIntoRemovePackage()
  */
 void MainWindow::insertIntoInstallPackage()
 {
-  _ensureTabVisible(ctn_TABINDEX_TRANSACTION);
-
-  QStandardItemModel *sim=_getCurrentSelectedModel();
-
-  //First, let's see if we are dealing with a package group
-  if(m_cbGroups->currentIndex() != 0)
+  if (m_cbGroups->currentText() != StrConstants::getYaourtGroup())
   {
-    //If we are trying to insert all the group's packages, why not insert the entire group?
-    if(ui->tvPackages->selectionModel()->selectedRows().count() == sim->rowCount())
+    _ensureTabVisible(ctn_TABINDEX_TRANSACTION);
+
+    QStandardItemModel *sim=_getCurrentSelectedModel();
+
+    //First, let's see if we are dealing with a package group
+    if(m_cbGroups->currentIndex() != 0)
     {
-      insertInstallPackageIntoTransaction(m_cbGroups->currentText());
-      return;
+      //If we are trying to insert all the group's packages, why not insert the entire group?
+      if(ui->tvPackages->selectionModel()->selectedRows().count() == sim->rowCount())
+      {
+        insertInstallPackageIntoTransaction(m_cbGroups->currentText());
+        return;
+      }
+    }
+
+    foreach(QModelIndex item, ui->tvPackages->selectionModel()->selectedRows())
+    {
+      QModelIndex mi = m_proxyModelPackages->mapToSource(item);
+      QStandardItem *si = sim->item(mi.row(), ctn_PACKAGE_NAME_COLUMN);
+      QStandardItem *siRepository = sim->item(mi.row(), ctn_PACKAGE_REPOSITORY_COLUMN);
+
+      insertInstallPackageIntoTransaction(siRepository->text() + "/" + si->text());
     }
   }
-
-  foreach(QModelIndex item, ui->tvPackages->selectionModel()->selectedRows())
+  else
   {
-    QModelIndex mi = m_proxyModelPackages->mapToSource(item);
-    QStandardItem *si = sim->item(mi.row(), ctn_PACKAGE_NAME_COLUMN);
-    QStandardItem *siRepository = sim->item(mi.row(), ctn_PACKAGE_REPOSITORY_COLUMN);
-
-    insertInstallPackageIntoTransaction(siRepository->text() + "/" + si->text());
-    //insertInstallPackageIntoTransaction(si->text());
+    doInstallYaourtPackage();
   }
 }
 
@@ -787,6 +800,68 @@ void MainWindow::doRemove()
 }
 
 /*
+ * Installs the selected package with "yaourt -S"
+ */
+void MainWindow::doInstallYaourtPackage()
+{
+  //If there are no means to run the actions, we must warn!
+  if (!_isSUAvailable()) return;
+
+  QString listOfTargets =
+      m_modelPackages->item(ui->tvPackages->currentIndex().row(), ctn_PACKAGE_NAME_COLUMN)->text();
+
+  m_lastCommandList.clear();
+  m_lastCommandList.append("yaourt -S " + listOfTargets + ";");
+  m_lastCommandList.append("echo -e;");
+  m_lastCommandList.append("read -n1 -p \"" + StrConstants::getPressAnyKey() + "\"");
+
+  disableTransactionActions();
+  m_unixCommand = new UnixCommand(this);
+
+  QObject::connect(m_unixCommand, SIGNAL( started() ), this, SLOT( actionsProcessStarted()));
+  QObject::connect(m_unixCommand, SIGNAL( readyReadStandardOutput()),
+                   this, SLOT( actionsProcessReadOutput() ));
+  QObject::connect(m_unixCommand, SIGNAL( finished ( int, QProcess::ExitStatus )),
+                   this, SLOT( actionsProcessFinished(int, QProcess::ExitStatus) ));
+  QObject::connect(m_unixCommand, SIGNAL( readyReadStandardError() ),
+                   this, SLOT( actionsProcessRaisedError() ));
+
+  m_commandExecuting = ectn_RUN_IN_TERMINAL;
+  m_unixCommand->runCommandInTerminal(m_lastCommandList);
+}
+
+/*
+ * Removes the selected package with "yaourt -R"
+ */
+void MainWindow::doRemoveYaourtPackage()
+{
+  //If there are no means to run the actions, we must warn!
+  if (!_isSUAvailable()) return;
+
+  QString listOfTargets =
+      m_modelPackages->item(ui->tvPackages->currentIndex().row(), ctn_PACKAGE_NAME_COLUMN)->text();
+
+  m_lastCommandList.clear();
+  m_lastCommandList.append("yaourt -Rcs " + listOfTargets + ";");
+  m_lastCommandList.append("echo -e;");
+  m_lastCommandList.append("read -n1 -p \"" + StrConstants::getPressAnyKey() + "\"");
+
+  disableTransactionActions();
+  m_unixCommand = new UnixCommand(this);
+
+  QObject::connect(m_unixCommand, SIGNAL( started() ), this, SLOT( actionsProcessStarted()));
+  QObject::connect(m_unixCommand, SIGNAL( readyReadStandardOutput()),
+                   this, SLOT( actionsProcessReadOutput() ));
+  QObject::connect(m_unixCommand, SIGNAL( finished ( int, QProcess::ExitStatus )),
+                   this, SLOT( actionsProcessFinished(int, QProcess::ExitStatus) ));
+  QObject::connect(m_unixCommand, SIGNAL( readyReadStandardError() ),
+                   this, SLOT( actionsProcessRaisedError() ));
+
+  m_commandExecuting = ectn_RUN_IN_TERMINAL;
+  m_unixCommand->runCommandInTerminal(m_lastCommandList);
+}
+
+/*
  * Installs ALL the packages selected by the user with "pacman -S (INCLUDING DEPENDENCIES)" !
  */
 void MainWindow::doInstall()
@@ -960,6 +1035,12 @@ void MainWindow::toggleTransactionActions(const bool value)
   ui->actionGetNews->setEnabled(value);
 }
 
+void MainWindow::toggleSystemActions(const bool value)
+{
+  ui->actionSyncPackages->setEnabled(value);
+  ui->actionSystemUpgrade->setEnabled(value);
+}
+
 /*
  * Triggers the especific methods that need to be called given the packages in the transaction
  */
@@ -1101,6 +1182,10 @@ void MainWindow::actionsProcessFinished(int exitCode, QProcess::ExitStatus)
             buildPackageList();
           }
         }
+      }
+      else if (m_cbGroups->currentText() == StrConstants::getYaourtGroup())
+      {
+        buildYaourtPackageList();
       }
       else
       {

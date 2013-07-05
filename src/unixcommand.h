@@ -72,6 +72,9 @@ public:
   static QByteArray performQuery(const QStringList args);
   static QByteArray performQuery(const QString &args);
 
+  static QByteArray performYaourtCommand(const QString &args);
+  static QByteArray getYaourtPackageList(const QString &searchString);
+
   static QByteArray getUnrequiredPackageList();
   static QByteArray getOutdatedPackageList();
   static QByteArray getForeignPackageList();

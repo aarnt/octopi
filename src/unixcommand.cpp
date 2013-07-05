@@ -167,6 +167,48 @@ QByteArray UnixCommand::performQuery(const QString &args)
 }
 
 /*
+ * Performs a yourt command
+ */
+QByteArray UnixCommand::performYaourtCommand(const QString &args)
+{
+  QByteArray result("");
+  QProcess yaourt;
+
+  QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
+  env.insert("LANG", "us_EN");
+  yaourt.setProcessEnvironment(env);
+
+  yaourt.start("yaourt " + args);
+  yaourt.waitForFinished(-1);
+  result = yaourt.readAllStandardOutput();
+
+  return result;
+}
+
+/*
+ * Returns a string containing all yaourt packages given a searchString parameter
+ */
+QByteArray UnixCommand::getYaourtPackageList(const QString &searchString)
+{
+  QByteArray result("");
+  QProcess yaourt;
+  QProcess kill;
+
+  QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
+  env.insert("LANG", "us_EN");
+  yaourt.setProcessEnvironment(env);
+
+  kill.setStandardOutputProcess(&yaourt);
+  kill.start("kill $$");
+  yaourt.start("yaourt " + searchString);
+  yaourt.waitForFinished(-1);
+
+  result = yaourt.readAll();
+
+  return result;
+}
+
+/*
  * Returns a string containing all packages no one depends on
  */
 QByteArray UnixCommand::getUnrequiredPackageList()
@@ -251,11 +293,6 @@ QByteArray UnixCommand::getPackageGroups()
  */
 QByteArray UnixCommand::getPackagesFromGroup(const QString &groupName)
 {
-  /*QStringList args;
-  args << "-Sg";
-  args << groupName;
-  QByteArray res = performQuery(args);*/
-
   QByteArray res =
       performQuery(QString("--print-format \"%r %n\" -Spg " ) + groupName);
 
@@ -433,10 +470,8 @@ void UnixCommand::removeTemporaryFiles()
 
   foreach(QFileInfo file, list){
     QFile fileAux(file.filePath());
-    //std::cout << "Found: " << file.fileName().toAscii().data() << std::endl;
 
     if (!file.isDir()){
-      //std::cout << "trying to remove " << file.fileName().toAscii().data() << std::endl;
       fileAux.remove();
     }
     else{
@@ -459,12 +494,9 @@ void UnixCommand::removeTemporaryFiles()
 bool UnixCommand::isTextFile(const QString& fileName)
 {
   QProcess *p = new QProcess();
-
-#if QT_VERSION >= 0x040600
   QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
   env.insert("LANG", "us_EN");
   p->setProcessEnvironment(env);
-#endif
 
   QStringList s(fileName);
   p->start( "file", s );

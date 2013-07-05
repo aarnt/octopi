@@ -120,6 +120,7 @@ private:
 
   //This model provides the list of ALL packages (installed + non-installed)
   QStandardItemModel *m_modelPackages;
+  QStandardItemModel *m_modelPackagesClone;
 
   //This model provides the list of ONLY installed packages
   QStandardItemModel *m_modelInstalledPackages;
@@ -202,6 +203,8 @@ private:
   void initActions();
   void refreshStatusBar();
 
+  void clearStatusBar();
+
   //Tab Transaction related methods
   bool _isThereAPendingTransaction();
   void _tvTransactionAdjustItemText(QStandardItem *item);
@@ -270,6 +273,9 @@ private slots:
   void buildPackageList();
   void metaBuildPackageList();
 
+  void _cloneModelPackages();
+  void buildYaourtPackageList();
+
   void headerViewPackageListSortIndicatorClicked(int col, Qt::SortOrder order);
   void changePackageListModel();
 
@@ -296,9 +302,13 @@ private slots:
   void doInstall();
   void doCleanCache();
 
+  void doInstallYaourtPackage();
+  void doRemoveYaourtPackage();
+
   void disableTransactionActions();
   void enableTransactionActions();
   void toggleTransactionActions(const bool value);
+  void toggleSystemActions(const bool value);
   void doCommitTransaction();
   void doRollbackTransaction();
 

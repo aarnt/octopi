@@ -177,20 +177,6 @@ void MainWindow::execSystemTrayActivated(QSystemTrayIcon::ActivationReason ar)
 }
 
 /*
- * Inserts the group names into the Groups comboBox
- */
-void MainWindow::refreshComboBoxGroups()
-{
-  disconnect(m_cbGroups, SIGNAL(currentIndexChanged(QString)), this, SLOT(metaBuildPackageList()));
-
-  m_cbGroups->clear();
-  m_cbGroups->addItem("<" + StrConstants::getAll() + ">");
-  m_cbGroups->addItems(*Package::getPackageGroups());
-
-  connect(m_cbGroups, SIGNAL(currentIndexChanged(QString)), this, SLOT(metaBuildPackageList()));
-}
-
-/*
  * Inits the Groups combobox, so it can be added in app's toolBar
  */
 void MainWindow::initComboBoxGroups()
@@ -360,6 +346,7 @@ void MainWindow::initPackageTreeView()
 {
   m_proxyModelPackages = new QSortFilterProxyModel(this);
   m_modelPackages = new QStandardItemModel(this);
+  m_modelPackagesClone = new QStandardItemModel(this);
   m_modelInstalledPackages = new QStandardItemModel(this);
   m_modelPackagesFromGroup = new QStandardItemModel(this);
   m_modelInstalledPackagesFromGroup = new QStandardItemModel(this);

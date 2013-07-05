@@ -142,6 +142,9 @@ class Package{
     static QList<PackageListData> *getForeignPackageList();
     static QList<PackageListData> *getPackageList();
 
+    //Yaourt methods
+    static QList<PackageListData> * getYaourtPackageList(const QString& searchString);
+
     static PackageInfoData getInformation(const QString &pkgName, bool foreignPackage = false);
     static double getDownloadSizeDescription(const QString &pkgName);
     static QString getInformationDescription(const QString &pkgName, bool foreignPackage = false);
