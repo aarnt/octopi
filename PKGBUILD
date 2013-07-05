@@ -1,5 +1,5 @@
 pkgname=octopi
-pkgver=0.1.8
+pkgver=0.1.9
 pkgrel=1
 pkgdesc="a powerful Pacman frontend using Qt libs"
 arch=('i686' 'x86_64')
