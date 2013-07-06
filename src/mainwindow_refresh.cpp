@@ -476,6 +476,7 @@ void MainWindow::buildPackageList()
  */
 void MainWindow::_cloneModelPackages()
 {
+  m_modelPackagesClone->clear();
   QList<QStandardItem*> lIconsC, lNamesC, lVersionsC, lRepositoriesC, lDescriptionsC;
 
   for(int r=0; r<m_modelPackages->rowCount()-1; r++)
@@ -487,7 +488,6 @@ void MainWindow::_cloneModelPackages()
     lDescriptionsC << m_modelPackages->item(r, ctn_PACKAGE_DESCRIPTION_COLUMN)->clone();
   }
 
-  m_modelPackagesClone->clear();
   QStandardItem * parentClone = m_modelPackagesClone->invisibleRootItem();
   parentClone->insertColumn(ctn_PACKAGE_ICON_COLUMN, lIconsC);
   parentClone->insertColumn(ctn_PACKAGE_NAME_COLUMN, lNamesC);
