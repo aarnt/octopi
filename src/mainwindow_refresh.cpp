@@ -246,6 +246,18 @@ void MainWindow::buildPackagesFromGroupList(const QString &groupName)
   m_progressWidget->close();
 }
 
+void MainWindow::_deleteStandardItemModel(QStandardItemModel * sim)
+{
+  for (int c=0; c<sim->columnCount()-1; c++)
+  for(int r=0; r<sim->rowCount()-1; r++)
+  {
+    delete sim->item(r, c);
+  }
+
+  sim->clear();
+  delete sim;
+}
+
 /*
  * Populates the list of available packages (installed [+ non-installed])
  *
@@ -255,7 +267,6 @@ void MainWindow::buildPackageList()
 {
   //This variable counts how many octopi* packages we have installed :-)
   int countOctopi=0;
-
   m_progressWidget->show();
   disconnect(m_pacmanDatabaseSystemWatcher, SIGNAL(directoryChanged(QString)), this, SLOT(metaBuildPackageList()));
 
@@ -267,10 +278,15 @@ void MainWindow::buildPackageList()
   //Refresh the list of Group names
   refreshComboBoxGroups();
 
-  m_modelPackages->clear();
-  m_modelInstalledPackages->clear();
-  m_modelInstalledPackagesFromGroup->clear();
-  m_modelPackagesFromGroup->clear();
+  _deleteStandardItemModel(m_modelPackages);
+  _deleteStandardItemModel(m_modelPackagesFromGroup);
+  _deleteStandardItemModel(m_modelInstalledPackages);
+  _deleteStandardItemModel(m_modelInstalledPackagesFromGroup);
+
+  m_modelPackages = new QStandardItemModel(this);
+  m_modelPackagesFromGroup = new QStandardItemModel(this);
+  m_modelInstalledPackages = new QStandardItemModel(this);
+  m_modelInstalledPackagesFromGroup = new QStandardItemModel(this);
 
   if (ui->actionNonInstalledPackages->isChecked())
   {
@@ -476,7 +492,9 @@ void MainWindow::buildPackageList()
  */
 void MainWindow::_cloneModelPackages()
 {
-  m_modelPackagesClone->clear();
+  _deleteStandardItemModel(m_modelPackagesClone);
+  m_modelPackagesClone = new QStandardItemModel(this);
+
   QList<QStandardItem*> lIconsC, lNamesC, lVersionsC, lRepositoriesC, lDescriptionsC;
 
   for(int r=0; r<m_modelPackages->rowCount()-1; r++)
@@ -503,25 +521,21 @@ void MainWindow::_cloneModelPackages()
  */
 void MainWindow::buildYaourtPackageList()
 {
-  //This variable counts how many octopi* packages we have installed :-)
-  //int countOctopi=0;
-
   m_progressWidget->show();
   disconnect(m_pacmanDatabaseSystemWatcher, SIGNAL(directoryChanged(QString)), this, SLOT(metaBuildPackageList()));
 
-  //static bool firstTime = true;
-  //timer->stop();
-
   CPUIntensiveComputing *cic = new CPUIntensiveComputing();
 
-  //Refresh the list of Group names
-  //refreshComboBoxGroups();
-
   _cloneModelPackages();
-  m_modelPackages->clear();
-  m_modelInstalledPackages->clear();
-  m_modelInstalledPackagesFromGroup->clear();
-  m_modelPackagesFromGroup->clear();
+  _deleteStandardItemModel(m_modelPackages);
+  _deleteStandardItemModel(m_modelPackagesFromGroup);
+  _deleteStandardItemModel(m_modelInstalledPackages);
+  _deleteStandardItemModel(m_modelInstalledPackagesFromGroup);
+
+  m_modelPackages = new QStandardItemModel(this);
+  m_modelPackagesFromGroup = new QStandardItemModel(this);
+  m_modelInstalledPackages = new QStandardItemModel(this);
+  m_modelInstalledPackagesFromGroup = new QStandardItemModel(this);
 
   if (ui->actionNonInstalledPackages->isChecked())
   {
@@ -533,39 +547,14 @@ void MainWindow::buildYaourtPackageList()
   }
 
   QStringList sl;
-
-  /*if(!firstTime) //If it's not the starting of the app...
-  {
-    //Let's get outdatedPackages list again!
-    m_outdatedPackageList = Package::getOutdatedPackageList();
-    m_numberOfOutdatedPackages = m_outdatedPackageList->count();
-  }*/
-
   QStringList *unrequiredPackageList = Package::getUnrequiredPackageList();
   QString searchString = m_leFilterPackage->text();
-
   QList<PackageListData> *list = Package::getYaourtPackageList(searchString);
-  //QList<PackageListData> *listForeign = Package::getForeignPackageList();
-  //QList<PackageListData>::const_iterator itForeign = listForeign->begin();
 
-  m_progressWidget->setRange(0, list->count()); //+ listForeign->count());
+  m_progressWidget->setRange(0, list->count());
   m_progressWidget->setValue(0);
 
   int counter=0;
-  /*while (itForeign != listForeign->end())
-  {
-    counter++;
-    m_progressWidget->setValue(counter);
-
-    PackageListData pld = PackageListData(
-          itForeign->name, itForeign->repository, itForeign->version,
-          itForeign->name + " " + Package::getInformationDescription(itForeign->name, true),
-          ectn_FOREIGN);
-
-    list->append(pld);
-    itForeign++;
-  }*/
-
   QStandardItem *parentItem = m_modelPackages->invisibleRootItem();
   QStandardItem *parentItemInstalledPackages = m_modelInstalledPackages->invisibleRootItem();
   QList<PackageListData>::const_iterator it = list->begin();
@@ -576,19 +565,9 @@ void MainWindow::buildYaourtPackageList()
   {
     PackageListData pld = *it;
 
-    /*if (pld.name == "octopi")
-    {
-      it++;
-      countOctopi++;
-      continue;
-    }*/
-
     //If this is an installed package, it can be also outdated!
     switch (pld.status)
     {
-      /*case ectn_FOREIGN:
-        lIcons << new QStandardItem(IconHelper::getIconForeign(), "_Foreign");
-        break;*/
       case ectn_OUTDATED:
         lIcons << new QStandardItem(IconHelper::getIconOutdated(), "_OutDated^"+pld.outatedVersion);
         break;
@@ -670,8 +649,6 @@ void MainWindow::buildYaourtPackageList()
   m_modelInstalledPackages->setHorizontalHeaderLabels(
         sl << "" << StrConstants::getName() << StrConstants::getVersion() << StrConstants::getRepository() << "");
 
-  //if (m_leFilterPackage->text() != "") reapplyPackageFilter();
-
   QModelIndex maux = m_proxyModelPackages->index(0, 0);
   ui->tvPackages->setCurrentIndex(maux);
   ui->tvPackages->scrollTo(maux, QAbstractItemView::PositionAtCenter);
@@ -690,8 +667,6 @@ void MainWindow::buildYaourtPackageList()
   m_numberOfInstalledPackages = m_modelInstalledPackages->invisibleRootItem()->rowCount();
   m_numberOfAvailablePackages = m_modelPackages->invisibleRootItem()->rowCount() - m_numberOfInstalledPackages;
 
-  //m_numberOfInstalledPackages += countOctopi;
-
   //Refresh statusbar widget
   refreshStatusBar();
 
@@ -703,7 +678,7 @@ void MainWindow::buildYaourtPackageList()
 
   connect(m_pacmanDatabaseSystemWatcher, SIGNAL(directoryChanged(QString)), this, SLOT(metaBuildPackageList()));
 
-  counter = list->count(); //+ listForeign->count();
+  counter = list->count();
   m_progressWidget->setValue(counter);
   m_progressWidget->close();
 }
@@ -1124,6 +1099,7 @@ void MainWindow::refreshTabFiles(bool clearContents, bool neverQuit)
 
     QStandardItemModel *fakeModelPkgFileList = new QStandardItemModel(this);
     QStandardItemModel *modelPkgFileList = qobject_cast<QStandardItemModel*>(tvPkgFileList->model());
+
     modelPkgFileList->clear();
     QStandardItem *fakeRoot = fakeModelPkgFileList->invisibleRootItem();
     QStandardItem *root = modelPkgFileList->invisibleRootItem();
