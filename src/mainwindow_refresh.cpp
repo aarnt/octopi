@@ -97,6 +97,8 @@ void MainWindow::refreshComboBoxGroups()
  */
 void MainWindow::buildPackagesFromGroupList()
 {
+  CPUIntensiveComputing cic;
+
   m_progressWidget->show();
 
   if (m_cbGroups->currentIndex() == 0)
@@ -134,8 +136,6 @@ void MainWindow::buildPackagesFromGroupList()
 
   disconnect(m_pacmanDatabaseSystemWatcher,
              SIGNAL(directoryChanged(QString)), this, SLOT(metaBuildPackageList()));
-
-  CPUIntensiveComputing cic;
 
   m_modelPackagesFromGroup->clear();
   m_modelInstalledPackagesFromGroup->clear();
@@ -241,7 +241,6 @@ void MainWindow::buildPackagesFromGroupList()
   ui->tvPackages->setFocus();
   m_progressWidget->setValue(list->count());
 
-  delete m_cic;
   connect(m_pacmanDatabaseSystemWatcher,
           SIGNAL(directoryChanged(QString)), this, SLOT(metaBuildPackageList()));
 
@@ -268,6 +267,8 @@ void MainWindow::_deleteStandardItemModel(QStandardItemModel * sim)
 void MainWindow::buildPackageList()
 {
   //This variable counts how many octopi* packages we have installed :-)
+  CPUIntensiveComputing cic;
+
   int countOctopi=0;
   m_progressWidget->show();
   disconnect(m_pacmanDatabaseSystemWatcher, SIGNAL(directoryChanged(QString)), this, SLOT(metaBuildPackageList()));
@@ -428,7 +429,6 @@ void MainWindow::buildPackageList()
         sl << "" << StrConstants::getName() << StrConstants::getVersion() << StrConstants::getRepository() << "");
 
   sl.clear();
-  delete m_cic;
 
   m_modelInstalledPackages->setHorizontalHeaderLabels(
         sl << "" << StrConstants::getName() << StrConstants::getVersion() << StrConstants::getRepository() << "");
@@ -523,6 +523,7 @@ void MainWindow::_cloneModelPackages()
  */
 void MainWindow::buildYaourtPackageList()
 {
+  CPUIntensiveComputing cic;
   m_progressWidget->show();
   disconnect(m_pacmanDatabaseSystemWatcher, SIGNAL(directoryChanged(QString)), this, SLOT(metaBuildPackageList()));
 
@@ -646,7 +647,6 @@ void MainWindow::buildYaourtPackageList()
         sl << "" << StrConstants::getName() << StrConstants::getVersion() << StrConstants::getRepository() << "");
 
   sl.clear();
-  delete m_cic;
 
   m_modelInstalledPackages->setHorizontalHeaderLabels(
         sl << "" << StrConstants::getName() << StrConstants::getVersion() << StrConstants::getRepository() << "");

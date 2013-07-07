@@ -29,7 +29,6 @@
 #include "wmhelper.h"
 #include "uihelper.h"
 #include "searchbar.h"
-
 #include <QCloseEvent>
 #include <QMessageBox>
 #include <QTreeView>
@@ -364,7 +363,6 @@ void MainWindow::metaBuildPackageList()
 
     disconnect(&fwPacman, SIGNAL(finished()), this, SLOT(preBuildPackageList()));
     QFuture<QList<PackageListData> *> f;
-    m_cic = new CPUIntensiveComputing();
     f = run(searchPacmanPackages);
     fwPacman.setFuture(f);
     connect(&fwPacman, SIGNAL(finished()), this, SLOT(preBuildPackageList()));
@@ -378,7 +376,6 @@ void MainWindow::metaBuildPackageList()
 
     disconnect(&fwYaourtMeta, SIGNAL(finished()), this, SLOT(preBuildYaourtPackageListMeta()));
     QFuture<QList<PackageListData> *> f;
-    m_cic = new CPUIntensiveComputing();
     f = run(searchYaourtPackages, m_leFilterPackage->text());
     fwYaourtMeta.setFuture(f);
     connect(&fwYaourtMeta, SIGNAL(finished()), this, SLOT(preBuildYaourtPackageListMeta()));
@@ -391,7 +388,6 @@ void MainWindow::metaBuildPackageList()
 
     disconnect(&fwPacmanGroup, SIGNAL(finished()), this, SLOT(preBuildPackagesFromGroupList()));
     QFuture<QList<QString> *> f;
-    m_cic = new CPUIntensiveComputing();
     f = run(searchPacmanPackagesFromGroup, m_cbGroups->currentText());
     fwPacmanGroup.setFuture(f);
     connect(&fwPacmanGroup, SIGNAL(finished()), this, SLOT(preBuildPackagesFromGroupList()));
