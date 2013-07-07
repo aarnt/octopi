@@ -1187,10 +1187,10 @@ void MainWindow::actionsProcessFinished(int exitCode, QProcess::ExitStatus)
           }
         }
       }
-      else if (m_cbGroups->currentText() == StrConstants::getYaourtGroup())
+      /*else if (m_cbGroups->currentText() == StrConstants::getYaourtGroup())
       {
         buildYaourtPackageList();
-      }
+      }*/
       else
       {
         metaBuildPackageList();
