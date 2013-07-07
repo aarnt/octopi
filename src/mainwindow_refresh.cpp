@@ -235,11 +235,11 @@ void MainWindow::buildPackagesFromGroupList()
   ui->tvPackages->scrollTo(maux, QAbstractItemView::PositionAtCenter);
   ui->tvPackages->selectionModel()->setCurrentIndex(maux, QItemSelectionModel::Select);
 
+  //m_progressWidget->setValue(list->count());
   list->clear();
   refreshTabInfo();
   refreshTabFiles();
   ui->tvPackages->setFocus();
-  m_progressWidget->setValue(list->count());
 
   connect(m_pacmanDatabaseSystemWatcher,
           SIGNAL(directoryChanged(QString)), this, SLOT(metaBuildPackageList()));
@@ -270,7 +270,7 @@ void MainWindow::buildPackageList()
   CPUIntensiveComputing cic;
 
   int countOctopi=0;
-  m_progressWidget->show();
+  //m_progressWidget->show();
   disconnect(m_pacmanDatabaseSystemWatcher, SIGNAL(directoryChanged(QString)), this, SLOT(metaBuildPackageList()));
 
   static bool firstTime = true;
@@ -303,23 +303,26 @@ void MainWindow::buildPackageList()
   {
     //Let's get outdatedPackages list again!
     m_outdatedPackageList = Package::getOutdatedPackageList();
+    qApp->processEvents();
     m_numberOfOutdatedPackages = m_outdatedPackageList->count();
   }
 
+  qApp->processEvents();
   QStringList *unrequiredPackageList = Package::getUnrequiredPackageList();
   //QList<PackageListData> *list = Package::getPackageList();
   QList<PackageListData> *list = m_listOfPackages;
   QList<PackageListData> *listForeign = Package::getForeignPackageList();
+  qApp->processEvents();
   QList<PackageListData>::const_iterator itForeign = listForeign->begin();
 
-  m_progressWidget->setRange(0, list->count() + listForeign->count());
+  m_progressWidget->setRange(0, list->count()); //+ listForeign->count());
   m_progressWidget->setValue(0);
 
   int counter=0;
   while (itForeign != listForeign->end())
   {
-    counter++;
-    m_progressWidget->setValue(counter);
+    //counter++;
+    //m_progressWidget->setValue(counter);
 
     PackageListData pld = PackageListData(
           itForeign->name, itForeign->repository, itForeign->version,
@@ -330,14 +333,17 @@ void MainWindow::buildPackageList()
     itForeign++;
   }
 
+  m_progressWidget->show();
   QStandardItem *parentItem = m_modelPackages->invisibleRootItem();
   QStandardItem *parentItemInstalledPackages = m_modelInstalledPackages->invisibleRootItem();
   QList<PackageListData>::const_iterator it = list->begin();
   QList<QStandardItem*> lIcons, lNames, lVersions, lRepositories, lDescriptions;
   QList<QStandardItem*> lIcons2, lNames2, lVersions2, lRepositories2, lDescriptions2;
 
+  qApp->processEvents();
   while(it != list->end())
   {
+    qApp->processEvents();
     PackageListData pld = *it;
 
     if (pld.name == "octopi")
@@ -466,9 +472,8 @@ void MainWindow::buildPackageList()
 
   connect(m_pacmanDatabaseSystemWatcher, SIGNAL(directoryChanged(QString)), this, SLOT(metaBuildPackageList()));
 
-  counter = list->count() + listForeign->count();
-  m_progressWidget->setValue(counter);
-  m_progressWidget->close();
+  //counter = list->count() + listForeign->count();
+  //m_progressWidget->setValue(counter);
 
   if (firstTime)
   {
@@ -487,6 +492,7 @@ void MainWindow::buildPackageList()
   }
 
   _cloneModelPackages();
+  m_progressWidget->close();
 }
 
 /*
