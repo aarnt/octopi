@@ -360,7 +360,17 @@ QString MainWindow::getInstalledPackageVersionByName(const QString &pkgName)
  */
 QStandardItem *MainWindow::getAvailablePackage(const QString &pkgName, const int index)
 {
-  QStandardItemModel *sim = m_modelPackagesClone;
+  QStandardItemModel *sim;
+
+  if (m_cbGroups->currentText() == StrConstants::getYaourtGroup())
+  {
+    sim = m_modelPackages;
+  }
+  else
+  {
+    sim = m_modelPackagesClone;
+  }
+
   QList<QStandardItem *> foundItems =
       sim->findItems(pkgName, Qt::MatchExactly, ctn_PACKAGE_NAME_COLUMN);
   QStandardItem *res;

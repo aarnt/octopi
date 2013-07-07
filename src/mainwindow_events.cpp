@@ -163,7 +163,6 @@ void MainWindow::keyPressEvent(QKeyEvent* ke)
     if (m_cbGroups->currentText() == StrConstants::getYaourtGroup() && m_leFilterPackage->hasFocus())
     {
       QFuture<QList<PackageListData> *> f;
-      m_cic = new CPUIntensiveComputing();
       disconnect(&fwYaourt, SIGNAL(finished()), this, SLOT(preBuildYaourtPackageList()));
       f = run(searchYaourtPackages, m_leFilterPackage->text());
       fwYaourt.setFuture(f);
