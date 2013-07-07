@@ -1130,6 +1130,8 @@ void MainWindow::actionsProcessStarted()
 
 /*
  * This SLOT is called when Pacman's process has finished execution
+ *
+ * ATENTION: ALL CALLS TO buildPackageList were changed to metaBuildPackageList !!!
  */
 void MainWindow::actionsProcessFinished(int exitCode, QProcess::ExitStatus)
 {
@@ -1158,7 +1160,7 @@ void MainWindow::actionsProcessFinished(int exitCode, QProcess::ExitStatus)
 
       if (oldIndex == 0)
       {
-        buildPackageList();
+        metaBuildPackageList();
       }
     }
 
@@ -1181,7 +1183,7 @@ void MainWindow::actionsProcessFinished(int exitCode, QProcess::ExitStatus)
 
           if (oldIndex == 0)
           {
-            buildPackageList();
+            metaBuildPackageList();
           }
         }
       }
@@ -1191,7 +1193,7 @@ void MainWindow::actionsProcessFinished(int exitCode, QProcess::ExitStatus)
       }
       else
       {
-        buildPackageList();
+        metaBuildPackageList();
       }
 
       connect(m_pacmanDatabaseSystemWatcher, SIGNAL(directoryChanged(QString)), this, SLOT(metaBuildPackageList()));

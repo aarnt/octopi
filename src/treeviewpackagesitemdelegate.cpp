@@ -81,7 +81,7 @@ bool TreeViewPackagesItemDelegate::helpEvent ( QHelpEvent *event, QAbstractItemV
       QPoint p;
       gPoint = tvPackages->mapToGlobal(event->pos());
       QFuture<QString> f;
-
+      disconnect(&fw, SIGNAL(finished()), this, SLOT(execToolTip()));
       f = run(showPackageInfo, si->text());
       fw.setFuture(f);
       connect(&fw, SIGNAL(finished()), this, SLOT(execToolTip()));
@@ -125,7 +125,7 @@ bool TreeViewPackagesItemDelegate::helpEvent ( QHelpEvent *event, QAbstractItemV
           QPoint p;
           gPoint = tvTransaction->mapToGlobal(event->pos());
           QFuture<QString> f;
-
+          disconnect(&fw, SIGNAL(finished()), this, SLOT(execToolTip()));
           f = run(showPackageInfo, siFound->text());
           fw.setFuture(f);
           connect(&fw, SIGNAL(finished()), this, SLOT(execToolTip()));

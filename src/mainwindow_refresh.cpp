@@ -95,7 +95,7 @@ void MainWindow::refreshComboBoxGroups()
 /*
  * Populates the list of available packages from the given groupName
  */
-void MainWindow::buildPackagesFromGroupList(const QString &groupName)
+void MainWindow::buildPackagesFromGroupList()
 {
   m_progressWidget->show();
 
@@ -141,7 +141,8 @@ void MainWindow::buildPackagesFromGroupList(const QString &groupName)
   m_modelInstalledPackagesFromGroup->clear();
 
   QStringList sl;
-  QList<QString> *list = Package::getPackagesOfGroup(groupName);
+  //QList<QString> *list = Package::getPackagesOfGroup(groupName);
+  QList<QString> *list = m_listOfPackagesFromGroup;
 
   QStandardItem *parentItemPackagesFromGroup = m_modelPackagesFromGroup->invisibleRootItem();
   QStandardItem *parentItemInstalledPackagesFromGroup = m_modelInstalledPackagesFromGroup->invisibleRootItem();
@@ -240,6 +241,7 @@ void MainWindow::buildPackagesFromGroupList(const QString &groupName)
   ui->tvPackages->setFocus();
   m_progressWidget->setValue(list->count());
 
+  delete m_cic;
   connect(m_pacmanDatabaseSystemWatcher,
           SIGNAL(directoryChanged(QString)), this, SLOT(metaBuildPackageList()));
 
@@ -271,9 +273,6 @@ void MainWindow::buildPackageList()
   disconnect(m_pacmanDatabaseSystemWatcher, SIGNAL(directoryChanged(QString)), this, SLOT(metaBuildPackageList()));
 
   static bool firstTime = true;
-  timer->stop();
-
-  CPUIntensiveComputing *cic = new CPUIntensiveComputing();
 
   //Refresh the list of Group names
   refreshComboBoxGroups();
@@ -307,7 +306,8 @@ void MainWindow::buildPackageList()
   }
 
   QStringList *unrequiredPackageList = Package::getUnrequiredPackageList();
-  QList<PackageListData> *list = Package::getPackageList();
+  //QList<PackageListData> *list = Package::getPackageList();
+  QList<PackageListData> *list = m_listOfPackages;
   QList<PackageListData> *listForeign = Package::getForeignPackageList();
   QList<PackageListData>::const_iterator itForeign = listForeign->begin();
 
@@ -428,7 +428,7 @@ void MainWindow::buildPackageList()
         sl << "" << StrConstants::getName() << StrConstants::getVersion() << StrConstants::getRepository() << "");
 
   sl.clear();
-  delete cic;
+  delete m_cic;
 
   m_modelInstalledPackages->setHorizontalHeaderLabels(
         sl << "" << StrConstants::getName() << StrConstants::getVersion() << StrConstants::getRepository() << "");
@@ -485,6 +485,8 @@ void MainWindow::buildPackageList()
       doSystemUpgrade(true);
     }
   }
+
+  _cloneModelPackages();
 }
 
 /*
@@ -524,9 +526,9 @@ void MainWindow::buildYaourtPackageList()
   m_progressWidget->show();
   disconnect(m_pacmanDatabaseSystemWatcher, SIGNAL(directoryChanged(QString)), this, SLOT(metaBuildPackageList()));
 
-  CPUIntensiveComputing *cic = new CPUIntensiveComputing();
+  //CPUIntensiveComputing *cic = new CPUIntensiveComputing();
 
-  _cloneModelPackages();
+  //_cloneModelPackages();
   _deleteStandardItemModel(m_modelPackages);
   _deleteStandardItemModel(m_modelPackagesFromGroup);
   _deleteStandardItemModel(m_modelInstalledPackages);
@@ -548,8 +550,8 @@ void MainWindow::buildYaourtPackageList()
 
   QStringList sl;
   QStringList *unrequiredPackageList = Package::getUnrequiredPackageList();
-  QString searchString = m_leFilterPackage->text();
-  QList<PackageListData> *list = Package::getYaourtPackageList(searchString);
+  //QString searchString = m_leFilterPackage->text();
+  QList<PackageListData> *list = m_listOfYaourtPackages;
 
   m_progressWidget->setRange(0, list->count());
   m_progressWidget->setValue(0);
@@ -644,7 +646,7 @@ void MainWindow::buildYaourtPackageList()
         sl << "" << StrConstants::getName() << StrConstants::getVersion() << StrConstants::getRepository() << "");
 
   sl.clear();
-  delete cic;
+  delete m_cic;
 
   m_modelInstalledPackages->setHorizontalHeaderLabels(
         sl << "" << StrConstants::getName() << StrConstants::getVersion() << StrConstants::getRepository() << "");
@@ -681,36 +683,6 @@ void MainWindow::buildYaourtPackageList()
   counter = list->count();
   m_progressWidget->setValue(counter);
   m_progressWidget->close();
-}
-
-/*
- * Decides which SLOT to call: buildPackageList or buildPackagesFromGroupList
- */
-void MainWindow::metaBuildPackageList()
-{
-  qApp->processEvents();
-  if (m_cbGroups->currentIndex() == 0)
-  {
-    ui->tvPackages->setSelectionMode(QAbstractItemView::ExtendedSelection);
-    toggleSystemActions(true);
-    connect(m_leFilterPackage, SIGNAL(textChanged(QString)), this, SLOT(reapplyPackageFilter()));
-    buildPackageList();
-  }
-  else if (m_cbGroups->currentText() == StrConstants::getYaourtGroup())
-  {
-    ui->tvPackages->setSelectionMode(QAbstractItemView::SingleSelection);
-    toggleSystemActions(false);
-    disconnect(m_leFilterPackage, SIGNAL(textChanged(QString)), this, SLOT(reapplyPackageFilter()));
-    clearStatusBar();
-    buildYaourtPackageList();
-  }
-  else
-  {
-    ui->tvPackages->setSelectionMode(QAbstractItemView::ExtendedSelection);
-    toggleSystemActions(true);
-    connect(m_leFilterPackage, SIGNAL(textChanged(QString)), this, SLOT(reapplyPackageFilter()));
-    buildPackagesFromGroupList(m_cbGroups->currentText());
-  }
 }
 
 /*

@@ -43,6 +43,7 @@ class QProgressBar;
 class QTextBrowser;
 class QMenu;
 class SearchLineEdit;
+class CPUIntensiveComputing;
 
 //Column indices for Package's treeview
 const int ctn_PACKAGE_ICON_COLUMN(0);
@@ -99,6 +100,8 @@ protected:
 private:
   Ui::MainWindow *ui;
 
+  CPUIntensiveComputing *m_cic;
+
   UnixCommand *m_unixCommand;
   bool m_initializationCompleted;
 
@@ -133,6 +136,15 @@ private:
 
   //This model provides the list of pending actions of a transaction
   QStandardItemModel *m_modelTransaction;
+
+  //This member holds the result list of Yaourt packages searched by the user
+  QList<PackageListData> *m_listOfYaourtPackages;
+
+  //This member holds the list of Pacman packages available
+  QList<PackageListData> *m_listOfPackages;
+
+  //This member holds the list of Pacman packages from the selected group
+  QList<QString> *m_listOfPackagesFromGroup;
 
   //This member holds the target list retrieved by the pacman command which will be executed
   QStringList *m_targets;
@@ -271,11 +283,15 @@ private slots:
 
   void _deleteStandardItemModel(QStandardItemModel * sim);
 
-  void buildPackagesFromGroupList(const QString &groupName);
+  void buildPackagesFromGroupList();
   void buildPackageList();
   void metaBuildPackageList();
 
   void _cloneModelPackages();
+  void preBuildPackageList();
+  void preBuildPackagesFromGroupList();
+  void preBuildYaourtPackageList();
+  void preBuildYaourtPackageListMeta();
   void buildYaourtPackageList();
 
   void headerViewPackageListSortIndicatorClicked(int col, Qt::SortOrder order);

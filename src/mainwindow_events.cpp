@@ -29,6 +29,7 @@
 #include "wmhelper.h"
 #include "uihelper.h"
 #include "searchbar.h"
+
 #include <QCloseEvent>
 #include <QMessageBox>
 #include <QTreeView>
@@ -36,6 +37,15 @@
 #include <QStandardItem>
 #include <QSortFilterProxyModel>
 #include <QTextBrowser>
+#include <QFutureWatcher>
+#include <QtConcurrentRun>
+
+QFutureWatcher<QList<PackageListData> *> fwPacman;
+QFutureWatcher<QList<QString> *> fwPacmanGroup;
+QFutureWatcher<QList<PackageListData> *> fwYaourt;
+QFutureWatcher<QList<PackageListData> *> fwYaourtMeta;
+
+using namespace QtConcurrent;
 
 /*
  * Before we close the application, let's confirm if there is a pending transaction...
@@ -79,6 +89,72 @@ void MainWindow::closeEvent(QCloseEvent *event)
 }
 
 /*
+ * Helper method to deal with the QFutureWatcher result before calling
+ * Yaourt package list building method
+ */
+void MainWindow::preBuildYaourtPackageList()
+{
+  m_listOfYaourtPackages = fwYaourt.result();
+  buildYaourtPackageList();
+}
+
+/*
+ * Helper method to deal with the QFutureWatcher result before calling
+ * Yaourt package list building method
+ */
+void MainWindow::preBuildYaourtPackageListMeta()
+{
+  m_listOfYaourtPackages = fwYaourtMeta.result();
+  buildYaourtPackageList();
+}
+
+/*
+ * Helper method to deal with the QFutureWatcher result before calling
+ * Pacman package list building method
+ */
+void MainWindow::preBuildPackageList()
+{
+  if (m_listOfPackages) m_listOfPackages->clear();
+  m_listOfPackages = fwPacman.result();
+  buildPackageList();
+}
+
+/*
+ * Helper method to deal with the QFutureWatcher result before calling
+ * Pacman packages from group list building method
+ */
+void MainWindow::preBuildPackagesFromGroupList()
+{
+  if (m_listOfPackagesFromGroup) m_listOfPackagesFromGroup->clear();
+  m_listOfPackagesFromGroup = fwPacmanGroup.result();
+  buildPackagesFromGroupList();
+}
+
+/*
+ * Starts the non blocking search for Pacman packages...
+ */
+QList<PackageListData> * searchPacmanPackages()
+{
+  return Package::getPackageList();
+}
+
+/*
+ * Starts the non blocking search for Pacman packages...
+ */
+QList<QString> * searchPacmanPackagesFromGroup(QString groupName)
+{
+  return Package::getPackagesOfGroup(groupName);
+}
+
+/*
+ * Starts the non blocking search for Yaourt packages...
+ */
+QList<PackageListData> * searchYaourtPackages(QString searchString)
+{
+  return Package::getYaourtPackageList(searchString);
+}
+
+/*
  * This Event method is called whenever the user presses a key
  */
 void MainWindow::keyPressEvent(QKeyEvent* ke)
@@ -87,7 +163,12 @@ void MainWindow::keyPressEvent(QKeyEvent* ke)
   {
     if (m_cbGroups->currentText() == StrConstants::getYaourtGroup() && m_leFilterPackage->hasFocus())
     {
-      buildYaourtPackageList();
+      QFuture<QList<PackageListData> *> f;
+      m_cic = new CPUIntensiveComputing();
+      disconnect(&fwYaourt, SIGNAL(finished()), this, SLOT(preBuildYaourtPackageList()));
+      f = run(searchYaourtPackages, m_leFilterPackage->text());
+      fwYaourt.setFuture(f);
+      connect(&fwYaourt, SIGNAL(finished()), this, SLOT(preBuildYaourtPackageList()));
     }
     else
     {
@@ -268,4 +349,51 @@ void MainWindow::keyReleaseEvent(QKeyEvent *ke)
   }
 
   else ke->ignore();
+}
+
+/*
+ * Decides which SLOT to call: buildPackageList or buildPackagesFromGroupList
+ */
+void MainWindow::metaBuildPackageList()
+{
+  if (m_cbGroups->count() == 0 || m_cbGroups->currentIndex() == 0)
+  {
+    ui->tvPackages->setSelectionMode(QAbstractItemView::ExtendedSelection);
+    toggleSystemActions(true);
+    connect(m_leFilterPackage, SIGNAL(textChanged(QString)), this, SLOT(reapplyPackageFilter()));
+
+    disconnect(&fwPacman, SIGNAL(finished()), this, SLOT(preBuildPackageList()));
+    QFuture<QList<PackageListData> *> f;
+    m_cic = new CPUIntensiveComputing();
+    f = run(searchPacmanPackages);
+    fwPacman.setFuture(f);
+    connect(&fwPacman, SIGNAL(finished()), this, SLOT(preBuildPackageList()));
+  }
+  else if (m_cbGroups->currentText() == StrConstants::getYaourtGroup())
+  {
+    ui->tvPackages->setSelectionMode(QAbstractItemView::SingleSelection);
+    toggleSystemActions(false);
+    disconnect(m_leFilterPackage, SIGNAL(textChanged(QString)), this, SLOT(reapplyPackageFilter()));
+    clearStatusBar();
+
+    disconnect(&fwYaourtMeta, SIGNAL(finished()), this, SLOT(preBuildYaourtPackageListMeta()));
+    QFuture<QList<PackageListData> *> f;
+    m_cic = new CPUIntensiveComputing();
+    f = run(searchYaourtPackages, m_leFilterPackage->text());
+    fwYaourtMeta.setFuture(f);
+    connect(&fwYaourtMeta, SIGNAL(finished()), this, SLOT(preBuildYaourtPackageListMeta()));
+  }
+  else
+  {
+    ui->tvPackages->setSelectionMode(QAbstractItemView::ExtendedSelection);
+    toggleSystemActions(true);
+    connect(m_leFilterPackage, SIGNAL(textChanged(QString)), this, SLOT(reapplyPackageFilter()));
+
+    disconnect(&fwPacmanGroup, SIGNAL(finished()), this, SLOT(preBuildPackagesFromGroupList()));
+    QFuture<QList<QString> *> f;
+    m_cic = new CPUIntensiveComputing();
+    f = run(searchPacmanPackagesFromGroup, m_cbGroups->currentText());
+    fwPacmanGroup.setFuture(f);
+    connect(&fwPacmanGroup, SIGNAL(finished()), this, SLOT(preBuildPackagesFromGroupList()));
+  }
 }

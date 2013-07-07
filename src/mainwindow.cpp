@@ -29,6 +29,7 @@
 #include "searchbar.h"
 #include "packagecontroller.h"
 #include "pacmanhelperclient.h"
+#include <iostream>
 
 #include <QSortFilterProxyModel>
 #include <QStandardItemModel>
@@ -41,7 +42,6 @@
 #include <QComboBox>
 #include <QModelIndex>
 #include <QDesktopServices>
-#include <iostream>
 
 /*
  * MainWindow's constructor: basic UI init
@@ -54,6 +54,10 @@ MainWindow::MainWindow(QWidget *parent) :
   m_indFoundFilesInPkgFileList = 0;
   m_callSystemUpgrade = false;
   m_initializationCompleted=false;
+  m_cbGroups = 0;
+  m_listOfPackages = 0;
+  m_listOfPackagesFromGroup = 0;
+
   ui->setupUi(this);
 }
 
@@ -113,9 +117,10 @@ void MainWindow::show()
     QMainWindow::show();
 
     /* This timer is needed to beautify GUI initialization... */
-    timer = new QTimer();
-    connect(timer, SIGNAL(timeout()), this, SLOT(buildPackageList()));
-    timer->start(0.1);
+    //timer = new QTimer();
+    //connect(timer, SIGNAL(timeout()), this, SLOT(metaBuildPackageList()));
+    //timer->start(0.1);
+    metaBuildPackageList();
 
     m_pacmanHelperTimer = new QTimer();
     connect(m_pacmanHelperTimer, SIGNAL(timeout()), this, SLOT(pacmanHelperTimerTimeout()));
@@ -355,16 +360,7 @@ QString MainWindow::getInstalledPackageVersionByName(const QString &pkgName)
  */
 QStandardItem *MainWindow::getAvailablePackage(const QString &pkgName, const int index)
 {
-  QStandardItemModel *sim;
-  if(m_modelPackages->rowCount() > 0)
-  {
-    sim = m_modelPackages;
-  }
-  else if(m_modelPackagesClone->rowCount() > 0)
-  {
-    sim = m_modelPackagesClone;
-  }
-
+  QStandardItemModel *sim = m_modelPackagesClone;
   QList<QStandardItem *> foundItems =
       sim->findItems(pkgName, Qt::MatchExactly, ctn_PACKAGE_NAME_COLUMN);
   QStandardItem *res;
