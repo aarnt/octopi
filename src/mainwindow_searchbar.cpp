@@ -152,21 +152,25 @@ void MainWindow::searchBarFindPrevious()
  */
 void MainWindow::searchBarFindNextEx()
 {
-  if (m_indFoundFilesInPkgFileList+1 < m_foundFilesInPkgFileList->count())
-  {
-    m_indFoundFilesInPkgFileList = m_indFoundFilesInPkgFileList + 1;
-  }
-  else
-  {
-    m_indFoundFilesInPkgFileList = 0;
-  }
-
   QTreeView *tvPkgFileList =
     ui->twProperties->widget(ctn_TABINDEX_FILES)->findChild<QTreeView*>("tvPkgFileList");
-  tvPkgFileList->setCurrentIndex(
-        m_foundFilesInPkgFileList->at(m_indFoundFilesInPkgFileList));
-  tvPkgFileList->scrollTo(
-        m_foundFilesInPkgFileList->at(m_indFoundFilesInPkgFileList));
+
+  if (tvPkgFileList && tvPkgFileList->model()->rowCount() > 0 && m_foundFilesInPkgFileList->count() > 0)
+  {
+    if (m_indFoundFilesInPkgFileList+1 < m_foundFilesInPkgFileList->count())
+    {
+      m_indFoundFilesInPkgFileList = m_indFoundFilesInPkgFileList + 1;
+    }
+    else
+    {
+      m_indFoundFilesInPkgFileList = 0;
+    }
+
+    tvPkgFileList->setCurrentIndex(
+          m_foundFilesInPkgFileList->at(m_indFoundFilesInPkgFileList));
+    tvPkgFileList->scrollTo(
+          m_foundFilesInPkgFileList->at(m_indFoundFilesInPkgFileList));
+  }
 }
 
 /*
@@ -174,19 +178,23 @@ void MainWindow::searchBarFindNextEx()
  */
 void MainWindow::searchBarFindPreviousEx()
 {
-  if (m_indFoundFilesInPkgFileList == 0)
-  {
-    m_indFoundFilesInPkgFileList = m_foundFilesInPkgFileList->count()-1;
-  }
-  else
-    m_indFoundFilesInPkgFileList -= 1;
-
   QTreeView *tvPkgFileList =
     ui->twProperties->widget(ctn_TABINDEX_FILES)->findChild<QTreeView*>("tvPkgFileList");
-  tvPkgFileList->setCurrentIndex(
-        m_foundFilesInPkgFileList->at(m_indFoundFilesInPkgFileList));
-  tvPkgFileList->scrollTo(
-        m_foundFilesInPkgFileList->at(m_indFoundFilesInPkgFileList));
+
+  if (tvPkgFileList && tvPkgFileList->model()->rowCount() > 0 && m_foundFilesInPkgFileList->count() > 0)
+  {
+    if (m_indFoundFilesInPkgFileList == 0)
+    {
+      m_indFoundFilesInPkgFileList = m_foundFilesInPkgFileList->count()-1;
+    }
+    else
+      m_indFoundFilesInPkgFileList -= 1;
+
+    tvPkgFileList->setCurrentIndex(
+          m_foundFilesInPkgFileList->at(m_indFoundFilesInPkgFileList));
+    tvPkgFileList->scrollTo(
+          m_foundFilesInPkgFileList->at(m_indFoundFilesInPkgFileList));
+  }
 }
 
 /*

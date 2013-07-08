@@ -147,7 +147,7 @@ void MainWindow::initSystemTrayIcon()
   m_systemTrayIconMenu = new QMenu( this );
   m_systemTrayIconMenu->addAction(ui->actionHelpAbout);
   m_systemTrayIconMenu->addAction(ui->actionExit);
-  m_systemTrayIcon->setContextMenu(m_systemTrayIconMenu);
+  //m_systemTrayIcon->setContextMenu(m_systemTrayIconMenu);
 
   connect ( m_systemTrayIcon , SIGNAL( activated( QSystemTrayIcon::ActivationReason ) ),
             this, SLOT( execSystemTrayActivated ( QSystemTrayIcon::ActivationReason ) ) );
@@ -158,6 +158,8 @@ void MainWindow::initSystemTrayIcon()
  */
 void MainWindow::execSystemTrayActivated(QSystemTrayIcon::ActivationReason ar)
 {
+  if (!m_initializationCompleted) return;
+
   switch (ar)
   {
   case QSystemTrayIcon::Trigger:
@@ -509,7 +511,7 @@ void MainWindow::initActions()
   ui->actionSearchByName->setChecked(true);
   actionGroup->setExclusive(true);
 
-  connect(actionGroup, SIGNAL(selected(QAction*)), this, SLOT(tvPackagesSearchColumnChanged(QAction*)));
+  connect(actionGroup, SIGNAL(triggered(QAction*)), this, SLOT(tvPackagesSearchColumnChanged(QAction*)));
 
   ui->actionOpenDirectory->setIcon(IconHelper::getIconFolder());
 

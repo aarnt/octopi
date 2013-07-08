@@ -27,7 +27,6 @@
 #include "ui_mainwindow.h"
 #include "strconstants.h"
 #include "uihelper.h"
-
 #include <QTimer>
 #include <QLabel>
 #include <QProgressBar>
@@ -35,6 +34,7 @@
 #include <QTextBrowser>
 #include <QStandardItem>
 #include <QSortFilterProxyModel>
+#include <QMutex>
 
 /*
  * If we have some outdated packages, let's put an angry red face icon in this app!
@@ -97,6 +97,8 @@ void MainWindow::refreshComboBoxGroups()
  */
 void MainWindow::buildPackagesFromGroupList()
 {
+  m_mutex->lock();
+
   CPUIntensiveComputing cic;
 
   m_progressWidget->show();
@@ -131,6 +133,7 @@ void MainWindow::buildPackagesFromGroupList()
     refreshTabFiles();
     ui->tvPackages->setFocus();
 
+    m_mutex->unlock();
     return;
   }
 
@@ -245,6 +248,8 @@ void MainWindow::buildPackagesFromGroupList()
           SIGNAL(directoryChanged(QString)), this, SLOT(metaBuildPackageList()));
 
   m_progressWidget->close();
+
+  m_mutex->unlock();
 }
 
 void MainWindow::_deleteStandardItemModel(QStandardItemModel * sim)
@@ -266,6 +271,8 @@ void MainWindow::_deleteStandardItemModel(QStandardItemModel * sim)
  */
 void MainWindow::buildPackageList()
 {
+  m_mutex->lock();
+
   //This variable counts how many octopi* packages we have installed :-)
   CPUIntensiveComputing cic;
 
@@ -489,10 +496,14 @@ void MainWindow::buildPackageList()
     {
       doSystemUpgrade(true);
     }
+
+    m_systemTrayIcon->setContextMenu(m_systemTrayIconMenu);
   }
 
   _cloneModelPackages();
   m_progressWidget->close();
+
+  m_mutex->unlock();
 }
 
 /*
@@ -529,7 +540,9 @@ void MainWindow::_cloneModelPackages()
  */
 void MainWindow::buildYaourtPackageList()
 {
-  CPUIntensiveComputing cic;
+  m_mutex->lock();
+  //m_leFilterPackage->initStyleSheet();
+  //CPUIntensiveComputing cic;
   m_progressWidget->show();
   disconnect(m_pacmanDatabaseSystemWatcher, SIGNAL(directoryChanged(QString)), this, SLOT(metaBuildPackageList()));
 
@@ -684,11 +697,15 @@ void MainWindow::buildYaourtPackageList()
   //Refresh SystemTray icon
   refreshSystemTrayIcon();
 
+  reapplyPackageFilter();
+
   connect(m_pacmanDatabaseSystemWatcher, SIGNAL(directoryChanged(QString)), this, SLOT(metaBuildPackageList()));
 
   counter = list->count();
   m_progressWidget->setValue(counter);
   m_progressWidget->close();
+
+  m_mutex->unlock();
 }
 
 /*
@@ -1087,6 +1104,7 @@ void MainWindow::refreshTabFiles(bool clearContents, bool neverQuit)
 
     if (nonInstalled){
       strSelectedPackage="";
+      _closeTabFilesSearchBar();
       return;
     }
 
@@ -1188,8 +1206,7 @@ void MainWindow::reapplyPackageFilter()
   int numPkgs = m_proxyModelPackages->rowCount();
 
   if (m_leFilterPackage->text() != ""){
-    if (numPkgs > 0)
-      m_leFilterPackage->setFoundStyle();
+    if (numPkgs > 0) m_leFilterPackage->setFoundStyle();
     else m_leFilterPackage->setNotFoundStyle();
   }
   else{
@@ -1197,7 +1214,11 @@ void MainWindow::reapplyPackageFilter()
     m_proxyModelPackages->setFilterRegExp("");
   }
 
-  if (isFilterPackageSelected) m_leFilterPackage->setFocus();
+  if (isFilterPackageSelected || m_proxyModelPackages->rowCount() == 0)
+  {
+    m_leFilterPackage->setFocus();
+  }
+
   m_proxyModelPackages->sort(m_PackageListOrderedCol, m_PackageListSortOrder);
 
   ui->tvPackages->selectionModel()->clear();

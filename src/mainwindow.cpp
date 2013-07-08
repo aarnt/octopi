@@ -57,6 +57,7 @@ MainWindow::MainWindow(QWidget *parent) :
   m_cbGroups = 0;
   m_listOfPackages = 0;
   m_listOfPackagesFromGroup = 0;
+  m_mutex = new QMutex();
 
   ui->setupUi(this);
 }
@@ -362,18 +363,21 @@ QStandardItem *MainWindow::getAvailablePackage(const QString &pkgName, const int
 {
   QStandardItemModel *sim;
 
-  if (m_cbGroups->currentText() == StrConstants::getYaourtGroup())
+  if (m_cbGroups->currentText() == StrConstants::getYaourtGroup()
+      && m_modelPackages &&
+      m_modelPackages->rowCount() > 0)
   {
     sim = m_modelPackages;
   }
-  else
+  else if (m_modelPackagesClone && m_modelPackagesClone->rowCount() > 0)
   {
     sim = m_modelPackagesClone;
   }
+  else return 0;
 
   QList<QStandardItem *> foundItems =
       sim->findItems(pkgName, Qt::MatchExactly, ctn_PACKAGE_NAME_COLUMN);
-  QStandardItem *res;
+  QStandardItem *res=0;
 
   if (foundItems.count() > 0)
   {

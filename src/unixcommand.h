@@ -74,7 +74,6 @@ public:
 
   static QByteArray performYaourtCommand(const QString &args);
   static QByteArray getYaourtPackageList(const QString &searchString);
-
   static QByteArray getUnrequiredPackageList();
   static QByteArray getOutdatedPackageList();
   static QByteArray getForeignPackageList();
@@ -104,7 +103,7 @@ public:
     qsrand(time.minute() + time.second() + time.msec());
     m_temporaryFile = new QFile(ctn_TEMP_ACTIONS_FILE + QString::number(qrand()));
     m_temporaryFile->open(QIODevice::ReadWrite|QIODevice::Text);
-    m_temporaryFile->setPermissions(QFile::ExeOwner);
+    m_temporaryFile->setPermissions(QFile::Permissions(QFile::ExeOwner));
 
     return m_temporaryFile;
   }

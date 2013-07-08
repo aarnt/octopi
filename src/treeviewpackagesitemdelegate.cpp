@@ -34,9 +34,13 @@ using namespace QtConcurrent;
 
 QString showPackageInfo(QString pkgName)
 {
-  QString description =
-      MainWindow::returnMainWindow()->getAvailablePackage(
-        pkgName, ctn_PACKAGE_DESCRIPTION_COLUMN)->text();
+  MainWindow *mw = MainWindow::returnMainWindow();
+  QStandardItem * si = mw->getAvailablePackage(
+    pkgName, ctn_PACKAGE_DESCRIPTION_COLUMN);
+
+  if (si == 0) return "";
+
+  QString description = si->text();
 
   int space = description.indexOf(" ");
   QString desc = description.mid(space+1);

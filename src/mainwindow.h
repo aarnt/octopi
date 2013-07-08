@@ -22,12 +22,14 @@
 #define MAINWINDOW_H
 
 #include "unixcommand.h"
+#include "uihelper.h"
 #include <QApplication>
 #include <QItemSelection>
 #include <QSystemTrayIcon>
 #include <QMainWindow>
 #include <QList>
 #include <QUrl>
+#include <QMutex>
 
 class QTreeView;
 class QSortFilterProxyModel;
@@ -43,7 +45,6 @@ class QProgressBar;
 class QTextBrowser;
 class QMenu;
 class SearchLineEdit;
-class CPUIntensiveComputing;
 
 //Column indices for Package's treeview
 const int ctn_PACKAGE_ICON_COLUMN(0);
@@ -67,27 +68,6 @@ class MainWindow;
 class MainWindow : public QMainWindow
 {
   Q_OBJECT
-
-public:
-  explicit MainWindow(QWidget *parent = 0);
-  ~MainWindow();
-
-  static MainWindow* returnMainWindow()
-  {
-    static MainWindow *w=0;
-    if (w != 0) return w;
-    foreach (QWidget *widget, QApplication::topLevelWidgets())
-    {
-      if (widget->objectName() == "MainWindow")
-        w = (MainWindow*) widget;
-    }
-    return w;
-  }
-
-  QStandardItemModel *getModelPackages(){ return m_modelPackages; }
-  QStandardItem *getAvailablePackage(const QString &pkgName, const int index);
-  void setCallSystemUpgrade();
-  void setRemoveCommand(const QString &removeCommand);
 
 public slots:
   void show();
@@ -148,6 +128,9 @@ private:
 
   //This member holds the target list retrieved by the pacman command which will be executed
   QStringList *m_targets;
+
+  //This member is need to serialize access to some models by different threads
+  QMutex *m_mutex;
 
   QSystemTrayIcon *m_systemTrayIcon;
   QMenu *m_systemTrayIconMenu;
@@ -366,6 +349,29 @@ private slots:
   void searchBarClosedEx();
 
   void outputTextBrowserAnchorClicked(const QUrl & link);
+
+public:
+  explicit MainWindow(QWidget *parent = 0);
+  ~MainWindow();
+
+  static MainWindow* returnMainWindow()
+  {
+    static MainWindow *w=0;
+    if (w != 0) return w;
+    foreach (QWidget *widget, QApplication::topLevelWidgets())
+    {
+      if (widget->objectName() == "MainWindow")
+        w = (MainWindow*) widget;
+    }
+    return w;
+  }
+
+  QStandardItemModel *getModelPackages(){ return m_modelPackages; }
+  QStandardItem *getAvailablePackage(const QString &pkgName, const int index);
+  void setCallSystemUpgrade();
+  void setRemoveCommand(const QString &removeCommand);
+  void mutexLock(){ m_mutex->lock(); }
+  void mutexUnlock(){ m_mutex->unlock(); }
 };
 
 #endif // MAINWINDOW_H

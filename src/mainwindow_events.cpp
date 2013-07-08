@@ -95,6 +95,13 @@ void MainWindow::preBuildYaourtPackageList()
 {
   m_listOfYaourtPackages = fwYaourt.result();
   buildYaourtPackageList();
+
+  delete m_cic;
+
+  if (m_modelPackages->rowCount() == 0)
+  {
+    m_leFilterPackage->setFocus();
+  }
 }
 
 /*
@@ -105,6 +112,13 @@ void MainWindow::preBuildYaourtPackageListMeta()
 {
   m_listOfYaourtPackages = fwYaourtMeta.result();
   buildYaourtPackageList();
+
+  delete m_cic;
+
+  if (m_modelPackages->rowCount() == 0)
+  {
+    m_leFilterPackage->setFocus();
+  }
 }
 
 /*
@@ -164,6 +178,9 @@ void MainWindow::keyPressEvent(QKeyEvent* ke)
     {
       QFuture<QList<PackageListData> *> f;
       disconnect(&fwYaourt, SIGNAL(finished()), this, SLOT(preBuildYaourtPackageList()));
+      ui->actionSearchByDescription->setChecked(true);
+      tvPackagesSearchColumnChanged(ui->actionSearchByDescription);
+      m_cic = new CPUIntensiveComputing();
       f = run(searchYaourtPackages, m_leFilterPackage->text());
       fwYaourt.setFuture(f);
       connect(&fwYaourt, SIGNAL(finished()), this, SLOT(preBuildYaourtPackageList()));
@@ -359,7 +376,7 @@ void MainWindow::metaBuildPackageList()
     ui->tvPackages->setSelectionMode(QAbstractItemView::ExtendedSelection);
     toggleSystemActions(true);
     connect(m_leFilterPackage, SIGNAL(textChanged(QString)), this, SLOT(reapplyPackageFilter()));
-
+    reapplyPackageFilter();
     disconnect(&fwPacman, SIGNAL(finished()), this, SLOT(preBuildPackageList()));
     QFuture<QList<PackageListData> *> f;
     f = run(searchPacmanPackages);
@@ -373,6 +390,9 @@ void MainWindow::metaBuildPackageList()
     disconnect(m_leFilterPackage, SIGNAL(textChanged(QString)), this, SLOT(reapplyPackageFilter()));
     clearStatusBar();
 
+    m_cic = new CPUIntensiveComputing();
+    ui->actionSearchByDescription->setChecked(true);
+    tvPackagesSearchColumnChanged(ui->actionSearchByDescription);
     disconnect(&fwYaourtMeta, SIGNAL(finished()), this, SLOT(preBuildYaourtPackageListMeta()));
     QFuture<QList<PackageListData> *> f;
     f = run(searchYaourtPackages, m_leFilterPackage->text());
@@ -384,7 +404,7 @@ void MainWindow::metaBuildPackageList()
     ui->tvPackages->setSelectionMode(QAbstractItemView::ExtendedSelection);
     toggleSystemActions(true);
     connect(m_leFilterPackage, SIGNAL(textChanged(QString)), this, SLOT(reapplyPackageFilter()));
-
+    reapplyPackageFilter();
     disconnect(&fwPacmanGroup, SIGNAL(finished()), this, SLOT(preBuildPackagesFromGroupList()));
     QFuture<QList<QString> *> f;
     f = run(searchPacmanPackagesFromGroup, m_cbGroups->currentText());
