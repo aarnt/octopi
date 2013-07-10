@@ -34,7 +34,6 @@
 #include <QTextBrowser>
 #include <QStandardItem>
 #include <QSortFilterProxyModel>
-#include <QMutex>
 
 /*
  * If we have some outdated packages, let's put an angry red face icon in this app!
@@ -82,7 +81,7 @@ void MainWindow::refreshComboBoxGroups()
   m_cbGroups->clear();
   m_cbGroups->addItem("<" + StrConstants::getAll() + ">");
 
-  if (UnixCommand::hasTheExecutable("yaourt"))
+  if (m_hasYaourt)
   {
     m_cbGroups->addItem(StrConstants::getYaourtGroup());
   }
@@ -97,8 +96,6 @@ void MainWindow::refreshComboBoxGroups()
  */
 void MainWindow::buildPackagesFromGroupList()
 {
-  m_mutex->lock();
-
   CPUIntensiveComputing cic;
 
   m_progressWidget->show();
@@ -113,8 +110,6 @@ void MainWindow::buildPackagesFromGroupList()
     m_modelInstalledPackagesFromGroup->setHorizontalHeaderLabels(
           sl << "" << StrConstants::getName() << StrConstants::getVersion() << StrConstants::getRepository());
 
-    if (m_leFilterPackage->text() != "") reapplyPackageFilter();
-
     if (ui->actionNonInstalledPackages->isChecked())
     {
       m_proxyModelPackages->setSourceModel(m_modelPackages);
@@ -123,6 +118,8 @@ void MainWindow::buildPackagesFromGroupList()
     {
       m_proxyModelPackages->setSourceModel(m_modelInstalledPackages);
     }
+
+    /*if (m_leFilterPackage->text() != "")*/ reapplyPackageFilter();
 
     QModelIndex maux = m_proxyModelPackages->index(0, 0);
     ui->tvPackages->setCurrentIndex(maux);
@@ -133,7 +130,6 @@ void MainWindow::buildPackagesFromGroupList()
     refreshTabFiles();
     ui->tvPackages->setFocus();
 
-    m_mutex->unlock();
     return;
   }
 
@@ -222,8 +218,6 @@ void MainWindow::buildPackagesFromGroupList()
   //Refresh statusbar widget
   refreshStatusBar();
 
-  if (m_leFilterPackage->text() != "") reapplyPackageFilter();
-
   if (ui->actionNonInstalledPackages->isChecked())
   {
     m_proxyModelPackages->setSourceModel(m_modelPackagesFromGroup);
@@ -232,6 +226,8 @@ void MainWindow::buildPackagesFromGroupList()
   {
     m_proxyModelPackages->setSourceModel(m_modelInstalledPackagesFromGroup);
   }
+
+  /*if (m_leFilterPackage->text() != "")*/ reapplyPackageFilter();
 
   QModelIndex maux = m_proxyModelPackages->index(0, 0);
   ui->tvPackages->setCurrentIndex(maux);
@@ -248,8 +244,6 @@ void MainWindow::buildPackagesFromGroupList()
           SIGNAL(directoryChanged(QString)), this, SLOT(metaBuildPackageList()));
 
   m_progressWidget->close();
-
-  m_mutex->unlock();
 }
 
 void MainWindow::_deleteStandardItemModel(QStandardItemModel * sim)
@@ -271,8 +265,6 @@ void MainWindow::_deleteStandardItemModel(QStandardItemModel * sim)
  */
 void MainWindow::buildPackageList()
 {
-  m_mutex->lock();
-
   //This variable counts how many octopi* packages we have installed :-)
   CPUIntensiveComputing cic;
 
@@ -330,7 +322,6 @@ void MainWindow::buildPackageList()
   {
     //counter++;
     //m_progressWidget->setValue(counter);
-
     PackageListData pld = PackageListData(
           itForeign->name, itForeign->repository, itForeign->version,
           itForeign->name + " " + Package::getInformationDescription(itForeign->name, true),
@@ -502,8 +493,6 @@ void MainWindow::buildPackageList()
 
   _cloneModelPackages();
   m_progressWidget->close();
-
-  m_mutex->unlock();
 }
 
 /*
@@ -540,15 +529,12 @@ void MainWindow::_cloneModelPackages()
  */
 void MainWindow::buildYaourtPackageList()
 {
-  m_mutex->lock();
-  //m_leFilterPackage->initStyleSheet();
-  //CPUIntensiveComputing cic;
+  ui->actionSearchByDescription->setChecked(true);
+  tvPackagesSearchColumnChanged(ui->actionSearchByDescription);
+
   m_progressWidget->show();
   disconnect(m_pacmanDatabaseSystemWatcher, SIGNAL(directoryChanged(QString)), this, SLOT(metaBuildPackageList()));
 
-  //CPUIntensiveComputing *cic = new CPUIntensiveComputing();
-
-  //_cloneModelPackages();
   _deleteStandardItemModel(m_modelPackages);
   _deleteStandardItemModel(m_modelPackagesFromGroup);
   _deleteStandardItemModel(m_modelInstalledPackages);
@@ -570,7 +556,6 @@ void MainWindow::buildYaourtPackageList()
 
   QStringList sl;
   QStringList *unrequiredPackageList = Package::getUnrequiredPackageList();
-  //QString searchString = m_leFilterPackage->text();
   QList<PackageListData> *list = m_listOfYaourtPackages;
 
   m_progressWidget->setRange(0, list->count());
@@ -704,8 +689,6 @@ void MainWindow::buildYaourtPackageList()
   counter = list->count();
   m_progressWidget->setValue(counter);
   m_progressWidget->close();
-
-  m_mutex->unlock();
 }
 
 /*

@@ -29,7 +29,6 @@
 #include <QMainWindow>
 #include <QList>
 #include <QUrl>
-#include <QMutex>
 
 class QTreeView;
 class QSortFilterProxyModel;
@@ -98,6 +97,9 @@ private:
   //Controls the calling of System Upgrade action
   bool m_callSystemUpgrade;
 
+  //Controls if this Linux box has yaourt installed
+  bool m_hasYaourt;
+
   //Holds the remove command to be used: -Rcs/-R/-Rs or whichever the user has choosen
   QString m_removeCommand;
 
@@ -130,7 +132,6 @@ private:
   QStringList *m_targets;
 
   //This member is need to serialize access to some models by different threads
-  QMutex *m_mutex;
 
   QSystemTrayIcon *m_systemTrayIcon;
   QMenu *m_systemTrayIconMenu;
@@ -148,7 +149,6 @@ private:
   int m_PackageListOrderedCol;
   Qt::SortOrder m_PackageListSortOrder;
 
-  QTimer *timer;
   QTimer *m_pacmanHelperTimer; //Triggers the DBus SyncDB technology magic!
 
   QStringList *m_outdatedPackageList;
@@ -370,8 +370,8 @@ public:
   QStandardItem *getAvailablePackage(const QString &pkgName, const int index);
   void setCallSystemUpgrade();
   void setRemoveCommand(const QString &removeCommand);
-  void mutexLock(){ m_mutex->lock(); }
-  void mutexUnlock(){ m_mutex->unlock(); }
+  //void mutexLock(){ m_mutex->lock(); }
+  //void mutexUnlock(){ m_mutex->unlock(); }
 };
 
 #endif // MAINWINDOW_H

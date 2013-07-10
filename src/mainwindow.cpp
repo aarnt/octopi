@@ -57,7 +57,6 @@ MainWindow::MainWindow(QWidget *parent) :
   m_cbGroups = 0;
   m_listOfPackages = 0;
   m_listOfPackagesFromGroup = 0;
-  m_mutex = new QMutex();
 
   ui->setupUi(this);
 }
@@ -117,17 +116,14 @@ void MainWindow::show()
 
     QMainWindow::show();
 
-    /* This timer is needed to beautify GUI initialization... */
-    //timer = new QTimer();
-    //connect(timer, SIGNAL(timeout()), this, SLOT(metaBuildPackageList()));
-    //timer->start(0.1);
     metaBuildPackageList();
 
     m_pacmanHelperTimer = new QTimer();
     connect(m_pacmanHelperTimer, SIGNAL(timeout()), this, SLOT(pacmanHelperTimerTimeout()));
     m_pacmanHelperTimer->start(1000 * 60 * 5); //Five minutes after launching Octopi...
   }
-  else QMainWindow::show();
+  else
+    QMainWindow::show();
 }
 
 /*

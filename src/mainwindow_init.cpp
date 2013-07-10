@@ -51,7 +51,6 @@
 void MainWindow::loadSettings(){
   m_PackageListOrderedCol = SettingsManager::instance()->getPackageListOrderedCol();
   m_PackageListSortOrder = (Qt::SortOrder) SettingsManager::instance()->getPackageListSortOrder();
-  //m_actionIconifyOnStart->setChecked(SettingsManager::instance()->getStartIconified());
 
   ui->tvPackages->header()->setSortIndicator( m_PackageListOrderedCol, m_PackageListSortOrder );
   ui->tvPackages->sortByColumn( m_PackageListOrderedCol, m_PackageListSortOrder );
@@ -192,6 +191,8 @@ void MainWindow::initComboBoxGroups()
   m_cbGroups->setMaxVisibleItems(15);
   m_cbGroups->setStyleSheet(StrConstants::getMenuCSS());
 
+  m_hasYaourt = UnixCommand::hasTheExecutable("yaourt");
+
   connect(m_cbGroups, SIGNAL(currentIndexChanged(QString)), this, SLOT(metaBuildPackageList()));
 }
 
@@ -299,7 +300,7 @@ void MainWindow::initTabTransaction()
   tvTransaction->header()->setMovable(false);
   tvTransaction->setFrameShape(QFrame::NoFrame);
   tvTransaction->setFrameShadow(QFrame::Plain);
-  tvTransaction->setStyleSheet(StrConstants::getTreeViewCSS()); //SettingsManager::getPkgListFontSize()));
+  tvTransaction->setStyleSheet(StrConstants::getTreeViewCSS());
   tvTransaction->expandAll();
 
   m_modelTransaction->setSortRole(0);
@@ -373,7 +374,7 @@ void MainWindow::initPackageTreeView()
   ui->tvPackages->header()->setDefaultAlignment( Qt::AlignLeft );
   ui->tvPackages->header()->setResizeMode( QHeaderView::Fixed );
   ui->tvPackages->setStyleSheet(
-        StrConstants::getTreeViewCSS()); //SettingsManager::getPackagesInDirFontSize()));
+        StrConstants::getTreeViewCSS());
 
   connect(ui->tvPackages->selectionModel(), SIGNAL(selectionChanged(QItemSelection,QItemSelection)),
           this, SLOT(tvPackagesSelectionChanged(QItemSelection,QItemSelection)));
@@ -384,9 +385,6 @@ void MainWindow::initPackageTreeView()
   connect(ui->tvPackages, SIGNAL(customContextMenuRequested(QPoint)), this,
           SLOT(execContextMenuPackages(QPoint)));
   connect(ui->tvPackages, SIGNAL(doubleClicked(QModelIndex)), this, SLOT(onDoubleClickPackageList()));
-
-  //Prepare it for drag operations
-  //tvPackage->setDragEnabled(true);
 }
 
 /*

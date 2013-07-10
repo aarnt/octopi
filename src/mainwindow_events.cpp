@@ -29,6 +29,7 @@
 #include "wmhelper.h"
 #include "uihelper.h"
 #include "searchbar.h"
+
 #include <QCloseEvent>
 #include <QMessageBox>
 #include <QTreeView>
@@ -178,8 +179,6 @@ void MainWindow::keyPressEvent(QKeyEvent* ke)
     {
       QFuture<QList<PackageListData> *> f;
       disconnect(&fwYaourt, SIGNAL(finished()), this, SLOT(preBuildYaourtPackageList()));
-      ui->actionSearchByDescription->setChecked(true);
-      tvPackagesSearchColumnChanged(ui->actionSearchByDescription);
       m_cic = new CPUIntensiveComputing();
       f = run(searchYaourtPackages, m_leFilterPackage->text());
       fwYaourt.setFuture(f);
@@ -296,7 +295,7 @@ void MainWindow::keyPressEvent(QKeyEvent* ke)
     }
   }
   else if(ke->key() == Qt::Key_Y && ke->modifiers() == (Qt::ShiftModifier|Qt::ControlModifier)
-          && UnixCommand::hasTheExecutable("yaourt"))
+          && m_hasYaourt)
   {
     //The user wants to go to fake "Yaourt" group
     if (m_cbGroups->currentText() != StrConstants::getYaourtGroup())
@@ -391,8 +390,6 @@ void MainWindow::metaBuildPackageList()
     clearStatusBar();
 
     m_cic = new CPUIntensiveComputing();
-    ui->actionSearchByDescription->setChecked(true);
-    tvPackagesSearchColumnChanged(ui->actionSearchByDescription);
     disconnect(&fwYaourtMeta, SIGNAL(finished()), this, SLOT(preBuildYaourtPackageListMeta()));
     QFuture<QList<PackageListData> *> f;
     f = run(searchYaourtPackages, m_leFilterPackage->text());
