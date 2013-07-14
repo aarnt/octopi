@@ -29,7 +29,6 @@
 #include "strconstants.h"
 #include "transactiondialog.h"
 #include <iostream>
-
 #include <QComboBox>
 #include <QProgressBar>
 #include <QMessageBox>
@@ -1185,6 +1184,11 @@ void MainWindow::actionsProcessFinished(int exitCode, QProcess::ExitStatus)
       {
         buildYaourtPackageList();
       }*/
+      else if (m_commandExecuting == ectn_SYSTEM_UPGRADE ||
+               m_commandExecuting == ectn_RUN_SYSTEM_UPGRADE_IN_TERMINAL)
+      {
+        buildPackageList(false);
+      }
       else
       {
         metaBuildPackageList();

@@ -380,10 +380,10 @@ void MainWindow::metaBuildPackageList()
     connect(&g_fwPacmanGroup, SIGNAL(finished()), this, SLOT(preBuildPackagesFromGroupList()));
   }
 
-  if (m_commandExecuting == ectn_SYSTEM_UPGRADE || m_commandExecuting == ectn_RUN_SYSTEM_UPGRADE_IN_TERMINAL)
+  /*if (m_commandExecuting == ectn_SYSTEM_UPGRADE || m_commandExecuting == ectn_RUN_SYSTEM_UPGRADE_IN_TERMINAL)
   {
     if (g_fwPacman.isRunning()) g_fwPacman.waitForFinished();
     else if (g_fwYaourtMeta.isRunning()) g_fwYaourtMeta.waitForFinished();
     else if (g_fwPacmanGroup.isRunning()) g_fwPacmanGroup.waitForFinished();
-  }
+  }*/
 }

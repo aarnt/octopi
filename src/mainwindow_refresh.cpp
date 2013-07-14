@@ -263,7 +263,7 @@ void MainWindow::_deleteStandardItemModel(QStandardItemModel * sim)
  *
  * It's called Only: when the selected group is <All> !
  */
-void MainWindow::buildPackageList()
+void MainWindow::buildPackageList(bool nonBlocking)
 {
   //This variable counts how many octopi* packages we have installed :-)
   CPUIntensiveComputing cic;
@@ -308,8 +308,14 @@ void MainWindow::buildPackageList()
 
   qApp->processEvents();
   QStringList *unrequiredPackageList = Package::getUnrequiredPackageList();
-  //QList<PackageListData> *list = Package::getPackageList();
-  QList<PackageListData> *list = m_listOfPackages;
+
+  QList<PackageListData> *list;
+
+  if(nonBlocking)
+    list = m_listOfPackages;
+  else
+    list = Package::getPackageList();
+
   QList<PackageListData> *listForeign = Package::getForeignPackageList();
   qApp->processEvents();
   QList<PackageListData>::const_iterator itForeign = listForeign->begin();
