@@ -1,3 +1,7 @@
+0.1.9.1
+  Important bugfixes to deal with multithreaded code.
+  Added a "globals.h/.cpp" file to group QFutureWatcher globals.
+
 0.1.9
   Added yaourt support.
   Updated most of the translations.
