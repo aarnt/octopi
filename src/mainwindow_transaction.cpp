@@ -29,6 +29,7 @@
 #include "strconstants.h"
 #include "transactiondialog.h"
 #include <iostream>
+
 #include <QComboBox>
 #include <QProgressBar>
 #include <QMessageBox>
@@ -594,6 +595,7 @@ void MainWindow::doSystemUpgrade(bool syncDatabase)
       {
         m_commandExecuting = ectn_RUN_SYSTEM_UPGRADE_IN_TERMINAL;
         m_unixCommand->runCommandInTerminal(m_lastCommandList);
+        m_commandQueued = ectn_NONE;
       }
     }
   }
@@ -1018,23 +1020,11 @@ void MainWindow::toggleTransactionActions(const bool value)
   ui->actionInstall->setEnabled(value);
   ui->actionRemove->setEnabled(value);
   ui->actionSyncPackages->setEnabled(value);
-
-  /*if (value == false)
-  {
-    ui->actionSystemUpgrade->setEnabled(false);
-  }
-  else
-  {
-    //Let's see if we can enable system upgrade
-    QList<PackageListData> * targets = Package::getTargetUpgradeList();
-    if (targets->count() == 0)
-      ui->actionSystemUpgrade->setEnabled(false);
-    else
-      ui->actionSystemUpgrade->setEnabled(true);
-  }*/
-
   ui->actionSystemUpgrade->setEnabled(value);
   ui->actionGetNews->setEnabled(value);
+
+  //We have to toggle the combobox groups as well
+  if (m_initializationCompleted) m_cbGroups->setEnabled(value);
 }
 
 void MainWindow::toggleSystemActions(const bool value)
@@ -1160,7 +1150,7 @@ void MainWindow::actionsProcessFinished(int exitCode, QProcess::ExitStatus)
 
       if (oldIndex == 0)
       {
-        metaBuildPackageList();
+        metaBuildPackageList();        
       }
     }
 
@@ -1227,6 +1217,8 @@ void MainWindow::actionsProcessFinished(int exitCode, QProcess::ExitStatus)
       return;
     }
   }
+
+  //TODO: We have to wait until metaBuildPackageList() returns...
 
   enableTransactionActions();
   if (m_cbGroups->currentText() == StrConstants::getYaourtGroup())

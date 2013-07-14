@@ -197,7 +197,6 @@ private:
   void initTabFiles();
   void initActions();
   void refreshStatusBar();
-
   void clearStatusBar();
 
   //Tab Transaction related methods
@@ -269,6 +268,7 @@ private slots:
   void buildPackagesFromGroupList();
   void buildPackageList();
   void metaBuildPackageList();
+  void onComboGroupsChanged();
 
   void _cloneModelPackages();
   void preBuildPackageList();

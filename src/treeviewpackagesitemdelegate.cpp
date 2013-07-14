@@ -19,6 +19,7 @@
 */
 
 #include "treeviewpackagesitemdelegate.h"
+#include "globals.h"
 #include "package.h"
 #include "mainwindow.h"
 #include "strconstants.h"
@@ -29,36 +30,16 @@
 #include <iostream>
 
 QPoint gPoint;
-QFutureWatcher<QString> fw;
 using namespace QtConcurrent;
-
-QString showPackageInfo(QString pkgName)
-{
-  MainWindow *mw = MainWindow::returnMainWindow();
-  QStandardItem * si = mw->getAvailablePackage(
-    pkgName, ctn_PACKAGE_DESCRIPTION_COLUMN);
-
-  if (si == 0) return "";
-
-  QString description = si->text();
-
-  int space = description.indexOf(" ");
-  QString desc = description.mid(space+1);
-  int size = desc.size();
-  if (desc.size() > 120)
-  {
-    desc.chop(size - 120);
-    desc = desc + " ...";
-  }
-
-  return desc;
-}
 
 TreeViewPackagesItemDelegate::TreeViewPackagesItemDelegate(QObject *parent):
   QStyledItemDelegate(parent)
 {
 }
 
+/*
+ * Called every time user positions mouse over package's treeview items
+ */
 bool TreeViewPackagesItemDelegate::helpEvent ( QHelpEvent *event, QAbstractItemView*,
     const QStyleOptionViewItem&, const QModelIndex &index )
 {
@@ -85,10 +66,10 @@ bool TreeViewPackagesItemDelegate::helpEvent ( QHelpEvent *event, QAbstractItemV
       QPoint p;
       gPoint = tvPackages->mapToGlobal(event->pos());
       QFuture<QString> f;
-      disconnect(&fw, SIGNAL(finished()), this, SLOT(execToolTip()));
+      disconnect(&g_fwToolTip, SIGNAL(finished()), this, SLOT(execToolTip()));
       f = run(showPackageInfo, si->text());
-      fw.setFuture(f);
-      connect(&fw, SIGNAL(finished()), this, SLOT(execToolTip()));
+      g_fwToolTip.setFuture(f);
+      connect(&g_fwToolTip, SIGNAL(finished()), this, SLOT(execToolTip()));
     }
     else return false;
   }
@@ -129,10 +110,10 @@ bool TreeViewPackagesItemDelegate::helpEvent ( QHelpEvent *event, QAbstractItemV
           QPoint p;
           gPoint = tvTransaction->mapToGlobal(event->pos());
           QFuture<QString> f;
-          disconnect(&fw, SIGNAL(finished()), this, SLOT(execToolTip()));
+          disconnect(&g_fwToolTip, SIGNAL(finished()), this, SLOT(execToolTip()));
           f = run(showPackageInfo, siFound->text());
-          fw.setFuture(f);
-          connect(&fw, SIGNAL(finished()), this, SLOT(execToolTip()));
+          g_fwToolTip.setFuture(f);
+          connect(&g_fwToolTip, SIGNAL(finished()), this, SLOT(execToolTip()));
         }
       }
       else
@@ -145,13 +126,16 @@ bool TreeViewPackagesItemDelegate::helpEvent ( QHelpEvent *event, QAbstractItemV
   return true;
 }
 
+/*
+ * When the tooltip QFuture method is finished, we show the selected tooltip to the user
+ */
 void TreeViewPackagesItemDelegate::execToolTip()
 {
-  if (fw.result().isEmpty())
+  if (g_fwToolTip.result().isEmpty())
     return;
 
   gPoint.setX(gPoint.x() + 25);
 	gPoint.setY(gPoint.y() + 25);
 
-  QToolTip::showText(gPoint, fw.result());
+  QToolTip::showText(gPoint, g_fwToolTip.result());
 }

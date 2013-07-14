@@ -193,7 +193,20 @@ void MainWindow::initComboBoxGroups()
 
   m_hasYaourt = UnixCommand::hasTheExecutable("yaourt");
 
+  connect(m_cbGroups, SIGNAL(currentIndexChanged(QString)), this, SLOT(onComboGroupsChanged()));
   connect(m_cbGroups, SIGNAL(currentIndexChanged(QString)), this, SLOT(metaBuildPackageList()));
+}
+
+/*
+ * Whenever user changes the Groups combobox, this method will be triggered...
+ */
+void MainWindow::onComboGroupsChanged()
+{
+  if (m_cbGroups->currentIndex() == 0)
+  {
+    ui->actionSearchByName->setChecked(true);
+    tvPackagesSearchColumnChanged(ui->actionSearchByName);
+  }
 }
 
 /*
@@ -478,7 +491,6 @@ void MainWindow::initTabOutput()
   text->setObjectName("textOutputEdit");
   text->setReadOnly(true);
   text->setOpenLinks(false);
-  //text->setOpenExternalLinks(true);
   text->setFrameShape(QFrame::NoFrame);
   text->setFrameShadow(QFrame::Plain);
 

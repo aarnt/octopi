@@ -29,7 +29,7 @@
 #include "wmhelper.h"
 #include "uihelper.h"
 #include "searchbar.h"
-
+#include "globals.h"
 #include <QCloseEvent>
 #include <QMessageBox>
 #include <QTreeView>
@@ -39,11 +39,6 @@
 #include <QTextBrowser>
 #include <QFutureWatcher>
 #include <QtConcurrentRun>
-
-QFutureWatcher<QList<PackageListData> *> fwPacman;
-QFutureWatcher<QList<QString> *> fwPacmanGroup;
-QFutureWatcher<QList<PackageListData> *> fwYaourt;
-QFutureWatcher<QList<PackageListData> *> fwYaourtMeta;
 
 using namespace QtConcurrent;
 
@@ -94,7 +89,7 @@ void MainWindow::closeEvent(QCloseEvent *event)
  */
 void MainWindow::preBuildYaourtPackageList()
 {
-  m_listOfYaourtPackages = fwYaourt.result();
+  m_listOfYaourtPackages = g_fwYaourt.result();
   buildYaourtPackageList();
 
   delete m_cic;
@@ -111,7 +106,7 @@ void MainWindow::preBuildYaourtPackageList()
  */
 void MainWindow::preBuildYaourtPackageListMeta()
 {
-  m_listOfYaourtPackages = fwYaourtMeta.result();
+  m_listOfYaourtPackages = g_fwYaourtMeta.result();
   buildYaourtPackageList();
 
   delete m_cic;
@@ -129,7 +124,7 @@ void MainWindow::preBuildYaourtPackageListMeta()
 void MainWindow::preBuildPackageList()
 {
   if (m_listOfPackages) m_listOfPackages->clear();
-  m_listOfPackages = fwPacman.result();
+  m_listOfPackages = g_fwPacman.result();
   buildPackageList();
 }
 
@@ -140,32 +135,8 @@ void MainWindow::preBuildPackageList()
 void MainWindow::preBuildPackagesFromGroupList()
 {
   if (m_listOfPackagesFromGroup) m_listOfPackagesFromGroup->clear();
-  m_listOfPackagesFromGroup = fwPacmanGroup.result();
+  m_listOfPackagesFromGroup = g_fwPacmanGroup.result();
   buildPackagesFromGroupList();
-}
-
-/*
- * Starts the non blocking search for Pacman packages...
- */
-QList<PackageListData> * searchPacmanPackages()
-{
-  return Package::getPackageList();
-}
-
-/*
- * Starts the non blocking search for Pacman packages...
- */
-QList<QString> * searchPacmanPackagesFromGroup(QString groupName)
-{
-  return Package::getPackagesOfGroup(groupName);
-}
-
-/*
- * Starts the non blocking search for Yaourt packages...
- */
-QList<PackageListData> * searchYaourtPackages(QString searchString)
-{
-  return Package::getYaourtPackageList(searchString);
 }
 
 /*
@@ -178,11 +149,11 @@ void MainWindow::keyPressEvent(QKeyEvent* ke)
     if (m_cbGroups->currentText() == StrConstants::getYaourtGroup() && m_leFilterPackage->hasFocus())
     {
       QFuture<QList<PackageListData> *> f;
-      disconnect(&fwYaourt, SIGNAL(finished()), this, SLOT(preBuildYaourtPackageList()));
+      disconnect(&g_fwYaourt, SIGNAL(finished()), this, SLOT(preBuildYaourtPackageList()));
       m_cic = new CPUIntensiveComputing();
       f = run(searchYaourtPackages, m_leFilterPackage->text());
-      fwYaourt.setFuture(f);
-      connect(&fwYaourt, SIGNAL(finished()), this, SLOT(preBuildYaourtPackageList()));
+      g_fwYaourt.setFuture(f);
+      connect(&g_fwYaourt, SIGNAL(finished()), this, SLOT(preBuildYaourtPackageList()));
     }
     else
     {
@@ -376,11 +347,11 @@ void MainWindow::metaBuildPackageList()
     toggleSystemActions(true);
     connect(m_leFilterPackage, SIGNAL(textChanged(QString)), this, SLOT(reapplyPackageFilter()));
     reapplyPackageFilter();
-    disconnect(&fwPacman, SIGNAL(finished()), this, SLOT(preBuildPackageList()));
+    disconnect(&g_fwPacman, SIGNAL(finished()), this, SLOT(preBuildPackageList()));
     QFuture<QList<PackageListData> *> f;
     f = run(searchPacmanPackages);
-    fwPacman.setFuture(f);
-    connect(&fwPacman, SIGNAL(finished()), this, SLOT(preBuildPackageList()));
+    g_fwPacman.setFuture(f);
+    connect(&g_fwPacman, SIGNAL(finished()), this, SLOT(preBuildPackageList()));
   }
   else if (m_cbGroups->currentText() == StrConstants::getYaourtGroup())
   {
@@ -390,11 +361,11 @@ void MainWindow::metaBuildPackageList()
     clearStatusBar();
 
     m_cic = new CPUIntensiveComputing();
-    disconnect(&fwYaourtMeta, SIGNAL(finished()), this, SLOT(preBuildYaourtPackageListMeta()));
+    disconnect(&g_fwYaourtMeta, SIGNAL(finished()), this, SLOT(preBuildYaourtPackageListMeta()));
     QFuture<QList<PackageListData> *> f;
     f = run(searchYaourtPackages, m_leFilterPackage->text());
-    fwYaourtMeta.setFuture(f);
-    connect(&fwYaourtMeta, SIGNAL(finished()), this, SLOT(preBuildYaourtPackageListMeta()));
+    g_fwYaourtMeta.setFuture(f);
+    connect(&g_fwYaourtMeta, SIGNAL(finished()), this, SLOT(preBuildYaourtPackageListMeta()));
   }
   else
   {
@@ -402,10 +373,17 @@ void MainWindow::metaBuildPackageList()
     toggleSystemActions(true);
     connect(m_leFilterPackage, SIGNAL(textChanged(QString)), this, SLOT(reapplyPackageFilter()));
     reapplyPackageFilter();
-    disconnect(&fwPacmanGroup, SIGNAL(finished()), this, SLOT(preBuildPackagesFromGroupList()));
+    disconnect(&g_fwPacmanGroup, SIGNAL(finished()), this, SLOT(preBuildPackagesFromGroupList()));
     QFuture<QList<QString> *> f;
     f = run(searchPacmanPackagesFromGroup, m_cbGroups->currentText());
-    fwPacmanGroup.setFuture(f);
-    connect(&fwPacmanGroup, SIGNAL(finished()), this, SLOT(preBuildPackagesFromGroupList()));
+    g_fwPacmanGroup.setFuture(f);
+    connect(&g_fwPacmanGroup, SIGNAL(finished()), this, SLOT(preBuildPackagesFromGroupList()));
+  }
+
+  if (m_commandExecuting == ectn_SYSTEM_UPGRADE || m_commandExecuting == ectn_RUN_SYSTEM_UPGRADE_IN_TERMINAL)
+  {
+    if (g_fwPacman.isRunning()) g_fwPacman.waitForFinished();
+    else if (g_fwYaourtMeta.isRunning()) g_fwYaourtMeta.waitForFinished();
+    else if (g_fwPacmanGroup.isRunning()) g_fwPacmanGroup.waitForFinished();
   }
 }
