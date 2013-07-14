@@ -598,6 +598,10 @@ void MainWindow::doSystemUpgrade(bool syncDatabase)
         m_commandQueued = ectn_NONE;
       }
     }
+    else if (result == QDialogButtonBox::No)
+    {
+      enableTransactionActions();
+    }
   }
 }
 
