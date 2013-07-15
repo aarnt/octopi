@@ -1435,7 +1435,7 @@ void MainWindow::_treatProcessOutput(const QString &pMsg)
     msg.remove(QRegExp("Connecting to deprecated signal.+"));
     msg.remove(QRegExp("QVariant.+"));
     msg.remove(QRegExp("gksu-run.+"));
-    msg.remove(QRegExp("Do you want.+"));
+    msg.remove(QRegExp(":: Do you want.+"));
 
     msg = msg.trimmed();
 
