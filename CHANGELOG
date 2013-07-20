@@ -1,6 +1,7 @@
 0.1.9.1
   Important bugfixes to deal with multithreaded code.
   Added a "globals.h/.cpp" file to group QFutureWatcher globals.
+  Updated style changing code in main.cpp.
   BugFix: when user cancelled a sysupgrade transaction inside a 
 terminal, the package actions remained disabled.
 
