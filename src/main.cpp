@@ -24,6 +24,7 @@
 #include "unixcommand.h"
 #include "wmhelper.h"
 #include <iostream>
+
 #include "QtSolutions/qtsingleapplication.h"
 #include <QtGui>
 
@@ -34,9 +35,19 @@ int main(int argc, char *argv[])
 
   if (!argList->getSwitch("-style"))
   {
-    //if (!WMHelper::isKDERunning())
+    if (WMHelper::isKDERunning())
     {
-      QApplication::setStyle(new QCleanlooksStyle());
+      QApplication::setStyle(new QPlastiqueStyle());
+    }
+    else if (UnixCommand::getLinuxDistro() == ectn_MANJAROLINUX)
+    {
+      QApplication::setStyle(new QGtkStyle());
+    }
+    else
+    {
+      QCleanlooksStyle *qls = new QCleanlooksStyle();
+      qls->setObjectName("cleanLooksStyle");
+      QApplication::setStyle(qls);
     }
   }
 

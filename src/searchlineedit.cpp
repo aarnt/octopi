@@ -8,6 +8,7 @@
 
 #include "searchlineedit.h"
 #include "strconstants.h"
+#include <QApplication>
 #include <QToolButton>
 #include <QStyle>
 
@@ -37,7 +38,15 @@ void SearchLineEdit::resizeEvent(QResizeEvent *event)
 {
   Q_UNUSED(event);
   QSize size = this->mSearchButton->sizeHint();
-  this->mSearchButton->move(5, (this->rect().bottom() + 10 - size.height()) / 2);
+
+  if (qApp->style()->objectName() == "cleanLooksStyle")
+  {
+    this->mSearchButton->move(5, (this->rect().bottom() + 10 - size.height()) / 2);
+  }
+  else
+  {
+    this->mSearchButton->move(5, (this->rect().bottom() /*+ 10*/ - size.height()) / 2);
+  }
 }
 
 void SearchLineEdit::updateSearchButton(const QString &text)

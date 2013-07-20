@@ -131,13 +131,13 @@ void MainWindow::show()
  */
 void MainWindow::pacmanHelperTimerTimeout()
 {
+  m_pacmanHelperTimer->setInterval(1000 * 60 * 60 * 1); //the last number stand for hours
+
   //If Octopi is executing another task, let it finish it first!
   if(m_commandExecuting != ectn_NONE)
   {
     return;
   }
-
-  m_pacmanHelperTimer->setInterval(1000 * 60 * 60 * 1); //the last number stand for hours
 
   disconnect(m_pacmanDatabaseSystemWatcher,
              SIGNAL(directoryChanged(QString)), this, SLOT(metaBuildPackageList()));
@@ -153,6 +153,12 @@ void MainWindow::pacmanHelperTimerTimeout()
  */
 void MainWindow::afterPacmanHelperSyncDatabase()
 {
+  //If Octopi is executing another task, let it finish it first!
+  if(m_commandExecuting != ectn_NONE)
+  {
+    return;
+  }
+
   connect(m_pacmanDatabaseSystemWatcher,
           SIGNAL(directoryChanged(QString)), this, SLOT(metaBuildPackageList()));
 
