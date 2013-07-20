@@ -29,33 +29,26 @@
 
 int main(int argc, char *argv[])
 {
+  bool cleanlooksStyle=false;
+
   ArgumentList *argList = new ArgumentList(argc, argv);
   QApplication::setGraphicsSystem(QLatin1String("raster"));
 
   if (!argList->getSwitch("-style"))
   {
-    if (WMHelper::isKDERunning())
-    {
-      //QApplication::setStyle(new QPlastiqueStyle());
-    }
-    else if (UnixCommand::getLinuxDistro() == ectn_MANJAROLINUX)
-    {
-      QApplication::setStyle(new QGtkStyle());
-    }
-    else
-    {
-      QCleanlooksStyle *cls = new QCleanlooksStyle();
-      cls->setObjectName("cleanlooks");
-      QApplication::setStyle(cls);
-    }
+    cleanlooksStyle=true;
+    //QCleanlooksStyle *cls = new QCleanlooksStyle();
+    //cls->setObjectName("cleanlooks");
+    qApp->setStyle(new QCleanlooksStyle());
   }
   else
   {
     if (argList->contains("cleanlooks", Qt::CaseInsensitive))
     {
-      QCleanlooksStyle *cls = new QCleanlooksStyle();
-      cls->setObjectName("cleanlooks");
-      QApplication::setStyle(cls);
+      cleanlooksStyle=true;
+      //QCleanlooksStyle *cls = new QCleanlooksStyle();
+      //cls->setObjectName("cleanlooks");
+      qApp->setStyle(new QCleanlooksStyle());
     }
   }
 
@@ -96,7 +89,7 @@ int main(int argc, char *argv[])
   }
 
   w.setRemoveCommand(argList->getSwitchArg("-removecmd", "Rcs"));
-
+  w.setCleanLooksStyle(cleanlooksStyle);
   w.show();
 
   QResource::registerResource("./resources.qrc");

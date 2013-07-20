@@ -100,6 +100,9 @@ private:
   //Controls if this Linux box has yaourt installed
   bool m_hasYaourt;
 
+  //Is Octopi using QCleanLooksStyle???
+  bool m_cleanLooksStyle;
+
   //Holds the remove command to be used: -Rcs/-R/-Rs or whichever the user has choosen
   QString m_removeCommand;
 
@@ -370,8 +373,9 @@ public:
   QStandardItem *getAvailablePackage(const QString &pkgName, const int index);
   void setCallSystemUpgrade();
   void setRemoveCommand(const QString &removeCommand);
-  //void mutexLock(){ m_mutex->lock(); }
-  //void mutexUnlock(){ m_mutex->unlock(); }
+
+  void setCleanLooksStyle(bool value){ m_cleanLooksStyle = value; }
+  bool isCleanLooksStyleEnabled(){ return m_cleanLooksStyle; }
 };
 
 #endif // MAINWINDOW_H
