@@ -50,4 +50,5 @@ package() {
 
    #Octopi-notifier file
    install -D -m755 $startdir/notifier/bin/octopi-notifier ${pkgdir}/usr/bin/octopi-notifier
+   install -D -m644 $startdir/octopi-notifier.desktop ${pkgdir}/usr/share/applications/octopi-notifier.desktop
 }
