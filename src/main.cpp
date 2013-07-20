@@ -44,16 +44,18 @@ int main(int argc, char *argv[])
     }
     else
     {
-      QApplication::setStyle(new QCleanlooksStyle());
+      QCleanlooksStyle *cls = new QCleanlooksStyle();
+      cls->setObjectName("cleanlooks");
+      QApplication::setStyle(cls);
     }
   }
   else
   {
     if (argList->contains("cleanlooks", Qt::CaseInsensitive))
     {
-      QCleanlooksStyle *qls = new QCleanlooksStyle();
-      qls->setObjectName("cleanLooksStyle");
-      QApplication::setStyle(qls);
+      QCleanlooksStyle *cls = new QCleanlooksStyle();
+      cls->setObjectName("cleanlooks");
+      QApplication::setStyle(cls);
     }
   }
 
