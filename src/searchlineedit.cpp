@@ -39,7 +39,7 @@ void SearchLineEdit::resizeEvent(QResizeEvent *event)
   Q_UNUSED(event);
   QSize size = this->mSearchButton->sizeHint();
 
-  if (qApp->style()->objectName() == "cleanLooksStyle")
+  if (qApp->style()->objectName() == "cleanlooks")
   {
     this->mSearchButton->move(5, (this->rect().bottom() + 10 - size.height()) / 2);
   }
@@ -128,7 +128,6 @@ QString SearchLineEdit::buttonStyleSheetForCurrentState() const
 
   if (!this->text().isEmpty())
   {
-    //style += "QToolButton:hover { background-image: url(:/resources/images/esf-clear-hover.png); }";
     style += "QToolButton:pressed { background-image: url(:/resources/images/esf-clear-active.png); }";
     this->mSearchButton->setToolTip(StrConstants::getClear());
   }
