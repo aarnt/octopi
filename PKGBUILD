@@ -8,6 +8,10 @@ license=('GPL2')
 install=$pkgname.install
 makedepends=('git')
 depends=('qt4')
+optdepends=('kdesu: for KDE'
+            'gksu: for XFCE, Gnome, LXDE, Cinnamon'
+            'gnome-keyring: for password management'
+            'yaourt: for AUR support')
 provides=('octopi')
 conflicts=('octopi')
 md5sums=()
@@ -50,5 +54,5 @@ package() {
 
    #Octopi-notifier file
    install -D -m755 $startdir/notifier/bin/octopi-notifier ${pkgdir}/usr/bin/octopi-notifier
-   install -D -m644 $startdir/octopi-notifier.desktop ${pkgdir}/usr/share/applications/octopi-notifier.desktop
+   install -D -m644 $startdir/octopi-notifier.desktop ${pkgdir}/etc/xdg/autostart/octopi-notifier.desktop
 }

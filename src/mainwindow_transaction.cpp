@@ -515,6 +515,10 @@ void MainWindow::doSystemUpgrade(bool syncDatabase)
     m_callSystemUpgrade = false;
     return;
   }
+  else if(m_callSystemUpgrade)
+  {
+    refreshDistroNews(true, false);
+  }
 
   qApp->processEvents();
 
