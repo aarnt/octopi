@@ -37,8 +37,6 @@ int main(int argc, char *argv[])
   if (!argList->getSwitch("-style"))
   {
     cleanlooksStyle=true;
-    //QCleanlooksStyle *cls = new QCleanlooksStyle();
-    //cls->setObjectName("cleanlooks");
     qApp->setStyle(new QCleanlooksStyle());
   }
   else
@@ -46,18 +44,28 @@ int main(int argc, char *argv[])
     if (argList->contains("cleanlooks", Qt::CaseInsensitive))
     {
       cleanlooksStyle=true;
-      //QCleanlooksStyle *cls = new QCleanlooksStyle();
-      //cls->setObjectName("cleanlooks");
       qApp->setStyle(new QCleanlooksStyle());
     }
   }
 
   QtSingleApplication app( StrConstants::getApplicationName(), argc, argv );
 
-  //This sends a message just to awake the socket-based QtSinleApplication engine
-  app.sendMessage("ping app...");
+  if (app.isRunning())
+  {
+    if (argList->getSwitch("-hide"))
+    {
+      app.sendMessage("HIDE");
+    }
+    else
+    {
+      app.sendMessage("RAISE");
+    }
 
-  if (app.isRunning()) return 0;
+    return 0;
+  }
+
+  //This sends a message just to awake the socket-based QtSinleApplication engine
+  app.sendMessage("RAISE");
 
   QTranslator appTranslator;
   appTranslator.load(":/resources/translations/octopi_" +

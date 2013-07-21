@@ -1,6 +1,7 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+#include <QString>
 #include <QMainWindow>
 #include <QSystemTrayIcon>
 
@@ -14,6 +15,8 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 public:
     explicit MainWindow(QWidget *parent = 0);
+
+    static bool isAppRunning(const QString &appName, bool justOneInstance=false);
     
 signals:
     
@@ -23,7 +26,10 @@ private slots:
   void afterPacmanHelperSyncDatabase();
   void execSystemTrayActivated(QSystemTrayIcon::ActivationReason);
   void refreshAppIcon();
+
   void runOctopi();
+  void hideOctopi();
+  void exitNotifier();
 
 private:
 

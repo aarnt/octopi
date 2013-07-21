@@ -285,7 +285,7 @@ void QtSingleApplication::setActivationWindow(QWidget* aw, bool activateOnMessag
 {
     actWin = aw;
     if (activateOnMessage)
-        connect(peer, SIGNAL(messageReceived(const QString&)), this, SLOT(activateWindow()));
+        connect(peer, SIGNAL(messageReceived(const QString&)), this, SLOT(activateWindow(const QString&)));
     else
         disconnect(peer, SIGNAL(messageReceived(const QString&)), this, SLOT(activateWindow()));
 }
@@ -317,9 +317,9 @@ QWidget* QtSingleApplication::activationWindow() const
 
   \sa setActivationWindow(), messageReceived(), initialize()
 */
-void QtSingleApplication::activateWindow()
+void QtSingleApplication::activateWindow(const QString &message)
 {
-    if (actWin) {
+  if (actWin && message == "RAISE") {
         actWin->setWindowState(actWin->windowState() & ~Qt::WindowMinimized);
         actWin->raise();
         if (actWin->isHidden())
@@ -327,6 +327,17 @@ void QtSingleApplication::activateWindow()
         else
           actWin->activateWindow();
     }
+  else if (actWin && message == "HIDE") {
+    if (!actWin->isHidden())
+      actWin->hide();
+    else
+    {
+      actWin->setWindowState(actWin->windowState() & ~Qt::WindowMinimized);
+      actWin->raise();
+      if (actWin->isHidden())
+        actWin->show();
+    }
+  }
 }
 
 

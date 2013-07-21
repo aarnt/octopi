@@ -86,7 +86,7 @@ public:
 
 public Q_SLOTS:
     bool sendMessage(const QString &message, int timeout = 5000);
-    void activateWindow();
+    void activateWindow(const QString &message);
 
 
 Q_SIGNALS:

@@ -3,15 +3,7 @@
 
 int main(int argc, char *argv[])
 {
-  QStringList slParam;
-  QProcess proc;
-  slParam << "-C";
-  slParam << "octopi-notifier";
-  proc.start("ps", slParam);
-  proc.waitForFinished();
-  QString out = proc.readAll();
-  proc.close();
-  if (out.count("octopi-notifier")>1) return(-1);
+  if (MainWindow::isAppRunning("octopi-notifier")) return (-1);
 
   QApplication a(argc, argv);
 

@@ -49,7 +49,7 @@ void MainWindow::initSystemTrayIcon()
 
   m_actionExit = new QAction(IconHelper::getIconExit(), tr("Exit"), this);
   //m_actionExit->setShortcut(QKeySequence(Qt::CTRL|Qt::Key_Q));
-  connect(m_actionExit, SIGNAL(triggered()), this, SLOT(close()));
+  connect(m_actionExit, SIGNAL(triggered()), this, SLOT(exitNotifier()));
 
   m_actionOctopi = new QAction(this);
   m_actionOctopi->setText("Octopi...");
@@ -67,10 +67,11 @@ void MainWindow::initSystemTrayIcon()
   m_pacmanHelperTimer = new QTimer();
   m_pacmanHelperTimer->setInterval(1000 * 5);
   m_pacmanHelperTimer->start();
+
   connect(m_pacmanHelperTimer, SIGNAL(timeout()), this, SLOT(pacmanHelperTimerTimeout()));
 
   connect(m_pacmanDatabaseSystemWatcher,
-          SIGNAL(directoryChanged(QString)), this, SLOT(refreshAppIcon()));
+          SIGNAL(directoryChanged(QString)), this, SLOT(refreshAppIcon())); 
 }
 
 /*
@@ -89,6 +90,12 @@ void MainWindow::runOctopi()
   {
     proc.startDetached("octopi -sysupgrade");
   }
+}
+
+void MainWindow::hideOctopi()
+{
+  QProcess proc;
+  proc.startDetached("octopi -hide");
 }
 
 /*
@@ -204,6 +211,55 @@ void MainWindow::execSystemTrayActivated(QSystemTrayIcon::ActivationReason ar)
     runOctopi();
     break;
   }
+  case QSystemTrayIcon::Trigger:
+  {
+    if (isAppRunning("octopi", true)) hideOctopi();
+  }
   default: break;
   }
+}
+
+/*
+ * If justOneInstance = false (default), returns TRUE if one instance of the app is ALREADY running
+ * Otherwise, it returns TRUE if the given app is running.
+ */
+bool MainWindow::isAppRunning(const QString &appName, bool justOneInstance)
+{
+  QStringList slParam;
+  QProcess proc;
+
+  slParam << "-C";
+  slParam << appName;
+  proc.start("ps", slParam);
+  proc.waitForFinished();
+  QString out = proc.readAll();
+  proc.close();
+
+  if (justOneInstance)
+  {
+    if (out.count(appName)>0)
+      return true;
+    else
+      return false;
+  }
+  else
+  {
+    if (out.count(appName)>1)
+      return true;
+    else
+      return false;
+  }
+}
+
+/*
+ * When the users quit this notifier...
+ */
+void MainWindow::exitNotifier()
+{
+  if (isAppRunning("octopi", true))
+  {
+    runOctopi();
+  }
+
+  close();
 }
