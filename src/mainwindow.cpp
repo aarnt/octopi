@@ -28,7 +28,7 @@
 #include "treeviewpackagesitemdelegate.h"
 #include "searchbar.h"
 #include "packagecontroller.h"
-#include "pacmanhelperclient.h"
+//#include "pacmanhelperclient.h"
 #include <iostream>
 
 #include <QSortFilterProxyModel>
@@ -100,16 +100,16 @@ void MainWindow::show()
     initPackageTreeView();
 
     //Let's watch for changes in the Pacman db dir!
-    m_pacmanDatabaseSystemWatcher =
+    /*m_pacmanDatabaseSystemWatcher =
         new QFileSystemWatcher(QStringList() << ctn_PACMAN_DATABASE_DIR, this);
-    connect(m_pacmanDatabaseSystemWatcher, SIGNAL(directoryChanged(QString)), this, SLOT(metaBuildPackageList()));
+    connect(m_pacmanDatabaseSystemWatcher, SIGNAL(directoryChanged(QString)), this, SLOT(metaBuildPackageList()));*/
 
     qApp->setStyleSheet(StrConstants::getMenuCSS());
 
     loadPanelSettings();
     initActions();
     initAppIcon();
-    initSystemTrayIcon();
+    //initSystemTrayIcon();
     initToolBar();
     initTabWidgetPropertiesIndex();
     refreshDistroNews(false);
@@ -118,9 +118,9 @@ void MainWindow::show()
 
     metaBuildPackageList();
 
-    m_pacmanHelperTimer = new QTimer();
+    /*m_pacmanHelperTimer = new QTimer();
     connect(m_pacmanHelperTimer, SIGNAL(timeout()), this, SLOT(pacmanHelperTimerTimeout()));
-    m_pacmanHelperTimer->start(1000 * 60 * 5); //Five minutes after launching Octopi...
+    m_pacmanHelperTimer->start(1000 * 60 * 5); //Five minutes after launching Octopi...*/
   }
   else
     QMainWindow::show();
@@ -139,13 +139,13 @@ void MainWindow::pacmanHelperTimerTimeout()
     return;
   }
 
-  disconnect(m_pacmanDatabaseSystemWatcher,
+  /*disconnect(m_pacmanDatabaseSystemWatcher,
              SIGNAL(directoryChanged(QString)), this, SLOT(metaBuildPackageList()));
 
   PacmanHelperClient *client =
       new PacmanHelperClient("org.octopi.pacmanhelper", "/", QDBusConnection::systemBus(), 0);
   QObject::connect(client, SIGNAL(syncdbcompleted()), this, SLOT(afterPacmanHelperSyncDatabase()));
-  client->syncdb();
+  client->syncdb();*/
 }
 
 /*
@@ -159,8 +159,8 @@ void MainWindow::afterPacmanHelperSyncDatabase()
     return;
   }
 
-  connect(m_pacmanDatabaseSystemWatcher,
-          SIGNAL(directoryChanged(QString)), this, SLOT(metaBuildPackageList()));
+  //connect(m_pacmanDatabaseSystemWatcher,
+  //        SIGNAL(directoryChanged(QString)), this, SLOT(metaBuildPackageList()));
 
   refreshDistroNews();
 
@@ -173,7 +173,7 @@ void MainWindow::afterPacmanHelperSyncDatabase()
 
     if (m_numberOfOutdatedPackages > 0)
     {
-      if (m_numberOfAvailablePackages == 1)
+      if (m_numberOfOutdatedPackages == 1)
       {
         m_systemTrayIcon->setToolTip(StrConstants::getOneNewUpdate());
       }

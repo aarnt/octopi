@@ -27,6 +27,7 @@
 #include "ui_mainwindow.h"
 #include "strconstants.h"
 #include "uihelper.h"
+
 #include <QTimer>
 #include <QLabel>
 #include <QProgressBar>
@@ -133,8 +134,8 @@ void MainWindow::buildPackagesFromGroupList()
     return;
   }
 
-  disconnect(m_pacmanDatabaseSystemWatcher,
-             SIGNAL(directoryChanged(QString)), this, SLOT(metaBuildPackageList()));
+  //disconnect(m_pacmanDatabaseSystemWatcher,
+  //           SIGNAL(directoryChanged(QString)), this, SLOT(metaBuildPackageList()));
 
   m_modelPackagesFromGroup->clear();
   m_modelInstalledPackagesFromGroup->clear();
@@ -240,8 +241,8 @@ void MainWindow::buildPackagesFromGroupList()
   refreshTabFiles();
   ui->tvPackages->setFocus();
 
-  connect(m_pacmanDatabaseSystemWatcher,
-          SIGNAL(directoryChanged(QString)), this, SLOT(metaBuildPackageList()));
+  //connect(m_pacmanDatabaseSystemWatcher,
+  //        SIGNAL(directoryChanged(QString)), this, SLOT(metaBuildPackageList()));
 
   m_progressWidget->close();
 }
@@ -270,7 +271,7 @@ void MainWindow::buildPackageList(bool nonBlocking)
 
   int countOctopi=0;
   //m_progressWidget->show();
-  disconnect(m_pacmanDatabaseSystemWatcher, SIGNAL(directoryChanged(QString)), this, SLOT(metaBuildPackageList()));
+  //disconnect(m_pacmanDatabaseSystemWatcher, SIGNAL(directoryChanged(QString)), this, SLOT(metaBuildPackageList()));
 
   static bool firstTime = true;
 
@@ -472,9 +473,8 @@ void MainWindow::buildPackageList(bool nonBlocking)
   refreshAppIcon();
 
   //Refresh SystemTray icon
-  refreshSystemTrayIcon();
-
-  connect(m_pacmanDatabaseSystemWatcher, SIGNAL(directoryChanged(QString)), this, SLOT(metaBuildPackageList()));
+  //refreshSystemTrayIcon();
+  //connect(m_pacmanDatabaseSystemWatcher, SIGNAL(directoryChanged(QString)), this, SLOT(metaBuildPackageList()));
 
   //counter = list->count() + listForeign->count();
   //m_progressWidget->setValue(counter);
@@ -491,10 +491,10 @@ void MainWindow::buildPackageList(bool nonBlocking)
 
     if (m_callSystemUpgrade)
     {
-      doSystemUpgrade(true);
+      doSystemUpgrade();
     }
 
-    m_systemTrayIcon->setContextMenu(m_systemTrayIconMenu);
+    //m_systemTrayIcon->setContextMenu(m_systemTrayIconMenu);
   }
 
   _cloneModelPackages();
@@ -539,7 +539,7 @@ void MainWindow::buildYaourtPackageList()
   tvPackagesSearchColumnChanged(ui->actionSearchByDescription);
 
   m_progressWidget->show();
-  disconnect(m_pacmanDatabaseSystemWatcher, SIGNAL(directoryChanged(QString)), this, SLOT(metaBuildPackageList()));
+  //disconnect(m_pacmanDatabaseSystemWatcher, SIGNAL(directoryChanged(QString)), this, SLOT(metaBuildPackageList()));
 
   _deleteStandardItemModel(m_modelPackages);
   _deleteStandardItemModel(m_modelPackagesFromGroup);
@@ -686,11 +686,11 @@ void MainWindow::buildYaourtPackageList()
   refreshAppIcon();
 
   //Refresh SystemTray icon
-  refreshSystemTrayIcon();
+  //refreshSystemTrayIcon();
 
   reapplyPackageFilter();
 
-  connect(m_pacmanDatabaseSystemWatcher, SIGNAL(directoryChanged(QString)), this, SLOT(metaBuildPackageList()));
+  //connect(m_pacmanDatabaseSystemWatcher, SIGNAL(directoryChanged(QString)), this, SLOT(metaBuildPackageList()));
 
   counter = list->count();
   m_progressWidget->setValue(counter);

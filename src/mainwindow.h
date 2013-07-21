@@ -36,7 +36,7 @@ class QStandardItemModel;
 class QStandardItem;
 class QModelIndex;
 class QTimer;
-class QFileSystemWatcher;
+//class QFileSystemWatcher;
 class QLabel;
 class QComboBox;
 class QListView;
@@ -89,7 +89,7 @@ private:
   int m_indFoundFilesInPkgFileList;
 
   QSortFilterProxyModel *m_proxyModelPackages;
-  QFileSystemWatcher *m_pacmanDatabaseSystemWatcher;
+  //QFileSystemWatcher *m_pacmanDatabaseSystemWatcher;
 
   //Searches /etc/pacman.conf to see if ILoveCandy is there
   bool m_iLoveCandy;

@@ -510,6 +510,8 @@ void MainWindow::doSyncDatabase()
  */
 void MainWindow::doSystemUpgrade(bool syncDatabase)
 {
+  if(m_numberOfOutdatedPackages == 0) return;
+
   qApp->processEvents();
 
   if(syncDatabase)
@@ -967,7 +969,7 @@ void MainWindow::doCleanCache()
 
   if (res == QMessageBox::Yes)
   {
-    disconnect(m_pacmanDatabaseSystemWatcher, SIGNAL(directoryChanged(QString)), this, SLOT(metaBuildPackageList()));
+    //disconnect(m_pacmanDatabaseSystemWatcher, SIGNAL(directoryChanged(QString)), this, SLOT(metaBuildPackageList()));
     clearTabOutput();
     writeToTabOutputExt("<b>" + StrConstants::getCleaningPackageCache() + "</b>");
     qApp->processEvents();
@@ -1082,7 +1084,7 @@ void MainWindow::actionsProcessStarted()
   m_progressWidget->setMaximum(100);
   m_iLoveCandy = UnixCommand::isILoveCandyEnabled();
 
-  disconnect(m_pacmanDatabaseSystemWatcher, SIGNAL(directoryChanged(QString)), this, SLOT(metaBuildPackageList()));
+  //disconnect(m_pacmanDatabaseSystemWatcher, SIGNAL(directoryChanged(QString)), this, SLOT(metaBuildPackageList()));
 
   clearTabOutput();
 
@@ -1194,7 +1196,7 @@ void MainWindow::actionsProcessFinished(int exitCode, QProcess::ExitStatus)
         metaBuildPackageList();
       }
 
-      connect(m_pacmanDatabaseSystemWatcher, SIGNAL(directoryChanged(QString)), this, SLOT(metaBuildPackageList()));
+      //connect(m_pacmanDatabaseSystemWatcher, SIGNAL(directoryChanged(QString)), this, SLOT(metaBuildPackageList()));
       clearTransactionTreeView();
 
       //Does it still need to upgrade another packages due to SyncFirst issues???
@@ -1209,8 +1211,8 @@ void MainWindow::actionsProcessFinished(int exitCode, QProcess::ExitStatus)
         return;
       }
     }
-    else
-      connect(m_pacmanDatabaseSystemWatcher, SIGNAL(directoryChanged(QString)), this, SLOT(metaBuildPackageList()));
+    //else
+    //  connect(m_pacmanDatabaseSystemWatcher, SIGNAL(directoryChanged(QString)), this, SLOT(metaBuildPackageList()));
   }
 
   if (exitCode != 0 && (_textInTabOutput("conflict"))) //|| _textInTabOutput("could not satisfy dependencies")))

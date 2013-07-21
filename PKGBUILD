@@ -1,5 +1,5 @@
 pkgname=octopi
-pkgver=0.1.9.1
+pkgver=0.2
 pkgrel=1
 pkgdesc="a powerful Pacman frontend using Qt libs"
 arch=('i686' 'x86_64')
@@ -27,6 +27,11 @@ build() {
     msg "Building pacmanhelper..."
     qmake-qt4 pacmanhelper.pro
     make -j $jc    
+    
+    cd $startdir/notifier/octopi-notifier
+    msg "Building octopi-notifier..."
+    qmake-qt4 octopi-notifier.pro
+    make -j $jc
 }
 
 package() {   
@@ -42,4 +47,7 @@ package() {
    install -D -m644 $startdir/notifier/pacmanhelper/polkit/org.octopi.pacmanhelper.conf ${pkgdir}/etc/dbus-1/system.d/org.octopi.pacmanhelper.conf
    install -D -m644 $startdir/notifier/pacmanhelper/polkit/org.octopi.pacmanhelper.xml ${pkgdir}/usr/share/dbus-1/interfaces/org.octopi.pacmanhelper.xml
    install -D -m644 $startdir/notifier/pacmanhelper/polkit/org.octopi.pacmanhelper.service ${pkgdir}/usr/share/dbus-1/system-services/org.octopi.pacmanhelper.service
+
+   #Octopi-notifier file
+   install -D -m755 $startdir/notifier/bin/octopi-notifier ${pkgdir}/usr/bin/octopi-notifier
 }
