@@ -510,7 +510,11 @@ void MainWindow::doSyncDatabase()
  */
 void MainWindow::doSystemUpgrade(bool syncDatabase)
 {
-  if(m_numberOfOutdatedPackages == 0) return;
+  if(m_callSystemUpgrade && m_numberOfOutdatedPackages == 0)
+  {
+    m_callSystemUpgrade = false;
+    return;
+  }
 
   qApp->processEvents();
 
