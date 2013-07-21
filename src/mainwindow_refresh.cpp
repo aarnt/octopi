@@ -491,6 +491,8 @@ void MainWindow::buildPackageList(bool nonBlocking)
 
     if (m_callSystemUpgrade)
     {
+      //First, let us throw away that 'wainting cursor'...
+      QApplication::restoreOverrideCursor();
       doSystemUpgrade();
     }
 
