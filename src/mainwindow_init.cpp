@@ -368,11 +368,15 @@ void MainWindow::initPackageTreeView()
   m_modelInstalledPackages = new QStandardItemModel(this);
   m_modelPackagesFromGroup = new QStandardItemModel(this);
   m_modelInstalledPackagesFromGroup = new QStandardItemModel(this);
-
   m_proxyModelPackages->setSourceModel(m_modelPackages);
   m_proxyModelPackages->setFilterKeyColumn(ctn_PACKAGE_NAME_COLUMN);
 
-  ui->tvPackages->setAlternatingRowColors(true);
+  if (UnixCommand::getLinuxDistro() == ectn_MANJAROLINUX &&
+      !WMHelper::isKDERunning())
+  {
+    ui->tvPackages->setAlternatingRowColors(true);
+  }
+
   ui->tvPackages->setItemDelegate(new TreeViewPackagesItemDelegate(ui->tvPackages));
   ui->tvPackages->setContextMenuPolicy(Qt::CustomContextMenu);
   ui->tvPackages->setSelectionMode(QAbstractItemView::ExtendedSelection);
