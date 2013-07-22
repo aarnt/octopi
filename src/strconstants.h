@@ -582,16 +582,14 @@ public:
 
     if (UnixCommand::getLinuxDistro() == ectn_MANJAROLINUX && !WMHelper::isKDERunning())
     {
-      res = "QMenu::item { padding: 2px 25px 2px 20px; }"
+      res = "";
+          /*"QMenu::item { padding: 2px 25px 2px 20px; }"
           "QListView::item:selected { background: #81ac44; color: #ffffff; }"
           "QMenu::item:selected, QMenuBar::item:selected, QMenu::selected {"
           "background: #81ac44; color: #ffffff;}"
-          " QTabBar::tab { /* The tab widget frame */"
-          //"background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,"
-          //                            "stop: 0 #E1E1E1, stop: 0.4 #DDDDDD,"
-          //                            "stop: 0.5 #D8D8D8, stop: 1.0 #D3D3D3);"
+          " QTabBar::tab { "
           "border: 1px solid #C4C4C3;"
-          "border-bottom-color: #C2C7CB; /* same as the pane color */"
+          "border-bottom-color: #C2C7CB;
           "border-top-left-radius: 4px;"
           "border-top-right-radius: 4px;"
           "min-width: 8ex;"
@@ -608,7 +606,7 @@ public:
           //"width: 20px;}";
       "QProgressBar {"
           "text-align: center;"
-          "border: 2px;}";
+          "border: 2px;}";*/
     }
 
     else res = "";
@@ -635,7 +633,9 @@ public:
                    "QTreeView::branch:open:has-children:has-siblings  {"
                    "       border-image: none;"
                    "       image: url(:/resources/styles/branch-open_BW.png);}"
-                   "QTreeView {"
+
+
+                  /*"QTreeView {"
                        "selection-background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #81ac44, stop: 1 #6b9039);"
                        "show-decoration-selected: 1;"
                    "}"
@@ -658,7 +658,7 @@ public:
                    "QTreeView::item:selected:!active {"
                        "background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #81ac44, stop: 1 #6c9039);"
                        "color: #ebebeb;"
-                   "}";
+                   "}"*/;
     }
     else
     {

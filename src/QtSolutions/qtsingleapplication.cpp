@@ -338,8 +338,19 @@ void QtSingleApplication::activateWindow(const QString &message)
         actWin->show();
     }
   }
+  else if (actWin && message == "CLOSE") {
+    if (!actWin->close())
+    {
+      if (actWin->isHidden())
+      {
+        actWin->setWindowState(actWin->windowState() & ~Qt::WindowMinimized);
+        actWin->raise();
+        if (actWin->isHidden())
+          actWin->show();
+      }
+    }
+  }
 }
-
 
 /*!
     \fn void QtSingleApplication::messageReceived(const QString& message)

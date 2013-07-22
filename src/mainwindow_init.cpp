@@ -371,6 +371,8 @@ void MainWindow::initPackageTreeView()
 
   m_proxyModelPackages->setSourceModel(m_modelPackages);
   m_proxyModelPackages->setFilterKeyColumn(ctn_PACKAGE_NAME_COLUMN);
+
+  ui->tvPackages->setAlternatingRowColors(true);
   ui->tvPackages->setItemDelegate(new TreeViewPackagesItemDelegate(ui->tvPackages));
   ui->tvPackages->setContextMenuPolicy(Qt::CustomContextMenu);
   ui->tvPackages->setSelectionMode(QAbstractItemView::ExtendedSelection);

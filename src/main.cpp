@@ -24,6 +24,7 @@
 #include "unixcommand.h"
 #include "wmhelper.h"
 #include <iostream>
+
 #include "QtSolutions/qtsingleapplication.h"
 #include <QtGui>
 
@@ -52,7 +53,11 @@ int main(int argc, char *argv[])
 
   if (app.isRunning())
   {
-    if (argList->getSwitch("-hide"))
+    if (argList->getSwitch("-close"))
+    {
+      app.sendMessage("CLOSE");
+    }
+    else if (argList->getSwitch("-hide"))
     {
       app.sendMessage("HIDE");
     }

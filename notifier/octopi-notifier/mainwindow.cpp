@@ -258,7 +258,9 @@ void MainWindow::exitNotifier()
 {
   if (isAppRunning("octopi", true))
   {
-    runOctopi();
+    //runOctopi();
+    QProcess proc;
+    proc.startDetached("octopi -close");
   }
 
   close();
