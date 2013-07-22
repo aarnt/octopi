@@ -41,11 +41,11 @@ void SearchLineEdit::resizeEvent(QResizeEvent *event)
   Q_UNUSED(event);
   QSize size = this->mSearchButton->sizeHint();
 
-  if (MainWindow::returnMainWindow()->isCleanLooksStyleEnabled())
+  if (MainWindow::returnMainWindow()->isCleanLooksStyleEnabled() || WMHelper::isXFCERunning())
   {
     this->mSearchButton->move(5, (this->rect().bottom() + 10 - size.height()) / 2);
   }
-  else
+  else if (!MainWindow::returnMainWindow()->isCleanLooksStyleEnabled())
   {
     this->mSearchButton->move(5, (this->rect().bottom() /*+ 10*/ - size.height()) / 2);
   }
