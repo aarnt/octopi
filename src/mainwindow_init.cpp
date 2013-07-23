@@ -374,6 +374,10 @@ void MainWindow::initPackageTreeView()
   if (UnixCommand::getLinuxDistro() == ectn_MANJAROLINUX &&
       !WMHelper::isKDERunning())
   {
+    //If we are in Manjaro and not in KDE, let's use a GTK style!
+    qApp->setStyle(new QGtkStyle());
+    setCleanLooksStyle(false);
+
     ui->tvPackages->setAlternatingRowColors(true);
   }
 
