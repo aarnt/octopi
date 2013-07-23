@@ -25,6 +25,11 @@
 #include "wmhelper.h"
 #include "unixcommand.h"
 
+#include <QGtkStyle>
+//#include <QPalette>
+//#include <QColor>
+#include <QApplication>
+
 class StrConstants{
 public:
 
@@ -583,7 +588,8 @@ public:
     if (UnixCommand::getLinuxDistro() == ectn_MANJAROLINUX && !WMHelper::isKDERunning())
     {
       res = "";
-          /*"QMenu::item { padding: 2px 25px 2px 20px; }"
+
+        /*"QMenu::item { padding: 2px 25px 2px 20px; }"
           "QListView::item:selected { background: #81ac44; color: #ffffff; }"
           "QMenu::item:selected, QMenuBar::item:selected, QMenu::selected {"
           "background: #81ac44; color: #ffffff;}"
@@ -617,8 +623,12 @@ public:
   static QString getTreeViewCSS(){
     QString res;    
 
-    if (UnixCommand::getLinuxDistro() == ectn_MANJAROLINUX && !WMHelper::isKDERunning())
+    if (qApp->style()->inherits("QGtkStyle") && UnixCommand::getLinuxDistro() == ectn_MANJAROLINUX && !WMHelper::isKDERunning())
     {
+      /*QGtkStyle qgtkStyle;
+      QPalette palette = qgtkStyle.standardPalette();
+      QColor color = palette.color(QPalette::Highlight);*/
+
       res = "QTreeView::branch:has-siblings:!adjoins-item {"
                    "   border-image: url(:/resources/styles/vline.png) 0;}"
                    "QTreeView::branch:has-siblings:adjoins-item {"
@@ -632,33 +642,19 @@ public:
                    "QTreeView::branch:open:has-children:!has-siblings,"
                    "QTreeView::branch:open:has-children:has-siblings  {"
                    "       border-image: none;"
-                   "       image: url(:/resources/styles/branch-open_BW.png);}"
+                   "       image: url(:/resources/styles/branch-open_BW.png);}";
 
-
-                  /*"QTreeView {"
-                       "selection-background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #81ac44, stop: 1 #6b9039);"
-                       "show-decoration-selected: 1;"
-                   "}"
-                   "QTreeView::item {"
-                       "border: 1px solid #d9d9d9;"
-                       "border-top-color: transparent;"
-                       "border-bottom-color: transparent;"
-                   "}"
-                   "QTreeView::item:hover {"
-                       "background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #a7c976, stop: 1 #9bc264);"
-                       "border: 1px solid #95be5a;"
-                       "color: #191919;"
-                   "}"
-                   "QTreeView::item:selected {"
-                       "border: 1px solid #6d9039;"
+                   /*"QTreeView {"
+          "selection-background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 " + color.name() + ", stop: 1 " + color.name() + ");"
+                   "show-decoration-selected: 1;"
                    "}"
                    "QTreeView::item:selected:active{"
-                       "background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #81ac44, stop: 1 #6b9039)"
-                   "}"
+                   "background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 " + color.name() + ", stop: 1 " + color.name() + ");}"
                    "QTreeView::item:selected:!active {"
-                       "background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #81ac44, stop: 1 #6c9039);"
-                       "color: #ebebeb;"
-                   "}"*/;
+                   " background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 " + color.name() + ", stop: 1 " + color.name() + ");}"
+                   "QTreeView::item:selected {"
+                   "border: 1px solid " + color.name() +";"
+                   "}"*/
     }
     else
     {
