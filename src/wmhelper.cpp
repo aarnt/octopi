@@ -101,6 +101,24 @@ bool WMHelper::isLXDERunning(){
       return false;
 }
 
+bool WMHelper::isOPENBOXRunning(){
+  QStringList slParam;
+  QProcess proc;
+  slParam << "-C";
+  slParam << ctn_OPENBOX_DESKTOP;
+
+  proc.start("ps", slParam);
+  proc.waitForStarted();
+  proc.waitForFinished();
+  QString out = proc.readAll();
+  proc.close();
+
+  if (out.count(ctn_OPENBOX_DESKTOP)>0)
+    return true;
+  else
+      return false;
+}
+
 bool WMHelper::isMATERunning(){
   QStringList slParam;
   QProcess proc;

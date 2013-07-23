@@ -24,7 +24,6 @@
 #include <QString>
 
 const QString ctn_NO_SU_COMMAND("none");
-
 const QString ctn_ROOT_SH("/bin/sh -c ");
 const QString ctn_KDESU("kdesu");
 const QString ctn_KDE_DESKTOP("kwin");
@@ -52,6 +51,7 @@ const QString ctn_XFCE_EDITOR_ALT("leafpad");
 const QString ctn_XFCE_FILE_MANAGER("thunar");
 const QString ctn_XFCE_TERMINAL("xfce4-terminal");
 
+const QString ctn_OPENBOX_DESKTOP("openbox");
 const QString ctn_LXDE_DESKTOP("lxsession");
 const QString ctn_LXDE_TERMINAL("lxterminal");
 const QString ctn_LXDE_FILE_MANAGER("pcmanfm");
@@ -68,6 +68,7 @@ public:
   static bool isKDERunning();
   static bool isTDERunning();
   static bool isXFCERunning();
+  static bool isOPENBOXRunning();
   static bool isLXDERunning();
   static bool isMATERunning();
 
