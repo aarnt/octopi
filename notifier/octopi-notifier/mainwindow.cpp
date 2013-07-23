@@ -132,30 +132,58 @@ void MainWindow::afterPacmanHelperSyncDatabase()
   {
     if (m_numberOfOutdatedPackages > 0)
     {
+      QString notification;
+
       if (m_numberOfOutdatedPackages == 1)
       {
-        m_systemTrayIcon->setToolTip(StrConstants::getOneNewUpdate());
+        notification = StrConstants::getOneNewUpdate();
+        m_systemTrayIcon->setToolTip(notification);
+        sendNotification(notification);
       }
       else if (m_numberOfOutdatedPackages > 1)
       {
-        m_systemTrayIcon->setToolTip(StrConstants::getNewUpdates().arg(m_numberOfOutdatedPackages));
+        notification = StrConstants::getNewUpdates().arg(m_numberOfOutdatedPackages);
+        m_systemTrayIcon->setToolTip(notification);
+        sendNotification(notification);
       }
     }
   }
   else
   {
+    QString notification;
+
     if (numberOfOutdatedPackages == 1)
     {
-      m_systemTrayIcon->setToolTip(StrConstants::getOneNewUpdate());
+      notification = StrConstants::getOneNewUpdate();
+      m_systemTrayIcon->setToolTip(notification);
+      sendNotification(notification);
     }
     else if (numberOfOutdatedPackages > 1)
     {
-      m_systemTrayIcon->setToolTip(StrConstants::getNewUpdates().arg(numberOfOutdatedPackages));
+      notification = StrConstants::getNewUpdates().arg(numberOfOutdatedPackages);
+      m_systemTrayIcon->setToolTip(notification);
+      sendNotification(notification);
     }
   }
 
   connect(m_pacmanDatabaseSystemWatcher,
           SIGNAL(directoryChanged(QString)), this, SLOT(refreshAppIcon()));
+}
+
+/*
+ * Uses notify-send to send a notification to the systray area
+ */
+void MainWindow::sendNotification(const QString &msg)
+{
+  if (WMHelper::isXFCERunning() || WMHelper::isLXDERunning())
+  {
+    QString processName("notify-send");
+    if (UnixCommand::hasTheExecutable(processName))
+    {
+      QProcess send;
+      send.execute(processName + " " + msg);
+    }
+  }
 }
 
 /*

@@ -26,7 +26,6 @@ private slots:
   void afterPacmanHelperSyncDatabase();
   void execSystemTrayActivated(QSystemTrayIcon::ActivationReason);
   void refreshAppIcon();
-
   void runOctopi();
   void hideOctopi();
   void exitNotifier();
@@ -44,6 +43,7 @@ private:
   int m_numberOfOutdatedPackages;
 
   void initSystemTrayIcon();
+  void sendNotification(const QString &msg);
 };
 
 #endif // MAINWINDOW_H
