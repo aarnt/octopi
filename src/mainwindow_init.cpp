@@ -146,7 +146,6 @@ void MainWindow::initSystemTrayIcon()
   m_systemTrayIconMenu = new QMenu( this );
   m_systemTrayIconMenu->addAction(ui->actionHelpAbout);
   m_systemTrayIconMenu->addAction(ui->actionExit);
-  //m_systemTrayIcon->setContextMenu(m_systemTrayIconMenu);
 
   connect ( m_systemTrayIcon , SIGNAL( activated( QSystemTrayIcon::ActivationReason ) ),
             this, SLOT( execSystemTrayActivated ( QSystemTrayIcon::ActivationReason ) ) );
@@ -375,8 +374,11 @@ void MainWindow::initPackageTreeView()
       !WMHelper::isKDERunning())
   {
     //If we are in Manjaro and not in KDE, let's use a GTK style!
-    qApp->setStyle(new QGtkStyle());
-    setCleanLooksStyle(false);
+    if (!qApp->style()->inherits("QGtkStyle"))
+    {
+      qApp->setStyle(new QGtkStyle());
+      setCleanLooksStyle(false);
+    }
 
     ui->tvPackages->setAlternatingRowColors(true);
   }
