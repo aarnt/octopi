@@ -35,13 +35,17 @@ void MainWindow::initSystemTrayIcon()
   }
   else if (m_numberOfOutdatedPackages > 0)
   {
+    QString notification;
+
     if (m_numberOfOutdatedPackages == 1)
     {
-      m_systemTrayIcon->setToolTip(StrConstants::getOneNewUpdate());
+      notification = StrConstants::getOneNewUpdate();
+      m_systemTrayIcon->setToolTip(notification);
     }
     else if (m_numberOfOutdatedPackages > 1)
     {
-      m_systemTrayIcon->setToolTip(StrConstants::getNewUpdates().arg(m_numberOfOutdatedPackages));
+      notification = StrConstants::getNewUpdates().arg(m_numberOfOutdatedPackages);
+      m_systemTrayIcon->setToolTip(notification);
     }
   }
 
@@ -107,7 +111,7 @@ void MainWindow::pacmanHelperTimerTimeout()
 
   if (firstTime)
   {
-    m_pacmanHelperTimer->setInterval(1000 * 60 * 15);
+    m_pacmanHelperTimer->setInterval(1000 * 60 * 60);
     firstTime=false;
   }
 
@@ -175,13 +179,13 @@ void MainWindow::afterPacmanHelperSyncDatabase()
  */
 void MainWindow::sendNotification(const QString &msg)
 {
-  if (WMHelper::isXFCERunning() || WMHelper::isLXDERunning())
+  if (WMHelper::isXFCERunning() || WMHelper::isLXDERunning() || WMHelper::isOPENBOXRunning())
   {
     QString processName("notify-send");
     if (UnixCommand::hasTheExecutable(processName))
     {
-      QProcess send;
-      send.execute(processName + " " + msg);
+      QProcess *send = new QProcess();
+      send->startDetached(processName + " \"" + msg + "\"");
     }
   }
 }

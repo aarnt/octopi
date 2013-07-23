@@ -1,5 +1,8 @@
 0.2
   Splitted the project in "octopi" and "octopi-notifier".
+  Added support for "notify-send" in "octopi-notifier".
+  Added hebrew translation.
+  GTK native theme is used by default in Manjaro (while not in KDE).
 
 0.1.9.1
   Important bugfixes to deal with multithreaded code.
