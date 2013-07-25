@@ -181,11 +181,13 @@ void MainWindow::sendNotification(const QString &msg)
 {
   if (WMHelper::isXFCERunning() || WMHelper::isLXDERunning() || WMHelper::isOPENBOXRunning())
   {
-    QString processName("notify-send");
-    if (UnixCommand::hasTheExecutable(processName))
+    QString processToExec("notify-send");
+    if (UnixCommand::hasTheExecutable(processToExec))
     {
       QProcess *send = new QProcess();
-      send->startDetached(processName + " \"" + msg + "\"");
+      processToExec += " -i /usr/share/icons/octopi.png -t 15000 " + StrConstants::getApplicationName() +
+          " \"" + msg + "\"";
+      send->startDetached(processToExec);
     }
   }
 }
