@@ -1178,7 +1178,8 @@ void MainWindow::actionsProcessFinished(int exitCode, QProcess::ExitStatus)
       if (m_commandExecuting == ectn_SYNC_DATABASE)
       {
         //Did it synchronize any repo? If so, let's refresh some things...
-        if (_textInTabOutput(StrConstants::getSyncing()))
+        if (UnixCommand::isAppRunning("octopi-notifier", true) ||
+            _textInTabOutput(StrConstants::getSyncing()))
         {
           int oldIndex = m_cbGroups->currentIndex();
           m_cbGroups->setCurrentIndex(0);

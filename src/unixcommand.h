@@ -93,6 +93,8 @@ public:
   static bool isKtsussVersionOK();
   static bool hasTheExecutable( const QString& exeName );
 
+  static bool isAppRunning(const QString &appName, bool justOneInstance = false);
+
   static bool isRootRunning(){
     int uid = geteuid();
     return (uid == 0); //Returns TRUE if root is running Octopi

@@ -1,9 +1,11 @@
+#include "../../src/unixcommand.h"
 #include "mainwindow.h"
+
 #include <QtGui>
 
 int main(int argc, char *argv[])
 {
-  if (MainWindow::isAppRunning("octopi-notifier")) return (-1);
+  if (UnixCommand::isAppRunning("octopi-notifier")) return (-1);
 
   QApplication a(argc, argv);
 

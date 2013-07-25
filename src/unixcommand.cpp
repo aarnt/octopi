@@ -696,6 +696,38 @@ UnixCommand::UnixCommand(QObject *parent): QObject()
 }
 
 /*
+ * If justOneInstance = false (default), returns TRUE if one instance of the app is ALREADY running
+ * Otherwise, it returns TRUE if the given app is running.
+ */
+bool UnixCommand::isAppRunning(const QString &appName, bool justOneInstance)
+{
+  QStringList slParam;
+  QProcess proc;
+
+  slParam << "-C";
+  slParam << appName;
+  proc.start("ps", slParam);
+  proc.waitForFinished();
+  QString out = proc.readAll();
+  proc.close();
+
+  if (justOneInstance)
+  {
+    if (out.count(appName)>0)
+      return true;
+    else
+      return false;
+  }
+  else
+  {
+    if (out.count(appName)>1)
+      return true;
+    else
+      return false;
+  }
+}
+
+/*
  * Searches "/etc/pacman.conf" to see if ILoveCandy is enabled
  */
 bool UnixCommand::isILoveCandyEnabled()

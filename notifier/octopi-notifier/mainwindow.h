@@ -15,8 +15,6 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 public:
     explicit MainWindow(QWidget *parent = 0);
-
-    static bool isAppRunning(const QString &appName, bool justOneInstance=false);
     
 signals:
     

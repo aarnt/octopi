@@ -245,41 +245,9 @@ void MainWindow::execSystemTrayActivated(QSystemTrayIcon::ActivationReason ar)
   }
   case QSystemTrayIcon::Trigger:
   {
-    if (isAppRunning("octopi", true)) hideOctopi();
+    if (UnixCommand::isAppRunning("octopi", true)) hideOctopi();
   }
   default: break;
-  }
-}
-
-/*
- * If justOneInstance = false (default), returns TRUE if one instance of the app is ALREADY running
- * Otherwise, it returns TRUE if the given app is running.
- */
-bool MainWindow::isAppRunning(const QString &appName, bool justOneInstance)
-{
-  QStringList slParam;
-  QProcess proc;
-
-  slParam << "-C";
-  slParam << appName;
-  proc.start("ps", slParam);
-  proc.waitForFinished();
-  QString out = proc.readAll();
-  proc.close();
-
-  if (justOneInstance)
-  {
-    if (out.count(appName)>0)
-      return true;
-    else
-      return false;
-  }
-  else
-  {
-    if (out.count(appName)>1)
-      return true;
-    else
-      return false;
   }
 }
 
@@ -288,7 +256,7 @@ bool MainWindow::isAppRunning(const QString &appName, bool justOneInstance)
  */
 void MainWindow::exitNotifier()
 {
-  if (isAppRunning("octopi", true))
+  if (UnixCommand::isAppRunning("octopi", true))
   {
     //runOctopi();
     QProcess proc;
