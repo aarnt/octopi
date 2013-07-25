@@ -3,6 +3,7 @@
   Added support for "notify-send" in "octopi-notifier".
   Added hebrew translation.
   Added lithuanian translation.
+  Updated arabian translation.
   GTK native theme is used by default in Manjaro (while not in KDE).
 
 0.1.9.1
