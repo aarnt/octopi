@@ -56,7 +56,6 @@ QString Package::getBaseName( const QString& p )
 QString Package::makeURLClickable( const QString &s )
 {
 	QString sb = s;
-
 	QRegExp rx("((ht|f)tp(s?))://(\\S)+[^\"|)|(|.|\\s|\\n]");
 	QRegExp rx1("^|[\\s]+(www\\.)(\\S)+[^\"|)|(|.|\\s|\\n]"); 
 	rx.setCaseSensitivity( Qt::CaseInsensitive );

@@ -266,13 +266,10 @@ void MainWindow::_deleteStandardItemModel(QStandardItemModel * sim)
  */
 void MainWindow::buildPackageList(bool nonBlocking)
 {
-  //This variable counts how many octopi* packages we have installed :-)
   CPUIntensiveComputing cic;
 
+  //This variable counts how many octopi* packages we have installed :-)
   int countOctopi=0;
-  //m_progressWidget->show();
-  //disconnect(m_pacmanDatabaseSystemWatcher, SIGNAL(directoryChanged(QString)), this, SLOT(metaBuildPackageList()));
-
   static bool firstTime = true;
 
   //Refresh the list of Group names
@@ -327,8 +324,6 @@ void MainWindow::buildPackageList(bool nonBlocking)
   int counter=0;
   while (itForeign != listForeign->end())
   {
-    //counter++;
-    //m_progressWidget->setValue(counter);
     PackageListData pld = PackageListData(
           itForeign->name, itForeign->repository, itForeign->version,
           itForeign->name + " " + Package::getInformationDescription(itForeign->name, true),
@@ -472,13 +467,6 @@ void MainWindow::buildPackageList(bool nonBlocking)
   //Refresh application icon
   refreshAppIcon();
 
-  //Refresh SystemTray icon
-  //refreshSystemTrayIcon();
-  //connect(m_pacmanDatabaseSystemWatcher, SIGNAL(directoryChanged(QString)), this, SLOT(metaBuildPackageList()));
-
-  //counter = list->count() + listForeign->count();
-  //m_progressWidget->setValue(counter);
-
   if (firstTime)
   {
     if (_isPackageTreeViewVisible())
@@ -495,8 +483,6 @@ void MainWindow::buildPackageList(bool nonBlocking)
       QApplication::restoreOverrideCursor();
       doSystemUpgrade();
     }
-
-    //m_systemTrayIcon->setContextMenu(m_systemTrayIconMenu);
   }
 
   _cloneModelPackages();
@@ -687,9 +673,6 @@ void MainWindow::buildYaourtPackageList()
   //Refresh application icon
   refreshAppIcon();
 
-  //Refresh SystemTray icon
-  //refreshSystemTrayIcon();
-
   reapplyPackageFilter();
 
   //connect(m_pacmanDatabaseSystemWatcher, SIGNAL(directoryChanged(QString)), this, SLOT(metaBuildPackageList()));
@@ -819,7 +802,6 @@ void MainWindow::refreshTabInfo(bool clearContents, bool neverQuit)
   {
     siDescription = getAvailablePackage(pkgName, ctn_PACKAGE_DESCRIPTION_COLUMN);
     QString pkgDescription = siDescription->text();
-    //pkgDescription = pkgDescription.fromUtf8(pkgDescription.toAscii().data());
     QString version = StrConstants::getVersion();
 
     QTextBrowser *text = ui->twProperties->widget(
@@ -838,9 +820,7 @@ void MainWindow::refreshTabInfo(bool clearContents, bool neverQuit)
       html += "<a style=\"font-size:16px;\">" + pkgDescription + "</a>";
 
       html += "<table border=\"0\">";
-
       html += "<tr><th width=\"20%\"></th><th width=\"80%\"></th></tr>";
-      //html += "<tr><td>" + url + "</td><td style=\"font-size:14px;\">" + pid.url + "</td></tr>";
 
       int mark = siIcon->text().indexOf('^');
       if (mark >= 0)
