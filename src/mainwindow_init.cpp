@@ -218,7 +218,6 @@ void MainWindow::initToolBar()
   ui->mainToolBar->addAction(ui->actionSyncPackages);
   ui->mainToolBar->addAction(ui->actionCommit);
   ui->mainToolBar->addAction(ui->actionRollback);
-
   m_leFilterPackage->setMinimumHeight(24);
   ui->mainToolBar->addWidget(m_leFilterPackage);
   ui->mainToolBar->addWidget(m_cbGroups);
@@ -373,13 +372,6 @@ void MainWindow::initPackageTreeView()
   if (UnixCommand::getLinuxDistro() == ectn_MANJAROLINUX &&
       !WMHelper::isKDERunning())
   {
-    //If we are in Manjaro and not in KDE, let's use a GTK style!
-    if (!qApp->style()->inherits("QGtkStyle"))
-    {
-      qApp->setStyle(new QGtkStyle());
-      setCleanLooksStyle(false);
-    }
-
     ui->tvPackages->setAlternatingRowColors(true);
   }
 

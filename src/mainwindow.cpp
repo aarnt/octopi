@@ -28,7 +28,6 @@
 #include "treeviewpackagesitemdelegate.h"
 #include "searchbar.h"
 #include "packagecontroller.h"
-//#include "pacmanhelperclient.h"
 #include <iostream>
 
 #include <QSortFilterProxyModel>
@@ -88,6 +87,17 @@ void MainWindow::show()
 
     setWindowTitle(StrConstants::getApplicationName());
     setMinimumSize(QSize(850, 600));
+
+    if (UnixCommand::getLinuxDistro() == ectn_MANJAROLINUX &&
+        !WMHelper::isKDERunning())
+    {
+      //If we are in Manjaro and not in KDE, let's use a GTK style!
+      if (!qApp->style()->inherits("QGtkStyle"))
+      {
+        qApp->setStyle(new QGtkStyle());
+        setCleanLooksStyle(false);
+      }
+    }
 
     initStatusBar();
     initTabOutput();
