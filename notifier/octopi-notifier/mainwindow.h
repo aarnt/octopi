@@ -9,6 +9,7 @@ class QIcon;
 class QMenu;
 class QAction;
 class QFileSystemWatcher;
+class PacmanHelperClient;
 
 class MainWindow : public QMainWindow
 {
@@ -38,6 +39,7 @@ private:
   QSystemTrayIcon *m_systemTrayIcon;
   QMenu *m_systemTrayIconMenu;
   QFileSystemWatcher *m_pacmanDatabaseSystemWatcher;
+  PacmanHelperClient *m_pacmanClient;
   int m_numberOfOutdatedPackages;
 
   void initSystemTrayIcon();

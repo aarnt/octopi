@@ -52,7 +52,6 @@ void MainWindow::initSystemTrayIcon()
   m_systemTrayIcon->show();
 
   m_actionExit = new QAction(IconHelper::getIconExit(), tr("Exit"), this);
-  //m_actionExit->setShortcut(QKeySequence(Qt::CTRL|Qt::Key_Q));
   connect(m_actionExit, SIGNAL(triggered()), this, SLOT(exitNotifier()));
 
   m_actionOctopi = new QAction(this);
@@ -67,6 +66,9 @@ void MainWindow::initSystemTrayIcon()
 
   connect ( m_systemTrayIcon , SIGNAL( activated( QSystemTrayIcon::ActivationReason ) ),
             this, SLOT( execSystemTrayActivated ( QSystemTrayIcon::ActivationReason ) ) );
+
+  m_pacmanClient = new PacmanHelperClient("org.octopi.pacmanhelper", "/", QDBusConnection::systemBus(), 0);
+  connect(m_pacmanClient, SIGNAL(syncdbcompleted()), this, SLOT(afterPacmanHelperSyncDatabase()));
 
   m_pacmanHelperTimer = new QTimer();
   m_pacmanHelperTimer->setInterval(1000 * 5);
@@ -115,10 +117,7 @@ void MainWindow::pacmanHelperTimerTimeout()
     firstTime=false;
   }
 
-  PacmanHelperClient *client =
-      new PacmanHelperClient("org.octopi.pacmanhelper", "/", QDBusConnection::systemBus(), 0);
-  connect(client, SIGNAL(syncdbcompleted()), this, SLOT(afterPacmanHelperSyncDatabase()));
-  client->syncdb();
+  m_pacmanClient->syncdb();
 }
 
 /*
@@ -260,7 +259,6 @@ void MainWindow::exitNotifier()
 {
   if (UnixCommand::isAppRunning("octopi", true))
   {
-    //runOctopi();
     QProcess proc;
     proc.startDetached("octopi -close");
   }
