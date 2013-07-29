@@ -134,7 +134,8 @@ private:
   //This member holds the target list retrieved by the pacman command which will be executed
   QStringList *m_targets;
 
-  //This member is need to serialize access to some models by different threads
+  //This member holds the list of packages to install with "pacman -U" command
+  QStringList m_packagesToInstallList;
 
   QSystemTrayIcon *m_systemTrayIcon;
   QMenu *m_systemTrayIconMenu;
@@ -299,12 +300,13 @@ private slots:
   void changedTabIndex();
   void invalidateTabs(); //This method clears the current information showed on tab.
 
-  void doSyncDatabase();
+  //void doSyncDatabase();
   void doSystemUpgrade(bool syncDatabase = false);
   void doRemoveAndInstall();
   void doRemove();
   void doInstall();
   void doCleanCache();
+  void doSyncDatabase();
 
   void doInstallYaourtPackage();
   void doRemoveYaourtPackage();
@@ -375,7 +377,11 @@ public:
   void setRemoveCommand(const QString &removeCommand);
 
   void setCleanLooksStyle(bool value){ m_cleanLooksStyle = value; }
+  void setPackagesToInstallList(QStringList pkgList){ m_packagesToInstallList = pkgList; }
+  void doInstallLocalPackages();
+
   bool isCleanLooksStyleEnabled(){ return m_cleanLooksStyle; }
+  bool isExecutingCommand(){ return m_commandExecuting != ectn_NONE; }
 };
 
 #endif // MAINWINDOW_H

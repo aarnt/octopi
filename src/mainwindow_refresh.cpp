@@ -27,6 +27,7 @@
 #include "ui_mainwindow.h"
 #include "strconstants.h"
 #include "uihelper.h"
+#include <iostream>
 
 #include <QTimer>
 #include <QLabel>
@@ -410,6 +411,7 @@ void MainWindow::buildPackageList(bool nonBlocking)
     it++;
   }
 
+  m_progressWidget->setValue(list->count());
   parentItem->insertColumn(0, lIcons);
   parentItem->insertColumn(1, lNames);
   parentItem->insertColumn(2, lVersions);
@@ -482,6 +484,12 @@ void MainWindow::buildPackageList(bool nonBlocking)
       //First, let us throw away that 'wainting cursor'...
       QApplication::restoreOverrideCursor();
       doSystemUpgrade();
+    }
+    else if (m_packagesToInstallList.count() > 0)
+    {
+      //First, let us throw away that 'wainting cursor'...
+      QApplication::restoreOverrideCursor();
+      doInstallLocalPackages();
     }
   }
 

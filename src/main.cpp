@@ -49,6 +49,20 @@ int main(int argc, char *argv[])
     }
   }
 
+  QString packagesToInstall;
+  QString arg;
+  for (int c=1; c<argc; c++)
+  {
+    arg = argv[c];
+    if (arg.contains("pkg.tar.xz"))
+    {
+      packagesToInstall += arg + ",";
+    }
+  }
+
+  //if (!packagesToInstall.isEmpty())
+  //  packagesToInstall.remove(packagesToInstall.size()-1, 1);
+
   QtSingleApplication app( StrConstants::getApplicationName(), argc, argv );
 
   if (app.isRunning())
@@ -60,6 +74,10 @@ int main(int argc, char *argv[])
     else if (argList->getSwitch("-hide"))
     {
       app.sendMessage("HIDE");
+    }
+    else if (!packagesToInstall.isEmpty())
+    {
+      app.sendMessage(packagesToInstall);
     }
     else
     {
@@ -99,6 +117,14 @@ int main(int argc, char *argv[])
   if (argList->getSwitch("-sysupgrade"))
   {
     w.setCallSystemUpgrade();
+  }
+
+  if (!packagesToInstall.isEmpty())
+  {
+    QStringList packagesToInstallList =
+        packagesToInstall.split(",", QString::SkipEmptyParts);
+
+    w.setPackagesToInstallList(packagesToInstallList);
   }
 
   w.setRemoveCommand(argList->getSwitchArg("-removecmd", "Rcs"));

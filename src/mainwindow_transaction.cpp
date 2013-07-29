@@ -964,6 +964,41 @@ void MainWindow::doInstall()
 }
 
 /*
+ * Installs ALL the packages manually selected by the user with "pacman -U (INCLUDING DEPENDENCIES)" !
+ */
+void MainWindow::doInstallLocalPackages()
+{
+  //If there are no means to run the actions, we must warn!
+  if (!_isSUAvailable()) return;
+
+  QString listOfTargets;
+
+  foreach(QString pkgToInstall, m_packagesToInstallList)
+  {
+    listOfTargets += pkgToInstall + " ";
+  }
+
+  m_lastCommandList.clear();
+  m_lastCommandList.append("pacman -U " + listOfTargets + ";");
+  m_lastCommandList.append("echo -e;");
+  m_lastCommandList.append("read -n1 -p \"" + StrConstants::getPressAnyKey() + "\"");
+
+  disableTransactionActions();
+  m_unixCommand = new UnixCommand(this);
+
+  QObject::connect(m_unixCommand, SIGNAL( started() ), this, SLOT( actionsProcessStarted()));
+  QObject::connect(m_unixCommand, SIGNAL( readyReadStandardOutput()),
+                   this, SLOT( actionsProcessReadOutput() ));
+  QObject::connect(m_unixCommand, SIGNAL( finished ( int, QProcess::ExitStatus )),
+                   this, SLOT( actionsProcessFinished(int, QProcess::ExitStatus) ));
+  QObject::connect(m_unixCommand, SIGNAL( readyReadStandardError() ),
+                   this, SLOT( actionsProcessRaisedError() ));
+
+  m_commandExecuting = ectn_RUN_IN_TERMINAL;
+  m_unixCommand->runCommandInTerminal(m_lastCommandList);
+}
+
+/*
  * Clears the local package cache using "pacman -Sc"
  */
 void MainWindow::doCleanCache()

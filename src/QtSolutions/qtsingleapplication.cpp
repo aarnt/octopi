@@ -37,11 +37,11 @@
 **
 ****************************************************************************/
 
+#include "../mainwindow.h"
 
 #include "qtsingleapplication.h"
 #include "qtlocalpeer.h"
 #include <QWidget>
-
 
 /*!
     \class QtSingleApplication qtsingleapplication.h
@@ -347,6 +347,28 @@ void QtSingleApplication::activateWindow(const QString &message)
         actWin->raise();
         if (actWin->isHidden())
           actWin->show();
+      }
+    }
+  }
+  else if (actWin && message.contains("pkg.tar.xz")) {
+    actWin->setWindowState(actWin->windowState() & ~Qt::WindowMinimized);
+    actWin->raise();
+    if (actWin->isHidden())
+      actWin->show();
+    else
+      actWin->activateWindow();
+
+    QStringList packagesToInstallList =
+        message.split(",", QString::SkipEmptyParts);
+
+    MainWindow *mw = qobject_cast<MainWindow *>(actWin);
+
+    if (mw)
+    {
+      if (!mw->isExecutingCommand())
+      {
+        mw->setPackagesToInstallList(packagesToInstallList);
+        mw->doInstallLocalPackages();
       }
     }
   }
