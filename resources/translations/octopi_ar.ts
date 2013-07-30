@@ -1,4 +1,6 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="ar" version="2.0">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.0" language="ar">
 <context>
     <name>MainWindow</name>
     <message>
@@ -336,6 +338,10 @@
     <message>
         <source>F12 to maximize/demaximize Tab&apos;s view</source>
         <translation>F10 لتكبير/تصغير عرض التبويبات</translation>
+    </message>
+    <message>
+        <source>Install local package...</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -757,6 +763,10 @@ Are you sure you want to open it?</source>
     <message>
         <source>Remove items</source>
         <translation>إزالة العناصر</translation>
+    </message>
+    <message>
+        <source>Select the packages you want to install</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

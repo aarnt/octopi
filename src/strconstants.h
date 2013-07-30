@@ -430,11 +430,9 @@ public:
     return QObject::tr("These changes need application restart to take effect!");
   }
 
-  /*static QString getForMoreInformation(){
-    return "<small>" + QObject::tr("For more information about QTGZManager visit:") +
-        " <a href=\"http://qtgzmanager.wordpress.com\" target=\"_blank\">" +
-        "http://qtgzmanager.wordpress.com</a></small>";
-  }*/
+  static QString getFileChooserTitle(){
+    return QObject::tr("Select the packages you want to install");
+  }
 
   static QString getThisIsNotATextFile(){
     return QObject::tr("This file does not appear to be a simple text.\n"

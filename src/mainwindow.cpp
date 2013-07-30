@@ -41,6 +41,7 @@
 #include <QComboBox>
 #include <QModelIndex>
 #include <QDesktopServices>
+#include <QFileDialog>
 
 /*
  * MainWindow's constructor: basic UI init
@@ -1118,6 +1119,19 @@ void MainWindow::openDirectory(){
 void MainWindow::openRootTerminal()
 {
   m_unixCommand->openRootTerminal();
+}
+
+/*
+ * Open a file chooser dialog for the user to select local packages to install (pacman -U)
+ */
+void MainWindow::installLocalPackage()
+{
+  m_packagesToInstallList =
+      QFileDialog::getOpenFileNames(this, StrConstants::getFileChooserTitle(),
+                                         QDir::homePath(), "*pkg.tar.xz");
+
+  if (m_packagesToInstallList.count() > 0)
+    doInstallLocalPackages();
 }
 
 /*

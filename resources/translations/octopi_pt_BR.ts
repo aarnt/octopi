@@ -1,4 +1,6 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="pt_BR" version="2.0">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.0" language="pt_BR">
 <context>
     <name>MainWindow</name>
     <message>
@@ -336,6 +338,10 @@
     <message>
         <source>F12 to maximize/demaximize Tab&apos;s view</source>
         <translation>F12 para maximizar/desmaximizar a visão das guias</translation>
+    </message>
+    <message>
+        <source>Install local package...</source>
+        <translation>Instalar pacote local...</translation>
     </message>
 </context>
 <context>
@@ -757,6 +763,10 @@ Tem certeza que deseja abri-lo?</translation>
     <message>
         <source>Remove items</source>
         <translation>Remover itens</translation>
+    </message>
+    <message>
+        <source>Select the packages you want to install</source>
+        <translation>Selecione os pacotes que deseja instalar</translation>
     </message>
 </context>
 <context>

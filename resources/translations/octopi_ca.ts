@@ -1,4 +1,6 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="ca" version="2.0">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.0" language="ca">
 <context>
     <name>MainWindow</name>
     <message>
@@ -336,6 +338,10 @@
     <message>
         <source>F12 to maximize/demaximize Tab&apos;s view</source>
         <translation>F12 per maximitzar/restaurar la vista de Pestanyes</translation>
+    </message>
+    <message>
+        <source>Install local package...</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -757,6 +763,10 @@ Estàs segur que vols obrir-lo?</translation>
     <message>
         <source>Remove items</source>
         <translation>Eliminar ítems</translation>
+    </message>
+    <message>
+        <source>Select the packages you want to install</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

@@ -36,7 +36,6 @@ class QStandardItemModel;
 class QStandardItem;
 class QModelIndex;
 class QTimer;
-//class QFileSystemWatcher;
 class QLabel;
 class QComboBox;
 class QListView;
@@ -258,6 +257,7 @@ private slots:
   void openDirectory();
 
   void openRootTerminal();
+  void installLocalPackage();
 
   void findFileInPackage();
 

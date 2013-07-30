@@ -118,7 +118,7 @@
      <x>0</x>
      <y>0</y>
      <width>552</width>
-     <height>22</height>
+     <height>25</height>
     </rect>
    </property>
    <property name="contextMenuPolicy">
@@ -153,6 +153,7 @@
     <addaction name="actionSyncPackages"/>
     <addaction name="actionSystemUpgrade"/>
     <addaction name="separator"/>
+    <addaction name="actionInstallLocalPackage"/>
     <addaction name="actionOpenRootTerminal"/>
     <addaction name="separator"/>
     <addaction name="actionExit"/>
@@ -464,6 +465,11 @@
    </property>
    <property name="iconVisibleInMenu">
     <bool>true</bool>
+   </property>
+  </action>
+  <action name="actionInstallLocalPackage">
+   <property name="text">
+    <string>Install local package...</string>
    </property>
   </action>
  </widget>

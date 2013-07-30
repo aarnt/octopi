@@ -1,9 +1,11 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="he" version="2.0">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.0" language="he">
 <context>
     <name>MainWindow</name>
     <message>
         <source>Octopi</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Info</source>
@@ -47,7 +49,7 @@
     </message>
     <message>
         <source>Ctrl+N</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Commit</source>
@@ -55,7 +57,7 @@
     </message>
     <message>
         <source>Ctrl+M</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Rollback</source>
@@ -63,7 +65,7 @@
     </message>
     <message>
         <source>Ctrl+B</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Sync database</source>
@@ -71,7 +73,7 @@
     </message>
     <message>
         <source>Ctrl+D</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Exit</source>
@@ -79,7 +81,7 @@
     </message>
     <message>
         <source>Ctrl+Q</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>System upgrade</source>
@@ -87,7 +89,7 @@
     </message>
     <message>
         <source>Ctrl+U</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Install</source>
@@ -107,7 +109,7 @@
     </message>
     <message>
         <source>Ctrl+G</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Remove group</source>
@@ -179,7 +181,7 @@
     </message>
     <message>
         <source>F1</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>A Qt4-based Pacman frontend,</source>
@@ -337,6 +339,10 @@
         <source>F12 to maximize/demaximize Tab&apos;s view</source>
         <translation>‏F12 כדי להגדיל/לשחזר תצוגת כרטיסייה</translation>
     </message>
+    <message>
+        <source>Install local package...</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>QObject</name>
@@ -418,7 +424,7 @@
     </message>
     <message>
         <source>URL</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Repository</source>
@@ -757,6 +763,10 @@ Are you sure you want to open it?</source>
     <message>
         <source>Remove items</source>
         <translation>הסר פריטים</translation>
+    </message>
+    <message>
+        <source>Select the packages you want to install</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
