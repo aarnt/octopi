@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.0" language="ro">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="ro" version="2.0">
 <context>
     <name>MainWindow</name>
     <message>
@@ -184,6 +182,10 @@
         <translation>F1</translation>
     </message>
     <message>
+        <source>Install local package...</source>
+        <translation>Instalează pachet local...</translation>
+    </message>
+    <message>
         <source>A Qt4-based Pacman frontend,</source>
         <translation>O interfață Pacman bazată pe Qt4,</translation>
     </message>
@@ -338,10 +340,6 @@
     <message>
         <source>F12 to maximize/demaximize Tab&apos;s view</source>
         <translation>F12 pentru a maximiza/demaximiza afișajul filelor</translation>
-    </message>
-    <message>
-        <source>Install local package...</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -735,6 +733,10 @@
         <translation>Aceste schimbări au nevoie de repornirea aplicației pentru a avea efect!</translation>
     </message>
     <message>
+        <source>Select the packages you want to install</source>
+        <translation>Selectați pachetele pe care le vreți instalate</translation>
+    </message>
+    <message>
         <source>This file does not appear to be a simple text.
 Are you sure you want to open it?</source>
         <translation>Acest fișier nu pare a fi un simplu text.
@@ -763,10 +765,6 @@ Sunteți sigur că vreți să-l deschideți?</translation>
     <message>
         <source>Remove items</source>
         <translation>Șterge elementele</translation>
-    </message>
-    <message>
-        <source>Select the packages you want to install</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

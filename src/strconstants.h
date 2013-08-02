@@ -26,8 +26,6 @@
 #include "unixcommand.h"
 
 #include <QGtkStyle>
-//#include <QPalette>
-//#include <QColor>
 #include <QApplication>
 
 class StrConstants{

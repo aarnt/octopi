@@ -270,7 +270,7 @@ void MainWindow::buildPackageList(bool nonBlocking)
   CPUIntensiveComputing cic;
 
   //This variable counts how many octopi* packages we have installed :-)
-  int countOctopi=0;
+  //int countOctopi=0;
   static bool firstTime = true;
 
   //Refresh the list of Group names
@@ -341,18 +341,18 @@ void MainWindow::buildPackageList(bool nonBlocking)
   QList<QStandardItem*> lIcons, lNames, lVersions, lRepositories, lDescriptions;
   QList<QStandardItem*> lIcons2, lNames2, lVersions2, lRepositories2, lDescriptions2;
 
-  qApp->processEvents();
+  //qApp->processEvents();
   while(it != list->end())
   {
     qApp->processEvents();
     PackageListData pld = *it;
 
-    if (pld.name == "octopi")
+    /*if (pld.name == "octopi")
     {
       it++;
       countOctopi++;
       continue;
-    }
+    }*/
 
     //If this is an installed package, it can be also outdated!
     switch (pld.status)
@@ -461,7 +461,7 @@ void MainWindow::buildPackageList(bool nonBlocking)
   m_numberOfInstalledPackages = m_modelInstalledPackages->invisibleRootItem()->rowCount();
   m_numberOfAvailablePackages = m_modelPackages->invisibleRootItem()->rowCount() - m_numberOfInstalledPackages;
 
-  m_numberOfInstalledPackages += countOctopi;
+  //m_numberOfInstalledPackages += countOctopi;
 
   //Refresh statusbar widget
   refreshStatusBar();

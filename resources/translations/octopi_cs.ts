@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.0" language="cs">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="cs" version="2.0">
 <context>
     <name>MainWindow</name>
     <message>
@@ -184,6 +182,10 @@
         <translation>F1</translation>
     </message>
     <message>
+        <source>Install local package...</source>
+        <translation>Nainstalovat místní balíček...</translation>
+    </message>
+    <message>
         <source>A Qt4-based Pacman frontend,</source>
         <translation>Na Qt4 založené rozhraní pro Pacman,</translation>
     </message>
@@ -338,10 +340,6 @@
     <message>
         <source>F12 to maximize/demaximize Tab&apos;s view</source>
         <translation>F12 pro zvětšení/zmenšení zobrazení karet</translation>
-    </message>
-    <message>
-        <source>Install local package...</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -735,6 +733,10 @@
         <translation>Aby se tyto změny projevily, je potřeba program spustit znovu!</translation>
     </message>
     <message>
+        <source>Select the packages you want to install</source>
+        <translation>Vyberte balíček, jejž chcete nainstalovat</translation>
+    </message>
+    <message>
         <source>This file does not appear to be a simple text.
 Are you sure you want to open it?</source>
         <translation>Zdá se, že tento soubor není prostým textem.
@@ -763,10 +765,6 @@ Opravdu jej chcete otevřít?</translation>
     <message>
         <source>Remove items</source>
         <translation>Odstranit položky</translation>
-    </message>
-    <message>
-        <source>Select the packages you want to install</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

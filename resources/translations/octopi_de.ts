@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.0" language="de">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="de" version="2.0">
 <context>
     <name>MainWindow</name>
     <message>
@@ -184,6 +182,10 @@
         <translation>F1</translation>
     </message>
     <message>
+        <source>Install local package...</source>
+        <translation>Installiere lokales Paket</translation>
+    </message>
+    <message>
         <source>A Qt4-based Pacman frontend,</source>
         <translation>Ein Qt4-basiertes Frontend für Pacman,</translation>
     </message>
@@ -338,10 +340,6 @@
     <message>
         <source>F12 to maximize/demaximize Tab&apos;s view</source>
         <translation>F12 um den Tab zu vergrößern oder zu verkleinen</translation>
-    </message>
-    <message>
-        <source>Install local package...</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -735,6 +733,10 @@
         <translation>Diese Änderungen erfordern zum Wirksamwerden einen Neustart des Computers !</translation>
     </message>
     <message>
+        <source>Select the packages you want to install</source>
+        <translation>Wähle die zu installierenden Pakete aus</translation>
+    </message>
+    <message>
         <source>This file does not appear to be a simple text.
 Are you sure you want to open it?</source>
         <translation>Diese Datei scheint keine reine Textdatei zu sein.
@@ -763,10 +765,6 @@ Wollen Sie sie wirklich öffnen ?</translation>
     <message>
         <source>Remove items</source>
         <translation>Entferne Pakete</translation>
-    </message>
-    <message>
-        <source>Select the packages you want to install</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

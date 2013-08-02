@@ -1,4 +1,4 @@
-pkgname=octopi
+pkgname=('octopi' 'octopi-notifier')
 pkgver=0.2
 pkgrel=1
 pkgdesc="a powerful Pacman frontend using Qt libs"
@@ -11,9 +11,9 @@ depends=('qt4')
 optdepends=('kdesu: for KDE'
             'gksu: for XFCE, Gnome, LXDE, Cinnamon'
             'gnome-keyring: for password management'
-            'yaourt: for AUR support')
+            'yaourt: for AUR support'
+            'octopi-notifier: for notifications')
 provides=('octopi')
-conflicts=('octopi')
 md5sums=()
 
 build() {
@@ -38,7 +38,7 @@ build() {
     make -j $jc
 }
 
-package() {   
+package_octopi() {   
    #Octopi main files
    install -D -m755 $startdir/bin/$pkgname ${pkgdir}/usr/bin/$pkgname
    install -D -m644 $startdir/$pkgname.desktop ${pkgdir}/usr/share/applications/$pkgname.desktop
@@ -51,6 +51,12 @@ package() {
    install -D -m644 $startdir/notifier/pacmanhelper/polkit/org.octopi.pacmanhelper.conf ${pkgdir}/etc/dbus-1/system.d/org.octopi.pacmanhelper.conf
    install -D -m644 $startdir/notifier/pacmanhelper/polkit/org.octopi.pacmanhelper.xml ${pkgdir}/usr/share/dbus-1/interfaces/org.octopi.pacmanhelper.xml
    install -D -m644 $startdir/notifier/pacmanhelper/polkit/org.octopi.pacmanhelper.service ${pkgdir}/usr/share/dbus-1/system-services/org.octopi.pacmanhelper.service
+}
+
+package_octopi-notifier() {
+   pkgdesc="Notifier for Octopi"
+   depends=('octopi' 'libnotify')
+   optdepends=('xfce4-notifyd: for notifications in XFCE')
 
    #Octopi-notifier file
    install -D -m755 $startdir/notifier/bin/octopi-notifier ${pkgdir}/usr/bin/octopi-notifier

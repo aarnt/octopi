@@ -23,6 +23,7 @@
 #include "strconstants.h"
 #include "settingsmanager.h"
 #include <iostream>
+
 #include <QApplication>
 #include <QProcess>
 #include <QMessageBox>
@@ -132,6 +133,24 @@ bool WMHelper::isMATERunning(){
   proc.close();
 
   if (out.count(ctn_MATE_DESKTOP)>0)
+    return true;
+  else
+    return false;
+}
+
+bool WMHelper::isCinnamonRunning(){
+  QStringList slParam;
+  QProcess proc;
+  slParam << "-C";
+  slParam << ctn_CINNAMON_DESKTOP;
+
+  proc.start("ps", slParam);
+  proc.waitForStarted();
+  proc.waitForFinished();
+  QString out = proc.readAll();
+  proc.close();
+
+  if (out.count(ctn_CINNAMON_DESKTOP)>0)
     return true;
   else
     return false;
@@ -267,6 +286,10 @@ void WMHelper::openFile(const QString& fileName){
     s << fileToOpen;
     p->startDetached( ctn_MATE_EDITOR, s );
   }
+  else if (isCinnamonRunning() && UnixCommand::hasTheExecutable(ctn_CINNAMON_EDITOR)){
+    s << fileToOpen;
+    p->startDetached( ctn_CINNAMON_EDITOR, s );
+  }
   else if (UnixCommand::hasTheExecutable(ctn_XFCE_FILE_MANAGER)){
     s << fileToOpen;
     p->startDetached( ctn_XFCE_FILE_MANAGER, s );
@@ -306,6 +329,10 @@ void WMHelper::editFile( const QString& fileName ){
     }
     else if (isMATERunning() && UnixCommand::hasTheExecutable(ctn_MATE_EDITOR)){
       QString p = ctn_MATE_EDITOR + " " + fileName;
+      process->startDetached(getSUCommand() + p);
+    }
+    else if (isCinnamonRunning() && UnixCommand::hasTheExecutable(ctn_CINNAMON_EDITOR)){
+      QString p = ctn_CINNAMON_EDITOR + " " + fileName;
       process->startDetached(getSUCommand() + p);
     }
     else if (UnixCommand::hasTheExecutable(ctn_XFCE_EDITOR) || UnixCommand::hasTheExecutable(ctn_XFCE_EDITOR_ALT)){
@@ -380,6 +407,11 @@ void WMHelper::openDirectory( const QString& dirName ){
       s << dir;
       p->startDetached( ctn_MATE_FILE_MANAGER, s );
     }
+    else if (isCinnamonRunning() && UnixCommand::hasTheExecutable(ctn_CINNAMON_FILE_MANAGER))
+    {
+      s << dir;
+      p->startDetached( ctn_CINNAMON_FILE_MANAGER, s );
+    }
     else if (UnixCommand::hasTheExecutable(ctn_XFCE_FILE_MANAGER))
     {
       s << dir;
@@ -420,6 +452,10 @@ void WMHelper::openTerminal(const QString& dirName){
     else if (isMATERunning() && UnixCommand::hasTheExecutable(ctn_MATE_TERMINAL)){
       s << "--working-directory=" + dirName;
       p->startDetached( ctn_MATE_TERMINAL, s );
+    }
+    else if (isCinnamonRunning() && UnixCommand::hasTheExecutable(ctn_CINNAMON_TERMINAL)){
+      s << "--working-directory=" + dirName;
+      p->startDetached( ctn_CINNAMON_TERMINAL, s );
     }
     else if (UnixCommand::hasTheExecutable(ctn_XFCE_TERMINAL)){
       s << "--working-directory=" + dirName;

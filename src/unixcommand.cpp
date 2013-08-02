@@ -38,11 +38,10 @@ QString UnixCommand::runCommand(const QString& commandToRun)
 {
   QProcess proc;
 
-#if QT_VERSION >= 0x040600
   QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
-  env.insert("LANG", "us_EN");
+  env.remove("LANG");
+  env.insert("LANG", "us_EN.UTF-8");
   proc.setProcessEnvironment(env);
-#endif
 
   proc.start(commandToRun);
   proc.waitForStarted();
@@ -58,11 +57,9 @@ QString UnixCommand::runCommand(const QString& commandToRun)
 QString UnixCommand::runCurlCommand(const QString& commandToRun){
   QProcess proc;
 
-#if QT_VERSION >= 0x040600
   QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
   env.insert("LANG", "us_EN");
   proc.setProcessEnvironment(env);
-#endif
 
   proc.start(commandToRun);
   proc.waitForStarted();
@@ -82,11 +79,9 @@ QString UnixCommand::runCurlCommand(const QString& commandToRun){
 QString UnixCommand::discoverBinaryPath(const QString& binary){
   QProcess *proc = new QProcess;
 
-#if QT_VERSION >= 0x040600
   QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
   env.insert("LANG", "us_EN");
   proc->setProcessEnvironment(env);
-#endif
 
   proc->start("/bin/sh -c \"which " + binary + "\"");
   proc->waitForFinished();
@@ -397,12 +392,9 @@ bool UnixCommand::hasInternetConnection()
 bool UnixCommand::doInternetPingTest()
 {
   QProcess ping;
-
-#if QT_VERSION >= 0x040600
   QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
   env.insert("LANG", "us_EN");
   ping.setProcessEnvironment(env);
-#endif
 
   ping.start("ping -c 1 -W 3 www.google.com");
   ping.waitForFinished();
@@ -555,11 +547,18 @@ void UnixCommand::runCommandInTerminal(const QStringList& commandList){
   QFile *ftemp = getTemporaryFile();
   QTextStream out(ftemp);
 
+  //out << "export LANG=" << QLocale::system().name() << ";";
+
   foreach(QString line, commandList)
     out << line;
 
   out.flush();
   ftemp->close();
+
+  QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
+  env.remove("LANG");
+  env.insert("LANG", QLocale::system().name() + ".UTF-8");
+  m_process->setProcessEnvironment(env);
 
   if(WMHelper::isXFCERunning() && UnixCommand::hasTheExecutable(ctn_XFCE_TERMINAL)){
     QString cmd = WMHelper::getSUCommand() + " \"" + ctn_XFCE_TERMINAL + " -e \'bash -c " + ftemp->fileName() + "'\"";
@@ -617,6 +616,9 @@ void UnixCommand::executePackageActions( const QStringList& commandList )
 
   QString command = WMHelper::getSUCommand() + " " + ftemp->fileName();
 
+  QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
+  env.insert("LANG", "en_US");
+  m_process->setProcessEnvironment(env);
   m_process->start(command);
 }
 
@@ -668,11 +670,9 @@ UnixCommand::UnixCommand(QObject *parent): QObject()
 {
   m_process = new QProcess(parent);
 
-#if QT_VERSION >= 0x040600
   QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
-  env.insert("LANG", "us_EN");
+  env.insert("LANG", "en_US");
   m_process->setProcessEnvironment(env);
-#endif
 
   QObject::connect(m_process, SIGNAL( started() ), this,
                    SIGNAL( started() ));

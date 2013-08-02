@@ -49,6 +49,7 @@ private:
   QString m_readAllStandardError;
   QString m_errorString;
   QProcess *m_process;
+
   static QFile *m_temporaryFile;
 
 public:
@@ -106,7 +107,6 @@ public:
     m_temporaryFile = new QFile(ctn_TEMP_ACTIONS_FILE + QString::number(qrand()));
     m_temporaryFile->open(QIODevice::ReadWrite|QIODevice::Text);
     m_temporaryFile->setPermissions(QFile::Permissions(QFile::ExeOwner));
-
     return m_temporaryFile;
   }
 
