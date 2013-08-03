@@ -78,7 +78,7 @@ QString MainWindow::retrieveDistroNews(bool searchForLatestNews)
       curlCommand = curlCommand.arg(ctn_MANJARO_LINUX_RSS).arg(tmpRssPath);
     }
 
-    if (UnixCommand::runCurlCommand(curlCommand) == 0)
+    if (UnixCommand::runCurlCommand(curlCommand).isEmpty())
     {
       QFile fileTmpRss(tmpRssPath);
       QFile fileRss(rssPath);
