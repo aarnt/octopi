@@ -110,28 +110,20 @@ void MainWindow::show()
     initLineEditFilterPackages();
     initPackageTreeView();
 
-    //Let's watch for changes in the Pacman db dir!
-    /*m_pacmanDatabaseSystemWatcher =
-        new QFileSystemWatcher(QStringList() << ctn_PACMAN_DATABASE_DIR, this);
-    connect(m_pacmanDatabaseSystemWatcher, SIGNAL(directoryChanged(QString)), this, SLOT(metaBuildPackageList()));*/
-
     qApp->setStyleSheet(StrConstants::getMenuCSS());
 
     loadPanelSettings();
     initActions();
     initAppIcon();
-    //initSystemTrayIcon();
     initToolBar();
     initTabWidgetPropertiesIndex();
     refreshDistroNews(false);
 
+    refreshComboBoxGroups();
     QMainWindow::show();
 
     metaBuildPackageList();
 
-    /*m_pacmanHelperTimer = new QTimer();
-    connect(m_pacmanHelperTimer, SIGNAL(timeout()), this, SLOT(pacmanHelperTimerTimeout()));
-    m_pacmanHelperTimer->start(1000 * 60 * 5); //Five minutes after launching Octopi...*/
   }
   else
     QMainWindow::show();

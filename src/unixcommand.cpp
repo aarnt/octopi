@@ -40,7 +40,7 @@ QString UnixCommand::runCommand(const QString& commandToRun)
 
   QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
   env.remove("LANG");
-  env.insert("LANG", "us_EN.UTF-8");
+  env.insert("LANG", "en_US");
   proc.setProcessEnvironment(env);
 
   proc.start(commandToRun);
@@ -58,7 +58,7 @@ QString UnixCommand::runCurlCommand(const QString& commandToRun){
   QProcess proc;
 
   QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
-  env.insert("LANG", "us_EN");
+  env.insert("LANG", "en_US");
   proc.setProcessEnvironment(env);
 
   proc.start(commandToRun);
@@ -80,7 +80,7 @@ QString UnixCommand::discoverBinaryPath(const QString& binary){
   QProcess *proc = new QProcess;
 
   QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
-  env.insert("LANG", "us_EN");
+  env.insert("LANG", "en_US");
   proc->setProcessEnvironment(env);
 
   proc->start("/bin/sh -c \"which " + binary + "\"");
@@ -110,7 +110,7 @@ bool UnixCommand::cleanPacmanCache()
 {
   QProcess pacman;
   QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
-  env.insert("LANG", "us_EN");
+  env.insert("LANG", "en_US");
   pacman.setProcessEnvironment(env);
 
   QString commandStr = "\"yes | pacman -Scc\"";
@@ -131,7 +131,7 @@ QByteArray UnixCommand::performQuery(const QStringList args)
   QProcess pacman;
 
   QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
-  env.insert("LANG", "us_EN");
+  env.insert("LANG", "en_US");
   pacman.setProcessEnvironment(env);
 
   pacman.start("pacman", args);
@@ -151,7 +151,7 @@ QByteArray UnixCommand::performQuery(const QString &args)
   QProcess pacman;
 
   QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
-  env.insert("LANG", "us_EN");
+  env.insert("LANG", "en_US");
   pacman.setProcessEnvironment(env);
 
   pacman.start("pacman " + args);
@@ -170,7 +170,7 @@ QByteArray UnixCommand::performYaourtCommand(const QString &args)
   QProcess yaourt;
 
   QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
-  env.insert("LANG", "us_EN");
+  env.insert("LANG", "en_US");
   yaourt.setProcessEnvironment(env);
 
   yaourt.start("yaourt " + args);
@@ -190,7 +190,7 @@ QByteArray UnixCommand::getYaourtPackageList(const QString &searchString)
   QProcess kill;
 
   QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
-  env.insert("LANG", "us_EN");
+  env.insert("LANG", "en_US");
   yaourt.setProcessEnvironment(env);
 
   kill.setStandardOutputProcess(&yaourt);
@@ -336,7 +336,7 @@ QString UnixCommand::getSystemArchitecture()
 
 #if QT_VERSION >= 0x040600
   QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
-  env.insert("LANG", "us_EN");
+  env.insert("LANG", "en_US");
   proc.setProcessEnvironment(env);
 #endif
 
@@ -393,7 +393,7 @@ bool UnixCommand::doInternetPingTest()
 {
   QProcess ping;
   QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
-  env.insert("LANG", "us_EN");
+  env.insert("LANG", "en_US");
   ping.setProcessEnvironment(env);
 
   ping.start("ping -c 1 -W 3 www.google.com");
@@ -414,7 +414,7 @@ bool UnixCommand::isKtsussVersionOK()
 
 #if QT_VERSION >= 0x040600
   QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
-  env.insert("LANG", "us_EN");
+  env.insert("LANG", "en_US");
   proc.setProcessEnvironment(env);
 #endif
 
@@ -487,7 +487,7 @@ bool UnixCommand::isTextFile(const QString& fileName)
 {
   QProcess *p = new QProcess();
   QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
-  env.insert("LANG", "us_EN");
+  env.insert("LANG", "en_US");
   p->setProcessEnvironment(env);
 
   QStringList s(fileName);
@@ -546,8 +546,6 @@ void UnixCommand::openRootTerminal(){
 void UnixCommand::runCommandInTerminal(const QStringList& commandList){
   QFile *ftemp = getTemporaryFile();
   QTextStream out(ftemp);
-
-  //out << "export LANG=" << QLocale::system().name() << ";";
 
   foreach(QString line, commandList)
     out << line;

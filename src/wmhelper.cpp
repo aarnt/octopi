@@ -243,12 +243,6 @@ QString WMHelper::getSUCommand(){
 void WMHelper::openFile(const QString& fileName){
   QString fileToOpen(fileName);
 
-  /*QProcess *p = new QProcess(qApp->activeWindow());
-  QStringList s;
-
-  s << fileToOpen;
-  p->startDetached("xdg-open", s );*/
-
   if (!UnixCommand::isTextFile(fileToOpen)){
     int res = QMessageBox::question(qApp->activeWindow(), StrConstants::getConfirmation(),
                                     StrConstants::getThisIsNotATextFile(),

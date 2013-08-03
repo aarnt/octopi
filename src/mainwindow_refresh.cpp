@@ -83,6 +83,8 @@ void MainWindow::refreshComboBoxGroups()
   m_cbGroups->clear();
   m_cbGroups->addItem("<" + StrConstants::getAll() + ">");
 
+  m_hasYaourt = UnixCommand::hasTheExecutable("yaourt");
+
   if (m_hasYaourt)
   {
     m_cbGroups->addItem(StrConstants::getYaourtGroup());
@@ -274,7 +276,7 @@ void MainWindow::buildPackageList(bool nonBlocking)
   static bool firstTime = true;
 
   //Refresh the list of Group names
-  refreshComboBoxGroups();
+  if (!firstTime) refreshComboBoxGroups();
 
   _deleteStandardItemModel(m_modelPackages);
   _deleteStandardItemModel(m_modelPackagesFromGroup);

@@ -190,8 +190,6 @@ void MainWindow::initComboBoxGroups()
   m_cbGroups->setMaxVisibleItems(15);
   m_cbGroups->setStyleSheet(StrConstants::getMenuCSS());
 
-  m_hasYaourt = UnixCommand::hasTheExecutable("yaourt");
-
   connect(m_cbGroups, SIGNAL(currentIndexChanged(QString)), this, SLOT(onComboGroupsChanged()));
   connect(m_cbGroups, SIGNAL(currentIndexChanged(QString)), this, SLOT(metaBuildPackageList()));
 }
