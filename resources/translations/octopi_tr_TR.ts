@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.0" language="tr_TR">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="tr_TR" version="2.0">
 <context>
     <name>MainWindow</name>
     <message>
@@ -184,6 +182,10 @@
         <translation>F1</translation>
     </message>
     <message>
+        <source>Install local package...</source>
+        <translation>Yerel pakaet yükle...</translation>
+    </message>
+    <message>
         <source>A Qt4-based Pacman frontend,</source>
         <translation>QT4 temelli Pacman arayüzü</translation>
     </message>
@@ -338,10 +340,6 @@
     <message>
         <source>F12 to maximize/demaximize Tab&apos;s view</source>
         <translation>F12 bölüm görünümünü Maximize/Minimize eder</translation>
-    </message>
-    <message>
-        <source>Install local package...</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -735,6 +733,10 @@
         <translation>Bu değişiklikler, efektlerin etkin olması için uygulamanın yeniden başlatılmasını gerektirir!</translation>
     </message>
     <message>
+        <source>Select the packages you want to install</source>
+        <translation>Yüklemek istediğiniz paketi seçin</translation>
+    </message>
+    <message>
         <source>This file does not appear to be a simple text.
 Are you sure you want to open it?</source>
         <translation>Bu dosya basit bir metin olarak görünmüyor.
@@ -763,10 +765,6 @@ Açmak istediğinizden emin misiniz?</translation>
     <message>
         <source>Remove items</source>
         <translation>Öğeleri kaldır</translation>
-    </message>
-    <message>
-        <source>Select the packages you want to install</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
