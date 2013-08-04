@@ -471,6 +471,9 @@ void MainWindow::buildPackageList(bool nonBlocking)
   //Refresh application icon
   refreshAppIcon();
 
+  _cloneModelPackages();
+  m_progressWidget->close();
+
   if (firstTime)
   {
     if (_isPackageTreeViewVisible())
@@ -494,9 +497,6 @@ void MainWindow::buildPackageList(bool nonBlocking)
       doInstallLocalPackages();
     }
   }
-
-  _cloneModelPackages();
-  m_progressWidget->close();
 }
 
 /*

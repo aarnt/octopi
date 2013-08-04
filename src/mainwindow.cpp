@@ -57,6 +57,7 @@ MainWindow::MainWindow(QWidget *parent) :
   m_cbGroups = 0;
   m_listOfPackages = 0;
   m_listOfPackagesFromGroup = 0;
+  m_systemUpgradeDialog = false;
 
   ui->setupUi(this);
 }
@@ -141,14 +142,6 @@ void MainWindow::pacmanHelperTimerTimeout()
   {
     return;
   }
-
-  /*disconnect(m_pacmanDatabaseSystemWatcher,
-             SIGNAL(directoryChanged(QString)), this, SLOT(metaBuildPackageList()));
-
-  PacmanHelperClient *client =
-      new PacmanHelperClient("org.octopi.pacmanhelper", "/", QDBusConnection::systemBus(), 0);
-  QObject::connect(client, SIGNAL(syncdbcompleted()), this, SLOT(afterPacmanHelperSyncDatabase()));
-  client->syncdb();*/
 }
 
 /*
@@ -161,9 +154,6 @@ void MainWindow::afterPacmanHelperSyncDatabase()
   {
     return;
   }
-
-  //connect(m_pacmanDatabaseSystemWatcher,
-  //        SIGNAL(directoryChanged(QString)), this, SLOT(metaBuildPackageList()));
 
   refreshDistroNews();
 

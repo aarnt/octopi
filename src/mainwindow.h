@@ -90,6 +90,9 @@ private:
   QSortFilterProxyModel *m_proxyModelPackages;
   //QFileSystemWatcher *m_pacmanDatabaseSystemWatcher;
 
+  //Controls if the dialog showing the packages to be upgraded is opened
+  bool m_systemUpgradeDialog;
+
   //Searches /etc/pacman.conf to see if ILoveCandy is there
   bool m_iLoveCandy;
 
@@ -287,7 +290,6 @@ private slots:
   void execContextMenuPackages(QPoint point);
   void execContextMenuPkgFileList(QPoint point);
   void execContextMenuTransaction(QPoint point);
-
   void execSystemTrayActivated(QSystemTrayIcon::ActivationReason);
 
   //SearchLineEdit methods
@@ -300,8 +302,6 @@ private slots:
   void changedTabIndex();
   void invalidateTabs(); //This method clears the current information showed on tab.
 
-  //void doSyncDatabase();
-  void doSystemUpgrade(bool syncDatabase = false);
   void doRemoveAndInstall();
   void doRemove();
   void doInstall();
@@ -355,6 +355,9 @@ private slots:
 
   void outputTextBrowserAnchorClicked(const QUrl & link);
 
+public slots:
+  void doSystemUpgrade(bool syncDatabase = false);
+
 public:
   explicit MainWindow(QWidget *parent = 0);
   ~MainWindow();
@@ -373,6 +376,7 @@ public:
 
   QStandardItemModel *getModelPackages(){ return m_modelPackages; }
   QStandardItem *getAvailablePackage(const QString &pkgName, const int index);
+
   void setCallSystemUpgrade();
   void setRemoveCommand(const QString &removeCommand);
 

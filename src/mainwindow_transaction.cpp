@@ -29,6 +29,7 @@
 #include "strconstants.h"
 #include "transactiondialog.h"
 #include <iostream>
+
 #include <QComboBox>
 #include <QProgressBar>
 #include <QMessageBox>
@@ -510,6 +511,8 @@ void MainWindow::doSyncDatabase()
  */
 void MainWindow::doSystemUpgrade(bool syncDatabase)
 {
+  if (m_systemUpgradeDialog) return;
+
   if(m_callSystemUpgrade && m_numberOfOutdatedPackages == 0)
   {
     m_callSystemUpgrade = false;
@@ -566,10 +569,14 @@ void MainWindow::doSystemUpgrade(bool syncDatabase)
     question.setWindowTitle(StrConstants::getConfirmation());
     question.setInformativeText(StrConstants::getConfirmationQuestion());
     question.setDetailedText(list);
+
+    m_systemUpgradeDialog = true;
     int result = question.exec();
 
     if(result == QDialogButtonBox::Yes || result == QDialogButtonBox::AcceptRole)
     {
+      m_systemUpgradeDialog = false;
+
       //If there are no means to run the actions, we must warn!
       if (!_isSUAvailable()) return;
 
@@ -609,6 +616,7 @@ void MainWindow::doSystemUpgrade(bool syncDatabase)
     }
     else if (result == QDialogButtonBox::No)
     {
+      m_systemUpgradeDialog = false;
       enableTransactionActions();
     }
   }

@@ -3,7 +3,6 @@
 #include "../../src/uihelper.h"
 #include "../../src/package.h"
 #include "../../src/pacmanhelperclient.h"
-
 #include <QTimer>
 #include <QSystemTrayIcon>
 #include <QAction>
@@ -26,6 +25,12 @@ void MainWindow::initSystemTrayIcon()
 {
   m_systemTrayIcon = new QSystemTrayIcon(this);
   m_systemTrayIcon->setObjectName("systemTrayIcon");
+
+  m_actionExit = new QAction(IconHelper::getIconExit(), tr("Exit"), this);
+  connect(m_actionExit, SIGNAL(triggered()), this, SLOT(exitNotifier()));
+  m_actionOctopi = new QAction(this);
+  m_actionOctopi->setText("Octopi...");
+  connect(m_actionOctopi, SIGNAL(triggered()), this, SLOT(runOctopi()));
 
   refreshAppIcon();
 
@@ -50,14 +55,6 @@ void MainWindow::initSystemTrayIcon()
   }
 
   m_systemTrayIcon->show();
-
-  m_actionExit = new QAction(IconHelper::getIconExit(), tr("Exit"), this);
-  connect(m_actionExit, SIGNAL(triggered()), this, SLOT(exitNotifier()));
-
-  m_actionOctopi = new QAction(this);
-  m_actionOctopi->setText("Octopi...");
-  connect(m_actionOctopi, SIGNAL(triggered()), this, SLOT(runOctopi()));
-
   m_systemTrayIconMenu = new QMenu( this );
   m_systemTrayIconMenu->addAction(m_actionOctopi);
   m_systemTrayIconMenu->addSeparator();
@@ -90,7 +87,7 @@ void MainWindow::runOctopi()
   if(UnixCommand::getLinuxDistro() == ectn_MANJAROLINUX &&
      !WMHelper::isKDERunning())
   {
-    proc.startDetached("octopi -style gtk -sysugrade");
+    proc.startDetached("octopi -sysupgrade -style gtk");
   }
   else
   {
@@ -205,9 +202,12 @@ void MainWindow::refreshAppIcon()
   if (m_numberOfOutdatedPackages == 0)
   {
     m_systemTrayIcon->setToolTip(StrConstants::getApplicationName());
+    m_actionOctopi->setText("Octopi...");
   }
   else if (m_numberOfOutdatedPackages > 0)
   {
+    m_actionOctopi->setText(tr("System upgrade"));
+
     if (m_numberOfOutdatedPackages == 1)
     {
       m_systemTrayIcon->setToolTip(StrConstants::getOneNewUpdate());

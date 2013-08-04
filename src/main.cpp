@@ -24,7 +24,6 @@
 #include "unixcommand.h"
 #include "wmhelper.h"
 #include <iostream>
-
 #include "QtSolutions/qtsingleapplication.h"
 #include <QtGui>
 
@@ -60,14 +59,15 @@ int main(int argc, char *argv[])
     }
   }
 
-  //if (!packagesToInstall.isEmpty())
-  //  packagesToInstall.remove(packagesToInstall.size()-1, 1);
-
   QtSingleApplication app( StrConstants::getApplicationName(), argc, argv );
 
   if (app.isRunning())
   {
-    if (argList->getSwitch("-close"))
+    if (argList->getSwitch("-sysupgrade"))
+    {
+      app.sendMessage("SYSUPGRADE");
+    }
+    else if (argList->getSwitch("-close"))
     {
       app.sendMessage("CLOSE");
     }

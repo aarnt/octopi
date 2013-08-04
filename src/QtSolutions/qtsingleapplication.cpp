@@ -338,6 +338,24 @@ void QtSingleApplication::activateWindow(const QString &message)
         actWin->show();
     }
   }
+  else if (actWin && message == "SYSUPGRADE") {
+    actWin->setWindowState(actWin->windowState() & ~Qt::WindowMinimized);
+    actWin->raise();
+    if (actWin->isHidden())
+      actWin->show();
+    else
+      actWin->activateWindow();
+
+    MainWindow *mw = qobject_cast<MainWindow *>(actWin);
+
+    if (mw)
+    {
+      if (!mw->isExecutingCommand())
+      {
+        mw->doSystemUpgrade();
+      }
+    }
+  }
   else if (actWin && message == "CLOSE") {
     if (!actWin->close())
     {
