@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.0" language="id">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="id" version="2.0">
 <context>
     <name>MainWindow</name>
     <message>
@@ -184,6 +182,10 @@
         <translation>F1</translation>
     </message>
     <message>
+        <source>Install local package...</source>
+        <translation>Pasang paket lokal...</translation>
+    </message>
+    <message>
         <source>A Qt4-based Pacman frontend,</source>
         <translation>Antarmuka Pacman berbasis Qt4</translation>
     </message>
@@ -338,10 +340,6 @@
     <message>
         <source>F12 to maximize/demaximize Tab&apos;s view</source>
         <translation>F12 untuk memaksimalkan/jangan dimaksimalkan tampilan Tab</translation>
-    </message>
-    <message>
-        <source>Install local package...</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -735,6 +733,10 @@
         <translation>Perubahan ini membutuhkan penghidupan ulang aplikasi untuk mendapatkan efek!</translation>
     </message>
     <message>
+        <source>Select the packages you want to install</source>
+        <translation>Pilih paket yang ingin kamu pasang</translation>
+    </message>
+    <message>
         <source>This file does not appear to be a simple text.
 Are you sure you want to open it?</source>
         <translation>Berkas ini tidak tampil menjadi teks sederhana.
@@ -763,10 +765,6 @@ Apakah kamu yakin ingin membuka berkas ini?</translation>
     <message>
         <source>Remove items</source>
         <translation>Hapus konten</translation>
-    </message>
-    <message>
-        <source>Select the packages you want to install</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

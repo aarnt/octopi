@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.0" language="ar">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="ar" version="2.0">
 <context>
     <name>MainWindow</name>
     <message>
@@ -184,6 +182,10 @@
         <translation>F1</translation>
     </message>
     <message>
+        <source>Install local package...</source>
+        <translation>تثبيت الحزمة المحلية...</translation>
+    </message>
+    <message>
         <source>A Qt4-based Pacman frontend,</source>
         <translation>واجهة رسومية لـ Pacman مبنية على كيوتي,4</translation>
     </message>
@@ -338,10 +340,6 @@
     <message>
         <source>F12 to maximize/demaximize Tab&apos;s view</source>
         <translation>F10 لتكبير/تصغير عرض التبويبات</translation>
-    </message>
-    <message>
-        <source>Install local package...</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -735,6 +733,10 @@
         <translation>هذه التغييرات تحتاج إعادة تشغيل التطبيق لتفعيلها!</translation>
     </message>
     <message>
+        <source>Select the packages you want to install</source>
+        <translation>حدد الحزم التي تود تثبيتها</translation>
+    </message>
+    <message>
         <source>This file does not appear to be a simple text.
 Are you sure you want to open it?</source>
         <translation>هذا الملف لا يبدو كنص بسيط.
@@ -763,10 +765,6 @@ Are you sure you want to open it?</source>
     <message>
         <source>Remove items</source>
         <translation>إزالة العناصر</translation>
-    </message>
-    <message>
-        <source>Select the packages you want to install</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

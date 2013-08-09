@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.0" language="da">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="da" version="2.0">
 <context>
     <name>MainWindow</name>
     <message>
@@ -184,6 +182,10 @@
         <translation>F1</translation>
     </message>
     <message>
+        <source>Install local package...</source>
+        <translation>Installer lokal pakke...</translation>
+    </message>
+    <message>
         <source>A Qt4-based Pacman frontend,</source>
         <translation>En  Qt4-baseret Pacman frontend,</translation>
     </message>
@@ -338,10 +340,6 @@
     <message>
         <source>F12 to maximize/demaximize Tab&apos;s view</source>
         <translation>F12 for at maksimere/minimere Tabvisning</translation>
-    </message>
-    <message>
-        <source>Install local package...</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -739,6 +737,10 @@ Bekræft?</translation>
         <translation>Disse ændringer gør det nødvendigt at genstarte programmet for at det kan træde ikraft!</translation>
     </message>
     <message>
+        <source>Select the packages you want to install</source>
+        <translation>Vælg pakkerne du ønsker at installere</translation>
+    </message>
+    <message>
         <source>This file does not appear to be a simple text.
 Are you sure you want to open it?</source>
         <translation>Denne fil synes ikke at være en simpel tekst
@@ -767,10 +769,6 @@ Er du sikker du vil åbne det?</translation>
     <message>
         <source>Remove items</source>
         <translation>Fjern emner</translation>
-    </message>
-    <message>
-        <source>Select the packages you want to install</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

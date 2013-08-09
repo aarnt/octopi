@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.0" language="lt">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="lt" version="2.0">
 <context>
     <name>MainWindow</name>
     <message>
@@ -184,6 +182,10 @@
         <translation>F1</translation>
     </message>
     <message>
+        <source>Install local package...</source>
+        <translation>Įdiegti vietinį paketą...</translation>
+    </message>
+    <message>
         <source>A Qt4-based Pacman frontend,</source>
         <translation>Pacman naudotojo sąsaja sukurta su Qt4,</translation>
     </message>
@@ -338,10 +340,6 @@
     <message>
         <source>F12 to maximize/demaximize Tab&apos;s view</source>
         <translation>F12, kad išdidinti/sumažinti kortelės rodymą</translation>
-    </message>
-    <message>
-        <source>Install local package...</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -735,6 +733,10 @@
         <translation>Šiems pakeitimams reikia paleisti programą iš naujo, kad pritaikyti pakeitimus!</translation>
     </message>
     <message>
+        <source>Select the packages you want to install</source>
+        <translation>Pasirinkite paketus, kuriuos norite įdiegti</translation>
+    </message>
+    <message>
         <source>This file does not appear to be a simple text.
 Are you sure you want to open it?</source>
         <translation>Atrodo, kad šis failas nėra paprastas tekstas.
@@ -763,10 +765,6 @@ Ar tikrai norite jį atverti?</translation>
     <message>
         <source>Remove items</source>
         <translation>Pašalinti elementus</translation>
-    </message>
-    <message>
-        <source>Select the packages you want to install</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
