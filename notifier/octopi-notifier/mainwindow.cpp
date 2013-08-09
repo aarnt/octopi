@@ -87,11 +87,27 @@ void MainWindow::runOctopi()
   if(UnixCommand::getLinuxDistro() == ectn_MANJAROLINUX &&
      !WMHelper::isKDERunning())
   {
-    proc.startDetached("octopi -sysupgrade -style gtk");
+    if (m_icon.pixmap(QSize(22,22)).toImage() ==
+        IconHelper::getIconOctopiRed().pixmap(QSize(22,22)).toImage())
+    {
+      proc.startDetached("octopi -sysupgrade -style gtk");
+    }
+    else
+    {
+      proc.startDetached("octopi -style gtk");
+    }
   }
   else
   {
-    proc.startDetached("octopi -sysupgrade");
+    if (m_icon.pixmap(QSize(22,22)).toImage() ==
+        IconHelper::getIconOctopiRed().pixmap(QSize(22,22)).toImage())
+    {
+      proc.startDetached("octopi -sysupgrade");
+    }
+    else
+    {
+      proc.startDetached("octopi");
+    }
   }
 }
 
