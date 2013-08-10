@@ -536,15 +536,23 @@ void MainWindow::doSystemUpgrade(bool syncDatabase)
     QList<PackageListData> * targets = Package::getTargetUpgradeList();
 
     //There are no new updates to install!
-    if (targets->count() == 0)
+    if (targets->count() == 0 && m_outdatedPackageList->count() == 0)
     {
       clearTabOutput();
       writeToTabOutputExt("<b>" + StrConstants::getNoNewUpdatesAvailable() + "</b>");
       return;
     }
+    else if (targets->count() == 0 && m_outdatedPackageList->count() > 0)
+    {
+      //This is a bug and should be shown to the user!
+      clearTabOutput();
+      writeToTabOutputExt(UnixCommand::getTargetUpgradeList());
+      return;
+    }
 
     QString list;
     double totalDownloadSize = 0;
+
     foreach(PackageListData target, *targets)
     {
       totalDownloadSize += target.downloadSize;
