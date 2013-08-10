@@ -833,7 +833,7 @@ void MainWindow::doInstallYaourtPackage()
   if (!_isSUAvailable()) return;
 
   QString listOfTargets =
-      m_modelPackages->item(ui->tvPackages->currentIndex().row(), ctn_PACKAGE_NAME_COLUMN)->text();
+      _getCurrentSelectedModel()->item(ui->tvPackages->currentIndex().row(), ctn_PACKAGE_NAME_COLUMN)->text();
 
   m_lastCommandList.clear();
   m_lastCommandList.append("yaourt -S " + listOfTargets + ";");
