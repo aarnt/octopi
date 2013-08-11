@@ -40,7 +40,9 @@ QString UnixCommand::runCommand(const QString& commandToRun)
 
   QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
   env.remove("LANG");
-  env.insert("LANG", "en_US");
+  env.remove("LC_MESSAGES");
+  env.insert("LANG", "C");
+  env.insert("LC_MESSAGES", "C");
   proc.setProcessEnvironment(env);
 
   proc.start(commandToRun);
@@ -58,7 +60,8 @@ QString UnixCommand::runCurlCommand(const QString& commandToRun){
   QProcess proc;
 
   QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
-  env.insert("LANG", "en_US");
+  env.insert("LANG", "C");
+  env.insert("LC_MESSAGES", "C");
   proc.setProcessEnvironment(env);
 
   proc.start(commandToRun);
@@ -80,7 +83,8 @@ QString UnixCommand::discoverBinaryPath(const QString& binary){
   QProcess *proc = new QProcess;
 
   QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
-  env.insert("LANG", "en_US");
+  env.insert("LANG", "C");
+  env.insert("LC_MESSAGES", "C");
   proc->setProcessEnvironment(env);
 
   proc->start("/bin/sh -c \"which " + binary + "\"");
@@ -110,7 +114,8 @@ bool UnixCommand::cleanPacmanCache()
 {
   QProcess pacman;
   QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
-  env.insert("LANG", "en_US");
+  env.insert("LANG", "C");
+  env.insert("LC_MESSAGES", "C");
   pacman.setProcessEnvironment(env);
 
   QString commandStr = "\"yes | pacman -Scc\"";
@@ -131,7 +136,8 @@ QByteArray UnixCommand::performQuery(const QStringList args)
   QProcess pacman;
 
   QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
-  env.insert("LANG", "en_US");
+  env.insert("LANG", "C");
+  env.insert("LC_MESSAGES", "C");
   pacman.setProcessEnvironment(env);
 
   pacman.start("pacman", args);
@@ -151,7 +157,8 @@ QByteArray UnixCommand::performQuery(const QString &args)
   QProcess pacman;
 
   QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
-  env.insert("LANG", "en_US");
+  env.insert("LANG", "C");
+  env.insert("LC_MESSAGES", "C");
   pacman.setProcessEnvironment(env);
 
   pacman.start("pacman " + args);
@@ -170,7 +177,8 @@ QByteArray UnixCommand::performYaourtCommand(const QString &args)
   QProcess yaourt;
 
   QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
-  env.insert("LANG", "en_US");
+  env.insert("LANG", "C");
+  env.insert("LC_MESSAGES", "C");
   yaourt.setProcessEnvironment(env);
 
   yaourt.start("yaourt " + args);
@@ -190,7 +198,8 @@ QByteArray UnixCommand::getYaourtPackageList(const QString &searchString)
   QProcess kill;
 
   QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
-  env.insert("LANG", "en_US");
+  env.insert("LANG", "C");
+  env.insert("LC_MESSAGES", "C");
   yaourt.setProcessEnvironment(env);
 
   kill.setStandardOutputProcess(&yaourt);
@@ -334,11 +343,10 @@ QString UnixCommand::getSystemArchitecture()
   QStringList slParam;
   QProcess proc;
 
-#if QT_VERSION >= 0x040600
   QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
-  env.insert("LANG", "en_US");
+  env.insert("LANG", "C");
+  env.insert("LC_MESSAGES", "C");
   proc.setProcessEnvironment(env);
-#endif
 
   slParam << "-m";
   proc.start("uname", slParam);
@@ -393,7 +401,8 @@ bool UnixCommand::doInternetPingTest()
 {
   QProcess ping;
   QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
-  env.insert("LANG", "en_US");
+  env.insert("LANG", "C");
+  env.insert("LC_MESSAGES", "C");
   ping.setProcessEnvironment(env);
 
   ping.start("ping -c 1 -W 3 www.google.com");
@@ -412,11 +421,10 @@ bool UnixCommand::isKtsussVersionOK()
 {
   QProcess proc;
 
-#if QT_VERSION >= 0x040600
   QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
-  env.insert("LANG", "en_US");
+  env.insert("LANG", "C");
+  env.insert("LC_MESSAGES", "C");
   proc.setProcessEnvironment(env);
-#endif
 
   QStringList slParam("-v");
   proc.start("ktsuss", slParam );
@@ -487,7 +495,8 @@ bool UnixCommand::isTextFile(const QString& fileName)
 {
   QProcess *p = new QProcess();
   QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
-  env.insert("LANG", "en_US");
+  env.insert("LANG", "C");
+  env.insert("LC_MESSAGES", "C");
   p->setProcessEnvironment(env);
 
   QStringList s(fileName);
@@ -555,7 +564,9 @@ void UnixCommand::runCommandInTerminal(const QStringList& commandList){
 
   QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
   env.remove("LANG");
+  env.remove("LC_MESSAGES");
   env.insert("LANG", QLocale::system().name() + ".UTF-8");
+  env.insert("LC_MESSAGES", QLocale::system().name() + ".UTF-8");
   m_process->setProcessEnvironment(env);
 
   if(WMHelper::isXFCERunning() && UnixCommand::hasTheExecutable(ctn_XFCE_TERMINAL)){
@@ -615,7 +626,8 @@ void UnixCommand::executePackageActions( const QStringList& commandList )
   QString command = WMHelper::getSUCommand() + " " + ftemp->fileName();
 
   QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
-  env.insert("LANG", "en_US");
+  env.insert("LANG", "C");
+  env.insert("LC_MESSAGES", "C");
   m_process->setProcessEnvironment(env);
   m_process->start(command);
 }
@@ -667,9 +679,9 @@ QString UnixCommand::errorString()
 UnixCommand::UnixCommand(QObject *parent): QObject()
 {
   m_process = new QProcess(parent);
-
   QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
-  env.insert("LANG", "en_US");
+  env.insert("LANG", "C");
+  env.insert("LC_MESSAGES", "C");
   m_process->setProcessEnvironment(env);
 
   QObject::connect(m_process, SIGNAL( started() ), this,

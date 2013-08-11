@@ -95,4 +95,5 @@ TRANSLATIONS += resources/translations/octopi_pt_BR.ts \
     resources/translations/octopi_he.ts \
     resources/translations/octopi_lt.ts \
     resources/translations/octopi_nb.ts \
-    resources/translations/octopi_sr@latin.ts
+    resources/translations/octopi_sr@latin.ts \
+    resources/translations/octopi_nl.ts
