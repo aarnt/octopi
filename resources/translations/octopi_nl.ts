@@ -183,11 +183,11 @@
     </message>
     <message>
         <source>Install local package...</source>
-        <translation>Installeer lokale pakket ...</translation>
+        <translation>Installeer lokaal pakket ...</translation>
     </message>
     <message>
         <source>A Qt4-based Pacman frontend,</source>
-        <translation>Een Qt4-gebaseerd Pacman frontend,</translation>
+        <translation>Een op Qt4 gebaseerde Pacman frontend,</translation>
     </message>
     <message>
         <source>licensed under the terms of</source>
@@ -291,7 +291,7 @@
     </message>
     <message>
         <source>Ctrl+M or &apos;Transaction/Commit&apos; to start installation/removal of selected packages</source>
-        <translation>Ctrl+M of &apos;Transactie/Begaan&apos; om de installatie/verwijdering van de geselecteerde pakketten te beginnen</translation>
+        <translation>Ctrl+M of &apos;Transactie/Uitvoeren&apos; om de installatie/verwijdering van de geselecteerde pakketten te beginnen</translation>
     </message>
     <message>
         <source>Ctrl+B or &apos;Transaction/Rollback&apos; to clear the selection of to be removed/installed packages</source>
@@ -327,7 +327,7 @@
     </message>
     <message>
         <source>F4 to open a Terminal whitin the selected directory at Files tab</source>
-        <translation>F4 om een Terminal venster te openen in de geselecteerde directory onder de Files tab</translation>
+        <translation>F4 om een Terminal venster te openen in de geselecteerde directory onder het Bestanden venster</translation>
     </message>
     <message>
         <source>F6 to open a File Manager whitin the selected directory at Files tab</source>
@@ -346,11 +346,11 @@
     <name>QObject</name>
     <message>
         <source>Octopi help usage:</source>
-        <translation>Octopi gebruiks hulp:</translation>
+        <translation>Octopi gebruikshulp:</translation>
     </message>
     <message>
         <source>show application version.</source>
-        <translation>Toon de versie</translation>
+        <translation>Toon de toepassingsversie.</translation>
     </message>
     <message>
         <source>use a different Qt4 style (ex: -style gtk).</source>
@@ -358,11 +358,11 @@
     </message>
     <message>
         <source>use a different remove command (ex: -removecmd R).</source>
-        <translation>Gebruik een andere verwijder opdracht (bv: -removecmd R).</translation>
+        <translation>Gebruik een andere opdracht om te verwijderen (bv: -removecmd R).</translation>
     </message>
     <message>
         <source>force a system upgrade at startup.</source>
-        <translation>Verplicht een systeem upgrade tijdens het opstarten.</translation>
+        <translation>Forceer een systeem upgrade tijdens het opstarten.</translation>
     </message>
     <message>
         <source>Arch Linux news</source>
@@ -378,7 +378,7 @@
     </message>
     <message>
         <source>No news could be found! Press Ctrl+G to download the latest news.</source>
-        <translation>Geen nieuws kon gevonden worden! Druk Ctrl+G om het laatste nieuws te downloaden.</translation>
+        <translation>Er is geen nieuws gevonden! Druk Ctrl+G om het laatste nieuws te downloaden.</translation>
     </message>
     <message>
         <source>This Linux distro seems to be incompatible with Octopi!</source>
@@ -546,11 +546,11 @@
     </message>
     <message>
         <source>Searching for %1 latest news...</source>
-        <translation>Zoeken naar %1 laatste nieuws</translation>
+        <translation>Zoeken naar %1 laatste nieuws...</translation>
     </message>
     <message>
         <source>There is one outdated package in your system:</source>
-        <translation>Er is een verouderd pakket op uw systeem:</translation>
+        <translation>Er is één verouderd pakket op uw systeem:</translation>
     </message>
     <message>
         <source>There are %1 outdated packages in your system:</source>
@@ -578,7 +578,7 @@
     </message>
     <message>
         <source>Cleaning package cache...</source>
-        <translation>Pakketcache aan het schoonmaken...</translation>
+        <translation>Pakketcache aan het legen...</translation>
     </message>
     <message>
         <source>Syncing</source>
@@ -598,15 +598,15 @@
     </message>
     <message>
         <source>Starting full system upgrade...</source>
-        <translation>Volledige systeem opwaardering beginnen...</translation>
+        <translation>Beginnen met volledige systeem opwaardering ...</translation>
     </message>
     <message>
         <source>Installing selected packages...</source>
-        <translation>Geselecteerde pakketten aan het Installeren...</translation>
+        <translation>Installeren van geselecteerde pakketten...</translation>
     </message>
     <message>
         <source>Removing selected packages...</source>
-        <translation>Geselecteerde pakketten aan het verwijderen...</translation>
+        <translation>Verwijderen van geselecteerde pakketten...</translation>
     </message>
     <message>
         <source>Removing/installing selected packages...</source>
@@ -614,7 +614,7 @@
     </message>
     <message>
         <source>Running command in terminal...</source>
-        <translation>Opdracht wordt uitgevoerd in terminal...</translation>
+        <translation>Uitvoeren van opdracht in terminal...</translation>
     </message>
     <message>
         <source>Command finished OK!</source>
@@ -622,11 +622,11 @@
     </message>
     <message>
         <source>Command finished with errors!</source>
-        <translation>Opdracht beeindigd met fouten!</translation>
+        <translation>Opdracht beëindigd met fouten!</translation>
     </message>
     <message>
         <source>Retrieving %1</source>
-        <translation>Ophalen %1</translation>
+        <translation>%1 ophalen</translation>
     </message>
     <message>
         <source>Total download size: %1 KB</source>
@@ -658,11 +658,11 @@
     </message>
     <message>
         <source>There is an update available!</source>
-        <translation>Er zijn geen updates beschikbaar!</translation>
+        <translation>Er is een opwaardering beschikbaar!</translation>
     </message>
     <message>
         <source>There are %1 updates available!</source>
-        <translation>Er zijn %1 updates beschikbaar!</translation>
+        <translation>Er zijn %1 opwaarderingen beschikbaar!</translation>
     </message>
     <message>
         <source>Confirm?</source>
