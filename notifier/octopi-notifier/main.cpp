@@ -1,4 +1,5 @@
 #include "../../src/unixcommand.h"
+#include "../../src/wmhelper.h"
 #include "mainwindow.h"
 
 #include <QtGui>
@@ -10,7 +11,14 @@ int main(int argc, char *argv[])
   QApplication a(argc, argv);
 
   QApplication::setGraphicsSystem(QLatin1String("raster"));
-  qApp->setStyle(new QGtkStyle());
+
+  if(UnixCommand::getLinuxDistro() == ectn_MANJAROLINUX &&
+          !WMHelper::isKDERunning())
+  {
+    qApp->setStyle(new QGtkStyle());
+  }
+  else
+    qApp->setStyle(new QCleanlooksStyle);
 
   QTranslator appTranslator;
   appTranslator.load(":/resources/translations/octopi_" +
