@@ -237,14 +237,14 @@ void MainWindow::refreshAppIcon()
   if(m_outdatedPackageList->count() > 0)
   {
     m_icon = (IconHelper::getIconOctopiRed());
-    m_systemTrayIcon->setIcon(m_icon);
-    m_systemTrayIcon->show();
   }
   else
   {
-    //m_icon = (IconHelper::getIconOctopiYellow());
-    m_systemTrayIcon->hide();
+    m_icon = (IconHelper::getIconOctopiYellow());
   }
+
+  m_systemTrayIcon->setIcon(m_icon);
+  m_systemTrayIcon->show();
 
   connect(m_pacmanDatabaseSystemWatcher,
           SIGNAL(directoryChanged(QString)), this, SLOT(refreshAppIcon()));

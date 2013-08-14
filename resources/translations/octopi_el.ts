@@ -385,10 +385,6 @@
         <translation>Αυτή η διανομή Linux φαίνεται να μην είναι συμβατή με το Octopi!</translation>
     </message>
     <message>
-        <source>Internet seems anavailable!</source>
-        <translation>Δεν φαίνετε να υπάρχει σύνδεση στο διαδίκτυο!</translation>
-    </message>
-    <message>
         <source>Display all groups</source>
         <translation>Εμφάνιση όλων των ομάδων</translation>
     </message>
@@ -765,6 +761,10 @@ Are you sure you want to open it?</source>
     <message>
         <source>Remove items</source>
         <translation>Απεγκατάσταση αντικειμένων</translation>
+    </message>
+    <message>
+        <source>Internet seems unavailable!</source>
+        <translation>Δεν φαίνετε να υπάρχει σύνδεση στο διαδίκτυο!</translation>
     </message>
 </context>
 <context>

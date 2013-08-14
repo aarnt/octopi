@@ -385,10 +385,6 @@
         <translation>Aquesta distro Linux sembla incompatible amb Octopi!</translation>
     </message>
     <message>
-        <source>Internet seems anavailable!</source>
-        <translation>Internet sembla no estar disponible!</translation>
-    </message>
-    <message>
         <source>Display all groups</source>
         <translation>Mostrar tots els grups</translation>
     </message>
@@ -765,6 +761,10 @@ Estàs segur que vols obrir-lo?</translation>
     <message>
         <source>Remove items</source>
         <translation>Eliminar ítems</translation>
+    </message>
+    <message>
+        <source>Internet seems unavailable!</source>
+        <translation>Internet sembla no estar disponible</translation>
     </message>
 </context>
 <context>

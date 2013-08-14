@@ -385,10 +385,6 @@
         <translation>يبدو أن هذه النوزيعةغير متطابقة مع أوكتابي!</translation>
     </message>
     <message>
-        <source>Internet seems anavailable!</source>
-        <translation>يبدوا أنك غبر متصل بالأنترنت!</translation>
-    </message>
-    <message>
         <source>Display all groups</source>
         <translation>عرض كل المجموعات</translation>
     </message>
@@ -765,6 +761,10 @@ Are you sure you want to open it?</source>
     <message>
         <source>Remove items</source>
         <translation>إزالة العناصر</translation>
+    </message>
+    <message>
+        <source>Internet seems unavailable!</source>
+        <translation>يبدوا أنك غبر متصل بالأنترنت!</translation>
     </message>
 </context>
 <context>

@@ -385,10 +385,6 @@
         <translation>Ta dystybucja Linux wydaje się być niezgodna z Octopi!</translation>
     </message>
     <message>
-        <source>Internet seems anavailable!</source>
-        <translation>Brak dostępu do Internetu!</translation>
-    </message>
-    <message>
         <source>Display all groups</source>
         <translation>Wyświetl wszystkie grupy</translation>
     </message>
@@ -764,6 +760,10 @@ Are you sure you want to open it?</source>
     <message>
         <source>Remove items</source>
         <translation>Usuń pozycje</translation>
+    </message>
+    <message>
+        <source>Internet seems unavailable!</source>
+        <translation>Brak dostępu do Internetu!</translation>
     </message>
 </context>
 <context>

@@ -385,10 +385,6 @@
         <translation>Ši Linux distribucija atrodo nesuderinama su Octopi!</translation>
     </message>
     <message>
-        <source>Internet seems anavailable!</source>
-        <translation>Internetas atrodo nepasiekiamas!</translation>
-    </message>
-    <message>
         <source>Display all groups</source>
         <translation>Rodyti visas grupes</translation>
     </message>
@@ -765,6 +761,10 @@ Ar tikrai norite jį atverti?</translation>
     <message>
         <source>Remove items</source>
         <translation>Pašalinti elementus</translation>
+    </message>
+    <message>
+        <source>Internet seems unavailable!</source>
+        <translation>Internetas atrodo nepasiekiamas!</translation>
     </message>
 </context>
 <context>

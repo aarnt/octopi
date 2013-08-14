@@ -385,10 +385,6 @@
         <translation>Ova Linux distribucija nije kompabitilna sa Octopi-em!</translation>
     </message>
     <message>
-        <source>Internet seems anavailable!</source>
-        <translation>Internet nije dustupan!</translation>
-    </message>
-    <message>
         <source>Display all groups</source>
         <translation>Prikaži sve grupe</translation>
     </message>
@@ -765,6 +761,10 @@ Da li ste sigurni da je želite otvoriti?</translation>
     <message>
         <source>Remove items</source>
         <translation>Ukloni predmete</translation>
+    </message>
+    <message>
+        <source>Internet seems unavailable!</source>
+        <translation>Internet nije dustupan!</translation>
     </message>
 </context>
 <context>

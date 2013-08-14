@@ -1,11 +1,9 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.0" language="he">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="he" version="2.0">
 <context>
     <name>MainWindow</name>
     <message>
         <source>Octopi</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Info</source>
@@ -49,7 +47,7 @@
     </message>
     <message>
         <source>Ctrl+N</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Commit</source>
@@ -57,7 +55,7 @@
     </message>
     <message>
         <source>Ctrl+M</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Rollback</source>
@@ -65,7 +63,7 @@
     </message>
     <message>
         <source>Ctrl+B</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Sync database</source>
@@ -73,7 +71,7 @@
     </message>
     <message>
         <source>Ctrl+D</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Exit</source>
@@ -81,7 +79,7 @@
     </message>
     <message>
         <source>Ctrl+Q</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>System upgrade</source>
@@ -89,7 +87,7 @@
     </message>
     <message>
         <source>Ctrl+U</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Install</source>
@@ -109,7 +107,7 @@
     </message>
     <message>
         <source>Ctrl+G</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Remove group</source>
@@ -181,7 +179,11 @@
     </message>
     <message>
         <source>F1</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Install local package...</source>
+        <translation>התקנת חבילה מקומית...</translation>
     </message>
     <message>
         <source>A Qt4-based Pacman frontend,</source>
@@ -339,10 +341,6 @@
         <source>F12 to maximize/demaximize Tab&apos;s view</source>
         <translation>‏F12 כדי להגדיל/לשחזר תצוגת כרטיסייה</translation>
     </message>
-    <message>
-        <source>Install local package...</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>QObject</name>
@@ -387,10 +385,6 @@
         <translation>נראה שהפצת Linux זו לא מתאימה עם Octopi!</translation>
     </message>
     <message>
-        <source>Internet seems anavailable!</source>
-        <translation>נראה שאין אינטרנט זמין!</translation>
-    </message>
-    <message>
         <source>Display all groups</source>
         <translation>הצג כל קבוצה</translation>
     </message>
@@ -424,7 +418,7 @@
     </message>
     <message>
         <source>URL</source>
-        <translation type="unfinished"></translation>
+        <translation>‏URL‏</translation>
     </message>
     <message>
         <source>Repository</source>
@@ -735,6 +729,10 @@
         <translation>שינויים אלה מצריכים אתחול יישום על מנת להיכנס לתוקף!</translation>
     </message>
     <message>
+        <source>Select the packages you want to install</source>
+        <translation>בחר את החבילה אשר ברצונך להתקין</translation>
+    </message>
+    <message>
         <source>This file does not appear to be a simple text.
 Are you sure you want to open it?</source>
         <translation>קובץ זה לא נראה כקובץ טקסט פשוט.
@@ -765,8 +763,8 @@ Are you sure you want to open it?</source>
         <translation>הסר פריטים</translation>
     </message>
     <message>
-        <source>Select the packages you want to install</source>
-        <translation type="unfinished"></translation>
+        <source>Internet seems unavailable!</source>
+        <translation>נראה שאין אינטרנט זמין!</translation>
     </message>
 </context>
 <context>

@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.0" language="pt_BR">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="pt_BR" version="2.0">
 <context>
     <name>MainWindow</name>
     <message>
@@ -184,6 +182,10 @@
         <translation>F1</translation>
     </message>
     <message>
+        <source>Install local package...</source>
+        <translation>Instalar pacote local...</translation>
+    </message>
+    <message>
         <source>A Qt4-based Pacman frontend,</source>
         <translation>Um frontend para o Pacman desenvolvido em Qt4,</translation>
     </message>
@@ -339,10 +341,6 @@
         <source>F12 to maximize/demaximize Tab&apos;s view</source>
         <translation>F12 para maximizar/desmaximizar a visão das guias</translation>
     </message>
-    <message>
-        <source>Install local package...</source>
-        <translation>Instalar pacote local...</translation>
-    </message>
 </context>
 <context>
     <name>QObject</name>
@@ -385,10 +383,6 @@
     <message>
         <source>This Linux distro seems to be incompatible with Octopi!</source>
         <translation>Esta distro Linux parece ser incompatível com o Octopi!</translation>
-    </message>
-    <message>
-        <source>Internet seems anavailable!</source>
-        <translation>A internet parece estar indisponível!</translation>
     </message>
     <message>
         <source>Display all groups</source>
@@ -735,6 +729,10 @@
         <translation>Estas mudanças necessitam que a aplicação seja reiniciada para terem efeito!</translation>
     </message>
     <message>
+        <source>Select the packages you want to install</source>
+        <translation>Selecione os pacotes que deseja instalar</translation>
+    </message>
+    <message>
         <source>This file does not appear to be a simple text.
 Are you sure you want to open it?</source>
         <translation>Este arquivo não parece ser um texto simples
@@ -765,8 +763,8 @@ Tem certeza que deseja abri-lo?</translation>
         <translation>Remover itens</translation>
     </message>
     <message>
-        <source>Select the packages you want to install</source>
-        <translation>Selecione os pacotes que deseja instalar</translation>
+        <source>Internet seems unavailable!</source>
+        <translation>A internet parece estar indisponível!</translation>
     </message>
 </context>
 <context>

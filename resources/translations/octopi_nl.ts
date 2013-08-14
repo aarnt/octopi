@@ -385,10 +385,6 @@
         <translation>Deze Linux distributie lijkt incompatibel te zijn met Octopi!</translation>
     </message>
     <message>
-        <source>Internet seems anavailable!</source>
-        <translation>Internet is niet beschikbaar!</translation>
-    </message>
-    <message>
         <source>Display all groups</source>
         <translation>Toon alle groepen</translation>
     </message>
@@ -765,6 +761,10 @@ Weet u zeker dat u het wilt openen?</translation>
     <message>
         <source>Remove items</source>
         <translation>Verwijder objecten</translation>
+    </message>
+    <message>
+        <source>Internet seems unavailable!</source>
+        <translation>Internet is niet beschikbaar!</translation>
     </message>
 </context>
 <context>

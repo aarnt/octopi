@@ -75,7 +75,7 @@ public:
   }
 
   static QString getInternetUnavailableError(){
-    return QObject::tr("Internet seems anavailable!");
+    return QObject::tr("Internet seems unavailable!");
   }
 
   static QString getAll(){

@@ -28,6 +28,16 @@
 #include <QProcess>
 #include <QMessageBox>
 
+/*
+ * This class is a helper to abstract some Desktop Environments services for Octopi.
+ * These include: open and edit a file, open a directory and a terminal.
+ *
+ * There's also a method to retrieve the available tool to obtain root privileges.
+ */
+
+/*
+ * Checks if KDE is running
+ */
 bool WMHelper::isKDERunning(){
   QStringList slParam;
   QProcess proc;
@@ -47,6 +57,9 @@ bool WMHelper::isKDERunning(){
     return false;
 }
 
+/*
+ * Checks if TDE is running
+ */
 bool WMHelper::isTDERunning(){
   QStringList slParam;
   QProcess proc;
@@ -66,6 +79,9 @@ bool WMHelper::isTDERunning(){
     return false;
 }
 
+/*
+ * Checks if XFCE is running
+ */
 bool WMHelper::isXFCERunning(){
   QStringList slParam;
   QProcess proc;
@@ -84,6 +100,9 @@ bool WMHelper::isXFCERunning(){
     return false;
 }
 
+/*
+ * Checks if LXDE is running
+ */
 bool WMHelper::isLXDERunning(){
   QStringList slParam;
   QProcess proc;
@@ -102,6 +121,9 @@ bool WMHelper::isLXDERunning(){
       return false;
 }
 
+/*
+ * Checks if OpenBox is running
+ */
 bool WMHelper::isOPENBOXRunning(){
   QStringList slParam;
   QProcess proc;
@@ -120,6 +142,9 @@ bool WMHelper::isOPENBOXRunning(){
       return false;
 }
 
+/*
+ * Checks if MATE is running
+ */
 bool WMHelper::isMATERunning(){
   QStringList slParam;
   QProcess proc;
@@ -138,6 +163,9 @@ bool WMHelper::isMATERunning(){
     return false;
 }
 
+/*
+ * Checks if Cinnamon is running
+ */
 bool WMHelper::isCinnamonRunning(){
   QStringList slParam;
   QProcess proc;
@@ -156,6 +184,9 @@ bool WMHelper::isCinnamonRunning(){
     return false;
 }
 
+/*
+ * Retrieves the XFCE editor...
+ */
 QString WMHelper::getXFCEEditor(){
   if (UnixCommand::hasTheExecutable(ctn_XFCE_EDITOR))
     return ctn_XFCE_EDITOR;
@@ -163,6 +194,9 @@ QString WMHelper::getXFCEEditor(){
     return ctn_XFCE_EDITOR_ALT;
 }
 
+/*
+ * Retrieves the KDESU command...
+ */
 QString WMHelper::getKDESUCommand(){
   QString result = ctn_KDESU;
   result += " -d ";
@@ -173,6 +207,9 @@ QString WMHelper::getKDESUCommand(){
   return result;
 }
 
+/*
+ * Retrieves the TDESU command...
+ */
 QString WMHelper::getTDESUCommand(){
   QString result = ctn_TDESU;
   result += " -d ";
@@ -182,6 +219,9 @@ QString WMHelper::getTDESUCommand(){
   return result;
 }
 
+/*
+ * Retrieves the KTSUSS command...
+ */
 QString WMHelper::getKTSUSSCommand(){
   QString result = ctn_KTSUSS;
 
@@ -191,6 +231,9 @@ QString WMHelper::getKTSUSSCommand(){
   return result;
 }
 
+/*
+ * Retrieves the GKSU command...
+ */
 QString WMHelper::getGKSUCommand(){
   QString result;
   result = UnixCommand::discoverBinaryPath(ctn_GKSU_2);
@@ -199,6 +242,9 @@ QString WMHelper::getGKSUCommand(){
   return result;
 }
 
+/*
+ * The generic SU get method. It retrieves the SU you have installed in your system!
+ */
 QString WMHelper::getSUCommand(){
   QString result(ctn_NO_SU_COMMAND);
 
@@ -240,6 +286,9 @@ QString WMHelper::getSUCommand(){
   return result;
 }
 
+/*
+ * Opens a file based on your DE
+ */
 void WMHelper::openFile(const QString& fileName){
   QString fileToOpen(fileName);
 
@@ -294,6 +343,9 @@ void WMHelper::openFile(const QString& fileName){
   }
 }
 
+/*
+ * Edits a file based on your DE.
+ */
 void WMHelper::editFile( const QString& fileName ){
   QProcess *process = new QProcess(qApp->activeWindow());
   QStringList s;
@@ -347,6 +399,9 @@ void WMHelper::editFile( const QString& fileName ){
   }
 }
 
+/*
+ * Opens a directory based on your DE.
+ */
 void WMHelper::openDirectory( const QString& dirName ){
   QProcess *p = new QProcess(qApp->activeWindow());
   QStringList s;
@@ -419,6 +474,9 @@ void WMHelper::openDirectory( const QString& dirName ){
   }
 }
 
+/*
+ * Opens a terminal based on your DE.
+ */
 void WMHelper::openTerminal(const QString& dirName){
   QProcess *p = new QProcess(qApp->activeWindow());
   QStringList s;

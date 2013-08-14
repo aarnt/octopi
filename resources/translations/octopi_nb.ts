@@ -385,10 +385,6 @@
         <translation>Denne Linuxdistribusjonen ser ikke ut til å være kompatibel med Otopi!</translation>
     </message>
     <message>
-        <source>Internet seems anavailable!</source>
-        <translation>Internettet ser ut til å være utilgjengelig!</translation>
-    </message>
-    <message>
         <source>Display all groups</source>
         <translation>Vis alle grupper</translation>
     </message>
@@ -765,6 +761,10 @@ Er du sikker på at du vil åpne den?</translation>
     <message>
         <source>Remove items</source>
         <translation>Fjern komponenter</translation>
+    </message>
+    <message>
+        <source>Internet seems unavailable!</source>
+        <translation>Internettet ser ut til å være utilgjengelig!</translation>
     </message>
 </context>
 <context>

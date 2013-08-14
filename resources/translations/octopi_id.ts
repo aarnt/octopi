@@ -385,10 +385,6 @@
         <translation>Distro Linux ini kelihatannya tidak cocok dengan Octopi!</translation>
     </message>
     <message>
-        <source>Internet seems anavailable!</source>
-        <translation>Internet kelihatannya tidak tersedia!</translation>
-    </message>
-    <message>
         <source>Display all groups</source>
         <translation>Perlihatkan semua grup</translation>
     </message>
@@ -765,6 +761,10 @@ Apakah kamu yakin ingin membuka berkas ini?</translation>
     <message>
         <source>Remove items</source>
         <translation>Hapus konten</translation>
+    </message>
+    <message>
+        <source>Internet seems unavailable!</source>
+        <translation>Internet kelihatannya tidak tersedia!</translation>
     </message>
 </context>
 <context>

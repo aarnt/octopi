@@ -385,10 +385,6 @@
         <translation>Denne Linux distro ser ud til at være uforenelig med Octopi!</translation>
     </message>
     <message>
-        <source>Internet seems anavailable!</source>
-        <translation>Internet virker virker åbenbart ikke!</translation>
-    </message>
-    <message>
         <source>Display all groups</source>
         <translation>Vis alle grupper</translation>
     </message>
@@ -769,6 +765,10 @@ Er du sikker du vil åbne det?</translation>
     <message>
         <source>Remove items</source>
         <translation>Fjern emner</translation>
+    </message>
+    <message>
+        <source>Internet seems unavailable!</source>
+        <translation>Internet virker virker åbenbart ikke!</translation>
     </message>
 </context>
 <context>

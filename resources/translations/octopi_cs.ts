@@ -385,10 +385,6 @@
         <translation>Zdá se, že linuxová distribuce není slučitelná s Octopi!</translation>
     </message>
     <message>
-        <source>Internet seems anavailable!</source>
-        <translation>Zdá se, že internet není dostupný!</translation>
-    </message>
-    <message>
         <source>Display all groups</source>
         <translation>Zobrazit všechny skupiny</translation>
     </message>
@@ -765,6 +761,10 @@ Opravdu jej chcete otevřít?</translation>
     <message>
         <source>Remove items</source>
         <translation>Odstranit položky</translation>
+    </message>
+    <message>
+        <source>Internet seems unavailable!</source>
+        <translation>Zdá se, že internet není dostupný!</translation>
     </message>
 </context>
 <context>

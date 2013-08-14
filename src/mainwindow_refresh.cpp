@@ -537,7 +537,6 @@ void MainWindow::buildYaourtPackageList()
   tvPackagesSearchColumnChanged(ui->actionSearchByDescription);
 
   m_progressWidget->show();
-  //disconnect(m_pacmanDatabaseSystemWatcher, SIGNAL(directoryChanged(QString)), this, SLOT(metaBuildPackageList()));
 
   _deleteStandardItemModel(m_modelPackages);
   _deleteStandardItemModel(m_modelPackagesFromGroup);
@@ -685,8 +684,6 @@ void MainWindow::buildYaourtPackageList()
 
   reapplyPackageFilter();
 
-  //connect(m_pacmanDatabaseSystemWatcher, SIGNAL(directoryChanged(QString)), this, SLOT(metaBuildPackageList()));
-
   counter = list->count();
   m_progressWidget->setValue(counter);
   m_progressWidget->close();
@@ -699,7 +696,8 @@ void MainWindow::refreshStatusBar()
 {
   QString text;
 
-  if(m_numberOfOutdatedPackages > 0 && m_numberOfInstalledPackages > 0)
+  if(m_numberOfOutdatedPackages > 0 && m_numberOfInstalledPackages > 0 &&
+     m_cbGroups->currentText() != StrConstants::getYaourtGroup())
   {
     text = " | " + StrConstants::getNumberInstalledPackages().arg(m_numberOfInstalledPackages) +
         " | <b><font color=\"#E55451\"><a href=\"dummy\" style=\"color:\'#E55451\'\">" +

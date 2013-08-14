@@ -385,10 +385,6 @@
         <translation>Тази Linux дистрибуция е несъвместима с Octopi!</translation>
     </message>
     <message>
-        <source>Internet seems anavailable!</source>
-        <translation>Изглежда нямате Интернет!</translation>
-    </message>
-    <message>
         <source>Display all groups</source>
         <translation>Показване на всички групи</translation>
     </message>
@@ -765,6 +761,10 @@ Are you sure you want to open it?</source>
     <message>
         <source>Remove items</source>
         <translation>Премахване на елементи</translation>
+    </message>
+    <message>
+        <source>Internet seems unavailable!</source>
+        <translation>Изглежда нямате интернет!</translation>
     </message>
 </context>
 <context>

@@ -385,10 +385,6 @@
         <translation>Bu Linux dağıtımı Octopi ile uyumsuz görünüyor.</translation>
     </message>
     <message>
-        <source>Internet seems anavailable!</source>
-        <translation>İnternet erişilemez durumda görünüyor.</translation>
-    </message>
-    <message>
         <source>Display all groups</source>
         <translation>Bütün grupları göster</translation>
     </message>
@@ -765,6 +761,10 @@ Açmak istediğinizden emin misiniz?</translation>
     <message>
         <source>Remove items</source>
         <translation>Öğeleri kaldır</translation>
+    </message>
+    <message>
+        <source>Internet seems unavailable!</source>
+        <translation>İnternet erişilemez durumda görünüyor.</translation>
     </message>
 </context>
 <context>

@@ -385,10 +385,6 @@
         <translation>Această distribuție Linux pare incompatibilă cu Octopi!</translation>
     </message>
     <message>
-        <source>Internet seems anavailable!</source>
-        <translation>Internetul pare nedisponibil!</translation>
-    </message>
-    <message>
         <source>Display all groups</source>
         <translation>Arată toate grupele</translation>
     </message>
@@ -765,6 +761,10 @@ Sunteți sigur că vreți să-l deschideți?</translation>
     <message>
         <source>Remove items</source>
         <translation>Șterge elementele</translation>
+    </message>
+    <message>
+        <source>Internet seems unavailable!</source>
+        <translation>Internetul pare nedisponibil!</translation>
     </message>
 </context>
 <context>

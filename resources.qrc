@@ -1,12 +1,5 @@
 <RCC>
     <qresource prefix="/">
-        <file>resources/images/octopi_red.png</file>
-        <file>resources/images/octopi_yellow.png</file>
-        <file>resources/images/esf-search.png</file>
-        <file>resources/images/esf-clear-active.png</file>
-        <file>resources/images/esf-clear-hover.png</file>
-        <file>resources/images/esf-border.png</file>
-        <file>resources/images/esf-clear.png</file>
         <file>resources/styles/branch-closed_BW.png</file>
         <file>resources/styles/branch-closed.png</file>
         <file>resources/styles/branch-end.png</file>
@@ -14,6 +7,13 @@
         <file>resources/styles/branch-open_BW.png</file>
         <file>resources/styles/branch-open.png</file>
         <file>resources/styles/vline.png</file>
+        <file>resources/images/octopi_red.png</file>
+        <file>resources/images/octopi_yellow.png</file>
+        <file>resources/images/esf-search.png</file>
+        <file>resources/images/esf-clear-active.png</file>
+        <file>resources/images/esf-clear-hover.png</file>
+        <file>resources/images/esf-border.png</file>
+        <file>resources/images/esf-clear.png</file>
         <file>resources/images/installed.png</file>
         <file>resources/images/noninstalled.png</file>
         <file>resources/images/toinstall.png</file>
@@ -36,6 +36,7 @@
         <file>resources/images/install_item.png</file>
         <file>resources/images/remove_item.png</file>
         <file>resources/images/find.png</file>
+        <file>resources/images/rss.png</file>
         <file>resources/translations/octopi_pt_BR.qm</file>
         <file>resources/translations/octopi_fr_FR.qm</file>
         <file>resources/translations/octopi_es_ES.qm</file>
@@ -47,7 +48,6 @@
         <file>resources/translations/octopi_ar.qm</file>
         <file>resources/translations/octopi_ca.qm</file>
         <file>resources/translations/octopi_bg.qm</file>
-        <file>resources/images/rss.png</file>
         <file>resources/translations/octopi_pl.qm</file>
         <file>resources/translations/octopi_id.qm</file>
         <file>resources/translations/octopi_da.qm</file>
