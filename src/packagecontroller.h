@@ -29,13 +29,7 @@ class PackageController
 {
 public:
   static QString showFullPathOfItem( const QModelIndex &index );
-  static QMap<QString, QStringList> findFile( const QString& name );
-  static QMap<QString, QStringList> findFile( const QString& name, const QStandardItemModel *sim);
-  static QMap<QString, QStringList> findPackage( const QString& name, const QString& searchDir );
-
   static QList<QModelIndex> * findFileEx( const QString& name, const QStandardItemModel *sim);
-
-  static void testSearchInDir();
 };
 
 #endif // PACKAGECONTROLLER_H

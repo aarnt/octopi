@@ -21,11 +21,19 @@
 #include <iostream>
 #include "packagecontroller.h"
 #include "package.h"
+
 #include <QDirIterator>
 #include <QStandardItemModel>
 #include <QStandardItem>
 #include <QCoreApplication>
 
+/*
+ * This is a controller class that provides search services, using Package methods.
+ */
+
+/*
+ * Returns the full path of a tree view item (normaly a file in a directory tree)
+ */
 QString PackageController::showFullPathOfItem( const QModelIndex &index ){
   QString str;
   if (!index.isValid()) return str;
@@ -51,96 +59,10 @@ QString PackageController::showFullPathOfItem( const QModelIndex &index ){
   return str;
 }
 
-QMap<QString, QStringList> PackageController::findFile( const QString& name ){
-  FILE *file;
-  char linebuf[1024];
-  QString st;
-  QString fn, dr = ctn_INSTALLED_PACKAGES_DIR;
-  QMap<QString, QStringList> m;
-
-  QDir d(ctn_INSTALLED_PACKAGES_DIR);
-  if ( d.exists() ){
-
-      QStringList slAux;
-      const QFileInfoList list = d.entryInfoList();
-      foreach ( QFileInfo fi, list )      {
-        QCoreApplication::processEvents();
-
-        if ( !fi.isDir() && fi.isReadable() ){
-          fn = dr + fi.fileName();
-          file = fopen ( QFile::encodeName ( fn ),"r" );
-          if ( file ){
-            QStringList sl;
-            while ( fgets ( linebuf,sizeof ( linebuf ),file ) ){
-              if ( !strcmp ( linebuf, ctn_FILELIST ) ){
-                break;
-              }
-            }
-            while ( fgets ( linebuf,sizeof ( linebuf ),file ) ){
-              QString fileName = QString::fromLocal8Bit ( linebuf );
-              QFileInfo f(fileName);
-              if (f.fileName().simplified().indexOf(QRegExp(name, Qt::CaseInsensitive) ) != -1){
-                st = "/";
-                st += linebuf;
-                st.truncate ( st.length() -1 );
-                if ( st.left ( 8 ) != "/install" ){
-                  if (m.contains(fi.fileName())){
-                    slAux = m.value(fi.fileName());
-                    slAux.append(st);
-                    m.insert(fi.fileName(), slAux);
-                  }
-                  else
-                    m.insert(fi.fileName(), sl << st);
-
-                  sl.clear();
-                }
-              }
-            }
-            fclose ( file );
-          }
-        }
-      }
-    }
-
-  return m;
-}
-
-QMap<QString, QStringList> PackageController::findFile( const QString& name, const QStandardItemModel *sim){
-  QMap<QString, QStringList> m;
-  QList<QStandardItem *> foundItems;
-  QString fileName;
-  QStringList listAux;
-
-  if (sim->rowCount() == 0) return m;
-
-  foundItems = sim->findItems(name, Qt::MatchRegExp|Qt::MatchRecursive, 0);
-  QString fullPath;
-
-  foreach(QStandardItem *item, foundItems){
-    QCoreApplication::processEvents();
-
-    if (item->accessibleDescription().contains("directory")) continue;
-    if (item->parent()){
-      fileName = item->text();
-      fullPath = showFullPathOfItem(item->parent()->index());
-    }
-    if (item->parent() && item->parent()->hasChildren() &&
-        item->parent() != item->model()->invisibleRootItem() &&
-        m.contains(fullPath)){
-
-      listAux = m.value(fullPath);
-      listAux << fileName;
-      m.insert(fullPath, listAux);
-    }
-    else if (item->parent() && item->parent() != item->model()->invisibleRootItem())
-      m.insert(fullPath, listAux << fileName);
-
-    listAux.clear();
-  }
-
-  return m;
-}
-
+/*
+ * Given a filename 'name', searches for it inside a QStandard item model
+ * Result is a list containing all QModelIndex occurencies
+ */
 QList<QModelIndex> * PackageController::findFileEx( const QString& name, const QStandardItemModel *sim)
 {
   QList<QModelIndex> * res = new QList<QModelIndex>();
@@ -154,64 +76,10 @@ QList<QModelIndex> * PackageController::findFileEx( const QString& name, const Q
   foundItems = sim->findItems(Package::parseSearchString(name), Qt::MatchRegExp|Qt::MatchRecursive);
   foreach(QStandardItem *item, foundItems)
   {
-    //QCoreApplication::processEvents();
-
     if (item->accessibleDescription().contains("directory")) continue;
 
     res->append(item->index());
   }
 
   return res;
-}
-
-/*QMap<QString, QStringList> PackageController::findPackage( const QString& name, const QString& searchDir ){
-  QMap<QString, QStringList> m;
-
-  QStringList nameFilters;
-  nameFilters << "*" + ctn_TGZ_PACKAGE_EXTENSION <<
-                 "*" + ctn_TXZ_PACKAGE_EXTENSION <<
-                 "*" + ctn_RPM_PACKAGE_EXTENSION;
-
-  QDirIterator *targetDir = new QDirIterator(searchDir, nameFilters,
-                                             QDir::AllEntries,
-                                             QDirIterator::Subdirectories);
-  QString res;
-  QString dir;
-  QStringList fileNames, slAux;
-
-  while (targetDir->hasNext()){
-    QCoreApplication::processEvents();
-    targetDir->next();
-    res = targetDir->fileName();
-    QFileInfo fi = targetDir->fileInfo();
-    dir = fi.absolutePath();
-
-    if (res.indexOf( QRegExp(name, Qt::CaseInsensitive)) != -1){
-      fileNames << res;
-      if (m.contains(dir)){
-        slAux = m.value(dir);
-        slAux.append(res);
-        m.insert(dir, slAux);
-      }
-      else m.insert(dir, fileNames);
-
-      fileNames.clear();
-    }
-  }
-
-  delete targetDir;
-  return m;
-}*/
-
-void PackageController::testSearchInDir(){
-  /*QMap<QString, QStringList> map = findPackage("qt-", "/home/arnt/Packages");
-
-  foreach (QString k, map.keys()){
-    foreach( QStringList sl, map.values(k) ){
-      for ( int c=0; c<sl.count(); c++ ){
-        QString found(sl[c]);
-        std::cout << "Found!" << k.toAscii().data() << "/" << found.toAscii().data() << std::endl;
-      }
-    }
-  }*/
 }
