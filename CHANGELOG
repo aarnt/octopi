@@ -1,5 +1,6 @@
 0.2
   Splitted the project in "octopi" and "octopi-notifier".
+  Yaourt no longer runs with root permissions.
   Added support for package multi selection in Yaourt mode.
   Added option to install local packages.
   Added support for "notify-send" in "octopi-notifier".
