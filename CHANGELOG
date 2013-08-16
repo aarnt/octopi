@@ -15,6 +15,7 @@
   Added vietnamese translation.
   Updated all other translations.
   GTK native theme is used by default in Manjaro (while not in KDE).
+  IgnorePkg option is now used to build outdated package list.
 
 0.1.9.1
   Important bugfixes to deal with multithreaded code.
