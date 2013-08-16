@@ -87,7 +87,7 @@ struct PackageListData{
     repository=r;
     version=v;
     status=pkgStatus;
-    outatedVersion=outVersion;
+    outatedVersion=outVersion.trimmed();
   }
 
   PackageListData(QString n, QString r, QString v, QString d, PackageStatus pkgStatus, QString outVersion=""){
@@ -96,7 +96,7 @@ struct PackageListData{
     version=v;
     description=d;
     status=pkgStatus;
-    outatedVersion=outVersion;
+    outatedVersion=outVersion.trimmed();
   }
 };
 

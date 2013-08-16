@@ -980,7 +980,7 @@ void MainWindow::refreshTabInfo(bool clearContents, bool neverQuit)
 
     //if (siRepository->text() != StrConstants::getForeignRepositoryName()){
     if (siRepository->text() != StrConstants::getForeignRepositoryName() &&
-        siIcon->text() != "_Installed"){
+        siIcon->text() == "_NonInstalled"){
       pid = Package::getInformation(pkgName);
     }
     else
