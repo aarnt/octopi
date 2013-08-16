@@ -88,6 +88,8 @@ void MainWindow::initTabHelpUsage()
   QString("</li>") +
   QString("<li>") + iconPath + "outdated.png\"/> " +
      tr("An outdated package") +
+  QString("<li>") + iconPath + "newer.png\"/> " +
+           tr("A newer than repository package") +
   QString("</li></ul>") +
 
      tr("Basic usage help:") +
