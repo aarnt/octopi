@@ -57,5 +57,6 @@
         <file>resources/translations/octopi_nb.qm</file>
         <file>resources/translations/octopi_sr@latin.qm</file>
         <file>resources/translations/octopi_nl.qm</file>
+        <file>resources/translations/octopi_ru.qm</file>
     </qresource>
 </RCC>

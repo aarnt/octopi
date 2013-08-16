@@ -39,22 +39,32 @@
  * Checks if KDE is running
  */
 bool WMHelper::isKDERunning(){
-  QStringList slParam;
-  QProcess proc;
-  slParam << "-C";
-  slParam << ctn_KDE_DESKTOP;
+  static bool ret;
+  static bool firstTime = true;
 
-  proc.start("ps", slParam);
-  proc.waitForStarted();
-  proc.waitForFinished();
+  if (firstTime)
+  {
+    QStringList slParam;
+    QProcess proc;
+    slParam << "-C";
+    slParam << ctn_KDE_DESKTOP;
 
-  QString out = proc.readAll();
-  proc.close();
+    proc.start("ps", slParam);
+    proc.waitForStarted();
+    proc.waitForFinished();
 
-  if (out.count(ctn_KDE_DESKTOP)>0)
-    return true;
-  else
-    return false;
+    QString out = proc.readAll();
+    proc.close();
+
+    if (out.count(ctn_KDE_DESKTOP)>0)
+      ret = true;
+    else
+      ret = false;
+
+    firstTime = false;
+  }
+
+  return ret;
 }
 
 /*

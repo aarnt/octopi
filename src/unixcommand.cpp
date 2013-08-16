@@ -775,31 +775,41 @@ bool UnixCommand::isILoveCandyEnabled()
  */
 LinuxDistro UnixCommand::getLinuxDistro()
 {
-  QFile file("/etc/os-release");
+  static LinuxDistro ret;
+  static bool firstTime = true;
 
-  if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
-      return ectn_UNKNOWN;
+  if (firstTime)
+  {
+    QFile file("/etc/os-release");
 
-  QString contents = file.readAll();
+    if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
+      ret = ectn_UNKNOWN;
 
-  if (contents.contains(QRegExp("ArchBang")))
-  {
-    return ectn_ARCHBANGLINUX;
+    QString contents = file.readAll();
+
+    if (contents.contains(QRegExp("ArchBang")))
+    {
+      ret = ectn_ARCHBANGLINUX;
+    }
+    else if (contents.contains(QRegExp("Arch Linux")))
+    {
+      ret = ectn_ARCHLINUX;
+    }
+    else if (contents.contains(QRegExp("Chakra")))
+    {
+      ret = ectn_CHAKRA;
+    }
+    else if (contents.contains(QRegExp("Manjaro")))
+    {
+      ret = ectn_MANJAROLINUX;
+    }
+    else
+    {
+      ret = ectn_UNKNOWN;
+    }
+
+    firstTime = false;
   }
-  else if (contents.contains(QRegExp("Arch Linux")))
-  {
-    return ectn_ARCHLINUX;
-  }
-  else if (contents.contains(QRegExp("Chakra")))
-  {
-    return ectn_CHAKRA;
-  }
-  else if (contents.contains(QRegExp("Manjaro")))
-  {
-    return ectn_MANJAROLINUX;
-  }
-  else
-  {
-    return ectn_UNKNOWN;
-  }
+
+  return ret;
 }
