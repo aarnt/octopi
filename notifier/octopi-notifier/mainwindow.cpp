@@ -36,7 +36,7 @@ void MainWindow::initSystemTrayIcon()
 
   if (m_numberOfOutdatedPackages == 0)
   {
-    m_systemTrayIcon->setToolTip(StrConstants::getApplicationName());
+    //m_systemTrayIcon->setToolTip(StrConstants::getApplicationName());
   }
   else if (m_numberOfOutdatedPackages > 0)
   {
@@ -217,7 +217,7 @@ void MainWindow::refreshAppIcon()
 
   if (m_numberOfOutdatedPackages == 0)
   {
-    m_systemTrayIcon->setToolTip(StrConstants::getApplicationName());
+    //m_systemTrayIcon->setToolTip(StrConstants::getApplicationName());
     m_actionOctopi->setText("Octopi...");
   }
   else if (m_numberOfOutdatedPackages > 0)

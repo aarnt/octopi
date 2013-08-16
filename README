@@ -2,7 +2,7 @@ This is Octopi, a powerful Pacman frontend using Qt libs.
 
 The project's source code is hosted at https://github.com/aarnt/octopi.
 
-You'll need a privilege escalation tool to use it, once running it as
+You'll need a privilege escalation tool to use it, once running as 
 root will not work. Octopi supports kdesu and gksu for that.
 
 Enjoy!
