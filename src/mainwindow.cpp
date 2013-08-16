@@ -82,6 +82,9 @@ void MainWindow::show()
 {
   if(m_initializationCompleted == false)
   {
+
+    UnixCommand::getIgnorePkg();
+
     loadSettings();
     restoreGeometry(SettingsManager::getWindowSize());
 
@@ -125,8 +128,7 @@ void MainWindow::show()
     refreshComboBoxGroups();
     QMainWindow::show();
 
-    metaBuildPackageList();
-
+    metaBuildPackageList();    
   }
   else
     QMainWindow::show();

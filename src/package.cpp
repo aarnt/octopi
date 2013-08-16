@@ -203,12 +203,14 @@ QStringList *Package::getOutdatedPackageList()
   QString outPkgList = UnixCommand::getOutdatedPackageList();
   QStringList packageTuples = outPkgList.split(QRegExp("\\n"), QString::SkipEmptyParts);
   QStringList * res = new QStringList();
+  QStringList ignorePkgList = UnixCommand::getIgnorePkg();
 
   foreach(QString packageTuple, packageTuples)
   {
     QStringList parts = packageTuple.split(' ');
     {
-      if (!parts[0].contains("octopi"))
+      //Let's ignore the "IgnorePkg" list of packages...
+      if (!ignorePkgList.contains(parts[0]))
       {
         res->append(parts[0]); //We only need the package name!
       }

@@ -37,7 +37,6 @@ QFile *UnixCommand::m_temporaryFile = 0;
 QString UnixCommand::runCommand(const QString& commandToRun)
 {
   QProcess proc;
-
   QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
   env.remove("LANG");
   env.remove("LC_MESSAGES");
@@ -833,6 +832,55 @@ bool UnixCommand::isILoveCandyEnabled()
     if (str.isEmpty()) res = true;
     else res = false;
   }
+
+  return res;
+}
+
+/*
+ * Searches "/etc/pacman.conf" to retrive IgnorePkg items (if any)
+ */
+QStringList UnixCommand::getIgnorePkg()
+{
+  QStringList res;
+  QFile file("/etc/pacman.conf");
+
+//#\n# /etc/pacman.conf\n#\n# See the pacman.conf(5) manpage for option and repository directives\n\n#\n# GENERAL OPTIONS\n#\n[options]\n# The following paths are commented out with their default values listed.\n# If you wish to use different paths, uncomment and update the paths.\n#RootDir     = /\n#DBPath      = /var/lib/pacman/\n#CacheDir    = /var/cache/pacman/pkg/\n#LogFile     = /var/log/pacman.log\n#GPGDir      = /etc/pacman.d/gnupg/\nHoldPkg     = pacman glibc\n#XferCommand = /usr/bin/curl -C - -f %u > %o\n#XferCommand = /usr/bin/wget --passive-ftp -c -O %o %u\n#CleanMethod = KeepInstalled\n#UseDelta    = 0.7\nArchitecture = auto\n\n# Pacman won't upgrade packages listed in IgnorePkg and members of IgnoreGroup\nIgnorePkg   = colord\n#IgnoreGroup =\n\n#NoUpgrade   =\n#NoExtract   =\n\n# Misc options\n#UseSyslog\n#Color\n#TotalDownload\nCheckSpace\n#VerbosePkgLists\n\n# By default, pacman accepts packages signed by keys that its local keyring\n# trusts (see pacman-key and its man page), as well as unsigned packages.\nSigLevel    = Required DatabaseOptional\nLocalFileSigLevel = Optional\n#RemoteFileSigLevel = Required\n\n# NOTE: You must run `pacman-key --init` before first using pacman; the local\n# keyring can then be populated with the keys of all official Arch Linux\n# packagers with `pacman-key --populate archlinux`.\n\n#\n# REPOSITORIES\n#   - can be defined here or included from another file\n#   - pacman will search repositories in the order defined here\n#   - local/custom mirrors can be added here or in separate files\n#   - repositories listed first will take precedence when packages\n#     have identical names, regardless of version number\n#   - URLs will have $repo replaced by the name of the current repo\n#   - URLs will have $arch replaced by the name of the architecture\n#\n# Repository entries are of the format:\n#       [repo-name]\n#       Server = ServerName\n#       Include = IncludePath\n#\n# The header [repo-name] is crucial - it must be present and\n# uncommented to enable the repo.\n#\n\n# The testing repositories are disabled by default. To enable, uncomment the\n# repo name header and Include lines. You can add preferred servers immediately\n# after the header, and they will be used before the default mirrors.\n\n#[testing]\n#Include = /etc/pacman.d/mirrorlist\n\n[core]\nInclude = /etc/pacman.d/mirrorlist\n\n[extra]\nInclude = /etc/pacman.d/mirrorlist\n\n#[community-testing]\n#Include = /etc/pacman.d/mirrorlist\n\n[community]\nInclude = /etc/pacman.d/mirrorlist\n\n# If you want to run 32 bit applications on your x86_64 system,\n# enable the multilib repositories as required here.\n\n#[multilib-testing]\n#Include = /etc/pacman.d/mirrorlist\n\n#[multilib]\n#Include = /etc/pacman.d/mirrorlist\n\n# An example of a custom package repository.  See the pacman manpage for\n# tips on creating your own repositories.\n#[custom]\n#SigLevel = Optional TrustAll\n#Server = file:///home/custompkgs\n[archbang]\nServer = http://www.archbang.org/repo\n\n[archlinuxfr]\n# For a list of packages see http://afur.archlinux.fr\nSigLevel = Never\nServer = http://repo.archlinux.fr/$arch\n
+
+  if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
+    return res;
+
+  QString contents = file.readAll();
+  int from = 0;
+  do
+  {
+    int end = contents.indexOf("IgnorePkg", from, Qt::CaseInsensitive);
+    int start=0;
+
+    if (end != -1)
+    {
+      //Does it contains a # before it???
+      start = end;
+      do{
+        start--;
+      }while (contents.at(start) != '\n');
+
+      QString str = contents.mid(start+1, (end-start-1)).trimmed();
+
+      if (str.isEmpty())
+      {
+        QString ignorePkg = contents.mid(end);
+        int equal = ignorePkg.indexOf("=");
+        int newLine = ignorePkg.indexOf("\n");
+
+        ignorePkg = ignorePkg.mid(equal+1, newLine-(equal+1)).trimmed();
+        res = ignorePkg.split(QRegExp("\\s+"), QString::SkipEmptyParts);
+        break;
+      }
+      else from += end+9;
+    }
+    else break;
+  }
+  while(true);
 
   return res;
 }
