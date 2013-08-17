@@ -30,6 +30,7 @@
 #include "uihelper.h"
 #include "searchbar.h"
 #include "globals.h"
+
 #include <QCloseEvent>
 #include <QMessageBox>
 #include <QTreeView>
@@ -379,11 +380,4 @@ void MainWindow::metaBuildPackageList()
     g_fwPacmanGroup.setFuture(f);
     connect(&g_fwPacmanGroup, SIGNAL(finished()), this, SLOT(preBuildPackagesFromGroupList()));
   }
-
-  /*if (m_commandExecuting == ectn_SYSTEM_UPGRADE || m_commandExecuting == ectn_RUN_SYSTEM_UPGRADE_IN_TERMINAL)
-  {
-    if (g_fwPacman.isRunning()) g_fwPacman.waitForFinished();
-    else if (g_fwYaourtMeta.isRunning()) g_fwYaourtMeta.waitForFinished();
-    else if (g_fwPacmanGroup.isRunning()) g_fwPacmanGroup.waitForFinished();
-  }*/
 }
