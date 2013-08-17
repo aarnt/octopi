@@ -113,7 +113,6 @@ void MainWindow::insertRemovePackageIntoTransaction(const QString &pkgName)
   QStandardItem * siInstallParent = getInstallTransactionParentItem();
   QStandardItem * siPackageToRemove = new QStandardItem(IconHelper::getIconRemoveItem(), pkgName);
   QStandardItemModel *sim = qobject_cast<QStandardItemModel *>(siRemoveParent->model());
-
   QList<QStandardItem *> foundItems = sim->findItems(pkgName, Qt::MatchRecursive | Qt::MatchExactly);
 
   int slash = pkgName.indexOf("/");
@@ -1086,6 +1085,7 @@ void MainWindow::toggleTransactionActions(const bool value)
   ui->actionSyncPackages->setEnabled(value);
   ui->actionSystemUpgrade->setEnabled(value);
   ui->actionGetNews->setEnabled(value);
+  ui->actionInstallLocalPackage->setEnabled(value);
 
   //We have to toggle the combobox groups as well
   if (m_initializationCompleted) m_cbGroups->setEnabled(value);
