@@ -839,8 +839,16 @@ void MainWindow::doInstallYaourtPackage()
   //If there are no means to run the actions, we must warn!
   if (!_isSUAvailable()) return;
 
-  QString listOfTargets =
-      _getCurrentSelectedModel()->item(ui->tvPackages->currentIndex().row(), ctn_PACKAGE_NAME_COLUMN)->text();
+  QString listOfTargets;
+  for (int c=0; c<ui->tvPackages->selectionModel()->selectedRows().count(); c++)
+  {
+    listOfTargets +=
+      _getCurrentSelectedModel()->item(ui->tvPackages->selectionModel()->selectedRows().at(c).row(),
+                                       ctn_PACKAGE_NAME_COLUMN)->text() + " ";
+  }
+
+  //QString listOfTargets =
+  //    _getCurrentSelectedModel()->item(ui->tvPackages->currentIndex().row(), ctn_PACKAGE_NAME_COLUMN)->text();
 
   m_lastCommandList.clear();
   m_lastCommandList.append("yaourt -S " + listOfTargets + ";");
@@ -870,11 +878,19 @@ void MainWindow::doRemoveYaourtPackage()
   //If there are no means to run the actions, we must warn!
   if (!_isSUAvailable()) return;
 
-  QString listOfTargets =
-      m_modelPackages->item(ui->tvPackages->currentIndex().row(), ctn_PACKAGE_NAME_COLUMN)->text();
+  QString listOfTargets;
+  for (int c=0; c<ui->tvPackages->selectionModel()->selectedRows().count(); c++)
+  {
+    listOfTargets +=
+      _getCurrentSelectedModel()->item(ui->tvPackages->selectionModel()->selectedRows().at(c).row(),
+                                       ctn_PACKAGE_NAME_COLUMN)->text() + " ";
+  }
+
+  //QString listOfTargets =
+  //    m_modelPackages->item(ui->tvPackages->currentIndex().row(), ctn_PACKAGE_NAME_COLUMN)->text();
 
   m_lastCommandList.clear();
-  m_lastCommandList.append("yaourt -Rcs " + listOfTargets + ";");
+  m_lastCommandList.append("yaourt -" + m_removeCommand + " " + listOfTargets + ";");
   m_lastCommandList.append("echo -e;");
   m_lastCommandList.append("read -n1 -p \"" + StrConstants::getPressAnyKey() + "\"");
 

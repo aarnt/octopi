@@ -28,6 +28,7 @@
 #include "strconstants.h"
 #include "uihelper.h"
 #include <iostream>
+#include "globals.h"
 
 #include <QTimer>
 #include <QLabel>
@@ -36,6 +37,10 @@
 #include <QTextBrowser>
 #include <QStandardItem>
 #include <QSortFilterProxyModel>
+#include <QFutureWatcher>
+#include <QtConcurrentRun>
+
+using namespace QtConcurrent;
 
 /*
  * If we have some outdated packages, let's put an angry red face icon in this app!
@@ -82,7 +87,6 @@ void MainWindow::refreshComboBoxGroups()
 
   m_cbGroups->clear();
   m_cbGroups->addItem("<" + StrConstants::getAll() + ">");
-
   m_hasYaourt = UnixCommand::hasTheExecutable("yaourt");
 
   if (m_hasYaourt)
@@ -260,6 +264,108 @@ void MainWindow::_deleteStandardItemModel(QStandardItemModel * sim)
 
   sim->clear();
   delete sim;
+}
+
+/*
+ * Helper method to deal with the QFutureWatcher result before calling
+ * Yaourt package list building method
+ */
+void MainWindow::preBuildYaourtPackageList()
+{
+  m_listOfYaourtPackages = g_fwYaourt.result();
+  buildYaourtPackageList();
+
+  delete m_cic;
+
+  if (m_modelPackages->rowCount() == 0)
+  {
+    m_leFilterPackage->setFocus();
+  }
+}
+
+/*
+ * Helper method to deal with the QFutureWatcher result before calling
+ * Yaourt package list building method
+ */
+void MainWindow::preBuildYaourtPackageListMeta()
+{
+  m_listOfYaourtPackages = g_fwYaourtMeta.result();
+  buildYaourtPackageList();
+
+  delete m_cic;
+
+  if (m_modelPackages->rowCount() == 0)
+  {
+    m_leFilterPackage->setFocus();
+  }
+}
+
+/*
+ * Helper method to deal with the QFutureWatcher result before calling
+ * Pacman package list building method
+ */
+void MainWindow::preBuildPackageList()
+{
+  if (m_listOfPackages) m_listOfPackages->clear();
+  m_listOfPackages = g_fwPacman.result();
+  buildPackageList();
+}
+
+/*
+ * Helper method to deal with the QFutureWatcher result before calling
+ * Pacman packages from group list building method
+ */
+void MainWindow::preBuildPackagesFromGroupList()
+{
+  if (m_listOfPackagesFromGroup) m_listOfPackagesFromGroup->clear();
+  m_listOfPackagesFromGroup = g_fwPacmanGroup.result();
+  buildPackagesFromGroupList();
+}
+
+/*
+ * Decides which SLOT to call: buildPackageList or buildPackagesFromGroupList
+ */
+void MainWindow::metaBuildPackageList()
+{
+  if (m_cbGroups->count() == 0 || m_cbGroups->currentIndex() == 0)
+  {
+    //ui->tvPackages->setSelectionMode(QAbstractItemView::ExtendedSelection);
+    toggleSystemActions(true);
+    connect(m_leFilterPackage, SIGNAL(textChanged(QString)), this, SLOT(reapplyPackageFilter()));
+    reapplyPackageFilter();
+    disconnect(&g_fwPacman, SIGNAL(finished()), this, SLOT(preBuildPackageList()));
+    QFuture<QList<PackageListData> *> f;
+    f = run(searchPacmanPackages);
+    g_fwPacman.setFuture(f);
+    connect(&g_fwPacman, SIGNAL(finished()), this, SLOT(preBuildPackageList()));
+  }
+  else if (m_cbGroups->currentText() == StrConstants::getYaourtGroup())
+  {
+    //ui->tvPackages->setSelectionMode(QAbstractItemView::SingleSelection);
+    ui->tvPackages->setSelectionMode(QAbstractItemView::ExtendedSelection);
+    toggleSystemActions(false);
+    disconnect(m_leFilterPackage, SIGNAL(textChanged(QString)), this, SLOT(reapplyPackageFilter()));
+    clearStatusBar();
+
+    m_cic = new CPUIntensiveComputing();
+    disconnect(&g_fwYaourtMeta, SIGNAL(finished()), this, SLOT(preBuildYaourtPackageListMeta()));
+    QFuture<QList<PackageListData> *> f;
+    f = run(searchYaourtPackages, m_leFilterPackage->text());
+    g_fwYaourtMeta.setFuture(f);
+    connect(&g_fwYaourtMeta, SIGNAL(finished()), this, SLOT(preBuildYaourtPackageListMeta()));
+  }
+  else
+  {
+    //ui->tvPackages->setSelectionMode(QAbstractItemView::ExtendedSelection);
+    toggleSystemActions(true);
+    connect(m_leFilterPackage, SIGNAL(textChanged(QString)), this, SLOT(reapplyPackageFilter()));
+    reapplyPackageFilter();
+    disconnect(&g_fwPacmanGroup, SIGNAL(finished()), this, SLOT(preBuildPackagesFromGroupList()));
+    QFuture<QList<QString> *> f;
+    f = run(searchPacmanPackagesFromGroup, m_cbGroups->currentText());
+    g_fwPacmanGroup.setFuture(f);
+    connect(&g_fwPacmanGroup, SIGNAL(finished()), this, SLOT(preBuildPackagesFromGroupList()));
+  }
 }
 
 /*
@@ -923,7 +1029,9 @@ void MainWindow::refreshTabInfo(bool clearContents, bool neverQuit)
       if(! pid.optDepends.contains("None"))
         html += "<tr><td>" + optionalDeps + "</td><td>" + pid.optDepends + "</td></tr>";
       if(! pid.conflictsWith.contains("None"))
-        html += "<tr><td><b>" + conflictsWith + "</b></td><td><b>" + pid.conflictsWith + "</b></font></td></tr>";
+        html += "<tr><td><b>" + conflictsWith + "</b></td><td><b>" + pid.conflictsWith +
+            "</b></font></td></tr>";
+
       if(! pid.replaces.contains("None"))
         html += "<tr><td>" + replaces + "</td><td>" + pid.replaces + "</td></tr>";
 
@@ -1053,7 +1161,9 @@ void MainWindow::refreshTabFiles(bool clearContents, bool neverQuit)
                               mi.row(), ctn_PACKAGE_ICON_COLUMN)->text() == "_NonInstalled"));
   }
 
-  QTreeView *tvPkgFileList = ui->twProperties->widget(ctn_TABINDEX_FILES)->findChild<QTreeView*>("tvPkgFileList");
+  QTreeView *tvPkgFileList =
+      ui->twProperties->widget(ctn_TABINDEX_FILES)->findChild<QTreeView*>("tvPkgFileList");
+
   if (tvPkgFileList)
   {
     QString pkgName = siName->text();
