@@ -7,7 +7,11 @@ Assuming you have updated Qt4 libs installed in your system, just run:
 Wait for the compilation and then install the generated package (as 
 root), using:
 
-	pacman -U --force <nameOfTheGeneratedOctopiPackage.tar.xz>
+	pacman -U [--force] <nameOfTheGeneratedOctopiPackage.tar.xz>
+
+You can also install the generated package notifier, using:
+
+	pacman -U [--force] <nameOfTheGeneratedOctopiNotifierPackage.tar.xz>
 
 Octopi is located at the system utilities menu of your Desktop 
 Environment.

@@ -1,5 +1,6 @@
 0.2
   Splitted the project in "octopi" and "octopi-notifier".
+  Added support for package multi selection in Yaourt mode.
   Added option to install local packages.
   Added support for "notify-send" in "octopi-notifier".
   Added hebrew translation.
@@ -8,7 +9,8 @@
   Added servian latin translation.
   Added dutch translation.
   Added russian translation.
-  Updated many translations.
+  Added Uzbek translation.
+  Updated all other translations.
   GTK native theme is used by default in Manjaro (while not in KDE).
 
 0.1.9.1
