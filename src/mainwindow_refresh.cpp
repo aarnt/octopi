@@ -276,6 +276,7 @@ void MainWindow::preBuildYaourtPackageList()
   buildYaourtPackageList();
 
   delete m_cic;
+  m_cic = 0;
 
   if (m_modelPackages->rowCount() == 0)
   {
@@ -293,6 +294,7 @@ void MainWindow::preBuildYaourtPackageListMeta()
   buildYaourtPackageList();
 
   delete m_cic;
+  m_cic = 0;
 
   if (m_modelPackages->rowCount() == 0)
   {

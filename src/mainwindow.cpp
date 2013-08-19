@@ -58,7 +58,7 @@ MainWindow::MainWindow(QWidget *parent) :
   m_listOfPackages = 0;
   m_listOfPackagesFromGroup = 0;
   m_systemUpgradeDialog = false;
-
+  m_cic = 0;
   ui->setupUi(this);
 }
 

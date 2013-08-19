@@ -552,7 +552,7 @@ void UnixCommand::openRootTerminal(){
 /*
  * Executes given commandToRun inside a terminal, so the user can interact
  */
-void UnixCommand::runCommandInTerminal(const QStringList& commandList){
+void UnixCommand::runCommandInTerminal(const QStringList& commandList, bool runAsRoot){
   QFile *ftemp = getTemporaryFile();
   QTextStream out(ftemp);
 
@@ -569,32 +569,47 @@ void UnixCommand::runCommandInTerminal(const QStringList& commandList){
   env.insert("LC_MESSAGES", QLocale::system().name() + ".UTF-8");
   m_process->setProcessEnvironment(env);
 
+  QString suCommand = WMHelper::getSUCommand();
+
+  if (!runAsRoot)
+  {
+    QString loggedUser = QDir::homePath();
+    QFileInfo fi(loggedUser);
+    loggedUser = fi.fileName();
+    suCommand.replace("gksu", "gksudo");
+    suCommand.replace("-u root", "");
+    suCommand.replace(" -m " + QString("\"") +
+                      StrConstants::getEnterAdministratorsPassword() + QString("\""), "");
+
+    //suCommand.replace("root", loggedUser);
+  }
+
   if(WMHelper::isXFCERunning() && UnixCommand::hasTheExecutable(ctn_XFCE_TERMINAL)){
-    QString cmd = WMHelper::getSUCommand() + " \"" + ctn_XFCE_TERMINAL + " -e \'bash -c " + ftemp->fileName() + "'\"";
+    QString cmd = suCommand + " \"" + ctn_XFCE_TERMINAL + " -e \'bash -c " + ftemp->fileName() + "'\"";
     m_process->start(cmd);
   }
   else if (WMHelper::isKDERunning() && UnixCommand::hasTheExecutable(ctn_KDE_TERMINAL)){
-    QString cmd = WMHelper::getSUCommand() + " \"" + ctn_KDE_TERMINAL + " --nofork -e bash -c " + ftemp->fileName() + "\"";
+    QString cmd = suCommand + " \"" + ctn_KDE_TERMINAL + " --nofork -e bash -c " + ftemp->fileName() + "\"";
     m_process->start(cmd);
   }
   else if (WMHelper::isTDERunning() && UnixCommand::hasTheExecutable(ctn_TDE_TERMINAL)){
-    QString cmd = WMHelper::getSUCommand() + " \"" + ctn_TDE_TERMINAL + " --nofork -e bash -c " + ftemp->fileName() + "\"";
+    QString cmd = suCommand + " \"" + ctn_TDE_TERMINAL + " --nofork -e bash -c " + ftemp->fileName() + "\"";
     m_process->start(cmd);
   }
   else if (WMHelper::isLXDERunning() && UnixCommand::hasTheExecutable(ctn_LXDE_TERMINAL)){
-    QString cmd = WMHelper::getSUCommand() + " \"" + ctn_LXDE_TERMINAL + " -e \'bash -c " + ftemp->fileName() + "'\"";
+    QString cmd = suCommand + " \"" + ctn_LXDE_TERMINAL + " -e \'bash -c " + ftemp->fileName() + "'\"";
     m_process->start(cmd);
   }
   else if (WMHelper::isMATERunning() && UnixCommand::hasTheExecutable(ctn_MATE_TERMINAL)){
-    QString cmd = WMHelper::getSUCommand() + " \"" + ctn_MATE_TERMINAL + " -e \'bash -c " + ftemp->fileName() + "'\"";
+    QString cmd = suCommand + " \"" + ctn_MATE_TERMINAL + " -e \'bash -c " + ftemp->fileName() + "'\"";
     m_process->start(cmd);
   }
   else if (UnixCommand::hasTheExecutable(ctn_XFCE_TERMINAL)){
-    QString cmd = WMHelper::getSUCommand() + " \"" + ctn_XFCE_TERMINAL + " -e \'bash -c " + ftemp->fileName() + "'\"";
+    QString cmd = suCommand + " \"" + ctn_XFCE_TERMINAL + " -e \'bash -c " + ftemp->fileName() + "'\"";
     m_process->start(cmd);
   }
   else if (UnixCommand::hasTheExecutable(ctn_LXDE_TERMINAL)){
-    QString cmd = WMHelper::getSUCommand() + " \"" + ctn_LXDE_TERMINAL + " -e \'bash -c " + ftemp->fileName() + "'\"";
+    QString cmd = suCommand + " \"" + ctn_LXDE_TERMINAL + " -e \'bash -c " + ftemp->fileName() + "'\"";
     m_process->start(cmd);
   }
 }

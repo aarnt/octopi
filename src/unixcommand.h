@@ -106,7 +106,8 @@ public:
     qsrand(time.minute() + time.second() + time.msec());
     m_temporaryFile = new QFile(ctn_TEMP_ACTIONS_FILE + QString::number(qrand()));
     m_temporaryFile->open(QIODevice::ReadWrite|QIODevice::Text);
-    m_temporaryFile->setPermissions(QFile::Permissions(QFile::ExeOwner));
+    m_temporaryFile->setPermissions(QFile::Permissions(QFile::ExeOwner|QFile::ReadOwner));
+
     return m_temporaryFile;
   }
 
@@ -123,7 +124,7 @@ public:
 
   void openRootTerminal();
 
-  void runCommandInTerminal(const QStringList& commandList);
+  void runCommandInTerminal(const QStringList& commandList, bool runAsRoot = true);
 
   void executeCommand(const QString &pCommand);
   void executePackageActions(const QStringList& commandList);
