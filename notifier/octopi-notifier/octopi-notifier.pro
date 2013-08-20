@@ -24,7 +24,8 @@ SOURCES += main.cpp \
     ../../src/package.cpp \
     ../../src/wmhelper.cpp \
     ../../src/settingsmanager.cpp \
-    ../../src/pacmanhelperclient.cpp
+    ../../src/pacmanhelperclient.cpp \
+    ../../src/utils/processwrapper.cpp
 
 HEADERS  += \
     mainwindow.h \
@@ -33,7 +34,8 @@ HEADERS  += \
     ../../src/wmhelper.h \
     ../../src/strconstants.h \
     ../../src/package.h \
-    ../../src/pacmanhelperclient.h
+    ../../src/pacmanhelperclient.h \
+    ../../src/utils/processwrapper.h
 
 RESOURCES += \
     ../../resources.qrc
