@@ -43,6 +43,7 @@ ProcessWrapper::ProcessWrapper(QObject *parent) :
   m_timer = new QTimer(parent);
   m_timer->setInterval(1000);
   connect(m_timer, SIGNAL(timeout()), this, SLOT(onTimer()));
+  connect(m_process, SIGNAL(started()), SLOT(onProcessStarted()));
 }
 
 /*
@@ -51,6 +52,13 @@ ProcessWrapper::ProcessWrapper(QObject *parent) :
 void ProcessWrapper::executeCommand(QString command)
 {
   m_process->start(command);
+}
+
+/*
+ * Only when m_process has started...
+ */
+void ProcessWrapper::onProcessStarted()
+{
   m_processPid = m_process->pid();
   emit startedTerminal();
   m_timer->start();

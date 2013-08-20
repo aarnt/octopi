@@ -45,7 +45,7 @@ signals:
   
 private slots:
   void onTimer();
-
+  void onProcessStarted();
 };
 
 #endif // PROCESSWRAPPER_H
