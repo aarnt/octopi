@@ -88,7 +88,7 @@ private:
   int m_indFoundFilesInPkgFileList;
 
   QSortFilterProxyModel *m_proxyModelPackages;
-  //QFileSystemWatcher *m_pacmanDatabaseSystemWatcher;
+  QFileSystemWatcher *m_pacmanDatabaseSystemWatcher;
 
   //Controls if the dialog showing the packages to be upgraded is opened
   bool m_systemUpgradeDialog;

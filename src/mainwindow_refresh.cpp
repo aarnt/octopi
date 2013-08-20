@@ -332,6 +332,7 @@ void MainWindow::metaBuildPackageList()
   if (m_cbGroups->count() == 0 || m_cbGroups->currentIndex() == 0)
   {
     //ui->tvPackages->setSelectionMode(QAbstractItemView::ExtendedSelection);
+    //disconnect(m_pacmanDatabaseSystemWatcher, SIGNAL(directoryChanged(QString)), this, SLOT(metaBuildPackageList()));
     toggleSystemActions(true);
     connect(m_leFilterPackage, SIGNAL(textChanged(QString)), this, SLOT(reapplyPackageFilter()));
     reapplyPackageFilter();
@@ -344,6 +345,7 @@ void MainWindow::metaBuildPackageList()
   else if (m_cbGroups->currentText() == StrConstants::getYaourtGroup())
   {
     //ui->tvPackages->setSelectionMode(QAbstractItemView::SingleSelection);
+    //connect(m_pacmanDatabaseSystemWatcher, SIGNAL(directoryChanged(QString)), this, SLOT(metaBuildPackageList()));
     ui->tvPackages->setSelectionMode(QAbstractItemView::ExtendedSelection);
     toggleSystemActions(false);
     disconnect(m_leFilterPackage, SIGNAL(textChanged(QString)), this, SLOT(reapplyPackageFilter()));
@@ -359,6 +361,7 @@ void MainWindow::metaBuildPackageList()
   else
   {
     //ui->tvPackages->setSelectionMode(QAbstractItemView::ExtendedSelection);
+    //disconnect(m_pacmanDatabaseSystemWatcher, SIGNAL(directoryChanged(QString)), this, SLOT(metaBuildPackageList()));
     toggleSystemActions(true);
     connect(m_leFilterPackage, SIGNAL(textChanged(QString)), this, SLOT(reapplyPackageFilter()));
     reapplyPackageFilter();

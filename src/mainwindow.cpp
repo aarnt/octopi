@@ -50,6 +50,8 @@ MainWindow::MainWindow(QWidget *parent) :
   QMainWindow(parent),
   ui(new Ui::MainWindow)
 {
+  //m_pacmanDatabaseSystemWatcher =
+  //    new QFileSystemWatcher(QStringList() << ctn_PACMAN_DATABASE_DIR, this);
   m_foundFilesInPkgFileList = new QList<QModelIndex>();
   m_indFoundFilesInPkgFileList = 0;
   m_callSystemUpgrade = false;

@@ -37,7 +37,8 @@ HEADERS  += src/QtSolutions/qtsingleapplication.h \
     src/searchbar.h \
     src/transactiondialog.h \
     src/pacmanhelperclient.h \
-    src/globals.h
+    src/globals.h \
+    src/utils/processwrapper.h
 
 SOURCES += src/QtSolutions/qtsingleapplication.cpp \
         src/QtSolutions/qtlocalpeer.cpp \
@@ -65,7 +66,8 @@ SOURCES += src/QtSolutions/qtsingleapplication.cpp \
     src/mainwindow_news.cpp \
     src/mainwindow_refresh.cpp \
     src/pacmanhelperclient.cpp \
-    src/globals.cpp
+    src/globals.cpp \
+    src/utils/processwrapper.cpp
 
 FORMS    += ui/mainwindow.ui \
     ui/transactiondialog.ui

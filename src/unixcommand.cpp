@@ -552,7 +552,7 @@ void UnixCommand::openRootTerminal(){
 /*
  * Executes given commandToRun inside a terminal, so the user can interact
  */
-void UnixCommand::runCommandInTerminal(const QStringList& commandList, bool runAsRoot){
+void UnixCommand::runCommandInTerminal(const QStringList& commandList){
   QFile *ftemp = getTemporaryFile();
   QTextStream out(ftemp);
 
@@ -571,18 +571,13 @@ void UnixCommand::runCommandInTerminal(const QStringList& commandList, bool runA
 
   QString suCommand = WMHelper::getSUCommand();
 
-  if (!runAsRoot)
+  /*if (!runAsRoot)
   {
     QString loggedUser = QDir::homePath();
     QFileInfo fi(loggedUser);
     loggedUser = fi.fileName();
-    suCommand.replace("gksu", "gksudo");
-    suCommand.replace("-u root", "");
-    suCommand.replace(" -m " + QString("\"") +
-                      StrConstants::getEnterAdministratorsPassword() + QString("\""), "");
-
-    //suCommand.replace("root", loggedUser);
-  }
+    suCommand.replace("root", loggedUser);
+  }*/
 
   if(WMHelper::isXFCERunning() && UnixCommand::hasTheExecutable(ctn_XFCE_TERMINAL)){
     QString cmd = suCommand + " \"" + ctn_XFCE_TERMINAL + " -e \'bash -c " + ftemp->fileName() + "'\"";
@@ -611,6 +606,56 @@ void UnixCommand::runCommandInTerminal(const QStringList& commandList, bool runA
   else if (UnixCommand::hasTheExecutable(ctn_LXDE_TERMINAL)){
     QString cmd = suCommand + " \"" + ctn_LXDE_TERMINAL + " -e \'bash -c " + ftemp->fileName() + "'\"";
     m_process->start(cmd);
+  }
+}
+
+/*
+ * Executes given commandToRun inside a terminal, as the current user!
+ */
+void UnixCommand::runCommandInTerminalAsNormalUser(const QStringList &commandList)
+{
+  QFile *ftemp = getTemporaryFile();
+  QTextStream out(ftemp);
+
+  foreach(QString line, commandList)
+    out << line;
+
+  out.flush();
+  ftemp->close();
+
+  QString suCommand = WMHelper::getSUCommand();
+  QString loggedUser = QDir::homePath();
+  QFileInfo fi(loggedUser);
+  loggedUser = fi.fileName();
+  suCommand.replace("root", loggedUser);
+
+  if(WMHelper::isXFCERunning() && UnixCommand::hasTheExecutable(ctn_XFCE_TERMINAL)){
+    QString cmd = ctn_XFCE_TERMINAL + " -e " + ftemp->fileName();
+    m_processWrapper->executeCommand(cmd);
+  }
+  else if (WMHelper::isKDERunning() && UnixCommand::hasTheExecutable(ctn_KDE_TERMINAL)){
+    QString cmd = ctn_KDE_TERMINAL + " --nofork -e " + ftemp->fileName();
+    m_processWrapper->executeCommand(cmd);
+  }
+  else if (WMHelper::isTDERunning() && UnixCommand::hasTheExecutable(ctn_TDE_TERMINAL)){
+    QString cmd = ctn_TDE_TERMINAL + " --nofork -e " + ftemp->fileName();
+    m_processWrapper->executeCommand(cmd);
+  }
+  if (WMHelper::isLXDERunning() && UnixCommand::hasTheExecutable(ctn_LXDE_TERMINAL)){
+    QString cmd = ctn_LXDE_TERMINAL + " -e " + ftemp->fileName();
+    m_processWrapper->executeCommand(cmd);
+  }
+  else if (WMHelper::isMATERunning() && UnixCommand::hasTheExecutable(ctn_MATE_TERMINAL)){
+    QString cmd = ctn_MATE_TERMINAL + " -e " + ftemp->fileName();
+    m_processWrapper->executeCommand(cmd);
+  }
+  else if (UnixCommand::hasTheExecutable(ctn_XFCE_TERMINAL)){
+    QString cmd = ctn_XFCE_TERMINAL + " -e " + ftemp->fileName();
+    m_processWrapper->executeCommand(cmd);
+  }
+  else if (UnixCommand::hasTheExecutable(ctn_LXDE_TERMINAL)){
+    QString cmd = ctn_LXDE_TERMINAL + " -e " + ftemp->fileName();
+    m_processWrapper->executeCommand(cmd);
   }
 }
 
@@ -694,6 +739,8 @@ QString UnixCommand::errorString()
 UnixCommand::UnixCommand(QObject *parent): QObject()
 {
   m_process = new QProcess(parent);
+  m_processWrapper = new ProcessWrapper(parent);
+
   QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
   env.insert("LANG", "C");
   env.insert("LC_MESSAGES", "C");
@@ -718,6 +765,12 @@ UnixCommand::UnixCommand(QObject *parent): QObject()
                    SIGNAL( readyReadStandardError() ));
   QObject::connect(this, SIGNAL( readyReadStandardError() ), this,
                    SLOT( processReadyReadStandardError() ));
+
+  //ProcessWrapper signals
+  QObject::connect(m_processWrapper, SIGNAL( startedTerminal()), this,
+                   SIGNAL( startedTerminal()));
+  QObject::connect(m_processWrapper, SIGNAL( finishedTerminal(int,QProcess::ExitStatus)), this,
+                   SIGNAL( finishedTerminal(int,QProcess::ExitStatus)));
 }
 
 /*

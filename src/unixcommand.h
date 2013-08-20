@@ -25,7 +25,9 @@
 #include <QProcess>
 #include <QTime>
 #include <unistd.h>
+
 #include "package.h"
+#include "utils/processwrapper.h"
 
 const QString ctn_COMMAND_NOT_FOUND("command not found");
 const QString ctn_PACKAGES_WITH_SAME_CONTENT("The packages have the same content!");
@@ -48,7 +50,9 @@ private:
   QString m_readAllStandardOutput;
   QString m_readAllStandardError;
   QString m_errorString;
+
   QProcess *m_process;
+  ProcessWrapper *m_processWrapper;
 
   static QFile *m_temporaryFile;
 
@@ -124,7 +128,8 @@ public:
 
   void openRootTerminal();
 
-  void runCommandInTerminal(const QStringList& commandList, bool runAsRoot = true);
+  void runCommandInTerminal(const QStringList& commandList);
+  void runCommandInTerminalAsNormalUser(const QStringList& commandList);
 
   void executeCommand(const QString &pCommand);
   void executePackageActions(const QStringList& commandList);
@@ -141,6 +146,10 @@ signals:
   void readyReadStandardOutput();
   void finished ( int, QProcess::ExitStatus );
   void readyReadStandardError();
+
+  //ProcessWrapper signals
+  void startedTerminal();
+  void finishedTerminal(int, QProcess::ExitStatus);
 };
 
 #endif // UNIXCOMMAND_H

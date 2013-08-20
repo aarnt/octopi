@@ -847,9 +847,6 @@ void MainWindow::doInstallYaourtPackage()
                                        ctn_PACKAGE_NAME_COLUMN)->text() + " ";
   }
 
-  //QString listOfTargets =
-  //    _getCurrentSelectedModel()->item(ui->tvPackages->currentIndex().row(), ctn_PACKAGE_NAME_COLUMN)->text();
-
   m_lastCommandList.clear();
   m_lastCommandList.append("yaourt -S " + listOfTargets + ";");
   m_lastCommandList.append("echo -e;");
@@ -858,16 +855,12 @@ void MainWindow::doInstallYaourtPackage()
   disableTransactionActions();
   m_unixCommand = new UnixCommand(this);
 
-  QObject::connect(m_unixCommand, SIGNAL( started() ), this, SLOT( actionsProcessStarted()));
-  QObject::connect(m_unixCommand, SIGNAL( readyReadStandardOutput()),
-                   this, SLOT( actionsProcessReadOutput() ));
-  QObject::connect(m_unixCommand, SIGNAL( finished ( int, QProcess::ExitStatus )),
+  QObject::connect(m_unixCommand, SIGNAL( startedTerminal() ), this, SLOT( actionsProcessStarted()));
+  QObject::connect(m_unixCommand, SIGNAL( finishedTerminal ( int, QProcess::ExitStatus )),
                    this, SLOT( actionsProcessFinished(int, QProcess::ExitStatus) ));
-  QObject::connect(m_unixCommand, SIGNAL( readyReadStandardError() ),
-                   this, SLOT( actionsProcessRaisedError() ));
 
   m_commandExecuting = ectn_RUN_IN_TERMINAL;
-  m_unixCommand->runCommandInTerminal(m_lastCommandList);
+  m_unixCommand->runCommandInTerminalAsNormalUser(m_lastCommandList);
 }
 
 /*
@@ -885,9 +878,6 @@ void MainWindow::doRemoveYaourtPackage()
       _getCurrentSelectedModel()->item(ui->tvPackages->selectionModel()->selectedRows().at(c).row(),
                                        ctn_PACKAGE_NAME_COLUMN)->text() + " ";
   }
-
-  //QString listOfTargets =
-  //    m_modelPackages->item(ui->tvPackages->currentIndex().row(), ctn_PACKAGE_NAME_COLUMN)->text();
 
   m_lastCommandList.clear();
   m_lastCommandList.append("yaourt -" + m_removeCommand + " " + listOfTargets + ";");
