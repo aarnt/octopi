@@ -24,6 +24,7 @@
  * IT ONLY WORKS with terminal commands that start other subcommands, with an "-e" option
  */
 #include "processwrapper.h"
+#include <iostream>
 
 #include <QProcess>
 #include <QTimer>
@@ -70,14 +71,21 @@ void ProcessWrapper::onProcessStarted()
 void ProcessWrapper::onTimer()
 {
   QProcess proc;
-  QString cmd = QString("ps -p %1 %2").arg(m_processPid).arg(m_processPid + 1);
+  QString cmd = QString("ps -p %1 %2").arg(m_processPid+1).arg(m_processPid+2);
+
+  std::cout << "PIDS: " << cmd.toAscii().data() << "\n" << std::endl;
+
   proc.start(cmd);
   proc.waitForFinished(-1);
 
   //If any of the processes have finished...
   QString out = proc.readAll();
-  QStringList sl = out.split("\n", QString::SkipEmptyParts);
-  if (sl.count() != 2)
+  //QStringList sl = out.split("\n", QString::SkipEmptyParts);
+
+  std::cout << "Output: " << out.toAscii().data() << "\n" << std::endl;
+
+  //if (count() != 2)
+  if (!out.contains(".qt_temp_", Qt::CaseInsensitive))
   {
     emit finishedTerminal(0, QProcess::NormalExit);
     m_timer->stop();
