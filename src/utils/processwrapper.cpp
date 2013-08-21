@@ -23,9 +23,9 @@
  *
  * IT ONLY WORKS with terminal commands that start other subcommands, with an "-e" option
  */
+
 #include "processwrapper.h"
 #include <iostream>
-
 #include <QProcess>
 #include <QTimer>
 
@@ -95,10 +95,12 @@ void ProcessWrapper::onSingleShot()
     {
       int candidatePid2 = slist.at(d).trimmed().toInt();
 
-      if (candidatePid+1 == candidatePid2)
+      if (candidatePid < candidatePid2)
       {
-        m_processPid = candidatePid;
+        m_pidSH = candidatePid;
+        m_pidYaourt = candidatePid2;
         m_timer->start();
+
         return;
       }
     }
@@ -111,7 +113,7 @@ void ProcessWrapper::onSingleShot()
 void ProcessWrapper::onTimer()
 {
   QProcess proc;
-  QString cmd = QString("ps -p %1 %2").arg(m_processPid).arg(m_processPid+1);
+  QString cmd = QString("ps -p %1 %2").arg(m_pidSH).arg(m_pidYaourt);
 
   std::cout << "PIDS: " << cmd.toAscii().data() << "\n" << std::endl;
 
