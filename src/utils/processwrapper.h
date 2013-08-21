@@ -34,6 +34,7 @@ private:
   QProcess *m_process;
   int m_processPid;
   QTimer *m_timer;
+  QTimer *m_timerSingleShot;
 
 public:
   explicit ProcessWrapper(QObject *parent = 0);
@@ -44,6 +45,7 @@ signals:
   void finishedTerminal(int, QProcess::ExitStatus);
   
 private slots:
+  void onSingleShot();
   void onTimer();
   void onProcessStarted();
 };

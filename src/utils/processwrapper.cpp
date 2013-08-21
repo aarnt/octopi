@@ -41,8 +41,12 @@ ProcessWrapper::ProcessWrapper(QObject *parent) :
   env.insert("LC_MESSAGES", "C");
   m_process->setProcessEnvironment(env);
 
+  m_timerSingleShot = new QTimer(parent);
+  m_timerSingleShot->setSingleShot(true);
   m_timer = new QTimer(parent);
   m_timer->setInterval(1000);
+
+  connect(m_timerSingleShot, SIGNAL(timeout()), this, SLOT(onSingleShot()));
   connect(m_timer, SIGNAL(timeout()), this, SLOT(onTimer()));
   connect(m_process, SIGNAL(started()), SLOT(onProcessStarted()));
 }
@@ -59,10 +63,46 @@ void ProcessWrapper::executeCommand(QString command)
  * Only when m_process has started...
  */
 void ProcessWrapper::onProcessStarted()
-{
-  m_processPid = m_process->pid();
+{  
+  m_timerSingleShot->start(500);
   emit startedTerminal();
-  m_timer->start();
+}
+
+/*
+ * We need this to search for the SH process pid (which spaws yaourt)
+ */
+void ProcessWrapper::onSingleShot()
+{
+  QProcess proc;
+  QProcess pAux;
+  QString saux;
+  proc.start("ps -o pid -C sh");
+  proc.waitForFinished(-1);
+  QString out = proc.readAll();
+
+  QStringList list = out.split("\n", QString::SkipEmptyParts);
+  QStringList slist;
+
+  for (int c=1; c<list.count(); c++)
+  {
+    int candidatePid = list.at(c).trimmed().toInt();
+    pAux.start("ps -o pid -C yaourt");
+    pAux.waitForFinished(-1);
+    saux = pAux.readAll();
+    slist = saux.split("\n", QString::SkipEmptyParts);
+
+    for (int d=1; d<slist.count(); d++)
+    {
+      int candidatePid2 = slist.at(d).trimmed().toInt();
+
+      if (candidatePid+1 == candidatePid2)
+      {
+        m_processPid = candidatePid;
+        m_timer->start();
+        return;
+      }
+    }
+  }
 }
 
 /*
@@ -71,7 +111,7 @@ void ProcessWrapper::onProcessStarted()
 void ProcessWrapper::onTimer()
 {
   QProcess proc;
-  QString cmd = QString("ps -p %1 %2").arg(m_processPid+1).arg(m_processPid+2);
+  QString cmd = QString("ps -p %1 %2").arg(m_processPid).arg(m_processPid+1);
 
   std::cout << "PIDS: " << cmd.toAscii().data() << "\n" << std::endl;
 
@@ -80,11 +120,9 @@ void ProcessWrapper::onTimer()
 
   //If any of the processes have finished...
   QString out = proc.readAll();
-  //QStringList sl = out.split("\n", QString::SkipEmptyParts);
 
   std::cout << "Output: " << out.toAscii().data() << "\n" << std::endl;
 
-  //if (count() != 2)
   if (!out.contains(".qt_temp_", Qt::CaseInsensitive))
   {
     emit finishedTerminal(0, QProcess::NormalExit);
