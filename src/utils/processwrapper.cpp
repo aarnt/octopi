@@ -65,8 +65,10 @@ void ProcessWrapper::executeCommand(QString command)
  */
 void ProcessWrapper::onProcessStarted()
 {  
-  m_timerSingleShot->start(500);
   m_pidTerminal = m_process->pid();
+  std::cout << "First PID: " << m_pidTerminal << std::endl;
+
+  m_timerSingleShot->start(2000);
   emit startedTerminal();
 }
 
@@ -82,6 +84,7 @@ void ProcessWrapper::onSingleShot()
   proc.start("ps -o pid -C sh");
   proc.waitForFinished(-1);
   QString out = proc.readAll();
+  proc.close();
 
   QStringList list = out.split("\n", QString::SkipEmptyParts);
   QStringList slist;
@@ -119,6 +122,8 @@ void ProcessWrapper::onSingleShot()
       }
     }
   }
+
+  emit finishedTerminal(0, QProcess::NormalExit);
 }
 
 /*
