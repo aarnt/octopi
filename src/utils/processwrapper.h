@@ -31,9 +31,9 @@ class ProcessWrapper : public QObject
   Q_OBJECT
 
 private:
+  int m_pidTerminal;
   int m_pidSH;
   int m_pidYaourt;
-
   QProcess *m_process;
   QTimer *m_timer;
   QTimer *m_timerSingleShot;

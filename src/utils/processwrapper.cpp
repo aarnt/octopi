@@ -26,6 +26,7 @@
 
 #include "processwrapper.h"
 #include <iostream>
+
 #include <QProcess>
 #include <QTimer>
 
@@ -65,6 +66,7 @@ void ProcessWrapper::executeCommand(QString command)
 void ProcessWrapper::onProcessStarted()
 {  
   m_timerSingleShot->start(500);
+  m_pidTerminal = m_process->pid();
   emit startedTerminal();
 }
 
@@ -76,6 +78,7 @@ void ProcessWrapper::onSingleShot()
   QProcess proc;
   QProcess pAux;
   QString saux;
+
   proc.start("ps -o pid -C sh");
   proc.waitForFinished(-1);
   QString out = proc.readAll();
@@ -86,22 +89,33 @@ void ProcessWrapper::onSingleShot()
   for (int c=1; c<list.count(); c++)
   {
     int candidatePid = list.at(c).trimmed().toInt();
-    pAux.start("ps -o pid -C yaourt");
-    pAux.waitForFinished(-1);
-    saux = pAux.readAll();
-    slist = saux.split("\n", QString::SkipEmptyParts);
 
-    for (int d=1; d<slist.count(); d++)
+    if (candidatePid < m_pidTerminal) continue;
+
+    QString cmd = QString("ps --ppid %1").arg(candidatePid);
+    proc.start(cmd);
+    proc.waitForFinished(-1);
+    QString out = proc.readAll();
+
+    if (out.contains("yaourt", Qt::CaseInsensitive))
     {
-      int candidatePid2 = slist.at(d).trimmed().toInt();
+      pAux.start("ps -o pid -C yaourt");
+      pAux.waitForFinished(-1);
+      saux = pAux.readAll();
+      slist = saux.split("\n", QString::SkipEmptyParts);
 
-      if (candidatePid < candidatePid2)
+      for (int d=1; d<slist.count(); d++)
       {
-        m_pidSH = candidatePid;
-        m_pidYaourt = candidatePid2;
-        m_timer->start();
+        int candidatePid2 = slist.at(d).trimmed().toInt();
 
-        return;
+        if (candidatePid < candidatePid2)
+        {
+          m_pidSH = candidatePid;
+          m_pidYaourt = candidatePid2;
+          m_timer->start();
+
+          return;
+        }
       }
     }
   }
