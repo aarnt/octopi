@@ -186,16 +186,16 @@
         <translation>Yerel pakaet yükle...</translation>
     </message>
     <message>
+        <source>For more information, visit:</source>
+        <translation>Daha fazla bilgi için ziyaret edin</translation>
+    </message>
+    <message>
         <source>A Qt4-based Pacman frontend,</source>
         <translation>QT4 temelli Pacman arayüzü</translation>
     </message>
     <message>
         <source>licensed under the terms of</source>
         <translation>hakları ile lisanslanmıştır</translation>
-    </message>
-    <message>
-        <source>For more information, visit:</source>
-        <translation>Daha fazla bilgi için ziyaret edin</translation>
     </message>
     <message>
         <source>Package classification:</source>
@@ -345,7 +345,7 @@
 <context>
     <name>QObject</name>
     <message>
-        <source>Octopi help usage:</source>
+        <source>Octopi usage help:</source>
         <translation>Octopi yardım kullanımı</translation>
     </message>
     <message>
@@ -383,6 +383,10 @@
     <message>
         <source>This Linux distro seems to be incompatible with Octopi!</source>
         <translation>Bu Linux dağıtımı Octopi ile uyumsuz görünüyor.</translation>
+    </message>
+    <message>
+        <source>Internet seems unavailable!</source>
+        <translation>İnternet erişilemez durumda görünüyor.</translation>
     </message>
     <message>
         <source>Display all groups</source>
@@ -761,10 +765,6 @@ Açmak istediğinizden emin misiniz?</translation>
     <message>
         <source>Remove items</source>
         <translation>Öğeleri kaldır</translation>
-    </message>
-    <message>
-        <source>Internet seems unavailable!</source>
-        <translation>İnternet erişilemez durumda görünüyor.</translation>
     </message>
 </context>
 <context>

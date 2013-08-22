@@ -186,16 +186,16 @@
         <translation>Mahalliy paketni o&apos;rnatish...</translation>
     </message>
     <message>
+        <source>For more information, visit:</source>
+        <translation>Qo&apos;shimcha ma&apos;lumot olish uchun tashrif buyuring:</translation>
+    </message>
+    <message>
         <source>A Qt4-based Pacman frontend,</source>
         <translation>Qt4-asosidagi Pacman frontendi,</translation>
     </message>
     <message>
         <source>licensed under the terms of</source>
         <translation>quyidagi litsenziya shartlari asosida</translation>
-    </message>
-    <message>
-        <source>For more information, visit:</source>
-        <translation>Qo&apos;shimcha ma&apos;lumot olish uchun tashrif buyuring:</translation>
     </message>
     <message>
         <source>Package classification:</source>
@@ -345,7 +345,7 @@
 <context>
     <name>QObject</name>
     <message>
-        <source>Octopi help usage:</source>
+        <source>Octopi usage help:</source>
         <translation>Octopi yordamidan foydalanish:</translation>
     </message>
     <message>
@@ -383,6 +383,10 @@
     <message>
         <source>This Linux distro seems to be incompatible with Octopi!</source>
         <translation>Ushbu Linux distributivi Octopi dasturiga mos kelmayotganga o&apos;xshaydi!</translation>
+    </message>
+    <message>
+        <source>Internet seems unavailable!</source>
+        <translation>Internet mavjud bo&apos;lmaganga o&apos;xshaydi!</translation>
     </message>
     <message>
         <source>Display all groups</source>
@@ -761,10 +765,6 @@ Uni ochishga ishonchingiz komilmi?</translation>
     <message>
         <source>Remove items</source>
         <translation>Bandlarni o&apos;chirish</translation>
-    </message>
-    <message>
-        <source>Internet seems unavailable!</source>
-        <translation>Internet mavjud bo&apos;lmaganga o&apos;xshaydi!</translation>
     </message>
 </context>
 <context>

@@ -186,16 +186,16 @@
         <translation>تثبيت الحزمة المحلية...</translation>
     </message>
     <message>
+        <source>For more information, visit:</source>
+        <translation>للمزيد من المعلومات, زر:</translation>
+    </message>
+    <message>
         <source>A Qt4-based Pacman frontend,</source>
         <translation>واجهة رسومية لـ Pacman مبنية على كيوتي,4</translation>
     </message>
     <message>
         <source>licensed under the terms of</source>
         <translation>مرخصة تحت بنوذ</translation>
-    </message>
-    <message>
-        <source>For more information, visit:</source>
-        <translation>للمزيد من المعلومات, زر:</translation>
     </message>
     <message>
         <source>Package classification:</source>
@@ -345,7 +345,7 @@
 <context>
     <name>QObject</name>
     <message>
-        <source>Octopi help usage:</source>
+        <source>Octopi usage help:</source>
         <translation>مساعدة في إستعمال أوكتابي:</translation>
     </message>
     <message>
@@ -383,6 +383,10 @@
     <message>
         <source>This Linux distro seems to be incompatible with Octopi!</source>
         <translation>يبدو أن هذه النوزيعةغير متطابقة مع أوكتابي!</translation>
+    </message>
+    <message>
+        <source>Internet seems unavailable!</source>
+        <translation>يبدوا أنك غبر متصل بالأنترنت!</translation>
     </message>
     <message>
         <source>Display all groups</source>
@@ -761,10 +765,6 @@ Are you sure you want to open it?</source>
     <message>
         <source>Remove items</source>
         <translation>إزالة العناصر</translation>
-    </message>
-    <message>
-        <source>Internet seems unavailable!</source>
-        <translation>يبدوا أنك غبر متصل بالأنترنت!</translation>
     </message>
 </context>
 <context>

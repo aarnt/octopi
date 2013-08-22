@@ -186,16 +186,16 @@
         <translation>Installiere lokales Paket</translation>
     </message>
     <message>
+        <source>For more information, visit:</source>
+        <translation>Für mehr Informationen besuchen Sie:</translation>
+    </message>
+    <message>
         <source>A Qt4-based Pacman frontend,</source>
         <translation>Ein Qt4-basiertes Frontend für Pacman,</translation>
     </message>
     <message>
         <source>licensed under the terms of</source>
         <translation>lizensiert unter den Bedingungen von</translation>
-    </message>
-    <message>
-        <source>For more information, visit:</source>
-        <translation>Für mehr Informationen besuchen Sie:</translation>
     </message>
     <message>
         <source>Package classification:</source>
@@ -345,8 +345,8 @@
 <context>
     <name>QObject</name>
     <message>
-        <source>Octopi help usage:</source>
-        <translation>Benutzung der Octopi-Hilfe:</translation>
+        <source>Octopi usage help:</source>
+        <translation>Benutzung der Octopi-Hilfe</translation>
     </message>
     <message>
         <source>show application version.</source>
@@ -383,6 +383,10 @@
     <message>
         <source>This Linux distro seems to be incompatible with Octopi!</source>
         <translation>Diese Linux-Distribution scheint mit Octopi nicht kompatibel zu sein !</translation>
+    </message>
+    <message>
+        <source>Internet seems unavailable!</source>
+        <translation>Internet scheint nicht verfügbar zu sein !</translation>
     </message>
     <message>
         <source>Display all groups</source>
@@ -761,10 +765,6 @@ Wollen Sie sie wirklich öffnen ?</translation>
     <message>
         <source>Remove items</source>
         <translation>Entferne Pakete</translation>
-    </message>
-    <message>
-        <source>Internet seems unavailable!</source>
-        <translation>Internet scheint nicht verfügbar zu sein !</translation>
     </message>
 </context>
 <context>

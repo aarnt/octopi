@@ -186,16 +186,16 @@
         <translation>Инсталиране на налични пакети…</translation>
     </message>
     <message>
+        <source>For more information, visit:</source>
+        <translation>За информация, посетете:</translation>
+    </message>
+    <message>
         <source>A Qt4-based Pacman frontend,</source>
         <translation>Qt4-зазиран Pacman интерфейс,</translation>
     </message>
     <message>
         <source>licensed under the terms of</source>
         <translation>Лицензиран според правилата на</translation>
-    </message>
-    <message>
-        <source>For more information, visit:</source>
-        <translation>За информация, посетете:</translation>
     </message>
     <message>
         <source>Package classification:</source>
@@ -345,7 +345,7 @@
 <context>
     <name>QObject</name>
     <message>
-        <source>Octopi help usage:</source>
+        <source>Octopi usage help:</source>
         <translation>Octopi препоръчва:</translation>
     </message>
     <message>
@@ -383,6 +383,10 @@
     <message>
         <source>This Linux distro seems to be incompatible with Octopi!</source>
         <translation>Тази Linux дистрибуция е несъвместима с Octopi!</translation>
+    </message>
+    <message>
+        <source>Internet seems unavailable!</source>
+        <translation>Изглежда нямате интернет!</translation>
     </message>
     <message>
         <source>Display all groups</source>
@@ -761,10 +765,6 @@ Are you sure you want to open it?</source>
     <message>
         <source>Remove items</source>
         <translation>Премахване на елементи</translation>
-    </message>
-    <message>
-        <source>Internet seems unavailable!</source>
-        <translation>Изглежда нямате интернет!</translation>
     </message>
 </context>
 <context>

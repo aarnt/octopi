@@ -186,16 +186,16 @@
         <translation>Instaliravam lokalne pakete...</translation>
     </message>
     <message>
+        <source>For more information, visit:</source>
+        <translation>Za više informacija posjetite:</translation>
+    </message>
+    <message>
         <source>A Qt4-based Pacman frontend,</source>
         <translation>Interfejs za Pacman napravljen u Qt4,</translation>
     </message>
     <message>
         <source>licensed under the terms of</source>
         <translation>licensiran je pod uslovima</translation>
-    </message>
-    <message>
-        <source>For more information, visit:</source>
-        <translation>Za više informacija posjetite:</translation>
     </message>
     <message>
         <source>Package classification:</source>
@@ -345,7 +345,7 @@
 <context>
     <name>QObject</name>
     <message>
-        <source>Octopi help usage:</source>
+        <source>Octopi usage help:</source>
         <translation>Octopi pomoć:</translation>
     </message>
     <message>
@@ -383,6 +383,10 @@
     <message>
         <source>This Linux distro seems to be incompatible with Octopi!</source>
         <translation>Ova Linux distribucija nije kompabitilna sa Octopi-em!</translation>
+    </message>
+    <message>
+        <source>Internet seems unavailable!</source>
+        <translation>Internet nije dustupan!</translation>
     </message>
     <message>
         <source>Display all groups</source>
@@ -761,10 +765,6 @@ Da li ste sigurni da je želite otvoriti?</translation>
     <message>
         <source>Remove items</source>
         <translation>Ukloni predmete</translation>
-    </message>
-    <message>
-        <source>Internet seems unavailable!</source>
-        <translation>Internet nije dustupan!</translation>
     </message>
 </context>
 <context>

@@ -186,16 +186,16 @@
         <translation>Pasang paket lokal...</translation>
     </message>
     <message>
+        <source>For more information, visit:</source>
+        <translation>Untuk informasi selanjutnya, kunjungi:</translation>
+    </message>
+    <message>
         <source>A Qt4-based Pacman frontend,</source>
         <translation>Antarmuka Pacman berbasis Qt4</translation>
     </message>
     <message>
         <source>licensed under the terms of</source>
         <translation>lisensi berdasarkan perjanjian</translation>
-    </message>
-    <message>
-        <source>For more information, visit:</source>
-        <translation>Untuk informasi selanjutnya, kunjungi:</translation>
     </message>
     <message>
         <source>Package classification:</source>
@@ -345,7 +345,7 @@
 <context>
     <name>QObject</name>
     <message>
-        <source>Octopi help usage:</source>
+        <source>Octopi usage help:</source>
         <translation>Pertolongan penggunaan Octopi:</translation>
     </message>
     <message>
@@ -383,6 +383,10 @@
     <message>
         <source>This Linux distro seems to be incompatible with Octopi!</source>
         <translation>Distro Linux ini kelihatannya tidak cocok dengan Octopi!</translation>
+    </message>
+    <message>
+        <source>Internet seems unavailable!</source>
+        <translation>Internet kelihatannya tidak tersedia!</translation>
     </message>
     <message>
         <source>Display all groups</source>
@@ -761,10 +765,6 @@ Apakah kamu yakin ingin membuka berkas ini?</translation>
     <message>
         <source>Remove items</source>
         <translation>Hapus konten</translation>
-    </message>
-    <message>
-        <source>Internet seems unavailable!</source>
-        <translation>Internet kelihatannya tidak tersedia!</translation>
     </message>
 </context>
 <context>

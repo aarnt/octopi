@@ -186,16 +186,16 @@
         <translation>Installer lokal pakke...</translation>
     </message>
     <message>
+        <source>For more information, visit:</source>
+        <translation>For mer informasjon kan du besøke:</translation>
+    </message>
+    <message>
         <source>A Qt4-based Pacman frontend,</source>
         <translation>Et Qt4-basert Pacman-skall,</translation>
     </message>
     <message>
         <source>licensed under the terms of</source>
         <translation>lisensiert under betingelsene i</translation>
-    </message>
-    <message>
-        <source>For more information, visit:</source>
-        <translation>For mer informasjon kan du besøke:</translation>
     </message>
     <message>
         <source>Package classification:</source>
@@ -345,7 +345,7 @@
 <context>
     <name>QObject</name>
     <message>
-        <source>Octopi help usage:</source>
+        <source>Octopi usage help:</source>
         <translation>Bruk av Octopi hjelpen:</translation>
     </message>
     <message>
@@ -383,6 +383,10 @@
     <message>
         <source>This Linux distro seems to be incompatible with Octopi!</source>
         <translation>Denne Linuxdistribusjonen ser ikke ut til å være kompatibel med Otopi!</translation>
+    </message>
+    <message>
+        <source>Internet seems unavailable!</source>
+        <translation>Internettet ser ut til å være utilgjengelig!</translation>
     </message>
     <message>
         <source>Display all groups</source>
@@ -761,10 +765,6 @@ Er du sikker på at du vil åpne den?</translation>
     <message>
         <source>Remove items</source>
         <translation>Fjern komponenter</translation>
-    </message>
-    <message>
-        <source>Internet seems unavailable!</source>
-        <translation>Internettet ser ut til å være utilgjengelig!</translation>
     </message>
 </context>
 <context>
