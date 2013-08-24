@@ -987,7 +987,6 @@ void MainWindow::headerViewPackageListSortIndicatorClicked( int col, Qt::SortOrd
 {
   m_PackageListOrderedCol = col;
   m_PackageListSortOrder = order;
-
   saveSettings(ectn_PackageList);
 }
 
@@ -1104,6 +1103,9 @@ void MainWindow::openDirectory(){
  */
 void MainWindow::openRootTerminal()
 {
+  //If there are no means to run the actions, we must warn!
+  if (!_isSUAvailable()) return;
+
   m_unixCommand->openRootTerminal();
 }
 

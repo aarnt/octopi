@@ -17,6 +17,7 @@
   GTK native theme is used by default in Manjaro (while not in KDE).
   Added support for Xterm terminal.
   IgnorePkg option is now used to build outdated package list.
+  BugFix: Empty pkg descriptions are now shown as empty.
 
 0.1.9.1
   Important bugfixes to deal with multithreaded code.
