@@ -131,7 +131,7 @@ bool TreeViewPackagesItemDelegate::helpEvent ( QHelpEvent *event, QAbstractItemV
  */
 void TreeViewPackagesItemDelegate::execToolTip()
 {
-  if (g_fwToolTip.result().isEmpty())
+  if (g_fwToolTip.result().trimmed().isEmpty())
     return;
 
   gPoint.setX(gPoint.x() + 25);

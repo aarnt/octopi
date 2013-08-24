@@ -127,7 +127,7 @@ void MainWindow::buildPackagesFromGroupList()
       m_proxyModelPackages->setSourceModel(m_modelInstalledPackages);
     }
 
-    /*if (m_leFilterPackage->text() != "")*/ reapplyPackageFilter();
+    reapplyPackageFilter();
 
     QModelIndex maux = m_proxyModelPackages->index(0, 0);
     ui->tvPackages->setCurrentIndex(maux);
@@ -165,7 +165,6 @@ void MainWindow::buildPackagesFromGroupList()
   while(it != list->end())
   {
     QString packageName = *it;
-
     QStandardItem *siIcon = getAvailablePackage(packageName, ctn_PACKAGE_ICON_COLUMN);
     QStandardItem *siName = getAvailablePackage(packageName, ctn_PACKAGE_NAME_COLUMN);
     QStandardItem *siVersion = getAvailablePackage(packageName, ctn_PACKAGE_VERSION_COLUMN);

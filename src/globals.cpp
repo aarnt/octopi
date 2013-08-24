@@ -43,6 +43,7 @@ QString showPackageInfo(QString pkgName)
   if (si == 0) return "";
 
   QString description = si->text();
+  if (description.trimmed().isEmpty()) return "";
 
   int space = description.indexOf(" ");
   QString desc = description.mid(space+1);

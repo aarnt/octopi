@@ -21,13 +21,14 @@
 #include "unixcommand.h"
 #include "strconstants.h"
 #include "wmhelper.h"
+#include <iostream>
+
 #include <QProcess>
 #include <QFile>
 #include <QFileInfo>
 #include <QByteArray>
 #include <QTextStream>
 #include <QtNetwork/QNetworkInterface>
-#include "iostream"
 
 QFile *UnixCommand::m_temporaryFile = 0;
 
@@ -547,7 +548,8 @@ void UnixCommand::openRootTerminal(){
     m_process->startDetached(cmd);
   }
   else if (UnixCommand::hasTheExecutable(ctn_XTERM)){
-    QString cmd = WMHelper::getSUCommand() + " \"" + ctn_XTERM + "\"";
+    QString cmd = WMHelper::getSUCommand() + " \"" + ctn_XTERM +
+        " -fn \"*-fixed-*-*-*-18-*\" -fg White -bg Black -title xterm \"";
     m_process->startDetached(cmd);
   }
 }

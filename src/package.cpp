@@ -407,7 +407,7 @@ QList<PackageListData> * Package::getPackageList()
       if (!packageTuple.trimmed().isEmpty())
         pkgDescription += packageTuple.trimmed();
       else
-        pkgDescription += StrConstants::getNoDescriptionAvailabe();
+        pkgDescription += " "; //StrConstants::getNoDescriptionAvailabe();
     }
   }
 
@@ -511,7 +511,9 @@ QList<PackageListData> * Package::getYaourtPackageList(const QString& searchStri
       if (!packageTuple.trimmed().isEmpty())
         pkgDescription += packageTuple.trimmed();
       else
-        pkgDescription += StrConstants::getNoDescriptionAvailabe();
+      {
+        pkgDescription += " "; //StrConstants::getNoDescriptionAvailabe();
+      }
     }
   }
 
