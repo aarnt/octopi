@@ -527,5 +527,11 @@ void WMHelper::openTerminal(const QString& dirName){
       s << "--working-directory=" + dirName;
       p->startDetached( ctn_LXDE_TERMINAL, s );
     }
+    else if (UnixCommand::hasTheExecutable(ctn_XTERM)){
+      QString cmd = ctn_XTERM +
+          " -fn \"*-fixed-*-*-*-18-*\" -fg White -bg Black -title xterm -e \"" +
+          "cd " + dirName + " && /bin/bash\"";
+      p->startDetached( cmd );
+    }
   }
 }

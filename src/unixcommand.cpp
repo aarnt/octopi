@@ -546,6 +546,10 @@ void UnixCommand::openRootTerminal(){
     QString cmd = WMHelper::getSUCommand() + " \"" + ctn_LXDE_TERMINAL + "\"";
     m_process->startDetached(cmd);
   }
+  else if (UnixCommand::hasTheExecutable(ctn_XTERM)){
+    QString cmd = WMHelper::getSUCommand() + " \"" + ctn_XTERM + "\"";
+    m_process->startDetached(cmd);
+  }
 }
 
 /*
@@ -569,14 +573,6 @@ void UnixCommand::runCommandInTerminal(const QStringList& commandList){
   m_process->setProcessEnvironment(env);
 
   QString suCommand = WMHelper::getSUCommand();
-
-  /*if (!runAsRoot)
-  {
-    QString loggedUser = QDir::homePath();
-    QFileInfo fi(loggedUser);
-    loggedUser = fi.fileName();
-    suCommand.replace("root", loggedUser);
-  }*/
 
   if(WMHelper::isXFCERunning() && UnixCommand::hasTheExecutable(ctn_XFCE_TERMINAL)){
     QString cmd = suCommand + " \"" + ctn_XFCE_TERMINAL + " -e \'bash -c " + ftemp->fileName() + "'\"";
@@ -604,6 +600,11 @@ void UnixCommand::runCommandInTerminal(const QStringList& commandList){
   }
   else if (UnixCommand::hasTheExecutable(ctn_LXDE_TERMINAL)){
     QString cmd = suCommand + " \"" + ctn_LXDE_TERMINAL + " -e \'bash -c " + ftemp->fileName() + "'\"";
+    m_process->start(cmd);
+  }
+  else if (UnixCommand::hasTheExecutable(ctn_XTERM)){
+    QString cmd = suCommand + " \"" + ctn_XTERM +
+        " -fn \"*-fixed-*-*-*-18-*\" -fg White -bg Black -title xterm -e \'bash -c " + ftemp->fileName() + "'\"";
     m_process->start(cmd);
   }
 }
@@ -654,6 +655,11 @@ void UnixCommand::runCommandInTerminalAsNormalUser(const QStringList &commandLis
   }
   else if (UnixCommand::hasTheExecutable(ctn_LXDE_TERMINAL)){
     QString cmd = ctn_LXDE_TERMINAL + " -e " + ftemp->fileName();
+    m_processWrapper->executeCommand(cmd);
+  }
+  else if (UnixCommand::hasTheExecutable(ctn_XTERM)){
+    QString cmd = ctn_XTERM +
+        " -fn \"*-fixed-*-*-*-18-*\" -fg White -bg Black -title xterm -e " + ftemp->fileName();
     m_processWrapper->executeCommand(cmd);
   }
 }

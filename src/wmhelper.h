@@ -66,6 +66,8 @@ const QString ctn_CINNAMON_EDITOR("gedit");
 const QString ctn_CINNAMON_FILE_MANAGER("nemo");
 const QString ctn_CINNAMON_TERMINAL("gnome-terminal");
 
+const QString ctn_XTERM("xterm");
+
 /* This class exposes some services of the underlying Window Manager being used */
 class WMHelper
 {
