@@ -15,7 +15,6 @@
 /*
  * This is Octopi Notifier slim interface code :-)
  */
-
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent)
 {
@@ -98,9 +97,6 @@ void MainWindow::initSystemTrayIcon()
   m_pacmanHelperTimer->start();
 
   connect(m_pacmanHelperTimer, SIGNAL(timeout()), this, SLOT(pacmanHelperTimerTimeout()));
-
-  //connect(m_pacmanDatabaseSystemWatcher,
-  //        SIGNAL(directoryChanged(QString)), this, SLOT(refreshAppIcon()));
 }
 
 /*
@@ -245,6 +241,7 @@ void MainWindow::doSystemUpgrade()
                      this, SLOT( doSystemUpgradeFinished(int, QProcess::ExitStatus) ));
 
     toggleEnableInterface(false);
+    m_actionSystemUpgrade->setEnabled(false);
 
     if (result == QDialogButtonBox::AcceptRole)
     {
@@ -265,6 +262,7 @@ void MainWindow::doSystemUpgrade()
 void MainWindow::doSystemUpgradeFinished(int, QProcess::ExitStatus)
 {
   //Does it still need to upgrade another packages due to SyncFirst issues???
+  m_commandExecuting = ectn_NONE;
   refreshAppIcon();
 
   if ((m_commandExecuting == ectn_RUN_SYSTEM_UPGRADE_IN_TERMINAL)
@@ -277,7 +275,6 @@ void MainWindow::doSystemUpgradeFinished(int, QProcess::ExitStatus)
     return;
   }
 
-  m_commandExecuting = ectn_NONE;
   m_unixCommand->removeTemporaryActionFile();
   toggleEnableInterface(true);
 }
@@ -288,7 +285,6 @@ void MainWindow::doSystemUpgradeFinished(int, QProcess::ExitStatus)
 void MainWindow::toggleEnableInterface(bool state)
 {
   m_actionOctopi->setEnabled(state);
-  //m_actionSystemUpgrade->setEnabled(state);
   m_actionExit->setEnabled(state);
 }
 
@@ -436,8 +432,12 @@ void MainWindow::refreshAppIcon()
 
   if(m_outdatedPackageList->count() > 0) //RED ICON!
   {
-    m_actionSystemUpgrade->setEnabled(true);
-    m_actionSystemUpgrade->setVisible(true);
+    if(m_commandExecuting == ectn_NONE)
+    {
+      m_actionSystemUpgrade->setEnabled(true);
+      m_actionSystemUpgrade->setVisible(true);
+    }
+
     m_icon = (IconHelper::getIconOctopiRed());
   }
   else if(m_outdatedYaourtPackageList->count() > 0) //YELLOW ICON!
