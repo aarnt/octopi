@@ -54,7 +54,7 @@ MainWindow::MainWindow(QWidget *parent) :
   //    new QFileSystemWatcher(QStringList() << ctn_PACMAN_DATABASE_DIR, this);
   m_foundFilesInPkgFileList = new QList<QModelIndex>();
   m_indFoundFilesInPkgFileList = 0;
-  m_callSystemUpgrade = false;
+  //m_callSystemUpgrade = false;
   m_initializationCompleted=false;
   m_cbGroups = 0;
   m_listOfPackages = 0;
@@ -102,7 +102,7 @@ void MainWindow::show()
       if (!qApp->style()->inherits("QGtkStyle"))
       {
         qApp->setStyle(new QGtkStyle());
-        setCleanLooksStyle(false);
+        //setCleanLooksStyle(false);
       }
     }
 

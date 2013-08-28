@@ -1,3 +1,7 @@
+0.2.1 (dev)
+  Code cleanings.
+  Added spanish (Latin America) translation.
+
 0.2
   Splitted the project in "octopi" and "octopi-notifier".
   Yaourt no longer runs with root permissions.

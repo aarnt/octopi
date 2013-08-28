@@ -103,7 +103,7 @@ private:
   bool m_hasYaourt;
 
   //Is Octopi using QCleanLooksStyle???
-  bool m_cleanLooksStyle;
+  //bool m_cleanLooksStyle;
 
   //Holds the remove command to be used: -Rcs/-R/-Rs or whichever the user has choosen
   QString m_removeCommand;
@@ -380,11 +380,11 @@ public:
   void setCallSystemUpgrade();
   void setRemoveCommand(const QString &removeCommand);
 
-  void setCleanLooksStyle(bool value){ m_cleanLooksStyle = value; }
+  //void setCleanLooksStyle(bool value){ m_cleanLooksStyle = value; }
   void setPackagesToInstallList(QStringList pkgList){ m_packagesToInstallList = pkgList; }
   void doInstallLocalPackages();
 
-  bool isCleanLooksStyleEnabled(){ return m_cleanLooksStyle; }
+  //bool isCleanLooksStyleEnabled(){ return m_cleanLooksStyle; }
   bool isExecutingCommand(){ return m_commandExecuting != ectn_NONE; }
 };
 
