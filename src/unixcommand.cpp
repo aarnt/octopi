@@ -81,7 +81,6 @@ QString UnixCommand::runCurlCommand(const QString& commandToRun){
  */
 QString UnixCommand::discoverBinaryPath(const QString& binary){
   QProcess *proc = new QProcess;
-
   QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
   env.insert("LANG", "C");
   env.insert("LC_MESSAGES", "C");
@@ -635,8 +634,9 @@ void UnixCommand::runCommandInTerminalAsNormalUser(const QStringList &commandLis
     QString cmd = ctn_XFCE_TERMINAL + " -e " + ftemp->fileName();
     m_processWrapper->executeCommand(cmd);
   }
-  else if (WMHelper::isKDERunning() && UnixCommand::hasTheExecutable(ctn_KDE_TERMINAL)){
-    QString cmd = ctn_KDE_TERMINAL + " --nofork -e " + ftemp->fileName();
+  else if (WMHelper::isKDERunning() && UnixCommand::hasTheExecutable(ctn_XTERM)){
+    QString cmd = ctn_XTERM +
+        " -fn \"*-fixed-*-*-*-18-*\" -fg White -bg Black -title xterm -e " + ftemp->fileName();
     m_processWrapper->executeCommand(cmd);
   }
   else if (WMHelper::isTDERunning() && UnixCommand::hasTheExecutable(ctn_TDE_TERMINAL)){

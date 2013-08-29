@@ -29,27 +29,11 @@
 
 int main(int argc, char *argv[])
 {
-  //bool cleanlooksStyle=false;
-
   ArgumentList *argList = new ArgumentList(argc, argv);
   QApplication::setGraphicsSystem(QLatin1String("raster"));
-
-  if (!argList->getSwitch("-style"))
-  {
-    //cleanlooksStyle=true;
-    qApp->setStyle(new QCleanlooksStyle());
-  }
-  else
-  {
-    if (argList->contains("cleanlooks", Qt::CaseInsensitive))
-    {
-      //cleanlooksStyle=true;
-      qApp->setStyle(new QCleanlooksStyle());
-    }
-  }
-
   QString packagesToInstall;
   QString arg;
+
   for (int c=1; c<argc; c++)
   {
     arg = argv[c];
@@ -114,6 +98,19 @@ int main(int argc, char *argv[])
   app.setActivationWindow(&w);
   app.setQuitOnLastWindowClosed(false);
 
+  if (!argList->getSwitch("-style"))
+  {
+    if (UnixCommand::getLinuxDistro() == ectn_MANJAROLINUX &&
+        !WMHelper::isKDERunning())
+    {
+      app.setStyle(new QGtkStyle());
+    }
+    else
+    {
+      app.setStyle(new QCleanlooksStyle());
+    }
+  }
+
   if (argList->getSwitch("-sysupgrade"))
   {
     w.setCallSystemUpgrade();
@@ -128,7 +125,6 @@ int main(int argc, char *argv[])
   }
 
   w.setRemoveCommand(argList->getSwitchArg("-removecmd", "Rcs"));
-  //w.setCleanLooksStyle(cleanlooksStyle);
   w.show();
 
   QResource::registerResource("./resources.qrc");

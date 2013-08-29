@@ -54,7 +54,7 @@ MainWindow::MainWindow(QWidget *parent) :
   //    new QFileSystemWatcher(QStringList() << ctn_PACMAN_DATABASE_DIR, this);
   m_foundFilesInPkgFileList = new QList<QModelIndex>();
   m_indFoundFilesInPkgFileList = 0;
-  //m_callSystemUpgrade = false;
+  m_callSystemUpgrade = false;
   m_initializationCompleted=false;
   m_cbGroups = 0;
   m_listOfPackages = 0;
@@ -95,17 +95,6 @@ void MainWindow::show()
     setWindowTitle(StrConstants::getApplicationName());
     setMinimumSize(QSize(850, 600));
 
-    if (UnixCommand::getLinuxDistro() == ectn_MANJAROLINUX &&
-        !WMHelper::isKDERunning())
-    {
-      //If we are in Manjaro and not in KDE, let's use a GTK style!
-      if (!qApp->style()->inherits("QGtkStyle"))
-      {
-        qApp->setStyle(new QGtkStyle());
-        //setCleanLooksStyle(false);
-      }
-    }
-
     initStatusBar();
     initTabOutput();
     initTabInfo();
@@ -127,7 +116,6 @@ void MainWindow::show()
 
     refreshComboBoxGroups();
     QMainWindow::show();
-
     metaBuildPackageList();    
   }
   else
