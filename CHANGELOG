@@ -4,7 +4,8 @@
   Added a new status icon: an orange one for newer than repo 
 	installed packages.
   Added spanish (Latin America) translation.
-  Added another source string to translate.
+  Added 3 new source strings to translate.
+  Updated pt_BR translation.
 
 0.2
   Splitted the project in "octopi" and "octopi-notifier".
