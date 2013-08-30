@@ -142,6 +142,14 @@ public:
     return QObject::tr("Depends On");
   }
 
+  static QString getRequiredBy(){
+    return QObject::tr("Required By");
+  }
+
+  static QString getOptionalFor(){
+    return QObject::tr("Optional For");
+  }
+
   static QString getOptionalDeps(){
     return QObject::tr("Optional Deps");
   }

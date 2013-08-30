@@ -108,6 +108,8 @@ struct PackageInfoData{
   QString license;
   QString group;
   QString provides;
+  QString requiredBy;
+  QString optionalFor;
   QString dependsOn;
   QString optDepends;
   QString conflictsWith;
@@ -161,6 +163,8 @@ class Package{
     static QString getOptDepends(const QString &pkgInfo);
     static QString getConflictsWith(const QString &pkgInfo);
     static QString getReplaces(const QString &pkgInfo);
+    static QString getRequiredBy(const QString &pkgInfo);
+    static QString getOptionalFor(const QString &pkgInfo);
     static QString getPackager(const QString &pkgInfo);
     static QString getArch(const QString &pkgInfo);
     static QString getDescription(const QString &pkgInfo);

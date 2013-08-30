@@ -638,6 +638,22 @@ QString Package::getReplaces(const QString &pkgInfo)
 }
 
 /*
+ * Retrieves "RequiredBy" field of the given package information string represented by pkgInfo
+ */
+QString Package::getRequiredBy(const QString &pkgInfo)
+{
+  return extractFieldFromInfo("Required By", pkgInfo);
+}
+
+/*
+ * Retrieves "OptionalFor" field of the given package information string represented by pkgInfo
+ */
+QString Package::getOptionalFor(const QString &pkgInfo)
+{
+  return extractFieldFromInfo("Optional For", pkgInfo);
+}
+
+/*
  * Retrieves "Packager" field of the given package information string represented by pkgInfo
  */
 QString Package::getPackager(const QString &pkgInfo)
@@ -863,6 +879,8 @@ PackageInfoData Package::getInformation(const QString &pkgName, bool foreignPack
   res.group = getGroup(pkgInfo);
   res.provides = getProvides(pkgInfo);
   res.replaces = getReplaces(pkgInfo);
+  res.requiredBy = getRequiredBy(pkgInfo);
+  res.optionalFor = getOptionalFor(pkgInfo);
   res.conflictsWith = getConflictsWith(pkgInfo);
   res.packager = getPackager(pkgInfo);
   res.arch = getArch(pkgInfo);

@@ -978,7 +978,9 @@ void MainWindow::refreshTabInfo(bool clearContents, bool neverQuit)
   {
     PackageInfoData pid;
 
-    if (siRepository->text() != StrConstants::getForeignRepositoryName()){
+    //if (siRepository->text() != StrConstants::getForeignRepositoryName()){
+    if (siRepository->text() != StrConstants::getForeignRepositoryName() &&
+        siIcon->text() != "_Installed"){
       pid = Package::getInformation(pkgName);
     }
     else
@@ -995,6 +997,8 @@ void MainWindow::refreshTabInfo(bool clearContents, bool neverQuit)
     QString groups = StrConstants::getGroups();
     QString provides = StrConstants::getProvides();
     QString dependsOn = StrConstants::getDependsOn();
+    QString requiredBy = StrConstants::getRequiredBy();
+    QString optionalFor = StrConstants::getOptionalFor();
     QString optionalDeps = StrConstants::getOptionalDeps();
     QString conflictsWith = StrConstants::getConflictsWith();
     QString replaces = StrConstants::getReplaces();
@@ -1070,6 +1074,10 @@ void MainWindow::refreshTabInfo(bool clearContents, bool neverQuit)
         html += "<tr><td>" + dependsOn + "</td><td>" + pid.dependsOn + "</td></tr>";
       if(! pid.optDepends.contains("None"))
         html += "<tr><td>" + optionalDeps + "</td><td>" + pid.optDepends + "</td></tr>";
+      if(!pid.requiredBy.isEmpty() && !pid.requiredBy.contains("None"))
+        html += "<tr><td>" + requiredBy + "</td><td>" + pid.requiredBy + "</td></tr>";
+      if(!pid.optionalFor.isEmpty() && !pid.optionalFor.contains("None"))
+        html += "<tr><td>" + optionalFor + "</td><td>" + pid.optionalFor + "</td></tr>";
       if(! pid.conflictsWith.contains("None"))
         html += "<tr><td><b>" + conflictsWith + "</b></td><td><b>" + pid.conflictsWith +
             "</b></font></td></tr>";
