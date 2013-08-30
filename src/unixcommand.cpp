@@ -624,21 +624,21 @@ void UnixCommand::runCommandInTerminalAsNormalUser(const QStringList &commandLis
   out.flush();
   ftemp->close();
 
-  QString suCommand = WMHelper::getSUCommand();
+  /*QString suCommand = WMHelper::getSUCommand();
   QString loggedUser = QDir::homePath();
   QFileInfo fi(loggedUser);
   loggedUser = fi.fileName();
-  suCommand.replace("root", loggedUser);
+  suCommand.replace("root", loggedUser);*/
 
   if(WMHelper::isXFCERunning() && UnixCommand::hasTheExecutable(ctn_XFCE_TERMINAL)){
     QString cmd = ctn_XFCE_TERMINAL + " -e " + ftemp->fileName();
     m_processWrapper->executeCommand(cmd);
   }
-  else if (WMHelper::isKDERunning() && UnixCommand::hasTheExecutable(ctn_XTERM)){
+  /*else if (WMHelper::isKDERunning() && UnixCommand::hasTheExecutable(ctn_XTERM)){
     QString cmd = ctn_XTERM +
         " -fn \"*-fixed-*-*-*-18-*\" -fg White -bg Black -title xterm -e " + ftemp->fileName();
     m_processWrapper->executeCommand(cmd);
-  }
+  }*/
   else if (WMHelper::isTDERunning() && UnixCommand::hasTheExecutable(ctn_TDE_TERMINAL)){
     QString cmd = ctn_TDE_TERMINAL + " --nofork -e " + ftemp->fileName();
     m_processWrapper->executeCommand(cmd);
