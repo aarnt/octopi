@@ -234,6 +234,10 @@ public:
     return QObject::tr(" (outdated installed version is %1)");
   }
 
+  static QString getNewerInstalledVersion(){
+    return QObject::tr(" (newer installed version is %1)");
+  }
+
   static QString getBuildingPackageList(){
     return QObject::tr("Building package list...");
   }

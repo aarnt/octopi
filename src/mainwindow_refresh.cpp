@@ -411,7 +411,6 @@ void MainWindow::buildPackageList(bool nonBlocking)
   {
     //Let's get outdatedPackages list again!
     m_outdatedPackageList = Package::getOutdatedPackageList();
-    qApp->processEvents();
     m_numberOfOutdatedPackages = m_outdatedPackageList->count();
   }
 
@@ -453,7 +452,6 @@ void MainWindow::buildPackageList(bool nonBlocking)
 
   while(it != list->end())
   {
-    //qApp->processEvents();
     PackageListData pld = *it;
 
     //If this is an installed package, it can be also outdated!
@@ -463,8 +461,18 @@ void MainWindow::buildPackageList(bool nonBlocking)
         lIcons << new QStandardItem(IconHelper::getIconForeign(), "_Foreign");
         break;
       case ectn_OUTDATED:
-        lIcons << new QStandardItem(IconHelper::getIconOutdated(), "_OutDated^"+pld.outatedVersion);
+      {
+        if (Package::rpmvercmp(pld.outatedVersion.toAscii().data(), pld.version.toAscii().data()) == 1)
+        {
+          lIcons << new QStandardItem(IconHelper::getIconNewer(), "_Newer^"+pld.outatedVersion);
+        }
+        else
+        {
+          lIcons << new QStandardItem(IconHelper::getIconOutdated(), "_OutDated^"+pld.outatedVersion);
+        }
+
         break;
+      }
       case ectn_INSTALLED:
         //Is this package unrequired too?
         if (unrequiredPackageList->contains(pld.name))
@@ -677,8 +685,18 @@ void MainWindow::buildYaourtPackageList()
     switch (pld.status)
     {
       case ectn_OUTDATED:
-        lIcons << new QStandardItem(IconHelper::getIconOutdated(), "_OutDated^"+pld.outatedVersion);
+      {
+        if (Package::rpmvercmp(pld.outatedVersion.toAscii().data(), pld.version.toAscii().data()) == 1)
+        {
+          lIcons << new QStandardItem(IconHelper::getIconNewer(), "_Newer^"+pld.outatedVersion);
+        }
+        else
+        {
+          lIcons << new QStandardItem(IconHelper::getIconOutdated(), "_OutDated^"+pld.outatedVersion);
+        }
+        //lIcons << new QStandardItem(IconHelper::getIconOutdated(), "_OutDated^"+pld.outatedVersion);
         break;
+      }
       case ectn_INSTALLED:
         //Is this package unrequired too?
         if (unrequiredPackageList->contains(pld.name))
@@ -931,10 +949,20 @@ void MainWindow::refreshTabInfo(bool clearContents, bool neverQuit)
       int mark = siIcon->text().indexOf('^');
       if (mark >= 0)
       {
-        QString outdatedVersion = siIcon->text().right(siIcon->text().size()-mark-1);
-        html += "<tr><td>" + version + "</td><td>" + siVersion->text() + " <b><font color=\"#E55451\">"
-            + StrConstants::getOutdatedInstalledVersion().arg(outdatedVersion) +
-            "</b></font></td></tr>";
+        if (siIcon->text().contains("outdated", Qt::CaseInsensitive))
+        {
+          QString outdatedVersion = siIcon->text().right(siIcon->text().size()-mark-1);
+          html += "<tr><td>" + version + "</td><td>" + siVersion->text() + " <b><font color=\"#E55451\">"
+              + StrConstants::getOutdatedInstalledVersion().arg(outdatedVersion) +
+              "</b></font></td></tr>";
+        }
+        else
+        {
+          QString newerVersion = siIcon->text().right(siIcon->text().size()-mark-1);
+          html += "<tr><td>" + version + "</td><td>" + siVersion->text() + " <b><font color=\"#FF8040\">"
+              + StrConstants::getNewerInstalledVersion().arg(newerVersion) +
+              "</b></font></td></tr>";
+        }
       }
       else
       {
@@ -1005,10 +1033,20 @@ void MainWindow::refreshTabInfo(bool clearContents, bool neverQuit)
       int mark = siIcon->text().indexOf('^');
       if (mark >= 0)
       {
-        QString outdatedVersion = siIcon->text().right(siIcon->text().size()-mark-1);
-        html += "<tr><td>" + version + "</td><td>" + siVersion->text() + " <b><font color=\"#E55451\">"
-            + StrConstants::getOutdatedInstalledVersion().arg(outdatedVersion) +
-            "</b></font></td></tr>";
+        if (siIcon->text().contains("outdated", Qt::CaseInsensitive))
+        {
+          QString outdatedVersion = siIcon->text().right(siIcon->text().size()-mark-1);
+          html += "<tr><td>" + version + "</td><td>" + siVersion->text() + " <b><font color=\"#E55451\">"
+              + StrConstants::getOutdatedInstalledVersion().arg(outdatedVersion) +
+              "</b></font></td></tr>";
+        }
+        else
+        {
+          QString newerVersion = siIcon->text().right(siIcon->text().size()-mark-1);
+          html += "<tr><td>" + version + "</td><td>" + siVersion->text() + " <b><font color=\"#FF8040\">"
+              + StrConstants::getNewerInstalledVersion().arg(newerVersion) +
+              "</b></font></td></tr>";
+        }
       }
       else
       {

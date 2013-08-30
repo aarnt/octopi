@@ -34,12 +34,15 @@ public:
   static QIcon getIconOctopiRed(){ return QIcon(":/resources/images/octopi_red.png"); }
   static QIcon getIconOctopiYellow(){ return QIcon(":/resources/images/octopi_yellow.png"); }
   static QIcon getIconInternalError(){ return QIcon(":/resources/images/internalerror.png"); }
-  static QIcon getIconFolder(){
+
+  static QIcon getIconFolder()
+  {
     if (WMHelper::isKDERunning())
       return QIcon(":/resources/images/folder.png");
     else
       return QIcon(":/resources/images/folder_gnome.png");
   }
+
   static QIcon getIconBinary(){ return QIcon(":/resources/images/binary.png"); }
   static QIcon getIconFrozen(){ return QIcon(":/resources/images/tgz_frozen_flat.png"); }
   static QIcon getIconUnFrozen(){ return QIcon(":/resources/images/tgz4_flat.png"); }
@@ -51,16 +54,15 @@ public:
   static QIcon getIconInstalled(){ return QIcon(":/resources/images/installed.png"); }
   static QIcon getIconNonInstalled(){ return QIcon(":/resources/images/noninstalled.png"); }
   static QIcon getIconOutdated(){ return QIcon(":/resources/images/outdated.png"); }
+  static QIcon getIconNewer(){ return QIcon(":/resources/images/newer.png"); }
   static QIcon getIconUnrequired(){ return QIcon(":/resources/images/unrequired.png"); }
   static QIcon getIconForeign(){ return QIcon(":/resources/images/foreign.png"); }
   static QIcon getIconToRemove(){ return QIcon(":/resources/images/toremove.png"); }  
   static QIcon getIconToInstall(){ return QIcon(":/resources/images/toinstall.png"); }
   static QIcon getIconRemove(){ return QIcon(":/resources/images/close.png"); }
   static QIcon getIconTerminal(){ return QIcon(":/resources/images/terminal.png"); }
-
   static QIcon getIconRemoveItem() { return QIcon(":/resources/images/remove_item.png"); }
   static QIcon getIconInstallItem() { return QIcon(":/resources/images/install_item.png"); }
-
   static QIcon getIconExit(){ return QIcon(":/resources/images/exit.png"); }
 };
 

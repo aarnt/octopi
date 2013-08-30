@@ -132,6 +132,7 @@ class Package{
     static double simplePow(int base, int exp);
 
 	public:
+    static int rpmvercmp(const char *a, const char *b);
     static QStringList * getUnrequiredPackageList();
     static QStringList * getOutdatedPackageList();
     static QStringList * getPackageGroups();

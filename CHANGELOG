@@ -1,6 +1,10 @@
 0.2.1 (dev)
   Code cleanings.
+  BugFix: Konsole was not working with yaourt package installation.
+  Added a new status icon: an orange one for newer than repo 
+	installed packages.
   Added spanish (Latin America) translation.
+  Added another source string to translate.
 
 0.2
   Splitted the project in "octopi" and "octopi-notifier".
