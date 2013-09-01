@@ -28,7 +28,11 @@
 #include <QList>
 
 /*
- * Retrieves the basic paclage name, without version numbers
+ * This class abstracts all the relevant package information and services
+ */
+
+/*
+ * Retrieves the basic package name, without version numbers
  */
 QString Package::getBaseName( const QString& p )
 {
@@ -238,11 +242,15 @@ QStringList *Package::getOutdatedYaourtPackageList()
     {
       QString pkgName;
       pkgName = parts[0];
-      pkgName = pkgName.remove("aur/");
-      //Let's ignore the "IgnorePkg" list of packages...
-      if (!ignorePkgList.contains(pkgName))
+
+      if (pkgName.contains("aur/", Qt::CaseInsensitive))
       {
-        res->append(pkgName); //We only need the package name!
+        pkgName = pkgName.remove("aur/");
+        //Let's ignore the "IgnorePkg" list of packages...
+        if (!ignorePkgList.contains(pkgName))
+        {
+          res->append(pkgName); //We only need the package name!
+        }
       }
     }
   }
@@ -305,13 +313,10 @@ QList<PackageListData> *Package::getTargetUpgradeList(const QString &pkgName)
     //TODO: Need to handle when this list has "::" conflict items!
     if(packageTuple.indexOf("::")!=-1)
     {
-
       continue;
-
     }
 
     PackageListData ld;
-
     QStringList data = packageTuple.split(" ");
     if (data.count() == 3)
     {
@@ -503,7 +508,6 @@ QList<PackageListData> * Package::getYaourtPackageList(const QString& searchStri
 
       if (pkgRepository != "aur")
       {
-        //if (res->count() == 1) res->removeFirst();
         res->removeAt(res->count()-1);
         continue;
       }
@@ -951,9 +955,12 @@ QHash<QString, QString> Package::getYaourtOutdatedPackagesNameVersion()
   QStringList listOfPkgs = res.split("\n", QString::SkipEmptyParts);
   foreach (QString line, listOfPkgs)
   {
-    line = line.remove("aur/");
-    QStringList nameVersion = line.split(" ", QString::SkipEmptyParts);
-    hash.insert(nameVersion.at(0), nameVersion.at(1));
+    if (line.contains("aur/", Qt::CaseInsensitive))
+    {
+      line = line.remove("aur/");
+      QStringList nameVersion = line.split(" ", QString::SkipEmptyParts);
+      hash.insert(nameVersion.at(0), nameVersion.at(1));
+    }
   }
 
   return hash;

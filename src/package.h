@@ -160,7 +160,6 @@ class Package{
     static double getDownloadSize(const QString &pkgInfo);
     static double getInstalledSize(const QString &pkgInfo);
     static double humanizeSize(off_t bytes, const char target_unit, int precision, const char **label);
-
     static QString makeURLClickable(const QString &information);
 
     static QString getBaseName( const QString& pkgName );
