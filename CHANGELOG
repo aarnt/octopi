@@ -5,7 +5,7 @@
 	installed packages.
   Added spanish (Latin America) translation.
   Added 3 new source strings to translate.
-  Updated pt_BR, el, it, vi, he and fr_FR translations.
+  Updated pt_BR, el, fi, de, it, vi, he and fr_FR translations.
 
 0.2
   Splitted the project in "octopi" and "octopi-notifier".
