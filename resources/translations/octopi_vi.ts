@@ -281,152 +281,157 @@
         <translation>Một gói cài đặt đã hết hạn</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="93"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="92"/>
+        <source>A newer than repository package</source>
+        <translation>Một gói cài đặt mới hơn</translation>
+    </message>
+    <message>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="95"/>
         <source>Basic usage help:</source>
         <translation>Trợ giúp cơ bản:</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="95"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="97"/>
         <source>Position the mouse over a package to see its description</source>
         <translation>Vị trí của chuột khi lướt qua một gói cài đặt để xem các mô tả về gói đó</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="97"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="99"/>
         <source>Double click an installed package to see its contents</source>
         <translation>Click đúp chuột vào một gói cài đặt để xem nội dung của gói đó</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="99"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="101"/>
         <source>Right click package to install/reinstall or remove it</source>
         <translation>Click phải chuột vào gói cài đặt để cài đặt/cài đặt lại hoặc gỡ bỏ gói đó</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="102"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="104"/>
         <source>Alt+key sequences:</source>
         <translation>Chuỗi sự kiện khi bấm tổn hợp Alt+phím:</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="104"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="106"/>
         <source>Alt+1 to switch to &apos;Info&apos; tab</source>
         <translation>Alt+1 chuyển sang tab &apos;Thông tin&apos;</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="106"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="108"/>
         <source>Alt+2 to switch to &apos;Files&apos; tab</source>
         <translation>Alt+2 để chuyển sang tab &apos;Tập tin&apos;</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="108"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="110"/>
         <source>Alt+3 to switch to &apos;Transaction&apos; tab</source>
         <translation>Alt+3 để chuyển sang tab &apos;Phần Tải Về&apos;</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="110"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="112"/>
         <source>Alt+4 to switch to &apos;Output&apos; tab</source>
         <translation>Alt+4 để chuyển sang tab &apos;Xuất dữ liệu&apos;</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="112"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="114"/>
         <source>Alt+5 to switch to &apos;News&apos; tab</source>
         <translation>Alt+5 để chuyển sang tab &apos;Tin tức&apos;</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="114"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="116"/>
         <source>Alt+6 or &apos;F1&apos; to show this help page</source>
         <translation>Alt+6 hoặc phím &apos;F1&apos; để chuyển sang trang hiển thị nội dung trợ giúp này</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="117"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="119"/>
         <source>Control+key sequences:</source>
         <translation>Chuỗi sự kiện khi bấm tổn hợp Control+phím:</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="119"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="121"/>
         <source>Ctrl+D or &apos;File/Sync database&apos; to sync the local database with latest remote changes (pacman -Sy)</source>
         <translation>Ctrl+D hoặc &apos;Tập tin/Đồng bộ hóa cơ sở dữ liệu&apos; để tiến hành đồng bộ hóa cơ sở dữ liệu nội bộ với các thay đổi mới nhất từ hệ thống máy chủ của chương trình (pacman -Sy)</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="121"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="123"/>
         <source>Ctrl+U or &apos;File/System upgrade&apos; to make a full system upgrade (pacman -Su)</source>
         <translation>Ctrl+U hoặc &apos;Tập tin/Nâng cấp hệ thống&apos; để thực hiện việc nâng cấp hệ thống toàn diện (pacman -Su)</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="123"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="125"/>
         <source>Ctrl+L to find a package in the package list</source>
         <translation>Ctrl+L để tìm gói cài đặt trong danh sách cài đặt</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="125"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="127"/>
         <source>Ctrl+F to search for text inside tab Files, News and Usage</source>
         <translation>Ctrl+F để tìm kiếm nội dung văn bản bên trong tab Tập Tin, Tin Tức và Cách Dùng</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="127"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="129"/>
         <source>Ctrl+N or &apos;View/Non installed&apos; to show/hide non installed packages</source>
         <translation>Ctrl+N hoặc &apos;Xem/Chưa được cài đặt&apos; để hiển thị/ẩn đị các gói cài đặt chưa được cài</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="129"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="131"/>
         <source>Ctrl+M or &apos;Transaction/Commit&apos; to start installation/removal of selected packages</source>
         <translation>Ctrl+M hoặc &apos;Phần tải về/Đệ trình&apos; để bắt đầu tiến trình cài đặt/gỡ bỏ các gói cài đặt đã được chọn trước đó</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="131"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="133"/>
         <source>Ctrl+B or &apos;Transaction/Rollback&apos; to clear the selection of to be removed/installed packages</source>
         <translation>Ctrl+B hoặc &apos;Phần tải về/Hủy bỏ tiến trình&apos; để hủy bỏ các thông tin về các gói cài đặt đã được gỡ bỏ/đã cài đặt</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="133"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="135"/>
         <source>Ctrl+G or &apos;File/Get latest distro news&apos; to retrieve the latest RSS based distro news</source>
         <translation>Ctrl+G hoặc &apos;Tập tin/Nhận các tin tức về bản phân phối mới nhất&apos; để nhận các tin tức về các bản phân phối mới nhất trên định dạng RSS</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="135"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="137"/>
         <source>Ctrl+Q or &apos;File/Exit&apos; to exit the application</source>
         <translation>Ctrl+Q hoặc &apos;Tập tin/Thoát&apos; để thoát khỏi ứng dụng</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="138"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="140"/>
         <source>Control+shift+key sequences:</source>
         <translation>Chuỗi sự kiện khi bấm tổn hợp Control+shift+phím:</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="140"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="142"/>
         <source>Ctrl+Shift+C to clean local packages cache (pacman -Sc)</source>
         <translation>Ctrl+Shift+C để xóa thông tin trong bộ nhớ đệm của gói cài đặt offline (pacman -Sc)</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="142"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="144"/>
         <source>Ctrl+Shift+G to display all package groups</source>
         <translation>Ctrl+Shift+G để hiển thị tất cả các nhóm cài đặt</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="145"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="147"/>
         <source>F+key sequences:</source>
         <translation>Chuỗi sự kiện khi bấm tổn hợp F+phím:</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="147"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="149"/>
         <source>F1 to show this help page</source>
         <translation>F1 để hiển thị trang về thông tin trợ giúp này</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="149"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="151"/>
         <source>F4 to open a Terminal whitin the selected directory at Files tab</source>
         <translation>F4 để mở một chế độ dòng lệnh truy cập thư mục được chọn trong tab Tập tin</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="151"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="153"/>
         <source>F6 to open a File Manager whitin the selected directory at Files tab</source>
         <translation>F6 để mở một trình duyệt tập tin ngay tại thư mục được chọn trong tab Tập Tin</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="153"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="155"/>
         <source>F10 to maximize/demaximize package list view</source>
         <translation>F10 để phóng to/tho nhỏ danh sách xem các gói cài đặt</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="155"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="157"/>
         <source>F12 to maximize/demaximize Tab&apos;s view</source>
         <translation>F12 để phóng to/thu nhỏ chế độ xem của Tab</translation>
     </message>

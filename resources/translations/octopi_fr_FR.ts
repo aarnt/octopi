@@ -281,152 +281,157 @@
         <translation>Paquet obsolète</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="93"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="92"/>
+        <source>A newer than repository package</source>
+        <translation>Un paquet plus récent que celui du dépôt</translation>
+    </message>
+    <message>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="95"/>
         <source>Basic usage help:</source>
         <translation>Aide pour l&apos;utilisation:</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="95"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="97"/>
         <source>Position the mouse over a package to see its description</source>
         <translation>Placer la souris sur le paquet pour voir sa description</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="97"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="99"/>
         <source>Double click an installed package to see its contents</source>
         <translation>Double-cliquer sur un paquet installé pour voir son contenu</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="99"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="101"/>
         <source>Right click package to install/reinstall or remove it</source>
         <translation>Clique-droit sur un paquet pour l&apos;installer/ré-installer ou le supprimer</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="102"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="104"/>
         <source>Alt+key sequences:</source>
         <translation>Raccourcis Alt+touche :</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="104"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="106"/>
         <source>Alt+1 to switch to &apos;Info&apos; tab</source>
         <translation>Alt+1 pour passer à l&apos;onglet &apos;Info&apos;</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="106"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="108"/>
         <source>Alt+2 to switch to &apos;Files&apos; tab</source>
         <translation>Alt+2 pour passer à l&apos;onglet &apos;Fichiers&apos;</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="108"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="110"/>
         <source>Alt+3 to switch to &apos;Transaction&apos; tab</source>
         <translation>Alt+3 pour passer à l&apos;onglet &apos;Opération&apos;</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="110"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="112"/>
         <source>Alt+4 to switch to &apos;Output&apos; tab</source>
         <translation>Alt+4 pour passer à l&apos;onglet &apos;Sortie&apos;</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="112"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="114"/>
         <source>Alt+5 to switch to &apos;News&apos; tab</source>
         <translation>Alt+5 pour passer à l&apos;onglet &apos;Actualités&apos;</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="114"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="116"/>
         <source>Alt+6 or &apos;F1&apos; to show this help page</source>
         <translation>Alt+6 ou &apos;F1&apos; pour voir cette page d&apos;aide</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="117"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="119"/>
         <source>Control+key sequences:</source>
         <translation>Raccourcis Ctrl+touche :</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="119"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="121"/>
         <source>Ctrl+D or &apos;File/Sync database&apos; to sync the local database with latest remote changes (pacman -Sy)</source>
         <translation>Ctrl+D ou &apos;Fichier/Synchroniser&apos; pour mettre à jour la base de données locale (pacman -Sy) </translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="121"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="123"/>
         <source>Ctrl+U or &apos;File/System upgrade&apos; to make a full system upgrade (pacman -Su)</source>
         <translation>Ctrl+U ou &apos;Fichier/Mise à jour système&apos; pour mettre à jour le système (pacman -Su)</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="123"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="125"/>
         <source>Ctrl+L to find a package in the package list</source>
         <translation>Ctrl+L pour trouver un paquet dans la liste</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="125"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="127"/>
         <source>Ctrl+F to search for text inside tab Files, News and Usage</source>
         <translation>Ctrl+F pour rechercher un texte dans les onglets Fichiers, Actualités et Utilisation</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="127"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="129"/>
         <source>Ctrl+N or &apos;View/Non installed&apos; to show/hide non installed packages</source>
         <translation>Ctrl+N ou &apos;Affichage/Non-installés&apos; pour montrer/cacher les paquets non-installés</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="129"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="131"/>
         <source>Ctrl+M or &apos;Transaction/Commit&apos; to start installation/removal of selected packages</source>
         <translation>Ctrl+M ou &apos;Opération/Appliquer&apos; pour lancer les installations/suppressions en attente</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="131"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="133"/>
         <source>Ctrl+B or &apos;Transaction/Rollback&apos; to clear the selection of to be removed/installed packages</source>
         <translation>Ctrl+B ou &apos;Opération/Annuler&apos; pour effacer les installations/suppressions en attente</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="133"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="135"/>
         <source>Ctrl+G or &apos;File/Get latest distro news&apos; to retrieve the latest RSS based distro news</source>
         <translation>Ctrl+G ou &apos;Fichier/Mettre à jour les actualités&apos; pour télécharger le flux RSS de la distribution</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="135"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="137"/>
         <source>Ctrl+Q or &apos;File/Exit&apos; to exit the application</source>
         <translation>Ctrl+Q ou &apos;Fichier/Sortir&apos; pour fermer l&apos;application</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="138"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="140"/>
         <source>Control+shift+key sequences:</source>
         <translation>Raccourcis Ctrl+Shift+touche :</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="140"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="142"/>
         <source>Ctrl+Shift+C to clean local packages cache (pacman -Sc)</source>
         <translation>Ctrl+Shift+C pour nettoyer le cache local des paquets (pacman -Sc)</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="142"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="144"/>
         <source>Ctrl+Shift+G to display all package groups</source>
         <translation>Ctrl+Shift+G pour afficher tous les groupes de paquets</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="145"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="147"/>
         <source>F+key sequences:</source>
         <translation>Raccourcis touches F :</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="147"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="149"/>
         <source>F1 to show this help page</source>
         <translation>F1 pour afficher cette page d&apos;aide</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="149"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="151"/>
         <source>F4 to open a Terminal whitin the selected directory at Files tab</source>
         <translation>F4 pour ouvrir un terminal dans le dossier sélectionné de l&apos;onglet Fichiers</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="151"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="153"/>
         <source>F6 to open a File Manager whitin the selected directory at Files tab</source>
         <translation>F6 pour ouvrir l&apos;explorateur de fichiers dans le dossier sélectionné de l&apos;onglet Fichiers</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="153"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="155"/>
         <source>F10 to maximize/demaximize package list view</source>
         <translation>F10 pour maximiser/minimiser la liste de paquets</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="155"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="157"/>
         <source>F12 to maximize/demaximize Tab&apos;s view</source>
         <translation>F12 pour maximiser/minimiser les onglets</translation>
     </message>
