@@ -39,9 +39,9 @@ SearchLineEdit::SearchLineEdit(QWidget *parent) :
 void SearchLineEdit::resizeEvent(QResizeEvent *event)
 {
   Q_UNUSED(event);
-  QSize size = this->mSearchButton->sizeHint();
+  /*QSize size = this->mSearchButton->sizeHint();
 
-  /*if (qApp->style()->inherits("QGtkStyle"))
+  if (qApp->style()->inherits("QGtkStyle"))
   {
     this->mSearchButton->move(5, (this->rect().bottom() - size.height()) / 2);
   }
