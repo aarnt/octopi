@@ -41,14 +41,16 @@ void SearchLineEdit::resizeEvent(QResizeEvent *event)
   Q_UNUSED(event);
   QSize size = this->mSearchButton->sizeHint();
 
-  if (qApp->style()->inherits("QGtkStyle"))
+  /*if (qApp->style()->inherits("QGtkStyle"))
   {
-    this->mSearchButton->move(5, (this->rect().bottom() /*+ 10*/ - size.height()) / 2);
+    this->mSearchButton->move(5, (this->rect().bottom() - size.height()) / 2);
   }
   else if (qApp->style()->inherits("QCleanlooksStyle") || WMHelper::isXFCERunning())
   {
     this->mSearchButton->move(5, (this->rect().bottom() + 10 - size.height()) / 2);
-  }
+  }*/
+
+  this->mSearchButton->move(5, 2);
 }
 
 void SearchLineEdit::updateSearchButton(const QString &text)

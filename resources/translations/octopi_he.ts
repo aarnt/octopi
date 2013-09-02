@@ -281,152 +281,157 @@
         <translation>חבילה מיושנת</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="93"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="92"/>
+        <source>A newer than repository package</source>
+        <translation>חדשה יותר מן חבילת מאגר</translation>
+    </message>
+    <message>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="95"/>
         <source>Basic usage help:</source>
         <translation>עזרת שימוש בסיסית:</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="95"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="97"/>
         <source>Position the mouse over a package to see its description</source>
         <translation>מקם את העכבר על חבילה כדי לראות את תיאורה</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="97"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="99"/>
         <source>Double click an installed package to see its contents</source>
         <translation>הקשה כפולה על חבילה מותקנת כדי לראות את תכולותיה</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="99"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="101"/>
         <source>Right click package to install/reinstall or remove it</source>
         <translation>הקשה ימנית על חבילה כדי להתקין/להתקין שוב או להסיר אותה</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="102"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="104"/>
         <source>Alt+key sequences:</source>
         <translation>רצפי Alt+‪מקש‬:</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="104"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="106"/>
         <source>Alt+1 to switch to &apos;Info&apos; tab</source>
         <translation>‏Alt+1 כדי להחליף אל כרטיסיית &apos;מידע&apos;</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="106"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="108"/>
         <source>Alt+2 to switch to &apos;Files&apos; tab</source>
         <translation>‏Alt+2 כדי להחליף אל כרטיסיית &apos;קבצים&apos;</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="108"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="110"/>
         <source>Alt+3 to switch to &apos;Transaction&apos; tab</source>
         <translation>‏Alt+3 כדי להחליף אל כרטיסיית &apos;העברה&apos;</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="110"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="112"/>
         <source>Alt+4 to switch to &apos;Output&apos; tab</source>
         <translation>‏Alt+4 כדי להחליף אל כרטיסיית &apos;פלט&apos;</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="112"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="114"/>
         <source>Alt+5 to switch to &apos;News&apos; tab</source>
         <translation>‏Alt+5 כדי להחליף אל כרטיסיית &apos;חדשות&apos;</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="114"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="116"/>
         <source>Alt+6 or &apos;F1&apos; to show this help page</source>
         <translation>‏Alt+6 או &apos;F1&apos; כדי להציג את עמוד עזרה זה</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="117"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="119"/>
         <source>Control+key sequences:</source>
         <translation>רצפי Control+‪מקש‬:</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="119"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="121"/>
         <source>Ctrl+D or &apos;File/Sync database&apos; to sync the local database with latest remote changes (pacman -Sy)</source>
         <translation>‏Ctrl+D או &apos;קובץ/סנכרן מסד נתונים&apos; כדי לסנכרן את מסד הנתונים המקומי עם השינויים המרוחקים האחרונים (pacman -Sy)</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="121"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="123"/>
         <source>Ctrl+U or &apos;File/System upgrade&apos; to make a full system upgrade (pacman -Su)</source>
         <translation>‏Ctrl+U או &apos;קובץ/שדרוג מערכת&apos; כדי לקיים שדרוג מערכת מלא (pacman -Su)</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="123"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="125"/>
         <source>Ctrl+L to find a package in the package list</source>
         <translation>‏Ctrl+L כדי למצוא חבילה בתוך רשימת חבילה</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="125"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="127"/>
         <source>Ctrl+F to search for text inside tab Files, News and Usage</source>
         <translation>‏Ctrl+F כדי לחפש עבור תמליל בתוך כרטיסיית קבצים, חדשות וגם שימוש</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="127"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="129"/>
         <source>Ctrl+N or &apos;View/Non installed&apos; to show/hide non installed packages</source>
         <translation>‏Ctrl+N או &apos;תצוגה/לא מותקנות&apos; כדי להציג/להסתיר חבילות לא מותקנות</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="129"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="131"/>
         <source>Ctrl+M or &apos;Transaction/Commit&apos; to start installation/removal of selected packages</source>
         <translation>‏Ctrl+M או &apos;העברה/בצע&apos; כדי להתחיל התקנה/הסרה של חבילות נבחרות</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="131"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="133"/>
         <source>Ctrl+B or &apos;Transaction/Rollback&apos; to clear the selection of to be removed/installed packages</source>
         <translation>‏Ctrl+B או &apos;טרנזקציה/נסיגה&apos; כדי לטהר את ההיבחרות של חבילות להסרה/להתקנה</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="133"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="135"/>
         <source>Ctrl+G or &apos;File/Get latest distro news&apos; to retrieve the latest RSS based distro news</source>
         <translation>‏Ctrl+G או &apos;קובץ/השג חדשות הפצה אחרונות&apos; כדי לאחזר חדשות הפצה אחרונות מבוססות RSS</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="135"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="137"/>
         <source>Ctrl+Q or &apos;File/Exit&apos; to exit the application</source>
         <translation>‏Ctrl+Q או &apos;קובץ/יציאה&apos; כדי לצאת מן היישום</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="138"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="140"/>
         <source>Control+shift+key sequences:</source>
         <translation>רצפי Control+shift+‪מקש‬:</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="140"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="142"/>
         <source>Ctrl+Shift+C to clean local packages cache (pacman -Sc)</source>
         <translation>‏Ctrl+Shift+C כדי לנקות מטמון חבילות מקומי (pacman -Sc)</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="142"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="144"/>
         <source>Ctrl+Shift+G to display all package groups</source>
         <translation>‏Ctrl+Shift+G כדי להציג כל קבוצת חבילה</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="145"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="147"/>
         <source>F+key sequences:</source>
         <translation>רצפי F+‪מקש‬:</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="147"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="149"/>
         <source>F1 to show this help page</source>
         <translation>‏F1 כדי להציג את עמוד עזרה זה</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="149"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="151"/>
         <source>F4 to open a Terminal whitin the selected directory at Files tab</source>
         <translation>‏F4 כדי לפתוח מסוף בתוך המדור הנבחר בכרטיסיית קבצים</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="151"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="153"/>
         <source>F6 to open a File Manager whitin the selected directory at Files tab</source>
         <translation>‏F6 כדי לפתוח מנהל קבצים בתוך המדור הנבחר בכרטיסיית קבצים</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="153"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="155"/>
         <source>F10 to maximize/demaximize package list view</source>
         <translation>‏F10 כדי להגדיל/לשחזר תצוגת רשימת חבילה</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="155"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="157"/>
         <source>F12 to maximize/demaximize Tab&apos;s view</source>
         <translation>‏F12 כדי להגדיל/לשחזר תצוגת כרטיסייה</translation>
     </message>

@@ -1087,6 +1087,10 @@ void MainWindow::toggleTransactionActions(const bool value)
   }
 
   ui->actionInstall->setEnabled(value);
+  ui->actionInstallGroup->setEnabled(value);
+  ui->actionRemoveTransactionItem->setEnabled(value);
+  ui->actionRemoveTransactionItems->setEnabled(value);
+
   ui->actionRemove->setEnabled(value);
   ui->actionSyncPackages->setEnabled(value);
   ui->actionSystemUpgrade->setEnabled(value);
