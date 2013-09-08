@@ -1,5 +1,6 @@
 0.2.1 (dev)
   Code cleanings.
+  BugFix: No need to refresh package list after a cache clean.
   BugFix: Konsole was not working with yaourt package installation.
   BugFix: Position of search icon in searchedit sometimes was wrong.
   BugFix: Some actions did not get disabled while executing a transaction.
