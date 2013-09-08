@@ -21,7 +21,6 @@
 #ifndef STRCONSTANTS_H
 #define STRCONSTANTS_H
 
-#include "settingsmanager.h"
 #include "wmhelper.h"
 #include "unixcommand.h"
 
@@ -475,82 +474,6 @@ public:
 
   //Style Sheets ---------------------------------
 
-  static QString getToolTipNormalCSS(){
-    return QString("QToolTip {"
-                   "background-color: #f7fcdc;"
-                   "color: #000000;"
-                   "border: 0.6px solid #337700;" //#effd72;"
-                   "padding: 0.2px;"
-                   "border-radius: 3px;"
-                   "font-size: " + QString::number(SettingsManager::getToolTipFontSize()) + "px;}"
-        );
-  }
-
-  static QString getToolTipBlankCSS(){
-    return QString("QToolTip {"
-                   "background-color: white;"
-                   "color: #444444;"
-                   "border: 0.5px solid #cccccc;"
-                   "padding: 1.5px;"
-                   "border-radius: 3px;"
-                   "font-size: " + QString::number(SettingsManager::getToolTipFontSize()) + "px;}"
-        );
-  }
-
-  static QString getToolTipRedCSS(){
-    return QString("QToolTip {"
-                   "background-color: #FF7A7A;" //"background-color: #FF8A8A;"
-                   "color: #550000;"
-                   "border: 0.6px solid #990000;"
-                   "padding: 1.5px;"
-                   "border-radius: 3px;"
-                   "font-size: " + QString::number(SettingsManager::getToolTipFontSize()) + "px;}");
-  }
-
-  static QString getToolTipGreenCSS(){
-    return QString("QToolTip {"
-                   "background-color: #BDF4CB;"
-                   "color: #000000;"
-                   "border: 0.6px solid #006600;"
-                   "padding: 1.5px;"
-                   "border-radius: 3px;"
-                   "font-size: " + QString::number(SettingsManager::getToolTipFontSize()) + "px;}"
-                   );
-  }
-
-  static QString getToolTipBlueCSS(){
-    return QString("QToolTip {"
-                   "background-color: #CFECEC;"
-                   "color: #000000;"
-                   "border: 0.6px solid #3090C7;"
-                   "padding: 1.5px;"
-                   "border-radius: 3px;"
-                   "font-size: " + QString::number(SettingsManager::getToolTipFontSize()) + "px;}"
-                   );
-  }
-
-  static QString getToolTipYellowCSS(){
-    return QString(" QToolTip {"
-                   "background-color: #FFFF66;" //#FFCC00;"
-                   "color: #000000;"
-                   "border: 0.6px solid #FF9900;"
-                   "padding: 1.5px;"
-                   "border-radius: 3px;"
-                   "font-size: " + QString::number(SettingsManager::getToolTipFontSize()) + "px;}"
-                   );
-  }
-
-  static QString getToolTipRemovedCSS(){
-    return QString(" QToolTip {"
-                   "background-color: #FFFFDD;"
-                   "color: #000000;"
-                   "border: 0.6px solid #000000;"
-                   "padding: 0.2px;"
-                   "border-radius: 1px;"
-                   "font-size: " + QString::number(SettingsManager::getToolTipFontSize()) + "px;}"
-                   );
-  }
-
   static QString getToolBarCSS(){
     return QString("QToolBar { border: 5px; } "
                    "QToolTip {}"
@@ -596,31 +519,6 @@ public:
     if (UnixCommand::getLinuxDistro() == ectn_MANJAROLINUX && !WMHelper::isKDERunning())
     {
       res = "";
-
-        /*"QMenu::item { padding: 2px 25px 2px 20px; }"
-          "QListView::item:selected { background: #81ac44; color: #ffffff; }"
-          "QMenu::item:selected, QMenuBar::item:selected, QMenu::selected {"
-          "background: #81ac44; color: #ffffff;}"
-          " QTabBar::tab { "
-          "border: 1px solid #C4C4C3;"
-          "border-bottom-color: #C2C7CB;
-          "border-top-left-radius: 4px;"
-          "border-top-right-radius: 4px;"
-          "min-width: 8ex;"
-          "padding: 2px;"
-          "margin-left: 1px;"
-          "margin-right: 1px;}"
-
-          "QTabBar::tab:selected, QTabBar::tab:hover {"
-          "background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,"
-                                      "stop: 0 #fafafa, stop: 0.4 #f4f4f4,"
-                                      "stop: 0.5 #e7e7e7, stop: 1.0 #fafafa); border: 2px solid #81ac44; color: #000000;}"
-      "QProgressBar::chunk {"
-          "background-color: #81ac44;}"
-          //"width: 20px;}";
-      "QProgressBar {"
-          "text-align: center;"
-          "border: 2px;}";*/
     }
 
     else res = "";
@@ -633,10 +531,6 @@ public:
 
     if (qApp->style()->inherits("QGtkStyle") && UnixCommand::getLinuxDistro() == ectn_MANJAROLINUX && !WMHelper::isKDERunning())
     {
-      /*QGtkStyle qgtkStyle;
-      QPalette palette = qgtkStyle.standardPalette();
-      QColor color = palette.color(QPalette::Highlight);*/
-
       res = "QTreeView::branch:has-siblings:!adjoins-item {"
                    "   border-image: url(:/resources/styles/vline.png) 0;}"
                    "QTreeView::branch:has-siblings:adjoins-item {"
@@ -651,18 +545,6 @@ public:
                    "QTreeView::branch:open:has-children:has-siblings  {"
                    "       border-image: none;"
                    "       image: url(:/resources/styles/branch-open_BW.png);}";
-
-                   /*"QTreeView {"
-          "selection-background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 " + color.name() + ", stop: 1 " + color.name() + ");"
-                   "show-decoration-selected: 1;"
-                   "}"
-                   "QTreeView::item:selected:active{"
-                   "background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 " + color.name() + ", stop: 1 " + color.name() + ");}"
-                   "QTreeView::item:selected:!active {"
-                   " background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 " + color.name() + ", stop: 1 " + color.name() + ");}"
-                   "QTreeView::item:selected {"
-                   "border: 1px solid " + color.name() +";"
-                   "}"*/
     }
     else
     {

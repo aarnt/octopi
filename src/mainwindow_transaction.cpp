@@ -1045,7 +1045,7 @@ void MainWindow::doCleanCache()
     if (res)
     {
       writeToTabOutputExt("<b>" + StrConstants::getCommandFinishedOK() + "</b>");
-      metaBuildPackageList();
+      //metaBuildPackageList();
     }
     else
       writeToTabOutputExt("<b>" + StrConstants::getCommandFinishedWithErrors() + "</b>");
