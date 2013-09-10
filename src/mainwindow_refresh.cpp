@@ -330,8 +330,6 @@ void MainWindow::metaBuildPackageList()
 {
   if (m_cbGroups->count() == 0 || m_cbGroups->currentIndex() == 0)
   {
-    //ui->tvPackages->setSelectionMode(QAbstractItemView::ExtendedSelection);
-    //disconnect(m_pacmanDatabaseSystemWatcher, SIGNAL(directoryChanged(QString)), this, SLOT(metaBuildPackageList()));
     toggleSystemActions(true);
     connect(m_leFilterPackage, SIGNAL(textChanged(QString)), this, SLOT(reapplyPackageFilter()));
     reapplyPackageFilter();
@@ -343,9 +341,7 @@ void MainWindow::metaBuildPackageList()
   }
   else if (m_cbGroups->currentText() == StrConstants::getYaourtGroup())
   {
-    //ui->tvPackages->setSelectionMode(QAbstractItemView::SingleSelection);
-    //connect(m_pacmanDatabaseSystemWatcher, SIGNAL(directoryChanged(QString)), this, SLOT(metaBuildPackageList()));
-    ui->tvPackages->setSelectionMode(QAbstractItemView::ExtendedSelection);
+    //ui->tvPackages->setSelectionMode(QAbstractItemView::ExtendedSelection);
     toggleSystemActions(false);
     disconnect(m_leFilterPackage, SIGNAL(textChanged(QString)), this, SLOT(reapplyPackageFilter()));
     clearStatusBar();
@@ -359,8 +355,6 @@ void MainWindow::metaBuildPackageList()
   }
   else
   {
-    //ui->tvPackages->setSelectionMode(QAbstractItemView::ExtendedSelection);
-    //disconnect(m_pacmanDatabaseSystemWatcher, SIGNAL(directoryChanged(QString)), this, SLOT(metaBuildPackageList()));
     toggleSystemActions(true);
     connect(m_leFilterPackage, SIGNAL(textChanged(QString)), this, SLOT(reapplyPackageFilter()));
     reapplyPackageFilter();
@@ -694,7 +688,6 @@ void MainWindow::buildYaourtPackageList()
         {
           lIcons << new QStandardItem(IconHelper::getIconOutdated(), "_OutDated^"+pld.outatedVersion);
         }
-        //lIcons << new QStandardItem(IconHelper::getIconOutdated(), "_OutDated^"+pld.outatedVersion);
         break;
       }
       case ectn_INSTALLED:
@@ -925,7 +918,9 @@ void MainWindow::refreshTabInfo(bool clearContents, bool neverQuit)
     IconHelper::getIconNonInstalled().pixmap(QSize(22,22)).toImage())
   {
     siDescription = getAvailablePackage(pkgName, ctn_PACKAGE_DESCRIPTION_COLUMN);
-    QString pkgDescription = siDescription->text();
+    QString aux_desc = siDescription->text();
+    int space = aux_desc.indexOf(' ');
+    QString pkgDescription = aux_desc.mid(space+1);
     QString version = StrConstants::getVersion();
 
     QTextBrowser *text = ui->twProperties->widget(
@@ -1324,7 +1319,6 @@ void MainWindow::refreshTabFiles(bool clearContents, bool neverQuit)
 void MainWindow::reapplyPackageFilter()
 {
   CPUIntensiveComputing cic;
-
   bool isFilterPackageSelected = m_leFilterPackage->hasFocus();
   QString search = Package::parseSearchString(m_leFilterPackage->text());
   QRegExp regExp(search, Qt::CaseInsensitive, QRegExp::RegExp);

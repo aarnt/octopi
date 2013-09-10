@@ -194,18 +194,20 @@ QByteArray UnixCommand::getYaourtPackageList(const QString &searchString)
 {
   QByteArray result("");
   QProcess yaourt;
-  QProcess kill;
+  //QProcess kill;
 
   QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
   env.insert("LANG", "C");
   env.insert("LC_MESSAGES", "C");
   yaourt.setProcessEnvironment(env);
 
-  kill.setStandardOutputProcess(&yaourt);
+  /*kill.setStandardOutputProcess(&yaourt);
   kill.start("kill $$");
   yaourt.start("yaourt " + searchString);
-  yaourt.waitForFinished(-1);
+  yaourt.waitForFinished(-1);*/
 
+  yaourt.start("yaourt -Ss " + searchString);
+  yaourt.waitForFinished(-1);
   result = yaourt.readAll();
 
   return result;
