@@ -66,6 +66,7 @@ const QString ctn_CINNAMON_EDITOR("gedit");
 const QString ctn_CINNAMON_FILE_MANAGER("nemo");
 const QString ctn_CINNAMON_TERMINAL("gnome-terminal");
 
+const QString ctn_RAZORQT_DESKTOP("razor-session");
 const QString ctn_XTERM("xterm");
 
 /* This class exposes some services of the underlying Window Manager being used */
@@ -79,6 +80,7 @@ public:
   static bool isLXDERunning();
   static bool isMATERunning();
   static bool isCinnamonRunning();
+  static bool isRazorQtRunning();
 
   static QString getKDESUCommand();
   static QString getTDESUCommand();

@@ -368,7 +368,7 @@ void MainWindow::initPackageTreeView()
   m_proxyModelPackages->setFilterKeyColumn(ctn_PACKAGE_NAME_COLUMN);
 
   if (UnixCommand::getLinuxDistro() == ectn_MANJAROLINUX &&
-      !WMHelper::isKDERunning())
+      (!WMHelper::isKDERunning() && (!WMHelper::isRazorQtRunning())))
   {
     ui->tvPackages->setAlternatingRowColors(true);
   }

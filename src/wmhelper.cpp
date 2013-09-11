@@ -195,6 +195,28 @@ bool WMHelper::isCinnamonRunning(){
 }
 
 /*
+ * Checks if RazorQt is running
+ */
+bool WMHelper::isRazorQtRunning()
+{
+  QStringList slParam;
+  QProcess proc;
+  slParam << "-C";
+  slParam << ctn_RAZORQT_DESKTOP;
+
+  proc.start("ps", slParam);
+  proc.waitForStarted();
+  proc.waitForFinished();
+  QString out = proc.readAll();
+  proc.close();
+
+  if (out.count(ctn_RAZORQT_DESKTOP)>0)
+    return true;
+  else
+    return false;
+}
+
+/*
  * Retrieves the XFCE editor...
  */
 QString WMHelper::getXFCEEditor(){

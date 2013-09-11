@@ -84,8 +84,8 @@ void MainWindow::runOctopi()
 {
   QProcess proc;
 
-  if(UnixCommand::getLinuxDistro() == ectn_MANJAROLINUX &&
-     !WMHelper::isKDERunning())
+  if (UnixCommand::getLinuxDistro() == ectn_MANJAROLINUX &&
+     (!WMHelper::isKDERunning() && (!WMHelper::isRazorQtRunning())))
   {
     if (m_icon.pixmap(QSize(22,22)).toImage() ==
         IconHelper::getIconOctopiRed().pixmap(QSize(22,22)).toImage())
