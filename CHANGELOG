@@ -6,6 +6,7 @@
   BugFix: Some actions did not get disabled while executing a transaction.
   BugFix: Use -Ss option while searching for yaourt packages.
   BugFix: Don't show package names in yaourt package descriptions.
+  BugFix: Better RazorQt compatibility.
   Added a new status icon: an orange one for newer than repo 
 	installed packages.
   Added spanish (Latin America) translation.
