@@ -840,11 +840,25 @@ void MainWindow::doInstallYaourtPackage()
   if (!_isSUAvailable()) return;
 
   QString listOfTargets;
-  for (int c=0; c<ui->tvPackages->selectionModel()->selectedRows().count(); c++)
+
+  if (m_cbGroups->currentText() == StrConstants::getYaourtGroup())
   {
-    listOfTargets +=
-      _getCurrentSelectedModel()->item(ui->tvPackages->selectionModel()->selectedRows().at(c).row(),
-                                       ctn_PACKAGE_NAME_COLUMN)->text() + " ";
+    for (int c=0; c<ui->tvPackages->selectionModel()->selectedRows().count(); c++)
+    {
+      listOfTargets +=
+          _getCurrentSelectedModel()->item(ui->tvPackages->selectionModel()->selectedRows().at(c).row(),
+                                           ctn_PACKAGE_NAME_COLUMN)->text() + " ";
+    }
+  }
+  else
+  {
+    QStandardItemModel *sim=_getCurrentSelectedModel();
+    foreach(QModelIndex item, ui->tvPackages->selectionModel()->selectedRows())
+    {
+      QModelIndex mi = m_proxyModelPackages->mapToSource(item);
+      QStandardItem *si = sim->item(mi.row(), ctn_PACKAGE_NAME_COLUMN);
+      listOfTargets += si->text() + " ";
+    }
   }
 
   m_lastCommandList.clear();

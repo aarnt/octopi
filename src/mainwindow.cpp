@@ -564,9 +564,12 @@ void MainWindow::execContextMenuPackages(QPoint point)
       }
     }
 
-    bool allSameType = true;
+    //bool allSameType = true;
     bool allInstallable = true;
-    bool allRemovable = true;
+    bool allRemovable = true;    
+
+    int numberOfSelPkgs = ui->tvPackages->selectionModel()->selectedRows().count();
+    int numberOfAUR = 0;
 
     foreach(QModelIndex item, ui->tvPackages->selectionModel()->selectedRows())
     {
@@ -577,6 +580,7 @@ void MainWindow::execContextMenuPackages(QPoint point)
          IconHelper::getIconForeign().pixmap(QSize(22,22)).toImage())
       {
         allInstallable = false;
+        numberOfAUR++;
       }
       else if((si->icon().pixmap(QSize(22,22)).toImage()) ==
               IconHelper::getIconNonInstalled().pixmap(QSize(22,22)).toImage())
@@ -585,8 +589,8 @@ void MainWindow::execContextMenuPackages(QPoint point)
       }
     }
 
-    if (allSameType)
-    {
+    //if (allSameType)
+    //{
       if(allInstallable)
       {
         menu->addAction(ui->actionInstall);
@@ -595,6 +599,10 @@ void MainWindow::execContextMenuPackages(QPoint point)
         {
           menu->addAction(ui->actionInstallGroup);
         }
+      }
+      else if (allInstallable == false && numberOfAUR == numberOfSelPkgs)
+      {
+        menu->addAction(ui->actionInstallYaourt);
       }
 
       if(allRemovable)
@@ -610,7 +618,7 @@ void MainWindow::execContextMenuPackages(QPoint point)
           }
         }
       }
-    }
+    //}
 
     if(menu->actions().count() > 0)
     {
