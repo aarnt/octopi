@@ -227,7 +227,17 @@ QByteArray UnixCommand::getUnrequiredPackageList()
  */
 QByteArray UnixCommand::getOutdatedPackageList()
 {
-  QByteArray result = performQuery(QStringList("-Qu"));
+  QByteArray result;
+
+  if (hasTheExecutable("yaourt"))
+  {
+    result = performYaourtCommand("-Qua");
+  }
+  else
+  {
+    result = performQuery(QStringList("-Qu"));
+  }
+
   return result;
 }
 

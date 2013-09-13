@@ -575,9 +575,11 @@ void MainWindow::execContextMenuPackages(QPoint point)
     {
       QModelIndex mi = m_proxyModelPackages->mapToSource(item);
       QStandardItem *si = sim->item(mi.row(), ctn_PACKAGE_ICON_COLUMN);
+      QStandardItem *siRepo = sim->item(mi.row(), ctn_PACKAGE_REPOSITORY_COLUMN);
 
       if((si->icon().pixmap(QSize(22,22)).toImage()) ==
-         IconHelper::getIconForeign().pixmap(QSize(22,22)).toImage())
+         IconHelper::getIconForeign().pixmap(QSize(22,22)).toImage() ||
+         siRepo->text() == StrConstants::getForeignRepositoryName())
       {
         allInstallable = false;
         numberOfAUR++;

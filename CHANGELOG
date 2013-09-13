@@ -7,6 +7,9 @@
   BugFix: Use -Ss option while searching for yaourt packages.
   BugFix: Don't show package names in yaourt package descriptions.
   BugFix: Better RazorQt compatibility.
+  BugFix: Notifier: clear tooltip if no update is available (thanks to 
+	Anselmo L. S. Melo - anselmolsm).
+  Show Yaourt packages as outdated in default package list.
   Now it's possible to upgrade Yaourt packages even outside Yaourt group.
   Added a new status icon: an orange one for newer than repo 
 	installed packages.

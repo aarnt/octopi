@@ -105,7 +105,6 @@ void MainWindow::refreshComboBoxGroups()
 void MainWindow::buildPackagesFromGroupList()
 {
   CPUIntensiveComputing cic;
-
   m_progressWidget->show();
 
   if (m_cbGroups->currentIndex() == 0)
@@ -426,14 +425,29 @@ void MainWindow::buildPackageList(bool nonBlocking)
   m_progressWidget->setValue(0);
 
   int counter=0;
+  PackageListData pld;
   while (itForeign != listForeign->end())
   {
-    PackageListData pld = PackageListData(
-          itForeign->name, itForeign->repository, itForeign->version,
-          itForeign->name + " " + Package::getInformationDescription(itForeign->name, true),
-          ectn_FOREIGN);
+    if (!m_outdatedPackageList->contains(itForeign->name))
+    {
+      pld = PackageListData(
+            itForeign->name, itForeign->repository, itForeign->version,
+            itForeign->name + " " + Package::getInformationDescription(itForeign->name, true),
+            ectn_FOREIGN);
+    }
+    else
+    {
+      pld = PackageListData(
+            itForeign->name, itForeign->repository, itForeign->version,
+            itForeign->name + " " + Package::getInformationDescription(itForeign->name, true),
+            ectn_OUTDATED);
+
+      m_outdatedPackageList->removeAt(m_outdatedPackageList->indexOf(QRegExp(itForeign->name)));
+      m_numberOfOutdatedPackages--;
+    }
 
     list->append(pld);
+
     itForeign++;
   }
 
@@ -1034,10 +1048,14 @@ void MainWindow::refreshTabInfo(bool clearContents, bool neverQuit)
       {
         if (siIcon->text().contains("outdated", Qt::CaseInsensitive))
         {
-          QString outdatedVersion = siIcon->text().right(siIcon->text().size()-mark-1);
-          html += "<tr><td>" + version + "</td><td>" + siVersion->text() + " <b><font color=\"#E55451\">"
+          if (siRepository->text() != StrConstants::getForeignRepositoryName())
+          {
+            QString outdatedVersion = siIcon->text().right(siIcon->text().size()-mark-1);
+            html += "<tr><td>" + version + "</td><td>" + siVersion->text() + " <b><font color=\"#E55451\">"
               + StrConstants::getOutdatedInstalledVersion().arg(outdatedVersion) +
               "</b></font></td></tr>";
+          }
+          else html += "<tr><td>" + version + "</td><td>" + siVersion->text() + "</td></tr>";
         }
         else
         {

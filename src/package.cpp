@@ -204,15 +204,27 @@ QStringList *Package::getOutdatedPackageList()
   QStringList packageTuples = outPkgList.split(QRegExp("\\n"), QString::SkipEmptyParts);
   QStringList * res = new QStringList();
   QStringList ignorePkgList = UnixCommand::getIgnorePkg();
+  bool hasYaourt = UnixCommand::hasTheExecutable("yaourt");
 
   foreach(QString packageTuple, packageTuples)
   {
     QStringList parts = packageTuple.split(' ');
     {
-      //Let's ignore the "IgnorePkg" list of packages...
-      if (!ignorePkgList.contains(parts[0]))
+      QString pkgName;
+      if (hasYaourt)
       {
-        res->append(parts[0]); //We only need the package name!
+        pkgName = parts[0];
+        pkgName = pkgName.remove("aur/");
+      }
+      else
+      {
+        pkgName = parts[0];
+      }
+
+      //Let's ignore the "IgnorePkg" list of packages...
+      if (!ignorePkgList.contains(pkgName))
+      {
+        res->append(pkgName); //We only need the package name!
       }
     }
   }
