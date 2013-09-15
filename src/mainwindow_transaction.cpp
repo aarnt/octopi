@@ -506,6 +506,33 @@ void MainWindow::doSyncDatabase()
 }
 
 /*
+ * Updates the outdated Yaourt packages with "yaourt -S <list>"
+ */
+void MainWindow::doYaourtUpgrade()
+{
+  QString listOfTargets;
+  foreach(QString pkg, *m_outdatedYaourtPackageList)
+  {
+    listOfTargets += pkg + " ";
+  }
+
+  m_lastCommandList.clear();
+  m_lastCommandList.append("yaourt -S " + listOfTargets + ";");
+  m_lastCommandList.append("echo -e;");
+  m_lastCommandList.append("read -n1 -p \"" + StrConstants::getPressAnyKey() + "\"");
+
+  disableTransactionActions();
+  m_unixCommand = new UnixCommand(this);
+
+  QObject::connect(m_unixCommand, SIGNAL( startedTerminal() ), this, SLOT( actionsProcessStarted()));
+  QObject::connect(m_unixCommand, SIGNAL( finishedTerminal ( int, QProcess::ExitStatus )),
+                   this, SLOT( actionsProcessFinished(int, QProcess::ExitStatus) ));
+
+  m_commandExecuting = ectn_RUN_IN_TERMINAL;
+  m_unixCommand->runCommandInTerminalAsNormalUser(m_lastCommandList);
+}
+
+/*
  * Does a system upgrade with "pacman -Su" !
  */
 void MainWindow::doSystemUpgrade(bool syncDatabase)
@@ -837,7 +864,7 @@ void MainWindow::doRemove()
 void MainWindow::doInstallYaourtPackage()
 {
   //If there are no means to run the actions, we must warn!
-  if (!_isSUAvailable()) return;
+  //if (!_isSUAvailable()) return;
 
   QString listOfTargets;
 

@@ -27,15 +27,23 @@
 #include <QFutureWatcher>
 #include <QtConcurrentRun>
 
+struct YaourtOutdatedPackages
+{
+  public:
+    QHash<QString, QString> content;
+};
+
 extern QFutureWatcher<QString> g_fwToolTip;
 extern QFutureWatcher<QList<PackageListData> *> g_fwPacman;
 extern QFutureWatcher<QList<QString> *> g_fwPacmanGroup;
 extern QFutureWatcher<QList<PackageListData> *> g_fwYaourt;
 extern QFutureWatcher<QList<PackageListData> *> g_fwYaourtMeta;
+extern QFutureWatcher<YaourtOutdatedPackages *> g_fwOutdatedYaourtPackages;
 
 QString showPackageInfo(QString pkgName);
 QList<PackageListData> * searchPacmanPackages();
 QList<QString> * searchPacmanPackagesFromGroup(QString groupName);
 QList<PackageListData> * searchYaourtPackages(QString searchString);
+YaourtOutdatedPackages * getOutdatedYaourtPackages();
 
 #endif // MAINWINDOW_GLOBALS_H

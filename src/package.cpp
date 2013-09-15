@@ -204,23 +204,41 @@ QStringList *Package::getOutdatedPackageList()
   QStringList packageTuples = outPkgList.split(QRegExp("\\n"), QString::SkipEmptyParts);
   QStringList * res = new QStringList();
   QStringList ignorePkgList = UnixCommand::getIgnorePkg();
-  bool hasYaourt = UnixCommand::hasTheExecutable("yaourt");
+  //bool hasYaourt = UnixCommand::hasTheExecutable("yaourt");
 
   foreach(QString packageTuple, packageTuples)
   {
     QStringList parts = packageTuple.split(' ');
     {
       QString pkgName;
-      if (hasYaourt)
-      {
-        pkgName = parts[0];
-        pkgName = pkgName.remove("aur/");
-      }
-      else
-      {
-        pkgName = parts[0];
-      }
+      pkgName = parts[0];
 
+      //Let's ignore the "IgnorePkg" list of packages...
+      if (!ignorePkgList.contains(pkgName))
+      {
+        res->append(pkgName); //We only need the package name!
+      }
+    }
+  }
+
+  res->sort();
+  return res;
+}
+
+QStringList *Package::getOutdatedYaourtPackageList()
+{
+  QString outPkgList = UnixCommand::getOutdatedYaourtPackageList();
+  QStringList packageTuples = outPkgList.split(QRegExp("\\n"), QString::SkipEmptyParts);
+  QStringList * res = new QStringList();
+  QStringList ignorePkgList = UnixCommand::getIgnorePkg();
+
+  foreach(QString packageTuple, packageTuples)
+  {
+    QStringList parts = packageTuple.split(' ');
+    {
+      QString pkgName;
+      pkgName = parts[0];
+      pkgName = pkgName.remove("aur/");
       //Let's ignore the "IgnorePkg" list of packages...
       if (!ignorePkgList.contains(pkgName))
       {
@@ -923,18 +941,22 @@ QString Package::getInformationDescription(const QString &pkgName, bool foreignP
 }
 
 /*
- * Given packageArch, returns if it's a valid one
+ * Helper to get only the Version field of Yaourt package information
  */
-bool Package::isValidArch(const QString &packageArch)
+QHash<QString, QString> Package::getYaourtOutdatedPackagesNameVersion()
 {
-  bool result = false;
-  for(uint c=0; c<sizeof(ctn_KNOWN_ARCHS)/sizeof(ctn_KNOWN_ARCHS[0]); c++){
-    if (packageArch == ctn_KNOWN_ARCHS[c]){
-      result = true;
-      break;
-    }
+  QString res = UnixCommand::getYaourtPackageVersionInformation();
+  QHash<QString, QString> hash;
+
+  QStringList listOfPkgs = res.split("\n", QString::SkipEmptyParts);
+  foreach (QString line, listOfPkgs)
+  {
+    line = line.remove("aur/");
+    QStringList nameVersion = line.split(" ", QString::SkipEmptyParts);
+    hash.insert(nameVersion.at(0), nameVersion.at(1));
   }
-  return result;
+
+  return hash;
 }
 
 /*
@@ -991,19 +1013,4 @@ QString Package::parseSearchString(QString searchStr, bool exactMatch)
 
   searchStr.replace("?", ".");
   return searchStr;
-}
-
-/*
- * Removes all temporary files used by the app
- */
-void Package::removeTempFiles()
-{
-  QDir d(QDir::tempPath());
-  QStringList sl;
-  sl << ctn_TEMP_OPEN_FILE_PREFIX + "*";
-  QFileInfoList il = d.entryInfoList(sl);
-
-  foreach(QFileInfo fi, il){
-    QFile::remove(fi.filePath());
-  }
 }

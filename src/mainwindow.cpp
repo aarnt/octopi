@@ -28,6 +28,7 @@
 #include "treeviewpackagesitemdelegate.h"
 #include "searchbar.h"
 #include "packagecontroller.h"
+#include "globals.h"
 #include <iostream>
 
 #include <QSortFilterProxyModel>
@@ -42,16 +43,18 @@
 #include <QModelIndex>
 #include <QDesktopServices>
 #include <QFileDialog>
+#include <QHash>
+#include <QFutureWatcher>
+#include <QtConcurrentRun>
+
+using namespace QtConcurrent;
 
 /*
  * MainWindow's constructor: basic UI init
  */
 MainWindow::MainWindow(QWidget *parent) :
-  QMainWindow(parent),
-  ui(new Ui::MainWindow)
+  QMainWindow(parent), ui(new Ui::MainWindow)
 {
-  //m_pacmanDatabaseSystemWatcher =
-  //    new QFileSystemWatcher(QStringList() << ctn_PACMAN_DATABASE_DIR, this);
   m_foundFilesInPkgFileList = new QList<QModelIndex>();
   m_indFoundFilesInPkgFileList = 0;
   m_callSystemUpgrade = false;
@@ -61,6 +64,11 @@ MainWindow::MainWindow(QWidget *parent) :
   m_listOfPackagesFromGroup = 0;
   m_systemUpgradeDialog = false;
   m_cic = 0;
+  m_outdatedYaourtPackageList = new QStringList();
+
+  //m_toolButtonYaourt = 0;
+  m_outdatedYaourtPackagesNameVersion = new QHash<QString, QString>();
+
   ui->setupUi(this);
 }
 
@@ -82,9 +90,7 @@ void MainWindow::show()
 {
   if(m_initializationCompleted == false)
   {
-
     UnixCommand::getIgnorePkg();
-
     loadSettings();
     restoreGeometry(SettingsManager::getWindowSize());
 
@@ -95,7 +101,6 @@ void MainWindow::show()
     setWindowTitle(StrConstants::getApplicationName());
     setMinimumSize(QSize(850, 600));
 
-    initStatusBar();
     initTabOutput();
     initTabInfo();
     initTabFiles();
@@ -109,6 +114,9 @@ void MainWindow::show()
 
     loadPanelSettings();
     initActions();
+    initStatusBar();
+    initToolButtonPacman();
+    initToolButtonYaourt();
     initAppIcon();
     initToolBar();
     initTabWidgetPropertiesIndex();
@@ -286,6 +294,63 @@ void MainWindow::outputOutdatedPackageList()
 
     ui->twProperties->setCurrentIndex(ctn_TABINDEX_OUTPUT);
   }
+}
+
+/*
+ * Prints the list of outdated Yaourt packages to the Output tab.
+ */
+void MainWindow::outputOutdatedYaourtPackageList()
+{
+  CPUIntensiveComputing *cic = new CPUIntensiveComputing();
+  //QHash<QString, QString> hash = Package::getYaourtOutdatedPackagesNameVersion();
+  delete cic;
+
+  QString html = "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">";
+  QString anchorBegin = "anchorBegin";
+  html += "<a id=\"" + anchorBegin + "\"></a>";
+
+  clearTabOutput();
+
+  if(m_outdatedYaourtPackageList->count()==1){
+    html += "<h3>" + StrConstants::getOneOutdatedPackage() + "</h3>";
+  }
+  else
+  {
+    html += "<h3>" +
+        StrConstants::getOutdatedPackages().arg(m_outdatedYaourtPackageList->count()) + "</h3>";
+  }
+
+  html += "<br><table border=\"0\">";
+  html += "<tr><th width=\"25%\" align=\"left\">" + StrConstants::getName() +
+      "</th><th width=\"18%\" align=\"right\">" +
+      StrConstants::getOutdatedVersion() +
+      "</th><th width=\"18%\" align=\"right\">" +
+      StrConstants::getAvailableVersion() + "</th></tr>";
+
+  for (int c=0; c < m_outdatedYaourtPackageList->count(); c++)
+  {
+    QString pkg = m_outdatedYaourtPackageList->at(c);
+    QString outdatedVersion = getInstalledPackageVersionByName(m_outdatedYaourtPackageList->at(c));
+    QString availableVersion = m_outdatedYaourtPackagesNameVersion->value(m_outdatedYaourtPackageList->at(c));
+
+    html += "<tr><td><a href=\"goto:" + pkg + "\">" + pkg +
+        "</td><td align=\"right\"><b><font color=\"#E55451\">" +
+        outdatedVersion +
+        "</b></font></td><td align=\"right\">" +
+        availableVersion + "</td></tr>";
+  }
+
+  writeToTabOutput(html);
+
+  QTextBrowser *text =
+      ui->twProperties->widget(ctn_TABINDEX_OUTPUT)->findChild<QTextBrowser*>("textOutputEdit");
+
+  if (text)
+  {
+    text->scrollToAnchor(anchorBegin);
+  }
+
+  ui->twProperties->setCurrentIndex(ctn_TABINDEX_OUTPUT);
 }
 
 /*
@@ -577,8 +642,8 @@ void MainWindow::execContextMenuPackages(QPoint point)
       QStandardItem *si = sim->item(mi.row(), ctn_PACKAGE_ICON_COLUMN);
       QStandardItem *siRepo = sim->item(mi.row(), ctn_PACKAGE_REPOSITORY_COLUMN);
 
-      if((si->icon().pixmap(QSize(22,22)).toImage()) ==
-         IconHelper::getIconForeign().pixmap(QSize(22,22)).toImage() ||
+      if(/*(si->icon().pixmap(QSize(22,22)).toImage()) ==
+         IconHelper::getIconForeignGreen().pixmap(QSize(22,22)).toImage() ||*/
          siRepo->text() == StrConstants::getForeignRepositoryName())
       {
         allInstallable = false;

@@ -14,10 +14,10 @@ class PacmanHelperClient;
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
+
 public:
-    explicit MainWindow(QWidget *parent = 0);
-    
-signals:
+
+  explicit MainWindow(QWidget *parent = 0);
     
 private slots:
 
@@ -31,16 +31,18 @@ private slots:
 
 private:
 
+  int m_numberOfOutdatedPackages;
+  int m_numberOfOutdatedYaourtPackages;
   QAction *m_actionExit;
   QAction *m_actionOctopi;
   QIcon m_icon;
   QStringList *m_outdatedPackageList;
+  QStringList *m_outdatedYaourtPackageList;
   QTimer *m_pacmanHelperTimer;
   QSystemTrayIcon *m_systemTrayIcon;
   QMenu *m_systemTrayIconMenu;
   QFileSystemWatcher *m_pacmanDatabaseSystemWatcher;
   PacmanHelperClient *m_pacmanClient;
-  int m_numberOfOutdatedPackages;
 
   void initSystemTrayIcon();
   void sendNotification(const QString &msg);

@@ -33,6 +33,7 @@ class IconHelper{
 public:
   static QIcon getIconOctopiRed(){ return QIcon(":/resources/images/octopi_red.png"); }
   static QIcon getIconOctopiYellow(){ return QIcon(":/resources/images/octopi_yellow.png"); }
+  static QIcon getIconOctopiGreen(){ return QIcon(":/resources/images/octopi_green.png"); }
   static QIcon getIconInternalError(){ return QIcon(":/resources/images/internalerror.png"); }
 
   static QIcon getIconFolder()
@@ -56,7 +57,8 @@ public:
   static QIcon getIconOutdated(){ return QIcon(":/resources/images/outdated.png"); }
   static QIcon getIconNewer(){ return QIcon(":/resources/images/newer.png"); }
   static QIcon getIconUnrequired(){ return QIcon(":/resources/images/unrequired.png"); }
-  static QIcon getIconForeign(){ return QIcon(":/resources/images/foreign.png"); }
+  static QIcon getIconForeignGreen(){ return QIcon(":/resources/images/foreign_green.png"); }
+  static QIcon getIconForeignRed(){ return QIcon(":/resources/images/foreign_red.png"); }
   static QIcon getIconToRemove(){ return QIcon(":/resources/images/toremove.png"); }  
   static QIcon getIconToInstall(){ return QIcon(":/resources/images/toinstall.png"); }
   static QIcon getIconRemove(){ return QIcon(":/resources/images/close.png"); }

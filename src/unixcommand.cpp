@@ -227,18 +227,15 @@ QByteArray UnixCommand::getUnrequiredPackageList()
  */
 QByteArray UnixCommand::getOutdatedPackageList()
 {
-  QByteArray result;
+  return performQuery(QStringList("-Qu"));
+}
 
-  if (hasTheExecutable("yaourt"))
-  {
-    result = performYaourtCommand("-Qua");
-  }
-  else
-  {
-    result = performQuery(QStringList("-Qu"));
-  }
-
-  return result;
+/*
+ * Returns a string containing all Yaourt outdated packages
+ */
+QByteArray UnixCommand::getOutdatedYaourtPackageList()
+{
+  return performYaourtCommand("-Qua");
 }
 
 /*
@@ -263,7 +260,7 @@ QByteArray UnixCommand::getPackageList()
 
 /*
  * Given a package name and if it is default to the official repositories,
- * returns a string containing all the fields of its information
+ * returns a string containing all of its information fields
  * (ex: name, description, version, dependsOn...)
  */
 QByteArray UnixCommand::getPackageInformation(const QString &pkgName, bool foreignPackage = false)
@@ -278,6 +275,16 @@ QByteArray UnixCommand::getPackageInformation(const QString &pkgName, bool forei
   args << pkgName;
 
   QByteArray result = performQuery(args);
+  return result;
+}
+
+/*
+ * Given an Yaourt package name, returns a string containing all of its information fields
+ * (ex: name, description, version, dependsOn...)
+ */
+QByteArray UnixCommand::getYaourtPackageVersionInformation()
+{
+  QByteArray result = performYaourtCommand("-Qua");
   return result;
 }
 

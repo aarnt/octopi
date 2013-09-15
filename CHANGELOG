@@ -11,12 +11,15 @@
 	Anselmo L. S. Melo - anselmolsm).
   Show Yaourt packages as outdated in default package list.
   Now it's possible to upgrade Yaourt packages even outside Yaourt group.
+  Now the yellow octopi icon means there are outdated yaourt packages.
+  Added a new notification for outdated packages on statusbar.
   Added a new status icon: an orange one for newer than repo 
 	installed packages.
   Added spanish (Latin America) translation.
   Added 3 new source strings to translate.
-  Updated pt_BR, ca, da, el, fi, de, it, vi, he, ro, sr@latin and fr_FR 
-	translations.
+  Added new foreign_red and octopi_green icons (thanks to Alex Fredrich).
+  Updated pt_BR, ca, da, el, fi, de, it, vi, he, ro, sr@latin and fr_FR, ru, lt 
+	and pl translations.
 
 0.2
   Splitted the project in "octopi" and "octopi-notifier".

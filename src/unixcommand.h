@@ -84,9 +84,11 @@ public:
   static QByteArray getYaourtPackageList(const QString &searchString);
   static QByteArray getUnrequiredPackageList();
   static QByteArray getOutdatedPackageList();
+  static QByteArray getOutdatedYaourtPackageList();
   static QByteArray getForeignPackageList();
   static QByteArray getPackageList();
   static QByteArray getPackageInformation(const QString &pkgName, bool foreignPackage);
+  static QByteArray getYaourtPackageVersionInformation();
   static QByteArray getPackageContents(const QString &pkgName);
   static QByteArray getPackageGroups();
   static QByteArray getPackagesFromGroup(const QString &groupName);

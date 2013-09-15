@@ -27,6 +27,7 @@
 #include <QItemSelection>
 #include <QSystemTrayIcon>
 #include <QMainWindow>
+#include <QToolButton>
 #include <QList>
 #include <QUrl>
 
@@ -43,6 +44,7 @@ class QProgressBar;
 class QTextBrowser;
 class QMenu;
 class SearchLineEdit;
+class QAction;
 
 //Column indices for Package's treeview
 const int ctn_PACKAGE_ICON_COLUMN(0);
@@ -158,16 +160,28 @@ private:
   QTimer *m_pacmanHelperTimer; //Triggers the DBus SyncDB technology magic!
 
   QStringList *m_outdatedPackageList;
+  QStringList *m_outdatedYaourtPackageList;
+  QHash<QString, QString> *m_outdatedYaourtPackagesNameVersion;
 
   QLabel *m_lblSelCounter; //Holds the number of selected packages
   QLabel *m_lblTotalCounters; //Holds the total number of packages
   QProgressBar *m_progressWidget;
+
+  QToolButton *m_toolButtonPacman;
+  QMenu *m_menuToolButtonPacman;
+  QAction *m_actionInstallPacmanUpdates;
+
+  QToolButton *m_toolButtonYaourt;
+  QMenu *m_menuToolButtonYaourt;
+  QAction *m_actionInstallYaourtUpdates;
 
   QByteArray m_horizontalSplit;
 
   int m_numberOfInstalledPackages;
   int m_numberOfAvailablePackages;
   int m_numberOfOutdatedPackages;
+  //Controls the number of outdated Yaourt packages
+  //int m_numberOfOutdatedYaourt;
 
   void loadSettings();
   void loadPanelSettings();
@@ -241,6 +255,7 @@ private:
   QString parseDistroNews();
   void initTabNews();
   void initTabHelpUsage();
+  void refreshStatusBarToolButtons();
 
 private slots:
   //PacmanHelper timer SLOT
@@ -248,6 +263,11 @@ private slots:
 
   //Called right after the PacmanHelper syncdb() method has finished!
   void afterPacmanHelperSyncDatabase();
+
+  void initToolButtonPacman();
+
+  void initToolButtonYaourt();
+  void showToolButtonYaourt();
 
   //TreeView methods
   void collapseAllContentItems();
@@ -307,6 +327,7 @@ private slots:
   void doInstall();
   void doCleanCache();
   void doSyncDatabase();
+  void doYaourtUpgrade();
 
   void doInstallYaourtPackage();
   void doRemoveYaourtPackage();
@@ -331,6 +352,7 @@ private slots:
   void maximizePackagesTreeView(bool pSaveSettings = true);
   void maximizePropertiesTabWidget(bool pSaveSettings = true);
   void outputOutdatedPackageList();
+  void outputOutdatedYaourtPackageList();
 
   void onTabNewsSourceChanged(QUrl newSource);
   void refreshDistroNews(bool searchForLatestNews = true, bool gotoNewsTab = true);

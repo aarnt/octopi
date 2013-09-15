@@ -27,8 +27,8 @@
 #include "ui_mainwindow.h"
 #include "strconstants.h"
 #include "uihelper.h"
-#include <iostream>
 #include "globals.h"
+#include <iostream>
 
 #include <QTimer>
 #include <QLabel>
@@ -51,9 +51,13 @@ void MainWindow::refreshAppIcon()
   {
     setWindowIcon(IconHelper::getIconOctopiRed());
   }
-  else
+  else if(m_outdatedYaourtPackageList->count() > 0)
   {
     setWindowIcon(IconHelper::getIconOctopiYellow());
+  }
+  else
+  {
+    setWindowIcon(IconHelper::getIconOctopiGreen());
   }
 }
 
@@ -140,14 +144,10 @@ void MainWindow::buildPackagesFromGroupList()
     return;
   }
 
-  //disconnect(m_pacmanDatabaseSystemWatcher,
-  //           SIGNAL(directoryChanged(QString)), this, SLOT(metaBuildPackageList()));
-
   m_modelPackagesFromGroup->clear();
   m_modelInstalledPackagesFromGroup->clear();
 
   QStringList sl;
-  //QList<QString> *list = Package::getPackagesOfGroup(groupName);
   QList<QString> *list = m_listOfPackagesFromGroup;
 
   QStandardItem *parentItemPackagesFromGroup = m_modelPackagesFromGroup->invisibleRootItem();
@@ -250,6 +250,7 @@ void MainWindow::buildPackagesFromGroupList()
   //        SIGNAL(directoryChanged(QString)), this, SLOT(metaBuildPackageList()));
 
   m_progressWidget->close();
+  refreshStatusBarToolButtons();
 }
 
 void MainWindow::_deleteStandardItemModel(QStandardItemModel * sim)
@@ -373,6 +374,7 @@ void MainWindow::metaBuildPackageList()
 void MainWindow::buildPackageList(bool nonBlocking)
 {
   CPUIntensiveComputing cic;
+  bool hasYaourt = UnixCommand::hasTheExecutable("yaourt");
 
   static bool firstTime = true;
 
@@ -405,6 +407,11 @@ void MainWindow::buildPackageList(bool nonBlocking)
     //Let's get outdatedPackages list again!
     m_outdatedPackageList = Package::getOutdatedPackageList();
     m_numberOfOutdatedPackages = m_outdatedPackageList->count();
+
+    if (hasYaourt)
+    {
+      m_outdatedYaourtPackageList = Package::getOutdatedYaourtPackageList();
+    }
   }
 
   qApp->processEvents();
@@ -421,14 +428,15 @@ void MainWindow::buildPackageList(bool nonBlocking)
   qApp->processEvents();
   QList<PackageListData>::const_iterator itForeign = listForeign->begin();
 
-  m_progressWidget->setRange(0, list->count()); //+ listForeign->count());
+  m_progressWidget->setRange(0, list->count());
   m_progressWidget->setValue(0);
 
   int counter=0;
   PackageListData pld;
+
   while (itForeign != listForeign->end())
   {
-    if (!m_outdatedPackageList->contains(itForeign->name))
+    if (!hasYaourt || !m_outdatedYaourtPackageList->contains(itForeign->name))
     {
       pld = PackageListData(
             itForeign->name, itForeign->repository, itForeign->version,
@@ -440,10 +448,7 @@ void MainWindow::buildPackageList(bool nonBlocking)
       pld = PackageListData(
             itForeign->name, itForeign->repository, itForeign->version,
             itForeign->name + " " + Package::getInformationDescription(itForeign->name, true),
-            ectn_OUTDATED);
-
-      m_outdatedPackageList->removeAt(m_outdatedPackageList->indexOf(QRegExp(itForeign->name)));
-      m_numberOfOutdatedPackages--;
+            ectn_FOREIGN_OUTDATED);
     }
 
     list->append(pld);
@@ -466,7 +471,10 @@ void MainWindow::buildPackageList(bool nonBlocking)
     switch (pld.status)
     {
       case ectn_FOREIGN:
-        lIcons << new QStandardItem(IconHelper::getIconForeign(), "_Foreign");
+        lIcons << new QStandardItem(IconHelper::getIconForeignGreen(), "_Foreign");
+        break;      
+      case ectn_FOREIGN_OUTDATED:
+        lIcons << new QStandardItem(IconHelper::getIconForeignRed(), "_ForeignOutdated");
         break;
       case ectn_OUTDATED:
       {
@@ -611,6 +619,8 @@ void MainWindow::buildPackageList(bool nonBlocking)
       doInstallLocalPackages();
     }
   }
+
+  refreshStatusBarToolButtons();
 }
 
 /*
@@ -810,16 +820,54 @@ void MainWindow::buildYaourtPackageList()
   counter = list->count();
   m_progressWidget->setValue(counter);
   m_progressWidget->close();
+
+  refreshStatusBarToolButtons();
 }
 
 /*
- * Prints the values of the package counters at the right of the statusBar
+ * Prints the Yaourt toolButton at the left of the statusbar.
+ * It warns the user about outdated yaourt packages!
+ */
+void MainWindow::showToolButtonYaourt()
+{
+  m_outdatedYaourtPackagesNameVersion = &g_fwOutdatedYaourtPackages.result()->content;
+
+  if(m_outdatedYaourtPackageList->count() > 0 && m_outdatedYaourtPackagesNameVersion->count() > 0)
+  {
+    m_toolButtonYaourt->setToolTip(StrConstants::getNewUpdates().arg(m_outdatedYaourtPackageList->count()));
+    m_toolButtonYaourt->show();
+  }
+  else
+  {
+    m_toolButtonYaourt->setToolTip("");
+    m_toolButtonYaourt->hide();
+  }
+
+  ui->statusBar->addWidget(m_toolButtonYaourt);
+}
+
+/*
+ * Refreshes the toolButtons which indicate outdated packages
+ */
+void MainWindow::refreshStatusBarToolButtons()
+{
+  QFuture<YaourtOutdatedPackages *> f;
+  f = run(getOutdatedYaourtPackages);
+  g_fwOutdatedYaourtPackages.setFuture(f);
+  connect(&g_fwOutdatedYaourtPackages, SIGNAL(finished()), this, SLOT(showToolButtonYaourt()));
+}
+
+/*
+ * Prints the values of the package counters at the left of the statusBar
  */
 void MainWindow::refreshStatusBar()
 {
   QString text;
 
-  if(m_numberOfOutdatedPackages > 0 && m_numberOfInstalledPackages > 0 &&
+  ui->statusBar->removeWidget(m_toolButtonPacman);
+  ui->statusBar->removeWidget(m_toolButtonYaourt);
+
+  /*if(m_numberOfOutdatedPackages > 0 && m_numberOfInstalledPackages > 0 &&
      m_cbGroups->currentText() != StrConstants::getYaourtGroup())
   {
     text = " | " + StrConstants::getNumberInstalledPackages().arg(m_numberOfInstalledPackages) +
@@ -829,10 +877,26 @@ void MainWindow::refreshStatusBar()
   else if(m_numberOfInstalledPackages > 0)
   {
     text = "| " + StrConstants::getNumberInstalledPackages().arg(m_numberOfInstalledPackages);
+  }*/
+
+  if(m_numberOfInstalledPackages > 0)
+  {
+    text = "| " + StrConstants::getNumberInstalledPackages().arg(m_numberOfInstalledPackages);
   }
 
   m_lblTotalCounters->setText(text);
   ui->statusBar->addWidget(m_lblTotalCounters);
+
+  if(m_numberOfOutdatedPackages > 0)
+  {
+    m_toolButtonPacman->show();
+    m_toolButtonPacman->setToolTip(StrConstants::getNumberOutdatedPackages().arg(m_numberOfOutdatedPackages));
+  }
+  else
+  {
+    m_toolButtonPacman->hide();
+    m_toolButtonPacman->setToolTip("");
+  }
 }
 
 /*
@@ -983,11 +1047,10 @@ void MainWindow::refreshTabInfo(bool clearContents, bool neverQuit)
       text->scrollToAnchor(anchorBegin);
     }
   }
-  else
+  else //We are not in the Yaourt group
   {
     PackageInfoData pid;
 
-    //if (siRepository->text() != StrConstants::getForeignRepositoryName()){
     if (siRepository->text() != StrConstants::getForeignRepositoryName() &&
         siIcon->text() == "_NonInstalled"){
       pid = Package::getInformation(pkgName);
@@ -1055,7 +1118,20 @@ void MainWindow::refreshTabInfo(bool clearContents, bool neverQuit)
               + StrConstants::getOutdatedInstalledVersion().arg(outdatedVersion) +
               "</b></font></td></tr>";
           }
-          else html += "<tr><td>" + version + "</td><td>" + siVersion->text() + "</td></tr>";
+          /*else
+          {
+            if (m_outdatedYaourtPackagesNameVersion->count() > 0)
+            {
+              QString outdatedVersion = m_outdatedYaourtPackagesNameVersion->value(pkgName);
+              html += "<tr><td>" + version + "</td><td>" + siVersion->text() + " <b><font color=\"#E55451\">"
+                + StrConstants::getOutdatedInstalledVersion().arg(outdatedVersion) +
+                "</b></font></td></tr>";
+            }
+            else
+            {
+              html += "<tr><td>" + version + "</td><td>" + siVersion->text() + "</td></tr>";
+            }
+          }*/
         }
         else
         {
@@ -1067,7 +1143,26 @@ void MainWindow::refreshTabInfo(bool clearContents, bool neverQuit)
       }
       else
       {
-        html += "<tr><td>" + version + "</td><td>" + siVersion->text() + "</td></tr>";
+        if (siRepository->text() != StrConstants::getForeignRepositoryName())
+        {
+          html += "<tr><td>" + version + "</td><td>" + siVersion->text() + "</td></tr>";
+        }
+        else
+        {
+          if (siIcon->icon().pixmap(QSize(22,22)).toImage() ==
+              IconHelper::getIconForeignRed().pixmap(QSize(22,22)).toImage() &&
+              m_outdatedYaourtPackagesNameVersion->count() > 0)
+          {
+            QString availableVersion = m_outdatedYaourtPackagesNameVersion->value(pkgName);
+            html += "<tr><td>" + version + "</td><td>" + availableVersion + " <b><font color=\"#E55451\">"
+                + StrConstants::getOutdatedInstalledVersion().arg(siVersion->text()) +
+                "</b></font></td></tr>";
+          }
+          else
+          {
+            html += "<tr><td>" + version + "</td><td>" + siVersion->text() + "</td></tr>";
+          }
+        }
       }
 
       //This is needed as packager names could be encoded in different charsets, resulting in an error

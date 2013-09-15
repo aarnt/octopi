@@ -43,6 +43,7 @@
 #include <QTabBar>
 #include <QProgressBar>
 #include <QSystemTrayIcon>
+#include <QToolButton>
 #include <iostream>
 
 /*
@@ -113,6 +114,7 @@ void MainWindow::saveSettings(int saveSettingsReason){
 void MainWindow::initAppIcon()
 {
   m_outdatedPackageList = Package::getOutdatedPackageList();
+  m_outdatedYaourtPackageList = Package::getOutdatedYaourtPackageList();
   m_numberOfOutdatedPackages = m_outdatedPackageList->count();
   refreshAppIcon();
 }
@@ -142,7 +144,6 @@ void MainWindow::initSystemTrayIcon()
   }
 
   m_systemTrayIcon->show();
-
   m_systemTrayIconMenu = new QMenu( this );
   m_systemTrayIconMenu->addAction(ui->actionHelpAbout);
   m_systemTrayIconMenu->addAction(ui->actionExit);
@@ -237,6 +238,7 @@ void MainWindow::initStatusBar()
   m_lblSelCounter = new QLabel(this);
   m_lblTotalCounters = new QLabel(this);
   m_progressWidget = new QProgressBar(this);
+
   m_progressWidget->close();
   m_progressWidget->setMaximumWidth(250);
 
@@ -245,6 +247,40 @@ void MainWindow::initStatusBar()
   ui->statusBar->addPermanentWidget(m_progressWidget);
 
   connect(m_lblTotalCounters, SIGNAL(linkActivated(QString)), this, SLOT(outputOutdatedPackageList()));
+}
+
+/*
+ * Inits the outdated toolbutton, which warns the user about outdated packages
+ */
+void MainWindow::initToolButtonPacman()
+{
+  m_toolButtonPacman = new QToolButton(this);
+  m_toolButtonPacman->setIconSize(QSize(16, 16));
+  m_toolButtonPacman->setIcon(IconHelper::getIconOutdated());
+  m_toolButtonPacman->setAutoRaise(true);
+  m_toolButtonPacman->hide();
+  m_menuToolButtonPacman = new QMenu(this);
+  m_menuToolButtonPacman->addAction(m_actionInstallPacmanUpdates);
+  m_toolButtonPacman->setPopupMode(QToolButton::MenuButtonPopup);
+  m_toolButtonPacman->setMenu(m_menuToolButtonPacman);
+  connect(m_toolButtonPacman, SIGNAL(clicked()), this, SLOT(outputOutdatedPackageList()));
+}
+
+/*
+ * Inits the Yaourt toolbutton, which warns the user about outdated foreign packages
+ */
+void MainWindow::initToolButtonYaourt()
+{
+  m_toolButtonYaourt = new QToolButton(this);
+  m_toolButtonYaourt->setIconSize(QSize(16, 16));
+  m_toolButtonYaourt->setIcon(IconHelper::getIconForeignRed());
+  m_toolButtonYaourt->setAutoRaise(true);
+  m_toolButtonYaourt->hide();
+  m_menuToolButtonYaourt = new QMenu(this);
+  m_menuToolButtonYaourt->addAction(m_actionInstallYaourtUpdates);
+  m_toolButtonYaourt->setPopupMode(QToolButton::MenuButtonPopup);
+  m_toolButtonYaourt->setMenu(m_menuToolButtonYaourt);
+  connect(m_toolButtonYaourt, SIGNAL(clicked()), this, SLOT(outputOutdatedYaourtPackageList()));
 }
 
 /*
@@ -523,6 +559,16 @@ void MainWindow::initActions()
   actionGroup->setExclusive(true);
 
   connect(actionGroup, SIGNAL(triggered(QAction*)), this, SLOT(tvPackagesSearchColumnChanged(QAction*)));
+
+  m_actionInstallYaourtUpdates = new QAction(this);
+  m_actionInstallYaourtUpdates->setIcon(IconHelper::getIconToInstall());
+  m_actionInstallYaourtUpdates->setText(ui->actionInstall->text());
+  connect(m_actionInstallYaourtUpdates, SIGNAL(triggered()), this, SLOT(doYaourtUpgrade()));
+
+  m_actionInstallPacmanUpdates = new QAction(this);
+  m_actionInstallPacmanUpdates->setIcon(IconHelper::getIconToInstall());
+  m_actionInstallPacmanUpdates->setText(ui->actionInstall->text());
+  connect(m_actionInstallPacmanUpdates, SIGNAL(triggered()), this, SLOT(doSystemUpgrade()));
 
   ui->actionInstallLocalPackage->setIcon(IconHelper::getIconFolder());
 

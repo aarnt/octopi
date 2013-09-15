@@ -81,7 +81,7 @@ void MainWindow::initTabHelpUsage()
   QString("<li>") + iconPath + "unrequired.png\"/> " +
      tr("An installed package (not required by others)") +
   QString("</li>") +
-  QString("<li>" + iconPath + "foreign.png\"/> ") +
+  QString("<li>" + iconPath + "foreign_green.png\"/> ") +
      tr("A foreign package, installed from") + " " + StrConstants::getForeignRepositoryName() +
   QString("</li>") +
   QString("<li>") + iconPath + "noninstalled.png\"/> " +

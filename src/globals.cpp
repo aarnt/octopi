@@ -30,6 +30,7 @@ QFutureWatcher<QList<PackageListData> *> g_fwPacman;
 QFutureWatcher<QList<QString> *> g_fwPacmanGroup;
 QFutureWatcher<QList<PackageListData> *> g_fwYaourt;
 QFutureWatcher<QList<PackageListData> *> g_fwYaourtMeta;
+QFutureWatcher<YaourtOutdatedPackages *> g_fwOutdatedYaourtPackages;
 
 /*
  * Given a packageName, returns its description
@@ -79,4 +80,16 @@ QList<QString> * searchPacmanPackagesFromGroup(QString groupName)
 QList<PackageListData> * searchYaourtPackages(QString searchString)
 {
   return Package::getYaourtPackageList(searchString);
+}
+
+/*
+ * Starts the non blocking retrive of Yaourt outdated package versions...
+ * Results in a hash: [key] Yaourt pkg name / [value] Yaourt pkg version available
+ */
+YaourtOutdatedPackages * getOutdatedYaourtPackages()
+{
+  YaourtOutdatedPackages * res = new YaourtOutdatedPackages();
+  res->content = Package::getYaourtOutdatedPackagesNameVersion();
+
+  return res;
 }

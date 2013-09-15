@@ -22,7 +22,6 @@
         <file>resources/images/binary.png</file>
         <file>resources/images/outdated.png</file>
         <file>resources/images/unrequired.png</file>
-        <file>resources/images/foreign.png</file>
         <file>resources/images/commit.png</file>
         <file>resources/images/refresh.png</file>
         <file>resources/images/exit.png</file>
@@ -37,6 +36,10 @@
         <file>resources/images/remove_item.png</file>
         <file>resources/images/find.png</file>
         <file>resources/images/rss.png</file>
+        <file>resources/images/newer.png</file>
+        <file>resources/images/octopi_green.png</file>
+        <file>resources/images/foreign_green.png</file>
+        <file>resources/images/foreign_red.png</file>
         <file>resources/translations/octopi_pt_BR.qm</file>
         <file>resources/translations/octopi_fr_FR.qm</file>
         <file>resources/translations/octopi_es_ES.qm</file>
@@ -62,6 +65,5 @@
         <file>resources/translations/octopi_fi.qm</file>
         <file>resources/translations/octopi_vi.qm</file>
         <file>resources/translations/octopi_es_419.qm</file>
-        <file>resources/images/newer.png</file>
     </qresource>
 </RCC>

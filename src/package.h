@@ -22,22 +22,15 @@
 #define PACKAGE_H
 
 #include "settingsmanager.h"
+
 #include <QStringList>
 #include <QSettings>
 #include <QDir>
 #include <QFileSystemWatcher>
 #include <QDateTime>
-
-const char* const ctn_INSTALLED_PACKAGES_DIR 	= "/var/log/packages/";
-
-const char* const ctn_FILELIST    	= "FILE LIST:\n";
-
-const QString ctn_VAR_DIRECTORY = "/var";
-const QString ctn_SLACKPKG_CACHE_DIR = "/var/cache/packages";
-const QString ctn_SLAPTSRC_TEMP_DIR = "/tmp/SBo";
+#include <QHash>
 
 const QString ctn_TEMP_ACTIONS_FILE ( QDir::tempPath() + QDir::separator() + ".qt_temp_" );
-const QString ctn_TEMP_OPEN_FILE_PREFIX = "qtgz_"; //Prefix for temporary opened files from uninstalled packages
 
 const QString ctn_PKG_CONTENT_ERROR = "ERROR";
 const QString ctn_ER  				   	  = "([\\w._+]+[-])+";
@@ -46,22 +39,16 @@ const QString ctn_STRING_RELEASES   = "(alfa|beta|rc|pre|patch|^[0-9]{8}$|(^[rR]
 const QString ctn_DATE_RELEASE      = "^[0-9]{8}$";
 const QString ctn_NO_MATCH      	  = "not found!";
 
-const QString ctn_KNOWN_ARCHS[]     = {"noarch", "i386", "i486", "i586", "i686", "x86_64", "arm", "armhfp", "armv5t"};
-const QString ctn_KNOWN_NAMES[]   	= {"cdparanoia", "libjpeg", "slib"};
-
 const QString ctn_PACMAN_DATABASE_DIR = "/var/lib/pacman";
 
 const int ctn_KNOWN_ARCHS_LEN = 8;
 const int ctn_KNOWN_NAMES_LEN = 3;
 
-/*enum Classification { ectn_NOT_INSTALLED, ectn_INSTALLED, ectn_INFERIOR_VERSION, ectn_SUPERIOR_VERSION,
-                      ectn_OTHER_VERSION, ectn_OTHER_ARCH, ectn_INTERNAL_ERROR, ectn_FROZEN, ectn_RPM, ectn_DUMP_FILE };*/
-
 enum SearchPlace { ectn_INSIDE_INSTALLED_PACKAGES, ectn_INSIDE_DIRECTORY, ectn_INSIDE_QSTDITEMMODEL };
 
 enum DumpInstalledPackageListOptions { ectn_WITH_MODIFIED_DATE, ectn_NO_MODIFIED_DATE };
 
-enum PackageStatus { ectn_INSTALLED, ectn_NON_INSTALLED, ectn_OUTDATED, ectn_FOREIGN };
+enum PackageStatus { ectn_INSTALLED, ectn_NON_INSTALLED, ectn_OUTDATED, ectn_FOREIGN, ectn_FOREIGN_OUTDATED };
 
 struct PackageListData{
   QString name;
@@ -128,7 +115,6 @@ class Package{
   private:
     static Result verifyPreReleasePackage(const QStringList &versao1,
                                           const QStringList &versao2, const QString &pacote);
-    static bool isValidArch(const QString &packageArch);
 
     static QString extractFieldFromInfo(const QString &field, const QString &pkgInfo);
     static double simplePow(int base, int exp);
@@ -137,6 +123,7 @@ class Package{
     static int rpmvercmp(const char *a, const char *b);
     static QStringList * getUnrequiredPackageList();
     static QStringList * getOutdatedPackageList();
+    static QStringList * getOutdatedYaourtPackageList();
     static QStringList * getPackageGroups();
     static QStringList * getPackagesOfGroup(const QString &groupName);
     static QList<PackageListData> * getTargetUpgradeList(const QString &pkgName="");
@@ -151,6 +138,7 @@ class Package{
     static PackageInfoData getInformation(const QString &pkgName, bool foreignPackage = false);
     static double getDownloadSizeDescription(const QString &pkgName);
     static QString getInformationDescription(const QString &pkgName, bool foreignPackage = false);
+    static QHash<QString, QString> getYaourtOutdatedPackagesNameVersion();
     static QStringList getContents(const QString &pkgName);
 
     static QString getVersion(const QString &pkgInfo);
@@ -179,7 +167,6 @@ class Package{
     static QString dumpInstalledPackageList(DumpInstalledPackageListOptions options = ectn_WITH_MODIFIED_DATE);
     static QString parseSearchString( QString searchStr, bool exactMatch = false );
     static bool isSlackPackage(const QString &filePath);
-    static void removeTempFiles(); //Remove the temporary opened files from uninstalled packages
 };
 
 #endif

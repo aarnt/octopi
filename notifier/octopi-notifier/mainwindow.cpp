@@ -3,6 +3,7 @@
 #include "../../src/uihelper.h"
 #include "../../src/package.h"
 #include "../../src/pacmanhelperclient.h"
+
 #include <QTimer>
 #include <QSystemTrayIcon>
 #include <QAction>
@@ -34,9 +35,9 @@ void MainWindow::initSystemTrayIcon()
 
   refreshAppIcon();
 
-  if (m_numberOfOutdatedPackages == 0)
+  if (m_numberOfOutdatedPackages == 0 && m_numberOfOutdatedYaourtPackages == 0)
   {
-    //m_systemTrayIcon->setToolTip(StrConstants::getApplicationName());
+    m_systemTrayIcon->setToolTip("");
   }
   else if (m_numberOfOutdatedPackages > 0)
   {
@@ -51,6 +52,19 @@ void MainWindow::initSystemTrayIcon()
     {
       notification = StrConstants::getNewUpdates().arg(m_numberOfOutdatedPackages);
       m_systemTrayIcon->setToolTip(notification);
+    }
+  }
+  else if (m_numberOfOutdatedYaourtPackages > 0)
+  {
+    m_systemTrayIcon->setToolTip("");
+
+    if (m_numberOfOutdatedYaourtPackages == 1)
+    {
+      m_systemTrayIcon->setToolTip(StrConstants::getOneNewUpdate());
+    }
+    else if (m_numberOfOutdatedYaourtPackages > 1)
+    {
+      m_systemTrayIcon->setToolTip(StrConstants::getNewUpdates().arg(m_numberOfOutdatedYaourtPackages));
     }
   }
 
@@ -73,8 +87,8 @@ void MainWindow::initSystemTrayIcon()
 
   connect(m_pacmanHelperTimer, SIGNAL(timeout()), this, SLOT(pacmanHelperTimerTimeout()));
 
-  connect(m_pacmanDatabaseSystemWatcher,
-          SIGNAL(directoryChanged(QString)), this, SLOT(refreshAppIcon())); 
+  //connect(m_pacmanDatabaseSystemWatcher,
+  //        SIGNAL(directoryChanged(QString)), this, SLOT(refreshAppIcon()));
 }
 
 /*
@@ -138,6 +152,8 @@ void MainWindow::pacmanHelperTimerTimeout()
  */
 void MainWindow::afterPacmanHelperSyncDatabase()
 {
+  m_systemTrayIconMenu->close();
+
   disconnect(m_pacmanDatabaseSystemWatcher,
           SIGNAL(directoryChanged(QString)), this, SLOT(refreshAppIcon()));
 
@@ -209,13 +225,15 @@ void MainWindow::sendNotification(const QString &msg)
  */
 void MainWindow::refreshAppIcon()
 {
-  disconnect(m_pacmanDatabaseSystemWatcher,
-          SIGNAL(directoryChanged(QString)), this, SLOT(refreshAppIcon()));
+  //disconnect(m_pacmanDatabaseSystemWatcher,
+  //        SIGNAL(directoryChanged(QString)), this, SLOT(refreshAppIcon()));
 
   m_outdatedPackageList = Package::getOutdatedPackageList();
+  m_outdatedYaourtPackageList = Package::getOutdatedYaourtPackageList();
   m_numberOfOutdatedPackages = m_outdatedPackageList->count();
+  m_numberOfOutdatedYaourtPackages = m_outdatedYaourtPackageList->count();
 
-  if (m_numberOfOutdatedPackages == 0)
+  if (m_numberOfOutdatedPackages == 0 && m_numberOfOutdatedYaourtPackages == 0)
   {
     //m_systemTrayIcon->setToolTip(StrConstants::getApplicationName());
     m_actionOctopi->setText("Octopi...");
@@ -234,21 +252,38 @@ void MainWindow::refreshAppIcon()
       m_systemTrayIcon->setToolTip(StrConstants::getNewUpdates().arg(m_numberOfOutdatedPackages));
     }
   }
+  else if (m_numberOfOutdatedYaourtPackages > 0)
+  {
+    m_actionOctopi->setText("Octopi...");
+
+    if (m_numberOfOutdatedYaourtPackages == 1)
+    {
+      m_systemTrayIcon->setToolTip(StrConstants::getOneNewUpdate());
+    }
+    else if (m_numberOfOutdatedYaourtPackages > 1)
+    {
+      m_systemTrayIcon->setToolTip(StrConstants::getNewUpdates().arg(m_numberOfOutdatedYaourtPackages));
+    }
+  }
 
   if(m_outdatedPackageList->count() > 0)
   {
     m_icon = (IconHelper::getIconOctopiRed());
   }
-  else
+  else if(m_outdatedYaourtPackageList->count() > 0)
   {
     m_icon = (IconHelper::getIconOctopiYellow());
+  }
+  else
+  {
+    m_icon = (IconHelper::getIconOctopiGreen());
   }
 
   m_systemTrayIcon->setIcon(m_icon);
   m_systemTrayIcon->show();
 
-  connect(m_pacmanDatabaseSystemWatcher,
-          SIGNAL(directoryChanged(QString)), this, SLOT(refreshAppIcon()));
+  //connect(m_pacmanDatabaseSystemWatcher,
+  //        SIGNAL(directoryChanged(QString)), this, SLOT(refreshAppIcon()));
 }
 
 /*
