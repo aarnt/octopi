@@ -257,6 +257,7 @@ void MainWindow::initToolButtonPacman()
   m_toolButtonPacman = new QToolButton(this);
   m_toolButtonPacman->setIconSize(QSize(16, 16));
   m_toolButtonPacman->setIcon(IconHelper::getIconOutdated());
+  m_toolButtonPacman->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
   m_toolButtonPacman->setAutoRaise(true);
   m_toolButtonPacman->hide();
   m_menuToolButtonPacman = new QMenu(this);
@@ -274,6 +275,7 @@ void MainWindow::initToolButtonYaourt()
   m_toolButtonYaourt = new QToolButton(this);
   m_toolButtonYaourt->setIconSize(QSize(16, 16));
   m_toolButtonYaourt->setIcon(IconHelper::getIconForeignRed());
+  m_toolButtonYaourt->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
   m_toolButtonYaourt->setAutoRaise(true);
   m_toolButtonYaourt->hide();
   m_menuToolButtonYaourt = new QMenu(this);

@@ -835,15 +835,22 @@ void MainWindow::showToolButtonYaourt()
   if(m_outdatedYaourtPackageList->count() > 0 && m_outdatedYaourtPackageList->count() > 0)
   {
     if (m_outdatedYaourtPackageList->count() == 1)
+    {
+      m_toolButtonYaourt->setText("(1)");
       m_toolButtonYaourt->setToolTip(StrConstants::getOneNewUpdate());
+    }
     else
+    {
+      m_toolButtonYaourt->setText("(" + QString::number(m_outdatedYaourtPackagesNameVersion->count()) + ")");
       m_toolButtonYaourt->setToolTip(
           StrConstants::getNewUpdates().arg(m_outdatedYaourtPackagesNameVersion->count()));
+    }
 
     m_toolButtonYaourt->show();
   }
   else
   {
+    m_toolButtonYaourt->setText("");
     m_toolButtonYaourt->setToolTip("");
     m_toolButtonYaourt->hide();
   }
@@ -897,15 +904,22 @@ void MainWindow::refreshStatusBar()
     m_toolButtonPacman->show();
 
     if (m_numberOfOutdatedPackages == 1)
+    {
+      m_toolButtonPacman->setText("(1)");
       m_toolButtonPacman->setToolTip(StrConstants::getOneNewUpdate());
+    }
     else
+    {
+      m_toolButtonPacman->setText("(" + QString::number(m_numberOfOutdatedPackages) + ")");
       m_toolButtonPacman->setToolTip(StrConstants::getNewUpdates().arg(m_numberOfOutdatedPackages));
+    }
 
     ui->statusBar->addWidget(m_toolButtonPacman);
   }
   else
   {
     m_toolButtonPacman->hide();
+    m_toolButtonPacman->setText("");
     m_toolButtonPacman->setToolTip("");
   }
 }
