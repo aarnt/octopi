@@ -25,7 +25,8 @@ SOURCES += main.cpp \
     ../../src/wmhelper.cpp \
     ../../src/settingsmanager.cpp \
     ../../src/pacmanhelperclient.cpp \
-    ../../src/utils/processwrapper.cpp
+    ../../src/utils/processwrapper.cpp \
+    ../../src/transactiondialog.cpp
 
 HEADERS  += \
     mainwindow.h \
@@ -35,7 +36,10 @@ HEADERS  += \
     ../../src/strconstants.h \
     ../../src/package.h \
     ../../src/pacmanhelperclient.h \
-    ../../src/utils/processwrapper.h
+    ../../src/utils/processwrapper.h \
+    ../../src/transactiondialog.h
+
+FORMS += ../../ui/transactiondialog.ui
 
 RESOURCES += \
     ../../resources.qrc

@@ -12,6 +12,8 @@
   Show Yaourt packages as outdated in default package list.
   Now it's possible to upgrade Yaourt packages even outside Yaourt group.
   Now the yellow octopi icon means there are outdated yaourt packages.
+  Now octopi-notifier opens only the transaction dialog if Octopi is not running 
+	and user requests a system upgrade.
   Added a new notification for outdated packages on statusbar.
   Added a new status icon: an orange one for newer than repo 
 	installed packages.

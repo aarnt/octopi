@@ -1,6 +1,9 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+#include "../../src/unixcommand.h"
+
+#include <QProcess>
 #include <QString>
 #include <QMainWindow>
 #include <QSystemTrayIcon>
@@ -25,14 +28,21 @@ private slots:
   void afterPacmanHelperSyncDatabase();
   void execSystemTrayActivated(QSystemTrayIcon::ActivationReason);
   void refreshAppIcon();
-  void runOctopi();
+  void runOctopi(bool execApplication = false);
   void hideOctopi();
   void exitNotifier();
+  void doSystemUpgrade();
+  void doSystemUpgradeFinished(int, QProcess::ExitStatus);
+  void toggleEnableInterface(bool state);
 
 private:
 
   int m_numberOfOutdatedPackages;
   int m_numberOfOutdatedYaourtPackages;
+  bool m_systemUpgradeDialog;
+  CommandExecuting m_commandExecuting;
+  UnixCommand *m_unixCommand;
+
   QAction *m_actionExit;
   QAction *m_actionOctopi;
   QIcon m_icon;
@@ -44,6 +54,7 @@ private:
   QFileSystemWatcher *m_pacmanDatabaseSystemWatcher;
   PacmanHelperClient *m_pacmanClient;
 
+  bool _isSUAvailable();
   void initSystemTrayIcon();
   void sendNotification(const QString &msg);
 };

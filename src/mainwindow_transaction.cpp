@@ -43,7 +43,6 @@
 void MainWindow::changeTransactionActionsState()
 {
   bool state = _isThereAPendingTransaction();
-
   ui->actionCommit->setEnabled(state);
   ui->actionRollback->setEnabled(state);
 }
@@ -1338,8 +1337,6 @@ void MainWindow::actionsProcessFinished(int exitCode, QProcess::ExitStatus)
       return;
     }
   }
-
-  //TODO: We have to wait until metaBuildPackageList() returns...
 
   enableTransactionActions();
   if (m_cbGroups->currentText() == StrConstants::getYaourtGroup())

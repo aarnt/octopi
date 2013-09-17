@@ -24,7 +24,7 @@ int main(int argc, char *argv[])
   appTranslator.load(":/resources/translations/octopi_" +
                      QLocale::system().name());
   a.installTranslator(&appTranslator);
-
+  a.setQuitOnLastWindowClosed(false);
   MainWindow w;
   QResource::registerResource("./resources.qrc");
   return a.exec();
