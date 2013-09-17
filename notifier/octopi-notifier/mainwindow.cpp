@@ -213,7 +213,7 @@ void MainWindow::sendNotification(const QString &msg)
     if (UnixCommand::hasTheExecutable(processToExec))
     {
       QProcess *send = new QProcess();
-      processToExec += " -i /usr/share/icons/octopi.png -t 30000 \"" + StrConstants::getApplicationName() +
+      processToExec += " -i /usr/share/icons/octopi_red.png -t 30000 \"" + StrConstants::getApplicationName() +
           "\"  \"" + msg + "\"";
       send->startDetached(processToExec);
     }

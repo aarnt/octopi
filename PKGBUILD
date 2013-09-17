@@ -43,6 +43,8 @@ package_octopi() {
    install -D -m755 $startdir/bin/$pkgname ${pkgdir}/usr/bin/$pkgname
    install -D -m644 $startdir/$pkgname.desktop ${pkgdir}/usr/share/applications/$pkgname.desktop
    install -D -m644 $startdir/resources/images/${pkgname}_yellow.png ${pkgdir}/usr/share/icons/$pkgname.png
+   install -D -m644 $startdir/resources/images/${pkgname}_red.png ${pkgdir}/usr/share/icons/${pkgname}_red.png
+   install -D -m644 $startdir/resources/images/${pkgname}_green.png ${pkgdir}/usr/share/icons/${pkgname}_green.png
 
    #Pacmanhelper service files
    install -D -m755 $startdir/notifier/bin/pacmanhelper ${pkgdir}/usr/lib/octopi/pacmanhelper
