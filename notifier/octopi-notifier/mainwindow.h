@@ -29,6 +29,8 @@ private slots:
   void execSystemTrayActivated(QSystemTrayIcon::ActivationReason);
   void refreshAppIcon();
   void runOctopi(bool execApplication = false);
+  inline void startOctopi() { runOctopi(true); }
+
   void hideOctopi();
   void exitNotifier();
   void doSystemUpgrade();
@@ -43,8 +45,9 @@ private:
   CommandExecuting m_commandExecuting;
   UnixCommand *m_unixCommand;
 
-  QAction *m_actionExit;
   QAction *m_actionOctopi;
+  QAction *m_actionSystemUpgrade;
+  QAction *m_actionExit;
   QIcon m_icon;
   QStringList *m_outdatedPackageList;
   QStringList *m_outdatedYaourtPackageList;

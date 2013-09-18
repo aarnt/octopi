@@ -12,6 +12,10 @@
 #include <QProcess>
 #include <QMessageBox>
 
+/*
+ * This is Octopi Notifier slim interface code :-)
+ */
+
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent)
 {
@@ -34,7 +38,11 @@ void MainWindow::initSystemTrayIcon()
 
   m_actionOctopi = new QAction(this);
   m_actionOctopi->setText("Octopi...");
-  connect(m_actionOctopi, SIGNAL(triggered()), this, SLOT(runOctopi()));
+  connect(m_actionOctopi, SIGNAL(triggered()), this, SLOT(startOctopi()));
+
+  m_actionSystemUpgrade = new QAction(this);
+  m_actionSystemUpgrade->setText(tr("System upgrade"));
+  connect(m_actionSystemUpgrade, SIGNAL(triggered()), this, SLOT(runOctopi()));
 
   refreshAppIcon();
 
@@ -74,8 +82,9 @@ void MainWindow::initSystemTrayIcon()
   m_systemTrayIcon->show();
   m_systemTrayIconMenu = new QMenu( this );
   m_systemTrayIconMenu->addAction(m_actionOctopi);
+  m_systemTrayIconMenu->addAction(m_actionSystemUpgrade);
   m_systemTrayIconMenu->addSeparator();
-  m_systemTrayIconMenu->addAction(m_actionExit);
+  m_systemTrayIconMenu->addAction(m_actionExit);  
   m_systemTrayIcon->setContextMenu(m_systemTrayIconMenu);
 
   connect ( m_systemTrayIcon , SIGNAL( activated( QSystemTrayIcon::ActivationReason ) ),
@@ -85,7 +94,7 @@ void MainWindow::initSystemTrayIcon()
   connect(m_pacmanClient, SIGNAL(syncdbcompleted()), this, SLOT(afterPacmanHelperSyncDatabase()));
 
   m_pacmanHelperTimer = new QTimer();
-  m_pacmanHelperTimer->setInterval(200);
+  m_pacmanHelperTimer->setInterval(100);
   m_pacmanHelperTimer->start();
 
   connect(m_pacmanHelperTimer, SIGNAL(timeout()), this, SLOT(pacmanHelperTimerTimeout()));
@@ -102,7 +111,7 @@ void MainWindow::runOctopi(bool execApplication)
   QProcess proc;
 
   if (!execApplication &&
-      !UnixCommand::isAppRunning("octopi", true) && m_actionOctopi->text() == tr("System upgrade"))
+      !UnixCommand::isAppRunning("octopi", true) && m_outdatedPackageList->count() > 0)
   {
     doSystemUpgrade();
   }
@@ -279,6 +288,7 @@ void MainWindow::doSystemUpgradeFinished(int, QProcess::ExitStatus)
 void MainWindow::toggleEnableInterface(bool state)
 {
   m_actionOctopi->setEnabled(state);
+  //m_actionSystemUpgrade->setEnabled(state);
   m_actionExit->setEnabled(state);
 }
 
@@ -298,6 +308,16 @@ void MainWindow::pacmanHelperTimerTimeout()
   }
 
   m_actionOctopi->setEnabled(false);
+
+  if (m_outdatedPackageList->count() > 0)
+  {
+    m_actionSystemUpgrade->setEnabled(false);
+  }
+  else
+  {
+    m_actionSystemUpgrade->setVisible(false);
+  }
+
   m_commandExecuting = ectn_SYNC_DATABASE;
   m_pacmanClient->syncdb();
 }
@@ -389,13 +409,10 @@ void MainWindow::refreshAppIcon()
 
   if (m_numberOfOutdatedPackages == 0 && m_numberOfOutdatedYaourtPackages == 0)
   {
-    m_actionOctopi->setText("Octopi...");
     m_systemTrayIcon->setToolTip("");
   }
   else if (m_numberOfOutdatedPackages > 0)
   {
-    m_actionOctopi->setText(tr("System upgrade"));
-
     if (m_numberOfOutdatedPackages == 1)
     {
       m_systemTrayIcon->setToolTip(StrConstants::getOneNewUpdate());
@@ -407,8 +424,6 @@ void MainWindow::refreshAppIcon()
   }
   else if (m_numberOfOutdatedYaourtPackages > 0)
   {
-    m_actionOctopi->setText("Octopi...");
-
     if (m_numberOfOutdatedYaourtPackages == 1)
     {
       m_systemTrayIcon->setToolTip(StrConstants::getOneNewUpdate());
@@ -419,16 +434,20 @@ void MainWindow::refreshAppIcon()
     }
   }
 
-  if(m_outdatedPackageList->count() > 0)
+  if(m_outdatedPackageList->count() > 0) //RED ICON!
   {
+    m_actionSystemUpgrade->setEnabled(true);
+    m_actionSystemUpgrade->setVisible(true);
     m_icon = (IconHelper::getIconOctopiRed());
   }
-  else if(m_outdatedYaourtPackageList->count() > 0)
+  else if(m_outdatedYaourtPackageList->count() > 0) //YELLOW ICON!
   {
+    m_actionSystemUpgrade->setVisible(false);
     m_icon = (IconHelper::getIconOctopiYellow());
   }
-  else
+  else //YEAHHH... GREEN ICON!
   {
+    m_actionSystemUpgrade->setVisible(false);
     m_icon = (IconHelper::getIconOctopiGreen());
   }
 
@@ -447,7 +466,15 @@ void MainWindow::execSystemTrayActivated(QSystemTrayIcon::ActivationReason ar)
   {
   case QSystemTrayIcon::DoubleClick:
   {
-    runOctopi(true);
+    if (m_outdatedPackageList->count() > 0)
+    {
+      runOctopi();
+    }
+    else
+    {
+      runOctopi(true);
+    }
+
     break;
   }
   case QSystemTrayIcon::Trigger:
@@ -456,6 +483,7 @@ void MainWindow::execSystemTrayActivated(QSystemTrayIcon::ActivationReason ar)
     {
       hideOctopi();
     }
+
     break;
   }
   default: break;

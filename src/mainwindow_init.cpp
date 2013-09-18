@@ -565,11 +565,13 @@ void MainWindow::initActions()
   m_actionInstallYaourtUpdates = new QAction(this);
   m_actionInstallYaourtUpdates->setIcon(IconHelper::getIconToInstall());
   m_actionInstallYaourtUpdates->setText(ui->actionInstall->text());
+  m_actionInstallYaourtUpdates->setIconVisibleInMenu(true);
   connect(m_actionInstallYaourtUpdates, SIGNAL(triggered()), this, SLOT(doYaourtUpgrade()));
 
   m_actionInstallPacmanUpdates = new QAction(this);
   m_actionInstallPacmanUpdates->setIcon(IconHelper::getIconToInstall());
   m_actionInstallPacmanUpdates->setText(ui->actionInstall->text());
+  m_actionInstallPacmanUpdates->setIconVisibleInMenu(true);
   connect(m_actionInstallPacmanUpdates, SIGNAL(triggered()), this, SLOT(doSystemUpgrade()));
 
   ui->actionInstallLocalPackage->setIcon(IconHelper::getIconFolder());

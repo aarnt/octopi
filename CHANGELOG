@@ -1,4 +1,4 @@
-0.2.1 (dev)
+0.3 (dev)
   Code cleanings.
   BugFix: No need to refresh package list after a cache clean.
   BugFix: Konsole was not working with yaourt package installation.
@@ -9,6 +9,9 @@
   BugFix: Better RazorQt compatibility.
   BugFix: Notifier: clear tooltip if no update is available (thanks to 
 	Anselmo L. S. Melo - anselmolsm).
+  Changed octopi main icon to octopi-green.png in PKGBUILD and 
+	octopi.desktop.
+  Added menu "Octopi" and "System Upgrade" in octopi-notifier.
   Show Yaourt packages as outdated in default package list.
   Now it's possible to upgrade Yaourt packages even outside Yaourt group.
   Now the yellow octopi icon means there are outdated yaourt packages.

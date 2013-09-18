@@ -1,5 +1,5 @@
 pkgname=('octopi' 'octopi-notifier')
-pkgver=0.2.1
+pkgver=0.3
 pkgrel=1
 pkgdesc="a powerful Pacman frontend using Qt libs"
 arch=('i686' 'x86_64')
@@ -42,9 +42,9 @@ package_octopi() {
    #Octopi main files
    install -D -m755 $startdir/bin/$pkgname ${pkgdir}/usr/bin/$pkgname
    install -D -m644 $startdir/$pkgname.desktop ${pkgdir}/usr/share/applications/$pkgname.desktop
-   install -D -m644 $startdir/resources/images/${pkgname}_yellow.png ${pkgdir}/usr/share/icons/$pkgname.png
+   install -D -m644 $startdir/resources/images/${pkgname}_green.png ${pkgdir}/usr/share/icons/$pkgname.png
    install -D -m644 $startdir/resources/images/${pkgname}_red.png ${pkgdir}/usr/share/icons/${pkgname}_red.png
-   install -D -m644 $startdir/resources/images/${pkgname}_green.png ${pkgdir}/usr/share/icons/${pkgname}_green.png
+   install -D -m644 $startdir/resources/images/${pkgname}_yellow.png ${pkgdir}/usr/share/icons/${pkgname}_yellow.png
 
    #Pacmanhelper service files
    install -D -m755 $startdir/notifier/bin/pacmanhelper ${pkgdir}/usr/lib/octopi/pacmanhelper
