@@ -120,39 +120,6 @@ void MainWindow::initAppIcon()
 }
 
 /*
- * Initializes the Systray icon (with the same app icon)
- */
-void MainWindow::initSystemTrayIcon()
-{
-  m_systemTrayIcon = new QSystemTrayIcon(this->windowIcon(), this);
-  m_systemTrayIcon->setObjectName("systemTrayIcon");
-
-  if (m_numberOfOutdatedPackages == 0)
-  {
-    m_systemTrayIcon->setToolTip(StrConstants::getApplicationName());
-  }
-  else if (m_numberOfOutdatedPackages > 0)
-  {
-    if (m_numberOfAvailablePackages == 1)
-    {
-      m_systemTrayIcon->setToolTip(StrConstants::getOneNewUpdate());
-    }
-    else if (m_numberOfOutdatedPackages > 1)
-    {
-      m_systemTrayIcon->setToolTip(StrConstants::getNewUpdates().arg(m_numberOfOutdatedPackages));
-    }
-  }
-
-  m_systemTrayIcon->show();
-  m_systemTrayIconMenu = new QMenu( this );
-  m_systemTrayIconMenu->addAction(ui->actionHelpAbout);
-  m_systemTrayIconMenu->addAction(ui->actionExit);
-
-  connect ( m_systemTrayIcon , SIGNAL( activated( QSystemTrayIcon::ActivationReason ) ),
-            this, SLOT( execSystemTrayActivated ( QSystemTrayIcon::ActivationReason ) ) );
-}
-
-/*
  * Whenever user clicks the SystemTrayIcon area...
  */
 void MainWindow::execSystemTrayActivated(QSystemTrayIcon::ActivationReason ar)

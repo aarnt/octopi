@@ -62,27 +62,6 @@ void MainWindow::refreshAppIcon()
 }
 
 /*
- * Refreshes SystemTray icon and tooltip, according to the outdatedPackageList
- */
-void MainWindow::refreshSystemTrayIcon()
-{
-  m_systemTrayIcon->setIcon(this->windowIcon());
-
-  if(m_numberOfOutdatedPackages == 0)
-  {
-    m_systemTrayIcon->setToolTip(StrConstants::getApplicationName());
-  }
-  else if (m_numberOfOutdatedPackages == 1)
-  {
-    m_systemTrayIcon->setToolTip(StrConstants::getOneNewUpdate());
-  }
-  else if (m_numberOfOutdatedPackages > 1)
-  {
-    m_systemTrayIcon->setToolTip(StrConstants::getNewUpdates().arg(m_numberOfOutdatedPackages));
-  }
-}
-
-/*
  * Inserts the group names into the Groups comboBox
  */
 void MainWindow::refreshComboBoxGroups()

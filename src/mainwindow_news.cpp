@@ -20,7 +20,7 @@
 */
 
 /*
- * This is a MainWindow's Distro news related code
+ * This is MainWindow's Distro news related code
  */
 
 #include "ui_mainwindow.h"
@@ -28,237 +28,14 @@
 #include "strconstants.h"
 #include "searchbar.h"
 #include "uihelper.h"
+#include "globals.h"
+#include "packagecontroller.h"
 
 #include <QTextBrowser>
-#include <QTextStream>
-#include <QCryptographicHash>
-#include <QDomDocument>
+#include <QFutureWatcher>
+#include <QtConcurrentRun>
 
-/*
- * Retrieves the distro RSS news feed from its respective site
- * If it fails to connect to the internet, uses the available "./.config/octopi/distro_rss.xml"
- * The result is a QString containing the RSS News Feed XML code
- */
-QString MainWindow::retrieveDistroNews(bool searchForLatestNews)
-{
-  const QString ctn_ARCH_LINUX_RSS = "https://www.archlinux.org/feeds/news/";
-  const QString ctn_CHAKRA_RSS = "http://chakra-project.org/news/index.php?/feeds/index.rss2";
-  const QString ctn_MANJARO_LINUX_RSS = "http://manjaro.org/feed/";
-
-  LinuxDistro distro = UnixCommand::getLinuxDistro();
-
-  QString res;
-  QString tmpRssPath = QDir::homePath() + QDir::separator() + ".config/octopi/.tmp_distro_rss.xml";
-  QString rssPath = QDir::homePath() + QDir::separator() + ".config/octopi/distro_rss.xml";
-  QString contentsRss;
-
-  QFile fileRss(rssPath);
-  if (fileRss.exists())
-  {
-    if (!fileRss.open(QIODevice::ReadOnly | QIODevice::Text)) res = "";
-    QTextStream in2(&fileRss);
-    contentsRss = in2.readAll();
-    fileRss.close();
-  }
-
-  if(searchForLatestNews && UnixCommand::hasInternetConnection() && distro != ectn_UNKNOWN)
-  {
-    QString curlCommand = "curl %1 -o %2";
-
-    if (distro == ectn_ARCHLINUX || distro == ectn_ARCHBANGLINUX)
-    {
-      curlCommand = curlCommand.arg(ctn_ARCH_LINUX_RSS).arg(tmpRssPath);
-    }
-    else if (distro == ectn_CHAKRA)
-    {
-      curlCommand = curlCommand.arg(ctn_CHAKRA_RSS).arg(tmpRssPath);
-    }
-    else if (distro == ectn_MANJAROLINUX)
-    {
-      curlCommand = curlCommand.arg(ctn_MANJARO_LINUX_RSS).arg(tmpRssPath);
-    }
-
-    if (UnixCommand::runCurlCommand(curlCommand).isEmpty())
-    {
-      QFile fileTmpRss(tmpRssPath);
-      QFile fileRss(rssPath);
-
-      if (!fileRss.exists())
-      {
-        fileTmpRss.rename(tmpRssPath, rssPath);
-
-        if (!fileRss.open(QIODevice::ReadOnly | QIODevice::Text)) res = "";
-        QTextStream in2(&fileRss);
-        contentsRss = in2.readAll();
-        fileRss.close();
-
-        res = contentsRss;
-      }
-      else
-      {
-        //A rss file already exists. We have to make a SHA1 hash to compare the contents
-        QString tmpRssSHA1;
-        QString rssSHA1;
-        QString contentsTmpRss;
-
-        QFile fileTmpRss(tmpRssPath);
-        if (!fileTmpRss.open(QIODevice::ReadOnly | QIODevice::Text)) res = "";
-        QTextStream in(&fileTmpRss);
-        contentsTmpRss = in.readAll();
-        fileTmpRss.close();
-
-        tmpRssSHA1 = QCryptographicHash::hash(contentsTmpRss.toAscii(), QCryptographicHash::Sha1);
-        rssSHA1 = QCryptographicHash::hash(contentsRss.toAscii(), QCryptographicHash::Sha1);
-
-        if (tmpRssSHA1 != rssSHA1){
-          fileRss.remove();
-          fileTmpRss.rename(tmpRssPath, rssPath);
-
-          res = "*" + contentsTmpRss; //The asterisk indicates there is a MORE updated rss!
-        }
-        else
-        {
-          fileTmpRss.remove();
-          res = contentsRss;
-        }
-      }
-    }
-  }
-  //Either we don't have internet or we weren't asked to retrieve the latest news
-  else
-  {
-    QFile fileRss(rssPath);
-
-    //Maybe we have a file in "./.config/octopi/distro_rss.xml"
-    if (fileRss.exists())
-    {
-      res = contentsRss;
-    }
-    else if (searchForLatestNews)
-    {
-      res = "<h3><font color=\"#E55451\">" + StrConstants::getInternetUnavailableError() + "</font></h3>";
-    }
-    else if (distro != ectn_UNKNOWN)
-    {
-      res = "<h3><font color=\"#E55451\">" + StrConstants::getNewsErrorMessage() + "</font></h3>";
-    }
-    else
-    {
-      res = "<h3><font color=\"#E55451\">" + StrConstants::getIncompatibleLinuxDistroError() + "</font></h3>";
-    }
-  }
-
-  return res;
-}
-
-/*
- * Parses the raw XML contents from the Distro RSS news feed
- * Creates and returns a string containing a HTML code with latest 10 news
- */
-QString MainWindow::parseDistroNews()
-{
-  QString html;
-
-  LinuxDistro distro = UnixCommand::getLinuxDistro();
-  if (distro == ectn_ARCHLINUX || distro == ectn_ARCHBANGLINUX)
-  {
-    html = "<p align=\"center\"><h2>" + StrConstants::getArchLinuxNews() + "</h2></p><ul>";
-  }
-  else if (distro == ectn_CHAKRA)
-  {
-    html = "<p align=\"center\"><h2>" + StrConstants::getChakraNews() + "</h2></p><ul>";
-  }
-  else if (distro == ectn_MANJAROLINUX)
-  {
-    html = "<p align=\"center\"><h2>" + StrConstants::getManjaroLinuxNews() + "</h2></p><ul>";
-  }
-
-  QString lastBuildDate;
-  QString rssPath = QDir::homePath() + QDir::separator() + ".config/octopi/distro_rss.xml";
-  QDomDocument doc("rss");
-  int itemCounter=0;
-
-  QFile file(rssPath);
-  if (!file.open(QIODevice::ReadOnly)) return "";
-  if (!doc.setContent(&file)) {
-      file.close();
-      return "";
-  }
-  file.close();
-
-  QDomElement docElem = doc.documentElement(); //This is rss
-  QDomNode n = docElem.firstChild(); //This is channel
-  n = n.firstChild();
-
-  while(!n.isNull()) {
-    QDomElement e = n.toElement();
-
-    if(!e.isNull())
-    {
-      if (e.tagName() == "lastBuildDate")
-      {
-        lastBuildDate = e.text();
-      }
-      else if(e.tagName() == "item")
-      {
-        //Let's iterate over the 10 lastest "item" news
-        if (itemCounter == 10) break;
-
-        QDomNode text = e.firstChild();
-
-        QString itemTitle;
-        QString itemLink;
-        QString itemDescription;
-        QString itemPubDate;
-
-        while(!text.isNull())
-        {
-          QDomElement eText = text.toElement();
-
-          if(!eText.isNull())
-          {
-            if (eText.tagName() == "title")
-            {
-              itemTitle = "<h3>" + eText.text() + "</h3>";
-            }
-            else if (eText.tagName() == "link")
-            {
-              itemLink = Package::makeURLClickable(eText.text());
-              if (UnixCommand::getLinuxDistro() == ectn_MANJAROLINUX) itemLink += "<br>";
-            }
-            else if (eText.tagName() == "description")
-            {
-              itemDescription = eText.text();
-              //itemDescription = itemDescription.remove(QRegExp("\\n"));
-              itemDescription += "<br>";
-            }
-            else if (eText.tagName() == "pubDate")
-            {
-              itemPubDate = eText.text();
-              itemPubDate = itemPubDate.remove(QRegExp("\\n"));
-              int pos = itemPubDate.indexOf("+");
-
-              if (pos > -1)
-              {
-                itemPubDate = itemPubDate.mid(0, pos-1).trimmed() + "<br>";
-              }
-            }
-          }
-
-          text = text.nextSibling();
-        }
-
-        html += "<li><p>" + itemTitle + " " + itemPubDate + "<br>" + itemLink + itemDescription + "</p></li>";
-        itemCounter++;
-      }
-    }
-
-    n = n.nextSibling();
-  }
-
-  html += "</ul>";
-  return html;
-}
+using namespace QtConcurrent;
 
 /*
  * This is the high level method that orquestrates the Distro RSS News printing in tabNews
@@ -270,36 +47,63 @@ QString MainWindow::parseDistroNews()
  */
 void MainWindow::refreshDistroNews(bool searchForLatestNews, bool gotoNewsTab)
 {
-  qApp->processEvents();
+  ui->actionGetNews->setEnabled(false);
+  m_gotoNewsTab = gotoNewsTab;
 
   if (searchForLatestNews)
   {
     LinuxDistro distro = UnixCommand::getLinuxDistro();
-    clearTabOutput();
 
-    if (distro == ectn_ARCHLINUX || distro == ectn_ARCHBANGLINUX)
+    if (gotoNewsTab)
+    {
+      clearTabOutput();
+    }
+
+    if (gotoNewsTab && (distro == ectn_ARCHLINUX || distro == ectn_ARCHBANGLINUX))
     {
       writeToTabOutputExt("<b>" +
                           StrConstants::getSearchingForDistroNews().arg("Arch Linux") + "</b>");
     }
-    else if (distro == ectn_CHAKRA)
+    else if (gotoNewsTab && distro == ectn_CHAKRA)
     {
       writeToTabOutputExt("<b>" +
                           StrConstants::getSearchingForDistroNews().arg("Chakra") + "</b>");
     }
-    else if (distro == ectn_MANJAROLINUX)
+    else if (gotoNewsTab && distro == ectn_MANJAROLINUX)
     {
       writeToTabOutputExt("<b>" +
                           StrConstants::getSearchingForDistroNews().arg("Manjaro Linux") + "</b>");
     }
-
-    qApp->processEvents();
   }
 
-  CPUIntensiveComputing *cic = new CPUIntensiveComputing;
-  QString distroRSSXML = retrieveDistroNews(searchForLatestNews);
-  delete cic;
+  if (searchForLatestNews == false)
+  {
+    QString distroRSSXML = PackageController::retrieveDistroNews(searchForLatestNews);
+    showDistroNews(distroRSSXML, false);
+  }
+  //We have to refresh news using the non-blocking way...
+  else
+  {
+    QFuture<QString> f;
+    f = run(getLatestDistroNews);
+    g_fwDistroNews.setFuture(f);
+    connect(&g_fwDistroNews, SIGNAL(finished()), this, SLOT(postRefreshDistroNews()));
+  }
+}
 
+/*
+ * After we have the multithreaded RSS distro news, we parse and show it!
+ */
+void MainWindow::postRefreshDistroNews()
+{
+  showDistroNews(g_fwDistroNews.result(), true);
+}
+
+/*
+ * At last we have to just show the retrivied news html
+ */
+void MainWindow::showDistroNews(QString distroRSSXML, bool searchForLatestNews)
+{
   QString html;
 
   if (distroRSSXML.count() >= 200)
@@ -307,14 +111,14 @@ void MainWindow::refreshDistroNews(bool searchForLatestNews, bool gotoNewsTab)
     if (distroRSSXML.at(0)=='*')
     {
       /* If this is an updated RSS, we must warn the user!
-         And if the main window is hidden... */
+       And if the main window is hidden... */
       if (isHidden())
       {
         show();
       }
 
       ui->twProperties->setTabText(ctn_TABINDEX_NEWS, "** " + StrConstants::getTabNewsName() + " **");
-      if (gotoNewsTab)
+      if (m_gotoNewsTab)
       {
         ui->twProperties->setCurrentIndex(ctn_TABINDEX_NEWS);
       }
@@ -328,7 +132,7 @@ void MainWindow::refreshDistroNews(bool searchForLatestNews, bool gotoNewsTab)
     }
 
     //First, we have to parse the raw RSS XML...
-    html = parseDistroNews();
+    html = PackageController::parseDistroNews();
   }
   else
   {
@@ -346,13 +150,17 @@ void MainWindow::refreshDistroNews(bool searchForLatestNews, bool gotoNewsTab)
     text->setHtml(html);
   }
 
-  clearTabOutput();
-  qApp->processEvents();
+  if (m_gotoNewsTab)
+  {
+    clearTabOutput();
+  }
 
-  if (searchForLatestNews && gotoNewsTab)
+  if (searchForLatestNews && m_gotoNewsTab)
   {
     _changeTabWidgetPropertiesIndex(ctn_TABINDEX_NEWS);
   }
+
+  ui->actionGetNews->setEnabled(true);
 }
 
 /*
@@ -367,7 +175,7 @@ void MainWindow::onTabNewsSourceChanged(QUrl newSource)
     if (text)
     {
       disconnect(text, SIGNAL(sourceChanged(QUrl)), this, SLOT(onTabNewsSourceChanged(QUrl)));
-      text->setHtml(parseDistroNews());
+      text->setHtml(PackageController::parseDistroNews());
       connect(text, SIGNAL(sourceChanged(QUrl)), this, SLOT(onTabNewsSourceChanged(QUrl)));
     }
   }

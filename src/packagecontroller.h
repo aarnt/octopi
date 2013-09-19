@@ -1,4 +1,5 @@
 /*
+ *
 * This file is part of Octopi, an open-source GUI for pacman.
 * Copyright (C) 2013 Alexandre Albuquerque Arnt
 *
@@ -30,6 +31,9 @@ class PackageController
 public:
   static QString showFullPathOfItem( const QModelIndex &index );
   static QList<QModelIndex> * findFileEx( const QString& name, const QStandardItemModel *sim);
+
+  static QString retrieveDistroNews(bool searchForLatestNews);
+  static QString parseDistroNews();
 };
 
 #endif // PACKAGECONTROLLER_H

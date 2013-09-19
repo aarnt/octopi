@@ -98,14 +98,14 @@ private:
   //Searches /etc/pacman.conf to see if ILoveCandy is there
   bool m_iLoveCandy;
 
-  //Controls the calling of System Upgrade action
+    //Controls the calling of System Upgrade action
   bool m_callSystemUpgrade;
 
   //Controls if this Linux box has yaourt installed
   bool m_hasYaourt;
 
-  //Is Octopi using QCleanLooksStyle???
-  //bool m_cleanLooksStyle;
+  //Controls if the NewsTab must be showed
+  bool m_gotoNewsTab;
 
   //Holds the remove command to be used: -Rcs/-R/-Rs or whichever the user has choosen
   QString m_removeCommand;
@@ -141,9 +141,6 @@ private:
   //This member holds the list of packages to install with "pacman -U" command
   QStringList m_packagesToInstallList;
 
-  QSystemTrayIcon *m_systemTrayIcon;
-  QMenu *m_systemTrayIconMenu;
-
   //This member holds the current command type being executed by Octopi
   CommandExecuting m_commandExecuting;
   CommandExecuting m_commandQueued;
@@ -156,8 +153,6 @@ private:
 
   int m_PackageListOrderedCol;
   Qt::SortOrder m_PackageListSortOrder;
-
-  QTimer *m_pacmanHelperTimer; //Triggers the DBus SyncDB technology magic!
 
   QStringList *m_outdatedPackageList;
   QStringList *m_outdatedYaourtPackageList;
@@ -180,8 +175,6 @@ private:
   int m_numberOfInstalledPackages;
   int m_numberOfAvailablePackages;
   int m_numberOfOutdatedPackages;
-  //Controls the number of outdated Yaourt packages
-  //int m_numberOfOutdatedYaourt;
 
   void loadSettings();
   void loadPanelSettings();
@@ -189,8 +182,6 @@ private:
 
   void initAppIcon();
   void refreshAppIcon();
-  void refreshSystemTrayIcon();
-  void initSystemTrayIcon();
   void initComboBoxGroups();
   void refreshComboBoxGroups();
   void initToolBar();
@@ -253,19 +244,13 @@ private:
 
   QString retrieveDistroNews(bool searchForLatestNews = true);
   QString parseDistroNews();
+  void showDistroNews(QString distroRSSXML, bool searchForLatestNews = true);
   void initTabNews();
   void initTabHelpUsage();
   void refreshStatusBarToolButtons();
 
 private slots:
-  //PacmanHelper timer SLOT
-  void pacmanHelperTimerTimeout();
-
-  //Called right after the PacmanHelper syncdb() method has finished!
-  void afterPacmanHelperSyncDatabase();
-
   void initToolButtonPacman();
-
   void initToolButtonYaourt();
   void showToolButtonYaourt();
 
@@ -356,10 +341,10 @@ private slots:
 
   void onTabNewsSourceChanged(QUrl newSource);
   void refreshDistroNews(bool searchForLatestNews = true, bool gotoNewsTab = true);
+  void postRefreshDistroNews();
 
   void onHelpUsage();
   void onHelpAbout();
-
   void onPressDelete();
   void changeTransactionActionsState();
   void clearTransactionTreeView();
@@ -374,7 +359,6 @@ private slots:
   void searchBarFindNextEx();
   void searchBarFindPreviousEx();
   void searchBarClosedEx();
-
   void outputTextBrowserAnchorClicked(const QUrl & link);
 
 public slots:

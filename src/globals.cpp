@@ -20,6 +20,7 @@
 
 #include "globals.h"
 #include "mainwindow.h"
+#include "packagecontroller.h"
 
 #include <QStandardItem>
 #include <QFutureWatcher>
@@ -31,6 +32,7 @@ QFutureWatcher<QList<QString> *> g_fwPacmanGroup;
 QFutureWatcher<QList<PackageListData> *> g_fwYaourt;
 QFutureWatcher<QList<PackageListData> *> g_fwYaourtMeta;
 QFutureWatcher<YaourtOutdatedPackages *> g_fwOutdatedYaourtPackages;
+QFutureWatcher<QString> g_fwDistroNews;
 
 /*
  * Given a packageName, returns its description
@@ -38,8 +40,7 @@ QFutureWatcher<YaourtOutdatedPackages *> g_fwOutdatedYaourtPackages;
 QString showPackageInfo(QString pkgName)
 {
   MainWindow *mw = MainWindow::returnMainWindow();
-  QStandardItem * si = mw->getAvailablePackage(
-    pkgName, ctn_PACKAGE_DESCRIPTION_COLUMN);
+  QStandardItem * si = mw->getAvailablePackage(pkgName, ctn_PACKAGE_DESCRIPTION_COLUMN);
 
   if (si == 0) return "";
 
@@ -49,6 +50,7 @@ QString showPackageInfo(QString pkgName)
   int space = description.indexOf(" ");
   QString desc = description.mid(space+1);
   int size = desc.size();
+
   if (desc.size() > 120)
   {
     desc.chop(size - 120);
@@ -92,4 +94,12 @@ YaourtOutdatedPackages * getOutdatedYaourtPackages()
   res->content = Package::getYaourtOutdatedPackagesNameVersion();
 
   return res;
+}
+
+/*
+ * Starts the non blocking search for RSS distro news...
+ */
+QString getLatestDistroNews()
+{
+  return PackageController::retrieveDistroNews(true);
 }

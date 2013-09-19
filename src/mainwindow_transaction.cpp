@@ -478,9 +478,6 @@ void MainWindow::doSyncDatabase()
   //If there are no means to run the actions, we must warn!
   if (!_isSUAvailable()) return;
 
-  //Retrieves the RSS News from respective Distro site...
-  refreshDistroNews(true, false);
-
   m_commandExecuting = ectn_SYNC_DATABASE;
   disableTransactionActions();
 
@@ -1278,6 +1275,9 @@ void MainWindow::actionsProcessFinished(int exitCode, QProcess::ExitStatus)
       //After the command, we can refresh the package list, so any change can be seem.
       if (m_commandExecuting == ectn_SYNC_DATABASE)
       {
+        //Retrieves the RSS News from respective Distro site...
+        refreshDistroNews(true, false);
+
         //Did it synchronize any repo? If so, let's refresh some things...
         if (UnixCommand::isAppRunning("octopi-notifier", true) ||
             _textInTabOutput(StrConstants::getSyncing()))

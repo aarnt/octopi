@@ -9,6 +9,7 @@
   BugFix: Better RazorQt compatibility.
   BugFix: Notifier: clear tooltip if no update is available (thanks to 
 	Anselmo L. S. Melo - anselmolsm).
+  Now Get Latest Distro News doesn't freeze the interface.
   Changed octopi main icon to octopi-green.png in PKGBUILD and 
 	octopi.desktop.
   Added menu "Octopi" and "System Upgrade" in octopi-notifier.

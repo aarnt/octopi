@@ -131,65 +131,6 @@ void MainWindow::show()
 }
 
 /*
- * Whenever this timer ticks, we need to call the PacmanHelper DBus interface to sync Pacman's dbs
- */
-void MainWindow::pacmanHelperTimerTimeout()
-{
-  m_pacmanHelperTimer->setInterval(1000 * 60 * 60 * 1); //the last number stand for hours
-
-  //If Octopi is executing another task, let it finish it first!
-  if(m_commandExecuting != ectn_NONE)
-  {
-    return;
-  }
-}
-
-/*
- * Called right after the PacmanHelper syncdb() method has finished!
- */
-void MainWindow::afterPacmanHelperSyncDatabase()
-{
-  //If Octopi is executing another task, let it finish it first!
-  if(m_commandExecuting != ectn_NONE)
-  {
-    return;
-  }
-
-  refreshDistroNews();
-
-  int numberOfOutdatedPackages = m_numberOfOutdatedPackages;
-  m_outdatedPackageList = Package::getOutdatedPackageList();
-  m_numberOfOutdatedPackages = m_outdatedPackageList->count();
-
-  if (numberOfOutdatedPackages != m_numberOfOutdatedPackages){
-    metaBuildPackageList();
-
-    if (m_numberOfOutdatedPackages > 0)
-    {
-      if (m_numberOfOutdatedPackages == 1)
-      {
-        m_systemTrayIcon->setToolTip(StrConstants::getOneNewUpdate());
-      }
-      else if (m_numberOfOutdatedPackages > 1)
-      {
-        m_systemTrayIcon->setToolTip(StrConstants::getNewUpdates().arg(m_numberOfOutdatedPackages));
-      }
-    }
-  }
-  else
-  {
-    if (numberOfOutdatedPackages == 1)
-    {
-      m_systemTrayIcon->setToolTip(StrConstants::getOneNewUpdate());
-    }
-    else if (numberOfOutdatedPackages > 1)
-    {
-      m_systemTrayIcon->setToolTip(StrConstants::getNewUpdates().arg(numberOfOutdatedPackages));
-    }
-  }
-}
-
-/*
  * Retrieves a pointer to Output's QTextBrowser object
  */
 QTextBrowser *MainWindow::_getOutputTextBrowser()
