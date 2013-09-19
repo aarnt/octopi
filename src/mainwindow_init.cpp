@@ -583,8 +583,9 @@ void MainWindow::initActions()
   if (WMHelper::isXFCERunning())
   {
     //Loop through all actions and set their icons (if any) visible to menus.
-    foreach(QAction* ac, this->findChildren<QAction*>(QRegExp("(m_a|a)ction\\S*"))){
-      ac->setIconVisibleInMenu(true);
+    foreach(QAction* ac, this->findChildren<QAction*>(QRegExp("(m_a|a)ction\\S*")))
+    {
+      if (ac) ac->setIconVisibleInMenu(true);
     }
   }
 }
