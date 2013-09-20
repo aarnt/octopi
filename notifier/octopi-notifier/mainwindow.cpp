@@ -111,7 +111,7 @@ void MainWindow::runOctopi(bool execApplication)
   QProcess proc;
 
   if (!execApplication &&
-      !UnixCommand::isAppRunning("octopi") && m_outdatedPackageList->count() > 0)
+      !UnixCommand::isAppRunning("octopi", true) && m_outdatedPackageList->count() > 0)
   {
     doSystemUpgrade();
   }
