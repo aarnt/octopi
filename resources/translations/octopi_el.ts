@@ -281,152 +281,157 @@
         <translation>Ένα παρωχημένο πακέτο</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="93"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="92"/>
+        <source>A newer than repository package</source>
+        <translation>Ένα νεότερο από αυτό του αποθετηρίου πακέτο</translation>
+    </message>
+    <message>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="95"/>
         <source>Basic usage help:</source>
         <translation>Βασική βοήθεια χρήσης:</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="95"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="97"/>
         <source>Position the mouse over a package to see its description</source>
         <translation>Τοποθετήστε το ποντίκι πάνω από κάποιο πακέτο για να δείτε την περιγραφή του</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="97"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="99"/>
         <source>Double click an installed package to see its contents</source>
         <translation>Κάντε διπλό κλικ σε ένα εγκατεστημένο πακέτο για να δείτε τα περιεχόμενα του</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="99"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="101"/>
         <source>Right click package to install/reinstall or remove it</source>
         <translation>Κάντε διπλό κλικ σε ένα πακέτο για να εγκαταστήσετε/ επανεγκαταστήσετε ή για να το απεγκαταστήσετε</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="102"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="104"/>
         <source>Alt+key sequences:</source>
         <translation>Συντομεύσεις Alt+πλήκτρο:</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="104"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="106"/>
         <source>Alt+1 to switch to &apos;Info&apos; tab</source>
         <translation>Alt+1 για να πάτε στην καρτέλα &apos;Πληροφορίες&apos;</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="106"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="108"/>
         <source>Alt+2 to switch to &apos;Files&apos; tab</source>
         <translation>Alt+2 για να πάτε στην καρτέλα &apos;Αρχεία&apos;</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="108"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="110"/>
         <source>Alt+3 to switch to &apos;Transaction&apos; tab</source>
         <translation>Alt+3 για να πάτε στην καρτέλα &apos;Διενέργεια&apos;</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="110"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="112"/>
         <source>Alt+4 to switch to &apos;Output&apos; tab</source>
         <translation>Alt+4 για να πάτε στην καρτέλα &apos;Αποτέλεσμα&apos; </translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="112"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="114"/>
         <source>Alt+5 to switch to &apos;News&apos; tab</source>
         <translation>Alt+5 για να πάτε στην καρτέλα &apos;Νέα&apos; </translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="114"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="116"/>
         <source>Alt+6 or &apos;F1&apos; to show this help page</source>
         <translation>Alt+6 ή &apos;F1&apos; για να εμφανίσετε αυτή τη σελίδα βοήθειας</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="117"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="119"/>
         <source>Control+key sequences:</source>
         <translation>Συντομεύσεις Control+πλήκτρο:</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="119"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="121"/>
         <source>Ctrl+D or &apos;File/Sync database&apos; to sync the local database with latest remote changes (pacman -Sy)</source>
         <translation>Ctrl+D ή &apos;Αρχείο/Συγχρονισμός βάσης δεδομένων&apos; για να συγχρονιστεί η τοπική βάση δεδομένων με τις τελευταίες αλλαγές (pacman -Sy)</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="121"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="123"/>
         <source>Ctrl+U or &apos;File/System upgrade&apos; to make a full system upgrade (pacman -Su)</source>
         <translation>Ctrl+U ή &apos;Αρχείο/Αναβάθμιση συστήματος&apos; για να πραγματοποιήσετε πλήρη αναβάθμιση συστήματος (pacman -Su)</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="123"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="125"/>
         <source>Ctrl+L to find a package in the package list</source>
         <translation>Ctrl+L για να αναζητήσετε ένα πακέτο στην λίστα πακέτων</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="125"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="127"/>
         <source>Ctrl+F to search for text inside tab Files, News and Usage</source>
         <translation>Ctrl+F για να αναζητήσετε κείμενο στις καρτέλες Αρχεία, Νέα και Χρήση</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="127"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="129"/>
         <source>Ctrl+N or &apos;View/Non installed&apos; to show/hide non installed packages</source>
         <translation>Ctrl+N ή &apos;Προβολή/Μη εγκατεστημένα&apos; για να δείτε/αποκρύψετε μη εγκατεστημένα πακέτα</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="129"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="131"/>
         <source>Ctrl+M or &apos;Transaction/Commit&apos; to start installation/removal of selected packages</source>
         <translation>Ctrl+M ή &apos;Διενέργεια/Εφαρμογή&apos; για να εκκινήσετε προσθαφαίρεση των συγκεκριμένων πακέτων</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="131"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="133"/>
         <source>Ctrl+B or &apos;Transaction/Rollback&apos; to clear the selection of to be removed/installed packages</source>
         <translation>Ctrl+B ή &apos;Διενέργεια/Επαναφορά&apos; για να καθαρίσετε των επιλεγμένων προς προσθαφαίρεση πακέτων</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="133"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="135"/>
         <source>Ctrl+G or &apos;File/Get latest distro news&apos; to retrieve the latest RSS based distro news</source>
         <translation>Ctrl+G ή &apos;Αρχείο/Λήψη των τελευταίων νέων της διανομής&apos; για να λάβετε τα τελευταία RSS νέα της διανομής</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="135"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="137"/>
         <source>Ctrl+Q or &apos;File/Exit&apos; to exit the application</source>
         <translation>Ctrl+Q ή &apos;Αρχείο/Έξοδος&apos; για να εξέλθετε της εφαρμογής</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="138"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="140"/>
         <source>Control+shift+key sequences:</source>
         <translation>Συντομεύσεις Control+shift+πλήκτρο:</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="140"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="142"/>
         <source>Ctrl+Shift+C to clean local packages cache (pacman -Sc)</source>
         <translation>Ctrl+Shift+C για να καθαρίσετε την κρυφή μνήμη των τοπικών πακέτων (pacman -Sc)</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="142"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="144"/>
         <source>Ctrl+Shift+G to display all package groups</source>
         <translation>Ctrl+Shift+G για να προβάλετε όλες τις ομάδες των πακέτων</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="145"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="147"/>
         <source>F+key sequences:</source>
         <translation>Συντομεύσεις F+πλήκτρο:</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="147"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="149"/>
         <source>F1 to show this help page</source>
         <translation>F1για να εμφανίσετε αυτή τη σελίδα βοήθειας</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="149"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="151"/>
         <source>F4 to open a Terminal whitin the selected directory at Files tab</source>
         <translation>F4 για να ανοίξετε ένα τερματικό στον επιλεγμένο φάκελο στην καρτέλα Αρχείων</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="151"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="153"/>
         <source>F6 to open a File Manager whitin the selected directory at Files tab</source>
         <translation>F6 για να ανοίξετε έναν Διαχειριστή Αρχείων στον επιλεγμένο φάκελο στην καρτέλα Αρχείων</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="153"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="155"/>
         <source>F10 to maximize/demaximize package list view</source>
         <translation>F10 για να μεγιστοποιήσετε/απομεγιστοποιήσετε την προβολή λίστας πακέτων</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="155"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="157"/>
         <source>F12 to maximize/demaximize Tab&apos;s view</source>
         <translation>F12 για να μεγιστοποιήσετε/απομεγιστοποιήσετε την προβολή των καρτέλων</translation>
     </message>
