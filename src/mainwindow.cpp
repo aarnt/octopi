@@ -65,10 +65,7 @@ MainWindow::MainWindow(QWidget *parent) :
   m_systemUpgradeDialog = false;
   m_cic = 0;
   m_outdatedYaourtPackageList = new QStringList();
-
-  //m_toolButtonYaourt = 0;
   m_outdatedYaourtPackagesNameVersion = new QHash<QString, QString>();
-
   ui->setupUi(this);
 }
 
@@ -582,9 +579,7 @@ void MainWindow::execContextMenuPackages(QPoint point)
       QStandardItem *si = sim->item(mi.row(), ctn_PACKAGE_ICON_COLUMN);
       QStandardItem *siRepo = sim->item(mi.row(), ctn_PACKAGE_REPOSITORY_COLUMN);
 
-      if(/*(si->icon().pixmap(QSize(22,22)).toImage()) ==
-         IconHelper::getIconForeignGreen().pixmap(QSize(22,22)).toImage() ||*/
-         siRepo->text() == StrConstants::getForeignRepositoryName())
+      if(siRepo->text() == StrConstants::getForeignRepositoryName())
       {
         allInstallable = false;
         numberOfAUR++;
@@ -596,36 +591,33 @@ void MainWindow::execContextMenuPackages(QPoint point)
       }
     }
 
-    //if (allSameType)
-    //{
-      if(allInstallable)
-      {
-        menu->addAction(ui->actionInstall);
+    if(allInstallable)
+    {
+      menu->addAction(ui->actionInstall);
 
-        if (m_cbGroups->currentIndex() != 0 && m_cbGroups->currentText() != StrConstants::getYaourtGroup())
+      if (m_cbGroups->currentIndex() != 0 && m_cbGroups->currentText() != StrConstants::getYaourtGroup())
+      {
+        menu->addAction(ui->actionInstallGroup);
+      }
+    }
+    else if (allInstallable == false && numberOfAUR == numberOfSelPkgs)
+    {
+      menu->addAction(ui->actionInstallYaourt);
+    }
+
+    if(allRemovable)
+    {
+      menu->addAction(ui->actionRemove);
+
+      if (m_cbGroups->currentIndex() != 0 && m_cbGroups->currentText() != StrConstants::getYaourtGroup())
+      {
+        //Is this group already installed?
+        if (m_modelInstalledPackagesFromGroup->rowCount() == m_modelPackagesFromGroup->rowCount())
         {
-          menu->addAction(ui->actionInstallGroup);
+          menu->addAction(ui->actionRemoveGroup);
         }
       }
-      else if (allInstallable == false && numberOfAUR == numberOfSelPkgs)
-      {
-        menu->addAction(ui->actionInstallYaourt);
-      }
-
-      if(allRemovable)
-      {
-        menu->addAction(ui->actionRemove);
-
-        if (m_cbGroups->currentIndex() != 0 && m_cbGroups->currentText() != StrConstants::getYaourtGroup())
-        {
-          //Is this group already installed?
-          if (m_modelInstalledPackagesFromGroup->rowCount() == m_modelPackagesFromGroup->rowCount())
-          {
-            menu->addAction(ui->actionRemoveGroup);
-          }
-        }
-      }
-    //}
+    }
 
     if(menu->actions().count() > 0)
     {
