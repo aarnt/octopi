@@ -116,7 +116,6 @@ bool UnixCommand::cleanPacmanCache()
   env.insert("LANG", "C");
   env.insert("LC_MESSAGES", "C");
   pacman.setProcessEnvironment(env);
-
   QString commandStr = "\"yes | pacman -Scc\"";
 
   QString command = WMHelper::getSUCommand() + " " + commandStr;
@@ -140,7 +139,7 @@ QByteArray UnixCommand::performQuery(const QStringList args)
   pacman.setProcessEnvironment(env);
 
   pacman.start("pacman", args);
-  pacman.waitForFinished(-1);
+  pacman.waitForFinished();
   result = pacman.readAllStandardOutput();
 
   return result;
@@ -161,7 +160,7 @@ QByteArray UnixCommand::performQuery(const QString &args)
   pacman.setProcessEnvironment(env);
 
   pacman.start("pacman " + args);
-  pacman.waitForFinished(-1);
+  pacman.waitForFinished();
   result = pacman.readAllStandardOutput();
 
   return result;
@@ -181,7 +180,7 @@ QByteArray UnixCommand::performYaourtCommand(const QString &args)
   yaourt.setProcessEnvironment(env);
 
   yaourt.start("yaourt " + args);
-  yaourt.waitForFinished(-1);
+  yaourt.waitForFinished();
   result = yaourt.readAllStandardOutput();
 
   return result;
@@ -194,18 +193,12 @@ QByteArray UnixCommand::getYaourtPackageList(const QString &searchString)
 {
   QByteArray result("");
   QProcess yaourt;
-  //QProcess kill;
 
   QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
   env.insert("LANG", "C");
   env.insert("LC_MESSAGES", "C");
+
   yaourt.setProcessEnvironment(env);
-
-  /*kill.setStandardOutputProcess(&yaourt);
-  kill.start("kill $$");
-  yaourt.start("yaourt " + searchString);
-  yaourt.waitForFinished(-1);*/
-
   yaourt.start("yaourt -Ss " + searchString);
   yaourt.waitForFinished(-1);
   result = yaourt.readAll();
