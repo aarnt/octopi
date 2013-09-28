@@ -12,7 +12,8 @@ optdepends=('kdesu: for KDE'
             'gksu: for XFCE, Gnome, LXDE, Cinnamon'
             'gnome-keyring: for password management'
             'yaourt: for AUR support'
-            'octopi-notifier: for notifications')
+            'octopi-notifier: for notifications'
+            'xterm: for default terminal')
 provides=('octopi')
 md5sums=()
 

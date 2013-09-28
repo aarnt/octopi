@@ -242,9 +242,8 @@ void MainWindow::outputOutdatedPackageList()
  */
 void MainWindow::outputOutdatedYaourtPackageList()
 {
-  CPUIntensiveComputing *cic = new CPUIntensiveComputing();
-  //QHash<QString, QString> hash = Package::getYaourtOutdatedPackagesNameVersion();
-  delete cic;
+  //We cannot output any list if there is a running transaction!
+  if (m_commandExecuting != ectn_NONE) return;
 
   QString html = "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">";
   QString anchorBegin = "anchorBegin";
@@ -651,7 +650,8 @@ void MainWindow::collapseAllContentItems(){
  */
 void MainWindow::collapseThisContentItems(){
   QTreeView *tv = ui->twProperties->currentWidget()->findChild<QTreeView *>("tvPkgFileList") ;
-  if ( tv != 0 ){
+  if ( tv != 0 )
+  {
     tv->repaint(tv->rect());
     QCoreApplication::processEvents();
     QStandardItemModel *sim = qobject_cast<QStandardItemModel*>(tv->model());
@@ -665,7 +665,8 @@ void MainWindow::collapseThisContentItems(){
  */
 void MainWindow::expandAllContentItems(){
   QTreeView *tv = ui->twProperties->currentWidget()->findChild<QTreeView *>("tvPkgFileList") ;
-  if ( tv != 0 ){
+  if ( tv != 0 )
+  {
     tv->repaint(tv->rect());
     QCoreApplication::processEvents();
     tv->expandAll();
@@ -677,7 +678,8 @@ void MainWindow::expandAllContentItems(){
  */
 void MainWindow::expandThisContentItems(){
   QTreeView *tv = ui->twProperties->currentWidget()->findChild<QTreeView *>("tvPkgFileList") ;
-  if ( tv != 0 ){
+  if ( tv != 0 )
+  {
     tv->repaint(tv->rect());
     QCoreApplication::processEvents();
     QStandardItemModel *sim = qobject_cast<QStandardItemModel*>(tv->model());
@@ -690,8 +692,10 @@ void MainWindow::expandThisContentItems(){
  * This method does the job of collapsing the given item and its children
  */
 void MainWindow::_collapseItem(QTreeView* tv, QStandardItemModel* sim, QModelIndex mi){
-  for (int i=0; i<sim->rowCount(mi); i++){
-    if (sim->hasChildren(mi)){
+  for (int i=0; i<sim->rowCount(mi); i++)
+  {
+    if (sim->hasChildren(mi))
+    {
       QCoreApplication::processEvents();
       tv->collapse(mi);
       QModelIndex mi2 = mi.child(i, 0);
