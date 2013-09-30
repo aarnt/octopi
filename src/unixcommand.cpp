@@ -284,7 +284,7 @@ QByteArray UnixCommand::getYaourtPackageVersionInformation()
 /*
  * Given a package name, returns a string containing all the files inside it
  */
-QByteArray UnixCommand::getPackageContents(const QString& pkgName)
+QByteArray UnixCommand::getPackageContentsUsingPacman(const QString& pkgName)
 {
   QStringList args;
   args << "-Ql";
@@ -292,6 +292,44 @@ QByteArray UnixCommand::getPackageContents(const QString& pkgName)
 
   QByteArray res = performQuery(args);
   return res;
+}
+
+/*
+ * Check if pkgfile is installed on the system
+ */
+bool UnixCommand::isPkgfileInstalled()
+{
+  QProcess pkgfile;
+
+  QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
+  pkgfile.setProcessEnvironment(env);
+
+  pkgfile.start("pkgfile -V");
+  pkgfile.waitForFinished();
+
+  return pkgfile.exitStatus() == QProcess::NormalExit;
+}
+
+/*
+ * Given a package name, which can be installed or uninstalled on system
+ * returns a string containing all the files inside it, the file list is
+ * obtained using pkgfile
+ */
+QByteArray UnixCommand::getPackageContentsUsingPkgfile(const QString &pkgName)
+{
+  QByteArray result("");
+  QProcess pkgfile;
+
+  QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
+  env.insert("LANG", "C");
+  env.insert("LC_MESSAGES", "C");
+  pkgfile.setProcessEnvironment(env);
+
+  pkgfile.start("pkgfile -l " + pkgName);
+  pkgfile.waitForFinished();
+  result = pkgfile.readAllStandardOutput();
+
+  return result;
 }
 
 /*

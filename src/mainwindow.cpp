@@ -863,6 +863,20 @@ void MainWindow::_closeTabFilesSearchBar()
 }
 
 /*
+ * Extracts the base file name from an absolute file name.
+ */
+QString MainWindow::_extractBaseFileName(const QString &fileName)
+{
+  QString baseFileName(fileName);
+
+  if (fileName.endsWith('/')) {
+    baseFileName.remove(baseFileName.size()-1, 1);
+  }
+
+  return baseFileName.right(baseFileName.size() - baseFileName.lastIndexOf('/') -1);
+}
+
+/*
  * Whenever user double clicks the package list items, app shows the contents of the selected package
  */
 void MainWindow::onDoubleClickPackageList()
