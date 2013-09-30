@@ -89,7 +89,10 @@ public:
   static QByteArray getPackageList();
   static QByteArray getPackageInformation(const QString &pkgName, bool foreignPackage);
   static QByteArray getYaourtPackageVersionInformation();
-  static QByteArray getPackageContents(const QString &pkgName);
+  static QByteArray getPackageContentsUsingPacman(const QString &pkgName);
+  static bool isPkgfileInstalled();
+  static QByteArray getPackageContentsUsingPkgfile(const QString &pkgName);
+
   static QByteArray getPackageGroups();
   static QByteArray getPackagesFromGroup(const QString &groupName);
   static QByteArray getTargetUpgradeList(const QString &pkgName = "");

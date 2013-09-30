@@ -969,10 +969,12 @@ QHash<QString, QString> Package::getYaourtOutdatedPackagesNameVersion()
 /*
  * Retrieves the file list content of the given package
  */
-QStringList Package::getContents(const QString& pkgName)
+QStringList Package::getContents(const QString& pkgName, bool isInstalled)
 {
   QStringList rsl;
-  QByteArray result = UnixCommand::getPackageContents(pkgName);
+  QByteArray result = isInstalled?
+    UnixCommand::getPackageContentsUsingPacman(pkgName):
+    UnixCommand::getPackageContentsUsingPkgfile(pkgName);
 
   QString aux(result);
   rsl = aux.split("\n", QString::SkipEmptyParts);

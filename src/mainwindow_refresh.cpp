@@ -1329,7 +1329,7 @@ void MainWindow::refreshTabFiles(bool clearContents, bool neverQuit)
   if (tvPkgFileList)
   {
     QString pkgName = siName->text();
-    QStringList fileList = Package::getContents(pkgName);
+    QStringList fileList;
 
     QStandardItemModel *fakeModelPkgFileList = new QStandardItemModel(this);
     QStandardItemModel *modelPkgFileList = qobject_cast<QStandardItemModel*>(tvPkgFileList->model());
@@ -1341,26 +1341,27 @@ void MainWindow::refreshTabFiles(bool clearContents, bool neverQuit)
     bool first=true;
     bkpDir = root;
 
-    if (nonInstalled){
-      strSelectedPackage="";
-      _closeTabFilesSearchBar();
-      return;
+    if (nonInstalled && !UnixCommand::isPkgfileInstalled()) {
+      fakeRoot->appendRow(new QStandardItem(tr("This package is not installed, to view the content of this package, you need to install \"pkgfile\".")));
+    } else {
+      fileList = Package::getContents(pkgName, !nonInstalled);
     }
 
     CPUIntensiveComputing cic;
 
     foreach ( QString file, fileList ){
-      QFileInfo fi ( file );
+      bool isDir = file.endsWith('/');
+      QString baseFileName = _extractBaseFileName(file);
 
-      if(fi.isDir()){
+      if(isDir){
         if ( first == true ){
-          item = new QStandardItem ( IconHelper::getIconFolder(), file );
+          item = new QStandardItem ( IconHelper::getIconFolder(), baseFileName );
           item->setAccessibleDescription("directory " + item->text());
           fakeRoot->appendRow ( item );
         }
         else{
           if ( file.indexOf ( bkpDir->text() ) != -1 ){
-            item = new QStandardItem ( IconHelper::getIconFolder(), file );
+            item = new QStandardItem ( IconHelper::getIconFolder(), baseFileName );
             item->setAccessibleDescription("directory " + item->text());
             bkpDir->appendRow ( item );
           }
@@ -1372,7 +1373,7 @@ void MainWindow::refreshTabFiles(bool clearContents, bool neverQuit)
             }
             while ( parent != fakeRoot );
 
-            item = new QStandardItem ( IconHelper::getIconFolder(), file );
+            item = new QStandardItem ( IconHelper::getIconFolder(), baseFileName );
             item->setAccessibleDescription("directory " + item->text());
             if ( parent != 0 ) parent->appendRow ( item );
             else fakeRoot->appendRow ( item );
@@ -1381,7 +1382,7 @@ void MainWindow::refreshTabFiles(bool clearContents, bool neverQuit)
         bkpDir = item;
       }
       else{
-        item = new QStandardItem ( IconHelper::getIconBinary(), fi.fileName() );
+        item = new QStandardItem ( IconHelper::getIconBinary(), baseFileName );
         item->setAccessibleDescription("file " + item->text());
         parent = bkpDir;
 
@@ -1405,18 +1406,6 @@ void MainWindow::refreshTabFiles(bool clearContents, bool neverQuit)
     tvPkgFileList->header()->setDefaultAlignment( Qt::AlignCenter );
     modelPkgFileList->setHorizontalHeaderLabels( QStringList() <<
                                                  StrConstants::getContentsOf().arg(pkgName));
-
-    QList<QStandardItem*> lit = modelPkgFileList->findItems( "/", Qt::MatchStartsWith | Qt::MatchRecursive );
-
-    foreach( QStandardItem* it, lit ){
-      QFileInfo fi( it->text() );
-      if ( fi.isFile() == false ){
-        QString s( it->text() );
-        s.remove(s.size()-1, 1);
-        s = s.right(s.size() - s.lastIndexOf('/') -1);
-        it->setText( s );
-      }
-    }
   }
 
   strSelectedPackage = siRepository->text()+"#"+siName->text()+"#"+siVersion->text();
