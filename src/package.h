@@ -139,7 +139,7 @@ class Package{
     static double getDownloadSizeDescription(const QString &pkgName);
     static QString getInformationDescription(const QString &pkgName, bool foreignPackage = false);
     static QHash<QString, QString> getYaourtOutdatedPackagesNameVersion();
-    static QStringList getContents(const QString &pkgName);
+    static QStringList getContents(const QString &pkgName, bool isInstalled);
 
     static QString getVersion(const QString &pkgInfo);
     static QString getRepository(const QString &pkgInfo);

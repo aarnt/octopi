@@ -203,6 +203,7 @@ private:
   //Tab Files related methods
   void _closeTabFilesSearchBar();
   void _selectFirstItemOfPkgFileList();
+  QString _extractBaseFileName(const QString &fileName);
   QString getSelectedDirectory();
 
   void initTabFiles();
