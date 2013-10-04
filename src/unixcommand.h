@@ -50,7 +50,6 @@ private:
   QString m_readAllStandardOutput;
   QString m_readAllStandardError;
   QString m_errorString;
-
   QProcess *m_process;
   ProcessWrapper *m_processWrapper;
 

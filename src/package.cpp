@@ -972,9 +972,17 @@ QHash<QString, QString> Package::getYaourtOutdatedPackagesNameVersion()
 QStringList Package::getContents(const QString& pkgName, bool isInstalled)
 {
   QStringList rsl;
-  QByteArray result = isInstalled?
-    UnixCommand::getPackageContentsUsingPacman(pkgName):
-    UnixCommand::getPackageContentsUsingPkgfile(pkgName);
+  QByteArray result;
+
+  if (isInstalled)
+  {
+    result = UnixCommand::getPackageContentsUsingPacman(pkgName);
+  }
+  else if (UnixCommand::getLinuxDistro() == ectn_ARCHBANGLINUX ||
+           UnixCommand::getLinuxDistro() == ectn_ARCHLINUX)
+  {
+    result = UnixCommand::getPackageContentsUsingPkgfile(pkgName);
+  }
 
   QString aux(result);
   rsl = aux.split("\n", QString::SkipEmptyParts);

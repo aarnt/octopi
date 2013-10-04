@@ -1341,13 +1341,15 @@ void MainWindow::refreshTabFiles(bool clearContents, bool neverQuit)
     bool first=true;
     bkpDir = root;
 
-    if (nonInstalled && !UnixCommand::isPkgfileInstalled()) {
-      fakeRoot->appendRow(new QStandardItem(tr("This package is not installed, to view the content of this package, you need to install \"pkgfile\".")));
-    } else {
+    /*if (nonInstalled && !UnixCommand::isPkgfileInstalled()){
+      fakeRoot->appendRow(new QStandardItem("This package is not installed, to view the content of this package, you need to install \"pkgfile\"."));
+    }*/
+    //else
+    //{
       fileList = Package::getContents(pkgName, !nonInstalled);
-    }
+    //}
 
-    CPUIntensiveComputing cic;
+    if (fileList.count() > 0) CPUIntensiveComputing cic;
 
     foreach ( QString file, fileList ){
       bool isDir = file.endsWith('/');

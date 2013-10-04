@@ -13,7 +13,8 @@ optdepends=('kdesu: for KDE'
             'gnome-keyring: for password management'
             'yaourt: for AUR support'
             'octopi-notifier: for notifications'
-            'xterm: for default terminal')
+            'xterm: for default terminal'
+            'pkgfile: to view uninstalled pkg contents in ArchLinux')
 provides=('octopi')
 md5sums=()
 

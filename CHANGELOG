@@ -24,8 +24,9 @@
   Added spanish (Latin America) translation.
   Added 3 new source strings to translate.
   Added new foreign_red and octopi_green icons (thanks to Alex Fredrich).
-  Updated pt_BR, ca, da, el, fi, de, it, vi, he, ro, nb, sr@latin, fr_FR, ru, lt 
-	and pl translations.
+  Added support for pkgfile to view uninstalled package file list while in 
+	ArchLinux/ArchBang (thanks to Damián Nohales).
+  Updated translations.
 
 0.2
   Splitted the project in "octopi" and "octopi-notifier".

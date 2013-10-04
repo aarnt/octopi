@@ -25,7 +25,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="107"/>
         <source>Output</source>
-        <translation>Ulostulo</translation>
+        <translation>Tuloste</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="129"/>
@@ -328,7 +328,7 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="112"/>
         <source>Alt+4 to switch to &apos;Output&apos; tab</source>
-        <translation>Alt+4 vaihtaa Ulostulo-välilehdelle</translation>
+        <translation>Alt+4 vaihtaa Tuloste-välilehdelle</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="114"/>
@@ -666,7 +666,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="222"/>
         <source>Output</source>
-        <translation>Ulostulo</translation>
+        <translation>Tuloste</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="226"/>

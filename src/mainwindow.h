@@ -23,6 +23,7 @@
 
 #include "unixcommand.h"
 #include "uihelper.h"
+
 #include <QApplication>
 #include <QItemSelection>
 #include <QSystemTrayIcon>
