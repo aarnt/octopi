@@ -371,11 +371,11 @@ void MainWindow::initPackageTreeView()
   m_proxyModelPackages->setSourceModel(m_modelPackages);
   m_proxyModelPackages->setFilterKeyColumn(ctn_PACKAGE_NAME_COLUMN);
 
-  if (UnixCommand::getLinuxDistro() == ectn_MANJAROLINUX &&
-      (!WMHelper::isKDERunning() && (!WMHelper::isRazorQtRunning())))
-  {
+  //if (UnixCommand::getLinuxDistro() == ectn_MANJAROLINUX &&
+  //    (!WMHelper::isKDERunning() && (!WMHelper::isRazorQtRunning())))
+  //{
     ui->tvPackages->setAlternatingRowColors(true);
-  }
+  //}
 
   ui->tvPackages->setItemDelegate(new TreeViewPackagesItemDelegate(ui->tvPackages));
   ui->tvPackages->setContextMenuPolicy(Qt::CustomContextMenu);

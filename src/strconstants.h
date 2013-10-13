@@ -476,8 +476,7 @@ public:
 
   static QString getToolBarCSS(){
     return QString("QToolBar { border: 5px; } "
-                   "QToolTip {}"
-                   );
+                   "QToolTip {}");
   }
 
   static QString getFilterPackageNotFoundCSS(){
@@ -514,23 +513,14 @@ public:
   }
 
   static QString getMenuCSS(){
-    QString res;
-
-    if (UnixCommand::getLinuxDistro() == ectn_MANJAROLINUX && !WMHelper::isKDERunning())
-    {
-      res = "";
-    }
-
-    else res = "";
-
-    return res;
+    return "";
   }
 
   static QString getTreeViewCSS(){
     QString res;    
 
-    if (qApp->style()->inherits("QGtkStyle") && UnixCommand::getLinuxDistro() == ectn_MANJAROLINUX && !WMHelper::isKDERunning())
-    {
+    //if (qApp->style()->inherits("QGtkStyle") && UnixCommand::getLinuxDistro() == ectn_MANJAROLINUX && !WMHelper::isKDERunning())
+    //{
       res = "QTreeView::branch:has-siblings:!adjoins-item {"
                    "   border-image: url(:/resources/styles/vline.png) 0;}"
                    "QTreeView::branch:has-siblings:adjoins-item {"
@@ -545,7 +535,7 @@ public:
                    "QTreeView::branch:open:has-children:has-siblings  {"
                    "       border-image: none;"
                    "       image: url(:/resources/styles/branch-open_BW.png);}";
-    }
+    /*}
     else
     {
       res = "QTreeView::branch:has-siblings:!adjoins-item {"
@@ -586,7 +576,7 @@ public:
                      "QTreeView::item:selected:!active {"
                      " background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #6b9be8, stop: 1 #577fbf)"
                      "}";
-    }
+    }*/
 
     return res;
   }
