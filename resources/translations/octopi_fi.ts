@@ -253,7 +253,7 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="76"/>
         <source>Package classification:</source>
-        <translation>Paketin luokittelu:</translation>
+        <translation>Pakettien luokittelu:</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="79"/>
@@ -466,17 +466,17 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="58"/>
         <source>Arch Linux news</source>
-        <translation>Arch Linux uutiset</translation>
+        <translation>Arch Linux -uutiset</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="62"/>
         <source>Chakra news</source>
-        <translation>Chakra uutiset</translation>
+        <translation>Chakra-uutiset</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="66"/>
         <source>Manjaro Linux news</source>
-        <translation>Manjaro Linux uutiset</translation>
+        <translation>Manjaro Linux -uutiset</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="70"/>
@@ -706,7 +706,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="254"/>
         <source>Searching for %1 latest news...</source>
-        <translation>Etsitään uusimpia %1 uutisia...</translation>
+        <translation>Etsitään uusimpia %1 -uutisia...</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="258"/>

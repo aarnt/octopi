@@ -868,7 +868,7 @@ void MainWindow::doInstallYaourtPackage()
   {
     for (int c=0; c<ui->tvPackages->selectionModel()->selectedRows().count(); c++)
     {
-      listOfTargets +=
+      listOfTargets += "aur/" +
           _getCurrentSelectedModel()->item(ui->tvPackages->selectionModel()->selectedRows().at(c).row(),
                                            ctn_PACKAGE_NAME_COLUMN)->text() + " ";
     }

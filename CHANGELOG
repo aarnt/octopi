@@ -9,6 +9,8 @@
   BugFix: Better RazorQt compatibility.
   BugFix: Notifier: clear tooltip if no update is available (thanks to 
 	Anselmo L. S. Melo - anselmolsm).
+  BugFix: Use "yaourt -S aur/pkgname" to install yaourt packages (thanks to 
+	ringo32).
   Now Get Latest Distro News doesn't freeze the interface.
   Changed octopi main icon to octopi-green.png in PKGBUILD and 
 	octopi.desktop.
