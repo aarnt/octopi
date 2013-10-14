@@ -351,9 +351,9 @@ void MainWindow::insertIntoInstallPackageOptDeps()
 
   if(optionalPackages.count() > 0)
   {
-    MultiSelectionDialog msd;
-    msd.setWindowTitle(si->text() + ": " + StrConstants::getOptionalDeps());
-    msd.setWindowIcon(windowIcon());
+    MultiSelectionDialog *msd = new MultiSelectionDialog(this);
+    msd->setWindowTitle(si->text() + ": " + StrConstants::getOptionalDeps());
+    msd->setWindowIcon(windowIcon());
     QStringList selectedPackages;
 
     foreach(QString candidate, optionalPackages)
@@ -365,12 +365,12 @@ void MainWindow::insertIntoInstallPackageOptDeps()
       QStandardItem *description = getAvailablePackage(candidate, ctn_PACKAGE_DESCRIPTION_COLUMN);
       QStandardItem *repository = getAvailablePackage(candidate, ctn_PACKAGE_REPOSITORY_COLUMN);
 
-      msd.addPackageItem(name->text(), description->text(), repository->text());
+      msd->addPackageItem(name->text(), description->text(), repository->text());
     }
 
-    if (msd.exec() == QMessageBox::Ok)
+    if (msd->exec() == QMessageBox::Ok)
     {
-      selectedPackages = msd.getSelectedPackages();
+      selectedPackages = msd->getSelectedPackages();
       foreach(QString pkg, selectedPackages)
       {
         insertInstallPackageIntoTransaction(pkg);
