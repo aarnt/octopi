@@ -38,6 +38,7 @@ HEADERS  += src/QtSolutions/qtsingleapplication.h \
     src/transactiondialog.h \
     src/pacmanhelperclient.h \
     src/globals.h \
+    src/multiselectiondialog.h \
     src/utils/processwrapper.h
 
 SOURCES += src/QtSolutions/qtsingleapplication.cpp \
@@ -67,10 +68,12 @@ SOURCES += src/QtSolutions/qtsingleapplication.cpp \
     src/mainwindow_refresh.cpp \
     src/pacmanhelperclient.cpp \
     src/globals.cpp \
+    src/multiselectiondialog.cpp \
     src/utils/processwrapper.cpp
 
 FORMS    += ui/mainwindow.ui \
-    ui/transactiondialog.ui
+    ui/transactiondialog.ui \
+    ui/multiselectiondialog.ui
 
 RESOURCES += \
     resources.qrc

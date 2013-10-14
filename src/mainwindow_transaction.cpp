@@ -28,6 +28,7 @@
 #include "wmhelper.h"
 #include "strconstants.h"
 #include "transactiondialog.h"
+#include "multiselectiondialog.h"
 #include <iostream>
 
 #include <QComboBox>
@@ -266,7 +267,6 @@ void MainWindow::insertIntoRemovePackage()
       QStandardItem *siRepository = sim->item(mi.row(), ctn_PACKAGE_REPOSITORY_COLUMN);
 
       insertRemovePackageIntoTransaction(siRepository->text() + "/" + si->text());
-      //insertRemovePackageIntoTransaction(si->text());
     }
   }
   else
@@ -319,6 +319,63 @@ void MainWindow::insertIntoInstallPackage()
   else
   {
     doInstallYaourtPackage();
+  }
+}
+
+/*
+ * Inserts all optional deps of the current select package into the Transaction Treeview
+ */
+void MainWindow::insertIntoInstallPackageOptDeps()
+{
+  qApp->processEvents();
+
+  QStandardItemModel *sim=_getCurrentSelectedModel();
+  QModelIndex mi = m_proxyModelPackages->mapToSource(ui->tvPackages->currentIndex());
+  QStandardItem *si = sim->item(mi.row(), ctn_PACKAGE_NAME_COLUMN);
+
+  //Does this package have non installed optional dependencies?
+  QStringList optDeps = Package::getOptionalDeps(si->text());
+  QStringList optionalPackages;
+
+  foreach(QString optDep, optDeps)
+  {
+    QString candidate = optDep;
+    int points = candidate.indexOf(":");
+    candidate = candidate.mid(0, points).trimmed();
+
+    if(!isPackageInstalled(candidate))
+    {
+      optionalPackages.append(candidate);
+    }
+  }
+
+  if(optionalPackages.count() > 0)
+  {
+    MultiSelectionDialog msd;
+    msd.setWindowTitle(si->text() + ": " + StrConstants::getOptionalDeps());
+    msd.setWindowIcon(windowIcon());
+    QStringList selectedPackages;
+
+    foreach(QString candidate, optionalPackages)
+    {
+      QStandardItem *name = getAvailablePackage(candidate, ctn_PACKAGE_NAME_COLUMN);
+
+      if(name == 0) continue;
+
+      QStandardItem *description = getAvailablePackage(candidate, ctn_PACKAGE_DESCRIPTION_COLUMN);
+      QStandardItem *repository = getAvailablePackage(candidate, ctn_PACKAGE_REPOSITORY_COLUMN);
+
+      msd.addPackageItem(name->text(), description->text(), repository->text());
+    }
+
+    if (msd.exec() == QMessageBox::Ok)
+    {
+      selectedPackages = msd.getSelectedPackages();
+      foreach(QString pkg, selectedPackages)
+      {
+        insertInstallPackageIntoTransaction(pkg);
+      }
+    }
   }
 }
 
@@ -1546,7 +1603,6 @@ void MainWindow::_treatProcessOutput(const QString &pMsg)
     msg.remove(QRegExp("QVariant.+"));
     msg.remove(QRegExp("gksu-run.+"));
     msg.remove(QRegExp(":: Do you want.+"));
-
     msg = msg.trimmed();
 
     //std::cout << "debug: " << msg.toAscii().data() << std::endl;

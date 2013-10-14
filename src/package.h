@@ -141,6 +141,8 @@ class Package{
     static QHash<QString, QString> getYaourtOutdatedPackagesNameVersion();
     static QStringList getContents(const QString &pkgName, bool isInstalled);
 
+    static QStringList getOptionalDeps(const QString &pkgName);
+
     static QString getVersion(const QString &pkgInfo);
     static QString getRepository(const QString &pkgInfo);
     static QString getURL(const QString &pkgInfo);

@@ -335,7 +335,6 @@ void MainWindow::initTabTransaction()
   tvTransaction->setModel(m_modelTransaction);
 
   QString aux(StrConstants::getTabTransactionName());
-
   ui->twProperties->removeTab(ctn_TABINDEX_TRANSACTION);
   ui->twProperties->insertTab(ctn_TABINDEX_TRANSACTION, tabTransaction, QApplication::translate (
                                 "MainWindow", aux.toUtf8(), 0, QApplication::UnicodeUTF8 ));
@@ -528,6 +527,9 @@ void MainWindow::initActions()
   actionGroup->setExclusive(true);
 
   connect(actionGroup, SIGNAL(triggered(QAction*)), this, SLOT(tvPackagesSearchColumnChanged(QAction*)));
+
+  ui->actionInstallOptDeps->setText(StrConstants::getOptionalDeps());
+  connect(ui->actionInstallOptDeps, SIGNAL(triggered()), this, SLOT(insertIntoInstallPackageOptDeps()));
 
   m_actionInstallYaourtUpdates = new QAction(this);
   m_actionInstallYaourtUpdates->setIcon(IconHelper::getIconToInstall());

@@ -564,12 +564,39 @@ void MainWindow::execContextMenuPackages(QPoint point)
         menu->addAction(ui->actionFindFileInPackage);
         menu->addSeparator();
       }
+
+      if((si->icon().pixmap(QSize(22,22)).toImage()) !=
+                IconHelper::getIconForeignRed().pixmap(QSize(22,22)).toImage()
+         && (si->icon().pixmap(QSize(22,22)).toImage()) !=
+         IconHelper::getIconForeignGreen().pixmap(QSize(22,22)).toImage())
+      {
+        /*QStandardItem *siName = sim->item(mi.row(), ctn_PACKAGE_NAME_COLUMN);
+        //Does this package have non installed optional dependencies?
+        QStringList optDeps = Package::getOptionalDeps(siName->text());
+        QStringList optionalPackages;
+
+        foreach(QString optDep, optDeps)
+        {
+          QString candidate = optDep;
+          int points = candidate.indexOf(":");
+          candidate = candidate.mid(0, points).trimmed();
+
+          if(!isPackageInstalled(candidate))
+          {
+            optionalPackages.append(candidate);
+          }
+        }
+        */
+
+        //if(optionalPackages.count())
+        //{
+          menu->addAction(ui->actionInstallOptDeps);
+        //}
+      }
     }
 
-    //bool allSameType = true;
     bool allInstallable = true;
     bool allRemovable = true;    
-
     int numberOfSelPkgs = ui->tvPackages->selectionModel()->selectedRows().count();
     int numberOfAUR = 0;
 

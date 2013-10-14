@@ -1175,6 +1175,11 @@ void MainWindow::refreshTabInfo(bool clearContents, bool neverQuit)
       packagerName = packagerName.replace(">", "&gt;");
       packagerName = packagerName.fromUtf8(packagerName.toAscii().data());
 
+      QString strConflictsWith = pid.conflictsWith;
+      strConflictsWith = strConflictsWith.replace("<", "&lt;");
+      strConflictsWith = strConflictsWith.replace(">", "&gt;");
+      strConflictsWith = strConflictsWith.replace("&lt;br&gt;", "<br>");
+
       html += "<tr><td>" + licenses + "</td><td>" + pid.license + "</td></tr>";
 
       //Show this info only if there's something to show
@@ -1191,7 +1196,7 @@ void MainWindow::refreshTabInfo(bool clearContents, bool neverQuit)
       if(!pid.optionalFor.isEmpty() && !pid.optionalFor.contains("None"))
         html += "<tr><td>" + optionalFor + "</td><td>" + pid.optionalFor + "</td></tr>";
       if(! pid.conflictsWith.contains("None"))
-        html += "<tr><td><b>" + conflictsWith + "</b></td><td><b>" + pid.conflictsWith +
+        html += "<tr><td><b>" + conflictsWith + "</b></td><td><b>" + strConflictsWith +
             "</b></font></td></tr>";
 
       if(! pid.replaces.contains("None"))

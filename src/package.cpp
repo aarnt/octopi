@@ -572,16 +572,33 @@ QList<PackageListData> * Package::getYaourtPackageList(const QString& searchStri
 QString Package::extractFieldFromInfo(const QString &field, const QString &pkgInfo)
 {
   int fieldPos = pkgInfo.indexOf(field);
-  int fieldEnd;
+  int fieldEnd, fieldEnd2;
   QString aux;
 
   if (fieldPos > 0)
   {
-    fieldPos = pkgInfo.indexOf(":", fieldPos+1);
-    fieldPos+=2;
-    aux = pkgInfo.mid(fieldPos);
-    fieldEnd = aux.indexOf('\n');
-    aux = aux.left(fieldEnd).trimmed();
+    if(field == "Optional Deps")
+    {
+      fieldPos = pkgInfo.indexOf(":", fieldPos+1);
+      fieldPos+=2;
+      aux = pkgInfo.mid(fieldPos);
+
+      fieldEnd = aux.indexOf("Conflicts With");
+      fieldEnd2 = aux.indexOf("Required By");
+
+      if(fieldEnd > fieldEnd2 && fieldEnd2 != -1) fieldEnd = fieldEnd2;
+
+      aux = aux.left(fieldEnd).trimmed();
+      aux = aux.replace("\n", "<br>");
+    }
+    else
+    {
+      fieldPos = pkgInfo.indexOf(":", fieldPos+1);
+      fieldPos+=2;
+      aux = pkgInfo.mid(fieldPos);
+      fieldEnd = aux.indexOf('\n');
+      aux = aux.left(fieldEnd).trimmed();
+    }
   }
 
   return aux;
@@ -996,6 +1013,19 @@ QStringList Package::getContents(const QString& pkgName, bool isInstalled)
   }
 
   return rsl;
+}
+
+/*
+ * Retrieves the list of optional dependencies of the given package
+ */
+QStringList Package::getOptionalDeps(const QString &pkgName)
+{
+  QString pkgInfo = UnixCommand::getPackageInformation(pkgName, false);
+  QString aux = Package::getOptDepends(pkgInfo);
+  QStringList result = aux.split("<br>", QString::SkipEmptyParts);
+  result.removeAll("None");
+
+  return result;
 }
 
 /*

@@ -333,6 +333,8 @@ private slots:
 
   void insertIntoRemovePackage();
   void insertIntoInstallPackage();
+  void insertIntoInstallPackageOptDeps();
+
   void insertGroupIntoRemovePackage();
   void insertGroupIntoInstallPackage();
 

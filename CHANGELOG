@@ -11,6 +11,9 @@
 	Anselmo L. S. Melo - anselmolsm).
   BugFix: Use "yaourt -S aur/pkgname" to install yaourt packages (thanks to 
 	ringo32).
+  BugFix: Octopi was only showing the first Optional Deps in some cases.
+  Added "Optional Deps" to package menu to install the available optional 
+	dependencies of the selected package.
   Now Get Latest Distro News doesn't freeze the interface.
   Changed octopi main icon to octopi-green.png in PKGBUILD and 
 	octopi.desktop.
