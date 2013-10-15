@@ -23,6 +23,7 @@
 #include "strconstants.h"
 
 #include <QPushButton>
+#include <QKeyEvent>
 
 MultiSelectionDialog::MultiSelectionDialog(QWidget *parent) :
   QDialog(parent),
@@ -44,6 +45,8 @@ MultiSelectionDialog::MultiSelectionDialog(QWidget *parent) :
 
   setWindowFlags(Qt::MSWindowsFixedSizeDialogHint | Qt::Dialog |
                  Qt::WindowTitleHint | Qt::WindowSystemMenuHint | Qt::WindowCloseButtonHint);
+
+  ui->twDepPackages->installEventFilter(this);
 }
 
 MultiSelectionDialog::~MultiSelectionDialog()
@@ -64,9 +67,11 @@ void MultiSelectionDialog::addPackageItem(const QString &name, const QString &de
   QTableWidgetItem *itemRepository = new QTableWidgetItem(repository);
 
   int currentRow = ui->twDepPackages->rowCount()-1;
+
   ui->twDepPackages->setItem(currentRow, 0, itemName);
   ui->twDepPackages->setItem(currentRow, 1, itemDescription);
   ui->twDepPackages->setItem(currentRow, 2, itemRepository);
+  itemName->setCheckState(Qt::Unchecked);
 }
 
 /*
@@ -75,29 +80,50 @@ void MultiSelectionDialog::addPackageItem(const QString &name, const QString &de
 QStringList MultiSelectionDialog::getSelectedPackages()
 {
   QStringList result;
-  int lastRow=0;
   QString name;
   QString repository;
 
-  foreach (QTableWidgetItem * item, ui->twDepPackages->selectedItems())
+  for(int row=0; row < ui->twDepPackages->rowCount(); row++)
   {
-    if (lastRow != item->row())
+    if (ui->twDepPackages->item(row, 0)->checkState() == Qt::Checked)
     {
+      name = ui->twDepPackages->item(row, 0)->text();
+      repository = ui->twDepPackages->item(row, 2)->text();
       result.append(repository + "/" + name);
     }
-
-    if (item->column() == 0) name = item->text();
-    else if (item->column() == 2) repository = item->text();
-
-    lastRow = item->row();
-  }
-
-  if(!name.isEmpty() && !repository.isEmpty())
-  {
-    result.append(repository + "/" + name);
   }
 
   return result;
+}
+
+/*
+ * This Event method is called whenever the user presses a key
+ */
+bool MultiSelectionDialog::eventFilter(QObject *obj, QEvent *evt)
+{
+  if(obj->objectName() == ui->twDepPackages->objectName())
+  {
+    if (evt->type() == QKeyEvent::KeyPress)
+    {
+      QKeyEvent *ke = static_cast<QKeyEvent*>(evt);
+      if (ke->key() == Qt::Key_A && ke->modifiers() == Qt::ControlModifier)
+      {
+        for(int row=0; row < ui->twDepPackages->rowCount(); row++)
+        {
+          if (ui->twDepPackages->item(row, 0)->checkState() == Qt::Unchecked)
+          {
+            ui->twDepPackages->item(row, 0)->setCheckState(Qt::Checked);
+          }
+          else
+          {
+            ui->twDepPackages->item(row, 0)->setCheckState(Qt::Unchecked);
+          }
+        }
+      }
+    }
+  }
+
+  return false;
 }
 
 void MultiSelectionDialog::reject()

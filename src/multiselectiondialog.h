@@ -35,8 +35,12 @@ public:
   explicit MultiSelectionDialog(QWidget *parent = 0);
   ~MultiSelectionDialog();
 
-  void addPackageItem(const QString & name, const QString & description, const QString & repository);
+  void addPackageItem(const QString & name, const QString & description,
+                      const QString & repository);
   QStringList getSelectedPackages();
+
+protected:
+  virtual bool eventFilter(QObject *, QEvent *);
 
 private:
   Ui::MultiSelectionDialog *ui;

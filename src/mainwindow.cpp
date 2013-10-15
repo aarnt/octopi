@@ -590,7 +590,7 @@ void MainWindow::execContextMenuPackages(QPoint point)
 
         //if(optionalPackages.count())
         //{
-          menu->addAction(ui->actionInstallOptDeps);
+        //  menu->addAction(ui->actionInstallOptDeps);
         //}
       }
     }

@@ -313,6 +313,8 @@ void MainWindow::insertIntoInstallPackage()
       QStandardItem *si = sim->item(mi.row(), ctn_PACKAGE_NAME_COLUMN);
       QStandardItem *siRepository = sim->item(mi.row(), ctn_PACKAGE_REPOSITORY_COLUMN);
 
+      insertIntoInstallPackageOptDeps(); //Do we have any deps???
+
       insertInstallPackageIntoTransaction(siRepository->text() + "/" + si->text());
     }
   }
