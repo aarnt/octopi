@@ -528,8 +528,8 @@ void MainWindow::initActions()
 
   connect(actionGroup, SIGNAL(triggered(QAction*)), this, SLOT(tvPackagesSearchColumnChanged(QAction*)));
 
-  ui->actionInstallOptDeps->setText(StrConstants::getOptionalDeps());
-  connect(ui->actionInstallOptDeps, SIGNAL(triggered()), this, SLOT(insertIntoInstallPackageOptDeps()));
+  //ui->actionInstallOptDeps->setText(StrConstants::getOptionalDeps());
+  //connect(ui->actionInstallOptDeps, SIGNAL(triggered()), this, SLOT(insertIntoInstallPackageOptDeps()));
 
   m_actionInstallYaourtUpdates = new QAction(this);
   m_actionInstallYaourtUpdates->setIcon(IconHelper::getIconToInstall());

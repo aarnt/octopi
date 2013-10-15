@@ -313,7 +313,7 @@ void MainWindow::insertIntoInstallPackage()
       QStandardItem *si = sim->item(mi.row(), ctn_PACKAGE_NAME_COLUMN);
       QStandardItem *siRepository = sim->item(mi.row(), ctn_PACKAGE_REPOSITORY_COLUMN);
 
-      insertIntoInstallPackageOptDeps(); //Do we have any deps???
+      insertIntoInstallPackageOptDeps(si->text()); //Do we have any deps???
 
       insertInstallPackageIntoTransaction(siRepository->text() + "/" + si->text());
     }
@@ -327,16 +327,15 @@ void MainWindow::insertIntoInstallPackage()
 /*
  * Inserts all optional deps of the current select package into the Transaction Treeview
  */
-void MainWindow::insertIntoInstallPackageOptDeps()
+void MainWindow::insertIntoInstallPackageOptDeps(const QString &packageName)
 {
   qApp->processEvents();
-
-  QStandardItemModel *sim=_getCurrentSelectedModel();
+  /*QStandardItemModel *sim=_getCurrentSelectedModel();
   QModelIndex mi = m_proxyModelPackages->mapToSource(ui->tvPackages->currentIndex());
-  QStandardItem *si = sim->item(mi.row(), ctn_PACKAGE_NAME_COLUMN);
+  QStandardItem *si = sim->item(mi.row(), ctn_PACKAGE_NAME_COLUMN);*/
 
   //Does this package have non installed optional dependencies?
-  QStringList optDeps = Package::getOptionalDeps(si->text());
+  QStringList optDeps = Package::getOptionalDeps(packageName); //si->text());
   QStringList optionalPackages;
 
   foreach(QString optDep, optDeps)
@@ -354,7 +353,7 @@ void MainWindow::insertIntoInstallPackageOptDeps()
   if(optionalPackages.count() > 0)
   {
     MultiSelectionDialog *msd = new MultiSelectionDialog(this);
-    msd->setWindowTitle(si->text() + ": " + StrConstants::getOptionalDeps());
+    msd->setWindowTitle(packageName + ": " + StrConstants::getOptionalDeps());
     msd->setWindowIcon(windowIcon());
     QStringList selectedPackages;
 
