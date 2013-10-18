@@ -571,7 +571,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="146"/>
         <source>Required By</source>
-        <translation>Задължителен за</translation>
+        <translation>Необходим за</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="150"/>

@@ -1,4 +1,4 @@
-0.3 (dev)
+0.3
   Code cleanings.
   BugFix: No need to refresh package list after a cache clean.
   BugFix: Konsole was not working with yaourt package installation.
@@ -12,8 +12,9 @@
   BugFix: Use "yaourt -S aur/pkgname" to install yaourt packages (thanks to 
 	ringo32).
   BugFix: Octopi was only showing the first Optional Deps in some cases.
-  Added "Optional Deps" to package menu to install the available optional 
-	dependencies of the selected package.
+  Bring back the option to do a graphical system upgrade.
+  Now when installing a package with optional dependencies, Octopi lets users choose 
+	which optional dependencies (if any) they want to install.
   Now Get Latest Distro News doesn't freeze the interface.
   Changed octopi main icon to octopi-green.png in PKGBUILD and 
 	octopi.desktop.
@@ -27,8 +28,7 @@
   Added a new status icon: an orange one for newer than repo 
 	installed packages.
   Added spanish (Latin America) translation.
-  Added 3 new source strings to translate.
-  Added new foreign_red and octopi_green icons (thanks to Alex Fredrich).
+  Added new "foreign_red.png" and "octopi_green.png" icons (thanks to Alex Fredrich).
   Added support for pkgfile to view uninstalled package file list while in 
 	ArchLinux/ArchBang (thanks to Damián Nohales).
   Updated translations.

@@ -598,10 +598,6 @@ void MainWindow::doSystemUpgrade(bool syncDatabase)
     m_callSystemUpgrade = false;
     return;
   }
-  /*else if(m_callSystemUpgrade)
-  {
-    refreshDistroNews(true, false);
-  }*/
 
   qApp->processEvents();
 
@@ -645,7 +641,7 @@ void MainWindow::doSystemUpgrade(bool syncDatabase)
 
     TransactionDialog question(this);
 
-    question.removeYesButton(); //This is a more prudent behaviour!
+    //question.removeYesButton(); //This is a more prudent behaviour!
 
     if(targets->count()==1)
       question.setText(StrConstants::getRetrieveTarget() +
@@ -1185,7 +1181,6 @@ void MainWindow::toggleTransactionActions(const bool value)
   ui->actionInstallGroup->setEnabled(value);
   ui->actionRemoveTransactionItem->setEnabled(value);
   ui->actionRemoveTransactionItems->setEnabled(value);
-
   ui->actionRemove->setEnabled(value);
   ui->actionSyncPackages->setEnabled(value);
   ui->actionSystemUpgrade->setEnabled(value);
