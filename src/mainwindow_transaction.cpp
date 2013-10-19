@@ -242,6 +242,7 @@ QString MainWindow::getTobeInstalledPackages()
  */
 void MainWindow::insertIntoRemovePackage()
 {
+  qApp->processEvents();
   bool checkDependencies=false;
   QStringList dependencies;
 
@@ -276,7 +277,7 @@ void MainWindow::insertIntoRemovePackage()
 
       if(checkDependencies)
       {
-        QStringList *targets = Package::getTargetRemovalList(si->text(), m_removeCommand);
+        QStringList *targets = Package::getTargetRemovalList(si->text(), removeCmd);
 
         foreach(QString target, *targets)
         {
@@ -325,6 +326,8 @@ void MainWindow::insertGroupIntoRemovePackage()
  */
 void MainWindow::insertIntoInstallPackage()
 {
+  qApp->processEvents();
+
   if (m_cbGroups->currentText() != StrConstants::getYaourtGroup())
   {
     _ensureTabVisible(ctn_TABINDEX_TRANSACTION);
@@ -364,12 +367,7 @@ void MainWindow::insertIntoInstallPackage()
  */
 void MainWindow::insertIntoInstallPackageOptDeps(const QString &packageName)
 {
-  qApp->processEvents();
   CPUIntensiveComputing *cic = new CPUIntensiveComputing;
-
-  /*QStandardItemModel *sim=_getCurrentSelectedModel();
-  QModelIndex mi = m_proxyModelPackages->mapToSource(ui->tvPackages->currentIndex());
-  QStandardItem *si = sim->item(mi.row(), ctn_PACKAGE_NAME_COLUMN);*/
 
   //Does this package have non installed optional dependencies?
   QStringList optDeps = Package::getOptionalDeps(packageName); //si->text());
@@ -381,7 +379,8 @@ void MainWindow::insertIntoInstallPackageOptDeps(const QString &packageName)
     int points = candidate.indexOf(":");
     candidate = candidate.mid(0, points).trimmed();
 
-    if(!isPackageInstalled(candidate))
+    QStandardItem *name = getAvailablePackage(candidate, ctn_PACKAGE_NAME_COLUMN);
+    if(!isPackageInstalled(candidate) && name != 0)
     {
       optionalPackages.append(candidate);
     }
@@ -396,14 +395,9 @@ void MainWindow::insertIntoInstallPackageOptDeps(const QString &packageName)
 
     foreach(QString candidate, optionalPackages)
     {
-      QStandardItem *name = getAvailablePackage(candidate, ctn_PACKAGE_NAME_COLUMN);
-
-      if(name == 0) continue;
-
       QStandardItem *description = getAvailablePackage(candidate, ctn_PACKAGE_DESCRIPTION_COLUMN);
       QStandardItem *repository = getAvailablePackage(candidate, ctn_PACKAGE_REPOSITORY_COLUMN);
-
-      msd->addPackageItem(name->text(), description->text(), repository->text());
+      msd->addPackageItem(candidate, description->text(), repository->text());
     }
 
     delete cic;
@@ -431,42 +425,51 @@ void MainWindow::insertIntoInstallPackageOptDeps(const QString &packageName)
  */
 bool MainWindow::insertIntoRemovePackageDeps(const QStringList &dependencies)
 {
-  qApp->processEvents();
-  CPUIntensiveComputing *cic = new CPUIntensiveComputing;
-
-  MultiSelectionDialog *msd = new MultiSelectionDialog(this);
-  msd->setWindowTitle(StrConstants::getRemoveTargets().arg(dependencies.count()));
-  msd->setWindowIcon(windowIcon());
-  QStringList selectedPackages;
-
+  QStringList newDeps;
   foreach(QString dep, dependencies)
   {
     QStandardItem *name = getAvailablePackage(dep, ctn_PACKAGE_NAME_COLUMN);
-
-    if(name == 0) continue;
-
-    QStandardItem *description = getAvailablePackage(dep, ctn_PACKAGE_DESCRIPTION_COLUMN);
-    QStandardItem *repository = getAvailablePackage(dep, ctn_PACKAGE_REPOSITORY_COLUMN);
-
-    msd->addPackageItem(name->text(), description->text(), repository->text());
-    msd->setAllSelected();
-  }
-
-  delete cic;
-  int res = msd->exec();
-
-  if (res == QMessageBox::Ok)
-  {
-    selectedPackages = msd->getSelectedPackages();
-    foreach(QString pkg, selectedPackages)
+    if(isPackageInstalled(dep) && name != 0)
     {
-      insertRemovePackageIntoTransaction(pkg);
+      newDeps.append(dep);
     }
   }
 
-  delete msd;
+  if (newDeps.count() > 0)
+  {
+    CPUIntensiveComputing *cic = new CPUIntensiveComputing;
 
-  return (res == QMessageBox::Ok && selectedPackages.count() > 0);
+    MultiSelectionDialog *msd = new MultiSelectionDialog(this);
+    msd->setWindowTitle(StrConstants::getRemoveTargets().arg(newDeps.count()));
+    msd->setWindowIcon(windowIcon());
+    QStringList selectedPackages;
+
+    foreach(QString dep, newDeps)
+    {
+      QStandardItem *description = getAvailablePackage(dep, ctn_PACKAGE_DESCRIPTION_COLUMN);
+      QStandardItem *repository = getAvailablePackage(dep, ctn_PACKAGE_REPOSITORY_COLUMN);
+
+      msd->addPackageItem(dep, description->text(), repository->text());
+    }
+
+    msd->setAllSelected();
+    delete cic;
+    int res = msd->exec();
+
+    if (res == QMessageBox::Ok)
+    {
+      selectedPackages = msd->getSelectedPackages();
+      foreach(QString pkg, selectedPackages)
+      {
+        insertRemovePackageIntoTransaction(pkg);
+      }
+    }
+
+    delete msd;
+
+    return (res == QMessageBox::Ok && selectedPackages.count() >= 0);
+  }
+  else return true;
 }
 
 /*
@@ -802,7 +805,7 @@ void MainWindow::doSystemUpgrade(bool syncDatabase)
 void MainWindow::doRemoveAndInstall()
 {
   QString listOfRemoveTargets = getTobeRemovedPackages();
-  //QStringList *removeTargets = Package::getTargetRemovalList(listOfRemoveTargets, m_removeCommand);
+  QStringList *pRemoveTargets = Package::getTargetRemovalList(listOfRemoveTargets, m_removeCommand);
   QString removeList;
   QString allLists;
   TransactionDialog question(this);
@@ -852,7 +855,7 @@ void MainWindow::doRemoveAndInstall()
 
   if(removeTargets.count()==1)
   {
-    if (removeTargets.at(0).indexOf("HoldPkg was found in") != -1)
+    if (pRemoveTargets->at(0).indexOf("HoldPkg was found in") != -1)
     {
       QMessageBox::warning(
             this, StrConstants::getAttention(), StrConstants::getWarnHoldPkgFound(), QMessageBox::Ok);
@@ -939,7 +942,7 @@ void MainWindow::doRemoveAndInstall()
 void MainWindow::doRemove()
 {
   QString listOfTargets = getTobeRemovedPackages();
-  //m_targets = Package::getTargetRemovalList(listOfTargets, m_removeCommand);
+  m_targets = Package::getTargetRemovalList(listOfTargets, m_removeCommand);
   //m_targets = new QStringList();
   QString list;
 
@@ -966,7 +969,7 @@ void MainWindow::doRemove()
   //Shows a dialog indicating the targets which will be removed and asks for the user's permission.
   if(targets.count()==1)
   {
-    if (targets.at(0).indexOf("HoldPkg was found in") != -1)
+    if (m_targets->at(0).indexOf("HoldPkg was found in") != -1)
     {
       QMessageBox::warning(
             this, StrConstants::getAttention(), StrConstants::getWarnHoldPkgFound(), QMessageBox::Ok);
@@ -1358,7 +1361,6 @@ void MainWindow::actionsProcessStarted()
   m_progressWidget->setValue(0);
   m_progressWidget->setMaximum(100);
   m_iLoveCandy = UnixCommand::isILoveCandyEnabled();
-
   //disconnect(m_pacmanDatabaseSystemWatcher, SIGNAL(directoryChanged(QString)), this, SLOT(metaBuildPackageList()));
 
   clearTabOutput();
