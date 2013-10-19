@@ -135,7 +135,6 @@ void MainWindow::insertRemovePackageIntoTransaction(const QString &pkgName)
 
   ui->twProperties->setCurrentIndex(ctn_TABINDEX_TRANSACTION);
   tvTransaction->expandAll();
-
   changeTransactionActionsState();
 }
 
@@ -296,7 +295,7 @@ void MainWindow::insertIntoRemovePackage()
         {
           if (!dependencies.at(0).contains("HoldPkg was found in"))
           {
-            if (!insertIntoRemovePackageDeps(si->text(), dependencies))
+            if (!insertIntoRemovePackageDeps(dependencies))
               return;
           }
         }
@@ -366,6 +365,8 @@ void MainWindow::insertIntoInstallPackage()
 void MainWindow::insertIntoInstallPackageOptDeps(const QString &packageName)
 {
   qApp->processEvents();
+  CPUIntensiveComputing *cic = new CPUIntensiveComputing;
+
   /*QStandardItemModel *sim=_getCurrentSelectedModel();
   QModelIndex mi = m_proxyModelPackages->mapToSource(ui->tvPackages->currentIndex());
   QStandardItem *si = sim->item(mi.row(), ctn_PACKAGE_NAME_COLUMN);*/
@@ -405,6 +406,7 @@ void MainWindow::insertIntoInstallPackageOptDeps(const QString &packageName)
       msd->addPackageItem(name->text(), description->text(), repository->text());
     }
 
+    delete cic;
     if (msd->exec() == QMessageBox::Ok)
     {
       selectedPackages = msd->getSelectedPackages();
@@ -416,6 +418,10 @@ void MainWindow::insertIntoInstallPackageOptDeps(const QString &packageName)
 
     delete msd;
   }
+  else
+  {
+    delete cic;
+  }
 }
 
 /*
@@ -423,9 +429,10 @@ void MainWindow::insertIntoInstallPackageOptDeps(const QString &packageName)
  * Returns TRUE if the user click OK or ENTER and number of selected packages > 0.
  * Returns FALSE otherwise.
  */
-bool MainWindow::insertIntoRemovePackageDeps(const QString &packageName, const QStringList &dependencies)
+bool MainWindow::insertIntoRemovePackageDeps(const QStringList &dependencies)
 {
   qApp->processEvents();
+  CPUIntensiveComputing *cic = new CPUIntensiveComputing;
 
   MultiSelectionDialog *msd = new MultiSelectionDialog(this);
   msd->setWindowTitle(StrConstants::getRemoveTargets().arg(dependencies.count()));
@@ -445,6 +452,7 @@ bool MainWindow::insertIntoRemovePackageDeps(const QString &packageName, const Q
     msd->setAllSelected();
   }
 
+  delete cic;
   int res = msd->exec();
 
   if (res == QMessageBox::Ok)
@@ -795,7 +803,6 @@ void MainWindow::doRemoveAndInstall()
 {
   QString listOfRemoveTargets = getTobeRemovedPackages();
   //QStringList *removeTargets = Package::getTargetRemovalList(listOfRemoveTargets, m_removeCommand);
-  QStringList *removeTargets = new QStringList();
   QString removeList;
   QString allLists;
   TransactionDialog question(this);
@@ -806,7 +813,8 @@ void MainWindow::doRemoveAndInstall()
     removeList = removeList + StrConstants::getRemove() + " "  + removeTarget + "\n";
   }*/
 
-  foreach(QString target, listOfRemoveTargets.split(" "))
+  QStringList removeTargets = listOfRemoveTargets.split(" ", QString::SkipEmptyParts);
+  foreach(QString target, removeTargets)
   {
     removeList = removeList + StrConstants::getRemove() + " "  + target + "\n";
   }
@@ -842,9 +850,9 @@ void MainWindow::doRemoveAndInstall()
   allLists.append(removeList);
   allLists.append(installList);
 
-  if(removeTargets->count()==1)
+  if(removeTargets.count()==1)
   {
-    if (removeTargets->at(0).indexOf("HoldPkg was found in") != -1)
+    if (removeTargets.at(0).indexOf("HoldPkg was found in") != -1)
     {
       QMessageBox::warning(
             this, StrConstants::getAttention(), StrConstants::getWarnHoldPkgFound(), QMessageBox::Ok);
@@ -861,9 +869,24 @@ void MainWindow::doRemoveAndInstall()
     }
   }
 
-  dialogText = StrConstants::getRemoveTargets().arg(removeTargets->count()) + "\n";
-  dialogText += StrConstants::getRetrieveTargets().arg(installTargets->count()) +
+  if (removeTargets.count() == 1)
+  {
+    dialogText = StrConstants::getRemoveTarget() + "\n";
+  }
+  else if (removeTargets.count() > 1)
+  {
+    dialogText = StrConstants::getRemoveTargets().arg(removeTargets.count()) + "\n";
+  }
+  if (installTargets->count() == 1)
+  {
+    dialogText += StrConstants::getRetrieveTarget() +
       "\n\n" + StrConstants::getTotalDownloadSize().arg(ds);
+  }
+  else if (installTargets->count() > 1)
+  {
+    dialogText += StrConstants::getRetrieveTargets().arg(installTargets->count()) +
+      "\n\n" + StrConstants::getTotalDownloadSize().arg(ds);
+  }
 
   question.setText(dialogText);
   question.setInformativeText(StrConstants::getConfirmationQuestion());
@@ -917,7 +940,7 @@ void MainWindow::doRemove()
 {
   QString listOfTargets = getTobeRemovedPackages();
   //m_targets = Package::getTargetRemovalList(listOfTargets, m_removeCommand);
-  m_targets = new QStringList();
+  //m_targets = new QStringList();
   QString list;
 
   /*foreach(QString target, *m_targets)
@@ -926,7 +949,8 @@ void MainWindow::doRemove()
   }
   list.remove(list.size()-1, 1);*/
 
-  foreach(QString target, listOfTargets.split(" "))
+  QStringList targets = listOfTargets.split(" ", QString::SkipEmptyParts);
+  foreach(QString target, targets)
   {
     list = list + target + "\n";
   }
@@ -940,9 +964,9 @@ void MainWindow::doRemove()
   TransactionDialog question(this);
 
   //Shows a dialog indicating the targets which will be removed and asks for the user's permission.
-  if(m_targets->count()==1)
+  if(targets.count()==1)
   {
-    if (m_targets->at(0).indexOf("HoldPkg was found in") != -1)
+    if (targets.at(0).indexOf("HoldPkg was found in") != -1)
     {
       QMessageBox::warning(
             this, StrConstants::getAttention(), StrConstants::getWarnHoldPkgFound(), QMessageBox::Ok);
@@ -951,9 +975,9 @@ void MainWindow::doRemove()
     else question.setText(StrConstants::getRemoveTarget());
   }
   else
-    question.setText(StrConstants::getRemoveTargets().arg(m_targets->count()));
+    question.setText(StrConstants::getRemoveTargets().arg(targets.count()));
 
-  if (getNumberOfTobeRemovedPackages() < m_targets->count())
+  if (getNumberOfTobeRemovedPackages() < targets.count())
     question.setWindowTitle(StrConstants::getWarning());
   else
     question.setWindowTitle(StrConstants::getConfirmation());
