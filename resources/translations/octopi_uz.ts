@@ -66,7 +66,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="220"/>
         <source>Commit</source>
-        <translation>Qo&apos;llash</translation>
+        <translation>Tasdiqlash</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="223"/>
@@ -153,22 +153,22 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="335"/>
         <source>Collapse item</source>
-        <translation>Bandni yopish</translation>
+        <translation>Bandni o&apos;rash</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="344"/>
         <source>Expand item</source>
-        <translation>Bandni ochish</translation>
+        <translation>Bandni kengaytirish</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="353"/>
         <source>Collapse all items</source>
-        <translation>Hamma bandlarni yopish</translation>
+        <translation>Hamma bandlarni o&apos;rash</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="362"/>
         <source>Expand all items</source>
-        <translation>Hamma bandlarni ochish</translation>
+        <translation>Hamma bandlarni kengaytirish</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="371"/>
@@ -183,7 +183,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="389"/>
         <source>Open directory</source>
-        <translation>Direktoriyani ochish</translation>
+        <translation>Katalogni ochish</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="398"/>
@@ -223,7 +223,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="461"/>
         <source>Usage</source>
-        <translation>Ishlatilishi</translation>
+        <translation>Foydalanish</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="464"/>
@@ -268,7 +268,7 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="84"/>
         <source>A foreign package, installed from</source>
-        <translation>Begona paket, o&apos;rnatilish manbai</translation>
+        <translation>Tashqi paket, o&apos;rnatilish manbai</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="87"/>
@@ -313,27 +313,27 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="106"/>
         <source>Alt+1 to switch to &apos;Info&apos; tab</source>
-        <translation>Alt+1 &apos;Ma&apos;lumot&apos; tabiga o&apos;tish</translation>
+        <translation>Alt+1 &apos;Ma&apos;lumot&apos; ilovasiga o&apos;tish</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="108"/>
         <source>Alt+2 to switch to &apos;Files&apos; tab</source>
-        <translation>Alt+2 &apos;Fayllar&apos; tabiga o&apos;tish</translation>
+        <translation>Alt+2 &apos;Fayllar&apos; ilovasiga o&apos;tish</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="110"/>
         <source>Alt+3 to switch to &apos;Transaction&apos; tab</source>
-        <translation>Alt+3 &apos;Tranzaksiya&apos; tabiga o&apos;tish</translation>
+        <translation>Alt+3 &apos;Tranzaksiya&apos; ilovasiga o&apos;tish</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="112"/>
         <source>Alt+4 to switch to &apos;Output&apos; tab</source>
-        <translation>Alt+4 &apos;Natija&apos; tabiga o&apos;tish</translation>
+        <translation>Alt+4 &apos;Natija&apos; ilovasiga o&apos;tish</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="114"/>
         <source>Alt+5 to switch to &apos;News&apos; tab</source>
-        <translation>Alt+5 &apos;Yangiliklar&apos; tabiga o&apos;tish</translation>
+        <translation>Alt+5 &apos;Yangiliklar&apos; ilovasiga o&apos;tish</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="116"/>
@@ -348,7 +348,7 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="121"/>
         <source>Ctrl+D or &apos;File/Sync database&apos; to sync the local database with latest remote changes (pacman -Sy)</source>
-        <translation>Ctrl+D yoki &apos;Fayl/Ma&apos;lumot bazasini sinxronlash&apos; mahalliy ma&apos;lumot bazasini so&apos;nggi masofadagi o&apos;zgarishlar bilan sinxronlash (pacman -Sy)</translation>
+        <translation>Ctrl+D yoki &apos;Fayl/Ma&apos;lumot bazasini sinxronlash&apos; mahalliy ma&apos;lumot bazasini so&apos;nggi masofaviy o&apos;zgarishlar bilan sinxronlash (pacman -Sy)</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="123"/>
@@ -363,7 +363,7 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="127"/>
         <source>Ctrl+F to search for text inside tab Files, News and Usage</source>
-        <translation>Ctrl+F Fayllar, Yangiliklar va Ishlatilishi tablari ichida matnni qidirish</translation>
+        <translation>Ctrl+F Fayllar, Yangiliklar va Foydalanish ilovalari ichida matnni qidirish</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="129"/>
@@ -418,22 +418,22 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="151"/>
         <source>F4 to open a Terminal whitin the selected directory at Files tab</source>
-        <translation>F4 Fayllar tabining tanlangan direktoriya ichida terminalni ochish</translation>
+        <translation>F4 Fayllar ilovasining tanlangan direktoriya ichida terminalni ochish</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="153"/>
         <source>F6 to open a File Manager whitin the selected directory at Files tab</source>
-        <translation>F6 Fayllar tabining tanlangan direktoriya ichida fayl boshqaruvchisini ochish</translation>
+        <translation>F6 Fayllar ilovasining  tanlangan direktoriya ichida fayl boshqaruvchisini ochish</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="155"/>
         <source>F10 to maximize/demaximize package list view</source>
-        <translation>F10 paketlar ro&apos;yxati ko&apos;rinishini kattartirish/kichiktirish</translation>
+        <translation>F10 paketlar ro&apos;yxati ko&apos;rinishini kattalashtirish/kichraytirish</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="157"/>
         <source>F12 to maximize/demaximize Tab&apos;s view</source>
-        <translation>F12 tablar ko&apos;rinishini kattartirish/kichiktirish</translation>
+        <translation>F12 tablar ko&apos;rinishini kattalashtirish/kichraytirish</translation>
     </message>
 </context>
 <context>
@@ -441,7 +441,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="44"/>
         <source>Octopi usage help:</source>
-        <translation>Octopi yordamidan foydalanish:</translation>
+        <translation>Octopidan foydalanish bo&apos;yicha yordam:</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="45"/>
@@ -501,7 +501,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="90"/>
         <source>Usage</source>
-        <translation>Ishlatilishi</translation>
+        <translation>Foydalanish</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="94"/>
@@ -586,12 +586,12 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="158"/>
         <source>Conflicts With</source>
-        <translation>To&apos;qnashuvga olib keladi</translation>
+        <translation>Ixtilofda</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="162"/>
         <source>Replaces</source>
-        <translation>O&apos;rnini bosadi</translation>
+        <translation>Almashtiradi</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="166"/>
@@ -601,7 +601,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="170"/>
         <source>Installed Size</source>
-        <translation>O&apos;rnatiladigan hajm</translation>
+        <translation>O&apos;rnatilgan holda hajm</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="174"/>
@@ -626,7 +626,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="190"/>
         <source>Build Date</source>
-        <translation>Tuzish sanasi</translation>
+        <translation>Yig&apos;ish sanasi</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="194"/>
@@ -646,7 +646,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="206"/>
         <source>Password</source>
-        <translation>Maxfiy so&apos;z</translation>
+        <translation>Parol</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="210"/>
@@ -701,7 +701,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="250"/>
         <source>Building package list...</source>
-        <translation>Paketlar ro&apos;yxati tuzilmoqda...</translation>
+        <translation>Paketlar ro&apos;yxati yig&apos;ilmoqda...</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="254"/>
@@ -756,7 +756,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="294"/>
         <source>Press any key to continue...</source>
-        <translation>Davom etish uchun biror tugmani bosing...</translation>
+        <translation>Davom ettiriish uchun biror tugmani bosing...</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="298"/>
@@ -806,32 +806,32 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="334"/>
         <source>Retrieving %1</source>
-        <translation>%1 olinmoqda</translation>
+        <translation>%1 yuklanmoqda</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="338"/>
         <source>Total download size: %1 KB</source>
-        <translation>Umumiy yuklab olinadigan hajm: %1 KB</translation>
+        <translation>Jami yuklab olinadigan hajm: %1 KB</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="342"/>
         <source>The following target needs to be retrieved</source>
-        <translation>Quyidagi mo&apos;ljalni olish lozim</translation>
+        <translation>Quyidagi nishonni yuklash lozim</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="346"/>
         <source>The following target will be removed</source>
-        <translation>Quyidagi mo&apos;ljal o&apos;chiriladi</translation>
+        <translation>Quyidagi nishon o&apos;chiriladi</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="350"/>
         <source>The following %1 targets need to be retrieved</source>
-        <translation>Quyidagi %1 mo&apos;ljal olinish lozim</translation>
+        <translation>Quyidagi %1 nishonlarni yuklash lozim</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="354"/>
         <source>The following %1 targets will be removed</source>
-        <translation>Quyidagi %1 mo&apos;ljal o&apos;chiriladi</translation>
+        <translation>Quyidagi %1 nishon o&apos;chiriladi</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="358"/>
@@ -941,7 +941,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="444"/>
         <source>Select the packages you want to install</source>
-        <translation>O&apos;rnatish uchun paketlarni tanlansh</translation>
+        <translation>O&apos;rnatish uchun paketlarni tanlash</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="448"/>
