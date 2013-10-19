@@ -15,6 +15,8 @@
   Bring back the option to do a graphical system upgrade.
   Now when installing a package with optional dependencies, Octopi lets users choose 
 	which optional dependencies (if any) they want to install.
+  Now when removing a package with dependencies, Octopi lets users choose which one they 
+	want to remove.
   Now Get Latest Distro News doesn't freeze the interface.
   Changed octopi main icon to octopi-green.png in PKGBUILD and 
 	octopi.desktop.

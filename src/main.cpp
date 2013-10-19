@@ -124,7 +124,7 @@ int main(int argc, char *argv[])
     w.setPackagesToInstallList(packagesToInstallList);
   }
 
-  w.setRemoveCommand(argList->getSwitchArg("-removecmd", "Rcs"));
+  w.setRemoveCommand("Rcs"); //argList->getSwitchArg("-removecmd", "Rcs"));
   w.show();
 
   QResource::registerResource("./resources.qrc");

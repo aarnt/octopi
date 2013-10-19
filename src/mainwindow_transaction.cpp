@@ -243,6 +243,9 @@ QString MainWindow::getTobeInstalledPackages()
  */
 void MainWindow::insertIntoRemovePackage()
 {
+  bool checkDependencies=false;
+  QStringList dependencies;
+
   if (m_cbGroups->currentText() != StrConstants::getYaourtGroup())
   {
     _ensureTabVisible(ctn_TABINDEX_TRANSACTION);
@@ -260,11 +263,44 @@ void MainWindow::insertIntoRemovePackage()
       }
     }
 
+    QString removeCmd = m_removeCommand;
+    if (removeCmd == "Rcs" )
+    {
+      checkDependencies = true;
+    }
+
     foreach(QModelIndex item, ui->tvPackages->selectionModel()->selectedRows())
     {
       QModelIndex mi = m_proxyModelPackages->mapToSource(item);
       QStandardItem *si = sim->item(mi.row(), ctn_PACKAGE_NAME_COLUMN);
       QStandardItem *siRepository = sim->item(mi.row(), ctn_PACKAGE_REPOSITORY_COLUMN);
+
+      if(checkDependencies)
+      {
+        QStringList *targets = Package::getTargetRemovalList(si->text(), m_removeCommand);
+
+        foreach(QString target, *targets)
+        {
+          int separator = target.lastIndexOf("-");
+          QString candidate = target.left(separator);
+          separator = candidate.lastIndexOf("-");
+          candidate = candidate.left(separator);
+
+          if (candidate != si->text())
+          {
+            dependencies.append(candidate);
+          }
+        }
+
+        if (dependencies.count() > 0)
+        {
+          if (!dependencies.at(0).contains("HoldPkg was found in"))
+          {
+            if (!insertIntoRemovePackageDeps(si->text(), dependencies))
+              return;
+          }
+        }
+      }
 
       insertRemovePackageIntoTransaction(siRepository->text() + "/" + si->text());
     }
@@ -377,7 +413,52 @@ void MainWindow::insertIntoInstallPackageOptDeps(const QString &packageName)
         insertInstallPackageIntoTransaction(pkg);
       }
     }
+
+    delete msd;
   }
+}
+
+/*
+ * Inserts all remove dependencies of the current select package into the Transaction Treeview
+ * Returns TRUE if the user click OK or ENTER and number of selected packages > 0.
+ * Returns FALSE otherwise.
+ */
+bool MainWindow::insertIntoRemovePackageDeps(const QString &packageName, const QStringList &dependencies)
+{
+  qApp->processEvents();
+
+  MultiSelectionDialog *msd = new MultiSelectionDialog(this);
+  msd->setWindowTitle(StrConstants::getRemoveTargets().arg(dependencies.count()));
+  msd->setWindowIcon(windowIcon());
+  QStringList selectedPackages;
+
+  foreach(QString dep, dependencies)
+  {
+    QStandardItem *name = getAvailablePackage(dep, ctn_PACKAGE_NAME_COLUMN);
+
+    if(name == 0) continue;
+
+    QStandardItem *description = getAvailablePackage(dep, ctn_PACKAGE_DESCRIPTION_COLUMN);
+    QStandardItem *repository = getAvailablePackage(dep, ctn_PACKAGE_REPOSITORY_COLUMN);
+
+    msd->addPackageItem(name->text(), description->text(), repository->text());
+    msd->setAllSelected();
+  }
+
+  int res = msd->exec();
+
+  if (res == QMessageBox::Ok)
+  {
+    selectedPackages = msd->getSelectedPackages();
+    foreach(QString pkg, selectedPackages)
+    {
+      insertRemovePackageIntoTransaction(pkg);
+    }
+  }
+
+  delete msd;
+
+  return (res == QMessageBox::Ok && selectedPackages.count() > 0);
 }
 
 /*
@@ -713,22 +794,28 @@ void MainWindow::doSystemUpgrade(bool syncDatabase)
 void MainWindow::doRemoveAndInstall()
 {
   QString listOfRemoveTargets = getTobeRemovedPackages();
-  QStringList *removeTargets = Package::getTargetRemovalList(listOfRemoveTargets, m_removeCommand);
+  //QStringList *removeTargets = Package::getTargetRemovalList(listOfRemoveTargets, m_removeCommand);
+  QStringList *removeTargets = new QStringList();
   QString removeList;
   QString allLists;
   TransactionDialog question(this);
   QString dialogText;
 
-  foreach(QString removeTarget, *removeTargets)
+  /*foreach(QString removeTarget, *removeTargets)
   {
     removeList = removeList + StrConstants::getRemove() + " "  + removeTarget + "\n";
+  }*/
+
+  foreach(QString target, listOfRemoveTargets.split(" "))
+  {
+    removeList = removeList + StrConstants::getRemove() + " "  + target + "\n";
   }
 
-  if (removeList.count() == 0)
+  /*if (removeList.count() == 0)
   {
     removeTargets->append(listOfRemoveTargets);
     removeList.append(StrConstants::getRemove() + " "  + listOfRemoveTargets);
-  }
+  }*/
 
   QString listOfInstallTargets = getTobeInstalledPackages();
   QList<PackageListData> *installTargets = Package::getTargetUpgradeList(listOfInstallTargets);
@@ -793,7 +880,7 @@ void MainWindow::doRemoveAndInstall()
         "; pacman -S --noconfirm " + listOfInstallTargets;
 
     m_lastCommandList.clear();
-    m_lastCommandList.append("pacman -" + m_removeCommand + " " + listOfRemoveTargets + ";");
+    m_lastCommandList.append("pacman -R " /*+ m_removeCommand + " "*/ + listOfRemoveTargets + ";");
     m_lastCommandList.append("pacman -S " + listOfInstallTargets + ";");
     m_lastCommandList.append("echo -e;");
     m_lastCommandList.append("read -n1 -p \"" + StrConstants::getPressAnyKey() + "\"");
@@ -829,20 +916,26 @@ void MainWindow::doRemoveAndInstall()
 void MainWindow::doRemove()
 {
   QString listOfTargets = getTobeRemovedPackages();
-  m_targets = Package::getTargetRemovalList(listOfTargets, m_removeCommand);
+  //m_targets = Package::getTargetRemovalList(listOfTargets, m_removeCommand);
+  m_targets = new QStringList();
   QString list;
 
-  foreach(QString target, *m_targets)
+  /*foreach(QString target, *m_targets)
   {
     list = list + target + "\n";
   }
-  list.remove(list.size()-1, 1);
+  list.remove(list.size()-1, 1);*/
 
-  if (list.count() == 0)
+  foreach(QString target, listOfTargets.split(" "))
+  {
+    list = list + target + "\n";
+  }
+
+  /*if (list.count() == 0)
   {
     m_targets->append(listOfTargets);
     list.append(listOfTargets);
-  }
+  }*/
 
   TransactionDialog question(this);
 
@@ -878,7 +971,7 @@ void MainWindow::doRemove()
     command = "pacman -" + m_removeCommand + " --noconfirm " + listOfTargets;
 
     m_lastCommandList.clear();
-    m_lastCommandList.append("pacman -" + m_removeCommand + " " + listOfTargets + ";");
+    m_lastCommandList.append("pacman -R " + /*m_removeCommand +*/ listOfTargets + ";");
     m_lastCommandList.append("echo -e;");
     m_lastCommandList.append("read -n1 -p \"" + StrConstants::getPressAnyKey() + "\"");
 
@@ -1165,7 +1258,6 @@ void MainWindow::enableTransactionActions()
 void MainWindow::toggleTransactionActions(const bool value)
 {
   bool state = _isThereAPendingTransaction();
-
   if (value == true && state == true)
   {
     ui->actionCommit->setEnabled(true);
@@ -1415,8 +1507,6 @@ void MainWindow::actionsProcessReadOutput()
   {
     QString msg = m_unixCommand->readAllStandardOutput();
     msg = msg.trimmed();
-
-    //std::cout << "Out: " << msg.toAscii().data() << std::endl;
 
     if(!msg.isEmpty() &&
        msg.indexOf(":: Synchronizing package databases...") == -1 &&

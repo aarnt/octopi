@@ -29,9 +29,11 @@ MultiSelectionDialog::MultiSelectionDialog(QWidget *parent) :
   QDialog(parent),
   ui(new Ui::MultiSelectionDialog)
 {
+  m_actionIsToCheck = true;
+
   ui->setupUi(this);
   ui->twDepPackages->setColumnWidth(0, 150); //Package name
-  ui->twDepPackages->setColumnWidth(1, 315); //Package description
+  ui->twDepPackages->setColumnWidth(1, 385); //Package description
   ui->twDepPackages->horizontalHeader()->setResizeMode( QHeaderView::Fixed );
   ui->twDepPackages->setColumnWidth(2, 0); //Package repository
   ui->twDepPackages->horizontalHeader()->setDefaultAlignment( Qt::AlignLeft );
@@ -67,7 +69,6 @@ void MultiSelectionDialog::addPackageItem(const QString &name, const QString &de
   QTableWidgetItem *itemRepository = new QTableWidgetItem(repository);
 
   int currentRow = ui->twDepPackages->rowCount()-1;
-
   ui->twDepPackages->setItem(currentRow, 0, itemName);
   ui->twDepPackages->setItem(currentRow, 1, itemDescription);
   ui->twDepPackages->setItem(currentRow, 2, itemRepository);
@@ -97,6 +98,19 @@ QStringList MultiSelectionDialog::getSelectedPackages()
 }
 
 /*
+ * Helper to select all packages available
+ */
+void MultiSelectionDialog::setAllSelected()
+{
+  m_actionIsToCheck = false;
+
+  for(int row=0; row < ui->twDepPackages->rowCount(); row++)
+  {
+    ui->twDepPackages->item(row, 0)->setCheckState(Qt::Checked);
+  }
+}
+
+/*
  * This Event method is called whenever the user presses a key
  */
 bool MultiSelectionDialog::eventFilter(QObject *obj, QEvent *evt)
@@ -107,10 +121,10 @@ bool MultiSelectionDialog::eventFilter(QObject *obj, QEvent *evt)
     {
       QKeyEvent *ke = static_cast<QKeyEvent*>(evt);
       if (ke->key() == Qt::Key_A && ke->modifiers() == Qt::ControlModifier)
-      {
+      {        
         for(int row=0; row < ui->twDepPackages->rowCount(); row++)
         {
-          if (ui->twDepPackages->item(row, 0)->checkState() == Qt::Unchecked)
+          if (m_actionIsToCheck)
           {
             ui->twDepPackages->item(row, 0)->setCheckState(Qt::Checked);
           }
@@ -119,18 +133,26 @@ bool MultiSelectionDialog::eventFilter(QObject *obj, QEvent *evt)
             ui->twDepPackages->item(row, 0)->setCheckState(Qt::Unchecked);
           }
         }
-      }
+
+        m_actionIsToCheck = !m_actionIsToCheck;
+      }      
     }
   }
 
   return false;
 }
 
+/*
+ * Slot called when this dialog is cancelled (Cancel or ESC)
+ */
 void MultiSelectionDialog::reject()
 {
   done(QDialogButtonBox::Cancel);
 }
 
+/*
+ * Slot called when user presses OK button
+ */
 void MultiSelectionDialog::slotOk()
 {
   done(QDialogButtonBox::Ok);

@@ -333,7 +333,9 @@ private slots:
 
   void insertIntoRemovePackage();
   void insertIntoInstallPackage();
+
   void insertIntoInstallPackageOptDeps(const QString &packageName);
+  bool insertIntoRemovePackageDeps(const QString &packageName, const QStringList &dependencies);
 
   void insertGroupIntoRemovePackage();
   void insertGroupIntoInstallPackage();

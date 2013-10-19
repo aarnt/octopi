@@ -39,11 +39,15 @@ public:
                       const QString & repository);
   QStringList getSelectedPackages();
 
+  void setAllSelected();
+
 protected:
   virtual bool eventFilter(QObject *, QEvent *);
 
 private:
   Ui::MultiSelectionDialog *ui;
+
+  bool m_actionIsToCheck;
 
 private slots:
   void reject();
