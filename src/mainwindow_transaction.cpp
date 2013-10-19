@@ -249,7 +249,6 @@ void MainWindow::insertIntoRemovePackage()
   if (m_cbGroups->currentText() != StrConstants::getYaourtGroup())
   {
     _ensureTabVisible(ctn_TABINDEX_TRANSACTION);
-
     QStandardItemModel *sim=_getCurrentSelectedModel();
 
     //First, let's see if we are dealing with a package group
@@ -397,7 +396,11 @@ void MainWindow::insertIntoInstallPackageOptDeps(const QString &packageName)
     {
       QStandardItem *description = getAvailablePackage(candidate, ctn_PACKAGE_DESCRIPTION_COLUMN);
       QStandardItem *repository = getAvailablePackage(candidate, ctn_PACKAGE_REPOSITORY_COLUMN);
-      msd->addPackageItem(candidate, description->text(), repository->text());
+      QString desc = description->text();
+      int space = desc.indexOf(" ");
+      desc = desc.mid(space+1);
+
+      msd->addPackageItem(candidate, desc, repository->text());
     }
 
     delete cic;
@@ -448,8 +451,11 @@ bool MainWindow::insertIntoRemovePackageDeps(const QStringList &dependencies)
     {
       QStandardItem *description = getAvailablePackage(dep, ctn_PACKAGE_DESCRIPTION_COLUMN);
       QStandardItem *repository = getAvailablePackage(dep, ctn_PACKAGE_REPOSITORY_COLUMN);
+      QString desc = description->text();
+      int space = desc.indexOf(" ");
+      desc = desc.mid(space+1);
 
-      msd->addPackageItem(dep, description->text(), repository->text());
+      msd->addPackageItem(dep, desc, repository->text());
     }
 
     msd->setAllSelected();
