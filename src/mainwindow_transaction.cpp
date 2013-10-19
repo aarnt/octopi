@@ -902,7 +902,7 @@ void MainWindow::doRemoveAndInstall()
     if (!_isSUAvailable()) return;
 
     QString command;
-    command = "pacman -" + m_removeCommand + " --noconfirm " + listOfRemoveTargets +
+    command = "pacman -R --noconfirm " + listOfRemoveTargets +
         "; pacman -S --noconfirm " + listOfInstallTargets;
 
     m_lastCommandList.clear();
@@ -995,7 +995,7 @@ void MainWindow::doRemove()
     if (!_isSUAvailable()) return;
 
     QString command;
-    command = "pacman -" + m_removeCommand + " --noconfirm " + listOfTargets;
+    command = "pacman -R --noconfirm " + listOfTargets;
 
     m_lastCommandList.clear();
     m_lastCommandList.append("pacman -R " + /*m_removeCommand +*/ listOfTargets + ";");
