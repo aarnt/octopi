@@ -391,7 +391,6 @@ QString UnixCommand::getSystemArchitecture()
 {
   QStringList slParam;
   QProcess proc;
-
   QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
   env.insert("LANG", "C");
   env.insert("LC_MESSAGES", "C");
@@ -535,6 +534,23 @@ void UnixCommand::removeTemporaryFiles()
       dir.rmdir(file.filePath());
     }
   }
+}
+
+/*
+ * Runs a command with a QProcess blocking object!
+ */
+void UnixCommand::execCommand(const QString &pCommand)
+{
+  QProcess *p = new QProcess();
+  QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
+  env.insert("LANG", "C");
+  env.insert("LC_MESSAGES", "C");
+  p->setProcessEnvironment(env);
+
+  p->start(WMHelper::getSUCommand() + "\"" + pCommand + "\"");
+  p->waitForFinished(-1);
+  p->close();
+  delete p;
 }
 
 /*

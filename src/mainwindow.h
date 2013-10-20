@@ -311,6 +311,7 @@ private slots:
 
   void doRemoveAndInstall();
   void doRemove();
+  void doRemovePacmanLockFile();
   void doInstall();
   void doCleanCache();
   void doSyncDatabase();
@@ -391,12 +392,9 @@ public:
 
   void setCallSystemUpgrade();
   void setRemoveCommand(const QString &removeCommand);
-
-  //void setCleanLooksStyle(bool value){ m_cleanLooksStyle = value; }
   void setPackagesToInstallList(QStringList pkgList){ m_packagesToInstallList = pkgList; }
   void doInstallLocalPackages();
 
-  //bool isCleanLooksStyleEnabled(){ return m_cleanLooksStyle; }
   bool isExecutingCommand(){ return m_commandExecuting != ectn_NONE; }
 };
 

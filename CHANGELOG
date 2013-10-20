@@ -26,6 +26,7 @@
   Now the yellow octopi icon means there are outdated yaourt packages.
   Now octopi-notifier opens only the transaction dialog if Octopi is not running 
 	and user requests a system upgrade.
+  Added support to remove Pacman's transaction lock file.
   Added a new notification for outdated packages on statusbar.
   Added a new status icon: an orange one for newer than repo 
 	installed packages.

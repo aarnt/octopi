@@ -228,6 +228,13 @@ void MainWindow::keyPressEvent(QKeyEvent* ke)
       doCleanCache(); //If we are not executing any command, let's clean the cache
     }
   }
+  else if(ke->key() == Qt::Key_R && ke->modifiers() == (Qt::ShiftModifier|Qt::ControlModifier))
+  {
+    if (m_commandExecuting == ectn_NONE)
+    {
+      doRemovePacmanLockFile(); //If we are not executing any command, let's remove Pacman's lock file
+    }
+  }
 }
 
 /*
@@ -270,6 +277,7 @@ void MainWindow::keyReleaseEvent(QKeyEvent *ke)
       ui->tvPackages->setCurrentIndex(mi);
 
       if ((i <= fi.count()-1)) i++;
+
       if (i == fi.count()) i = 0;
     }
 

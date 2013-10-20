@@ -132,8 +132,10 @@ public:
   }
 
   static void removeTemporaryFiles();
-  void openRootTerminal();
 
+  static void execCommand(const QString &pCommand);
+
+  void openRootTerminal();
   void runCommandInTerminal(const QStringList& commandList);
   void runCommandInTerminalAsNormalUser(const QStringList& commandList);
 

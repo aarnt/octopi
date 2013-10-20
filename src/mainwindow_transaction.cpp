@@ -169,7 +169,6 @@ void MainWindow::insertInstallPackageIntoTransaction(const QString &pkgName)
 
   ui->twProperties->setCurrentIndex(ctn_TABINDEX_TRANSACTION);
   tvTransaction->expandAll();
-
   changeTransactionActionsState();
 }
 
@@ -1035,13 +1034,39 @@ void MainWindow::doRemove()
 }
 
 /*
+ * If the Pacman lock file exists ("/var/run/pacman.lck"), removes it!
+ */
+void MainWindow::doRemovePacmanLockFile()
+{
+  //If there are no means to run the actions, we must warn!
+  if (!_isSUAvailable()) return;
+
+  QString lockFilePath("/var/lib/pacman/db.lck");
+  QFile lockFile(lockFilePath);
+
+  if (lockFile.exists())
+  {
+    int res = QMessageBox::question(this, StrConstants::getConfirmation(),
+                                    StrConstants::getRemovePacmanTransactionLockFileConfirmation(),
+                                    QMessageBox::Yes|QMessageBox::No, QMessageBox::No);
+
+    if (res == QMessageBox::Yes)
+    {
+      qApp->processEvents();
+
+      clearTabOutput();
+      writeToTabOutputExt("<b>" + StrConstants::getRemovingPacmanTransactionLockFile() + "</b>");
+      UnixCommand::execCommand("rm " + lockFilePath);
+      writeToTabOutputExt("<b>" + StrConstants::getCommandFinishedOK() + "</b>");
+    }
+  }
+}
+
+/*
  * Installs the selected package with "yaourt -S"
  */
 void MainWindow::doInstallYaourtPackage()
 {
-  //If there are no means to run the actions, we must warn!
-  //if (!_isSUAvailable()) return;
-
   QString listOfTargets;
 
   if (m_cbGroups->currentText() == StrConstants::getYaourtGroup())
@@ -1473,10 +1498,6 @@ void MainWindow::actionsProcessFinished(int exitCode, QProcess::ExitStatus)
           }
         }
       }
-      /*else if (m_cbGroups->currentText() == StrConstants::getYaourtGroup())
-      {
-        buildYaourtPackageList();
-      }*/
       else if (m_commandExecuting == ectn_SYSTEM_UPGRADE ||
                m_commandExecuting == ectn_RUN_SYSTEM_UPGRADE_IN_TERMINAL)
       {
@@ -1581,7 +1602,6 @@ void MainWindow::_treatProcessOutput(const QString &pMsg)
 
   QString progressRun;
   QString progressEnd;
-
   msg.remove(QRegExp(".+\\[Y/n\\].+"));
   msg.remove(QRegExp("warning:\\S{0}"));
 

@@ -1,437 +1,455 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="fi" version="2.0">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.0" language="fi">
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="14"/>
+        <location filename="../../ui/mainwindow.ui" line="14"/>
         <source>Octopi</source>
         <translation>Octopi</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="92"/>
+        <location filename="../../ui/mainwindow.ui" line="92"/>
         <source>Info</source>
         <translation>Tietoja</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="97"/>
+        <location filename="../../ui/mainwindow.ui" line="97"/>
         <source>Files</source>
         <translation>Tiedostot</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="102"/>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="143"/>
+        <location filename="../../ui/mainwindow.ui" line="102"/>
+        <location filename="../../ui/mainwindow.ui" line="143"/>
         <source>Transaction</source>
         <translation>Toimenpide</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="107"/>
+        <location filename="../../ui/mainwindow.ui" line="107"/>
         <source>Output</source>
         <translation>Tuloste</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="129"/>
+        <location filename="../../ui/mainwindow.ui" line="129"/>
         <source>Help</source>
         <translation>Apua</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="137"/>
+        <location filename="../../ui/mainwindow.ui" line="137"/>
         <source>View</source>
         <translation>Näytä</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="150"/>
+        <location filename="../../ui/mainwindow.ui" line="150"/>
         <source>File</source>
         <translation>Tiedosto</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="163"/>
+        <location filename="../../ui/mainwindow.ui" line="163"/>
         <source>Search</source>
         <translation>Etsi</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="191"/>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="194"/>
+        <location filename="../../ui/mainwindow.ui" line="191"/>
+        <location filename="../../ui/mainwindow.ui" line="194"/>
         <source>About</source>
         <translation>Tietoja</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="208"/>
+        <location filename="../../ui/mainwindow.ui" line="208"/>
         <source>Non installed</source>
         <translation>Asentamattomat</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="211"/>
+        <location filename="../../ui/mainwindow.ui" line="211"/>
         <source>Ctrl+N</source>
         <translation>Ctrl+N</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="220"/>
+        <location filename="../../ui/mainwindow.ui" line="220"/>
         <source>Commit</source>
         <translation>Toteuta</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="223"/>
+        <location filename="../../ui/mainwindow.ui" line="223"/>
         <source>Ctrl+M</source>
         <translation>Ctrl+M</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="232"/>
+        <location filename="../../ui/mainwindow.ui" line="232"/>
         <source>Rollback</source>
         <translation>Peruuta</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="235"/>
+        <location filename="../../ui/mainwindow.ui" line="235"/>
         <source>Ctrl+B</source>
         <translation>Ctrl+B</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="244"/>
+        <location filename="../../ui/mainwindow.ui" line="244"/>
         <source>Sync database</source>
         <translation>Synkronoi tietokanta</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="247"/>
+        <location filename="../../ui/mainwindow.ui" line="247"/>
         <source>Ctrl+D</source>
         <translation>Ctrl+D</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="256"/>
+        <location filename="../../ui/mainwindow.ui" line="256"/>
         <source>Exit</source>
         <translation>Lopeta</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="259"/>
+        <location filename="../../ui/mainwindow.ui" line="259"/>
         <source>Ctrl+Q</source>
         <translation>Ctrl+Q</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="264"/>
+        <location filename="../../ui/mainwindow.ui" line="264"/>
         <source>System upgrade</source>
         <translation>Järjestelmäpäivitys</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="267"/>
+        <location filename="../../ui/mainwindow.ui" line="267"/>
         <source>Ctrl+U</source>
         <translation>Ctrl+U</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="276"/>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="279"/>
+        <location filename="../../ui/mainwindow.ui" line="276"/>
+        <location filename="../../ui/mainwindow.ui" line="279"/>
+        <location filename="../../ui/mainwindow.ui" line="481"/>
         <source>Install</source>
         <translation>Asenna</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="288"/>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="291"/>
+        <location filename="../../ui/mainwindow.ui" line="288"/>
+        <location filename="../../ui/mainwindow.ui" line="291"/>
         <source>Remove</source>
         <translation>Poista</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="296"/>
+        <location filename="../../ui/mainwindow.ui" line="296"/>
         <source>Outdated packages</source>
         <translation>Vanhentuneet paketit</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="305"/>
+        <location filename="../../ui/mainwindow.ui" line="305"/>
         <source>Get latest distro news</source>
         <translation>Hae viimeisimmät jakelu-uutiset</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="308"/>
+        <location filename="../../ui/mainwindow.ui" line="308"/>
         <source>Ctrl+G</source>
         <translation>Ctrl+G</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="317"/>
+        <location filename="../../ui/mainwindow.ui" line="317"/>
         <source>Remove group</source>
         <translation>Poista ryhmä</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="326"/>
+        <location filename="../../ui/mainwindow.ui" line="326"/>
         <source>Install group</source>
         <translation>Asenna ryhmä</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="335"/>
+        <location filename="../../ui/mainwindow.ui" line="335"/>
         <source>Collapse item</source>
         <translation>Supista kohde</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="344"/>
+        <location filename="../../ui/mainwindow.ui" line="344"/>
         <source>Expand item</source>
         <translation>Laajenna kohde</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="353"/>
+        <location filename="../../ui/mainwindow.ui" line="353"/>
         <source>Collapse all items</source>
         <translation>Laajenna kaikki</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="362"/>
+        <location filename="../../ui/mainwindow.ui" line="362"/>
         <source>Expand all items</source>
         <translation>Supista kaikki</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="371"/>
+        <location filename="../../ui/mainwindow.ui" line="371"/>
         <source>Open file</source>
         <translation>Avaa tiedosto</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="380"/>
+        <location filename="../../ui/mainwindow.ui" line="380"/>
         <source>Edit file</source>
         <translation>Muokkaa tiedostoa</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="389"/>
+        <location filename="../../ui/mainwindow.ui" line="389"/>
         <source>Open directory</source>
         <translation>Avaa kansio</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="398"/>
+        <location filename="../../ui/mainwindow.ui" line="398"/>
         <source>Open terminal here</source>
         <translation>Avaa päätteessä</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="407"/>
+        <location filename="../../ui/mainwindow.ui" line="407"/>
         <source>Remove item</source>
         <translation>Poista kohde listalta</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="419"/>
+        <location filename="../../ui/mainwindow.ui" line="419"/>
         <source>Remove items</source>
         <translation>Poista kohteet listalta</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="430"/>
+        <location filename="../../ui/mainwindow.ui" line="430"/>
         <source>By description</source>
         <translation>Kuvauksesta</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="438"/>
+        <location filename="../../ui/mainwindow.ui" line="438"/>
         <source>By name</source>
         <translation>Nimestä</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="447"/>
+        <location filename="../../ui/mainwindow.ui" line="447"/>
         <source>Find a file</source>
         <translation>Etsi tiedosto</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="456"/>
+        <location filename="../../ui/mainwindow.ui" line="456"/>
         <source>Open root terminal</source>
         <translation>Avaa root-pääte</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="461"/>
+        <location filename="../../ui/mainwindow.ui" line="461"/>
         <source>Usage</source>
         <translation>Käyttö</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="464"/>
+        <location filename="../../ui/mainwindow.ui" line="464"/>
         <source>F1</source>
         <translation>F1</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="472"/>
+        <location filename="../../ui/mainwindow.ui" line="472"/>
         <source>Install local package...</source>
         <translation>Asenna paikallinen paketti...</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="55"/>
+        <location filename="../../src/mainwindow_help.cpp" line="55"/>
         <source>For more information, visit:</source>
         <translation>Saadaksesi lisätietoja, käy osoitteessa:</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="58"/>
+        <location filename="../../src/mainwindow_help.cpp" line="58"/>
         <source>A Qt4-based Pacman frontend,</source>
         <translation>Qt4-pohjainen Pacman-käyttöliittymä, </translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="59"/>
+        <location filename="../../src/mainwindow_help.cpp" line="59"/>
         <source>licensed under the terms of</source>
         <translation>lisenssi: </translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="76"/>
+        <location filename="../../src/mainwindow_help.cpp" line="77"/>
         <source>Package classification:</source>
         <translation>Pakettien luokittelu:</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="79"/>
+        <location filename="../../src/mainwindow_help.cpp" line="80"/>
         <source>An installed package</source>
         <translation>Asennettu paketti</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="81"/>
+        <location filename="../../src/mainwindow_help.cpp" line="82"/>
         <source>An installed package (not required by others)</source>
         <translation>Asennettu paketti (ei muiden pakettien vaatima)</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="84"/>
+        <location filename="../../src/mainwindow_help.cpp" line="85"/>
         <source>A foreign package, installed from</source>
         <translation>Vieras paketti, asennettu kohteesta</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="87"/>
+        <location filename="../../src/mainwindow_help.cpp" line="88"/>
         <source>A non installed package</source>
         <translation>Asentamaton paketti</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="90"/>
+        <location filename="../../src/mainwindow_help.cpp" line="91"/>
         <source>An outdated package</source>
         <translation>Vanhentunut paketti</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="92"/>
+        <location filename="../../src/mainwindow_help.cpp" line="94"/>
+        <source>An outdated foreign package</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/mainwindow_help.cpp" line="97"/>
         <source>A newer than repository package</source>
         <translation>Uudempi kuin pakettivarastoissa</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="95"/>
+        <location filename="../../src/mainwindow_help.cpp" line="100"/>
         <source>Basic usage help:</source>
         <translation>Ohje peruskäyttöön:</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="97"/>
+        <location filename="../../src/mainwindow_help.cpp" line="102"/>
         <source>Position the mouse over a package to see its description</source>
         <translation>Aseta kursori paketin yläpuolelle nähdäksesi sen kuvauksen</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="99"/>
+        <location filename="../../src/mainwindow_help.cpp" line="104"/>
         <source>Double click an installed package to see its contents</source>
         <translation>Tuplaklikkaa pakettia nähdäksesi sen sisällön</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="101"/>
+        <location filename="../../src/mainwindow_help.cpp" line="106"/>
         <source>Right click package to install/reinstall or remove it</source>
         <translation>Klikkaa pakettia hiiren oikealla (uudelleen)asentaaksesi tai poistaaksesi sen</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="104"/>
+        <location filename="../../src/mainwindow_help.cpp" line="109"/>
         <source>Alt+key sequences:</source>
         <translation>Alt+näppäin-yhdistelmät:</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="106"/>
+        <location filename="../../src/mainwindow_help.cpp" line="111"/>
         <source>Alt+1 to switch to &apos;Info&apos; tab</source>
         <translation>Alt+1 vaihtaa Tiedot-välilehdelle</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="108"/>
+        <location filename="../../src/mainwindow_help.cpp" line="113"/>
         <source>Alt+2 to switch to &apos;Files&apos; tab</source>
         <translation>Alt+2 vaihtaa Tiedostot-välilehdelle</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="110"/>
+        <location filename="../../src/mainwindow_help.cpp" line="115"/>
         <source>Alt+3 to switch to &apos;Transaction&apos; tab</source>
         <translation>Alt+3 vaihtaa Toimenpide-välilehdelle</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="112"/>
+        <location filename="../../src/mainwindow_help.cpp" line="117"/>
         <source>Alt+4 to switch to &apos;Output&apos; tab</source>
         <translation>Alt+4 vaihtaa Tuloste-välilehdelle</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="114"/>
+        <location filename="../../src/mainwindow_help.cpp" line="119"/>
         <source>Alt+5 to switch to &apos;News&apos; tab</source>
         <translation>Alt+5 vaihtaa Uutiset-välilehdelle</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="116"/>
+        <location filename="../../src/mainwindow_help.cpp" line="121"/>
         <source>Alt+6 or &apos;F1&apos; to show this help page</source>
         <translation>Alt+6 tai F1 näyttää tämän opastussivun</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="119"/>
+        <location filename="../../src/mainwindow_help.cpp" line="124"/>
         <source>Control+key sequences:</source>
         <translation>Ctrl+näppäin-yhdistelmät:</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="121"/>
+        <location filename="../../src/mainwindow_help.cpp" line="126"/>
         <source>Ctrl+D or &apos;File/Sync database&apos; to sync the local database with latest remote changes (pacman -Sy)</source>
         <translation>Ctrl+D tai &apos;Tiedosto/Synkronoi tietokanta&apos; synkronoidaksesi paikallisen tietokannan viimeisimpiin muutoksiin (pacman -Sy)</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="123"/>
+        <location filename="../../src/mainwindow_help.cpp" line="128"/>
         <source>Ctrl+U or &apos;File/System upgrade&apos; to make a full system upgrade (pacman -Su)</source>
         <translation>Ctrl+U tai &apos;Tiedosto/Järjestelmäpäivitys&apos; tehdäksesi täyden järjestelmäpäivityksen (pacman -Su)</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="125"/>
+        <location filename="../../src/mainwindow_help.cpp" line="130"/>
         <source>Ctrl+L to find a package in the package list</source>
         <translation>Ctrl+L etsiäksesi pakettia pakettilistalta</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="127"/>
+        <location filename="../../src/mainwindow_help.cpp" line="132"/>
         <source>Ctrl+F to search for text inside tab Files, News and Usage</source>
         <translation>Ctrl+F hakeaksesi tekstiä Tiedostot-, Uutiset- ja Käyttö-välilehdiltä</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="129"/>
+        <location filename="../../src/mainwindow_help.cpp" line="134"/>
         <source>Ctrl+N or &apos;View/Non installed&apos; to show/hide non installed packages</source>
         <translation>Ctrl+N tai &apos;Näytä/Asentamattomat&apos; näyttääksesi/piilottaaksesi asennetut paketit</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="131"/>
+        <location filename="../../src/mainwindow_help.cpp" line="136"/>
         <source>Ctrl+M or &apos;Transaction/Commit&apos; to start installation/removal of selected packages</source>
         <translation>Ctrl+M tai &apos;Toimenpide/Toteuta&apos; aloittaaksesi valittujen pakettien asennuksen/poiston</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="133"/>
+        <location filename="../../src/mainwindow_help.cpp" line="138"/>
         <source>Ctrl+B or &apos;Transaction/Rollback&apos; to clear the selection of to be removed/installed packages</source>
         <translation>Ctrl+B tai &apos;Toimenpide/Palauta&apos; tyhjentääkesi asennettavien/poistettavien pakettien luettelot</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="135"/>
+        <location filename="../../src/mainwindow_help.cpp" line="140"/>
         <source>Ctrl+G or &apos;File/Get latest distro news&apos; to retrieve the latest RSS based distro news</source>
         <translation>Ctrl+G tai &apos;Tiedosto/Hae viimeisimmät jakelu-uutiset&apos; hakeaksesi viimeisimmät RSS-pohjaiset jakelu-uutiset</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="137"/>
+        <location filename="../../src/mainwindow_help.cpp" line="142"/>
         <source>Ctrl+Q or &apos;File/Exit&apos; to exit the application</source>
         <translation>Ctrl+Q tai &apos;Tiedosto/Lopeta&apos; lopettaaksesi ohjelman</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="140"/>
+        <location filename="../../src/mainwindow_help.cpp" line="145"/>
         <source>Control+shift+key sequences:</source>
         <translation>Control+Shift+näppäin-yhdistelmät:</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="142"/>
+        <location filename="../../src/mainwindow_help.cpp" line="147"/>
         <source>Ctrl+Shift+C to clean local packages cache (pacman -Sc)</source>
         <translation>Ctrl+Shift+C siistiäksesi pakettivaraston (pacman -Sc)</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="144"/>
+        <location filename="../../src/mainwindow_help.cpp" line="149"/>
         <source>Ctrl+Shift+G to display all package groups</source>
         <translation>Ctrl+Shift+G nähdäksesi kaikki pakettiryhmät</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="147"/>
+        <location filename="../../src/mainwindow_help.cpp" line="151"/>
+        <source>Ctrl+Shift+R to remove Pacman&apos;s transaction lock file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/mainwindow_help.cpp" line="153"/>
+        <source>Ctrl+Shift+Y to display Yaourt group</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/mainwindow_help.cpp" line="156"/>
         <source>F+key sequences:</source>
         <translation>F-näppäimet:</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="149"/>
+        <location filename="../../src/mainwindow_help.cpp" line="158"/>
         <source>F1 to show this help page</source>
         <translation>F1 nähdäksesi tämän opastussivun</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="151"/>
+        <location filename="../../src/mainwindow_help.cpp" line="160"/>
         <source>F4 to open a Terminal whitin the selected directory at Files tab</source>
         <translation>F4 avataksesi Tiedostot-välilehdellä valitun kansion päätteessä</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="153"/>
+        <location filename="../../src/mainwindow_help.cpp" line="162"/>
         <source>F6 to open a File Manager whitin the selected directory at Files tab</source>
         <translation>F6 avataksesi Tiedostot-välilehdellä valitun kansion tiedostonhallinnassa</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="155"/>
+        <location filename="../../src/mainwindow_help.cpp" line="164"/>
         <source>F10 to maximize/demaximize package list view</source>
         <translation>F10 maksimoidaksesi/palauttaaksesi pakettinäkymän</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="157"/>
+        <location filename="../../src/mainwindow_help.cpp" line="166"/>
         <source>F12 to maximize/demaximize Tab&apos;s view</source>
         <translation>F12 maksimoidaksesi/palauttaaksesi välilehtinäkymän</translation>
     </message>
@@ -439,562 +457,577 @@
 <context>
     <name>QObject</name>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="44"/>
+        <location filename="../../src/strconstants.h" line="43"/>
         <source>Octopi usage help:</source>
         <translation>Octopi-avun käyttö:</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="45"/>
+        <location filename="../../src/strconstants.h" line="44"/>
         <source>show application version.</source>
         <translation>näytä ohjelman versio.</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="46"/>
+        <location filename="../../src/strconstants.h" line="45"/>
         <source>use a different Qt4 style (ex: -style gtk).</source>
         <translation>käytä erilaista Qt4-tyyliä (esim: -style gtk).</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="47"/>
+        <location filename="../../src/strconstants.h" line="46"/>
         <source>use a different remove command (ex: -removecmd R).</source>
         <translation>käytä erilaista poistokomentoa (esim: -removecmd R).</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="48"/>
+        <location filename="../../src/strconstants.h" line="47"/>
         <source>force a system upgrade at startup.</source>
         <translation>pakota järjestelmäpäivitys käynnistyksen yhteydessä.</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="58"/>
+        <location filename="../../src/strconstants.h" line="57"/>
         <source>Arch Linux news</source>
         <translation>Arch Linux -uutiset</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="62"/>
+        <location filename="../../src/strconstants.h" line="61"/>
         <source>Chakra news</source>
         <translation>Chakra-uutiset</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="66"/>
+        <location filename="../../src/strconstants.h" line="65"/>
         <source>Manjaro Linux news</source>
         <translation>Manjaro Linux -uutiset</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="70"/>
+        <location filename="../../src/strconstants.h" line="69"/>
         <source>No news could be found! Press Ctrl+G to download the latest news.</source>
         <translation>Uutisia ei löytynyt! Paina Ctrl+G ladataksesi viimeisimmät uutiset.</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="74"/>
+        <location filename="../../src/strconstants.h" line="73"/>
         <source>This Linux distro seems to be incompatible with Octopi!</source>
         <translation>Tämä Linux-jakelu vaikuttaa olevan yhteensopimaton Octopin kanssa!</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="78"/>
+        <location filename="../../src/strconstants.h" line="77"/>
         <source>Internet seems unavailable!</source>
         <translation>Internetiin ei saada yhteyttä!</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="82"/>
+        <location filename="../../src/strconstants.h" line="81"/>
         <source>Display all groups</source>
         <translation>Näytä kaikki ryhmät</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="90"/>
+        <location filename="../../src/strconstants.h" line="89"/>
         <source>Usage</source>
         <translation>Käyttö</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="94"/>
+        <location filename="../../src/strconstants.h" line="93"/>
         <source>About</source>
         <translation>Tietoja</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="98"/>
+        <location filename="../../src/strconstants.h" line="97"/>
         <source>Name</source>
         <translation>Nimi</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="102"/>
+        <location filename="../../src/strconstants.h" line="101"/>
         <source>Version</source>
         <translation>Versio</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="106"/>
+        <location filename="../../src/strconstants.h" line="105"/>
         <source>Outdated version</source>
         <translation>Vanhentunut versio</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="110"/>
+        <location filename="../../src/strconstants.h" line="109"/>
         <source>Available version</source>
         <translation>Saatavilla oleva versio</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="114"/>
+        <location filename="../../src/strconstants.h" line="113"/>
         <source>No description available.</source>
         <translation>Kuvausta ei saatavilla.</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="118"/>
+        <location filename="../../src/strconstants.h" line="117"/>
         <source>URL</source>
         <translation>URL</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="122"/>
+        <location filename="../../src/strconstants.h" line="121"/>
         <source>Repository</source>
         <translation>Pakettilähde</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="126"/>
+        <location filename="../../src/strconstants.h" line="125"/>
         <source>Licenses</source>
         <translation>Lisenssit</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="130"/>
+        <location filename="../../src/strconstants.h" line="129"/>
         <source>Group</source>
         <translation>Ryhmät</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="134"/>
+        <location filename="../../src/strconstants.h" line="133"/>
         <source>Groups</source>
         <translation>Ryhmät</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="138"/>
+        <location filename="../../src/strconstants.h" line="137"/>
         <source>Provides</source>
         <translation>Tarjoaa</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="142"/>
+        <location filename="../../src/strconstants.h" line="141"/>
         <source>Depends On</source>
         <translation>Vaaditut paketit</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="146"/>
+        <location filename="../../src/strconstants.h" line="145"/>
         <source>Required By</source>
         <translation>Vaativat paketit</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="150"/>
+        <location filename="../../src/strconstants.h" line="149"/>
         <source>Optional For</source>
         <translation>Valinnainen paketeille</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="154"/>
+        <location filename="../../src/strconstants.h" line="153"/>
         <source>Optional Deps</source>
         <translation>Valinnaiset riippuvuudet</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="158"/>
+        <location filename="../../src/strconstants.h" line="157"/>
         <source>Conflicts With</source>
         <translation>Ristiriidat</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="162"/>
+        <location filename="../../src/strconstants.h" line="161"/>
         <source>Replaces</source>
         <translation>Korvaa</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="166"/>
+        <location filename="../../src/strconstants.h" line="165"/>
         <source>Download Size</source>
         <translation>Latauksen koko</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="170"/>
+        <location filename="../../src/strconstants.h" line="169"/>
         <source>Installed Size</source>
         <translation>Asennuksen koko</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="174"/>
+        <location filename="../../src/strconstants.h" line="173"/>
         <source>Packager</source>
         <translation>Pakkaaja</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="178"/>
+        <location filename="../../src/strconstants.h" line="177"/>
         <source>Package</source>
         <translation>Paketti</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="182"/>
+        <location filename="../../src/strconstants.h" line="181"/>
         <source>Packages</source>
         <translation>Paketit</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="186"/>
+        <location filename="../../src/strconstants.h" line="185"/>
         <source>Architecture</source>
         <translation>Arkkitehtuuri</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="190"/>
+        <location filename="../../src/strconstants.h" line="189"/>
         <source>Build Date</source>
         <translation>Koontipäivämäärä</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="194"/>
+        <location filename="../../src/strconstants.h" line="193"/>
         <source>Description</source>
         <translation>Kuvaus</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="198"/>
+        <location filename="../../src/strconstants.h" line="197"/>
         <source>Attention</source>
         <translation>Huomio</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="202"/>
+        <location filename="../../src/strconstants.h" line="201"/>
         <source>automatic</source>
         <translation>automaattinen</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="206"/>
+        <location filename="../../src/strconstants.h" line="205"/>
         <source>Password</source>
         <translation>Salasana</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="210"/>
+        <location filename="../../src/strconstants.h" line="209"/>
         <source>Info</source>
         <translation>Tiedot</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="214"/>
+        <location filename="../../src/strconstants.h" line="213"/>
         <source>Files</source>
         <translation>Tiedostot</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="218"/>
+        <location filename="../../src/strconstants.h" line="217"/>
         <source>Transaction</source>
         <translation>Toimenpide</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="222"/>
+        <location filename="../../src/strconstants.h" line="221"/>
         <source>Output</source>
         <translation>Tuloste</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="226"/>
+        <location filename="../../src/strconstants.h" line="225"/>
         <source>News</source>
         <translation>Uutiset</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="230"/>
+        <location filename="../../src/strconstants.h" line="229"/>
         <source>Contents of &quot;%1&quot;</source>
         <translation>Paketin %1 sisältö</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="234"/>
+        <location filename="../../src/strconstants.h" line="233"/>
         <source>Find</source>
         <translation>Hae</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="238"/>
+        <location filename="../../src/strconstants.h" line="237"/>
         <source>Clear</source>
         <translation>Tyhjennä</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="242"/>
+        <location filename="../../src/strconstants.h" line="241"/>
         <source> (outdated installed version is %1)</source>
         <translation> (vanhentunut, asennettu versio on %1)</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="246"/>
+        <location filename="../../src/strconstants.h" line="245"/>
         <source> (newer installed version is %1)</source>
         <translation>(uudempi, asennettu versio on %1)</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="250"/>
+        <location filename="../../src/strconstants.h" line="249"/>
         <source>Building package list...</source>
         <translation>Kootaan pakettiluetteloa...</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="254"/>
+        <location filename="../../src/strconstants.h" line="253"/>
         <source>Searching for %1 latest news...</source>
         <translation>Etsitään uusimpia %1 -uutisia...</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="258"/>
+        <location filename="../../src/strconstants.h" line="257"/>
         <source>There is one outdated package in your system:</source>
         <translation>Järjestelmässä on yksi vanhentunut paketti:</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="262"/>
+        <location filename="../../src/strconstants.h" line="261"/>
         <source>There are %1 outdated packages in your system:</source>
         <translation>Järjestelmässä on %1 vanhentunutta pakettia:</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="266"/>
+        <location filename="../../src/strconstants.h" line="265"/>
         <source>(version %1 is available)</source>
         <translation>(versio %1 on saatavilla)</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="270"/>
+        <location filename="../../src/strconstants.h" line="269"/>
         <source>%1 (%2) packages</source>
         <translation>%1 (%2) pakettia</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="274"/>
+        <location filename="../../src/strconstants.h" line="273"/>
         <source>%1 installed</source>
         <translation>%1 asennettu</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="278"/>
+        <location filename="../../src/strconstants.h" line="277"/>
         <source>%1 outdated</source>
         <translation>%1 vanhentunut</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="282"/>
+        <location filename="../../src/strconstants.h" line="281"/>
         <source>%1 available</source>
         <translation>%1 saatavilla</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="286"/>
+        <location filename="../../src/strconstants.h" line="285"/>
         <source>Cleaning package cache...</source>
         <translation>Siistitään pakettivarastoa...</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="290"/>
+        <location filename="../../src/strconstants.h" line="289"/>
+        <source>Removing Pacman&apos;s transaction lock file...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/strconstants.h" line="293"/>
         <source>Syncing</source>
         <translation>Synkronoidaan</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="294"/>
+        <location filename="../../src/strconstants.h" line="297"/>
         <source>Press any key to continue...</source>
         <translation>Paina mitä tahansa näppäintä jatkaaksesi...</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="298"/>
+        <location filename="../../src/strconstants.h" line="301"/>
         <source>Synchronizing databases...</source>
         <translation>Synkronoidaan tietokantoja...</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="302"/>
+        <location filename="../../src/strconstants.h" line="305"/>
         <source>is up to date</source>
         <translation>on ajan tasalla</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="306"/>
+        <location filename="../../src/strconstants.h" line="309"/>
         <source>Starting full system upgrade...</source>
         <translation>Aloitetaan täysi järjestelmäpäivitys...</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="310"/>
+        <location filename="../../src/strconstants.h" line="313"/>
         <source>Installing selected packages...</source>
         <translation>Asennetaan valittuja paketteja...</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="314"/>
+        <location filename="../../src/strconstants.h" line="317"/>
         <source>Removing selected packages...</source>
         <translation>Poistetaan valittuja paketteja...</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="318"/>
+        <location filename="../../src/strconstants.h" line="321"/>
         <source>Removing/installing selected packages...</source>
         <translation>Poistetaan/asennetaan valittuja paketteja...</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="322"/>
+        <location filename="../../src/strconstants.h" line="325"/>
         <source>Running command in terminal...</source>
         <translation>Suoritetaan komentoa terminaalissa...</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="326"/>
+        <location filename="../../src/strconstants.h" line="329"/>
         <source>Command finished OK!</source>
         <translation>Komento suoritettiin onnistuneesti!</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="330"/>
+        <location filename="../../src/strconstants.h" line="333"/>
         <source>Command finished with errors!</source>
         <translation>Komento päättyi virheisiin!</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="334"/>
+        <location filename="../../src/strconstants.h" line="337"/>
         <source>Retrieving %1</source>
         <translation>Noudetaan %1</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="338"/>
+        <location filename="../../src/strconstants.h" line="341"/>
         <source>Total download size: %1 KB</source>
         <translation>Latauksen koko yhteensä: %1 KB</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="342"/>
+        <location filename="../../src/strconstants.h" line="345"/>
         <source>The following target needs to be retrieved</source>
         <translation>Seuraava kohde täytyy noutaa</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="346"/>
+        <location filename="../../src/strconstants.h" line="349"/>
         <source>The following target will be removed</source>
         <translation>Seuraava kohde tullaan poistamaan</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="350"/>
+        <location filename="../../src/strconstants.h" line="353"/>
         <source>The following %1 targets need to be retrieved</source>
         <translation>Seuraavat %1 kohdetta täytyy noutaa</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="354"/>
+        <location filename="../../src/strconstants.h" line="357"/>
         <source>The following %1 targets will be removed</source>
         <translation>Seuraavat %1 kohdetta tullaan poistamaan</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="358"/>
+        <location filename="../../src/strconstants.h" line="361"/>
         <source>There are forbidden packages in the removal list!</source>
         <translation>Poistolistalla on kiellettyjä paketteja!</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="362"/>
+        <location filename="../../src/strconstants.h" line="365"/>
         <source>There are no new updates available!</source>
         <translation>Uusia päivityksiä ei ole saatavilla!</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="366"/>
+        <location filename="../../src/strconstants.h" line="369"/>
         <source>There is an update available!</source>
         <translation>Päivitys on saatavilla!</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="370"/>
+        <location filename="../../src/strconstants.h" line="373"/>
         <source>There are %1 updates available!</source>
         <translation>%1 päivitystä on saatavilla!</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="374"/>
+        <location filename="../../src/strconstants.h" line="377"/>
         <source>Confirm?</source>
         <translation>Hyväksytkö?</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="378"/>
+        <location filename="../../src/strconstants.h" line="381"/>
         <source>Warning!!!</source>
         <translation>Varoitus!!!</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="382"/>
+        <location filename="../../src/strconstants.h" line="385"/>
         <source>Confirmation</source>
         <translation>Varmennus</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="386"/>
+        <location filename="../../src/strconstants.h" line="389"/>
         <source>There has been a transaction error!</source>
         <translation>On sattunut toimenpidevirhe!</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="390"/>
+        <location filename="../../src/strconstants.h" line="393"/>
         <source>Do you want to execute this transaction in a Terminal?</source>
         <translation>Haluatko suorittaa tämän toimenpiteen Päätteessä?</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="394"/>
+        <location filename="../../src/strconstants.h" line="397"/>
         <source>Do you really want to clean the package cache?</source>
         <translation>Oletko varma, että haluat tyhjentää pakettivaraston?</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="398"/>
+        <location filename="../../src/strconstants.h" line="401"/>
+        <source>Do you really want to remove Pacman&apos;s transaction lock file?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/strconstants.h" line="405"/>
         <source>Do you really want to rollback the transaction?</source>
         <translation>Oletko varma, että haluat peruuttaa toimenpiteen?</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="402"/>
+        <location filename="../../src/strconstants.h" line="409"/>
         <source>Please, enter the administrator&apos;s password</source>
         <translation>Syötä järjestelmänvalvojan salasana</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="408"/>
+        <location filename="../../src/strconstants.h" line="415"/>
         <source>There are no means to get administrator&apos;s credentials.</source>
         <translation>Ei ole keinoja saada järjestelmänvalvojan oikeuksia.</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="412"/>
+        <location filename="../../src/strconstants.h" line="419"/>
         <source>You&apos;ll need to install a su frontend like gksu or kdesu.</source>
         <translation>Sinun täytyy asentaa su-käyttöliittymä kuten gksu tai kdesu.</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="416"/>
+        <location filename="../../src/strconstants.h" line="423"/>
         <source>You can not run Octopi with administrator&apos;s credentials.</source>
         <translation>Octopia ei voi suorittaa järjestelmänvalvojan oikeuksilla.</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="420"/>
+        <location filename="../../src/strconstants.h" line="427"/>
         <source>There is a pending transaction</source>
         <translation>Toimenpide on vielä tekemättä</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="424"/>
+        <location filename="../../src/strconstants.h" line="431"/>
         <source>Do you really want to quit?</source>
         <translation>Haluatko varmasti poistua?</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="428"/>
+        <location filename="../../src/strconstants.h" line="435"/>
         <source>Executing command</source>
         <translation>Suoritetaan komentoa</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="432"/>
+        <location filename="../../src/strconstants.h" line="439"/>
         <source>Run in terminal</source>
         <translation>Suorita päätteessä</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="436"/>
+        <location filename="../../src/strconstants.h" line="443"/>
         <source>Needs application restart to take effect</source>
         <translation>Vaatii ohjelman uudelleenkäynnistyksen tullakseen voimaan!</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="440"/>
+        <location filename="../../src/strconstants.h" line="447"/>
         <source>These changes need application restart to take effect!</source>
         <translation>Nämä muutokset vaativat ohjelman uudelleenkäynnistyksen tullakseen voimaan!</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="444"/>
+        <location filename="../../src/strconstants.h" line="451"/>
         <source>Select the packages you want to install</source>
         <translation>Valitse paketit, jotka haluat asentaa</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="448"/>
+        <location filename="../../src/strconstants.h" line="455"/>
         <source>This file does not appear to be a simple text.
 Are you sure you want to open it?</source>
         <translation>Tämä tiedosto ei näytä olevan yksinkertaista tekstiä.\n
 Haluatko varmasti avata sen?</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="453"/>
+        <location filename="../../src/strconstants.h" line="460"/>
         <source>To be installed</source>
         <translation>Asennettavat</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="457"/>
+        <location filename="../../src/strconstants.h" line="464"/>
         <source>To be removed</source>
         <translation>Poistettavat</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="461"/>
+        <location filename="../../src/strconstants.h" line="468"/>
         <source>remove</source>
         <translation>poista</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="465"/>
+        <location filename="../../src/strconstants.h" line="472"/>
         <source>install</source>
         <translation>asenna</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="469"/>
+        <location filename="../../src/strconstants.h" line="476"/>
         <source>Remove item</source>
         <translation>Poista kohde listalta</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="473"/>
+        <location filename="../../src/strconstants.h" line="480"/>
         <source>Remove items</source>
         <translation>Poista kohteet listalta</translation>
+    </message>
+    <message>
+        <location filename="../../src/strconstants.h" line="484"/>
+        <source>Press Ctrl+A to select/deselect all</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>SearchBar</name>
     <message>
-        <location filename="Projects/octopi/src/searchbar.cpp" line="55"/>
+        <location filename="../../src/searchbar.cpp" line="55"/>
         <source>Previous</source>
         <translation>Edellinen</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/searchbar.cpp" line="57"/>
+        <location filename="../../src/searchbar.cpp" line="57"/>
         <source>Next</source>
         <translation>Seuraava</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/searchbar.cpp" line="68"/>
+        <location filename="../../src/searchbar.cpp" line="68"/>
         <source>Close</source>
         <translation>Sulje</translation>
     </message>
@@ -1002,12 +1035,12 @@ Haluatko varmasti avata sen?</translation>
 <context>
     <name>TransactionDialog</name>
     <message>
-        <location filename="Projects/octopi/ui/transactiondialog.ui" line="20"/>
+        <location filename="../../ui/transactiondialog.ui" line="20"/>
         <source>Form</source>
         <translation>Muoto</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/transactiondialog.ui" line="133"/>
+        <location filename="../../ui/transactiondialog.ui" line="133"/>
         <source>Run in terminal</source>
         <translation>Suorita päätteessä</translation>
     </message>

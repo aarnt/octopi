@@ -118,7 +118,7 @@
      <x>0</x>
      <y>0</y>
      <width>552</width>
-     <height>22</height>
+     <height>20</height>
     </rect>
    </property>
    <property name="contextMenuPolicy">
@@ -479,15 +479,6 @@
    </property>
    <property name="text">
     <string>Install</string>
-   </property>
-  </action>
-  <action name="actionInstallOptDeps">
-   <property name="icon">
-    <iconset resource="../resources.qrc">
-     <normaloff>:/resources/images/toinstall.png</normaloff>:/resources/images/toinstall.png</iconset>
-   </property>
-   <property name="text">
-    <string>InstallOptDeps</string>
    </property>
   </action>
  </widget>

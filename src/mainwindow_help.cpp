@@ -89,6 +89,10 @@ void MainWindow::initTabHelpUsage()
   QString("</li>") +
   QString("<li>") + iconPath + "outdated.png\"/> " +
      tr("An outdated package") +
+  QString("</li>") +
+  QString("<li>") + iconPath + "foreign_red.png\"/> " +
+     tr("An outdated foreign package") +
+  QString("</li>") +
   QString("<li>") + iconPath + "newer.png\"/> " +
            tr("A newer than repository package") +
   QString("</li></ul>") +
@@ -143,6 +147,10 @@ void MainWindow::initTabHelpUsage()
      tr("Ctrl+Shift+C to clean local packages cache (pacman -Sc)") +
   QString("</li><li>") +
      tr("Ctrl+Shift+G to display all package groups") +
+  QString("</li><li>") +
+     tr("Ctrl+Shift+R to remove Pacman's transaction lock file") +
+  QString("</li><li>") +
+     tr("Ctrl+Shift+Y to display Yaourt group") +
   QString("</li></ul>") +
 
      tr("F+key sequences:") +

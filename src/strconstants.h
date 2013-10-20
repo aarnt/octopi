@@ -285,6 +285,10 @@ public:
     return QObject::tr("Cleaning package cache...");
   }
 
+  static QString getRemovingPacmanTransactionLockFile(){
+    return QObject::tr("Removing Pacman's transaction lock file...");
+  }
+
   static QString getSyncing(){
     return QObject::tr("Syncing");
   }
@@ -393,6 +397,10 @@ public:
     return QObject::tr("Do you really want to clean the package cache?");
   }
 
+  static QString getRemovePacmanTransactionLockFileConfirmation(){
+    return QObject::tr("Do you really want to remove Pacman's transaction lock file?");
+  }
+
   static QString getRollbackTransactionConfirmation(){
     return QObject::tr("Do you really want to rollback the transaction?");
   }
@@ -470,6 +478,10 @@ public:
 
   static QString getRemoveItems(){
     return QObject::tr("Remove items");
+  }
+
+  static QString getPressCtrlAToSelectAll(){
+    return QObject::tr("Press Ctrl+A to select/deselect all");
   }
 
   //Style Sheets ---------------------------------
