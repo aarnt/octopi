@@ -7,13 +7,12 @@ url="http://octopiproject.wordpress.com"
 license=('GPL2')
 install=$pkgname.install
 makedepends=('git')
-depends=('qt4')
+depends=('qt4' 'xterm')
 optdepends=('kdesu: for KDE'
             'gksu: for XFCE, Gnome, LXDE, Cinnamon'
             'gnome-keyring: for password management'
             'yaourt: for AUR support'
             'octopi-notifier: for notifications'
-            'xterm: for default terminal'
             'pkgfile: to view uninstalled pkg contents in ArchLinux')
 provides=('octopi')
 md5sums=()
