@@ -107,4 +107,5 @@ TRANSLATIONS += resources/translations/octopi_pt_BR.ts \
     resources/translations/octopi_uz.ts \
     resources/translations/octopi_fi.ts \
     resources/translations/octopi_vi.ts \
-    resources/translations/octopi_en_GB.ts
+    resources/translations/octopi_en_GB.ts \
+    resources/translations/octopi_pt_PT.ts

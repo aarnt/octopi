@@ -34,7 +34,9 @@
 	installed packages.
   Added spanish (Latin America) translation.
   Added english (Great Britain) translation.
-  Added new "foreign_red.png" and "octopi_green.png" icons (thanks to Alex Fredrich).
+  Added portuguese (Portugal) translation.
+  Added new "foreign_red.png" and "octopi_green.png" icons (thanks to Alex 
+	Fredrich).
   Added support for pkgfile to view uninstalled package file list while in 
 	ArchLinux/ArchBang (thanks to Damián Nohales).
   Updated translations.
