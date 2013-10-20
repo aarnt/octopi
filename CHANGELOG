@@ -9,8 +9,10 @@
   BugFix: Better RazorQt compatibility.
   BugFix: Notifier: clear tooltip if no update is available (thanks to 
 	Anselmo L. S. Melo - anselmolsm).
-  BugFix: Use "yaourt -S aur/pkgname" to install yaourt packages (thanks to 
-	ringo32).
+  BugFix: When refreshing packages from a group, the list could become 
+	outdated if the user had installed/removed some package.
+  BugFix: Use "yaourt -S aur/pkgname" to install yaourt packages 
+	(thanks to ringo32).
   BugFix: Octopi was only showing the first Optional Deps in some cases.
   Bring back the option to do a graphical system upgrade.
   Now when installing a package with optional dependencies, Octopi lets users choose 

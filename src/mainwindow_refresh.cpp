@@ -320,7 +320,6 @@ void MainWindow::metaBuildPackageList()
   }
   else if (m_cbGroups->currentText() == StrConstants::getYaourtGroup())
   {
-    //ui->tvPackages->setSelectionMode(QAbstractItemView::ExtendedSelection);
     toggleSystemActions(false);
     disconnect(m_leFilterPackage, SIGNAL(textChanged(QString)), this, SLOT(reapplyPackageFilter()));
     clearStatusBar();
@@ -600,6 +599,184 @@ void MainWindow::buildPackageList(bool nonBlocking)
   }
 
   refreshStatusBarToolButtons();
+}
+
+/*
+ * Helper method for buildPackageFromGroupList>: rebuilds all packages to refresh their state
+ */
+void MainWindow::_rebuildPackageList()
+{
+  bool hasYaourt = UnixCommand::hasTheExecutable("yaourt");
+
+  _deleteStandardItemModel(m_modelPackages);
+  _deleteStandardItemModel(m_modelPackagesFromGroup);
+  _deleteStandardItemModel(m_modelInstalledPackages);
+  _deleteStandardItemModel(m_modelInstalledPackagesFromGroup);
+
+  m_modelPackages = new QStandardItemModel(this);
+  m_modelPackagesFromGroup = new QStandardItemModel(this);
+  m_modelInstalledPackages = new QStandardItemModel(this);
+  m_modelInstalledPackagesFromGroup = new QStandardItemModel(this);
+
+  if (ui->actionNonInstalledPackages->isChecked())
+  {
+    m_proxyModelPackages->setSourceModel(m_modelPackages);
+  }
+  else
+  {
+    m_proxyModelPackages->setSourceModel(m_modelInstalledPackages);
+  }
+
+  QStringList sl;
+  QStringList *unrequiredPackageList = Package::getUnrequiredPackageList();
+  qApp->processEvents();
+  QList<PackageListData> *list = Package::getPackageList();
+  QList<PackageListData> *listForeign = Package::getForeignPackageList();
+  qApp->processEvents();
+  QList<PackageListData>::const_iterator itForeign = listForeign->begin();
+
+  m_progressWidget->setRange(0, list->count());
+  m_progressWidget->setValue(0);
+
+  int counter=0;
+  PackageListData pld;
+
+  while (itForeign != listForeign->end())
+  {
+    if (!hasYaourt || !m_outdatedYaourtPackageList->contains(itForeign->name))
+    {
+      pld = PackageListData(
+            itForeign->name, itForeign->repository, itForeign->version,
+            itForeign->name + " " + Package::getInformationDescription(itForeign->name, true),
+            ectn_FOREIGN);
+    }
+    else
+    {
+      pld = PackageListData(
+            itForeign->name, itForeign->repository, itForeign->version,
+            itForeign->name + " " + Package::getInformationDescription(itForeign->name, true),
+            ectn_FOREIGN_OUTDATED);
+    }
+
+    list->append(pld);
+
+    itForeign++;
+  }
+
+  m_progressWidget->show();
+  QStandardItem *parentItem = m_modelPackages->invisibleRootItem();
+  QStandardItem *parentItemInstalledPackages = m_modelInstalledPackages->invisibleRootItem();
+  QList<PackageListData>::const_iterator it = list->begin();
+  QList<QStandardItem*> lIcons, lNames, lVersions, lRepositories, lDescriptions;
+  QList<QStandardItem*> lIcons2, lNames2, lVersions2, lRepositories2, lDescriptions2;
+
+  while(it != list->end())
+  {
+    PackageListData pld = *it;
+
+    //If this is an installed package, it can be also outdated!
+    switch (pld.status)
+    {
+      case ectn_FOREIGN:
+        lIcons << new QStandardItem(IconHelper::getIconForeignGreen(), "_Foreign");
+        break;
+      case ectn_FOREIGN_OUTDATED:
+        lIcons << new QStandardItem(IconHelper::getIconForeignRed(), "_ForeignOutdated");
+        break;
+      case ectn_OUTDATED:
+      {
+        if (Package::rpmvercmp(pld.outatedVersion.toAscii().data(), pld.version.toAscii().data()) == 1)
+        {
+          lIcons << new QStandardItem(IconHelper::getIconNewer(), "_Newer^"+pld.outatedVersion);
+        }
+        else
+        {
+          lIcons << new QStandardItem(IconHelper::getIconOutdated(), "_OutDated^"+pld.outatedVersion);
+        }
+
+        break;
+      }
+      case ectn_INSTALLED:
+        //Is this package unrequired too?
+        if (unrequiredPackageList->contains(pld.name))
+        {
+          lIcons << new QStandardItem(IconHelper::getIconUnrequired(), "_Unrequired");
+        }
+        else
+        {
+          lIcons << new QStandardItem(IconHelper::getIconInstalled(), "_Installed");
+        }
+        break;
+      case ectn_NON_INSTALLED:
+        lIcons << new QStandardItem(IconHelper::getIconNonInstalled(), "_NonInstalled");
+        break;
+      default:;
+    }
+
+    lNames << new QStandardItem(pld.name);
+    lVersions << new QStandardItem(pld.version);
+
+    //Let's put package description in UTF-8 format
+    QString pkgDescription = pld.description;
+    pkgDescription = pkgDescription.fromUtf8(pkgDescription.toAscii().data());
+
+    lDescriptions << new QStandardItem(pkgDescription);
+
+    if (pld.repository.isEmpty())
+    {
+      lRepositories << new QStandardItem(StrConstants::getForeignRepositoryName());
+    }
+    else
+      lRepositories << new QStandardItem(pld.repository);
+
+    //If this is an INSTALLED package, we add it to the model view of installed packages!
+    if (pld.status != ectn_NON_INSTALLED)
+    {
+      lIcons2 << lIcons.last()->clone();
+      lNames2 << lNames.last()->clone();
+      lVersions2 << lVersions.last()->clone();
+      lRepositories2 << lRepositories.last()->clone();
+      lDescriptions2 << lDescriptions.last()->clone();
+    }
+
+    counter++;
+    m_progressWidget->setValue(counter);
+    it++;
+  }
+
+  m_progressWidget->setValue(list->count());
+  parentItem->insertColumn(0, lIcons);
+  parentItem->insertColumn(1, lNames);
+  parentItem->insertColumn(2, lVersions);
+  parentItem->insertColumn(3, lRepositories);
+  parentItem->insertColumn(4, lDescriptions);
+
+  parentItemInstalledPackages->insertColumn(ctn_PACKAGE_ICON_COLUMN, lIcons2);
+  parentItemInstalledPackages->insertColumn(ctn_PACKAGE_NAME_COLUMN, lNames2);
+  parentItemInstalledPackages->insertColumn(ctn_PACKAGE_VERSION_COLUMN, lVersions2);
+  parentItemInstalledPackages->insertColumn(ctn_PACKAGE_REPOSITORY_COLUMN, lRepositories2);
+  parentItemInstalledPackages->insertColumn(ctn_PACKAGE_DESCRIPTION_COLUMN, lDescriptions2);
+
+  ui->tvPackages->setColumnWidth(ctn_PACKAGE_ICON_COLUMN, 24);
+  ui->tvPackages->setColumnWidth(ctn_PACKAGE_NAME_COLUMN, 500);
+  ui->tvPackages->setColumnWidth(ctn_PACKAGE_VERSION_COLUMN, 160);
+  ui->tvPackages->header()->setSectionHidden(ctn_PACKAGE_DESCRIPTION_COLUMN, true);
+  ui->tvPackages->sortByColumn(m_PackageListOrderedCol, m_PackageListSortOrder);
+
+  m_modelPackages->sort(m_PackageListOrderedCol, m_PackageListSortOrder);
+  m_modelInstalledPackages->sort(m_PackageListOrderedCol, m_PackageListSortOrder);
+
+  m_modelPackages->setHorizontalHeaderLabels(
+        sl << "" << StrConstants::getName() << StrConstants::getVersion() << StrConstants::getRepository() << "");
+
+  sl.clear();
+
+  m_modelInstalledPackages->setHorizontalHeaderLabels(
+        sl << "" << StrConstants::getName() << StrConstants::getVersion() << StrConstants::getRepository() << "");
+
+  _cloneModelPackages();
+  m_progressWidget->close();
+  list->clear();
 }
 
 /*
@@ -1346,13 +1523,7 @@ void MainWindow::refreshTabFiles(bool clearContents, bool neverQuit)
     bool first=true;
     bkpDir = root;
 
-    /*if (nonInstalled && !UnixCommand::isPkgfileInstalled()){
-      fakeRoot->appendRow(new QStandardItem("This package is not installed, to view the content of this package, you need to install \"pkgfile\"."));
-    }*/
-    //else
-    //{
-      fileList = Package::getContents(pkgName, !nonInstalled);
-    //}
+    fileList = Package::getContents(pkgName, !nonInstalled);
 
     if (fileList.count() > 0) CPUIntensiveComputing cic;
 

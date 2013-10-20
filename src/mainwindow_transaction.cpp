@@ -1505,6 +1505,12 @@ void MainWindow::actionsProcessFinished(int exitCode, QProcess::ExitStatus)
       }
       else
       {
+        //If we are in a package group, maybe we have installed/removed something, so...
+        if (m_cbGroups->currentIndex() > 1)
+        {
+          _rebuildPackageList();
+        }
+
         metaBuildPackageList();
       }
 
