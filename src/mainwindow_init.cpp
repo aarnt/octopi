@@ -245,6 +245,7 @@ void MainWindow::initToolButtonYaourt()
   m_toolButtonYaourt->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
   m_toolButtonYaourt->setAutoRaise(true);
   m_toolButtonYaourt->hide();
+
   m_menuToolButtonYaourt = new QMenu(this);
   m_menuToolButtonYaourt->addAction(m_actionInstallYaourtUpdates);
   m_toolButtonYaourt->setPopupMode(QToolButton::MenuButtonPopup);
@@ -518,6 +519,18 @@ void MainWindow::initTabOutput()
  */
 void MainWindow::initActions()
 {
+  m_actionInstallPacmanUpdates = new QAction(this);
+  m_actionInstallPacmanUpdates->setIcon(IconHelper::getIconToInstall());
+  m_actionInstallPacmanUpdates->setText(ui->actionInstall->text());
+  m_actionInstallPacmanUpdates->setIconVisibleInMenu(true);
+  connect(m_actionInstallPacmanUpdates, SIGNAL(triggered()), this, SLOT(doSystemUpgrade()));
+
+  m_actionInstallYaourtUpdates = new QAction(this);
+  m_actionInstallYaourtUpdates->setIcon(IconHelper::getIconToInstall());
+  m_actionInstallYaourtUpdates->setText(ui->actionInstall->text());
+  m_actionInstallYaourtUpdates->setIconVisibleInMenu(true);
+  connect(m_actionInstallYaourtUpdates, SIGNAL(triggered()), this, SLOT(doYaourtUpgrade()));
+
   toggleTransactionActions(true);
 
   QActionGroup *actionGroup = new QActionGroup(this);
@@ -527,21 +540,6 @@ void MainWindow::initActions()
   actionGroup->setExclusive(true);
 
   connect(actionGroup, SIGNAL(triggered(QAction*)), this, SLOT(tvPackagesSearchColumnChanged(QAction*)));
-
-  //ui->actionInstallOptDeps->setText(StrConstants::getOptionalDeps());
-  //connect(ui->actionInstallOptDeps, SIGNAL(triggered()), this, SLOT(insertIntoInstallPackageOptDeps()));
-
-  m_actionInstallYaourtUpdates = new QAction(this);
-  m_actionInstallYaourtUpdates->setIcon(IconHelper::getIconToInstall());
-  m_actionInstallYaourtUpdates->setText(ui->actionInstall->text());
-  m_actionInstallYaourtUpdates->setIconVisibleInMenu(true);
-  connect(m_actionInstallYaourtUpdates, SIGNAL(triggered()), this, SLOT(doYaourtUpgrade()));
-
-  m_actionInstallPacmanUpdates = new QAction(this);
-  m_actionInstallPacmanUpdates->setIcon(IconHelper::getIconToInstall());
-  m_actionInstallPacmanUpdates->setText(ui->actionInstall->text());
-  m_actionInstallPacmanUpdates->setIconVisibleInMenu(true);
-  connect(m_actionInstallPacmanUpdates, SIGNAL(triggered()), this, SLOT(doSystemUpgrade()));
 
   ui->actionInstallLocalPackage->setIcon(IconHelper::getIconFolder());
 

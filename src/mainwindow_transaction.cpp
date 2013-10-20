@@ -1304,6 +1304,10 @@ void MainWindow::toggleTransactionActions(const bool value)
 
   ui->actionInstall->setEnabled(value);
   ui->actionInstallGroup->setEnabled(value);
+
+  m_actionInstallPacmanUpdates->setEnabled(value);
+  m_actionInstallYaourtUpdates->setEnabled(value);
+
   ui->actionRemoveTransactionItem->setEnabled(value);
   ui->actionRemoveTransactionItems->setEnabled(value);
   ui->actionRemove->setEnabled(value);
