@@ -35,6 +35,7 @@
   Added spanish (Latin America) translation.
   Added english (Great Britain) translation.
   Added portuguese (Portugal) translation.
+  Added swedish translation.
   Added new "foreign_red.png" and "octopi_green.png" icons (thanks to Alex 
 	Fredrich).
   Added support for pkgfile to view uninstalled package file list while in 
