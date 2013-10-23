@@ -270,7 +270,11 @@ QStringList *Package::getPackageGroups()
 
   foreach(QString packageTuple, packageTuples)
   {
-    res->append(packageTuple); //We only need the package name!
+    packageTuple = packageTuple.trimmed();
+    if (!packagesFromGroup.isEmpty())
+    {
+      res->append(packageTuple); //We only need the package name!
+    }
   }
 
   res->removeDuplicates();
