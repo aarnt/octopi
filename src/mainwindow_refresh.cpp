@@ -1035,18 +1035,6 @@ void MainWindow::refreshStatusBar()
   ui->statusBar->removeWidget(m_toolButtonPacman);
   ui->statusBar->removeWidget(m_toolButtonYaourt);
 
-  /*if(m_numberOfOutdatedPackages > 0 && m_numberOfInstalledPackages > 0 &&
-     m_cbGroups->currentText() != StrConstants::getYaourtGroup())
-  {
-    text = " | " + StrConstants::getNumberInstalledPackages().arg(m_numberOfInstalledPackages) +
-        " | <b><font color=\"#E55451\"><a href=\"dummy\" style=\"color:\'#E55451\'\">" +
-        StrConstants::getNumberOutdatedPackages().arg(m_numberOfOutdatedPackages) + "</a></font></b>";
-  }
-  else if(m_numberOfInstalledPackages > 0)
-  {
-    text = "| " + StrConstants::getNumberInstalledPackages().arg(m_numberOfInstalledPackages);
-  }*/
-
   if(m_numberOfInstalledPackages > 0)
   {
     text = "| " + StrConstants::getNumberInstalledPackages().arg(m_numberOfInstalledPackages);

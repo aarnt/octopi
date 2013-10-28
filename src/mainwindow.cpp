@@ -1132,7 +1132,6 @@ void MainWindow::openTerminal()
  */
 void MainWindow::openDirectory(){
   QString dir = getSelectedDirectory();
-
   if (!dir.isEmpty())
   {
     WMHelper::openDirectory(dir);
