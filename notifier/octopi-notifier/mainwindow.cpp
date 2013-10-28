@@ -37,6 +37,9 @@ void MainWindow::initSystemTrayIcon()
   m_actionExit = new QAction(IconHelper::getIconExit(), tr("Exit"), this);
   connect(m_actionExit, SIGNAL(triggered()), this, SLOT(exitNotifier()));
 
+  m_actionAbout = new QAction(StrConstants::getHelpAbout(), this);
+  connect(m_actionAbout, SIGNAL(triggered()), this, SLOT(aboutOctopiNotifier()));
+
   m_actionOctopi = new QAction(this);
   m_actionOctopi->setText("Octopi...");
   connect(m_actionOctopi, SIGNAL(triggered()), this, SLOT(startOctopi()));
@@ -85,14 +88,15 @@ void MainWindow::initSystemTrayIcon()
   m_systemTrayIconMenu->addAction(m_actionOctopi);
   m_systemTrayIconMenu->addAction(m_actionSystemUpgrade);
   m_systemTrayIconMenu->addSeparator();
-  m_systemTrayIconMenu->addAction(m_actionExit);  
+  m_systemTrayIconMenu->addAction(m_actionAbout);
+  m_systemTrayIconMenu->addAction(m_actionExit);
   m_systemTrayIcon->setContextMenu(m_systemTrayIconMenu);
 
   connect ( m_systemTrayIcon , SIGNAL( activated( QSystemTrayIcon::ActivationReason ) ),
             this, SLOT( execSystemTrayActivated ( QSystemTrayIcon::ActivationReason ) ) );
 
-  m_pacmanClient = new PacmanHelperClient("org.octopi.pacmanhelper", "/", QDBusConnection::systemBus(), 0);
-  connect(m_pacmanClient, SIGNAL(syncdbcompleted()), this, SLOT(afterPacmanHelperSyncDatabase()));
+  m_pacmanHelperClient = new PacmanHelperClient("org.octopi.pacmanhelper", "/", QDBusConnection::systemBus(), 0);
+  connect(m_pacmanHelperClient, SIGNAL(syncdbcompleted()), this, SLOT(afterPacmanHelperSyncDatabase()));
 
   m_pacmanHelperTimer = new QTimer();
   m_pacmanHelperTimer->setInterval(100);
@@ -149,6 +153,17 @@ void MainWindow::runOctopi(bool execApplication)
       }
     }
   }
+}
+
+/*
+ * Shows Octopi Notifier About Dialog...
+ */
+void MainWindow::aboutOctopiNotifier()
+{
+  QString aboutText = "<b>Octopi Notifier - " + StrConstants::getApplicationVersion() + "</b><br>";
+  aboutText += "<a href=\"http://octopiproject.wordpress.com/\">http://octopiproject.wordpress.com</a><br><br>";
+  aboutText += "&copy; Alexandre Albuquerque Arnt";
+  QMessageBox::about(this, StrConstants::getHelpAbout(), aboutText);
 }
 
 /*
@@ -317,7 +332,7 @@ void MainWindow::pacmanHelperTimerTimeout()
   }
 
   m_commandExecuting = ectn_SYNC_DATABASE;
-  m_pacmanClient->syncdb();
+  m_pacmanHelperClient->syncdb();
 }
 
 /*
@@ -453,6 +468,7 @@ void MainWindow::refreshAppIcon()
     m_icon = (IconHelper::getIconOctopiGreen());
   }
 
+  setWindowIcon(m_icon);
   m_systemTrayIcon->setIcon(m_icon);
   m_systemTrayIcon->show();
 }

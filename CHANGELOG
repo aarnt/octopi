@@ -40,6 +40,7 @@
 	Fredrich).
   Added support for pkgfile to view uninstalled package file list while in 
 	ArchLinux/ArchBang (thanks to Damián Nohales).
+  Added an About Dialog to Octopi Notifier.
   Updated translations.
 
 0.2

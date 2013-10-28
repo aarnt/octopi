@@ -31,6 +31,7 @@ private slots:
   void runOctopi(bool execApplication = false);
   inline void startOctopi() { runOctopi(true); }
 
+  void aboutOctopiNotifier();
   void hideOctopi();
   void exitNotifier();
   void doSystemUpgrade();
@@ -47,6 +48,7 @@ private:
 
   QAction *m_actionOctopi;
   QAction *m_actionSystemUpgrade;
+  QAction *m_actionAbout;
   QAction *m_actionExit;
   QIcon m_icon;
   QStringList *m_outdatedPackageList;
@@ -55,7 +57,7 @@ private:
   QSystemTrayIcon *m_systemTrayIcon;
   QMenu *m_systemTrayIconMenu;
   QFileSystemWatcher *m_pacmanDatabaseSystemWatcher;
-  PacmanHelperClient *m_pacmanClient;
+  PacmanHelperClient *m_pacmanHelperClient;
 
   bool _isSUAvailable();
   void initSystemTrayIcon();
