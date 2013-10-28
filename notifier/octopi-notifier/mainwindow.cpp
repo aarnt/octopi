@@ -29,6 +29,8 @@ MainWindow::MainWindow(QWidget *parent) :
  */
 void MainWindow::initSystemTrayIcon()
 {
+  m_commandExecuting = ectn_NONE;
+
   m_systemTrayIcon = new QSystemTrayIcon(this);
   m_systemTrayIcon->setObjectName("systemTrayIcon");
 
@@ -261,20 +263,20 @@ void MainWindow::doSystemUpgrade()
  */
 void MainWindow::doSystemUpgradeFinished(int, QProcess::ExitStatus)
 {
-  //Does it still need to upgrade another packages due to SyncFirst issues???
-  m_commandExecuting = ectn_NONE;
   refreshAppIcon();
 
+  //Does it still need to upgrade another packages due to SyncFirst issues???
   if ((m_commandExecuting == ectn_RUN_SYSTEM_UPGRADE_IN_TERMINAL)
       && m_outdatedPackageList->count() > 0)
   {
     m_commandExecuting = ectn_NONE;
     m_unixCommand->removeTemporaryActionFile();
-
     doSystemUpgrade();
+
     return;
   }
 
+  m_commandExecuting = ectn_NONE;
   m_unixCommand->removeTemporaryActionFile();
   toggleEnableInterface(true);
 }
