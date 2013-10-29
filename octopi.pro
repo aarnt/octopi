@@ -102,6 +102,7 @@ TRANSLATIONS += resources/translations/octopi_pt_BR.ts \
     resources/translations/octopi_lt.ts \
     resources/translations/octopi_nb.ts \
     resources/translations/octopi_sr@latin.ts \
+    resources/translations/octopi_sr_RS.ts \
     resources/translations/octopi_nl.ts \
     resources/translations/octopi_ru.ts \
     resources/translations/octopi_uz.ts \
