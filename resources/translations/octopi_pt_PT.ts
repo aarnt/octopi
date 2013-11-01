@@ -782,7 +782,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="301"/>
         <source>Synchronizing databases...</source>
-        <translation>Sincrinizando bases de dados...</translation>
+        <translation>Sincronizando bases de dados...</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="305"/>

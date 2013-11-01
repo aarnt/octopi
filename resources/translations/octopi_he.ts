@@ -4,7 +4,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="14"/>
         <source>Octopi</source>
-        <translation type="unfinished"/>
+        <translation>Octopi</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="92"/>
@@ -61,7 +61,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="211"/>
         <source>Ctrl+N</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+N</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="220"/>
@@ -71,7 +71,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="223"/>
         <source>Ctrl+M</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+M</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="232"/>
@@ -81,7 +81,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="235"/>
         <source>Ctrl+B</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+B</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="244"/>
@@ -91,7 +91,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="247"/>
         <source>Ctrl+D</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+D</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="256"/>
@@ -101,7 +101,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="259"/>
         <source>Ctrl+Q</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+Q</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="264"/>
@@ -111,7 +111,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="267"/>
         <source>Ctrl+U</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+U</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="276"/>
@@ -139,7 +139,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="308"/>
         <source>Ctrl+G</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+G</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="317"/>
@@ -229,7 +229,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="464"/>
         <source>F1</source>
-        <translation type="unfinished"/>
+        <translation>F1</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="472"/>
