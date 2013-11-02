@@ -14,7 +14,7 @@
   BugFix: Use "yaourt -S aur/pkgname" to install yaourt packages 
 	(thanks to ringo32).
   BugFix: Octopi was only showing the first Optional Deps in some cases.
-  Bring back the option to do a graphical system upgrade.
+  Brought back the option to do a graphical system upgrade.
   Now when installing a package with optional dependencies, Octopi lets users choose 
 	which optional dependencies (if any) they want to install.
   Now when removing a package with dependencies, Octopi lets users choose which one they 
