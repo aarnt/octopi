@@ -98,10 +98,10 @@ QString PackageController::retrieveDistroNews(bool searchForLatestNews)
 {
   const QString ctn_ARCH_LINUX_RSS = "https://www.archlinux.org/feeds/news/";
   const QString ctn_CHAKRA_RSS = "http://chakra-project.org/news/index.php?/feeds/index.rss2";
+  const QString ctn_KAOS_RSS = "http://kaosx.us/feed/";
   const QString ctn_MANJARO_LINUX_RSS = "http://manjaro.org/feed/";
 
   LinuxDistro distro = UnixCommand::getLinuxDistro();
-
   QString res;
   QString tmpRssPath = QDir::homePath() + QDir::separator() + ".config/octopi/.tmp_distro_rss.xml";
   QString rssPath = QDir::homePath() + QDir::separator() + ".config/octopi/distro_rss.xml";
@@ -127,6 +127,10 @@ QString PackageController::retrieveDistroNews(bool searchForLatestNews)
     else if (distro == ectn_CHAKRA)
     {
       curlCommand = curlCommand.arg(ctn_CHAKRA_RSS).arg(tmpRssPath);
+    }
+    else if (distro == ectn_KAOS)
+    {
+      curlCommand = curlCommand.arg(ctn_KAOS_RSS).arg(tmpRssPath);
     }
     else if (distro == ectn_MANJAROLINUX)
     {
@@ -223,6 +227,10 @@ QString PackageController::parseDistroNews()
   else if (distro == ectn_CHAKRA)
   {
     html = "<p align=\"center\"><h2>" + StrConstants::getChakraNews() + "</h2></p><ul>";
+  }
+  else if (distro == ectn_KAOS)
+  {
+    html = "<p align=\"center\"><h2>" + StrConstants::getKaOSNews() + "</h2></p><ul>";
   }
   else if (distro == ectn_MANJAROLINUX)
   {

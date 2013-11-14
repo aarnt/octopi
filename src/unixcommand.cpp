@@ -987,6 +987,10 @@ LinuxDistro UnixCommand::getLinuxDistro()
     {
       ret = ectn_CHAKRA;
     }
+    else if (contents.contains(QRegExp("KaOS")))
+    {
+      ret = ectn_KAOS;
+    }
     else if (contents.contains(QRegExp("Manjaro")))
     {
       ret = ectn_MANJAROLINUX;

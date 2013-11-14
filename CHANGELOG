@@ -1,3 +1,7 @@
+0.3.1
+  Added Chinese (Taiwan) and Malay translations.
+  Added support to KaOS, a lean KDE centric Linux distro.
+
 0.3
   Code cleanings.
   BugFix: No need to refresh package list after a cache clean.

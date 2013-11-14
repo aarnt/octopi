@@ -71,7 +71,7 @@ int main(int argc, char *argv[])
     return 0;
   }
 
-  //This sends a message just to awake the socket-based QtSinleApplication engine
+  //This sends a message just to awake the socket-based QtSingleApplication engine
   app.sendMessage("RAISE");
 
   QTranslator appTranslator;
@@ -98,6 +98,7 @@ int main(int argc, char *argv[])
   app.setActivationWindow(&w);
   app.setQuitOnLastWindowClosed(false);
 
+#ifndef KAOS
   if (!argList->getSwitch("-style"))
   {
     if (UnixCommand::getLinuxDistro() == ectn_MANJAROLINUX &&
@@ -110,6 +111,7 @@ int main(int argc, char *argv[])
       app.setStyle(new QCleanlooksStyle());
     }
   }
+#endif
 
   if (argList->getSwitch("-sysupgrade"))
   {
