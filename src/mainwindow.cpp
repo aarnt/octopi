@@ -96,7 +96,7 @@ void MainWindow::show()
     m_leFilterPackage = new SearchLineEdit(this);
 
     setWindowTitle(StrConstants::getApplicationName());
-    setMinimumSize(QSize(850, 600));
+    setMinimumSize(QSize(820, 520));
 
     initTabOutput();
     initTabInfo();
