@@ -218,6 +218,10 @@ private:
   void _tvTransactionRowsChanged(const QModelIndex& parent);
   QStandardItem * getRemoveTransactionParentItem();
   QStandardItem * getInstallTransactionParentItem();
+
+  bool isPackageInInstallTransaction(const QString &pkgName);
+  bool isPackageInRemoveTransaction(const QString &pkgName);
+
   void insertRemovePackageIntoTransaction(const QString &pkgName);
   void insertInstallPackageIntoTransaction(const QString &pkgName);
   void removePackagesFromRemoveTransaction();

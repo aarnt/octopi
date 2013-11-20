@@ -361,6 +361,35 @@ void MainWindow::insertIntoInstallPackage()
 }
 
 /*
+ * Searches in Install Transaction queue for the given package
+ */
+bool MainWindow::isPackageInInstallTransaction(const QString &pkgName)
+{
+  QStandardItem * siInstallParent = getInstallTransactionParentItem();
+  QStandardItemModel *sim = qobject_cast<QStandardItemModel *>(siInstallParent->model());
+  QStandardItem *repository = getAvailablePackage(pkgName, ctn_PACKAGE_REPOSITORY_COLUMN);
+  QString repo;
+  if (repository) repo = repository->text();
+
+  QList<QStandardItem *> foundItems = sim->findItems(repo + "/" + pkgName, Qt::MatchRecursive | Qt::MatchExactly);
+
+  return (foundItems.size() > 0);
+}
+
+/*
+ * Searches in Remove Transaction queue for the given package
+ */
+bool MainWindow::isPackageInRemoveTransaction(const QString &pkgName)
+{
+  QStandardItem * siRemoveParent = getRemoveTransactionParentItem();
+  QStandardItemModel *sim = qobject_cast<QStandardItemModel *>(siRemoveParent->model());
+
+  QList<QStandardItem *> foundItems = sim->findItems(pkgName, Qt::MatchRecursive | Qt::MatchExactly);
+
+  return (foundItems.size() > 0);
+}
+
+/*
  * Inserts all optional deps of the current select package into the Transaction Treeview
  */
 void MainWindow::insertIntoInstallPackageOptDeps(const QString &packageName)
@@ -378,7 +407,8 @@ void MainWindow::insertIntoInstallPackageOptDeps(const QString &packageName)
     candidate = candidate.mid(0, points).trimmed();
 
     QStandardItem *name = getAvailablePackage(candidate, ctn_PACKAGE_NAME_COLUMN);
-    if(!isPackageInstalled(candidate) && name != 0)
+    if(!isPackageInInstallTransaction(candidate) &&
+       !isPackageInstalled(candidate) && name != 0)
     {
       optionalPackages.append(candidate);
     }
@@ -431,7 +461,7 @@ bool MainWindow::insertIntoRemovePackageDeps(const QStringList &dependencies)
   foreach(QString dep, dependencies)
   {
     QStandardItem *name = getAvailablePackage(dep, ctn_PACKAGE_NAME_COLUMN);
-    if(isPackageInstalled(dep) && name != 0)
+    if(!isPackageInRemoveTransaction(dep) && isPackageInstalled(dep) && name != 0)
     {
       newDeps.append(dep);
     }
@@ -737,7 +767,6 @@ void MainWindow::doSystemUpgrade(bool syncDatabase)
     QString ds = QString::number(totalDownloadSize, 'f', 2);
 
     TransactionDialog question(this);
-
     //question.removeYesButton(); //This is a more prudent behaviour!
 
     if(targets->count()==1)
@@ -1287,7 +1316,6 @@ void MainWindow::doCleanCache()
     if (res)
     {
       writeToTabOutputExt("<b>" + StrConstants::getCommandFinishedOK() + "</b>");
-      //metaBuildPackageList();
     }
     else
       writeToTabOutputExt("<b>" + StrConstants::getCommandFinishedWithErrors() + "</b>");

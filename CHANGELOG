@@ -1,6 +1,8 @@
 0.3.1
   Added Chinese (Taiwan) and Malay translations.
   Added support to KaOS, a lean KDE centric Linux distro.
+  BugFix: When inserting an optional dependency package or removing a dep, 
+	first searches into transaction queue for them.
 
 0.3
   Code cleanings.
