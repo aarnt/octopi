@@ -718,7 +718,7 @@ void MainWindow::doYaourtUpgrade()
  */
 void MainWindow::doSystemUpgrade(bool syncDatabase)
 {
-  if (m_systemUpgradeDialog) return;
+  if (m_cbGroups->currentText() == StrConstants::getYaourtGroup() || m_systemUpgradeDialog) return;
 
   if(m_callSystemUpgrade && m_numberOfOutdatedPackages == 0)
   {
@@ -1260,34 +1260,74 @@ void MainWindow::doInstall()
  */
 void MainWindow::doInstallLocalPackages()
 {
-  //If there are no means to run the actions, we must warn!
-  if (!_isSUAvailable()) return;
-
   QString listOfTargets;
+  QString list;
+
+  foreach(QString target, m_packagesToInstallList)
+  {
+    list = list + target + "\n";
+  }
 
   foreach(QString pkgToInstall, m_packagesToInstallList)
   {
     listOfTargets += pkgToInstall + " ";
   }
 
-  m_lastCommandList.clear();
-  m_lastCommandList.append("pacman -U " + listOfTargets + ";");
-  m_lastCommandList.append("echo -e;");
-  m_lastCommandList.append("read -n1 -p \"" + StrConstants::getPressAnyKey() + "\"");
+  TransactionDialog question(this);
+  question.setWindowTitle(StrConstants::getConfirmation());
+  question.setInformativeText(StrConstants::getConfirmationQuestion());
+  question.setDetailedText(list);
 
-  disableTransactionActions();
-  m_unixCommand = new UnixCommand(this);
+  if(m_packagesToInstallList.count()==1)
+  {
+    if (m_packagesToInstallList.at(0).indexOf("HoldPkg was found in") != -1)
+    {
+      QMessageBox::warning(
+            this, StrConstants::getAttention(), StrConstants::getWarnHoldPkgFound(), QMessageBox::Ok);
+      return;
+    }
+    else question.setText(StrConstants::getRetrieveTarget());
+  }
+  else
+    question.setText(StrConstants::getRetrieveTargets().arg(m_packagesToInstallList.count()));
 
-  QObject::connect(m_unixCommand, SIGNAL( started() ), this, SLOT( actionsProcessStarted()));
-  QObject::connect(m_unixCommand, SIGNAL( readyReadStandardOutput()),
-                   this, SLOT( actionsProcessReadOutput() ));
-  QObject::connect(m_unixCommand, SIGNAL( finished ( int, QProcess::ExitStatus )),
-                   this, SLOT( actionsProcessFinished(int, QProcess::ExitStatus) ));
-  QObject::connect(m_unixCommand, SIGNAL( readyReadStandardError() ),
-                   this, SLOT( actionsProcessRaisedError() ));
+  int result = question.exec();
 
-  m_commandExecuting = ectn_RUN_IN_TERMINAL;
-  m_unixCommand->runCommandInTerminal(m_lastCommandList);
+  if(result == QDialogButtonBox::Yes || result == QDialogButtonBox::AcceptRole)
+  {
+    //If there are no means to run the actions, we must warn!
+    if (!_isSUAvailable()) return;
+    QString command;
+    command = "pacman -U --noconfirm " + listOfTargets;
+
+    m_lastCommandList.clear();
+    m_lastCommandList.append("pacman -U " + listOfTargets + ";");
+    m_lastCommandList.append("echo -e;");
+    m_lastCommandList.append("read -n1 -p \"" + StrConstants::getPressAnyKey() + "\"");
+
+    m_commandExecuting = ectn_INSTALL;
+    disableTransactionActions();
+    m_unixCommand = new UnixCommand(this);
+
+    QObject::connect(m_unixCommand, SIGNAL( started() ), this, SLOT( actionsProcessStarted()));
+    QObject::connect(m_unixCommand, SIGNAL( readyReadStandardOutput()),
+                     this, SLOT( actionsProcessReadOutput() ));
+    QObject::connect(m_unixCommand, SIGNAL( finished ( int, QProcess::ExitStatus )),
+                     this, SLOT( actionsProcessFinished(int, QProcess::ExitStatus) ));
+    QObject::connect(m_unixCommand, SIGNAL( readyReadStandardError() ),
+                     this, SLOT( actionsProcessRaisedError() ));
+
+    if (result == QDialogButtonBox::Yes)
+    {
+      m_commandExecuting = ectn_INSTALL;
+      m_unixCommand->executeCommand(command);
+    }
+    else if (result == QDialogButtonBox::AcceptRole)
+    {
+      m_commandExecuting = ectn_RUN_IN_TERMINAL;
+      m_unixCommand->runCommandInTerminal(m_lastCommandList);
+    }
+  }
 }
 
 /*

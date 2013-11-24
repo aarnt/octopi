@@ -303,7 +303,7 @@ void MainWindow::preBuildPackagesFromGroupList()
 }
 
 /*
- * Decides which SLOT to call: buildPackageList or buildPackagesFromGroupList
+ * Decides which SLOT to call: buildPackageList, buildYaourtPackageList or buildPackagesFromGroupList
  */
 void MainWindow::metaBuildPackageList()
 {

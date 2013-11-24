@@ -179,7 +179,9 @@ void MainWindow::outputTextBrowserAnchorClicked(const QUrl &link)
 void MainWindow::outputOutdatedPackageList()
 {
   //We cannot output any list if there is a running transaction!
-  if (m_commandExecuting != ectn_NONE) return;
+  if (m_commandExecuting != ectn_NONE ||
+      m_cbGroups->currentText() == StrConstants::getYaourtGroup())
+    return;
 
   m_numberOfOutdatedPackages = m_outdatedPackageList->count();
 
