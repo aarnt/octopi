@@ -1262,10 +1262,12 @@ void MainWindow::doInstallLocalPackages()
 {
   QString listOfTargets;
   QString list;
+  QFileInfo fi;
 
   foreach(QString target, m_packagesToInstallList)
   {
-    list = list + target + "\n";
+    fi.setFile(target);
+    list = list + fi.fileName() + "\n";
   }
 
   foreach(QString pkgToInstall, m_packagesToInstallList)
