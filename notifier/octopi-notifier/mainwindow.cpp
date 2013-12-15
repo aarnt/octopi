@@ -20,7 +20,6 @@ MainWindow::MainWindow(QWidget *parent) :
 {
   m_pacmanDatabaseSystemWatcher =
             new QFileSystemWatcher(QStringList() << ctn_PACMAN_DATABASE_DIR, this);
-
   initSystemTrayIcon();
 }
 
@@ -267,9 +266,10 @@ void MainWindow::doSystemUpgrade()
     }
   }
   else if (result == QDialogButtonBox::No)
-  {
+  {   
     m_systemUpgradeDialog = false;
     toggleEnableInterface(true);
+    refreshAppIcon();
   }
 }
 
