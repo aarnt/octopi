@@ -732,12 +732,12 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="261"/>
         <source>There are %1 outdated packages in your system:</source>
-        <translation>Sisteminizde %1 güncel olmayan paket var</translation>
+        <translation>Sisteminizde güncel olmayan paketlerin durumu %1</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="265"/>
         <source>(version %1 is available)</source>
-        <translation>%1 sürümü kullanılabilir durumda</translation>
+        <translation>%1 yeni sürümü kullanılabilir durumda</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="269"/>
@@ -842,17 +842,17 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="349"/>
         <source>The following target will be removed</source>
-        <translation>Sıradaki hedef kaldırılacak</translation>
+        <translation>Sıradaki hedef paket kaldırılacak</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="353"/>
         <source>The following %1 targets need to be retrieved</source>
-        <translation>Sıradaki %1 hedef kurtarılmalı</translation>
+        <translation>Sıradaki %1 hedef paket yükseltilmeli</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="357"/>
         <source>The following %1 targets will be removed</source>
-        <translation>Sıradaki %1 hedefler kaldırılacak</translation>
+        <translation>Sıradaki %1 hedef paket kaldırılacak</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="361"/>
@@ -877,7 +877,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="377"/>
         <source>Confirm?</source>
-        <translation>Doğrula?</translation>
+        <translation>Kabul et?</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="381"/>
