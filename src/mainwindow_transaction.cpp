@@ -245,18 +245,18 @@ void MainWindow::insertIntoRemovePackage()
   bool checkDependencies=false;
   QStringList dependencies;
 
-  if (m_cbGroups->currentText() != StrConstants::getYaourtGroup())
+  if (!isYaourtGroupSelected())
   {
     _ensureTabVisible(ctn_TABINDEX_TRANSACTION);
     QStandardItemModel *sim=_getCurrentSelectedModel();
 
     //First, let's see if we are dealing with a package group
-    if(m_cbGroups->currentIndex() != 0)
+    if(!isAllGroupsSelected())
     {
       //If we are trying to remove all the group's packages, why not remove the entire group?
       if(ui->tvPackages->selectionModel()->selectedRows().count() == sim->rowCount())
       {
-        insertRemovePackageIntoTransaction(m_cbGroups->currentText());
+        insertRemovePackageIntoTransaction(getSelectedGroup());
         return;
       }
     }
@@ -315,7 +315,7 @@ void MainWindow::insertIntoRemovePackage()
 void MainWindow::insertGroupIntoRemovePackage()
 {
   _ensureTabVisible(ctn_TABINDEX_TRANSACTION);
-  insertRemovePackageIntoTransaction(m_cbGroups->currentText());
+  insertRemovePackageIntoTransaction(getSelectedGroup());
 }
 
 /*
@@ -326,19 +326,19 @@ void MainWindow::insertIntoInstallPackage()
 {
   qApp->processEvents();
 
-  if (m_cbGroups->currentText() != StrConstants::getYaourtGroup())
+  if (!isYaourtGroupSelected())
   {
     _ensureTabVisible(ctn_TABINDEX_TRANSACTION);
 
     QStandardItemModel *sim=_getCurrentSelectedModel();
 
     //First, let's see if we are dealing with a package group
-    if(m_cbGroups->currentIndex() != 0)
+    if(!isAllGroupsSelected())
     {
       //If we are trying to insert all the group's packages, why not insert the entire group?
       if(ui->tvPackages->selectionModel()->selectedRows().count() == sim->rowCount())
       {
-        insertInstallPackageIntoTransaction(m_cbGroups->currentText());
+        insertInstallPackageIntoTransaction(getSelectedGroup());
         return;
       }
     }
@@ -513,7 +513,7 @@ bool MainWindow::insertIntoRemovePackageDeps(const QStringList &dependencies)
 void MainWindow::insertGroupIntoInstallPackage()
 {
   _ensureTabVisible(ctn_TABINDEX_TRANSACTION);
-  insertInstallPackageIntoTransaction(m_cbGroups->currentText());
+  insertInstallPackageIntoTransaction(getSelectedGroup());
 }
 
 /*
@@ -718,7 +718,7 @@ void MainWindow::doYaourtUpgrade()
  */
 void MainWindow::doSystemUpgrade(bool syncDatabase)
 {
-  if (m_cbGroups->currentText() == StrConstants::getYaourtGroup() || m_systemUpgradeDialog) return;
+  if (isYaourtGroupSelected() || m_systemUpgradeDialog) return;
 
   if(m_callSystemUpgrade && m_numberOfOutdatedPackages == 0)
   {
@@ -1098,7 +1098,7 @@ void MainWindow::doInstallYaourtPackage()
 {
   QString listOfTargets;
 
-  if (m_cbGroups->currentText() == StrConstants::getYaourtGroup())
+  if (isYaourtGroupSelected())
   {
     for (int c=0; c<ui->tvPackages->selectionModel()->selectedRows().count(); c++)
     {
@@ -1412,7 +1412,7 @@ void MainWindow::toggleTransactionActions(const bool value)
   ui->actionInstallLocalPackage->setEnabled(value);
 
   //We have to toggle the combobox groups as well
-  if (m_initializationCompleted) m_cbGroups->setEnabled(value);
+  if (m_initializationCompleted) ui->twGroups->setEnabled(value);
 }
 
 void MainWindow::toggleSystemActions(const bool value)
@@ -1531,11 +1531,13 @@ void MainWindow::actionsProcessFinished(int exitCode, QProcess::ExitStatus)
     //Did it synchronize any repo? If so, let's refresh some things...
     if (_textInTabOutput(StrConstants::getSyncing()))
     {
-      int oldIndex = m_cbGroups->currentIndex();
-      m_cbGroups->setCurrentIndex(0);
+      bool firstGroup = isAllGroupsSelected();
+
+      //m_cbGroups->setCurrentIndex(0);
+      ui->twGroups->setCurrentItem(m_AllGroupsItem);
       refreshComboBoxGroups();
 
-      if (oldIndex == 0)
+      if (firstGroup)
       {
         metaBuildPackageList();        
       }
@@ -1558,11 +1560,13 @@ void MainWindow::actionsProcessFinished(int exitCode, QProcess::ExitStatus)
         if (UnixCommand::isAppRunning("octopi-notifier", true) ||
             _textInTabOutput(StrConstants::getSyncing()))
         {
-          int oldIndex = m_cbGroups->currentIndex();
-          m_cbGroups->setCurrentIndex(0);
+          //int oldIndex = m_cbGroups->currentIndex();
+          bool firstGroup = isAllGroupsSelected();
+
+          ui->twGroups->setCurrentItem(m_AllGroupsItem);
           refreshComboBoxGroups();
 
-          if (oldIndex == 0)
+          if (firstGroup)
           {
             metaBuildPackageList();
           }
@@ -1576,7 +1580,7 @@ void MainWindow::actionsProcessFinished(int exitCode, QProcess::ExitStatus)
       else
       {
         //If we are in a package group, maybe we have installed/removed something, so...
-        if (m_cbGroups->currentIndex() > 1)
+        if (!isAllGroupsSelected() && !isYaourtGroupSelected())
         {
           _rebuildPackageList();
         }
@@ -1617,7 +1621,7 @@ void MainWindow::actionsProcessFinished(int exitCode, QProcess::ExitStatus)
   }
 
   enableTransactionActions();
-  if (m_cbGroups->currentText() == StrConstants::getYaourtGroup())
+  if (isYaourtGroupSelected())
   {
     toggleSystemActions(false);
   }

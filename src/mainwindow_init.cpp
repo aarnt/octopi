@@ -149,17 +149,19 @@ void MainWindow::execSystemTrayActivated(QSystemTrayIcon::ActivationReason ar)
  */
 void MainWindow::initComboBoxGroups()
 {
-  m_cbGroups = new QComboBox(this);
-  m_lvGroups = new QListView(m_cbGroups);
-  m_cbGroups->setMinimumWidth(200);
-  m_cbGroups->setAutoCompletion(true);
-  m_cbGroups->setIconSize(QSize(0, 0));
-  m_cbGroups->setView(m_lvGroups);
-  m_cbGroups->setMaxVisibleItems(15);
-  m_cbGroups->setStyleSheet(StrConstants::getMenuCSS());
+  //This is the twGroups init code
+  ui->twGroups->setColumnCount(1);
+  ui->twGroups->setHeaderLabel(StrConstants::getGroups());
+  ui->twGroups->header()->setSortIndicatorShown(false);
+  ui->twGroups->header()->setClickable(false);
+  ui->twGroups->header()->setMovable(false);
+  ui->twGroups->setFrameShape(QFrame::NoFrame);
+  ui->twGroups->setFrameShadow(QFrame::Plain);
+  ui->twGroups->setStyleSheet(StrConstants::getTreeViewCSS());
+  ui->twGroups->setSelectionMode(QAbstractItemView::SingleSelection);
 
-  connect(m_cbGroups, SIGNAL(currentIndexChanged(QString)), this, SLOT(onComboGroupsChanged()));
-  connect(m_cbGroups, SIGNAL(currentIndexChanged(QString)), this, SLOT(metaBuildPackageList()));
+  connect(ui->twGroups, SIGNAL(itemSelectionChanged()), this, SLOT(onComboGroupsChanged()));
+  //connect(ui->twGroups, SIGNAL(currentItemChanged(QTreeWidgetItem*,QTreeWidgetItem*)), this, SLOT(metaBuildPackageList()));
 }
 
 /*
@@ -167,7 +169,7 @@ void MainWindow::initComboBoxGroups()
  */
 void MainWindow::onComboGroupsChanged()
 {
-  if (m_cbGroups->currentIndex() == 0)
+  if (isAllGroupsSelected())
   {
     ui->actionSearchByName->setChecked(true);
     tvPackagesSearchColumnChanged(ui->actionSearchByName);
@@ -186,7 +188,6 @@ void MainWindow::initToolBar()
   ui->mainToolBar->addAction(ui->actionRollback);
   m_leFilterPackage->setMinimumHeight(24);
   ui->mainToolBar->addWidget(m_leFilterPackage);
-  ui->mainToolBar->addWidget(m_cbGroups);
 
   QWidget * hSpacer = new QWidget(this);
   hSpacer->setMinimumHeight(22);
@@ -371,12 +372,7 @@ void MainWindow::initPackageTreeView()
   m_proxyModelPackages->setSourceModel(m_modelPackages);
   m_proxyModelPackages->setFilterKeyColumn(ctn_PACKAGE_NAME_COLUMN);
 
-  //if (UnixCommand::getLinuxDistro() == ectn_MANJAROLINUX &&
-  //    (!WMHelper::isKDERunning() && (!WMHelper::isRazorQtRunning())))
-  //{
-    ui->tvPackages->setAlternatingRowColors(true);
-  //}
-
+  ui->tvPackages->setAlternatingRowColors(true);
   ui->tvPackages->setItemDelegate(new TreeViewPackagesItemDelegate(ui->tvPackages));
   ui->tvPackages->setContextMenuPolicy(Qt::CustomContextMenu);
   ui->tvPackages->setSelectionMode(QAbstractItemView::ExtendedSelection);

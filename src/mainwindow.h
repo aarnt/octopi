@@ -46,6 +46,7 @@ class QTextBrowser;
 class QMenu;
 class SearchLineEdit;
 class QAction;
+class QTreeWidgetItem;
 
 //Column indices for Package's treeview
 const int ctn_PACKAGE_ICON_COLUMN(0);
@@ -149,9 +150,6 @@ private:
   //This member holds the last command string executed by Octopi
   QStringList m_lastCommandList;
 
-  QComboBox *m_cbGroups;
-  QListView *m_lvGroups;
-
   int m_PackageListOrderedCol;
   Qt::SortOrder m_PackageListSortOrder;
 
@@ -173,6 +171,9 @@ private:
 
   QByteArray m_horizontalSplit;
 
+  QTreeWidgetItem *m_AllGroupsItem;
+  QTreeWidgetItem *m_YaourtItem;
+
   int m_numberOfInstalledPackages;
   int m_numberOfAvailablePackages;
   int m_numberOfOutdatedPackages;
@@ -191,6 +192,10 @@ private:
 
   QString getOutdatedPackageVersionByName(const QString &pkgName);
   QString getInstalledPackageVersionByName(const QString &pkgName);
+
+  QString getSelectedGroup();
+  bool isAllGroupsSelected();
+  bool isYaourtGroupSelected();
 
   QStandardItemModel *_getCurrentSelectedModel();
   bool isPackageInstalled(const QString &pkgName);
@@ -269,7 +274,6 @@ private slots:
   void editFile();
   void openTerminal();
   void openDirectory();
-
   void openRootTerminal();
   void installLocalPackage();
 
@@ -346,6 +350,8 @@ private slots:
 
   void insertGroupIntoRemovePackage();
   void insertGroupIntoInstallPackage();
+
+  void hideGroupsWidget(bool pSaveSettings = true);
 
   void maximizePackagesTreeView(bool pSaveSettings = true);
   void maximizePropertiesTabWidget(bool pSaveSettings = true);

@@ -66,20 +66,37 @@ void MainWindow::refreshAppIcon()
  */
 void MainWindow::refreshComboBoxGroups()
 {
-  disconnect(m_cbGroups, SIGNAL(currentIndexChanged(QString)), this, SLOT(metaBuildPackageList()));
+  static bool firstRun = true;
+  disconnect(ui->twGroups, SIGNAL(itemSelectionChanged()), this, SLOT(metaBuildPackageList()));
 
-  m_cbGroups->clear();
-  m_cbGroups->addItem("<" + StrConstants::getAll() + ">");
+  QList<QTreeWidgetItem *> items;
+
+  ui->twGroups->clear();
   m_hasYaourt = UnixCommand::hasTheExecutable("yaourt");
+
+  items.append(new QTreeWidgetItem((QTreeWidget*)0, QStringList("<" + StrConstants::getDisplayAllGroups() + ">")));
+  m_AllGroupsItem = items.at(0);
 
   if (m_hasYaourt)
   {
-    m_cbGroups->addItem(StrConstants::getYaourtGroup());
+    items.append(new QTreeWidgetItem((QTreeWidget*)0, QStringList(StrConstants::getYaourtGroup())));
+    m_YaourtItem = items.at(1);
   }
 
-  m_cbGroups->addItems(*Package::getPackageGroups());
+  foreach(QString group, *Package::getPackageGroups())
+  {
+    items.append(new QTreeWidgetItem((QTreeWidget*)0, QStringList(group)));
+  }
 
-  connect(m_cbGroups, SIGNAL(currentIndexChanged(QString)), this, SLOT(metaBuildPackageList()));
+  ui->twGroups->insertTopLevelItems(0, items);
+
+  if(firstRun)
+  {
+    ui->twGroups->setCurrentItem(items.at(0));
+    firstRun=false;
+  }
+
+  connect(ui->twGroups, SIGNAL(itemSelectionChanged()), this, SLOT(metaBuildPackageList()));
 }
 
 /*
@@ -90,7 +107,7 @@ void MainWindow::buildPackagesFromGroupList()
   CPUIntensiveComputing cic;
   m_progressWidget->show();
 
-  if (m_cbGroups->currentIndex() == 0)
+  if (isAllGroupsSelected())
   {
     QStringList sl;
     m_modelPackagesFromGroup->setHorizontalHeaderLabels(
@@ -185,7 +202,7 @@ void MainWindow::buildPackagesFromGroupList()
   parentItemInstalledPackagesFromGroup->insertColumn(ctn_PACKAGE_DESCRIPTION_COLUMN, lDescriptions2);
 
   ui->tvPackages->setColumnWidth(ctn_PACKAGE_ICON_COLUMN, 24);
-  ui->tvPackages->setColumnWidth(ctn_PACKAGE_NAME_COLUMN, 500);
+  ui->tvPackages->setColumnWidth(ctn_PACKAGE_NAME_COLUMN, 400);
   ui->tvPackages->setColumnWidth(ctn_PACKAGE_VERSION_COLUMN, 160);
   ui->tvPackages->header()->setSectionHidden(ctn_PACKAGE_DESCRIPTION_COLUMN, true);
 
@@ -219,14 +236,10 @@ void MainWindow::buildPackagesFromGroupList()
   ui->tvPackages->scrollTo(maux, QAbstractItemView::PositionAtCenter);
   ui->tvPackages->selectionModel()->setCurrentIndex(maux, QItemSelectionModel::Select);
 
-  //m_progressWidget->setValue(list->count());
   list->clear();
   refreshTabInfo();
   refreshTabFiles();
   ui->tvPackages->setFocus();
-
-  //connect(m_pacmanDatabaseSystemWatcher,
-  //        SIGNAL(directoryChanged(QString)), this, SLOT(metaBuildPackageList()));
 
   m_progressWidget->close();
   refreshStatusBarToolButtons();
@@ -307,7 +320,7 @@ void MainWindow::preBuildPackagesFromGroupList()
  */
 void MainWindow::metaBuildPackageList()
 {
-  if (m_cbGroups->count() == 0 || m_cbGroups->currentIndex() == 0)
+  if (ui->twGroups->topLevelItemCount() == 0 || isAllGroupsSelected())
   {
     toggleSystemActions(true);
     connect(m_leFilterPackage, SIGNAL(textChanged(QString)), this, SLOT(reapplyPackageFilter()));
@@ -318,7 +331,7 @@ void MainWindow::metaBuildPackageList()
     g_fwPacman.setFuture(f);
     connect(&g_fwPacman, SIGNAL(finished()), this, SLOT(preBuildPackageList()));
   }
-  else if (m_cbGroups->currentText() == StrConstants::getYaourtGroup())
+  else if (isYaourtGroupSelected())
   {
     toggleSystemActions(false);
     disconnect(m_leFilterPackage, SIGNAL(textChanged(QString)), this, SLOT(reapplyPackageFilter()));
@@ -338,7 +351,7 @@ void MainWindow::metaBuildPackageList()
     reapplyPackageFilter();
     disconnect(&g_fwPacmanGroup, SIGNAL(finished()), this, SLOT(preBuildPackagesFromGroupList()));
     QFuture<QList<QString> *> f;
-    f = run(searchPacmanPackagesFromGroup, m_cbGroups->currentText());
+    f = run(searchPacmanPackagesFromGroup, getSelectedGroup());
     g_fwPacmanGroup.setFuture(f);
     connect(&g_fwPacmanGroup, SIGNAL(finished()), this, SLOT(preBuildPackagesFromGroupList()));
   }
@@ -357,7 +370,7 @@ void MainWindow::buildPackageList(bool nonBlocking)
   static bool firstTime = true;
 
   //Refresh the list of Group names
-  if (!firstTime) refreshComboBoxGroups();
+  //if (!firstTime) refreshComboBoxGroups();
 
   _deleteStandardItemModel(m_modelPackages);
   _deleteStandardItemModel(m_modelPackagesFromGroup);
@@ -529,7 +542,7 @@ void MainWindow::buildPackageList(bool nonBlocking)
   parentItemInstalledPackages->insertColumn(ctn_PACKAGE_DESCRIPTION_COLUMN, lDescriptions2);
 
   ui->tvPackages->setColumnWidth(ctn_PACKAGE_ICON_COLUMN, 24);
-  ui->tvPackages->setColumnWidth(ctn_PACKAGE_NAME_COLUMN, 500);
+  ui->tvPackages->setColumnWidth(ctn_PACKAGE_NAME_COLUMN, 400); //500
   ui->tvPackages->setColumnWidth(ctn_PACKAGE_VERSION_COLUMN, 160);
   ui->tvPackages->header()->setSectionHidden(ctn_PACKAGE_DESCRIPTION_COLUMN, true);
   ui->tvPackages->sortByColumn(m_PackageListOrderedCol, m_PackageListSortOrder);
@@ -758,7 +771,7 @@ void MainWindow::_rebuildPackageList()
   parentItemInstalledPackages->insertColumn(ctn_PACKAGE_DESCRIPTION_COLUMN, lDescriptions2);
 
   ui->tvPackages->setColumnWidth(ctn_PACKAGE_ICON_COLUMN, 24);
-  ui->tvPackages->setColumnWidth(ctn_PACKAGE_NAME_COLUMN, 500);
+  ui->tvPackages->setColumnWidth(ctn_PACKAGE_NAME_COLUMN, 400);
   ui->tvPackages->setColumnWidth(ctn_PACKAGE_VERSION_COLUMN, 160);
   ui->tvPackages->header()->setSectionHidden(ctn_PACKAGE_DESCRIPTION_COLUMN, true);
   ui->tvPackages->sortByColumn(m_PackageListOrderedCol, m_PackageListSortOrder);
@@ -931,7 +944,7 @@ void MainWindow::buildYaourtPackageList()
   parentItemInstalledPackages->insertColumn(ctn_PACKAGE_DESCRIPTION_COLUMN, lDescriptions2);
 
   ui->tvPackages->setColumnWidth(ctn_PACKAGE_ICON_COLUMN, 24);
-  ui->tvPackages->setColumnWidth(ctn_PACKAGE_NAME_COLUMN, 500);
+  ui->tvPackages->setColumnWidth(ctn_PACKAGE_NAME_COLUMN, 400);
   ui->tvPackages->setColumnWidth(ctn_PACKAGE_VERSION_COLUMN, 160);
   ui->tvPackages->header()->setSectionHidden(ctn_PACKAGE_DESCRIPTION_COLUMN, true);
   ui->tvPackages->sortByColumn(m_PackageListOrderedCol, m_PackageListSortOrder);
@@ -1112,7 +1125,7 @@ void MainWindow::refreshTabInfo(bool clearContents, bool neverQuit)
 
   if (ui->actionNonInstalledPackages->isChecked())
   {
-    if (m_cbGroups->currentIndex() == 0 || m_cbGroups->currentText() == StrConstants::getYaourtGroup())
+    if (isAllGroupsSelected() || isYaourtGroupSelected())
     {
       siIcon = m_modelPackages->item( mi.row(), ctn_PACKAGE_ICON_COLUMN);
       siName = m_modelPackages->item( mi.row(), ctn_PACKAGE_NAME_COLUMN);
@@ -1129,7 +1142,7 @@ void MainWindow::refreshTabInfo(bool clearContents, bool neverQuit)
   }
   else
   {
-    if (m_cbGroups->currentIndex() == 0 || m_cbGroups->currentText() == StrConstants::getYaourtGroup())
+    if (isAllGroupsSelected() || isYaourtGroupSelected())
     {
       siIcon = m_modelInstalledPackages->item( mi.row(), ctn_PACKAGE_ICON_COLUMN);
       siName = m_modelInstalledPackages->item( mi.row(), ctn_PACKAGE_NAME_COLUMN);
@@ -1160,8 +1173,7 @@ void MainWindow::refreshTabInfo(bool clearContents, bool neverQuit)
   /* Appends all info from the selected package! */
   QString pkgName=siName->text();
 
-  if (m_cbGroups->currentText() == StrConstants::getYaourtGroup()
-      && siIcon->icon().pixmap(QSize(22,22)).toImage() ==
+  if (isYaourtGroupSelected() && siIcon->icon().pixmap(QSize(22,22)).toImage() ==
     IconHelper::getIconNonInstalled().pixmap(QSize(22,22)).toImage())
   {
     siDescription = getAvailablePackage(pkgName, ctn_PACKAGE_DESCRIPTION_COLUMN);
@@ -1287,20 +1299,6 @@ void MainWindow::refreshTabInfo(bool clearContents, bool neverQuit)
               + StrConstants::getOutdatedInstalledVersion().arg(outdatedVersion) +
               "</b></font></td></tr>";
           }
-          /*else
-          {
-            if (m_outdatedYaourtPackagesNameVersion->count() > 0)
-            {
-              QString outdatedVersion = m_outdatedYaourtPackagesNameVersion->value(pkgName);
-              html += "<tr><td>" + version + "</td><td>" + siVersion->text() + " <b><font color=\"#E55451\">"
-                + StrConstants::getOutdatedInstalledVersion().arg(outdatedVersion) +
-                "</b></font></td></tr>";
-            }
-            else
-            {
-              html += "<tr><td>" + version + "</td><td>" + siVersion->text() + "</td></tr>";
-            }
-          }*/
         }
         else
         {
@@ -1431,7 +1429,7 @@ void MainWindow::refreshTabFiles(bool clearContents, bool neverQuit)
 
   if (ui->actionNonInstalledPackages->isChecked())
   {
-    if (m_cbGroups->currentIndex() == 0 || m_cbGroups->currentText() == StrConstants::getYaourtGroup())
+    if (isAllGroupsSelected() || isYaourtGroupSelected())
     {
       siName = m_modelPackages->item(mi.row(), ctn_PACKAGE_NAME_COLUMN);
       siRepository = m_modelPackages->item(mi.row(), ctn_PACKAGE_REPOSITORY_COLUMN);
@@ -1446,7 +1444,7 @@ void MainWindow::refreshTabFiles(bool clearContents, bool neverQuit)
   }
   else
   {
-    if (m_cbGroups->currentIndex() == 0 || m_cbGroups->currentText() == StrConstants::getYaourtGroup())
+    if (isAllGroupsSelected() || isYaourtGroupSelected())
     {
       siName = m_modelInstalledPackages->item(mi.row(), ctn_PACKAGE_NAME_COLUMN);
       siRepository = m_modelInstalledPackages->item(mi.row(), ctn_PACKAGE_REPOSITORY_COLUMN);
@@ -1480,15 +1478,15 @@ void MainWindow::refreshTabFiles(bool clearContents, bool neverQuit)
 
   //Maybe this is a non-installed package...
   bool nonInstalled = ((ui->actionNonInstalledPackages->isChecked() &&
-                       (m_cbGroups->currentIndex() == 0 ||
-                        m_cbGroups->currentText() == StrConstants::getYaourtGroup()) &&
+                       (isAllGroupsSelected() ||
+                        isYaourtGroupSelected()) &&
                        (m_modelPackages->item(mi.row(), ctn_PACKAGE_ICON_COLUMN)->text() == "_NonInstalled")));
 
-  if (!nonInstalled && m_cbGroups->currentText() != StrConstants::getYaourtGroup())
+  if (!nonInstalled && !isYaourtGroupSelected())
   {
     //Let's try another test...
     nonInstalled = ((ui->actionNonInstalledPackages->isChecked() &&
-                            m_cbGroups->currentIndex() != 0) &&
+                            !isAllGroupsSelected()) &&
                            (m_modelPackagesFromGroup->item(
                               mi.row(), ctn_PACKAGE_ICON_COLUMN)->text() == "_NonInstalled"));
   }

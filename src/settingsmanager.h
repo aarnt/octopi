@@ -51,7 +51,7 @@ const QString ctn_KEY_USE_PKGTOOLS("Use_PkgTools");
 const QString ctn_KEY_USE_SILENT_ACTION_OUTPUT("Use_Silent_Action_Output");
 const QString ctn_KEY_PRIVILEGE_ESCALATION_TOOL("Privilege_Escalation_Tool");
 
-enum PanelOrganizing { ectn_NORMAL=30, ectn_MAXIMIZE_PACKAGES=40, ectn_MAXIMIZE_PROPERTIES=50 };
+enum PanelOrganizing { ectn_NORMAL=30, ectn_MAXIMIZE_PACKAGES=40, ectn_MAXIMIZE_PROPERTIES=50, ectn_GROUPS=5 };
 
 enum SaveSettingsReason { ectn_FourPanelOrganizing, ectn_PackageList, ectn_InstalledPackageList,
                           ectn_ToolBar, ectn_DefaultDirectory, ectn_IconifyOnStart, ectn_CurrentTabIndex,

@@ -91,7 +91,7 @@ void MainWindow::keyPressEvent(QKeyEvent* ke)
 {
   if (ke->key() == Qt::Key_Return)
   {
-    if (m_cbGroups->currentText() == StrConstants::getYaourtGroup() && m_leFilterPackage->hasFocus() && m_cic == 0)
+    if (isYaourtGroupSelected() && m_leFilterPackage->hasFocus() && m_cic == 0)
     {
       QFuture<QList<PackageListData> *> f;
       disconnect(&g_fwYaourt, SIGNAL(finished()), this, SLOT(preBuildYaourtPackageList()));
@@ -163,6 +163,10 @@ void MainWindow::keyPressEvent(QKeyEvent* ke)
   {
     openDirectory();
   }
+  else if(ke->key() == Qt::Key_F9)
+  {
+    hideGroupsWidget();
+  }
   else if (ke->key() == Qt::Key_F10)
   {
     maximizePackagesTreeView();
@@ -205,18 +209,18 @@ void MainWindow::keyPressEvent(QKeyEvent* ke)
   else if(ke->key() == Qt::Key_G && ke->modifiers() == (Qt::ShiftModifier|Qt::ControlModifier))
   {
     //The user wants to go to "Display All groups"
-    if (m_cbGroups->currentIndex() != 0)
+    if (!isAllGroupsSelected())
     {
-      m_cbGroups->setCurrentIndex(0);
+      ui->twGroups->setCurrentItem(m_AllGroupsItem);
     }
   }
   else if(ke->key() == Qt::Key_Y && ke->modifiers() == (Qt::ShiftModifier|Qt::ControlModifier)
           && m_hasYaourt)
   {
     //The user wants to go to fake "Yaourt" group
-    if (m_cbGroups->currentText() != StrConstants::getYaourtGroup())
+    if (!isYaourtGroupSelected())
     {
-      m_cbGroups->setCurrentIndex(1);
+      ui->twGroups->setCurrentItem(m_YaourtItem);
       //...and let us focus the search edit!
       m_leFilterPackage->setFocus();
     }

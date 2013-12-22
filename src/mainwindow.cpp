@@ -59,7 +59,6 @@ MainWindow::MainWindow(QWidget *parent) :
   m_indFoundFilesInPkgFileList = 0;
   m_callSystemUpgrade = false;
   m_initializationCompleted=false;
-  m_cbGroups = 0;
   m_listOfPackages = 0;
   m_listOfPackagesFromGroup = 0;
   m_systemUpgradeDialog = false;
@@ -118,7 +117,6 @@ void MainWindow::show()
     initToolBar();
     initTabWidgetPropertiesIndex();
     refreshDistroNews(false);
-
     refreshComboBoxGroups();
     QMainWindow::show();
     metaBuildPackageList();    
@@ -180,7 +178,7 @@ void MainWindow::outputOutdatedPackageList()
 {
   //We cannot output any list if there is a running transaction!
   if (m_commandExecuting != ectn_NONE ||
-      m_cbGroups->currentText() == StrConstants::getYaourtGroup())
+      isYaourtGroupSelected())
     return;
 
   m_numberOfOutdatedPackages = m_outdatedPackageList->count();
@@ -348,13 +346,43 @@ QString MainWindow::getInstalledPackageVersionByName(const QString &pkgName)
 }
 
 /*
+ * Retrieves the selected package group from the treeWidget
+ */
+QString MainWindow::getSelectedGroup()
+{
+  return ui->twGroups->currentItem()->text(0);
+}
+
+/*
+ * Helper to analyse if <Display All Groups> is selected
+ */
+bool MainWindow::isAllGroupsSelected()
+{
+  QModelIndex index = ui->twGroups->currentIndex();
+  QString group = ui->twGroups->model()->data(index).toString();
+
+  return (group == "<" + StrConstants::getDisplayAllGroups() + ">");
+}
+
+/*
+ * Helper to analyse if < Yaourt > is selected
+ */
+bool MainWindow::isYaourtGroupSelected()
+{
+  QModelIndex index = ui->twGroups->currentIndex();
+  QString group = ui->twGroups->model()->data(index).toString();
+
+  return (group == StrConstants::getYaourtGroup());
+}
+
+/*
  * Returns the QStandardItem available in the row that pkgName is found
  */
 QStandardItem *MainWindow::getAvailablePackage(const QString &pkgName, const int index)
 {
   QStandardItemModel *sim;
 
-  if (m_cbGroups->currentText() == StrConstants::getYaourtGroup()
+  if (isYaourtGroupSelected()
       && m_modelPackages &&
       m_modelPackages->rowCount() > 0)
   {
@@ -464,7 +492,7 @@ void MainWindow::changePackageListModel()
 
   if (ui->actionNonInstalledPackages->isChecked())
   {
-    if(m_cbGroups->currentIndex() == 0 || m_cbGroups->currentText() == StrConstants::getYaourtGroup())
+    if(isAllGroupsSelected() || isYaourtGroupSelected())
     {
       m_modelPackages->setHorizontalHeaderLabels(
           sl << "" << StrConstants::getName() << StrConstants::getVersion() << StrConstants::getRepository());     
@@ -479,7 +507,7 @@ void MainWindow::changePackageListModel()
   }
   else
   {
-    if(m_cbGroups->currentIndex() == 0 || m_cbGroups->currentText() == StrConstants::getYaourtGroup())
+    if(isAllGroupsSelected() || isYaourtGroupSelected())
     {
       m_modelInstalledPackages->setHorizontalHeaderLabels(
           sl << "" << StrConstants::getName() << StrConstants::getVersion() << StrConstants::getRepository());
@@ -528,14 +556,14 @@ QStandardItemModel *MainWindow::_getCurrentSelectedModel()
 
   if(ui->actionNonInstalledPackages->isChecked())
   {
-    if(m_cbGroups->currentIndex() == 0 || m_cbGroups->currentText() == StrConstants::getYaourtGroup())
+    if(isAllGroupsSelected() || isYaourtGroupSelected())
       sim = m_modelPackages;
     else
       sim = m_modelPackagesFromGroup;
   }
   else
   {
-    if(m_cbGroups->currentIndex() == 0 || m_cbGroups->currentText() == StrConstants::getYaourtGroup())
+    if(isAllGroupsSelected() || isYaourtGroupSelected())
       sim = m_modelInstalledPackages;
     else
       sim = m_modelInstalledPackagesFromGroup;
@@ -624,7 +652,7 @@ void MainWindow::execContextMenuPackages(QPoint point)
     {
       menu->addAction(ui->actionInstall);
 
-      if (m_cbGroups->currentIndex() != 0 && m_cbGroups->currentText() != StrConstants::getYaourtGroup())
+      if (!isAllGroupsSelected() && !isYaourtGroupSelected())
       {
         menu->addAction(ui->actionInstallGroup);
       }
@@ -638,7 +666,7 @@ void MainWindow::execContextMenuPackages(QPoint point)
     {
       menu->addAction(ui->actionRemove);
 
-      if (m_cbGroups->currentIndex() != 0 && m_cbGroups->currentText() != StrConstants::getYaourtGroup())
+      if (!isAllGroupsSelected() && !isYaourtGroupSelected())
       {
         //Is this group already installed?
         if (m_modelInstalledPackagesFromGroup->rowCount() == m_modelPackagesFromGroup->rowCount())
@@ -952,6 +980,40 @@ void MainWindow::invalidateTabs()
   {
     refreshTabFiles(true);
     return;
+  }
+}
+
+/*
+ * Shows or hides the group's widget
+ */
+void MainWindow::hideGroupsWidget(bool pSaveSettings)
+{
+  //QList<int> savedSizes;
+  //savedSizes << 200 << 235;
+
+  static int tvPackagesWidth = ui->tvPackages->width();
+
+  QList<int> l, rl;
+  rl = ui->splitterVertical->sizes();
+
+  if ( rl[1] != 0 )
+  {
+    ui->splitterVertical->setSizes( l << tvPackagesWidth << 0);
+    if(!ui->twGroups->hasFocus())
+      ui->twGroups->setFocus();
+
+    if(pSaveSettings)
+      saveSettings(ectn_GROUPS);
+  }
+  else
+  {
+    //ui->splitterVertical->setSizes(savedSizes);
+    //ui->tvPackages->scrollTo(ui->tvPackages->currentIndex());
+    ui->splitterVertical->setSizes( l << tvPackagesWidth << ui->twGroups->maximumWidth() );
+    ui->tvPackages->setFocus();
+
+    if(pSaveSettings)
+      saveSettings(ectn_NORMAL);
   }
 }
 

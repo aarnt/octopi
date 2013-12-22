@@ -88,12 +88,12 @@ public:
     return QObject::tr("Internet seems unavailable!");
   }
 
-  static QString getAll(){
+  static QString getDisplayAllGroups(){
     return QObject::tr("Display all groups");
   }
 
   static QString getYaourtGroup(){
-    return "< Yaourt >";
+    return "<Yaourt>";
   }
 
   static QString getHelpUsage(){
