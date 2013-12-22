@@ -1533,9 +1533,8 @@ void MainWindow::actionsProcessFinished(int exitCode, QProcess::ExitStatus)
     {
       bool firstGroup = isAllGroupsSelected();
 
-      //m_cbGroups->setCurrentIndex(0);
-      ui->twGroups->setCurrentItem(m_AllGroupsItem);
-      refreshComboBoxGroups();
+      //ui->twGroups->setCurrentItem(m_AllGroupsItem);
+      //refreshComboBoxGroups();
 
       if (firstGroup)
       {
@@ -1563,8 +1562,8 @@ void MainWindow::actionsProcessFinished(int exitCode, QProcess::ExitStatus)
           //int oldIndex = m_cbGroups->currentIndex();
           bool firstGroup = isAllGroupsSelected();
 
-          ui->twGroups->setCurrentItem(m_AllGroupsItem);
-          refreshComboBoxGroups();
+          //ui->twGroups->setCurrentItem(m_AllGroupsItem);
+          //refreshComboBoxGroups();
 
           if (firstGroup)
           {
@@ -1627,6 +1626,9 @@ void MainWindow::actionsProcessFinished(int exitCode, QProcess::ExitStatus)
   }
 
   m_commandExecuting = ectn_NONE;
+  refreshComboBoxGroups();
+  ui->twGroups->setCurrentItem(m_AllGroupsItem);
+
   m_unixCommand->removeTemporaryActionFile();
 }
 
