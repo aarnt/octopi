@@ -185,7 +185,7 @@ private:
   void initAppIcon();
   void refreshAppIcon();
   void initComboBoxGroups();
-  void refreshComboBoxGroups();
+  void refreshGroupsWidget();
   void initToolBar();
   void initStatusBar();
   void initLineEditFilterPackages();

@@ -1626,8 +1626,8 @@ void MainWindow::actionsProcessFinished(int exitCode, QProcess::ExitStatus)
   }
 
   m_commandExecuting = ectn_NONE;
-  refreshComboBoxGroups();
-  ui->twGroups->setCurrentItem(m_AllGroupsItem);
+  refreshGroupsWidget();
+  //ui->twGroups->setCurrentItem(m_AllGroupsItem);
 
   m_unixCommand->removeTemporaryActionFile();
 }

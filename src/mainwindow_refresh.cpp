@@ -64,9 +64,9 @@ void MainWindow::refreshAppIcon()
 /*
  * Inserts the group names into the Groups comboBox
  */
-void MainWindow::refreshComboBoxGroups()
+void MainWindow::refreshGroupsWidget()
 {
-  static bool firstRun = true;
+  //static bool firstRun = true;
   disconnect(ui->twGroups, SIGNAL(itemSelectionChanged()), this, SLOT(metaBuildPackageList()));
 
   QList<QTreeWidgetItem *> items;
@@ -90,10 +90,10 @@ void MainWindow::refreshComboBoxGroups()
 
   ui->twGroups->insertTopLevelItems(0, items);
 
-  if(firstRun)
+  //if(firstRun)
   {
     ui->twGroups->setCurrentItem(items.at(0));
-    firstRun=false;
+    //firstRun=false;
   }
 
   connect(ui->twGroups, SIGNAL(itemSelectionChanged()), this, SLOT(metaBuildPackageList()));

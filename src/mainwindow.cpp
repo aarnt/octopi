@@ -117,7 +117,7 @@ void MainWindow::show()
     initToolBar();
     initTabWidgetPropertiesIndex();
     refreshDistroNews(false);
-    refreshComboBoxGroups();
+    refreshGroupsWidget();
     QMainWindow::show();
     metaBuildPackageList();    
   }
