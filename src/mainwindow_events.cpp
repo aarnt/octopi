@@ -163,10 +163,6 @@ void MainWindow::keyPressEvent(QKeyEvent* ke)
   {
     openDirectory();
   }
-  else if(ke->key() == Qt::Key_F9)
-  {
-    hideGroupsWidget();
-  }
   else if (ke->key() == Qt::Key_F10)
   {
     maximizePackagesTreeView();

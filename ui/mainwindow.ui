@@ -485,6 +485,18 @@
     <string>Install</string>
    </property>
   </action>
+  <action name="actionShowGroups">
+   <property name="icon">
+    <iconset resource="../resources.qrc">
+     <normaloff>:/resources/images/show_groups.png</normaloff>:/resources/images/show_groups.png</iconset>
+   </property>
+   <property name="text">
+    <string>Groups</string>
+   </property>
+   <property name="shortcut">
+    <string>F9</string>
+   </property>
+  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <tabstops>

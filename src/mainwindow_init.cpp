@@ -188,6 +188,8 @@ void MainWindow::initToolBar()
   ui->mainToolBar->addAction(ui->actionRollback);
   m_leFilterPackage->setMinimumHeight(24);
   ui->mainToolBar->addWidget(m_leFilterPackage);
+  ui->mainToolBar->addSeparator();
+  ui->mainToolBar->addAction(ui->actionShowGroups);
 
   QWidget * hSpacer = new QWidget(this);
   hSpacer->setMinimumHeight(22);
@@ -232,6 +234,7 @@ void MainWindow::initToolButtonPacman()
   m_menuToolButtonPacman->addAction(m_actionInstallPacmanUpdates);
   m_toolButtonPacman->setPopupMode(QToolButton::MenuButtonPopup);
   m_toolButtonPacman->setMenu(m_menuToolButtonPacman);
+
   connect(m_toolButtonPacman, SIGNAL(clicked()), this, SLOT(outputOutdatedPackageList()));
 }
 
@@ -528,6 +531,11 @@ void MainWindow::initActions()
   connect(m_actionInstallYaourtUpdates, SIGNAL(triggered()), this, SLOT(doYaourtUpgrade()));
 
   toggleTransactionActions(true);
+
+  ui->actionShowGroups->setText(StrConstants::getGroups());
+  ui->actionShowGroups->setCheckable(true);
+  ui->actionShowGroups->setChecked(true);
+  connect(ui->actionShowGroups, SIGNAL(triggered()), this, SLOT(hideGroupsWidget()));
 
   QActionGroup *actionGroup = new QActionGroup(this);
   actionGroup->addAction(ui->actionSearchByDescription);
