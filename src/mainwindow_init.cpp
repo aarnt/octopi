@@ -188,14 +188,14 @@ void MainWindow::initToolBar()
   ui->mainToolBar->addAction(ui->actionRollback);
   m_leFilterPackage->setMinimumHeight(24);
   ui->mainToolBar->addWidget(m_leFilterPackage);
-  ui->mainToolBar->addSeparator();
-  ui->mainToolBar->addAction(ui->actionShowGroups);
 
   QWidget * hSpacer = new QWidget(this);
   hSpacer->setMinimumHeight(22);
-  hSpacer->setMinimumWidth(6);
+  hSpacer->setMinimumWidth(3);
   hSpacer->setVisible(true);
   ui->mainToolBar->addWidget(hSpacer);
+  ui->mainToolBar->addAction(ui->actionShowGroups);
+
   ui->mainToolBar->toggleViewAction()->setEnabled(false);
   ui->mainToolBar->toggleViewAction()->setVisible(false);
 }
