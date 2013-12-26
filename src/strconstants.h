@@ -50,13 +50,13 @@ public:
   }
 
   static QString getForeignRepositoryName(){
-    if (!UnixCommand::getLinuxDistro() == ectn_KAOS)
+    if (UnixCommand::getLinuxDistro() == ectn_KAOS)
     {
-      return "AUR";
+      return "non-repo";
     }
     else
     {
-      return "non-repo";
+      return "AUR";
     }
   }
 
