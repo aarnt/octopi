@@ -1219,8 +1219,10 @@ void MainWindow::openRootTerminal()
 void MainWindow::installLocalPackage()
 {
   m_packagesToInstallList =
-      QFileDialog::getOpenFileNames(this, StrConstants::getFileChooserTitle(),
-                                         QDir::homePath(), "*pkg.tar.xz");
+      QFileDialog::getOpenFileNames(this,
+                                    StrConstants::getFileChooserTitle(),
+                                    QDir::homePath(),
+                                    StrConstants::getPackages() + " (*.pkg.tar.xz)");
 
   if (m_packagesToInstallList.count() > 0)
     doInstallLocalPackages();

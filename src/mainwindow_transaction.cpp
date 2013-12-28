@@ -1689,7 +1689,7 @@ void MainWindow::_treatProcessOutput(const QString &pMsg)
 
   msg.remove("\033[0;1m");
   msg.remove("\033[0m");
-  msg.remove(" [1;33m");
+  msg.remove("[1;33m");
   msg.remove("\033[1;34m"); //strings starting with ::
   msg.remove("\033[0;1m");
 
