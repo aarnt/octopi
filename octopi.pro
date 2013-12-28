@@ -114,4 +114,5 @@ TRANSLATIONS += resources/translations/octopi_pt_BR.ts \
     resources/translations/octopi_hu.ts \
     resources/translations/octopi_zh_TW.ts \
     resources/translations/octopi_ms_MY.ts \
-    resources/translations/octopi_uk.ts
+    resources/translations/octopi_uk.ts \
+    resources/translations/octopi_sk.ts

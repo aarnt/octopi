@@ -1685,7 +1685,13 @@ void MainWindow::_treatProcessOutput(const QString &pMsg)
   QString progressRun;
   QString progressEnd;
   msg.remove(QRegExp(".+\\[Y/n\\].+"));
-  msg.remove(QRegExp("warning:\\S{0}"));
+  //msg.remove(QRegExp("warning:\\S{0}"));
+
+  msg.remove("\033[0;1m");
+  msg.remove("\033[0m");
+  msg.remove(" [1;33m");
+  msg.remove("\033[1;34m"); //strings starting with ::
+  msg.remove("\033[0;1m");
 
   //std::cout << "_treat: " << msg.toAscii().data() << std::endl;
 

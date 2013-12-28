@@ -147,7 +147,7 @@ void MainWindow::execSystemTrayActivated(QSystemTrayIcon::ActivationReason ar)
 /*
  * Inits the Groups combobox, so it can be added in app's toolBar
  */
-void MainWindow::initComboBoxGroups()
+void MainWindow::initPackageGroups()
 {
   //This is the twGroups init code
   ui->twGroups->setColumnCount(1);
@@ -160,14 +160,14 @@ void MainWindow::initComboBoxGroups()
   ui->twGroups->setStyleSheet(StrConstants::getTreeViewCSS());
   ui->twGroups->setSelectionMode(QAbstractItemView::SingleSelection);
 
-  connect(ui->twGroups, SIGNAL(itemSelectionChanged()), this, SLOT(onComboGroupsChanged()));
+  connect(ui->twGroups, SIGNAL(itemSelectionChanged()), this, SLOT(onPackageGroupChanged()));
   //connect(ui->twGroups, SIGNAL(currentItemChanged(QTreeWidgetItem*,QTreeWidgetItem*)), this, SLOT(metaBuildPackageList()));
 }
 
 /*
  * Whenever user changes the Groups combobox, this method will be triggered...
  */
-void MainWindow::onComboGroupsChanged()
+void MainWindow::onPackageGroupChanged()
 {
   if (isAllGroupsSelected())
   {
@@ -181,7 +181,7 @@ void MainWindow::onComboGroupsChanged()
  */
 void MainWindow::initToolBar()
 {
-  initComboBoxGroups();
+  initPackageGroups();
 
   ui->mainToolBar->addAction(ui->actionSyncPackages);
   ui->mainToolBar->addAction(ui->actionCommit);

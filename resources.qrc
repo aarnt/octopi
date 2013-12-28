@@ -40,6 +40,7 @@
         <file>resources/images/octopi_green.png</file>
         <file>resources/images/foreign_green.png</file>
         <file>resources/images/foreign_red.png</file>
+        <file>resources/images/show_groups.png</file>
         <file>resources/translations/octopi_pt_BR.qm</file>
         <file>resources/translations/octopi_fr_FR.qm</file>
         <file>resources/translations/octopi_es_ES.qm</file>
@@ -73,6 +74,6 @@
         <file>resources/translations/octopi_zh_TW.qm</file>
         <file>resources/translations/octopi_ms_MY.qm</file>
         <file>resources/translations/octopi_uk.qm</file>
-        <file>resources/images/show_groups.png</file>
+        <file>resources/translations/octopi_sk.qm</file>
     </qresource>
 </RCC>

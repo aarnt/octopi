@@ -184,7 +184,7 @@ private:
 
   void initAppIcon();
   void refreshAppIcon();
-  void initComboBoxGroups();
+  void initPackageGroups();
   void refreshGroupsWidget();
   void initToolBar();
   void initStatusBar();
@@ -292,7 +292,7 @@ private slots:
   void buildPackagesFromGroupList();
   void buildPackageList(bool nonBlocking=true);
   void metaBuildPackageList();
-  void onComboGroupsChanged();
+  void onPackageGroupChanged();
 
   void _cloneModelPackages();
   void preBuildPackageList();
