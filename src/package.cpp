@@ -62,7 +62,8 @@ QString Package::makeURLClickable( const QString &s )
 	QString sb = s;
 	QRegExp rx("((ht|f)tp(s?))://(\\S)+[^\"|)|(|.|\\s|\\n]");
 	QRegExp rx1("^|[\\s]+(www\\.)(\\S)+[^\"|)|(|.|\\s|\\n]"); 
-	rx.setCaseSensitivity( Qt::CaseInsensitive );
+
+  rx.setCaseSensitivity( Qt::CaseInsensitive );
 	rx1.setCaseSensitivity( Qt::CaseInsensitive );
 
 	int search = 0;
@@ -1000,7 +1001,8 @@ QStringList Package::getContents(const QString& pkgName, bool isInstalled)
     result = UnixCommand::getPackageContentsUsingPacman(pkgName);
   }
   else if (UnixCommand::getLinuxDistro() == ectn_ARCHBANGLINUX ||
-           UnixCommand::getLinuxDistro() == ectn_ARCHLINUX)
+           UnixCommand::getLinuxDistro() == ectn_ARCHLINUX ||
+           UnixCommand::getLinuxDistro() == ectn_KAOS)
   {
     result = UnixCommand::getPackageContentsUsingPkgfile(pkgName);
   }
