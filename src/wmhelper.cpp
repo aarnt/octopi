@@ -231,6 +231,7 @@ QString WMHelper::getXFCEEditor(){
  */
 QString WMHelper::getKDESUCommand(){
   QString result = ctn_KDESU;
+
   result += " -d ";
   result += " -t ";
   result += " --noignorebutton ";
@@ -352,6 +353,10 @@ void WMHelper::openFile(const QString& fileName){
     s << "file:" + fileToOpen;
     p->startDetached( ctn_KDE_FILE_MANAGER, s );
   }
+  else if (isKDERunning() && UnixCommand::hasTheExecutable(ctn_KDE4_FILE_MANAGER)){
+    s << fileToOpen;
+    p->startDetached( ctn_KDE4_OPEN, s );
+  }
   else if (isTDERunning() && UnixCommand::hasTheExecutable(ctn_TDE_FILE_MANAGER)){
     s << "exec";
     s << "file:" + fileToOpen;
@@ -398,6 +403,11 @@ void WMHelper::editFile( const QString& fileName ){
     else if (isKDERunning() && UnixCommand::hasTheExecutable(ctn_KDE_EDITOR)){
       QString p = " -d -t --noignorebutton -c ";
       p += ctn_KDE_EDITOR + " " + fileName;
+      process->startDetached(getSUCommand() + p);
+    }
+    else if (isKDERunning() && UnixCommand::hasTheExecutable(ctn_KDE4_EDITOR)){
+      QString p = " -d -t --noignorebutton -c ";
+      p += ctn_KDE4_EDITOR + " " + fileName;
       process->startDetached(getSUCommand() + p);
     }
     else if (isTDERunning() && UnixCommand::hasTheExecutable(ctn_TDE_EDITOR)){

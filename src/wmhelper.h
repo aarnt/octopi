@@ -30,7 +30,9 @@ const QString ctn_KDE_DESKTOP("kwin");
 const QString ctn_KDE_EDITOR("kwrite");
 const QString ctn_KDE_FILE_MANAGER("kfmclient");
 const QString ctn_KDE_TERMINAL("konsole");
+const QString ctn_KDE4_OPEN("kde-open");
 const QString ctn_KDE4_FILE_MANAGER("dolphin");
+const QString ctn_KDE4_EDITOR("kate");
 
 const QString ctn_TDESU("tdesu");
 const QString ctn_TDE_DESKTOP("twin");
