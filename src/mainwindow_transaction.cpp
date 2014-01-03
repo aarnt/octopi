@@ -1575,7 +1575,6 @@ void MainWindow::actionsProcessFinished(int exitCode, QProcess::ExitStatus)
       else
       {
         //If we are in a package group, maybe we have installed/removed something, so...
-<<<<<<< HEAD
         if (!isYaourtGroupSelected())
         {
           buildPackageList(false);
@@ -1587,17 +1586,6 @@ void MainWindow::actionsProcessFinished(int exitCode, QProcess::ExitStatus)
           bRefreshGroups = false;
           metaBuildPackageList();
         }
-=======
-        //if (!isAllGroupsSelected() && !isYaourtGroupSelected())
-        {
-          buildPackageList(false);
-
-          //bRefreshGroups = false;
-          //_rebuildPackageList();
-        }
-
-        //metaBuildPackageList();
->>>>>>> 1f983e495c6d017ba9e813dab0854b0809635848
       }
 
       //connect(m_pacmanDatabaseSystemWatcher, SIGNAL(directoryChanged(QString)), this, SLOT(metaBuildPackageList()));
