@@ -105,7 +105,6 @@ void MainWindow::refreshGroupsWidget()
 void MainWindow::buildPackagesFromGroupList()
 {
   CPUIntensiveComputing cic;
-  m_progressWidget->show();
 
   if (isAllGroupsSelected())
   {
@@ -155,6 +154,7 @@ void MainWindow::buildPackagesFromGroupList()
 
   m_progressWidget->setRange(0, list->count());
   m_progressWidget->setValue(0);
+  m_progressWidget->show();
 
   int counter=0;
   while(it != list->end())
@@ -615,11 +615,15 @@ void MainWindow::buildPackageList(bool nonBlocking)
 }
 
 /*
- * Helper method for buildPackageFromGroupList>: rebuilds all packages to refresh their state
+ * Helper method for buildPackageFromGroupList: rebuilds all packages to refresh their state
  */
 void MainWindow::_rebuildPackageList()
 {
   bool hasYaourt = UnixCommand::hasTheExecutable("yaourt");
+
+  //Let's get outdatedPackages list again!
+  m_outdatedPackageList = Package::getOutdatedPackageList();
+  m_numberOfOutdatedPackages = m_outdatedPackageList->count();
 
   _deleteStandardItemModel(m_modelPackages);
   _deleteStandardItemModel(m_modelPackagesFromGroup);

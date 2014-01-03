@@ -109,6 +109,7 @@ void MainWindow::insertRemovePackageIntoTransaction(const QString &pkgName)
 {
   QTreeView *tvTransaction =
       ui->twProperties->widget(ctn_TABINDEX_TRANSACTION)->findChild<QTreeView*>("tvTransaction");
+
   QStandardItem * siRemoveParent = getRemoveTransactionParentItem();
   QStandardItem * siInstallParent = getInstallTransactionParentItem();
   QStandardItem * siPackageToRemove = new QStandardItem(IconHelper::getIconRemoveItem(), pkgName);
@@ -1512,6 +1513,8 @@ void MainWindow::actionsProcessStarted()
  */
 void MainWindow::actionsProcessFinished(int exitCode, QProcess::ExitStatus)
 {
+  bool bRefreshGroups = true;
+
   m_progressWidget->close();
 
   ui->twProperties->setTabText(ctn_TABINDEX_OUTPUT, StrConstants::getTabOutputName());
@@ -1532,9 +1535,6 @@ void MainWindow::actionsProcessFinished(int exitCode, QProcess::ExitStatus)
     if (_textInTabOutput(StrConstants::getSyncing()))
     {
       bool firstGroup = isAllGroupsSelected();
-
-      //ui->twGroups->setCurrentItem(m_AllGroupsItem);
-      //refreshComboBoxGroups();
 
       if (firstGroup)
       {
@@ -1559,11 +1559,7 @@ void MainWindow::actionsProcessFinished(int exitCode, QProcess::ExitStatus)
         if (UnixCommand::isAppRunning("octopi-notifier", true) ||
             _textInTabOutput(StrConstants::getSyncing()))
         {
-          //int oldIndex = m_cbGroups->currentIndex();
           bool firstGroup = isAllGroupsSelected();
-
-          //ui->twGroups->setCurrentItem(m_AllGroupsItem);
-          //refreshComboBoxGroups();
 
           if (firstGroup)
           {
@@ -1579,12 +1575,15 @@ void MainWindow::actionsProcessFinished(int exitCode, QProcess::ExitStatus)
       else
       {
         //If we are in a package group, maybe we have installed/removed something, so...
-        if (!isAllGroupsSelected() && !isYaourtGroupSelected())
+        //if (!isAllGroupsSelected() && !isYaourtGroupSelected())
         {
-          _rebuildPackageList();
+          buildPackageList(false);
+
+          //bRefreshGroups = false;
+          //_rebuildPackageList();
         }
 
-        metaBuildPackageList();
+        //metaBuildPackageList();
       }
 
       //connect(m_pacmanDatabaseSystemWatcher, SIGNAL(directoryChanged(QString)), this, SLOT(metaBuildPackageList()));
@@ -1602,8 +1601,6 @@ void MainWindow::actionsProcessFinished(int exitCode, QProcess::ExitStatus)
         return;
       }
     }
-    //else
-    //  connect(m_pacmanDatabaseSystemWatcher, SIGNAL(directoryChanged(QString)), this, SLOT(metaBuildPackageList()));
   }
 
   if (exitCode != 0 && (_textInTabOutput("conflict"))) //|| _textInTabOutput("could not satisfy dependencies")))
@@ -1626,8 +1623,9 @@ void MainWindow::actionsProcessFinished(int exitCode, QProcess::ExitStatus)
   }
 
   m_commandExecuting = ectn_NONE;
-  refreshGroupsWidget();
-  //ui->twGroups->setCurrentItem(m_AllGroupsItem);
+
+  if (bRefreshGroups)
+    refreshGroupsWidget();
 
   m_unixCommand->removeTemporaryActionFile();
 }
