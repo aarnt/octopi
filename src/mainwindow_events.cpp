@@ -39,9 +39,16 @@
 #include <QSortFilterProxyModel>
 #include <QTextBrowser>
 #include <QFutureWatcher>
-#include <QtConcurrentRun>
 
-using namespace QtConcurrent;
+#if QT_VERSION > 0x050000
+  #include <QtConcurrent/QtConcurrentRun>
+#else
+  #include <QtConcurrentRun>
+#endif
+
+#if QT_VERSION < 0x050000
+  using namespace QtConcurrent;
+#endif
 
 /*
  * Before we close the application, let's confirm if there is a pending transaction...
@@ -96,7 +103,7 @@ void MainWindow::keyPressEvent(QKeyEvent* ke)
       QFuture<QList<PackageListData> *> f;
       disconnect(&g_fwYaourt, SIGNAL(finished()), this, SLOT(preBuildYaourtPackageList()));
       m_cic = new CPUIntensiveComputing();
-      f = run(searchYaourtPackages, m_leFilterPackage->text());
+      f = QtConcurrent::run(searchYaourtPackages, m_leFilterPackage->text());
       g_fwYaourt.setFuture(f);
       connect(&g_fwYaourt, SIGNAL(finished()), this, SLOT(preBuildYaourtPackageList()));
     }
@@ -277,7 +284,6 @@ void MainWindow::keyReleaseEvent(QKeyEvent *ke)
       ui->tvPackages->setCurrentIndex(mi);
 
       if ((i <= fi.count()-1)) i++;
-
       if (i == fi.count()) i = 0;
     }
 

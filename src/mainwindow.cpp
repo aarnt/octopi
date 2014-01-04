@@ -45,9 +45,9 @@
 #include <QFileDialog>
 #include <QHash>
 #include <QFutureWatcher>
-#include <QtConcurrentRun>
+//#include <QtConcurrentRun>
 
-using namespace QtConcurrent;
+//using namespace QtConcurrent;
 
 /*
  * MainWindow's constructor: basic UI init
@@ -105,8 +105,6 @@ void MainWindow::show()
     initTabNews();
     initLineEditFilterPackages();
     initPackageTreeView();
-
-    qApp->setStyleSheet(StrConstants::getMenuCSS());
 
     loadPanelSettings();
     initActions();

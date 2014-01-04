@@ -26,6 +26,7 @@
 #include <QWidget>
 #include <QSyntaxHighlighter>
 #include <QApplication>
+#include <QTextEdit>
 
 class SearchBar : public QWidget
 {

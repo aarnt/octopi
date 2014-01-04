@@ -153,8 +153,17 @@ void MainWindow::initPackageGroups()
   ui->twGroups->setColumnCount(1);
   ui->twGroups->setHeaderLabel(StrConstants::getGroups());
   ui->twGroups->header()->setSortIndicatorShown(false);
-  ui->twGroups->header()->setClickable(false);
-  ui->twGroups->header()->setMovable(false);
+
+  #if QT_VERSION < 0x050000
+    ui->twGroups->header()->setClickable(false);
+    ui->twGroups->header()->setMovable(false);
+    ui->twGroups->header()->setResizeMode(QHeaderView::Fixed);
+  #else
+    ui->twGroups->header()->setSectionsClickable(false);
+    ui->twGroups->header()->setSectionsMovable(false);
+    ui->twGroups->header()->setSectionResizeMode(QHeaderView::Fixed);
+  #endif
+
   ui->twGroups->setFrameShape(QFrame::NoFrame);
   ui->twGroups->setFrameShadow(QFrame::Plain);
   ui->twGroups->setStyleSheet(StrConstants::getTreeViewCSS());
@@ -314,8 +323,17 @@ void MainWindow::initTabTransaction()
   tvTransaction->setSelectionMode(QAbstractItemView::ExtendedSelection);
   tvTransaction->setItemDelegate(new TreeViewPackagesItemDelegate(tvTransaction));
   tvTransaction->header()->setSortIndicatorShown(false);
+
+#if QT_VERSION < 0x050000
   tvTransaction->header()->setClickable(false);
   tvTransaction->header()->setMovable(false);
+  tvTransaction->header()->setResizeMode(QHeaderView::Fixed);
+#else
+  tvTransaction->header()->setSectionsClickable(false);
+  tvTransaction->header()->setSectionsMovable(false);
+  tvTransaction->header()->setSectionResizeMode(QHeaderView::Fixed);
+#endif
+
   tvTransaction->setFrameShape(QFrame::NoFrame);
   tvTransaction->setFrameShadow(QFrame::Plain);
   tvTransaction->setStyleSheet(StrConstants::getTreeViewCSS());
@@ -341,8 +359,14 @@ void MainWindow::initTabTransaction()
 
   QString aux(StrConstants::getTabTransactionName());
   ui->twProperties->removeTab(ctn_TABINDEX_TRANSACTION);
+
+#if QT_VERSION < 0x050000
   ui->twProperties->insertTab(ctn_TABINDEX_TRANSACTION, tabTransaction, QApplication::translate (
                                 "MainWindow", aux.toUtf8(), 0, QApplication::UnicodeUTF8 ));
+#else
+  ui->twProperties->insertTab(ctn_TABINDEX_TRANSACTION, tabTransaction, QApplication::translate (
+                                "MainWindow", aux.toUtf8(), 0/*, QApplication::UnicodeUTF8*/ ));
+#endif
 
   connect(tvTransaction, SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(execContextMenuTransaction(QPoint)));
   connect(tvTransaction->selectionModel(), SIGNAL(selectionChanged(QItemSelection,QItemSelection)),
@@ -387,10 +411,18 @@ void MainWindow::initPackageTreeView()
   ui->tvPackages->sortByColumn(ctn_PACKAGE_NAME_COLUMN, Qt::AscendingOrder);
   ui->tvPackages->setIndentation( 0 );
   ui->tvPackages->header()->setSortIndicatorShown(true);
+
+#if QT_VERSION < 0x050000
   ui->tvPackages->header()->setClickable(true);
   ui->tvPackages->header()->setMovable(false);
-  ui->tvPackages->header()->setDefaultAlignment( Qt::AlignLeft );
   ui->tvPackages->header()->setResizeMode( QHeaderView::Fixed );
+#else
+  ui->tvPackages->header()->setSectionsClickable(true);
+  ui->tvPackages->header()->setSectionsMovable(false);
+  ui->tvPackages->header()->setSectionResizeMode(QHeaderView::Fixed);
+#endif
+
+  ui->tvPackages->header()->setDefaultAlignment( Qt::AlignLeft );
   ui->tvPackages->setStyleSheet(
         StrConstants::getTreeViewCSS());
 
@@ -424,8 +456,14 @@ void MainWindow::initTabInfo(){
 
   QString tabName(StrConstants::getTabInfoName());
   ui->twProperties->removeTab(ctn_TABINDEX_INFORMATION);
+
+#if QT_VERSION < 0x050000
   ui->twProperties->insertTab(ctn_TABINDEX_INFORMATION, tabInfo, QApplication::translate (
       "MainWindow", tabName.toUtf8(), 0, QApplication::UnicodeUTF8 ) );
+#else
+  ui->twProperties->insertTab(ctn_TABINDEX_INFORMATION, tabInfo, QApplication::translate (
+      "MainWindow", tabName.toUtf8(), 0/*, QApplication::UnicodeUTF8*/ ) );
+#endif
 
   ui->twProperties->setUsesScrollButtons(false);
   ui->twProperties->setCurrentIndex(ctn_TABINDEX_INFORMATION);
@@ -448,8 +486,17 @@ void MainWindow::initTabFiles()
   tvPkgFileList->setDropIndicatorShown(false);
   tvPkgFileList->setAcceptDrops(false);
   tvPkgFileList->header()->setSortIndicatorShown(false);
+
+#if QT_VERSION < 0x050000
   tvPkgFileList->header()->setClickable(false);
   tvPkgFileList->header()->setMovable(false);
+  tvPkgFileList->header()->setResizeMode(QHeaderView::Fixed);
+#else
+  tvPkgFileList->header()->setSectionsClickable(false);
+  tvPkgFileList->header()->setSectionsMovable(false);
+  tvPkgFileList->header()->setSectionResizeMode(QHeaderView::Fixed);
+#endif
+
   tvPkgFileList->setFrameShape(QFrame::NoFrame);
   tvPkgFileList->setFrameShadow(QFrame::Plain);
   tvPkgFileList->setObjectName("tvPkgFileList");
@@ -462,8 +509,14 @@ void MainWindow::initTabFiles()
 
   QString aux(StrConstants::getTabFilesName());
   ui->twProperties->removeTab(ctn_TABINDEX_FILES);
+
+#if QT_VERSION < 0x050000
   ui->twProperties->insertTab(ctn_TABINDEX_FILES, tabPkgFileList, QApplication::translate (
                                                   "MainWindow", aux.toUtf8(), 0, QApplication::UnicodeUTF8 ) );
+#else
+  ui->twProperties->insertTab(ctn_TABINDEX_FILES, tabPkgFileList, QApplication::translate (
+                                                  "MainWindow", aux.toUtf8(), 0/*, QApplication::UnicodeUTF8*/ ) );
+#endif
 
   tvPkgFileList->setContextMenuPolicy(Qt::CustomContextMenu);
 
@@ -505,8 +558,14 @@ void MainWindow::initTabOutput()
 
   QString aux(StrConstants::getTabOutputName());
   ui->twProperties->removeTab(ctn_TABINDEX_OUTPUT);
+
+#if QT_VERSION < 0x050000
   ui->twProperties->insertTab(ctn_TABINDEX_OUTPUT, tabOutput, QApplication::translate (
       "MainWindow", aux.toUtf8(), 0, QApplication::UnicodeUTF8 ) );
+#else
+  ui->twProperties->insertTab(ctn_TABINDEX_OUTPUT, tabOutput, QApplication::translate (
+      "MainWindow", aux.toUtf8(), 0/*, QApplication::UnicodeUTF8*/ ) );
+#endif
 
   ui->twProperties->setCurrentIndex(ctn_TABINDEX_OUTPUT);
   text->show();
@@ -546,7 +605,6 @@ void MainWindow::initActions()
   connect(actionGroup, SIGNAL(triggered(QAction*)), this, SLOT(tvPackagesSearchColumnChanged(QAction*)));
 
   ui->actionInstallLocalPackage->setIcon(IconHelper::getIconFolder());
-
   ui->actionOpenDirectory->setIcon(IconHelper::getIconFolder());
 
   connect(ui->tvPackages->selectionModel(), SIGNAL(selectionChanged(QItemSelection,QItemSelection)),

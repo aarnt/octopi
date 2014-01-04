@@ -67,7 +67,11 @@ class QT_QTSINGLEAPPLICATION_EXPORT QtSingleApplication : public QApplication
 public:
     QtSingleApplication(int &argc, char **argv, bool GUIenabled = true);
     QtSingleApplication(const QString &id, int &argc, char **argv);
+
+  #if QT_VERSION < 0x050000
     QtSingleApplication(int &argc, char **argv, Type type);
+  #endif
+
 #if defined(Q_WS_X11)
     QtSingleApplication(Display* dpy, Qt::HANDLE visual = 0, Qt::HANDLE colormap = 0);
     QtSingleApplication(Display *dpy, int &argc, char **argv, Qt::HANDLE visual = 0, Qt::HANDLE cmap= 0);
@@ -76,7 +80,6 @@ public:
 
     bool isRunning();
     QString id() const;
-
     void setActivationWindow(QWidget* aw, bool activateOnMessage = true);
     QWidget* activationWindow() const;
 

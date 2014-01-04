@@ -40,7 +40,7 @@ MultiSelectionDialog::MultiSelectionDialog(QWidget *parent) :
 
   ui->twDepPackages->setColumnWidth(0, 150); //Package name
   ui->twDepPackages->setColumnWidth(1, 385); //Package description
-  ui->twDepPackages->horizontalHeader()->setResizeMode( QHeaderView::Fixed );
+  //ui->twDepPackages->horizontalHeader()->setResizeMode( QHeaderView::Fixed );
   ui->twDepPackages->setColumnWidth(2, 0); //Package repository
   ui->twDepPackages->horizontalHeader()->setDefaultAlignment( Qt::AlignLeft );
   ui->twDepPackages->setToolTip(StrConstants::getPressCtrlAToSelectAll());

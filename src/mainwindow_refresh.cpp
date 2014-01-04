@@ -38,9 +38,16 @@
 #include <QStandardItem>
 #include <QSortFilterProxyModel>
 #include <QFutureWatcher>
-#include <QtConcurrentRun>
 
-using namespace QtConcurrent;
+#if QT_VERSION > 0x050000
+  #include <QtConcurrent/QtConcurrentRun>
+#else
+  #include <QtConcurrentRun>
+#endif
+
+#if QT_VERSION < 0x050000
+  using namespace QtConcurrent;
+#endif
 
 /*
  * If we have some outdated packages, let's put an angry red face icon in this app!
@@ -327,7 +334,7 @@ void MainWindow::metaBuildPackageList()
     reapplyPackageFilter();
     disconnect(&g_fwPacman, SIGNAL(finished()), this, SLOT(preBuildPackageList()));
     QFuture<QList<PackageListData> *> f;
-    f = run(searchPacmanPackages);
+    f = QtConcurrent::run(searchPacmanPackages);
     g_fwPacman.setFuture(f);
     connect(&g_fwPacman, SIGNAL(finished()), this, SLOT(preBuildPackageList()));
   }
@@ -340,7 +347,7 @@ void MainWindow::metaBuildPackageList()
     m_cic = new CPUIntensiveComputing();
     disconnect(&g_fwYaourtMeta, SIGNAL(finished()), this, SLOT(preBuildYaourtPackageListMeta()));
     QFuture<QList<PackageListData> *> f;
-    f = run(searchYaourtPackages, m_leFilterPackage->text());
+    f = QtConcurrent::run(searchYaourtPackages, m_leFilterPackage->text());
     g_fwYaourtMeta.setFuture(f);
     connect(&g_fwYaourtMeta, SIGNAL(finished()), this, SLOT(preBuildYaourtPackageListMeta()));
   }
@@ -351,7 +358,7 @@ void MainWindow::metaBuildPackageList()
     reapplyPackageFilter();
     disconnect(&g_fwPacmanGroup, SIGNAL(finished()), this, SLOT(preBuildPackagesFromGroupList()));
     QFuture<QList<QString> *> f;
-    f = run(searchPacmanPackagesFromGroup, getSelectedGroup());
+    f = QtConcurrent::run(searchPacmanPackagesFromGroup, getSelectedGroup());
     g_fwPacmanGroup.setFuture(f);
     connect(&g_fwPacmanGroup, SIGNAL(finished()), this, SLOT(preBuildPackagesFromGroupList()));
   }
@@ -469,7 +476,7 @@ void MainWindow::buildPackageList(bool nonBlocking)
         break;
       case ectn_OUTDATED:
       {
-        if (Package::rpmvercmp(pld.outatedVersion.toAscii().data(), pld.version.toAscii().data()) == 1)
+        if (Package::rpmvercmp(pld.outatedVersion.toLatin1().data(), pld.version.toLatin1().data()) == 1)
         {
           lIcons << new QStandardItem(IconHelper::getIconNewer(), "_Newer^"+pld.outatedVersion);
         }
@@ -502,7 +509,7 @@ void MainWindow::buildPackageList(bool nonBlocking)
 
     //Let's put package description in UTF-8 format
     QString pkgDescription = pld.description;
-    pkgDescription = pkgDescription.fromUtf8(pkgDescription.toAscii().data());
+    pkgDescription = pkgDescription.fromUtf8(pkgDescription.toLatin1().data());
 
     lDescriptions << new QStandardItem(pkgDescription);
 
@@ -702,7 +709,7 @@ void MainWindow::_rebuildPackageList()
         break;
       case ectn_OUTDATED:
       {
-        if (Package::rpmvercmp(pld.outatedVersion.toAscii().data(), pld.version.toAscii().data()) == 1)
+        if (Package::rpmvercmp(pld.outatedVersion.toLatin1().data(), pld.version.toLatin1().data()) == 1)
         {
           lIcons << new QStandardItem(IconHelper::getIconNewer(), "_Newer^"+pld.outatedVersion);
         }
@@ -735,7 +742,7 @@ void MainWindow::_rebuildPackageList()
 
     //Let's put package description in UTF-8 format
     QString pkgDescription = pld.description;
-    pkgDescription = pkgDescription.fromUtf8(pkgDescription.toAscii().data());
+    pkgDescription = pkgDescription.fromUtf8(pkgDescription.toLatin1().data());
 
     lDescriptions << new QStandardItem(pkgDescription);
 
@@ -877,7 +884,7 @@ void MainWindow::buildYaourtPackageList()
     {
       case ectn_OUTDATED:
       {
-        if (Package::rpmvercmp(pld.outatedVersion.toAscii().data(), pld.version.toAscii().data()) == 1)
+        if (Package::rpmvercmp(pld.outatedVersion.toLatin1().data(), pld.version.toLatin1().data()) == 1)
         {
           lIcons << new QStandardItem(IconHelper::getIconNewer(), "_Newer^"+pld.outatedVersion);
         }
@@ -909,7 +916,7 @@ void MainWindow::buildYaourtPackageList()
 
     //Let's put package description in UTF-8 format
     QString pkgDescription = pld.description;
-    pkgDescription = pkgDescription.fromUtf8(pkgDescription.toAscii().data());
+    pkgDescription = pkgDescription.fromUtf8(pkgDescription.toLatin1().data());
 
     lDescriptions << new QStandardItem(pkgDescription);
 
@@ -1037,7 +1044,7 @@ void MainWindow::showToolButtonYaourt()
 void MainWindow::refreshStatusBarToolButtons()
 {
   QFuture<YaourtOutdatedPackages *> f;
-  f = run(getOutdatedYaourtPackages);
+  f = QtConcurrent::run(getOutdatedYaourtPackages);
   g_fwOutdatedYaourtPackages.setFuture(f);
   connect(&g_fwOutdatedYaourtPackages, SIGNAL(finished()), this, SLOT(showToolButtonYaourt()));
 }
@@ -1247,7 +1254,7 @@ void MainWindow::refreshTabInfo(bool clearContents, bool neverQuit)
 
     //Let's put package description in UTF-8 format
     QString pkgDescription = pid.description;
-    pkgDescription = pkgDescription.fromUtf8(pkgDescription.toAscii().data());
+    pkgDescription = pkgDescription.fromUtf8(pkgDescription.toLatin1().data());
     QString version = StrConstants::getVersion();
     QString url = StrConstants::getURL();
     QString licenses = StrConstants::getLicenses();
@@ -1340,7 +1347,7 @@ void MainWindow::refreshTabInfo(bool clearContents, bool neverQuit)
       QString packagerName = pid.packager;
       packagerName = packagerName.replace("<", "&lt;");
       packagerName = packagerName.replace(">", "&gt;");
-      packagerName = packagerName.fromUtf8(packagerName.toAscii().data());
+      packagerName = packagerName.fromUtf8(packagerName.toLatin1().data());
 
       QString strConflictsWith = pid.conflictsWith;
       strConflictsWith = strConflictsWith.replace("<", "&lt;");
@@ -1502,7 +1509,6 @@ void MainWindow::refreshTabFiles(bool clearContents, bool neverQuit)
   {
     QString pkgName = siName->text();
     QStringList fileList;
-
     QStandardItemModel *fakeModelPkgFileList = new QStandardItemModel(this);
     QStandardItemModel *modelPkgFileList = qobject_cast<QStandardItemModel*>(tvPkgFileList->model());
 

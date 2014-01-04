@@ -27,10 +27,20 @@
 #include <QtGui>
 #include <QFutureWatcher>
 #include <QTreeWidget>
+#include <QToolTip>
 #include <iostream>
 
+#if QT_VERSION > 0x050000
+  #include <QtConcurrent/QtConcurrentRun>
+#else
+  #include <QtConcurrentRun>
+#endif
+
 QPoint gPoint;
-using namespace QtConcurrent;
+
+#if QT_VERSION < 0x050000
+  using namespace QtConcurrent;
+#endif
 
 TreeViewPackagesItemDelegate::TreeViewPackagesItemDelegate(QObject *parent):
   QStyledItemDelegate(parent)
@@ -67,7 +77,7 @@ bool TreeViewPackagesItemDelegate::helpEvent ( QHelpEvent *event, QAbstractItemV
       gPoint = tvPackages->mapToGlobal(event->pos());
       QFuture<QString> f;
       disconnect(&g_fwToolTip, SIGNAL(finished()), this, SLOT(execToolTip()));
-      f = run(showPackageInfo, si->text());
+      f = QtConcurrent::run(showPackageInfo, si->text());
       g_fwToolTip.setFuture(f);
       connect(&g_fwToolTip, SIGNAL(finished()), this, SLOT(execToolTip()));
     }
@@ -111,7 +121,7 @@ bool TreeViewPackagesItemDelegate::helpEvent ( QHelpEvent *event, QAbstractItemV
           gPoint = tvTransaction->mapToGlobal(event->pos());
           QFuture<QString> f;
           disconnect(&g_fwToolTip, SIGNAL(finished()), this, SLOT(execToolTip()));
-          f = run(showPackageInfo, siFound->text());
+          f = QtConcurrent::run(showPackageInfo, siFound->text());
           g_fwToolTip.setFuture(f);
           connect(&g_fwToolTip, SIGNAL(finished()), this, SLOT(execToolTip()));
         }

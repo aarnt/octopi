@@ -24,7 +24,6 @@
 #include "wmhelper.h"
 #include "unixcommand.h"
 
-#include <QGtkStyle>
 #include <QApplication>
 
 class StrConstants{
@@ -535,14 +534,8 @@ public:
                    );
   }
 
-  static QString getMenuCSS(){
-    return "";
-  }
-
   static QString getTreeViewCSS(){
-    QString res;    
-
-    res = "QTreeView::branch:has-siblings:!adjoins-item {"
+    return QString("QTreeView::branch:has-siblings:!adjoins-item {"
                    "   border-image: url(:/resources/styles/vline.png) 0;}"
                    "QTreeView::branch:has-siblings:adjoins-item {"
                    "    border-image: url(:/resources/styles/branch-more.png) 0;}"
@@ -555,8 +548,7 @@ public:
                    "QTreeView::branch:open:has-children:!has-siblings,"
                    "QTreeView::branch:open:has-children:has-siblings  {"
                    "       border-image: none;"
-                   "       image: url(:/resources/styles/branch-open_BW.png);}";
-    return res;
+                   "       image: url(:/resources/styles/branch-open_BW.png);}");
   }
 };
 

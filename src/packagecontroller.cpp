@@ -166,8 +166,8 @@ QString PackageController::retrieveDistroNews(bool searchForLatestNews)
         contentsTmpRss = in.readAll();
         fileTmpRss.close();
 
-        tmpRssSHA1 = QCryptographicHash::hash(contentsTmpRss.toAscii(), QCryptographicHash::Sha1);
-        rssSHA1 = QCryptographicHash::hash(contentsRss.toAscii(), QCryptographicHash::Sha1);
+        tmpRssSHA1 = QCryptographicHash::hash(contentsTmpRss.toLatin1(), QCryptographicHash::Sha1);
+        rssSHA1 = QCryptographicHash::hash(contentsRss.toLatin1(), QCryptographicHash::Sha1);
 
         if (tmpRssSHA1 != rssSHA1){
           fileRss.remove();

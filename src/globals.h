@@ -25,7 +25,7 @@
 
 #include <QStandardItem>
 #include <QFutureWatcher>
-#include <QtConcurrentRun>
+//#include <QtConcurrentRun>
 
 struct YaourtOutdatedPackages
 {

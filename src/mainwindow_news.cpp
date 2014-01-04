@@ -33,9 +33,16 @@
 
 #include <QTextBrowser>
 #include <QFutureWatcher>
-#include <QtConcurrentRun>
 
-using namespace QtConcurrent;
+#if QT_VERSION > 0x050000
+  #include <QtConcurrent/QtConcurrentRun>
+#else
+  #include <QtConcurrentRun>
+#endif
+
+#if QT_VERSION < 0x050000
+  using namespace QtConcurrent;
+#endif
 
 /*
  * This is the high level method that orquestrates the Distro RSS News printing in tabNews
@@ -90,7 +97,7 @@ void MainWindow::refreshDistroNews(bool searchForLatestNews, bool gotoNewsTab)
   else
   {
     QFuture<QString> f;
-    f = run(getLatestDistroNews);
+    f = QtConcurrent::run(getLatestDistroNews);
     g_fwDistroNews.setFuture(f);
     connect(&g_fwDistroNews, SIGNAL(finished()), this, SLOT(postRefreshDistroNews()));
   }
@@ -206,10 +213,17 @@ void MainWindow::initTabNews()
   gridLayoutX->addWidget(text, 0, 0, 1, 1);
   text->show();
 
+#if QT_VERSION > 0x050000
+  int tindex = ui->twProperties->insertTab(ctn_TABINDEX_NEWS, tabNews, QApplication::translate (
+      "MainWindow", aux.toUtf8(), 0/*, QApplication::UnicodeUTF8*/ ) );
+  ui->twProperties->setTabText(ui->twProperties->indexOf(tabNews), QApplication::translate(
+      "MainWindow", aux.toUtf8(), 0/*, QApplication::UnicodeUTF8*/));
+#else
   int tindex = ui->twProperties->insertTab(ctn_TABINDEX_NEWS, tabNews, QApplication::translate (
       "MainWindow", aux.toUtf8(), 0, QApplication::UnicodeUTF8 ) );
   ui->twProperties->setTabText(ui->twProperties->indexOf(tabNews), QApplication::translate(
       "MainWindow", aux.toUtf8(), 0, QApplication::UnicodeUTF8));
+#endif
 
   SearchBar *searchBar = new SearchBar(this);
   MyHighlighter *highlighter = new MyHighlighter(text, "");
@@ -225,6 +239,7 @@ void MainWindow::initTabNews()
   connect(text, SIGNAL(sourceChanged(QUrl)), this, SLOT(onTabNewsSourceChanged(QUrl)));
 
   text->show();
+
   ui->twProperties->setCurrentIndex(tindex);
   text->setFocus();
 }

@@ -24,7 +24,12 @@
 
 #include <QStandardItem>
 #include <QFutureWatcher>
-#include <QtConcurrentRun>
+
+#if QT_VERSION > 0x050000
+  #include <QtConcurrent/QtConcurrentMap>
+#else
+  #include <QtConcurrentMap>
+#endif
 
 QFutureWatcher<QString> g_fwToolTip;
 QFutureWatcher<QList<PackageListData> *> g_fwPacman;
@@ -45,6 +50,7 @@ QString showPackageInfo(QString pkgName)
   if (si == 0) return "";
 
   QString description = si->text();
+
   if (description.trimmed().isEmpty()) return "";
 
   int space = description.indexOf(" ");

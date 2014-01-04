@@ -24,13 +24,19 @@
 #include "unixcommand.h"
 #include "wmhelper.h"
 #include <iostream>
+
 #include "QtSolutions/qtsingleapplication.h"
 #include <QtGui>
+#include <QMessageBox>
 
 int main(int argc, char *argv[])
 {
   ArgumentList *argList = new ArgumentList(argc, argv);
+
+#if QT_VERSION < 0x050000
   QApplication::setGraphicsSystem(QLatin1String("raster"));
+#endif
+
   QString packagesToInstall;
   QString arg;
 
@@ -80,12 +86,12 @@ int main(int argc, char *argv[])
   app.installTranslator(&appTranslator);
 
   if (argList->getSwitch("-help")){
-    std::cout << StrConstants::getApplicationCliHelp().toAscii().data() << std::endl;
+    std::cout << StrConstants::getApplicationCliHelp().toLatin1().data() << std::endl;
     return(0);
   }
   else if (argList->getSwitch("-version")){
-    std::cout << "\n" << StrConstants::getApplicationName().toAscii().data() <<
-                 " " << StrConstants::getApplicationVersion().toAscii().data() << "\n" << std::endl;
+    std::cout << "\n" << StrConstants::getApplicationName().toLatin1().data() <<
+                 " " << StrConstants::getApplicationVersion().toLatin1().data() << "\n" << std::endl;
     return(0);
   }
 
@@ -98,7 +104,8 @@ int main(int argc, char *argv[])
   app.setActivationWindow(&w);
   app.setQuitOnLastWindowClosed(false);
 
-#ifndef KAOS
+#if QT_VERSION < 0x050000
+  #ifndef KAOS
   if (!argList->getSwitch("-style"))
   {
     if (UnixCommand::getLinuxDistro() == ectn_MANJAROLINUX &&
@@ -111,6 +118,7 @@ int main(int argc, char *argv[])
       app.setStyle(new QCleanlooksStyle());
     }
   }
+  #endif
 #endif
 
   if (argList->getSwitch("-sysupgrade"))
