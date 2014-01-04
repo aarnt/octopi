@@ -2,6 +2,7 @@
 #include "../../src/wmhelper.h"
 #include "mainwindow.h"
 
+#include <QApplication>
 #include <QtGui>
 
 int main(int argc, char *argv[])
@@ -10,6 +11,7 @@ int main(int argc, char *argv[])
 
   QApplication a(argc, argv);
 
+#if QT_VERSION < 0x050000
   QApplication::setGraphicsSystem(QLatin1String("raster"));
 
   if(UnixCommand::getLinuxDistro() == ectn_MANJAROLINUX &&
@@ -19,6 +21,7 @@ int main(int argc, char *argv[])
   }
   else
     qApp->setStyle(new QCleanlooksStyle);
+#endif
 
   QTranslator appTranslator;
   appTranslator.load(":/resources/translations/octopi_" +
@@ -27,5 +30,6 @@ int main(int argc, char *argv[])
   a.setQuitOnLastWindowClosed(false);
   MainWindow w;
   QResource::registerResource("./resources.qrc");
+
   return a.exec();
 }
