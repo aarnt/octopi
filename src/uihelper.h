@@ -31,10 +31,10 @@
 //IconHelper provides some very used icons to the interface
 class IconHelper{
 public:
+  static QIcon getIconOctopiTransparent(){ return QIcon(":/resources/images/octopi_transparent.png"); }
   static QIcon getIconOctopiRed(){ return QIcon(":/resources/images/octopi_red.png"); }
   static QIcon getIconOctopiYellow(){ return QIcon(":/resources/images/octopi_yellow.png"); }
   static QIcon getIconOctopiGreen(){ return QIcon(":/resources/images/octopi_green.png"); }
-  static QIcon getIconInternalError(){ return QIcon(":/resources/images/internalerror.png"); }
 
   static QIcon getIconFolder()
   {

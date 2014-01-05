@@ -12,15 +12,17 @@ int main(int argc, char *argv[])
   QApplication a(argc, argv);
 
 #if QT_VERSION < 0x050000
+  #ifndef KAOS
   QApplication::setGraphicsSystem(QLatin1String("raster"));
 
   if(UnixCommand::getLinuxDistro() == ectn_MANJAROLINUX &&
-          !WMHelper::isKDERunning())
+     !WMHelper::isKDERunning())
   {
     qApp->setStyle(new QGtkStyle());
   }
   else
     qApp->setStyle(new QCleanlooksStyle);
+  #endif
 #endif
 
   QTranslator appTranslator;

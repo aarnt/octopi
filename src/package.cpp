@@ -106,7 +106,6 @@ QString Package::makeURLClickable( const QString &s )
 		search = ini + (2*s1.length()) + 15;	
 	}
 
-  //sb.replace(QRegExp("\n"), "<br>");
   return sb;
 }
 
@@ -209,7 +208,6 @@ QStringList *Package::getOutdatedPackageList()
   QStringList packageTuples = outPkgList.split(QRegExp("\\n"), QString::SkipEmptyParts);
   QStringList * res = new QStringList();
   QStringList ignorePkgList = UnixCommand::getIgnorePkg();
-  //bool hasYaourt = UnixCommand::hasTheExecutable("yaourt");
 
   foreach(QString packageTuple, packageTuples)
   {

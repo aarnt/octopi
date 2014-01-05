@@ -415,8 +415,23 @@ void MainWindow::sendNotification(const QString &msg)
  */
 void MainWindow::refreshAppIcon()
 {
+  m_icon = IconHelper::getIconOctopiTransparent();
+  setWindowIcon(m_icon);
+  m_systemTrayIcon->setIcon(m_icon);
+  m_systemTrayIcon->show();
+
   m_outdatedPackageList = Package::getOutdatedPackageList();
-  m_outdatedYaourtPackageList = Package::getOutdatedYaourtPackageList();
+
+  bool hasYaourt = UnixCommand::hasTheExecutable("yaourt");
+  if (hasYaourt)
+  {
+    m_outdatedYaourtPackageList = Package::getOutdatedYaourtPackageList();
+  }
+  else
+  {
+    m_outdatedYaourtPackageList = new QStringList();
+  }
+
   m_numberOfOutdatedPackages = m_outdatedPackageList->count();
   m_numberOfOutdatedYaourtPackages = m_outdatedYaourtPackageList->count();
 
@@ -455,22 +470,21 @@ void MainWindow::refreshAppIcon()
       m_actionSystemUpgrade->setVisible(true);
     }
 
-    m_icon = (IconHelper::getIconOctopiRed());
+    m_icon = IconHelper::getIconOctopiRed();
   }
   else if(m_outdatedYaourtPackageList->count() > 0) //YELLOW ICON!
   {
     m_actionSystemUpgrade->setVisible(false);
-    m_icon = (IconHelper::getIconOctopiYellow());
+    m_icon = IconHelper::getIconOctopiYellow();
   }
   else //YEAHHH... GREEN ICON!
   {
     m_actionSystemUpgrade->setVisible(false);
-    m_icon = (IconHelper::getIconOctopiGreen());
+    m_icon = IconHelper::getIconOctopiGreen();
   }
 
   setWindowIcon(m_icon);
   m_systemTrayIcon->setIcon(m_icon);
-  m_systemTrayIcon->show();
 }
 
 /*

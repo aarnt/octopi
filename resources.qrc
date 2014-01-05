@@ -7,8 +7,10 @@
         <file>resources/styles/branch-open_BW.png</file>
         <file>resources/styles/branch-open.png</file>
         <file>resources/styles/vline.png</file>
+        <file>resources/images/octopi_transparent.png</file>
         <file>resources/images/octopi_red.png</file>
         <file>resources/images/octopi_yellow.png</file>
+        <file>resources/images/octopi_green.png</file>
         <file>resources/images/esf-search.png</file>
         <file>resources/images/esf-clear-active.png</file>
         <file>resources/images/esf-clear-hover.png</file>
@@ -37,7 +39,6 @@
         <file>resources/images/find.png</file>
         <file>resources/images/rss.png</file>
         <file>resources/images/newer.png</file>
-        <file>resources/images/octopi_green.png</file>
         <file>resources/images/foreign_green.png</file>
         <file>resources/images/foreign_red.png</file>
         <file>resources/images/show_groups.png</file>
