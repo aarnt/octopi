@@ -1220,7 +1220,7 @@ void MainWindow::installLocalPackage()
       QFileDialog::getOpenFileNames(this,
                                     StrConstants::getFileChooserTitle(),
                                     QDir::homePath(),
-                                    StrConstants::getPackages() + " (*.pkg.tar.xz)");
+                                    StrConstants::getPackages() + " (*.pkg.tar*)");
 
   if (m_packagesToInstallList.count() > 0)
     doInstallLocalPackages();
