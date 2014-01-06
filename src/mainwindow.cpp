@@ -45,9 +45,6 @@
 #include <QFileDialog>
 #include <QHash>
 #include <QFutureWatcher>
-//#include <QtConcurrentRun>
-
-//using namespace QtConcurrent;
 
 /*
  * MainWindow's constructor: basic UI init
@@ -780,7 +777,6 @@ void MainWindow::execContextMenuPkgFileList(QPoint point)
 
   QModelIndex mi = tvPkgFileList->currentIndex();
   QString selectedPath = PackageController::showFullPathOfItem(mi);
-
   QMenu menu(this);
   QStandardItemModel *sim = qobject_cast<QStandardItemModel*>(tvPkgFileList->model());
   QStandardItem *si = sim->itemFromIndex(mi);

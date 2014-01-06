@@ -22,10 +22,8 @@
 #define MAINWINDOW_GLOBALS_H
 
 #include "strconstants.h"
-
 #include <QStandardItem>
 #include <QFutureWatcher>
-//#include <QtConcurrentRun>
 
 struct YaourtOutdatedPackages
 {
