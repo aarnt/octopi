@@ -420,6 +420,8 @@ void MainWindow::refreshAppIcon()
   m_systemTrayIcon->setIcon(m_icon);
   m_systemTrayIcon->show();
 
+  qApp->processEvents();
+
   m_outdatedPackageList = Package::getOutdatedPackageList();
 
   bool hasYaourt = UnixCommand::hasTheExecutable("yaourt");
