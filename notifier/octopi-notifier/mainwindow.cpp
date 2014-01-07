@@ -29,9 +29,14 @@ MainWindow::MainWindow(QWidget *parent) :
 void MainWindow::initSystemTrayIcon()
 {
   m_commandExecuting = ectn_NONE;
-
+  m_outdatedPackageList = new QStringList();
   m_systemTrayIcon = new QSystemTrayIcon(this);
   m_systemTrayIcon->setObjectName("systemTrayIcon");
+
+  m_icon = IconHelper::getIconOctopiTransparent();
+  m_systemTrayIcon->setIcon(m_icon);
+  setWindowIcon(m_icon);
+  m_systemTrayIcon->show();
 
   m_actionExit = new QAction(IconHelper::getIconExit(), tr("Exit"), this);
   connect(m_actionExit, SIGNAL(triggered()), this, SLOT(exitNotifier()));
@@ -47,42 +52,6 @@ void MainWindow::initSystemTrayIcon()
   m_actionSystemUpgrade->setText(tr("System upgrade"));
   connect(m_actionSystemUpgrade, SIGNAL(triggered()), this, SLOT(runOctopi()));
 
-  refreshAppIcon();
-
-  if (m_numberOfOutdatedPackages == 0 && m_numberOfOutdatedYaourtPackages == 0)
-  {
-    m_systemTrayIcon->setToolTip("");
-  }
-  else if (m_numberOfOutdatedPackages > 0)
-  {
-    QString notification;
-
-    if (m_numberOfOutdatedPackages == 1)
-    {
-      notification = StrConstants::getOneNewUpdate();
-      m_systemTrayIcon->setToolTip(notification);
-    }
-    else if (m_numberOfOutdatedPackages > 1)
-    {
-      notification = StrConstants::getNewUpdates().arg(m_numberOfOutdatedPackages);
-      m_systemTrayIcon->setToolTip(notification);
-    }
-  }
-  else if (m_numberOfOutdatedYaourtPackages > 0)
-  {
-    m_systemTrayIcon->setToolTip("");
-
-    if (m_numberOfOutdatedYaourtPackages == 1)
-    {
-      m_systemTrayIcon->setToolTip(StrConstants::getOneNewUpdate());
-    }
-    else if (m_numberOfOutdatedYaourtPackages > 1)
-    {
-      m_systemTrayIcon->setToolTip(StrConstants::getNewUpdates().arg(m_numberOfOutdatedYaourtPackages));
-    }
-  }
-
-  m_systemTrayIcon->show();
   m_systemTrayIconMenu = new QMenu( this );
   m_systemTrayIconMenu->addAction(m_actionOctopi);
   m_systemTrayIconMenu->addAction(m_actionSystemUpgrade);
@@ -331,6 +300,11 @@ void MainWindow::pacmanHelperTimerTimeout()
     m_actionSystemUpgrade->setVisible(false);
   }
 
+  m_icon = IconHelper::getIconOctopiTransparent();
+  m_systemTrayIcon->setIcon(m_icon);
+  m_systemTrayIconMenu->close();
+  m_systemTrayIcon->setContextMenu(0);
+
   m_commandExecuting = ectn_SYNC_DATABASE;
   m_pacmanHelperClient->syncdb();
 }
@@ -341,6 +315,7 @@ void MainWindow::pacmanHelperTimerTimeout()
 void MainWindow::afterPacmanHelperSyncDatabase()
 {
   m_actionOctopi->setEnabled(true);
+  m_systemTrayIcon->setContextMenu(m_systemTrayIconMenu);
   m_systemTrayIconMenu->close();
   m_commandExecuting = ectn_NONE;
 
@@ -415,13 +390,6 @@ void MainWindow::sendNotification(const QString &msg)
  */
 void MainWindow::refreshAppIcon()
 {
-  m_icon = IconHelper::getIconOctopiTransparent();
-  setWindowIcon(m_icon);
-  m_systemTrayIcon->setIcon(m_icon);
-  m_systemTrayIcon->show();
-
-  qApp->processEvents();
-
   m_outdatedPackageList = Package::getOutdatedPackageList();
 
   bool hasYaourt = UnixCommand::hasTheExecutable("yaourt");
