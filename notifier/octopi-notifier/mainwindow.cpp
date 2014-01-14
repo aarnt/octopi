@@ -15,6 +15,10 @@
 /*
  * This is Octopi Notifier slim interface code :-)
  */
+
+/*
+ * The obligatory constructor...
+ */
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent)
 {
