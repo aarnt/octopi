@@ -3,6 +3,7 @@
   Added chinese (Taiwan), malay, slovak and ukrainian translations.
   Added support to KaOS, a lean KDE centric Linux distro.
   Added support to installation of local packages with GUI feedback.
+  Updated translations.
   Changed widget for package groups, from combobox to treeview.
   BugFix: When inserting an optional dependency package or removing a dep, 
 	first searches into transaction queue for them.

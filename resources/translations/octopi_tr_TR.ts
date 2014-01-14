@@ -56,7 +56,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="208"/>
         <source>Non installed</source>
-        <translation>Kurulmamış</translation>
+        <translation>Kurulmamış Paketler</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="211"/>
@@ -76,7 +76,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="232"/>
         <source>Rollback</source>
-        <translation>Geri Almak</translation>
+        <translation>İşlemleri Geri Al</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="235"/>
@@ -134,7 +134,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="305"/>
         <source>Get latest distro news</source>
-        <translation>Dağıtımın son bilgilerini getir</translation>
+        <translation>Dağıtımla ilgili son haberleri getir</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="308"/>
@@ -817,7 +817,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="329"/>
         <source>Command finished OK!</source>
-        <translation>Kurulum tamamlandı!</translation>
+        <translation>İşlem tamamlandı!</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="333"/>
@@ -837,7 +837,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="345"/>
         <source>The following target needs to be retrieved</source>
-        <translation>Sıradaki hedef kurtarılmalı</translation>
+        <translation>Sıradaki hedef yükseltilmeli</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="349"/>
