@@ -43,7 +43,7 @@ int main(int argc, char *argv[])
   for (int c=1; c<argc; c++)
   {
     arg = argv[c];
-    if (arg.contains("pkg.tar.xz"))
+    if (arg.contains("pkg.tar*"))
     {
       packagesToInstall += arg + ",";
     }
