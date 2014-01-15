@@ -327,6 +327,8 @@ void MainWindow::preBuildPackagesFromGroupList()
  */
 void MainWindow::metaBuildPackageList()
 {
+  ui->twGroups->setEnabled(false);
+
   if (ui->twGroups->topLevelItemCount() == 0 || isAllGroupsSelected())
   {
     toggleSystemActions(true);
@@ -1047,6 +1049,8 @@ void MainWindow::refreshStatusBarToolButtons()
   f = QtConcurrent::run(getOutdatedYaourtPackages);
   g_fwOutdatedYaourtPackages.setFuture(f);
   connect(&g_fwOutdatedYaourtPackages, SIGNAL(finished()), this, SLOT(showToolButtonYaourt()));
+
+  ui->twGroups->setEnabled(true);
 }
 
 /*
