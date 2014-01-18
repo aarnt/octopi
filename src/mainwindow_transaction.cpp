@@ -661,8 +661,10 @@ bool MainWindow::_isSUAvailable()
  */
 void MainWindow::doSyncDatabase()
 {
+  doRemovePacmanLockFile();
+
   //If there are no means to run the actions, we must warn!
-  if (!_isSUAvailable()) return;
+  //if (!_isSUAvailable()) return;
 
   m_commandExecuting = ectn_SYNC_DATABASE;
   disableTransactionActions();
@@ -788,8 +790,9 @@ void MainWindow::doSystemUpgrade(bool syncDatabase)
     {
       m_systemUpgradeDialog = false;
 
+      doRemovePacmanLockFile();
       //If there are no means to run the actions, we must warn!
-      if (!_isSUAvailable()) return;
+      //if (!_isSUAvailable()) return;
 
       m_lastCommandList.clear();
       m_lastCommandList.append("pacman -Su;");
@@ -846,22 +849,11 @@ void MainWindow::doRemoveAndInstall()
   TransactionDialog question(this);
   QString dialogText;
 
-  /*foreach(QString removeTarget, *removeTargets)
-  {
-    removeList = removeList + StrConstants::getRemove() + " "  + removeTarget + "\n";
-  }*/
-
   QStringList removeTargets = listOfRemoveTargets.split(" ", QString::SkipEmptyParts);
   foreach(QString target, removeTargets)
   {
     removeList = removeList + StrConstants::getRemove() + " "  + target + "\n";
   }
-
-  /*if (removeList.count() == 0)
-  {
-    removeTargets->append(listOfRemoveTargets);
-    removeList.append(StrConstants::getRemove() + " "  + listOfRemoveTargets);
-  }*/
 
   QString listOfInstallTargets = getTobeInstalledPackages();
   QList<PackageListData> *installTargets = Package::getTargetUpgradeList(listOfInstallTargets);
@@ -933,8 +925,9 @@ void MainWindow::doRemoveAndInstall()
 
   if(result == QDialogButtonBox::Yes || result == QDialogButtonBox::AcceptRole)
   {
+    doRemovePacmanLockFile();
     //If there are no means to run the actions, we must warn!
-    if (!_isSUAvailable()) return;
+    //if (!_isSUAvailable()) return;
 
     QString command;
     command = "pacman -R --noconfirm " + listOfRemoveTargets +
@@ -978,26 +971,13 @@ void MainWindow::doRemove()
 {
   QString listOfTargets = getTobeRemovedPackages();
   m_targets = Package::getTargetRemovalList(listOfTargets, m_removeCommand);
-  //m_targets = new QStringList();
   QString list;
-
-  /*foreach(QString target, *m_targets)
-  {
-    list = list + target + "\n";
-  }
-  list.remove(list.size()-1, 1);*/
 
   QStringList targets = listOfTargets.split(" ", QString::SkipEmptyParts);
   foreach(QString target, targets)
   {
     list = list + target + "\n";
   }
-
-  /*if (list.count() == 0)
-  {
-    m_targets->append(listOfTargets);
-    list.append(listOfTargets);
-  }*/
 
   TransactionDialog question(this);
 
@@ -1026,8 +1006,9 @@ void MainWindow::doRemove()
 
   if(result == QDialogButtonBox::Yes || result == QDialogButtonBox::AcceptRole)
   {
+    doRemovePacmanLockFile();
     //If there are no means to run the actions, we must warn!
-    if (!_isSUAvailable()) return;
+    //if (!_isSUAvailable()) return;
 
     QString command;
     command = "pacman -R --noconfirm " + listOfTargets;
@@ -1221,8 +1202,9 @@ void MainWindow::doInstall()
 
   if(result == QDialogButtonBox::Yes || result == QDialogButtonBox::AcceptRole)
   {
+    doRemovePacmanLockFile();
     //If there are no means to run the actions, we must warn!
-    if (!_isSUAvailable()) return;
+    //if (!_isSUAvailable()) return;
 
     QString command;
     command = "pacman -S --noconfirm " + listOfTargets;
@@ -1298,8 +1280,9 @@ void MainWindow::doInstallLocalPackages()
 
   if(result == QDialogButtonBox::Yes || result == QDialogButtonBox::AcceptRole)
   {
+    doRemovePacmanLockFile();
     //If there are no means to run the actions, we must warn!
-    if (!_isSUAvailable()) return;
+    //if (!_isSUAvailable()) return;
     QString command;
     command = "pacman -U --noconfirm " + listOfTargets;
 
@@ -1338,8 +1321,9 @@ void MainWindow::doInstallLocalPackages()
  */
 void MainWindow::doCleanCache()
 {
+  doRemovePacmanLockFile();
   //If there are no means to run the actions, we must warn!
-  if (!_isSUAvailable()) return;
+  //if (!_isSUAvailable()) return;
 
   int res = QMessageBox::question(this, StrConstants::getConfirmation(),
                                   StrConstants::getCleanCacheConfirmation(),

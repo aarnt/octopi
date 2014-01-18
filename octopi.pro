@@ -19,6 +19,10 @@ UI_DIR += build
 
 HEADERS  += src/QtSolutions/qtsingleapplication.h \
         src/QtSolutions/qtlocalpeer.h \
+        src/QtSolutions/qtsinglecoreapplication.h \
+        src/QtSolutions/QtSingleApplication \
+        src/QtSolutions/qtlockedfile.h \
+        src/QtSolutions/QtLockedFile \
         src/mainwindow.h \
         src/strconstants.h \
         src/searchlineedit.h \
@@ -29,20 +33,20 @@ HEADERS  += src/QtSolutions/qtsingleapplication.h \
         src/packagecontroller.h \
         src/unixcommand.h \
         src/wmhelper.h \
-    src/QtSolutions/qtsinglecoreapplication.h \
-    src/QtSolutions/QtSingleApplication \
-    src/QtSolutions/qtlockedfile.h \
-    src/QtSolutions/QtLockedFile \
-    src/treeviewpackagesitemdelegate.h \
-    src/searchbar.h \
-    src/transactiondialog.h \
-    src/pacmanhelperclient.h \
-    src/globals.h \
-    src/multiselectiondialog.h \
-    src/utils/processwrapper.h
+        src/treeviewpackagesitemdelegate.h \
+        src/searchbar.h \
+        src/transactiondialog.h \
+        src/pacmanhelperclient.h \
+        src/globals.h \
+        src/multiselectiondialog.h \
+        src/utils/processwrapper.h
 
 SOURCES += src/QtSolutions/qtsingleapplication.cpp \
         src/QtSolutions/qtlocalpeer.cpp \
+        src/QtSolutions/qtsinglecoreapplication.cpp \
+        src/QtSolutions/qtlockedfile.cpp \
+        src/QtSolutions/qtlockedfile_win.cpp \
+        src/QtSolutions/qtlockedfile_unix.cpp \
         src/main.cpp\
         src/mainwindow.cpp \
         src/searchlineedit.cpp \
@@ -52,31 +56,26 @@ SOURCES += src/QtSolutions/qtsingleapplication.cpp \
         src/packagecontroller.cpp \
         src/unixcommand.cpp \
         src/wmhelper.cpp \
-    src/QtSolutions/qtsinglecoreapplication.cpp \
-    src/QtSolutions/qtlockedfile.cpp \
-    src/QtSolutions/qtlockedfile_win.cpp \
-    src/QtSolutions/qtlockedfile_unix.cpp \
-    src/treeviewpackagesitemdelegate.cpp \
-    src/mainwindow_init.cpp \
-    src/mainwindow_transaction.cpp \
-    src/mainwindow_events.cpp \
-    src/mainwindow_help.cpp \
-    src/searchbar.cpp \
-    src/mainwindow_searchbar.cpp \
-    src/transactiondialog.cpp \
-    src/mainwindow_news.cpp \
-    src/mainwindow_refresh.cpp \
-    src/pacmanhelperclient.cpp \
-    src/globals.cpp \
-    src/multiselectiondialog.cpp \
-    src/utils/processwrapper.cpp
+        src/treeviewpackagesitemdelegate.cpp \
+        src/mainwindow_init.cpp \
+        src/mainwindow_transaction.cpp \
+        src/mainwindow_events.cpp \
+        src/mainwindow_help.cpp \
+        src/searchbar.cpp \
+        src/mainwindow_searchbar.cpp \
+        src/transactiondialog.cpp \
+        src/mainwindow_news.cpp \
+        src/mainwindow_refresh.cpp \
+        src/pacmanhelperclient.cpp \
+        src/globals.cpp \
+        src/multiselectiondialog.cpp \
+        src/utils/processwrapper.cpp
 
-FORMS    += ui/mainwindow.ui \
-    ui/transactiondialog.ui \
-    ui/multiselectiondialog.ui
+FORMS   += ui/mainwindow.ui \
+        ui/transactiondialog.ui \
+        ui/multiselectiondialog.ui
 
-RESOURCES += \
-    resources.qrc
+RESOURCES += resources.qrc
 
 OTHER_FILES += \
     src/QtSolutions/qtsinglecoreapplication.pri \
