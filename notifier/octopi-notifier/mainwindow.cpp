@@ -54,6 +54,7 @@ void MainWindow::initSystemTrayIcon()
 
   m_actionSystemUpgrade = new QAction(this);
   m_actionSystemUpgrade->setText(tr("System upgrade"));
+  m_actionSystemUpgrade->setIcon(QIcon(":/resources/images/fast_forward.png"));
   connect(m_actionSystemUpgrade, SIGNAL(triggered()), this, SLOT(runOctopi()));
 
   m_systemTrayIconMenu = new QMenu( this );
@@ -135,6 +136,7 @@ void MainWindow::aboutOctopiNotifier()
   QString aboutText = "<b>Octopi Notifier - " + StrConstants::getApplicationVersion() + "</b><br>";
   aboutText += "<a href=\"http://octopiproject.wordpress.com/\">http://octopiproject.wordpress.com</a><br><br>";
   aboutText += "&copy; Alexandre Albuquerque Arnt";
+
   QMessageBox::about(this, StrConstants::getHelpAbout(), aboutText);
 }
 

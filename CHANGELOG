@@ -1,3 +1,12 @@
+0.3.2
+  Cleaned unused code.
+  Added icon for system upgrade.
+  Added system upgrade button in octopi's toolbar.
+  BugFix: When the groups button is pressed and the lower pane is maximized, the 
+	former is hidden by the later.
+  BugFix: When the user had no yaourt in the system, there were a zombie 
+	octopi process 'left running'.
+
 0.3.1
   Added support for Qt5.
   Added chinese (Taiwan), malay, slovak and ukrainian translations.

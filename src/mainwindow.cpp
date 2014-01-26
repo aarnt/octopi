@@ -60,6 +60,7 @@ MainWindow::MainWindow(QWidget *parent) :
   m_listOfPackagesFromGroup = 0;
   m_systemUpgradeDialog = false;
   m_cic = 0;
+  m_outdatedPackageList = new QStringList();
   m_outdatedYaourtPackageList = new QStringList();
   m_outdatedYaourtPackagesNameVersion = new QHash<QString, QString>();
   ui->setupUi(this);
@@ -86,7 +87,6 @@ void MainWindow::show()
     UnixCommand::getIgnorePkg();
     loadSettings();
     restoreGeometry(SettingsManager::getWindowSize());
-
     m_commandExecuting=ectn_NONE;
     m_commandQueued=ectn_NONE;
     m_leFilterPackage = new SearchLineEdit(this);
@@ -114,7 +114,7 @@ void MainWindow::show()
     refreshDistroNews(false);
     refreshGroupsWidget();
     QMainWindow::show();
-    metaBuildPackageList();    
+    metaBuildPackageList();
   }
   else
     QMainWindow::show();
@@ -589,35 +589,6 @@ void MainWindow::execContextMenuPackages(QPoint point)
         menu->addAction(ui->actionFindFileInPackage);
         menu->addSeparator();
       }
-
-      if((si->icon().pixmap(QSize(22,22)).toImage()) !=
-                IconHelper::getIconForeignRed().pixmap(QSize(22,22)).toImage()
-         && (si->icon().pixmap(QSize(22,22)).toImage()) !=
-         IconHelper::getIconForeignGreen().pixmap(QSize(22,22)).toImage())
-      {
-        /*QStandardItem *siName = sim->item(mi.row(), ctn_PACKAGE_NAME_COLUMN);
-        //Does this package have non installed optional dependencies?
-        QStringList optDeps = Package::getOptionalDeps(siName->text());
-        QStringList optionalPackages;
-
-        foreach(QString optDep, optDeps)
-        {
-          QString candidate = optDep;
-          int points = candidate.indexOf(":");
-          candidate = candidate.mid(0, points).trimmed();
-
-          if(!isPackageInstalled(candidate))
-          {
-            optionalPackages.append(candidate);
-          }
-        }
-        */
-
-        //if(optionalPackages.count())
-        //{
-        //  menu->addAction(ui->actionInstallOptDeps);
-        //}
-      }
     }
 
     bool allInstallable = true;
@@ -982,9 +953,6 @@ void MainWindow::invalidateTabs()
  */
 void MainWindow::hideGroupsWidget(bool pSaveSettings)
 {
-  //QList<int> savedSizes;
-  //savedSizes << 200 << 235;
-
   static int tvPackagesWidth = ui->tvPackages->width();
 
   QList<int> l, rl;
@@ -993,16 +961,24 @@ void MainWindow::hideGroupsWidget(bool pSaveSettings)
   if ( rl[1] != 0 )
   {
     ui->splitterVertical->setSizes( l << tvPackagesWidth << 0);
-    if(!ui->twGroups->hasFocus())
-      ui->twGroups->setFocus();
+    /*if(!ui->twGroups->hasFocus())
+      ui->twGroups->setFocus();*/
 
     if(pSaveSettings)
       saveSettings(ectn_GROUPS);
   }
   else
   {
-    //ui->splitterVertical->setSizes(savedSizes);
-    //ui->tvPackages->scrollTo(ui->tvPackages->currentIndex());
+    //First we test if the UI doesnt have the lower pane maximized
+    QList<int> splitterHoriz;
+    splitterHoriz = ui->splitterHorizontal->sizes();
+    if ( splitterHoriz[1] != 0 )
+    {
+      QList<int> savedSizes;
+      savedSizes << 200 << 235;
+      ui->splitterHorizontal->setSizes(savedSizes);
+    }
+
     ui->splitterVertical->setSizes( l << tvPackagesWidth << ui->twGroups->maximumWidth() );
     ui->tvPackages->setFocus();
 

@@ -73,6 +73,11 @@
           <height>16777215</height>
          </size>
         </property>
+        <column>
+         <property name="text">
+          <string notr="true">1</string>
+         </property>
+        </column>
        </widget>
       </widget>
       <widget class="QTabWidget" name="twProperties">
@@ -122,7 +127,7 @@
      <x>0</x>
      <y>0</y>
      <width>552</width>
-     <height>22</height>
+     <height>20</height>
     </rect>
    </property>
    <property name="contextMenuPolicy">
@@ -264,6 +269,10 @@
    </property>
   </action>
   <action name="actionSystemUpgrade">
+   <property name="icon">
+    <iconset resource="../resources.qrc">
+     <normaloff>:/resources/images/fast_forward.png</normaloff>:/resources/images/fast_forward.png</iconset>
+   </property>
    <property name="text">
     <string>System upgrade</string>
    </property>

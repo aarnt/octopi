@@ -58,7 +58,6 @@ QString UnixCommand::runCommand(const QString& commandToRun)
  */
 QString UnixCommand::runCurlCommand(const QString& commandToRun){
   QProcess proc;
-
   QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
   env.insert("LANG", "C");
   env.insert("LC_MESSAGES", "C");
@@ -80,18 +79,17 @@ QString UnixCommand::runCurlCommand(const QString& commandToRun){
  * Returns the path of given executable
  */
 QString UnixCommand::discoverBinaryPath(const QString& binary){
-  QProcess *proc = new QProcess;
+  QProcess proc;
   QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
   env.insert("LANG", "C");
   env.insert("LC_MESSAGES", "C");
-  proc->setProcessEnvironment(env);
+  proc.setProcessEnvironment(env);
 
-  proc->start("/bin/sh -c \"which " + binary + "\"");
-  proc->waitForFinished();
-  QString res = proc->readAllStandardOutput();
+  proc.start("/bin/sh -c \"which " + binary + "\"");
+  proc.waitForFinished();
+  QString res = proc.readAllStandardOutput();
 
-  proc->close();
-  delete proc;
+  proc.close();
   res = res.remove('\n');
 
   //If it still didn't find it, try "/sbin" dir...
@@ -142,6 +140,7 @@ QByteArray UnixCommand::performQuery(const QStringList args)
   pacman.waitForFinished();
   result = pacman.readAllStandardOutput();
 
+  pacman.close();
   return result;
 }
 
@@ -163,6 +162,7 @@ QByteArray UnixCommand::performQuery(const QString &args)
   pacman.waitForFinished();
   result = pacman.readAllStandardOutput();
 
+  pacman.close();
   return result;
 }
 
@@ -183,6 +183,7 @@ QByteArray UnixCommand::performYaourtCommand(const QString &args)
   yaourt.waitForFinished();
   result = yaourt.readAllStandardOutput();
 
+  yaourt.close();
   return result;
 }
 
@@ -319,7 +320,6 @@ QByteArray UnixCommand::getPackageContentsUsingPkgfile(const QString &pkgName)
 {
   QByteArray result("");
   QProcess pkgfile;
-
   QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
   env.insert("LANG", "C");
   env.insert("LC_MESSAGES", "C");
@@ -492,16 +492,15 @@ bool UnixCommand::isKtsussVersionOK()
  */
 bool UnixCommand::hasTheExecutable( const QString& exeName )
 {
-  QProcess* proc = new QProcess();
-  proc->setProcessChannelMode(QProcess::MergedChannels);
+  QProcess proc;
+  proc.setProcessChannelMode(QProcess::MergedChannels);
   QString sParam = "\"which " + exeName + "\"";
-  proc->start("/bin/sh -c " + sParam);
-  proc->waitForFinished();
+  proc.start("/bin/sh -c " + sParam);
+  proc.waitForFinished();
 
-  QString out = proc->readAllStandardOutput();
-  proc->close();
+  QString out = proc.readAllStandardOutput();
+  proc.close();
 
-  delete proc;
   if (out.count("which") > 0) return false;
   else return true;
 }
@@ -541,16 +540,15 @@ void UnixCommand::removeTemporaryFiles()
  */
 void UnixCommand::execCommand(const QString &pCommand)
 {
-  QProcess *p = new QProcess();
+  QProcess p;
   QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
   env.insert("LANG", "C");
   env.insert("LC_MESSAGES", "C");
-  p->setProcessEnvironment(env);
+  p.setProcessEnvironment(env);
 
-  p->start(WMHelper::getSUCommand() + "\"" + pCommand + "\"");
-  p->waitForFinished(-1);
-  p->close();
-  delete p;
+  p.start(WMHelper::getSUCommand() + "\"" + pCommand + "\"");
+  p.waitForFinished(-1);
+  p.close();
 }
 
 /*
@@ -690,21 +688,10 @@ void UnixCommand::runCommandInTerminalAsNormalUser(const QStringList &commandLis
   out.flush();
   ftemp->close();
 
-  /*QString suCommand = WMHelper::getSUCommand();
-  QString loggedUser = QDir::homePath();
-  QFileInfo fi(loggedUser);
-  loggedUser = fi.fileName();
-  suCommand.replace("root", loggedUser);*/
-
   if(WMHelper::isXFCERunning() && UnixCommand::hasTheExecutable(ctn_XFCE_TERMINAL)){
     QString cmd = ctn_XFCE_TERMINAL + " -e " + ftemp->fileName();
     m_processWrapper->executeCommand(cmd);
   }
-  /*else if (WMHelper::isKDERunning() && UnixCommand::hasTheExecutable(ctn_XTERM)){
-    QString cmd = ctn_XTERM +
-        " -fn \"*-fixed-*-*-*-18-*\" -fg White -bg Black -title xterm -e " + ftemp->fileName();
-    m_processWrapper->executeCommand(cmd);
-  }*/
   else if (WMHelper::isTDERunning() && UnixCommand::hasTheExecutable(ctn_TDE_TERMINAL)){
     QString cmd = ctn_TDE_TERMINAL + " --nofork -e " + ftemp->fileName();
     m_processWrapper->executeCommand(cmd);
@@ -739,29 +726,6 @@ void UnixCommand::executeCommand(const QString &pCommand)
 {
   QString command = WMHelper::getSUCommand() + "\"" + pCommand + "\"";
 
-  m_process->start(command);
-}
-
-/*
- * Executes the given commandlist using QProcess async technology
- */
-void UnixCommand::executePackageActions( const QStringList& commandList )
-{
-  QFile *ftemp = getTemporaryFile();
-  QTextStream out(ftemp);
-
-  foreach(QString line, commandList)
-    out << line;
-
-  out.flush();
-  ftemp->close(); 
-
-  QString command = WMHelper::getSUCommand() + " " + ftemp->fileName();
-
-  QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
-  env.insert("LANG", "C");
-  env.insert("LC_MESSAGES", "C");
-  m_process->setProcessEnvironment(env);
   m_process->start(command);
 }
 
@@ -907,6 +871,7 @@ bool UnixCommand::isILoveCandyEnabled()
     else res = false;
   }
 
+  file.close();
   return res;
 }
 
@@ -954,6 +919,7 @@ QStringList UnixCommand::getIgnorePkg()
   }
   while(true);
 
+  file.close();
   return res;
 }
 
@@ -1001,6 +967,8 @@ LinuxDistro UnixCommand::getLinuxDistro()
     }
 
     firstTime = false;
+
+    file.close();
   }
 
   return ret;

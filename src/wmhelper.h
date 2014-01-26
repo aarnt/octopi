@@ -40,7 +40,6 @@ const QString ctn_TDE_EDITOR("kwrite");
 const QString ctn_TDE_FILE_MANAGER("kfmclient");
 const QString ctn_TDE_TERMINAL("konsole");
 
-const QString ctn_KTSUSS("ktsuss");
 const QString ctn_GKSU_1("/usr/libexec/gksu");
 const QString ctn_GKSU_2("gksu");
 
@@ -86,7 +85,6 @@ public:
 
   static QString getKDESUCommand();
   static QString getTDESUCommand();
-  static QString getKTSUSSCommand();
   static QString getGKSUCommand();
   static QString getXFCEEditor();
   static QString getSUCommand();

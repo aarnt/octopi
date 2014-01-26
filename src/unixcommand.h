@@ -133,14 +133,12 @@ public:
 
   static void removeTemporaryFiles();
 
-  static void execCommand(const QString &pCommand);
-
   void openRootTerminal();
   void runCommandInTerminal(const QStringList& commandList);
   void runCommandInTerminalAsNormalUser(const QStringList& commandList);
 
+  static void execCommand(const QString &pCommand);
   void executeCommand(const QString &pCommand);
-  void executePackageActions(const QStringList& commandList);
   QString readAllStandardOutput();
   QString readAllStandardError();
   QString errorString();

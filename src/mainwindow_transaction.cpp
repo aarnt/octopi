@@ -44,6 +44,7 @@
 void MainWindow::changeTransactionActionsState()
 {
   bool state = _isThereAPendingTransaction();
+
   ui->actionCommit->setEnabled(state);
   ui->actionRollback->setEnabled(state);
 }
@@ -1392,7 +1393,12 @@ void MainWindow::toggleTransactionActions(const bool value)
   ui->actionRemoveTransactionItems->setEnabled(value);
   ui->actionRemove->setEnabled(value);
   ui->actionSyncPackages->setEnabled(value);
-  ui->actionSystemUpgrade->setEnabled(value);
+
+  if (value == true && m_outdatedPackageList->count() > 0)
+    ui->actionSystemUpgrade->setEnabled(true);
+  else
+    ui->actionSystemUpgrade->setEnabled(false);
+
   ui->actionGetNews->setEnabled(value);
   ui->actionInstallLocalPackage->setEnabled(value);
 
@@ -1403,7 +1409,11 @@ void MainWindow::toggleTransactionActions(const bool value)
 void MainWindow::toggleSystemActions(const bool value)
 {
   ui->actionSyncPackages->setEnabled(value);
-  ui->actionSystemUpgrade->setEnabled(value);
+
+  if (value == true && m_outdatedPackageList->count() > 0)
+    ui->actionSystemUpgrade->setEnabled(true);
+  else
+    ui->actionSystemUpgrade->setEnabled(false);
 }
 
 /*
