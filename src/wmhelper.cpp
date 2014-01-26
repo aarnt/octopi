@@ -48,7 +48,6 @@ bool WMHelper::isKDERunning(){
     QProcess proc;
     slParam << "-C";
     slParam << ctn_KDE_DESKTOP;
-
     proc.start("ps", slParam);
     proc.waitForStarted();
     proc.waitForFinished();
@@ -128,7 +127,7 @@ bool WMHelper::isLXDERunning(){
   if (out.count(ctn_LXDE_DESKTOP)>0)
     return true;
   else
-      return false;
+    return false;
 }
 
 /*
@@ -245,21 +244,10 @@ QString WMHelper::getKDESUCommand(){
  */
 QString WMHelper::getTDESUCommand(){
   QString result = ctn_TDESU;
+
   result += " -d ";
   result += " -t ";
   result += " --noignorebutton ";
-
-  return result;
-}
-
-/*
- * Retrieves the KTSUSS command...
- */
-QString WMHelper::getKTSUSSCommand(){
-  QString result = ctn_KTSUSS;
-
-  result += " -m " + QString("\"") + StrConstants::getEnterAdministratorsPassword() + QString("\"");
-  result += " -u root ";
 
   return result;
 }
@@ -295,9 +283,6 @@ QString WMHelper::getSUCommand(){
     else if (UnixCommand::hasTheExecutable(ctn_GKSU_2)){
       result = getGKSUCommand();
     }
-    else if (UnixCommand::isKtsussVersionOK()){
-      result = getKTSUSSCommand();
-    }
     else if (UnixCommand::hasTheExecutable(ctn_KDESU)){
       result = getKDESUCommand();
     }
@@ -311,9 +296,6 @@ QString WMHelper::getSUCommand(){
       result = getKDESUCommand();
     else if (SettingsManager::getPrivilegeEscalationTool() == ctn_TDESU)
       result = getTDESUCommand();
-    else if (SettingsManager::getPrivilegeEscalationTool() == ctn_KTSUSS){
-      result = getKTSUSSCommand();
-    }
   }
 
   return result;

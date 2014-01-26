@@ -62,6 +62,7 @@ void MainWindow::loadSettings(){
  */
 void MainWindow::loadPanelSettings(){
   int panelOrganizing = SettingsManager::instance()->getPanelOrganizing();
+
   switch(panelOrganizing){
     case ectn_MAXIMIZE_PACKAGES:
       maximizePackagesTreeView(false);
@@ -114,7 +115,12 @@ void MainWindow::saveSettings(int saveSettingsReason){
 void MainWindow::initAppIcon()
 {
   m_outdatedPackageList = Package::getOutdatedPackageList();
-  m_outdatedYaourtPackageList = Package::getOutdatedYaourtPackageList();
+
+  if (UnixCommand::hasTheExecutable("yaourt"))
+  {
+    m_outdatedYaourtPackageList = Package::getOutdatedYaourtPackageList();
+  }
+
   m_numberOfOutdatedPackages = m_outdatedPackageList->count();
   refreshAppIcon();
 }
@@ -131,15 +137,14 @@ void MainWindow::execSystemTrayActivated(QSystemTrayIcon::ActivationReason ar)
   case QSystemTrayIcon::Trigger:
   case QSystemTrayIcon::DoubleClick:
     if ( this->isHidden() ){
-      //this->restoreGeometry( m_savedGeometry );
       if (this->isMinimized()) this->setWindowState(Qt::WindowNoState);
       this->show();
     }
     else {
-      //m_savedGeometry = this->saveGeometry();
       this->hide();
     }
     break;
+
   default: break;
   }
 }
@@ -193,6 +198,15 @@ void MainWindow::initToolBar()
   initPackageGroups();
 
   ui->mainToolBar->addAction(ui->actionSyncPackages);
+  ui->mainToolBar->addAction(ui->actionSystemUpgrade);
+
+  if (m_outdatedPackageList->count() > 0)
+    ui->actionSystemUpgrade->setEnabled(true);
+  else
+    ui->actionSystemUpgrade->setEnabled(false);
+
+  //ui->mainToolBar->addSeparator();
+
   ui->mainToolBar->addAction(ui->actionCommit);
   ui->mainToolBar->addAction(ui->actionRollback);
   m_leFilterPackage->setMinimumHeight(24);
