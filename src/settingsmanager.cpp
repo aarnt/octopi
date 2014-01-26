@@ -26,6 +26,7 @@
 #include "settingsmanager.h"
 #include "unixcommand.h"
 #include "uihelper.h"
+
 #include <QString>
 #include <QStringList>
 #include <QVariant>
@@ -57,6 +58,7 @@ QString SettingsManager::getDefaultDirectory(){
         ctn_KEY_DEFAULT_DIRECTORY, QDir::homePath()).toString();
 
   QDir dir(defaultDir);
+
   if ((defaultDir == "") || (!dir.exists())){
     defaultDir = QDir::homePath();
   }
@@ -75,13 +77,6 @@ QString SettingsManager::getUpdaterMirror(){
   QString updaterDir = instance()->getSYSsettings()->value( ctn_KEY_UPDATER_MIRROR, "").toString();
 
   return updaterDir;
-}
-
-QString SettingsManager::getPrivilegeEscalationTool(){
-  QString privilegeEscalationTool =
-      instance()->getSYSsettings()->value( ctn_KEY_PRIVILEGE_ESCALATION_TOOL, ctn_AUTOMATIC).toString();
-
-  return privilegeEscalationTool;
 }
 
 int SettingsManager::getPanelOrganizing(){
@@ -214,11 +209,6 @@ void SettingsManager::setAutomaticCheckUpdates(bool newValue){
   instance()->getSYSsettings()->sync();
 }
 
-void SettingsManager::setPrivilegeEscalationTool(QString newValue){
-  instance()->getSYSsettings()->setValue( ctn_KEY_PRIVILEGE_ESCALATION_TOOL, newValue);
-  instance()->getSYSsettings()->sync();
-}
-
 void SettingsManager::setShowToolBar(bool newValue){
   int value=0;
   if (newValue) value=1;
@@ -246,6 +236,7 @@ void SettingsManager::setShowPackageTooltip(bool newValue){
 void SettingsManager::setStartIconified(bool newValue){
   int value=0;
   if (newValue) value=1;
+
   instance()->getSYSsettings()->setValue( ctn_KEY_START_ICONIFIED, value);
   instance()->getSYSsettings()->sync();
 }
@@ -258,6 +249,7 @@ void SettingsManager::setHighlightedSearchItems(int newValue){
 void SettingsManager::setUsePkgTools(bool newValue){
   int value=0;
   if (newValue) value=1;
+
   instance()->getSYSsettings()->setValue( ctn_KEY_USE_PKGTOOLS, value);
   instance()->getSYSsettings()->sync();
 }
@@ -265,6 +257,7 @@ void SettingsManager::setUsePkgTools(bool newValue){
 void SettingsManager::setUseSilentActionOutput(bool newValue){
   int value=0;
   if (newValue) value=1;
+
   instance()->getSYSsettings()->setValue( ctn_KEY_USE_SILENT_ACTION_OUTPUT, value);
   instance()->getSYSsettings()->sync();
 }
@@ -272,6 +265,7 @@ void SettingsManager::setUseSilentActionOutput(bool newValue){
 void SettingsManager::setWindowCloseHidesApp(bool newValue){
   int value=0;
   if (newValue) value=1;
+
   instance()->getSYSsettings()->setValue( ctn_KEY_WINDOW_CLOSE_HIDES_APP, value);
   instance()->getSYSsettings()->sync();
 }
@@ -293,7 +287,9 @@ void SettingsManager::setSplitterHorizontalState(QByteArray newValue){
 
 SettingsManager* SettingsManager::instance(){
   if (m_pinstance == 0)
+  {
     m_pinstance = new SettingsManager();
+  }
 
   return m_pinstance;
 }

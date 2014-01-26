@@ -506,6 +506,18 @@
     <string>F9</string>
    </property>
   </action>
+  <action name="actionMirrorCheck">
+   <property name="icon">
+    <iconset resource="../resources.qrc">
+     <normaloff>:/resources/images/mirror-check.png</normaloff>:/resources/images/mirror-check.png</iconset>
+   </property>
+   <property name="text">
+    <string>Mirror-Check</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+M</string>
+   </property>
+  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <tabstops>

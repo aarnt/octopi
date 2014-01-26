@@ -29,11 +29,9 @@
 #include "package.h"
 #include "utils/processwrapper.h"
 
-const QString ctn_COMMAND_NOT_FOUND("command not found");
-const QString ctn_PACKAGES_WITH_SAME_CONTENT("The packages have the same content!");
-const QString ctn_AUTOMATIC("automatic");
+const QString ctn_MIRROR_CHECK_APP("mirror-check");
 
-enum CommandExecuting { ectn_NONE, ectn_SYNC_DATABASE, ectn_SYSTEM_UPGRADE,
+enum CommandExecuting { ectn_NONE, ectn_CHECK_MIRROR, ectn_SYNC_DATABASE, ectn_SYSTEM_UPGRADE,
                         ectn_INSTALL, ectn_REMOVE, ectn_REMOVE_INSTALL,
                         ectn_RUN_SYSTEM_UPGRADE_IN_TERMINAL, ectn_RUN_IN_TERMINAL };
 
@@ -139,6 +137,8 @@ public:
 
   static void execCommand(const QString &pCommand);
   void executeCommand(const QString &pCommand);
+  void executeCommandAsNormalUser(const QString &pCommand);
+
   QString readAllStandardOutput();
   QString readAllStandardError();
   QString errorString();

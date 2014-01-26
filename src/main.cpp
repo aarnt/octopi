@@ -29,6 +29,8 @@
 #include <QtGui>
 #include <QMessageBox>
 
+//#define KAOS
+
 int main(int argc, char *argv[])
 {
   ArgumentList *argList = new ArgumentList(argc, argv);

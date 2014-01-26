@@ -38,13 +38,14 @@
 #include <QSortFilterProxyModel>
 #include <QTextBrowser>
 
+//#define KAOS
+
 /*
  * Watches the state of tvTransaction treeview to see if Commit/Rollback actions must be activated/deactivated
  */
 void MainWindow::changeTransactionActionsState()
 {
   bool state = _isThereAPendingTransaction();
-
   ui->actionCommit->setEnabled(state);
   ui->actionRollback->setEnabled(state);
 }
@@ -655,6 +656,34 @@ bool MainWindow::_isSUAvailable()
   }
   else
     return true;
+}
+
+/*
+ * This is KaOS specific code which uses mirror-check tool.
+ */
+void MainWindow::doMirrorCheck()
+{
+  if (m_commandExecuting != ectn_NONE ||
+      !UnixCommand::hasInternetConnection() ||
+      !UnixCommand::hasTheExecutable(ctn_MIRROR_CHECK_APP)) return;
+
+  m_commandExecuting = ectn_CHECK_MIRROR;
+  disableTransactionActions();
+
+  m_unixCommand = new UnixCommand(this);
+
+  QObject::connect(m_unixCommand, SIGNAL( started() ), this, SLOT( actionsProcessStarted()));
+
+  QObject::connect(m_unixCommand, SIGNAL( readyReadStandardError()),
+                   this, SLOT( actionsProcessReadOutputMirrorCheck()));
+
+  QObject::connect(m_unixCommand, SIGNAL( readyReadStandardOutput()),
+                   this, SLOT( actionsProcessReadOutputMirrorCheck()));
+  QObject::connect(m_unixCommand, SIGNAL( finished ( int, QProcess::ExitStatus )),
+                   this, SLOT( actionsProcessFinished(int, QProcess::ExitStatus) ));
+
+  QString command = ctn_MIRROR_CHECK_APP;
+  m_unixCommand->executeCommandAsNormalUser(command);
 }
 
 /*
@@ -1392,6 +1421,11 @@ void MainWindow::toggleTransactionActions(const bool value)
   ui->actionRemoveTransactionItem->setEnabled(value);
   ui->actionRemoveTransactionItems->setEnabled(value);
   ui->actionRemove->setEnabled(value);
+
+  #ifdef KAOS
+    ui->actionMirrorCheck->setEnabled(value);
+  #endif
+
   ui->actionSyncPackages->setEnabled(value);
 
   if (value == true && m_outdatedPackageList->count() > 0)
@@ -1408,6 +1442,10 @@ void MainWindow::toggleTransactionActions(const bool value)
 
 void MainWindow::toggleSystemActions(const bool value)
 {
+  #ifdef KAOS
+    ui->actionMirrorCheck->setEnabled(value);
+  #endif
+
   ui->actionSyncPackages->setEnabled(value);
 
   if (value == true && m_outdatedPackageList->count() > 0)
@@ -1466,7 +1504,12 @@ void MainWindow::actionsProcessStarted()
   clearTabOutput();
 
   //First we output the name of action we are starting to execute!
-  if (m_commandExecuting == ectn_SYNC_DATABASE)
+
+  if (m_commandExecuting == ectn_CHECK_MIRROR)
+  {
+    writeToTabOutput("<b>" + StrConstants::getSyncMirror() + "</b><br><br>");
+  }
+  else if (m_commandExecuting == ectn_SYNC_DATABASE)
   {
     writeToTabOutput("<b>" + StrConstants::getSyncDatabases() + "</b><br><br>");
   }
@@ -1566,7 +1609,7 @@ void MainWindow::actionsProcessFinished(int exitCode, QProcess::ExitStatus)
       {
         buildPackageList(false);
       }
-      else
+      else if (m_commandExecuting != ectn_CHECK_MIRROR)
       {
         //If we are in a package group, maybe we have installed/removed something, so...
         if (!isYaourtGroupSelected())
@@ -1624,6 +1667,23 @@ void MainWindow::actionsProcessFinished(int exitCode, QProcess::ExitStatus)
     refreshGroupsWidget();
 
   m_unixCommand->removeTemporaryActionFile();
+}
+
+/*
+ * This SLOT is called whenever Mirror-check process has something to output to Standard out
+ */
+void MainWindow::actionsProcessReadOutputMirrorCheck()
+{
+  QString msg = m_unixCommand->readAllStandardOutput();
+
+  msg.remove("[01;33m");
+  msg.remove("\033[01;37m");
+  msg.remove("\033[00m");
+  msg.remove("\033[00;32m");
+
+  msg.replace("\n", "<br>");
+
+  writeToTabOutput(msg);
 }
 
 /*

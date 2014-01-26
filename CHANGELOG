@@ -1,5 +1,7 @@
 0.3.2
   Cleaned unused code.
+  Added icon for mirror-check while in KaOS.
+  Does a mirror-check at startup while in KaOS.
   Added icon for system upgrade.
   Added system upgrade button in octopi's toolbar.
   BugFix: When the groups button is pressed and the lower pane is maximized, the 

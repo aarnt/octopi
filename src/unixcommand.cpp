@@ -720,13 +720,21 @@ void UnixCommand::runCommandInTerminalAsNormalUser(const QStringList &commandLis
 }
 
 /*
- * Executes the given command using QProcess async technology
+ * Executes the given command using QProcess async technology with ROOT credentials
  */
 void UnixCommand::executeCommand(const QString &pCommand)
 {
   QString command = WMHelper::getSUCommand() + "\"" + pCommand + "\"";
 
   m_process->start(command);
+}
+
+/*
+ * Executes the given command using QProcess async technology as a normal user
+ */
+void UnixCommand::executeCommandAsNormalUser(const QString &pCommand)
+{
+  m_process->start(pCommand);
 }
 
 /*

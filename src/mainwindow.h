@@ -327,6 +327,7 @@ private slots:
   void doInstall();
   void doCleanCache();
   void doSyncDatabase();
+  void doMirrorCheck();
   void doYaourtUpgrade();
 
   void doInstallYaourtPackage();
@@ -342,6 +343,7 @@ private slots:
   void actionsProcessStarted();
   void actionsProcessFinished(int exitCode, QProcess::ExitStatus);
   void actionsProcessReadOutput();
+  void actionsProcessReadOutputMirrorCheck();
   void actionsProcessRaisedError();
 
   void insertIntoRemovePackage();

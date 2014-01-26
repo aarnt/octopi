@@ -307,6 +307,10 @@ public:
     return QObject::tr("Press any key to continue...");
   }
 
+  static QString getSyncMirror(){
+    return "Mirror-check...";
+  }
+
   static QString getSyncDatabases(){
     return QObject::tr("Synchronizing databases...");
   }

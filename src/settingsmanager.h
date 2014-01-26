@@ -49,7 +49,6 @@ const QString ctn_KEY_HIGHLIGHTED_SEARCH_ITEMS("Limit_Hightlighted_Search_Items"
 const QString ctn_KEY_FONT_SIZE_FACTOR("Font_Size_Factor");
 const QString ctn_KEY_USE_PKGTOOLS("Use_PkgTools");
 const QString ctn_KEY_USE_SILENT_ACTION_OUTPUT("Use_Silent_Action_Output");
-const QString ctn_KEY_PRIVILEGE_ESCALATION_TOOL("Privilege_Escalation_Tool");
 
 enum PanelOrganizing { ectn_NORMAL=30, ectn_MAXIMIZE_PACKAGES=40, ectn_MAXIMIZE_PROPERTIES=50, ectn_GROUPS=5 };
 
@@ -80,7 +79,6 @@ class SettingsManager {
     static QString getDefaultDirectory();
     static QString getUpdaterDirectory();
     static QString getUpdaterMirror();
-    static QString getPrivilegeEscalationTool();
 
     static int getCurrentTabIndex();
     static int getPanelOrganizing();
@@ -117,7 +115,6 @@ class SettingsManager {
     static void setUpdaterMirror(QString newValue);
     static void setAutomaticCheckUpdates(bool newValue);
     static void setWindowCloseHidesApp(bool newValue);
-    static void setPrivilegeEscalationTool(QString newValue);
     static void setPanelOrganizing(int newValue);
     static void setPackageListOrderedCol(int newValue);
     static void setInstalledPackageListOrderedCol(int newValue);
@@ -131,7 +128,6 @@ class SettingsManager {
     static void setUsePkgTools(bool newValue);
     static void setUseSilentActionOutput(bool newValue);
     static void setFontSizeFactor(int newValue);
-
     static void setWindowSize(QByteArray newValue);
     static void setSplitterHorizontalState(QByteArray newValue);
 };

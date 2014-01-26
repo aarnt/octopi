@@ -46,6 +46,8 @@
 #include <QToolButton>
 #include <iostream>
 
+//#define KAOS
+
 /*
  * Loads various application settings configured in ~/.config/octopi/octopi.conf
  */
@@ -197,6 +199,10 @@ void MainWindow::initToolBar()
 {
   initPackageGroups();
 
+  #ifdef KAOS
+    ui->mainToolBar->addAction(ui->actionMirrorCheck);
+  #endif
+
   ui->mainToolBar->addAction(ui->actionSyncPackages);
   ui->mainToolBar->addAction(ui->actionSystemUpgrade);
 
@@ -204,8 +210,6 @@ void MainWindow::initToolBar()
     ui->actionSystemUpgrade->setEnabled(true);
   else
     ui->actionSystemUpgrade->setEnabled(false);
-
-  //ui->mainToolBar->addSeparator();
 
   ui->mainToolBar->addAction(ui->actionCommit);
   ui->mainToolBar->addAction(ui->actionRollback);
@@ -591,6 +595,10 @@ void MainWindow::initTabOutput()
  */
 void MainWindow::initActions()
 {
+  #ifdef KAOS
+    connect(ui->actionMirrorCheck, SIGNAL(triggered()), this, SLOT(doMirrorCheck()));
+  #endif
+
   m_actionInstallPacmanUpdates = new QAction(this);
   m_actionInstallPacmanUpdates->setIcon(IconHelper::getIconToInstall());
   m_actionInstallPacmanUpdates->setText(ui->actionInstall->text());
