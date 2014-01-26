@@ -217,6 +217,8 @@ private:
   void refreshStatusBar();
   void clearStatusBar();
 
+  void _showPackagesWithNoDescription();
+
   //Tab Transaction related methods
   bool _isThereAPendingTransaction();
   void _tvTransactionAdjustItemText(QStandardItem *item);

@@ -209,6 +209,12 @@ void MainWindow::keyPressEvent(QKeyEvent* ke)
     }
   }
 
+  else if(ke->key() == Qt::Key_D && ke->modifiers() == (Qt::ShiftModifier|Qt::ControlModifier))
+  {
+    //The user wants to know which packages have no description!
+    _showPackagesWithNoDescription();
+  }
+
   else if(ke->key() == Qt::Key_G && ke->modifiers() == (Qt::ShiftModifier|Qt::ControlModifier))
   {
     //The user wants to go to "Display All groups"

@@ -96,12 +96,7 @@ void MainWindow::refreshGroupsWidget()
   }
 
   ui->twGroups->insertTopLevelItems(0, items);
-
-  //if(firstRun)
-  {
-    ui->twGroups->setCurrentItem(items.at(0));
-    //firstRun=false;
-  }
+  ui->twGroups->setCurrentItem(items.at(0));
 
   connect(ui->twGroups, SIGNAL(itemSelectionChanged()), this, SLOT(metaBuildPackageList()));
 }
@@ -367,6 +362,34 @@ void MainWindow::metaBuildPackageList()
 }
 
 /*
+ * Outputs a list of packages that don't have a description
+ */
+void MainWindow::_showPackagesWithNoDescription()
+{
+  bool printHeader = false;
+  QList<PackageListData> *list = Package::getPackageList();
+  QList<PackageListData>::const_iterator it = list->begin();
+
+  while(it != list->end())
+  {
+    PackageListData pld = *it;
+
+    if (pld.description == (pld.name + "  "))
+    {
+      if (!printHeader)
+      {
+        std::cout << std::endl << "List of packages without description:" << std::endl << std::endl;
+        printHeader=true;
+      }
+
+      std::cout << pld.name.toLatin1().data() << std::endl;
+    }
+
+    it++;
+  }
+}
+
+/*
  * Populates the list of available packages (installed [+ non-installed])
  *
  * It's called Only: when the selected group is <All> !
@@ -377,9 +400,6 @@ void MainWindow::buildPackageList(bool nonBlocking)
   bool hasYaourt = UnixCommand::hasTheExecutable("yaourt");
 
   static bool firstTime = true;
-
-  //Refresh the list of Group names
-  //if (!firstTime) refreshComboBoxGroups();
 
   _deleteStandardItemModel(m_modelPackages);
   _deleteStandardItemModel(m_modelPackagesFromGroup);
