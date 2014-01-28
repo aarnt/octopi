@@ -115,6 +115,7 @@ void MainWindow::show()
     initTabWidgetPropertiesIndex();
     refreshDistroNews(false);
     refreshGroupsWidget();
+
     QMainWindow::show();
     metaBuildPackageList();
 

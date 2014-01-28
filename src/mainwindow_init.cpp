@@ -199,10 +199,6 @@ void MainWindow::initToolBar()
 {
   initPackageGroups();
 
-  #ifdef KAOS
-    ui->mainToolBar->addAction(ui->actionMirrorCheck);
-  #endif
-
   ui->mainToolBar->addAction(ui->actionSyncPackages);
   ui->mainToolBar->addAction(ui->actionSystemUpgrade);
 
@@ -213,6 +209,11 @@ void MainWindow::initToolBar()
 
   ui->mainToolBar->addAction(ui->actionCommit);
   ui->mainToolBar->addAction(ui->actionRollback);
+
+  #ifdef KAOS
+    ui->mainToolBar->addAction(ui->actionMirrorCheck);
+  #endif
+
   m_leFilterPackage->setMinimumHeight(24);
   ui->mainToolBar->addWidget(m_leFilterPackage);
 
@@ -222,7 +223,6 @@ void MainWindow::initToolBar()
   hSpacer->setVisible(true);
   ui->mainToolBar->addWidget(hSpacer);
   ui->mainToolBar->addAction(ui->actionShowGroups);
-
   ui->mainToolBar->toggleViewAction()->setEnabled(false);
   ui->mainToolBar->toggleViewAction()->setVisible(false);
 }
