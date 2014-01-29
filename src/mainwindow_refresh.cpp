@@ -59,7 +59,7 @@ void MainWindow::refreshAppIcon()
   if(m_outdatedPackageList->count() > 0)
   {
     setWindowIcon(IconHelper::getIconOctopiRed());
-    enableSystemUpgrade=true;
+    if(m_commandExecuting != ectn_MIRROR_CHECK) enableSystemUpgrade=true;
   }
   else if(m_outdatedYaourtPackageList->count() > 0)
   {

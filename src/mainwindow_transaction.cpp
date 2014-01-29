@@ -665,7 +665,7 @@ void MainWindow::doMirrorCheck()
       !UnixCommand::hasInternetConnection() ||
       !UnixCommand::hasTheExecutable(ctn_MIRROR_CHECK_APP)) return;
 
-  m_commandExecuting = ectn_CHECK_MIRROR;
+  m_commandExecuting = ectn_MIRROR_CHECK;
   disableTransactionActions();
 
   m_unixCommand = new UnixCommand(this);
@@ -1505,7 +1505,7 @@ void MainWindow::actionsProcessStarted()
 
   //First we output the name of action we are starting to execute!
 
-  if (m_commandExecuting == ectn_CHECK_MIRROR)
+  if (m_commandExecuting == ectn_MIRROR_CHECK)
   {
     writeToTabOutput("<b>" + StrConstants::getSyncMirror() + "</b><br><br>");
   }
@@ -1609,7 +1609,7 @@ void MainWindow::actionsProcessFinished(int exitCode, QProcess::ExitStatus)
       {
         buildPackageList(false);
       }
-      else if (m_commandExecuting != ectn_CHECK_MIRROR)
+      else if (m_commandExecuting != ectn_MIRROR_CHECK)
       {
         //If we are in a package group, maybe we have installed/removed something, so...
         if (!isYaourtGroupSelected())
