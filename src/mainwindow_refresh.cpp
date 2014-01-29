@@ -54,9 +54,12 @@
  */
 void MainWindow::refreshAppIcon()
 {
+  bool enableSystemUpgrade=false;
+
   if(m_outdatedPackageList->count() > 0)
   {
     setWindowIcon(IconHelper::getIconOctopiRed());
+    enableSystemUpgrade=true;
   }
   else if(m_outdatedYaourtPackageList->count() > 0)
   {
@@ -66,6 +69,8 @@ void MainWindow::refreshAppIcon()
   {
     setWindowIcon(IconHelper::getIconOctopiGreen());
   }
+
+  ui->actionSystemUpgrade->setEnabled(enableSystemUpgrade);
 }
 
 /*
@@ -73,7 +78,6 @@ void MainWindow::refreshAppIcon()
  */
 void MainWindow::refreshGroupsWidget()
 {
-  //static bool firstRun = true;
   disconnect(ui->twGroups, SIGNAL(itemSelectionChanged()), this, SLOT(metaBuildPackageList()));
 
   QList<QTreeWidgetItem *> items;

@@ -46,8 +46,6 @@
 #include <QToolButton>
 #include <iostream>
 
-//#define KAOS
-
 /*
  * Loads various application settings configured in ~/.config/octopi/octopi.conf
  */
@@ -210,9 +208,10 @@ void MainWindow::initToolBar()
   ui->mainToolBar->addAction(ui->actionCommit);
   ui->mainToolBar->addAction(ui->actionRollback);
 
-  #ifdef KAOS
+  if(UnixCommand::hasTheExecutable(ctn_MIRROR_CHECK_APP))
+  {
     ui->mainToolBar->addAction(ui->actionMirrorCheck);
-  #endif
+  }
 
   m_leFilterPackage->setMinimumHeight(24);
   ui->mainToolBar->addWidget(m_leFilterPackage);
@@ -595,9 +594,10 @@ void MainWindow::initTabOutput()
  */
 void MainWindow::initActions()
 {
-  #ifdef KAOS
+  if(UnixCommand::hasTheExecutable(ctn_MIRROR_CHECK_APP))
+  {
     connect(ui->actionMirrorCheck, SIGNAL(triggered()), this, SLOT(doMirrorCheck()));
-  #endif
+  }
 
   m_actionInstallPacmanUpdates = new QAction(this);
   m_actionInstallPacmanUpdates->setIcon(IconHelper::getIconToInstall());

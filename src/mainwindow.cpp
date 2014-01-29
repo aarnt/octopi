@@ -46,8 +46,6 @@
 #include <QHash>
 #include <QFutureWatcher>
 
-//#define KAOS
-
 /*
  * MainWindow's constructor: basic UI init
  */
@@ -117,12 +115,14 @@ void MainWindow::show()
     refreshGroupsWidget();
 
     QMainWindow::show();
+
     metaBuildPackageList();
 
-    #ifdef KAOS
+    if(UnixCommand::hasTheExecutable(ctn_MIRROR_CHECK_APP))
+    {
       qApp->processEvents(QEventLoop::AllEvents, 2000);
       doMirrorCheck();
-    #endif
+    }
   }
   else
     QMainWindow::show();

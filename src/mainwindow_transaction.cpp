@@ -38,8 +38,6 @@
 #include <QSortFilterProxyModel>
 #include <QTextBrowser>
 
-//#define KAOS
-
 /*
  * Watches the state of tvTransaction treeview to see if Commit/Rollback actions must be activated/deactivated
  */
@@ -1422,9 +1420,10 @@ void MainWindow::toggleTransactionActions(const bool value)
   ui->actionRemoveTransactionItems->setEnabled(value);
   ui->actionRemove->setEnabled(value);
 
-  #ifdef KAOS
+  if(UnixCommand::hasTheExecutable(ctn_MIRROR_CHECK_APP))
+  {
     ui->actionMirrorCheck->setEnabled(value);
-  #endif
+  }
 
   ui->actionSyncPackages->setEnabled(value);
 
@@ -1442,9 +1441,10 @@ void MainWindow::toggleTransactionActions(const bool value)
 
 void MainWindow::toggleSystemActions(const bool value)
 {
-  #ifdef KAOS
+  if(UnixCommand::hasTheExecutable(ctn_MIRROR_CHECK_APP))
+  {
     ui->actionMirrorCheck->setEnabled(value);
-  #endif
+  }
 
   ui->actionSyncPackages->setEnabled(value);
 
