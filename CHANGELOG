@@ -4,6 +4,8 @@
   Does a mirror-check at startup while in KaOS.
   Added icon for system upgrade.
   Added system upgrade button in octopi's toolbar.
+  BugFix: When the package list is filtered and you click in a package which is in 
+	the outdated package list, you are redirected to a blank information tab.
   BugFix: When the groups button is pressed and the lower pane is maximized, the 
 	former is hidden by the later.
   BugFix: When the user had no yaourt in the system, there were a zombie 

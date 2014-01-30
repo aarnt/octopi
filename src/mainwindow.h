@@ -315,7 +315,9 @@ private slots:
   void reapplyPackageFilter();
 
   //TabWidget methods
+  void refreshTabInfo(QString pkgName);
   void refreshTabInfo(bool clearContents=false, bool neverQuit=false);
+
   void refreshTabFiles(bool clearContents=false, bool neverQuit=false);
   void onDoubleClickPackageList();
   void changedTabIndex();

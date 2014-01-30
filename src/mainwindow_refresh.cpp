@@ -1130,6 +1130,166 @@ void MainWindow::clearStatusBar()
 }
 
 /*
+ * Re-populates the HTML view with 'pkgName' package information (tab ONE)
+ */
+void MainWindow::refreshTabInfo(QString pkgName)
+{
+  QStandardItem *siIcon = getAvailablePackage(pkgName, ctn_PACKAGE_ICON_COLUMN);
+  //QStandardItem *siName = getAvailablePackage(pkgName, ctn_PACKAGE_NAME_COLUMN);
+  QStandardItem *siRepository = getAvailablePackage(pkgName, ctn_PACKAGE_REPOSITORY_COLUMN);
+  QStandardItem *siVersion = getAvailablePackage(pkgName, ctn_PACKAGE_VERSION_COLUMN);
+  //QStandardItem *siDescription = getAvailablePackage(pkgName, ctn_PACKAGE_DESCRIPTION_COLUMN);
+
+  CPUIntensiveComputing cic;
+  PackageInfoData pid;
+
+  if (siRepository->text() != StrConstants::getForeignRepositoryName() &&
+      siIcon->text() == "_NonInstalled"){
+    pid = Package::getInformation(pkgName);
+  }
+  else
+  {
+    pid = Package::getInformation(pkgName, true); //This is a foreign package!!!
+  }
+
+  //Let's put package description in UTF-8 format
+  QString pkgDescription = pid.description;
+  pkgDescription = pkgDescription.fromUtf8(pkgDescription.toLatin1().data());
+  QString version = StrConstants::getVersion();
+  QString url = StrConstants::getURL();
+  QString licenses = StrConstants::getLicenses();
+  QString groups = StrConstants::getGroups();
+  QString provides = StrConstants::getProvides();
+  QString dependsOn = StrConstants::getDependsOn();
+  QString requiredBy = StrConstants::getRequiredBy();
+  QString optionalFor = StrConstants::getOptionalFor();
+  QString optionalDeps = StrConstants::getOptionalDeps();
+  QString conflictsWith = StrConstants::getConflictsWith();
+  QString replaces = StrConstants::getReplaces();
+  QString downloadSize = StrConstants::getDownloadSize();
+  QString installedSize = StrConstants::getInstalledSize();
+  QString packager = StrConstants::getPackager();
+  QString architecture = StrConstants::getArchitecture();
+  QString buildDate = StrConstants::getBuildDate();
+
+  QTextBrowser *text = ui->twProperties->widget(
+        ctn_TABINDEX_INFORMATION)->findChild<QTextBrowser*>("textBrowser");
+
+  if (text)
+  {
+    QString html;
+    QString valDownloadSize =
+        QString("%1 KB").arg(pid.downloadSize, 6, 'f', 2);
+
+    QString valInstalledSize =
+        QString("%1 KB").arg(pid.installedSize, 6, 'f', 2);
+
+    text->clear();
+    QString anchorBegin = "anchorBegin";
+
+    html += "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">";
+    html += "<a id=\"" + anchorBegin + "\"></a>";
+
+    html += "<h2>" + pkgName + "</h2>";
+    html += "<a style=\"font-size:16px;\">" + pkgDescription + "</a>";
+
+    html += "<table border=\"0\">";
+
+    html += "<tr><th width=\"20%\"></th><th width=\"80%\"></th></tr>";
+    html += "<tr><td>" + url + "</td><td style=\"font-size:14px;\">" + pid.url + "</td></tr>";
+
+    int mark = siIcon->text().indexOf('^');
+    if (mark >= 0)
+    {
+      if (siIcon->text().contains("outdated", Qt::CaseInsensitive))
+      {
+        if (siRepository->text() != StrConstants::getForeignRepositoryName())
+        {
+          QString outdatedVersion = siIcon->text().right(siIcon->text().size()-mark-1);
+          html += "<tr><td>" + version + "</td><td>" + siVersion->text() + " <b><font color=\"#E55451\">"
+              + StrConstants::getOutdatedInstalledVersion().arg(outdatedVersion) +
+              "</b></font></td></tr>";
+        }
+      }
+      else
+      {
+        QString newerVersion = siIcon->text().right(siIcon->text().size()-mark-1);
+        html += "<tr><td>" + version + "</td><td>" + siVersion->text() + " <b><font color=\"#FF8040\">"
+            + StrConstants::getNewerInstalledVersion().arg(newerVersion) +
+            "</b></font></td></tr>";
+      }
+    }
+    else
+    {
+      if (siRepository->text() != StrConstants::getForeignRepositoryName())
+      {
+        html += "<tr><td>" + version + "</td><td>" + siVersion->text() + "</td></tr>";
+      }
+      else
+      {
+        if (siIcon->icon().pixmap(QSize(22,22)).toImage() ==
+            IconHelper::getIconForeignRed().pixmap(QSize(22,22)).toImage() &&
+            m_outdatedYaourtPackagesNameVersion->count() > 0)
+        {
+          QString availableVersion = m_outdatedYaourtPackagesNameVersion->value(pkgName);
+          html += "<tr><td>" + version + "</td><td>" + availableVersion + " <b><font color=\"#E55451\">"
+              + StrConstants::getOutdatedInstalledVersion().arg(siVersion->text()) +
+              "</b></font></td></tr>";
+        }
+        else
+        {
+          html += "<tr><td>" + version + "</td><td>" + siVersion->text() + "</td></tr>";
+        }
+      }
+    }
+
+    //This is needed as packager names could be encoded in different charsets, resulting in an error
+    QString packagerName = pid.packager;
+    packagerName = packagerName.replace("<", "&lt;");
+    packagerName = packagerName.replace(">", "&gt;");
+    packagerName = packagerName.fromUtf8(packagerName.toLatin1().data());
+
+    QString strConflictsWith = pid.conflictsWith;
+    strConflictsWith = strConflictsWith.replace("<", "&lt;");
+    strConflictsWith = strConflictsWith.replace(">", "&gt;");
+    strConflictsWith = strConflictsWith.replace("&lt;br&gt;", "<br>");
+
+    html += "<tr><td>" + licenses + "</td><td>" + pid.license + "</td></tr>";
+
+    //Show this info only if there's something to show
+    if(! pid.group.contains("None"))
+      html += "<tr><td>" + groups + "</td><td>" + pid.group + "</td></tr>";
+    if(! pid.provides.contains("None"))
+      html += "<tr><td>" + provides + "</td><td>" + pid.provides + "</td></tr>";
+    if(! pid.dependsOn.contains("None"))
+      html += "<tr><td>" + dependsOn + "</td><td>" + pid.dependsOn + "</td></tr>";
+    if(! pid.optDepends.contains("None"))
+      html += "<tr><td>" + optionalDeps + "</td><td>" + pid.optDepends + "</td></tr>";
+    if(!pid.requiredBy.isEmpty() && !pid.requiredBy.contains("None"))
+      html += "<tr><td>" + requiredBy + "</td><td>" + pid.requiredBy + "</td></tr>";
+    if(!pid.optionalFor.isEmpty() && !pid.optionalFor.contains("None"))
+      html += "<tr><td>" + optionalFor + "</td><td>" + pid.optionalFor + "</td></tr>";
+    if(! pid.conflictsWith.contains("None"))
+      html += "<tr><td><b>" + conflictsWith + "</b></td><td><b>" + strConflictsWith +
+          "</b></font></td></tr>";
+
+    if(! pid.replaces.contains("None"))
+      html += "<tr><td>" + replaces + "</td><td>" + pid.replaces + "</td></tr>";
+
+    html += "<tr><td>" + downloadSize + "</td><td>" + valDownloadSize + "</td></tr>";
+    html += "<tr><td>" + installedSize + "</td><td>" + valInstalledSize + "</td></tr>";
+    html += "<tr><td>" + packager + "</td><td>" + packagerName + "</td></tr>";
+    html += "<tr><td>" + architecture + "</td><td>" + pid.arch + "</td></tr>";
+    html += "<tr><td>" + buildDate + "</td><td>" +
+        pid.buildDate.toString("ddd - dd/MM/yyyy hh:mm:ss") + "</td></tr>";
+
+    html += "</table>";
+    text->setHtml(html);
+    text->scrollToAnchor(anchorBegin);
+  }
+}
+
+/*
  * Re-populates the HTML view with selected package's information (tab ONE)
  */
 void MainWindow::refreshTabInfo(bool clearContents, bool neverQuit)

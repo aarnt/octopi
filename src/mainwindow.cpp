@@ -160,12 +160,29 @@ void MainWindow::outputTextBrowserAnchorClicked(const QUrl &link)
 
     if (foundItems.count() > 0)
     {
-      QStandardItem * si = foundItems.first();
+      /*QStandardItem * si = foundItems.first();
       QModelIndex indexIcon = sim->index(si->row(), ctn_PACKAGE_ICON_COLUMN);
       QModelIndex proxyIndex = m_proxyModelPackages->mapFromSource(indexIcon);
       ui->tvPackages->scrollTo(proxyIndex, QAbstractItemView::PositionAtCenter);
       ui->tvPackages->setCurrentIndex(proxyIndex);
-      _changeTabWidgetPropertiesIndex(ctn_TABINDEX_INFORMATION);
+      _changeTabWidgetPropertiesIndex(ctn_TABINDEX_INFORMATION);*/
+
+      QStandardItem * si = foundItems.first();
+      QModelIndex indexIcon = sim->index(si->row(), ctn_PACKAGE_ICON_COLUMN);
+      QModelIndex proxyIndex = m_proxyModelPackages->mapFromSource(indexIcon);
+      if(proxyIndex.isValid())
+      {
+        ui->tvPackages->scrollTo(proxyIndex, QAbstractItemView::PositionAtCenter);
+        ui->tvPackages->setCurrentIndex(proxyIndex);
+        _changeTabWidgetPropertiesIndex(ctn_TABINDEX_INFORMATION);
+      }
+      else
+      {
+        refreshTabInfo(pkgName);
+        disconnect(ui->twProperties, SIGNAL(currentChanged(int)), this, SLOT(changedTabIndex()));
+        _ensureTabVisible(ctn_TABINDEX_INFORMATION);
+        connect(ui->twProperties, SIGNAL(currentChanged(int)), this, SLOT(changedTabIndex()));
+      }
     }
   }
   else
@@ -899,7 +916,8 @@ QString MainWindow::_extractBaseFileName(const QString &fileName)
 {
   QString baseFileName(fileName);
 
-  if (fileName.endsWith('/')) {
+  if (fileName.endsWith('/'))
+  {
     baseFileName.remove(baseFileName.size()-1, 1);
   }
 
@@ -1080,7 +1098,9 @@ void MainWindow::_positionTextEditCursorAtEnd()
 {
   QTextBrowser *textEdit =
       ui->twProperties->widget(ctn_TABINDEX_OUTPUT)->findChild<QTextBrowser*>("textOutputEdit");
-  if (textEdit){
+
+  if (textEdit)
+  {
     QTextCursor tc = textEdit->textCursor();
     tc.clearSelection();
     tc.movePosition(QTextCursor::End);
