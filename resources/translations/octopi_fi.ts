@@ -164,12 +164,12 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="353"/>
         <source>Collapse all items</source>
-        <translation>Laajenna kaikki</translation>
+        <translation>Supista kaikki</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="362"/>
         <source>Expand all items</source>
-        <translation>Supista kaikki</translation>
+        <translation>Laajenna kaikki</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="371"/>
