@@ -252,9 +252,9 @@ void MainWindow::keyPressEvent(QKeyEvent* ke)
  * This Event method is called whenever the user releases a key (useful to navigate in the packagelist)
  */
 void MainWindow::keyReleaseEvent(QKeyEvent *ke)
-{
+{  
   static int i=0;
-  static int k=-9999;
+  static int k=-9999; //last key pressed
   static int k_count=0;
   QStandardItemModel *sim=_getCurrentSelectedModel();
 
@@ -266,7 +266,9 @@ void MainWindow::keyReleaseEvent(QKeyEvent *ke)
     if (fi.count() > 0){
       if ( (ke->key() != k) || (fi.count() != k_count) ) i=0;
 
-      foreach (QStandardItem* si, fi){
+      //We have to remove every ModelIndex which is not shown by the TreeView due to filtering
+      foreach (QStandardItem* si, fi)
+      {
         QModelIndex mi = si->index();
         mi = m_proxyModelPackages->mapFromSource(mi);
         if (!m_proxyModelPackages->hasIndex(mi.row(), mi.column())) fi.removeAll(si);
@@ -275,6 +277,41 @@ void MainWindow::keyReleaseEvent(QKeyEvent *ke)
       if (fi.count()==0)
       {
         return;
+      }
+
+      QModelIndex currentIndex = ui->tvPackages->currentIndex();
+      QModelIndex firstIndex = fi[0]->index();
+      firstIndex =  m_proxyModelPackages->mapFromSource(firstIndex);
+      QModelIndex lastIndex = fi[fi.count()-1]->index();
+      lastIndex =  m_proxyModelPackages->mapFromSource(lastIndex);
+
+      //std::cout << "CurrentIndex row: " << currentIndex.row() << std::endl;
+      //std::cout << "LastIndex row: " << lastIndex.row() << std::endl;
+
+      if (currentIndex.row() < firstIndex.row() || currentIndex.row() > lastIndex.row())
+      {
+        i=0;
+      }
+      else
+      {
+        for(int ind=0; ind<fi.count(); ind++)
+        {
+          QModelIndex miAux = fi[ind]->index();
+          miAux = m_proxyModelPackages->mapFromSource(miAux);
+
+          if(miAux ==ui->tvPackages->currentIndex() )
+          {
+            int newIndex = ind+1;
+            if(newIndex > fi.count()-1)
+            {
+              i=0;
+            }
+            else
+            {
+              i=newIndex;
+            }
+          }
+        }
       }
 
       ui->tvPackages->selectionModel()->clear();
@@ -287,8 +324,11 @@ void MainWindow::keyReleaseEvent(QKeyEvent *ke)
       ui->tvPackages->selectionModel()->setCurrentIndex(maux, QItemSelectionModel::Select);
       ui->tvPackages->setCurrentIndex(mi);
 
-      if ((i <= fi.count()-1)) i++;
-      if (i == fi.count()) i = 0;
+      //If we happen to be over the last package of the list...
+      if (currentIndex.row() == lastIndex.row()-1)
+      {
+        i=0;
+      }
     }
 
     k = ke->key();
