@@ -419,7 +419,7 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="153"/>
         <source>Ctrl+Shift+Y to display Yaourt group</source>
-        <translation>Ctrl+Shift+G pro zobrazení skupiny Jogurt</translation>
+        <translation>Ctrl+Shift+G pro zobrazení skupiny Yaourt, což znamená jogurt</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="156"/>
