@@ -414,7 +414,7 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="151"/>
         <source>Ctrl+Shift+R to remove Pacman&apos;s transaction lock file</source>
-        <translation>Ctrl+Shift+R para remover o ficheiro de bloqueio de transação do Pacman</translation>
+        <translation>Ctrl+Shift+R para remover o ficheiro de bloqueio de transacção do Pacman</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="153"/>
@@ -712,7 +712,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="245"/>
         <source> (newer installed version is %1)</source>
-        <translation>(versão mais nova e instalada é %1)</translation>
+        <translation>(versão mais recente instalada é %1)</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="249"/>
@@ -817,7 +817,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="329"/>
         <source>Command finished OK!</source>
-        <translation>Comando termiinou com sucesso!</translation>
+        <translation>Comando terminou com sucesso!</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="333"/>
@@ -897,7 +897,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="393"/>
         <source>Do you want to execute this transaction in a Terminal?</source>
-        <translation>Gostaria de executar esta transacção em um Terminal?</translation>
+        <translation>Gostaria de executar esta transacção num Terminal?</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="397"/>
@@ -907,12 +907,12 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="401"/>
         <source>Do you really want to remove Pacman&apos;s transaction lock file?</source>
-        <translation>Deseja realmente remover o ficheiro de bloqueio de transação do Pacman?</translation>
+        <translation>Deseja realmente remover o ficheiro de bloqueio de transacção do Pacman?</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="405"/>
         <source>Do you really want to rollback the transaction?</source>
-        <translation>Deseja realmente desfazer a transação?</translation>
+        <translation>Deseja realmente desfazer a transacção?</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="409"/>
