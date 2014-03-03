@@ -134,6 +134,7 @@ QByteArray UnixCommand::performQuery(const QStringList args)
   QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
   env.insert("LANG", "C");
   env.insert("LC_MESSAGES", "C");
+  env.insert("LC_ALL", "C");
   pacman.setProcessEnvironment(env);
 
   pacman.start("pacman", args);
@@ -156,6 +157,7 @@ QByteArray UnixCommand::performQuery(const QString &args)
   QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
   env.insert("LANG", "C");
   env.insert("LC_MESSAGES", "C");
+  env.insert("LC_ALL", "C");
   pacman.setProcessEnvironment(env);
 
   pacman.start("pacman " + args);
