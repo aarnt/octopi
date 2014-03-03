@@ -722,7 +722,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="253"/>
         <source>Searching for %1 latest news...</source>
-        <translation>Son haberlerin %1 i aranıyor</translation>
+        <translation>%1 un son haberleri aranıyor</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="257"/>
