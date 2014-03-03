@@ -1,5 +1,6 @@
 0.4.0 (dev)
   Updated turkish translation.
+  Fixed getBuildDate code to always convert dates to english format.
 
 0.3.2
   Cleaned unused code.
