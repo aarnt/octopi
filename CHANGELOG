@@ -1,6 +1,9 @@
 0.4.0 (dev)
-  Updated turkish translation.
+  Updated README file.
+  Updated some icons to unclutter the UI (thanks to Anke Boersma).
+  Refactoring in some code to not generate translatable strings.
   Fixed getBuildDate code to always convert dates to english format.
+  Updated some translations.
 
 0.3.2
   Cleaned unused code.
