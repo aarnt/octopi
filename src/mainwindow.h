@@ -168,6 +168,8 @@ private:
   QToolButton *m_toolButtonYaourt;
   QMenu *m_menuToolButtonYaourt;
   QAction *m_actionInstallYaourtUpdates;
+  QAction *m_actionShowGroups;
+  QAction *m_actionMirrorCheck;
 
   QByteArray m_horizontalSplit;
 

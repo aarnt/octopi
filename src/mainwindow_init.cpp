@@ -102,10 +102,6 @@ void MainWindow::saveSettings(int saveSettingsReason){
       SettingsManager::instance()->setPackageListOrderedCol(m_PackageListOrderedCol);
       SettingsManager::instance()->setPackageListSortOrder(m_PackageListSortOrder);
       break;
-
-    case ectn_IconifyOnStart:
-      //SettingsManager::instance()->setStartIconified(m_actionIconifyOnStart->isChecked());
-      break;
   }
 }
 
@@ -175,7 +171,6 @@ void MainWindow::initPackageGroups()
   ui->twGroups->setSelectionMode(QAbstractItemView::SingleSelection);
 
   connect(ui->twGroups, SIGNAL(itemSelectionChanged()), this, SLOT(onPackageGroupChanged()));
-  //connect(ui->twGroups, SIGNAL(currentItemChanged(QTreeWidgetItem*,QTreeWidgetItem*)), this, SLOT(metaBuildPackageList()));
 }
 
 /*
@@ -210,7 +205,7 @@ void MainWindow::initToolBar()
 
   if(UnixCommand::hasTheExecutable(ctn_MIRROR_CHECK_APP))
   {
-    ui->mainToolBar->addAction(ui->actionMirrorCheck);
+    ui->mainToolBar->addAction(m_actionMirrorCheck);
   }
 
   m_leFilterPackage->setMinimumHeight(24);
@@ -221,7 +216,7 @@ void MainWindow::initToolBar()
   hSpacer->setMinimumWidth(3);
   hSpacer->setVisible(true);
   ui->mainToolBar->addWidget(hSpacer);
-  ui->mainToolBar->addAction(ui->actionShowGroups);
+  ui->mainToolBar->addAction(m_actionShowGroups);
   ui->mainToolBar->toggleViewAction()->setEnabled(false);
   ui->mainToolBar->toggleViewAction()->setVisible(false);
 }
@@ -596,7 +591,11 @@ void MainWindow::initActions()
 {
   if(UnixCommand::hasTheExecutable(ctn_MIRROR_CHECK_APP))
   {
-    connect(ui->actionMirrorCheck, SIGNAL(triggered()), this, SLOT(doMirrorCheck()));
+    m_actionMirrorCheck = new QAction(this);
+    m_actionMirrorCheck->setShortcut(QKeySequence(Qt::ControlModifier|Qt::ShiftModifier|Qt::Key_M));
+    m_actionMirrorCheck->setText("Mirror-Check");
+    m_actionMirrorCheck->setIcon(QIcon(":/resources/images/mirror-check.png"));
+    connect(m_actionMirrorCheck, SIGNAL(triggered()), this, SLOT(doMirrorCheck()));
   }
 
   m_actionInstallPacmanUpdates = new QAction(this);
@@ -613,10 +612,13 @@ void MainWindow::initActions()
 
   toggleTransactionActions(true);
 
-  ui->actionShowGroups->setText(StrConstants::getGroups());
-  ui->actionShowGroups->setCheckable(true);
-  ui->actionShowGroups->setChecked(true);
-  connect(ui->actionShowGroups, SIGNAL(triggered()), this, SLOT(hideGroupsWidget()));
+  m_actionShowGroups = new QAction(this);
+  m_actionShowGroups->setIcon(QIcon(":/resources/images/show_groups.png"));
+  m_actionShowGroups->setText(StrConstants::getGroups());
+  m_actionShowGroups->setCheckable(true);
+  m_actionShowGroups->setChecked(true);
+  m_actionShowGroups->setShortcut(QKeySequence(Qt::Key_F9));
+  connect(m_actionShowGroups, SIGNAL(triggered()), this, SLOT(hideGroupsWidget()));
 
   QActionGroup *actionGroup = new QActionGroup(this);
   actionGroup->addAction(ui->actionSearchByDescription);

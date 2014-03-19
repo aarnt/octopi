@@ -305,9 +305,19 @@ void MainWindow::preBuildYaourtPackageListMeta()
  */
 void MainWindow::preBuildPackageList()
 {
+  //Just a flag to keep the last "if" from executing twice...
+  static bool secondTime=false;
+
   if (m_listOfPackages) m_listOfPackages->clear();
   m_listOfPackages = g_fwPacman.result();
   buildPackageList();
+
+  if(!secondTime && UnixCommand::hasTheExecutable(ctn_MIRROR_CHECK_APP))
+  {
+    qApp->processEvents(QEventLoop::AllEvents, 2000);
+    doMirrorCheck();
+    secondTime=true;
+  }
 }
 
 /*

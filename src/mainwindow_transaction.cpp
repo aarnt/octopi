@@ -1422,7 +1422,7 @@ void MainWindow::toggleTransactionActions(const bool value)
 
   if(UnixCommand::hasTheExecutable(ctn_MIRROR_CHECK_APP))
   {
-    ui->actionMirrorCheck->setEnabled(value);
+    m_actionMirrorCheck->setEnabled(value);
   }
 
   ui->actionSyncPackages->setEnabled(value);
@@ -1443,7 +1443,7 @@ void MainWindow::toggleSystemActions(const bool value)
 {
   if(UnixCommand::hasTheExecutable(ctn_MIRROR_CHECK_APP))
   {
-    ui->actionMirrorCheck->setEnabled(value);
+    m_actionMirrorCheck->setEnabled(value);
   }
 
   ui->actionSyncPackages->setEnabled(value);

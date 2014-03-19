@@ -55,7 +55,7 @@ void MainWindow::initTabHelpUsage()
   QString strForMoreInfo = tr("For more information, visit:");
   QString html =
     QString("<h2>Octopi</h2>") +
-    QString("<h3><p>") + tr("A Qt4-based Pacman frontend,") + " " +
+    QString("<h3><p>") + tr("A Qt-based Pacman frontend,") + " " +
     tr("licensed under the terms of") + " ";
 
   if (UnixCommand::getLinuxDistro() == ectn_MANJAROLINUX &&

@@ -117,12 +117,6 @@ void MainWindow::show()
     QMainWindow::show();
 
     metaBuildPackageList();
-
-    if(UnixCommand::hasTheExecutable(ctn_MIRROR_CHECK_APP))
-    {
-      qApp->processEvents(QEventLoop::AllEvents, 2000);
-      doMirrorCheck();
-    }
   }
   else
     QMainWindow::show();
