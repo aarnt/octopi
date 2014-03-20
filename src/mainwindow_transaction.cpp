@@ -662,8 +662,7 @@ bool MainWindow::_isSUAvailable()
 void MainWindow::doMirrorCheck()
 {
   if (m_commandExecuting != ectn_NONE ||
-      !UnixCommand::hasInternetConnection() ||
-      !UnixCommand::hasTheExecutable(ctn_MIRROR_CHECK_APP)) return;
+      !UnixCommand::hasInternetConnection()) return;
 
   m_commandExecuting = ectn_MIRROR_CHECK;
   disableTransactionActions();
@@ -690,9 +689,6 @@ void MainWindow::doMirrorCheck()
 void MainWindow::doSyncDatabase()
 {
   doRemovePacmanLockFile();
-
-  //If there are no means to run the actions, we must warn!
-  //if (!_isSUAvailable()) return;
 
   m_commandExecuting = ectn_SYNC_DATABASE;
   disableTransactionActions();
@@ -1594,7 +1590,7 @@ void MainWindow::actionsProcessFinished(int exitCode, QProcess::ExitStatus)
 
         //Did it synchronize any repo? If so, let's refresh some things...
         if (UnixCommand::isAppRunning("octopi-notifier", true) ||
-            _textInTabOutput(StrConstants::getSyncing()))
+            (_IsSyncingRepoInTabOutput()))
         {
           bool firstGroup = isAllGroupsSelected();
 
@@ -1615,8 +1611,6 @@ void MainWindow::actionsProcessFinished(int exitCode, QProcess::ExitStatus)
         if (!isYaourtGroupSelected())
         {
           buildPackageList(false);
-
-          //_rebuildPackageList();
         }
         else
         {
@@ -1625,7 +1619,6 @@ void MainWindow::actionsProcessFinished(int exitCode, QProcess::ExitStatus)
         }
       }
 
-      //connect(m_pacmanDatabaseSystemWatcher, SIGNAL(directoryChanged(QString)), this, SLOT(metaBuildPackageList()));
       clearTransactionTreeView();
 
       //Does it still need to upgrade another packages due to SyncFirst issues???
@@ -1661,12 +1654,11 @@ void MainWindow::actionsProcessFinished(int exitCode, QProcess::ExitStatus)
     toggleSystemActions(false);
   }
 
-  m_commandExecuting = ectn_NONE;
-
-  if (bRefreshGroups)
+  if (m_commandExecuting != ectn_MIRROR_CHECK && bRefreshGroups)
     refreshGroupsWidget();
 
   m_unixCommand->removeTemporaryActionFile();
+  m_commandExecuting = ectn_NONE;
 }
 
 /*
