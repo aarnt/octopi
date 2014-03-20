@@ -30,6 +30,10 @@
 #include <QTextStream>
 #include <QtNetwork/QNetworkInterface>
 
+/*
+ * Collection of methods to execute many Unix commands
+ */
+
 QFile *UnixCommand::m_temporaryFile = 0;
 
 /*
@@ -50,6 +54,7 @@ QString UnixCommand::runCommand(const QString& commandToRun)
   proc.waitForFinished(-1);
   QString res = proc.readAllStandardError();
   proc.close();
+
   return res;
 }
 
@@ -140,8 +145,8 @@ QByteArray UnixCommand::performQuery(const QStringList args)
   pacman.start("pacman", args);
   pacman.waitForFinished();
   result = pacman.readAllStandardOutput();
-
   pacman.close();
+
   return result;
 }
 
@@ -436,10 +441,10 @@ bool UnixCommand::hasInternetConnection()
   }
 
   //It seems to be alright, but let's make a ping to see the result
-  if (result == true)
+  /*if (result == true)
   {
     result = UnixCommand::doInternetPingTest();
-  }
+  }*/
 
   return result;
 }
@@ -646,7 +651,17 @@ void UnixCommand::runCommandInTerminal(const QStringList& commandList){
     m_process->start(cmd);
   }
   else if (WMHelper::isKDERunning() && UnixCommand::hasTheExecutable(ctn_KDE_TERMINAL)){
-    QString cmd = suCommand + " \"" + ctn_KDE_TERMINAL + " --nofork -e bash -c " + ftemp->fileName() + "\"";
+    QString cmd;
+
+    if (isRootRunning())
+    {
+      cmd = "dbus-launch " + ctn_KDE_TERMINAL + " --nofork -e bash -c " + ftemp->fileName();
+    }
+    else
+    {
+      cmd = suCommand + " \"" + ctn_KDE_TERMINAL + " --nofork -e bash -c " + ftemp->fileName() + "\"";
+    }
+
     m_process->start(cmd);
   }
   else if (WMHelper::isTDERunning() && UnixCommand::hasTheExecutable(ctn_TDE_TERMINAL)){
@@ -726,7 +741,16 @@ void UnixCommand::runCommandInTerminalAsNormalUser(const QStringList &commandLis
  */
 void UnixCommand::executeCommand(const QString &pCommand)
 {
-  QString command = WMHelper::getSUCommand() + "\"" + pCommand + "\"";
+  QString command;
+
+  if(isRootRunning())
+  {
+    command += "dbus-launch " + pCommand;
+  }
+  else
+  {
+    command = WMHelper::getSUCommand() + "\"" + pCommand + "\"";
+  }
 
   m_process->start(command);
 }

@@ -246,6 +246,8 @@ private:
   void _expandItem(QTreeView* tv, QStandardItemModel* sim, QModelIndex* mi);
   void _positionTextEditCursorAtEnd();
   bool _textInTabOutput(const QString& findText);
+  bool _IsSyncingRepoInTabOutput();
+
   bool _searchForKeyVerbs(const QString& msg);
   bool _splitOutputStrings(const QString &output);
   void _treatProcessOutput(const QString &pMsg);

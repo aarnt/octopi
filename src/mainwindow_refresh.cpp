@@ -83,7 +83,7 @@ void MainWindow::refreshGroupsWidget()
   QList<QTreeWidgetItem *> items;
 
   ui->twGroups->clear();
-  m_hasYaourt = UnixCommand::hasTheExecutable("yaourt");
+  m_hasYaourt = UnixCommand::hasTheExecutable("yaourt") && !UnixCommand::isRootRunning();
 
   items.append(new QTreeWidgetItem((QTreeWidget*)0, QStringList("<" + StrConstants::getDisplayAllGroups() + ">")));
   m_AllGroupsItem = items.at(0);
@@ -190,6 +190,12 @@ void MainWindow::buildPackagesFromGroupList()
     }
 
     counter++;
+
+    if (counter % 100 == 0)
+    {
+      qApp->processEvents();
+    }
+
     m_progressWidget->setValue(counter);
     qApp->processEvents();
     it++;
@@ -253,8 +259,8 @@ void MainWindow::buildPackagesFromGroupList()
 
 void MainWindow::_deleteStandardItemModel(QStandardItemModel * sim)
 {
-  for (int c=0; c<sim->columnCount()-1; c++)
-  for(int r=0; r<sim->rowCount()-1; r++)
+  for(int c=0; c<= sim->columnCount()-1; c++)
+  for(int r=0; r<= sim->rowCount()-1; r++)
   {
     delete sim->item(r, c);
   }
@@ -314,7 +320,6 @@ void MainWindow::preBuildPackageList()
 
   if(!secondTime && UnixCommand::hasTheExecutable(ctn_MIRROR_CHECK_APP))
   {
-    qApp->processEvents(QEventLoop::AllEvents, 2000);
     doMirrorCheck();
     secondTime=true;
   }
@@ -411,7 +416,7 @@ void MainWindow::_showPackagesWithNoDescription()
 void MainWindow::buildPackageList(bool nonBlocking)
 {
   CPUIntensiveComputing cic;
-  bool hasYaourt = UnixCommand::hasTheExecutable("yaourt");
+  bool hasYaourt = UnixCommand::hasTheExecutable("yaourt") && !UnixCommand::isRootRunning();
 
   static bool firstTime = true;
 
@@ -465,7 +470,6 @@ void MainWindow::buildPackageList(bool nonBlocking)
   m_progressWidget->setRange(0, list->count());
   m_progressWidget->setValue(0);
 
-  int counter=0;
   PackageListData pld;
 
   while (itForeign != listForeign->end())
@@ -496,6 +500,8 @@ void MainWindow::buildPackageList(bool nonBlocking)
   QList<PackageListData>::const_iterator it = list->begin();
   QList<QStandardItem*> lIcons, lNames, lVersions, lRepositories, lDescriptions;
   QList<QStandardItem*> lIcons2, lNames2, lVersions2, lRepositories2, lDescriptions2;
+
+  int counter=0;
 
   while(it != list->end())
   {
@@ -567,6 +573,12 @@ void MainWindow::buildPackageList(bool nonBlocking)
     }
 
     counter++;
+
+    if (counter % 200 == 0)
+    {
+      qApp->processEvents();
+    }
+
     m_progressWidget->setValue(counter);
     it++;
   }
@@ -662,7 +674,7 @@ void MainWindow::buildPackageList(bool nonBlocking)
  */
 void MainWindow::_rebuildPackageList()
 {
-  bool hasYaourt = UnixCommand::hasTheExecutable("yaourt");
+  bool hasYaourt = UnixCommand::hasTheExecutable("yaourt") && !UnixCommand::isRootRunning();
 
   //Let's get outdatedPackages list again!
   m_outdatedPackageList = Package::getOutdatedPackageList();
@@ -800,6 +812,12 @@ void MainWindow::_rebuildPackageList()
     }
 
     counter++;
+
+    if (counter % 100 == 0)
+    {
+      qApp->processEvents();
+    }
+
     m_progressWidget->setValue(counter);
     it++;
   }
@@ -849,7 +867,7 @@ void MainWindow::_cloneModelPackages()
 
   QList<QStandardItem*> lIconsC, lNamesC, lVersionsC, lRepositoriesC, lDescriptionsC;
 
-  for(int r=0; r<m_modelPackages->rowCount()-1; r++)
+  for(int r=0; r<= m_modelPackages->rowCount()-1; r++)
   {
     lIconsC << m_modelPackages->item(r, ctn_PACKAGE_ICON_COLUMN)->clone();
     lNamesC << m_modelPackages->item(r, ctn_PACKAGE_NAME_COLUMN)->clone();

@@ -5,6 +5,8 @@
 #include <QApplication>
 #include <QtGui>
 
+//#define NO_GTK_STYLE
+
 int main(int argc, char *argv[])
 {
   if (UnixCommand::isAppRunning("octopi-notifier")) return (-1);
@@ -12,7 +14,7 @@ int main(int argc, char *argv[])
   QApplication a(argc, argv);
 
 #if QT_VERSION < 0x050000
-  #ifndef KAOS
+  #ifndef NO_GTK_STYLE
   QApplication::setGraphicsSystem(QLatin1String("raster"));
 
   if(UnixCommand::getLinuxDistro() == ectn_MANJAROLINUX &&

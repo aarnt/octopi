@@ -1,4 +1,7 @@
 0.4.0 (dev)
+  BugFix: running as root was broken in KDE.
+  BugFix: The preventing code for always refresh the pkg list was flawed.
+  BugFix: hasInternetConnection code fixed to improve mirror-check speed.
   Refactorings here and there to make it more Chakra friendly.
   Updated README file.
   Updated some icons to unclutter the UI (thanks to Anke Boersma).

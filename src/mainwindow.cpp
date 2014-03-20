@@ -1141,6 +1141,26 @@ bool MainWindow::_textInTabOutput(const QString& findText)
 }
 
 /*
+ * Helper method to find the "Synching repo..." strings
+ */
+bool MainWindow::_IsSyncingRepoInTabOutput()
+{
+  bool res;
+  QTextBrowser *text =
+      ui->twProperties->widget(ctn_TABINDEX_OUTPUT)->findChild<QTextBrowser*>("textOutputEdit");
+  if (text)
+  {
+    _positionTextEditCursorAtEnd();
+    //We have to find at least two times, as "Synching" string will always be the first text in output
+    res = text->find(StrConstants::getSyncing(), QTextDocument::FindBackward | QTextDocument::FindWholeWords);
+    res = text->find(StrConstants::getSyncing(), QTextDocument::FindBackward | QTextDocument::FindWholeWords);
+    _positionTextEditCursorAtEnd();
+  }
+
+  return res;
+}
+
+/*
  * Helper method that opens an existing file using the available program/DE.
  */
 void MainWindow::openFile()
