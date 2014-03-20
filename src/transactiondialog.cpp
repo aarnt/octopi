@@ -20,42 +20,53 @@
 #include "transactiondialog.h"
 #include "uihelper.h"
 #include "strconstants.h"
+#include "unixcommand.h"
 
 #include <QMessageBox>
 #include <QPushButton>
 #include <QDialog>
 
+/*
+ * This is the dialog used to show the transaction summary
+ */
+
 TransactionDialog::TransactionDialog(QWidget* parent) :
-   QDialog(parent),
-   ui(new Ui::TransactionDialog)
+  QDialog(parent),
+  ui(new Ui::TransactionDialog)
 {
-   ui->setupUi(this);
-      
-   m_runInTerminalButton =
-       new QPushButton(IconHelper::getIconTerminal(), StrConstants::getRunInTerminal());
-   ui->buttonBox->addButton(m_runInTerminalButton, QDialogButtonBox::AcceptRole);
+  ui->setupUi(this);
 
-   QPushButton *yesButton = ui->buttonBox->button(QDialogButtonBox::Yes);
-   QPushButton *noButton = ui->buttonBox->button(QDialogButtonBox::No);
-   noButton->setFocus();
+  m_runInTerminalButton =
+      new QPushButton(IconHelper::getIconTerminal(), StrConstants::getRunInTerminal());
+  ui->buttonBox->addButton(m_runInTerminalButton, QDialogButtonBox::AcceptRole);
 
-   connect(m_runInTerminalButton, SIGNAL(clicked()), this,
-           SLOT(slotRunInTerminal()));
-   connect(yesButton, SIGNAL(clicked()), this, SLOT(slotYes()));
-   connect(noButton, SIGNAL(clicked()), this, SLOT(reject()));
+  QPushButton *yesButton = ui->buttonBox->button(QDialogButtonBox::Yes);
+  QPushButton *noButton = ui->buttonBox->button(QDialogButtonBox::No);
 
-   setWindowFlags(Qt::MSWindowsFixedSizeDialogHint | Qt::Dialog |
-                  Qt::WindowTitleHint | Qt::WindowSystemMenuHint | Qt::WindowCloseButtonHint);
+  noButton->setFocus();
+
+  connect(m_runInTerminalButton, SIGNAL(clicked()), this,
+          SLOT(slotRunInTerminal()));
+  connect(yesButton, SIGNAL(clicked()), this, SLOT(slotYes()));
+  connect(noButton, SIGNAL(clicked()), this, SLOT(reject()));
+
+  setWindowFlags(Qt::MSWindowsFixedSizeDialogHint | Qt::Dialog |
+                 Qt::WindowTitleHint | Qt::WindowSystemMenuHint | Qt::WindowCloseButtonHint);
+
+  if(UnixCommand::getLinuxDistro()==ectn_CHAKRA)
+  {
+    removeYesButton();
+  }
 }
 
 void TransactionDialog::setText(const QString text)
 {
-   ui->text->setText(text);
+  ui->text->setText(text);
 }
 
 void TransactionDialog::setInformativeText(const QString text)
 {
-   ui->informativeText->setText(text);
+  ui->informativeText->setText(text);
 }
 
 void TransactionDialog::setDetailedText(const QString detailedtext)
@@ -63,6 +74,9 @@ void TransactionDialog::setDetailedText(const QString detailedtext)
   ui->detailedText->setText(detailedtext);
 }
 
+/*
+ * Useful when you don't want to rely on pacman's -noconfirm option
+ */
 void TransactionDialog::removeYesButton()
 {
   QPushButton *yesButton = ui->buttonBox->button(QDialogButtonBox::Yes);

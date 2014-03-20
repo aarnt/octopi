@@ -1,4 +1,5 @@
 0.4.0 (dev)
+  Refactorings here and there to make it more Chakra friendly.
   Updated README file.
   Updated some icons to unclutter the UI (thanks to Anke Boersma).
   Refactoring in some code to not generate translatable strings.

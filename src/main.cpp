@@ -29,7 +29,7 @@
 #include <QtGui>
 #include <QMessageBox>
 
-//#define KAOS
+//#define NO_GTK_STYLE
 
 int main(int argc, char *argv[])
 {
@@ -107,7 +107,7 @@ int main(int argc, char *argv[])
   app.setQuitOnLastWindowClosed(false);
 
 #if QT_VERSION < 0x050000
-  #ifndef KAOS
+  #ifndef NO_GTK_STYLE
   if (!argList->getSwitch("-style"))
   {
     if (UnixCommand::getLinuxDistro() == ectn_MANJAROLINUX &&

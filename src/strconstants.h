@@ -49,7 +49,11 @@ public:
   }
 
   static QString getForeignRepositoryName(){
-    if (UnixCommand::getLinuxDistro() == ectn_KAOS)
+    if (UnixCommand::getLinuxDistro() == ectn_CHAKRA)
+    {
+      return "CCR";
+    }
+    else if (UnixCommand::getLinuxDistro() == ectn_KAOS)
     {
       return "non-repo";
     }
