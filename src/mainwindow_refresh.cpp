@@ -153,7 +153,6 @@ void MainWindow::buildPackagesFromGroupList()
 
   QStandardItem *parentItemPackagesFromGroup = m_modelPackagesFromGroup->invisibleRootItem();
   QStandardItem *parentItemInstalledPackagesFromGroup = m_modelInstalledPackagesFromGroup->invisibleRootItem();
-
   QList<QString>::const_iterator it = list->begin();
   QList<QStandardItem*> lIcons, lNames, lVersions, lRepositories, lDescriptions;
   QList<QStandardItem*> lIcons2, lNames2, lVersions2, lRepositories2, lDescriptions2;
@@ -259,8 +258,8 @@ void MainWindow::buildPackagesFromGroupList()
 
 void MainWindow::_deleteStandardItemModel(QStandardItemModel * sim)
 {
-  for(int c=0; c<= sim->columnCount()-1; c++)
-  for(int r=0; r<= sim->rowCount()-1; r++)
+  for(int c=0; c< sim->columnCount(); c++)
+  for(int r=0; r< sim->rowCount(); r++)
   {
     delete sim->item(r, c);
   }
@@ -867,7 +866,7 @@ void MainWindow::_cloneModelPackages()
 
   QList<QStandardItem*> lIconsC, lNamesC, lVersionsC, lRepositoriesC, lDescriptionsC;
 
-  for(int r=0; r<= m_modelPackages->rowCount()-1; r++)
+  for(int r=0; r< m_modelPackages->rowCount(); r++)
   {
     lIconsC << m_modelPackages->item(r, ctn_PACKAGE_ICON_COLUMN)->clone();
     lNamesC << m_modelPackages->item(r, ctn_PACKAGE_NAME_COLUMN)->clone();
@@ -1731,17 +1730,30 @@ void MainWindow::refreshTabFiles(bool clearContents, bool neverQuit)
     modelPkgFileList->clear();
     QStandardItem *fakeRoot = fakeModelPkgFileList->invisibleRootItem();
     QStandardItem *root = modelPkgFileList->invisibleRootItem();
-    QStandardItem *bkpDir, *item, *bkpItem=root, *parent;
+    QStandardItem *lastDir, *item, *lastItem=root, *parent;
     bool first=true;
-    bkpDir = root;
+    lastDir = root;
 
     fileList = Package::getContents(pkgName, !nonInstalled);
 
     if (fileList.count() > 0) CPUIntensiveComputing cic;
 
+    bool isSymLinkToDir = false;
     foreach ( QString file, fileList ){
       bool isDir = file.endsWith('/');
+      isSymLinkToDir = false;
       QString baseFileName = _extractBaseFileName(file);
+
+      //Let's test if it is not a symbolic link to a dir
+      if(!isDir)
+      {
+        QFileInfo fiTestForSymLink(file);
+        if(fiTestForSymLink.isSymLink())
+        {
+          QFileInfo fiTestForDir(fiTestForSymLink.symLinkTarget());
+          isSymLinkToDir = fiTestForDir.isDir();
+        }
+      }
 
       if(isDir){
         if ( first == true ){
@@ -1750,34 +1762,71 @@ void MainWindow::refreshTabFiles(bool clearContents, bool neverQuit)
           fakeRoot->appendRow ( item );
         }
         else{
-          if ( file.indexOf ( bkpDir->text() ) != -1 ){
+          //std::cout << "Testing if " << file.toLatin1().data() << " contains " << lastDir->text().toLatin1().data() << std::endl;
+          if ( file.contains ( lastDir->text() + QDir::separator() )){
+            //std::cout << "It contains !!! So " << lastDir->text().toLatin1().data() << " is its parent." << std::endl;
             item = new QStandardItem ( IconHelper::getIconFolder(), baseFileName );
             item->setAccessibleDescription("directory " + item->text());
-            bkpDir->appendRow ( item );
+            lastDir->appendRow ( item );
           }
           else{
-            parent = bkpItem->parent();
+            //std::cout << "It doens't contain..." << std::endl;
+            parent = lastItem->parent();
             do{
-              if ( parent == 0 || file.indexOf ( parent->text() ) != -1 ) break;
+              //if (parent != 0) std::cout << "Testing if " << file.toLatin1().data() << " contains " << parent->text().toLatin1().data() << std::endl;
+              if ( parent == 0 || file.contains ( parent->text() + QDir::separator() )) break;
               parent = parent->parent();
             }
             while ( parent != fakeRoot );
 
             item = new QStandardItem ( IconHelper::getIconFolder(), baseFileName );
             item->setAccessibleDescription("directory " + item->text());
-            if ( parent != 0 ) parent->appendRow ( item );
-            else fakeRoot->appendRow ( item );
+
+            if ( parent != 0 )
+            {
+              //std::cout << item->text().toLatin1().data() << " is son of " << parent->text().toLatin1().data() << std::endl;
+              parent->appendRow ( item );
+            }
+            else
+            {
+              //std::cout << item->text().toLatin1().data() << " is son of <FAKEROOT>" << std::endl;
+              fakeRoot->appendRow ( item );
+            }
           }
         }
-        bkpDir = item;
-      }
-      else{
-        item = new QStandardItem ( IconHelper::getIconBinary(), baseFileName );
-        item->setAccessibleDescription("file " + item->text());
-        parent = bkpDir;
+
+        lastDir = item;
+      }            
+      else if (isSymLinkToDir)
+      {
+        item = new QStandardItem ( IconHelper::getIconFolder(), baseFileName );
+        item->setAccessibleDescription("directory " + item->text());
+        parent = lastDir;
 
         do{
-          if ( parent == 0 || file.indexOf ( parent->text() ) != -1 ) break;
+          //if (parent != 0) std::cout << "Testing if " << file.toLatin1().data() << " contains " << parent->text().toLatin1().data() << std::endl;
+          if ( parent == 0 || file.contains ( parent->text() + QDir::separator())) break;
+          parent = parent->parent();
+        }
+        while ( parent != fakeRoot );
+
+        if (parent != 0)
+        {
+          parent->appendRow ( item );
+        }
+        else
+        {
+          fakeRoot->appendRow ( item );
+        }
+      }
+      else
+      {
+        item = new QStandardItem ( IconHelper::getIconBinary(), baseFileName );
+        item->setAccessibleDescription("file " + item->text());
+        parent = lastDir;
+
+        do{
+          if ( parent == 0 || file.contains ( parent->text() )) break;
           parent = parent->parent();
         }
         while ( parent != fakeRoot );
@@ -1785,7 +1834,7 @@ void MainWindow::refreshTabFiles(bool clearContents, bool neverQuit)
         parent->appendRow ( item );
       }
 
-      bkpItem = item;
+      lastItem = item;
       first = false;
     }
 
@@ -1795,7 +1844,7 @@ void MainWindow::refreshTabFiles(bool clearContents, bool neverQuit)
     tvPkgFileList->setModel(modelPkgFileList);
     tvPkgFileList->header()->setDefaultAlignment( Qt::AlignCenter );
     modelPkgFileList->setHorizontalHeaderLabels( QStringList() <<
-                                                 StrConstants::getContentsOf().arg(pkgName));
+                                                 StrConstants::getContentsOf().arg(pkgName));   
   }
 
   strSelectedPackage = siRepository->text()+"#"+siName->text()+"#"+siVersion->text();
@@ -1815,6 +1864,7 @@ void MainWindow::refreshTabFiles(bool clearContents, bool neverQuit)
 void MainWindow::reapplyPackageFilter()
 {
   CPUIntensiveComputing cic;
+
   bool isFilterPackageSelected = m_leFilterPackage->hasFocus();
   QString search = Package::parseSearchString(m_leFilterPackage->text());
   QRegExp regExp(search, Qt::CaseInsensitive, QRegExp::RegExp);
