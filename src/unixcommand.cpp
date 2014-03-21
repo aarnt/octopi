@@ -73,8 +73,11 @@ QString UnixCommand::runCurlCommand(const QString& commandToRun){
   proc.waitForFinished(-1);
 
   QString res("");
+
   if (proc.exitCode() != 0)
+  {
     res = proc.readAllStandardError();
+  }
 
   proc.close();
   return res;
@@ -593,8 +596,19 @@ void UnixCommand::openRootTerminal(){
     QString cmd = WMHelper::getSUCommand() + " \"" + ctn_XFCE_TERMINAL + "\"";
     m_process->startDetached(cmd);
   }
-  else if (WMHelper::isKDERunning() && UnixCommand::hasTheExecutable(ctn_KDE_TERMINAL)){
-    QString cmd = WMHelper::getSUCommand() + " \"" + ctn_KDE_TERMINAL + "\"";
+  else if (WMHelper::isKDERunning() && UnixCommand::hasTheExecutable(ctn_KDE_TERMINAL))
+  {
+    QString cmd;
+
+    if(UnixCommand::isRootRunning())
+    {
+      cmd = "dbus-launch " + ctn_KDE_TERMINAL;
+    }
+    else
+    {
+      cmd = WMHelper::getSUCommand() + " \"" + ctn_KDE_TERMINAL + "\"";
+    }
+
     m_process->startDetached(cmd);
   }
   else if (WMHelper::isTDERunning() && UnixCommand::hasTheExecutable(ctn_TDE_TERMINAL)){

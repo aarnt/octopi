@@ -327,7 +327,15 @@ void WMHelper::openFile(const QString& fileName){
   }
   else if (isKDERunning() && UnixCommand::hasTheExecutable(ctn_KDE4_FILE_MANAGER)){
     s << fileToOpen;
-    p->startDetached( ctn_KDE4_OPEN, s );
+
+    if (UnixCommand::isRootRunning())
+    {
+      p->startDetached( "dbus-launch " + ctn_KDE4_OPEN + " " + fileToOpen );
+    }
+    else
+    {
+      p->startDetached( ctn_KDE4_OPEN, s );
+    }
   }
   else if (isTDERunning() && UnixCommand::hasTheExecutable(ctn_TDE_FILE_MANAGER)){
     s << "exec";
@@ -447,7 +455,15 @@ void WMHelper::openDirectory( const QString& dirName ){
       if (UnixCommand::hasTheExecutable(ctn_KDE4_FILE_MANAGER))
       {
         s << dir;
-        p->startDetached( ctn_KDE4_FILE_MANAGER, s);
+
+        if (UnixCommand::isRootRunning())
+        {
+          p->startDetached( "dbus-launch " + ctn_KDE4_FILE_MANAGER + " " + dir);
+        }
+        else
+        {
+          p->startDetached( ctn_KDE4_FILE_MANAGER, s);
+        }
       }
       else if (UnixCommand::hasTheExecutable(ctn_KDE_FILE_MANAGER))
       {
@@ -502,9 +518,17 @@ void WMHelper::openTerminal(const QString& dirName){
       p->startDetached( ctn_XFCE_TERMINAL, s );
     }
     else if (isKDERunning() && UnixCommand::hasTheExecutable(ctn_KDE_TERMINAL)){
-      s << "--workdir";
+      s << "--workdir";            
       s << dirName;
-      p->startDetached( ctn_KDE_TERMINAL, s );
+
+      if (UnixCommand::isRootRunning())
+      {
+        p->startDetached( "dbus-launch " + ctn_KDE_TERMINAL + " --workdir " + dirName);
+      }
+      else
+      {
+        p->startDetached( ctn_KDE_TERMINAL, s );
+      }
     }
     else if (isTDERunning() && UnixCommand::hasTheExecutable(ctn_TDE_TERMINAL)){
       s << "--workdir";
