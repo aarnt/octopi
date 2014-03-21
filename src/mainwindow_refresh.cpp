@@ -320,7 +320,7 @@ void MainWindow::preBuildPackageList()
 
   if(!secondTime && UnixCommand::hasTheExecutable(ctn_MIRROR_CHECK_APP))
   {
-    //doMirrorCheck();
+    doMirrorCheck();
     secondTime=true;
   }
 }
@@ -1811,7 +1811,7 @@ void MainWindow::refreshTabFiles(bool clearContents, bool neverQuit)
         if (parent != 0) fullPath = PackageController::showFullPathOfItem(parent->index());
 
         do{
-          //if (parent != 0) std::cout << "Testing if " << file.toLatin1().data() << " contains " << fullPath.toLatin1().data() << std::endl;
+          //if (parent != 0) std::cout << "Testing if symlink" << file.toLatin1().data() << " contains " << fullPath.toLatin1().data() << std::endl;
           if ( parent == 0 || file.contains ( fullPath )) break;
           parent = parent->parent();
           if (parent != 0) fullPath = PackageController::showFullPathOfItem(parent->index());

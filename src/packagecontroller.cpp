@@ -61,6 +61,12 @@ QString PackageController::showFullPathOfItem( const QModelIndex &index ){
     str += sl[i];
   }
 
+  QFileInfo fileInfo(str);
+  if (fileInfo.isDir())
+  {
+    str += QDir::separator();
+  }
+
   return str;
 }
 
