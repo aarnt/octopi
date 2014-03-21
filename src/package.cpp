@@ -991,7 +991,7 @@ QHash<QString, QString> Package::getYaourtOutdatedPackagesNameVersion()
  */
 QStringList Package::getContents(const QString& pkgName, bool isInstalled)
 {
-  QStringList rsl;
+  QStringList slResult;
   QByteArray result;
 
   if (isInstalled)
@@ -1006,17 +1006,37 @@ QStringList Package::getContents(const QString& pkgName, bool isInstalled)
   }
 
   QString aux(result);
-  rsl = aux.split("\n", QString::SkipEmptyParts);
+  QStringList rsl = aux.split("\n", QString::SkipEmptyParts);
 
   if ( !rsl.isEmpty() ){
     if (rsl.at(0) == "./"){
       rsl.removeFirst();
     }
-    rsl.replaceInStrings(QRegExp(pkgName + " "), "");
-    rsl.sort();
+
+    if (isInstalled)
+    {
+      rsl.replaceInStrings(QRegExp(pkgName + " "), "");
+      rsl.sort();
+      slResult = rsl;
+    }
+    /* If the filelist came from pkgfile, it's something like this:
+       apps/kdemultimedia-juk  /usr/share/doc/kde/html/en/juk/search-playlist.png */
+    else
+    {
+      QStringList rsl2;
+      foreach(QString line, rsl)
+      {
+        QStringList slAux = line.split("\t", QString::SkipEmptyParts);
+        rsl2.append(QString(slAux.at(1).trimmed()));
+      }
+
+      rsl2.sort();
+      slResult = rsl2;
+    }
+
   }
 
-  return rsl;
+  return slResult;
 }
 
 /*
