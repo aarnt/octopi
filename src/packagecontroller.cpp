@@ -87,7 +87,7 @@ QList<QModelIndex> * PackageController::findFileEx( const QString& name, const Q
   foundItems = sim->findItems(Package::parseSearchString(name), Qt::MatchRegExp|Qt::MatchRecursive);
   foreach(QStandardItem *item, foundItems)
   {
-    if (item->accessibleDescription().contains("directory")) continue;
+    //if (item->accessibleDescription().contains("directory")) continue;
 
     res->append(item->index());
   }
