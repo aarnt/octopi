@@ -1,6 +1,7 @@
 Installing Octopi is a pretty straightforward task. 
 
-Assuming you have updated Qt4 libs installed in your system, just run:
+Assuming you have updated Qt4(*) libs installed in your system, all 
+you have to do is run:
 
 	makepkg -f
 
@@ -18,3 +19,6 @@ Environment.
 
 
 Enjoy!
+
+(*) Octopi is also Qt5 compatible, you'll only have to adjust the 
+"depends" section in PKGBUILD.

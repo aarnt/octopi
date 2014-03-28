@@ -31,6 +31,10 @@
   #include <QtConcurrentMap>
 #endif
 
+/*
+ * Global functions related to multithread programming
+ */
+
 QFutureWatcher<QString> g_fwToolTip;
 QFutureWatcher<QList<PackageListData> *> g_fwPacman;
 QFutureWatcher<QList<QString> *> g_fwPacmanGroup;
