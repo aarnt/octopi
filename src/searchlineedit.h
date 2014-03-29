@@ -11,14 +11,14 @@
 
 #include <QLineEdit>
 
-class QToolButton;
+class QPushButton;
 
 class SearchLineEdit : public QLineEdit
 {
   Q_OBJECT
 
 private:
-  QToolButton *mSearchButton;
+  QPushButton *mSearchButton;
   QString styleSheetForCurrentState() const;
   QString buttonStyleSheetForCurrentState() const;
 

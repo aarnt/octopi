@@ -11,15 +11,16 @@
 #include "mainwindow.h"
 
 #include <QApplication>
-#include <QToolButton>
+#include <QPushButton>
 #include <QStyle>
 
 SearchLineEdit::SearchLineEdit(QWidget *parent) :
   QLineEdit(parent){
 
   // Create the search button and set its icon, cursor, and stylesheet
-  this->mSearchButton = new QToolButton(this);
+  this->mSearchButton = new QPushButton(this);
   this->mSearchButton->setFixedSize(18, 18);
+  this->mSearchButton->setIconSize(QSize(18,18));
   this->mSearchButton->setCursor(Qt::ArrowCursor);
   this->mSearchButton->setStyleSheet(this->buttonStyleSheetForCurrentState());
 
@@ -50,7 +51,7 @@ void SearchLineEdit::resizeEvent(QResizeEvent *event)
     this->mSearchButton->move(5, (this->rect().bottom() + 10 - size.height()) / 2);
   }*/
 
-  this->mSearchButton->move(5, 2);
+  this->mSearchButton->move(5, (this->rect().height() - this->mSearchButton->height()) / 2);
 }
 
 void SearchLineEdit::updateSearchButton(const QString &text)
@@ -124,18 +125,23 @@ void SearchLineEdit::setNotFoundStyle(){
 
 QString SearchLineEdit::buttonStyleSheetForCurrentState() const
 {
-  QString style;
-  style += "QToolButton {";
-  style += "border: none; margin: 0; padding: 0;";
-  style += QString("background-image: url(:/resources/images/esf-%1.png);").arg(this->text().isEmpty() ? "search" : "clear");
-  style += "}";
+//  QString style;
+//  style += "QToolButton {";
+//  style += "border: none; margin: 0; padding: 0;";
+//  style += QString("background-image: url(:/resources/images/esf-%1.png);").arg(this->text().isEmpty() ? "search" : "clear");
+//  style += "}";
+
+    this->text().isEmpty() ? this->mSearchButton->setIcon(IconHelper::getIconSearch())
+                           : this->mSearchButton->setIcon(IconHelper::getIconClear());
+    this->mSearchButton->setFlat(true);
 
   if (!this->text().isEmpty())
   {
-    style += "QToolButton:pressed { background-image: url(:/resources/images/esf-clear-active.png); }";
+//    style += "QToolButton:pressed { background-image: url(:/resources/images/esf-clear-active.png); }";
     this->mSearchButton->setToolTip(StrConstants::getClear());
   }
   else this->mSearchButton->setToolTip("");
 
-  return style;
+//  return style;
+  return QString();
 }
