@@ -131,7 +131,7 @@ void SearchLineEdit::setNotFoundStyle(){
 QString SearchLineEdit::buttonStyleSheetForCurrentState() const
 {
   // When using KDE avoid stylesheet customization
-  if (WMHelper::isKDERunning()) {
+  if (WMHelper::isKDERunning() && UnixCommand::getLinuxDistro() != ectn_KAOS) {
     this->text().isEmpty() ? this->mSearchButton->setIcon(IconHelper::getIconSearch())
                            : this->mSearchButton->setIcon(IconHelper::getIconClear());
     this->mSearchButton->setAutoRaise(true);
