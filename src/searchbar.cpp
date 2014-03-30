@@ -20,6 +20,7 @@
 
 #include "searchbar.h"
 #include "searchlineedit.h"
+#include "uihelper.h"
 #include <QHBoxLayout>
 #include <QToolButton>
 #include <QStyleOption>
@@ -58,7 +59,7 @@ void SearchBar::init()
   m_nextButton->setAutoRaise(true);
 
   QToolButton *tbClose = new QToolButton();
-  tbClose->setIcon(QIcon(":/resources/images/window_close.png"));
+  tbClose->setIcon(IconHelper::getIconClose());
 
   tbClose->setAutoRaise(true);
   tbClose->setStyleSheet("QToolButton{ font-size: 16px; font-family: verdana; border-radius: 4px; } "

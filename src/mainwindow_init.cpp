@@ -594,7 +594,7 @@ void MainWindow::initActions()
     m_actionMirrorCheck = new QAction(this);
     m_actionMirrorCheck->setShortcut(QKeySequence(Qt::ControlModifier|Qt::ShiftModifier|Qt::Key_M));
     m_actionMirrorCheck->setText("Mirror-Check");
-    m_actionMirrorCheck->setIcon(QIcon(":/resources/images/mirror-check.png"));
+    m_actionMirrorCheck->setIcon(IconHelper::getIconMirrorCheck());
     connect(m_actionMirrorCheck, SIGNAL(triggered()), this, SLOT(doMirrorCheck()));
   }
 
@@ -613,7 +613,7 @@ void MainWindow::initActions()
   toggleTransactionActions(true);
 
   m_actionShowGroups = new QAction(this);
-  m_actionShowGroups->setIcon(QIcon(":/resources/images/show_groups.png"));
+  m_actionShowGroups->setIcon(IconHelper::getIconShowGroups());
   m_actionShowGroups->setText(StrConstants::getGroups());
   m_actionShowGroups->setCheckable(true);
   m_actionShowGroups->setChecked(true);
@@ -665,6 +665,34 @@ void MainWindow::initActions()
   connect(ui->actionOpenDirectory, SIGNAL(triggered()), this, SLOT(openDirectory()));
   connect(ui->actionOpenTerminal, SIGNAL(triggered()), this, SLOT(openTerminal()));
   connect(ui->actionOpenRootTerminal, SIGNAL(triggered()), this, SLOT(openRootTerminal()));
+
+  // Use theme icons for QActions
+  ui->actionSyncPackages->setIcon(IconHelper::getIconSyncPackages());
+  ui->actionCommit->setIcon(IconHelper::getIconCommit());
+  ui->actionRollback->setIcon(IconHelper::getIconRollback());
+  ui->actionExit->setIcon(IconHelper::getIconExit());
+  ui->actionSystemUpgrade->setIcon(IconHelper::getIconSystemUpgrade());
+  ui->actionInstall->setIcon(IconHelper::getIconInstallItem());
+  ui->actionRemove->setIcon(IconHelper::getIconRemoveItem());
+  ui->actionGetNews->setIcon(IconHelper::getIconCommit());
+  ui->actionRemoveGroup->setIcon(IconHelper::getIconGetNews());
+  ui->actionInstallGroup->setIcon(IconHelper::getIconToInstall());
+  ui->actionCollapseItem->setIcon(IconHelper::getIconCollapse());
+  ui->actionExpandItem->setIcon(IconHelper::getIconExpand());
+  ui->actionCollapseAllItems->setIcon(IconHelper::getIconCollapse());
+  ui->actionExpandAllItems->setIcon(IconHelper::getIconExpand());
+  ui->actionOpenFile->setIcon(IconHelper::getIconBinary());
+  ui->actionEditFile->setIcon(IconHelper::getIconEditFile());
+  ui->actionOpenDirectory->setIcon(IconHelper::getIconOpenDirectory());
+  ui->actionOpenTerminal->setIcon(IconHelper::getIconTerminal());
+  ui->actionRemoveTransactionItem->setIcon(IconHelper::getIconClose());
+  ui->actionRemoveTransactionItems->setIcon(IconHelper::getIconClose());
+  ui->actionFindFileInPackage->setIcon(IconHelper::getIconFindFileInPackage());
+  ui->actionOpenRootTerminal->setIcon(IconHelper::getIconTerminal());
+  ui->actionInstallYaourt->setIcon(IconHelper::getIconToInstall());
+  ui->actionHelpAbout->setIcon(IconHelper::getIconHelpAbout());
+  ui->actionHelpUsage->setIcon(IconHelper::getIconHelpUsage());
+  ui->actionInstallLocalPackage->setIcon(IconHelper::getIconInstallLocalPackage());
 
   if (WMHelper::isXFCERunning())
   {
