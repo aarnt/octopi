@@ -11,16 +11,21 @@
 #include "mainwindow.h"
 
 #include <QApplication>
-#include <QPushButton>
+#include <QToolButton>
 #include <QStyle>
 
 SearchLineEdit::SearchLineEdit(QWidget *parent) :
   QLineEdit(parent){
 
   // Create the search button and set its icon, cursor, and stylesheet
-  this->mSearchButton = new QPushButton(this);
-  this->mSearchButton->setFixedSize(18, 18);
-  this->mSearchButton->setIconSize(QSize(18,18));
+  this->mSearchButton = new QToolButton(this);
+
+  // Increase button size a bit for kde
+  if (WMHelper::isKDERunning())
+    this->mSearchButton->setFixedSize(20, 20);
+  else
+    this->mSearchButton->setFixedSize(18, 18);
+
   this->mSearchButton->setCursor(Qt::ArrowCursor);
   this->mSearchButton->setStyleSheet(this->buttonStyleSheetForCurrentState());
 
@@ -125,23 +130,26 @@ void SearchLineEdit::setNotFoundStyle(){
 
 QString SearchLineEdit::buttonStyleSheetForCurrentState() const
 {
-//  QString style;
-//  style += "QToolButton {";
-//  style += "border: none; margin: 0; padding: 0;";
-//  style += QString("background-image: url(:/resources/images/esf-%1.png);").arg(this->text().isEmpty() ? "search" : "clear");
-//  style += "}";
-
+  // When using KDE avoid stylesheet customization
+  if (WMHelper::isKDERunning()) {
     this->text().isEmpty() ? this->mSearchButton->setIcon(IconHelper::getIconSearch())
                            : this->mSearchButton->setIcon(IconHelper::getIconClear());
-    this->mSearchButton->setFlat(true);
+    this->mSearchButton->setAutoRaise(true);
+    return QString();
+  }
+
+  QString style;
+  style += "QToolButton {";
+  style += "border: none; margin: 0; padding: 0;";
+  style += QString("background-image: url(:/resources/images/esf-%1.png);").arg(this->text().isEmpty() ? "search" : "clear");
+  style += "}";
 
   if (!this->text().isEmpty())
   {
-//    style += "QToolButton:pressed { background-image: url(:/resources/images/esf-clear-active.png); }";
+    style += "QToolButton:pressed { background-image: url(:/resources/images/esf-clear-active.png); }";
     this->mSearchButton->setToolTip(StrConstants::getClear());
   }
   else this->mSearchButton->setToolTip("");
 
-//  return style;
-  return QString();
+  return style;
 }

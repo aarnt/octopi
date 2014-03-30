@@ -36,8 +36,7 @@ TransactionDialog::TransactionDialog(QWidget* parent) :
 {
   ui->setupUi(this);
 
-  // Use theme icon for QACtion
-  ui->actionRunInTerminal->setIcon(IconHelper::getIconRunInTerminal());
+  ui->actionRunInTerminal->setIcon(IconHelper::getIconTerminal());
 
   m_runInTerminalButton =
       new QPushButton(IconHelper::getIconTerminal(), StrConstants::getRunInTerminal());
