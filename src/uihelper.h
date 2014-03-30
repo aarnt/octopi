@@ -22,13 +22,17 @@
 #define ICONHELPER_H
 
 #include "wmhelper.h"
+#include "unixcommand.h"
 
 #include <QDir>
 #include <QIcon>
 #include <QApplication>
 #include <QWidget>
 
-//IconHelper provides some very used icons to the interface
+/*
+ * IconHelper provides some very used icons to the interface
+ */
+
 class IconHelper{
 public:
   static QIcon getIconOctopiTransparent(){ return QIcon(":/resources/images/octopi_transparent.png"); }
@@ -54,55 +58,64 @@ public:
   static QIcon getIconFolder()
   {
     if (WMHelper::isKDERunning())
-      return QIcon::fromTheme("folder",QIcon(":/resources/images/folder.png"));
+    {
+      if (UnixCommand::getLinuxDistro() == ectn_KAOS)
+      {
+        return QIcon(":/resources/images/folder.png");
+      }
+      else
+      {
+        return QIcon::fromTheme("folder",QIcon(":/resources/images/folder.png"));
+      }
+    }
     else
       return QIcon(":/resources/images/folder_gnome.png");
   }
 
   static QIcon getIconBinary(){
-    if (WMHelper::isKDERunning())
-        return QIcon::fromTheme("application-x-object",QIcon(":/resources/images/binary.png"));
+    if (WMHelper::isKDERunning() && (UnixCommand::getLinuxDistro() != ectn_KAOS))
+      return QIcon::fromTheme("application-x-object",QIcon(":/resources/images/binary.png"));
     else
-        return QIcon(":/resources/images/binary.png");
+      return QIcon(":/resources/images/binary.png");
   }
 
   static QIcon getIconToRemove(){
-    if (WMHelper::isKDERunning())
+    if (WMHelper::isKDERunning() && (UnixCommand::getLinuxDistro() != ectn_KAOS))
       return QIcon::fromTheme("dialog-cancel", QIcon(":/resources/images/toremove.png"));
     else
       return QIcon(":/resources/images/toremove.png");
   }
 
   static QIcon getIconToInstall(){
-    if (WMHelper::isKDERunning())
+    if (WMHelper::isKDERunning() && (UnixCommand::getLinuxDistro() != ectn_KAOS))
       return QIcon::fromTheme("download", QIcon(":/resources/images/toinstall.png"));
     else
       return QIcon(":/resources/images/toinstall.png");
   }
 
   static QIcon getIconTerminal(){
-    if (WMHelper::isKDERunning())
+    if (WMHelper::isKDERunning() && (UnixCommand::getLinuxDistro() != ectn_KAOS))
       return QIcon::fromTheme("utilities-terminal", QIcon(":/resources/images/terminal.png"));
     else
       return QIcon(":/resources/images/terminal.png");
   }
 
   static QIcon getIconRemoveItem() {
-    if (WMHelper::isKDERunning())
+    if (WMHelper::isKDERunning() && (UnixCommand::getLinuxDistro() != ectn_KAOS))
       return QIcon::fromTheme("list-remove", QIcon(":/resources/images/remove_item.png"));
     else
       return QIcon(":/resources/images/remove_item.png");
   }
 
   static QIcon getIconInstallItem() {
-    if (WMHelper::isKDERunning())
+    if (WMHelper::isKDERunning() && (UnixCommand::getLinuxDistro() != ectn_KAOS))
       return QIcon::fromTheme("list-add", QIcon(":/resources/images/install_item.png"));
     else
       return QIcon(":/resources/images/install_item.png");
   }
 
   static QIcon getIconExit(){
-    if (WMHelper::isKDERunning())
+    if (WMHelper::isKDERunning() && (UnixCommand::getLinuxDistro() != ectn_KAOS))
       return QIcon::fromTheme("application-exit", QIcon(":/resources/images/exit.png"));
     else
       return QIcon(":/resources/images/exit.png");
@@ -110,112 +123,120 @@ public:
 
   // Icons for QActions
   static QIcon getIconSyncPackages(){
-    if (WMHelper::isKDERunning())
+    if (WMHelper::isKDERunning() && (UnixCommand::getLinuxDistro() != ectn_KAOS))
       return QIcon::fromTheme("view-refresh", QIcon(":/resources/images/refresh.png"));
     else
       return QIcon(":/resources/images/refresh.png");
   }
 
   static QIcon getIconCommit(){
-    if (WMHelper::isKDERunning())
+    if (WMHelper::isKDERunning() && (UnixCommand::getLinuxDistro() != ectn_KAOS))
       return QIcon::fromTheme("dialog-ok-apply", QIcon(":/resources/images/commit.png"));
     else
       return QIcon(":/resources/images/commit.png");
   }
 
   static QIcon getIconRollback(){
-    if (WMHelper::isKDERunning())
+    if (WMHelper::isKDERunning() && (UnixCommand::getLinuxDistro() != ectn_KAOS))
       return QIcon::fromTheme("edit-undo", QIcon(":/resources/images/rollback.png"));
     else
       return QIcon(":/resources/images/rollback.png");
   }
 
   static QIcon getIconSystemUpgrade(){
-    if (WMHelper::isKDERunning())
+    if (WMHelper::isKDERunning() && (UnixCommand::getLinuxDistro() != ectn_KAOS))
       return QIcon::fromTheme("go-up", QIcon(":/resources/images/fast_forward.png"));
     else
       return QIcon(":/resources/images/fast_forward.png");
   }
 
   static QIcon getIconGetNews(){
-    if (WMHelper::isKDERunning())
+    if (WMHelper::isKDERunning() && (UnixCommand::getLinuxDistro() != ectn_KAOS))
       return QIcon::fromTheme("application-rss+xml", QIcon(":/resources/images/rss.png"));
     else
       return QIcon(":/resources/images/rss.png");
   }
 
   static QIcon getIconCollapse(){
-    if (WMHelper::isKDERunning())
+    if (WMHelper::isKDERunning() && (UnixCommand::getLinuxDistro() != ectn_KAOS))
       return QIcon::fromTheme("zoom-out", QIcon(":/resources/images/collapse.png"));
     else
       return QIcon(":/resources/images/collapse.png");
   }
 
   static QIcon getIconExpand(){
-    if (WMHelper::isKDERunning())
+    if (WMHelper::isKDERunning() && (UnixCommand::getLinuxDistro() != ectn_KAOS))
       return QIcon::fromTheme("zoom-in", QIcon(":/resources/images/expand.png"));
     else
       return QIcon(":/resources/images/expand.png");
   }
 
   static QIcon getIconEditFile(){
-    if (WMHelper::isKDERunning())
+    if (WMHelper::isKDERunning() && (UnixCommand::getLinuxDistro() != ectn_KAOS))
       return QIcon::fromTheme("document-edit", QIcon(":/resources/images/editfile.png"));
     else
       return QIcon(":/resources/images/editfile.png");
   }
 
   static QIcon getIconOpenDirectory(){
-    if (WMHelper::isKDERunning())
+    if (WMHelper::isKDERunning() && (UnixCommand::getLinuxDistro() != ectn_KAOS))
       return QIcon::fromTheme("document-open-folder", QIcon(":/resources/images/folder.png"));
     else
-      return QIcon(":/resources/images/folder.png");
+    {
+      if (WMHelper::isKDERunning() || WMHelper::isRazorQtRunning())
+      {
+        return QIcon(":/resources/images/folder.png");
+      }
+      else
+      {
+        return QIcon(":/resources/images/folder_gnome.png");
+      }
+    }
   }
 
   static QIcon getIconFindFileInPackage(){
-    if (WMHelper::isKDERunning())
+    if (WMHelper::isKDERunning() && (UnixCommand::getLinuxDistro() != ectn_KAOS))
       return QIcon::fromTheme("edit-find", QIcon(":/resources/images/find.png"));
     else
       return QIcon(":/resources/images/find.png");
   }
 
   static QIcon getIconMirrorCheck(){
-    if (WMHelper::isKDERunning())
+    if (WMHelper::isKDERunning() && (UnixCommand::getLinuxDistro() != ectn_KAOS))
       return QIcon::fromTheme("svn-update", QIcon(":/resources/images/mirror-check.png"));
     else
       return QIcon(":/resources/images/mirror-check.png");
   }
 
   static QIcon getIconShowGroups(){
-    if (WMHelper::isKDERunning())
+    if (WMHelper::isKDERunning() && (UnixCommand::getLinuxDistro() != ectn_KAOS))
       return QIcon::fromTheme("view-list-tree", QIcon(":/resources/images/show_groups.png"));
     else
       return QIcon(":/resources/images/show_groups.png");
   }
 
   static QIcon getIconClose(){
-    if (WMHelper::isKDERunning())
+    if (WMHelper::isKDERunning() && (UnixCommand::getLinuxDistro() != ectn_KAOS))
       return QIcon::fromTheme("edit-delete", QIcon(":/resources/images/window_close.png"));
     else
       return QIcon(":/resources/images/window_close.png");
   }
 
   static QIcon getIconSearch(){
-    if (WMHelper::isKDERunning())
+    if (WMHelper::isKDERunning() && (UnixCommand::getLinuxDistro() != ectn_KAOS))
       return QIcon::fromTheme("edit-find", QIcon(":/resources/images/esf-search.png"));
     else
       return QIcon(":/resources/images/esf-search.png");
   }
 
   static QIcon getIconClear(){
-    if (WMHelper::isKDERunning())
+    if (WMHelper::isKDERunning() && (UnixCommand::getLinuxDistro() != ectn_KAOS))
       return QIcon::fromTheme("edit-clear-locationbar-ltr", QIcon(":/resources/images/esf-clear.png"));
     else
       return QIcon(":/resources/images/esf-clear.png");
   }
 
-  // QActions without icons in Octopi
-  // does this works for gtk, too?
+  //QActions without icons in Octopi does this works for gtk, too?
   static QIcon getIconHelpAbout(){ return QIcon::fromTheme("help-about"); }
   static QIcon getIconHelpUsage(){ return QIcon::fromTheme("help-contents"); }
   static QIcon getIconInstallLocalPackage(){ return QIcon::fromTheme("utilities-file-archiver"); }

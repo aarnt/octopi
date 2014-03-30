@@ -690,9 +690,13 @@ void MainWindow::initActions()
   ui->actionFindFileInPackage->setIcon(IconHelper::getIconFindFileInPackage());
   ui->actionOpenRootTerminal->setIcon(IconHelper::getIconTerminal());
   ui->actionInstallYaourt->setIcon(IconHelper::getIconToInstall());
-  ui->actionHelpAbout->setIcon(IconHelper::getIconHelpAbout());
-  ui->actionHelpUsage->setIcon(IconHelper::getIconHelpUsage());
-  ui->actionInstallLocalPackage->setIcon(IconHelper::getIconInstallLocalPackage());
+
+  if (WMHelper::isKDERunning() && UnixCommand::getLinuxDistro() != ectn_KAOS)
+  {
+    ui->actionHelpAbout->setIcon(IconHelper::getIconHelpAbout());
+    ui->actionHelpUsage->setIcon(IconHelper::getIconHelpUsage());
+    ui->actionInstallLocalPackage->setIcon(IconHelper::getIconInstallLocalPackage());
+  }
 
   if (WMHelper::isXFCERunning())
   {
