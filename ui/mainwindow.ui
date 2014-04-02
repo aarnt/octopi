@@ -22,16 +22,7 @@
     <bool>true</bool>
    </property>
    <layout class="QGridLayout" name="gridLayout">
-    <property name="leftMargin">
-     <number>0</number>
-    </property>
-    <property name="topMargin">
-     <number>0</number>
-    </property>
-    <property name="rightMargin">
-     <number>0</number>
-    </property>
-    <property name="bottomMargin">
+    <property name="margin">
      <number>0</number>
     </property>
     <property name="spacing">
@@ -136,7 +127,7 @@
      <x>0</x>
      <y>0</y>
      <width>552</width>
-     <height>19</height>
+     <height>24</height>
     </rect>
    </property>
    <property name="contextMenuPolicy">
@@ -183,10 +174,18 @@
     <addaction name="actionSearchByDescription"/>
     <addaction name="actionSearchByName"/>
    </widget>
+   <widget class="QMenu" name="menuTools">
+    <property name="title">
+     <string>Tools</string>
+    </property>
+    <addaction name="actionPacmanLogViewer"/>
+    <addaction name="actionRepositoryEditor"/>
+   </widget>
    <addaction name="menuFile"/>
    <addaction name="menuView"/>
    <addaction name="menuSearch"/>
    <addaction name="menuTransaction"/>
+   <addaction name="menuTools"/>
    <addaction name="menuHelp"/>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
@@ -501,6 +500,20 @@
    </property>
    <property name="text">
     <string>Install</string>
+   </property>
+  </action>
+  <action name="actionPacmanLogViewer">
+   <property name="text">
+    <string>Pacman Log Viewer</string>
+   </property>
+  </action>
+  <action name="actionRepositoryEditor">
+   <property name="icon">
+    <iconset resource="../resources.qrc">
+     <normaloff>:/resources/images/octopi_red.png</normaloff>:/resources/images/octopi_red.png</iconset>
+   </property>
+   <property name="text">
+    <string>Repository Editor</string>
    </property>
   </action>
  </widget>

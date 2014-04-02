@@ -698,6 +698,24 @@ void MainWindow::initActions()
     ui->actionInstallLocalPackage->setIcon(IconHelper::getIconInstallLocalPackage());
   }
 
+  // Populate Tools menu
+  ui->menuTools->setVisible(false);
+
+  if(UnixCommand::hasTheExecutable("plv")) {
+    ui->menuTools->setVisible(true);
+    ui->actionPacmanLogViewer->setIcon(QIcon::fromTheme("plv"));
+    connect(ui->actionPacmanLogViewer, SIGNAL(triggered()), this, SLOT(launchPLV()));
+  }
+  else
+    ui->actionPacmanLogViewer->setVisible(false);
+
+  if(UnixCommand::hasTheExecutable("octopi-repoeditor")) {
+    ui->menuTools->setVisible(true);
+    connect(ui->actionRepositoryEditor, SIGNAL(triggered()), this, SLOT(launchRepoEditor()));
+  }
+  else
+    ui->actionRepositoryEditor->setVisible(false);
+
   if (WMHelper::isXFCERunning())
   {
     //Loop through all actions and set their icons (if any) visible to menus.
