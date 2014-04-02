@@ -38,3 +38,7 @@ FORMS   += addrepo.ui \
 
 RESOURCES += \
     resources.qrc
+    
+TRANSLATIONS += resources/translations/octopi_repoeditor_en.ts \
+                resources/translations/octopi_repoeditor_it.ts
+
