@@ -390,6 +390,9 @@ private slots:
   void searchBarClosedEx();
   void outputTextBrowserAnchorClicked(const QUrl & link);
 
+  void launchPLV();
+  void launchRepoEditor();
+
 public slots:
   void doSystemUpgrade(bool syncDatabase = false);
 

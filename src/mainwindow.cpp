@@ -1297,3 +1297,13 @@ void MainWindow::tvPackagesSelectionChanged(const QItemSelection&, const QItemSe
 
   m_lblSelCounter->setText(newMessage);
 }
+
+/*
+ *  Launch Pacman Log Viewer
+ */
+void MainWindow::launchPLV()
+{
+  QProcess *proc = new QProcess();
+  proc->startDetached("plv");
+}
+
