@@ -5,6 +5,8 @@
   BugFix: The preventing code for always refresh the pkg list was flawed.
   BugFix: hasInternetConnection code fixed to improve mirror-check speed.
   Merged Oktopi's code for using KDE icon theme (thanks to Giuseppe Calà).  
+  Added a tools menu with plv and octopi-repoeditor (thanks to Giuseppe 
+	Calà).
   The filelist search now searches directories too.
   Refactorings here and there to make it more Chakra friendly.
   Updated README file.

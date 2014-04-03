@@ -674,8 +674,8 @@ void MainWindow::initActions()
   ui->actionSystemUpgrade->setIcon(IconHelper::getIconSystemUpgrade());
   ui->actionInstall->setIcon(IconHelper::getIconInstallItem());
   ui->actionRemove->setIcon(IconHelper::getIconRemoveItem());
-  ui->actionGetNews->setIcon(IconHelper::getIconCommit());
-  ui->actionRemoveGroup->setIcon(IconHelper::getIconGetNews());
+  ui->actionGetNews->setIcon(IconHelper::getIconGetNews());
+  ui->actionRemoveGroup->setIcon(IconHelper::getIconRemoveItem());
   ui->actionInstallGroup->setIcon(IconHelper::getIconToInstall());
   ui->actionCollapseItem->setIcon(IconHelper::getIconCollapse());
   ui->actionExpandItem->setIcon(IconHelper::getIconExpand());
@@ -699,18 +699,20 @@ void MainWindow::initActions()
   }
 
   // Populate Tools menu
-  ui->menuTools->setVisible(false);
+  ui->menuTools->menuAction()->setVisible(false);
 
-  if(UnixCommand::hasTheExecutable("plv")) {
-    ui->menuTools->setVisible(true);
+  if(UnixCommand::hasTheExecutable("plv"))
+  {
+    ui->menuTools->menuAction()->setVisible(true);
     ui->actionPacmanLogViewer->setIcon(QIcon::fromTheme("plv"));
     connect(ui->actionPacmanLogViewer, SIGNAL(triggered()), this, SLOT(launchPLV()));
   }
   else
     ui->actionPacmanLogViewer->setVisible(false);
 
-  if(UnixCommand::hasTheExecutable("octopi-repoeditor")) {
-    ui->menuTools->setVisible(true);
+  if(UnixCommand::hasTheExecutable("octopi-repoeditor") && UnixCommand::getLinuxDistro() != ectn_KAOS)
+  {
+    ui->menuTools->menuAction()->setVisible(true);
     connect(ui->actionRepositoryEditor, SIGNAL(triggered()), this, SLOT(launchRepoEditor()));
   }
   else

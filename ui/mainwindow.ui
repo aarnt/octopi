@@ -22,7 +22,16 @@
     <bool>true</bool>
    </property>
    <layout class="QGridLayout" name="gridLayout">
-    <property name="margin">
+    <property name="leftMargin">
+     <number>0</number>
+    </property>
+    <property name="topMargin">
+     <number>0</number>
+    </property>
+    <property name="rightMargin">
+     <number>0</number>
+    </property>
+    <property name="bottomMargin">
      <number>0</number>
     </property>
     <property name="spacing">
@@ -127,7 +136,7 @@
      <x>0</x>
      <y>0</y>
      <width>552</width>
-     <height>24</height>
+     <height>19</height>
     </rect>
    </property>
    <property name="contextMenuPolicy">
@@ -503,8 +512,14 @@
    </property>
   </action>
   <action name="actionPacmanLogViewer">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
    <property name="text">
     <string>Pacman Log Viewer</string>
+   </property>
+   <property name="visible">
+    <bool>true</bool>
    </property>
   </action>
   <action name="actionRepositoryEditor">
