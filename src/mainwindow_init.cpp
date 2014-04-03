@@ -112,7 +112,7 @@ void MainWindow::initAppIcon()
 {
   m_outdatedPackageList = Package::getOutdatedPackageList();
 
-  if (UnixCommand::hasTheExecutable("yaourt"))
+  if (UnixCommand::hasTheExecutable(StrConstants::getForeignRepositoryToolName()))
   {
     m_outdatedYaourtPackageList = Package::getOutdatedYaourtPackageList();
   }

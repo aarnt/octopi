@@ -50,17 +50,40 @@ public:
 
   static QString getForeignRepositoryName(){
     if (UnixCommand::getLinuxDistro() == ectn_CHAKRA)
-    {
-      return "CCR";
-    }
-    else if (UnixCommand::getLinuxDistro() == ectn_KAOS)
-    {
-      return "non-repo";
-    }
-    else
-    {
-      return "AUR";
-    }
+      return QLatin1String( "CCR" );
+
+    if (UnixCommand::getLinuxDistro() == ectn_KAOS)
+      return QLatin1String( "non-repo" );
+
+    return QLatin1String( "AUR" );
+  }
+
+  static QString getForeignPkgRepositoryName(){
+    if (UnixCommand::getLinuxDistro() == ectn_CHAKRA)
+      return QLatin1String( "ccr" );
+
+    return QLatin1String( "aur" );
+  }
+
+  static QString getForeignRepositoryToolName()
+  {
+      if( UnixCommand::getLinuxDistro() == ectn_CHAKRA )
+          return QLatin1String( "ccr" );
+      return QLatin1String( "yaourt" );
+  }
+
+  static QString getForeignRepositoryGroupName()
+  {
+      if( UnixCommand::getLinuxDistro() == ectn_CHAKRA )
+          return QLatin1String( "Ccr" );
+      return QLatin1String( "Yaourt" );
+  }
+
+  static QString getForeignRepositoryTargetPrefix()
+  {
+      if( UnixCommand::getLinuxDistro() == ectn_CHAKRA )
+          return QLatin1String( "ccr/" );
+      return QLatin1String( "aur/" );
   }
 
   static QString getArchLinuxNews(){
@@ -96,6 +119,8 @@ public:
   }
 
   static QString getYaourtGroup(){
+    if( UnixCommand::getLinuxDistro() == ectn_CHAKRA )
+      return QLatin1String( "<Ccr>" );
     return "<Yaourt>";
   }
 
