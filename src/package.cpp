@@ -242,9 +242,9 @@ QStringList *Package::getOutdatedYaourtPackageList()
       QString pkgName;
       pkgName = parts[0];
 
-      if (pkgName.contains("aur/", Qt::CaseInsensitive))
+      if (pkgName.contains(StrConstants::getForeignRepositoryTargetPrefix(), Qt::CaseInsensitive))
       {
-        pkgName = pkgName.remove("aur/");
+        pkgName = pkgName.remove(StrConstants::getForeignRepositoryTargetPrefix());
         //Let's ignore the "IgnorePkg" list of packages...
         if (!ignorePkgList.contains(pkgName))
         {
@@ -509,13 +509,13 @@ QList<PackageListData> * Package::getYaourtPackageList(const QString& searchStri
       int a = repoName.indexOf("/");
       pkgRepository = repoName.left(a);
 
-      if (pkgRepository != "aur")
+      if (pkgRepository != StrConstants::getForeignPkgRepositoryName())
       {
         res->removeAt(res->count()-1);
         continue;
       }
 
-      pkgRepository = "AUR";
+      pkgRepository = StrConstants::getForeignPkgRepositoryName().toUpper();
 
       pkgName = repoName.mid(a+1);
       pkgVersion = parts[1];
@@ -563,7 +563,7 @@ QList<PackageListData> * Package::getYaourtPackageList(const QString& searchStri
     res->append(pld);
   }
 
-  if (res->count() > 0 && res->at(0).repository != "AUR") res->removeAt(0);
+  if (res->count() > 0 && res->at(0).repository != StrConstants::getForeignPkgRepositoryName().toUpper()) res->removeAt(0);
 
   return res;
 }
@@ -969,15 +969,19 @@ QString Package::getInformationDescription(const QString &pkgName, bool foreignP
  */
 QHash<QString, QString> Package::getYaourtOutdatedPackagesNameVersion()
 {
-  QString res = UnixCommand::getYaourtPackageVersionInformation();
   QHash<QString, QString> hash;
+
+  if(UnixCommand::getLinuxDistro() == ectn_CHAKRA)
+    return hash;
+
+  QString res = UnixCommand::getYaourtPackageVersionInformation();
 
   QStringList listOfPkgs = res.split("\n", QString::SkipEmptyParts);
   foreach (QString line, listOfPkgs)
   {
-    if (line.contains("aur/", Qt::CaseInsensitive))
+    if (line.contains(StrConstants::getForeignRepositoryTargetPrefix(), Qt::CaseInsensitive))
     {
-      line = line.remove("aur/");
+      line = line.remove(StrConstants::getForeignRepositoryTargetPrefix());
       QStringList nameVersion = line.split(" ", QString::SkipEmptyParts);
       hash.insert(nameVersion.at(0), nameVersion.at(1));
     }

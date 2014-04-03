@@ -84,7 +84,7 @@ void MainWindow::refreshGroupsWidget()
   QList<QTreeWidgetItem *> items;
 
   ui->twGroups->clear();
-  m_hasYaourt = UnixCommand::hasTheExecutable("yaourt") && !UnixCommand::isRootRunning();
+  m_hasYaourt = UnixCommand::hasTheExecutable(StrConstants::getForeignRepositoryToolName()) && !UnixCommand::isRootRunning();
 
   items.append(new QTreeWidgetItem((QTreeWidget*)0, QStringList("<" + StrConstants::getDisplayAllGroups() + ">")));
   m_AllGroupsItem = items.at(0);
@@ -416,7 +416,7 @@ void MainWindow::_showPackagesWithNoDescription()
 void MainWindow::buildPackageList(bool nonBlocking)
 {
   CPUIntensiveComputing cic;
-  bool hasYaourt = UnixCommand::hasTheExecutable("yaourt") && !UnixCommand::isRootRunning();
+  bool hasYaourt = UnixCommand::hasTheExecutable(StrConstants::getForeignRepositoryToolName()) && !UnixCommand::isRootRunning();
 
   static bool firstTime = true;
 
@@ -674,7 +674,7 @@ void MainWindow::buildPackageList(bool nonBlocking)
  */
 void MainWindow::_rebuildPackageList()
 {
-  bool hasYaourt = UnixCommand::hasTheExecutable("yaourt") && !UnixCommand::isRootRunning();
+  bool hasYaourt = UnixCommand::hasTheExecutable(StrConstants::getForeignRepositoryToolName()) && !UnixCommand::isRootRunning();
 
   //Let's get outdatedPackages list again!
   m_outdatedPackageList = Package::getOutdatedPackageList();

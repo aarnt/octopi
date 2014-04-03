@@ -25,6 +25,7 @@
  */
 
 #include "processwrapper.h"
+#include "../strconstants.h"
 #include <iostream>
 
 #include <QProcess>
@@ -99,9 +100,9 @@ void ProcessWrapper::onSingleShot()
     proc.waitForFinished(-1);
     QString out = proc.readAll();
 
-    if (out.contains("yaourt", Qt::CaseInsensitive))
+    if (out.contains(StrConstants::getForeignRepositoryToolName(), Qt::CaseInsensitive))
     {
-      pAux.start("ps -o pid -C yaourt");
+      pAux.start("ps -o pid -C " + StrConstants::getForeignRepositoryToolName());
       pAux.waitForFinished(-1);
       saux = pAux.readAll();
       slist = saux.split("\n", QString::SkipEmptyParts);

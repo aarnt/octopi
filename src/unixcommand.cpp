@@ -189,7 +189,7 @@ QByteArray UnixCommand::performYaourtCommand(const QString &args)
   env.insert("LC_MESSAGES", "C");
   yaourt.setProcessEnvironment(env);
 
-  yaourt.start("yaourt " + args);
+  yaourt.start(StrConstants::getForeignRepositoryToolName() + " " + args);
   yaourt.waitForFinished();
   result = yaourt.readAllStandardOutput();
 
@@ -210,7 +210,7 @@ QByteArray UnixCommand::getYaourtPackageList(const QString &searchString)
   env.insert("LC_MESSAGES", "C");
 
   yaourt.setProcessEnvironment(env);
-  yaourt.start("yaourt -Ss " + searchString);
+  yaourt.start(StrConstants::getForeignRepositoryToolName() + " -Ss " + searchString);
   yaourt.waitForFinished(-1);
   result = yaourt.readAll();
 

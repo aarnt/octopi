@@ -398,7 +398,7 @@ void MainWindow::refreshAppIcon()
 {
   m_outdatedPackageList = Package::getOutdatedPackageList();
 
-  bool hasYaourt = UnixCommand::hasTheExecutable("yaourt");
+  bool hasYaourt = UnixCommand::hasTheExecutable(StrConstants::getForeignRepositoryToolName());
   if (hasYaourt)
   {
     m_outdatedYaourtPackageList = Package::getOutdatedYaourtPackageList();

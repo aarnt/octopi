@@ -725,7 +725,7 @@ void MainWindow::doYaourtUpgrade()
   }
 
   m_lastCommandList.clear();
-  m_lastCommandList.append("yaourt -S " + listOfTargets + ";");
+  m_lastCommandList.append(StrConstants::getForeignRepositoryToolName() + " -S " + listOfTargets + ";");
   m_lastCommandList.append("echo -e;");
   m_lastCommandList.append("read -n1 -p \"" + StrConstants::getPressAnyKey() + "\"");
 
@@ -1108,7 +1108,7 @@ void MainWindow::doInstallYaourtPackage()
   {
     for (int c=0; c<ui->tvPackages->selectionModel()->selectedRows().count(); c++)
     {
-      listOfTargets += "aur/" +
+      listOfTargets += StrConstants::getForeignRepositoryTargetPrefix() +
           _getCurrentSelectedModel()->item(ui->tvPackages->selectionModel()->selectedRows().at(c).row(),
                                            ctn_PACKAGE_NAME_COLUMN)->text() + " ";
     }
@@ -1125,7 +1125,7 @@ void MainWindow::doInstallYaourtPackage()
   }
 
   m_lastCommandList.clear();
-  m_lastCommandList.append("yaourt -S " + listOfTargets + ";");
+  m_lastCommandList.append(StrConstants::getForeignRepositoryToolName() + " -S " + listOfTargets + ";");
   m_lastCommandList.append("echo -e;");
   m_lastCommandList.append("read -n1 -p \"" + StrConstants::getPressAnyKey() + "\"");
 
@@ -1157,7 +1157,7 @@ void MainWindow::doRemoveYaourtPackage()
   }
 
   m_lastCommandList.clear();
-  m_lastCommandList.append("yaourt -" + m_removeCommand + " " + listOfTargets + ";");
+  m_lastCommandList.append(StrConstants::getForeignRepositoryToolName() + " -" + m_removeCommand + " " + listOfTargets + ";");
   m_lastCommandList.append("echo -e;");
   m_lastCommandList.append("read -n1 -p \"" + StrConstants::getPressAnyKey() + "\"");
 
