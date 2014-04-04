@@ -794,7 +794,6 @@ void MainWindow::doSystemUpgrade(bool syncDatabase)
     QString ds = QString::number(totalDownloadSize, 'f', 2);
 
     TransactionDialog question(this);
-    //question.removeYesButton(); //This is a more prudent behaviour!
 
     if(targets->count()==1)
       question.setText(StrConstants::getRetrieveTarget() +
@@ -943,6 +942,7 @@ void MainWindow::doRemoveAndInstall()
   }
 
   question.setText(dialogText);
+  question.setWindowTitle(StrConstants::getConfirmation());
   question.setInformativeText(StrConstants::getConfirmationQuestion());
   question.setDetailedText(allLists);
   int result = question.exec();
