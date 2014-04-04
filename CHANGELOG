@@ -6,8 +6,6 @@
   BugFix: hasInternetConnection code fixed to improve mirror-check speed.
   Merged Oktopi's code for using KDE icon theme, tools menu and CCR support 
 	(thanks to Giuseppe Calà - gcala).  
-  Added a tools menu with plv and octopi-repoeditor (thanks to Giuseppe 
-	Calà).
   The filelist search now searches directories too.
   Refactorings here and there to make it more Chakra friendly.
   Updated README file.
