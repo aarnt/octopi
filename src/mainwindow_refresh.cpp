@@ -1163,10 +1163,8 @@ void MainWindow::clearStatusBar()
 void MainWindow::refreshTabInfo(QString pkgName)
 {
   QStandardItem *siIcon = getAvailablePackage(pkgName, ctn_PACKAGE_ICON_COLUMN);
-  //QStandardItem *siName = getAvailablePackage(pkgName, ctn_PACKAGE_NAME_COLUMN);
   QStandardItem *siRepository = getAvailablePackage(pkgName, ctn_PACKAGE_REPOSITORY_COLUMN);
   QStandardItem *siVersion = getAvailablePackage(pkgName, ctn_PACKAGE_VERSION_COLUMN);
-  //QStandardItem *siDescription = getAvailablePackage(pkgName, ctn_PACKAGE_DESCRIPTION_COLUMN);
 
   CPUIntensiveComputing cic;
   PackageInfoData pid;
