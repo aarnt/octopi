@@ -37,6 +37,11 @@ build() {
     msg "Building octopi-notifier..."
     qmake-qt4 octopi-notifier.pro
     make -j $jc
+
+    cd $startdir/repoeditor
+    msg "Building octopi-repoeditor..."
+    qmake-qt4 repoeditor.pro
+    make -j $jc
 }
 
 package_octopi() {   
@@ -55,6 +60,9 @@ package_octopi() {
    install -D -m644 $startdir/notifier/pacmanhelper/polkit/org.octopi.pacmanhelper.conf ${pkgdir}/etc/dbus-1/system.d/org.octopi.pacmanhelper.conf
    install -D -m644 $startdir/notifier/pacmanhelper/polkit/org.octopi.pacmanhelper.xml ${pkgdir}/usr/share/dbus-1/interfaces/org.octopi.pacmanhelper.xml
    install -D -m644 $startdir/notifier/pacmanhelper/polkit/org.octopi.pacmanhelper.service ${pkgdir}/usr/share/dbus-1/system-services/org.octopi.pacmanhelper.service
+
+   #Pacmaneditor files
+   install -D -m755 repoeditor/bin/octopi-repoeditor ${pkgdir}/usr/bin/octopi-repoeditor
 }
 
 package_octopi-notifier() {
