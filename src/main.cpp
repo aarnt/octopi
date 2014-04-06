@@ -115,7 +115,7 @@ int main(int argc, char *argv[])
     {
       app.setStyle(new QGtkStyle());
     }
-    else
+    else if(UnixCommand::getLinuxDistro() != ectn_CHAKRA)
     {
       app.setStyle(new QCleanlooksStyle());
     }
