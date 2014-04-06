@@ -103,7 +103,7 @@ QList<QModelIndex> * PackageController::findFileEx( const QString& name, const Q
 QString PackageController::retrieveDistroNews(bool searchForLatestNews)
 {
   const QString ctn_ARCH_LINUX_RSS = "https://www.archlinux.org/feeds/news/";
-  const QString ctn_CHAKRA_RSS = "http://chakra-project.org/news/index.php?/feeds/index.rss2";
+  const QString ctn_CHAKRA_RSS = "http://chakraos.org/news/index.php?/feeds/index.rss2";
   const QString ctn_KAOS_RSS = "http://kaosx.us/feed/";
   const QString ctn_MANJARO_LINUX_RSS = "http://manjaro.org/feed/";
 
