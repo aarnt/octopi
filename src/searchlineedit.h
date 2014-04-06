@@ -19,7 +19,7 @@ class SearchLineEdit : public QLineEdit
 
 private:
   QToolButton *mSearchButton;
-  QString styleSheetForCurrentState() const;
+  QString styleSheetForCurrentState();
   QString buttonStyleSheetForCurrentState() const;
 
 private slots:
