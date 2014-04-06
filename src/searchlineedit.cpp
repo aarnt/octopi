@@ -74,23 +74,32 @@ void SearchLineEdit::updateSearchButton(const QString &text)
   this->mSearchButton->setStyleSheet(this->buttonStyleSheetForCurrentState());
 }
 
-QString SearchLineEdit::styleSheetForCurrentState() const
+QString SearchLineEdit::styleSheetForCurrentState()
 {
   int frameWidth = 1; //this->style()->pixelMetric(QStyle::PM_DefaultFrameWidth);
   QString style;
-  style += "QLineEdit {";
 
-  if (this->text().isEmpty()){
+  if (this->text().isEmpty() && (UnixCommand::getLinuxDistro() != ectn_CHAKRA)){
+    style += "QLineEdit {";
     style += "font-family: 'MS Sans Serif';";
     style += "font-style: italic;";
+  } else {
+      QFont font(QApplication::font());
+      font.setItalic(true);
+      setFont(font);
   }
 
   style += "padding-left: 20px;";
-  style += QString("padding-right: %1px;").arg(this->mSearchButton->sizeHint().width() + frameWidth + 1);
-  style += "border-width: 3px;";
-  style += "border-image: url(:/resources/images/esf-border.png) 3 3 3 3 stretch;";
-  style += "background-color: rgba(255, 255, 255, 255);"; //204);";
-  style += "color: black;}";
+
+  if(UnixCommand::getLinuxDistro() != ectn_CHAKRA){
+    style += QString("padding-right: %1px;").arg(this->mSearchButton->sizeHint().width() + frameWidth + 1);
+    style += "border-width: 3px;";
+    style += "border-image: url(:/resources/images/esf-border.png) 3 3 3 3 stretch;";
+    style += "background-color: rgba(255, 255, 255, 255);"; //204);";
+    style += "color: black;}";
+  } else {
+    setPalette(QApplication::palette());
+  }
   //style += "QLineEdit:hover, QLineEdit:focus {";
   //style += "background-color: rgba(255, 255, 255, 255);";
   //style += "}";
@@ -99,33 +108,65 @@ QString SearchLineEdit::styleSheetForCurrentState() const
 }
 
 void SearchLineEdit::setFoundStyle(){
-  QString style = "QLineEdit {";
-  style += "font-family: 'MS Sans Serif';";
-  style += "font-style: italic;";
+  QString style;
+
+  if (UnixCommand::getLinuxDistro() != ectn_CHAKRA){
+    style += "QLineEdit {";
+    style += "font-family: 'MS Sans Serif';";
+    style += "font-style: italic;";
+  }
+
   style += "padding-left: 20px;";
-  style += QString("padding-right: %1px;").arg(this->mSearchButton->sizeHint().width() + 2);
-  style += "border-width: 3px;";
-  style += "border-image: url(:/resources/images/esf-border.png) 3 3 3 3 stretch;";
-  style += "color: black; ";
-  style += "background-color: rgb(255, 255, 200);";
-  style += "border-color: rgb(206, 204, 197);}";
+
+  if(UnixCommand::getLinuxDistro() != ectn_CHAKRA){
+    style += QString("padding-right: %1px;").arg(this->mSearchButton->sizeHint().width() + 2);
+    style += "border-width: 3px;";
+    style += "border-image: url(:/resources/images/esf-border.png) 3 3 3 3 stretch;";
+    style += "color: black; ";
+    style += "background-color: rgb(255, 255, 200);";
+    style += "border-color: rgb(206, 204, 197);}";
+  }
 
   setStyleSheet(style);
+
+  // setPalette() must be called after setStyleSheet()
+  if(UnixCommand::getLinuxDistro() == ectn_CHAKRA){
+    QPalette palette(QApplication::palette());
+    palette.setColor(QPalette::Base, QColor(255, 255, 200));
+    palette.setColor(QPalette::Text, Qt::darkGray); // give more contrast to text
+    setPalette(palette);
+  }
 }
 
 void SearchLineEdit::setNotFoundStyle(){
-  QString style = "QLineEdit {";
-  style += "font-family: 'MS Sans Serif';";
-  style += "font-style: italic;";
+  QString style;
+
+  if (UnixCommand::getLinuxDistro() != ectn_CHAKRA){
+    style += "QLineEdit {";
+    style += "font-family: 'MS Sans Serif';";
+    style += "font-style: italic;";
+  }
+
   style += "padding-left: 20px;";
-  style += QString("padding-right: %1px;").arg(this->mSearchButton->sizeHint().width() + 2);
-  style += "border-width: 3px;";
-  style += "border-image: url(:/resources/images/esf-border.png) 3 3 3 3 stretch;";
-  style += "color: white; ";
-  style += "background-color: lightgray;"; //rgb(255, 108, 108); //palette(mid);"; //rgb(207, 135, 142);";
-  style += "border-color: rgb(206, 204, 197);}";
+
+  if(UnixCommand::getLinuxDistro() != ectn_CHAKRA){
+    style += QString("padding-right: %1px;").arg(this->mSearchButton->sizeHint().width() + 2);
+    style += "border-width: 3px;";
+    style += "border-image: url(:/resources/images/esf-border.png) 3 3 3 3 stretch;";
+    style += "color: white; ";
+    style += "background-color: lightgray;"; //rgb(255, 108, 108); //palette(mid);"; //rgb(207, 135, 142);";
+    style += "border-color: rgb(206, 204, 197);}";
+  }
 
   setStyleSheet(style);
+
+  // setPalette() must be called after setStyleSheet()
+  if(UnixCommand::getLinuxDistro() == ectn_CHAKRA){
+    QPalette palette(QApplication::palette());
+    palette.setColor(QPalette::Base, Qt::lightGray);
+    palette.setColor(QPalette::Text, Qt::white);
+    setPalette(palette);
+  }
 }
 
 QString SearchLineEdit::buttonStyleSheetForCurrentState() const
