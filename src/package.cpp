@@ -228,6 +228,9 @@ QStringList *Package::getOutdatedPackageList()
   return res;
 }
 
+/*
+ * Retrieves the list of outdated Yaourt (AUR) packages (those which have newer versions available to download)
+ */
 QStringList *Package::getOutdatedYaourtPackageList()
 {
   QString outPkgList = UnixCommand::getOutdatedYaourtPackageList();
@@ -382,7 +385,6 @@ QList<PackageListData> * Package::getPackageList()
 {
   //archlinuxfr/yaourt 1.2.2-1 [installed]
   //    A pacman wrapper with extended features and AUR support
-
   //community/libfm 1.1.0-4 (lxde) [installed: 1.1.0-3]
 
   QString pkgName, pkgRepository, pkgVersion, pkgDescription, pkgOutVersion;
@@ -466,7 +468,6 @@ QList<PackageListData> * Package::getYaourtPackageList(const QString& searchStri
 {
   //aur/yaourt 1.2.2-1 [installed]
   //    A pacman wrapper with extended features and AUR support
-
   //aur/libfm 1.1.0-4 (lxde) [installed: 1.1.0-3]
 
   QString pkgName, pkgRepository, pkgVersion, pkgDescription, pkgOutVersion;
@@ -1016,7 +1017,6 @@ QStringList Package::getContents(const QString& pkgName, bool isInstalled)
     if (rsl.at(0) == "./"){
       rsl.removeFirst();
     }
-
     if (isInstalled)
     {
       rsl.replaceInStrings(QRegExp(pkgName + " "), "");

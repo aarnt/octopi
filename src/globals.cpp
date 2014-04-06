@@ -32,7 +32,7 @@
 #endif
 
 /*
- * Global functions related to multithread programming
+ * Global functions related to Octopi's multithread code
  */
 
 QFutureWatcher<QString> g_fwToolTip;

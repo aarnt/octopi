@@ -25,6 +25,10 @@
 #include <QPushButton>
 #include <QKeyEvent>
 
+/*
+ * Dialog which appears whenever users have to choose optional packages to install/remove
+ */
+
 MultiSelectionDialog::MultiSelectionDialog(QWidget *parent) :
   QDialog(parent),
   ui(new Ui::MultiSelectionDialog)
