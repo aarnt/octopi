@@ -1544,7 +1544,7 @@ void MainWindow::actionsProcessStarted()
  *
  * ATENTION: ALL CALLS TO buildPackageList were changed to metaBuildPackageList !!!
  */
-void MainWindow::actionsProcessFinished(int exitCode, QProcess::ExitStatus)
+void MainWindow::actionsProcessFinished(int exitCode, QProcess::ExitStatus exitStatus)
 {
   bool bRefreshGroups = true;
 
@@ -1552,7 +1552,7 @@ void MainWindow::actionsProcessFinished(int exitCode, QProcess::ExitStatus)
 
   ui->twProperties->setTabText(ctn_TABINDEX_OUTPUT, StrConstants::getTabOutputName());
 
-  if (exitCode == 0){
+  if (exitCode == 0 && exitStatus == QProcess::NormalExit){
     writeToTabOutputExt("<br><b>" +
                      StrConstants::getCommandFinishedOK() + "</b><br>");
   }

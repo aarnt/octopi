@@ -719,35 +719,38 @@ void UnixCommand::runCommandInTerminalAsNormalUser(const QStringList &commandLis
   out.flush();
   ftemp->close();
 
+  QString cmd;
   if(WMHelper::isXFCERunning() && UnixCommand::hasTheExecutable(ctn_XFCE_TERMINAL)){
-    QString cmd = ctn_XFCE_TERMINAL + " -e " + ftemp->fileName();
-    m_processWrapper->executeCommand(cmd);
+    cmd = ctn_XFCE_TERMINAL + " -e " + ftemp->fileName();
+  }
+  else if (WMHelper::isKDERunning() && UnixCommand::hasTheExecutable(ctn_KDE_TERMINAL))
+  {
+    cmd = ctn_KDE_TERMINAL + " --nofork -e bash -c " + ftemp->fileName();
   }
   else if (WMHelper::isTDERunning() && UnixCommand::hasTheExecutable(ctn_TDE_TERMINAL)){
-    QString cmd = ctn_TDE_TERMINAL + " --nofork -e " + ftemp->fileName();
-    m_processWrapper->executeCommand(cmd);
+    cmd = ctn_TDE_TERMINAL + " --nofork -e " + ftemp->fileName();
   }
   if (WMHelper::isLXDERunning() && UnixCommand::hasTheExecutable(ctn_LXDE_TERMINAL)){
-    QString cmd = ctn_LXDE_TERMINAL + " -e " + ftemp->fileName();
-    m_processWrapper->executeCommand(cmd);
+    cmd = ctn_LXDE_TERMINAL + " -e " + ftemp->fileName();
   }
   else if (WMHelper::isMATERunning() && UnixCommand::hasTheExecutable(ctn_MATE_TERMINAL)){
-    QString cmd = ctn_MATE_TERMINAL + " -e " + ftemp->fileName();
-    m_processWrapper->executeCommand(cmd);
+    cmd = ctn_MATE_TERMINAL + " -e " + ftemp->fileName();
   }
   else if (UnixCommand::hasTheExecutable(ctn_XFCE_TERMINAL)){
-    QString cmd = ctn_XFCE_TERMINAL + " -e " + ftemp->fileName();
-    m_processWrapper->executeCommand(cmd);
+    cmd = ctn_XFCE_TERMINAL + " -e " + ftemp->fileName();
   }
   else if (UnixCommand::hasTheExecutable(ctn_LXDE_TERMINAL)){
-    QString cmd = ctn_LXDE_TERMINAL + " -e " + ftemp->fileName();
-    m_processWrapper->executeCommand(cmd);
+    cmd = ctn_LXDE_TERMINAL + " -e " + ftemp->fileName();
   }
   else if (UnixCommand::hasTheExecutable(ctn_XTERM)){
-    QString cmd = ctn_XTERM +
+    cmd = ctn_XTERM +
         " -fn \"*-fixed-*-*-*-18-*\" -fg White -bg Black -title xterm -e " + ftemp->fileName();
-    m_processWrapper->executeCommand(cmd);
+  } else {
+    std::cerr << "Octopi found no suitable terminal" << std::endl;
+    emit finishedTerminal(0, QProcess::CrashExit);
+    return;
   }
+  m_processWrapper->executeCommand(cmd);
 }
 
 /*
