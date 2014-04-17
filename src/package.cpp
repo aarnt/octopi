@@ -629,7 +629,7 @@ QString Package::getRepository(const QString &pkgInfo)
  */
 QString Package::getURL(const QString &pkgInfo)
 {
-  QString URL = extractFieldFromInfo("URL", pkgInfo);
+  QString URL = extractFieldFromInfo("\nURL", pkgInfo);
   if (!URL.isEmpty())
     return makeURLClickable(URL);
   else
