@@ -77,6 +77,7 @@ void SearchBar::init()
                          "QToolButton::pressed{ background-color: palette(mid); }");
 
   tbClose->setToolTip(tr("Close"));
+  tbClose->setShortcut(Qt::Key_Escape);
 
   layout->addWidget(tbClose, 1, Qt::AlignLeft);
   layout->addSpacing(3);
@@ -86,7 +87,6 @@ void SearchBar::init()
   layout->addWidget(m_nextButton, 20, Qt::AlignLeft);
 
   setLayout(layout);
-  m_searchLineEdit->installEventFilter(this);
   m_searchLineEdit->setFocus();
 
   connect(tbClose, SIGNAL(clicked()), this, SLOT(close()));
@@ -125,32 +125,11 @@ void SearchBar::paintEvent(QPaintEvent *)
 }
 
 /*
- * Filter to add 'escape' key support
- */
-bool SearchBar::eventFilter(QObject *obj, QEvent *event)
-{
-  if (obj->objectName() == m_searchLineEdit->objectName())
-  {
-    if (event->type() == QEvent::KeyPress)
-    {
-      QKeyEvent *ke = static_cast<QKeyEvent*>(event);
-      if (ke->key() == Qt::Key_Escape)
-      {
-        close();
-      }
-    }
-  }
-
-  return false;
-}
-
-/*
  * Whenever SearchBar needs to be brought to UI...
  */
 void SearchBar::show()
 {
   setVisible(true);
-
   m_searchLineEdit->selectAll();
   m_searchLineEdit->setFocus();
 }
