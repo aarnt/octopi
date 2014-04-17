@@ -37,7 +37,6 @@ private:
 
 protected:
   virtual void paintEvent(QPaintEvent *);
-  virtual bool eventFilter(QObject *, QEvent *);
 
 public:
   explicit SearchBar(QWidget *parent = 0);

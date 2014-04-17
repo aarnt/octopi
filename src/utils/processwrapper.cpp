@@ -87,6 +87,17 @@ void ProcessWrapper::onSingleShot()
   proc.close();
 
   QStringList list = out.split("\n", QString::SkipEmptyParts);
+
+  if (list.count() == 1)
+  {
+    proc.start("ps -o pid -C bash");
+    proc.waitForFinished(-1);
+    out = proc.readAll();
+    proc.close();
+
+    list = out.split("\n", QString::SkipEmptyParts);
+  }
+
   QStringList slist;
 
   for (int c=1; c<list.count(); c++)
