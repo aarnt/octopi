@@ -730,7 +730,7 @@ void UnixCommand::runCommandInTerminalAsNormalUser(const QStringList &commandLis
   else if (WMHelper::isTDERunning() && UnixCommand::hasTheExecutable(ctn_TDE_TERMINAL)){
     cmd = ctn_TDE_TERMINAL + " --nofork -e " + ftemp->fileName();
   }
-  if (WMHelper::isLXDERunning() && UnixCommand::hasTheExecutable(ctn_LXDE_TERMINAL)){
+  else if (WMHelper::isLXDERunning() && UnixCommand::hasTheExecutable(ctn_LXDE_TERMINAL)){
     cmd = ctn_LXDE_TERMINAL + " -e " + ftemp->fileName();
   }
   else if (WMHelper::isMATERunning() && UnixCommand::hasTheExecutable(ctn_MATE_TERMINAL)){

@@ -83,8 +83,6 @@ void MainWindow::initSystemTrayIcon()
  */
 void MainWindow::runOctopi(bool execApplication)
 {
-  QProcess proc;
-
   if (!execApplication &&
       !UnixCommand::isAppRunning("octopi", true) && m_outdatedPackageList->count() > 0)
   {
@@ -100,13 +98,13 @@ void MainWindow::runOctopi(bool execApplication)
       {
         if (execApplication == true)
         {
-          proc.startDetached("octopi -style gtk");
+          QProcess::startDetached("octopi -style gtk");
         }
-        else proc.startDetached("octopi -sysupgrade -style gtk");
+        else QProcess::startDetached("octopi -sysupgrade -style gtk");
       }
       else
       {
-        proc.startDetached("octopi -style gtk");
+        QProcess::startDetached("octopi -style gtk");
       }
     }
     else
@@ -116,13 +114,13 @@ void MainWindow::runOctopi(bool execApplication)
       {
         if (execApplication == true)
         {
-          proc.startDetached("octopi");
+          QProcess::startDetached("octopi");
         }
-        else proc.startDetached("octopi -sysupgrade");
+        else QProcess::startDetached("octopi -sysupgrade");
       }
       else
       {
-        proc.startDetached("octopi");
+        QProcess::startDetached("octopi");
       }
     }
   }
@@ -144,9 +142,8 @@ void MainWindow::aboutOctopiNotifier()
  * Hides Octopi
  */
 void MainWindow::hideOctopi()
-{
-  QProcess proc;
-  proc.startDetached("octopi -hide");
+{  
+  QProcess::startDetached("octopi -hide");
 }
 
 /*
@@ -378,17 +375,13 @@ void MainWindow::afterPacmanHelperSyncDatabase()
  */
 void MainWindow::sendNotification(const QString &msg)
 {
-  if (WMHelper::isXFCERunning() || WMHelper::isLXDERunning() || WMHelper::isOPENBOXRunning())
-  {
     QString processToExec("notify-send");
     if (UnixCommand::hasTheExecutable(processToExec))
     {
-      QProcess *send = new QProcess();
       processToExec += " -i /usr/share/icons/octopi_red.png -t 30000 \"" + StrConstants::getApplicationName() +
           "\"  \"" + msg + "\"";
-      send->startDetached(processToExec);
+      QProcess::startDetached(processToExec);
     }
-  }
 }
 
 /*
@@ -504,9 +497,8 @@ void MainWindow::execSystemTrayActivated(QSystemTrayIcon::ActivationReason ar)
 void MainWindow::exitNotifier()
 {
   if (UnixCommand::isAppRunning("octopi", true))
-  {
-    QProcess proc;
-    proc.startDetached("octopi -close");
+  {    
+    QProcess::startDetached("octopi -close");
   }
 
   qApp->quit();

@@ -1,4 +1,9 @@
 0.4.0 (dev)
+  BugFix: Now Shift+F3 and F3 search keys work outside SearchLineEdit 
+	widget.
+  BugFix: fixed freeze for install orphaned/yaourt package (thanks to 
+	tbinkau).
+  BugFix: fixed notify-send code in octopi-notifier (thanks to vedgy).
   BugFix: Files tab presented some nasty results sometimes and even a GPF when it
 	found symlinks to directories.
   BugFix: running as root was broken in KDE.

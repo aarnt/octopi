@@ -29,12 +29,19 @@
 #include <QEvent>
 #include <QSpacerItem>
 
+/*
+ * The QWidget that holds the SearchLineEdit control and has that firefox's search sexy look!
+ */
+
 SearchBar::SearchBar(QWidget *parent) :
   QWidget(parent)
 {
   init();
 }
 
+/*
+ * Obligatory initialization code.
+ */
 void SearchBar::init()
 {
   setVisible(false);
@@ -55,8 +62,11 @@ void SearchBar::init()
 
   m_previousButton->setText("< " + tr("Previous"));
   m_previousButton->setAutoRaise(true);
+  m_previousButton->setShortcut(QKeySequence(Qt::SHIFT + Qt::Key_F3));
+
   m_nextButton->setText(tr("Next") + " >");
   m_nextButton->setAutoRaise(true);
+  m_nextButton->setShortcut(Qt::Key_F3);
 
   QToolButton *tbClose = new QToolButton();
   tbClose->setIcon(IconHelper::getIconClose());
@@ -85,6 +95,9 @@ void SearchBar::init()
   connect(m_nextButton, SIGNAL(clicked()), this, SIGNAL(findNext()));
 }
 
+/*
+ * Whenever the user presses the escape or clicks the close icon...
+ */
 void SearchBar::close()
 {
   hide();
@@ -92,6 +105,9 @@ void SearchBar::close()
   emit closed();
 }
 
+/*
+ * Helper method to clean SearchLineEdit's content
+ */
 void SearchBar::clear()
 {
   m_searchLineEdit->setText("");
@@ -108,6 +124,9 @@ void SearchBar::paintEvent(QPaintEvent *)
   style()->drawPrimitive(QStyle::PE_Widget, &styleOption, &painter, this);
 }
 
+/*
+ * Filter to add 'escape' key support
+ */
 bool SearchBar::eventFilter(QObject *obj, QEvent *event)
 {
   if (obj->objectName() == m_searchLineEdit->objectName())
@@ -115,15 +134,7 @@ bool SearchBar::eventFilter(QObject *obj, QEvent *event)
     if (event->type() == QEvent::KeyPress)
     {
       QKeyEvent *ke = static_cast<QKeyEvent*>(event);
-      if (ke->key() == Qt::Key_F3 && ke->modifiers() == Qt::ShiftModifier)
-      {
-        emit findPrevious();
-      }
-      else if (ke->key() == Qt::Key_Enter || ke->key() == Qt::Key_Return || ke->key() == Qt::Key_F3)
-      {
-        emit findNext();
-      }
-      else if (ke->key() == Qt::Key_Escape)
+      if (ke->key() == Qt::Key_Escape)
       {
         close();
       }
@@ -133,6 +144,9 @@ bool SearchBar::eventFilter(QObject *obj, QEvent *event)
   return false;
 }
 
+/*
+ * Whenever SearchBar needs to be brought to UI...
+ */
 void SearchBar::show()
 {
   setVisible(true);
