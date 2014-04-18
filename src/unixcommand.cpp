@@ -714,7 +714,15 @@ void UnixCommand::runCommandInTerminalAsNormalUser(const QStringList &commandLis
   QTextStream out(ftemp);
 
   foreach(QString line, commandList)
+  {
+    //We must remove the "ccr/" prefix in Chakra, cos this will not work
+    if(line.contains("ccr/"))
+    {
+      line = line.replace("ccr/", "");
+    }
+
     out << line;
+  }
 
   out.flush();
   ftemp->close();
