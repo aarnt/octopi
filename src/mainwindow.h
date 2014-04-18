@@ -63,6 +63,8 @@ const int ctn_TABINDEX_OUTPUT(3);
 const int ctn_TABINDEX_NEWS(4);
 const int ctn_TABINDEX_HELPUSAGE(5);
 
+enum TreatURLLinks { ectn_TREAT_URL_LINK, ectn_DONT_TREAT_URL_LINK };
+
 namespace Ui {
 class MainWindow;
 }
@@ -254,7 +256,7 @@ private:
   void _ensureTabVisible(const int index);
   bool _isPropertiesTabWidgetVisible();
   bool _isSUAvailable();
-  void writeToTabOutput(const QString &msg);
+  void writeToTabOutput(const QString &msg, TreatURLLinks treatURLLinks = ectn_TREAT_URL_LINK);
   void writeToTabOutputExt(const QString &msg);
   void initTabOutput();
   void clearTabOutput();
@@ -349,6 +351,7 @@ private slots:
   void actionsProcessStarted();
   void actionsProcessFinished(int exitCode, QProcess::ExitStatus);
   void actionsProcessReadOutput();
+  void actionsProcessReadOutputErrorMirrorCheck();
   void actionsProcessReadOutputMirrorCheck();
   void actionsProcessRaisedError();
 

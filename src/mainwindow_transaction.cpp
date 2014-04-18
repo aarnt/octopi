@@ -669,10 +669,13 @@ void MainWindow::doMirrorCheck()
 
   m_unixCommand = new UnixCommand(this);
 
-  QObject::connect(m_unixCommand, SIGNAL( started() ), this, SLOT( actionsProcessStarted()));
+  clearTabOutput();
+  writeToTabOutput("<b>" + StrConstants::getSyncMirror() + "</b><br><br>");
+
+  //QObject::connect(m_unixCommand, SIGNAL( started() ), this, SLOT( actionsProcessStarted()));
 
   QObject::connect(m_unixCommand, SIGNAL( readyReadStandardError()),
-                   this, SLOT( actionsProcessReadOutputMirrorCheck()));
+                   this, SLOT( actionsProcessReadOutputErrorMirrorCheck()));
 
   QObject::connect(m_unixCommand, SIGNAL( readyReadStandardOutput()),
                    this, SLOT( actionsProcessReadOutputMirrorCheck()));
@@ -814,8 +817,6 @@ void MainWindow::doSystemUpgrade(bool syncDatabase)
       m_systemUpgradeDialog = false;
 
       doRemovePacmanLockFile();
-      //If there are no means to run the actions, we must warn!
-      //if (!_isSUAvailable()) return;
 
       m_lastCommandList.clear();
       m_lastCommandList.append("pacman -Su;");
@@ -950,8 +951,6 @@ void MainWindow::doRemoveAndInstall()
   if(result == QDialogButtonBox::Yes || result == QDialogButtonBox::AcceptRole)
   {
     doRemovePacmanLockFile();
-    //If there are no means to run the actions, we must warn!
-    //if (!_isSUAvailable()) return;
 
     QString command;
     command = "pacman -R --noconfirm " + listOfRemoveTargets +
@@ -1031,8 +1030,6 @@ void MainWindow::doRemove()
   if(result == QDialogButtonBox::Yes || result == QDialogButtonBox::AcceptRole)
   {
     doRemovePacmanLockFile();
-    //If there are no means to run the actions, we must warn!
-    //if (!_isSUAvailable()) return;
 
     QString command;
     command = "pacman -R --noconfirm " + listOfTargets;
@@ -1227,8 +1224,6 @@ void MainWindow::doInstall()
   if(result == QDialogButtonBox::Yes || result == QDialogButtonBox::AcceptRole)
   {
     doRemovePacmanLockFile();
-    //If there are no means to run the actions, we must warn!
-    //if (!_isSUAvailable()) return;
 
     QString command;
     command = "pacman -S --noconfirm " + listOfTargets;
@@ -1305,8 +1300,7 @@ void MainWindow::doInstallLocalPackages()
   if(result == QDialogButtonBox::Yes || result == QDialogButtonBox::AcceptRole)
   {
     doRemovePacmanLockFile();
-    //If there are no means to run the actions, we must warn!
-    //if (!_isSUAvailable()) return;
+
     QString command;
     command = "pacman -U --noconfirm " + listOfTargets;
 
@@ -1346,8 +1340,6 @@ void MainWindow::doInstallLocalPackages()
 void MainWindow::doCleanCache()
 {
   doRemovePacmanLockFile();
-  //If there are no means to run the actions, we must warn!
-  //if (!_isSUAvailable()) return;
 
   int res = QMessageBox::question(this, StrConstants::getConfirmation(),
                                   StrConstants::getCleanCacheConfirmation(),
@@ -1495,17 +1487,16 @@ void MainWindow::actionsProcessStarted()
   m_progressWidget->setValue(0);
   m_progressWidget->setMaximum(100);
   m_iLoveCandy = UnixCommand::isILoveCandyEnabled();
-  //disconnect(m_pacmanDatabaseSystemWatcher, SIGNAL(directoryChanged(QString)), this, SLOT(metaBuildPackageList()));
 
   clearTabOutput();
 
   //First we output the name of action we are starting to execute!
 
-  if (m_commandExecuting == ectn_MIRROR_CHECK)
+  /*if (m_commandExecuting == ectn_MIRROR_CHECK)
   {
     writeToTabOutput("<b>" + StrConstants::getSyncMirror() + "</b><br><br>");
-  }
-  else if (m_commandExecuting == ectn_SYNC_DATABASE)
+  }*/
+  if (m_commandExecuting == ectn_SYNC_DATABASE)
   {
     writeToTabOutput("<b>" + StrConstants::getSyncDatabases() + "</b><br><br>");
   }
@@ -1534,7 +1525,7 @@ void MainWindow::actionsProcessStarted()
   msg = msg.trimmed();
 
   if (!msg.isEmpty())
-  {
+  {    
     writeToTabOutputExt(msg);
   }
 }
@@ -1662,6 +1653,23 @@ void MainWindow::actionsProcessFinished(int exitCode, QProcess::ExitStatus exitS
 }
 
 /*
+ * This SLOT is called whenever Mirror-check process has something to output to Standard ERROR out
+ */
+void MainWindow::actionsProcessReadOutputErrorMirrorCheck()
+{
+  QString msg = m_unixCommand->readAllStandardError();
+
+  msg.remove("[01;33m");
+  msg.remove("\033[01;37m");
+  msg.remove("\033[00m");
+  msg.remove("\033[00;32m");
+
+  msg.replace("\n", "<br>");
+
+  writeToTabOutput(msg, ectn_DONT_TREAT_URL_LINK);
+}
+
+/*
  * This SLOT is called whenever Mirror-check process has something to output to Standard out
  */
 void MainWindow::actionsProcessReadOutputMirrorCheck()
@@ -1675,7 +1683,7 @@ void MainWindow::actionsProcessReadOutputMirrorCheck()
 
   msg.replace("\n", "<br>");
 
-  writeToTabOutput(msg);
+  writeToTabOutput(msg, ectn_DONT_TREAT_URL_LINK);
 }
 
 /*
@@ -1738,6 +1746,8 @@ void MainWindow::_treatProcessOutput(const QString &pMsg)
   msg.remove("[1;33m");
   msg.remove("\033[1;34m"); //strings starting with ::
   msg.remove("\033[0;1m");
+
+  if (msg.contains("exists in filesystem")) return;
 
   //std::cout << "_treat: " << msg.toAscii().data() << std::endl;
 
@@ -2015,14 +2025,23 @@ void MainWindow::actionsProcessRaisedError()
 /*
  * A helper method which writes the given string to OutputTab's textbrowser
  */
-void MainWindow::writeToTabOutput(const QString &msg)
+void MainWindow::writeToTabOutput(const QString &msg, TreatURLLinks treatURLLinks)
 {
   QTextBrowser *text = ui->twProperties->widget(ctn_TABINDEX_OUTPUT)->findChild<QTextBrowser*>("textOutputEdit");
   if (text)
   {
     _ensureTabVisible(ctn_TABINDEX_OUTPUT);
     _positionTextEditCursorAtEnd();
-    text->insertHtml(Package::makeURLClickable(msg));
+
+    if(treatURLLinks == ectn_TREAT_URL_LINK)
+    {
+      text->insertHtml(Package::makeURLClickable(msg));
+    }
+    else
+    {
+      text->insertHtml(msg);
+    }
+
     text->ensureCursorVisible();
   }
 }
