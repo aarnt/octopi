@@ -56,28 +56,17 @@ bool TreeViewPackagesItemDelegate::helpEvent ( QHelpEvent *event, QAbstractItemV
   if (this->parent()->objectName() == "tvPackages")
   {
     QTreeView* tvPackages = qobject_cast<QTreeView*>(this->parent());
-    QSortFilterProxyModel *sfp = qobject_cast<QSortFilterProxyModel*>(tvPackages->model());
-    QStandardItemModel *sim = qobject_cast<QStandardItemModel*>(sfp->sourceModel());
+    PackageModel* sim = qobject_cast<PackageModel*>(tvPackages->model());
+    if (sim == NULL || sim->getPackageCount() == 0) return false;
 
-    if (sim->rowCount() == 0) return false;
-
-    QModelIndex ind = sfp->mapToSource(index);
-    QStandardItem *si = sim->itemFromIndex(ind);
-
-    if (si)
+    const PackageRepository::PackageData*const si = sim->getData(index);
+    if (si != NULL)
     {
-      //If the user's mouse is not positioned above the name column, let's give him a little help...
-      if (si->column() != ctn_PACKAGE_NAME_COLUMN)
-      {
-        QModelIndex miName = sim->index(si->row(), ctn_PACKAGE_NAME_COLUMN);
-        si = sim->itemFromIndex(miName);
-      }
-
       QPoint p;
       gPoint = tvPackages->mapToGlobal(event->pos());
       QFuture<QString> f;
       disconnect(&g_fwToolTip, SIGNAL(finished()), this, SLOT(execToolTip()));
-      f = QtConcurrent::run(showPackageInfo, si->text());
+      f = QtConcurrent::run(showPackageInfo, si->name);
       g_fwToolTip.setFuture(f);
       connect(&g_fwToolTip, SIGNAL(finished()), this, SLOT(execToolTip()));
     }
@@ -109,22 +98,12 @@ bool TreeViewPackagesItemDelegate::helpEvent ( QHelpEvent *event, QAbstractItemV
           si->icon().pixmap(22, 22).toImage() ==
           IconHelper::getIconRemoveItem().pixmap(22, 22).toImage())
       {
-        QStandardItemModel *modelPackages = MainWindow::returnMainWindow()->getModelPackages();
-        QList<QStandardItem*> foundItems =
-            modelPackages->findItems(pkgName, Qt::MatchExactly, ctn_PACKAGE_NAME_COLUMN);
-
-        if (foundItems.count() > 0)
-        {
-          QStandardItem *siFound = foundItems.at(0);
-
-          QPoint p;
-          gPoint = tvTransaction->mapToGlobal(event->pos());
-          QFuture<QString> f;
-          disconnect(&g_fwToolTip, SIGNAL(finished()), this, SLOT(execToolTip()));
-          f = QtConcurrent::run(showPackageInfo, siFound->text());
-          g_fwToolTip.setFuture(f);
-          connect(&g_fwToolTip, SIGNAL(finished()), this, SLOT(execToolTip()));
-        }
+        gPoint = tvTransaction->mapToGlobal(event->pos());
+        QFuture<QString> f;
+        disconnect(&g_fwToolTip, SIGNAL(finished()), this, SLOT(execToolTip()));
+        f = QtConcurrent::run(showPackageInfo, pkgName);
+        g_fwToolTip.setFuture(f);
+        connect(&g_fwToolTip, SIGNAL(finished()), this, SLOT(execToolTip()));
       }
       else
       {

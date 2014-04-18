@@ -39,7 +39,10 @@ HEADERS  += src/QtSolutions/qtsingleapplication.h \
         src/pacmanhelperclient.h \
         src/globals.h \
         src/multiselectiondialog.h \
-        src/utils/processwrapper.h
+        src/utils/processwrapper.h \
+        src/packagerepository.h \
+        src/model/packagemodel.h \
+        src/ui/octopitabinfo.h
 
 SOURCES += src/QtSolutions/qtsingleapplication.cpp \
         src/QtSolutions/qtlocalpeer.cpp \
@@ -69,7 +72,10 @@ SOURCES += src/QtSolutions/qtsingleapplication.cpp \
         src/pacmanhelperclient.cpp \
         src/globals.cpp \
         src/multiselectiondialog.cpp \
-        src/utils/processwrapper.cpp
+        src/utils/processwrapper.cpp \
+        src/packagerepository.cpp \
+        src/model/packagemodel.cpp \
+        src/ui/octopitabinfo.cpp
 
 FORMS   += ui/mainwindow.ui \
         ui/transactiondialog.ui \
