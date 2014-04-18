@@ -22,3 +22,7 @@ Enjoy!
 
 (*) Octopi is also Qt5 compatible, you'll only have to adjust the 
 "depends" section in PKGBUILD.
+
+If you are compiling Octopi in a KDE centric-distro like KaOS and Chakra, you should 
+first uncomment the "#define NO_GTK_STYLE" string located at "src/main.cpp" and 
+"notifier/octopi-notifier/main.cpp", otherwise it won't compile at all.

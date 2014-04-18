@@ -45,17 +45,6 @@ SearchLineEdit::SearchLineEdit(QWidget *parent) :
 void SearchLineEdit::resizeEvent(QResizeEvent *event)
 {
   Q_UNUSED(event);
-  /*QSize size = this->mSearchButton->sizeHint();
-
-  if (qApp->style()->inherits("QGtkStyle"))
-  {
-    this->mSearchButton->move(5, (this->rect().bottom() - size.height()) / 2);
-  }
-  else if (qApp->style()->inherits("QCleanlooksStyle") || WMHelper::isXFCERunning())
-  {
-    this->mSearchButton->move(5, (this->rect().bottom() + 10 - size.height()) / 2);
-  }*/
-
   this->mSearchButton->move(5, (this->rect().height() - this->mSearchButton->height()) / 2);
 }
 
@@ -76,61 +65,63 @@ void SearchLineEdit::updateSearchButton(const QString &text)
 
 QString SearchLineEdit::styleSheetForCurrentState()
 {
-  int frameWidth = 1; //this->style()->pixelMetric(QStyle::PM_DefaultFrameWidth);
+  int frameWidth = 1;
   QString style;
+  style += "QLineEdit {";
 
-  if (this->text().isEmpty() && (UnixCommand::getLinuxDistro() != ectn_CHAKRA)){
-    style += "QLineEdit {";
+  if (this->text().isEmpty() && (UnixCommand::getLinuxDistro() != ectn_CHAKRA))
+  {
     style += "font-family: 'MS Sans Serif';";
     style += "font-style: italic;";
-  } else {
-      QFont font(QApplication::font());
-      font.setItalic(true);
-      setFont(font);
+  }
+  else
+  {
+    QFont font(QApplication::font());
+    font.setItalic(true);
+    setFont(font);
   }
 
-  style += "padding-left: 20px;";
-
-  if(UnixCommand::getLinuxDistro() != ectn_CHAKRA){
+  if(UnixCommand::getLinuxDistro() != ectn_CHAKRA)
+  {
+    style += "padding-left: 20px;";
     style += QString("padding-right: %1px;").arg(this->mSearchButton->sizeHint().width() + frameWidth + 1);
     style += "border-width: 3px;";
     style += "border-image: url(:/resources/images/esf-border.png) 3 3 3 3 stretch;";
     style += "background-color: rgba(255, 255, 255, 255);"; //204);";
     style += "color: black;}";
-  } else {
+  }
+  else
+  {
+    style += "padding-left: 20px;}";
     setPalette(QApplication::palette());
   }
-  //style += "QLineEdit:hover, QLineEdit:focus {";
-  //style += "background-color: rgba(255, 255, 255, 255);";
-  //style += "}";
 
   return style;
 }
 
 void SearchLineEdit::setFoundStyle(){
   QString style;
+  style += "QLineEdit {";
 
-  if (UnixCommand::getLinuxDistro() != ectn_CHAKRA){
-    style += "QLineEdit {";
+  if (UnixCommand::getLinuxDistro() != ectn_CHAKRA)
+  {
     style += "font-family: 'MS Sans Serif';";
     style += "font-style: italic;";
-  }
-
-  style += "padding-left: 20px;";
-
-  if(UnixCommand::getLinuxDistro() != ectn_CHAKRA){
+    style += "padding-left: 20px;";
     style += QString("padding-right: %1px;").arg(this->mSearchButton->sizeHint().width() + 2);
     style += "border-width: 3px;";
     style += "border-image: url(:/resources/images/esf-border.png) 3 3 3 3 stretch;";
     style += "color: black; ";
     style += "background-color: rgb(255, 255, 200);";
     style += "border-color: rgb(206, 204, 197);}";
+    setStyleSheet(style);
   }
-
-  setStyleSheet(style);
-
+  else
   // setPalette() must be called after setStyleSheet()
-  if(UnixCommand::getLinuxDistro() == ectn_CHAKRA){
+  {
+    style += "padding-left: 20px;}";
+    setStyleSheet(style);
+
     QPalette palette(QApplication::palette());
     palette.setColor(QPalette::Base, QColor(255, 255, 200));
     palette.setColor(QPalette::Text, Qt::darkGray); // give more contrast to text
@@ -140,28 +131,28 @@ void SearchLineEdit::setFoundStyle(){
 
 void SearchLineEdit::setNotFoundStyle(){
   QString style;
+  style += "QLineEdit {";
 
-  if (UnixCommand::getLinuxDistro() != ectn_CHAKRA){
-    style += "QLineEdit {";
+  if (UnixCommand::getLinuxDistro() != ectn_CHAKRA)
+  {
     style += "font-family: 'MS Sans Serif';";
     style += "font-style: italic;";
-  }
-
-  style += "padding-left: 20px;";
-
-  if(UnixCommand::getLinuxDistro() != ectn_CHAKRA){
+    style += "padding-left: 20px;";
     style += QString("padding-right: %1px;").arg(this->mSearchButton->sizeHint().width() + 2);
     style += "border-width: 3px;";
     style += "border-image: url(:/resources/images/esf-border.png) 3 3 3 3 stretch;";
     style += "color: white; ";
     style += "background-color: lightgray;"; //rgb(255, 108, 108); //palette(mid);"; //rgb(207, 135, 142);";
     style += "border-color: rgb(206, 204, 197);}";
+    setStyleSheet(style);
   }
-
-  setStyleSheet(style);
-
   // setPalette() must be called after setStyleSheet()
-  if(UnixCommand::getLinuxDistro() == ectn_CHAKRA){
+  else
+  //if(UnixCommand::getLinuxDistro() == ectn_CHAKRA)
+  {
+    style += "padding-left: 20px;}";
+    setStyleSheet(style);
+
     QPalette palette(QApplication::palette());
     palette.setColor(QPalette::Base, Qt::lightGray);
     palette.setColor(QPalette::Text, Qt::white);

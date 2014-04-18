@@ -62,7 +62,7 @@ package_octopi() {
    install -D -m644 $startdir/notifier/pacmanhelper/polkit/org.octopi.pacmanhelper.service ${pkgdir}/usr/share/dbus-1/system-services/org.octopi.pacmanhelper.service
 
    #Pacmaneditor files
-   install -D -m755 repoeditor/bin/octopi-repoeditor ${pkgdir}/usr/bin/octopi-repoeditor
+   install -D -m755 $startdir/repoeditor/bin/octopi-repoeditor ${pkgdir}/usr/bin/octopi-repoeditor
 }
 
 package_octopi-notifier() {
