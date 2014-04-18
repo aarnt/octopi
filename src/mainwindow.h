@@ -21,6 +21,8 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+#include <memory>
+
 #include "unixcommand.h"
 #include "uihelper.h"
 
@@ -33,7 +35,6 @@
 #include <QUrl>
 
 class QTreeView;
-class QSortFilterProxyModel;
 class QStandardItemModel;
 class QStandardItem;
 class QModelIndex;
@@ -48,12 +49,10 @@ class SearchLineEdit;
 class QAction;
 class QTreeWidgetItem;
 
-//Column indices for Package's treeview
-const int ctn_PACKAGE_ICON_COLUMN(0);
-const int ctn_PACKAGE_NAME_COLUMN(1);
-const int ctn_PACKAGE_VERSION_COLUMN(2);
-const int ctn_PACKAGE_REPOSITORY_COLUMN(3);
-const int ctn_PACKAGE_DESCRIPTION_COLUMN(4);
+
+#include "src/model/packagemodel.h"
+#include "src/packagerepository.h"
+
 
 //Tab indices for Properties' tabview
 const int ctn_TABINDEX_INFORMATION(0);
@@ -93,8 +92,11 @@ private:
   QList<QModelIndex> *m_foundFilesInPkgFileList;
   int m_indFoundFilesInPkgFileList;
 
-  QSortFilterProxyModel *m_proxyModelPackages;
   QFileSystemWatcher *m_pacmanDatabaseSystemWatcher;
+
+  // Package Data
+  PackageRepository           m_packageRepo;
+  std::auto_ptr<PackageModel> m_packageModel;
 
   //Controls if the dialog showing the packages to be upgraded is opened
   bool m_systemUpgradeDialog;
@@ -102,7 +104,7 @@ private:
   //Searches /etc/pacman.conf to see if ILoveCandy is there
   bool m_iLoveCandy;
 
-    //Controls the calling of System Upgrade action
+  //Controls the calling of System Upgrade action
   bool m_callSystemUpgrade;
 
   //Controls if this Linux box has yaourt installed
@@ -113,19 +115,6 @@ private:
 
   //Holds the remove command to be used: -Rcs/-R/-Rs or whichever the user has choosen
   QString m_removeCommand;
-
-  //This model provides the list of ALL packages (installed + non-installed)
-  QStandardItemModel *m_modelPackages;
-  QStandardItemModel *m_modelPackagesClone;
-
-  //This model provides the list of ONLY installed packages
-  QStandardItemModel *m_modelInstalledPackages;
-
-  //This model provides the list of ALL packages from the selected group
-  QStandardItemModel *m_modelPackagesFromGroup;
-
-  //This model provides the list of ONLY installed packages from the selected group
-  QStandardItemModel *m_modelInstalledPackagesFromGroup;
 
   //This model provides the list of pending actions of a transaction
   QStandardItemModel *m_modelTransaction;
@@ -152,9 +141,6 @@ private:
   //This member holds the last command string executed by Octopi
   QStringList m_lastCommandList;
 
-  int m_PackageListOrderedCol;
-  Qt::SortOrder m_PackageListSortOrder;
-
   QStringList *m_outdatedPackageList;
   QStringList *m_outdatedYaourtPackageList;
   QHash<QString, QString> *m_outdatedYaourtPackagesNameVersion;
@@ -179,7 +165,6 @@ private:
   QTreeWidgetItem *m_YaourtItem;
 
   int m_numberOfInstalledPackages;
-  int m_numberOfAvailablePackages;
   int m_numberOfOutdatedPackages;
 
   void loadSettings();
@@ -194,14 +179,11 @@ private:
   void initStatusBar();
   void initLineEditFilterPackages();
 
-  QString getOutdatedPackageVersionByName(const QString &pkgName);
-  QString getInstalledPackageVersionByName(const QString &pkgName);
-
   QString getSelectedGroup();
   bool isAllGroupsSelected();
+  bool isAllGroups(const QString& group);
   bool isYaourtGroupSelected();
 
-  QStandardItemModel *_getCurrentSelectedModel();
   bool isPackageInstalled(const QString &pkgName);
   bool _isPackageTreeViewVisible();
   void initPackageTreeView();
@@ -295,14 +277,11 @@ private slots:
 
   void _deleteStandardItemModel(QStandardItemModel * sim);
 
-  void _rebuildPackageList();
-
   void buildPackagesFromGroupList();
   void buildPackageList(bool nonBlocking=true);
   void metaBuildPackageList();
   void onPackageGroupChanged();
 
-  void _cloneModelPackages();
   void preBuildPackageList();
   void preBuildPackagesFromGroupList();
   void preBuildYaourtPackageList();
@@ -415,8 +394,7 @@ public:
     return w;
   }
 
-  QStandardItemModel *getModelPackages(){ return m_modelPackages; }
-  QStandardItem *getAvailablePackage(const QString &pkgName, const int index);
+  const PackageRepository::PackageData* getFirstPackageFromRepo(const QString pkgName);
 
   void setCallSystemUpgrade();
   void setRemoveCommand(const QString &removeCommand);

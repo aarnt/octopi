@@ -36,7 +36,6 @@
 #include <QTreeView>
 #include <QComboBox>
 #include <QStandardItem>
-#include <QSortFilterProxyModel>
 #include <QTextBrowser>
 #include <QFutureWatcher>
 
@@ -98,7 +97,7 @@ void MainWindow::keyPressEvent(QKeyEvent* ke)
 {
   if (ke->key() == Qt::Key_Return)
   {
-    if (isYaourtGroupSelected() && m_leFilterPackage->hasFocus() && m_cic == 0)
+    if (isYaourtGroupSelected() && m_leFilterPackage->hasFocus() && m_cic == NULL)
     {
       QFuture<QList<PackageListData> *> f;
       disconnect(&g_fwYaourt, SIGNAL(finished()), this, SLOT(preBuildYaourtPackageList()));
@@ -256,34 +255,23 @@ void MainWindow::keyReleaseEvent(QKeyEvent *ke)
   static int i=0;
   static int k=-9999; //last key pressed
   static int k_count=0;
-  QStandardItemModel *sim=_getCurrentSelectedModel();
 
   if ((ui->tvPackages->hasFocus()) &&
       (((ke->key() >= Qt::Key_A) && (ke->key() <= Qt::Key_Z)) ||
        ((ke->key() >= Qt::Key_0 && (ke->key() <= Qt::Key_9)))))
   {
-    QList<QStandardItem*> fi = sim->findItems( ke->text(), Qt::MatchStartsWith, ctn_PACKAGE_NAME_COLUMN );
-    if (fi.count() > 0){
+    QModelIndex searchColumn = m_packageModel->index(0,
+                                                     PackageModel::ctn_PACKAGE_NAME_COLUMN,
+                                                     QModelIndex());
+    QModelIndexList fi = m_packageModel->match(searchColumn,
+                                               Qt::MatchStartsWith, ke->text());
+
+    if (fi.count() > 0) {
       if ( (ke->key() != k) || (fi.count() != k_count) ) i=0;
 
-      //We have to remove every ModelIndex which is not shown by the TreeView due to filtering
-      foreach (QStandardItem* si, fi)
-      {
-        QModelIndex mi = si->index();
-        mi = m_proxyModelPackages->mapFromSource(mi);
-        if (!m_proxyModelPackages->hasIndex(mi.row(), mi.column())) fi.removeAll(si);
-      }
-
-      if (fi.count()==0)
-      {
-        return;
-      }
-
       QModelIndex currentIndex = ui->tvPackages->currentIndex();
-      QModelIndex firstIndex = fi[0]->index();
-      firstIndex =  m_proxyModelPackages->mapFromSource(firstIndex);
-      QModelIndex lastIndex = fi[fi.count()-1]->index();
-      lastIndex =  m_proxyModelPackages->mapFromSource(lastIndex);
+      QModelIndex firstIndex = fi.first();
+      QModelIndex lastIndex = fi.last();
 
       //std::cout << "CurrentIndex row: " << currentIndex.row() << std::endl;
       //std::cout << "LastIndex row: " << lastIndex.row() << std::endl;
@@ -296,10 +284,9 @@ void MainWindow::keyReleaseEvent(QKeyEvent *ke)
       {
         for(int ind=0; ind<fi.count(); ind++)
         {
-          QModelIndex miAux = fi[ind]->index();
-          miAux = m_proxyModelPackages->mapFromSource(miAux);
+          QModelIndex miAux = fi.at(ind);
 
-          if(miAux ==ui->tvPackages->currentIndex() )
+          if(miAux == ui->tvPackages->currentIndex() )
           {
             int newIndex = ind+1;
             if(newIndex > fi.count()-1)
@@ -314,15 +301,14 @@ void MainWindow::keyReleaseEvent(QKeyEvent *ke)
         }
       }
 
-      ui->tvPackages->selectionModel()->clear();
-      QModelIndex mi = fi[i]->index();
-      mi = m_proxyModelPackages->mapFromSource(mi);
-      ui->tvPackages->scrollTo(mi);
+      if (ui->tvPackages->selectionModel() != NULL) {
+        ui->tvPackages->selectionModel()->clear();
+        QModelIndex mi = fi[i];
+        ui->tvPackages->scrollTo(mi);
 
-      QModelIndex maux = m_proxyModelPackages->index( mi.row(), ctn_PACKAGE_ICON_COLUMN );
-      ui->tvPackages->selectionModel()->setCurrentIndex(mi, QItemSelectionModel::Select);
-      ui->tvPackages->selectionModel()->setCurrentIndex(maux, QItemSelectionModel::Select);
-      ui->tvPackages->setCurrentIndex(mi);
+        ui->tvPackages->selectionModel()->setCurrentIndex(mi, QItemSelectionModel::Select);
+        ui->tvPackages->setCurrentIndex(mi);
+      }
 
       //If we happen to be over the last package of the list...
       if (currentIndex.row() == lastIndex.row()-1)

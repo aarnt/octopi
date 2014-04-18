@@ -181,21 +181,19 @@ double Package::humanizeSize(off_t bytes, const char target_unit, int precision,
 /*
  * Retrieves the list of unrequired packages (those no other packages depends on)
  */
-QStringList *Package::getUnrequiredPackageList()
+QSet<QString>* Package::getUnrequiredPackageList()
 {
   QString unrequiredPkgList = UnixCommand::getUnrequiredPackageList();
   QStringList packageTuples = unrequiredPkgList.split(QRegExp("\\n"), QString::SkipEmptyParts);
-  QStringList * res = new QStringList();
+  QSet<QString>* res = new QSet<QString>();
 
   foreach(QString packageTuple, packageTuples)
   {
     QStringList parts = packageTuple.split(' ');
     {
-      res->append(parts[0]); //We only need the package name!
+      res->insert(parts[0]); //We only need the package name!
     }
   }
-
-  res->sort();
   return res;
 }
 
