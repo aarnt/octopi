@@ -49,11 +49,13 @@ QFutureWatcher<QString> g_fwDistroNews;
 QString showPackageInfo(QString pkgName)
 {
   MainWindow *mw = MainWindow::returnMainWindow();
-  QStandardItem * si = mw->getAvailablePackage(pkgName, ctn_PACKAGE_DESCRIPTION_COLUMN);
+  const PackageRepository::PackageData*const package = mw->getFirstPackageFromRepo(pkgName);
 
-  if (si == 0) return "";
+  if (package == NULL) {
+    return "";
+  }
 
-  QString description = si->text();
+  QString description = package->description;
 
   if (description.trimmed().isEmpty()) return "";
 

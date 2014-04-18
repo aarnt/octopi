@@ -30,12 +30,12 @@
 #include "transactiondialog.h"
 #include "multiselectiondialog.h"
 #include <iostream>
+#include <cassert>
 
 #include <QComboBox>
 #include <QProgressBar>
 #include <QMessageBox>
 #include <QStandardItem>
-#include <QSortFilterProxyModel>
 #include <QTextBrowser>
 
 /*
@@ -249,13 +249,14 @@ void MainWindow::insertIntoRemovePackage()
   if (!isYaourtGroupSelected())
   {
     _ensureTabVisible(ctn_TABINDEX_TRANSACTION);
-    QStandardItemModel *sim=_getCurrentSelectedModel();
+
+    QModelIndexList selectedRows = ui->tvPackages->selectionModel()->selectedRows();
 
     //First, let's see if we are dealing with a package group
     if(!isAllGroupsSelected())
     {
       //If we are trying to remove all the group's packages, why not remove the entire group?
-      if(ui->tvPackages->selectionModel()->selectedRows().count() == sim->rowCount())
+      if(selectedRows.count() == m_packageModel->getPackageCount())
       {
         insertRemovePackageIntoTransaction(getSelectedGroup());
         return;
@@ -268,15 +269,17 @@ void MainWindow::insertIntoRemovePackage()
       checkDependencies = true;
     }
 
-    foreach(QModelIndex item, ui->tvPackages->selectionModel()->selectedRows())
+    foreach(QModelIndex item, selectedRows)
     {
-      QModelIndex mi = m_proxyModelPackages->mapToSource(item);
-      QStandardItem *si = sim->item(mi.row(), ctn_PACKAGE_NAME_COLUMN);
-      QStandardItem *siRepository = sim->item(mi.row(), ctn_PACKAGE_REPOSITORY_COLUMN);
+      const PackageRepository::PackageData*const package = m_packageModel->getData(item);
+      if (package == NULL) {
+        assert(false);
+        continue;
+      }
 
       if(checkDependencies)
       {
-        QStringList *targets = Package::getTargetRemovalList(si->text(), removeCmd);
+        QStringList *targets = Package::getTargetRemovalList(package->name, removeCmd);
 
         foreach(QString target, *targets)
         {
@@ -285,7 +288,7 @@ void MainWindow::insertIntoRemovePackage()
           separator = candidate.lastIndexOf("-");
           candidate = candidate.left(separator);
 
-          if (candidate != si->text())
+          if (candidate != package->name)
           {
             dependencies.append(candidate);
           }
@@ -301,7 +304,7 @@ void MainWindow::insertIntoRemovePackage()
         }
       }
 
-      insertRemovePackageIntoTransaction(siRepository->text() + "/" + si->text());
+      insertRemovePackageIntoTransaction(package->repository + "/" + package->name);
     }
   }
   else
@@ -331,28 +334,29 @@ void MainWindow::insertIntoInstallPackage()
   {
     _ensureTabVisible(ctn_TABINDEX_TRANSACTION);
 
-    QStandardItemModel *sim=_getCurrentSelectedModel();
-
+    QModelIndexList selectedRows = ui->tvPackages->selectionModel()->selectedRows();
     //First, let's see if we are dealing with a package group
     if(!isAllGroupsSelected())
     {
       //If we are trying to insert all the group's packages, why not insert the entire group?
-      if(ui->tvPackages->selectionModel()->selectedRows().count() == sim->rowCount())
+      if(selectedRows.count() == m_packageModel->getPackageCount())
       {
         insertInstallPackageIntoTransaction(getSelectedGroup());
         return;
       }
     }
 
-    foreach(QModelIndex item, ui->tvPackages->selectionModel()->selectedRows())
+    foreach(QModelIndex item, selectedRows)
     {
-      QModelIndex mi = m_proxyModelPackages->mapToSource(item);
-      QStandardItem *si = sim->item(mi.row(), ctn_PACKAGE_NAME_COLUMN);
-      QStandardItem *siRepository = sim->item(mi.row(), ctn_PACKAGE_REPOSITORY_COLUMN);
+      const PackageRepository::PackageData*const package = m_packageModel->getData(item);
+      if (package == NULL) {
+        assert(false);
+        continue;
+      }
 
-      insertIntoInstallPackageOptDeps(si->text()); //Do we have any deps???
+      insertIntoInstallPackageOptDeps(package->name); //Do we have any deps???
 
-      insertInstallPackageIntoTransaction(siRepository->text() + "/" + si->text());
+      insertInstallPackageIntoTransaction(package->repository + "/" + package->name);
     }
   }
   else
@@ -368,9 +372,9 @@ bool MainWindow::isPackageInInstallTransaction(const QString &pkgName)
 {
   QStandardItem * siInstallParent = getInstallTransactionParentItem();
   QStandardItemModel *sim = qobject_cast<QStandardItemModel *>(siInstallParent->model());
-  QStandardItem *repository = getAvailablePackage(pkgName, ctn_PACKAGE_REPOSITORY_COLUMN);
+  const PackageRepository::PackageData*const package = m_packageRepo.getFirstPackageByName(pkgName);
   QString repo;
-  if (repository) repo = repository->text();
+  if (package != NULL) repo = package->repository;
 
   QList<QStandardItem *> foundItems = sim->findItems(repo + "/" + pkgName, Qt::MatchRecursive | Qt::MatchExactly);
 
@@ -399,7 +403,7 @@ void MainWindow::insertIntoInstallPackageOptDeps(const QString &packageName)
 
   //Does this package have non installed optional dependencies?
   QStringList optDeps = Package::getOptionalDeps(packageName); //si->text());
-  QStringList optionalPackages;
+  QList<const PackageRepository::PackageData*> optionalPackages;
 
   foreach(QString optDep, optDeps)
   {
@@ -407,11 +411,11 @@ void MainWindow::insertIntoInstallPackageOptDeps(const QString &packageName)
     int points = candidate.indexOf(":");
     candidate = candidate.mid(0, points).trimmed();
 
-    QStandardItem *name = getAvailablePackage(candidate, ctn_PACKAGE_NAME_COLUMN);
+    const PackageRepository::PackageData*const package = m_packageRepo.getFirstPackageByName(candidate);
     if(!isPackageInInstallTransaction(candidate) &&
-       !isPackageInstalled(candidate) && name != 0)
+       !isPackageInstalled(candidate) && package != 0)
     {
-      optionalPackages.append(candidate);
+      optionalPackages.append(package);
     }
   }
 
@@ -422,15 +426,13 @@ void MainWindow::insertIntoInstallPackageOptDeps(const QString &packageName)
     msd->setWindowIcon(windowIcon());
     QStringList selectedPackages;
 
-    foreach(QString candidate, optionalPackages)
+    foreach(const PackageRepository::PackageData* candidate, optionalPackages)
     {
-      QStandardItem *description = getAvailablePackage(candidate, ctn_PACKAGE_DESCRIPTION_COLUMN);
-      QStandardItem *repository = getAvailablePackage(candidate, ctn_PACKAGE_REPOSITORY_COLUMN);
-      QString desc = description->text();
+      QString desc = candidate->description;
       int space = desc.indexOf(" ");
       desc = desc.mid(space+1);
 
-      msd->addPackageItem(candidate, desc, repository->text());
+      msd->addPackageItem(candidate->name, candidate->description, candidate->repository);
     }
 
     delete cic;
@@ -458,13 +460,13 @@ void MainWindow::insertIntoInstallPackageOptDeps(const QString &packageName)
  */
 bool MainWindow::insertIntoRemovePackageDeps(const QStringList &dependencies)
 {
-  QStringList newDeps;
+  QList<const PackageRepository::PackageData*> newDeps;
   foreach(QString dep, dependencies)
   {
-    QStandardItem *name = getAvailablePackage(dep, ctn_PACKAGE_NAME_COLUMN);
-    if(!isPackageInRemoveTransaction(dep) && isPackageInstalled(dep) && name != 0)
+    const PackageRepository::PackageData*const package = m_packageRepo.getFirstPackageByName(dep);
+    if (package != NULL && package->installed() && !isPackageInRemoveTransaction(dep))
     {
-      newDeps.append(dep);
+      newDeps.append(package);
     }
   }
 
@@ -477,15 +479,13 @@ bool MainWindow::insertIntoRemovePackageDeps(const QStringList &dependencies)
     msd->setWindowIcon(windowIcon());
     QStringList selectedPackages;
 
-    foreach(QString dep, newDeps)
+    foreach(const PackageRepository::PackageData* dep, newDeps)
     {
-      QStandardItem *description = getAvailablePackage(dep, ctn_PACKAGE_DESCRIPTION_COLUMN);
-      QStandardItem *repository = getAvailablePackage(dep, ctn_PACKAGE_REPOSITORY_COLUMN);
-      QString desc = description->text();
+      QString desc = dep->description;
       int space = desc.indexOf(" ");
       desc = desc.mid(space+1);
 
-      msd->addPackageItem(dep, desc, repository->text());
+      msd->addPackageItem(dep->name, desc, dep->repository);
     }
 
     msd->setAllSelected();
@@ -1102,26 +1102,32 @@ void MainWindow::doRemovePacmanLockFile()
  */
 void MainWindow::doInstallYaourtPackage()
 {
-  QString listOfTargets;
-
-  if (isYaourtGroupSelected())
-  {
-    for (int c=0; c<ui->tvPackages->selectionModel()->selectedRows().count(); c++)
-    {
-      listOfTargets += StrConstants::getForeignRepositoryTargetPrefix() +
-          _getCurrentSelectedModel()->item(ui->tvPackages->selectionModel()->selectedRows().at(c).row(),
-                                           ctn_PACKAGE_NAME_COLUMN)->text() + " ";
-    }
+  const QItemSelectionModel*const selectionModel = ui->tvPackages->selectionModel();
+  if (selectionModel == NULL || selectionModel->selectedRows().count() < 1 || m_hasYaourt == false) {
+    std::cerr << "Octopi could not install selection using yaourt" << std::endl;
+    return;
   }
-  else
+  QString listOfTargets;
+  QModelIndexList selectedRows = selectionModel->selectedRows();
+  foreach(QModelIndex item, selectedRows)
   {
-    QStandardItemModel *sim=_getCurrentSelectedModel();
-    foreach(QModelIndex item, ui->tvPackages->selectionModel()->selectedRows())
-    {
-      QModelIndex mi = m_proxyModelPackages->mapToSource(item);
-      QStandardItem *si = sim->item(mi.row(), ctn_PACKAGE_NAME_COLUMN);
-      listOfTargets += si->text() + " ";
+    const PackageRepository::PackageData*const package = m_packageModel->getData(item);
+    if (package == NULL) {
+      assert(false);
+      continue;
     }
+    if (package->repository != StrConstants::getForeignRepositoryName()) {
+      std::cerr << "Octopi could not install selection using yaourt" << std::endl;
+      return;
+    }
+
+    listOfTargets += StrConstants::getForeignRepositoryTargetPrefix() +
+        package->name + " ";
+  }
+
+  if (listOfTargets.isEmpty()) {
+    std::cerr << "Octopi could not install selection using yaourt" << std::endl;
+    return;
   }
 
   m_lastCommandList.clear();
@@ -1149,11 +1155,17 @@ void MainWindow::doRemoveYaourtPackage()
   if (!_isSUAvailable()) return;
 
   QString listOfTargets;
-  for (int c=0; c<ui->tvPackages->selectionModel()->selectedRows().count(); c++)
+
+  QModelIndexList selectedRows = ui->tvPackages->selectionModel()->selectedRows();
+  foreach(QModelIndex item, selectedRows)
   {
-    listOfTargets +=
-      _getCurrentSelectedModel()->item(ui->tvPackages->selectionModel()->selectedRows().at(c).row(),
-                                       ctn_PACKAGE_NAME_COLUMN)->text() + " ";
+    const PackageRepository::PackageData*const package = m_packageModel->getData(item);
+    if (package == NULL) {
+      assert(false);
+      continue;
+    }
+
+    listOfTargets += package->name + " ";
   }
 
   m_lastCommandList.clear();
@@ -1899,10 +1911,9 @@ void MainWindow::_treatProcessOutput(const QString &pMsg)
         //Does this package exist or is it a proccessOutput buggy string???
         QString pkgName = msg.mid(9).trimmed();
 
-        if (pkgName.indexOf("...") != -1 ||
-            m_modelInstalledPackages->findItems(pkgName,
-                                                Qt::MatchExactly,
-                                                ctn_PACKAGE_NAME_COLUMN).count() != 0)
+        const PackageRepository::PackageData*const package = m_packageRepo.getFirstPackageByName(pkgName);
+        if (pkgName.indexOf("...") != -1 || //TODO: maybe && was meant ?, what does pacman actually do here ?
+            (package != NULL && package->installed()))
         {
           writeToTabOutputExt("<b><font color=\"#E55451\">" + msg + "</font></b>"); //RED
         }

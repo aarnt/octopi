@@ -10,7 +10,8 @@
   BugFix: The preventing code for always refresh the pkg list was flawed.
   BugFix: hasInternetConnection code fixed to improve mirror-check speed.
   Merged Oktopi's code for using KDE icon theme, tools menu and CCR support 
-	(thanks to Giuseppe Calà - gcala).  
+	(thanks to Giuseppe Calà - gcala).
+  Refactored the packageView to use a single model and a central data storage.
   The filelist search now searches directories too.
   Refactorings here and there to make it more Chakra friendly.
   Updated README file.

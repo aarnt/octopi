@@ -34,7 +34,6 @@
 
 #include <QLabel>
 #include <QStandardItemModel>
-#include <QSortFilterProxyModel>
 #include <QTextBrowser>
 #include <QResource>
 #include <QFile>
@@ -45,16 +44,21 @@
 #include <QSystemTrayIcon>
 #include <QToolButton>
 #include <iostream>
+#include <cassert>
+
 
 /*
  * Loads various application settings configured in ~/.config/octopi/octopi.conf
  */
 void MainWindow::loadSettings(){
-  m_PackageListOrderedCol = SettingsManager::instance()->getPackageListOrderedCol();
-  m_PackageListSortOrder = (Qt::SortOrder) SettingsManager::instance()->getPackageListSortOrder();
+  if (ui->tvPackages->model() != NULL) {
+    int packageListOrderedCol = SettingsManager::instance()->getPackageListOrderedCol();
+    Qt::SortOrder packageListSortOrder = (Qt::SortOrder) SettingsManager::instance()->getPackageListSortOrder();
 
-  ui->tvPackages->header()->setSortIndicator( m_PackageListOrderedCol, m_PackageListSortOrder );
-  ui->tvPackages->sortByColumn( m_PackageListOrderedCol, m_PackageListSortOrder );
+    ui->tvPackages->header()->setSortIndicator( packageListOrderedCol, packageListSortOrder );
+    ui->tvPackages->sortByColumn( packageListOrderedCol, packageListSortOrder );
+  }
+  else assert(false);
 }
 
 /*
@@ -99,8 +103,8 @@ void MainWindow::saveSettings(int saveSettingsReason){
       break;
 
     case ectn_PackageList:
-      SettingsManager::instance()->setPackageListOrderedCol(m_PackageListOrderedCol);
-      SettingsManager::instance()->setPackageListSortOrder(m_PackageListSortOrder);
+      SettingsManager::instance()->setPackageListOrderedCol(ui->tvPackages->header()->sortIndicatorSection());
+      SettingsManager::instance()->setPackageListSortOrder(ui->tvPackages->header()->sortIndicatorOrder());
       break;
   }
 }
@@ -402,15 +406,6 @@ void MainWindow::initLineEditFilterPackages(){
  */
 void MainWindow::initPackageTreeView()
 {
-  m_proxyModelPackages = new QSortFilterProxyModel(this);
-  m_modelPackages = new QStandardItemModel(this);
-  m_modelPackagesClone = new QStandardItemModel(this);
-  m_modelInstalledPackages = new QStandardItemModel(this);
-  m_modelPackagesFromGroup = new QStandardItemModel(this);
-  m_modelInstalledPackagesFromGroup = new QStandardItemModel(this);
-  m_proxyModelPackages->setSourceModel(m_modelPackages);
-  m_proxyModelPackages->setFilterKeyColumn(ctn_PACKAGE_NAME_COLUMN);
-
   ui->tvPackages->setAlternatingRowColors(true);
   ui->tvPackages->setItemDelegate(new TreeViewPackagesItemDelegate(ui->tvPackages));
   ui->tvPackages->setContextMenuPolicy(Qt::CustomContextMenu);
@@ -418,9 +413,8 @@ void MainWindow::initPackageTreeView()
   ui->tvPackages->setEditTriggers(QAbstractItemView::NoEditTriggers);
   ui->tvPackages->setVerticalScrollMode(QAbstractItemView::ScrollPerItem);
   ui->tvPackages->setAllColumnsShowFocus( true );
-  ui->tvPackages->setModel(m_proxyModelPackages);
+  ui->tvPackages->setModel(m_packageModel.get());
   ui->tvPackages->setSortingEnabled( true );
-  ui->tvPackages->sortByColumn(ctn_PACKAGE_NAME_COLUMN, Qt::AscendingOrder);
   ui->tvPackages->setIndentation( 0 );
   ui->tvPackages->header()->setSortIndicatorShown(true);
 
@@ -434,19 +428,18 @@ void MainWindow::initPackageTreeView()
   ui->tvPackages->header()->setSectionResizeMode(QHeaderView::Fixed);
 #endif
 
-  ui->tvPackages->header()->setDefaultAlignment( Qt::AlignLeft );
-  ui->tvPackages->setStyleSheet(
-        StrConstants::getTreeViewCSS());
+    ui->tvPackages->header()->setDefaultAlignment( Qt::AlignLeft );
+    ui->tvPackages->setStyleSheet(StrConstants::getTreeViewCSS());
 
-  connect(ui->tvPackages->selectionModel(), SIGNAL(selectionChanged(QItemSelection,QItemSelection)),
-          this, SLOT(tvPackagesSelectionChanged(QItemSelection,QItemSelection)));
-  connect(ui->tvPackages, SIGNAL(activated(QModelIndex)), this, SLOT(changedTabIndex()));
-  connect(ui->tvPackages, SIGNAL(clicked(QModelIndex)), this, SLOT(changedTabIndex()));
-  connect(ui->tvPackages->header(), SIGNAL(sortIndicatorChanged(int,Qt::SortOrder)), this,
-          SLOT(headerViewPackageListSortIndicatorClicked(int,Qt::SortOrder)));
-  connect(ui->tvPackages, SIGNAL(customContextMenuRequested(QPoint)), this,
-          SLOT(execContextMenuPackages(QPoint)));
-  connect(ui->tvPackages, SIGNAL(doubleClicked(QModelIndex)), this, SLOT(onDoubleClickPackageList()));
+    connect(ui->tvPackages->selectionModel(), SIGNAL(selectionChanged(QItemSelection,QItemSelection)),
+            this, SLOT(tvPackagesSelectionChanged(QItemSelection,QItemSelection)));
+    connect(ui->tvPackages, SIGNAL(activated(QModelIndex)), this, SLOT(changedTabIndex()));
+    connect(ui->tvPackages, SIGNAL(clicked(QModelIndex)), this, SLOT(changedTabIndex()));
+    connect(ui->tvPackages->header(), SIGNAL(sortIndicatorChanged(int,Qt::SortOrder)), this,
+            SLOT(headerViewPackageListSortIndicatorClicked(int,Qt::SortOrder)));
+    connect(ui->tvPackages, SIGNAL(customContextMenuRequested(QPoint)), this,
+            SLOT(execContextMenuPackages(QPoint)));
+    connect(ui->tvPackages, SIGNAL(doubleClicked(QModelIndex)), this, SLOT(onDoubleClickPackageList()));
 }
 
 /*
