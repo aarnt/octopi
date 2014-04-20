@@ -59,6 +59,10 @@ int main(int argc, char *argv[])
     {
       app.sendMessage("SYSUPGRADE");
     }
+    else if (argList->getSwitch("-sysupgrade-noconfirm"))
+    {
+      app.sendMessage("SYSUPGRADE_NOCONFIRM");
+    }
     else if (argList->getSwitch("-close"))
     {
       app.sendMessage("CLOSE");
@@ -123,7 +127,7 @@ int main(int argc, char *argv[])
   #endif
 #endif
 
-  if (argList->getSwitch("-sysupgrade"))
+  if (argList->getSwitch("-sysupgrade") || argList->getSwitch("-sysupgrade-noconfirm"))
   {
     w.setCallSystemUpgrade();
   }

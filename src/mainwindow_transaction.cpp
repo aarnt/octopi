@@ -744,9 +744,35 @@ void MainWindow::doYaourtUpgrade()
 }
 
 /*
+ * dpSystemUpgrade shared code ...
+ */
+void MainWindow::_prepareSystemUpgrade()
+{
+  m_systemUpgradeDialog = false;
+  doRemovePacmanLockFile();
+
+  m_lastCommandList.clear();
+  m_lastCommandList.append("pacman -Su;");
+  m_lastCommandList.append("echo -e;");
+  m_lastCommandList.append("read -n1 -p \"" + StrConstants::getPressAnyKey() + "\"");
+
+  m_unixCommand = new UnixCommand(this);
+
+  QObject::connect(m_unixCommand, SIGNAL( started() ), this, SLOT( actionsProcessStarted()));
+  QObject::connect(m_unixCommand, SIGNAL( readyReadStandardOutput()),
+                   this, SLOT( actionsProcessReadOutput() ));
+  QObject::connect(m_unixCommand, SIGNAL( finished ( int, QProcess::ExitStatus )),
+                   this, SLOT( actionsProcessFinished(int, QProcess::ExitStatus) ));
+  QObject::connect(m_unixCommand, SIGNAL( readyReadStandardError() ),
+                   this, SLOT( actionsProcessRaisedError() ));
+
+  disableTransactionActions();
+}
+
+/*
  * Does a system upgrade with "pacman -Su" !
  */
-void MainWindow::doSystemUpgrade(bool syncDatabase)
+void MainWindow::doSystemUpgrade(SystemUpgradeOptions systemUpgradeOptions)
 {
   if (isYaourtGroupSelected() || m_systemUpgradeDialog) return;
 
@@ -758,7 +784,7 @@ void MainWindow::doSystemUpgrade(bool syncDatabase)
 
   qApp->processEvents();
 
-  if(syncDatabase)
+  if(systemUpgradeOptions == ectn_SYNC_DATABASE_OPT)
   {
     m_commandQueued = ectn_SYSTEM_UPGRADE;
     doSyncDatabase();
@@ -793,69 +819,67 @@ void MainWindow::doSystemUpgrade(bool syncDatabase)
     }
     list.remove(list.size()-1, 1);
 
-    totalDownloadSize = totalDownloadSize / 1024;
-    QString ds = QString::number(totalDownloadSize, 'f', 2);
-
-    TransactionDialog question(this);
-
-    if(targets->count()==1)
-      question.setText(StrConstants::getRetrieveTarget() +
-                       "\n\n" + StrConstants::getTotalDownloadSize().arg(ds));
-    else
-      question.setText(StrConstants::getRetrieveTargets().arg(targets->count()) +
-                       "\n\n" + StrConstants::getTotalDownloadSize().arg(ds));
-
-    question.setWindowTitle(StrConstants::getConfirmation());
-    question.setInformativeText(StrConstants::getConfirmationQuestion());
-    question.setDetailedText(list);
-
-    m_systemUpgradeDialog = true;
-    int result = question.exec();
-
-    if(result == QDialogButtonBox::Yes || result == QDialogButtonBox::AcceptRole)
+    //User already confirmed all updates in the notifier window!
+    if (systemUpgradeOptions == ectn_NOCONFIRM_OPT)
     {
-      m_systemUpgradeDialog = false;
+      _prepareSystemUpgrade();
 
-      doRemovePacmanLockFile();
+      m_commandExecuting = ectn_SYSTEM_UPGRADE;
 
-      m_lastCommandList.clear();
-      m_lastCommandList.append("pacman -Su;");
-      m_lastCommandList.append("echo -e;");
-      m_lastCommandList.append("read -n1 -p \"" + StrConstants::getPressAnyKey() + "\"");
+      QString command;
+      command = "pacman -Su --noconfirm";
 
-      m_unixCommand = new UnixCommand(this);
-
-      QObject::connect(m_unixCommand, SIGNAL( started() ), this, SLOT( actionsProcessStarted()));
-      QObject::connect(m_unixCommand, SIGNAL( readyReadStandardOutput()),
-                       this, SLOT( actionsProcessReadOutput() ));
-      QObject::connect(m_unixCommand, SIGNAL( finished ( int, QProcess::ExitStatus )),
-                       this, SLOT( actionsProcessFinished(int, QProcess::ExitStatus) ));
-      QObject::connect(m_unixCommand, SIGNAL( readyReadStandardError() ),
-                       this, SLOT( actionsProcessRaisedError() ));
-
-      disableTransactionActions();
-
-      if (result == QDialogButtonBox::Yes)
-      {
-        m_commandExecuting = ectn_SYSTEM_UPGRADE;
-
-        QString command;
-        command = "pacman -Su --noconfirm";
-
-        m_unixCommand->executeCommand(command);
-        m_commandQueued = ectn_NONE;
-      }
-      else if (result == QDialogButtonBox::AcceptRole)
-      {
-        m_commandExecuting = ectn_RUN_SYSTEM_UPGRADE_IN_TERMINAL;
-        m_unixCommand->runCommandInTerminal(m_lastCommandList);
-        m_commandQueued = ectn_NONE;
-      }
+      m_unixCommand->executeCommand(command);
+      m_commandQueued = ectn_NONE;
     }
-    else if (result == QDialogButtonBox::No)
+    else
     {
-      m_systemUpgradeDialog = false;
-      enableTransactionActions();
+      //Let's build the system upgrade transaction dialog...
+      totalDownloadSize = totalDownloadSize / 1024;
+      QString ds = QString::number(totalDownloadSize, 'f', 2);
+
+      TransactionDialog question(this);
+
+      if(targets->count()==1)
+        question.setText(StrConstants::getRetrieveTarget() +
+                         "\n\n" + StrConstants::getTotalDownloadSize().arg(ds));
+      else
+        question.setText(StrConstants::getRetrieveTargets().arg(targets->count()) +
+                         "\n\n" + StrConstants::getTotalDownloadSize().arg(ds));
+
+      question.setWindowTitle(StrConstants::getConfirmation());
+      question.setInformativeText(StrConstants::getConfirmationQuestion());
+      question.setDetailedText(list);
+
+      m_systemUpgradeDialog = true;
+      int result = question.exec();
+
+      if(result == QDialogButtonBox::Yes || result == QDialogButtonBox::AcceptRole)
+      {
+        _prepareSystemUpgrade();
+
+        if (result == QDialogButtonBox::Yes)
+        {
+          m_commandExecuting = ectn_SYSTEM_UPGRADE;
+
+          QString command;
+          command = "pacman -Su --noconfirm";
+
+          m_unixCommand->executeCommand(command);
+          m_commandQueued = ectn_NONE;
+        }
+        else if (result == QDialogButtonBox::AcceptRole)
+        {
+          m_commandExecuting = ectn_RUN_SYSTEM_UPGRADE_IN_TERMINAL;
+          m_unixCommand->runCommandInTerminal(m_lastCommandList);
+          m_commandQueued = ectn_NONE;
+        }
+      }
+      else if (result == QDialogButtonBox::No)
+      {
+        m_systemUpgradeDialog = false;
+        enableTransactionActions();
+      }
     }
   }
 }
@@ -1566,7 +1590,7 @@ void MainWindow::actionsProcessFinished(int exitCode, QProcess::ExitStatus exitS
       }
     }
 
-    doSystemUpgrade(false);
+    doSystemUpgrade();
     m_commandQueued = ectn_NONE;
   }
   else if (m_commandQueued == ectn_NONE)

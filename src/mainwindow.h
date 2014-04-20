@@ -64,6 +64,7 @@ const int ctn_TABINDEX_NEWS(4);
 const int ctn_TABINDEX_HELPUSAGE(5);
 
 enum TreatURLLinks { ectn_TREAT_URL_LINK, ectn_DONT_TREAT_URL_LINK };
+enum SystemUpgradeOptions { ectn_NO_OPT, ectn_SYNC_DATABASE_OPT, ectn_NOCONFIRM_OPT };
 
 namespace Ui {
 class MainWindow;
@@ -159,7 +160,7 @@ private:
   QStringList *m_outdatedYaourtPackageList;
   QHash<QString, QString> *m_outdatedYaourtPackagesNameVersion;
 
-  QLabel *m_lblSelCounter; //Holds the number of selected packages
+  QLabel *m_lblSelCounter;    //Holds the number of selected packages
   QLabel *m_lblTotalCounters; //Holds the total number of packages
   QProgressBar *m_progressWidget;
 
@@ -222,6 +223,7 @@ private:
   void clearStatusBar();
 
   void _showPackagesWithNoDescription();
+  void _prepareSystemUpgrade();
 
   //Tab Transaction related methods
   bool _isThereAPendingTransaction();
@@ -397,7 +399,7 @@ private slots:
   void launchRepoEditor();
 
 public slots:
-  void doSystemUpgrade(bool syncDatabase = false);
+  void doSystemUpgrade(SystemUpgradeOptions sysUpgradeOption = ectn_NO_OPT);
 
 public:
   explicit MainWindow(QWidget *parent = 0);
