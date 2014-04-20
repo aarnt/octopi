@@ -103,8 +103,11 @@ private:
   //Searches /etc/pacman.conf to see if ILoveCandy is there
   bool m_iLoveCandy;
 
-    //Controls the calling of System Upgrade action
+  //Controls the calling of System Upgrade action
   bool m_callSystemUpgrade;
+
+  //Controls the calling of System Upgrade NO CONFIRM action
+  bool m_callSystemUpgradeNoConfirm;
 
   //Controls if this Linux box has yaourt installed
   bool m_hasYaourt;
@@ -421,6 +424,7 @@ public:
   QStandardItem *getAvailablePackage(const QString &pkgName, const int index);
 
   void setCallSystemUpgrade();
+  void setCallSystemUpgradeNoConfirm();
   void setRemoveCommand(const QString &removeCommand);
   void setPackagesToInstallList(QStringList pkgList){ m_packagesToInstallList = pkgList; }
   void doInstallLocalPackages();

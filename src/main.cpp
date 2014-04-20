@@ -127,7 +127,11 @@ int main(int argc, char *argv[])
   #endif
 #endif
 
-  if (argList->getSwitch("-sysupgrade") || argList->getSwitch("-sysupgrade-noconfirm"))
+  if (argList->getSwitch("-sysupgrade-noconfirm"))
+  {
+
+  }
+  else if (argList->getSwitch("-sysupgrade"))
   {
     w.setCallSystemUpgrade();
   }

@@ -31,6 +31,8 @@ private slots:
   void execSystemTrayActivated(QSystemTrayIcon::ActivationReason);
   void refreshAppIcon();
   void runOctopi(ExecOpt execOptions = ectn_SYSUPGRADE_EXEC_OPT);
+  void runOctopiSysUpgrade();
+
   inline void startOctopi() { runOctopi(ectn_NORMAL_EXEC_OPT); }
 
   void aboutOctopiNotifier();

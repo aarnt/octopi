@@ -780,6 +780,11 @@ void MainWindow::doSystemUpgrade(SystemUpgradeOptions systemUpgradeOptions)
     m_callSystemUpgrade = false;
     return;
   }
+  else if (m_callSystemUpgradeNoConfirm && m_numberOfOutdatedPackages == 0)
+  {
+    m_callSystemUpgrade = false;
+    return;
+  }
 
   qApp->processEvents();
 

@@ -55,7 +55,7 @@ void MainWindow::initSystemTrayIcon()
   m_actionSystemUpgrade = new QAction(this);
   m_actionSystemUpgrade->setText(tr("System upgrade"));
   m_actionSystemUpgrade->setIcon(QIcon(":/resources/images/fast_forward.png"));
-  connect(m_actionSystemUpgrade, SIGNAL(triggered()), this, SLOT(runOctopi()));
+  connect(m_actionSystemUpgrade, SIGNAL(triggered()), this, SLOT(runOctopiSysUpgrade()));
 
   m_systemTrayIconMenu = new QMenu( this );
   m_systemTrayIconMenu->addAction(m_actionOctopi);
@@ -99,47 +99,37 @@ void MainWindow::runOctopi(ExecOpt execOptions)
   {
     doSystemUpgrade();
   }
+  else if (execOptions == ectn_SYSUPGRADE_EXEC_OPT &&
+      UnixCommand::isAppRunning("octopi", true) && m_outdatedPackageList->count() > 0)
+  {
+    if (!WMHelper::isKDERunning() && (!WMHelper::isRazorQtRunning()))
+    {
+      QProcess::startDetached("octopi -sysupgrade -style gtk");
+    }
+    else
+    {
+      QProcess::startDetached("octopi -sysupgrade");
+    }
+  }
   else if (execOptions == ectn_NORMAL_EXEC_OPT)
   {
     if (!WMHelper::isKDERunning() && (!WMHelper::isRazorQtRunning()))
     {
-      if (m_icon.pixmap(QSize(22,22)).toImage() ==
-          IconHelper::getIconOctopiRed().pixmap(QSize(22,22)).toImage())
-      {
-        if (execOptions == ectn_NORMAL_EXEC_OPT)
-        {
-          QProcess::startDetached("octopi -style gtk");
-        }
-        else if (execOptions == ectn_SYSUPGRADE_EXEC_OPT)
-        {
-          QProcess::startDetached("octopi -sysupgrade -style gtk");
-        }
-      }
-      else
-      {
-        QProcess::startDetached("octopi -style gtk");
-      }
+      QProcess::startDetached("octopi -style gtk");
     }
     else
     {
-      if (m_icon.pixmap(QSize(22,22)).toImage() ==
-          IconHelper::getIconOctopiRed().pixmap(QSize(22,22)).toImage())
-      {
-        if (execOptions == ectn_NORMAL_EXEC_OPT)
-        {
-          QProcess::startDetached("octopi");
-        }
-        else if (execOptions == ectn_SYSUPGRADE_EXEC_OPT)
-        {
-          QProcess::startDetached("octopi -sysupgrade");
-        }
-      }
-      else
-      {
-        QProcess::startDetached("octopi");
-      }
+      QProcess::startDetached("octopi");
     }
   }
+}
+
+/*
+ * Helper to a runOctopi with a call to SystemUpgrade
+ */
+void MainWindow::runOctopiSysUpgrade()
+{
+  runOctopi(ectn_SYSUPGRADE_EXEC_OPT);
 }
 
 /*

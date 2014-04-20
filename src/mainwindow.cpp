@@ -55,6 +55,7 @@ MainWindow::MainWindow(QWidget *parent) :
   m_foundFilesInPkgFileList = new QList<QModelIndex>();
   m_indFoundFilesInPkgFileList = 0;
   m_callSystemUpgrade = false;
+  m_callSystemUpgradeNoConfirm = false;
   m_initializationCompleted=false;
   m_listOfPackages = 0;
   m_listOfPackagesFromGroup = 0;
@@ -428,6 +429,14 @@ QStandardItem *MainWindow::getAvailablePackage(const QString &pkgName, const int
 void MainWindow::setCallSystemUpgrade()
 {
   m_callSystemUpgrade = true;
+}
+
+/*
+ * Sets a flag to call the System Upgrade action, without confirmation dialogs!
+ */
+void MainWindow::setCallSystemUpgradeNoConfirm()
+{
+  m_callSystemUpgradeNoConfirm = true;
 }
 
 /*
