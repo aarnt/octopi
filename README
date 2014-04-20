@@ -1,9 +1,14 @@
 This is Octopi, a powerful Pacman/Yaourt frontend using Qt libs. 
 ================================================================
 
-The project's source code is hosted at https://github.com/aarnt/octopi.
+The project's source code is hosted at 
+	https://github.com/aarnt/octopi.
 
 You'll need a privilege escalation tool to use it, once running as 
 root will ONLY work in KDE. Octopi supports kdesu and gksu for that.
+
+Do you understand english? Wanna help this project?
+You can translate it to your mother language at 
+	https://www.transifex.com/projects/p/octopi/.
 
 Enjoy!
