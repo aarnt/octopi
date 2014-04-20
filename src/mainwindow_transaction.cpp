@@ -351,7 +351,6 @@ void MainWindow::insertIntoInstallPackage()
       QStandardItem *siRepository = sim->item(mi.row(), ctn_PACKAGE_REPOSITORY_COLUMN);
 
       insertIntoInstallPackageOptDeps(si->text()); //Do we have any deps???
-
       insertInstallPackageIntoTransaction(siRepository->text() + "/" + si->text());
     }
   }
@@ -1178,7 +1177,16 @@ void MainWindow::doRemoveYaourtPackage()
   }
 
   m_lastCommandList.clear();
-  m_lastCommandList.append(StrConstants::getForeignRepositoryToolName() + " -" + m_removeCommand + " " + listOfTargets + ";");
+
+  if (StrConstants::getForeignRepositoryToolName() == "ccr")
+  {
+    m_lastCommandList.append("pacman -" + m_removeCommand + " " + listOfTargets + ";");
+  }
+  else
+  {
+    m_lastCommandList.append(StrConstants::getForeignRepositoryToolName() + " -" + m_removeCommand + " " + listOfTargets + ";");
+  }
+
   m_lastCommandList.append("echo -e;");
   m_lastCommandList.append("read -n1 -p \"" + StrConstants::getPressAnyKey() + "\"");
 
@@ -2158,7 +2166,7 @@ void MainWindow::writeToTabOutputExt(const QString &msg)
 }
 
 /*
- *  Launch Repo Editor
+ * Launch Repo Editor
  */
 void MainWindow::launchRepoEditor()
 {
