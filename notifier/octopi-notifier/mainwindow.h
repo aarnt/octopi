@@ -14,6 +14,8 @@ class QAction;
 class QFileSystemWatcher;
 class PacmanHelperClient;
 
+enum ExecOpt { ectn_NORMAL_EXEC_OPT, ectn_SYSUPGRADE_EXEC_OPT, ectn_SYSUPGRADE_NOCONFIRM_EXEC_OPT };
+
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
@@ -28,8 +30,8 @@ private slots:
   void afterPacmanHelperSyncDatabase();
   void execSystemTrayActivated(QSystemTrayIcon::ActivationReason);
   void refreshAppIcon();
-  void runOctopi(bool execApplication = false);
-  inline void startOctopi() { runOctopi(true); }
+  void runOctopi(ExecOpt execOptions = ectn_SYSUPGRADE_EXEC_OPT);
+  inline void startOctopi() { runOctopi(ectn_NORMAL_EXEC_OPT); }
 
   void aboutOctopiNotifier();
   void hideOctopi();

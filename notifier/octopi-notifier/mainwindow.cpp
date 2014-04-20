@@ -81,26 +81,39 @@ void MainWindow::initSystemTrayIcon()
 /*
  * Execs Octopi
  */
-void MainWindow::runOctopi(bool execApplication)
+void MainWindow::runOctopi(ExecOpt execOptions)
 {
-  if (!execApplication &&
+  if (execOptions == ectn_SYSUPGRADE_NOCONFIRM_EXEC_OPT)
+  {
+    if (!WMHelper::isKDERunning() && (!WMHelper::isRazorQtRunning()))
+    {
+      QProcess::startDetached("octopi -sysupgrade-noconfirm -style gtk");
+    }
+    else
+    {
+      QProcess::startDetached("octopi -sysupgrade-noconfirm");
+    }
+  }
+  else if (execOptions == ectn_SYSUPGRADE_EXEC_OPT &&
       !UnixCommand::isAppRunning("octopi", true) && m_outdatedPackageList->count() > 0)
   {
     doSystemUpgrade();
   }
-  else
+  else if (execOptions == ectn_NORMAL_EXEC_OPT)
   {
-    if (UnixCommand::getLinuxDistro() == ectn_MANJAROLINUX &&
-        (!WMHelper::isKDERunning() && (!WMHelper::isRazorQtRunning())))
+    if (!WMHelper::isKDERunning() && (!WMHelper::isRazorQtRunning()))
     {
       if (m_icon.pixmap(QSize(22,22)).toImage() ==
           IconHelper::getIconOctopiRed().pixmap(QSize(22,22)).toImage())
       {
-        if (execApplication == true)
+        if (execOptions == ectn_NORMAL_EXEC_OPT)
         {
           QProcess::startDetached("octopi -style gtk");
         }
-        else QProcess::startDetached("octopi -sysupgrade -style gtk");
+        else if (execOptions == ectn_SYSUPGRADE_EXEC_OPT)
+        {
+          QProcess::startDetached("octopi -sysupgrade -style gtk");
+        }
       }
       else
       {
@@ -112,11 +125,14 @@ void MainWindow::runOctopi(bool execApplication)
       if (m_icon.pixmap(QSize(22,22)).toImage() ==
           IconHelper::getIconOctopiRed().pixmap(QSize(22,22)).toImage())
       {
-        if (execApplication == true)
+        if (execOptions == ectn_NORMAL_EXEC_OPT)
         {
           QProcess::startDetached("octopi");
         }
-        else QProcess::startDetached("octopi -sysupgrade");
+        else if (execOptions == ectn_SYSUPGRADE_EXEC_OPT)
+        {
+          QProcess::startDetached("octopi -sysupgrade");
+        }
       }
       else
       {
@@ -195,7 +211,7 @@ void MainWindow::doSystemUpgrade()
   QString ds = QString::number(totalDownloadSize, 'f', 2);
 
   TransactionDialog question(this);
-  question.removeYesButton(); //This is a more prudent behaviour!
+  //question.removeYesButton(); //This is a more prudent behaviour!
 
   if(targets->count()==1)
     question.setText(StrConstants::getRetrieveTarget() +
@@ -211,7 +227,11 @@ void MainWindow::doSystemUpgrade()
   m_systemUpgradeDialog = true;
   int result = question.exec();
 
-  if(result == QDialogButtonBox::Yes || result == QDialogButtonBox::AcceptRole)
+  if (result == QDialogButtonBox::Yes)
+  {
+    runOctopi(ectn_SYSUPGRADE_NOCONFIRM_EXEC_OPT);
+  }
+  else if(result == QDialogButtonBox::AcceptRole)
   {
     m_systemUpgradeDialog = false;
 
@@ -469,11 +489,11 @@ void MainWindow::execSystemTrayActivated(QSystemTrayIcon::ActivationReason ar)
   {
     if (m_outdatedPackageList->count() > 0)
     {
-      runOctopi();
+      runOctopi(ectn_SYSUPGRADE_EXEC_OPT);
     }
     else
     {
-      runOctopi(true);
+      runOctopi(ectn_NORMAL_EXEC_OPT);
     }
 
     break;
