@@ -12,7 +12,8 @@
   BugFix: Fixed CCR (Chakra) package installation/removal (thanks to dmnmsc).
   Added parameter "sysupgrade-noconfirm" so Octopi can jump automatically 
 	to distro upgrade (if any new packages available) without prompt for 
-	confirmation.
+	confirmation. Also added a "Yes" button to the sysupgrade 
+	confirmation dialog at octopi-notifier (thanks to wget).
   Merged Oktopi's code for using KDE icon theme, tools menu and CCR support 
 	(thanks to Giuseppe Calà - gcala).  
   The filelist search now searches directories too.
