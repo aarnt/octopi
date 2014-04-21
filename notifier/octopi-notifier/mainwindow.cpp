@@ -348,13 +348,13 @@ void MainWindow::afterPacmanHelperSyncDatabase()
       {
         notification = StrConstants::getOneNewUpdate();
         m_systemTrayIcon->setToolTip(notification);
-        sendNotification(notification);
+        if (!UnixCommand::isAppRunning("spun", true)) sendNotification(notification);
       }
       else if (m_numberOfOutdatedPackages > 1)
       {
         notification = StrConstants::getNewUpdates().arg(m_numberOfOutdatedPackages);
         m_systemTrayIcon->setToolTip(notification);
-        sendNotification(notification);
+        if (!UnixCommand::isAppRunning("spun", true)) sendNotification(notification);
       }
     }
   }
@@ -366,13 +366,13 @@ void MainWindow::afterPacmanHelperSyncDatabase()
     {
       notification = StrConstants::getOneNewUpdate();
       m_systemTrayIcon->setToolTip(notification);
-      sendNotification(notification);
+      if (!UnixCommand::isAppRunning("spun", true)) sendNotification(notification);
     }
     else if (numberOfOutdatedPackages > 1)
     {
       notification = StrConstants::getNewUpdates().arg(numberOfOutdatedPackages);
       m_systemTrayIcon->setToolTip(notification);
-      sendNotification(notification);
+      if (!UnixCommand::isAppRunning("spun", true)) sendNotification(notification);
     }
   }
 
@@ -385,13 +385,13 @@ void MainWindow::afterPacmanHelperSyncDatabase()
  */
 void MainWindow::sendNotification(const QString &msg)
 {
-    QString processToExec("notify-send");
-    if (UnixCommand::hasTheExecutable(processToExec))
-    {
-      processToExec += " -i /usr/share/icons/octopi_red.png -t 30000 \"" + StrConstants::getApplicationName() +
-          "\"  \"" + msg + "\"";
-      QProcess::startDetached(processToExec);
-    }
+  QString processToExec("notify-send");
+  if (UnixCommand::hasTheExecutable(processToExec))
+  {
+    processToExec += " -i /usr/share/icons/octopi_red.png -t 30000 \"" + StrConstants::getApplicationName() +
+        "\"  \"" + msg + "\"";
+    QProcess::startDetached(processToExec);
+  }
 }
 
 /*
