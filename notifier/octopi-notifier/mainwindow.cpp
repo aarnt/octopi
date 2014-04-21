@@ -201,7 +201,9 @@ void MainWindow::doSystemUpgrade()
   QString ds = QString::number(totalDownloadSize, 'f', 2);
 
   TransactionDialog question(this);
-  //question.removeYesButton(); //This is a more prudent behaviour!
+
+  //If we're in Chakra, there are no graphical system upgrades!
+  if (UnixCommand::getLinuxDistro() == ectn_CHAKRA) question.removeYesButton();
 
   if(targets->count()==1)
     question.setText(StrConstants::getRetrieveTarget() +
