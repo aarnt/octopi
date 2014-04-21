@@ -54,7 +54,7 @@ void MainWindow::initSystemTrayIcon()
 
   m_actionSystemUpgrade = new QAction(this);
   m_actionSystemUpgrade->setText(tr("System upgrade"));
-  m_actionSystemUpgrade->setIcon(QIcon(":/resources/images/fast_forward.png"));
+  m_actionSystemUpgrade->setIcon(IconHelper::getIconSystemUpgrade());
   connect(m_actionSystemUpgrade, SIGNAL(triggered()), this, SLOT(runOctopiSysUpgrade()));
 
   m_systemTrayIconMenu = new QMenu( this );
