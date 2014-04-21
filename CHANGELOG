@@ -16,6 +16,8 @@
 	confirmation dialog at octopi-notifier (thanks to wget).
   Merged Oktopi's code for using KDE icon theme, tools menu and CCR support 
 	(thanks to Giuseppe Calà - gcala).  
+  Added pacman log viewer and repoeditor support in tools menu (thanks to gcala).
+  Patched repoeditor to run just one instance at a time.
   The filelist search now searches directories too.
   Refactorings here and there to make it more Chakra friendly.
   Updated README file.

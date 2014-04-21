@@ -31,6 +31,8 @@
 
 //#define NO_GTK_STYLE
 
+#define OCTOPI_EXTENSIONS
+
 int main(int argc, char *argv[])
 {
   ArgumentList *argList = new ArgumentList(argc, argv);

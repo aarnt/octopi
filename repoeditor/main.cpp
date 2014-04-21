@@ -21,6 +21,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 #include "repoeditor.h"
 #include "repoconf.h"
 
+#include "../src/QtSolutions/qtsingleapplication.h"
 #include <QtGui/QApplication>
 #include <QTranslator>
 #include <QLocale>
@@ -28,14 +29,24 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 int main( int argc, char *argv[] )
 {
-  QApplication a( argc, argv );
-    
+  QtSingleApplication app( "Repository Editor - Octopi", argc, argv );
+
+  //If there is already an instance running...
+  if (app.isRunning())
+  {
+    app.sendMessage("RAISE");
+    return 0;
+  }
+
+  app.sendMessage("RAISE");
+
   QTranslator appTranslator;
   appTranslator.load(":/resources/translations/octopi_repoeditor_" +
                      QLocale::system().name());
-  a.installTranslator(&appTranslator);
+  app.installTranslator(&appTranslator);
 
   RepoEditor w;
+  app.setActivationWindow(&w);
   w.show();
-  return a.exec();
+  return app.exec();
 }

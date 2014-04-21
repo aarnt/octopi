@@ -1316,3 +1316,11 @@ void MainWindow::launchPLV()
   proc->startDetached("plv");
 }
 
+/*
+ * Launch Repo Editor
+ */
+void MainWindow::launchRepoEditor()
+{
+  m_unixCommand = new UnixCommand(this);
+  m_unixCommand->executeCommand(QLatin1String("octopi-repoeditor"));
+}

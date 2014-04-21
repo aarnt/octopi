@@ -2169,12 +2169,3 @@ void MainWindow::writeToTabOutputExt(const QString &msg)
     text->ensureCursorVisible();
   }
 }
-
-/*
- * Launch Repo Editor
- */
-void MainWindow::launchRepoEditor()
-{
-  m_unixCommand = new UnixCommand(this);
-  m_unixCommand->executeCommand(QLatin1String("octopi-repoeditor"));
-}

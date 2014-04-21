@@ -37,7 +37,9 @@
 **
 ****************************************************************************/
 
-#include "../mainwindow.h"
+#ifdef OCTOPI_EXTENSIONS
+  #include "../mainwindow.h"
+#endif
 
 #include "qtsingleapplication.h"
 #include "qtlocalpeer.h"
@@ -338,6 +340,7 @@ void QtSingleApplication::activateWindow(const QString &message)
         actWin->show();
     }
   }
+#ifdef OCTOPI_EXTENSIONS
   else if (actWin && ((message == "SYSUPGRADE") || (message == "SYSUPGRADE_NOCONFIRM"))){
     actWin->setWindowState(actWin->windowState() & ~Qt::WindowMinimized);
     actWin->raise();
@@ -363,6 +366,7 @@ void QtSingleApplication::activateWindow(const QString &message)
       }
     }
   }
+#endif
   else if (actWin && message == "CLOSE") {
     if (!actWin->close())
     {
@@ -375,6 +379,7 @@ void QtSingleApplication::activateWindow(const QString &message)
       }
     }
   }
+#ifdef OCTOPI_EXTENSIONS
   else if (actWin && message.contains("pkg.tar.xz")) {
     actWin->setWindowState(actWin->windowState() & ~Qt::WindowMinimized);
     actWin->raise();
@@ -397,6 +402,7 @@ void QtSingleApplication::activateWindow(const QString &message)
       }
     }
   }
+#endif
 }
 
 /*!
