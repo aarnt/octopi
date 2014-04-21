@@ -1884,12 +1884,12 @@ void MainWindow::_treatProcessOutput(const QString &pMsg)
             {
               if (target.indexOf(QRegExp("[a-z]+")) != -1)
               {
-                if(m_commandExecuting == ectn_SYNC_DATABASE)
+                if(m_commandExecuting == ectn_SYNC_DATABASE && !target.contains("/"))
                 {
                   writeToTabOutputExt("<b><font color=\"#FF8040\">" +
                                       StrConstants::getSyncing() + " " + target + "</font></b>");
                 }
-                else
+                else if (m_commandExecuting != ectn_SYNC_DATABASE)
                 {
                   writeToTabOutputExt("<b><font color=\"#b4ab58\">" +
                                       target + "</font></b>"); //#C9BE62

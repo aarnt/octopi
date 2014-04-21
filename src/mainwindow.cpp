@@ -155,13 +155,6 @@ void MainWindow::outputTextBrowserAnchorClicked(const QUrl &link)
 
     if (foundItems.count() > 0)
     {
-      /*QStandardItem * si = foundItems.first();
-      QModelIndex indexIcon = sim->index(si->row(), ctn_PACKAGE_ICON_COLUMN);
-      QModelIndex proxyIndex = m_proxyModelPackages->mapFromSource(indexIcon);
-      ui->tvPackages->scrollTo(proxyIndex, QAbstractItemView::PositionAtCenter);
-      ui->tvPackages->setCurrentIndex(proxyIndex);
-      _changeTabWidgetPropertiesIndex(ctn_TABINDEX_INFORMATION);*/
-
       QStandardItem * si = foundItems.first();
       QModelIndex indexIcon = sim->index(si->row(), ctn_PACKAGE_ICON_COLUMN);
       QModelIndex proxyIndex = m_proxyModelPackages->mapFromSource(indexIcon);
