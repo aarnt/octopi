@@ -276,7 +276,7 @@ private slots:
 
   void _deleteStandardItemModel(QStandardItemModel * sim);
 
-  void buildPackagesFromGroupList();
+  void buildPackagesFromGroupList(const QString group);
   void buildPackageList(bool nonBlocking=true);
   void metaBuildPackageList();
   void onPackageGroupChanged();

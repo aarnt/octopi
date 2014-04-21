@@ -115,7 +115,7 @@ void MainWindow::refreshGroupsWidget()
 /*
  * Populates the list of available packages from the given groupName
  */
-void MainWindow::buildPackagesFromGroupList()
+void MainWindow::buildPackagesFromGroupList(const QString group)
 {
   CPUIntensiveComputing cic;
 
@@ -163,7 +163,6 @@ void MainWindow::buildPackagesFromGroupList()
     qApp->processEvents();
     it++;
   }
-  QString group = getSelectedGroup();
   m_packageRepo.checkAndSetMembersOfGroup(group, *list);
   m_packageModel->applyFilter(!ui->actionNonInstalledPackages->isChecked(), isAllGroups(group) ? "" : group);
 
@@ -269,8 +268,9 @@ void MainWindow::preBuildPackageList()
 void MainWindow::preBuildPackagesFromGroupList()
 {
   if (m_listOfPackagesFromGroup) m_listOfPackagesFromGroup->clear();
-  m_listOfPackagesFromGroup = g_fwPacmanGroup.result();
-  buildPackagesFromGroupList();
+  GroupMemberPair result = g_fwPacmanGroup.result();
+  m_listOfPackagesFromGroup = result.second;
+  buildPackagesFromGroupList(result.first);
 }
 
 /*
@@ -310,7 +310,7 @@ void MainWindow::metaBuildPackageList()
     connect(m_leFilterPackage, SIGNAL(textChanged(QString)), this, SLOT(reapplyPackageFilter()));
     reapplyPackageFilter();
     disconnect(&g_fwPacmanGroup, SIGNAL(finished()), this, SLOT(preBuildPackagesFromGroupList()));
-    QFuture<QList<QString> *> f;
+    QFuture<GroupMemberPair> f;
     f = QtConcurrent::run(searchPacmanPackagesFromGroup, getSelectedGroup());
     g_fwPacmanGroup.setFuture(f);
     connect(&g_fwPacmanGroup, SIGNAL(finished()), this, SLOT(preBuildPackagesFromGroupList()));
