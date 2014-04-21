@@ -167,9 +167,7 @@ void MainWindow::buildPackagesFromGroupList()
   m_packageRepo.checkAndSetMembersOfGroup(group, *list);
   m_packageModel->applyFilter(!ui->actionNonInstalledPackages->isChecked(), isAllGroups(group) ? "" : group);
 
-  ui->tvPackages->setColumnWidth(PackageModel::ctn_PACKAGE_ICON_COLUMN, 24);
-  ui->tvPackages->setColumnWidth(PackageModel::ctn_PACKAGE_NAME_COLUMN, 400);
-  ui->tvPackages->setColumnWidth(PackageModel::ctn_PACKAGE_VERSION_COLUMN, 160);
+//  resizePackageView();
 
   //Refresh counters
   m_numberOfInstalledPackages = installedCount;
@@ -438,9 +436,7 @@ void MainWindow::buildPackageList(bool nonBlocking)
 
   m_progressWidget->setValue(list->count());
 
-  ui->tvPackages->setColumnWidth(PackageModel::ctn_PACKAGE_ICON_COLUMN, 24);
-  ui->tvPackages->setColumnWidth(PackageModel::ctn_PACKAGE_NAME_COLUMN, 400); //500
-  ui->tvPackages->setColumnWidth(PackageModel::ctn_PACKAGE_VERSION_COLUMN, 160);
+//  resizePackageView();
 
   if (m_leFilterPackage->text() != "") reapplyPackageFilter();
 
@@ -531,9 +527,7 @@ void MainWindow::buildYaourtPackageList()
   m_packageRepo.setAURData(list, *unrequiredPackageList);
   m_packageModel->applyFilter(!ui->actionNonInstalledPackages->isChecked(), "<Yaourt>");
 
-  ui->tvPackages->setColumnWidth(PackageModel::ctn_PACKAGE_ICON_COLUMN, 24);
-  ui->tvPackages->setColumnWidth(PackageModel::ctn_PACKAGE_NAME_COLUMN, 400);
-  ui->tvPackages->setColumnWidth(PackageModel::ctn_PACKAGE_VERSION_COLUMN, 160);
+//  resizePackageView();
 
   QModelIndex maux = m_packageModel->index(0, 0, QModelIndex());
   ui->tvPackages->setCurrentIndex(maux);

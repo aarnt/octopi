@@ -185,6 +185,7 @@ private:
   bool isPackageInstalled(const QString &pkgName);
   bool _isPackageTreeViewVisible();
   void initPackageTreeView();
+  void resizePackageView();
 
   void _changeTabWidgetPropertiesIndex(const int newIndex);
   void initTabWidgetPropertiesIndex();
