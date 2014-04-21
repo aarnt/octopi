@@ -279,7 +279,7 @@ const QIcon& PackageModel::getIconFor(const PackageRepository::PackageData& pack
 
 struct TSort0 {
   bool operator()(const PackageRepository::PackageData* a, const PackageRepository::PackageData* b) const {
-    return a->status < b->status;
+    return (a->status < b->status) || (a->status == b->status && a->required < b->required);
   }
 };
 
