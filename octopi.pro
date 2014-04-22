@@ -8,6 +8,8 @@ QT += core gui network xml dbus
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
+DEFINES += OCTOPI_EXTENSIONS
+
 CONFIG += qt console warn_on debug
 
 TEMPLATE = app

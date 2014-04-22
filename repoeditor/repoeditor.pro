@@ -27,8 +27,6 @@ HEADERS  += addrepo.h \
             ../src/QtSolutions/qtsingleapplication.h \
             ../src/QtSolutions/qtlocalpeer.h \
             ../src/QtSolutions/qtlockedfile.h \
-            ../src/QtSolutions/qtlockedfile_unix.h \
-            ../src/QtSolutions/qtlockedfile_win.h \
             ../src/QtSolutions/qtsinglecoreapplication.h
 
 SOURCES += addrepo.cpp \
@@ -41,8 +39,6 @@ SOURCES += addrepo.cpp \
            ../src/QtSolutions/qtsingleapplication.cpp \
            ../src/QtSolutions/qtlocalpeer.cpp \
            ../src/QtSolutions/qtlockedfile.cpp \
-           ../src/QtSolutions/qtlockedfile_unix.cpp \
-           ../src/QtSolutions/qtlockedfile_win.cpp \
            ../src/QtSolutions/qtsinglecoreapplication.cpp
 
 FORMS   += addrepo.ui \
