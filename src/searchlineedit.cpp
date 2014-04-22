@@ -76,15 +76,14 @@ QString SearchLineEdit::styleSheetForCurrentState()
   }
   else
   {
-      QFont font(QApplication::font());
-      font.setItalic(true);
-      setFont(font);
+    QFont font(QApplication::font());
+    font.setItalic(true);
+    setFont(font);
   }
-
-  style += "padding-left: 20px;";
 
   if(UnixCommand::getLinuxDistro() != ectn_CHAKRA)
   {
+    style += "padding-left: 20px;";
     style += QString("padding-right: %1px;").arg(this->mSearchButton->sizeHint().width() + frameWidth + 1);
     style += "border-width: 3px;";
     style += "border-image: url(:/resources/images/esf-border.png) 3 3 3 3 stretch;";
@@ -93,6 +92,7 @@ QString SearchLineEdit::styleSheetForCurrentState()
   }
   else
   {
+    style += "padding-left: 20px;}";
     setPalette(QApplication::palette());
   }
 

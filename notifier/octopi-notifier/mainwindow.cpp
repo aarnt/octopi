@@ -54,8 +54,8 @@ void MainWindow::initSystemTrayIcon()
 
   m_actionSystemUpgrade = new QAction(this);
   m_actionSystemUpgrade->setText(tr("System upgrade"));
-  m_actionSystemUpgrade->setIcon(QIcon(":/resources/images/fast_forward.png"));
-  connect(m_actionSystemUpgrade, SIGNAL(triggered()), this, SLOT(runOctopi()));
+  m_actionSystemUpgrade->setIcon(IconHelper::getIconSystemUpgrade());
+  connect(m_actionSystemUpgrade, SIGNAL(triggered()), this, SLOT(runOctopiSysUpgrade()));
 
   m_systemTrayIconMenu = new QMenu( this );
   m_systemTrayIconMenu->addAction(m_actionOctopi);
@@ -81,49 +81,55 @@ void MainWindow::initSystemTrayIcon()
 /*
  * Execs Octopi
  */
-void MainWindow::runOctopi(bool execApplication)
+void MainWindow::runOctopi(ExecOpt execOptions)
 {
-  if (!execApplication &&
+  if (execOptions == ectn_SYSUPGRADE_NOCONFIRM_EXEC_OPT)
+  {
+    if (!WMHelper::isKDERunning() && (!WMHelper::isRazorQtRunning()))
+    {
+      QProcess::startDetached("octopi -sysupgrade-noconfirm -style gtk");
+    }
+    else
+    {
+      QProcess::startDetached("octopi -sysupgrade-noconfirm");
+    }
+  }
+  else if (execOptions == ectn_SYSUPGRADE_EXEC_OPT &&
       !UnixCommand::isAppRunning("octopi", true) && m_outdatedPackageList->count() > 0)
   {
     doSystemUpgrade();
   }
-  else
+  else if (execOptions == ectn_SYSUPGRADE_EXEC_OPT &&
+      UnixCommand::isAppRunning("octopi", true) && m_outdatedPackageList->count() > 0)
   {
-    if (UnixCommand::getLinuxDistro() == ectn_MANJAROLINUX &&
-        (!WMHelper::isKDERunning() && (!WMHelper::isRazorQtRunning())))
+    if (!WMHelper::isKDERunning() && (!WMHelper::isRazorQtRunning()))
     {
-      if (m_icon.pixmap(QSize(22,22)).toImage() ==
-          IconHelper::getIconOctopiRed().pixmap(QSize(22,22)).toImage())
-      {
-        if (execApplication == true)
-        {
-          QProcess::startDetached("octopi -style gtk");
-        }
-        else QProcess::startDetached("octopi -sysupgrade -style gtk");
-      }
-      else
-      {
-        QProcess::startDetached("octopi -style gtk");
-      }
+      QProcess::startDetached("octopi -sysupgrade -style gtk");
     }
     else
     {
-      if (m_icon.pixmap(QSize(22,22)).toImage() ==
-          IconHelper::getIconOctopiRed().pixmap(QSize(22,22)).toImage())
-      {
-        if (execApplication == true)
-        {
-          QProcess::startDetached("octopi");
-        }
-        else QProcess::startDetached("octopi -sysupgrade");
-      }
-      else
-      {
-        QProcess::startDetached("octopi");
-      }
+      QProcess::startDetached("octopi -sysupgrade");
     }
   }
+  else if (execOptions == ectn_NORMAL_EXEC_OPT)
+  {
+    if (!WMHelper::isKDERunning() && (!WMHelper::isRazorQtRunning()))
+    {
+      QProcess::startDetached("octopi -style gtk");
+    }
+    else
+    {
+      QProcess::startDetached("octopi");
+    }
+  }
+}
+
+/*
+ * Helper to a runOctopi with a call to SystemUpgrade
+ */
+void MainWindow::runOctopiSysUpgrade()
+{
+  runOctopi(ectn_SYSUPGRADE_EXEC_OPT);
 }
 
 /*
@@ -195,7 +201,9 @@ void MainWindow::doSystemUpgrade()
   QString ds = QString::number(totalDownloadSize, 'f', 2);
 
   TransactionDialog question(this);
-  question.removeYesButton(); //This is a more prudent behaviour!
+
+  //If we're in Chakra, there are no graphical system upgrades!
+  if (UnixCommand::getLinuxDistro() == ectn_CHAKRA) question.removeYesButton();
 
   if(targets->count()==1)
     question.setText(StrConstants::getRetrieveTarget() +
@@ -211,7 +219,11 @@ void MainWindow::doSystemUpgrade()
   m_systemUpgradeDialog = true;
   int result = question.exec();
 
-  if(result == QDialogButtonBox::Yes || result == QDialogButtonBox::AcceptRole)
+  if (result == QDialogButtonBox::Yes)
+  {
+    runOctopi(ectn_SYSUPGRADE_NOCONFIRM_EXEC_OPT);
+  }
+  else if(result == QDialogButtonBox::AcceptRole)
   {
     m_systemUpgradeDialog = false;
 
@@ -338,13 +350,13 @@ void MainWindow::afterPacmanHelperSyncDatabase()
       {
         notification = StrConstants::getOneNewUpdate();
         m_systemTrayIcon->setToolTip(notification);
-        sendNotification(notification);
+        if (!UnixCommand::isAppRunning("spun", true)) sendNotification(notification);
       }
       else if (m_numberOfOutdatedPackages > 1)
       {
         notification = StrConstants::getNewUpdates().arg(m_numberOfOutdatedPackages);
         m_systemTrayIcon->setToolTip(notification);
-        sendNotification(notification);
+        if (!UnixCommand::isAppRunning("spun", true)) sendNotification(notification);
       }
     }
   }
@@ -356,13 +368,13 @@ void MainWindow::afterPacmanHelperSyncDatabase()
     {
       notification = StrConstants::getOneNewUpdate();
       m_systemTrayIcon->setToolTip(notification);
-      sendNotification(notification);
+      if (!UnixCommand::isAppRunning("spun", true)) sendNotification(notification);
     }
     else if (numberOfOutdatedPackages > 1)
     {
       notification = StrConstants::getNewUpdates().arg(numberOfOutdatedPackages);
       m_systemTrayIcon->setToolTip(notification);
-      sendNotification(notification);
+      if (!UnixCommand::isAppRunning("spun", true)) sendNotification(notification);
     }
   }
 
@@ -375,13 +387,13 @@ void MainWindow::afterPacmanHelperSyncDatabase()
  */
 void MainWindow::sendNotification(const QString &msg)
 {
-    QString processToExec("notify-send");
-    if (UnixCommand::hasTheExecutable(processToExec))
-    {
-      processToExec += " -i /usr/share/icons/octopi_red.png -t 30000 \"" + StrConstants::getApplicationName() +
-          "\"  \"" + msg + "\"";
-      QProcess::startDetached(processToExec);
-    }
+  QString processToExec("notify-send");
+  if (UnixCommand::hasTheExecutable(processToExec))
+  {
+    processToExec += " -i /usr/share/icons/octopi_red.png -t 30000 \"" + StrConstants::getApplicationName() +
+        "\"  \"" + msg + "\"";
+    QProcess::startDetached(processToExec);
+  }
 }
 
 /*
@@ -469,11 +481,11 @@ void MainWindow::execSystemTrayActivated(QSystemTrayIcon::ActivationReason ar)
   {
     if (m_outdatedPackageList->count() > 0)
     {
-      runOctopi();
+      runOctopi(ectn_SYSUPGRADE_EXEC_OPT);
     }
     else
     {
-      runOctopi(true);
+      runOctopi(ectn_NORMAL_EXEC_OPT);
     }
 
     break;

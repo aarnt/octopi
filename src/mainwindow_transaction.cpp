@@ -669,10 +669,13 @@ void MainWindow::doMirrorCheck()
 
   m_unixCommand = new UnixCommand(this);
 
-  QObject::connect(m_unixCommand, SIGNAL( started() ), this, SLOT( actionsProcessStarted()));
+  clearTabOutput();
+  writeToTabOutput("<b>" + StrConstants::getSyncMirror() + "</b><br><br>");
+
+  //QObject::connect(m_unixCommand, SIGNAL( started() ), this, SLOT( actionsProcessStarted()));
 
   QObject::connect(m_unixCommand, SIGNAL( readyReadStandardError()),
-                   this, SLOT( actionsProcessReadOutputMirrorCheck()));
+                   this, SLOT( actionsProcessReadOutputErrorMirrorCheck()));
 
   QObject::connect(m_unixCommand, SIGNAL( readyReadStandardOutput()),
                    this, SLOT( actionsProcessReadOutputMirrorCheck()));
@@ -741,9 +744,35 @@ void MainWindow::doYaourtUpgrade()
 }
 
 /*
+ * dpSystemUpgrade shared code ...
+ */
+void MainWindow::_prepareSystemUpgrade()
+{
+  m_systemUpgradeDialog = false;
+  doRemovePacmanLockFile();
+
+  m_lastCommandList.clear();
+  m_lastCommandList.append("pacman -Su;");
+  m_lastCommandList.append("echo -e;");
+  m_lastCommandList.append("read -n1 -p \"" + StrConstants::getPressAnyKey() + "\"");
+
+  m_unixCommand = new UnixCommand(this);
+
+  QObject::connect(m_unixCommand, SIGNAL( started() ), this, SLOT( actionsProcessStarted()));
+  QObject::connect(m_unixCommand, SIGNAL( readyReadStandardOutput()),
+                   this, SLOT( actionsProcessReadOutput() ));
+  QObject::connect(m_unixCommand, SIGNAL( finished ( int, QProcess::ExitStatus )),
+                   this, SLOT( actionsProcessFinished(int, QProcess::ExitStatus) ));
+  QObject::connect(m_unixCommand, SIGNAL( readyReadStandardError() ),
+                   this, SLOT( actionsProcessRaisedError() ));
+
+  disableTransactionActions();
+}
+
+/*
  * Does a system upgrade with "pacman -Su" !
  */
-void MainWindow::doSystemUpgrade(bool syncDatabase)
+void MainWindow::doSystemUpgrade(SystemUpgradeOptions systemUpgradeOptions)
 {
   if (isYaourtGroupSelected() || m_systemUpgradeDialog) return;
 
@@ -752,10 +781,15 @@ void MainWindow::doSystemUpgrade(bool syncDatabase)
     m_callSystemUpgrade = false;
     return;
   }
+  else if (m_callSystemUpgradeNoConfirm && m_numberOfOutdatedPackages == 0)
+  {
+    m_callSystemUpgrade = false;
+    return;
+  }
 
   qApp->processEvents();
 
-  if(syncDatabase)
+  if(systemUpgradeOptions == ectn_SYNC_DATABASE_OPT)
   {
     m_commandQueued = ectn_SYSTEM_UPGRADE;
     doSyncDatabase();
@@ -790,71 +824,67 @@ void MainWindow::doSystemUpgrade(bool syncDatabase)
     }
     list.remove(list.size()-1, 1);
 
-    totalDownloadSize = totalDownloadSize / 1024;
-    QString ds = QString::number(totalDownloadSize, 'f', 2);
-
-    TransactionDialog question(this);
-
-    if(targets->count()==1)
-      question.setText(StrConstants::getRetrieveTarget() +
-                       "\n\n" + StrConstants::getTotalDownloadSize().arg(ds));
-    else
-      question.setText(StrConstants::getRetrieveTargets().arg(targets->count()) +
-                       "\n\n" + StrConstants::getTotalDownloadSize().arg(ds));
-
-    question.setWindowTitle(StrConstants::getConfirmation());
-    question.setInformativeText(StrConstants::getConfirmationQuestion());
-    question.setDetailedText(list);
-
-    m_systemUpgradeDialog = true;
-    int result = question.exec();
-
-    if(result == QDialogButtonBox::Yes || result == QDialogButtonBox::AcceptRole)
+    //User already confirmed all updates in the notifier window!
+    if (systemUpgradeOptions == ectn_NOCONFIRM_OPT)
     {
-      m_systemUpgradeDialog = false;
+      _prepareSystemUpgrade();
 
-      doRemovePacmanLockFile();
-      //If there are no means to run the actions, we must warn!
-      //if (!_isSUAvailable()) return;
+      m_commandExecuting = ectn_SYSTEM_UPGRADE;
 
-      m_lastCommandList.clear();
-      m_lastCommandList.append("pacman -Su;");
-      m_lastCommandList.append("echo -e;");
-      m_lastCommandList.append("read -n1 -p \"" + StrConstants::getPressAnyKey() + "\"");
+      QString command;
+      command = "pacman -Su --noconfirm";
 
-      m_unixCommand = new UnixCommand(this);
-
-      QObject::connect(m_unixCommand, SIGNAL( started() ), this, SLOT( actionsProcessStarted()));
-      QObject::connect(m_unixCommand, SIGNAL( readyReadStandardOutput()),
-                       this, SLOT( actionsProcessReadOutput() ));
-      QObject::connect(m_unixCommand, SIGNAL( finished ( int, QProcess::ExitStatus )),
-                       this, SLOT( actionsProcessFinished(int, QProcess::ExitStatus) ));
-      QObject::connect(m_unixCommand, SIGNAL( readyReadStandardError() ),
-                       this, SLOT( actionsProcessRaisedError() ));
-
-      disableTransactionActions();
-
-      if (result == QDialogButtonBox::Yes)
-      {
-        m_commandExecuting = ectn_SYSTEM_UPGRADE;
-
-        QString command;
-        command = "pacman -Su --noconfirm";
-
-        m_unixCommand->executeCommand(command);
-        m_commandQueued = ectn_NONE;
-      }
-      else if (result == QDialogButtonBox::AcceptRole)
-      {
-        m_commandExecuting = ectn_RUN_SYSTEM_UPGRADE_IN_TERMINAL;
-        m_unixCommand->runCommandInTerminal(m_lastCommandList);
-        m_commandQueued = ectn_NONE;
-      }
+      m_unixCommand->executeCommand(command);
+      m_commandQueued = ectn_NONE;
     }
-    else if (result == QDialogButtonBox::No)
+    else
     {
-      m_systemUpgradeDialog = false;
-      enableTransactionActions();
+      //Let's build the system upgrade transaction dialog...
+      totalDownloadSize = totalDownloadSize / 1024;
+      QString ds = QString::number(totalDownloadSize, 'f', 2);
+
+      TransactionDialog question(this);
+
+      if(targets->count()==1)
+        question.setText(StrConstants::getRetrieveTarget() +
+                         "\n\n" + StrConstants::getTotalDownloadSize().arg(ds));
+      else
+        question.setText(StrConstants::getRetrieveTargets().arg(targets->count()) +
+                         "\n\n" + StrConstants::getTotalDownloadSize().arg(ds));
+
+      question.setWindowTitle(StrConstants::getConfirmation());
+      question.setInformativeText(StrConstants::getConfirmationQuestion());
+      question.setDetailedText(list);
+
+      m_systemUpgradeDialog = true;
+      int result = question.exec();
+
+      if(result == QDialogButtonBox::Yes || result == QDialogButtonBox::AcceptRole)
+      {
+        _prepareSystemUpgrade();
+
+        if (result == QDialogButtonBox::Yes)
+        {
+          m_commandExecuting = ectn_SYSTEM_UPGRADE;
+
+          QString command;
+          command = "pacman -Su --noconfirm";
+
+          m_unixCommand->executeCommand(command);
+          m_commandQueued = ectn_NONE;
+        }
+        else if (result == QDialogButtonBox::AcceptRole)
+        {
+          m_commandExecuting = ectn_RUN_SYSTEM_UPGRADE_IN_TERMINAL;
+          m_unixCommand->runCommandInTerminal(m_lastCommandList);
+          m_commandQueued = ectn_NONE;
+        }
+      }
+      else if (result == QDialogButtonBox::No)
+      {
+        m_systemUpgradeDialog = false;
+        enableTransactionActions();
+      }
     }
   }
 }
@@ -950,8 +980,6 @@ void MainWindow::doRemoveAndInstall()
   if(result == QDialogButtonBox::Yes || result == QDialogButtonBox::AcceptRole)
   {
     doRemovePacmanLockFile();
-    //If there are no means to run the actions, we must warn!
-    //if (!_isSUAvailable()) return;
 
     QString command;
     command = "pacman -R --noconfirm " + listOfRemoveTargets +
@@ -1031,8 +1059,6 @@ void MainWindow::doRemove()
   if(result == QDialogButtonBox::Yes || result == QDialogButtonBox::AcceptRole)
   {
     doRemovePacmanLockFile();
-    //If there are no means to run the actions, we must warn!
-    //if (!_isSUAvailable()) return;
 
     QString command;
     command = "pacman -R --noconfirm " + listOfTargets;
@@ -1169,7 +1195,16 @@ void MainWindow::doRemoveYaourtPackage()
   }
 
   m_lastCommandList.clear();
-  m_lastCommandList.append(StrConstants::getForeignRepositoryToolName() + " -" + m_removeCommand + " " + listOfTargets + ";");
+
+  if (StrConstants::getForeignRepositoryToolName() == "ccr")
+  {
+    m_lastCommandList.append("pacman -" + m_removeCommand + " " + listOfTargets + ";");
+  }
+  else
+  {
+    m_lastCommandList.append(StrConstants::getForeignRepositoryToolName() + " -" + m_removeCommand + " " + listOfTargets + ";");
+  }
+
   m_lastCommandList.append("echo -e;");
   m_lastCommandList.append("read -n1 -p \"" + StrConstants::getPressAnyKey() + "\"");
 
@@ -1239,8 +1274,6 @@ void MainWindow::doInstall()
   if(result == QDialogButtonBox::Yes || result == QDialogButtonBox::AcceptRole)
   {
     doRemovePacmanLockFile();
-    //If there are no means to run the actions, we must warn!
-    //if (!_isSUAvailable()) return;
 
     QString command;
     command = "pacman -S --noconfirm " + listOfTargets;
@@ -1317,8 +1350,7 @@ void MainWindow::doInstallLocalPackages()
   if(result == QDialogButtonBox::Yes || result == QDialogButtonBox::AcceptRole)
   {
     doRemovePacmanLockFile();
-    //If there are no means to run the actions, we must warn!
-    //if (!_isSUAvailable()) return;
+
     QString command;
     command = "pacman -U --noconfirm " + listOfTargets;
 
@@ -1358,8 +1390,6 @@ void MainWindow::doInstallLocalPackages()
 void MainWindow::doCleanCache()
 {
   doRemovePacmanLockFile();
-  //If there are no means to run the actions, we must warn!
-  //if (!_isSUAvailable()) return;
 
   int res = QMessageBox::question(this, StrConstants::getConfirmation(),
                                   StrConstants::getCleanCacheConfirmation(),
@@ -1507,17 +1537,16 @@ void MainWindow::actionsProcessStarted()
   m_progressWidget->setValue(0);
   m_progressWidget->setMaximum(100);
   m_iLoveCandy = UnixCommand::isILoveCandyEnabled();
-  //disconnect(m_pacmanDatabaseSystemWatcher, SIGNAL(directoryChanged(QString)), this, SLOT(metaBuildPackageList()));
 
   clearTabOutput();
 
   //First we output the name of action we are starting to execute!
 
-  if (m_commandExecuting == ectn_MIRROR_CHECK)
+  /*if (m_commandExecuting == ectn_MIRROR_CHECK)
   {
     writeToTabOutput("<b>" + StrConstants::getSyncMirror() + "</b><br><br>");
-  }
-  else if (m_commandExecuting == ectn_SYNC_DATABASE)
+  }*/
+  if (m_commandExecuting == ectn_SYNC_DATABASE)
   {
     writeToTabOutput("<b>" + StrConstants::getSyncDatabases() + "</b><br><br>");
   }
@@ -1546,7 +1575,7 @@ void MainWindow::actionsProcessStarted()
   msg = msg.trimmed();
 
   if (!msg.isEmpty())
-  {
+  {    
     writeToTabOutputExt(msg);
   }
 }
@@ -1587,7 +1616,7 @@ void MainWindow::actionsProcessFinished(int exitCode, QProcess::ExitStatus exitS
       }
     }
 
-    doSystemUpgrade(false);
+    doSystemUpgrade();
     m_commandQueued = ectn_NONE;
   }
   else if (m_commandQueued == ectn_NONE)
@@ -1674,6 +1703,23 @@ void MainWindow::actionsProcessFinished(int exitCode, QProcess::ExitStatus exitS
 }
 
 /*
+ * This SLOT is called whenever Mirror-check process has something to output to Standard ERROR out
+ */
+void MainWindow::actionsProcessReadOutputErrorMirrorCheck()
+{
+  QString msg = m_unixCommand->readAllStandardError();
+
+  msg.remove("[01;33m");
+  msg.remove("\033[01;37m");
+  msg.remove("\033[00m");
+  msg.remove("\033[00;32m");
+
+  msg.replace("\n", "<br>");
+
+  writeToTabOutput(msg, ectn_DONT_TREAT_URL_LINK);
+}
+
+/*
  * This SLOT is called whenever Mirror-check process has something to output to Standard out
  */
 void MainWindow::actionsProcessReadOutputMirrorCheck()
@@ -1687,7 +1733,7 @@ void MainWindow::actionsProcessReadOutputMirrorCheck()
 
   msg.replace("\n", "<br>");
 
-  writeToTabOutput(msg);
+  writeToTabOutput(msg, ectn_DONT_TREAT_URL_LINK);
 }
 
 /*
@@ -1750,6 +1796,8 @@ void MainWindow::_treatProcessOutput(const QString &pMsg)
   msg.remove("[1;33m");
   msg.remove("\033[1;34m"); //strings starting with ::
   msg.remove("\033[0;1m");
+
+  if (msg.contains("exists in filesystem")) return;
 
   //std::cout << "_treat: " << msg.toAscii().data() << std::endl;
 
@@ -1849,12 +1897,12 @@ void MainWindow::_treatProcessOutput(const QString &pMsg)
             {
               if (target.indexOf(QRegExp("[a-z]+")) != -1)
               {
-                if(m_commandExecuting == ectn_SYNC_DATABASE)
+                if(m_commandExecuting == ectn_SYNC_DATABASE && !target.contains("/"))
                 {
                   writeToTabOutputExt("<b><font color=\"#FF8040\">" +
                                       StrConstants::getSyncing() + " " + target + "</font></b>");
                 }
-                else
+                else if (m_commandExecuting != ectn_SYNC_DATABASE)
                 {
                   writeToTabOutputExt("<b><font color=\"#b4ab58\">" +
                                       target + "</font></b>"); //#C9BE62
@@ -2026,14 +2074,23 @@ void MainWindow::actionsProcessRaisedError()
 /*
  * A helper method which writes the given string to OutputTab's textbrowser
  */
-void MainWindow::writeToTabOutput(const QString &msg)
+void MainWindow::writeToTabOutput(const QString &msg, TreatURLLinks treatURLLinks)
 {
   QTextBrowser *text = ui->twProperties->widget(ctn_TABINDEX_OUTPUT)->findChild<QTextBrowser*>("textOutputEdit");
   if (text)
   {
     _ensureTabVisible(ctn_TABINDEX_OUTPUT);
     _positionTextEditCursorAtEnd();
-    text->insertHtml(Package::makeURLClickable(msg));
+
+    if(treatURLLinks == ectn_TREAT_URL_LINK)
+    {
+      text->insertHtml(Package::makeURLClickable(msg));
+    }
+    else
+    {
+      text->insertHtml(msg);
+    }
+
     text->ensureCursorVisible();
   }
 }
@@ -2123,13 +2180,4 @@ void MainWindow::writeToTabOutputExt(const QString &msg)
     text->insertHtml(Package::makeURLClickable(newMsg));
     text->ensureCursorVisible();
   }
-}
-
-/*
- *  Launch Repo Editor
- */
-void MainWindow::launchRepoEditor()
-{
-  m_unixCommand = new UnixCommand(this);
-  m_unixCommand->executeCommand(QLatin1String("octopi-repoeditor"));
 }

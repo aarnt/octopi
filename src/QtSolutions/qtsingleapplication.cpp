@@ -37,7 +37,9 @@
 **
 ****************************************************************************/
 
-#include "../mainwindow.h"
+#ifdef OCTOPI_EXTENSIONS
+  #include "../mainwindow.h"
+#endif
 
 #include "qtsingleapplication.h"
 #include "qtlocalpeer.h"
@@ -319,6 +321,7 @@ QWidget* QtSingleApplication::activationWindow() const
 */
 void QtSingleApplication::activateWindow(const QString &message)
 {
+#ifdef OCTOPI_EXTENSIONS
   if (actWin && message == "RAISE") {
         actWin->setWindowState(actWin->windowState() & ~Qt::WindowMinimized);
         actWin->raise();
@@ -338,7 +341,7 @@ void QtSingleApplication::activateWindow(const QString &message)
         actWin->show();
     }
   }
-  else if (actWin && message == "SYSUPGRADE") {
+  else if (actWin && ((message == "SYSUPGRADE") || (message == "SYSUPGRADE_NOCONFIRM"))){
     actWin->setWindowState(actWin->windowState() & ~Qt::WindowMinimized);
     actWin->raise();
     if (actWin->isHidden())
@@ -352,7 +355,14 @@ void QtSingleApplication::activateWindow(const QString &message)
     {
       if (!mw->isExecutingCommand())
       {
-        mw->doSystemUpgrade();
+        if (message == "SYSUPGRADE")
+        {
+          mw->doSystemUpgrade();
+        }
+        else
+        {
+          mw->doSystemUpgrade(ectn_NOCONFIRM_OPT);
+        }
       }
     }
   }
@@ -390,6 +400,43 @@ void QtSingleApplication::activateWindow(const QString &message)
       }
     }
   }
+
+#else
+
+  if (actWin && message == "RAISE") {
+        actWin->setWindowState(actWin->windowState() & ~Qt::WindowMinimized);
+        actWin->raise();
+        if (actWin->isHidden())
+          actWin->show();
+        else
+          actWin->activateWindow();
+    }
+  else if (actWin && message == "HIDE") {
+    if (!actWin->isHidden())
+      actWin->hide();
+    else
+    {
+      actWin->setWindowState(actWin->windowState() & ~Qt::WindowMinimized);
+      actWin->raise();
+      if (actWin->isHidden())
+        actWin->show();
+    }
+  }
+  else if (actWin && message == "CLOSE") {
+    if (!actWin->close())
+    {
+      if (actWin->isHidden())
+      {
+        actWin->setWindowState(actWin->windowState() & ~Qt::WindowMinimized);
+        actWin->raise();
+        if (actWin->isHidden())
+          actWin->show();
+      }
+    }
+  }
+
+#endif
+
 }
 
 /*!

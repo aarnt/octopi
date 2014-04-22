@@ -249,12 +249,13 @@ void MainWindow::preBuildPackageList()
 {
   //Just a flag to keep the last "if" from executing twice...
   static bool secondTime=false;
+  bool hasToCallSysUpgrade = (m_callSystemUpgrade || m_callSystemUpgradeNoConfirm);
 
   if (m_listOfPackages) m_listOfPackages->clear();
   m_listOfPackages = g_fwPacman.result();
   buildPackageList();
 
-  if(!secondTime && UnixCommand::hasTheExecutable(ctn_MIRROR_CHECK_APP))
+  if(!hasToCallSysUpgrade && !secondTime && UnixCommand::hasTheExecutable(ctn_MIRROR_CHECK_APP))
   {
     doMirrorCheck();
     secondTime=true;
@@ -480,6 +481,12 @@ void MainWindow::buildPackageList(bool nonBlocking)
       //First, let us throw away that 'wainting cursor'...
       QApplication::restoreOverrideCursor();
       doSystemUpgrade();
+    }
+    else if (m_callSystemUpgradeNoConfirm)
+    {
+      //First, let us throw away that 'wainting cursor'...
+      QApplication::restoreOverrideCursor();
+      doSystemUpgrade(ectn_NOCONFIRM_OPT);
     }
     else if (m_packagesToInstallList.count() > 0)
     {

@@ -5,7 +5,7 @@
 #-------------------------------------------------
 
 TARGET = octopi-repoeditor
-QT += core gui
+QT += core gui network
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -23,7 +23,11 @@ HEADERS  += addrepo.h \
             optionsdelegate.h \
             repoconf.h \
             repoeditor.h \
-            repoentry.h
+            repoentry.h \
+            ../src/QtSolutions/qtsingleapplication.h \
+            ../src/QtSolutions/qtlocalpeer.h \
+            ../src/QtSolutions/qtlockedfile.h \
+            ../src/QtSolutions/qtsinglecoreapplication.h
 
 SOURCES += addrepo.cpp \
            checkboxdelegate.cpp \
@@ -31,7 +35,11 @@ SOURCES += addrepo.cpp \
            optionsdelegate.cpp \
            repoconf.cpp \
            repoeditor.cpp \
-           repoentry.cpp
+           repoentry.cpp \
+           ../src/QtSolutions/qtsingleapplication.cpp \
+           ../src/QtSolutions/qtlocalpeer.cpp \
+           ../src/QtSolutions/qtlockedfile.cpp \
+           ../src/QtSolutions/qtsinglecoreapplication.cpp
 
 FORMS   += addrepo.ui \
            repoeditor.ui

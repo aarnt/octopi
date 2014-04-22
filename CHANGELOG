@@ -9,9 +9,16 @@
   BugFix: running as root was broken in KDE.
   BugFix: The preventing code for always refresh the pkg list was flawed.
   BugFix: hasInternetConnection code fixed to improve mirror-check speed.
+  BugFix: Fixed CCR (Chakra) package installation/removal (thanks to dmnmsc).
+  Added parameter "sysupgrade-noconfirm" so Octopi can jump automatically 
+	to distro upgrade (if any new packages available) without prompt for 
+	confirmation. Also added a "Yes" button to the sysupgrade 
+	confirmation dialog at octopi-notifier (thanks to wget).
   Merged Oktopi's code for using KDE icon theme, tools menu and CCR support 
 	(thanks to Giuseppe Calà - gcala).
   Refactored the packageView to use a single model and a central data storage.
+  Added pacman log viewer and repoeditor support in tools menu (thanks to gcala).
+  Patched repoeditor to run just one instance at a time.
   The filelist search now searches directories too.
   Refactorings here and there to make it more Chakra friendly.
   Updated README file.

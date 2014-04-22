@@ -62,6 +62,9 @@ const int ctn_TABINDEX_OUTPUT(3);
 const int ctn_TABINDEX_NEWS(4);
 const int ctn_TABINDEX_HELPUSAGE(5);
 
+enum TreatURLLinks { ectn_TREAT_URL_LINK, ectn_DONT_TREAT_URL_LINK };
+enum SystemUpgradeOptions { ectn_NO_OPT, ectn_SYNC_DATABASE_OPT, ectn_NOCONFIRM_OPT };
+
 namespace Ui {
 class MainWindow;
 }
@@ -105,6 +108,9 @@ private:
   //Controls the calling of System Upgrade action
   bool m_callSystemUpgrade;
 
+  //Controls the calling of System Upgrade NO CONFIRM action
+  bool m_callSystemUpgradeNoConfirm;
+
   //Controls if this Linux box has yaourt installed
   bool m_hasYaourt;
 
@@ -143,7 +149,7 @@ private:
   QStringList *m_outdatedYaourtPackageList;
   QHash<QString, QString> *m_outdatedYaourtPackagesNameVersion;
 
-  QLabel *m_lblSelCounter; //Holds the number of selected packages
+  QLabel *m_lblSelCounter;    //Holds the number of selected packages
   QLabel *m_lblTotalCounters; //Holds the total number of packages
   QProgressBar *m_progressWidget;
 
@@ -203,6 +209,7 @@ private:
   void clearStatusBar();
 
   void _showPackagesWithNoDescription();
+  void _prepareSystemUpgrade();
 
   //Tab Transaction related methods
   bool _isThereAPendingTransaction();
@@ -237,7 +244,7 @@ private:
   void _ensureTabVisible(const int index);
   bool _isPropertiesTabWidgetVisible();
   bool _isSUAvailable();
-  void writeToTabOutput(const QString &msg);
+  void writeToTabOutput(const QString &msg, TreatURLLinks treatURLLinks = ectn_TREAT_URL_LINK);
   void writeToTabOutputExt(const QString &msg);
   void initTabOutput();
   void clearTabOutput();
@@ -329,6 +336,7 @@ private slots:
   void actionsProcessStarted();
   void actionsProcessFinished(int exitCode, QProcess::ExitStatus);
   void actionsProcessReadOutput();
+  void actionsProcessReadOutputErrorMirrorCheck();
   void actionsProcessReadOutputMirrorCheck();
   void actionsProcessRaisedError();
 
@@ -374,7 +382,7 @@ private slots:
   void launchRepoEditor();
 
 public slots:
-  void doSystemUpgrade(bool syncDatabase = false);
+  void doSystemUpgrade(SystemUpgradeOptions sysUpgradeOption = ectn_NO_OPT);
 
 public:
   explicit MainWindow(QWidget *parent = 0);
@@ -395,6 +403,7 @@ public:
   const PackageRepository::PackageData* getFirstPackageFromRepo(const QString pkgName);
 
   void setCallSystemUpgrade();
+  void setCallSystemUpgradeNoConfirm();
   void setRemoveCommand(const QString &removeCommand);
   void setPackagesToInstallList(QStringList pkgList){ m_packagesToInstallList = pkgList; }
   void doInstallLocalPackages();
