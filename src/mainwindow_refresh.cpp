@@ -115,7 +115,7 @@ void MainWindow::refreshGroupsWidget()
 /*
  * Populates the list of available packages from the given groupName
  */
-void MainWindow::buildPackagesFromGroupList()
+void MainWindow::buildPackagesFromGroupList(const QString group)
 {
   CPUIntensiveComputing cic;
 
@@ -163,13 +163,10 @@ void MainWindow::buildPackagesFromGroupList()
     qApp->processEvents();
     it++;
   }
-  QString group = getSelectedGroup();
   m_packageRepo.checkAndSetMembersOfGroup(group, *list);
   m_packageModel->applyFilter(!ui->actionNonInstalledPackages->isChecked(), isAllGroups(group) ? "" : group);
 
-  ui->tvPackages->setColumnWidth(PackageModel::ctn_PACKAGE_ICON_COLUMN, 24);
-  ui->tvPackages->setColumnWidth(PackageModel::ctn_PACKAGE_NAME_COLUMN, 400);
-  ui->tvPackages->setColumnWidth(PackageModel::ctn_PACKAGE_VERSION_COLUMN, 160);
+//  resizePackageView();
 
   //Refresh counters
   m_numberOfInstalledPackages = installedCount;
@@ -271,8 +268,9 @@ void MainWindow::preBuildPackageList()
 void MainWindow::preBuildPackagesFromGroupList()
 {
   if (m_listOfPackagesFromGroup) m_listOfPackagesFromGroup->clear();
-  m_listOfPackagesFromGroup = g_fwPacmanGroup.result();
-  buildPackagesFromGroupList();
+  GroupMemberPair result = g_fwPacmanGroup.result();
+  m_listOfPackagesFromGroup = result.second;
+  buildPackagesFromGroupList(result.first);
 }
 
 /*
@@ -312,7 +310,7 @@ void MainWindow::metaBuildPackageList()
     connect(m_leFilterPackage, SIGNAL(textChanged(QString)), this, SLOT(reapplyPackageFilter()));
     reapplyPackageFilter();
     disconnect(&g_fwPacmanGroup, SIGNAL(finished()), this, SLOT(preBuildPackagesFromGroupList()));
-    QFuture<QList<QString> *> f;
+    QFuture<GroupMemberPair> f;
     f = QtConcurrent::run(searchPacmanPackagesFromGroup, getSelectedGroup());
     g_fwPacmanGroup.setFuture(f);
     connect(&g_fwPacmanGroup, SIGNAL(finished()), this, SLOT(preBuildPackagesFromGroupList()));
@@ -438,9 +436,7 @@ void MainWindow::buildPackageList(bool nonBlocking)
 
   m_progressWidget->setValue(list->count());
 
-  ui->tvPackages->setColumnWidth(PackageModel::ctn_PACKAGE_ICON_COLUMN, 24);
-  ui->tvPackages->setColumnWidth(PackageModel::ctn_PACKAGE_NAME_COLUMN, 400); //500
-  ui->tvPackages->setColumnWidth(PackageModel::ctn_PACKAGE_VERSION_COLUMN, 160);
+//  resizePackageView();
 
   if (m_leFilterPackage->text() != "") reapplyPackageFilter();
 
@@ -531,9 +527,7 @@ void MainWindow::buildYaourtPackageList()
   m_packageRepo.setAURData(list, *unrequiredPackageList);
   m_packageModel->applyFilter(!ui->actionNonInstalledPackages->isChecked(), "<Yaourt>");
 
-  ui->tvPackages->setColumnWidth(PackageModel::ctn_PACKAGE_ICON_COLUMN, 24);
-  ui->tvPackages->setColumnWidth(PackageModel::ctn_PACKAGE_NAME_COLUMN, 400);
-  ui->tvPackages->setColumnWidth(PackageModel::ctn_PACKAGE_VERSION_COLUMN, 160);
+//  resizePackageView();
 
   QModelIndex maux = m_packageModel->index(0, 0, QModelIndex());
   ui->tvPackages->setCurrentIndex(maux);

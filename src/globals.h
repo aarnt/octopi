@@ -31,9 +31,12 @@ struct YaourtOutdatedPackages
     QHash<QString, QString> content;
 };
 
+typedef std::pair<QString, QList<QString>*> GroupMemberPair;
+
+
 extern QFutureWatcher<QString> g_fwToolTip;
 extern QFutureWatcher<QList<PackageListData> *> g_fwPacman;
-extern QFutureWatcher<QList<QString> *> g_fwPacmanGroup;
+extern QFutureWatcher<GroupMemberPair>          g_fwPacmanGroup;
 extern QFutureWatcher<QList<PackageListData> *> g_fwYaourt;
 extern QFutureWatcher<QList<PackageListData> *> g_fwYaourtMeta;
 extern QFutureWatcher<YaourtOutdatedPackages *> g_fwOutdatedYaourtPackages;
@@ -41,7 +44,7 @@ extern QFutureWatcher<QString> g_fwDistroNews;
 
 QString showPackageInfo(QString pkgName);
 QList<PackageListData> * searchPacmanPackages();
-QList<QString> * searchPacmanPackagesFromGroup(QString groupName);
+GroupMemberPair          searchPacmanPackagesFromGroup(QString groupName);
 QList<PackageListData> * searchYaourtPackages(QString searchString);
 YaourtOutdatedPackages * getOutdatedYaourtPackages();
 QString getLatestDistroNews();

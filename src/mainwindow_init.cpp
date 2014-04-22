@@ -431,6 +431,8 @@ void MainWindow::initPackageTreeView()
     ui->tvPackages->header()->setDefaultAlignment( Qt::AlignLeft );
     ui->tvPackages->setStyleSheet(StrConstants::getTreeViewCSS());
 
+    resizePackageView();
+
     connect(ui->tvPackages->selectionModel(), SIGNAL(selectionChanged(QItemSelection,QItemSelection)),
             this, SLOT(tvPackagesSelectionChanged(QItemSelection,QItemSelection)));
     connect(ui->tvPackages, SIGNAL(activated(QModelIndex)), this, SLOT(changedTabIndex()));
@@ -440,6 +442,13 @@ void MainWindow::initPackageTreeView()
     connect(ui->tvPackages, SIGNAL(customContextMenuRequested(QPoint)), this,
             SLOT(execContextMenuPackages(QPoint)));
     connect(ui->tvPackages, SIGNAL(doubleClicked(QModelIndex)), this, SLOT(onDoubleClickPackageList()));
+}
+
+void MainWindow::resizePackageView()
+{
+  ui->tvPackages->setColumnWidth(PackageModel::ctn_PACKAGE_ICON_COLUMN, 24);
+  ui->tvPackages->setColumnWidth(PackageModel::ctn_PACKAGE_NAME_COLUMN, 400); //500
+  ui->tvPackages->setColumnWidth(PackageModel::ctn_PACKAGE_VERSION_COLUMN, 160);
 }
 
 /*

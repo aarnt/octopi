@@ -37,7 +37,7 @@
 
 QFutureWatcher<QString> g_fwToolTip;
 QFutureWatcher<QList<PackageListData> *> g_fwPacman;
-QFutureWatcher<QList<QString> *> g_fwPacmanGroup;
+QFutureWatcher<GroupMemberPair> g_fwPacmanGroup;
 QFutureWatcher<QList<PackageListData> *> g_fwYaourt;
 QFutureWatcher<QList<PackageListData> *> g_fwYaourtMeta;
 QFutureWatcher<YaourtOutdatedPackages *> g_fwOutdatedYaourtPackages;
@@ -83,9 +83,9 @@ QList<PackageListData> * searchPacmanPackages()
 /*
  * Starts the non blocking search for Pacman packages...
  */
-QList<QString> * searchPacmanPackagesFromGroup(QString groupName)
+GroupMemberPair searchPacmanPackagesFromGroup(QString groupName)
 {
-  return Package::getPackagesOfGroup(groupName);
+  return std::make_pair(groupName, Package::getPackagesOfGroup(groupName));
 }
 
 /*
