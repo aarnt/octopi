@@ -1,6 +1,7 @@
 0.4.0 (dev)
   Huge refactorings in model/view that brings consistent memory and 
-	speed improvements (thanks to Thomas Binkau - tbinkau).
+	speed improvements - a single model and a central data storage (thanks to 
+	Thomas Binkau - tbinkau).
   BugFix: Now Shift+F3 and F3 search keys (and also Esc) work outside 
 	SearchLineEdit widget.
   BugFix: fixed freeze for install orphaned/yaourt package (thanks to 
@@ -18,9 +19,8 @@
 	confirmation dialog at octopi-notifier (thanks to wget).
   Merged Oktopi's code for using KDE icon theme, tools menu and CCR support 
 	(thanks to Giuseppe Calà - gcala).
-  Refactored the packageView to use a single model and a central data storage.
   Changed sorting of the first column to also include the name column as second
-        sort criteria.
+        sort criteria (thanks to tbinkau).
   Added pacman log viewer and repoeditor support in tools menu (thanks to gcala).
   Patched repoeditor to run just one instance at a time.
   The filelist search now searches directories too.
