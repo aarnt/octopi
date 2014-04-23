@@ -50,7 +50,6 @@ QString OctopiTabInfo::formatTabInfo(const PackageRepository::PackageData& packa
     pid = Package::getInformation(package.name, true); //This is a foreign package!!!
   }
 
-  //Let's put package description in UTF-8 format
   QString version = StrConstants::getVersion();
   QString url = StrConstants::getURL();
   QString licenses = StrConstants::getLicenses();
@@ -74,6 +73,7 @@ QString OctopiTabInfo::formatTabInfo(const PackageRepository::PackageData& packa
   QString valInstalledSize =
       QString("%1 KB").arg(pid.installedSize, 6, 'f', 2);
 
+  //Let's put package description in UTF-8 format
   QString pkgDescription = pid.description;
   pkgDescription = pkgDescription.fromUtf8(pkgDescription.toLatin1().data());
 

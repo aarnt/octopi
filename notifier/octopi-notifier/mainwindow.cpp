@@ -46,6 +46,7 @@ void MainWindow::initSystemTrayIcon()
   connect(m_actionExit, SIGNAL(triggered()), this, SLOT(exitNotifier()));
 
   m_actionAbout = new QAction(StrConstants::getHelpAbout(), this);
+  m_actionAbout->setIconVisibleInMenu(true);
   connect(m_actionAbout, SIGNAL(triggered()), this, SLOT(aboutOctopiNotifier()));
 
   m_actionOctopi = new QAction(this);
@@ -53,6 +54,7 @@ void MainWindow::initSystemTrayIcon()
   connect(m_actionOctopi, SIGNAL(triggered()), this, SLOT(startOctopi()));
 
   m_actionSystemUpgrade = new QAction(this);
+  m_actionSystemUpgrade->setIconVisibleInMenu(true);
   m_actionSystemUpgrade->setText(tr("System upgrade"));
   m_actionSystemUpgrade->setIcon(IconHelper::getIconSystemUpgrade());
   connect(m_actionSystemUpgrade, SIGNAL(triggered()), this, SLOT(runOctopiSysUpgrade()));

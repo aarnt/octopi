@@ -39,7 +39,6 @@ public:
   static QIcon getIconOctopiRed(){ return QIcon(":/resources/images/octopi_red.png"); }
   static QIcon getIconOctopiYellow(){ return QIcon(":/resources/images/octopi_yellow.png"); }
   static QIcon getIconOctopiGreen(){ return QIcon(":/resources/images/octopi_green.png"); }
-
   static QIcon getIconFrozen(){ return QIcon(":/resources/images/tgz_frozen_flat.png"); }
   static QIcon getIconUnFrozen(){ return QIcon(":/resources/images/tgz4_flat.png"); }
   static QIcon getIconRPM(){ return QIcon(":/resources/images/rpm.png"); }
@@ -54,23 +53,6 @@ public:
   static QIcon getIconUnrequired(){ return QIcon(":/resources/images/unrequired.png"); }
   static QIcon getIconForeignGreen(){ return QIcon(":/resources/images/foreign_green.png"); }
   static QIcon getIconForeignRed(){ return QIcon(":/resources/images/foreign_red.png"); }
-
-  static QIcon getIconFolder()
-  {
-    if (WMHelper::isKDERunning())
-    {
-      if (UnixCommand::getLinuxDistro() == ectn_KAOS)
-      {
-        return QIcon(":/resources/images/folder.png");
-      }
-      else
-      {
-        return QIcon::fromTheme("folder",QIcon(":/resources/images/folder.png"));
-      }
-    }
-    else
-      return QIcon(":/resources/images/folder_gnome.png");
-  }
 
   static QIcon getIconBinary(){
     if (WMHelper::isKDERunning() && (UnixCommand::getLinuxDistro() != ectn_KAOS))
@@ -178,7 +160,7 @@ public:
       return QIcon(":/resources/images/editfile.png");
   }
 
-  static QIcon getIconOpenDirectory(){
+  static QIcon getIconFolder(){
     if (WMHelper::isKDERunning() && (UnixCommand::getLinuxDistro() != ectn_KAOS))
       return QIcon::fromTheme("document-open-folder", QIcon(":/resources/images/folder.png"));
     else

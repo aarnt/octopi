@@ -685,7 +685,7 @@ void MainWindow::initActions()
   ui->actionExpandAllItems->setIcon(IconHelper::getIconExpand());
   ui->actionOpenFile->setIcon(IconHelper::getIconBinary());
   ui->actionEditFile->setIcon(IconHelper::getIconEditFile());
-  ui->actionOpenDirectory->setIcon(IconHelper::getIconOpenDirectory());
+  ui->actionOpenDirectory->setIcon(IconHelper::getIconFolder());
   ui->actionOpenTerminal->setIcon(IconHelper::getIconTerminal());
   ui->actionRemoveTransactionItem->setIcon(IconHelper::getIconClose());
   ui->actionRemoveTransactionItems->setIcon(IconHelper::getIconClose());
