@@ -140,7 +140,7 @@ struct TComp {
 };
 
 /**
- * @brief checks the PackageRepository if the members of %group differ from %members and replaces with %members if necessary
+ * @brief checks the PackageRepository if the members of %groupName differ from %members and replaces with %members if necessary
  * @param groupName (name of the group)
  * @param members (should be output of Package::getPackagesOfGroup)
  */
