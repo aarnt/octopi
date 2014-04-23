@@ -263,8 +263,8 @@ void MainWindow::keyReleaseEvent(QKeyEvent *ke)
     QModelIndex searchColumn = m_packageModel->index(0,
                                                      PackageModel::ctn_PACKAGE_NAME_COLUMN,
                                                      QModelIndex());
-    QModelIndexList fi = m_packageModel->match(searchColumn,
-                                               Qt::MatchStartsWith, ke->text());
+    QModelIndexList fi = m_packageModel->match(searchColumn, Qt::DisplayRole,
+                                               ke->text(), -1);
 
     if (fi.count() > 0) {
       if ( (ke->key() != k) || (fi.count() != k_count) ) i=0;

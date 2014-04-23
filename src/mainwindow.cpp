@@ -153,23 +153,24 @@ void MainWindow::outputTextBrowserAnchorClicked(const QUrl &link)
                                                     QModelIndex());
 
     QModelIndexList foundItems = m_packageModel->match(columnIndex, Qt::MatchExactly, pkgName);
+    QModelIndex proxyIndex;
 
     if (foundItems.count() > 0)
     {
-      QModelIndex proxyIndex = foundItems.first();
+      proxyIndex = foundItems.first();
       if(proxyIndex.isValid())
       {
         ui->tvPackages->scrollTo(proxyIndex, QAbstractItemView::PositionAtCenter);
         ui->tvPackages->setCurrentIndex(proxyIndex);
         _changeTabWidgetPropertiesIndex(ctn_TABINDEX_INFORMATION);
       }
-      else
-      {
-        refreshTabInfo(pkgName);
-        disconnect(ui->twProperties, SIGNAL(currentChanged(int)), this, SLOT(changedTabIndex()));
-        _ensureTabVisible(ctn_TABINDEX_INFORMATION);
-        connect(ui->twProperties, SIGNAL(currentChanged(int)), this, SLOT(changedTabIndex()));
-      }
+    }
+    if (foundItems.count() == 0 || !proxyIndex.isValid())
+    {
+      refreshTabInfo(pkgName);
+      disconnect(ui->twProperties, SIGNAL(currentChanged(int)), this, SLOT(changedTabIndex()));
+      _ensureTabVisible(ctn_TABINDEX_INFORMATION);
+      connect(ui->twProperties, SIGNAL(currentChanged(int)), this, SLOT(changedTabIndex()));
     }
   }
   else
@@ -615,6 +616,7 @@ void MainWindow::execContextMenuPkgFileList(QPoint point)
   QMenu menu(this);
   QStandardItemModel *sim = qobject_cast<QStandardItemModel*>(tvPkgFileList->model());
   QStandardItem *si = sim->itemFromIndex(mi);
+  
   if (si == 0) return;
   if (si->hasChildren() && (!tvPkgFileList->isExpanded(mi)))
     menu.addAction(ui->actionExpandItem);
@@ -823,8 +825,6 @@ void MainWindow::hideGroupsWidget(bool pSaveSettings)
   if ( rl[1] != 0 )
   {
     ui->splitterVertical->setSizes( l << tvPackagesWidth << 0);
-    /*if(!ui->twGroups->hasFocus())
-      ui->twGroups->setFocus();*/
 
     if(pSaveSettings)
       saveSettings(ectn_GROUPS);
