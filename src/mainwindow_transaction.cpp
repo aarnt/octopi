@@ -1575,7 +1575,7 @@ void MainWindow::actionsProcessStarted()
   msg = msg.trimmed();
 
   if (!msg.isEmpty())
-  {    
+  {
     writeToTabOutputExt(msg);
   }
 }

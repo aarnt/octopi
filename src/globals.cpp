@@ -37,7 +37,7 @@
 
 QFutureWatcher<QString> g_fwToolTip;
 QFutureWatcher<QList<PackageListData> *> g_fwPacman;
-QFutureWatcher<GroupMemberPair> g_fwPacmanGroup;
+QFutureWatcher<GroupMemberPair>          g_fwPacmanGroup;
 QFutureWatcher<QList<PackageListData> *> g_fwYaourt;
 QFutureWatcher<QList<PackageListData> *> g_fwYaourtMeta;
 QFutureWatcher<YaourtOutdatedPackages *> g_fwOutdatedYaourtPackages;
