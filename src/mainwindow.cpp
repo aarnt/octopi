@@ -31,7 +31,6 @@
 #include "globals.h"
 #include <iostream>
 
-#include <QSortFilterProxyModel>
 #include <QStandardItemModel>
 #include <QString>
 #include <QTextBrowser>
@@ -50,8 +49,9 @@
  * MainWindow's constructor: basic UI init
  */
 MainWindow::MainWindow(QWidget *parent) :
-  QMainWindow(parent), ui(new Ui::MainWindow)
+  QMainWindow(parent), ui(new Ui::MainWindow), m_packageModel(new PackageModel(m_packageRepo))
 {
+  m_packageRepo.registerDependency(*m_packageModel);
   m_foundFilesInPkgFileList = new QList<QModelIndex>();
   m_indFoundFilesInPkgFileList = 0;
   m_callSystemUpgrade = false;
@@ -60,7 +60,7 @@ MainWindow::MainWindow(QWidget *parent) :
   m_listOfPackages = 0;
   m_listOfPackagesFromGroup = 0;
   m_systemUpgradeDialog = false;
-  m_cic = 0;
+  m_cic = NULL;
   m_outdatedPackageList = new QStringList();
   m_outdatedYaourtPackageList = new QStringList();
   m_outdatedYaourtPackagesNameVersion = new QHash<QString, QString>();
@@ -86,7 +86,6 @@ void MainWindow::show()
   if(m_initializationCompleted == false)
   {
     UnixCommand::getIgnorePkg();
-    loadSettings();
     restoreGeometry(SettingsManager::getWindowSize());
     m_commandExecuting=ectn_NONE;
     m_commandQueued=ectn_NONE;
@@ -103,6 +102,7 @@ void MainWindow::show()
     initTabNews();
     initLineEditFilterPackages();
     initPackageTreeView();
+    loadSettings();
 
     loadPanelSettings();
     initActions();
@@ -149,15 +149,14 @@ void MainWindow::outputTextBrowserAnchorClicked(const QUrl &link)
   {
     QString pkgName = link.toString().mid(5);
 
-    QStandardItemModel * sim = _getCurrentSelectedModel();
-    QList<QStandardItem*> foundItems =
-        sim->findItems(pkgName, Qt::MatchExactly, ctn_PACKAGE_NAME_COLUMN);
+    QModelIndex columnIndex = m_packageModel->index(0, PackageModel::ctn_PACKAGE_NAME_COLUMN,
+                                                    QModelIndex());
+
+    QModelIndexList foundItems = m_packageModel->match(columnIndex, Qt::MatchExactly, pkgName);
 
     if (foundItems.count() > 0)
     {
-      QStandardItem * si = foundItems.first();
-      QModelIndex indexIcon = sim->index(si->row(), ctn_PACKAGE_ICON_COLUMN);
-      QModelIndex proxyIndex = m_proxyModelPackages->mapFromSource(indexIcon);
+      QModelIndex proxyIndex = foundItems.first();
       if(proxyIndex.isValid())
       {
         ui->tvPackages->scrollTo(proxyIndex, QAbstractItemView::PositionAtCenter);
@@ -218,14 +217,14 @@ void MainWindow::outputOutdatedPackageList()
     for (int c=0; c < m_outdatedPackageList->count(); c++)
     {
       QString pkg = m_outdatedPackageList->at(c);
-      QString outdatedVersion = getOutdatedPackageVersionByName(m_outdatedPackageList->at(c));
-      QString availableVersion = getInstalledPackageVersionByName(m_outdatedPackageList->at(c));
-
-      html += "<tr><td><a href=\"goto:" + pkg + "\">" + pkg +
-          "</td><td align=\"right\"><b><font color=\"#E55451\">" +
-          outdatedVersion +
-          "</b></font></td><td align=\"right\">" +
-          availableVersion + "</td></tr>";
+      const PackageRepository::PackageData*const package = m_packageRepo.getFirstPackageByName(pkg);
+      if (package != NULL) {
+        html += "<tr><td><a href=\"goto:" + pkg + "\">" + pkg +
+            "</td><td align=\"right\"><b><font color=\"#E55451\">" +
+            package->outdatedVersion +
+            "</b></font></td><td align=\"right\">" +
+            package->version + "</td></tr>";
+      }
     }
 
     writeToTabOutput(html);
@@ -275,14 +274,16 @@ void MainWindow::outputOutdatedYaourtPackageList()
   for (int c=0; c < m_outdatedYaourtPackageList->count(); c++)
   {
     QString pkg = m_outdatedYaourtPackageList->at(c);
-    QString outdatedVersion = getInstalledPackageVersionByName(m_outdatedYaourtPackageList->at(c));
-    QString availableVersion = m_outdatedYaourtPackagesNameVersion->value(m_outdatedYaourtPackageList->at(c));
-
-    html += "<tr><td><a href=\"goto:" + pkg + "\">" + pkg +
-        "</td><td align=\"right\"><b><font color=\"#E55451\">" +
-        outdatedVersion +
-        "</b></font></td><td align=\"right\">" +
-        availableVersion + "</td></tr>";
+    const PackageRepository::PackageData*const package = m_packageRepo.getFirstPackageByName(pkg);
+    if (package != NULL) {
+      QString availableVersion = m_outdatedYaourtPackagesNameVersion->value(m_outdatedYaourtPackageList->at(c));
+  
+      html += "<tr><td><a href=\"goto:" + pkg + "\">" + pkg +
+          "</td><td align=\"right\"><b><font color=\"#E55451\">" +
+          package->version +
+          "</b></font></td><td align=\"right\">" +
+          availableVersion + "</td></tr>";
+    }
   }
 
   writeToTabOutput(html);
@@ -311,49 +312,6 @@ void MainWindow::clearTabOutput()
 }
 
 /*
- * Searchs model modelInstalledPackages by a package name and returns its OUTDATED version
- */
-QString MainWindow::getOutdatedPackageVersionByName(const QString &pkgName)
-{
-  QList<QStandardItem *> foundItems =
-      m_modelInstalledPackages->findItems(pkgName, Qt::MatchExactly, ctn_PACKAGE_NAME_COLUMN);
-  QString res;
-
-  if (foundItems.count() > 0)
-  {
-    QStandardItem * si = foundItems.first();
-    QStandardItem * siIcon = m_modelInstalledPackages->item(si->row(), ctn_PACKAGE_ICON_COLUMN);
-
-    int mark = siIcon->text().indexOf('^');
-    if (mark >= 0)
-    {
-      res = siIcon->text().right(siIcon->text().size()-mark-1);
-    }
-  }
-
-  return res;
-}
-
-/*
- * Searchs model modelInstalledPackages by a package name and returns its AVAILABLE version
- */
-QString MainWindow::getInstalledPackageVersionByName(const QString &pkgName)
-{
-  QList<QStandardItem *> foundItems =
-      m_modelInstalledPackages->findItems(pkgName, Qt::MatchExactly, ctn_PACKAGE_NAME_COLUMN);
-  QString res;
-
-  if (foundItems.count() > 0)
-  {
-    QStandardItem * si = foundItems.first();
-    QStandardItem * aux = m_modelInstalledPackages->item(si->row(), ctn_PACKAGE_VERSION_COLUMN);
-    res = aux->text();
-  }
-
-  return res;
-}
-
-/*
  * Retrieves the selected package group from the treeWidget
  */
 QString MainWindow::getSelectedGroup()
@@ -369,6 +327,11 @@ bool MainWindow::isAllGroupsSelected()
   QModelIndex index = ui->twGroups->currentIndex();
   QString group = ui->twGroups->model()->data(index).toString();
 
+  return isAllGroups(group);
+}
+
+bool MainWindow::isAllGroups(const QString& group)
+{
   return (group == "<" + StrConstants::getDisplayAllGroups() + ">");
 }
 
@@ -383,37 +346,9 @@ bool MainWindow::isYaourtGroupSelected()
   return (group == StrConstants::getYaourtGroup());
 }
 
-/*
- * Returns the QStandardItem available in the row that pkgName is found
- */
-QStandardItem *MainWindow::getAvailablePackage(const QString &pkgName, const int index)
+const PackageRepository::PackageData* MainWindow::getFirstPackageFromRepo(const QString pkgName)
 {
-  QStandardItemModel *sim;
-
-  if (isYaourtGroupSelected()
-      && m_modelPackages &&
-      m_modelPackages->rowCount() > 0)
-  {
-    sim = m_modelPackages;
-  }
-  else if (m_modelPackagesClone && m_modelPackagesClone->rowCount() > 0)
-  {
-    sim = m_modelPackagesClone;
-  }
-  else return 0;
-
-  QList<QStandardItem *> foundItems =
-      sim->findItems(pkgName, Qt::MatchExactly, ctn_PACKAGE_NAME_COLUMN);
-  QStandardItem *res=0;
-
-  if (foundItems.count() > 0)
-  {
-    QStandardItem * si = foundItems.first();
-    QStandardItem * aux = sim->item(si->row(), index);
-    res = aux->clone();
-  }
-
-  return res;
+  return m_packageRepo.getFirstPackageByName(pkgName);
 }
 
 /*
@@ -447,10 +382,8 @@ void MainWindow::setRemoveCommand(const QString &removeCommand)
  */
 bool MainWindow::isPackageInstalled(const QString &pkgName)
 {
-  QList<QStandardItem *> foundItems =
-      m_modelInstalledPackages->findItems(pkgName, Qt::MatchExactly, ctn_PACKAGE_NAME_COLUMN);
-
-  return (foundItems.count() > 0);
+  const PackageRepository::PackageData*const package = m_packageRepo.getFirstPackageByName(pkgName);
+  return (package != NULL && package->installed());
 }
 
 /*
@@ -461,36 +394,15 @@ void MainWindow::tvPackagesSearchColumnChanged(QAction *actionSelected)
   //We are in the realm of tradictional NAME search
   if (actionSelected->objectName() == ui->actionSearchByName->objectName())
   {
-    m_proxyModelPackages->setFilterKeyColumn(ctn_PACKAGE_NAME_COLUMN);
+    m_packageModel->applyFilter(PackageModel::ctn_PACKAGE_NAME_COLUMN);
   }
   //We are talking about slower 'search by description'...
   else
   {
-    m_proxyModelPackages->setFilterKeyColumn(ctn_PACKAGE_DESCRIPTION_COLUMN);
+    m_packageModel->applyFilter(PackageModel::ctn_PACKAGE_DESCRIPTION_FILTER_NO_COLUMN);
   }
 
-  QModelIndex cIcon = m_proxyModelPackages->index(0, ctn_PACKAGE_ICON_COLUMN);
-  QModelIndex cName = m_proxyModelPackages->index(0, ctn_PACKAGE_NAME_COLUMN);
-  QModelIndex cVersion = m_proxyModelPackages->index(0, ctn_PACKAGE_VERSION_COLUMN);
-  QModelIndex cRepository = m_proxyModelPackages->index(0, ctn_PACKAGE_REPOSITORY_COLUMN);
-
-  ui->tvPackages->setCurrentIndex(cIcon);
-
-  ui->tvPackages->scrollTo(cIcon, QAbstractItemView::PositionAtTop);
-
-  if (m_leFilterPackage->text() == "")
-  {
-    ui->tvPackages->selectionModel()->setCurrentIndex(cIcon, QItemSelectionModel::Select);
-  }
-  else
-  {
-    ui->tvPackages->selectionModel()->setCurrentIndex(cIcon, QItemSelectionModel::SelectCurrent);
-    ui->tvPackages->selectionModel()->setCurrentIndex(cName, QItemSelectionModel::Select);
-    ui->tvPackages->selectionModel()->setCurrentIndex(cVersion, QItemSelectionModel::Select);
-    ui->tvPackages->selectionModel()->setCurrentIndex(cRepository, QItemSelectionModel::Select);
-  }
-
-  QModelIndex mi = m_proxyModelPackages->index(0, ctn_PACKAGE_NAME_COLUMN);
+  QModelIndex mi = m_packageModel->index(0, PackageModel::ctn_PACKAGE_NAME_COLUMN, QModelIndex());
   ui->tvPackages->setCurrentIndex(mi);
   ui->tvPackages->scrollTo(mi);
 
@@ -504,88 +416,17 @@ void MainWindow::tvPackagesSearchColumnChanged(QAction *actionSelected)
  */
 void MainWindow::changePackageListModel()
 {
-  QStringList sl;
+  m_packageModel->applyFilter(!ui->actionNonInstalledPackages->isChecked(), isAllGroupsSelected() ? "" : getSelectedGroup());
 
-  if (ui->actionNonInstalledPackages->isChecked())
-  {
-    if(isAllGroupsSelected() || isYaourtGroupSelected())
-    {
-      m_modelPackages->setHorizontalHeaderLabels(
-          sl << "" << StrConstants::getName() << StrConstants::getVersion() << StrConstants::getRepository());     
-      m_proxyModelPackages->setSourceModel(m_modelPackages);
-    }
-    else
-    {
-      m_modelPackagesFromGroup->setHorizontalHeaderLabels(
-            sl << "" << StrConstants::getName() << StrConstants::getVersion() << StrConstants::getRepository());
-      m_proxyModelPackages->setSourceModel(m_modelPackagesFromGroup);
-    }
-  }
-  else
-  {
-    if(isAllGroupsSelected() || isYaourtGroupSelected())
-    {
-      m_modelInstalledPackages->setHorizontalHeaderLabels(
-          sl << "" << StrConstants::getName() << StrConstants::getVersion() << StrConstants::getRepository());
-      m_proxyModelPackages->setSourceModel(m_modelInstalledPackages);
-    }
-    else
-    {
-      m_modelInstalledPackagesFromGroup->setHorizontalHeaderLabels(
-            sl << "" << StrConstants::getName() << StrConstants::getVersion() << StrConstants::getRepository());
-      m_proxyModelPackages->setSourceModel(m_modelInstalledPackagesFromGroup);
-    }
-  }
 
   if (m_leFilterPackage->text() != "") reapplyPackageFilter();
 
-  QModelIndex cIcon = m_proxyModelPackages->index(0, ctn_PACKAGE_ICON_COLUMN);
-  QModelIndex cName = m_proxyModelPackages->index(0, ctn_PACKAGE_NAME_COLUMN);
-  QModelIndex cVersion = m_proxyModelPackages->index(0, ctn_PACKAGE_VERSION_COLUMN);
-  QModelIndex cRepository = m_proxyModelPackages->index(0, ctn_PACKAGE_REPOSITORY_COLUMN);
+  QModelIndex cIcon = m_packageModel->index(0, PackageModel::ctn_PACKAGE_ICON_COLUMN, QModelIndex());
 
   ui->tvPackages->setCurrentIndex(cIcon);
-
   ui->tvPackages->scrollTo(cIcon, QAbstractItemView::PositionAtTop);
 
-  if (m_leFilterPackage->text() == "")
-  {
-    ui->tvPackages->selectionModel()->setCurrentIndex(cIcon, QItemSelectionModel::Select);
-  }
-  else
-  {
-    ui->tvPackages->selectionModel()->setCurrentIndex(cIcon, QItemSelectionModel::SelectCurrent);
-    ui->tvPackages->selectionModel()->setCurrentIndex(cName, QItemSelectionModel::Select);
-    ui->tvPackages->selectionModel()->setCurrentIndex(cVersion, QItemSelectionModel::Select);
-    ui->tvPackages->selectionModel()->setCurrentIndex(cRepository, QItemSelectionModel::Select);
-  }
-
   changedTabIndex();
-}
-
-/*
- * Returns the current selected StandardItemModel, based on groups and installed packages switches
- */
-QStandardItemModel *MainWindow::_getCurrentSelectedModel()
-{
-  QStandardItemModel *sim=0;
-
-  if(ui->actionNonInstalledPackages->isChecked())
-  {
-    if(isAllGroupsSelected() || isYaourtGroupSelected())
-      sim = m_modelPackages;
-    else
-      sim = m_modelPackagesFromGroup;
-  }
-  else
-  {
-    if(isAllGroupsSelected() || isYaourtGroupSelected())
-      sim = m_modelInstalledPackages;
-    else
-      sim = m_modelInstalledPackagesFromGroup;
-  }
-
-  return sim;
 }
 
 /*
@@ -593,20 +434,24 @@ QStandardItemModel *MainWindow::_getCurrentSelectedModel()
  */
 void MainWindow::execContextMenuPackages(QPoint point)
 {
-  if(ui->tvPackages->selectionModel()->selectedRows().count() > 0)
+// The following SLOTs will be called:
+//  connect(ui->actionFindFileInPackage, SIGNAL(triggered()), this, SLOT(findFileInPackage()));
+//  connect(ui->actionInstall, SIGNAL(triggered()), this, SLOT(insertIntoInstallPackage()));
+//  connect(ui->actionInstallYaourt, SIGNAL(triggered()), this, SLOT(doInstallYaourtPackage()));
+//  connect(ui->actionInstallGroup, SIGNAL(triggered()), this, SLOT(insertGroupIntoInstallPackage()));
+//  connect(ui->actionRemove, SIGNAL(triggered()), this, SLOT(insertIntoRemovePackage()));
+//  connect(ui->actionRemoveGroup, SIGNAL(triggered()), this, SLOT(insertGroupIntoRemovePackage()));
+
+  const QItemSelectionModel*const selectionModel = ui->tvPackages->selectionModel();
+  if (selectionModel != NULL && selectionModel->selectedRows().count() > 0)
   {
-    QStandardItemModel * sim = _getCurrentSelectedModel();
-    QMenu *menu = new QMenu(this);
-
-    if (ui->tvPackages->selectionModel()->selectedRows().count() == 1)
+    QMenu* menu = new QMenu(this);
+    QModelIndexList selectedRows = selectionModel->selectedRows();
+    if (selectedRows.count() == 1) // enable entry "browse installed files" ?
     {
-      QModelIndex item = ui->tvPackages->selectionModel()->selectedRows().at(0);
-      QModelIndex mi = m_proxyModelPackages->mapToSource(item);
-      QStandardItem *si = sim->item(mi.row(), ctn_PACKAGE_ICON_COLUMN);
-
-      if ((si->icon().pixmap(QSize(22,22)).toImage()) !=
-          IconHelper::getIconNonInstalled().pixmap(QSize(22,22)).toImage())
-      {
+      QModelIndex item = selectedRows.at(0);
+      const PackageRepository::PackageData*const package = m_packageModel->getData(item);
+      if (package && package->installed()) {
         menu->addAction(ui->actionFindFileInPackage);
         menu->addSeparator();
       }
@@ -614,56 +459,54 @@ void MainWindow::execContextMenuPackages(QPoint point)
 
     bool allInstallable = true;
     bool allRemovable = true;    
-    int numberOfSelPkgs = ui->tvPackages->selectionModel()->selectedRows().count();
+    int numberOfSelPkgs = selectedRows.count();
     int numberOfAUR = 0;
 
-    foreach(QModelIndex item, ui->tvPackages->selectionModel()->selectedRows())
+    foreach(QModelIndex item, selectedRows)
     {
-      QModelIndex mi = m_proxyModelPackages->mapToSource(item);
-      QStandardItem *si = sim->item(mi.row(), ctn_PACKAGE_ICON_COLUMN);
-      QStandardItem *siRepo = sim->item(mi.row(), ctn_PACKAGE_REPOSITORY_COLUMN);
+      const PackageRepository::PackageData*const package = m_packageModel->getData(item);
 
-      if(siRepo->text() == StrConstants::getForeignRepositoryName())
+      if (package->repository == StrConstants::getForeignRepositoryName())
       {
         allInstallable = false;
         numberOfAUR++;
       }
-      else if((si->icon().pixmap(QSize(22,22)).toImage()) ==
-              IconHelper::getIconNonInstalled().pixmap(QSize(22,22)).toImage())
+      if (package->installed() == false)
       {
         allRemovable = false;
       }
     }
 
-    if(allInstallable)
+    if (allInstallable) // implicitly foreign packages == 0
     {
       menu->addAction(ui->actionInstall);
 
-      if (!isAllGroupsSelected() && !isYaourtGroupSelected())
+      if (!isAllGroupsSelected() && !isYaourtGroupSelected() && numberOfSelPkgs > 1)
       {
         menu->addAction(ui->actionInstallGroup);
       }
     }
     else if (allInstallable == false && numberOfAUR == numberOfSelPkgs)
     {
-      menu->addAction(ui->actionInstallYaourt);
+      menu->addAction(ui->actionInstallYaourt); // installs directly
     }
 
-    if(allRemovable)
+    if (allRemovable)
     {
       menu->addAction(ui->actionRemove);
 
       if (!isAllGroupsSelected() && !isYaourtGroupSelected())
       {
         //Is this group already installed?
-        if (m_modelInstalledPackagesFromGroup->rowCount() == m_modelPackagesFromGroup->rowCount())
+        const QList<PackageRepository::PackageData*> packageList = m_packageRepo.getPackageList(getSelectedGroup());
+        if (packageList.size() == numberOfSelPkgs)
         {
           menu->addAction(ui->actionRemoveGroup);
         }
       }
     }
 
-    if(menu->actions().count() > 0)
+    if (menu->actions().count() > 0)
     {
       QPoint pt2 = ui->tvPackages->mapToGlobal(point);
       pt2.setY(pt2.y() + ui->tvPackages->header()->height());
@@ -925,11 +768,8 @@ QString MainWindow::_extractBaseFileName(const QString &fileName)
  */
 void MainWindow::onDoubleClickPackageList()
 {
-  QStandardItemModel *sim=_getCurrentSelectedModel();
-  QModelIndex mi = m_proxyModelPackages->mapToSource(ui->tvPackages->currentIndex());
-  QStandardItem *siName = sim->item(mi.row(), ctn_PACKAGE_NAME_COLUMN);
-
-  if (isPackageInstalled(siName->text()))
+  const PackageRepository::PackageData* package = m_packageModel->getData(ui->tvPackages->currentIndex());
+  if (package != NULL && package->installed())
   {
     refreshTabFiles(false, true);
   }
@@ -1082,8 +922,16 @@ void MainWindow::maximizePropertiesTabWidget(bool pSaveSettings)
  */
 void MainWindow::headerViewPackageListSortIndicatorClicked( int col, Qt::SortOrder order )
 {
-  m_PackageListOrderedCol = col;
-  m_PackageListSortOrder = order;
+  // prevent infinite loop
+  disconnect(ui->tvPackages->header(), SIGNAL(sortIndicatorChanged(int,Qt::SortOrder)), this,
+             SLOT(headerViewPackageListSortIndicatorClicked(int,Qt::SortOrder)));
+  // sort
+  ui->tvPackages->sortByColumn(col, order);
+
+  // reconnect
+  connect(ui->tvPackages->header(), SIGNAL(sortIndicatorChanged(int,Qt::SortOrder)), this,
+          SLOT(headerViewPackageListSortIndicatorClicked(int,Qt::SortOrder)));
+
   saveSettings(ectn_PackageList);
 }
 
@@ -1109,8 +957,7 @@ void MainWindow::_positionTextEditCursorAtEnd()
  */
 void MainWindow::_ensureTabVisible(const int index)
 {
-  QList<int> rl;
-  rl = ui->splitterHorizontal->sizes();
+  QList<int> rl = ui->splitterHorizontal->sizes();
 
   if(rl[1] <= 50)
   {
@@ -1293,9 +1140,12 @@ QString MainWindow::getSelectedDirectory()
  */
 void MainWindow::tvPackagesSelectionChanged(const QItemSelection&, const QItemSelection&)
 {
+  const QItemSelectionModel*const selection = ui->tvPackages->selectionModel();
+  const int selected = selection != NULL ? selection->selectedRows().count() : 0;
+
   QString newMessage = StrConstants::getSelectedPackages().arg(
-        QString::number(m_proxyModelPackages->rowCount())).
-      arg(QString::number(ui->tvPackages->selectionModel()->selectedRows().count()));
+        QString::number(m_packageModel->getPackageCount())).
+      arg(QString::number(selected));
 
   m_lblSelCounter->setText(newMessage);
 }

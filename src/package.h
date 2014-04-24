@@ -29,6 +29,8 @@
 #include <QFileSystemWatcher>
 #include <QDateTime>
 #include <QHash>
+#include <QSet>
+
 
 const QString ctn_TEMP_ACTIONS_FILE ( QDir::tempPath() + QDir::separator() + ".qt_temp_" );
 
@@ -121,7 +123,7 @@ class Package{
 
 	public:
     static int rpmvercmp(const char *a, const char *b);
-    static QStringList * getUnrequiredPackageList();
+    static QSet<QString>* getUnrequiredPackageList();
     static QStringList * getOutdatedPackageList();
     static QStringList * getOutdatedYaourtPackageList();
     static QStringList * getPackageGroups();
