@@ -256,7 +256,7 @@ void MainWindow::keyReleaseEvent(QKeyEvent *ke)
   static int k=-9999; //last key pressed
   static int k_count=0;
 
-  if ((ui->tvPackages->hasFocus()) &&
+  if ((ui->tvPackages->hasFocus() && ke->modifiers() == Qt::NoModifier) &&
       (((ke->key() >= Qt::Key_A) && (ke->key() <= Qt::Key_Z)) ||
        ((ke->key() >= Qt::Key_0 && (ke->key() <= Qt::Key_9)))))
   {

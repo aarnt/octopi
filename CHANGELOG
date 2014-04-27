@@ -2,6 +2,7 @@
   Huge refactorings in model/view that brings consistent memory and 
 	speed improvements - a single model and a central data storage (thanks to 
 	Thomas Binkau - tbinkau).
+  BugFix: Ctrl+A is available in the package list panel.
   BugFix: Now Shift+F3 and F3 search keys (and also Esc) work outside 
 	SearchLineEdit widget.
   BugFix: fixed freeze for install orphaned/yaourt package (thanks to 
