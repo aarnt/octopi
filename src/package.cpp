@@ -711,7 +711,7 @@ QString Package::getOptionalFor(const QString &pkgInfo)
  */
 QString Package::getPackager(const QString &pkgInfo)
 {
-return extractFieldFromInfo("Packager", pkgInfo);
+  return extractFieldFromInfo("Packager", pkgInfo);
 }
 
 /*

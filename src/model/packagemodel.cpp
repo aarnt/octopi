@@ -163,24 +163,26 @@ void PackageModel::endResetRepository()
 {
   const QList<PackageRepository::PackageData*>& data = m_packageRepo.getPackageList(m_filterPackagesNotInThisGroup);
   m_listOfPackages.reserve(data.size());
-  for (QList<PackageRepository::PackageData*>::const_iterator it = data.begin(); it != data.end(); ++it) {
-      if (m_filterPackagesNotInstalled == false || (*it)->status != ectn_NON_INSTALLED) {
-        if (m_filterRegExp.isEmpty()) {
+  for (QList<PackageRepository::PackageData*>::const_iterator it = data.begin(); it != data.end(); ++it)
+  {
+    if (m_filterPackagesNotInstalled == false || (*it)->status != ectn_NON_INSTALLED)
+    {
+      if (m_filterRegExp.isEmpty()) {
+        m_listOfPackages.push_back(*it);
+      }
+      else {
+        switch (m_filterColumn) {
+        case ctn_PACKAGE_NAME_COLUMN:
+          if (m_filterRegExp.indexIn((*it)->name) != -1) m_listOfPackages.push_back(*it);
+          break;
+        case ctn_PACKAGE_DESCRIPTION_FILTER_NO_COLUMN:
+          if (m_filterRegExp.indexIn((*it)->description) != -1) m_listOfPackages.push_back(*it);
+          break;
+        default:
           m_listOfPackages.push_back(*it);
         }
-        else {
-          switch (m_filterColumn) {
-            case ctn_PACKAGE_NAME_COLUMN:
-              if (m_filterRegExp.indexIn((*it)->name) != -1) m_listOfPackages.push_back(*it);
-              break;
-            case ctn_PACKAGE_DESCRIPTION_FILTER_NO_COLUMN:
-              if (m_filterRegExp.indexIn((*it)->description) != -1) m_listOfPackages.push_back(*it);
-              break;
-            default:
-              m_listOfPackages.push_back(*it);
-          }
-        }
       }
+    }
   }
   m_columnSortedlistOfPackages.reserve(data.size());
   m_columnSortedlistOfPackages = m_listOfPackages;

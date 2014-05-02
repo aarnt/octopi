@@ -60,7 +60,7 @@ void MainWindow::refreshAppIcon()
 {
   bool enableSystemUpgrade=false;
 
-  if(m_outdatedPackageList->count() > 0)
+  if ((m_outdatedPackageList->count() > 0) && (!isYaourtGroupSelected()))
   {
     setWindowIcon(IconHelper::getIconOctopiRed());
     if(m_commandExecuting != ectn_MIRROR_CHECK) enableSystemUpgrade=true;
@@ -299,11 +299,24 @@ void MainWindow::metaBuildPackageList()
     clearStatusBar();
 
     m_cic = new CPUIntensiveComputing();
-    disconnect(&g_fwYaourtMeta, SIGNAL(finished()), this, SLOT(preBuildYaourtPackageListMeta()));
-    QFuture<QList<PackageListData> *> f;
-    f = QtConcurrent::run(searchYaourtPackages, m_leFilterPackage->text());
-    g_fwYaourtMeta.setFuture(f);
-    connect(&g_fwYaourtMeta, SIGNAL(finished()), this, SLOT(preBuildYaourtPackageListMeta()));
+
+    if(!m_leFilterPackage->text().isEmpty())
+    {
+      m_toolButtonPacman->hide();
+      disconnect(&g_fwYaourtMeta, SIGNAL(finished()), this, SLOT(preBuildYaourtPackageListMeta()));
+      QFuture<QList<PackageListData> *> f;
+      f = QtConcurrent::run(searchYaourtPackages, m_leFilterPackage->text());
+      g_fwYaourtMeta.setFuture(f);
+      connect(&g_fwYaourtMeta, SIGNAL(finished()), this, SLOT(preBuildYaourtPackageListMeta()));
+    }
+    else
+    {
+      m_listOfYaourtPackages = new QList<PackageListData>();
+      buildYaourtPackageList();
+      delete m_cic;
+      m_cic = 0;
+      m_leFilterPackage->setFocus();
+    }
   }
   else
   {
@@ -633,7 +646,7 @@ void MainWindow::refreshStatusBar()
   m_lblTotalCounters->setText(text);
   ui->statusBar->addWidget(m_lblTotalCounters);
 
-  if(m_numberOfOutdatedPackages > 0)
+  if((m_numberOfOutdatedPackages > 0) && (!isYaourtGroupSelected()))
   {
     m_toolButtonPacman->show();
 
