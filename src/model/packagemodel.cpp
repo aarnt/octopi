@@ -70,7 +70,7 @@ int PackageModel::rowCount(const QModelIndex &parent) const
 int PackageModel::columnCount(const QModelIndex &parent) const
 {
   if (!parent.isValid()) {
-    if (UnixCommand::getLinuxDistro() == ectn_KAOS)
+    if (UnixCommand::getLinuxDistro() == ectn_KAOS || UnixCommand::getLinuxDistro() == ectn_CHAKRA)
     {
       return 4;
     }

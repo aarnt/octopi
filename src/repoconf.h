@@ -69,6 +69,17 @@ public:
     return repoConfFilePath;
   }
 
+  QStringList getRepos(){
+    QStringList res;
+
+    for (int c=0; c<entries.count(); c++){
+      if (entries.at(c).isActive())
+        res.append(entries.at(c).getName());
+    }
+
+    return res;
+  }
+
   //Table Model
   int rowCount( const QModelIndex & ) const {
     return count();

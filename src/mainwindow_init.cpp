@@ -31,7 +31,7 @@
 #include "treeviewpackagesitemdelegate.h"
 #include "searchbar.h"
 #include "packagecontroller.h"
-#include "../repoeditor/repoconf.h"
+#include "repoconf.h"
 
 #include <QLabel>
 #include <QStandardItemModel>
@@ -198,6 +198,7 @@ void MainWindow::initMenuBar()
   QActionGroup *actionGroupPackages = new QActionGroup(this);
   QActionGroup *actionGroupRepositories = new QActionGroup(this);
 
+  ui->actionViewAllPackages->setText(StrConstants::getAll());
   ui->actionViewAllPackages->setChecked(true);
   actionGroupPackages->addAction(ui->actionViewAllPackages);
   actionGroupPackages->addAction(ui->actionViewInstalledPackages);

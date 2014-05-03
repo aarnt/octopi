@@ -544,7 +544,7 @@
     <bool>true</bool>
    </property>
    <property name="text">
-    <string>All</string>
+    <string/>
    </property>
   </action>
  </widget>

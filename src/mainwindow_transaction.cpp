@@ -109,7 +109,6 @@ void MainWindow::insertRemovePackageIntoTransaction(const QString &pkgName)
 {
   QTreeView *tvTransaction =
       ui->twProperties->widget(ctn_TABINDEX_TRANSACTION)->findChild<QTreeView*>("tvTransaction");
-
   QStandardItem * siRemoveParent = getRemoveTransactionParentItem();
   QStandardItem * siInstallParent = getInstallTransactionParentItem();
   QStandardItem * siPackageToRemove = new QStandardItem(IconHelper::getIconRemoveItem(), pkgName);
