@@ -70,7 +70,14 @@ int PackageModel::rowCount(const QModelIndex &parent) const
 int PackageModel::columnCount(const QModelIndex &parent) const
 {
   if (!parent.isValid()) {
-    return 5;
+    if (UnixCommand::getLinuxDistro() == ectn_KAOS)
+    {
+      return 4;
+    }
+    else
+    {
+      return 5;
+    }
   }
   else return 0;
 }
@@ -170,31 +177,6 @@ void PackageModel::beginResetRepository()
 
 void PackageModel::endResetRepository()
 {
-/*
-  const QList<PackageRepository::PackageData*>& data = m_packageRepo.getPackageList(m_filterPackagesNotInThisGroup);
-  m_listOfPackages.reserve(data.size());
-  for (QList<PackageRepository::PackageData*>::const_iterator it = data.begin(); it != data.end(); ++it)
-  {
-    if (m_filterPackagesNotInstalled == false || (*it)->installed())
-    {
-      if (m_filterRegExp.isEmpty()) {
-        m_listOfPackages.push_back(*it);
-      }
-      else {
-        switch (m_filterColumn) {
-        case ctn_PACKAGE_NAME_COLUMN:
-          if (m_filterRegExp.indexIn((*it)->name) != -1) m_listOfPackages.push_back(*it);
-          break;
-        case ctn_PACKAGE_DESCRIPTION_FILTER_NO_COLUMN:
-          if (m_filterRegExp.indexIn((*it)->description) != -1) m_listOfPackages.push_back(*it);
-          break;
-        default:
-          m_listOfPackages.push_back(*it);
-        }
-      }
-    }
-  }
-*/
   const QList<PackageRepository::PackageData*>& data = m_packageRepo.getPackageList(m_filterPackagesNotInThisGroup);
   m_listOfPackages.reserve(data.size());
 

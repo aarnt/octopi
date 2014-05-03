@@ -251,8 +251,6 @@ void MainWindow::preBuildPackageList()
   static bool secondTime=false;
   bool hasToCallSysUpgrade = (m_callSystemUpgrade || m_callSystemUpgradeNoConfirm);
 
-  //if (m_listOfPackages) m_listOfPackages->clear();
-  //m_listOfPackages = g_fwPacman.result();
   m_listOfPackages.reset(g_fwPacman.result());
   buildPackageList();
 

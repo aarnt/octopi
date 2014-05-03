@@ -427,9 +427,7 @@ void MainWindow::changePackageListModel(ViewOptions viewOptions, QString selecte
   ui->tvPackages->setCurrentIndex(cIcon);
   ui->tvPackages->scrollTo(cIcon, QAbstractItemView::PositionAtTop);
 
-  if (!isYaourtGroupSelected() && !isAllGroupsSelected())
-    tvPackagesSelectionChanged(QItemSelection(),QItemSelection());
-
+  tvPackagesSelectionChanged(QItemSelection(),QItemSelection());
   changedTabIndex();
 }
 
