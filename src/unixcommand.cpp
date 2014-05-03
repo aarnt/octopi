@@ -276,7 +276,8 @@ QByteArray UnixCommand::getPackageInformation(const QString &pkgName, bool forei
   else
     args << "-Si";
 
-  args << pkgName;
+  if (pkgName.isEmpty() == false) // enables get for all ("")
+    args << pkgName;
 
   QByteArray result = performQuery(args);
   return result;

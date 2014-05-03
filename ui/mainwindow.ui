@@ -78,7 +78,7 @@
        <widget class="QTreeWidget" name="twGroups">
         <property name="maximumSize">
          <size>
-          <width>235</width>
+          <width>265</width>
           <height>16777215</height>
          </size>
         </property>
@@ -154,7 +154,10 @@
     <property name="title">
      <string>View</string>
     </property>
-    <addaction name="actionNonInstalledPackages"/>
+    <addaction name="actionViewAllPackages"/>
+    <addaction name="actionViewInstalledPackages"/>
+    <addaction name="actionViewNonInstalledPackages"/>
+    <addaction name="separator"/>
    </widget>
    <widget class="QMenu" name="menuTransaction">
     <property name="title">
@@ -223,18 +226,15 @@
     <bool>true</bool>
    </property>
   </action>
-  <action name="actionNonInstalledPackages">
+  <action name="actionViewNonInstalledPackages">
    <property name="checkable">
     <bool>true</bool>
    </property>
    <property name="checked">
-    <bool>true</bool>
+    <bool>false</bool>
    </property>
    <property name="text">
     <string>Non installed</string>
-   </property>
-   <property name="shortcut">
-    <string>Ctrl+N</string>
    </property>
   </action>
   <action name="actionCommit">
@@ -529,6 +529,22 @@
    </property>
    <property name="text">
     <string>Repository Editor</string>
+   </property>
+  </action>
+  <action name="actionViewInstalledPackages">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Installed</string>
+   </property>
+  </action>
+  <action name="actionViewAllPackages">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>All</string>
    </property>
   </action>
  </widget>

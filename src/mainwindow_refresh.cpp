@@ -122,7 +122,7 @@ void MainWindow::buildPackagesFromGroupList(const QString group)
   if (isAllGroupsSelected())
   {
     reapplyPackageFilter();
-    m_packageModel->applyFilter(!ui->actionNonInstalledPackages->isChecked(), "<Yaourt>");
+    m_packageModel->applyFilter(m_selectedViewOption, m_selectedRepository, StrConstants::getYaourtGroup());
 
     QModelIndex maux = m_packageModel->index(0, 0, QModelIndex());
     ui->tvPackages->setCurrentIndex(maux);
@@ -136,8 +136,7 @@ void MainWindow::buildPackagesFromGroupList(const QString group)
     return;
   }
 
-  QList<QString> *list = m_listOfPackagesFromGroup;
-
+  const QList<QString>*const list = m_listOfPackagesFromGroup.get();
   QList<QString>::const_iterator it = list->begin();
 
   m_progressWidget->setRange(0, list->count());
@@ -164,7 +163,7 @@ void MainWindow::buildPackagesFromGroupList(const QString group)
     it++;
   }
   m_packageRepo.checkAndSetMembersOfGroup(group, *list);
-  m_packageModel->applyFilter(!ui->actionNonInstalledPackages->isChecked(), isAllGroups(group) ? "" : group);
+  m_packageModel->applyFilter(m_selectedViewOption, m_selectedRepository, isAllGroups(group) ? "" : group);
 
 //  resizePackageView();
 
@@ -180,7 +179,8 @@ void MainWindow::buildPackagesFromGroupList(const QString group)
   ui->tvPackages->scrollTo(maux, QAbstractItemView::PositionAtCenter);
   ui->tvPackages->setCurrentIndex(maux);
 
-  list->clear();
+  //list->clear();
+  m_listOfPackagesFromGroup.reset();
   refreshTabInfo();
   refreshTabFiles();
   ui->tvPackages->setFocus();
@@ -251,13 +251,14 @@ void MainWindow::preBuildPackageList()
   static bool secondTime=false;
   bool hasToCallSysUpgrade = (m_callSystemUpgrade || m_callSystemUpgradeNoConfirm);
 
-  if (m_listOfPackages) m_listOfPackages->clear();
-  m_listOfPackages = g_fwPacman.result();
+  //if (m_listOfPackages) m_listOfPackages->clear();
+  //m_listOfPackages = g_fwPacman.result();
+  m_listOfPackages.reset(g_fwPacman.result());
   buildPackageList();
 
   if(!hasToCallSysUpgrade && !secondTime && UnixCommand::hasTheExecutable(ctn_MIRROR_CHECK_APP))
   {
-    doMirrorCheck();
+    //doMirrorCheck();
     secondTime=true;
   }
 }
@@ -268,9 +269,8 @@ void MainWindow::preBuildPackageList()
  */
 void MainWindow::preBuildPackagesFromGroupList()
 {
-  if (m_listOfPackagesFromGroup) m_listOfPackagesFromGroup->clear();
   GroupMemberPair result = g_fwPacmanGroup.result();
-  m_listOfPackagesFromGroup = result.second;
+  m_listOfPackagesFromGroup.reset(result.second);
   buildPackagesFromGroupList(result.first);
 }
 
@@ -384,17 +384,20 @@ void MainWindow::buildPackageList(bool nonBlocking)
   }
 
   qApp->processEvents();
-  const QSet<QString>*const unrequiredPackageList = Package::getUnrequiredPackageList();
+  //const QSet<QString>*const unrequiredPackageList = Package::getUnrequiredPackageList();
+    const std::auto_ptr<const QSet<QString> > unrequiredPackageList(Package::getUnrequiredPackageList());
 
   // fetch package list
   QList<PackageListData> *list;
   if(nonBlocking)
-    list = m_listOfPackages;
+    list = m_listOfPackages.release();
+    //list = m_listOfPackages;
   else
     list = Package::getPackageList();
 
   // fetch foreign package list
-  QList<PackageListData> *listForeign = Package::getForeignPackageList();
+  //QList<PackageListData> *listForeign = Package::getForeignPackageList();
+  std::auto_ptr<QList<PackageListData> > listForeign(Package::getForeignPackageList());
   qApp->processEvents();
 
   m_progressWidget->setRange(0, list->count());
@@ -425,7 +428,7 @@ void MainWindow::buildPackageList(bool nonBlocking)
   }
 
   m_packageRepo.setData(list, *unrequiredPackageList);
-  if (isAllGroupsSelected()) m_packageModel->applyFilter(!ui->actionNonInstalledPackages->isChecked(), "");
+  if (isAllGroupsSelected()) m_packageModel->applyFilter(m_selectedViewOption, m_selectedRepository, "");
   m_progressWidget->show();
   QList<PackageListData>::const_iterator it = list->begin();
 
@@ -459,7 +462,9 @@ void MainWindow::buildPackageList(bool nonBlocking)
   ui->tvPackages->scrollTo(maux, QAbstractItemView::PositionAtCenter);
   ui->tvPackages->setCurrentIndex(maux);
 
-  list->clear();
+  //list->clear();
+  delete list;
+  list = NULL;
   refreshTabInfo();
   refreshTabFiles();
 
@@ -545,9 +550,7 @@ void MainWindow::buildYaourtPackageList()
   }
 
   m_packageRepo.setAURData(list, *unrequiredPackageList);
-  m_packageModel->applyFilter(!ui->actionNonInstalledPackages->isChecked(), "<Yaourt>");
-
-//  resizePackageView();
+  m_packageModel->applyFilter(m_selectedViewOption, m_selectedRepository, StrConstants::getYaourtGroup());
 
   QModelIndex maux = m_packageModel->index(0, 0, QModelIndex());
   ui->tvPackages->setCurrentIndex(maux);
@@ -1052,4 +1055,45 @@ void MainWindow::reapplyPackageFilter()
   //We need to call this method to refresh package selection counters
   tvPackagesSelectionChanged(QItemSelection(),QItemSelection());
   invalidateTabs();
+}
+
+/*
+ * Whenever user selects View/All we show him all the available packages
+ */
+void MainWindow::selectedAllPackagesMenu()
+{
+  m_selectedViewOption = ectn_ALL_PKGS;
+  changePackageListModel(ectn_ALL_PKGS, m_selectedRepository);
+}
+
+/*
+ * Whenever user selects View/Installed we show him only the installed packages
+ */
+void MainWindow::selectedInstalledPackagesMenu()
+{
+  m_selectedViewOption = ectn_INSTALLED_PKGS;
+  changePackageListModel(ectn_INSTALLED_PKGS, m_selectedRepository);
+}
+
+/*
+ * Whenever user selects View/Non Installed we show him only the non installed packages
+ */
+void MainWindow::selectedNonInstalledPackagesMenu()
+{
+  m_selectedViewOption = ectn_NON_INSTALLED_PKGS;
+  changePackageListModel(ectn_NON_INSTALLED_PKGS, m_selectedRepository);
+}
+
+/*
+ * Whenever user selects any of the available repositories in View/Repository submenu,
+ * we filter the packages from that chosen repo
+ */
+void MainWindow::selectedRepositoryMenu(QAction *actionRepoSelected)
+{
+  if (actionRepoSelected->text() == StrConstants::getAll())
+    m_selectedRepository = "";
+  else
+    m_selectedRepository = actionRepoSelected->text();
+
+  changePackageListModel(m_selectedViewOption, m_selectedRepository);
 }

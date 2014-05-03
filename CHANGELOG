@@ -16,6 +16,9 @@
   BugFix: The preventing code for always refresh the pkg list was flawed.
   BugFix: hasInternetConnection code fixed to improve mirror-check speed.
   BugFix: Fixed CCR (Chakra) package installation/removal (thanks to dmnmsc).
+  Added popularity column (number of votes) in AUR/CCR mode (thanks to 
+	tbinkau).
+  Added more filter options in View menu.
   Added parameter "sysupgrade-noconfirm" so Octopi can jump automatically 
 	to distro upgrade (if any new packages available) without prompt for 
 	confirmation. Also added a "Yes" button to the sysupgrade 

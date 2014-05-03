@@ -27,6 +27,7 @@
 #include "src/package.h"
 #include "src/packagerepository.h"
 
+enum ViewOptions { ectn_ALL_PKGS, ectn_INSTALLED_PKGS, ectn_NON_INSTALLED_PKGS };
 
 class PackageModel : public QAbstractItemModel, public PackageRepository::IDependency
 {
@@ -38,6 +39,7 @@ public:
   static const int ctn_PACKAGE_NAME_COLUMN        = 1;
   static const int ctn_PACKAGE_VERSION_COLUMN     = 2;
   static const int ctn_PACKAGE_REPOSITORY_COLUMN  = 3;
+  static const int ctn_PACKAGE_POPULARITY_COLUMN  = 4;
   // Pseudo Column indices for additional filter criterias
   static const int ctn_PACKAGE_DESCRIPTION_FILTER_NO_COLUMN = 5;
 
@@ -71,6 +73,7 @@ public:
 
   // Setter
 public:
+  void applyFilter(ViewOptions pkgViewOptions, const QString& repo, const QString& group);
   void applyFilter(bool packagesNotInstalled, const QString& group);
   void applyFilter(const int filterColumn);
   void applyFilter(const QString& filterExp);
@@ -89,8 +92,10 @@ private:
   // Filter / Sort attributes
   Qt::SortOrder m_sortOrder;
   int           m_sortColumn;
+  bool    m_filterPackagesInstalled;
   bool    m_filterPackagesNotInstalled;
   QString m_filterPackagesNotInThisGroup;
+  QString m_filterPackagesNotInThisRepo;
   int     m_filterColumn;
   QRegExp m_filterRegExp;
 

@@ -22,12 +22,14 @@
 
 #include "src/strconstants.h"
 
+/*
+ * The OctopiTabInfo class provides functionality for the Tab "Info"
+ */
 
 /**
  * @brief OctopiTabInfo::anchorBegin for navigation
  */
 const QString OctopiTabInfo::anchorBegin("anchorBegin");
-
 
 OctopiTabInfo::OctopiTabInfo()
 {
@@ -89,9 +91,9 @@ QString OctopiTabInfo::formatTabInfo(const PackageRepository::PackageData& packa
   html += "<tr><th width=\"20%\"></th><th width=\"80%\"></th></tr>";
   html += "<tr><td>" + url + "</td><td style=\"font-size:14px;\">" + pid.url + "</td></tr>";
 
-  if (package.status == ectn_OUTDATED)
+  if (package.outdated())
   {
-    if (Package::rpmvercmp(package.outdatedVersion.toLatin1().data(), package.version.toLatin1().data()) != 1)
+    if (package.status != ectn_NEWER)
     {
       if (package.repository != StrConstants::getForeignRepositoryName())
       {

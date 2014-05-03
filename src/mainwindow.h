@@ -22,7 +22,6 @@
 #define MAINWINDOW_H
 
 #include <memory>
-
 #include "unixcommand.h"
 #include "uihelper.h"
 
@@ -49,10 +48,8 @@ class SearchLineEdit;
 class QAction;
 class QTreeWidgetItem;
 
-
 #include "src/model/packagemodel.h"
 #include "src/packagerepository.h"
-
 
 //Tab indices for Properties' tabview
 const int ctn_TABINDEX_INFORMATION(0);
@@ -127,10 +124,10 @@ private:
   QList<PackageListData> *m_listOfYaourtPackages;
 
   //This member holds the list of Pacman packages available
-  QList<PackageListData> *m_listOfPackages;
+  std::auto_ptr<QList<PackageListData> > m_listOfPackages;
 
   //This member holds the list of Pacman packages from the selected group
-  QList<QString> *m_listOfPackagesFromGroup;
+  std::auto_ptr<QList<QString> > m_listOfPackagesFromGroup;
 
   //This member holds the target list retrieved by the pacman command which will be executed
   QStringList *m_targets;
@@ -162,6 +159,8 @@ private:
   QAction *m_actionInstallYaourtUpdates;
   QAction *m_actionShowGroups;
   QAction *m_actionMirrorCheck;
+  QAction *m_actionMenuRepository;
+  QAction *m_actionRepositoryAll;
 
   QByteArray m_horizontalSplit;
 
@@ -171,12 +170,17 @@ private:
   int m_numberOfInstalledPackages;
   int m_numberOfOutdatedPackages;
 
+  //Members that control the View menu settings
+  ViewOptions m_selectedViewOption;
+  QString m_selectedRepository;
+
   void loadSettings();
   void loadPanelSettings();
   void saveSettings(int);
 
   void initAppIcon();
   void refreshAppIcon();
+  void initMenuBar();
   void initPackageGroups();
   void refreshGroupsWidget();
   void initToolBar();
@@ -295,7 +299,7 @@ private slots:
   void buildYaourtPackageList();
 
   void headerViewPackageListSortIndicatorClicked(int col, Qt::SortOrder order);
-  void changePackageListModel();
+  void changePackageListModel(ViewOptions viewOptions, QString selectedRepo);
 
   void execContextMenuPackages(QPoint point);
   void execContextMenuPkgFileList(QPoint point);
@@ -333,6 +337,12 @@ private slots:
   void doCommitTransaction();
   void doRollbackTransaction();
 
+  //View menu and submenu Repository actions...
+  void selectedAllPackagesMenu();
+  void selectedInstalledPackagesMenu();
+  void selectedNonInstalledPackagesMenu();
+  void selectedRepositoryMenu(QAction *actionRepoSelected);
+
   void actionsProcessStarted();
   void actionsProcessFinished(int exitCode, QProcess::ExitStatus);
   void actionsProcessReadOutput();
@@ -350,7 +360,6 @@ private slots:
   void insertGroupIntoInstallPackage();
 
   void hideGroupsWidget(bool pSaveSettings = true);
-
   void maximizePackagesTreeView(bool pSaveSettings = true);
   void maximizePropertiesTabWidget(bool pSaveSettings = true);
   void outputOutdatedPackageList();

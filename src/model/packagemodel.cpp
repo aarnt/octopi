@@ -18,14 +18,16 @@
 *
 */
 
-#include "packagemodel.h"
-
 #include <iostream>
 #include <cassert>
 
+#include "packagemodel.h"
 #include "src/uihelper.h"
 #include "src/strconstants.h"
 
+/*
+ * The specific model which abstracts the package list data seem in the main treeview
+ */
 
 PackageModel::PackageModel(const PackageRepository& repo, QObject *parent)
 : QAbstractItemModel(parent), m_packageRepo(repo), m_sortOrder(Qt::AscendingOrder),
@@ -68,7 +70,7 @@ int PackageModel::rowCount(const QModelIndex &parent) const
 int PackageModel::columnCount(const QModelIndex &parent) const
 {
   if (!parent.isValid()) {
-    return 4;
+    return 5;
   }
   else return 0;
 }
@@ -91,6 +93,10 @@ QVariant PackageModel::data(const QModelIndex &index, int role) const
             return QVariant(package->version);
           case ctn_PACKAGE_REPOSITORY_COLUMN:
             return QVariant(package->repository);
+          case ctn_PACKAGE_POPULARITY_COLUMN:
+            if (package->popularity >= 0)
+              return QVariant(package->popularityString);
+            break;
           default:
             assert(false);
         }
@@ -130,6 +136,8 @@ QVariant PackageModel::headerData(int section, Qt::Orientation orientation, int 
         return QVariant(StrConstants::getVersion());
       case ctn_PACKAGE_REPOSITORY_COLUMN:
         return QVariant(StrConstants::getRepository());
+      case ctn_PACKAGE_POPULARITY_COLUMN:
+        return QVariant(StrConstants::getPopularityHeader());
       default:
         break;
       }
@@ -143,7 +151,8 @@ void PackageModel::sort(int column, Qt::SortOrder order)
 {
 //  std::cout << "sort column " << column << " in order " << order << std::endl;
 
-  if (column != m_sortColumn || order != m_sortOrder) {
+  if (column != m_sortColumn || order != m_sortOrder)
+  {
     m_sortColumn = column;
     m_sortOrder  = order;
     emit layoutAboutToBeChanged();
@@ -161,11 +170,12 @@ void PackageModel::beginResetRepository()
 
 void PackageModel::endResetRepository()
 {
+/*
   const QList<PackageRepository::PackageData*>& data = m_packageRepo.getPackageList(m_filterPackagesNotInThisGroup);
   m_listOfPackages.reserve(data.size());
   for (QList<PackageRepository::PackageData*>::const_iterator it = data.begin(); it != data.end(); ++it)
   {
-    if (m_filterPackagesNotInstalled == false || (*it)->status != ectn_NON_INSTALLED)
+    if (m_filterPackagesNotInstalled == false || (*it)->installed())
     {
       if (m_filterRegExp.isEmpty()) {
         m_listOfPackages.push_back(*it);
@@ -184,6 +194,34 @@ void PackageModel::endResetRepository()
       }
     }
   }
+*/
+  const QList<PackageRepository::PackageData*>& data = m_packageRepo.getPackageList(m_filterPackagesNotInThisGroup);
+  m_listOfPackages.reserve(data.size());
+
+  for (QList<PackageRepository::PackageData*>::const_iterator it = data.begin(); it != data.end(); ++it)
+  {
+    if (m_filterPackagesNotInstalled && (*it)->installed()) continue;
+    else if (m_filterPackagesInstalled && !(*it)->installed()) continue;
+
+    if (!m_filterPackagesNotInThisRepo.isEmpty() && (*it)->repository != m_filterPackagesNotInThisRepo) continue;
+
+    if (m_filterRegExp.isEmpty()) {
+      m_listOfPackages.push_back(*it);
+    }
+    else {
+      switch (m_filterColumn) {
+      case ctn_PACKAGE_NAME_COLUMN:
+        if (m_filterRegExp.indexIn((*it)->name) != -1) m_listOfPackages.push_back(*it);
+        break;
+      case ctn_PACKAGE_DESCRIPTION_FILTER_NO_COLUMN:
+        if (m_filterRegExp.indexIn((*it)->description) != -1) m_listOfPackages.push_back(*it);
+        break;
+      default:
+        m_listOfPackages.push_back(*it);
+      }
+    }
+  }
+
   m_columnSortedlistOfPackages.reserve(data.size());
   m_columnSortedlistOfPackages = m_listOfPackages;
   sort();
@@ -208,13 +246,23 @@ const PackageRepository::PackageData* PackageModel::getData(const QModelIndex& i
   return NULL;
 }
 
+void PackageModel::applyFilter(ViewOptions pkgViewOptions, const QString& repo, const QString& group)
+{
+  beginResetRepository();
+  m_filterPackagesNotInstalled   = (pkgViewOptions == ectn_NON_INSTALLED_PKGS);
+  m_filterPackagesInstalled      = (pkgViewOptions == ectn_INSTALLED_PKGS);
+  m_filterPackagesNotInThisGroup = group;
+  m_filterPackagesNotInThisRepo  = repo;
+  endResetRepository();
+}
+
 void PackageModel::applyFilter(bool packagesNotInstalled, const QString& group)
 {
 //  std::cout << "apply new group filter " << (packagesNotInstalled ? "true" : "false") << ", " << group.toStdString() << std::endl;
 
+  beginResetRepository();
   m_filterPackagesNotInstalled   = packagesNotInstalled;
   m_filterPackagesNotInThisGroup = group;
-  beginResetRepository();
   endResetRepository();
 }
 
@@ -233,9 +281,9 @@ void PackageModel::applyFilter(const int filterColumn, const QString& filterExp)
   assert(filterExp.isNull() == false);
 //  std::cout << "apply new column filter " << filterColumn << ", " << filterExp.toStdString() << std::endl;
 
+  beginResetRepository();
   m_filterColumn = filterColumn;
   m_filterRegExp.setPattern(filterExp);
-  beginResetRepository();
   endResetRepository();
 }
 
@@ -250,15 +298,17 @@ const QIcon& PackageModel::getIconFor(const PackageRepository::PackageData& pack
     case ectn_OUTDATED:
     {
       //TODO: potential refactoring for performance if necessary
-      if (Package::rpmvercmp(package.outdatedVersion.toLatin1().data(), package.version.toLatin1().data()) == 1) {
+      /*if (Package::rpmvercmp(package.outdatedVersion.toLatin1().data(), package.version.toLatin1().data()) == 1) {
         return m_iconNewer;
       }
       else {
         return m_iconOutdated;
       }
-      assert(false);
+      assert(false);*/
       return m_iconOutdated;
     }
+    case ectn_NEWER:
+      return m_iconNewer;
     case ectn_INSTALLED:
       // Does no other package depend on this package ? (unrequired package list)
       if (package.required)
@@ -278,15 +328,28 @@ const QIcon& PackageModel::getIconFor(const PackageRepository::PackageData& pack
   }
 }
 
-
 struct TSort0 {
   bool operator()(const PackageRepository::PackageData* a, const PackageRepository::PackageData* b) const {
     if (a->status < b->status) return true;
     if (a->status == b->status) {
-      if (a->required < b->required) return true;
-      if (a->required == b->required) {
-        return a->name < b->name;
+
+      if (a->repository == b->repository && (a->repository == StrConstants::getForeignRepositoryName()))
+      {
+        return (a->name < b->name);
       }
+
+      if (a->outdated() == true && b->outdated() == true)
+      {
+        return (a->name < b->name);
+      }
+
+      if (a->required < b->required) return true;
+
+      if (a->required == b->required)
+      {
+        int cmp = QString::localeAwareCompare(a->name, b->name);
+        if (cmp < 0) return true;
+      }    
     }
     return false;
   }
@@ -294,13 +357,37 @@ struct TSort0 {
 
 struct TSort2 {
   bool operator()(const PackageRepository::PackageData* a, const PackageRepository::PackageData* b) const {
-    return Package::rpmvercmp(a->version.toLatin1().data(), b->version.toLatin1().data()) < 0;
+    const int cmp = Package::rpmvercmp(a->version.toLatin1().data(), b->version.toLatin1().data());
+    if (cmp < 0) return true;
+    if (cmp == 0)
+    {
+      return a->name < b->name;
+    }
+
+    return false;
   }
 };
 
 struct TSort3 {
   bool operator()(const PackageRepository::PackageData* a, const PackageRepository::PackageData* b) const {
-    return a->repository < b->repository;
+    if (a->repository < b->repository) return true;
+
+    if (a->repository == b->repository)
+    {
+      return a->name < b->name;
+    }
+
+    return false;
+  }
+};
+
+struct TSort4 {
+  bool operator()(const PackageRepository::PackageData* a, const PackageRepository::PackageData* b) const {
+    if (a->popularity < b->popularity) return true;
+    if (a->popularity == b->popularity) {
+      return a->name < b->name;
+    }
+    return false;
   }
 };
 
@@ -318,6 +405,9 @@ void PackageModel::sort()
     return;
   case ctn_PACKAGE_REPOSITORY_COLUMN:
     qSort(m_columnSortedlistOfPackages.begin(), m_columnSortedlistOfPackages.end(), TSort3());
+    return;
+  case ctn_PACKAGE_POPULARITY_COLUMN:
+    qSort(m_columnSortedlistOfPackages.begin(), m_columnSortedlistOfPackages.end(), TSort4());
     return;
   default:
     return;

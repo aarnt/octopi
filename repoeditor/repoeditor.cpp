@@ -163,7 +163,7 @@ void RepoEditor::discard()
     done( QDialog::Rejected );
 }
 
-void RepoEditor::updateMovers( const QItemSelection &cur, const QItemSelection &pre)
+void RepoEditor::updateMovers( const QItemSelection &cur, const QItemSelection &)
 {
     QModelIndexList list = cur.indexes();
 

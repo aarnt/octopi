@@ -57,13 +57,13 @@ MainWindow::MainWindow(QWidget *parent) :
   m_callSystemUpgrade = false;
   m_callSystemUpgradeNoConfirm = false;
   m_initializationCompleted=false;
-  m_listOfPackages = 0;
-  m_listOfPackagesFromGroup = 0;
   m_systemUpgradeDialog = false;
   m_cic = NULL;
   m_outdatedPackageList = new QStringList();
   m_outdatedYaourtPackageList = new QStringList();
   m_outdatedYaourtPackagesNameVersion = new QHash<QString, QString>();
+  m_selectedViewOption = ectn_ALL_PKGS;
+  m_selectedRepository = "";
   ui->setupUi(this);
 }
 
@@ -110,6 +110,7 @@ void MainWindow::show()
     initToolButtonPacman();
     initToolButtonYaourt();
     initAppIcon();
+    initMenuBar();
     initToolBar();
     initTabWidgetPropertiesIndex();
     refreshDistroNews(false);
@@ -412,13 +413,12 @@ void MainWindow::tvPackagesSearchColumnChanged(QAction *actionSelected)
 }
 
 /*
- * Whenever the user changes the checkbox menu to show non installed packages,
- * we have to change the model from the Packages treeview...
+ * Whenever the user selects a different item in View menu,
+ * we have to change the model of the Packages treeview...
  */
-void MainWindow::changePackageListModel()
-{
-  m_packageModel->applyFilter(!ui->actionNonInstalledPackages->isChecked(), isAllGroupsSelected() ? "" : getSelectedGroup());
-
+void MainWindow::changePackageListModel(ViewOptions viewOptions, QString selectedRepo)
+{  
+  m_packageModel->applyFilter(viewOptions, selectedRepo, isAllGroupsSelected() ? "" : getSelectedGroup());
 
   if (m_leFilterPackage->text() != "") reapplyPackageFilter();
 
@@ -426,6 +426,9 @@ void MainWindow::changePackageListModel()
 
   ui->tvPackages->setCurrentIndex(cIcon);
   ui->tvPackages->scrollTo(cIcon, QAbstractItemView::PositionAtTop);
+
+  if (!isYaourtGroupSelected() && !isAllGroupsSelected())
+    tvPackagesSelectionChanged(QItemSelection(),QItemSelection());
 
   changedTabIndex();
 }
@@ -435,14 +438,14 @@ void MainWindow::changePackageListModel()
  */
 void MainWindow::execContextMenuPackages(QPoint point)
 {
-// The following SLOTs will be called:
-//  connect(ui->actionFindFileInPackage, SIGNAL(triggered()), this, SLOT(findFileInPackage()));
-//  connect(ui->actionInstall, SIGNAL(triggered()), this, SLOT(insertIntoInstallPackage()));
-//  connect(ui->actionInstallYaourt, SIGNAL(triggered()), this, SLOT(doInstallYaourtPackage()));
-//  connect(ui->actionInstallGroup, SIGNAL(triggered()), this, SLOT(insertGroupIntoInstallPackage()));
-//  connect(ui->actionRemove, SIGNAL(triggered()), this, SLOT(insertIntoRemovePackage()));
-//  connect(ui->actionRemoveGroup, SIGNAL(triggered()), this, SLOT(insertGroupIntoRemovePackage()));
-
+/* The following SLOTs will be called:
+ *   connect(ui->actionFindFileInPackage, SIGNAL(triggered()), this, SLOT(findFileInPackage()));
+ *   connect(ui->actionInstall, SIGNAL(triggered()), this, SLOT(insertIntoInstallPackage()));
+ *   connect(ui->actionInstallYaourt, SIGNAL(triggered()), this, SLOT(doInstallYaourtPackage()));
+ *   connect(ui->actionInstallGroup, SIGNAL(triggered()), this, SLOT(insertGroupIntoInstallPackage()));
+ *   connect(ui->actionRemove, SIGNAL(triggered()), this, SLOT(insertIntoRemovePackage()));
+ *   connect(ui->actionRemoveGroup, SIGNAL(triggered()), this, SLOT(insertGroupIntoRemovePackage()));
+ */
   const QItemSelectionModel*const selectionModel = ui->tvPackages->selectionModel();
   if (selectionModel != NULL && selectionModel->selectedRows().count() > 0)
   {
@@ -1045,7 +1048,6 @@ void MainWindow::editFile()
 void MainWindow::openTerminal()
 {
   QString dir = getSelectedDirectory();
-
   if (!dir.isEmpty())
   {
     WMHelper::openTerminal(dir);
