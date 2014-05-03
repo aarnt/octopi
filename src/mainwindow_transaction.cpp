@@ -706,10 +706,10 @@ void MainWindow::doSyncDatabase()
   QObject::connect(m_unixCommand, SIGNAL( readyReadStandardError() ),
                    this, SLOT( actionsProcessRaisedError() ));
 
-  QString command = "pacman -Sy";
+  QString command = "pacman -Syy";
 
   m_lastCommandList.clear();
-  m_lastCommandList.append("pacman -Sy;");
+  m_lastCommandList.append("pacman -Syy;");
   m_lastCommandList.append("echo -e;");
   m_lastCommandList.append("read -n1 -p \"" + StrConstants::getPressAnyKey() + "\"");
 

@@ -16,6 +16,7 @@
   BugFix: The preventing code for always refresh the pkg list was flawed.
   BugFix: hasInternetConnection code fixed to improve mirror-check speed.
   BugFix: Fixed CCR (Chakra) package installation/removal (thanks to dmnmsc).
+  Switched to "pacman -Syy" command when synching. It's safer.
   Added popularity column (number of votes) in AUR/CCR mode (thanks to 
 	tbinkau).
   Added more filter options in View menu.
