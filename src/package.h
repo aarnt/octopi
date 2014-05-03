@@ -31,7 +31,6 @@
 #include <QHash>
 #include <QSet>
 
-
 const QString ctn_TEMP_ACTIONS_FILE ( QDir::tempPath() + QDir::separator() + ".qt_temp_" );
 
 const QString ctn_PKG_CONTENT_ERROR = "ERROR";
@@ -50,7 +49,8 @@ enum SearchPlace { ectn_INSIDE_INSTALLED_PACKAGES, ectn_INSIDE_DIRECTORY, ectn_I
 
 enum DumpInstalledPackageListOptions { ectn_WITH_MODIFIED_DATE, ectn_NO_MODIFIED_DATE };
 
-enum PackageStatus { ectn_INSTALLED, ectn_NON_INSTALLED, ectn_OUTDATED, ectn_FOREIGN, ectn_FOREIGN_OUTDATED };
+enum PackageStatus { ectn_INSTALLED, ectn_NON_INSTALLED, ectn_OUTDATED, ectn_NEWER,
+                     ectn_FOREIGN, ectn_FOREIGN_OUTDATED };
 
 struct PackageListData{
   QString name;
@@ -58,7 +58,8 @@ struct PackageListData{
   QString version;
   QString description;
   QString outatedVersion;
-  double downloadSize;
+  double  downloadSize;
+  int     popularity; //votes
   PackageStatus status;
 
   PackageListData(){
@@ -145,6 +146,7 @@ class Package{
 
     static QStringList getOptionalDeps(const QString &pkgName);
 
+    static QString getName(const QString &pkgInfo);
     static QString getVersion(const QString &pkgInfo);
     static QString getRepository(const QString &pkgInfo);
     static QString getURL(const QString &pkgInfo);

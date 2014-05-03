@@ -67,7 +67,8 @@ void PackageRepository::setData(const QList<PackageListData>*const listOfPackage
     if (*it != NULL) (*it)->invalidateList();
   }
   // delete items in list
-  for (QList<PackageData*>::const_iterator it = m_listOfPackages.begin(); it != m_listOfPackages.end(); ++it) {
+  //for (QList<PackageData*>::const_iterator it = m_listOfPackages.begin(); it != m_listOfPackages.end(); ++it) {
+  for (TListOfPackages::const_iterator it = m_listOfPackages.begin(); it != m_listOfPackages.end(); ++it) {
     if (*it != NULL) delete *it;
   }
   m_listOfYaourtPackages.clear();
@@ -89,7 +90,8 @@ void PackageRepository::setAURData(const QList<PackageListData>*const listOfFore
     std::for_each(m_dependingModels.begin(), m_dependingModels.end(), BeginResetModel());
 
     // delete yaourt items in list
-    for (QList<PackageData*>::iterator it = m_listOfPackages.begin(); it != m_listOfPackages.end(); ++it) {
+    //for (QList<PackageData*>::iterator it = m_listOfPackages.begin(); it != m_listOfPackages.end(); ++it) {
+    for (TListOfPackages::iterator it = m_listOfPackages.begin(); it != m_listOfPackages.end(); ++it) {
       if (*it != NULL && (*it)->managedByYaourt) {
         delete *it;
         it = m_listOfPackages.erase(it);
@@ -162,7 +164,8 @@ void PackageRepository::checkAndSetMembersOfGroup(const QString& groupName, cons
       group.invalidateList();
 
       for (QStringList::const_iterator it = members.begin(); it != members.end(); ++it) {
-        typedef QList<PackageData*>::const_iterator TIter;
+        //typedef QList<PackageData*>::const_iterator TIter;
+        typedef TListOfPackages::const_iterator TIter;
         std::pair<TIter, TIter> packageIt =  std::equal_range(m_listOfPackages.begin(), m_listOfPackages.end(), *it, TComp());
         for (TIter iter = packageIt.first; iter != packageIt.second; ++iter) {
           if ((*iter)->managedByYaourt == false) {
@@ -181,7 +184,7 @@ void PackageRepository::checkAndSetMembersOfGroup(const QString& groupName, cons
   }
 }
 
-const QList<PackageRepository::PackageData*>& PackageRepository::getPackageList() const
+const PackageRepository::TListOfPackages& PackageRepository::getPackageList() const
 {
   return m_listOfPackages;
 }
@@ -199,12 +202,13 @@ const QList<PackageRepository::PackageData*>& PackageRepository::getPackageList(
     }
     if (groupIt != m_listOfGroups.end()) {
       Group& group = **groupIt;
-      const QList<PackageRepository::PackageData*>* list = group.getPackageList();
+      //const QList<PackageRepository::PackageData*>* list = group.getPackageList();
+      const TListOfPackages* list = group.getPackageList();
       if (list != NULL) return *list;
     }
 
     // Workaround for Yaourt filter -> pre-built yaourt packageList
-    if (group == "<Yaourt>")
+    if (group == StrConstants::getYaourtGroup())
       return m_listOfYaourtPackages;
   }
 
@@ -212,9 +216,9 @@ const QList<PackageRepository::PackageData*>& PackageRepository::getPackageList(
   return m_listOfPackages;
 }
 
-const PackageRepository::PackageData* PackageRepository::getFirstPackageByName(const QString name) const
+PackageRepository::PackageData* PackageRepository::getFirstPackageByName(const QString name) const
 {
-  for (QList<PackageData*>::const_iterator it = m_listOfPackages.begin(); it != m_listOfPackages.end(); ++it) {
+  for (TListOfPackages::const_iterator it = m_listOfPackages.begin(); it != m_listOfPackages.end(); ++it) {
     if ((*it)->name == name)
       return *it;
   }
@@ -249,7 +253,13 @@ PackageRepository::PackageData::PackageData(const PackageListData& pkg, const bo
   : required(isRequired), managedByYaourt(isManagedByYaourt), name(pkg.name),
     repository(pkg.repository.isEmpty() ? StrConstants::getForeignRepositoryName() : pkg.repository),
     version(pkg.version), description(pkg.description.toLatin1()), // octopi wants it converted to utf8
-    outdatedVersion(pkg.outatedVersion), downloadSize(pkg.downloadSize), status(pkg.status)
+    outdatedVersion(pkg.outatedVersion), downloadSize(pkg.downloadSize),
+    status(pkg.status != ectn_OUTDATED ?
+           pkg.status :
+           (Package::rpmvercmp(pkg.outatedVersion.toLatin1().data(), pkg.version.toLatin1().data()) == 1 ?
+             ectn_NEWER : ectn_OUTDATED)),
+    popularity(isManagedByYaourt ? pkg.popularity : -1),
+    popularityString(isManagedByYaourt ? QString::number(pkg.popularity) + " " + StrConstants::getVotes() : QString())
 {
 }
 
@@ -271,7 +281,8 @@ bool PackageRepository::Group::memberListEquals(const QStringList& packagelist)
     return false;
 
   QStringList::const_iterator it2 = packagelist.begin();
-  for (QList<PackageData*>::const_iterator it = m_listOfPackages->begin(); it != m_listOfPackages->end(); ++it, ++it2) {
+  //for (QList<PackageData*>::const_iterator it = m_listOfPackages->begin(); it != m_listOfPackages->end(); ++it, ++it2) {
+  for (TListOfPackages::const_iterator it = m_listOfPackages->begin(); it != m_listOfPackages->end(); ++it, ++it2) {
     if ((*it)->name != *it2)
       return false;
   }
@@ -282,7 +293,7 @@ bool PackageRepository::Group::memberListEquals(const QStringList& packagelist)
 void PackageRepository::Group::addPackage(PackageRepository::PackageData& package)
 {
   if (m_listOfPackages == NULL)
-    m_listOfPackages = new QList<PackageData*>();
+    m_listOfPackages = new TListOfPackages();
 
   m_listOfPackages->push_back(&package);
 }
@@ -298,7 +309,7 @@ void PackageRepository::Group::invalidateList()
   m_listOfPackages = NULL;
 }
 
-const QList<PackageRepository::PackageData*>* PackageRepository::Group::getPackageList() const
+const PackageRepository::TListOfPackages* PackageRepository::Group::getPackageList() const
 {
   return m_listOfPackages;
 }

@@ -22,91 +22,103 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 #include <QAbstractTableModel>
 #include <QList>
+#include <QStringList>
 #include "repoentry.h"
 
 class RepoConf : public QAbstractTableModel
 {
-    Q_OBJECT
+  Q_OBJECT
 
 private:
-    QList<RepoEntry> entries;
-    QStringList preamble;
+  QList<RepoEntry> entries;
+  QStringList preamble;
 
-    QString repoConfFilePath;
+  QString repoConfFilePath;
 
-    bool isEmpty( QString line );
+  bool isEmpty( QString line );
 
-    RepoEntry extractRepo( QString line );
+  RepoEntry extractRepo( QString line );
 
 public:
-    explicit RepoConf();
+  explicit RepoConf();
 
-    static QString commentString;    
-    static QRegExp repoMatch;
-    static QRegExp detailMatch;
+  static QString commentString;
+  static QRegExp repoMatch;
+  static QRegExp detailMatch;
 
-    static bool matchRepo( QString line );
-    static bool matchRepoDetails( QString line );
+  static bool matchRepo( QString line );
+  static bool matchRepoDetails( QString line );
 
-    QString toString() const;
+  QString toString() const;
 
-    RepoEntry at( int i ) const {
-        return ( ( i <= entries.count() ) ? entries.at(i) : RepoEntry() );
+  RepoEntry at( int i ) const {
+    return ( ( i <= entries.count() ) ? entries.at(i) : RepoEntry() );
+  }
+
+  int count() const {
+    return entries.count();
+  }
+
+  bool detailsExists() const;
+
+  void addEntry( const RepoEntry & entry );
+
+  bool exists( const QString & name );
+
+  const QString & getConfPath() const {
+    return repoConfFilePath;
+  }
+
+  QStringList getRepos(){
+    QStringList res;
+
+    for (int c=0; c<entries.count(); c++){
+      if (entries.at(c).isActive())
+        res.append(entries.at(c).getName());
     }
 
-    int count() const {
-        return entries.count();
-    }
+    return res;
+  }
 
-    bool detailsExists() const;
+  //Table Model
+  int rowCount( const QModelIndex & ) const {
+    return count();
+  }
 
-    void addEntry( const RepoEntry & entry );
+  int columnCount( const QModelIndex & ) const {
+    return detailsExists()?3:2;
+  }
 
-    bool exists( const QString & name );
+  QVariant data( const QModelIndex &index, int role = Qt::DisplayRole ) const;
+  QVariant headerData( int section, Qt::Orientation orientation, int role ) const;
 
-    const QString & getConfPath() const {
-        return repoConfFilePath;
-    }
+  Qt::ItemFlags flags( const QModelIndex & ) const {
+    return Qt::ItemIsSelectable|Qt::ItemIsEnabled|Qt::ItemIsEditable;
+  }
 
-    //Table Model
-    int rowCount( const QModelIndex &parent = QModelIndex() ) const {
-        return count();
-    }
-
-    int columnCount( const QModelIndex &parent = QModelIndex() ) const {
-        return detailsExists()?3:2;
-    }
-
-    QVariant data( const QModelIndex &index, int role = Qt::DisplayRole ) const;
-    QVariant headerData( int section, Qt::Orientation orientation, int role ) const;
-
-    Qt::ItemFlags flags( const QModelIndex &index ) const {
-        return Qt::ItemIsSelectable|Qt::ItemIsEnabled|Qt::ItemIsEditable;
-    }
-
-    bool setData( const QModelIndex &index, const QVariant &value, int role );
+  bool setData( const QModelIndex &index, const QVariant &value, int role );
 
 public slots:    
-    bool loadConf( const QString &eFile );
+  bool loadConf( const QString &eFile );
 
-    void reload(); //Reloads entries from configured file
-    bool saveChanges( const QString & backup = "" );
+  void reload(); //Reloads entries from configured file
+  bool saveChanges( const QString & backup = "" );
 
-    void moveUp( int i ) {
-        if( entries.count() && i > 0 ) {
-            entries.swap( i, i - 1 );
-            emit dataChanged( QModelIndex(), QModelIndex() );
-        }
+  void moveUp( int i ) {
+    if( entries.count() && i > 0 ) {
+      entries.swap( i, i - 1 );
+      emit dataChanged( QModelIndex(), QModelIndex() );
     }
+  }
 
-    void moveDown( int i ){
-        if( entries.count() && i < entries.count() - 1 ) {
-            entries.swap( i, i + 1 );
-            emit dataChanged( QModelIndex(), QModelIndex() );
-        }
+  void moveDown( int i ){
+    if( entries.count() && i < entries.count() - 1 ) {
+      entries.swap( i, i + 1 );
+      emit dataChanged( QModelIndex(), QModelIndex() );
     }
+  }
 
-    bool removeRows( int row, int count, const QModelIndex &parent );
+  bool removeRows(int row, int count, const QModelIndex &);
 };
 
 #endif // REPOCONF_H

@@ -48,6 +48,10 @@ public:
     return str;
   }
 
+  static QString getAll(){
+    return QObject::tr("All");
+  }
+
   static QString getForeignRepositoryName(){
     if (UnixCommand::getLinuxDistro() == ectn_CHAKRA)
       return QLatin1String( "CCR" );
@@ -198,6 +202,14 @@ public:
 
   static QString getReplaces(){
     return QObject::tr("Replaces");
+  }
+
+  static QString getPopularityHeader(){
+    return QObject::tr("Popularity");
+  }
+
+  static QString getVotes(){
+    return QObject::tr("votes");
   }
 
   static QString getDownloadSize(){

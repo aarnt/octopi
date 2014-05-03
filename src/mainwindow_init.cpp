@@ -31,6 +31,7 @@
 #include "treeviewpackagesitemdelegate.h"
 #include "searchbar.h"
 #include "packagecontroller.h"
+#include "../repoeditor/repoconf.h"
 
 #include <QLabel>
 #include <QStandardItemModel>
@@ -46,12 +47,12 @@
 #include <iostream>
 #include <cassert>
 
-
 /*
  * Loads various application settings configured in ~/.config/octopi/octopi.conf
  */
 void MainWindow::loadSettings(){
-  if (ui->tvPackages->model() != NULL) {
+  if (ui->tvPackages->model() != NULL)
+  {
     int packageListOrderedCol = SettingsManager::instance()->getPackageListOrderedCol();
     Qt::SortOrder packageListSortOrder = (Qt::SortOrder) SettingsManager::instance()->getPackageListSortOrder();
 
@@ -187,6 +188,48 @@ void MainWindow::onPackageGroupChanged()
     ui->actionSearchByName->setChecked(true);
     tvPackagesSearchColumnChanged(ui->actionSearchByName);
   }
+}
+
+/*
+ * Inits the Repository menuItem in menuBar
+ */
+void MainWindow::initMenuBar()
+{
+  QActionGroup *actionGroupPackages = new QActionGroup(this);
+  QActionGroup *actionGroupRepositories = new QActionGroup(this);
+
+  ui->actionViewAllPackages->setChecked(true);
+  actionGroupPackages->addAction(ui->actionViewAllPackages);
+  actionGroupPackages->addAction(ui->actionViewInstalledPackages);
+  actionGroupPackages->addAction(ui->actionViewNonInstalledPackages);
+  actionGroupPackages->setExclusive(true);
+
+  m_actionMenuRepository = ui->menuView->addAction(StrConstants::getRepository());
+  QMenu *subMenu = new QMenu(ui->menuView);
+  connect(subMenu, SIGNAL(triggered(QAction*)), this, SLOT(selectedRepositoryMenu(QAction*)));
+
+  m_actionRepositoryAll = subMenu->addAction(StrConstants::getAll());
+  m_actionRepositoryAll->setCheckable(true);
+  m_actionRepositoryAll->setChecked(true);
+  subMenu->addSeparator();
+
+  RepoConf *repoConf = new RepoConf();
+  QStringList repos = repoConf->getRepos();
+
+  foreach(QString repo, repos)
+  {
+    QAction * createdAction = subMenu->addAction(repo);
+    createdAction->setCheckable(true);
+    actionGroupRepositories->addAction(createdAction);
+  }
+
+  QAction * actionForeignRepo = subMenu->addAction(StrConstants::getForeignRepositoryName());
+  actionForeignRepo->setCheckable(true);
+  actionGroupRepositories->addAction(m_actionRepositoryAll);
+  actionGroupRepositories->addAction(actionForeignRepo);
+  actionGroupRepositories->setExclusive(true);
+
+  m_actionMenuRepository->setMenu(subMenu);
 }
 
 /*
@@ -421,27 +464,27 @@ void MainWindow::initPackageTreeView()
 #if QT_VERSION < 0x050000
   ui->tvPackages->header()->setClickable(true);
   ui->tvPackages->header()->setMovable(false);
-  ui->tvPackages->header()->setResizeMode( QHeaderView::Fixed );
+  ui->tvPackages->header()->setResizeMode( QHeaderView::Interactive );
 #else
   ui->tvPackages->header()->setSectionsClickable(true);
   ui->tvPackages->header()->setSectionsMovable(false);
-  ui->tvPackages->header()->setSectionResizeMode(QHeaderView::Fixed);
+  ui->tvPackages->header()->setSectionResizeMode(QHeaderView::Interactive);
 #endif
 
-    ui->tvPackages->header()->setDefaultAlignment( Qt::AlignLeft );
-    ui->tvPackages->setStyleSheet(StrConstants::getTreeViewCSS());
+  ui->tvPackages->header()->setDefaultAlignment( Qt::AlignLeft );
+  ui->tvPackages->setStyleSheet(StrConstants::getTreeViewCSS());
 
-    resizePackageView();
+  resizePackageView();
 
-    connect(ui->tvPackages->selectionModel(), SIGNAL(selectionChanged(QItemSelection,QItemSelection)),
-            this, SLOT(tvPackagesSelectionChanged(QItemSelection,QItemSelection)));
-    connect(ui->tvPackages, SIGNAL(activated(QModelIndex)), this, SLOT(changedTabIndex()));
-    connect(ui->tvPackages, SIGNAL(clicked(QModelIndex)), this, SLOT(changedTabIndex()));
-    connect(ui->tvPackages->header(), SIGNAL(sortIndicatorChanged(int,Qt::SortOrder)), this,
-            SLOT(headerViewPackageListSortIndicatorClicked(int,Qt::SortOrder)));
-    connect(ui->tvPackages, SIGNAL(customContextMenuRequested(QPoint)), this,
-            SLOT(execContextMenuPackages(QPoint)));
-    connect(ui->tvPackages, SIGNAL(doubleClicked(QModelIndex)), this, SLOT(onDoubleClickPackageList()));
+  connect(ui->tvPackages->selectionModel(), SIGNAL(selectionChanged(QItemSelection,QItemSelection)),
+          this, SLOT(tvPackagesSelectionChanged(QItemSelection,QItemSelection)));
+  connect(ui->tvPackages, SIGNAL(activated(QModelIndex)), this, SLOT(changedTabIndex()));
+  connect(ui->tvPackages, SIGNAL(clicked(QModelIndex)), this, SLOT(changedTabIndex()));
+  connect(ui->tvPackages->header(), SIGNAL(sortIndicatorChanged(int,Qt::SortOrder)), this,
+          SLOT(headerViewPackageListSortIndicatorClicked(int,Qt::SortOrder)));
+  connect(ui->tvPackages, SIGNAL(customContextMenuRequested(QPoint)), this,
+          SLOT(execContextMenuPackages(QPoint)));
+  connect(ui->tvPackages, SIGNAL(doubleClicked(QModelIndex)), this, SLOT(onDoubleClickPackageList()));
 }
 
 void MainWindow::resizePackageView()
@@ -641,7 +684,6 @@ void MainWindow::initActions()
   connect(ui->actionRemoveTransactionItem, SIGNAL(triggered()), this, SLOT(onPressDelete()));
   connect(ui->actionRemoveTransactionItems, SIGNAL(triggered()), this, SLOT(onPressDelete()));
   connect(ui->actionExit, SIGNAL(triggered()), this, SLOT(close()));
-  connect(ui->actionNonInstalledPackages, SIGNAL(changed()), this, SLOT(changePackageListModel()));
   connect(ui->actionSyncPackages, SIGNAL(triggered()), this, SLOT(doSyncDatabase()));
   connect(ui->actionSystemUpgrade, SIGNAL(triggered()), this, SLOT(doSystemUpgrade()));
   connect(ui->actionRemove, SIGNAL(triggered()), this, SLOT(insertIntoRemovePackage()));
@@ -692,6 +734,11 @@ void MainWindow::initActions()
   ui->actionFindFileInPackage->setIcon(IconHelper::getIconFindFileInPackage());
   ui->actionOpenRootTerminal->setIcon(IconHelper::getIconTerminal());
   ui->actionInstallYaourt->setIcon(IconHelper::getIconToInstall());
+
+  //Actions for the View menu
+  connect(ui->actionViewAllPackages, SIGNAL(triggered()), this, SLOT(selectedAllPackagesMenu()));
+  connect(ui->actionViewInstalledPackages, SIGNAL(triggered()), this, SLOT(selectedInstalledPackagesMenu()));
+  connect(ui->actionViewNonInstalledPackages, SIGNAL(triggered()), this, SLOT(selectedNonInstalledPackagesMenu()));
 
   if (WMHelper::isKDERunning() && UnixCommand::getLinuxDistro() != ectn_KAOS)
   {
