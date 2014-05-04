@@ -27,9 +27,13 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 #include <QTextStream>
 #include <QMessageBox>
 
+/*
+ * Gets all the repos available in system's Pacman configuration
+ */
+
 QString RepoConf::commentString = "";
-QRegExp RepoConf::repoMatch = QRegExp();
-QRegExp RepoConf::detailMatch = QRegExp();
+QRegExp RepoConf::repoMatch     = QRegExp();
+QRegExp RepoConf::detailMatch   = QRegExp();
 
 RepoConf::RepoConf()
 {
@@ -39,6 +43,7 @@ RepoConf::RepoConf()
   RepoEntry::nameFilter = QRegExp("(\\s+|\\[|\\])");
   commentString = "#";
   RepoEntry::repoFormat = "[%repo%]";
+
   loadConf( repoConfFilePath );
 }
 
@@ -61,15 +66,6 @@ RepoEntry RepoConf::extractRepo( QString line )
   line = line.trimmed();
   bool active = line.mid( 0, commentString.length() ) != commentString;
   return RepoEntry( line.remove( commentString ), active );
-}
-
-bool RepoConf::exists( const QString &name )
-{
-  bool found=false;
-  for( int i=0; !found && i < entries.count(); ++i )
-    if( ( ( RepoEntry & )entries.at( i ) ).getName() == name)
-      found = true;
-  return found;
 }
 
 bool RepoConf::loadConf( const QString &eFile )

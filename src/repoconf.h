@@ -29,46 +29,24 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 class RepoConf
 {
-
 private:
   QList<RepoEntry> entries;
   QStringList preamble;
   QString repoConfFilePath;
 
-  bool isEmpty( QString line );
-  bool loadConf( const QString &eFile );
-  RepoEntry extractRepo( QString line );
-
-public:
-  explicit RepoConf();
-
   static QString commentString;
   static QRegExp repoMatch;
   static QRegExp detailMatch;
-
   static bool matchRepo( QString line );
   static bool matchRepoDetails( QString line );
 
-  QString toString() const;
-
-  RepoEntry at( int i ) const {
-    return ( ( i <= entries.count() ) ? entries.at(i) : RepoEntry() );
-  }
-
-  int count() const {
-    return entries.count();
-  }
-
-  bool detailsExists() const;
-
+  RepoEntry extractRepo( QString line );
+  bool isEmpty( QString line );
+  bool loadConf( const QString &eFile );
   void addEntry( const RepoEntry & entry );
 
-  bool exists( const QString & name );
-
-  const QString & getConfPath() const {
-    return repoConfFilePath;
-  }
-
+public:
+  explicit RepoConf();
   QStringList getRepos();
 };
 
