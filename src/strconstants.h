@@ -21,7 +21,6 @@
 #ifndef STRCONSTANTS_H
 #define STRCONSTANTS_H
 
-#include "wmhelper.h"
 #include "unixcommand.h"
 
 #include <QApplication>
