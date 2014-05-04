@@ -25,7 +25,7 @@ HEADERS  += src/QtSolutions/qtsingleapplication.h \
         src/QtSolutions/QtSingleApplication \
         src/QtSolutions/qtlockedfile.h \
         src/QtSolutions/QtLockedFile \
-        src/repoentry.h \
+        repoeditor/repoentry.h \
         src/repoconf.h \
         src/mainwindow.h \
         src/strconstants.h \
@@ -54,7 +54,7 @@ SOURCES += src/QtSolutions/qtsingleapplication.cpp \
         src/QtSolutions/qtlockedfile.cpp \
         src/QtSolutions/qtlockedfile_win.cpp \
         src/QtSolutions/qtlockedfile_unix.cpp \
-        src/repoentry.cpp \
+        repoeditor/repoentry.cpp \
         src/repoconf.cpp \
         src/main.cpp\
         src/mainwindow.cpp \

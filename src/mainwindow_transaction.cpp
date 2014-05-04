@@ -149,7 +149,6 @@ void MainWindow::insertInstallPackageIntoTransaction(const QString &pkgName)
   QStandardItem * siPackageToInstall = new QStandardItem(IconHelper::getIconInstallItem(), pkgName);
   QStandardItem * siRemoveParent = getRemoveTransactionParentItem();
   QStandardItemModel *sim = qobject_cast<QStandardItemModel *>(siInstallParent->model());
-
   QList<QStandardItem *> foundItems = sim->findItems(pkgName, Qt::MatchRecursive | Qt::MatchExactly);
 
   if (foundItems.size() == 0)
@@ -1789,12 +1788,13 @@ void MainWindow::_treatProcessOutput(const QString &pMsg)
   QString progressRun;
   QString progressEnd;
   msg.remove(QRegExp(".+\\[Y/n\\].+"));
-  //msg.remove(QRegExp("warning:\\S{0}"));
 
+  //Let's remove color codes from strings...
   msg.remove("\033[0;1m");
   msg.remove("\033[0m");
   msg.remove("[1;33m");
-  msg.remove("\033[1;34m"); //strings starting with ::
+  msg.remove("[00;31m");
+  msg.remove("\033[1;34m");
   msg.remove("\033[0;1m");
 
   if (msg.contains("exists in filesystem")) return;
