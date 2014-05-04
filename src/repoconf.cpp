@@ -1,5 +1,7 @@
 /*
-Copyright 2011 Simone Tobia
+Copyright
+  2011 Simone Tobia
+  2014 Alexandre Albuquerque Arnt (stripped unused parts of the code)
 
 This file is part of AppSet.
 
@@ -17,11 +19,10 @@ You should have received a copy of the GNU General Public License
 along with AppSet; if not, write to the Free Software
 Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
+
 #include "repoconf.h"
 
 #include <QApplication>
-#include <QStyle>
-#include <QFont>
 #include <QFile>
 #include <QTextStream>
 #include <QMessageBox>
@@ -33,12 +34,11 @@ QRegExp RepoConf::detailMatch = QRegExp();
 RepoConf::RepoConf()
 {
   repoConfFilePath = "/etc/pacman.conf";
-  repoMatch = QRegExp("^\\[(?!(options|repo-name|\\[|\s))");
+  repoMatch = QRegExp("^\\[(?!(options|repo-name|\\[|\\s))");
   detailMatch = QRegExp("^(Server|Include)\\s*=\\s*.+");
   RepoEntry::nameFilter = QRegExp("(\\s+|\\[|\\])");
   commentString = "#";
   RepoEntry::repoFormat = "[%repo%]";
-
   loadConf( repoConfFilePath );
 }
 
@@ -85,7 +85,6 @@ bool RepoConf::loadConf( const QString &eFile )
 
   RepoEntry::commentString = RepoConf::commentString;
 
-  beginResetModel();
   entries.clear();
 
   QStringList comments;
@@ -122,172 +121,21 @@ bool RepoConf::loadConf( const QString &eFile )
   if( actual.isValid() )
     addEntry(actual);
 
-  endResetModel();
-
   return true;
 }
 
 void RepoConf::addEntry( const RepoEntry & entry )
 {
-  beginInsertRows( QModelIndex(), entries.count(), entries.count() );
   entries.push_back( entry );
-  endInsertRows();
 }
 
-void RepoConf::reload()
-{
-  loadConf( repoConfFilePath );
-}
+QStringList RepoConf::getRepos(){
+  QStringList res;
 
-bool RepoConf::saveChanges( const QString & backup )
-{
-  if( !backup.isEmpty() ) {
-    QMessageBox mbexists( QMessageBox::Warning,
-                          ( "Backup error" ),
-                          ( "Backup file already exists." ) + QString( "\n" ) + ( "Do you want to overwrite it?" ),
-                          QMessageBox::Yes | QMessageBox::No );
-
-    if( QFile::exists( backup ) && mbexists.exec() == QMessageBox::Yes ) {
-      QFile::remove( backup );
-    }
-
-    QMessageBox mberror( QMessageBox::Critical,
-                         ( "Backup error" ),
-                         ( "Can't create backup file." ) + QString( "\n" ) + ( "Do you want to proceed without a backup?" ),
-                         QMessageBox::Yes | QMessageBox::No );
-
-    if( !QFile::copy( repoConfFilePath, backup ) && mberror.exec() == QMessageBox::No ) {
-      return false;
-    }
+  for (int c=0; c<entries.count(); c++){
+    if (entries.at(c).isActive())
+      res.append(entries.at(c).getName());
   }
 
-  QFile confFile( repoConfFilePath );
-  if( !confFile.open( QIODevice::WriteOnly ) )
-    return false;
-
-  confFile.write( toString().toLatin1() );
-  confFile.close();
-  reload();
-  return true;
-}
-
-bool RepoConf::removeRows( int row, int count, const QModelIndex & )
-{
-  beginRemoveRows( QModelIndex(), row, row + count - 1);
-
-  for( int i = 0; i < count; ++i ) {
-    entries.removeAt( row + i );
-  }
-
-  endRemoveRows();
-}
-
-QString RepoConf::toString() const
-{
-  QStringList ret;
-
-  for( int i = 0; i < entries.count(); ++i ) {
-    ret << ( ( RepoEntry & )entries.at( i ) ).toString();
-  }
-
-  return preamble.join( "\n" ).trimmed() + QString( "\n\n" ) + ret.join( "\n\n" );
-}
-
-bool RepoConf::detailsExists() const
-{
-  bool found = false;
-
-  for( int i = 0; !found && i < entries.count(); ++i )
-    found = !( ( const RepoEntry & )entries.at( i ) ).getDetails().isEmpty();
-
-  return found;
-}
-
-QVariant RepoConf::headerData( int section, Qt::Orientation orientation, int role ) const
-{
-  QStringList headers;
-
-  headers << ( "Active" ) << ( "Repository" ) << ( "Options" );
-
-  switch( role ) {
-  case Qt::DisplayRole:
-    if( orientation == Qt::Horizontal ) {
-      return headers.at( section );
-    } else {
-      return section + 1;
-    }
-    break;
-  }
-
-  return QVariant();
-}
-
-QVariant RepoConf::data( const QModelIndex &index, int role ) const
-{
-  switch( role ){
-  case Qt::DisplayRole :
-  case Qt::EditRole :
-    switch( index.column() ) {
-    case 0 :
-      return ( ( RepoEntry & )entries.at( index.row() ) ).isActive();
-    case 1 :
-      return ( ( RepoEntry & )entries.at( index.row() ) ).getName();
-    case 2 :
-      return ( ( RepoEntry & )entries.at( index.row() ) ).getDetails().join( "\n" );
-    }
-
-    break;
-  case Qt::FontRole :
-    switch( index.column() ) {
-    case 1 :
-      QFont font( qApp->font() );
-      font.setBold( true );
-      return font;
-    }
-    break;
-  case Qt::ToolTipRole :
-    switch( index.column() ) {
-    case 2 :
-      return ( ( ( ( RepoEntry & )entries.at( index.row() ) ).getDetailsComments().isEmpty() )
-               ? ( ( ( RepoEntry & )entries.at( index.row() ) ).getComments().join( "\n" ) )
-               : ( ( ( RepoEntry & )entries.at( index.row() ) ).getDetailsComments().join( "\n" ) ) );
-    default :
-      return ( ( RepoEntry & )entries.at( index.row() ) ).getComments().join( "\n" );
-    }
-    break;
-  }
-
-  return QVariant();
-}
-
-bool RepoConf::setData( const QModelIndex &index, const QVariant &value, int role )
-{
-  switch( role ) {
-  case Qt::DisplayRole :
-  case Qt::EditRole :
-    switch( index.column() ) {
-    case 0 :
-      ( ( RepoEntry & )entries.at( index.row() ) ).setActive( value.toBool() );
-      break;
-    case 1 :
-      if( !matchRepo( RepoEntry::formatRepoName( value.toString() ) ) )
-        return false;
-      ( ( RepoEntry & )entries.at( index.row() ) ).setName( value.toString() );
-      break;
-    case 2:
-      QStringList list = value.toString().trimmed().split( "\n" );
-      for( int i = 0; i < list.count(); ++i) {
-        list[i] = list.at( i ).trimmed();
-        if( !matchRepoDetails( list.at(i) ) )
-          return false;
-      }
-      ( ( RepoEntry & )entries.at( index.row() ) ).setDetails( list );
-      break;
-    }
-
-    emit dataChanged( index, index );
-    return true;
-  }
-
-  return false;
+  return res;
 }

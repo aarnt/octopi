@@ -1,5 +1,7 @@
 /*
-Copyright 2011 Simone Tobia
+Copyright
+  2011 Simone Tobia
+  2014 Alexandre Albuquerque Arnt (stripped unused parts of the code)
 
 This file is part of AppSet.
 
@@ -17,26 +19,24 @@ You should have received a copy of the GNU General Public License
 along with AppSet; if not, write to the Free Software
 Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
+
 #ifndef REPOCONF_H
 #define REPOCONF_H
 
-#include <QAbstractTableModel>
 #include <QList>
 #include <QStringList>
 #include "repoentry.h"
 
-class RepoConf : public QAbstractTableModel
+class RepoConf
 {
-  Q_OBJECT
 
 private:
   QList<RepoEntry> entries;
   QStringList preamble;
-
   QString repoConfFilePath;
 
   bool isEmpty( QString line );
-
+  bool loadConf( const QString &eFile );
   RepoEntry extractRepo( QString line );
 
 public:
@@ -69,56 +69,7 @@ public:
     return repoConfFilePath;
   }
 
-  QStringList getRepos(){
-    QStringList res;
-
-    for (int c=0; c<entries.count(); c++){
-      if (entries.at(c).isActive())
-        res.append(entries.at(c).getName());
-    }
-
-    return res;
-  }
-
-  //Table Model
-  int rowCount( const QModelIndex & ) const {
-    return count();
-  }
-
-  int columnCount( const QModelIndex & ) const {
-    return detailsExists()?3:2;
-  }
-
-  QVariant data( const QModelIndex &index, int role = Qt::DisplayRole ) const;
-  QVariant headerData( int section, Qt::Orientation orientation, int role ) const;
-
-  Qt::ItemFlags flags( const QModelIndex & ) const {
-    return Qt::ItemIsSelectable|Qt::ItemIsEnabled|Qt::ItemIsEditable;
-  }
-
-  bool setData( const QModelIndex &index, const QVariant &value, int role );
-
-public slots:    
-  bool loadConf( const QString &eFile );
-
-  void reload(); //Reloads entries from configured file
-  bool saveChanges( const QString & backup = "" );
-
-  void moveUp( int i ) {
-    if( entries.count() && i > 0 ) {
-      entries.swap( i, i - 1 );
-      emit dataChanged( QModelIndex(), QModelIndex() );
-    }
-  }
-
-  void moveDown( int i ){
-    if( entries.count() && i < entries.count() - 1 ) {
-      entries.swap( i, i + 1 );
-      emit dataChanged( QModelIndex(), QModelIndex() );
-    }
-  }
-
-  bool removeRows(int row, int count, const QModelIndex &);
+  QStringList getRepos();
 };
 
 #endif // REPOCONF_H
