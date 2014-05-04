@@ -1712,6 +1712,7 @@ void MainWindow::actionsProcessReadOutputErrorMirrorCheck()
   msg.remove("\033[01;37m");
   msg.remove("\033[00m");
   msg.remove("\033[00;32m");
+  msg.remove("[00;31m");
 
   msg.replace("\n", "<br>");
 
@@ -1729,6 +1730,7 @@ void MainWindow::actionsProcessReadOutputMirrorCheck()
   msg.remove("\033[01;37m");
   msg.remove("\033[00m");
   msg.remove("\033[00;32m");
+  msg.remove("[00;31m");
 
   msg.replace("\n", "<br>");
 
