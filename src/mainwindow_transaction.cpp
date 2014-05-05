@@ -1713,10 +1713,12 @@ void MainWindow::actionsProcessReadOutputErrorMirrorCheck()
   msg.remove("\033[00m");
   msg.remove("\033[00;32m");
   msg.remove("[00;31m");
+  msg.remove("\n");
 
-  msg.replace("\n", "<br>");
+  if (msg.contains("Checking"), Qt::CaseInsensitive)
+    msg += "<br>";
 
-  writeToTabOutput(msg, ectn_DONT_TREAT_URL_LINK);
+  writeToTabOutputExt(msg, ectn_DONT_TREAT_URL_LINK);
 }
 
 /*
@@ -1731,10 +1733,16 @@ void MainWindow::actionsProcessReadOutputMirrorCheck()
   msg.remove("\033[00m");
   msg.remove("\033[00;32m");
   msg.remove("[00;31m");
+  msg.replace("[", "'");
+  msg.replace("]", "'");
+  msg.remove("\n");
 
-  msg.replace("\n", "<br>");
+  if (msg.contains("Checking", Qt::CaseInsensitive))
+  {
+    msg += "<br>";
+  }
 
-  writeToTabOutput(msg, ectn_DONT_TREAT_URL_LINK);
+  writeToTabOutputExt(msg, ectn_DONT_TREAT_URL_LINK);
 }
 
 /*
@@ -2101,10 +2109,9 @@ void MainWindow::writeToTabOutput(const QString &msg, TreatURLLinks treatURLLink
  * A helper method which writes the given string to OutputTab's textbrowser
  * This is the EXTENDED version, it checks lots of things before writing msg
  */
-void MainWindow::writeToTabOutputExt(const QString &msg)
+void MainWindow::writeToTabOutputExt(const QString &msg, TreatURLLinks treatURLLinks)
 {
   //std::cout << "To print: " << msg.toAscii().data() << std::endl;
-
   QTextBrowser *text = ui->twProperties->widget(ctn_TABINDEX_OUTPUT)->findChild<QTextBrowser*>("textOutputEdit");
   if (text)
   {    
@@ -2145,7 +2152,8 @@ void MainWindow::writeToTabOutputExt(const QString &msg)
       if(newMsg.contains("removing ") ||
          newMsg.contains("could not ") ||
          newMsg.contains("error") ||
-         newMsg.contains("failed"))
+         newMsg.contains("failed") ||
+         newMsg.contains("is not synced"))
       {
         newMsg = "<b><font color=\"#E55451\">" + newMsg + "&nbsp;</font></b>"; //RED
       }
@@ -2179,7 +2187,11 @@ void MainWindow::writeToTabOutputExt(const QString &msg)
       newMsg += "<br>";
     }
 
-    text->insertHtml(Package::makeURLClickable(newMsg));
+    if (treatURLLinks == ectn_TREAT_URL_LINK)
+      text->insertHtml(Package::makeURLClickable(newMsg));
+    else
+      text->insertHtml(newMsg);
+
     text->ensureCursorVisible();
   }
 }

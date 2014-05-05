@@ -249,7 +249,7 @@ private:
   bool _isPropertiesTabWidgetVisible();
   bool _isSUAvailable();
   void writeToTabOutput(const QString &msg, TreatURLLinks treatURLLinks = ectn_TREAT_URL_LINK);
-  void writeToTabOutputExt(const QString &msg);
+  void writeToTabOutputExt(const QString &msg, TreatURLLinks treatURLLinks = ectn_TREAT_URL_LINK);
   void initTabOutput();
   void clearTabOutput();
 
