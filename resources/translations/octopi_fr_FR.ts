@@ -1044,7 +1044,7 @@ Are you sure you want to open it?</source>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="539"/>
         <source>Press Ctrl+A to select/deselect all</source>
-        <translation>Appuyez sur Ctrl+A pour sélectionner/dé-sélectionner tout</translation>
+        <translation>Appuyez sur Ctrl+A pour tout sélectionner/dé-sélectionner</translation>
     </message>
 </context>
 <context>
