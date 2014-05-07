@@ -315,7 +315,6 @@ void WMHelper::openFile(const QString& fileName){
     s << fileToOpen;
     p->startDetached( ctn_ARCHBANG_FILE_MANAGER, s );
   }
-
   else if (isXFCERunning() && UnixCommand::hasTheExecutable(ctn_XFCE_FILE_MANAGER)){
     s << fileToOpen;
     p->startDetached( ctn_XFCE_FILE_MANAGER, s );
@@ -325,7 +324,7 @@ void WMHelper::openFile(const QString& fileName){
     s << "file:" + fileToOpen;
     p->startDetached( ctn_KDE_FILE_MANAGER, s );
   }
-  else if (isKDERunning() && UnixCommand::hasTheExecutable(ctn_KDE4_FILE_MANAGER)){
+  else if (distro == ectn_MOOOSLINUX || isKDERunning() && UnixCommand::hasTheExecutable(ctn_KDE4_FILE_MANAGER)){
     s << fileToOpen;
 
     if (UnixCommand::isRootRunning())
@@ -372,6 +371,11 @@ void WMHelper::editFile( const QString& fileName ){
     if (distro == ectn_ARCHBANGLINUX && UnixCommand::hasTheExecutable(ctn_ARCHBANG_EDITOR))
     {
       QString p = ctn_ARCHBANG_EDITOR + " " + fileName;
+      process->startDetached(getSUCommand() + p);
+    }
+    else if (distro == ectn_MOOOSLINUX && UnixCommand::hasTheExecutable(ctn_MOOOS_EDITOR))
+    {
+      QString p = ctn_MOOOS_EDITOR + " " + fileName;
       process->startDetached(getSUCommand() + p);
     }
     else if (isXFCERunning() && (UnixCommand::hasTheExecutable(ctn_XFCE_EDITOR) ||
@@ -450,7 +454,7 @@ void WMHelper::openDirectory( const QString& dirName ){
       s << dir;
       p->startDetached( ctn_XFCE_FILE_MANAGER, s );
     }
-    else if (isKDERunning())
+    else if (distro == ectn_MOOOSLINUX || isKDERunning())
     {
       if (UnixCommand::hasTheExecutable(ctn_KDE4_FILE_MANAGER))
       {
@@ -554,6 +558,11 @@ void WMHelper::openTerminal(const QString& dirName){
     else if (UnixCommand::hasTheExecutable(ctn_LXDE_TERMINAL)){
       s << "--working-directory=" + dirName;
       p->startDetached( ctn_LXDE_TERMINAL, s );
+    }
+    else if (UnixCommand::hasTheExecutable(ctn_RXVT_TERMINAL)){
+      QString cmd = ctn_RXVT_TERMINAL +
+          " -name Urxvt -title Urxvt -cd " + dirName;
+      p->startDetached( ctn_RXVT_TERMINAL, s );
     }
     else if (UnixCommand::hasTheExecutable(ctn_XTERM)){
       QString cmd = ctn_XTERM +

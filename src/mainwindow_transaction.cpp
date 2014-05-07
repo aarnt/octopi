@@ -1587,7 +1587,6 @@ void MainWindow::actionsProcessStarted()
 void MainWindow::actionsProcessFinished(int exitCode, QProcess::ExitStatus exitStatus)
 {
   bool bRefreshGroups = true;
-
   m_progressWidget->close();
 
   ui->twProperties->setTabText(ctn_TABINDEX_OUTPUT, StrConstants::getTabOutputName());
@@ -2153,7 +2152,8 @@ void MainWindow::writeToTabOutputExt(const QString &msg, TreatURLLinks treatURLL
          newMsg.contains("could not ") ||
          newMsg.contains("error") ||
          newMsg.contains("failed") ||
-         newMsg.contains("is not synced"))
+         newMsg.contains("is not synced") ||
+         newMsg.contains("could not be found"))
       {
         newMsg = "<b><font color=\"#E55451\">" + newMsg + "&nbsp;</font></b>"; //RED
       }

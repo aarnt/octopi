@@ -126,7 +126,7 @@ QString PackageController::retrieveDistroNews(bool searchForLatestNews)
   {
     QString curlCommand = "curl %1 -o %2";
 
-    if (distro == ectn_ARCHLINUX || distro == ectn_ARCHBANGLINUX)
+    if (distro == ectn_ARCHLINUX || distro == ectn_ARCHBANGLINUX || distro == ectn_MOOOSLINUX)
     {
       curlCommand = curlCommand.arg(ctn_ARCH_LINUX_RSS).arg(tmpRssPath);
     }
@@ -226,7 +226,7 @@ QString PackageController::parseDistroNews()
   QString html;
 
   LinuxDistro distro = UnixCommand::getLinuxDistro();
-  if (distro == ectn_ARCHLINUX || distro == ectn_ARCHBANGLINUX)
+  if (distro == ectn_ARCHLINUX || distro == ectn_ARCHBANGLINUX || distro == ectn_MOOOSLINUX)
   {
     html = "<p align=\"center\"><h2>" + StrConstants::getArchLinuxNews() + "</h2></p><ul>";
   }

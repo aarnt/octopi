@@ -1017,7 +1017,8 @@ QStringList Package::getContents(const QString& pkgName, bool isInstalled)
   }
   else if (UnixCommand::getLinuxDistro() == ectn_ARCHBANGLINUX ||
            UnixCommand::getLinuxDistro() == ectn_ARCHLINUX ||
-           UnixCommand::getLinuxDistro() == ectn_KAOS)
+           UnixCommand::getLinuxDistro() == ectn_KAOS ||
+           UnixCommand::getLinuxDistro() == ectn_MOOOSLINUX)
   {
     result = UnixCommand::getPackageContentsUsingPkgfile(pkgName);
   }

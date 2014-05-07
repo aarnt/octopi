@@ -46,6 +46,9 @@ const QString ctn_GKSU_2("gksu");
 const QString ctn_ARCHBANG_EDITOR("medit");
 const QString ctn_ARCHBANG_FILE_MANAGER("spacefm");
 
+const QString ctn_MOOOS_EDITOR("subl3");
+const QString ctn_RXVT_TERMINAL("urxvt");
+
 const QString ctn_XFCE_DESKTOP("xfdesktop");
 const QString ctn_XFCE_EDITOR("mousepad");
 const QString ctn_XFCE_EDITOR_ALT("leafpad");
@@ -70,7 +73,10 @@ const QString ctn_CINNAMON_TERMINAL("gnome-terminal");
 const QString ctn_RAZORQT_DESKTOP("razor-session");
 const QString ctn_XTERM("xterm");
 
-/* This class exposes some services of the underlying Window Manager being used */
+/*
+ * This class exposes some services of the underlying Window Manager being used
+ */
+
 class WMHelper
 {
 public:

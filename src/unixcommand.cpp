@@ -67,7 +67,6 @@ QString UnixCommand::runCurlCommand(const QString& commandToRun){
   env.insert("LANG", "C");
   env.insert("LC_MESSAGES", "C");
   proc.setProcessEnvironment(env);
-
   proc.start(commandToRun);
   proc.waitForStarted();
   proc.waitForFinished(-1);
@@ -464,7 +463,11 @@ bool UnixCommand::doInternetPingTest()
   env.insert("LC_MESSAGES", "C");
   ping.setProcessEnvironment(env);
 
-  ping.start("ping -c 1 -W 3 www.google.com");
+  if (UnixCommand::getLinuxDistro() == ectn_MOOOSLINUX)
+    ping.start("torsocks ping -c 1 -W 3 www.google.com");
+  else
+    ping.start("ping -c 1 -W 3 www.google.com");
+
   ping.waitForFinished();
 
   int res = ping.exitCode();
@@ -624,6 +627,11 @@ void UnixCommand::openRootTerminal(){
     QString cmd = WMHelper::getSUCommand() + " \"" + ctn_MATE_TERMINAL + "\"";
     m_process->startDetached(cmd);
   }
+  else if (UnixCommand::getLinuxDistro() == ectn_MOOOSLINUX && UnixCommand::hasTheExecutable(ctn_RXVT_TERMINAL)){
+    QString cmd = WMHelper::getSUCommand() + " \"" + ctn_RXVT_TERMINAL +
+        " -name Urxvt -title Urxvt \"";
+    m_process->startDetached(cmd);
+  }
   else if (UnixCommand::hasTheExecutable(ctn_XFCE_TERMINAL)){
     QString cmd = WMHelper::getSUCommand() + " \"" + ctn_XFCE_TERMINAL + "\"";
     m_process->startDetached(cmd);
@@ -691,6 +699,10 @@ void UnixCommand::runCommandInTerminal(const QStringList& commandList){
     QString cmd = suCommand + " \"" + ctn_MATE_TERMINAL + " -e \'bash -c " + ftemp->fileName() + "'\"";
     m_process->start(cmd);
   }
+  else if (UnixCommand::getLinuxDistro() == ectn_MOOOSLINUX && UnixCommand::hasTheExecutable(ctn_RXVT_TERMINAL)){
+    QString cmd = suCommand + " \"" + ctn_RXVT_TERMINAL + " -e \'bash -c " + ftemp->fileName() + "'\"";
+    m_process->start(cmd);
+  }
   else if (UnixCommand::hasTheExecutable(ctn_XFCE_TERMINAL)){
     QString cmd = suCommand + " \"" + ctn_XFCE_TERMINAL + " -e \'bash -c " + ftemp->fileName() + "'\"";
     m_process->start(cmd);
@@ -745,6 +757,9 @@ void UnixCommand::runCommandInTerminalAsNormalUser(const QStringList &commandLis
   else if (WMHelper::isMATERunning() && UnixCommand::hasTheExecutable(ctn_MATE_TERMINAL)){
     cmd = ctn_MATE_TERMINAL + " -e " + ftemp->fileName();
   }
+  else if (UnixCommand::getLinuxDistro() == ectn_MOOOSLINUX && UnixCommand::hasTheExecutable(ctn_RXVT_TERMINAL)){
+    cmd = ctn_RXVT_TERMINAL + " -name Urxvt -title Urxvt -e " + ftemp->fileName();
+  }
   else if (UnixCommand::hasTheExecutable(ctn_XFCE_TERMINAL)){
     cmd = ctn_XFCE_TERMINAL + " -e " + ftemp->fileName();
   }
@@ -754,7 +769,8 @@ void UnixCommand::runCommandInTerminalAsNormalUser(const QStringList &commandLis
   else if (UnixCommand::hasTheExecutable(ctn_XTERM)){
     cmd = ctn_XTERM +
         " -fn \"*-fixed-*-*-*-18-*\" -fg White -bg Black -title xterm -e " + ftemp->fileName();
-  } else {
+  }
+  else {
     std::cerr << "Octopi found no suitable terminal" << std::endl;
     emit finishedTerminal(0, QProcess::CrashExit);
     return;
@@ -1020,6 +1036,10 @@ LinuxDistro UnixCommand::getLinuxDistro()
     else if (contents.contains(QRegExp("Manjaro")))
     {
       ret = ectn_MANJAROLINUX;
+    }
+    else if (contents.contains(QRegExp("mooOS")))
+    {
+      ret = ectn_MOOOSLINUX;
     }
     else
     {
