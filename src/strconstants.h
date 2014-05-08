@@ -33,7 +33,7 @@ public:
   }
 
   static QString getApplicationVersion(){
-    return "0.4.0 (dev)";
+    return "0.4.0 RC";
   }
 
   static QString getApplicationCliHelp(){

@@ -324,7 +324,7 @@ void WMHelper::openFile(const QString& fileName){
     s << "file:" + fileToOpen;
     p->startDetached( ctn_KDE_FILE_MANAGER, s );
   }
-  else if (distro == ectn_MOOOSLINUX || isKDERunning() && UnixCommand::hasTheExecutable(ctn_KDE4_FILE_MANAGER)){
+  else if ((distro == ectn_MOOOSLINUX || isKDERunning()) && UnixCommand::hasTheExecutable(ctn_KDE4_FILE_MANAGER)){
     s << fileToOpen;
 
     if (UnixCommand::isRootRunning())

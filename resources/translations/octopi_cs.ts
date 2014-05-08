@@ -7,234 +7,249 @@
         <translation>Octopi</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="92"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="110"/>
         <source>Info</source>
         <translation>Informace</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="97"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="115"/>
         <source>Files</source>
         <translation>Soubory</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="102"/>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="143"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="120"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="164"/>
         <source>Transaction</source>
         <translation>Transakce</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="107"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="125"/>
         <source>Output</source>
         <translation>Výstup</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="129"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="147"/>
         <source>Help</source>
         <translation>Nápověda</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="137"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="155"/>
         <source>View</source>
         <translation>Pohled</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="150"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="171"/>
         <source>File</source>
         <translation>Soubor</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="163"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="184"/>
         <source>Search</source>
         <translation>Hledat</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="191"/>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="194"/>
+        <source>Tools</source>
+        <translation>Nástroje</translation>
+    </message>
+    <message>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="220"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="223"/>
         <source>About</source>
         <translation>O</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="208"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="237"/>
         <source>Non installed</source>
         <translation>Nenainstalováno</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="211"/>
-        <source>Ctrl+N</source>
-        <translation>Ctrl+N</translation>
-    </message>
-    <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="220"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="246"/>
         <source>Commit</source>
         <translation>Použít</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="223"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="249"/>
         <source>Ctrl+M</source>
         <translation>Ctrl+M</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="232"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="258"/>
         <source>Rollback</source>
         <translation>Vrátit zpět</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="235"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="261"/>
         <source>Ctrl+B</source>
         <translation>Ctrl+B</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="244"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="270"/>
         <source>Sync database</source>
         <translation>Seřídit databázi</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="247"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="273"/>
         <source>Ctrl+D</source>
         <translation>Ctrl+D</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="256"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="282"/>
         <source>Exit</source>
         <translation>Ukončit</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="259"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="285"/>
         <source>Ctrl+Q</source>
         <translation>Ctrl+Q</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="264"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="294"/>
         <source>System upgrade</source>
         <translation>Povýšení systému</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="267"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="297"/>
         <source>Ctrl+U</source>
         <translation>Ctrl+U</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="276"/>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="279"/>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="481"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="306"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="309"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="511"/>
         <source>Install</source>
         <translation>Instalovat</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="288"/>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="291"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="318"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="321"/>
         <source>Remove</source>
         <translation>Odstranit</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="296"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="326"/>
         <source>Outdated packages</source>
         <translation>Zastaralé balíčky</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="305"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="335"/>
         <source>Get latest distro news</source>
         <translation>Dostat nejnovější distribuční zprávy</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="308"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="338"/>
         <source>Ctrl+G</source>
         <translation>Ctrl+G</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="317"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="347"/>
         <source>Remove group</source>
         <translation>Odstranit skupinu</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="326"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="356"/>
         <source>Install group</source>
         <translation>Instalovat skupinu</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="335"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="365"/>
         <source>Collapse item</source>
         <translation>Sbalit položku</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="344"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="374"/>
         <source>Expand item</source>
         <translation>Rozbalit položku</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="353"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="383"/>
         <source>Collapse all items</source>
         <translation>Sbalit všechny položky</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="362"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="392"/>
         <source>Expand all items</source>
         <translation>Rozbalit všechny položky</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="371"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="401"/>
         <source>Open file</source>
         <translation>Otevřít soubor</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="380"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="410"/>
         <source>Edit file</source>
         <translation>Upravit soubor</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="389"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="419"/>
         <source>Open directory</source>
         <translation>Otevřít adresář</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="398"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="428"/>
         <source>Open terminal here</source>
         <translation>Otevřít terminál zde</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="407"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="437"/>
         <source>Remove item</source>
         <translation>Odstranit položku</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="419"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="449"/>
         <source>Remove items</source>
         <translation>Odstranit položky</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="430"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="460"/>
         <source>By description</source>
         <translation>Podle popisu</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="438"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="468"/>
         <source>By name</source>
         <translation>Podle názvu</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="447"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="477"/>
         <source>Find a file</source>
         <translation>Najít soubor</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="456"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="486"/>
         <source>Open root terminal</source>
         <translation>Otevřít terminál (root)</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="461"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="491"/>
         <source>Usage</source>
         <translation>Použití</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="464"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="494"/>
         <source>F1</source>
         <translation>F1</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="472"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="502"/>
         <source>Install local package...</source>
         <translation>Nainstalovat místní balíček...</translation>
+    </message>
+    <message>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="519"/>
+        <source>Pacman Log Viewer</source>
+        <translation>Prohlížeč záznamů Pacmana</translation>
+    </message>
+    <message>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="531"/>
+        <source>Repository Editor</source>
+        <translation>Editor úložiště</translation>
+    </message>
+    <message>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="539"/>
+        <source>Installed</source>
+        <translation>Nainstalováno</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="55"/>
@@ -243,8 +258,8 @@
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="58"/>
-        <source>A Qt4-based Pacman frontend,</source>
-        <translation>Na Qt4 založené rozhraní pro Pacman,</translation>
+        <source>A Qt-based Pacman frontend,</source>
+        <translation>Na Qt založené rozhraní pro Pacman,</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="59"/>
@@ -418,8 +433,8 @@
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="153"/>
-        <source>Ctrl+Shift+Y to display Yaourt group</source>
-        <translation>Ctrl+Shift+G pro zobrazení skupiny Yaourt, což znamená jogurt</translation>
+        <source>Ctrl+Shift+Y to display %1 group</source>
+        <translation>pro zobrazení skupiny %1</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="156"/>
@@ -455,559 +470,579 @@
 <context>
     <name>QObject</name>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="43"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="42"/>
         <source>Octopi usage help:</source>
         <translation>Nápověda k používání Octopi:</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="44"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="43"/>
         <source>show application version.</source>
         <translation>Ukázat verzi programu.</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="45"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="44"/>
         <source>use a different Qt4 style (ex: -style gtk).</source>
         <translation>Použít jiný styl Qt4 (např. -style gtk).</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="46"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="45"/>
         <source>use a different remove command (ex: -removecmd R).</source>
         <translation>Použít jiný příkaz pro odstranění (např. -removecmd R).</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="47"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="46"/>
         <source>force a system upgrade at startup.</source>
         <translation>Vynutit povýšení systému při spuštění.</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="57"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="52"/>
+        <source>All</source>
+        <translation>Vše</translation>
+    </message>
+    <message>
+        <location filename="Projects/octopi/src/strconstants.h" line="94"/>
         <source>Arch Linux news</source>
         <translation>Zprávy Arch Linuxu</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="61"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="98"/>
         <source>Chakra news</source>
         <translation>Zprávy Chakry</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="65"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="102"/>
+        <source>KaOS news</source>
+        <translation>Zprávy KaOSu</translation>
+    </message>
+    <message>
+        <location filename="Projects/octopi/src/strconstants.h" line="106"/>
         <source>Manjaro Linux news</source>
         <translation>Zprávy Manjaro Linuxu</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="69"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="110"/>
         <source>No news could be found! Press Ctrl+G to download the latest news.</source>
         <translation>Nepodařilo se najít žádné zprávy! Stiskněte Ctrl+G  pro stažení posledních zpráv.</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="73"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="114"/>
         <source>This Linux distro seems to be incompatible with Octopi!</source>
         <translation>Zdá se, že linuxová distribuce není slučitelná s Octopi!</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="77"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="118"/>
         <source>Internet seems unavailable!</source>
         <translation>Zdá se, že internet není dostupný!</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="81"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="122"/>
         <source>Display all groups</source>
         <translation>Zobrazit všechny skupiny</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="89"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="132"/>
         <source>Usage</source>
         <translation>Použití</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="93"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="136"/>
         <source>About</source>
         <translation>O</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="97"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="140"/>
         <source>Name</source>
         <translation>Název</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="101"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="144"/>
         <source>Version</source>
         <translation>Verze</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="105"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="148"/>
         <source>Outdated version</source>
         <translation>Zastaralá verze</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="109"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="152"/>
         <source>Available version</source>
         <translation>Dostupná verze</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="113"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="156"/>
         <source>No description available.</source>
         <translation>Popis není dostupný.</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="117"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="160"/>
         <source>URL</source>
         <translation>Adresa (URL)</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="121"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="164"/>
         <source>Repository</source>
         <translation>Úložiště</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="125"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="168"/>
         <source>Licenses</source>
         <translation>Licence</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="129"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="172"/>
         <source>Group</source>
         <translation>Skupina</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="133"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="176"/>
         <source>Groups</source>
         <translation>Skupiny</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="137"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="180"/>
         <source>Provides</source>
         <translation>Poskytuje</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="141"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="184"/>
         <source>Depends On</source>
         <translation>Závisí na</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="145"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="188"/>
         <source>Required By</source>
         <translation>Požadováno</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="149"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="192"/>
         <source>Optional For</source>
         <translation>Volitelné pro</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="153"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="196"/>
         <source>Optional Deps</source>
         <translation>Volitelné závislosti</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="157"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="200"/>
         <source>Conflicts With</source>
         <translation>Střetává se s</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="161"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="204"/>
         <source>Replaces</source>
         <translation>Nahrazuje</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="165"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="208"/>
+        <source>Popularity</source>
+        <translation>Oblíbenost</translation>
+    </message>
+    <message>
+        <location filename="Projects/octopi/src/strconstants.h" line="212"/>
+        <source>votes</source>
+        <translation>hlasů</translation>
+    </message>
+    <message>
+        <location filename="Projects/octopi/src/strconstants.h" line="216"/>
         <source>Download Size</source>
         <translation>Stažená velikost</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="169"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="220"/>
         <source>Installed Size</source>
         <translation>Nainstalovaná velikost</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="173"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="224"/>
         <source>Packager</source>
         <translation>Tvůrce balíčku</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="177"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="228"/>
         <source>Package</source>
         <translation>Balíček</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="181"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="232"/>
         <source>Packages</source>
         <translation>Balíčky</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="185"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="236"/>
         <source>Architecture</source>
         <translation>Architektura</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="189"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="240"/>
         <source>Build Date</source>
         <translation>Datum sestavení</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="193"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="244"/>
         <source>Description</source>
         <translation>Popis</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="197"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="248"/>
         <source>Attention</source>
         <translation>Pozor</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="201"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="252"/>
         <source>automatic</source>
         <translation>automaticky</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="205"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="256"/>
         <source>Password</source>
         <translation>Heslo</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="209"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="260"/>
         <source>Info</source>
         <translation>Informace</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="213"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="264"/>
         <source>Files</source>
         <translation>Soubory</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="217"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="268"/>
         <source>Transaction</source>
         <translation>Transakce</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="221"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="272"/>
         <source>Output</source>
         <translation>Výstup</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="225"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="276"/>
         <source>News</source>
         <translation>Zprávy</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="229"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="280"/>
         <source>Contents of &quot;%1&quot;</source>
         <translation>Obsah &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="233"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="284"/>
         <source>Find</source>
         <translation>Najít</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="237"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="288"/>
         <source>Clear</source>
         <translation>Smazat</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="241"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="292"/>
         <source> (outdated installed version is %1)</source>
         <translation> (zastaralá nainstalovaná verze je %1)</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="245"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="296"/>
         <source> (newer installed version is %1)</source>
         <translation> (novější nainstalovaná verze je %1)</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="249"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="300"/>
         <source>Building package list...</source>
         <translation>Sestavuje se seznam balíčků...</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="253"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="304"/>
         <source>Searching for %1 latest news...</source>
         <translation>Hledají se %1 nejnovější zprávy...</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="257"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="308"/>
         <source>There is one outdated package in your system:</source>
         <translation>Ve vašem systému je zastaralý balíček:</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="261"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="312"/>
         <source>There are %1 outdated packages in your system:</source>
         <translation>Ve vašem systému je %1 zastaralých balíčků:</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="265"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="316"/>
         <source>(version %1 is available)</source>
         <translation>(je dostupná verze %1)</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="269"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="320"/>
         <source>%1 (%2) packages</source>
         <translation>%1 (%2) balíčků</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="273"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="324"/>
         <source>%1 installed</source>
         <translation>%1 nainstalováno</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="277"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="328"/>
         <source>%1 outdated</source>
         <translation>%1 zastaralé</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="281"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="332"/>
         <source>%1 available</source>
         <translation>%1 dostupné</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="285"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="336"/>
         <source>Cleaning package cache...</source>
         <translation>Maže se vyrovnávací paměť balíčku...</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="289"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="340"/>
         <source>Removing Pacman&apos;s transaction lock file...</source>
         <translation>Odstraňuje se soubor se zámkem transakce Pacman...</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="293"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="344"/>
         <source>Syncing</source>
         <translation>Synchronizuje se</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="297"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="348"/>
         <source>Press any key to continue...</source>
         <translation>Stiskněte kteroukoli klávesu pro pokračování...</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="301"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="356"/>
         <source>Synchronizing databases...</source>
         <translation>Seřizují se databáze...</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="305"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="360"/>
         <source>is up to date</source>
         <translation>je aktuální</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="309"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="364"/>
         <source>Starting full system upgrade...</source>
         <translation>Spouští se úplné povýšení systému...</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="313"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="368"/>
         <source>Installing selected packages...</source>
         <translation>Instalují se vybrané balíčky...</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="317"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="372"/>
         <source>Removing selected packages...</source>
         <translation>Odstraňují se vybrané balíčky...</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="321"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="376"/>
         <source>Removing/installing selected packages...</source>
         <translation>Odstraňují/Instalují se se vybrané balíčky...</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="325"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="380"/>
         <source>Running command in terminal...</source>
         <translation>Spouští se příkaz v terminálu...</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="329"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="384"/>
         <source>Command finished OK!</source>
         <translation>Příkaz skončen OK!</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="333"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="388"/>
         <source>Command finished with errors!</source>
         <translation>Příkaz skončen s chybami!|</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="337"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="392"/>
         <source>Retrieving %1</source>
         <translation>Získává se %1</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="341"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="396"/>
         <source>Total download size: %1 KB</source>
         <translation>Celková stažená velikost: %1 KB</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="345"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="400"/>
         <source>The following target needs to be retrieved</source>
         <translation>Je potřeba získat následující cíl</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="349"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="404"/>
         <source>The following target will be removed</source>
         <translation>Následující cíl bude odstraněn</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="353"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="408"/>
         <source>The following %1 targets need to be retrieved</source>
         <translation>Je potřeba získat následující %1 cíle</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="357"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="412"/>
         <source>The following %1 targets will be removed</source>
         <translation>Následující %1 cíle budou odstraněny</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="361"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="416"/>
         <source>There are forbidden packages in the removal list!</source>
         <translation>V seznamu k balíčků k odstranění jsou zakázané balíčky!</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="365"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="420"/>
         <source>There are no new updates available!</source>
         <translation>Nejsou dostupné žádné aktualizace!</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="369"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="424"/>
         <source>There is an update available!</source>
         <translation>Je dostupná aktualizace</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="373"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="428"/>
         <source>There are %1 updates available!</source>
         <translation>Jsou dostupné %1 aktualizace</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="377"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="432"/>
         <source>Confirm?</source>
         <translation>Potvrdit?</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="381"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="436"/>
         <source>Warning!!!</source>
         <translation>Varování!</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="385"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="440"/>
         <source>Confirmation</source>
         <translation>Potvrzení</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="389"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="444"/>
         <source>There has been a transaction error!</source>
         <translation>Při transakci se vyskytla chyba !</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="393"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="448"/>
         <source>Do you want to execute this transaction in a Terminal?</source>
         <translation>Opravdu chcete tento příkaz provést v terminálu?</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="397"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="452"/>
         <source>Do you really want to clean the package cache?</source>
         <translation>Opravdu chcete smazat vyrovnávací paměť balíčku?</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="401"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="456"/>
         <source>Do you really want to remove Pacman&apos;s transaction lock file?</source>
         <translation>Opravdu chcete odstranit soubor se zámkem transakce Pacman?</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="405"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="460"/>
         <source>Do you really want to rollback the transaction?</source>
         <translation>Opravdu chcete vrátit transakci zpět?</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="409"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="464"/>
         <source>Please, enter the administrator&apos;s password</source>
         <translation>Zadejte, prosím, heslo správce</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="415"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="470"/>
         <source>There are no means to get administrator&apos;s credentials.</source>
         <translation>Nejsou tu žádné prostředky, jak získat oprávnění správce systému.</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="419"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="474"/>
         <source>You&apos;ll need to install a su frontend like gksu or kdesu.</source>
         <translation>Je potřeba nainstalovat rozhraní pro su jako gksu nebo kdesu.</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="423"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="478"/>
         <source>You can not run Octopi with administrator&apos;s credentials.</source>
         <translation>Octopi nemůžete spustit s oprávněními správce.</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="427"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="482"/>
         <source>There is a pending transaction</source>
         <translation>Jedna transakce čeká na vyřízení</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="431"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="486"/>
         <source>Do you really want to quit?</source>
         <translation>Opravdu chcete skončit?</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="435"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="490"/>
         <source>Executing command</source>
         <translation>Provádí se příkaz</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="439"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="494"/>
         <source>Run in terminal</source>
         <translation>Spustit v terminálu</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="443"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="498"/>
         <source>Needs application restart to take effect</source>
         <translation>Aby se změny projevily, je potřeba tento program spustit znovu</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="447"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="502"/>
         <source>These changes need application restart to take effect!</source>
         <translation>Aby se tyto změny projevily, je potřeba program spustit znovu!</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="451"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="506"/>
         <source>Select the packages you want to install</source>
         <translation>Vyberte balíček, jejž chcete nainstalovat</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="455"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="510"/>
         <source>This file does not appear to be a simple text.
 Are you sure you want to open it?</source>
         <translation>Zdá se, že tento soubor není prostým textem.
 Opravdu jej chcete otevřít?</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="460"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="515"/>
         <source>To be installed</source>
         <translation>K instalování</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="464"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="519"/>
         <source>To be removed</source>
         <translation>K odstranění</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="468"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="523"/>
         <source>remove</source>
         <translation>Odstranit</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="472"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="527"/>
         <source>install</source>
         <translation>Instalovat</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="476"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="531"/>
         <source>Remove item</source>
         <translation>Odstranit položku</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="480"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="535"/>
         <source>Remove items</source>
         <translation>Odstranit položky</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="484"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="539"/>
         <source>Press Ctrl+A to select/deselect all</source>
         <translation>Stiskněte Ctrl+A pro vybrání/zrušení výběru všeho</translation>
     </message>
@@ -1015,17 +1050,17 @@ Opravdu jej chcete otevřít?</translation>
 <context>
     <name>SearchBar</name>
     <message>
-        <location filename="Projects/octopi/src/searchbar.cpp" line="55"/>
+        <location filename="Projects/octopi/src/searchbar.cpp" line="63"/>
         <source>Previous</source>
         <translation>Předchozí</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/searchbar.cpp" line="57"/>
+        <location filename="Projects/octopi/src/searchbar.cpp" line="67"/>
         <source>Next</source>
         <translation>Další</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/searchbar.cpp" line="68"/>
+        <location filename="Projects/octopi/src/searchbar.cpp" line="79"/>
         <source>Close</source>
         <translation>Zavřít</translation>
     </message>
