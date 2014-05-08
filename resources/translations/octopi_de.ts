@@ -907,7 +907,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="428"/>
         <source>There are %1 updates available!</source>
-        <translation>Es sind %1 updates verfügbar!</translation>
+        <translation>Es sind %1 Updates verfügbar!</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="432"/>

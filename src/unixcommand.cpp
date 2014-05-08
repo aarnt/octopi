@@ -1010,45 +1010,69 @@ LinuxDistro UnixCommand::getLinuxDistro()
 
   if (firstTime)
   {
-    QFile file("/etc/os-release");
+    if (QFile::exists("/etc/os-release"))
+    {
+      QFile file("/etc/os-release");
 
-    if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
-      ret = ectn_UNKNOWN;
+      if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
+        ret = ectn_UNKNOWN;
 
-    QString contents = file.readAll();
+      QString contents = file.readAll();
 
-    if (contents.contains(QRegExp("ArchBang")))
-    {
-      ret = ectn_ARCHBANGLINUX;
-    }
-    else if (contents.contains(QRegExp("Arch Linux")))
-    {
-      ret = ectn_ARCHLINUX;
-    }
-    else if (contents.contains(QRegExp("Chakra")))
-    {
-      ret = ectn_CHAKRA;
-    }
-    else if (contents.contains(QRegExp("KaOS")))
-    {
-      ret = ectn_KAOS;
-    }
-    else if (contents.contains(QRegExp("Manjaro")))
-    {
-      ret = ectn_MANJAROLINUX;
-    }
-    else if (contents.contains(QRegExp("mooOS")))
-    {
-      ret = ectn_MOOOSLINUX;
-    }
-    else
-    {
-      ret = ectn_UNKNOWN;
-    }
+      if (contents.contains(QRegExp("ArchBang")))
+      {
+        ret = ectn_ARCHBANGLINUX;
+      }
+      else if (contents.contains(QRegExp("Arch Linux")))
+      {
+        ret = ectn_ARCHLINUX;
+      }
+      else if (contents.contains(QRegExp("Chakra")))
+      {
+        ret = ectn_CHAKRA;
+      }
+      else if (contents.contains(QRegExp("KaOS")))
+      {
+        ret = ectn_KAOS;
+      }
+      else if (contents.contains(QRegExp("Manjaro")))
+      {
+        ret = ectn_MANJAROLINUX;
+      }
+      else if (contents.contains(QRegExp("mooOS")))
+      {
+        ret = ectn_MOOOSLINUX;
+      }
+      else
+      {
+        ret = ectn_UNKNOWN;
+      }
 
-    firstTime = false;
+      firstTime = false;
 
-    file.close();
+      file.close();
+    }
+    else //Let's try non Linux systems...
+    {
+      QProcess p;
+      p.start("uname -a");
+      p.waitForFinished(-1);
+      QString out = p.readAllStandardOutput();
+
+      if (out.contains("FreeBSD", Qt::CaseInsensitive))
+      {
+        if (QFile::exists("/usr/bin/pacman"))
+        {
+          ret = ectn_ARCHBSD;
+        }
+      }
+      else
+      {
+        ret = ectn_UNKNOWN;
+      }
+
+      firstTime = false;
+    }
   }
 
   return ret;
