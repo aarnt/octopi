@@ -60,7 +60,7 @@ void MainWindow::refreshAppIcon()
 {
   bool enableSystemUpgrade=false;
 
-  if ((m_outdatedPackageList->count() > 0) && (!isYaourtGroupSelected()))
+  if ((m_outdatedPackageList->count() > 0)) /*&& (!isYaourtGroupSelected()))*/
   {
     setWindowIcon(IconHelper::getIconOctopiRed());
     if(m_commandExecuting != ectn_MIRROR_CHECK) enableSystemUpgrade=true;
