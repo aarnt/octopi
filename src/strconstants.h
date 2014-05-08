@@ -89,6 +89,10 @@ public:
     return QLatin1String( "aur/" );
   }
 
+  static QString getArchBSDNews(){
+    return QObject::tr("ArchBSD news");
+  }
+
   static QString getArchLinuxNews(){
     return QObject::tr("Arch Linux news");
   }

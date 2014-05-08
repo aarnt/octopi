@@ -49,6 +49,7 @@ QString PackageController::showFullPathOfItem( const QModelIndex &index ){
   sl << sim->itemFromIndex( index )->text();
 
   nindex = index;
+
   while (1){
     nindex = sim->parent( nindex );
     if ( nindex != sim->invisibleRootItem()->index() ) sl << sim->itemFromIndex( nindex )->text();
@@ -102,6 +103,7 @@ QList<QModelIndex> * PackageController::findFileEx( const QString& name, const Q
  */
 QString PackageController::retrieveDistroNews(bool searchForLatestNews)
 {
+  const QString ctn_ARCHBSD_RSS = "http://archbsd.net/feeds/news/";
   const QString ctn_ARCH_LINUX_RSS = "https://www.archlinux.org/feeds/news/";
   const QString ctn_CHAKRA_RSS = "http://chakraos.org/news/index.php?/feeds/index.rss2";
   const QString ctn_KAOS_RSS = "http://kaosx.us/feed/";
@@ -126,7 +128,11 @@ QString PackageController::retrieveDistroNews(bool searchForLatestNews)
   {
     QString curlCommand = "curl %1 -o %2";
 
-    if (distro == ectn_ARCHLINUX || distro == ectn_ARCHBANGLINUX || distro == ectn_MOOOSLINUX)
+    if (distro == ectn_ARCHBSD)
+    {
+      curlCommand = curlCommand.arg(ctn_ARCHBSD_RSS).arg(tmpRssPath);
+    }
+    else if (distro == ectn_ARCHLINUX || distro == ectn_ARCHBANGLINUX || distro == ectn_MOOOSLINUX)
     {
       curlCommand = curlCommand.arg(ctn_ARCH_LINUX_RSS).arg(tmpRssPath);
     }
@@ -224,9 +230,13 @@ QString PackageController::retrieveDistroNews(bool searchForLatestNews)
 QString PackageController::parseDistroNews()
 {
   QString html;
-
   LinuxDistro distro = UnixCommand::getLinuxDistro();
-  if (distro == ectn_ARCHLINUX || distro == ectn_ARCHBANGLINUX || distro == ectn_MOOOSLINUX)
+
+  if (distro == ectn_ARCHBSD)
+  {
+    html = "<p align=\"center\"><h2>" + StrConstants::getArchBSDNews() + "</h2></p><ul>";
+  }
+  else if (distro == ectn_ARCHLINUX || distro == ectn_ARCHBANGLINUX || distro == ectn_MOOOSLINUX)
   {
     html = "<p align=\"center\"><h2>" + StrConstants::getArchLinuxNews() + "</h2></p><ul>";
   }
