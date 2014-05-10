@@ -690,7 +690,7 @@ void MainWindow::doMirrorCheck()
  */
 void MainWindow::doSyncDatabase()
 {
-  doRemovePacmanLockFile();
+  if (!doRemovePacmanLockFile()) return;
 
   m_commandExecuting = ectn_SYNC_DATABASE;
   disableTransactionActions();
@@ -748,7 +748,7 @@ void MainWindow::doYaourtUpgrade()
 void MainWindow::_prepareSystemUpgrade()
 {
   m_systemUpgradeDialog = false;
-  doRemovePacmanLockFile();
+  if (!doRemovePacmanLockFile()) return;
 
   m_lastCommandList.clear();
   m_lastCommandList.append("pacman -Su;");
@@ -978,7 +978,7 @@ void MainWindow::doRemoveAndInstall()
 
   if(result == QDialogButtonBox::Yes || result == QDialogButtonBox::AcceptRole)
   {
-    doRemovePacmanLockFile();
+    if (!doRemovePacmanLockFile()) return;
 
     QString command;
     command = "pacman -R --noconfirm " + listOfRemoveTargets +
@@ -1057,7 +1057,7 @@ void MainWindow::doRemove()
 
   if(result == QDialogButtonBox::Yes || result == QDialogButtonBox::AcceptRole)
   {
-    doRemovePacmanLockFile();
+    if (!doRemovePacmanLockFile()) return;
 
     QString command;
     command = "pacman -R --noconfirm " + listOfTargets;
@@ -1096,10 +1096,10 @@ void MainWindow::doRemove()
 /*
  * If the Pacman lock file exists ("/var/run/pacman.lck"), removes it!
  */
-void MainWindow::doRemovePacmanLockFile()
+bool MainWindow::doRemovePacmanLockFile()
 {
   //If there are no means to run the actions, we must warn!
-  if (!_isSUAvailable()) return;
+  if (!_isSUAvailable()) return false;
 
   QString lockFilePath("/var/lib/pacman/db.lck");
   QFile lockFile(lockFilePath);
@@ -1120,6 +1120,8 @@ void MainWindow::doRemovePacmanLockFile()
       writeToTabOutputExt("<b>" + StrConstants::getCommandFinishedOK() + "</b>");
     }
   }
+
+  return true;
 }
 
 /*
@@ -1272,7 +1274,7 @@ void MainWindow::doInstall()
 
   if(result == QDialogButtonBox::Yes || result == QDialogButtonBox::AcceptRole)
   {
-    doRemovePacmanLockFile();
+    if (!doRemovePacmanLockFile()) return;
 
     QString command;
     command = "pacman -S --noconfirm " + listOfTargets;
@@ -1348,7 +1350,7 @@ void MainWindow::doInstallLocalPackages()
 
   if(result == QDialogButtonBox::Yes || result == QDialogButtonBox::AcceptRole)
   {
-    doRemovePacmanLockFile();
+    if (!doRemovePacmanLockFile()) return;
 
     QString command;
     command = "pacman -U --noconfirm " + listOfTargets;
@@ -1388,7 +1390,7 @@ void MainWindow::doInstallLocalPackages()
  */
 void MainWindow::doCleanCache()
 {
-  doRemovePacmanLockFile();
+  if (!doRemovePacmanLockFile()) return;
 
   int res = QMessageBox::question(this, StrConstants::getConfirmation(),
                                   StrConstants::getCleanCacheConfirmation(),

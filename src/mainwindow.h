@@ -320,7 +320,7 @@ private slots:
 
   void doRemoveAndInstall();
   void doRemove();
-  void doRemovePacmanLockFile();
+  bool doRemovePacmanLockFile();
   void doInstall();
   void doCleanCache();
   void doSyncDatabase();
