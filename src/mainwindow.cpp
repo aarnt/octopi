@@ -1089,6 +1089,8 @@ void MainWindow::openRootTerminal()
  */
 void MainWindow::installLocalPackage()
 {
+  if (!_isSUAvailable()) return;
+
   m_packagesToInstallList =
       QFileDialog::getOpenFileNames(this,
                                     StrConstants::getFileChooserTitle(),
