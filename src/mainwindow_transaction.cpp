@@ -786,6 +786,8 @@ void MainWindow::doSystemUpgrade(SystemUpgradeOptions systemUpgradeOptions)
     return;
   }
 
+  if (!_isSUAvailable()) return;
+
   qApp->processEvents();
 
   if(systemUpgradeOptions == ectn_SYNC_DATABASE_OPT)
