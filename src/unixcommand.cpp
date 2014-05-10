@@ -596,7 +596,12 @@ bool UnixCommand::isTextFile(const QString& fileName)
  * Opens a root terminal
  */
 void UnixCommand::openRootTerminal(){
-  if(WMHelper::isXFCERunning() && UnixCommand::hasTheExecutable(ctn_XFCE_TERMINAL)){
+  if (UnixCommand::getLinuxDistro() == ectn_MOOOSLINUX && UnixCommand::hasTheExecutable(ctn_RXVT_TERMINAL)){
+    QString cmd = WMHelper::getSUCommand() + " \"" + ctn_RXVT_TERMINAL +
+        " -name Urxvt -title Urxvt \"";
+    m_process->startDetached(cmd);
+  }
+  else if(WMHelper::isXFCERunning() && UnixCommand::hasTheExecutable(ctn_XFCE_TERMINAL)){
     QString cmd = WMHelper::getSUCommand() + " \"" + ctn_XFCE_TERMINAL + "\"";
     m_process->startDetached(cmd);
   }
@@ -625,11 +630,6 @@ void UnixCommand::openRootTerminal(){
   }
   else if (WMHelper::isMATERunning() && UnixCommand::hasTheExecutable(ctn_MATE_TERMINAL)){
     QString cmd = WMHelper::getSUCommand() + " \"" + ctn_MATE_TERMINAL + "\"";
-    m_process->startDetached(cmd);
-  }
-  else if (UnixCommand::getLinuxDistro() == ectn_MOOOSLINUX && UnixCommand::hasTheExecutable(ctn_RXVT_TERMINAL)){
-    QString cmd = WMHelper::getSUCommand() + " \"" + ctn_RXVT_TERMINAL +
-        " -name Urxvt -title Urxvt \"";
     m_process->startDetached(cmd);
   }
   else if (UnixCommand::hasTheExecutable(ctn_XFCE_TERMINAL)){
@@ -669,7 +669,11 @@ void UnixCommand::runCommandInTerminal(const QStringList& commandList){
 
   QString suCommand = WMHelper::getSUCommand();
 
-  if(WMHelper::isXFCERunning() && UnixCommand::hasTheExecutable(ctn_XFCE_TERMINAL)){
+  if (UnixCommand::getLinuxDistro() == ectn_MOOOSLINUX && UnixCommand::hasTheExecutable(ctn_RXVT_TERMINAL)){
+    QString cmd = suCommand + " \"" + ctn_RXVT_TERMINAL + " -e bash -c " + ftemp->fileName();
+    m_process->start(cmd);
+  }
+  else if(WMHelper::isXFCERunning() && UnixCommand::hasTheExecutable(ctn_XFCE_TERMINAL)){
     QString cmd = suCommand + " \"" + ctn_XFCE_TERMINAL + " -e \'bash -c " + ftemp->fileName() + "'\"";
     m_process->start(cmd);
   }
@@ -697,10 +701,6 @@ void UnixCommand::runCommandInTerminal(const QStringList& commandList){
   }
   else if (WMHelper::isMATERunning() && UnixCommand::hasTheExecutable(ctn_MATE_TERMINAL)){
     QString cmd = suCommand + " \"" + ctn_MATE_TERMINAL + " -e \'bash -c " + ftemp->fileName() + "'\"";
-    m_process->start(cmd);
-  }
-  else if (UnixCommand::getLinuxDistro() == ectn_MOOOSLINUX && UnixCommand::hasTheExecutable(ctn_RXVT_TERMINAL)){
-    QString cmd = suCommand + " \"" + ctn_RXVT_TERMINAL + " -e \'bash -c " + ftemp->fileName() + "'\"";
     m_process->start(cmd);
   }
   else if (UnixCommand::hasTheExecutable(ctn_XFCE_TERMINAL)){
@@ -741,7 +741,11 @@ void UnixCommand::runCommandInTerminalAsNormalUser(const QStringList &commandLis
   ftemp->close();
 
   QString cmd;
-  if(WMHelper::isXFCERunning() && UnixCommand::hasTheExecutable(ctn_XFCE_TERMINAL)){
+
+  if (UnixCommand::getLinuxDistro() == ectn_MOOOSLINUX && UnixCommand::hasTheExecutable(ctn_RXVT_TERMINAL)){
+    cmd = ctn_RXVT_TERMINAL + " -name Urxvt -title Urxvt -e " + ftemp->fileName();
+  }
+  else if(WMHelper::isXFCERunning() && UnixCommand::hasTheExecutable(ctn_XFCE_TERMINAL)){
     cmd = ctn_XFCE_TERMINAL + " -e " + ftemp->fileName();
   }
   else if (WMHelper::isKDERunning() && UnixCommand::hasTheExecutable(ctn_KDE_TERMINAL))
@@ -756,9 +760,6 @@ void UnixCommand::runCommandInTerminalAsNormalUser(const QStringList &commandLis
   }
   else if (WMHelper::isMATERunning() && UnixCommand::hasTheExecutable(ctn_MATE_TERMINAL)){
     cmd = ctn_MATE_TERMINAL + " -e " + ftemp->fileName();
-  }
-  else if (UnixCommand::getLinuxDistro() == ectn_MOOOSLINUX && UnixCommand::hasTheExecutable(ctn_RXVT_TERMINAL)){
-    cmd = ctn_RXVT_TERMINAL + " -name Urxvt -title Urxvt -e " + ftemp->fileName();
   }
   else if (UnixCommand::hasTheExecutable(ctn_XFCE_TERMINAL)){
     cmd = ctn_XFCE_TERMINAL + " -e " + ftemp->fileName();
@@ -1008,6 +1009,8 @@ LinuxDistro UnixCommand::getLinuxDistro()
   static LinuxDistro ret;
   static bool firstTime = true;
 
+  return ectn_MOOOSLINUX;
+
   if (firstTime)
   {
     if (QFile::exists("/etc/os-release"))
@@ -1056,27 +1059,6 @@ LinuxDistro UnixCommand::getLinuxDistro()
 
       file.close();
     }
-    /*else //Let's try non Linux systems...
-    {
-      QProcess p;
-      p.start("uname -a");
-      p.waitForFinished(-1);
-      QString out = p.readAllStandardOutput();
-
-      if (out.contains("FreeBSD", Qt::CaseInsensitive))
-      {
-        if (QFile::exists("/usr/bin/pacman"))
-        {
-          ret = ectn_ARCHBSD;
-        }
-      }
-      else
-      {
-        ret = ectn_UNKNOWN;
-      }
-
-      firstTime = false;
-    }*/
   }
 
   return ret;
