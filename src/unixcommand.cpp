@@ -670,7 +670,7 @@ void UnixCommand::runCommandInTerminal(const QStringList& commandList){
   QString suCommand = WMHelper::getSUCommand();
 
   if (UnixCommand::getLinuxDistro() == ectn_MOOOSLINUX && UnixCommand::hasTheExecutable(ctn_RXVT_TERMINAL)){
-    QString cmd = suCommand + " \"" + ctn_RXVT_TERMINAL + " -e bash -c " + ftemp->fileName();
+    QString cmd = suCommand + " \"" + ctn_RXVT_TERMINAL + " -title pacman -name pacman -e bash -c " + ftemp->fileName();
     m_process->start(cmd);
   }
   else if(WMHelper::isXFCERunning() && UnixCommand::hasTheExecutable(ctn_XFCE_TERMINAL)){
