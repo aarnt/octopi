@@ -249,7 +249,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="539"/>
         <source>Installed</source>
-        <translation>Yüklendi</translation>
+        <translation>Kurulu Paketler</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="55"/>
@@ -497,7 +497,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="52"/>
         <source>All</source>
-        <translation>Tüm</translation>
+        <translation>Tüm Paketler/Depolar</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="94"/>
