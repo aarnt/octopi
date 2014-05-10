@@ -1023,6 +1023,10 @@ LinuxDistro UnixCommand::getLinuxDistro()
       {
         ret = ectn_ARCHBANGLINUX;
       }
+      else if (contents.contains(QRegExp("Arch BSD")))
+      {
+        ret = ectn_ARCHBSD;
+      }
       else if (contents.contains(QRegExp("Arch Linux")))
       {
         ret = ectn_ARCHLINUX;
@@ -1052,7 +1056,7 @@ LinuxDistro UnixCommand::getLinuxDistro()
 
       file.close();
     }
-    else //Let's try non Linux systems...
+    /*else //Let's try non Linux systems...
     {
       QProcess p;
       p.start("uname -a");
@@ -1072,7 +1076,7 @@ LinuxDistro UnixCommand::getLinuxDistro()
       }
 
       firstTime = false;
-    }
+    }*/
   }
 
   return ret;
