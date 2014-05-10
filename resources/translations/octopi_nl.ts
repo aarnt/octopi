@@ -239,7 +239,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="519"/>
         <source>Pacman Log Viewer</source>
-        <translation>Pacman Log viewer</translation>
+        <translation>Pacman Log Viewer</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="531"/>
@@ -249,7 +249,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="539"/>
         <source>Installed</source>
-        <translation>Geinstalleerd</translation>
+        <translation>Geïnstalleerd</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="55"/>
@@ -299,7 +299,7 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="94"/>
         <source>An outdated foreign package</source>
-        <translation>Een verouderde vreemd pakket</translation>
+        <translation>Een verouderd extern pakket</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="97"/>
@@ -612,12 +612,12 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="188"/>
         <source>Required By</source>
-        <translation>Vereist door</translation>
+        <translation>Vereist Door</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="192"/>
         <source>Optional For</source>
-        <translation>Optioneel voor</translation>
+        <translation>Optioneel Voor</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="196"/>
@@ -942,7 +942,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="456"/>
         <source>Do you really want to remove Pacman&apos;s transaction lock file?</source>
-        <translation>Wilt u echt Pacman´s transactie lock bestand verwijderen?</translation>
+        <translation>Wil je Pacman´s transactie lock bestand echt verwijderen?</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="460"/>
@@ -1044,7 +1044,7 @@ Weet u zeker dat u het wilt openen?</translation>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="539"/>
         <source>Press Ctrl+A to select/deselect all</source>
-        <translation>Druk Ctrl+A om alles te selecteren of Deselecteren</translation>
+        <translation>Druk Ctrl+A om alles te selecteren of deselecteren</translation>
     </message>
 </context>
 <context>
