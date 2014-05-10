@@ -372,6 +372,7 @@ bool MainWindow::isPackageInInstallTransaction(const QString &pkgName)
   QStandardItemModel *sim = qobject_cast<QStandardItemModel *>(siInstallParent->model());
   const PackageRepository::PackageData*const package = m_packageRepo.getFirstPackageByName(pkgName);
   QString repo;
+
   if (package != NULL) repo = package->repository;
 
   QList<QStandardItem *> foundItems = sim->findItems(repo + "/" + pkgName, Qt::MatchRecursive | Qt::MatchExactly);
@@ -1448,6 +1449,7 @@ void MainWindow::toggleTransactionActions(const bool value)
 
   ui->actionInstall->setEnabled(value);
   ui->actionInstallGroup->setEnabled(value);
+  ui->actionInstallYaourt->setEnabled(value);
 
   m_actionInstallPacmanUpdates->setEnabled(value);
   m_actionInstallYaourtUpdates->setEnabled(value);

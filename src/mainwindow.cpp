@@ -483,7 +483,7 @@ void MainWindow::execContextMenuPackages(QPoint point)
     {
       menu->addAction(ui->actionInstall);
 
-      if (!isAllGroupsSelected() && !isYaourtGroupSelected() && numberOfSelPkgs > 1)
+      if (!isAllGroupsSelected() && !isYaourtGroupSelected()) //&& numberOfSelPkgs > 1)
       {
         menu->addAction(ui->actionInstallGroup);
       }

@@ -721,7 +721,7 @@ void MainWindow::initActions()
   ui->actionRemove->setIcon(IconHelper::getIconRemoveItem());
   ui->actionGetNews->setIcon(IconHelper::getIconGetNews());
   ui->actionRemoveGroup->setIcon(IconHelper::getIconRemoveItem());
-  ui->actionInstallGroup->setIcon(IconHelper::getIconToInstall());
+  ui->actionInstallGroup->setIcon(IconHelper::getIconInstallItem());
   ui->actionCollapseItem->setIcon(IconHelper::getIconCollapse());
   ui->actionExpandItem->setIcon(IconHelper::getIconExpand());
   ui->actionCollapseAllItems->setIcon(IconHelper::getIconCollapse());
@@ -734,7 +734,7 @@ void MainWindow::initActions()
   ui->actionRemoveTransactionItems->setIcon(IconHelper::getIconClose());
   ui->actionFindFileInPackage->setIcon(IconHelper::getIconFindFileInPackage());
   ui->actionOpenRootTerminal->setIcon(IconHelper::getIconTerminal());
-  ui->actionInstallYaourt->setIcon(IconHelper::getIconToInstall());
+  ui->actionInstallYaourt->setIcon(IconHelper::getIconInstallItem());
 
   //Actions for the View menu
   connect(ui->actionViewAllPackages, SIGNAL(triggered()), this, SLOT(selectedAllPackagesMenu()));
