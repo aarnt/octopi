@@ -1009,8 +1009,6 @@ LinuxDistro UnixCommand::getLinuxDistro()
   static LinuxDistro ret;
   static bool firstTime = true;
 
-  return ectn_MOOOSLINUX;
-
   if (firstTime)
   {
     if (QFile::exists("/etc/os-release"))

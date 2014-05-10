@@ -621,10 +621,16 @@ void MainWindow::showToolButtonYaourt()
  */
 void MainWindow::refreshStatusBarToolButtons()
 {
-  QFuture<YaourtOutdatedPackages *> f;
-  f = QtConcurrent::run(getOutdatedYaourtPackages);
-  g_fwOutdatedYaourtPackages.setFuture(f);
-  connect(&g_fwOutdatedYaourtPackages, SIGNAL(finished()), this, SLOT(showToolButtonYaourt()));
+  bool hasYaourt =
+      UnixCommand::hasTheExecutable(StrConstants::getForeignRepositoryToolName()) && !UnixCommand::isRootRunning();
+
+  if (hasYaourt)
+  {
+    QFuture<YaourtOutdatedPackages *> f;
+    f = QtConcurrent::run(getOutdatedYaourtPackages);
+    g_fwOutdatedYaourtPackages.setFuture(f);
+    connect(&g_fwOutdatedYaourtPackages, SIGNAL(finished()), this, SLOT(showToolButtonYaourt()));
+  }
 
   ui->twGroups->setEnabled(true);
 }
