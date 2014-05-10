@@ -482,7 +482,7 @@ void MainWindow::execContextMenuPackages(QPoint point)
 
     if (allInstallable) // implicitly foreign packages == 0
     {
-      menu->addAction(ui->actionInstallGroup);
+      if (!isAllGroupsSelected() && !isYaourtGroupSelected()) menu->addAction(ui->actionInstallGroup);
       menu->addAction(ui->actionInstall);
 
       if (!isAllGroupsSelected() && !isYaourtGroupSelected()) //&& numberOfSelPkgs > 1)
