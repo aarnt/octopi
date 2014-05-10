@@ -1146,7 +1146,7 @@ void MainWindow::doInstallYaourtPackage()
       continue;
     }
     if (package->repository != StrConstants::getForeignRepositoryName()) {
-      std::cerr << "Octopi could not install selection using yaourt" << std::endl;
+      std::cerr << "Octopi could not install selection using " << StrConstants::getForeignRepositoryToolName().toLatin1().data() << std::endl;
       return;
     }
 
@@ -1155,7 +1155,7 @@ void MainWindow::doInstallYaourtPackage()
   }
 
   if (listOfTargets.isEmpty()) {
-    std::cerr << "Octopi could not install selection using yaourt" << std::endl;
+    std::cerr << "Octopi could not install selection using " << StrConstants::getForeignRepositoryToolName().toLatin1().data() << std::endl;
     return;
   }
 
