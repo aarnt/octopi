@@ -444,6 +444,7 @@ void MainWindow::execContextMenuPackages(QPoint point)
  *   connect(ui->actionRemove, SIGNAL(triggered()), this, SLOT(insertIntoRemovePackage()));
  *   connect(ui->actionRemoveGroup, SIGNAL(triggered()), this, SLOT(insertGroupIntoRemovePackage()));
  */
+
   const QItemSelectionModel*const selectionModel = ui->tvPackages->selectionModel();
   if (selectionModel != NULL && selectionModel->selectedRows().count() > 0)
   {
@@ -481,11 +482,18 @@ void MainWindow::execContextMenuPackages(QPoint point)
 
     if (allInstallable) // implicitly foreign packages == 0
     {
+      menu->addAction(ui->actionInstallGroup);
       menu->addAction(ui->actionInstall);
 
       if (!isAllGroupsSelected() && !isYaourtGroupSelected()) //&& numberOfSelPkgs > 1)
       {
-        menu->addAction(ui->actionInstallGroup);
+        //Is this group already installed?
+        const QList<PackageRepository::PackageData*> packageList = m_packageRepo.getPackageList(getSelectedGroup());
+        if (packageList.size() == numberOfSelPkgs)
+        {
+          //If we select all packages, let's subtract the install action...
+          menu->removeAction(ui->actionInstall);
+        }
       }
     }
     else if (allInstallable == false && numberOfAUR == numberOfSelPkgs)
@@ -503,6 +511,8 @@ void MainWindow::execContextMenuPackages(QPoint point)
         const QList<PackageRepository::PackageData*> packageList = m_packageRepo.getPackageList(getSelectedGroup());
         if (packageList.size() == numberOfSelPkgs)
         {
+          //If we select all packages, let's subtract the remove action...
+          menu->removeAction(ui->actionRemove);
           menu->addAction(ui->actionRemoveGroup);
         }
       }
