@@ -63,7 +63,7 @@ void MainWindow::refreshAppIcon()
   if ((m_outdatedPackageList->count() > 0)) /*&& (!isYaourtGroupSelected()))*/
   {
     setWindowIcon(IconHelper::getIconOctopiRed());
-    if(m_commandExecuting != ectn_MIRROR_CHECK) enableSystemUpgrade=true;
+    if(m_commandExecuting != ectn_MIRROR_CHECK && !isYaourtGroupSelected()) enableSystemUpgrade=true;
   }
   else if(m_outdatedYaourtPackageList->count() > 0)
   {
