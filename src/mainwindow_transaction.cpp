@@ -1319,6 +1319,8 @@ void MainWindow::doInstallLocalPackages()
   QString list;
   QFileInfo fi;
 
+  if (!_isSUAvailable()) return;
+
   foreach(QString target, m_packagesToInstallList)
   {
     fi.setFile(target);
