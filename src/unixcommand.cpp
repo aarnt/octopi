@@ -515,7 +515,7 @@ bool UnixCommand::hasTheExecutable( const QString& exeName )
   QString out = proc.readAllStandardOutput();
   proc.close();
 
-  if (out.count("which") > 0) return false;
+  if (out.isEmpty() || out.count("which") > 0) return false;
   else return true;
 }
 
