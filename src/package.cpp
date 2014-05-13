@@ -521,9 +521,12 @@ QList<PackageListData> * Package::getYaourtPackageList(const QString& searchStri
 
       pkgName = repoName.mid(a+1);
       pkgVersion = parts[1];
+      QStringList strVotes = parts.filter("(");
 
-      //TODO change this method of geting votes!
-      pkgVotes = parts[parts.size() - 1].replace('(', "").replace(')', "").toInt();
+      if (!strVotes.last().isEmpty())
+        pkgVotes = strVotes.last().replace('(', "").replace(')', "").toInt();
+      else
+        pkgVotes = 0;
 
       if(packageTuple.indexOf("[installed]") != -1)
       {
