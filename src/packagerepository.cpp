@@ -208,7 +208,7 @@ const QList<PackageRepository::PackageData*>& PackageRepository::getPackageList(
     }
 
     // Workaround for Yaourt filter -> pre-built yaourt packageList
-    if (group == StrConstants::getYaourtGroup())
+    if (group == StrConstants::getForeignToolGroup())
       return m_listOfYaourtPackages;
   }
 

@@ -111,24 +111,51 @@ void ProcessWrapper::onSingleShot()
     proc.waitForFinished(-1);
     QString out = proc.readAll();
 
-    if (out.contains(StrConstants::getForeignRepositoryToolName(), Qt::CaseInsensitive))
+    if (UnixCommand::getLinuxDistro() == ectn_KAOS)
     {
-      pAux.start("ps -o pid -C " + StrConstants::getForeignRepositoryToolName());
-      pAux.waitForFinished(-1);
-      saux = pAux.readAll();
-      slist = saux.split("\n", QString::SkipEmptyParts);
-
-      for (int d=1; d<slist.count(); d++)
+      if (out.contains("python3", Qt::CaseInsensitive))
       {
-        int candidatePid2 = slist.at(d).trimmed().toInt();
+        pAux.start("ps -o pid -C python3");
+        pAux.waitForFinished(-1);
+        saux = pAux.readAll();
+        slist = saux.split("\n", QString::SkipEmptyParts);
 
-        if (candidatePid < candidatePid2)
+        for (int d=1; d<slist.count(); d++)
         {
-          m_pidSH = candidatePid;
-          m_pidYaourt = candidatePid2;
-          m_timer->start();
+          int candidatePid2 = slist.at(d).trimmed().toInt();
 
-          return;
+          if (candidatePid < candidatePid2)
+          {
+            m_pidSH = candidatePid;
+            m_pidYaourt = candidatePid2;
+            m_timer->start();
+
+            return;
+          }
+        }
+      }
+    }
+    else
+    {
+      if (out.contains(StrConstants::getForeignRepositoryToolName(), Qt::CaseInsensitive))
+      {
+        pAux.start("ps -o pid -C " + StrConstants::getForeignRepositoryToolName());
+        pAux.waitForFinished(-1);
+        saux = pAux.readAll();
+        slist = saux.split("\n", QString::SkipEmptyParts);
+
+        for (int d=1; d<slist.count(); d++)
+        {
+          int candidatePid2 = slist.at(d).trimmed().toInt();
+
+          if (candidatePid < candidatePid2)
+          {
+            m_pidSH = candidatePid;
+            m_pidYaourt = candidatePid2;
+            m_timer->start();
+
+            return;
+          }
         }
       }
     }

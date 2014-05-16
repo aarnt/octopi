@@ -488,7 +488,7 @@ QList<PackageListData> * Package::getYaourtPackageList(const QString& searchStri
       packageTuple = packageTuple.mid(space+1);
     }
 
-    if (!packageTuple[0].isSpace())
+    if (!packageTuple[0].isSpace() || packageTuple[0] != '\t')
     {
       //Do we already have a description?
       if (pkgDescription != "")
@@ -507,6 +507,12 @@ QList<PackageListData> * Package::getYaourtPackageList(const QString& searchStri
 
       //First we get repository and name!
       QStringList parts = packageTuple.split(' ');
+
+      if (UnixCommand::getLinuxDistro() == ectn_KAOS)
+      {
+        parts[0] = "kcp/" + parts[0];
+      }
+
       QString repoName = parts[0];
       int a = repoName.indexOf("/");
       pkgRepository = repoName.left(a);
@@ -552,12 +558,23 @@ QList<PackageListData> * Package::getYaourtPackageList(const QString& searchStri
     }
     else
     {
-      //This is a description!
-      if (!packageTuple.trimmed().isEmpty())
-        pkgDescription += packageTuple.trimmed();
+      //This is a description!      
+      if (UnixCommand::getLinuxDistro() == ectn_KAOS)
+      {
+        pkgDescription = packageTuple;
+        pkgDescription.remove("\t");
+
+        if (pkgDescription.isEmpty())
+          pkgDescription += " ";
+      }
       else
       {
-        pkgDescription += " "; //StrConstants::getNoDescriptionAvailabe();
+        if (!packageTuple.trimmed().isEmpty())
+          pkgDescription += packageTuple.trimmed();
+        else
+        {
+          pkgDescription += " ";
+        }
       }
     }
   }

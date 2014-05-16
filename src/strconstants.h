@@ -56,7 +56,7 @@ public:
       return QLatin1String( "CCR" );
 
     if (UnixCommand::getLinuxDistro() == ectn_KAOS)
-      return QLatin1String( "non-repo" );
+      return QLatin1String( "KCP" );
 
     return QLatin1String( "AUR" );
   }
@@ -64,6 +64,8 @@ public:
   static QString getForeignPkgRepositoryName(){
     if (UnixCommand::getLinuxDistro() == ectn_CHAKRA)
       return QLatin1String( "ccr" );
+    else if (UnixCommand::getLinuxDistro() == ectn_KAOS)
+      return QLatin1String( "kcp" );
 
     return QLatin1String( "aur" );
   }
@@ -72,6 +74,9 @@ public:
   {
     if( UnixCommand::getLinuxDistro() == ectn_CHAKRA )
       return QLatin1String( "ccr" );
+    else if (UnixCommand::getLinuxDistro() == ectn_KAOS)
+      return QLatin1String( "kcp" );
+
     return QLatin1String( "yaourt" );
   }
 
@@ -79,6 +84,9 @@ public:
   {
     if( UnixCommand::getLinuxDistro() == ectn_CHAKRA )
       return QLatin1String( "Ccr" );
+    else if (UnixCommand::getLinuxDistro() == ectn_KAOS)
+      return QLatin1String( "KCP" );
+
     return QLatin1String( "Yaourt" );
   }
 
@@ -86,6 +94,9 @@ public:
   {
     if( UnixCommand::getLinuxDistro() == ectn_CHAKRA )
       return QLatin1String( "ccr/" );
+    else if (UnixCommand::getLinuxDistro() == ectn_KAOS)
+      return "";
+
     return QLatin1String( "aur/" );
   }
 
@@ -125,9 +136,12 @@ public:
     return QObject::tr("Display all groups");
   }
 
-  static QString getYaourtGroup(){
+  static QString getForeignToolGroup(){
     if( UnixCommand::getLinuxDistro() == ectn_CHAKRA )
       return QLatin1String( "<Ccr>" );
+    else if (UnixCommand::getLinuxDistro() == ectn_KAOS)
+      return QLatin1String( "KCP" );
+
     return "<Yaourt>";
   }
 

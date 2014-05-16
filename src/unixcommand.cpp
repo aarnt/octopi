@@ -209,9 +209,27 @@ QByteArray UnixCommand::getYaourtPackageList(const QString &searchString)
   env.insert("LC_MESSAGES", "C");
 
   yaourt.setProcessEnvironment(env);
-  yaourt.start(StrConstants::getForeignRepositoryToolName() + " -Ss " + searchString);
+
+  if (UnixCommand::getLinuxDistro() == ectn_KAOS)
+    yaourt.start(StrConstants::getForeignRepositoryToolName() + " -s " + searchString);
+  else
+    yaourt.start(StrConstants::getForeignRepositoryToolName() + " -Ss " + searchString);
+
   yaourt.waitForFinished(-1);
   result = yaourt.readAll();
+
+  if (UnixCommand::getLinuxDistro() == ectn_KAOS)
+  {
+    QString res = result;
+    res.remove("\033");
+    res.remove("[1m");
+    res.remove("[m");
+    res.remove("[1;32m");
+    res.remove("[1;34m");
+    res.remove("[1;36m");
+
+    return res.toAscii();
+  }
 
   return result;
 }

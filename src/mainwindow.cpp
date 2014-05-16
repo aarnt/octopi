@@ -345,7 +345,7 @@ bool MainWindow::isYaourtGroupSelected()
   QModelIndex index = ui->twGroups->currentIndex();
   QString group = ui->twGroups->model()->data(index).toString();
 
-  return (group == StrConstants::getYaourtGroup());
+  return (group == StrConstants::getForeignToolGroup());
 }
 
 const PackageRepository::PackageData* MainWindow::getFirstPackageFromRepo(const QString pkgName)

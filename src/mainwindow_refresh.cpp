@@ -94,7 +94,7 @@ void MainWindow::refreshGroupsWidget()
 
   if (m_hasYaourt)
   {
-    items.append(new QTreeWidgetItem((QTreeWidget*)0, QStringList(StrConstants::getYaourtGroup())));
+    items.append(new QTreeWidgetItem((QTreeWidget*)0, QStringList(StrConstants::getForeignToolGroup())));
     m_YaourtItem = items.at(1);
   }
 
@@ -122,7 +122,7 @@ void MainWindow::buildPackagesFromGroupList(const QString group)
   if (isAllGroupsSelected())
   {
     reapplyPackageFilter();
-    m_packageModel->applyFilter(m_selectedViewOption, m_selectedRepository, StrConstants::getYaourtGroup());
+    m_packageModel->applyFilter(m_selectedViewOption, m_selectedRepository, StrConstants::getForeignToolGroup());
 
     QModelIndex maux = m_packageModel->index(0, 0, QModelIndex());
     ui->tvPackages->setCurrentIndex(maux);
@@ -279,8 +279,10 @@ void MainWindow::metaBuildPackageList()
 {
   ui->twGroups->setEnabled(false);
 
+  ui->tvPackages->setSelectionMode(QAbstractItemView::ExtendedSelection);
+
   if (ui->twGroups->topLevelItemCount() == 0 || isAllGroupsSelected())
-  {
+  {        
     toggleSystemActions(true);
     connect(m_leFilterPackage, SIGNAL(textChanged(QString)), this, SLOT(reapplyPackageFilter()));
     reapplyPackageFilter();
@@ -292,6 +294,11 @@ void MainWindow::metaBuildPackageList()
   }
   else if (isYaourtGroupSelected())
   {
+    if (UnixCommand::getLinuxDistro() == ectn_KAOS)
+    {
+      ui->tvPackages->setSelectionMode(QAbstractItemView::SingleSelection);
+    }
+
     toggleSystemActions(false);
     disconnect(m_leFilterPackage, SIGNAL(textChanged(QString)), this, SLOT(reapplyPackageFilter()));
     clearStatusBar();
@@ -548,7 +555,7 @@ void MainWindow::buildYaourtPackageList()
   }
 
   m_packageRepo.setAURData(list, *unrequiredPackageList);
-  m_packageModel->applyFilter(m_selectedViewOption, m_selectedRepository, StrConstants::getYaourtGroup());
+  m_packageModel->applyFilter(m_selectedViewOption, m_selectedRepository, StrConstants::getForeignToolGroup());
 
   QModelIndex maux = m_packageModel->index(0, 0, QModelIndex());
   ui->tvPackages->setCurrentIndex(maux);

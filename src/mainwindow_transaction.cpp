@@ -1160,7 +1160,12 @@ void MainWindow::doInstallYaourtPackage()
   }
 
   m_lastCommandList.clear();
-  m_lastCommandList.append(StrConstants::getForeignRepositoryToolName() + " -S " + listOfTargets + ";");
+
+  if (UnixCommand::getLinuxDistro() == ectn_KAOS)
+    m_lastCommandList.append(StrConstants::getForeignRepositoryToolName() + " -i " + listOfTargets + ";");
+  else
+    m_lastCommandList.append(StrConstants::getForeignRepositoryToolName() + " -S " + listOfTargets + ";");
+
   m_lastCommandList.append("echo -e;");
   m_lastCommandList.append("read -n1 -p \"" + StrConstants::getPressAnyKey() + "\"");
 
