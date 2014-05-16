@@ -488,7 +488,8 @@ QList<PackageListData> * Package::getYaourtPackageList(const QString& searchStri
       packageTuple = packageTuple.mid(space+1);
     }
 
-    if (!packageTuple[0].isSpace() || packageTuple[0] != '\t')
+    if ((UnixCommand::getLinuxDistro() != ectn_KAOS && !packageTuple[0].isSpace()) ||
+        (UnixCommand::getLinuxDistro() == ectn_KAOS && packageTuple[0] != '\t'))
     {
       //Do we already have a description?
       if (pkgDescription != "")
