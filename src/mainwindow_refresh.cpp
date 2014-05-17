@@ -165,21 +165,18 @@ void MainWindow::buildPackagesFromGroupList(const QString group)
   m_packageRepo.checkAndSetMembersOfGroup(group, *list);
   m_packageModel->applyFilter(m_selectedViewOption, m_selectedRepository, isAllGroups(group) ? "" : group);
 
-//  resizePackageView();
-
   //Refresh counters
   m_numberOfInstalledPackages = installedCount;
   //Refresh statusbar widget
   refreshStatusBar();
 
-  /*if (m_leFilterPackage->text() != "")*/ reapplyPackageFilter();
+  reapplyPackageFilter();
 
   QModelIndex maux = m_packageModel->index(0, 0, QModelIndex());
   ui->tvPackages->setCurrentIndex(maux);
   ui->tvPackages->scrollTo(maux, QAbstractItemView::PositionAtCenter);
   ui->tvPackages->setCurrentIndex(maux);
 
-  //list->clear();
   m_listOfPackagesFromGroup.reset();
   refreshTabInfo();
   refreshTabFiles();
@@ -278,7 +275,6 @@ void MainWindow::preBuildPackagesFromGroupList()
 void MainWindow::metaBuildPackageList()
 {
   ui->twGroups->setEnabled(false);
-
   ui->tvPackages->setSelectionMode(QAbstractItemView::ExtendedSelection);
 
   if (ui->twGroups->topLevelItemCount() == 0 || isAllGroupsSelected())
@@ -389,19 +385,16 @@ void MainWindow::buildPackageList(bool nonBlocking)
   }
 
   qApp->processEvents();
-  //const QSet<QString>*const unrequiredPackageList = Package::getUnrequiredPackageList();
-    const std::auto_ptr<const QSet<QString> > unrequiredPackageList(Package::getUnrequiredPackageList());
+  const std::auto_ptr<const QSet<QString> > unrequiredPackageList(Package::getUnrequiredPackageList());
 
-  // fetch package list
+  // Fetch package list
   QList<PackageListData> *list;
   if(nonBlocking)
     list = m_listOfPackages.release();
-    //list = m_listOfPackages;
   else
     list = Package::getPackageList();
 
-  // fetch foreign package list
-  //QList<PackageListData> *listForeign = Package::getForeignPackageList();
+  // Fetch foreign package list
   std::auto_ptr<QList<PackageListData> > listForeign(Package::getForeignPackageList());
   qApp->processEvents();
 
@@ -579,7 +572,6 @@ void MainWindow::buildYaourtPackageList()
 
   //Refresh application icon
   refreshAppIcon();
-
   reapplyPackageFilter();
 
   counter = list->count();
@@ -648,7 +640,6 @@ void MainWindow::refreshStatusBarToolButtons()
 void MainWindow::refreshStatusBar()
 {
   QString text;
-
   ui->statusBar->removeWidget(m_toolButtonPacman);
   ui->statusBar->removeWidget(m_toolButtonYaourt);
 

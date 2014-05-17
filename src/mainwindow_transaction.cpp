@@ -1204,7 +1204,8 @@ void MainWindow::doRemoveYaourtPackage()
 
   m_lastCommandList.clear();
 
-  if (StrConstants::getForeignRepositoryToolName() == "ccr")
+  if (StrConstants::getForeignRepositoryToolName() == "ccr" ||
+      StrConstants::getForeignRepositoryToolName() == "kcp")
   {
     m_lastCommandList.append("pacman -" + m_removeCommand + " " + listOfTargets + ";");
   }
