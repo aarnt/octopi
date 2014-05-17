@@ -55,7 +55,7 @@ TransactionDialog::TransactionDialog(QWidget* parent) :
   setWindowFlags(Qt::MSWindowsFixedSizeDialogHint | Qt::Dialog |
                  Qt::WindowTitleHint | Qt::WindowSystemMenuHint | Qt::WindowCloseButtonHint);
 
-  if(UnixCommand::getLinuxDistro()==ectn_CHAKRA)
+  if(UnixCommand::getLinuxDistro()==ectn_CHAKRA || UnixCommand::getLinuxDistro()==ectn_ARCHBSD)
   {
     removeYesButton();
   }
