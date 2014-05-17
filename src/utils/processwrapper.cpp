@@ -172,7 +172,7 @@ void ProcessWrapper::onTimer()
   QProcess proc;
   QString cmd = QString("ps -p %1 %2").arg(m_pidSH).arg(m_pidYaourt);
 
-  //std::cout << "PIDS: " << cmd.toAscii().data() << "\n" << std::endl;
+  //std::cout << "PIDS: " << cmd.toLatin1().data() << "\n" << std::endl;
 
   proc.start(cmd);
   proc.waitForFinished(-1);
@@ -180,7 +180,7 @@ void ProcessWrapper::onTimer()
   //If any of the processes have finished...
   QString out = proc.readAll();
 
-  //std::cout << "Output: " << out.toAscii().data() << "\n" << std::endl;
+  //std::cout << "Output: " << out.toLatin1().data() << "\n" << std::endl;
 
   if (!out.contains(".qt_temp_", Qt::CaseInsensitive))
   {

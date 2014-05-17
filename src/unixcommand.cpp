@@ -228,7 +228,7 @@ QByteArray UnixCommand::getYaourtPackageList(const QString &searchString)
     res.remove("[1;34m");
     res.remove("[1;36m");
 
-    return res.toAscii();
+    return res.toLatin1();
   }
 
   return result;

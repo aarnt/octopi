@@ -1819,7 +1819,7 @@ void MainWindow::_treatProcessOutput(const QString &pMsg)
 
   if (msg.contains("exists in filesystem")) return;
 
-  //std::cout << "_treat: " << msg.toAscii().data() << std::endl;
+  //std::cout << "_treat: " << msg.toLatin1().data() << std::endl;
 
   if (m_iLoveCandy)
   {
@@ -1873,13 +1873,13 @@ void MainWindow::_treatProcessOutput(const QString &pMsg)
         }
         else
         {
-          //std::cout << "test1: " << target.toAscii().data() << std::endl;
+          //std::cout << "test1: " << target.toLatin1().data() << std::endl;
           int pos = msg.indexOf(" ");
           if (pos >=0)
           {
             target = msg.left(pos);
             target = target.trimmed() + " ";
-            //std::cout << "target: " << target.toAscii().data() << std::endl;
+            //std::cout << "target: " << target.toLatin1().data() << std::endl;
 
             if(!target.isEmpty())
             {
@@ -1896,7 +1896,7 @@ void MainWindow::_treatProcessOutput(const QString &pMsg)
       {
         if (_searchForKeyVerbs(msg))
         {
-          //std::cout << "test2: " << msg.toAscii().data() << std::endl;
+          //std::cout << "test2: " << msg.toLatin1().data() << std::endl;
 
           int end = msg.indexOf("[");
           msg = msg.remove(end, msg.size()-end);
@@ -1911,7 +1911,7 @@ void MainWindow::_treatProcessOutput(const QString &pMsg)
           {
             target = msg.left(pos);
             target = target.trimmed() + " ";
-            //std::cout << "target: " << target.toAscii().data() << std::endl;
+            //std::cout << "target: " << target.toLatin1().data() << std::endl;
 
             if(!target.isEmpty() && !_textInTabOutput(target))
             {
@@ -1961,7 +1961,7 @@ void MainWindow::_treatProcessOutput(const QString &pMsg)
     msg.remove(QRegExp(":: Do you want.+"));
     msg = msg.trimmed();
 
-    //std::cout << "debug: " << msg.toAscii().data() << std::endl;
+    //std::cout << "debug: " << msg.toLatin1().data() << std::endl;
 
     QString order;
     int ini = msg.indexOf(QRegExp("\\(\\s{0,3}[0-9]{1,4}/[0-9]{1,4}\\) "));
@@ -1993,7 +1993,7 @@ void MainWindow::_treatProcessOutput(const QString &pMsg)
         if (msg.indexOf(":: Synchronizing package databases...") == -1 &&
             msg.indexOf(":: Starting full system upgrade...") == -1)
         {
-          //std::cout << "Entered here: " << msg.toAscii().data() << std::endl;
+          //std::cout << "Entered here: " << msg.toLatin1().data() << std::endl;
 
           if (m_commandExecuting == ectn_SYNC_DATABASE &&
               msg.indexOf("is up to date"))
@@ -2051,7 +2051,7 @@ bool MainWindow::_splitOutputStrings(const QString &output)
               aux += "%";
             }
 
-            //std::cout << "Error1: " << aux.toAscii().data() << std::endl;
+            //std::cout << "Error1: " << aux.toLatin1().data() << std::endl;
             _treatProcessOutput(aux);
           }
         }
@@ -2060,7 +2060,7 @@ bool MainWindow::_splitOutputStrings(const QString &output)
       {
         if (!m.isEmpty())
         {
-          //std::cout << "Error2: " << m.toAscii().data() << std::endl;
+          //std::cout << "Error2: " << m.toLatin1().data() << std::endl;
           _treatProcessOutput(m);
         }
       }
@@ -2071,7 +2071,7 @@ bool MainWindow::_splitOutputStrings(const QString &output)
       {
         if (!m3.isEmpty())
         {
-          //std::cout << "Error3: " << m3.toAscii().data() << std::endl;
+          //std::cout << "Error3: " << m3.toLatin1().data() << std::endl;
           _treatProcessOutput(m3);
         }
       }
@@ -2121,7 +2121,7 @@ void MainWindow::writeToTabOutput(const QString &msg, TreatURLLinks treatURLLink
  */
 void MainWindow::writeToTabOutputExt(const QString &msg, TreatURLLinks treatURLLinks)
 {
-  //std::cout << "To print: " << msg.toAscii().data() << std::endl;
+  //std::cout << "To print: " << msg.toLatin1().data() << std::endl;
   QTextBrowser *text = ui->twProperties->widget(ctn_TABINDEX_OUTPUT)->findChild<QTextBrowser*>("textOutputEdit");
   if (text)
   {    
