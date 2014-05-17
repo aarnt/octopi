@@ -38,6 +38,7 @@ PackageModel::PackageModel(const PackageRepository& repo, QObject *parent)
   m_iconNewer(IconHelper::getIconNewer()), m_iconOutdated(IconHelper::getIconOutdated()),
   m_iconForeign(IconHelper::getIconForeignGreen()), m_iconForeignOutdated(IconHelper::getIconForeignRed())
 {
+  m_showColumnPopularity = false;
 }
 
 QModelIndex PackageModel::index(int row, int column, const QModelIndex &parent) const
@@ -70,7 +71,7 @@ int PackageModel::rowCount(const QModelIndex &parent) const
 int PackageModel::columnCount(const QModelIndex &parent) const
 {
   if (!parent.isValid()) {
-    if (UnixCommand::getLinuxDistro() == ectn_KAOS || UnixCommand::getLinuxDistro() == ectn_CHAKRA)
+    if (UnixCommand::getLinuxDistro() == ectn_CHAKRA || !m_showColumnPopularity)
     {
       return 4;
     }
@@ -262,11 +263,18 @@ void PackageModel::applyFilter(const int filterColumn, const QString& filterExp)
 {
   assert(filterExp.isNull() == false);
 //  std::cout << "apply new column filter " << filterColumn << ", " << filterExp.toStdString() << std::endl;
-
   beginResetRepository();
   m_filterColumn = filterColumn;
   m_filterRegExp.setPattern(filterExp);
   endResetRepository();
+}
+
+/*
+ * Toggles the view of column popularity, which shows number of votes for AUR pkgs
+ */
+void PackageModel::setShowColumnPopularity(bool value)
+{
+  m_showColumnPopularity = value;
 }
 
 const QIcon& PackageModel::getIconFor(const PackageRepository::PackageData& package) const

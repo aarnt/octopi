@@ -274,6 +274,7 @@ void MainWindow::preBuildPackagesFromGroupList()
  */
 void MainWindow::metaBuildPackageList()
 {
+  m_packageModel->setShowColumnPopularity(false);
   ui->twGroups->setEnabled(false);
   ui->tvPackages->setSelectionMode(QAbstractItemView::ExtendedSelection);
 
@@ -290,6 +291,8 @@ void MainWindow::metaBuildPackageList()
   }
   else if (isYaourtGroupSelected())
   {
+    m_packageModel->setShowColumnPopularity(true);
+
     if (UnixCommand::getLinuxDistro() == ectn_KAOS)
     {
       ui->tvPackages->setSelectionMode(QAbstractItemView::SingleSelection);
@@ -965,7 +968,6 @@ void MainWindow::refreshTabFiles(bool clearContents, bool neverQuit)
         if (parent != 0) fullPath = PackageController::showFullPathOfItem(parent->index());
 
         do{
-          //if (parent != 0) std::cout << "Testing if symlink" << file.toLatin1().data() << " contains " << fullPath.toLatin1().data() << std::endl;
           if ( parent == 0 || file.contains ( fullPath )) break;
           parent = parent->parent();
           if (parent != 0) fullPath = PackageController::showFullPathOfItem(parent->index());

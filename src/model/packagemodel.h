@@ -50,7 +50,6 @@ signals:
 
 public slots:
 
-
   // QAbstractItemModel interface
 public:
   virtual QModelIndex index(int row, int column, const QModelIndex& parent) const /*override*/;
@@ -64,7 +63,7 @@ public:
   // IDependency interface
 public:
   virtual void beginResetRepository() /*override*/;
-  virtual void endResetRepository() /*override*/;
+  virtual void endResetRepository()   /*override*/;
 
   // Getter
 public:
@@ -79,12 +78,14 @@ public:
   void applyFilter(const QString& filterExp);
   void applyFilter(const int filterColumn, const QString& filterExp);
 
+  void setShowColumnPopularity(bool value);
+
 private:
   const QIcon& getIconFor(const PackageRepository::PackageData& package) const;
   void sort();
 
-
 private:
+  bool                                    m_showColumnPopularity;
   const PackageRepository&                m_packageRepo;
   QList<PackageRepository::PackageData*>  m_listOfPackages;             // should be provided sorted by name (by repo)
   QList<PackageRepository::PackageData*>  m_columnSortedlistOfPackages; // sorted by column
@@ -107,7 +108,6 @@ private:
   QIcon   m_iconOutdated;
   QIcon   m_iconForeign;
   QIcon   m_iconForeignOutdated;
-
 };
 
 #endif // OCTOPI_PACKAGEMODEL_H
