@@ -1062,6 +1062,10 @@ LinuxDistro UnixCommand::getLinuxDistro()
       {
         ret = ectn_MANJAROLINUX;
       }
+      else if (contents.contains(QRegExp("Netrunner")))
+      {
+        ret = ectn_NETRUNNER;
+      }
       else if (contents.contains(QRegExp("mooOS")))
       {
         ret = ectn_MOOOSLINUX;

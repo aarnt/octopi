@@ -160,11 +160,6 @@ void MainWindow::keyPressEvent(QKeyEvent* ke)
   {
     openTerminal();
   }
-  /*else if(ke->key() == Qt::Key_F5)
-  {
-    invalidateTabs();
-    metaBuildPackageList();
-  }*/
   else if(ke->key() == Qt::Key_F6)
   {
     openDirectory();
@@ -272,7 +267,6 @@ void MainWindow::keyReleaseEvent(QKeyEvent *ke)
       QModelIndex currentIndex = ui->tvPackages->currentIndex();
       QModelIndex firstIndex = fi.first();
       QModelIndex lastIndex = fi.last();
-
       //std::cout << "CurrentIndex row: " << currentIndex.row() << std::endl;
       //std::cout << "LastIndex row: " << lastIndex.row() << std::endl;
 

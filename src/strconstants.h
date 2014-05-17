@@ -120,6 +120,10 @@ public:
     return QObject::tr("Manjaro Linux news");
   }
 
+  static QString getNetrunnerNews(){
+    return QObject::tr("Netrunner Rolling news");
+  }
+
   static QString getNewsErrorMessage(){
     return QObject::tr("No news could be found! Press Ctrl+G to download the latest news.");
   }

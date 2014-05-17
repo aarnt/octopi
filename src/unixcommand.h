@@ -37,7 +37,7 @@ enum CommandExecuting { ectn_NONE, ectn_MIRROR_CHECK, ectn_SYNC_DATABASE,
                         ectn_RUN_IN_TERMINAL };
 
 enum LinuxDistro { ectn_ARCHBANGLINUX, ectn_ARCHBSD, ectn_ARCHLINUX, ectn_MANJAROLINUX,
-                   ectn_CHAKRA, ectn_KAOS, ectn_MOOOSLINUX, ectn_UNKNOWN };
+                   ectn_CHAKRA, ectn_KAOS, ectn_NETRUNNER, ectn_MOOOSLINUX, ectn_UNKNOWN };
 
 //Forward class declarations.
 class QString;

@@ -88,6 +88,11 @@ void MainWindow::refreshDistroNews(bool searchForLatestNews, bool gotoNewsTab)
       writeToTabOutputExt("<b>" +
                           StrConstants::getSearchingForDistroNews().arg("Manjaro Linux") + "</b>");
     }
+    else if (gotoNewsTab && distro == ectn_NETRUNNER)
+    {
+      writeToTabOutputExt("<b>" +
+                          StrConstants::getSearchingForDistroNews().arg("Netrunner Rolling") + "</b>");
+    }
   }
 
   if (searchForLatestNews == false)

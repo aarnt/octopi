@@ -108,6 +108,7 @@ QString PackageController::retrieveDistroNews(bool searchForLatestNews)
   const QString ctn_CHAKRA_RSS = "http://chakraos.org/news/index.php?/feeds/index.rss2";
   const QString ctn_KAOS_RSS = "http://kaosx.us/feed/";
   const QString ctn_MANJARO_LINUX_RSS = "http://manjaro.org/feed/";
+  const QString ctn_NETRUNNER_RSS = "http://www.netrunner-os.com/feed/";
 
   LinuxDistro distro = UnixCommand::getLinuxDistro();
   QString res;
@@ -147,6 +148,10 @@ QString PackageController::retrieveDistroNews(bool searchForLatestNews)
     else if (distro == ectn_MANJAROLINUX)
     {
       curlCommand = curlCommand.arg(ctn_MANJARO_LINUX_RSS).arg(tmpRssPath);
+    }
+    else if (distro == ectn_NETRUNNER)
+    {
+      curlCommand = curlCommand.arg(ctn_NETRUNNER_RSS).arg(tmpRssPath);
     }
 
     if (UnixCommand::runCurlCommand(curlCommand).isEmpty())
@@ -252,6 +257,10 @@ QString PackageController::parseDistroNews()
   {
     html = "<p align=\"center\"><h2>" + StrConstants::getManjaroLinuxNews() + "</h2></p><ul>";
   }
+  else if (distro == ectn_NETRUNNER)
+  {
+    html = "<p align=\"center\"><h2>" + StrConstants::getNetrunnerNews() + "</h2></p><ul>";
+  }
 
   QString lastBuildDate;
   QString rssPath = QDir::homePath() + QDir::separator() + ".config/octopi/distro_rss.xml";
@@ -309,7 +318,6 @@ QString PackageController::parseDistroNews()
             else if (eText.tagName() == "description")
             {
               itemDescription = eText.text();
-              //itemDescription = itemDescription.remove(QRegExp("\\n"));
               itemDescription += "<br>";
             }
             else if (eText.tagName() == "pubDate")
