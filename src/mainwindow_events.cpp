@@ -99,6 +99,8 @@ void MainWindow::keyPressEvent(QKeyEvent* ke)
   {
     if (isYaourtGroupSelected() && m_leFilterPackage->hasFocus() && m_cic == NULL)
     {
+      ui->twGroups->setEnabled(false);
+
       QFuture<QList<PackageListData> *> f;
       disconnect(&g_fwYaourt, SIGNAL(finished()), this, SLOT(preBuildYaourtPackageList()));
       m_cic = new CPUIntensiveComputing();

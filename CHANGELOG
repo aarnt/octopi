@@ -17,6 +17,7 @@
   BugFix: The preventing code for always refresh the pkg list was flawed.
   BugFix: hasInternetConnection code fixed to improve mirror-check speed.
   BugFix: Fixed CCR (Chakra) package installation/removal (thanks to dmnmsc).
+  BugFix: Disable group widget while searching for AUR packages.
   Switched to "pacman -Syy" command when synching. It's safer.
   Added support for pacaur tool.
   Added support to kcp in KaOS (thanks to Cellix).
