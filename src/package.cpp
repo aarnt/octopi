@@ -586,6 +586,8 @@ QList<PackageListData> * Package::getYaourtPackageList(const QString& searchStri
     pkgDescription = pkgName + " " + pkgDescription;
     PackageListData pld =
         PackageListData(pkgName, pkgRepository, pkgVersion, pkgDescription, pkgStatus, pkgOutVersion);
+    pld.popularity = pkgVotes;
+
     res->append(pld);
   }
 

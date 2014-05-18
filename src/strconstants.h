@@ -72,12 +72,24 @@ public:
 
   static QString getForeignRepositoryToolName()
   {
-    if( UnixCommand::getLinuxDistro() == ectn_CHAKRA )
-      return QLatin1String( "ccr" );
-    else if (UnixCommand::getLinuxDistro() == ectn_KAOS)
-      return QLatin1String( "kcp" );
+    static bool first=true;
+    static QString ret;
 
-    return QLatin1String( "yaourt" );
+    if (first)
+    {
+      if( UnixCommand::getLinuxDistro() == ectn_CHAKRA )
+        ret = QLatin1String( "ccr" );
+      else if (UnixCommand::getLinuxDistro() == ectn_KAOS)
+        ret = QLatin1String( "kcp" );
+      else if (UnixCommand::hasTheExecutable("pacaur"))
+        ret = QLatin1String( "pacaur" );
+      else if (UnixCommand::hasTheExecutable("yaourt"))
+        ret = QLatin1String( "yaourt" );
+
+      first = false;
+    }
+
+    return ret;
   }
 
   static QString getForeignRepositoryGroupName()
@@ -87,7 +99,7 @@ public:
     else if (UnixCommand::getLinuxDistro() == ectn_KAOS)
       return QLatin1String( "KCP" );
 
-    return QLatin1String( "Yaourt" );
+    return QLatin1String( "AUR" );
   }
 
   static QString getForeignRepositoryTargetPrefix()
@@ -141,12 +153,10 @@ public:
   }
 
   static QString getForeignToolGroup(){
-    if( UnixCommand::getLinuxDistro() == ectn_CHAKRA )
-      return QLatin1String( "<Ccr>" );
-    else if (UnixCommand::getLinuxDistro() == ectn_KAOS)
-      return QLatin1String( "<Kcp>" );
-
-    return "<Yaourt>";
+    QString tool = getForeignRepositoryToolName();
+    tool[0] = tool[0].toUpper();
+    tool = "<" + tool + ">";
+    return tool.toLatin1();
   }
 
   static QString getHelpUsage(){

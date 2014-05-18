@@ -1150,8 +1150,10 @@ void MainWindow::doInstallYaourtPackage()
       return;
     }
 
-    listOfTargets += StrConstants::getForeignRepositoryTargetPrefix() +
-        package->name + " ";
+    if (StrConstants::getForeignRepositoryToolName() != "pacaur")
+      listOfTargets += StrConstants::getForeignRepositoryTargetPrefix() + package->name + " ";
+    else
+      listOfTargets += package->name + " ";
   }
 
   if (listOfTargets.isEmpty()) {
@@ -1163,7 +1165,9 @@ void MainWindow::doInstallYaourtPackage()
 
   if (UnixCommand::getLinuxDistro() == ectn_KAOS)
     m_lastCommandList.append(StrConstants::getForeignRepositoryToolName() + " -i " + listOfTargets + ";");
-  else
+  else if (StrConstants::getForeignRepositoryToolName() == "pacaur")
+    m_lastCommandList.append(StrConstants::getForeignRepositoryToolName() + " -Sa " + listOfTargets + ";");
+  else if (StrConstants::getForeignRepositoryToolName() == "yaourt")
     m_lastCommandList.append(StrConstants::getForeignRepositoryToolName() + " -S " + listOfTargets + ";");
 
   m_lastCommandList.append("echo -e;");
