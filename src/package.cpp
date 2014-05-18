@@ -231,25 +231,47 @@ QStringList *Package::getOutdatedPackageList()
  */
 QStringList *Package::getOutdatedYaourtPackageList()
 {
+  QStringList * res = new QStringList();
+
+  if (StrConstants::getForeignRepositoryToolName() != "yaourt" &&
+      StrConstants::getForeignRepositoryToolName() != "pacaur")
+    return res;
+
   QString outPkgList = UnixCommand::getOutdatedYaourtPackageList();
   QStringList packageTuples = outPkgList.split(QRegExp("\\n"), QString::SkipEmptyParts);
-  QStringList * res = new QStringList();
   QStringList ignorePkgList = UnixCommand::getIgnorePkg();
 
   foreach(QString packageTuple, packageTuples)
   {
-    QStringList parts = packageTuple.split(' ');
+    QStringList parts = packageTuple.split(' ', QString::SkipEmptyParts);
     {
-      QString pkgName;
-      pkgName = parts[0];
-
-      if (pkgName.contains(StrConstants::getForeignRepositoryTargetPrefix(), Qt::CaseInsensitive))
+      if (StrConstants::getForeignRepositoryToolName() == "yaourt")
       {
-        pkgName = pkgName.remove(StrConstants::getForeignRepositoryTargetPrefix());
-        //Let's ignore the "IgnorePkg" list of packages...
-        if (!ignorePkgList.contains(pkgName))
+        QString pkgName;
+        pkgName = parts[0];
+
+        if (pkgName.contains(StrConstants::getForeignRepositoryTargetPrefix(), Qt::CaseInsensitive))
         {
-          res->append(pkgName); //We only need the package name!
+          pkgName = pkgName.remove(StrConstants::getForeignRepositoryTargetPrefix());
+          //Let's ignore the "IgnorePkg" list of packages...
+          if (!ignorePkgList.contains(pkgName))
+          {
+            res->append(pkgName); //We only need the package name!
+          }
+        }
+      }
+      else if (StrConstants::getForeignRepositoryToolName() == "pacaur")
+      {
+        QString pkgName;
+        if (parts.count() >= 2)
+        {
+          pkgName = parts[2];
+
+          //Let's ignore the "IgnorePkg" list of packages...
+          if (!ignorePkgList.contains(pkgName))
+          {
+            res->append(pkgName); //We only need the package name!
+          }
         }
       }
     }
@@ -1007,22 +1029,34 @@ QHash<QString, QString> Package::getYaourtOutdatedPackagesNameVersion()
 {
   QHash<QString, QString> hash;
 
-  if(UnixCommand::getLinuxDistro() == ectn_CHAKRA)
+  if(UnixCommand::getLinuxDistro() == ectn_CHAKRA ||
+      (StrConstants::getForeignRepositoryToolName() != "yaourt" &&
+      StrConstants::getForeignRepositoryToolName() != "pacaur"))
     return hash;
 
   QString res = UnixCommand::getYaourtPackageVersionInformation();
-
   QStringList listOfPkgs = res.split("\n", QString::SkipEmptyParts);
-  foreach (QString line, listOfPkgs)
+
+  if (StrConstants::getForeignRepositoryToolName() == "yaourt")
   {
-    if (line.contains(StrConstants::getForeignRepositoryTargetPrefix(), Qt::CaseInsensitive))
+    foreach (QString line, listOfPkgs)
     {
-      line = line.remove(StrConstants::getForeignRepositoryTargetPrefix());
-      QStringList nameVersion = line.split(" ", QString::SkipEmptyParts);
-      hash.insert(nameVersion.at(0), nameVersion.at(1));
+      if (line.contains(StrConstants::getForeignRepositoryTargetPrefix(), Qt::CaseInsensitive))
+      {
+        line = line.remove(StrConstants::getForeignRepositoryTargetPrefix());
+        QStringList nameVersion = line.split(" ", QString::SkipEmptyParts);
+        hash.insert(nameVersion.at(0), nameVersion.at(1));
+      }
     }
   }
-
+  else if (StrConstants::getForeignRepositoryToolName() == "pacaur")
+  {
+    foreach (QString line, listOfPkgs)
+    {
+      QStringList sl = line.split(" ", QString::SkipEmptyParts);
+      if (sl.count() >= 5) hash.insert(sl.at(2), sl.at(5));
+    }
+  }
   return hash;
 }
 
