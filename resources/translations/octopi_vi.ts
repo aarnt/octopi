@@ -61,12 +61,12 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="237"/>
         <source>Non installed</source>
-        <translation>Không được cài đặt</translation>
+        <translation>Chưa được cài đặt</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="246"/>
         <source>Commit</source>
-        <translation>Đệ trình</translation>
+        <translation>Chấp nhận</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="249"/>
@@ -129,7 +129,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="326"/>
         <source>Outdated packages</source>
-        <translation>Các gói đã quá cũ</translation>
+        <translation>Các gói đã cũ</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="335"/>
@@ -294,17 +294,17 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="91"/>
         <source>An outdated package</source>
-        <translation>Gói đã quá cũ</translation>
+        <translation>Gói đã cũ</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="94"/>
         <source>An outdated foreign package</source>
-        <translation>Một gói ngoại lai đã cũ</translation>
+        <translation>Gói ngoại lai đã cũ</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="97"/>
         <source>A newer than repository package</source>
-        <translation>Một gói mới hơn so với trong kho</translation>
+        <translation>Gói mới hơn so với trong kho</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="100"/>
@@ -394,7 +394,7 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="136"/>
         <source>Ctrl+M or &apos;Transaction/Commit&apos; to start installation/removal of selected packages</source>
-        <translation>Ctrl+M hoặc &apos;Phần tải về/Đệ trình&apos; để bắt đầu tiến trình cài đặt/gỡ bỏ các gói cài đặt đã được chọn trước đó</translation>
+        <translation>Ctrl+M hoặc &apos;Phần tải về/Chấp nhận&apos; để bắt đầu tiến trình cài đặt/gỡ bỏ các gói cài đặt đã được chọn trước đó</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="138"/>
@@ -562,7 +562,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="148"/>
         <source>Outdated version</source>
-        <translation>Phiên bản đã quá cũ</translation>
+        <translation>Phiên bản đã cũ</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="152"/>
@@ -577,7 +577,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="160"/>
         <source>URL</source>
-        <translation>Website</translation>
+        <translation>Trang chủ</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="164"/>
@@ -742,7 +742,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="292"/>
         <source> (outdated installed version is %1)</source>
-        <translation>(phiên bản đã hết hạn là %1)</translation>
+        <translation>(phiên bản đã cũ là %1)</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="296"/>
@@ -762,12 +762,12 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="308"/>
         <source>There is one outdated package in your system:</source>
-        <translation>Hệ thống của bạn hiện chỉ có một gói đã quá cũ:</translation>
+        <translation>Hệ thống của bạn hiện có một gói đã cũ:</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="312"/>
         <source>There are %1 outdated packages in your system:</source>
-        <translation>Hệ thống của bạn hiện có %1 gói đã quá cũ :</translation>
+        <translation>Hệ thống của bạn hiện có %1 gói đã cũ :</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="316"/>
@@ -787,7 +787,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="328"/>
         <source>%1 outdated</source>
-        <translation>%1 đã quá cũ</translation>
+        <translation>%1 đã cũ</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="332"/>
@@ -852,7 +852,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="384"/>
         <source>Command finished OK!</source>
-        <translation>Lệnh kết thúc THÀNH CÔNG!</translation>
+        <translation>ĐÃ HOÀN THÀNH!</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="388"/>

@@ -44,7 +44,7 @@ QString OctopiTabInfo::formatTabInfo(const PackageRepository::PackageData& packa
   PackageInfoData pid;
 
   if (package.repository != StrConstants::getForeignRepositoryName() &&
-      package.installed() == false) {
+      (package.installed() == false || package.outdated() == true)) {
     pid = Package::getInformation(package.name);
   }
   else
