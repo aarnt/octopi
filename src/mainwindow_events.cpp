@@ -249,6 +249,8 @@ void MainWindow::keyPressEvent(QKeyEvent* ke)
  */
 void MainWindow::keyReleaseEvent(QKeyEvent *ke)
 {  
+//If we are using Qt5 libs, this method is native !
+#if QT_VERSION < 0x050000
   static int i=0;
   static int k=-9999; //last key pressed
   static int k_count=0;
@@ -319,3 +321,9 @@ void MainWindow::keyReleaseEvent(QKeyEvent *ke)
 
   else ke->ignore();
 }
+#else
+  QModelIndex mi = ui->tvPackages->currentIndex();
+  ui->tvPackages->selectionModel()->setCurrentIndex(mi, QItemSelectionModel::SelectCurrent);
+  ui->tvPackages->setCurrentIndex(mi);
+}
+#endif

@@ -56,7 +56,7 @@
         <location filename="Projects/octopi/ui/mainwindow.ui" line="220"/>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="223"/>
         <source>About</source>
-        <translation>Tocante</translation>
+        <translation>Tocante a</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="237"/>
