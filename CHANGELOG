@@ -2,6 +2,8 @@
   Huge refactorings in model/view that brings consistent memory and 
 	speed improvements - a single model and a central data storage (thanks to 
 	Thomas Binkau - tbinkau).
+  BugFix: The transparent octopi notifier icon no longer shows a white bar in the 
+	eyes (thanks to Ankde Boersma) .
   BugFix: Fixed a jump bug when key-navigating in pkg list with Qt5 octopi.
   BugFix: When a pkg is outdated, show all available information.
   BugFix: Show warning if user do not have kdesu/gksu in sysupgrade/install local pkgs.

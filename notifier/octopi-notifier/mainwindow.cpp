@@ -38,9 +38,11 @@ void MainWindow::initSystemTrayIcon()
   m_systemTrayIcon->setObjectName("systemTrayIcon");
 
   m_icon = IconHelper::getIconOctopiTransparent();
-  m_systemTrayIcon->setIcon(m_icon);
+  m_systemTrayIcon->setIcon(m_icon); 
   setWindowIcon(m_icon);
   m_systemTrayIcon->show();
+  m_systemTrayIcon->setToolTip(StrConstants::getSyncDatabases());
+  qApp->processEvents();
 
   m_actionExit = new QAction(IconHelper::getIconExit(), tr("Exit"), this);
   connect(m_actionExit, SIGNAL(triggered()), this, SLOT(exitNotifier()));
@@ -319,6 +321,9 @@ void MainWindow::pacmanHelperTimerTimeout()
 
   m_icon = IconHelper::getIconOctopiTransparent();
   m_systemTrayIcon->setIcon(m_icon);
+  m_systemTrayIcon->setToolTip(StrConstants::getSyncDatabases());
+  qApp->processEvents();
+
   m_systemTrayIconMenu->close();
   m_systemTrayIcon->setContextMenu(0);
 
