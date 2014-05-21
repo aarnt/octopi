@@ -675,8 +675,6 @@ void MainWindow::doMirrorCheck()
   clearTabOutput();
   writeToTabOutput("<b>" + StrConstants::getSyncMirror() + "</b><br><br>");
 
-  //QObject::connect(m_unixCommand, SIGNAL( started() ), this, SLOT( actionsProcessStarted()));
-
   QObject::connect(m_unixCommand, SIGNAL( readyReadStandardError()),
                    this, SLOT( actionsProcessReadOutputErrorMirrorCheck()));
 
@@ -698,7 +696,6 @@ void MainWindow::doSyncDatabase()
 
   m_commandExecuting = ectn_SYNC_DATABASE;
   disableTransactionActions();
-
   m_unixCommand = new UnixCommand(this);
 
   QObject::connect(m_unixCommand, SIGNAL( started() ), this, SLOT( actionsProcessStarted()));
@@ -709,12 +706,19 @@ void MainWindow::doSyncDatabase()
   QObject::connect(m_unixCommand, SIGNAL( readyReadStandardError() ),
                    this, SLOT( actionsProcessRaisedError() ));
 
-  QString command = "pacman -Syy";
+  QString command;
 
+  if (UnixCommand::isRootRunning())
+    command = "pacman -Sy";
+  else
+    command = "pacman -Syy";
+
+/*
   m_lastCommandList.clear();
   m_lastCommandList.append("pacman -Syy;");
   m_lastCommandList.append("echo -e;");
   m_lastCommandList.append("read -n1 -p \"" + StrConstants::getPressAnyKey() + "\"");
+*/
 
   m_unixCommand->executeCommand(command);
 }
