@@ -326,7 +326,6 @@ void MainWindow::pacmanHelperTimerTimeout()
 
   m_systemTrayIconMenu->close();
   m_systemTrayIcon->setContextMenu(0);
-
   m_commandExecuting = ectn_SYNC_DATABASE;
   m_pacmanHelperClient->syncdb();
 }
@@ -397,7 +396,7 @@ void MainWindow::sendNotification(const QString &msg)
   QString processToExec("notify-send");
   if (UnixCommand::hasTheExecutable(processToExec))
   {
-    processToExec += " -i /usr/share/icons/octopi_red.png -t 30000 \"" + StrConstants::getApplicationName() +
+    processToExec += " -i /usr/share/icons/octopi_red.png -t 8000 \"" + StrConstants::getApplicationName() +
         "\"  \"" + msg + "\"";
     QProcess::startDetached(processToExec);
   }
