@@ -713,13 +713,6 @@ void MainWindow::doSyncDatabase()
   else
     command = "pacman -Syy";
 
-/*
-  m_lastCommandList.clear();
-  m_lastCommandList.append("pacman -Syy;");
-  m_lastCommandList.append("echo -e;");
-  m_lastCommandList.append("read -n1 -p \"" + StrConstants::getPressAnyKey() + "\"");
-*/
-
   m_unixCommand->executeCommand(command);
 }
 
@@ -735,7 +728,16 @@ void MainWindow::doYaourtUpgrade()
   }
 
   m_lastCommandList.clear();
-  m_lastCommandList.append(StrConstants::getForeignRepositoryToolName() + " -S " + listOfTargets + ";");
+
+  if (StrConstants::getForeignRepositoryToolName() == "pacaur")
+  {
+    m_lastCommandList.append(StrConstants::getForeignRepositoryToolName() + " -Sa " + listOfTargets + ";");
+  }
+  else if (StrConstants::getForeignRepositoryToolName() == "yaourt")
+  {
+    m_lastCommandList.append(StrConstants::getForeignRepositoryToolName() + " -S " + listOfTargets + ";");
+  }
+
   m_lastCommandList.append("echo -e;");
   m_lastCommandList.append("read -n1 -p \"" + StrConstants::getPressAnyKey() + "\"");
 
