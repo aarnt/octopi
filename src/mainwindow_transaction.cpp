@@ -1630,9 +1630,9 @@ void MainWindow::actionsProcessFinished(int exitCode, QProcess::ExitStatus exitS
     //Did it synchronize any repo? If so, let's refresh some things...
     if (_textInTabOutput(StrConstants::getSyncing()))
     {
-      bool firstGroup = isAllGroupsSelected();
+      bool aurGroup = isYaourtGroupSelected();
 
-      if (firstGroup)
+      if (!aurGroup)
       {
         metaBuildPackageList();        
       }
@@ -1655,9 +1655,9 @@ void MainWindow::actionsProcessFinished(int exitCode, QProcess::ExitStatus exitS
         if (UnixCommand::isAppRunning("octopi-notifier", true) ||
             (_IsSyncingRepoInTabOutput()))
         {
-          bool firstGroup = isAllGroupsSelected();
+          bool aurGroup = isYaourtGroupSelected();
 
-          if (firstGroup)
+          if (!aurGroup)
           {
             metaBuildPackageList();
           }

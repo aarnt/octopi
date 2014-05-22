@@ -1014,6 +1014,12 @@ bool MainWindow::_IsSyncingRepoInTabOutput()
     //We have to find at least two times, as "Synching" string will always be the first text in output
     res = text->find(StrConstants::getSyncing(), QTextDocument::FindBackward | QTextDocument::FindWholeWords);
     res = text->find(StrConstants::getSyncing(), QTextDocument::FindBackward | QTextDocument::FindWholeWords);
+
+    if (!res)
+    {
+      res = text->find("downloading", QTextDocument::FindBackward | QTextDocument::FindWholeWords);
+    }
+
     _positionTextEditCursorAtEnd();
   }
 
