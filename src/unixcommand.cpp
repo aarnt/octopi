@@ -614,9 +614,19 @@ bool UnixCommand::isTextFile(const QString& fileName)
  * Opens a root terminal
  */
 void UnixCommand::openRootTerminal(){
-  if (UnixCommand::getLinuxDistro() == ectn_MOOOSLINUX && UnixCommand::hasTheExecutable(ctn_RXVT_TERMINAL)){
-    QString cmd = WMHelper::getSUCommand() + " \"" + ctn_RXVT_TERMINAL +
+  if (UnixCommand::getLinuxDistro() == ectn_MOOOSLINUX && UnixCommand::hasTheExecutable(ctn_RXVT_TERMINAL))
+  {
+    QString cmd;
+    if (UnixCommand::isAppRunning("urxvtd"))
+    {
+      cmd = WMHelper::getSUCommand() + " \" urxvtc -name Urxvt -title Urxvt \"";
+    }
+    else
+    {
+      cmd = WMHelper::getSUCommand() + " \"" + ctn_RXVT_TERMINAL +
         " -name Urxvt -title Urxvt \"";
+    }
+
     m_process->startDetached(cmd);
   }
   else if(WMHelper::isXFCERunning() && UnixCommand::hasTheExecutable(ctn_XFCE_TERMINAL)){
@@ -687,8 +697,19 @@ void UnixCommand::runCommandInTerminal(const QStringList& commandList){
 
   QString suCommand = WMHelper::getSUCommand();
 
-  if (UnixCommand::getLinuxDistro() == ectn_MOOOSLINUX && UnixCommand::hasTheExecutable(ctn_RXVT_TERMINAL)){
-    QString cmd = suCommand + " \"" + ctn_RXVT_TERMINAL + " -title pacman -name pacman -e bash -c " + ftemp->fileName();
+  if (UnixCommand::getLinuxDistro() == ectn_MOOOSLINUX && UnixCommand::hasTheExecutable(ctn_RXVT_TERMINAL))
+  {
+    QString cmd;
+
+    if (UnixCommand::isAppRunning("urxvtd"))
+    {
+      cmd = suCommand + " \" urxvtc -title pacman -name pacman -e bash -c " + ftemp->fileName();
+    }
+    else
+    {
+      cmd = suCommand + " \"" + ctn_RXVT_TERMINAL + " -title pacman -name pacman -e bash -c " + ftemp->fileName();
+    }
+
     m_process->start(cmd);
   }
   else if(WMHelper::isXFCERunning() && UnixCommand::hasTheExecutable(ctn_XFCE_TERMINAL)){
@@ -760,8 +781,16 @@ void UnixCommand::runCommandInTerminalAsNormalUser(const QStringList &commandLis
 
   QString cmd;
 
-  if (UnixCommand::getLinuxDistro() == ectn_MOOOSLINUX && UnixCommand::hasTheExecutable(ctn_RXVT_TERMINAL)){
-    cmd = ctn_RXVT_TERMINAL + " -name Urxvt -title Urxvt -e " + ftemp->fileName();
+  if (UnixCommand::getLinuxDistro() == ectn_MOOOSLINUX && UnixCommand::hasTheExecutable(ctn_RXVT_TERMINAL))
+  {
+    if (UnixCommand::isAppRunning("urxvtd"))
+    {
+      cmd = "urxvtc -name Urxvt -title Urxvt -e " + ftemp->fileName();
+    }
+    else
+    {
+      cmd = ctn_RXVT_TERMINAL + " -name Urxvt -title Urxvt -e " + ftemp->fileName();
+    }
   }
   else if(WMHelper::isXFCERunning() && UnixCommand::hasTheExecutable(ctn_XFCE_TERMINAL)){
     cmd = ctn_XFCE_TERMINAL + " -e " + ftemp->fileName();
