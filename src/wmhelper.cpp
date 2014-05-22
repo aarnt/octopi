@@ -560,8 +560,13 @@ void WMHelper::openTerminal(const QString& dirName){
       p->startDetached( ctn_LXDE_TERMINAL, s );
     }
     else if (UnixCommand::hasTheExecutable(ctn_RXVT_TERMINAL)){
-      QString cmd = ctn_RXVT_TERMINAL +
-          " -name Urxvt -title Urxvt -cd " + dirName;
+      QString cmd;
+
+      if (UnixCommand::isAppRunning("urxvtd"))
+        cmd = "urxvtc -name Urxvt -title Urxvt -cd " + dirName;
+      else
+        cmd = ctn_RXVT_TERMINAL + " -name Urxvt -title Urxvt -cd " + dirName;
+
       p->startDetached( cmd );
     }
     else if (UnixCommand::hasTheExecutable(ctn_XTERM)){
