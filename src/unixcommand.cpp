@@ -170,7 +170,6 @@ QByteArray UnixCommand::performQuery(const QString &args)
   pacman.start("pacman " + args);
   pacman.waitForFinished();
   result = pacman.readAllStandardOutput();
-
   pacman.close();
   return result;
 }
@@ -616,16 +615,8 @@ bool UnixCommand::isTextFile(const QString& fileName)
 void UnixCommand::openRootTerminal(){
   if (UnixCommand::getLinuxDistro() == ectn_MOOOSLINUX && UnixCommand::hasTheExecutable(ctn_RXVT_TERMINAL))
   {
-    QString cmd;
-    if (UnixCommand::isAppRunning("urxvtd"))
-    {
-      cmd = WMHelper::getSUCommand() + " \" urxvtc -name Urxvt -title Urxvt \"";
-    }
-    else
-    {
-      cmd = WMHelper::getSUCommand() + " \"" + ctn_RXVT_TERMINAL +
+    QString cmd = WMHelper::getSUCommand() + " \"" + ctn_RXVT_TERMINAL +
         " -name Urxvt -title Urxvt \"";
-    }
 
     m_process->startDetached(cmd);
   }
@@ -699,16 +690,8 @@ void UnixCommand::runCommandInTerminal(const QStringList& commandList){
 
   if (UnixCommand::getLinuxDistro() == ectn_MOOOSLINUX && UnixCommand::hasTheExecutable(ctn_RXVT_TERMINAL))
   {
-    QString cmd;
-
-    if (UnixCommand::isAppRunning("urxvtd"))
-    {
-      cmd = suCommand + " \" urxvtc -title pacman -name pacman -e bash -c " + ftemp->fileName();
-    }
-    else
-    {
-      cmd = suCommand + " \"" + ctn_RXVT_TERMINAL + " -title pacman -name pacman -e bash -c " + ftemp->fileName();
-    }
+    QString cmd =
+        suCommand + " \"" + ctn_RXVT_TERMINAL + " -title pacman -name pacman -e bash -c " + ftemp->fileName() + "\"";
 
     m_process->start(cmd);
   }
