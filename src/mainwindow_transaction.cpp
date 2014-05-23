@@ -729,7 +729,7 @@ void MainWindow::doYaourtUpgrade()
     auxPkg = pkg;
     auxPkg.remove("[1;39m");
     auxPkg.remove("[0m");
-
+    auxPkg.remove("");
     listOfTargets += auxPkg + " ";
   }
 
