@@ -1573,10 +1573,6 @@ void MainWindow::actionsProcessStarted()
 
   //First we output the name of action we are starting to execute!
 
-  /*if (m_commandExecuting == ectn_MIRROR_CHECK)
-  {
-    writeToTabOutput("<b>" + StrConstants::getSyncMirror() + "</b><br><br>");
-  }*/
   if (m_commandExecuting == ectn_SYNC_DATABASE)
   {
     writeToTabOutput("<b>" + StrConstants::getSyncDatabases() + "</b><br><br>");

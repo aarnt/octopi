@@ -444,7 +444,6 @@ void MainWindow::execContextMenuPackages(QPoint point)
  *   connect(ui->actionRemove, SIGNAL(triggered()), this, SLOT(insertIntoRemovePackage()));
  *   connect(ui->actionRemoveGroup, SIGNAL(triggered()), this, SLOT(insertGroupIntoRemovePackage()));
  */
-
   const QItemSelectionModel*const selectionModel = ui->tvPackages->selectionModel();
   if (selectionModel != NULL && selectionModel->selectedRows().count() > 0)
   {
@@ -1017,6 +1016,7 @@ bool MainWindow::_IsSyncingRepoInTabOutput()
 
     if (!res)
     {
+      _positionTextEditCursorAtEnd();
       res = text->find("downloading", QTextDocument::FindBackward | QTextDocument::FindWholeWords);
     }
 
