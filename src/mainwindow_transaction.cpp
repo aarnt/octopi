@@ -722,9 +722,15 @@ void MainWindow::doSyncDatabase()
 void MainWindow::doYaourtUpgrade()
 {
   QString listOfTargets;
+  QString auxPkg;
+
   foreach(QString pkg, *m_outdatedYaourtPackageList)
   {
-    listOfTargets += pkg + " ";
+    auxPkg = pkg;
+    auxPkg.remove("[1;39m");
+    auxPkg.remove("[0m");
+
+    listOfTargets += auxPkg + " ";
   }
 
   m_lastCommandList.clear();
