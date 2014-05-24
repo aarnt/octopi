@@ -620,6 +620,11 @@ void UnixCommand::openRootTerminal(){
 
     m_process->startDetached(cmd);
   }
+  else if (UnixCommand::getLinuxDistro() == ectn_ANTERGOS && UnixCommand::hasTheExecutable(ctn_XTERM)){
+    QString cmd = WMHelper::getSUCommand() + " \"" + ctn_XTERM +
+        " -fn \"*-fixed-*-*-*-18-*\" -fg White -bg Black -title xterm \"";
+    m_process->startDetached(cmd);
+  }
   else if(WMHelper::isXFCERunning() && UnixCommand::hasTheExecutable(ctn_XFCE_TERMINAL)){
     QString cmd = WMHelper::getSUCommand() + " \"" + ctn_XFCE_TERMINAL + "\"";
     m_process->startDetached(cmd);
