@@ -496,7 +496,7 @@ void WMHelper::openDirectory( const QString& dirName ){
       s << dir;
       p->startDetached( ctn_CINNAMON_FILE_MANAGER, s );
     }
-    else if (UnixCommand::hasTheExecutable(ctn_ANTERGOS_FILE_MANAGER))
+    else if (UnixCommand::getLinuxDistro() == ectn_ANTERGOS && UnixCommand::hasTheExecutable(ctn_ANTERGOS_FILE_MANAGER))
     {
       s << dir;
       p->startDetached( ctn_ANTERGOS_FILE_MANAGER, s );
@@ -553,7 +553,7 @@ void WMHelper::openTerminal(const QString& dirName){
       s << "--working-directory=" + dirName;
       p->startDetached( ctn_MATE_TERMINAL, s );
     }
-    else if (UnixCommand::hasTheExecutable(ctn_CINNAMON_TERMINAL)){
+    else if (isCinnamonRunning() && UnixCommand::hasTheExecutable(ctn_CINNAMON_TERMINAL)){
       s << "--working-directory=" + dirName;
       p->startDetached( ctn_CINNAMON_TERMINAL, s );
     }

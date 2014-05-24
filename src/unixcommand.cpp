@@ -651,7 +651,7 @@ void UnixCommand::openRootTerminal(){
     QString cmd = WMHelper::getSUCommand() + " \"" + ctn_MATE_TERMINAL + "\"";
     m_process->startDetached(cmd);
   }
-  else if (UnixCommand::hasTheExecutable(ctn_CINNAMON_TERMINAL)){
+  else if (WMHelper::isCinnamonRunning() && UnixCommand::hasTheExecutable(ctn_CINNAMON_TERMINAL)){
     QString cmd = WMHelper::getSUCommand() + " \"" + ctn_CINNAMON_TERMINAL + "\"";
     m_process->startDetached(cmd);
   }
