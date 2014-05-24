@@ -403,7 +403,7 @@ void WMHelper::editFile( const QString& fileName ){
       QString p = ctn_MATE_EDITOR + " " + fileName;
       process->startDetached(getSUCommand() + p);
     }
-    else if (isCinnamonRunning() && UnixCommand::hasTheExecutable(ctn_CINNAMON_EDITOR)){
+    else if (UnixCommand::hasTheExecutable(ctn_CINNAMON_EDITOR)){
       QString p = ctn_CINNAMON_EDITOR + " " + fileName;
       process->startDetached(getSUCommand() + p);
     }
@@ -445,12 +445,7 @@ void WMHelper::openDirectory( const QString& dirName ){
   {
     LinuxDistro distro = UnixCommand::getLinuxDistro();
 
-    if (distro == ectn_ANTERGOS && UnixCommand::hasTheExecutable(ctn_ANTERGOS_FILE_MANAGER))
-    {
-      s << dir;
-      p->startDetached( ctn_ANTERGOS_FILE_MANAGER, s );
-    }
-    else if (distro == ectn_ARCHBANGLINUX && UnixCommand::hasTheExecutable(ctn_ARCHBANG_FILE_MANAGER))
+    if (distro == ectn_ARCHBANGLINUX && UnixCommand::hasTheExecutable(ctn_ARCHBANG_FILE_MANAGER))
     {
       s << dir;
       p->startDetached( ctn_ARCHBANG_FILE_MANAGER, s );
@@ -500,6 +495,11 @@ void WMHelper::openDirectory( const QString& dirName ){
     {
       s << dir;
       p->startDetached( ctn_CINNAMON_FILE_MANAGER, s );
+    }
+    else if (UnixCommand::hasTheExecutable(ctn_ANTERGOS_FILE_MANAGER))
+    {
+      s << dir;
+      p->startDetached( ctn_ANTERGOS_FILE_MANAGER, s );
     }
     else if (UnixCommand::hasTheExecutable(ctn_XFCE_FILE_MANAGER))
     {
@@ -553,7 +553,7 @@ void WMHelper::openTerminal(const QString& dirName){
       s << "--working-directory=" + dirName;
       p->startDetached( ctn_MATE_TERMINAL, s );
     }
-    else if (isCinnamonRunning() && UnixCommand::hasTheExecutable(ctn_CINNAMON_TERMINAL)){
+    else if (UnixCommand::hasTheExecutable(ctn_CINNAMON_TERMINAL)){
       s << "--working-directory=" + dirName;
       p->startDetached( ctn_CINNAMON_TERMINAL, s );
     }
