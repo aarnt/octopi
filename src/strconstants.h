@@ -112,6 +112,10 @@ public:
     return QLatin1String( "aur/" );
   }
 
+  static QString getAntergosNews(){
+    return QObject::tr("Antergos news");
+  }
+
   static QString getArchBSDNews(){
     return QObject::tr("ArchBSD news");
   }

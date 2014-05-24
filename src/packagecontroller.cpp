@@ -103,6 +103,7 @@ QList<QModelIndex> * PackageController::findFileEx( const QString& name, const Q
  */
 QString PackageController::retrieveDistroNews(bool searchForLatestNews)
 {
+  const QString ctn_ANTERGOS_RSS = "http://antergos.com/category/news/feed/";
   const QString ctn_ARCHBSD_RSS = "http://archbsd.net/feeds/news/";
   const QString ctn_ARCH_LINUX_RSS = "https://www.archlinux.org/feeds/news/";
   const QString ctn_CHAKRA_RSS = "http://chakraos.org/news/index.php?/feeds/index.rss2";
@@ -129,7 +130,11 @@ QString PackageController::retrieveDistroNews(bool searchForLatestNews)
   {
     QString curlCommand = "curl %1 -o %2";
 
-    if (distro == ectn_ARCHBSD)
+    if (distro == ectn_ANTERGOS)
+    {
+      curlCommand = curlCommand.arg(ctn_ANTERGOS_RSS).arg(tmpRssPath);
+    }
+    else if (distro == ectn_ARCHBSD)
     {
       curlCommand = curlCommand.arg(ctn_ARCHBSD_RSS).arg(tmpRssPath);
     }
@@ -237,7 +242,11 @@ QString PackageController::parseDistroNews()
   QString html;
   LinuxDistro distro = UnixCommand::getLinuxDistro();
 
-  if (distro == ectn_ARCHBSD)
+  if (distro == ectn_ANTERGOS)
+  {
+    html = "<p align=\"center\"><h2>" + StrConstants::getAntergosNews() + "</h2></p><ul>";
+  }
+  else if (distro == ectn_ARCHBSD)
   {
     html = "<p align=\"center\"><h2>" + StrConstants::getArchBSDNews() + "</h2></p><ul>";
   }

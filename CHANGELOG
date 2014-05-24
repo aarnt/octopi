@@ -1,4 +1,4 @@
-0.4.0 (dev)
+0.4.0
   Huge refactorings in model/view that brings consistent memory and 
 	speed improvements - a single model and a central data storage (thanks to 
 	Thomas Binkau - tbinkau).
@@ -28,6 +28,7 @@
   Added support to ArchBSD news (thanks to bkc_).
   Added support to Netrunner news.
   Added support to mooOS distro (thanks to pdq).
+  Added support to Antergos distro (thanks to yoyo308).
   Added popularity column (number of votes) in AUR/CCR mode (thanks to 
 	tbinkau).
   Added more filter options in View menu.

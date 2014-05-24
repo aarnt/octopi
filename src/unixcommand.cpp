@@ -1050,7 +1050,11 @@ LinuxDistro UnixCommand::getLinuxDistro()
 
       QString contents = file.readAll();
 
-      if (contents.contains(QRegExp("ArchBang")))
+      if (contents.contains(QRegExp("Antergos")))
+      {
+        ret = ectn_ANTERGOS;
+      }
+      else if (contents.contains(QRegExp("ArchBang")))
       {
         ret = ectn_ARCHBANGLINUX;
       }
@@ -1074,13 +1078,13 @@ LinuxDistro UnixCommand::getLinuxDistro()
       {
         ret = ectn_MANJAROLINUX;
       }
-      else if (contents.contains(QRegExp("Netrunner")))
-      {
-        ret = ectn_NETRUNNER;
-      }
       else if (contents.contains(QRegExp("mooOS")))
       {
         ret = ectn_MOOOSLINUX;
+      }
+      else if (contents.contains(QRegExp("Netrunner")))
+      {
+        ret = ectn_NETRUNNER;
       }
       else
       {

@@ -444,7 +444,13 @@ void WMHelper::openDirectory( const QString& dirName ){
   if (f.exists())
   {
     LinuxDistro distro = UnixCommand::getLinuxDistro();
-    if (distro == ectn_ARCHBANGLINUX && UnixCommand::hasTheExecutable(ctn_ARCHBANG_FILE_MANAGER))
+
+    if (distro == ectn_ANTERGOS && UnixCommand::hasTheExecutable(ctn_ANTERGOS_FILE_MANAGER))
+    {
+      s << dir;
+      p->startDetached( ctn_ANTERGOS_FILE_MANAGER, s );
+    }
+    else if (distro == ectn_ARCHBANGLINUX && UnixCommand::hasTheExecutable(ctn_ARCHBANG_FILE_MANAGER))
     {
       s << dir;
       p->startDetached( ctn_ARCHBANG_FILE_MANAGER, s );

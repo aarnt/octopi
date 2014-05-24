@@ -43,6 +43,8 @@ const QString ctn_TDE_TERMINAL("konsole");
 const QString ctn_GKSU_1("/usr/libexec/gksu");
 const QString ctn_GKSU_2("gksu");
 
+const QString ctn_ANTERGOS_FILE_MANAGER("nautilus");
+
 const QString ctn_ARCHBANG_EDITOR("medit");
 const QString ctn_ARCHBANG_FILE_MANAGER("spacefm");
 
