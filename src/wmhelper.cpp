@@ -371,6 +371,10 @@ void WMHelper::openFile(const QString& fileName){
     s << fileToOpen;
     p->startDetached( ctn_CINNAMON_EDITOR, s );
   }
+  else if (isLXQTRunning() && UnixCommand::hasTheExecutable(ctn_LXQT_FILE_MANAGER)){
+    s << fileToOpen;
+    p->startDetached( ctn_LXQT_FILE_MANAGER, s );
+  }
   else if (UnixCommand::hasTheExecutable(ctn_XFCE_FILE_MANAGER)){
     s << fileToOpen;
     p->startDetached( ctn_XFCE_FILE_MANAGER, s );
@@ -423,6 +427,10 @@ void WMHelper::editFile( const QString& fileName ){
     }
     else if (isMATERunning() && UnixCommand::hasTheExecutable(ctn_MATE_EDITOR)){
       QString p = ctn_MATE_EDITOR + " " + fileName;
+      process->startDetached(getSUCommand() + p);
+    }
+    else if (isLXQTRunning() && UnixCommand::hasTheExecutable(ctn_LXQT_EDITOR)){
+      QString p = ctn_LXQT_EDITOR + " " + fileName;
       process->startDetached(getSUCommand() + p);
     }
     else if (UnixCommand::hasTheExecutable(ctn_CINNAMON_EDITOR)){

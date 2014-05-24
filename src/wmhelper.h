@@ -65,6 +65,7 @@ const QString ctn_LXDE_FILE_MANAGER("pcmanfm");
 const QString ctn_LXQT_DESKTOP("lxqt-session");
 const QString ctn_LXQT_TERMINAL("qterminal");
 const QString ctn_LXQT_FILE_MANAGER("pcmanfm-qt");
+const QString ctn_LXQT_EDITOR("juffed");
 
 const QString ctn_MATE_DESKTOP("mate-session");
 const QString ctn_MATE_EDITOR("mate-open");
