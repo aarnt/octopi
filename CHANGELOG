@@ -23,8 +23,9 @@
   BugFix: Fixed CCR (Chakra) package installation/removal (thanks to dmnmsc).
   BugFix: Disable group widget while searching for AUR packages.
   Switched to "pacman -Syy" command when synching. It's safer.
-  Added support for pacaur tool.
+  Added support for Pacaur tool.
   Added support to kcp in KaOS (thanks to Cellix).
+  Added support to LxQt DE.
   Added support to ArchBSD news (thanks to bkc_).
   Added support to Netrunner news.
   Added support to mooOS distro (thanks to pdq).

@@ -165,7 +165,7 @@ public:
       return QIcon::fromTheme("document-open-folder", QIcon(":/resources/images/folder.png"));
     else
     {
-      if (WMHelper::isKDERunning() || WMHelper::isRazorQtRunning())
+      if (WMHelper::isKDERunning() || WMHelper::isRazorQtRunning() || WMHelper::isLXQTRunning())
       {
         return QIcon(":/resources/images/folder.png");
       }

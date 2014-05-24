@@ -115,7 +115,7 @@ int main(int argc, char *argv[])
   if (!argList->getSwitch("-style"))
   {
     if (UnixCommand::getLinuxDistro() == ectn_MANJAROLINUX &&
-        (!WMHelper::isKDERunning() && (!WMHelper::isRazorQtRunning())))
+        (!WMHelper::isKDERunning() && (!WMHelper::isRazorQtRunning()) && (!WMHelper::isLXQTRunning())))
     {
       app.setStyle(new QGtkStyle());
     }

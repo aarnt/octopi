@@ -131,6 +131,28 @@ bool WMHelper::isLXDERunning(){
 }
 
 /*
+ * Checks if LXQT is running
+ */
+bool WMHelper::isLXQTRunning()
+{
+  QStringList slParam;
+  QProcess proc;
+  slParam << "-C";
+  slParam << ctn_LXQT_DESKTOP;
+
+  proc.start("ps", slParam);
+  proc.waitForStarted();
+  proc.waitForFinished();
+  QString out = proc.readAll();
+  proc.close();
+
+  if (out.count(ctn_LXQT_DESKTOP)>0)
+    return true;
+  else
+    return false;
+}
+
+/*
  * Checks if OpenBox is running
  */
 bool WMHelper::isOPENBOXRunning(){
@@ -501,6 +523,11 @@ void WMHelper::openDirectory( const QString& dirName ){
       s << dir;
       p->startDetached( ctn_CINNAMON_FILE_MANAGER, s );
     }
+    else if (isLXQTRunning() && UnixCommand::hasTheExecutable(ctn_LXQT_FILE_MANAGER))
+    {
+      s << dir;
+      p->startDetached( ctn_LXQT_FILE_MANAGER, s );
+    }
     else if (UnixCommand::hasTheExecutable(ctn_XFCE_FILE_MANAGER))
     {
       s << dir;
@@ -556,6 +583,11 @@ void WMHelper::openTerminal(const QString& dirName){
     else if (isCinnamonRunning() && UnixCommand::hasTheExecutable(ctn_CINNAMON_TERMINAL)){
       s << "--working-directory=" + dirName;
       p->startDetached( ctn_CINNAMON_TERMINAL, s );
+    }
+    else if (isLXQTRunning() && UnixCommand::hasTheExecutable(ctn_LXQT_TERMINAL)){
+      s << "--workdir"  ;
+      s << dirName;
+      p->startDetached( ctn_LXQT_TERMINAL, s );
     }
     else if (UnixCommand::hasTheExecutable(ctn_XFCE_TERMINAL)){
       s << "--working-directory=" + dirName;

@@ -89,7 +89,7 @@ void MainWindow::runOctopi(ExecOpt execOptions)
 {
   if (execOptions == ectn_SYSUPGRADE_NOCONFIRM_EXEC_OPT)
   {
-    if (!WMHelper::isKDERunning() && (!WMHelper::isRazorQtRunning()))
+    if (!WMHelper::isKDERunning() && (!WMHelper::isRazorQtRunning()) && (!WMHelper::isLXQTRunning()))
     {
       QProcess::startDetached("octopi -sysupgrade-noconfirm -style gtk");
     }
@@ -106,7 +106,7 @@ void MainWindow::runOctopi(ExecOpt execOptions)
   else if (execOptions == ectn_SYSUPGRADE_EXEC_OPT &&
       UnixCommand::isAppRunning("octopi", true) && m_outdatedPackageList->count() > 0)
   {
-    if (!WMHelper::isKDERunning() && (!WMHelper::isRazorQtRunning()))
+    if (!WMHelper::isKDERunning() && (!WMHelper::isRazorQtRunning()) && (!WMHelper::isLXQTRunning()))
     {
       QProcess::startDetached("octopi -sysupgrade -style gtk");
     }
@@ -117,7 +117,7 @@ void MainWindow::runOctopi(ExecOpt execOptions)
   }
   else if (execOptions == ectn_NORMAL_EXEC_OPT)
   {
-    if (!WMHelper::isKDERunning() && (!WMHelper::isRazorQtRunning()))
+    if (!WMHelper::isKDERunning() && (!WMHelper::isRazorQtRunning()) && (!WMHelper::isLXQTRunning()))
     {
       QProcess::startDetached("octopi -style gtk");
     }
