@@ -25,7 +25,7 @@
   Switched to "pacman -Syy" command when synching. It's safer.
   Added support for Pacaur tool.
   Added support to kcp in KaOS (thanks to Cellix).
-  Added support to LxQt DE.
+  Added support to LXQt DE.
   Added support to ArchBSD news (thanks to bkc_).
   Added support to Netrunner news.
   Added support to mooOS distro (thanks to pdq).
