@@ -738,6 +738,10 @@ void UnixCommand::runCommandInTerminal(const QStringList& commandList){
     QString cmd = suCommand + " \"" + ctn_MATE_TERMINAL + " -e \'bash -c " + ftemp->fileName() + "'\"";
     m_process->start(cmd);
   }
+  else if (WMHelper::isLXQTRunning() && UnixCommand::hasTheExecutable(ctn_LXQT_TERMINAL)){
+    QString cmd = suCommand + " \"" + ctn_LXQT_TERMINAL + " -e \'bash -c " + ftemp->fileName() + "'\"";
+    m_process->start(cmd);
+  }
   else if (UnixCommand::hasTheExecutable(ctn_XFCE_TERMINAL)){
     QString cmd = suCommand + " \"" + ctn_XFCE_TERMINAL + " -e \'bash -c " + ftemp->fileName() + "'\"";
     m_process->start(cmd);
@@ -803,6 +807,9 @@ void UnixCommand::runCommandInTerminalAsNormalUser(const QStringList &commandLis
   }
   else if (WMHelper::isMATERunning() && UnixCommand::hasTheExecutable(ctn_MATE_TERMINAL)){
     cmd = ctn_MATE_TERMINAL + " -e " + ftemp->fileName();
+  }
+  else if (WMHelper::isLXQTRunning() && UnixCommand::hasTheExecutable(ctn_LXQT_TERMINAL)){
+    cmd = ctn_LXQT_TERMINAL + " -e " + ftemp->fileName();
   }
   else if (UnixCommand::hasTheExecutable(ctn_XFCE_TERMINAL)){
     cmd = ctn_XFCE_TERMINAL + " -e " + ftemp->fileName();

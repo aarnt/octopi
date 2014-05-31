@@ -1,3 +1,6 @@
+0.4.1 (dev)
+  BugFix: Some changes in LXQt support.
+
 0.4.0
   Huge refactorings in model/view that brings consistent memory and 
 	speed improvements - a single model and a central data storage (thanks to 
