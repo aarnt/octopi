@@ -1480,7 +1480,6 @@ void MainWindow::toggleTransactionActions(const bool value)
   ui->actionInstall->setEnabled(value);
   ui->actionInstallGroup->setEnabled(value);
   ui->actionInstallYaourt->setEnabled(value);
-
   m_actionInstallPacmanUpdates->setEnabled(value);
   m_actionInstallYaourtUpdates->setEnabled(value);
 
@@ -1494,6 +1493,7 @@ void MainWindow::toggleTransactionActions(const bool value)
   }
 
   ui->actionSyncPackages->setEnabled(value);
+  ui->actionGetNews->setEnabled(value);
 
   if (value == true && m_outdatedPackageList->count() > 0)
     ui->actionSystemUpgrade->setEnabled(true);
@@ -1509,6 +1509,8 @@ void MainWindow::toggleTransactionActions(const bool value)
 
 void MainWindow::toggleSystemActions(const bool value)
 {
+  if (value == true && m_commandExecuting != ectn_NONE) return;
+
   if(UnixCommand::hasTheExecutable(ctn_MIRROR_CHECK_APP))
   {
     m_actionMirrorCheck->setEnabled(value);
