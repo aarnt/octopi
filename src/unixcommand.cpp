@@ -809,7 +809,7 @@ void UnixCommand::runCommandInTerminalAsNormalUser(const QStringList &commandLis
     cmd = ctn_MATE_TERMINAL + " -e " + ftemp->fileName();
   }
   else if (WMHelper::isLXQTRunning() && UnixCommand::hasTheExecutable(ctn_LXQT_TERMINAL)){
-    cmd = ctn_LXQT_TERMINAL + " -e " + ftemp->fileName();
+    cmd = ctn_LXQT_TERMINAL + " -e bash -c " + ftemp->fileName();
   }
   else if (UnixCommand::hasTheExecutable(ctn_XFCE_TERMINAL)){
     cmd = ctn_XFCE_TERMINAL + " -e " + ftemp->fileName();

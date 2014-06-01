@@ -256,6 +256,8 @@ void MainWindow::preBuildPackageList()
     doMirrorCheck();
     secondTime=true;
   }
+
+  toggleSystemActions(true);
 }
 
 /*
@@ -267,6 +269,8 @@ void MainWindow::preBuildPackagesFromGroupList()
   GroupMemberPair result = g_fwPacmanGroup.result();
   m_listOfPackagesFromGroup.reset(result.second);
   buildPackagesFromGroupList(result.first);
+
+  toggleSystemActions(true);
 }
 
 /*
@@ -280,7 +284,7 @@ void MainWindow::metaBuildPackageList()
 
   if (ui->twGroups->topLevelItemCount() == 0 || isAllGroupsSelected())
   {        
-    toggleSystemActions(true);
+    toggleSystemActions(false);
     connect(m_leFilterPackage, SIGNAL(textChanged(QString)), this, SLOT(reapplyPackageFilter()));
     reapplyPackageFilter();
     disconnect(&g_fwPacman, SIGNAL(finished()), this, SLOT(preBuildPackageList()));
@@ -324,7 +328,7 @@ void MainWindow::metaBuildPackageList()
   }
   else
   {
-    toggleSystemActions(true);
+    toggleSystemActions(false);
     connect(m_leFilterPackage, SIGNAL(textChanged(QString)), this, SLOT(reapplyPackageFilter()));
     reapplyPackageFilter();
     disconnect(&g_fwPacmanGroup, SIGNAL(finished()), this, SLOT(preBuildPackagesFromGroupList()));

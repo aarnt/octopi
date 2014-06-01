@@ -759,7 +759,7 @@ void MainWindow::doYaourtUpgrade()
 }
 
 /*
- * dpSystemUpgrade shared code ...
+ * doSystemUpgrade shared code ...
  */
 void MainWindow::_prepareSystemUpgrade()
 {
@@ -1516,6 +1516,8 @@ void MainWindow::toggleSystemActions(const bool value)
 
   ui->actionSyncPackages->setEnabled(value);
   ui->actionInstallLocalPackage->setEnabled(value);
+
+  ui->actionGetNews->setEnabled(value);
 
   if (value == true && m_outdatedPackageList->count() > 0)
     ui->actionSystemUpgrade->setEnabled(true);
