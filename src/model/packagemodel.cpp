@@ -30,7 +30,7 @@
  */
 
 PackageModel::PackageModel(const PackageRepository& repo, QObject *parent)
-: QAbstractItemModel(parent), m_packageRepo(repo), m_sortOrder(Qt::AscendingOrder),
+: QAbstractItemModel(parent), m_installedPackagesCount(0), m_packageRepo(repo), m_sortOrder(Qt::AscendingOrder),
   m_sortColumn(1), m_filterPackagesNotInstalled(false), m_filterPackagesNotInThisGroup(""),
   m_filterColumn(-1), m_filterRegExp("", Qt::CaseInsensitive, QRegExp::RegExp),
   m_iconNotInstalled(IconHelper::getIconNonInstalled()), m_iconInstalled(IconHelper::getIconInstalled()),
@@ -178,6 +178,7 @@ void PackageModel::beginResetRepository()
 
 void PackageModel::endResetRepository()
 {
+  m_installedPackagesCount = 0;
   const QList<PackageRepository::PackageData*>& data = m_packageRepo.getPackageList(m_filterPackagesNotInThisGroup);
   m_listOfPackages.reserve(data.size());
 
@@ -190,17 +191,27 @@ void PackageModel::endResetRepository()
 
     if (m_filterRegExp.isEmpty()) {
       m_listOfPackages.push_back(*it);
+      if ((*it)->installed()) m_installedPackagesCount++;
     }
     else {
       switch (m_filterColumn) {
       case ctn_PACKAGE_NAME_COLUMN:
-        if (m_filterRegExp.indexIn((*it)->name) != -1) m_listOfPackages.push_back(*it);
+        if (m_filterRegExp.indexIn((*it)->name) != -1)
+        {
+          m_listOfPackages.push_back(*it);
+          if ((*it)->installed()) m_installedPackagesCount++;
+        }
         break;
       case ctn_PACKAGE_DESCRIPTION_FILTER_NO_COLUMN:
-        if (m_filterRegExp.indexIn((*it)->description) != -1) m_listOfPackages.push_back(*it);
+        if (m_filterRegExp.indexIn((*it)->description) != -1)
+        {
+          m_listOfPackages.push_back(*it);
+          if ((*it)->installed()) m_installedPackagesCount++;
+        }
         break;
       default:
         m_listOfPackages.push_back(*it);
+        if ((*it)->installed()) m_installedPackagesCount++;
       }
     }
   }
@@ -214,6 +225,19 @@ void PackageModel::endResetRepository()
 int PackageModel::getPackageCount() const
 {
   return m_listOfPackages.size();
+}
+
+int PackageModel::getInstalledPackagesCount() const
+{
+  return m_installedPackagesCount;
+}
+
+bool PackageModel::isFiltered() const
+{
+  return (m_filterPackagesInstalled ||
+          m_filterPackagesNotInstalled ||
+          !m_filterPackagesNotInThisGroup.isEmpty() ||
+          !m_filterPackagesNotInThisRepo.isEmpty());
 }
 
 const PackageRepository::PackageData* PackageModel::getData(const QModelIndex& index) const

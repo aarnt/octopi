@@ -64,6 +64,7 @@ MainWindow::MainWindow(QWidget *parent) :
   m_outdatedYaourtPackagesNameVersion = new QHash<QString, QString>();
   m_selectedViewOption = ectn_ALL_PKGS;
   m_selectedRepository = "";
+  m_numberOfInstalledPackages = 0;
   ui->setupUi(this);
 }
 
@@ -1165,6 +1166,23 @@ void MainWindow::tvPackagesSelectionChanged(const QItemSelection&, const QItemSe
         QString::number(m_packageModel->getPackageCount())).
       arg(QString::number(selected));
 
+  QString text;
+  int numberOfInstalledPackages = m_packageModel->getInstalledPackagesCount();
+
+  if(numberOfInstalledPackages > 0)
+  {
+    text = "| " + StrConstants::getNumberInstalledPackages().arg(numberOfInstalledPackages);
+  }
+  else if (m_leFilterPackage->text().isEmpty() && !m_packageModel->isFiltered())
+  {
+    text = "| " + StrConstants::getNumberInstalledPackages().arg(m_numberOfInstalledPackages);
+  }
+  else
+  {
+    text = "| " + StrConstants::getNumberInstalledPackages().arg(0);
+  }
+
+  m_lblTotalCounters->setText(text);
   m_lblSelCounter->setText(newMessage);
 }
 

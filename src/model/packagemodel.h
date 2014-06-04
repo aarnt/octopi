@@ -67,7 +67,10 @@ public:
 
   // Getter
 public:
-  int  getPackageCount() const;
+  int getPackageCount() const;
+  int getInstalledPackagesCount() const;
+  bool isFiltered() const;
+
   const PackageRepository::PackageData* getData(const QModelIndex& index) const;
 
   // Setter
@@ -85,6 +88,7 @@ private:
   void sort();
 
 private:
+  int                                     m_installedPackagesCount;
   bool                                    m_showColumnPopularity;
   const PackageRepository&                m_packageRepo;
   QList<PackageRepository::PackageData*>  m_listOfPackages;             // should be provided sorted by name (by repo)

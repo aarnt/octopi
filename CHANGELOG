@@ -1,6 +1,7 @@
 0.4.1 (dev)
   BugFix: Removed unused Ctrl+N help text.
   BugFix: Some changes in LXQt support.
+  Reworked code to count installed packages (based on filters).
   Leave some actions disabled before building pkg list and mirror-checking.
   Added es_AR translation (thanks to javier).
 

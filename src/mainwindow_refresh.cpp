@@ -650,9 +650,19 @@ void MainWindow::refreshStatusBar()
   ui->statusBar->removeWidget(m_toolButtonPacman);
   ui->statusBar->removeWidget(m_toolButtonYaourt);
 
-  if(m_numberOfInstalledPackages > 0)
+  int numberOfInstalledPackages = m_packageModel->getInstalledPackagesCount();
+
+  if(numberOfInstalledPackages > 0)
+  {
+    text = "| " + StrConstants::getNumberInstalledPackages().arg(numberOfInstalledPackages);
+  }
+  else if (m_leFilterPackage->text().isEmpty() && !m_packageModel->isFiltered())
   {
     text = "| " + StrConstants::getNumberInstalledPackages().arg(m_numberOfInstalledPackages);
+  }
+  else
+  {
+    text = "| " + StrConstants::getNumberInstalledPackages().arg(0);
   }
 
   m_lblTotalCounters->setText(text);
