@@ -30,8 +30,9 @@
  */
 
 PackageModel::PackageModel(const PackageRepository& repo, QObject *parent)
-: QAbstractItemModel(parent), m_installedPackagesCount(0), m_packageRepo(repo), m_sortOrder(Qt::AscendingOrder),
-  m_sortColumn(1), m_filterPackagesNotInstalled(false), m_filterPackagesNotInThisGroup(""),
+: QAbstractItemModel(parent), m_installedPackagesCount(0), m_showColumnPopularity(false), m_packageRepo(repo),
+  m_sortOrder(Qt::AscendingOrder), m_sortColumn(1), m_filterPackagesInstalled(false),
+  m_filterPackagesNotInstalled(false), m_filterPackagesNotInThisGroup(""),
   m_filterColumn(-1), m_filterRegExp("", Qt::CaseInsensitive, QRegExp::RegExp),
   m_iconNotInstalled(IconHelper::getIconNonInstalled()), m_iconInstalled(IconHelper::getIconInstalled()),
   m_iconInstalledUnrequired(IconHelper::getIconUnrequired()),
