@@ -293,7 +293,7 @@ QStringList *Package::getPackageGroups()
   foreach(QString packageTuple, packageTuples)
   {
     packageTuple = packageTuple.trimmed();
-    if (!packagesFromGroup.isEmpty())
+    if (!packageTuple.isEmpty())
     {
       res->append(packageTuple); //We only need the package name!
     }
