@@ -179,7 +179,7 @@ void MainWindow::keyPressEvent(QKeyEvent* ke)
   else if(ke->key() == Qt::Key_C && ke->modifiers() == Qt::ControlModifier)
   {
     QTreeView *tb = ui->twProperties->currentWidget()->findChild<QTreeView*>("tvPkgFileList");
-    if (tb->hasFocus())
+    if (tb && tb->hasFocus())
     {
       QString path = PackageController::showFullPathOfItem(tb->currentIndex());
       QClipboard *clip = qApp->clipboard();
