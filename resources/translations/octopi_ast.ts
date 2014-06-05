@@ -159,7 +159,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="374"/>
         <source>Expand item</source>
-        <translation>Esparder oxetu</translation>
+        <translation>Estenderexar oxetu</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="383"/>
@@ -169,7 +169,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="392"/>
         <source>Expand all items</source>
-        <translation>Esparder tolos oxetos</translation>
+        <translation>Estenderexar tolos oxetos</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="401"/>
@@ -289,7 +289,7 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="88"/>
         <source>A non installed package</source>
-        <translation>Un paquete nun instaláu</translation>
+        <translation>Un paquete ensin instalar</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="91"/>
@@ -309,7 +309,7 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="100"/>
         <source>Basic usage help:</source>
-        <translation>Aida básica d&apos;usu:</translation>
+        <translation>Ayuda básica d&apos;usu:</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="102"/>
@@ -319,7 +319,7 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="104"/>
         <source>Double click an installed package to see its contents</source>
-        <translation>Primi dos vegaes nun paquete instaláu pa ver el so conteníu</translation>
+        <translation>Clic doblu nun paquete instaláu pa ver el so conteníu</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="106"/>
@@ -637,7 +637,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="208"/>
         <source>Popularity</source>
-        <translation>Nomada</translation>
+        <translation>Sonadía</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="212"/>
@@ -817,7 +817,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="356"/>
         <source>Synchronizing databases...</source>
-        <translation>En sincronizando bases de datos...</translation>
+        <translation>Sincronizando bases de datos...</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="360"/>
@@ -857,7 +857,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="388"/>
         <source>Command finished with errors!</source>
-        <translation>¡El comandu finó con erros!</translation>
+        <translation>¡El comandu finó con fallos!</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="392"/>

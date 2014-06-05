@@ -50,7 +50,6 @@ QModelIndex PackageModel::index(int row, int column, const QModelIndex &parent) 
   if (!parent.isValid())
     return createIndex(row, column, (void*)NULL);
 
-
   return QModelIndex();
 }
 
