@@ -30,6 +30,7 @@
 #include "uihelper.h"
 #include "searchbar.h"
 #include "globals.h"
+#include "packagecontroller.h"
 
 #include <QCloseEvent>
 #include <QMessageBox>
@@ -38,6 +39,7 @@
 #include <QStandardItem>
 #include <QTextBrowser>
 #include <QFutureWatcher>
+#include <QClipboard>
 
 #if QT_VERSION > 0x050000
   #include <QtConcurrent/QtConcurrentRun>
@@ -173,6 +175,16 @@ void MainWindow::keyPressEvent(QKeyEvent* ke)
   else if (ke->key() == Qt::Key_F12)
   {
     maximizePropertiesTabWidget();
+  }
+  else if(ke->key() == Qt::Key_C && ke->modifiers() == Qt::ControlModifier)
+  {
+    QTreeView *tb = ui->twProperties->currentWidget()->findChild<QTreeView*>("tvPkgFileList");
+    if (tb->hasFocus())
+    {
+      QString path = PackageController::showFullPathOfItem(tb->currentIndex());
+      QClipboard *clip = qApp->clipboard();
+      clip->setText(path);
+    }
   }
   else if(ke->key() == Qt::Key_L && ke->modifiers() == Qt::ControlModifier)
   {
