@@ -1162,7 +1162,8 @@ void MainWindow::doInstallYaourtPackage()
       continue;
     }
     if (package->repository != StrConstants::getForeignRepositoryName()) {
-      std::cerr << "Octopi could not install selection using " << StrConstants::getForeignRepositoryToolName().toLatin1().data() << std::endl;
+      std::cerr << "Octopi could not install selection using " <<
+                   StrConstants::getForeignRepositoryToolName().toLatin1().data() << std::endl;
       return;
     }
 
@@ -1173,7 +1174,8 @@ void MainWindow::doInstallYaourtPackage()
   }
 
   if (listOfTargets.isEmpty()) {
-    std::cerr << "Octopi could not install selection using " << StrConstants::getForeignRepositoryToolName().toLatin1().data() << std::endl;
+    std::cerr << "Octopi could not install selection using " <<
+                 StrConstants::getForeignRepositoryToolName().toLatin1().data() << std::endl;
     return;
   }
 
@@ -1231,7 +1233,8 @@ void MainWindow::doRemoveYaourtPackage()
   }
   else
   {
-    m_lastCommandList.append(StrConstants::getForeignRepositoryToolName() + " -" + m_removeCommand + " " + listOfTargets + ";");
+    m_lastCommandList.append(StrConstants::getForeignRepositoryToolName() +
+                             " -" + m_removeCommand + " " + listOfTargets + ";");
   }
 
   m_lastCommandList.append("echo -e;");
@@ -1426,7 +1429,6 @@ void MainWindow::doCleanCache()
 
   if (res == QMessageBox::Yes)
   {
-    //disconnect(m_pacmanDatabaseSystemWatcher, SIGNAL(directoryChanged(QString)), this, SLOT(metaBuildPackageList()));
     clearTabOutput();
     writeToTabOutputExt("<b>" + StrConstants::getCleaningPackageCache() + "</b>");
     qApp->processEvents();
