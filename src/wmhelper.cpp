@@ -437,6 +437,11 @@ void WMHelper::editFile( const QString& fileName ){
       QString p = ctn_LXQT_EDITOR + " " + fileName;
       process->startDetached(getSUCommand() + p);
     }
+    if (UnixCommand::hasTheExecutable(ctn_ARCHBANG_EDITOR))
+    {
+      QString p = ctn_ARCHBANG_EDITOR + " " + fileName;
+      process->startDetached(getSUCommand() + p);
+    }
     else if (UnixCommand::hasTheExecutable(ctn_CINNAMON_EDITOR)){
       QString p = ctn_CINNAMON_EDITOR + " " + fileName;
       process->startDetached(getSUCommand() + p);
