@@ -259,7 +259,7 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="58"/>
         <source>A Qt-based Pacman frontend,</source>
-        <translation>Una interfaz basada en Qt Pacman,</translation>
+        <translation>Una interfaz de Pacman basada en Qt,</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="59"/>
