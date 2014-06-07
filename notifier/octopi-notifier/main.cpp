@@ -17,8 +17,7 @@ int main(int argc, char *argv[])
   #ifndef NO_GTK_STYLE
   QApplication::setGraphicsSystem(QLatin1String("raster"));
 
-  if(UnixCommand::getLinuxDistro() == ectn_MANJAROLINUX &&
-     (!WMHelper::isKDERunning() && (!WMHelper::isLXQTRunning()) && (!WMHelper::isRazorQtRunning())))
+  if(!WMHelper::isKDERunning() && (!WMHelper::isLXQTRunning()) && (!WMHelper::isRazorQtRunning()))
   {
     qApp->setStyle(new QGtkStyle());
   }
