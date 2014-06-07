@@ -1,5 +1,6 @@
 0.4.1 (dev)
   Updated translations.
+  BugFix: Adapted ArchBang changes.
   BugFix: Removed unused Ctrl+N help text.
   BugFix: Some changes in LXQt support.
   Small fixes in packagemodel/package code (thanks to tbinkau).
