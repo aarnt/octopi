@@ -1,5 +1,7 @@
 0.4.1 (dev)
   Updated translations.
+  BugFix: When clicking a pkg on the outdated list, it could scroll 
+	to a wrong pkg info.
   BugFix: Adapted ArchBang changes.
   BugFix: Removed unused Ctrl+N help text.
   BugFix: Some changes in LXQt support.

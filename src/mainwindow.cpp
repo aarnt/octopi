@@ -154,10 +154,10 @@ void MainWindow::outputTextBrowserAnchorClicked(const QUrl &link)
     QModelIndex columnIndex = m_packageModel->index(0, PackageModel::ctn_PACKAGE_NAME_COLUMN,
                                                     QModelIndex());
 
-    QModelIndexList foundItems = m_packageModel->match(columnIndex, Qt::MatchExactly, pkgName);
+    QModelIndexList foundItems = m_packageModel->match(columnIndex, Qt::DisplayRole, pkgName, -1, Qt::MatchExactly);
     QModelIndex proxyIndex;
 
-    if (foundItems.count() > 0)
+    if (foundItems.count() == 1)
     {
       proxyIndex = foundItems.first();
       if(proxyIndex.isValid())
