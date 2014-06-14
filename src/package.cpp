@@ -550,12 +550,18 @@ QList<PackageListData> * Package::getYaourtPackageList(const QString& searchStri
 
       pkgName = repoName.mid(a+1);
       pkgVersion = parts[1];
-      QStringList strVotes = parts.filter("(");
 
-      if (!strVotes.last().isEmpty())
-        pkgVotes = strVotes.last().replace('(', "").replace(')', "").toInt();
-      else
-        pkgVotes = 0;
+      QStringList strVotes = parts.filter("(");
+      pkgVotes = 0;
+
+      //Chakra does not have popularity support in CCR
+      if (StrConstants::getForeignRepositoryToolName() != "ccr")
+      {
+        if (!strVotes.last().isEmpty())
+          pkgVotes = strVotes.last().replace('(', "").replace(')', "").toInt();
+        else
+          pkgVotes = 0;
+      }
 
       if(packageTuple.indexOf("[installed]") != -1)
       {
