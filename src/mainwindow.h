@@ -76,7 +76,10 @@ public slots:
 protected:
   void closeEvent(QCloseEvent *event);
   void keyPressEvent(QKeyEvent* ke);
-  void keyReleaseEvent(QKeyEvent *ke);
+
+  #if QT_VERSION < 0x050000
+    void keyReleaseEvent(QKeyEvent *ke);
+  #endif
 
 private:
   Ui::MainWindow *ui;
@@ -153,7 +156,6 @@ private:
   QToolButton *m_toolButtonPacman;
   QMenu *m_menuToolButtonPacman;
   QAction *m_actionInstallPacmanUpdates;
-
   QToolButton *m_toolButtonYaourt;
   QMenu *m_menuToolButtonYaourt;
   QAction *m_actionInstallYaourtUpdates;

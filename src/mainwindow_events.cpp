@@ -256,13 +256,13 @@ void MainWindow::keyPressEvent(QKeyEvent* ke)
   }
 }
 
+//If we are using Qt5 libs, this method is native !
+#if QT_VERSION < 0x050000
 /*
  * This Event method is called whenever the user releases a key (useful to navigate in the packagelist)
  */
 void MainWindow::keyReleaseEvent(QKeyEvent *ke)
 {  
-//If we are using Qt5 libs, this method is native !
-#if QT_VERSION < 0x050000
   static int i=0;
   static int k=-9999; //last key pressed
   static int k_count=0;
@@ -279,7 +279,6 @@ void MainWindow::keyReleaseEvent(QKeyEvent *ke)
 
     if (fi.count() > 0) {
       if ( (ke->key() != k) || (fi.count() != k_count) ) i=0;
-
       QModelIndex currentIndex = ui->tvPackages->currentIndex();
       QModelIndex firstIndex = fi.first();
       QModelIndex lastIndex = fi.last();
@@ -332,4 +331,3 @@ void MainWindow::keyReleaseEvent(QKeyEvent *ke)
   else ke->ignore();
 }
 #endif
-}
