@@ -283,8 +283,6 @@ void MainWindow::keyReleaseEvent(QKeyEvent *ke)
       QModelIndex currentIndex = ui->tvPackages->currentIndex();
       QModelIndex firstIndex = fi.first();
       QModelIndex lastIndex = fi.last();
-      //std::cout << "CurrentIndex row: " << currentIndex.row() << std::endl;
-      //std::cout << "LastIndex row: " << lastIndex.row() << std::endl;
 
       if (currentIndex.row() < firstIndex.row() || currentIndex.row() > lastIndex.row())
       {
@@ -333,9 +331,5 @@ void MainWindow::keyReleaseEvent(QKeyEvent *ke)
 
   else ke->ignore();
 }
-#else
-  QModelIndex mi = ui->tvPackages->currentIndex();
-  ui->tvPackages->selectionModel()->setCurrentIndex(mi, QItemSelectionModel::SelectCurrent);
-  ui->tvPackages->setCurrentIndex(mi);
-}
 #endif
+}

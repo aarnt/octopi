@@ -1,5 +1,7 @@
 0.4.1 (dev)
   Updated translations.
+  BugFix: Ctrl and Shift key pkg actions not behaving right in Qt5 
+	builds.
   BugFix: When clicking a pkg on the outdated list, it could scroll 
 	to a wrong pkg info.
   BugFix: Adapted ArchBang changes.
