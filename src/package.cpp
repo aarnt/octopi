@@ -814,6 +814,15 @@ double Package::getDownloadSize(const QString &pkgInfo)
 }
 
 /*
+ * Retrieves "Download Size" field of the given package information string represented by pkgInfo
+ */
+QString Package::getDownloadSizeAsString(const QString &pkgInfo)
+{
+  QString aux = extractFieldFromInfo("Download Size", pkgInfo);
+  return aux;
+}
+
+/*
  * Retrieves "Installed Size" field of the given package information string represented by pkgInfo
  */
 double Package::getInstalledSize(const QString &pkgInfo)
@@ -1015,6 +1024,9 @@ PackageInfoData Package::getInformation(const QString &pkgName, bool foreignPack
   res.description = getDescription(pkgInfo);
   res.downloadSize = getDownloadSize(pkgInfo);
   res.installedSize = getInstalledSize(pkgInfo);
+
+  res.downloadSizeAsString = getDownloadSizeAsString(pkgInfo);
+  res.installedSizeAsString = getInstalledSizeAsString(pkgInfo);
 
   return res;
 }

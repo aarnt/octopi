@@ -7,6 +7,7 @@
   BugFix: Adapted ArchBang changes.
   BugFix: Removed unused Ctrl+N help text.
   BugFix: Some changes in LXQt support.
+  BugFix: Download and installed size info at info tab.
   Small fixes in packagemodel/package code (thanks to tbinkau).
   Ctrl+C over an item in Files tab copies it's full path to Clipboard.
   Reworked code to count installed packages (based on filters).

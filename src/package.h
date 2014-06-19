@@ -110,6 +110,8 @@ struct PackageInfoData{
   QDateTime buildDate;
   double downloadSize;
   double installedSize;
+  QString downloadSizeAsString;
+  QString installedSizeAsString;
 };
 
 class Result;
@@ -166,6 +168,8 @@ class Package{
     static QString getDescription(const QString &pkgInfo);
     static QDateTime getBuildDate(const QString &pkgInfo);
     static double getDownloadSize(const QString &pkgInfo);
+    static QString getDownloadSizeAsString(const QString &pkgInfo);
+
     static double getInstalledSize(const QString &pkgInfo);
     static QString getInstalledSizeAsString(const QString &pkgInfo);
 

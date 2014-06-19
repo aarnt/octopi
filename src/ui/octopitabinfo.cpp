@@ -69,12 +69,6 @@ QString OctopiTabInfo::formatTabInfo(const PackageRepository::PackageData& packa
   QString architecture = StrConstants::getArchitecture();
   QString buildDate = StrConstants::getBuildDate();
 
-  QString valDownloadSize =
-      QString("%1 KB").arg(pid.downloadSize, 6, 'f', 2);
-
-  QString valInstalledSize =
-      QString("%1 KB").arg(pid.installedSize, 6, 'f', 2);
-
   //Let's put package description in UTF-8 format
   QString pkgDescription = pid.description;
   pkgDescription = pkgDescription.fromUtf8(pkgDescription.toLatin1().data());
@@ -167,8 +161,8 @@ QString OctopiTabInfo::formatTabInfo(const PackageRepository::PackageData& packa
   if(! pid.replaces.contains("None"))
     html += "<tr><td>" + replaces + "</td><td>" + pid.replaces + "</td></tr>";
 
-  html += "<tr><td>" + downloadSize + "</td><td>" + valDownloadSize + "</td></tr>";
-  html += "<tr><td>" + installedSize + "</td><td>" + valInstalledSize + "</td></tr>";
+  html += "<tr><td>" + downloadSize + "</td><td>" + pid.downloadSizeAsString + "</td></tr>";
+  html += "<tr><td>" + installedSize + "</td><td>" + pid.installedSizeAsString + "</td></tr>";
   html += "<tr><td>" + packager + "</td><td>" + packagerName + "</td></tr>";
   html += "<tr><td>" + architecture + "</td><td>" + pid.arch + "</td></tr>";
   html += "<tr><td>" + buildDate + "</td><td>" +
