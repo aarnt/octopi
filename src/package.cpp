@@ -830,6 +830,15 @@ double Package::getInstalledSize(const QString &pkgInfo)
     return 0;
 }
 
+/*
+ * Retrieves "Installed Size" field of the given package information string represented by pkgInfo
+ */
+QString Package::getInstalledSizeAsString(const QString &pkgInfo)
+{
+  QString aux = extractFieldFromInfo("Installed Size", pkgInfo);
+  return aux;
+}
+
 /**
  * This function was copied from ArchLinux Pacman project
  *
@@ -1026,6 +1035,15 @@ QString Package::getInformationDescription(const QString &pkgName, bool foreignP
 {
   QString pkgInfo = UnixCommand::getPackageInformation(pkgName, foreignPackage);
   return getDescription(pkgInfo);
+}
+
+/*
+ * Helper to get only the Installed Size field of package information, for use in tooltips
+ */
+QString Package::getInformationInstalledSize(const QString &pkgName, bool foreignPackage)
+{
+  QString pkgInfo = UnixCommand::getPackageInformation(pkgName, foreignPackage);
+  return getInstalledSizeAsString(pkgInfo);
 }
 
 /*

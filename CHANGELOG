@@ -12,6 +12,7 @@
   Reworked code to count installed packages (based on filters).
   Leave some actions disabled before building pkg list and mirror-checking.
   Added es_AR translation (thanks to javier).
+  Added 'installed size' information in package tooltips.
 
 0.4.0
   Huge refactorings in model/view that brings consistent memory and 

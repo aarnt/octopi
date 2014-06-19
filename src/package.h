@@ -141,6 +141,8 @@ class Package{
     static PackageInfoData getInformation(const QString &pkgName, bool foreignPackage = false);
     static double getDownloadSizeDescription(const QString &pkgName);
     static QString getInformationDescription(const QString &pkgName, bool foreignPackage = false);
+    static QString getInformationInstalledSize(const QString &pkgName, bool foreignPackage = false);
+
     static QHash<QString, QString> getYaourtOutdatedPackagesNameVersion();
     static QStringList getContents(const QString &pkgName, bool isInstalled);
 
@@ -165,6 +167,8 @@ class Package{
     static QDateTime getBuildDate(const QString &pkgInfo);
     static double getDownloadSize(const QString &pkgInfo);
     static double getInstalledSize(const QString &pkgInfo);
+    static QString getInstalledSizeAsString(const QString &pkgInfo);
+
     static double humanizeSize(off_t bytes, const char target_unit, int precision, const char **label);
     static QString makeURLClickable(const QString &information);
 
