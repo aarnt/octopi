@@ -97,7 +97,7 @@ void MainWindow::closeEvent(QCloseEvent *event)
  */
 void MainWindow::keyPressEvent(QKeyEvent* ke)
 {
-  if (ke->key() == Qt::Key_Return)
+  if (ke->key() == Qt::Key_Return || ke->key() == Qt::Key_Enter)
   {
     //We are searching for AUR foreign packages...
     if (isAURGroupSelected() && m_leFilterPackage->hasFocus() && m_cic == NULL)
