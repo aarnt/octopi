@@ -1,5 +1,6 @@
 0.4.1 (dev)
   Updated translations.
+  Some coding refactorings regarding Yaourt/AUR.
   BugFix: Ctrl and Shift key pkg actions not behaving right in Qt5 
 	builds.
   BugFix: When clicking a pkg on the outdated list, it could scroll 
@@ -14,6 +15,7 @@
   Leave some actions disabled before building pkg list and mirror-checking.
   Added es_AR translation (thanks to javier).
   Added 'installed size' information in package tooltips.
+  Added Search by file feature (pacman -Qo).
 
 0.4.0
   Huge refactorings in model/view that brings consistent memory and 

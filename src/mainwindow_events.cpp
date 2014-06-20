@@ -99,17 +99,31 @@ void MainWindow::keyPressEvent(QKeyEvent* ke)
 {
   if (ke->key() == Qt::Key_Return)
   {
-    if (isYaourtGroupSelected() && m_leFilterPackage->hasFocus() && m_cic == NULL)
+    //We are searching for AUR foreign packages...
+    if (isAURGroupSelected() && m_leFilterPackage->hasFocus() && m_cic == NULL)
     {
       ui->twGroups->setEnabled(false);
 
       QFuture<QList<PackageListData> *> f;
-      disconnect(&g_fwYaourt, SIGNAL(finished()), this, SLOT(preBuildYaourtPackageList()));
+      disconnect(&g_fwAUR, SIGNAL(finished()), this, SLOT(preBuildAURPackageList()));
       m_cic = new CPUIntensiveComputing();
-      f = QtConcurrent::run(searchYaourtPackages, m_leFilterPackage->text());
-      g_fwYaourt.setFuture(f);
-      connect(&g_fwYaourt, SIGNAL(finished()), this, SLOT(preBuildYaourtPackageList()));
+      f = QtConcurrent::run(searchAURPackages, m_leFilterPackage->text());
+      g_fwAUR.setFuture(f);
+      connect(&g_fwAUR, SIGNAL(finished()), this, SLOT(preBuildAURPackageList()));
     }
+    //We are searching for packages that own some file typed by user...
+    else if (isSearchByFileSelected() && m_leFilterPackage->hasFocus() && m_cic == NULL)
+    {
+      ui->twGroups->setEnabled(false);
+
+      QFuture<QList<PackageListData> *> f;
+      disconnect(&g_fwPacman, SIGNAL(finished()), this, SLOT(preBuildPackageList()));
+      m_cic = new CPUIntensiveComputing();
+      f = QtConcurrent::run(searchPacmanPackagesByFile, m_leFilterPackage->text());
+      g_fwPacman.setFuture(f);
+      connect(&g_fwPacman, SIGNAL(finished()), this, SLOT(preBuildPackageList()));
+    }
+    //We are probably inside 'Files' tab...
     else
     {
       QTreeView *tvPkgFileList =
@@ -230,12 +244,12 @@ void MainWindow::keyPressEvent(QKeyEvent* ke)
     }
   }
   else if(ke->key() == Qt::Key_Y && ke->modifiers() == (Qt::ShiftModifier|Qt::ControlModifier)
-          && m_hasYaourt)
+          && m_hasAURTool)
   {
     //The user wants to go to fake "Yaourt" group
-    if (!isYaourtGroupSelected())
+    if (!isAURGroupSelected())
     {
-      ui->twGroups->setCurrentItem(m_YaourtItem);
+      ui->twGroups->setCurrentItem(m_AURItem);
       //...and let us focus the search edit!
       m_leFilterPackage->setFocus();
     }

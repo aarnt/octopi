@@ -12,14 +12,24 @@
 #include <QLineEdit>
 
 class QToolButton;
+class QValidator;
+class QCompleter;
+class QStringListModel;
 
 class SearchLineEdit : public QLineEdit
 {
   Q_OBJECT
 
 private:
+  bool m_hasLocate;
+  QStringListModel *m_completerModel;
+
+  QCompleter *m_completer;
+  QValidator *m_defaultValidator;
+  QValidator *m_aurValidator;
+  QValidator *m_fileValidator;
   QToolButton *mSearchButton;
-  QString styleSheetForCurrentState();
+  QString styleSheetForCurrentState();  
   QString buttonStyleSheetForCurrentState() const;
 
 private slots:
@@ -32,12 +42,12 @@ public:
   explicit SearchLineEdit(QWidget *parent = NULL);
 
   inline void initStyleSheet(){ setStyleSheet(styleSheetForCurrentState()); }
+  void refreshValidator();
+  void refreshCompleterData();
 
 public slots:
   void setFoundStyle();
   void setNotFoundStyle();
 };
-
-
 
 #endif // SEARCHLINEEDIT_H

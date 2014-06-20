@@ -42,13 +42,6 @@ const QString ctn_NO_MATCH      	  = "not found!";
 
 const QString ctn_PACMAN_DATABASE_DIR = "/var/lib/pacman";
 
-const int ctn_KNOWN_ARCHS_LEN = 8;
-const int ctn_KNOWN_NAMES_LEN = 3;
-
-enum SearchPlace { ectn_INSIDE_INSTALLED_PACKAGES, ectn_INSIDE_DIRECTORY, ectn_INSIDE_QSTDITEMMODEL };
-
-enum DumpInstalledPackageListOptions { ectn_WITH_MODIFIED_DATE, ectn_NO_MODIFIED_DATE };
-
 enum PackageStatus { ectn_INSTALLED, ectn_NON_INSTALLED, ectn_OUTDATED, ectn_NEWER,
                      ectn_FOREIGN, ectn_FOREIGN_OUTDATED };
 
@@ -128,24 +121,24 @@ class Package{
     static int rpmvercmp(const char *a, const char *b);
     static QSet<QString>* getUnrequiredPackageList();
     static QStringList * getOutdatedPackageList();
-    static QStringList * getOutdatedYaourtPackageList();
+    static QStringList * getOutdatedAURPackageList();
     static QStringList * getPackageGroups();
     static QStringList * getPackagesOfGroup(const QString &groupName);
-    static QList<PackageListData> * getTargetUpgradeList(const QString &pkgName="");
+    static QList<PackageListData> * getTargetUpgradeList(const QString &pkgName = "");
     static QStringList * getTargetRemovalList(const QString &pkgName, const QString &removeCommand);
 
     static QList<PackageListData> *getForeignPackageList();
-    static QList<PackageListData> *getPackageList();
+    static QList<PackageListData> *getPackageList(const QString &packageName = "");
 
-    //Yaourt methods
-    static QList<PackageListData> * getYaourtPackageList(const QString& searchString);
+    //AUR methods
+    static QList<PackageListData> * getAURPackageList(const QString& searchString);
 
     static PackageInfoData getInformation(const QString &pkgName, bool foreignPackage = false);
     static double getDownloadSizeDescription(const QString &pkgName);
     static QString getInformationDescription(const QString &pkgName, bool foreignPackage = false);
     static QString getInformationInstalledSize(const QString &pkgName, bool foreignPackage = false);
 
-    static QHash<QString, QString> getYaourtOutdatedPackagesNameVersion();
+    static QHash<QString, QString> getAUROutdatedPackagesNameVersion();
     static QStringList getContents(const QString &pkgName, bool isInstalled);
 
     static QStringList getOptionalDeps(const QString &pkgName);
@@ -177,7 +170,6 @@ class Package{
     static QString makeURLClickable(const QString &information);
 
     static QString getBaseName( const QString& pkgName );
-    static QString dumpInstalledPackageList(DumpInstalledPackageListOptions options = ectn_WITH_MODIFIED_DATE);
     static QString parseSearchString( QString searchStr, bool exactMatch = false );
     static bool isSlackPackage(const QString &filePath);
 };

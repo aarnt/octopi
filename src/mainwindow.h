@@ -112,7 +112,7 @@ private:
   bool m_callSystemUpgradeNoConfirm;
 
   //Controls if this Linux box has yaourt installed
-  bool m_hasYaourt;
+  bool m_hasAURTool;
 
   //Controls if the NewsTab must be showed
   bool m_gotoNewsTab;
@@ -123,8 +123,8 @@ private:
   //This model provides the list of pending actions of a transaction
   QStandardItemModel *m_modelTransaction;
 
-  //This member holds the result list of Yaourt packages searched by the user
-  QList<PackageListData> *m_listOfYaourtPackages;
+  //This member holds the result list of AUR packages searched by the user
+  QList<PackageListData> *m_listOfAURPackages;
 
   //This member holds the list of Pacman packages available
   std::auto_ptr<QList<PackageListData> > m_listOfPackages;
@@ -146,8 +146,8 @@ private:
   QStringList m_lastCommandList;
 
   QStringList *m_outdatedPackageList;
-  QStringList *m_outdatedYaourtPackageList;
-  QHash<QString, QString> *m_outdatedYaourtPackagesNameVersion;
+  QStringList *m_outdatedAURPackageList;
+  QHash<QString, QString> *m_outdatedAURPackagesNameVersion;
 
   QLabel *m_lblSelCounter;    //Holds the number of selected packages
   QLabel *m_lblTotalCounters; //Holds the total number of packages
@@ -156,9 +156,9 @@ private:
   QToolButton *m_toolButtonPacman;
   QMenu *m_menuToolButtonPacman;
   QAction *m_actionInstallPacmanUpdates;
-  QToolButton *m_toolButtonYaourt;
-  QMenu *m_menuToolButtonYaourt;
-  QAction *m_actionInstallYaourtUpdates;
+  QToolButton *m_toolButtonAUR;
+  QMenu *m_menuToolButtonAUR;
+  QAction *m_actionInstallAURUpdates;
   QAction *m_actionShowGroups;
   QAction *m_actionMirrorCheck;
   QAction *m_actionMenuRepository;
@@ -167,7 +167,7 @@ private:
   QByteArray m_horizontalSplit;
 
   QTreeWidgetItem *m_AllGroupsItem;
-  QTreeWidgetItem *m_YaourtItem;
+  QTreeWidgetItem *m_AURItem;
 
   int m_numberOfInstalledPackages;
   int m_numberOfOutdatedPackages;
@@ -192,7 +192,6 @@ private:
   QString getSelectedGroup();
   bool isAllGroupsSelected();
   bool isAllGroups(const QString& group);
-  bool isYaourtGroupSelected();
 
   bool isPackageInstalled(const QString &pkgName);
   bool _isPackageTreeViewVisible();
@@ -264,8 +263,8 @@ private:
 
 private slots:
   void initToolButtonPacman();
-  void initToolButtonYaourt();
-  void showToolButtonYaourt();
+  void initToolButtonAUR();
+  void showToolButtonAUR();
 
   //TreeView methods
   void collapseAllContentItems();
@@ -296,9 +295,9 @@ private slots:
 
   void preBuildPackageList();
   void preBuildPackagesFromGroupList();
-  void preBuildYaourtPackageList();
-  void preBuildYaourtPackageListMeta();
-  void buildYaourtPackageList();
+  void preBuildAURPackageList();
+  void preBuildAURPackageListMeta();
+  void buildAURPackageList();
 
   void headerViewPackageListSortIndicatorClicked(int col, Qt::SortOrder order);
   void changePackageListModel(ViewOptions viewOptions, QString selectedRepo);
@@ -327,10 +326,10 @@ private slots:
   void doCleanCache();
   void doSyncDatabase();
   void doMirrorCheck();
-  void doYaourtUpgrade();
+  void doAURUpgrade();
 
-  void doInstallYaourtPackage();
-  void doRemoveYaourtPackage();
+  void doInstallAURPackage();
+  void doRemoveAURPackage();
 
   void disableTransactionActions();
   void enableTransactionActions();
@@ -365,7 +364,7 @@ private slots:
   void maximizePackagesTreeView(bool pSaveSettings = true);
   void maximizePropertiesTabWidget(bool pSaveSettings = true);
   void outputOutdatedPackageList();
-  void outputOutdatedYaourtPackageList();
+  void outputOutdatedAURPackageList();
 
   void onTabNewsSourceChanged(QUrl newSource);
   void refreshDistroNews(bool searchForLatestNews = true, bool gotoNewsTab = true);
@@ -412,6 +411,9 @@ public:
   }
 
   const PackageRepository::PackageData* getFirstPackageFromRepo(const QString pkgName);
+
+  bool isAURGroupSelected();
+  bool isSearchByFileSelected();
 
   void setCallSystemUpgrade();
   void setCallSystemUpgradeNoConfirm();

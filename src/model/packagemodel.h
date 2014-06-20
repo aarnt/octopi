@@ -60,6 +60,8 @@ public:
   virtual QVariant headerData(int section, Qt::Orientation orientation, int role) const /*override*/;
   virtual void sort(int column, Qt::SortOrder order) /*override*/;
 
+  void clear();
+
   // IDependency interface
 public:
   virtual void beginResetRepository() /*override*/;

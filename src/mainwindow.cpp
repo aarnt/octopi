@@ -60,8 +60,8 @@ MainWindow::MainWindow(QWidget *parent) :
   m_systemUpgradeDialog = false;
   m_cic = NULL;
   m_outdatedPackageList = new QStringList();
-  m_outdatedYaourtPackageList = new QStringList();
-  m_outdatedYaourtPackagesNameVersion = new QHash<QString, QString>();
+  m_outdatedAURPackageList = new QStringList();
+  m_outdatedAURPackagesNameVersion = new QHash<QString, QString>();
   m_selectedViewOption = ectn_ALL_PKGS;
   m_selectedRepository = "";
   m_numberOfInstalledPackages = 0;
@@ -109,7 +109,7 @@ void MainWindow::show()
     initActions();
     initStatusBar();
     initToolButtonPacman();
-    initToolButtonYaourt();
+    initToolButtonAUR();
     initAppIcon();
     initMenuBar();
     initToolBar();
@@ -188,7 +188,7 @@ void MainWindow::outputOutdatedPackageList()
 {
   //We cannot output any list if there is a running transaction!
   if (m_commandExecuting != ectn_NONE ||
-      isYaourtGroupSelected())
+      isAURGroupSelected())
     return;
 
   m_numberOfOutdatedPackages = m_outdatedPackageList->count();
@@ -247,7 +247,7 @@ void MainWindow::outputOutdatedPackageList()
 /*
  * Prints the list of outdated Yaourt packages to the Output tab.
  */
-void MainWindow::outputOutdatedYaourtPackageList()
+void MainWindow::outputOutdatedAURPackageList()
 {
   //We cannot output any list if there is a running transaction!
   if (m_commandExecuting != ectn_NONE) return;
@@ -258,13 +258,13 @@ void MainWindow::outputOutdatedYaourtPackageList()
 
   clearTabOutput();
 
-  if(m_outdatedYaourtPackageList->count()==1){
+  if(m_outdatedAURPackageList->count()==1){
     html += "<h3>" + StrConstants::getOneOutdatedPackage() + "</h3>";
   }
   else
   {
     html += "<h3>" +
-        StrConstants::getOutdatedPackages().arg(m_outdatedYaourtPackageList->count()) + "</h3>";
+        StrConstants::getOutdatedPackages().arg(m_outdatedAURPackageList->count()) + "</h3>";
   }
 
   html += "<br><table border=\"0\">";
@@ -274,12 +274,12 @@ void MainWindow::outputOutdatedYaourtPackageList()
       "</th><th width=\"18%\" align=\"right\">" +
       StrConstants::getAvailableVersion() + "</th></tr>";
 
-  for (int c=0; c < m_outdatedYaourtPackageList->count(); c++)
+  for (int c=0; c < m_outdatedAURPackageList->count(); c++)
   {
-    QString pkg = m_outdatedYaourtPackageList->at(c);
+    QString pkg = m_outdatedAURPackageList->at(c);
     const PackageRepository::PackageData*const package = m_packageRepo.getFirstPackageByName(pkg);
     if (package != NULL) {
-      QString availableVersion = m_outdatedYaourtPackagesNameVersion->value(m_outdatedYaourtPackageList->at(c));
+      QString availableVersion = m_outdatedAURPackagesNameVersion->value(m_outdatedAURPackageList->at(c));
   
       html += "<tr><td><a href=\"goto:" + pkg + "\">" + pkg +
           "</td><td align=\"right\"><b><font color=\"#E55451\">" +
@@ -341,12 +341,20 @@ bool MainWindow::isAllGroups(const QString& group)
 /*
  * Helper to analyse if < Yaourt > is selected
  */
-bool MainWindow::isYaourtGroupSelected()
+bool MainWindow::isAURGroupSelected()
 {
   QModelIndex index = ui->twGroups->currentIndex();
   QString group = ui->twGroups->model()->data(index).toString();
 
   return (group == StrConstants::getForeignToolGroup());
+}
+
+/*
+ * Helper to retrieve if "Search/By file" is selected
+ */
+bool MainWindow::isSearchByFileSelected()
+{
+  return ui->actionSearchByFile->isChecked();
 }
 
 const PackageRepository::PackageData* MainWindow::getFirstPackageFromRepo(const QString pkgName)
@@ -397,12 +405,30 @@ void MainWindow::tvPackagesSearchColumnChanged(QAction *actionSelected)
   //We are in the realm of tradictional NAME search
   if (actionSelected->objectName() == ui->actionSearchByName->objectName())
   {
+    ui->twGroups->setEnabled(true);
+    m_leFilterPackage->refreshValidator();
     m_packageModel->applyFilter(PackageModel::ctn_PACKAGE_NAME_COLUMN);
   }
   //We are talking about slower 'search by description'...
-  else
+  else if (actionSelected->objectName() == ui->actionSearchByDescription->objectName())
   {
+    ui->twGroups->setEnabled(true);
+    m_leFilterPackage->refreshValidator();
     m_packageModel->applyFilter(PackageModel::ctn_PACKAGE_DESCRIPTION_FILTER_NO_COLUMN);
+  }
+  else if (actionSelected->objectName() == ui->actionSearchByFile->objectName())
+  {
+    ui->twGroups->setEnabled(false);
+    m_leFilterPackage->clear();
+    m_leFilterPackage->refreshValidator();
+    m_packageModel->clear();
+    ui->tvPackages->reset();
+  }
+
+  if (!isSearchByFileSelected() && m_packageModel->getPackageCount() <= 1)
+  {
+    m_leFilterPackage->clear();
+    metaBuildPackageList();
   }
 
   QModelIndex mi = m_packageModel->index(0, PackageModel::ctn_PACKAGE_NAME_COLUMN, QModelIndex());
@@ -482,10 +508,10 @@ void MainWindow::execContextMenuPackages(QPoint point)
 
     if (allInstallable) // implicitly foreign packages == 0
     {
-      if (!isAllGroupsSelected() && !isYaourtGroupSelected()) menu->addAction(ui->actionInstallGroup);
+      if (!isAllGroupsSelected() && !isAURGroupSelected()) menu->addAction(ui->actionInstallGroup);
       menu->addAction(ui->actionInstall);
 
-      if (!isAllGroupsSelected() && !isYaourtGroupSelected()) //&& numberOfSelPkgs > 1)
+      if (!isAllGroupsSelected() && !isAURGroupSelected()) //&& numberOfSelPkgs > 1)
       {
         //Is this group already installed?
         const QList<PackageRepository::PackageData*> packageList = m_packageRepo.getPackageList(getSelectedGroup());
@@ -505,7 +531,7 @@ void MainWindow::execContextMenuPackages(QPoint point)
     {
       menu->addAction(ui->actionRemove);
 
-      if (!isAllGroupsSelected() && !isYaourtGroupSelected())
+      if (!isAllGroupsSelected() && !isAURGroupSelected())
       {
         //Is this group already installed?
         const QList<PackageRepository::PackageData*> packageList = m_packageRepo.getPackageList(getSelectedGroup());

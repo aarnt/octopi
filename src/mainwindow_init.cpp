@@ -119,7 +119,7 @@ void MainWindow::initAppIcon()
 
   if (UnixCommand::hasTheExecutable(StrConstants::getForeignRepositoryToolName()))
   {
-    m_outdatedYaourtPackageList = Package::getOutdatedYaourtPackageList();
+    m_outdatedAURPackageList = Package::getOutdatedAURPackageList();
   }
 
   m_numberOfOutdatedPackages = m_outdatedPackageList->count();
@@ -277,7 +277,6 @@ void MainWindow::initStatusBar()
   m_lblSelCounter = new QLabel(this);
   m_lblTotalCounters = new QLabel(this);
   m_progressWidget = new QProgressBar(this);
-
   m_progressWidget->close();
   m_progressWidget->setMaximumWidth(250);
 
@@ -310,20 +309,20 @@ void MainWindow::initToolButtonPacman()
 /*
  * Inits the Yaourt toolbutton, which warns the user about outdated foreign packages
  */
-void MainWindow::initToolButtonYaourt()
+void MainWindow::initToolButtonAUR()
 {
-  m_toolButtonYaourt = new QToolButton(this);
-  m_toolButtonYaourt->setIconSize(QSize(16, 16));
-  m_toolButtonYaourt->setIcon(IconHelper::getIconForeignRed());
-  m_toolButtonYaourt->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
-  m_toolButtonYaourt->setAutoRaise(true);
-  m_toolButtonYaourt->hide();
+  m_toolButtonAUR = new QToolButton(this);
+  m_toolButtonAUR->setIconSize(QSize(16, 16));
+  m_toolButtonAUR->setIcon(IconHelper::getIconForeignRed());
+  m_toolButtonAUR->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
+  m_toolButtonAUR->setAutoRaise(true);
+  m_toolButtonAUR->hide();
 
-  m_menuToolButtonYaourt = new QMenu(this);
-  m_menuToolButtonYaourt->addAction(m_actionInstallYaourtUpdates);
-  m_toolButtonYaourt->setPopupMode(QToolButton::MenuButtonPopup);
-  m_toolButtonYaourt->setMenu(m_menuToolButtonYaourt);
-  connect(m_toolButtonYaourt, SIGNAL(clicked()), this, SLOT(outputOutdatedYaourtPackageList()));
+  m_menuToolButtonAUR = new QMenu(this);
+  m_menuToolButtonAUR->addAction(m_actionInstallAURUpdates);
+  m_toolButtonAUR->setPopupMode(QToolButton::MenuButtonPopup);
+  m_toolButtonAUR->setMenu(m_menuToolButtonAUR);
+  connect(m_toolButtonAUR, SIGNAL(clicked()), this, SLOT(outputOutdatedAURPackageList()));
 }
 
 /*
@@ -650,11 +649,11 @@ void MainWindow::initActions()
   m_actionInstallPacmanUpdates->setIconVisibleInMenu(true);
   connect(m_actionInstallPacmanUpdates, SIGNAL(triggered()), this, SLOT(doSystemUpgrade()));
 
-  m_actionInstallYaourtUpdates = new QAction(this);
-  m_actionInstallYaourtUpdates->setIcon(IconHelper::getIconToInstall());
-  m_actionInstallYaourtUpdates->setText(ui->actionInstall->text());
-  m_actionInstallYaourtUpdates->setIconVisibleInMenu(true);
-  connect(m_actionInstallYaourtUpdates, SIGNAL(triggered()), this, SLOT(doYaourtUpgrade()));
+  m_actionInstallAURUpdates = new QAction(this);
+  m_actionInstallAURUpdates->setIcon(IconHelper::getIconToInstall());
+  m_actionInstallAURUpdates->setText(ui->actionInstall->text());
+  m_actionInstallAURUpdates->setIconVisibleInMenu(true);
+  connect(m_actionInstallAURUpdates, SIGNAL(triggered()), this, SLOT(doAURUpgrade()));
 
   toggleTransactionActions(true);
 
@@ -669,6 +668,7 @@ void MainWindow::initActions()
   QActionGroup *actionGroup = new QActionGroup(this);
   actionGroup->addAction(ui->actionSearchByDescription);
   actionGroup->addAction(ui->actionSearchByName);
+  actionGroup->addAction(ui->actionSearchByFile);
   ui->actionSearchByName->setChecked(true);
   actionGroup->setExclusive(true);
 
@@ -689,7 +689,7 @@ void MainWindow::initActions()
   connect(ui->actionSystemUpgrade, SIGNAL(triggered()), this, SLOT(doSystemUpgrade()));
   connect(ui->actionRemove, SIGNAL(triggered()), this, SLOT(insertIntoRemovePackage()));
   connect(ui->actionInstall, SIGNAL(triggered()), this, SLOT(insertIntoInstallPackage()));
-  connect(ui->actionInstallYaourt, SIGNAL(triggered()), this, SLOT(doInstallYaourtPackage()));
+  connect(ui->actionInstallYaourt, SIGNAL(triggered()), this, SLOT(doInstallAURPackage()));
   connect(ui->actionFindFileInPackage, SIGNAL(triggered()), this, SLOT(findFileInPackage()));
   connect(ui->actionRemoveGroup, SIGNAL(triggered()), this, SLOT(insertGroupIntoRemovePackage()));
   connect(ui->actionInstallGroup, SIGNAL(triggered()), this, SLOT(insertGroupIntoInstallPackage()));

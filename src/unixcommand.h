@@ -85,12 +85,15 @@ public:
   static QByteArray getOutdatedPackageList();
   static QByteArray getOutdatedYaourtPackageList();
   static QByteArray getForeignPackageList();
-  static QByteArray getPackageList();
+  static QByteArray getPackageList(const QString &pkgName = "");
   static QByteArray getPackageInformation(const QString &pkgName, bool foreignPackage);
   static QByteArray getYaourtPackageVersionInformation();
   static QByteArray getPackageContentsUsingPacman(const QString &pkgName);
   static bool isPkgfileInstalled();
   static QByteArray getPackageContentsUsingPkgfile(const QString &pkgName);
+
+  static QString getPackageByFilePath(const QString &filePath);
+  static QStringList getFilePathSuggestions(const QString &file);
 
   static QByteArray getPackageGroups();
   static QByteArray getPackagesFromGroup(const QString &groupName);
@@ -104,7 +107,6 @@ public:
 
   static bool isKtsussVersionOK();
   static bool hasTheExecutable( const QString& exeName );
-
   static bool isAppRunning(const QString &appName, bool justOneInstance = false);
 
   static bool isRootRunning(){

@@ -244,7 +244,7 @@ void MainWindow::insertIntoRemovePackage()
   bool checkDependencies=false;
   QStringList dependencies;
 
-  if (!isYaourtGroupSelected())
+  if (!isAURGroupSelected())
   {
     _ensureTabVisible(ctn_TABINDEX_TRANSACTION);
 
@@ -307,7 +307,7 @@ void MainWindow::insertIntoRemovePackage()
   }
   else
   {
-    doRemoveYaourtPackage();
+    doRemoveAURPackage();
   }
 }
 
@@ -328,7 +328,7 @@ void MainWindow::insertIntoInstallPackage()
 {
   qApp->processEvents();
 
-  if (!isYaourtGroupSelected())
+  if (!isAURGroupSelected())
   {
     _ensureTabVisible(ctn_TABINDEX_TRANSACTION);
 
@@ -359,7 +359,7 @@ void MainWindow::insertIntoInstallPackage()
   }
   else
   {
-    doInstallYaourtPackage();
+    doInstallAURPackage();
   }
 }
 
@@ -719,12 +719,12 @@ void MainWindow::doSyncDatabase()
 /*
  * Updates the outdated Yaourt packages with "yaourt -S <list>"
  */
-void MainWindow::doYaourtUpgrade()
+void MainWindow::doAURUpgrade()
 {
   QString listOfTargets;
   QString auxPkg;
 
-  foreach(QString pkg, *m_outdatedYaourtPackageList)
+  foreach(QString pkg, *m_outdatedAURPackageList)
   {
     auxPkg = pkg;
     auxPkg.remove("[1;39m");
@@ -789,7 +789,7 @@ void MainWindow::_prepareSystemUpgrade()
  */
 void MainWindow::doSystemUpgrade(SystemUpgradeOptions systemUpgradeOptions)
 {
-  if (isYaourtGroupSelected() || m_systemUpgradeDialog) return;
+  if (isAURGroupSelected() || m_systemUpgradeDialog) return;
 
   if(m_callSystemUpgrade && m_numberOfOutdatedPackages == 0)
   {
@@ -1145,10 +1145,10 @@ bool MainWindow::doRemovePacmanLockFile()
 /*
  * Installs the selected package with "yaourt -S"
  */
-void MainWindow::doInstallYaourtPackage()
+void MainWindow::doInstallAURPackage()
 {
   const QItemSelectionModel*const selectionModel = ui->tvPackages->selectionModel();
-  if (selectionModel == NULL || selectionModel->selectedRows().count() < 1 || m_hasYaourt == false) {
+  if (selectionModel == NULL || selectionModel->selectedRows().count() < 1 || m_hasAURTool == false) {
     std::cerr << "Octopi could not install selection using yaourt" << std::endl;
     return;
   }
@@ -1205,7 +1205,7 @@ void MainWindow::doInstallYaourtPackage()
 /*
  * Removes the selected package with "yaourt -R"
  */
-void MainWindow::doRemoveYaourtPackage()
+void MainWindow::doRemoveAURPackage()
 {
   //If there are no means to run the actions, we must warn!
   if (!_isSUAvailable()) return;
@@ -1483,7 +1483,7 @@ void MainWindow::toggleTransactionActions(const bool value)
   ui->actionInstallGroup->setEnabled(value);
   ui->actionInstallYaourt->setEnabled(value);
   m_actionInstallPacmanUpdates->setEnabled(value);
-  m_actionInstallYaourtUpdates->setEnabled(value);
+  m_actionInstallAURUpdates->setEnabled(value);
 
   ui->actionRemoveTransactionItem->setEnabled(value);
   ui->actionRemoveTransactionItems->setEnabled(value);
@@ -1640,7 +1640,7 @@ void MainWindow::actionsProcessFinished(int exitCode, QProcess::ExitStatus exitS
     //Did it synchronize any repo? If so, let's refresh some things...
     if (_textInTabOutput(StrConstants::getSyncing()))
     {
-      bool aurGroup = isYaourtGroupSelected();
+      bool aurGroup = isAURGroupSelected();
 
       if (!aurGroup)
       {
@@ -1665,7 +1665,7 @@ void MainWindow::actionsProcessFinished(int exitCode, QProcess::ExitStatus exitS
         if (UnixCommand::isAppRunning("octopi-notifier", true) ||
             (_IsSyncingRepoInTabOutput()))
         {
-          bool aurGroup = isYaourtGroupSelected();
+          bool aurGroup = isAURGroupSelected();
 
           if (!aurGroup)
           {
@@ -1681,7 +1681,7 @@ void MainWindow::actionsProcessFinished(int exitCode, QProcess::ExitStatus exitS
       else if (m_commandExecuting != ectn_MIRROR_CHECK)
       {
         //If we are in a package group, maybe we have installed/removed something, so...
-        if (!isYaourtGroupSelected())
+        if (!isAURGroupSelected())
         {
           buildPackageList(false);
         }
@@ -1722,7 +1722,7 @@ void MainWindow::actionsProcessFinished(int exitCode, QProcess::ExitStatus exitS
   }
 
   enableTransactionActions();
-  if (isYaourtGroupSelected())
+  if (isAURGroupSelected())
   {
     toggleSystemActions(false);
   }

@@ -169,6 +169,16 @@ void PackageModel::sort(int column, Qt::SortOrder order)
   }
 }
 
+/*
+ * Resets the contents of the model
+ */
+void PackageModel::clear()
+{
+  beginResetModel();
+  m_listOfPackages.clear();
+  m_columnSortedlistOfPackages.clear();
+}
+
 void PackageModel::beginResetRepository()
 {
   beginResetModel();

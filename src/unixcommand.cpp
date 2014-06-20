@@ -271,10 +271,23 @@ QByteArray UnixCommand::getForeignPackageList()
 /*
  * Returns a string with the list of all packages available in all repositories
  * (installed + not installed)
+ *
+ * @param pkgName Used while the user is searching for the pkg that provides a certain file
  */
-QByteArray UnixCommand::getPackageList()
+QByteArray UnixCommand::getPackageList(const QString &pkgName)
 {
-  QByteArray result = performQuery(QStringList("-Ss"));
+  QByteArray result;
+
+  if (pkgName.isEmpty())
+    result = performQuery(QStringList("-Ss"));
+  else
+  {
+    QStringList sl;
+    sl << "-Ss";
+    sl << pkgName;
+    result = performQuery(sl);
+  }
+
   return result;
 }
 
@@ -357,6 +370,43 @@ QByteArray UnixCommand::getPackageContentsUsingPkgfile(const QString &pkgName)
   result = pkgfile.readAllStandardOutput();
 
   return result;
+}
+
+/*
+ * Given a complete file path, returns the package that provides that file
+ */
+QString UnixCommand::getPackageByFilePath(const QString &filePath)
+{
+  QStringList sl;
+  sl << "-Qo";
+  sl << filePath;
+
+  QString out = performQuery(sl);
+  QStringList s = out.split("\n", QString::SkipEmptyParts);
+
+  if (s.count() >= 1)
+  {
+    QStringList res = s.at(0).split(" ", QString::SkipEmptyParts);
+    return res.at(res.count()-2);
+  }
+  else return "";
+}
+
+/*
+ * Based on the given file, we use 'slocate' to suggest complete paths
+ */
+QStringList UnixCommand::getFilePathSuggestions(const QString &file)
+{
+  QProcess slocate;
+  QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
+  env.insert("LANG", "C");
+  env.insert("LC_MESSAGES", "C");
+  slocate.setProcessEnvironment(env);
+  slocate.start("slocate -l 8 " + file);
+  slocate.waitForFinished();
+
+  QString ba = slocate.readAllStandardOutput();
+  return ba.split("\n", QString::SkipEmptyParts);
 }
 
 /*

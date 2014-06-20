@@ -60,12 +60,12 @@ void MainWindow::refreshAppIcon()
 {
   bool enableSystemUpgrade=false;
 
-  if ((m_outdatedPackageList->count() > 0)) /*&& (!isYaourtGroupSelected()))*/
+  if ((m_outdatedPackageList->count() > 0))
   {
     setWindowIcon(IconHelper::getIconOctopiRed());
-    if(m_commandExecuting != ectn_MIRROR_CHECK && !isYaourtGroupSelected()) enableSystemUpgrade=true;
+    if(m_commandExecuting != ectn_MIRROR_CHECK && !isAURGroupSelected()) enableSystemUpgrade=true;
   }
-  else if(m_outdatedYaourtPackageList->count() > 0)
+  else if(m_outdatedAURPackageList->count() > 0)
   {
     setWindowIcon(IconHelper::getIconOctopiYellow());
   }
@@ -87,15 +87,15 @@ void MainWindow::refreshGroupsWidget()
   QList<QTreeWidgetItem *> items;
 
   ui->twGroups->clear();
-  m_hasYaourt = UnixCommand::hasTheExecutable(StrConstants::getForeignRepositoryToolName()) && !UnixCommand::isRootRunning();
+  m_hasAURTool = UnixCommand::hasTheExecutable(StrConstants::getForeignRepositoryToolName()) && !UnixCommand::isRootRunning();
 
   items.append(new QTreeWidgetItem((QTreeWidget*)0, QStringList("<" + StrConstants::getDisplayAllGroups() + ">")));
   m_AllGroupsItem = items.at(0);
 
-  if (m_hasYaourt)
+  if (m_hasAURTool)
   {
     items.append(new QTreeWidgetItem((QTreeWidget*)0, QStringList(StrConstants::getForeignToolGroup())));
-    m_YaourtItem = items.at(1);
+    m_AURItem = items.at(1);
   }
 
   const QStringList*const packageGroups = Package::getPackageGroups();
@@ -200,12 +200,12 @@ void MainWindow::_deleteStandardItemModel(QStandardItemModel * sim)
 
 /*
  * Helper method to deal with the QFutureWatcher result before calling
- * Yaourt package list building method
+ * AUR package list building method
  */
-void MainWindow::preBuildYaourtPackageList()
+void MainWindow::preBuildAURPackageList()
 {
-  m_listOfYaourtPackages = g_fwYaourt.result();
-  buildYaourtPackageList();
+  m_listOfAURPackages = g_fwAUR.result();
+  buildAURPackageList();
 
   if (m_cic) {
     delete m_cic;
@@ -220,12 +220,12 @@ void MainWindow::preBuildYaourtPackageList()
 
 /*
  * Helper method to deal with the QFutureWatcher result before calling
- * Yaourt package list building method
+ * AUR package list building method
  */
-void MainWindow::preBuildYaourtPackageListMeta()
+void MainWindow::preBuildAURPackageListMeta()
 {
-  m_listOfYaourtPackages = g_fwYaourtMeta.result();
-  buildYaourtPackageList();
+  m_listOfAURPackages = g_fwAURMeta.result();
+  buildAURPackageList();
 
   if (m_cic) {
     delete m_cic;
@@ -247,6 +247,12 @@ void MainWindow::preBuildPackageList()
   //Just a flag to keep the last "if" from executing twice...
   static bool secondTime=false;
   bool hasToCallSysUpgrade = (m_callSystemUpgrade || m_callSystemUpgradeNoConfirm);
+
+  //Added by SearchByFile feature...
+  if (m_cic) {
+    delete m_cic;
+    m_cic = NULL;
+  }
 
   m_listOfPackages.reset(g_fwPacman.result());
   buildPackageList();
@@ -274,16 +280,19 @@ void MainWindow::preBuildPackagesFromGroupList()
 }
 
 /*
- * Decides which SLOT to call: buildPackageList, buildYaourtPackageList or buildPackagesFromGroupList
+ * Decides which SLOT to call: buildPackageList, buildAURPackageList or buildPackagesFromGroupList
  */
 void MainWindow::metaBuildPackageList()
 {
+  m_leFilterPackage->refreshValidator();
+
   m_packageModel->setShowColumnPopularity(false);
   ui->twGroups->setEnabled(false);
   ui->tvPackages->setSelectionMode(QAbstractItemView::ExtendedSelection);
 
   if (ui->twGroups->topLevelItemCount() == 0 || isAllGroupsSelected())
   {        
+    ui->actionSearchByFile->setEnabled(true);
     toggleSystemActions(false);
     connect(m_leFilterPackage, SIGNAL(textChanged(QString)), this, SLOT(reapplyPackageFilter()));
     reapplyPackageFilter();
@@ -293,8 +302,9 @@ void MainWindow::metaBuildPackageList()
     g_fwPacman.setFuture(f);
     connect(&g_fwPacman, SIGNAL(finished()), this, SLOT(preBuildPackageList()));
   }
-  else if (isYaourtGroupSelected())
+  else if (isAURGroupSelected())
   {
+    ui->actionSearchByFile->setEnabled(false);
     m_packageModel->setShowColumnPopularity(true);
 
     if (UnixCommand::getLinuxDistro() == ectn_KAOS)
@@ -306,21 +316,21 @@ void MainWindow::metaBuildPackageList()
     disconnect(m_leFilterPackage, SIGNAL(textChanged(QString)), this, SLOT(reapplyPackageFilter()));
     clearStatusBar();
 
-    m_cic = new CPUIntensiveComputing();
+    m_cic = new CPUIntensiveComputing();       
 
     if(!m_leFilterPackage->text().isEmpty())
     {
       m_toolButtonPacman->hide();
-      disconnect(&g_fwYaourtMeta, SIGNAL(finished()), this, SLOT(preBuildYaourtPackageListMeta()));
+      disconnect(&g_fwAURMeta, SIGNAL(finished()), this, SLOT(preBuildAURPackageListMeta()));
       QFuture<QList<PackageListData> *> f;
-      f = QtConcurrent::run(searchYaourtPackages, m_leFilterPackage->text());
-      g_fwYaourtMeta.setFuture(f);
-      connect(&g_fwYaourtMeta, SIGNAL(finished()), this, SLOT(preBuildYaourtPackageListMeta()));
+      f = QtConcurrent::run(searchAURPackages, m_leFilterPackage->text());
+      g_fwAURMeta.setFuture(f);
+      connect(&g_fwAURMeta, SIGNAL(finished()), this, SLOT(preBuildAURPackageListMeta()));
     }
     else
     {
-      m_listOfYaourtPackages = new QList<PackageListData>();
-      buildYaourtPackageList();
+      m_listOfAURPackages = new QList<PackageListData>();
+      buildAURPackageList();
       delete m_cic;
       m_cic = 0;
       m_leFilterPackage->setFocus();
@@ -328,6 +338,7 @@ void MainWindow::metaBuildPackageList()
   }
   else
   {
+    ui->actionSearchByFile->setEnabled(false);
     toggleSystemActions(false);
     connect(m_leFilterPackage, SIGNAL(textChanged(QString)), this, SLOT(reapplyPackageFilter()));
     reapplyPackageFilter();
@@ -375,7 +386,7 @@ void MainWindow::_showPackagesWithNoDescription()
 void MainWindow::buildPackageList(bool nonBlocking)
 {
   CPUIntensiveComputing cic;
-  bool hasYaourt = UnixCommand::hasTheExecutable(StrConstants::getForeignRepositoryToolName()) && !UnixCommand::isRootRunning();
+  bool hasAURTool = UnixCommand::hasTheExecutable(StrConstants::getForeignRepositoryToolName()) && !UnixCommand::isRootRunning();
 
   static bool firstTime = true;
 
@@ -385,9 +396,9 @@ void MainWindow::buildPackageList(bool nonBlocking)
     m_outdatedPackageList = Package::getOutdatedPackageList();
     m_numberOfOutdatedPackages = m_outdatedPackageList->count();
 
-    if (hasYaourt)
+    if (hasAURTool)
     {
-      m_outdatedYaourtPackageList = Package::getOutdatedYaourtPackageList();
+      m_outdatedAURPackageList = Package::getOutdatedAURPackageList();
     }
   }
 
@@ -412,7 +423,7 @@ void MainWindow::buildPackageList(bool nonBlocking)
   QList<PackageListData>::const_iterator itForeign = listForeign->begin();
   while (itForeign != listForeign->end())
   {
-    if (!hasYaourt || !m_outdatedYaourtPackageList->contains(itForeign->name))
+    if (!hasAURTool || !m_outdatedAURPackageList->contains(itForeign->name))
     {
       pld = PackageListData(
             itForeign->name, itForeign->repository, itForeign->version,
@@ -523,11 +534,11 @@ void MainWindow::buildPackageList(bool nonBlocking)
 }
 
 /*
- * Populates the list of found Yaourt packages (installed [+ non-installed])
+ * Populates the list of found AUR packages (installed [+ non-installed])
  * given the searchString parameter passed.
  *
  */
-void MainWindow::buildYaourtPackageList()
+void MainWindow::buildAURPackageList()
 {
   ui->actionSearchByDescription->setChecked(true);
   tvPackagesSearchColumnChanged(ui->actionSearchByDescription);
@@ -535,7 +546,7 @@ void MainWindow::buildYaourtPackageList()
   m_progressWidget->show();
 
   const QSet<QString>*const unrequiredPackageList = Package::getUnrequiredPackageList();
-  QList<PackageListData> *list = m_listOfYaourtPackages;
+  QList<PackageListData> *list = m_listOfAURPackages;
 
   m_progressWidget->setRange(0, list->count());
   m_progressWidget->setValue(0);
@@ -589,37 +600,37 @@ void MainWindow::buildYaourtPackageList()
 }
 
 /*
- * Prints the Yaourt toolButton at the left of the statusbar.
- * It warns the user about outdated yaourt packages!
+ * Prints the AUR toolButton at the left of the statusbar.
+ * It warns the user about outdated AUR packages!
  */
-void MainWindow::showToolButtonYaourt()
+void MainWindow::showToolButtonAUR()
 {
-  m_outdatedYaourtPackagesNameVersion = &g_fwOutdatedYaourtPackages.result()->content;
+  m_outdatedAURPackagesNameVersion = &g_fwOutdatedAURPackages.result()->content;
 
-  if(m_outdatedYaourtPackageList->count() > 0 && m_outdatedYaourtPackageList->count() > 0)
+  if(m_outdatedAURPackageList->count() > 0 && m_outdatedAURPackageList->count() > 0)
   {
-    if (m_outdatedYaourtPackageList->count() == 1)
+    if (m_outdatedAURPackageList->count() == 1)
     {
-      m_toolButtonYaourt->setText("(1)");
-      m_toolButtonYaourt->setToolTip(StrConstants::getOneNewUpdate());
+      m_toolButtonAUR->setText("(1)");
+      m_toolButtonAUR->setToolTip(StrConstants::getOneNewUpdate());
     }
     else
     {
-      m_toolButtonYaourt->setText("(" + QString::number(m_outdatedYaourtPackagesNameVersion->count()) + ")");
-      m_toolButtonYaourt->setToolTip(
-          StrConstants::getNewUpdates().arg(m_outdatedYaourtPackagesNameVersion->count()));
+      m_toolButtonAUR->setText("(" + QString::number(m_outdatedAURPackagesNameVersion->count()) + ")");
+      m_toolButtonAUR->setToolTip(
+          StrConstants::getNewUpdates().arg(m_outdatedAURPackagesNameVersion->count()));
     }
 
-    m_toolButtonYaourt->show();
+    m_toolButtonAUR->show();
   }
   else
   {
-    m_toolButtonYaourt->setText("");
-    m_toolButtonYaourt->setToolTip("");
-    m_toolButtonYaourt->hide();
+    m_toolButtonAUR->setText("");
+    m_toolButtonAUR->setToolTip("");
+    m_toolButtonAUR->hide();
   }
 
-  ui->statusBar->addWidget(m_toolButtonYaourt);
+  ui->statusBar->addWidget(m_toolButtonAUR);
 }
 
 /*
@@ -627,18 +638,19 @@ void MainWindow::showToolButtonYaourt()
  */
 void MainWindow::refreshStatusBarToolButtons()
 {
-  bool hasYaourt =
+  bool hasAURTool =
       UnixCommand::hasTheExecutable(StrConstants::getForeignRepositoryToolName()) && !UnixCommand::isRootRunning();
 
-  if (hasYaourt)
+  if (hasAURTool)
   {
-    QFuture<YaourtOutdatedPackages *> f;
-    f = QtConcurrent::run(getOutdatedYaourtPackages);
-    g_fwOutdatedYaourtPackages.setFuture(f);
-    connect(&g_fwOutdatedYaourtPackages, SIGNAL(finished()), this, SLOT(showToolButtonYaourt()));
+    QFuture<AUROutdatedPackages *> f;
+    f = QtConcurrent::run(getOutdatedAURPackages);
+    g_fwOutdatedAURPackages.setFuture(f);
+    connect(&g_fwOutdatedAURPackages, SIGNAL(finished()), this, SLOT(showToolButtonAUR()));
   }
 
-  ui->twGroups->setEnabled(true);
+  if (!isSearchByFileSelected())
+    ui->twGroups->setEnabled(true);
 }
 
 /*
@@ -648,7 +660,7 @@ void MainWindow::refreshStatusBar()
 {
   QString text;
   ui->statusBar->removeWidget(m_toolButtonPacman);
-  ui->statusBar->removeWidget(m_toolButtonYaourt);
+  ui->statusBar->removeWidget(m_toolButtonAUR);
 
   int numberOfInstalledPackages = m_packageModel->getInstalledPackagesCount();
 
@@ -668,7 +680,7 @@ void MainWindow::refreshStatusBar()
   m_lblTotalCounters->setText(text);
   ui->statusBar->addWidget(m_lblTotalCounters);
 
-  if((m_numberOfOutdatedPackages > 0) && (!isYaourtGroupSelected()))
+  if((m_numberOfOutdatedPackages > 0) && (!isAURGroupSelected()))
   {
     m_toolButtonPacman->show();
 
@@ -718,7 +730,7 @@ void MainWindow::refreshTabInfo(QString pkgName)
   if (text)
   {
     text->clear();
-    text->setHtml(OctopiTabInfo::formatTabInfo(*package, *m_outdatedYaourtPackagesNameVersion));
+    text->setHtml(OctopiTabInfo::formatTabInfo(*package, *m_outdatedAURPackagesNameVersion));
     text->scrollToAnchor(OctopiTabInfo::anchorBegin);
   }
 }
@@ -772,7 +784,7 @@ void MainWindow::refreshTabInfo(bool clearContents, bool neverQuit)
   /* Appends all info from the selected package! */
   QString pkgName=package->name;
 
-  if (isYaourtGroupSelected() && package->installed() == false)
+  if (isAURGroupSelected() && package->installed() == false)
   {
     QString aux_desc = package->description;
     int space = aux_desc.indexOf(' ');
@@ -804,7 +816,7 @@ void MainWindow::refreshTabInfo(bool clearContents, bool neverQuit)
       text->scrollToAnchor(anchorBegin);
     }
   }
-  else //We are not in the Yaourt group
+  else //We are not in the AUR group
   {
     QTextBrowser *text = ui->twProperties->widget(
           ctn_TABINDEX_INFORMATION)->findChild<QTextBrowser*>("textBrowser");
@@ -812,7 +824,7 @@ void MainWindow::refreshTabInfo(bool clearContents, bool neverQuit)
     if (text)
     {
       text->clear();
-      text->setHtml(OctopiTabInfo::formatTabInfo(*package, *m_outdatedYaourtPackagesNameVersion));
+      text->setHtml(OctopiTabInfo::formatTabInfo(*package, *m_outdatedAURPackagesNameVersion));
       text->scrollToAnchor(OctopiTabInfo::anchorBegin);
     }
   }
@@ -1043,36 +1055,52 @@ void MainWindow::refreshTabFiles(bool clearContents, bool neverQuit)
  */
 void MainWindow::reapplyPackageFilter()
 {
-  CPUIntensiveComputing cic;
-
-  bool isFilterPackageSelected = m_leFilterPackage->hasFocus();
-  QString search = Package::parseSearchString(m_leFilterPackage->text());
-
-  m_packageModel->applyFilter(search);
-  int numPkgs = m_packageModel->getPackageCount();
-
-  if (m_leFilterPackage->text() != ""){
-    if (numPkgs > 0) m_leFilterPackage->setFoundStyle();
-    else m_leFilterPackage->setNotFoundStyle();
-  }
-  else{
-    m_leFilterPackage->initStyleSheet();;
-    m_packageModel->applyFilter("");
-  }
-
-  if (isFilterPackageSelected || numPkgs == 0)
+  if (!isSearchByFileSelected())
   {
-    m_leFilterPackage->setFocus();
+    CPUIntensiveComputing cic;
+
+    bool isFilterPackageSelected = m_leFilterPackage->hasFocus();
+    QString search = Package::parseSearchString(m_leFilterPackage->text());
+
+    m_packageModel->applyFilter(search);
+    int numPkgs = m_packageModel->getPackageCount();
+
+    if (m_leFilterPackage->text() != ""){
+      if (numPkgs > 0) m_leFilterPackage->setFoundStyle();
+      else m_leFilterPackage->setNotFoundStyle();
+    }
+    else{
+      m_leFilterPackage->initStyleSheet();
+      m_packageModel->applyFilter("");
+    }
+
+    if (isFilterPackageSelected || numPkgs == 0)
+    {
+      m_leFilterPackage->setFocus();
+    }
+
+    ui->tvPackages->selectionModel()->clear();
+    QModelIndex mi = m_packageModel->index(0, PackageModel::ctn_PACKAGE_NAME_COLUMN, QModelIndex());
+    ui->tvPackages->setCurrentIndex(mi);
+    ui->tvPackages->scrollTo(mi);
+
+    //We need to call this method to refresh package selection counters
+    tvPackagesSelectionChanged(QItemSelection(),QItemSelection());
+    invalidateTabs();
   }
+  //If we are using "Search By file...
+  else
+  {
+    disconnect(m_leFilterPackage, SIGNAL(textChanged(QString)), this, SLOT(reapplyPackageFilter()));
 
-  ui->tvPackages->selectionModel()->clear();
-  QModelIndex mi = m_packageModel->index(0, PackageModel::ctn_PACKAGE_NAME_COLUMN, QModelIndex());
-  ui->tvPackages->setCurrentIndex(mi);
-  ui->tvPackages->scrollTo(mi);
+    m_leFilterPackage->initStyleSheet();
 
-  //We need to call this method to refresh package selection counters
-  tvPackagesSelectionChanged(QItemSelection(),QItemSelection());
-  invalidateTabs();
+    //We need to provide QCompleter data to the SearchLineEdit...
+    if (!m_leFilterPackage->text().isEmpty())
+      m_leFilterPackage->refreshCompleterData();
+
+    connect(m_leFilterPackage, SIGNAL(textChanged(QString)), this, SLOT(reapplyPackageFilter()));
+  }
 }
 
 /*

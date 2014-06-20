@@ -38,9 +38,9 @@
 QFutureWatcher<QString> g_fwToolTip;
 QFutureWatcher<QList<PackageListData> *> g_fwPacman;
 QFutureWatcher<GroupMemberPair>          g_fwPacmanGroup;
-QFutureWatcher<QList<PackageListData> *> g_fwYaourt;
-QFutureWatcher<QList<PackageListData> *> g_fwYaourtMeta;
-QFutureWatcher<YaourtOutdatedPackages *> g_fwOutdatedYaourtPackages;
+QFutureWatcher<QList<PackageListData> *> g_fwAUR;
+QFutureWatcher<QList<PackageListData> *> g_fwAURMeta;
+QFutureWatcher<AUROutdatedPackages *> g_fwOutdatedAURPackages;
 QFutureWatcher<QString> g_fwDistroNews;
 
 /*
@@ -89,6 +89,19 @@ QList<PackageListData> * searchPacmanPackages()
 }
 
 /*
+ * Starts the non blocking search for a Pacman package that owns the given file...
+ */
+QList<PackageListData> * searchPacmanPackagesByFile(const QString &file)
+{
+  QString foundPackage = UnixCommand::getPackageByFilePath(file);
+
+  if (foundPackage.isEmpty())
+    foundPackage = "___NOT_FOUND___";
+
+  return Package::getPackageList(foundPackage);
+}
+
+/*
  * Starts the non blocking search for Pacman packages...
  */
 GroupMemberPair searchPacmanPackagesFromGroup(QString groupName)
@@ -97,22 +110,21 @@ GroupMemberPair searchPacmanPackagesFromGroup(QString groupName)
 }
 
 /*
- * Starts the non blocking search for Yaourt packages...
+ * Starts the non blocking search for AUR packages...
  */
-QList<PackageListData> * searchYaourtPackages(QString searchString)
+QList<PackageListData> * searchAURPackages(QString searchString)
 {
-  return Package::getYaourtPackageList(searchString);
+  return Package::getAURPackageList(searchString);
 }
 
 /*
- * Starts the non blocking retrive of Yaourt outdated package versions...
- * Results in a hash: [key] Yaourt pkg name / [value] Yaourt pkg version available
+ * Starts the non blocking retrive of AUR outdated package versions...
+ * Results in a hash: [key] AUR pkg name / [value] AUR pkg version available
  */
-YaourtOutdatedPackages * getOutdatedYaourtPackages()
+AUROutdatedPackages * getOutdatedAURPackages()
 {
-  YaourtOutdatedPackages * res = new YaourtOutdatedPackages();
-  res->content = Package::getYaourtOutdatedPackagesNameVersion();
-
+  AUROutdatedPackages * res = new AUROutdatedPackages();
+  res->content = Package::getAUROutdatedPackagesNameVersion();
   return res;
 }
 

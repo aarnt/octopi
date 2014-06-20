@@ -25,7 +25,7 @@
 #include <QStandardItem>
 #include <QFutureWatcher>
 
-struct YaourtOutdatedPackages
+struct AUROutdatedPackages
 {
   public:
     QHash<QString, QString> content;
@@ -36,16 +36,17 @@ typedef std::pair<QString, QStringList*> GroupMemberPair;
 extern QFutureWatcher<QString> g_fwToolTip;
 extern QFutureWatcher<QList<PackageListData> *> g_fwPacman;
 extern QFutureWatcher<GroupMemberPair>          g_fwPacmanGroup;
-extern QFutureWatcher<QList<PackageListData> *> g_fwYaourt;
-extern QFutureWatcher<QList<PackageListData> *> g_fwYaourtMeta;
-extern QFutureWatcher<YaourtOutdatedPackages *> g_fwOutdatedYaourtPackages;
+extern QFutureWatcher<QList<PackageListData> *> g_fwAUR;
+extern QFutureWatcher<QList<PackageListData> *> g_fwAURMeta;
+extern QFutureWatcher<AUROutdatedPackages *> g_fwOutdatedAURPackages;
 extern QFutureWatcher<QString> g_fwDistroNews;
 
 QString showPackageInfo(QString pkgName);
 QList<PackageListData> * searchPacmanPackages();
+QList<PackageListData> * searchPacmanPackagesByFile(const QString &file);
 GroupMemberPair          searchPacmanPackagesFromGroup(QString groupName);
-QList<PackageListData> * searchYaourtPackages(QString searchString);
-YaourtOutdatedPackages * getOutdatedYaourtPackages();
+QList<PackageListData> * searchAURPackages(QString searchString);
+AUROutdatedPackages * getOutdatedAURPackages();
 QString getLatestDistroNews();
 
 #endif // MAINWINDOW_GLOBALS_H

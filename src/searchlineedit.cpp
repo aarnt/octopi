@@ -9,13 +9,26 @@
 #include "searchlineedit.h"
 #include "strconstants.h"
 #include "mainwindow.h"
-
+#include "iostream"
 #include <QApplication>
 #include <QToolButton>
 #include <QStyle>
+#include <QRegExpValidator>
+#include <QCompleter>
+#include <QStringListModel>
 
 SearchLineEdit::SearchLineEdit(QWidget *parent) :
   QLineEdit(parent){
+
+  m_hasLocate = UnixCommand::hasTheExecutable("slocate");
+
+  m_completerModel = new QStringListModel(this);
+  m_completer = new QCompleter(m_completerModel, this);
+  m_completer->setCaseSensitivity(Qt::CaseInsensitive);
+  m_completer->setCompletionMode(QCompleter::PopupCompletion);
+  m_completer->setCompletionColumn(0);
+  m_completer->setMaxVisibleItems(10);
+  setCompleter(m_completer);
 
   // Create the search button and set its icon, cursor, and stylesheet
   this->mSearchButton = new QToolButton(this);
@@ -29,6 +42,12 @@ SearchLineEdit::SearchLineEdit(QWidget *parent) :
   this->mSearchButton->setCursor(Qt::ArrowCursor);
   this->mSearchButton->setStyleSheet(this->buttonStyleSheetForCurrentState());
 
+  m_defaultValidator = new QRegExpValidator(QRegExp("[a-zA-Z0-9_\\-.\\$\\^]+"), this);
+  m_aurValidator = new QRegExpValidator(QRegExp("[a-zA-Z0-9_\\-.]+"), this);
+  m_fileValidator = new QRegExpValidator(QRegExp("[a-zA-Z0-9_\\-\\/.]+"), this);
+
+  setValidator(m_defaultValidator);
+
   // Update the search button when the text changes
   QObject::connect(this, SIGNAL(textChanged(QString)), SLOT(updateSearchButton(QString)));
 
@@ -40,6 +59,43 @@ SearchLineEdit::SearchLineEdit(QWidget *parent) :
 #endif
 
   this->setStyleSheet(this->styleSheetForCurrentState());
+}
+
+/*
+ * Refreshes the validator used in QLineEdit depending on the options choosed by the user
+ */
+void SearchLineEdit::refreshValidator()
+{
+  MainWindow *mw = MainWindow::returnMainWindow();
+
+  if (mw->isAURGroupSelected())
+    setValidator(m_aurValidator);
+  else if (mw->isSearchByFileSelected())
+    setValidator(m_fileValidator);
+  else
+    setValidator(m_defaultValidator);
+
+  //If the current string is not valid anymore, let's erase it!
+  int pos = 0;
+  QString search = text();
+  if (this->validator()->validate(search, pos) == QValidator::Invalid)
+    setText("");
+}
+
+/*
+ * Refreshes completer data used in QLineEdit if slocate is installed
+ */
+void SearchLineEdit::refreshCompleterData()
+{
+  if (m_hasLocate)
+  {
+    QStringList sl = UnixCommand::getFilePathSuggestions(text());
+
+    if (sl.count() > 0)
+    {
+      m_completerModel->setStringList(sl);
+    }
+  }
 }
 
 void SearchLineEdit::resizeEvent(QResizeEvent *event)
@@ -59,7 +115,6 @@ void SearchLineEdit::updateSearchButton(const QString &text)
     QObject::disconnect(this->mSearchButton, SIGNAL(clicked()), this, SLOT(clear()));
   }
 
-  //this->setStyleSheet(this->styleSheetForCurrentState());
   this->mSearchButton->setStyleSheet(this->buttonStyleSheetForCurrentState());
 }
 
@@ -148,7 +203,6 @@ void SearchLineEdit::setNotFoundStyle(){
   }
   // setPalette() must be called after setStyleSheet()
   else
-  //if(UnixCommand::getLinuxDistro() == ectn_CHAKRA)
   {
     style += "padding-left: 20px;}";
     setStyleSheet(style);

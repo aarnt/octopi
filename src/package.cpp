@@ -229,7 +229,7 @@ QStringList *Package::getOutdatedPackageList()
 /*
  * Retrieves the list of outdated Yaourt (AUR) packages (those which have newer versions available to download)
  */
-QStringList *Package::getOutdatedYaourtPackageList()
+QStringList *Package::getOutdatedAURPackageList()
 {
   QStringList * res = new QStringList();
 
@@ -401,7 +401,7 @@ QList<PackageListData> *Package::getForeignPackageList()
 /*
  * Retrieves the list of all available packages in the database (installed + non-installed)
  */
-QList<PackageListData> * Package::getPackageList()
+QList<PackageListData> * Package::getPackageList(const QString &packageName)
 {
   //archlinuxfr/yaourt 1.2.2-1 [installed]
   //    A pacman wrapper with extended features and AUR support
@@ -409,13 +409,13 @@ QList<PackageListData> * Package::getPackageList()
 
   QString pkgName, pkgRepository, pkgVersion, pkgDescription, pkgOutVersion;
   PackageStatus pkgStatus;
-  QString pkgList = UnixCommand::getPackageList();
+  QString pkgList = UnixCommand::getPackageList(packageName);
   QStringList packageTuples = pkgList.split(QRegExp("\\n"), QString::SkipEmptyParts);
   QList<PackageListData> * res = new QList<PackageListData>();
 
   pkgDescription = "";
   foreach(QString packageTuple, packageTuples)
-  {
+  {                
     if (!packageTuple[0].isSpace())
     {
       //Do we already have a description?
@@ -426,7 +426,8 @@ QList<PackageListData> * Package::getPackageList()
         PackageListData pld =
             PackageListData(pkgName, pkgRepository, pkgVersion, pkgDescription, pkgStatus, pkgOutVersion);
 
-        res->append(pld);
+        if (packageName.isEmpty() || pkgName == packageName)
+          res->append(pld);
 
         pkgDescription = "";
       }
@@ -437,6 +438,10 @@ QList<PackageListData> * Package::getPackageList()
       int a = repoName.indexOf("/");
       pkgRepository = repoName.left(a);
       pkgName = repoName.mid(a+1);
+
+      //THIS WILL REJECT ANY PKG THAT IS NOT THE ONE WHICH OWNS THE SEARCHED FILE
+      //if (!packageName.isEmpty() && pkgName != packageName) continue;
+
       pkgVersion = parts[1];
 
       if(packageTuple.indexOf("[installed]") != -1)
@@ -475,7 +480,9 @@ QList<PackageListData> * Package::getPackageList()
   pkgDescription = pkgName + " " + pkgDescription;
   PackageListData pld =
       PackageListData(pkgName, pkgRepository, pkgVersion, pkgDescription, pkgStatus, pkgOutVersion);
-  res->append(pld);
+
+  if (packageName.isEmpty() || pkgName == packageName)
+    res->append(pld);
 
   return res;
 }
@@ -484,7 +491,7 @@ QList<PackageListData> * Package::getPackageList()
  * Retrieves the list of all yaourt packages in the database (installed + non-installed)
  * given the search parameter
  */
-QList<PackageListData> * Package::getYaourtPackageList(const QString& searchString)
+QList<PackageListData> * Package::getAURPackageList(const QString& searchString)
 {
   //aur/yaourt 1.2.2-1 [installed]
   //    A pacman wrapper with extended features and AUR support
@@ -1061,7 +1068,7 @@ QString Package::getInformationInstalledSize(const QString &pkgName, bool foreig
 /*
  * Helper to get only the Version field of Yaourt package information
  */
-QHash<QString, QString> Package::getYaourtOutdatedPackagesNameVersion()
+QHash<QString, QString> Package::getAUROutdatedPackagesNameVersion()
 {
   QHash<QString, QString> hash;
 
