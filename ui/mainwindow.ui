@@ -183,8 +183,8 @@
     <property name="title">
      <string>Search</string>
     </property>
-    <addaction name="actionSearchByDescription"/>
     <addaction name="actionSearchByName"/>
+    <addaction name="actionSearchByDescription"/>
     <addaction name="separator"/>
     <addaction name="actionSearchByFile"/>
    </widget>

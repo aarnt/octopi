@@ -16,6 +16,7 @@
   Added es_AR translation (thanks to javier).
   Added 'installed size' information in package tooltips.
   Added Search by file feature (pacman -Qo).
+  Added a string validator in the search edit widget.
 
 0.4.0
   Huge refactorings in model/view that brings consistent memory and 
