@@ -115,11 +115,23 @@ void MainWindow::show()
     initToolBar();
     initTabWidgetPropertiesIndex();
     refreshDistroNews(false);
-    refreshGroupsWidget();
+
+    if (Package::hasPacmanDatabase())
+    {
+      refreshGroupsWidget();
+    }
 
     QMainWindow::show();
 
-    metaBuildPackageList();
+    if (Package::hasPacmanDatabase())
+    {
+      metaBuildPackageList();
+    }
+    // Maybe this system has never run a pacman -Syy
+    else
+    {
+      doSyncDatabase();
+    }
   }
   else
     QMainWindow::show();

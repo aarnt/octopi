@@ -26,6 +26,7 @@
 
 #include <QTextStream>
 #include <QList>
+#include <QFile>
 
 /*
  * This class abstracts all the relevant package information and services
@@ -1201,4 +1202,22 @@ QString Package::parseSearchString(QString searchStr, bool exactMatch)
 
   searchStr.replace("?", ".");
   return searchStr;
+}
+
+/*
+ * Checks if this system has the core.db
+ */
+bool Package::hasPacmanDatabase()
+{
+  static bool done = false;
+  static bool answer = false;
+
+  if (!done)
+  {
+    QFile f(ctn_PACMAN_CORE_DB_FILE);
+    answer = f.exists();
+    done = true;
+  }
+
+  return answer;
 }

@@ -41,6 +41,7 @@ const QString ctn_DATE_RELEASE      = "^[0-9]{8}$";
 const QString ctn_NO_MATCH      	  = "not found!";
 
 const QString ctn_PACMAN_DATABASE_DIR = "/var/lib/pacman";
+const QString ctn_PACMAN_CORE_DB_FILE = "/var/lib/pacman/sync/core.db";
 
 enum PackageStatus { ectn_INSTALLED, ectn_NON_INSTALLED, ectn_OUTDATED, ectn_NEWER,
                      ectn_FOREIGN, ectn_FOREIGN_OUTDATED };
@@ -140,7 +141,6 @@ class Package{
 
     static QHash<QString, QString> getAUROutdatedPackagesNameVersion();
     static QStringList getContents(const QString &pkgName, bool isInstalled);
-
     static QStringList getOptionalDeps(const QString &pkgName);
 
     static QString getName(const QString &pkgInfo);
@@ -168,10 +168,10 @@ class Package{
 
     static double humanizeSize(off_t bytes, const char target_unit, int precision, const char **label);
     static QString makeURLClickable(const QString &information);
-
     static QString getBaseName( const QString& pkgName );
     static QString parseSearchString( QString searchStr, bool exactMatch = false );
-    static bool isSlackPackage(const QString &filePath);
+
+    static bool hasPacmanDatabase();
 };
 
 #endif
