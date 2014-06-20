@@ -52,7 +52,6 @@
 
 #include "src/ui/octopitabinfo.h"
 
-
 /*
  * If we have some outdated packages, let's put an angry red face icon in this app!
  */
@@ -421,26 +420,30 @@ void MainWindow::buildPackageList(bool nonBlocking)
 
   PackageListData pld;
   QList<PackageListData>::const_iterator itForeign = listForeign->begin();
-  while (itForeign != listForeign->end())
+
+  if (!isSearchByFileSelected())
   {
-    if (!hasAURTool || !m_outdatedAURPackageList->contains(itForeign->name))
+    while (itForeign != listForeign->end())
     {
-      pld = PackageListData(
-            itForeign->name, itForeign->repository, itForeign->version,
-            itForeign->name + " " + Package::getInformationDescription(itForeign->name, true),
-            ectn_FOREIGN);
-    }
-    else
-    {
-      pld = PackageListData(
-            itForeign->name, itForeign->repository, itForeign->version,
-            itForeign->name + " " + Package::getInformationDescription(itForeign->name, true),
-            ectn_FOREIGN_OUTDATED);
-    }
+      if (!hasAURTool || !m_outdatedAURPackageList->contains(itForeign->name))
+      {
+        pld = PackageListData(
+              itForeign->name, itForeign->repository, itForeign->version,
+              itForeign->name + " " + Package::getInformationDescription(itForeign->name, true),
+              ectn_FOREIGN);
+      }
+      else
+      {
+        pld = PackageListData(
+              itForeign->name, itForeign->repository, itForeign->version,
+              itForeign->name + " " + Package::getInformationDescription(itForeign->name, true),
+              ectn_FOREIGN_OUTDATED);
+      }
 
-    list->append(pld);
+      list->append(pld);
 
-    itForeign++;
+      itForeign++;
+    }
   }
 
   m_packageRepo.setData(list, *unrequiredPackageList);
@@ -469,8 +472,6 @@ void MainWindow::buildPackageList(bool nonBlocking)
 
   m_progressWidget->setValue(list->count());
 
-//  resizePackageView();
-
   if (m_leFilterPackage->text() != "") reapplyPackageFilter();
 
   QModelIndex maux = m_packageModel->index(0, 0, QModelIndex());
@@ -478,7 +479,6 @@ void MainWindow::buildPackageList(bool nonBlocking)
   ui->tvPackages->scrollTo(maux, QAbstractItemView::PositionAtCenter);
   ui->tvPackages->setCurrentIndex(maux);
 
-  //list->clear();
   delete list;
   list = NULL;
   refreshTabInfo();
@@ -541,7 +541,7 @@ void MainWindow::buildPackageList(bool nonBlocking)
 void MainWindow::buildAURPackageList()
 {
   ui->actionSearchByDescription->setChecked(true);
-  tvPackagesSearchColumnChanged(ui->actionSearchByDescription);
+  //tvPackagesSearchColumnChanged(ui->actionSearchByDescription);
 
   m_progressWidget->show();
 
