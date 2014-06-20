@@ -93,12 +93,20 @@ QList<PackageListData> * searchPacmanPackages()
  */
 QList<PackageListData> * searchPacmanPackagesByFile(const QString &file)
 {
-  QString foundPackage = UnixCommand::getPackageByFilePath(file);
+  const QString NOT_FOUND("___NOT_FOUND___");
 
-  if (foundPackage.isEmpty())
-    foundPackage = "___NOT_FOUND___";
+  if (!file.isEmpty())
+  {
+    QString foundPackage = UnixCommand::getPackageByFilePath(file);
+    if (foundPackage.isEmpty())
+      foundPackage = NOT_FOUND;
 
-  return Package::getPackageList(foundPackage);
+    return Package::getPackageList(foundPackage);
+  }
+  else
+  {
+    return Package::getPackageList(NOT_FOUND);
+  }
 }
 
 /*
