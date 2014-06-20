@@ -1,4 +1,4 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="cs" version="2.0">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="ja" version="2.0">
 <context>
     <name>MainWindow</name>
     <message>
@@ -9,64 +9,64 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="110"/>
         <source>Info</source>
-        <translation>Informace</translation>
+        <translation>情報</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="115"/>
         <source>Files</source>
-        <translation>Soubory</translation>
+        <translation>ファイル</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="120"/>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="164"/>
         <source>Transaction</source>
-        <translation>Transakce</translation>
+        <translation>処理</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="125"/>
         <source>Output</source>
-        <translation>Výstup</translation>
+        <translation>出力</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="147"/>
         <source>Help</source>
-        <translation>Nápověda</translation>
+        <translation>ヘルプ</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="155"/>
         <source>View</source>
-        <translation>Pohled</translation>
+        <translation>表示</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="171"/>
         <source>File</source>
-        <translation>Soubor</translation>
+        <translation>ファイル</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="184"/>
         <source>Search</source>
-        <translation>Hledat</translation>
+        <translation>検索</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="193"/>
         <source>Tools</source>
-        <translation>Nástroje</translation>
+        <translation>ツール</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="222"/>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="225"/>
         <source>About</source>
-        <translation>O</translation>
+        <translation>About</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="239"/>
         <source>Non installed</source>
-        <translation>Nenainstalováno</translation>
+        <translation>未インストール</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="248"/>
         <source>Commit</source>
-        <translation>Použít</translation>
+        <translation>コミット</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="251"/>
@@ -76,7 +76,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="260"/>
         <source>Rollback</source>
-        <translation>Vrátit zpět</translation>
+        <translation>元に戻す</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="263"/>
@@ -86,7 +86,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="272"/>
         <source>Sync database</source>
-        <translation>Seřídit databázi</translation>
+        <translation>データベースを同期</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="275"/>
@@ -96,7 +96,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="284"/>
         <source>Exit</source>
-        <translation>Ukončit</translation>
+        <translation>終了</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="287"/>
@@ -106,7 +106,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="296"/>
         <source>System upgrade</source>
-        <translation>Povýšení systému</translation>
+        <translation>システムをアップグレード</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="299"/>
@@ -118,23 +118,23 @@
         <location filename="Projects/octopi/ui/mainwindow.ui" line="311"/>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="513"/>
         <source>Install</source>
-        <translation>Instalovat</translation>
+        <translation>インストール</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="320"/>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="323"/>
         <source>Remove</source>
-        <translation>Odstranit</translation>
+        <translation>削除</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="328"/>
         <source>Outdated packages</source>
-        <translation>Zastaralé balíčky</translation>
+        <translation>失効したパッケージ</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="337"/>
         <source>Get latest distro news</source>
-        <translation>Dostat nejnovější distribuční zprávy</translation>
+        <translation>ディストロの最新ニュースを取得</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="340"/>
@@ -144,87 +144,87 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="349"/>
         <source>Remove group</source>
-        <translation>Odstranit skupinu</translation>
+        <translation>グループを削除</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="358"/>
         <source>Install group</source>
-        <translation>Instalovat skupinu</translation>
+        <translation>グループをインストール</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="367"/>
         <source>Collapse item</source>
-        <translation>Sbalit položku</translation>
+        <translation>アイテムを畳む</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="376"/>
         <source>Expand item</source>
-        <translation>Rozbalit položku</translation>
+        <translation>アイテムを展開</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="385"/>
         <source>Collapse all items</source>
-        <translation>Sbalit všechny položky</translation>
+        <translation>全てのアイテムを畳む</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="394"/>
         <source>Expand all items</source>
-        <translation>Rozbalit všechny položky</translation>
+        <translation>全てのアイテムを展開</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="403"/>
         <source>Open file</source>
-        <translation>Otevřít soubor</translation>
+        <translation>ファイルを開く</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="412"/>
         <source>Edit file</source>
-        <translation>Upravit soubor</translation>
+        <translation>ファイルを編集</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="421"/>
         <source>Open directory</source>
-        <translation>Otevřít adresář</translation>
+        <translation>ディレクトリを開く</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="430"/>
         <source>Open terminal here</source>
-        <translation>Otevřít terminál zde</translation>
+        <translation>ターミナルをここで開く</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="439"/>
         <source>Remove item</source>
-        <translation>Odstranit položku</translation>
+        <translation>アイテムを削除</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="451"/>
         <source>Remove items</source>
-        <translation>Odstranit položky</translation>
+        <translation>アイテムを削除</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="462"/>
         <source>By description</source>
-        <translation>Podle popisu</translation>
+        <translation>説明文で</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="470"/>
         <source>By name</source>
-        <translation>Podle názvu</translation>
+        <translation>名前で</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="479"/>
         <source>Find a file</source>
-        <translation>Najít soubor</translation>
+        <translation>ファイルを検索</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="488"/>
         <source>Open root terminal</source>
-        <translation>Otevřít terminál (root)</translation>
+        <translation>rootターミナルを開く</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="493"/>
         <source>Usage</source>
-        <translation>Použití</translation>
+        <translation>使い方</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="496"/>
@@ -234,237 +234,237 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="504"/>
         <source>Install local package...</source>
-        <translation>Nainstalovat místní balíček...</translation>
+        <translation>ローカルパッケージをインストール...</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="521"/>
         <source>Pacman Log Viewer</source>
-        <translation>Prohlížeč záznamů Pacmana</translation>
+        <translation>Pacmanログビューワ</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="533"/>
         <source>Repository Editor</source>
-        <translation>Editor úložiště</translation>
+        <translation>リポジトリエディタ</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="541"/>
         <source>Installed</source>
-        <translation>Nainstalováno</translation>
+        <translation>インストール済み</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="557"/>
         <source>By file</source>
-        <translation>Podle souboru</translation>
+        <translation>ファイルで</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="55"/>
         <source>For more information, visit:</source>
-        <translation>Další informace najdete na:</translation>
+        <translation>詳しい情報はこちら:</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="58"/>
         <source>A Qt-based Pacman frontend,</source>
-        <translation>Na Qt založené rozhraní pro Pacman,</translation>
+        <translation>Qtベースの Pacman フロントエンド,</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="59"/>
         <source>licensed under the terms of</source>
-        <translation>licencováno za podmínek</translation>
+        <translation>ライセンスは</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="77"/>
         <source>Package classification:</source>
-        <translation>Zařazení balíčku:</translation>
+        <translation>パッケージの分類:</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="80"/>
         <source>An installed package</source>
-        <translation>Nainstalovaný balíček</translation>
+        <translation>インストール済みパッケージ</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="82"/>
         <source>An installed package (not required by others)</source>
-        <translation>Nainstalovaný balíček (nepožadovaný dalšími)</translation>
+        <translation>インストール済みパッケージ (他のものから必要とされていない)</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="85"/>
         <source>A foreign package, installed from</source>
-        <translation>Cizí balíček, instalován z</translation>
+        <translation>外部パッケージ</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="88"/>
         <source>A non installed package</source>
-        <translation>Nenainstalovaný balíček</translation>
+        <translation>未インストールパッケージ</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="91"/>
         <source>An outdated package</source>
-        <translation>Zastaralý balíček</translation>
+        <translation>失効したパッケージ</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="94"/>
         <source>An outdated foreign package</source>
-        <translation>Zastaralý cizí balíček</translation>
+        <translation>失効した外部パッケージ</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="97"/>
         <source>A newer than repository package</source>
-        <translation>Novější než balíček ve skladišti</translation>
+        <translation>リポジトリのものより新しいパッケージ</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="100"/>
         <source>Basic usage help:</source>
-        <translation>Základní nápověda k používání:</translation>
+        <translation>基本的な使い方:</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="102"/>
         <source>Position the mouse over a package to see its description</source>
-        <translation>Umístěte myš nad balíček pro zobrazení jeho popisu</translation>
+        <translation>パッケージの上にマウスを置くと説明を表示</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="104"/>
         <source>Double click an installed package to see its contents</source>
-        <translation>Dvakrát klepněte na nainstalovaný balíček pro zobrazení jeho obsahu</translation>
+        <translation>インストール済みパッケージをダブルクリックすると内容を表示</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="106"/>
         <source>Right click package to install/reinstall or remove it</source>
-        <translation>Klepněte pravým tlačítkem myši na balíček pro jeho nainstalování/přeinstalování nebo odinstalování</translation>
+        <translation>パッケージを右クリックするとインストール/再インストール/削除</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="109"/>
         <source>Alt+key sequences:</source>
-        <translation>Alt+sled kláves:</translation>
+        <translation>Alt+キー の動作:</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="111"/>
         <source>Alt+1 to switch to &apos;Info&apos; tab</source>
-        <translation>Alt+1 pro přepnutí na kartu Informace</translation>
+        <translation>Alt+1 で情報タブに切り替え</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="113"/>
         <source>Alt+2 to switch to &apos;Files&apos; tab</source>
-        <translation>Alt+2 pro přepnutí na kartu Soubory</translation>
+        <translation>Alt+2 でファイルタブに切り替え</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="115"/>
         <source>Alt+3 to switch to &apos;Transaction&apos; tab</source>
-        <translation>Alt+3 pro přepnutí na kartu Transakce</translation>
+        <translation>Alt+3 で処理タブに切り替え</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="117"/>
         <source>Alt+4 to switch to &apos;Output&apos; tab</source>
-        <translation>Alt+4 pro přepnutí na kartu Výstup</translation>
+        <translation>Alt+4 で出力タブに切り替え</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="119"/>
         <source>Alt+5 to switch to &apos;News&apos; tab</source>
-        <translation>Alt+5 pro přepnutí na kartu Zprávy</translation>
+        <translation>Alt+5 でニュースタブに切り替え</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="121"/>
         <source>Alt+6 or &apos;F1&apos; to show this help page</source>
-        <translation>Alt+6 nebo F1 pro ukázání této stránky s nápovědou</translation>
+        <translation>Alt+6 か F1 でこのヘルプを表示</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="124"/>
         <source>Control+key sequences:</source>
-        <translation>Ctrl+sled kláves:</translation>
+        <translation>Control+キー の動作:</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="126"/>
         <source>Ctrl+D or &apos;File/Sync database&apos; to sync the local database with latest remote changes (pacman -Sy)</source>
-        <translation>Ctrl+D nebo &apos;Soubor/Seřídit databázi&apos; pro seřízení místní databáze s posledními vzdálenými změnami (pacman -Sy)</translation>
+        <translation>Ctrl+D か「ファイル→データベースを同期」でローカルデータベースをリモートに同期 (pacman -Sy)</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="128"/>
         <source>Ctrl+U or &apos;File/System upgrade&apos; to make a full system upgrade (pacman -Su)</source>
-        <translation>Ctrl+U nebo &apos;Soubor/Aktualizace systému&apos; pro provedení úplné aktualizace systému (pacman -Su)</translation>
+        <translation>Ctrl+U か「ファイル→システムをアップグレード」でシステムをフルアップグレード (pacman -Su)</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="130"/>
         <source>Ctrl+L to find a package in the package list</source>
-        <translation>Ctrl+L pro nalezení balíčku v seznamu balíčků</translation>
+        <translation>Ctrl+L でパッケージリストにあるパッケージを検索</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="132"/>
         <source>Ctrl+F to search for text inside tab Files, News and Usage</source>
-        <translation>Ctrl+F pro hledání textu v souborech, zprávách a používání</translation>
+        <translation>Ctrl+F でファイル/ニュース/使い方のタブ内のテキストを検索</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="136"/>
         <source>Ctrl+M or &apos;Transaction/Commit&apos; to start installation/removal of selected packages</source>
-        <translation>Ctrl+M nebo &apos;Transakce/Použít&apos; pro spuštění instalace/odstranění vybraných balíčků</translation>
+        <translation>Ctrl+M か「処理→コミット」で選んだパッケージのインストール/削除を開始</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="138"/>
         <source>Ctrl+B or &apos;Transaction/Rollback&apos; to clear the selection of to be removed/installed packages</source>
-        <translation>Ctrl+B nebo &apos;Transakce/Vrátit zpět&apos; pro smazání výběru balíčků určených k odstranění/instalaci</translation>
+        <translation>Ctrl+B か「処理→元に戻す」で削除/インストールの選択をクリア</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="140"/>
         <source>Ctrl+G or &apos;File/Get latest distro news&apos; to retrieve the latest RSS based distro news</source>
-        <translation>Ctrl+G nebo &apos;Soubor/Dostat nejnovější distribuční zprávy&apos; pro získání nejnovějších distribučních zpráv založených na RSS</translation>
+        <translation>Ctrl+G か「ファイル→ディストロの最新ニュースを取得」で RSS ベースの最新ディストロニュースを取得</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="142"/>
         <source>Ctrl+Q or &apos;File/Exit&apos; to exit the application</source>
-        <translation>Ctrl+Q nebo &apos;Soubor/Ukončit&apos; pro ukončení programu</translation>
+        <translation>Ctrl+Q か「ファイル→終了」でこのアプリケーションを終了</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="145"/>
         <source>Control+shift+key sequences:</source>
-        <translation>Ctrl+Shift+sled kláves:</translation>
+        <translation>Control+Shift+キー の動作:</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="147"/>
         <source>Ctrl+Shift+C to clean local packages cache (pacman -Sc)</source>
-        <translation>Ctrl+Shift+C pro smazání místní vyrovnávací paměti balíčků (pacman -Sc)</translation>
+        <translation>Ctrl+Shift+C でローカルパッケージのキャッシュを削除 (pacman -Sc)</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="149"/>
         <source>Ctrl+Shift+G to display all package groups</source>
-        <translation>Ctrl+Shift+G pro zobrazení všech skupin balíčků</translation>
+        <translation>Ctrl+Shift+G で全てのパッケージグループを表示</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="151"/>
         <source>Ctrl+Shift+R to remove Pacman&apos;s transaction lock file</source>
-        <translation>Ctrl+Shift+R pro odstranění souboru se zámkem transakce Pacman</translation>
+        <translation>Ctrl+Shift+R で Pacman の処理時のロックファイルを削除</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="153"/>
         <source>Ctrl+Shift+Y to display %1 group</source>
-        <translation>pro zobrazení skupiny %1</translation>
+        <translation>Ctrl+Shift+Y で %1 グループを表示</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="156"/>
         <source>F+key sequences:</source>
-        <translation>F+sled kláves:</translation>
+        <translation>ファンクションキーの動作:</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="158"/>
         <source>F1 to show this help page</source>
-        <translation>F1 pro ukázání této stránky s nápovědou</translation>
+        <translation>F1 でこのヘルプを表示</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="160"/>
         <source>F4 to open a Terminal whitin the selected directory at Files tab</source>
-        <translation>F4 pro otevření terminálu ve vybraném adresáři na kartě Soubory</translation>
+        <translation>F4 でターミナルをファイルタブで選んだディレクトリに開く</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="162"/>
         <source>F6 to open a File Manager whitin the selected directory at Files tab</source>
-        <translation>F6 pro otevření správce souborů ve vybraném adresáři na kartě Soubory</translation>
+        <translation>F6 でファイルマネージャをファイルタブで選んだディレクトリに開く</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="164"/>
         <source>F10 to maximize/demaximize package list view</source>
-        <translation>F10 pro zvětšení/zmenšení zobrazení seznamu balíčků</translation>
+        <translation>F10 でパッケージリストビューを最大化/元に戻す</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="166"/>
         <source>F12 to maximize/demaximize Tab&apos;s view</source>
-        <translation>F12 pro zvětšení/zmenšení zobrazení karet</translation>
+        <translation>F12 でタブビューを最大化/元に戻す</translation>
     </message>
 </context>
 <context>
@@ -472,594 +472,594 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="41"/>
         <source>Octopi usage help:</source>
-        <translation>Nápověda k používání Octopi:</translation>
+        <translation>Octopi の使い方:</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="42"/>
         <source>show application version.</source>
-        <translation>Ukázat verzi programu.</translation>
+        <translation>アプリケーションのバージョンを表示。</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="43"/>
         <source>use a different Qt4 style (ex: -style gtk).</source>
-        <translation>Použít jiný styl Qt4 (např. -style gtk).</translation>
+        <translation>別の Qt4 スタイルを使う (ex: -style gtk)。</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="44"/>
         <source>use a different remove command (ex: -removecmd R).</source>
-        <translation>Použít jiný příkaz pro odstranění (např. -removecmd R).</translation>
+        <translation>別の削除コマンドを使う (ex: -removecmd R)。</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="45"/>
         <source>force a system upgrade at startup.</source>
-        <translation>Vynutit povýšení systému při spuštění.</translation>
+        <translation>起動時に強制的にシステムをアップグレード。</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="51"/>
         <source>All</source>
-        <translation>Vše</translation>
+        <translation>全て</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="116"/>
         <source>Antergos news</source>
-        <translation>Zprávy Antergos</translation>
+        <translation>Antergos ニュース</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="120"/>
         <source>ArchBSD news</source>
-        <translation>Zprávy ArchBSD</translation>
+        <translation>ArchBSD ニュース</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="124"/>
         <source>Arch Linux news</source>
-        <translation>Zprávy Arch Linuxu</translation>
+        <translation>Arch Linux ニュース</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="128"/>
         <source>Chakra news</source>
-        <translation>Zprávy Chakry</translation>
+        <translation>Chakra ニュース</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="132"/>
         <source>KaOS news</source>
-        <translation>Zprávy KaOSu</translation>
+        <translation>KaOS ニュース</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="136"/>
         <source>Manjaro Linux news</source>
-        <translation>Zprávy Manjaro Linuxu</translation>
+        <translation>Manjaro Linux ニュース</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="140"/>
         <source>Netrunner Rolling news</source>
-        <translation>Zprávy Netrunner Rolling</translation>
+        <translation>Netrunner Rolling ニュース</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="144"/>
         <source>No news could be found! Press Ctrl+G to download the latest news.</source>
-        <translation>Nepodařilo se najít žádné zprávy! Stiskněte Ctrl+G  pro stažení posledních zpráv.</translation>
+        <translation>ニュースがありません。Ctrl+G で最新ニュースをダウンロードします。</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="148"/>
         <source>This Linux distro seems to be incompatible with Octopi!</source>
-        <translation>Zdá se, že linuxová distribuce není slučitelná s Octopi!</translation>
+        <translation>この Linuxディストロは Octopi と互換性が無いようです！</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="152"/>
         <source>Internet seems unavailable!</source>
-        <translation>Zdá se, že internet není dostupný!</translation>
+        <translation>インターネットを利用できないようです！</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="156"/>
         <source>Display all groups</source>
-        <translation>Zobrazit všechny skupiny</translation>
+        <translation>全てのグループを表示</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="167"/>
         <source>Usage</source>
-        <translation>Použití</translation>
+        <translation>使い方</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="171"/>
         <source>About</source>
-        <translation>O</translation>
+        <translation>About</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="175"/>
         <source>Name</source>
-        <translation>Název</translation>
+        <translation>名前</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="179"/>
         <source>Version</source>
-        <translation>Verze</translation>
+        <translation>バージョン</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="183"/>
         <source>Outdated version</source>
-        <translation>Zastaralá verze</translation>
+        <translation>失効したバージョン</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="187"/>
         <source>Available version</source>
-        <translation>Dostupná verze</translation>
+        <translation>利用可能なバージョン</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="191"/>
         <source>No description available.</source>
-        <translation>Popis není dostupný.</translation>
+        <translation>説明がありません。</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="195"/>
         <source>URL</source>
-        <translation>Adresa (URL)</translation>
+        <translation>URL</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="199"/>
         <source>Repository</source>
-        <translation>Úložiště</translation>
+        <translation>リポジトリ</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="203"/>
         <source>Licenses</source>
-        <translation>Licence</translation>
+        <translation>ライセンス</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="207"/>
         <source>Group</source>
-        <translation>Skupina</translation>
+        <translation>グループ</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="211"/>
         <source>Groups</source>
-        <translation>Skupiny</translation>
+        <translation>グループ</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="215"/>
         <source>Provides</source>
-        <translation>Poskytuje</translation>
+        <translation>提供するもの</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="219"/>
         <source>Depends On</source>
-        <translation>Závisí na</translation>
+        <translation>必要なもの</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="223"/>
         <source>Required By</source>
-        <translation>Požadováno</translation>
+        <translation>必要とされているもの</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="227"/>
         <source>Optional For</source>
-        <translation>Volitelné pro</translation>
+        <translation>オプションで必要とされているもの</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="231"/>
         <source>Optional Deps</source>
-        <translation>Volitelné závislosti</translation>
+        <translation>オプションで必要なもの</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="235"/>
         <source>Conflicts With</source>
-        <translation>Střetává se s</translation>
+        <translation>競合するもの</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="239"/>
         <source>Replaces</source>
-        <translation>Nahrazuje</translation>
+        <translation>置き換えるもの</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="243"/>
         <source>Popularity</source>
-        <translation>Oblíbenost</translation>
+        <translation>人気度</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="247"/>
         <source>votes</source>
-        <translation>hlasů</translation>
+        <translation>投票数</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="251"/>
         <source>Download Size</source>
-        <translation>Stažená velikost</translation>
+        <translation>ダウンロード時のサイズ</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="255"/>
         <source>Installed Size</source>
-        <translation>Nainstalovaná velikost</translation>
+        <translation>インストール時のサイズ</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="259"/>
         <source>Packager</source>
-        <translation>Tvůrce balíčku</translation>
+        <translation>パッケージ作成者</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="263"/>
         <source>Package</source>
-        <translation>Balíček</translation>
+        <translation>パッケージ</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="267"/>
         <source>Packages</source>
-        <translation>Balíčky</translation>
+        <translation>パッケージ</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="271"/>
         <source>Architecture</source>
-        <translation>Architektura</translation>
+        <translation>アーキテクチャ</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="275"/>
         <source>Build Date</source>
-        <translation>Datum sestavení</translation>
+        <translation>ビルド日時</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="279"/>
         <source>Description</source>
-        <translation>Popis</translation>
+        <translation>説明</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="283"/>
         <source>Attention</source>
-        <translation>Pozor</translation>
+        <translation>注意</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="287"/>
         <source>automatic</source>
-        <translation>automaticky</translation>
+        <translation>自動</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="291"/>
         <source>Password</source>
-        <translation>Heslo</translation>
+        <translation>パスワード</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="295"/>
         <source>Info</source>
-        <translation>Informace</translation>
+        <translation>情報</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="299"/>
         <source>Files</source>
-        <translation>Soubory</translation>
+        <translation>ファイル</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="303"/>
         <source>Transaction</source>
-        <translation>Transakce</translation>
+        <translation>処理</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="307"/>
         <source>Output</source>
-        <translation>Výstup</translation>
+        <translation>出力</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="311"/>
         <source>News</source>
-        <translation>Zprávy</translation>
+        <translation>ニュース</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="315"/>
         <source>Contents of &quot;%1&quot;</source>
-        <translation>Obsah &quot;%1&quot;</translation>
+        <translation>&quot;%1&quot; の内容</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="319"/>
         <source>Find</source>
-        <translation>Najít</translation>
+        <translation>検索</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="323"/>
         <source>Clear</source>
-        <translation>Smazat</translation>
+        <translation>クリア</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="327"/>
         <source> (outdated installed version is %1)</source>
-        <translation> (zastaralá nainstalovaná verze je %1)</translation>
+        <translation> (失効したインストール済みのバージョンは %1)</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="331"/>
         <source> (newer installed version is %1)</source>
-        <translation> (novější nainstalovaná verze je %1)</translation>
+        <translation> (新しくインストールされたバージョンは %1)</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="335"/>
         <source>Building package list...</source>
-        <translation>Sestavuje se seznam balíčků...</translation>
+        <translation>パッケージリストを作成...</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="339"/>
         <source>Searching for %1 latest news...</source>
-        <translation>Hledají se %1 nejnovější zprávy...</translation>
+        <translation>%1 の最新ニュースを検索...</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="343"/>
         <source>There is one outdated package in your system:</source>
-        <translation>Ve vašem systému je zastaralý balíček:</translation>
+        <translation>失効したパッケージがシステムに 1 個あります:</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="347"/>
         <source>There are %1 outdated packages in your system:</source>
-        <translation>Ve vašem systému je %1 zastaralých balíčků:</translation>
+        <translation>失効したパッケージがシステムに %1 個あります:</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="351"/>
         <source>(version %1 is available)</source>
-        <translation>(je dostupná verze %1)</translation>
+        <translation>(バージョン %1 が利用可能)</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="355"/>
         <source>%1 (%2) packages</source>
-        <translation>%1 (%2) balíčků</translation>
+        <translation>%1 (%2) 個のパッケージ</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="359"/>
         <source>%1 installed</source>
-        <translation>%1 nainstalováno</translation>
+        <translation>%1 個をインストール済み</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="363"/>
         <source>%1 outdated</source>
-        <translation>%1 zastaralé</translation>
+        <translation>%1 個が失効</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="367"/>
         <source>%1 available</source>
-        <translation>%1 dostupné</translation>
+        <translation>%1 個を利用可能</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="371"/>
         <source>Cleaning package cache...</source>
-        <translation>Maže se vyrovnávací paměť balíčku...</translation>
+        <translation>パッケージのキャッシュを削除...</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="375"/>
         <source>Removing Pacman&apos;s transaction lock file...</source>
-        <translation>Odstraňuje se soubor se zámkem transakce Pacman...</translation>
+        <translation>Pacman の処理時のロックファイルを削除...</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="379"/>
         <source>Syncing</source>
-        <translation>Synchronizuje se</translation>
+        <translation>同期中</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="383"/>
         <source>Press any key to continue...</source>
-        <translation>Stiskněte kteroukoli klávesu pro pokračování...</translation>
+        <translation>何かキーを押すと続けます...</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="391"/>
         <source>Synchronizing databases...</source>
-        <translation>Seřizují se databáze...</translation>
+        <translation>データベースを同期中...</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="395"/>
         <source>is up to date</source>
-        <translation>je aktuální</translation>
+        <translation>は最新です</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="399"/>
         <source>Starting full system upgrade...</source>
-        <translation>Spouští se úplné povýšení systému...</translation>
+        <translation>システムのフルアップグレードを開始...</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="403"/>
         <source>Installing selected packages...</source>
-        <translation>Instalují se vybrané balíčky...</translation>
+        <translation>選択したパッケージをインストール...</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="407"/>
         <source>Removing selected packages...</source>
-        <translation>Odstraňují se vybrané balíčky...</translation>
+        <translation>選択したパッケージを削除...</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="411"/>
         <source>Removing/installing selected packages...</source>
-        <translation>Odstraňují/Instalují se se vybrané balíčky...</translation>
+        <translation>選択したパッケージを削除/インストール...</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="415"/>
         <source>Running command in terminal...</source>
-        <translation>Spouští se příkaz v terminálu...</translation>
+        <translation>ターミナルでコマンドを実行...</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="419"/>
         <source>Command finished OK!</source>
-        <translation>Příkaz skončen OK!</translation>
+        <translation>コマンドが無事に終了！</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="423"/>
         <source>Command finished with errors!</source>
-        <translation>Příkaz skončen s chybami!|</translation>
+        <translation>コマンドがエラーで終了！</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="427"/>
         <source>Retrieving %1</source>
-        <translation>Získává se %1</translation>
+        <translation>%1 を取得中</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="431"/>
         <source>Total download size: %1 KB</source>
-        <translation>Celková stažená velikost: %1 KB</translation>
+        <translation>トータルのダウンロードサイズ: %1 KB</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="435"/>
         <source>The following target needs to be retrieved</source>
-        <translation>Je potřeba získat následující cíl</translation>
+        <translation>以下のターゲットを取得する必要があります</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="439"/>
         <source>The following target will be removed</source>
-        <translation>Následující cíl bude odstraněn</translation>
+        <translation>以下のターゲットを削除します</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="443"/>
         <source>The following %1 targets need to be retrieved</source>
-        <translation>Je potřeba získat následující %1 cíle</translation>
+        <translation>以下の %1 個のターゲットを取得します</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="447"/>
         <source>The following %1 targets will be removed</source>
-        <translation>Následující %1 cíle budou odstraněny</translation>
+        <translation>以下の %1 個のターゲットを削除します</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="451"/>
         <source>There are forbidden packages in the removal list!</source>
-        <translation>V seznamu k balíčků k odstranění jsou zakázané balíčky!</translation>
+        <translation>削除リストに禁止されたパッケージがあります！</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="455"/>
         <source>There are no new updates available!</source>
-        <translation>Nejsou dostupné žádné aktualizace!</translation>
+        <translation>新しいアップデートはありません！</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="459"/>
         <source>There is an update available!</source>
-        <translation>Je dostupná aktualizace</translation>
+        <translation>アップデートがあります！</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="463"/>
         <source>There are %1 updates available!</source>
-        <translation>Jsou dostupné %1 aktualizace</translation>
+        <translation>%1 個のアップデートがあります！</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="467"/>
         <source>Confirm?</source>
-        <translation>Potvrdit?</translation>
+        <translation>よろしいですか？</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="471"/>
         <source>Warning!!!</source>
-        <translation>Varování!</translation>
+        <translation>警告！！！</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="475"/>
         <source>Confirmation</source>
-        <translation>Potvrzení</translation>
+        <translation>確認</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="479"/>
         <source>There has been a transaction error!</source>
-        <translation>Při transakci se vyskytla chyba !</translation>
+        <translation>処理時にエラーが発生！</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="483"/>
         <source>Do you want to execute this transaction in a Terminal?</source>
-        <translation>Opravdu chcete tento příkaz provést v terminálu?</translation>
+        <translation>この処理をターミナルで実行しますか？</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="487"/>
         <source>Do you really want to clean the package cache?</source>
-        <translation>Opravdu chcete smazat vyrovnávací paměť balíčku?</translation>
+        <translation>本当にパッケージのキャッシュを削除しますか？</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="491"/>
         <source>Do you really want to remove Pacman&apos;s transaction lock file?</source>
-        <translation>Opravdu chcete odstranit soubor se zámkem transakce Pacman?</translation>
+        <translation>本当に Pacman の処理時のロックファイルを削除しますか？</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="495"/>
         <source>Do you really want to rollback the transaction?</source>
-        <translation>Opravdu chcete vrátit transakci zpět?</translation>
+        <translation>本当に処理を元に戻しますか？</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="499"/>
         <source>Please, enter the administrator&apos;s password</source>
-        <translation>Zadejte, prosím, heslo správce</translation>
+        <translation>管理者のパスワードを入力してください</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="505"/>
         <source>There are no means to get administrator&apos;s credentials.</source>
-        <translation>Nejsou tu žádné prostředky, jak získat oprávnění správce systému.</translation>
+        <translation>管理者権限を取得する方法がありません。</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="509"/>
         <source>You&apos;ll need to install a su frontend like gksu or kdesu.</source>
-        <translation>Je potřeba nainstalovat rozhraní pro su jako gksu nebo kdesu.</translation>
+        <translation>gksu か kdesu のような su フロントエンドをインストールしてください。</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="513"/>
         <source>You can not run Octopi with administrator&apos;s credentials.</source>
-        <translation>Octopi nemůžete spustit s oprávněními správce.</translation>
+        <translation>Octopi を管理者権限で実行することはできません。</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="517"/>
         <source>There is a pending transaction</source>
-        <translation>Jedna transakce čeká na vyřízení</translation>
+        <translation>保留中の処理があります</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="521"/>
         <source>Do you really want to quit?</source>
-        <translation>Opravdu chcete skončit?</translation>
+        <translation>本当に終了しますか？</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="525"/>
         <source>Executing command</source>
-        <translation>Provádí se příkaz</translation>
+        <translation>コマンドを実行</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="529"/>
         <source>Run in terminal</source>
-        <translation>Spustit v terminálu</translation>
+        <translation>ターミナルで実行</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="533"/>
         <source>Needs application restart to take effect</source>
-        <translation>Aby se změny projevily, je potřeba tento program spustit znovu</translation>
+        <translation>効果を反映させるにはアプリケーションの再起動が必要です</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="537"/>
         <source>These changes need application restart to take effect!</source>
-        <translation>Aby se tyto změny projevily, je potřeba program spustit znovu!</translation>
+        <translation>変更の効果を反映させるにはアプリケーションの再起動が必要です！</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="541"/>
         <source>Select the packages you want to install</source>
-        <translation>Vyberte balíček, jejž chcete nainstalovat</translation>
+        <translation>インストールするパッケージを選択</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="545"/>
         <source>This file does not appear to be a simple text.
 Are you sure you want to open it?</source>
-        <translation>Zdá se, že tento soubor není prostým textem.
-Opravdu jej chcete otevřít?</translation>
+        <translation>このファイルはシンプルなテキストではないようです。
+本当に開きますか？</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="550"/>
         <source>To be installed</source>
-        <translation>K instalování</translation>
+        <translation>インストールされるもの</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="554"/>
         <source>To be removed</source>
-        <translation>K odstranění</translation>
+        <translation>削除されるもの</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="558"/>
         <source>remove</source>
-        <translation>Odstranit</translation>
+        <translation>削除</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="562"/>
         <source>install</source>
-        <translation>Instalovat</translation>
+        <translation>インストール</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="566"/>
         <source>Remove item</source>
-        <translation>Odstranit položku</translation>
+        <translation>アイテムを削除</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="570"/>
         <source>Remove items</source>
-        <translation>Odstranit položky</translation>
+        <translation>アイテムを削除</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="574"/>
         <source>Press Ctrl+A to select/deselect all</source>
-        <translation>Stiskněte Ctrl+A pro vybrání/zrušení výběru všeho</translation>
+        <translation>Ctrl+A で全て選択/解除</translation>
     </message>
 </context>
 <context>
@@ -1067,17 +1067,17 @@ Opravdu jej chcete otevřít?</translation>
     <message>
         <location filename="Projects/octopi/src/searchbar.cpp" line="63"/>
         <source>Previous</source>
-        <translation>Předchozí</translation>
+        <translation>前へ</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/searchbar.cpp" line="67"/>
         <source>Next</source>
-        <translation>Další</translation>
+        <translation>次へ</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/searchbar.cpp" line="79"/>
         <source>Close</source>
-        <translation>Zavřít</translation>
+        <translation>閉じる</translation>
     </message>
 </context>
 <context>
@@ -1085,12 +1085,12 @@ Opravdu jej chcete otevřít?</translation>
     <message>
         <location filename="Projects/octopi/ui/transactiondialog.ui" line="20"/>
         <source>Form</source>
-        <translation>Formulář</translation>
+        <translation>形式</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/transactiondialog.ui" line="133"/>
         <source>Run in terminal</source>
-        <translation>Spustit v terminálu</translation>
+        <translation>ターミナルで実行</translation>
     </message>
 </context>
 </TS>

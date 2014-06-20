@@ -1,5 +1,6 @@
 0.4.1 (dev)
   Updated translations.
+  Added japanese translation (thanks to UTUMI Hirosi - utuhiro78).
   Some coding refactorings regarding Yaourt/AUR.
   BugFix: Ctrl and Shift key pkg actions not behaving right in Qt5 
 	builds.
