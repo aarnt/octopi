@@ -107,8 +107,38 @@ void MainWindow::refreshGroupsWidget()
 
   ui->twGroups->insertTopLevelItems(0, items);
   ui->twGroups->setCurrentItem(items.at(0));
-
   connect(ui->twGroups, SIGNAL(itemSelectionChanged()), this, SLOT(metaBuildPackageList()));
+}
+
+/*
+ * Given the package name that owns the file user has just searched, goes to that package in the list
+ */
+void MainWindow::positionInPkgListSearchByFile()
+{
+  if (m_cic) {
+    delete m_cic;
+    m_cic = NULL;
+  }
+
+  QString pkgName = g_fwPackageOwnsFile.result();
+
+  if (!pkgName.isEmpty())
+  {
+    QModelIndex searchColumn = m_packageModel->index(0,
+                                                     PackageModel::ctn_PACKAGE_NAME_COLUMN,
+                                                     QModelIndex());
+    QModelIndexList fi = m_packageModel->match(searchColumn, Qt::DisplayRole, pkgName, -1, Qt::MatchExactly);
+
+    if (fi.count() >= 1)
+    {
+      ui->tvPackages->setCurrentIndex(fi.at(0));
+      ui->tvPackages->scrollTo(fi.at(0), QAbstractItemView::PositionAtCenter);
+    }
+  }
+  else //The pkg was not found, so we position on the first item of the list!
+  {
+    ui->tvPackages->setCurrentIndex(m_packageModel->index(0,0,QModelIndex()));
+  }
 }
 
 /*
@@ -246,12 +276,6 @@ void MainWindow::preBuildPackageList()
   //Just a flag to keep the last "if" from executing twice...
   static bool secondTime=false;
   bool hasToCallSysUpgrade = (m_callSystemUpgrade || m_callSystemUpgradeNoConfirm);
-
-  //Added by SearchByFile feature...
-  if (m_cic) {
-    delete m_cic;
-    m_cic = NULL;
-  }
 
   m_listOfPackages.reset(g_fwPacman.result());
   buildPackageList();
@@ -450,7 +474,6 @@ void MainWindow::buildPackageList(bool nonBlocking)
   if (isAllGroupsSelected()) m_packageModel->applyFilter(m_selectedViewOption, m_selectedRepository, "");
   m_progressWidget->show();
   QList<PackageListData>::const_iterator it = list->begin();
-
   int counter=0;
   int installedCount = 0;
 
@@ -1035,8 +1058,7 @@ void MainWindow::refreshTabFiles(bool clearContents, bool neverQuit)
     modelPkgFileList = fakeModelPkgFileList;
     tvPkgFileList->setModel(modelPkgFileList);
     tvPkgFileList->header()->setDefaultAlignment( Qt::AlignCenter );
-    modelPkgFileList->setHorizontalHeaderLabels( QStringList() <<
-                                                 StrConstants::getContentsOf().arg(pkgName));   
+    modelPkgFileList->setHorizontalHeaderLabels( QStringList() << StrConstants::getContentsOf().arg(pkgName));
   }
 
   strSelectedPackage = package->repository+"#"+package->name+"#"+package->version;

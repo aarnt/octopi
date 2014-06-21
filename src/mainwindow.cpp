@@ -439,8 +439,6 @@ void MainWindow::tvPackagesSearchColumnChanged(QAction *actionSelected)
     ui->twGroups->setEnabled(false);
     m_leFilterPackage->clear();
     m_leFilterPackage->refreshValidator();
-    m_packageModel->clear();
-    ui->tvPackages->reset();
   }
 
   if (!isSearchByFileSelected() && m_packageModel->getPackageCount() <= 1)

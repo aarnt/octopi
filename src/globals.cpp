@@ -42,6 +42,7 @@ QFutureWatcher<QList<PackageListData> *> g_fwAUR;
 QFutureWatcher<QList<PackageListData> *> g_fwAURMeta;
 QFutureWatcher<AUROutdatedPackages *> g_fwOutdatedAURPackages;
 QFutureWatcher<QString> g_fwDistroNews;
+QFutureWatcher<QString> g_fwPackageOwnsFile;
 
 /*
  * Given a packageName, returns its description
@@ -91,22 +92,17 @@ QList<PackageListData> * searchPacmanPackages()
 /*
  * Starts the non blocking search for a Pacman package that owns the given file...
  */
-QList<PackageListData> * searchPacmanPackagesByFile(const QString &file)
+QString searchPacmanPackagesByFile(const QString &file)
 {
-  const QString NOT_FOUND("___NOT_FOUND___");
-
+  QString result;
   if (!file.isEmpty())
   {
-    QString foundPackage = UnixCommand::getPackageByFilePath(file);
-    if (foundPackage.isEmpty())
-      foundPackage = NOT_FOUND;
-
-    return Package::getPackageList(foundPackage);
+    result = UnixCommand::getPackageByFilePath(file);
   }
   else
-  {
-    return Package::getPackageList(NOT_FOUND);
-  }
+    result = "";
+
+  return result;
 }
 
 /*

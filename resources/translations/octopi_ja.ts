@@ -20,7 +20,7 @@
         <location filename="Projects/octopi/ui/mainwindow.ui" line="120"/>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="164"/>
         <source>Transaction</source>
-        <translation>処理</translation>
+        <translation>トランザクション</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="125"/>
@@ -319,7 +319,7 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="102"/>
         <source>Position the mouse over a package to see its description</source>
-        <translation>パッケージの上にマウスを置くと説明を表示</translation>
+        <translation>パッケージの上にマウスを置くと説明文を表示</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="104"/>
@@ -329,7 +329,7 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="106"/>
         <source>Right click package to install/reinstall or remove it</source>
-        <translation>パッケージを右クリックするとインストール/再インストール/削除</translation>
+        <translation>パッケージを右クリックすると(再)インストール/削除</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="109"/>
@@ -349,7 +349,7 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="115"/>
         <source>Alt+3 to switch to &apos;Transaction&apos; tab</source>
-        <translation>Alt+3 で処理タブに切り替え</translation>
+        <translation>Alt+3 でトランザクションタブに切り替え</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="117"/>
@@ -394,12 +394,12 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="136"/>
         <source>Ctrl+M or &apos;Transaction/Commit&apos; to start installation/removal of selected packages</source>
-        <translation>Ctrl+M か「処理→コミット」で選んだパッケージのインストール/削除を開始</translation>
+        <translation>Ctrl+M か「トランザクション→コミット」で選択したパッケージのインストール/削除を開始</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="138"/>
         <source>Ctrl+B or &apos;Transaction/Rollback&apos; to clear the selection of to be removed/installed packages</source>
-        <translation>Ctrl+B か「処理→元に戻す」で削除/インストールの選択をクリア</translation>
+        <translation>Ctrl+B か「トランザクション→元に戻す」で削除/インストールの選択をクリア</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="140"/>
@@ -429,7 +429,7 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="151"/>
         <source>Ctrl+Shift+R to remove Pacman&apos;s transaction lock file</source>
-        <translation>Ctrl+Shift+R で Pacman の処理時のロックファイルを削除</translation>
+        <translation>Ctrl+Shift+R で Pacman のトランザクションロックファイルを削除</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="153"/>
@@ -449,12 +449,12 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="160"/>
         <source>F4 to open a Terminal whitin the selected directory at Files tab</source>
-        <translation>F4 でターミナルをファイルタブで選んだディレクトリに開く</translation>
+        <translation>F4 でターミナルをファイルタブで選択したディレクトリに開く</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="162"/>
         <source>F6 to open a File Manager whitin the selected directory at Files tab</source>
-        <translation>F6 でファイルマネージャをファイルタブで選んだディレクトリに開く</translation>
+        <translation>F6 でファイルマネージャをファイルタブで選択したディレクトリに開く</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="164"/>
@@ -692,7 +692,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="275"/>
         <source>Build Date</source>
-        <translation>ビルド日時</translation>
+        <translation>ビルドした日</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="279"/>
@@ -727,7 +727,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="303"/>
         <source>Transaction</source>
-        <translation>処理</translation>
+        <translation>トランザクション</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="307"/>
@@ -817,7 +817,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="375"/>
         <source>Removing Pacman&apos;s transaction lock file...</source>
-        <translation>Pacman の処理時のロックファイルを削除...</translation>
+        <translation>Pacman のトランザクションロックファイルを削除...</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="379"/>
@@ -942,12 +942,12 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="479"/>
         <source>There has been a transaction error!</source>
-        <translation>処理時にエラーが発生！</translation>
+        <translation>トランザクションエラーが発生！</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="483"/>
         <source>Do you want to execute this transaction in a Terminal?</source>
-        <translation>この処理をターミナルで実行しますか？</translation>
+        <translation>このトランザクションをターミナルで実行しますか？</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="487"/>
@@ -957,12 +957,12 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="491"/>
         <source>Do you really want to remove Pacman&apos;s transaction lock file?</source>
-        <translation>本当に Pacman の処理時のロックファイルを削除しますか？</translation>
+        <translation>本当に Pacman のトランザクションロックファイルを削除しますか？</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="495"/>
         <source>Do you really want to rollback the transaction?</source>
-        <translation>本当に処理を元に戻しますか？</translation>
+        <translation>本当にトランザクションを元に戻しますか？</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="499"/>
@@ -987,7 +987,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="517"/>
         <source>There is a pending transaction</source>
-        <translation>保留中の処理があります</translation>
+        <translation>保留中のトランザクションがあります</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="521"/>

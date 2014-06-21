@@ -116,12 +116,12 @@ void MainWindow::keyPressEvent(QKeyEvent* ke)
     {
       ui->twGroups->setEnabled(false);
 
-      QFuture<QList<PackageListData> *> f;
-      disconnect(&g_fwPacman, SIGNAL(finished()), this, SLOT(preBuildPackageList()));
+      QFuture<QString> f;
+      disconnect(&g_fwPackageOwnsFile, SIGNAL(finished()), this, SLOT(positionInPkgListSearchByFile()));
       m_cic = new CPUIntensiveComputing();
       f = QtConcurrent::run(searchPacmanPackagesByFile, m_leFilterPackage->text());
-      g_fwPacman.setFuture(f);
-      connect(&g_fwPacman, SIGNAL(finished()), this, SLOT(preBuildPackageList()));
+      g_fwPackageOwnsFile.setFuture(f);
+      connect(&g_fwPackageOwnsFile, SIGNAL(finished()), this, SLOT(positionInPkgListSearchByFile()));
     }
     //We are probably inside 'Files' tab...
     else

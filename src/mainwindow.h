@@ -376,6 +376,8 @@ private slots:
   void changeTransactionActionsState();
   void clearTransactionTreeView();
 
+  void positionInPkgListSearchByFile();
+
   void _positionInFirstMatch();
   void searchBarTextChanged(const QString textToSearch);
   void searchBarFindNext();
