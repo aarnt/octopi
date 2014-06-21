@@ -177,45 +177,45 @@ QByteArray UnixCommand::performQuery(const QString &args)
 /*
  * Performs a yourt command
  */
-QByteArray UnixCommand::performYaourtCommand(const QString &args)
+QByteArray UnixCommand::performAURCommand(const QString &args)
 {
   QByteArray result("");
-  QProcess yaourt;
+  QProcess aur;
 
   QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
   env.insert("LANG", "C");
   env.insert("LC_MESSAGES", "C");
-  yaourt.setProcessEnvironment(env);
+  aur.setProcessEnvironment(env);
 
-  yaourt.start(StrConstants::getForeignRepositoryToolName() + " " + args);
-  yaourt.waitForFinished();
-  result = yaourt.readAllStandardOutput();
+  aur.start(StrConstants::getForeignRepositoryToolName() + " " + args);
+  aur.waitForFinished();
+  result = aur.readAllStandardOutput();
 
-  yaourt.close();
+  aur.close();
   return result;
 }
 
 /*
- * Returns a string containing all yaourt packages given a searchString parameter
+ * Returns a string containing all AUR packages given a searchString parameter
  */
-QByteArray UnixCommand::getYaourtPackageList(const QString &searchString)
+QByteArray UnixCommand::getAURPackageList(const QString &searchString)
 {
   QByteArray result("");
-  QProcess yaourt;
+  QProcess aur;
 
   QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
   env.insert("LANG", "C");
   env.insert("LC_MESSAGES", "C");
 
-  yaourt.setProcessEnvironment(env);
+  aur.setProcessEnvironment(env);
 
   if (UnixCommand::getLinuxDistro() == ectn_KAOS)
-    yaourt.start(StrConstants::getForeignRepositoryToolName() + " -s " + searchString);
+    aur.start(StrConstants::getForeignRepositoryToolName() + " -s " + searchString);
   else
-    yaourt.start(StrConstants::getForeignRepositoryToolName() + " -Ss " + searchString);
+    aur.start(StrConstants::getForeignRepositoryToolName() + " -Ss " + searchString);
 
-  yaourt.waitForFinished(-1);
-  result = yaourt.readAll();
+  aur.waitForFinished(-1);
+  result = aur.readAll();
 
   if (UnixCommand::getLinuxDistro() == ectn_KAOS)
   {
@@ -251,11 +251,11 @@ QByteArray UnixCommand::getOutdatedPackageList()
 }
 
 /*
- * Returns a string containing all Yaourt outdated packages
+ * Returns a string containing all AUR outdated packages
  */
-QByteArray UnixCommand::getOutdatedYaourtPackageList()
+QByteArray UnixCommand::getOutdatedAURPackageList()
 {
-  return performYaourtCommand("-Qua");
+  return performAURCommand("-Qua");
 }
 
 /*
@@ -313,12 +313,12 @@ QByteArray UnixCommand::getPackageInformation(const QString &pkgName, bool forei
 }
 
 /*
- * Given an Yaourt package name, returns a string containing all of its information fields
+ * Given an AUR package name, returns a string containing all of its information fields
  * (ex: name, description, version, dependsOn...)
  */
-QByteArray UnixCommand::getYaourtPackageVersionInformation()
+QByteArray UnixCommand::getAURPackageVersionInformation()
 {
-  QByteArray result = performYaourtCommand("-Qua");
+  QByteArray result = performAURCommand("-Qua");
   return result;
 }
 

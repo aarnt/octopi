@@ -89,7 +89,6 @@ QList<QModelIndex> * PackageController::findFileEx( const QString& name, const Q
   foreach(QStandardItem *item, foundItems)
   {
     //if (item->accessibleDescription().contains("directory")) continue;
-
     res->append(item->index());
   }
 

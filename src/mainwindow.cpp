@@ -257,7 +257,7 @@ void MainWindow::outputOutdatedPackageList()
 }
 
 /*
- * Prints the list of outdated Yaourt packages to the Output tab.
+ * Prints the list of outdated AUR packages to the Output tab.
  */
 void MainWindow::outputOutdatedAURPackageList()
 {
@@ -351,7 +351,7 @@ bool MainWindow::isAllGroups(const QString& group)
 }
 
 /*
- * Helper to analyse if < Yaourt > is selected
+ * Helper to analyse if < AUR > is selected
  */
 bool MainWindow::isAURGroupSelected()
 {
@@ -439,8 +439,6 @@ void MainWindow::tvPackagesSearchColumnChanged(QAction *actionSelected)
     ui->twGroups->setEnabled(false);
     m_leFilterPackage->clear();
     m_leFilterPackage->refreshValidator();
-    m_packageModel->clear();
-    ui->tvPackages->reset();
   }
 
   if (!isSearchByFileSelected() && m_packageModel->getPackageCount() <= 1)
@@ -484,7 +482,7 @@ void MainWindow::execContextMenuPackages(QPoint point)
 /* The following SLOTs will be called:
  *   connect(ui->actionFindFileInPackage, SIGNAL(triggered()), this, SLOT(findFileInPackage()));
  *   connect(ui->actionInstall, SIGNAL(triggered()), this, SLOT(insertIntoInstallPackage()));
- *   connect(ui->actionInstallYaourt, SIGNAL(triggered()), this, SLOT(doInstallYaourtPackage()));
+ *   connect(ui->actionInstallAUR, SIGNAL(triggered()), this, SLOT(doInstallAURPackage()));
  *   connect(ui->actionInstallGroup, SIGNAL(triggered()), this, SLOT(insertGroupIntoInstallPackage()));
  *   connect(ui->actionRemove, SIGNAL(triggered()), this, SLOT(insertIntoRemovePackage()));
  *   connect(ui->actionRemoveGroup, SIGNAL(triggered()), this, SLOT(insertGroupIntoRemovePackage()));
@@ -542,7 +540,7 @@ void MainWindow::execContextMenuPackages(QPoint point)
     }
     else if (allInstallable == false && numberOfAUR == numberOfSelPkgs)
     {
-      menu->addAction(ui->actionInstallYaourt); // installs directly
+      menu->addAction(ui->actionInstallAUR); // installs directly
     }
 
     if (allRemovable)

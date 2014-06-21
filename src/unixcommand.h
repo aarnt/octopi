@@ -79,15 +79,15 @@ public:
   static QByteArray performQuery(const QStringList args);
   static QByteArray performQuery(const QString &args);
 
-  static QByteArray performYaourtCommand(const QString &args);
-  static QByteArray getYaourtPackageList(const QString &searchString);
+  static QByteArray performAURCommand(const QString &args);
+  static QByteArray getAURPackageList(const QString &searchString);
   static QByteArray getUnrequiredPackageList();
   static QByteArray getOutdatedPackageList();
-  static QByteArray getOutdatedYaourtPackageList();
+  static QByteArray getOutdatedAURPackageList();
   static QByteArray getForeignPackageList();
   static QByteArray getPackageList(const QString &pkgName = "");
   static QByteArray getPackageInformation(const QString &pkgName, bool foreignPackage);
-  static QByteArray getYaourtPackageVersionInformation();
+  static QByteArray getAURPackageVersionInformation();
   static QByteArray getPackageContentsUsingPacman(const QString &pkgName);
   static bool isPkgfileInstalled();
   static QByteArray getPackageContentsUsingPkgfile(const QString &pkgName);

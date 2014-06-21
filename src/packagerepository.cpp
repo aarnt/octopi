@@ -71,7 +71,7 @@ void PackageRepository::setData(const QList<PackageListData>*const listOfPackage
   for (TListOfPackages::const_iterator it = m_listOfPackages.begin(); it != m_listOfPackages.end(); ++it) {
     if (*it != NULL) delete *it;
   }
-  m_listOfYaourtPackages.clear();
+  m_listOfAURPackages.clear();
   m_listOfPackages.clear();
 
   for (QList<PackageListData>::const_iterator it = listOfPackages->begin(); it != listOfPackages->end(); ++it) {
@@ -89,26 +89,26 @@ void PackageRepository::setAURData(const QList<PackageListData>*const listOfFore
 
     std::for_each(m_dependingModels.begin(), m_dependingModels.end(), BeginResetModel());
 
-    // delete yaourt items in list
+    // delete AUR items in list
     //for (QList<PackageData*>::iterator it = m_listOfPackages.begin(); it != m_listOfPackages.end(); ++it) {
     for (TListOfPackages::iterator it = m_listOfPackages.begin(); it != m_listOfPackages.end(); ++it) {
-      if (*it != NULL && (*it)->managedByYaourt) {
+      if (*it != NULL && (*it)->managedByAUR) {
         delete *it;
         it = m_listOfPackages.erase(it);
       }
     }
-    m_listOfYaourtPackages.clear();
+    m_listOfAURPackages.clear();
 
     for (QList<PackageListData>::const_iterator it = listOfForeignPackages->begin();
          it != listOfForeignPackages->end(); ++it)
     {
       PackageData*const pkg = new PackageData(*it, unrequiredPackages.contains(it->name) == false, true);
       m_listOfPackages.push_back(pkg);
-      m_listOfYaourtPackages.push_back(pkg);
+      m_listOfAURPackages.push_back(pkg);
     }
 
     qSort(m_listOfPackages.begin(), m_listOfPackages.end(), TSort());
-    qSort(m_listOfYaourtPackages.begin(), m_listOfYaourtPackages.end(), TSort());
+    qSort(m_listOfAURPackages.begin(), m_listOfAURPackages.end(), TSort());
     std::for_each(m_dependingModels.begin(), m_dependingModels.end(), EndResetModel());
 }
 
@@ -168,7 +168,7 @@ void PackageRepository::checkAndSetMembersOfGroup(const QString& groupName, cons
         typedef TListOfPackages::const_iterator TIter;
         std::pair<TIter, TIter> packageIt =  std::equal_range(m_listOfPackages.begin(), m_listOfPackages.end(), *it, TComp());
         for (TIter iter = packageIt.first; iter != packageIt.second; ++iter) {
-          if ((*iter)->managedByYaourt == false) {
+          if ((*iter)->managedByAUR == false) {
             group.addPackage(**iter);
             break;
           }
@@ -207,9 +207,9 @@ const QList<PackageRepository::PackageData*>& PackageRepository::getPackageList(
       if (list != NULL) return *list;
     }
 
-    // Workaround for Yaourt filter -> pre-built yaourt packageList
+    // Workaround for AUR filter -> pre-built AUR packageList
     if (group == StrConstants::getForeignToolGroup())
-      return m_listOfYaourtPackages;
+      return m_listOfAURPackages;
   }
 
   // if no group found or not loaded yet. default to all packages
@@ -249,8 +249,8 @@ bool PackageRepository::memberListOfGroupsEquals(const QStringList& listOfGroups
 /**
  * @brief conversion from pkg will default the repository to the foreign repo name
  */
-PackageRepository::PackageData::PackageData(const PackageListData& pkg, const bool isRequired, const bool isManagedByYaourt)
-  : required(isRequired), managedByYaourt(isManagedByYaourt), name(pkg.name),
+PackageRepository::PackageData::PackageData(const PackageListData& pkg, const bool isRequired, const bool isManagedByAUR)
+  : required(isRequired), managedByAUR(isManagedByAUR), name(pkg.name),
     repository(pkg.repository.isEmpty() ? StrConstants::getForeignRepositoryName() : pkg.repository),
     version(pkg.version), description(pkg.description.toLatin1()), // octopi wants it converted to utf8
     outdatedVersion(pkg.outatedVersion), downloadSize(pkg.downloadSize),
@@ -258,8 +258,8 @@ PackageRepository::PackageData::PackageData(const PackageListData& pkg, const bo
            pkg.status :
            (Package::rpmvercmp(pkg.outatedVersion.toLatin1().data(), pkg.version.toLatin1().data()) == 1 ?
              ectn_NEWER : ectn_OUTDATED)),
-    popularity(isManagedByYaourt ? pkg.popularity : -1),
-    popularityString(isManagedByYaourt ? QString::number(pkg.popularity) + " " + StrConstants::getVotes() : QString())
+    popularity(isManagedByAUR ? pkg.popularity : -1),
+    popularityString(isManagedByAUR ? QString::number(pkg.popularity) + " " + StrConstants::getVotes() : QString())
 {
 }
 

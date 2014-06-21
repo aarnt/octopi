@@ -57,7 +57,7 @@ public:
      * @param package    = parsed data from pacman (e.g.)
      * @param isRequired = false if package is not required by other packages installed, or true otherwise
      */
-    PackageData(const PackageListData& package, const bool isRequired, const bool isManagedByYaourt);
+    PackageData(const PackageListData& package, const bool isRequired, const bool isManagedByAUR);
 
     inline bool installed() const {
       return status != ectn_NON_INSTALLED;
@@ -69,7 +69,7 @@ public:
 
   public:
     const bool    required;
-    const bool    managedByYaourt; // yaourt packages must not be in any group
+    const bool    managedByAUR; // AUR packages must not be in any group
     const QString name;
     const QString repository;
     const QString version;
@@ -117,7 +117,7 @@ public:
 private:
   std::vector<IDependency*> m_dependingModels;
   TListOfPackages           m_listOfPackages;       // sorted qlist of all packages
-  TListOfPackages           m_listOfYaourtPackages; // sorted qlist of all yaourt packages
+  TListOfPackages           m_listOfAURPackages;    // sorted qlist of all AUR packages
   QList<Group*>             m_listOfGroups;         // sorted list of all pacman package groups
   bool memberListOfGroupsEquals(const QStringList& listOfGroups);
 };

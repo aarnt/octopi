@@ -39,7 +39,7 @@ OctopiTabInfo::OctopiTabInfo()
  * This function has been extracted from src/mainwindow_refresh.cpp void MainWindow::refreshTabInfo(QString pkgName)
  */
 QString OctopiTabInfo::formatTabInfo(const PackageRepository::PackageData& package,
-                                     const QHash<QString, QString>& outdatedYaourtPackagesNameVersion)
+                                     const QHash<QString, QString>& outdatedAURPackagesNameVersion)
 {
   PackageInfoData pid;
 
@@ -114,9 +114,9 @@ QString OctopiTabInfo::formatTabInfo(const PackageRepository::PackageData& packa
     else
     {
       if (package.status == ectn_FOREIGN_OUTDATED &&
-          outdatedYaourtPackagesNameVersion.count() > 0)
+          outdatedAURPackagesNameVersion.count() > 0)
       {
-        QString availableVersion = outdatedYaourtPackagesNameVersion.value(package.name);
+        QString availableVersion = outdatedAURPackagesNameVersion.value(package.name);
         html += "<tr><td>" + version + "</td><td>" + availableVersion + " <b><font color=\"#E55451\">"
             + StrConstants::getOutdatedInstalledVersion().arg(package.version) +
             "</b></font></td></tr>";

@@ -307,7 +307,7 @@ void MainWindow::initToolButtonPacman()
 }
 
 /*
- * Inits the Yaourt toolbutton, which warns the user about outdated foreign packages
+ * Inits the AUR toolbutton, which warns the user about outdated foreign packages
  */
 void MainWindow::initToolButtonAUR()
 {
@@ -689,7 +689,7 @@ void MainWindow::initActions()
   connect(ui->actionSystemUpgrade, SIGNAL(triggered()), this, SLOT(doSystemUpgrade()));
   connect(ui->actionRemove, SIGNAL(triggered()), this, SLOT(insertIntoRemovePackage()));
   connect(ui->actionInstall, SIGNAL(triggered()), this, SLOT(insertIntoInstallPackage()));
-  connect(ui->actionInstallYaourt, SIGNAL(triggered()), this, SLOT(doInstallAURPackage()));
+  connect(ui->actionInstallAUR, SIGNAL(triggered()), this, SLOT(doInstallAURPackage()));
   connect(ui->actionFindFileInPackage, SIGNAL(triggered()), this, SLOT(findFileInPackage()));
   connect(ui->actionRemoveGroup, SIGNAL(triggered()), this, SLOT(insertGroupIntoRemovePackage()));
   connect(ui->actionInstallGroup, SIGNAL(triggered()), this, SLOT(insertGroupIntoInstallPackage()));
@@ -734,7 +734,7 @@ void MainWindow::initActions()
   ui->actionRemoveTransactionItems->setIcon(IconHelper::getIconClose());
   ui->actionFindFileInPackage->setIcon(IconHelper::getIconFindFileInPackage());
   ui->actionOpenRootTerminal->setIcon(IconHelper::getIconTerminal());
-  ui->actionInstallYaourt->setIcon(IconHelper::getIconInstallItem());
+  ui->actionInstallAUR->setIcon(IconHelper::getIconInstallItem());
 
   //Actions for the View menu
   connect(ui->actionViewAllPackages, SIGNAL(triggered()), this, SLOT(selectedAllPackagesMenu()));

@@ -717,7 +717,7 @@ void MainWindow::doSyncDatabase()
 }
 
 /*
- * Updates the outdated Yaourt packages with "yaourt -S <list>"
+ * Updates the outdated AUR packages with "yaourt -S <list>"
  */
 void MainWindow::doAURUpgrade()
 {
@@ -1149,7 +1149,7 @@ void MainWindow::doInstallAURPackage()
 {
   const QItemSelectionModel*const selectionModel = ui->tvPackages->selectionModel();
   if (selectionModel == NULL || selectionModel->selectedRows().count() < 1 || m_hasAURTool == false) {
-    std::cerr << "Octopi could not install selection using yaourt" << std::endl;
+    std::cerr << "Octopi could not install selection using AUR tool" << std::endl;
     return;
   }
   QString listOfTargets;
@@ -1481,7 +1481,7 @@ void MainWindow::toggleTransactionActions(const bool value)
 
   ui->actionInstall->setEnabled(value);
   ui->actionInstallGroup->setEnabled(value);
-  ui->actionInstallYaourt->setEnabled(value);
+  ui->actionInstallAUR->setEnabled(value);
   m_actionInstallPacmanUpdates->setEnabled(value);
   m_actionInstallAURUpdates->setEnabled(value);
 

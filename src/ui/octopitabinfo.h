@@ -52,12 +52,12 @@ public:
   /**
    * @brief formats TabInfo as HTML
    * @param package (the package to show details for)
-   * @param outdatedYaourtPackagesNameVersion
+   * @param outdatedAURPackagesNameVersion
    * @return html
    *
    * This function has been extracted from src/mainwindow_refresh.cpp void MainWindow::refreshTabInfo(QString pkgName)
    */
-  static QString formatTabInfo(const PackageRepository::PackageData& package, const QHash<QString, QString>& outdatedYaourtPackagesNameVersion);
+  static QString formatTabInfo(const PackageRepository::PackageData& package, const QHash<QString, QString>& outdatedAURPackagesNameVersion);
 
   static const QString anchorBegin;
 };

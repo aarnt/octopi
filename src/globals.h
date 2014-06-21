@@ -40,10 +40,11 @@ extern QFutureWatcher<QList<PackageListData> *> g_fwAUR;
 extern QFutureWatcher<QList<PackageListData> *> g_fwAURMeta;
 extern QFutureWatcher<AUROutdatedPackages *> g_fwOutdatedAURPackages;
 extern QFutureWatcher<QString> g_fwDistroNews;
+extern QFutureWatcher<QString> g_fwPackageOwnsFile;
 
 QString showPackageInfo(QString pkgName);
 QList<PackageListData> * searchPacmanPackages();
-QList<PackageListData> * searchPacmanPackagesByFile(const QString &file);
+QString searchPacmanPackagesByFile(const QString &file);
 GroupMemberPair          searchPacmanPackagesFromGroup(QString groupName);
 QList<PackageListData> * searchAURPackages(QString searchString);
 AUROutdatedPackages * getOutdatedAURPackages();

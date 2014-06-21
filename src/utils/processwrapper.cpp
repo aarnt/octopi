@@ -73,7 +73,7 @@ void ProcessWrapper::onProcessStarted()
 }
 
 /*
- * We need this to search for the SH process pid (which spaws yaourt)
+ * We need this to search for the SH process pid (which spaws AUR tool)
  */
 void ProcessWrapper::onSingleShot()
 {
@@ -127,7 +127,7 @@ void ProcessWrapper::onSingleShot()
           if (candidatePid < candidatePid2)
           {
             m_pidSH = candidatePid;
-            m_pidYaourt = candidatePid2;
+            m_pidAUR = candidatePid2;
             m_timer->start();
 
             return;
@@ -151,7 +151,7 @@ void ProcessWrapper::onSingleShot()
           if (candidatePid < candidatePid2)
           {
             m_pidSH = candidatePid;
-            m_pidYaourt = candidatePid2;
+            m_pidAUR = candidatePid2;
             m_timer->start();
 
             return;
@@ -170,7 +170,7 @@ void ProcessWrapper::onSingleShot()
 void ProcessWrapper::onTimer()
 {
   QProcess proc;
-  QString cmd = QString("ps -p %1 %2").arg(m_pidSH).arg(m_pidYaourt);
+  QString cmd = QString("ps -p %1 %2").arg(m_pidSH).arg(m_pidAUR);
 
   //std::cout << "PIDS: " << cmd.toLatin1().data() << "\n" << std::endl;
 

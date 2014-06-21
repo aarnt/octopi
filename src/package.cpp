@@ -238,7 +238,7 @@ QStringList *Package::getOutdatedAURPackageList()
       StrConstants::getForeignRepositoryToolName() != "pacaur")
     return res;
 
-  QString outPkgList = UnixCommand::getOutdatedYaourtPackageList();
+  QString outPkgList = UnixCommand::getOutdatedAURPackageList();
   QStringList packageTuples = outPkgList.split(QRegExp("\\n"), QString::SkipEmptyParts);
   QStringList ignorePkgList = UnixCommand::getIgnorePkg();
 
@@ -485,7 +485,7 @@ QList<PackageListData> * Package::getPackageList(const QString &packageName)
 }
 
 /*
- * Retrieves the list of all yaourt packages in the database (installed + non-installed)
+ * Retrieves the list of all AUR packages in the database (installed + non-installed)
  * given the search parameter
  */
 QList<PackageListData> * Package::getAURPackageList(const QString& searchString)
@@ -502,7 +502,7 @@ QList<PackageListData> * Package::getAURPackageList(const QString& searchString)
   if (searchString.isEmpty())
     return res;
 
-  QString pkgList = UnixCommand::getYaourtPackageList(searchString);
+  QString pkgList = UnixCommand::getAURPackageList(searchString);
   QStringList packageTuples = pkgList.split(QRegExp("\\n"), QString::SkipEmptyParts);
 
   pkgDescription = "";
@@ -1063,7 +1063,7 @@ QString Package::getInformationInstalledSize(const QString &pkgName, bool foreig
 }
 
 /*
- * Helper to get only the Version field of Yaourt package information
+ * Helper to get only the Version field of AUR package information
  */
 QHash<QString, QString> Package::getAUROutdatedPackagesNameVersion()
 {
@@ -1074,7 +1074,7 @@ QHash<QString, QString> Package::getAUROutdatedPackagesNameVersion()
       StrConstants::getForeignRepositoryToolName() != "pacaur"))
     return hash;
 
-  QString res = UnixCommand::getYaourtPackageVersionInformation();
+  QString res = UnixCommand::getAURPackageVersionInformation();
   QStringList listOfPkgs = res.split("\n", QString::SkipEmptyParts);
 
   if (StrConstants::getForeignRepositoryToolName() == "yaourt")

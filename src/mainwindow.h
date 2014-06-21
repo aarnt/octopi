@@ -111,7 +111,7 @@ private:
   //Controls the calling of System Upgrade NO CONFIRM action
   bool m_callSystemUpgradeNoConfirm;
 
-  //Controls if this Linux box has yaourt installed
+  //Controls if this Linux box has an AUR tool installed
   bool m_hasAURTool;
 
   //Controls if the NewsTab must be showed
@@ -375,6 +375,8 @@ private slots:
   void onPressDelete();
   void changeTransactionActionsState();
   void clearTransactionTreeView();
+
+  void positionInPkgListSearchByFile();
 
   void _positionInFirstMatch();
   void searchBarTextChanged(const QString textToSearch);

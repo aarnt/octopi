@@ -504,7 +504,7 @@
     <string>Install local package...</string>
    </property>
   </action>
-  <action name="actionInstallYaourt">
+  <action name="actionInstallAUR">
    <property name="icon">
     <iconset resource="../resources.qrc">
      <normaloff>:/resources/images/toinstall.png</normaloff>:/resources/images/toinstall.png</iconset>
