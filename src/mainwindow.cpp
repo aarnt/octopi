@@ -432,12 +432,13 @@ void MainWindow::tvPackagesSearchColumnChanged(QAction *actionSelected)
   }
   else if (actionSelected->objectName() == ui->actionSearchByFile->objectName())
   {
+    m_leFilterPackage->clear();
+    m_packageModel->applyFilter("");
     ui->actionViewAllPackages->trigger();
     m_actionRepositoryAll->trigger();
     ui->menuView->setEnabled(false);
 
     ui->twGroups->setEnabled(false);
-    m_leFilterPackage->clear();
     m_leFilterPackage->refreshValidator();
   }
 
@@ -1178,7 +1179,6 @@ void MainWindow::findFileInPackage()
 QString MainWindow::getSelectedDirectory()
 {
   QString targetDir;
-
   if (_isPropertiesTabWidgetVisible() && ui->twProperties->currentIndex() == ctn_TABINDEX_FILES)
   {
     QTreeView *t = ui->twProperties->currentWidget()->findChild<QTreeView*>("tvPkgFileList");
