@@ -417,6 +417,7 @@ void MainWindow::tvPackagesSearchColumnChanged(QAction *actionSelected)
   //We are in the realm of tradictional NAME search
   if (actionSelected->objectName() == ui->actionSearchByName->objectName())
   {
+    ui->menuView->setEnabled(true);
     ui->twGroups->setEnabled(true);
     m_leFilterPackage->refreshValidator();
     m_packageModel->applyFilter(PackageModel::ctn_PACKAGE_NAME_COLUMN);
@@ -424,12 +425,17 @@ void MainWindow::tvPackagesSearchColumnChanged(QAction *actionSelected)
   //We are talking about slower 'search by description'...
   else if (actionSelected->objectName() == ui->actionSearchByDescription->objectName())
   {
+    ui->menuView->setEnabled(true);
     ui->twGroups->setEnabled(true);
     m_leFilterPackage->refreshValidator();
     m_packageModel->applyFilter(PackageModel::ctn_PACKAGE_DESCRIPTION_FILTER_NO_COLUMN);
   }
   else if (actionSelected->objectName() == ui->actionSearchByFile->objectName())
   {
+    ui->actionViewAllPackages->trigger();
+    m_actionRepositoryAll->trigger();
+    ui->menuView->setEnabled(false);
+
     ui->twGroups->setEnabled(false);
     m_leFilterPackage->clear();
     m_leFilterPackage->refreshValidator();

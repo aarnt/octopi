@@ -439,10 +439,6 @@ QList<PackageListData> * Package::getPackageList(const QString &packageName)
       int a = repoName.indexOf("/");
       pkgRepository = repoName.left(a);
       pkgName = repoName.mid(a+1);
-
-      //THIS WILL REJECT ANY PKG THAT IS NOT THE ONE WHICH OWNS THE SEARCHED FILE
-      //if (!packageName.isEmpty() && pkgName != packageName) continue;
-
       pkgVersion = parts[1];
 
       if(packageTuple.indexOf("[installed]") != -1)
