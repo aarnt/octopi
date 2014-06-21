@@ -12,6 +12,9 @@
   BugFix: Download and installed size info at info tab.
   BugFix: The 'Enter' key (numeric keyboard) is now supported.
   BugFix: At start when there is no pacman db, octopi hangs (thanks to anex).
+  BugFix: After a pkg list rebuild the Files and Info cache were not 
+	being emptied.
+  Now downgrading operations appears in orange in Output tab.
   Small fixes in packagemodel/package code (thanks to tbinkau).
   Ctrl+C over an item in Files tab copies it's full path to Clipboard.
   Reworked code to count installed packages (based on filters).

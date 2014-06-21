@@ -763,8 +763,6 @@ void MainWindow::refreshTabInfo(QString pkgName)
  */
 void MainWindow::refreshTabInfo(bool clearContents, bool neverQuit)
 {
-  static QString strSelectedPackage;
-
   if(neverQuit == false &&
      (ui->twProperties->currentIndex() != ctn_TABINDEX_INFORMATION || !_isPropertiesTabWidgetVisible())) return;
 
@@ -780,7 +778,7 @@ void MainWindow::refreshTabInfo(bool clearContents, bool neverQuit)
       text->clear();
     }
 
-    strSelectedPackage="";
+    m_cachedPackageInInfo = "";
     return;
   }
 
@@ -792,7 +790,7 @@ void MainWindow::refreshTabInfo(bool clearContents, bool neverQuit)
   }
 
   //If we are trying to refresh an already displayed package...
-  if (strSelectedPackage == package->repository+"#"+package->name+"#"+package->version)
+  if (m_cachedPackageInInfo == package->repository+"#"+package->name+"#"+package->version)
   {
     if (neverQuit)
     {
@@ -852,7 +850,7 @@ void MainWindow::refreshTabInfo(bool clearContents, bool neverQuit)
     }
   }
 
-  strSelectedPackage = package->repository+"#"+package->name+"#"+package->version;
+  m_cachedPackageInInfo = package->repository+"#"+package->name+"#"+package->version;
 
   if (neverQuit)
   {
@@ -865,8 +863,6 @@ void MainWindow::refreshTabInfo(bool clearContents, bool neverQuit)
  */
 void MainWindow::refreshTabFiles(bool clearContents, bool neverQuit)
 {
-  static QString strSelectedPackage;
-
   if(neverQuit == false &&
      (ui->twProperties->currentIndex() != ctn_TABINDEX_FILES || !_isPropertiesTabWidgetVisible()))
   {
@@ -884,7 +880,7 @@ void MainWindow::refreshTabFiles(bool clearContents, bool neverQuit)
     {
       QStandardItemModel*const modelPkgFileList = qobject_cast<QStandardItemModel*>(tvPkgFileList->model());
       modelPkgFileList->clear();
-      strSelectedPackage="";
+      m_cachedPackageInFiles = "";
 
       bool filterHasFocus = m_leFilterPackage->hasFocus();
       bool tvPackagesHasFocus = ui->tvPackages->hasFocus();
@@ -904,7 +900,7 @@ void MainWindow::refreshTabFiles(bool clearContents, bool neverQuit)
   }
 
   //If we are trying to refresh an already displayed package...
-  if (strSelectedPackage == package->repository+"#"+package->name+"#"+package->version)
+  if (m_cachedPackageInFiles == package->repository+"#"+package->name+"#"+package->version)
   {
     if (neverQuit)
     {
@@ -1061,7 +1057,7 @@ void MainWindow::refreshTabFiles(bool clearContents, bool neverQuit)
     modelPkgFileList->setHorizontalHeaderLabels( QStringList() << StrConstants::getContentsOf().arg(pkgName));
   }
 
-  strSelectedPackage = package->repository+"#"+package->name+"#"+package->version;
+  m_cachedPackageInFiles = package->repository+"#"+package->name+"#"+package->version;
 
   if (neverQuit)
   {

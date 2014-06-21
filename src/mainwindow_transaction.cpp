@@ -1625,7 +1625,12 @@ void MainWindow::actionsProcessFinished(int exitCode, QProcess::ExitStatus exitS
 
   ui->twProperties->setTabText(ctn_TABINDEX_OUTPUT, StrConstants::getTabOutputName());
 
-  if (exitCode == 0 && exitStatus == QProcess::NormalExit){
+  if (exitCode == 0 && exitStatus == QProcess::NormalExit)
+  {
+    //First, we empty the tabs cache!
+    m_cachedPackageInInfo = "";
+    m_cachedPackageInFiles = "";
+
     writeToTabOutputExt("<br><b>" +
                      StrConstants::getCommandFinishedOK() + "</b><br>");
   }
@@ -1811,6 +1816,7 @@ bool MainWindow::_searchForKeyVerbs(const QString &msg)
           msg.contains(QRegExp("loading ")) ||
           msg.contains(QRegExp("installing ")) ||
           msg.contains(QRegExp("upgrading ")) ||
+          msg.contains(QRegExp("downgrading ")) ||
           msg.contains(QRegExp("resolving ")) ||
           msg.contains(QRegExp("looking ")) ||
           msg.contains(QRegExp("removing ")));
@@ -2201,7 +2207,7 @@ void MainWindow::writeToTabOutputExt(const QString &msg, TreatURLLinks treatURLL
       {
          newMsg = "<b><font color=\"#4BC413\">" + newMsg + "</font></b>"; //GREEN
       }
-      else if (newMsg.contains("warning"))
+      else if (newMsg.contains("warning") || (newMsg.contains("downgrading")))
       {
         newMsg = "<b><font color=\"#FF8040\">" + newMsg + "</font></b>"; //ORANGE
       }

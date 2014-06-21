@@ -83,7 +83,6 @@ protected:
 
 private:
   Ui::MainWindow *ui;
-
   CPUIntensiveComputing *m_cic;
 
   UnixCommand *m_unixCommand;
@@ -175,6 +174,9 @@ private:
   //Members that control the View menu settings
   ViewOptions m_selectedViewOption;
   QString m_selectedRepository;
+
+  QString m_cachedPackageInInfo;  //Used in Info tab
+  QString m_cachedPackageInFiles; //Used in Files tab
 
   void loadSettings();
   void loadPanelSettings();
