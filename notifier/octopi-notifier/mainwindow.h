@@ -45,7 +45,7 @@ private slots:
 private:
 
   int m_numberOfOutdatedPackages;
-  int m_numberOfOutdatedYaourtPackages;
+  int m_numberOfOutdatedAURPackages;
   bool m_systemUpgradeDialog;
   CommandExecuting m_commandExecuting;
   UnixCommand *m_unixCommand;
@@ -56,7 +56,7 @@ private:
   QAction *m_actionExit;
   QIcon m_icon;
   QStringList *m_outdatedPackageList;
-  QStringList *m_outdatedYaourtPackageList;
+  QStringList *m_outdatedAURPackageList;
   QTimer *m_pacmanHelperTimer;
   QSystemTrayIcon *m_systemTrayIcon;
   QMenu *m_systemTrayIconMenu;

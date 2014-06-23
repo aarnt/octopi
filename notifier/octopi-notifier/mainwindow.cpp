@@ -409,20 +409,20 @@ void MainWindow::refreshAppIcon()
 {
   m_outdatedPackageList = Package::getOutdatedPackageList();
 
-  bool hasYaourt = UnixCommand::hasTheExecutable(StrConstants::getForeignRepositoryToolName());
-  if (hasYaourt)
+  bool hasAURTool = UnixCommand::hasTheExecutable(StrConstants::getForeignRepositoryToolName());
+  if (hasAURTool)
   {
-    m_outdatedYaourtPackageList = Package::getOutdatedYaourtPackageList();
+    m_outdatedAURPackageList = Package::getOutdatedAURPackageList();
   }
   else
   {
-    m_outdatedYaourtPackageList = new QStringList();
+    m_outdatedAURPackageList = new QStringList();
   }
 
   m_numberOfOutdatedPackages = m_outdatedPackageList->count();
-  m_numberOfOutdatedYaourtPackages = m_outdatedYaourtPackageList->count();
+  m_numberOfOutdatedAURPackages = m_outdatedAURPackageList->count();
 
-  if (m_numberOfOutdatedPackages == 0 && m_numberOfOutdatedYaourtPackages == 0)
+  if (m_numberOfOutdatedPackages == 0 && m_numberOfOutdatedAURPackages == 0)
   {
     m_systemTrayIcon->setToolTip("");
   }
@@ -437,15 +437,15 @@ void MainWindow::refreshAppIcon()
       m_systemTrayIcon->setToolTip(StrConstants::getNewUpdates().arg(m_numberOfOutdatedPackages));
     }
   }
-  else if (m_numberOfOutdatedYaourtPackages > 0)
+  else if (m_numberOfOutdatedAURPackages > 0)
   {
-    if (m_numberOfOutdatedYaourtPackages == 1)
+    if (m_numberOfOutdatedAURPackages == 1)
     {
       m_systemTrayIcon->setToolTip(StrConstants::getOneNewUpdate());
     }
-    else if (m_numberOfOutdatedYaourtPackages > 1)
+    else if (m_numberOfOutdatedAURPackages > 1)
     {
-      m_systemTrayIcon->setToolTip(StrConstants::getNewUpdates().arg(m_numberOfOutdatedYaourtPackages));
+      m_systemTrayIcon->setToolTip(StrConstants::getNewUpdates().arg(m_numberOfOutdatedAURPackages));
     }
   }
 
@@ -459,7 +459,7 @@ void MainWindow::refreshAppIcon()
 
     m_icon = IconHelper::getIconOctopiRed();
   }
-  else if(m_outdatedYaourtPackageList->count() > 0) //YELLOW ICON!
+  else if(m_outdatedAURPackageList->count() > 0) //YELLOW ICON!
   {
     m_actionSystemUpgrade->setVisible(false);
     m_icon = IconHelper::getIconOctopiYellow();
