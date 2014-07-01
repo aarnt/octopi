@@ -387,7 +387,6 @@ bool MainWindow::isPackageInRemoveTransaction(const QString &pkgName)
 {
   QStandardItem * siRemoveParent = getRemoveTransactionParentItem();
   QStandardItemModel *sim = qobject_cast<QStandardItemModel *>(siRemoveParent->model());
-
   QList<QStandardItem *> foundItems = sim->findItems(pkgName, Qt::MatchRecursive | Qt::MatchExactly);
 
   return (foundItems.size() > 0);
@@ -1616,7 +1615,6 @@ void MainWindow::actionsProcessStarted()
 /*
  * This SLOT is called when Pacman's process has finished execution
  *
- * ATENTION: ALL CALLS TO buildPackageList were changed to metaBuildPackageList !!!
  */
 void MainWindow::actionsProcessFinished(int exitCode, QProcess::ExitStatus exitStatus)
 {
@@ -1734,6 +1732,8 @@ void MainWindow::actionsProcessFinished(int exitCode, QProcess::ExitStatus exitS
 
   if (m_commandExecuting != ectn_MIRROR_CHECK && bRefreshGroups)
     refreshGroupsWidget();
+
+  refreshMenuTools(); //Maybe some of octopi tools were added/removed...
 
   m_unixCommand->removeTemporaryActionFile();
   m_commandExecuting = ectn_NONE;

@@ -184,6 +184,7 @@ private:
 
   void initAppIcon();
   void refreshAppIcon();
+  void refreshMenuTools();
   void initMenuBar();
   void initPackageGroups();
   void refreshGroupsWidget();
@@ -415,7 +416,6 @@ public:
   }
 
   const PackageRepository::PackageData* getFirstPackageFromRepo(const QString pkgName);
-
   bool isAURGroupSelected();
   bool isSearchByFileSelected();
 

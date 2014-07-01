@@ -750,23 +750,7 @@ void MainWindow::initActions()
 
   // Populate Tools menu
   ui->menuTools->menuAction()->setVisible(false);
-
-  if(UnixCommand::hasTheExecutable("plv"))
-  {
-    ui->menuTools->menuAction()->setVisible(true);
-    ui->actionPacmanLogViewer->setIcon(QIcon::fromTheme("plv"));
-    connect(ui->actionPacmanLogViewer, SIGNAL(triggered()), this, SLOT(launchPLV()));
-  }
-  else
-    ui->actionPacmanLogViewer->setVisible(false);
-
-  if(UnixCommand::hasTheExecutable("octopi-repoeditor") && UnixCommand::getLinuxDistro() != ectn_KAOS)
-  {
-    ui->menuTools->menuAction()->setVisible(true);
-    connect(ui->actionRepositoryEditor, SIGNAL(triggered()), this, SLOT(launchRepoEditor()));
-  }
-  else
-    ui->actionRepositoryEditor->setVisible(false);
+  refreshMenuTools();
 
   if (WMHelper::isXFCERunning())
   {

@@ -77,6 +77,50 @@ void MainWindow::refreshAppIcon()
 }
 
 /*
+ * Reconfigure Tools menu according available tools in the system
+ */
+void MainWindow::refreshMenuTools()
+{
+  static bool connectorPlv=false;
+  static bool connectorRepo=false;
+  int availableTools=0;
+
+  if(UnixCommand::hasTheExecutable("plv"))
+  {
+    availableTools++;
+    ui->menuTools->menuAction()->setVisible(true);
+    ui->actionPacmanLogViewer->setVisible(true);
+    ui->actionPacmanLogViewer->setIcon(QIcon::fromTheme("plv"));
+
+    if (!connectorPlv)
+    {
+      connect(ui->actionPacmanLogViewer, SIGNAL(triggered()), this, SLOT(launchPLV()));
+      connectorPlv=true;
+    }
+  }
+  else
+    ui->actionPacmanLogViewer->setVisible(false);
+
+  if(UnixCommand::hasTheExecutable("octopi-repoeditor") && UnixCommand::getLinuxDistro() != ectn_KAOS)
+  {
+    availableTools++;
+    ui->menuTools->menuAction()->setVisible(true);
+    ui->actionRepositoryEditor->setVisible(true);
+
+    if (!connectorRepo)
+    {
+      connect(ui->actionRepositoryEditor, SIGNAL(triggered()), this, SLOT(launchRepoEditor()));
+      connectorRepo=true;
+    }
+  }
+  else
+    ui->actionRepositoryEditor->setVisible(false);
+
+  if (availableTools == 0)
+    ui->menuTools->menuAction()->setVisible(false);
+}
+
+/*
  * Inserts the group names into the Groups comboBox
  */
 void MainWindow::refreshGroupsWidget()
@@ -833,6 +877,7 @@ void MainWindow::refreshTabInfo(bool clearContents, bool neverQuit)
       html += "<tr><td>" + version + "</td><td>" + package->version + "</td></tr>";
 
       html += "</table>";
+
       text->setHtml(html);
       text->scrollToAnchor(anchorBegin);
     }
@@ -894,6 +939,7 @@ void MainWindow::refreshTabFiles(bool clearContents, bool neverQuit)
 
   QModelIndex item = selectionModel->selectedRows(PackageModel::ctn_PACKAGE_NAME_COLUMN).first();
   const PackageRepository::PackageData*const package = m_packageModel->getData(item);
+
   if (package == NULL) {
     assert(false);
     return;

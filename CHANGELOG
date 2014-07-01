@@ -2,6 +2,8 @@
   Updated translations.
   Added japanese translation (thanks to UTUMI Hirosi - utuhiro78).
   Some coding refactorings regarding Yaourt/AUR.
+  BugFix: Tools menu was not being refreshed after a package
+	removal/installation.
   BugFix: Ctrl and Shift key pkg actions not behaving right in Qt5 
 	builds.
   BugFix: When clicking a pkg on the outdated list, it could scroll 
