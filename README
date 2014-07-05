@@ -1,4 +1,4 @@
-This is Octopi, a powerful Pacman/Yaourt frontend using Qt libs. 
+This is Octopi, a powerful Pacman/AUR frontend using Qt libs. 
 ================================================================
 
 The project's source code is hosted at 
@@ -6,6 +6,10 @@ The project's source code is hosted at
 
 You'll need a privilege escalation tool to use it, once running as 
 root will ONLY work in KDE. Octopi supports kdesu and gksu for that.
+
+For AUR support, "yaourt" and "pacaur" are supported.
+When you are in Chakra, "ccr" is supported.
+While in KaOS, "kcp" is supported.
 
 Do you understand english? Wanna help this project?
 You can translate it to your mother language at 
