@@ -137,5 +137,5 @@ AUROutdatedPackages * getOutdatedAURPackages()
  */
 QString getLatestDistroNews()
 {
-  return PackageController::retrieveDistroNews(true);
+  return utils::retrieveDistroNews(true);
 }

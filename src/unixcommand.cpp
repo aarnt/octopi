@@ -953,7 +953,7 @@ QString UnixCommand::errorString()
 UnixCommand::UnixCommand(QObject *parent): QObject()
 {
   m_process = new QProcess(parent);
-  m_processWrapper = new ProcessWrapper(parent);
+  m_processWrapper = new utils::ProcessWrapper(parent);
 
   QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
   env.insert("LANG", "C");

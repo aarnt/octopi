@@ -22,7 +22,6 @@
 #ifndef PACKAGECONTROLLER_H
 #define PACKAGECONTROLLER_H
 
-#include <QModelIndex>
 #include <QStandardItemModel>
 #include <QModelIndex>
 

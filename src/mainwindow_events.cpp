@@ -195,7 +195,7 @@ void MainWindow::keyPressEvent(QKeyEvent* ke)
     QTreeView *tb = ui->twProperties->currentWidget()->findChild<QTreeView*>("tvPkgFileList");
     if (tb && tb->hasFocus())
     {
-      QString path = PackageController::showFullPathOfItem(tb->currentIndex());
+      QString path = utils::showFullPathOfItem(tb->currentIndex());
       QClipboard *clip = qApp->clipboard();
       clip->setText(path);
     }

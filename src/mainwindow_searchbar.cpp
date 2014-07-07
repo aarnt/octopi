@@ -98,7 +98,7 @@ void MainWindow::searchBarTextChangedEx(const QString textToSearch)
 
   if (textToSearch.isEmpty()) return;
 
-  m_foundFilesInPkgFileList = PackageController::findFileEx(textToSearch, sim);
+  m_foundFilesInPkgFileList = utils::findFileEx(textToSearch, sim);
 
   if (m_foundFilesInPkgFileList->count() > 0)
   {

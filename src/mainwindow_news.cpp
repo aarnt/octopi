@@ -97,7 +97,7 @@ void MainWindow::refreshDistroNews(bool searchForLatestNews, bool gotoNewsTab)
 
   if (searchForLatestNews == false)
   {
-    QString distroRSSXML = PackageController::retrieveDistroNews(searchForLatestNews);
+    QString distroRSSXML = utils::retrieveDistroNews(searchForLatestNews);
     showDistroNews(distroRSSXML, false);
   }
   //We have to refresh news using the non-blocking way...
@@ -151,7 +151,7 @@ void MainWindow::showDistroNews(QString distroRSSXML, bool searchForLatestNews)
     }
 
     //First, we have to parse the raw RSS XML...
-    html = PackageController::parseDistroNews();
+    html = utils::parseDistroNews();
   }
   else
   {
@@ -194,7 +194,7 @@ void MainWindow::onTabNewsSourceChanged(QUrl newSource)
     if (text)
     {
       disconnect(text, SIGNAL(sourceChanged(QUrl)), this, SLOT(onTabNewsSourceChanged(QUrl)));
-      text->setHtml(PackageController::parseDistroNews());
+      text->setHtml(utils::parseDistroNews());
       connect(text, SIGNAL(sourceChanged(QUrl)), this, SLOT(onTabNewsSourceChanged(QUrl)));
     }
   }

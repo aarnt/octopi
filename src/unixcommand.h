@@ -27,7 +27,7 @@
 #include <unistd.h>
 
 #include "package.h"
-#include "utils/processwrapper.h"
+#include "utils.h"
 
 const QString ctn_MIRROR_CHECK_APP("mirror-check");
 
@@ -51,7 +51,7 @@ private:
   QString m_readAllStandardError;
   QString m_errorString;
   QProcess *m_process;
-  ProcessWrapper *m_processWrapper;
+  utils::ProcessWrapper *m_processWrapper;
 
   static QFile *m_temporaryFile;
 
