@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui network dbus
+QT += core xml gui network dbus
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -25,7 +25,7 @@ SOURCES += main.cpp \
     ../../src/wmhelper.cpp \
     ../../src/settingsmanager.cpp \
     ../../src/pacmanhelperclient.cpp \
-    ../../src/utils/processwrapper.cpp \
+    ../../src/utils.cpp \
     ../../src/transactiondialog.cpp
 
 HEADERS  += \
@@ -36,7 +36,7 @@ HEADERS  += \
     ../../src/strconstants.h \
     ../../src/package.h \
     ../../src/pacmanhelperclient.h \
-    ../../src/utils/processwrapper.h \
+    ../../src/utils.h \
     ../../src/transactiondialog.h
 
 FORMS += ../../ui/transactiondialog.ui

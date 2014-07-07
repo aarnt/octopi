@@ -1,7 +1,8 @@
 0.4.1 (dev)
-  Updated translations.
+  Added basque translation (thanks to tarteka).
+  Added es_AR translation (thanks to javier).
   Added japanese translation (thanks to UTUMI Hirosi - utuhiro78).
-  Some coding refactorings regarding Yaourt/AUR.
+  Some coding refactorings regarding Yaourt/AUR as well as utils namespace.
   BugFix: Tools menu was not being refreshed after a package
 	removal/installation.
   BugFix: Ctrl and Shift key pkg actions not behaving right in Qt5 
@@ -21,7 +22,6 @@
   Ctrl+C over an item in Files tab copies it's full path to Clipboard.
   Reworked code to count installed packages (based on filters).
   Leave some actions disabled before building pkg list and mirror-checking.
-  Added es_AR translation (thanks to javier).
   Added 'installed size' information in package tooltips.
   Added Search by file feature (pacman -Qo).
   Added a string validator in the search edit widget.

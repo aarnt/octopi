@@ -30,7 +30,6 @@
 #include "searchlineedit.h"
 #include "treeviewpackagesitemdelegate.h"
 #include "searchbar.h"
-#include "packagecontroller.h"
 #include "repoconf.h"
 
 #include <QLabel>
@@ -200,6 +199,7 @@ void MainWindow::initMenuBar()
 
   ui->actionViewAllPackages->setText(StrConstants::getAll());
   ui->actionViewAllPackages->setChecked(true);
+
   actionGroupPackages->addAction(ui->actionViewAllPackages);
   actionGroupPackages->addAction(ui->actionViewInstalledPackages);
   actionGroupPackages->addAction(ui->actionViewNonInstalledPackages);

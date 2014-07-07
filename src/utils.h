@@ -18,13 +18,16 @@
 *
 */
 
-#ifndef PROCESSWRAPPER_H
-#define PROCESSWRAPPER_H
+#ifndef UTILS_H
+#define UTILS_H
 
 #include <QObject>
+#include <QTimer>
+#include <QStandardItemModel>
+#include <QModelIndex>
 #include <QProcess>
 
-class QTimer;
+namespace utils{
 
 class ProcessWrapper : public QObject
 {
@@ -52,4 +55,11 @@ private slots:
   void onProcessStarted();
 };
 
-#endif // PROCESSWRAPPER_H
+QString showFullPathOfItem( const QModelIndex &index );
+QList<QModelIndex> * findFileEx( const QString& name, const QStandardItemModel *sim);
+QString retrieveDistroNews(bool searchForLatestNews);
+QString parseDistroNews();
+
+} //namespace utils
+
+#endif // UTILS_H

@@ -27,7 +27,7 @@
 #include "wmhelper.h"
 #include "treeviewpackagesitemdelegate.h"
 #include "searchbar.h"
-#include "packagecontroller.h"
+#include "utils.h"
 #include "globals.h"
 #include <iostream>
 
@@ -666,7 +666,7 @@ void MainWindow::execContextMenuPkgFileList(QPoint point)
   }
 
   QModelIndex mi = tvPkgFileList->currentIndex();
-  QString selectedPath = PackageController::showFullPathOfItem(mi);
+  QString selectedPath = utils::showFullPathOfItem(mi);
   QMenu menu(this);
   QStandardItemModel *sim = qobject_cast<QStandardItemModel*>(tvPkgFileList->model());
   QStandardItem *si = sim->itemFromIndex(mi);
@@ -1078,7 +1078,7 @@ void MainWindow::openFile()
   QTreeView *tv = ui->twProperties->currentWidget()->findChild<QTreeView *>("tvPkgFileList") ;
   if (tv)
   {
-    QString path = PackageController::showFullPathOfItem(tv->currentIndex());
+    QString path = utils::showFullPathOfItem(tv->currentIndex());
     QFileInfo file(path);
     if (file.isFile())
     {
@@ -1095,7 +1095,7 @@ void MainWindow::editFile()
   QTreeView *tv = ui->twProperties->currentWidget()->findChild<QTreeView *>("tvPkgFileList") ;
   if (tv)
   {
-    QString path = PackageController::showFullPathOfItem(tv->currentIndex());
+    QString path = utils::showFullPathOfItem(tv->currentIndex());
     WMHelper::editFile(path);
   }
 }
@@ -1184,7 +1184,7 @@ QString MainWindow::getSelectedDirectory()
     QTreeView *t = ui->twProperties->currentWidget()->findChild<QTreeView*>("tvPkgFileList");
     if(t && t->currentIndex().isValid())
     {
-      QString itemPath = PackageController::showFullPathOfItem(t->currentIndex());
+      QString itemPath = utils::showFullPathOfItem(t->currentIndex());
       QFileInfo fi(itemPath);
 
       if (fi.isDir())
@@ -1229,7 +1229,7 @@ void MainWindow::tvPackagesSelectionChanged(const QItemSelection&, const QItemSe
 }
 
 /*
- *  Launch Pacman Log Viewer
+ * Launch Pacman Log Viewer
  */
 void MainWindow::launchPLV()
 {

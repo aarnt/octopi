@@ -30,7 +30,6 @@
 #include "uihelper.h"
 #include "searchbar.h"
 #include "globals.h"
-#include "packagecontroller.h"
 
 #include <QCloseEvent>
 #include <QMessageBox>
@@ -195,7 +194,7 @@ void MainWindow::keyPressEvent(QKeyEvent* ke)
     QTreeView *tb = ui->twProperties->currentWidget()->findChild<QTreeView*>("tvPkgFileList");
     if (tb && tb->hasFocus())
     {
-      QString path = PackageController::showFullPathOfItem(tb->currentIndex());
+      QString path = utils::showFullPathOfItem(tb->currentIndex());
       QClipboard *clip = qApp->clipboard();
       clip->setText(path);
     }
@@ -326,7 +325,6 @@ void MainWindow::keyReleaseEvent(QKeyEvent *ke)
         ui->tvPackages->selectionModel()->clear();
         QModelIndex mi = fi[i];
         ui->tvPackages->scrollTo(mi);
-
         ui->tvPackages->selectionModel()->setCurrentIndex(mi, QItemSelectionModel::Select);
         ui->tvPackages->setCurrentIndex(mi);
       }

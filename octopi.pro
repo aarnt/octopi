@@ -13,7 +13,6 @@ DEFINES += OCTOPI_EXTENSIONS
 CONFIG += qt console warn_on debug
 
 TEMPLATE = app
-
 DESTDIR += bin
 OBJECTS_DIR += build
 MOC_DIR += build
@@ -34,7 +33,6 @@ HEADERS  += src/QtSolutions/qtsingleapplication.h \
         src/settingsmanager.h \
         src/uihelper.h \
         src/package.h \
-        src/packagecontroller.h \
         src/unixcommand.h \
         src/wmhelper.h \
         src/treeviewpackagesitemdelegate.h \
@@ -43,10 +41,10 @@ HEADERS  += src/QtSolutions/qtsingleapplication.h \
         src/pacmanhelperclient.h \
         src/globals.h \
         src/multiselectiondialog.h \
-        src/utils/processwrapper.h \
         src/packagerepository.h \
         src/model/packagemodel.h \
-        src/ui/octopitabinfo.h
+        src/ui/octopitabinfo.h \
+        src/utils.h
 
 SOURCES += src/QtSolutions/qtsingleapplication.cpp \
         src/QtSolutions/qtlocalpeer.cpp \
@@ -62,7 +60,6 @@ SOURCES += src/QtSolutions/qtsingleapplication.cpp \
         src/argumentlist.cpp \
         src/settingsmanager.cpp \
         src/package.cpp \
-        src/packagecontroller.cpp \
         src/unixcommand.cpp \
         src/wmhelper.cpp \
         src/treeviewpackagesitemdelegate.cpp \
@@ -78,10 +75,10 @@ SOURCES += src/QtSolutions/qtsingleapplication.cpp \
         src/pacmanhelperclient.cpp \
         src/globals.cpp \
         src/multiselectiondialog.cpp \
-        src/utils/processwrapper.cpp \
         src/packagerepository.cpp \
         src/model/packagemodel.cpp \
-        src/ui/octopitabinfo.cpp
+        src/ui/octopitabinfo.cpp \
+        src/utils.cpp
 
 FORMS   += ui/mainwindow.ui \
         ui/transactiondialog.ui \
@@ -128,7 +125,8 @@ TRANSLATIONS += resources/translations/octopi_pt_BR.ts \
     resources/translations/octopi_ms_MY.ts \
     resources/translations/octopi_uk.ts \
     resources/translations/octopi_sk.ts \
-    resources/translations/octopi_ja.ts
+    resources/translations/octopi_ja.ts \
+    resources/translations/octopi_eu.ts
 
 greaterThan(QT_MAJOR_VERSION, 4){
     TRANSLATIONS += resources/translations/octopi_ast.ts

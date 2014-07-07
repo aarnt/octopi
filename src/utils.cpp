@@ -18,28 +18,186 @@
 *
 */
 
-#include <iostream>
-#include "packagecontroller.h"
-#include "package.h"
-#include "unixcommand.h"
-#include "strconstants.h"
+/*
+ * A wrapper for running a QProcess while providing feedback of its state
+ *
+ * IT ONLY WORKS with terminal commands that start other subcommands, with an "-e" option
+ */
 
-#include <QDirIterator>
+#include "utils.h"
+#include "strconstants.h"
+#include <iostream>
+
 #include <QStandardItemModel>
-#include <QStandardItem>
-#include <QCoreApplication>
+#include <QModelIndex>
 #include <QTextStream>
 #include <QCryptographicHash>
 #include <QDomDocument>
+#include <QProcess>
+#include <QTimer>
 
 /*
- * This is a controller class that provides search services, using Package methods.
+ * The needed constructor
  */
+utils::ProcessWrapper::ProcessWrapper(QObject *parent) :
+  QObject(parent)
+{
+  m_process = new QProcess(parent);
+  QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
+  env.insert("LANG", "C");
+  env.insert("LC_MESSAGES", "C");
+  m_process->setProcessEnvironment(env);
+
+  m_timerSingleShot = new QTimer(parent);
+  m_timerSingleShot->setSingleShot(true);
+  m_timer = new QTimer(parent);
+  m_timer->setInterval(1000);
+
+  connect(m_timerSingleShot, SIGNAL(timeout()), this, SLOT(onSingleShot()));
+  connect(m_timer, SIGNAL(timeout()), this, SLOT(onTimer()));
+  connect(m_process, SIGNAL(started()), SLOT(onProcessStarted()));
+}
+
+/*
+ * The method that is exposed to the world
+ */
+void utils::ProcessWrapper::executeCommand(QString command)
+{
+  m_process->start(command);
+}
+
+/*
+ * Only when m_process has started...
+ */
+void utils::ProcessWrapper::onProcessStarted()
+{  
+  m_pidTerminal = m_process->pid();
+  //std::cout << "First PID: " << m_pidTerminal << std::endl;
+  m_timerSingleShot->start(2000);
+  emit startedTerminal();
+}
+
+/*
+ * We need this to search for the SH process pid (which spaws AUR tool)
+ */
+void utils::ProcessWrapper::onSingleShot()
+{
+  QProcess proc;
+  QProcess pAux;
+  QString saux;
+
+  proc.start("ps -o pid -C sh");
+  proc.waitForFinished(-1);
+  QString out = proc.readAll();
+  proc.close();
+
+  QStringList list = out.split("\n", QString::SkipEmptyParts);
+
+  if (list.count() == 1)
+  {
+    proc.start("ps -o pid -C bash");
+    proc.waitForFinished(-1);
+    out = proc.readAll();
+    proc.close();
+
+    list = out.split("\n", QString::SkipEmptyParts);
+  }
+
+  QStringList slist;
+
+  for (int c=1; c<list.count(); c++)
+  {
+    int candidatePid = list.at(c).trimmed().toInt();
+
+    if (candidatePid < m_pidTerminal) continue;
+
+    QString cmd = QString("ps --ppid %1").arg(candidatePid);
+    proc.start(cmd);
+    proc.waitForFinished(-1);
+    QString out = proc.readAll();
+
+    if (UnixCommand::getLinuxDistro() == ectn_KAOS)
+    {
+      if (out.contains("python3", Qt::CaseInsensitive))
+      {
+        pAux.start("ps -o pid -C python3");
+        pAux.waitForFinished(-1);
+        saux = pAux.readAll();
+        slist = saux.split("\n", QString::SkipEmptyParts);
+
+        for (int d=1; d<slist.count(); d++)
+        {
+          int candidatePid2 = slist.at(d).trimmed().toInt();
+
+          if (candidatePid < candidatePid2)
+          {
+            m_pidSH = candidatePid;
+            m_pidAUR = candidatePid2;
+            m_timer->start();
+
+            return;
+          }
+        }
+      }
+    }
+    else
+    {
+      if (out.contains(StrConstants::getForeignRepositoryToolName(), Qt::CaseInsensitive))
+      {
+        pAux.start("ps -o pid -C " + StrConstants::getForeignRepositoryToolName());
+        pAux.waitForFinished(-1);
+        saux = pAux.readAll();
+        slist = saux.split("\n", QString::SkipEmptyParts);
+
+        for (int d=1; d<slist.count(); d++)
+        {
+          int candidatePid2 = slist.at(d).trimmed().toInt();
+
+          if (candidatePid < candidatePid2)
+          {
+            m_pidSH = candidatePid;
+            m_pidAUR = candidatePid2;
+            m_timer->start();
+
+            return;
+          }
+        }
+      }
+    }
+  }
+
+  emit finishedTerminal(0, QProcess::NormalExit);
+}
+
+/*
+ * Whenever the internal timer ticks, let's check if our process has finished
+ */
+void utils::ProcessWrapper::onTimer()
+{
+  QProcess proc;
+  QString cmd = QString("ps -p %1 %2").arg(m_pidSH).arg(m_pidAUR);
+
+  //std::cout << "PIDS: " << cmd.toLatin1().data() << "\n" << std::endl;
+
+  proc.start(cmd);
+  proc.waitForFinished(-1);
+
+  //If any of the processes have finished...
+  QString out = proc.readAll();
+
+  //std::cout << "Output: " << out.toLatin1().data() << "\n" << std::endl;
+
+  if (!out.contains(".qt_temp_", Qt::CaseInsensitive))
+  {
+    emit finishedTerminal(0, QProcess::NormalExit);
+    m_timer->stop();
+  }
+}
 
 /*
  * Returns the full path of a tree view item (normaly a file in a directory tree)
  */
-QString PackageController::showFullPathOfItem( const QModelIndex &index ){
+QString utils::showFullPathOfItem( const QModelIndex &index ){
   QString str;
   if (!index.isValid()) return str;
 
@@ -75,7 +233,7 @@ QString PackageController::showFullPathOfItem( const QModelIndex &index ){
  * Given a filename 'name', searches for it inside a QStandard item model
  * Result is a list containing all QModelIndex occurencies
  */
-QList<QModelIndex> * PackageController::findFileEx( const QString& name, const QStandardItemModel *sim)
+QList<QModelIndex> * utils::findFileEx( const QString& name, const QStandardItemModel *sim)
 {
   QList<QModelIndex> * res = new QList<QModelIndex>();
   QList<QStandardItem *> foundItems;
@@ -100,7 +258,7 @@ QList<QModelIndex> * PackageController::findFileEx( const QString& name, const Q
  * If it fails to connect to the internet, uses the available "./.config/octopi/distro_rss.xml"
  * The result is a QString containing the RSS News Feed XML code
  */
-QString PackageController::retrieveDistroNews(bool searchForLatestNews)
+QString utils::retrieveDistroNews(bool searchForLatestNews)
 {
   const QString ctn_ANTERGOS_RSS = "http://antergos.com/category/news/feed/";
   const QString ctn_ARCHBSD_RSS = "http://archbsd.net/feeds/news/";
@@ -236,7 +394,7 @@ QString PackageController::retrieveDistroNews(bool searchForLatestNews)
  * Parses the raw XML contents from the Distro RSS news feed
  * Creates and returns a string containing a HTML code with latest 10 news
  */
-QString PackageController::parseDistroNews()
+QString utils::parseDistroNews()
 {
   QString html;
   LinuxDistro distro = UnixCommand::getLinuxDistro();

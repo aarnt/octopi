@@ -20,7 +20,6 @@
 
 #include "globals.h"
 #include "mainwindow.h"
-#include "packagecontroller.h"
 
 #include <QStandardItem>
 #include <QFutureWatcher>
@@ -95,6 +94,7 @@ QList<PackageListData> * searchPacmanPackages()
 QString searchPacmanPackagesByFile(const QString &file)
 {
   QString result;
+
   if (!file.isEmpty())
   {
     result = UnixCommand::getPackageByFilePath(file);
@@ -137,5 +137,5 @@ AUROutdatedPackages * getOutdatedAURPackages()
  */
 QString getLatestDistroNews()
 {
-  return PackageController::retrieveDistroNews(true);
+  return utils::retrieveDistroNews(true);
 }

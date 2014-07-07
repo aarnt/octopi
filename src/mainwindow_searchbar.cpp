@@ -25,7 +25,6 @@
 #include "ui_mainwindow.h"
 #include "mainwindow.h"
 #include "searchbar.h"
-#include "packagecontroller.h"
 
 #include <QTextBrowser>
 
@@ -98,7 +97,7 @@ void MainWindow::searchBarTextChangedEx(const QString textToSearch)
 
   if (textToSearch.isEmpty()) return;
 
-  m_foundFilesInPkgFileList = PackageController::findFileEx(textToSearch, sim);
+  m_foundFilesInPkgFileList = utils::findFileEx(textToSearch, sim);
 
   if (m_foundFilesInPkgFileList->count() > 0)
   {
@@ -224,7 +223,6 @@ void MainWindow::searchBarClosedEx()
 void MainWindow::_positionInFirstMatch()
 {
   QTextBrowser *tb = ui->twProperties->currentWidget()->findChild<QTextBrowser*>("textBrowser");
-  //if (!tb) tb = ui->twProperties->currentWidget()->findChild<QTextBrowser*>("updaterOutput");
   SearchBar *sb = ui->twProperties->currentWidget()->findChild<SearchBar*>("searchbar");
 
   if (tb && sb && sb->isVisible() && !sb->getTextToSearch().isEmpty()){
