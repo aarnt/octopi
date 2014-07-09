@@ -792,7 +792,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="355"/>
         <source>%1 (%2) packages</source>
-        <translation>%1 (%2) paketeak</translation>
+        <translation>%1 (%2) pakete</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="359"/>
