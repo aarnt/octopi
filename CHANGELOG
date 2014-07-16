@@ -1,3 +1,8 @@
+0.4.2 (dev)
+  BugFix: when searching AUR pkgs, given search string was not being matched by package  
+	descriptions.
+  Added support for new kcp (Go version).
+
 0.4.1
   Added basque translation (thanks to tarteka).
   Added es_AR translation (thanks to javier).

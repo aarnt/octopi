@@ -111,16 +111,16 @@ void utils::ProcessWrapper::onSingleShot()
 
     if (candidatePid < m_pidTerminal) continue;
 
-    QString cmd = QString("ps --ppid %1").arg(candidatePid);
+    QString cmd = QString("ps -O cmd --ppid %1").arg(candidatePid);
     proc.start(cmd);
     proc.waitForFinished(-1);
     QString out = proc.readAll();
 
     if (UnixCommand::getLinuxDistro() == ectn_KAOS)
     {
-      if (out.contains("python3", Qt::CaseInsensitive))
+      if (out.contains("kcp", Qt::CaseInsensitive))
       {
-        pAux.start("ps -o pid -C python3");
+        pAux.start("ps -o pid -C kcp");
         pAux.waitForFinished(-1);
         saux = pAux.readAll();
         slist = saux.split("\n", QString::SkipEmptyParts);

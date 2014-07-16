@@ -606,8 +606,6 @@ void MainWindow::buildPackageList(bool nonBlocking)
 void MainWindow::buildAURPackageList()
 {
   ui->actionSearchByDescription->setChecked(true);
-  //tvPackagesSearchColumnChanged(ui->actionSearchByDescription);
-
   m_progressWidget->show();
 
   const QSet<QString>*const unrequiredPackageList = Package::getUnrequiredPackageList();
@@ -615,7 +613,6 @@ void MainWindow::buildAURPackageList()
 
   m_progressWidget->setRange(0, list->count());
   m_progressWidget->setValue(0);
-
   int counter=0;
   int installedCount = 0;
   QList<PackageListData>::const_iterator it = list->begin();
@@ -632,6 +629,7 @@ void MainWindow::buildAURPackageList()
 
   m_packageRepo.setAURData(list, *unrequiredPackageList);
   m_packageModel->applyFilter(m_selectedViewOption, m_selectedRepository, StrConstants::getForeignToolGroup());
+  m_packageModel->applyFilter(PackageModel::ctn_PACKAGE_DESCRIPTION_FILTER_NO_COLUMN);
 
   QModelIndex maux = m_packageModel->index(0, 0, QModelIndex());
   ui->tvPackages->setCurrentIndex(maux);
