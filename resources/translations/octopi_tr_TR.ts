@@ -106,7 +106,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="296"/>
         <source>System upgrade</source>
-        <translation>Sistemi Yükselt</translation>
+        <translation>Sistemi Güncelle</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="299"/>
@@ -264,32 +264,32 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="58"/>
         <source>A Qt-based Pacman frontend,</source>
-        <translation>QT temelli Pacman arayüzü</translation>
+        <translation>Bu paket yöneticisi qt tabanlı bir pacman arayüzüdür.</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="59"/>
         <source>licensed under the terms of</source>
-        <translation>hakları ile lisanslanmıştır</translation>
+        <translation>Lisans ve yasal haklar:</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="77"/>
         <source>Package classification:</source>
-        <translation>Paket sınıflandırması:</translation>
+        <translation>Paket Tanımlamaları:</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="80"/>
         <source>An installed package</source>
-        <translation>Yüklenmiş bir paket</translation>
+        <translation>Kullanıcı tarafından yüklenmiş bir paket</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="82"/>
         <source>An installed package (not required by others)</source>
-        <translation>Kurulu paket ( diğerlerince gereksinim duyulmayan)</translation>
+        <translation>Sisteme öntanımlı kurulmuş paket (bağımlılıkları olmayabilir)</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="85"/>
         <source>A foreign package, installed from</source>
-        <translation>Yabancı paket, kurulumu yapan</translation>
+        <translation>Gayrı resmi paket. Şu topluluğun paketi olabilir:</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="88"/>
@@ -304,12 +304,12 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="94"/>
         <source>An outdated foreign package</source>
-        <translation>Eski paket çıkarıldı</translation>
+        <translation>Güncelliğini yitirmiş gayrı resmi paket</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="97"/>
         <source>A newer than repository package</source>
-        <translation>Depodaki paket daha yeni</translation>
+        <translation>Depodaki paket daha eski. Paket sürümünü düşürür</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="100"/>
@@ -379,7 +379,7 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="128"/>
         <source>Ctrl+U or &apos;File/System upgrade&apos; to make a full system upgrade (pacman -Su)</source>
-        <translation>Tam sistem yükseltmesi için Ctrl+U veya Dosya/Sistem yükseltmesi (pacman -Su)</translation>
+        <translation>Tam sistem güncellemesi için Ctrl+U veya Dosya/Sistem yükseltmesi (pacman -Su)</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="130"/>
@@ -419,7 +419,7 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="147"/>
         <source>Ctrl+Shift+C to clean local packages cache (pacman -Sc)</source>
-        <translation>Yerel paketleri temizlemek ( pacman -Sc) için Ctrl+Shift+C </translation>
+        <translation>Önbelleğinizde biriken paketleri temizlemek için ( pacman -Sc) Ctrl+Shift+C </translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="149"/>
@@ -747,7 +747,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="319"/>
         <source>Find</source>
-        <translation>Bul</translation>
+        <translation>Aradığınız paket adını giriniz</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="323"/>
@@ -777,7 +777,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="343"/>
         <source>There is one outdated package in your system:</source>
-        <translation>Güncel olmayan paket sisteminizde yok</translation>
+        <translation>Sisteminizde güncelliğini yitiren paketler:</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="347"/>
@@ -792,12 +792,12 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="355"/>
         <source>%1 (%2) packages</source>
-        <translation>%1 (%2) paketler</translation>
+        <translation>%1 (%2) paket depoda</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="359"/>
         <source>%1 installed</source>
-        <translation>%1 kuruldu</translation>
+        <translation>%1 paket kuruldu</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="363"/>
@@ -842,7 +842,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="399"/>
         <source>Starting full system upgrade...</source>
-        <translation>Sistem yükseltmesi başlıyor...</translation>
+        <translation>Sistem güncellemesi başlıyor...</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="403"/>
@@ -887,7 +887,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="435"/>
         <source>The following target needs to be retrieved</source>
-        <translation>Sıradaki hedef yükseltilmeli</translation>
+        <translation>Sıradakiler güncellenmeli</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="439"/>
@@ -897,7 +897,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="443"/>
         <source>The following %1 targets need to be retrieved</source>
-        <translation>Sıradaki %1 hedef paket yükseltilmeli</translation>
+        <translation>Sıradaki %1 paket güncellenmeli</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="447"/>

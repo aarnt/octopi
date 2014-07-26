@@ -2033,7 +2033,7 @@ void MainWindow::_treatProcessOutput(const QString &pMsg)
             int blank = msg.indexOf(" ");
             QString repo = msg.left(blank);
 
-            if (repo.contains("error")) return;
+            if (repo.contains("error") || repo.contains("gconf", Qt::CaseInsensitive)) return;
 
             altMsg = repo + " " + StrConstants::getIsUpToDate();
           }

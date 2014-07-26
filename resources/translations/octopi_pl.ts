@@ -254,7 +254,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="557"/>
         <source>By file</source>
-        <translation>Według plik</translation>
+        <translation>Według pliku</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="55"/>
@@ -522,7 +522,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="132"/>
         <source>KaOS news</source>
-        <translation>Wiadomości KaOS</translation>
+        <translation>Wiadomości z KaOS</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="136"/>

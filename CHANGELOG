@@ -1,7 +1,9 @@
-0.4.2 (dev)
+0.4.2
   BugFix: when searching AUR pkgs, given search string was not being matched by package  
 	descriptions.
-  Added support for new kcp (Go version).
+  BugFix: Sometimes got a gconf bug string at sync db.
+  Updated a bunch of translations.
+  Added support for the new kcp tool (Go version).
 
 0.4.1
   Added basque translation (thanks to tarteka).
