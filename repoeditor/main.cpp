@@ -22,7 +22,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 #include "repoconf.h"
 
 #include "../src/QtSolutions/qtsingleapplication.h"
-#include <QtGui/QApplication>
+#include <QtGui>
 #include <QTranslator>
 #include <QLocale>
 #include <QLibraryInfo>

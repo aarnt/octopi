@@ -12,6 +12,10 @@
 #include <QProcess>
 #include <QMessageBox>
 
+#ifdef KSTATUS
+  #include <KStatusNotifierItem>
+#endif
+
 /*
  * This is Octopi Notifier slim interface code :-)
  */
@@ -34,14 +38,34 @@ void MainWindow::initSystemTrayIcon()
 {
   m_commandExecuting = ectn_NONE;
   m_outdatedPackageList = new QStringList();
-  m_systemTrayIcon = new QSystemTrayIcon(this);
-  m_systemTrayIcon->setObjectName("systemTrayIcon");
 
+#ifdef KSTATUS
+  m_systemTrayIcon = new KStatusNotifierItem(this);
+  m_systemTrayIcon->setTitle("Octopi Notifier");
+#else
+  m_systemTrayIcon = new QSystemTrayIcon(this);
+#endif
+
+  m_systemTrayIcon->setObjectName("systemTrayIcon");
   m_icon = IconHelper::getIconOctopiTransparent();
+
+#ifdef KSTATUS
+  m_systemTrayIcon->setIconByPixmap(m_icon);
+  m_systemTrayIcon->setToolTipIconByPixmap(m_icon);
+#else
   m_systemTrayIcon->setIcon(m_icon); 
+#endif
+
   setWindowIcon(m_icon);
+
+#ifdef KSTATUS
+  m_systemTrayIcon->setToolTipSubTitle(StrConstants::getSyncDatabases());
+  m_systemTrayIcon->setToolTipTitle("Octopi Notifier");
+#else
   m_systemTrayIcon->show();
   m_systemTrayIcon->setToolTip(StrConstants::getSyncDatabases());
+#endif
+
   qApp->processEvents();
 
   m_actionExit = new QAction(IconHelper::getIconExit(), tr("Exit"), this);
@@ -68,6 +92,11 @@ void MainWindow::initSystemTrayIcon()
   m_systemTrayIconMenu->addAction(m_actionAbout);
   m_systemTrayIconMenu->addAction(m_actionExit);
   m_systemTrayIcon->setContextMenu(m_systemTrayIconMenu);
+
+  // disable "standard" actions (restore & quit)
+#ifdef KSTATUS
+  m_systemTrayIcon->setStandardActionsEnabled(false);
+#endif
 
   connect ( m_systemTrayIcon , SIGNAL( activated( QSystemTrayIcon::ActivationReason ) ),
             this, SLOT( execSystemTrayActivated ( QSystemTrayIcon::ActivationReason ) ) );
@@ -320,12 +349,24 @@ void MainWindow::pacmanHelperTimerTimeout()
   }
 
   m_icon = IconHelper::getIconOctopiTransparent();
+
+#ifdef KSTATUS
+  m_systemTrayIcon->setIconByPixmap(m_icon);
+  m_systemTrayIcon->setToolTipIconByPixmap(m_icon);
+  m_systemTrayIcon->setToolTipSubTitle(StrConstants::getSyncDatabases());
+#else
   m_systemTrayIcon->setIcon(m_icon);
   m_systemTrayIcon->setToolTip(StrConstants::getSyncDatabases());
+#endif
+
   qApp->processEvents();
 
   m_systemTrayIconMenu->close();
+
+#ifndef KSTATUS
   m_systemTrayIcon->setContextMenu(0);
+#endif
+
   m_commandExecuting = ectn_SYNC_DATABASE;
   m_pacmanHelperClient->syncdb();
 }
@@ -336,8 +377,12 @@ void MainWindow::pacmanHelperTimerTimeout()
 void MainWindow::afterPacmanHelperSyncDatabase()
 {
   m_actionOctopi->setEnabled(true);
+
+#ifndef KSTATUS
   m_systemTrayIcon->setContextMenu(m_systemTrayIconMenu);
   m_systemTrayIconMenu->close();
+#endif
+
   m_commandExecuting = ectn_NONE;
 
   disconnect(m_pacmanDatabaseSystemWatcher,
@@ -355,14 +400,28 @@ void MainWindow::afterPacmanHelperSyncDatabase()
       if (m_numberOfOutdatedPackages == 1)
       {
         notification = StrConstants::getOneNewUpdate();
-        m_systemTrayIcon->setToolTip(notification);
-        if (!UnixCommand::isAppRunning("spun", true)) sendNotification(notification);
+
+        #ifdef KSTATUS
+          m_systemTrayIcon->setToolTipSubTitle(notification);
+          m_systemTrayIcon->showMessage("Octopi Notifier",
+                                        notification, m_systemTrayIcon->iconName());
+        #else
+          m_systemTrayIcon->setToolTip(notification);
+          if (!UnixCommand::isAppRunning("spun", true)) sendNotification(notification);
+        #endif
       }
       else if (m_numberOfOutdatedPackages > 1)
       {
         notification = StrConstants::getNewUpdates().arg(m_numberOfOutdatedPackages);
-        m_systemTrayIcon->setToolTip(notification);
-        if (!UnixCommand::isAppRunning("spun", true)) sendNotification(notification);
+
+        #ifdef KSTATUS
+          m_systemTrayIcon->setToolTipSubTitle(notification);
+          m_systemTrayIcon->showMessage("Octopi Notifier",
+                                        notification, m_systemTrayIcon->iconName());
+        #else
+          m_systemTrayIcon->setToolTip(notification);
+          if (!UnixCommand::isAppRunning("spun", true)) sendNotification(notification);
+        #endif
       }
     }
   }
@@ -373,14 +432,28 @@ void MainWindow::afterPacmanHelperSyncDatabase()
     if (numberOfOutdatedPackages == 1)
     {
       notification = StrConstants::getOneNewUpdate();
-      m_systemTrayIcon->setToolTip(notification);
-      if (!UnixCommand::isAppRunning("spun", true)) sendNotification(notification);
+
+      #ifdef KSTATUS
+        m_systemTrayIcon->setToolTipSubTitle(notification);
+        m_systemTrayIcon->showMessage("Octopi Notifier",
+                                      notification, m_systemTrayIcon->iconName());
+      #else
+        m_systemTrayIcon->setToolTip(notification);
+        if (!UnixCommand::isAppRunning("spun", true)) sendNotification(notification);
+      #endif
     }
     else if (numberOfOutdatedPackages > 1)
     {
       notification = StrConstants::getNewUpdates().arg(numberOfOutdatedPackages);
-      m_systemTrayIcon->setToolTip(notification);
-      if (!UnixCommand::isAppRunning("spun", true)) sendNotification(notification);
+
+      #ifdef KSTATUS
+        m_systemTrayIcon->setToolTipSubTitle(notification);
+        m_systemTrayIcon->showMessage("Octopi Notifier",
+                                      notification, m_systemTrayIcon->iconName());
+      #else
+        m_systemTrayIcon->setToolTip(notification);
+        if (!UnixCommand::isAppRunning("spun", true)) sendNotification(notification);
+      #endif
     }
   }
 
@@ -396,8 +469,8 @@ void MainWindow::sendNotification(const QString &msg)
   QString processToExec("notify-send");
   if (UnixCommand::hasTheExecutable(processToExec))
   {
-    processToExec += " -i /usr/share/icons/octopi_red.png -t 5000 \"" + StrConstants::getApplicationName() +
-        "\"  \"" + msg + "\"";
+    processToExec += " -i /usr/share/icons/octopi_red.png -t 5000 \"" +
+        StrConstants::getApplicationName() + "\"  \"" + msg + "\"";
     QProcess::startDetached(processToExec);
   }
 }
@@ -424,28 +497,50 @@ void MainWindow::refreshAppIcon()
 
   if (m_numberOfOutdatedPackages == 0 && m_numberOfOutdatedAURPackages == 0)
   {
-    m_systemTrayIcon->setToolTip("");
+    #ifdef KSTATUS
+      m_systemTrayIcon->setToolTipSubTitle("");
+    #else
+      m_systemTrayIcon->setToolTip("");
+    #endif
   }
   else if (m_numberOfOutdatedPackages > 0)
   {
     if (m_numberOfOutdatedPackages == 1)
     {
-      m_systemTrayIcon->setToolTip(StrConstants::getOneNewUpdate());
+      #ifdef KSTATUS
+        m_systemTrayIcon->setToolTipSubTitle(StrConstants::getOneNewUpdate());
+      #else
+        m_systemTrayIcon->setToolTip(StrConstants::getOneNewUpdate());
+      #endif
     }
     else if (m_numberOfOutdatedPackages > 1)
     {
-      m_systemTrayIcon->setToolTip(StrConstants::getNewUpdates().arg(m_numberOfOutdatedPackages));
+      #ifdef KSTATUS
+        m_systemTrayIcon->setToolTipSubTitle(
+              StrConstants::getNewUpdates().arg(m_numberOfOutdatedPackages));
+      #else
+        m_systemTrayIcon->setToolTip(StrConstants::getNewUpdates().arg(m_numberOfOutdatedPackages));
+      #endif
     }
   }
   else if (m_numberOfOutdatedAURPackages > 0)
   {
     if (m_numberOfOutdatedAURPackages == 1)
     {
-      m_systemTrayIcon->setToolTip(StrConstants::getOneNewUpdate());
+      #ifdef KSTATUS
+        m_systemTrayIcon->setToolTipSubTitle(StrConstants::getOneNewUpdate());
+      #else
+        m_systemTrayIcon->setToolTip(StrConstants::getOneNewUpdate());
+      #endif
     }
     else if (m_numberOfOutdatedAURPackages > 1)
     {
-      m_systemTrayIcon->setToolTip(StrConstants::getNewUpdates().arg(m_numberOfOutdatedAURPackages));
+      #ifdef KSTATUS
+        m_systemTrayIcon->setToolTipSubTitle(
+              StrConstants::getNewUpdates().arg(m_numberOfOutdatedAURPackages));
+      #else
+        m_systemTrayIcon->setToolTip(StrConstants::getNewUpdates().arg(m_numberOfOutdatedAURPackages));
+      #endif
     }
   }
 
@@ -457,21 +552,40 @@ void MainWindow::refreshAppIcon()
       m_actionSystemUpgrade->setVisible(true);
     }
 
+#ifdef KSTATUS
+    m_systemTrayIcon->setAttentionIconByPixmap(m_icon);
+    m_systemTrayIcon->setStatus(KStatusNotifierItem::NeedsAttention);
+#else
     m_icon = IconHelper::getIconOctopiRed();
+#endif
   }
   else if(m_outdatedAURPackageList->count() > 0) //YELLOW ICON!
   {
     m_actionSystemUpgrade->setVisible(false);
     m_icon = IconHelper::getIconOctopiYellow();
+
+#ifdef KSTATUS
+    m_systemTrayIcon->setAttentionIconByPixmap(m_icon);
+    m_systemTrayIcon->setStatus(KStatusNotifierItem::NeedsAttention);
+#endif
   }
   else //YEAHHH... GREEN ICON!
   {
     m_actionSystemUpgrade->setVisible(false);
     m_icon = IconHelper::getIconOctopiGreen();
+
+#ifdef KSTATUS
+    m_systemTrayIcon->setStatus(KStatusNotifierItem::Passive);
+#endif
   }
 
+#ifdef KSTATUS
+  m_systemTrayIcon->setIconByPixmap(m_icon);
+  m_systemTrayIcon->setToolTipIconByPixmap(m_icon);
+#else
   setWindowIcon(m_icon);
   m_systemTrayIcon->setIcon(m_icon);
+#endif
 }
 
 /*

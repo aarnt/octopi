@@ -6,6 +6,14 @@
 
 QT += core xml gui network dbus
 
+# This controls whether octopi-notifier uses KStatusNotifier lib
+# DEFINES += KSTATUS
+
+contains(DEFINES, KSTATUS){
+  include(/usr/share/qt/mkspecs/modules/qt_KNotifications.pri)
+  QT += KNotifications
+}
+
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 CONFIG += qt console warn_on debug

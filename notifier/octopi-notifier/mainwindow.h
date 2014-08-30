@@ -14,6 +14,10 @@ class QAction;
 class QFileSystemWatcher;
 class PacmanHelperClient;
 
+#ifdef KSTATUS
+  class KStatusNotifierItem;
+#endif
+
 enum ExecOpt { ectn_NORMAL_EXEC_OPT, ectn_SYSUPGRADE_EXEC_OPT, ectn_SYSUPGRADE_NOCONFIRM_EXEC_OPT };
 
 class MainWindow : public QMainWindow
@@ -58,7 +62,13 @@ private:
   QStringList *m_outdatedPackageList;
   QStringList *m_outdatedAURPackageList;
   QTimer *m_pacmanHelperTimer;
+
+#ifdef KSTATUS
+  KStatusNotifierItem * m_systemTrayIcon;
+#else
   QSystemTrayIcon *m_systemTrayIcon;
+#endif
+
   QMenu *m_systemTrayIconMenu;
   QFileSystemWatcher *m_pacmanDatabaseSystemWatcher;
   PacmanHelperClient *m_pacmanHelperClient;
