@@ -552,11 +552,12 @@ void MainWindow::refreshAppIcon()
       m_actionSystemUpgrade->setVisible(true);
     }
 
+    m_icon = IconHelper::getIconOctopiRed();
+
+
 #ifdef KSTATUS
     m_systemTrayIcon->setAttentionIconByPixmap(m_icon);
     m_systemTrayIcon->setStatus(KStatusNotifierItem::NeedsAttention);
-#else
-    m_icon = IconHelper::getIconOctopiRed();
 #endif
   }
   else if(m_outdatedAURPackageList->count() > 0) //YELLOW ICON!
@@ -579,11 +580,12 @@ void MainWindow::refreshAppIcon()
 #endif
   }
 
+  setWindowIcon(m_icon);
+
 #ifdef KSTATUS
   m_systemTrayIcon->setIconByPixmap(m_icon);
   m_systemTrayIcon->setToolTipIconByPixmap(m_icon);
 #else
-  setWindowIcon(m_icon);
   m_systemTrayIcon->setIcon(m_icon);
 #endif
 }
