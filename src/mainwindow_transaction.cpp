@@ -1623,7 +1623,9 @@ void MainWindow::actionsProcessFinished(int exitCode, QProcess::ExitStatus exitS
 
   ui->twProperties->setTabText(ctn_TABINDEX_OUTPUT, StrConstants::getTabOutputName());
 
-  if (exitCode == 0 && exitStatus == QProcess::NormalExit)
+  //mate-terminal is returning code 255 sometimes...
+  //TODO: Have to improve this test!
+  if ((exitCode == 0 || exitCode == 255) && exitStatus == QProcess::NormalExit)
   {
     //First, we empty the tabs cache!
     m_cachedPackageInInfo = "";
@@ -1656,7 +1658,7 @@ void MainWindow::actionsProcessFinished(int exitCode, QProcess::ExitStatus exitS
   }
   else if (m_commandQueued == ectn_NONE)
   {
-    if(exitCode == 0)
+    if(exitCode == 0 || exitCode == 255) //mate-terminal is returning code 255 sometimes...
     {
       //After the command, we can refresh the package list, so any change can be seem.
       if (m_commandExecuting == ectn_SYNC_DATABASE)
