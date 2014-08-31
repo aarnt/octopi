@@ -48,37 +48,6 @@ int SettingsManager::getCurrentTabIndex(){
         ctn_KEY_CURRENT_TAB_INDEX, 0).toInt();
 }
 
-QStringList SettingsManager::getFrozenPkgList(){
-  return instance()->getSYSsettings()->value(
-        ctn_KEY_FROZEN_PACKAGES_LIST, QVariant(QStringList())).toStringList() ;
-}
-
-QString SettingsManager::getDefaultDirectory(){
-  QString defaultDir = instance()->getSYSsettings()->value(
-        ctn_KEY_DEFAULT_DIRECTORY, QDir::homePath()).toString();
-
-  QDir dir(defaultDir);
-
-  if ((defaultDir == "") || (!dir.exists())){
-    defaultDir = QDir::homePath();
-  }
-
-  return defaultDir;
-}
-
-QString SettingsManager::getUpdaterDirectory(){
-  QString updaterDir = instance()->getSYSsettings()->value(
-        ctn_KEY_UPDATER_DIRECTORY, getDefaultDirectory()).toString();
-
-  return updaterDir;
-}
-
-QString SettingsManager::getUpdaterMirror(){
-  QString updaterDir = instance()->getSYSsettings()->value( ctn_KEY_UPDATER_MIRROR, "").toString();
-
-  return updaterDir;
-}
-
 int SettingsManager::getPanelOrganizing(){
   return instance()->getSYSsettings()->value( ctn_KEY_PANEL_ORGANIZING, ectn_NORMAL ).toInt();
 }
@@ -122,16 +91,28 @@ int SettingsManager::getHighlightedSearchItems(){
   return (instance()->getSYSsettings()->value( ctn_KEY_HIGHLIGHTED_SEARCH_ITEMS, 100).toInt());
 }
 
+bool SettingsManager::getSkipMirrorCheckAtStartup(){
+  if (!instance()->getSYSsettings()->contains(ctn_KEY_SKIP_MIRRORCHECK_ON_STARTUP)){
+    instance()->getSYSsettings()->setValue(ctn_KEY_SKIP_MIRRORCHECK_ON_STARTUP, false);
+  }
+
+  return (instance()->getSYSsettings()->value( ctn_KEY_SKIP_MIRRORCHECK_ON_STARTUP, false).toInt() == 1);
+}
+
+QString SettingsManager::getTerminal(){
+  if (!instance()->getSYSsettings()->contains(ctn_KEY_TERMINAL)){
+    instance()->getSYSsettings()->setValue(ctn_KEY_TERMINAL, ctn_AUTOMATIC);
+  }
+
+  return (instance()->getSYSsettings()->value( ctn_KEY_TERMINAL, ctn_AUTOMATIC)).toString();
+}
+
 bool SettingsManager::getUsePkgTools(){
   return (instance()->getSYSsettings()->value( ctn_KEY_USE_PKGTOOLS, true).toInt() == 1);
 }
 
 bool SettingsManager::getUseSilentActionOutput(){
   return (instance()->getSYSsettings()->value( ctn_KEY_USE_SILENT_ACTION_OUTPUT, true).toInt() == 1);
-}
-
-bool SettingsManager::getAutomaticCheckUpdates(){
-  return (instance()->getSYSsettings()->value( ctn_KEY_AUTOMATIC_CHECK_UPDATES, true).toInt() == 1);
 }
 
 bool SettingsManager::getWindowCloseHidesApp(){
@@ -198,14 +179,6 @@ void SettingsManager::setUpdaterDirectory(QString newValue){
 
 void SettingsManager::setUpdaterMirror(QString newValue){
   instance()->getSYSsettings()->setValue( ctn_KEY_UPDATER_MIRROR, newValue);
-  instance()->getSYSsettings()->sync();
-}
-
-void SettingsManager::setAutomaticCheckUpdates(bool newValue){
-  int value=0;
-  if (newValue) value=1;
-
-  instance()->getSYSsettings()->setValue( ctn_KEY_AUTOMATIC_CHECK_UPDATES, value);
   instance()->getSYSsettings()->sync();
 }
 
@@ -285,6 +258,7 @@ void SettingsManager::setSplitterHorizontalState(QByteArray newValue){
   instance()->getSYSsettings()->sync();
 }
 
+// Class singleton
 SettingsManager* SettingsManager::instance(){
   if (m_pinstance == 0)
   {

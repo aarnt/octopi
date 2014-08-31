@@ -561,74 +561,139 @@ void WMHelper::openDirectory( const QString& dirName ){
 /*
  * Opens a terminal based on your DE.
  */
-void WMHelper::openTerminal(const QString& dirName){
+void WMHelper::openTerminal(const QString& dirName)
+{
   QProcess *p = new QProcess(qApp->activeWindow());
   QStringList s;
   QFileInfo f(dirName);
 
-  if (f.exists()){
-    if(isXFCERunning() && UnixCommand::hasTheExecutable(ctn_XFCE_TERMINAL)){
-      s << "--working-directory=" + dirName;
-      p->startDetached( ctn_XFCE_TERMINAL, s );
-    }
-    else if (isKDERunning() && UnixCommand::hasTheExecutable(ctn_KDE_TERMINAL)){
-      s << "--workdir";            
-      s << dirName;
+  QString userTerminal = SettingsManager::getTerminal();
 
-      if (UnixCommand::isRootRunning())
-      {
-        p->startDetached( "dbus-launch " + ctn_KDE_TERMINAL + " --workdir " + dirName);
+  if (f.exists())
+  {
+    if (userTerminal == ctn_AUTOMATIC)
+    {
+      if(isXFCERunning() && UnixCommand::hasTheExecutable(ctn_XFCE_TERMINAL)){
+        s << "--working-directory=" + dirName;
+        p->startDetached( ctn_XFCE_TERMINAL, s );
       }
-      else
-      {
-        p->startDetached( ctn_KDE_TERMINAL, s );
+      else if (isKDERunning() && UnixCommand::hasTheExecutable(ctn_KDE_TERMINAL)){
+        s << "--workdir";
+        s << dirName;
+
+        if (UnixCommand::isRootRunning())
+        {
+          p->startDetached( "dbus-launch " + ctn_KDE_TERMINAL + " --workdir " + dirName);
+        }
+        else
+        {
+          p->startDetached( ctn_KDE_TERMINAL, s );
+        }
+      }
+      else if (isTDERunning() && UnixCommand::hasTheExecutable(ctn_TDE_TERMINAL)){
+        s << "--workdir";
+        s << dirName;
+        p->startDetached( ctn_TDE_TERMINAL, s );
+      }
+      else if (isLXDERunning() && UnixCommand::hasTheExecutable(ctn_LXDE_TERMINAL)){
+        s << "--working-directory=" + dirName;
+        p->startDetached( ctn_LXDE_TERMINAL, s );
+      }
+      else if (isMATERunning() && UnixCommand::hasTheExecutable(ctn_MATE_TERMINAL)){
+        s << "--working-directory=" + dirName;
+        p->startDetached( ctn_MATE_TERMINAL, s );
+      }
+      else if (isCinnamonRunning() && UnixCommand::hasTheExecutable(ctn_CINNAMON_TERMINAL)){
+        s << "--working-directory=" + dirName;
+        p->startDetached( ctn_CINNAMON_TERMINAL, s );
+      }
+      else if (isLXQTRunning() && UnixCommand::hasTheExecutable(ctn_LXQT_TERMINAL)){
+        s << "--workdir"  ;
+        s << dirName;
+        p->startDetached( ctn_LXQT_TERMINAL, s );
+      }
+      else if (UnixCommand::hasTheExecutable(ctn_XFCE_TERMINAL)){
+        s << "--working-directory=" + dirName;
+        p->startDetached( ctn_XFCE_TERMINAL, s );
+      }
+      else if (UnixCommand::hasTheExecutable(ctn_LXDE_TERMINAL)){
+        s << "--working-directory=" + dirName;
+        p->startDetached( ctn_LXDE_TERMINAL, s );
+      }
+      else if (UnixCommand::hasTheExecutable(ctn_RXVT_TERMINAL)){
+        QString cmd;
+
+        if (UnixCommand::isAppRunning("urxvtd"))
+          cmd = "urxvtc -name Urxvt -title Urxvt -cd " + dirName;
+        else
+          cmd = ctn_RXVT_TERMINAL + " -name Urxvt -title Urxvt -cd " + dirName;
+
+        p->startDetached( cmd );
+      }
+      else if (UnixCommand::hasTheExecutable(ctn_XTERM)){
+        QString cmd = ctn_XTERM +
+            " -fn \"*-fixed-*-*-*-18-*\" -fg White -bg Black -title xterm -e \"" +
+            "cd " + dirName + " && /bin/bash\"";
+        p->startDetached( cmd );
       }
     }
-    else if (isTDERunning() && UnixCommand::hasTheExecutable(ctn_TDE_TERMINAL)){
-      s << "--workdir";
-      s << dirName;
-      p->startDetached( ctn_TDE_TERMINAL, s );
-    }
-    else if (isLXDERunning() && UnixCommand::hasTheExecutable(ctn_LXDE_TERMINAL)){
-      s << "--working-directory=" + dirName;
-      p->startDetached( ctn_LXDE_TERMINAL, s );
-    }
-    else if (isMATERunning() && UnixCommand::hasTheExecutable(ctn_MATE_TERMINAL)){
-      s << "--working-directory=" + dirName;
-      p->startDetached( ctn_MATE_TERMINAL, s );
-    }
-    else if (isCinnamonRunning() && UnixCommand::hasTheExecutable(ctn_CINNAMON_TERMINAL)){
-      s << "--working-directory=" + dirName;
-      p->startDetached( ctn_CINNAMON_TERMINAL, s );
-    }
-    else if (isLXQTRunning() && UnixCommand::hasTheExecutable(ctn_LXQT_TERMINAL)){
-      s << "--workdir"  ;
-      s << dirName;
-      p->startDetached( ctn_LXQT_TERMINAL, s );
-    }
-    else if (UnixCommand::hasTheExecutable(ctn_XFCE_TERMINAL)){
-      s << "--working-directory=" + dirName;
-      p->startDetached( ctn_XFCE_TERMINAL, s );
-    }
-    else if (UnixCommand::hasTheExecutable(ctn_LXDE_TERMINAL)){
-      s << "--working-directory=" + dirName;
-      p->startDetached( ctn_LXDE_TERMINAL, s );
-    }
-    else if (UnixCommand::hasTheExecutable(ctn_RXVT_TERMINAL)){
-      QString cmd;
+    else  //User has chosen a different terminal...
+    {
+      if(userTerminal == ctn_XFCE_TERMINAL){
+        s << "--working-directory=" + dirName;
+        p->startDetached( ctn_XFCE_TERMINAL, s );
+      }
+      else if (userTerminal == ctn_KDE_TERMINAL){
+        s << "--workdir";
+        s << dirName;
 
-      if (UnixCommand::isAppRunning("urxvtd"))
-        cmd = "urxvtc -name Urxvt -title Urxvt -cd " + dirName;
-      else
-        cmd = ctn_RXVT_TERMINAL + " -name Urxvt -title Urxvt -cd " + dirName;
+        if (UnixCommand::isRootRunning())
+        {
+          p->startDetached( "dbus-launch " + ctn_KDE_TERMINAL + " --workdir " + dirName);
+        }
+        else
+        {
+          p->startDetached( ctn_KDE_TERMINAL, s );
+        }
+      }
+      else if (userTerminal == ctn_TDE_TERMINAL){
+        s << "--workdir";
+        s << dirName;
+        p->startDetached( ctn_TDE_TERMINAL, s );
+      }
+      else if (userTerminal == ctn_LXDE_TERMINAL){
+        s << "--working-directory=" + dirName;
+        p->startDetached( ctn_LXDE_TERMINAL, s );
+      }
+      else if (userTerminal == ctn_MATE_TERMINAL){
+        s << "--working-directory=" + dirName;
+        p->startDetached( ctn_MATE_TERMINAL, s );
+      }
+      else if (userTerminal == ctn_CINNAMON_TERMINAL){
+        s << "--working-directory=" + dirName;
+        p->startDetached( ctn_CINNAMON_TERMINAL, s );
+      }
+      else if (userTerminal == ctn_LXQT_TERMINAL){
+        s << "--workdir"  ;
+        s << dirName;
+        p->startDetached( ctn_LXQT_TERMINAL, s );
+      }
+      else if (userTerminal == ctn_RXVT_TERMINAL){
+        QString cmd;
 
-      p->startDetached( cmd );
-    }
-    else if (UnixCommand::hasTheExecutable(ctn_XTERM)){
-      QString cmd = ctn_XTERM +
-          " -fn \"*-fixed-*-*-*-18-*\" -fg White -bg Black -title xterm -e \"" +
-          "cd " + dirName + " && /bin/bash\"";
-      p->startDetached( cmd );
+        if (UnixCommand::isAppRunning("urxvtd"))
+          cmd = "urxvtc -name Urxvt -title Urxvt -cd " + dirName;
+        else
+          cmd = ctn_RXVT_TERMINAL + " -name Urxvt -title Urxvt -cd " + dirName;
+
+        p->startDetached( cmd );
+      }
+      else if (userTerminal == ctn_XTERM){
+        QString cmd = ctn_XTERM +
+            " -fn \"*-fixed-*-*-*-18-*\" -fg White -bg Black -title xterm -e \"" +
+            "cd " + dirName + " && /bin/bash\"";
+        p->startDetached( cmd );
+      }
     }
   }
 }

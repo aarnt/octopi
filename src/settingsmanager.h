@@ -34,12 +34,12 @@ const QString ctn_KEY_FROZEN_PACKAGES_LIST("Frozen_Packages");
 const QString ctn_KEY_DEFAULT_DIRECTORY("Default_Directory");
 const QString ctn_KEY_UPDATER_DIRECTORY("Updater_Directory");
 const QString ctn_KEY_UPDATER_MIRROR("Updater_Mirror");
-const QString ctn_KEY_AUTOMATIC_CHECK_UPDATES("Automatic_Check_Updates");
 const QString ctn_KEY_PANEL_ORGANIZING("Panel_Organizing");
 const QString ctn_KEY_PACKAGE_LIST_ORDERED_COL("PackageList_Ordered_Col");
 const QString ctn_KEY_INSTALLED_PACKAGE_LIST_ORDERED_COL("InstalledPackageList_Ordered_Col");
 const QString ctn_KEY_PACKAGE_LIST_SORT_ORDER("PackageList_Sort_Order");
 const QString ctn_KEY_INSTALLED_PACKAGE_LIST_SORT_ORDER("InstalledPackageList_Sort_Order");
+const QString ctn_KEY_SKIP_MIRRORCHECK_ON_STARTUP("Skip_Mirror_Check_At_Startup");
 const QString ctn_KEY_SPLITTER_HORIZONTAL_STATE("Splitter_Horizontal_State");
 const QString ctn_KEY_SHOW_TOOLBAR("Show_ToolBar");
 const QString ctn_KEY_SHOW_STATUSBAR("Show_StatusBar");
@@ -49,6 +49,9 @@ const QString ctn_KEY_HIGHLIGHTED_SEARCH_ITEMS("Limit_Hightlighted_Search_Items"
 const QString ctn_KEY_FONT_SIZE_FACTOR("Font_Size_Factor");
 const QString ctn_KEY_USE_PKGTOOLS("Use_PkgTools");
 const QString ctn_KEY_USE_SILENT_ACTION_OUTPUT("Use_Silent_Action_Output");
+const QString ctn_KEY_TERMINAL("Terminal");
+
+const QString ctn_AUTOMATIC("automatic");
 
 enum PanelOrganizing { ectn_NORMAL=30, ectn_MAXIMIZE_PACKAGES=40, ectn_MAXIMIZE_PROPERTIES=50, ectn_GROUPS=5 };
 
@@ -75,11 +78,7 @@ class SettingsManager {
   public:
 
     static SettingsManager* instance();
-    static QStringList getFrozenPkgList();
-    static QString getDefaultDirectory();
-    static QString getUpdaterDirectory();
-    static QString getUpdaterMirror();
-
+    static QString getTerminal();
     static int getCurrentTabIndex();
     static int getPanelOrganizing();
     static int getPackageListOrderedCol();
@@ -87,13 +86,13 @@ class SettingsManager {
     static int getPackageListSortOrder();
     static int getInstalledPackageListSortOrder();
     static int getHighlightedSearchItems();
+    static bool getSkipMirrorCheckAtStartup();
     static bool getShowToolBar();
     static bool getShowStatusBar();
     static bool getShowPackageTooltip();
     static bool getStartIconified();
     static bool getUsePkgTools();
     static bool getUseSilentActionOutput();
-    static bool getAutomaticCheckUpdates();
     static bool getWindowCloseHidesApp();
     static int getFontSizeFactor();
     static int getPackagesInDirFontSize(){ return 8 + getFontSizeFactor(); }
@@ -113,7 +112,6 @@ class SettingsManager {
     static void setDefaultDirectory(QString newValue);
     static void setUpdaterDirectory(QString newValue);
     static void setUpdaterMirror(QString newValue);
-    static void setAutomaticCheckUpdates(bool newValue);
     static void setWindowCloseHidesApp(bool newValue);
     static void setPanelOrganizing(int newValue);
     static void setPackageListOrderedCol(int newValue);

@@ -324,7 +324,9 @@ void MainWindow::preBuildPackageList()
 
   if(!hasToCallSysUpgrade && !secondTime && UnixCommand::hasTheExecutable(ctn_MIRROR_CHECK_APP))
   {
-    doMirrorCheck();
+    if (!SettingsManager::getSkipMirrorCheckAtStartup())
+      doMirrorCheck();
+
     secondTime=true;
   }
 
