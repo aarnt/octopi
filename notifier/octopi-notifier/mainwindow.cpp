@@ -96,10 +96,10 @@ void MainWindow::initSystemTrayIcon()
   // disable "standard" actions (restore & quit)
 #ifdef KSTATUS
   m_systemTrayIcon->setStandardActionsEnabled(false);
-#endif
-
+#else
   connect ( m_systemTrayIcon , SIGNAL( activated( QSystemTrayIcon::ActivationReason ) ),
             this, SLOT( execSystemTrayActivated ( QSystemTrayIcon::ActivationReason ) ) );
+#endif
 
   m_pacmanHelperClient = new PacmanHelperClient("org.octopi.pacmanhelper", "/", QDBusConnection::systemBus(), 0);
   connect(m_pacmanHelperClient, SIGNAL(syncdbcompleted()), this, SLOT(afterPacmanHelperSyncDatabase()));
