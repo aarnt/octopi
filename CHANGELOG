@@ -1,5 +1,6 @@
 0.5.0 (dev)
   BugFix: RepoEditor would not compile with Qt5 lib (thanks to Philm).
+  BugFix: Suppress GConf error strings in output.
   Added support for KStatusNotifier while in KDE (thanks to brcha).
   Updated translations.
 

@@ -1987,7 +1987,9 @@ void MainWindow::_treatProcessOutput(const QString &pMsg)
     msg.remove(QRegExp("Connecting to deprecated signal.+"));
     msg.remove(QRegExp("QVariant.+"));
     msg.remove(QRegExp("gksu-run.+"));
+    msg.remove(QRegExp("GConf Error:.+"));
     msg.remove(QRegExp(":: Do you want.+"));
+
     msg = msg.trimmed();
 
     //std::cout << "debug: " << msg.toLatin1().data() << std::endl;
