@@ -58,7 +58,7 @@ void MainWindow::loadSettings(){
     ui->tvPackages->header()->setSortIndicator( packageListOrderedCol, packageListSortOrder );
     ui->tvPackages->sortByColumn( packageListOrderedCol, packageListSortOrder );
 
-    if (!UnixCommand::hasTheExecutable(SettingsManager::getTerminal())){
+    if (!SettingsManager::isValidTerminalSelected()){
       std::cerr << "ERROR: Octopi found no suitable terminal!" << std::endl;
     }
   }

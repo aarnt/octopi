@@ -93,7 +93,7 @@ int SettingsManager::getHighlightedSearchItems(){
 
 bool SettingsManager::getSkipMirrorCheckAtStartup(){
   if (!instance()->getSYSsettings()->contains(ctn_KEY_SKIP_MIRRORCHECK_ON_STARTUP)){
-    instance()->getSYSsettings()->setValue(ctn_KEY_SKIP_MIRRORCHECK_ON_STARTUP, false);
+    instance()->getSYSsettings()->setValue(ctn_KEY_SKIP_MIRRORCHECK_ON_STARTUP, 0);
   }
 
   return (instance()->getSYSsettings()->value( ctn_KEY_SKIP_MIRRORCHECK_ON_STARTUP, false).toInt() == 1);
@@ -258,8 +258,42 @@ void SettingsManager::setSplitterHorizontalState(QByteArray newValue){
   instance()->getSYSsettings()->sync();
 }
 
+//Search all supported terminals to see if the selected one is valid
+bool SettingsManager::isValidTerminalSelected()
+{
+  QString userTerminal = getTerminal();
+
+  if (userTerminal == ctn_AUTOMATIC)
+    return true;
+
+  if (userTerminal == ctn_XFCE_TERMINAL ||
+      userTerminal == ctn_LXDE_TERMINAL ||
+      userTerminal == ctn_LXQT_TERMINAL ||
+      userTerminal == ctn_KDE_TERMINAL ||
+      userTerminal == ctn_TDE_TERMINAL ||
+      userTerminal == ctn_CINNAMON_TERMINAL ||
+      userTerminal == ctn_MATE_TERMINAL ||
+      userTerminal == ctn_RXVT_TERMINAL ||
+      userTerminal == ctn_XTERM)
+  {
+    if (UnixCommand::hasTheExecutable(userTerminal))
+    {
+      return true;
+    }
+    else
+    {
+      return false;
+    }
+  }
+  else
+  {
+    return false;
+  }
+}
+
 // Class singleton
-SettingsManager* SettingsManager::instance(){
+SettingsManager* SettingsManager::instance()
+{
   if (m_pinstance == 0)
   {
     m_pinstance = new SettingsManager();

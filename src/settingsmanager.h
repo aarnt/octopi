@@ -128,6 +128,8 @@ class SettingsManager {
     static void setFontSizeFactor(int newValue);
     static void setWindowSize(QByteArray newValue);
     static void setSplitterHorizontalState(QByteArray newValue);
+
+    static bool isValidTerminalSelected();
 };
 
 #endif // SETTINGSMANAGER_H
