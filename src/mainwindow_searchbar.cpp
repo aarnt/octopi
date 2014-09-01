@@ -39,7 +39,7 @@ void MainWindow::searchBarTextChanged(const QString textToSearch)
   QList<QTextEdit::ExtraSelection> extraSelections;
 
   if (tb){
-    static int limit = SettingsManager::getHighlightedSearchItems();
+    static int limit = 100;
 
     SearchBar *sb = ui->twProperties->currentWidget()->findChild<SearchBar*>("searchbar");
     if (textToSearch.isEmpty() || textToSearch.length() < 2){

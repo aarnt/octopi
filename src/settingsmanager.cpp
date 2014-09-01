@@ -56,39 +56,9 @@ int SettingsManager::getPackageListOrderedCol(){
   return instance()->getSYSsettings()->value( ctn_KEY_PACKAGE_LIST_ORDERED_COL, 1 ).toInt();
 }
 
-int SettingsManager::getInstalledPackageListOrderedCol(){
-  return instance()->getSYSsettings()->value(
-        ctn_KEY_INSTALLED_PACKAGE_LIST_ORDERED_COL, 1 ).toInt();
-}
-
 int SettingsManager::getPackageListSortOrder(){
   return instance()->getSYSsettings()->value(
         ctn_KEY_PACKAGE_LIST_SORT_ORDER, Qt::AscendingOrder ).toInt();
-}
-
-int SettingsManager::getInstalledPackageListSortOrder(){
-  return instance()->getSYSsettings()->value(
-        ctn_KEY_INSTALLED_PACKAGE_LIST_SORT_ORDER, Qt::AscendingOrder ).toInt();
-}
-
-bool SettingsManager::getShowToolBar(){
-  return (instance()->getSYSsettings()->value( ctn_KEY_SHOW_TOOLBAR, true).toInt() == 1);
-}
-
-bool SettingsManager::getShowStatusBar(){
-  return (instance()->getSYSsettings()->value( ctn_KEY_SHOW_STATUSBAR, true).toInt() == 1);
-}
-
-bool SettingsManager::getShowPackageTooltip(){
-  return (instance()->getSYSsettings()->value( ctn_KEY_SHOW_PACKAGE_TOOLTIP, true).toInt() == 1);
-}
-
-bool SettingsManager::getStartIconified(){
-  return (instance()->getSYSsettings()->value( ctn_KEY_START_ICONIFIED, false).toInt() == 1);
-}
-
-int SettingsManager::getHighlightedSearchItems(){
-  return (instance()->getSYSsettings()->value( ctn_KEY_HIGHLIGHTED_SEARCH_ITEMS, 100).toInt());
 }
 
 bool SettingsManager::getSkipMirrorCheckAtStartup(){
@@ -105,22 +75,6 @@ QString SettingsManager::getTerminal(){
   }
 
   return (instance()->getSYSsettings()->value( ctn_KEY_TERMINAL, ctn_AUTOMATIC)).toString();
-}
-
-bool SettingsManager::getUsePkgTools(){
-  return (instance()->getSYSsettings()->value( ctn_KEY_USE_PKGTOOLS, true).toInt() == 1);
-}
-
-bool SettingsManager::getUseSilentActionOutput(){
-  return (instance()->getSYSsettings()->value( ctn_KEY_USE_SILENT_ACTION_OUTPUT, true).toInt() == 1);
-}
-
-bool SettingsManager::getWindowCloseHidesApp(){
-  return (instance()->getSYSsettings()->value( ctn_KEY_WINDOW_CLOSE_HIDES_APP, false).toInt() == 1);
-}
-
-int SettingsManager::getFontSizeFactor(){
-  return (instance()->getSYSsettings()->value( ctn_KEY_FONT_SIZE_FACTOR, 0).toInt());
 }
 
 QByteArray SettingsManager::getWindowSize(){
@@ -141,110 +95,13 @@ void SettingsManager::setPackageListOrderedCol(int newValue){
   instance()->getSYSsettings()->sync();
 }
 
-void SettingsManager::setInstalledPackageListOrderedCol(int newValue){
-  instance()->getSYSsettings()->setValue( ctn_KEY_INSTALLED_PACKAGE_LIST_ORDERED_COL, newValue);
-  instance()->getSYSsettings()->sync();
-}
-
 void SettingsManager::setPackageListSortOrder(int newValue){
   instance()->getSYSsettings()->setValue( ctn_KEY_PACKAGE_LIST_SORT_ORDER, newValue);
   instance()->getSYSsettings()->sync();
 }
 
-void SettingsManager::setInstalledPackageListSortOrder(int newValue){
-  instance()->getSYSsettings()->setValue( ctn_KEY_INSTALLED_PACKAGE_LIST_SORT_ORDER, newValue);
-  instance()->getSYSsettings()->sync();
-}
-
 void SettingsManager::setPanelOrganizing(int newValue){
   instance()->getSYSsettings()->setValue( ctn_KEY_PANEL_ORGANIZING, newValue);
-  instance()->getSYSsettings()->sync();
-}
-
-void SettingsManager::setFrozenPkgList(QStringList newValue){
-  instance()->getSYSsettings()->setValue( ctn_KEY_FROZEN_PACKAGES_LIST,
-                                          QVariant( static_cast<QStringList>(newValue)) );
-  instance()->getSYSsettings()->sync();
-}
-
-void SettingsManager::setDefaultDirectory(QString newValue){
-  instance()->getSYSsettings()->setValue( ctn_KEY_DEFAULT_DIRECTORY, newValue);
-  instance()->getSYSsettings()->sync();
-}
-
-void SettingsManager::setUpdaterDirectory(QString newValue){
-  instance()->getSYSsettings()->setValue( ctn_KEY_UPDATER_DIRECTORY, newValue);
-  instance()->getSYSsettings()->sync();
-}
-
-void SettingsManager::setUpdaterMirror(QString newValue){
-  instance()->getSYSsettings()->setValue( ctn_KEY_UPDATER_MIRROR, newValue);
-  instance()->getSYSsettings()->sync();
-}
-
-void SettingsManager::setShowToolBar(bool newValue){
-  int value=0;
-  if (newValue) value=1;
-
-  instance()->getSYSsettings()->setValue( ctn_KEY_SHOW_TOOLBAR, value);
-  instance()->getSYSsettings()->sync();
-}
-
-void SettingsManager::setShowStatusBar(bool newValue){
-  int value=0;
-  if (newValue) value=1;
-
-  instance()->getSYSsettings()->setValue( ctn_KEY_SHOW_STATUSBAR, value);
-  instance()->getSYSsettings()->sync();
-}
-
-void SettingsManager::setShowPackageTooltip(bool newValue){
-  int value=0;
-  if (newValue) value=1;
-
-  instance()->getSYSsettings()->setValue( ctn_KEY_SHOW_PACKAGE_TOOLTIP, value);
-  instance()->getSYSsettings()->sync();
-}
-
-void SettingsManager::setStartIconified(bool newValue){
-  int value=0;
-  if (newValue) value=1;
-
-  instance()->getSYSsettings()->setValue( ctn_KEY_START_ICONIFIED, value);
-  instance()->getSYSsettings()->sync();
-}
-
-void SettingsManager::setHighlightedSearchItems(int newValue){
-  instance()->getSYSsettings()->setValue( ctn_KEY_HIGHLIGHTED_SEARCH_ITEMS, newValue);
-  instance()->getSYSsettings()->sync();
-}
-
-void SettingsManager::setUsePkgTools(bool newValue){
-  int value=0;
-  if (newValue) value=1;
-
-  instance()->getSYSsettings()->setValue( ctn_KEY_USE_PKGTOOLS, value);
-  instance()->getSYSsettings()->sync();
-}
-
-void SettingsManager::setUseSilentActionOutput(bool newValue){
-  int value=0;
-  if (newValue) value=1;
-
-  instance()->getSYSsettings()->setValue( ctn_KEY_USE_SILENT_ACTION_OUTPUT, value);
-  instance()->getSYSsettings()->sync();
-}
-
-void SettingsManager::setWindowCloseHidesApp(bool newValue){
-  int value=0;
-  if (newValue) value=1;
-
-  instance()->getSYSsettings()->setValue( ctn_KEY_WINDOW_CLOSE_HIDES_APP, value);
-  instance()->getSYSsettings()->sync();
-}
-
-void SettingsManager::setFontSizeFactor(int newValue){
-  instance()->getSYSsettings()->setValue( ctn_KEY_FONT_SIZE_FACTOR, newValue);
   instance()->getSYSsettings()->sync();
 }
 
@@ -292,8 +149,7 @@ bool SettingsManager::isValidTerminalSelected()
 }
 
 // Class singleton
-SettingsManager* SettingsManager::instance()
-{
+SettingsManager* SettingsManager::instance(){
   if (m_pinstance == 0)
   {
     m_pinstance = new SettingsManager();
