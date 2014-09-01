@@ -42,6 +42,7 @@ enum LinuxDistro { ectn_ANTERGOS, ectn_ARCHBANGLINUX, ectn_ARCHBSD, ectn_ARCHLIN
 //Forward class declarations.
 class QString;
 class QStringList;
+class Terminal;
 
 class UnixCommand : public QObject{
   Q_OBJECT
@@ -50,9 +51,8 @@ private:
   QString m_readAllStandardOutput;
   QString m_readAllStandardError;
   QString m_errorString;
+  Terminal *m_terminal;
   QProcess *m_process;
-  utils::ProcessWrapper *m_processWrapper;
-
   static QFile *m_temporaryFile;
 
 public:

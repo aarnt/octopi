@@ -59,7 +59,7 @@ void MainWindow::loadSettings(){
     ui->tvPackages->sortByColumn( packageListOrderedCol, packageListSortOrder );
 
     if (!SettingsManager::isValidTerminalSelected()){
-      std::cerr << "ERROR: Octopi found no suitable terminal!" << std::endl;
+      SettingsManager::setTerminal(ctn_AUTOMATIC);
     }
   }
   else assert(false);

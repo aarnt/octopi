@@ -1318,10 +1318,10 @@ void MainWindow::doInstall()
     m_unixCommand = new UnixCommand(this);
 
     QObject::connect(m_unixCommand, SIGNAL( started() ), this, SLOT( actionsProcessStarted()));
-    QObject::connect(m_unixCommand, SIGNAL( readyReadStandardOutput()),
-                     this, SLOT( actionsProcessReadOutput() ));
     QObject::connect(m_unixCommand, SIGNAL( finished ( int, QProcess::ExitStatus )),
                      this, SLOT( actionsProcessFinished(int, QProcess::ExitStatus) ));
+    QObject::connect(m_unixCommand, SIGNAL( readyReadStandardOutput()),
+                     this, SLOT( actionsProcessReadOutput() ));
     QObject::connect(m_unixCommand, SIGNAL( readyReadStandardError() ),
                      this, SLOT( actionsProcessRaisedError() ));
 

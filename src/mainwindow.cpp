@@ -1131,6 +1131,7 @@ void MainWindow::openRootTerminal()
   //If there are no means to run the actions, we must warn!
   if (!_isSUAvailable()) return;
 
+  m_unixCommand = new UnixCommand(this);
   m_unixCommand->openRootTerminal();
 }
 

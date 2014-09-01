@@ -70,11 +70,16 @@ bool SettingsManager::getSkipMirrorCheckAtStartup(){
 }
 
 QString SettingsManager::getTerminal(){
-  if (!instance()->getSYSsettings()->contains(ctn_KEY_TERMINAL)){
+  if (!instance()->getSYSsettings()->contains(ctn_KEY_TERMINAL))
+  {
     instance()->getSYSsettings()->setValue(ctn_KEY_TERMINAL, ctn_AUTOMATIC);
+    return ctn_AUTOMATIC;
   }
-
-  return (instance()->getSYSsettings()->value( ctn_KEY_TERMINAL, ctn_AUTOMATIC)).toString();
+  else
+  {
+    SettingsManager *p_instance = new SettingsManager();
+    return (p_instance->getSYSsettings()->value( ctn_KEY_TERMINAL, ctn_AUTOMATIC)).toString();
+  }
 }
 
 QByteArray SettingsManager::getWindowSize(){
@@ -112,6 +117,11 @@ void SettingsManager::setWindowSize(QByteArray newValue){
 
 void SettingsManager::setSplitterHorizontalState(QByteArray newValue){
   instance()->getSYSsettings()->setValue( ctn_KEY_SPLITTER_HORIZONTAL_STATE, newValue);
+  instance()->getSYSsettings()->sync();
+}
+
+void SettingsManager::setTerminal(QString newValue){
+  instance()->getSYSsettings()->setValue( ctn_KEY_TERMINAL, newValue);
   instance()->getSYSsettings()->sync();
 }
 

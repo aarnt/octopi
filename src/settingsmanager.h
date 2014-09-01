@@ -71,7 +71,6 @@ class SettingsManager {
     static bool getSkipMirrorCheckAtStartup();
     static QByteArray getWindowSize();
     static QByteArray getSplitterHorizontalState();
-
     static bool isValidTerminalSelected();
 
     static void setCurrentTabIndex(int newValue);
@@ -80,6 +79,7 @@ class SettingsManager {
     static void setPackageListSortOrder(int newValue);
     static void setWindowSize(QByteArray newValue);
     static void setSplitterHorizontalState(QByteArray newValue);
+    static void setTerminal(QString newValue);
 };
 
 #endif // SETTINGSMANAGER_H
