@@ -6,7 +6,7 @@
 
 QT += core gui network xml dbus
 
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets quick
 
 DEFINES += OCTOPI_EXTENSIONS
 

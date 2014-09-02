@@ -28,6 +28,7 @@ UI_DIR += ../build-octopi-notifier
 
 SOURCES += main.cpp \
     mainwindow.cpp \
+    ../../src/terminal.cpp \
     ../../src/unixcommand.cpp \
     ../../src/package.cpp \
     ../../src/wmhelper.cpp \
@@ -39,6 +40,7 @@ SOURCES += main.cpp \
 HEADERS  += \
     mainwindow.h \
     ../../src/uihelper.h \
+    ../../src/terminal.h \
     ../../src/unixcommand.h \
     ../../src/wmhelper.h \
     ../../src/strconstants.h \

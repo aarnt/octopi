@@ -82,5 +82,6 @@
         <file>resources/translations/octopi_es_AR.qm</file>
         <file>resources/translations/octopi_ja.qm</file>
         <file>resources/translations/octopi_eu.qm</file>
+        <file>resources/qml/chooseterminal.qml</file>
     </qresource>
 </RCC>

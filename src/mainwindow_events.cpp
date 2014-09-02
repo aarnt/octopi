@@ -30,6 +30,7 @@
 #include "uihelper.h"
 #include "searchbar.h"
 #include "globals.h"
+#include "terminal.h"
 
 #include <QCloseEvent>
 #include <QMessageBox>
@@ -41,7 +42,9 @@
 #include <QClipboard>
 
 #if QT_VERSION > 0x050000
-  #include <QtConcurrent/QtConcurrentRun>
+  #include <QtConcurrent/QtConcurrentRun>  
+  #include <QtQuick/QQuickView>
+  #include <QQmlContext>
 #else
   #include <QtConcurrentRun>
 #endif
@@ -266,6 +269,27 @@ void MainWindow::keyPressEvent(QKeyEvent* ke)
     {
       doRemovePacmanLockFile(); //If we are not executing any command, let's remove Pacman's lock file
     }
+  }
+  else if(ke->key() == Qt::Key_T && ke->modifiers() == (Qt::ShiftModifier|Qt::ControlModifier))
+  {
+    /*QStringList terminals = Terminal::getListOfAvailableTerminals();
+
+    if (terminals.count() > 2)
+    {
+      //Calls QML code to choose a different terminal
+      QQuickView *view = new QQuickView(0);
+
+      QQmlContext *context = view->rootContext();
+      context->setContextProperty("terminalModel", terminals);
+
+      int index = terminals.indexOf(SettingsManager::getTerminal());
+
+      context->setContextProperty("currentIndex", index);
+      //context->setContextProperty("header", "Available terminals");
+
+      view->setSource(QUrl("qrc:/resources/qml/chooseterminal.qml"));
+      view->show();
+    }*/
   }
 }
 

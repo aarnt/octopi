@@ -47,7 +47,6 @@ Terminal::Terminal(QObject *parent, const QString &selectedTerminal) : QObject(p
   env.insert("LANG", "C");
   env.insert("LC_MESSAGES", "C");
   m_process->setProcessEnvironment(env);
-
   m_selectedTerminal = selectedTerminal;
 }
 
@@ -562,4 +561,45 @@ void Terminal::runCommandInTerminalAsNormalUser(const QStringList &commandList)
   }
 
   m_processWrapper->executeCommand(cmd);
+}
+
+/*
+ * Retrives the list of available terminals in this system
+ */
+QStringList Terminal::getListOfAvailableTerminals()
+{
+  QStringList res;
+
+  res.append(ctn_AUTOMATIC);
+
+  if (UnixCommand::hasTheExecutable(ctn_XFCE_TERMINAL))
+    res.append(ctn_XFCE_TERMINAL);
+
+  if (UnixCommand::hasTheExecutable(ctn_LXDE_TERMINAL))
+    res.append(ctn_LXDE_TERMINAL);
+
+  if (UnixCommand::hasTheExecutable(ctn_LXQT_TERMINAL))
+    res.append(ctn_LXQT_TERMINAL);
+
+  if (UnixCommand::hasTheExecutable(ctn_KDE_TERMINAL))
+    res.append(ctn_KDE_TERMINAL);
+
+  if (UnixCommand::hasTheExecutable(ctn_TDE_TERMINAL))
+    res.append(ctn_TDE_TERMINAL);
+
+  if (UnixCommand::hasTheExecutable(ctn_CINNAMON_TERMINAL))
+    res.append(ctn_CINNAMON_TERMINAL);
+
+  if (UnixCommand::hasTheExecutable(ctn_MATE_TERMINAL))
+    res.append(ctn_MATE_TERMINAL);
+
+  if (UnixCommand::hasTheExecutable(ctn_RXVT_TERMINAL))
+    res.append(ctn_RXVT_TERMINAL);
+
+  if (UnixCommand::hasTheExecutable(ctn_XTERM))
+    res.append(ctn_XTERM);
+
+  res.removeDuplicates();
+  res.sort();
+  return res;
 }

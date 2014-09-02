@@ -45,6 +45,8 @@ public:
   void runCommandInTerminal(const QStringList& commandList);
   void runCommandInTerminalAsNormalUser(const QStringList& commandList);
 
+  static QStringList getListOfAvailableTerminals();
+
 signals:
   void started();
   void finished(int, QProcess::ExitStatus);
