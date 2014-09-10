@@ -6,7 +6,7 @@
 
 QT += core gui network xml dbus
 
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets quick
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets quick quickwidgets
 
 DEFINES += OCTOPI_EXTENSIONS
 
@@ -47,6 +47,8 @@ HEADERS  += src/QtSolutions/qtsingleapplication.h \
         src/utils.h \
         src/terminal.h
 
+greaterThan(QT_VERSION, 5.3): HEADERS += src/terminalselectordialog.h
+
 SOURCES += src/QtSolutions/qtsingleapplication.cpp \
         src/QtSolutions/qtlocalpeer.cpp \
         src/QtSolutions/qtsinglecoreapplication.cpp \
@@ -81,6 +83,8 @@ SOURCES += src/QtSolutions/qtsingleapplication.cpp \
         src/ui/octopitabinfo.cpp \
         src/utils.cpp \
         src/terminal.cpp
+
+greaterThan(QT_VERSION, 5.3): SOURCES += src/terminalselectordialog.cpp
 
 FORMS   += ui/mainwindow.ui \
         ui/transactiondialog.ui \

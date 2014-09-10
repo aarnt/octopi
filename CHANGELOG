@@ -5,6 +5,7 @@
 	transaction was ok (thanks to ringo32).
   Added support for the user to choose his terminal and bypass 
 	mirrorcheck at startup, by editing ~/.config/octopi/octopi.conf.
+  Added QtQuick code for user change terminal (only if Qt >= 5.3).
   Added support for KStatusNotifier while in KDE (thanks to brcha).
   Updated translations.
 

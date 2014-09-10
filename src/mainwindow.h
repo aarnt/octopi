@@ -178,6 +178,8 @@ private:
   QString m_cachedPackageInInfo;  //Used in Info tab
   QString m_cachedPackageInFiles; //Used in Files tab
 
+  int selectTerminal(const int initialTerminalIndex);
+
   void loadSettings();
   void loadPanelSettings();
   void saveSettings(int);

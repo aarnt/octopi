@@ -41,10 +41,12 @@
 #include <QFutureWatcher>
 #include <QClipboard>
 
-#if QT_VERSION > 0x050000
+#if QT_VERSION >= 0x050300
+  #include "terminalselectordialog.h"
+#endif
+
+#if QT_VERSION >= 0x050000
   #include <QtConcurrent/QtConcurrentRun>  
-  #include <QtQuick/QQuickView>
-  #include <QQmlContext>
 #else
   #include <QtConcurrentRun>
 #endif
@@ -270,28 +272,56 @@ void MainWindow::keyPressEvent(QKeyEvent* ke)
       doRemovePacmanLockFile(); //If we are not executing any command, let's remove Pacman's lock file
     }
   }
+
+  #if QT_VERSION >= 0x050300
   else if(ke->key() == Qt::Key_T && ke->modifiers() == (Qt::ShiftModifier|Qt::ControlModifier))
   {
-    /*QStringList terminals = Terminal::getListOfAvailableTerminals();
+    QStringList terminals = Terminal::getListOfAvailableTerminals();
 
     if (terminals.count() > 2)
     {
-      //Calls QML code to choose a different terminal
-      QQuickView *view = new QQuickView(0);
-
-      QQmlContext *context = view->rootContext();
-      context->setContextProperty("terminalModel", terminals);
-
       int index = terminals.indexOf(SettingsManager::getTerminal());
+      int newIndex = selectTerminal(index);
 
-      context->setContextProperty("currentIndex", index);
-      //context->setContextProperty("header", "Available terminals");
-
-      view->setSource(QUrl("qrc:/resources/qml/chooseterminal.qml"));
-      view->show();
-    }*/
+      if (index != newIndex)
+      {
+        SettingsManager::setTerminal(terminals.at(newIndex));
+      }
+    }
   }
+  #endif
 }
+
+/*
+ * Calls TerminalSelectorDialog to let user chooses which terminal to use with Octopi
+ */
+#if QT_VERSION >= 0x050300
+int MainWindow::selectTerminal(const int initialTerminalIndex)
+{
+  int result = initialTerminalIndex;
+  QStringList terminals = Terminal::getListOfAvailableTerminals();
+  QList<QObject*> dataList;
+
+  foreach (QString t, terminals)
+  {
+    dataList.append(new TerminalType(t));
+  }
+
+  static TerminalSelectorDialog *d = new TerminalSelectorDialog(this, dataList);
+  d->setInitialTerminalIndex(initialTerminalIndex);
+
+  if (d->exec() == QDialog::Accepted)
+  {
+    result = d->selectedTerminalIndex();
+  }
+  else
+  {
+    result = initialTerminalIndex;
+  }
+
+  return result;
+}
+#endif
 
 //If we are using Qt5 libs, this method is native !
 #if QT_VERSION < 0x050000

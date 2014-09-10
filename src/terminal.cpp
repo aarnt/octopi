@@ -569,7 +569,6 @@ void Terminal::runCommandInTerminalAsNormalUser(const QStringList &commandList)
 QStringList Terminal::getListOfAvailableTerminals()
 {
   QStringList res;
-
   res.append(ctn_AUTOMATIC);
 
   if (UnixCommand::hasTheExecutable(ctn_XFCE_TERMINAL))
@@ -601,5 +600,6 @@ QStringList Terminal::getListOfAvailableTerminals()
 
   res.removeDuplicates();
   res.sort();
+
   return res;
 }
