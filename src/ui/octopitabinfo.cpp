@@ -71,7 +71,10 @@ QString OctopiTabInfo::formatTabInfo(const PackageRepository::PackageData& packa
 
   //Let's put package description in UTF-8 format
   QString pkgDescription = pid.description;
+
+#if QT_VERSION < 0x050000
   pkgDescription = pkgDescription.fromUtf8(pkgDescription.toLatin1().data());
+#endif
 
   QString html;
   html += "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">";
@@ -132,7 +135,10 @@ QString OctopiTabInfo::formatTabInfo(const PackageRepository::PackageData& packa
   QString packagerName = pid.packager;
   packagerName = packagerName.replace("<", "&lt;");
   packagerName = packagerName.replace(">", "&gt;");
+
+#if QT_VERSION < 0x050000
   packagerName = packagerName.fromUtf8(packagerName.toLatin1().data());
+#endif
 
   QString strConflictsWith = pid.conflictsWith;
   strConflictsWith = strConflictsWith.replace("<", "&lt;");

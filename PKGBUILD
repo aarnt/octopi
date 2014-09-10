@@ -1,5 +1,5 @@
 pkgname=('octopi' 'octopi-notifier')
-pkgver=0.4.2
+pkgver=0.5.0
 pkgrel=1
 pkgdesc="a powerful Pacman frontend using Qt libs"
 arch=('i686' 'x86_64')

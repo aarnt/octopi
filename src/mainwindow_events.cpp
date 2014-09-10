@@ -201,6 +201,7 @@ void MainWindow::keyPressEvent(QKeyEvent* ke)
     {
       QString path = utils::showFullPathOfItem(tb->currentIndex());
       QClipboard *clip = qApp->clipboard();
+
       clip->setText(path);
     }
   }
@@ -274,7 +275,8 @@ void MainWindow::keyPressEvent(QKeyEvent* ke)
   }
 
   #if QT_VERSION >= 0x050300
-  else if(ke->key() == Qt::Key_T && ke->modifiers() == (Qt::ShiftModifier|Qt::ControlModifier))
+  else if(ke->key() == Qt::Key_T && ke->modifiers() == (Qt::ShiftModifier|Qt::ControlModifier)
+          && m_initializationCompleted)
   {
     QStringList terminals = Terminal::getListOfAvailableTerminals();
 

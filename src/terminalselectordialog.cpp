@@ -39,24 +39,27 @@ TerminalSelectorDialog::TerminalSelectorDialog(QWidget *parent, QList<QObject*> 
   m_quickWidget = new QQuickWidget(this);
   m_quickWidget->setResizeMode(QQuickWidget::SizeRootObjectToView);
 
+  setMinimumWidth(290);
+  setMaximumWidth(290);
+  setMinimumHeight(245);
+  setMaximumHeight(245);
+
   QQmlContext *context = m_quickWidget->rootContext();
 
   context->setContextProperty("terminalModel", QVariant::fromValue(terminalList));  
 
   m_quickWidget->setSource(QUrl("qrc:/resources/qml/chooseterminal.qml"));
   setWindowTitle("Choose a terminal");
-  QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok
-                                                     | QDialogButtonBox::Cancel);
+  QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel);
 
   connect(buttonBox, SIGNAL(accepted()), this, SLOT(accept()));
   connect(buttonBox, SIGNAL(rejected()), this, SLOT(reject()));
 
   QVBoxLayout *mainLayout = new QVBoxLayout;
-  mainLayout->addWidget(m_quickWidget); //*** THIS IS THE MAGIC!
+  mainLayout->addWidget(m_quickWidget); //*** This is the magic: QtQuick inside a QWidget!
   mainLayout->addWidget(buttonBox);
 
   QQuickItem *item = m_quickWidget->rootObject();
-
   QObject::connect(item, SIGNAL(terminalSelected(int)), this, SLOT(setSelectedTerminalIndex(int)));
   QObject::connect(item, SIGNAL(dialogOK()), this, SLOT(accept()));
 
@@ -73,5 +76,6 @@ int TerminalSelectorDialog::exec()
 {
   QQuickItem *item = m_quickWidget->rootObject();
   QMetaObject::invokeMethod(item, "resetIndex", Q_ARG(QVariant, m_initialTerminalIndex));
+
   return QDialog::exec();
 }
