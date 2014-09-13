@@ -3,6 +3,7 @@
   BugFix: Suppress GConf error strings in output.
   BugFix: mate-terminal is returning code 255 even when execution of 
 	transaction was ok (thanks to ringo32).
+  Show/hide groups panel config is now persisted.
   Added support for the user to choose his terminal and bypass 
 	mirrorcheck at startup, by editing ~/.config/octopi/octopi.conf.
   Added QtQuick code for user change terminal (only if Qt >= 5.3).

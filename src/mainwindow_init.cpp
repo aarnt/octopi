@@ -82,6 +82,11 @@ void MainWindow::loadPanelSettings(){
       ui->splitterHorizontal->restoreState(SettingsManager::instance()->getSplitterHorizontalState());
       break;
   }
+
+  //Do we have to show or hide the Groups panel?
+  if (!SettingsManager::getShowGroupsPanel()){
+    hideGroupsWidget();
+  }
 }
 
 /*
@@ -104,11 +109,25 @@ void MainWindow::saveSettings(int saveSettingsReason){
     case ectn_NORMAL:
       SettingsManager::instance()->setPanelOrganizing(ectn_NORMAL);
       SettingsManager::instance()->setSplitterHorizontalState(ui->splitterHorizontal->saveState());
+      SettingsManager::instance()->setShowGroupsPanel(1); //And also show Groups panel!
       break;
 
     case ectn_PackageList:
       SettingsManager::instance()->setPackageListOrderedCol(ui->tvPackages->header()->sortIndicatorSection());
       SettingsManager::instance()->setPackageListSortOrder(ui->tvPackages->header()->sortIndicatorOrder());
+      break;
+
+    case ectn_GROUPS:
+      QList<int> rl;
+      rl = ui->splitterVertical->sizes();
+
+      int show=0;
+      if ( rl[1] != 0 )
+      {
+        show = 1;
+      }
+
+      SettingsManager::instance()->setShowGroupsPanel(show);
       break;
   }
 }
@@ -177,7 +196,6 @@ void MainWindow::initPackageGroups()
   ui->twGroups->setFrameShadow(QFrame::Plain);
   ui->twGroups->setStyleSheet(StrConstants::getTreeViewCSS());
   ui->twGroups->setSelectionMode(QAbstractItemView::SingleSelection);
-
   connect(ui->twGroups, SIGNAL(itemSelectionChanged()), this, SLOT(onPackageGroupChanged()));
 }
 

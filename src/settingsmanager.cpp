@@ -33,6 +33,7 @@
 #include <QSettings>
 #include <QDir>
 
+//Initialization of Singleton pointer...
 SettingsManager* SettingsManager::m_pinstance = 0;
 
 SettingsManager::SettingsManager(){
@@ -67,6 +68,15 @@ bool SettingsManager::getSkipMirrorCheckAtStartup(){
   }
 
   return (instance()->getSYSsettings()->value( ctn_KEY_SKIP_MIRRORCHECK_ON_STARTUP, false).toInt() == 1);
+}
+
+bool SettingsManager::getShowGroupsPanel()
+{
+  if (!instance()->getSYSsettings()->contains(ctn_KEY_SHOW_GROUPS_PANEL)){
+    instance()->getSYSsettings()->setValue(ctn_KEY_SHOW_GROUPS_PANEL, 0);
+  }
+
+  return (instance()->getSYSsettings()->value( ctn_KEY_SHOW_GROUPS_PANEL, false).toInt() == 1);
 }
 
 QString SettingsManager::getTerminal(){
@@ -105,6 +115,12 @@ void SettingsManager::setPackageListSortOrder(int newValue){
   instance()->getSYSsettings()->sync();
 }
 
+void SettingsManager::setShowGroupsPanel(int newValue)
+{
+  instance()->getSYSsettings()->setValue( ctn_KEY_SHOW_GROUPS_PANEL, newValue);
+  instance()->getSYSsettings()->sync();
+}
+
 void SettingsManager::setPanelOrganizing(int newValue){
   instance()->getSYSsettings()->setValue( ctn_KEY_PANEL_ORGANIZING, newValue);
   instance()->getSYSsettings()->sync();
@@ -125,7 +141,9 @@ void SettingsManager::setTerminal(QString newValue){
   instance()->getSYSsettings()->sync();
 }
 
-//Search all supported terminals to see if the selected one is valid
+/*
+ * Search all supported terminals to see if the selected one is valid
+ */
 bool SettingsManager::isValidTerminalSelected()
 {
   QString userTerminal = getTerminal();

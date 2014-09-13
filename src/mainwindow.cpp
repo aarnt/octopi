@@ -65,6 +65,7 @@ MainWindow::MainWindow(QWidget *parent) :
   m_selectedViewOption = ectn_ALL_PKGS;
   m_selectedRepository = "";
   m_numberOfInstalledPackages = 0;
+
   ui->setupUi(this);
 }
 
@@ -876,7 +877,7 @@ void MainWindow::hideGroupsWidget(bool pSaveSettings)
   QList<int> l, rl;
   rl = ui->splitterVertical->sizes();
 
-  if ( rl[1] != 0 )
+  if (( rl[1] != 0 ) || (!m_initializationCompleted))
   {
     ui->splitterVertical->setSizes( l << tvPackagesWidth << 0);
 
