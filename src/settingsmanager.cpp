@@ -73,7 +73,7 @@ bool SettingsManager::getSkipMirrorCheckAtStartup(){
 bool SettingsManager::getShowGroupsPanel()
 {
   if (!instance()->getSYSsettings()->contains(ctn_KEY_SHOW_GROUPS_PANEL)){
-    instance()->getSYSsettings()->setValue(ctn_KEY_SHOW_GROUPS_PANEL, 0);
+    instance()->getSYSsettings()->setValue(ctn_KEY_SHOW_GROUPS_PANEL, 1);
   }
 
   return (instance()->getSYSsettings()->value( ctn_KEY_SHOW_GROUPS_PANEL, false).toInt() == 1);
