@@ -590,8 +590,12 @@ void MainWindow::collapseThisContentItems(){
     tv->repaint(tv->rect());
     QCoreApplication::processEvents();
     QStandardItemModel *sim = qobject_cast<QStandardItemModel*>(tv->model());
-    QModelIndex mi = tv->currentIndex();
-    if (sim->hasChildren(mi))	_collapseItem(tv, sim, mi);
+
+    if (sim)
+    {
+      QModelIndex mi = tv->currentIndex();
+      if (sim->hasChildren(mi))	_collapseItem(tv, sim, mi);
+    }
   }
 }
 
@@ -618,8 +622,12 @@ void MainWindow::expandThisContentItems(){
     tv->repaint(tv->rect());
     QCoreApplication::processEvents();
     QStandardItemModel *sim = qobject_cast<QStandardItemModel*>(tv->model());
-    QModelIndex mi = tv->currentIndex();
-    if (sim->hasChildren(mi))	_expandItem(tv, sim, &mi);
+
+    if (sim)
+    {
+      QModelIndex mi = tv->currentIndex();
+      if (sim->hasChildren(mi))	_expandItem(tv, sim, &mi);
+    }
   }
 }
 
@@ -670,46 +678,50 @@ void MainWindow::execContextMenuPkgFileList(QPoint point)
   QString selectedPath = utils::showFullPathOfItem(mi);
   QMenu menu(this);
   QStandardItemModel *sim = qobject_cast<QStandardItemModel*>(tvPkgFileList->model());
-  QStandardItem *si = sim->itemFromIndex(mi);
-  
-  if (si == 0) return;
-  if (si->hasChildren() && (!tvPkgFileList->isExpanded(mi)))
-    menu.addAction(ui->actionExpandItem);
 
-  if (si->hasChildren() && (tvPkgFileList->isExpanded(mi)))
-    menu.addAction(ui->actionCollapseItem);
+  if (sim)
+  {
+    QStandardItem *si = sim->itemFromIndex(mi);
 
-  if (menu.actions().count() > 0)
+    if (si == 0) return;
+    if (si->hasChildren() && (!tvPkgFileList->isExpanded(mi)))
+      menu.addAction(ui->actionExpandItem);
+
+    if (si->hasChildren() && (tvPkgFileList->isExpanded(mi)))
+      menu.addAction(ui->actionCollapseItem);
+
+    if (menu.actions().count() > 0)
+      menu.addSeparator();
+
+    menu.addAction(ui->actionCollapseAllItems);
+    menu.addAction(ui->actionExpandAllItems);
     menu.addSeparator();
 
-  menu.addAction(ui->actionCollapseAllItems);
-  menu.addAction(ui->actionExpandAllItems);
-  menu.addSeparator();
+    QDir d;
+    QFile f(selectedPath);
 
-  QDir d;
-  QFile f(selectedPath);
-
-  if (si->icon().pixmap(QSize(22,22)).toImage() ==
-      IconHelper::getIconFolder().pixmap(QSize(22,22)).toImage())
-  {
-    if (d.exists(selectedPath))
+    if (si->icon().pixmap(QSize(22,22)).toImage() ==
+        IconHelper::getIconFolder().pixmap(QSize(22,22)).toImage())
     {
-      menu.addAction(ui->actionOpenDirectory);
-      menu.addAction(ui->actionOpenTerminal);
+      if (d.exists(selectedPath))
+      {
+        menu.addAction(ui->actionOpenDirectory);
+        menu.addAction(ui->actionOpenTerminal);
+      }
     }
-  }
-  else if (f.exists())
-  {
-    menu.addAction(ui->actionOpenFile);
-  }
-  if (!UnixCommand::isRootRunning() && f.exists() && UnixCommand::isTextFile(selectedPath))
-  {
-    menu.addAction(ui->actionEditFile);
-  }
+    else if (f.exists())
+    {
+      menu.addAction(ui->actionOpenFile);
+    }
+    if (!UnixCommand::isRootRunning() && f.exists() && UnixCommand::isTextFile(selectedPath))
+    {
+      menu.addAction(ui->actionEditFile);
+    }
 
-  QPoint pt2 = tvPkgFileList->mapToGlobal(point);
-  pt2.setY(pt2.y() + tvPkgFileList->header()->height());
-  menu.exec(pt2);
+    QPoint pt2 = tvPkgFileList->mapToGlobal(point);
+    pt2.setY(pt2.y() + tvPkgFileList->header()->height());
+    menu.exec(pt2);
+  }
 }
 
 /*

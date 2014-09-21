@@ -9,21 +9,15 @@ QT += core gui network xml dbus
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets quick quickwidgets
 
 DEFINES += OCTOPI_EXTENSIONS
-
-CONFIG += qt console warn_on debug
-
+CONFIG += qt warn_on debug
 TEMPLATE = app
 DESTDIR += bin
 OBJECTS_DIR += build
 MOC_DIR += build
 UI_DIR += build
 
-HEADERS  += src/QtSolutions/qtsingleapplication.h \
+HEADERS += src/QtSolutions/qtsingleapplication.h \
         src/QtSolutions/qtlocalpeer.h \
-        src/QtSolutions/qtsinglecoreapplication.h \
-        src/QtSolutions/QtSingleApplication \
-        src/QtSolutions/qtlockedfile.h \
-        src/QtSolutions/QtLockedFile \
         repoeditor/repoentry.h \
         src/repoconf.h \
         src/mainwindow.h \
@@ -51,10 +45,6 @@ greaterThan(QT_VERSION, 5.3): HEADERS += src/terminalselectordialog.h
 
 SOURCES += src/QtSolutions/qtsingleapplication.cpp \
         src/QtSolutions/qtlocalpeer.cpp \
-        src/QtSolutions/qtsinglecoreapplication.cpp \
-        src/QtSolutions/qtlockedfile.cpp \
-        src/QtSolutions/qtlockedfile_win.cpp \
-        src/QtSolutions/qtlockedfile_unix.cpp \
         repoeditor/repoentry.cpp \
         src/repoconf.cpp \
         src/main.cpp\
@@ -91,10 +81,6 @@ FORMS   += ui/mainwindow.ui \
         ui/multiselectiondialog.ui
 
 RESOURCES += resources.qrc
-
-OTHER_FILES += \
-    src/QtSolutions/qtsinglecoreapplication.pri \
-    src/QtSolutions/qtsingleapplication.pri
 
 TRANSLATIONS += resources/translations/octopi_pt_BR.ts \
     resources/translations/octopi_fr_FR.ts \

@@ -83,7 +83,7 @@ int main(int argc, char *argv[])
     return 0;
   }
 
-  //This sends a message just to awake the socket-based QtSingleApplication engine
+  //This sends a message just to enable the socket-based QtSingleApplication engine
   app.sendMessage("RAISE");
 
   QTranslator appTranslator;
