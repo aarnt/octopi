@@ -4,54 +4,48 @@ import QtQuick.Layouts 1.1
 
 Rectangle {
     id: terminals
-
     signal terminalSelected(int index)
     signal dialogOK()
     width: 300
     height: 215
 
-    Rectangle {
-        Layout.alignment: Qt.AlignTop
+    TableView {
+        id: list
         anchors.fill: parent
+        model: terminalModel
+        visible: true
 
-        TableView {
-            id: list
-            anchors.fill: parent
-            model: terminalModel
-            visible: true
+        TableViewColumn{
+            role: "terminal"
+            title: "Terminal"
+            width: 150
+            resizable: false
+            movable: false
+        }
 
-            TableViewColumn{
-                role: "terminal"
-                title: "Terminal"
-                width: 150
-                resizable: false
-                movable: false
+        itemDelegate: Item {
+            Text {
+                renderType: Text.NativeRendering
+                text: "  " + styleData.value
             }
+        }
 
-            itemDelegate: Item {
-                Text {
-                    renderType: Text.NativeRendering
-                    text: "  " + styleData.value
-                }
-            }
+        backgroundVisible: true
+        alternatingRowColors: true
+        headerVisible: true
+        focus: true
 
-            backgroundVisible: true
-            alternatingRowColors: true
-            headerVisible: true
-            focus: true
+        onActivated: {
+            terminals.terminalSelected(row)
+        }
 
-            onActivated: {
-                terminals.terminalSelected(row)
-            }
+        onClicked: {
+            terminals.terminalSelected(row)
+        }
 
-            onClicked: {
-                terminals.terminalSelected(row)
-            }
-
-            onDoubleClicked: {
-                terminals.terminalSelected(row)
-                terminals.dialogOK()
-            }
+        onDoubleClicked: {
+            terminals.terminalSelected(row)
+            terminals.dialogOK()
         }
     }
 
