@@ -1,9 +1,9 @@
 import QtQuick 2.0
 import QtQuick.Controls 1.2
-import QtQuick.Layouts 1.1
 
 Rectangle {
     id: terminals
+
     signal terminalSelected(int index)
     signal dialogOK()
     width: 300
@@ -38,11 +38,9 @@ Rectangle {
         onActivated: {
             terminals.terminalSelected(row)
         }
-
         onClicked: {
             terminals.terminalSelected(row)
         }
-
         onDoubleClicked: {
             terminals.terminalSelected(row)
             terminals.dialogOK()
