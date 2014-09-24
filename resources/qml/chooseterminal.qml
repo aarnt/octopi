@@ -28,14 +28,6 @@ Rectangle {
                 movable: false
             }
 
-            /*headerDelegate: Item {
-                Text {
-                    text: styleData.value
-                    anchors.centerIn:parent
-                    color:"#333"
-                }
-                }*/
-
             itemDelegate: Item {
                 Text {
                     renderType: Text.NativeRendering
