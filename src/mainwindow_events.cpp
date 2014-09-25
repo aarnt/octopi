@@ -301,15 +301,9 @@ void MainWindow::keyPressEvent(QKeyEvent* ke)
 int MainWindow::selectTerminal(const int initialTerminalIndex)
 {
   int result = initialTerminalIndex;
-  QStringList terminals = Terminal::getListOfAvailableTerminals();
-  QList<QObject*> dataList;
+  static TerminalSelectorDialog *d =
+      new TerminalSelectorDialog(this, Terminal::getListOfAvailableTerminals());
 
-  foreach (QString t, terminals)
-  {
-    dataList.append(new TerminalType(t));
-  }
-
-  static TerminalSelectorDialog *d = new TerminalSelectorDialog(this, dataList);
   d->setInitialTerminalIndex(initialTerminalIndex);
 
   if (d->exec() == QDialog::Accepted)

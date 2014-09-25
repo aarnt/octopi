@@ -33,7 +33,7 @@
  * This dialog lets user chooses one of the available terminals to use with Octopi
  */
 
-TerminalSelectorDialog::TerminalSelectorDialog(QWidget *parent, QList<QObject*> terminalList) :
+TerminalSelectorDialog::TerminalSelectorDialog(QWidget *parent, QStringList terminalList):
   QDialog(parent)
 {
   m_quickWidget = new QQuickWidget(this);

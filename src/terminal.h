@@ -27,7 +27,7 @@
 #include <QObject>
 #include <QProcess>
 
-class TerminalType : public QObject
+/*class TerminalType : public QObject
 {
   Q_OBJECT
 
@@ -46,8 +46,8 @@ public:
 
   Q_SIGNALS:
     void terminalChanged();
-
 };
+*/
 
 class Terminal : public QObject
 {

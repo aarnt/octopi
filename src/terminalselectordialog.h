@@ -39,7 +39,7 @@ private:
   QList<QObject*> dataList;
 
 public:
-  explicit TerminalSelectorDialog(QWidget *parent, QList<QObject*> terminalList);
+  explicit TerminalSelectorDialog(QWidget *parent, QStringList terminalList);
   void setInitialTerminalIndex(int newIndex);
 
 int selectedTerminalIndex() const
