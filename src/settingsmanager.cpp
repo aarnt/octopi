@@ -87,8 +87,8 @@ QString SettingsManager::getTerminal(){
   }
   else
   {
-    SettingsManager *p_instance = new SettingsManager();
-    return (p_instance->getSYSsettings()->value( ctn_KEY_TERMINAL, ctn_AUTOMATIC)).toString();
+    SettingsManager p_instance;
+    return (p_instance.getSYSsettings()->value( ctn_KEY_TERMINAL, ctn_AUTOMATIC)).toString();
   }
 }
 

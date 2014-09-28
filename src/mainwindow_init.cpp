@@ -92,7 +92,7 @@ void MainWindow::loadPanelSettings(){
 /*
  * Saves all application settings to ~/.config/octopi/octopi.conf
  */
-void MainWindow::saveSettings(int saveSettingsReason){
+void MainWindow::saveSettings(SaveSettingsReason saveSettingsReason){
   switch(saveSettingsReason){
     case ectn_CurrentTabIndex:
       SettingsManager::instance()->setCurrentTabIndex(ui->twProperties->currentIndex());

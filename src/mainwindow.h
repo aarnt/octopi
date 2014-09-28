@@ -182,7 +182,7 @@ private:
 
   void loadSettings();
   void loadPanelSettings();
-  void saveSettings(int);
+  void saveSettings(SaveSettingsReason saveSettingsReason);
 
   void initAppIcon();
   void refreshAppIcon();

@@ -38,8 +38,8 @@ const QString ctn_KEY_SHOW_GROUPS_PANEL("Show_Groups_Panel");
 const QString ctn_KEY_TERMINAL("Terminal");
 const QString ctn_AUTOMATIC("automatic");
 
-enum SaveSettingsReason { ectn_PackageList, ectn_CurrentTabIndex, ectn_DontSave, ectn_Save,
-                          ectn_NORMAL=30, ectn_MAXIMIZE_PACKAGES=40, ectn_MAXIMIZE_PROPERTIES=50, ectn_GROUPS=5 };
+enum SaveSettingsReason { ectn_PackageList, ectn_CurrentTabIndex, ectn_NORMAL=30,
+                          ectn_MAXIMIZE_PACKAGES=40, ectn_MAXIMIZE_PROPERTIES=50, ectn_GROUPS=5 };
 
 class SettingsManager {
 
