@@ -305,8 +305,6 @@ void MainWindow::initStatusBar()
   ui->statusBar->addWidget(m_lblSelCounter);
   ui->statusBar->addWidget(m_lblTotalCounters);
   ui->statusBar->addPermanentWidget(m_progressWidget);
-
-  connect(m_lblTotalCounters, SIGNAL(linkActivated(QString)), this, SLOT(outputOutdatedPackageList()));
 }
 
 /*
