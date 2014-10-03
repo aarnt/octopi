@@ -16,6 +16,8 @@ class QValidator;
 class QCompleter;
 class QStringListModel;
 
+enum ValidatorType { ectn_AUR_VALIDATOR, ectn_FILE_VALIDATOR, ectn_DEFAULT_VALIDATOR };
+
 class SearchLineEdit : public QLineEdit
 {
   Q_OBJECT
@@ -42,7 +44,7 @@ public:
   explicit SearchLineEdit(QWidget *parent = NULL);
 
   inline void initStyleSheet(){ setStyleSheet(styleSheetForCurrentState()); }
-  void refreshValidator();
+  void refreshValidator(ValidatorType validatorType);
   void refreshCompleterData();
 
 public slots:

@@ -171,13 +171,11 @@ void MainWindow::initTabHelpUsage()
   ui->twProperties->setTabText(ui->twProperties->indexOf(tabHelpUsage), StrConstants::getHelpUsage());
 
   SearchBar *searchBar = new SearchBar(this);
-  MyHighlighter *highlighter = new MyHighlighter(text, "");
   connect(searchBar, SIGNAL(textChanged(QString)), this, SLOT(searchBarTextChanged(QString)));
   connect(searchBar, SIGNAL(closed()), this, SLOT(searchBarClosed()));
   connect(searchBar, SIGNAL(findNext()), this, SLOT(searchBarFindNext()));
   connect(searchBar, SIGNAL(findPrevious()), this, SLOT(searchBarFindPrevious()));
   gridLayoutX->addWidget(searchBar, 1, 0, 1, 1);
-  gridLayoutX->addWidget(new SyntaxHighlighterWidget(this, highlighter));
 
   text->show();
   ui->twProperties->setCurrentIndex(tindex);

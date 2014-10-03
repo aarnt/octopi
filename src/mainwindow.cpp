@@ -420,7 +420,12 @@ void MainWindow::tvPackagesSearchColumnChanged(QAction *actionSelected)
   {
     ui->menuView->setEnabled(true);
     ui->twGroups->setEnabled(true);
-    m_leFilterPackage->refreshValidator();
+
+    if (isAURGroupSelected())
+      m_leFilterPackage->refreshValidator(ectn_AUR_VALIDATOR);
+    else
+      m_leFilterPackage->refreshValidator(ectn_DEFAULT_VALIDATOR);
+
     m_packageModel->applyFilter(PackageModel::ctn_PACKAGE_NAME_COLUMN);
   }
   //We are talking about slower 'search by description'...
@@ -428,7 +433,12 @@ void MainWindow::tvPackagesSearchColumnChanged(QAction *actionSelected)
   {
     ui->menuView->setEnabled(true);
     ui->twGroups->setEnabled(true);
-    m_leFilterPackage->refreshValidator();
+
+    if (isAURGroupSelected())
+      m_leFilterPackage->refreshValidator(ectn_AUR_VALIDATOR);
+    else
+      m_leFilterPackage->refreshValidator(ectn_DEFAULT_VALIDATOR);
+
     m_packageModel->applyFilter(PackageModel::ctn_PACKAGE_DESCRIPTION_FILTER_NO_COLUMN);
   }
   else if (actionSelected->objectName() == ui->actionSearchByFile->objectName())
@@ -440,7 +450,7 @@ void MainWindow::tvPackagesSearchColumnChanged(QAction *actionSelected)
     ui->menuView->setEnabled(false);
 
     ui->twGroups->setEnabled(false);
-    m_leFilterPackage->refreshValidator();
+    m_leFilterPackage->refreshValidator(ectn_FILE_VALIDATOR);
   }
 
   if (!isSearchByFileSelected() && m_packageModel->getPackageCount() <= 1)

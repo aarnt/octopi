@@ -24,7 +24,6 @@
 #include "searchlineedit.h"
 #include <iostream>
 #include <QWidget>
-#include <QSyntaxHighlighter>
 #include <QApplication>
 #include <QTextEdit>
 
@@ -59,69 +58,6 @@ public slots:
 
   void clear();
 
-};
-
-class MyHighlighter : public QSyntaxHighlighter{
-
-  Q_OBJECT
-
-private:
-  bool m_hasFound;
-  QString m_pattern;
-
-public:
-  MyHighlighter(QTextEdit *parent, QString pattern):QSyntaxHighlighter(parent){
-    m_pattern = pattern;
-    m_hasFound = false;
-  }
-
-  void setPattern(const QString pattern){ m_pattern = pattern; }
-  bool hasFound(){ return m_hasFound; }
-
-protected:
-  virtual void highlightBlock(const QString &text)
-  {
-    if (m_pattern.isEmpty()) return;
-
-    QTextCharFormat myClassFormat;
-    myClassFormat.setFontWeight(QFont::Bold);
-    myClassFormat.setBackground(QBrush(QColor(Qt::yellow).lighter(130)));
-    QString expression = m_pattern;
-
-    int index = text.indexOf(expression, 0, Qt::CaseInsensitive);
-    if (index >= 0) m_hasFound = true;
-    while (index >= 0) {
-      int length = expression.length();
-      setFormat(index, length, myClassFormat);
-      index = text.indexOf(expression, index + length, Qt::CaseInsensitive);
-    }
-  }
-
-public slots:
-  void rehighlight(){
-    m_hasFound = false;
-    QSyntaxHighlighter::rehighlight();
-  }
-};
-
-//This class is a workaround to keep each TextEdit close to its QSyntaxHighlighter object
-class SyntaxHighlighterWidget : public QWidget
-{
-  Q_OBJECT
-
-private:
-  MyHighlighter *m_myHighlighter;
-
-public:
-  SyntaxHighlighterWidget(QWidget *parent, MyHighlighter *h):
-    QWidget(parent){
-    m_myHighlighter = h;
-    setObjectName("syntaxHighlighterWidget");
-    setMaximumSize(0, 0);
-    setVisible(false);
-  }
-
-  MyHighlighter *getSyntaxHighlighter(){ return m_myHighlighter; }
 };
 
 #endif // SEARCHBAR_H

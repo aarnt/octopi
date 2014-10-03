@@ -492,7 +492,7 @@ void MainWindow::initPackageTreeView()
 #endif
 
   ui->tvPackages->header()->setDefaultAlignment( Qt::AlignLeft );
-  ui->tvPackages->setStyleSheet(StrConstants::getTreeViewCSS());
+  //ui->tvPackages->setStyleSheet(StrConstants::getTreeViewCSS());
 
   resizePackageView();
 

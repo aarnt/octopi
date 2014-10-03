@@ -216,6 +216,7 @@ void MainWindow::buildPackagesFromGroupList(const QString group)
 
   int installedCount = 0;
   int counter=0;
+
   while(it != list->end())
   {
     if (isPackageInstalled(*it)) {
@@ -351,7 +352,12 @@ void MainWindow::preBuildPackagesFromGroupList()
  */
 void MainWindow::metaBuildPackageList()
 {
-  m_leFilterPackage->refreshValidator();
+  if (isSearchByFileSelected())
+    m_leFilterPackage->refreshValidator(ectn_FILE_VALIDATOR);
+  else if (isAURGroupSelected())
+    m_leFilterPackage->refreshValidator(ectn_AUR_VALIDATOR);
+  else
+    m_leFilterPackage->refreshValidator(ectn_DEFAULT_VALIDATOR);
 
   m_packageModel->setShowColumnPopularity(false);
   ui->twGroups->setEnabled(false);

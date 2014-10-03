@@ -8,8 +8,10 @@
 
 #include "searchlineedit.h"
 #include "strconstants.h"
-#include "mainwindow.h"
+#include "wmhelper.h"
+#include "uihelper.h"
 #include "iostream"
+
 #include <QApplication>
 #include <QToolButton>
 #include <QStyle>
@@ -64,15 +66,13 @@ SearchLineEdit::SearchLineEdit(QWidget *parent) :
 /*
  * Refreshes the validator used in QLineEdit depending on the options choosed by the user
  */
-void SearchLineEdit::refreshValidator()
+void SearchLineEdit::refreshValidator(ValidatorType validatorType)
 {
-  MainWindow *mw = MainWindow::returnMainWindow();
-
-  if (mw->isAURGroupSelected())
+  if (validatorType == ectn_AUR_VALIDATOR)
     setValidator(m_aurValidator);
-  else if (mw->isSearchByFileSelected())
+  else if (validatorType == ectn_FILE_VALIDATOR)
     setValidator(m_fileValidator);
-  else
+  else if (validatorType == ectn_DEFAULT_VALIDATOR)
     setValidator(m_defaultValidator);
 
   //If the current string is not valid anymore, let's erase it!

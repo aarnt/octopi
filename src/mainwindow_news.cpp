@@ -232,7 +232,6 @@ void MainWindow::initTabNews()
 #endif
 
   SearchBar *searchBar = new SearchBar(this);
-  MyHighlighter *highlighter = new MyHighlighter(text, "");
 
   connect(searchBar, SIGNAL(textChanged(QString)), this, SLOT(searchBarTextChanged(QString)));
   connect(searchBar, SIGNAL(closed()), this, SLOT(searchBarClosed()));
@@ -240,7 +239,6 @@ void MainWindow::initTabNews()
   connect(searchBar, SIGNAL(findPrevious()), this, SLOT(searchBarFindPrevious()));
 
   gridLayoutX->addWidget(searchBar, 1, 0, 1, 1);
-  gridLayoutX->addWidget(new SyntaxHighlighterWidget(this, highlighter));
 
   connect(text, SIGNAL(sourceChanged(QUrl)), this, SLOT(onTabNewsSourceChanged(QUrl)));
 
