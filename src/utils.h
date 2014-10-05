@@ -56,7 +56,7 @@ private slots:
 };
 
 QString showFullPathOfItem( const QModelIndex &index );
-QList<QModelIndex> * findFileEx( const QString& name, const QStandardItemModel *sim);
+QList<QModelIndex> * findFileInTreeView( const QString& name, const QStandardItemModel *sim);
 QString retrieveDistroNews(bool searchForLatestNews);
 QString parseDistroNews();
 

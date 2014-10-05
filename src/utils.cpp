@@ -237,7 +237,7 @@ QString utils::showFullPathOfItem( const QModelIndex &index ){
  * Given a filename 'name', searches for it inside a QStandard item model
  * Result is a list containing all QModelIndex occurencies
  */
-QList<QModelIndex> * utils::findFileEx( const QString& name, const QStandardItemModel *sim)
+QList<QModelIndex> * utils::findFileInTreeView( const QString& name, const QStandardItemModel *sim)
 {
   QList<QModelIndex> * res = new QList<QModelIndex>();
   QList<QStandardItem *> foundItems;

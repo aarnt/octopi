@@ -103,7 +103,7 @@ void MainWindow::searchBarTextChangedInTreeView(const QString textToSearch)
 
     if (textToSearch.isEmpty()) return;
 
-    m_foundFilesInPkgFileList = utils::findFileEx(textToSearch, sim);
+    m_foundFilesInPkgFileList = utils::findFileInTreeView(textToSearch, sim);
 
     if (m_foundFilesInPkgFileList->count() > 0)
     {
