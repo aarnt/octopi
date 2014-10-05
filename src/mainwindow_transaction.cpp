@@ -2129,7 +2129,7 @@ void MainWindow::actionsProcessRaisedError()
  */
 void MainWindow::writeToTabOutput(const QString &msg, TreatURLLinks treatURLLinks)
 {
-  QTextBrowser *text = ui->twProperties->widget(ctn_TABINDEX_OUTPUT)->findChild<QTextBrowser*>("textOutputEdit");
+  QTextBrowser *text = ui->twProperties->widget(ctn_TABINDEX_OUTPUT)->findChild<QTextBrowser*>("textBrowser");
   if (text)
   {
     _ensureTabVisible(ctn_TABINDEX_OUTPUT);
@@ -2155,7 +2155,7 @@ void MainWindow::writeToTabOutput(const QString &msg, TreatURLLinks treatURLLink
 void MainWindow::writeToTabOutputExt(const QString &msg, TreatURLLinks treatURLLinks)
 {
   //std::cout << "To print: " << msg.toLatin1().data() << std::endl;
-  QTextBrowser *text = ui->twProperties->widget(ctn_TABINDEX_OUTPUT)->findChild<QTextBrowser*>("textOutputEdit");
+  QTextBrowser *text = ui->twProperties->widget(ctn_TABINDEX_OUTPUT)->findChild<QTextBrowser*>("textBrowser");
   if (text)
   {    
     //If the msg waiting to being print is from curl status OR any other unwanted string...
@@ -2194,7 +2194,7 @@ void MainWindow::writeToTabOutputExt(const QString &msg, TreatURLLinks treatURLL
     {
       if(newMsg.contains("removing ") ||
          newMsg.contains("could not ") ||
-         newMsg.contains("error") ||
+         newMsg.contains("error:", Qt::CaseInsensitive) ||
          newMsg.contains("failed") ||
          newMsg.contains("is not synced") ||
          newMsg.contains("could not be found"))

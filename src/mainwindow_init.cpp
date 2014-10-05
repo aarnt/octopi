@@ -109,7 +109,7 @@ void MainWindow::saveSettings(SaveSettingsReason saveSettingsReason){
     case ectn_NORMAL:
       SettingsManager::instance()->setPanelOrganizing(ectn_NORMAL);
       SettingsManager::instance()->setSplitterHorizontalState(ui->splitterHorizontal->saveState());
-      SettingsManager::instance()->setShowGroupsPanel(1); //And also show Groups panel!
+      //SettingsManager::instance()->setShowGroupsPanel(1); //And also show Groups panel!
       break;
 
     case ectn_PackageList:
@@ -599,10 +599,10 @@ void MainWindow::initTabFiles()
 
   SearchBar *searchBar = new SearchBar(this);
 
-  connect(searchBar, SIGNAL(textChanged(QString)), this, SLOT(searchBarTextChangedEx(QString)));
-  connect(searchBar, SIGNAL(closed()), this, SLOT(searchBarClosedEx()));
-  connect(searchBar, SIGNAL(findNext()), this, SLOT(searchBarFindNextEx()));
-  connect(searchBar, SIGNAL(findPrevious()), this, SLOT(searchBarFindPreviousEx()));
+  connect(searchBar, SIGNAL(textChanged(QString)), this, SLOT(searchBarTextChangedInTreeView(QString)));
+  connect(searchBar, SIGNAL(closed()), this, SLOT(searchBarClosedInTreeView()));
+  connect(searchBar, SIGNAL(findNext()), this, SLOT(searchBarFindNextInTreeView()));
+  connect(searchBar, SIGNAL(findPrevious()), this, SLOT(searchBarFindPreviousInTreeView()));
 
   gridLayoutX->addWidget(searchBar, 1, 0, 1, 1);
 
@@ -623,14 +623,13 @@ void MainWindow::initTabOutput()
   gridLayoutX->setMargin ( 0 );
 
   QTextBrowser *text = new QTextBrowser(tabOutput);
-  text->setObjectName("textOutputEdit");
+  text->setObjectName("textBrowser");
   text->setReadOnly(true);
   text->setOpenLinks(false);
   text->setFrameShape(QFrame::NoFrame);
   text->setFrameShadow(QFrame::Plain);
 
   connect(text, SIGNAL(anchorClicked(QUrl)), this, SLOT(outputTextBrowserAnchorClicked(QUrl)));
-
   gridLayoutX->addWidget (text, 0, 0, 1, 1);  
 
   QString aux(StrConstants::getTabOutputName());
@@ -643,6 +642,15 @@ void MainWindow::initTabOutput()
   ui->twProperties->insertTab(ctn_TABINDEX_OUTPUT, tabOutput, QApplication::translate (
       "MainWindow", aux.toUtf8(), 0/*, QApplication::UnicodeUTF8*/ ) );
 #endif
+
+  /////////  TEST CODE
+  SearchBar *searchBar = new SearchBar(this);
+  connect(searchBar, SIGNAL(textChanged(QString)), this, SLOT(searchBarTextChangedInTextBrowser(QString)));
+  connect(searchBar, SIGNAL(closed()), this, SLOT(searchBarClosedInTextBrowser()));
+  connect(searchBar, SIGNAL(findNext()), this, SLOT(searchBarFindNextInTextBrowser()));
+  connect(searchBar, SIGNAL(findPrevious()), this, SLOT(searchBarFindPreviousInTextBrowser()));
+  gridLayoutX->addWidget(searchBar, 1, 0, 1, 1);
+  /////////  TEST CODE
 
   ui->twProperties->setCurrentIndex(ctn_TABINDEX_OUTPUT);
   text->show();

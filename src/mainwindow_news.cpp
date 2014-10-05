@@ -233,10 +233,10 @@ void MainWindow::initTabNews()
 
   SearchBar *searchBar = new SearchBar(this);
 
-  connect(searchBar, SIGNAL(textChanged(QString)), this, SLOT(searchBarTextChanged(QString)));
-  connect(searchBar, SIGNAL(closed()), this, SLOT(searchBarClosed()));
-  connect(searchBar, SIGNAL(findNext()), this, SLOT(searchBarFindNext()));
-  connect(searchBar, SIGNAL(findPrevious()), this, SLOT(searchBarFindPrevious()));
+  connect(searchBar, SIGNAL(textChanged(QString)), this, SLOT(searchBarTextChangedInTextBrowser(QString)));
+  connect(searchBar, SIGNAL(closed()), this, SLOT(searchBarClosedInTextBrowser()));
+  connect(searchBar, SIGNAL(findNext()), this, SLOT(searchBarFindNextInTextBrowser()));
+  connect(searchBar, SIGNAL(findPrevious()), this, SLOT(searchBarFindPreviousInTextBrowser()));
 
   gridLayoutX->addWidget(searchBar, 1, 0, 1, 1);
 

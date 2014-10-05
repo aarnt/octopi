@@ -384,15 +384,15 @@ private slots:
   void positionInPkgListSearchByFile();
 
   void _positionInFirstMatch();
-  void searchBarTextChanged(const QString textToSearch);
-  void searchBarFindNext();
-  void searchBarFindPrevious();
-  void searchBarClosed();
+  void searchBarTextChangedInTextBrowser(const QString textToSearch);
+  void searchBarFindNextInTextBrowser();
+  void searchBarFindPreviousInTextBrowser();
+  void searchBarClosedInTextBrowser();
 
-  void searchBarTextChangedEx(const QString textToSearch);
-  void searchBarFindNextEx();
-  void searchBarFindPreviousEx();
-  void searchBarClosedEx();
+  void searchBarTextChangedInTreeView(const QString textToSearch);
+  void searchBarFindNextInTreeView();
+  void searchBarFindPreviousInTreeView();
+  void searchBarClosedInTreeView();
   void outputTextBrowserAnchorClicked(const QUrl & link);
 
   void launchPLV();

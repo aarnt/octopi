@@ -145,7 +145,7 @@ QTextBrowser *MainWindow::_getOutputTextBrowser()
 {
   QTextBrowser *ret=0;
   QTextBrowser *text =
-      ui->twProperties->widget(ctn_TABINDEX_OUTPUT)->findChild<QTextBrowser*>("textOutputEdit");
+      ui->twProperties->widget(ctn_TABINDEX_OUTPUT)->findChild<QTextBrowser*>("textBrowser");
 
   if (text)
   {
@@ -246,7 +246,7 @@ void MainWindow::outputOutdatedPackageList()
     writeToTabOutput(html);
 
     QTextBrowser *text =
-        ui->twProperties->widget(ctn_TABINDEX_OUTPUT)->findChild<QTextBrowser*>("textOutputEdit");
+        ui->twProperties->widget(ctn_TABINDEX_OUTPUT)->findChild<QTextBrowser*>("textBrowser");
 
     if (text)
     {
@@ -305,7 +305,7 @@ void MainWindow::outputOutdatedAURPackageList()
   writeToTabOutput(html);
 
   QTextBrowser *text =
-      ui->twProperties->widget(ctn_TABINDEX_OUTPUT)->findChild<QTextBrowser*>("textOutputEdit");
+      ui->twProperties->widget(ctn_TABINDEX_OUTPUT)->findChild<QTextBrowser*>("textBrowser");
 
   if (text)
   {
@@ -320,7 +320,7 @@ void MainWindow::outputOutdatedAURPackageList()
  */
 void MainWindow::clearTabOutput()
 {
-  QTextBrowser *text = ui->twProperties->widget(ctn_TABINDEX_OUTPUT)->findChild<QTextBrowser*>("textOutputEdit");
+  QTextBrowser *text = ui->twProperties->widget(ctn_TABINDEX_OUTPUT)->findChild<QTextBrowser*>("textBrowser");
   if (text)
   {
     text->clear();
@@ -1018,7 +1018,7 @@ void MainWindow::headerViewPackageListSortIndicatorClicked( int col, Qt::SortOrd
 void MainWindow::_positionTextEditCursorAtEnd()
 {
   QTextBrowser *textEdit =
-      ui->twProperties->widget(ctn_TABINDEX_OUTPUT)->findChild<QTextBrowser*>("textOutputEdit");
+      ui->twProperties->widget(ctn_TABINDEX_OUTPUT)->findChild<QTextBrowser*>("textBrowser");
 
   if (textEdit)
   {
@@ -1055,7 +1055,7 @@ bool MainWindow::_textInTabOutput(const QString& findText)
 {
   bool res;
   QTextBrowser *text =
-      ui->twProperties->widget(ctn_TABINDEX_OUTPUT)->findChild<QTextBrowser*>("textOutputEdit");
+      ui->twProperties->widget(ctn_TABINDEX_OUTPUT)->findChild<QTextBrowser*>("textBrowser");
   if (text)
   {
     _positionTextEditCursorAtEnd();
@@ -1073,7 +1073,7 @@ bool MainWindow::_IsSyncingRepoInTabOutput()
 {
   bool res;
   QTextBrowser *text =
-      ui->twProperties->widget(ctn_TABINDEX_OUTPUT)->findChild<QTextBrowser*>("textOutputEdit");
+      ui->twProperties->widget(ctn_TABINDEX_OUTPUT)->findChild<QTextBrowser*>("textBrowser");
   if (text)
   {
     _positionTextEditCursorAtEnd();

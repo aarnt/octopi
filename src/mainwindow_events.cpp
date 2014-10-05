@@ -213,7 +213,8 @@ void MainWindow::keyPressEvent(QKeyEvent* ke)
   else if(ke->key() == Qt::Key_F && ke->modifiers() == Qt::ControlModifier)
   {
     if (_isPropertiesTabWidgetVisible() &&
-        (ui->twProperties->currentIndex() == ctn_TABINDEX_NEWS ||
+        (ui->twProperties->currentIndex() == ctn_TABINDEX_OUTPUT ||
+         ui->twProperties->currentIndex() == ctn_TABINDEX_NEWS ||
          ui->twProperties->currentIndex() == ctn_TABINDEX_HELPUSAGE))
     {
       QTextBrowser *tb = ui->twProperties->currentWidget()->findChild<QTextBrowser*>("textBrowser");
@@ -272,7 +273,17 @@ void MainWindow::keyPressEvent(QKeyEvent* ke)
     {
       doRemovePacmanLockFile(); //If we are not executing any command, let's remove Pacman's lock file
     }
-  }
+  } 
+  /*
+  else if(ke->key() == Qt::Key_S && ke->modifiers() == (Qt::ShiftModifier|Qt::ControlModifier))
+  {
+    if (m_commandExecuting == ectn_NONE)
+    {
+      writeToTabOutputExt("Error:This is some error!");
+      writeToTabOutputExt("perl-error-prone-0.34.3 is a package, not a message!");
+      writeToTabOutputExt("error: this is another error!");
+    }
+  }*/
 
   #if QT_VERSION >= 0x050300
   else if(ke->key() == Qt::Key_T && ke->modifiers() == (Qt::ShiftModifier|Qt::ControlModifier)
@@ -342,6 +353,7 @@ void MainWindow::keyReleaseEvent(QKeyEvent *ke)
 
     if (fi.count() > 0) {
       if ( (ke->key() != k) || (fi.count() != k_count) ) i=0;
+
       QModelIndex currentIndex = ui->tvPackages->currentIndex();
       QModelIndex firstIndex = fi.first();
       QModelIndex lastIndex = fi.last();

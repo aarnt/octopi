@@ -228,7 +228,8 @@ QStringList *Package::getOutdatedPackageList()
 }
 
 /*
- * Retrieves the list of outdated Yaourt (AUR) packages (those which have newer versions available to download)
+ * Retrieves the list of outdated Yaourt (AUR) packages
+ * (those which have newer versions available to download)
  */
 QStringList *Package::getOutdatedAURPackageList()
 {
@@ -623,7 +624,8 @@ QList<PackageListData> * Package::getAURPackageList(const QString& searchString)
     res->append(pld);
   }
 
-  if (res->count() > 0 && res->at(0).repository != StrConstants::getForeignPkgRepositoryName().toUpper()) res->removeAt(0);
+  if (res->count() > 0 && res->at(0).repository !=
+      StrConstants::getForeignPkgRepositoryName().toUpper()) res->removeAt(0);
 
   return res;
 }

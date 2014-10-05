@@ -31,11 +31,10 @@
 /*
  * Every time the user changes the text to search inside a textBrowser...
  */
-void MainWindow::searchBarTextChanged(const QString textToSearch)
+void MainWindow::searchBarTextChangedInTextBrowser(const QString textToSearch)
 {
   qApp->processEvents();
   QTextBrowser *tb = ui->twProperties->currentWidget()->findChild<QTextBrowser*>("textBrowser");
-  if (!tb) tb = ui->twProperties->currentWidget()->findChild<QTextBrowser*>("updaterOutput");
   QList<QTextEdit::ExtraSelection> extraSelections;
 
   if (tb){
@@ -84,41 +83,48 @@ void MainWindow::searchBarTextChanged(const QString textToSearch)
 /*
  * Every time the user changes the text to search inside a treeView...
  */
-void MainWindow::searchBarTextChangedEx(const QString textToSearch)
+void MainWindow::searchBarTextChangedInTreeView(const QString textToSearch)
 {
   m_foundFilesInPkgFileList->clear();
   m_indFoundFilesInPkgFileList = 0;
 
   QTreeView *tvPkgFileList =
     ui->twProperties->widget(ctn_TABINDEX_FILES)->findChild<QTreeView*>("tvPkgFileList");
-  QStandardItemModel *sim = qobject_cast<QStandardItemModel *>(tvPkgFileList->model());
-  SearchBar *sb = ui->twProperties->currentWidget()->findChild<SearchBar*>("searchbar");
-  sb->getSearchLineEdit()->initStyleSheet();
-
-  if (textToSearch.isEmpty()) return;
-
-  m_foundFilesInPkgFileList = utils::findFileEx(textToSearch, sim);
-
-  if (m_foundFilesInPkgFileList->count() > 0)
+  if (tvPkgFileList)
   {
-    tvPkgFileList->setCurrentIndex(m_foundFilesInPkgFileList->at(0));
-    tvPkgFileList->scrollTo(m_foundFilesInPkgFileList->at(0));
-    sb->getSearchLineEdit()->setFoundStyle();
-  }
-  else
-  {
-    tvPkgFileList->setCurrentIndex(sim->index(0,0));
-    sb->getSearchLineEdit()->setNotFoundStyle();
+    QStandardItemModel *sim = qobject_cast<QStandardItemModel *>(tvPkgFileList->model());
+    if (!sim) return;
+    SearchBar *sb = ui->twProperties->currentWidget()->findChild<SearchBar*>("searchbar");
+
+    if (!sb)
+      return;
+    else
+      sb->getSearchLineEdit()->initStyleSheet();
+
+    if (textToSearch.isEmpty()) return;
+
+    m_foundFilesInPkgFileList = utils::findFileEx(textToSearch, sim);
+
+    if (m_foundFilesInPkgFileList->count() > 0)
+    {
+      tvPkgFileList->setCurrentIndex(m_foundFilesInPkgFileList->at(0));
+      tvPkgFileList->scrollTo(m_foundFilesInPkgFileList->at(0));
+      sb->getSearchLineEdit()->setFoundStyle();
+    }
+    else
+    {
+      tvPkgFileList->setCurrentIndex(sim->index(0,0));
+      sb->getSearchLineEdit()->setNotFoundStyle();
+    }
   }
 }
 
 /*
  * Every time the user presses Enter, Return, F3 or clicks Find Next inside a textBrowser...
  */
-void MainWindow::searchBarFindNext()
+void MainWindow::searchBarFindNextInTextBrowser()
 {
   QTextBrowser *tb = ui->twProperties->currentWidget()->findChild<QTextBrowser*>("textBrowser");
-  if (!tb) tb = ui->twProperties->currentWidget()->findChild<QTextBrowser*>("updaterOutput");
   SearchBar *sb = ui->twProperties->currentWidget()->findChild<SearchBar*>("searchbar");
 
   if (tb && sb && !sb->getTextToSearch().isEmpty()){
@@ -132,10 +138,9 @@ void MainWindow::searchBarFindNext()
 /*
  * Every time the user presses Shift+F3 or clicks Find Previous inside a textBrowser...
  */
-void MainWindow::searchBarFindPrevious()
+void MainWindow::searchBarFindPreviousInTextBrowser()
 {
   QTextBrowser *tb = ui->twProperties->currentWidget()->findChild<QTextBrowser*>("textBrowser");
-  if (!tb) tb = ui->twProperties->currentWidget()->findChild<QTextBrowser*>("updaterOutput");
   SearchBar *sb = ui->twProperties->currentWidget()->findChild<SearchBar*>("searchbar");
 
   if (tb && sb && !sb->getTextToSearch().isEmpty()){
@@ -149,7 +154,7 @@ void MainWindow::searchBarFindPrevious()
 /*
  * Every time the user presses Enter, Return, F3 or clicks Find Next inside a treeView...
  */
-void MainWindow::searchBarFindNextEx()
+void MainWindow::searchBarFindNextInTreeView()
 {
   QTreeView *tvPkgFileList =
     ui->twProperties->widget(ctn_TABINDEX_FILES)->findChild<QTreeView*>("tvPkgFileList");
@@ -175,7 +180,7 @@ void MainWindow::searchBarFindNextEx()
 /*
  * Every time the user presses Shift+F3 or clicks Find Previous inside a treeView...
  */
-void MainWindow::searchBarFindPreviousEx()
+void MainWindow::searchBarFindPreviousInTreeView()
 {
   QTreeView *tvPkgFileList =
     ui->twProperties->widget(ctn_TABINDEX_FILES)->findChild<QTreeView*>("tvPkgFileList");
@@ -199,22 +204,23 @@ void MainWindow::searchBarFindPreviousEx()
 /*
  * Every time the user presses ESC or clicks the close button inside a textBrowser...
  */
-void MainWindow::searchBarClosed()
+void MainWindow::searchBarClosedInTextBrowser()
 {
-  searchBarTextChanged("");
+  searchBarTextChangedInTextBrowser("");
   QTextBrowser *tb = ui->twProperties->currentWidget()->findChild<QTextBrowser*>("textBrowser");
-  //if (!tb) tb = ui->twProperties->currentWidget()->findChild<QTextBrowser*>("updaterOutput");
-  tb->setFocus();
+
+  if (tb)
+    tb->setFocus();
 }
 
 /*
  * Every time the user presses ESC or clicks the close button inside a treeView...
  */
-void MainWindow::searchBarClosedEx()
+void MainWindow::searchBarClosedInTreeView()
 {
-  searchBarTextChangedEx("");
+  searchBarTextChangedInTreeView("");
   QTreeView *tb = ui->twProperties->currentWidget()->findChild<QTreeView*>("tvPkgFileList");
-  tb->setFocus();
+  if (tb) tb->setFocus();
 }
 
 /*
