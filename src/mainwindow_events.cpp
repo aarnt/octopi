@@ -274,16 +274,6 @@ void MainWindow::keyPressEvent(QKeyEvent* ke)
       doRemovePacmanLockFile(); //If we are not executing any command, let's remove Pacman's lock file
     }
   } 
-  /*
-  else if(ke->key() == Qt::Key_S && ke->modifiers() == (Qt::ShiftModifier|Qt::ControlModifier))
-  {
-    if (m_commandExecuting == ectn_NONE)
-    {
-      writeToTabOutputExt("Error:This is some error!");
-      writeToTabOutputExt("perl-error-prone-0.34.3 is a package, not a message!");
-      writeToTabOutputExt("error: this is another error!");
-    }
-  }*/
 
   #if QT_VERSION >= 0x050300
   else if(ke->key() == Qt::Key_T && ke->modifiers() == (Qt::ShiftModifier|Qt::ControlModifier)
@@ -303,6 +293,8 @@ void MainWindow::keyPressEvent(QKeyEvent* ke)
     }
   }
   #endif
+
+  else ke->ignore();
 }
 
 /*
