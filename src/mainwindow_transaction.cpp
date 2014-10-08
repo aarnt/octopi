@@ -74,7 +74,7 @@ QStandardItem * MainWindow::getRemoveTransactionParentItem()
   QTreeView *tvTransaction =
       ui->twProperties->widget(ctn_TABINDEX_TRANSACTION)->findChild<QTreeView*>("tvTransaction");
   QStandardItemModel *sim = qobject_cast<QStandardItemModel *>(tvTransaction->model());
-  QStandardItem *si;
+  QStandardItem *si = 0;
 
   if(sim)
   {
@@ -92,7 +92,7 @@ QStandardItem * MainWindow::getInstallTransactionParentItem()
   QTreeView *tvTransaction =
       ui->twProperties->widget(ctn_TABINDEX_TRANSACTION)->findChild<QTreeView*>("tvTransaction");
   QStandardItemModel *sim = qobject_cast<QStandardItemModel *>(tvTransaction->model());
-  QStandardItem *si;
+  QStandardItem *si = 0;
 
   if(sim)
   {
