@@ -69,8 +69,7 @@ QString showPackageInfo(QString pkgName)
     desc = desc + " ...";
   }
 
-  bool isForeignPkg = false;
-  isForeignPkg = (package->status == ectn_FOREIGN || package->status == ectn_FOREIGN_OUTDATED);
+  bool isForeignPkg = (package->status == ectn_FOREIGN || package->status == ectn_FOREIGN_OUTDATED);
 
   QString installedSize = Package::getInformationInstalledSize(pkgName, isForeignPkg);
 

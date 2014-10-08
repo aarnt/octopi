@@ -412,7 +412,7 @@ public:
     foreach (QWidget *widget, QApplication::topLevelWidgets())
     {
       if (widget->objectName() == "MainWindow")
-        w = (MainWindow*) widget;
+        w = dynamic_cast<MainWindow*>(widget);
     }
     return w;
   }
