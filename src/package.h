@@ -56,31 +56,30 @@ struct PackageListData{
   int     popularity; //votes
   PackageStatus status;
 
-  PackageListData(){
-    name="";
+  PackageListData() : name(""){
   }
 
-  PackageListData(QString n, QString v, QString dSize){
-    name=n;
-    version=v;
-    downloadSize=QString(dSize).toDouble();
+  PackageListData(QString n, QString v, QString dSize) 
+                                    : name(n), 
+                                    version(v), 
+                                    downloadSize(QString(dSize).toDouble()){
   }
 
-  PackageListData(QString n, QString r, QString v, PackageStatus pkgStatus, QString outVersion=""){
-    name=n;
-    repository=r;
-    version=v;
-    status=pkgStatus;
-    outatedVersion=outVersion.trimmed();
+  PackageListData(QString n, QString r, QString v, PackageStatus pkgStatus, QString outVersion="")
+                                    : name(n),
+                                    repository(r),
+                                    version(v),
+                                    outatedVersion(outVersion.trimmed()),
+                                    status(pkgStatus){
   }
 
-  PackageListData(QString n, QString r, QString v, QString d, PackageStatus pkgStatus, QString outVersion=""){
-    name=n;
-    repository=r;
-    version=v;
-    description=d;
-    status=pkgStatus;
-    outatedVersion=outVersion.trimmed();
+  PackageListData(QString n, QString r, QString v, QString d, PackageStatus pkgStatus, QString outVersion="")
+                                    : name(n),
+                                    repository(r),
+                                    version(v),
+                                    description(d),
+                                    outatedVersion(outVersion.trimmed()),
+                                    status(pkgStatus){
   }
 };
 

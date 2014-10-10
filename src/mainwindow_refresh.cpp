@@ -678,7 +678,7 @@ void MainWindow::showToolButtonAUR()
 {
   m_outdatedAURPackagesNameVersion = &g_fwOutdatedAURPackages.result()->content;
 
-  if(m_outdatedAURPackageList->count() > 0 && m_outdatedAURPackageList->count() > 0)
+  if(m_outdatedAURPackageList->count() > 0)
   {
     if (m_outdatedAURPackageList->count() == 1)
     {

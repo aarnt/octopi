@@ -30,9 +30,9 @@ RepoEntry::RepoEntry()
 }
 
 RepoEntry::RepoEntry( QString name, bool active )
-    : active( active )
+    : name( name )
     , valid( true )
-    , name( name )
+    , active( active )
 {
 }
 

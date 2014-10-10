@@ -1053,7 +1053,7 @@ void MainWindow::_ensureTabVisible(const int index)
  */
 bool MainWindow::_textInTabOutput(const QString& findText)
 {
-  bool res;
+  bool res = false;
   QTextBrowser *text =
       ui->twProperties->widget(ctn_TABINDEX_OUTPUT)->findChild<QTextBrowser*>("textBrowser");
   if (text)
@@ -1071,7 +1071,7 @@ bool MainWindow::_textInTabOutput(const QString& findText)
  */
 bool MainWindow::_IsSyncingRepoInTabOutput()
 {
-  bool res;
+  bool res = false;
   QTextBrowser *text =
       ui->twProperties->widget(ctn_TABINDEX_OUTPUT)->findChild<QTextBrowser*>("textBrowser");
   if (text)
