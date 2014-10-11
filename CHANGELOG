@@ -5,8 +5,10 @@
 	transaction was ok (thanks to ringo32).
   BugFix: Keep groups panel hidden (if it were before) after pressing 
 	F12 or F10.
+  BugFix: Merged offa's pull request that fixed a bunch of things.
   Changed repoeditor icon to octopi_green.
   Show/hide groups panel config is now persisted.
+  Added support for hiding/showing Octopi window in the new KF5 notifier code.
   Added support for Ctrl+F in Output tab.
   Added support for the user to choose his terminal and bypass 
 	mirrorcheck at startup, by editing ~/.config/octopi/octopi.conf.

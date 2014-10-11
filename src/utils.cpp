@@ -432,7 +432,6 @@ QString utils::parseDistroNews()
     html = "<p align=\"center\"><h2>" + StrConstants::getNetrunnerNews() + "</h2></p><ul>";
   }
 
-  QString lastBuildDate;
   QString rssPath = QDir::homePath() + QDir::separator() + ".config/octopi/distro_rss.xml";
   QDomDocument doc("rss");
   int itemCounter=0;
@@ -454,17 +453,12 @@ QString utils::parseDistroNews()
 
     if(!e.isNull())
     {
-      if (e.tagName() == "lastBuildDate")
-      {
-        lastBuildDate = e.text();
-      }
-      else if(e.tagName() == "item")
+      if(e.tagName() == "item")
       {
         //Let's iterate over the 10 lastest "item" news
         if (itemCounter == 10) break;
 
         QDomNode text = e.firstChild();
-
         QString itemTitle;
         QString itemLink;
         QString itemDescription;

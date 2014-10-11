@@ -13,11 +13,11 @@
 #include <QMessageBox>
 
 #ifdef KSTATUS
-  #include <KStatusNotifierItem>
+  #include <kstatusnotifieritem.h>
 #endif
 
 /*
- * This is Octopi Notifier slim interface code :-)
+ * This is Octopi slim interface code :-)
  */
 
 /*
@@ -31,6 +31,13 @@ MainWindow::MainWindow(QWidget *parent) :
   initSystemTrayIcon();
 }
 
+MainWindow::~MainWindow()
+{
+#ifdef KSTATUS
+  delete m_systemTrayIcon;
+#endif
+}
+
 /*
  * Let's initialize the system tray object...
  */
@@ -40,8 +47,7 @@ void MainWindow::initSystemTrayIcon()
   m_outdatedPackageList = new QStringList();
 
 #ifdef KSTATUS
-  m_systemTrayIcon = new KStatusNotifierItem(this);
-  m_systemTrayIcon->setTitle("Octopi Notifier");
+  m_systemTrayIcon = new KStatusNotifierItem(0);
 #else
   m_systemTrayIcon = new QSystemTrayIcon(this);
 #endif
@@ -60,7 +66,7 @@ void MainWindow::initSystemTrayIcon()
 
 #ifdef KSTATUS
   m_systemTrayIcon->setToolTipSubTitle(StrConstants::getSyncDatabases());
-  m_systemTrayIcon->setToolTipTitle("Octopi Notifier");
+  m_systemTrayIcon->setToolTipTitle("Octopi");
 #else
   m_systemTrayIcon->show();
   m_systemTrayIcon->setToolTip(StrConstants::getSyncDatabases());
@@ -96,6 +102,8 @@ void MainWindow::initSystemTrayIcon()
   // disable "standard" actions (restore & quit)
 #ifdef KSTATUS
   m_systemTrayIcon->setStandardActionsEnabled(false);
+  connect (m_systemTrayIcon, SIGNAL(activateRequested(bool,QPoint)),
+           this, SLOT(execSystemTrayKF5()) );
 #else
   connect ( m_systemTrayIcon , SIGNAL( activated( QSystemTrayIcon::ActivationReason ) ),
             this, SLOT( execSystemTrayActivated ( QSystemTrayIcon::ActivationReason ) ) );
@@ -166,7 +174,7 @@ void MainWindow::runOctopiSysUpgrade()
 }
 
 /*
- * Shows Octopi Notifier About Dialog...
+ * Shows Octopi About Dialog...
  */
 void MainWindow::aboutOctopiNotifier()
 {
@@ -403,7 +411,7 @@ void MainWindow::afterPacmanHelperSyncDatabase()
 
         #ifdef KSTATUS
           m_systemTrayIcon->setToolTipSubTitle(notification);
-          m_systemTrayIcon->showMessage("Octopi Notifier",
+          m_systemTrayIcon->showMessage("Octopi",
                                         notification, m_systemTrayIcon->iconName());
         #else
           m_systemTrayIcon->setToolTip(notification);
@@ -416,7 +424,7 @@ void MainWindow::afterPacmanHelperSyncDatabase()
 
         #ifdef KSTATUS
           m_systemTrayIcon->setToolTipSubTitle(notification);
-          m_systemTrayIcon->showMessage("Octopi Notifier",
+          m_systemTrayIcon->showMessage("Octopi",
                                         notification, m_systemTrayIcon->iconName());
         #else
           m_systemTrayIcon->setToolTip(notification);
@@ -435,7 +443,7 @@ void MainWindow::afterPacmanHelperSyncDatabase()
 
       #ifdef KSTATUS
         m_systemTrayIcon->setToolTipSubTitle(notification);
-        m_systemTrayIcon->showMessage("Octopi Notifier",
+        m_systemTrayIcon->showMessage("Octopi",
                                       notification, m_systemTrayIcon->iconName());
       #else
         m_systemTrayIcon->setToolTip(notification);
@@ -448,7 +456,7 @@ void MainWindow::afterPacmanHelperSyncDatabase()
 
       #ifdef KSTATUS
         m_systemTrayIcon->setToolTipSubTitle(notification);
-        m_systemTrayIcon->showMessage("Octopi Notifier",
+        m_systemTrayIcon->showMessage("Octopi",
                                       notification, m_systemTrayIcon->iconName());
       #else
         m_systemTrayIcon->setToolTip(notification);
@@ -622,6 +630,24 @@ void MainWindow::execSystemTrayActivated(QSystemTrayIcon::ActivationReason ar)
     break;
   }
   default: break;
+  }
+}
+
+/*
+ * This slot is called only when we're using Knotifications from KF5
+ */
+void MainWindow::execSystemTrayKF5()
+{
+  static bool hidingOctopi = true;
+
+  if (UnixCommand::isAppRunning("octopi", true))
+  {
+    if (!hidingOctopi)
+      runOctopi(ectn_NORMAL_EXEC_OPT);
+    else
+      hideOctopi();
+
+    hidingOctopi = !hidingOctopi;
   }
 }
 

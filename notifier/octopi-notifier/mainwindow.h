@@ -18,7 +18,8 @@ class PacmanHelperClient;
   class KStatusNotifierItem;
 #endif
 
-enum ExecOpt { ectn_NORMAL_EXEC_OPT, ectn_SYSUPGRADE_EXEC_OPT, ectn_SYSUPGRADE_NOCONFIRM_EXEC_OPT };
+enum ExecOpt { ectn_NORMAL_EXEC_OPT, ectn_SYSUPGRADE_EXEC_OPT,
+               ectn_SYSUPGRADE_NOCONFIRM_EXEC_OPT };
 
 class MainWindow : public QMainWindow
 {
@@ -27,12 +28,16 @@ class MainWindow : public QMainWindow
 public:
 
   explicit MainWindow(QWidget *parent = 0);
+  virtual ~MainWindow();
     
 private slots:
 
   void pacmanHelperTimerTimeout();
   void afterPacmanHelperSyncDatabase();
+
   void execSystemTrayActivated(QSystemTrayIcon::ActivationReason);
+  void execSystemTrayKF5();
+
   void refreshAppIcon();
   void runOctopi(ExecOpt execOptions = ectn_SYSUPGRADE_EXEC_OPT);
   void runOctopiSysUpgrade();
