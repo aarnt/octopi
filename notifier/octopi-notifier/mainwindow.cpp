@@ -53,7 +53,6 @@ void MainWindow::initSystemTrayIcon()
 #endif
 
   m_systemTrayIcon->setObjectName("systemTrayIcon");
-  m_icon = IconHelper::getIconOctopiGreen();
 
 #ifdef KSTATUS
   m_systemTrayIcon->setIconByPixmap(m_icon);
@@ -61,18 +60,6 @@ void MainWindow::initSystemTrayIcon()
 #else
   m_systemTrayIcon->setIcon(m_icon); 
 #endif
-
-  setWindowIcon(m_icon);
-
-#ifdef KSTATUS
-  m_systemTrayIcon->setToolTipSubTitle(StrConstants::getSyncDatabases());
-  m_systemTrayIcon->setToolTipTitle("Octopi");
-#else
-  m_systemTrayIcon->show();
-  //m_systemTrayIcon->setToolTip(StrConstants::getSyncDatabases());
-#endif
-
-  qApp->processEvents();
 
   m_actionExit = new QAction(IconHelper::getIconExit(), tr("Exit"), this);
   connect(m_actionExit, SIGNAL(triggered()), this, SLOT(exitNotifier()));
@@ -348,10 +335,21 @@ void MainWindow::pacmanHelperTimerTimeout()
   if (m_commandExecuting != ectn_NONE) return;
 
   if (firstTime)
-  {
+  {    
+    refreshAppIcon();
+
+#ifdef KSTATUS
+  m_systemTrayIcon->setToolTipSubTitle(StrConstants::getSyncDatabases());
+  m_systemTrayIcon->setToolTipTitle("Octopi");
+#else
+  m_systemTrayIcon->show();
+#endif
+
+    setWindowIcon(m_icon);
+
     //From now on, we verify if it's time to check for updates every 1 minute
     m_pacmanHelperTimer->setInterval(1000);
-    refreshAppIcon();
+
     firstTime=false;
   }
 
