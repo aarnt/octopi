@@ -28,6 +28,7 @@ MainWindow::MainWindow(QWidget *parent) :
 {
   m_pacmanDatabaseSystemWatcher =
             new QFileSystemWatcher(QStringList() << ctn_PACMAN_DATABASE_DIR, this);
+
   initSystemTrayIcon();
 }
 
@@ -339,10 +340,9 @@ void MainWindow::pacmanHelperTimerTimeout()
     refreshAppIcon();
 
 #ifdef KSTATUS
-  m_systemTrayIcon->setToolTipSubTitle(StrConstants::getSyncDatabases());
-  m_systemTrayIcon->setToolTipTitle("Octopi");
+    m_systemTrayIcon->setToolTipTitle("Octopi");
 #else
-  m_systemTrayIcon->show();
+    m_systemTrayIcon->show();
 #endif
 
     setWindowIcon(m_icon);
