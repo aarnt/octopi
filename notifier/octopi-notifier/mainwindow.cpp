@@ -248,7 +248,6 @@ void MainWindow::doSystemUpgrade()
 
   totalDownloadSize = totalDownloadSize / 1024;
   QString ds = QString::number(totalDownloadSize, 'f', 2);
-
   TransactionDialog question(this);
 
   //If we're in Chakra, there are no graphical system upgrades!
@@ -350,17 +349,10 @@ void MainWindow::pacmanHelperTimerTimeout()
 
   if (firstTime)
   {
+    //From now on, we verify if it's time to check for updates every 1 minute
     m_pacmanHelperTimer->setInterval(1000);
+    refreshAppIcon();
     firstTime=false;
-  }
-
-  if (m_outdatedPackageList->count() > 0)
-  {
-    m_actionSystemUpgrade->setEnabled(false);
-  }
-  else
-  {
-    m_actionSystemUpgrade->setVisible(false);
   }
 
   //Is it time to syncdb again?
@@ -372,10 +364,6 @@ void MainWindow::pacmanHelperTimerTimeout()
     syncDatabase();
     //Then we set new LastCheckTime...
     SettingsManager::setLastSyncDbTime(now);
-  }
-  else
-  {
-    refreshAppIcon();
   }
 }
 
@@ -519,8 +507,8 @@ void MainWindow::sendNotification(const QString &msg)
 void MainWindow::refreshAppIcon()
 {
   m_outdatedPackageList = Package::getOutdatedPackageList();
-
   bool hasAURTool = UnixCommand::hasTheExecutable(StrConstants::getForeignRepositoryToolName());
+
   if (hasAURTool)
   {
     m_outdatedAURPackageList = Package::getOutdatedAURPackageList();
