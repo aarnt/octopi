@@ -53,7 +53,7 @@ void MainWindow::initSystemTrayIcon()
 #endif
 
   m_systemTrayIcon->setObjectName("systemTrayIcon");
-  m_icon = IconHelper::getIconOctopiTransparent();
+  m_icon = IconHelper::getIconOctopiGreen();
 
 #ifdef KSTATUS
   m_systemTrayIcon->setIconByPixmap(m_icon);
@@ -69,7 +69,7 @@ void MainWindow::initSystemTrayIcon()
   m_systemTrayIcon->setToolTipTitle("Octopi");
 #else
   m_systemTrayIcon->show();
-  m_systemTrayIcon->setToolTip(StrConstants::getSyncDatabases());
+  //m_systemTrayIcon->setToolTip(StrConstants::getSyncDatabases());
 #endif
 
   qApp->processEvents();
@@ -85,6 +85,12 @@ void MainWindow::initSystemTrayIcon()
   m_actionOctopi->setText("Octopi...");
   connect(m_actionOctopi, SIGNAL(triggered()), this, SLOT(startOctopi()));
 
+  m_actionSyncDatabase = new QAction(this);
+  m_actionSyncDatabase->setIconVisibleInMenu(true);
+  m_actionSyncDatabase->setText(StrConstants::getSyncDatabase());
+  m_actionSyncDatabase->setIcon(IconHelper::getIconSyncDatabase());
+  connect(m_actionSyncDatabase, SIGNAL(triggered()), this, SLOT(syncDatabase()));
+
   m_actionSystemUpgrade = new QAction(this);
   m_actionSystemUpgrade->setIconVisibleInMenu(true);
   m_actionSystemUpgrade->setText(tr("System upgrade"));
@@ -93,6 +99,7 @@ void MainWindow::initSystemTrayIcon()
 
   m_systemTrayIconMenu = new QMenu( this );
   m_systemTrayIconMenu->addAction(m_actionOctopi);
+  m_systemTrayIconMenu->addAction(m_actionSyncDatabase);
   m_systemTrayIconMenu->addAction(m_actionSystemUpgrade);
   m_systemTrayIconMenu->addSeparator();
   m_systemTrayIconMenu->addAction(m_actionAbout);
@@ -200,7 +207,8 @@ void MainWindow::hideOctopi()
 bool MainWindow::_isSUAvailable()
 {
   //If there are no means to run the actions, we must warn!
-  if (WMHelper::getSUCommand() == ctn_NO_SU_COMMAND){
+  if (WMHelper::getSUCommand() == ctn_NO_SU_COMMAND)
+  {
     QMessageBox::critical( 0, StrConstants::getApplicationName(),
                            StrConstants::getErrorNoSuCommand() +
                            "\n" + StrConstants::getYoullNeedSuFrontend());
@@ -327,6 +335,7 @@ void MainWindow::doSystemUpgradeFinished(int, QProcess::ExitStatus)
 void MainWindow::toggleEnableInterface(bool state)
 {
   m_actionOctopi->setEnabled(state);
+  m_actionSyncDatabase->setEnabled(state);
   m_actionExit->setEnabled(state);
 }
 
@@ -341,11 +350,9 @@ void MainWindow::pacmanHelperTimerTimeout()
 
   if (firstTime)
   {
-    m_pacmanHelperTimer->setInterval(1000 * 60 * 60);
+    m_pacmanHelperTimer->setInterval(1000);
     firstTime=false;
   }
-
-  m_actionOctopi->setEnabled(false);
 
   if (m_outdatedPackageList->count() > 0)
   {
@@ -356,27 +363,20 @@ void MainWindow::pacmanHelperTimerTimeout()
     m_actionSystemUpgrade->setVisible(false);
   }
 
-  m_icon = IconHelper::getIconOctopiTransparent();
+  //Is it time to syncdb again?
+  QDateTime lastCheckTime = SettingsManager::getLastSyncDbTime();
+  QDateTime now = QDateTime::currentDateTime();
 
-#ifdef KSTATUS
-  m_systemTrayIcon->setIconByPixmap(m_icon);
-  m_systemTrayIcon->setToolTipIconByPixmap(m_icon);
-  m_systemTrayIcon->setToolTipSubTitle(StrConstants::getSyncDatabases());
-#else
-  m_systemTrayIcon->setIcon(m_icon);
-  m_systemTrayIcon->setToolTip(StrConstants::getSyncDatabases());
-#endif
-
-  qApp->processEvents();
-
-  m_systemTrayIconMenu->close();
-
-#ifndef KSTATUS
-  m_systemTrayIcon->setContextMenu(0);
-#endif
-
-  m_commandExecuting = ectn_SYNC_DATABASE;
-  m_pacmanHelperClient->syncdb();
+  if (lastCheckTime.isNull() || lastCheckTime.daysTo(now) >= 1)
+  {
+    syncDatabase();
+    //Then we set new LastCheckTime...
+    SettingsManager::setLastSyncDbTime(now);
+  }
+  else
+  {
+    refreshAppIcon();
+  }
 }
 
 /*
@@ -384,7 +384,7 @@ void MainWindow::pacmanHelperTimerTimeout()
  */
 void MainWindow::afterPacmanHelperSyncDatabase()
 {
-  m_actionOctopi->setEnabled(true);
+  toggleEnableInterface(true);
 
 #ifndef KSTATUS
   m_systemTrayIcon->setContextMenu(m_systemTrayIconMenu);
@@ -470,11 +470,41 @@ void MainWindow::afterPacmanHelperSyncDatabase()
 }
 
 /*
+ * Called every time user selects "Sync databases..." menu option
+ */
+void MainWindow::syncDatabase()
+{
+  toggleEnableInterface(false);
+  m_icon = IconHelper::getIconOctopiTransparent();
+
+#ifdef KSTATUS
+  m_systemTrayIcon->setIconByPixmap(m_icon);
+  m_systemTrayIcon->setToolTipIconByPixmap(m_icon);
+  m_systemTrayIcon->setToolTipSubTitle(StrConstants::getSyncDatabases());
+#else
+  m_systemTrayIcon->setIcon(m_icon);
+  m_systemTrayIcon->setToolTip(StrConstants::getSyncDatabases());
+#endif
+
+  qApp->processEvents();
+
+  m_systemTrayIconMenu->close();
+
+#ifndef KSTATUS
+  m_systemTrayIcon->setContextMenu(0);
+#endif
+
+  m_commandExecuting = ectn_SYNC_DATABASE;
+  m_pacmanHelperClient->syncdb();
+}
+
+/*
  * Uses notify-send to send a notification to the systray area
  */
 void MainWindow::sendNotification(const QString &msg)
 {
   QString processToExec("notify-send");
+
   if (UnixCommand::hasTheExecutable(processToExec))
   {
     processToExec += " -i /usr/share/icons/octopi_red.png -t 5000 \"" +
@@ -584,6 +614,8 @@ void MainWindow::refreshAppIcon()
     m_icon = IconHelper::getIconOctopiGreen();
 
 #ifdef KSTATUS
+    //m_systemTrayIcon->setAttentionIconByPixmap(m_icon);
+    //m_systemTrayIcon->setStatus(KStatusNotifierItem::NeedsAttention);
     m_systemTrayIcon->setStatus(KStatusNotifierItem::Passive);
 #endif
   }

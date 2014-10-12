@@ -31,6 +31,7 @@ int main(int argc, char *argv[])
                      QLocale::system().name());
   a.installTranslator(&appTranslator);
   a.setQuitOnLastWindowClosed(false);
+
   MainWindow w;
   QResource::registerResource("./resources.qrc");
 

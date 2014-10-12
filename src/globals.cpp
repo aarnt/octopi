@@ -21,7 +21,6 @@
 #include "globals.h"
 #include "mainwindow.h"
 
-#include <QStandardItem>
 #include <QFutureWatcher>
 
 #if QT_VERSION > 0x050000

@@ -18,6 +18,10 @@
 *
 */
 
+#include "strconstants.h"
+#include "uihelper.h"
+#include "terminalselectordialog.h"
+
 #include <QQmlContext>
 #include <QtQml/QQmlProperty>
 #include <QtQuickWidgets/QQuickWidget>
@@ -25,9 +29,6 @@
 #include <QDialogButtonBox>
 #include <QDialog>
 #include <QVBoxLayout>
-
-#include "uihelper.h"
-#include "terminalselectordialog.h"
 
 /*
  * This dialog lets user chooses one of the available terminals to use with Octopi
@@ -49,8 +50,9 @@ TerminalSelectorDialog::TerminalSelectorDialog(QWidget *parent, QStringList term
   context->setContextProperty("terminalModel", QVariant::fromValue(terminalList));  
 
   m_quickWidget->setSource(QUrl("qrc:/resources/qml/chooseterminal.qml"));
-  setWindowTitle("Choose a terminal");
-  QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel);
+  setWindowTitle(StrConstants::getChooseATerminal());
+  QDialogButtonBox *buttonBox =
+      new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel);
 
   connect(buttonBox, SIGNAL(accepted()), this, SLOT(accept()));
   connect(buttonBox, SIGNAL(rejected()), this, SLOT(reject()));

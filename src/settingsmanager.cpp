@@ -100,6 +100,19 @@ QByteArray SettingsManager::getSplitterHorizontalState(){
   return (instance()->getSYSsettings()->value( ctn_KEY_SPLITTER_HORIZONTAL_STATE, 0).toByteArray());
 }
 
+QDateTime SettingsManager::getLastSyncDbTime()
+{
+  if (!instance()->getSYSsettings()->contains(ctn_KEY_LAST_SYNC_DB_TIME))
+  {
+    return QDateTime();
+  }
+  else
+  {
+    SettingsManager p_instance;
+    return (p_instance.getSYSsettings()->value( ctn_KEY_LAST_SYNC_DB_TIME, 0)).toDateTime();
+  }
+}
+
 void SettingsManager::setCurrentTabIndex(int newValue){
   instance()->getSYSsettings()->setValue( ctn_KEY_CURRENT_TAB_INDEX, newValue);
   instance()->getSYSsettings()->sync();
@@ -136,6 +149,12 @@ void SettingsManager::setSplitterHorizontalState(QByteArray newValue){
   instance()->getSYSsettings()->sync();
 }
 
+void SettingsManager::setLastSyncDbTime(QDateTime newValue)
+{
+  instance()->getSYSsettings()->setValue(ctn_KEY_LAST_SYNC_DB_TIME, newValue);
+  instance()->getSYSsettings()->sync();
+}
+
 void SettingsManager::setTerminal(QString newValue){
   instance()->getSYSsettings()->setValue( ctn_KEY_TERMINAL, newValue);
   instance()->getSYSsettings()->sync();
@@ -148,8 +167,7 @@ bool SettingsManager::isValidTerminalSelected()
 {
   QString userTerminal = getTerminal();
 
-  if (userTerminal == ctn_AUTOMATIC)
-    return true;
+  if (userTerminal == ctn_AUTOMATIC) return true;
 
   if (userTerminal == ctn_XFCE_TERMINAL ||
       userTerminal == ctn_LXDE_TERMINAL ||

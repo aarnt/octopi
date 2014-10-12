@@ -264,13 +264,13 @@ QList<QModelIndex> * utils::findFileInTreeView( const QString& name, const QStan
  */
 QString utils::retrieveDistroNews(bool searchForLatestNews)
 {
-  const QString ctn_ANTERGOS_RSS = "http://antergos.com/category/news/feed/";
-  const QString ctn_ARCHBSD_RSS = "http://archbsd.net/feeds/news/";
-  const QString ctn_ARCH_LINUX_RSS = "https://www.archlinux.org/feeds/news/";
-  const QString ctn_CHAKRA_RSS = "http://chakraos.org/news/index.php?/feeds/index.rss2";
-  const QString ctn_KAOS_RSS = "http://kaosx.us/feed/";
-  const QString ctn_MANJARO_LINUX_RSS = "http://manjaro.org/feed/";
-  const QString ctn_NETRUNNER_RSS = "http://www.netrunner-os.com/feed/";
+  const QString ctn_ANTERGOS_RSS_URL = "http://antergos.com/category/news/feed/";
+  const QString ctn_ARCHBSD_RSS_URL = "http://archbsd.net/feeds/news/";
+  const QString ctn_ARCH_LINUX_RSS_URL = "https://www.archlinux.org/feeds/news/";
+  const QString ctn_CHAKRA_RSS_URL = "http://chakraos.org/news/index.php?/feeds/index.rss2";
+  const QString ctn_KAOS_RSS_URL = "http://kaosx.us/feed/";
+  const QString ctn_MANJARO_LINUX_RSS_URL = "http://manjaro.org/feed/";
+  const QString ctn_NETRUNNER_RSS_URL = "http://www.netrunner-os.com/feed/";
 
   LinuxDistro distro = UnixCommand::getLinuxDistro();
   QString res;
@@ -293,31 +293,31 @@ QString utils::retrieveDistroNews(bool searchForLatestNews)
 
     if (distro == ectn_ANTERGOS)
     {
-      curlCommand = curlCommand.arg(ctn_ANTERGOS_RSS).arg(tmpRssPath);
+      curlCommand = curlCommand.arg(ctn_ANTERGOS_RSS_URL).arg(tmpRssPath);
     }
     else if (distro == ectn_ARCHBSD)
     {
-      curlCommand = curlCommand.arg(ctn_ARCHBSD_RSS).arg(tmpRssPath);
+      curlCommand = curlCommand.arg(ctn_ARCHBSD_RSS_URL).arg(tmpRssPath);
     }
     else if (distro == ectn_ARCHLINUX || distro == ectn_ARCHBANGLINUX || distro == ectn_MOOOSLINUX)
     {
-      curlCommand = curlCommand.arg(ctn_ARCH_LINUX_RSS).arg(tmpRssPath);
+      curlCommand = curlCommand.arg(ctn_ARCH_LINUX_RSS_URL).arg(tmpRssPath);
     }
     else if (distro == ectn_CHAKRA)
     {
-      curlCommand = curlCommand.arg(ctn_CHAKRA_RSS).arg(tmpRssPath);
+      curlCommand = curlCommand.arg(ctn_CHAKRA_RSS_URL).arg(tmpRssPath);
     }
     else if (distro == ectn_KAOS)
     {
-      curlCommand = curlCommand.arg(ctn_KAOS_RSS).arg(tmpRssPath);
+      curlCommand = curlCommand.arg(ctn_KAOS_RSS_URL).arg(tmpRssPath);
     }
     else if (distro == ectn_MANJAROLINUX)
     {
-      curlCommand = curlCommand.arg(ctn_MANJARO_LINUX_RSS).arg(tmpRssPath);
+      curlCommand = curlCommand.arg(ctn_MANJARO_LINUX_RSS_URL).arg(tmpRssPath);
     }
     else if (distro == ectn_NETRUNNER)
     {
-      curlCommand = curlCommand.arg(ctn_NETRUNNER_RSS).arg(tmpRssPath);
+      curlCommand = curlCommand.arg(ctn_NETRUNNER_RSS_URL).arg(tmpRssPath);
     }
 
     if (UnixCommand::runCurlCommand(curlCommand).isEmpty())

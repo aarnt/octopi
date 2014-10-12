@@ -104,7 +104,7 @@ public:
   }
 
   // Icons for QActions
-  static QIcon getIconSyncPackages(){
+  static QIcon getIconSyncDatabase(){
     if (WMHelper::isKDERunning() && (UnixCommand::getLinuxDistro() != ectn_KAOS))
       return QIcon::fromTheme("view-refresh", QIcon(":/resources/images/refresh.png"));
     else

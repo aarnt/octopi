@@ -470,594 +470,604 @@
 <context>
     <name>QObject</name>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="41"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="39"/>
         <source>Octopi usage help:</source>
         <translation>Ajuda d&apos;ús per Octopi:</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="42"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="40"/>
         <source>show application version.</source>
         <translation>mostra la versió de la aplicació.</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="43"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="41"/>
         <source>use a different Qt4 style (ex: -style gtk).</source>
         <translation>fes servir un estil QT4 diferent (ex: -style gtk).</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="44"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="42"/>
         <source>use a different remove command (ex: -removecmd R).</source>
         <translation>utilitza una ordre d&apos;esborrat diferent (ex: -removecmd R).</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="45"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="43"/>
         <source>force a system upgrade at startup.</source>
         <translation>força una actualització del sistema a l&apos;arrencada.</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="51"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="49"/>
         <source>All</source>
         <translation>Tot</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="116"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="114"/>
         <source>Antergos news</source>
         <translation>Novetats d&apos;Antergos</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="120"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="118"/>
         <source>ArchBSD news</source>
         <translation>Novetats d&apos;ArchBSD</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="124"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="122"/>
         <source>Arch Linux news</source>
         <translation>Novetats Arch Linux</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="128"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="126"/>
         <source>Chakra news</source>
         <translation>Novetats Chakra</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="132"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="130"/>
         <source>KaOS news</source>
         <translation>Noticies KaOS</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="136"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="134"/>
         <source>Manjaro Linux news</source>
         <translation>Novetats Manjaro Linux</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="140"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="138"/>
         <source>Netrunner Rolling news</source>
         <translation>Novetats de Netrunner Rolling</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="144"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="142"/>
         <source>No news could be found! Press Ctrl+G to download the latest news.</source>
         <translation>No es poden trobar novetats! Prem Ctrl+G per descarregar les últimes novetats.</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="148"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="146"/>
         <source>This Linux distro seems to be incompatible with Octopi!</source>
         <translation>Aquesta distro Linux sembla incompatible amb Octopi!</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="152"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="150"/>
         <source>Internet seems unavailable!</source>
         <translation>Internet sembla no estar disponible</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="156"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="154"/>
         <source>Display all groups</source>
         <translation>Mostrar tots els grups</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="167"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="165"/>
         <source>Usage</source>
         <translation>Ús</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="171"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="169"/>
         <source>About</source>
         <translation>Quant a</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="175"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="173"/>
         <source>Name</source>
         <translation>Nom</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="179"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="177"/>
         <source>Version</source>
         <translation>Versió</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="183"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="181"/>
         <source>Outdated version</source>
         <translation>Versió desactualitzada</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="187"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="185"/>
         <source>Available version</source>
         <translation>Versió disponible</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="191"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="189"/>
         <source>No description available.</source>
         <translation>Descripció no disponible.</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="195"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="193"/>
         <source>URL</source>
         <translation>URL</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="199"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="197"/>
         <source>Repository</source>
         <translation>Repositori</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="203"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="201"/>
         <source>Licenses</source>
         <translation>Llicències</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="207"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="205"/>
         <source>Group</source>
         <translation>Grup</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="211"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="209"/>
         <source>Groups</source>
         <translation>Grups</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="215"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="213"/>
         <source>Provides</source>
         <translation>Proporciona</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="219"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="217"/>
         <source>Depends On</source>
         <translation>Depèn de</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="223"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="221"/>
         <source>Required By</source>
         <translation>Requerit Per</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="227"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="225"/>
         <source>Optional For</source>
         <translation>Opcional Per</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="231"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="229"/>
         <source>Optional Deps</source>
         <translation>Dependències opcionals</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="235"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="233"/>
         <source>Conflicts With</source>
         <translation>Conflictes Amb</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="239"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="237"/>
         <source>Replaces</source>
         <translation>Reemplaça</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="243"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="241"/>
         <source>Popularity</source>
         <translation>Popularitat</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="247"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="245"/>
         <source>votes</source>
         <translation>votacions</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="251"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="249"/>
         <source>Download Size</source>
         <translation>Mida de la Baixada</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="255"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="253"/>
         <source>Installed Size</source>
         <translation>Mida Instala·lat</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="259"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="257"/>
         <source>Packager</source>
         <translation>Empaquetador</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="263"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="261"/>
         <source>Package</source>
         <translation>Paquet</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="267"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="265"/>
         <source>Packages</source>
         <translation>Paquets</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="271"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="269"/>
         <source>Architecture</source>
         <translation>Arquitectura</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="275"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="273"/>
         <source>Build Date</source>
         <translation>Data de muntatge</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="279"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="277"/>
         <source>Description</source>
         <translation>Descripció</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="283"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="281"/>
         <source>Attention</source>
         <translation>Atenció</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="287"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="285"/>
         <source>automatic</source>
         <translation>automàtic</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="291"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="289"/>
         <source>Password</source>
         <translation>Clau d&apos;accés</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="295"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="293"/>
         <source>Info</source>
         <translation>Info</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="299"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="297"/>
         <source>Files</source>
         <translation>Fitxers</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="303"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="301"/>
         <source>Transaction</source>
         <translation>Transacció</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="307"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="305"/>
         <source>Output</source>
         <translation>Sortida</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="311"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="309"/>
         <source>News</source>
         <translation>Novetats</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="315"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="313"/>
         <source>Contents of &quot;%1&quot;</source>
         <translation>Contingut de &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="319"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="317"/>
         <source>Find</source>
         <translation>Trobar</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="323"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="321"/>
         <source>Clear</source>
         <translation>Netejar</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="327"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="325"/>
         <source> (outdated installed version is %1)</source>
         <translation>(versió instal·lada desactualitzada és %1)</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="331"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="329"/>
         <source> (newer installed version is %1)</source>
         <translation>(la versió instal·lada més nova és %1)</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="335"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="333"/>
         <source>Building package list...</source>
         <translation>Construïnt la llista de paquets...</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="339"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="337"/>
         <source>Searching for %1 latest news...</source>
         <translation>Cercant últimes novetats de %1...</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="343"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="341"/>
         <source>There is one outdated package in your system:</source>
         <translation>Hi ha un paquet desactualitzat al teu sistema:</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="347"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="345"/>
         <source>There are %1 outdated packages in your system:</source>
         <translation>Hi ha %1 paquets desactualitzats al teu sistema:</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="351"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="349"/>
         <source>(version %1 is available)</source>
         <translation>(versió %1 disponible)</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="355"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="353"/>
         <source>%1 (%2) packages</source>
         <translation>paquets %1 (%2)</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="359"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="357"/>
         <source>%1 installed</source>
         <translation>%1 instal·lat</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="363"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="361"/>
         <source>%1 outdated</source>
         <translation>%1 desactualitzat</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="367"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="365"/>
         <source>%1 available</source>
         <translation>%1 disponible</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="371"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="369"/>
         <source>Cleaning package cache...</source>
         <translation>Netejant memòria cau del paquet...</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="375"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="373"/>
         <source>Removing Pacman&apos;s transaction lock file...</source>
         <translation>Esborrant l&apos;arxiu de bloqueig de transacció Pacman</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="379"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="377"/>
         <source>Syncing</source>
         <translation>Sincronitzant</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="383"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="381"/>
         <source>Press any key to continue...</source>
         <translation>Prem qualsevol tecla per continuar...</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="391"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="389"/>
+        <source>Sync database</source>
+        <translation>Sincronitzar base de dades</translation>
+    </message>
+    <message>
+        <location filename="Projects/octopi/src/strconstants.h" line="393"/>
         <source>Synchronizing databases...</source>
         <translation>Sincronitzant bases de dades...</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="395"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="397"/>
         <source>is up to date</source>
         <translation>està actualitzat</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="399"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="401"/>
         <source>Starting full system upgrade...</source>
         <translation>Començant actualització completa del sistema...</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="403"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="405"/>
         <source>Installing selected packages...</source>
         <translation>Instal·lant paquets seleccionats...</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="407"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="409"/>
         <source>Removing selected packages...</source>
         <translation>Eliminant paquets seleccionats...</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="411"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="413"/>
         <source>Removing/installing selected packages...</source>
         <translation>Eliminant/instal·lant paquets seleccionats...</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="415"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="417"/>
+        <source>Choose a terminal</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="Projects/octopi/src/strconstants.h" line="421"/>
         <source>Running command in terminal...</source>
         <translation>Executant ordre al terminal...</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="419"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="425"/>
         <source>Command finished OK!</source>
         <translation>L&apos;ordre ha fintalitzat bé!</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="423"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="429"/>
         <source>Command finished with errors!</source>
         <translation>ordre finalitzada amb errors!</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="427"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="433"/>
         <source>Retrieving %1</source>
         <translation>Recuperant %1</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="431"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="437"/>
         <source>Total download size: %1 KB</source>
         <translation>Mida total baixada: %1 KB</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="435"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="441"/>
         <source>The following target needs to be retrieved</source>
         <translation>El següent objectiu necessita ser recuperat</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="439"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="445"/>
         <source>The following target will be removed</source>
         <translation>El següent objectiu serà eliminat</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="443"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="449"/>
         <source>The following %1 targets need to be retrieved</source>
         <translation>Els següents %1 objectius necessiten ser recuperats</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="447"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="453"/>
         <source>The following %1 targets will be removed</source>
         <translation>Els següents %1 objectius seran eliminats</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="451"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="457"/>
         <source>There are forbidden packages in the removal list!</source>
         <translation>Hi ha paquets prohibits a la llista d&apos;eliminats!</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="455"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="461"/>
         <source>There are no new updates available!</source>
         <translation>No hi ha noves actualitzacions disponibles!</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="459"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="465"/>
         <source>There is an update available!</source>
         <translation>Hi ha una actualització disponible!</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="463"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="469"/>
         <source>There are %1 updates available!</source>
         <translation>Hi ha %1 actualitzacions disponibles!</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="467"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="473"/>
         <source>Confirm?</source>
         <translation>Confirmes?</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="471"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="477"/>
         <source>Warning!!!</source>
         <translation>Avís!!!</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="475"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="481"/>
         <source>Confirmation</source>
         <translation>Confirmació</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="479"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="485"/>
         <source>There has been a transaction error!</source>
         <translation>Hi ha hagut un error transaccional!</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="483"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="489"/>
         <source>Do you want to execute this transaction in a Terminal?</source>
         <translation>Vols executar aquesta transacció en el Terminal?</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="487"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="493"/>
         <source>Do you really want to clean the package cache?</source>
         <translation>Realment vols netejar la memòria cau de paquets?</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="491"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="497"/>
         <source>Do you really want to remove Pacman&apos;s transaction lock file?</source>
         <translation>Estàs segur de voler esborrar l&apos;arxiu de bloqueig de transacció Pacman?</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="495"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="501"/>
         <source>Do you really want to rollback the transaction?</source>
         <translation>Realment vols desfer la transacció?</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="499"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="505"/>
         <source>Please, enter the administrator&apos;s password</source>
         <translation>Sii us plau, entra la clau d&apos;accés de l&apos;administrador</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="505"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="511"/>
         <source>There are no means to get administrator&apos;s credentials.</source>
         <translation>No hi ha motius per obtenir les credencials de l&apos;administrador.</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="509"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="515"/>
         <source>You&apos;ll need to install a su frontend like gksu or kdesu.</source>
         <translation>Et caldrà instal·lar un frontal per a su com gksu o kdesu.</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="513"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="519"/>
         <source>You can not run Octopi with administrator&apos;s credentials.</source>
         <translation>No pots executar Octopi amb les credencials d&apos;administrador.</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="517"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="523"/>
         <source>There is a pending transaction</source>
         <translation>Hi ha una transacció pendent</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="521"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="527"/>
         <source>Do you really want to quit?</source>
         <translation>Realment vols sortir?</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="525"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="531"/>
         <source>Executing command</source>
         <translation>Executant ordre</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="529"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="535"/>
         <source>Run in terminal</source>
         <translation>Executar en terminal</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="533"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="539"/>
         <source>Needs application restart to take effect</source>
         <translation>Cal reiniciar l&apos;aplicació per tal que tinguin efecte</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="537"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="543"/>
         <source>These changes need application restart to take effect!</source>
         <translation>Aquests canvis requereixen reiniciar l&apos;aplicació per tenir efecte!</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="541"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="547"/>
         <source>Select the packages you want to install</source>
         <translation>Sel·lecciona els paquets que vols instal·lar</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="545"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="551"/>
         <source>This file does not appear to be a simple text.
 Are you sure you want to open it?</source>
         <translation>Aquest fitxer no sembla ser un text simple
 Estàs segur que vols obrir-lo?</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="550"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="556"/>
         <source>To be installed</source>
         <translation>A instal·lar</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="554"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="560"/>
         <source>To be removed</source>
         <translation>A eliminar</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="558"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="564"/>
         <source>remove</source>
         <translation>eliminar</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="562"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="568"/>
         <source>install</source>
         <translation>instal·lar</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="566"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="572"/>
         <source>Remove item</source>
         <translation>Eliminar ítem</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="570"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="576"/>
         <source>Remove items</source>
         <translation>Eliminar ítems</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="574"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="580"/>
         <source>Press Ctrl+A to select/deselect all</source>
         <translation>Prem Ctrl+A per sel·leccionar/anul·lar la sel·lecció de tot</translation>
     </message>

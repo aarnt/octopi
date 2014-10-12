@@ -470,594 +470,604 @@
 <context>
     <name>QObject</name>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="41"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="39"/>
         <source>Octopi usage help:</source>
         <translation>Octopidan foydalanish bo&apos;yicha yordam:</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="42"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="40"/>
         <source>show application version.</source>
         <translation>dastur versiyasini ko&apos;rsatish.</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="43"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="41"/>
         <source>use a different Qt4 style (ex: -style gtk).</source>
         <translation>boshqa Qt4 uslubini qo&apos;llang (mas.: -style gtk).</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="44"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="42"/>
         <source>use a different remove command (ex: -removecmd R).</source>
         <translation>boshqa o&apos;chirish buyrug&apos;idan foydalaning (mas.: -removecmd R).</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="45"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="43"/>
         <source>force a system upgrade at startup.</source>
         <translation>ishga tushganda tizimni yangilash.</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="51"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="49"/>
         <source>All</source>
         <translation>Hamma</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="116"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="114"/>
         <source>Antergos news</source>
         <translation>Antergos yangiliklari</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="120"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="118"/>
         <source>ArchBSD news</source>
         <translation>ArchBSD yangiliklari</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="124"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="122"/>
         <source>Arch Linux news</source>
         <translation>Arch Linux yangiliklari</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="128"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="126"/>
         <source>Chakra news</source>
         <translation>Chakra  yangiliklari</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="132"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="130"/>
         <source>KaOS news</source>
         <translation>KaOS yangiliklari</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="136"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="134"/>
         <source>Manjaro Linux news</source>
         <translation>Manjaro Linux  yangiliklari</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="140"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="138"/>
         <source>Netrunner Rolling news</source>
         <translation>Netrunner Rolling yangiliklari</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="144"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="142"/>
         <source>No news could be found! Press Ctrl+G to download the latest news.</source>
         <translation>Yangiliklar topilmadi! So&apos;nggi yangiliklarni yuklash uchun Ctrl+G bosing.</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="148"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="146"/>
         <source>This Linux distro seems to be incompatible with Octopi!</source>
         <translation>Ushbu Linux distributivi Octopi dasturiga mos kelmayotganga o&apos;xshaydi!</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="152"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="150"/>
         <source>Internet seems unavailable!</source>
         <translation>Internet mavjud bo&apos;lmaganga o&apos;xshaydi!</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="156"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="154"/>
         <source>Display all groups</source>
         <translation>Hamma guruhlarni ko&apos;rsatish</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="167"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="165"/>
         <source>Usage</source>
         <translation>Foydalanish</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="171"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="169"/>
         <source>About</source>
         <translation>Dastur haqida</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="175"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="173"/>
         <source>Name</source>
         <translation>Nomi</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="179"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="177"/>
         <source>Version</source>
         <translation>Versiyasi</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="183"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="181"/>
         <source>Outdated version</source>
         <translation>Eskirgan versiya</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="187"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="185"/>
         <source>Available version</source>
         <translation>Mavjud versiya</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="191"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="189"/>
         <source>No description available.</source>
         <translation>Ta&apos;rifi mavjud emas.</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="195"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="193"/>
         <source>URL</source>
         <translation>URL</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="199"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="197"/>
         <source>Repository</source>
         <translation>Repozitoriy</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="203"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="201"/>
         <source>Licenses</source>
         <translation>Litsenziyalar</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="207"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="205"/>
         <source>Group</source>
         <translation>Guruh</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="211"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="209"/>
         <source>Groups</source>
         <translation>Guruhlar</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="215"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="213"/>
         <source>Provides</source>
         <translation>Ta&apos;minlaydi</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="219"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="217"/>
         <source>Depends On</source>
         <translation>Bog&apos;langan</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="223"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="221"/>
         <source>Required By</source>
         <translation>Talab qilinadi</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="227"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="225"/>
         <source>Optional For</source>
         <translation>Qo&apos;shimcha</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="231"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="229"/>
         <source>Optional Deps</source>
         <translation>Qo&apos;shimcha</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="235"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="233"/>
         <source>Conflicts With</source>
         <translation>Ixtilofda</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="239"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="237"/>
         <source>Replaces</source>
         <translation>Almashtiradi</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="243"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="241"/>
         <source>Popularity</source>
         <translation>Mashxurligi</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="247"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="245"/>
         <source>votes</source>
         <translation>ovozlar</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="251"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="249"/>
         <source>Download Size</source>
         <translation>Yuklab olinadigan hajm</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="255"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="253"/>
         <source>Installed Size</source>
         <translation>O&apos;rnatilgan holda hajm</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="259"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="257"/>
         <source>Packager</source>
         <translation>Paket yaratuvchisi</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="263"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="261"/>
         <source>Package</source>
         <translation>Paket</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="267"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="265"/>
         <source>Packages</source>
         <translation>Paketlar</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="271"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="269"/>
         <source>Architecture</source>
         <translation>Arxitektura</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="275"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="273"/>
         <source>Build Date</source>
         <translation>Yig&apos;ish sanasi</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="279"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="277"/>
         <source>Description</source>
         <translation>Ta&apos;rifi</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="283"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="281"/>
         <source>Attention</source>
         <translation>Diqqat</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="287"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="285"/>
         <source>automatic</source>
         <translation>avtomatik</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="291"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="289"/>
         <source>Password</source>
         <translation>Parol</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="295"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="293"/>
         <source>Info</source>
         <translation>Ma&apos;lumot</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="299"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="297"/>
         <source>Files</source>
         <translation>Fayllar</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="303"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="301"/>
         <source>Transaction</source>
         <translation>Tranzaksiya</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="307"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="305"/>
         <source>Output</source>
         <translation>Natija</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="311"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="309"/>
         <source>News</source>
         <translation>Yangiliklar</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="315"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="313"/>
         <source>Contents of &quot;%1&quot;</source>
         <translation>&quot;%1&quot;&apos;ning tarkibi</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="319"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="317"/>
         <source>Find</source>
         <translation>Topish</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="323"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="321"/>
         <source>Clear</source>
         <translation>Tozalash</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="327"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="325"/>
         <source> (outdated installed version is %1)</source>
         <translation> (eskirgan o&apos;rnatilgan versiya %1)</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="331"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="329"/>
         <source> (newer installed version is %1)</source>
         <translation> (yangi o&apos;rnatilgan versiya %1)</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="335"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="333"/>
         <source>Building package list...</source>
         <translation>Paketlar ro&apos;yxati yig&apos;ilmoqda...</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="339"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="337"/>
         <source>Searching for %1 latest news...</source>
         <translation>%1 so&apos;nggi yangiliklari qidirilmoqda...</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="343"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="341"/>
         <source>There is one outdated package in your system:</source>
         <translation>Tizimda eskirgan paket mavjud:</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="347"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="345"/>
         <source>There are %1 outdated packages in your system:</source>
         <translation>Tizimda %1 eskirgan paket mavjud:</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="351"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="349"/>
         <source>(version %1 is available)</source>
         <translation>(%1 versiyasi mavjud)</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="355"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="353"/>
         <source>%1 (%2) packages</source>
         <translation>%1 (%2) paketlar</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="359"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="357"/>
         <source>%1 installed</source>
         <translation>%1 o&apos;rnatilgan</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="363"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="361"/>
         <source>%1 outdated</source>
         <translation>%1 eskirgan</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="367"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="365"/>
         <source>%1 available</source>
         <translation>%1 mavjud</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="371"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="369"/>
         <source>Cleaning package cache...</source>
         <translation>Paketlar keshi tozalanmoqda...</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="375"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="373"/>
         <source>Removing Pacman&apos;s transaction lock file...</source>
         <translation>Pacman&apos;ning tranzaksiya bloklash fayli olib tashlanmoqda...</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="379"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="377"/>
         <source>Syncing</source>
         <translation>Sinxronlanmoqda</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="383"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="381"/>
         <source>Press any key to continue...</source>
         <translation>Davom ettiriish uchun biror tugmani bosing...</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="391"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="389"/>
+        <source>Sync database</source>
+        <translation>Ma&apos;lumot bazasini sinxronlash</translation>
+    </message>
+    <message>
+        <location filename="Projects/octopi/src/strconstants.h" line="393"/>
         <source>Synchronizing databases...</source>
         <translation>Ma&apos;lumot bazalari sinxronlanmoqda...</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="395"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="397"/>
         <source>is up to date</source>
         <translation>so&apos;nggi holatda</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="399"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="401"/>
         <source>Starting full system upgrade...</source>
         <translation>Butun tizimning yangilanishi boshlanmoqda...</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="403"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="405"/>
         <source>Installing selected packages...</source>
         <translation>Tanlangan paketlar o&apos;rnatilmoqda...</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="407"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="409"/>
         <source>Removing selected packages...</source>
         <translation>Tanlangan paketlar o&apos;chirilmoqda...</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="411"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="413"/>
         <source>Removing/installing selected packages...</source>
         <translation>Tanlangan paketlar o&apos;chirilmoqda/o&apos;rnatilmoqda...</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="415"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="417"/>
+        <source>Choose a terminal</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="Projects/octopi/src/strconstants.h" line="421"/>
         <source>Running command in terminal...</source>
         <translation>Buyruq terminalda ishga tushirilmoqda...</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="419"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="425"/>
         <source>Command finished OK!</source>
         <translation>Buyruq muvaffaqiyatli bajarildi!</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="423"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="429"/>
         <source>Command finished with errors!</source>
         <translation>Buyruq xatolar bilan bajarildi!</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="427"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="433"/>
         <source>Retrieving %1</source>
         <translation>%1 yuklanmoqda</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="431"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="437"/>
         <source>Total download size: %1 KB</source>
         <translation>Jami yuklab olinadigan hajm: %1 KB</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="435"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="441"/>
         <source>The following target needs to be retrieved</source>
         <translation>Quyidagi nishonni yuklash lozim</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="439"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="445"/>
         <source>The following target will be removed</source>
         <translation>Quyidagi nishon o&apos;chiriladi</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="443"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="449"/>
         <source>The following %1 targets need to be retrieved</source>
         <translation>Quyidagi %1 nishonlarni yuklash lozim</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="447"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="453"/>
         <source>The following %1 targets will be removed</source>
         <translation>Quyidagi %1 nishon o&apos;chiriladi</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="451"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="457"/>
         <source>There are forbidden packages in the removal list!</source>
         <translation>O&apos;chirish ro&apos;yxatida taqiqlangan paketlar mavjud!</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="455"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="461"/>
         <source>There are no new updates available!</source>
         <translation>Yangilanishlar mavjud emas!</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="459"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="465"/>
         <source>There is an update available!</source>
         <translation>Yangilanish mavjud!</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="463"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="469"/>
         <source>There are %1 updates available!</source>
         <translation>%1 yangilanish mavjud!</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="467"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="473"/>
         <source>Confirm?</source>
         <translation>Tasdiqlaysizmi?</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="471"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="477"/>
         <source>Warning!!!</source>
         <translation>Ogoh bo&apos;ling!!!</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="475"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="481"/>
         <source>Confirmation</source>
         <translation>Tasdiqlash</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="479"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="485"/>
         <source>There has been a transaction error!</source>
         <translation>Tranzaksiya xatosi ro&apos;y berdi!</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="483"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="489"/>
         <source>Do you want to execute this transaction in a Terminal?</source>
         <translation>Ushbu tranzaksiyani terminalda ishga tushirishni istaysizmi?</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="487"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="493"/>
         <source>Do you really want to clean the package cache?</source>
         <translation>Rostdan paketlar keshini tosalashni istaysizmi?</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="491"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="497"/>
         <source>Do you really want to remove Pacman&apos;s transaction lock file?</source>
         <translation>Siz rostdan Pacman&apos;ning tranzaksiya bloklash faylini olib tashlamoqchimisiz?</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="495"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="501"/>
         <source>Do you really want to rollback the transaction?</source>
         <translation>Rostdan tranzaksiyani qaytarishni istaysizmi?</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="499"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="505"/>
         <source>Please, enter the administrator&apos;s password</source>
         <translation>Ma&apos;murning maxfiy so&apos;zini kiriting</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="505"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="511"/>
         <source>There are no means to get administrator&apos;s credentials.</source>
         <translation>Ma&apos;muriy vakolatlarni olish imkoni yo&apos;q.</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="509"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="515"/>
         <source>You&apos;ll need to install a su frontend like gksu or kdesu.</source>
         <translation>gksu yoki kdesu kabi su frontendini o&apos;rnatishingiz lozim.</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="513"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="519"/>
         <source>You can not run Octopi with administrator&apos;s credentials.</source>
         <translation>Octopi dasturini ma&apos;muriy vakolatlar bilan ishga tushirib bo&apos;lmadi.</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="517"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="523"/>
         <source>There is a pending transaction</source>
         <translation>Qoldirilgan tranzaksiya mavjud</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="521"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="527"/>
         <source>Do you really want to quit?</source>
         <translation>Rostdan chiqmoqchimisiz?</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="525"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="531"/>
         <source>Executing command</source>
         <translation>Buyruq ishga tushirilmoqda</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="529"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="535"/>
         <source>Run in terminal</source>
         <translation>Terminalda ishga tushirish</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="533"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="539"/>
         <source>Needs application restart to take effect</source>
         <translation>Kuchga kirish uchun dasturdan chiqib qayta kirish lozim!</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="537"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="543"/>
         <source>These changes need application restart to take effect!</source>
         <translation>Ushbu o&apos;zgarishlar kuchga kirish uchun dasturdan chiqib qayta kirish lozim!</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="541"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="547"/>
         <source>Select the packages you want to install</source>
         <translation>O&apos;rnatish uchun paketlarni tanlash</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="545"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="551"/>
         <source>This file does not appear to be a simple text.
 Are you sure you want to open it?</source>
         <translation>Ushbu fayl oddiy matnli faylga o&apos;xshamaydi.
 Uni ochishga ishonchingiz komilmi?</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="550"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="556"/>
         <source>To be installed</source>
         <translation>O&apos;rnatish uchun</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="554"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="560"/>
         <source>To be removed</source>
         <translation>O&apos;chirish uchun</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="558"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="564"/>
         <source>remove</source>
         <translation>o&apos;chirish</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="562"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="568"/>
         <source>install</source>
         <translation>o&apos;rnatish</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="566"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="572"/>
         <source>Remove item</source>
         <translation>Bandni o&apos;chirish</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="570"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="576"/>
         <source>Remove items</source>
         <translation>Bandlarni o&apos;chirish</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="574"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="580"/>
         <source>Press Ctrl+A to select/deselect all</source>
         <translation>Hammasini tanlash/tanlamaslik uchun Ctrl+A bosing</translation>
     </message>

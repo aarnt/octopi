@@ -23,8 +23,6 @@
 
 #include "unixcommand.h"
 
-#include <QApplication>
-
 class StrConstants{
 public:
 
@@ -387,6 +385,10 @@ public:
     return "Mirror-check...";
   }
 
+  static QString getSyncDatabase(){
+    return QObject::tr("Sync database");
+  }
+
   static QString getSyncDatabases(){
     return QObject::tr("Synchronizing databases...");
   }
@@ -409,6 +411,10 @@ public:
 
   static QString getRemovingAndInstallingPackages(){
     return QObject::tr("Removing/installing selected packages...");
+  }
+
+  static QString getChooseATerminal(){
+    return QObject::tr("Choose a terminal");
   }
 
   static QString getRunningCommandInTerminal(){

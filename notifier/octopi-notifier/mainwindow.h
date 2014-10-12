@@ -38,9 +38,11 @@ private slots:
   void execSystemTrayActivated(QSystemTrayIcon::ActivationReason);
   void execSystemTrayKF5();
 
+  void syncDatabase();
+
   void refreshAppIcon();
   void runOctopi(ExecOpt execOptions = ectn_SYSUPGRADE_EXEC_OPT);
-  void runOctopiSysUpgrade();
+  void runOctopiSysUpgrade();  
 
   inline void startOctopi() { runOctopi(ectn_NORMAL_EXEC_OPT); }
 
@@ -60,6 +62,7 @@ private:
   UnixCommand *m_unixCommand;
 
   QAction *m_actionOctopi;
+  QAction *m_actionSyncDatabase;
   QAction *m_actionSystemUpgrade;
   QAction *m_actionAbout;
   QAction *m_actionExit;

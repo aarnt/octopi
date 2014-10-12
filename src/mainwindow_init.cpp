@@ -740,7 +740,7 @@ void MainWindow::initActions()
   connect(ui->actionOpenRootTerminal, SIGNAL(triggered()), this, SLOT(openRootTerminal()));
 
   // Use theme icons for QActions
-  ui->actionSyncPackages->setIcon(IconHelper::getIconSyncPackages());
+  ui->actionSyncPackages->setIcon(IconHelper::getIconSyncDatabase());
   ui->actionCommit->setIcon(IconHelper::getIconCommit());
   ui->actionRollback->setIcon(IconHelper::getIconRollback());
   ui->actionExit->setIcon(IconHelper::getIconExit());

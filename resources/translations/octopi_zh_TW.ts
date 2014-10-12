@@ -470,594 +470,604 @@
 <context>
     <name>QObject</name>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="41"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="39"/>
         <source>Octopi usage help:</source>
         <translation>Octopi 使用說明：</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="42"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="40"/>
         <source>show application version.</source>
         <translation>顯示應用程式版本。</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="43"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="41"/>
         <source>use a different Qt4 style (ex: -style gtk).</source>
         <translation>使用不同的Qt4風格 (例子：-style gtk)</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="44"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="42"/>
         <source>use a different remove command (ex: -removecmd R).</source>
         <translation>使用一個不同的移除指令 (例如：-removecmd R )。</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="45"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="43"/>
         <source>force a system upgrade at startup.</source>
         <translation>啟動時強制全系統升級。</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="51"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="49"/>
         <source>All</source>
         <translation>所有</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="116"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="114"/>
         <source>Antergos news</source>
         <translation>Antergos 新聞</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="120"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="118"/>
         <source>ArchBSD news</source>
         <translation>ArchBSD 新聞</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="124"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="122"/>
         <source>Arch Linux news</source>
         <translation>Arch Linux 新聞</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="128"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="126"/>
         <source>Chakra news</source>
         <translation>Chakra 新聞</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="132"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="130"/>
         <source>KaOS news</source>
         <translation>KaOS 新聞</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="136"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="134"/>
         <source>Manjaro Linux news</source>
         <translation>Manjaro Linux 新聞</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="140"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="138"/>
         <source>Netrunner Rolling news</source>
         <translation>Netrunner Rolling 新聞</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="144"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="142"/>
         <source>No news could be found! Press Ctrl+G to download the latest news.</source>
         <translation>沒有發現新的訊息！請按下 Ctrl+G 以下載最新消息。</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="148"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="146"/>
         <source>This Linux distro seems to be incompatible with Octopi!</source>
         <translation>這個Linux發行版似乎與Octopi不相容</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="152"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="150"/>
         <source>Internet seems unavailable!</source>
         <translation>網路似乎無法使用！</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="156"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="154"/>
         <source>Display all groups</source>
         <translation>顯示所有套件群組</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="167"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="165"/>
         <source>Usage</source>
         <translation>使用方法</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="171"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="169"/>
         <source>About</source>
         <translation>關於</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="175"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="173"/>
         <source>Name</source>
         <translation>名稱</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="179"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="177"/>
         <source>Version</source>
         <translation>版本</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="183"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="181"/>
         <source>Outdated version</source>
         <translation>過期的版本</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="187"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="185"/>
         <source>Available version</source>
         <translation>提供版本</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="191"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="189"/>
         <source>No description available.</source>
         <translation>沒有描述可提供。</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="195"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="193"/>
         <source>URL</source>
         <translation>URL</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="199"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="197"/>
         <source>Repository</source>
         <translation>套件庫</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="203"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="201"/>
         <source>Licenses</source>
         <translation>授權條款</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="207"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="205"/>
         <source>Group</source>
         <translation>套件群組</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="211"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="209"/>
         <source>Groups</source>
         <translation>套件群組</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="215"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="213"/>
         <source>Provides</source>
         <translation>提供</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="219"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="217"/>
         <source>Depends On</source>
         <translation>依賴於</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="223"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="221"/>
         <source>Required By</source>
         <translation>被依賴</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="227"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="225"/>
         <source>Optional For</source>
         <translation>可選依賴</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="231"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="229"/>
         <source>Optional Deps</source>
         <translation>可選依賴</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="235"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="233"/>
         <source>Conflicts With</source>
         <translation>與下列套件衝突</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="239"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="237"/>
         <source>Replaces</source>
         <translation>取代</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="243"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="241"/>
         <source>Popularity</source>
         <translation>人氣指數</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="247"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="245"/>
         <source>votes</source>
         <translation>投票數</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="251"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="249"/>
         <source>Download Size</source>
         <translation>下載大小</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="255"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="253"/>
         <source>Installed Size</source>
         <translation>安裝大小</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="259"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="257"/>
         <source>Packager</source>
         <translation>打包者</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="263"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="261"/>
         <source>Package</source>
         <translation>套件</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="267"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="265"/>
         <source>Packages</source>
         <translation>套件</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="271"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="269"/>
         <source>Architecture</source>
         <translation>架構</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="275"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="273"/>
         <source>Build Date</source>
         <translation>建置日期</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="279"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="277"/>
         <source>Description</source>
         <translation>描述</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="283"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="281"/>
         <source>Attention</source>
         <translation>注意</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="287"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="285"/>
         <source>automatic</source>
         <translation>自動</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="291"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="289"/>
         <source>Password</source>
         <translation>密碼</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="295"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="293"/>
         <source>Info</source>
         <translation>資訊</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="299"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="297"/>
         <source>Files</source>
         <translation>檔案</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="303"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="301"/>
         <source>Transaction</source>
         <translation>處理項目</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="307"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="305"/>
         <source>Output</source>
         <translation>輸出</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="311"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="309"/>
         <source>News</source>
         <translation>新聞</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="315"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="313"/>
         <source>Contents of &quot;%1&quot;</source>
         <translation>&quot;%1&quot; 的內容</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="319"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="317"/>
         <source>Find</source>
         <translation>尋找</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="323"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="321"/>
         <source>Clear</source>
         <translation>清除</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="327"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="325"/>
         <source> (outdated installed version is %1)</source>
         <translation> ( %1 是已安裝的過期版本)</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="331"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="329"/>
         <source> (newer installed version is %1)</source>
         <translation> (%1 是較新的版本)</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="335"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="333"/>
         <source>Building package list...</source>
         <translation>正在建置套件列表...</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="339"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="337"/>
         <source>Searching for %1 latest news...</source>
         <translation>搜尋 %1 最新訊息...</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="343"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="341"/>
         <source>There is one outdated package in your system:</source>
         <translation>您的系統上有一個過期的套件：</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="347"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="345"/>
         <source>There are %1 outdated packages in your system:</source>
         <translation>您的系統上有 %1 個過期的套件：</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="351"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="349"/>
         <source>(version %1 is available)</source>
         <translation>(版本 %1 已提供)</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="355"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="353"/>
         <source>%1 (%2) packages</source>
         <translation>%1 (%2) 套件</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="359"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="357"/>
         <source>%1 installed</source>
         <translation>%1 已安裝</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="363"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="361"/>
         <source>%1 outdated</source>
         <translation>%1 已過期</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="367"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="365"/>
         <source>%1 available</source>
         <translation>%1 已提供</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="371"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="369"/>
         <source>Cleaning package cache...</source>
         <translation>正在清除套件快取....</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="375"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="373"/>
         <source>Removing Pacman&apos;s transaction lock file...</source>
         <translation>正在移除被 Pacman 處理項目鎖定的檔案...</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="379"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="377"/>
         <source>Syncing</source>
         <translation>正在同步</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="383"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="381"/>
         <source>Press any key to continue...</source>
         <translation>按任一按鈕以繼續.....</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="391"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="389"/>
+        <source>Sync database</source>
+        <translation>同步資料庫</translation>
+    </message>
+    <message>
+        <location filename="Projects/octopi/src/strconstants.h" line="393"/>
         <source>Synchronizing databases...</source>
         <translation>正在同步套件資料庫...</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="395"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="397"/>
         <source>is up to date</source>
         <translation>已經是最新的</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="399"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="401"/>
         <source>Starting full system upgrade...</source>
         <translation>正在開始全系統升級...</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="403"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="405"/>
         <source>Installing selected packages...</source>
         <translation>正在安裝選取的套件...</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="407"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="409"/>
         <source>Removing selected packages...</source>
         <translation>正在移除選取的套件...</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="411"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="413"/>
         <source>Removing/installing selected packages...</source>
         <translation>正在移除/安裝選取的套件...</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="415"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="417"/>
+        <source>Choose a terminal</source>
+        <translation>選擇一個終端機</translation>
+    </message>
+    <message>
+        <location filename="Projects/octopi/src/strconstants.h" line="421"/>
         <source>Running command in terminal...</source>
         <translation>正在終端機內執行指令...</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="419"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="425"/>
         <source>Command finished OK!</source>
         <translation>指令成功的完成了！</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="423"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="429"/>
         <source>Command finished with errors!</source>
         <translation>指令執行錯誤！</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="427"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="433"/>
         <source>Retrieving %1</source>
         <translation>正在擷取 %1</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="431"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="437"/>
         <source>Total download size: %1 KB</source>
         <translation>總共下載大小：%1 KB</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="435"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="441"/>
         <source>The following target needs to be retrieved</source>
         <translation>以下目標需要被擷取</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="439"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="445"/>
         <source>The following target will be removed</source>
         <translation>以下目標將被移除</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="443"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="449"/>
         <source>The following %1 targets need to be retrieved</source>
         <translation>以下 %1 個目標需要被擷取</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="447"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="453"/>
         <source>The following %1 targets will be removed</source>
         <translation>以下 %1 個目標將被移除</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="451"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="457"/>
         <source>There are forbidden packages in the removal list!</source>
         <translation>這些是在移除清單中將被遺棄的套件！</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="455"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="461"/>
         <source>There are no new updates available!</source>
         <translation>目前沒有新的更新！</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="459"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="465"/>
         <source>There is an update available!</source>
         <translation>有一個更新可用！</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="463"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="469"/>
         <source>There are %1 updates available!</source>
         <translation>有 %1 個更新可用！</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="467"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="473"/>
         <source>Confirm?</source>
         <translation>確定？</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="471"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="477"/>
         <source>Warning!!!</source>
         <translation>警告！！！</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="475"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="481"/>
         <source>Confirmation</source>
         <translation>確定</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="479"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="485"/>
         <source>There has been a transaction error!</source>
         <translation>有一個處理項目的錯誤！</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="483"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="489"/>
         <source>Do you want to execute this transaction in a Terminal?</source>
         <translation>您確定要在終端機中執行這個處理項目嗎？</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="487"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="493"/>
         <source>Do you really want to clean the package cache?</source>
         <translation>您真的要清除套件快取嗎？</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="491"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="497"/>
         <source>Do you really want to remove Pacman&apos;s transaction lock file?</source>
         <translation>您真的要移除被 Pacman 處理項目鎖定的檔案嗎？</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="495"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="501"/>
         <source>Do you really want to rollback the transaction?</source>
         <translation>您真的要回復以下處理事項嗎？</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="499"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="505"/>
         <source>Please, enter the administrator&apos;s password</source>
         <translation>請輸入超級使用者密碼</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="505"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="511"/>
         <source>There are no means to get administrator&apos;s credentials.</source>
         <translation>無法獲得超級使用者的授權。</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="509"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="515"/>
         <source>You&apos;ll need to install a su frontend like gksu or kdesu.</source>
         <translation>您將會需要安裝一個 su 的前端，像是 gksu 或是 kdesu 。</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="513"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="519"/>
         <source>You can not run Octopi with administrator&apos;s credentials.</source>
         <translation>您不能以超級使用者的權限執行 Octopi  。</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="517"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="523"/>
         <source>There is a pending transaction</source>
         <translation>還有擱置中的處理項目</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="521"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="527"/>
         <source>Do you really want to quit?</source>
         <translation>確定要離開嗎？</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="525"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="531"/>
         <source>Executing command</source>
         <translation>正在執行指令</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="529"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="535"/>
         <source>Run in terminal</source>
         <translation>在終端機中執行</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="533"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="539"/>
         <source>Needs application restart to take effect</source>
         <translation>重新啟動程式以生效</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="537"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="543"/>
         <source>These changes need application restart to take effect!</source>
         <translation>這些更動需要重新啟動程式才能生效！</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="541"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="547"/>
         <source>Select the packages you want to install</source>
         <translation>選擇您想要安裝的套件</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="545"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="551"/>
         <source>This file does not appear to be a simple text.
 Are you sure you want to open it?</source>
         <translation>這個檔案似乎不是一般的文字檔。
 您確定您要開啟它嗎？</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="550"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="556"/>
         <source>To be installed</source>
         <translation>將要安裝</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="554"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="560"/>
         <source>To be removed</source>
         <translation>將要移除</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="558"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="564"/>
         <source>remove</source>
         <translation>移除</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="562"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="568"/>
         <source>install</source>
         <translation>安裝</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="566"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="572"/>
         <source>Remove item</source>
         <translation>移除項目</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="570"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="576"/>
         <source>Remove items</source>
         <translation>移除項目</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="574"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="580"/>
         <source>Press Ctrl+A to select/deselect all</source>
         <translation>按下 Ctrl+A 以選擇/取消選擇全部</translation>
     </message>
