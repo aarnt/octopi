@@ -62,6 +62,12 @@ int SettingsManager::getPackageListSortOrder(){
         ctn_KEY_PACKAGE_LIST_SORT_ORDER, Qt::AscendingOrder ).toInt();
 }
 
+int SettingsManager::getSyncDbHour()
+{
+  SettingsManager p_instance;
+  return p_instance.getSYSsettings()->value(ctn_KEY_SYNC_DB_HOUR, -1).toInt();
+}
+
 bool SettingsManager::getSkipMirrorCheckAtStartup(){
   if (!instance()->getSYSsettings()->contains(ctn_KEY_SKIP_MIRRORCHECK_ON_STARTUP)){
     instance()->getSYSsettings()->setValue(ctn_KEY_SKIP_MIRRORCHECK_ON_STARTUP, 0);

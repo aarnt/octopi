@@ -356,8 +356,20 @@ void MainWindow::pacmanHelperTimerTimeout()
   //Is it time to syncdb again?
   QDateTime lastCheckTime = SettingsManager::getLastSyncDbTime();
   QDateTime now = QDateTime::currentDateTime();
+  bool syncTime = false;
 
-  if (lastCheckTime.isNull() || lastCheckTime.daysTo(now) >= 1)
+  int syncHour = SettingsManager::getSyncDbHour();
+  if (syncHour >= 0)
+  {
+    if (lastCheckTime.daysTo(now) >= 1 && now.time().hour() == syncHour)
+    {
+      syncTime = true;
+    }
+  }
+
+  if ((syncHour == -1 && (
+        lastCheckTime.isNull() ||
+        lastCheckTime.daysTo(now) >= 1)) || (syncTime))
   {
     syncDatabase();
     //Then we set new LastCheckTime...

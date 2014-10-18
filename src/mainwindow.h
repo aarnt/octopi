@@ -96,7 +96,7 @@ private:
 
   // Package Data
   PackageRepository           m_packageRepo;
-  std::auto_ptr<PackageModel> m_packageModel;
+  std::unique_ptr<PackageModel> m_packageModel;
 
   //Controls if the dialog showing the packages to be upgraded is opened
   bool m_systemUpgradeDialog;
@@ -126,10 +126,10 @@ private:
   QList<PackageListData> *m_listOfAURPackages;
 
   //This member holds the list of Pacman packages available
-  std::auto_ptr<QList<PackageListData> > m_listOfPackages;
+  std::unique_ptr<QList<PackageListData> > m_listOfPackages;
 
   //This member holds the list of Pacman packages from the selected group
-  std::auto_ptr<QList<QString> > m_listOfPackagesFromGroup;
+  std::unique_ptr<QList<QString> > m_listOfPackagesFromGroup;
 
   //This member holds the target list retrieved by the pacman command which will be executed
   QStringList *m_targets;

@@ -9,6 +9,8 @@
   Changed repoeditor icon to octopi_green.
   Show/hide groups panel config is now persisted.
   Now notifier syncs db once a day and save last synced time.
+  Added option "SyncDbHour" so notifier checks only when that specific hour ticks, 
+	again once a day.
   Added "sync db" menu option to notifier.
   Added support for hiding/showing Octopi window in the new KF5 notifier code.
   Added support for Ctrl+F in Output tab.

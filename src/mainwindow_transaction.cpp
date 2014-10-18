@@ -1706,7 +1706,6 @@ void MainWindow::actionsProcessFinished(int exitCode, QProcess::ExitStatus exitS
       {
         m_commandExecuting = ectn_NONE;
         m_unixCommand->removeTemporaryActionFile();
-
         doSystemUpgrade();
         return;
       }
@@ -1721,7 +1720,7 @@ void MainWindow::actionsProcessFinished(int exitCode, QProcess::ExitStatus exitS
 
     if (res == QMessageBox::Yes)
     {
-      m_unixCommand->runCommandInTerminal(m_lastCommandList);
+      m_unixCommand->runCommandInTerminal(m_lastCommandList);         
       return;
     }
   }
@@ -1738,6 +1737,9 @@ void MainWindow::actionsProcessFinished(int exitCode, QProcess::ExitStatus exitS
   refreshMenuTools(); //Maybe some of octopi tools were added/removed...
 
   m_unixCommand->removeTemporaryActionFile();
+
+  delete m_unixCommand; //EXPERIMENTAL
+
   m_commandExecuting = ectn_NONE;
 }
 

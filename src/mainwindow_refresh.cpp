@@ -476,7 +476,7 @@ void MainWindow::buildPackageList(bool nonBlocking)
   }
 
   qApp->processEvents();
-  const std::auto_ptr<const QSet<QString> > unrequiredPackageList(Package::getUnrequiredPackageList());
+  const std::unique_ptr<const QSet<QString> > unrequiredPackageList(Package::getUnrequiredPackageList());
 
   // Fetch package list
   QList<PackageListData> *list;
@@ -486,7 +486,7 @@ void MainWindow::buildPackageList(bool nonBlocking)
     list = Package::getPackageList();
 
   // Fetch foreign package list
-  std::auto_ptr<QList<PackageListData> > listForeign(Package::getForeignPackageList());
+  std::unique_ptr<QList<PackageListData> > listForeign(Package::getForeignPackageList());
   qApp->processEvents();
 
   m_progressWidget->setRange(0, list->count());

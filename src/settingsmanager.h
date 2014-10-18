@@ -36,6 +36,7 @@ const QString ctn_KEY_SKIP_MIRRORCHECK_ON_STARTUP("Skip_Mirror_Check_At_Startup"
 const QString ctn_KEY_SPLITTER_HORIZONTAL_STATE("Splitter_Horizontal_State");
 const QString ctn_KEY_SHOW_GROUPS_PANEL("Show_Groups_Panel");
 const QString ctn_KEY_LAST_SYNC_DB_TIME("LastSyncDbTime");
+const QString ctn_KEY_SYNC_DB_HOUR("SyncDbHour");
 const QString ctn_KEY_TERMINAL("Terminal");
 const QString ctn_AUTOMATIC("automatic");
 
@@ -64,6 +65,7 @@ class SettingsManager
     static int getPanelOrganizing();
     static int getPackageListOrderedCol();
     static int getPackageListSortOrder();
+    static int getSyncDbHour();
     static bool getSkipMirrorCheckAtStartup();
     static bool getShowGroupsPanel();
     static QByteArray getWindowSize();
