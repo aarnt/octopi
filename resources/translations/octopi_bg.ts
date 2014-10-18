@@ -86,7 +86,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="272"/>
         <source>Sync database</source>
-        <translation>Синхронизиране на базата</translation>
+        <translation>Синхронизиране на базата от данни</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="275"/>
@@ -832,12 +832,12 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="389"/>
         <source>Sync database</source>
-        <translation>Синхронизиране на базата</translation>
+        <translation>Синхронизиране на базата от данни</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="393"/>
         <source>Synchronizing databases...</source>
-        <translation>Синхронизиране на базата...</translation>
+        <translation>Синхронизиране на базата от данни...</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="397"/>
@@ -867,7 +867,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="417"/>
         <source>Choose a terminal</source>
-        <translation type="unfinished"/>
+        <translation>Избери терминал</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="421"/>
