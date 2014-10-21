@@ -19,8 +19,8 @@
 */
 
 #include "octopitabinfo.h"
-
 #include "src/strconstants.h"
+#include "src/package.h"
 
 /*
  * The OctopiTabInfo class provides functionality for the Tab "Info"
@@ -167,8 +167,8 @@ QString OctopiTabInfo::formatTabInfo(const PackageRepository::PackageData& packa
   if(! pid.replaces.contains("None"))
     html += "<tr><td>" + replaces + "</td><td>" + pid.replaces + "</td></tr>";
 
-  html += "<tr><td>" + downloadSize + "</td><td>" + pid.downloadSizeAsString + "</td></tr>";
-  html += "<tr><td>" + installedSize + "</td><td>" + pid.installedSizeAsString + "</td></tr>";
+  html += "<tr><td>" + downloadSize + "</td><td>" + Package::kbytesToSize(pid.downloadSize) + "</td></tr>";
+  html += "<tr><td>" + installedSize + "</td><td>" + Package::kbytesToSize(pid.installedSize) + "</td></tr>";
   html += "<tr><td>" + packager + "</td><td>" + packagerName + "</td></tr>";
   html += "<tr><td>" + architecture + "</td><td>" + pid.arch + "</td></tr>";
   html += "<tr><td>" + buildDate + "</td><td>" +

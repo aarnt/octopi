@@ -253,6 +253,8 @@ void MainWindow::initMenuBar()
   actionGroupRepositories->setExclusive(true);
 
   m_actionMenuRepository->setMenu(subMenu);
+
+  ui->menuFile->insertAction(ui->actionExit, m_actionEditOctopiConf);
 }
 
 /*
@@ -669,7 +671,7 @@ void MainWindow::initActions()
     m_actionMirrorCheck->setText("Mirror-Check");
     m_actionMirrorCheck->setIcon(IconHelper::getIconMirrorCheck());
     connect(m_actionMirrorCheck, SIGNAL(triggered()), this, SLOT(doMirrorCheck()));
-  }
+  }  
 
   m_actionInstallPacmanUpdates = new QAction(this);
   m_actionInstallPacmanUpdates->setIcon(IconHelper::getIconToInstall());
@@ -692,6 +694,11 @@ void MainWindow::initActions()
   m_actionShowGroups->setChecked(true);
   m_actionShowGroups->setShortcut(QKeySequence(Qt::Key_F9));
   connect(m_actionShowGroups, SIGNAL(triggered()), this, SLOT(hideGroupsWidget()));
+
+  m_actionEditOctopiConf = new QAction(this);
+  m_actionEditOctopiConf->setText("octopi.conf...");
+  m_actionEditOctopiConf->setIcon(IconHelper::getIconBinary());
+  connect(m_actionEditOctopiConf, SIGNAL(triggered()), this, SLOT(editOctopiConf()));
 
   QActionGroup *actionGroup = new QActionGroup(this);
   actionGroup->addAction(ui->actionSearchByDescription);

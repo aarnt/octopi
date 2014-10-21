@@ -161,11 +161,10 @@ class Package{
     static QDateTime getBuildDate(const QString &pkgInfo);
     static double getDownloadSize(const QString &pkgInfo);
     static QString getDownloadSizeAsString(const QString &pkgInfo);
-
     static double getInstalledSize(const QString &pkgInfo);
     static QString getInstalledSizeAsString(const QString &pkgInfo);
 
-    static double humanizeSize(off_t bytes, const char target_unit, int precision, const char **label);
+    static QString kbytesToSize(float Bytes );
     static QString makeURLClickable(const QString &information);
     static QString getBaseName( const QString& pkgName );
     static QString parseSearchString( QString searchStr, bool exactMatch = false );

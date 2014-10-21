@@ -153,15 +153,17 @@ private:
   QProgressBar *m_progressWidget;
 
   QToolButton *m_toolButtonPacman;
-  QMenu *m_menuToolButtonPacman;
-  QAction *m_actionInstallPacmanUpdates;
   QToolButton *m_toolButtonAUR;
+  QMenu *m_menuToolButtonPacman;
   QMenu *m_menuToolButtonAUR;
+
+  QAction *m_actionInstallPacmanUpdates;
   QAction *m_actionInstallAURUpdates;
   QAction *m_actionShowGroups;
   QAction *m_actionMirrorCheck;
   QAction *m_actionMenuRepository;
   QAction *m_actionRepositoryAll;
+  QAction *m_actionEditOctopiConf;
 
   QByteArray m_horizontalSplit;
 
@@ -278,11 +280,11 @@ private slots:
   void expandThisContentItems();
   void openFile();
   void editFile();
+  void editOctopiConf();
   void openTerminal();
   void openDirectory();
   void openRootTerminal();
   void installLocalPackage();
-
   void findFileInPackage();
 
   void tvPackagesSearchColumnChanged(QAction*);

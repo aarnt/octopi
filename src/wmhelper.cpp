@@ -393,75 +393,57 @@ void WMHelper::openFile(const QString& fileName){
 /*
  * Edits a file based on your DE.
  */
-void WMHelper::editFile( const QString& fileName ){
+void WMHelper::editFile( const QString& fileName, EditOptions opt ){
   QProcess *process = new QProcess(qApp->activeWindow());
-  QStringList s;
+  QString p;
 
-  if (!UnixCommand::isRootRunning()){
-    LinuxDistro distro = UnixCommand::getLinuxDistro();
-    if (distro == ectn_ARCHBANGLINUX && UnixCommand::hasTheExecutable(ctn_ARCHBANG_EDITOR))
-    {
-      QString p = ctn_ARCHBANG_EDITOR + " " + fileName;
-      process->startDetached(getSUCommand() + p);
-    }
-    else if (distro == ectn_MOOOSLINUX && UnixCommand::hasTheExecutable(ctn_MOOOS_EDITOR))
-    {
-      QString p = ctn_MOOOS_EDITOR + " " + fileName;
-      process->startDetached(getSUCommand() + p);
-    }
-    else if (isXFCERunning() && (UnixCommand::hasTheExecutable(ctn_XFCE_EDITOR) ||
-                             UnixCommand::hasTheExecutable(ctn_XFCE_EDITOR_ALT))){
-
-      QString p = getXFCEEditor() + " " + fileName;
-      process->startDetached(getSUCommand() + p);
-    }
-    else if (isKDERunning() && UnixCommand::hasTheExecutable(ctn_KDE_EDITOR)){
-      QString p = " -d -t --noignorebutton -c ";
-      p += ctn_KDE_EDITOR + " " + fileName;
-      process->startDetached(getSUCommand() + p);
-    }
-    else if (isKDERunning() && UnixCommand::hasTheExecutable(ctn_KDE4_EDITOR)){
-      QString p = " -d -t --noignorebutton -c ";
-      p += ctn_KDE4_EDITOR + " " + fileName;
-      process->startDetached(getSUCommand() + p);
-    }
-    else if (isTDERunning() && UnixCommand::hasTheExecutable(ctn_TDE_EDITOR)){
-      QString p = " -d -t --noignorebutton ";
-      p += ctn_TDE_EDITOR + " " + fileName;
-      process->startDetached(getSUCommand() + p);
-    }
-    else if (isMATERunning() && UnixCommand::hasTheExecutable(ctn_MATE_EDITOR)){
-      QString p = ctn_MATE_EDITOR + " " + fileName;
-      process->startDetached(getSUCommand() + p);
-    }
-    else if (isLXQTRunning() && UnixCommand::hasTheExecutable(ctn_LXQT_EDITOR)){
-      QString p = ctn_LXQT_EDITOR + " " + fileName;
-      process->startDetached(getSUCommand() + p);
-    }
-    if (UnixCommand::hasTheExecutable(ctn_ARCHBANG_EDITOR))
-    {
-      QString p = ctn_ARCHBANG_EDITOR + " " + fileName;
-      process->startDetached(getSUCommand() + p);
-    }
-    else if (UnixCommand::hasTheExecutable(ctn_CINNAMON_EDITOR)){
-      QString p = ctn_CINNAMON_EDITOR + " " + fileName;
-      process->startDetached(getSUCommand() + p);
-    }
-    else if (UnixCommand::hasTheExecutable(ctn_XFCE_EDITOR) || UnixCommand::hasTheExecutable(ctn_XFCE_EDITOR_ALT)){
-      QString p = getXFCEEditor() + " " + fileName;
-      process->startDetached(getSUCommand() + p);
-    }
+  LinuxDistro distro = UnixCommand::getLinuxDistro();
+  if (distro == ectn_ARCHBANGLINUX && UnixCommand::hasTheExecutable(ctn_ARCHBANG_EDITOR))
+  {
+    p = ctn_ARCHBANG_EDITOR + " " + fileName;
   }
-  //Octopi was started by root account.
-  else{
-    if (UnixCommand::hasTheExecutable(ctn_XFCE_EDITOR) || UnixCommand::hasTheExecutable(ctn_XFCE_EDITOR_ALT))
-      s << getXFCEEditor() + " " + fileName;
-    else if (UnixCommand::hasTheExecutable(ctn_KDE_EDITOR))
-      s << ctn_KDE_EDITOR + " " + fileName;
-    else if (UnixCommand::hasTheExecutable(ctn_TDE_EDITOR))
-      s << ctn_TDE_EDITOR + " " + fileName;
+  else if (distro == ectn_MOOOSLINUX && UnixCommand::hasTheExecutable(ctn_MOOOS_EDITOR))
+  {
+    p = ctn_MOOOS_EDITOR + " " + fileName;
+  }
+  else if (isXFCERunning() && (UnixCommand::hasTheExecutable(ctn_XFCE_EDITOR) ||
+                               UnixCommand::hasTheExecutable(ctn_XFCE_EDITOR_ALT))){
 
-    process->startDetached("/bin/sh", s);
+    p = getXFCEEditor() + " " + fileName;
+  }
+  else if (isKDERunning() && UnixCommand::hasTheExecutable(ctn_KDE_EDITOR)){
+    p += ctn_KDE_EDITOR + " " + fileName;
+  }
+  else if (isKDERunning() && UnixCommand::hasTheExecutable(ctn_KDE4_EDITOR)){
+    p += ctn_KDE4_EDITOR + " " + fileName;
+  }
+  else if (isTDERunning() && UnixCommand::hasTheExecutable(ctn_TDE_EDITOR)){
+    p += ctn_TDE_EDITOR + " " + fileName;
+  }
+  else if (isMATERunning() && UnixCommand::hasTheExecutable(ctn_MATE_EDITOR)){
+    p = ctn_MATE_EDITOR + " " + fileName;
+  }
+  else if (isLXQTRunning() && UnixCommand::hasTheExecutable(ctn_LXQT_EDITOR)){
+    p = ctn_LXQT_EDITOR + " " + fileName;
+  }
+  if (UnixCommand::hasTheExecutable(ctn_ARCHBANG_EDITOR))
+  {
+    p = ctn_ARCHBANG_EDITOR + " " + fileName;
+  }
+  else if (UnixCommand::hasTheExecutable(ctn_CINNAMON_EDITOR)){
+    p = ctn_CINNAMON_EDITOR + " " + fileName;
+  }
+  else if (UnixCommand::hasTheExecutable(ctn_XFCE_EDITOR) || UnixCommand::hasTheExecutable(ctn_XFCE_EDITOR_ALT)){
+    p = getXFCEEditor() + " " + fileName;
+  }
+
+  if (UnixCommand::isRootRunning() || opt == ectn_EDIT_AS_NORMAL_USER)
+  {
+    process->startDetached("/bin/sh -c \"" + p + "\"");
+  }
+  else
+  {
+    process->startDetached(getSUCommand() + p);
   }
 }
 

@@ -24,6 +24,7 @@
 #include <QString>
 #include <QVariant>
 #include <QSettings>
+#include <QDir>
 
 const QString ctn_ORGANIZATION("octopi");
 const QString ctn_APPLICATION("octopi");
@@ -61,6 +62,13 @@ class SettingsManager
 
     static SettingsManager* instance();
     static QString getTerminal();
+
+    static QString getOctopiConfPath()
+    {
+      return QDir::homePath() +
+          QDir::separator() + ".config/octopi/octopi.conf";
+    }
+
     static int getCurrentTabIndex();
     static int getPanelOrganizing();
     static int getPackageListOrderedCol();

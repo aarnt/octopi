@@ -1269,3 +1269,11 @@ void MainWindow::launchRepoEditor()
   m_unixCommand = new UnixCommand(this);
   m_unixCommand->executeCommand(QLatin1String("octopi-repoeditor"));
 }
+
+/*
+ * Opens "~/.config/octopi/octopi.conf" file for edition
+ */
+void MainWindow::editOctopiConf()
+{
+  WMHelper::editFile(SettingsManager::getOctopiConfPath(), ectn_EDIT_AS_NORMAL_USER);
+}

@@ -867,7 +867,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="417"/>
         <source>Choose a terminal</source>
-        <translation type="unfinished"/>
+        <translation>Kies een terminal</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="421"/>

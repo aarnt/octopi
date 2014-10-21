@@ -80,6 +80,8 @@ const QString ctn_CINNAMON_TERMINAL("gnome-terminal");
 const QString ctn_RAZORQT_DESKTOP("razor-session");
 const QString ctn_XTERM("xterm");
 
+enum EditOptions { ectn_EDIT_AS_ROOT, ectn_EDIT_AS_NORMAL_USER };
+
 /*
  * This class exposes some services of the underlying Window Manager being used
  */
@@ -103,7 +105,7 @@ public:
   static QString getXFCEEditor();
   static QString getSUCommand();
   static void openFile(const QString& fileName); //fileName is Path + Name
-  static void editFile( const QString& fileName ); //fileName is Path + Name
+  static void editFile(const QString& fileName , EditOptions opt = ectn_EDIT_AS_ROOT); //fileName is Path + Name
   static void openDirectory( const QString& dirName );
   static void openTerminal( const QString& dirName );
 };

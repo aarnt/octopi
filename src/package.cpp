@@ -124,59 +124,31 @@ double Package::simplePow(int base, int exp)
   return result;
 }
 
-/**
- * This function was copied from ArchLinux Pacman project
- * Converts sizes in bytes into human readable units.
- *
- * @param bytes the size in bytes
- * @param target_unit '\0' or a short label. If equal to one of the short unit
- * labels ('B', 'K', ...) bytes is converted to target_unit; if '\0', the first
- * unit which will bring the value to below a threshold of 2048 will be chosen.
- * @param precision number of decimal places, ensures -0.00 gets rounded to
- * 0.00; -1 if no rounding desired
- * @param label will be set to the appropriate unit label
- *
- * @return the size in the appropriate unit
- */
-
 /*
- * This function was copied from ArchLinux Pacman project
- * Given a file size, it makes this value easier for human reading :-)
- *
- * An example call:
- * human_size = humanize_size(size, 'M', 2, &label);
- * pm_asprintf(&str, "%.2f %s", human_size, label);
+ * Converts a size in kbytes to a readable QString representation
  */
-double Package::humanizeSize(off_t bytes, const char target_unit, int precision,
-    const char **label)
+QString Package::kbytesToSize( float Bytes )
 {
-  static const char *labels[] = {"B", "KiB", "MiB", "GiB",
-    "TiB", "PiB", "EiB", "ZiB", "YiB"};
-  static const int unitcount = sizeof(labels) / sizeof(labels[0]);
+  float tb = 1073741824;
+  float gb = 1048576;
+  float mb = 1024;
+  float kb = 1;
+  QString res;
 
-  double val = (double)bytes;
-  int index;
+  if( Bytes >= tb )
+    res = res.sprintf("%.2f TiB", (float)Bytes/tb);
+  else if( Bytes >= gb && Bytes < tb )
+    res = res.sprintf("%.2f GiB", (float)Bytes/gb);
+  else if( Bytes >= mb && Bytes < gb )
+    res = res.sprintf("%.2f MiB", (float)Bytes/mb);
+  else if( Bytes >= kb && Bytes < mb )
+    res = res.sprintf("%.2f KiB", (float)Bytes/kb);
+  else if ( Bytes < kb)
+    res = res.sprintf("%.2f Bytes", Bytes);
+  else
+    res = res.sprintf("%.2f Bytes", Bytes);
 
-  for(index = 0; index < unitcount - 1; index++) {
-    if(target_unit != '\0' && labels[index][0] == target_unit) {
-      break;
-    } else if(target_unit == '\0' && val <= 2048.0 && val >= -2048.0) {
-      break;
-    }
-    val /= 1024.0;
-  }
-
-  if(label) {
-    *label = labels[index];
-  }
-
-  /* fix FS#27924 so that it doesn't display negative zeroes */
-  if(precision >= 0 && val < 0.0 &&
-      val > (-0.5 / simplePow(10, precision))) {
-    val = 0.0;
-  }
-
-  return val;
+  return res;
 }
 
 /*
@@ -1061,7 +1033,7 @@ QString Package::getInformationDescription(const QString &pkgName, bool foreignP
 QString Package::getInformationInstalledSize(const QString &pkgName, bool foreignPackage)
 {
   QString pkgInfo = UnixCommand::getPackageInformation(pkgName, foreignPackage);
-  return getInstalledSizeAsString(pkgInfo);
+  return kbytesToSize(getInstalledSize(pkgInfo));
 }
 
 /*
