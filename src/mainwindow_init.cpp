@@ -32,6 +32,9 @@
 #include "searchbar.h"
 #include "repoconf.h"
 
+#include <iostream>
+#include <cassert>
+
 #include <QLabel>
 #include <QStandardItemModel>
 #include <QTextBrowser>
@@ -43,8 +46,6 @@
 #include <QProgressBar>
 #include <QSystemTrayIcon>
 #include <QToolButton>
-#include <iostream>
-#include <cassert>
 
 /*
  * Loads various application settings configured in ~/.config/octopi/octopi.conf
@@ -254,7 +255,9 @@ void MainWindow::initMenuBar()
 
   m_actionMenuRepository->setMenu(subMenu);
 
+#ifdef OCTOPI_CONF_IN_MENU
   ui->menuFile->insertAction(ui->actionExit, m_actionEditOctopiConf);
+#endif
 }
 
 /*

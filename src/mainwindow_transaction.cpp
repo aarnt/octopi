@@ -857,16 +857,16 @@ void MainWindow::doSystemUpgrade(SystemUpgradeOptions systemUpgradeOptions)
     {
       //Let's build the system upgrade transaction dialog...
       totalDownloadSize = totalDownloadSize / 1024;
-      QString ds = QString::number(totalDownloadSize, 'f', 2);
+      QString ds = Package::kbytesToSize(totalDownloadSize);
 
       TransactionDialog question(this);
 
       if(targets->count()==1)
         question.setText(StrConstants::getRetrieveTarget() +
-                         "\n\n" + StrConstants::getTotalDownloadSize().arg(ds));
+                         "\n\n" + StrConstants::getTotalDownloadSize().arg(ds).remove(" KB"));
       else
         question.setText(StrConstants::getRetrieveTargets().arg(targets->count()) +
-                         "\n\n" + StrConstants::getTotalDownloadSize().arg(ds));
+                         "\n\n" + StrConstants::getTotalDownloadSize().arg(ds).remove(" KB"));
 
       question.setWindowTitle(StrConstants::getConfirmation());
       question.setInformativeText(StrConstants::getConfirmationQuestion());
@@ -938,7 +938,7 @@ void MainWindow::doRemoveAndInstall()
   installList.remove(installList.size()-1, 1);
 
   totalDownloadSize = totalDownloadSize / 1024;
-  QString ds = QString::number(totalDownloadSize, 'f', 2);
+  QString ds = Package::kbytesToSize(totalDownloadSize);
 
   if (installList.count() == 0)
   {
@@ -979,12 +979,12 @@ void MainWindow::doRemoveAndInstall()
   if (installTargets->count() == 1)
   {
     dialogText += StrConstants::getRetrieveTarget() +
-      "\n\n" + StrConstants::getTotalDownloadSize().arg(ds);
+      "\n\n" + StrConstants::getTotalDownloadSize().arg(ds).remove(" KB");
   }
   else if (installTargets->count() > 1)
   {
     dialogText += StrConstants::getRetrieveTargets().arg(installTargets->count()) +
-      "\n\n" + StrConstants::getTotalDownloadSize().arg(ds);
+      "\n\n" + StrConstants::getTotalDownloadSize().arg(ds).remove(" KB");
   }
 
   question.setText(dialogText);
@@ -1272,7 +1272,7 @@ void MainWindow::doInstall()
   list.remove(list.size()-1, 1);
 
   totalDownloadSize = totalDownloadSize / 1024;
-  QString ds = QString::number(totalDownloadSize, 'f', 2);
+  QString ds = Package::kbytesToSize(totalDownloadSize);
 
   if (list.count() == 0)
   {
@@ -1291,11 +1291,11 @@ void MainWindow::doInstall()
       return;
     }
     else question.setText(StrConstants::getRetrieveTarget() +
-                          "\n\n" + StrConstants::getTotalDownloadSize().arg(ds));
+                          "\n\n" + StrConstants::getTotalDownloadSize().arg(ds).remove(" KB"));
   }
   else
     question.setText(StrConstants::getRetrieveTargets().arg(targets->count()) +
-                     "\n\n" + StrConstants::getTotalDownloadSize().arg(ds));
+                     "\n\n" + StrConstants::getTotalDownloadSize().arg(ds).remove(" KB"));
 
   question.setWindowTitle(StrConstants::getConfirmation());
   question.setInformativeText(StrConstants::getConfirmationQuestion());

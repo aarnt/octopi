@@ -16,8 +16,8 @@
   Added "sync db" menu option to notifier.
   Added support for hiding/showing Octopi window in the new KF5 notifier code.
   Added support for Ctrl+F in Output tab.
-  Added support for the user to choose his terminal and bypass 
-	mirrorcheck at startup, by editing ~/.config/octopi/octopi.conf.
+  Added support for the user to choose his terminal by editing 
+	~/.config/octopi/octopi.conf.
   Added QtQuick code for user change terminal (only if Qt >= 5.3).
   Added support for KStatusNotifier while in KDE (thanks to brcha).
   Updated translations.
