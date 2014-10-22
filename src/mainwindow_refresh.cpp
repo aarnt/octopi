@@ -258,18 +258,6 @@ void MainWindow::buildPackagesFromGroupList(const QString group)
   refreshStatusBarToolButtons();
 }
 
-void MainWindow::_deleteStandardItemModel(QStandardItemModel * sim)
-{
-  for(int c=0; c< sim->columnCount(); c++)
-  for(int r=0; r< sim->rowCount(); r++)
-  {
-    delete sim->item(r, c);
-  }
-
-  sim->clear();
-  delete sim;
-}
-
 /*
  * Helper method to deal with the QFutureWatcher result before calling
  * AUR package list building method

@@ -293,8 +293,6 @@ private slots:
   void tvTransactionRowsInserted(const QModelIndex& parent, int, int);
   void tvTransactionRowsRemoved(const QModelIndex& parent, int, int);
 
-  void _deleteStandardItemModel(QStandardItemModel * sim);
-
   void buildPackagesFromGroupList(const QString group);
   void buildPackageList(bool nonBlocking=true);
   void metaBuildPackageList();
