@@ -255,7 +255,7 @@ void MainWindow::initMenuBar()
 
   m_actionMenuRepository->setMenu(subMenu);
 
-#ifdef OCTOPI_CONF_IN_MENU
+#ifdef OCTOPI_DEV_CODE
   ui->menuFile->insertAction(ui->actionExit, m_actionEditOctopiConf);
 #endif
 }

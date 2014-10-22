@@ -325,8 +325,12 @@ void MainWindow::preBuildPackageList()
 
   if(!hasToCallSysUpgrade && !secondTime && UnixCommand::hasTheExecutable(ctn_MIRROR_CHECK_APP))
   {
+#ifdef OCTOPI_DEV_CODE
     if (!SettingsManager::getSkipMirrorCheckAtStartup())
       doMirrorCheck();
+#else
+    doMirrorCheck();
+#endif
 
     secondTime=true;
   }
