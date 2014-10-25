@@ -34,7 +34,7 @@ QRegExp RepoConf::sigLevelMatch = QRegExp();
 RepoConf::RepoConf()
 {
   repoConfFilePath = "/etc/pacman.conf";
-  repoMatch = QRegExp("^\\[(?!(options|repo-name|\\[|\s))");
+  repoMatch = QRegExp("^\\[(?!(options|repo-name|\\[|\\s))");
   detailMatch = QRegExp("^(Server|Include)\\s*=\\s*.+");
   sigLevelMatch = QRegExp("^(SigLevel)\\s*=\\s*.+");
   RepoEntry::nameFilter = QRegExp("(\\s+|\\[|\\])");
@@ -210,6 +210,8 @@ bool RepoConf::removeRows( int row, int count, const QModelIndex & )
   }
 
   endRemoveRows();
+
+  return true;
 }
 
 QString RepoConf::toString() const

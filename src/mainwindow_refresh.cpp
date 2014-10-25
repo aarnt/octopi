@@ -526,7 +526,7 @@ void MainWindow::buildPackageList(bool nonBlocking)
     }
     counter++;
 
-    if (counter % 200 == 0)
+    if (nonBlocking == false && counter % 200 == 0)
     {
       qApp->processEvents();
     }
