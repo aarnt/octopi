@@ -53,7 +53,17 @@ void RepoEntry::addDetail( const QString & detail )
 
 void RepoEntry::setDetails( const QStringList &details )
 {
-    this->details = details;
+  this->details = details;
+}
+
+void RepoEntry::addSigLevel(const QString &sigLevel)
+{
+    sigLevels << sigLevel;
+}
+
+void RepoEntry::setSigLevels(const QStringList &sigLevels)
+{
+    this->sigLevels = sigLevels;
 }
 
 void RepoEntry::addComment( const QString &comment )
@@ -69,7 +79,7 @@ void RepoEntry::setName( const QString &name )
 
 QString RepoEntry::toString() const
 {
-    QStringList list,list2,retList;
+    QStringList list,list2,list3,retList;
 
     if( !isValid() )
         return "";
@@ -89,8 +99,19 @@ QString RepoEntry::toString() const
     } else
         list2 << detailsComments.join( "\n" ) << details;
 
+    if( sigLevelsComments.isEmpty() ) {
+        if( !active && !sigLevels.isEmpty() ) {
+            QStringList sigLevelsCopy = sigLevels;
+            sigLevelsCopy[0] = commentString + sigLevels.at( 0 );
+            list3 << sigLevelsCopy;
+        } else
+            list3 << sigLevels;
+    } else
+        list3 << sigLevelsComments.join( "\n" ) << details;
+
     retList <<  list.join( QString( "\n" ) + ( active ? "" : commentString ) );
     retList << list2.join( QString( "\n" ) + ( active ? "" : commentString ) );
+    retList << list3.join( QString( "\n" ) + ( active ? "" : commentString ) );
 
     return retList.join( "\n" );
 }

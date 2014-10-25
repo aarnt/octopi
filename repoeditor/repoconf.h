@@ -45,9 +45,11 @@ public:
   static QString commentString;
   static QRegExp repoMatch;
   static QRegExp detailMatch;
+  static QRegExp sigLevelMatch;
 
   static bool matchRepo( QString line );
   static bool matchRepoDetails( QString line );
+  static bool matchRepoSigLevel( QString line );
 
   QString toString() const;
 

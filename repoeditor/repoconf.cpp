@@ -29,12 +29,14 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 QString RepoConf::commentString = "";
 QRegExp RepoConf::repoMatch = QRegExp();
 QRegExp RepoConf::detailMatch = QRegExp();
+QRegExp RepoConf::sigLevelMatch = QRegExp();
 
 RepoConf::RepoConf()
 {
   repoConfFilePath = "/etc/pacman.conf";
   repoMatch = QRegExp("^\\[(?!(options|repo-name|\\[|\s))");
   detailMatch = QRegExp("^(Server|Include)\\s*=\\s*.+");
+  sigLevelMatch = QRegExp("^(SigLevel)\\s*=\\s*.+");
   RepoEntry::nameFilter = QRegExp("(\\s+|\\[|\\])");
   commentString = "#";
   RepoEntry::repoFormat = "[%repo%]";
@@ -54,6 +56,11 @@ bool RepoConf::matchRepo( QString line ){
 bool RepoConf::matchRepoDetails( QString line )
 {
   return line.remove( commentString ).trimmed().contains( detailMatch );
+}
+
+bool RepoConf::matchRepoSigLevel( QString line )
+{
+  return line.remove( commentString ).trimmed().contains( sigLevelMatch );
 }
 
 RepoEntry RepoConf::extractRepo( QString line )
@@ -89,32 +96,55 @@ bool RepoConf::loadConf( const QString &eFile )
   entries.clear();
 
   QStringList comments;
-  while( !confFileStream.atEnd() ) {
+  while( !confFileStream.atEnd() )
+  {
     QString line = confFileStream.readLine();
     bool commented = !isEmpty( line ) &&
         line.trimmed().mid( 0, commentString.length() ) == commentString;
-    if( !preamble && isEmpty( line ) ) {
+
+    if( !preamble && isEmpty( line ) )
+    {
       actual.setDetailsComments( comments );
       comments.clear();
-    } else if( matchRepo( line ) ) {
+    }
+    else if( matchRepo( line ) )
+    {
       if( preamble )
         preamble = false;
+
       if( actual.isValid() )
         addEntry( actual );
+
       actual = extractRepo( line );
       actual.setComments( comments );
       comments.clear();
-    } else if( !preamble && matchRepoDetails( line ) ) {
+    }
+    else if( !preamble && matchRepoDetails( line ) )
+    {
       if( actual.isActive() && commented )
-        actual.addDetailsComment( line );
-      else actual.addDetail( line.remove( commentString ) );
-    } else if( !preamble && commented )
+        actual.addDetailsComment( line );    
+      else
+        actual.addDetail( line.remove( commentString ) );
+    }
+    else if( !preamble && matchRepoSigLevel( line ) )
+    {
+      if( actual.isActive() && commented )
+        actual.addSigLevelsComment( line );
+      else
+        actual.addSigLevel( line.remove( commentString ) );
+    }
+
+    else if( !preamble && commented )
       comments << line;
-    else if( preamble ) {
-      if( isEmpty(line) || !commented ) {
+
+    else if( preamble )
+    {
+      if( isEmpty(line) || !commented )
+      {
         this->preamble << comments << line;
         comments.clear();
-      } else if( commented )
+      }
+      else if( commented )
         comments << line;
     }
   }

@@ -6,6 +6,8 @@
   BugFix: Keep groups panel hidden (if it were before) after pressing 
 	F12 or F10.
   BugFix: Merged offa's pull request that fixed a bunch of things.
+  BugFix: RepoEditor didn't take into account repo SigLevels while 
+	saving .conf files.
   Changed repoeditor icon to octopi_green.
   Show/hide groups panel config is now persisted.
   Now notifier syncs db once a day and save last synced time.

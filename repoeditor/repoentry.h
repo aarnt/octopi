@@ -30,7 +30,9 @@ private:
     QString name; //Contains the formatted name (e.g. [main])
     QStringList details;
     QStringList comments;
+    QStringList sigLevels;
     QStringList detailsComments;
+    QStringList sigLevelsComments;
 
     bool valid;
 
@@ -57,6 +59,9 @@ public:
     void addDetail( const QString & detail );
     void setDetails( const QStringList & details );
 
+    void addSigLevel( const QString & sigLevel );
+    void setSigLevels( const QStringList &sigLevels );
+
     void addComment( const QString & comment );
 
     void setComments( const QStringList & comments ) {
@@ -81,6 +86,18 @@ public:
 
     void setDetailsComments( const QStringList & comments ) {
         detailsComments = comments;
+    }
+
+    void addSigLevelsComment( const QString & comment ) {
+        sigLevelsComments << comment;
+    }
+
+    const QStringList & getSigLevelsComments() const {
+        return sigLevelsComments;
+    }
+
+    void setSigLevelsComments( const QStringList & comments ) {
+        sigLevelsComments = comments;
     }
 
     const QString & getRealName(){
