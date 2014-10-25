@@ -89,16 +89,6 @@ QString RepoEntry::toString() const
     else
         list << comments.join( "\n" ) << name;
 
-    if( detailsComments.isEmpty() ) {
-        if( !active && !details.isEmpty() ) {
-            QStringList detailsCopy = details;
-            detailsCopy[0] = commentString + details.at( 0 );
-            list2 << detailsCopy;
-        } else
-            list2 << details;
-    } else
-        list2 << detailsComments.join( "\n" ) << details;
-
     if( sigLevelsComments.isEmpty() ) {
         if( !active && !sigLevels.isEmpty() ) {
             QStringList sigLevelsCopy = sigLevels;
@@ -109,9 +99,19 @@ QString RepoEntry::toString() const
     } else
         list3 << sigLevelsComments.join( "\n" ) << details;
 
+    if( detailsComments.isEmpty() ) {
+        if( !active && !details.isEmpty() ) {
+            QStringList detailsCopy = details;
+            detailsCopy[0] = commentString + details.at( 0 );
+            list2 << detailsCopy;
+        } else
+            list2 << details;
+    } else
+        list2 << detailsComments.join( "\n" ) << details;
+
     retList <<  list.join( QString( "\n" ) + ( active ? "" : commentString ) );
-    retList << list2.join( QString( "\n" ) + ( active ? "" : commentString ) );
     retList << list3.join( QString( "\n" ) + ( active ? "" : commentString ) );
+    retList << list2.join( QString( "\n" ) + ( active ? "" : commentString ) );
 
     return retList.join( "\n" );
 }
