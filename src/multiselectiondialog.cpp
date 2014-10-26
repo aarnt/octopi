@@ -143,6 +143,8 @@ bool MultiSelectionDialog::eventFilter(QObject *obj, QEvent *evt)
         }
 
         m_actionIsToCheck = !m_actionIsToCheck;
+
+        return true;
       }      
     }
   }

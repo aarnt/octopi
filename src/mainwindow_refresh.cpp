@@ -120,7 +120,7 @@ void MainWindow::refreshMenuTools()
 }
 
 /*
- * Inserts the group names into the Groups comboBox
+ * Inserts the group names into the Groups treeView
  */
 void MainWindow::refreshGroupsWidget()
 {
