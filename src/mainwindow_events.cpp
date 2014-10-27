@@ -188,11 +188,11 @@ void MainWindow::keyPressEvent(QKeyEvent* ke)
   }
   else if (ke->key() == Qt::Key_F10)
   {
-    maximizePackagesTreeView();
+    maximizePackagesTreeView(false);
   }
   else if (ke->key() == Qt::Key_F12)
   {
-    maximizePropertiesTabWidget();
+    maximizePropertiesTabWidget(false);
   }
   else if(ke->key() == Qt::Key_C && ke->modifiers() == Qt::ControlModifier)
   {

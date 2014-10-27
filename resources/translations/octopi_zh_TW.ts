@@ -274,7 +274,7 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="77"/>
         <source>Package classification:</source>
-        <translation>套件申明：</translation>
+        <translation>套件說明：</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="80"/>

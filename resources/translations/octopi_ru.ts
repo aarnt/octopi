@@ -254,7 +254,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="557"/>
         <source>By file</source>
-        <translation type="unfinished"/>
+        <translation>По файлам</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="55"/>
@@ -532,7 +532,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="138"/>
         <source>Netrunner Rolling news</source>
-        <translation type="unfinished"/>
+        <translation>Новости Netrunner Rolling</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="142"/>
@@ -867,7 +867,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="417"/>
         <source>Choose a terminal</source>
-        <translation type="unfinished"/>
+        <translation>Выберите терминал</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="421"/>
@@ -967,7 +967,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="497"/>
         <source>Do you really want to remove Pacman&apos;s transaction lock file?</source>
-        <translation>Вы действительно хотите удалить файл блокировки транзакций ???</translation>
+        <translation>Вы действительно хотите удалить файл блокировки транзакций?</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="501"/>
@@ -1069,7 +1069,7 @@ Are you sure you want to open it?</source>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="580"/>
         <source>Press Ctrl+A to select/deselect all</source>
-        <translation>Нажмите Ctrl+A для общего выбора/отмены</translation>
+        <translation>Нажмите Ctrl+A, чтобы выбрать всё / удалить все отметки</translation>
     </message>
 </context>
 <context>

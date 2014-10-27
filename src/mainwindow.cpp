@@ -104,10 +104,10 @@ void MainWindow::show()
     initTabNews();
     initLineEditFilterPackages();
     initPackageTreeView();
+    initActions();
     loadSettings();
 
     loadPanelSettings();
-    initActions();
     initStatusBar();
     initToolButtonPacman();
     initToolButtonAUR();
@@ -900,8 +900,9 @@ void MainWindow::hideGroupsWidget(bool pSaveSettings)
   rl = ui->splitterVertical->sizes();
 
   if (( rl[1] != 0 ) || (!m_initializationCompleted))
-  {
+  {       
     ui->splitterVertical->setSizes( l << tvPackagesWidth << 0);
+    m_actionShowGroups->setChecked(false);
 
     if(pSaveSettings)
       saveSettings(ectn_GROUPS);
@@ -920,6 +921,7 @@ void MainWindow::hideGroupsWidget(bool pSaveSettings)
 
     ui->splitterVertical->setSizes( l << tvPackagesWidth << ui->twGroups->maximumWidth() );
     ui->tvPackages->setFocus();
+    m_actionShowGroups->setChecked(true);
 
     if(pSaveSettings)
       saveSettings(ectn_NORMAL);

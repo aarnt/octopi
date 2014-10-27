@@ -18,15 +18,12 @@
 *
 */
 
+#include "strconstants.h"
 #include "packagerepository.h"
 
 #include <cassert>
 #include <iostream>
-
 #include <QSet>
-
-#include "strconstants.h"
-
 
 PackageRepository::PackageRepository()
 {
@@ -67,7 +64,6 @@ void PackageRepository::setData(const QList<PackageListData>*const listOfPackage
     if (*it != NULL) (*it)->invalidateList();
   }
   // delete items in list
-  //for (QList<PackageData*>::const_iterator it = m_listOfPackages.begin(); it != m_listOfPackages.end(); ++it) {
   for (TListOfPackages::const_iterator it = m_listOfPackages.begin(); it != m_listOfPackages.end(); ++it) {
     if (*it != NULL) delete *it;
   }
@@ -90,7 +86,6 @@ void PackageRepository::setAURData(const QList<PackageListData>*const listOfFore
     std::for_each(m_dependingModels.begin(), m_dependingModels.end(), BeginResetModel());
 
     // delete AUR items in list
-    //for (QList<PackageData*>::iterator it = m_listOfPackages.begin(); it != m_listOfPackages.end(); ++it) {
     for (TListOfPackages::iterator it = m_listOfPackages.begin(); it != m_listOfPackages.end(); ++it) {
       if (*it != NULL && (*it)->managedByAUR) {
         delete *it;
@@ -164,7 +159,6 @@ void PackageRepository::checkAndSetMembersOfGroup(const QString& groupName, cons
       group.invalidateList();
 
       for (QStringList::const_iterator it = members.begin(); it != members.end(); ++it) {
-        //typedef QList<PackageData*>::const_iterator TIter;
         typedef TListOfPackages::const_iterator TIter;
         std::pair<TIter, TIter> packageIt =  std::equal_range(m_listOfPackages.begin(), m_listOfPackages.end(), *it, TComp());
         for (TIter iter = packageIt.first; iter != packageIt.second; ++iter) {
@@ -202,7 +196,6 @@ const QList<PackageRepository::PackageData*>& PackageRepository::getPackageList(
     }
     if (groupIt != m_listOfGroups.end()) {
       Group& group = **groupIt;
-      //const QList<PackageRepository::PackageData*>* list = group.getPackageList();
       const TListOfPackages* list = group.getPackageList();
       if (list != NULL) return *list;
     }
@@ -281,7 +274,6 @@ bool PackageRepository::Group::memberListEquals(const QStringList& packagelist)
     return false;
 
   QStringList::const_iterator it2 = packagelist.begin();
-  //for (QList<PackageData*>::const_iterator it = m_listOfPackages->begin(); it != m_listOfPackages->end(); ++it, ++it2) {
   for (TListOfPackages::const_iterator it = m_listOfPackages->begin(); it != m_listOfPackages->end(); ++it, ++it2) {
     if ((*it)->name != *it2)
       return false;

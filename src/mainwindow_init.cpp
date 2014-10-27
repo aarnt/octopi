@@ -110,7 +110,7 @@ void MainWindow::saveSettings(SaveSettingsReason saveSettingsReason){
     case ectn_NORMAL:
       SettingsManager::instance()->setPanelOrganizing(ectn_NORMAL);
       SettingsManager::instance()->setSplitterHorizontalState(ui->splitterHorizontal->saveState());
-      //SettingsManager::instance()->setShowGroupsPanel(1); //And also show Groups panel!
+      SettingsManager::instance()->setShowGroupsPanel(1); //And also show Groups panel!
       break;
 
     case ectn_PackageList:
