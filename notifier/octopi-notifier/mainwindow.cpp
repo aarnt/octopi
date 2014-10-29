@@ -235,7 +235,7 @@ void MainWindow::doSystemUpgrade()
   list.remove(list.size()-1, 1);
 
   totalDownloadSize = totalDownloadSize / 1024;
-  QString ds = QString::number(totalDownloadSize, 'f', 2);
+  QString ds = Package::kbytesToSize(totalDownloadSize);
   TransactionDialog question(this);
 
   //If we're in Chakra, there are no graphical system upgrades!
@@ -243,10 +243,10 @@ void MainWindow::doSystemUpgrade()
 
   if(targets->count()==1)
     question.setText(StrConstants::getRetrieveTarget() +
-                     "\n\n" + StrConstants::getTotalDownloadSize().arg(ds));
+                     "\n\n" + StrConstants::getTotalDownloadSize().arg(ds).remove(" KB"));
   else
     question.setText(StrConstants::getRetrieveTargets().arg(targets->count()) +
-                     "\n\n" + StrConstants::getTotalDownloadSize().arg(ds));
+                     "\n\n" + StrConstants::getTotalDownloadSize().arg(ds).remove(" KB"));
 
   question.setWindowTitle(StrConstants::getConfirmation());
   question.setInformativeText(StrConstants::getConfirmationQuestion());
