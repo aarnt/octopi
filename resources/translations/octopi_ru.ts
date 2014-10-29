@@ -817,7 +817,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="373"/>
         <source>Removing Pacman&apos;s transaction lock file...</source>
-        <translation>Удаление файла блокировки транзакций.....</translation>
+        <translation>Удаление файла блокировки транзакций...</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="377"/>
@@ -1069,7 +1069,7 @@ Are you sure you want to open it?</source>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="580"/>
         <source>Press Ctrl+A to select/deselect all</source>
-        <translation>Нажмите Ctrl+A, чтобы выбрать всё / удалить все отметки</translation>
+        <translation>Нажмите Ctrl+A, чтобы отметить все / удалить все отметки</translation>
     </message>
 </context>
 <context>
