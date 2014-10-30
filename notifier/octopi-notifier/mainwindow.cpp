@@ -17,7 +17,7 @@
 #endif
 
 /*
- * This is Octopi slim interface code :-)
+ * This is Octopi Notifier slim interface code :-)
  */
 
 /*
