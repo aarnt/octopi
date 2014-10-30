@@ -304,8 +304,8 @@ void MainWindow::keyPressEvent(QKeyEvent* ke)
 int MainWindow::selectTerminal(const int initialTerminalIndex)
 {
   int result = initialTerminalIndex;
-  static TerminalSelectorDialog *d =
-      new TerminalSelectorDialog(this, Terminal::getListOfAvailableTerminals());
+  std::unique_ptr<TerminalSelectorDialog> d(
+        new TerminalSelectorDialog(this, Terminal::getListOfAvailableTerminals()));
 
   d->setInitialTerminalIndex(initialTerminalIndex);
 

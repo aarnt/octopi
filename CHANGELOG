@@ -1,4 +1,4 @@
-0.5.0 (dev)
+0.5.0
   BugFix: RepoEditor would not compile with Qt5 lib (thanks to Philm).
   BugFix: Suppress GConf error strings in output.
   BugFix: mate-terminal is returning code 255 even when execution of 
