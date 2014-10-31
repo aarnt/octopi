@@ -254,7 +254,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="557"/>
         <source>By file</source>
-        <translation type="unfinished"/>
+        <translation>Efter fil</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="55"/>
@@ -502,12 +502,12 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="114"/>
         <source>Antergos news</source>
-        <translation type="unfinished"/>
+        <translation>Antergos nyheder</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="118"/>
         <source>ArchBSD news</source>
-        <translation type="unfinished"/>
+        <translation>ArchBSD nyheder</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="122"/>
@@ -532,7 +532,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="138"/>
         <source>Netrunner Rolling news</source>
-        <translation type="unfinished"/>
+        <translation>Netrunner Rolling nyheder</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="142"/>
@@ -867,7 +867,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="417"/>
         <source>Choose a terminal</source>
-        <translation type="unfinished"/>
+        <translation>Vælg en terminal</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="421"/>
