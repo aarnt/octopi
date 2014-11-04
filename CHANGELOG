@@ -12,7 +12,6 @@
   Changed repoeditor icon to octopi_green.
   Show/hide groups panel config is now persisted.
   Now notifier syncs db once a day and save last synced time.
-  Added option to edit "octopi.conf" file in "File menu".
   Changed package size to MiB when it was > 1024 KiB.
   Added option "SyncDbHour" so notifier checks only when that specific hour ticks, 
 	again once a day.
