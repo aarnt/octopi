@@ -10,7 +10,6 @@ QT += core xml gui network dbus
 #DEFINES += KSTATUS
 
 contains(DEFINES, KSTATUS){
-  #include(/usr/lib/qt5/mkspecs/modules/qt_KNotifications.pri)
   QT += KNotifications
 }
 
@@ -20,7 +19,6 @@ CONFIG += qt console warn_on debug
 
 TARGET = octopi-notifier
 TEMPLATE = app
-
 DESTDIR += ../bin
 OBJECTS_DIR += ../build-octopi-notifier
 MOC_DIR += ../build-octopi-notifier

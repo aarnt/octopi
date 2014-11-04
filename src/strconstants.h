@@ -34,6 +34,10 @@ public:
     return "0.5.0";
   }
 
+  static QString getQtVersion(){
+    return "Qt " + QString(QT_VERSION_STR);
+  }
+
   static QString getApplicationCliHelp(){
     QString str =
         "\n" + QObject::tr("Octopi usage help:") + "\n\n" +

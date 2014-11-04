@@ -11,6 +11,7 @@
 #include <QMenu>
 #include <QProcess>
 #include <QMessageBox>
+#include <QDebug>
 
 #ifdef KSTATUS
   #include <kstatusnotifieritem.h>
@@ -26,6 +27,7 @@
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent)
 {
+  qDebug() << "At MainWindow constructor...";
   m_pacmanDatabaseSystemWatcher =
             new QFileSystemWatcher(QStringList() << ctn_PACMAN_DATABASE_DIR, this);
 
@@ -44,6 +46,7 @@ MainWindow::~MainWindow()
  */
 void MainWindow::initSystemTrayIcon()
 {
+  qDebug() << "At initSystemTrayIcon()...";
   m_commandExecuting = ectn_NONE;
   m_outdatedPackageList = new QStringList();
 
@@ -173,7 +176,7 @@ void MainWindow::runOctopiSysUpgrade()
  */
 void MainWindow::aboutOctopiNotifier()
 {
-  QString aboutText = "<b>Octopi Notifier - " + StrConstants::getApplicationVersion() + "</b><br>";
+  QString aboutText = "<b>Octopi Notifier - " + StrConstants::getApplicationVersion() + "</b>" + " (" + StrConstants::getQtVersion() + ")<br>";
   aboutText += "<a href=\"http://octopiproject.wordpress.com/\">http://octopiproject.wordpress.com</a><br><br>";
   aboutText += "&copy; Alexandre Albuquerque Arnt";
 
@@ -370,7 +373,7 @@ void MainWindow::pacmanHelperTimerTimeout()
   if ((syncHour == -1 && (
         lastCheckTime.isNull() ||
         lastCheckTime.daysTo(now) >= 1)) || (syncTime))
-  {
+  {    
     syncDatabase();
     //Then we set new LastCheckTime...
     SettingsManager::setLastSyncDbTime(now);
@@ -382,6 +385,7 @@ void MainWindow::pacmanHelperTimerTimeout()
  */
 void MainWindow::afterPacmanHelperSyncDatabase()
 {
+  qDebug() << "At afterPacmanHelperSyncDatabase()...";
   toggleEnableInterface(true);
 
 #ifndef KSTATUS
@@ -472,6 +476,7 @@ void MainWindow::afterPacmanHelperSyncDatabase()
  */
 void MainWindow::syncDatabase()
 {
+  qDebug() << "At syncDatabase()...";
   toggleEnableInterface(false);
   m_icon = IconHelper::getIconOctopiTransparent();
 
@@ -516,6 +521,7 @@ void MainWindow::sendNotification(const QString &msg)
  */
 void MainWindow::refreshAppIcon()
 {
+  qDebug() << "At refreshAppIcon()...";
   m_outdatedPackageList = Package::getOutdatedPackageList();
   bool hasAURTool = UnixCommand::hasTheExecutable(StrConstants::getForeignRepositoryToolName());
 
@@ -588,6 +594,7 @@ void MainWindow::refreshAppIcon()
       m_actionSystemUpgrade->setVisible(true);
     }
 
+    qDebug() << "Got a RED icon!";
     m_icon = IconHelper::getIconOctopiRed();
 
 
@@ -600,6 +607,7 @@ void MainWindow::refreshAppIcon()
   {
     m_actionSystemUpgrade->setVisible(false);
     m_icon = IconHelper::getIconOctopiYellow();
+    qDebug() << "Got a YELLOW icon!";
 
 #ifdef KSTATUS
     m_systemTrayIcon->setAttentionIconByPixmap(m_icon);
@@ -610,6 +618,7 @@ void MainWindow::refreshAppIcon()
   {
     m_actionSystemUpgrade->setVisible(false);
     m_icon = IconHelper::getIconOctopiGreen();
+    qDebug() << "Got a GREEN icon!";
 
 #ifdef KSTATUS
     //m_systemTrayIcon->setAttentionIconByPixmap(m_icon);
@@ -686,9 +695,12 @@ void MainWindow::execSystemTrayKF5()
  */
 void MainWindow::exitNotifier()
 {
+  qDebug() << "At exitNotifier()...";
+
   if (UnixCommand::isAppRunning("octopi", true))
   {    
     QProcess::startDetached("octopi -close");
+    qDebug() << "Closing Octopi too...";
   }
 
   qApp->quit();

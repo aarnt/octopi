@@ -8,6 +8,7 @@
   BugFix: Merged offa's pull request that fixed a bunch of things.
   BugFix: RepoEditor didn't take into account repo SigLevels while 
 	saving .conf files.
+  Added Qt version in About dialog boxes (also in notifier).
   Changed repoeditor icon to octopi_green.
   Show/hide groups panel config is now persisted.
   Now notifier syncs db once a day and save last synced time.

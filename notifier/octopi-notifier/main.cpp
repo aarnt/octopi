@@ -1,15 +1,24 @@
 #include "../../src/unixcommand.h"
 #include "../../src/wmhelper.h"
+#include "../../src/strconstants.h"
 #include "mainwindow.h"
 
 #include <QApplication>
 #include <QtGui>
+#include <QDebug>
 
 //#define NO_GTK_STYLE
 
 int main(int argc, char *argv[])
-{
-  if (UnixCommand::isAppRunning("octopi-notifier")) return (-1);
+{  
+  qDebug() << QString("Octopi Notifier - " + StrConstants::getApplicationVersion() +
+                " (" + StrConstants::getQtVersion() + ")");
+
+  if (UnixCommand::isAppRunning("octopi-notifier"))
+  {
+    qDebug() << "Aborting notifier as another instance is already running!";
+    return (-1);
+  }
 
   QApplication a(argc, argv);
 
@@ -29,6 +38,7 @@ int main(int argc, char *argv[])
   QTranslator appTranslator;
   appTranslator.load(":/resources/translations/octopi_" +
                      QLocale::system().name());
+
   a.installTranslator(&appTranslator);
   a.setQuitOnLastWindowClosed(false);
 
