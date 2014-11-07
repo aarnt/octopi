@@ -61,6 +61,7 @@ void MainWindow::initSystemTrayIcon()
 #ifdef KSTATUS
   m_systemTrayIcon->setIconByPixmap(m_icon);
   m_systemTrayIcon->setToolTipIconByPixmap(m_icon);
+  m_systemTrayIcon->setTitle("Octopi notifier");
 #else
   m_systemTrayIcon->setIcon(m_icon); 
 #endif
