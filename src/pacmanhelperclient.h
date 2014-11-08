@@ -33,7 +33,7 @@ public:
 public:
     PacmanHelperClient(const QString &service, const QString &path, const QDBusConnection &connection, QObject *parent = 0);
 
-    ~PacmanHelperClient();
+    virtual ~PacmanHelperClient();
 
 public Q_SLOTS: // METHODS
     inline QDBusPendingReply<> syncdb()

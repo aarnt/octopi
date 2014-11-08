@@ -55,7 +55,7 @@ class SettingsManager
     SettingsManager(const SettingsManager&);
     SettingsManager& operator= (const SettingsManager&);
     SettingsManager();
-    ~SettingsManager();
+    virtual ~SettingsManager();
     QSettings* getSYSsettings() { return m_SYSsettings; }
 
   public:

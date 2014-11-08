@@ -33,7 +33,7 @@ class MultiSelectionDialog : public QDialog
   
 public:
   explicit MultiSelectionDialog(QWidget *parent = 0);
-  ~MultiSelectionDialog();
+  virtual ~MultiSelectionDialog();
 
   void addPackageItem(const QString & name, const QString & description,
                       const QString & repository);

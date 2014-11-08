@@ -50,7 +50,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="193"/>
         <source>Tools</source>
-        <translation>Priemonės</translation>
+        <translation>Įrankiai</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="222"/>
@@ -244,7 +244,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="533"/>
         <source>Repository Editor</source>
-        <translation>Redaguoti Saugyklas</translation>
+        <translation>Saugyklas redaktorius</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="541"/>
@@ -254,7 +254,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="557"/>
         <source>By file</source>
-        <translation>Pagal failo tipą</translation>
+        <translation>Pagal failą</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="55"/>
@@ -434,7 +434,7 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="153"/>
         <source>Ctrl+Shift+Y to display %1 group</source>
-        <translation>Ctrl+Shift+Y rodyti %1 grupę</translation>
+        <translation>Ctrl+Shift+Y, kad rodyti %1 grupę</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="156"/>

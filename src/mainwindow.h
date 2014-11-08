@@ -403,7 +403,7 @@ public slots:
 
 public:
   explicit MainWindow(QWidget *parent = 0);
-  ~MainWindow();
+  virtual ~MainWindow();
 
   static MainWindow* returnMainWindow()
   {

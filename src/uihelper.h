@@ -240,7 +240,7 @@ public:
     if (m_parent) m_parent->setCursor(Qt::WaitCursor);
   }
 
-  ~CPUIntensiveComputing(){
+  virtual ~CPUIntensiveComputing(){
     if (m_parent)
       m_parent->setCursor(Qt::ArrowCursor);
     else
