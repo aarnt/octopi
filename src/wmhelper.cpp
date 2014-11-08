@@ -47,19 +47,24 @@ bool WMHelper::isKDERunning(){
   {
     QStringList slParam;
     QProcess proc;
-    slParam << "-C";
-    slParam << ctn_KDE_DESKTOP;
-    proc.start("ps", slParam);
-    proc.waitForStarted();
-    proc.waitForFinished();
+    ret = false;
+    QStringList kdeDesktops = QStringList() << ctn_KDE_DESKTOP << ctn_KDE_X11_DESKTOP << ctn_KDE_WAYLAND_DESKTOP;
+    QStringList::const_iterator constIterator;
+    for (constIterator = kdeDesktops.constBegin(); constIterator != kdeDesktops.constEnd(); ++constIterator) {
+      QString desktop = (*constIterator).toLocal8Bit().constData();
+      slParam.clear();
+      slParam << "-C";
+      slParam << desktop;
+      proc.start("ps", slParam);
+      proc.waitForStarted();
+      proc.waitForFinished();
 
-    QString out = proc.readAll();
-    proc.close();
+      QString out = proc.readAll();
+      proc.close();
 
-    if (out.count(ctn_KDE_DESKTOP)>0)
-      ret = true;
-    else
-      ret = false;
+      if (out.count(desktop)>0)
+        ret = true;
+    }
 
     firstTime = false;
   }

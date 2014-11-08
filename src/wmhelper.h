@@ -27,6 +27,8 @@ const QString ctn_NO_SU_COMMAND("none");
 const QString ctn_ROOT_SH("/bin/sh -c ");
 const QString ctn_KDESU("kdesu");
 const QString ctn_KDE_DESKTOP("kwin");
+const QString ctn_KDE_X11_DESKTOP("kwin_x11");
+const QString ctn_KDE_WAYLAND_DESKTOP("kwin_wayland");
 const QString ctn_KDE_EDITOR("kwrite");
 const QString ctn_KDE_FILE_MANAGER("kfmclient");
 const QString ctn_KDE_TERMINAL("konsole");
