@@ -50,6 +50,7 @@ bool WMHelper::isKDERunning(){
     ret = false;
     QStringList kdeDesktops = QStringList() << ctn_KDE_DESKTOP << ctn_KDE_X11_DESKTOP << ctn_KDE_WAYLAND_DESKTOP;
     QStringList::const_iterator constIterator;
+
     for (constIterator = kdeDesktops.constBegin(); constIterator != kdeDesktops.constEnd(); ++constIterator) {
       QString desktop = (*constIterator).toLocal8Bit().constData();
       slParam.clear();

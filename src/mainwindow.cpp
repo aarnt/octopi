@@ -422,9 +422,9 @@ void MainWindow::tvPackagesSearchColumnChanged(QAction *actionSelected)
     ui->twGroups->setEnabled(true);
 
     if (isAURGroupSelected())
-      m_leFilterPackage->refreshValidator(ectn_AUR_VALIDATOR);
+      m_leFilterPackage->setRefreshValidator(ectn_AUR_VALIDATOR);
     else
-      m_leFilterPackage->refreshValidator(ectn_DEFAULT_VALIDATOR);
+      m_leFilterPackage->setRefreshValidator(ectn_DEFAULT_VALIDATOR);
 
     m_packageModel->applyFilter(PackageModel::ctn_PACKAGE_NAME_COLUMN);
   }
@@ -435,9 +435,9 @@ void MainWindow::tvPackagesSearchColumnChanged(QAction *actionSelected)
     ui->twGroups->setEnabled(true);
 
     if (isAURGroupSelected())
-      m_leFilterPackage->refreshValidator(ectn_AUR_VALIDATOR);
+      m_leFilterPackage->setRefreshValidator(ectn_AUR_VALIDATOR);
     else
-      m_leFilterPackage->refreshValidator(ectn_DEFAULT_VALIDATOR);
+      m_leFilterPackage->setRefreshValidator(ectn_DEFAULT_VALIDATOR);
 
     m_packageModel->applyFilter(PackageModel::ctn_PACKAGE_DESCRIPTION_FILTER_NO_COLUMN);
   }
@@ -450,7 +450,7 @@ void MainWindow::tvPackagesSearchColumnChanged(QAction *actionSelected)
     ui->menuView->setEnabled(false);
 
     ui->twGroups->setEnabled(false);
-    m_leFilterPackage->refreshValidator(ectn_FILE_VALIDATOR);
+    m_leFilterPackage->setRefreshValidator(ectn_FILE_VALIDATOR);
   }
 
   if (!isSearchByFileSelected() && m_packageModel->getPackageCount() <= 1)

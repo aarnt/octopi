@@ -190,7 +190,7 @@ void MainWindow::buildPackagesFromGroupList(const QString group)
 {
   CPUIntensiveComputing cic;
 
-  if (isAllGroupsSelected())
+  /*if (isAllGroupsSelected())
   {
     reapplyPackageFilter();
     m_packageModel->applyFilter(m_selectedViewOption, m_selectedRepository, StrConstants::getForeignToolGroup());
@@ -205,7 +205,7 @@ void MainWindow::buildPackagesFromGroupList(const QString group)
     ui->tvPackages->setFocus();
 
     return;
-  }
+  }*/
 
   const QList<QString>*const list = m_listOfPackagesFromGroup.get();
   QList<QString>::const_iterator it = list->begin();
@@ -345,11 +345,11 @@ void MainWindow::preBuildPackagesFromGroupList()
 void MainWindow::metaBuildPackageList()
 {
   if (isSearchByFileSelected())
-    m_leFilterPackage->refreshValidator(ectn_FILE_VALIDATOR);
+    m_leFilterPackage->setRefreshValidator(ectn_FILE_VALIDATOR);
   else if (isAURGroupSelected())
-    m_leFilterPackage->refreshValidator(ectn_AUR_VALIDATOR);
+    m_leFilterPackage->setRefreshValidator(ectn_AUR_VALIDATOR);
   else
-    m_leFilterPackage->refreshValidator(ectn_DEFAULT_VALIDATOR);
+    m_leFilterPackage->setRefreshValidator(ectn_DEFAULT_VALIDATOR);
 
   m_packageModel->setShowColumnPopularity(false);
   ui->twGroups->setEnabled(false);

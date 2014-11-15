@@ -66,7 +66,7 @@ SearchLineEdit::SearchLineEdit(QWidget *parent) :
 /*
  * Refreshes the validator used in QLineEdit depending on the options choosed by the user
  */
-void SearchLineEdit::refreshValidator(ValidatorType validatorType)
+void SearchLineEdit::setRefreshValidator(ValidatorType validatorType)
 {
   if (validatorType == ectn_AUR_VALIDATOR)
     setValidator(m_aurValidator);

@@ -44,7 +44,7 @@ public:
   explicit SearchLineEdit(QWidget *parent = NULL);
 
   inline void initStyleSheet(){ setStyleSheet(styleSheetForCurrentState()); }
-  void refreshValidator(ValidatorType validatorType);
+  void setRefreshValidator(ValidatorType validatorType);
   void refreshCompleterData();
 
 public slots:
