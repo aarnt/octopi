@@ -1184,7 +1184,8 @@ void MainWindow::doInstallAURPackage()
     m_lastCommandList.append(StrConstants::getForeignRepositoryToolName() + " -i " + listOfTargets + ";");
   else if (StrConstants::getForeignRepositoryToolName() == "pacaur")
     m_lastCommandList.append(StrConstants::getForeignRepositoryToolName() + " -Sa " + listOfTargets + ";");
-  else if (StrConstants::getForeignRepositoryToolName() == "yaourt")
+  else if (StrConstants::getForeignRepositoryToolName() == "yaourt" ||
+           StrConstants::getForeignRepositoryToolName() == "ccr")
     m_lastCommandList.append(StrConstants::getForeignRepositoryToolName() + " -S " + listOfTargets + ";");
 
   m_lastCommandList.append("echo -e;");
@@ -1210,7 +1211,6 @@ void MainWindow::doRemoveAURPackage()
   if (!_isSUAvailable()) return;
 
   QString listOfTargets;
-
   QModelIndexList selectedRows = ui->tvPackages->selectionModel()->selectedRows();
   foreach(QModelIndex item, selectedRows)
   {

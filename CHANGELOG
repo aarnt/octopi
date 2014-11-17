@@ -1,4 +1,5 @@
 0.5.1 (dev)
+  BugFix: Chakra CCR for installing pkgs was not being called.
   Added new KDE detection logic (thanks to Kirek).
   Refactorings in SearchLineEdit.
 
