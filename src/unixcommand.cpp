@@ -543,31 +543,6 @@ bool UnixCommand::doInternetPingTest()
 }
 
 /*
- * We must check if KTSUSS version is 1.3 or 1.4.
- */
-bool UnixCommand::isKtsussVersionOK()
-{
-  QProcess proc;
-
-  QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
-  env.insert("LANG", "C");
-  env.insert("LC_MESSAGES", "C");
-  proc.setProcessEnvironment(env);
-
-  QStringList slParam("-v");
-  proc.start("ktsuss", slParam );
-  proc.waitForFinished();
-
-  QString out = proc.readAllStandardOutput();
-  proc.close();
-
-  if (out.indexOf("ktsuss 1.3") != -1 || out.indexOf("ktsuss 1.4") != -1)
-    return true;
-  else
-    return false;
-}
-
-/*
  * Checks if the given executable is available somewhere in the system
  */
 bool UnixCommand::hasTheExecutable( const QString& exeName )
@@ -909,6 +884,7 @@ QStringList UnixCommand::getIgnorePkg()
   while(true);
 
   file.close();
+
   return res;
 }
 

@@ -44,8 +44,14 @@ utils::ProcessWrapper::ProcessWrapper(QObject *parent) :
 {
   m_process = new QProcess(parent);
   QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
-  env.insert("LANG", "C");
-  env.insert("LC_MESSAGES", "C");
+  //env.insert("LANG", "C");
+  //env.insert("LC_MESSAGES", "C");
+
+  env.remove("LANG");
+  env.remove("LC_MESSAGES");
+  env.insert("LANG", QLocale::system().name() + ".UTF-8");
+  env.insert("LC_MESSAGES", QLocale::system().name() + ".UTF-8");
+
   m_process->setProcessEnvironment(env);
 
   m_timerSingleShot = new QTimer(parent);

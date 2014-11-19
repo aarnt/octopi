@@ -2,7 +2,7 @@
 #include "../../src/strconstants.h"
 #include "../../src/uihelper.h"
 #include "../../src/package.h"
-#include "../../src/pacmanhelperclient.h"
+#include "../pacmanhelper/pacmanhelperclient.h"
 #include "../../src/transactiondialog.h"
 
 #include <QTimer>

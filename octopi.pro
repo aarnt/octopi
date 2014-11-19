@@ -34,7 +34,6 @@ HEADERS += src/QtSolutions/qtsingleapplication.h \
         src/treeviewpackagesitemdelegate.h \
         src/searchbar.h \
         src/transactiondialog.h \
-        src/pacmanhelperclient.h \
         src/globals.h \
         src/multiselectiondialog.h \
         src/packagerepository.h \
@@ -67,7 +66,6 @@ SOURCES += src/QtSolutions/qtsingleapplication.cpp \
         src/transactiondialog.cpp \
         src/mainwindow_news.cpp \
         src/mainwindow_refresh.cpp \
-        src/pacmanhelperclient.cpp \
         src/globals.cpp \
         src/multiselectiondialog.cpp \
         src/packagerepository.cpp \

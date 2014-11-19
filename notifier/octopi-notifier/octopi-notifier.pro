@@ -31,7 +31,7 @@ SOURCES += main.cpp \
     ../../src/package.cpp \
     ../../src/wmhelper.cpp \
     ../../src/settingsmanager.cpp \
-    ../../src/pacmanhelperclient.cpp \
+    ../pacmanhelper/pacmanhelperclient.cpp \
     ../../src/utils.cpp \
     ../../src/transactiondialog.cpp
 
@@ -43,7 +43,7 @@ HEADERS  += \
     ../../src/wmhelper.h \
     ../../src/strconstants.h \
     ../../src/package.h \
-    ../../src/pacmanhelperclient.h \
+    ../pacmanhelper/pacmanhelperclient.h \
     ../../src/utils.h \
     ../../src/transactiondialog.h
 

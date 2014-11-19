@@ -105,7 +105,6 @@ public:
   static bool doInternetPingTest();
   static bool isTextFile( const QString& fileName ); //fileName is Path + Name
 
-  static bool isKtsussVersionOK();
   static bool hasTheExecutable( const QString& exeName );
   static bool isAppRunning(const QString &appName, bool justOneInstance = false);
 
@@ -117,6 +116,7 @@ public:
   static QFile* getTemporaryFile(){
     QTime time = QTime::currentTime();
     qsrand(time.minute() + time.second() + time.msec());
+
     m_temporaryFile = new QFile(ctn_TEMP_ACTIONS_FILE + QString::number(qrand()));
     m_temporaryFile->open(QIODevice::ReadWrite|QIODevice::Text);
     m_temporaryFile->setPermissions(QFile::Permissions(QFile::ExeOwner|QFile::ReadOwner));
