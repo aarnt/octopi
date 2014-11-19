@@ -50,7 +50,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="193"/>
         <source>Tools</source>
-        <translation type="unfinished"/>
+        <translation>أدوات</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="222"/>
@@ -239,22 +239,22 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="521"/>
         <source>Pacman Log Viewer</source>
-        <translation type="unfinished"/>
+        <translation>مشاهدة تسجيلات Pacman</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="533"/>
         <source>Repository Editor</source>
-        <translation type="unfinished"/>
+        <translation>تعديل المستودعات</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="541"/>
         <source>Installed</source>
-        <translation type="unfinished"/>
+        <translation>مثبتة</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="557"/>
         <source>By file</source>
-        <translation type="unfinished"/>
+        <translation>عبر الملف</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="55"/>
@@ -264,7 +264,7 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="58"/>
         <source>A Qt-based Pacman frontend,</source>
-        <translation type="unfinished"/>
+        <translation>واجهة رسومية Qt-based لبرنامج Pacman</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="59"/>
@@ -434,7 +434,7 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="153"/>
         <source>Ctrl+Shift+Y to display %1 group</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+Shift+Y لعرض %1 المجموعة</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="156"/>
@@ -497,17 +497,17 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="49"/>
         <source>All</source>
-        <translation type="unfinished"/>
+        <translation>الجميع</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="114"/>
         <source>Antergos news</source>
-        <translation type="unfinished"/>
+        <translation>أخبار Antergos</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="118"/>
         <source>ArchBSD news</source>
-        <translation type="unfinished"/>
+        <translation>أخبار ArchBSD</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="122"/>
@@ -522,7 +522,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="130"/>
         <source>KaOS news</source>
-        <translation type="unfinished"/>
+        <translation>أخبار KaOS</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="134"/>
@@ -532,7 +532,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="138"/>
         <source>Netrunner Rolling news</source>
-        <translation type="unfinished"/>
+        <translation>أخبار Netrunner</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="142"/>
@@ -652,12 +652,12 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="241"/>
         <source>Popularity</source>
-        <translation type="unfinished"/>
+        <translation>الشعبية</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="245"/>
         <source>votes</source>
-        <translation type="unfinished"/>
+        <translation>التصويتات</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="249"/>
@@ -867,7 +867,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="417"/>
         <source>Choose a terminal</source>
-        <translation type="unfinished"/>
+        <translation>إختر طرفية</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="421"/>
