@@ -119,48 +119,53 @@ void MainWindow::initSystemTrayIcon()
 }
 
 /*
- * Execs Octopi
+ * Whenever this timer ticks, we need to call the PacmanHelper DBus interface to sync Pacman's dbs
  */
-void MainWindow::runOctopi(ExecOpt execOptions)
+void MainWindow::pacmanHelperTimerTimeout()
 {
-  if (execOptions == ectn_SYSUPGRADE_NOCONFIRM_EXEC_OPT)
+  static bool firstTime=true;
+
+  if (m_commandExecuting != ectn_NONE) return;
+
+  if (firstTime)
   {
-    if (!WMHelper::isKDERunning() && (!WMHelper::isRazorQtRunning()) && (!WMHelper::isLXQTRunning()))
+    refreshAppIcon();
+
+#ifdef KSTATUS
+    m_systemTrayIcon->setToolTipTitle("Octopi");
+#else
+    m_systemTrayIcon->show();
+#endif
+
+    setWindowIcon(m_icon);
+
+    //From now on, we verify if it's time to check for updates every 1 minute
+    m_pacmanHelperTimer->setInterval(1000);
+
+    firstTime=false;
+  }
+
+  //Is it time to syncdb again?
+  QDateTime lastCheckTime = SettingsManager::getLastSyncDbTime();
+  QDateTime now = QDateTime::currentDateTime();
+  bool syncTime = false;
+
+  int syncHour = SettingsManager::getSyncDbHour();
+  if (syncHour >= 0)
+  {
+    if (lastCheckTime.daysTo(now) >= 1 && now.time().hour() == syncHour)
     {
-      QProcess::startDetached("octopi -sysupgrade-noconfirm -style gtk");
-    }
-    else
-    {
-      QProcess::startDetached("octopi -sysupgrade-noconfirm");
+      syncTime = true;
     }
   }
-  else if (execOptions == ectn_SYSUPGRADE_EXEC_OPT &&
-      !UnixCommand::isAppRunning("octopi", true) && m_outdatedPackageList->count() > 0)
+
+  if ((syncHour == -1 && (
+        lastCheckTime.isNull() ||
+        lastCheckTime.daysTo(now) >= 1)) || (syncTime))
   {
-    doSystemUpgrade();
-  }
-  else if (execOptions == ectn_SYSUPGRADE_EXEC_OPT &&
-      UnixCommand::isAppRunning("octopi", true) && m_outdatedPackageList->count() > 0)
-  {
-    if (!WMHelper::isKDERunning() && (!WMHelper::isRazorQtRunning()) && (!WMHelper::isLXQTRunning()))
-    {
-      QProcess::startDetached("octopi -sysupgrade -style gtk");
-    }
-    else
-    {
-      QProcess::startDetached("octopi -sysupgrade");
-    }
-  }
-  else if (execOptions == ectn_NORMAL_EXEC_OPT)
-  {
-    if (!WMHelper::isKDERunning() && (!WMHelper::isRazorQtRunning()) && (!WMHelper::isLXQTRunning()))
-    {
-      QProcess::startDetached("octopi -style gtk");
-    }
-    else
-    {
-      QProcess::startDetached("octopi");
-    }
+    syncDatabase();
+    //Then we set new LastCheckTime...
+    SettingsManager::setLastSyncDbTime(now);
   }
 }
 
@@ -310,6 +315,7 @@ void MainWindow::doSystemUpgradeFinished(int, QProcess::ExitStatus)
   {
     m_commandExecuting = ectn_NONE;
     m_unixCommand->removeTemporaryActionFile();
+
     doSystemUpgrade();
 
     return;
@@ -328,57 +334,6 @@ void MainWindow::toggleEnableInterface(bool state)
   m_actionOctopi->setEnabled(state);
   m_actionSyncDatabase->setEnabled(state);
   m_actionExit->setEnabled(state);
-}
-
-/*
- * Whenever this timer ticks, we need to call the PacmanHelper DBus interface to sync Pacman's dbs
- */
-void MainWindow::pacmanHelperTimerTimeout()
-{
-  static bool firstTime=true;
-
-  if (m_commandExecuting != ectn_NONE) return;
-
-  if (firstTime)
-  {    
-    refreshAppIcon();
-
-#ifdef KSTATUS
-    m_systemTrayIcon->setToolTipTitle("Octopi");
-#else
-    m_systemTrayIcon->show();
-#endif
-
-    setWindowIcon(m_icon);
-
-    //From now on, we verify if it's time to check for updates every 1 minute
-    m_pacmanHelperTimer->setInterval(1000);
-
-    firstTime=false;
-  }
-
-  //Is it time to syncdb again?
-  QDateTime lastCheckTime = SettingsManager::getLastSyncDbTime();
-  QDateTime now = QDateTime::currentDateTime();
-  bool syncTime = false;
-
-  int syncHour = SettingsManager::getSyncDbHour();
-  if (syncHour >= 0)
-  {
-    if (lastCheckTime.daysTo(now) >= 1 && now.time().hour() == syncHour)
-    {
-      syncTime = true;
-    }
-  }
-
-  if ((syncHour == -1 && (
-        lastCheckTime.isNull() ||
-        lastCheckTime.daysTo(now) >= 1)) || (syncTime))
-  {    
-    syncDatabase();
-    //Then we set new LastCheckTime...
-    SettingsManager::setLastSyncDbTime(now);
-  }
 }
 
 /*
@@ -622,8 +577,6 @@ void MainWindow::refreshAppIcon()
     qDebug() << "Got a GREEN icon!";
 
 #ifdef KSTATUS
-    //m_systemTrayIcon->setAttentionIconByPixmap(m_icon);
-    //m_systemTrayIcon->setStatus(KStatusNotifierItem::NeedsAttention);
     m_systemTrayIcon->setStatus(KStatusNotifierItem::Passive);
 #endif
   }
@@ -705,4 +658,50 @@ void MainWindow::exitNotifier()
   }
 
   qApp->quit();
+}
+
+/*
+ * Execs Octopi
+ */
+void MainWindow::runOctopi(ExecOpt execOptions)
+{
+  if (execOptions == ectn_SYSUPGRADE_NOCONFIRM_EXEC_OPT)
+  {
+    if (!WMHelper::isKDERunning() && (!WMHelper::isRazorQtRunning()) && (!WMHelper::isLXQTRunning()))
+    {
+      QProcess::startDetached("octopi -sysupgrade-noconfirm -style gtk");
+    }
+    else
+    {
+      QProcess::startDetached("octopi -sysupgrade-noconfirm");
+    }
+  }
+  else if (execOptions == ectn_SYSUPGRADE_EXEC_OPT &&
+      !UnixCommand::isAppRunning("octopi", true) && m_outdatedPackageList->count() > 0)
+  {
+    doSystemUpgrade();
+  }
+  else if (execOptions == ectn_SYSUPGRADE_EXEC_OPT &&
+      UnixCommand::isAppRunning("octopi", true) && m_outdatedPackageList->count() > 0)
+  {
+    if (!WMHelper::isKDERunning() && (!WMHelper::isRazorQtRunning()) && (!WMHelper::isLXQTRunning()))
+    {
+      QProcess::startDetached("octopi -sysupgrade -style gtk");
+    }
+    else
+    {
+      QProcess::startDetached("octopi -sysupgrade");
+    }
+  }
+  else if (execOptions == ectn_NORMAL_EXEC_OPT)
+  {
+    if (!WMHelper::isKDERunning() && (!WMHelper::isRazorQtRunning()) && (!WMHelper::isLXQTRunning()))
+    {
+      QProcess::startDetached("octopi -style gtk");
+    }
+    else
+    {
+      QProcess::startDetached("octopi");
+    }
+  }
 }

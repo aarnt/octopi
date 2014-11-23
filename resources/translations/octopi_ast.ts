@@ -20,7 +20,7 @@
         <location filename="Projects/octopi/ui/mainwindow.ui" line="120"/>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="164"/>
         <source>Transaction</source>
-        <translation>Tresaición</translation>
+        <translation>Transaición</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="125"/>
@@ -86,7 +86,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="272"/>
         <source>Sync database</source>
-        <translation>Sincronizar bas de datos</translation>
+        <translation>Sincronizar base de datos</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="275"/>
@@ -284,7 +284,7 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="82"/>
         <source>An installed package (not required by others)</source>
-        <translation>Un paquete instaláu (non requeríu por otros)</translation>
+        <translation>Un paquete instaláu (non riquíu por otros)</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="85"/>
@@ -627,7 +627,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="221"/>
         <source>Required By</source>
-        <translation>Requeríu por</translation>
+        <translation>Riquíu por</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="225"/>
