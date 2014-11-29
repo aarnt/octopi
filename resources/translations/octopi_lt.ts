@@ -61,7 +61,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="239"/>
         <source>Non installed</source>
-        <translation>Neįdiegtas</translation>
+        <translation>Neįdiegti</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="248"/>
@@ -134,7 +134,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="337"/>
         <source>Get latest distro news</source>
-        <translation>Gauti naujausias naujienas</translation>
+        <translation>Gauti naujienas</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="340"/>
@@ -249,7 +249,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="541"/>
         <source>Installed</source>
-        <translation>Įdiegta</translation>
+        <translation>Įdiegti</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="557"/>
@@ -792,12 +792,12 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="353"/>
         <source>%1 (%2) packages</source>
-        <translation>%1 (%2) Paketai</translation>
+        <translation>%1 (%2) paketai</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="357"/>
         <source>%1 installed</source>
-        <translation>%1 Įdiegta</translation>
+        <translation>%1 įdiegta</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="361"/>

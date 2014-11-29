@@ -28,8 +28,12 @@ MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent)
 {
   qDebug() << "At MainWindow constructor...";
+
   m_pacmanDatabaseSystemWatcher =
             new QFileSystemWatcher(QStringList() << ctn_PACMAN_DATABASE_DIR, this);
+
+  connect(m_pacmanDatabaseSystemWatcher,
+          SIGNAL(directoryChanged(QString)), this, SLOT(refreshAppIcon()));
 
   initSystemTrayIcon();
 }
