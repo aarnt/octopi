@@ -9,7 +9,6 @@ QT += core gui network xml dbus
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets quick quickwidgets
 
 DEFINES += OCTOPI_EXTENSIONS
-
 CONFIG += qt warn_on debug
 QMAKE_CXXFLAGS += -std=c++11
 TEMPLATE = app

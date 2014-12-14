@@ -25,6 +25,7 @@
 
 const QString ctn_NO_SU_COMMAND("none");
 const QString ctn_ROOT_SH("/bin/sh -c ");
+
 const QString ctn_KDESU("kdesu");
 const QString ctn_KDE_DESKTOP("kwin");
 const QString ctn_KDE_X11_DESKTOP("kwin_x11");
@@ -33,6 +34,7 @@ const QString ctn_KDE_EDITOR("kwrite");
 const QString ctn_KDE_FILE_MANAGER("kfmclient");
 const QString ctn_KDE_TERMINAL("konsole");
 const QString ctn_KDE4_OPEN("kde-open");
+const QString ctn_KDE5_OPEN("kde-open5");
 const QString ctn_KDE4_FILE_MANAGER("dolphin");
 const QString ctn_KDE4_EDITOR("kate");
 
@@ -100,6 +102,8 @@ public:
   static bool isMATERunning();
   static bool isCinnamonRunning();
   static bool isRazorQtRunning();
+
+  static QString getKDEOpenHelper();
 
   static QString getKDESUCommand();
   static QString getTDESUCommand();

@@ -1993,6 +1993,8 @@ void MainWindow::_treatProcessOutput(const QString &pMsg)
     msg.remove(QRegExp("gksu-run.+"));
     msg.remove(QRegExp("GConf Error:.+"));
     msg.remove(QRegExp(":: Do you want.+"));
+    msg.remove(QRegExp("org\\.kde\\."));
+    msg.remove(QRegExp("QCommandLineParser"));
 
     msg = msg.trimmed();
 

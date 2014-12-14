@@ -269,7 +269,12 @@ void PackageModel::applyFilter(ViewOptions pkgViewOptions, const QString& repo, 
   m_filterPackagesNotInstalled   = (pkgViewOptions == ectn_NON_INSTALLED_PKGS);
   m_filterPackagesInstalled      = (pkgViewOptions == ectn_INSTALLED_PKGS);
   m_filterPackagesNotInThisGroup = group;
-  m_filterPackagesNotInThisRepo  = repo;
+
+  QString r = repo;
+  r = r.remove(QRegExp("&"));
+  if (r == StrConstants::getAll()) r = "";
+
+  m_filterPackagesNotInThisRepo = r;
   endResetRepository();
 }
 
@@ -382,6 +387,7 @@ struct TSort0 {
 struct TSort2 {
   bool operator()(const PackageRepository::PackageData* a, const PackageRepository::PackageData* b) const {
     const int cmp = Package::rpmvercmp(a->version.toLatin1().data(), b->version.toLatin1().data());
+
     if (cmp < 0) return true;
     if (cmp == 0)
     {

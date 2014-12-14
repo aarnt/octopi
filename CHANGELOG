@@ -1,4 +1,7 @@
 0.5.1 (dev)
+  BugFix: Removed some buggy strings from Output tab while in KF5.
+  BugFix: Open file was not working in KF5.
+  BugFix: Filter by repo was not working with Qt 5.4 libs (thanks to sl1pkn07).
   BugFix: Chakra CCR for installing pkgs was not being called.
   Added new KDE detection logic (thanks to Kirek).
   Refactorings in SearchLineEdit.

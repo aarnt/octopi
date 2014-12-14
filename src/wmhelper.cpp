@@ -321,6 +321,18 @@ QString WMHelper::getSUCommand(){
 }
 
 /*
+ * Chooses whether to use kde-open or kde5-open
+ */
+QString WMHelper::getKDEOpenHelper(){
+  if (UnixCommand::hasTheExecutable(ctn_KDE4_OPEN))
+    return ctn_KDE4_OPEN;
+  else if (UnixCommand::hasTheExecutable(ctn_KDE5_OPEN))
+    return ctn_KDE5_OPEN;
+  else
+    return "NONE";
+}
+
+/*
  * Opens a file based on your DE
  */
 void WMHelper::openFile(const QString& fileName){
@@ -358,11 +370,11 @@ void WMHelper::openFile(const QString& fileName){
 
     if (UnixCommand::isRootRunning())
     {
-      p->startDetached( "dbus-launch " + ctn_KDE4_OPEN + " " + fileToOpen );
+      p->startDetached( "dbus-launch " + getKDEOpenHelper() + " " + fileToOpen );
     }
     else
     {
-      p->startDetached( ctn_KDE4_OPEN, s );
+      p->startDetached( getKDEOpenHelper(), s );
     }
   }
   else if (isTDERunning() && UnixCommand::hasTheExecutable(ctn_TDE_FILE_MANAGER)){
