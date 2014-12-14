@@ -339,27 +339,27 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="111"/>
         <source>Alt+1 to switch to &apos;Info&apos; tab</source>
-        <translation>Alt-1 för att byta till Info-fliken</translation>
+        <translation>Alt-1 för att byta till Infofliken</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="113"/>
         <source>Alt+2 to switch to &apos;Files&apos; tab</source>
-        <translation>Alt-2 för att byta till Fil-fliken</translation>
+        <translation>Alt-2 för att byta till Filfliken</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="115"/>
         <source>Alt+3 to switch to &apos;Transaction&apos; tab</source>
-        <translation>Alt-3 för att byta till Överförings-fliken</translation>
+        <translation>Alt-3 för att byta till Överföringsfliken</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="117"/>
         <source>Alt+4 to switch to &apos;Output&apos; tab</source>
-        <translation>Alt-4 för att byta till Utdata-fliken</translation>
+        <translation>Alt-4 för att byta till Utdatafliken</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="119"/>
         <source>Alt+5 to switch to &apos;News&apos; tab</source>
-        <translation>Alt-5 för att byta till Nyhets-fliken</translation>
+        <translation>Alt-5 för att byta till Nyhetsfliken</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="121"/>
@@ -622,7 +622,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="217"/>
         <source>Depends On</source>
-        <translation>Beror av</translation>
+        <translation>Beroenden</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="221"/>

@@ -244,7 +244,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="533"/>
         <source>Repository Editor</source>
-        <translation>Saugyklas redaktorius</translation>
+        <translation>Saugyklų redaktorius</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="541"/>
@@ -309,7 +309,7 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="97"/>
         <source>A newer than repository package</source>
-        <translation>Naujesnis nei repozitorijaus paketas</translation>
+        <translation>Naujesnis nei saugyklos paketas</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="100"/>
@@ -492,7 +492,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="43"/>
         <source>force a system upgrade at startup.</source>
-        <translation>versti sistemos naujovinimą paleidimo metu.</translation>
+        <translation>priverstinai vykdyti sistemos naujovinimą paleidimo metu.</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="49"/>
@@ -932,7 +932,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="469"/>
         <source>There are %1 updates available!</source>
-        <translation>Yra pasiekiami %1 atnaujinimai!</translation>
+        <translation>Galimi atnaujinimai - %1 !</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="473"/>

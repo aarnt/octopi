@@ -219,7 +219,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="488"/>
         <source>Open root terminal</source>
-        <translation>Einen Terminal als root öffnen</translation>
+        <translation>Terminal als Admin öffnen</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="493"/>
@@ -239,12 +239,12 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="521"/>
         <source>Pacman Log Viewer</source>
-        <translation>Anzeige des Pacman Logs</translation>
+        <translation>Pacman Log anzeigen</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="533"/>
         <source>Repository Editor</source>
-        <translation>Repositorium editieren</translation>
+        <translation>Repository editieren</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="541"/>
@@ -304,7 +304,7 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="94"/>
         <source>An outdated foreign package</source>
-        <translation>Ein altes fremdes Paket</translation>
+        <translation>Ein altes Fremdpaket</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="97"/>
@@ -429,12 +429,12 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="151"/>
         <source>Ctrl+Shift+R to remove Pacman&apos;s transaction lock file</source>
-        <translation>Strg+Shift+R um Pacman&apos;s Transaktionssperrdatei zu entfernen</translation>
+        <translation>Strg+Shift+R um die Pacman Transaktionssperrdatei zu entfernen</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="153"/>
         <source>Ctrl+Shift+Y to display %1 group</source>
-        <translation>Ctrl+Shift+Y um die %1 Gruppe anzuzeigen</translation>
+        <translation>Strg+Shift+Y um die %1 Gruppe anzuzeigen</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="156"/>
@@ -817,7 +817,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="373"/>
         <source>Removing Pacman&apos;s transaction lock file...</source>
-        <translation>Entferne Pacman&apos;s Transaktionssperrdatei...</translation>
+        <translation>Entferne die Pacman Transaktionssperrdatei...</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="377"/>
@@ -832,7 +832,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="389"/>
         <source>Sync database</source>
-        <translation>Database synchronisieren</translation>
+        <translation>Datenbank synchronisieren</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="393"/>
@@ -967,7 +967,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="497"/>
         <source>Do you really want to remove Pacman&apos;s transaction lock file?</source>
-        <translation>Sind Sie sich sicher Pacman&apos;s Transaktionssperrdatei zu entfernen?</translation>
+        <translation>Möchten Sie wirklich die Pacman Transaktionssperrdatei entfernen?</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="501"/>
@@ -1069,7 +1069,7 @@ Wollen Sie sie wirklich öffnen ?</translation>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="580"/>
         <source>Press Ctrl+A to select/deselect all</source>
-        <translation>Drücken Sie Strg+A um alles aus- bzw. abzuwählen</translation>
+        <translation>Drücken Sie Strg+A um alles an- bzw. abzuwählen</translation>
     </message>
 </context>
 <context>
