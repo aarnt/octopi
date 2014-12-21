@@ -30,7 +30,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="147"/>
         <source>Help</source>
-        <translation>Aida</translation>
+        <translation>Ayuda</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="155"/>
@@ -349,7 +349,7 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="115"/>
         <source>Alt+3 to switch to &apos;Transaction&apos; tab</source>
-        <translation>Alt+3 pa cambear a la llingüeta &apos;Tresaición&apos;</translation>
+        <translation>Alt+3 pa cambiar a la llingüeta &apos;Transaición&apos;</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="117"/>
@@ -364,7 +364,7 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="121"/>
         <source>Alt+6 or &apos;F1&apos; to show this help page</source>
-        <translation>Alt+6 o &apos;F1&apos; p&apos;amosar esta páxina d&apos;aida</translation>
+        <translation>Alt+6 o &apos;F1&apos; p&apos;amosar esta páxina d&apos;ayuda</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="124"/>
@@ -394,12 +394,12 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="136"/>
         <source>Ctrl+M or &apos;Transaction/Commit&apos; to start installation/removal of selected packages</source>
-        <translation>Ctrl+M o&apos;Tresaición/Cometer&apos; pa entamar la instalación/desaniciu de los paquetes esbillaos</translation>
+        <translation>Ctrl+M o&apos;Transaición/Cometer&apos; pa entamar la instalación/desaniciu de los paquetes esbillaos</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="138"/>
         <source>Ctrl+B or &apos;Transaction/Rollback&apos; to clear the selection of to be removed/installed packages</source>
-        <translation>Ctrl+B o &apos;Tresaición/Desfacer&apos; pa llimpiar la esbilla de los paquetes pa desaniciar/instalar</translation>
+        <translation>Ctrl+B o &apos;Transaición/Desfacer&apos; pa llimpiar la esbilla de los paquetes pa desaniciar/instalar</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="140"/>
@@ -429,7 +429,7 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="151"/>
         <source>Ctrl+Shift+R to remove Pacman&apos;s transaction lock file</source>
-        <translation>Ctrl+Shift+R pa desaniciar el ficheru de bloquéu de tresaición de Pacman</translation>
+        <translation>Ctrl+Shift+R pa desaniciar el ficheru de bloquéu de transaición de Pacman</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="153"/>
@@ -444,7 +444,7 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="158"/>
         <source>F1 to show this help page</source>
-        <translation>F1 p&apos;amosar esta páxina d&apos;aida</translation>
+        <translation>F1 p&apos;amosar esta páxina d&apos;ayuda</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="160"/>
@@ -472,7 +472,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="39"/>
         <source>Octopi usage help:</source>
-        <translation>Aida d&apos;usu Octopi:</translation>
+        <translation>Ayuda d&apos;usu Octopi:</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="40"/>
@@ -562,7 +562,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="169"/>
         <source>About</source>
-        <translation>Tocante</translation>
+        <translation>Tocante a</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="173"/>
@@ -727,7 +727,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="301"/>
         <source>Transaction</source>
-        <translation>Tresaición</translation>
+        <translation>Transaición</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="305"/>
@@ -817,7 +817,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="373"/>
         <source>Removing Pacman&apos;s transaction lock file...</source>
-        <translation>Desaniciando el ficheru de bloquéu de tresaición de Pacman...</translation>
+        <translation>Desaniciando el ficheru de bloquéu de transaición de Pacman...</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="377"/>
@@ -952,12 +952,12 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="485"/>
         <source>There has been a transaction error!</source>
-        <translation>¡Hebo un erru de tresaición!</translation>
+        <translation>¡Hebo un fallu de transaición!</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="489"/>
         <source>Do you want to execute this transaction in a Terminal?</source>
-        <translation>¿Quies executar esta tresaición nuna terminal?</translation>
+        <translation>¿Quies executar esta transaición nuna terminal?</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="493"/>
@@ -967,12 +967,12 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="497"/>
         <source>Do you really want to remove Pacman&apos;s transaction lock file?</source>
-        <translation>¿De xuru quies desanciar el ficheru de bloquéu de tresaición de Pacman?</translation>
+        <translation>¿De xuru que quies desanciar el ficheru de bloquéu de transaición de Pacman?</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="501"/>
         <source>Do you really want to rollback the transaction?</source>
-        <translation>¿De xuru quies desfacer la tresaición?</translation>
+        <translation>¿De xuru que quies desfacer la transaición?</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="505"/>
@@ -997,7 +997,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="523"/>
         <source>There is a pending transaction</source>
-        <translation>Hai una tresaición pendiente</translation>
+        <translation>Hai una transaición pendiente</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="527"/>

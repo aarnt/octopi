@@ -27,28 +27,6 @@
 #include <QObject>
 #include <QProcess>
 
-/*class TerminalType : public QObject
-{
-  Q_OBJECT
-
-  Q_PROPERTY(QString terminal READ terminal WRITE setTerminal NOTIFY terminalChanged )
-
-  QString m_terminal;
-
-public:
-  QString terminal() const { return m_terminal; }
-
-  void setTerminal(const QString &terminal) { m_terminal = terminal; }
-
-  TerminalType(QString terminal){
-    setTerminal(terminal);
-  }
-
-  Q_SIGNALS:
-    void terminalChanged();
-};
-*/
-
 class Terminal : public QObject
 {
   Q_OBJECT

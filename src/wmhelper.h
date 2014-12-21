@@ -27,6 +27,7 @@ const QString ctn_NO_SU_COMMAND("none");
 const QString ctn_ROOT_SH("/bin/sh -c ");
 
 const QString ctn_KDESU("kdesu");
+
 const QString ctn_KDE_DESKTOP("kwin");
 const QString ctn_KDE_X11_DESKTOP("kwin_x11");
 const QString ctn_KDE_WAYLAND_DESKTOP("kwin_wayland");
@@ -82,6 +83,7 @@ const QString ctn_CINNAMON_FILE_MANAGER("nemo");
 const QString ctn_CINNAMON_TERMINAL("gnome-terminal");
 
 const QString ctn_RAZORQT_DESKTOP("razor-session");
+const QString ctn_PEK_TERMINAL("sakura");
 const QString ctn_XTERM("xterm");
 
 enum EditOptions { ectn_EDIT_AS_ROOT, ectn_EDIT_AS_NORMAL_USER };

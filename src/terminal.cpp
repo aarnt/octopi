@@ -53,7 +53,6 @@ Terminal::Terminal(QObject *parent, const QString &selectedTerminal) : QObject(p
 Terminal::~Terminal()
 {
   m_process->close();
-
   delete m_process;
   delete m_processWrapper;
 }
@@ -105,6 +104,10 @@ void Terminal::openTerminal(const QString &dirName)
       s << "--workdir"  ;
       s << dirName;
       m_process->startDetached( ctn_LXQT_TERMINAL, s );
+    }
+    else if (UnixCommand::hasTheExecutable(ctn_PEK_TERMINAL)){
+      s << "--working-directory=" + dirName;
+      m_process->startDetached( ctn_PEK_TERMINAL, s );
     }
     else if (UnixCommand::hasTheExecutable(ctn_XFCE_TERMINAL)){
       s << "--working-directory=" + dirName;
@@ -171,6 +174,10 @@ void Terminal::openTerminal(const QString &dirName)
       s << "--workdir";
       s << dirName;
       m_process->startDetached( ctn_LXQT_TERMINAL, s );
+    }
+    else if (m_selectedTerminal == ctn_PEK_TERMINAL){
+      s << "--working-directory=" + dirName;
+      m_process->startDetached( ctn_PEK_TERMINAL, s );
     }
     else if (m_selectedTerminal == ctn_RXVT_TERMINAL){
       QString cmd;
@@ -249,6 +256,10 @@ void Terminal::openRootTerminal()
       QString cmd = WMHelper::getSUCommand() + " \"" + ctn_CINNAMON_TERMINAL + "\"";
       m_process->startDetached(cmd);
     }
+    else if (UnixCommand::hasTheExecutable(ctn_PEK_TERMINAL)){
+      QString cmd = WMHelper::getSUCommand() + " \"" + ctn_PEK_TERMINAL + "\"";
+      m_process->startDetached(cmd);
+    }
     else if (UnixCommand::hasTheExecutable(ctn_XFCE_TERMINAL)){
       QString cmd = WMHelper::getSUCommand() + " \"" + ctn_XFCE_TERMINAL + "\"";
       m_process->startDetached(cmd);
@@ -289,6 +300,10 @@ void Terminal::openRootTerminal()
         cmd = WMHelper::getSUCommand() + " \"" + ctn_KDE_TERMINAL + "\"";
       }
 
+      m_process->startDetached(cmd);
+    }
+    else if (m_selectedTerminal == ctn_PEK_TERMINAL){
+      QString cmd = WMHelper::getSUCommand() + " \"" + ctn_PEK_TERMINAL + "\"";
       m_process->startDetached(cmd);
     }
     else if (m_selectedTerminal == ctn_TDE_TERMINAL){
@@ -385,6 +400,10 @@ void Terminal::runCommandInTerminal(const QStringList &commandList)
       QString cmd = suCommand + " \"" + ctn_LXQT_TERMINAL + " -e \'bash -c " + ftemp->fileName() + "'\"";
       m_process->start(cmd);
     }
+    else if (UnixCommand::hasTheExecutable(ctn_PEK_TERMINAL)){
+      QString cmd = suCommand + " \"" + ctn_PEK_TERMINAL + " -e \'bash -c " + ftemp->fileName() + "'\"";
+      m_process->start(cmd);
+    }
     else if (UnixCommand::hasTheExecutable(ctn_XFCE_TERMINAL)){
       QString cmd = suCommand + " \"" + ctn_XFCE_TERMINAL + " -e \'bash -c " + ftemp->fileName() + "'\"";
       m_process->start(cmd);
@@ -428,6 +447,10 @@ void Terminal::runCommandInTerminal(const QStringList &commandList)
     }
     else if (m_selectedTerminal == ctn_TDE_TERMINAL){
       QString cmd = suCommand + " \"" + ctn_TDE_TERMINAL + " --nofork -e bash -c " + ftemp->fileName() + "\"";
+      m_process->start(cmd);
+    }
+    else if (m_selectedTerminal == ctn_PEK_TERMINAL){
+      QString cmd = suCommand + " \"" + ctn_PEK_TERMINAL + " -e \'bash -c " + ftemp->fileName() + "'\"";
       m_process->start(cmd);
     }
     else if (m_selectedTerminal == ctn_LXDE_TERMINAL){
@@ -506,6 +529,9 @@ void Terminal::runCommandInTerminalAsNormalUser(const QStringList &commandList)
     else if (WMHelper::isLXQTRunning() && UnixCommand::hasTheExecutable(ctn_LXQT_TERMINAL)){
       cmd = ctn_LXQT_TERMINAL + " -e bash -c " + ftemp->fileName();
     }
+    else if (UnixCommand::hasTheExecutable(ctn_PEK_TERMINAL)){
+      cmd = ctn_PEK_TERMINAL + " -e " + ftemp->fileName();
+    }
     else if (UnixCommand::hasTheExecutable(ctn_XFCE_TERMINAL)){
       cmd = ctn_XFCE_TERMINAL + " -e " + ftemp->fileName();
     }
@@ -534,6 +560,9 @@ void Terminal::runCommandInTerminalAsNormalUser(const QStringList &commandList)
       {
         cmd = ctn_RXVT_TERMINAL + " -name Urxvt -title Urxvt -e " + ftemp->fileName();
       }
+    }
+    else if(m_selectedTerminal == ctn_PEK_TERMINAL){
+      cmd = ctn_PEK_TERMINAL + " -e " + ftemp->fileName();
     }
     else if(m_selectedTerminal == ctn_XFCE_TERMINAL){
       cmd = ctn_XFCE_TERMINAL + " -e " + ftemp->fileName();
@@ -570,6 +599,9 @@ QStringList Terminal::getListOfAvailableTerminals()
 {
   QStringList res;
   res.append(ctn_AUTOMATIC);
+
+  if (UnixCommand::hasTheExecutable(ctn_PEK_TERMINAL))
+    res.append(ctn_PEK_TERMINAL);
 
   if (UnixCommand::hasTheExecutable(ctn_XFCE_TERMINAL))
     res.append(ctn_XFCE_TERMINAL);
