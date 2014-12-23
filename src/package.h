@@ -32,14 +32,6 @@
 #include <QSet>
 
 const QString ctn_TEMP_ACTIONS_FILE ( QDir::tempPath() + QDir::separator() + ".qt_temp_" );
-
-const QString ctn_PKG_CONTENT_ERROR = "ERROR";
-const QString ctn_ER  				   	  = "([\\w._+]+[-])+";
-const QString ctn_ER3 				  	  = "[\\w._+]+[-]";
-const QString ctn_STRING_RELEASES   = "(alfa|beta|rc|pre|patch|^[0-9]{8}$|(^[rR][0-9]*)|[0-9]*[uU][0-9]*)";
-const QString ctn_DATE_RELEASE      = "^[0-9]{8}$";
-const QString ctn_NO_MATCH      	  = "not found!";
-
 const QString ctn_PACMAN_DATABASE_DIR = "/var/lib/pacman";
 const QString ctn_PACMAN_CORE_DB_FILE = "/var/lib/pacman/sync/core.db";
 
