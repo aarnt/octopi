@@ -510,7 +510,7 @@ QList<PackageListData> * Package::getAURPackageList(const QString& searchString)
 
       if (UnixCommand::getLinuxDistro() == ectn_KAOS)
       {
-        parts[0] = "kcp/" + parts[0];
+        parts[0] = parts[0].remove("[1;35m");
       }
 
       QString repoName = parts[0];
