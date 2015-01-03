@@ -4,6 +4,7 @@
   BugFix: Filter by repo was not working with Qt 5.4 libs (thanks to sl1pkn07).
   BugFix: Chakra CCR for installing pkgs was not being called.
   Added new KDE detection logic (thanks to Kirek).
+  KaOS only: added support for newer versions of Cellix's awesome KCP tool.
   Refactorings in SearchLineEdit.
 
 0.5.0

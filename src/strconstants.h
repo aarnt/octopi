@@ -109,7 +109,7 @@ public:
     if( UnixCommand::getLinuxDistro() == ectn_CHAKRA )
       return QLatin1String( "ccr/" );
     else if (UnixCommand::getLinuxDistro() == ectn_KAOS)
-      return "";
+      return "kcp/";
 
     return QLatin1String( "aur/" );
   }

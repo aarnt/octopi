@@ -209,7 +209,7 @@ QByteArray UnixCommand::getAURPackageList(const QString &searchString)
   aur.setProcessEnvironment(env);
 
   if (UnixCommand::getLinuxDistro() == ectn_KAOS)
-    aur.start(StrConstants::getForeignRepositoryToolName() + " -s " + searchString);
+    aur.start(StrConstants::getForeignRepositoryToolName() + " -l "); // + searchString);
   else
     aur.start(StrConstants::getForeignRepositoryToolName() + " -Ss " + searchString);
 
@@ -317,7 +317,17 @@ QByteArray UnixCommand::getPackageInformation(const QString &pkgName, bool forei
  */
 QByteArray UnixCommand::getAURPackageVersionInformation()
 {
-  QByteArray result = performAURCommand("-Qua");
+  QByteArray result;
+
+  /*if (StrConstants::getForeignRepositoryToolName() == "kcp")
+  {
+    result = performAURCommand("-lO");
+  }*/
+  if (StrConstants::getForeignRepositoryToolName() != "kcp")
+  {
+    result = performAURCommand("-Qua");
+  }
+
   return result;
 }
 

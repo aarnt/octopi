@@ -106,6 +106,8 @@ void MainWindow::keyPressEvent(QKeyEvent* ke)
     //We are searching for AUR foreign packages...
     if (isAURGroupSelected() && m_leFilterPackage->hasFocus() && m_cic == NULL)
     {
+      if (UnixCommand::getLinuxDistro() == ectn_KAOS) return;
+
       ui->twGroups->setEnabled(false);
 
       QFuture<QList<PackageListData> *> f;

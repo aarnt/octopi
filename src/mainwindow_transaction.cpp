@@ -247,7 +247,6 @@ void MainWindow::insertIntoRemovePackage()
   if (!isAURGroupSelected())
   {
     _ensureTabVisible(ctn_TABINDEX_TRANSACTION);
-
     QModelIndexList selectedRows = ui->tvPackages->selectionModel()->selectedRows();
 
     //First, let's see if we are dealing with a package group
@@ -1166,7 +1165,8 @@ void MainWindow::doInstallAURPackage()
       return;
     }
 
-    if (StrConstants::getForeignRepositoryToolName() != "pacaur")
+    if (StrConstants::getForeignRepositoryToolName() != "pacaur" &&
+        StrConstants::getForeignRepositoryToolName() != "kcp")
       listOfTargets += StrConstants::getForeignRepositoryTargetPrefix() + package->name + " ";
     else
       listOfTargets += package->name + " ";

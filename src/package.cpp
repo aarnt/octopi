@@ -208,7 +208,8 @@ QStringList *Package::getOutdatedAURPackageList()
   QStringList * res = new QStringList();
 
   if (StrConstants::getForeignRepositoryToolName() != "yaourt" &&
-      StrConstants::getForeignRepositoryToolName() != "pacaur")
+      StrConstants::getForeignRepositoryToolName() != "pacaur" &&
+      StrConstants::getForeignRepositoryToolName() != "kcp")
     return res;
 
   QString outPkgList = UnixCommand::getOutdatedAURPackageList();
@@ -219,7 +220,8 @@ QStringList *Package::getOutdatedAURPackageList()
   {
     QStringList parts = packageTuple.split(' ', QString::SkipEmptyParts);
     {
-      if (StrConstants::getForeignRepositoryToolName() == "yaourt")
+      if (StrConstants::getForeignRepositoryToolName() == "yaourt" ||
+          StrConstants::getForeignRepositoryToolName() == "kcp")
       {
         QString pkgName;
         pkgName = parts[0];
@@ -472,7 +474,7 @@ QList<PackageListData> * Package::getAURPackageList(const QString& searchString)
   PackageStatus pkgStatus;
   QList<PackageListData> * res = new QList<PackageListData>();
 
-  if (searchString.isEmpty())
+  if (UnixCommand::getLinuxDistro() != ectn_KAOS && searchString.isEmpty())
     return res;
 
   QString pkgList = UnixCommand::getAURPackageList(searchString);
@@ -501,7 +503,6 @@ QList<PackageListData> * Package::getAURPackageList(const QString& searchString)
         pld.popularity = pkgVotes;
 
         res->append(pld);
-
         pkgDescription = "";
       }
 
@@ -524,7 +525,6 @@ QList<PackageListData> * Package::getAURPackageList(const QString& searchString)
       }
 
       pkgRepository = StrConstants::getForeignPkgRepositoryName().toUpper();
-
       pkgName = repoName.mid(a+1);
       pkgVersion = parts[1];
 
@@ -563,10 +563,10 @@ QList<PackageListData> * Package::getAURPackageList(const QString& searchString)
       }
     }
     else
-    {
-      //This is a description!      
+    {            
+      //This is a description!
       if (UnixCommand::getLinuxDistro() == ectn_KAOS)
-      {
+      {        
         pkgDescription = packageTuple;
         pkgDescription.remove("\t");
 
@@ -1051,7 +1051,8 @@ QHash<QString, QString> Package::getAUROutdatedPackagesNameVersion()
   QString res = UnixCommand::getAURPackageVersionInformation();
   QStringList listOfPkgs = res.split("\n", QString::SkipEmptyParts);
 
-  if (StrConstants::getForeignRepositoryToolName() == "yaourt")
+  if ((StrConstants::getForeignRepositoryToolName() == "yaourt") ||
+    (StrConstants::getForeignRepositoryToolName() == "kcp"))
   {
     foreach (QString line, listOfPkgs)
     {
@@ -1071,6 +1072,7 @@ QHash<QString, QString> Package::getAUROutdatedPackagesNameVersion()
       if (sl.count() >= 5) hash.insert(sl.at(2), sl.at(5));
     }
   }
+
   return hash;
 }
 

@@ -296,6 +296,12 @@ void MainWindow::preBuildAURPackageListMeta()
   {
     m_leFilterPackage->setFocus();
   }
+
+  if (UnixCommand::getLinuxDistro() == ectn_KAOS)
+  {
+    connect(m_leFilterPackage, SIGNAL(textChanged(QString)), this, SLOT(reapplyPackageFilter()));
+    reapplyPackageFilter();
+  }
 }
 
 /*
@@ -374,7 +380,23 @@ void MainWindow::metaBuildPackageList()
 
     if (UnixCommand::getLinuxDistro() == ectn_KAOS)
     {
+      m_leFilterPackage->setRefreshValidator(ectn_DEFAULT_VALIDATOR);
       ui->tvPackages->setSelectionMode(QAbstractItemView::SingleSelection);
+
+      toggleSystemActions(false);
+      clearStatusBar();
+      m_listOfAURPackages = new QList<PackageListData>();
+      m_leFilterPackage->setFocus();
+      ui->twGroups->setEnabled(false);
+
+      QFuture<QList<PackageListData> *> f;
+      disconnect(&g_fwAUR, SIGNAL(finished()), this, SLOT(preBuildAURPackageList()));
+      m_cic = new CPUIntensiveComputing();
+      f = QtConcurrent::run(searchAURPackages, m_leFilterPackage->text());
+      g_fwAUR.setFuture(f);
+      connect(&g_fwAUR, SIGNAL(finished()), this, SLOT(preBuildAURPackageList()));
+
+      return;
     }
 
     toggleSystemActions(false);
@@ -685,6 +707,10 @@ void MainWindow::showToolButtonAUR()
     }
 
     m_toolButtonAUR->show();
+
+    //Let's disable menu for AUR packages updating if KaOS is running
+    if (UnixCommand::getLinuxDistro() == ectn_KAOS)
+      m_menuToolButtonAUR->setEnabled(false);
   }
   else
   {
