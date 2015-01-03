@@ -139,7 +139,9 @@ public:
   void runCommandInTerminal(const QStringList& commandList);
   void runCommandInTerminalAsNormalUser(const QStringList& commandList);
 
+  static void execCommandAsNormalUser(const QString &pCommand);
   static void execCommand(const QString &pCommand);
+
   void executeCommand(const QString &pCommand);
   void executeCommandAsNormalUser(const QString &pCommand);
 

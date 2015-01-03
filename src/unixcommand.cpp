@@ -52,6 +52,7 @@ QString UnixCommand::runCommand(const QString& commandToRun)
   proc.start(commandToRun);
   proc.waitForStarted();
   proc.waitForFinished(-1);
+
   QString res = proc.readAllStandardError();
   proc.close();
 
@@ -254,7 +255,18 @@ QByteArray UnixCommand::getOutdatedPackageList()
  */
 QByteArray UnixCommand::getOutdatedAURPackageList()
 {
-  return performAURCommand("-Qua");
+  QByteArray result;
+
+  if (StrConstants::getForeignRepositoryToolName() == "kcp")
+  {
+    result = performAURCommand("-lO");
+  }
+  else if (StrConstants::getForeignRepositoryToolName() != "kcp")
+  {
+    result = performAURCommand("-Qua");
+  }
+
+  return result;
 }
 
 /*
@@ -319,11 +331,11 @@ QByteArray UnixCommand::getAURPackageVersionInformation()
 {
   QByteArray result;
 
-  /*if (StrConstants::getForeignRepositoryToolName() == "kcp")
+  if (StrConstants::getForeignRepositoryToolName() == "kcp")
   {
     result = performAURCommand("-lO");
-  }*/
-  if (StrConstants::getForeignRepositoryToolName() != "kcp")
+  }
+  else if (StrConstants::getForeignRepositoryToolName() != "kcp")
   {
     result = performAURCommand("-Qua");
   }
@@ -598,6 +610,14 @@ void UnixCommand::removeTemporaryFiles()
       dir.rmdir(file.filePath());
     }
   }
+}
+
+/*
+ * Runs a command AS NORMAL USER externaly with QProcess!
+ */
+void UnixCommand::execCommandAsNormalUser(const QString &pCommand)
+{
+  QProcess::startDetached(pCommand);
 }
 
 /*

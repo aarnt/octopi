@@ -226,6 +226,12 @@ QStringList *Package::getOutdatedAURPackageList()
         QString pkgName;
         pkgName = parts[0];
 
+        pkgName = pkgName.remove("\033");
+        pkgName = pkgName.remove("[1;35m");
+        pkgName = pkgName.remove("[1;32m");
+        pkgName = pkgName.remove("[m");
+        pkgName = pkgName.remove("[1m");
+
         if (pkgName.contains(StrConstants::getForeignRepositoryTargetPrefix(), Qt::CaseInsensitive))
         {
           pkgName = pkgName.remove(StrConstants::getForeignRepositoryTargetPrefix());
@@ -1045,7 +1051,8 @@ QHash<QString, QString> Package::getAUROutdatedPackagesNameVersion()
 
   if(UnixCommand::getLinuxDistro() == ectn_CHAKRA ||
       (StrConstants::getForeignRepositoryToolName() != "yaourt" &&
-      StrConstants::getForeignRepositoryToolName() != "pacaur"))
+      StrConstants::getForeignRepositoryToolName() != "pacaur" &&
+      StrConstants::getForeignRepositoryToolName() != "kcp"))
     return hash;
 
   QString res = UnixCommand::getAURPackageVersionInformation();
@@ -1056,6 +1063,12 @@ QHash<QString, QString> Package::getAUROutdatedPackagesNameVersion()
   {
     foreach (QString line, listOfPkgs)
     {
+      line = line.remove("\033");
+      line = line.remove("[1;35m");
+      line = line.remove("[1;32m");
+      line = line.remove("[m");
+      line = line.remove("[1m");
+
       if (line.contains(StrConstants::getForeignRepositoryTargetPrefix(), Qt::CaseInsensitive))
       {
         line = line.remove(StrConstants::getForeignRepositoryTargetPrefix());
@@ -1123,7 +1136,6 @@ QStringList Package::getContents(const QString& pkgName, bool isInstalled)
       rsl2.sort();
       slResult = rsl2;
     }
-
   }
 
   return slResult;

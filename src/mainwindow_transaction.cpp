@@ -692,6 +692,10 @@ void MainWindow::doSyncDatabase()
 {
   if (!doRemovePacmanLockFile()) return;
 
+  //Let's synchronize kcp database too...
+  if (UnixCommand::getLinuxDistro() == ectn_KAOS)
+    UnixCommand::execCommandAsNormalUser("kcp -uc");
+
   m_commandExecuting = ectn_SYNC_DATABASE;
   disableTransactionActions();
   m_unixCommand = new UnixCommand(this);
