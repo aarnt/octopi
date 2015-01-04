@@ -220,7 +220,7 @@ void MainWindow::outputOutdatedPackageList()
     else
     {
       html += "<h3>" +
-          StrConstants::getOutdatedPackages().arg(m_outdatedPackageList->count()) + "</h3>";
+          StrConstants::getOutdatedPackages(m_outdatedPackageList->count()).arg(m_outdatedPackageList->count()) + "</h3>";
     }
 
     html += "<br><table border=\"0\">";
@@ -1230,7 +1230,7 @@ void MainWindow::tvPackagesSelectionChanged(const QItemSelection&, const QItemSe
   const QItemSelectionModel*const selection = ui->tvPackages->selectionModel();
   const int selected = selection != NULL ? selection->selectedRows().count() : 0;
 
-  QString newMessage = StrConstants::getSelectedPackages().arg(
+  QString newMessage = StrConstants::getSelectedPackages(m_packageModel->getPackageCount()).arg(
         QString::number(m_packageModel->getPackageCount())).
       arg(QString::number(selected));
 
@@ -1239,15 +1239,15 @@ void MainWindow::tvPackagesSelectionChanged(const QItemSelection&, const QItemSe
 
   if(numberOfInstalledPackages > 0)
   {
-    text = /*"| " +*/ StrConstants::getNumberInstalledPackages().arg(numberOfInstalledPackages);
+    text = /*"| " +*/ StrConstants::getNumberInstalledPackages(numberOfInstalledPackages).arg(numberOfInstalledPackages);
   }
   else if (m_leFilterPackage->text().isEmpty() && !m_packageModel->isFiltered())
   {
-    text = /*"| " +*/ StrConstants::getNumberInstalledPackages().arg(m_numberOfInstalledPackages);
+    text = /*"| " +*/ StrConstants::getNumberInstalledPackages(m_numberOfInstalledPackages).arg(m_numberOfInstalledPackages);
   }
   else
   {
-    text = /*"| " +*/ StrConstants::getNumberInstalledPackages().arg(0);
+    text = /*"| " +*/ StrConstants::getNumberInstalledPackages(0).arg(0);
   }
 
   m_lblTotalCounters->setText(text);

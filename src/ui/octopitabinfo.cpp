@@ -92,7 +92,7 @@ QString OctopiTabInfo::formatTabInfo(const PackageRepository::PackageData& packa
   {
     if (package.status != ectn_NEWER)
     {
-      if (package.repository != StrConstants::getForeignRepositoryName())
+      //if (package.repository != StrConstants::getForeignRepositoryName())
       {
         QString outdatedVersion = package.outdatedVersion;
         html += "<tr><td>" + version + "</td><td>" + package.version + " <b><font color=\"#E55451\">"

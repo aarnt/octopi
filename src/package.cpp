@@ -1053,7 +1053,9 @@ QHash<QString, QString> Package::getAUROutdatedPackagesNameVersion()
       (StrConstants::getForeignRepositoryToolName() != "yaourt" &&
       StrConstants::getForeignRepositoryToolName() != "pacaur" &&
       StrConstants::getForeignRepositoryToolName() != "kcp"))
+  {
     return hash;
+  }
 
   QString res = UnixCommand::getAURPackageVersionInformation();
   QStringList listOfPkgs = res.split("\n", QString::SkipEmptyParts);
@@ -1073,6 +1075,7 @@ QHash<QString, QString> Package::getAUROutdatedPackagesNameVersion()
       {
         line = line.remove(StrConstants::getForeignRepositoryTargetPrefix());
         QStringList nameVersion = line.split(" ", QString::SkipEmptyParts);
+
         hash.insert(nameVersion.at(0), nameVersion.at(1));
       }
     }
@@ -1082,7 +1085,10 @@ QHash<QString, QString> Package::getAUROutdatedPackagesNameVersion()
     foreach (QString line, listOfPkgs)
     {
       QStringList sl = line.split(" ", QString::SkipEmptyParts);
-      if (sl.count() >= 5) hash.insert(sl.at(2), sl.at(5));
+      if (sl.count() >= 5)
+      {
+        hash.insert(sl.at(2), sl.at(5));
+      }
     }
   }
 

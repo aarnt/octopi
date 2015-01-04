@@ -83,8 +83,8 @@ public:
         ret = QLatin1String( "ccr" );
       else if (UnixCommand::getLinuxDistro() == ectn_KAOS)
         ret = QLatin1String( "kcp" );
-      else if (UnixCommand::hasTheExecutable("pacaur"))
-        ret = QLatin1String( "pacaur" );
+      /*else if (UnixCommand::hasTheExecutable("pacaur"))
+        ret = QLatin1String( "pacaur" );*/
       else if (UnixCommand::hasTheExecutable("yaourt"))
         ret = QLatin1String( "yaourt" );
 
@@ -345,28 +345,28 @@ public:
     return QObject::tr("There is one outdated package in your system:");
   }
 
-  static QString getOutdatedPackages(){
-    return QObject::tr("There are %1 outdated packages in your system:");
+  static QString getOutdatedPackages(int outdatedPackagesStringCount){
+    return QObject::tr("There are %n outdated packages in your system:", 0, outdatedPackagesStringCount);
   }
 
   static QString getNewVersionAvailable(){
     return QObject::tr("(version %1 is available)");
   }
 
-  static QString getSelectedPackages(){
-    return QObject::tr("%1 (%2) packages");
+  static QString getSelectedPackages(int packageCount){
+    return QObject::tr("%n (%1) packages", 0, packageCount);
   }
 
-  static QString getNumberInstalledPackages(){
-    return QObject::tr("%1 installed");
+  static QString getNumberInstalledPackages(int installedPackagesCount){
+    return QObject::tr("%n installed", 0, installedPackagesCount);
   }
 
-  static QString getNumberOutdatedPackages(){
-    return QObject::tr("%1 outdated");
+  static QString getNumberOutdatedPackages(int outdatedPackagesCount){
+    return QObject::tr("%n outdated", 0, outdatedPackagesCount);
   }
 
-  static QString getNumberAvailablePackages(){
-    return QObject::tr("%1 available");
+  static QString getNumberAvailablePackages(int availablePackagesCount){
+    return QObject::tr("%n available", 0, availablePackagesCount);
   }
 
   static QString getCleaningPackageCache(){
@@ -449,12 +449,12 @@ public:
     return QObject::tr("The following target will be removed");
   }
 
-  static QString getRetrieveTargets(){
-    return QObject::tr("The following %1 targets need to be retrieved");
+  static QString getRetrieveTargets(int retrievedTargetsCount){
+    return QObject::tr("The following %n targets need to be retrieved", 0, retrievedTargetsCount);
   }
 
-  static QString getRemoveTargets(){
-    return QObject::tr("The following %1 targets will be removed");
+  static QString getRemoveTargets(int removeTargetsCount){
+    return QObject::tr("The following %n targets will be removed", 0, removeTargetsCount);
   }
 
   static QString getWarnHoldPkgFound() {
@@ -469,8 +469,8 @@ public:
     return QObject::tr("There is an update available!");
   }
 
-  static QString getNewUpdates(){
-    return QObject::tr("There are %1 updates available!");
+  static QString getNewUpdates(int newUpdatesCount){
+    return QObject::tr("There are %n updates available!", 0, newUpdatesCount);
   }
 
   static QString getConfirmationQuestion(){
