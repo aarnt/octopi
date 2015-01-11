@@ -189,7 +189,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="430"/>
         <source>Open terminal here</source>
-        <translation>Otvoriť terminál</translation>
+        <translation>Otvoriť terminál tu</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="439"/>
@@ -209,7 +209,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="470"/>
         <source>By name</source>
-        <translation>Podľa mena</translation>
+        <translation>Podľa názvu</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="479"/>
@@ -239,7 +239,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="521"/>
         <source>Pacman Log Viewer</source>
-        <translation>Prehliadač logov z pacman</translation>
+        <translation>Prehliadač záznamov z pacmanu</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="533"/>
@@ -254,12 +254,12 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="557"/>
         <source>By file</source>
-        <translation>podľa súboru</translation>
+        <translation>Podľa súboru</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="55"/>
         <source>For more information, visit:</source>
-        <translation>Pre viac informácií navštívte</translation>
+        <translation>Pre viac informácií navštívte:</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="58"/>
