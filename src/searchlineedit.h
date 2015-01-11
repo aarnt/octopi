@@ -30,7 +30,7 @@ private:
   QValidator *m_defaultValidator;
   QValidator *m_aurValidator;
   QValidator *m_fileValidator;
-  QToolButton *mSearchButton;
+  QToolButton *m_SearchButton;
   QString styleSheetForCurrentState();  
   QString buttonStyleSheetForCurrentState() const;
 
