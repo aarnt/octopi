@@ -340,8 +340,8 @@ private slots:
   void enableTransactionActions();
   void toggleTransactionActions(const bool value);
   void toggleSystemActions(const bool value);
-  void doCommitTransaction();
-  void doRollbackTransaction();
+  void commitTransaction();
+  void cancelTransaction();
 
   //View menu and submenu Repository actions...
   void selectedAllPackagesMenu();

@@ -45,7 +45,7 @@ void MainWindow::changeTransactionActionsState()
 {
   bool state = _isThereAPendingTransaction();
   ui->actionCommit->setEnabled(state);
-  ui->actionRollback->setEnabled(state);
+  ui->actionCancel->setEnabled(state);
 }
 
 /*
@@ -1474,12 +1474,12 @@ void MainWindow::toggleTransactionActions(const bool value)
   if (value == true && state == true)
   {
     ui->actionCommit->setEnabled(true);
-    ui->actionRollback->setEnabled(true);
+    ui->actionCancel->setEnabled(true);
   }
   else if ((value == true && state == false) || value == false)
   {
     ui->actionCommit->setEnabled(false);
-    ui->actionRollback->setEnabled(false);
+    ui->actionCancel->setEnabled(false);
   }
 
   ui->actionInstall->setEnabled(value);
@@ -1535,7 +1535,7 @@ void MainWindow::toggleSystemActions(const bool value)
 /*
  * Triggers the especific methods that need to be called given the packages in the transaction
  */
-void MainWindow::doCommitTransaction()
+void MainWindow::commitTransaction()
 {
   //Are there any remove actions to be commited?
   if(getRemoveTransactionParentItem()->rowCount() > 0 && getInstallTransactionParentItem()->rowCount() > 0)
@@ -1555,11 +1555,11 @@ void MainWindow::doCommitTransaction()
 /*
  * Clears the transaction treeview
  */
-void MainWindow::doRollbackTransaction()
+void MainWindow::cancelTransaction()
 {
   int res = QMessageBox::question(this,
                         StrConstants::getConfirmation(),
-                        StrConstants::getRollbackTransactionConfirmation(),
+                        StrConstants::getCancelTransactionConfirmation(),
                         QMessageBox::Yes|QMessageBox::No,
                         QMessageBox::No);
 
@@ -1709,7 +1709,7 @@ void MainWindow::actionsProcessFinished(int exitCode, QProcess::ExitStatus exitS
           && m_outdatedPackageList->count() > 0)
       {
         m_commandExecuting = ectn_NONE;
-        m_unixCommand->removeTemporaryActionFile();
+        m_unixCommand->removeTemporaryFile();
         doSystemUpgrade();
         return;
       }
@@ -1740,7 +1740,7 @@ void MainWindow::actionsProcessFinished(int exitCode, QProcess::ExitStatus exitS
 
   refreshMenuTools(); //Maybe some of octopi tools were added/removed...
 
-  m_unixCommand->removeTemporaryActionFile();
+  m_unixCommand->removeTemporaryFile();
 
   delete m_unixCommand; //EXPERIMENTAL
 

@@ -276,7 +276,7 @@ void MainWindow::initToolBar()
     ui->actionSystemUpgrade->setEnabled(false);
 
   ui->mainToolBar->addAction(ui->actionCommit);
-  ui->mainToolBar->addAction(ui->actionRollback);
+  ui->mainToolBar->addAction(ui->actionCancel);
 
   if(UnixCommand::hasTheExecutable(ctn_MIRROR_CHECK_APP))
   {
@@ -731,8 +731,8 @@ void MainWindow::initActions()
   connect(ui->actionFindFileInPackage, SIGNAL(triggered()), this, SLOT(findFileInPackage()));
   connect(ui->actionRemoveGroup, SIGNAL(triggered()), this, SLOT(insertGroupIntoRemovePackage()));
   connect(ui->actionInstallGroup, SIGNAL(triggered()), this, SLOT(insertGroupIntoInstallPackage()));
-  connect(ui->actionCommit, SIGNAL(triggered()), this, SLOT(doCommitTransaction()));
-  connect(ui->actionRollback, SIGNAL(triggered()), this, SLOT(doRollbackTransaction()));
+  connect(ui->actionCommit, SIGNAL(triggered()), this, SLOT(commitTransaction()));
+  connect(ui->actionCancel, SIGNAL(triggered()), this, SLOT(cancelTransaction()));
   connect(ui->actionGetNews, SIGNAL(triggered()), this, SLOT(refreshDistroNews()));
   connect(ui->twProperties, SIGNAL(currentChanged(int)), this, SLOT(changedTabIndex()));
   connect(ui->actionHelpUsage, SIGNAL(triggered()), this, SLOT(onHelpUsage()));
@@ -752,7 +752,7 @@ void MainWindow::initActions()
   // Use theme icons for QActions
   ui->actionSyncPackages->setIcon(IconHelper::getIconSyncDatabase());
   ui->actionCommit->setIcon(IconHelper::getIconCommit());
-  ui->actionRollback->setIcon(IconHelper::getIconRollback());
+  ui->actionCancel->setIcon(IconHelper::getIconRollback());
   ui->actionExit->setIcon(IconHelper::getIconExit());
   ui->actionSystemUpgrade->setIcon(IconHelper::getIconSystemUpgrade());
   ui->actionInstall->setIcon(IconHelper::getIconInstallItem());

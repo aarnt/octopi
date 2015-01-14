@@ -92,20 +92,20 @@ void MainWindow::refreshDistroNews(bool searchForLatestNews, bool gotoNewsTab)
       writeToTabOutputExt("<b>" +
                           StrConstants::getSearchingForDistroNews().arg("Netrunner Rolling") + "</b>");
     }
-  }
 
-  if (searchForLatestNews == false)
-  {
-    QString distroRSSXML = utils::retrieveDistroNews(searchForLatestNews);
-    showDistroNews(distroRSSXML, false);
-  }
-  //We have to refresh news using the non-blocking way...
-  else
-  {
+    /*
+     * Here, we retrieve distro's latest news without
+     * blocking Octopi main interface.
+     */
     QFuture<QString> f;
     f = QtConcurrent::run(getLatestDistroNews);
     g_fwDistroNews.setFuture(f);
     connect(&g_fwDistroNews, SIGNAL(finished()), this, SLOT(postRefreshDistroNews()));
+  }
+  else
+  {
+    QString distroRSSXML = utils::retrieveDistroNews(searchForLatestNews);
+    showDistroNews(distroRSSXML, false);
   }
 }
 

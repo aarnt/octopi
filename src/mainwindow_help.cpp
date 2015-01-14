@@ -135,7 +135,7 @@ void MainWindow::initTabHelpUsage()
   QString("</li><li>") +
      tr("Ctrl+M or 'Transaction/Commit' to start installation/removal of selected packages") +
   QString("</li><li>") +
-     tr("Ctrl+B or 'Transaction/Rollback' to clear the selection of to be removed/installed packages") +
+     tr("Ctrl+E or 'Transaction/Cancel' to clear the selection of to be removed/installed packages") +
   QString("</li><li>") +
      tr("Ctrl+G or 'File/Get latest distro news' to retrieve the latest RSS based distro news") +
   QString("</li><li>") +

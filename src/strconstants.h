@@ -442,19 +442,19 @@ public:
   }
 
   static QString getRetrieveTarget(){
-    return QObject::tr("The following target needs to be retrieved");
+    return QObject::tr("The following package needs to be retrieved");
   }
 
   static QString getRemoveTarget(){
-    return QObject::tr("The following target will be removed");
+    return QObject::tr("The following package will be removed");
   }
 
   static QString getRetrieveTargets(){
-    return QObject::tr("The following %1 targets need to be retrieved");
+    return QObject::tr("The following %1 packages need to be retrieved");
   }
 
   static QString getRemoveTargets(){
-    return QObject::tr("The following %1 targets will be removed");
+    return QObject::tr("The following %1 packages will be removed");
   }
 
   static QString getWarnHoldPkgFound() {
@@ -501,8 +501,8 @@ public:
     return QObject::tr("Do you really want to remove Pacman's transaction lock file?");
   }
 
-  static QString getRollbackTransactionConfirmation(){
-    return QObject::tr("Do you really want to rollback the transaction?");
+  static QString getCancelTransactionConfirmation(){
+    return QObject::tr("Do you really want to cancel the transaction?");
   }
 
   static QString getEnterAdministratorsPassword(){

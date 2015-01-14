@@ -164,7 +164,7 @@
      <string>Transaction</string>
     </property>
     <addaction name="actionCommit"/>
-    <addaction name="actionRollback"/>
+    <addaction name="actionCancel"/>
    </widget>
    <widget class="QMenu" name="menuFile">
     <property name="title">
@@ -251,16 +251,19 @@
     <string>Ctrl+M</string>
    </property>
   </action>
-  <action name="actionRollback">
+  <action name="actionCancel">
    <property name="icon">
     <iconset resource="../resources.qrc">
      <normaloff>:/resources/images/rollback.png</normaloff>:/resources/images/rollback.png</iconset>
    </property>
    <property name="text">
-    <string>Rollback</string>
+    <string>Cancel</string>
+   </property>
+   <property name="toolTip">
+    <string>Cancel</string>
    </property>
    <property name="shortcut">
-    <string>Ctrl+B</string>
+    <string>Ctrl+E</string>
    </property>
   </action>
   <action name="actionSyncPackages">

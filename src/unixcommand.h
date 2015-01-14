@@ -124,7 +124,7 @@ public:
     return m_temporaryFile;
   }
 
-  static void removeTemporaryActionFile(){
+  static void removeTemporaryFile(){
     if (m_temporaryFile != 0){
       m_temporaryFile->close();
       m_temporaryFile->remove();
