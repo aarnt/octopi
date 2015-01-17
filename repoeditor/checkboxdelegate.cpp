@@ -49,6 +49,8 @@ bool CheckBoxDelegate::editorEvent( QEvent *event,
                                     const QStyleOptionViewItem &option,
                                     const QModelIndex &index )
 {
+    Q_UNUSED(option);
+
     if( event->type() == QEvent::MouseButtonRelease )
         return false;
 

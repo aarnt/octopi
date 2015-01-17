@@ -30,6 +30,8 @@ QWidget* OptionsDelegate::createEditor( QWidget *parent,
                                         const QStyleOptionViewItem &option,
                                         const QModelIndex &index ) const
 {
+    Q_UNUSED(option);
+    Q_UNUSED(index);
     QPlainTextEdit *pte = new QPlainTextEdit( parent );
     return pte;
 }

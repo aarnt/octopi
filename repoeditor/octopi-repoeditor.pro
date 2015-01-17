@@ -4,7 +4,6 @@
 #
 #-------------------------------------------------
 
-TARGET = octopi-repoeditor
 QT += core gui network
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
@@ -12,13 +11,12 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 CONFIG += qt console warn_on debug
 
 TEMPLATE = app
-
 DESTDIR += bin
 OBJECTS_DIR += build
 MOC_DIR += build
 UI_DIR += build
 
-HEADERS  += addrepo.h \
+HEADERS += addrepo.h \
             checkboxdelegate.h \
             optionsdelegate.h \
             repoconf.h \
@@ -41,12 +39,12 @@ SOURCES += addrepo.cpp \
            ../src/QtSolutions/qtlockedfile.cpp \
            ../src/QtSolutions/qtsinglecoreapplication.cpp
 
-FORMS   += addrepo.ui \
-           repoeditor.ui
+FORMS += addrepo.ui \
+         repoeditor.ui
 
-RESOURCES += \
-    resources.qrc
+RESOURCES += resources.qrc
     
 TRANSLATIONS += resources/translations/octopi_repoeditor_en.ts \
-                resources/translations/octopi_repoeditor_it.ts
-
+                resources/translations/octopi_repoeditor_it.ts \
+                resources/translations/octopi_repoeditor_sk.ts \
+                resources/translations/octopi_repoeditor_sv.ts

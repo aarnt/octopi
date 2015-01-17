@@ -1,5 +1,7 @@
 <RCC>
     <qresource prefix="/">
         <file>resources/images/octopi_green.png</file>
+        <file>resources/translations/octopi_repoeditor_sk.qm</file>
+        <file>resources/translations/octopi_repoeditor_sv.qm</file>        
     </qresource>
 </RCC>
