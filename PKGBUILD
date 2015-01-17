@@ -40,7 +40,7 @@ build() {
 
     cd $startdir/repoeditor
     msg "Building octopi-repoeditor..."
-    qmake-qt4 repoeditor.pro
+    qmake-qt4 octopi-repoeditor.pro
     make -j $jc
 }
 
