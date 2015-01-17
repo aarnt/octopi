@@ -1,4 +1,4 @@
-pkgname=('octopi' 'octopi-notifier')
+pkgname=('octopi' 'octopi-notifier' 'octopi-repoeditor')
 pkgver=0.5.0
 pkgrel=1
 pkgdesc="a powerful Pacman frontend using Qt libs"
@@ -7,7 +7,7 @@ url="http://octopiproject.wordpress.com"
 license=('GPL2')
 install=$pkgname.install
 makedepends=('git')
-depends=('qt4' 'xterm')
+depends=('qt5-base' 'qt5-declarative' 'xterm')
 optdepends=('kdesu: for KDE'
             'gksu: for XFCE, Gnome, LXDE, Cinnamon'
             'gnome-keyring: for password management'
@@ -25,22 +25,22 @@ build() {
     msg "Starting build..."
 
     cd $startdir
-    qmake-qt4 $pkgname.pro 	
+    qmake-qt5 $pkgname.pro 	
     make -j $jc
 
     cd $startdir/notifier/pacmanhelper
     msg "Building pacmanhelper..."
-    qmake-qt4 pacmanhelper.pro
+    qmake-qt5 pacmanhelper.pro
     make -j $jc    
     
     cd $startdir/notifier/octopi-notifier
     msg "Building octopi-notifier..."
-    qmake-qt4 octopi-notifier.pro
+    qmake-qt5 octopi-notifier.pro
     make -j $jc
 
     cd $startdir/repoeditor
     msg "Building octopi-repoeditor..."
-    qmake-qt4 octopi-repoeditor.pro
+    qmake-qt5 octopi-repoeditor.pro
     make -j $jc
 }
 
@@ -73,4 +73,11 @@ package_octopi-notifier() {
    #Octopi-notifier file
    install -D -m755 $startdir/notifier/bin/octopi-notifier ${pkgdir}/usr/bin/octopi-notifier
    install -D -m644 $startdir/octopi-notifier.desktop ${pkgdir}/etc/xdg/autostart/octopi-notifier.desktop
+}
+
+package_octopi-repoeditor() {
+   pkgdesc="Repoeditor for Octopi"
+   
+   #Octopi-repoeditor file
+   install -D -m755 $startdir/repoeditor/bin/octopi-repoeditor ${pkgdir}/usr/bin/octopi-repoeditor
 }

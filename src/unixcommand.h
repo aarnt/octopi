@@ -39,6 +39,8 @@ enum CommandExecuting { ectn_NONE, ectn_MIRROR_CHECK, ectn_SYNC_DATABASE,
 enum LinuxDistro { ectn_ANTERGOS, ectn_ARCHBANGLINUX, ectn_ARCHBSD, ectn_ARCHLINUX, ectn_CHAKRA,
                    ectn_KAOS, ectn_MANJAROLINUX, ectn_MOOOSLINUX, ectn_NETRUNNER, ectn_UNKNOWN };
 
+enum Language { ectn_LANG_ENGLISH, ectn_LANG_USER_DEFINED };
+
 //Forward class declarations.
 class QString;
 class QStringList;
@@ -142,7 +144,7 @@ public:
   static void execCommandAsNormalUser(const QString &pCommand);
   static void execCommand(const QString &pCommand);
 
-  void executeCommand(const QString &pCommand);
+  void executeCommand(const QString &pCommand, Language lang=ectn_LANG_ENGLISH);
   void executeCommandAsNormalUser(const QString &pCommand);
 
   QString readAllStandardOutput();

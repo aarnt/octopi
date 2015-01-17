@@ -1239,15 +1239,15 @@ void MainWindow::tvPackagesSelectionChanged(const QItemSelection&, const QItemSe
 
   if(numberOfInstalledPackages > 0)
   {
-    text = /*"| " +*/ StrConstants::getNumberInstalledPackages().arg(numberOfInstalledPackages);
+    text = StrConstants::getNumberInstalledPackages().arg(numberOfInstalledPackages);
   }
   else if (m_leFilterPackage->text().isEmpty() && !m_packageModel->isFiltered())
   {
-    text = /*"| " +*/ StrConstants::getNumberInstalledPackages().arg(m_numberOfInstalledPackages);
+    text = StrConstants::getNumberInstalledPackages().arg(m_numberOfInstalledPackages);
   }
   else
   {
-    text = /*"| " +*/ StrConstants::getNumberInstalledPackages().arg(0);
+    text = StrConstants::getNumberInstalledPackages().arg(0);
   }
 
   m_lblTotalCounters->setText(text);
@@ -1269,7 +1269,7 @@ void MainWindow::launchPLV()
 void MainWindow::launchRepoEditor()
 {
   m_unixCommand = new UnixCommand(this);
-  m_unixCommand->executeCommand(QLatin1String("octopi-repoeditor"));
+  m_unixCommand->executeCommand(QLatin1String("octopi-repoeditor"), ectn_LANG_USER_DEFINED);
 }
 
 /*

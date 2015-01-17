@@ -688,9 +688,19 @@ void UnixCommand::runCommandInTerminalAsNormalUser(const QStringList &commandLis
 /*
  * Executes the given command using QProcess async technology with ROOT credentials
  */
-void UnixCommand::executeCommand(const QString &pCommand)
+void UnixCommand::executeCommand(const QString &pCommand, Language lang)
 {
   QString command;
+
+  if (lang == ectn_LANG_USER_DEFINED)
+  {
+    QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
+    env.remove("LANG");
+    env.remove("LC_MESSAGES");
+    env.insert("LANG", QLocale::system().name() + ".UTF-8");
+    env.insert("LC_MESSAGES", QLocale::system().name() + ".UTF-8");
+    m_process->setProcessEnvironment(env);
+  }
 
   if(isRootRunning())
   {
