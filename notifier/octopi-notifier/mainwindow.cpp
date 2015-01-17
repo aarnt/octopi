@@ -253,10 +253,10 @@ void MainWindow::doSystemUpgrade()
   if (UnixCommand::getLinuxDistro() == ectn_CHAKRA) question.removeYesButton();
 
   if(targets->count()==1)
-    question.setText(StrConstants::getRetrieveTarget() +
+    question.setText(StrConstants::getRetrievePackage() +
                      "\n\n" + StrConstants::getTotalDownloadSize().arg(ds).remove(" KB"));
   else
-    question.setText(StrConstants::getRetrieveTargets().arg(targets->count()) +
+    question.setText(StrConstants::getRetrievePackages().arg(targets->count()) +
                      "\n\n" + StrConstants::getTotalDownloadSize().arg(ds).remove(" KB"));
 
   question.setWindowTitle(StrConstants::getConfirmation());

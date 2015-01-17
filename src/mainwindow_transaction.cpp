@@ -472,7 +472,7 @@ bool MainWindow::insertIntoRemovePackageDeps(const QStringList &dependencies)
     CPUIntensiveComputing *cic = new CPUIntensiveComputing;
 
     MultiSelectionDialog *msd = new MultiSelectionDialog(this);
-    msd->setWindowTitle(StrConstants::getRemoveTargets().arg(newDeps.count()));
+    msd->setWindowTitle(StrConstants::getRemovePackages(newDeps.count()));
     msd->setWindowIcon(windowIcon());
     QStringList selectedPackages;
 
@@ -865,10 +865,10 @@ void MainWindow::doSystemUpgrade(SystemUpgradeOptions systemUpgradeOptions)
       TransactionDialog question(this);
 
       if(targets->count()==1)
-        question.setText(StrConstants::getRetrieveTarget() +
+        question.setText(StrConstants::getRetrievePackage() +
                          "\n\n" + StrConstants::getTotalDownloadSize().arg(ds).remove(" KB"));
       else
-        question.setText(StrConstants::getRetrieveTargets().arg(targets->count()) +
+        question.setText(StrConstants::getRetrievePackages(targets->count()) +
                          "\n\n" + StrConstants::getTotalDownloadSize().arg(ds).remove(" KB"));
 
       question.setWindowTitle(StrConstants::getConfirmation());
@@ -973,20 +973,20 @@ void MainWindow::doRemoveAndInstall()
 
   if (removeTargets.count() == 1)
   {
-    dialogText = StrConstants::getRemoveTarget() + "\n";
+    dialogText = StrConstants::getRemovePackage() + "\n";
   }
   else if (removeTargets.count() > 1)
   {
-    dialogText = StrConstants::getRemoveTargets().arg(removeTargets.count()) + "\n";
+    dialogText = StrConstants::getRemovePackages(removeTargets.count()) + "\n";
   }
   if (installTargets->count() == 1)
   {
-    dialogText += StrConstants::getRetrieveTarget() +
+    dialogText += StrConstants::getRetrievePackage() +
       "\n\n" + StrConstants::getTotalDownloadSize().arg(ds).remove(" KB");
   }
   else if (installTargets->count() > 1)
   {
-    dialogText += StrConstants::getRetrieveTargets().arg(installTargets->count()) +
+    dialogText += StrConstants::getRetrievePackages(installTargets->count()) +
       "\n\n" + StrConstants::getTotalDownloadSize().arg(ds).remove(" KB");
   }
 
@@ -1061,10 +1061,10 @@ void MainWindow::doRemove()
             this, StrConstants::getAttention(), StrConstants::getWarnHoldPkgFound(), QMessageBox::Ok);
       return;
     }
-    else question.setText(StrConstants::getRemoveTarget());
+    else question.setText(StrConstants::getRemovePackage());
   }
   else
-    question.setText(StrConstants::getRemoveTargets().arg(targets.count()));
+    question.setText(StrConstants::getRemovePackages(targets.count()));
 
   if (getNumberOfTobeRemovedPackages() < targets.count())
     question.setWindowTitle(StrConstants::getWarning());
@@ -1294,11 +1294,11 @@ void MainWindow::doInstall()
             this, StrConstants::getAttention(), StrConstants::getWarnHoldPkgFound(), QMessageBox::Ok);
       return;
     }
-    else question.setText(StrConstants::getRetrieveTarget() +
+    else question.setText(StrConstants::getRetrievePackage() +
                           "\n\n" + StrConstants::getTotalDownloadSize().arg(ds).remove(" KB"));
   }
   else
-    question.setText(StrConstants::getRetrieveTargets().arg(targets->count()) +
+    question.setText(StrConstants::getRetrievePackages(targets->count()) +
                      "\n\n" + StrConstants::getTotalDownloadSize().arg(ds).remove(" KB"));
 
   question.setWindowTitle(StrConstants::getConfirmation());
@@ -1375,10 +1375,10 @@ void MainWindow::doInstallLocalPackages()
             this, StrConstants::getAttention(), StrConstants::getWarnHoldPkgFound(), QMessageBox::Ok);
       return;
     }
-    else question.setText(StrConstants::getRetrieveTarget());
+    else question.setText(StrConstants::getRetrievePackage());
   }
   else
-    question.setText(StrConstants::getRetrieveTargets().arg(m_packagesToInstallList.count()));
+    question.setText(StrConstants::getRetrievePackages(m_packagesToInstallList.count()));
 
   int result = question.exec();
 

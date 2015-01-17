@@ -703,7 +703,7 @@ void MainWindow::showToolButtonAUR()
     {
       m_toolButtonAUR->setText("(" + QString::number(m_outdatedAURPackagesNameVersion->count()) + ")");
       m_toolButtonAUR->setToolTip(
-          StrConstants::getNewUpdates().arg(m_outdatedAURPackagesNameVersion->count()));
+          StrConstants::getNewUpdates(m_outdatedAURPackagesNameVersion->count()));
     }
 
     m_toolButtonAUR->show();
@@ -755,15 +755,15 @@ void MainWindow::refreshStatusBar()
 
   if(numberOfInstalledPackages > 0)
   {
-    text = StrConstants::getNumberInstalledPackages().arg(numberOfInstalledPackages);
+    text = StrConstants::getNumberInstalledPackages(numberOfInstalledPackages);
   }
   else if (m_leFilterPackage->text().isEmpty() && !m_packageModel->isFiltered())
   {
-    text = StrConstants::getNumberInstalledPackages().arg(m_numberOfInstalledPackages);
+    text = StrConstants::getNumberInstalledPackages(m_numberOfInstalledPackages);
   }
   else
   {
-    text = StrConstants::getNumberInstalledPackages().arg(0);
+    text = StrConstants::getNumberInstalledPackages(0);
   }
 
   m_lblTotalCounters->setText(text);
@@ -781,7 +781,7 @@ void MainWindow::refreshStatusBar()
     else
     {
       m_toolButtonPacman->setText("(" + QString::number(m_numberOfOutdatedPackages) + ")");
-      m_toolButtonPacman->setToolTip(StrConstants::getNewUpdates().arg(m_numberOfOutdatedPackages));
+      m_toolButtonPacman->setToolTip(StrConstants::getNewUpdates(m_numberOfOutdatedPackages));
     }
 
     ui->statusBar->addWidget(m_toolButtonPacman);
