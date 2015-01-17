@@ -116,7 +116,7 @@ void MainWindow::initSystemTrayIcon()
   connect(m_pacmanHelperClient, SIGNAL(syncdbcompleted()), this, SLOT(afterPacmanHelperSyncDatabase()));
 
   m_pacmanHelperTimer = new QTimer();
-  m_pacmanHelperTimer->setInterval(100);
+  m_pacmanHelperTimer->setInterval(1000);
   m_pacmanHelperTimer->start();
 
   connect(m_pacmanHelperTimer, SIGNAL(timeout()), this, SLOT(pacmanHelperTimerTimeout()));
@@ -129,7 +129,7 @@ void MainWindow::pacmanHelperTimerTimeout()
 {
   static bool firstTime=true;
 
-  if (m_commandExecuting != ectn_NONE) return;
+  if (!UnixCommand::hasInternetConnection() || m_commandExecuting != ectn_NONE) return;
 
   if (firstTime)
   {
@@ -141,11 +141,9 @@ void MainWindow::pacmanHelperTimerTimeout()
     m_systemTrayIcon->show();
 #endif
 
-    setWindowIcon(m_icon);
-
     //From now on, we verify if it's time to check for updates every 1 minute
-    m_pacmanHelperTimer->setInterval(1000);
-
+    m_pacmanHelperTimer->setInterval(60000);
+    setWindowIcon(m_icon);
     firstTime=false;
   }
 
@@ -318,7 +316,7 @@ void MainWindow::doSystemUpgradeFinished(int, QProcess::ExitStatus)
       && m_outdatedPackageList->count() > 0)
   {
     m_commandExecuting = ectn_NONE;
-    m_unixCommand->removeTemporaryActionFile();
+    m_unixCommand->removeTemporaryFile();
 
     doSystemUpgrade();
 
@@ -326,7 +324,7 @@ void MainWindow::doSystemUpgradeFinished(int, QProcess::ExitStatus)
   }
 
   m_commandExecuting = ectn_NONE;
-  m_unixCommand->removeTemporaryActionFile();
+  m_unixCommand->removeTemporaryFile();
   toggleEnableInterface(true);
 }
 
