@@ -400,7 +400,7 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="138"/>
         <source>Ctrl+E or &apos;Transaction/Cancel&apos; to clear the selection of to be removed/installed packages</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+B nebo &apos;Transakce/Zrušit&apos; pro smazání výběru balíčků určených k odstranění/instalaci</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="140"/>
@@ -783,7 +783,7 @@
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="349"/>
         <source>There are %n outdated packages in your system:</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>Ve vašem systému je %n zastaralý balíček:</numerusform><numerusform>Ve vašem systému jsou %n zastaralé balíčky:</numerusform><numerusform>Ve vašem systému je %n zastaralých balíčků:</numerusform></translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="353"/>
@@ -908,12 +908,12 @@
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="453"/>
         <source>The following %n packages need to be retrieved</source>
-        <translation><numerusform>Je potřeba získat  %n následující balíček</numerusform><numerusform>Je potřeba získat  %n následující balíčky</numerusform><numerusform>Je potřeba získat  %n následujících balíčků</numerusform></translation>
+        <translation><numerusform>Je potřeba získat %n následující balíček</numerusform><numerusform>Je potřeba získat %n následující balíčky</numerusform><numerusform>Je potřeba získat %n následujících balíčků</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="457"/>
         <source>The following %n packages will be removed</source>
-        <translation><numerusform>Je potřeba získat  %n následující balíček</numerusform><numerusform>Je potřeba získat  %n následující balíčky</numerusform><numerusform>Je potřeba získat  %n následujících balíčků</numerusform></translation>
+        <translation><numerusform>Následující %n balíček bude odstraněn</numerusform><numerusform>Následující %n balíčky budou odstraněny</numerusform><numerusform>Následujících %n balíčků bude odstraněno</numerusform></translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="461"/>
@@ -933,7 +933,7 @@
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="473"/>
         <source>There are %n updates available!</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>Je dostupná %n aktualizace!</numerusform><numerusform>Jsou dostupné %n aktualizace!</numerusform><numerusform>Je dostupných %n aktualizací!</numerusform></translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="477"/>
@@ -973,7 +973,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="505"/>
         <source>Do you really want to cancel the transaction?</source>
-        <translation type="unfinished"/>
+        <translation>Opravdu chcete zrušit tuto transakci?</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="509"/>
