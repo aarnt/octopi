@@ -256,7 +256,7 @@ void MainWindow::doSystemUpgrade()
     question.setText(StrConstants::getRetrievePackage() +
                      "\n\n" + StrConstants::getTotalDownloadSize().arg(ds).remove(" KB"));
   else
-    question.setText(StrConstants::getRetrievePackages().arg(targets->count()) +
+    question.setText(StrConstants::getRetrievePackages(targets->count()) +
                      "\n\n" + StrConstants::getTotalDownloadSize().arg(ds).remove(" KB"));
 
   question.setWindowTitle(StrConstants::getConfirmation());
@@ -380,7 +380,7 @@ void MainWindow::afterPacmanHelperSyncDatabase()
       }
       else if (m_numberOfOutdatedPackages > 1)
       {
-        notification = StrConstants::getNewUpdates().arg(m_numberOfOutdatedPackages);
+        notification = StrConstants::getNewUpdates(m_numberOfOutdatedPackages);
 
         #ifdef KSTATUS
           m_systemTrayIcon->setToolTipSubTitle(notification);
@@ -412,7 +412,7 @@ void MainWindow::afterPacmanHelperSyncDatabase()
     }
     else if (numberOfOutdatedPackages > 1)
     {
-      notification = StrConstants::getNewUpdates().arg(numberOfOutdatedPackages);
+      notification = StrConstants::getNewUpdates(numberOfOutdatedPackages);
 
       #ifdef KSTATUS
         m_systemTrayIcon->setToolTipSubTitle(notification);
@@ -519,7 +519,7 @@ void MainWindow::refreshAppIcon()
         m_systemTrayIcon->setToolTipSubTitle(
               StrConstants::getNewUpdates().arg(m_numberOfOutdatedPackages));
       #else
-        m_systemTrayIcon->setToolTip(StrConstants::getNewUpdates().arg(m_numberOfOutdatedPackages));
+        m_systemTrayIcon->setToolTip(StrConstants::getNewUpdates(m_numberOfOutdatedPackages));
       #endif
     }
   }
@@ -537,9 +537,9 @@ void MainWindow::refreshAppIcon()
     {
       #ifdef KSTATUS
         m_systemTrayIcon->setToolTipSubTitle(
-              StrConstants::getNewUpdates().arg(m_numberOfOutdatedAURPackages));
+              StrConstants::getNewUpdates(m_numberOfOutdatedAURPackages));
       #else
-        m_systemTrayIcon->setToolTip(StrConstants::getNewUpdates().arg(m_numberOfOutdatedAURPackages));
+        m_systemTrayIcon->setToolTip(StrConstants::getNewUpdates(m_numberOfOutdatedAURPackages));
       #endif
     }
   }

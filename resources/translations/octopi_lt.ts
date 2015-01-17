@@ -1,4 +1,4 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="lt" version="2.0">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="lt" version="2.1">
 <context>
     <name>MainWindow</name>
     <message>
@@ -75,184 +75,185 @@
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="260"/>
-        <source>Rollback</source>
-        <translation>Atstatyti</translation>
-    </message>
-    <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="263"/>
-        <source>Ctrl+B</source>
-        <translation>Ctrl+B</translation>
+        <source>Cancel</source>
+        <translation>Atšaukti</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="272"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="266"/>
+        <source>Ctrl+E</source>
+        <translation>Ctrl+E</translation>
+    </message>
+    <message>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="275"/>
         <source>Sync database</source>
         <translation>Sinchronizuoti duomenų bazę</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="275"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="278"/>
         <source>Ctrl+D</source>
         <translation>Ctrl+D</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="284"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="287"/>
         <source>Exit</source>
         <translation>Išeiti</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="287"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="290"/>
         <source>Ctrl+Q</source>
         <translation>Ctrl+Q</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="296"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="299"/>
         <source>System upgrade</source>
         <translation>Sistemos naujovinimas</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="299"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="302"/>
         <source>Ctrl+U</source>
         <translation>Ctrl+U</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="308"/>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="311"/>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="513"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="314"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="516"/>
         <source>Install</source>
         <translation>Įdiegti</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="320"/>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="323"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="326"/>
         <source>Remove</source>
         <translation>Pašalinti</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="328"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="331"/>
         <source>Outdated packages</source>
         <translation>Pasenę paketai</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="337"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="340"/>
         <source>Get latest distro news</source>
         <translation>Gauti naujienas</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="340"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="343"/>
         <source>Ctrl+G</source>
         <translation>Ctrl+G</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="349"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="352"/>
         <source>Remove group</source>
         <translation>Pašalinti grupę</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="358"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="361"/>
         <source>Install group</source>
         <translation>Įdiegti grupę</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="367"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="370"/>
         <source>Collapse item</source>
         <translation>Suskleisti elementą</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="376"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="379"/>
         <source>Expand item</source>
         <translation>Išskleisti elementą</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="385"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="388"/>
         <source>Collapse all items</source>
         <translation>Suskleisti visus elementus</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="394"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="397"/>
         <source>Expand all items</source>
         <translation>Išskleisti visus elementus</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="403"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="406"/>
         <source>Open file</source>
         <translation>Atverti failą</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="412"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="415"/>
         <source>Edit file</source>
         <translation>Taisyti failą</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="421"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="424"/>
         <source>Open directory</source>
         <translation>Atverti aplanką</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="430"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="433"/>
         <source>Open terminal here</source>
         <translation>Čia _atverti terminalą</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="439"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="442"/>
         <source>Remove item</source>
         <translation>Pašalinti elementą</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="451"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="454"/>
         <source>Remove items</source>
         <translation>Pašalinti elementus</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="462"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="465"/>
         <source>By description</source>
         <translation>Pagal aprašymą</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="470"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="473"/>
         <source>By name</source>
         <translation>Pagal pavadinimą</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="479"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="482"/>
         <source>Find a file</source>
         <translation>Rasti failą</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="488"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="491"/>
         <source>Open root terminal</source>
         <translation>Atverti root terminalą</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="493"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="496"/>
         <source>Usage</source>
         <translation>Naudojimas</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="496"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="499"/>
         <source>F1</source>
         <translation>F1</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="504"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="507"/>
         <source>Install local package...</source>
         <translation>Įdiegti vietinį paketą...</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="521"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="524"/>
         <source>Pacman Log Viewer</source>
         <translation>Pacman Žurnalas</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="533"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="536"/>
         <source>Repository Editor</source>
         <translation>Saugyklų redaktorius</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="541"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="544"/>
         <source>Installed</source>
         <translation>Įdiegti</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="557"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="560"/>
         <source>By file</source>
         <translation>Pagal failą</translation>
     </message>
@@ -398,8 +399,8 @@
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="138"/>
-        <source>Ctrl+B or &apos;Transaction/Rollback&apos; to clear the selection of to be removed/installed packages</source>
-        <translation>Ctrl+B arba „Operacija/Atstatyti“, kad išvalyti pasirinkimą įdiegtinų/šalintinų paketų.</translation>
+        <source>Ctrl+E or &apos;Transaction/Cancel&apos; to clear the selection of to be removed/installed packages</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="140"/>
@@ -470,604 +471,604 @@
 <context>
     <name>QObject</name>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="39"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="43"/>
         <source>Octopi usage help:</source>
         <translation>Octopi pagalbos naudojimas:</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="40"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="44"/>
         <source>show application version.</source>
         <translation>rodyti programos versiją.</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="41"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="45"/>
         <source>use a different Qt4 style (ex: -style gtk).</source>
         <translation>naudoti kitokį Qt4 stilių (pvz.: -style gtk).</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="42"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="46"/>
         <source>use a different remove command (ex: -removecmd R).</source>
         <translation>naudoti kitokią pašalinimo komandą (pvz.: -removecmd R).</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="43"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="47"/>
         <source>force a system upgrade at startup.</source>
         <translation>priverstinai vykdyti sistemos naujovinimą paleidimo metu.</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="49"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="53"/>
         <source>All</source>
         <translation>Visi</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="114"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="118"/>
         <source>Antergos news</source>
         <translation>Antergos naujienos</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="118"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="122"/>
         <source>ArchBSD news</source>
         <translation>ArchBSD naujienos</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="122"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="126"/>
         <source>Arch Linux news</source>
         <translation>Arch Linux naujienos</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="126"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="130"/>
         <source>Chakra news</source>
         <translation>Chakra naujienos</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="130"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="134"/>
         <source>KaOS news</source>
         <translation>KaOS naujienos</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="134"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="138"/>
         <source>Manjaro Linux news</source>
         <translation>Manjaro Linux naujienos</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="138"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="142"/>
         <source>Netrunner Rolling news</source>
         <translation>Netrunner Rolling naujienos</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="142"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="146"/>
         <source>No news could be found! Press Ctrl+G to download the latest news.</source>
         <translation>Nepavyko rasti naujienų! Spauskite Ctrl+G, kad atsisiųsti vėliausias naujienas.</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="146"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="150"/>
         <source>This Linux distro seems to be incompatible with Octopi!</source>
         <translation>Ši Linux distribucija atrodo nesuderinama su Octopi!</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="150"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="154"/>
         <source>Internet seems unavailable!</source>
         <translation>Internetas atrodo nepasiekiamas!</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="154"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="158"/>
         <source>Display all groups</source>
         <translation>Rodyti visas grupes</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="165"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="169"/>
         <source>Usage</source>
         <translation>Naudojimas</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="169"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="173"/>
         <source>About</source>
         <translation>Apie</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="173"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="177"/>
         <source>Name</source>
         <translation>Pavadinimas</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="177"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="181"/>
         <source>Version</source>
         <translation>Versija</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="181"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="185"/>
         <source>Outdated version</source>
         <translation>Pasenusi versija</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="185"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="189"/>
         <source>Available version</source>
         <translation>Pasiekiama versija</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="189"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="193"/>
         <source>No description available.</source>
         <translation>Nėra pasiekiamo aprašymo.</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="193"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="197"/>
         <source>URL</source>
         <translation>URL</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="197"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="201"/>
         <source>Repository</source>
         <translation>Saugykla</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="201"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="205"/>
         <source>Licenses</source>
         <translation>Licencijos</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="205"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="209"/>
         <source>Group</source>
         <translation>Grupė</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="209"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="213"/>
         <source>Groups</source>
         <translation>Grupės</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="213"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="217"/>
         <source>Provides</source>
         <translation>Tiekia</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="217"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="221"/>
         <source>Depends On</source>
         <translation>Priklauso nuo</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="221"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="225"/>
         <source>Required By</source>
         <translation>Reikalauja</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="225"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="229"/>
         <source>Optional For</source>
         <translation>Pasiriktina dėl</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="229"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="233"/>
         <source>Optional Deps</source>
         <translation>Pasirinktinės priklausomybės</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="233"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="237"/>
         <source>Conflicts With</source>
         <translation>Konfliktuoja su</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="237"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="241"/>
         <source>Replaces</source>
         <translation>Pakeičia</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="241"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="245"/>
         <source>Popularity</source>
         <translation>Populiarumas</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="245"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="249"/>
         <source>votes</source>
         <translation>balsai</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="249"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="253"/>
         <source>Download Size</source>
         <translation>Atsiuntimo dydis</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="253"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="257"/>
         <source>Installed Size</source>
         <translation>Dydis įdiegus</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="257"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="261"/>
         <source>Packager</source>
         <translation>Pakuotojas</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="261"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="265"/>
         <source>Package</source>
         <translation>Paketas</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="265"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="269"/>
         <source>Packages</source>
         <translation>Paketai</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="269"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="273"/>
         <source>Architecture</source>
         <translation>Architektūra</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="273"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="277"/>
         <source>Build Date</source>
         <translation>Kompiliavimo data</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="277"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="281"/>
         <source>Description</source>
         <translation>Aprašymas</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="281"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="285"/>
         <source>Attention</source>
         <translation>Dėmesio</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="285"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="289"/>
         <source>automatic</source>
         <translation>automatinis</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="289"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="293"/>
         <source>Password</source>
         <translation>Slaptažodis</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="293"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="297"/>
         <source>Info</source>
         <translation>Informacija</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="297"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="301"/>
         <source>Files</source>
         <translation>Failai</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="301"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="305"/>
         <source>Transaction</source>
         <translation>Operacija</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="305"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="309"/>
         <source>Output</source>
         <translation>Išvestis</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="309"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="313"/>
         <source>News</source>
         <translation>Naujienos</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="313"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="317"/>
         <source>Contents of &quot;%1&quot;</source>
         <translation>„%1“ turinys</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="317"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="321"/>
         <source>Find</source>
         <translation>Ieškoti</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="321"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="325"/>
         <source>Clear</source>
         <translation>Išvalyti</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="325"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="329"/>
         <source> (outdated installed version is %1)</source>
         <translation> (Įdiegta pasenusi versija yra %1)</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="329"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="333"/>
         <source> (newer installed version is %1)</source>
         <translation> (naujesnė įdiegta versija yra %1)</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="333"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="337"/>
         <source>Building package list...</source>
         <translation>Daromas paketų sąrašas...</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="337"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="341"/>
         <source>Searching for %1 latest news...</source>
         <translation>Ieškoma %1 paskutinių naujienų...</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="341"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="345"/>
         <source>There is one outdated package in your system:</source>
         <translation>Yra vienas pasenęs paketas Jūsų sistemoje:</translation>
     </message>
-    <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="345"/>
-        <source>There are %1 outdated packages in your system:</source>
-        <translation>Yra %1 pasenusių paketų Jūsų sistemoje:</translation>
-    </message>
-    <message>
+    <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="349"/>
-        <source>(version %1 is available)</source>
-        <translation>(versija %1 yra prieinama)</translation>
+        <source>There are %n outdated packages in your system:</source>
+        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="353"/>
-        <source>%1 (%2) packages</source>
-        <translation>%1 (%2) paketai</translation>
+        <source>(version %1 is available)</source>
+        <translation>(versija %1 yra prieinama)</translation>
     </message>
-    <message>
+    <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="357"/>
-        <source>%1 installed</source>
-        <translation>%1 įdiegta</translation>
+        <source>%n (%2) packages</source>
+        <translation><numerusform>%n (%2) paketas</numerusform><numerusform>%n (%2) paketai</numerusform><numerusform>%n (%2) paketų</numerusform></translation>
     </message>
-    <message>
+    <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="361"/>
-        <source>%1 outdated</source>
-        <translation>%1 pasenęs</translation>
+        <source>%n installed</source>
+        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
     </message>
-    <message>
+    <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="365"/>
-        <source>%1 available</source>
-        <translation>%1 galimas</translation>
+        <source>%n outdated</source>
+        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
+    </message>
+    <message numerus="yes">
+        <location filename="Projects/octopi/src/strconstants.h" line="369"/>
+        <source>%n available</source>
+        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="369"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="373"/>
         <source>Cleaning package cache...</source>
         <translation>Valomas paketų podėlis...</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="373"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="377"/>
         <source>Removing Pacman&apos;s transaction lock file...</source>
         <translation>Šalinamas Pacman programos perdavimo užrakto failas...</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="377"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="381"/>
         <source>Syncing</source>
         <translation>Sinchronizuojama</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="381"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="385"/>
         <source>Press any key to continue...</source>
         <translation>Spauskite bet kurį klavišą tęsimui...</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="389"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="393"/>
         <source>Sync database</source>
         <translation>Sinchronizuoti duomenų bazę</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="393"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="397"/>
         <source>Synchronizing databases...</source>
         <translation>Sinchronizuojamos duomenų bazės...</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="397"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="401"/>
         <source>is up to date</source>
         <translation>yra naujausias</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="401"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="405"/>
         <source>Starting full system upgrade...</source>
         <translation>Pradedamas pilnas sistemos naujovinimas...</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="405"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="409"/>
         <source>Installing selected packages...</source>
         <translation>Diegiami pasirinkti paketai...</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="409"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="413"/>
         <source>Removing selected packages...</source>
         <translation>Šalinami pasirinkti paketai...</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="413"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="417"/>
         <source>Removing/installing selected packages...</source>
         <translation>Diegiami/šalinami pasirinkti paketai...</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="417"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="421"/>
         <source>Choose a terminal</source>
         <translation>Pasirinkti terminalą</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="421"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="425"/>
         <source>Running command in terminal...</source>
         <translation>Vykdoma komanda terminale...</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="425"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="429"/>
         <source>Command finished OK!</source>
         <translation>Komanda baigta be klaidų!</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="429"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="433"/>
         <source>Command finished with errors!</source>
         <translation>Komanda baigta su klaidomis!</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="433"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="437"/>
         <source>Retrieving %1</source>
         <translation>Gaunama %1</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="437"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="441"/>
         <source>Total download size: %1 KB</source>
         <translation>Viso atsiuntimo dydis: %1 KB</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="441"/>
-        <source>The following target needs to be retrieved</source>
-        <translation>Reikia gauti sekantį objektą</translation>
-    </message>
-    <message>
         <location filename="Projects/octopi/src/strconstants.h" line="445"/>
-        <source>The following target will be removed</source>
-        <translation>Sekantis objektas bus pašalintas</translation>
+        <source>The following package needs to be retrieved</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="449"/>
-        <source>The following %1 targets need to be retrieved</source>
-        <translation>Reikia gauti sekančius %1 objektus</translation>
+        <source>The following package will be removed</source>
+        <translation type="unfinished"/>
     </message>
-    <message>
+    <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="453"/>
-        <source>The following %1 targets will be removed</source>
-        <translation>Sekantys %1 objektai bus pašalinti</translation>
+        <source>The following %n packages need to be retrieved</source>
+        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
+    </message>
+    <message numerus="yes">
+        <location filename="Projects/octopi/src/strconstants.h" line="457"/>
+        <source>The following %n packages will be removed</source>
+        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="457"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="461"/>
         <source>There are forbidden packages in the removal list!</source>
         <translation>Yra uždraustų paketų šalinimo sąraše!</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="461"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="465"/>
         <source>There are no new updates available!</source>
         <translation>Nėra pasiekimų atnaujinimų!</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="465"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="469"/>
         <source>There is an update available!</source>
         <translation>Yra pasiekiamas atnaujinimas!</translation>
     </message>
-    <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="469"/>
-        <source>There are %1 updates available!</source>
-        <translation>Galimi atnaujinimai - %1 !</translation>
+    <message numerus="yes">
+        <location filename="Projects/octopi/src/strconstants.h" line="473"/>
+        <source>There are %n updates available!</source>
+        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="473"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="477"/>
         <source>Confirm?</source>
         <translation>Patvirtinti?</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="477"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="481"/>
         <source>Warning!!!</source>
         <translation>Dėmesio!!!</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="481"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="485"/>
         <source>Confirmation</source>
         <translation>Patvirtinimas</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="485"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="489"/>
         <source>There has been a transaction error!</source>
         <translation>Įvyko operacijos klaida!</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="489"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="493"/>
         <source>Do you want to execute this transaction in a Terminal?</source>
         <translation>Ar norite vykdyti operaciją Terminale?</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="493"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="497"/>
         <source>Do you really want to clean the package cache?</source>
         <translation>Ar tikrai norite išvalyti paketų talpyklą?</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="497"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="501"/>
         <source>Do you really want to remove Pacman&apos;s transaction lock file?</source>
         <translation>Ar tikrai norite pašalinti Pacman programos perdavimo užrakto failą?</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="501"/>
-        <source>Do you really want to rollback the transaction?</source>
-        <translation>Ar tikrai norite anuliuoti operaciją?</translation>
+        <location filename="Projects/octopi/src/strconstants.h" line="505"/>
+        <source>Do you really want to cancel the transaction?</source>
+        <translation>Ar tikrai norite atšaukti operaciją?</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="505"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="509"/>
         <source>Please, enter the administrator&apos;s password</source>
         <translation>Prašome įvesti administratoriaus slaptažodį</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="511"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="515"/>
         <source>There are no means to get administrator&apos;s credentials.</source>
         <translation>Nėra priemonių gauti administratoriaus duomenų.</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="515"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="519"/>
         <source>You&apos;ll need to install a su frontend like gksu or kdesu.</source>
         <translation>Jums reikia įdiegti su programą, tokią kaip gksu ar kdesu.</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="519"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="523"/>
         <source>You can not run Octopi with administrator&apos;s credentials.</source>
         <translation>Negalite paleisti Octopi kaip administratorius.</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="523"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="527"/>
         <source>There is a pending transaction</source>
         <translation>Yra laukianti operacija</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="527"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="531"/>
         <source>Do you really want to quit?</source>
         <translation>Ar tikrai norite išeiti?</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="531"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="535"/>
         <source>Executing command</source>
         <translation>Vykdoma komandą</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="535"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="539"/>
         <source>Run in terminal</source>
         <translation>Vykdyti terminale</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="539"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="543"/>
         <source>Needs application restart to take effect</source>
         <translation>Reikia paleisti programą iš naujo, kad pritaikyti pakeitimus</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="543"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="547"/>
         <source>These changes need application restart to take effect!</source>
         <translation>Šiems pakeitimams reikia paleisti programą iš naujo, kad pritaikyti pakeitimus!</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="547"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="551"/>
         <source>Select the packages you want to install</source>
         <translation>Pasirinkite paketus, kuriuos norite įdiegti</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="551"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="555"/>
         <source>This file does not appear to be a simple text.
 Are you sure you want to open it?</source>
         <translation>Atrodo, kad šis failas nėra paprastas tekstas.
 Ar tikrai norite jį atverti?</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="556"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="560"/>
         <source>To be installed</source>
         <translation>Bus įdiegtas</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="560"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="564"/>
         <source>To be removed</source>
         <translation>Bus pašalinta</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="564"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="568"/>
         <source>remove</source>
         <translation>pašalinti</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="568"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="572"/>
         <source>install</source>
         <translation>Įdiegti</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="572"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="576"/>
         <source>Remove item</source>
         <translation>Pašalinti elementą</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="576"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="580"/>
         <source>Remove items</source>
         <translation>Pašalinti elementus</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="580"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="584"/>
         <source>Press Ctrl+A to select/deselect all</source>
         <translation>Spauskite Ctrl+A, kad pažymėti/atžymėti visus</translation>
     </message>
