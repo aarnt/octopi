@@ -1087,7 +1087,7 @@ QHash<QString, QString> Package::getAUROutdatedPackagesNameVersion()
       QStringList sl = line.split(" ", QString::SkipEmptyParts);
       if (sl.count() >= 5)
       {
-        hash.insert(sl.at(2), sl.at(5));
+        hash.insert(sl.at(2), sl.at(4));
       }
     }
   }

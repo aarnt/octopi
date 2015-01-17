@@ -189,7 +189,7 @@ QByteArray UnixCommand::performAURCommand(const QString &args)
   aur.setProcessEnvironment(env);
 
   aur.start(StrConstants::getForeignRepositoryToolName() + " " + args);
-  aur.waitForFinished();
+  aur.waitForFinished(-1);
   result = aur.readAllStandardOutput();
 
   aur.close();

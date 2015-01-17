@@ -3,7 +3,6 @@
   BugFix: Open file was not working in KF5.
   BugFix: Filter by repo was not working with Qt 5.4 libs (thanks to sl1pkn07).
   BugFix: Chakra CCR for installing pkgs was not being called.
-  Pacaur support currently disabled. Yaourt is the De Facto standard!
   Added new KDE detection logic (thanks to Kirek).
   KaOS only: added support for newer versions of Cellix's awesome KCP tool.
   KaOS only: do a "kcp -uc" sync while in "sync database".

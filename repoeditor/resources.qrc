@@ -4,5 +4,8 @@
         <file>resources/translations/octopi_repoeditor_sk.qm</file>
         <file>resources/translations/octopi_repoeditor_sv.qm</file>
         <file>resources/translations/octopi_repoeditor_fr_FR.qm</file>
+        <file>resources/translations/octopi_repoeditor_zh_TW.qm</file>
+        <file>resources/translations/octopi_repoeditor_id.qm</file>
+        <file>resources/translations/octopi_repoeditor_pt_BR.qm</file>
     </qresource>
 </RCC>
