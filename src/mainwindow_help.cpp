@@ -187,7 +187,7 @@ void MainWindow::initTabHelpUsage()
  */
 void MainWindow::onHelpUsage()
 {
-  _changeTabWidgetPropertiesIndex(ctn_TABINDEX_HELPUSAGE);
+  changeTabWidgetPropertiesIndex(ctn_TABINDEX_HELPUSAGE);
 }
 
 /*

@@ -440,7 +440,7 @@ void MainWindow::metaBuildPackageList()
 /*
  * Outputs a list of packages that don't have a description
  */
-void MainWindow::_showPackagesWithNoDescription()
+void MainWindow::showPackagesWithNoDescription()
 {
   bool printHeader = false;
   QList<PackageListData> *list = Package::getPackageList();
@@ -571,7 +571,7 @@ void MainWindow::buildPackageList(bool nonBlocking)
   refreshTabInfo();
   refreshTabFiles();
 
-  if (_isPackageTreeViewVisible())
+  if (isPackageTreeViewVisible())
   {
     ui->tvPackages->setFocus();
   }
@@ -589,7 +589,7 @@ void MainWindow::buildPackageList(bool nonBlocking)
 
   if (firstTime)
   {
-    if (_isPackageTreeViewVisible())
+    if (isPackageTreeViewVisible())
     {
       m_leFilterPackage->setFocus();
     }
@@ -662,7 +662,7 @@ void MainWindow::buildAURPackageList()
   refreshTabInfo();
   refreshTabFiles();
 
-  if (_isPackageTreeViewVisible())
+  if (isPackageTreeViewVisible())
   {
     ui->tvPackages->setFocus();
   }
@@ -830,7 +830,7 @@ void MainWindow::refreshTabInfo(QString pkgName)
 void MainWindow::refreshTabInfo(bool clearContents, bool neverQuit)
 {
   if(neverQuit == false &&
-     (ui->twProperties->currentIndex() != ctn_TABINDEX_INFORMATION || !_isPropertiesTabWidgetVisible())) return;
+     (ui->twProperties->currentIndex() != ctn_TABINDEX_INFORMATION || !isPropertiesTabWidgetVisible())) return;
 
   QItemSelectionModel*const selectionModel = ui->tvPackages->selectionModel();
   if (clearContents || selectionModel == NULL ||
@@ -860,7 +860,7 @@ void MainWindow::refreshTabInfo(bool clearContents, bool neverQuit)
   {
     if (neverQuit)
     {
-      _changeTabWidgetPropertiesIndex(ctn_TABINDEX_INFORMATION);
+      changeTabWidgetPropertiesIndex(ctn_TABINDEX_INFORMATION);
     }
 
     return;
@@ -921,7 +921,7 @@ void MainWindow::refreshTabInfo(bool clearContents, bool neverQuit)
 
   if (neverQuit)
   {
-    _changeTabWidgetPropertiesIndex(ctn_TABINDEX_INFORMATION);
+    changeTabWidgetPropertiesIndex(ctn_TABINDEX_INFORMATION);
   }
 }
 
@@ -931,7 +931,7 @@ void MainWindow::refreshTabInfo(bool clearContents, bool neverQuit)
 void MainWindow::refreshTabFiles(bool clearContents, bool neverQuit)
 {
   if(neverQuit == false &&
-     (ui->twProperties->currentIndex() != ctn_TABINDEX_FILES || !_isPropertiesTabWidgetVisible()))
+     (ui->twProperties->currentIndex() != ctn_TABINDEX_FILES || !isPropertiesTabWidgetVisible()))
   {
     return;
   }
@@ -951,7 +951,7 @@ void MainWindow::refreshTabFiles(bool clearContents, bool neverQuit)
 
       bool filterHasFocus = m_leFilterPackage->hasFocus();
       bool tvPackagesHasFocus = ui->tvPackages->hasFocus();
-      _closeTabFilesSearchBar();
+      closeTabFilesSearchBar();
       if (filterHasFocus) m_leFilterPackage->setFocus();
       else if (tvPackagesHasFocus) ui->tvPackages->setFocus();
 
@@ -972,8 +972,8 @@ void MainWindow::refreshTabFiles(bool clearContents, bool neverQuit)
   {
     if (neverQuit)
     {
-      _changeTabWidgetPropertiesIndex(ctn_TABINDEX_FILES);
-      _selectFirstItemOfPkgFileList();
+      changeTabWidgetPropertiesIndex(ctn_TABINDEX_FILES);
+      selectFirstItemOfPkgFileList();
     }
     else
     {
@@ -1014,7 +1014,7 @@ void MainWindow::refreshTabFiles(bool clearContents, bool neverQuit)
     foreach ( QString file, fileList ){
       bool isDir = file.endsWith('/');
       isSymLinkToDir = false;
-      QString baseFileName = _extractBaseFileName(file);
+      QString baseFileName = extractBaseFileName(file);
 
       //Let's test if it is not a symbolic link to a dir
       if(!isDir)
@@ -1129,11 +1129,11 @@ void MainWindow::refreshTabFiles(bool clearContents, bool neverQuit)
 
   if (neverQuit)
   {
-    _changeTabWidgetPropertiesIndex(ctn_TABINDEX_FILES);
-    _selectFirstItemOfPkgFileList();
+    changeTabWidgetPropertiesIndex(ctn_TABINDEX_FILES);
+    selectFirstItemOfPkgFileList();
   }
 
-  _closeTabFilesSearchBar();
+  closeTabFilesSearchBar();
 }
 
 /*

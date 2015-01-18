@@ -353,10 +353,10 @@ void MainWindow::initToolButtonAUR()
 /*
  * Sets the TabWidget Properties to the given index/tab and change app focus to its child widget
  */
-void MainWindow::_changeTabWidgetPropertiesIndex(const int newIndex)
+void MainWindow::changeTabWidgetPropertiesIndex(const int newIndex)
 {
   int oldTabIndex = ui->twProperties->currentIndex();
-  _ensureTabVisible(newIndex);
+  ensureTabVisible(newIndex);
 
   if (newIndex == oldTabIndex)
   {

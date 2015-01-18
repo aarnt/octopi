@@ -963,17 +963,17 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="497"/>
         <source>Do you really want to clean the package cache?</source>
-        <translation>Você realmente deseja limpar o cache de pacotes?</translation>
+        <translation>Deseja realmente limpar o cache de pacotes?</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="501"/>
         <source>Do you really want to remove Pacman&apos;s transaction lock file?</source>
-        <translation>Você realmente deseja remover o arquivo de controle de transação do Pacman?</translation>
+        <translation>Deseja realmente remover o arquivo de controle de transação do Pacman?</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="505"/>
         <source>Do you really want to cancel the transaction?</source>
-        <translation>Você realmente deseja cancelar a transação?</translation>
+        <translation>Deseja realmente cancelar a transação?</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="509"/>

@@ -65,7 +65,7 @@ void MainWindow::closeEvent(QCloseEvent *event)
   {
     event->ignore();
   }
-  else if(_isThereAPendingTransaction())
+  else if(isThereAPendingTransaction())
   {
     int res = QMessageBox::question(this, StrConstants::getConfirmation(),
                                     StrConstants::getThereIsAPendingTransaction() + "\n" +
@@ -157,7 +157,7 @@ void MainWindow::keyPressEvent(QKeyEvent* ke)
   }    
   else if(ke->key() == Qt::Key_1 && ke->modifiers() == Qt::AltModifier)
   {
-    _changeTabWidgetPropertiesIndex(ctn_TABINDEX_INFORMATION);
+    changeTabWidgetPropertiesIndex(ctn_TABINDEX_INFORMATION);
   }
   else if(ke->key() == Qt::Key_2 && ke->modifiers() == Qt::AltModifier)
   {
@@ -166,19 +166,19 @@ void MainWindow::keyPressEvent(QKeyEvent* ke)
   }
   else if(ke->key() == Qt::Key_3 && ke->modifiers() == Qt::AltModifier)
   {
-    _changeTabWidgetPropertiesIndex(ctn_TABINDEX_TRANSACTION);
+    changeTabWidgetPropertiesIndex(ctn_TABINDEX_TRANSACTION);
   }
   else if(ke->key() == Qt::Key_4 && ke->modifiers() == Qt::AltModifier)
   {
-    _changeTabWidgetPropertiesIndex(ctn_TABINDEX_OUTPUT);
+    changeTabWidgetPropertiesIndex(ctn_TABINDEX_OUTPUT);
   }
   else if(ke->key() == Qt::Key_5 && ke->modifiers() == Qt::AltModifier)
   {
-    _changeTabWidgetPropertiesIndex(ctn_TABINDEX_NEWS);
+    changeTabWidgetPropertiesIndex(ctn_TABINDEX_NEWS);
   }
   else if(ke->key() == Qt::Key_6 && ke->modifiers() == Qt::AltModifier)
   {
-    _changeTabWidgetPropertiesIndex(ctn_TABINDEX_HELPUSAGE);
+    changeTabWidgetPropertiesIndex(ctn_TABINDEX_HELPUSAGE);
   }
   else if(ke->key() == Qt::Key_F4)
   {
@@ -214,7 +214,7 @@ void MainWindow::keyPressEvent(QKeyEvent* ke)
   }
   else if(ke->key() == Qt::Key_F && ke->modifiers() == Qt::ControlModifier)
   {
-    if (_isPropertiesTabWidgetVisible() &&
+    if (isPropertiesTabWidgetVisible() &&
         (ui->twProperties->currentIndex() == ctn_TABINDEX_OUTPUT ||
          ui->twProperties->currentIndex() == ctn_TABINDEX_NEWS ||
          ui->twProperties->currentIndex() == ctn_TABINDEX_HELPUSAGE))
@@ -227,7 +227,7 @@ void MainWindow::keyPressEvent(QKeyEvent* ke)
         if (searchBar) searchBar->show();
       }
     }
-    else if (_isPropertiesTabWidgetVisible() && ui->twProperties->currentIndex() == ctn_TABINDEX_FILES)
+    else if (isPropertiesTabWidgetVisible() && ui->twProperties->currentIndex() == ctn_TABINDEX_FILES)
     {
       QTreeView *tb = ui->twProperties->currentWidget()->findChild<QTreeView*>("tvPkgFileList");
       SearchBar *searchBar = ui->twProperties->currentWidget()->findChild<SearchBar*>("searchbar");
@@ -241,7 +241,7 @@ void MainWindow::keyPressEvent(QKeyEvent* ke)
   else if(ke->key() == Qt::Key_D && ke->modifiers() == (Qt::ShiftModifier|Qt::ControlModifier))
   {
     //The user wants to know which packages have no description!
-    _showPackagesWithNoDescription();
+    showPackagesWithNoDescription();
   }
   else if(ke->key() == Qt::Key_G && ke->modifiers() == (Qt::ShiftModifier|Qt::ControlModifier))
   {

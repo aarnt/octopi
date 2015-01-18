@@ -43,7 +43,7 @@
  */
 void MainWindow::changeTransactionActionsState()
 {
-  bool state = _isThereAPendingTransaction();
+  bool state = isThereAPendingTransaction();
   ui->actionCommit->setEnabled(state);
   ui->actionCancel->setEnabled(state);
 }
@@ -60,7 +60,7 @@ void MainWindow::clearTransactionTreeView()
 /*
  * Looks if the Transaction's Remove or Install parent items have any package inside them
  */
-bool MainWindow::_isThereAPendingTransaction()
+bool MainWindow::isThereAPendingTransaction()
 {
   return (getRemoveTransactionParentItem()->hasChildren() ||
           getInstallTransactionParentItem()->hasChildren());
@@ -246,7 +246,7 @@ void MainWindow::insertIntoRemovePackage()
 
   if (!isAURGroupSelected())
   {
-    _ensureTabVisible(ctn_TABINDEX_TRANSACTION);
+    ensureTabVisible(ctn_TABINDEX_TRANSACTION);
     QModelIndexList selectedRows = ui->tvPackages->selectionModel()->selectedRows();
 
     //First, let's see if we are dealing with a package group
@@ -315,7 +315,7 @@ void MainWindow::insertIntoRemovePackage()
  */
 void MainWindow::insertGroupIntoRemovePackage()
 {
-  _ensureTabVisible(ctn_TABINDEX_TRANSACTION);
+  ensureTabVisible(ctn_TABINDEX_TRANSACTION);
   insertRemovePackageIntoTransaction(getSelectedGroup());
 }
 
@@ -329,7 +329,7 @@ void MainWindow::insertIntoInstallPackage()
 
   if (!isAURGroupSelected())
   {
-    _ensureTabVisible(ctn_TABINDEX_TRANSACTION);
+    ensureTabVisible(ctn_TABINDEX_TRANSACTION);
 
     QModelIndexList selectedRows = ui->tvPackages->selectionModel()->selectedRows();
     //First, let's see if we are dealing with a package group
@@ -510,14 +510,14 @@ bool MainWindow::insertIntoRemovePackageDeps(const QStringList &dependencies)
  */
 void MainWindow::insertGroupIntoInstallPackage()
 {
-  _ensureTabVisible(ctn_TABINDEX_TRANSACTION);
+  ensureTabVisible(ctn_TABINDEX_TRANSACTION);
   insertInstallPackageIntoTransaction(getSelectedGroup());
 }
 
 /*
  * Adjust the count and selection count status of the selected tvTransaction item (Remove or Insert parents)
  */
-void MainWindow::_tvTransactionAdjustItemText(QStandardItem *item)
+void MainWindow::tvTransactionAdjustItemText(QStandardItem *item)
 {
   int countSelected=0;
 
@@ -551,14 +551,14 @@ void MainWindow::_tvTransactionAdjustItemText(QStandardItem *item)
  */
 void MainWindow::tvTransactionSelectionChanged(const QItemSelection&, const QItemSelection&)
 {
-  _tvTransactionAdjustItemText(getRemoveTransactionParentItem());
-  _tvTransactionAdjustItemText(getInstallTransactionParentItem());
+  tvTransactionAdjustItemText(getRemoveTransactionParentItem());
+  tvTransactionAdjustItemText(getInstallTransactionParentItem());
 }
 
 /*
  * Method called every time some item is inserted or removed in tvTransaction treeview
  */
-void MainWindow::_tvTransactionRowsChanged(const QModelIndex& parent)
+void MainWindow::tvTransactionRowsChanged(const QModelIndex& parent)
 {
   QStandardItem *item = m_modelTransaction->itemFromIndex(parent);
   QString count = QString::number(item->rowCount());
@@ -571,7 +571,7 @@ void MainWindow::_tvTransactionRowsChanged(const QModelIndex& parent)
     if (item->rowCount() > 0)
     {
       itemRemove->setText(StrConstants::getTransactionRemoveText() + " (" + count + ")");
-      _tvTransactionAdjustItemText(itemRemove);
+      tvTransactionAdjustItemText(itemRemove);
     }
     else itemRemove->setText(StrConstants::getTransactionRemoveText());
   }
@@ -580,7 +580,7 @@ void MainWindow::_tvTransactionRowsChanged(const QModelIndex& parent)
     if (item->rowCount() > 0)
     {
       itemInstall->setText(StrConstants::getTransactionInstallText() + " (" + count + ")");
-      _tvTransactionAdjustItemText(itemInstall);
+      tvTransactionAdjustItemText(itemInstall);
     }
     else itemInstall->setText(StrConstants::getTransactionInstallText());
   }
@@ -591,7 +591,7 @@ void MainWindow::_tvTransactionRowsChanged(const QModelIndex& parent)
  */
 void MainWindow::tvTransactionRowsInserted(const QModelIndex& parent, int, int)
 {
-  _tvTransactionRowsChanged(parent);
+  tvTransactionRowsChanged(parent);
 }
 
 /*
@@ -599,7 +599,7 @@ void MainWindow::tvTransactionRowsInserted(const QModelIndex& parent, int, int)
  */
 void MainWindow::tvTransactionRowsRemoved(const QModelIndex& parent, int, int)
 {
-  _tvTransactionRowsChanged(parent);
+  tvTransactionRowsChanged(parent);
 }
 
 /*
@@ -640,7 +640,7 @@ void MainWindow::onPressDelete()
  * Checks if some SU utility is available...
  * Returns false if not!
  */
-bool MainWindow::_isSUAvailable()
+bool MainWindow::isSUAvailable()
 {
   //If there are no means to run the actions, we must warn!
   if (UnixCommand::isRootRunning() && WMHelper::isKDERunning())
@@ -763,7 +763,7 @@ void MainWindow::doAURUpgrade()
 /*
  * doSystemUpgrade shared code ...
  */
-void MainWindow::_prepareSystemUpgrade()
+void MainWindow::prepareSystemUpgrade()
 {
   m_systemUpgradeDialog = false;
   if (!doRemovePacmanLockFile()) return;
@@ -804,7 +804,7 @@ void MainWindow::doSystemUpgrade(SystemUpgradeOptions systemUpgradeOptions)
     return;
   }
 
-  if (!_isSUAvailable()) return;
+  if (!isSUAvailable()) return;
 
   qApp->processEvents();
 
@@ -846,7 +846,7 @@ void MainWindow::doSystemUpgrade(SystemUpgradeOptions systemUpgradeOptions)
     //User already confirmed all updates in the notifier window!
     if (systemUpgradeOptions == ectn_NOCONFIRM_OPT)
     {
-      _prepareSystemUpgrade();
+      prepareSystemUpgrade();
 
       m_commandExecuting = ectn_SYSTEM_UPGRADE;
 
@@ -880,7 +880,7 @@ void MainWindow::doSystemUpgrade(SystemUpgradeOptions systemUpgradeOptions)
 
       if(result == QDialogButtonBox::Yes || result == QDialogButtonBox::AcceptRole)
       {
-        _prepareSystemUpgrade();
+        prepareSystemUpgrade();
 
         if (result == QDialogButtonBox::Yes)
         {
@@ -1119,7 +1119,7 @@ void MainWindow::doRemove()
 bool MainWindow::doRemovePacmanLockFile()
 {
   //If there are no means to run the actions, we must warn!
-  if (!_isSUAvailable()) return false;
+  if (!isSUAvailable()) return false;
 
   QString lockFilePath("/var/lib/pacman/db.lck");
   QFile lockFile(lockFilePath);
@@ -1212,7 +1212,7 @@ void MainWindow::doInstallAURPackage()
 void MainWindow::doRemoveAURPackage()
 {
   //If there are no means to run the actions, we must warn!
-  if (!_isSUAvailable()) return;
+  if (!isSUAvailable()) return;
 
   QString listOfTargets;
   QModelIndexList selectedRows = ui->tvPackages->selectionModel()->selectedRows();
@@ -1470,7 +1470,7 @@ void MainWindow::enableTransactionActions()
  */
 void MainWindow::toggleTransactionActions(const bool value)
 {
-  bool state = _isThereAPendingTransaction();
+  bool state = isThereAPendingTransaction();
   if (value == true && state == true)
   {
     ui->actionCommit->setEnabled(true);
@@ -1647,7 +1647,7 @@ void MainWindow::actionsProcessFinished(int exitCode, QProcess::ExitStatus exitS
   if(m_commandQueued == ectn_SYSTEM_UPGRADE)
   {
     //Did it synchronize any repo? If so, let's refresh some things...
-    if (_textInTabOutput(StrConstants::getSyncing()))
+    if (textInTabOutput(StrConstants::getSyncing()))
     {
       bool aurGroup = isAURGroupSelected();
 
@@ -1672,7 +1672,7 @@ void MainWindow::actionsProcessFinished(int exitCode, QProcess::ExitStatus exitS
 
         //Did it synchronize any repo? If so, let's refresh some things...
         if (UnixCommand::isAppRunning("octopi-notifier", true) ||
-            (_IsSyncingRepoInTabOutput()))
+            (IsSyncingRepoInTabOutput()))
         {
           bool aurGroup = isAURGroupSelected();
 
@@ -1716,7 +1716,7 @@ void MainWindow::actionsProcessFinished(int exitCode, QProcess::ExitStatus exitS
     }
   }
 
-  if (exitCode != 0 && (_textInTabOutput("conflict"))) //|| _textInTabOutput("could not satisfy dependencies")))
+  if (exitCode != 0 && (textInTabOutput("conflict"))) //|| _textInTabOutput("could not satisfy dependencies")))
   {
     int res = QMessageBox::question(this, StrConstants::getThereHasBeenATransactionError(),
                                     StrConstants::getConfirmExecuteTransactionInTerminal(),
@@ -1799,7 +1799,7 @@ void MainWindow::actionsProcessReadOutput()
   if (WMHelper::getSUCommand().contains("kdesu"))
   {
     QString msg = m_unixCommand->readAllStandardOutput();
-    _splitOutputStrings(msg);
+    splitOutputStrings(msg);
   }
   else if (WMHelper::getSUCommand().contains("gksu"))
   {
@@ -1818,7 +1818,7 @@ void MainWindow::actionsProcessReadOutput()
 /*
  * Searches the given msg for a series of verbs that a Pacman transaction may produce
  */
-bool MainWindow::_searchForKeyVerbs(const QString &msg)
+bool MainWindow::searchForKeyVerbs(const QString &msg)
 {
   return (msg.contains(QRegExp("checking ")) ||
           msg.contains(QRegExp("loading ")) ||
@@ -1833,7 +1833,7 @@ bool MainWindow::_searchForKeyVerbs(const QString &msg)
 /*
  * Processes the output of the 'pacman process' so we can update percentages and messages at real time
  */
-void MainWindow::_treatProcessOutput(const QString &pMsg)
+void MainWindow::treatProcessOutput(const QString &pMsg)
 {  
   if (m_commandExecuting == ectn_RUN_IN_TERMINAL ||
       m_commandExecuting == ectn_RUN_SYSTEM_UPGRADE_IN_TERMINAL) return;
@@ -1902,7 +1902,7 @@ void MainWindow::_treatProcessOutput(const QString &pMsg)
         int rp = msg.indexOf(")");
         msg = msg.remove(0, rp+2);
 
-        if (_searchForKeyVerbs(msg))
+        if (searchForKeyVerbs(msg))
         {
           int end = msg.indexOf("[");
           msg = msg.remove(end, msg.size()-end).trimmed() + " ";
@@ -1931,7 +1931,7 @@ void MainWindow::_treatProcessOutput(const QString &pMsg)
       }
       else if (ini == -1)
       {
-        if (_searchForKeyVerbs(msg))
+        if (searchForKeyVerbs(msg))
         {
           //std::cout << "test2: " << msg.toLatin1().data() << std::endl;
 
@@ -1950,7 +1950,7 @@ void MainWindow::_treatProcessOutput(const QString &pMsg)
             target = target.trimmed() + " ";
             //std::cout << "target: " << target.toLatin1().data() << std::endl;
 
-            if(!target.isEmpty() && !_textInTabOutput(target))
+            if(!target.isEmpty() && !textInTabOutput(target))
             {
               if (target.indexOf(QRegExp("[a-z]+")) != -1)
               {
@@ -2015,7 +2015,7 @@ void MainWindow::_treatProcessOutput(const QString &pMsg)
 
     if (!msg.isEmpty())
     {
-      if (msg.contains(QRegExp("removing ")) && !_textInTabOutput(msg + " "))
+      if (msg.contains(QRegExp("removing ")) && !textInTabOutput(msg + " "))
       {
         //Does this package exist or is it a proccessOutput buggy string???
         QString pkgName = msg.mid(9).trimmed();
@@ -2066,7 +2066,7 @@ void MainWindow::_treatProcessOutput(const QString &pMsg)
  *
  * Returns true if the given output was split
  */
-bool MainWindow::_splitOutputStrings(const QString &output)
+bool MainWindow::splitOutputStrings(const QString &output)
 {
   bool res = true;
   QString msg = output.trimmed();
@@ -2093,7 +2093,7 @@ bool MainWindow::_splitOutputStrings(const QString &output)
             }
 
             //std::cout << "Error1: " << aux.toLatin1().data() << std::endl;
-            _treatProcessOutput(aux);
+            treatProcessOutput(aux);
           }
         }
       }
@@ -2102,7 +2102,7 @@ bool MainWindow::_splitOutputStrings(const QString &output)
         if (!m.isEmpty())
         {
           //std::cout << "Error2: " << m.toLatin1().data() << std::endl;
-          _treatProcessOutput(m);
+          treatProcessOutput(m);
         }
       }
     }
@@ -2113,7 +2113,7 @@ bool MainWindow::_splitOutputStrings(const QString &output)
         if (!m3.isEmpty())
         {
           //std::cout << "Error3: " << m3.toLatin1().data() << std::endl;
-          _treatProcessOutput(m3);
+          treatProcessOutput(m3);
         }
       }
     }
@@ -2129,7 +2129,7 @@ bool MainWindow::_splitOutputStrings(const QString &output)
 void MainWindow::actionsProcessRaisedError()
 {
   QString msg = m_unixCommand->readAllStandardError();
-  _splitOutputStrings(msg);
+  splitOutputStrings(msg);
 }
 
 /*
@@ -2140,8 +2140,8 @@ void MainWindow::writeToTabOutput(const QString &msg, TreatURLLinks treatURLLink
   QTextBrowser *text = ui->twProperties->widget(ctn_TABINDEX_OUTPUT)->findChild<QTextBrowser*>("textBrowser");
   if (text)
   {
-    _ensureTabVisible(ctn_TABINDEX_OUTPUT);
-    _positionTextEditCursorAtEnd();
+    ensureTabVisible(ctn_TABINDEX_OUTPUT);
+    positionTextEditCursorAtEnd();
 
     if(treatURLLinks == ectn_TREAT_URL_LINK)
     {
@@ -2185,14 +2185,14 @@ void MainWindow::writeToTabOutputExt(const QString &msg, TreatURLLinks treatURLL
     }
 
     //If the msg waiting to being print has not yet been printed...
-    if(_textInTabOutput(msg))
+    if(textInTabOutput(msg))
     {
       return;
     }
 
     QString newMsg = msg;
-    _ensureTabVisible(ctn_TABINDEX_OUTPUT);
-    _positionTextEditCursorAtEnd();
+    ensureTabVisible(ctn_TABINDEX_OUTPUT);
+    positionTextEditCursorAtEnd();
 
     if(newMsg.contains(QRegExp("<font color")))
     {

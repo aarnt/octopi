@@ -175,7 +175,7 @@ void MainWindow::showDistroNews(QString distroRSSXML, bool searchForLatestNews)
 
   if (searchForLatestNews && m_gotoNewsTab)
   {
-    _changeTabWidgetPropertiesIndex(ctn_TABINDEX_NEWS);
+    changeTabWidgetPropertiesIndex(ctn_TABINDEX_NEWS);
   }
 
   ui->actionGetNews->setEnabled(true);

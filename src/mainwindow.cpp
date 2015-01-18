@@ -141,7 +141,7 @@ void MainWindow::show()
 /*
  * Retrieves a pointer to Output's QTextBrowser object
  */
-QTextBrowser *MainWindow::_getOutputTextBrowser()
+QTextBrowser *MainWindow::getOutputTextBrowser()
 {
   QTextBrowser *ret=0;
   QTextBrowser *text =
@@ -177,14 +177,14 @@ void MainWindow::outputTextBrowserAnchorClicked(const QUrl &link)
       {
         ui->tvPackages->scrollTo(proxyIndex, QAbstractItemView::PositionAtCenter);
         ui->tvPackages->setCurrentIndex(proxyIndex);
-        _changeTabWidgetPropertiesIndex(ctn_TABINDEX_INFORMATION);
+        changeTabWidgetPropertiesIndex(ctn_TABINDEX_INFORMATION);
       }
     }
     if (foundItems.count() == 0 || !proxyIndex.isValid())
     {
       refreshTabInfo(pkgName);
       disconnect(ui->twProperties, SIGNAL(currentChanged(int)), this, SLOT(changedTabIndex()));
-      _ensureTabVisible(ctn_TABINDEX_INFORMATION);
+      ensureTabVisible(ctn_TABINDEX_INFORMATION);
       connect(ui->twProperties, SIGNAL(currentChanged(int)), this, SLOT(changedTabIndex()));
     }
   }
@@ -604,7 +604,7 @@ void MainWindow::collapseThisContentItems(){
     if (sim)
     {
       QModelIndex mi = tv->currentIndex();
-      if (sim->hasChildren(mi))	_collapseItem(tv, sim, mi);
+      if (sim->hasChildren(mi))	collapseItem(tv, sim, mi);
     }
   }
 }
@@ -636,7 +636,7 @@ void MainWindow::expandThisContentItems(){
     if (sim)
     {
       QModelIndex mi = tv->currentIndex();
-      if (sim->hasChildren(mi))	_expandItem(tv, sim, &mi);
+      if (sim->hasChildren(mi))	expandItem(tv, sim, &mi);
     }
   }
 }
@@ -644,7 +644,7 @@ void MainWindow::expandThisContentItems(){
 /*
  * This method does the job of collapsing the given item and its children
  */
-void MainWindow::_collapseItem(QTreeView* tv, QStandardItemModel* sim, QModelIndex mi){
+void MainWindow::collapseItem(QTreeView* tv, QStandardItemModel* sim, QModelIndex mi){
   for (int i=0; i<sim->rowCount(mi); i++)
   {
     if (sim->hasChildren(mi))
@@ -652,7 +652,7 @@ void MainWindow::_collapseItem(QTreeView* tv, QStandardItemModel* sim, QModelInd
       QCoreApplication::processEvents();
       tv->collapse(mi);
       QModelIndex mi2 = mi.child(i, 0);
-      _collapseItem(tv, sim, mi2);
+      collapseItem(tv, sim, mi2);
     }
   }
 }
@@ -660,12 +660,12 @@ void MainWindow::_collapseItem(QTreeView* tv, QStandardItemModel* sim, QModelInd
 /*
  * This method does the job of expanding the given item and its children
  */
-void MainWindow::_expandItem(QTreeView* tv, QStandardItemModel* sim, QModelIndex* mi){
+void MainWindow::expandItem(QTreeView* tv, QStandardItemModel* sim, QModelIndex* mi){
   for (int i=0; i<sim->rowCount(*mi); i++){
     if (sim->hasChildren(*mi)){
       tv->expand(*mi);
       QModelIndex mi2 = mi->child(i, 0);
-      _expandItem(tv, sim, &mi2);
+      expandItem(tv, sim, &mi2);
     }
   }
 }
@@ -779,7 +779,7 @@ void MainWindow::execContextMenuTransaction(QPoint point)
 /*
  * Returns true if tabWidget height is greater than 0. Otherwise, returns false.
  */
-bool MainWindow::_isPropertiesTabWidgetVisible()
+bool MainWindow::isPropertiesTabWidgetVisible()
 {
   QList<int> rl;
   rl = ui->splitterHorizontal->sizes();
@@ -790,7 +790,7 @@ bool MainWindow::_isPropertiesTabWidgetVisible()
 /*
  * Returns true if tvPackages height is greater than 0. Otherwise, returns false.
  */
-bool MainWindow::_isPackageTreeViewVisible()
+bool MainWindow::isPackageTreeViewVisible()
 {
   QList<int> rl;
   rl = ui->splitterHorizontal->sizes();
@@ -801,7 +801,7 @@ bool MainWindow::_isPackageTreeViewVisible()
 /*
  * Selects the very first item in the tvPkgFileList treeview
  */
-void MainWindow::_selectFirstItemOfPkgFileList()
+void MainWindow::selectFirstItemOfPkgFileList()
 {
   QTreeView *tvPkgFileList = ui->twProperties->widget(ctn_TABINDEX_FILES)->findChild<QTreeView*>("tvPkgFileList");
   if(tvPkgFileList)
@@ -815,7 +815,7 @@ void MainWindow::_selectFirstItemOfPkgFileList()
 /*
  * Searches for the SearchBar at the tab Files. If it is found, closes it.
  */
-void MainWindow::_closeTabFilesSearchBar()
+void MainWindow::closeTabFilesSearchBar()
 {
   SearchBar *searchBar = ui->twProperties->widget(ctn_TABINDEX_FILES)->findChild<SearchBar*>("searchbar");
   if (searchBar)
@@ -830,7 +830,7 @@ void MainWindow::_closeTabFilesSearchBar()
 /*
  * Extracts the base file name from an absolute file name.
  */
-QString MainWindow::_extractBaseFileName(const QString &fileName)
+QString MainWindow::extractBaseFileName(const QString &fileName)
 {
   QString baseFileName(fileName);
 
@@ -1017,7 +1017,7 @@ void MainWindow::headerViewPackageListSortIndicatorClicked( int col, Qt::SortOrd
 /*
  * Helper method to position the text cursor always in the end of doc
  */
-void MainWindow::_positionTextEditCursorAtEnd()
+void MainWindow::positionTextEditCursorAtEnd()
 {
   QTextBrowser *textEdit =
       ui->twProperties->widget(ctn_TABINDEX_OUTPUT)->findChild<QTextBrowser*>("textBrowser");
@@ -1034,7 +1034,7 @@ void MainWindow::_positionTextEditCursorAtEnd()
 /*
  * Ensures the given index tab is visible
  */
-void MainWindow::_ensureTabVisible(const int index)
+void MainWindow::ensureTabVisible(const int index)
 {
   QList<int> rl = ui->splitterHorizontal->sizes();
 
@@ -1053,16 +1053,16 @@ void MainWindow::_ensureTabVisible(const int index)
 /*
  * Helper method to find the given "findText" in the Output TextEdit
  */
-bool MainWindow::_textInTabOutput(const QString& findText)
+bool MainWindow::textInTabOutput(const QString& findText)
 {
   bool res = false;
   QTextBrowser *text =
       ui->twProperties->widget(ctn_TABINDEX_OUTPUT)->findChild<QTextBrowser*>("textBrowser");
   if (text)
   {
-    _positionTextEditCursorAtEnd();
+    positionTextEditCursorAtEnd();
     res = text->find(findText, QTextDocument::FindBackward | QTextDocument::FindWholeWords);
-    _positionTextEditCursorAtEnd();
+    positionTextEditCursorAtEnd();
   }
 
   return res;
@@ -1071,25 +1071,25 @@ bool MainWindow::_textInTabOutput(const QString& findText)
 /*
  * Helper method to find the "Synching repo..." strings
  */
-bool MainWindow::_IsSyncingRepoInTabOutput()
+bool MainWindow::IsSyncingRepoInTabOutput()
 {
   bool res = false;
   QTextBrowser *text =
       ui->twProperties->widget(ctn_TABINDEX_OUTPUT)->findChild<QTextBrowser*>("textBrowser");
   if (text)
   {
-    _positionTextEditCursorAtEnd();
+    positionTextEditCursorAtEnd();
     //We have to find at least two times, as "Synching" string will always be the first text in output
     res = text->find(StrConstants::getSyncing(), QTextDocument::FindBackward | QTextDocument::FindWholeWords);
     res = text->find(StrConstants::getSyncing(), QTextDocument::FindBackward | QTextDocument::FindWholeWords);
 
     if (!res)
     {
-      _positionTextEditCursorAtEnd();
+      positionTextEditCursorAtEnd();
       res = text->find("downloading", QTextDocument::FindBackward | QTextDocument::FindWholeWords);
     }
 
-    _positionTextEditCursorAtEnd();
+    positionTextEditCursorAtEnd();
   }
 
   return res;
@@ -1154,7 +1154,7 @@ void MainWindow::openDirectory(){
 void MainWindow::openRootTerminal()
 {
   //If there are no means to run the actions, we must warn!
-  if (!_isSUAvailable()) return;
+  if (!isSUAvailable()) return;
 
   m_unixCommand = new UnixCommand(this);
   m_unixCommand->openRootTerminal();
@@ -1165,7 +1165,7 @@ void MainWindow::openRootTerminal()
  */
 void MainWindow::installLocalPackage()
 {
-  if (!_isSUAvailable()) return;
+  if (!isSUAvailable()) return;
 
   m_packagesToInstallList =
       QFileDialog::getOpenFileNames(this,
@@ -1205,7 +1205,7 @@ void MainWindow::findFileInPackage()
 QString MainWindow::getSelectedDirectory()
 {
   QString targetDir;
-  if (_isPropertiesTabWidgetVisible() && ui->twProperties->currentIndex() == ctn_TABINDEX_FILES)
+  if (isPropertiesTabWidgetVisible() && ui->twProperties->currentIndex() == ctn_TABINDEX_FILES)
   {
     QTreeView *t = ui->twProperties->currentWidget()->findChild<QTreeView*>("tvPkgFileList");
     if(t && t->currentIndex().isValid())

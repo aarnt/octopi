@@ -201,18 +201,18 @@ private:
   bool isAllGroups(const QString& group);
 
   bool isPackageInstalled(const QString &pkgName);
-  bool _isPackageTreeViewVisible();
+  bool isPackageTreeViewVisible();
   void initPackageTreeView();
   void resizePackageView();
 
-  void _changeTabWidgetPropertiesIndex(const int newIndex);
+  void changeTabWidgetPropertiesIndex(const int newIndex);
   void initTabWidgetPropertiesIndex();
   void initTabInfo();
 
   //Tab Files related methods
-  void _closeTabFilesSearchBar();
-  void _selectFirstItemOfPkgFileList();
-  QString _extractBaseFileName(const QString &fileName);
+  void closeTabFilesSearchBar();
+  void selectFirstItemOfPkgFileList();
+  QString extractBaseFileName(const QString &fileName);
   QString getSelectedDirectory();
 
   void initTabFiles();
@@ -220,13 +220,13 @@ private:
   void refreshStatusBar();
   void clearStatusBar();
 
-  void _showPackagesWithNoDescription();
-  void _prepareSystemUpgrade();
+  void showPackagesWithNoDescription();
+  void prepareSystemUpgrade();
 
   //Tab Transaction related methods
-  bool _isThereAPendingTransaction();
-  void _tvTransactionAdjustItemText(QStandardItem *item);
-  void _tvTransactionRowsChanged(const QModelIndex& parent);
+  bool isThereAPendingTransaction();
+  void tvTransactionAdjustItemText(QStandardItem *item);
+  void tvTransactionRowsChanged(const QModelIndex& parent);
   QStandardItem * getRemoveTransactionParentItem();
   QStandardItem * getInstallTransactionParentItem();
 
@@ -243,19 +243,19 @@ private:
   void initTabTransaction();
 
   //Tab Output related methods
-  QTextBrowser *_getOutputTextBrowser();
-  void _collapseItem(QTreeView* tv, QStandardItemModel* sim, QModelIndex mi);
-  void _expandItem(QTreeView* tv, QStandardItemModel* sim, QModelIndex* mi);
-  void _positionTextEditCursorAtEnd();
-  bool _textInTabOutput(const QString& findText);
-  bool _IsSyncingRepoInTabOutput();
+  QTextBrowser *getOutputTextBrowser();
+  void collapseItem(QTreeView* tv, QStandardItemModel* sim, QModelIndex mi);
+  void expandItem(QTreeView* tv, QStandardItemModel* sim, QModelIndex* mi);
+  void positionTextEditCursorAtEnd();
+  bool textInTabOutput(const QString& findText);
+  bool IsSyncingRepoInTabOutput();
 
-  bool _searchForKeyVerbs(const QString& msg);
-  bool _splitOutputStrings(const QString &output);
-  void _treatProcessOutput(const QString &pMsg);
-  void _ensureTabVisible(const int index);
-  bool _isPropertiesTabWidgetVisible();
-  bool _isSUAvailable();
+  bool searchForKeyVerbs(const QString& msg);
+  bool splitOutputStrings(const QString &output);
+  void treatProcessOutput(const QString &pMsg);
+  void ensureTabVisible(const int index);
+  bool isPropertiesTabWidgetVisible();
+  bool isSUAvailable();
   void writeToTabOutput(const QString &msg, TreatURLLinks treatURLLinks = ectn_TREAT_URL_LINK);
   void writeToTabOutputExt(const QString &msg, TreatURLLinks treatURLLinks = ectn_TREAT_URL_LINK);
   void initTabOutput();
