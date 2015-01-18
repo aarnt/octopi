@@ -517,7 +517,7 @@ void MainWindow::refreshAppIcon()
     {
       #ifdef KSTATUS
         m_systemTrayIcon->setToolTipSubTitle(
-              StrConstants::getNewUpdates().arg(m_numberOfOutdatedPackages));
+              StrConstants::getNewUpdates(m_numberOfOutdatedPackages));
       #else
         m_systemTrayIcon->setToolTip(StrConstants::getNewUpdates(m_numberOfOutdatedPackages));
       #endif
