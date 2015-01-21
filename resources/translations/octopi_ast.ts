@@ -77,12 +77,12 @@
         <location filename="Projects/octopi/ui/mainwindow.ui" line="260"/>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="263"/>
         <source>Cancel</source>
-        <translation type="unfinished"/>
+        <translation>Encaboxar</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="266"/>
         <source>Ctrl+E</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+E</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="275"/>
@@ -783,7 +783,7 @@
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="349"/>
         <source>There are %n outdated packages in your system:</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>Hai %s paquete ensin anovar nel to sistema:</numerusform><numerusform>Hai %s paquetes ensin anovar nel to sistema:</numerusform></translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="353"/>
@@ -903,7 +903,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="449"/>
         <source>The following package will be removed</source>
-        <translation type="unfinished"/>
+        <translation>El paquete siguiente desaniciaráse</translation>
     </message>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="453"/>
@@ -933,7 +933,7 @@
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="473"/>
         <source>There are %n updates available!</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>¡Hai %n anovamientu disponible!</numerusform><numerusform>¡Hai %n anovamientos disponible!</numerusform></translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="477"/>
@@ -973,7 +973,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="505"/>
         <source>Do you really want to cancel the transaction?</source>
-        <translation type="unfinished"/>
+        <translation>¿De xuru que quies desaniciar la transaición?</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="509"/>

@@ -94,7 +94,10 @@ void MainWindow::initSystemTrayIcon()
   connect(m_actionSystemUpgrade, SIGNAL(triggered()), this, SLOT(runOctopiSysUpgrade()));
 
   m_systemTrayIconMenu = new QMenu( this );
-  m_systemTrayIconMenu->addAction(m_actionOctopi);
+
+  if (UnixCommand::hasTheExecutable("octopi"))
+    m_systemTrayIconMenu->addAction(m_actionOctopi);
+
   m_systemTrayIconMenu->addAction(m_actionSyncDatabase);
   m_systemTrayIconMenu->addAction(m_actionSystemUpgrade);
   m_systemTrayIconMenu->addSeparator();
@@ -250,7 +253,8 @@ void MainWindow::doSystemUpgrade()
   TransactionDialog question(this);
 
   //If we're in Chakra, there are no graphical system upgrades!
-  if (UnixCommand::getLinuxDistro() == ectn_CHAKRA) question.removeYesButton();
+  if (UnixCommand::getLinuxDistro() == ectn_CHAKRA || !UnixCommand::hasTheExecutable("octopi"))
+    question.removeYesButton();
 
   if(targets->count()==1)
     question.setText(StrConstants::getRetrievePackage() +

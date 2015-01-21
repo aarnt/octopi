@@ -400,7 +400,7 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="138"/>
         <source>Ctrl+E or &apos;Transaction/Cancel&apos; to clear the selection of to be removed/installed packages</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+E lub &apos;Operacja/Anuluj&apos;, aby wyczyścić wybór pakietów do usunięcia/zainstalowania</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="140"/>
@@ -783,7 +783,7 @@
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="349"/>
         <source>There are %n outdated packages in your system:</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>W Twoim systemie jest %n przestarzały pakiet:</numerusform><numerusform>W Twoim systemie są %n przestarzałe pakiety:</numerusform><numerusform>W Twoim systemie jest %n przestarzałych pakietów:</numerusform></translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="353"/>
@@ -793,22 +793,22 @@
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="357"/>
         <source>%n (%2) packages</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>%n (%2) pakiet</numerusform><numerusform>%n (%2) pakiety</numerusform><numerusform>%n (%2) pakietów</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="361"/>
         <source>%n installed</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>%n zainstalowany</numerusform><numerusform>%n zainstalowane</numerusform><numerusform>%n zainstalowanych</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="365"/>
         <source>%n outdated</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>%n przestarzały</numerusform><numerusform>%n przestarzałe</numerusform><numerusform>%n przestarzałych</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="369"/>
         <source>%n available</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>%n dostępny</numerusform><numerusform>%n dostępne</numerusform><numerusform>%n dostępnych</numerusform></translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="373"/>
@@ -898,7 +898,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="445"/>
         <source>The following package needs to be retrieved</source>
-        <translation type="unfinished"/>
+        <translation>Następujący pakiet musi zostać pozyskany</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="449"/>
@@ -908,12 +908,12 @@
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="453"/>
         <source>The following %n packages need to be retrieved</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>Następujący %n pakiet musi zostać pozyskany</numerusform><numerusform>Następujące %n pakiety muszą zostać pozyskane</numerusform><numerusform>Następujących %n pakietów musi zostać pozyskanych</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="457"/>
         <source>The following %n packages will be removed</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>Następujący %n pakiet zostanie usunięty</numerusform><numerusform>Następujące %n pakiety zostaną usunięte</numerusform><numerusform>Następujących %n pakietów zostanie usunięte</numerusform></translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="461"/>
@@ -933,7 +933,7 @@
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="473"/>
         <source>There are %n updates available!</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>Dostępna jest %n aktualizacja!</numerusform><numerusform>Dostępne są %n aktualizacje!</numerusform><numerusform>Dostępnych jest %n aktualizacji!</numerusform></translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="477"/>

@@ -77,12 +77,12 @@
         <location filename="Projects/octopi/ui/mainwindow.ui" line="260"/>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="263"/>
         <source>Cancel</source>
-        <translation type="unfinished"/>
+        <translation>Annuller</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="266"/>
         <source>Ctrl+E</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+E</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="275"/>
@@ -400,7 +400,7 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="138"/>
         <source>Ctrl+E or &apos;Transaction/Cancel&apos; to clear the selection of to be removed/installed packages</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+E eller &apos;Overførsel/Annuller&apos; for at rydde vaglte pakker til afinstallation/installation</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="140"/>
@@ -783,7 +783,7 @@
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="349"/>
         <source>There are %n outdated packages in your system:</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>Der er %n forældet pakke i dit system:</numerusform><numerusform>Der er %n forældede pakker i dit system:</numerusform></translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="353"/>
@@ -793,22 +793,22 @@
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="357"/>
         <source>%n (%2) packages</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>%n (%2) pakke</numerusform><numerusform>%n (%2) pakker</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="361"/>
         <source>%n installed</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>%n installeret</numerusform><numerusform>%n installeret</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="365"/>
         <source>%n outdated</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>%n forældet</numerusform><numerusform>%n forældede</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="369"/>
         <source>%n available</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>%n tilgængelig</numerusform><numerusform>%n tilgængelige</numerusform></translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="373"/>
@@ -898,22 +898,22 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="445"/>
         <source>The following package needs to be retrieved</source>
-        <translation type="unfinished"/>
+        <translation>Følgende pakke er nødt til at blive hentet</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="449"/>
         <source>The following package will be removed</source>
-        <translation type="unfinished"/>
+        <translation>Følgende pakke vil blive slettet</translation>
     </message>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="453"/>
         <source>The following %n packages need to be retrieved</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>Følgende %n pakke er nødt til at blive hentet</numerusform><numerusform>Følgende %n pakker er nødt til at blive hentet</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="457"/>
         <source>The following %n packages will be removed</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>Følgende %n pakke vil blive slettet</numerusform><numerusform>Følgende %n pakker vil blive slettet</numerusform></translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="461"/>
@@ -935,7 +935,7 @@
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="473"/>
         <source>There are %n updates available!</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>Der er %n opdatering tilgængelig</numerusform><numerusform>Der er %n opdateringer tilgængelige</numerusform></translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="477"/>
@@ -977,7 +977,7 @@ Bekræft?</translation>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="505"/>
         <source>Do you really want to cancel the transaction?</source>
-        <translation type="unfinished"/>
+        <translation>Vil du virkelig annullere overførslen?</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="509"/>

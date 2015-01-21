@@ -77,12 +77,12 @@
         <location filename="Projects/octopi/ui/mainwindow.ui" line="260"/>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="263"/>
         <source>Cancel</source>
-        <translation type="unfinished"/>
+        <translation>Отказ</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="266"/>
         <source>Ctrl+E</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+E</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="275"/>
@@ -400,7 +400,7 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="138"/>
         <source>Ctrl+E or &apos;Transaction/Cancel&apos; to clear the selection of to be removed/installed packages</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+E или &apos;Транзакция/Отказ&apos; за изчистване избора на премахвани/инсталирани пакети</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="140"/>
@@ -783,7 +783,7 @@
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="349"/>
         <source>There are %n outdated packages in your system:</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>Има %n остарял пакет във вашата система:</numerusform><numerusform>Има %n остарели пакети във вашата система:</numerusform></translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="353"/>
@@ -793,22 +793,22 @@
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="357"/>
         <source>%n (%2) packages</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>%n (%2) пакет</numerusform><numerusform>%n (%2) пакети</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="361"/>
         <source>%n installed</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>%n инсталиран</numerusform><numerusform>%n инсталирани</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="365"/>
         <source>%n outdated</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>%n неактуален</numerusform><numerusform>%n неактуални</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="369"/>
         <source>%n available</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>%n достъпен</numerusform><numerusform>%n достъпни</numerusform></translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="373"/>
@@ -898,22 +898,22 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="445"/>
         <source>The following package needs to be retrieved</source>
-        <translation type="unfinished"/>
+        <translation>Следният пакет трябва да се изтегли</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="449"/>
         <source>The following package will be removed</source>
-        <translation type="unfinished"/>
+        <translation>Следният пакет ще се премахне</translation>
     </message>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="453"/>
         <source>The following %n packages need to be retrieved</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>Следният %n пакет трябва да се изтегли</numerusform><numerusform>Следните %n пакети трябва да се изтеглят</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="457"/>
         <source>The following %n packages will be removed</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>Следният %n пакет ще се премахне</numerusform><numerusform>Следните %n пакети ще се премахнат</numerusform></translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="461"/>
@@ -933,7 +933,7 @@
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="473"/>
         <source>There are %n updates available!</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>Има %n достъпно обновяване!</numerusform><numerusform>Има %n достъпни обновявания!</numerusform></translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="477"/>
@@ -973,7 +973,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="505"/>
         <source>Do you really want to cancel the transaction?</source>
-        <translation type="unfinished"/>
+        <translation>Наистина ли искате на спрете транзакцията?</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="509"/>

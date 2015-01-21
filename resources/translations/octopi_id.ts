@@ -77,12 +77,12 @@
         <location filename="Projects/octopi/ui/mainwindow.ui" line="260"/>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="263"/>
         <source>Cancel</source>
-        <translation type="unfinished"/>
+        <translation>Batalkan</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="266"/>
         <source>Ctrl+E</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+E</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="275"/>
@@ -400,7 +400,7 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="138"/>
         <source>Ctrl+E or &apos;Transaction/Cancel&apos; to clear the selection of to be removed/installed packages</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+E or &apos;Transaksi/Batal&apos; untuk membersihkan pemilihan paket yang akan dihapus / yang diinstal</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="140"/>
@@ -783,7 +783,7 @@
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="349"/>
         <source>There are %n outdated packages in your system:</source>
-        <translation type="unfinished"><numerusform></numerusform></translation>
+        <translation><numerusform>Ada %n paket usang di sistem anda:</numerusform></translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="353"/>
@@ -793,22 +793,22 @@
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="357"/>
         <source>%n (%2) packages</source>
-        <translation type="unfinished"><numerusform></numerusform></translation>
+        <translation><numerusform>%n (%2) paket</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="361"/>
         <source>%n installed</source>
-        <translation type="unfinished"><numerusform></numerusform></translation>
+        <translation><numerusform>%n terpasang</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="365"/>
         <source>%n outdated</source>
-        <translation type="unfinished"><numerusform></numerusform></translation>
+        <translation><numerusform>%n usang</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="369"/>
         <source>%n available</source>
-        <translation type="unfinished"><numerusform></numerusform></translation>
+        <translation><numerusform>%n tersedia</numerusform></translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="373"/>
@@ -898,22 +898,22 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="445"/>
         <source>The following package needs to be retrieved</source>
-        <translation type="unfinished"/>
+        <translation>Paket berikut ini perlu diambil</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="449"/>
         <source>The following package will be removed</source>
-        <translation type="unfinished"/>
+        <translation>Paket berikut ini perlu dihapus</translation>
     </message>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="453"/>
         <source>The following %n packages need to be retrieved</source>
-        <translation type="unfinished"><numerusform></numerusform></translation>
+        <translation><numerusform>Berikut %n paket yang perlu diambil</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="457"/>
         <source>The following %n packages will be removed</source>
-        <translation type="unfinished"><numerusform></numerusform></translation>
+        <translation><numerusform>Berikut %n paket yang perlu dihapus</numerusform></translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="461"/>
@@ -933,7 +933,7 @@
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="473"/>
         <source>There are %n updates available!</source>
-        <translation type="unfinished"><numerusform></numerusform></translation>
+        <translation><numerusform>Ada %n update tersedia!</numerusform></translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="477"/>
@@ -973,7 +973,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="505"/>
         <source>Do you really want to cancel the transaction?</source>
-        <translation type="unfinished"/>
+        <translation>Apakah Anda benar-benar ingin membatalkan transaksi?</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="509"/>

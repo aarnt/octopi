@@ -400,7 +400,7 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="138"/>
         <source>Ctrl+E or &apos;Transaction/Cancel&apos; to clear the selection of to be removed/installed packages</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+E alebo &quot;Transakcia/Zrušiť&apos; - vymazanie výberu balíkov, ktoré sa majú odstrániť/nainštalovať</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="140"/>
@@ -783,7 +783,7 @@
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="349"/>
         <source>There are %n outdated packages in your system:</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>Vo vašom systéme je %n zastaralý balík:</numerusform><numerusform>Vo vašom systéme sú %n zastaralé balíky:</numerusform><numerusform>Vo vašom systéme je %n zastaralých balíkov:</numerusform></translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="353"/>
@@ -793,22 +793,22 @@
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="357"/>
         <source>%n (%2) packages</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>%n (%2) balík</numerusform><numerusform>%n (%2) balíky</numerusform><numerusform>%n (%2) balíkov</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="361"/>
         <source>%n installed</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>%n nainštalovaný</numerusform><numerusform>%n nainštalované</numerusform><numerusform>%n nainštalovaných</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="365"/>
         <source>%n outdated</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>%n zastaralý</numerusform><numerusform>%n zastaralé</numerusform><numerusform>%n zastaralých</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="369"/>
         <source>%n available</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>%n dostupný</numerusform><numerusform>%n dostupné</numerusform><numerusform>%n dostupných</numerusform></translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="373"/>
@@ -908,12 +908,12 @@
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="453"/>
         <source>The following %n packages need to be retrieved</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>Nasledovný balík sa musí prevziať</numerusform><numerusform>Nasledovné %n balíky sa musia prevziať</numerusform><numerusform>Nasledovných %n balíkov sa musí prevziať</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="457"/>
         <source>The following %n packages will be removed</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>Nasledovný balík sa musí odstrániť</numerusform><numerusform>Nasledovné %n balíky sa musia odstrániť</numerusform><numerusform>Nasledovných %n balíkov sa musí odstrániť</numerusform></translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="461"/>

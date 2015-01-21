@@ -400,7 +400,7 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="138"/>
         <source>Ctrl+E or &apos;Transaction/Cancel&apos; to clear the selection of to be removed/installed packages</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+E arba &apos;Operacija/Atšaukti&apos;, kad išvalytumėte šalinamų/diegiamų paketų pasirinkimą</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="140"/>
@@ -783,7 +783,7 @@
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="349"/>
         <source>There are %n outdated packages in your system:</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>Jūsų sistemoje yra %n pasenęs paketas:</numerusform><numerusform>Jūsų sistemoje yra %n pasenę paketai:</numerusform><numerusform>Jūsų sistemoje yra %n pasenusių paketų:</numerusform></translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="353"/>
@@ -798,17 +798,17 @@
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="361"/>
         <source>%n installed</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>%n įdiegtas</numerusform><numerusform>%n įdiegti</numerusform><numerusform>%n įdiegtų</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="365"/>
         <source>%n outdated</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>%n pasenęs</numerusform><numerusform>%n pasenę</numerusform><numerusform>%n pasenusių</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="369"/>
         <source>%n available</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>%n prieinamas</numerusform><numerusform>%n prieinami</numerusform><numerusform>%n prieinamų</numerusform></translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="373"/>
@@ -898,22 +898,22 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="445"/>
         <source>The following package needs to be retrieved</source>
-        <translation type="unfinished"/>
+        <translation>Sekantis paketas turi būti atsiųstas</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="449"/>
         <source>The following package will be removed</source>
-        <translation type="unfinished"/>
+        <translation>Bus pašalintas sekantis paketas</translation>
     </message>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="453"/>
         <source>The following %n packages need to be retrieved</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>Turi būti atsiųstas %n paketas</numerusform><numerusform>Turi būti atsiųsti %n paketai</numerusform><numerusform>Turi būti atsiųsta %n paketų</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="457"/>
         <source>The following %n packages will be removed</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>Sekantis %n paketas bus pašalintas</numerusform><numerusform>Sekantys %n paketai bus pašalinti</numerusform><numerusform>Bus pašalinta %n sekančių paketų</numerusform></translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="461"/>
@@ -933,7 +933,7 @@
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="473"/>
         <source>There are %n updates available!</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>Yra prieinamas %n atnaujinimas!</numerusform><numerusform>Yra prieinami %n atnaujinimai!</numerusform><numerusform>Yra prieinama %n atnaujinimų!</numerusform></translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="477"/>

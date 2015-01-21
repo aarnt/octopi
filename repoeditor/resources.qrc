@@ -9,5 +9,11 @@
         <file>resources/translations/octopi_repoeditor_pt_BR.qm</file>
         <file>resources/translations/octopi_repoeditor_he.qm</file>
         <file>resources/translations/octopi_repoeditor_lt.qm</file>
+        <file>resources/translations/octopi_repoeditor_bg.qm</file>
+        <file>resources/translations/octopi_repoeditor_cs.qm</file>
+        <file>resources/translations/octopi_repoeditor_en.qm</file>
+        <file>resources/translations/octopi_repoeditor_nl.qm</file>
+        <file>resources/translations/octopi_repoeditor_pl.qm</file>
+        <file>resources/translations/octopi_repoeditor_tr_TR.qm</file>
     </qresource>
 </RCC>

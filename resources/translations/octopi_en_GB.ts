@@ -498,17 +498,17 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="53"/>
         <source>All</source>
-        <translation type="unfinished"/>
+        <translation>All</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="118"/>
         <source>Antergos news</source>
-        <translation type="unfinished"/>
+        <translation>Antergos news</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="122"/>
         <source>ArchBSD news</source>
-        <translation type="unfinished"/>
+        <translation>ArchBSD news</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="126"/>
@@ -533,7 +533,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="142"/>
         <source>Netrunner Rolling news</source>
-        <translation type="unfinished"/>
+        <translation>Netrunner Rolling news</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="146"/>
@@ -653,12 +653,12 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="245"/>
         <source>Popularity</source>
-        <translation type="unfinished"/>
+        <translation>Popularity</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="249"/>
         <source>votes</source>
-        <translation type="unfinished"/>
+        <translation>votes</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="253"/>
