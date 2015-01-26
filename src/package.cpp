@@ -228,6 +228,7 @@ QStringList *Package::getOutdatedAURPackageList()
 
         pkgName = pkgName.remove("\033");
         pkgName = pkgName.remove("[1;35m");
+        pkgName = pkgName.remove("[1;36m");
         pkgName = pkgName.remove("[1;32m");
         pkgName = pkgName.remove("[m");
         pkgName = pkgName.remove("[1m");
@@ -1067,6 +1068,7 @@ QHash<QString, QString> Package::getAUROutdatedPackagesNameVersion()
     {
       line = line.remove("\033");
       line = line.remove("[1;35m");
+      line = line.remove("[1;36m");
       line = line.remove("[1;32m");
       line = line.remove("[m");
       line = line.remove("[1m");
