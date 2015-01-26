@@ -67,8 +67,9 @@ package_octopi() {
 
 package_octopi-notifier() {
    pkgdesc="Notifier for Octopi"
-   depends=('octopi' 'libnotify')
-   optdepends=('xfce4-notifyd: for notifications in XFCE')
+   depends=('libnotify')
+   optdepends=('octopi: launch graphical package manager from tray'
+               'xfce4-notifyd: for notifications in XFCE')
 
    #Octopi-notifier file
    install -D -m755 $startdir/notifier/bin/octopi-notifier ${pkgdir}/usr/bin/octopi-notifier
