@@ -39,7 +39,7 @@
 #include <QTextBrowser>
 
 /*
- * Watches the state of tvTransaction treeview to see if Commit/Rollback actions must be activated/deactivated
+ * Watches the state of tvTransaction treeview to see if Commit/Cancel actions must be activated/deactivated
  */
 void MainWindow::changeTransactionActionsState()
 {
@@ -1432,10 +1432,12 @@ void MainWindow::doCleanCache()
 
   if (res == QMessageBox::Yes)
   {
+    qApp->processEvents();
+
     clearTabOutput();
     writeToTabOutputExt("<b>" + StrConstants::getCleaningPackageCache() + "</b>");
     qApp->processEvents();
-    CPUIntensiveComputing cic;
+    //CPUIntensiveComputing cic;
 
     bool res = UnixCommand::cleanPacmanCache();
     qApp->processEvents();
