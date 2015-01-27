@@ -16,5 +16,7 @@
         <file>resources/translations/octopi_repoeditor_pl.qm</file>
         <file>resources/translations/octopi_repoeditor_tr_TR.qm</file>
         <file>resources/translations/octopi_repoeditor_nb.qm</file>
+        <file>resources/translations/octopi_repoeditor_es_AR.qm</file>
+        <file>resources/translations/octopi_repoeditor_es_ES.qm</file>
     </qresource>
 </RCC>
