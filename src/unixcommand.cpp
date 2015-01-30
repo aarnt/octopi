@@ -711,6 +711,9 @@ void UnixCommand::executeCommand(const QString &pCommand, Language lang)
     command = WMHelper::getSUCommand() + "\"" + pCommand + "\"";
   }
 
+
+  m_readAllStandardOutput.clear();
+  m_readAllStandardError.clear();
   m_process->start(command);
 }
 
@@ -719,6 +722,8 @@ void UnixCommand::executeCommand(const QString &pCommand, Language lang)
  */
 void UnixCommand::executeCommandAsNormalUser(const QString &pCommand)
 {
+  m_readAllStandardOutput.clear();
+  m_readAllStandardError.clear();
   m_process->start(pCommand);
 }
 
@@ -728,7 +733,7 @@ void UnixCommand::executeCommandAsNormalUser(const QString &pCommand)
 void UnixCommand::processReadyReadStandardOutput()
 {
   if (m_process->isOpen())
-    m_readAllStandardOutput = m_process->readAllStandardOutput();
+    m_readAllStandardOutput.append(m_process->readAllStandardOutput());
 }
 
 /*
@@ -738,7 +743,7 @@ void UnixCommand::processReadyReadStandardError()
 {
   if (m_process->isOpen())
   {
-    m_readAllStandardError = m_process->readAllStandardError();
+    m_readAllStandardError.append(m_process->readAllStandardError());
     m_errorString = m_process->errorString();
   }
 }
