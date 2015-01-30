@@ -868,7 +868,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="421"/>
         <source>Choose a terminal</source>
-        <translation>Vyberte terminál</translation>
+        <translation>Zvoľte terminál</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="425"/>

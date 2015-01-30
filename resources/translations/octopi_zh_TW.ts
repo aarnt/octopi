@@ -66,7 +66,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="248"/>
         <source>Commit</source>
-        <translation>提交</translation>
+        <translation>遞交</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="251"/>

@@ -9,7 +9,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="110"/>
         <source>Info</source>
-        <translation>Info</translation>
+        <translation>Informacje</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="115"/>
@@ -300,12 +300,12 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="91"/>
         <source>An outdated package</source>
-        <translation>Nieaktualny pakiet</translation>
+        <translation>Przestarzały pakiet</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="94"/>
         <source>An outdated foreign package</source>
-        <translation>Nieaktualny obcy pakiet</translation>
+        <translation>Przestarzały obcy pakiet</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="97"/>
@@ -578,7 +578,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="185"/>
         <source>Outdated version</source>
-        <translation>Wersja archiwalna</translation>
+        <translation>Przestarzała wersja</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="189"/>
@@ -758,7 +758,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="329"/>
         <source> (outdated installed version is %1)</source>
-        <translation>(Nieaktualna zainstalowana wersja to %1)</translation>
+        <translation>(przestarzała zainstalowana wersja to %1)</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="333"/>
