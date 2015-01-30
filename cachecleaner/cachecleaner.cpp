@@ -13,11 +13,9 @@ CacheCleaner::CacheCleaner(QWidget *parent) :
   QMainWindow(parent),
   ui(new Ui::CacheCleaner)
 {
+
+  //UI initialization
   ui->setupUi(this);
-
-  m_cmdInstalled = new UnixCommand(this);
-  m_cmdUninstalled = new UnixCommand(this);
-
 
   int keepInstalled = SettingsManager::getKeepNumInstalledPackages();
   ui->keepInstalledPackagesSpinner->setValue(keepInstalled);
@@ -26,6 +24,15 @@ CacheCleaner::CacheCleaner(QWidget *parent) :
   ui->keepUninstalledPackagesSpinner->setValue(keepUninstalled);
 
 
+  //UnixCommand initialization
+  m_cmdInstalled = new UnixCommand(this);
+  m_cmdUninstalled = new UnixCommand(this);
+
+  m_accumulatorInstalled = new ProcessOutputAccumulator(m_cmdInstalled);
+  m_accumulatorUninstalled = new ProcessOutputAccumulator(m_cmdUninstalled);
+
+
+  //UI signals connections
   connect( ui->keepInstalledPackagesSpinner, SIGNAL( valueChanged(int) ), SLOT( keepInstalledChanged() ) );
   connect( ui->keepUninstalledPackagesSpinner, SIGNAL( valueChanged(int) ), SLOT( keepUninstalledChanged() ) );
 
@@ -224,14 +231,14 @@ void CacheCleaner::finishedDryrunInstalled(int exitCode, QProcess::ExitStatus)
   if(exitCode != 0)
   {
     //process failed, provide info on errors
-    QMessageBox::critical(this, "Error whith the underlying process", m_cmdInstalled->readAllStandardError());
+    QMessageBox::critical(this, "Error whith the underlying process", m_accumulatorInstalled->getErrors());
 
   }
   else
   {
     //process finished successfully, process the resulting output
-    QString output = m_cmdInstalled->readAllStandardOutput();
-    processDryrunResult(output, ui->installedPackagesList, ui->cleanInstalledButton);
+    processDryrunResult(m_accumulatorInstalled->getOutput(),
+                        ui->installedPackagesList, ui->cleanInstalledButton);
   }
 
   //in either case, reenable the refresh button
@@ -254,14 +261,14 @@ void CacheCleaner::finishedDryrunUninstalled(int exitCode, QProcess::ExitStatus)
   if(exitCode != 0)
   {
     //process failed, provide info on errors
-    QMessageBox::critical(this, "Error whith the underlying process", m_cmdUninstalled->readAllStandardError());
+    QMessageBox::critical(this, "Error whith the underlying process", m_accumulatorUninstalled->getErrors());
 
   }
   else
   {
     //process finished successfully, process the resulting output
-    QString output = m_cmdUninstalled->readAllStandardOutput();
-    processDryrunResult(output, ui->uninstalledPackagesList, ui->cleanUninstalledButton);
+    processDryrunResult(m_accumulatorUninstalled->getOutput(),
+                        ui->uninstalledPackagesList, ui->cleanUninstalledButton);
   }
 
   //in either case, reenable the refresh button
@@ -284,7 +291,7 @@ void CacheCleaner::finishedInstalled(int exitCode, QProcess::ExitStatus)
   if(exitCode != 0)
   {
     //process failed, provide info on errors
-    QMessageBox::critical(this, "Error whith the underlying process", m_cmdInstalled->readAllStandardError());
+    QMessageBox::critical(this, "Error whith the underlying process",m_accumulatorInstalled->getErrors());
 
   }
   else
@@ -310,7 +317,7 @@ void CacheCleaner::finishedUninstalled(int exitCode, QProcess::ExitStatus)
   if(exitCode != 0)
   {
     //process failed, provide info on errors
-    QMessageBox::critical(this, "Error whith the underlying process", m_cmdInstalled->readAllStandardError());
+    QMessageBox::critical(this, "Error whith the underlying process", m_accumulatorUninstalled->getErrors());
 
   }
   else
