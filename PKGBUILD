@@ -1,4 +1,4 @@
-pkgname=('octopi' 'octopi-notifier' 'octopi-repoeditor')
+pkgname=('octopi' 'octopi-notifier' 'octopi-repoeditor' 'octopi-cachecleaner')
 pkgver=0.5.1
 pkgrel=1
 pkgdesc="a powerful Pacman frontend using Qt libs"
@@ -42,6 +42,12 @@ build() {
     msg "Building octopi-repoeditor..."
     qmake-qt5 octopi-repoeditor.pro
     make -j $jc
+
+    cd $startdir/cachecleaner
+    msg "Building octopi-cachecleaner..."
+    qmake-qt5 octopi-cachecleaner.pro
+    make -j $jc
+
 }
 
 package_octopi() {   
@@ -60,9 +66,6 @@ package_octopi() {
    install -D -m644 $startdir/notifier/pacmanhelper/polkit/org.octopi.pacmanhelper.conf ${pkgdir}/etc/dbus-1/system.d/org.octopi.pacmanhelper.conf
    install -D -m644 $startdir/notifier/pacmanhelper/polkit/org.octopi.pacmanhelper.xml ${pkgdir}/usr/share/dbus-1/interfaces/org.octopi.pacmanhelper.xml
    install -D -m644 $startdir/notifier/pacmanhelper/polkit/org.octopi.pacmanhelper.service ${pkgdir}/usr/share/dbus-1/system-services/org.octopi.pacmanhelper.service
-
-   #Pacmaneditor files
-   install -D -m755 $startdir/repoeditor/bin/octopi-repoeditor ${pkgdir}/usr/bin/octopi-repoeditor
 }
 
 package_octopi-notifier() {
@@ -81,4 +84,11 @@ package_octopi-repoeditor() {
    
    #Octopi-repoeditor file
    install -D -m755 $startdir/repoeditor/bin/octopi-repoeditor ${pkgdir}/usr/bin/octopi-repoeditor
+}
+
+package_octopi-cachecleaner() {
+   pkgdesc="Cachecleaner for Octopi"
+
+   #Octopi-cachecleaner file
+   install -D -m755 $startdir/cachecleaner/bin/octopi-cachecleaner ${pkgdir}/usr/bin/octopi-cachecleaner
 }

@@ -119,6 +119,16 @@ QDateTime SettingsManager::getLastSyncDbTime()
   }
 }
 
+
+int SettingsManager::getKeepNumInstalledPackages() {
+    return instance()->getSYSsettings()->value(ctn_KEEP_NUM_INSTALLED, 3).toInt();
+}
+
+int SettingsManager::getKeepNumUninstalledPackages() {
+    return instance()->getSYSsettings()->value(ctn_KEEP_NUM_UNINSTALLED, 1).toInt();
+}
+
+
 void SettingsManager::setCurrentTabIndex(int newValue){
   instance()->getSYSsettings()->setValue( ctn_KEY_CURRENT_TAB_INDEX, newValue);
   instance()->getSYSsettings()->sync();
@@ -165,6 +175,19 @@ void SettingsManager::setTerminal(QString newValue){
   instance()->getSYSsettings()->setValue( ctn_KEY_TERMINAL, newValue);
   instance()->getSYSsettings()->sync();
 }
+
+void SettingsManager::setKeepNumInstalledPackages(int newValue)
+{
+  instance()->getSYSsettings()->setValue(ctn_KEEP_NUM_INSTALLED, newValue);
+  instance()->getSYSsettings()->sync();
+}
+
+void SettingsManager::setKeepNumUninstalledPackages(int newValue)
+{
+  instance()->getSYSsettings()->setValue(ctn_KEEP_NUM_UNINSTALLED, newValue);
+  instance()->getSYSsettings()->sync();
+}
+
 
 /*
  * Search all supported terminals to see if the selected one is valid

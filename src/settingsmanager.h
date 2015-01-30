@@ -41,6 +41,9 @@ const QString ctn_KEY_SYNC_DB_HOUR("SyncDbHour");
 const QString ctn_KEY_TERMINAL("Terminal");
 const QString ctn_AUTOMATIC("automatic");
 
+const QString ctn_KEEP_NUM_INSTALLED("Keep_Num_Installed");
+const QString ctn_KEEP_NUM_UNINSTALLED("Keep_Num_Uninstalled");
+
 enum SaveSettingsReason { ectn_PackageList, ectn_CurrentTabIndex, ectn_NORMAL=30,
                           ectn_MAXIMIZE_PACKAGES=40, ectn_MAXIMIZE_PROPERTIES=50, ectn_GROUPS=5 };
 
@@ -81,6 +84,9 @@ class SettingsManager
     static QDateTime getLastSyncDbTime();
     static bool isValidTerminalSelected();
 
+    static int getKeepNumInstalledPackages();
+    static int getKeepNumUninstalledPackages();
+
     static void setCurrentTabIndex(int newValue);
     static void setPanelOrganizing(int newValue);
     static void setPackageListOrderedCol(int newValue);
@@ -90,6 +96,9 @@ class SettingsManager
     static void setSplitterHorizontalState(QByteArray newValue);
     static void setLastSyncDbTime(QDateTime newValue);
     static void setTerminal(QString newValue);
+
+    static void setKeepNumInstalledPackages(int newValue);
+    static void setKeepNumUninstalledPackages(int newValue);
 };
 
 #endif // SETTINGSMANAGER_H

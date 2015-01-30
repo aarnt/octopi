@@ -136,7 +136,7 @@
      <x>0</x>
      <y>0</y>
      <width>552</width>
-     <height>19</height>
+     <height>29</height>
     </rect>
    </property>
    <property name="contextMenuPolicy">
@@ -144,7 +144,7 @@
    </property>
    <widget class="QMenu" name="menuHelp">
     <property name="title">
-     <string>Help</string>
+     <string>&amp;Help</string>
     </property>
     <addaction name="actionHelpUsage"/>
     <addaction name="separator"/>
@@ -152,7 +152,7 @@
    </widget>
    <widget class="QMenu" name="menuView">
     <property name="title">
-     <string>View</string>
+     <string>&amp;View</string>
     </property>
     <addaction name="actionViewAllPackages"/>
     <addaction name="actionViewInstalledPackages"/>
@@ -161,14 +161,14 @@
    </widget>
    <widget class="QMenu" name="menuTransaction">
     <property name="title">
-     <string>Transaction</string>
+     <string>&amp;Transaction</string>
     </property>
     <addaction name="actionCommit"/>
     <addaction name="actionCancel"/>
    </widget>
    <widget class="QMenu" name="menuFile">
     <property name="title">
-     <string>File</string>
+     <string>Fi&amp;le</string>
     </property>
     <addaction name="actionGetNews"/>
     <addaction name="actionSyncPackages"/>
@@ -181,7 +181,7 @@
    </widget>
    <widget class="QMenu" name="menuSearch">
     <property name="title">
-     <string>Search</string>
+     <string>Sea&amp;rch</string>
     </property>
     <addaction name="actionSearchByName"/>
     <addaction name="actionSearchByDescription"/>
@@ -194,6 +194,7 @@
     </property>
     <addaction name="actionPacmanLogViewer"/>
     <addaction name="actionRepositoryEditor"/>
+    <addaction name="actionCacheCleaner"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuView"/>
@@ -219,7 +220,7 @@
   <widget class="QStatusBar" name="statusBar"/>
   <action name="actionHelpAbout">
    <property name="text">
-    <string>About</string>
+    <string>&amp;About</string>
    </property>
    <property name="iconText">
     <string>About</string>
@@ -236,7 +237,7 @@
     <bool>false</bool>
    </property>
    <property name="text">
-    <string>Non installed</string>
+    <string>&amp;Non installed</string>
    </property>
   </action>
   <action name="actionCommit">
@@ -245,7 +246,7 @@
      <normaloff>:/resources/images/commit.png</normaloff>:/resources/images/commit.png</iconset>
    </property>
    <property name="text">
-    <string>Commit</string>
+    <string>&amp;Commit</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+M</string>
@@ -257,7 +258,7 @@
      <normaloff>:/resources/images/rollback.png</normaloff>:/resources/images/rollback.png</iconset>
    </property>
    <property name="text">
-    <string>Cancel</string>
+    <string>Ca&amp;ncel</string>
    </property>
    <property name="toolTip">
     <string>Cancel</string>
@@ -272,7 +273,7 @@
      <normaloff>:/resources/images/refresh.png</normaloff>:/resources/images/refresh.png</iconset>
    </property>
    <property name="text">
-    <string>Sync database</string>
+    <string>&amp;Sync database</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+D</string>
@@ -284,7 +285,7 @@
      <normaloff>:/resources/images/exit.png</normaloff>:/resources/images/exit.png</iconset>
    </property>
    <property name="text">
-    <string>Exit</string>
+    <string>&amp;Exit</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+Q</string>
@@ -296,7 +297,7 @@
      <normaloff>:/resources/images/fast_forward.png</normaloff>:/resources/images/fast_forward.png</iconset>
    </property>
    <property name="text">
-    <string>System upgrade</string>
+    <string>System &amp;upgrade</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+U</string>
@@ -337,7 +338,7 @@
      <normaloff>:/resources/images/rss.png</normaloff>:/resources/images/rss.png</iconset>
    </property>
    <property name="text">
-    <string>Get latest distro news</string>
+    <string>&amp;Get latest distro news</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+G</string>
@@ -462,7 +463,7 @@
     <bool>true</bool>
    </property>
    <property name="text">
-    <string>By description</string>
+    <string>By &amp;description</string>
    </property>
   </action>
   <action name="actionSearchByName">
@@ -470,7 +471,7 @@
     <bool>true</bool>
    </property>
    <property name="text">
-    <string>By name</string>
+    <string>&amp;By name</string>
    </property>
   </action>
   <action name="actionFindFileInPackage">
@@ -488,12 +489,12 @@
      <normaloff>:/resources/images/terminal.png</normaloff>:/resources/images/terminal.png</iconset>
    </property>
    <property name="text">
-    <string>Open root terminal</string>
+    <string>&amp;Open root terminal</string>
    </property>
   </action>
   <action name="actionHelpUsage">
    <property name="text">
-    <string>Usage</string>
+    <string>&amp;Usage</string>
    </property>
    <property name="shortcut">
     <string>F1</string>
@@ -504,7 +505,7 @@
   </action>
   <action name="actionInstallLocalPackage">
    <property name="text">
-    <string>Install local package...</string>
+    <string>&amp;Install local package...</string>
    </property>
   </action>
   <action name="actionInstallAUR">
@@ -521,7 +522,7 @@
     <bool>true</bool>
    </property>
    <property name="text">
-    <string>Pacman Log Viewer</string>
+    <string>&amp;Pacman Log Viewer</string>
    </property>
    <property name="visible">
     <bool>true</bool>
@@ -533,7 +534,7 @@
      <normaloff>:/resources/images/octopi_red.png</normaloff>:/resources/images/octopi_red.png</iconset>
    </property>
    <property name="text">
-    <string>Repository Editor</string>
+    <string>&amp;Repository Editor</string>
    </property>
   </action>
   <action name="actionViewInstalledPackages">
@@ -541,7 +542,7 @@
     <bool>true</bool>
    </property>
    <property name="text">
-    <string>Installed</string>
+    <string>&amp;Installed</string>
    </property>
   </action>
   <action name="actionViewAllPackages">
@@ -557,7 +558,16 @@
     <bool>true</bool>
    </property>
    <property name="text">
-    <string>By file</string>
+    <string>By &amp;file</string>
+   </property>
+  </action>
+  <action name="actionCacheCleaner">
+   <property name="icon">
+    <iconset resource="../resources.qrc">
+     <normaloff>:/resources/images/octopi_red.png</normaloff>:/resources/images/octopi_red.png</iconset>
+   </property>
+   <property name="text">
+    <string>Cache Cleaner</string>
    </property>
   </action>
  </widget>
