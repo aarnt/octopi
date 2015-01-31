@@ -17,6 +17,7 @@ MOC_DIR += build
 UI_DIR += build
 
 HEADERS +=  cachecleaner.h \
+            packagegroupmodel.h \
             ../src/unixcommand.h \
             ../src/wmhelper.h \
             ../src/terminal.h \
@@ -31,6 +32,7 @@ HEADERS +=  cachecleaner.h \
 
 SOURCES +=  main.cpp \
             cachecleaner.cpp \
+            packagegroupmodel.cpp \
             ../src/unixcommand.cpp \
             ../src/wmhelper.cpp \
             ../src/terminal.cpp \
