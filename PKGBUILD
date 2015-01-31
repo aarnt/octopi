@@ -91,4 +91,5 @@ package_octopi-cachecleaner() {
 
    #Octopi-cachecleaner file
    install -D -m755 $startdir/cachecleaner/bin/octopi-cachecleaner ${pkgdir}/usr/bin/octopi-cachecleaner
+   install -D -m644 $startdir/cachecleaner/$pkgname.desktop ${pkgdir}/usr/share/applications/$pkgname.desktop
 }
