@@ -397,7 +397,6 @@ private slots:
 
   void launchPLV();
   void launchRepoEditor();
-  void launchCacheCleaner();
 
 public slots:
   void doSystemUpgrade(SystemUpgradeOptions sysUpgradeOption = ectn_NO_OPT);
