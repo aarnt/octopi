@@ -1,7 +1,44 @@
 <RCC>
     <qresource prefix="/">
         <file>resources/images/octopi_green.png</file>
+        <file>resources/translations/octopi_cachecleaner_ar.qm</file>
+        <file>resources/translations/octopi_cachecleaner_ast.qm</file>
+        <file>resources/translations/octopi_cachecleaner_bg.qm</file>
+        <file>resources/translations/octopi_cachecleaner_ca.qm</file>
+        <file>resources/translations/octopi_cachecleaner_cs.qm</file>
+        <file>resources/translations/octopi_cachecleaner_da.qm</file>
+        <file>resources/translations/octopi_cachecleaner_de.qm</file>
+        <file>resources/translations/octopi_cachecleaner_el.qm</file>
+        <file>resources/translations/octopi_cachecleaner_en_GB.qm</file>
         <file>resources/translations/octopi_cachecleaner_en.qm</file>
-        <file>resources/translations/octopi_cachecleaner_fr.qm</file>
+        <file>resources/translations/octopi_cachecleaner_es_419.qm</file>
+        <file>resources/translations/octopi_cachecleaner_es_AR.qm</file>
+        <file>resources/translations/octopi_cachecleaner_es_ES.qm</file>
+        <file>resources/translations/octopi_cachecleaner_eu.qm</file>
+        <file>resources/translations/octopi_cachecleaner_fi.qm</file>
+        <file>resources/translations/octopi_cachecleaner_fr_FR.qm</file>
+        <file>resources/translations/octopi_cachecleaner_he.qm</file>
+        <file>resources/translations/octopi_cachecleaner_hu.qm</file>
+        <file>resources/translations/octopi_cachecleaner_id.qm</file>
+        <file>resources/translations/octopi_cachecleaner_it.qm</file>
+        <file>resources/translations/octopi_cachecleaner_ja.qm</file>
+        <file>resources/translations/octopi_cachecleaner_lt.qm</file>
+        <file>resources/translations/octopi_cachecleaner_ms_MY.qm</file>
+        <file>resources/translations/octopi_cachecleaner_nb.qm</file>
+        <file>resources/translations/octopi_cachecleaner_nl.qm</file>
+        <file>resources/translations/octopi_cachecleaner_pl.qm</file>
+        <file>resources/translations/octopi_cachecleaner_pt_BR.qm</file>
+        <file>resources/translations/octopi_cachecleaner_pt_PT.qm</file>
+        <file>resources/translations/octopi_cachecleaner_ro.qm</file>
+        <file>resources/translations/octopi_cachecleaner_ru.qm</file>
+        <file>resources/translations/octopi_cachecleaner_sk.qm</file>
+        <file>resources/translations/octopi_cachecleaner_sr@latin.qm</file>
+        <file>resources/translations/octopi_cachecleaner_sr_RS.qm</file>
+        <file>resources/translations/octopi_cachecleaner_sv.qm</file>
+        <file>resources/translations/octopi_cachecleaner_tr_TR.qm</file>
+        <file>resources/translations/octopi_cachecleaner_uk.qm</file>
+        <file>resources/translations/octopi_cachecleaner_uz.qm</file>
+        <file>resources/translations/octopi_cachecleaner_vi.qm</file>
+        <file>resources/translations/octopi_cachecleaner_zh_TW.qm</file>
     </qresource>
 </RCC>
