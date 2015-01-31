@@ -82,6 +82,7 @@ void MainWindow::refreshMenuTools()
 {
   static bool connectorPlv=false;
   static bool connectorRepo=false;
+  static bool connectorCleaner=false;
   int availableTools=0;
 
   if(UnixCommand::hasTheExecutable("plv"))
@@ -114,6 +115,22 @@ void MainWindow::refreshMenuTools()
   }
   else
     ui->actionRepositoryEditor->setVisible(false);
+
+  if(UnixCommand::hasTheExecutable("octopi-cachecleaner"))
+  {
+    availableTools++;
+    ui->menuTools->menuAction()->setVisible(true);
+    ui->actionCacheCleaner->setVisible(true);
+
+    if (!connectorCleaner)
+    {
+      connect(ui->actionCacheCleaner, SIGNAL(triggered()), this, SLOT(launchCacheCleaner()));
+      connectorCleaner=true;
+    }
+  }
+  else
+    ui->actionCacheCleaner->setVisible(false);
+
 
   if (availableTools == 0)
     ui->menuTools->menuAction()->setVisible(false);
