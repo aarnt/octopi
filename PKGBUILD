@@ -66,6 +66,13 @@ package_octopi() {
    install -D -m644 $startdir/notifier/pacmanhelper/polkit/org.octopi.pacmanhelper.conf ${pkgdir}/etc/dbus-1/system.d/org.octopi.pacmanhelper.conf
    install -D -m644 $startdir/notifier/pacmanhelper/polkit/org.octopi.pacmanhelper.xml ${pkgdir}/usr/share/dbus-1/interfaces/org.octopi.pacmanhelper.xml
    install -D -m644 $startdir/notifier/pacmanhelper/polkit/org.octopi.pacmanhelper.service ${pkgdir}/usr/share/dbus-1/system-services/org.octopi.pacmanhelper.service
+
+   #Pacmaneditor files
+   install -D -m755 $startdir/repoeditor/bin/octopi-repoeditor ${pkgdir}/usr/bin/octopi-repoeditor
+
+   #Cachecleaner files
+   install -D -m755 $startdir/cachecleaner/bin/octopi-cachecleaner ${pkgdir}/usr/bin/octopi-cachecleaner
+   install -D -m644 $startdir/cachecleaner/octopi-cachecleaner.desktop ${pkgdir}/usr/share/applications/octopi-cachecleaner.desktop
 }
 
 package_octopi-notifier() {
