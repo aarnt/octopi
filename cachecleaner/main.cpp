@@ -1,5 +1,5 @@
 /*
-Copyright 2011 Simone Tobia
+Copyright 2015 Michaël Lhomme
 
 This file is part of AppSet.
 

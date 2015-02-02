@@ -17,6 +17,9 @@
    <iconset resource="../resources.qrc">
     <normaloff>:/resources/images/octopi_green.png</normaloff>:/resources/images/octopi_green.png</iconset>
   </property>
+  <property name="animated">
+   <bool>true</bool>
+  </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QVBoxLayout" name="verticalLayout">
     <item>
@@ -159,7 +162,7 @@
      <x>0</x>
      <y>0</y>
      <width>740</width>
-     <height>29</height>
+     <height>19</height>
     </rect>
    </property>
   </widget>

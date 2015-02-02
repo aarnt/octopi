@@ -1,8 +1,6 @@
 #include "packagegroupmodel.h"
-
 #include <QApplication>
 #include <QMessageBox>
-
 
 /*
  * Constructor
@@ -18,7 +16,6 @@ PackageGroupModel::PackageGroupModel(QString optionsString,
                                      QPushButton *refreshBtn,
                                      QPushButton *cleanBtn) : QObject(NULL)
 {
-
   m_optionsString = optionsString;
   m_listView = listView;
   m_spinner = spinner;
@@ -32,15 +29,14 @@ PackageGroupModel::PackageGroupModel(QString optionsString,
 
   //setup UI slots
   connect( m_spinner, SIGNAL( valueChanged(int) ), SLOT( updateKeepArchives() ) );
+  connect( m_spinner, SIGNAL( valueChanged(int) ), SLOT( refreshCacheView() ) );
   connect( m_spinner, SIGNAL( editingFinished() ), SLOT( keepArchivesChanged() ) );
   connect( m_refreshButton, SIGNAL( clicked() ), SLOT( refreshCacheView() ) );
   connect( m_cleanButton, SIGNAL( clicked() ), SLOT( cleanCache() ) );
 
-
   //refresh cache informations at startup
   refreshCacheView();
 }
-
 
 /*
  * Destructor
@@ -50,8 +46,6 @@ PackageGroupModel::~PackageGroupModel()
   delete m_acc;
   delete m_cmd;
 }
-
-
 
 /*
  * Handle spinner change: disable the clean button
@@ -64,8 +58,6 @@ void PackageGroupModel::updateKeepArchives()
   m_cleanButton->setEnabled(false);
 }
 
-
-
 /*
  * Refresh the cache when the spinner change are validated
  */
@@ -75,9 +67,6 @@ void PackageGroupModel::keepArchivesChanged()
     refreshCacheView();
 }
 
-
-
-
 /*
  * Return the options to pass to paccache according to the current context
  */
@@ -86,8 +75,6 @@ QString PackageGroupModel::getOptions()
   return m_optionsString + " -k " + QString::number(m_spinner->value());
 }
 
-
-
 /*
  * Refresh the view
  */
@@ -95,6 +82,7 @@ void PackageGroupModel::refreshCacheView()
 {
   //update UI for background refresh
   QApplication::setOverrideCursor(Qt::WaitCursor);
+  m_acc->reset();
   m_refreshButton->setEnabled(false);
   m_cleanButton->setEnabled(false);
   m_listView->clear();
@@ -108,8 +96,6 @@ void PackageGroupModel::refreshCacheView()
   m_cmd->executeCommandAsNormalUser("paccache -v -d " + getOptions());
 }
 
-
-
 /*
  * Call paccache to effectively clear the cache
  */
@@ -117,6 +103,7 @@ void PackageGroupModel::cleanCache()
 {
   //update UI buttons
   QApplication::setOverrideCursor(Qt::WaitCursor);
+  m_acc->reset();
   m_refreshButton->setEnabled(false);
   m_cleanButton->setEnabled(false);
 
@@ -126,8 +113,6 @@ void PackageGroupModel::cleanCache()
 
   m_cmd->executeCommand("paccache -r " + getOptions());
 }
-
-
 
 /*
  * Handle the result of the refresh action
@@ -140,13 +125,12 @@ void PackageGroupModel::finishedDryrun(int exitCode, QProcess::ExitStatus)
 
   QApplication::restoreOverrideCursor();
 
-  if(exitCode != 0)
+  if(exitCode > 1)
   {
     //process failed, provide info on errors
     QMessageBox::critical(m_listView, "Error whith the underlying process", m_acc->getErrors());
-
   }
-  else
+  else if (exitCode == 0)
   {
     //process finished successfully, process the resulting output
     processDryrunResult(m_acc->getOutput());
@@ -155,8 +139,6 @@ void PackageGroupModel::finishedDryrun(int exitCode, QProcess::ExitStatus)
   //in either case, reenable the refresh button
   m_refreshButton->setEnabled(true);
 }
-
-
 
 /*
  * Handle the result of the clean action
@@ -173,7 +155,8 @@ void PackageGroupModel::finishedClean(int exitCode, QProcess::ExitStatus)
   {
     //process failed, provide info on errors
     QMessageBox::critical(m_listView, "Error whith the underlying process",m_acc->getErrors());
-
+    m_refreshButton->setEnabled(true);
+    m_cleanButton->setEnabled(true);
   }
   else
   {
@@ -181,7 +164,6 @@ void PackageGroupModel::finishedClean(int exitCode, QProcess::ExitStatus)
     refreshCacheView();
   }
 }
-
 
 /*
  * Process the output of the refresh commands
@@ -195,7 +177,6 @@ void PackageGroupModel::processDryrunResult(QString output) {
   {
     //"==> no candidate packages found for pruning"
     m_cleanButton->setText(tr("Clean"));
-
   }
   else
   {
@@ -219,7 +200,6 @@ void PackageGroupModel::processDryrunResult(QString output) {
         QString size = components.takeLast();
 
         m_cleanButton->setText(tr("Clean ") + " " + size + " " + unit);
-
       }
       else
         m_listView->addItem(line);
@@ -229,4 +209,3 @@ void PackageGroupModel::processDryrunResult(QString output) {
     m_cleanButton->setEnabled(true);
   }
 }
-

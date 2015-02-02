@@ -3,7 +3,6 @@
 
 #include "../src/strconstants.h"
 
-
 /*
  * CacheCleaner window constructor
  */
@@ -36,8 +35,6 @@ CacheCleaner::CacheCleaner(QWidget *parent) :
                                         ui->cleanUninstalledButton);
 }
 
-
-
 /*
  * Cache Cleaner destructor
  */
@@ -47,8 +44,6 @@ CacheCleaner::~CacheCleaner()
   delete m_uninstalled;
   delete ui;
 }
-
-
 
 /*
  * Save settings when closing window

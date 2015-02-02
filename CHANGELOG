@@ -9,6 +9,7 @@
   BugFix: When only notifier is installed, we don't refer Octopi in context menu nor  
 	system upgrade dialog.
   Now PKGBUILD defaults to Qt5 builds.
+  Added cachecleaner, a frontend to 'paccache' (thanks to Michaël Lhomme).
   Added new KDE detection logic (thanks to Kirek).
   KaOS only: added support for newer versions of Cellix's awesome KCP tool.
   KaOS only: do a "kcp -uc" sync while in "sync database".
