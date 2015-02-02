@@ -194,6 +194,7 @@
     </property>
     <addaction name="actionPacmanLogViewer"/>
     <addaction name="actionRepositoryEditor"/>
+    <addaction name="actionCacheCleaner"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuView"/>
@@ -534,6 +535,15 @@
    </property>
    <property name="text">
     <string>Repository Editor</string>
+   </property>
+  </action>
+  <action name="actionCacheCleaner">
+   <property name="icon">
+    <iconset resource="../resources.qrc">
+     <normaloff>:/resources/images/octopi_red.png</normaloff>:/resources/images/octopi_red.png</iconset>
+   </property>
+   <property name="text">
+    <string>Cache Cleaner</string>
    </property>
   </action>
   <action name="actionViewInstalledPackages">

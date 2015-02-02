@@ -1273,6 +1273,16 @@ void MainWindow::launchRepoEditor()
 }
 
 /*
+ * Launch Cache Cleaner
+ */
+void MainWindow::launchCacheCleaner()
+{
+  m_unixCommand = new UnixCommand(this);
+  m_unixCommand->execCommandAsNormalUser(QLatin1String("octopi-cachecleaner"));
+}
+
+
+/*
  * Opens "~/.config/octopi/octopi.conf" file for edition
  */
 void MainWindow::editOctopiConf()
