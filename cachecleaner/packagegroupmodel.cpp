@@ -193,7 +193,7 @@ void PackageGroupModel::finishedClean(int exitCode, QProcess::ExitStatus)
 void PackageGroupModel::processDryrunResult(QString output) {
   QStringList lines = output.split(QRegExp("\\n"), QString::SkipEmptyParts);
 
-  if(lines.length() == 1)
+  if(lines.length() == 1 || output.contains("*.pkg.tar?(.+([^.]))"))
   {
     //"==> no candidate packages found for pruning"
     m_cleanButton->setText(tr("Clean"));
