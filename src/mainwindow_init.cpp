@@ -46,6 +46,7 @@
 #include <QProgressBar>
 #include <QSystemTrayIcon>
 #include <QToolButton>
+#include <QAction>
 
 /*
  * Loads various application settings configured in ~/.config/octopi/octopi.conf
@@ -284,6 +285,33 @@ void MainWindow::initToolBar()
   }
 
   m_leFilterPackage->setMinimumHeight(24);
+
+  QMenu * menu = new QMenu();
+  menu -> addAction("All");
+  menu -> addAction(QIcon(":/resources/images/installed.png"), "Installed");
+  menu -> addAction(QIcon(":/resources/images/unrequired.png"), "Unrequired");
+  menu -> addAction(QIcon(":/resources/images/foreign_green.png"), "Alien Installed");
+  menu -> addAction(QIcon(":/resources/images/noninstalled.png"), "Non installed");
+  menu -> addAction(QIcon(":/resources/images/outdated.png"), "Outdated");
+  menu -> addAction(QIcon(":/resources/images/foreign_red.png"), "Alien Outdated");
+  menu -> addAction(QIcon(":/resources/images/newer.png"), "More recent");
+
+  foreach(QAction * action, menu -> actions())
+    action -> setCheckable(true);
+
+  QToolButton * filterButton = new QToolButton();
+  filterButton -> setIcon(QIcon(":/resources/images/filter.png"));
+  filterButton -> setMenu(menu);
+  filterButton -> setPopupMode(QToolButton::InstantPopup);
+  ui->mainToolBar->addWidget(filterButton);
+
+
+  QComboBox * searchLocation = new QComboBox();
+  searchLocation -> addItem("Pacman");
+  searchLocation -> addItem("AUR");
+  searchLocation -> addItem("Both");
+  ui->mainToolBar->addWidget(searchLocation);
+
   ui->mainToolBar->addWidget(m_leFilterPackage);
 
   QWidget * hSpacer = new QWidget(this);
