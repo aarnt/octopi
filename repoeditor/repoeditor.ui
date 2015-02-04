@@ -15,8 +15,7 @@
   </property>
   <property name="windowIcon">
    <iconset resource="resources.qrc">
-    
-<normaloff>:/resources/images/octopi_green.png</normaloff>:/resources/images/octopi_green.png</iconset>
+    <normaloff>:/resources/images/binary.png</normaloff>:/resources/images/binary.png</iconset>
   </property>
   <property name="modal">
    <bool>true</bool>

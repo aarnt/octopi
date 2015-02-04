@@ -1,6 +1,6 @@
 <RCC>
     <qresource prefix="/">
-        <file>resources/images/octopi_green.png</file>
+        <file>resources/images/cachecleaner.png</file>
         <file>resources/translations/octopi_cachecleaner_ar.qm</file>
         <file>resources/translations/octopi_cachecleaner_ast.qm</file>
         <file>resources/translations/octopi_cachecleaner_bg.qm</file>

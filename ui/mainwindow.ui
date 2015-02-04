@@ -531,7 +531,7 @@
   <action name="actionRepositoryEditor">
    <property name="icon">
     <iconset resource="../resources.qrc">
-     <normaloff>:/resources/images/octopi_red.png</normaloff>:/resources/images/octopi_red.png</iconset>
+     <normaloff>:/resources/images/binary.png</normaloff>:/resources/images/binary.png</iconset>
    </property>
    <property name="text">
     <string>Repository Editor</string>
@@ -540,7 +540,7 @@
   <action name="actionCacheCleaner">
    <property name="icon">
     <iconset resource="../resources.qrc">
-     <normaloff>:/resources/images/octopi_red.png</normaloff>:/resources/images/octopi_red.png</iconset>
+     <normaloff>:/resources/images/cachecleaner.png</normaloff>:/resources/images/cachecleaner.png</iconset>
    </property>
    <property name="text">
     <string>Cache Cleaner</string>

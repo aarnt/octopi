@@ -44,6 +44,7 @@
         <file>resources/images/foreign_red.png</file>
         <file>resources/images/show_groups.png</file>
         <file>resources/images/mirror-check.png</file>
+        <file>resources/images/cachecleaner.png</file>
         <file>resources/translations/octopi_pt_BR.qm</file>
         <file>resources/translations/octopi_fr_FR.qm</file>
         <file>resources/translations/octopi_es_ES.qm</file>

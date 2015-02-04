@@ -1387,10 +1387,10 @@ void MainWindow::doInstallLocalPackages()
     if (!doRemovePacmanLockFile()) return;
 
     QString command;
-    command = "pacman -U --noconfirm " + listOfTargets;
+    command = "pacman -U --force --noconfirm " + listOfTargets;
 
     m_lastCommandList.clear();
-    m_lastCommandList.append("pacman -U " + listOfTargets + ";");
+    m_lastCommandList.append("pacman -U --force " + listOfTargets + ";");
     m_lastCommandList.append("echo -e;");
     m_lastCommandList.append("read -n1 -p \"" + StrConstants::getPressAnyKey() + "\"");
 
