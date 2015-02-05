@@ -106,7 +106,7 @@
          <item>
           <widget class="QPushButton" name="cleanUninstalledButton">
            <property name="text">
-            <string>Clean</string>
+            <string notr="true">Clean</string>
            </property>
           </widget>
          </item>
@@ -187,7 +187,7 @@
          <item>
           <widget class="QPushButton" name="cleanInstalledButton">
            <property name="text">
-            <string>Clean</string>
+            <string notr="true">Clean</string>
            </property>
           </widget>
          </item>

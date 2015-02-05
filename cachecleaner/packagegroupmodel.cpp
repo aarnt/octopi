@@ -41,10 +41,10 @@ PackageGroupModel::PackageGroupModel(QString optionsString,
   m_spinner = spinner;
   m_refreshButton = refreshBtn;
   m_cleanButton = cleanBtn;
+  m_cleanButton->setText(tr("Clean"));
 
   m_cmd = new UnixCommand(this);
   m_acc = new ProcessOutputAccumulator(m_cmd);
-
   m_oldKeepValue = m_spinner->value();
 
   //setup UI slots
@@ -219,7 +219,7 @@ void PackageGroupModel::processDryrunResult(QString output) {
 
         QString size = components.takeLast();
 
-        m_cleanButton->setText(tr("Clean ") + " " + size + " " + unit);
+        m_cleanButton->setText(tr("Clean %1").arg(" " + size + " " + unit));
       }
       else
         m_listView->addItem(line);

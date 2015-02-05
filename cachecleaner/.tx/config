@@ -1,0 +1,8 @@
+[main]
+host = https://www.transifex.com
+
+[octopi.cachecleaner]
+file_filter = resources/translations/octopi_cachecleaner_<lang>.ts
+source_file = resources/translations/octopi_cachecleaner_en.ts
+source_lang = en
+type = QT
