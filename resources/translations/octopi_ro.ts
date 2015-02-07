@@ -77,12 +77,12 @@
         <location filename="Projects/octopi/ui/mainwindow.ui" line="260"/>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="263"/>
         <source>Cancel</source>
-        <translation type="unfinished"/>
+        <translation>Anulează</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="266"/>
         <source>Ctrl+E</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+E</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="275"/>
@@ -125,7 +125,7 @@
         <location filename="Projects/octopi/ui/mainwindow.ui" line="323"/>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="326"/>
         <source>Remove</source>
-        <translation>Șterge</translation>
+        <translation>Elimină</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="331"/>
@@ -145,7 +145,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="352"/>
         <source>Remove group</source>
-        <translation>Șterge grupa</translation>
+        <translation>Elimină grupa</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="361"/>
@@ -195,12 +195,12 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="442"/>
         <source>Remove item</source>
-        <translation>Șterge element</translation>
+        <translation>Elimină elementul</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="454"/>
         <source>Remove items</source>
-        <translation>Șterge elemente</translation>
+        <translation>Elimină elementele</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="465"/>
@@ -330,7 +330,7 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="106"/>
         <source>Right click package to install/reinstall or remove it</source>
-        <translation>Clic-dreapta pe un pachet pentru a-l (dez)instala sau șterge</translation>
+        <translation>Clic-dreapta pe un pachet pentru a-l (dez)instala sau elimina</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="109"/>
@@ -395,12 +395,12 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="136"/>
         <source>Ctrl+M or &apos;Transaction/Commit&apos; to start installation/removal of selected packages</source>
-        <translation>Ctrl+M sau „Tranzacție/Comite” pentru a începe instalarea/ștergerea pachetelor selectate</translation>
+        <translation>Ctrl+M sau „Tranzacție/Comite” pentru a începe instalarea/eliminarea pachetelor selectate</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="138"/>
         <source>Ctrl+E or &apos;Transaction/Cancel&apos; to clear the selection of to be removed/installed packages</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+E sau „Tranzacție/Anulează” pentru a goli selecția din pachetele de instalat/eliminat</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="140"/>
@@ -783,7 +783,7 @@
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="349"/>
         <source>There are %n outdated packages in your system:</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>Există %n pachet învechit în sistemul vostru:</numerusform><numerusform>Există %n de pachete învechite în sistemul vostru:</numerusform><numerusform>Există %n pachete învechite în sistemul vostru:</numerusform></translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="353"/>
@@ -793,22 +793,22 @@
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="357"/>
         <source>%n (%2) packages</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>%n (%2) pachet</numerusform><numerusform>%n (%2) de pachete</numerusform><numerusform>%n (%2) pachete</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="361"/>
         <source>%n installed</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>%n instalat</numerusform><numerusform>%n instalate</numerusform><numerusform>%n instalate</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="365"/>
         <source>%n outdated</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>%n învechit</numerusform><numerusform>%n învechite</numerusform><numerusform>%n învechite</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="369"/>
         <source>%n available</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>%n disponibil</numerusform><numerusform>%n disponibile</numerusform><numerusform>%n disponibile</numerusform></translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="373"/>
@@ -858,12 +858,12 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="413"/>
         <source>Removing selected packages...</source>
-        <translation>Se șterg pachetele selectate...</translation>
+        <translation>Se elimină pachetele selectate...</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="417"/>
         <source>Removing/installing selected packages...</source>
-        <translation>Se șterg/se instalează pachetele selectate...</translation>
+        <translation>Se elimină/se instalează pachetele selectate...</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="421"/>
@@ -898,27 +898,27 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="445"/>
         <source>The following package needs to be retrieved</source>
-        <translation type="unfinished"/>
+        <translation>Următorul pachet trebuie să fie preluat</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="449"/>
         <source>The following package will be removed</source>
-        <translation type="unfinished"/>
+        <translation>Următorul pachet va fi eliminat</translation>
     </message>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="453"/>
         <source>The following %n packages need to be retrieved</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>Următorul pachet trebuie să fie preluat</numerusform><numerusform>Următoarele %n de pachete trebuie să fie preluate</numerusform><numerusform>Următoarele %n pachete trebuie să fie preluate</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="457"/>
         <source>The following %n packages will be removed</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>Următorul pachet va fi eliminat</numerusform><numerusform>Următoarele %n de pachete vor fi eliminate</numerusform><numerusform>Următoarele %n pachete vor fi eliminate</numerusform></translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="461"/>
         <source>There are forbidden packages in the removal list!</source>
-        <translation>Există pachete interzise în lista de ștergere!</translation>
+        <translation>Există pachete interzise în lista de eliminare!</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="465"/>
@@ -933,7 +933,7 @@
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="473"/>
         <source>There are %n updates available!</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>Există %n actualizare disponibilă</numerusform><numerusform>Există %n de actualizări disponibile</numerusform><numerusform>Există %n actualizări disponibile</numerusform></translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="477"/>
@@ -958,22 +958,22 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="493"/>
         <source>Do you want to execute this transaction in a Terminal?</source>
-        <translation>Vreți să executați această tranzacție în terminal?</translation>
+        <translation>Doriți să executați această tranzacție în terminal?</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="497"/>
         <source>Do you really want to clean the package cache?</source>
-        <translation>Vreți să curățați cache-ul pachetelor?</translation>
+        <translation>Doriți să curățați cache-ul pachetelor?</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="501"/>
         <source>Do you really want to remove Pacman&apos;s transaction lock file?</source>
-        <translation>Chiar vreți să eliminați fișierul de blocare a tranzacției Pacman?</translation>
+        <translation>Chiar doriți să eliminați fișierul de blocare a tranzacției Pacman?</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="505"/>
         <source>Do you really want to cancel the transaction?</source>
-        <translation type="unfinished"/>
+        <translation>Doriți să anulați tranzacția?</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="509"/>
@@ -1003,7 +1003,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="531"/>
         <source>Do you really want to quit?</source>
-        <translation>Vreți să ieșiți?</translation>
+        <translation>Doriți să ieșiți?</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="535"/>
@@ -1028,14 +1028,14 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="551"/>
         <source>Select the packages you want to install</source>
-        <translation>Selectați pachetele pe care le vreți instalate</translation>
+        <translation>Selectați pachetele pe care le doriți instalate</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="555"/>
         <source>This file does not appear to be a simple text.
 Are you sure you want to open it?</source>
         <translation>Acest fișier nu pare a fi un simplu text.
-Sunteți sigur că vreți să-l deschideți?</translation>
+Sunteți sigur că doriți să-l deschideți?</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="560"/>
@@ -1045,12 +1045,12 @@ Sunteți sigur că vreți să-l deschideți?</translation>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="564"/>
         <source>To be removed</source>
-        <translation>De șters</translation>
+        <translation>De eliminat</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="568"/>
         <source>remove</source>
-        <translation>șterge</translation>
+        <translation>elimină</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="572"/>
@@ -1060,12 +1060,12 @@ Sunteți sigur că vreți să-l deschideți?</translation>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="576"/>
         <source>Remove item</source>
-        <translation>Șterge elementul</translation>
+        <translation>Elimină elementul</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="580"/>
         <source>Remove items</source>
-        <translation>Șterge elementele</translation>
+        <translation>Elimină elementele</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="584"/>
