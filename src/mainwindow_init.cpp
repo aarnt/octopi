@@ -221,7 +221,7 @@ void MainWindow::initMenuBar()
   QActionGroup *actionGroupRepositories = new QActionGroup(this);
 
   ui->actionViewAllPackages->setText(StrConstants::getAll());
-  ui->actionViewAllPackages->setChecked(true);
+  //ui->actionViewAllPackages->setChecked(true);
 
   actionGroupPackages->addAction(ui->actionViewAllPackages);
   actionGroupPackages->addAction(ui->actionViewInstalledPackages);
@@ -500,6 +500,8 @@ void MainWindow::initPackageTreeView()
   //ui->tvPackages->setStyleSheet(StrConstants::getTreeViewCSS());
 
   resizePackageView();
+
+  ui->tvPackages->installEventFilter(this);
 
   connect(ui->tvPackages->selectionModel(), SIGNAL(selectionChanged(QItemSelection,QItemSelection)),
           this, SLOT(tvPackagesSelectionChanged(QItemSelection,QItemSelection)));

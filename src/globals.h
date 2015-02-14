@@ -43,7 +43,7 @@ extern QFutureWatcher<QString> g_fwDistroNews;
 extern QFutureWatcher<QString> g_fwPackageOwnsFile;
 
 QString showPackageInfo(QString pkgName);
-QList<PackageListData> * searchPacmanPackages();
+QList<PackageListData> * searchPacmanPackages(PackageListItems option = ectn_ALL);
 QString searchPacmanPackagesByFile(const QString &file);
 GroupMemberPair          searchPacmanPackagesFromGroup(QString groupName);
 QList<PackageListData> * searchAURPackages(QString searchString);

@@ -299,6 +299,31 @@ void MainWindow::keyPressEvent(QKeyEvent* ke)
   else ke->ignore();
 }
 
+bool MainWindow::eventFilter(QObject *obj, QEvent *evt)
+{
+  if(obj->objectName() == ui->tvPackages->objectName())
+  {
+    if (evt->type() == QKeyEvent::KeyRelease)
+    {
+      QKeyEvent *ke = static_cast<QKeyEvent*>(evt);
+      if (ke->key() == Qt::Key_Up || ke->key() == Qt::Key_Down ||
+          ke->key() == Qt::Key_Home || ke->key() == Qt::Key_End ||
+          ke->key() == Qt::Key_PageUp || ke->key() == Qt::Key_PageDown)
+      {
+        if (ui->twProperties->currentIndex() == ctn_TABINDEX_INFORMATION)
+        {
+          refreshTabInfo(false, true);
+          ui->tvPackages->setFocus();
+        }
+
+        return false;
+      }
+    }
+  }
+
+  return false;
+}
+
 /*
  * Calls TerminalSelectorDialog to let user chooses which terminal to use with Octopi
  */

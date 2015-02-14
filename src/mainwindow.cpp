@@ -67,6 +67,23 @@ MainWindow::MainWindow(QWidget *parent) :
   m_numberOfInstalledPackages = 0;
 
   ui->setupUi(this);
+
+  //Let's show all packages in startup ONLY in KaOS!
+  if (UnixCommand::getLinuxDistro() == ectn_KAOS)
+  {
+    m_packageListItemsOption = ectn_ALL;
+    disconnect(ui->actionViewAllPackages, SIGNAL(triggered()), this, SLOT(selectedAllPackagesMenu()));
+    ui->actionViewAllPackages->setChecked(true);
+    connect(ui->actionViewAllPackages, SIGNAL(triggered()), this, SLOT(selectedAllPackagesMenu()));
+  }
+  //In all other distros, we just show the installed ones...
+  else
+  {
+    m_packageListItemsOption = ectn_ONLY_INSTALLED;
+    disconnect(ui->actionViewInstalledPackages, SIGNAL(triggered()), this, SLOT(selectedInstalledPackagesMenu()));
+    ui->actionViewInstalledPackages->setChecked(true);
+    connect(ui->actionViewInstalledPackages, SIGNAL(triggered()), this, SLOT(selectedInstalledPackagesMenu()));
+  }
 }
 
 /*
@@ -106,7 +123,6 @@ void MainWindow::show()
     initPackageTreeView();
     initActions();
     loadSettings();
-
     loadPanelSettings();
     initStatusBar();
     initToolButtonPacman();
@@ -120,7 +136,7 @@ void MainWindow::show()
     if (Package::hasPacmanDatabase())
     {
       refreshGroupsWidget();
-    }
+    }        
 
     QMainWindow::show();
 
@@ -456,7 +472,7 @@ void MainWindow::tvPackagesSearchColumnChanged(QAction *actionSelected)
   if (!isSearchByFileSelected() && m_packageModel->getPackageCount() <= 1)
   {
     m_leFilterPackage->clear();
-    metaBuildPackageList();
+    //metaBuildPackageList();
   }
 
   QModelIndex mi = m_packageModel->index(0, PackageModel::ctn_PACKAGE_NAME_COLUMN, QModelIndex());

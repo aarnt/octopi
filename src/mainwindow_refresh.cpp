@@ -386,7 +386,9 @@ void MainWindow::metaBuildPackageList()
     reapplyPackageFilter();
     disconnect(&g_fwPacman, SIGNAL(finished()), this, SLOT(preBuildPackageList()));
     QFuture<QList<PackageListData> *> f;
-    f = QtConcurrent::run(searchPacmanPackages);
+
+    f = QtConcurrent::run(searchPacmanPackages,m_packageListItemsOption);
+
     g_fwPacman.setFuture(f);
     connect(&g_fwPacman, SIGNAL(finished()), this, SLOT(preBuildPackageList()));
   }
@@ -1210,9 +1212,15 @@ void MainWindow::reapplyPackageFilter()
  * Whenever user selects View/All we show him all the available packages
  */
 void MainWindow::selectedAllPackagesMenu()
-{
+{  
   m_selectedViewOption = ectn_ALL_PKGS;
-  changePackageListModel(ectn_ALL_PKGS, m_selectedRepository);
+
+  if (m_packageListItemsOption == ectn_ONLY_INSTALLED)
+  {
+    m_packageListItemsOption = ectn_ALL;
+    metaBuildPackageList();
+  }
+  else changePackageListModel(ectn_ALL_PKGS, m_selectedRepository);
 }
 
 /*
@@ -1230,7 +1238,13 @@ void MainWindow::selectedInstalledPackagesMenu()
 void MainWindow::selectedNonInstalledPackagesMenu()
 {
   m_selectedViewOption = ectn_NON_INSTALLED_PKGS;
-  changePackageListModel(ectn_NON_INSTALLED_PKGS, m_selectedRepository);
+
+  if (m_packageListItemsOption == ectn_ONLY_INSTALLED)
+  {
+    m_packageListItemsOption = ectn_ALL;
+    metaBuildPackageList();
+  }
+  else changePackageListModel(ectn_NON_INSTALLED_PKGS, m_selectedRepository);
 }
 
 /*

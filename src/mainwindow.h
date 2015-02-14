@@ -77,6 +77,8 @@ protected:
   void closeEvent(QCloseEvent *event);
   void keyPressEvent(QKeyEvent* ke);
 
+  virtual bool eventFilter(QObject *, QEvent *);
+
   #if QT_VERSION < 0x050000
     void keyReleaseEvent(QKeyEvent *ke);
   #endif
@@ -166,6 +168,8 @@ private:
   QAction *m_actionEditOctopiConf;
 
   QByteArray m_horizontalSplit;
+
+  PackageListItems m_packageListItemsOption;
 
   QTreeWidgetItem *m_AllGroupsItem;
   QTreeWidgetItem *m_AURItem;

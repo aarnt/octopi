@@ -384,7 +384,7 @@ QList<PackageListData> *Package::getForeignPackageList()
 /*
  * Retrieves the list of all available packages in the database (installed + non-installed)
  */
-QList<PackageListData> * Package::getPackageList(const QString &packageName)
+QList<PackageListData> * Package::getPackageList(const QString &packageName, PackageListItems option)
 {
   //archlinuxfr/yaourt 1.2.2-1 [installed]
   //    A pacman wrapper with extended features and AUR support
@@ -410,7 +410,12 @@ QList<PackageListData> * Package::getPackageList(const QString &packageName)
             PackageListData(pkgName, pkgRepository, pkgVersion, pkgDescription, pkgStatus, pkgOutVersion);
 
         if (packageName.isEmpty() || pkgName == packageName)
-          res->append(pld);
+        {
+          if (pkgStatus != ectn_NON_INSTALLED)
+            res->append(pld);
+          else if (pkgStatus == ectn_NON_INSTALLED)
+            if (option != ectn_ONLY_INSTALLED) res->append(pld);
+        }
 
         pkgDescription = "";
       }
@@ -426,7 +431,7 @@ QList<PackageListData> * Package::getPackageList(const QString &packageName)
       if(packageTuple.indexOf("[installed]") != -1)
       {
         //This is an installed package
-        pkgStatus = ectn_INSTALLED;
+        pkgStatus = ectn_INSTALLED;        
         pkgOutVersion = "";
       }
       else if (packageTuple.indexOf("[installed:") != -1)
@@ -461,7 +466,12 @@ QList<PackageListData> * Package::getPackageList(const QString &packageName)
       PackageListData(pkgName, pkgRepository, pkgVersion, pkgDescription, pkgStatus, pkgOutVersion);
 
   if (packageName.isEmpty() || pkgName == packageName)
-    res->append(pld);
+  {
+    if (pkgStatus != ectn_NON_INSTALLED)
+      res->append(pld);
+    else if (pkgStatus == ectn_NON_INSTALLED)
+      if (option != ectn_ONLY_INSTALLED) res->append(pld);
+  }
 
   return res;
 }

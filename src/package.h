@@ -38,6 +38,8 @@ const QString ctn_PACMAN_CORE_DB_FILE = "/var/lib/pacman/sync/core.db";
 enum PackageStatus { ectn_INSTALLED, ectn_NON_INSTALLED, ectn_OUTDATED, ectn_NEWER,
                      ectn_FOREIGN, ectn_FOREIGN_OUTDATED };
 
+enum PackageListItems { ectn_ONLY_INSTALLED, ectn_ALL };
+
 struct PackageListData{
   QString name;
   QString repository;
@@ -120,7 +122,7 @@ class Package{
     static QStringList * getTargetRemovalList(const QString &pkgName, const QString &removeCommand);
 
     static QList<PackageListData> *getForeignPackageList();
-    static QList<PackageListData> *getPackageList(const QString &packageName = "");
+    static QList<PackageListData> *getPackageList(const QString &packageName = "", PackageListItems option = ectn_ALL);
 
     //AUR methods
     static QList<PackageListData> * getAURPackageList(const QString& searchString);
