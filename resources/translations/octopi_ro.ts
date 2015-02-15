@@ -420,7 +420,7 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="147"/>
         <source>Ctrl+Shift+C to clean local packages cache (pacman -Sc)</source>
-        <translation>Ctrl+Shift+C pentru a curăța cache-ul local de pachete (pacman -Sc)</translation>
+        <translation>Ctrl+Shift+C pentru a curăța stocul local de pachete (pacman -Sc)</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="149"/>
@@ -813,7 +813,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="373"/>
         <source>Cleaning package cache...</source>
-        <translation>Se curăță cache-ul pachetelor...</translation>
+        <translation>Se curăță stocul de pachete...</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="377"/>
@@ -963,7 +963,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="497"/>
         <source>Do you really want to clean the package cache?</source>
-        <translation>Doriți să curățați cache-ul pachetelor?</translation>
+        <translation>Doriți să curățați stocul de pachete?</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="501"/>

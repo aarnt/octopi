@@ -61,7 +61,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="239"/>
         <source>Non installed</source>
-        <translation>Não Instalado</translation>
+        <translation>Não Instalados</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="248"/>
@@ -250,7 +250,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="544"/>
         <source>Installed</source>
-        <translation>Instalado</translation>
+        <translation>Instalados</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="560"/>
