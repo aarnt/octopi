@@ -2047,7 +2047,9 @@ void MainWindow::treatProcessOutput(const QString &pMsg)
             int blank = msg.indexOf(" ");
             QString repo = msg.left(blank);
 
-            if (repo.contains("error") || repo.contains("gconf", Qt::CaseInsensitive)) return;
+            if (repo.contains("error", Qt::CaseInsensitive) ||
+                repo.contains("gconf", Qt::CaseInsensitive) ||
+                repo.contains("failed", Qt::CaseInsensitive)) return;
 
             altMsg = repo + " " + StrConstants::getIsUpToDate();
           }
