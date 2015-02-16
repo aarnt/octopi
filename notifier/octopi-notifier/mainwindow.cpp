@@ -357,9 +357,6 @@ void MainWindow::afterPacmanHelperSyncDatabase()
 
   m_commandExecuting = ectn_NONE;
 
-  disconnect(m_pacmanDatabaseSystemWatcher,
-          SIGNAL(directoryChanged(QString)), this, SLOT(refreshAppIcon()));
-
   int numberOfOutdatedPackages = m_numberOfOutdatedPackages;
   refreshAppIcon();
 
@@ -428,9 +425,6 @@ void MainWindow::afterPacmanHelperSyncDatabase()
       #endif
     }
   }
-
-  connect(m_pacmanDatabaseSystemWatcher,
-          SIGNAL(directoryChanged(QString)), this, SLOT(refreshAppIcon()));
 }
 
 /*
@@ -438,6 +432,9 @@ void MainWindow::afterPacmanHelperSyncDatabase()
  */
 void MainWindow::syncDatabase()
 {
+  disconnect(m_pacmanDatabaseSystemWatcher,
+          SIGNAL(directoryChanged(QString)), this, SLOT(refreshAppIcon()));
+
   qDebug() << "At syncDatabase()...";
   toggleEnableInterface(false);
   m_icon = IconHelper::getIconOctopiTransparent();
@@ -483,6 +480,9 @@ void MainWindow::sendNotification(const QString &msg)
  */
 void MainWindow::refreshAppIcon()
 {
+  disconnect(m_pacmanDatabaseSystemWatcher,
+          SIGNAL(directoryChanged(QString)), this, SLOT(refreshAppIcon()));
+
   qDebug() << "At refreshAppIcon()...";
   m_outdatedPackageList = Package::getOutdatedPackageList();
   bool hasAURTool = UnixCommand::hasTheExecutable(StrConstants::getForeignRepositoryToolName());
@@ -595,6 +595,9 @@ void MainWindow::refreshAppIcon()
 #else
   m_systemTrayIcon->setIcon(m_icon);
 #endif
+
+  connect(m_pacmanDatabaseSystemWatcher,
+          SIGNAL(directoryChanged(QString)), this, SLOT(refreshAppIcon()));
 }
 
 /*
