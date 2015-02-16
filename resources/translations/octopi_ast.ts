@@ -1,4 +1,4 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="ast" version="2.1">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="ast" version="2.0">
 <context>
     <name>MainWindow</name>
     <message>
@@ -53,207 +53,212 @@
         <translation>Ferramientes</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="222"/>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="225"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="223"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="226"/>
         <source>About</source>
         <translation>Tocante a</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="239"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="240"/>
         <source>Non installed</source>
         <translation>Non instaláu</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="248"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="249"/>
         <source>Commit</source>
         <translation>Aplicar</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="251"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="252"/>
         <source>Ctrl+M</source>
         <translation>Ctrl+M</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="260"/>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="263"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="261"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="264"/>
         <source>Cancel</source>
         <translation>Encaboxar</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="266"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="267"/>
         <source>Ctrl+E</source>
         <translation>Ctrl+E</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="275"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="276"/>
         <source>Sync database</source>
         <translation>Sincronizar base de datos</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="278"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="279"/>
         <source>Ctrl+D</source>
         <translation>Ctrl+D</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="287"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="288"/>
         <source>Exit</source>
         <translation>Colar</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="290"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="291"/>
         <source>Ctrl+Q</source>
         <translation>Ctrl+Q</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="299"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="300"/>
         <source>System upgrade</source>
         <translation>Anovamientu del sistema</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="302"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="303"/>
         <source>Ctrl+U</source>
         <translation>Ctrl+U</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="311"/>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="314"/>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="516"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="312"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="315"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="517"/>
         <source>Install</source>
         <translation>Instalar</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="323"/>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="326"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="324"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="327"/>
         <source>Remove</source>
         <translation>Desaniciar</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="331"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="332"/>
         <source>Outdated packages</source>
         <translation>Paquetes ensin anovar</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="340"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="341"/>
         <source>Get latest distro news</source>
         <translation>Consiguir les caberes anuncies de la distro</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="343"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="344"/>
         <source>Ctrl+G</source>
         <translation>Ctrl+G</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="352"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="353"/>
         <source>Remove group</source>
         <translation>Desanciar grupu</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="361"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="362"/>
         <source>Install group</source>
         <translation>Instalar grupu</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="370"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="371"/>
         <source>Collapse item</source>
         <translation>Recoyer oxetu</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="379"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="380"/>
         <source>Expand item</source>
         <translation>Estenderexar oxetu</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="388"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="389"/>
         <source>Collapse all items</source>
         <translation>Recoyer tolos oxetos</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="397"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="398"/>
         <source>Expand all items</source>
         <translation>Estenderexar tolos oxetos</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="406"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="407"/>
         <source>Open file</source>
         <translation>Abrir ficheru</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="415"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="416"/>
         <source>Edit file</source>
         <translation>Editar ficheru</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="424"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="425"/>
         <source>Open directory</source>
         <translation>Abrir direutoriu</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="433"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="434"/>
         <source>Open terminal here</source>
         <translation>Abrir equí la terminal</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="442"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="443"/>
         <source>Remove item</source>
         <translation>Desaniciar oxetu</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="454"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="455"/>
         <source>Remove items</source>
         <translation>Desaniciar oxetos</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="465"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="466"/>
         <source>By description</source>
         <translation>Per descripción</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="473"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="474"/>
         <source>By name</source>
         <translation>Per nome</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="482"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="483"/>
         <source>Find a file</source>
         <translation>Alcontrar un ficheru</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="491"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="492"/>
         <source>Open root terminal</source>
         <translation>Abrir terminal root</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="496"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="497"/>
         <source>Usage</source>
         <translation>Usu</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="499"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="500"/>
         <source>F1</source>
         <translation>F1</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="507"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="508"/>
         <source>Install local package...</source>
         <translation>Instalar paquete llocal...</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="524"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="525"/>
         <source>Pacman Log Viewer</source>
         <translation>Visor de rexistru Pacman</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="536"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="537"/>
         <source>Repository Editor</source>
         <translation>Editor de repositoriu</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="544"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="546"/>
+        <source>Cache Cleaner</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="554"/>
         <source>Installed</source>
         <translation>Instaláu</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="560"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="570"/>
         <source>By file</source>
         <translation>Per ficheru</translation>
     </message>

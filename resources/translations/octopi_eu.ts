@@ -1,4 +1,4 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="eu" version="2.1">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="eu" version="2.0">
 <context>
     <name>MainWindow</name>
     <message>
@@ -53,207 +53,212 @@
         <translation>Erremintak</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="222"/>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="225"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="223"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="226"/>
         <source>About</source>
         <translation>Octopi-ri buruz</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="239"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="240"/>
         <source>Non installed</source>
         <translation>Instalatu gabe</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="248"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="249"/>
         <source>Commit</source>
         <translation>Egin ezazu</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="251"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="252"/>
         <source>Ctrl+M</source>
         <translation>Ctrl+M</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="260"/>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="263"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="261"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="264"/>
         <source>Cancel</source>
         <translation>Ezeztatu</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="266"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="267"/>
         <source>Ctrl+E</source>
         <translation>Ctrl+E</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="275"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="276"/>
         <source>Sync database</source>
         <translation>Datu-baseak sinkronizatu</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="278"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="279"/>
         <source>Ctrl+D</source>
         <translation>Ctrl+D</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="287"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="288"/>
         <source>Exit</source>
         <translation>Irten</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="290"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="291"/>
         <source>Ctrl+Q</source>
         <translation>Ctrl+Q</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="299"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="300"/>
         <source>System upgrade</source>
         <translation>Sistema eguneratu</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="302"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="303"/>
         <source>Ctrl+U</source>
         <translation>Ctrl+U</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="311"/>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="314"/>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="516"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="312"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="315"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="517"/>
         <source>Install</source>
         <translation>Instalatu</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="323"/>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="326"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="324"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="327"/>
         <source>Remove</source>
         <translation>Kendu</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="331"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="332"/>
         <source>Outdated packages</source>
         <translation>Pakete zaharkituak</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="340"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="341"/>
         <source>Get latest distro news</source>
         <translation>Distroaren azken berriak jaso</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="343"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="344"/>
         <source>Ctrl+G</source>
         <translation>Ctrl+G</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="352"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="353"/>
         <source>Remove group</source>
         <translation>Taldea kendu</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="361"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="362"/>
         <source>Install group</source>
         <translation>Taldea instalatu</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="370"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="371"/>
         <source>Collapse item</source>
         <translation>Elementua konprimitu</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="379"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="380"/>
         <source>Expand item</source>
         <translation>Elementua zabaldu</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="388"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="389"/>
         <source>Collapse all items</source>
         <translation>Elementu guztiak konprimitu</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="397"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="398"/>
         <source>Expand all items</source>
         <translation>Elementu guztiak zabaldu</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="406"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="407"/>
         <source>Open file</source>
         <translation>Ireki fitxategia</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="415"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="416"/>
         <source>Edit file</source>
         <translation>Fitxategia editatu</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="424"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="425"/>
         <source>Open directory</source>
         <translation>Direktorioa ireki</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="433"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="434"/>
         <source>Open terminal here</source>
         <translation>Terminala hemen ireki</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="442"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="443"/>
         <source>Remove item</source>
         <translation>Item-a ezabatu</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="454"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="455"/>
         <source>Remove items</source>
         <translation>Item-ak ezabatu</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="465"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="466"/>
         <source>By description</source>
         <translation>Deskripzioz</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="473"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="474"/>
         <source>By name</source>
         <translation>Izenez</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="482"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="483"/>
         <source>Find a file</source>
         <translation>Fitxategi bat bilatu</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="491"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="492"/>
         <source>Open root terminal</source>
         <translation>Terminala root moduan ireki</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="496"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="497"/>
         <source>Usage</source>
         <translation>Erabilera</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="499"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="500"/>
         <source>F1</source>
         <translation>F1</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="507"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="508"/>
         <source>Install local package...</source>
         <translation>Pakete lokala instalatu</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="524"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="525"/>
         <source>Pacman Log Viewer</source>
         <translation>Pacman erregistro ikuslea</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="536"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="537"/>
         <source>Repository Editor</source>
         <translation>Biltegi editorea</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="544"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="546"/>
+        <source>Cache Cleaner</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="554"/>
         <source>Installed</source>
         <translation>Instalatuta</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="560"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="570"/>
         <source>By file</source>
         <translation>Fitxategiz</translation>
     </message>
