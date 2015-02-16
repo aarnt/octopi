@@ -394,6 +394,7 @@ void MainWindow::metaBuildPackageList()
   }
   else if (isAURGroupSelected())
   {
+    switchToViewAllPackages();
     ui->actionSearchByFile->setEnabled(false);
     m_packageModel->setShowColumnPopularity(true);
 
