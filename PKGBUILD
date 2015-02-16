@@ -59,14 +59,6 @@ package_octopi() {
    install -D -m644 $startdir/resources/images/${pkgname}_red.png ${pkgdir}/usr/share/icons/${pkgname}_red.png
    install -D -m644 $startdir/resources/images/${pkgname}_yellow.png ${pkgdir}/usr/share/icons/${pkgname}_yellow.png
 
-   #Pacmanhelper service files
-   install -D -m755 $startdir/notifier/bin/pacmanhelper ${pkgdir}/usr/lib/octopi/pacmanhelper
-
-   install -D -m644 $startdir/notifier/pacmanhelper/polkit/org.octopi.pacman.policy ${pkgdir}/usr/share/polkit-1/actions/org.octopi.pacman.policy
-   install -D -m644 $startdir/notifier/pacmanhelper/polkit/org.octopi.pacmanhelper.conf ${pkgdir}/etc/dbus-1/system.d/org.octopi.pacmanhelper.conf
-   install -D -m644 $startdir/notifier/pacmanhelper/polkit/org.octopi.pacmanhelper.xml ${pkgdir}/usr/share/dbus-1/interfaces/org.octopi.pacmanhelper.xml
-   install -D -m644 $startdir/notifier/pacmanhelper/polkit/org.octopi.pacmanhelper.service ${pkgdir}/usr/share/dbus-1/system-services/org.octopi.pacmanhelper.service
-
    #Pacmaneditor files
    install -D -m755 $startdir/repoeditor/bin/octopi-repoeditor ${pkgdir}/usr/bin/octopi-repoeditor
 
@@ -80,6 +72,14 @@ package_octopi-notifier() {
    depends=('libnotify')
    optdepends=('octopi: launch graphical package manager from tray'
                'xfce4-notifyd: for notifications in XFCE')
+
+   #Pacmanhelper service files
+   install -D -m755 $startdir/notifier/bin/pacmanhelper ${pkgdir}/usr/lib/octopi/pacmanhelper
+
+   install -D -m644 $startdir/notifier/pacmanhelper/polkit/org.octopi.pacman.policy ${pkgdir}/usr/share/polkit-1/actions/org.octopi.pacman.policy
+   install -D -m644 $startdir/notifier/pacmanhelper/polkit/org.octopi.pacmanhelper.conf ${pkgdir}/etc/dbus-1/system.d/org.octopi.pacmanhelper.conf
+   install -D -m644 $startdir/notifier/pacmanhelper/polkit/org.octopi.pacmanhelper.xml ${pkgdir}/usr/share/dbus-1/interfaces/org.octopi.pacmanhelper.xml
+   install -D -m644 $startdir/notifier/pacmanhelper/polkit/org.octopi.pacmanhelper.service ${pkgdir}/usr/share/dbus-1/system-services/org.octopi.pacmanhelper.service
 
    #Octopi-notifier file
    install -D -m755 $startdir/notifier/bin/octopi-notifier ${pkgdir}/usr/bin/octopi-notifier

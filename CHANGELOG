@@ -9,6 +9,7 @@
   BugFix: Honor plural forms in some languages (thanks to SafaAlfulaij).
   BugFix: When only notifier is installed, we don't refer Octopi in context menu nor  
 	system upgrade dialog.
+  BugFix: PacmanHelper is a project related to Octopi-notifier (fix at PKGBUILD).
   Now PKGBUILD defaults to Qt5 builds.
   At startup only installed packages are shown (if distro is not KaOS).
   Added cachecleaner, a frontend to 'paccache' (thanks to Michaël Lhomme).
