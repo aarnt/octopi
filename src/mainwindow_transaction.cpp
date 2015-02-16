@@ -1680,6 +1680,11 @@ void MainWindow::actionsProcessFinished(int exitCode, QProcess::ExitStatus exitS
 
           if (!aurGroup)
           {
+            if (UnixCommand::getLinuxDistro() != ectn_KAOS && m_packageListItemsOption != ectn_ALL)
+            {
+              switchToViewAllPackages();
+            }
+
             metaBuildPackageList();
           }
         }
@@ -1688,6 +1693,7 @@ void MainWindow::actionsProcessFinished(int exitCode, QProcess::ExitStatus exitS
                m_commandExecuting == ectn_RUN_SYSTEM_UPGRADE_IN_TERMINAL)
       {
         buildPackageList(false);
+        switchToViewAllPackages();
       }
       else if (m_commandExecuting != ectn_MIRROR_CHECK)
       {
@@ -1695,6 +1701,7 @@ void MainWindow::actionsProcessFinished(int exitCode, QProcess::ExitStatus exitS
         if (!isAURGroupSelected())
         {
           buildPackageList(false);
+          switchToViewAllPackages();
         }
         else
         {

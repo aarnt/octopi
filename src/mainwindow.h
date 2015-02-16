@@ -272,6 +272,9 @@ private:
   void initTabHelpUsage();
   void refreshStatusBarToolButtons();
 
+  void switchToViewAllPackages();
+  void switchToViewInstalledPackages();
+
 private slots:
   void initToolButtonPacman();
   void initToolButtonAUR();

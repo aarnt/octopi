@@ -387,7 +387,7 @@ void MainWindow::metaBuildPackageList()
     disconnect(&g_fwPacman, SIGNAL(finished()), this, SLOT(preBuildPackageList()));
     QFuture<QList<PackageListData> *> f;
 
-    f = QtConcurrent::run(searchPacmanPackages,m_packageListItemsOption);
+    f = QtConcurrent::run(searchPacmanPackages, m_packageListItemsOption);
 
     g_fwPacman.setFuture(f);
     connect(&g_fwPacman, SIGNAL(finished()), this, SLOT(preBuildPackageList()));

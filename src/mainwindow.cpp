@@ -71,18 +71,12 @@ MainWindow::MainWindow(QWidget *parent) :
   //Let's show all packages in startup ONLY in KaOS!
   if (UnixCommand::getLinuxDistro() == ectn_KAOS)
   {
-    m_packageListItemsOption = ectn_ALL;
-    disconnect(ui->actionViewAllPackages, SIGNAL(triggered()), this, SLOT(selectedAllPackagesMenu()));
-    ui->actionViewAllPackages->setChecked(true);
-    connect(ui->actionViewAllPackages, SIGNAL(triggered()), this, SLOT(selectedAllPackagesMenu()));
+    switchToViewAllPackages();
   }
   //In all other distros, we just show the installed ones...
   else
   {
-    m_packageListItemsOption = ectn_ONLY_INSTALLED;
-    disconnect(ui->actionViewInstalledPackages, SIGNAL(triggered()), this, SLOT(selectedInstalledPackagesMenu()));
-    ui->actionViewInstalledPackages->setChecked(true);
-    connect(ui->actionViewInstalledPackages, SIGNAL(triggered()), this, SLOT(selectedInstalledPackagesMenu()));
+    switchToViewInstalledPackages();
   }
 }
 
@@ -152,6 +146,28 @@ void MainWindow::show()
   }
   else
     QMainWindow::show();
+}
+
+/*
+ * Prepares UI and logic to show all available packages
+ */
+void MainWindow::switchToViewAllPackages()
+{
+  m_packageListItemsOption = ectn_ALL;
+  disconnect(ui->actionViewAllPackages, SIGNAL(triggered()), this, SLOT(selectedAllPackagesMenu()));
+  ui->actionViewAllPackages->setChecked(true);
+  connect(ui->actionViewAllPackages, SIGNAL(triggered()), this, SLOT(selectedAllPackagesMenu()));
+}
+
+/*
+ * Prepares UI and logic to show only installed packages
+ */
+void MainWindow::switchToViewInstalledPackages()
+{
+  m_packageListItemsOption = ectn_ONLY_INSTALLED;
+  disconnect(ui->actionViewInstalledPackages, SIGNAL(triggered()), this, SLOT(selectedInstalledPackagesMenu()));
+  ui->actionViewInstalledPackages->setChecked(true);
+  connect(ui->actionViewInstalledPackages, SIGNAL(triggered()), this, SLOT(selectedInstalledPackagesMenu()));
 }
 
 /*
