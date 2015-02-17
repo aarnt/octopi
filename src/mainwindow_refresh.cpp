@@ -177,7 +177,8 @@ void MainWindow::groupItemSelected()
   if (UnixCommand::getLinuxDistro() != ectn_KAOS && m_showOnlyInstalledPackages)
   {
     switchToViewAllPackages();
-    buildPackageList(false);
+    refreshPackageList();
+    //buildPackageList(false);
   }
 
   metaBuildPackageList();
@@ -659,6 +660,56 @@ void MainWindow::buildPackageList(bool nonBlocking)
   }
 
   refreshStatusBarToolButtons();
+}
+
+/*
+ * Repopulates the list of available packages (installed [+ non-installed])
+ */
+void MainWindow::refreshPackageList()
+{
+  CPUIntensiveComputing cic;
+  bool hasAURTool = UnixCommand::hasTheExecutable(StrConstants::getForeignRepositoryToolName()) && !UnixCommand::isRootRunning();
+
+  const std::unique_ptr<const QSet<QString> > unrequiredPackageList(Package::getUnrequiredPackageList());
+  QList<PackageListData> *list = Package::getPackageList();
+
+  // Fetch foreign package list
+  std::unique_ptr<QList<PackageListData> > listForeign(Package::getForeignPackageList());
+  //qApp->processEvents();
+
+  //m_progressWidget->setRange(0, list->count());
+  //m_progressWidget->setValue(0);
+
+  PackageListData pld;
+  QList<PackageListData>::const_iterator itForeign = listForeign->begin();
+
+  if (!isSearchByFileSelected())
+  {
+    while (itForeign != listForeign->end())
+    {
+      if (!hasAURTool || !m_outdatedAURPackageList->contains(itForeign->name))
+      {
+        pld = PackageListData(
+              itForeign->name, itForeign->repository, itForeign->version,
+              itForeign->name + " " + Package::getInformationDescription(itForeign->name, true),
+              ectn_FOREIGN);
+      }
+      else
+      {
+        pld = PackageListData(
+              itForeign->name, itForeign->repository, itForeign->version,
+              itForeign->name + " " + Package::getInformationDescription(itForeign->name, true),
+              ectn_FOREIGN_OUTDATED);
+      }
+
+      list->append(pld);
+      itForeign++;
+    }
+  }
+
+  m_packageRepo.setData(list, *unrequiredPackageList);
+  delete list;
+  list = NULL;
 }
 
 /*

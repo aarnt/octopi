@@ -302,6 +302,8 @@ private slots:
 
   void buildPackagesFromGroupList(const QString group);
   void buildPackageList(bool nonBlocking=true);
+  void refreshPackageList();
+
   void metaBuildPackageList();
   void onPackageGroupChanged();
 
