@@ -1680,7 +1680,7 @@ void MainWindow::actionsProcessFinished(int exitCode, QProcess::ExitStatus exitS
 
           if (!aurGroup)
           {
-            if (UnixCommand::getLinuxDistro() != ectn_KAOS && m_packageListItemsOption != ectn_ALL_PKGS)
+            if (UnixCommand::getLinuxDistro() != ectn_KAOS && m_showOnlyInstalledPackages)
             {
               switchToViewAllPackages();
             }
@@ -1694,13 +1694,13 @@ void MainWindow::actionsProcessFinished(int exitCode, QProcess::ExitStatus exitS
       {
         buildPackageList(false);
 
-        if (UnixCommand::getLinuxDistro() != ectn_KAOS && m_packageListItemsOption != ectn_ALL_PKGS)
+        if (UnixCommand::getLinuxDistro() != ectn_KAOS && m_showOnlyInstalledPackages)
         {
           switchToViewAllPackages();
         }
         else
         {
-          m_packageListItemsOption = ectn_ALL_PKGS;
+          m_showOnlyInstalledPackages = false;
           ui->actionViewAllPackages->setChecked(true);
         }
       }
@@ -1711,13 +1711,13 @@ void MainWindow::actionsProcessFinished(int exitCode, QProcess::ExitStatus exitS
         {
           buildPackageList(false);
 
-          if (UnixCommand::getLinuxDistro() != ectn_KAOS && m_packageListItemsOption != ectn_ALL_PKGS)
+          if (UnixCommand::getLinuxDistro() != ectn_KAOS && m_showOnlyInstalledPackages)
           {
             switchToViewAllPackages();
           }
           else
           {
-            m_packageListItemsOption = ectn_ALL_PKGS;
+            m_showOnlyInstalledPackages = false;
             ui->actionViewAllPackages->setChecked(true);
           }
         }

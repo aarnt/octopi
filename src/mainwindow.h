@@ -169,7 +169,7 @@ private:
 
   QByteArray m_horizontalSplit;
 
-  ViewOptions m_packageListItemsOption;
+  bool m_showOnlyInstalledPackages;
 
   QTreeWidgetItem *m_AllGroupsItem;
   QTreeWidgetItem *m_AURItem;

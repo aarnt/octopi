@@ -174,9 +174,10 @@ void MainWindow::refreshGroupsWidget()
  */
 void MainWindow::groupItemSelected()
 {
-  if (UnixCommand::getLinuxDistro() != ectn_KAOS && m_packageListItemsOption != ectn_ALL_PKGS)
+  if (UnixCommand::getLinuxDistro() != ectn_KAOS && m_showOnlyInstalledPackages)
   {
     switchToViewAllPackages();
+    buildPackageList(false);
   }
 
   metaBuildPackageList();
@@ -400,7 +401,14 @@ void MainWindow::metaBuildPackageList()
     disconnect(&g_fwPacman, SIGNAL(finished()), this, SLOT(preBuildPackageList()));
     QFuture<QList<PackageListData> *> f;
 
-    f = QtConcurrent::run(searchPacmanPackages, m_packageListItemsOption);
+    if (m_showOnlyInstalledPackages)
+    {
+      f = QtConcurrent::run(searchPacmanPackages, ectn_INSTALLED_PKGS);
+    }
+    else
+    {
+      f = QtConcurrent::run(searchPacmanPackages, ectn_ALL_PKGS);
+    }
 
     g_fwPacman.setFuture(f);
     connect(&g_fwPacman, SIGNAL(finished()), this, SLOT(preBuildPackageList()));
@@ -1229,9 +1237,9 @@ void MainWindow::selectedAllPackagesMenu()
 {  
   m_selectedViewOption = ectn_ALL_PKGS;
 
-  if (m_packageListItemsOption == ectn_INSTALLED_PKGS)
+  if (m_showOnlyInstalledPackages)
   {
-    m_packageListItemsOption = ectn_ALL_PKGS;
+    m_showOnlyInstalledPackages = false;
     metaBuildPackageList();
   }
   else changePackageListModel(ectn_ALL_PKGS, m_selectedRepository);
@@ -1253,9 +1261,9 @@ void MainWindow::selectedNonInstalledPackagesMenu()
 {
   m_selectedViewOption = ectn_NON_INSTALLED_PKGS;
 
-  if (m_packageListItemsOption == ectn_INSTALLED_PKGS)
+  if (m_showOnlyInstalledPackages)
   {
-    m_packageListItemsOption = ectn_ALL_PKGS;
+    m_showOnlyInstalledPackages = false;
     metaBuildPackageList();
   }
   else changePackageListModel(ectn_NON_INSTALLED_PKGS, m_selectedRepository);
