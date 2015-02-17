@@ -305,6 +305,8 @@ private slots:
   void metaBuildPackageList();
   void onPackageGroupChanged();
 
+  void groupItemSelected();
+
   void preBuildPackageList();
   void preBuildPackagesFromGroupList();
   void preBuildAURPackageList();

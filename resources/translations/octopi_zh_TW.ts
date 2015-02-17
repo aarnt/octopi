@@ -250,7 +250,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="546"/>
         <source>Cache Cleaner</source>
-        <translation type="unfinished"/>
+        <translation>快取清除器</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="554"/>
@@ -933,7 +933,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="469"/>
         <source>There is an update available!</source>
-        <translation>有一個更新可用！</translation>
+        <translation>有 1 個更新可用！</translation>
     </message>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="473"/>

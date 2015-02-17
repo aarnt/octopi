@@ -9,30 +9,30 @@
     <message>
         <location filename="Projects/octopi/cachecleaner/ui/cachecleaner.ui" line="49"/>
         <source>Uninstalled packages</source>
-        <translation type="unfinished"/>
+        <translation>Pacchetti disinstallati</translation>
     </message>
     <message>
         <location filename="Projects/octopi/cachecleaner/ui/cachecleaner.ui" line="75"/>
         <location filename="Projects/octopi/cachecleaner/ui/cachecleaner.ui" line="150"/>
         <source>Keep :</source>
-        <translation type="unfinished"/>
+        <translation>Mantieni:</translation>
     </message>
     <message>
         <location filename="Projects/octopi/cachecleaner/ui/cachecleaner.ui" line="82"/>
         <location filename="Projects/octopi/cachecleaner/ui/cachecleaner.ui" line="157"/>
         <source>Number of old versions to keep</source>
-        <translation type="unfinished"/>
+        <translation>Numero di vecchie versioni da mantenere</translation>
     </message>
     <message>
         <location filename="Projects/octopi/cachecleaner/ui/cachecleaner.ui" line="102"/>
         <location filename="Projects/octopi/cachecleaner/ui/cachecleaner.ui" line="183"/>
         <source>Refresh</source>
-        <translation type="unfinished"/>
+        <translation>Aggiorna</translation>
     </message>
     <message>
         <location filename="Projects/octopi/cachecleaner/ui/cachecleaner.ui" line="127"/>
         <source>Installed packages</source>
-        <translation type="unfinished"/>
+        <translation>Pacchetti installati</translation>
     </message>
 </context>
 <context>
@@ -40,12 +40,12 @@
     <message>
         <location filename="Projects/octopi/cachecleaner/packagegroupmodel.cpp" line="199"/>
         <source>Clean</source>
-        <translation type="unfinished"/>
+        <translation>Pulisci</translation>
     </message>
     <message>
         <location filename="Projects/octopi/cachecleaner/packagegroupmodel.cpp" line="222"/>
         <source>Clean %1</source>
-        <translation type="unfinished"/>
+        <translation>Pulisci %1</translation>
     </message>
 </context>
 </TS>

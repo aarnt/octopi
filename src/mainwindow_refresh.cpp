@@ -166,7 +166,20 @@ void MainWindow::refreshGroupsWidget()
 
   ui->twGroups->insertTopLevelItems(0, items);
   ui->twGroups->setCurrentItem(items.at(0));
-  connect(ui->twGroups, SIGNAL(itemSelectionChanged()), this, SLOT(metaBuildPackageList()));
+  connect(ui->twGroups, SIGNAL(itemSelectionChanged()), this, SLOT(groupItemSelected()));
+}
+
+/*
+ * Whenever user selects another package group...
+ */
+void MainWindow::groupItemSelected()
+{
+  if (UnixCommand::getLinuxDistro() != ectn_KAOS && m_packageListItemsOption != ectn_ALL)
+  {
+    switchToViewAllPackages();
+  }
+
+  metaBuildPackageList();
 }
 
 /*
