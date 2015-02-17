@@ -153,7 +153,7 @@ void MainWindow::show()
  */
 void MainWindow::switchToViewAllPackages()
 {
-  m_packageListItemsOption = ectn_ALL;
+  m_packageListItemsOption = ectn_ALL_PKGS;
   disconnect(ui->actionViewAllPackages, SIGNAL(triggered()), this, SLOT(selectedAllPackagesMenu()));
   ui->actionViewAllPackages->setChecked(true);
   connect(ui->actionViewAllPackages, SIGNAL(triggered()), this, SLOT(selectedAllPackagesMenu()));
@@ -164,7 +164,7 @@ void MainWindow::switchToViewAllPackages()
  */
 void MainWindow::switchToViewInstalledPackages()
 {
-  m_packageListItemsOption = ectn_ONLY_INSTALLED;
+  m_packageListItemsOption = ectn_INSTALLED_PKGS;
   disconnect(ui->actionViewInstalledPackages, SIGNAL(triggered()), this, SLOT(selectedInstalledPackagesMenu()));
   ui->actionViewInstalledPackages->setChecked(true);
   connect(ui->actionViewInstalledPackages, SIGNAL(triggered()), this, SLOT(selectedInstalledPackagesMenu()));

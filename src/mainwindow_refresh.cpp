@@ -174,7 +174,7 @@ void MainWindow::refreshGroupsWidget()
  */
 void MainWindow::groupItemSelected()
 {
-  if (UnixCommand::getLinuxDistro() != ectn_KAOS && m_packageListItemsOption != ectn_ALL)
+  if (UnixCommand::getLinuxDistro() != ectn_KAOS && m_packageListItemsOption != ectn_ALL_PKGS)
   {
     switchToViewAllPackages();
   }
@@ -1229,9 +1229,9 @@ void MainWindow::selectedAllPackagesMenu()
 {  
   m_selectedViewOption = ectn_ALL_PKGS;
 
-  if (m_packageListItemsOption == ectn_ONLY_INSTALLED)
+  if (m_packageListItemsOption == ectn_INSTALLED_PKGS)
   {
-    m_packageListItemsOption = ectn_ALL;
+    m_packageListItemsOption = ectn_ALL_PKGS;
     metaBuildPackageList();
   }
   else changePackageListModel(ectn_ALL_PKGS, m_selectedRepository);
@@ -1253,9 +1253,9 @@ void MainWindow::selectedNonInstalledPackagesMenu()
 {
   m_selectedViewOption = ectn_NON_INSTALLED_PKGS;
 
-  if (m_packageListItemsOption == ectn_ONLY_INSTALLED)
+  if (m_packageListItemsOption == ectn_INSTALLED_PKGS)
   {
-    m_packageListItemsOption = ectn_ALL;
+    m_packageListItemsOption = ectn_ALL_PKGS;
     metaBuildPackageList();
   }
   else changePackageListModel(ectn_NON_INSTALLED_PKGS, m_selectedRepository);

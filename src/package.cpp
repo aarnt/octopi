@@ -384,7 +384,7 @@ QList<PackageListData> *Package::getForeignPackageList()
 /*
  * Retrieves the list of all available packages in the database (installed + non-installed)
  */
-QList<PackageListData> * Package::getPackageList(const QString &packageName, PackageListItems option)
+QList<PackageListData> * Package::getPackageList(const QString &packageName, ViewOptions option)
 {
   //archlinuxfr/yaourt 1.2.2-1 [installed]
   //    A pacman wrapper with extended features and AUR support
@@ -414,7 +414,7 @@ QList<PackageListData> * Package::getPackageList(const QString &packageName, Pac
           if (pkgStatus != ectn_NON_INSTALLED)
             res->append(pld);
           else if (pkgStatus == ectn_NON_INSTALLED)
-            if (option != ectn_ONLY_INSTALLED) res->append(pld);
+            if (option != ectn_INSTALLED_PKGS) res->append(pld);
         }
 
         pkgDescription = "";
@@ -470,7 +470,7 @@ QList<PackageListData> * Package::getPackageList(const QString &packageName, Pac
     if (pkgStatus != ectn_NON_INSTALLED)
       res->append(pld);
     else if (pkgStatus == ectn_NON_INSTALLED)
-      if (option != ectn_ONLY_INSTALLED) res->append(pld);
+      if (option != ectn_INSTALLED_PKGS) res->append(pld);
   }
 
   return res;

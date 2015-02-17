@@ -81,7 +81,7 @@ QString showPackageInfo(QString pkgName)
 /*
  * Starts the non blocking search for Pacman packages...
  */
-QList<PackageListData> * searchPacmanPackages(PackageListItems option)
+QList<PackageListData> * searchPacmanPackages(ViewOptions option)
 {
   return Package::getPackageList("", option);
 }

@@ -22,6 +22,7 @@
 #define MAINWINDOW_GLOBALS_H
 
 #include "strconstants.h"
+#include "model/packagemodel.h"
 #include <QStandardItem>
 #include <QFutureWatcher>
 
@@ -43,7 +44,7 @@ extern QFutureWatcher<QString> g_fwDistroNews;
 extern QFutureWatcher<QString> g_fwPackageOwnsFile;
 
 QString showPackageInfo(QString pkgName);
-QList<PackageListData> * searchPacmanPackages(PackageListItems option = ectn_ALL);
+QList<PackageListData> * searchPacmanPackages(ViewOptions option = ectn_ALL_PKGS);
 QString searchPacmanPackagesByFile(const QString &file);
 GroupMemberPair          searchPacmanPackagesFromGroup(QString groupName);
 QList<PackageListData> * searchAURPackages(QString searchString);

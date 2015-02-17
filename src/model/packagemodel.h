@@ -27,8 +27,6 @@
 #include "src/package.h"
 #include "src/packagerepository.h"
 
-enum ViewOptions { ectn_ALL_PKGS, ectn_INSTALLED_PKGS, ectn_NON_INSTALLED_PKGS };
-
 class PackageModel : public QAbstractItemModel, public PackageRepository::IDependency
 {
   Q_OBJECT
