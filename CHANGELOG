@@ -1,4 +1,5 @@
 0.5.1 (dev)
+  BugFix: Pkg list was being refreshed twice sometimes.
   BugFix: Removed some buggy strings from Output tab while in KF5.
   BugFix: ArrowUp/Down, PageUp/Down and Home/End keys now refresh Package Info tab.
   BugFix: Open file was not working in KF5.

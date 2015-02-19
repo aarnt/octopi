@@ -141,7 +141,7 @@ void MainWindow::refreshMenuTools()
  */
 void MainWindow::refreshGroupsWidget()
 {
-  disconnect(ui->twGroups, SIGNAL(itemSelectionChanged()), this, SLOT(metaBuildPackageList()));
+  disconnect(ui->twGroups, SIGNAL(itemSelectionChanged()), this, SLOT(groupItemSelected()));
 
   QList<QTreeWidgetItem *> items;
   ui->twGroups->clear();
