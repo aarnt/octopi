@@ -210,7 +210,7 @@ QByteArray UnixCommand::getAURPackageList(const QString &searchString)
   aur.setProcessEnvironment(env);
 
   if (UnixCommand::getLinuxDistro() == ectn_KAOS)
-    aur.start(StrConstants::getForeignRepositoryToolName() + " -l "); // + searchString);
+    aur.start(StrConstants::getForeignRepositoryToolName() + " -l ");
   else
     aur.start(StrConstants::getForeignRepositoryToolName() + " -Ss " + searchString);
 

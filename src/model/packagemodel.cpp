@@ -340,14 +340,23 @@ const QIcon& PackageModel::getIconFor(const PackageRepository::PackageData& pack
       return m_iconNewer;
     case ectn_INSTALLED:
       // Does no other package depend on this package ? (unrequired package list)
-      if (package.required)
+
+      if (package.repository != "KCP")
       {
-        return m_iconInstalled;
+        if (package.required)
+        {
+          return m_iconInstalled;
+        }
+        else
+        {
+          return m_iconInstalledUnrequired;
+        }
       }
       else
       {
         return m_iconInstalledUnrequired;
       }
+
       break;
     case ectn_NON_INSTALLED:
 //      if (package.required == false) std::cout << "not installed not required" << std::endl; // doesn't happen with pacman

@@ -1523,7 +1523,16 @@ void MainWindow::toggleSystemActions(const bool value)
     m_actionMirrorCheck->setEnabled(value);
   }
 
-  ui->actionSyncPackages->setEnabled(value);
+  if (isAURGroupSelected() && StrConstants::getForeignRepositoryToolName() == "kcp")
+  {
+    if (value == true)
+      ui->actionSyncPackages->setEnabled(value);
+  }
+  else
+  {
+    ui->actionSyncPackages->setEnabled(value);
+  }
+
   ui->actionInstallLocalPackage->setEnabled(value);
 
   ui->actionGetNews->setEnabled(value);
@@ -1686,6 +1695,13 @@ void MainWindow::actionsProcessFinished(int exitCode, QProcess::ExitStatus exitS
             }
 
             metaBuildPackageList();
+          }
+          else if (StrConstants::getForeignRepositoryToolName() == "kcp")
+          {
+            metaBuildPackageList();
+            delete m_unixCommand;
+            m_commandExecuting = ectn_NONE;
+            return;
           }
         }
       }
