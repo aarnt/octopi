@@ -1525,8 +1525,7 @@ void MainWindow::toggleSystemActions(const bool value)
 
   if (isAURGroupSelected() && StrConstants::getForeignRepositoryToolName() == "kcp")
   {
-    if (value == true)
-      ui->actionSyncPackages->setEnabled(value);
+    ui->actionSyncPackages->setEnabled(true);
   }
   else
   {

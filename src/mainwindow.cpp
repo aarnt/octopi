@@ -153,6 +153,7 @@ void MainWindow::show()
  */
 void MainWindow::switchToViewAllPackages()
 {
+  m_selectedViewOption = ectn_ALL_PKGS;
   m_showOnlyInstalledPackages = false;
   disconnect(ui->actionViewAllPackages, SIGNAL(triggered()), this, SLOT(selectedAllPackagesMenu()));
   ui->actionViewAllPackages->setChecked(true);

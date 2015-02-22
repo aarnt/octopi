@@ -174,11 +174,15 @@ void MainWindow::refreshGroupsWidget()
  */
 void MainWindow::groupItemSelected()
 {
+  //Let us select ALL pkgs from ALL repos!
+  switchToViewAllPackages();
+  m_actionRepositoryAll->setChecked(true);
+  selectedRepositoryMenu(m_actionRepositoryAll);
+
   if (UnixCommand::getLinuxDistro() != ectn_KAOS && m_showOnlyInstalledPackages)
   {
-    switchToViewAllPackages();
+    m_showOnlyInstalledPackages = false;
     refreshPackageList();
-    //buildPackageList(false);
   }
 
   metaBuildPackageList();
