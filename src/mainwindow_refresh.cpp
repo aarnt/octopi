@@ -174,17 +174,16 @@ void MainWindow::refreshGroupsWidget()
  */
 void MainWindow::groupItemSelected()
 {
-  //Let us select ALL pkgs from ALL repos!
-  switchToViewAllPackages();
-  m_actionRepositoryAll->setChecked(true);
-  selectedRepositoryMenu(m_actionRepositoryAll);
-
   if (UnixCommand::getLinuxDistro() != ectn_KAOS && m_showOnlyInstalledPackages)
   {
-    m_showOnlyInstalledPackages = false;
     refreshPackageList();
   }
 
+  //Let us select ALL pkgs from ALL repos!
+  switchToViewAllPackages();
+  m_selectedRepository = "";
+  m_actionRepositoryAll->setChecked(true);
+  //m_packageModel->applyFilter(ectn_ALL_PKGS, "", isAllGroupsSelected() ? "" : getSelectedGroup());
   metaBuildPackageList();
 }
 
