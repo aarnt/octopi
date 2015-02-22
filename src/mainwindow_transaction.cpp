@@ -1700,6 +1700,7 @@ void MainWindow::actionsProcessFinished(int exitCode, QProcess::ExitStatus exitS
             metaBuildPackageList();
             delete m_unixCommand;
             m_commandExecuting = ectn_NONE;
+            enableTransactionActions();
             return;
           }
         }
