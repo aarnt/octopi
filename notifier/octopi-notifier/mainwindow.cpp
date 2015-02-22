@@ -144,8 +144,8 @@ void MainWindow::pacmanHelperTimerTimeout()
     m_systemTrayIcon->show();
 #endif
 
-    //From now on, we verify if it's time to check for updates every 1 minute
-    m_pacmanHelperTimer->setInterval(60000);
+    //From now on, we verify if it's time to check for updates every 5 minutes
+    m_pacmanHelperTimer->setInterval(60000 * 5);
     setWindowIcon(m_icon);
     firstTime=false;
   }
@@ -660,11 +660,11 @@ void MainWindow::exitNotifier()
 {
   qDebug() << "At exitNotifier()...";
 
-  if (UnixCommand::isAppRunning("octopi", true))
+  /*if (UnixCommand::isAppRunning("octopi", true))
   {    
     QProcess::startDetached("octopi -close");
     qDebug() << "Closing Octopi too...";
-  }
+  }*/
 
   qApp->quit();
 }

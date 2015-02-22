@@ -13,6 +13,7 @@
   BugFix: PacmanHelper is a project related to Octopi-notifier (fix at PKGBUILD).
   Always reset to "View ALL/ALL repos" when pkg group is changed.
   Added more safety checks before running octopi-notifier.
+  Now notifier does not close Octopi.
   Disabled Pacaur support.
   Now PKGBUILD defaults to Qt5 builds.
   At startup only installed packages are shown (if distro is not KaOS).
