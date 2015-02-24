@@ -1897,6 +1897,16 @@ void MainWindow::treatProcessOutput(const QString &pMsg)
   msg.remove("\033[1;34m");
   msg.remove("\033[0;1m");
 
+  msg.remove("c");
+  msg.remove("C");
+  msg.remove("");
+  msg.remove("[m[0;37m");
+  msg.remove("o");
+  msg.remove("[m");
+  msg.remove(";37m");
+  msg.remove("[c");
+  msg.remove("[mo");
+
   if (msg.contains("exists in filesystem")) return;
 
   //std::cout << "_treat: " << msg.toLatin1().data() << std::endl;
@@ -1925,6 +1935,7 @@ void MainWindow::treatProcessOutput(const QString &pMsg)
   {
     if (!continueTesting){
       perc = msg.right(4).trimmed();
+      //std::cout << "percentage is: " << perc.toLatin1().data() << std::endl;
     }
 
     continueTesting = false;
