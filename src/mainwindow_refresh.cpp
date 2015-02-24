@@ -183,7 +183,6 @@ void MainWindow::groupItemSelected()
   switchToViewAllPackages();
   m_selectedRepository = "";
   m_actionRepositoryAll->setChecked(true);
-  //m_packageModel->applyFilter(ectn_ALL_PKGS, "", isAllGroupsSelected() ? "" : getSelectedGroup());
   metaBuildPackageList();
 }
 
@@ -224,24 +223,6 @@ void MainWindow::positionInPkgListSearchByFile()
 void MainWindow::buildPackagesFromGroupList(const QString group)
 {
   CPUIntensiveComputing cic;
-
-  /*if (isAllGroupsSelected())
-  {
-    reapplyPackageFilter();
-    m_packageModel->applyFilter(m_selectedViewOption, m_selectedRepository, StrConstants::getForeignToolGroup());
-
-    QModelIndex maux = m_packageModel->index(0, 0, QModelIndex());
-    ui->tvPackages->setCurrentIndex(maux);
-    ui->tvPackages->scrollTo(maux, QAbstractItemView::PositionAtCenter);
-    ui->tvPackages->setCurrentIndex(maux);
-
-    refreshTabInfo();
-    refreshTabFiles();
-    ui->tvPackages->setFocus();
-
-    return;
-  }*/
-
   const QList<QString>*const list = m_listOfPackagesFromGroup.get();
   QList<QString>::const_iterator it = list->begin();
 
@@ -288,7 +269,6 @@ void MainWindow::buildPackagesFromGroupList(const QString group)
   refreshTabInfo();
   refreshTabFiles();
   ui->tvPackages->setFocus();
-
   m_progressWidget->close();
   refreshStatusBarToolButtons();
 }
@@ -1092,7 +1072,6 @@ void MainWindow::refreshTabFiles(bool clearContents, bool neverQuit)
     QStringList fileList;
     QStandardItemModel *fakeModelPkgFileList = new QStandardItemModel(this);
     QStandardItemModel *modelPkgFileList = qobject_cast<QStandardItemModel*>(tvPkgFileList->model());
-
     modelPkgFileList->clear();
     QStandardItem *fakeRoot = fakeModelPkgFileList->invisibleRootItem();
     QStandardItem *root = modelPkgFileList->invisibleRootItem();

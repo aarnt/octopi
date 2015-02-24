@@ -22,13 +22,13 @@ int main(int argc, char *argv[])
 
   if (!QFile::exists(ctn_PACMANHELPER_BINARY))
   {
-    qDebug() << "Aborting notifier as 'pacmanhelper' binary could not be found!";
+    qDebug() << "Aborting notifier as 'pacmanhelper' binary could not be found! [" << ctn_PACMANHELPER_BINARY << "]";
     return (-2);
   }
 
   if (!QFile::exists(ctn_DBUS_PACMANHELPER_SERVICE))
   {
-    qDebug() << "Aborting notifier as 'pacmanhelper' DBus service could not be found!";
+    qDebug() << "Aborting notifier as 'pacmanhelper' DBus service could not be found! [" << ctn_DBUS_PACMANHELPER_SERVICE << "]";
     return (-3);
   }
 
