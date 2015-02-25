@@ -693,8 +693,8 @@ void MainWindow::doSyncDatabase()
   if (!doRemovePacmanLockFile()) return;
 
   //Let's synchronize kcp database too...
-  if (UnixCommand::getLinuxDistro() == ectn_KAOS)
-    UnixCommand::execCommandAsNormalUser("kcp -uc");
+  if (UnixCommand::getLinuxDistro() == ectn_KAOS && UnixCommand::hasTheExecutable("kcp"))
+    UnixCommand::execCommandAsNormalUser("kcp -u");
 
   m_commandExecuting = ectn_SYNC_DATABASE;
   disableTransactionActions();
@@ -2053,7 +2053,7 @@ void MainWindow::treatProcessOutput(const QString &pMsg)
     msg.remove(QRegExp(":: Do you want.+"));
     msg.remove(QRegExp("org\\.kde\\."));
     msg.remove(QRegExp("QCommandLineParser"));
-
+    msg.remove(QRegExp("QCoreApplication.+"));
     msg = msg.trimmed();
 
     //std::cout << "debug: " << msg.toLatin1().data() << std::endl;

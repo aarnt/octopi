@@ -457,6 +457,11 @@ void MainWindow::syncDatabase()
 #endif
 
   m_commandExecuting = ectn_SYNC_DATABASE;
+
+  //Let's synchronize kcp database too...
+  if (UnixCommand::getLinuxDistro() == ectn_KAOS && UnixCommand::hasTheExecutable("kcp"))
+    UnixCommand::execCommandAsNormalUser("kcp -u");
+
   m_pacmanHelperClient->syncdb();
 }
 

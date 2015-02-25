@@ -10,6 +10,7 @@
   BugFix: Honor plural forms in some languages (thanks to SafaAlfulaij).
   BugFix: When only notifier is installed, we don't refer Octopi in context menu nor  
 	system upgrade dialog.
+  BugFix: Removed another buggy string while in plasma5.
   BugFix: Opens install local pkg when you associate octopi to pacman files.
   BugFix: PacmanHelper is a project related to Octopi-notifier (fix at PKGBUILD).
   Always reset to "View ALL/ALL repos" when pkg group is changed.
@@ -21,7 +22,7 @@
   Added cachecleaner, a frontend to 'paccache' (thanks to Michaël Lhomme).
   Added new KDE detection logic (thanks to Kirek).
   KaOS only: added support for newer versions of Cellix's awesome KCP tool (much faster).
-  KaOS only: do a "kcp -uc" sync while in "sync database".
+  KaOS only: do a "kcp -u" sync while in "sync database" and notifier.
   Refactorings in SearchLineEdit.
   BugFixes in RepoEditor translation support (repoeditor is now in Transifex too).
 
