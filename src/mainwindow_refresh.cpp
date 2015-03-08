@@ -235,7 +235,10 @@ void MainWindow::buildPackagesFromGroupList(const QString group)
 
   m_progressWidget->setRange(0, list->count());
   m_progressWidget->setValue(0);
+  m_progressWidget->show();
+
   int installedCount = 0;
+  int counter=0;
 
   while(it != list->end())
   {
@@ -243,8 +246,14 @@ void MainWindow::buildPackagesFromGroupList(const QString group)
       ++installedCount;
     }
 
+    counter++;
+    m_progressWidget->setValue(counter);
     it++;
   }
+
+  counter = list->count();
+  m_progressWidget->setValue(counter);
+  m_progressWidget->close();
 
   m_packageRepo.checkAndSetMembersOfGroup(group, *list);
   m_packageModel->applyFilter(m_selectedViewOption, m_selectedRepository, isAllGroups(group) ? "" : group);
@@ -524,6 +533,24 @@ void MainWindow::buildPackageList(bool nonBlocking)
 
     list->append(*g_fwMarkForeignPackages.result());
   }
+
+  m_progressWidget->setRange(0, list->count());
+  m_progressWidget->setValue(0);
+  m_progressWidget->show();
+
+  int counter=0;
+  QList<PackageListData>::const_iterator it = list->begin();
+
+  while(it != list->end())
+  {
+    counter++;
+    m_progressWidget->setValue(counter);
+    it++;
+  }
+
+  counter = list->count();
+  m_progressWidget->setValue(counter);
+  m_progressWidget->close();
 
   m_packageRepo.setData(list, *unrequiredPackageList);
 
