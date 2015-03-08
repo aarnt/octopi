@@ -879,22 +879,21 @@ bool UnixCommand::isILoveCandyEnabled()
 }
 
 /*
- * Searches "/etc/pacman.conf" to retrive IgnorePkg items (if any)
+ * Returns the list of strings after "fieldName" in Pacman.conf;
  */
-QStringList UnixCommand::getIgnorePkg()
+QStringList UnixCommand::getFieldFromPacmanConf(const QString &fieldName)
 {
-  QStringList res;
+  QStringList result;
   QFile file("/etc/pacman.conf");
-
   if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
-    return res;
+    return result;
 
   QString contents = file.readAll();
   int from = 0;
 
   do
   {
-    int end = contents.indexOf("IgnorePkg", from, Qt::CaseInsensitive);
+    int end = contents.indexOf(fieldName, from, Qt::CaseInsensitive);
     int start=0;
 
     if (end != -1)
@@ -914,7 +913,7 @@ QStringList UnixCommand::getIgnorePkg()
         int newLine = ignorePkg.indexOf("\n");
 
         ignorePkg = ignorePkg.mid(equal+1, newLine-(equal+1)).trimmed();
-        res = ignorePkg.split(QRegExp("\\s+"), QString::SkipEmptyParts);
+        result = ignorePkg.split(QRegExp("\\s+"), QString::SkipEmptyParts);
         break;
       }
       else from += end+9;
@@ -925,7 +924,38 @@ QStringList UnixCommand::getIgnorePkg()
 
   file.close();
 
-  return res;
+  return result;
+}
+
+/*
+ * Searches "/etc/pacman.conf" to retrive IgnorePkg items (if any)
+ */
+QStringList UnixCommand::getIgnorePkgsFromPacmanConf()
+{
+  QStringList resPkgs;
+  QStringList resGroups;
+
+  resPkgs = getFieldFromPacmanConf("IgnorePkg");
+  resGroups = getFieldFromPacmanConf("IgnoreGroup");
+
+  if (!resGroups.isEmpty())
+  {
+    //Let's retrieve all pkgs that live inside each group
+    foreach (QString group, resGroups)
+    {
+      QStringList *packagesOfGroup = Package::getPackagesOfGroup(group);
+      if (!packagesOfGroup->isEmpty())
+      {
+        foreach (QString pkg, *packagesOfGroup)
+        {
+          resPkgs.append(pkg);
+        }
+      }
+    }
+  }
+
+  resPkgs.removeDuplicates();
+  return resPkgs;
 }
 
 /*

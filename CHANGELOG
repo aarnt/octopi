@@ -1,6 +1,7 @@
 0.6.1 (dev)
   Major speed fix: Faster pkg list building.
   Reverted to showing ALL packages at startup.
+  Now pacman.conf's "IgnoreGroup" option is honored.
   BugFix: Filter connect chain bug decreased filter's performance over time.
 
 0.6.0

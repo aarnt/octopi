@@ -171,7 +171,7 @@ private:
 
   QByteArray m_horizontalSplit;
 
-  bool m_showOnlyInstalledPackages;
+  //bool m_showOnlyInstalledPackages;
 
   QTreeWidgetItem *m_AllGroupsItem;
   QTreeWidgetItem *m_AURItem;
@@ -258,7 +258,7 @@ private:
 
   bool searchForKeyVerbs(const QString& msg);
   bool splitOutputStrings(const QString &output);
-  void treatProcessOutput(const QString &pMsg);
+  void parsePacmanProcessOutput(const QString &pMsg);
   void ensureTabVisible(const int index);
   bool isPropertiesTabWidgetVisible();
   bool isSUAvailable();
@@ -275,7 +275,7 @@ private:
   void refreshStatusBarToolButtons();
 
   void switchToViewAllPackages();
-  void switchToViewInstalledPackages();
+  //void switchToViewInstalledPackages();
 
 private slots:
   void initToolButtonPacman();

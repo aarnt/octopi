@@ -65,8 +65,10 @@ public:
   //Returns true if ILoveCandy is enabled in "/etc/pacman.conf"
   static bool isILoveCandyEnabled();
 
+  //Returns "fieldName" strings from "/etc/pacman.conf"
+  static QStringList getFieldFromPacmanConf(const QString &fieldName);
   //Returns the list of ignored packages in "/etc/pacman.conf"
-  static QStringList getIgnorePkg();
+  static QStringList getIgnorePkgsFromPacmanConf();
 
   //Returns the Linux Distro where Octopi is running on
   static LinuxDistro getLinuxDistro();

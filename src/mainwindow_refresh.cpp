@@ -1179,8 +1179,6 @@ void MainWindow::reapplyPackageFilter()
 {
   if (!isSearchByFileSelected())
   {
-    //CPUIntensiveComputing cic;
-
     bool isFilterPackageSelected = m_leFilterPackage->hasFocus();
     QString search = Package::parseSearchString(m_leFilterPackage->text());
 
@@ -1232,12 +1230,12 @@ void MainWindow::selectedAllPackagesMenu()
 {  
   m_selectedViewOption = ectn_ALL_PKGS;
 
-  if (m_showOnlyInstalledPackages)
+  /*if (m_showOnlyInstalledPackages)
   {
     m_showOnlyInstalledPackages = false;
     metaBuildPackageList();
-  }
-  else changePackageListModel(ectn_ALL_PKGS, m_selectedRepository);
+  }*/
+  changePackageListModel(ectn_ALL_PKGS, m_selectedRepository);
 }
 
 /*
@@ -1256,12 +1254,12 @@ void MainWindow::selectedNonInstalledPackagesMenu()
 {
   m_selectedViewOption = ectn_NON_INSTALLED_PKGS;
 
-  if (m_showOnlyInstalledPackages)
+  /*if (m_showOnlyInstalledPackages)
   {
     m_showOnlyInstalledPackages = false;
     metaBuildPackageList();
-  }
-  else changePackageListModel(ectn_NON_INSTALLED_PKGS, m_selectedRepository);
+  }*/
+  changePackageListModel(ectn_NON_INSTALLED_PKGS, m_selectedRepository);
 }
 
 /*

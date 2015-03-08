@@ -178,7 +178,7 @@ QStringList *Package::getOutdatedPackageList()
   QString outPkgList = UnixCommand::getOutdatedPackageList();
   QStringList packageTuples = outPkgList.split(QRegExp("\\n"), QString::SkipEmptyParts);
   QStringList * res = new QStringList();
-  QStringList ignorePkgList = UnixCommand::getIgnorePkg();
+  QStringList ignorePkgList = UnixCommand::getIgnorePkgsFromPacmanConf();
 
   foreach(QString packageTuple, packageTuples)
   {
@@ -214,7 +214,7 @@ QStringList *Package::getOutdatedAURPackageList()
 
   QString outPkgList = UnixCommand::getOutdatedAURPackageList();
   QStringList packageTuples = outPkgList.split(QRegExp("\\n"), QString::SkipEmptyParts);
-  QStringList ignorePkgList = UnixCommand::getIgnorePkg();
+  QStringList ignorePkgList = UnixCommand::getIgnorePkgsFromPacmanConf();
 
   foreach(QString packageTuple, packageTuples)
   {

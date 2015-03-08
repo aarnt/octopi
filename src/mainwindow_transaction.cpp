@@ -1688,11 +1688,6 @@ void MainWindow::actionsProcessFinished(int exitCode, QProcess::ExitStatus exitS
 
           if (!aurGroup)
           {
-            if (UnixCommand::getLinuxDistro() != ectn_KAOS && m_showOnlyInstalledPackages)
-            {
-              switchToViewAllPackages();
-            }
-
             metaBuildPackageList();
           }
           else if (StrConstants::getForeignRepositoryToolName() == "kcp")
@@ -1709,16 +1704,6 @@ void MainWindow::actionsProcessFinished(int exitCode, QProcess::ExitStatus exitS
                m_commandExecuting == ectn_RUN_SYSTEM_UPGRADE_IN_TERMINAL)
       {
         buildPackageList(false);
-
-        if (UnixCommand::getLinuxDistro() != ectn_KAOS && m_showOnlyInstalledPackages)
-        {
-          switchToViewAllPackages();
-        }
-        else
-        {
-          m_showOnlyInstalledPackages = false;
-          ui->actionViewAllPackages->setChecked(true);
-        }
       }
       else if (m_commandExecuting != ectn_MIRROR_CHECK)
       {
@@ -1726,16 +1711,6 @@ void MainWindow::actionsProcessFinished(int exitCode, QProcess::ExitStatus exitS
         if (!isAURGroupSelected())
         {
           buildPackageList(false);
-
-          if (UnixCommand::getLinuxDistro() != ectn_KAOS && m_showOnlyInstalledPackages)
-          {
-            switchToViewAllPackages();
-          }
-          else
-          {
-            m_showOnlyInstalledPackages = false;
-            ui->actionViewAllPackages->setChecked(true);
-          }
         }
         else
         {
@@ -1876,7 +1851,7 @@ bool MainWindow::searchForKeyVerbs(const QString &msg)
 /*
  * Processes the output of the 'pacman process' so we can update percentages and messages at real time
  */
-void MainWindow::treatProcessOutput(const QString &pMsg)
+void MainWindow::parsePacmanProcessOutput(const QString &pMsg)
 {  
   if (m_commandExecuting == ectn_RUN_IN_TERMINAL ||
       m_commandExecuting == ectn_RUN_SYSTEM_UPGRADE_IN_TERMINAL) return;
@@ -2149,7 +2124,7 @@ bool MainWindow::splitOutputStrings(const QString &output)
             }
 
             //std::cout << "Error1: " << aux.toLatin1().data() << std::endl;
-            treatProcessOutput(aux);
+            parsePacmanProcessOutput(aux);
           }
         }
       }
@@ -2158,7 +2133,7 @@ bool MainWindow::splitOutputStrings(const QString &output)
         if (!m.isEmpty())
         {
           //std::cout << "Error2: " << m.toLatin1().data() << std::endl;
-          treatProcessOutput(m);
+          parsePacmanProcessOutput(m);
         }
       }
     }
@@ -2169,7 +2144,7 @@ bool MainWindow::splitOutputStrings(const QString &output)
         if (!m3.isEmpty())
         {
           //std::cout << "Error3: " << m3.toLatin1().data() << std::endl;
-          treatProcessOutput(m3);
+          parsePacmanProcessOutput(m3);
         }
       }
     }

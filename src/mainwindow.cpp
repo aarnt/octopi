@@ -69,17 +69,6 @@ MainWindow::MainWindow(QWidget *parent) :
 
   ui->setupUi(this);
   switchToViewAllPackages();
-
-  //Let's show all packages in startup ONLY in KaOS!
-  /*if (UnixCommand::getLinuxDistro() == ectn_KAOS)
-  {
-    switchToViewAllPackages();
-  }
-  //In all other distros, we just show the installed ones...
-  else
-  {
-    switchToViewInstalledPackages();
-  }*/
 }
 
 /*
@@ -100,7 +89,6 @@ void MainWindow::show()
 {
   if(m_initializationCompleted == false)
   {
-    UnixCommand::getIgnorePkg();
     restoreGeometry(SettingsManager::getWindowSize());
     m_commandExecuting=ectn_NONE;
     m_commandQueued=ectn_NONE;
@@ -156,7 +144,7 @@ void MainWindow::show()
 void MainWindow::switchToViewAllPackages()
 {
   m_selectedViewOption = ectn_ALL_PKGS;
-  m_showOnlyInstalledPackages = false;
+  //m_showOnlyInstalledPackages = false;
   disconnect(ui->actionViewAllPackages, SIGNAL(triggered()), this, SLOT(selectedAllPackagesMenu()));
   ui->actionViewAllPackages->setChecked(true);
   connect(ui->actionViewAllPackages, SIGNAL(triggered()), this, SLOT(selectedAllPackagesMenu()));
@@ -165,7 +153,7 @@ void MainWindow::switchToViewAllPackages()
 /*
  * Prepares UI and logic to show only installed packages
  */
-void MainWindow::switchToViewInstalledPackages()
+/*void MainWindow::switchToViewInstalledPackages()
 {
   static bool firstTime = true;
 
@@ -178,7 +166,7 @@ void MainWindow::switchToViewInstalledPackages()
   disconnect(ui->actionViewInstalledPackages, SIGNAL(triggered()), this, SLOT(selectedInstalledPackagesMenu()));
   ui->actionViewInstalledPackages->setChecked(true);
   connect(ui->actionViewInstalledPackages, SIGNAL(triggered()), this, SLOT(selectedInstalledPackagesMenu()));
-}
+}*/
 
 /*
  * Retrieves a pointer to Output's QTextBrowser object
