@@ -4,35 +4,35 @@
     <message>
         <location filename="Projects/octopi/cachecleaner/ui/cachecleaner.ui" line="14"/>
         <source>Cache Cleaner - Octopi</source>
-        <translation type="unfinished"/>
+        <translation>Netejador de la cau - Octopi</translation>
     </message>
     <message>
         <location filename="Projects/octopi/cachecleaner/ui/cachecleaner.ui" line="49"/>
         <source>Uninstalled packages</source>
-        <translation type="unfinished"/>
+        <translation>Paquets desinstal·lats</translation>
     </message>
     <message>
         <location filename="Projects/octopi/cachecleaner/ui/cachecleaner.ui" line="75"/>
         <location filename="Projects/octopi/cachecleaner/ui/cachecleaner.ui" line="150"/>
         <source>Keep :</source>
-        <translation type="unfinished"/>
+        <translation>Mantén:</translation>
     </message>
     <message>
         <location filename="Projects/octopi/cachecleaner/ui/cachecleaner.ui" line="82"/>
         <location filename="Projects/octopi/cachecleaner/ui/cachecleaner.ui" line="157"/>
         <source>Number of old versions to keep</source>
-        <translation type="unfinished"/>
+        <translation>Quantitat de versions antigues a mantenir:</translation>
     </message>
     <message>
         <location filename="Projects/octopi/cachecleaner/ui/cachecleaner.ui" line="102"/>
         <location filename="Projects/octopi/cachecleaner/ui/cachecleaner.ui" line="183"/>
         <source>Refresh</source>
-        <translation type="unfinished"/>
+        <translation>Refresca</translation>
     </message>
     <message>
         <location filename="Projects/octopi/cachecleaner/ui/cachecleaner.ui" line="127"/>
         <source>Installed packages</source>
-        <translation type="unfinished"/>
+        <translation>Paquets instal·lats</translation>
     </message>
 </context>
 <context>
@@ -40,12 +40,12 @@
     <message>
         <location filename="Projects/octopi/cachecleaner/packagegroupmodel.cpp" line="199"/>
         <source>Clean</source>
-        <translation type="unfinished"/>
+        <translation>Neteja</translation>
     </message>
     <message>
         <location filename="Projects/octopi/cachecleaner/packagegroupmodel.cpp" line="222"/>
         <source>Clean %1</source>
-        <translation type="unfinished"/>
+        <translation>Neteja %1</translation>
     </message>
 </context>
 </TS>
