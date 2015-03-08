@@ -93,7 +93,6 @@ private:
   SearchLineEdit *m_leFilterPackage;
   QList<QModelIndex> *m_foundFilesInPkgFileList;
   int m_indFoundFilesInPkgFileList;
-
   QFileSystemWatcher *m_pacmanDatabaseSystemWatcher;
 
   // Package Data
@@ -117,6 +116,9 @@ private:
 
   //Controls if the NewsTab must be showed
   bool m_gotoNewsTab;
+
+  //Controls if the OutdatePackageLists must be refreshed while the pkg list is being build
+  bool m_refreshOutdatedPackageLists;
 
   //Holds the remove command to be used: -Rcs/-R/-Rs or whichever the user has choosen
   QString m_removeCommand;

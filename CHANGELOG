@@ -1,6 +1,7 @@
 0.6.1 (dev)
   Major speed fix: Faster pkg list building.
   Reverted to showing ALL packages at startup.
+  BugFix: Filter connect chain bug decreased filter's performance over time.
 
 0.6.0
   BugFix: Pkg list was being refreshed twice sometimes.

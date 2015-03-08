@@ -83,6 +83,7 @@ void MainWindow::refreshMenuTools()
   static bool connectorPlv=false;
   static bool connectorRepo=false;
   static bool connectorCleaner=false;
+
   int availableTools=0;
 
   if(UnixCommand::hasTheExecutable("plv"))
@@ -174,15 +175,21 @@ void MainWindow::refreshGroupsWidget()
  */
 void MainWindow::groupItemSelected()
 {
-  if (UnixCommand::getLinuxDistro() != ectn_KAOS && m_showOnlyInstalledPackages)
-  {
-    refreshPackageList();
-  }
-
   //Let us select ALL pkgs from ALL repos!
   switchToViewAllPackages();
   m_selectedRepository = "";
   m_actionRepositoryAll->setChecked(true);
+
+  if (isAllGroupsSelected())
+  {
+    m_refreshOutdatedPackageLists = false;
+  }
+  else
+  {
+    m_refreshOutdatedPackageLists = true;
+  }
+
+  m_leFilterPackage->clear();
   metaBuildPackageList();
 }
 
@@ -228,10 +235,7 @@ void MainWindow::buildPackagesFromGroupList(const QString group)
 
   m_progressWidget->setRange(0, list->count());
   m_progressWidget->setValue(0);
-  m_progressWidget->show();
-
   int installedCount = 0;
-  int counter=0;
 
   while(it != list->end())
   {
@@ -239,15 +243,6 @@ void MainWindow::buildPackagesFromGroupList(const QString group)
       ++installedCount;
     }
 
-    counter++;
-
-    /*if (counter % 100 == 0)
-    {
-      qApp->processEvents();
-    }*/
-
-    m_progressWidget->setValue(counter);
-    //qApp->processEvents();
     it++;
   }
 
@@ -270,8 +265,9 @@ void MainWindow::buildPackagesFromGroupList(const QString group)
   refreshTabInfo();
   refreshTabFiles();
   ui->tvPackages->setFocus();
-  m_progressWidget->close();
   refreshStatusBarToolButtons();
+
+  tvPackagesSelectionChanged(QItemSelection(),QItemSelection());
 }
 
 /*
@@ -381,22 +377,15 @@ void MainWindow::metaBuildPackageList()
   {        
     ui->actionSearchByFile->setEnabled(true);
     toggleSystemActions(false);
+    disconnect(m_leFilterPackage, SIGNAL(textChanged(QString)), this, SLOT(reapplyPackageFilter()));
     connect(m_leFilterPackage, SIGNAL(textChanged(QString)), this, SLOT(reapplyPackageFilter()));
     reapplyPackageFilter();
     disconnect(&g_fwPacman, SIGNAL(finished()), this, SLOT(preBuildPackageList()));
+
     QFuture<QList<PackageListData> *> f;
-
-    if (m_showOnlyInstalledPackages)
-    {
-      f = QtConcurrent::run(searchPacmanPackages, ectn_INSTALLED_PKGS);
-    }
-    else
-    {
-      f = QtConcurrent::run(searchPacmanPackages, ectn_ALL_PKGS);
-    }
-
-    g_fwPacman.setFuture(f);
+    f = QtConcurrent::run(searchPacmanPackages, ectn_ALL_PKGS);
     connect(&g_fwPacman, SIGNAL(finished()), this, SLOT(preBuildPackageList()));
+    g_fwPacman.setFuture(f);
   }
   else if (isAURGroupSelected())
   {
@@ -453,6 +442,7 @@ void MainWindow::metaBuildPackageList()
   {
     ui->actionSearchByFile->setEnabled(false);
     toggleSystemActions(false);
+    disconnect(m_leFilterPackage, SIGNAL(textChanged(QString)), this, SLOT(reapplyPackageFilter()));
     connect(m_leFilterPackage, SIGNAL(textChanged(QString)), this, SLOT(reapplyPackageFilter()));
     reapplyPackageFilter();
     disconnect(&g_fwPacmanGroup, SIGNAL(finished()), this, SLOT(preBuildPackagesFromGroupList()));
@@ -502,7 +492,7 @@ void MainWindow::buildPackageList(bool nonBlocking)
   bool hasAURTool = UnixCommand::hasTheExecutable(StrConstants::getForeignRepositoryToolName()) && !UnixCommand::isRootRunning();
   static bool firstTime = true;
 
-  if(!firstTime) //If it's not the starting of the app...
+  if(m_refreshOutdatedPackageLists) //If it's not the starting of the app...
   {
     //Let's get outdatedPackages list again!
     m_outdatedPackageList = Package::getOutdatedPackageList();
@@ -592,6 +582,7 @@ void MainWindow::buildPackageList(bool nonBlocking)
   }
 
   refreshStatusBarToolButtons();
+  m_refreshOutdatedPackageLists = true;
 }
 
 /*
@@ -1161,7 +1152,7 @@ void MainWindow::reapplyPackageFilter()
 {
   if (!isSearchByFileSelected())
   {
-    CPUIntensiveComputing cic;
+    //CPUIntensiveComputing cic;
 
     bool isFilterPackageSelected = m_leFilterPackage->hasFocus();
     QString search = Package::parseSearchString(m_leFilterPackage->text());
@@ -1189,7 +1180,7 @@ void MainWindow::reapplyPackageFilter()
     ui->tvPackages->scrollTo(mi);
 
     //We need to call this method to refresh package selection counters
-    tvPackagesSelectionChanged(QItemSelection(),QItemSelection());
+    //tvPackagesSelectionChanged(QItemSelection(),QItemSelection());  //WARNING!!!
     invalidateTabs();
   }
   //If we are using "Search By file...

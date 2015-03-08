@@ -411,10 +411,10 @@ QList<PackageListData> * Package::getPackageList(const QString &packageName, Vie
 
         if (packageName.isEmpty() || pkgName == packageName)
         {
-          if (pkgStatus != ectn_NON_INSTALLED)
+          //if (pkgStatus != ectn_NON_INSTALLED)
             res->append(pld);
-          else if (pkgStatus == ectn_NON_INSTALLED)
-            if (option != ectn_INSTALLED_PKGS) res->append(pld);
+          //else if (pkgStatus == ectn_NON_INSTALLED)
+          //  if (option != ectn_INSTALLED_PKGS) res->append(pld);
         }
 
         pkgDescription = "";
@@ -467,10 +467,10 @@ QList<PackageListData> * Package::getPackageList(const QString &packageName, Vie
 
   if (packageName.isEmpty() || pkgName == packageName)
   {
-    if (pkgStatus != ectn_NON_INSTALLED)
+    //if (pkgStatus != ectn_NON_INSTALLED)
       res->append(pld);
-    else if (pkgStatus == ectn_NON_INSTALLED)
-      if (option != ectn_INSTALLED_PKGS) res->append(pld);
+    //else if (pkgStatus == ectn_NON_INSTALLED)
+    //  if (option != ectn_INSTALLED_PKGS) res->append(pld);
   }
 
   return res;

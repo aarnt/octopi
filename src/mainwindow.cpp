@@ -58,6 +58,7 @@ MainWindow::MainWindow(QWidget *parent) :
   m_callSystemUpgradeNoConfirm = false;
   m_initializationCompleted=false;
   m_systemUpgradeDialog = false;
+  m_refreshOutdatedPackageLists = false;
   m_cic = NULL;
   m_outdatedPackageList = new QStringList();
   m_outdatedAURPackageList = new QStringList();
