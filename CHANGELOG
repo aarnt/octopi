@@ -1,3 +1,7 @@
+0.6.1 (dev)
+  Major speed fix: Faster pkg list building.
+  Reverted to showing ALL packages at startup.
+
 0.6.0
   BugFix: Pkg list was being refreshed twice sometimes.
   BugFix: Removed some buggy strings from Output tab while in KF5.

@@ -67,9 +67,10 @@ MainWindow::MainWindow(QWidget *parent) :
   m_numberOfInstalledPackages = 0;
 
   ui->setupUi(this);
+  switchToViewAllPackages();
 
   //Let's show all packages in startup ONLY in KaOS!
-  if (UnixCommand::getLinuxDistro() == ectn_KAOS)
+  /*if (UnixCommand::getLinuxDistro() == ectn_KAOS)
   {
     switchToViewAllPackages();
   }
@@ -77,7 +78,7 @@ MainWindow::MainWindow(QWidget *parent) :
   else
   {
     switchToViewInstalledPackages();
-  }
+  }*/
 }
 
 /*

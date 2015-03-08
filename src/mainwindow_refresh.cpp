@@ -241,15 +241,16 @@ void MainWindow::buildPackagesFromGroupList(const QString group)
 
     counter++;
 
-    if (counter % 100 == 0)
+    /*if (counter % 100 == 0)
     {
       qApp->processEvents();
-    }
+    }*/
 
     m_progressWidget->setValue(counter);
-    qApp->processEvents();
+    //qApp->processEvents();
     it++;
   }
+
   m_packageRepo.checkAndSetMembersOfGroup(group, *list);
   m_packageModel->applyFilter(m_selectedViewOption, m_selectedRepository, isAllGroups(group) ? "" : group);
 
@@ -499,7 +500,6 @@ void MainWindow::buildPackageList(bool nonBlocking)
 {
   CPUIntensiveComputing cic;
   bool hasAURTool = UnixCommand::hasTheExecutable(StrConstants::getForeignRepositoryToolName()) && !UnixCommand::isRootRunning();
-
   static bool firstTime = true;
 
   if(!firstTime) //If it's not the starting of the app...
@@ -514,7 +514,6 @@ void MainWindow::buildPackageList(bool nonBlocking)
     }
   }
 
-  qApp->processEvents();
   const std::unique_ptr<const QSet<QString> > unrequiredPackageList(Package::getUnrequiredPackageList());
 
   // Fetch package list
@@ -524,66 +523,21 @@ void MainWindow::buildPackageList(bool nonBlocking)
   else
     list = Package::getPackageList();
 
-  // Fetch foreign package list
-  std::unique_ptr<QList<PackageListData> > listForeign(Package::getForeignPackageList());
-  qApp->processEvents();
-
-  m_progressWidget->setRange(0, list->count());
-  m_progressWidget->setValue(0);
-
-  PackageListData pld;
-  QList<PackageListData>::const_iterator itForeign = listForeign->begin();
-
   if (!isSearchByFileSelected())
   {
-    while (itForeign != listForeign->end())
-    {
-      if (!hasAURTool || !m_outdatedAURPackageList->contains(itForeign->name))
-      {
-        pld = PackageListData(
-              itForeign->name, itForeign->repository, itForeign->version,
-              itForeign->name + " " + Package::getInformationDescription(itForeign->name, true),
-              ectn_FOREIGN);
-      }
-      else
-      {
-        pld = PackageListData(
-              itForeign->name, itForeign->repository, itForeign->version,
-              itForeign->name + " " + Package::getInformationDescription(itForeign->name, true),
-              ectn_FOREIGN_OUTDATED);
-      }
+    QEventLoop eventLoop;
+    QFuture<QList<PackageListData> *> fMark;
+    fMark = QtConcurrent::run(markForeignPackagesInPkgList, hasAURTool, m_outdatedAURPackageList);
+    g_fwMarkForeignPackages.setFuture(fMark);
+    connect(&g_fwMarkForeignPackages, SIGNAL(finished()), &eventLoop, SLOT(quit()));
+    eventLoop.exec();
 
-      list->append(pld);
-
-      itForeign++;
-    }
+    list->append(*g_fwMarkForeignPackages.result());
   }
 
   m_packageRepo.setData(list, *unrequiredPackageList);
+
   if (isAllGroupsSelected()) m_packageModel->applyFilter(m_selectedViewOption, m_selectedRepository, "");
-  m_progressWidget->show();
-  QList<PackageListData>::const_iterator it = list->begin();
-  int counter=0;
-  int installedCount = 0;
-
-  while(it != list->end())
-  {
-    if (isPackageInstalled(it->name)) {
-      ++installedCount;
-    }
-    counter++;
-
-    if (nonBlocking == false && counter % 200 == 0)
-    {
-      qApp->processEvents();
-    }
-
-    m_progressWidget->setValue(counter);
-    it++;
-  }
-
-  m_progressWidget->setValue(list->count());
-
   if (m_leFilterPackage->text() != "") reapplyPackageFilter();
 
   QModelIndex maux = m_packageModel->index(0, 0, QModelIndex());
@@ -601,16 +555,11 @@ void MainWindow::buildPackageList(bool nonBlocking)
     ui->tvPackages->setFocus();
   }
 
-  //Refresh counters
-  m_numberOfInstalledPackages = installedCount;
-
   //Refresh statusbar widget
   refreshStatusBar();
 
   //Refresh application icon
   refreshAppIcon();
-
-  m_progressWidget->close();
 
   if (firstTime)
   {
@@ -658,11 +607,6 @@ void MainWindow::refreshPackageList()
 
   // Fetch foreign package list
   std::unique_ptr<QList<PackageListData> > listForeign(Package::getForeignPackageList());
-  //qApp->processEvents();
-
-  //m_progressWidget->setRange(0, list->count());
-  //m_progressWidget->setValue(0);
-
   PackageListData pld;
   QList<PackageListData>::const_iterator itForeign = listForeign->begin();
 

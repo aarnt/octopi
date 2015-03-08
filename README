@@ -7,7 +7,7 @@ The project's source code is hosted at
 You'll need a privilege escalation tool to use it, once running as 
 root will ONLY work in KDE. Octopi supports kdesu and gksu for that.
 
-For AUR support, "yaourt" and "pacaur" are supported.
+For AUR support, "yaourt" is supported.
 When you are in Chakra, "ccr" is supported.
 While in KaOS, "kcp" is supported.
 

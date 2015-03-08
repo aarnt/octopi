@@ -42,6 +42,7 @@ extern QFutureWatcher<QList<PackageListData> *> g_fwAURMeta;
 extern QFutureWatcher<AUROutdatedPackages *> g_fwOutdatedAURPackages;
 extern QFutureWatcher<QString> g_fwDistroNews;
 extern QFutureWatcher<QString> g_fwPackageOwnsFile;
+extern QFutureWatcher<QList<PackageListData> *> g_fwMarkForeignPackages;
 
 QString showPackageInfo(QString pkgName);
 QList<PackageListData> * searchPacmanPackages(ViewOptions option = ectn_ALL_PKGS);
@@ -50,5 +51,6 @@ GroupMemberPair          searchPacmanPackagesFromGroup(QString groupName);
 QList<PackageListData> * searchAURPackages(QString searchString);
 AUROutdatedPackages * getOutdatedAURPackages();
 QString getLatestDistroNews();
+QList<PackageListData> * markForeignPackagesInPkgList(bool hasAURTool, QStringList *outdatedAURPackageList);
 
 #endif // MAINWINDOW_GLOBALS_H

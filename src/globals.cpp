@@ -41,6 +41,7 @@ QFutureWatcher<QList<PackageListData> *> g_fwAURMeta;
 QFutureWatcher<AUROutdatedPackages *> g_fwOutdatedAURPackages;
 QFutureWatcher<QString> g_fwDistroNews;
 QFutureWatcher<QString> g_fwPackageOwnsFile;
+QFutureWatcher<QList<PackageListData> *> g_fwMarkForeignPackages;
 
 /*
  * Given a packageName, returns its description
@@ -136,4 +137,39 @@ AUROutdatedPackages * getOutdatedAURPackages()
 QString getLatestDistroNews()
 {
   return utils::retrieveDistroNews(true);
+}
+
+/*
+ * Marks the packages installed by AUR/KCP (alien icons in pkg list).
+ */
+QList<PackageListData> * markForeignPackagesInPkgList(bool hasAURTool, QStringList *outdatedAURPackageList)
+{
+  // Fetch foreign package list
+  QList<PackageListData> * result = new QList<PackageListData>();
+  std::unique_ptr<QList<PackageListData> > listForeign(Package::getForeignPackageList());
+  PackageListData pld;
+  QList<PackageListData>::const_iterator itForeign = listForeign->begin();
+
+  while (itForeign != listForeign->end())
+  {
+    if (!hasAURTool || !outdatedAURPackageList->contains(itForeign->name))
+    {
+      pld = PackageListData(
+            itForeign->name, itForeign->repository, itForeign->version,
+            itForeign->name + " " + Package::getInformationDescription(itForeign->name, true),
+            ectn_FOREIGN);
+    }
+    else
+    {
+      pld = PackageListData(
+            itForeign->name, itForeign->repository, itForeign->version,
+            itForeign->name + " " + Package::getInformationDescription(itForeign->name, true),
+            ectn_FOREIGN_OUTDATED);
+    }
+
+    result->append(pld);
+    itForeign++;
+  }
+
+  return result;
 }
