@@ -74,6 +74,12 @@ void TransactionDialog::setInformativeText(const QString text)
 void TransactionDialog::setDetailedText(const QString detailedtext)
 {
   ui->detailedText->setText(detailedtext);
+
+  //We must search for a 'pacman-version-number' pkg to force terminal upgrade use
+  if (detailedtext.contains(QRegExp("pacman-[0-9]+")))
+  {
+    removeYesButton();
+  }
 }
 
 /*

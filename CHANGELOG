@@ -2,6 +2,8 @@
   Major speed fix: Faster pkg list building.
   Reverted to showing ALL packages at startup.
   Now pacman.conf's "IgnoreGroup" option is honored.
+  Remove "Yes" button from transaction dialog, everytime 'pacman' 
+	is one of the target packages.
   BugFix: Filter connect chain bug decreased filter's performance over time.
 
 0.6.0
