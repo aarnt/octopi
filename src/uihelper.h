@@ -160,6 +160,13 @@ public:
       return QIcon(":/resources/images/editfile.png");
   }
 
+  static QIcon getIconEditCopy(){
+    if (WMHelper::isKDERunning() && (UnixCommand::getLinuxDistro() != ectn_KAOS))
+      return QIcon::fromTheme("edit-copy", QIcon(":/resources/images/edit-copy.png"));
+    else
+      return QIcon(":/resources/images/edit-copy.png");
+  }
+
   static QIcon getIconFolder(){
     if (WMHelper::isKDERunning() && (UnixCommand::getLinuxDistro() != ectn_KAOS))
       return QIcon::fromTheme("document-open-folder", QIcon(":/resources/images/folder.png"));
@@ -240,7 +247,8 @@ public:
     if (m_parent) m_parent->setCursor(Qt::WaitCursor);
   }
 
-  virtual ~CPUIntensiveComputing(){
+  virtual ~CPUIntensiveComputing()
+  {
     if (m_parent)
       m_parent->setCursor(Qt::ArrowCursor);
     else

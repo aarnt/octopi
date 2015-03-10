@@ -79,6 +79,7 @@ void MainWindow::closeEvent(QCloseEvent *event)
       SettingsManager::setWindowSize(windowSize);
       SettingsManager::setSplitterHorizontalState(ui->splitterHorizontal->saveState());
       event->accept();
+
       qApp->quit();
     }
     else
@@ -92,7 +93,22 @@ void MainWindow::closeEvent(QCloseEvent *event)
     SettingsManager::setWindowSize(windowSize);
     SettingsManager::setSplitterHorizontalState(ui->splitterHorizontal->saveState());
     event->accept();
+
     qApp->quit();
+  }
+}
+
+/*
+ * Copies the full path of the selected item in pkgFileListTreeView to clipboard
+ */
+void MainWindow::copyFullPathToClipboard()
+{
+  QTreeView *tb = ui->twProperties->currentWidget()->findChild<QTreeView*>("tvPkgFileList");
+  if (tb && tb->hasFocus())
+  {
+    QString path = utils::showFullPathOfItem(tb->currentIndex());
+    QClipboard *clip = qApp->clipboard();
+    clip->setText(path);
   }
 }
 
@@ -198,14 +214,7 @@ void MainWindow::keyPressEvent(QKeyEvent* ke)
   }
   else if(ke->key() == Qt::Key_C && ke->modifiers() == Qt::ControlModifier)
   {
-    QTreeView *tb = ui->twProperties->currentWidget()->findChild<QTreeView*>("tvPkgFileList");
-    if (tb && tb->hasFocus())
-    {
-      QString path = utils::showFullPathOfItem(tb->currentIndex());
-      QClipboard *clip = qApp->clipboard();
-
-      clip->setText(path);
-    }
+    copyFullPathToClipboard();
   }
   else if(ke->key() == Qt::Key_L && ke->modifiers() == Qt::ControlModifier)
   {
@@ -298,6 +307,9 @@ void MainWindow::keyPressEvent(QKeyEvent* ke)
   else ke->ignore();
 }
 
+/*
+ * This method is called wherever the user navigates with arrow keys in the main pkg list
+ */
 bool MainWindow::eventFilter(QObject *obj, QEvent *evt)
 {
   if(obj->objectName() == ui->tvPackages->objectName())

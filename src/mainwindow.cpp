@@ -735,6 +735,8 @@ void MainWindow::execContextMenuPkgFileList(QPoint point)
     menu.addAction(ui->actionExpandAllItems);
     menu.addSeparator();
 
+    menu.addAction(m_actionCopyFullPath);
+
     QDir d;
     QFile f(selectedPath);
 

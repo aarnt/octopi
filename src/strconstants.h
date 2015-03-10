@@ -585,7 +585,11 @@ public:
   }
 
   static QString getUseAURTool(){
-    return QObject::tr("Use %1 tool").arg(getForeignRepositoryToolName());
+    return QObject::tr("Use \"%1\" tool").arg(getForeignRepositoryToolName());
+  }
+
+  static QString getCopyFullPath(){
+    return QObject::tr("Copy path to clipboard");
   }
 
   //Style Sheets ---------------------------------

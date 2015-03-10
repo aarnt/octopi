@@ -1,4 +1,4 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="ar" version="2.0">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="ar" version="2.1">
 <context>
     <name>MainWindow</name>
     <message>
@@ -1076,6 +1076,16 @@ Are you sure you want to open it?</source>
         <location filename="Projects/octopi/src/strconstants.h" line="584"/>
         <source>Press Ctrl+A to select/deselect all</source>
         <translation>إضغط Ctrl+A لتحديد/إلغاء تحديد الكل</translation>
+    </message>
+    <message>
+        <location filename="Projects/octopi/src/strconstants.h" line="588"/>
+        <source>Use &quot;%1&quot; tool</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="Projects/octopi/src/strconstants.h" line="592"/>
+        <source>Copy path to clipboard</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

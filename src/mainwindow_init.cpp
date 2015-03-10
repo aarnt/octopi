@@ -717,13 +717,17 @@ void MainWindow::initActions()
   m_actionEditOctopiConf->setIcon(IconHelper::getIconBinary());
   connect(m_actionEditOctopiConf, SIGNAL(triggered()), this, SLOT(editOctopiConf()));
 
+  m_actionCopyFullPath = new QAction(this);
+  m_actionCopyFullPath->setText(StrConstants::getCopyFullPath());
+  m_actionCopyFullPath->setIcon(IconHelper::getIconEditCopy());
+  connect(m_actionCopyFullPath, SIGNAL(triggered()), this, SLOT(copyFullPathToClipboard()));
+
   QActionGroup *actionGroup = new QActionGroup(this);
   actionGroup->addAction(ui->actionSearchByDescription);
   actionGroup->addAction(ui->actionSearchByName);
   actionGroup->addAction(ui->actionSearchByFile);
   ui->actionSearchByName->setChecked(true);
   actionGroup->setExclusive(true);
-
   connect(actionGroup, SIGNAL(triggered(QAction*)), this, SLOT(tvPackagesSearchColumnChanged(QAction*)));
 
   ui->actionInstallLocalPackage->setIcon(IconHelper::getIconFolder());

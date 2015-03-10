@@ -1,4 +1,4 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="vi" version="2.0">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="vi" version="2.1">
 <context>
     <name>MainWindow</name>
     <message>
@@ -1076,6 +1076,16 @@ Bạn có chắc muốn mở tập tin này không?</translation>
         <location filename="Projects/octopi/src/strconstants.h" line="584"/>
         <source>Press Ctrl+A to select/deselect all</source>
         <translation>Nhấn tổ hợp phím Ctrl+A để chọn/bỏ chọn tất cả</translation>
+    </message>
+    <message>
+        <location filename="Projects/octopi/src/strconstants.h" line="588"/>
+        <source>Use &quot;%1&quot; tool</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="Projects/octopi/src/strconstants.h" line="592"/>
+        <source>Copy path to clipboard</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

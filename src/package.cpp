@@ -384,7 +384,7 @@ QList<PackageListData> *Package::getForeignPackageList()
 /*
  * Retrieves the list of all available packages in the database (installed + non-installed)
  */
-QList<PackageListData> * Package::getPackageList(const QString &packageName, ViewOptions option)
+QList<PackageListData> * Package::getPackageList(const QString &packageName)
 {
   //archlinuxfr/yaourt 1.2.2-1 [installed]
   //    A pacman wrapper with extended features and AUR support

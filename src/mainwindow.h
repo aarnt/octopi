@@ -72,6 +72,7 @@ class MainWindow : public QMainWindow
 
 signals:
   void buildPackageListDone();
+  void buildAURPackageListDone();
   void buildPackagesFromGroupListDone();
 
 public slots:
@@ -179,6 +180,7 @@ private:
   QAction *m_actionMenuRepository;
   QAction *m_actionRepositoryAll;
   QAction *m_actionEditOctopiConf;
+  QAction *m_actionCopyFullPath;
 
   //Toggles use of AUR tool
   QAction *m_separatorForActionAUR;
@@ -293,6 +295,8 @@ private slots:
   void showToolButtonAUR();
 
   //TreeView methods
+  void copyFullPathToClipboard();
+
   void collapseAllContentItems();
   void collapseThisContentItems();
   void expandAllContentItems();

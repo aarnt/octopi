@@ -146,17 +146,9 @@ void MainWindow::refreshGroupsWidget()
 
   QList<QTreeWidgetItem *> items;
   ui->twGroups->clear();
-  //m_hasAURTool = UnixCommand::hasTheExecutable(StrConstants::getForeignRepositoryToolName()) && !UnixCommand::isRootRunning();
 
   items.append(new QTreeWidgetItem((QTreeWidget*)0, QStringList("<" + StrConstants::getDisplayAllGroups() + ">")));
   m_AllGroupsItem = items.at(0);
-
-  /*if (m_hasAURTool)
-  {
-    items.append(new QTreeWidgetItem((QTreeWidget*)0, QStringList(StrConstants::getForeignToolGroup())));
-    m_AURItem = items.at(1);
-  }*/
-
   const QStringList*const packageGroups = Package::getPackageGroups();
   foreach(QString group, *packageGroups)
   {
@@ -321,6 +313,8 @@ void MainWindow::preBuildAURPackageList()
   {
     m_leFilterPackage->setFocus();
   }
+
+  emit buildAURPackageListDone();
 }
 
 /*
@@ -426,7 +420,7 @@ void MainWindow::metaBuildPackageList()
 
     QEventLoop el;
     QFuture<QList<PackageListData> *> f;
-    f = QtConcurrent::run(searchPacmanPackages, ectn_ALL_PKGS);
+    f = QtConcurrent::run(searchPacmanPackages);
     connect(&g_fwPacman, SIGNAL(finished()), this, SLOT(preBuildPackageList()));
 
     g_fwPacman.setFuture(f);
@@ -437,6 +431,8 @@ void MainWindow::metaBuildPackageList()
   }
   else if (isAURGroupSelected())
   {
+    m_toolButtonPacman->hide();
+    m_toolButtonAUR->hide();
     switchToViewAllPackages();
     ui->actionSearchByFile->setEnabled(false);
     m_packageModel->setShowColumnPopularity(true);
@@ -452,12 +448,17 @@ void MainWindow::metaBuildPackageList()
       m_leFilterPackage->setFocus();
       ui->twGroups->setEnabled(false);
 
+      QEventLoop el;
       QFuture<QList<PackageListData> *> f;
       disconnect(&g_fwAUR, SIGNAL(finished()), this, SLOT(preBuildAURPackageList()));
       m_cic = new CPUIntensiveComputing();
       f = QtConcurrent::run(searchAURPackages, m_leFilterPackage->text());
       g_fwAUR.setFuture(f);
       connect(&g_fwAUR, SIGNAL(finished()), this, SLOT(preBuildAURPackageList()));
+      disconnect(this, SIGNAL(buildAURPackageListDone()), &el, SLOT(quit()));
+      connect(this, SIGNAL(buildAURPackageListDone()), &el, SLOT(quit()));
+      el.exec();
+      std::cout << "Time elapsed building pkgs from '" << StrConstants::getForeignPkgRepositoryName().toLatin1().data() << " group' list: " << t1.elapsed() << " mili seconds." << std::endl;
 
       return;
     }
@@ -472,6 +473,7 @@ void MainWindow::metaBuildPackageList()
     {
       m_toolButtonPacman->hide();
       disconnect(&g_fwAURMeta, SIGNAL(finished()), this, SLOT(preBuildAURPackageListMeta()));
+
       QFuture<QList<PackageListData> *> f;
       f = QtConcurrent::run(searchAURPackages, m_leFilterPackage->text());
       g_fwAURMeta.setFuture(f);

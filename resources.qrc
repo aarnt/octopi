@@ -30,6 +30,7 @@
         <file>resources/images/exit.png</file>
         <file>resources/images/rollback.png</file>
         <file>resources/images/editfile.png</file>
+        <file>resources/images/edit-copy.png</file>
         <file>resources/images/collapse.png</file>
         <file>resources/images/expand.png</file>
         <file>resources/images/terminal.png</file>
