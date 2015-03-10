@@ -1703,14 +1703,15 @@ void MainWindow::actionsProcessFinished(int exitCode, QProcess::ExitStatus exitS
       else if (m_commandExecuting == ectn_SYSTEM_UPGRADE ||
                m_commandExecuting == ectn_RUN_SYSTEM_UPGRADE_IN_TERMINAL)
       {
-        buildPackageList(false);
+        //buildPackageList(false);
+        metaBuildPackageList();
       }
       else if (m_commandExecuting != ectn_MIRROR_CHECK)
       {
         //If we are in a package group, maybe we have installed/removed something, so...
         if (!isAURGroupSelected())
         {
-          buildPackageList(false);
+          metaBuildPackageList();
         }
         else
         {

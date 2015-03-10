@@ -351,6 +351,8 @@ void MainWindow::preBuildPackageList()
   }
 
   toggleSystemActions(true);
+
+  emit buildPackageListDone();
 }
 
 /*
@@ -391,10 +393,19 @@ void MainWindow::metaBuildPackageList()
     reapplyPackageFilter();
     disconnect(&g_fwPacman, SIGNAL(finished()), this, SLOT(preBuildPackageList()));
 
+    QEventLoop el;
     QFuture<QList<PackageListData> *> f;
     f = QtConcurrent::run(searchPacmanPackages, ectn_ALL_PKGS);
     connect(&g_fwPacman, SIGNAL(finished()), this, SLOT(preBuildPackageList()));
+
+    QTime t1;
     g_fwPacman.setFuture(f);
+    disconnect(this, SIGNAL(buildPackageListDone()), &el, SLOT(quit()));
+    connect(this, SIGNAL(buildPackageListDone()), &el, SLOT(quit()));
+    el.exec();
+    QTime t2;
+    int sec = t2.msecsTo(t1);
+    std::cout << "Time elapsed on building pkg list: " << sec << " mili seconds." << std::endl;
   }
   else if (isAURGroupSelected())
   {
@@ -524,14 +535,23 @@ void MainWindow::buildPackageList(bool nonBlocking)
 
   if (!isSearchByFileSelected())
   {
-    QEventLoop eventLoop;
-    QFuture<QList<PackageListData> *> fMark;
-    fMark = QtConcurrent::run(markForeignPackagesInPkgList, hasAURTool, m_outdatedAURPackageList);
-    g_fwMarkForeignPackages.setFuture(fMark);
-    connect(&g_fwMarkForeignPackages, SIGNAL(finished()), &eventLoop, SLOT(quit()));
-    eventLoop.exec();
+    /*if (m_guardEventLoop->tryLock())
+    {
+      QEventLoop eventLoop;
+      QFuture<QList<PackageListData> *> fMark;
+      fMark = QtConcurrent::run(markForeignPackagesInPkgList, hasAURTool, m_outdatedAURPackageList);
+      g_fwMarkForeignPackages.setFuture(fMark);
+      disconnect(&g_fwMarkForeignPackages, SIGNAL(finished()), &eventLoop, SLOT(quit()));
+      connect(&g_fwMarkForeignPackages, SIGNAL(finished()), &eventLoop, SLOT(quit()));
+      eventLoop.exec();
 
-    list->append(*g_fwMarkForeignPackages.result());
+      list->append(*g_fwMarkForeignPackages.result());
+      m_guardEventLoop->unlock();
+    }
+    else*/
+    {
+      list->append(*markForeignPackagesInPkgList(hasAURTool, m_outdatedAURPackageList));
+    }
   }
 
   m_progressWidget->setRange(0, list->count());

@@ -70,6 +70,9 @@ class MainWindow : public QMainWindow
 {
   Q_OBJECT
 
+signals:
+  void buildPackageListDone();
+
 public slots:
   void show();
 
@@ -401,7 +404,6 @@ private slots:
   void searchBarFindNextInTextBrowser();
   void searchBarFindPreviousInTextBrowser();
   void searchBarClosedInTextBrowser();
-
   void searchBarTextChangedInTreeView(const QString textToSearch);
   void searchBarFindNextInTreeView();
   void searchBarFindPreviousInTreeView();
