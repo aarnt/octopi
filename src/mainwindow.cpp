@@ -69,6 +69,8 @@ MainWindow::MainWindow(QWidget *parent) :
 
   ui->setupUi(this);
   switchToViewAllPackages();
+  m_hasAURTool =
+      UnixCommand::hasTheExecutable(StrConstants::getForeignRepositoryToolName()) && !UnixCommand::isRootRunning();
 }
 
 /*
@@ -92,7 +94,7 @@ void MainWindow::show()
     restoreGeometry(SettingsManager::getWindowSize());
     m_commandExecuting=ectn_NONE;
     m_commandQueued=ectn_NONE;
-    m_leFilterPackage = new SearchLineEdit(this);
+    m_leFilterPackage = new SearchLineEdit(this, m_hasSLocate);
 
     setWindowTitle(StrConstants::getApplicationName());
     setMinimumSize(QSize(820, 520));
@@ -144,7 +146,6 @@ void MainWindow::show()
 void MainWindow::switchToViewAllPackages()
 {
   m_selectedViewOption = ectn_ALL_PKGS;
-  //m_showOnlyInstalledPackages = false;
   disconnect(ui->actionViewAllPackages, SIGNAL(triggered()), this, SLOT(selectedAllPackagesMenu()));
   ui->actionViewAllPackages->setChecked(true);
   connect(ui->actionViewAllPackages, SIGNAL(triggered()), this, SLOT(selectedAllPackagesMenu()));
@@ -378,7 +379,7 @@ bool MainWindow::isAllGroupsSelected()
 
 bool MainWindow::isAllGroups(const QString& group)
 {
-  return (group == "<" + StrConstants::getDisplayAllGroups() + ">");
+  return (group == "<" + StrConstants::getDisplayAllGroups() + ">" && !m_actionSwitchToAURTool->isChecked());
 }
 
 /*
@@ -386,10 +387,7 @@ bool MainWindow::isAllGroups(const QString& group)
  */
 bool MainWindow::isAURGroupSelected()
 {
-  QModelIndex index = ui->twGroups->currentIndex();
-  QString group = ui->twGroups->model()->data(index).toString();
-
-  return (group == StrConstants::getForeignToolGroup());
+  return (m_actionSwitchToAURTool->isChecked());
 }
 
 /*
@@ -449,7 +447,7 @@ void MainWindow::tvPackagesSearchColumnChanged(QAction *actionSelected)
   if (actionSelected->objectName() == ui->actionSearchByName->objectName())
   {
     ui->menuView->setEnabled(true);
-    ui->twGroups->setEnabled(true);
+    if (!m_actionSwitchToAURTool->isChecked()) ui->twGroups->setEnabled(true);
 
     if (isAURGroupSelected())
       m_leFilterPackage->setRefreshValidator(ectn_AUR_VALIDATOR);
@@ -462,7 +460,7 @@ void MainWindow::tvPackagesSearchColumnChanged(QAction *actionSelected)
   else if (actionSelected->objectName() == ui->actionSearchByDescription->objectName())
   {
     ui->menuView->setEnabled(true);
-    ui->twGroups->setEnabled(true);
+    if (!m_actionSwitchToAURTool->isChecked()) ui->twGroups->setEnabled(true);
 
     if (isAURGroupSelected())
       m_leFilterPackage->setRefreshValidator(ectn_AUR_VALIDATOR);

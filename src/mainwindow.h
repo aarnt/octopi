@@ -118,6 +118,12 @@ private:
   //Controls if this Linux box has an AUR tool installed
   bool m_hasAURTool;
 
+  //Controls if this Linux box has slocate utility
+  bool m_hasSLocate;
+
+  //Controls if this Linux box has the mirror-check tool
+  bool m_hasMirrorCheck;
+
   //Controls if the NewsTab must be showed
   bool m_gotoNewsTab;
 
@@ -165,6 +171,7 @@ private:
   QMenu *m_menuToolButtonPacman;
   QMenu *m_menuToolButtonAUR;
 
+  QAction *m_dummyAction;
   QAction *m_actionInstallPacmanUpdates;
   QAction *m_actionInstallAURUpdates;
   QAction *m_actionShowGroups;
@@ -173,10 +180,12 @@ private:
   QAction *m_actionRepositoryAll;
   QAction *m_actionEditOctopiConf;
 
-  QByteArray m_horizontalSplit;
+  //Toggles use of AUR tool
+  QAction *m_separatorForActionAUR;
+  QAction *m_actionSwitchToAURTool;
 
+  QByteArray m_horizontalSplit;
   QTreeWidgetItem *m_AllGroupsItem;
-  QTreeWidgetItem *m_AURItem;
 
   int m_numberOfInstalledPackages;
   int m_numberOfOutdatedPackages;
@@ -212,7 +221,6 @@ private:
   bool isPackageTreeViewVisible();
   void initPackageTreeView();
   void resizePackageView();
-
   void changeTabWidgetPropertiesIndex(const int newIndex);
   void initTabWidgetPropertiesIndex();
   void initTabInfo();
@@ -274,6 +282,7 @@ private:
   void showDistroNews(QString distroRSSXML, bool searchForLatestNews = true);
   void initTabNews();
   void initTabHelpUsage();
+  void refreshToolBar();
   void refreshStatusBarToolButtons();
 
   void switchToViewAllPackages();
@@ -310,6 +319,7 @@ private slots:
   void metaBuildPackageList();
   void onPackageGroupChanged();
 
+  void AURToolSelected();
   void groupItemSelected();
 
   void preBuildPackageList();
@@ -332,7 +342,6 @@ private slots:
   //TabWidget methods
   void refreshTabInfo(QString pkgName);
   void refreshTabInfo(bool clearContents=false, bool neverQuit=false);
-
   void refreshTabFiles(bool clearContents=false, bool neverQuit=false);
   void onDoubleClickPackageList();
   void changedTabIndex();
@@ -372,10 +381,8 @@ private slots:
 
   void insertIntoRemovePackage();
   void insertIntoInstallPackage();
-
   void insertIntoInstallPackageOptDeps(const QString &packageName);
   bool insertIntoRemovePackageDeps(const QStringList &dependencies);
-
   void insertGroupIntoRemovePackage();
   void insertGroupIntoInstallPackage();
 
@@ -394,9 +401,7 @@ private slots:
   void onPressDelete();
   void changeTransactionActionsState();
   void clearTransactionTreeView();
-
   void positionInPkgListSearchByFile();
-
   void positionInFirstMatch();
   void searchBarTextChangedInTextBrowser(const QString textToSearch);
   void searchBarFindNextInTextBrowser();
@@ -440,7 +445,6 @@ public:
   void setRemoveCommand(const QString &removeCommand);
   void setPackagesToInstallList(QStringList pkgList){ m_packagesToInstallList = pkgList; }
   void doInstallLocalPackages();
-
   bool isExecutingCommand(){ return m_commandExecuting != ectn_NONE; }
 };
 

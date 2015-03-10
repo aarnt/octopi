@@ -41,7 +41,7 @@ protected:
   void resizeEvent(QResizeEvent *event);
 
 public:
-  explicit SearchLineEdit(QWidget *parent = NULL);
+  explicit SearchLineEdit(QWidget *parent = NULL, bool hasSLocate = false);
 
   inline void initStyleSheet(){ setStyleSheet(styleSheetForCurrentState()); }
   void setRefreshValidator(ValidatorType validatorType);

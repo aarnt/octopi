@@ -195,7 +195,6 @@ void SettingsManager::setKeepNumUninstalledPackages(int newValue)
 bool SettingsManager::isValidTerminalSelected()
 {
   QString userTerminal = getTerminal();
-
   if (userTerminal == ctn_AUTOMATIC) return true;
 
   if (userTerminal == ctn_XFCE_TERMINAL ||

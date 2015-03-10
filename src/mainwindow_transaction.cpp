@@ -1494,7 +1494,7 @@ void MainWindow::toggleTransactionActions(const bool value)
   ui->actionRemoveTransactionItems->setEnabled(value);
   ui->actionRemove->setEnabled(value);
 
-  if(UnixCommand::hasTheExecutable(ctn_MIRROR_CHECK_APP))
+  if(m_hasMirrorCheck)
   {
     m_actionMirrorCheck->setEnabled(value);
   }
@@ -1518,7 +1518,7 @@ void MainWindow::toggleSystemActions(const bool value)
 {
   if (value == true && m_commandExecuting != ectn_NONE) return;
 
-  if(UnixCommand::hasTheExecutable(ctn_MIRROR_CHECK_APP))
+  if(m_hasMirrorCheck)
   {
     m_actionMirrorCheck->setEnabled(value);
   }

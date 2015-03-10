@@ -31,7 +31,7 @@ public:
   }
 
   static QString getApplicationVersion(){
-    return "0.6.1-dev";
+    return "0.7.0-dev";
   }
 
   static QString getQtVersion(){
@@ -85,7 +85,7 @@ public:
         ret = QLatin1String( "kcp" );
       /*else if (UnixCommand::hasTheExecutable("pacaur"))
         ret = QLatin1String( "pacaur" );*/
-      else if (UnixCommand::hasTheExecutable("yaourt"))
+      else
         ret = QLatin1String( "yaourt" );
 
       first = false;
@@ -582,6 +582,10 @@ public:
 
   static QString getPressCtrlAToSelectAll(){
     return QObject::tr("Press Ctrl+A to select/deselect all");
+  }
+
+  static QString getUseAURTool(){
+    return QObject::tr("Use %1 tool").arg(getForeignRepositoryToolName());
   }
 
   //Style Sheets ---------------------------------

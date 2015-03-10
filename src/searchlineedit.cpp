@@ -19,10 +19,10 @@
 #include <QCompleter>
 #include <QStringListModel>
 
-SearchLineEdit::SearchLineEdit(QWidget *parent) :
+SearchLineEdit::SearchLineEdit(QWidget *parent, bool hasSLocate) :
   QLineEdit(parent){
 
-  m_hasLocate = UnixCommand::hasTheExecutable("slocate");
+  m_hasLocate = hasSLocate;
 
   m_completerModel = new QStringListModel(this);
   m_completer = new QCompleter(m_completerModel, this);

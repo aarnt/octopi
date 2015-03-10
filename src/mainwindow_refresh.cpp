@@ -146,16 +146,16 @@ void MainWindow::refreshGroupsWidget()
 
   QList<QTreeWidgetItem *> items;
   ui->twGroups->clear();
-  m_hasAURTool = UnixCommand::hasTheExecutable(StrConstants::getForeignRepositoryToolName()) && !UnixCommand::isRootRunning();
+  //m_hasAURTool = UnixCommand::hasTheExecutable(StrConstants::getForeignRepositoryToolName()) && !UnixCommand::isRootRunning();
 
   items.append(new QTreeWidgetItem((QTreeWidget*)0, QStringList("<" + StrConstants::getDisplayAllGroups() + ">")));
   m_AllGroupsItem = items.at(0);
 
-  if (m_hasAURTool)
+  /*if (m_hasAURTool)
   {
     items.append(new QTreeWidgetItem((QTreeWidget*)0, QStringList(StrConstants::getForeignToolGroup())));
     m_AURItem = items.at(1);
-  }
+  }*/
 
   const QStringList*const packageGroups = Package::getPackageGroups();
   foreach(QString group, *packageGroups)
@@ -168,6 +168,28 @@ void MainWindow::refreshGroupsWidget()
   ui->twGroups->insertTopLevelItems(0, items);
   ui->twGroups->setCurrentItem(items.at(0));
   connect(ui->twGroups, SIGNAL(itemSelectionChanged()), this, SLOT(groupItemSelected()));
+}
+
+/*
+ * User clicked AUR tool button in the toolbar
+ */
+void MainWindow::AURToolSelected()
+{
+  if (m_actionSwitchToAURTool->isChecked())
+  {
+    ui->twGroups->setEnabled(false);
+  }
+  else
+  {
+    ui->twGroups->setEnabled(true);
+  }
+
+  switchToViewAllPackages();
+  m_selectedRepository = "";
+  m_actionRepositoryAll->setChecked(true);
+  m_refreshOutdatedPackageLists = false;
+  m_leFilterPackage->clear();
+  metaBuildPackageList();
 }
 
 /*
@@ -274,6 +296,8 @@ void MainWindow::buildPackagesFromGroupList(const QString group)
   refreshTabInfo();
   refreshTabFiles();
   ui->tvPackages->setFocus();
+
+  refreshToolBar();
   refreshStatusBarToolButtons();
 
   tvPackagesSelectionChanged(QItemSelection(),QItemSelection());
@@ -338,7 +362,7 @@ void MainWindow::preBuildPackageList()
   m_listOfPackages.reset(g_fwPacman.result());
   buildPackageList();
 
-  if(!hasToCallSysUpgrade && !secondTime && UnixCommand::hasTheExecutable(ctn_MIRROR_CHECK_APP))
+  if(!hasToCallSysUpgrade && !secondTime && m_hasMirrorCheck)
   {
 #ifdef OCTOPI_DEV_CODE
     if (!SettingsManager::getSkipMirrorCheckAtStartup())
@@ -392,6 +416,8 @@ void MainWindow::metaBuildPackageList()
   if (ui->twGroups->topLevelItemCount() == 0 || isAllGroupsSelected())
   {        
     ui->actionSearchByFile->setEnabled(true);
+    ui->actionSearchByName->setChecked(true);
+
     toggleSystemActions(false);
     disconnect(m_leFilterPackage, SIGNAL(textChanged(QString)), this, SLOT(reapplyPackageFilter()));
     connect(m_leFilterPackage, SIGNAL(textChanged(QString)), this, SLOT(reapplyPackageFilter()));
@@ -407,7 +433,7 @@ void MainWindow::metaBuildPackageList()
     disconnect(this, SIGNAL(buildPackageListDone()), &el, SLOT(quit()));
     connect(this, SIGNAL(buildPackageListDone()), &el, SLOT(quit()));
     el.exec();        
-    std::cout << "Time elapsed building main pkg list: " << t1.elapsed() << " mili seconds." << std::endl;
+    std::cout << "Time elapsed building pkgs from 'ALL group' list: " << t1.elapsed() << " mili seconds." << std::endl;
   }
   else if (isAURGroupSelected())
   {
@@ -477,7 +503,7 @@ void MainWindow::metaBuildPackageList()
     disconnect(this, SIGNAL(buildPackagesFromGroupListDone()), &el, SLOT(quit()));
     connect(this, SIGNAL(buildPackagesFromGroupListDone()), &el, SLOT(quit()));
     el.exec();
-    std::cout << "Time elapsed building pkgs from group list: " << t1.elapsed() << " mili seconds." << std::endl;
+    std::cout << "Time elapsed building pkgs from '" << getSelectedGroup().toLatin1().data() << " group' list: " << t1.elapsed() << " mili seconds." << std::endl;
   }
 }
 
@@ -517,7 +543,6 @@ void MainWindow::showPackagesWithNoDescription()
 void MainWindow::buildPackageList()
 {
   CPUIntensiveComputing cic;
-  bool hasAURTool = UnixCommand::hasTheExecutable(StrConstants::getForeignRepositoryToolName()) && !UnixCommand::isRootRunning();
   static bool firstTime = true;
 
   if(m_refreshOutdatedPackageLists) //If it's not the starting of the app...
@@ -526,7 +551,7 @@ void MainWindow::buildPackageList()
     m_outdatedPackageList = Package::getOutdatedPackageList();
     m_numberOfOutdatedPackages = m_outdatedPackageList->count();
 
-    if (hasAURTool)
+    if (m_hasAURTool)
     {
       m_outdatedAURPackageList = Package::getOutdatedAURPackageList();
     }
@@ -540,7 +565,7 @@ void MainWindow::buildPackageList()
 
   if (!isSearchByFileSelected())
   {
-    list->append(*markForeignPackagesInPkgList(hasAURTool, m_outdatedAURPackageList));
+    list->append(*markForeignPackagesInPkgList(m_hasAURTool, m_outdatedAURPackageList));
   }
 
   m_progressWidget->setRange(0, list->count());
@@ -562,6 +587,15 @@ void MainWindow::buildPackageList()
   m_progressWidget->close();
 
   m_packageRepo.setData(list, *unrequiredPackageList);
+
+  if (ui->actionSearchByDescription->isChecked())
+  {
+    m_packageModel->applyFilter(PackageModel::ctn_PACKAGE_DESCRIPTION_FILTER_NO_COLUMN);
+  }
+  else
+  {
+    m_packageModel->applyFilter(PackageModel::ctn_PACKAGE_NAME_COLUMN);
+  }
 
   if (isAllGroupsSelected()) m_packageModel->applyFilter(m_selectedViewOption, m_selectedRepository, "");
   if (m_leFilterPackage->text() != "") reapplyPackageFilter();
@@ -617,6 +651,7 @@ void MainWindow::buildPackageList()
     }
   }
 
+  refreshToolBar();
   refreshStatusBarToolButtons();
   m_refreshOutdatedPackageLists = true;
 }
@@ -627,7 +662,7 @@ void MainWindow::buildPackageList()
 void MainWindow::refreshPackageList()
 {
   CPUIntensiveComputing cic;
-  bool hasAURTool = UnixCommand::hasTheExecutable(StrConstants::getForeignRepositoryToolName()) && !UnixCommand::isRootRunning();
+  //bool hasAURTool = UnixCommand::hasTheExecutable(StrConstants::getForeignRepositoryToolName()) && !UnixCommand::isRootRunning();
 
   const std::unique_ptr<const QSet<QString> > unrequiredPackageList(Package::getUnrequiredPackageList());
   QList<PackageListData> *list = Package::getPackageList();
@@ -641,7 +676,7 @@ void MainWindow::refreshPackageList()
   {
     while (itForeign != listForeign->end())
     {
-      if (!hasAURTool || !m_outdatedAURPackageList->contains(itForeign->name))
+      if (!m_hasAURTool || !m_outdatedAURPackageList->contains(itForeign->name))
       {
         pld = PackageListData(
               itForeign->name, itForeign->repository, itForeign->version,
@@ -727,6 +762,7 @@ void MainWindow::buildAURPackageList()
   m_progressWidget->setValue(counter);
   m_progressWidget->close();
 
+  refreshToolBar();
   refreshStatusBarToolButtons();
 }
 
@@ -769,14 +805,47 @@ void MainWindow::showToolButtonAUR()
 }
 
 /*
+ * Refreshes toolbar in order to insert/remove AUR tool button
+ */
+void MainWindow::refreshToolBar()
+{
+  m_hasAURTool =
+      UnixCommand::hasTheExecutable(StrConstants::getForeignRepositoryToolName()) && !UnixCommand::isRootRunning();
+
+  if (m_hasAURTool)
+  {
+    if (!ui->mainToolBar->actions().contains(m_actionSwitchToAURTool))
+    {
+      ui->mainToolBar->insertAction(m_dummyAction, m_actionSwitchToAURTool);
+      m_separatorForActionAUR = ui->mainToolBar->insertSeparator(m_actionSwitchToAURTool);
+    }
+  }
+  else
+  {
+    if (ui->mainToolBar->actions().contains(m_actionSwitchToAURTool))
+    {
+      bool wasChecked = (m_actionSwitchToAURTool->isChecked());
+
+      ui->mainToolBar->removeAction(m_actionSwitchToAURTool);
+      ui->mainToolBar->removeAction(m_separatorForActionAUR);
+
+      if (wasChecked)
+      {
+        m_actionSwitchToAURTool->setChecked(false);
+        ui->twGroups->setEnabled(true);
+        groupItemSelected();
+      }
+    }
+  }
+}
+
+
+/*
  * Refreshes the toolButtons which indicate outdated packages
  */
 void MainWindow::refreshStatusBarToolButtons()
 {
-  bool hasAURTool =
-      UnixCommand::hasTheExecutable(StrConstants::getForeignRepositoryToolName()) && !UnixCommand::isRootRunning();
-
-  if (hasAURTool)
+  if (m_hasAURTool)
   {
     QFuture<AUROutdatedPackages *> f;
     f = QtConcurrent::run(getOutdatedAURPackages);
@@ -784,7 +853,7 @@ void MainWindow::refreshStatusBarToolButtons()
     connect(&g_fwOutdatedAURPackages, SIGNAL(finished()), this, SLOT(showToolButtonAUR()));
   }
 
-  if (!isSearchByFileSelected())
+  if (!isSearchByFileSelected() && !m_actionSwitchToAURTool->isChecked())
     ui->twGroups->setEnabled(true);
 }
 
@@ -1043,6 +1112,7 @@ void MainWindow::refreshTabFiles(bool clearContents, bool neverQuit)
     QStringList fileList;
     QStandardItemModel *fakeModelPkgFileList = new QStandardItemModel(this);
     QStandardItemModel *modelPkgFileList = qobject_cast<QStandardItemModel*>(tvPkgFileList->model());
+
     modelPkgFileList->clear();
     QStandardItem *fakeRoot = fakeModelPkgFileList->invisibleRootItem();
     QStandardItem *root = modelPkgFileList->invisibleRootItem();
@@ -1055,7 +1125,9 @@ void MainWindow::refreshTabFiles(bool clearContents, bool neverQuit)
 
     QString fullPath;
     bool isSymLinkToDir = false;
-    foreach ( QString file, fileList ){
+
+    foreach ( QString file, fileList )
+    {
       bool isDir = file.endsWith('/');
       isSymLinkToDir = false;
       QString baseFileName = extractBaseFileName(file);

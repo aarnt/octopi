@@ -140,7 +140,7 @@ void MainWindow::initAppIcon()
 {
   m_outdatedPackageList = Package::getOutdatedPackageList();
 
-  if (UnixCommand::hasTheExecutable(StrConstants::getForeignRepositoryToolName()))
+  if (m_hasAURTool)
   {
     m_outdatedAURPackageList = Package::getOutdatedAURPackageList();
   }
@@ -221,7 +221,6 @@ void MainWindow::initMenuBar()
   QActionGroup *actionGroupRepositories = new QActionGroup(this);
 
   ui->actionViewAllPackages->setText(StrConstants::getAll());
-  //ui->actionViewAllPackages->setChecked(true);
 
   actionGroupPackages->addAction(ui->actionViewAllPackages);
   actionGroupPackages->addAction(ui->actionViewInstalledPackages);
@@ -278,11 +277,20 @@ void MainWindow::initToolBar()
   ui->mainToolBar->addAction(ui->actionCommit);
   ui->mainToolBar->addAction(ui->actionCancel);
 
-  if(UnixCommand::hasTheExecutable(ctn_MIRROR_CHECK_APP))
+  if(m_hasMirrorCheck)
   {
     ui->mainToolBar->addAction(m_actionMirrorCheck);
   }
 
+  if (m_hasAURTool)
+  {
+    m_separatorForActionAUR = ui->mainToolBar->addSeparator();
+    ui->mainToolBar->addAction(m_actionSwitchToAURTool);
+  }
+
+  m_dummyAction = new QAction(this);
+  m_dummyAction->setVisible(false);
+  ui->mainToolBar->addAction(m_dummyAction);
   m_leFilterPackage->setMinimumHeight(24);
   ui->mainToolBar->addWidget(m_leFilterPackage);
 
@@ -342,7 +350,6 @@ void MainWindow::initToolButtonAUR()
   m_toolButtonAUR->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
   m_toolButtonAUR->setAutoRaise(true);
   m_toolButtonAUR->hide();
-
   m_menuToolButtonAUR = new QMenu(this);
   m_menuToolButtonAUR->addAction(m_actionInstallAURUpdates);
   m_toolButtonAUR->setPopupMode(QToolButton::MenuButtonPopup);
@@ -497,10 +504,7 @@ void MainWindow::initPackageTreeView()
 #endif
 
   ui->tvPackages->header()->setDefaultAlignment( Qt::AlignLeft );
-  //ui->tvPackages->setStyleSheet(StrConstants::getTreeViewCSS());
-
   resizePackageView();
-
   ui->tvPackages->installEventFilter(this);
 
   connect(ui->tvPackages->selectionModel(), SIGNAL(selectionChanged(QItemSelection,QItemSelection)),
@@ -650,14 +654,12 @@ void MainWindow::initTabOutput()
       "MainWindow", aux.toUtf8(), 0/*, QApplication::UnicodeUTF8*/ ) );
 #endif
 
-  /////////  TEST CODE
   SearchBar *searchBar = new SearchBar(this);
   connect(searchBar, SIGNAL(textChanged(QString)), this, SLOT(searchBarTextChangedInTextBrowser(QString)));
   connect(searchBar, SIGNAL(closed()), this, SLOT(searchBarClosedInTextBrowser()));
   connect(searchBar, SIGNAL(findNext()), this, SLOT(searchBarFindNextInTextBrowser()));
   connect(searchBar, SIGNAL(findPrevious()), this, SLOT(searchBarFindPreviousInTextBrowser()));
   gridLayoutX->addWidget(searchBar, 1, 0, 1, 1);
-  /////////  TEST CODE
 
   ui->twProperties->setCurrentIndex(ctn_TABINDEX_OUTPUT);
   text->show();
@@ -669,7 +671,10 @@ void MainWindow::initTabOutput()
  */
 void MainWindow::initActions()
 {
-  if(UnixCommand::hasTheExecutable(ctn_MIRROR_CHECK_APP))
+  m_hasSLocate = UnixCommand::hasTheExecutable("slocate");
+  m_hasMirrorCheck = UnixCommand::hasTheExecutable(ctn_MIRROR_CHECK_APP);
+
+  if(m_hasMirrorCheck)
   {
     m_actionMirrorCheck = new QAction(this);
     m_actionMirrorCheck->setShortcut(QKeySequence(Qt::ControlModifier|Qt::ShiftModifier|Qt::Key_M));
@@ -677,6 +682,13 @@ void MainWindow::initActions()
     m_actionMirrorCheck->setIcon(IconHelper::getIconMirrorCheck());
     connect(m_actionMirrorCheck, SIGNAL(triggered()), this, SLOT(doMirrorCheck()));
   }  
+
+  m_actionSwitchToAURTool = new QAction(this);
+  m_actionSwitchToAURTool->setIcon(IconHelper::getIconForeignGreen());
+  m_actionSwitchToAURTool->setText(StrConstants::getUseAURTool());
+  m_actionSwitchToAURTool->setCheckable(true);
+  m_actionSwitchToAURTool->setChecked(false);
+  connect(m_actionSwitchToAURTool, SIGNAL(triggered()), this, SLOT(AURToolSelected()));
 
   m_actionInstallPacmanUpdates = new QAction(this);
   m_actionInstallPacmanUpdates->setIcon(IconHelper::getIconToInstall());

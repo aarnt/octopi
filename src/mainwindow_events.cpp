@@ -254,11 +254,10 @@ void MainWindow::keyPressEvent(QKeyEvent* ke)
   else if(ke->key() == Qt::Key_Y && ke->modifiers() == (Qt::ShiftModifier|Qt::ControlModifier)
           && m_hasAURTool)
   {
-    //The user wants to go to fake "AUR tool" group
+    //The user wants to use "AUR tool" to search for pkgs
     if (!isAURGroupSelected())
     {
-      ui->twGroups->setCurrentItem(m_AURItem);
-      //...and let us focus the search edit!
+      m_actionSwitchToAURTool->trigger();
       m_leFilterPackage->setFocus();
     }
   }

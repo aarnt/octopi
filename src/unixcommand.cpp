@@ -569,6 +569,8 @@ bool UnixCommand::doInternetPingTest()
  */
 bool UnixCommand::hasTheExecutable( const QString& exeName )
 {
+  //std::cout << "Searching for the executable: " << exeName.toLatin1().data() << std::endl;
+
   QProcess proc;
   proc.setProcessChannelMode(QProcess::MergedChannels);
   QString sParam = "\"which " + exeName + "\"";

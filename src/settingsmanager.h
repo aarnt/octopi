@@ -40,7 +40,6 @@ const QString ctn_KEY_LAST_SYNC_DB_TIME("LastSyncDbTime");
 const QString ctn_KEY_SYNC_DB_HOUR("SyncDbHour");
 const QString ctn_KEY_TERMINAL("Terminal");
 const QString ctn_AUTOMATIC("automatic");
-
 const QString ctn_KEEP_NUM_INSTALLED("Keep_Num_Installed");
 const QString ctn_KEEP_NUM_UNINSTALLED("Keep_Num_Uninstalled");
 

@@ -1,10 +1,12 @@
-0.6.1 (dev)
+0.7.0 (dev)
   Major speed fix: Faster pkg list building.
   Reverted to showing ALL packages at startup.
   Now pacman.conf's "IgnoreGroup" option is honored.
+  Toolbar now shows AUR tool button instead of a fake pacman group.
   Remove "Yes" button from transaction dialog, everytime 'pacman' 
 	is one of the target packages.
   BugFix: Filter connect chain bug decreased filter's performance over time.
+  BugFix: Search by name was not being used after reverting from AUR search.
 
 0.6.0
   BugFix: Pkg list was being refreshed twice sometimes.
