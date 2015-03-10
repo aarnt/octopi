@@ -366,6 +366,8 @@ void MainWindow::preBuildPackagesFromGroupList()
   buildPackagesFromGroupList(result.first);
 
   toggleSystemActions(true);
+
+  emit buildPackagesFromGroupListDone();
 }
 
 /*
@@ -405,7 +407,7 @@ void MainWindow::metaBuildPackageList()
     disconnect(this, SIGNAL(buildPackageListDone()), &el, SLOT(quit()));
     connect(this, SIGNAL(buildPackageListDone()), &el, SLOT(quit()));
     el.exec();        
-    std::cout << "Time elapsed on building pkg list: " << t1.elapsed() << " mili seconds." << std::endl;
+    std::cout << "Time elapsed building main pkg list: " << t1.elapsed() << " mili seconds." << std::endl;
   }
   else if (isAURGroupSelected())
   {
@@ -466,10 +468,16 @@ void MainWindow::metaBuildPackageList()
     connect(m_leFilterPackage, SIGNAL(textChanged(QString)), this, SLOT(reapplyPackageFilter()));
     reapplyPackageFilter();
     disconnect(&g_fwPacmanGroup, SIGNAL(finished()), this, SLOT(preBuildPackagesFromGroupList()));
+
+    QEventLoop el;
     QFuture<GroupMemberPair> f;
     f = QtConcurrent::run(searchPacmanPackagesFromGroup, getSelectedGroup());
     g_fwPacmanGroup.setFuture(f);
     connect(&g_fwPacmanGroup, SIGNAL(finished()), this, SLOT(preBuildPackagesFromGroupList()));
+    disconnect(this, SIGNAL(buildPackagesFromGroupListDone()), &el, SLOT(quit()));
+    connect(this, SIGNAL(buildPackagesFromGroupListDone()), &el, SLOT(quit()));
+    el.exec();
+    std::cout << "Time elapsed building pkgs from group list: " << t1.elapsed() << " mili seconds." << std::endl;
   }
 }
 
@@ -506,7 +514,7 @@ void MainWindow::showPackagesWithNoDescription()
  *
  * It's called Only: when the selected group is <All> !
  */
-void MainWindow::buildPackageList(bool nonBlocking)
+void MainWindow::buildPackageList()
 {
   CPUIntensiveComputing cic;
   bool hasAURTool = UnixCommand::hasTheExecutable(StrConstants::getForeignRepositoryToolName()) && !UnixCommand::isRootRunning();
@@ -528,30 +536,11 @@ void MainWindow::buildPackageList(bool nonBlocking)
 
   // Fetch package list
   QList<PackageListData> *list;
-  if(nonBlocking)
-    list = m_listOfPackages.release();
-  else
-    list = Package::getPackageList();
+  list = m_listOfPackages.release();
 
   if (!isSearchByFileSelected())
   {
-    /*if (m_guardEventLoop->tryLock())
-    {
-      QEventLoop eventLoop;
-      QFuture<QList<PackageListData> *> fMark;
-      fMark = QtConcurrent::run(markForeignPackagesInPkgList, hasAURTool, m_outdatedAURPackageList);
-      g_fwMarkForeignPackages.setFuture(fMark);
-      disconnect(&g_fwMarkForeignPackages, SIGNAL(finished()), &eventLoop, SLOT(quit()));
-      connect(&g_fwMarkForeignPackages, SIGNAL(finished()), &eventLoop, SLOT(quit()));
-      eventLoop.exec();
-
-      list->append(*g_fwMarkForeignPackages.result());
-      m_guardEventLoop->unlock();
-    }
-    else*/
-    {
-      list->append(*markForeignPackagesInPkgList(hasAURTool, m_outdatedAURPackageList));
-    }
+    list->append(*markForeignPackagesInPkgList(hasAURTool, m_outdatedAURPackageList));
   }
 
   m_progressWidget->setRange(0, list->count());
@@ -1060,7 +1049,6 @@ void MainWindow::refreshTabFiles(bool clearContents, bool neverQuit)
     QStandardItem *lastDir, *item, *lastItem=root, *parent;
     bool first=true;
     lastDir = root;
-
     fileList = Package::getContents(pkgName, !nonInstalled);
 
     if (fileList.count() > 0) CPUIntensiveComputing cic;
@@ -1249,12 +1237,6 @@ void MainWindow::reapplyPackageFilter()
 void MainWindow::selectedAllPackagesMenu()
 {  
   m_selectedViewOption = ectn_ALL_PKGS;
-
-  /*if (m_showOnlyInstalledPackages)
-  {
-    m_showOnlyInstalledPackages = false;
-    metaBuildPackageList();
-  }*/
   changePackageListModel(ectn_ALL_PKGS, m_selectedRepository);
 }
 
@@ -1273,12 +1255,6 @@ void MainWindow::selectedInstalledPackagesMenu()
 void MainWindow::selectedNonInstalledPackagesMenu()
 {
   m_selectedViewOption = ectn_NON_INSTALLED_PKGS;
-
-  /*if (m_showOnlyInstalledPackages)
-  {
-    m_showOnlyInstalledPackages = false;
-    metaBuildPackageList();
-  }*/
   changePackageListModel(ectn_NON_INSTALLED_PKGS, m_selectedRepository);
 }
 

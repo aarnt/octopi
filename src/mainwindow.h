@@ -72,6 +72,7 @@ class MainWindow : public QMainWindow
 
 signals:
   void buildPackageListDone();
+  void buildPackagesFromGroupListDone();
 
 public slots:
   void show();
@@ -173,8 +174,6 @@ private:
   QAction *m_actionEditOctopiConf;
 
   QByteArray m_horizontalSplit;
-
-  //bool m_showOnlyInstalledPackages;
 
   QTreeWidgetItem *m_AllGroupsItem;
   QTreeWidgetItem *m_AURItem;
@@ -278,7 +277,6 @@ private:
   void refreshStatusBarToolButtons();
 
   void switchToViewAllPackages();
-  //void switchToViewInstalledPackages();
 
 private slots:
   void initToolButtonPacman();
@@ -306,7 +304,7 @@ private slots:
   void tvTransactionRowsRemoved(const QModelIndex& parent, int, int);
 
   void buildPackagesFromGroupList(const QString group);
-  void buildPackageList(bool nonBlocking=true);
+  void buildPackageList();
   void refreshPackageList();
 
   void metaBuildPackageList();
@@ -399,7 +397,7 @@ private slots:
 
   void positionInPkgListSearchByFile();
 
-  void _positionInFirstMatch();
+  void positionInFirstMatch();
   void searchBarTextChangedInTextBrowser(const QString textToSearch);
   void searchBarFindNextInTextBrowser();
   void searchBarFindPreviousInTextBrowser();

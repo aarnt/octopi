@@ -74,7 +74,7 @@ void MainWindow::searchBarTextChangedInTextBrowser(const QString textToSearch)
       QTextCursor tc = tb->textCursor();
       tc.clearSelection();
       tb->setTextCursor(tc);
-      _positionInFirstMatch();
+      positionInFirstMatch();
     }
     else sb->getSearchLineEdit()->setNotFoundStyle();
   }
@@ -226,7 +226,7 @@ void MainWindow::searchBarClosedInTreeView()
 /*
  * Helper to position in the first result when searching inside a textBrowser
  */
-void MainWindow::_positionInFirstMatch()
+void MainWindow::positionInFirstMatch()
 {
   QTextBrowser *tb = ui->twProperties->currentWidget()->findChild<QTextBrowser*>("textBrowser");
   SearchBar *sb = ui->twProperties->currentWidget()->findChild<SearchBar*>("searchbar");
