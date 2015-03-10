@@ -427,7 +427,8 @@ void MainWindow::metaBuildPackageList()
     disconnect(this, SIGNAL(buildPackageListDone()), &el, SLOT(quit()));
     connect(this, SIGNAL(buildPackageListDone()), &el, SLOT(quit()));
     el.exec();        
-    std::cout << "Time elapsed building pkgs from 'ALL group' list: " << t1.elapsed() << " mili seconds." << std::endl;
+    std::cout << m_packageModel->getPackageCount() << " pkgs => " <<
+                 "Time elapsed building pkgs from 'ALL group' list: " << t1.elapsed() << " mili seconds." << std::endl;
   }
   else if (isAURGroupSelected())
   {
@@ -458,7 +459,8 @@ void MainWindow::metaBuildPackageList()
       disconnect(this, SIGNAL(buildAURPackageListDone()), &el, SLOT(quit()));
       connect(this, SIGNAL(buildAURPackageListDone()), &el, SLOT(quit()));
       el.exec();
-      std::cout << "Time elapsed building pkgs from '" << StrConstants::getForeignPkgRepositoryName().toLatin1().data() << " group' list: " << t1.elapsed() << " mili seconds." << std::endl;
+      std::cout << m_packageModel->getPackageCount() << " pkgs => " <<
+                   "Time elapsed building pkgs from '" << StrConstants::getForeignPkgRepositoryName().toLatin1().data() << " group' list: " << t1.elapsed() << " mili seconds." << std::endl;
 
       return;
     }
@@ -505,7 +507,8 @@ void MainWindow::metaBuildPackageList()
     disconnect(this, SIGNAL(buildPackagesFromGroupListDone()), &el, SLOT(quit()));
     connect(this, SIGNAL(buildPackagesFromGroupListDone()), &el, SLOT(quit()));
     el.exec();
-    std::cout << "Time elapsed building pkgs from '" << getSelectedGroup().toLatin1().data() << " group' list: " << t1.elapsed() << " mili seconds." << std::endl;
+    std::cout << m_packageModel->getPackageCount() << " pkgs => " <<
+                 "Time elapsed building pkgs from '" << getSelectedGroup().toLatin1().data() << " group' list: " << t1.elapsed() << " mili seconds." << std::endl;
   }
 }
 
@@ -1285,9 +1288,6 @@ void MainWindow::reapplyPackageFilter()
     QModelIndex mi = m_packageModel->index(0, PackageModel::ctn_PACKAGE_NAME_COLUMN, QModelIndex());
     ui->tvPackages->setCurrentIndex(mi);
     ui->tvPackages->scrollTo(mi);
-
-    //We need to call this method to refresh package selection counters
-    //tvPackagesSelectionChanged(QItemSelection(),QItemSelection());  //WARNING!!!
     invalidateTabs();
   }
   //If we are using "Search By file...
