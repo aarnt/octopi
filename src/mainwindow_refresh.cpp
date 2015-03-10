@@ -373,6 +373,9 @@ void MainWindow::preBuildPackagesFromGroupList()
  */
 void MainWindow::metaBuildPackageList()
 {
+  QTime t1;
+  t1.start();
+
   if (isSearchByFileSelected())
     m_leFilterPackage->setRefreshValidator(ectn_FILE_VALIDATOR);
   else if (isAURGroupSelected())
@@ -398,14 +401,11 @@ void MainWindow::metaBuildPackageList()
     f = QtConcurrent::run(searchPacmanPackages, ectn_ALL_PKGS);
     connect(&g_fwPacman, SIGNAL(finished()), this, SLOT(preBuildPackageList()));
 
-    QTime t1;
     g_fwPacman.setFuture(f);
     disconnect(this, SIGNAL(buildPackageListDone()), &el, SLOT(quit()));
     connect(this, SIGNAL(buildPackageListDone()), &el, SLOT(quit()));
-    el.exec();
-    QTime t2;
-    int sec = t2.msecsTo(t1);
-    std::cout << "Time elapsed on building pkg list: " << sec << " mili seconds." << std::endl;
+    el.exec();        
+    std::cout << "Time elapsed on building pkg list: " << t1.elapsed() << " mili seconds." << std::endl;
   }
   else if (isAURGroupSelected())
   {
