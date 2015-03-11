@@ -23,6 +23,7 @@
 
 #include "strconstants.h"
 #include "model/packagemodel.h"
+
 #include <QStandardItem>
 #include <QFutureWatcher>
 
@@ -36,6 +37,7 @@ typedef std::pair<QString, QStringList*> GroupMemberPair;
 
 extern QFutureWatcher<QString> g_fwToolTip;
 extern QFutureWatcher<QList<PackageListData> *> g_fwPacman;
+extern QFutureWatcher<QSet<QString> *> g_fwUnrequiredPacman;
 extern QFutureWatcher<GroupMemberPair>          g_fwPacmanGroup;
 extern QFutureWatcher<QList<PackageListData> *> g_fwAUR;
 extern QFutureWatcher<QList<PackageListData> *> g_fwAURMeta;
@@ -46,6 +48,7 @@ extern QFutureWatcher<QString> g_fwPackageOwnsFile;
 
 QString showPackageInfo(QString pkgName);
 QList<PackageListData> * searchPacmanPackages();
+QSet<QString> * searchUnrequiredPacmanPackages();
 QList<PackageListData> * markForeignPackagesInPkgList(bool hasAURTool, QStringList *outdatedAURPackageList);
 QList<PackageListData> * searchAURPackages(QString searchString);
 QString searchPacmanPackagesByFile(const QString &file);

@@ -1080,12 +1080,12 @@ Biztos abban, hogy megnyitja?</translation>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="588"/>
         <source>Use &quot;%1&quot; tool</source>
-        <translation type="unfinished"/>
+        <translation>&quot;%1&quot; eszköz használata</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="592"/>
         <source>Copy path to clipboard</source>
-        <translation type="unfinished"/>
+        <translation>Útvonal vágólapra másolása</translation>
     </message>
 </context>
 <context>

@@ -58,12 +58,12 @@ void MainWindow::refreshAppIcon()
 {
   bool enableSystemUpgrade=false;
 
-  if ((m_outdatedPackageList->count() > 0))
+  if ((m_outdatedStringList->count() > 0))
   {
     setWindowIcon(IconHelper::getIconOctopiRed());
     if(m_commandExecuting != ectn_MIRROR_CHECK && !isAURGroupSelected()) enableSystemUpgrade=true;
   }
-  else if(m_outdatedAURPackageList->count() > 0)
+  else if(m_outdatedAURStringList->count() > 0)
   {
     setWindowIcon(IconHelper::getIconOctopiYellow());
   }
@@ -83,7 +83,6 @@ void MainWindow::refreshMenuTools()
   static bool connectorPlv=false;
   static bool connectorRepo=false;
   static bool connectorCleaner=false;
-
   int availableTools=0;
 
   if(UnixCommand::hasTheExecutable("plv"))
@@ -131,7 +130,6 @@ void MainWindow::refreshMenuTools()
   }
   else
     ui->actionCacheCleaner->setVisible(false);
-
 
   if (availableTools == 0)
     ui->menuTools->menuAction()->setVisible(false);
@@ -344,6 +342,50 @@ void MainWindow::preBuildAURPackageListMeta()
 }
 
 /*
+ * Executes QFuture to retrive Outdated AUR list of packages
+ */
+void MainWindow::retrieveForeignPackageList()
+{
+  m_foreignPackageList = NULL;
+  QFuture<QList<PackageListData> *> f;
+  f = QtConcurrent::run(markForeignPackagesInPkgList, m_hasAURTool, m_outdatedAURStringList);
+  connect(&g_fwMarkForeignPackages, SIGNAL(finished()), this, SLOT(preBuildForeignPackageList()));
+  g_fwMarkForeignPackages.setFuture(f);
+}
+
+/*
+ * Executes QFuture to retrive Unrequired Pacman list of packages
+ */
+void MainWindow::retrieveUnrequiredPackageList()
+{
+  m_unrequiredPackageList = NULL;
+  QFuture<QSet<QString> *> f;
+  f = QtConcurrent::run(searchUnrequiredPacmanPackages);
+  connect(&g_fwUnrequiredPacman, SIGNAL(finished()), this, SLOT(preBuildUnrequiredPackageList()));
+  g_fwUnrequiredPacman.setFuture(f);
+}
+
+/*
+ * Helper method to assign QFuture for outdated AUR list of packages
+ */
+void MainWindow::preBuildForeignPackageList()
+{
+  m_foreignPackageList = g_fwMarkForeignPackages.result();
+
+  //std::cout << "Time elapsed obtaining Foreign pkgs from 'ALL group' list: " << m_time->elapsed() << " mili seconds." << std::endl << std::endl;
+}
+
+/*
+ * Helper method to assign QFuture for Unrequired Pacman list of packages
+ */
+void MainWindow::preBuildUnrequiredPackageList()
+{
+  m_unrequiredPackageList = g_fwUnrequiredPacman.result();
+
+  //std::cout << "Time elapsed obtaining Unrequired pkgs from 'ALL group' list: " << m_time->elapsed() << " mili seconds." << std::endl << std::endl;
+}
+
+/*
  * Helper method to deal with the QFutureWatcher result before calling
  * Pacman package list building method
  */
@@ -354,6 +396,8 @@ void MainWindow::preBuildPackageList()
   bool hasToCallSysUpgrade = (m_callSystemUpgrade || m_callSystemUpgradeNoConfirm);
 
   m_listOfPackages.reset(g_fwPacman.result());
+  std::cout << "Time elapsed obtaining pkgs from 'ALL group' list: " << m_time->elapsed() << " mili seconds." << std::endl;
+
   buildPackageList();
 
   if(!hasToCallSysUpgrade && !secondTime && m_hasMirrorCheck)
@@ -393,8 +437,7 @@ void MainWindow::preBuildPackagesFromGroupList()
  */
 void MainWindow::metaBuildPackageList()
 {
-  QTime t1;
-  t1.start();
+  m_time->start();
 
   if (isSearchByFileSelected())
     m_leFilterPackage->setRefreshValidator(ectn_FILE_VALIDATOR);
@@ -426,9 +469,9 @@ void MainWindow::metaBuildPackageList()
     g_fwPacman.setFuture(f);
     disconnect(this, SIGNAL(buildPackageListDone()), &el, SLOT(quit()));
     connect(this, SIGNAL(buildPackageListDone()), &el, SLOT(quit()));
-    el.exec();        
+    el.exec();
     std::cout << m_packageModel->getPackageCount() << " pkgs => " <<
-                 "Time elapsed building pkgs from 'ALL group' list: " << t1.elapsed() << " mili seconds." << std::endl;
+                 "Time elapsed building pkgs from 'ALL group' list: " << m_time->elapsed() << " mili seconds." << std::endl << std::endl;
   }
   else if (isAURGroupSelected())
   {
@@ -460,7 +503,7 @@ void MainWindow::metaBuildPackageList()
       connect(this, SIGNAL(buildAURPackageListDone()), &el, SLOT(quit()));
       el.exec();
       std::cout << m_packageModel->getPackageCount() << " pkgs => " <<
-                   "Time elapsed building pkgs from '" << StrConstants::getForeignPkgRepositoryName().toLatin1().data() << " group' list: " << t1.elapsed() << " mili seconds." << std::endl;
+                   "Time elapsed building pkgs from '" << StrConstants::getForeignPkgRepositoryName().toLatin1().data() << " group' list: " << m_time->elapsed() << " mili seconds." << std::endl << std::endl;
 
       return;
     }
@@ -508,7 +551,7 @@ void MainWindow::metaBuildPackageList()
     connect(this, SIGNAL(buildPackagesFromGroupListDone()), &el, SLOT(quit()));
     el.exec();
     std::cout << m_packageModel->getPackageCount() << " pkgs => " <<
-                 "Time elapsed building pkgs from '" << getSelectedGroup().toLatin1().data() << " group' list: " << t1.elapsed() << " mili seconds." << std::endl;
+                 "Time elapsed building pkgs from '" << getSelectedGroup().toLatin1().data() << " group' list: " << m_time->elapsed() << " mili seconds." << std::endl << std::endl;
   }
 }
 
@@ -553,16 +596,26 @@ void MainWindow::buildPackageList()
   if(m_refreshOutdatedPackageLists) //If it's not the starting of the app...
   {
     //Let's get outdatedPackages list again!
-    m_outdatedPackageList = Package::getOutdatedPackageList();
-    m_numberOfOutdatedPackages = m_outdatedPackageList->count();
+    m_outdatedStringList = Package::getOutdatedPackageList();
+
+    std::cout << "Time elapsed refreshing outdated pkgs from 'ALL group' list: " << m_time->elapsed() << " mili seconds." << std::endl;
+
+    m_numberOfOutdatedPackages = m_outdatedStringList->count();
 
     if (m_hasAURTool)
     {
-      m_outdatedAURPackageList = Package::getOutdatedAURPackageList();
+      m_outdatedAURStringList = Package::getOutdatedAURPackageList();
     }
   }
 
-  const std::unique_ptr<const QSet<QString> > unrequiredPackageList(Package::getUnrequiredPackageList());
+  //const std::unique_ptr<const QSet<QString>> unrequiredPackageList;
+  QSet<QString> *unrequiredPackageList = NULL;
+
+  if (m_unrequiredPackageList == NULL)
+  {
+    unrequiredPackageList = Package::getUnrequiredPackageList();
+    std::cout << "Time elapsed obtaining unrequired pkgs from 'ALL group' list: " << m_time->elapsed() << " mili seconds." << std::endl;
+  }
 
   // Fetch package list
   QList<PackageListData> *list;
@@ -570,7 +623,16 @@ void MainWindow::buildPackageList()
 
   if (!isSearchByFileSelected())
   {
-    list->append(*markForeignPackagesInPkgList(m_hasAURTool, m_outdatedAURPackageList));
+    if (firstTime && m_foreignPackageList != NULL)
+    {
+      list->append(*m_foreignPackageList);
+    }
+
+    else
+    {
+      list->append(*markForeignPackagesInPkgList(m_hasAURTool, m_outdatedAURStringList));
+      std::cout << "Time elapsed obtaining outdated AUR pkgs from 'ALL group' list: " << m_time->elapsed() << " mili seconds." << std::endl;
+    }
   }
 
   m_progressWidget->setRange(0, list->count());
@@ -587,11 +649,22 @@ void MainWindow::buildPackageList()
     it++;
   }
 
+  std::cout << "Time elapsed iterating over all pkgs from  'ALL group' list: " << m_time->elapsed() << " mili seconds." << std::endl;
+
   counter = list->count();
   m_progressWidget->setValue(counter);
   m_progressWidget->close();
 
-  m_packageRepo.setData(list, *unrequiredPackageList);
+  if (!firstTime || m_unrequiredPackageList == NULL)
+  {
+    m_packageRepo.setData(list, *unrequiredPackageList);
+  }
+  else if (firstTime && m_unrequiredPackageList != NULL)
+  {
+    m_packageRepo.setData(list, *m_unrequiredPackageList);
+  }
+
+  std::cout << "Time elapsed seting the list to the treeview: " << m_time->elapsed() << " mili seconds." << std::endl;
 
   if (ui->actionSearchByDescription->isChecked())
   {
@@ -612,6 +685,25 @@ void MainWindow::buildPackageList()
 
   delete list;
   list = NULL;
+
+  if (unrequiredPackageList != NULL)
+  {
+    delete unrequiredPackageList;
+    unrequiredPackageList = NULL;
+  }
+
+  if (m_unrequiredPackageList != NULL)
+  {
+    delete m_unrequiredPackageList;
+    m_unrequiredPackageList = NULL;
+  }
+
+  if (m_foreignPackageList != NULL)
+  {
+    delete m_foreignPackageList;
+    m_foreignPackageList = NULL;
+  }
+
   refreshTabInfo();
   refreshTabFiles();
 
@@ -681,7 +773,7 @@ void MainWindow::refreshPackageList()
   {
     while (itForeign != listForeign->end())
     {
-      if (!m_hasAURTool || !m_outdatedAURPackageList->contains(itForeign->name))
+      if (!m_hasAURTool || !m_outdatedAURStringList->contains(itForeign->name))
       {
         pld = PackageListData(
               itForeign->name, itForeign->repository, itForeign->version,
@@ -779,9 +871,9 @@ void MainWindow::showToolButtonAUR()
 {
   m_outdatedAURPackagesNameVersion = &g_fwOutdatedAURPackages.result()->content;
 
-  if(m_outdatedAURPackageList->count() > 0)
+  if(m_outdatedAURStringList->count() > 0)
   {
-    if (m_outdatedAURPackageList->count() == 1)
+    if (m_outdatedAURStringList->count() == 1)
     {
       m_toolButtonAUR->setText("(1)");
       m_toolButtonAUR->setToolTip(StrConstants::getOneNewUpdate());

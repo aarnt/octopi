@@ -42,6 +42,7 @@ QFutureWatcher<AUROutdatedPackages *> g_fwOutdatedAURPackages;
 QFutureWatcher<QString> g_fwDistroNews;
 QFutureWatcher<QString> g_fwPackageOwnsFile;
 QFutureWatcher<QList<PackageListData> *> g_fwMarkForeignPackages;
+QFutureWatcher<QSet<QString> *> g_fwUnrequiredPacman;
 
 /*
  * Given a packageName, returns its description
@@ -85,6 +86,14 @@ QString showPackageInfo(QString pkgName)
 QList<PackageListData> * searchPacmanPackages()
 {
   return Package::getPackageList("");
+}
+
+/*
+ * Starts the non blocking search for Unrequired Pacman packages...
+ */
+QSet<QString> *searchUnrequiredPacmanPackages()
+{
+  return Package::getUnrequiredPackageList();
 }
 
 /*
@@ -148,6 +157,7 @@ QList<PackageListData> * markForeignPackagesInPkgList(bool hasAURTool, QStringLi
   QList<PackageListData> * result = new QList<PackageListData>();
   std::unique_ptr<QList<PackageListData> > listForeign(Package::getForeignPackageList());
   PackageListData pld;
+
   QList<PackageListData>::const_iterator itForeign = listForeign->begin();
 
   while (itForeign != listForeign->end())

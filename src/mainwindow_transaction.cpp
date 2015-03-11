@@ -726,7 +726,7 @@ void MainWindow::doAURUpgrade()
   QString listOfTargets;
   QString auxPkg;
 
-  foreach(QString pkg, *m_outdatedAURPackageList)
+  foreach(QString pkg, *m_outdatedAURStringList)
   {
     auxPkg = pkg;
     auxPkg.remove("[1;39m");
@@ -819,13 +819,13 @@ void MainWindow::doSystemUpgrade(SystemUpgradeOptions systemUpgradeOptions)
     QList<PackageListData> * targets = Package::getTargetUpgradeList();
 
     //There are no new updates to install!
-    if (targets->count() == 0 && m_outdatedPackageList->count() == 0)
+    if (targets->count() == 0 && m_outdatedStringList->count() == 0)
     {
       clearTabOutput();
       writeToTabOutputExt("<b>" + StrConstants::getNoNewUpdatesAvailable() + "</b>");
       return;
     }
-    else if (targets->count() == 0 && m_outdatedPackageList->count() > 0)
+    else if (targets->count() == 0 && m_outdatedStringList->count() > 0)
     {
       //This is a bug and should be shown to the user!
       clearTabOutput();
@@ -1504,7 +1504,7 @@ void MainWindow::toggleTransactionActions(const bool value)
   ui->actionSyncPackages->setEnabled(value);
   ui->actionGetNews->setEnabled(value);
 
-  if (value == true && m_outdatedPackageList->count() > 0)
+  if (value == true && m_outdatedStringList->count() > 0)
     ui->actionSystemUpgrade->setEnabled(true);
   else
     ui->actionSystemUpgrade->setEnabled(false);
@@ -1538,7 +1538,7 @@ void MainWindow::toggleSystemActions(const bool value)
 
   ui->actionGetNews->setEnabled(value);
 
-  if (value == true && m_outdatedPackageList->count() > 0)
+  if (value == true && m_outdatedStringList->count() > 0)
     ui->actionSystemUpgrade->setEnabled(true);
   else
     ui->actionSystemUpgrade->setEnabled(false);
@@ -1727,7 +1727,7 @@ void MainWindow::actionsProcessFinished(int exitCode, QProcess::ExitStatus exitS
       //Does it still need to upgrade another packages due to SyncFirst issues???
       if ((m_commandExecuting == ectn_SYSTEM_UPGRADE ||
            m_commandExecuting == ectn_RUN_SYSTEM_UPGRADE_IN_TERMINAL)
-          && m_outdatedPackageList->count() > 0)
+          && m_outdatedStringList->count() > 0)
       {
         m_commandExecuting = ectn_NONE;
         m_unixCommand->removeTemporaryFile();

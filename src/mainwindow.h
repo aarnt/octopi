@@ -47,6 +47,7 @@ class QMenu;
 class SearchLineEdit;
 class QAction;
 class QTreeWidgetItem;
+class QTime;
 
 #include "src/model/packagemodel.h"
 #include "src/packagerepository.h"
@@ -159,8 +160,10 @@ private:
   //This member holds the last command string executed by Octopi
   QStringList m_lastCommandList;
 
-  QStringList *m_outdatedPackageList;
-  QStringList *m_outdatedAURPackageList;
+  QStringList *m_outdatedStringList;
+  QStringList *m_outdatedAURStringList;
+
+  QList<PackageListData> *m_foreignPackageList;
   QHash<QString, QString> *m_outdatedAURPackagesNameVersion;
 
   QLabel *m_lblSelCounter;    //Holds the number of selected packages
@@ -171,6 +174,9 @@ private:
   QToolButton *m_toolButtonAUR;
   QMenu *m_menuToolButtonPacman;
   QMenu *m_menuToolButtonAUR;
+
+  //This is a means for measuring the program's speed at some tasks
+  QTime *m_time;
 
   QAction *m_dummyAction;
   QAction *m_actionInstallPacmanUpdates;
@@ -198,6 +204,8 @@ private:
 
   QString m_cachedPackageInInfo;  //Used in Info tab
   QString m_cachedPackageInFiles; //Used in Files tab
+
+  QSet<QString> * m_unrequiredPackageList;
 
   int selectTerminal(const int initialTerminalIndex);
 
@@ -289,6 +297,9 @@ private:
 
   void switchToViewAllPackages();
 
+  void retrieveForeignPackageList();
+  void retrieveUnrequiredPackageList();
+
 private slots:
   void initToolButtonPacman();
   void initToolButtonAUR();
@@ -326,6 +337,8 @@ private slots:
   void AURToolSelected();
   void groupItemSelected();
 
+  void preBuildForeignPackageList();
+  void preBuildUnrequiredPackageList();
   void preBuildPackageList();
   void preBuildPackagesFromGroupList();
   void preBuildAURPackageList();
@@ -359,7 +372,6 @@ private slots:
   void doSyncDatabase();
   void doMirrorCheck();
   void doAURUpgrade();
-
   void doInstallAURPackage();
   void doRemoveAURPackage();
 

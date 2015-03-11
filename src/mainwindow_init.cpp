@@ -138,14 +138,14 @@ void MainWindow::saveSettings(SaveSettingsReason saveSettingsReason){
  */
 void MainWindow::initAppIcon()
 {
-  m_outdatedPackageList = Package::getOutdatedPackageList();
+  m_outdatedStringList = Package::getOutdatedPackageList();
 
   if (m_hasAURTool)
   {
-    m_outdatedAURPackageList = Package::getOutdatedAURPackageList();
+    m_outdatedAURStringList = Package::getOutdatedAURPackageList();
   }
 
-  m_numberOfOutdatedPackages = m_outdatedPackageList->count();
+  m_numberOfOutdatedPackages = m_outdatedStringList->count();
   refreshAppIcon();
 }
 
@@ -277,7 +277,7 @@ void MainWindow::initToolBar()
   ui->mainToolBar->addAction(ui->actionSyncPackages);
   ui->mainToolBar->addAction(ui->actionSystemUpgrade);
 
-  if (m_outdatedPackageList->count() > 0)
+  if (m_outdatedStringList->count() > 0)
     ui->actionSystemUpgrade->setEnabled(true);
   else
     ui->actionSystemUpgrade->setEnabled(false);

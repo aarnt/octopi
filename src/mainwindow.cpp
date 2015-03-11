@@ -60,15 +60,23 @@ MainWindow::MainWindow(QWidget *parent) :
   m_systemUpgradeDialog = false;
   m_refreshOutdatedPackageLists = false;
   m_cic = NULL;
-  m_outdatedPackageList = new QStringList();
-  m_outdatedAURPackageList = new QStringList();
+  m_outdatedStringList = new QStringList();
+  m_outdatedAURStringList = new QStringList();
   m_outdatedAURPackagesNameVersion = new QHash<QString, QString>();
   m_selectedViewOption = ectn_ALL_PKGS;
   m_selectedRepository = "";
   m_numberOfInstalledPackages = 0;
+  m_time = new QTime();
+
+  //Here we try to speed up first pkg list build!
+  //TEST CODE////////////////////////////////
+  retrieveUnrequiredPackageList();
+  retrieveForeignPackageList();
+  //TEST CODE////////////////////////////////
 
   ui->setupUi(this);
-  switchToViewAllPackages();
+  switchToViewAllPackages();  
+
   m_hasAURTool =
       UnixCommand::hasTheExecutable(StrConstants::getForeignRepositoryToolName()) && !UnixCommand::isRootRunning();
 }
@@ -235,7 +243,7 @@ void MainWindow::outputOutdatedPackageList()
       isAURGroupSelected())
     return;
 
-  m_numberOfOutdatedPackages = m_outdatedPackageList->count();
+  m_numberOfOutdatedPackages = m_outdatedStringList->count();
 
   if(m_numberOfOutdatedPackages > 0)
   {
@@ -245,13 +253,13 @@ void MainWindow::outputOutdatedPackageList()
 
     clearTabOutput();
 
-    if(m_outdatedPackageList->count()==1){
+    if(m_outdatedStringList->count()==1){
       html += "<h3>" + StrConstants::getOneOutdatedPackage() + "</h3>";
     }
     else
     {
       html += "<h3>" +
-          StrConstants::getOutdatedPackages(m_outdatedPackageList->count()) + "</h3>";
+          StrConstants::getOutdatedPackages(m_outdatedStringList->count()) + "</h3>";
     }
 
     html += "<br><table border=\"0\">";
@@ -261,9 +269,9 @@ void MainWindow::outputOutdatedPackageList()
         "</th><th width=\"18%\" align=\"right\">" +
         StrConstants::getAvailableVersion() + "</th></tr>";
 
-    for (int c=0; c < m_outdatedPackageList->count(); c++)
+    for (int c=0; c < m_outdatedStringList->count(); c++)
     {
-      QString pkg = m_outdatedPackageList->at(c);
+      QString pkg = m_outdatedStringList->at(c);
       const PackageRepository::PackageData*const package = m_packageRepo.getFirstPackageByName(pkg);
       if (package != NULL) {
         html += "<tr><td><a href=\"goto:" + pkg + "\">" + pkg +
@@ -302,13 +310,13 @@ void MainWindow::outputOutdatedAURPackageList()
 
   clearTabOutput();
 
-  if(m_outdatedAURPackageList->count()==1){
+  if(m_outdatedAURStringList->count()==1){
     html += "<h3>" + StrConstants::getOneOutdatedPackage() + "</h3>";
   }
   else
   {
     html += "<h3>" +
-        StrConstants::getOutdatedPackages(m_outdatedAURPackageList->count()) + "</h3>";
+        StrConstants::getOutdatedPackages(m_outdatedAURStringList->count()) + "</h3>";
   }
 
   html += "<br><table border=\"0\">";
@@ -318,12 +326,12 @@ void MainWindow::outputOutdatedAURPackageList()
       "</th><th width=\"18%\" align=\"right\">" +
       StrConstants::getAvailableVersion() + "</th></tr>";
 
-  for (int c=0; c < m_outdatedAURPackageList->count(); c++)
+  for (int c=0; c < m_outdatedAURStringList->count(); c++)
   {
-    QString pkg = m_outdatedAURPackageList->at(c);
+    QString pkg = m_outdatedAURStringList->at(c);
     const PackageRepository::PackageData*const package = m_packageRepo.getFirstPackageByName(pkg);
     if (package != NULL) {
-      QString availableVersion = m_outdatedAURPackagesNameVersion->value(m_outdatedAURPackageList->at(c));
+      QString availableVersion = m_outdatedAURPackagesNameVersion->value(m_outdatedAURStringList->at(c));
   
       html += "<tr><td><a href=\"goto:" + pkg + "\">" + pkg +
           "</td><td align=\"right\"><b><font color=\"#E55451\">" +
