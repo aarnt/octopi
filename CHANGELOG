@@ -3,6 +3,7 @@
   Reverted to showing ALL packages at startup.
   Added "Copy path to clipboard" context menu option in file list treeview.
   Now pacman.conf's "IgnoreGroup" option is honored.
+  Disabled "View/Repository/kcp" menu item in KaOS.
   Toolbar now shows AUR tool button instead of a fake pacman group.
   Remove "Yes" button from transaction dialog, everytime 'pacman' 
 	is one of the target packages.

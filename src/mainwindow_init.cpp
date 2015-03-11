@@ -246,10 +246,18 @@ void MainWindow::initMenuBar()
     actionGroupRepositories->addAction(createdAction);
   }
 
-  QAction * actionForeignRepo = subMenu->addAction(StrConstants::getForeignRepositoryName());
-  actionForeignRepo->setCheckable(true);
+  QAction * actionForeignRepo;
+  if (UnixCommand::getLinuxDistro() != ectn_KAOS)
+  {
+    actionForeignRepo = subMenu->addAction(StrConstants::getForeignRepositoryName());
+    actionForeignRepo->setCheckable(true);
+  }
+
   actionGroupRepositories->addAction(m_actionRepositoryAll);
-  actionGroupRepositories->addAction(actionForeignRepo);
+
+  if (UnixCommand::getLinuxDistro() != ectn_KAOS)
+    actionGroupRepositories->addAction(actionForeignRepo);
+
   actionGroupRepositories->setExclusive(true);
 
   m_actionMenuRepository->setMenu(subMenu);
