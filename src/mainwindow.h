@@ -82,8 +82,7 @@ public slots:
 protected:
   void closeEvent(QCloseEvent *event);
   void keyPressEvent(QKeyEvent* ke);
-
-  virtual bool eventFilter(QObject *, QEvent *);
+  void keyReleaseEvent(QKeyEvent* ke);
 
   #if QT_VERSION < 0x050000
     void keyReleaseEvent(QKeyEvent *ke);
@@ -92,7 +91,6 @@ protected:
 private:
   Ui::MainWindow *ui;
   CPUIntensiveComputing *m_cic;
-
   UnixCommand *m_unixCommand;
   bool m_initializationCompleted;
 

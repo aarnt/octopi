@@ -308,31 +308,21 @@ void MainWindow::keyPressEvent(QKeyEvent* ke)
 }
 
 /*
- * This method is called wherever the user navigates with arrow keys in the main pkg list
+ * This Event method is called whenever the user releases a key
  */
-bool MainWindow::eventFilter(QObject *obj, QEvent *evt)
+void MainWindow::keyReleaseEvent(QKeyEvent* ke)
 {
-  if(obj->objectName() == ui->tvPackages->objectName())
+  if ((ui->tvPackages->hasFocus()) && (
+      ke->key() == Qt::Key_Up || ke->key() == Qt::Key_Down ||
+      ke->key() == Qt::Key_Home || ke->key() == Qt::Key_End ||
+      ke->key() == Qt::Key_PageUp || ke->key() == Qt::Key_PageDown))
   {
-    if (evt->type() == QKeyEvent::KeyRelease)
+    if (ui->twProperties->currentIndex() == ctn_TABINDEX_INFORMATION)
     {
-      QKeyEvent *ke = static_cast<QKeyEvent*>(evt);
-      if (ke->key() == Qt::Key_Up || ke->key() == Qt::Key_Down ||
-          ke->key() == Qt::Key_Home || ke->key() == Qt::Key_End ||
-          ke->key() == Qt::Key_PageUp || ke->key() == Qt::Key_PageDown)
-      {
-        if (ui->twProperties->currentIndex() == ctn_TABINDEX_INFORMATION)
-        {
-          refreshTabInfo(false, true);
-          ui->tvPackages->setFocus();
-        }
-
-        return false;
-      }
+      refreshTabInfo(false, true);
+      ui->tvPackages->setFocus();
     }
   }
-
-  return false;
 }
 
 /*

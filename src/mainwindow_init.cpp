@@ -513,7 +513,6 @@ void MainWindow::initPackageTreeView()
 
   ui->tvPackages->header()->setDefaultAlignment( Qt::AlignLeft );
   resizePackageView();
-  ui->tvPackages->installEventFilter(this);
 
   connect(ui->tvPackages->selectionModel(), SIGNAL(selectionChanged(QItemSelection,QItemSelection)),
           this, SLOT(tvPackagesSelectionChanged(QItemSelection,QItemSelection)));
@@ -615,7 +614,6 @@ void MainWindow::initTabFiles()
 #endif
 
   tvPkgFileList->setContextMenuPolicy(Qt::CustomContextMenu);
-
   SearchBar *searchBar = new SearchBar(this);
 
   connect(searchBar, SIGNAL(textChanged(QString)), this, SLOT(searchBarTextChangedInTreeView(QString)));

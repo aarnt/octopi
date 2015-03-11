@@ -21,6 +21,7 @@
 #include "searchbar.h"
 #include "searchlineedit.h"
 #include "uihelper.h"
+#include <QAction>
 #include <QHBoxLayout>
 #include <QToolButton>
 #include <QStyleOption>
@@ -57,16 +58,23 @@ void SearchBar::init()
 
   m_searchLineEdit = new SearchLineEdit(this);
   m_searchLineEdit->setMinimumWidth(300);
-  QToolButton *m_previousButton = new QToolButton();
-  QToolButton *m_nextButton = new QToolButton();
+  QToolButton *m_previousButton = new QToolButton(this);
+  QToolButton *m_nextButton = new QToolButton(this);
+  m_previousButton->setToolButtonStyle(Qt::ToolButtonTextOnly);
+  m_nextButton->setToolButtonStyle(Qt::ToolButtonTextOnly);
 
-  m_previousButton->setText("< " + tr("Previous"));
+  QAction *m_previousAction = new QAction(this);
+  QAction *m_nextAction = new QAction(this);
+
+  m_previousAction->setText("< " + tr("Previous"));
   m_previousButton->setAutoRaise(true);
-  m_previousButton->setShortcut(QKeySequence(Qt::SHIFT + Qt::Key_F3));
-
-  m_nextButton->setText(tr("Next") + " >");
+  m_previousAction->setShortcut(QKeySequence(Qt::SHIFT + Qt::Key_F3));
+  m_nextAction->setText(tr("Next") + " >");
   m_nextButton->setAutoRaise(true);
-  m_nextButton->setShortcut(Qt::Key_F3);
+  m_nextAction->setShortcut(Qt::Key_F3);
+
+  m_previousButton->setDefaultAction(m_previousAction);
+  m_nextButton->setDefaultAction(m_nextAction);
 
   QToolButton *tbClose = new QToolButton();
   tbClose->setIcon(IconHelper::getIconClose());
@@ -91,8 +99,8 @@ void SearchBar::init()
 
   connect(tbClose, SIGNAL(clicked()), this, SLOT(close()));
   connect(m_searchLineEdit, SIGNAL(textChanged(QString)), this, SIGNAL(textChanged(QString)));
-  connect(m_previousButton, SIGNAL(clicked()), this, SIGNAL(findPrevious()));
-  connect(m_nextButton, SIGNAL(clicked()), this, SIGNAL(findNext()));
+  connect(m_previousAction, SIGNAL(triggered()), this, SIGNAL(findPrevious()));
+  connect(m_nextAction, SIGNAL(triggered()), this, SIGNAL(findNext()));
 }
 
 /*
