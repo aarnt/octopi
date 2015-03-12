@@ -347,14 +347,14 @@ void MainWindow::preBuildAURPackageListMeta()
 void MainWindow::retrieveForeignPackageList()
 {
   m_foreignPackageList = NULL;
-  QEventLoop el;
+  //QEventLoop el;
   QFuture<QList<PackageListData> *> f;
   f = QtConcurrent::run(markForeignPackagesInPkgList, m_hasAURTool, m_outdatedAURStringList);
   connect(&g_fwMarkForeignPackages, SIGNAL(finished()), this, SLOT(preBuildForeignPackageList()));
-  connect(&g_fwMarkForeignPackages, SIGNAL(finished()), &el, SLOT(quit()));
+  //connect(&g_fwMarkForeignPackages, SIGNAL(finished()), &el, SLOT(quit()));
   g_fwMarkForeignPackages.setFuture(f);
 
-  el.exec();
+  //el.exec();
 }
 
 /*
