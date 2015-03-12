@@ -353,7 +353,7 @@ void MainWindow::retrieveForeignPackageList()
   connect(&g_fwForeignPacman, SIGNAL(finished()), &el, SLOT(quit()));
   g_fwForeignPacman.setFuture(f);
   el.exec();
-
+  //std::cout << "Out of QEventLoop in: " << m_time->elapsed() << "mili seconds." << std::endl;
   assert(m_foreignPackageList != NULL);
 }
 
@@ -362,10 +362,14 @@ void MainWindow::retrieveForeignPackageList()
  */
 void MainWindow::retrieveUnrequiredPackageList()
 {
+  QEventLoop el;
   QFuture<QSet<QString> *> f;
   f = QtConcurrent::run(searchUnrequiredPacmanPackages);
   connect(&g_fwUnrequiredPacman, SIGNAL(finished()), this, SLOT(preBuildUnrequiredPackageList()));
+  connect(&g_fwUnrequiredPacman, SIGNAL(finished()), &el, SLOT(quit()));
   g_fwUnrequiredPacman.setFuture(f);
+  el.exec();
+  assert(m_unrequiredPackageList != NULL);
 }
 
 /*
