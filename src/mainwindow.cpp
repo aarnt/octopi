@@ -391,7 +391,7 @@ bool MainWindow::isAllGroupsSelected()
 
 bool MainWindow::isAllGroups(const QString& group)
 {
-  return (group == "<" + StrConstants::getDisplayAllGroups() + ">" && !m_actionSwitchToAURTool->isChecked());
+  return ((group == "<" + StrConstants::getDisplayAllGroups() + ">") && !(m_actionSwitchToAURTool->isChecked()));
 }
 
 /*
