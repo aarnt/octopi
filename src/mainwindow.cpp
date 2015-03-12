@@ -70,6 +70,8 @@ MainWindow::MainWindow(QWidget *parent) :
 
   //Here we try to speed up first pkg list build!
   //TEST CODE////////////////////////////////
+  m_time->start();
+
   retrieveUnrequiredPackageList();
   retrieveForeignPackageList();
   //TEST CODE////////////////////////////////

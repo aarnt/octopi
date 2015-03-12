@@ -18,6 +18,7 @@ UI_DIR += build
 
 HEADERS +=  cachecleaner.h \
             packagegroupmodel.h \
+            ../src/strconstants.h \
             ../src/unixcommand.h \
             ../src/wmhelper.h \
             ../src/terminal.h \

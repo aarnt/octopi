@@ -19,6 +19,8 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
 #include "packagegroupmodel.h"
+#include "../src/strconstants.h"
+
 #include <QApplication>
 #include <QMessageBox>
 
@@ -117,10 +119,34 @@ void PackageGroupModel::refreshCacheView()
 }
 
 /*
+ * Checks if some SU utility is available...
+ * Returns false if not!
+ */
+bool PackageGroupModel::isSUAvailable()
+{
+  //If there are no means to run the actions, we must warn!
+  if (UnixCommand::isRootRunning() && WMHelper::isKDERunning())
+  {
+    return true;
+  }
+  else if (WMHelper::getSUCommand() == ctn_NO_SU_COMMAND){
+    QMessageBox::critical( 0, StrConstants::getApplicationName(),
+                           StrConstants::getErrorNoSuCommand() +
+                           "\n" + StrConstants::getYoullNeedSuFrontend());
+    return false;
+  }
+  else
+    return true;
+}
+
+/*
  * Call paccache to effectively clear the cache
  */
 void PackageGroupModel::cleanCache()
 {
+  if (!isSUAvailable())
+    return;
+
   //update UI buttons
   QApplication::setOverrideCursor(Qt::WaitCursor);
   m_acc->reset();

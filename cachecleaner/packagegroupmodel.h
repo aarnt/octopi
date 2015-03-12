@@ -27,6 +27,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 #include <QPushButton>
 
 #include "../src/unixcommand.h"
+#include "../src/wmhelper.h"
 
 /*
  * Helper class to accumulate UnixCommand standard and error output
@@ -79,6 +80,9 @@ class PackageGroupModel : public QObject
 {
     Q_OBJECT
 
+private:
+  bool isSUAvailable();
+
 public:
     PackageGroupModel(QString, QListWidget *, QSpinBox *, QPushButton *, QPushButton *);
     ~PackageGroupModel();
@@ -91,7 +95,6 @@ protected:
     QPushButton *m_cleanButton;
 
     int m_oldKeepValue;
-
     UnixCommand *m_cmd;
     ProcessOutputAccumulator *m_acc;
 
@@ -103,7 +106,6 @@ public slots:
     void cleanCache();
     void updateKeepArchives();
     void keepArchivesChanged();
-
     void finishedDryrun(int, QProcess::ExitStatus);
     void finishedClean(int, QProcess::ExitStatus);
 };

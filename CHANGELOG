@@ -10,6 +10,8 @@
   BugFix: Filter connect chain bug decreased filter's performance over time.
   BugFix: Search by name was not being used after reverting from AUR search.
   BugFix: F3 and Shift+F3 keys at SearchBar were not working.
+  BugFix: If user had no gksu/kdesu/root when clicking "clean" button in 
+	cachecleaner, cursor would remain waiting (thanks to imperator-).
 
 0.6.0
   BugFix: Pkg list was being refreshed twice sometimes.

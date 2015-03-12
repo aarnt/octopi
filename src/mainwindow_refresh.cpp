@@ -347,10 +347,14 @@ void MainWindow::preBuildAURPackageListMeta()
 void MainWindow::retrieveForeignPackageList()
 {
   m_foreignPackageList = NULL;
+  QEventLoop el;
   QFuture<QList<PackageListData> *> f;
   f = QtConcurrent::run(markForeignPackagesInPkgList, m_hasAURTool, m_outdatedAURStringList);
   connect(&g_fwMarkForeignPackages, SIGNAL(finished()), this, SLOT(preBuildForeignPackageList()));
+  connect(&g_fwMarkForeignPackages, SIGNAL(finished()), &el, SLOT(quit()));
   g_fwMarkForeignPackages.setFuture(f);
+
+  el.exec();
 }
 
 /*
@@ -372,7 +376,7 @@ void MainWindow::preBuildForeignPackageList()
 {
   m_foreignPackageList = g_fwMarkForeignPackages.result();
 
-  //std::cout << "Time elapsed obtaining Foreign pkgs from 'ALL group' list: " << m_time->elapsed() << " mili seconds." << std::endl << std::endl;
+  std::cout << "Time elapsed obtaining Foreign pkgs from 'ALL group' list: " << m_time->elapsed() << " mili seconds." << std::endl << std::endl;
 }
 
 /*
@@ -382,7 +386,7 @@ void MainWindow::preBuildUnrequiredPackageList()
 {
   m_unrequiredPackageList = g_fwUnrequiredPacman.result();
 
-  //std::cout << "Time elapsed obtaining Unrequired pkgs from 'ALL group' list: " << m_time->elapsed() << " mili seconds." << std::endl << std::endl;
+  std::cout << "Time elapsed obtaining Unrequired pkgs from 'ALL group' list: " << m_time->elapsed() << " mili seconds." << std::endl << std::endl;
 }
 
 /*
@@ -437,7 +441,9 @@ void MainWindow::preBuildPackagesFromGroupList()
  */
 void MainWindow::metaBuildPackageList()
 {
-  m_time->start();
+  static bool firstTime = false;
+
+  if (!firstTime) m_time->start();
 
   if (isSearchByFileSelected())
     m_leFilterPackage->setRefreshValidator(ectn_FILE_VALIDATOR);
@@ -553,6 +559,8 @@ void MainWindow::metaBuildPackageList()
     std::cout << m_packageModel->getPackageCount() << " pkgs => " <<
                  "Time elapsed building pkgs from '" << getSelectedGroup().toLatin1().data() << " group' list: " << m_time->elapsed() << " mili seconds." << std::endl << std::endl;
   }
+
+  firstTime = false;
 }
 
 /*
