@@ -652,6 +652,7 @@ void MainWindow::buildPackageList()
       }
 
       list->append(*m_foreignPackageList);
+      std::cout << "Time elapsed setting outdated foreign pkgs from 'ALL group' list: " << m_time->elapsed() << " mili seconds." << std::endl;
     }
     else
     {
@@ -660,7 +661,7 @@ void MainWindow::buildPackageList()
 
       m_foreignPackageList = markForeignPackagesInPkgList(m_hasAURTool, m_outdatedAURStringList);
       list->append(*m_foreignPackageList);
-      std::cout << "Time elapsed obtaining outdated AUR pkgs from 'ALL group' list: " << m_time->elapsed() << " mili seconds." << std::endl;
+      std::cout << "Time elapsed obtaining outdated foreign pkgs from 'ALL group' list: " << m_time->elapsed() << " mili seconds." << std::endl;
     }
   }
 
@@ -788,8 +789,6 @@ void MainWindow::buildPackageList()
 void MainWindow::refreshPackageList()
 {
   CPUIntensiveComputing cic;
-  //bool hasAURTool = UnixCommand::hasTheExecutable(StrConstants::getForeignRepositoryToolName()) && !UnixCommand::isRootRunning();
-
   const std::unique_ptr<const QSet<QString> > unrequiredPackageList(Package::getUnrequiredPackageList());
   QList<PackageListData> *list = Package::getPackageList();
 
