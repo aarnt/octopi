@@ -58,7 +58,7 @@ MainWindow::MainWindow(QWidget *parent) :
   m_callSystemUpgradeNoConfirm = false;
   m_initializationCompleted=false;
   m_systemUpgradeDialog = false;
-  m_refreshOutdatedPackageLists = false;
+  m_refreshPackageLists = false;
   m_cic = NULL;
   m_outdatedStringList = new QStringList();
   m_outdatedAURStringList = new QStringList();
@@ -68,10 +68,12 @@ MainWindow::MainWindow(QWidget *parent) :
   m_numberOfInstalledPackages = 0;
   m_time = new QTime();
 
+  m_unrequiredPackageList = NULL;
+  m_foreignPackageList = NULL;
+
   //Here we try to speed up first pkg list build!
   //TEST CODE////////////////////////////////
   m_time->start();
-
   retrieveUnrequiredPackageList();
   retrieveForeignPackageList();
   //TEST CODE////////////////////////////////

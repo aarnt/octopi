@@ -35,6 +35,7 @@
 
 QFutureWatcher<QString> g_fwToolTip;
 QFutureWatcher<QList<PackageListData> *> g_fwPacman;
+QFutureWatcher<QList<PackageListData> *> g_fwForeignPacman;
 QFutureWatcher<GroupMemberPair>          g_fwPacmanGroup;
 QFutureWatcher<QList<PackageListData> *> g_fwAUR;
 QFutureWatcher<QList<PackageListData> *> g_fwAURMeta;
@@ -89,6 +90,14 @@ QList<PackageListData> * searchPacmanPackages()
 }
 
 /*
+ * Starts the non blocking search for Pacman Foreign packages...
+ */
+QList<PackageListData> * searchForeignPackages()
+{
+  return Package::getForeignPackageList();
+}
+
+/*
  * Starts the non blocking search for Unrequired Pacman packages...
  */
 QSet<QString> *searchUnrequiredPacmanPackages()
@@ -137,6 +146,7 @@ AUROutdatedPackages * getOutdatedAURPackages()
 {
   AUROutdatedPackages * res = new AUROutdatedPackages();
   res->content = Package::getAUROutdatedPackagesNameVersion();
+
   return res;
 }
 
@@ -151,7 +161,7 @@ QString getLatestDistroNews()
 /*
  * Marks the packages installed by AUR/KCP (alien icons in pkg list).
  */
-QList<PackageListData> * markForeignPackagesInPkgList(bool hasAURTool, QStringList *outdatedAURPackageList)
+QList<PackageListData> * markForeignPackagesInPkgList(bool hasAURTool, QStringList *outdatedAURStringList)
 {
   // Fetch foreign package list
   QList<PackageListData> * result = new QList<PackageListData>();
@@ -162,7 +172,7 @@ QList<PackageListData> * markForeignPackagesInPkgList(bool hasAURTool, QStringLi
 
   while (itForeign != listForeign->end())
   {
-    if (!hasAURTool || !outdatedAURPackageList->contains(itForeign->name))
+    if (!hasAURTool || !outdatedAURStringList->contains(itForeign->name))
     {
       pld = PackageListData(
             itForeign->name, itForeign->repository, itForeign->version,

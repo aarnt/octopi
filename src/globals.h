@@ -37,6 +37,7 @@ typedef std::pair<QString, QStringList*> GroupMemberPair;
 
 extern QFutureWatcher<QString> g_fwToolTip;
 extern QFutureWatcher<QList<PackageListData> *> g_fwPacman;
+extern QFutureWatcher<QList<PackageListData> *> g_fwForeignPacman;
 extern QFutureWatcher<QSet<QString> *> g_fwUnrequiredPacman;
 extern QFutureWatcher<GroupMemberPair>          g_fwPacmanGroup;
 extern QFutureWatcher<QList<PackageListData> *> g_fwAUR;
@@ -49,7 +50,8 @@ extern QFutureWatcher<QString> g_fwPackageOwnsFile;
 QString showPackageInfo(QString pkgName);
 QList<PackageListData> * searchPacmanPackages();
 QSet<QString> * searchUnrequiredPacmanPackages();
-QList<PackageListData> * markForeignPackagesInPkgList(bool hasAURTool, QStringList *outdatedAURPackageList);
+QList<PackageListData> * searchForeignPackages();
+QList<PackageListData> * markForeignPackagesInPkgList(bool hasAURTool, QStringList *outdatedAURStringList);
 QList<PackageListData> * searchAURPackages(QString searchString);
 QString searchPacmanPackagesByFile(const QString &file);
 GroupMemberPair          searchPacmanPackagesFromGroup(QString groupName);
