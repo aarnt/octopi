@@ -346,10 +346,15 @@ void MainWindow::preBuildAURPackageListMeta()
  */
 void MainWindow::retrieveForeignPackageList()
 {
+  QEventLoop el;
   QFuture<QList<PackageListData> *> f;
   f = QtConcurrent::run(searchForeignPackages);
   connect(&g_fwForeignPacman, SIGNAL(finished()), this, SLOT(preBuildForeignPackageList()));
+  connect(&g_fwForeignPacman, SIGNAL(finished()), &el, SLOT(quit()));
   g_fwForeignPacman.setFuture(f);
+  el.exec();
+
+  assert(m_foreignPackageList != NULL);
 }
 
 /*
