@@ -918,6 +918,7 @@ void MainWindow::doRemoveAndInstall()
   QStringList *pRemoveTargets = Package::getTargetRemovalList(listOfRemoveTargets, m_removeCommand);
   QString removeList;
   QString allLists;
+
   TransactionDialog question(this);
   QString dialogText;
 
@@ -1500,6 +1501,7 @@ void MainWindow::toggleTransactionActions(const bool value)
   }
 
   ui->actionCacheCleaner->setEnabled(value);
+  ui->actionRepositoryEditor->setEnabled(value);
 
   m_actionSwitchToAURTool->setEnabled(value);
 
