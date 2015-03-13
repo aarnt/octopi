@@ -23,6 +23,7 @@
 
 #include "searchlineedit.h"
 #include <iostream>
+
 #include <QWidget>
 #include <QApplication>
 #include <QTextEdit>
@@ -36,6 +37,7 @@ private:
 
 protected:
   virtual void paintEvent(QPaintEvent *);
+  virtual void keyPressEvent(QKeyEvent *);
 
 public:
   explicit SearchBar(QWidget *parent = 0);

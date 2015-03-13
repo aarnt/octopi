@@ -8,6 +8,8 @@
   Toolbar now shows AUR tool button instead of a fake pacman group.
   Remove "Yes" button from transaction dialog, everytime 'pacman' 
 	is one of the target packages.
+  SearchBar now reacts to an ENTER or RETURN key press to search for 
+	next found item.
   BugFix: Filter connect chain bug decreased filter's performance over time.
   BugFix: Search by name was not being used after reverting from AUR search.
   BugFix: F3 and Shift+F3 keys at SearchBar were not working.

@@ -72,7 +72,6 @@ void SearchBar::init()
   m_nextAction->setText(tr("Next") + " >");
   m_nextButton->setAutoRaise(true);
   m_nextAction->setShortcut(Qt::Key_F3);
-
   m_previousButton->setDefaultAction(m_previousAction);
   m_nextButton->setDefaultAction(m_nextAction);
 
@@ -130,6 +129,17 @@ void SearchBar::paintEvent(QPaintEvent *)
   styleOption.init(this);
   QPainter painter(this);
   style()->drawPrimitive(QStyle::PE_Widget, &styleOption, &painter, this);
+}
+
+/*
+ * Overriden in order to respond to ENTER and RETURN key presses to find next itens
+ */
+void SearchBar::keyPressEvent(QKeyEvent *ke)
+{
+  if(!m_searchLineEdit->text().isEmpty() && (ke->key() == Qt::Key_Enter || ke->key() == Qt::Key_Return))
+  {
+    findNext();
+  }
 }
 
 /*
