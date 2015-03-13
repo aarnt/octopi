@@ -1499,6 +1499,8 @@ void MainWindow::toggleTransactionActions(const bool value)
     m_actionMirrorCheck->setEnabled(value);
   }
 
+  ui->actionCacheCleaner->setEnabled(value);
+
   m_actionSwitchToAURTool->setEnabled(value);
 
   ui->actionSyncPackages->setEnabled(value);
