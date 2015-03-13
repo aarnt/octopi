@@ -59,6 +59,10 @@ package_octopi() {
    install -D -m644 $startdir/resources/images/${pkgname}_red.png ${pkgdir}/usr/share/icons/${pkgname}_red.png
    install -D -m644 $startdir/resources/images/${pkgname}_yellow.png ${pkgdir}/usr/share/icons/${pkgname}_yellow.png
 
+   #speedup files
+   install -D -m755 $startdir/speedup/speedup-octopi.sh ${pkgdir}/usr/bin/speedup-octopi.sh
+   install -D -m644 $startdir/speedup/${pkgname}.service ${pkgdir}/etc/systemd/system/${pkgname}.service
+
    #Pacmaneditor files
    install -D -m755 $startdir/repoeditor/bin/octopi-repoeditor ${pkgdir}/usr/bin/octopi-repoeditor
 

@@ -1,5 +1,6 @@
 0.7.0 (dev)
   Major speed fix: Faster pkg list building.
+  Added a systemd service to speed up the very first octopi startup time.
   Reverted to showing ALL packages at startup.
   Added "Copy path to clipboard" context menu option in file list treeview.
   Now pacman.conf's "IgnoreGroup" option is honored.
