@@ -46,6 +46,16 @@ void MainWindow::changeTransactionActionsState()
   bool state = isThereAPendingTransaction();
   ui->actionCommit->setEnabled(state);
   ui->actionCancel->setEnabled(state);
+
+  ui->actionSyncPackages->setEnabled(!state);
+
+  if(m_hasMirrorCheck) m_actionMirrorCheck->setEnabled(!state);
+  if(m_hasAURTool) m_actionSwitchToAURTool->setEnabled(!state);
+
+  if (state == false && m_outdatedStringList->count() > 0)
+    ui->actionSystemUpgrade->setEnabled(true);
+  else if (state == true)
+    ui->actionSystemUpgrade->setEnabled(false);
 }
 
 /*
@@ -1438,8 +1448,6 @@ void MainWindow::doCleanCache()
     clearTabOutput();
     writeToTabOutputExt("<b>" + StrConstants::getCleaningPackageCache() + "</b>");
     qApp->processEvents();
-    //CPUIntensiveComputing cic;
-
     bool res = UnixCommand::cleanPacmanCache();
     qApp->processEvents();
 
@@ -1478,11 +1486,24 @@ void MainWindow::toggleTransactionActions(const bool value)
   {
     ui->actionCommit->setEnabled(true);
     ui->actionCancel->setEnabled(true);
+
+    if(m_hasMirrorCheck) m_actionMirrorCheck->setEnabled(false);
+    if(m_hasAURTool) m_actionSwitchToAURTool->setEnabled(false);
+
+    ui->actionSyncPackages->setEnabled(false);
+    ui->actionSystemUpgrade->setEnabled(false);
   }
   else if ((value == true && state == false) || value == false)
   {
     ui->actionCommit->setEnabled(false);
     ui->actionCancel->setEnabled(false);
+
+    if(m_hasMirrorCheck) m_actionMirrorCheck->setEnabled(true);
+    if(m_hasAURTool) m_actionSwitchToAURTool->setEnabled(true);
+
+    ui->actionSyncPackages->setEnabled(true);
+    if (value == true && m_outdatedStringList->count() > 0)
+      ui->actionSystemUpgrade->setEnabled(true);
   }
 
   ui->actionInstall->setEnabled(value);
@@ -1495,26 +1516,19 @@ void MainWindow::toggleTransactionActions(const bool value)
   ui->actionRemoveTransactionItems->setEnabled(value);
   ui->actionRemove->setEnabled(value);
 
-  if(m_hasMirrorCheck)
-  {
-    m_actionMirrorCheck->setEnabled(value);
-  }
-
+  ui->actionPacmanLogViewer->setEnabled(value);
   ui->actionCacheCleaner->setEnabled(value);
-  ui->actionRepositoryEditor->setEnabled(value);
+  ui->actionRepositoryEditor->setEnabled(value);  
 
   m_actionSwitchToAURTool->setEnabled(value);
-
-  ui->actionSyncPackages->setEnabled(value);
   ui->actionGetNews->setEnabled(value);
-
-  if (value == true && m_outdatedStringList->count() > 0)
-    ui->actionSystemUpgrade->setEnabled(true);
-  else
-    ui->actionSystemUpgrade->setEnabled(false);
 
   ui->actionGetNews->setEnabled(value);
   ui->actionInstallLocalPackage->setEnabled(value);
+  ui->actionOpenRootTerminal->setEnabled(value);
+  ui->actionHelpUsage->setEnabled(value);
+  ui->actionHelpAbout->setEnabled(value);
+  ui->actionExit->setEnabled(value);
 
   //We have to toggle the combobox groups as well
   if (m_initializationCompleted) ui->twGroups->setEnabled(value);

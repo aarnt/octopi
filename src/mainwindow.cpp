@@ -66,21 +66,19 @@ MainWindow::MainWindow(QWidget *parent) :
   m_selectedViewOption = ectn_ALL_PKGS;
   m_selectedRepository = "";
   m_numberOfInstalledPackages = 0;
-  m_time = new QTime();
 
+  m_time = new QTime();
   m_unrequiredPackageList = NULL;
   m_foreignPackageList = NULL;
 
   //Here we try to speed up first pkg list build!
-  //TEST CODE////////////////////////////////
   m_time->start();
+
   retrieveUnrequiredPackageList();
   retrieveForeignPackageList();
-  //TEST CODE////////////////////////////////
 
   ui->setupUi(this);
   switchToViewAllPackages();  
-
   m_hasAURTool =
       UnixCommand::hasTheExecutable(StrConstants::getForeignRepositoryToolName()) && !UnixCommand::isRootRunning();
 }

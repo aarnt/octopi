@@ -179,6 +179,7 @@ void MainWindow::AURToolSelected()
   m_actionRepositoryAll->setChecked(true);
   m_refreshPackageLists = false;
   m_leFilterPackage->clear();
+
   metaBuildPackageList();
 }
 
@@ -733,7 +734,7 @@ void MainWindow::buildPackageList()
       m_leFilterPackage->setFocus();
     }
 
-    m_initializationCompleted = true;
+    m_initializationCompleted = true;        
     firstTime = false;
 
     if (m_callSystemUpgrade)
@@ -756,6 +757,7 @@ void MainWindow::buildPackageList()
     }
   }
 
+  ui->tvPackages->setColumnWidth(3, 10);
   refreshToolBar();
   refreshStatusBarToolButtons();
   m_refreshPackageLists = true;

@@ -10,6 +10,10 @@
 	is one of the target packages.
   SearchBar now reacts to an ENTER or RETURN key press to search for 
 	next found item.
+  BugFix: When a transaction is available, disable sync pkg and system 
+	upgrade, as well as mirror-check and AUR mode.
+  BugFix: Repository column would get wider after switching from AUR 
+	mode.
   BugFix: Filter connect chain bug decreased filter's performance over time.
   BugFix: Search by name was not being used after reverting from AUR search.
   BugFix: F3 and Shift+F3 keys at SearchBar were not working.
