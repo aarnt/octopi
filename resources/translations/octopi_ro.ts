@@ -250,7 +250,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="546"/>
         <source>Cache Cleaner</source>
-        <translation type="unfinished"/>
+        <translation>Stergere Cache</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="554"/>
@@ -1080,12 +1080,12 @@ Sunteți sigur că doriți să-l deschideți?</translation>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="588"/>
         <source>Use &quot;%1&quot; tool</source>
-        <translation type="unfinished"/>
+        <translation>Foloseste &quot;%1&quot; din unealta</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="592"/>
         <source>Copy path to clipboard</source>
-        <translation type="unfinished"/>
+        <translation>Copie calea pe clipboard</translation>
     </message>
 </context>
 <context>
