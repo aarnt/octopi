@@ -7,7 +7,7 @@ url="http://octopiproject.wordpress.com"
 license=('GPL2')
 install=$pkgname.install
 makedepends=('git')
-depends=('qt5-quickcontrols' 'xterm')
+depends=('qt4' 'qt5-quickcontrols' 'xterm')
 optdepends=('kdesu: for KDE'
             'gksu: for XFCE, Gnome, LXDE, Cinnamon'
             'gnome-keyring: for password management'
@@ -35,7 +35,7 @@ build() {
     
     cd $startdir/notifier/octopi-notifier
     msg "Building octopi-notifier..."
-    qmake-qt5 octopi-notifier.pro
+    qmake-qt4 octopi-notifier.pro
     make -j $jc
 
     cd $startdir/repoeditor

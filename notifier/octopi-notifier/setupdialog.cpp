@@ -65,7 +65,7 @@ void SetupDialog::init()
 
   if (syncDbInterval == -1)
   {
-    ui->spinOnceEvery->setValue(10);
+    ui->spinOnceEvery->setValue(5);
   }
   else if (syncDbInterval != -1)
   {
