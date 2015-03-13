@@ -7,7 +7,7 @@ url="http://octopiproject.wordpress.com"
 license=('GPL2')
 install=$pkgname.install
 makedepends=('git')
-depends=('qt5-base' 'qt5-declarative' 'xterm')
+depends=('qt5-quickcontrols' 'xterm')
 optdepends=('kdesu: for KDE'
             'gksu: for XFCE, Gnome, LXDE, Cinnamon'
             'gnome-keyring: for password management'
