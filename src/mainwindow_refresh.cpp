@@ -474,11 +474,13 @@ void MainWindow::metaBuildPackageList()
     QFuture<QList<PackageListData> *> f;
     f = QtConcurrent::run(searchPacmanPackages);
     connect(&g_fwPacman, SIGNAL(finished()), this, SLOT(preBuildPackageList()));
-
-    g_fwPacman.setFuture(f);
     disconnect(this, SIGNAL(buildPackageListDone()), &el, SLOT(quit()));
     connect(this, SIGNAL(buildPackageListDone()), &el, SLOT(quit()));
-    el.exec();
+
+    g_fwPacman.setFuture(f);
+    std::cout << "Start local event loop..." << std::endl;
+
+    el.exec(QEventLoop::ExcludeUserInputEvents);
     std::cout << m_packageModel->getPackageCount() << " pkgs => " <<
                  "Time elapsed building pkgs from 'ALL group' list: " << m_time->elapsed() << " mili seconds." << std::endl << std::endl;
   }
@@ -506,10 +508,11 @@ void MainWindow::metaBuildPackageList()
       disconnect(&g_fwAUR, SIGNAL(finished()), this, SLOT(preBuildAURPackageList()));
       m_cic = new CPUIntensiveComputing();
       f = QtConcurrent::run(searchAURPackages, m_leFilterPackage->text());
-      g_fwAUR.setFuture(f);
       connect(&g_fwAUR, SIGNAL(finished()), this, SLOT(preBuildAURPackageList()));
       disconnect(this, SIGNAL(buildAURPackageListDone()), &el, SLOT(quit()));
       connect(this, SIGNAL(buildAURPackageListDone()), &el, SLOT(quit()));
+
+      g_fwAUR.setFuture(f);
       el.exec();
       std::cout << m_packageModel->getPackageCount() << " pkgs => " <<
                    "Time elapsed building pkgs from '" << StrConstants::getForeignPkgRepositoryName().toLatin1().data() << " group' list: " << m_time->elapsed() << " mili seconds." << std::endl << std::endl;
@@ -530,8 +533,8 @@ void MainWindow::metaBuildPackageList()
 
       QFuture<QList<PackageListData> *> f;
       f = QtConcurrent::run(searchAURPackages, m_leFilterPackage->text());
-      g_fwAURMeta.setFuture(f);
       connect(&g_fwAURMeta, SIGNAL(finished()), this, SLOT(preBuildAURPackageListMeta()));
+      g_fwAURMeta.setFuture(f);
     }
     else
     {
@@ -554,10 +557,11 @@ void MainWindow::metaBuildPackageList()
     QEventLoop el;
     QFuture<GroupMemberPair> f;
     f = QtConcurrent::run(searchPacmanPackagesFromGroup, getSelectedGroup());
-    g_fwPacmanGroup.setFuture(f);
     connect(&g_fwPacmanGroup, SIGNAL(finished()), this, SLOT(preBuildPackagesFromGroupList()));
     disconnect(this, SIGNAL(buildPackagesFromGroupListDone()), &el, SLOT(quit()));
     connect(this, SIGNAL(buildPackagesFromGroupListDone()), &el, SLOT(quit()));
+
+    g_fwPacmanGroup.setFuture(f);
     el.exec();
     std::cout << m_packageModel->getPackageCount() << " pkgs => " <<
                  "Time elapsed building pkgs from '" << getSelectedGroup().toLatin1().data() << " group' list: " << m_time->elapsed() << " mili seconds." << std::endl << std::endl;
@@ -608,30 +612,22 @@ void MainWindow::buildPackageList()
   {
     //Let's get outdatedPackages list again!
     m_outdatedStringList = Package::getOutdatedPackageList();
-
     std::cout << "Time elapsed refreshing outdated pkgs from 'ALL group' list: " << m_time->elapsed() << " mili seconds." << std::endl;
-
+    qApp->processEvents(QEventLoop::ExcludeUserInputEvents);
     m_numberOfOutdatedPackages = m_outdatedStringList->count();
 
     if (m_hasAURTool)
     {
       m_outdatedAURStringList = Package::getOutdatedAURPackageList();
+      qApp->processEvents(QEventLoop::ExcludeUserInputEvents);
     }
-  }
-
-  //const std::unique_ptr<const QSet<QString>> unrequiredPackageList;
-  //QSet<QString> *unrequiredPackageList = NULL;
-
-  //if (m_unrequiredPackageList == NULL)
-  if (m_refreshPackageLists)
-  {
-    //unrequiredPackageList = Package::getUnrequiredPackageList();
 
     delete m_unrequiredPackageList;
     m_unrequiredPackageList = NULL;
 
     m_unrequiredPackageList = Package::getUnrequiredPackageList();
     std::cout << "Time elapsed obtaining unrequired pkgs from 'ALL group' list: " << m_time->elapsed() << " mili seconds." << std::endl;
+    qApp->processEvents(QEventLoop::ExcludeUserInputEvents);
   }
 
   // Fetch package list
@@ -640,7 +636,6 @@ void MainWindow::buildPackageList()
 
   if (!isSearchByFileSelected())
   {
-    //if (firstTime && m_foreignPackageList != NULL)
     if (!m_refreshPackageLists)
     {
       QList<PackageListData>::iterator itForeign = m_foreignPackageList->begin();
@@ -664,8 +659,10 @@ void MainWindow::buildPackageList()
       m_foreignPackageList = NULL;
 
       m_foreignPackageList = markForeignPackagesInPkgList(m_hasAURTool, m_outdatedAURStringList);
+
       list->append(*m_foreignPackageList);
       std::cout << "Time elapsed obtaining outdated foreign pkgs from 'ALL group' list: " << m_time->elapsed() << " mili seconds." << std::endl;
+      qApp->processEvents(QEventLoop::ExcludeUserInputEvents);
     }
   }
 
@@ -689,17 +686,8 @@ void MainWindow::buildPackageList()
   m_progressWidget->setValue(counter);
   m_progressWidget->close();
 
-  /*if (!firstTime || m_unrequiredPackageList == NULL)
-  {
-    m_packageRepo.setData(list, *unrequiredPackageList);
-  }
-  else if (firstTime && m_unrequiredPackageList != NULL)
-  {
-    m_packageRepo.setData(list, *m_unrequiredPackageList);
-  }*/
-
   m_packageRepo.setData(list, *m_unrequiredPackageList);
-
+  if (m_refreshPackageLists) qApp->processEvents(QEventLoop::ExcludeUserInputEvents);
   std::cout << "Time elapsed seting the list to the treeview: " << m_time->elapsed() << " mili seconds." << std::endl;
 
   if (ui->actionSearchByDescription->isChecked())
@@ -714,6 +702,8 @@ void MainWindow::buildPackageList()
   if (isAllGroupsSelected()) m_packageModel->applyFilter(m_selectedViewOption, m_selectedRepository, "");
   if (m_leFilterPackage->text() != "") reapplyPackageFilter();
 
+  if (m_refreshPackageLists) qApp->processEvents(QEventLoop::ExcludeUserInputEvents);
+
   QModelIndex maux = m_packageModel->index(0, 0, QModelIndex());
   ui->tvPackages->setCurrentIndex(maux);
   ui->tvPackages->scrollTo(maux, QAbstractItemView::PositionAtCenter);
@@ -721,22 +711,6 @@ void MainWindow::buildPackageList()
 
   delete list;
   list = NULL;
-
-  /*if (unrequiredPackageList != NULL)
-  {
-    delete unrequiredPackageList;
-    unrequiredPackageList = NULL;
-  }
-  if (m_unrequiredPackageList != NULL)
-  {
-    delete m_unrequiredPackageList;
-    m_unrequiredPackageList = NULL;
-  }
-  if (m_foreignPackageList != NULL)
-  {
-    delete m_foreignPackageList;
-    m_foreignPackageList = NULL;
-  }*/
 
   refreshTabInfo();
   refreshTabFiles();
