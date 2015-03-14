@@ -20,10 +20,10 @@
 
 #include "mainwindow.h"
 #include "setupdialog.h"
+#include "../pacmanhelper/pacmanhelperclient.h"
 #include "../../src/strconstants.h"
 #include "../../src/uihelper.h"
 #include "../../src/package.h"
-#include "../pacmanhelper/pacmanhelperclient.h"
 #include "../../src/transactiondialog.h"
 
 #include <QTimer>
@@ -392,6 +392,7 @@ void MainWindow::toggleEnableInterface(bool state)
 {
   m_actionOctopi->setEnabled(state);
   m_actionSyncDatabase->setEnabled(state);
+  m_actionSetInterval->setEnabled(state);
   m_actionExit->setEnabled(state);
 }
 
@@ -779,6 +780,7 @@ void MainWindow::showConfigDialog()
   {
     m_configDialog = new SetupDialog(this);
     m_configDialog->exec();
+
     delete m_configDialog;
     m_configDialog = nullptr;
   }
