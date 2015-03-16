@@ -173,7 +173,7 @@ QSet<QString>* Package::getUnrequiredPackageList()
 /*
  * Retrieves the list of outdated packages (those which have newer versions available to download)
  */
-QStringList *Package::getOutdatedPackageList()
+QStringList *Package::getOutdatedStringList()
 {
   QString outPkgList = UnixCommand::getOutdatedPackageList();
   QStringList packageTuples = outPkgList.split(QRegExp("\\n"), QString::SkipEmptyParts);
@@ -203,7 +203,7 @@ QStringList *Package::getOutdatedPackageList()
  * Retrieves the list of outdated Yaourt (AUR) packages
  * (those which have newer versions available to download)
  */
-QStringList *Package::getOutdatedAURPackageList()
+QStringList *Package::getOutdatedAURStringList()
 {
   QStringList * res = new QStringList();
 
@@ -1070,6 +1070,7 @@ QHash<QString, QString> Package::getAUROutdatedPackagesNameVersion()
 
   QString res = UnixCommand::getAURPackageVersionInformation();
   QStringList listOfPkgs = res.split("\n", QString::SkipEmptyParts);
+  QStringList ignorePkgList = UnixCommand::getIgnorePkgsFromPacmanConf();
 
   if ((StrConstants::getForeignRepositoryToolName() == "yaourt") ||
     (StrConstants::getForeignRepositoryToolName() == "kcp"))
@@ -1087,8 +1088,13 @@ QHash<QString, QString> Package::getAUROutdatedPackagesNameVersion()
       {
         line = line.remove(StrConstants::getForeignRepositoryTargetPrefix());
         QStringList nameVersion = line.split(" ", QString::SkipEmptyParts);
+        QString pkgName = nameVersion.at(0);
 
-        hash.insert(nameVersion.at(0), nameVersion.at(1));
+        //Let's ignore the "IgnorePkg" list of packages...
+        if (!ignorePkgList.contains(pkgName))
+        {
+          hash.insert(pkgName, nameVersion.at(1));
+        }
       }
     }
   }

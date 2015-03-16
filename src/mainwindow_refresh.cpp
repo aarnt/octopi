@@ -612,14 +612,14 @@ void MainWindow::buildPackageList()
   if(m_refreshPackageLists) //If it's not the starting of the app...
   {
     //Let's get outdatedPackages list again!
-    m_outdatedStringList = Package::getOutdatedPackageList();
+    m_outdatedStringList = Package::getOutdatedStringList();
     std::cout << "Time elapsed refreshing outdated pkgs from 'ALL group' list: " << m_time->elapsed() << " mili seconds." << std::endl;
     qApp->processEvents(QEventLoop::ExcludeUserInputEvents);
     m_numberOfOutdatedPackages = m_outdatedStringList->count();
 
     if (m_hasAURTool)
     {
-      m_outdatedAURStringList = Package::getOutdatedAURPackageList();
+      m_outdatedAURStringList = Package::getOutdatedAURStringList();
       qApp->processEvents(QEventLoop::ExcludeUserInputEvents);
     }
 

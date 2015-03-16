@@ -138,11 +138,11 @@ void MainWindow::saveSettings(SaveSettingsReason saveSettingsReason){
  */
 void MainWindow::initAppIcon()
 {
-  m_outdatedStringList = Package::getOutdatedPackageList();
+  m_outdatedStringList = Package::getOutdatedStringList();
 
   if (m_hasAURTool)
   {
-    m_outdatedAURStringList = Package::getOutdatedAURPackageList();
+    m_outdatedAURStringList = Package::getOutdatedAURStringList();
   }
 
   m_numberOfOutdatedPackages = m_outdatedStringList->count();
