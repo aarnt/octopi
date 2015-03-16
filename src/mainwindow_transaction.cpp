@@ -46,7 +46,6 @@ void MainWindow::changeTransactionActionsState()
   bool state = isThereAPendingTransaction();
   ui->actionCommit->setEnabled(state);
   ui->actionCancel->setEnabled(state);
-
   ui->actionSyncPackages->setEnabled(!state);
 
   if(m_hasMirrorCheck) m_actionMirrorCheck->setEnabled(!state);
@@ -1465,6 +1464,7 @@ void MainWindow::doCleanCache()
  */
 void MainWindow::disableTransactionActions()
 {
+  toggleSystemActions(false);
   toggleTransactionActions(false);
 }
 
@@ -1493,7 +1493,7 @@ void MainWindow::toggleTransactionActions(const bool value)
     ui->actionSyncPackages->setEnabled(false);
     ui->actionSystemUpgrade->setEnabled(false);
   }
-  else if ((value == true && state == false) || value == false)
+  else if (value == true && state == false)
   {
     ui->actionCommit->setEnabled(false);
     ui->actionCancel->setEnabled(false);
@@ -1504,6 +1504,14 @@ void MainWindow::toggleTransactionActions(const bool value)
     ui->actionSyncPackages->setEnabled(true);
     if (value == true && m_outdatedStringList->count() > 0)
       ui->actionSystemUpgrade->setEnabled(true);
+  }
+  else if (value == false && state == false)
+  {
+    if(m_hasMirrorCheck) m_actionMirrorCheck->setEnabled(false);
+    if(m_hasAURTool) m_actionSwitchToAURTool->setEnabled(false);
+
+    ui->actionSyncPackages->setEnabled(false);
+    ui->actionSystemUpgrade->setEnabled(false);
   }
 
   ui->actionInstall->setEnabled(value);
