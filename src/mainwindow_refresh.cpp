@@ -172,6 +172,7 @@ void MainWindow::AURToolSelected()
   else
   {
     ui->twGroups->setEnabled(true);
+    ui->tvPackages->setColumnHidden(PackageModel::ctn_PACKAGE_REPOSITORY_COLUMN, false);
   }
 
   switchToViewAllPackages();
@@ -414,7 +415,7 @@ void MainWindow::preBuildPackageList()
     if (!SettingsManager::getSkipMirrorCheckAtStartup())
       doMirrorCheck();
 #else
-    doMirrorCheck();
+    //doMirrorCheck();
 #endif
 
     secondTime=true;
@@ -757,7 +758,8 @@ void MainWindow::buildPackageList()
     }
   }
 
-  ui->tvPackages->setColumnWidth(3, 10);
+  //ui->tvPackages->set showColumn(PackageModel::ctn_PACKAGE_REPOSITORY_COLUMN);
+  ui->tvPackages->setColumnWidth(PackageModel::ctn_PACKAGE_REPOSITORY_COLUMN, 10);
   refreshToolBar();
   refreshStatusBarToolButtons();
   m_refreshPackageLists = true;
@@ -866,6 +868,8 @@ void MainWindow::buildAURPackageList()
   counter = list->count();
   m_progressWidget->setValue(counter);
   m_progressWidget->close();
+
+  ui->tvPackages->setColumnHidden(PackageModel::ctn_PACKAGE_REPOSITORY_COLUMN, true);
 
   refreshToolBar();
   refreshStatusBarToolButtons();

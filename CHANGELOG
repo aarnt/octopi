@@ -1,7 +1,7 @@
 0.7.0 (dev)
   Major speed fix: Faster pkg list building.
-  Added a systemd service to speed up the very first octopi startup time.
   Reverted to showing ALL packages at startup.
+  Added a systemd service to speed up the very first octopi startup time.
   Added "Copy path to clipboard" context menu option in file list treeview.
   Now pacman.conf's "IgnoreGroup" option is honored.
   Disabled "View/Repository/kcp" menu item in KaOS.
@@ -10,6 +10,7 @@
 	is one of the target packages.
   SearchBar now reacts to an ENTER or RETURN key press to search for 
 	next found item.
+  BugFix: No more horizontal scrollbar in AUR mode.
   BugFix: When a transaction is available, disable sync pkg and system 
 	upgrade, as well as mirror-check and AUR mode.
   BugFix: Repository column would get wider after switching from AUR 

@@ -246,17 +246,17 @@ void MainWindow::initMenuBar()
     actionGroupRepositories->addAction(createdAction);
   }
 
-  QAction * actionForeignRepo;
+  /*QAction * actionForeignRepo;
   if (UnixCommand::getLinuxDistro() != ectn_KAOS)
   {
     actionForeignRepo = subMenu->addAction(StrConstants::getForeignRepositoryName());
     actionForeignRepo->setCheckable(true);
-  }
+  }*/
 
   actionGroupRepositories->addAction(m_actionRepositoryAll);
 
-  if (UnixCommand::getLinuxDistro() != ectn_KAOS)
-    actionGroupRepositories->addAction(actionForeignRepo);
+  /*if (UnixCommand::getLinuxDistro() != ectn_KAOS)
+    actionGroupRepositories->addAction(actionForeignRepo);*/
 
   actionGroupRepositories->setExclusive(true);
 
@@ -528,8 +528,8 @@ void MainWindow::initPackageTreeView()
 void MainWindow::resizePackageView()
 {
   ui->tvPackages->setColumnWidth(PackageModel::ctn_PACKAGE_ICON_COLUMN, 24);
-  ui->tvPackages->setColumnWidth(PackageModel::ctn_PACKAGE_NAME_COLUMN, 400); //500
-  ui->tvPackages->setColumnWidth(PackageModel::ctn_PACKAGE_VERSION_COLUMN, 160);
+  ui->tvPackages->setColumnWidth(PackageModel::ctn_PACKAGE_NAME_COLUMN, 400);
+  ui->tvPackages->setColumnWidth(PackageModel::ctn_PACKAGE_VERSION_COLUMN, 260); //160
 }
 
 /*

@@ -162,24 +162,6 @@ void MainWindow::switchToViewAllPackages()
 }
 
 /*
- * Prepares UI and logic to show only installed packages
- */
-/*void MainWindow::switchToViewInstalledPackages()
-{
-  static bool firstTime = true;
-
-  if (firstTime)
-  {
-    m_showOnlyInstalledPackages = true;
-    firstTime = false;
-  }
-
-  disconnect(ui->actionViewInstalledPackages, SIGNAL(triggered()), this, SLOT(selectedInstalledPackagesMenu()));
-  ui->actionViewInstalledPackages->setChecked(true);
-  connect(ui->actionViewInstalledPackages, SIGNAL(triggered()), this, SLOT(selectedInstalledPackagesMenu()));
-}*/
-
-/*
  * Retrieves a pointer to Output's QTextBrowser object
  */
 QTextBrowser *MainWindow::getOutputTextBrowser()
