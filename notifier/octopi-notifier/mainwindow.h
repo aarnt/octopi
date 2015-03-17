@@ -71,8 +71,8 @@ private:
   QAction *m_actionAbout;
   QAction *m_actionExit;
   QIcon m_icon;
-  QStringList *m_outdatedPackageList;
-  QStringList *m_outdatedAURPackageList;
+  QStringList *m_outdatedStringList;
+  QStringList *m_outdatedAURStringList;
   QTimer *m_pacmanHelperTimer;
 
 #ifdef KSTATUS

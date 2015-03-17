@@ -52,7 +52,7 @@ void MainWindow::initSystemTrayIcon()
 {
   qDebug() << "At initSystemTrayIcon()...";
   m_commandExecuting = ectn_NONE;
-  m_outdatedPackageList = new QStringList();
+  m_outdatedStringList = new QStringList();
 
 #ifdef KSTATUS
   m_systemTrayIcon = new KStatusNotifierItem(0);
@@ -229,11 +229,11 @@ void MainWindow::doSystemUpgrade()
   QList<PackageListData> * targets = Package::getTargetUpgradeList();
 
   //There are no new updates to install!
-  if (targets->count() == 0 && m_outdatedPackageList->count() == 0)
+  if (targets->count() == 0 && m_outdatedStringList->count() == 0)
   {
     return;
   }
-  else if (targets->count() == 0 && m_outdatedPackageList->count() > 0)
+  else if (targets->count() == 0 && m_outdatedStringList->count() > 0)
   {
     return;
   }
@@ -317,7 +317,7 @@ void MainWindow::doSystemUpgradeFinished(int, QProcess::ExitStatus)
 
   //Does it still need to upgrade another packages due to SyncFirst issues???
   if ((m_commandExecuting == ectn_RUN_SYSTEM_UPGRADE_IN_TERMINAL)
-      && m_outdatedPackageList->count() > 0)
+      && m_outdatedStringList->count() > 0)
   {
     m_commandExecuting = ectn_NONE;
     m_unixCommand->removeTemporaryFile();
@@ -489,20 +489,20 @@ void MainWindow::refreshAppIcon()
           SIGNAL(directoryChanged(QString)), this, SLOT(refreshAppIcon()));
 
   qDebug() << "At refreshAppIcon()...";
-  m_outdatedPackageList = Package::getOutdatedPackageList();
+  m_outdatedStringList = Package::getOutdatedStringList();
   bool hasAURTool = UnixCommand::hasTheExecutable(StrConstants::getForeignRepositoryToolName());
 
   if (hasAURTool)
   {
-    m_outdatedAURPackageList = Package::getOutdatedAURPackageList();
+    m_outdatedAURStringList = Package::getOutdatedAURStringList();
   }
   else
   {
-    m_outdatedAURPackageList = new QStringList();
+    m_outdatedAURStringList = new QStringList();
   }
 
-  m_numberOfOutdatedPackages = m_outdatedPackageList->count();
-  m_numberOfOutdatedAURPackages = m_outdatedAURPackageList->count();
+  m_numberOfOutdatedPackages = m_outdatedStringList->count();
+  m_numberOfOutdatedAURPackages = m_outdatedAURStringList->count();
 
   if (m_numberOfOutdatedPackages == 0 && m_numberOfOutdatedAURPackages == 0)
   {
@@ -553,7 +553,7 @@ void MainWindow::refreshAppIcon()
     }
   }
 
-  if(m_outdatedPackageList->count() > 0) //RED ICON!
+  if(m_outdatedStringList->count() > 0) //RED ICON!
   {
     if(m_commandExecuting == ectn_NONE)
     {
@@ -570,7 +570,7 @@ void MainWindow::refreshAppIcon()
     m_systemTrayIcon->setStatus(KStatusNotifierItem::NeedsAttention);
 #endif
   }
-  else if(m_outdatedAURPackageList->count() > 0) //YELLOW ICON!
+  else if(m_outdatedAURStringList->count() > 0) //YELLOW ICON!
   {
     m_actionSystemUpgrade->setVisible(false);
     m_icon = IconHelper::getIconOctopiYellow();
@@ -616,7 +616,7 @@ void MainWindow::execSystemTrayActivated(QSystemTrayIcon::ActivationReason ar)
   {
   case QSystemTrayIcon::DoubleClick:
   {
-    if (m_outdatedPackageList->count() > 0)
+    if (m_outdatedStringList->count() > 0)
     {
       runOctopi(ectn_SYSUPGRADE_EXEC_OPT);
     }
@@ -691,12 +691,12 @@ void MainWindow::runOctopi(ExecOpt execOptions)
     }
   }
   else if (execOptions == ectn_SYSUPGRADE_EXEC_OPT &&
-      !UnixCommand::isAppRunning("octopi", true) && m_outdatedPackageList->count() > 0)
+      !UnixCommand::isAppRunning("octopi", true) && m_outdatedStringList->count() > 0)
   {
     doSystemUpgrade();
   }
   else if (execOptions == ectn_SYSUPGRADE_EXEC_OPT &&
-      UnixCommand::isAppRunning("octopi", true) && m_outdatedPackageList->count() > 0)
+      UnixCommand::isAppRunning("octopi", true) && m_outdatedStringList->count() > 0)
   {
     if (!WMHelper::isKDERunning() && (!WMHelper::isRazorQtRunning()) && (!WMHelper::isLXQTRunning()))
     {
