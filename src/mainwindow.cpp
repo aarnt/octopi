@@ -493,7 +493,10 @@ void MainWindow::tvPackagesSearchColumnChanged(QAction *actionSelected)
  */
 void MainWindow::changePackageListModel(ViewOptions viewOptions, QString selectedRepo)
 {  
-  m_packageModel->applyFilter(viewOptions, selectedRepo, isAllGroupsSelected() ? "" : getSelectedGroup());
+  if (m_actionSwitchToAURTool->isChecked())
+    m_packageModel->applyFilter(viewOptions, "", StrConstants::getForeignToolGroup());
+  else
+    m_packageModel->applyFilter(viewOptions, selectedRepo, isAllGroupsSelected() ? "" : getSelectedGroup());
 
   if (m_leFilterPackage->text() != "") reapplyPackageFilter();
 

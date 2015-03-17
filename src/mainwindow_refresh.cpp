@@ -167,10 +167,12 @@ void MainWindow::AURToolSelected()
 {
   if (m_actionSwitchToAURTool->isChecked())
   {
+    m_actionMenuRepository->setEnabled(false);
     ui->twGroups->setEnabled(false);
   }
   else
   {
+    m_actionMenuRepository->setEnabled(true);
     ui->twGroups->setEnabled(true);
     ui->tvPackages->setColumnHidden(PackageModel::ctn_PACKAGE_REPOSITORY_COLUMN, false);
   }
