@@ -1080,12 +1080,12 @@ Apakah kamu yakin ingin membuka berkas ini?</translation>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="588"/>
         <source>Use &quot;%1&quot; tool</source>
-        <translation type="unfinished"/>
+        <translation>Gunakan &quot;%1&quot; alat</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="592"/>
         <source>Copy path to clipboard</source>
-        <translation type="unfinished"/>
+        <translation>Salin jalur ke papan klip</translation>
     </message>
 </context>
 <context>
