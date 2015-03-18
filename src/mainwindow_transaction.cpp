@@ -2058,6 +2058,8 @@ void MainWindow::parsePacmanProcessOutput(const QString &pMsg)
     msg.remove(QRegExp("org\\.kde\\."));
     msg.remove(QRegExp("QCommandLineParser"));
     msg.remove(QRegExp("QCoreApplication.+"));
+    msg.remove(QRegExp("Fontconfig warning.+"));
+    msg.remove(QRegExp("reading configurations from.+"));
     msg = msg.trimmed();
 
     //std::cout << "debug: " << msg.toLatin1().data() << std::endl;
