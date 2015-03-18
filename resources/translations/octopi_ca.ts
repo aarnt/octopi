@@ -1080,12 +1080,12 @@ Estàs segur que vols obrir-lo?</translation>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="588"/>
         <source>Use &quot;%1&quot; tool</source>
-        <translation type="unfinished"/>
+        <translation>Usa l&apos;eina &quot;%1&quot;</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="592"/>
         <source>Copy path to clipboard</source>
-        <translation type="unfinished"/>
+        <translation>Copia&apos;n la ruta al porta-retalls</translation>
     </message>
 </context>
 <context>
