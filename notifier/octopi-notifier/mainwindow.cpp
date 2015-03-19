@@ -1,4 +1,25 @@
+/*
+* This file is part of Octopi, an open-source GUI for pacman.
+* Copyright (C) 2013 Alexandre Albuquerque Arnt
+*
+* This program is free software; you can redistribute it and/or modify
+* it under the terms of the GNU General Public License as published by
+* the Free Software Foundation; either version 2 of the License, or
+* (at your option) any later version.
+*
+* This program is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+* GNU General Public License for more details.
+*
+* You should have received a copy of the GNU General Public License
+* along with this program; if not, write to the Free Software
+* Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+*
+*/
+
 #include "mainwindow.h"
+#include "setupdialog.h"
 #include "../../src/strconstants.h"
 #include "../../src/uihelper.h"
 #include "../../src/package.h"
@@ -29,6 +50,7 @@ MainWindow::MainWindow(QWidget *parent) :
 {
   qDebug() << "At MainWindow constructor...";
 
+  m_configDialog = nullptr;
   m_pacmanDatabaseSystemWatcher =
             new QFileSystemWatcher(QStringList() << ctn_PACMAN_DATABASE_DIR, this);
 
@@ -81,6 +103,10 @@ void MainWindow::initSystemTrayIcon()
   m_actionOctopi->setText("Octopi...");
   connect(m_actionOctopi, SIGNAL(triggered()), this, SLOT(startOctopi()));
 
+  m_actionSetInterval = new QAction(this);
+  m_actionSetInterval->setText(StrConstants::getSetInterval());
+  connect(m_actionSetInterval, SIGNAL(triggered()), this, SLOT(showConfigDialog()));
+
   m_actionSyncDatabase = new QAction(this);
   m_actionSyncDatabase->setIconVisibleInMenu(true);
   m_actionSyncDatabase->setText(StrConstants::getSyncDatabase());
@@ -98,6 +124,7 @@ void MainWindow::initSystemTrayIcon()
   if (UnixCommand::hasTheExecutable("octopi"))
     m_systemTrayIconMenu->addAction(m_actionOctopi);
 
+  m_systemTrayIconMenu->addAction(m_actionSetInterval);
   m_systemTrayIconMenu->addAction(m_actionSyncDatabase);
   m_systemTrayIconMenu->addAction(m_actionSystemUpgrade);
   m_systemTrayIconMenu->addSeparator();
@@ -152,25 +179,52 @@ void MainWindow::pacmanHelperTimerTimeout()
 
   //Is it time to syncdb again?
   QDateTime lastCheckTime = SettingsManager::getLastSyncDbTime();
+  int syncDbInterval = SettingsManager::getSyncDbInterval();
   QDateTime now = QDateTime::currentDateTime();
   bool syncTime = false;
-
   int syncHour = SettingsManager::getSyncDbHour();
-  if (syncHour >= 0)
+
+  //User did not set the check interval, so we assume it's once a day
+  if (syncDbInterval == -1)
   {
-    if (lastCheckTime.daysTo(now) >= 1 && now.time().hour() == syncHour)
+    if (syncHour >= 0) //Once a day at a certain time?
     {
-      syncTime = true;
+      qDebug() << "SyncDb is scheduled once a day, at " << syncHour << " hours";
+
+      if (lastCheckTime.daysTo(now) >= 1 && now.time().hour() == syncHour)
+      {
+        syncTime = true;
+      }
+    }
+    else
+    {
+      qDebug() << "SyncDb is scheduled once a day";
+    }
+
+    if ((syncHour == -1 && (
+           lastCheckTime.isNull() ||
+           lastCheckTime.daysTo(now) >= 1)) || (syncTime))
+    {
+      syncDatabase();
+      //Then we set new LastCheckTime...
+      SettingsManager::setLastSyncDbTime(now);
     }
   }
-
-  if ((syncHour == -1 && (
-        lastCheckTime.isNull() ||
-        lastCheckTime.daysTo(now) >= 1)) || (syncTime))
+  else
   {
-    syncDatabase();
-    //Then we set new LastCheckTime...
-    SettingsManager::setLastSyncDbTime(now);
+    if (lastCheckTime.isNull() || now.addSecs(-(syncDbInterval * 60)) >= lastCheckTime)
+    {
+      syncDatabase();
+      //Then we set new LastCheckTime...
+      SettingsManager::setLastSyncDbTime(now);
+    }
+    else
+    {
+      qDebug() << "SyncDb is scheduled once every " << syncDbInterval << " minutes.";
+    }
+
+    m_pacmanHelperTimer->stop();
+    m_pacmanHelperTimer->start();
   }
 }
 
@@ -190,7 +244,6 @@ void MainWindow::aboutOctopiNotifier()
   QString aboutText = "<b>Octopi Notifier - " + StrConstants::getApplicationVersion() + "</b>" + " (" + StrConstants::getQtVersion() + ")<br>";
   aboutText += "<a href=\"http://octopiproject.wordpress.com/\">http://octopiproject.wordpress.com</a><br><br>";
   aboutText += "&copy; Alexandre Albuquerque Arnt";
-
   QMessageBox::about(this, StrConstants::getHelpAbout(), aboutText);
 }
 
@@ -435,7 +488,8 @@ void MainWindow::syncDatabase()
   disconnect(m_pacmanDatabaseSystemWatcher,
           SIGNAL(directoryChanged(QString)), this, SLOT(refreshAppIcon()));
 
-  qDebug() << "At syncDatabase()...";
+  QTime now;
+  qDebug() << now.currentTime().toString("HH:mm").toLatin1().data() <<  ": At syncDatabase()...";
   toggleEnableInterface(false);
   m_icon = IconHelper::getIconOctopiTransparent();
 
@@ -460,7 +514,10 @@ void MainWindow::syncDatabase()
 
   //Let's synchronize kcp database too...
   if (UnixCommand::getLinuxDistro() == ectn_KAOS && UnixCommand::hasTheExecutable("kcp"))
+  {
+    qDebug() << "Synchronizing kcp database...";
     UnixCommand::execCommandAsNormalUser("kcp -u");
+  }
 
   m_pacmanHelperClient->syncdb();
 }
@@ -664,13 +721,6 @@ void MainWindow::execSystemTrayKF5()
 void MainWindow::exitNotifier()
 {
   qDebug() << "At exitNotifier()...";
-
-  /*if (UnixCommand::isAppRunning("octopi", true))
-  {    
-    QProcess::startDetached("octopi -close");
-    qDebug() << "Closing Octopi too...";
-  }*/
-
   qApp->quit();
 }
 
@@ -717,5 +767,19 @@ void MainWindow::runOctopi(ExecOpt execOptions)
     {
       QProcess::startDetached("octopi");
     }
+  }
+}
+
+/*
+ * Calls the QDialog to set notifier interval
+ */
+void MainWindow::showConfigDialog()
+{
+  if (m_configDialog == nullptr)
+  {
+    m_configDialog = new SetupDialog(this);
+    m_configDialog->exec();
+    delete m_configDialog;
+    m_configDialog = nullptr;
   }
 }

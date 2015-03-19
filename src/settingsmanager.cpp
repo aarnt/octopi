@@ -44,6 +44,110 @@ SettingsManager::~SettingsManager(){
   delete m_SYSsettings;
 }
 
+// Class singleton
+SettingsManager* SettingsManager::instance(){
+  if (m_pinstance == 0)
+  {
+    m_pinstance = new SettingsManager();
+  }
+
+  return m_pinstance;
+}
+
+//CacheCleaner related --------------------------------------------------------------
+int SettingsManager::getKeepNumInstalledPackages() {
+  return instance()->getSYSsettings()->value(ctn_KEEP_NUM_INSTALLED, 3).toInt();
+}
+
+int SettingsManager::getKeepNumUninstalledPackages() {
+  return instance()->getSYSsettings()->value(ctn_KEEP_NUM_UNINSTALLED, 1).toInt();
+}
+//CacheCleaner related --------------------------------------------------------------
+
+
+//Notifier related ------------------------------------------------------------------
+
+int SettingsManager::getSyncDbHour()
+{
+  SettingsManager p_instance;
+  int h = p_instance.getSYSsettings()->value(ctn_KEY_SYNC_DB_HOUR, -1).toInt();
+
+  if (h != -1)
+  {
+    if (h < 0)
+    {
+      h = 0;
+      p_instance.getSYSsettings()->setValue(ctn_KEY_SYNC_DB_HOUR, h);
+      p_instance.getSYSsettings()->sync();
+    }
+    else if (h > 23)
+    {
+      h = 23;
+      p_instance.getSYSsettings()->setValue(ctn_KEY_SYNC_DB_HOUR, h);
+      p_instance.getSYSsettings()->sync();
+    }
+  }
+
+  return h;
+}
+
+//The syncDb interval is in MINUTES and it cannot be less than 10!
+int SettingsManager::getSyncDbInterval()
+{
+  SettingsManager p_instance;
+  int n = p_instance.getSYSsettings()->value(ctn_KEY_SYNC_DB_INTERVAL, -1).toInt();
+
+  if ((n != -1) && (n < 10))
+  {
+    n = 10;
+    p_instance.getSYSsettings()->setValue(ctn_KEY_SYNC_DB_INTERVAL, n);
+    p_instance.getSYSsettings()->sync();
+  }
+  else if ((n != -1) && (n > 1380))
+  {
+    n = 1380; //This is 23 hours, the maximum allowed!
+    p_instance.getSYSsettings()->setValue(ctn_KEY_SYNC_DB_INTERVAL, n);
+    p_instance.getSYSsettings()->sync();
+  }
+
+  return n;
+}
+
+QDateTime SettingsManager::getLastSyncDbTime()
+{
+  if (!instance()->getSYSsettings()->contains(ctn_KEY_LAST_SYNC_DB_TIME))
+  {
+    return QDateTime();
+  }
+  else
+  {
+    SettingsManager p_instance;
+    return (p_instance.getSYSsettings()->value( ctn_KEY_LAST_SYNC_DB_TIME, 0)).toDateTime();
+  }
+}
+
+void SettingsManager::setSyncDbHour(int newValue)
+{
+  instance()->getSYSsettings()->setValue(ctn_KEY_SYNC_DB_HOUR, newValue);
+  instance()->getSYSsettings()->sync();
+}
+
+void SettingsManager::setSyncDbInterval(int newValue)
+{
+  instance()->getSYSsettings()->setValue(ctn_KEY_SYNC_DB_INTERVAL, newValue);
+  instance()->getSYSsettings()->sync();
+}
+
+void SettingsManager::setLastSyncDbTime(QDateTime newValue)
+{
+  instance()->getSYSsettings()->setValue(ctn_KEY_LAST_SYNC_DB_TIME, newValue);
+  instance()->getSYSsettings()->sync();
+}
+
+//Notifier related ------------------------------------------------------------------
+
+
+//Octopi related --------------------------------------------------------------------
 int SettingsManager::getCurrentTabIndex(){
   return instance()->getSYSsettings()->value(
         ctn_KEY_CURRENT_TAB_INDEX, 0).toInt();
@@ -60,12 +164,6 @@ int SettingsManager::getPackageListOrderedCol(){
 int SettingsManager::getPackageListSortOrder(){
   return instance()->getSYSsettings()->value(
         ctn_KEY_PACKAGE_LIST_SORT_ORDER, Qt::AscendingOrder ).toInt();
-}
-
-int SettingsManager::getSyncDbHour()
-{
-  SettingsManager p_instance;
-  return p_instance.getSYSsettings()->value(ctn_KEY_SYNC_DB_HOUR, -1).toInt();
 }
 
 bool SettingsManager::getSkipMirrorCheckAtStartup(){
@@ -106,29 +204,6 @@ QByteArray SettingsManager::getSplitterHorizontalState(){
   return (instance()->getSYSsettings()->value( ctn_KEY_SPLITTER_HORIZONTAL_STATE, 0).toByteArray());
 }
 
-QDateTime SettingsManager::getLastSyncDbTime()
-{
-  if (!instance()->getSYSsettings()->contains(ctn_KEY_LAST_SYNC_DB_TIME))
-  {
-    return QDateTime();
-  }
-  else
-  {
-    SettingsManager p_instance;
-    return (p_instance.getSYSsettings()->value( ctn_KEY_LAST_SYNC_DB_TIME, 0)).toDateTime();
-  }
-}
-
-
-int SettingsManager::getKeepNumInstalledPackages() {
-    return instance()->getSYSsettings()->value(ctn_KEEP_NUM_INSTALLED, 3).toInt();
-}
-
-int SettingsManager::getKeepNumUninstalledPackages() {
-    return instance()->getSYSsettings()->value(ctn_KEEP_NUM_UNINSTALLED, 1).toInt();
-}
-
-
 void SettingsManager::setCurrentTabIndex(int newValue){
   instance()->getSYSsettings()->setValue( ctn_KEY_CURRENT_TAB_INDEX, newValue);
   instance()->getSYSsettings()->sync();
@@ -165,12 +240,6 @@ void SettingsManager::setSplitterHorizontalState(QByteArray newValue){
   instance()->getSYSsettings()->sync();
 }
 
-void SettingsManager::setLastSyncDbTime(QDateTime newValue)
-{
-  instance()->getSYSsettings()->setValue(ctn_KEY_LAST_SYNC_DB_TIME, newValue);
-  instance()->getSYSsettings()->sync();
-}
-
 void SettingsManager::setTerminal(QString newValue){
   instance()->getSYSsettings()->setValue( ctn_KEY_TERMINAL, newValue);
   instance()->getSYSsettings()->sync();
@@ -187,7 +256,6 @@ void SettingsManager::setKeepNumUninstalledPackages(int newValue)
   instance()->getSYSsettings()->setValue(ctn_KEEP_NUM_UNINSTALLED, newValue);
   instance()->getSYSsettings()->sync();
 }
-
 
 /*
  * Search all supported terminals to see if the selected one is valid
@@ -222,12 +290,4 @@ bool SettingsManager::isValidTerminalSelected()
   }
 }
 
-// Class singleton
-SettingsManager* SettingsManager::instance(){
-  if (m_pinstance == 0)
-  {
-    m_pinstance = new SettingsManager();
-  }
-
-  return m_pinstance;
-}
+//Octopi related --------------------------------------------------------------------

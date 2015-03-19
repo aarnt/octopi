@@ -16,7 +16,7 @@ contains(DEFINES, KSTATUS){
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 CONFIG += qt console warn_on debug
-
+QMAKE_CXXFLAGS += -std=c++11
 TARGET = octopi-notifier
 TEMPLATE = app
 DESTDIR += ../bin
@@ -26,6 +26,7 @@ UI_DIR += ../build-octopi-notifier
 
 SOURCES += main.cpp \
     mainwindow.cpp \
+    setupdialog.cpp \
     ../../src/terminal.cpp \
     ../../src/unixcommand.cpp \
     ../../src/package.cpp \
@@ -37,6 +38,7 @@ SOURCES += main.cpp \
 
 HEADERS  += \
     mainwindow.h \
+    setupdialog.h \
     ../../src/uihelper.h \
     ../../src/terminal.h \
     ../../src/unixcommand.h \
@@ -47,7 +49,8 @@ HEADERS  += \
     ../../src/utils.h \
     ../../src/transactiondialog.h
 
-FORMS += ../../ui/transactiondialog.ui
+FORMS += ../../ui/transactiondialog.ui \
+    ui/setupdialog.ui
 
 RESOURCES += \
     ../../resources.qrc

@@ -36,8 +36,12 @@ const QString ctn_KEY_PACKAGE_LIST_SORT_ORDER("PackageList_Sort_Order");
 const QString ctn_KEY_SKIP_MIRRORCHECK_ON_STARTUP("Skip_Mirror_Check_At_Startup");
 const QString ctn_KEY_SPLITTER_HORIZONTAL_STATE("Splitter_Horizontal_State");
 const QString ctn_KEY_SHOW_GROUPS_PANEL("Show_Groups_Panel");
+
+//Notifier related
 const QString ctn_KEY_LAST_SYNC_DB_TIME("LastSyncDbTime");
+const QString ctn_KEY_SYNC_DB_INTERVAL("SyncDbInterval");
 const QString ctn_KEY_SYNC_DB_HOUR("SyncDbHour");
+
 const QString ctn_KEY_TERMINAL("Terminal");
 const QString ctn_AUTOMATIC("automatic");
 const QString ctn_KEEP_NUM_INSTALLED("Keep_Num_Installed");
@@ -75,14 +79,19 @@ class SettingsManager
     static int getPanelOrganizing();
     static int getPackageListOrderedCol();
     static int getPackageListSortOrder();
+
+    //Notifier related
     static int getSyncDbHour();
+    static int getSyncDbInterval();
+    static QDateTime getLastSyncDbTime();
+
     static bool getSkipMirrorCheckAtStartup();
     static bool getShowGroupsPanel();
     static QByteArray getWindowSize();
     static QByteArray getSplitterHorizontalState();
-    static QDateTime getLastSyncDbTime();
     static bool isValidTerminalSelected();
 
+    //CacheCleaner related
     static int getKeepNumInstalledPackages();
     static int getKeepNumUninstalledPackages();
 
@@ -93,9 +102,12 @@ class SettingsManager
     static void setShowGroupsPanel(int newValue);
     static void setWindowSize(QByteArray newValue);
     static void setSplitterHorizontalState(QByteArray newValue);
-    static void setLastSyncDbTime(QDateTime newValue);
-    static void setTerminal(QString newValue);
 
+    static void setSyncDbHour(int newValue);
+    static void setSyncDbInterval(int newValue);
+    static void setLastSyncDbTime(QDateTime newValue);
+
+    static void setTerminal(QString newValue);
     static void setKeepNumInstalledPackages(int newValue);
     static void setKeepNumUninstalledPackages(int newValue);
 };

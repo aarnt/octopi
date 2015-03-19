@@ -592,6 +592,26 @@ public:
     return QObject::tr("Copy path to clipboard");
   }
 
+  static QString getNotiferSetupDialogGroupBoxTitle(){
+    return QObject::tr("Sync database interval");
+  }
+
+  static QString getOnceADay(){
+    return QObject::tr("Once a day");
+  }
+
+  static QString getOnceADayAt(){
+    return QObject::tr("Once a day, at");
+  }
+
+  static QString getOnceEvery(){
+    return QObject::tr("Once every");
+  }
+
+  static QString getSetInterval(){
+    return QObject::tr("Set interval...");
+  }
+
   //Style Sheets ---------------------------------
 
   static QString getToolBarCSS(){

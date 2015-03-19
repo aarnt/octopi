@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>SetupDialog</class>
+ <widget class="QDialog" name="SetupDialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>418</width>
+    <height>291</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Setup</string>
+  </property>
+  <widget class="QDialogButtonBox" name="buttonBox">
+   <property name="geometry">
+    <rect>
+     <x>40</x>
+     <y>250</y>
+     <width>341</width>
+     <height>32</height>
+    </rect>
+   </property>
+   <property name="orientation">
+    <enum>Qt::Horizontal</enum>
+   </property>
+   <property name="standardButtons">
+    <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
+   </property>
+  </widget>
+  <widget class="QGroupBox" name="groupBox">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>10</y>
+     <width>401</width>
+     <height>231</height>
+    </rect>
+   </property>
+   <property name="title">
+    <string notr="true">rgTitle</string>
+   </property>
+   <property name="flat">
+    <bool>false</bool>
+   </property>
+   <property name="checkable">
+    <bool>false</bool>
+   </property>
+   <widget class="QRadioButton" name="rbOnceADay">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>40</y>
+      <width>361</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string notr="true">Once a day</string>
+    </property>
+   </widget>
+   <widget class="QRadioButton" name="rbOnceADayAt">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>80</y>
+      <width>361</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string notr="true">Once a day, but at:</string>
+    </property>
+   </widget>
+   <widget class="QRadioButton" name="rbOnceEvery">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>156</y>
+      <width>361</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string notr="true">Once e&amp;very:</string>
+    </property>
+    <property name="autoExclusive">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QSpinBox" name="spinOnceADayAt">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>110</y>
+      <width>45</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="minimum">
+     <number>0</number>
+    </property>
+    <property name="maximum">
+     <number>23</number>
+    </property>
+    <property name="value">
+     <number>0</number>
+    </property>
+   </widget>
+   <widget class="QSpinBox" name="spinOnceEvery">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>188</y>
+      <width>45</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="minimum">
+     <number>10</number>
+    </property>
+    <property name="maximum">
+     <number>1380</number>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lblOnceADayAt">
+    <property name="geometry">
+     <rect>
+      <x>90</x>
+      <y>113</y>
+      <width>301</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>(value in 24-hour format: 0 to 23)</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lblOnceEvery">
+    <property name="geometry">
+     <rect>
+      <x>90</x>
+      <y>190</y>
+      <width>301</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>(value in minutes: 10 to 1380)</string>
+    </property>
+   </widget>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
