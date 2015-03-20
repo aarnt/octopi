@@ -2107,7 +2107,9 @@ void MainWindow::parsePacmanProcessOutput(const QString &pMsg)
 
             if (repo.contains("error", Qt::CaseInsensitive) ||
                 repo.contains("gconf", Qt::CaseInsensitive) ||
-                repo.contains("failed", Qt::CaseInsensitive)) return;
+                repo.contains("failed", Qt::CaseInsensitive) ||
+                repo.contains("fontconfig", Qt::CaseInsensitive) ||
+                repo.contains("reading", Qt::CaseInsensitive)) return;
 
             altMsg = repo + " " + StrConstants::getIsUpToDate();
           }

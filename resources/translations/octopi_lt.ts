@@ -1090,7 +1090,7 @@ Ar tikrai norite jį atverti?</translation>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="596"/>
         <source>Setup</source>
-        <translation type="unfinished"/>
+        <translation>Sąranka</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="600"/>
@@ -1105,7 +1105,7 @@ Ar tikrai norite jį atverti?</translation>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="608"/>
         <source>Once a day, at</source>
-        <translation type="unfinished"/>
+        <translation>Kartą per dieną</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="612"/>
@@ -1115,7 +1115,7 @@ Ar tikrai norite jį atverti?</translation>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="616"/>
         <source>Once every</source>
-        <translation type="unfinished"/>
+        <translation>Kartą kas</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="620"/>
