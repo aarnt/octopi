@@ -44,6 +44,8 @@ void SetupDialog::init()
   connect(ui->buttonBox, SIGNAL(accepted()), this, SLOT(accept()));
   connect(ui->buttonBox, SIGNAL(rejected()), this, SLOT(reject()));
 
+  setWindowTitle(StrConstants::getNotifierSetupDialogTitle());
+
   ui->groupBox->setTitle(StrConstants::getNotiferSetupDialogGroupBoxTitle());
   ui->rbOnceADay->setText(StrConstants::getOnceADay());
   ui->rbOnceADayAt->setText(StrConstants::getOnceADayAt());

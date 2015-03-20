@@ -592,6 +592,10 @@ public:
     return QObject::tr("Copy path to clipboard");
   }
 
+  static QString getNotifierSetupDialogTitle(){
+    return QObject::tr("Setup");
+  }
+
   static QString getNotiferSetupDialogGroupBoxTitle(){
     return QObject::tr("Sync database interval");
   }
