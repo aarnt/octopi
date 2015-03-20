@@ -1087,21 +1087,56 @@ Tem certeza que deseja abri-lo?</translation>
         <source>Copy path to clipboard</source>
         <translation>Copiar o caminho para a área de transferência</translation>
     </message>
+    <message>
+        <location filename="Projects/octopi/src/strconstants.h" line="596"/>
+        <source>Sync database interval</source>
+        <translation>Intervalo para sincronizar a base de dados</translation>
+    </message>
+    <message>
+        <location filename="Projects/octopi/src/strconstants.h" line="600"/>
+        <source>Once a day</source>
+        <translation>Uma vez por dia</translation>
+    </message>
+    <message>
+        <location filename="Projects/octopi/src/strconstants.h" line="604"/>
+        <source>Once a day, at</source>
+        <translation>Uma vez por dia, as</translation>
+    </message>
+    <message>
+        <location filename="Projects/octopi/src/strconstants.h" line="608"/>
+        <source>(value in 24-hour format: 0 to 23)</source>
+        <translation>(valor no formato 24 horas: 0 a 23)</translation>
+    </message>
+    <message>
+        <location filename="Projects/octopi/src/strconstants.h" line="612"/>
+        <source>Once every</source>
+        <translation>Uma vez a cada</translation>
+    </message>
+    <message>
+        <location filename="Projects/octopi/src/strconstants.h" line="616"/>
+        <source>(value in minutes: 10 to 1380)</source>
+        <translation>(valor em minutos: 10 a 1380)</translation>
+    </message>
+    <message>
+        <location filename="Projects/octopi/src/strconstants.h" line="620"/>
+        <source>Set interval...</source>
+        <translation>Ajustar intervalo...</translation>
+    </message>
 </context>
 <context>
     <name>SearchBar</name>
     <message>
-        <location filename="Projects/octopi/src/searchbar.cpp" line="63"/>
+        <location filename="Projects/octopi/src/searchbar.cpp" line="69"/>
         <source>Previous</source>
         <translation>Anterior</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/searchbar.cpp" line="67"/>
+        <location filename="Projects/octopi/src/searchbar.cpp" line="72"/>
         <source>Next</source>
         <translation>Próximo</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/searchbar.cpp" line="79"/>
+        <location filename="Projects/octopi/src/searchbar.cpp" line="86"/>
         <source>Close</source>
         <translation>Fechar</translation>
     </message>
