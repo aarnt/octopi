@@ -1089,36 +1089,41 @@ Tem certeza que deseja abri-lo?</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="596"/>
+        <source>Setup</source>
+        <translation>Configurações</translation>
+    </message>
+    <message>
+        <location filename="Projects/octopi/src/strconstants.h" line="600"/>
         <source>Sync database interval</source>
         <translation>Intervalo para sincronizar a base de dados</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="600"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="604"/>
         <source>Once a day</source>
         <translation>Uma vez por dia</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="604"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="608"/>
         <source>Once a day, at</source>
         <translation>Uma vez por dia, as</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="608"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="612"/>
         <source>(value in 24-hour format: 0 to 23)</source>
         <translation>(valor no formato 24 horas: 0 a 23)</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="612"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="616"/>
         <source>Once every</source>
         <translation>Uma vez a cada</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="616"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="620"/>
         <source>(value in minutes: 10 to 1380)</source>
         <translation>(valor em minutos: 10 a 1380)</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="620"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="624"/>
         <source>Set interval...</source>
         <translation>Ajustar intervalo...</translation>
     </message>

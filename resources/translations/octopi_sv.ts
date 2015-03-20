@@ -1089,38 +1089,43 @@ Are you sure you want to open it?</source>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="596"/>
-        <source>Sync database interval</source>
+        <source>Setup</source>
         <translation type="unfinished"/>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="600"/>
-        <source>Once a day</source>
-        <translation type="unfinished"/>
+        <source>Sync database interval</source>
+        <translation>Synkningsintervall</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="604"/>
-        <source>Once a day, at</source>
-        <translation type="unfinished"/>
+        <source>Once a day</source>
+        <translation>Varje dag</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="608"/>
-        <source>(value in 24-hour format: 0 to 23)</source>
-        <translation type="unfinished"/>
+        <source>Once a day, at</source>
+        <translation>Varje dag, kl</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="612"/>
-        <source>Once every</source>
-        <translation type="unfinished"/>
+        <source>(value in 24-hour format: 0 to 23)</source>
+        <translation>(klockslag från 0 till 23)</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="616"/>
-        <source>(value in minutes: 10 to 1380)</source>
-        <translation type="unfinished"/>
+        <source>Once every</source>
+        <translation>Var</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="620"/>
+        <source>(value in minutes: 10 to 1380)</source>
+        <translation>(värde i minuter, 10 till 1380)</translation>
+    </message>
+    <message>
+        <location filename="Projects/octopi/src/strconstants.h" line="624"/>
         <source>Set interval...</source>
-        <translation type="unfinished"/>
+        <translation>Sätt intervall...</translation>
     </message>
 </context>
 <context>

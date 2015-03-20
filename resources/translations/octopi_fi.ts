@@ -1089,36 +1089,41 @@ Haluatko varmasti avata sen?</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="596"/>
-        <source>Sync database interval</source>
+        <source>Setup</source>
         <translation type="unfinished"/>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="600"/>
-        <source>Once a day</source>
+        <source>Sync database interval</source>
         <translation type="unfinished"/>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="604"/>
-        <source>Once a day, at</source>
+        <source>Once a day</source>
         <translation type="unfinished"/>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="608"/>
-        <source>(value in 24-hour format: 0 to 23)</source>
+        <source>Once a day, at</source>
         <translation type="unfinished"/>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="612"/>
-        <source>Once every</source>
+        <source>(value in 24-hour format: 0 to 23)</source>
         <translation type="unfinished"/>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="616"/>
-        <source>(value in minutes: 10 to 1380)</source>
+        <source>Once every</source>
         <translation type="unfinished"/>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="620"/>
+        <source>(value in minutes: 10 to 1380)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="Projects/octopi/src/strconstants.h" line="624"/>
         <source>Set interval...</source>
         <translation type="unfinished"/>
     </message>
