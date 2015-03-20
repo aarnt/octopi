@@ -47,7 +47,9 @@ void SetupDialog::init()
   ui->groupBox->setTitle(StrConstants::getNotiferSetupDialogGroupBoxTitle());
   ui->rbOnceADay->setText(StrConstants::getOnceADay());
   ui->rbOnceADayAt->setText(StrConstants::getOnceADayAt());
+  ui->lblOnceADayAt->setText(StrConstants::getOnceADayAtDesc());
   ui->rbOnceEvery->setText(StrConstants::getOnceEvery());
+  ui->lblOnceEvery->setText(StrConstants::getOnceEveryDesc());
 
   connect(ui->rbOnceADay, SIGNAL(clicked()), this, SLOT(selectOnceADay()));
   connect(ui->rbOnceADayAt, SIGNAL(clicked()), this, SLOT(selectOnceADayAt()));

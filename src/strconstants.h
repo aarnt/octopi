@@ -604,8 +604,16 @@ public:
     return QObject::tr("Once a day, at");
   }
 
+  static QString getOnceADayAtDesc(){
+    return QObject::tr("(value in 24-hour format: 0 to 23)");
+  }
+
   static QString getOnceEvery(){
     return QObject::tr("Once every");
+  }
+
+  static QString getOnceEveryDesc(){
+    return QObject::tr("(value in minutes: 10 to 1380)");
   }
 
   static QString getSetInterval(){
