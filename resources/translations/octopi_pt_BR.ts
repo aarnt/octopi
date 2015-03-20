@@ -1119,8 +1119,8 @@ Tem certeza que deseja abri-lo?</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="620"/>
-        <source>(value in minutes: 10 to 1380)</source>
-        <translation>(valor em minutos: 10 a 1380)</translation>
+        <source>(value in minutes: 5 to 1380)</source>
+        <translation>(valor em minutos: 5 a 1380)</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="624"/>

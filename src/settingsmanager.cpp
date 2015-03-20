@@ -91,15 +91,15 @@ int SettingsManager::getSyncDbHour()
   return h;
 }
 
-//The syncDb interval is in MINUTES and it cannot be less than 10!
+//The syncDb interval is in MINUTES and it cannot be less than 5!
 int SettingsManager::getSyncDbInterval()
 {
   SettingsManager p_instance;
   int n = p_instance.getSYSsettings()->value(ctn_KEY_SYNC_DB_INTERVAL, -1).toInt();
 
-  if ((n != -1) && (n < 10))
+  if ((n != -1) && (n < 5))
   {
-    n = 10;
+    n = 5;
     p_instance.getSYSsettings()->setValue(ctn_KEY_SYNC_DB_INTERVAL, n);
     p_instance.getSYSsettings()->sync();
   }

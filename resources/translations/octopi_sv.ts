@@ -1119,8 +1119,8 @@ Are you sure you want to open it?</source>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="620"/>
-        <source>(value in minutes: 10 to 1380)</source>
-        <translation>(värde i minuter, 10 till 1380)</translation>
+        <source>(value in minutes: 5 to 1380)</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="624"/>
