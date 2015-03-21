@@ -1105,7 +1105,7 @@ Ar tikrai norite jį atverti?</translation>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="608"/>
         <source>Once a day, at</source>
-        <translation>Kartą per dieną</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="612"/>

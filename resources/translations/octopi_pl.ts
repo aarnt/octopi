@@ -1114,7 +1114,7 @@ Are you sure you want to open it?</source>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="616"/>
         <source>Once every</source>
-        <translation>Raz każdego</translation>
+        <translation>Co</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="620"/>
