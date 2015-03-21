@@ -30,9 +30,15 @@
        <rect>
         <x>8</x>
         <y>33</y>
-        <width>96</width>
+        <width>371</width>
         <height>21</height>
        </rect>
+      </property>
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
       </property>
       <property name="text">
        <string notr="true">Once a day</string>
@@ -43,7 +49,7 @@
        <rect>
         <x>8</x>
         <y>71</y>
-        <width>306</width>
+        <width>362</width>
         <height>62</height>
        </rect>
       </property>
@@ -121,12 +127,12 @@
        </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="layoutWidget">
+     <widget class="QWidget" name="layoutWidget_1">
       <property name="geometry">
        <rect>
         <x>8</x>
         <y>147</y>
-        <width>275</width>
+        <width>325</width>
         <height>62</height>
        </rect>
       </property>

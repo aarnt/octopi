@@ -45,7 +45,6 @@ void SetupDialog::init()
   connect(ui->buttonBox, SIGNAL(rejected()), this, SLOT(reject()));
 
   setWindowTitle(StrConstants::getNotifierSetupDialogTitle());
-
   ui->groupBox->setTitle(StrConstants::getNotiferSetupDialogGroupBoxTitle());
   ui->rbOnceADay->setText(StrConstants::getOnceADay());
   ui->rbOnceADayAt->setText(StrConstants::getOnceADayAt());
@@ -134,8 +133,11 @@ void SetupDialog::saveChanges()
  */
 void SetupDialog::selectOnceADay()
 {
+  ui->rbOnceADay->setChecked(true);
   ui->spinOnceADayAt->setEnabled(false);
   ui->spinOnceEvery->setEnabled(false);
+  ui->rbOnceADayAt->setChecked(false);
+  ui->rbOnceEvery->setChecked(false);
 }
 
 /*
@@ -143,8 +145,11 @@ void SetupDialog::selectOnceADay()
  */
 void SetupDialog::selectOnceADayAt()
 {
+  ui->rbOnceADayAt->setChecked(true);
   ui->spinOnceADayAt->setEnabled(true);
   ui->spinOnceEvery->setEnabled(false);
+  ui->rbOnceADay->setChecked(false);
+  ui->rbOnceEvery->setChecked(false);
 }
 
 /*
@@ -152,6 +157,9 @@ void SetupDialog::selectOnceADayAt()
  */
 void SetupDialog::selectOnceEvery()
 {
+  ui->rbOnceEvery->setChecked(true);
   ui->spinOnceADayAt->setEnabled(false);
   ui->spinOnceEvery->setEnabled(true);
+  ui->rbOnceADay->setChecked(false);
+  ui->rbOnceADayAt->setChecked(false);
 }
