@@ -1090,42 +1090,42 @@ Wollen Sie sie wirklich öffnen ?</translation>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="596"/>
         <source>Setup</source>
-        <translation type="unfinished"/>
+        <translation>Setup</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="600"/>
         <source>Sync database interval</source>
-        <translation type="unfinished"/>
+        <translation>Intervall der Datenbanksynchronisierung</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="604"/>
         <source>Once a day</source>
-        <translation type="unfinished"/>
+        <translation>Einmal täglich</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="608"/>
         <source>Once a day, at</source>
-        <translation type="unfinished"/>
+        <translation>Einmal täglich um</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="612"/>
         <source>(value in 24-hour format: 0 to 23)</source>
-        <translation type="unfinished"/>
+        <translation>(Wert im 24-Stunden-Format: 0 bis 23)</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="616"/>
         <source>Once every</source>
-        <translation type="unfinished"/>
+        <translation>Einmal alle</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="620"/>
         <source>(value in minutes: 5 to 1380)</source>
-        <translation type="unfinished"/>
+        <translation>(Wert in Minuten: 5 bis 1380)</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="624"/>
         <source>Set interval...</source>
-        <translation type="unfinished"/>
+        <translation>Intervall festlegen</translation>
     </message>
 </context>
 <context>
