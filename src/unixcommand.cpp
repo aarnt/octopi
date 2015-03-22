@@ -892,6 +892,7 @@ QStringList UnixCommand::getFieldFromPacmanConf(const QString &fieldName)
 
   QString contents = file.readAll();
   int from = 0;
+  const int ctn_FIELD_LENGTH = fieldName.length();
 
   do
   {
@@ -918,7 +919,10 @@ QStringList UnixCommand::getFieldFromPacmanConf(const QString &fieldName)
         result = ignorePkg.split(QRegExp("\\s+"), QString::SkipEmptyParts);
         break;
       }
-      else from += end+9;
+      else if (str != "#")
+        from += end + ctn_FIELD_LENGTH;
+      else
+        from += ctn_FIELD_LENGTH;
     }
     else break;
   }
