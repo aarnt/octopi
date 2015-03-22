@@ -797,13 +797,17 @@ QDateTime Package::getBuildDate(const QString &pkgInfo)
 double Package::getDownloadSize(const QString &pkgInfo)
 {
   QString aux = extractFieldFromInfo("Download Size", pkgInfo);
+  bool isMega = (aux.indexOf("MiB", Qt::CaseInsensitive) != -1);
   aux = aux.section(QRegExp("\\s"), 0, 0);
 
   bool ok;
   double res = aux.toDouble(&ok);
 
   if (ok)
+  {
+    if (isMega) res *= 1024;
     return res;
+  }
   else
     return 0;
 }
@@ -823,13 +827,17 @@ QString Package::getDownloadSizeAsString(const QString &pkgInfo)
 double Package::getInstalledSize(const QString &pkgInfo)
 {
   QString aux = extractFieldFromInfo("Installed Size", pkgInfo);
+  bool isMega = (aux.indexOf("MiB", Qt::CaseInsensitive) != -1);
   aux = aux.section(QRegExp("\\s"), 0, 0);
 
   bool ok;
   double res = aux.toDouble(&ok);
 
   if (ok)
+  {
+    if (isMega) res *= 1024;
     return res;
+  }
   else
     return 0;
 }

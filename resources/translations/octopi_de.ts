@@ -1125,7 +1125,7 @@ Wollen Sie sie wirklich öffnen ?</translation>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="624"/>
         <source>Set interval...</source>
-        <translation>Intervall festlegen</translation>
+        <translation>Intervall festlegen...</translation>
     </message>
 </context>
 <context>

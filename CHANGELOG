@@ -19,6 +19,8 @@
   BugFix: Filter connect chain bug decreased filter's performance over time.
   BugFix: Search by name was not being used after reverting from AUR search.
   BugFix: F3 and Shift+F3 keys at SearchBar were not working.
+  BugFix: Sometimes downloaded and installed size information were in KiB, 
+	instead of MiB.
   BugFix: If user had no gksu/kdesu/root when clicking "clean" button in 
 	cachecleaner, cursor would remain waiting (thanks to imperator-).
 
