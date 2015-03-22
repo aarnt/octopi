@@ -240,17 +240,17 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="525"/>
         <source>Pacman Log Viewer</source>
-        <translation>Pacman Log anzeigen</translation>
+        <translation>Pacman-Protokoll anzeigen</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="537"/>
         <source>Repository Editor</source>
-        <translation>Repository editieren</translation>
+        <translation>Repositorien editieren</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="546"/>
         <source>Cache Cleaner</source>
-        <translation>Cache säubern</translation>
+        <translation>Zwischenspeicher bereinigen</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="554"/>
@@ -315,7 +315,7 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="97"/>
         <source>A newer than repository package</source>
-        <translation>Ein neueres Paket als in der Repository</translation>
+        <translation>Ein neueres Paket als im Repositorium</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="100"/>
@@ -405,7 +405,7 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="138"/>
         <source>Ctrl+E or &apos;Transaction/Cancel&apos; to clear the selection of to be removed/installed packages</source>
-        <translation>Strg+E oder &apos;Transaktion/Abbrechen&apos; um die Auswahl der entfernten/installierten Pakete zu leeren</translation>
+        <translation>Strg+E oder &apos;Transaktion/Abbrechen&apos; um die Auswahl der für die Entfernung/Installation vorgesehenen Pakete aufzuheben</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="140"/>
@@ -435,7 +435,7 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="151"/>
         <source>Ctrl+Shift+R to remove Pacman&apos;s transaction lock file</source>
-        <translation>Strg+Shift+R um die Pacman Transaktionssperrdatei zu entfernen</translation>
+        <translation>Strg+Shift+R um Pacmans Transaktionssperrdatei zu entfernen</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="153"/>
@@ -508,12 +508,12 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="118"/>
         <source>Antergos news</source>
-        <translation>Antergos Nachrichten</translation>
+        <translation>Antergos-Nachrichten</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="122"/>
         <source>ArchBSD news</source>
-        <translation>ArchBSD Nachrichten</translation>
+        <translation>ArchBSD-Nachrichten</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="126"/>
@@ -538,7 +538,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="142"/>
         <source>Netrunner Rolling news</source>
-        <translation>Netrunner Rolling Nachrichten</translation>
+        <translation>Netrunner-Rolling-Nachrichten</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="146"/>
@@ -823,7 +823,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="377"/>
         <source>Removing Pacman&apos;s transaction lock file...</source>
-        <translation>Entferne die Pacman Transaktionssperrdatei...</translation>
+        <translation>Entferne Pacmans Transaktionssperrdatei...</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="381"/>
@@ -903,17 +903,17 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="445"/>
         <source>The following package needs to be retrieved</source>
-        <translation>Folgende Pakete sollten überprüft werden</translation>
+        <translation>Folgendes Paket muss heruntergeladen werden</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="449"/>
         <source>The following package will be removed</source>
-        <translation>Folgende Pakete werden entfernt</translation>
+        <translation>Folgendes Paket wird entfernt</translation>
     </message>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="453"/>
         <source>The following %n packages need to be retrieved</source>
-        <translation><numerusform>Folgendes %n Paket wird herruntergeladen</numerusform><numerusform>Folgende %n Pakete werden herruntergeladen</numerusform></translation>
+        <translation><numerusform>Folgendes %n Paket wird herruntergeladen</numerusform><numerusform>Folgende %n Pakete müssen heruntergeladen werden</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="457"/>
@@ -938,7 +938,7 @@
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="473"/>
         <source>There are %n updates available!</source>
-        <translation><numerusform>Es ist %n Erneuerung verfügbar!</numerusform><numerusform>Es sind %n Erneuerungen verfügbar!</numerusform></translation>
+        <translation><numerusform>Es ist %n Erneuerung verfügbar!</numerusform><numerusform>Es sind %n Aktualisierungen verfügbar!</numerusform></translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="477"/>
@@ -973,7 +973,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="501"/>
         <source>Do you really want to remove Pacman&apos;s transaction lock file?</source>
-        <translation>Möchten Sie wirklich die Pacman Transaktionssperrdatei entfernen?</translation>
+        <translation>Möchten Sie wirklich Pacmans Transaktionssperrdatei entfernen?</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="505"/>
@@ -1080,12 +1080,12 @@ Wollen Sie sie wirklich öffnen ?</translation>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="588"/>
         <source>Use &quot;%1&quot; tool</source>
-        <translation>Verwende &quot;%1&quot;</translation>
+        <translation>Verwende &quot;%1&quot;-Werkzeug</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="592"/>
         <source>Copy path to clipboard</source>
-        <translation>In die Zwischenablage kopieren</translation>
+        <translation>Pfad in die Zwischenablage kopieren</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="596"/>
