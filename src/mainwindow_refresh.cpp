@@ -482,7 +482,7 @@ void MainWindow::metaBuildPackageList()
     connect(this, SIGNAL(buildPackageListDone()), &el, SLOT(quit()));
 
     g_fwPacman.setFuture(f);
-    std::cout << "Start local event loop..." << std::endl;
+    //std::cout << "Start local event loop..." << std::endl;
 
     el.exec(QEventLoop::ExcludeUserInputEvents);
     std::cout << m_packageModel->getPackageCount() << " pkgs => " <<
@@ -1230,7 +1230,17 @@ void MainWindow::refreshTabFiles(bool clearContents, bool neverQuit)
     QStandardItem *lastDir, *item, *lastItem=root, *parent;
     bool first=true;
     lastDir = root;
-    fileList = Package::getContents(pkgName, !nonInstalled);
+
+    QEventLoop el;
+    QFuture<QStringList> f;
+    QFutureWatcher<QStringList> fwPackageContents;
+    f = QtConcurrent::run(Package::getContents, pkgName, !nonInstalled);
+    connect(&fwPackageContents, SIGNAL(finished()), &el, SLOT(quit()));
+    fwPackageContents.setFuture(f);
+
+    //Let's wait before we get the pkg file list from the other thread...
+    el.exec();
+    fileList = fwPackageContents.result();
 
     if (fileList.count() > 0) CPUIntensiveComputing cic;
 
