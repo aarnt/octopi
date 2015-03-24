@@ -1320,6 +1320,7 @@ void MainWindow::gistSysInfo()
   QFile *tempFile = new QFile(ctn_TEMP_ACTIONS_FILE + QString::number(qrand()));
   tempFile->open(QIODevice::ReadWrite|QIODevice::Text);
   tempFile->setPermissions(QFile::Permissions(QFile::ExeOwner|QFile::ReadOwner));
+
   QByteArray out;
 
   if (UnixCommand::getLinuxDistro() == ectn_KAOS)
@@ -1341,30 +1342,26 @@ void MainWindow::gistSysInfo()
     tempFile->write("\n\n");
   }
 
-  tempFile->write("----------------------------------------------------------------------------------------------------------\n");
-  tempFile->write("uname -a\n");
-  tempFile->write("----------------------------------------------------------------------------------------------------------\n\n");
-  out = UnixCommand::getCommandOutput("uname -a");
-  tempFile->write(out);
-  tempFile->write("\n\n");
-
-  tempFile->write("----------------------------------------------------------------------------------------------------------\n");
-  tempFile->write("journalctl -b -p err\n");
-  tempFile->write("----------------------------------------------------------------------------------------------------------\n\n");
-  out = UnixCommand::getCommandOutput("journalctl -b -p err");
-  tempFile->write(out);
-  tempFile->write("\n\n");
-
   if (UnixCommand::hasTheExecutable("inxi"))
   {
     tempFile->write("----------------------------------------------------------------------------------------------------------\n");
-    tempFile->write("inxi -GSPN\n");
+    tempFile->write("inxi -Fxz\n");
     tempFile->write("----------------------------------------------------------------------------------------------------------\n\n");
-    out = UnixCommand::getCommandOutput("inxi -GSPN -c 0");
+    out = UnixCommand::getCommandOutput("inxi -Fxz -c 0");
     tempFile->write(out);
     tempFile->write("\n\n");
   }
-  else if (UnixCommand::hasTheExecutable("mhwd"))
+  else
+  {
+    tempFile->write("----------------------------------------------------------------------------------------------------------\n");
+    tempFile->write("uname -a\n");
+    tempFile->write("----------------------------------------------------------------------------------------------------------\n\n");
+    out = UnixCommand::getCommandOutput("uname -a");
+    tempFile->write(out);
+    tempFile->write("\n\n");
+  }
+
+  if (UnixCommand::hasTheExecutable("mhwd"))
   {
     tempFile->write("----------------------------------------------------------------------------------------------------------\n");
     tempFile->write("mhwd -li -d\n");
@@ -1373,6 +1370,13 @@ void MainWindow::gistSysInfo()
     tempFile->write(out);
     tempFile->write("\n\n");
   }
+
+  tempFile->write("----------------------------------------------------------------------------------------------------------\n");
+  tempFile->write("journalctl -b -p err\n");
+  tempFile->write("----------------------------------------------------------------------------------------------------------\n\n");
+  out = UnixCommand::getCommandOutput("journalctl -b -p err");
+  tempFile->write(out);
+  tempFile->write("\n\n");
 
   tempFile->write("----------------------------------------------------------------------------------------------------------\n");
   tempFile->write("cat /etc/pacman.conf\n");
