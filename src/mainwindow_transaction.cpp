@@ -1527,6 +1527,7 @@ void MainWindow::toggleTransactionActions(const bool value)
   ui->actionPacmanLogViewer->setEnabled(value);
   ui->actionCacheCleaner->setEnabled(value);
   ui->actionRepositoryEditor->setEnabled(value);  
+  m_actionSysInfo->setEnabled(value);
 
   m_actionSwitchToAURTool->setEnabled(value);
   ui->actionGetNews->setEnabled(value);

@@ -262,6 +262,14 @@ void MainWindow::initMenuBar()
 
   m_actionMenuRepository->setMenu(subMenu);
 
+  if (UnixCommand::hasTheExecutable("gist") && UnixCommand::getLinuxDistro() == ectn_KAOS)
+  {
+    ui->menuTools->addSeparator();
+    m_actionSysInfo->setText("SysInfo");
+    connect(m_actionSysInfo, SIGNAL(triggered()), this, SLOT(gistSysInfo()));
+    ui->menuTools->addAction(m_actionSysInfo);
+  }
+
 #ifdef OCTOPI_DEV_CODE
   ui->menuFile->insertAction(ui->actionExit, m_actionEditOctopiConf);
 #endif
@@ -680,6 +688,8 @@ void MainWindow::initActions()
   m_hasSLocate = UnixCommand::hasTheExecutable("slocate");
   m_hasMirrorCheck = UnixCommand::hasTheExecutable(ctn_MIRROR_CHECK_APP);
 
+  m_actionSysInfo = new QAction(this);
+
   if(m_hasMirrorCheck)
   {
     m_actionMirrorCheck = new QAction(this);
@@ -707,8 +717,6 @@ void MainWindow::initActions()
   m_actionInstallAURUpdates->setText(ui->actionInstall->text());
   m_actionInstallAURUpdates->setIconVisibleInMenu(true);
   connect(m_actionInstallAURUpdates, SIGNAL(triggered()), this, SLOT(doAURUpgrade()));
-
-  toggleTransactionActions(true);
 
   m_actionShowGroups = new QAction(this);
   m_actionShowGroups->setIcon(IconHelper::getIconShowGroups());
@@ -822,4 +830,6 @@ void MainWindow::initActions()
       if (ac) ac->setIconVisibleInMenu(true);
     }
   }
+
+  toggleTransactionActions(true);
 }

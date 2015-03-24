@@ -185,6 +185,7 @@ private:
   QAction *m_actionRepositoryAll;
   QAction *m_actionEditOctopiConf;
   QAction *m_actionCopyFullPath;
+  QAction *m_actionSysInfo;
 
   //Toggles use of AUR tool
   QAction *m_separatorForActionAUR;
@@ -430,7 +431,6 @@ private slots:
   void launchPLV();
   void launchRepoEditor();
   void launchCacheCleaner();
-
   void gistSysInfo();
 
 public slots:

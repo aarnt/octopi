@@ -1323,12 +1323,12 @@ void MainWindow::gistSysInfo()
   tempFile->setPermissions(QFile::Permissions(QFile::ExeOwner|QFile::ReadOwner));
 
   QByteArray out;
-  tempFile->write("----------------------------------------------------------------------------------------------------------\n");
+  /*tempFile->write("----------------------------------------------------------------------------------------------------------\n");
   tempFile->write("cat /etc/lsb-release\n");
   tempFile->write("----------------------------------------------------------------------------------------------------------\n\n");
   out = UnixCommand::getCommandOutput("cat /etc/lsb-release");
   tempFile->write(out);
-  tempFile->write("\n\n");
+  tempFile->write("\n\n");*/
 
   tempFile->write("----------------------------------------------------------------------------------------------------------\n");
   tempFile->write("journalctl -b -p err\n");
@@ -1361,7 +1361,7 @@ void MainWindow::gistSysInfo()
   tempFile->close();
   enableTransactionActions();
 
-  //Now, we gist the temp file just created!
+  //Now we gist the temp file just created!
   QString gist = UnixCommand::getCommandOutput("gist " + tempFile->fileName());
   delete cic;
 
