@@ -11,7 +11,8 @@ depends=('qt4' 'qt5-quickcontrols' 'xterm')
 optdepends=('kdesu: for KDE'
             'gksu: for XFCE, Gnome, LXDE, Cinnamon'
             'gnome-keyring: for password management'
-            'yaourt: for AUR support'
+            'gist: for SysInfo report'
+	    'yaourt: for AUR support'
             'octopi-notifier: for notifications'
             'pkgfile: to view uninstalled pkg contents in ArchLinux')
 provides=('octopi')
