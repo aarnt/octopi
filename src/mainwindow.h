@@ -431,6 +431,8 @@ private slots:
   void launchRepoEditor();
   void launchCacheCleaner();
 
+  void gistSysInfo();
+
 public slots:
   void doSystemUpgrade(SystemUpgradeOptions sysUpgradeOption = ectn_NO_OPT);
 

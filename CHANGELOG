@@ -11,6 +11,7 @@
   SearchBar now reacts to an ENTER or RETURN key press to search for 
 	next found item.
   Add a notifier setup dialog to set "sync database" interval.
+  Generate a system info report if "gist" is available in KaOS.
   BugFix: No more horizontal scrollbar in AUR mode.
   BugFix: When a transaction is available, disable sync pkg and system 
 	upgrade, as well as mirror-check and AUR mode.

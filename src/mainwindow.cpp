@@ -35,7 +35,6 @@
 #include <QString>
 #include <QTextBrowser>
 #include <QKeyEvent>
-#include <QTimer>
 #include <QLabel>
 #include <QMessageBox>
 #include <QComboBox>
@@ -1306,6 +1305,68 @@ void MainWindow::launchCacheCleaner()
   m_unixCommand->execCommandAsNormalUser(QLatin1String("octopi-cachecleaner"));
 }
 
+/*
+ * Makes a gist with a bunch of system file contents.
+ */
+void MainWindow::gistSysInfo()
+{
+  if (UnixCommand::getLinuxDistro() != ectn_KAOS ||
+      !UnixCommand::hasTheExecutable("gist") ||
+      m_commandExecuting != ectn_NONE) return;
+
+  CPUIntensiveComputing *cic = new CPUIntensiveComputing(this);
+  disableTransactionActions();
+  QTime time = QTime::currentTime();
+  qsrand(time.minute() + time.second() + time.msec());
+  QFile *tempFile = new QFile(ctn_TEMP_ACTIONS_FILE + QString::number(qrand()));
+  tempFile->open(QIODevice::ReadWrite|QIODevice::Text);
+  tempFile->setPermissions(QFile::Permissions(QFile::ExeOwner|QFile::ReadOwner));
+
+  QByteArray out;
+  tempFile->write("----------------------------------------------------------------------------------------------------------\n");
+  tempFile->write("cat /etc/lsb-release\n");
+  tempFile->write("----------------------------------------------------------------------------------------------------------\n\n");
+  out = UnixCommand::getCommandOutput("cat /etc/lsb-release");
+  tempFile->write(out);
+  tempFile->write("\n\n");
+
+  tempFile->write("----------------------------------------------------------------------------------------------------------\n");
+  tempFile->write("journalctl -b -p err\n");
+  tempFile->write("----------------------------------------------------------------------------------------------------------\n\n");
+  out = UnixCommand::getCommandOutput("journalctl -b -p err");
+  tempFile->write(out);
+  tempFile->write("\n\n");
+
+  tempFile->write("----------------------------------------------------------------------------------------------------------\n");
+  tempFile->write("inxi -GSPN\n");
+  tempFile->write("----------------------------------------------------------------------------------------------------------\n\n");
+  out = UnixCommand::getCommandOutput("inxi -GSPN -c 0");
+  tempFile->write(out);
+  tempFile->write("\n\n");
+
+  tempFile->write("----------------------------------------------------------------------------------------------------------\n");
+  tempFile->write("cat /etc/pacman.conf\n");
+  tempFile->write("----------------------------------------------------------------------------------------------------------\n\n");
+  out = UnixCommand::getCommandOutput("cat /etc/pacman.conf");
+  tempFile->write(out);
+  tempFile->write("\n\n");
+
+  tempFile->write("----------------------------------------------------------------------------------------------------------\n");
+  tempFile->write("cat /var/log/pacman.log\n");
+  tempFile->write("----------------------------------------------------------------------------------------------------------\n\n");
+  out = UnixCommand::getCommandOutput("cat /var/log/pacman.log");
+  tempFile->write(out);
+
+  tempFile->flush();
+  tempFile->close();
+  enableTransactionActions();
+
+  //Now, we gist the temp file just created!
+  QString gist = UnixCommand::getCommandOutput("gist " + tempFile->fileName());
+  delete cic;
+
+  QMessageBox::information(this, "KaOS SysInfo", Package::makeURLClickable(gist), QMessageBox::Ok);
+}
 
 /*
  * Opens "~/.config/octopi/octopi.conf" file for edition
