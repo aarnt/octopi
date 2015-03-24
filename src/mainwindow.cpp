@@ -256,6 +256,7 @@ void MainWindow::outputOutdatedPackageList()
     {
       QString pkg = m_outdatedStringList->at(c);
       const PackageRepository::PackageData*const package = m_packageRepo.getFirstPackageByName(pkg);
+
       if (package != NULL) {
         html += "<tr><td><a href=\"goto:" + pkg + "\">" + pkg +
             "</td><td align=\"right\"><b><font color=\"#E55451\">" +
@@ -1382,6 +1383,13 @@ void MainWindow::gistSysInfo()
   tempFile->write("cat /etc/pacman.conf\n");
   tempFile->write("----------------------------------------------------------------------------------------------------------\n\n");
   out = UnixCommand::getCommandOutput("cat /etc/pacman.conf");
+  tempFile->write(out);
+  tempFile->write("\n\n");
+
+  tempFile->write("----------------------------------------------------------------------------------------------------------\n");
+  tempFile->write("pacman -Qm\n");
+  tempFile->write("----------------------------------------------------------------------------------------------------------\n\n");
+  out = UnixCommand::getCommandOutput("pacman -Qm");
   tempFile->write(out);
   tempFile->write("\n\n");
 
