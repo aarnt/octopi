@@ -262,7 +262,7 @@ void MainWindow::initMenuBar()
 
   m_actionMenuRepository->setMenu(subMenu);
 
-  if (UnixCommand::hasTheExecutable("gist") && UnixCommand::getLinuxDistro() == ectn_KAOS)
+  if (UnixCommand::hasTheExecutable("gist"))
   {
     ui->menuTools->addSeparator();
     m_actionSysInfo->setText("SysInfo");

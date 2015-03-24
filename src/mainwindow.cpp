@@ -1310,8 +1310,7 @@ void MainWindow::launchCacheCleaner()
  */
 void MainWindow::gistSysInfo()
 {
-  if (UnixCommand::getLinuxDistro() != ectn_KAOS ||
-      !UnixCommand::hasTheExecutable("gist") ||
+  if (!UnixCommand::hasTheExecutable("gist") ||
       m_commandExecuting != ectn_NONE) return;
 
   CPUIntensiveComputing *cic = new CPUIntensiveComputing(this);
@@ -1321,12 +1320,31 @@ void MainWindow::gistSysInfo()
   QFile *tempFile = new QFile(ctn_TEMP_ACTIONS_FILE + QString::number(qrand()));
   tempFile->open(QIODevice::ReadWrite|QIODevice::Text);
   tempFile->setPermissions(QFile::Permissions(QFile::ExeOwner|QFile::ReadOwner));
-
   QByteArray out;
+
+  if (UnixCommand::getLinuxDistro() == ectn_KAOS)
+  {
+    tempFile->write("----------------------------------------------------------------------------------------------------------\n");
+    tempFile->write("cat /etc/KaOS-release\n");
+    tempFile->write("----------------------------------------------------------------------------------------------------------\n\n");
+    out = UnixCommand::getCommandOutput("cat /etc/KaOS-release");
+    tempFile->write(out);
+    tempFile->write("\n\n");
+  }
+  else
+  {
+    tempFile->write("----------------------------------------------------------------------------------------------------------\n");
+    tempFile->write("cat /etc/lsb-release\n");
+    tempFile->write("----------------------------------------------------------------------------------------------------------\n\n");
+    out = UnixCommand::getCommandOutput("cat /etc/lsb-release");
+    tempFile->write(out);
+    tempFile->write("\n\n");
+  }
+
   tempFile->write("----------------------------------------------------------------------------------------------------------\n");
-  tempFile->write("cat /etc/KaOS-release\n");
+  tempFile->write("uname -a\n");
   tempFile->write("----------------------------------------------------------------------------------------------------------\n\n");
-  out = UnixCommand::getCommandOutput("cat /etc/KaOS-release");
+  out = UnixCommand::getCommandOutput("uname -a");
   tempFile->write(out);
   tempFile->write("\n\n");
 
@@ -1337,12 +1355,24 @@ void MainWindow::gistSysInfo()
   tempFile->write(out);
   tempFile->write("\n\n");
 
-  tempFile->write("----------------------------------------------------------------------------------------------------------\n");
-  tempFile->write("inxi -GSPN\n");
-  tempFile->write("----------------------------------------------------------------------------------------------------------\n\n");
-  out = UnixCommand::getCommandOutput("inxi -GSPN -c 0");
-  tempFile->write(out);
-  tempFile->write("\n\n");
+  if (UnixCommand::hasTheExecutable("inxi"))
+  {
+    tempFile->write("----------------------------------------------------------------------------------------------------------\n");
+    tempFile->write("inxi -GSPN\n");
+    tempFile->write("----------------------------------------------------------------------------------------------------------\n\n");
+    out = UnixCommand::getCommandOutput("inxi -GSPN -c 0");
+    tempFile->write(out);
+    tempFile->write("\n\n");
+  }
+  else if (UnixCommand::hasTheExecutable("mhwd"))
+  {
+    tempFile->write("----------------------------------------------------------------------------------------------------------\n");
+    tempFile->write("mhwd -li -d\n");
+    tempFile->write("----------------------------------------------------------------------------------------------------------\n\n");
+    out = UnixCommand::getCommandOutput("mhwd -li -d");
+    tempFile->write(out);
+    tempFile->write("\n\n");
+  }
 
   tempFile->write("----------------------------------------------------------------------------------------------------------\n");
   tempFile->write("cat /etc/pacman.conf\n");
@@ -1356,7 +1386,6 @@ void MainWindow::gistSysInfo()
   tempFile->write("----------------------------------------------------------------------------------------------------------\n\n");
   out = UnixCommand::getCommandOutput("cat /var/log/pacman.log");
   tempFile->write(out);
-
   tempFile->flush();
   tempFile->close();
   enableTransactionActions();
@@ -1365,7 +1394,8 @@ void MainWindow::gistSysInfo()
   QString gist = UnixCommand::getCommandOutput("gist " + tempFile->fileName());
   delete cic;
 
-  QMessageBox::information(this, "KaOS SysInfo", Package::makeURLClickable(gist), QMessageBox::Ok);
+  QString distroPrettyName = UnixCommand::getLinuxDistroPrettyName();
+  QMessageBox::information(this, distroPrettyName + " SysInfo", Package::makeURLClickable(gist), QMessageBox::Ok);
 }
 
 /*

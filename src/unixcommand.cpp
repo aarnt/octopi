@@ -1049,3 +1049,35 @@ LinuxDistro UnixCommand::getLinuxDistro()
 
   return ret;
 }
+
+/*
+ * Returns the PrettyName info from /etc/os-release
+ */
+QString UnixCommand::getLinuxDistroPrettyName()
+{
+  static QString ret("");
+  static bool firstTime = true;
+
+  if (firstTime)
+  {
+    if (QFile::exists("/etc/os-release"))
+    {
+      QFile file("/etc/os-release");
+      if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
+        ret = "";
+
+      QString contents = file.readAll();
+      int ind = contents.indexOf("PRETTY_NAME", Qt::CaseInsensitive);
+      int end = contents.indexOf("\n", ind);
+
+      if (ind != -1)
+      {
+        ret = contents.mid(ind+13, end-(ind+13)-1);
+      }
+    }
+
+    firstTime = false;
+  }
+
+  return ret;
+}

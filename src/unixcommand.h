@@ -73,6 +73,9 @@ public:
   //Returns the Linux Distro where Octopi is running on
   static LinuxDistro getLinuxDistro();
 
+  //Returns the PrettyName info from /etc/os-release
+  static QString getLinuxDistroPrettyName();
+
   //Delegations from Package class (due to QProcess use)
   static QString runCommand(const QString& commandToRun);
   static QString runCurlCommand(const QString& commandToRun);
@@ -82,7 +85,6 @@ public:
 
   static QByteArray performQuery(const QStringList args);
   static QByteArray performQuery(const QString &args);
-
   static QByteArray performAURCommand(const QString &args);
   static QByteArray getAURPackageList(const QString &searchString);
   static QByteArray getUnrequiredPackageList();
