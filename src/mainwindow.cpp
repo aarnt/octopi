@@ -1323,12 +1323,12 @@ void MainWindow::gistSysInfo()
   tempFile->setPermissions(QFile::Permissions(QFile::ExeOwner|QFile::ReadOwner));
 
   QByteArray out;
-  /*tempFile->write("----------------------------------------------------------------------------------------------------------\n");
-  tempFile->write("cat /etc/lsb-release\n");
+  tempFile->write("----------------------------------------------------------------------------------------------------------\n");
+  tempFile->write("cat /etc/KaOS-release\n");
   tempFile->write("----------------------------------------------------------------------------------------------------------\n\n");
-  out = UnixCommand::getCommandOutput("cat /etc/lsb-release");
+  out = UnixCommand::getCommandOutput("cat /etc/KaOS-release");
   tempFile->write(out);
-  tempFile->write("\n\n");*/
+  tempFile->write("\n\n");
 
   tempFile->write("----------------------------------------------------------------------------------------------------------\n");
   tempFile->write("journalctl -b -p err\n");
