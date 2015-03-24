@@ -50,13 +50,18 @@ struct PackageListData{
   int     popularity; //votes
   PackageStatus status;
 
-  PackageListData() : name(""){
+  PackageListData() : name(""),
+                    downloadSize(0.0),
+                    popularity(0),
+                    status(ectn_NON_INSTALLED){
   }
 
   PackageListData(QString n, QString v, QString dSize) 
                                     : name(n), 
                                     version(v), 
-                                    downloadSize(QString(dSize).toDouble()){
+                                    downloadSize(QString(dSize).toDouble()),
+                                    popularity(0),
+                                    status(ectn_NON_INSTALLED){
   }
 
   PackageListData(QString n, QString r, QString v, PackageStatus pkgStatus, QString outVersion="")
@@ -64,6 +69,8 @@ struct PackageListData{
                                     repository(r),
                                     version(v),
                                     outatedVersion(outVersion.trimmed()),
+                                    downloadSize(0.0),
+                                    popularity(0),
                                     status(pkgStatus){
   }
 
@@ -73,6 +80,8 @@ struct PackageListData{
                                     version(v),
                                     description(d),
                                     outatedVersion(outVersion.trimmed()),
+                                    downloadSize(0.0),
+                                    popularity(0),
                                     status(pkgStatus){
   }
 };
