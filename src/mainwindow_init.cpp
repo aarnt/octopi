@@ -270,6 +270,13 @@ void MainWindow::initMenuBar()
     ui->menuTools->addAction(m_actionSysInfo);
   }
 
+  foreach (QAction * act,  ui->menuBar->actions())
+  {
+    QString text = act->text();
+    text = text.remove("&");
+    act->setText(qApp->translate("MainWindow", text.toUtf8(), 0));
+  }
+
 #ifdef OCTOPI_DEV_CODE
   ui->menuFile->insertAction(ui->actionExit, m_actionEditOctopiConf);
 #endif
@@ -829,6 +836,13 @@ void MainWindow::initActions()
     {
       if (ac) ac->setIconVisibleInMenu(true);
     }
+  }
+
+  QString text;
+  foreach(QAction* ac, this->findChildren<QAction*>(QRegExp("(m_a|a)ction\\S*")))
+  {
+    text = ac->text().remove("&");
+    ac->setText(qApp->translate("MainWindow", text.toUtf8(), 0));
   }
 
   toggleTransactionActions(true);
