@@ -264,7 +264,7 @@ void MainWindow::buildPackagesFromGroupList(const QString group)
 
     counter++;
     m_progressWidget->setValue(counter);
-    it++;
+    ++it;
   }
 
   counter = list->count();
@@ -598,7 +598,7 @@ void MainWindow::showPackagesWithNoDescription()
       std::cout << pld.name.toLatin1().data() << std::endl;
     }
 
-    it++;
+    ++it;
   }
 }
 
@@ -651,7 +651,7 @@ void MainWindow::buildPackageList()
           itForeign->status = ectn_FOREIGN_OUTDATED;
         }
 
-        itForeign++;
+        ++itForeign;
       }
 
       list->append(*m_foreignPackageList);
@@ -681,7 +681,7 @@ void MainWindow::buildPackageList()
   {
     counter++;
     m_progressWidget->setValue(counter);
-    it++;
+    ++it;
   }
 
   std::cout << "Time elapsed iterating over all pkgs from  'ALL group' list: " << m_time->elapsed() << " mili seconds." << std::endl;
@@ -801,7 +801,7 @@ void MainWindow::refreshPackageList()
       }
 
       list->append(pld);
-      itForeign++;
+      ++itForeign;
     }
   }
 
@@ -836,7 +836,7 @@ void MainWindow::buildAURPackageList()
     }
     counter++;
     m_progressWidget->setValue(counter);
-    it++;
+    ++it;
   }
 
   m_packageRepo.setAURData(list, *unrequiredPackageList);

@@ -194,7 +194,7 @@ QList<PackageListData> * markForeignPackagesInPkgList(bool hasAURTool, QStringLi
     }
 
     result->append(pld);
-    itForeign++;
+    ++itForeign;
   }
 
   return result;
