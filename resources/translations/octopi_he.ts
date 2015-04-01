@@ -973,7 +973,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="501"/>
         <source>Do you really want to remove Pacman&apos;s transaction lock file?</source>
-        <translation>האם אכן ברצונך להסיר קובץ נעילת טרנזקציה של Pacman?</translation>
+        <translation>האם אתה באמת רוצה להסיר קובץ נעילת טרנזקציה של Pacman?</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="505"/>
@@ -1090,42 +1090,42 @@ Are you sure you want to open it?</source>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="596"/>
         <source>Setup</source>
-        <translation type="unfinished"/>
+        <translation>התקנה</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="600"/>
         <source>Sync database interval</source>
-        <translation type="unfinished"/>
+        <translation>תדירות סנכרון מסד נתונים</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="604"/>
         <source>Once a day</source>
-        <translation type="unfinished"/>
+        <translation>פעם ביום</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="608"/>
         <source>Once a day, at</source>
-        <translation type="unfinished"/>
+        <translation>פעם ביום, בשעה</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="612"/>
         <source>(value in 24-hour format: 0 to 23)</source>
-        <translation type="unfinished"/>
+        <translation>(ערך בפורמט 24-שעות: 0 עד 23)</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="616"/>
         <source>Once every</source>
-        <translation type="unfinished"/>
+        <translation>אחת לכל</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="620"/>
         <source>(value in minutes: 5 to 1380)</source>
-        <translation type="unfinished"/>
+        <translation>(ערך בדקות: 5 עד 1380)</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="624"/>
         <source>Set interval...</source>
-        <translation type="unfinished"/>
+        <translation>קבע תדירות...</translation>
     </message>
 </context>
 <context>
