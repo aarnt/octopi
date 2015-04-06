@@ -4,7 +4,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="14"/>
         <source>Octopi</source>
-        <translation>Octopi</translation>
+        <translation>Octopi Paket Yöneticisi</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="110"/>
@@ -119,7 +119,7 @@
         <location filename="Projects/octopi/ui/mainwindow.ui" line="315"/>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="517"/>
         <source>Install</source>
-        <translation>Kur</translation>
+        <translation>Güncelleme Yönetimi</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="324"/>
@@ -1095,17 +1095,17 @@ Açmak istediğinizden emin misiniz?</translation>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="600"/>
         <source>Sync database interval</source>
-        <translation>Veritabanı eşleştirme aralığı</translation>
+        <translation>Veritabanı Güncelleme Zamanlaması</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="604"/>
         <source>Once a day</source>
-        <translation>Günde bir kez</translation>
+        <translation>Günde bir kez güncelle</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="608"/>
         <source>Once a day, at</source>
-        <translation>Günde en az bir kez</translation>
+        <translation>Günde en az bir kez güncelle</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="612"/>
@@ -1115,7 +1115,7 @@ Açmak istediğinizden emin misiniz?</translation>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="616"/>
         <source>Once every</source>
-        <translation>Günaşırı</translation>
+        <translation>Daha sık güncelle</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="620"/>
@@ -1125,7 +1125,7 @@ Açmak istediğinizden emin misiniz?</translation>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="624"/>
         <source>Set interval...</source>
-        <translation>Aralığı ayarla...</translation>
+        <translation>Güncelleme Sıklığı...</translation>
     </message>
 </context>
 <context>

@@ -1080,52 +1080,52 @@ Er du sikker på at du vil åpne den?</translation>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="588"/>
         <source>Use &quot;%1&quot; tool</source>
-        <translation type="unfinished"/>
+        <translation>Bruk &quot;%1&quot; verktøy</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="592"/>
         <source>Copy path to clipboard</source>
-        <translation type="unfinished"/>
+        <translation>Kopier stien til utklippstavlen</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="596"/>
         <source>Setup</source>
-        <translation type="unfinished"/>
+        <translation>Innstillinger</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="600"/>
         <source>Sync database interval</source>
-        <translation type="unfinished"/>
+        <translation>Synkroniser database-intervall</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="604"/>
         <source>Once a day</source>
-        <translation type="unfinished"/>
+        <translation>En gang om dagen</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="608"/>
         <source>Once a day, at</source>
-        <translation type="unfinished"/>
+        <translation>En gang om dagen, kl</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="612"/>
         <source>(value in 24-hour format: 0 to 23)</source>
-        <translation type="unfinished"/>
+        <translation>(verdier i 24 timers format: 0 til 23)</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="616"/>
         <source>Once every</source>
-        <translation type="unfinished"/>
+        <translation>En gang vært</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="620"/>
         <source>(value in minutes: 5 to 1380)</source>
-        <translation type="unfinished"/>
+        <translation>(verdi i minutter: 5 til 1380)</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="624"/>
         <source>Set interval...</source>
-        <translation type="unfinished"/>
+        <translation>Sett intervall...</translation>
     </message>
 </context>
 <context>

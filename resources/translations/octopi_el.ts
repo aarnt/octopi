@@ -50,7 +50,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="193"/>
         <source>Tools</source>
-        <translation type="unfinished"/>
+        <translation>Εργαλεία</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="223"/>
@@ -77,12 +77,12 @@
         <location filename="Projects/octopi/ui/mainwindow.ui" line="261"/>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="264"/>
         <source>Cancel</source>
-        <translation type="unfinished"/>
+        <translation>Ακύρωση</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="267"/>
         <source>Ctrl+E</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+E</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="276"/>
@@ -240,27 +240,27 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="525"/>
         <source>Pacman Log Viewer</source>
-        <translation type="unfinished"/>
+        <translation>Pacman Log Viewer</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="537"/>
         <source>Repository Editor</source>
-        <translation type="unfinished"/>
+        <translation>Επεξεργαστής αποθετήριου</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="546"/>
         <source>Cache Cleaner</source>
-        <translation type="unfinished"/>
+        <translation>Καθαριστικό μνήμης cache </translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="554"/>
         <source>Installed</source>
-        <translation type="unfinished"/>
+        <translation>Εγκατεστημένο</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="570"/>
         <source>By file</source>
-        <translation type="unfinished"/>
+        <translation>Από αρχείο</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="55"/>
@@ -405,7 +405,7 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="138"/>
         <source>Ctrl+E or &apos;Transaction/Cancel&apos; to clear the selection of to be removed/installed packages</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+M ή &apos;Διενέργεια/Ακύρωση&apos; για να εκκινήσετε την προσθαφαίρεση των συγκεκριμένων πακέτων</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="140"/>
@@ -440,7 +440,7 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="153"/>
         <source>Ctrl+Shift+Y to display %1 group</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+Shift+Y για να προβάλετε την ομάδα του %1 πακέτου</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="156"/>
@@ -503,17 +503,17 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="53"/>
         <source>All</source>
-        <translation type="unfinished"/>
+        <translation>Ολα</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="118"/>
         <source>Antergos news</source>
-        <translation type="unfinished"/>
+        <translation>Antergos news</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="122"/>
         <source>ArchBSD news</source>
-        <translation type="unfinished"/>
+        <translation>ArchBSD news</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="126"/>
@@ -528,7 +528,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="134"/>
         <source>KaOS news</source>
-        <translation type="unfinished"/>
+        <translation>KaOS news</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="138"/>
@@ -538,7 +538,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="142"/>
         <source>Netrunner Rolling news</source>
-        <translation type="unfinished"/>
+        <translation>Netrunner Rolling news</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="146"/>
@@ -658,12 +658,12 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="245"/>
         <source>Popularity</source>
-        <translation type="unfinished"/>
+        <translation>Δημοτικότητα</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="249"/>
         <source>votes</source>
-        <translation type="unfinished"/>
+        <translation>ψήφοι</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="253"/>
@@ -788,7 +788,7 @@
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="349"/>
         <source>There are %n outdated packages in your system:</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>Υπάρχει ένα παρωχημένο πακέτο στο σύστημα σας:</numerusform><numerusform>Υπάρχουν  %1 παρωχημένα πακέτα στο σύστημα σας:</numerusform></translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="353"/>
@@ -798,22 +798,22 @@
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="357"/>
         <source>%n (%2) packages</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>%1 (%2) πακέτο</numerusform><numerusform>%1 (%2) πακέτα</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="361"/>
         <source>%n installed</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>%1 εγκατεστημένο</numerusform><numerusform>%1 εγκατεστημένα</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="365"/>
         <source>%n outdated</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>%1 παρωχημένο</numerusform><numerusform>%1 παρωχημένα</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="369"/>
         <source>%n available</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>%1 διαθέσιμο</numerusform><numerusform>%1 διαθέσιμα</numerusform></translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="373"/>
@@ -873,7 +873,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="421"/>
         <source>Choose a terminal</source>
-        <translation type="unfinished"/>
+        <translation>Επιλέξτε ένα τερματικό</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="425"/>
@@ -903,22 +903,22 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="445"/>
         <source>The following package needs to be retrieved</source>
-        <translation type="unfinished"/>
+        <translation>Το ακόλουθο πακέτο πρέπει να ανακτηθεί</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="449"/>
         <source>The following package will be removed</source>
-        <translation type="unfinished"/>
+        <translation>Το ακόλουθο πακέτο πρέπει να απεγκατασταθεί</translation>
     </message>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="453"/>
         <source>The following %n packages need to be retrieved</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>Το ακόλουθο %n πακέτο πρέπει να ανακτηθει</numerusform><numerusform>Τα ακόλουθα %n πακέτα πρέπει να ανακτηθούν</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="457"/>
         <source>The following %n packages will be removed</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>Το ακόλουθο %n πακέτο πρέπει να απεγκατασταθει</numerusform><numerusform>Τα ακόλουθα %n πακέτα πρέπει να απεγκαταστηθούν</numerusform></translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="461"/>
@@ -938,7 +938,7 @@
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="473"/>
         <source>There are %n updates available!</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>Υπάρχει μια διαθέσιμη ενημέρωση!</numerusform><numerusform>Υπάρχουν %1 διαθέσιμες ενημερώσεις!</numerusform></translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="477"/>
@@ -978,7 +978,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="505"/>
         <source>Do you really want to cancel the transaction?</source>
-        <translation type="unfinished"/>
+        <translation>Θέλετε σίγουρα να ακυρώσετε την διενέργεια?</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="509"/>
@@ -1080,52 +1080,52 @@ Are you sure you want to open it?</source>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="588"/>
         <source>Use &quot;%1&quot; tool</source>
-        <translation type="unfinished"/>
+        <translation>Χρήση &quot;%1&quot; εργαλείου</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="592"/>
         <source>Copy path to clipboard</source>
-        <translation type="unfinished"/>
+        <translation>Αντιγραφή διαδρομής στο πρόχειρο</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="596"/>
         <source>Setup</source>
-        <translation type="unfinished"/>
+        <translation>Εγκατάσταση</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="600"/>
         <source>Sync database interval</source>
-        <translation type="unfinished"/>
+        <translation>Διάστημα συγχρονισμού δεδομένων</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="604"/>
         <source>Once a day</source>
-        <translation type="unfinished"/>
+        <translation>Μια φορά την ημέρα</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="608"/>
         <source>Once a day, at</source>
-        <translation type="unfinished"/>
+        <translation>Μία φορά την ημέρα, στις</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="612"/>
         <source>(value in 24-hour format: 0 to 23)</source>
-        <translation type="unfinished"/>
+        <translation>(τιμή σε 24-ωρη μορφή: 0-23)</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="616"/>
         <source>Once every</source>
-        <translation type="unfinished"/>
+        <translation>Μία φορά κάθε</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="620"/>
         <source>(value in minutes: 5 to 1380)</source>
-        <translation type="unfinished"/>
+        <translation>(τιμή σε λεπτά: 5-1380)</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="624"/>
         <source>Set interval...</source>
-        <translation type="unfinished"/>
+        <translation>Ρύθμιση ενδιάμεσου διαστήματος...</translation>
     </message>
 </context>
 <context>

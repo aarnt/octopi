@@ -491,6 +491,11 @@ bool MainWindow::insertIntoRemovePackageDeps(const QStringList &dependencies)
       int space = desc.indexOf(" ");
       desc = desc.mid(space+1);
 
+      if(dep->repository == StrConstants::getForeignRepositoryName() && dep->description.isEmpty())
+      {
+        desc = Package::getInformationDescription(dep->name, true);
+      }
+
       msd->addPackageItem(dep->name, desc, dep->repository);
     }
 
