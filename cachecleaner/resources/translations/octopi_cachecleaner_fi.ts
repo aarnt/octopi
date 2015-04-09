@@ -4,7 +4,7 @@
     <message>
         <location filename="Projects/octopi/cachecleaner/ui/cachecleaner.ui" line="14"/>
         <source>Cache Cleaner - Octopi</source>
-        <translation>Välimuistin tyhennys - Octopi</translation>
+        <translation>Välimuistin tyhjennys - Octopi</translation>
     </message>
     <message>
         <location filename="Projects/octopi/cachecleaner/ui/cachecleaner.ui" line="49"/>

@@ -1096,7 +1096,7 @@ Haluatko varmasti avata sen?</translation>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="600"/>
         <source>Sync database interval</source>
-        <translation type="unfinished"/>
+        <translation>Tietokannan virkistysväli</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="604"/>
