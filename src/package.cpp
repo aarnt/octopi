@@ -1111,9 +1111,9 @@ QHash<QString, QString> Package::getAUROutdatedPackagesNameVersion()
     foreach (QString line, listOfPkgs)
     {
       QStringList sl = line.split(" ", QString::SkipEmptyParts);
-      if (sl.count() >= 5)
+      if (sl.count() >= 6)
       {
-        hash.insert(sl.at(2), sl.at(4));
+        hash.insert(sl.at(2), sl.at(5));
       }
     }
   }

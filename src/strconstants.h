@@ -83,8 +83,8 @@ public:
         ret = QLatin1String( "ccr" );
       else if (UnixCommand::getLinuxDistro() == ectn_KAOS)
         ret = QLatin1String( "kcp" );
-      /*else if (UnixCommand::hasTheExecutable("pacaur"))
-        ret = QLatin1String( "pacaur" );*/
+      else if (UnixCommand::hasTheExecutable("pacaur"))
+        ret = QLatin1String( "pacaur" );
       else
         ret = QLatin1String( "yaourt" );
 
