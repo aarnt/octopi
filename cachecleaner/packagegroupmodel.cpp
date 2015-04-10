@@ -157,7 +157,7 @@ void PackageGroupModel::cleanCache()
   QObject::connect(m_cmd, SIGNAL( finished ( int, QProcess::ExitStatus )),
                    this, SLOT( finishedClean( int, QProcess::ExitStatus )) );
 
-  m_cmd->executeCommand("paccache -r " + getOptions());
+  m_cmd->executeCommand("paccache -r " + getOptions(), ectn_LANG_USER_DEFINED);
 }
 
 /*
