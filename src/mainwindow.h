@@ -211,6 +211,7 @@ private:
   void loadSettings();
   void loadPanelSettings();
   void saveSettings(SaveSettingsReason saveSettingsReason);
+  void savePackageColumnWidths();
 
   void initAppIcon();
   void refreshAppIcon();
@@ -244,7 +245,6 @@ private:
   void initActions();
   void refreshStatusBar();
   void clearStatusBar();
-
   void showPackagesWithNoDescription();
   void prepareSystemUpgrade();
 

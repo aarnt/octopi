@@ -166,6 +166,24 @@ int SettingsManager::getPackageListSortOrder(){
         ctn_KEY_PACKAGE_LIST_SORT_ORDER, Qt::AscendingOrder ).toInt();
 }
 
+int SettingsManager::getPackageIconColumnWidth()
+{
+  return instance()->getSYSsettings()->value(
+        ctn_KEY_PACKAGE_ICON_COLUMN_WIDTH, 24).toInt();
+}
+
+int SettingsManager::getPackageNameColumnWidth()
+{
+  return instance()->getSYSsettings()->value(
+        ctn_KEY_PACKAGE_NAME_COLUMN_WIDTH, 400).toInt();
+}
+
+int SettingsManager::getPackageVersionColumnWidth()
+{
+  return instance()->getSYSsettings()->value(
+        ctn_KEY_PACKAGE_VERSION_COLUMN_WIDTH, 260).toInt();
+}
+
 bool SettingsManager::getSkipMirrorCheckAtStartup(){
   if (!instance()->getSYSsettings()->contains(ctn_KEY_SKIP_MIRRORCHECK_ON_STARTUP)){
     instance()->getSYSsettings()->setValue(ctn_KEY_SKIP_MIRRORCHECK_ON_STARTUP, 0);
@@ -254,6 +272,24 @@ void SettingsManager::setKeepNumInstalledPackages(int newValue)
 void SettingsManager::setKeepNumUninstalledPackages(int newValue)
 {
   instance()->getSYSsettings()->setValue(ctn_KEEP_NUM_UNINSTALLED, newValue);
+  instance()->getSYSsettings()->sync();
+}
+
+void SettingsManager::setPackageIconColumnWidth(int newValue)
+{
+  instance()->getSYSsettings()->setValue(ctn_KEY_PACKAGE_ICON_COLUMN_WIDTH, newValue);
+  instance()->getSYSsettings()->sync();
+}
+
+void SettingsManager::setPackageNameColumnWidth(int newValue)
+{
+  instance()->getSYSsettings()->setValue(ctn_KEY_PACKAGE_NAME_COLUMN_WIDTH, newValue);
+  instance()->getSYSsettings()->sync();
+}
+
+void SettingsManager::setPackageVersionColumnWidth(int newValue)
+{
+  instance()->getSYSsettings()->setValue(ctn_KEY_PACKAGE_VERSION_COLUMN_WIDTH, newValue);
   instance()->getSYSsettings()->sync();
 }
 

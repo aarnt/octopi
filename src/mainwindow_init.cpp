@@ -31,7 +31,6 @@
 #include "treeviewpackagesitemdelegate.h"
 #include "searchbar.h"
 #include "repoconf.h"
-
 #include <iostream>
 #include <cassert>
 
@@ -131,6 +130,19 @@ void MainWindow::saveSettings(SaveSettingsReason saveSettingsReason){
       SettingsManager::instance()->setShowGroupsPanel(show);
       break;
   }
+}
+
+/*
+ * Save Package treeview column widths to bring them back in the next execution
+ */
+void MainWindow::savePackageColumnWidths()
+{
+  SettingsManager::setPackageIconColumnWidth(
+        ui->tvPackages->columnWidth(PackageModel::ctn_PACKAGE_ICON_COLUMN));
+  SettingsManager::setPackageNameColumnWidth(
+        ui->tvPackages->columnWidth(PackageModel::ctn_PACKAGE_NAME_COLUMN));
+  SettingsManager::setPackageVersionColumnWidth(
+        ui->tvPackages->columnWidth(PackageModel::ctn_PACKAGE_VERSION_COLUMN));
 }
 
 /*
@@ -542,9 +554,12 @@ void MainWindow::initPackageTreeView()
 
 void MainWindow::resizePackageView()
 {
-  ui->tvPackages->setColumnWidth(PackageModel::ctn_PACKAGE_ICON_COLUMN, 24);
-  ui->tvPackages->setColumnWidth(PackageModel::ctn_PACKAGE_NAME_COLUMN, 400);
-  ui->tvPackages->setColumnWidth(PackageModel::ctn_PACKAGE_VERSION_COLUMN, 260); //160
+  ui->tvPackages->setColumnWidth(PackageModel::ctn_PACKAGE_ICON_COLUMN,
+                                 SettingsManager::getPackageIconColumnWidth());
+  ui->tvPackages->setColumnWidth(PackageModel::ctn_PACKAGE_NAME_COLUMN,
+                                 SettingsManager::getPackageNameColumnWidth());
+  ui->tvPackages->setColumnWidth(PackageModel::ctn_PACKAGE_VERSION_COLUMN,
+                                 SettingsManager::getPackageVersionColumnWidth());
 }
 
 /*
@@ -756,9 +771,7 @@ void MainWindow::initActions()
 
   connect(ui->tvPackages->selectionModel(), SIGNAL(selectionChanged(QItemSelection,QItemSelection)),
           this, SLOT(invalidateTabs()));
-
   connect(ui->actionInstallLocalPackage, SIGNAL(triggered()), this, SLOT(installLocalPackage()));
-
   connect(ui->actionRemoveTransactionItem, SIGNAL(triggered()), this, SLOT(onPressDelete()));
   connect(ui->actionRemoveTransactionItems, SIGNAL(triggered()), this, SLOT(onPressDelete()));
   connect(ui->actionExit, SIGNAL(triggered()), this, SLOT(close()));

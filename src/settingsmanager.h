@@ -36,6 +36,9 @@ const QString ctn_KEY_PACKAGE_LIST_SORT_ORDER("PackageList_Sort_Order");
 const QString ctn_KEY_SKIP_MIRRORCHECK_ON_STARTUP("Skip_Mirror_Check_At_Startup");
 const QString ctn_KEY_SPLITTER_HORIZONTAL_STATE("Splitter_Horizontal_State");
 const QString ctn_KEY_SHOW_GROUPS_PANEL("Show_Groups_Panel");
+const QString ctn_KEY_PACKAGE_ICON_COLUMN_WIDTH("Package_Icon_Column_Width");
+const QString ctn_KEY_PACKAGE_NAME_COLUMN_WIDTH("Package_Name_Column_Width");
+const QString ctn_KEY_PACKAGE_VERSION_COLUMN_WIDTH("Package_Version_Column_Width");
 
 //Notifier related
 const QString ctn_KEY_LAST_SYNC_DB_TIME("LastSyncDbTime");
@@ -79,6 +82,9 @@ class SettingsManager
     static int getPanelOrganizing();
     static int getPackageListOrderedCol();
     static int getPackageListSortOrder();
+    static int getPackageIconColumnWidth();
+    static int getPackageNameColumnWidth();
+    static int getPackageVersionColumnWidth();
 
     //Notifier related
     static int getSyncDbHour();
@@ -110,6 +116,10 @@ class SettingsManager
     static void setTerminal(QString newValue);
     static void setKeepNumInstalledPackages(int newValue);
     static void setKeepNumUninstalledPackages(int newValue);
+
+    static void setPackageIconColumnWidth(int newValue);
+    static void setPackageNameColumnWidth(int newValue);
+    static void setPackageVersionColumnWidth(int newValue);
 };
 
 #endif // SETTINGSMANAGER_H

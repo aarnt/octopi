@@ -87,6 +87,8 @@ MainWindow::MainWindow(QWidget *parent) :
  */
 MainWindow::~MainWindow()
 {
+  savePackageColumnWidths();
+
   //Let's garbage collect transaction files...
   m_unixCommand->removeTemporaryFiles();
   delete ui;

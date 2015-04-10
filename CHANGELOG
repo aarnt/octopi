@@ -7,6 +7,7 @@
   Disabled "View/Repository/[kcp | aur]" menu item.
   Toolbar now shows AUR tool button instead of a fake pacman group.
   Reenabled Pacaur support.
+  Now Package treeview columns get their widths saved.
   Remove "Yes" button from transaction dialog, everytime 'pacman' 
 	is one of the target packages.
   SearchBar now reacts to an ENTER or RETURN key press to search for 
