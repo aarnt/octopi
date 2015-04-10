@@ -118,10 +118,10 @@ QString UnixCommand::discoverBinaryPath(const QString& binary){
 bool UnixCommand::cleanPacmanCache()
 {
   QProcess pacman;
-  QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
+  /*QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
   env.insert("LANG", "C");
   env.insert("LC_MESSAGES", "C");
-  pacman.setProcessEnvironment(env);
+  pacman.setProcessEnvironment(env);*/
   QString commandStr = "\"yes | pacman -Scc\"";
 
   QString command = WMHelper::getSUCommand() + " " + commandStr;

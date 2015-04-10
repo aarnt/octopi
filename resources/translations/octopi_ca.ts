@@ -1090,42 +1090,42 @@ Estàs segur que vols obrir-lo?</translation>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="596"/>
         <source>Setup</source>
-        <translation type="unfinished"/>
+        <translation>Configuració</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="600"/>
         <source>Sync database interval</source>
-        <translation type="unfinished"/>
+        <translation>Interval de sincronització de la base de dades</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="604"/>
         <source>Once a day</source>
-        <translation type="unfinished"/>
+        <translation>Un cop al dia</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="608"/>
         <source>Once a day, at</source>
-        <translation type="unfinished"/>
+        <translation>Un cop al dia, a les</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="612"/>
         <source>(value in 24-hour format: 0 to 23)</source>
-        <translation type="unfinished"/>
+        <translation>(valor en format de 24 hores: de 0 a 23)</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="616"/>
         <source>Once every</source>
-        <translation type="unfinished"/>
+        <translation>Un cop cada </translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="620"/>
         <source>(value in minutes: 5 to 1380)</source>
-        <translation type="unfinished"/>
+        <translation>(valor en minuts: de 5 a 1380)</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="624"/>
         <source>Set interval...</source>
-        <translation type="unfinished"/>
+        <translation>Estableix l&apos;interval...</translation>
     </message>
 </context>
 <context>

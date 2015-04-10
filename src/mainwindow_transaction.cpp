@@ -2066,6 +2066,8 @@ void MainWindow::parsePacmanProcessOutput(const QString &pMsg)
     msg.remove(QRegExp("QCoreApplication.+"));
     msg.remove(QRegExp("Fontconfig warning.+"));
     msg.remove(QRegExp("reading configurations from.+"));
+
+    msg.remove(QRegExp(".+annot load library.+"));
     msg = msg.trimmed();
 
     //std::cout << "debug: " << msg.toLatin1().data() << std::endl;
