@@ -119,7 +119,7 @@
         <location filename="Projects/octopi/ui/mainwindow.ui" line="315"/>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="517"/>
         <source>Install</source>
-        <translation>Güncelleme Yönetimi</translation>
+        <translation>Yükle</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="324"/>
