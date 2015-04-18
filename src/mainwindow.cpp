@@ -1408,9 +1408,9 @@ void MainWindow::gistSysInfo()
   else
   {
     tempFile->write("----------------------------------------------------------------------------------------------------------\n");
-    tempFile->write("head --bytes=216K /var/log/pacman.log\n");
+    tempFile->write("head --bytes=256K /var/log/pacman.log\n");
     tempFile->write("----------------------------------------------------------------------------------------------------------\n\n");
-    out = UnixCommand::getCommandOutput("head --bytes=216K /var/log/pacman.log");
+    out = UnixCommand::getCommandOutput("head --bytes=256K /var/log/pacman.log");
     tempFile->write(out);
     tempFile->flush();
     tempFile->close();
