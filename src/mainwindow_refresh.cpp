@@ -155,7 +155,7 @@ void MainWindow::refreshMenuTools()
     {
       foreach(QAction *act, ui->menuTools->actions())
       {
-        if (act->isSeparator() || (act->text() == "SysInfo"))
+        if (act->isSeparator() || (act->text() == "SysInfo") || (act->text() == "&SysInfo"))
         {
           ui->menuTools->removeAction(act);
         }
@@ -457,7 +457,7 @@ void MainWindow::preBuildPackageList()
     if (!SettingsManager::getSkipMirrorCheckAtStartup())
       doMirrorCheck();
 #else
-    //doMirrorCheck();
+    doMirrorCheck();
 #endif
 
     secondTime=true;
