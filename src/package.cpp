@@ -249,6 +249,15 @@ QStringList *Package::getOutdatedAURStringList()
         if (parts.count() >= 2)
         {
           pkgName = parts[2];
+          pkgName = pkgName.remove("\033");
+          pkgName = pkgName.remove("[1;31m");
+          pkgName = pkgName.remove("[1;32m");
+          pkgName = pkgName.remove("[1;34m");
+          pkgName = pkgName.remove("[1;35m");
+          pkgName = pkgName.remove("[1;39m");
+          pkgName = pkgName.remove("[m");
+          pkgName = pkgName.remove("[0m");
+          pkgName = pkgName.remove("[1m");
 
           //Let's ignore the "IgnorePkg" list of packages...
           if (!ignorePkgList.contains(pkgName))
@@ -1110,6 +1119,16 @@ QHash<QString, QString> Package::getAUROutdatedPackagesNameVersion()
   {
     foreach (QString line, listOfPkgs)
     {
+      line = line.remove("\033");
+      line = line.remove("[1;31m");
+      line = line.remove("[1;32m");
+      line = line.remove("[1;34m");
+      line = line.remove("[1;35m");
+      line = line.remove("[1;39m");
+      line = line.remove("[m");
+      line = line.remove("[0m");
+      line = line.remove("[1m");
+
       QStringList sl = line.split(" ", QString::SkipEmptyParts);
       if (sl.count() >= 6)
       {
