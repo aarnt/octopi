@@ -112,6 +112,9 @@ private:
   //Controls the calling of System Upgrade action
   bool m_callSystemUpgrade;
 
+  //Controls debugInfo output status
+  bool m_debugInfo;
+
   //Controls the calling of System Upgrade NO CONFIRM action
   bool m_callSystemUpgradeNoConfirm;
 
@@ -456,6 +459,7 @@ public:
   bool isAURGroupSelected();
   bool isSearchByFileSelected();
 
+  void turnDebugInfoOn();
   void setCallSystemUpgrade();
   void setCallSystemUpgradeNoConfirm();
   void setRemoveCommand(const QString &removeCommand);

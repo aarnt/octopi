@@ -136,6 +136,12 @@ int main(int argc, char *argv[])
     w.setCallSystemUpgrade();
   }
 
+  if (argList->getSwitch("-d"))
+  {
+    //If user chooses to switch debug info on...
+    w.turnDebugInfoOn();
+  }
+
   if (!packagesToInstall.isEmpty())
   {
     QStringList packagesToInstallList =

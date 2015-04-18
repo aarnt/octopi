@@ -397,7 +397,7 @@ void MainWindow::retrieveForeignPackageList()
   connect(&g_fwForeignPacman, SIGNAL(finished()), &el, SLOT(quit()));
   g_fwForeignPacman.setFuture(f);
   el.exec();
-  //std::cout << "Out of QEventLoop in: " << m_time->elapsed() << "mili seconds." << std::endl;
+
   assert(m_foreignPackageList != NULL);
 }
 
@@ -423,7 +423,8 @@ void MainWindow::preBuildForeignPackageList()
 {
   m_foreignPackageList = g_fwForeignPacman.result();
 
-  std::cout << "Time elapsed obtaining Foreign pkgs from 'ALL group' list: " << m_time->elapsed() << " mili seconds." << std::endl << std::endl;
+  if(m_debugInfo)
+    std::cout << "Time elapsed obtaining Foreign pkgs from 'ALL group' list: " << m_time->elapsed() << " mili seconds." << std::endl << std::endl;
 }
 
 /*
@@ -433,7 +434,8 @@ void MainWindow::preBuildUnrequiredPackageList()
 {
   m_unrequiredPackageList = g_fwUnrequiredPacman.result();
 
-  std::cout << "Time elapsed obtaining Unrequired pkgs from 'ALL group' list: " << m_time->elapsed() << " mili seconds." << std::endl << std::endl;
+  if(m_debugInfo)
+    std::cout << "Time elapsed obtaining Unrequired pkgs from 'ALL group' list: " << m_time->elapsed() << " mili seconds." << std::endl << std::endl;
 }
 
 /*
@@ -447,7 +449,9 @@ void MainWindow::preBuildPackageList()
   bool hasToCallSysUpgrade = (m_callSystemUpgrade || m_callSystemUpgradeNoConfirm);
 
   m_listOfPackages.reset(g_fwPacman.result());
-  std::cout << "Time elapsed obtaining pkgs from 'ALL group' list: " << m_time->elapsed() << " mili seconds." << std::endl;
+
+  if(m_debugInfo)
+    std::cout << "Time elapsed obtaining pkgs from 'ALL group' list: " << m_time->elapsed() << " mili seconds." << std::endl;
 
   buildPackageList();
 
@@ -525,7 +529,9 @@ void MainWindow::metaBuildPackageList()
     //std::cout << "Start local event loop..." << std::endl;
 
     el.exec(QEventLoop::ExcludeUserInputEvents);
-    std::cout << m_packageModel->getPackageCount() << " pkgs => " <<
+
+    if(m_debugInfo)
+      std::cout << m_packageModel->getPackageCount() << " pkgs => " <<
                  "Time elapsed building pkgs from 'ALL group' list: " << m_time->elapsed() << " mili seconds." << std::endl << std::endl;
   }
   else if (isAURGroupSelected())
@@ -558,7 +564,9 @@ void MainWindow::metaBuildPackageList()
 
       g_fwAUR.setFuture(f);
       el.exec();
-      std::cout << m_packageModel->getPackageCount() << " pkgs => " <<
+
+      if(m_debugInfo)
+        std::cout << m_packageModel->getPackageCount() << " pkgs => " <<
                    "Time elapsed building pkgs from '" << StrConstants::getForeignPkgRepositoryName().toLatin1().data() << " group' list: " << m_time->elapsed() << " mili seconds." << std::endl << std::endl;
 
       return;
@@ -607,7 +615,9 @@ void MainWindow::metaBuildPackageList()
 
     g_fwPacmanGroup.setFuture(f);
     el.exec();
-    std::cout << m_packageModel->getPackageCount() << " pkgs => " <<
+
+    if(m_debugInfo)
+      std::cout << m_packageModel->getPackageCount() << " pkgs => " <<
                  "Time elapsed building pkgs from '" << getSelectedGroup().toLatin1().data() << " group' list: " << m_time->elapsed() << " mili seconds." << std::endl << std::endl;
   }
 
@@ -656,7 +666,10 @@ void MainWindow::buildPackageList()
   {
     //Let's get outdatedPackages list again!
     m_outdatedStringList = Package::getOutdatedStringList();
-    std::cout << "Time elapsed refreshing outdated pkgs from 'ALL group' list: " << m_time->elapsed() << " mili seconds." << std::endl;
+
+    if(m_debugInfo)
+      std::cout << "Time elapsed refreshing outdated pkgs from 'ALL group' list: " << m_time->elapsed() << " mili seconds." << std::endl;
+
     qApp->processEvents(QEventLoop::ExcludeUserInputEvents);
     m_numberOfOutdatedPackages = m_outdatedStringList->count();
 
@@ -670,7 +683,10 @@ void MainWindow::buildPackageList()
     m_unrequiredPackageList = NULL;
 
     m_unrequiredPackageList = Package::getUnrequiredPackageList();
-    std::cout << "Time elapsed obtaining unrequired pkgs from 'ALL group' list: " << m_time->elapsed() << " mili seconds." << std::endl;
+
+    if(m_debugInfo)
+      std::cout << "Time elapsed obtaining unrequired pkgs from 'ALL group' list: " << m_time->elapsed() << " mili seconds." << std::endl;
+
     qApp->processEvents(QEventLoop::ExcludeUserInputEvents);
   }
 
@@ -695,7 +711,9 @@ void MainWindow::buildPackageList()
       }
 
       list->append(*m_foreignPackageList);
-      std::cout << "Time elapsed setting outdated foreign pkgs from 'ALL group' list: " << m_time->elapsed() << " mili seconds." << std::endl;
+
+      if(m_debugInfo)
+        std::cout << "Time elapsed setting outdated foreign pkgs from 'ALL group' list: " << m_time->elapsed() << " mili seconds." << std::endl;
     }
     else
     {
@@ -705,7 +723,10 @@ void MainWindow::buildPackageList()
       m_foreignPackageList = markForeignPackagesInPkgList(m_hasAURTool, m_outdatedAURStringList);
 
       list->append(*m_foreignPackageList);
-      std::cout << "Time elapsed obtaining outdated foreign pkgs from 'ALL group' list: " << m_time->elapsed() << " mili seconds." << std::endl;
+
+      if(m_debugInfo)
+        std::cout << "Time elapsed obtaining outdated foreign pkgs from 'ALL group' list: " << m_time->elapsed() << " mili seconds." << std::endl;
+
       qApp->processEvents(QEventLoop::ExcludeUserInputEvents);
     }
   }
@@ -724,7 +745,8 @@ void MainWindow::buildPackageList()
     ++it;
   }
 
-  std::cout << "Time elapsed iterating over all pkgs from  'ALL group' list: " << m_time->elapsed() << " mili seconds." << std::endl;
+  if(m_debugInfo)
+    std::cout << "Time elapsed iterating over all pkgs from  'ALL group' list: " << m_time->elapsed() << " mili seconds." << std::endl;
 
   counter = list->count();
   m_progressWidget->setValue(counter);
@@ -732,7 +754,9 @@ void MainWindow::buildPackageList()
 
   m_packageRepo.setData(list, *m_unrequiredPackageList);
   if (m_refreshPackageLists) qApp->processEvents(QEventLoop::ExcludeUserInputEvents);
-  std::cout << "Time elapsed seting the list to the treeview: " << m_time->elapsed() << " mili seconds." << std::endl;
+
+  if(m_debugInfo)
+    std::cout << "Time elapsed seting the list to the treeview: " << m_time->elapsed() << " mili seconds." << std::endl;
 
   if (ui->actionSearchByDescription->isChecked())
   {
@@ -800,7 +824,6 @@ void MainWindow::buildPackageList()
     }
   }
 
-  //ui->tvPackages->set showColumn(PackageModel::ctn_PACKAGE_REPOSITORY_COLUMN);
   ui->tvPackages->setColumnWidth(PackageModel::ctn_PACKAGE_REPOSITORY_COLUMN, 10);
   refreshToolBar();
   refreshStatusBarToolButtons();
@@ -1161,7 +1184,6 @@ void MainWindow::refreshTabInfo(bool clearContents, bool neverQuit)
 
       html += "<table border=\"0\">";
       html += "<tr><th width=\"20%\"></th><th width=\"80%\"></th></tr>";
-
       html += "<tr><td>" + version + "</td><td>" + package->version + "</td></tr>";
 
       html += "</table>";

@@ -65,6 +65,7 @@ MainWindow::MainWindow(QWidget *parent) :
   m_selectedViewOption = ectn_ALL_PKGS;
   m_selectedRepository = "";
   m_numberOfInstalledPackages = 0;
+  m_debugInfo = false;
 
   m_time = new QTime();
   m_unrequiredPackageList = NULL;
@@ -392,6 +393,17 @@ bool MainWindow::isSearchByFileSelected()
   return ui->actionSearchByFile->isChecked();
 }
 
+/*
+ * Switches debugInfo ON!
+ */
+void MainWindow::turnDebugInfoOn()
+{
+  m_debugInfo = true;
+}
+
+/*
+ * Gets the first package which has name "pkgName" from default pkg cache
+ */
 const PackageRepository::PackageData* MainWindow::getFirstPackageFromRepo(const QString pkgName)
 {
   return m_packageRepo.getFirstPackageByName(pkgName);
