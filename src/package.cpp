@@ -1036,7 +1036,6 @@ PackageInfoData Package::getInformation(const QString &pkgName, bool foreignPack
   res.description = getDescription(pkgInfo);
   res.downloadSize = getDownloadSize(pkgInfo);
   res.installedSize = getInstalledSize(pkgInfo);
-
   res.downloadSizeAsString = getDownloadSizeAsString(pkgInfo);
   res.installedSizeAsString = getInstalledSizeAsString(pkgInfo);
 

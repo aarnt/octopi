@@ -1395,13 +1395,27 @@ void MainWindow::gistSysInfo()
   tempFile->write(out);
   tempFile->write("\n\n");
 
-  tempFile->write("----------------------------------------------------------------------------------------------------------\n");
-  tempFile->write("cat /var/log/pacman.log\n");
-  tempFile->write("----------------------------------------------------------------------------------------------------------\n\n");
-  out = UnixCommand::getCommandOutput("cat /var/log/pacman.log");
-  tempFile->write(out);
-  tempFile->flush();
-  tempFile->close();
+  if (UnixCommand::getLinuxDistro() == ectn_KAOS)
+  {
+    tempFile->write("----------------------------------------------------------------------------------------------------------\n");
+    tempFile->write("cat /var/log/pacman.log\n");
+    tempFile->write("----------------------------------------------------------------------------------------------------------\n\n");
+    out = UnixCommand::getCommandOutput("cat /var/log/pacman.log");
+    tempFile->write(out);
+    tempFile->flush();
+    tempFile->close();
+  }
+  else
+  {
+    tempFile->write("----------------------------------------------------------------------------------------------------------\n");
+    tempFile->write("head --bytes=256K /var/log/pacman.log\n");
+    tempFile->write("----------------------------------------------------------------------------------------------------------\n\n");
+    out = UnixCommand::getCommandOutput("head --bytes=256K /var/log/pacman.log");
+    tempFile->write(out);
+    tempFile->flush();
+    tempFile->close();
+  }
+
   enableTransactionActions();
 
   //Now we gist the temp file just created!
