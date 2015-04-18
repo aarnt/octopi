@@ -209,6 +209,7 @@ void MainWindow::initPackageGroups()
   ui->twGroups->setFrameShadow(QFrame::Plain);
   ui->twGroups->setStyleSheet(StrConstants::getTreeViewCSS());
   ui->twGroups->setSelectionMode(QAbstractItemView::SingleSelection);
+
   connect(ui->twGroups, SIGNAL(itemSelectionChanged()), this, SLOT(onPackageGroupChanged()));
 }
 
@@ -258,29 +259,9 @@ void MainWindow::initMenuBar()
     actionGroupRepositories->addAction(createdAction);
   }
 
-  /*QAction * actionForeignRepo;
-  if (UnixCommand::getLinuxDistro() != ectn_KAOS)
-  {
-    actionForeignRepo = subMenu->addAction(StrConstants::getForeignRepositoryName());
-    actionForeignRepo->setCheckable(true);
-  }*/
-
   actionGroupRepositories->addAction(m_actionRepositoryAll);
-
-  /*if (UnixCommand::getLinuxDistro() != ectn_KAOS)
-    actionGroupRepositories->addAction(actionForeignRepo);*/
-
   actionGroupRepositories->setExclusive(true);
-
   m_actionMenuRepository->setMenu(subMenu);
-
-  if (UnixCommand::hasTheExecutable("gist"))
-  {
-    ui->menuTools->addSeparator();
-    m_actionSysInfo->setText("SysInfo");
-    connect(m_actionSysInfo, SIGNAL(triggered()), this, SLOT(gistSysInfo()));
-    ui->menuTools->addAction(m_actionSysInfo);
-  }
 
   foreach (QAction * act,  ui->menuBar->actions())
   {

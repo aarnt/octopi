@@ -83,6 +83,7 @@ void MainWindow::refreshMenuTools()
   static bool connectorPlv=false;
   static bool connectorRepo=false;
   static bool connectorCleaner=false;
+  static bool connectorGist=false;
   int availableTools=0;
 
   if(UnixCommand::hasTheExecutable("plv"))
@@ -131,8 +132,48 @@ void MainWindow::refreshMenuTools()
   else
     ui->actionCacheCleaner->setVisible(false);
 
+  if (UnixCommand::hasTheExecutable("gist"))
+  {
+    ui->menuTools->menuAction()->setVisible(true);
+    if (ui->menuTools->actions().indexOf(m_actionSysInfo) == -1)
+    {
+      ui->menuTools->addSeparator();
+      m_actionSysInfo->setText("SysInfo");
+      ui->menuTools->addAction(m_actionSysInfo);
+      availableTools++;
+
+      if (!connectorGist)
+      {
+        connect(m_actionSysInfo, SIGNAL(triggered()), this, SLOT(gistSysInfo()));
+        connectorGist=true;
+      }
+    }
+  }
+  else
+  {
+    if (ui->menuTools->actions().indexOf(m_actionSysInfo) != -1)
+    {
+      foreach(QAction *act, ui->menuTools->actions())
+      {
+        if (act->isSeparator() || (act->text() == "SysInfo"))
+        {
+          ui->menuTools->removeAction(act);
+        }
+      }
+
+      availableTools--;
+    }
+  }
+
   if (availableTools == 0)
     ui->menuTools->menuAction()->setVisible(false);
+
+  foreach (QAction * act,  ui->menuBar->actions())
+  {
+    QString text = act->text();
+    text = text.remove("&");
+    act->setText(qApp->translate("MainWindow", text.toUtf8(), 0));
+  }
 }
 
 /*
@@ -182,7 +223,6 @@ void MainWindow::AURToolSelected()
   m_actionRepositoryAll->setChecked(true);
   m_refreshPackageLists = false;
   m_leFilterPackage->clear();
-
   metaBuildPackageList();
 }
 
@@ -417,7 +457,7 @@ void MainWindow::preBuildPackageList()
     if (!SettingsManager::getSkipMirrorCheckAtStartup())
       doMirrorCheck();
 #else
-    doMirrorCheck();
+    //doMirrorCheck();
 #endif
 
     secondTime=true;
