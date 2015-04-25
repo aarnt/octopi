@@ -756,7 +756,7 @@ void MainWindow::buildPackageList()
   if (m_refreshPackageLists) qApp->processEvents(QEventLoop::ExcludeUserInputEvents);
 
   if(m_debugInfo)
-    std::cout << "Time elapsed seting the list to the treeview: " << m_time->elapsed() << " mili seconds." << std::endl;
+    std::cout << "Time elapsed setting the list to the treeview: " << m_time->elapsed() << " mili seconds." << std::endl;
 
   if (ui->actionSearchByDescription->isChecked())
   {

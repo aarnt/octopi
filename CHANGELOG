@@ -1,4 +1,4 @@
-0.7.0 (dev)
+0.7.0
   Major speed fix: Faster pkg list building.
   Reverted to showing ALL packages at startup.
   Added a systemd service to speed up the very first octopi startup time.
