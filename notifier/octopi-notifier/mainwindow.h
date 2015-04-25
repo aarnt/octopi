@@ -54,7 +54,8 @@ public:
 
   explicit MainWindow(QWidget *parent = 0);
   virtual ~MainWindow();
-    
+  inline void turnDebugInfoOn() { m_debugInfo = true;}
+
 private slots:
 
   void pacmanHelperTimerTimeout();
@@ -64,7 +65,6 @@ private slots:
   void execSystemTrayKF5();
 
   void syncDatabase();
-
   void refreshAppIcon();
   void runOctopi(ExecOpt execOptions = ectn_SYSUPGRADE_EXEC_OPT);
   void runOctopiSysUpgrade();  
@@ -98,6 +98,8 @@ private:
   QStringList *m_outdatedStringList;
   QStringList *m_outdatedAURStringList;
   QTimer *m_pacmanHelperTimer;
+
+  bool m_debugInfo;
 
 #ifdef KSTATUS
   KStatusNotifierItem * m_systemTrayIcon;

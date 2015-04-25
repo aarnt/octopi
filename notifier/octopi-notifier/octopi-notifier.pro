@@ -34,7 +34,8 @@ SOURCES += main.cpp \
     ../../src/settingsmanager.cpp \
     ../pacmanhelper/pacmanhelperclient.cpp \
     ../../src/utils.cpp \
-    ../../src/transactiondialog.cpp
+    ../../src/transactiondialog.cpp \
+    ../../src/argumentlist.cpp
 
 HEADERS  += \
     mainwindow.h \
@@ -47,7 +48,8 @@ HEADERS  += \
     ../../src/package.h \
     ../pacmanhelper/pacmanhelperclient.h \
     ../../src/utils.h \
-    ../../src/transactiondialog.h
+    ../../src/transactiondialog.h \
+    ../../src/argumentlist.h
 
 FORMS += ../../ui/transactiondialog.ui \
     ui/setupdialog.ui

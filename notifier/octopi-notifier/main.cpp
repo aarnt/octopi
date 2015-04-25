@@ -21,6 +21,7 @@
 #include "../../src/unixcommand.h"
 #include "../../src/wmhelper.h"
 #include "../../src/strconstants.h"
+#include "../../src/argumentlist.h"
 #include "mainwindow.h"
 
 #include <QApplication>
@@ -31,8 +32,18 @@
 
 int main(int argc, char *argv[])
 {  
-  qDebug() << QString("Octopi Notifier - " + StrConstants::getApplicationVersion() +
-                " (" + StrConstants::getQtVersion() + ")");
+  bool debugInfo = false;
+
+  ArgumentList *argList = new ArgumentList(argc, argv);
+  if (argList->getSwitch("-d"))
+  {
+    //If user chooses to switch debug info on...
+    debugInfo = true;
+  }
+
+  if (debugInfo)
+    qDebug() << QString("Octopi Notifier - " + StrConstants::getApplicationVersion() +
+                  " (" + StrConstants::getQtVersion() + ")");
 
   if (UnixCommand::isAppRunning("octopi-notifier"))
   {
@@ -76,6 +87,9 @@ int main(int argc, char *argv[])
 
   MainWindow w;
   QResource::registerResource("./resources.qrc");
+
+  if (debugInfo)
+    w.turnDebugInfoOn();
 
   return a.exec();
 }

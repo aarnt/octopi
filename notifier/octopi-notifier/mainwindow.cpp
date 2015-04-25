@@ -48,8 +48,7 @@
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent)
 {
-  qDebug() << "At MainWindow constructor...";
-
+  m_debugInfo = false;
   m_configDialog = nullptr;
   m_pacmanDatabaseSystemWatcher =
             new QFileSystemWatcher(QStringList() << ctn_PACMAN_DATABASE_DIR, this);
@@ -72,7 +71,9 @@ MainWindow::~MainWindow()
  */
 void MainWindow::initSystemTrayIcon()
 {
-  qDebug() << "At initSystemTrayIcon()...";
+  if (m_debugInfo)
+    qDebug() << "At initSystemTrayIcon()...";
+
   m_commandExecuting = ectn_NONE;
   m_outdatedStringList = new QStringList();
 
@@ -189,7 +190,8 @@ void MainWindow::pacmanHelperTimerTimeout()
   {
     if (syncHour >= 0) //Once a day at a certain time?
     {
-      qDebug() << "SyncDb is scheduled once a day, at " << syncHour << " hours";
+      if (m_debugInfo)
+        qDebug() << "SyncDb is scheduled once a day, at " << syncHour << " hours";
 
       if (lastCheckTime.daysTo(now) >= 1 && now.time().hour() == syncHour)
       {
@@ -198,7 +200,8 @@ void MainWindow::pacmanHelperTimerTimeout()
     }
     else
     {
-      qDebug() << "SyncDb is scheduled once a day";
+      if (m_debugInfo)
+        qDebug() << "SyncDb is scheduled once a day";
     }
 
     if ((syncHour == -1 && (
@@ -220,7 +223,8 @@ void MainWindow::pacmanHelperTimerTimeout()
     }
     else
     {
-      qDebug() << "SyncDb is scheduled once every " << syncDbInterval << " minutes.";
+      if (m_debugInfo)
+        qDebug() << "SyncDb is scheduled once every " << syncDbInterval << " minutes.";
     }
 
     m_pacmanHelperTimer->stop();
@@ -401,7 +405,8 @@ void MainWindow::toggleEnableInterface(bool state)
  */
 void MainWindow::afterPacmanHelperSyncDatabase()
 {
-  qDebug() << "At afterPacmanHelperSyncDatabase()...";
+  if (m_debugInfo)
+    qDebug() << "At afterPacmanHelperSyncDatabase()...";
   toggleEnableInterface(true);
 
 #ifndef KSTATUS
@@ -490,7 +495,8 @@ void MainWindow::syncDatabase()
           SIGNAL(directoryChanged(QString)), this, SLOT(refreshAppIcon()));
 
   QTime now;
-  qDebug() << now.currentTime().toString("HH:mm").toLatin1().data() <<  ": At syncDatabase()...";
+  if (m_debugInfo)
+    qDebug() << now.currentTime().toString("HH:mm").toLatin1().data() <<  ": At syncDatabase()...";
   toggleEnableInterface(false);
   m_icon = IconHelper::getIconOctopiTransparent();
 
@@ -516,7 +522,8 @@ void MainWindow::syncDatabase()
   //Let's synchronize kcp database too...
   if (UnixCommand::getLinuxDistro() == ectn_KAOS && UnixCommand::hasTheExecutable("kcp"))
   {
-    qDebug() << "Synchronizing kcp database...";
+    if (m_debugInfo)
+      qDebug() << "Synchronizing kcp database...";
     UnixCommand::execCommandAsNormalUser("kcp -u");
   }
 
@@ -546,7 +553,8 @@ void MainWindow::refreshAppIcon()
   disconnect(m_pacmanDatabaseSystemWatcher,
           SIGNAL(directoryChanged(QString)), this, SLOT(refreshAppIcon()));
 
-  qDebug() << "At refreshAppIcon()...";
+  if (m_debugInfo)
+    qDebug() << "At refreshAppIcon()...";
   m_outdatedStringList = Package::getOutdatedStringList();
   bool hasAURTool = UnixCommand::hasTheExecutable(StrConstants::getForeignRepositoryToolName());
 
@@ -619,7 +627,8 @@ void MainWindow::refreshAppIcon()
       m_actionSystemUpgrade->setVisible(true);
     }
 
-    qDebug() << "Got a RED icon!";
+    if (m_debugInfo)
+      qDebug() << "Got a RED icon!";
     m_icon = IconHelper::getIconOctopiRed();
 
 
@@ -632,7 +641,8 @@ void MainWindow::refreshAppIcon()
   {
     m_actionSystemUpgrade->setVisible(false);
     m_icon = IconHelper::getIconOctopiYellow();
-    qDebug() << "Got a YELLOW icon!";
+    if (m_debugInfo)
+      qDebug() << "Got a YELLOW icon!";
 
 #ifdef KSTATUS
     m_systemTrayIcon->setAttentionIconByPixmap(m_icon);
@@ -643,7 +653,8 @@ void MainWindow::refreshAppIcon()
   {
     m_actionSystemUpgrade->setVisible(false);
     m_icon = IconHelper::getIconOctopiGreen();
-    qDebug() << "Got a GREEN icon!";
+    if (m_debugInfo)
+      qDebug() << "Got a GREEN icon!";
 
 #ifdef KSTATUS
     m_systemTrayIcon->setStatus(KStatusNotifierItem::Passive);
@@ -721,7 +732,8 @@ void MainWindow::execSystemTrayKF5()
  */
 void MainWindow::exitNotifier()
 {
-  qDebug() << "At exitNotifier()...";
+  if (m_debugInfo)
+    qDebug() << "At exitNotifier()...";
   qApp->quit();
 }
 
