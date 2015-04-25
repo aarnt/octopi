@@ -44,7 +44,6 @@ PackageGroupModel::PackageGroupModel(QString optionsString,
   m_refreshButton = refreshBtn;
   m_cleanButton = cleanBtn;
   m_cleanButton->setText(tr("Clean"));
-
   m_cmd = new UnixCommand(this);
   m_acc = new ProcessOutputAccumulator(m_cmd);
   m_oldKeepValue = m_spinner->value();
@@ -157,7 +156,8 @@ void PackageGroupModel::cleanCache()
   QObject::connect(m_cmd, SIGNAL( finished ( int, QProcess::ExitStatus )),
                    this, SLOT( finishedClean( int, QProcess::ExitStatus )) );
 
-  m_cmd->executeCommand("paccache -r " + getOptions(), ectn_LANG_USER_DEFINED);
+  QByteArray tmp = "paccache -r " + getOptions().toLatin1();
+  m_cmd->executeCommand(QLatin1String(tmp), ectn_LANG_USER_DEFINED);
 }
 
 /*
