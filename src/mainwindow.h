@@ -84,10 +84,6 @@ protected:
   void keyPressEvent(QKeyEvent* ke);
   void keyReleaseEvent(QKeyEvent* ke);
 
-  #if QT_VERSION < 0x050000
-    void keyReleaseEvent(QKeyEvent *ke);
-  #endif
-
 private:
   Ui::MainWindow *ui;
   CPUIntensiveComputing *m_cic;

@@ -310,24 +310,6 @@ void MainWindow::keyPressEvent(QKeyEvent* ke)
 }
 
 /*
- * This Event method is called whenever the user releases a key
- */
-void MainWindow::keyReleaseEvent(QKeyEvent* ke)
-{
-  if ((ui->tvPackages->hasFocus()) && (
-      ke->key() == Qt::Key_Up || ke->key() == Qt::Key_Down ||
-      ke->key() == Qt::Key_Home || ke->key() == Qt::Key_End ||
-      ke->key() == Qt::Key_PageUp || ke->key() == Qt::Key_PageDown))
-  {
-    if (ui->twProperties->currentIndex() == ctn_TABINDEX_INFORMATION)
-    {
-      refreshTabInfo(false, true);
-      ui->tvPackages->setFocus();
-    }
-  }
-}
-
-/*
  * Calls TerminalSelectorDialog to let user chooses which terminal to use with Octopi
  */
 #if QT_VERSION >= 0x050300
@@ -425,5 +407,23 @@ void MainWindow::keyReleaseEvent(QKeyEvent *ke)
   }
 
   else ke->ignore();
+}
+#else
+/*
+ * This Event method is called whenever the user releases a key
+ */
+void MainWindow::keyReleaseEvent(QKeyEvent* ke)
+{
+  if ((ui->tvPackages->hasFocus()) && (
+      ke->key() == Qt::Key_Up || ke->key() == Qt::Key_Down ||
+      ke->key() == Qt::Key_Home || ke->key() == Qt::Key_End ||
+      ke->key() == Qt::Key_PageUp || ke->key() == Qt::Key_PageDown))
+  {
+    if (ui->twProperties->currentIndex() == ctn_TABINDEX_INFORMATION)
+    {
+      refreshTabInfo(false, true);
+      ui->tvPackages->setFocus();
+    }
+  }
 }
 #endif
