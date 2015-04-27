@@ -263,12 +263,14 @@ void MainWindow::initMenuBar()
   actionGroupRepositories->setExclusive(true);
   m_actionMenuRepository->setMenu(subMenu);
 
+#if QT_VERSION >= 0x050000
   foreach (QAction * act,  ui->menuBar->actions())
   {
     QString text = act->text();
     text = text.remove("&");
     act->setText(qApp->translate("MainWindow", text.toUtf8(), 0));
   }
+#endif
 
 #ifdef OCTOPI_DEV_CODE
   ui->menuFile->insertAction(ui->actionExit, m_actionEditOctopiConf);
@@ -832,12 +834,14 @@ void MainWindow::initActions()
     }
   }
 
+#if QT_VERSION >= 0x050000
   QString text;
   foreach(QAction* ac, this->findChildren<QAction*>(QRegExp("(m_a|a)ction\\S*")))
   {
     text = ac->text().remove("&");
     ac->setText(qApp->translate("MainWindow", text.toUtf8(), 0));
   }
+#endif
 
   toggleTransactionActions(true);
 }
