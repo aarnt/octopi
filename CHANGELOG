@@ -1,3 +1,6 @@
+0.7.1 (dev)
+  BugFix: Sync Interval dialog was not showing strings in some languages.
+
 0.7.0
   Major speed fix: Faster pkg list building.
   Reverted to showing ALL packages at startup.

@@ -61,7 +61,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="240"/>
         <source>Non installed</source>
-        <translation>Non instaláu</translation>
+        <translation>Nun ta instaláu</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="249"/>
@@ -160,7 +160,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="380"/>
         <source>Expand item</source>
-        <translation>Estenderexar oxetu</translation>
+        <translation>Espander elementu</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="389"/>
@@ -170,7 +170,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="398"/>
         <source>Expand all items</source>
-        <translation>Estenderexar tolos oxetos</translation>
+        <translation>Espander tolos elementos</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="407"/>
@@ -195,12 +195,12 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="443"/>
         <source>Remove item</source>
-        <translation>Desaniciar oxetu</translation>
+        <translation>Desaniciar elementu</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="455"/>
         <source>Remove items</source>
-        <translation>Desaniciar oxetos</translation>
+        <translation>Desaniciar elementos</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="466"/>
@@ -315,7 +315,7 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="97"/>
         <source>A newer than repository package</source>
-        <translation>Unu más nuevu que&apos;l repositoriu de paquetes</translation>
+        <translation>Ún más nuevu que&apos;l repositoriu de paquetes</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="100"/>
@@ -335,12 +335,12 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="106"/>
         <source>Right click package to install/reinstall or remove it</source>
-        <translation>Fai clic drechu nel paquete a instalar/reinstalar o desaniciar</translation>
+        <translation>Clic drechu nel paquete a instalar/reinstalar o desaniciar</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="109"/>
         <source>Alt+key sequences:</source>
-        <translation>Secuencies ALT+:</translation>
+        <translation>Secuencies Alt+:</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="111"/>
@@ -548,7 +548,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="150"/>
         <source>This Linux distro seems to be incompatible with Octopi!</source>
-        <translation>¡Esta dristro Linux paez nun ser compatible con Octopi!</translation>
+        <translation>¡Esta distro Linux paez nun ser compatible con Octopi!</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="154"/>
@@ -598,7 +598,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="197"/>
         <source>URL</source>
-        <translation>Enllaz</translation>
+        <translation>URL</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="201"/>
@@ -698,7 +698,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="277"/>
         <source>Build Date</source>
-        <translation>Data de compilación</translation>
+        <translation>Data de construcción</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="281"/>
@@ -838,7 +838,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="393"/>
         <source>Sync database</source>
-        <translation>Sincronizar bas de datos</translation>
+        <translation>Sincronizar base de datos</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="397"/>
@@ -853,7 +853,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="405"/>
         <source>Starting full system upgrade...</source>
-        <translation>Entamando anovamientu completa&apos;l sistema...</translation>
+        <translation>Entamando anovamientu completu del sistema...</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="409"/>
@@ -908,7 +908,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="449"/>
         <source>The following package will be removed</source>
-        <translation>El paquete siguiente desaniciaráse</translation>
+        <translation>Desaniciaráse&apos;l paquete siguiente</translation>
     </message>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="453"/>
@@ -918,7 +918,7 @@
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="457"/>
         <source>The following %n packages will be removed</source>
-        <translation><numerusform>Desaniciaráse darréu %1 paquete</numerusform><numerusform>Desaniciaránse darréu %1 paquetes</numerusform></translation>
+        <translation><numerusform>Desaniciaráse&apos;l paquete siguiente</numerusform><numerusform>Desaniciaránse los %1 paquetes siguiente</numerusform></translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="461"/>
@@ -938,7 +938,7 @@
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="473"/>
         <source>There are %n updates available!</source>
-        <translation><numerusform>¡Hai %n anovamientu disponible!</numerusform><numerusform>¡Hai %n anovamientos disponible!</numerusform></translation>
+        <translation><numerusform>¡Hai %n anovamientu disponible!</numerusform><numerusform>¡Hai %n anovamientos disponibles!</numerusform></translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="477"/>
@@ -968,7 +968,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="497"/>
         <source>Do you really want to clean the package cache?</source>
-        <translation>¿De xuru quies llimpiar la caché de paquetes?</translation>
+        <translation>¿De xuru que quies llimpiar la caché de paquetes?</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="501"/>
@@ -978,12 +978,12 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="505"/>
         <source>Do you really want to cancel the transaction?</source>
-        <translation>¿De xuru que quies desaniciar la transaición?</translation>
+        <translation>¿De xuru que quies encaboxar la transaición?</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="509"/>
         <source>Please, enter the administrator&apos;s password</source>
-        <translation>Por favor, introduz la contraseña l&apos;alministrador</translation>
+        <translation>Por favor, introduz la contraseña del alministrador</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="515"/>
@@ -998,7 +998,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="523"/>
         <source>You can not run Octopi with administrator&apos;s credentials.</source>
-        <translation>Nun pues executar Octopi con credenciales d&apos;alministrador.</translation>
+        <translation>Nun pues executar Octopi coles credenciales d&apos;alministrador.</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="527"/>
@@ -1008,7 +1008,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="531"/>
         <source>Do you really want to quit?</source>
-        <translation>¿De xuru quies colar?</translation>
+        <translation>¿De xuru que quies colar?</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="535"/>
@@ -1033,24 +1033,24 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="551"/>
         <source>Select the packages you want to install</source>
-        <translation>Esbilla los paquete que quies instalar</translation>
+        <translation>Esbilla los paquetes que quies instalar</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="555"/>
         <source>This file does not appear to be a simple text.
 Are you sure you want to open it?</source>
         <translation>Esti ficheru nun paez ser un testu simple.
-¿De xuru quies abrilu?</translation>
+¿De xuru que quies abrilu?</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="560"/>
         <source>To be installed</source>
-        <translation>Instalaránse</translation>
+        <translation>Instalaráse</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="564"/>
         <source>To be removed</source>
-        <translation>Desaniciaránse</translation>
+        <translation>Desaniciaráse</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="568"/>
@@ -1065,17 +1065,17 @@ Are you sure you want to open it?</source>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="576"/>
         <source>Remove item</source>
-        <translation>Desaniciar oxetu</translation>
+        <translation>Desaniciar elementu</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="580"/>
         <source>Remove items</source>
-        <translation>Desaniciar oxetos</translation>
+        <translation>Desaniciar elementos</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="584"/>
         <source>Press Ctrl+A to select/deselect all</source>
-        <translation>Primi Ctrl+A pa esbillar/deseleicionar too</translation>
+        <translation>Primi Ctrl+A pa seleicionar/deseleicionar too</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="588"/>
@@ -1138,7 +1138,7 @@ Are you sure you want to open it?</source>
     <message>
         <location filename="Projects/octopi/src/searchbar.cpp" line="72"/>
         <source>Next</source>
-        <translation>Siquiente</translation>
+        <translation>Siguiente</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/searchbar.cpp" line="86"/>

@@ -663,7 +663,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="249"/>
         <source>votes</source>
-        <translation>hlasy</translation>
+        <translation>hlasov</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="253"/>
