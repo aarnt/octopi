@@ -86,7 +86,8 @@ QString Package::makeURLClickable( const QString &s )
 
 	search = 0;
 	ini = 0;
-	//Now, we search for the 2nd pattern: rx1
+
+  //Now, we search for the 2nd pattern: rx1
 	while ( (ini = rx1.indexIn( sb, search )) != -1 ){
 		QString s1 = rx1.cap();
 		QString ns;
@@ -422,10 +423,7 @@ QList<PackageListData> * Package::getPackageList(const QString &packageName)
 
           if (packageName.isEmpty() || pkgName == packageName)
           {
-            //if (pkgStatus != ectn_NON_INSTALLED)
             res->append(pld);
-            //else if (pkgStatus == ectn_NON_INSTALLED)
-            //  if (option != ectn_INSTALLED_PKGS) res->append(pld);
           }
 
           pkgDescription = "";
@@ -478,26 +476,8 @@ QList<PackageListData> * Package::getPackageList(const QString &packageName)
 
     if (packageName.isEmpty() || pkgName == packageName)
     {
-      //if (pkgStatus != ectn_NON_INSTALLED)
       res->append(pld);
-      //else if (pkgStatus == ectn_NON_INSTALLED)
-      //  if (option != ectn_INSTALLED_PKGS) res->append(pld);
     }
-  }
-  return res;
-}
-
-  //And adds the very last package...
-  pkgDescription = pkgName + " " + pkgDescription;
-  PackageListData pld =
-      PackageListData(pkgName, pkgRepository, pkgVersion, pkgDescription, pkgStatus, pkgOutVersion);
-
-  if (packageName.isEmpty() || pkgName == packageName)
-  {
-    //if (pkgStatus != ectn_NON_INSTALLED)
-      res->append(pld);
-    //else if (pkgStatus == ectn_NON_INSTALLED)
-    //  if (option != ectn_INSTALLED_PKGS) res->append(pld);
   }
 
   return res;
