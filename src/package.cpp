@@ -405,69 +405,87 @@ QList<PackageListData> * Package::getPackageList(const QString &packageName)
   QStringList packageTuples = pkgList.split(QRegExp("\\n"), QString::SkipEmptyParts);
   QList<PackageListData> * res = new QList<PackageListData>();
 
-  pkgDescription = "";
-  foreach(QString packageTuple, packageTuples)
-  {                
-    if (!packageTuple[0].isSpace())
+  if(!pkgList.isEmpty())
+  {
+    pkgDescription = "";
+    foreach(QString packageTuple, packageTuples)
     {
-      //Do we already have a description?
-      if (pkgDescription != "")
+      if (!packageTuple[0].isSpace())
       {
-        pkgDescription = pkgName + " " + pkgDescription;
-
-        PackageListData pld =
-            PackageListData(pkgName, pkgRepository, pkgVersion, pkgDescription, pkgStatus, pkgOutVersion);
-
-        if (packageName.isEmpty() || pkgName == packageName)
+        //Do we already have a description?
+        if (pkgDescription != "")
         {
-          //if (pkgStatus != ectn_NON_INSTALLED)
+          pkgDescription = pkgName + " " + pkgDescription;
+
+          PackageListData pld =
+              PackageListData(pkgName, pkgRepository, pkgVersion, pkgDescription, pkgStatus, pkgOutVersion);
+
+          if (packageName.isEmpty() || pkgName == packageName)
+          {
+            //if (pkgStatus != ectn_NON_INSTALLED)
             res->append(pld);
-          //else if (pkgStatus == ectn_NON_INSTALLED)
-          //  if (option != ectn_INSTALLED_PKGS) res->append(pld);
+            //else if (pkgStatus == ectn_NON_INSTALLED)
+            //  if (option != ectn_INSTALLED_PKGS) res->append(pld);
+          }
+
+          pkgDescription = "";
         }
 
-        pkgDescription = "";
-      }
+        //First we get repository and name!
+        QStringList parts = packageTuple.split(' ');
+        QString repoName = parts[0];
+        int a = repoName.indexOf("/");
+        pkgRepository = repoName.left(a);
+        pkgName = repoName.mid(a+1);
+        pkgVersion = parts[1];
 
-      //First we get repository and name!
-      QStringList parts = packageTuple.split(' ');
-      QString repoName = parts[0];
-      int a = repoName.indexOf("/");
-      pkgRepository = repoName.left(a);
-      pkgName = repoName.mid(a+1);
-      pkgVersion = parts[1];
+        if(packageTuple.indexOf("[installed]") != -1)
+        {
+          //This is an installed package
+          pkgStatus = ectn_INSTALLED;
+          pkgOutVersion = "";
+        }
+        else if (packageTuple.indexOf("[installed:") != -1)
+        {
+          //This is an outdated installed package
+          pkgStatus = ectn_OUTDATED;
 
-      if(packageTuple.indexOf("[installed]") != -1)
-      {
-        //This is an installed package
-        pkgStatus = ectn_INSTALLED;        
-        pkgOutVersion = "";
-      }
-      else if (packageTuple.indexOf("[installed:") != -1)
-      {
-        //This is an outdated installed package
-        pkgStatus = ectn_OUTDATED;
-
-        int i = packageTuple.indexOf("[installed:");
-        pkgOutVersion = packageTuple.mid(i+11);
-        pkgOutVersion.remove(']').trimmed();
+          int i = packageTuple.indexOf("[installed:");
+          pkgOutVersion = packageTuple.mid(i+11);
+          pkgOutVersion.remove(']').trimmed();
+        }
+        else
+        {
+          //This is an uninstalled package
+          pkgStatus = ectn_NON_INSTALLED;
+          pkgOutVersion = "";
+        }
       }
       else
       {
-        //This is an uninstalled package
-        pkgStatus = ectn_NON_INSTALLED;
-        pkgOutVersion = "";
+        //This is a description!
+        if (!packageTuple.trimmed().isEmpty())
+          pkgDescription += packageTuple.trimmed();
+        else
+          pkgDescription += " "; //StrConstants::getNoDescriptionAvailabe();
       }
     }
-    else
+
+    //And adds the very last package...
+    pkgDescription = pkgName + " " + pkgDescription;
+    PackageListData pld =
+        PackageListData(pkgName, pkgRepository, pkgVersion, pkgDescription, pkgStatus, pkgOutVersion);
+
+    if (packageName.isEmpty() || pkgName == packageName)
     {
-      //This is a description!
-      if (!packageTuple.trimmed().isEmpty())
-        pkgDescription += packageTuple.trimmed();
-      else
-        pkgDescription += " "; //StrConstants::getNoDescriptionAvailabe();
+      //if (pkgStatus != ectn_NON_INSTALLED)
+      res->append(pld);
+      //else if (pkgStatus == ectn_NON_INSTALLED)
+      //  if (option != ectn_INSTALLED_PKGS) res->append(pld);
     }
   }
+  return res;
+}
 
   //And adds the very last package...
   pkgDescription = pkgName + " " + pkgDescription;
