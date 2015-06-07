@@ -450,7 +450,7 @@ QList<PackageListData> * Package::getPackageList(const QString &packageName)
 
           int i = packageTuple.indexOf("[installed:");
           pkgOutVersion = packageTuple.mid(i+11);
-          pkgOutVersion.remove(']').trimmed();
+          pkgOutVersion = pkgOutVersion.remove(']').trimmed();
         }
         else
         {
@@ -577,7 +577,7 @@ QList<PackageListData> * Package::getAURPackageList(const QString& searchString)
 
         int i = packageTuple.indexOf("[installed:");
         pkgOutVersion = packageTuple.mid(i+11);
-        pkgOutVersion.remove(QRegExp("\\].*")).trimmed();
+        pkgOutVersion = pkgOutVersion.remove(QRegExp("\\].*")).trimmed();
       }
       else
       {
