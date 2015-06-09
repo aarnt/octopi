@@ -1285,7 +1285,6 @@ void MainWindow::refreshTabFiles(bool clearContents, bool neverQuit)
     QStringList fileList;
     QStandardItemModel *fakeModelPkgFileList = new QStandardItemModel(this);
     QStandardItemModel *modelPkgFileList = qobject_cast<QStandardItemModel*>(tvPkgFileList->model());
-
     modelPkgFileList->clear();
     QStandardItem *fakeRoot = fakeModelPkgFileList->invisibleRootItem();
     QStandardItem *root = modelPkgFileList->invisibleRootItem();
@@ -1461,6 +1460,9 @@ void MainWindow::reapplyPackageFilter()
     {
       m_leFilterPackage->setFocus();
     }
+
+    if (numPkgs == 0)
+      tvPackagesSelectionChanged(QItemSelection(),QItemSelection());
 
     ui->tvPackages->selectionModel()->clear();
     QModelIndex mi = m_packageModel->index(0, PackageModel::ctn_PACKAGE_NAME_COLUMN, QModelIndex());

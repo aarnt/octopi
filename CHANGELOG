@@ -1,5 +1,6 @@
 0.7.1 (dev)
   BugFix: Sync Interval dialog was not showing strings in some languages.
+  BugFix: Package counters were not zeroing when searches found no results.
 
 0.7.0
   Major speed fix: Faster pkg list building.
