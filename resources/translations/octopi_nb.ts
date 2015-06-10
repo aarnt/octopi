@@ -788,7 +788,7 @@
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="349"/>
         <source>There are %n outdated packages in your system:</source>
-        <translation><numerusform>Det finnes %1 utdaterte pakker i systemet ditt:</numerusform><numerusform>Det finnes %1 utdaterte pakker i systemet ditt:</numerusform></translation>
+        <translation><numerusform>Det finnes %1 utdaterte pakker i systemet ditt:</numerusform><numerusform>Det finnes %n utdaterte pakker i systemet ditt:</numerusform></translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="353"/>
@@ -798,22 +798,22 @@
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="357"/>
         <source>%n (%2) packages</source>
-        <translation><numerusform>%1 (%2) pakker</numerusform><numerusform>%1 (%2) pakker</numerusform></translation>
+        <translation><numerusform>%1 (%2) pakker</numerusform><numerusform>%n (%2) pakker</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="361"/>
         <source>%n installed</source>
-        <translation><numerusform>%1 installert</numerusform><numerusform>%1 installert</numerusform></translation>
+        <translation><numerusform>%1 installert</numerusform><numerusform>%n installert</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="365"/>
         <source>%n outdated</source>
-        <translation><numerusform>%1 utdatert</numerusform><numerusform>%1 utdatert</numerusform></translation>
+        <translation><numerusform>%1 utdatert</numerusform><numerusform>%n utdatert</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="369"/>
         <source>%n available</source>
-        <translation><numerusform>%1 tilgjengelig </numerusform><numerusform>%1 tilgjengelig </numerusform></translation>
+        <translation><numerusform>%1 tilgjengelig </numerusform><numerusform>%n tilgjengelig </numerusform></translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="373"/>
@@ -913,12 +913,12 @@
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="453"/>
         <source>The following %n packages need to be retrieved</source>
-        <translation><numerusform>Følgende %1 pakker må hentes</numerusform><numerusform>Følgende %1 pakker må hentes</numerusform></translation>
+        <translation><numerusform>Følgende %1 pakker må hentes</numerusform><numerusform>Følgende %n pakker må hentes</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="457"/>
         <source>The following %n packages will be removed</source>
-        <translation><numerusform>Følgende 1% pakker vil bli fjernet</numerusform><numerusform>Følgende %1 pakker vil bli fjernet</numerusform></translation>
+        <translation><numerusform>Følgende 1% pakker vil bli fjernet</numerusform><numerusform>Følgende %n pakker vil bli fjernet</numerusform></translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="461"/>
@@ -938,7 +938,7 @@
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="473"/>
         <source>There are %n updates available!</source>
-        <translation><numerusform>Det finnes %1 tilgjengelige oppdateringer!</numerusform><numerusform>Det finnes %1 tilgjengelige oppdateringer!</numerusform></translation>
+        <translation><numerusform>Det finnes %1 tilgjengelige oppdateringer!</numerusform><numerusform>Det finnes %n tilgjengelige oppdateringer!</numerusform></translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="477"/>

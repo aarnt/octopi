@@ -1080,32 +1080,32 @@ Are you sure you want to open it?</source>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="588"/>
         <source>Use &quot;%1&quot; tool</source>
-        <translation type="unfinished"/>
+        <translation>Использовать инструмент &quot;%1&quot;</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="592"/>
         <source>Copy path to clipboard</source>
-        <translation type="unfinished"/>
+        <translation>Копировать путь в буфер обмена</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="596"/>
         <source>Setup</source>
-        <translation type="unfinished"/>
+        <translation>Установить</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="600"/>
         <source>Sync database interval</source>
-        <translation type="unfinished"/>
+        <translation>Интервал синхронизации базы данных</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="604"/>
         <source>Once a day</source>
-        <translation type="unfinished"/>
+        <translation>Раз в день</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="608"/>
         <source>Once a day, at</source>
-        <translation type="unfinished"/>
+        <translation>Раз в день, по</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="612"/>

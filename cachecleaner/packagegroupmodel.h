@@ -93,10 +93,9 @@ protected:
     QSpinBox *m_spinner;
     QPushButton *m_refreshButton;
     QPushButton *m_cleanButton;
-
-    int m_oldKeepValue;
     UnixCommand *m_cmd;
     ProcessOutputAccumulator *m_acc;
+    int m_oldKeepValue;
 
     void processDryrunResult(QString);
     QString getOptions();
