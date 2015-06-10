@@ -36,17 +36,18 @@ PackageGroupModel::PackageGroupModel(QString optionsString,
                                      QListWidget *listView,
                                      QSpinBox *spinner,
                                      QPushButton *refreshBtn,
-                                     QPushButton *cleanBtn) : QObject(NULL)
+                                     QPushButton *cleanBtn)
+                                        : QObject(NULL),
+                                        m_optionsString(optionsString), 
+                                        m_listView(listView), 
+                                        m_spinner(spinner), 
+                                        m_refreshButton(refreshBtn),
+                                        m_cleanButton(cleanBtn),
+                                        m_cmd(new UnixCommand(this)),
+                                        m_acc(new ProcessOutputAccumulator(m_cmd)),
+                                        m_oldKeepValue(spinner->value())
 {
-  m_optionsString = optionsString;
-  m_listView = listView;
-  m_spinner = spinner;
-  m_refreshButton = refreshBtn;
-  m_cleanButton = cleanBtn;
   m_cleanButton->setText(tr("Clean"));
-  m_cmd = new UnixCommand(this);
-  m_acc = new ProcessOutputAccumulator(m_cmd);
-  m_oldKeepValue = m_spinner->value();
 
   //setup UI slots
   connect( m_spinner, SIGNAL( valueChanged(int) ), SLOT( updateKeepArchives() ) );
