@@ -1852,7 +1852,18 @@ void MainWindow::actionsProcessReadOutput()
   if (WMHelper::getSUCommand().contains("kdesu"))
   {
     QString msg = m_unixCommand->readAllStandardOutput();
-    splitOutputStrings(msg);
+
+    if (m_commandExecuting == ectn_SYNC_DATABASE &&
+        msg.contains("Usage: /usr/bin/kdesu [options] command"))
+      return;
+
+    msg = msg.remove("Fontconfig warning: \"/etc/fonts/conf.d/50-user.conf\", line 14:");
+    msg = msg.remove("reading configurations from ~/.fonts.conf is deprecated. please move it to /home/arnt/.config/fontconfig/fonts.conf manually");
+
+    if (!msg.trimmed().isEmpty())
+    {
+      splitOutputStrings(msg);
+    }
   }
   else if (WMHelper::getSUCommand().contains("gksu"))
   {
@@ -2066,7 +2077,6 @@ void MainWindow::parsePacmanProcessOutput(const QString &pMsg)
     msg.remove(QRegExp("QCoreApplication.+"));
     msg.remove(QRegExp("Fontconfig warning.+"));
     msg.remove(QRegExp("reading configurations from.+"));
-
     msg.remove(QRegExp(".+annot load library.+"));
     msg = msg.trimmed();
 
@@ -2201,7 +2211,13 @@ bool MainWindow::splitOutputStrings(const QString &output)
 void MainWindow::actionsProcessRaisedError()
 {
   QString msg = m_unixCommand->readAllStandardError();
-  splitOutputStrings(msg);
+  msg = msg.remove("Fontconfig warning: \"/etc/fonts/conf.d/50-user.conf\", line 14:");
+  msg = msg.remove("reading configurations from ~/.fonts.conf is deprecated. please move it to /home/arnt/.config/fontconfig/fonts.conf manually");
+
+  if (!msg.trimmed().isEmpty())
+  {
+    splitOutputStrings(msg);
+  }
 }
 
 /*
