@@ -353,8 +353,12 @@ public:
     return QObject::tr("(version %1 is available)");
   }
 
-  static QString getSelectedPackages(int packageCount){
-    return QObject::tr("%n (%2) packages", 0, packageCount);
+  static QString getTotalPackages(int packageCount){
+    return QObject::tr("%n packages", 0, packageCount);
+  }
+
+  static QString getSelectedPackages(int selectedCount){
+    return QObject::tr("%n selected", 0, selectedCount);
   }
 
   static QString getNumberInstalledPackages(int installedPackagesCount){

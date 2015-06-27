@@ -1110,6 +1110,8 @@ void MainWindow::refreshTabInfo(QString pkgName)
     text->clear();
     text->setHtml(OctopiTabInfo::formatTabInfo(*package, *m_outdatedAURPackagesNameVersion));
     text->scrollToAnchor(OctopiTabInfo::anchorBegin);
+    //We have to clear the cached Info contents...
+    m_cachedPackageInInfo = "";
   }
 }
 
