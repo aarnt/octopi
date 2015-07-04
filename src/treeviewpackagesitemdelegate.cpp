@@ -24,23 +24,15 @@
 #include "mainwindow.h"
 #include "strconstants.h"
 #include "uihelper.h"
+
 #include <QtGui>
 #include <QFutureWatcher>
 #include <QTreeWidget>
 #include <QToolTip>
 #include <iostream>
-
-#if QT_VERSION > 0x050000
-  #include <QtConcurrent/QtConcurrentRun>
-#else
-  #include <QtConcurrentRun>
-#endif
+#include <QtConcurrent/QtConcurrentRun>
 
 QPoint gPoint;
-
-#if QT_VERSION < 0x050000
-  using namespace QtConcurrent;
-#endif
 
 TreeViewPackagesItemDelegate::TreeViewPackagesItemDelegate(QObject *parent):
   QStyledItemDelegate(parent)
@@ -60,6 +52,7 @@ bool TreeViewPackagesItemDelegate::helpEvent ( QHelpEvent *event, QAbstractItemV
     if (sim == NULL || sim->getPackageCount() == 0) return false;
 
     const PackageRepository::PackageData*const si = sim->getData(index);
+
     if (si != NULL)
     {
       QPoint p;

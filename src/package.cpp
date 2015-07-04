@@ -153,6 +153,32 @@ QString Package::kbytesToSize( float Bytes )
 }
 
 /*
+ * Parses package list and returns anchors for those which does not have logical operators
+ */
+QString Package::makeAnchorOfPackage(const QString &packages)
+{
+  QString newDeps;
+  QStringList ldeps = packages.split(" ", QString::SkipEmptyParts);
+
+  foreach(QString dep, ldeps)
+  {
+    if (!dep.contains("=") &&
+        !dep.contains("<") &&
+        !dep.contains(">"))
+    {
+      newDeps += "<a href=\"goto:" + dep + "\">" + dep + "</a> ";
+    }
+    else
+    {
+      newDeps += " " + dep + " ";
+    }
+  }
+
+  newDeps = newDeps.trimmed();
+  return newDeps;
+}
+
+/*
  * Retrieves the list of unrequired packages (those no other packages depends on)
  */
 QSet<QString>* Package::getUnrequiredPackageList()

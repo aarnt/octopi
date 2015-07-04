@@ -194,16 +194,9 @@ void MainWindow::initPackageGroups()
   ui->twGroups->setColumnCount(1);
   ui->twGroups->setHeaderLabel(StrConstants::getGroups());
   ui->twGroups->header()->setSortIndicatorShown(false);
-
-  #if QT_VERSION < 0x050000
-    ui->twGroups->header()->setClickable(false);
-    ui->twGroups->header()->setMovable(false);
-    ui->twGroups->header()->setResizeMode(QHeaderView::Fixed);
-  #else
-    ui->twGroups->header()->setSectionsClickable(false);
-    ui->twGroups->header()->setSectionsMovable(false);
-    ui->twGroups->header()->setSectionResizeMode(QHeaderView::Fixed);
-  #endif
+  ui->twGroups->header()->setSectionsClickable(false);
+  ui->twGroups->header()->setSectionsMovable(false);
+  ui->twGroups->header()->setSectionResizeMode(QHeaderView::Fixed);
 
   ui->twGroups->setFrameShape(QFrame::NoFrame);
   ui->twGroups->setFrameShadow(QFrame::Plain);
@@ -263,14 +256,12 @@ void MainWindow::initMenuBar()
   actionGroupRepositories->setExclusive(true);
   m_actionMenuRepository->setMenu(subMenu);
 
-#if QT_VERSION >= 0x050000
   foreach (QAction * act,  ui->menuBar->actions())
   {
     QString text = act->text();
     text = text.remove("&");
     act->setText(qApp->translate("MainWindow", text.toUtf8(), 0));
   }
-#endif
 
 #ifdef OCTOPI_DEV_CODE
   ui->menuFile->insertAction(ui->actionExit, m_actionEditOctopiConf);
@@ -432,17 +423,9 @@ void MainWindow::initTabTransaction()
   tvTransaction->setSelectionMode(QAbstractItemView::ExtendedSelection);
   tvTransaction->setItemDelegate(new TreeViewPackagesItemDelegate(tvTransaction));
   tvTransaction->header()->setSortIndicatorShown(false);
-
-#if QT_VERSION < 0x050000
-  tvTransaction->header()->setClickable(false);
-  tvTransaction->header()->setMovable(false);
-  tvTransaction->header()->setResizeMode(QHeaderView::Fixed);
-#else
   tvTransaction->header()->setSectionsClickable(false);
   tvTransaction->header()->setSectionsMovable(false);
   tvTransaction->header()->setSectionResizeMode(QHeaderView::Fixed);
-#endif
-
   tvTransaction->setFrameShape(QFrame::NoFrame);
   tvTransaction->setFrameShadow(QFrame::Plain);
   tvTransaction->setStyleSheet(StrConstants::getTreeViewCSS());
@@ -468,14 +451,8 @@ void MainWindow::initTabTransaction()
 
   QString aux(StrConstants::getTabTransactionName());
   ui->twProperties->removeTab(ctn_TABINDEX_TRANSACTION);
-
-#if QT_VERSION < 0x050000
-  ui->twProperties->insertTab(ctn_TABINDEX_TRANSACTION, tabTransaction, QApplication::translate (
-                                "MainWindow", aux.toUtf8(), 0, QApplication::UnicodeUTF8 ));
-#else
   ui->twProperties->insertTab(ctn_TABINDEX_TRANSACTION, tabTransaction, QApplication::translate (
                                 "MainWindow", aux.toUtf8(), 0/*, QApplication::UnicodeUTF8*/ ));
-#endif
 
   connect(tvTransaction, SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(execContextMenuTransaction(QPoint)));
   connect(tvTransaction->selectionModel(), SIGNAL(selectionChanged(QItemSelection,QItemSelection)),
@@ -510,17 +487,9 @@ void MainWindow::initPackageTreeView()
   ui->tvPackages->setSortingEnabled( true );
   ui->tvPackages->setIndentation( 0 );
   ui->tvPackages->header()->setSortIndicatorShown(true);
-
-#if QT_VERSION < 0x050000
-  ui->tvPackages->header()->setClickable(true);
-  ui->tvPackages->header()->setMovable(false);
-  ui->tvPackages->header()->setResizeMode( QHeaderView::Interactive );
-#else
   ui->tvPackages->header()->setSectionsClickable(true);
   ui->tvPackages->header()->setSectionsMovable(false);
   ui->tvPackages->header()->setSectionResizeMode(QHeaderView::Interactive);
-#endif
-
   ui->tvPackages->header()->setDefaultAlignment( Qt::AlignLeft );
   resizePackageView();
 
@@ -559,21 +528,24 @@ void MainWindow::initTabInfo(){
   text->setReadOnly(true);
   text->setFrameShape(QFrame::NoFrame);
   text->setFrameShadow(QFrame::Plain);
-  text->setOpenExternalLinks(true);
+  text->setOpenLinks(false);
+  connect(text, SIGNAL(anchorClicked(QUrl)), this, SLOT(outputTextBrowserAnchorClicked(QUrl)));
+  connect(text, SIGNAL(highlighted(QUrl)), this, SLOT(showAnchorDescription(QUrl)));
   gridLayoutX->addWidget ( text, 0, 0, 1, 1 );
 
   QString tabName(StrConstants::getTabInfoName());
   ui->twProperties->removeTab(ctn_TABINDEX_INFORMATION);
-
-#if QT_VERSION < 0x050000
-  ui->twProperties->insertTab(ctn_TABINDEX_INFORMATION, tabInfo, QApplication::translate (
-      "MainWindow", tabName.toUtf8(), 0, QApplication::UnicodeUTF8 ) );
-#else
   ui->twProperties->insertTab(ctn_TABINDEX_INFORMATION, tabInfo, QApplication::translate (
       "MainWindow", tabName.toUtf8(), 0/*, QApplication::UnicodeUTF8*/ ) );
-#endif
-
   ui->twProperties->setUsesScrollButtons(false);
+
+  SearchBar *searchBar = new SearchBar(this);
+  connect(searchBar, SIGNAL(textChanged(QString)), this, SLOT(searchBarTextChangedInTextBrowser(QString)));
+  connect(searchBar, SIGNAL(closed()), this, SLOT(searchBarClosedInTextBrowser()));
+  connect(searchBar, SIGNAL(findNext()), this, SLOT(searchBarFindNextInTextBrowser()));
+  connect(searchBar, SIGNAL(findPrevious()), this, SLOT(searchBarFindPreviousInTextBrowser()));
+  gridLayoutX->addWidget(searchBar, 1, 0, 1, 1);
+
   ui->twProperties->setCurrentIndex(ctn_TABINDEX_INFORMATION);
   text->show();
   text->setFocus();
@@ -594,17 +566,9 @@ void MainWindow::initTabFiles()
   tvPkgFileList->setDropIndicatorShown(false);
   tvPkgFileList->setAcceptDrops(false);
   tvPkgFileList->header()->setSortIndicatorShown(false);
-
-#if QT_VERSION < 0x050000
-  tvPkgFileList->header()->setClickable(false);
-  tvPkgFileList->header()->setMovable(false);
-  tvPkgFileList->header()->setResizeMode(QHeaderView::Fixed);
-#else
   tvPkgFileList->header()->setSectionsClickable(false);
   tvPkgFileList->header()->setSectionsMovable(false);
   tvPkgFileList->header()->setSectionResizeMode(QHeaderView::Fixed);
-#endif
-
   tvPkgFileList->setFrameShape(QFrame::NoFrame);
   tvPkgFileList->setFrameShadow(QFrame::Plain);
   tvPkgFileList->setObjectName("tvPkgFileList");
@@ -617,15 +581,8 @@ void MainWindow::initTabFiles()
 
   QString aux(StrConstants::getTabFilesName());
   ui->twProperties->removeTab(ctn_TABINDEX_FILES);
-
-#if QT_VERSION < 0x050000
-  ui->twProperties->insertTab(ctn_TABINDEX_FILES, tabPkgFileList, QApplication::translate (
-                                                  "MainWindow", aux.toUtf8(), 0, QApplication::UnicodeUTF8 ) );
-#else
   ui->twProperties->insertTab(ctn_TABINDEX_FILES, tabPkgFileList, QApplication::translate (
                                                   "MainWindow", aux.toUtf8(), 0/*, QApplication::UnicodeUTF8*/ ) );
-#endif
-
   tvPkgFileList->setContextMenuPolicy(Qt::CustomContextMenu);
   SearchBar *searchBar = new SearchBar(this);
 
@@ -660,18 +617,13 @@ void MainWindow::initTabOutput()
   text->setFrameShadow(QFrame::Plain);
 
   connect(text, SIGNAL(anchorClicked(QUrl)), this, SLOT(outputTextBrowserAnchorClicked(QUrl)));
+  connect(text, SIGNAL(highlighted(QUrl)), this, SLOT(showAnchorDescription(QUrl)));
   gridLayoutX->addWidget (text, 0, 0, 1, 1);  
 
   QString aux(StrConstants::getTabOutputName());
   ui->twProperties->removeTab(ctn_TABINDEX_OUTPUT);
-
-#if QT_VERSION < 0x050000
-  ui->twProperties->insertTab(ctn_TABINDEX_OUTPUT, tabOutput, QApplication::translate (
-      "MainWindow", aux.toUtf8(), 0, QApplication::UnicodeUTF8 ) );
-#else
   ui->twProperties->insertTab(ctn_TABINDEX_OUTPUT, tabOutput, QApplication::translate (
       "MainWindow", aux.toUtf8(), 0/*, QApplication::UnicodeUTF8*/ ) );
-#endif
 
   SearchBar *searchBar = new SearchBar(this);
   connect(searchBar, SIGNAL(textChanged(QString)), this, SLOT(searchBarTextChangedInTextBrowser(QString)));
@@ -834,14 +786,12 @@ void MainWindow::initActions()
     }
   }
 
-#if QT_VERSION >= 0x050000
   QString text;
   foreach(QAction* ac, this->findChildren<QAction*>(QRegExp("(m_a|a)ction\\S*")))
   {
     text = ac->text().remove("&");
     ac->setText(qApp->translate("MainWindow", text.toUtf8(), 0));
   }
-#endif
 
   toggleTransactionActions(true);
 }

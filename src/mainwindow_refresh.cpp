@@ -23,6 +23,7 @@
  */
 
 #include "mainwindow.h"
+#include "src/ui/octopitabinfo.h"
 #include "searchlineedit.h"
 #include "ui_mainwindow.h"
 #include "strconstants.h"
@@ -38,18 +39,7 @@
 #include <QTextBrowser>
 #include <QStandardItem>
 #include <QFutureWatcher>
-
-#if QT_VERSION > 0x050000
-  #include <QtConcurrent/QtConcurrentRun>
-#else
-  #include <QtConcurrentRun>
-#endif
-
-#if QT_VERSION < 0x050000
-  using namespace QtConcurrent;
-#endif
-
-#include "src/ui/octopitabinfo.h"
+#include <QtConcurrent/QtConcurrentRun>
 
 /*
  * If we have some outdated packages, let's put an angry red face icon in this app!
@@ -413,6 +403,7 @@ void MainWindow::retrieveUnrequiredPackageList()
   connect(&g_fwUnrequiredPacman, SIGNAL(finished()), &el, SLOT(quit()));
   g_fwUnrequiredPacman.setFuture(f);
   el.exec();
+
   assert(m_unrequiredPackageList != NULL);
 }
 
@@ -1012,7 +1003,6 @@ void MainWindow::refreshToolBar()
     }
   }
 }
-
 
 /*
  * Refreshes the toolButtons which indicate outdated packages

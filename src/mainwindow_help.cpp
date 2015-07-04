@@ -195,9 +195,15 @@ void MainWindow::onHelpUsage()
  */
 void MainWindow::onHelpAbout()
 {
-  QString aboutText = "<b>" + StrConstants::getApplicationName() +
+  QString aboutText =
+      "<b>" + StrConstants::getApplicationName() +
       " - " + StrConstants::getApplicationVersion() + "</b>" + " (" + StrConstants::getQtVersion() + ")<br>";
-  aboutText += "<a href=\"http://octopiproject.wordpress.com/\">http://octopiproject.wordpress.com</a><br><br>";
-  aboutText += "&copy; Alexandre Albuquerque Arnt";
+  aboutText += "<a href=\"http://octopiproject.wordpress.com/\">http://octopiproject.wordpress.com</a><br>";
+  aboutText += "&copy; Alexandre Albuquerque Arnt<br><br>";
+  aboutText += "<b>Pacman - " + UnixCommand::getPacmanVersion() + "</b><br>";
+  aboutText += "<a href=\"https://www.archlinux.org/pacman/\">https://www.archlinux.org/pacman</a><br>";
+  aboutText += "&copy; 2006-2014 Pacman Development Team<br>";
+  aboutText += "&copy; 2002-2006 Judd Vinet";
+
   QMessageBox::about(this, StrConstants::getHelpAbout(), aboutText);
 }

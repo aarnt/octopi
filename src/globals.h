@@ -36,6 +36,7 @@ struct AUROutdatedPackages
 typedef std::pair<QString, QStringList*> GroupMemberPair;
 
 extern QFutureWatcher<QString> g_fwToolTip;
+extern QFutureWatcher<QString> g_fwToolTipInfo;
 extern QFutureWatcher<QList<PackageListData> *> g_fwPacman;
 extern QFutureWatcher<QList<PackageListData> *> g_fwForeignPacman;
 extern QFutureWatcher<QSet<QString> *> g_fwUnrequiredPacman;

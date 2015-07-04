@@ -1,10 +1,16 @@
-0.7.1 (dev)
+0.8.0 (dev)
+  This is a Qt5 only version!
   BugFix: Sync Interval dialog was not showing strings in some languages.
   BugFix: Package counters were not zeroing when searches found no results.
   BugFix: In some very specific situations Info tab did not refresh info of 
 	selected package.
   BugFix: If user tried to sync db with kdesu and clicked "ESC", some garbage  
 	went to Output tab.
+  When outdated packages are printed at Output tab, you can see their 
+	information just hovering the mouse over them.
+  At Info tab, packages in "depends On" field are shown as clickable anchors.
+  Information tab now supports "ctrl+F" searching.
+  Help/About dialog now shows Pacman information.
   StatusBar msg got updated with number of selected packages more visible.  
 
 0.7.0

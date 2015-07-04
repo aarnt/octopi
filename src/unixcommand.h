@@ -76,6 +76,8 @@ public:
   //Returns the PrettyName info from /etc/os-release
   static QString getLinuxDistroPrettyName();
 
+  static QString getPacmanVersion();
+
   //Delegations from Package class (due to QProcess use)
   static QString runCommand(const QString& commandToRun);
   static QString runCurlCommand(const QString& commandToRun);

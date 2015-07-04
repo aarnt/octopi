@@ -1081,3 +1081,21 @@ QString UnixCommand::getLinuxDistroPrettyName()
 
   return ret;
 }
+
+/*
+ * Retrieves pacman version.
+ */
+QString UnixCommand::getPacmanVersion()
+{
+  QString v = performQuery("--version");
+  QString res = "???";
+  int p = v.indexOf("Pacman");
+  int q = v.indexOf("- libalpm");
+
+  if (p >=0 && q >= 0)
+  {
+    res = v.mid(p+6, q-(p+6)).trimmed();
+  }
+
+  return res;
+}
