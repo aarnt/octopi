@@ -202,8 +202,10 @@ void MainWindow::onHelpAbout()
   aboutText += "&copy; Alexandre Albuquerque Arnt<br><br>";
   aboutText += "<b>Pacman - " + UnixCommand::getPacmanVersion() + "</b><br>";
   aboutText += "<a href=\"https://www.archlinux.org/pacman/\">https://www.archlinux.org/pacman</a><br>";
-  aboutText += "&copy; 2006-2014 Pacman Development Team<br>";
+  QDate d = QDate::currentDate();
+  aboutText += "&copy; 2006-%1 Pacman Development Team<br>";
   aboutText += "&copy; 2002-2006 Judd Vinet";
+  aboutText = aboutText.arg(d.year());
 
   QMessageBox::about(this, StrConstants::getHelpAbout(), aboutText);
 }
