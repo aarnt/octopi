@@ -108,7 +108,9 @@ void SearchBar::init()
 void SearchBar::close()
 {
   hide();
+  disconnect(m_searchLineEdit, SIGNAL(textChanged(QString)), this, SIGNAL(textChanged(QString)));
   m_searchLineEdit->setText("");
+  connect(m_searchLineEdit, SIGNAL(textChanged(QString)), this, SIGNAL(textChanged(QString)));
   emit closed();
 }
 

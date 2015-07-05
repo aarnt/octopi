@@ -206,8 +206,12 @@ void MainWindow::searchBarFindPreviousInTreeView()
  */
 void MainWindow::searchBarClosedInTextBrowser()
 {
-  searchBarTextChangedInTextBrowser("");
   QTextBrowser *tb = ui->twProperties->currentWidget()->findChild<QTextBrowser*>("textBrowser");
+
+  QTextCursor tc = tb->textCursor();
+  searchBarTextChangedInTextBrowser("");
+  tc.clearSelection();
+  tb->setTextCursor(tc);
 
   if (tb)
     tb->setFocus();

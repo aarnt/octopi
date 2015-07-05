@@ -6,6 +6,8 @@
 	selected package.
   BugFix: If user tried to sync db with kdesu and clicked "ESC", some garbage  
 	went to Output tab.
+  BugFix: When user closed searchbar inside a QTextBrowser, cursor position was 
+	reseted.
   When outdated packages are printed at Output tab, you can see their 
 	information just hovering the mouse over them.
   At Info tab, packages in "depends On" field are shown as clickable anchors.
