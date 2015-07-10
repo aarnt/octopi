@@ -85,7 +85,8 @@ TRANSLATIONS += resources/translations/octopi_cachecleaner_pt_BR.ts \
     resources/translations/octopi_cachecleaner_uk.ts \
     resources/translations/octopi_cachecleaner_sk.ts \
     resources/translations/octopi_cachecleaner_ja.ts \
-    resources/translations/octopi_cachecleaner_eu.ts
+    resources/translations/octopi_cachecleaner_eu.ts \
+    resources/translations/octopi_cachecleaner_gl_ES.ts
 
 greaterThan(QT_MAJOR_VERSION, 4){
     TRANSLATIONS += resources/translations/octopi_cachecleaner_ast.ts
