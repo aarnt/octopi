@@ -117,7 +117,8 @@ TRANSLATIONS += resources/translations/octopi_pt_BR.ts \
     resources/translations/octopi_uk.ts \
     resources/translations/octopi_sk.ts \
     resources/translations/octopi_ja.ts \
-    resources/translations/octopi_eu.ts
+    resources/translations/octopi_eu.ts \
+    resources/translations/octopi_gl_ES.ts
 
 greaterThan(QT_MAJOR_VERSION, 4){
     TRANSLATIONS += resources/translations/octopi_ast.ts
