@@ -83,6 +83,11 @@ void MainWindow::refreshDistroNews(bool searchForLatestNews, bool gotoNewsTab)
       writeToTabOutputExt("<b>" +
                           StrConstants::getSearchingForDistroNews().arg("Netrunner Rolling") + "</b>");
     }
+    else if (gotoNewsTab && distro == ectn_PARABOLA)
+    {
+      writeToTabOutputExt("<b>" +
+                          StrConstants::getSearchingForDistroNews().arg("Parabola GNU/Linux-libre") + "</b>");
+    }
 
     /*
      * Here, we retrieve distro's latest news without

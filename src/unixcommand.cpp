@@ -1036,6 +1036,10 @@ LinuxDistro UnixCommand::getLinuxDistro()
       {
         ret = ectn_NETRUNNER;
       }
+      else if (contents.contains(QRegExp("Parabola GNU/Linux-libre")))
+      {
+        ret = ectn_PARABOLA;
+      }
       else
       {
         ret = ectn_UNKNOWN;

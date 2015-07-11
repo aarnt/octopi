@@ -278,6 +278,7 @@ QString utils::retrieveDistroNews(bool searchForLatestNews)
   //const QString ctn_MANJARO_LINUX_RSS_URL = "http://manjaro.org/feed/";
   const QString ctn_MANJARO_LINUX_RSS_URL = "https://manjaro.github.io/feed.xml";
   const QString ctn_NETRUNNER_RSS_URL = "http://www.netrunner-os.com/feed/";
+  const QString ctn_PARABOLA_RSS_URL = "https://www.parabola.nu/feeds/news/";
 
   LinuxDistro distro = UnixCommand::getLinuxDistro();
   QString res;
@@ -295,7 +296,7 @@ QString utils::retrieveDistroNews(bool searchForLatestNews)
   }
 
   if(searchForLatestNews && UnixCommand::hasInternetConnection() && distro != ectn_UNKNOWN)
-  {
+  {    
     QString curlCommand = "curl %1 -o %2";
 
     if (distro == ectn_ANTERGOS)
@@ -325,6 +326,12 @@ QString utils::retrieveDistroNews(bool searchForLatestNews)
     else if (distro == ectn_NETRUNNER)
     {
       curlCommand = curlCommand.arg(ctn_NETRUNNER_RSS_URL).arg(tmpRssPath);
+    }
+    else if (distro == ectn_PARABOLA)
+    {
+      //Parabola has a certificate which is not "trusted" by default, so we use "curl -k"
+      curlCommand = "curl -k %1 -o %2";
+      curlCommand = curlCommand.arg(ctn_PARABOLA_RSS_URL).arg(tmpRssPath);
     }
 
     if (UnixCommand::runCurlCommand(curlCommand).isEmpty())
@@ -437,6 +444,10 @@ QString utils::parseDistroNews()
   else if (distro == ectn_NETRUNNER)
   {
     html = "<p align=\"center\"><h2>" + StrConstants::getNetrunnerNews() + "</h2></p><ul>";
+  }
+  else if (distro == ectn_PARABOLA)
+  {
+    html = "<p align=\"center\"><h2>" + StrConstants::getParabolaNews() + "</h2></p><ul>";
   }
 
   QString rssPath = QDir::homePath() + QDir::separator() + ".config/octopi/distro_rss.xml";

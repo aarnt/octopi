@@ -10,6 +10,7 @@
 	reseted.
   When outdated packages are printed at Output tab, you can see their 
 	information just hovering the mouse over them.
+  Added Parabola GNU/Linux-libre support (thanks to coadde).
   Added galician translation (thanks to Ismael Ordóñez).
   At Info tab, packages in "depends On" field are shown as clickable anchors.
   Information tab now supports "ctrl+F" searching.
