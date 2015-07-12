@@ -1154,6 +1154,10 @@ bool MainWindow::doRemovePacmanLockFile()
       UnixCommand::execCommand("rm " + lockFilePath);
       writeToTabOutputExt("<b>" + StrConstants::getCommandFinishedOK() + "</b>");
     }
+    else
+    {
+      return false;
+    }
   }
 
   return true;
