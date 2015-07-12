@@ -4,9 +4,7 @@
 #
 #-------------------------------------------------
 
-QT += core gui network
-
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+QT += core gui network widgets
 
 CONFIG += qt console warn_on debug
 
