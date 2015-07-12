@@ -800,7 +800,7 @@
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="349"/>
         <source>There are %n outdated packages in your system:</source>
-        <translation><numerusform>Hay %n paquetes obsoletos en su sistema:</numerusform><numerusform>Hay %n paquetes obsoletos en su sistema:</numerusform></translation>
+        <translation><numerusform>Hay %n paquete obsoleto en su sistema:</numerusform><numerusform>Hay %n paquetes obsoletos en su sistema:</numerusform></translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="353"/>
@@ -820,17 +820,17 @@
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="365"/>
         <source>%n installed</source>
-        <translation><numerusform>%n instalado</numerusform><numerusform>%n instalado</numerusform></translation>
+        <translation><numerusform>%n instalado</numerusform><numerusform>%n instalados</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="369"/>
         <source>%n outdated</source>
-        <translation><numerusform>%n obsoleto</numerusform><numerusform>%n obsoleto</numerusform></translation>
+        <translation><numerusform>%n obsoleto</numerusform><numerusform>%n obsoletos</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="373"/>
         <source>%n available</source>
-        <translation><numerusform>%n disponible</numerusform><numerusform>%n disponible</numerusform></translation>
+        <translation><numerusform>%n disponible</numerusform><numerusform>%n disponibles</numerusform></translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="377"/>
@@ -930,12 +930,12 @@
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="457"/>
         <source>The following %n packages need to be retrieved</source>
-        <translation><numerusform>Se necesitan recuperar los siguientes %n paquetes</numerusform><numerusform>Se necesitan recuperar los siguientes %n paquetes</numerusform></translation>
+        <translation><numerusform>Se necesita recuperar lo siguiente %n paquete</numerusform><numerusform>Se necesitan recuperar los siguientes %n paquetes</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="461"/>
         <source>The following %n packages will be removed</source>
-        <translation><numerusform>Los siguientes %n paquetes serán eliminados</numerusform><numerusform>Los siguientes %n paquetes serán eliminados</numerusform></translation>
+        <translation><numerusform>Lo siguiente %n paquete será eliminado</numerusform><numerusform>Los siguientes %n paquetes serán eliminados</numerusform></translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="465"/>
@@ -955,7 +955,7 @@
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="477"/>
         <source>There are %n updates available!</source>
-        <translation><numerusform>¡Hay %n actualizaciones disponibles!</numerusform><numerusform>¡Hay %n actualizaciones disponibles!</numerusform></translation>
+        <translation><numerusform>¡Hay %n actualización disponible!</numerusform><numerusform>¡Hay %n actualizaciones disponibles!</numerusform></translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="481"/>
