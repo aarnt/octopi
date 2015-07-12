@@ -1,5 +1,5 @@
 0.8.0 (dev)
-  This is a Qt5 only version!
+  This is a Qt5 only version (with the exception of 'octopi-notifier').
   BugFix: Sync Interval dialog was not showing strings in some languages.
   BugFix: Package counters were not zeroing when searches found no results.
   BugFix: In some very specific situations Info tab did not refresh info of 
