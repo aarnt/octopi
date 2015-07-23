@@ -4,12 +4,12 @@
     <message>
         <location filename="Projects/octopi/cachecleaner/ui/cachecleaner.ui" line="14"/>
         <source>Cache Cleaner - Octopi</source>
-        <translation type="unfinished"/>
+        <translation>Čistič vyrovnávací paměti</translation>
     </message>
     <message>
         <location filename="Projects/octopi/cachecleaner/ui/cachecleaner.ui" line="49"/>
         <source>Uninstalled packages</source>
-        <translation type="unfinished"/>
+        <translation>Odinstalované balíčky</translation>
     </message>
     <message>
         <location filename="Projects/octopi/cachecleaner/ui/cachecleaner.ui" line="75"/>
@@ -32,7 +32,7 @@
     <message>
         <location filename="Projects/octopi/cachecleaner/ui/cachecleaner.ui" line="127"/>
         <source>Installed packages</source>
-        <translation type="unfinished"/>
+        <translation>Nainstalované balíčky</translation>
     </message>
 </context>
 <context>
@@ -45,7 +45,7 @@
     <message>
         <location filename="Projects/octopi/cachecleaner/packagegroupmodel.cpp" line="222"/>
         <source>Clean %1</source>
-        <translation type="unfinished"/>
+        <translation>Vyčistit %1</translation>
     </message>
 </context>
 </TS>

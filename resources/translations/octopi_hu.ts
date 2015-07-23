@@ -810,7 +810,7 @@
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="357"/>
         <source>%n packages</source>
-        <translation><numerusform>%n csomagok</numerusform><numerusform>%n csomagok</numerusform></translation>
+        <translation><numerusform>%n csomagok</numerusform><numerusform>%n csomag</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="361"/>

@@ -18,7 +18,6 @@
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="120"/>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="164"/>
         <source>Transaction</source>
         <translation>Overførsel</translation>
     </message>
@@ -35,7 +34,12 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="155"/>
         <source>View</source>
-        <translation>Vis</translation>
+        <translation>Se</translation>
+    </message>
+    <message>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="164"/>
+        <source>Transaction</source>
+        <translation>Overførsel</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="171"/>
@@ -54,6 +58,10 @@
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="223"/>
+        <source>About</source>
+        <translation>Om</translation>
+    </message>
+    <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="226"/>
         <source>About</source>
         <translation>Om</translation>
@@ -66,7 +74,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="249"/>
         <source>Commit</source>
-        <translation>Utfør</translation>
+        <translation>Legg til</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="252"/>
@@ -75,6 +83,10 @@
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="261"/>
+        <source>Cancel</source>
+        <translation>Avbryt</translation>
+    </message>
+    <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="264"/>
         <source>Cancel</source>
         <translation>Avbryt</translation>
@@ -87,7 +99,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="276"/>
         <source>Sync database</source>
-        <translation>Synkroniser database</translation>
+        <translation>Synk database</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="279"/>
@@ -135,7 +147,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="341"/>
         <source>Get latest distro news</source>
-        <translation>Motta de siste distro-nyhetene</translation>
+        <translation>Få de siste distronyhetene</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="344"/>
@@ -797,333 +809,338 @@
     </message>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="357"/>
-        <source>%n (%2) packages</source>
-        <translation><numerusform>%1 (%2) pakker</numerusform><numerusform>%n (%2) pakker</numerusform></translation>
+        <source>%n packages</source>
+        <translation><numerusform>%n pakker</numerusform><numerusform>%n pakker</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="361"/>
+        <source>%n selected</source>
+        <translation><numerusform>%n valgt</numerusform><numerusform>%n valgt</numerusform></translation>
+    </message>
+    <message numerus="yes">
+        <location filename="Projects/octopi/src/strconstants.h" line="365"/>
         <source>%n installed</source>
         <translation><numerusform>%1 installert</numerusform><numerusform>%n installert</numerusform></translation>
     </message>
     <message numerus="yes">
-        <location filename="Projects/octopi/src/strconstants.h" line="365"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="369"/>
         <source>%n outdated</source>
         <translation><numerusform>%1 utdatert</numerusform><numerusform>%n utdatert</numerusform></translation>
     </message>
     <message numerus="yes">
-        <location filename="Projects/octopi/src/strconstants.h" line="369"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="373"/>
         <source>%n available</source>
         <translation><numerusform>%1 tilgjengelig </numerusform><numerusform>%n tilgjengelig </numerusform></translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="373"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="377"/>
         <source>Cleaning package cache...</source>
         <translation>Tømmer pakke-cachen...</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="377"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="381"/>
         <source>Removing Pacman&apos;s transaction lock file...</source>
         <translation>Fjerne Pacman&apos;s låsefil for transaksjoner...</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="381"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="385"/>
         <source>Syncing</source>
         <translation>Synkroniserer</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="385"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="389"/>
         <source>Press any key to continue...</source>
         <translation>Trykk en tast for å fortsette...</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="393"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="397"/>
         <source>Sync database</source>
         <translation>Synkroniser database</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="397"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="401"/>
         <source>Synchronizing databases...</source>
         <translation>Synkroniserer databaser...</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="401"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="405"/>
         <source>is up to date</source>
         <translation>er oppdatert</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="405"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="409"/>
         <source>Starting full system upgrade...</source>
         <translation>Starter full systemoppgradering...</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="409"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="413"/>
         <source>Installing selected packages...</source>
         <translation>Installerer valgte pakker...</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="413"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="417"/>
         <source>Removing selected packages...</source>
         <translation>Fjerner valgte pakker...</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="417"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="421"/>
         <source>Removing/installing selected packages...</source>
         <translation>Fjerner/installerer valgte pakker...</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="421"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="425"/>
         <source>Choose a terminal</source>
         <translation>Velg en terminal</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="425"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="429"/>
         <source>Running command in terminal...</source>
         <translation>Kjører kommandoen i terminal...</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="429"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="433"/>
         <source>Command finished OK!</source>
         <translation>Kommandoen er fullført OK! </translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="433"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="437"/>
         <source>Command finished with errors!</source>
         <translation>Det var feil i kommandoen!</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="437"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="441"/>
         <source>Retrieving %1</source>
         <translation>Henter %1</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="441"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="445"/>
         <source>Total download size: %1 KB</source>
         <translation>Total størrelse på nedlastingen %1 KB</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="445"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="449"/>
         <source>The following package needs to be retrieved</source>
         <translation>Følgende pakker må hentes</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="449"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="453"/>
         <source>The following package will be removed</source>
         <translation>Følgende pakker vil bli fjernet</translation>
     </message>
     <message numerus="yes">
-        <location filename="Projects/octopi/src/strconstants.h" line="453"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="457"/>
         <source>The following %n packages need to be retrieved</source>
         <translation><numerusform>Følgende %1 pakker må hentes</numerusform><numerusform>Følgende %n pakker må hentes</numerusform></translation>
     </message>
     <message numerus="yes">
-        <location filename="Projects/octopi/src/strconstants.h" line="457"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="461"/>
         <source>The following %n packages will be removed</source>
         <translation><numerusform>Følgende 1% pakker vil bli fjernet</numerusform><numerusform>Følgende %n pakker vil bli fjernet</numerusform></translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="461"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="465"/>
         <source>There are forbidden packages in the removal list!</source>
         <translation>Det finnes forbudte pakker i fjernes-listen!</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="465"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="469"/>
         <source>There are no new updates available!</source>
         <translation>Ingen nye oppdateringer!</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="469"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="473"/>
         <source>There is an update available!</source>
         <translation>Det finnes en oppdatering!</translation>
     </message>
     <message numerus="yes">
-        <location filename="Projects/octopi/src/strconstants.h" line="473"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="477"/>
         <source>There are %n updates available!</source>
         <translation><numerusform>Det finnes %1 tilgjengelige oppdateringer!</numerusform><numerusform>Det finnes %n tilgjengelige oppdateringer!</numerusform></translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="477"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="481"/>
         <source>Confirm?</source>
         <translation>Bekreft?</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="481"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="485"/>
         <source>Warning!!!</source>
         <translation>Advarsel!!!</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="485"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="489"/>
         <source>Confirmation</source>
         <translation>Bekreftelse</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="489"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="493"/>
         <source>There has been a transaction error!</source>
         <translation>Det har forekommet en feil ved overførselen!</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="493"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="497"/>
         <source>Do you want to execute this transaction in a Terminal?</source>
         <translation>Ønsker du å foreta denne overførselen i en terminal?</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="497"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="501"/>
         <source>Do you really want to clean the package cache?</source>
         <translation>Er du sikker på at du vil fjerne pakke-cachen?</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="501"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="505"/>
         <source>Do you really want to remove Pacman&apos;s transaction lock file?</source>
         <translation>Er du sikker på at du vil fjerne Pacman&apos;s låsefil for transaksjoner?</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="505"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="509"/>
         <source>Do you really want to cancel the transaction?</source>
         <translation>Vil du virkelig avbryte transaksjonen?</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="509"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="513"/>
         <source>Please, enter the administrator&apos;s password</source>
         <translation>Tast inn administrator-passordet</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="515"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="519"/>
         <source>There are no means to get administrator&apos;s credentials.</source>
         <translation>Det finnes ingen resurser for å få administratorrettigheter.</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="519"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="523"/>
         <source>You&apos;ll need to install a su frontend like gksu or kdesu.</source>
         <translation>Du må installere et su skall som gksu eller kdesu.</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="523"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="527"/>
         <source>You can not run Octopi with administrator&apos;s credentials.</source>
         <translation>Du kan ikke kjøre Octopi med administratorrettigheter.</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="527"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="531"/>
         <source>There is a pending transaction</source>
         <translation>Det ligger en overførsel på vent</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="531"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="535"/>
         <source>Do you really want to quit?</source>
         <translation>Er du sikker på at du vil avslutte?</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="535"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="539"/>
         <source>Executing command</source>
         <translation>Utfører kommando</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="539"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="543"/>
         <source>Run in terminal</source>
         <translation>Kjør i terminal</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="543"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="547"/>
         <source>Needs application restart to take effect</source>
         <translation>Omstart av applikasjonen er nødvendig </translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="547"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="551"/>
         <source>These changes need application restart to take effect!</source>
         <translation>Disse forandringene trenger omstart av applikasjonen!</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="551"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="555"/>
         <source>Select the packages you want to install</source>
         <translation>Velg pakken du vil installere</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="555"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="559"/>
         <source>This file does not appear to be a simple text.
 Are you sure you want to open it?</source>
         <translation>Denne filen ser ikke ut til å være en enkel tekst.⏎
 Er du sikker på at du vil åpne den?</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="560"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="564"/>
         <source>To be installed</source>
         <translation>Vil bli installert </translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="564"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="568"/>
         <source>To be removed</source>
         <translation>Vil bli fjernet</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="568"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="572"/>
         <source>remove</source>
         <translation>fjern</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="572"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="576"/>
         <source>install</source>
         <translation>installer</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="576"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="580"/>
         <source>Remove item</source>
         <translation>Fjern komponent</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="580"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="584"/>
         <source>Remove items</source>
         <translation>Fjern komponenter</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="584"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="588"/>
         <source>Press Ctrl+A to select/deselect all</source>
         <translation>Tast Ctrl+A for å velge/ikke velge alle</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="588"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="592"/>
         <source>Use &quot;%1&quot; tool</source>
         <translation>Bruk &quot;%1&quot; verktøy</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="592"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="596"/>
         <source>Copy path to clipboard</source>
         <translation>Kopier stien til utklippstavlen</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="596"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="600"/>
         <source>Setup</source>
         <translation>Innstillinger</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="600"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="604"/>
         <source>Sync database interval</source>
         <translation>Synkroniser database-intervall</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="604"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="608"/>
         <source>Once a day</source>
         <translation>En gang om dagen</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="608"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="612"/>
         <source>Once a day, at</source>
         <translation>En gang om dagen, kl</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="612"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="616"/>
         <source>(value in 24-hour format: 0 to 23)</source>
         <translation>(verdier i 24 timers format: 0 til 23)</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="616"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="620"/>
         <source>Once every</source>
         <translation>En gang vært</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="620"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="624"/>
         <source>(value in minutes: 5 to 1380)</source>
         <translation>(verdi i minutter: 5 til 1380)</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="624"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="628"/>
         <source>Set interval...</source>
         <translation>Sett intervall...</translation>
     </message>

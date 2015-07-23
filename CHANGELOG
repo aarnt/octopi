@@ -10,6 +10,8 @@
 	went to Output tab.
   BugFix: When user closed searchbar inside a QTextBrowser, cursor position was 
 	reseted.
+  BugFix: TransactionDialog can now be resized.
+  Yellow notifier icon tooltip now displays Foreign repo tool name.
   When outdated packages are printed at Output tab, you can see their 
 	information just hovering the mouse over them.
   Added Parabola GNU/Linux-libre support (thanks to coadde).

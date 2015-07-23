@@ -603,18 +603,22 @@ void MainWindow::refreshAppIcon()
     if (m_numberOfOutdatedAURPackages == 1)
     {
       #ifdef KSTATUS
-        m_systemTrayIcon->setToolTipSubTitle(StrConstants::getOneNewUpdate());
+        m_systemTrayIcon->setToolTipSubTitle(StrConstants::getOneNewUpdate() +
+                                             " (" + StrConstants::getForeignRepositoryName() + ")");
       #else
-        m_systemTrayIcon->setToolTip(StrConstants::getOneNewUpdate());
+        m_systemTrayIcon->setToolTip(StrConstants::getOneNewUpdate() +
+                                     " (" + StrConstants::getForeignRepositoryName() + ")");
       #endif
     }
     else if (m_numberOfOutdatedAURPackages > 1)
     {
       #ifdef KSTATUS
         m_systemTrayIcon->setToolTipSubTitle(
-              StrConstants::getNewUpdates(m_numberOfOutdatedAURPackages));
+              StrConstants::getNewUpdates(m_numberOfOutdatedAURPackages) +
+              " (" + StrConstants::getForeignRepositoryName() + ")");
       #else
-        m_systemTrayIcon->setToolTip(StrConstants::getNewUpdates(m_numberOfOutdatedAURPackages));
+        m_systemTrayIcon->setToolTip(StrConstants::getNewUpdates(m_numberOfOutdatedAURPackages) +
+                                     " (" + StrConstants::getForeignRepositoryName() + ")");
       #endif
     }
   }
