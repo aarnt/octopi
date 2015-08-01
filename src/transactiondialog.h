@@ -42,6 +42,8 @@ public:
 
 public slots:
   virtual void reject();
+  virtual void done(int p);
+  virtual int exec();
 
 private slots:
   void slotRunInTerminal();

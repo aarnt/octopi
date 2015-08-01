@@ -30,6 +30,7 @@ const QString ctn_ORGANIZATION("octopi");
 const QString ctn_APPLICATION("octopi");
 const QString ctn_KEY_CURRENT_TAB_INDEX("Current_Tab_Index");
 const QString ctn_KEY_WINDOW_SIZE("Window_Size");
+const QString ctn_KEY_TRANSACTION_WINDOW_SIZE("Transaction_Window_Size");
 const QString ctn_KEY_PANEL_ORGANIZING("Panel_Organizing");
 const QString ctn_KEY_PACKAGE_LIST_ORDERED_COL("PackageList_Ordered_Col");
 const QString ctn_KEY_PACKAGE_LIST_SORT_ORDER("PackageList_Sort_Order");
@@ -39,14 +40,15 @@ const QString ctn_KEY_SHOW_GROUPS_PANEL("Show_Groups_Panel");
 const QString ctn_KEY_PACKAGE_ICON_COLUMN_WIDTH("Package_Icon_Column_Width");
 const QString ctn_KEY_PACKAGE_NAME_COLUMN_WIDTH("Package_Name_Column_Width");
 const QString ctn_KEY_PACKAGE_VERSION_COLUMN_WIDTH("Package_Version_Column_Width");
+const QString ctn_KEY_TERMINAL("Terminal");
+const QString ctn_AUTOMATIC("automatic");
 
 //Notifier related
 const QString ctn_KEY_LAST_SYNC_DB_TIME("LastSyncDbTime");
 const QString ctn_KEY_SYNC_DB_INTERVAL("SyncDbInterval");
 const QString ctn_KEY_SYNC_DB_HOUR("SyncDbHour");
 
-const QString ctn_KEY_TERMINAL("Terminal");
-const QString ctn_AUTOMATIC("automatic");
+//CacheCleaner related
 const QString ctn_KEEP_NUM_INSTALLED("Keep_Num_Installed");
 const QString ctn_KEEP_NUM_UNINSTALLED("Keep_Num_Uninstalled");
 
@@ -94,6 +96,7 @@ class SettingsManager
     static bool getSkipMirrorCheckAtStartup();
     static bool getShowGroupsPanel();
     static QByteArray getWindowSize();
+    static QByteArray getTransactionWindowSize();
     static QByteArray getSplitterHorizontalState();
     static bool isValidTerminalSelected();
 
@@ -107,6 +110,7 @@ class SettingsManager
     static void setPackageListSortOrder(int newValue);
     static void setShowGroupsPanel(int newValue);
     static void setWindowSize(QByteArray newValue);
+    static void setTransactionWindowSize(QByteArray newValue);
     static void setSplitterHorizontalState(QByteArray newValue);
 
     static void setSyncDbHour(int newValue);

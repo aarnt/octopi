@@ -218,6 +218,11 @@ QByteArray SettingsManager::getWindowSize(){
   return (instance()->getSYSsettings()->value( ctn_KEY_WINDOW_SIZE, 0).toByteArray());
 }
 
+QByteArray SettingsManager::getTransactionWindowSize()
+{
+  return (instance()->getSYSsettings()->value( ctn_KEY_TRANSACTION_WINDOW_SIZE, 0).toByteArray());
+}
+
 QByteArray SettingsManager::getSplitterHorizontalState(){
   return (instance()->getSYSsettings()->value( ctn_KEY_SPLITTER_HORIZONTAL_STATE, 0).toByteArray());
 }
@@ -250,6 +255,12 @@ void SettingsManager::setPanelOrganizing(int newValue){
 
 void SettingsManager::setWindowSize(QByteArray newValue){
   instance()->getSYSsettings()->setValue( ctn_KEY_WINDOW_SIZE, newValue);
+  instance()->getSYSsettings()->sync();
+}
+
+void SettingsManager::setTransactionWindowSize(QByteArray newValue)
+{
+  instance()->getSYSsettings()->setValue( ctn_KEY_TRANSACTION_WINDOW_SIZE, newValue);
   instance()->getSYSsettings()->sync();
 }
 
@@ -299,7 +310,8 @@ void SettingsManager::setPackageVersionColumnWidth(int newValue)
 bool SettingsManager::isValidTerminalSelected()
 {
   QString userTerminal = getTerminal();
-  if (userTerminal == ctn_AUTOMATIC) return true;
+  if (userTerminal == ctn_AUTOMATIC)
+    return true;
 
   if (userTerminal == ctn_XFCE_TERMINAL ||
       userTerminal == ctn_LXDE_TERMINAL ||

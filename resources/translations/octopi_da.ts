@@ -29,12 +29,12 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="147"/>
         <source>Help</source>
-        <translation type="unfinished"/>
+        <translation>Hjælp</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="155"/>
         <source>View</source>
-        <translation type="unfinished"/>
+        <translation>Vis</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="164"/>
@@ -49,7 +49,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="184"/>
         <source>Search</source>
-        <translation type="unfinished"/>
+        <translation>Søg</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="193"/>
@@ -69,12 +69,12 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="240"/>
         <source>Non installed</source>
-        <translation type="unfinished"/>
+        <translation>Ikke-installeret</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="249"/>
         <source>Commit</source>
-        <translation type="unfinished"/>
+        <translation>Commit</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="252"/>
@@ -99,7 +99,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="276"/>
         <source>Sync database</source>
-        <translation type="unfinished"/>
+        <translation>Synkronisér database</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="279"/>
@@ -109,7 +109,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="288"/>
         <source>Exit</source>
-        <translation type="unfinished"/>
+        <translation>Luk</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="291"/>
@@ -119,7 +119,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="300"/>
         <source>System upgrade</source>
-        <translation type="unfinished"/>
+        <translation>Systemopgradering</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="303"/>
@@ -147,7 +147,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="341"/>
         <source>Get latest distro news</source>
-        <translation type="unfinished"/>
+        <translation>Få de seneste distro nyheder</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="344"/>
@@ -217,12 +217,12 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="466"/>
         <source>By description</source>
-        <translation type="unfinished"/>
+        <translation>Efter beskrivelse</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="474"/>
         <source>By name</source>
-        <translation type="unfinished"/>
+        <translation>Efter navn</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="483"/>
@@ -232,12 +232,12 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="492"/>
         <source>Open root terminal</source>
-        <translation type="unfinished"/>
+        <translation>Åben root terminal</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="497"/>
         <source>Usage</source>
-        <translation type="unfinished"/>
+        <translation>Forbrug</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="500"/>
@@ -247,32 +247,32 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="508"/>
         <source>Install local package...</source>
-        <translation type="unfinished"/>
+        <translation>Installér lokal pakke...</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="525"/>
         <source>Pacman Log Viewer</source>
-        <translation type="unfinished"/>
+        <translation>Pacman Log Viser</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="537"/>
         <source>Repository Editor</source>
-        <translation type="unfinished"/>
+        <translation>Repository Editor</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="546"/>
         <source>Cache Cleaner</source>
-        <translation type="unfinished"/>
+        <translation>Cache Renser</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="554"/>
         <source>Installed</source>
-        <translation type="unfinished"/>
+        <translation>Installeret</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="570"/>
         <source>By file</source>
-        <translation type="unfinished"/>
+        <translation>Efter fil</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="55"/>
@@ -810,12 +810,12 @@
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="357"/>
         <source>%n packages</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>%n pakke</numerusform><numerusform>%n pakker</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="361"/>
         <source>%n selected</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>%n valgt</numerusform><numerusform>%n valgte</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="365"/>
@@ -1101,52 +1101,52 @@ Er du sikker du vil åbne det?</translation>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="592"/>
         <source>Use &quot;%1&quot; tool</source>
-        <translation type="unfinished"/>
+        <translation>Brug &quot;%1&quot; værktøj</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="596"/>
         <source>Copy path to clipboard</source>
-        <translation type="unfinished"/>
+        <translation>Kopiér sti til udklipsholder</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="600"/>
         <source>Setup</source>
-        <translation type="unfinished"/>
+        <translation>Installation</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="604"/>
         <source>Sync database interval</source>
-        <translation type="unfinished"/>
+        <translation>Database synkroniseringsinterval</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="608"/>
         <source>Once a day</source>
-        <translation type="unfinished"/>
+        <translation>Én gang om dagen</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="612"/>
         <source>Once a day, at</source>
-        <translation type="unfinished"/>
+        <translation>Én gang om dagen, kl</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="616"/>
         <source>(value in 24-hour format: 0 to 23)</source>
-        <translation type="unfinished"/>
+        <translation>(værdi i 24-timers format: 0 til 23)</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="620"/>
         <source>Once every</source>
-        <translation type="unfinished"/>
+        <translation>Én gang hver</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="624"/>
         <source>(value in minutes: 5 to 1380)</source>
-        <translation type="unfinished"/>
+        <translation>(værdi i minutter: 5 til 1380)</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="628"/>
         <source>Set interval...</source>
-        <translation type="unfinished"/>
+        <translation>Sæt interval...</translation>
     </message>
 </context>
 <context>

@@ -9,13 +9,13 @@
     <message>
         <location filename="Projects/octopi/cachecleaner/ui/cachecleaner.ui" line="49"/>
         <source>Uninstalled packages</source>
-        <translation>Paquetes dsinstalados</translation>
+        <translation>Paquetes desinstalados</translation>
     </message>
     <message>
         <location filename="Projects/octopi/cachecleaner/ui/cachecleaner.ui" line="75"/>
         <location filename="Projects/octopi/cachecleaner/ui/cachecleaner.ui" line="150"/>
         <source>Keep :</source>
-        <translation>Conservar:</translation>
+        <translation>Keep :</translation>
     </message>
     <message>
         <location filename="Projects/octopi/cachecleaner/ui/cachecleaner.ui" line="82"/>

@@ -74,7 +74,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="249"/>
         <source>Commit</source>
-        <translation>Commit</translation>
+        <translation>Aplicar</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="252"/>
@@ -119,7 +119,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="300"/>
         <source>System upgrade</source>
-        <translation>Actualización del sistema</translation>
+        <translation>Actualizar sistema</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="303"/>
@@ -247,22 +247,22 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="508"/>
         <source>Install local package...</source>
-        <translation>Instalar un paquete local...</translation>
+        <translation>Instalar paquete local...</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="525"/>
         <source>Pacman Log Viewer</source>
-        <translation>Visor del registro de Pacman</translation>
+        <translation>Visor de logs Pacman</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="537"/>
         <source>Repository Editor</source>
-        <translation>Editor de Repositorios</translation>
+        <translation>Editor de Repositorio</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="546"/>
         <source>Cache Cleaner</source>
-        <translation>Limpiador de Caché</translation>
+        <translation>Limpiador de cache</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="554"/>
@@ -417,7 +417,7 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="138"/>
         <source>Ctrl+E or &apos;Transaction/Cancel&apos; to clear the selection of to be removed/installed packages</source>
-        <translation>Ctrl+E o &apos;Transacción/Cancelar&apos; para limpiar la selección de paquetes a ser eliminados/instalados</translation>
+        <translation>Ctrl+E o &apos;Transacción/Cancelar&apos; para anular la selección de paquetes a eliminar/instalar</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="140"/>
@@ -800,7 +800,7 @@
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="349"/>
         <source>There are %n outdated packages in your system:</source>
-        <translation><numerusform>Hay %n paquete obsoleto en su sistema:</numerusform><numerusform>Hay %n paquetes obsoletos en su sistema:</numerusform></translation>
+        <translation><numerusform>Hay %n paquetes obsoletos en su sistema:</numerusform><numerusform>Hay %n paquetes obsoletos en su sistema:</numerusform></translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="353"/>
@@ -810,12 +810,12 @@
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="357"/>
         <source>%n packages</source>
-        <translation><numerusform>%n paquete</numerusform><numerusform>%n paquetes</numerusform></translation>
+        <translation><numerusform>%n paquetes</numerusform><numerusform>%n paquetes</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="361"/>
         <source>%n selected</source>
-        <translation><numerusform>%n seleccionado</numerusform><numerusform>%n seleccionados</numerusform></translation>
+        <translation><numerusform>%n seleccionados</numerusform><numerusform>%n seleccionados</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="365"/>
@@ -830,7 +830,7 @@
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="373"/>
         <source>%n available</source>
-        <translation><numerusform>%n disponible</numerusform><numerusform>%n disponible</numerusform></translation>
+        <translation><numerusform>%disponible</numerusform><numerusform>%n disponible</numerusform></translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="377"/>
@@ -890,7 +890,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="425"/>
         <source>Choose a terminal</source>
-        <translation>Elija una terminal</translation>
+        <translation>Elegir un terminal</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="429"/>
@@ -920,7 +920,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="449"/>
         <source>The following package needs to be retrieved</source>
-        <translation>Se necesitan recuperar los siguientes paquetes</translation>
+        <translation>Es necesario recuperar los siguientes paquetes</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="453"/>
@@ -930,12 +930,12 @@
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="457"/>
         <source>The following %n packages need to be retrieved</source>
-        <translation><numerusform>Se necesita recuperar lo siguente %n paquete</numerusform><numerusform>Se necesitan recuperar los siguentes %n paquetes</numerusform></translation>
+        <translation><numerusform>Es necesario recuperar los siguientes %n paquetes</numerusform><numerusform>Es necesario recuperar los siguientes %n paquetes</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="461"/>
         <source>The following %n packages will be removed</source>
-        <translation><numerusform>Lo siguiente %n paquete será eliminado</numerusform><numerusform>Los siguientes %n paquetes serán eliminados</numerusform></translation>
+        <translation><numerusform>Los siguientes %n paquetes serán eliminados</numerusform><numerusform>Los siguientes %n paquetes serán eliminados</numerusform></translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="465"/>
@@ -955,7 +955,7 @@
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="477"/>
         <source>There are %n updates available!</source>
-        <translation><numerusform>¡Hay %n actualización disponible!</numerusform><numerusform>¡Hay %n actualizaciones disponibles!</numerusform></translation>
+        <translation><numerusform>¡Hay %n actualizaciones disponibles!</numerusform><numerusform>¡Hay %n actualizaciones disponibles!</numerusform></translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="481"/>
@@ -995,7 +995,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="509"/>
         <source>Do you really want to cancel the transaction?</source>
-        <translation>¿Realmente quiere cancelar la transacción?</translation>
+        <translation>¿Desea realmente cancelar la transacción?</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="513"/>
@@ -1097,12 +1097,12 @@ Are you sure you want to open it?</source>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="592"/>
         <source>Use &quot;%1&quot; tool</source>
-        <translation>Usar la herramienta &quot;%1&quot;</translation>
+        <translation>Usa herramienta &quot;%1&quot;</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="596"/>
         <source>Copy path to clipboard</source>
-        <translation>Copiar el path al portapapeles</translation>
+        <translation>Copiar la ruta al portapapeles</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="600"/>
@@ -1142,7 +1142,7 @@ Are you sure you want to open it?</source>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="628"/>
         <source>Set interval...</source>
-        <translation>Ajustar intervalo...</translation>
+        <translation>Establecer intervalo...</translation>
     </message>
 </context>
 <context>
