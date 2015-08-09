@@ -11,7 +11,9 @@
   BugFix: When user closed searchbar inside a QTextBrowser, cursor position was 
 	reseted.
   BugFix: Transaction dialog can now be resized and new value is persisted on disk.
-  Yellow notifier icon tooltip now displays Foreign repo tool name.
+  BugFix: No columns warning while executing actions inside Octopi (thanks to flying-sheep).
+  BugFix: Cinnamon DE detection fix (thanks to jdelmas).
+  Yellow notifier icon tooltip now displays Foreign repo tool name.  
   When outdated packages are printed at Output tab, you can see their 
 	information just hovering the mouse over them.
   Added Parabola GNU/Linux-libre support (thanks to coadde).

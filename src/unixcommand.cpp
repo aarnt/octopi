@@ -710,7 +710,19 @@ void UnixCommand::executeCommand(const QString &pCommand, Language lang)
 {
   QString command;
 
-  if (lang == ectn_LANG_USER_DEFINED)
+  if (lang == ectn_LANG_ENGLISH)
+  {
+    //COLUMNS variable code!
+    QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
+    env.remove("LANG");
+    env.remove("LC_MESSAGES");
+    env.insert("LANG", "C");
+    env.insert("LC_MESSAGES", "C");
+    env.remove("COLUMNS");
+    env.insert("COLUMNS", "132");
+    m_process->setProcessEnvironment(env);
+  }
+  else if (lang == ectn_LANG_USER_DEFINED)
   {
     QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
     env.remove("LANG");
