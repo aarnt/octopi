@@ -207,7 +207,7 @@ bool WMHelper::isMATERunning(){
 bool WMHelper::isCinnamonRunning(){
   QStringList slParam;
   QProcess proc;
-  slParam << "-C";
+  slParam << "-fC";
   slParam << ctn_CINNAMON_DESKTOP;
 
   proc.start("ps", slParam);
