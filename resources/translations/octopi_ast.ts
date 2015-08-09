@@ -412,7 +412,7 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="136"/>
         <source>Ctrl+M or &apos;Transaction/Commit&apos; to start installation/removal of selected packages</source>
-        <translation>Ctrl+M o &apos;Transaición/Aplicar&apos; pa entamar la instalación/desaniciu de los paquetes esbillaos</translation>
+        <translation>Ctrl+M o &apos;Transaición/Unviar&apos; pa entamar la instalación/desaniciu de los paquetes esbillaos</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="138"/>
@@ -760,7 +760,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="317"/>
         <source>Contents of &quot;%1&quot;</source>
-        <translation>Conteníu de &quot;%1&quot;</translation>
+        <translation>Conteníu de «%1»</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="321"/>
@@ -820,12 +820,12 @@
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="365"/>
         <source>%n installed</source>
-        <translation><numerusform>%s instaláu</numerusform><numerusform>%s instalaos</numerusform></translation>
+        <translation><numerusform>%n instaláu</numerusform><numerusform>%n instalaos</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="369"/>
         <source>%n outdated</source>
-        <translation><numerusform>%s ensin anovar</numerusform><numerusform>%s ensin anovar</numerusform></translation>
+        <translation><numerusform>%n ensin anovar</numerusform><numerusform>%n ensin anovar</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="373"/>
@@ -920,22 +920,22 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="449"/>
         <source>The following package needs to be retrieved</source>
-        <translation>Necesita recibise&apos;l paquete siguiente</translation>
+        <translation>Necesita recibise&apos;l paquete de darréu</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="453"/>
         <source>The following package will be removed</source>
-        <translation>Desaniciaráse&apos;l paquete siguiente</translation>
+        <translation>Desaniciaráse&apos;l paquete de darréu</translation>
     </message>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="457"/>
         <source>The following %n packages need to be retrieved</source>
-        <translation><numerusform>Necesita recibise %n paquete siguiente</numerusform><numerusform>Necesiten recibise %n paquetes siguientes</numerusform></translation>
+        <translation><numerusform>Necesita recibise&apos;l paquete de darréu</numerusform><numerusform>Necesiten recibise los %n paquetes de darréu</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="461"/>
         <source>The following %n packages will be removed</source>
-        <translation><numerusform>Desaniciaráse&apos;l paquete siguiente</numerusform><numerusform>Desaniciaránse los %1 paquetes siguiente</numerusform></translation>
+        <translation><numerusform>Desaniciaráse&apos;l paquete de darréu</numerusform><numerusform>Desaniciaránse los %n paquetes de darréu</numerusform></translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="465"/>
@@ -1097,7 +1097,7 @@ Are you sure you want to open it?</source>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="592"/>
         <source>Use &quot;%1&quot; tool</source>
-        <translation type="unfinished"/>
+        <translation>Usar la ferramienta «%1»</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="596"/>
@@ -1112,7 +1112,7 @@ Are you sure you want to open it?</source>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="604"/>
         <source>Sync database interval</source>
-        <translation type="unfinished"/>
+        <translation>Intervalu de sincronización de la base de datos</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="608"/>
@@ -1127,7 +1127,7 @@ Are you sure you want to open it?</source>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="616"/>
         <source>(value in 24-hour format: 0 to 23)</source>
-        <translation>(valores nel formatu 24h: 0 a 23)</translation>
+        <translation>(valor nel formatu 24h: 0 a 23)</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="620"/>
