@@ -408,7 +408,7 @@ void MainWindow::insertIntoInstallPackageOptDeps(const QString &packageName)
   CPUIntensiveComputing *cic = new CPUIntensiveComputing;
 
   //Does this package have non installed optional dependencies?
-  QStringList optDeps = Package::getOptionalDeps(packageName); //si->text());
+  QStringList optDeps = Package::getOptionalDeps(packageName);
   QList<const PackageRepository::PackageData*> optionalPackages;
 
   foreach(QString optDep, optDeps)
@@ -479,7 +479,6 @@ bool MainWindow::insertIntoRemovePackageDeps(const QStringList &dependencies)
   if (newDeps.count() > 0)
   {
     CPUIntensiveComputing *cic = new CPUIntensiveComputing;
-
     MultiSelectionDialog *msd = new MultiSelectionDialog(this);
     msd->setWindowTitle(StrConstants::getRemovePackages(newDeps.count()));
     msd->setWindowIcon(windowIcon());
@@ -2302,6 +2301,7 @@ void MainWindow::writeToTabOutputExt(const QString &msg, TreatURLLinks treatURLL
         newMsg = "<b><font color=\"#E55451\">" + newMsg + "&nbsp;</font></b>"; //RED
       }
       else if(newMsg.contains("checking ") ||
+              newMsg.contains("is synced") ||
               newMsg.contains("-- reinstalling") ||
               newMsg.contains("installing ") ||
               newMsg.contains("upgrading ") ||
