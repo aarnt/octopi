@@ -77,7 +77,7 @@ const QString ctn_MATE_EDITOR("mate-open");
 const QString ctn_MATE_FILE_MANAGER("caja");
 const QString ctn_MATE_TERMINAL("mate-terminal");
 
-const QString ctn_CINNAMON_DESKTOP("gnome-session");
+const QString ctn_CINNAMON_DESKTOP("cinnamon-session");
 const QString ctn_CINNAMON_EDITOR("gedit");
 const QString ctn_CINNAMON_FILE_MANAGER("nemo");
 const QString ctn_CINNAMON_TERMINAL("gnome-terminal");
