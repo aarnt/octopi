@@ -396,6 +396,10 @@ void Terminal::runCommandInTerminal(const QStringList &commandList)
       QString cmd = suCommand + " \"" + ctn_MATE_TERMINAL + " -e \'bash -c " + ftemp->fileName() + "'\"";
       m_process->start(cmd);
     }
+    else if (WMHelper::isCinnamonRunning() && UnixCommand::hasTheExecutable(ctn_CINNAMON_TERMINAL)){
+      QString cmd = suCommand + " \"" + ctn_CINNAMON_TERMINAL + " -e \'bash -c " + ftemp->fileName() + "'\"";
+      m_process->start(cmd);
+    }
     else if (WMHelper::isLXQTRunning() && UnixCommand::hasTheExecutable(ctn_LXQT_TERMINAL)){
       QString cmd = suCommand + " \"" + ctn_LXQT_TERMINAL + " -e \'bash -c " + ftemp->fileName() + "'\"";
       m_process->start(cmd);
@@ -459,6 +463,10 @@ void Terminal::runCommandInTerminal(const QStringList &commandList)
     }
     else if (m_selectedTerminal == ctn_MATE_TERMINAL){
       QString cmd = suCommand + " \"" + ctn_MATE_TERMINAL + " -e \'bash -c " + ftemp->fileName() + "'\"";
+      m_process->start(cmd);
+    }
+    else if (m_selectedTerminal == ctn_CINNAMON_TERMINAL){
+      QString cmd = suCommand + " \"" + ctn_CINNAMON_TERMINAL + " -e \'bash -c " + ftemp->fileName() + "'\"";
       m_process->start(cmd);
     }
     else if (m_selectedTerminal == ctn_LXQT_TERMINAL){
@@ -529,6 +537,9 @@ void Terminal::runCommandInTerminalAsNormalUser(const QStringList &commandList)
     else if (WMHelper::isLXQTRunning() && UnixCommand::hasTheExecutable(ctn_LXQT_TERMINAL)){
       cmd = ctn_LXQT_TERMINAL + " -e bash -c " + ftemp->fileName();
     }
+    else if (WMHelper::isCinnamonRunning() && UnixCommand::hasTheExecutable(ctn_CINNAMON_TERMINAL)){
+      cmd = ctn_CINNAMON_TERMINAL + " -e " + ftemp->fileName();
+    }
     else if (UnixCommand::hasTheExecutable(ctn_PEK_TERMINAL)){
       cmd = ctn_PEK_TERMINAL + " -e " + ftemp->fileName();
     }
@@ -579,6 +590,9 @@ void Terminal::runCommandInTerminalAsNormalUser(const QStringList &commandList)
     }
     else if (m_selectedTerminal == ctn_MATE_TERMINAL){
       cmd = ctn_MATE_TERMINAL + " -e " + ftemp->fileName();
+    }
+    else if (m_selectedTerminal == ctn_CINNAMON_TERMINAL){
+      cmd = ctn_CINNAMON_TERMINAL + " -e " + ftemp->fileName();
     }
     else if (m_selectedTerminal == ctn_LXQT_TERMINAL){
       cmd = ctn_LXQT_TERMINAL + " -e bash -c " + ftemp->fileName();
