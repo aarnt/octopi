@@ -13,6 +13,7 @@
   BugFix: Transaction dialog can now be resized and new value is persisted on disk.
   BugFix: No columns warning while executing actions inside Octopi (thanks to flying-sheep).
   BugFix: Cinnamon DE detection fix (thanks to jdelmas).
+  Now tab Files shows a progressbar while building the list of files.
   Yellow notifier icon tooltip now displays Foreign repo tool name.  
   When outdated packages are printed at Output tab, you can see their 
 	information just hovering the mouse over them.

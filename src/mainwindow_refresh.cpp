@@ -1210,6 +1210,8 @@ void MainWindow::refreshTabInfo(bool clearContents, bool neverQuit)
  */
 void MainWindow::refreshTabFiles(bool clearContents, bool neverQuit)
 {
+  if (m_progressWidget->isVisible()) return;
+
   if(neverQuit == false &&
      (ui->twProperties->currentIndex() != ctn_TABINDEX_FILES || !isPropertiesTabWidgetVisible()))
   {
@@ -1295,10 +1297,15 @@ void MainWindow::refreshTabFiles(bool clearContents, bool neverQuit)
     el.exec();
     fileList = fwPackageContents.result();
 
-    if (fileList.count() > 0) CPUIntensiveComputing cic;
+    //if (fileList.count() > 0) CPUIntensiveComputing cic;
 
     QString fullPath;
     bool isSymLinkToDir = false;
+
+    int counter = 0;
+    m_progressWidget->setRange(0, fileList.count());
+    m_progressWidget->setValue(0);
+    m_progressWidget->show();
 
     foreach ( QString file, fileList )
     {
@@ -1403,10 +1410,15 @@ void MainWindow::refreshTabFiles(bool clearContents, bool neverQuit)
         parent->appendRow ( item );
       }
 
+      counter++;
+      m_progressWidget->setValue(counter);
+      qApp->processEvents();
+
       lastItem = item;
       first = false;
     }
 
+    m_progressWidget->close();
     root = fakeRoot;
     fakeModelPkgFileList->sort(0);
     modelPkgFileList = fakeModelPkgFileList;
