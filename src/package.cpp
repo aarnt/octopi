@@ -1130,10 +1130,21 @@ QHash<QString, QString> Package::getAUROutdatedPackagesNameVersion()
         QStringList nameVersion = line.split(" ", QString::SkipEmptyParts);
         QString pkgName = nameVersion.at(0);
 
-        //Let's ignore the "IgnorePkg" list of packages...
-        if (!ignorePkgList.contains(pkgName))
+        if (StrConstants::getForeignRepositoryToolName() == "kcp")
         {
-          hash.insert(pkgName, nameVersion.at(1));
+          //Let's ignore the "IgnorePkg" list of packages...
+          if (!ignorePkgList.contains(pkgName))
+          {
+            hash.insert(pkgName, nameVersion.at(1));
+          }
+        }
+        else
+        {
+          //Let's ignore the "IgnorePkg" list of packages...
+          if (!ignorePkgList.contains(pkgName) && nameVersion.size() > 3)
+          {
+            hash.insert(pkgName, nameVersion.at(3));
+          }
         }
       }
     }

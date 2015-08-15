@@ -1102,12 +1102,12 @@ Are you sure you want to open it?</source>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="596"/>
         <source>Copy path to clipboard</source>
-        <translation type="unfinished"/>
+        <translation>Copiar camín al cartafueyu</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="600"/>
         <source>Setup</source>
-        <translation type="unfinished"/>
+        <translation>Configuración</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="604"/>
