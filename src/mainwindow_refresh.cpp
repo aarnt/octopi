@@ -1178,6 +1178,24 @@ void MainWindow::refreshTabInfo(bool clearContents, bool neverQuit)
       html += "<tr><th width=\"20%\"></th><th width=\"80%\"></th></tr>";
       html += "<tr><td>" + version + "</td><td>" + package->version + "</td></tr>";
 
+      if (StrConstants::getForeignRepositoryToolName() == "kcp")
+      {
+        PackageInfoData kcp = Package::getKCPInformation(pkgName);
+
+        if (kcp.url != "--")
+          html += "<tr><td>" + StrConstants::getURL() + "</td><td>" + kcp.url + "</td></tr>";;
+
+        if (kcp.license != "--")
+          html += "<tr><td>" + StrConstants::getLicenses() + "</td><td>" + kcp.license + "</td></tr>";;
+
+        if (kcp.provides != "--")
+          html += "<tr><td>" + StrConstants::getProvides() + "</td><td>" + kcp.provides + "</td></tr>";;
+
+        if (kcp.dependsOn != "--")
+          html += "<tr><td>" + StrConstants::getDependsOn() + "</td><td>" +
+              Package::makeAnchorOfPackage(kcp.dependsOn) + "</td></tr>";;
+      }
+
       html += "</table>";
 
       text->setHtml(html);

@@ -303,6 +303,18 @@ QByteArray UnixCommand::getPackageList(const QString &pkgName)
 }
 
 /*
+ * Given a KCP package name,
+ * returns a string containing all of its information fields
+ * (ex: name, description, version, dependsOn...)
+ */
+QByteArray UnixCommand::getKCPPackageInformation(const QString &pkgName)
+{
+  QString args = "--information " + pkgName;
+  QByteArray result = performAURCommand(args);
+  return result;
+}
+
+/*
  * Given a package name and if it is default to the official repositories,
  * returns a string containing all of its information fields
  * (ex: name, description, version, dependsOn...)

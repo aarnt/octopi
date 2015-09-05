@@ -27,6 +27,7 @@
 #include <QTextStream>
 #include <QList>
 #include <QFile>
+#include <QDebug>
 
 /*
  * This class abstracts all the relevant package information and services
@@ -756,7 +757,12 @@ QString Package::getProvides(const QString &pkgInfo)
  */
 QString Package::getDependsOn(const QString &pkgInfo)
 {
-  return extractFieldFromInfo("Depends On", pkgInfo);
+  QString res = extractFieldFromInfo("Depends On", pkgInfo);
+
+  if (res.isEmpty())
+    res = extractFieldFromInfo("Depends on", pkgInfo);
+
+  return res; //extractFieldFromInfo("Depends On", pkgInfo);
 }
 
 /*
@@ -1032,6 +1038,56 @@ cleanup:
 QString Package::getDescription(const QString &pkgInfo)
 {
   return extractFieldFromInfo("Description", pkgInfo);
+}
+
+/*
+ * Retrieves all information for a given KCP package name
+ */
+PackageInfoData Package::getKCPInformation(const QString &pkgName)
+{
+  PackageInfoData res;
+  QString pkgInfo = UnixCommand::getKCPPackageInformation(pkgName);
+  pkgInfo.remove("\033[0;1m");
+  pkgInfo.remove("\033[0m");
+  pkgInfo.remove("[1;33m");
+  pkgInfo.remove("[00;31m");
+  pkgInfo.remove("\033[1;34m");
+  pkgInfo.remove("\033[0;1m");
+  pkgInfo.remove("c");
+  pkgInfo.remove("C");
+  pkgInfo.remove("");
+  pkgInfo.remove("[m[0;37m");
+  pkgInfo.remove("o");
+  pkgInfo.remove("[m");
+  pkgInfo.remove(";37m");
+  pkgInfo.remove("[c");
+  pkgInfo.remove("[mo");
+  pkgInfo.remove("[1m");
+  pkgInfo.remove("[m");
+  std::cout << "Pkg data: " << pkgInfo.toLatin1().data() << std::endl;
+
+  //res.name = pkgName;
+  //res.version = getVersion(pkgInfo);
+  res.url = getURL(pkgInfo);
+  res.license = getLicense(pkgInfo);
+  res.dependsOn = getDependsOn(pkgInfo);
+  res.optDepends = getOptDepends(pkgInfo);
+  //res.group = getGroup(pkgInfo);
+  res.provides = getProvides(pkgInfo);
+  res.replaces = getReplaces(pkgInfo);
+  //res.requiredBy = getRequiredBy(pkgInfo);
+  //res.optionalFor = getOptionalFor(pkgInfo);
+  res.conflictsWith = getConflictsWith(pkgInfo);
+  //res.packager = getPackager(pkgInfo);
+  //res.arch = getArch(pkgInfo);
+  //res.buildDate = getBuildDate(pkgInfo);
+  //res.description = getDescription(pkgInfo);
+  //res.downloadSize = getDownloadSize(pkgInfo);
+  //res.installedSize = getInstalledSize(pkgInfo);
+  //res.downloadSizeAsString = getDownloadSizeAsString(pkgInfo);
+  //res.installedSizeAsString = getInstalledSizeAsString(pkgInfo);
+
+  return res;
 }
 
 /*

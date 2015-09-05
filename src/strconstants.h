@@ -175,6 +175,7 @@ public:
     QString tool = getForeignRepositoryToolName();
     tool[0] = tool[0].toUpper();
     tool = "<" + tool + ">";
+
     return tool.toLatin1();
   }
 
