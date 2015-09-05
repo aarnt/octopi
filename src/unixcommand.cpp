@@ -729,6 +729,8 @@ void UnixCommand::executeCommand(const QString &pCommand, Language lang)
     env.remove("LC_MESSAGES");
     env.insert("LANG", QLocale::system().name() + ".UTF-8");
     env.insert("LC_MESSAGES", QLocale::system().name() + ".UTF-8");
+    env.remove("COLUMNS");
+    env.insert("COLUMNS", "132");
     m_process->setProcessEnvironment(env);
   }
 

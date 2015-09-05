@@ -29,12 +29,12 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="147"/>
         <source>Help</source>
-        <translation type="unfinished"/>
+        <translation>Trợ giúp</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="155"/>
         <source>View</source>
-        <translation type="unfinished"/>
+        <translation>Xem</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="164"/>
@@ -49,7 +49,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="184"/>
         <source>Search</source>
-        <translation type="unfinished"/>
+        <translation>Tìm kiếm</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="193"/>
@@ -69,12 +69,12 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="240"/>
         <source>Non installed</source>
-        <translation type="unfinished"/>
+        <translation>Chưa được cài đặt</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="249"/>
         <source>Commit</source>
-        <translation type="unfinished"/>
+        <translation>Chấp nhận</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="252"/>
@@ -84,22 +84,22 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="261"/>
         <source>Cancel</source>
-        <translation type="unfinished"/>
+        <translation>Hủy</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="264"/>
         <source>Cancel</source>
-        <translation type="unfinished"/>
+        <translation>Hủy</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="267"/>
         <source>Ctrl+E</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+E</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="276"/>
         <source>Sync database</source>
-        <translation type="unfinished"/>
+        <translation>Đồng bộ cơ sở dữ liệu</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="279"/>
@@ -109,7 +109,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="288"/>
         <source>Exit</source>
-        <translation type="unfinished"/>
+        <translation>Thoát</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="291"/>
@@ -119,7 +119,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="300"/>
         <source>System upgrade</source>
-        <translation type="unfinished"/>
+        <translation>Nâng cấp hệ thống</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="303"/>
@@ -147,7 +147,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="341"/>
         <source>Get latest distro news</source>
-        <translation type="unfinished"/>
+        <translation>Tin tức mới nhất về bản phân phối</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="344"/>
@@ -217,12 +217,12 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="466"/>
         <source>By description</source>
-        <translation type="unfinished"/>
+        <translation>Bằng mô tả</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="474"/>
         <source>By name</source>
-        <translation type="unfinished"/>
+        <translation>Bằng tên</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="483"/>
@@ -232,12 +232,12 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="492"/>
         <source>Open root terminal</source>
-        <translation type="unfinished"/>
+        <translation>Mở dòng lệnh với quyền root</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="497"/>
         <source>Usage</source>
-        <translation type="unfinished"/>
+        <translation>Cách dùng</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="500"/>
@@ -247,32 +247,32 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="508"/>
         <source>Install local package...</source>
-        <translation type="unfinished"/>
+        <translation>Cài đặt gói đã được tải sẵn...</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="525"/>
         <source>Pacman Log Viewer</source>
-        <translation type="unfinished"/>
+        <translation>Nhật ký Pacman</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="537"/>
         <source>Repository Editor</source>
-        <translation type="unfinished"/>
+        <translation>Chỉnh sửa kho phần mềm</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="546"/>
         <source>Cache Cleaner</source>
-        <translation type="unfinished"/>
+        <translation>Xóa bộ nhớ đệm</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="554"/>
         <source>Installed</source>
-        <translation type="unfinished"/>
+        <translation>Đã được cài đặt</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="570"/>
         <source>By file</source>
-        <translation type="unfinished"/>
+        <translation>Bằng tập tin</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="55"/>
@@ -800,7 +800,7 @@
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="349"/>
         <source>There are %n outdated packages in your system:</source>
-        <translation type="unfinished"><numerusform></numerusform></translation>
+        <translation><numerusform>Hệ thống của bạn hiện có %n gói đã cũ :</numerusform></translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="353"/>
@@ -810,27 +810,27 @@
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="357"/>
         <source>%n packages</source>
-        <translation type="unfinished"><numerusform></numerusform></translation>
+        <translation><numerusform>%n gói</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="361"/>
         <source>%n selected</source>
-        <translation type="unfinished"><numerusform></numerusform></translation>
+        <translation><numerusform>Đã chọn %n gói</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="365"/>
         <source>%n installed</source>
-        <translation type="unfinished"><numerusform></numerusform></translation>
+        <translation><numerusform>Đã cài đặt %n gói</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="369"/>
         <source>%n outdated</source>
-        <translation type="unfinished"><numerusform></numerusform></translation>
+        <translation><numerusform>Đã quá hạn %n gói</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="373"/>
         <source>%n available</source>
-        <translation type="unfinished"><numerusform></numerusform></translation>
+        <translation><numerusform>Có sẵn %n gói</numerusform></translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="377"/>
@@ -890,7 +890,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="425"/>
         <source>Choose a terminal</source>
-        <translation type="unfinished"/>
+        <translation>Chọn ứng dụng dòng lệnh</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="429"/>
@@ -920,22 +920,22 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="449"/>
         <source>The following package needs to be retrieved</source>
-        <translation type="unfinished"/>
+        <translation>Gói sau cần được tải về</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="453"/>
         <source>The following package will be removed</source>
-        <translation type="unfinished"/>
+        <translation>Gói sau sẽ bị gỡ bỏ</translation>
     </message>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="457"/>
         <source>The following %n packages need to be retrieved</source>
-        <translation type="unfinished"><numerusform></numerusform></translation>
+        <translation><numerusform>Những gói sau cần được tải về</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="461"/>
         <source>The following %n packages will be removed</source>
-        <translation type="unfinished"><numerusform></numerusform></translation>
+        <translation><numerusform>Những gói sau sẽ bị gỡ bỏ</numerusform></translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="465"/>
@@ -955,7 +955,7 @@
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="477"/>
         <source>There are %n updates available!</source>
-        <translation type="unfinished"><numerusform></numerusform></translation>
+        <translation><numerusform>Hiện có %n bản cập nhật mới!</numerusform></translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="481"/>
@@ -995,7 +995,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="509"/>
         <source>Do you really want to cancel the transaction?</source>
-        <translation type="unfinished"/>
+        <translation>Bạn thực sự muốn hủy cài đặt?</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="513"/>
@@ -1097,52 +1097,52 @@ Bạn có chắc muốn mở tập tin này không?</translation>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="592"/>
         <source>Use &quot;%1&quot; tool</source>
-        <translation type="unfinished"/>
+        <translation>Sử dụng công cụ &quot;%1&quot;</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="596"/>
         <source>Copy path to clipboard</source>
-        <translation type="unfinished"/>
+        <translation>Chép đường dẫn vào clipboard</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="600"/>
         <source>Setup</source>
-        <translation type="unfinished"/>
+        <translation>Cài đặt</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="604"/>
         <source>Sync database interval</source>
-        <translation type="unfinished"/>
+        <translation>Tần suất cập nhật cơ sở dữ liệu</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="608"/>
         <source>Once a day</source>
-        <translation type="unfinished"/>
+        <translation>Một lần trong ngày</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="612"/>
         <source>Once a day, at</source>
-        <translation type="unfinished"/>
+        <translation>Một lần trong ngày vào lúc</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="616"/>
         <source>(value in 24-hour format: 0 to 23)</source>
-        <translation type="unfinished"/>
+        <translation>(giá trị ở dạng 24 giờ: 0 đến 23)</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="620"/>
         <source>Once every</source>
-        <translation type="unfinished"/>
+        <translation>Cứ mỗi</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="624"/>
         <source>(value in minutes: 5 to 1380)</source>
-        <translation type="unfinished"/>
+        <translation>(giá trị ở dạng phút: 5 đến 1380)</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="628"/>
         <source>Set interval...</source>
-        <translation type="unfinished"/>
+        <translation>Đặt tần suất</translation>
     </message>
 </context>
 <context>

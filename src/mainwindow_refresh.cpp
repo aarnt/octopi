@@ -1297,8 +1297,6 @@ void MainWindow::refreshTabFiles(bool clearContents, bool neverQuit)
     el.exec();
     fileList = fwPackageContents.result();
 
-    //if (fileList.count() > 0) CPUIntensiveComputing cic;
-
     QString fullPath;
     bool isSymLinkToDir = false;
 
