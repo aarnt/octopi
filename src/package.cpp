@@ -27,7 +27,6 @@
 #include <QTextStream>
 #include <QList>
 #include <QFile>
-#include <QDebug>
 
 /*
  * This class abstracts all the relevant package information and services
@@ -1064,7 +1063,6 @@ PackageInfoData Package::getKCPInformation(const QString &pkgName)
   pkgInfo.remove("[mo");
   pkgInfo.remove("[1m");
   pkgInfo.remove("[m");
-  std::cout << "Pkg data: " << pkgInfo.toLatin1().data() << std::endl;
 
   //res.name = pkgName;
   //res.version = getVersion(pkgInfo);
