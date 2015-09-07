@@ -1040,7 +1040,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="547"/>
         <source>Needs application restart to take effect</source>
-        <translation>Потребности перезапуск приложения вступили в силу</translation>
+        <translation>Нужен перезапуск приложения, чтобы изменения вступили в силу</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="551"/>
