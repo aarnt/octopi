@@ -322,7 +322,7 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="94"/>
         <source>An outdated foreign package</source>
-        <translation>Ein altes Fremdpaket</translation>
+        <translation>Ein veraltetes fremdes Paket</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="97"/>
