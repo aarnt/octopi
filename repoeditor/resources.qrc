@@ -41,6 +41,6 @@
         <file>resources/translations/octopi_repoeditor_uz.qm</file>
         <file>resources/translations/octopi_repoeditor_vi.qm</file>
         <file>resources/translations/octopi_repoeditor_zh_TW.qm</file>
-        <file>resources/translations/octopi_repoeditor_hu_HU.qm</file>
+        <file>resources/translations/octopi_repoeditor_hr.qm</file>
     </qresource>
 </RCC>

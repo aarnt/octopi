@@ -1,38 +1,38 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="ru" version="2.0">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="hr" version="2.0">
 <context>
     <name>CacheCleaner</name>
     <message>
         <location filename="Projects/octopi/cachecleaner/ui/cachecleaner.ui" line="14"/>
         <source>Cache Cleaner - Octopi</source>
-        <translation>Очистка кэша - Octopi</translation>
+        <translation>Čišćenje keša - Octopi</translation>
     </message>
     <message>
         <location filename="Projects/octopi/cachecleaner/ui/cachecleaner.ui" line="49"/>
         <source>Uninstalled packages</source>
-        <translation>Удалённые пакеты</translation>
+        <translation>Deinstalirani paketi</translation>
     </message>
     <message>
         <location filename="Projects/octopi/cachecleaner/ui/cachecleaner.ui" line="75"/>
         <location filename="Projects/octopi/cachecleaner/ui/cachecleaner.ui" line="150"/>
         <source>Keep :</source>
-        <translation>Оставить:</translation>
+        <translation>Zadrži :</translation>
     </message>
     <message>
         <location filename="Projects/octopi/cachecleaner/ui/cachecleaner.ui" line="82"/>
         <location filename="Projects/octopi/cachecleaner/ui/cachecleaner.ui" line="157"/>
         <source>Number of old versions to keep</source>
-        <translation>Сколько старых версий оставить</translation>
+        <translation>Broj zastarjelih verzija za zadržati</translation>
     </message>
     <message>
         <location filename="Projects/octopi/cachecleaner/ui/cachecleaner.ui" line="102"/>
         <location filename="Projects/octopi/cachecleaner/ui/cachecleaner.ui" line="183"/>
         <source>Refresh</source>
-        <translation>Перечитать</translation>
+        <translation>Osvježi</translation>
     </message>
     <message>
         <location filename="Projects/octopi/cachecleaner/ui/cachecleaner.ui" line="127"/>
         <source>Installed packages</source>
-        <translation>Установленные пакеты</translation>
+        <translation>Instaliranih paketa</translation>
     </message>
 </context>
 <context>
@@ -40,12 +40,12 @@
     <message>
         <location filename="Projects/octopi/cachecleaner/packagegroupmodel.cpp" line="199"/>
         <source>Clean</source>
-        <translation>Очистить</translation>
+        <translation>Očisti</translation>
     </message>
     <message>
         <location filename="Projects/octopi/cachecleaner/packagegroupmodel.cpp" line="222"/>
         <source>Clean %1</source>
-        <translation>Очистить %1</translation>
+        <translation>Očisti %1</translation>
     </message>
 </context>
 </TS>

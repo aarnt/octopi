@@ -1,70 +1,70 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="ru" version="2.0">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="hr" version="2.0">
 <context>
     <name>AddRepo</name>
     <message>
         <location filename="Projects/octopi/repoeditor/addrepo.ui" line="14"/>
         <source>Add Repository - Octopi</source>
-        <translation>Добавить репозиторий - Octopi</translation>
+        <translation>Dodaj repozitorij - Octopi</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/addrepo.ui" line="22"/>
         <source>Repository:</source>
-        <translation>Репозиторий:</translation>
+        <translation>Repozitorij:</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/addrepo.ui" line="32"/>
         <source>Repository name</source>
-        <translation>Имя репозитория</translation>
+        <translation>Naziv repozitorija</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/addrepo.ui" line="39"/>
         <source>Location:</source>
-        <translation>Расположение:</translation>
+        <translation>Lokacija:</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/addrepo.cpp" line="86"/>
         <source>The repository name field can&apos;t be blank.</source>
-        <translation>Поле &quot;имя репозитория&quot; не может быть пустым.</translation>
+        <translation>Polje za repozitorij ne može biti prazno.</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/addrepo.cpp" line="101"/>
         <source>The repository location field is not valid.</source>
-        <translation>Поле &quot;расположение репозитория&quot; не верно.</translation>
+        <translation>Lokacija repozitorija je nevažeća.</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/addrepo.cpp" line="104"/>
         <source>The repository name field is not valid.</source>
-        <translation>Поле &quot;имя репозитория&quot; не верно.</translation>
+        <translation>Naziv repozitorija je nevažeći.</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/addrepo.cpp" line="111"/>
         <source>Address of remote or local packages repository</source>
-        <translation>Адреса удалённого или локального репозитория</translation>
+        <translation>Adresa udaljenog ili lokalnog repozitorija paketa</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/addrepo.cpp" line="115"/>
         <source>Path to mirrors list file</source>
-        <translation>Путь к файлу списка зеркал</translation>
+        <translation>Putanja do liste datoteka na zrcalu</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/addrepo.cpp" line="124"/>
         <source>Error</source>
-        <translation>Ошибка</translation>
+        <translation>Greška</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/addrepo.cpp" line="125"/>
         <source>Can&apos;t add repository.</source>
-        <translation>Невозможно добавить репозиторий.</translation>
+        <translation>Ne mogu dodati repozitorij.</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/addrepo.cpp" line="136"/>
         <source>Select local repository</source>
-        <translation>Выбрать локальный репозиторий</translation>
+        <translation>Izaberi lokalni repozitorij</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/addrepo.cpp" line="149"/>
         <source>Select mirrors list</source>
-        <translation>Выбрать список зеркал</translation>
+        <translation>Izaberi listu zrcala</translation>
     </message>
 </context>
 <context>
@@ -73,42 +73,42 @@
         <location filename="Projects/octopi/repoeditor/repoconf.cpp" line="176"/>
         <location filename="Projects/octopi/repoeditor/repoconf.cpp" line="185"/>
         <source>Backup error</source>
-        <translation>Ошибка резервного копирования</translation>
+        <translation>Greška pri arhiviranju</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/repoconf.cpp" line="177"/>
         <source>Backup file already exists.</source>
-        <translation>Файл резервного копирования уже существует.</translation>
+        <translation>Arhivirana datoteka već postoji.</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/repoconf.cpp" line="177"/>
         <source>Do you want to overwrite it?</source>
-        <translation>Хотите перезаписать его?</translation>
+        <translation>Želite li je prebrisati?</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/repoconf.cpp" line="186"/>
         <source>Can&apos;t create backup file.</source>
-        <translation>Невозможно создать файл резервного копирования.</translation>
+        <translation>Ne mogu stvoriti arhiviranu datoteku.</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/repoconf.cpp" line="186"/>
         <source>Do you want to proceed without a backup?</source>
-        <translation>Продолжить без резервного копирования?</translation>
+        <translation>Želite li nastaviti bez arhive?</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/repoconf.cpp" line="242"/>
         <source>Active</source>
-        <translation>Активный</translation>
+        <translation>Aktivan</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/repoconf.cpp" line="242"/>
         <source>Repository</source>
-        <translation>Репозиторий</translation>
+        <translation>Repozitorij</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/repoconf.cpp" line="242"/>
         <source>Options</source>
-        <translation>Параметры</translation>
+        <translation>Opcije</translation>
     </message>
 </context>
 <context>
@@ -116,87 +116,87 @@
     <message>
         <location filename="Projects/octopi/repoeditor/repoeditor.ui" line="14"/>
         <source>Repository Editor - Octopi</source>
-        <translation>Редактор репозиториев - Octopi</translation>
+        <translation>Urednik repozitorija - Octopi</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/repoeditor.ui" line="28"/>
         <source>Available Repositories</source>
-        <translation>Доступные репозитории</translation>
+        <translation>Repozitoriji na raspolaganju</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/repoeditor.ui" line="76"/>
         <source>Edit</source>
-        <translation>Редактировать</translation>
+        <translation>Uređuj</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/repoeditor.ui" line="91"/>
         <source>Add</source>
-        <translation>Добавить</translation>
+        <translation>Dodaj</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/repoeditor.ui" line="106"/>
         <source>Remove</source>
-        <translation>Удалить</translation>
+        <translation>Ukloni</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/repoeditor.ui" line="134"/>
         <source>Move Up</source>
-        <translation>Вверх</translation>
+        <translation>Pomakni gore</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/repoeditor.ui" line="149"/>
         <source>Move Down</source>
-        <translation>Вниз</translation>
+        <translation>Pomakni dolje</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/repoeditor.ui" line="166"/>
         <source>Backup</source>
-        <translation>Резервное копирование</translation>
+        <translation>Arhiva</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/repoeditor.ui" line="174"/>
         <source>Create backup on save</source>
-        <translation>Резервное копирование при сохранении</translation>
+        <translation>Stvori kopiju pri spremanju</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/repoeditor.ui" line="197"/>
         <source>Load a backup file</source>
-        <translation>Загрузить файл резервного копирования</translation>
+        <translation>Učitaj arhiviranu datoteku</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/repoeditor.ui" line="213"/>
         <source>Backup file:</source>
-        <translation>Файл резервного копирования:</translation>
+        <translation>Arhivirana datoteka:</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/repoeditor.cpp" line="99"/>
         <source>Can&apos;t load backup file</source>
-        <translation>Невозможно загрузить файл резервного копирования</translation>
+        <translation>Ne mogu učitati arhiviranu datoteku</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/repoeditor.cpp" line="100"/>
         <source>Selected file is not valid</source>
-        <translation>Выбранный файл не верен</translation>
+        <translation>Izabrana datoteka je nevažeća</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/repoeditor.cpp" line="149"/>
         <source>Success</source>
-        <translation>Успешно</translation>
+        <translation>Uspješno</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/repoeditor.cpp" line="150"/>
         <source>Repositories configuration successfully saved.</source>
-        <translation>Конфигурация репозиториев успешно сохранена.</translation>
+        <translation>Postavke repozitorija su uspješno spremljene.</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/repoeditor.cpp" line="155"/>
         <source>Error</source>
-        <translation>Ошибка</translation>
+        <translation>Greška</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/repoeditor.cpp" line="156"/>
         <source>Repositories configuration not saved.</source>
-        <translation>Конфигурация репозиториев не сохранена.</translation>
+        <translation>Postavke repozitorija nisu spremljene.</translation>
     </message>
 </context>
 </TS>
