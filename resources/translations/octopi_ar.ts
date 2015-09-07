@@ -1127,7 +1127,7 @@ Are you sure you want to open it?</source>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="616"/>
         <source>(value in 24-hour format: 0 to 23)</source>
-        <translation type="unfinished"/>
+        <translation>( القيمة في صيغة 24-ساعة: 0 إلى 23)</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="620"/>
@@ -1142,7 +1142,7 @@ Are you sure you want to open it?</source>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="628"/>
         <source>Set interval...</source>
-        <translation type="unfinished"/>
+        <translation>ضبط الجدولة...</translation>
     </message>
 </context>
 <context>

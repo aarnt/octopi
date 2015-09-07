@@ -40,6 +40,7 @@ QFutureWatcher<QString> g_fwDistroNews;
 QFutureWatcher<QString> g_fwPackageOwnsFile;
 QFutureWatcher<QList<PackageListData> *> g_fwMarkForeignPackages;
 QFutureWatcher<QSet<QString> *> g_fwUnrequiredPacman;
+QFutureWatcher<PackageInfoData> g_fwKCPInformation;
 
 /*
  * Given a packageName, returns its description
@@ -193,4 +194,12 @@ QList<PackageListData> * markForeignPackagesInPkgList(bool hasAURTool, QStringLi
   }
 
   return result;
+}
+
+/*
+ * Retrieves KCP package information.
+ */
+PackageInfoData getKCPInformation(QString pkgName)
+{
+  return Package::getKCPInformation(pkgName);
 }

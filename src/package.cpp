@@ -63,7 +63,6 @@ QString Package::makeURLClickable( const QString &s )
 	QString sb = s;
 	QRegExp rx("((ht|f)tp(s?))://(\\S)+[^\"|)|(|.|\\s|\\n]");
 	QRegExp rx1("^|[\\s]+(www\\.)(\\S)+[^\"|)|(|.|\\s|\\n]"); 
-
   rx.setCaseSensitivity( Qt::CaseInsensitive );
 	rx1.setCaseSensitivity( Qt::CaseInsensitive );
 
@@ -1046,6 +1045,7 @@ PackageInfoData Package::getKCPInformation(const QString &pkgName)
 {
   PackageInfoData res;
   QString pkgInfo = UnixCommand::getKCPPackageInformation(pkgName);
+
   pkgInfo.remove("\033[0;1m");
   pkgInfo.remove("\033[0m");
   pkgInfo.remove("[1;33m");
@@ -1079,7 +1079,7 @@ PackageInfoData Package::getKCPInformation(const QString &pkgName)
   //res.packager = getPackager(pkgInfo);
   //res.arch = getArch(pkgInfo);
   //res.buildDate = getBuildDate(pkgInfo);
-  //res.description = getDescription(pkgInfo);
+  res.description = getDescription(pkgInfo);
   //res.downloadSize = getDownloadSize(pkgInfo);
   //res.installedSize = getInstalledSize(pkgInfo);
   //res.downloadSizeAsString = getDownloadSizeAsString(pkgInfo);

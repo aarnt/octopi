@@ -29,12 +29,12 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="147"/>
         <source>Help</source>
-        <translation type="unfinished"/>
+        <translation>Laguntza</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="155"/>
         <source>View</source>
-        <translation type="unfinished"/>
+        <translation>Ikusi</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="164"/>
@@ -49,7 +49,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="184"/>
         <source>Search</source>
-        <translation type="unfinished"/>
+        <translation>Bilaketa</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="193"/>
@@ -69,12 +69,12 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="240"/>
         <source>Non installed</source>
-        <translation type="unfinished"/>
+        <translation>Instalatu gabe</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="249"/>
         <source>Commit</source>
-        <translation type="unfinished"/>
+        <translation>Egin ezazu</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="252"/>
@@ -99,7 +99,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="276"/>
         <source>Sync database</source>
-        <translation type="unfinished"/>
+        <translation>Datu-baseak sinkronizatu</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="279"/>
@@ -109,7 +109,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="288"/>
         <source>Exit</source>
-        <translation type="unfinished"/>
+        <translation>Irten</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="291"/>
@@ -119,7 +119,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="300"/>
         <source>System upgrade</source>
-        <translation type="unfinished"/>
+        <translation>Sistema eguneratu</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="303"/>
@@ -147,7 +147,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="341"/>
         <source>Get latest distro news</source>
-        <translation type="unfinished"/>
+        <translation>Distroaren azken berriak jaso</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="344"/>
@@ -217,12 +217,12 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="466"/>
         <source>By description</source>
-        <translation type="unfinished"/>
+        <translation>Deskripzioz</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="474"/>
         <source>By name</source>
-        <translation type="unfinished"/>
+        <translation>Izenez</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="483"/>
@@ -232,12 +232,12 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="492"/>
         <source>Open root terminal</source>
-        <translation type="unfinished"/>
+        <translation>Terminala root moduan ireki</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="497"/>
         <source>Usage</source>
-        <translation type="unfinished"/>
+        <translation>Erabilera</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="500"/>
@@ -247,32 +247,32 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="508"/>
         <source>Install local package...</source>
-        <translation type="unfinished"/>
+        <translation>Pakete lokala instalatu...</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="525"/>
         <source>Pacman Log Viewer</source>
-        <translation type="unfinished"/>
+        <translation>Pacman erregistro ikuslea</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="537"/>
         <source>Repository Editor</source>
-        <translation type="unfinished"/>
+        <translation>Biltegi editorea</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="546"/>
         <source>Cache Cleaner</source>
-        <translation type="unfinished"/>
+        <translation>&quot;Cache&quot;-a garbitu</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="554"/>
         <source>Installed</source>
-        <translation type="unfinished"/>
+        <translation>Instalatuta</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="570"/>
         <source>By file</source>
-        <translation type="unfinished"/>
+        <translation>Fitxategiz</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="55"/>
@@ -810,12 +810,12 @@
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="357"/>
         <source>%n packages</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>%n pakete</numerusform><numerusform>%n pakete</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="361"/>
         <source>%n selected</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>%n aukeratuta</numerusform><numerusform>%n aukeratutak</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="365"/>
@@ -1097,52 +1097,52 @@ Ziur zaude ireki nahi duzula?</translation>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="592"/>
         <source>Use &quot;%1&quot; tool</source>
-        <translation type="unfinished"/>
+        <translation>Erabili &quot;%1&quot; tresna</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="596"/>
         <source>Copy path to clipboard</source>
-        <translation type="unfinished"/>
+        <translation>Kopiatu helbidea arbelan</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="600"/>
         <source>Setup</source>
-        <translation type="unfinished"/>
+        <translation>Konfiguratu</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="604"/>
         <source>Sync database interval</source>
-        <translation type="unfinished"/>
+        <translation>Datu-base sinkronizazio tartea</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="608"/>
         <source>Once a day</source>
-        <translation type="unfinished"/>
+        <translation>Behin egunero</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="612"/>
         <source>Once a day, at</source>
-        <translation type="unfinished"/>
+        <translation>Egunero, ze ordutan?</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="616"/>
         <source>(value in 24-hour format: 0 to 23)</source>
-        <translation type="unfinished"/>
+        <translation>(balioa 24 orduko formatuan: 0 - 23 tartean)</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="620"/>
         <source>Once every</source>
-        <translation type="unfinished"/>
+        <translation>Errepikatu</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="624"/>
         <source>(value in minutes: 5 to 1380)</source>
-        <translation type="unfinished"/>
+        <translation>(balioa minututan: 5 - 1380 tartean)</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="628"/>
         <source>Set interval...</source>
-        <translation type="unfinished"/>
+        <translation>Tartea ezarri...</translation>
     </message>
 </context>
 <context>

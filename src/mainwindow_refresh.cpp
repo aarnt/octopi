@@ -1164,23 +1164,41 @@ void MainWindow::refreshTabInfo(bool clearContents, bool neverQuit)
 
     if (text)
     {
+      PackageInfoData kcp;
+
+      if (StrConstants::getForeignRepositoryToolName() == "kcp")
+      {
+        QEventLoop el;
+        QFuture<PackageInfoData> f;
+        f = QtConcurrent::run(getKCPInformation, pkgName);
+        connect(&g_fwKCPInformation, SIGNAL(finished()), &el, SLOT(quit()));
+        g_fwKCPInformation.setFuture(f);
+        el.exec();
+
+        kcp = f.result();
+      }
+
       QString html;
       text->clear();
       QString anchorBegin = "anchorBegin";
 
       html += "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">";
-      html += "<a id=\"" + anchorBegin + "\"></a>";
-
+      html += "<a id=\"" + anchorBegin + "\"></a>";            
       html += "<h2>" + pkgName + "</h2>";
-      html += "<a style=\"font-size:16px;\">" + pkgDescription + "</a>";
 
-      html += "<table border=\"0\">";
-      html += "<tr><th width=\"20%\"></th><th width=\"80%\"></th></tr>";
-      html += "<tr><td>" + version + "</td><td>" + package->version + "</td></tr>";
-
-      if (StrConstants::getForeignRepositoryToolName() == "kcp")
+      if (StrConstants::getForeignRepositoryToolName() != "kcp")
       {
-        PackageInfoData kcp = Package::getKCPInformation(pkgName);
+        html += "<a style=\"font-size:16px;\">" + pkgDescription + "</a>";
+        html += "<table border=\"0\">";
+        html += "<tr><th width=\"20%\"></th><th width=\"80%\"></th></tr>";
+        html += "<tr><td>" + version + "</td><td>" + package->version + "</td></tr>";
+      }
+      else if (StrConstants::getForeignRepositoryToolName() == "kcp")
+      {
+        html += "<a style=\"font-size:16px;\">" + kcp.description + "</a>";
+        html += "<table border=\"0\">";
+        html += "<tr><th width=\"20%\"></th><th width=\"80%\"></th></tr>";
+        html += "<tr><td>" + version + "</td><td>" + package->version + "</td></tr>";
 
         if (kcp.url != "--")
           html += "<tr><td>" + StrConstants::getURL() + "</td><td>" + kcp.url + "</td></tr>";;
