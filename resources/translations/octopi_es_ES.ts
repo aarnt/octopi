@@ -417,7 +417,7 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="138"/>
         <source>Ctrl+E or &apos;Transaction/Cancel&apos; to clear the selection of to be removed/installed packages</source>
-        <translation>Ctrl+E o &apos;Transacción/Cancelar&apos; para anular la selección de paquetes a eliminar/instalar</translation>
+        <translation>Ctrl+E o &quot;Transacción/ Deshacer &apos;para borrar la selección de paquetes que serán eliminados/instalados</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="140"/>

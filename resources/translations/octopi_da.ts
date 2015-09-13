@@ -142,12 +142,12 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="332"/>
         <source>Outdated packages</source>
-        <translation>Uddaterede pakker </translation>
+        <translation>Forældede pakker </translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="341"/>
         <source>Get latest distro news</source>
-        <translation>Få de seneste distro nyheder</translation>
+        <translation>Få de seneste nyheder fra din distribution</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="344"/>
@@ -167,12 +167,12 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="371"/>
         <source>Collapse item</source>
-        <translation>Sammenfold emner</translation>
+        <translation>Sammenfold emne</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="380"/>
         <source>Expand item</source>
-        <translation>Udfold emner</translation>
+        <translation>Udvid emne</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="389"/>
@@ -252,7 +252,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="525"/>
         <source>Pacman Log Viewer</source>
-        <translation>Pacman Log Viser</translation>
+        <translation>Pacman log viser</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="537"/>
@@ -262,7 +262,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="546"/>
         <source>Cache Cleaner</source>
-        <translation>Cache Renser</translation>
+        <translation>Cache-renser</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="554"/>
@@ -287,7 +287,7 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="59"/>
         <source>licensed under the terms of</source>
-        <translation>licentieret under betingelserne  af</translation>
+        <translation>licenseret under betingelserne af</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="77"/>
@@ -560,7 +560,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="150"/>
         <source>This Linux distro seems to be incompatible with Octopi!</source>
-        <translation>Denne Linux distro ser ud til at være uforenelig med Octopi!</translation>
+        <translation>Denne Linux distribution ser ud til at være uforenelig med Octopi!</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="154"/>
@@ -1049,7 +1049,7 @@ Bekræft?</translation>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="551"/>
         <source>These changes need application restart to take effect!</source>
-        <translation>Disse ændringer gør det nødvendigt at genstarte programmet for at det kan træde ikraft!</translation>
+        <translation>Disse ændringer gør det nødvendigt at genstarte programmet for at de kan træde ikraft!</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="555"/>
@@ -1126,7 +1126,7 @@ Er du sikker du vil åbne det?</translation>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="612"/>
         <source>Once a day, at</source>
-        <translation>Én gang om dagen, kl</translation>
+        <translation>Én gang om dagen, kl.</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="616"/>

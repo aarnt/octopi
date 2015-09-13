@@ -452,7 +452,7 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="153"/>
         <source>Ctrl+Shift+Y to display %1 group</source>
-        <translation>Ctrl+Maiús+Y para mostrar o %1 grupo</translation>
+        <translation>Ctrl+Maiús+Y para mostrar o grupo %1</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="156"/>
@@ -760,7 +760,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="317"/>
         <source>Contents of &quot;%1&quot;</source>
-        <translation>Contido do 1%</translation>
+        <translation>Contido do &quot;1%&quot;</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="321"/>
@@ -790,7 +790,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="341"/>
         <source>Searching for %1 latest news...</source>
-        <translation>Buscando polas %1 últimas novidades...</translation>
+        <translation>Buscando polas últimas novidades de 1% ...</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="345"/>

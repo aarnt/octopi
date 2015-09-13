@@ -44,7 +44,7 @@
     <message>
         <location filename="Projects/octopi/repoeditor/addrepo.cpp" line="115"/>
         <source>Path to mirrors list file</source>
-        <translation type="unfinished"/>
+        <translation>المسار لملف قائمة الميررز</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/addrepo.cpp" line="124"/>
@@ -64,7 +64,7 @@
     <message>
         <location filename="Projects/octopi/repoeditor/addrepo.cpp" line="149"/>
         <source>Select mirrors list</source>
-        <translation type="unfinished"/>
+        <translation>إختيار قائمة المرايا</translation>
     </message>
 </context>
 <context>

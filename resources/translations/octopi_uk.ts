@@ -29,12 +29,12 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="147"/>
         <source>Help</source>
-        <translation type="unfinished"/>
+        <translation>Довідка</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="155"/>
         <source>View</source>
-        <translation type="unfinished"/>
+        <translation>Перегляд</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="164"/>
@@ -49,12 +49,12 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="184"/>
         <source>Search</source>
-        <translation type="unfinished"/>
+        <translation>Пошук</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="193"/>
         <source>Tools</source>
-        <translation type="unfinished"/>
+        <translation>Інструменти</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="223"/>
@@ -69,12 +69,12 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="240"/>
         <source>Non installed</source>
-        <translation type="unfinished"/>
+        <translation>Не встановлено</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="249"/>
         <source>Commit</source>
-        <translation type="unfinished"/>
+        <translation>Виконати</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="252"/>
@@ -84,22 +84,22 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="261"/>
         <source>Cancel</source>
-        <translation type="unfinished"/>
+        <translation>Скасувати</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="264"/>
         <source>Cancel</source>
-        <translation type="unfinished"/>
+        <translation>Скасувати</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="267"/>
         <source>Ctrl+E</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+E</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="276"/>
         <source>Sync database</source>
-        <translation type="unfinished"/>
+        <translation>Синхронізувати базу даних</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="279"/>
@@ -109,7 +109,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="288"/>
         <source>Exit</source>
-        <translation type="unfinished"/>
+        <translation>Вихід</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="291"/>
@@ -119,7 +119,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="300"/>
         <source>System upgrade</source>
-        <translation type="unfinished"/>
+        <translation>Оновлення системи</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="303"/>
@@ -147,7 +147,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="341"/>
         <source>Get latest distro news</source>
-        <translation type="unfinished"/>
+        <translation>Отримати останні новини дистрибутива</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="344"/>
@@ -217,12 +217,12 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="466"/>
         <source>By description</source>
-        <translation type="unfinished"/>
+        <translation>За описом</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="474"/>
         <source>By name</source>
-        <translation type="unfinished"/>
+        <translation>За іменем</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="483"/>
@@ -232,12 +232,12 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="492"/>
         <source>Open root terminal</source>
-        <translation type="unfinished"/>
+        <translation>Відкрити термінал з правами root</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="497"/>
         <source>Usage</source>
-        <translation type="unfinished"/>
+        <translation>Використання</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="500"/>
@@ -247,32 +247,32 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="508"/>
         <source>Install local package...</source>
-        <translation type="unfinished"/>
+        <translation>Встановлення локального пакунку...</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="525"/>
         <source>Pacman Log Viewer</source>
-        <translation type="unfinished"/>
+        <translation>Переглядач логів Pacman</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="537"/>
         <source>Repository Editor</source>
-        <translation type="unfinished"/>
+        <translation>Редактор репозитаріїв</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="546"/>
         <source>Cache Cleaner</source>
-        <translation type="unfinished"/>
+        <translation>Очищувач кешу</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="554"/>
         <source>Installed</source>
-        <translation type="unfinished"/>
+        <translation>Встановлено</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="570"/>
         <source>By file</source>
-        <translation type="unfinished"/>
+        <translation>По файлу</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="55"/>
@@ -302,7 +302,7 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="82"/>
         <source>An installed package (not required by others)</source>
-        <translation>Встановлений пакунок (не потребуючий іншими)</translation>
+        <translation>Встановлений пакунок (не потрібний іншим пакункам)</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="85"/>
@@ -332,7 +332,7 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="100"/>
         <source>Basic usage help:</source>
-        <translation>Основи використання допомоги:</translation>
+        <translation>Допомога у початковому використанні:</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="102"/>
@@ -417,7 +417,7 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="138"/>
         <source>Ctrl+E or &apos;Transaction/Cancel&apos; to clear the selection of to be removed/installed packages</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+E або &apos;Транзакція/Відмінити&apos;, щоб очистити вибір пакунків для видалення/встановлення</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="140"/>
@@ -452,7 +452,7 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="153"/>
         <source>Ctrl+Shift+Y to display %1 group</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+Shift+Y щоб відобразити %1 групу</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="156"/>
@@ -490,7 +490,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="43"/>
         <source>Octopi usage help:</source>
-        <translation>Використання допомоги Octopi:</translation>
+        <translation>Допомога у використанні Octopi:</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="44"/>
@@ -515,17 +515,17 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="53"/>
         <source>All</source>
-        <translation type="unfinished"/>
+        <translation>Усе</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="118"/>
         <source>Antergos news</source>
-        <translation type="unfinished"/>
+        <translation>Новини Antegros</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="122"/>
         <source>ArchBSD news</source>
-        <translation type="unfinished"/>
+        <translation>Новини ArchBSD</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="126"/>
@@ -540,7 +540,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="134"/>
         <source>KaOS news</source>
-        <translation type="unfinished"/>
+        <translation>Новини KaOS</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="138"/>
@@ -550,7 +550,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="142"/>
         <source>Netrunner Rolling news</source>
-        <translation type="unfinished"/>
+        <translation>Новини Netrunner Rolling</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="146"/>
@@ -565,7 +565,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="154"/>
         <source>Internet seems unavailable!</source>
-        <translation>Відав нема інтернету!</translation>
+        <translation>Немає доступу до Інтернету!</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="158"/>
@@ -615,7 +615,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="201"/>
         <source>Repository</source>
-        <translation>Сховище</translation>
+        <translation>Репозіторій</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="205"/>
@@ -670,12 +670,12 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="245"/>
         <source>Popularity</source>
-        <translation type="unfinished"/>
+        <translation>Популярність</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="249"/>
         <source>votes</source>
-        <translation type="unfinished"/>
+        <translation>голоси</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="253"/>
@@ -710,7 +710,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="277"/>
         <source>Build Date</source>
-        <translation>Дата складання</translation>
+        <translation>Дата створення</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="281"/>
@@ -800,7 +800,7 @@
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="349"/>
         <source>There are %n outdated packages in your system:</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>У Вашій системі %n застарілий пакунок</numerusform><numerusform>У Вашій системі %n застарілих пакунків</numerusform><numerusform>У Вашій системі %n застарілих пакунків</numerusform></translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="353"/>
@@ -810,27 +810,27 @@
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="357"/>
         <source>%n packages</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>%n пакунок</numerusform><numerusform>%n пакунків</numerusform><numerusform>%n пакунків</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="361"/>
         <source>%n selected</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>%n обраний</numerusform><numerusform>%n обрано</numerusform><numerusform>%n обрано</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="365"/>
         <source>%n installed</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>%n встановлений</numerusform><numerusform>%n встановлено</numerusform><numerusform>%n встановлено</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="369"/>
         <source>%n outdated</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>%n застарілий</numerusform><numerusform>%n застарілих</numerusform><numerusform>%n застарілих</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="373"/>
         <source>%n available</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>%n доступний</numerusform><numerusform>%n доступно</numerusform><numerusform>%n доступно</numerusform></translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="377"/>
@@ -840,7 +840,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="381"/>
         <source>Removing Pacman&apos;s transaction lock file...</source>
-        <translation>Видалення файла блокування транзакцій Pacman&apos;s...</translation>
+        <translation>Видалення файла блокування транзакцій Pacman...</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="385"/>
@@ -855,7 +855,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="397"/>
         <source>Sync database</source>
-        <translation>Синхронізація баз даних</translation>
+        <translation>Синхронізувати базу даних</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="401"/>
@@ -870,7 +870,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="409"/>
         <source>Starting full system upgrade...</source>
-        <translation>Запуск оновлення всієї системи...</translation>
+        <translation>Початок оновлення всієї системи...</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="413"/>
@@ -890,7 +890,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="425"/>
         <source>Choose a terminal</source>
-        <translation type="unfinished"/>
+        <translation>Виберіть термінал</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="429"/>
@@ -920,27 +920,27 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="449"/>
         <source>The following package needs to be retrieved</source>
-        <translation type="unfinished"/>
+        <translation>Наступні пакунки мають бути встановлені</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="453"/>
         <source>The following package will be removed</source>
-        <translation type="unfinished"/>
+        <translation>Наступні пакунки буде видалено</translation>
     </message>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="457"/>
         <source>The following %n packages need to be retrieved</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>Наступний пакунок має бути встановлений</numerusform><numerusform>Наступні %n пакунків мають бути встановлені</numerusform><numerusform>Наступні %n пакунки мають бути встановлені</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="461"/>
         <source>The following %n packages will be removed</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>Наступний пакунок буде видалено</numerusform><numerusform>Наступні %n пакунки будуть видалені</numerusform><numerusform>Наступні %n пакунки будуть видалені</numerusform></translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="465"/>
         <source>There are forbidden packages in the removal list!</source>
-        <translation>В списку видалення заборонені пакунки!</translation>
+        <translation>Заборонені пакунки в списку видалення!</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="469"/>
@@ -955,7 +955,7 @@
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="477"/>
         <source>There are %n updates available!</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>Є одне доступне оновлення!</numerusform><numerusform>Є %n доступних оновлень!</numerusform><numerusform>Є %n доступних оновлення!</numerusform></translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="481"/>
@@ -985,17 +985,17 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="501"/>
         <source>Do you really want to clean the package cache?</source>
-        <translation>Справді бажаєте очистити кеш пакетів?</translation>
+        <translation>Дійсно бажаєте очистити кеш пакетів?</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="505"/>
         <source>Do you really want to remove Pacman&apos;s transaction lock file?</source>
-        <translation>Ви справді бажаєте видалити файл блокування транзакцій Pacman&apos;s?</translation>
+        <translation>Ви справді бажаєте видалити файл блокування транзакцій Pacman?</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="509"/>
         <source>Do you really want to cancel the transaction?</source>
-        <translation type="unfinished"/>
+        <translation>Ви справді бажаете перервати транзакцію?</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="513"/>
@@ -1010,7 +1010,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="523"/>
         <source>You&apos;ll need to install a su frontend like gksu or kdesu.</source>
-        <translation>Ви повинні встановити фронтенд для su, такі як gksu або kdesu.</translation>
+        <translation>Ви повинні встановити фронтенд для su, такий як gksu або kdesu.</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="527"/>
@@ -1096,52 +1096,52 @@ Are you sure you want to open it?</source>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="592"/>
         <source>Use &quot;%1&quot; tool</source>
-        <translation type="unfinished"/>
+        <translation>Використати &quot;1%&quot; інструмент</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="596"/>
         <source>Copy path to clipboard</source>
-        <translation type="unfinished"/>
+        <translation>Скопіювати шлях до буферу обміну</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="600"/>
         <source>Setup</source>
-        <translation type="unfinished"/>
+        <translation>Установка</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="604"/>
         <source>Sync database interval</source>
-        <translation type="unfinished"/>
+        <translation>Інтервал синхронізації бази данних</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="608"/>
         <source>Once a day</source>
-        <translation type="unfinished"/>
+        <translation>Раз на день</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="612"/>
         <source>Once a day, at</source>
-        <translation type="unfinished"/>
+        <translation>Раз на день, об</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="616"/>
         <source>(value in 24-hour format: 0 to 23)</source>
-        <translation type="unfinished"/>
+        <translation>(число у 24-х годинному форматі: від 0 до 23)</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="620"/>
         <source>Once every</source>
-        <translation type="unfinished"/>
+        <translation>Одноразово кожні</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="624"/>
         <source>(value in minutes: 5 to 1380)</source>
-        <translation type="unfinished"/>
+        <translation>(значення у хвилинах: від 5 до 1380)</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="628"/>
         <source>Set interval...</source>
-        <translation type="unfinished"/>
+        <translation>Визначити інтервал</translation>
     </message>
 </context>
 <context>
