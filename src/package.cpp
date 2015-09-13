@@ -1195,9 +1195,9 @@ QHash<QString, QString> Package::getAUROutdatedPackagesNameVersion()
         else
         {
           //Let's ignore the "IgnorePkg" list of packages...
-          if (!ignorePkgList.contains(pkgName) && nameVersion.size() > 3)
+          if (!ignorePkgList.contains(pkgName) && nameVersion.size() == 2)
           {
-            hash.insert(pkgName, nameVersion.at(3));
+            hash.insert(pkgName, nameVersion.at(1));
           }
         }
       }
