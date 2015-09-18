@@ -925,7 +925,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="453"/>
         <source>The following package will be removed</source>
-        <translation>Paket berikut ini perlu dihapus</translation>
+        <translation>Paket berikut ini akan dihapus</translation>
     </message>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="457"/>
