@@ -392,12 +392,12 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="126"/>
         <source>Ctrl+D or &apos;File/Sync database&apos; to sync the local database with latest remote changes (pacman -Sy)</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+D ili &apos;File/Sync database&apos; da sinhronizujete lokalnu bazu podataka sa poslednjim izmenama na spoljnoj bazi (pacman -Sy)</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="128"/>
         <source>Ctrl+U or &apos;File/System upgrade&apos; to make a full system upgrade (pacman -Su)</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+U ili &apos;File/System upgrade&apos; da unapredite kompletan sistem (pacman -Su)</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="130"/>
@@ -407,7 +407,7 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="132"/>
         <source>Ctrl+F to search for text inside tab Files, News and Usage</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+F da pretražite tekst unutar kartice Datoteke, Vesti i Korišćenje</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="136"/>

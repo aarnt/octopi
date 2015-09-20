@@ -1,4 +1,4 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="sr@latin" version="2.1">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="zh-Hans" version="2.1">
 <context>
     <name>MainWindow</name>
     <message>
@@ -9,72 +9,72 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="110"/>
         <source>Info</source>
-        <translation>Informacije</translation>
+        <translation>信息</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="115"/>
         <source>Files</source>
-        <translation>Datoteke</translation>
+        <translation>文件</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="120"/>
         <source>Transaction</source>
-        <translation>Tranzakcija</translation>
+        <translation>执行</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="125"/>
         <source>Output</source>
-        <translation>Izlaz</translation>
+        <translation>输出</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="147"/>
         <source>Help</source>
-        <translation>Pomoć</translation>
+        <translation>帮助</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="155"/>
         <source>View</source>
-        <translation>Pregled</translation>
+        <translation>查看</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="164"/>
         <source>Transaction</source>
-        <translation>Tranzakcija</translation>
+        <translation>执行</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="171"/>
         <source>File</source>
-        <translation>Datoteka</translation>
+        <translation>文件</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="184"/>
         <source>Search</source>
-        <translation>Traži</translation>
+        <translation>查找</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="193"/>
         <source>Tools</source>
-        <translation>Alati</translation>
+        <translation>工具</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="223"/>
         <source>About</source>
-        <translation>O</translation>
+        <translation>关于</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="226"/>
         <source>About</source>
-        <translation>O</translation>
+        <translation>关于</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="240"/>
         <source>Non installed</source>
-        <translation>Nije instalirano</translation>
+        <translation>未安装</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="249"/>
         <source>Commit</source>
-        <translation>Uradi</translation>
+        <translation>确认</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="252"/>
@@ -84,12 +84,12 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="261"/>
         <source>Cancel</source>
-        <translation>Otkaži</translation>
+        <translation>取消</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="264"/>
         <source>Cancel</source>
-        <translation>Otkaži</translation>
+        <translation>取消</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="267"/>
@@ -99,7 +99,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="276"/>
         <source>Sync database</source>
-        <translation>Sinhronuzuj bazu podataka</translation>
+        <translation>同步数据库</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="279"/>
@@ -109,7 +109,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="288"/>
         <source>Exit</source>
-        <translation>Izađi</translation>
+        <translation>退出</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="291"/>
@@ -119,7 +119,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="300"/>
         <source>System upgrade</source>
-        <translation>Ažuriranje sistema</translation>
+        <translation>系统升级</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="303"/>
@@ -131,23 +131,23 @@
         <location filename="Projects/octopi/ui/mainwindow.ui" line="315"/>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="517"/>
         <source>Install</source>
-        <translation>instaliraj</translation>
+        <translation>安装</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="324"/>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="327"/>
         <source>Remove</source>
-        <translation>Ukloni</translation>
+        <translation>卸载</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="332"/>
         <source>Outdated packages</source>
-        <translation>Zastareli paketi</translation>
+        <translation>过旧的软件包</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="341"/>
         <source>Get latest distro news</source>
-        <translation>Preuzmi vesti o distribuciji</translation>
+        <translation>获取最近的新闻</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="344"/>
@@ -157,87 +157,87 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="353"/>
         <source>Remove group</source>
-        <translation>Ukloni grupu</translation>
+        <translation>卸载软件组</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="362"/>
         <source>Install group</source>
-        <translation>Instaliraj grupu</translation>
+        <translation>安装软件组</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="371"/>
         <source>Collapse item</source>
-        <translation>Zatvori predmet</translation>
+        <translation>收起条目</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="380"/>
         <source>Expand item</source>
-        <translation>Proširi predmet</translation>
+        <translation>展开条目</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="389"/>
         <source>Collapse all items</source>
-        <translation>Zatvori sve predmete</translation>
+        <translation>收起所有条目</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="398"/>
         <source>Expand all items</source>
-        <translation>Proširi sve predmete</translation>
+        <translation>展开所有条目</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="407"/>
         <source>Open file</source>
-        <translation>Otvori datoteku</translation>
+        <translation>打开文件</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="416"/>
         <source>Edit file</source>
-        <translation>Izmjeni datoteku</translation>
+        <translation>编辑文件</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="425"/>
         <source>Open directory</source>
-        <translation>Otvori datoteku</translation>
+        <translation>打开目录</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="434"/>
         <source>Open terminal here</source>
-        <translation>Otvori terminal ovde</translation>
+        <translation>在此打开终端</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="443"/>
         <source>Remove item</source>
-        <translation>Ukloni predmet</translation>
+        <translation>移除条目</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="455"/>
         <source>Remove items</source>
-        <translation>Ukloni predmete</translation>
+        <translation>移除条目</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="466"/>
         <source>By description</source>
-        <translation>Po opisu</translation>
+        <translation>按照软件包描述</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="474"/>
         <source>By name</source>
-        <translation>Po imenu</translation>
+        <translation>按照软件包名称</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="483"/>
         <source>Find a file</source>
-        <translation>Nađi datoteku</translation>
+        <translation>查找文件</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="492"/>
         <source>Open root terminal</source>
-        <translation>Otvori terminal kao root</translation>
+        <translation>打开 root 权限终端</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="497"/>
         <source>Usage</source>
-        <translation>Korištenje</translation>
+        <translation>使用说明</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="500"/>
@@ -247,242 +247,242 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="508"/>
         <source>Install local package...</source>
-        <translation>Instaliravam lokalne pakete...</translation>
+        <translation>从本地安装软件包</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="525"/>
         <source>Pacman Log Viewer</source>
-        <translation>Pacman pregledač Log datoteka</translation>
+        <translation>Pacman 日志查看器</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="537"/>
         <source>Repository Editor</source>
-        <translation>Uređivač skladišta</translation>
+        <translation>软件源编辑器</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="546"/>
         <source>Cache Cleaner</source>
-        <translation>Čistač keša</translation>
+        <translation>缓存清理工具</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="554"/>
         <source>Installed</source>
-        <translation>Instalirano</translation>
+        <translation>已安装</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="570"/>
         <source>By file</source>
-        <translation>Po datotekama</translation>
+        <translation>按照包含文件</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="55"/>
         <source>For more information, visit:</source>
-        <translation>Za više informacija posjetite:</translation>
+        <translation>要获取更多信息，请访问：</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="58"/>
         <source>A Qt-based Pacman frontend,</source>
-        <translation>Pristupni dio za Pacman napravljen u Qt,</translation>
+        <translation>基于 Qt 的 Pacman 前端，</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="59"/>
         <source>licensed under the terms of</source>
-        <translation>licensiran je pod uslovima</translation>
+        <translation>遵循此协议：</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="77"/>
         <source>Package classification:</source>
-        <translation>Kategorizacija paketa:</translation>
+        <translation>软件标识：</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="80"/>
         <source>An installed package</source>
-        <translation>Instalirani paket</translation>
+        <translation>已安装</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="82"/>
         <source>An installed package (not required by others)</source>
-        <translation>Instalirani paket (nije potreban od strane drugih paketa)</translation>
+        <translation>已安装 (孤包)</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="85"/>
         <source>A foreign package, installed from</source>
-        <translation>Strani paket, instaliran iz</translation>
+        <translation>外来软件包，安装自：</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="88"/>
         <source>A non installed package</source>
-        <translation>Ne instaliran paket</translation>
+        <translation>未安装</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="91"/>
         <source>An outdated package</source>
-        <translation>Zastareli paket</translation>
+        <translation>过旧</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="94"/>
         <source>An outdated foreign package</source>
-        <translation>Zastareli strani paket</translation>
+        <translation>过旧的外来软件包</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="97"/>
         <source>A newer than repository package</source>
-        <translation>Noviji paket nego u skladištu</translation>
+        <translation>比软件源里更新</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="100"/>
         <source>Basic usage help:</source>
-        <translation>Osnovna upustva za korištenje:</translation>
+        <translation>基本的使用帮助：</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="102"/>
         <source>Position the mouse over a package to see its description</source>
-        <translation>Postavite miša na paket da bih ste vidjeli njegov opis</translation>
+        <translation>将鼠标移到软件包条目上：查看其描述</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="104"/>
         <source>Double click an installed package to see its contents</source>
-        <translation>Duplim klikom na instalirani paket možete pogledati njegov sadržaj</translation>
+        <translation>双击已安装软件包条目：查看其目录结构</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="106"/>
         <source>Right click package to install/reinstall or remove it</source>
-        <translation>Desni klik na paket da bih ste ga instalirali/reinstalirali ili uklonili</translation>
+        <translation>右键软件包条目：安装/重新安装 或 卸载</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="109"/>
         <source>Alt+key sequences:</source>
-        <translation>Alt+dugme komande:</translation>
+        <translation>Alt 键：</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="111"/>
         <source>Alt+1 to switch to &apos;Info&apos; tab</source>
-        <translation>Alt+1 da bi ste se prebacili na karticu &apos;Info&apos;</translation>
+        <translation>Alt+1：切换到“信息”标签栏</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="113"/>
         <source>Alt+2 to switch to &apos;Files&apos; tab</source>
-        <translation>Alt+2 da bi ste se prebacili na karticu &apos;Dokumenti&apos;</translation>
+        <translation>Alt+2：切换到“文件”标签栏</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="115"/>
         <source>Alt+3 to switch to &apos;Transaction&apos; tab</source>
-        <translation>Alt+3 da bi ste se prebacili na karticu &apos;Tranzakcije&apos;</translation>
+        <translation>Alt+3：切换到“执行”标签栏</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="117"/>
         <source>Alt+4 to switch to &apos;Output&apos; tab</source>
-        <translation>Alt+4 da bi ste se prebacili na karticu &apos;Izlaz&apos;</translation>
+        <translation>Alt+4：切换到“输出”标签栏</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="119"/>
         <source>Alt+5 to switch to &apos;News&apos; tab</source>
-        <translation>Alt+5 da bi ste se prebacili na karticu &apos;Vjesti&apos;</translation>
+        <translation>Alt+5：切换到“新闻”标签栏</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="121"/>
         <source>Alt+6 or &apos;F1&apos; to show this help page</source>
-        <translation>Alt+6 ili &apos;F1&apos; da bi ste vidjeli ovu stranicu za pomoć</translation>
+        <translation>Alt+6 或 F1：显示本帮助页</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="124"/>
         <source>Control+key sequences:</source>
-        <translation>CTRL+dugme komande:</translation>
+        <translation>Control 键：</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="126"/>
         <source>Ctrl+D or &apos;File/Sync database&apos; to sync the local database with latest remote changes (pacman -Sy)</source>
-        <translation>Ctrl+D ili &apos;Datoteka/Sinhronizuj bazu podataka&apos; da bi ste sinhronizovali lokalnu bazu sa najnovijim promjenama (pacman -Sy)</translation>
+        <translation>Ctrl+D 或 “文件 &gt; 同步数据库”：与远程数据库保持同步 (pacman -Sy)</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="128"/>
         <source>Ctrl+U or &apos;File/System upgrade&apos; to make a full system upgrade (pacman -Su)</source>
-        <translation>Ctrl+ ili &apos;Datoteka/Nadogradnja sistema&apos; da bi ste nadogradili cjeli sistem (pacman -Su)</translation>
+        <translation>Ctrl+U 或 “文件 &gt; 系统升级”：完全的系统升级 (pacman -Su)</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="130"/>
         <source>Ctrl+L to find a package in the package list</source>
-        <translation>Ctrl+L da bi ste nasli paket u listi paketa</translation>
+        <translation>Ctrl+L：在软件列表里查找一个软件包</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="132"/>
         <source>Ctrl+F to search for text inside tab Files, News and Usage</source>
-        <translation>Ctrl+F za pretragu teksta u Dokumentima, Vjestima i Korištenje</translation>
+        <translation>Ctrl+F：在“文件”、“新闻”和“使用说明”标签栏里查找文本</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="136"/>
         <source>Ctrl+M or &apos;Transaction/Commit&apos; to start installation/removal of selected packages</source>
-        <translation>Ctrl+M ili &apos;Tranzakcije/Uradi&apos; da bi ste instalirali/obrisali selektovane pakete</translation>
+        <translation>Ctrl+M 或 “执行 &gt; 确认”：开始 安装/卸载 已选择的软件包</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="138"/>
         <source>Ctrl+E or &apos;Transaction/Cancel&apos; to clear the selection of to be removed/installed packages</source>
-        <translation>Ctrl+E ili &quot;Prenos/Poništiti&quot; da biste poništili izabrane pakete za uklanjanje/instaliranje</translation>
+        <translation>Ctrl+E 或 “执行 &gt; 取消”：清除软件包的 待安装/待卸载 标记</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="140"/>
         <source>Ctrl+G or &apos;File/Get latest distro news&apos; to retrieve the latest RSS based distro news</source>
-        <translation>Ctrl+G ili &apos;Datoteka/Preuzmite vjesti o distribuciji/ da bi ste preuzeli najnovije RSS vjesti o distribuciji</translation>
+        <translation>Ctrl+G 或 ”文件 &gt; 获取最近的新闻“：获取本发行版最近的新闻，基于 RSS</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="142"/>
         <source>Ctrl+Q or &apos;File/Exit&apos; to exit the application</source>
-        <translation>Ctrl+Q ili &apos;Datotka/Izađi&apos; da bi ste izašli iz aplikacije</translation>
+        <translation>Ctrl+Q 或 ”文件 &gt; 退出“：退出软件</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="145"/>
         <source>Control+shift+key sequences:</source>
-        <translation>CTRL+Shift+dugme komande:</translation>
+        <translation>Control+shift 键：</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="147"/>
         <source>Ctrl+Shift+C to clean local packages cache (pacman -Sc)</source>
-        <translation>Ctrl+Shift+C da bi ste očistili lokalne keš pakete (pacman -Sc)</translation>
+        <translation>Ctrl+Shift+C：清除本地的软件包缓存 (pacman -Sc)</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="149"/>
         <source>Ctrl+Shift+G to display all package groups</source>
-        <translation>Ctrl+Shift+G da bi ste prikazali sve grupe paketa</translation>
+        <translation>Ctrl+Shift+G：显示所有软件组</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="151"/>
         <source>Ctrl+Shift+R to remove Pacman&apos;s transaction lock file</source>
-        <translation>Ctrl+Shift+R da bi ste uklonili Pacmanov falj za zalkjučavanje</translation>
+        <translation>Ctrl+Shift+R：删除 Pacman 锁文件</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="153"/>
         <source>Ctrl+Shift+Y to display %1 group</source>
-        <translation>Ctrl+Shift+Y za prikaz %1 grupe</translation>
+        <translation>Ctrl+Shift+Y：显示 %1 软件组</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="156"/>
         <source>F+key sequences:</source>
-        <translation>F+dugme komande:</translation>
+        <translation>F 功能键：</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="158"/>
         <source>F1 to show this help page</source>
-        <translation>F1 da bi ste prikazali ovu stranicu za pomoć</translation>
+        <translation>F1：显示本帮助页</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="160"/>
         <source>F4 to open a Terminal whitin the selected directory at Files tab</source>
-        <translation>F4 da bi ste otvorili Terminal u označenom direktoriju u kartici Datoteke</translation>
+        <translation>F4：在”文件“标签栏已选择目录打开终端</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="162"/>
         <source>F6 to open a File Manager whitin the selected directory at Files tab</source>
-        <translation>F6 da bi ste otvorili Menadžer datoteka u označenom direktoriju u kartici Datoteke</translation>
+        <translation>F6：在”文件“标签栏已选择目录打开文件管理器</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="164"/>
         <source>F10 to maximize/demaximize package list view</source>
-        <translation>F10 da bi ste povećali/smanjili prozor liste paketa</translation>
+        <translation>F10：最大化/还原 软件列表视图</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="166"/>
         <source>F12 to maximize/demaximize Tab&apos;s view</source>
-        <translation>F12 da bi ste povećali/smanjili prozor Kartice</translation>
+        <translation>F12：最大化/还原 标签栏视图</translation>
     </message>
 </context>
 <context>
@@ -490,659 +490,658 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="43"/>
         <source>Octopi usage help:</source>
-        <translation>Octopi pomoć:</translation>
+        <translation>Octopi 使用帮助：</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="44"/>
         <source>show application version.</source>
-        <translation>prikaži verziju aplikacije.</translation>
+        <translation>显示软件包版本。</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="45"/>
         <source>use a different Qt4 style (ex: -style gtk).</source>
-        <translation>koristi drugačiji Qt4 still (npr: -style gtk).</translation>
+        <translation>使用不同的 Qt4 外观 (例如：-style gtk)。</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="46"/>
         <source>use a different remove command (ex: -removecmd R).</source>
-        <translation>koristi drugačiju komandu za brisanje (npr: -removecmd R).</translation>
+        <translation>使用不同的卸载命令 (例如：-removecmd R)。</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="47"/>
         <source>force a system upgrade at startup.</source>
-        <translation>prisili nadogradnju sistema pri paljenju sistema.</translation>
+        <translation>启动时强制进行系统升级。</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="53"/>
         <source>All</source>
-        <translation>Sve</translation>
+        <translation>所有</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="118"/>
         <source>Antergos news</source>
-        <translation>Antergos vesti</translation>
+        <translation>Antergos 新闻</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="122"/>
         <source>ArchBSD news</source>
-        <translation>ArchBSD vesti</translation>
+        <translation>ArchBSD 新闻</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="126"/>
         <source>Arch Linux news</source>
-        <translation>Arch Linux vjesti</translation>
+        <translation>Arch Linux 新闻</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="130"/>
         <source>Chakra news</source>
-        <translation>Chakra vjesti</translation>
+        <translation>Chakra 新闻</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="134"/>
         <source>KaOS news</source>
-        <translation>KaOS novosti</translation>
+        <translation>KaOS 新闻</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="138"/>
         <source>Manjaro Linux news</source>
-        <translation>Manjaro Linux vjesti</translation>
+        <translation>Manjaro Linux 新闻</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="142"/>
         <source>Netrunner Rolling news</source>
-        <translation>Netrunner Rolling vesti</translation>
+        <translation>Netrunner Rolling 新闻</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="146"/>
         <source>No news could be found! Press Ctrl+G to download the latest news.</source>
-        <translation>Vjesti nisu nađene! Pritisni Ctrl+G da skineš najnovije vjesti.</translation>
+        <translation>无法找到新闻！按下 Ctrl+G 以下载最近的新闻。</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="150"/>
         <source>This Linux distro seems to be incompatible with Octopi!</source>
-        <translation>Ova Linux distribucija nije kompabitilna sa Octopi-em!</translation>
+        <translation>这个 Linux 发行版似乎与 Octopi 不兼容！</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="154"/>
         <source>Internet seems unavailable!</source>
-        <translation>Internet nije dustupan!</translation>
+        <translation>联网失败！</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="158"/>
         <source>Display all groups</source>
-        <translation>Prikaži sve grupe</translation>
+        <translation>显示所有软件组</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="169"/>
         <source>Usage</source>
-        <translation>Korištenje</translation>
+        <translation>使用说明</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="173"/>
         <source>About</source>
-        <translation>O</translation>
+        <translation>关于</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="177"/>
         <source>Name</source>
-        <translation>Ime</translation>
+        <translation>名称</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="181"/>
         <source>Version</source>
-        <translation>Verzija</translation>
+        <translation>版本</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="185"/>
         <source>Outdated version</source>
-        <translation>Zastarela verzija</translation>
+        <translation>过旧的版本</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="189"/>
         <source>Available version</source>
-        <translation>Dostupna verzija</translation>
+        <translation>可用版本</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="193"/>
         <source>No description available.</source>
-        <translation>Opis nije dostupan.</translation>
+        <translation>没有描述信息。</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="197"/>
         <source>URL</source>
-        <translation>Stranica</translation>
+        <translation>网址</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="201"/>
         <source>Repository</source>
-        <translation>Skladište</translation>
+        <translation>软件源</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="205"/>
         <source>Licenses</source>
-        <translation>Licensa</translation>
+        <translation>许可协议</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="209"/>
         <source>Group</source>
-        <translation>Grupa</translation>
+        <translation>组</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="213"/>
         <source>Groups</source>
-        <translation>Grupe</translation>
+        <translation>所属组</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="217"/>
         <source>Provides</source>
-        <translation>Obezbeđuje</translation>
+        <translation>提供</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="221"/>
         <source>Depends On</source>
-        <translation>Zavisi od</translation>
+        <translation>依赖于这些软件</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="225"/>
         <source>Required By</source>
-        <translation>Trazeno Od</translation>
+        <translation>被这些软件依赖</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="229"/>
         <source>Optional For</source>
-        <translation>Opciono Za</translation>
+        <translation>被这些软件依赖（可选）</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="233"/>
         <source>Optional Deps</source>
-        <translation>Opcione zavisnosti</translation>
+        <translation>依赖于这些软件（可选）</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="237"/>
         <source>Conflicts With</source>
-        <translation>U sukobu sa</translation>
+        <translation>与这些软件包冲突</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="241"/>
         <source>Replaces</source>
-        <translation>Zamjeni</translation>
+        <translation>替换这些软件包</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="245"/>
         <source>Popularity</source>
-        <translation>Popularnost</translation>
+        <translation>流行度</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="249"/>
         <source>votes</source>
-        <translation>glasovi</translation>
+        <translation>投票</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="253"/>
         <source>Download Size</source>
-        <translation>Veličina preuzimanja</translation>
+        <translation>下载大小</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="257"/>
         <source>Installed Size</source>
-        <translation>Veličina nakon instaliranja</translation>
+        <translation>安装大小</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="261"/>
         <source>Packager</source>
-        <translation>Paker</translation>
+        <translation>打包者</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="265"/>
         <source>Package</source>
-        <translation>Paket</translation>
+        <translation>软件包</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="269"/>
         <source>Packages</source>
-        <translation>Paketi</translation>
+        <translation>软件包</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="273"/>
         <source>Architecture</source>
-        <translation>Arhitektura</translation>
+        <translation>架构</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="277"/>
         <source>Build Date</source>
-        <translation>Datum izrade</translation>
+        <translation>构建日期</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="281"/>
         <source>Description</source>
-        <translation>Opis</translation>
+        <translation>描述</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="285"/>
         <source>Attention</source>
-        <translation>Pažnja</translation>
+        <translation>注意</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="289"/>
         <source>automatic</source>
-        <translation>automatski</translation>
+        <translation>自动</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="293"/>
         <source>Password</source>
-        <translation>Lozinka</translation>
+        <translation>密码</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="297"/>
         <source>Info</source>
-        <translation>Informacije</translation>
+        <translation>信息</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="301"/>
         <source>Files</source>
-        <translation>Datoteke</translation>
+        <translation>文件</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="305"/>
         <source>Transaction</source>
-        <translation>Tranzakcija</translation>
+        <translation>执行</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="309"/>
         <source>Output</source>
-        <translation>Izlaz</translation>
+        <translation>输出</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="313"/>
         <source>News</source>
-        <translation>Novosti</translation>
+        <translation>新闻</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="317"/>
         <source>Contents of &quot;%1&quot;</source>
-        <translation>Sadrzaj od &quot;%1&quot;</translation>
+        <translation>“%1”的目录</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="321"/>
         <source>Find</source>
-        <translation>Nadji</translation>
+        <translation>查找</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="325"/>
         <source>Clear</source>
-        <translation>Ocisti</translation>
+        <translation>清除</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="329"/>
         <source> (outdated installed version is %1)</source>
-        <translation>(zastarjelo, istalirana verzija je %1)</translation>
+        <translation>(已安装的过旧版本是 %1)</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="333"/>
         <source> (newer installed version is %1)</source>
-        <translation>(novija instalirana verzija je %1)</translation>
+        <translation>(已安装的更新版本是 %1)</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="337"/>
         <source>Building package list...</source>
-        <translation>Pravim listu paketa...</translation>
+        <translation>构建软件包列表……</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="341"/>
         <source>Searching for %1 latest news...</source>
-        <translation>Tražim najnovije vjesti za %1 ...</translation>
+        <translation>查找 %1 最近的新闻……</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="345"/>
         <source>There is one outdated package in your system:</source>
-        <translation>Postoji jedan zastarjeli paket u vašem sistemu:</translation>
+        <translation>你的系统有一个已经过时的软件包：</translation>
     </message>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="349"/>
         <source>There are %n outdated packages in your system:</source>
-        <translation><numerusform>Postoji %n neažuriran paket u Vašem sistemu:</numerusform><numerusform>Postoji %n neažurirana paketa u Vašem sistemu:</numerusform><numerusform>Postoji %n neažuriranih paketa u Vašem sistemu:</numerusform></translation>
+        <translation><numerusform>你的系统有一些已经过时的软件包：</numerusform></translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="353"/>
         <source>(version %1 is available)</source>
-        <translation>(verzija %1 je dostupna)</translation>
+        <translation>(%1 版本可用)</translation>
     </message>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="357"/>
         <source>%n packages</source>
-        <translation><numerusform>%n paket</numerusform><numerusform>%n paketa</numerusform><numerusform>%n paketa</numerusform></translation>
+        <translation><numerusform>%n 软件包</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="361"/>
         <source>%n selected</source>
-        <translation><numerusform>%n izabran</numerusform><numerusform>%n izabrana</numerusform><numerusform>%n izabranih</numerusform></translation>
+        <translation><numerusform>%n 已选择</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="365"/>
         <source>%n installed</source>
-        <translation><numerusform>%n instaliran</numerusform><numerusform>%n instalirana</numerusform><numerusform>%n instaliranih</numerusform></translation>
+        <translation><numerusform>%n 已安装</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="369"/>
         <source>%n outdated</source>
-        <translation><numerusform>%n neažuriran</numerusform><numerusform>%n neažurirana</numerusform><numerusform>%n neažuriranih</numerusform></translation>
+        <translation><numerusform>%n 已过时</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="373"/>
         <source>%n available</source>
-        <translation><numerusform>%n dostupan</numerusform><numerusform>%n dostupna</numerusform><numerusform>%n dostupnih</numerusform></translation>
+        <translation><numerusform>%n 可用</numerusform></translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="377"/>
         <source>Cleaning package cache...</source>
-        <translation>Čistim pakete u kešu...</translation>
+        <translation>清除软件包缓存……</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="381"/>
         <source>Removing Pacman&apos;s transaction lock file...</source>
-        <translation>Ukljanjam Pacmanov falj za zalkjučavanje...</translation>
+        <translation>删除 Pacman 文件锁……</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="385"/>
         <source>Syncing</source>
-        <translation>Sinhronizujem</translation>
+        <translation>同步中</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="389"/>
         <source>Press any key to continue...</source>
-        <translation>Pritisni bilo koji taster za nastavak...</translation>
+        <translation>按任意键继续……</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="397"/>
         <source>Sync database</source>
-        <translation>Sinhronizuj bazu podataka</translation>
+        <translation>同步数据库</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="401"/>
         <source>Synchronizing databases...</source>
-        <translation>Sinhronizujem bazu podataka...</translation>
+        <translation>同步数据库……</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="405"/>
         <source>is up to date</source>
-        <translation>ažurirano je</translation>
+        <translation>已经是最新版</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="409"/>
         <source>Starting full system upgrade...</source>
-        <translation>Počinje nadogradnja cjelog sistema...</translation>
+        <translation>开始完全的系统升级……</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="413"/>
         <source>Installing selected packages...</source>
-        <translation>Instaliravam označene pakete...</translation>
+        <translation>安装已选择的软件包……</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="417"/>
         <source>Removing selected packages...</source>
-        <translation>Uklanjam označene pakete...</translation>
+        <translation>卸载已选择的软件包……</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="421"/>
         <source>Removing/installing selected packages...</source>
-        <translation>Uklanjam/instaliram označene pakete...</translation>
+        <translation>卸载/安装 已选择的软件包……</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="425"/>
         <source>Choose a terminal</source>
-        <translation>Izaberi terminal</translation>
+        <translation>选择一个终端模拟器</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="429"/>
         <source>Running command in terminal...</source>
-        <translation>Pokrećem komandu u terminalu...</translation>
+        <translation>在终端运行命令……</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="433"/>
         <source>Command finished OK!</source>
-        <translation>Komanda je završila uspješno!</translation>
+        <translation>命令已成功执行！</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="437"/>
         <source>Command finished with errors!</source>
-        <translation>Komanda je završila sa greskom!</translation>
+        <translation>命令已执行，但是导致了错误！</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="441"/>
         <source>Retrieving %1</source>
-        <translation>Preuzimanje %1</translation>
+        <translation>获取 %1</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="445"/>
         <source>Total download size: %1 KB</source>
-        <translation>Ukupna veličina preuzimanja: %1 KB</translation>
+        <translation>总下载大小：%1 KB</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="449"/>
         <source>The following package needs to be retrieved</source>
-        <translation>Sledeći pakete trebaju biti preuzeti</translation>
+        <translation>需要获取以下软件包</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="453"/>
         <source>The following package will be removed</source>
-        <translation>Sledeći paketi će biti uklonjeni</translation>
+        <translation>以下软件包将被卸载</translation>
     </message>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="457"/>
         <source>The following %n packages need to be retrieved</source>
-        <translation><numerusform>Sledeći %n paket treba biti preuzet</numerusform><numerusform>Sledeća %n paketa treba biti preuzeto</numerusform><numerusform>Sledećih %n paketa treba biti preuzeto</numerusform></translation>
+        <translation><numerusform>需要获取以下 %n 个软件包</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="461"/>
         <source>The following %n packages will be removed</source>
-        <translation><numerusform>Sledeći %n paket će biti uklonjen</numerusform><numerusform>Sledeća %n paketa će biti uklonjeno</numerusform><numerusform>Sledećih %n paketa će biti uklonjeno</numerusform></translation>
+        <translation><numerusform>以下 %n 个软件包将被卸载</numerusform></translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="465"/>
         <source>There are forbidden packages in the removal list!</source>
-        <translation>Postoje zabranjeni paketi u listi za uklanjanje!</translation>
+        <translation>卸载列表里有被禁止的软件包！</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="469"/>
         <source>There are no new updates available!</source>
-        <translation>Trenutno nema novih ažuriranja!</translation>
+        <translation>没有可用更新！</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="473"/>
         <source>There is an update available!</source>
-        <translation>Nema dostupnih ažuriranja!</translation>
+        <translation>1 个更新可用！</translation>
     </message>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="477"/>
         <source>There are %n updates available!</source>
-        <translation><numerusform>Dostupno je %n ažuriranje!</numerusform><numerusform>Dostupno je %n ažuriranja!</numerusform><numerusform>Dostupno je %n ažuriranja!</numerusform></translation>
+        <translation><numerusform>%n 个更新可用！</numerusform></translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="481"/>
         <source>Confirm?</source>
-        <translation>Potvriditi?</translation>
+        <translation>确定？</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="485"/>
         <source>Warning!!!</source>
-        <translation>Upozorenje!!!</translation>
+        <translation>警告！！！</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="489"/>
         <source>Confirmation</source>
-        <translation>Potvrda</translation>
+        <translation>确认</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="493"/>
         <source>There has been a transaction error!</source>
-        <translation>Doslo je do greške u tranzakciji!</translation>
+        <translation>操作错误！</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="497"/>
         <source>Do you want to execute this transaction in a Terminal?</source>
-        <translation>Da li želite izvršiti ovu tranzakciju u Terminalu?</translation>
+        <translation>你要在终端里执行这项操作吗？</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="501"/>
         <source>Do you really want to clean the package cache?</source>
-        <translation>Da li stvarno želite da očistite keš pakete?</translation>
+        <translation>你真的要清除软件包缓存吗？</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="505"/>
         <source>Do you really want to remove Pacman&apos;s transaction lock file?</source>
-        <translation>Da li stvarno želite da uklonite Pakmanov falj za zalkjučavanje tranzakcija?</translation>
+        <translation>你真的要删除 Pacman 锁文件吗？</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="509"/>
         <source>Do you really want to cancel the transaction?</source>
-        <translation>Da li zaista želiti otkazati prenos?</translation>
+        <translation>你真的要取消这些操作吗？</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="513"/>
         <source>Please, enter the administrator&apos;s password</source>
-        <translation>Molim, unesite administratorsku lozinku</translation>
+        <translation>请输入管理员密码</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="519"/>
         <source>There are no means to get administrator&apos;s credentials.</source>
-        <translation>Nema načina da dobijemo administatorska prava.</translation>
+        <translation>无法获得管理员权限。</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="523"/>
         <source>You&apos;ll need to install a su frontend like gksu or kdesu.</source>
-        <translation>Moraćete da instalirate Su interfejs kao gksu ili kdesu.</translation>
+        <translation>你需要安装一个 su 的前端，比如 gksu 或 kdesu。</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="527"/>
         <source>You can not run Octopi with administrator&apos;s credentials.</source>
-        <translation>Nemožete pokrenuti Octopi bez administratorski prava.</translation>
+        <translation>你不能以管理员权限运行 Octopi。</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="531"/>
         <source>There is a pending transaction</source>
-        <translation>Postoji tranzakcija na čekanju</translation>
+        <translation>有一个追加的操作</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="535"/>
         <source>Do you really want to quit?</source>
-        <translation>Da li stvarno želite da izađete?</translation>
+        <translation>你真的要退出吗？</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="539"/>
         <source>Executing command</source>
-        <translation>Izvršavanje komande</translation>
+        <translation>执行命令</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="543"/>
         <source>Run in terminal</source>
-        <translation>Pokreni u terminalu</translation>
+        <translation>在终端中运行</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="547"/>
         <source>Needs application restart to take effect</source>
-        <translation>Aplikacija treba restart da bi promjene stupile na snagu</translation>
+        <translation>重启软件以生效</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="551"/>
         <source>These changes need application restart to take effect!</source>
-        <translation>Ove promjene zahtjevaju restart aplikacije da bi stupile na snagu!</translation>
+        <translation>这些变更需要软件重启以生效！</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="555"/>
         <source>Select the packages you want to install</source>
-        <translation>Selektujte pakete koje želite da instalirate</translation>
+        <translation>选择你想要安装的软件包</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="559"/>
         <source>This file does not appear to be a simple text.
 Are you sure you want to open it?</source>
-        <translation>Ova datoteka ne izgleda kao običan tekst.
-Da li ste sigurni da je želite otvoriti?</translation>
+        <translation>这个文件不像是一个纯文本文件。你确定要打开它吗？</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="564"/>
         <source>To be installed</source>
-        <translation>Za instalaciju</translation>
+        <translation>将被安装</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="568"/>
         <source>To be removed</source>
-        <translation>Za uklanjanje</translation>
+        <translation>将被卸载</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="572"/>
         <source>remove</source>
-        <translation>ukloni</translation>
+        <translation>卸载</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="576"/>
         <source>install</source>
-        <translation>instaliraj</translation>
+        <translation>安装</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="580"/>
         <source>Remove item</source>
-        <translation>Ukloni predmet</translation>
+        <translation>移除条目</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="584"/>
         <source>Remove items</source>
-        <translation>Ukloni predmete</translation>
+        <translation>移除条目</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="588"/>
         <source>Press Ctrl+A to select/deselect all</source>
-        <translation>Pritisnite Ctrl+A da bi ste označili/ponistili sve odabrano</translation>
+        <translation>按下 Ctal+A 以 选择/取消选择 所有内容</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="592"/>
         <source>Use &quot;%1&quot; tool</source>
-        <translation>Koristi &quot;%1&quot; alatki</translation>
+        <translation>使用工具 “%1”</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="596"/>
         <source>Copy path to clipboard</source>
-        <translation>Kopiraj putanju u skladište</translation>
+        <translation>复制路径到剪贴板</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="600"/>
         <source>Setup</source>
-        <translation>Podešavanja</translation>
+        <translation>设置</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="604"/>
         <source>Sync database interval</source>
-        <translation>Sinhronizuj interval baze podataka</translation>
+        <translation>更新频率</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="608"/>
         <source>Once a day</source>
-        <translation>Jednom na dan</translation>
+        <translation>1 天 1 次</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="612"/>
         <source>Once a day, at</source>
-        <translation>Jednom na dan, u</translation>
+        <translation>1 天 1 次，在此时刻：</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="616"/>
         <source>(value in 24-hour format: 0 to 23)</source>
-        <translation>(vrednost u 24-časovnom formatu: 0 - 23)</translation>
+        <translation>(24 小时制可用值：0 至 23)</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="620"/>
         <source>Once every</source>
-        <translation>Jednom za svaki</translation>
+        <translation>每隔此时间段 1 次：</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="624"/>
         <source>(value in minutes: 5 to 1380)</source>
-        <translation>(vrednost u minutama: 5 - 1380)</translation>
+        <translation>(分钟数可用值：5 至 1380)</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="628"/>
         <source>Set interval...</source>
-        <translation>Postavi interval...</translation>
+        <translation>设置更新频率……</translation>
     </message>
 </context>
 <context>
@@ -1150,17 +1149,17 @@ Da li ste sigurni da je želite otvoriti?</translation>
     <message>
         <location filename="Projects/octopi/src/searchbar.cpp" line="69"/>
         <source>Previous</source>
-        <translation>Prošli</translation>
+        <translation>上一个</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/searchbar.cpp" line="72"/>
         <source>Next</source>
-        <translation>Sledeći</translation>
+        <translation>下一个</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/searchbar.cpp" line="86"/>
         <source>Close</source>
-        <translation>Zatvori</translation>
+        <translation>关闭</translation>
     </message>
 </context>
 <context>
@@ -1168,12 +1167,12 @@ Da li ste sigurni da je želite otvoriti?</translation>
     <message>
         <location filename="Projects/octopi/ui/transactiondialog.ui" line="20"/>
         <source>Form</source>
-        <translation>Obrazac</translation>
+        <translation>形式</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/transactiondialog.ui" line="133"/>
         <source>Run in terminal</source>
-        <translation>Pokreni u terminalu</translation>
+        <translation>在终端中运行</translation>
     </message>
 </context>
 </TS>

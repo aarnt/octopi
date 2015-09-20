@@ -890,7 +890,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="425"/>
         <source>Choose a terminal</source>
-        <translation type="unfinished"/>
+        <translation>Escueyi una terminal</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="429"/>

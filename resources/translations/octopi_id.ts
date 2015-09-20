@@ -452,7 +452,7 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="153"/>
         <source>Ctrl+Shift+Y to display %1 group</source>
-        <translation>Ctrl+Shift+Y untuk menampilkan gup %1</translation>
+        <translation>Ctrl+Shift+Y untuk menampilkan grup %1</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="156"/>
@@ -1112,7 +1112,7 @@ Apakah kamu yakin ingin membuka berkas ini?</translation>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="604"/>
         <source>Sync database interval</source>
-        <translation>Selang selaraskan basis data</translation>
+        <translation>Selang waktu sinkronisasi basis data</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="608"/>
@@ -1142,7 +1142,7 @@ Apakah kamu yakin ingin membuka berkas ini?</translation>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="628"/>
         <source>Set interval...</source>
-        <translation>Atur selang...</translation>
+        <translation>Atur selang waktu...</translation>
     </message>
 </context>
 <context>
