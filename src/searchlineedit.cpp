@@ -23,7 +23,6 @@ SearchLineEdit::SearchLineEdit(QWidget *parent, bool hasSLocate) :
   QLineEdit(parent){
 
   m_hasLocate = hasSLocate;
-
   m_completerModel = new QStringListModel(this);
   m_completer = new QCompleter(m_completerModel, this);
   m_completer->setCaseSensitivity(Qt::CaseInsensitive);
@@ -54,12 +53,7 @@ SearchLineEdit::SearchLineEdit(QWidget *parent, bool hasSLocate) :
   QObject::connect(this, SIGNAL(textChanged(QString)), SLOT(updateSearchButton(QString)));
 
   // Some stylesheet and size corrections for the text box
-#if QT_VERSION >= 0x040700
   this->setPlaceholderText(StrConstants::getFind());
-#else
-  this->setToolTip(StrConstants::getFind());
-#endif
-
   this->setStyleSheet(this->styleSheetForCurrentState());
 }
 

@@ -1332,7 +1332,7 @@ void MainWindow::doInstall()
     command = "pacman -S --noconfirm " + listOfTargets;
 
     m_lastCommandList.clear();
-    m_lastCommandList.append("sudo pacman -S " + listOfTargets + ";");
+    m_lastCommandList.append("pacman -S " + listOfTargets + ";");
     m_lastCommandList.append("echo -e;");
     m_lastCommandList.append("read -n1 -p \"" + StrConstants::getPressAnyKey() + "\"");
 
@@ -1355,7 +1355,7 @@ void MainWindow::doInstall()
     else if (result == QDialogButtonBox::AcceptRole)
     {
       m_commandExecuting = ectn_RUN_IN_TERMINAL;
-      m_unixCommand->runCommandInTerminalAsNormalUser(m_lastCommandList);
+      m_unixCommand->runCommandInTerminal(m_lastCommandList);
     }
   }
 }
