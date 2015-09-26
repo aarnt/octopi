@@ -1426,6 +1426,10 @@ void MainWindow::gistSysInfo()
   tempFile->open(QIODevice::ReadWrite|QIODevice::Text);
   tempFile->setPermissions(QFile::Permissions(QFile::ExeOwner|QFile::ReadOwner));
 
+  QString hostname = UnixCommand::getCommandOutput("hostname");
+  hostname.remove("\n");
+  QString homePath = QDir::homePath();
+
   QByteArray out;
 
   if (UnixCommand::getLinuxDistro() == ectn_KAOS)
@@ -1434,6 +1438,10 @@ void MainWindow::gistSysInfo()
     tempFile->write("cat /etc/KaOS-release\n");
     tempFile->write("----------------------------------------------------------------------------------------------------------\n\n");
     out = UnixCommand::getCommandOutput("cat /etc/KaOS-release");
+
+    out.replace(hostname, "<HOSTNAME>");
+    out.replace(homePath, "<HOME_PATH>");
+
     tempFile->write(out);
     tempFile->write("\n\n");
   }
@@ -1443,6 +1451,10 @@ void MainWindow::gistSysInfo()
     tempFile->write("cat /etc/lsb-release\n");
     tempFile->write("----------------------------------------------------------------------------------------------------------\n\n");
     out = UnixCommand::getCommandOutput("cat /etc/lsb-release");
+
+    out.replace(hostname, "<HOSTNAME>");
+    out.replace(homePath, "<HOME_PATH>");
+
     tempFile->write(out);
     tempFile->write("\n\n");
   }
@@ -1453,6 +1465,10 @@ void MainWindow::gistSysInfo()
     tempFile->write("inxi -Fxz\n");
     tempFile->write("----------------------------------------------------------------------------------------------------------\n\n");
     out = UnixCommand::getCommandOutput("inxi -Fxz -c 0");
+
+    out.replace(hostname, "<HOSTNAME>");
+    out.replace(homePath, "<HOME_PATH>");
+
     tempFile->write(out);
     tempFile->write("\n\n");
   }
@@ -1462,6 +1478,10 @@ void MainWindow::gistSysInfo()
     tempFile->write("uname -a\n");
     tempFile->write("----------------------------------------------------------------------------------------------------------\n\n");
     out = UnixCommand::getCommandOutput("uname -a");
+
+    out.replace(hostname, "<HOSTNAME>");
+    out.replace(homePath, "<HOME_PATH>");
+
     tempFile->write(out);
     tempFile->write("\n\n");
   }
@@ -1472,6 +1492,10 @@ void MainWindow::gistSysInfo()
     tempFile->write("mhwd -li -d\n");
     tempFile->write("----------------------------------------------------------------------------------------------------------\n\n");
     out = UnixCommand::getCommandOutput("mhwd -li -d");
+
+    out.replace(hostname, "<HOSTNAME>");
+    out.replace(homePath, "<HOME_PATH>");
+
     tempFile->write(out);
     tempFile->write("\n\n");
   }
@@ -1480,6 +1504,10 @@ void MainWindow::gistSysInfo()
   tempFile->write("journalctl -b -p err\n");
   tempFile->write("----------------------------------------------------------------------------------------------------------\n\n");
   out = UnixCommand::getCommandOutput("journalctl -b -p err");
+
+  out.replace(hostname, "<HOSTNAME>");
+  out.replace(homePath, "<HOME_PATH>");
+
   tempFile->write(out);
   tempFile->write("\n\n");
 
@@ -1487,6 +1515,10 @@ void MainWindow::gistSysInfo()
   tempFile->write("cat /etc/pacman.conf\n");
   tempFile->write("----------------------------------------------------------------------------------------------------------\n\n");
   out = UnixCommand::getCommandOutput("cat /etc/pacman.conf");
+
+  out.replace(hostname, "<HOSTNAME>");
+  out.replace(homePath, "<HOME_PATH>");
+
   tempFile->write(out);
   tempFile->write("\n\n");
 
@@ -1494,6 +1526,10 @@ void MainWindow::gistSysInfo()
   tempFile->write("pacman -Qm\n");
   tempFile->write("----------------------------------------------------------------------------------------------------------\n\n");
   out = UnixCommand::getCommandOutput("pacman -Qm");
+
+  out.replace(hostname, "<HOSTNAME>");
+  out.replace(homePath, "<HOME_PATH>");
+
   tempFile->write(out);
   tempFile->write("\n\n");
 
@@ -1503,6 +1539,10 @@ void MainWindow::gistSysInfo()
     tempFile->write("cat /var/log/pacman.log\n");
     tempFile->write("----------------------------------------------------------------------------------------------------------\n\n");
     out = UnixCommand::getCommandOutput("cat /var/log/pacman.log");
+
+    out.replace(hostname, "<HOSTNAME>");
+    out.replace(homePath, "<HOME_PATH>");
+
     tempFile->write(out);
     tempFile->flush();
     tempFile->close();
@@ -1513,6 +1553,10 @@ void MainWindow::gistSysInfo()
     tempFile->write("head --bytes=256K /var/log/pacman.log\n");
     tempFile->write("----------------------------------------------------------------------------------------------------------\n\n");
     out = UnixCommand::getCommandOutput("head --bytes=256K /var/log/pacman.log");
+
+    out.replace(hostname, "<HOSTNAME>");
+    out.replace(homePath, "<HOME_PATH>");
+
     tempFile->write(out);
     tempFile->flush();
     tempFile->close();

@@ -1,70 +1,70 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="ast" version="2.0">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="fi_FI" version="2.0">
 <context>
     <name>AddRepo</name>
     <message>
         <location filename="Projects/octopi/repoeditor/addrepo.ui" line="14"/>
         <source>Add Repository - Octopi</source>
-        <translation>Amestar repositorios - Octopi</translation>
+        <translation>Lisää pakettilähde - Octopi</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/addrepo.ui" line="22"/>
         <source>Repository:</source>
-        <translation>Repositoriu:</translation>
+        <translation>Pakettilähde:</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/addrepo.ui" line="32"/>
         <source>Repository name</source>
-        <translation>Nome del repositoriu</translation>
+        <translation>Pakettilähteen nimi</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/addrepo.ui" line="39"/>
         <source>Location:</source>
-        <translation>Allugamientu:</translation>
+        <translation>Sijainti:</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/addrepo.cpp" line="86"/>
         <source>The repository name field can&apos;t be blank.</source>
-        <translation>Nun pue tar baleru&apos;l nome&apos;l campu&apos;l repsitoriu.</translation>
+        <translation>pakettilähteen nimi kenttä ei voi olla tyhjä</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/addrepo.cpp" line="101"/>
         <source>The repository location field is not valid.</source>
-        <translation>Nun ye válidu&apos;l campu d&apos;allugamientu del repositoriu.</translation>
+        <translation>lähteiden siainti kenttä virheellinen</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/addrepo.cpp" line="104"/>
         <source>The repository name field is not valid.</source>
-        <translation>Nun ye válidu&apos;l campu del nome del repositoriu.</translation>
+        <translation>Arkiston nimi kenttä ei kelpaa .</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/addrepo.cpp" line="111"/>
         <source>Address of remote or local packages repository</source>
-        <translation>Direición del repositoriu de paquetes llocal o remotu</translation>
+        <translation>Osoite kaukolaitteille paketteja arkistoon</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/addrepo.cpp" line="115"/>
         <source>Path to mirrors list file</source>
-        <translation>Camín al ficheru de llista d&apos;espeyos</translation>
+        <translation>polku mirrot listaan</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/addrepo.cpp" line="124"/>
         <source>Error</source>
-        <translation>Fallu</translation>
+        <translation>Virhe</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/addrepo.cpp" line="125"/>
         <source>Can&apos;t add repository.</source>
-        <translation>Nun pue amestase&apos;l repositoriu.</translation>
+        <translation>ei voi lisätä</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/addrepo.cpp" line="136"/>
         <source>Select local repository</source>
-        <translation>Esbillar repositoriu llocal</translation>
+        <translation>Valitse paikallinen lähde</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/addrepo.cpp" line="149"/>
         <source>Select mirrors list</source>
-        <translation>Esbillar llistáu d&apos;espeyos</translation>
+        <translation>valitse mirror lista</translation>
     </message>
 </context>
 <context>
@@ -73,42 +73,42 @@
         <location filename="Projects/octopi/repoeditor/repoconf.cpp" line="176"/>
         <location filename="Projects/octopi/repoeditor/repoconf.cpp" line="185"/>
         <source>Backup error</source>
-        <translation>Fallu de copia de seguranza</translation>
+        <translation>varmuuskopio virhe</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/repoconf.cpp" line="177"/>
         <source>Backup file already exists.</source>
-        <translation>Yá esiste&apos;l ficheru de copia de seguranza.</translation>
+        <translation>backup tiedosto on jo olemassa</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/repoconf.cpp" line="177"/>
         <source>Do you want to overwrite it?</source>
-        <translation>¿Quies sobrescribilu?</translation>
+        <translation>Haluatko ylikirjoittaa</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/repoconf.cpp" line="186"/>
         <source>Can&apos;t create backup file.</source>
-        <translation>Nun pue crease&apos;l ficheru de copia de seguranza</translation>
+        <translation>ei pysty tekemään varmuuskopiointi tiedostoa</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/repoconf.cpp" line="186"/>
         <source>Do you want to proceed without a backup?</source>
-        <translation>¿De xuru que quies siguir ensin una copia de seguranza?</translation>
+        <translation>Haluatko jatkaa varmuuskopiota</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/repoconf.cpp" line="242"/>
         <source>Active</source>
-        <translation>Activu</translation>
+        <translation>Aktiivinen</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/repoconf.cpp" line="242"/>
         <source>Repository</source>
-        <translation>Repositoriu</translation>
+        <translation>Pakettilähde</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/repoconf.cpp" line="242"/>
         <source>Options</source>
-        <translation>Opciones</translation>
+        <translation>Asetukset</translation>
     </message>
 </context>
 <context>
@@ -116,87 +116,87 @@
     <message>
         <location filename="Projects/octopi/repoeditor/repoeditor.ui" line="14"/>
         <source>Repository Editor - Octopi</source>
-        <translation>Editor de repositoriu - Octopi</translation>
+        <translation>Repositori muokkain-Octopi</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/repoeditor.ui" line="28"/>
         <source>Available Repositories</source>
-        <translation>Respositorios disponibles</translation>
+        <translation>saatavilla olevat lähteet</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/repoeditor.ui" line="76"/>
         <source>Edit</source>
-        <translation>Editar</translation>
+        <translation>Muokkaa</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/repoeditor.ui" line="91"/>
         <source>Add</source>
-        <translation>Amestar</translation>
+        <translation>Lisää</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/repoeditor.ui" line="106"/>
         <source>Remove</source>
-        <translation>Desaniciar</translation>
+        <translation>Poista</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/repoeditor.ui" line="134"/>
         <source>Move Up</source>
-        <translation>Xubir</translation>
+        <translation>liiku ylös</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/repoeditor.ui" line="149"/>
         <source>Move Down</source>
-        <translation>Baxar</translation>
+        <translation>liiku alas</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/repoeditor.ui" line="166"/>
         <source>Backup</source>
-        <translation>Copia de seguranza</translation>
+        <translation>varmuuskopio</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/repoeditor.ui" line="174"/>
         <source>Create backup on save</source>
-        <translation>Crear copia de seguranza al guardar</translation>
+        <translation>tee varmuuskopio tallennuksessa</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/repoeditor.ui" line="197"/>
         <source>Load a backup file</source>
-        <translation>Cargar una copia de seguranza</translation>
+        <translation>lataa varmuuskopio tiedosto</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/repoeditor.ui" line="213"/>
         <source>Backup file:</source>
-        <translation>Ficheru de copia de seguranza:</translation>
+        <translation>Varmuuskopio tiedosto</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/repoeditor.cpp" line="99"/>
         <source>Can&apos;t load backup file</source>
-        <translation>Nun pue cargase&apos;l ficheru de copia de seguranza</translation>
+        <translation>Ei voi ladata varmuuskopiota</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/repoeditor.cpp" line="100"/>
         <source>Selected file is not valid</source>
-        <translation>Nun ye válidu&apos;l ficheru esbilláu</translation>
+        <translation>valittu tiedosto ei ole toimiva</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/repoeditor.cpp" line="149"/>
         <source>Success</source>
-        <translation>Ésitu</translation>
+        <translation>Valmis</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/repoeditor.cpp" line="150"/>
         <source>Repositories configuration successfully saved.</source>
-        <translation>Guardóse con ésitu la configuración de los repositorios.</translation>
+        <translation>lähteiden konfiguraatio onnistuneesti tallennettu</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/repoeditor.cpp" line="155"/>
         <source>Error</source>
-        <translation>Fallu</translation>
+        <translation>Virhe</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/repoeditor.cpp" line="156"/>
         <source>Repositories configuration not saved.</source>
-        <translation>Nun se guardó la configuración de los repositorios.</translation>
+        <translation>lähteiden määrittely ei voi tallentaa</translation>
     </message>
 </context>
 </TS>

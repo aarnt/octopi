@@ -126,7 +126,7 @@
     <message>
         <location filename="Projects/octopi/repoeditor/repoeditor.ui" line="76"/>
         <source>Edit</source>
-        <translation type="unfinished"/>
+        <translation>Muokkaa</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/repoeditor.ui" line="91"/>
