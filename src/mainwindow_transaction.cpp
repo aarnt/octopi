@@ -1332,7 +1332,7 @@ void MainWindow::doInstall()
     command = "pacman -S --noconfirm " + listOfTargets;
 
     m_lastCommandList.clear();
-    m_lastCommandList.append("pacman -S " + listOfTargets + ";");
+    m_lastCommandList.append("sudo pacman -S " + listOfTargets + ";");
     m_lastCommandList.append("echo -e;");
     m_lastCommandList.append("read -n1 -p \"" + StrConstants::getPressAnyKey() + "\"");
 
@@ -1355,7 +1355,7 @@ void MainWindow::doInstall()
     else if (result == QDialogButtonBox::AcceptRole)
     {
       m_commandExecuting = ectn_RUN_IN_TERMINAL;
-      m_unixCommand->runCommandInTerminal(m_lastCommandList);
+      m_unixCommand->runCommandInTerminalAsNormalUser(m_lastCommandList);
     }
   }
 }
@@ -1534,7 +1534,7 @@ void MainWindow::toggleTransactionActions(const bool value)
 
   ui->actionPacmanLogViewer->setEnabled(value);
   ui->actionCacheCleaner->setEnabled(value);
-  ui->actionRepositoryEditor->setEnabled(value);  
+  ui->actionRepositoryEditor->setEnabled(value);
   m_actionSysInfo->setEnabled(value);
 
   m_actionSwitchToAURTool->setEnabled(value);
@@ -1700,7 +1700,7 @@ void MainWindow::actionsProcessFinished(int exitCode, QProcess::ExitStatus exitS
 
       if (!aurGroup)
       {
-        metaBuildPackageList();        
+        metaBuildPackageList();
       }
     }
 
@@ -1780,7 +1780,7 @@ void MainWindow::actionsProcessFinished(int exitCode, QProcess::ExitStatus exitS
 
     if (res == QMessageBox::Yes)
     {
-      m_unixCommand->runCommandInTerminal(m_lastCommandList);         
+      m_unixCommand->runCommandInTerminal(m_lastCommandList);
       return;
     }
   }
@@ -1901,7 +1901,7 @@ bool MainWindow::searchForKeyVerbs(const QString &msg)
  * Processes the output of the 'pacman process' so we can update percentages and messages at real time
  */
 void MainWindow::parsePacmanProcessOutput(const QString &pMsg)
-{  
+{
   if (m_commandExecuting == ectn_RUN_IN_TERMINAL ||
       m_commandExecuting == ectn_RUN_SYSTEM_UPGRADE_IN_TERMINAL) return;
 
@@ -2063,7 +2063,7 @@ void MainWindow::parsePacmanProcessOutput(const QString &pMsg)
   }
   //It's another error, so we have to output it
   else
-  {      
+  {
     //Let's supress some annoying string bugs...
     msg.remove(QRegExp("\\(process.+"));
     msg.remove(QRegExp("Using the fallback.+"));
@@ -2256,7 +2256,7 @@ void MainWindow::writeToTabOutputExt(const QString &msg, TreatURLLinks treatURLL
   //std::cout << "To print: " << msg.toLatin1().data() << std::endl;
   QTextBrowser *text = ui->twProperties->widget(ctn_TABINDEX_OUTPUT)->findChild<QTextBrowser*>("textBrowser");
   if (text)
-  {    
+  {
     //If the msg waiting to being print is from curl status OR any other unwanted string...
     if ((msg.contains(QRegExp("\\(\\d")) &&
          (!msg.contains("target", Qt::CaseInsensitive)) &&
