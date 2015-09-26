@@ -234,6 +234,15 @@ QByteArray UnixCommand::getAURPackageList(const QString &searchString)
 }
 
 /*
+ * Returns the SHELL environment variable, if not set defaults to sh.
+ */
+QString UnixCommand::getShell()
+{
+    QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
+    return env.value("SHELL", "/bin/sh");
+}
+
+/*
  * Returns a string containing all packages no one depends on
  */
 QByteArray UnixCommand::getUnrequiredPackageList()

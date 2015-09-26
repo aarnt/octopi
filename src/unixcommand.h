@@ -78,6 +78,8 @@ public:
 
   static QString getPacmanVersion();
 
+  static QString getShell();
+
   //Delegations from Package class (due to QProcess use)
   static QString runCommand(const QString& commandToRun);
   static QString runCurlCommand(const QString& commandToRun);
