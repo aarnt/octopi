@@ -2,26 +2,47 @@
     <qresource prefix="/">
         <file>resources/images/octopi_green.png</file>
         <file>resources/images/binary.png</file>
-        <file>resources/translations/octopi_repoeditor_sk.qm</file>
-        <file>resources/translations/octopi_repoeditor_sv.qm</file>
-        <file>resources/translations/octopi_repoeditor_fr_FR.qm</file>
-        <file>resources/translations/octopi_repoeditor_zh_TW.qm</file>
-        <file>resources/translations/octopi_repoeditor_id.qm</file>
-        <file>resources/translations/octopi_repoeditor_pt_BR.qm</file>
-        <file>resources/translations/octopi_repoeditor_he.qm</file>
-        <file>resources/translations/octopi_repoeditor_lt.qm</file>
+        <file>resources/translations/octopi_repoeditor_ar.qm</file>
+        <file>resources/translations/octopi_repoeditor_ast.qm</file>
         <file>resources/translations/octopi_repoeditor_bg.qm</file>
+        <file>resources/translations/octopi_repoeditor_ca.qm</file>
         <file>resources/translations/octopi_repoeditor_cs.qm</file>
+        <file>resources/translations/octopi_repoeditor_da.qm</file>
+        <file>resources/translations/octopi_repoeditor_de.qm</file>
+        <file>resources/translations/octopi_repoeditor_el.qm</file>
+        <file>resources/translations/octopi_repoeditor_en_GB.qm</file>
         <file>resources/translations/octopi_repoeditor_en.qm</file>
-        <file>resources/translations/octopi_repoeditor_nl.qm</file>
-        <file>resources/translations/octopi_repoeditor_pl.qm</file>
-        <file>resources/translations/octopi_repoeditor_tr_TR.qm</file>
-        <file>resources/translations/octopi_repoeditor_nb.qm</file>
+        <file>resources/translations/octopi_repoeditor_es_419.qm</file>
         <file>resources/translations/octopi_repoeditor_es_AR.qm</file>
         <file>resources/translations/octopi_repoeditor_es_ES.qm</file>
-        <file>resources/translations/octopi_repoeditor_de.qm</file>
+        <file>resources/translations/octopi_repoeditor_eu.qm</file>
+        <file>resources/translations/octopi_repoeditor_fi.qm</file>
+        <file>resources/translations/octopi_repoeditor_fi_FI.qm</file>
+        <file>resources/translations/octopi_repoeditor_fr_FR.qm</file>
+        <file>resources/translations/octopi_repoeditor_he.qm</file>
         <file>resources/translations/octopi_repoeditor_hu.qm</file>
+        <file>resources/translations/octopi_repoeditor_id.qm</file>
         <file>resources/translations/octopi_repoeditor_it.qm</file>
         <file>resources/translations/octopi_repoeditor_ja.qm</file>
+        <file>resources/translations/octopi_repoeditor_lt.qm</file>
+        <file>resources/translations/octopi_repoeditor_ms_MY.qm</file>
+        <file>resources/translations/octopi_repoeditor_nb.qm</file>
+        <file>resources/translations/octopi_repoeditor_nl.qm</file>
+        <file>resources/translations/octopi_repoeditor_pl.qm</file>
+        <file>resources/translations/octopi_repoeditor_pt_BR.qm</file>
+        <file>resources/translations/octopi_repoeditor_pt_PT.qm</file>
+        <file>resources/translations/octopi_repoeditor_ro.qm</file>
+        <file>resources/translations/octopi_repoeditor_ru.qm</file>
+        <file>resources/translations/octopi_repoeditor_sk.qm</file>
+        <file>resources/translations/octopi_repoeditor_sr@latin.qm</file>
+        <file>resources/translations/octopi_repoeditor_sr_RS.qm</file>
+        <file>resources/translations/octopi_repoeditor_sv.qm</file>
+        <file>resources/translations/octopi_repoeditor_tr_TR.qm</file>
+        <file>resources/translations/octopi_repoeditor_uk.qm</file>
+        <file>resources/translations/octopi_repoeditor_uz.qm</file>
+        <file>resources/translations/octopi_repoeditor_vi.qm</file>
+        <file>resources/translations/octopi_repoeditor_zh_TW.qm</file>
+        <file>resources/translations/octopi_repoeditor_zh-Hans.ts</file>
+        <file>resources/translations/octopi_repoeditor_hr.qm</file>
     </qresource>
 </RCC>

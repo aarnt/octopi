@@ -31,7 +31,7 @@ public:
   }
 
   static QString getApplicationVersion(){
-    return "0.7.1-dev";
+    return "0.8.0-dev";
   }
 
   static QString getQtVersion(){
@@ -60,6 +60,9 @@ public:
     if (UnixCommand::getLinuxDistro() == ectn_KAOS)
       return QLatin1String( "KCP" );
 
+    if (UnixCommand::getLinuxDistro() == ectn_PARABOLA)
+      return QLatin1String( "Custom" );
+
     return QLatin1String( "AUR" );
   }
 
@@ -68,6 +71,8 @@ public:
       return QLatin1String( "ccr" );
     else if (UnixCommand::getLinuxDistro() == ectn_KAOS)
       return QLatin1String( "kcp" );
+    else if (UnixCommand::getLinuxDistro() == ectn_PARABOLA)
+      return QLatin1String( "custom" );
 
     return QLatin1String( "aur" );
   }
@@ -100,6 +105,8 @@ public:
       return QLatin1String( "Ccr" );
     else if (UnixCommand::getLinuxDistro() == ectn_KAOS)
       return QLatin1String( "KCP" );
+    else if (UnixCommand::getLinuxDistro() == ectn_PARABOLA)
+      return QLatin1String( "Custom" );
 
     return QLatin1String( "AUR" );
   }
@@ -110,6 +117,8 @@ public:
       return QLatin1String( "ccr/" );
     else if (UnixCommand::getLinuxDistro() == ectn_KAOS)
       return "kcp/";
+    else if (UnixCommand::getLinuxDistro() == ectn_PARABOLA)
+      return "custom/";
 
     return QLatin1String( "aur/" );
   }
@@ -142,12 +151,16 @@ public:
     return QObject::tr("Netrunner Rolling news");
   }
 
+  static QString getParabolaNews(){
+    return QObject::tr("Parabola GNU/Linux-libre news");
+  }
+
   static QString getNewsErrorMessage(){
     return QObject::tr("No news could be found! Press Ctrl+G to download the latest news.");
   }
 
   static QString getIncompatibleLinuxDistroError(){
-    return QObject::tr("This Linux distro seems to be incompatible with Octopi!");
+    return QObject::tr("This GNU/Linux distro seems to be incompatible with Octopi!");
   }
 
   static QString getInternetUnavailableError(){
@@ -162,6 +175,7 @@ public:
     QString tool = getForeignRepositoryToolName();
     tool[0] = tool[0].toUpper();
     tool = "<" + tool + ">";
+
     return tool.toLatin1();
   }
 
@@ -353,8 +367,12 @@ public:
     return QObject::tr("(version %1 is available)");
   }
 
-  static QString getSelectedPackages(int packageCount){
-    return QObject::tr("%n (%2) packages", 0, packageCount);
+  static QString getTotalPackages(int packageCount){
+    return QObject::tr("%n packages", 0, packageCount);
+  }
+
+  static QString getSelectedPackages(int selectedCount){
+    return QObject::tr("%n selected", 0, selectedCount);
   }
 
   static QString getNumberInstalledPackages(int installedPackagesCount){

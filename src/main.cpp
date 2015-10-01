@@ -34,11 +34,6 @@
 int main(int argc, char *argv[])
 {
   ArgumentList *argList = new ArgumentList(argc, argv);
-
-#if QT_VERSION < 0x050000
-  QApplication::setGraphicsSystem(QLatin1String("raster"));
-#endif
-
   QString packagesToInstall;
   QString arg;
 
@@ -110,6 +105,7 @@ int main(int argc, char *argv[])
   app.setActivationWindow(&w);
   app.setQuitOnLastWindowClosed(false);
 
+/*
 #if QT_VERSION < 0x050000
   #ifndef NO_GTK_STYLE
   if (!argList->getSwitch("-style"))
@@ -126,6 +122,7 @@ int main(int argc, char *argv[])
   }
   #endif
 #endif
+*/
 
   if (argList->getSwitch("-sysupgrade-noconfirm"))
   {

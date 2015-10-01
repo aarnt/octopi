@@ -408,7 +408,7 @@ void MainWindow::insertIntoInstallPackageOptDeps(const QString &packageName)
   CPUIntensiveComputing *cic = new CPUIntensiveComputing;
 
   //Does this package have non installed optional dependencies?
-  QStringList optDeps = Package::getOptionalDeps(packageName); //si->text());
+  QStringList optDeps = Package::getOptionalDeps(packageName);
   QList<const PackageRepository::PackageData*> optionalPackages;
 
   foreach(QString optDep, optDeps)
@@ -479,7 +479,6 @@ bool MainWindow::insertIntoRemovePackageDeps(const QStringList &dependencies)
   if (newDeps.count() > 0)
   {
     CPUIntensiveComputing *cic = new CPUIntensiveComputing;
-
     MultiSelectionDialog *msd = new MultiSelectionDialog(this);
     msd->setWindowTitle(StrConstants::getRemovePackages(newDeps.count()));
     msd->setWindowIcon(windowIcon());
@@ -1154,6 +1153,10 @@ bool MainWindow::doRemovePacmanLockFile()
       UnixCommand::execCommand("rm " + lockFilePath);
       writeToTabOutputExt("<b>" + StrConstants::getCommandFinishedOK() + "</b>");
     }
+    else
+    {
+      return false;
+    }
   }
 
   return true;
@@ -1531,7 +1534,7 @@ void MainWindow::toggleTransactionActions(const bool value)
 
   ui->actionPacmanLogViewer->setEnabled(value);
   ui->actionCacheCleaner->setEnabled(value);
-  ui->actionRepositoryEditor->setEnabled(value);  
+  ui->actionRepositoryEditor->setEnabled(value);
   m_actionSysInfo->setEnabled(value);
 
   m_actionSwitchToAURTool->setEnabled(value);
@@ -1697,7 +1700,7 @@ void MainWindow::actionsProcessFinished(int exitCode, QProcess::ExitStatus exitS
 
       if (!aurGroup)
       {
-        metaBuildPackageList();        
+        metaBuildPackageList();
       }
     }
 
@@ -1777,7 +1780,7 @@ void MainWindow::actionsProcessFinished(int exitCode, QProcess::ExitStatus exitS
 
     if (res == QMessageBox::Yes)
     {
-      m_unixCommand->runCommandInTerminal(m_lastCommandList);         
+      m_unixCommand->runCommandInTerminal(m_lastCommandList);
       return;
     }
   }
@@ -1852,7 +1855,18 @@ void MainWindow::actionsProcessReadOutput()
   if (WMHelper::getSUCommand().contains("kdesu"))
   {
     QString msg = m_unixCommand->readAllStandardOutput();
-    splitOutputStrings(msg);
+
+    if (m_commandExecuting == ectn_SYNC_DATABASE &&
+        msg.contains("Usage: /usr/bin/kdesu [options] command"))
+      return;
+
+    msg = msg.remove("Fontconfig warning: \"/etc/fonts/conf.d/50-user.conf\", line 14:");
+    msg = msg.remove("reading configurations from ~/.fonts.conf is deprecated. please move it to /home/arnt/.config/fontconfig/fonts.conf manually");
+
+    if (!msg.trimmed().isEmpty())
+    {
+      splitOutputStrings(msg);
+    }
   }
   else if (WMHelper::getSUCommand().contains("gksu"))
   {
@@ -1887,7 +1901,7 @@ bool MainWindow::searchForKeyVerbs(const QString &msg)
  * Processes the output of the 'pacman process' so we can update percentages and messages at real time
  */
 void MainWindow::parsePacmanProcessOutput(const QString &pMsg)
-{  
+{
   if (m_commandExecuting == ectn_RUN_IN_TERMINAL ||
       m_commandExecuting == ectn_RUN_SYSTEM_UPGRADE_IN_TERMINAL) return;
 
@@ -2049,7 +2063,7 @@ void MainWindow::parsePacmanProcessOutput(const QString &pMsg)
   }
   //It's another error, so we have to output it
   else
-  {      
+  {
     //Let's supress some annoying string bugs...
     msg.remove(QRegExp("\\(process.+"));
     msg.remove(QRegExp("Using the fallback.+"));
@@ -2066,7 +2080,6 @@ void MainWindow::parsePacmanProcessOutput(const QString &pMsg)
     msg.remove(QRegExp("QCoreApplication.+"));
     msg.remove(QRegExp("Fontconfig warning.+"));
     msg.remove(QRegExp("reading configurations from.+"));
-
     msg.remove(QRegExp(".+annot load library.+"));
     msg = msg.trimmed();
 
@@ -2201,7 +2214,13 @@ bool MainWindow::splitOutputStrings(const QString &output)
 void MainWindow::actionsProcessRaisedError()
 {
   QString msg = m_unixCommand->readAllStandardError();
-  splitOutputStrings(msg);
+  msg = msg.remove("Fontconfig warning: \"/etc/fonts/conf.d/50-user.conf\", line 14:");
+  msg = msg.remove("reading configurations from ~/.fonts.conf is deprecated. please move it to /home/arnt/.config/fontconfig/fonts.conf manually");
+
+  if (!msg.trimmed().isEmpty())
+  {
+    splitOutputStrings(msg);
+  }
 }
 
 /*
@@ -2237,7 +2256,7 @@ void MainWindow::writeToTabOutputExt(const QString &msg, TreatURLLinks treatURLL
   //std::cout << "To print: " << msg.toLatin1().data() << std::endl;
   QTextBrowser *text = ui->twProperties->widget(ctn_TABINDEX_OUTPUT)->findChild<QTextBrowser*>("textBrowser");
   if (text)
-  {    
+  {
     //If the msg waiting to being print is from curl status OR any other unwanted string...
     if ((msg.contains(QRegExp("\\(\\d")) &&
          (!msg.contains("target", Qt::CaseInsensitive)) &&
@@ -2282,6 +2301,7 @@ void MainWindow::writeToTabOutputExt(const QString &msg, TreatURLLinks treatURLL
         newMsg = "<b><font color=\"#E55451\">" + newMsg + "&nbsp;</font></b>"; //RED
       }
       else if(newMsg.contains("checking ") ||
+              newMsg.contains("is synced") ||
               newMsg.contains("-- reinstalling") ||
               newMsg.contains("installing ") ||
               newMsg.contains("upgrading ") ||

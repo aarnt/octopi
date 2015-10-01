@@ -204,6 +204,8 @@ private:
   QString m_cachedPackageInFiles; //Used in Files tab
 
   QSet<QString> * m_unrequiredPackageList;
+  QStringList m_listOfVisitedPackages;
+  int m_indOfVisitedPackage;
 
   int selectTerminal(const int initialTerminalIndex);
 
@@ -425,8 +427,10 @@ private slots:
   void searchBarFindNextInTreeView();
   void searchBarFindPreviousInTreeView();
   void searchBarClosedInTreeView();
+  void showAnchorDescription(const QUrl & link);
+  void positionInPackageList(const QString &pkgName);
   void outputTextBrowserAnchorClicked(const QUrl & link);
-
+  void execToolTip();
   void launchPLV();
   void launchRepoEditor();
   void launchCacheCleaner();

@@ -22,18 +22,14 @@
 #include "mainwindow.h"
 
 #include <QFutureWatcher>
-
-#if QT_VERSION > 0x050000
-  #include <QtConcurrent/QtConcurrentMap>
-#else
-  #include <QtConcurrentMap>
-#endif
+#include <QtConcurrent/QtConcurrentMap>
 
 /*
  * Global functions related to Octopi's multithread code
  */
 
 QFutureWatcher<QString> g_fwToolTip;
+QFutureWatcher<QString> g_fwToolTipInfo;
 QFutureWatcher<QList<PackageListData> *> g_fwPacman;
 QFutureWatcher<QList<PackageListData> *> g_fwForeignPacman;
 QFutureWatcher<GroupMemberPair>          g_fwPacmanGroup;
@@ -44,6 +40,7 @@ QFutureWatcher<QString> g_fwDistroNews;
 QFutureWatcher<QString> g_fwPackageOwnsFile;
 QFutureWatcher<QList<PackageListData> *> g_fwMarkForeignPackages;
 QFutureWatcher<QSet<QString> *> g_fwUnrequiredPacman;
+QFutureWatcher<PackageInfoData> g_fwKCPInformation;
 
 /*
  * Given a packageName, returns its description
@@ -169,7 +166,6 @@ QString getLatestDistroNews()
  */
 QList<PackageListData> * markForeignPackagesInPkgList(bool hasAURTool, QStringList *outdatedAURStringList)
 {
-  // Fetch foreign package list
   QList<PackageListData> * result = new QList<PackageListData>();
   std::unique_ptr<QList<PackageListData> > listForeign(Package::getForeignPackageList());
   PackageListData pld;
@@ -198,4 +194,12 @@ QList<PackageListData> * markForeignPackagesInPkgList(bool hasAURTool, QStringLi
   }
 
   return result;
+}
+
+/*
+ * Retrieves KCP package information.
+ */
+PackageInfoData getKCPInformation(QString pkgName)
+{
+  return Package::getKCPInformation(pkgName);
 }

@@ -4,10 +4,7 @@
 #
 #-------------------------------------------------
 
-QT += core gui network xml dbus
-
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets quick quickwidgets
-
+QT += core gui network xml dbus widgets quick quickwidgets
 DEFINES += OCTOPI_EXTENSIONS
 CONFIG += qt warn_on debug
 QMAKE_CXXFLAGS += -std=c++11
@@ -107,6 +104,7 @@ TRANSLATIONS += resources/translations/octopi_pt_BR.ts \
     resources/translations/octopi_ru.ts \
     resources/translations/octopi_uz.ts \
     resources/translations/octopi_fi.ts \
+    resources/translations/octopi_fi_FI.ts \
     resources/translations/octopi_vi.ts \
     resources/translations/octopi_en_GB.ts \
     resources/translations/octopi_pt_PT.ts \
@@ -117,8 +115,8 @@ TRANSLATIONS += resources/translations/octopi_pt_BR.ts \
     resources/translations/octopi_uk.ts \
     resources/translations/octopi_sk.ts \
     resources/translations/octopi_ja.ts \
-    resources/translations/octopi_eu.ts
-
-greaterThan(QT_MAJOR_VERSION, 4){
-    TRANSLATIONS += resources/translations/octopi_ast.ts
-}
+    resources/translations/octopi_eu.ts \
+    resources/translations/octopi_gl_ES.ts \
+    resources/translations/octopi_ast.ts \
+    resources/translations/octopi_hr.ts \
+    resources/translations/octopi_zh-Hans.ts

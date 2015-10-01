@@ -9,7 +9,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="110"/>
         <source>Info</source>
-        <translation>Информация</translation>
+        <translation>Сведения</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="115"/>
@@ -18,7 +18,6 @@
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="120"/>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="164"/>
         <source>Transaction</source>
         <translation>Транзакция</translation>
     </message>
@@ -30,12 +29,17 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="147"/>
         <source>Help</source>
-        <translation>Помощь</translation>
+        <translation>Справка</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="155"/>
         <source>View</source>
         <translation>Вид</translation>
+    </message>
+    <message>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="164"/>
+        <source>Transaction</source>
+        <translation>Транзакция</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="171"/>
@@ -54,6 +58,10 @@
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="223"/>
+        <source>About</source>
+        <translation>О программе</translation>
+    </message>
+    <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="226"/>
         <source>About</source>
         <translation>О программе</translation>
@@ -61,12 +69,12 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="240"/>
         <source>Non installed</source>
-        <translation>Не установлено</translation>
+        <translation>Не установленные</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="249"/>
         <source>Commit</source>
-        <translation>Совершить</translation>
+        <translation>Выполнить</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="252"/>
@@ -75,19 +83,23 @@
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="261"/>
+        <source>Cancel</source>
+        <translation>Отменить</translation>
+    </message>
+    <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="264"/>
         <source>Cancel</source>
-        <translation type="unfinished"/>
+        <translation>Отменить</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="267"/>
         <source>Ctrl+E</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+E</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="276"/>
         <source>Sync database</source>
-        <translation>Синхронизация базы данных</translation>
+        <translation>Синхронизировать базу данных</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="279"/>
@@ -97,7 +109,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="288"/>
         <source>Exit</source>
-        <translation>Выход</translation>
+        <translation>Выйти</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="291"/>
@@ -107,7 +119,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="300"/>
         <source>System upgrade</source>
-        <translation>Обновление системы</translation>
+        <translation>Обновить систему</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="303"/>
@@ -119,13 +131,13 @@
         <location filename="Projects/octopi/ui/mainwindow.ui" line="315"/>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="517"/>
         <source>Install</source>
-        <translation>Установка</translation>
+        <translation>Установить</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="324"/>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="327"/>
         <source>Remove</source>
-        <translation>Удаление</translation>
+        <translation>Удалить</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="332"/>
@@ -135,7 +147,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="341"/>
         <source>Get latest distro news</source>
-        <translation>Получить последние новости о дистрибутиве</translation>
+        <translation>Последние новости дистрибутива</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="344"/>
@@ -145,12 +157,12 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="353"/>
         <source>Remove group</source>
-        <translation>Удаление группы</translation>
+        <translation>Удалить группу</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="362"/>
         <source>Install group</source>
-        <translation>Установка группы</translation>
+        <translation>Установить группу</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="371"/>
@@ -185,7 +197,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="425"/>
         <source>Open directory</source>
-        <translation>Открыть директорию</translation>
+        <translation>Открыть каталог</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="434"/>
@@ -215,7 +227,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="483"/>
         <source>Find a file</source>
-        <translation>Поиск файла</translation>
+        <translation>Найти файл</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="492"/>
@@ -235,7 +247,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="508"/>
         <source>Install local package...</source>
-        <translation>Установка локального пакета...</translation>
+        <translation>Установить локальный пакет...</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="525"/>
@@ -250,12 +262,12 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="546"/>
         <source>Cache Cleaner</source>
-        <translation type="unfinished"/>
+        <translation>Очистка кэша</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="554"/>
         <source>Installed</source>
-        <translation>Установлено</translation>
+        <translation>Установленные</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="570"/>
@@ -265,12 +277,12 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="55"/>
         <source>For more information, visit:</source>
-        <translation>Для дополнительной информации посетите:</translation>
+        <translation>Чтобы узнать подробнее, посетите:</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="58"/>
         <source>A Qt-based Pacman frontend,</source>
-        <translation>Фронт-энд Pacman, основанный на Qt,</translation>
+        <translation>Фронт-энд Pacman на основе Qt,</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="59"/>
@@ -280,7 +292,7 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="77"/>
         <source>Package classification:</source>
-        <translation>Классификация пакетов:</translation>
+        <translation>Обозначение пакетов:</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="80"/>
@@ -290,12 +302,12 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="82"/>
         <source>An installed package (not required by others)</source>
-        <translation>Установленный пакет (не требуемый другими)</translation>
+        <translation>Установленный пакет (не требуется для других)</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="85"/>
         <source>A foreign package, installed from</source>
-        <translation>Чужой пакет, установленный с</translation>
+        <translation>Внешний пакет, установленный из</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="88"/>
@@ -315,162 +327,162 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="97"/>
         <source>A newer than repository package</source>
-        <translation>Новее чем пакет из репозитория</translation>
+        <translation>Пакет новее, чем в репозитории</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="100"/>
         <source>Basic usage help:</source>
-        <translation>Базовое использование помощи:</translation>
+        <translation>Справка по базовому использованию:</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="102"/>
         <source>Position the mouse over a package to see its description</source>
-        <translation>Переместите курсор  на пакет, чтобы увидеть его описание</translation>
+        <translation>Чтобы посмотреть описание пакета, наведите на него указатель мыши</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="104"/>
         <source>Double click an installed package to see its contents</source>
-        <translation>Дважды щелкните по установленому пакету, чтобы увидеть его содержимое</translation>
+        <translation>Чтобы посмотреть содержимое установленного пакета, дважды щелкните по нему</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="106"/>
         <source>Right click package to install/reinstall or remove it</source>
-        <translation>Щелкните правой кнопкой  для установки / переустановки или удаление пакета</translation>
+        <translation>Чтобы установить (переустановить) или удалить пакет, щелкните по нему правой кнопкой</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="109"/>
         <source>Alt+key sequences:</source>
-        <translation>Комбинации Alt+key:</translation>
+        <translation>Сочетания Alt+клавиша:</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="111"/>
         <source>Alt+1 to switch to &apos;Info&apos; tab</source>
-        <translation>Alt+1 переключение на кладку &quot;информация&quot;</translation>
+        <translation>Alt+1 - перейти на кладку &quot;Сведения&quot;</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="113"/>
         <source>Alt+2 to switch to &apos;Files&apos; tab</source>
-        <translation>Alt+2 переключение на вкладку &quot;Файлы&quot;</translation>
+        <translation>Alt+2 - перейти на вкладку &quot;Файлы&quot;</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="115"/>
         <source>Alt+3 to switch to &apos;Transaction&apos; tab</source>
-        <translation>Alt+3 переключение на вкладку &quot;Транзакции&quot;</translation>
+        <translation>Alt+3 - перейти на вкладку &quot;Транзакция&quot;</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="117"/>
         <source>Alt+4 to switch to &apos;Output&apos; tab</source>
-        <translation>Alt+4 переключение на вкладку &quot;Вывод&quot;</translation>
+        <translation>Alt+4 - перейти на вкладку &quot;Вывод&quot;</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="119"/>
         <source>Alt+5 to switch to &apos;News&apos; tab</source>
-        <translation>Alt+5 переключение на вкладку &quot;Новости&quot;</translation>
+        <translation>Alt+5 - перейти на вкладку &quot;Новости&quot;</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="121"/>
         <source>Alt+6 or &apos;F1&apos; to show this help page</source>
-        <translation>Alt+6 или F1, чтобы показать эту страницу помощи</translation>
+        <translation>Alt+6 или F1 - показать эту справку</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="124"/>
         <source>Control+key sequences:</source>
-        <translation>Комбинации Control+key:</translation>
+        <translation>Сочетания Ctrl+клавиша:</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="126"/>
         <source>Ctrl+D or &apos;File/Sync database&apos; to sync the local database with latest remote changes (pacman -Sy)</source>
-        <translation>Ctrl+D или &quot;Файл/Синхронизировать базу данных&quot; синхронизирует локальную базу данных с репозиториями (pacman -Sy)</translation>
+        <translation>Ctrl+D или &quot;Файл/Синхронизировать базу данных&quot; - синхронизировать локальную базу данных с последними изменениями в репозиториях (pacman -Sy)</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="128"/>
         <source>Ctrl+U or &apos;File/System upgrade&apos; to make a full system upgrade (pacman -Su)</source>
-        <translation>Ctrl+U или &quot;Файл/ Обновление Системы&quot; для полного обновления системы (pacman -Su)</translation>
+        <translation>Ctrl+U или &quot;Файл/Обновить систему&quot; - выполнить полное обновление системы (pacman -Su)</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="130"/>
         <source>Ctrl+L to find a package in the package list</source>
-        <translation>Ctrl+L поиск пакета, в списке пакетов</translation>
+        <translation>Ctrl+L - найти пакет в списке пакетов</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="132"/>
         <source>Ctrl+F to search for text inside tab Files, News and Usage</source>
-        <translation>Ctrl+F для поиска текста внутри вкладок Файлы, Новости и Использование</translation>
+        <translation>Ctrl+F - искать текст на вкладах &quot;Файлы&quot;, &quot;Новости&quot; и &quot;Использование&quot;</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="136"/>
         <source>Ctrl+M or &apos;Transaction/Commit&apos; to start installation/removal of selected packages</source>
-        <translation>Ctrl+M или &quot;Транзакция/Коммит&quot; для начала установки/ удаления выбранных пакетов</translation>
+        <translation>Ctrl+M или &quot;Транзакция/Выполнить&quot; - запустить установку/удаление отмеченных пакетов</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="138"/>
         <source>Ctrl+E or &apos;Transaction/Cancel&apos; to clear the selection of to be removed/installed packages</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+E или &quot;Транзакция/Отменить&quot; - снять отметки с пакетов для удаления/установки</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="140"/>
         <source>Ctrl+G or &apos;File/Get latest distro news&apos; to retrieve the latest RSS based distro news</source>
-        <translation>Ctrl+G или &apos;Файл/Получить последние новости о дистрибутиве&apos; для получения последних RSS-новостей о дистрибутиве</translation>
+        <translation>Ctrl+G или &quot;Файл/Последние новости дистрибутива&quot; - получить последние новости дистрибутива по  RSS</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="142"/>
         <source>Ctrl+Q or &apos;File/Exit&apos; to exit the application</source>
-        <translation>Ctrl+Q или &apos;Файл/Выход&apos; для выхода из приложения</translation>
+        <translation>Ctrl+Q или &quot;Файл/Выйти&quot; - выйти из приложения</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="145"/>
         <source>Control+shift+key sequences:</source>
-        <translation>Комбинации control+shift+key:</translation>
+        <translation>Сочетания Ctrl+Shift+клавиша:</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="147"/>
         <source>Ctrl+Shift+C to clean local packages cache (pacman -Sc)</source>
-        <translation>Ctrl+Shift+C для очистки локального кэша пакетов (pacman -Sc)</translation>
+        <translation>Ctrl+Shift+C - очистить локальный кэш пакетов (pacman -Sc)</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="149"/>
         <source>Ctrl+Shift+G to display all package groups</source>
-        <translation>Ctrl+Shift+G для отображения всех групп пакетов</translation>
+        <translation>Ctrl+Shift+G - показать все группы пакетов</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="151"/>
         <source>Ctrl+Shift+R to remove Pacman&apos;s transaction lock file</source>
-        <translation>Ctrl+Shift+R для удаления файла блокировки транзакций</translation>
+        <translation>Ctrl+Shift+R - удалить файл блокировки транзакций Pacman</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="153"/>
         <source>Ctrl+Shift+Y to display %1 group</source>
-        <translation>Ctrl+Shift+Y для отображения группы %1</translation>
+        <translation>Ctrl+Shift+Y - показать группу %1</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="156"/>
         <source>F+key sequences:</source>
-        <translation>Комбинации F+key:</translation>
+        <translation>Функциональные клавиши:</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="158"/>
         <source>F1 to show this help page</source>
-        <translation>F1 для показа данной страницы помощи</translation>
+        <translation>F1 - показать эту справку</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="160"/>
         <source>F4 to open a Terminal whitin the selected directory at Files tab</source>
-        <translation>F4 для открытия терминала внутри выбранного каталога вкладки Файлы</translation>
+        <translation>F4 - открыть терминал в каталоге, выбранном на вкладке &quot;Файлы&quot;</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="162"/>
         <source>F6 to open a File Manager whitin the selected directory at Files tab</source>
-        <translation>F6 для открытия файлового менеджера внутри выбранного каталога вкладки Файлы</translation>
+        <translation>F6 - открыть в файловом менеджере каталог, выбранный на вкладке &quot;Файлы&quot;</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="164"/>
         <source>F10 to maximize/demaximize package list view</source>
-        <translation>F10 для разворачивания/сворачивания просмотра списка пакетов</translation>
+        <translation>F10 - развернуть/восстановить область просмотра списка пакетов</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="166"/>
         <source>F12 to maximize/demaximize Tab&apos;s view</source>
-        <translation>F12  для разворачивания/сворачивания просмотра вкладок</translation>
+        <translation>F12 - развернуть/восстановить область просмотра вкладок</translation>
     </message>
 </context>
 <context>
@@ -478,7 +490,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="43"/>
         <source>Octopi usage help:</source>
-        <translation>Использование помощи Octopi:</translation>
+        <translation>Справка по использованию Octopi:</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="44"/>
@@ -488,17 +500,17 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="45"/>
         <source>use a different Qt4 style (ex: -style gtk).</source>
-        <translation>использование другого стиля Qt4 (напр.: -style gtk).</translation>
+        <translation>использовать другой стиль Qt4 (напр.: -style gtk).</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="46"/>
         <source>use a different remove command (ex: -removecmd R).</source>
-        <translation>используйте другую команду удаления (напр.: -removecmd R).</translation>
+        <translation>использовать другую команду удаления (напр.: -removecmd R).</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="47"/>
         <source>force a system upgrade at startup.</source>
-        <translation>форсировать обновление системы при запуске.</translation>
+        <translation>принудительно обновлять систему при запуске.</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="53"/>
@@ -543,22 +555,22 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="146"/>
         <source>No news could be found! Press Ctrl+G to download the latest news.</source>
-        <translation>Новости не найдены! Для загрузки последних новостей нажмите Ctrl+G .</translation>
+        <translation>Новости не найдены! Чтобы загрузить последние новости, нажмите Ctrl+G .</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="150"/>
         <source>This Linux distro seems to be incompatible with Octopi!</source>
-        <translation>Похоже что данный дистрибутив Linux несовместим с Octopi!</translation>
+        <translation>Видимо, данный дистрибутив Linux несовместим с Octopi!</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="154"/>
         <source>Internet seems unavailable!</source>
-        <translation>Похоже что интернет недоступен!</translation>
+        <translation>Видимо, интернет недоступен!</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="158"/>
         <source>Display all groups</source>
-        <translation>Отобразить все группы</translation>
+        <translation>Показать все группы</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="169"/>
@@ -593,7 +605,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="193"/>
         <source>No description available.</source>
-        <translation>Описание недоступно.</translation>
+        <translation>Описания нет.</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="197"/>
@@ -668,12 +680,12 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="253"/>
         <source>Download Size</source>
-        <translation>Размер загрузки</translation>
+        <translation>Размер для загрузки</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="257"/>
         <source>Installed Size</source>
-        <translation>Размер установки</translation>
+        <translation>Размер после установки</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="261"/>
@@ -723,7 +735,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="297"/>
         <source>Info</source>
-        <translation>Информация</translation>
+        <translation>Сведения</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="301"/>
@@ -753,22 +765,22 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="321"/>
         <source>Find</source>
-        <translation>Поиск</translation>
+        <translation>Найти</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="325"/>
         <source>Clear</source>
-        <translation>Очистка</translation>
+        <translation>Очистить</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="329"/>
         <source> (outdated installed version is %1)</source>
-        <translation> (устаревшая установленная версия %1)</translation>
+        <translation>(установлена устаревшая версия %1)</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="333"/>
         <source> (newer installed version is %1)</source>
-        <translation> (новая установленная версия %1)</translation>
+        <translation>(установлена более новая версия %1)</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="337"/>
@@ -783,12 +795,12 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="345"/>
         <source>There is one outdated package in your system:</source>
-        <translation>В системе имеется устаревший пакет:</translation>
+        <translation>В системе один устаревший пакет:</translation>
     </message>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="349"/>
         <source>There are %n outdated packages in your system:</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>В системе %n устаревший пакет:</numerusform><numerusform>В системе %n устаревших пакета:</numerusform><numerusform>В системе %n устаревших пакетов:</numerusform><numerusform>В системе %n устаревших пакетов:</numerusform></translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="353"/>
@@ -797,335 +809,340 @@
     </message>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="357"/>
-        <source>%n (%2) packages</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
+        <source>%n packages</source>
+        <translation><numerusform>%n пакет</numerusform><numerusform>%n пакета</numerusform><numerusform>%n пакетов</numerusform><numerusform>%n пакетов</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="361"/>
-        <source>%n installed</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
+        <source>%n selected</source>
+        <translation><numerusform>%n выбран</numerusform><numerusform>%n выбрано</numerusform><numerusform>%n выбрано</numerusform><numerusform>%n выбрано</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="365"/>
-        <source>%n outdated</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
+        <source>%n installed</source>
+        <translation><numerusform>%n установлен</numerusform><numerusform>%n установлено</numerusform><numerusform>%n установлено</numerusform><numerusform>%n установлено</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="369"/>
+        <source>%n outdated</source>
+        <translation><numerusform>%n устаревший</numerusform><numerusform>%n устаревших</numerusform><numerusform>%n устаревших</numerusform><numerusform>%n устаревших</numerusform></translation>
+    </message>
+    <message numerus="yes">
+        <location filename="Projects/octopi/src/strconstants.h" line="373"/>
         <source>%n available</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>%n доступен</numerusform><numerusform>%n доступно</numerusform><numerusform>%n доступно</numerusform><numerusform>%n доступно</numerusform></translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="373"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="377"/>
         <source>Cleaning package cache...</source>
         <translation>Очищается кэш пакетов...</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="377"/>
-        <source>Removing Pacman&apos;s transaction lock file...</source>
-        <translation>Удаление файла блокировки транзакций...</translation>
-    </message>
-    <message>
         <location filename="Projects/octopi/src/strconstants.h" line="381"/>
-        <source>Syncing</source>
-        <translation>Синхронизация</translation>
+        <source>Removing Pacman&apos;s transaction lock file...</source>
+        <translation>Удаляется файл блокировки транзакций Pacman...</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="385"/>
-        <source>Press any key to continue...</source>
-        <translation>Нажмите любую клавишу для продолжения...</translation>
+        <source>Syncing</source>
+        <translation>Выполняется синхронизация</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="393"/>
-        <source>Sync database</source>
-        <translation>Синхронизация базы данных</translation>
+        <location filename="Projects/octopi/src/strconstants.h" line="389"/>
+        <source>Press any key to continue...</source>
+        <translation>Чтобы продолжить, нажмите любую клавишу...</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="397"/>
-        <source>Synchronizing databases...</source>
-        <translation>Синхронизируется база данных...</translation>
+        <source>Sync database</source>
+        <translation>Синхронизировать базу данных</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="401"/>
+        <source>Synchronizing databases...</source>
+        <translation>Синхронизируются базы данных...</translation>
+    </message>
+    <message>
+        <location filename="Projects/octopi/src/strconstants.h" line="405"/>
         <source>is up to date</source>
         <translation>в актуальном состоянии</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="405"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="409"/>
         <source>Starting full system upgrade...</source>
         <translation>Запускается полное обновление системы...</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="409"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="413"/>
         <source>Installing selected packages...</source>
         <translation>Устанавливаются выбранные пакеты...</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="413"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="417"/>
         <source>Removing selected packages...</source>
         <translation>Удаляются выбранные пакеты...</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="417"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="421"/>
         <source>Removing/installing selected packages...</source>
         <translation>Удаляются/устанавливаются выбранные пакеты...</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="421"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="425"/>
         <source>Choose a terminal</source>
         <translation>Выберите терминал</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="425"/>
-        <source>Running command in terminal...</source>
-        <translation>Запускается команда в терминале...</translation>
-    </message>
-    <message>
         <location filename="Projects/octopi/src/strconstants.h" line="429"/>
-        <source>Command finished OK!</source>
-        <translation>Команда успешно завершена!</translation>
+        <source>Running command in terminal...</source>
+        <translation>Выполняется команда в терминале...</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="433"/>
-        <source>Command finished with errors!</source>
-        <translation>Команда выполнена без ошибок!</translation>
+        <source>Command finished OK!</source>
+        <translation>Команда завершена успешно!</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="437"/>
+        <source>Command finished with errors!</source>
+        <translation>Команда завершена с ошибками!</translation>
+    </message>
+    <message>
+        <location filename="Projects/octopi/src/strconstants.h" line="441"/>
         <source>Retrieving %1</source>
         <translation>Получение %1</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="441"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="445"/>
         <source>Total download size: %1 KB</source>
         <translation>Общий объем загрузки: %1 KB</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="445"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="449"/>
         <source>The following package needs to be retrieved</source>
-        <translation type="unfinished"/>
+        <translation>Нужно получить следующий пакет</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="449"/>
-        <source>The following package will be removed</source>
-        <translation type="unfinished"/>
-    </message>
-    <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="453"/>
-        <source>The following %n packages need to be retrieved</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
+        <source>The following package will be removed</source>
+        <translation>Следующий пакет будет удален</translation>
     </message>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="457"/>
-        <source>The following %n packages will be removed</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
+        <source>The following %n packages need to be retrieved</source>
+        <translation><numerusform>Нужно получить следующий %n пакет</numerusform><numerusform>Нужно получить следующие %n пакета</numerusform><numerusform>Нужно получить следующие %n пакетов</numerusform><numerusform>Нужно получить следующие %n пакетов</numerusform></translation>
     </message>
-    <message>
+    <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="461"/>
-        <source>There are forbidden packages in the removal list!</source>
-        <translation>В списке на удаление имеются запрещенные пакеты!</translation>
+        <source>The following %n packages will be removed</source>
+        <translation><numerusform>Следующий %n пакет будет удален</numerusform><numerusform>Следующие %n пакета будут удалены</numerusform><numerusform>Следующие %n пакетов будут удалены</numerusform><numerusform>Следующие %n пакетов будут удалены</numerusform></translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="465"/>
-        <source>There are no new updates available!</source>
-        <translation>Обновлений не имеется!</translation>
+        <source>There are forbidden packages in the removal list!</source>
+        <translation>В списке на удаление есть запрещенные пакеты!</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="469"/>
-        <source>There is an update available!</source>
-        <translation>Имеется обновление!</translation>
-    </message>
-    <message numerus="yes">
-        <location filename="Projects/octopi/src/strconstants.h" line="473"/>
-        <source>There are %n updates available!</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
+        <source>There are no new updates available!</source>
+        <translation>Доступных обновлений нет!</translation>
     </message>
     <message>
+        <location filename="Projects/octopi/src/strconstants.h" line="473"/>
+        <source>There is an update available!</source>
+        <translation>Доступно обновление!</translation>
+    </message>
+    <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="477"/>
+        <source>There are %n updates available!</source>
+        <translation><numerusform>Доступно %n обновление!</numerusform><numerusform>Доступно %n обновления!</numerusform><numerusform>Доступно %n обновлений!</numerusform><numerusform>Доступно %n обновлений!</numerusform></translation>
+    </message>
+    <message>
+        <location filename="Projects/octopi/src/strconstants.h" line="481"/>
         <source>Confirm?</source>
         <translation>Подтвердить?</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="481"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="485"/>
         <source>Warning!!!</source>
         <translation>Внимание!!!</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="485"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="489"/>
         <source>Confirmation</source>
         <translation>Подтверждение</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="489"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="493"/>
         <source>There has been a transaction error!</source>
         <translation>Произошла ошибка транзакции!</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="493"/>
-        <source>Do you want to execute this transaction in a Terminal?</source>
-        <translation>Вы хотите, выполнить эту транзакцию  в терминале?</translation>
-    </message>
-    <message>
         <location filename="Projects/octopi/src/strconstants.h" line="497"/>
-        <source>Do you really want to clean the package cache?</source>
-        <translation>Вы действительно хотите очистить кеш пакетов ?</translation>
+        <source>Do you want to execute this transaction in a Terminal?</source>
+        <translation>Хотите выполнить эту транзакцию в терминале?</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="501"/>
-        <source>Do you really want to remove Pacman&apos;s transaction lock file?</source>
-        <translation>Вы действительно хотите удалить файл блокировки транзакций?</translation>
+        <source>Do you really want to clean the package cache?</source>
+        <translation>Действительно очистить кэш пакетов?</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="505"/>
-        <source>Do you really want to cancel the transaction?</source>
-        <translation type="unfinished"/>
+        <source>Do you really want to remove Pacman&apos;s transaction lock file?</source>
+        <translation>Действительно удалить файл блокировки транзакций Pacman?</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="509"/>
+        <source>Do you really want to cancel the transaction?</source>
+        <translation>Действительно отменить транзакцию?</translation>
+    </message>
+    <message>
+        <location filename="Projects/octopi/src/strconstants.h" line="513"/>
         <source>Please, enter the administrator&apos;s password</source>
         <translation>Пожалуйста, введите пароль администратора</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="515"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="519"/>
         <source>There are no means to get administrator&apos;s credentials.</source>
         <translation>Невозможно получить полномочия администратора.</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="519"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="523"/>
         <source>You&apos;ll need to install a su frontend like gksu or kdesu.</source>
-        <translation>Вам нужно установить фронтэнд для su, такие как gksu или kdesu</translation>
+        <translation>Вам нужно установить фронт-энд для su, например, gksu или kdesu.</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="523"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="527"/>
         <source>You can not run Octopi with administrator&apos;s credentials.</source>
         <translation>Вы не можете запустить Octopi с правами администратора.</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="527"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="531"/>
         <source>There is a pending transaction</source>
         <translation>Имеется отложенная транзакция</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="531"/>
-        <source>Do you really want to quit?</source>
-        <translation>Вы действительно хотите выйти ?</translation>
-    </message>
-    <message>
         <location filename="Projects/octopi/src/strconstants.h" line="535"/>
-        <source>Executing command</source>
-        <translation>Выполнение команды</translation>
+        <source>Do you really want to quit?</source>
+        <translation>Вы действительно хотите выйти?</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="539"/>
-        <source>Run in terminal</source>
-        <translation>Запустить в терминале </translation>
+        <source>Executing command</source>
+        <translation>Выполняется команда</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="543"/>
-        <source>Needs application restart to take effect</source>
-        <translation>Для принятия изменений, требуется перезагрузка</translation>
+        <source>Run in terminal</source>
+        <translation>Запустить в терминале</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="547"/>
-        <source>These changes need application restart to take effect!</source>
-        <translation>При повторном запуске приложения, данные изменения вступят в силу!</translation>
+        <source>Needs application restart to take effect</source>
+        <translation>Нужен перезапуск приложения, чтобы изменения вступили в силу</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="551"/>
-        <source>Select the packages you want to install</source>
-        <translation>Выберите пакет для установки</translation>
+        <source>These changes need application restart to take effect!</source>
+        <translation>Эти изменения вступят в силу после перезапуска приложения!</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="555"/>
-        <source>This file does not appear to be a simple text.
-Are you sure you want to open it?</source>
-        <translation>Похоже что данный файл не является простым текстом.\n
-Вы уверены в том, что хотите открыть его?</translation>
+        <source>Select the packages you want to install</source>
+        <translation>Выберите пакеты для установки</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="560"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="559"/>
+        <source>This file does not appear to be a simple text.
+Are you sure you want to open it?</source>
+        <translation>Не похоже, что это просто текстовый файл.
+Вы уверены, что хотите его открыть?</translation>
+    </message>
+    <message>
+        <location filename="Projects/octopi/src/strconstants.h" line="564"/>
         <source>To be installed</source>
         <translation>Для установки</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="564"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="568"/>
         <source>To be removed</source>
         <translation>Для удаления</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="568"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="572"/>
         <source>remove</source>
         <translation>удалить</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="572"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="576"/>
         <source>install</source>
         <translation>установить</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="576"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="580"/>
         <source>Remove item</source>
         <translation>Удалить элемент</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="580"/>
+        <location filename="Projects/octopi/src/strconstants.h" line="584"/>
         <source>Remove items</source>
         <translation>Удалить элементы</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.h" line="584"/>
-        <source>Press Ctrl+A to select/deselect all</source>
-        <translation>Нажмите Ctrl+A, чтобы отметить все / удалить все отметки</translation>
-    </message>
-    <message>
         <location filename="Projects/octopi/src/strconstants.h" line="588"/>
-        <source>Use &quot;%1&quot; tool</source>
-        <translation type="unfinished"/>
+        <source>Press Ctrl+A to select/deselect all</source>
+        <translation>Нажмите Ctrl+A, чтобы отметить все/снять все отметки</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="592"/>
-        <source>Copy path to clipboard</source>
-        <translation type="unfinished"/>
+        <source>Use &quot;%1&quot; tool</source>
+        <translation>Использовать инструмент &quot;%1&quot;</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="596"/>
-        <source>Setup</source>
-        <translation type="unfinished"/>
+        <source>Copy path to clipboard</source>
+        <translation>Копировать путь в буфер обмена</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="600"/>
-        <source>Sync database interval</source>
-        <translation type="unfinished"/>
+        <source>Setup</source>
+        <translation>Настройка</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="604"/>
-        <source>Once a day</source>
-        <translation type="unfinished"/>
+        <source>Sync database interval</source>
+        <translation>Интервал синхронизации базы данных</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="608"/>
-        <source>Once a day, at</source>
-        <translation type="unfinished"/>
+        <source>Once a day</source>
+        <translation>Раз в день</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="612"/>
-        <source>(value in 24-hour format: 0 to 23)</source>
-        <translation type="unfinished"/>
+        <source>Once a day, at</source>
+        <translation>Раз в день, в</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="616"/>
-        <source>Once every</source>
-        <translation type="unfinished"/>
+        <source>(value in 24-hour format: 0 to 23)</source>
+        <translation>(значение в 24-часовом формате: от 0 до 23)</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="620"/>
-        <source>(value in minutes: 5 to 1380)</source>
-        <translation type="unfinished"/>
+        <source>Once every</source>
+        <translation>Раз в</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="624"/>
+        <source>(value in minutes: 5 to 1380)</source>
+        <translation>(значение в минутах: от 5 до 1380)</translation>
+    </message>
+    <message>
+        <location filename="Projects/octopi/src/strconstants.h" line="628"/>
         <source>Set interval...</source>
-        <translation type="unfinished"/>
+        <translation>Задать интервал...</translation>
     </message>
 </context>
 <context>
@@ -1133,7 +1150,7 @@ Are you sure you want to open it?</source>
     <message>
         <location filename="Projects/octopi/src/searchbar.cpp" line="69"/>
         <source>Previous</source>
-        <translation>Предыдущий</translation>
+        <translation>Назад</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/searchbar.cpp" line="72"/>

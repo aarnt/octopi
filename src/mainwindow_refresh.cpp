@@ -23,6 +23,7 @@
  */
 
 #include "mainwindow.h"
+#include "src/ui/octopitabinfo.h"
 #include "searchlineedit.h"
 #include "ui_mainwindow.h"
 #include "strconstants.h"
@@ -38,18 +39,7 @@
 #include <QTextBrowser>
 #include <QStandardItem>
 #include <QFutureWatcher>
-
-#if QT_VERSION > 0x050000
-  #include <QtConcurrent/QtConcurrentRun>
-#else
-  #include <QtConcurrentRun>
-#endif
-
-#if QT_VERSION < 0x050000
-  using namespace QtConcurrent;
-#endif
-
-#include "src/ui/octopitabinfo.h"
+#include <QtConcurrent/QtConcurrentRun>
 
 /*
  * If we have some outdated packages, let's put an angry red face icon in this app!
@@ -413,6 +403,7 @@ void MainWindow::retrieveUnrequiredPackageList()
   connect(&g_fwUnrequiredPacman, SIGNAL(finished()), &el, SLOT(quit()));
   g_fwUnrequiredPacman.setFuture(f);
   el.exec();
+
   assert(m_unrequiredPackageList != NULL);
 }
 
@@ -1013,7 +1004,6 @@ void MainWindow::refreshToolBar()
   }
 }
 
-
 /*
  * Refreshes the toolButtons which indicate outdated packages
  */
@@ -1110,6 +1100,8 @@ void MainWindow::refreshTabInfo(QString pkgName)
     text->clear();
     text->setHtml(OctopiTabInfo::formatTabInfo(*package, *m_outdatedAURPackagesNameVersion));
     text->scrollToAnchor(OctopiTabInfo::anchorBegin);
+    //We have to clear the cached Info contents...
+    m_cachedPackageInInfo = "";
   }
 }
 
@@ -1172,19 +1164,55 @@ void MainWindow::refreshTabInfo(bool clearContents, bool neverQuit)
 
     if (text)
     {
+      PackageInfoData kcp;
+
+      if (StrConstants::getForeignRepositoryToolName() == "kcp")
+      {
+        QEventLoop el;
+        QFuture<PackageInfoData> f;
+        f = QtConcurrent::run(getKCPInformation, pkgName);
+        connect(&g_fwKCPInformation, SIGNAL(finished()), &el, SLOT(quit()));
+        g_fwKCPInformation.setFuture(f);
+        el.exec();
+
+        kcp = f.result();
+      }
+
       QString html;
       text->clear();
       QString anchorBegin = "anchorBegin";
 
       html += "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">";
-      html += "<a id=\"" + anchorBegin + "\"></a>";
-
+      html += "<a id=\"" + anchorBegin + "\"></a>";            
       html += "<h2>" + pkgName + "</h2>";
-      html += "<a style=\"font-size:16px;\">" + pkgDescription + "</a>";
 
-      html += "<table border=\"0\">";
-      html += "<tr><th width=\"20%\"></th><th width=\"80%\"></th></tr>";
-      html += "<tr><td>" + version + "</td><td>" + package->version + "</td></tr>";
+      if (StrConstants::getForeignRepositoryToolName() != "kcp")
+      {
+        html += "<a style=\"font-size:16px;\">" + pkgDescription + "</a>";
+        html += "<table border=\"0\">";
+        html += "<tr><th width=\"20%\"></th><th width=\"80%\"></th></tr>";
+        html += "<tr><td>" + version + "</td><td>" + package->version + "</td></tr>";
+      }
+      else if (StrConstants::getForeignRepositoryToolName() == "kcp")
+      {
+        html += "<a style=\"font-size:16px;\">" + kcp.description + "</a>";
+        html += "<table border=\"0\">";
+        html += "<tr><th width=\"20%\"></th><th width=\"80%\"></th></tr>";
+        html += "<tr><td>" + version + "</td><td>" + package->version + "</td></tr>";
+
+        if (kcp.url != "--")
+          html += "<tr><td>" + StrConstants::getURL() + "</td><td>" + kcp.url + "</td></tr>";;
+
+        if (kcp.license != "--")
+          html += "<tr><td>" + StrConstants::getLicenses() + "</td><td>" + kcp.license + "</td></tr>";;
+
+        if (kcp.provides != "--")
+          html += "<tr><td>" + StrConstants::getProvides() + "</td><td>" + kcp.provides + "</td></tr>";;
+
+        if (kcp.dependsOn != "--")
+          html += "<tr><td>" + StrConstants::getDependsOn() + "</td><td>" +
+              Package::makeAnchorOfPackage(kcp.dependsOn) + "</td></tr>";;
+      }
 
       html += "</table>";
 
@@ -1218,6 +1246,8 @@ void MainWindow::refreshTabInfo(bool clearContents, bool neverQuit)
  */
 void MainWindow::refreshTabFiles(bool clearContents, bool neverQuit)
 {
+  if (m_progressWidget->isVisible()) return;
+
   if(neverQuit == false &&
      (ui->twProperties->currentIndex() != ctn_TABINDEX_FILES || !isPropertiesTabWidgetVisible()))
   {
@@ -1285,7 +1315,6 @@ void MainWindow::refreshTabFiles(bool clearContents, bool neverQuit)
     QStringList fileList;
     QStandardItemModel *fakeModelPkgFileList = new QStandardItemModel(this);
     QStandardItemModel *modelPkgFileList = qobject_cast<QStandardItemModel*>(tvPkgFileList->model());
-
     modelPkgFileList->clear();
     QStandardItem *fakeRoot = fakeModelPkgFileList->invisibleRootItem();
     QStandardItem *root = modelPkgFileList->invisibleRootItem();
@@ -1304,10 +1333,13 @@ void MainWindow::refreshTabFiles(bool clearContents, bool neverQuit)
     el.exec();
     fileList = fwPackageContents.result();
 
-    if (fileList.count() > 0) CPUIntensiveComputing cic;
-
     QString fullPath;
     bool isSymLinkToDir = false;
+
+    int counter = 0;
+    m_progressWidget->setRange(0, fileList.count());
+    m_progressWidget->setValue(0);
+    m_progressWidget->show();
 
     foreach ( QString file, fileList )
     {
@@ -1412,10 +1444,15 @@ void MainWindow::refreshTabFiles(bool clearContents, bool neverQuit)
         parent->appendRow ( item );
       }
 
+      counter++;
+      m_progressWidget->setValue(counter);
+      qApp->processEvents();
+
       lastItem = item;
       first = false;
     }
 
+    m_progressWidget->close();
     root = fakeRoot;
     fakeModelPkgFileList->sort(0);
     modelPkgFileList = fakeModelPkgFileList;
@@ -1461,6 +1498,9 @@ void MainWindow::reapplyPackageFilter()
     {
       m_leFilterPackage->setFocus();
     }
+
+    if (numPkgs == 0)
+      tvPackagesSelectionChanged(QItemSelection(),QItemSelection());
 
     ui->tvPackages->selectionModel()->clear();
     QModelIndex mi = m_packageModel->index(0, PackageModel::ctn_PACKAGE_NAME_COLUMN, QModelIndex());

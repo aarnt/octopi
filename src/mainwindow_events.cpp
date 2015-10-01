@@ -40,19 +40,10 @@
 #include <QTextBrowser>
 #include <QFutureWatcher>
 #include <QClipboard>
+#include <QtConcurrent/QtConcurrentRun>
 
 #if QT_VERSION >= 0x050300
   #include "terminalselectordialog.h"
-#endif
-
-#if QT_VERSION >= 0x050000
-  #include <QtConcurrent/QtConcurrentRun>  
-#else
-  #include <QtConcurrentRun>
-#endif
-
-#if QT_VERSION < 0x050000
-  using namespace QtConcurrent;
 #endif
 
 /*
@@ -225,7 +216,8 @@ void MainWindow::keyPressEvent(QKeyEvent* ke)
   else if(ke->key() == Qt::Key_F && ke->modifiers() == Qt::ControlModifier)
   {
     if (isPropertiesTabWidgetVisible() &&
-        (ui->twProperties->currentIndex() == ctn_TABINDEX_OUTPUT ||
+        (ui->twProperties->currentIndex() == ctn_TABINDEX_INFORMATION ||
+         ui->twProperties->currentIndex() == ctn_TABINDEX_OUTPUT ||
          ui->twProperties->currentIndex() == ctn_TABINDEX_NEWS ||
          ui->twProperties->currentIndex() == ctn_TABINDEX_HELPUSAGE))
     {
@@ -334,81 +326,6 @@ int MainWindow::selectTerminal(const int initialTerminalIndex)
 }
 #endif
 
-//If we are using Qt5 libs, this method is native !
-#if QT_VERSION < 0x050000
-/*
- * This Event method is called whenever the user releases a key (useful to navigate in the packagelist)
- */
-void MainWindow::keyReleaseEvent(QKeyEvent *ke)
-{  
-  static int i=0;
-  static int k=-9999; //last key pressed
-  static int k_count=0;
-
-  if ((ui->tvPackages->hasFocus() && ke->modifiers() == Qt::NoModifier) &&
-      (((ke->key() >= Qt::Key_A) && (ke->key() <= Qt::Key_Z)) ||
-       ((ke->key() >= Qt::Key_0 && (ke->key() <= Qt::Key_9)))))
-  {
-    QModelIndex searchColumn = m_packageModel->index(0,
-                                                     PackageModel::ctn_PACKAGE_NAME_COLUMN,
-                                                     QModelIndex());
-    QModelIndexList fi = m_packageModel->match(searchColumn, Qt::DisplayRole,
-                                               ke->text(), -1);
-
-    if (fi.count() > 0) {
-      if ( (ke->key() != k) || (fi.count() != k_count) ) i=0;
-
-      QModelIndex currentIndex = ui->tvPackages->currentIndex();
-      QModelIndex firstIndex = fi.first();
-      QModelIndex lastIndex = fi.last();
-
-      if (currentIndex.row() < firstIndex.row() || currentIndex.row() > lastIndex.row())
-      {
-        i=0;
-      }
-      else
-      {
-        for(int ind=0; ind<fi.count(); ind++)
-        {
-          QModelIndex miAux = fi.at(ind);
-
-          if(miAux == ui->tvPackages->currentIndex() )
-          {
-            int newIndex = ind+1;
-            if(newIndex > fi.count()-1)
-            {
-              i=0;
-            }
-            else
-            {
-              i=newIndex;
-            }
-          }
-        }
-      }
-
-      if (ui->tvPackages->selectionModel() != NULL) {
-        ui->tvPackages->selectionModel()->clear();
-        QModelIndex mi = fi[i];
-        ui->tvPackages->scrollTo(mi);
-        ui->tvPackages->selectionModel()->setCurrentIndex(mi, QItemSelectionModel::Select);
-        ui->tvPackages->setCurrentIndex(mi);
-      }
-
-      //If we happen to be over the last package of the list...
-      if (currentIndex.row() == lastIndex.row()-1)
-      {
-        i=0;
-      }
-    }
-
-    k = ke->key();
-    k_count = fi.count();
-  }
-
-  else ke->ignore();
-}
-#else
 /*
  * This Event method is called whenever the user releases a key
  */
@@ -425,5 +342,38 @@ void MainWindow::keyReleaseEvent(QKeyEvent* ke)
       ui->tvPackages->setFocus();
     }
   }
+  else if(ke->key() == Qt::Key_Home && ke->modifiers() == Qt::AltModifier)
+  {
+    m_indOfVisitedPackage = 0;
+
+    if (!m_listOfVisitedPackages.isEmpty())
+      positionInPackageList(m_listOfVisitedPackages.at(m_indOfVisitedPackage));
+  }
+  else if(ke->key() == Qt::Key_Left && ke->modifiers() == Qt::AltModifier)
+  {
+    if (m_indOfVisitedPackage > 0)
+    {
+      --m_indOfVisitedPackage;
+    }
+
+    if (!m_listOfVisitedPackages.isEmpty())
+      positionInPackageList(m_listOfVisitedPackages.at(m_indOfVisitedPackage));
+  }
+  else if(ke->key() == Qt::Key_Right && ke->modifiers() == Qt::AltModifier)
+  {
+    if (m_indOfVisitedPackage < (m_listOfVisitedPackages.count()-1))
+    {
+      ++m_indOfVisitedPackage;
+    }
+
+    if (!m_listOfVisitedPackages.isEmpty())
+      positionInPackageList(m_listOfVisitedPackages.at(m_indOfVisitedPackage));
+  }
+  else if(ke->key() == Qt::Key_End && ke->modifiers() == Qt::AltModifier)
+  {
+    m_indOfVisitedPackage = m_listOfVisitedPackages.count()-1;
+
+    if (!m_listOfVisitedPackages.isEmpty())
+      positionInPackageList(m_listOfVisitedPackages.at(m_indOfVisitedPackage));
+  }
 }
-#endif

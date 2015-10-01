@@ -23,7 +23,6 @@ SearchLineEdit::SearchLineEdit(QWidget *parent, bool hasSLocate) :
   QLineEdit(parent){
 
   m_hasLocate = hasSLocate;
-
   m_completerModel = new QStringListModel(this);
   m_completer = new QCompleter(m_completerModel, this);
   m_completer->setCaseSensitivity(Qt::CaseInsensitive);
@@ -44,8 +43,8 @@ SearchLineEdit::SearchLineEdit(QWidget *parent, bool hasSLocate) :
   this->m_SearchButton->setCursor(Qt::ArrowCursor);
   this->m_SearchButton->setStyleSheet(this->buttonStyleSheetForCurrentState());
 
-  m_defaultValidator = new QRegExpValidator(QRegExp("[a-zA-Z0-9_\\-\\$\\^\\*\\+\\(\\)\\[\\]\\.\\s]+"), this);
-  m_aurValidator = new QRegExpValidator(QRegExp("[a-zA-Z0-9_\\-\\s]+"), this);
+  m_defaultValidator = new QRegExpValidator(QRegExp("[a-zA-Z0-9_\\-\\$\\^\\*\\+\\(\\)\\[\\]\\.\\s\\\\]+"), this);
+  m_aurValidator = new QRegExpValidator(QRegExp("[a-zA-Z0-9_\\-\\+\\s\\\\]+"), this);
   m_fileValidator = new QRegExpValidator(QRegExp("[a-zA-Z0-9_\\-\\/\\.]+"), this);
 
   setValidator(m_defaultValidator);
@@ -54,12 +53,7 @@ SearchLineEdit::SearchLineEdit(QWidget *parent, bool hasSLocate) :
   QObject::connect(this, SIGNAL(textChanged(QString)), SLOT(updateSearchButton(QString)));
 
   // Some stylesheet and size corrections for the text box
-#if QT_VERSION >= 0x040700
   this->setPlaceholderText(StrConstants::getFind());
-#else
-  this->setToolTip(StrConstants::getFind());
-#endif
-
   this->setStyleSheet(this->styleSheetForCurrentState());
 }
 

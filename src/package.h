@@ -136,6 +136,7 @@ class Package{
     //AUR methods
     static QList<PackageListData> * getAURPackageList(const QString& searchString);
 
+    static PackageInfoData getKCPInformation(const QString &pkgName);
     static PackageInfoData getInformation(const QString &pkgName, bool foreignPackage = false);
     static double getDownloadSizeDescription(const QString &pkgName);
     static QString getInformationDescription(const QString &pkgName, bool foreignPackage = false);
@@ -166,8 +167,8 @@ class Package{
     static QString getDownloadSizeAsString(const QString &pkgInfo);
     static double getInstalledSize(const QString &pkgInfo);
     static QString getInstalledSizeAsString(const QString &pkgInfo);
-
     static QString kbytesToSize(float Bytes );
+    static QString makeAnchorOfPackage(const QString &packages);
     static QString makeURLClickable(const QString &information);
     static QString getBaseName( const QString& pkgName );
     static QString parseSearchString( QString searchStr, bool exactMatch = false );

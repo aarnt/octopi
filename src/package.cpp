@@ -63,7 +63,6 @@ QString Package::makeURLClickable( const QString &s )
 	QString sb = s;
 	QRegExp rx("((ht|f)tp(s?))://(\\S)+[^\"|)|(|.|\\s|\\n]");
 	QRegExp rx1("^|[\\s]+(www\\.)(\\S)+[^\"|)|(|.|\\s|\\n]"); 
-
   rx.setCaseSensitivity( Qt::CaseInsensitive );
 	rx1.setCaseSensitivity( Qt::CaseInsensitive );
 
@@ -86,7 +85,8 @@ QString Package::makeURLClickable( const QString &s )
 
 	search = 0;
 	ini = 0;
-	//Now, we search for the 2nd pattern: rx1
+
+  //Now, we search for the 2nd pattern: rx1
 	while ( (ini = rx1.indexIn( sb, search )) != -1 ){
 		QString s1 = rx1.cap();
 		QString ns;
@@ -149,6 +149,32 @@ QString Package::kbytesToSize( float Bytes )
     res = res.sprintf("%.2f Bytes", Bytes);
 
   return res;
+}
+
+/*
+ * Parses package list and returns anchors for those which does not have logical operators
+ */
+QString Package::makeAnchorOfPackage(const QString &packages)
+{
+  QString newDeps;
+  QStringList ldeps = packages.split(" ", QString::SkipEmptyParts);
+
+  foreach(QString dep, ldeps)
+  {
+    if (!dep.contains("=") &&
+        !dep.contains("<") &&
+        !dep.contains(">"))
+    {
+      newDeps += "<a href=\"goto:" + dep + "\">" + dep + "</a> ";
+    }
+    else
+    {
+      newDeps += " " + dep + " ";
+    }
+  }
+
+  newDeps = newDeps.trimmed();
+  return newDeps;
 }
 
 /*
@@ -405,81 +431,78 @@ QList<PackageListData> * Package::getPackageList(const QString &packageName)
   QStringList packageTuples = pkgList.split(QRegExp("\\n"), QString::SkipEmptyParts);
   QList<PackageListData> * res = new QList<PackageListData>();
 
-  pkgDescription = "";
-  foreach(QString packageTuple, packageTuples)
-  {                
-    if (!packageTuple[0].isSpace())
+  if(!pkgList.isEmpty())
+  {
+    pkgDescription = "";
+    foreach(QString packageTuple, packageTuples)
     {
-      //Do we already have a description?
-      if (pkgDescription != "")
+      if (!packageTuple[0].isSpace())
       {
-        pkgDescription = pkgName + " " + pkgDescription;
-
-        PackageListData pld =
-            PackageListData(pkgName, pkgRepository, pkgVersion, pkgDescription, pkgStatus, pkgOutVersion);
-
-        if (packageName.isEmpty() || pkgName == packageName)
+        //Do we already have a description?
+        if (pkgDescription != "")
         {
-          //if (pkgStatus != ectn_NON_INSTALLED)
+          pkgDescription = pkgName + " " + pkgDescription;
+
+          PackageListData pld =
+              PackageListData(pkgName, pkgRepository, pkgVersion, pkgDescription, pkgStatus, pkgOutVersion);
+
+          if (packageName.isEmpty() || pkgName == packageName)
+          {
             res->append(pld);
-          //else if (pkgStatus == ectn_NON_INSTALLED)
-          //  if (option != ectn_INSTALLED_PKGS) res->append(pld);
+          }
+
+          pkgDescription = "";
         }
 
-        pkgDescription = "";
-      }
+        //First we get repository and name!
+        QStringList parts = packageTuple.split(' ');
+        QString repoName = parts[0];
+        int a = repoName.indexOf("/");
+        pkgRepository = repoName.left(a);
+        pkgName = repoName.mid(a+1);
+        pkgVersion = parts[1];
 
-      //First we get repository and name!
-      QStringList parts = packageTuple.split(' ');
-      QString repoName = parts[0];
-      int a = repoName.indexOf("/");
-      pkgRepository = repoName.left(a);
-      pkgName = repoName.mid(a+1);
-      pkgVersion = parts[1];
+        if(packageTuple.indexOf("[installed]") != -1)
+        {
+          //This is an installed package
+          pkgStatus = ectn_INSTALLED;
+          pkgOutVersion = "";
+        }
+        else if (packageTuple.indexOf("[installed:") != -1)
+        {
+          //This is an outdated installed package
+          pkgStatus = ectn_OUTDATED;
 
-      if(packageTuple.indexOf("[installed]") != -1)
-      {
-        //This is an installed package
-        pkgStatus = ectn_INSTALLED;        
-        pkgOutVersion = "";
-      }
-      else if (packageTuple.indexOf("[installed:") != -1)
-      {
-        //This is an outdated installed package
-        pkgStatus = ectn_OUTDATED;
-
-        int i = packageTuple.indexOf("[installed:");
-        pkgOutVersion = packageTuple.mid(i+11);
-        pkgOutVersion.remove(']').trimmed();
+          int i = packageTuple.indexOf("[installed:");
+          pkgOutVersion = packageTuple.mid(i+11);
+          pkgOutVersion = pkgOutVersion.remove(']').trimmed();
+        }
+        else
+        {
+          //This is an uninstalled package
+          pkgStatus = ectn_NON_INSTALLED;
+          pkgOutVersion = "";
+        }
       }
       else
       {
-        //This is an uninstalled package
-        pkgStatus = ectn_NON_INSTALLED;
-        pkgOutVersion = "";
+        //This is a description!
+        if (!packageTuple.trimmed().isEmpty())
+          pkgDescription += packageTuple.trimmed();
+        else
+          pkgDescription += " "; //StrConstants::getNoDescriptionAvailabe();
       }
     }
-    else
+
+    //And adds the very last package...
+    pkgDescription = pkgName + " " + pkgDescription;
+    PackageListData pld =
+        PackageListData(pkgName, pkgRepository, pkgVersion, pkgDescription, pkgStatus, pkgOutVersion);
+
+    if (packageName.isEmpty() || pkgName == packageName)
     {
-      //This is a description!
-      if (!packageTuple.trimmed().isEmpty())
-        pkgDescription += packageTuple.trimmed();
-      else
-        pkgDescription += " "; //StrConstants::getNoDescriptionAvailabe();
-    }
-  }
-
-  //And adds the very last package...
-  pkgDescription = pkgName + " " + pkgDescription;
-  PackageListData pld =
-      PackageListData(pkgName, pkgRepository, pkgVersion, pkgDescription, pkgStatus, pkgOutVersion);
-
-  if (packageName.isEmpty() || pkgName == packageName)
-  {
-    //if (pkgStatus != ectn_NON_INSTALLED)
       res->append(pld);
-    //else if (pkgStatus == ectn_NON_INSTALLED)
-    //  if (option != ectn_INSTALLED_PKGS) res->append(pld);
+    }
   }
 
   return res;
@@ -579,7 +602,7 @@ QList<PackageListData> * Package::getAURPackageList(const QString& searchString)
 
         int i = packageTuple.indexOf("[installed:");
         pkgOutVersion = packageTuple.mid(i+11);
-        pkgOutVersion.remove(QRegExp("\\].*")).trimmed();
+        pkgOutVersion = pkgOutVersion.remove(QRegExp("\\].*")).trimmed();
       }
       else
       {
@@ -732,7 +755,12 @@ QString Package::getProvides(const QString &pkgInfo)
  */
 QString Package::getDependsOn(const QString &pkgInfo)
 {
-  return extractFieldFromInfo("Depends On", pkgInfo);
+  QString res = extractFieldFromInfo("Depends On", pkgInfo);
+
+  if (res.isEmpty())
+    res = extractFieldFromInfo("Depends on", pkgInfo);
+
+  return res; //extractFieldFromInfo("Depends On", pkgInfo);
 }
 
 /*
@@ -1011,6 +1039,56 @@ QString Package::getDescription(const QString &pkgInfo)
 }
 
 /*
+ * Retrieves all information for a given KCP package name
+ */
+PackageInfoData Package::getKCPInformation(const QString &pkgName)
+{
+  PackageInfoData res;
+  QString pkgInfo = UnixCommand::getKCPPackageInformation(pkgName);
+
+  pkgInfo.remove("\033[0;1m");
+  pkgInfo.remove("\033[0m");
+  pkgInfo.remove("[1;33m");
+  pkgInfo.remove("[00;31m");
+  pkgInfo.remove("\033[1;34m");
+  pkgInfo.remove("\033[0;1m");
+  pkgInfo.remove("c");
+  pkgInfo.remove("C");
+  pkgInfo.remove("");
+  pkgInfo.remove("[m[0;37m");
+  pkgInfo.remove("o");
+  pkgInfo.remove("[m");
+  pkgInfo.remove(";37m");
+  pkgInfo.remove("[c");
+  pkgInfo.remove("[mo");
+  pkgInfo.remove("[1m");
+  pkgInfo.remove("[m");
+
+  //res.name = pkgName;
+  //res.version = getVersion(pkgInfo);
+  res.url = getURL(pkgInfo);
+  res.license = getLicense(pkgInfo);
+  res.dependsOn = getDependsOn(pkgInfo);
+  res.optDepends = getOptDepends(pkgInfo);
+  //res.group = getGroup(pkgInfo);
+  res.provides = getProvides(pkgInfo);
+  res.replaces = getReplaces(pkgInfo);
+  //res.requiredBy = getRequiredBy(pkgInfo);
+  //res.optionalFor = getOptionalFor(pkgInfo);
+  res.conflictsWith = getConflictsWith(pkgInfo);
+  //res.packager = getPackager(pkgInfo);
+  //res.arch = getArch(pkgInfo);
+  //res.buildDate = getBuildDate(pkgInfo);
+  res.description = getDescription(pkgInfo);
+  //res.downloadSize = getDownloadSize(pkgInfo);
+  //res.installedSize = getInstalledSize(pkgInfo);
+  //res.downloadSizeAsString = getDownloadSizeAsString(pkgInfo);
+  //res.installedSizeAsString = getInstalledSizeAsString(pkgInfo);
+
+  return res;
+}
+
+/*
  * Retrieves all information for a given package name
  */
 PackageInfoData Package::getInformation(const QString &pkgName, bool foreignPackage)
@@ -1106,10 +1184,21 @@ QHash<QString, QString> Package::getAUROutdatedPackagesNameVersion()
         QStringList nameVersion = line.split(" ", QString::SkipEmptyParts);
         QString pkgName = nameVersion.at(0);
 
-        //Let's ignore the "IgnorePkg" list of packages...
-        if (!ignorePkgList.contains(pkgName))
+        if (StrConstants::getForeignRepositoryToolName() == "kcp")
         {
-          hash.insert(pkgName, nameVersion.at(1));
+          //Let's ignore the "IgnorePkg" list of packages...
+          if (!ignorePkgList.contains(pkgName))
+          {
+            hash.insert(pkgName, nameVersion.at(1));
+          }
+        }
+        else
+        {
+          //Let's ignore the "IgnorePkg" list of packages...
+          if (!ignorePkgList.contains(pkgName) && nameVersion.size() == 2)
+          {
+            hash.insert(pkgName, nameVersion.at(1));
+          }
         }
       }
     }
@@ -1154,7 +1243,8 @@ QStringList Package::getContents(const QString& pkgName, bool isInstalled)
   else if (UnixCommand::getLinuxDistro() == ectn_ARCHBANGLINUX ||
            UnixCommand::getLinuxDistro() == ectn_ARCHLINUX ||
            UnixCommand::getLinuxDistro() == ectn_KAOS ||
-           UnixCommand::getLinuxDistro() == ectn_MOOOSLINUX)
+           UnixCommand::getLinuxDistro() == ectn_MOOOSLINUX ||
+           UnixCommand::getLinuxDistro() == ectn_PARABOLA)
   {
     result = UnixCommand::getPackageContentsUsingPkgfile(pkgName);
   }

@@ -4,12 +4,9 @@
 #
 #-------------------------------------------------
 
-QT += core gui network xml
-
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+QT += core gui network xml widgets
 
 CONFIG += qt console warn_on debug
-
 TEMPLATE = app
 DESTDIR += bin
 OBJECTS_DIR += build
@@ -75,6 +72,7 @@ TRANSLATIONS += resources/translations/octopi_cachecleaner_pt_BR.ts \
     resources/translations/octopi_cachecleaner_ru.ts \
     resources/translations/octopi_cachecleaner_uz.ts \
     resources/translations/octopi_cachecleaner_fi.ts \
+    resources/translations/octopi_cachecleaner_fi_FI.ts \
     resources/translations/octopi_cachecleaner_vi.ts \
     resources/translations/octopi_cachecleaner_en_GB.ts \
     resources/translations/octopi_cachecleaner_pt_PT.ts \
@@ -85,8 +83,8 @@ TRANSLATIONS += resources/translations/octopi_cachecleaner_pt_BR.ts \
     resources/translations/octopi_cachecleaner_uk.ts \
     resources/translations/octopi_cachecleaner_sk.ts \
     resources/translations/octopi_cachecleaner_ja.ts \
-    resources/translations/octopi_cachecleaner_eu.ts
-
-greaterThan(QT_MAJOR_VERSION, 4){
-    TRANSLATIONS += resources/translations/octopi_cachecleaner_ast.ts
-}
+    resources/translations/octopi_cachecleaner_eu.ts \
+    resources/translations/octopi_cachecleaner_gl_ES.ts \
+    resources/translations/octopi_cachecleaner_ast.ts \
+    resources/translations/octopi_cachecleaner_hr.ts \
+    resources/translations/octopi_cachecleaner_zh-Hans.ts

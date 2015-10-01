@@ -303,6 +303,18 @@ QByteArray UnixCommand::getPackageList(const QString &pkgName)
 }
 
 /*
+ * Given a KCP package name,
+ * returns a string containing all of its information fields
+ * (ex: name, description, version, dependsOn...)
+ */
+QByteArray UnixCommand::getKCPPackageInformation(const QString &pkgName)
+{
+  QString args = "--information " + pkgName;
+  QByteArray result = performAURCommand(args);
+  return result;
+}
+
+/*
  * Given a package name and if it is default to the official repositories,
  * returns a string containing all of its information fields
  * (ex: name, description, version, dependsOn...)
@@ -710,13 +722,27 @@ void UnixCommand::executeCommand(const QString &pCommand, Language lang)
 {
   QString command;
 
-  if (lang == ectn_LANG_USER_DEFINED)
+  if (lang == ectn_LANG_ENGLISH)
+  {
+    //COLUMNS variable code!
+    QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
+    env.remove("LANG");
+    env.remove("LC_MESSAGES");
+    env.insert("LANG", "C");
+    env.insert("LC_MESSAGES", "C");
+    env.remove("COLUMNS");
+    env.insert("COLUMNS", "132");
+    m_process->setProcessEnvironment(env);
+  }
+  else if (lang == ectn_LANG_USER_DEFINED)
   {
     QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
     env.remove("LANG");
     env.remove("LC_MESSAGES");
     env.insert("LANG", QLocale::system().name() + ".UTF-8");
     env.insert("LC_MESSAGES", QLocale::system().name() + ".UTF-8");
+    env.remove("COLUMNS");
+    env.insert("COLUMNS", "132");
     m_process->setProcessEnvironment(env);
   }
 
@@ -1036,6 +1062,10 @@ LinuxDistro UnixCommand::getLinuxDistro()
       {
         ret = ectn_NETRUNNER;
       }
+      else if (contents.contains(QRegExp("Parabola GNU/Linux-libre")))
+      {
+        ret = ectn_PARABOLA;
+      }
       else
       {
         ret = ectn_UNKNOWN;
@@ -1080,4 +1110,22 @@ QString UnixCommand::getLinuxDistroPrettyName()
   }
 
   return ret;
+}
+
+/*
+ * Retrieves pacman version.
+ */
+QString UnixCommand::getPacmanVersion()
+{
+  QString v = performQuery("--version");
+  QString res = "???";
+  int p = v.indexOf("Pacman");
+  int q = v.indexOf("- libalpm");
+
+  if (p >=0 && q >= 0)
+  {
+    res = v.mid(p+6, q-(p+6)).trimmed();
+  }
+
+  return res;
 }

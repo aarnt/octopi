@@ -32,16 +32,7 @@
 
 #include <QTextBrowser>
 #include <QFutureWatcher>
-
-#if QT_VERSION > 0x050000
-  #include <QtConcurrent/QtConcurrentRun>
-#else
-  #include <QtConcurrentRun>
-#endif
-
-#if QT_VERSION < 0x050000
-  using namespace QtConcurrent;
-#endif
+#include <QtConcurrent/QtConcurrentRun>
 
 /*
  * This is the high level method that orquestrates the Distro RSS News printing in tabNews
@@ -91,6 +82,11 @@ void MainWindow::refreshDistroNews(bool searchForLatestNews, bool gotoNewsTab)
     {
       writeToTabOutputExt("<b>" +
                           StrConstants::getSearchingForDistroNews().arg("Netrunner Rolling") + "</b>");
+    }
+    else if (gotoNewsTab && distro == ectn_PARABOLA)
+    {
+      writeToTabOutputExt("<b>" +
+                          StrConstants::getSearchingForDistroNews().arg("Parabola GNU/Linux-libre") + "</b>");
     }
 
     /*
@@ -219,17 +215,10 @@ void MainWindow::initTabNews()
   gridLayoutX->addWidget(text, 0, 0, 1, 1);
   text->show();
 
-#if QT_VERSION > 0x050000
   int tindex = ui->twProperties->insertTab(ctn_TABINDEX_NEWS, tabNews, QApplication::translate (
       "MainWindow", aux.toUtf8(), 0/*, QApplication::UnicodeUTF8*/ ) );
   ui->twProperties->setTabText(ui->twProperties->indexOf(tabNews), QApplication::translate(
       "MainWindow", aux.toUtf8(), 0/*, QApplication::UnicodeUTF8*/));
-#else
-  int tindex = ui->twProperties->insertTab(ctn_TABINDEX_NEWS, tabNews, QApplication::translate (
-      "MainWindow", aux.toUtf8(), 0, QApplication::UnicodeUTF8 ) );
-  ui->twProperties->setTabText(ui->twProperties->indexOf(tabNews), QApplication::translate(
-      "MainWindow", aux.toUtf8(), 0, QApplication::UnicodeUTF8));
-#endif
 
   SearchBar *searchBar = new SearchBar(this);
 

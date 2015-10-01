@@ -37,7 +37,7 @@ enum CommandExecuting { ectn_NONE, ectn_MIRROR_CHECK, ectn_SYNC_DATABASE,
                         ectn_RUN_IN_TERMINAL };
 
 enum LinuxDistro { ectn_ANTERGOS, ectn_ARCHBANGLINUX, ectn_ARCHBSD, ectn_ARCHLINUX, ectn_CHAKRA,
-                   ectn_KAOS, ectn_MANJAROLINUX, ectn_MOOOSLINUX, ectn_NETRUNNER, ectn_UNKNOWN };
+                   ectn_KAOS, ectn_MANJAROLINUX, ectn_MOOOSLINUX, ectn_NETRUNNER, ectn_PARABOLA, ectn_UNKNOWN };
 
 enum Language { ectn_LANG_ENGLISH, ectn_LANG_USER_DEFINED };
 
@@ -76,6 +76,8 @@ public:
   //Returns the PrettyName info from /etc/os-release
   static QString getLinuxDistroPrettyName();
 
+  static QString getPacmanVersion();
+
   //Delegations from Package class (due to QProcess use)
   static QString runCommand(const QString& commandToRun);
   static QString runCurlCommand(const QString& commandToRun);
@@ -92,6 +94,8 @@ public:
   static QByteArray getOutdatedAURPackageList();
   static QByteArray getForeignPackageList();
   static QByteArray getPackageList(const QString &pkgName = "");
+
+  static QByteArray getKCPPackageInformation(const QString &pkgName);
   static QByteArray getPackageInformation(const QString &pkgName, bool foreignPackage);
   static QByteArray getAURPackageVersionInformation();
   static QByteArray getPackageContentsUsingPacman(const QString &pkgName);

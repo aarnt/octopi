@@ -16,6 +16,7 @@
         <file>resources/translations/octopi_cachecleaner_es_ES.qm</file>
         <file>resources/translations/octopi_cachecleaner_eu.qm</file>
         <file>resources/translations/octopi_cachecleaner_fi.qm</file>
+        <file>resources/translations/octopi_cachecleaner_fi_FI.qm</file>
         <file>resources/translations/octopi_cachecleaner_fr_FR.qm</file>
         <file>resources/translations/octopi_cachecleaner_he.qm</file>
         <file>resources/translations/octopi_cachecleaner_hu.qm</file>
@@ -40,5 +41,7 @@
         <file>resources/translations/octopi_cachecleaner_uz.qm</file>
         <file>resources/translations/octopi_cachecleaner_vi.qm</file>
         <file>resources/translations/octopi_cachecleaner_zh_TW.qm</file>
+        <file>resources/translations/octopi_cachecleaner_zh-Hans.ts</file>
+        <file>resources/translations/octopi_cachecleaner_hr.qm</file>
     </qresource>
 </RCC>

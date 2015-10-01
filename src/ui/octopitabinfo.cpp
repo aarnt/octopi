@@ -71,11 +71,6 @@ QString OctopiTabInfo::formatTabInfo(const PackageRepository::PackageData& packa
 
   //Let's put package description in UTF-8 format
   QString pkgDescription = pid.description;
-
-#if QT_VERSION < 0x050000
-  pkgDescription = pkgDescription.fromUtf8(pkgDescription.toLatin1().data());
-#endif
-
   QString html;
   html += "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">";
   html += "<a id=\"" + anchorBegin + "\"></a>";
@@ -136,10 +131,6 @@ QString OctopiTabInfo::formatTabInfo(const PackageRepository::PackageData& packa
   packagerName = packagerName.replace("<", "&lt;");
   packagerName = packagerName.replace(">", "&gt;");
 
-#if QT_VERSION < 0x050000
-  packagerName = packagerName.fromUtf8(packagerName.toLatin1().data());
-#endif
-
   QString strConflictsWith = pid.conflictsWith;
   strConflictsWith = strConflictsWith.replace("<", "&lt;");
   strConflictsWith = strConflictsWith.replace(">", "&gt;");
@@ -150,16 +141,22 @@ QString OctopiTabInfo::formatTabInfo(const PackageRepository::PackageData& packa
   //Show this info only if there's something to show
   if(! pid.group.contains("None"))
     html += "<tr><td>" + groups + "</td><td>" + pid.group + "</td></tr>";
+
   if(! pid.provides.contains("None"))
     html += "<tr><td>" + provides + "</td><td>" + pid.provides + "</td></tr>";
+
   if(! pid.dependsOn.contains("None"))
-    html += "<tr><td>" + dependsOn + "</td><td>" + pid.dependsOn + "</td></tr>";
+    html += "<tr><td>" + dependsOn + "</td><td>" + Package::makeAnchorOfPackage(pid.dependsOn) + "</td></tr>";
+
   if(! pid.optDepends.contains("None"))
     html += "<tr><td>" + optionalDeps + "</td><td>" + pid.optDepends + "</td></tr>";
+
   if(!pid.requiredBy.isEmpty() && !pid.requiredBy.contains("None"))
     html += "<tr><td>" + requiredBy + "</td><td>" + pid.requiredBy + "</td></tr>";
+
   if(!pid.optionalFor.isEmpty() && !pid.optionalFor.contains("None"))
     html += "<tr><td>" + optionalFor + "</td><td>" + pid.optionalFor + "</td></tr>";
+
   if(! pid.conflictsWith.contains("None"))
     html += "<tr><td><b>" + conflictsWith + "</b></td><td><b>" + strConflictsWith +
         "</b></font></td></tr>";
@@ -175,5 +172,6 @@ QString OctopiTabInfo::formatTabInfo(const PackageRepository::PackageData& packa
       pid.buildDate.toString("ddd - dd/MM/yyyy hh:mm:ss") + "</td></tr>";
 
   html += "</table>";
+
   return html;
 }

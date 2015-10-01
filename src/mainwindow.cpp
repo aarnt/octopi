@@ -43,6 +43,8 @@
 #include <QFileDialog>
 #include <QHash>
 #include <QFutureWatcher>
+#include <QToolTip>
+#include <QtConcurrent/QtConcurrentRun>
 
 /*
  * MainWindow's constructor: basic UI init
@@ -76,7 +78,6 @@ MainWindow::MainWindow(QWidget *parent) :
 
   retrieveUnrequiredPackageList();
   retrieveForeignPackageList();
-
   ui->setupUi(this);
   switchToViewAllPackages();  
   m_hasAURTool =
@@ -138,6 +139,9 @@ void MainWindow::show()
 
     QMainWindow::show();
 
+    m_listOfVisitedPackages.clear();
+    m_indOfVisitedPackage = 0;
+
     if (Package::hasPacmanDatabase())
     {
       metaBuildPackageList();
@@ -181,6 +185,64 @@ QTextBrowser *MainWindow::getOutputTextBrowser()
 }
 
 /*
+ * Shows comment of given anchor
+ */
+void MainWindow::showAnchorDescription(const QUrl &link)
+{
+  if (link.toString().contains("goto:"))
+  {
+    //qDebug() << "ENTERED!";
+    QString pkgName = link.toString().mid(5);
+
+    QFuture<QString> f;
+    disconnect(&g_fwToolTipInfo, SIGNAL(finished()), this, SLOT(execToolTip()));
+    f = QtConcurrent::run(showPackageInfo, pkgName);
+    g_fwToolTipInfo.setFuture(f);
+    connect(&g_fwToolTipInfo, SIGNAL(finished()), this, SLOT(execToolTip()));
+  }
+}
+
+/*
+ * When the tooltip QFuture method is finished, we show the selected tooltip to the user
+ */
+void MainWindow::execToolTip()
+{
+  QPoint point = QCursor::pos();
+  if (g_fwToolTipInfo.result().trimmed().isEmpty())
+    return;
+
+  point.setX(point.x());
+  point.setY(point.y());
+  QToolTip::showText(point, g_fwToolTipInfo.result());
+}
+
+void MainWindow::positionInPackageList(const QString &pkgName)
+{
+  QModelIndex columnIndex = m_packageModel->index(0, PackageModel::ctn_PACKAGE_NAME_COLUMN, QModelIndex());
+  QModelIndexList foundItems = m_packageModel->match(columnIndex, Qt::DisplayRole, pkgName, -1, Qt::MatchExactly);
+  QModelIndex proxyIndex;
+
+  if (foundItems.count() == 1)
+  {
+    proxyIndex = foundItems.first();
+
+    if(proxyIndex.isValid())
+    {
+      ui->tvPackages->scrollTo(proxyIndex, QAbstractItemView::PositionAtCenter);
+      ui->tvPackages->setCurrentIndex(proxyIndex);
+      changeTabWidgetPropertiesIndex(ctn_TABINDEX_INFORMATION);
+    }
+  }
+  if (foundItems.count() == 0 || !proxyIndex.isValid())
+  {
+    refreshTabInfo(pkgName);
+    disconnect(ui->twProperties, SIGNAL(currentChanged(int)), this, SLOT(changedTabIndex()));
+    ensureTabVisible(ctn_TABINDEX_INFORMATION);
+    connect(ui->twProperties, SIGNAL(currentChanged(int)), this, SLOT(changedTabIndex()));
+  }
+}
+
+/*
  * This SLOT is called whenever user clicks a url inside output's textBrowser
  */
 void MainWindow::outputTextBrowserAnchorClicked(const QUrl &link)
@@ -189,29 +251,58 @@ void MainWindow::outputTextBrowserAnchorClicked(const QUrl &link)
   {
     QString pkgName = link.toString().mid(5);
 
-    QModelIndex columnIndex = m_packageModel->index(0, PackageModel::ctn_PACKAGE_NAME_COLUMN,
-                                                    QModelIndex());
+    bool indIncremented = false;
+    QItemSelectionModel*const selectionModel = ui->tvPackages->selectionModel();
+    QModelIndex item = selectionModel->selectedRows(PackageModel::ctn_PACKAGE_NAME_COLUMN).first();
+    const PackageRepository::PackageData*const selectedPackage = m_packageModel->getData(item);
+    //qDebug() << "Testing with index: " << m_indOfVisitedPackage;
 
-    QModelIndexList foundItems = m_packageModel->match(columnIndex, Qt::DisplayRole, pkgName, -1, Qt::MatchExactly);
-    QModelIndex proxyIndex;
-
-    if (foundItems.count() == 1)
+    if (!m_listOfVisitedPackages.isEmpty())
     {
-      proxyIndex = foundItems.first();
-      if(proxyIndex.isValid())
+      int limit = m_listOfVisitedPackages.count()-1;
+
+      if (m_indOfVisitedPackage <= limit)
       {
-        ui->tvPackages->scrollTo(proxyIndex, QAbstractItemView::PositionAtCenter);
-        ui->tvPackages->setCurrentIndex(proxyIndex);
-        changeTabWidgetPropertiesIndex(ctn_TABINDEX_INFORMATION);
+        if (m_listOfVisitedPackages.at(m_indOfVisitedPackage) != selectedPackage->name)
+        {
+          m_indOfVisitedPackage++;
+          indIncremented = true;
+          m_listOfVisitedPackages.insert(m_indOfVisitedPackage, selectedPackage->name);
+          m_listOfVisitedPackages.insert(m_indOfVisitedPackage+1, pkgName);
+          m_indOfVisitedPackage++; //CHANGED!!!
+        }
+        else
+        {
+          if ((m_indOfVisitedPackage+1) <= limit)
+          {
+            if (m_listOfVisitedPackages.at(m_indOfVisitedPackage+1) != pkgName)
+            {
+              m_listOfVisitedPackages.insert(m_indOfVisitedPackage+1, pkgName);
+            }
+          }
+          else
+            m_listOfVisitedPackages.insert(m_indOfVisitedPackage+1, pkgName);
+        }
+      }
+      else if (m_indOfVisitedPackage == 1)
+      {
+        m_indOfVisitedPackage++;
+        indIncremented = true;
+        m_listOfVisitedPackages.insert(m_indOfVisitedPackage, selectedPackage->name);
+        m_listOfVisitedPackages.insert(m_indOfVisitedPackage+1, pkgName);
       }
     }
-    if (foundItems.count() == 0 || !proxyIndex.isValid())
+    else //The list is EMPTY!
     {
-      refreshTabInfo(pkgName);
-      disconnect(ui->twProperties, SIGNAL(currentChanged(int)), this, SLOT(changedTabIndex()));
-      ensureTabVisible(ctn_TABINDEX_INFORMATION);
-      connect(ui->twProperties, SIGNAL(currentChanged(int)), this, SLOT(changedTabIndex()));
+      m_indOfVisitedPackage++;
+      indIncremented = true;
+      m_listOfVisitedPackages.insert(m_indOfVisitedPackage, selectedPackage->name);
+      m_listOfVisitedPackages.insert(m_indOfVisitedPackage+1, pkgName);
     }
+
+    if (indIncremented == false) m_indOfVisitedPackage++;
+
+    positionInPackageList(pkgName);
   }
   else
   {
@@ -918,7 +1009,7 @@ void MainWindow::invalidateTabs()
 {
   if(ui->twProperties->currentIndex() == ctn_TABINDEX_INFORMATION) //This is TabInfo
   {
-    refreshTabInfo(true);
+    refreshTabInfo(false, false);
     return;
   }
   else if(ui->twProperties->currentIndex() == ctn_TABINDEX_FILES) //This is TabFiles
@@ -1269,9 +1360,8 @@ void MainWindow::tvPackagesSelectionChanged(const QItemSelection&, const QItemSe
   const QItemSelectionModel*const selection = ui->tvPackages->selectionModel();
   const int selected = selection != NULL ? selection->selectedRows().count() : 0;
 
-  QString newMessage = StrConstants::getSelectedPackages(
-        m_packageModel->getPackageCount()).
-      arg(QString::number(selected));
+  QString newMessage = StrConstants::getTotalPackages(m_packageModel->getPackageCount()) +
+      " (" + StrConstants::getSelectedPackages(selected) + ") ";
 
   QString text;
   int numberOfInstalledPackages = m_packageModel->getInstalledPackagesCount();
@@ -1336,6 +1426,10 @@ void MainWindow::gistSysInfo()
   tempFile->open(QIODevice::ReadWrite|QIODevice::Text);
   tempFile->setPermissions(QFile::Permissions(QFile::ExeOwner|QFile::ReadOwner));
 
+  QString hostname = UnixCommand::getCommandOutput("hostname");
+  hostname.remove("\n");
+  QString homePath = QDir::homePath();
+
   QByteArray out;
 
   if (UnixCommand::getLinuxDistro() == ectn_KAOS)
@@ -1344,6 +1438,10 @@ void MainWindow::gistSysInfo()
     tempFile->write("cat /etc/KaOS-release\n");
     tempFile->write("----------------------------------------------------------------------------------------------------------\n\n");
     out = UnixCommand::getCommandOutput("cat /etc/KaOS-release");
+
+    out.replace(hostname, "<HOSTNAME>");
+    out.replace(homePath, "<HOME_PATH>");
+
     tempFile->write(out);
     tempFile->write("\n\n");
   }
@@ -1353,6 +1451,10 @@ void MainWindow::gistSysInfo()
     tempFile->write("cat /etc/lsb-release\n");
     tempFile->write("----------------------------------------------------------------------------------------------------------\n\n");
     out = UnixCommand::getCommandOutput("cat /etc/lsb-release");
+
+    out.replace(hostname, "<HOSTNAME>");
+    out.replace(homePath, "<HOME_PATH>");
+
     tempFile->write(out);
     tempFile->write("\n\n");
   }
@@ -1363,6 +1465,10 @@ void MainWindow::gistSysInfo()
     tempFile->write("inxi -Fxz\n");
     tempFile->write("----------------------------------------------------------------------------------------------------------\n\n");
     out = UnixCommand::getCommandOutput("inxi -Fxz -c 0");
+
+    out.replace(hostname, "<HOSTNAME>");
+    out.replace(homePath, "<HOME_PATH>");
+
     tempFile->write(out);
     tempFile->write("\n\n");
   }
@@ -1372,6 +1478,10 @@ void MainWindow::gistSysInfo()
     tempFile->write("uname -a\n");
     tempFile->write("----------------------------------------------------------------------------------------------------------\n\n");
     out = UnixCommand::getCommandOutput("uname -a");
+
+    out.replace(hostname, "<HOSTNAME>");
+    out.replace(homePath, "<HOME_PATH>");
+
     tempFile->write(out);
     tempFile->write("\n\n");
   }
@@ -1382,6 +1492,10 @@ void MainWindow::gistSysInfo()
     tempFile->write("mhwd -li -d\n");
     tempFile->write("----------------------------------------------------------------------------------------------------------\n\n");
     out = UnixCommand::getCommandOutput("mhwd -li -d");
+
+    out.replace(hostname, "<HOSTNAME>");
+    out.replace(homePath, "<HOME_PATH>");
+
     tempFile->write(out);
     tempFile->write("\n\n");
   }
@@ -1390,6 +1504,10 @@ void MainWindow::gistSysInfo()
   tempFile->write("journalctl -b -p err\n");
   tempFile->write("----------------------------------------------------------------------------------------------------------\n\n");
   out = UnixCommand::getCommandOutput("journalctl -b -p err");
+
+  out.replace(hostname, "<HOSTNAME>");
+  out.replace(homePath, "<HOME_PATH>");
+
   tempFile->write(out);
   tempFile->write("\n\n");
 
@@ -1397,6 +1515,10 @@ void MainWindow::gistSysInfo()
   tempFile->write("cat /etc/pacman.conf\n");
   tempFile->write("----------------------------------------------------------------------------------------------------------\n\n");
   out = UnixCommand::getCommandOutput("cat /etc/pacman.conf");
+
+  out.replace(hostname, "<HOSTNAME>");
+  out.replace(homePath, "<HOME_PATH>");
+
   tempFile->write(out);
   tempFile->write("\n\n");
 
@@ -1404,6 +1526,10 @@ void MainWindow::gistSysInfo()
   tempFile->write("pacman -Qm\n");
   tempFile->write("----------------------------------------------------------------------------------------------------------\n\n");
   out = UnixCommand::getCommandOutput("pacman -Qm");
+
+  out.replace(hostname, "<HOSTNAME>");
+  out.replace(homePath, "<HOME_PATH>");
+
   tempFile->write(out);
   tempFile->write("\n\n");
 
@@ -1413,6 +1539,10 @@ void MainWindow::gistSysInfo()
     tempFile->write("cat /var/log/pacman.log\n");
     tempFile->write("----------------------------------------------------------------------------------------------------------\n\n");
     out = UnixCommand::getCommandOutput("cat /var/log/pacman.log");
+
+    out.replace(hostname, "<HOSTNAME>");
+    out.replace(homePath, "<HOME_PATH>");
+
     tempFile->write(out);
     tempFile->flush();
     tempFile->close();
@@ -1423,6 +1553,10 @@ void MainWindow::gistSysInfo()
     tempFile->write("head --bytes=256K /var/log/pacman.log\n");
     tempFile->write("----------------------------------------------------------------------------------------------------------\n\n");
     out = UnixCommand::getCommandOutput("head --bytes=256K /var/log/pacman.log");
+
+    out.replace(hostname, "<HOSTNAME>");
+    out.replace(homePath, "<HOME_PATH>");
+
     tempFile->write(out);
     tempFile->flush();
     tempFile->close();

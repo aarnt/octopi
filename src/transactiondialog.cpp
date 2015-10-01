@@ -25,6 +25,7 @@
 #include <QMessageBox>
 #include <QPushButton>
 #include <QDialog>
+#include <QCloseEvent>
 
 /*
  * This is the dialog used to show the transaction summary
@@ -35,9 +36,7 @@ TransactionDialog::TransactionDialog(QWidget* parent) :
   ui(new Ui::TransactionDialog)
 {
   ui->setupUi(this);
-
   ui->actionRunInTerminal->setIcon(IconHelper::getIconTerminal());
-
   m_runInTerminalButton =
       new QPushButton(IconHelper::getIconTerminal(), StrConstants::getRunInTerminal());
   ui->buttonBox->addButton(m_runInTerminalButton, QDialogButtonBox::AcceptRole);
@@ -96,6 +95,14 @@ void TransactionDialog::reject()
   done(QDialogButtonBox::No);
 }
 
+void TransactionDialog::done(int p)
+{
+  //Let's save the dialog size value before closing it.
+  QByteArray windowSize=saveGeometry();
+  SettingsManager::setTransactionWindowSize(windowSize);
+  QDialog::done(p);
+}
+
 void TransactionDialog::slotRunInTerminal()
 {
   done(QDialogButtonBox::AcceptRole);
@@ -104,4 +111,11 @@ void TransactionDialog::slotRunInTerminal()
 void TransactionDialog::slotYes()
 {
   done(QDialogButtonBox::Yes);
+}
+
+int TransactionDialog::exec()
+{
+  //Let's restore the dialog size saved...
+  restoreGeometry(SettingsManager::getTransactionWindowSize());
+  return QDialog::exec();
 }
