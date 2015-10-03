@@ -98,7 +98,7 @@
     <message>
         <location filename="Projects/octopi/repoeditor/repoconf.cpp" line="242"/>
         <source>Active</source>
-        <translation>活躍</translation>
+        <translation>啟用</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/repoconf.cpp" line="242"/>

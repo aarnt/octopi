@@ -1493,7 +1493,7 @@ void MainWindow::gistSysInfo()
     tempFile->write("----------------------------------------------------------------------------------------------------------\n\n");
     out = UnixCommand::getCommandOutput("mhwd -li -d");
 
-    out.replace(hostname, "<HOSTNAME>");
+    //out.replace(hostname, "<HOSTNAME>");
     out.replace(homePath, "<HOME_PATH>");
 
     tempFile->write(out);
@@ -1516,7 +1516,7 @@ void MainWindow::gistSysInfo()
   tempFile->write("----------------------------------------------------------------------------------------------------------\n\n");
   out = UnixCommand::getCommandOutput("cat /etc/pacman.conf");
 
-  out.replace(hostname, "<HOSTNAME>");
+  //out.replace(hostname, "<HOSTNAME>");
   out.replace(homePath, "<HOME_PATH>");
 
   tempFile->write(out);
@@ -1527,7 +1527,7 @@ void MainWindow::gistSysInfo()
   tempFile->write("----------------------------------------------------------------------------------------------------------\n\n");
   out = UnixCommand::getCommandOutput("pacman -Qm");
 
-  out.replace(hostname, "<HOSTNAME>");
+  //out.replace(hostname, "<HOSTNAME>");
   out.replace(homePath, "<HOME_PATH>");
 
   tempFile->write(out);
@@ -1540,7 +1540,7 @@ void MainWindow::gistSysInfo()
     tempFile->write("----------------------------------------------------------------------------------------------------------\n\n");
     out = UnixCommand::getCommandOutput("cat /var/log/pacman.log");
 
-    out.replace(hostname, "<HOSTNAME>");
+    //out.replace(hostname, "<HOSTNAME>");
     out.replace(homePath, "<HOME_PATH>");
 
     tempFile->write(out);
@@ -1554,7 +1554,7 @@ void MainWindow::gistSysInfo()
     tempFile->write("----------------------------------------------------------------------------------------------------------\n\n");
     out = UnixCommand::getCommandOutput("head --bytes=256K /var/log/pacman.log");
 
-    out.replace(hostname, "<HOSTNAME>");
+    //out.replace(hostname, "<HOSTNAME>");
     out.replace(homePath, "<HOME_PATH>");
 
     tempFile->write(out);
