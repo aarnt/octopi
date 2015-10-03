@@ -101,7 +101,7 @@ void utils::ProcessWrapper::onSingleShot()
 
   if (list.count() == 1)
   {
-    proc.start("ps -o pid -C bash");
+    proc.start("ps -o pid -C " + UnixCommand::getShell());
     proc.waitForFinished(-1);
     out = proc.readAll();
     proc.close();

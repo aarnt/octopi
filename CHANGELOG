@@ -1,6 +1,7 @@
 0.8.0 (dev)
   This is a Qt5 only version (with the exception of 'octopi-notifier').
-  BugFix: If user refused to remove pacman's lock file, commands 
+  BugFix: Octopi now honors the $SHELL variable (thanks to LAC1213).
+  BugFix: If user refused to remove pacman's lock file, commands
 	should be canceled!
   BugFix: Sync Interval dialog was not showing strings in some languages.
   BugFix: Package counters were not zeroing when searches found no results.

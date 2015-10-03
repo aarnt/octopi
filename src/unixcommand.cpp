@@ -234,12 +234,15 @@ QByteArray UnixCommand::getAURPackageList(const QString &searchString)
 }
 
 /*
- * Returns the SHELL environment variable, if not set defaults to sh.
+ * Returns the SHELL environment variable, if not set defaults to bash.
  */
 QString UnixCommand::getShell()
 {
-    QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
-    return env.value("SHELL", "/bin/sh");
+  QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
+  QString shell = env.value("SHELL", "/bin/bash");
+
+  QFileInfo fi(shell);
+  return fi.fileName();
 }
 
 /*
