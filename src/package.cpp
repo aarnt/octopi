@@ -74,11 +74,7 @@ QString Package::makeURLClickable( const QString &s )
 		QString s1 = rx.cap();
     QString ns;
 
-    if (UnixCommand::getLinuxDistro() == ectn_MANJAROLINUX)
-      ns = "<a style=\"color:\'#425823\'\" href=\"" + s1 + "\">" + s1 + "</a>";
-    else
-      ns = "<a href=\"" + s1 + "\">" + s1 + "</a>";
-
+    ns = "<a href=\"" + s1 + "\">" + s1 + "</a>";
     sb.replace( ini, s1.length(), ns);
 		search = ini + (2*s1.length()) + 15;	
 	}
@@ -90,20 +86,14 @@ QString Package::makeURLClickable( const QString &s )
 	while ( (ini = rx1.indexIn( sb, search )) != -1 ){
 		QString s1 = rx1.cap();
 		QString ns;
-		if (s1[0] == '\n') ns += "\n";
+    if (s1[0] == '\n')
+      ns += "\n";
 
 		int blanks = s1.count(	QRegExp("^|[\\s]+") );
 		for (int i=0; i<blanks; i++) ns += " ";
 
-    if (UnixCommand::getLinuxDistro() == ectn_MANJAROLINUX)
-    {
-      ns += "<a style=\"color:\'#425823\'\" href=\"http://" +
-          s1.trimmed() + "\">" + s1.trimmed() + "</a>";
-    }
-    else
-      ns += "<a href=\"http://" + s1.trimmed() + "\">" + s1.trimmed() + "</a>";
-
-		sb.replace( ini, s1.length(), ns);
+    ns += "<a href=\"http://" + s1.trimmed() + "\">" + s1.trimmed() + "</a>";
+    sb.replace( ini, s1.length(), ns);
 		search = ini + (2*s1.length()) + 15;	
 	}
 
