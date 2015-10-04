@@ -760,7 +760,7 @@ void MainWindow::doAURUpgrade()
   }
 
   m_lastCommandList.append("echo -e;");
-  m_lastCommandList.append("read -n1 -p \"" + StrConstants::getPressAnyKey() + "\"");
+  m_lastCommandList.append("read -n 1 -p \"" + StrConstants::getPressAnyKey() + "\"");
 
   disableTransactionActions();
   m_unixCommand = new UnixCommand(this);
@@ -784,7 +784,7 @@ void MainWindow::prepareSystemUpgrade()
   m_lastCommandList.clear();
   m_lastCommandList.append("pacman -Su;");
   m_lastCommandList.append("echo -e;");
-  m_lastCommandList.append("read -n1 -p \"" + StrConstants::getPressAnyKey() + "\"");
+  m_lastCommandList.append("read -n 1 -p \"" + StrConstants::getPressAnyKey() + "\"");
 
   m_unixCommand = new UnixCommand(this);
 
@@ -1022,7 +1022,7 @@ void MainWindow::doRemoveAndInstall()
     m_lastCommandList.append("pacman -R " /*+ m_removeCommand + " "*/ + listOfRemoveTargets + ";");
     m_lastCommandList.append("pacman -S " + listOfInstallTargets + ";");
     m_lastCommandList.append("echo -e;");
-    m_lastCommandList.append("read -n1 -p \"" + StrConstants::getPressAnyKey() + "\"");
+    m_lastCommandList.append("read -n 1 -p \"" + StrConstants::getPressAnyKey() + "\"");
 
     m_unixCommand = new UnixCommand(this);
 
@@ -1099,7 +1099,7 @@ void MainWindow::doRemove()
     m_lastCommandList.clear();
     m_lastCommandList.append("pacman -R " + /*m_removeCommand +*/ listOfTargets + ";");
     m_lastCommandList.append("echo -e;");
-    m_lastCommandList.append("read -n1 -p \"" + StrConstants::getPressAnyKey() + "\"");
+    m_lastCommandList.append("read -n 1 -p \"" + StrConstants::getPressAnyKey() + "\"");
 
     m_unixCommand = new UnixCommand(this);
 
@@ -1211,7 +1211,7 @@ void MainWindow::doInstallAURPackage()
     m_lastCommandList.append(StrConstants::getForeignRepositoryToolName() + " -S " + listOfTargets + ";");
 
   m_lastCommandList.append("echo -e;");
-  m_lastCommandList.append("read -n1 -p \"" + StrConstants::getPressAnyKey() + "\"");
+  m_lastCommandList.append("read -n 1 -p \"" + StrConstants::getPressAnyKey() + "\"");
 
   disableTransactionActions();
   m_unixCommand = new UnixCommand(this);
@@ -1259,7 +1259,7 @@ void MainWindow::doRemoveAURPackage()
   }
 
   m_lastCommandList.append("echo -e;");
-  m_lastCommandList.append("read -n1 -p \"" + StrConstants::getPressAnyKey() + "\"");
+  m_lastCommandList.append("read -n 1 -p \"" + StrConstants::getPressAnyKey() + "\"");
 
   disableTransactionActions();
   m_unixCommand = new UnixCommand(this);
@@ -1334,7 +1334,7 @@ void MainWindow::doInstall()
     m_lastCommandList.clear();
     m_lastCommandList.append("pacman -S " + listOfTargets + ";");
     m_lastCommandList.append("echo -e;");
-    m_lastCommandList.append("read -n1 -p \"" + StrConstants::getPressAnyKey() + "\"");
+    m_lastCommandList.append("read -n 1 -p \"" + StrConstants::getPressAnyKey() + "\"");
 
     disableTransactionActions();
     m_unixCommand = new UnixCommand(this);
@@ -1410,7 +1410,7 @@ void MainWindow::doInstallLocalPackages()
     m_lastCommandList.clear();
     m_lastCommandList.append("pacman -U --force " + listOfTargets + ";");
     m_lastCommandList.append("echo -e;");
-    m_lastCommandList.append("read -n1 -p \"" + StrConstants::getPressAnyKey() + "\"");
+    m_lastCommandList.append("read -n 1 -p \"" + StrConstants::getPressAnyKey() + "\"");
 
     m_commandExecuting = ectn_INSTALL;
     disableTransactionActions();

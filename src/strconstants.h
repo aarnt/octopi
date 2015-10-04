@@ -400,7 +400,14 @@ public:
   }
 
   static QString getPressAnyKey(){
-    return QObject::tr("Press any key to continue...");
+    if (UnixCommand::getShell() != "fish")
+    {
+      return QObject::tr("Press any key to continue...");
+    }
+    else
+    {
+      return QObject::tr("echo Press any key to continue...");
+    }
   }
 
   static QString getSyncMirror(){
