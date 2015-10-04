@@ -65,7 +65,6 @@ QString Package::makeURLClickable( const QString &s )
 	QRegExp rx1("^|[\\s]+(www\\.)(\\S)+[^\"|)|(|.|\\s|\\n]"); 
   rx.setCaseSensitivity( Qt::CaseInsensitive );
 	rx1.setCaseSensitivity( Qt::CaseInsensitive );
-
 	int search = 0;
 	int ini = 0;
 
@@ -1185,9 +1184,12 @@ QHash<QString, QString> Package::getAUROutdatedPackagesNameVersion()
         else
         {
           //Let's ignore the "IgnorePkg" list of packages...
-          if (!ignorePkgList.contains(pkgName) && nameVersion.size() == 4)
+          if (!ignorePkgList.contains(pkgName))
           {
-            hash.insert(pkgName, nameVersion.at(3));
+            if (nameVersion.size() == 2)
+              hash.insert(pkgName, nameVersion.at(1));
+            else if (nameVersion.size() == 4)
+              hash.insert(pkgName, nameVersion.at(3));
           }
         }
       }
