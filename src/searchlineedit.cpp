@@ -215,6 +215,12 @@ QString SearchLineEdit::buttonStyleSheetForCurrentState() const
     this->text().isEmpty() ? this->m_SearchButton->setIcon(IconHelper::getIconSearch())
                            : this->m_SearchButton->setIcon(IconHelper::getIconClear());
     this->m_SearchButton->setAutoRaise(true);
+
+    if (!this->text().isEmpty())
+      this->m_SearchButton->setToolTip(StrConstants::getClear());
+    else
+      this->m_SearchButton->setToolTip("");
+
     return QString();
   }
 
