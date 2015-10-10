@@ -242,7 +242,11 @@ QString UnixCommand::getShell()
   QString shell = env.value("SHELL", "/bin/bash");
 
   QFileInfo fi(shell);
-  return fi.fileName();
+
+  if (fi.fileName() == "fish")
+    return "bash";
+  else
+    return fi.fileName();
 }
 
 /*

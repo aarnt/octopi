@@ -399,15 +399,17 @@ public:
     return QObject::tr("Syncing");
   }
 
-  static QString getPressAnyKey(){
-    if (UnixCommand::getShell() != "fish")
+  static QString getPressAnyKey(){    
+    return QObject::tr("Press any key to continue...");
+
+    /*if (UnixCommand::getShell() != "fish")
     {
       return QObject::tr("Press any key to continue...");
     }
     else
     {
-      return QObject::tr("echo Press any key to continue...");
-    }
+      return "echo " + QObject::tr("Press any key to continue...");
+    }*/
   }
 
   static QString getSyncMirror(){
