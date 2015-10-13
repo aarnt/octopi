@@ -376,7 +376,7 @@ void MainWindow::preBuildAURPackageListMeta()
 }
 
 /*
- * Executes QFuture to retrive Outdated AUR list of packages
+ * Executes QFuture to retrieve Outdated AUR list of packages
  */
 void MainWindow::retrieveForeignPackageList()
 {
@@ -392,7 +392,7 @@ void MainWindow::retrieveForeignPackageList()
 }
 
 /*
- * Executes QFuture to retrive Unrequired Pacman list of packages
+ * Executes QFuture to retrieve Unrequired Pacman list of packages
  */
 void MainWindow::retrieveUnrequiredPackageList()
 {
@@ -405,6 +405,36 @@ void MainWindow::retrieveUnrequiredPackageList()
   el.exec();
 
   assert(m_unrequiredPackageList != NULL);
+}
+
+/*
+ * Executes QFuture to retrieve Outdated Pacman/AUR list of packages
+ */
+void MainWindow::retrieveOutdatedPackageList()
+{
+  QEventLoop el;
+  QFuture<QStringList *> f;
+  f = QtConcurrent::run(getOutdatedPkgStringList);
+  connect(&g_fwOutdatedPkgStringList, SIGNAL(finished()), &el, SLOT(quit()));
+  g_fwOutdatedPkgStringList.setFuture(f);
+  el.exec();
+  m_outdatedStringList = g_fwOutdatedPkgStringList.result();
+  m_numberOfOutdatedPackages = m_outdatedStringList->count();
+
+  //std::cout << "Time elapsed retrieving outdated pkg stringlist: " << m_time->elapsed() << " mili seconds." << std::endl;
+
+/*
+  if (m_hasAURTool)
+  {
+    f = QtConcurrent::run(getOutdatedAURStringList);
+    connect(&g_fwOutdatedAURStringList, SIGNAL(finished()), &el, SLOT(quit()));
+    g_fwOutdatedAURStringList.setFuture(f);
+    el.exec();
+    m_outdatedAURStringList = g_fwOutdatedAURStringList.result();
+
+    //std::cout << "Time elapsed retrieving outdated AUR stringlist: " << m_time->elapsed() << " mili seconds." << std::endl;
+  }
+*/
 }
 
 /*
@@ -517,8 +547,6 @@ void MainWindow::metaBuildPackageList()
     connect(this, SIGNAL(buildPackageListDone()), &el, SLOT(quit()));
 
     g_fwPacman.setFuture(f);
-    //std::cout << "Start local event loop..." << std::endl;
-
     el.exec(QEventLoop::ExcludeUserInputEvents);
 
     if(m_debugInfo)
@@ -661,14 +689,13 @@ void MainWindow::buildPackageList()
     if(m_debugInfo)
       std::cout << "Time elapsed refreshing outdated pkgs from 'ALL group' list: " << m_time->elapsed() << " mili seconds." << std::endl;
 
-    qApp->processEvents(QEventLoop::ExcludeUserInputEvents);
     m_numberOfOutdatedPackages = m_outdatedStringList->count();
 
-    if (m_hasAURTool)
+    /*if (m_hasAURTool)
     {
       m_outdatedAURStringList = Package::getOutdatedAURStringList();
       qApp->processEvents(QEventLoop::ExcludeUserInputEvents);
-    }
+    }*/
 
     delete m_unrequiredPackageList;
     m_unrequiredPackageList = NULL;
@@ -677,8 +704,6 @@ void MainWindow::buildPackageList()
 
     if(m_debugInfo)
       std::cout << "Time elapsed obtaining unrequired pkgs from 'ALL group' list: " << m_time->elapsed() << " mili seconds." << std::endl;
-
-    qApp->processEvents(QEventLoop::ExcludeUserInputEvents);
   }
 
   // Fetch package list
@@ -689,19 +714,7 @@ void MainWindow::buildPackageList()
   {
     if (!m_refreshPackageLists)
     {
-      QList<PackageListData>::iterator itForeign = m_foreignPackageList->begin();
-      //Let's iterate over foreign packages to mark those which are outdated
-      while (itForeign != m_foreignPackageList->end())
-      {
-        if (m_outdatedAURStringList->contains(itForeign->name))
-        {
-          itForeign->status = ectn_FOREIGN_OUTDATED;
-        }
-
-        ++itForeign;
-      }
-
-      list->append(*m_foreignPackageList);
+      //list->append(*m_foreignPackageList);
 
       if(m_debugInfo)
         std::cout << "Time elapsed setting outdated foreign pkgs from 'ALL group' list: " << m_time->elapsed() << " mili seconds." << std::endl;
@@ -717,8 +730,6 @@ void MainWindow::buildPackageList()
 
       if(m_debugInfo)
         std::cout << "Time elapsed obtaining outdated foreign pkgs from 'ALL group' list: " << m_time->elapsed() << " mili seconds." << std::endl;
-
-      qApp->processEvents(QEventLoop::ExcludeUserInputEvents);
     }
   }
 
@@ -744,7 +755,6 @@ void MainWindow::buildPackageList()
   m_progressWidget->close();
 
   m_packageRepo.setData(list, *m_unrequiredPackageList);
-  if (m_refreshPackageLists) qApp->processEvents(QEventLoop::ExcludeUserInputEvents);
 
   if(m_debugInfo)
     std::cout << "Time elapsed setting the list to the treeview: " << m_time->elapsed() << " mili seconds." << std::endl;
@@ -760,8 +770,6 @@ void MainWindow::buildPackageList()
 
   if (isAllGroupsSelected()) m_packageModel->applyFilter(m_selectedViewOption, m_selectedRepository, "");
   if (m_leFilterPackage->text() != "") reapplyPackageFilter();
-
-  if (m_refreshPackageLists) qApp->processEvents(QEventLoop::ExcludeUserInputEvents);
 
   QModelIndex maux = m_packageModel->index(0, 0, QModelIndex());
   ui->tvPackages->setCurrentIndex(maux);
@@ -817,8 +825,41 @@ void MainWindow::buildPackageList()
 
   ui->tvPackages->setColumnWidth(PackageModel::ctn_PACKAGE_REPOSITORY_COLUMN, 10);
   refreshToolBar();
-  refreshStatusBarToolButtons();
+  //refreshStatusBarToolButtons();
   m_refreshPackageLists = true;
+
+  m_outdatedAURTimer->start();
+}
+
+/*
+ * This slot is called just once, after the list of packages is constructed
+ */
+void MainWindow::postBuildPackageList()
+{
+  m_outdatedAURTimer->stop();
+
+  if (m_hasAURTool)
+  {
+    QEventLoop el;
+    QFuture<QStringList *> f = QtConcurrent::run(getOutdatedAURStringList);
+    connect(&g_fwOutdatedAURStringList, SIGNAL(finished()), &el, SLOT(quit()));
+    g_fwOutdatedAURStringList.setFuture(f);
+    el.exec();
+    m_outdatedAURStringList = g_fwOutdatedAURStringList.result();
+
+    m_packageRepo.setAUROutdatedData(m_foreignPackageList, *m_outdatedAURStringList);
+
+    QModelIndex maux = m_packageModel->index(0, 0, QModelIndex());
+    ui->tvPackages->setCurrentIndex(maux);
+    ui->tvPackages->scrollTo(maux, QAbstractItemView::PositionAtCenter);
+    ui->tvPackages->setCurrentIndex(maux);
+    ui->tvPackages->setColumnWidth(PackageModel::ctn_PACKAGE_REPOSITORY_COLUMN, 10);
+
+    if (m_outdatedStringList->count() == 0 && m_outdatedAURStringList->count() > 0)
+      refreshAppIcon();
+
+    refreshStatusBarToolButtons();
+  }
 }
 
 /*
@@ -1481,7 +1522,6 @@ void MainWindow::reapplyPackageFilter()
   {
     bool isFilterPackageSelected = m_leFilterPackage->hasFocus();
     QString search = Package::parseSearchString(m_leFilterPackage->text());
-
     m_packageModel->applyFilter(search);
     int numPkgs = m_packageModel->getPackageCount();
 

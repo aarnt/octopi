@@ -81,30 +81,63 @@ void PackageRepository::setData(const QList<PackageListData>*const listOfPackage
 void PackageRepository::setAURData(const QList<PackageListData>*const listOfForeignPackages,
                                    const QSet<QString>& unrequiredPackages)
 {
-  //  std::cout << "received new foreign package list" << std::endl;
+  std::for_each(m_dependingModels.begin(), m_dependingModels.end(), BeginResetModel());
 
-    std::for_each(m_dependingModels.begin(), m_dependingModels.end(), BeginResetModel());
-
-    // delete AUR items in list
-    for (TListOfPackages::iterator it = m_listOfPackages.begin(); it != m_listOfPackages.end(); ++it) {
-      if (*it != NULL && (*it)->managedByAUR) {
-        delete *it;
-        it = m_listOfPackages.erase(it);
-      }
+  //delete AUR items in list
+  for (TListOfPackages::iterator it = m_listOfPackages.begin(); it != m_listOfPackages.end(); ++it) {
+    if (*it != NULL && (*it)->managedByAUR) {
+      delete *it;
+      it = m_listOfPackages.erase(it);
     }
-    m_listOfAURPackages.clear();
+  }
+  m_listOfAURPackages.clear();
 
-    for (QList<PackageListData>::const_iterator it = listOfForeignPackages->begin();
-         it != listOfForeignPackages->end(); ++it)
+  for (QList<PackageListData>::const_iterator it = listOfForeignPackages->begin();
+       it != listOfForeignPackages->end(); ++it)
+  {
+    PackageData*const pkg = new PackageData(*it, unrequiredPackages.contains(it->name) == false, true);
+    m_listOfPackages.push_back(pkg);
+    m_listOfAURPackages.push_back(pkg);
+  }
+
+  qSort(m_listOfPackages.begin(), m_listOfPackages.end(), TSort());
+  qSort(m_listOfAURPackages.begin(), m_listOfAURPackages.end(), TSort());
+  std::for_each(m_dependingModels.begin(), m_dependingModels.end(), EndResetModel());
+}
+
+/*
+ * Iterates over the package list to mark outdated foreign packages
+ */
+void PackageRepository::setAUROutdatedData(QList<PackageListData>*const listOfForeignPackages,
+                                           const QStringList& outdatedAURPackages)
+{
+  std::for_each(m_dependingModels.begin(), m_dependingModels.end(), BeginResetModel());
+
+  //delete AUR items in list
+  for (TListOfPackages::iterator it = m_listOfPackages.begin(); it != m_listOfPackages.end(); ++it) {
+    if (*it != NULL && (*it)->status == ectn_FOREIGN) {
+      delete *it;
+      it = m_listOfPackages.erase(it);
+    }
+  }
+  m_listOfAURPackages.clear();
+
+  for (QList<PackageListData>::iterator it = listOfForeignPackages->begin();
+       it != listOfForeignPackages->end(); ++it)
+  {
+    if (outdatedAURPackages.contains(it->name))
     {
-      PackageData*const pkg = new PackageData(*it, unrequiredPackages.contains(it->name) == false, true);
-      m_listOfPackages.push_back(pkg);
-      m_listOfAURPackages.push_back(pkg);
+      it->status = ectn_FOREIGN_OUTDATED;
     }
 
-    qSort(m_listOfPackages.begin(), m_listOfPackages.end(), TSort());
-    qSort(m_listOfAURPackages.begin(), m_listOfAURPackages.end(), TSort());
-    std::for_each(m_dependingModels.begin(), m_dependingModels.end(), EndResetModel());
+    PackageData*const pkg = new PackageData(*it, true, true);
+    m_listOfPackages.push_back(pkg);
+    m_listOfAURPackages.push_back(pkg);
+  }
+
+  qSort(m_listOfPackages.begin(), m_listOfPackages.end(), TSort());
+  qSort(m_listOfAURPackages.begin(), m_listOfAURPackages.end(), TSort());
+  std::for_each(m_dependingModels.begin(), m_dependingModels.end(), EndResetModel());
 }
 
 /**
@@ -292,8 +325,7 @@ void PackageRepository::Group::addPackage(PackageRepository::PackageData& packag
 
 void PackageRepository::Group::invalidateList()
 {
-//  std::cout << "invalidate group " << name.toStdString() << std::endl;
-
+  //std::cout << "invalidate group " << name.toStdString() << std::endl;
   if (m_listOfPackages == NULL)
     return;
 

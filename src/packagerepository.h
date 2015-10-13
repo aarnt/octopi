@@ -107,6 +107,8 @@ public:
   void registerDependency(IDependency& depends);
   void setData(const QList<PackageListData>*const listOfPackages, const QSet<QString>& unrequiredPackages);
   void setAURData(const QList<PackageListData>*const listOfForeignPackages, const QSet<QString>& unrequiredPackages);
+  void setAUROutdatedData(QList<PackageListData>*const listOfForeignPackages, const QStringList& outdatedAURPackages);
+
   void checkAndSetGroups(const QStringList& listOfGroups);
   void checkAndSetMembersOfGroup(const QString& group, const QStringList& members);
 

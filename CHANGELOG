@@ -1,5 +1,6 @@
 0.8.0 (dev)
   This is a Qt5 only version (with the exception of 'octopi-notifier').
+  BugFix: Speed optimizations in startup code (AUR outdated list).
   BugFix: Octopi now honors the $SHELL variable (thanks to LAC1213).
   BugFix: If user refused to remove pacman's lock file, commands
 	should be canceled!

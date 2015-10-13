@@ -150,14 +150,14 @@ void MainWindow::savePackageColumnWidths()
  */
 void MainWindow::initAppIcon()
 {
-  m_outdatedStringList = Package::getOutdatedStringList();
+  /*m_outdatedStringList = Package::getOutdatedStringList();
 
   if (m_hasAURTool)
   {
     m_outdatedAURStringList = Package::getOutdatedAURStringList();
   }
 
-  m_numberOfOutdatedPackages = m_outdatedStringList->count();
+  m_numberOfOutdatedPackages = m_outdatedStringList->count();*/
   refreshAppIcon();
 }
 

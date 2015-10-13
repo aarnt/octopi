@@ -175,6 +175,9 @@ private:
   //This is a means for measuring the program's speed at some tasks
   QTime *m_time;
 
+  //This is the timer which controls the outdated AUR pkg list retrieval
+  QTimer *m_outdatedAURTimer;
+
   QAction *m_dummyAction;
   QAction *m_actionInstallPacmanUpdates;
   QAction *m_actionInstallAURUpdates;
@@ -299,6 +302,7 @@ private:
 
   void retrieveForeignPackageList();
   void retrieveUnrequiredPackageList();
+  void retrieveOutdatedPackageList();
 
 private slots:
   void initToolButtonPacman();
@@ -340,6 +344,7 @@ private slots:
   void preBuildForeignPackageList();
   void preBuildUnrequiredPackageList();
   void preBuildPackageList();
+  void postBuildPackageList();
   void preBuildPackagesFromGroupList();
   void preBuildAURPackageList();
   void preBuildAURPackageListMeta();
@@ -415,6 +420,7 @@ private slots:
   void onHelpUsage();
   void onHelpAbout();
   void onPressDelete();
+
   void changeTransactionActionsState();
   void clearTransactionTreeView();
   void positionInPkgListSearchByFile();

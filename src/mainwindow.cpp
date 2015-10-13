@@ -52,6 +52,9 @@
 MainWindow::MainWindow(QWidget *parent) :
   QMainWindow(parent), ui(new Ui::MainWindow), m_packageModel(new PackageModel(m_packageRepo))
 {
+  m_hasAURTool =
+      UnixCommand::hasTheExecutable(StrConstants::getForeignRepositoryToolName()) && !UnixCommand::isRootRunning();
+
   m_packageRepo.registerDependency(*m_packageModel);
   m_foundFilesInPkgFileList = new QList<QModelIndex>();
   m_indFoundFilesInPkgFileList = 0;
@@ -68,20 +71,23 @@ MainWindow::MainWindow(QWidget *parent) :
   m_selectedRepository = "";
   m_numberOfInstalledPackages = 0;
   m_debugInfo = false;
-
   m_time = new QTime();
   m_unrequiredPackageList = NULL;
   m_foreignPackageList = NULL;
 
+  m_outdatedAURTimer = new QTimer();
+  m_outdatedAURTimer->setInterval(500);
+  connect(m_outdatedAURTimer, SIGNAL(timeout()), this, SLOT(postBuildPackageList()));
+
   //Here we try to speed up first pkg list build!
   m_time->start();
 
+  retrieveOutdatedPackageList(); //NEW CODE
   retrieveUnrequiredPackageList();
   retrieveForeignPackageList();
+
   ui->setupUi(this);
   switchToViewAllPackages();  
-  m_hasAURTool =
-      UnixCommand::hasTheExecutable(StrConstants::getForeignRepositoryToolName()) && !UnixCommand::isRootRunning();
 }
 
 /*

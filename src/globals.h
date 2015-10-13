@@ -48,6 +48,8 @@ extern QFutureWatcher<AUROutdatedPackages *> g_fwOutdatedAURPackages;
 extern QFutureWatcher<QString> g_fwDistroNews;
 extern QFutureWatcher<QString> g_fwPackageOwnsFile;
 extern QFutureWatcher<PackageInfoData> g_fwKCPInformation;
+extern QFutureWatcher<QStringList *> g_fwOutdatedPkgStringList;
+extern QFutureWatcher<QStringList *> g_fwOutdatedAURStringList;
 
 QString showPackageInfo(QString pkgName);
 QList<PackageListData> * searchPacmanPackages();
@@ -60,5 +62,8 @@ GroupMemberPair          searchPacmanPackagesFromGroup(QString groupName);
 AUROutdatedPackages * getOutdatedAURPackages();
 QString getLatestDistroNews();
 PackageInfoData getKCPInformation(QString pkgName);
+
+QStringList            * getOutdatedPkgStringList();
+QStringList            * getOutdatedAURStringList();
 
 #endif // MAINWINDOW_GLOBALS_H
