@@ -252,12 +252,12 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="525"/>
         <source>Pacman Log Viewer</source>
-        <translation>Visor de logs Pacman</translation>
+        <translation>Visor de registro de Pacman</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="537"/>
         <source>Repository Editor</source>
-        <translation>Editor de Repositorio</translation>
+        <translation>Editor de Repositorios</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="546"/>
@@ -810,27 +810,27 @@
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="357"/>
         <source>%n packages</source>
-        <translation><numerusform>%n paquetes</numerusform><numerusform>%n paquetes</numerusform></translation>
+        <translation><numerusform>%n paquete</numerusform><numerusform>%n paquetes</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="361"/>
         <source>%n selected</source>
-        <translation><numerusform>%n seleccionados</numerusform><numerusform>%n seleccionados</numerusform></translation>
+        <translation><numerusform>%n seleccionado</numerusform><numerusform>%n seleccionados</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="365"/>
         <source>%n installed</source>
-        <translation><numerusform>%n instalado</numerusform><numerusform>%n instalado</numerusform></translation>
+        <translation><numerusform>%n instalado</numerusform><numerusform>%n instalados</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="369"/>
         <source>%n outdated</source>
-        <translation><numerusform>%n obsoleto</numerusform><numerusform>%n obsoleto</numerusform></translation>
+        <translation><numerusform>%n obsoleto</numerusform><numerusform>%n obsoletos</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="373"/>
         <source>%n available</source>
-        <translation><numerusform>%disponible</numerusform><numerusform>%n disponible</numerusform></translation>
+        <translation><numerusform>%disponible</numerusform><numerusform>%n disponibles</numerusform></translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="377"/>
@@ -890,7 +890,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="425"/>
         <source>Choose a terminal</source>
-        <translation>Elegir un terminal</translation>
+        <translation>Elija un terminal</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="429"/>
@@ -920,7 +920,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="449"/>
         <source>The following package needs to be retrieved</source>
-        <translation>Es necesario recuperar los siguientes paquetes</translation>
+        <translation>Los siguientes paquetes necesitan ser descargados</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="453"/>
@@ -930,12 +930,12 @@
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="457"/>
         <source>The following %n packages need to be retrieved</source>
-        <translation><numerusform>Es necesario recuperar los siguientes %n paquetes</numerusform><numerusform>Es necesario recuperar los siguientes %n paquetes</numerusform></translation>
+        <translation><numerusform>El siguiente paquete necesita ser descargado</numerusform><numerusform>Los %n siguientes paquetes necesitan ser descargados</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="461"/>
         <source>The following %n packages will be removed</source>
-        <translation><numerusform>Los siguientes %n paquetes serán eliminados</numerusform><numerusform>Los siguientes %n paquetes serán eliminados</numerusform></translation>
+        <translation><numerusform>El siguiente paquete será eliminado</numerusform><numerusform>Los siguientes %n paquetes serán eliminados</numerusform></translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="465"/>
@@ -955,7 +955,7 @@
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="477"/>
         <source>There are %n updates available!</source>
-        <translation><numerusform>¡Hay %n actualizaciones disponibles!</numerusform><numerusform>¡Hay %n actualizaciones disponibles!</numerusform></translation>
+        <translation><numerusform>¡Hay una actualización disponible!</numerusform><numerusform>¡Hay %n actualizaciones disponibles!</numerusform></translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="481"/>
@@ -1117,12 +1117,12 @@ Are you sure you want to open it?</source>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="608"/>
         <source>Once a day</source>
-        <translation>Una vez al día</translation>
+        <translation>Diariamente</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="612"/>
         <source>Once a day, at</source>
-        <translation>Una vez al día, a las</translation>
+        <translation>Diariamente, a las</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="616"/>
@@ -1132,7 +1132,7 @@ Are you sure you want to open it?</source>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="620"/>
         <source>Once every</source>
-        <translation>Una vez cada</translation>
+        <translation>Cada</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="624"/>
