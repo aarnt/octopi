@@ -115,7 +115,7 @@ void PackageRepository::setAUROutdatedData(QList<PackageListData>*const listOfFo
 
   //delete AUR items in list
   for (TListOfPackages::iterator it = m_listOfPackages.begin(); it != m_listOfPackages.end(); ++it) {
-    if (*it != NULL && (*it)->status == ectn_FOREIGN) {
+    if (*it != NULL && ((*it)->status == ectn_FOREIGN || (*it)->status == ectn_FOREIGN_OUTDATED)) {
       delete *it;
       it = m_listOfPackages.erase(it);
     }
