@@ -76,13 +76,13 @@ MainWindow::MainWindow(QWidget *parent) :
   m_foreignPackageList = NULL;
 
   m_outdatedAURTimer = new QTimer();
-  m_outdatedAURTimer->setInterval(500);
+  m_outdatedAURTimer->setInterval(50);
   connect(m_outdatedAURTimer, SIGNAL(timeout()), this, SLOT(postBuildPackageList()));
 
   //Here we try to speed up first pkg list build!
   m_time->start();
 
-  retrieveOutdatedPackageList(); //NEW CODE
+  retrieveOutdatedPackageList();
   retrieveUnrequiredPackageList();
   retrieveForeignPackageList();
 

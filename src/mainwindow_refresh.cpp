@@ -418,23 +418,9 @@ void MainWindow::retrieveOutdatedPackageList()
   connect(&g_fwOutdatedPkgStringList, SIGNAL(finished()), &el, SLOT(quit()));
   g_fwOutdatedPkgStringList.setFuture(f);
   el.exec();
+
   m_outdatedStringList = g_fwOutdatedPkgStringList.result();
   m_numberOfOutdatedPackages = m_outdatedStringList->count();
-
-  //std::cout << "Time elapsed retrieving outdated pkg stringlist: " << m_time->elapsed() << " mili seconds." << std::endl;
-
-/*
-  if (m_hasAURTool)
-  {
-    f = QtConcurrent::run(getOutdatedAURStringList);
-    connect(&g_fwOutdatedAURStringList, SIGNAL(finished()), &el, SLOT(quit()));
-    g_fwOutdatedAURStringList.setFuture(f);
-    el.exec();
-    m_outdatedAURStringList = g_fwOutdatedAURStringList.result();
-
-    //std::cout << "Time elapsed retrieving outdated AUR stringlist: " << m_time->elapsed() << " mili seconds." << std::endl;
-  }
-*/
 }
 
 /*
