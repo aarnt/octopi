@@ -477,7 +477,7 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="164"/>
         <source>F10 to maximize/demaximize package list view</source>
-        <translation type="unfinished"/>
+        <translation>F10 za de-/maksimiziranje pregleda liste paketa</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="166"/>
@@ -775,7 +775,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="329"/>
         <source> (outdated installed version is %1)</source>
-        <translation type="unfinished"/>
+        <translation>(zastarjela instalirana inačica je %1)</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="333"/>
@@ -1005,12 +1005,12 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="519"/>
         <source>There are no means to get administrator&apos;s credentials.</source>
-        <translation type="unfinished"/>
+        <translation>Nema načina za dobivanje administratorskih prava.</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="523"/>
         <source>You&apos;ll need to install a su frontend like gksu or kdesu.</source>
-        <translation type="unfinished"/>
+        <translation>Potrebno je instalirati program poput gksu ili kdesu.</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="527"/>
