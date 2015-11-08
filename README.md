@@ -36,6 +36,8 @@ In KaOS, "kcp" will be supported out of the box.
  * You can vote in the AUR package available at https://aur.archlinux.org/packages/octopi/
  * You can translate it to your mother language at https://www.transifex.com/projects/p/octopi/
  * You can follow author's twitter account at https://twitter.com/aaarnt
+ * You can buy the technical book (currently in portuguese) about the Octopi and Qt5 at 
+http://www.amazon.com.br/Aprendendo-Qt-com-projeto-Octopi-ebook/dp/B015ICHKV6
  * You can write a review about it (text / video)
  * You can donate money to the project Paypal - http://sourceforge.net/donate/index.php?group_id=186459
  * You can join the project ;-)
