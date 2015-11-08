@@ -826,6 +826,16 @@ void MainWindow::postBuildPackageList()
 
   if (m_hasAURTool)
   {
+    bool reconnectSlot = false;
+
+    if (ui->twProperties->currentIndex() == ctn_TABINDEX_FILES)
+    {
+      disconnect(ui->tvPackages->selectionModel(), SIGNAL(selectionChanged(QItemSelection,QItemSelection)),
+            this, SLOT(invalidateTabs()));
+
+      reconnectSlot = true;
+    }
+
     QEventLoop el;
     QFuture<QStringList *> f = QtConcurrent::run(getOutdatedAURStringList);
     connect(&g_fwOutdatedAURStringList, SIGNAL(finished()), &el, SLOT(quit()));
@@ -845,6 +855,12 @@ void MainWindow::postBuildPackageList()
       refreshAppIcon();
 
     refreshStatusBarToolButtons();
+
+    if (reconnectSlot)
+    {
+      connect(ui->tvPackages->selectionModel(), SIGNAL(selectionChanged(QItemSelection,QItemSelection)),
+            this, SLOT(invalidateTabs()));
+    }
   }
 }
 
