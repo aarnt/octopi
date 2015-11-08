@@ -1,5 +1,9 @@
 Makefile
 bin/**
 build/**
+cachecleaner/bin/**
+cachecleaner/build/**
+notifier/bin/**
+notifier/build/**
 qrc_resources.cpp
 octopi.pro.user
