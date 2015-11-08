@@ -26,8 +26,8 @@ $ makepkg -f
 
 ### How to enable the "alien" icon at toolbar
 
-To enable AUR support, you'll need to install "yaourt" or "pacaur" in your system.
-In Chakra, "ccr" will be supported out of the box.
+To enable AUR support, you'll need to install "yaourt" or "pacaur" in your system.  
+In Chakra, "ccr" will be supported out of the box.  
 In KaOS, "kcp" will be supported out of the box.
 
 ### Ways to help/support Octopi
