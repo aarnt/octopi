@@ -1,4 +1,4 @@
-0.8.0 (dev)
+0.8.0
   This is a Qt5 only version (with the exception of 'octopi-notifier').
   BugFix: Speed optimizations in startup code (AUR outdated list).
   BugFix: Octopi now honors the $SHELL variable (thanks to LAC1213).

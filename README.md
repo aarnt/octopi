@@ -2,6 +2,20 @@
 
 The project site is hosted at https://octopiproject.wordpress.com
 
+Currently, 10 Linux distros are compatible with it
+
+ * [Antergos] (https://antergos.com/)
+ * [ArchBang] (http://wiki.archbang.org/index.php?title=Main_Page)
+ * [Arch] (https://www.archlinux.org/)
+ * [ArchBSD] (https://pacbsd.org/)
+ * [Chakra] (https://chakraos.org/)
+ * [KaOS] (http://kaosx.us/)
+ * [Manjaro] (http://manjaro.github.io/)
+ * [mooOS] (http://mooos.org/)
+ * [Netrunner (rolling)] 
+(http://www.netrunner.com/netrunner-rolling-release/)
+ * [Parabola GNU/Linux-libre] (http://www.parabola.nu/https/)
+
 ### What you must install in your system to have Octopi fully functional
 
 You'll need a privilege escalation tool to use it, once running as
@@ -9,7 +23,7 @@ root will ONLY work in KDE. Octopi supports kdesu and gksu for that.
 
 ### Simple steps to build Octopi code
 
-Go to the directory that has the code:
+Assuming you have Qt5 libs properly installed, go to the directory that has the code:
 
 ```
 $ cd OCTOPI_PATH
