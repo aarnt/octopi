@@ -1,18 +1,44 @@
-This is Octopi, a powerful Pacman/AUR frontend using Qt libs. 
-================================================================
+## This is Octopi, a powerful Pacman/AUR frontend using Qt libs.
 
-The project's source code is hosted at 
-	https://github.com/aarnt/octopi.
+The project site is hosted at https://octopiproject.wordpress.com
 
-You'll need a privilege escalation tool to use it, once running as 
+### What you must install in your system to have Octopi fully functional
+
+You'll need a privilege escalation tool to use it, once running as
 root will ONLY work in KDE. Octopi supports kdesu and gksu for that.
 
-For AUR support, "yaourt" is supported.
-When you are in Chakra, "ccr" is supported.
-While in KaOS, "kcp" is supported.
+### Simple steps to build Octopi code
 
-Do you understand english? Wanna help this project?
-You can translate it to your mother language at 
-	https://www.transifex.com/projects/p/octopi/.
+Go to the directory that has the code:
+
+```
+$ cd OCTOPI_PATH
+$ qmake
+$ make
+```
+
+You can also use the available PKGBUILD script that helps you build Octopi with all its tools:
+
+```
+$ cd OCTOPI_PATH
+$ makepkg -f
+```
+
+### How to enable the "alien" icon at toolbar
+
+To enable AUR support, you'll need to install "yaourt" or "pacaur" in your system.
+For Chakra, "ccr" will be supported.
+For KaOS, "kcp" will be supported.
+
+### Ways to help/support Octopi
+
+ * You can "Star" it at the Github page - https://github.com/aarnt/octopi
+ * You can vote in the AUR package available at https://aur.archlinux.org/packages/octopi/
+ * You can translate it to your mother language at https://www.transifex.com/projects/p/octopi/
+ * You can follow author's twitter account at https://twitter.com/aaarnt
+ * You can write a review about it (text / video)
+ * You can donate money to the project Paypal - http://sourceforge.net/donate/index.php?group_id=186459
+ * You can join the project ;-)
+
 
 Enjoy!
