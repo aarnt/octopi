@@ -1545,8 +1545,17 @@ void MainWindow::gistSysInfo()
     tempFile->write("cat /var/log/pacman.log\n");
     tempFile->write("----------------------------------------------------------------------------------------------------------\n\n");
     out = UnixCommand::getCommandOutput("cat /var/log/pacman.log");
-
     //out.replace(hostname, "<HOSTNAME>");
+    out.replace(homePath, "<HOME_PATH>");
+    tempFile->write(out);
+    tempFile->flush();
+
+    tempFile->write("\n\n");
+    tempFile->write("----------------------------------------------------------------------------------------------------------\n");
+    tempFile->write("cat /var/log/installation.log\n");
+    tempFile->write("----------------------------------------------------------------------------------------------------------\n\n");
+    out = UnixCommand::getCommandOutput("cat /var/log/installation.log");
+    out.replace(hostname, "<HOSTNAME>");
     out.replace(homePath, "<HOME_PATH>");
 
     tempFile->write(out);
@@ -1559,7 +1568,6 @@ void MainWindow::gistSysInfo()
     tempFile->write("head --bytes=256K /var/log/pacman.log\n");
     tempFile->write("----------------------------------------------------------------------------------------------------------\n\n");
     out = UnixCommand::getCommandOutput("head --bytes=256K /var/log/pacman.log");
-
     //out.replace(hostname, "<HOSTNAME>");
     out.replace(homePath, "<HOME_PATH>");
 
