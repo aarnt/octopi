@@ -462,7 +462,7 @@ void MainWindow::preBuildPackageList()
 
   buildPackageList();
 
-  if(!hasToCallSysUpgrade && !secondTime && m_hasMirrorCheck)
+  if(!hasToCallSysUpgrade && !secondTime && UnixCommand::getLinuxDistro() != ectn_CHAKRA && m_hasMirrorCheck)
   {
 #ifdef OCTOPI_DEV_CODE
     if (!SettingsManager::getSkipMirrorCheckAtStartup())
