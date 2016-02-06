@@ -84,3 +84,4 @@ TRANSLATIONS += resources/translations/octopi_repoeditor_pt_BR.ts \
     resources/translations/octopi_repoeditor_ast.ts \    
     resources/translations/octopi_repoeditor_hr.ts \
     resources/translations/octopi_repoeditor_zh-Hans.ts
+    resources/translations/octopi_repoeditor_zh_CN.ts

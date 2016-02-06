@@ -1,5 +1,7 @@
 0.8.1 (dev)
   BugFix: Updated CHAKRA RSS site (thanks to s8321414).
+  Added support for Simplified Chinese (zh_CN).
+  Added support for lxqt-sudo tool (thanks to Manjaro team).
 
 0.8.0
   This is a Qt5 only version (with the exception of 'octopi-notifier').

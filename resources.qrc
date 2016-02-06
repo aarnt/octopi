@@ -87,7 +87,8 @@
         <file>resources/translations/octopi_eu.qm</file>
         <file>resources/translations/octopi_gl_ES.qm</file>
         <file>resources/translations/octopi_hr.qm</file>
-        <file>resources/translations/octopi_zh-Hans.ts</file>
+        <file>resources/translations/octopi_zh-Hans.qm</file>
+        <file>resources/translations/octopi_zh_CN.qm</file>
         <file>resources/qml/chooseterminal.qml</file>
     </qresource>
 </RCC>

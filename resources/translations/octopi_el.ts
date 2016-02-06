@@ -955,7 +955,7 @@
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="477"/>
         <source>There are %n updates available!</source>
-        <translation><numerusform>Υπάρχει %n διαθέσιμη ενημέρωση!</numerusform><numerusform>Υπάρχουν %1 διαθέσιμες ενημερώσεις!</numerusform></translation>
+        <translation><numerusform>Υπάρχει %n διαθέσιμη ενημέρωση!</numerusform><numerusform>Υπάρχουν %n διαθέσιμες ενημερώσεις!</numerusform></translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="481"/>

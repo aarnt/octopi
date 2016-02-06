@@ -810,7 +810,7 @@
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="357"/>
         <source>%n packages</source>
-        <translation><numerusform>%n pachet</numerusform><numerusform>%n pachete</numerusform><numerusform>%n pachete</numerusform></translation>
+        <translation><numerusform>%n pachet</numerusform><numerusform>%n pachete</numerusform><numerusform>%n de pachete</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="361"/>
@@ -1097,7 +1097,7 @@ Sunteți sigur că doriți să-l deschideți?</translation>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="592"/>
         <source>Use &quot;%1&quot; tool</source>
-        <translation>Folosește &quot;%1&quot; din unealta</translation>
+        <translation>Folosește unealta &quot;%1&quot;</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="596"/>

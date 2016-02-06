@@ -41,7 +41,8 @@
         <file>resources/translations/octopi_cachecleaner_uz.qm</file>
         <file>resources/translations/octopi_cachecleaner_vi.qm</file>
         <file>resources/translations/octopi_cachecleaner_zh_TW.qm</file>
-        <file>resources/translations/octopi_cachecleaner_zh-Hans.ts</file>
+        <file>resources/translations/octopi_cachecleaner_zh-Hans.qm</file>
+        <file>resources/translations/octopi_cachecleaner_zh_CN.qm</file>
         <file>resources/translations/octopi_cachecleaner_hr.qm</file>
     </qresource>
 </RCC>

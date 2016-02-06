@@ -820,7 +820,7 @@
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="365"/>
         <source>%n installed</source>
-        <translation><numerusform>%n terpasang</numerusform></translation>
+        <translation><numerusform>%n dipasang</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="369"/>
