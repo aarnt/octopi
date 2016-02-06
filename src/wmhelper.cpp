@@ -293,6 +293,17 @@ QString WMHelper::getGKSUCommand(){
 }
 
 /*
+ * Retrieves the LXQTSU command...
+ */
+QString WMHelper::getLXQTSUCommand(){
+  QString result = ctn_LXQTSU;
+
+  result += " -s ";
+
+  return result;
+}
+
+/*
  * The generic SU get method. It retrieves the SU you have installed in your system!
  */
 QString WMHelper::getSUCommand(){
@@ -316,7 +327,9 @@ QString WMHelper::getSUCommand(){
   else if (UnixCommand::hasTheExecutable(ctn_TDESU)){
     result = getTDESUCommand();
   }
-
+  else if (UnixCommand::hasTheExecutable(ctn_LXQTSU)){
+    result = getLXQTSUCommand();
+  }
   return result;
 }
 
