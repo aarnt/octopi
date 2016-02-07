@@ -19,7 +19,8 @@ Currently, 10 Linux distros are compatible with it
 ### What you must install in your system to have Octopi fully functional
 
 You'll need a privilege escalation tool to use it, once running as
-root will ONLY work in KDE. Octopi supports kdesu and gksu for that.
+root will ONLY work in KDE. Octopi supports gksu, kdesu and lxqt-sudo for 
+that.
 
 ### Simple steps to build Octopi code
 
