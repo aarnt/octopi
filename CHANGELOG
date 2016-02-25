@@ -1,5 +1,6 @@
 0.8.1 (dev)
   BugFix: Updated CHAKRA RSS site (thanks to s8321414).
+  BugFix: Distro news now works with https KaOS site.
   Added support for Simplified Chinese (zh_CN).
   Added support for lxqt-sudo tool (thanks to Manjaro team).
 

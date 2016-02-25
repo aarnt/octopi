@@ -274,7 +274,7 @@ QString utils::retrieveDistroNews(bool searchForLatestNews)
   const QString ctn_ARCHBSD_RSS_URL = "http://archbsd.net/feeds/news/";
   const QString ctn_ARCH_LINUX_RSS_URL = "https://www.archlinux.org/feeds/news/";
   const QString ctn_CHAKRA_RSS_URL = "https://chakraos.org/news/index.php?/feeds/index.rss2";
-  const QString ctn_KAOS_RSS_URL = "http://kaosx.us/feed/";
+  const QString ctn_KAOS_RSS_URL = "https://kaosx.us/feed/";
   //const QString ctn_MANJARO_LINUX_RSS_URL = "http://manjaro.org/feed/";
   const QString ctn_MANJARO_LINUX_RSS_URL = "https://manjaro.github.io/feed.xml";
   const QString ctn_NETRUNNER_RSS_URL = "http://www.netrunner-os.com/feed/";
@@ -318,6 +318,7 @@ QString utils::retrieveDistroNews(bool searchForLatestNews)
     }
     else if (distro == ectn_KAOS)
     {
+      curlCommand = "curl -k %1 -o %2";
       curlCommand = curlCommand.arg(ctn_KAOS_RSS_URL).arg(tmpRssPath);
     }
     else if (distro == ectn_MANJAROLINUX)
