@@ -70,11 +70,21 @@ void MainWindow::refreshAppIcon()
  */
 void MainWindow::refreshMenuTools()
 {
+
   static bool connectorPlv=false;
   static bool connectorRepo=false;
   static bool connectorCleaner=false;
   static bool connectorGist=false;
   int availableTools=0;
+
+  if (UnixCommand::hasTheExecutable("mirror-check"))
+  {
+    availableTools++;
+    ui->menuTools->menuAction()->setVisible(true);
+    m_actionMirrorCheck->setVisible(true);
+  }
+  else
+    m_actionMirrorCheck->setVisible(false);
 
   if(UnixCommand::hasTheExecutable("plv"))
   {

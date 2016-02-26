@@ -215,8 +215,7 @@ void MainWindow::onPackageGroupChanged()
  */
 void MainWindow::initMenuBar()
 {
-  if (UnixCommand::hasTheExecutable("mirror-check"))
-    ui->menuFile->insertAction(ui->actionSyncPackages, m_actionMirrorCheck);
+  ui->menuTools->insertAction(ui->actionCacheCleaner, m_actionMirrorCheck);
 
   QActionGroup *actionGroupPackages = new QActionGroup(this);
   QActionGroup *actionGroupRepositories = new QActionGroup(this);
@@ -318,7 +317,6 @@ void MainWindow::initStatusBar()
   m_progressWidget = new QProgressBar(this);
   m_progressWidget->close();
   m_progressWidget->setMaximumWidth(250);
-
   ui->statusBar->addWidget(m_lblSelCounter);
   ui->statusBar->addWidget(m_lblTotalCounters);
   ui->statusBar->addPermanentWidget(m_progressWidget);
