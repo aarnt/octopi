@@ -361,7 +361,6 @@ void MainWindow::insertIntoInstallPackage()
       }
 
       insertIntoInstallPackageOptDeps(package->name); //Do we have any deps???
-
       insertInstallPackageIntoTransaction(package->repository + "/" + package->name);
     }
   }
@@ -727,6 +726,9 @@ void MainWindow::doSyncDatabase()
     command = "pacman -Sy";
   else
     command = "pacman -Syy";
+
+  if (UnixCommand::hasTheExecutable("pkgfile"))
+    command += "; pkgfile -u";
 
   m_unixCommand->executeCommand(command);
 }
@@ -1931,7 +1933,15 @@ void MainWindow::parsePacmanProcessOutput(const QString &pMsg)
   msg.remove("[c");
   msg.remove("[mo");
 
-  if (msg.contains("exists in filesystem")) return;
+  if (msg.contains("exists in filesystem") ||
+      (msg.contains(":: waiting for 1 process to finish repacking")) ||
+      (msg.contains(":: download complete in"))) return;
+
+  else if (msg.contains("download complete: "))
+  {
+    writeToTabOutput(msg + "<br>");
+    return;
+  }
 
   //std::cout << "_treat: " << msg.toLatin1().data() << std::endl;
 
@@ -2112,7 +2122,13 @@ void MainWindow::parsePacmanProcessOutput(const QString &pMsg)
       {
         QString altMsg = msg;
 
-        if (msg.indexOf(":: Synchronizing package databases...") == -1 &&
+        if (msg.contains(":: Updating") && m_commandExecuting == ectn_SYNC_DATABASE)
+          writeToTabOutputExt("<br><b>" + StrConstants::getSyncDatabases() + " (pkgfile -u)</b><br>");
+
+        else if (msg.contains("download complete: "))
+          writeToTabOutputExt(altMsg);
+
+        else if (msg.indexOf(":: Synchronizing package databases...") == -1 &&
             msg.indexOf(":: Starting full system upgrade...") == -1)
         {
           //std::cout << "Entered here: " << msg.toLatin1().data() << std::endl;

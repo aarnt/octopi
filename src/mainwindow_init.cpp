@@ -150,14 +150,6 @@ void MainWindow::savePackageColumnWidths()
  */
 void MainWindow::initAppIcon()
 {
-  /*m_outdatedStringList = Package::getOutdatedStringList();
-
-  if (m_hasAURTool)
-  {
-    m_outdatedAURStringList = Package::getOutdatedAURStringList();
-  }
-
-  m_numberOfOutdatedPackages = m_outdatedStringList->count();*/
   refreshAppIcon();
 }
 
@@ -219,10 +211,13 @@ void MainWindow::onPackageGroupChanged()
 }
 
 /*
- * Inits the Repository menuItem in menuBar
+ * Inits the menu options and Repository menuItem in menuBar
  */
 void MainWindow::initMenuBar()
 {
+  if (UnixCommand::hasTheExecutable("mirror-check"))
+    ui->menuFile->insertAction(ui->actionSyncPackages, m_actionMirrorCheck);
+
   QActionGroup *actionGroupPackages = new QActionGroup(this);
   QActionGroup *actionGroupRepositories = new QActionGroup(this);
 
@@ -608,7 +603,6 @@ void MainWindow::initTabOutput()
   QGridLayout *gridLayoutX = new QGridLayout(tabOutput);
   gridLayoutX->setSpacing ( 0 );
   gridLayoutX->setMargin ( 0 );
-
   QTextBrowser *text = new QTextBrowser(tabOutput);
   text->setObjectName("textBrowser");
   text->setReadOnly(true);

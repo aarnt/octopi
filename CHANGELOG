@@ -1,8 +1,10 @@
 0.8.1 (dev)
   BugFix: Updated CHAKRA RSS site (thanks to s8321414).
   BugFix: Distro news now works with https KaOS site.
+  Added an entry for Mirror-check in File menu.
   Added support for Simplified Chinese (zh_CN).
   Added support for lxqt-sudo tool (thanks to Manjaro team).
+  Added "pkgfile -u" (if available) in sync db transaction.
 
 0.8.0
   This is a Qt5 only version (with the exception of 'octopi-notifier').
