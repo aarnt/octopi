@@ -70,7 +70,6 @@ void MainWindow::refreshAppIcon()
  */
 void MainWindow::refreshMenuTools()
 {
-
   static bool connectorPlv=false;
   static bool connectorRepo=false;
   static bool connectorCleaner=false;
@@ -327,8 +326,9 @@ void MainWindow::buildPackagesFromGroupList(const QString group)
   ui->tvPackages->setCurrentIndex(maux);
 
   m_listOfPackagesFromGroup.reset();
-  refreshTabInfo();
-  refreshTabFiles();
+  //refreshTabInfo();
+  //refreshTabFiles();
+  //invalidateTabs();
   ui->tvPackages->setFocus();
 
   refreshToolBar();
@@ -350,6 +350,8 @@ void MainWindow::preBuildAURPackageList()
     delete m_cic;
     m_cic = NULL;
   }
+
+  invalidateTabs();
 
   if (m_packageModel->getPackageCount() == 0)
   {
@@ -380,7 +382,7 @@ void MainWindow::preBuildAURPackageListMeta()
 
   if (UnixCommand::getLinuxDistro() == ectn_KAOS)
   {
-    connect(m_leFilterPackage, SIGNAL(textChanged(QString)), this, SLOT(reapplyPackageFilter()));
+    connect(m_leFilterPackage, SIGNAL(textChanged(QString)), this, SLOT(reapplyPackageFilter()));   
     reapplyPackageFilter();
   }
 }
@@ -582,7 +584,9 @@ void MainWindow::metaBuildPackageList()
 
       if(m_debugInfo)
         std::cout << m_packageModel->getPackageCount() << " pkgs => " <<
-                   "Time elapsed building pkgs from '" << StrConstants::getForeignPkgRepositoryName().toLatin1().data() << " group' list: " << m_time->elapsed() << " mili seconds." << std::endl << std::endl;
+                   "Time elapsed building pkgs from '" <<
+                     StrConstants::getForeignPkgRepositoryName().toLatin1().data() <<
+                     " group' list: " << m_time->elapsed() << " mili seconds." << std::endl << std::endl;
 
       return;
     }
@@ -633,7 +637,8 @@ void MainWindow::metaBuildPackageList()
 
     if(m_debugInfo)
       std::cout << m_packageModel->getPackageCount() << " pkgs => " <<
-                 "Time elapsed building pkgs from '" << getSelectedGroup().toLatin1().data() << " group' list: " << m_time->elapsed() << " mili seconds." << std::endl << std::endl;
+                 "Time elapsed building pkgs from '" << getSelectedGroup().toLatin1().data() <<
+                   " group' list: " << m_time->elapsed() << " mili seconds." << std::endl << std::endl;
   }
 
   firstTime = false;
@@ -775,8 +780,9 @@ void MainWindow::buildPackageList()
   delete list;
   list = NULL;
 
-  refreshTabInfo();
-  refreshTabFiles();
+  //invalidateTabs();
+  //refreshTabInfo();
+  //refreshTabFiles();
 
   if (isPackageTreeViewVisible())
   {
@@ -956,8 +962,7 @@ void MainWindow::buildAURPackageList()
   ui->tvPackages->setCurrentIndex(maux);
 
   list->clear();
-  refreshTabInfo();
-  refreshTabFiles();
+  //invalidateTabs();
 
   if (isPackageTreeViewVisible())
   {
@@ -1211,7 +1216,6 @@ void MainWindow::refreshTabInfo(bool clearContents, bool neverQuit)
     int space = aux_desc.indexOf(' ');
     QString pkgDescription = aux_desc.mid(space+1);
     QString version = StrConstants::getVersion();
-
     QTextBrowser*const text = ui->twProperties->widget(
           ctn_TABINDEX_INFORMATION)->findChild<QTextBrowser*>("textBrowser");
 

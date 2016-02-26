@@ -1,6 +1,7 @@
 0.8.1 (dev)
   BugFix: Updated CHAKRA RSS site (thanks to s8321414).
   BugFix: Distro news now works with https KaOS site.
+  BugFix: Tab files was not refreshing when enabling KCP mode in KaOS.
   Added an entry for Mirror-check in Tools menu.
   Added support for Simplified Chinese (zh_CN).
   Added support for lxqt-sudo tool (thanks to Manjaro team).
