@@ -56,7 +56,7 @@
         <x>8</x>
         <y>71</y>
         <width>481</width>
-        <height>62</height>
+        <height>64</height>
        </rect>
       </property>
       <layout class="QVBoxLayout" name="verticalLayout">
@@ -95,7 +95,7 @@
            </property>
            <property name="minimumSize">
             <size>
-             <width>69</width>
+             <width>72</width>
              <height>0</height>
             </size>
            </property>
@@ -139,7 +139,7 @@
         <x>8</x>
         <y>147</y>
         <width>481</width>
-        <height>62</height>
+        <height>64</height>
        </rect>
       </property>
       <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -195,7 +195,7 @@
             <number>5</number>
            </property>
            <property name="maximum">
-            <number>1380</number>
+            <number>44640</number>
            </property>
            <property name="value">
             <number>60</number>
