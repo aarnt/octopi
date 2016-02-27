@@ -160,7 +160,7 @@ public:
   }
 
   static QString getIncompatibleLinuxDistroError(){
-    return QObject::tr("This GNU/Linux distro seems to be incompatible with Octopi!");
+    return QObject::tr("This Linux distro seems to be incompatible with Octopi!");
   }
 
   static QString getInternetUnavailableError(){
@@ -635,7 +635,7 @@ public:
   }
 
   static QString getOnceEveryDesc(){
-    return QObject::tr("(value in minutes: 5 to 1380)");
+    return QObject::tr("(value in minutes: %1 to %2)"); //5 to 44640
   }
 
   static QString getSetInterval(){

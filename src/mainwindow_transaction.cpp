@@ -705,7 +705,7 @@ void MainWindow::doSyncDatabase()
   if (!doRemovePacmanLockFile()) return;
 
   //Let's synchronize kcp database too...
-  if (UnixCommand::getLinuxDistro() == ectn_KAOS && UnixCommand::hasTheExecutable("kcp"))
+  if (UnixCommand::getLinuxDistro() == ectn_KAOS && UnixCommand::hasTheExecutable("kcp") && !UnixCommand::isRootRunning())
     UnixCommand::execCommandAsNormalUser("kcp -u");
 
   m_commandExecuting = ectn_SYNC_DATABASE;
@@ -727,7 +727,7 @@ void MainWindow::doSyncDatabase()
   else
     command = "pacman -Syy";
 
-  if (UnixCommand::hasTheExecutable("pkgfile"))
+  if (UnixCommand::hasTheExecutable("pkgfile") && !UnixCommand::isRootRunning())
     command += "; pkgfile -u";
 
   m_unixCommand->executeCommand(command);
