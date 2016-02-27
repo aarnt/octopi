@@ -29,8 +29,6 @@
 #include <QtGui>
 #include <QMessageBox>
 
-//#define NO_GTK_STYLE
-
 int main(int argc, char *argv[])
 {
   ArgumentList *argList = new ArgumentList(argc, argv);
@@ -77,6 +75,8 @@ int main(int argc, char *argv[])
 
     return 0;
   }
+  else if (UnixCommand::isAppRunning("octopi", false))
+    return 0;
 
   //This sends a message just to enable the socket-based QtSingleApplication engine
   app.sendMessage("RAISE");
@@ -104,25 +104,6 @@ int main(int argc, char *argv[])
   MainWindow w;
   app.setActivationWindow(&w);
   app.setQuitOnLastWindowClosed(false);
-
-/*
-#if QT_VERSION < 0x050000
-  #ifndef NO_GTK_STYLE
-  if (!argList->getSwitch("-style"))
-  {
-    if (UnixCommand::getLinuxDistro() == ectn_MANJAROLINUX &&
-        (!WMHelper::isKDERunning() && (!WMHelper::isRazorQtRunning()) && (!WMHelper::isLXQTRunning())))
-    {
-      app.setStyle(new QGtkStyle());
-    }
-    else if(UnixCommand::getLinuxDistro() != ectn_CHAKRA)
-    {
-      app.setStyle(new QCleanlooksStyle());
-    }
-  }
-  #endif
-#endif
-*/
 
   if (argList->getSwitch("-sysupgrade-noconfirm"))
   {
