@@ -24,7 +24,7 @@ that.
 
 ### Simple steps to build Octopi code
 
-Assuming you have Qt5 libs properly installed, go to the directory that has the code:
+Assuming you have Qt5 libs properly installed, go to the directory where the code is located:
 
 ```
 $ cd OCTOPI_PATH
@@ -47,7 +47,7 @@ In KaOS, "kcp" will be supported out of the box.
 
 ### Ways to help/support Octopi
 
- * You can "Star" it at the Github page - https://github.com/aarnt/octopi
+ * You can "Star" it at the Github page - https://github.com/aarnt/octopi/star
  * You can vote in the AUR package available at https://aur.archlinux.org/packages/octopi/
  * You can translate it to your mother language at https://www.transifex.com/projects/p/octopi/
  * You can follow author's twitter account at https://twitter.com/aaarnt
