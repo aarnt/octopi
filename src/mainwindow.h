@@ -416,7 +416,7 @@ private slots:
   void onTabNewsSourceChanged(QUrl newSource);
   void refreshDistroNews(bool searchForLatestNews = true, bool gotoNewsTab = true);
   void postRefreshDistroNews();
-
+  void onPacmanDatabaseChanged();
   void onHelpUsage();
   void onHelpAbout();
   void onPressDelete();

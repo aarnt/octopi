@@ -88,6 +88,12 @@ MainWindow::MainWindow(QWidget *parent) :
 
   ui->setupUi(this);
   switchToViewAllPackages();  
+
+  m_pacmanDatabaseSystemWatcher =
+            new QFileSystemWatcher(QStringList() << ctn_PACMAN_DATABASE_DIR, this);
+
+  connect(m_pacmanDatabaseSystemWatcher,
+          SIGNAL(directoryChanged(QString)), this, SLOT(onPacmanDatabaseChanged()));
 }
 
 /*
@@ -160,6 +166,14 @@ void MainWindow::show()
   }
   else
     QMainWindow::show();
+}
+
+/*
+ * Whenever there is a change in the pacman database...
+ */
+void MainWindow::onPacmanDatabaseChanged()
+{
+  if (m_initializationCompleted) m_refreshPackageLists = true;
 }
 
 /*

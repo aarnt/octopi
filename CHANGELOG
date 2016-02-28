@@ -3,6 +3,7 @@
   BugFix: Distro news now works with https KaOS site.
   BugFix: Tab files was not refreshing when enabling KCP mode in KaOS.
   BugFix: Do not permit two or more octopi instances if one is in root mode.
+  BugFix: When there's a pkg change outside Octopi, we trigger a flag to refresh the lists.
   Added an entry for Mirror-check in Tools menu.
   Added support for Simplified Chinese (zh_CN).
   Added support for lxqt-sudo tool (thanks to Manjaro team).
