@@ -431,7 +431,7 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="140"/>
         <source>Ctrl+G or &apos;File/Get latest distro news&apos; to retrieve the latest RSS based distro news</source>
-        <translation>‏Ctrl+G או &apos;קובץ/השג חדשות הפצה אחרונות&apos; כדי לאחזר חדשות הפצה אחרונות מבוססות RSS</translation>
+        <translation>‏Ctrl+G או &apos;קובץ/קבל חדשות הפצה עדכניות&apos; כדי לאחזר חדשות הפצה אחרונות מבוססות RSS</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="142"/>
