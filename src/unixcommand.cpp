@@ -905,6 +905,18 @@ bool UnixCommand::isAppRunning(const QString &appName, bool justOneInstance)
 }
 
 /*
+ * Given a 'pkgName' package name, checks if that one is installed in the system
+ */
+bool UnixCommand::isPackageInstalled(const QString &pkgName)
+{
+  QProcess pacman;
+  QString command = "pacman -Q " + pkgName;
+  pacman.start(command);
+  pacman.waitForFinished();
+  return (pacman.exitCode() == 0);
+}
+
+/*
  * Searches "/etc/pacman.conf" to see if ILoveCandy is enabled
  */
 bool UnixCommand::isILoveCandyEnabled()

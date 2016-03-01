@@ -145,6 +145,8 @@ public:
     }
   }
 
+  static bool isPackageInstalled(const QString& pkgName);
+
   static void removeTemporaryFiles();
 
   void openRootTerminal();

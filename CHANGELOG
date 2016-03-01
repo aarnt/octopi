@@ -1,9 +1,12 @@
 0.8.1 (dev)
   BugFix: Updated CHAKRA RSS site (thanks to s8321414).
   BugFix: Distro news now works with https KaOS site.
-  BugFix: Tab files was not refreshing when enabling KCP mode in KaOS.
+  BugFix: Files tab was not refreshing when enabling KCP mode in KaOS.
   BugFix: Do not permit two or more octopi instances if one is in root mode.
   BugFix: When there's a pkg change outside Octopi, we trigger a flag to refresh the lists.
+  BugFix: When you were searching for a pkg and the Files tab was selected, focus got lost.
+  BugFix: Package dependencies with >, <, =, >= and <= signals were not clickable in Info tab.
+  Major refactoring: Decoupling of Pacman executor and parser code from the UI.
   Added an entry for Mirror-check in Tools menu.
   Added support for Simplified Chinese (zh_CN).
   Added support for lxqt-sudo tool (thanks to Manjaro team).
@@ -29,7 +32,7 @@
   BugFix: Added option to search files with "\+" (escaping the  plus sign). This would find things such 
 	as C++ => "c\+\+" (thanks to maxis11).
   Added support to "kcp --information" at Info tab.
-  Now tab Files shows a progressbar while building the list of files.
+  Now Files tab shows a progressbar while building the list of files.
   Yellow notifier icon tooltip now displays Foreign repo tool name.  
   When outdated packages are printed at Output tab, you can see their 
 	information just hovering the mouse over them.
@@ -145,7 +148,7 @@
   BugFix: Adapted ArchBang changes.
   BugFix: Removed unused Ctrl+N help text.
   BugFix: Some changes in LXQt support.
-  BugFix: Download and installed size info at info tab.
+  BugFix: Download and installed size info at Info tab.
   BugFix: The 'Enter' key (numeric keyboard) is now supported.
   BugFix: At start when there is no pacman db, octopi hangs (thanks to anex).
   BugFix: After a pkg list rebuild the Files and Info cache were not 
@@ -377,7 +380,7 @@ terminal, the package actions remained disabled.
 0.1.3
   Added better support to Qt dark themes.
   Added context menu support inside Files tab.
-  Made URLs clickable inside output tab.
+  Made URLs clickable inside Output tab.
   Fixed the annoying Packager information display bug.
 
 0.1.2

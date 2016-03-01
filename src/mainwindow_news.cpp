@@ -60,32 +60,32 @@ void MainWindow::refreshDistroNews(bool searchForLatestNews, bool gotoNewsTab)
                         distro == ectn_ARCHBANGLINUX ||
                         distro == ectn_MOOOSLINUX))
     {
-      writeToTabOutputExt("<b>" +
+      writeToTabOutput("<b>" +
                           StrConstants::getSearchingForDistroNews().arg("Arch Linux") + "</b>");
     }
     else if (gotoNewsTab && distro == ectn_CHAKRA)
     {
-      writeToTabOutputExt("<b>" +
+      writeToTabOutput("<b>" +
                           StrConstants::getSearchingForDistroNews().arg("Chakra") + "</b>");
     }
     else if (gotoNewsTab && distro == ectn_KAOS)
     {
-      writeToTabOutputExt("<b>" +
+      writeToTabOutput("<b>" +
                           StrConstants::getSearchingForDistroNews().arg("KaOS") + "</b>");
     }
     else if (gotoNewsTab && distro == ectn_MANJAROLINUX)
     {
-      writeToTabOutputExt("<b>" +
+      writeToTabOutput("<b>" +
                           StrConstants::getSearchingForDistroNews().arg("Manjaro Linux") + "</b>");
     }
     else if (gotoNewsTab && distro == ectn_NETRUNNER)
     {
-      writeToTabOutputExt("<b>" +
+      writeToTabOutput("<b>" +
                           StrConstants::getSearchingForDistroNews().arg("Netrunner Rolling") + "</b>");
     }
     else if (gotoNewsTab && distro == ectn_PARABOLA)
     {
-      writeToTabOutputExt("<b>" +
+      writeToTabOutput("<b>" +
                           StrConstants::getSearchingForDistroNews().arg("Parabola GNU/Linux-libre") + "</b>");
     }
 

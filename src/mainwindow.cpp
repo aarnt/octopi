@@ -104,7 +104,7 @@ MainWindow::~MainWindow()
   savePackageColumnWidths();
 
   //Let's garbage collect transaction files...
-  m_unixCommand->removeTemporaryFiles();
+  UnixCommand::removeTemporaryFiles();
   delete ui;
 }
 

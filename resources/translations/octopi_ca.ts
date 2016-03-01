@@ -106,7 +106,7 @@
         <location filename="Projects/octopi/ui/mainwindow.ui" line="288"/>
         <source>Exit</source>
         <oldsource>&amp;Exit</oldsource>
-        <translation>Sortir</translation>
+        <translation>Surt</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="291"/>
@@ -129,13 +129,13 @@
         <location filename="Projects/octopi/ui/mainwindow.ui" line="315"/>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="517"/>
         <source>Install</source>
-        <translation>Instal·lar</translation>
+        <translation>Instal·la</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="324"/>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="327"/>
         <source>Remove</source>
-        <translation>Eliminar</translation>
+        <translation>Elimina</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="332"/>
@@ -156,62 +156,62 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="353"/>
         <source>Remove group</source>
-        <translation>Eliminar grup</translation>
+        <translation>Elimina el grup</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="362"/>
         <source>Install group</source>
-        <translation>Instal·lar grup</translation>
+        <translation>Instal·la el grup</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="371"/>
         <source>Collapse item</source>
-        <translation>Reduir ítem</translation>
+        <translation>Redueix l&apos;element</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="380"/>
         <source>Expand item</source>
-        <translation>Expandir ítem</translation>
+        <translation>Expandeix l&apos;element</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="389"/>
         <source>Collapse all items</source>
-        <translation>Reduir tots els ítems</translation>
+        <translation>Redueix tots els elements</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="398"/>
         <source>Expand all items</source>
-        <translation>Expandir tots els ítems</translation>
+        <translation>Expandeix tots els elements</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="407"/>
         <source>Open file</source>
-        <translation>Obrir fitxer</translation>
+        <translation>Obre un fitxer</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="416"/>
         <source>Edit file</source>
-        <translation>Editar fitxer</translation>
+        <translation>Edita el fitxer</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="425"/>
         <source>Open directory</source>
-        <translation>Obrir directori</translation>
+        <translation>Obre un directori</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="434"/>
         <source>Open terminal here</source>
-        <translation>Obrir terminal aquí</translation>
+        <translation>Obre un terminal aquí</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="443"/>
         <source>Remove item</source>
-        <translation>Eliminar ítem</translation>
+        <translation>Elimina l&apos;element</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="455"/>
         <source>Remove items</source>
-        <translation>Eliminar ítems</translation>
+        <translation>Elimina els elements</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="466"/>
@@ -228,7 +228,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="483"/>
         <source>Find a file</source>
-        <translation>Trobar un fitxer</translation>
+        <translation>Troba un fitxer</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="492"/>
@@ -286,7 +286,7 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="55"/>
         <source>For more information, visit:</source>
-        <translation>Per més informació, visita:</translation>
+        <translation>Per a més informació, visiteu:</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="58"/>
@@ -296,7 +296,7 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="59"/>
         <source>licensed under the terms of</source>
-        <translation>Llicenciat sote els termes de</translation>
+        <translation>Llicenciat segons els termes de</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="77"/>
@@ -346,7 +346,7 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="102"/>
         <source>Position the mouse over a package to see its description</source>
-        <translation>Posiciona el ratolí sobre d&apos;un paquet per veure la seva descripció</translation>
+        <translation>Posiciona el ratolí sobre d&apos;un paquet per veure&apos;n la descripció</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="104"/>
@@ -356,37 +356,37 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="106"/>
         <source>Right click package to install/reinstall or remove it</source>
-        <translation>Fes clic amb el botó dret en un paquet per instal·lar/reinstal·lar o esborrar-lo</translation>
+        <translation>Fes clic amb el botó dret en un paquet per instal·lar/reinstal·lar-lo o eliminar-lo</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="109"/>
         <source>Alt+key sequences:</source>
-        <translation>Seqüència Alt+tecla:</translation>
+        <translation>Seqüències Alt+tecla:</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="111"/>
         <source>Alt+1 to switch to &apos;Info&apos; tab</source>
-        <translation>Alt+1 per canviar a la pestanya &apos;Info&apos;</translation>
+        <translation>Alt+1 per canviar a la pestanya Info</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="113"/>
         <source>Alt+2 to switch to &apos;Files&apos; tab</source>
-        <translation>Alt+2 per canviar a la pestanya &apos;Fitxers&apos;</translation>
+        <translation>Alt+2 per canviar a la pestanya Fitxers</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="115"/>
         <source>Alt+3 to switch to &apos;Transaction&apos; tab</source>
-        <translation>Alt+3 per canviar a la pestanya &apos;Transacció&apos;</translation>
+        <translation>Alt+3 per canviar a la pestanya Transacció</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="117"/>
         <source>Alt+4 to switch to &apos;Output&apos; tab</source>
-        <translation>Alt+4 per canviar a la pestanya &apos;Sortida&apos;</translation>
+        <translation>Alt+4 per canviar a la pestanya Sortida</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="119"/>
         <source>Alt+5 to switch to &apos;News&apos; tab</source>
-        <translation>Alt+5 per canviar a la pestanya &apos;Noticies&apos;</translation>
+        <translation>Alt+5 per canviar a la pestanya Notícies</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="121"/>
@@ -466,7 +466,7 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="156"/>
         <source>F+key sequences:</source>
-        <translation>Sequències F+tecla:</translation>
+        <translation>Seqüències F+tecla:</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="158"/>
@@ -529,42 +529,42 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="127"/>
         <source>Antergos news</source>
-        <translation>Novetats d&apos;Antergos</translation>
+        <translation>Novetats de l&apos;Antergos</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="131"/>
         <source>ArchBSD news</source>
-        <translation>Novetats d&apos;ArchBSD</translation>
+        <translation>Novetats de l&apos;ArchBSD</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="135"/>
         <source>Arch Linux news</source>
-        <translation>Novetats Arch Linux</translation>
+        <translation>Novetats de l&apos;Arch Linux</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="139"/>
         <source>Chakra news</source>
-        <translation>Novetats Chakra</translation>
+        <translation>Novetats del Chakra</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="143"/>
         <source>KaOS news</source>
-        <translation>Noticies KaOS</translation>
+        <translation>Notícies del KaOS</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="147"/>
         <source>Manjaro Linux news</source>
-        <translation>Novetats Manjaro Linux</translation>
+        <translation>Novetats del Manjaro Linux</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="151"/>
         <source>Netrunner Rolling news</source>
-        <translation>Novetats de Netrunner Rolling</translation>
+        <translation>Novetats del Netrunner Rolling</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="155"/>
         <source>Parabola GNU/Linux-libre news</source>
-        <translation>Novetats de Parabola GNU/Linux-libre</translation>
+        <translation>Novetats del Parabola GNU/Linux-libre</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="159"/>
@@ -575,17 +575,17 @@
         <location filename="Projects/octopi/src/strconstants.h" line="163"/>
         <source>This Linux distro seems to be incompatible with Octopi!</source>
         <oldsource>This GNU/Linux distro seems to be incompatible with Octopi!</oldsource>
-        <translation>Aquesta distro Linux sembla incompatible amb Octopi!</translation>
+        <translation>Aquesta distribució Linux sembla incompatible amb l&apos;Octopi!</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="167"/>
         <source>Internet seems unavailable!</source>
-        <translation>Internet sembla no estar disponible</translation>
+        <translation>No sembla que hi hagi Internet disponible!</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="171"/>
         <source>Display all groups</source>
-        <translation>Mostrar tots els grups</translation>
+        <translation>Mostra tots els grups</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="183"/>
@@ -660,12 +660,12 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="239"/>
         <source>Required By</source>
-        <translation>Requerit Per</translation>
+        <translation>Requerit per</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="243"/>
         <source>Optional For</source>
-        <translation>Opcional Per</translation>
+        <translation>Opcional per a</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="247"/>
@@ -675,7 +675,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="251"/>
         <source>Conflicts With</source>
-        <translation>Conflictes Amb</translation>
+        <translation>Té conflictes amb</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="255"/>
@@ -695,7 +695,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="267"/>
         <source>Download Size</source>
-        <translation>Mida de la Baixada</translation>
+        <translation>Mida de la baixada</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="271"/>
@@ -780,17 +780,17 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="335"/>
         <source>Find</source>
-        <translation>Trobar</translation>
+        <translation>Troba</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="339"/>
         <source>Clear</source>
-        <translation>Netejar</translation>
+        <translation>Neteja</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="343"/>
         <source> (outdated installed version is %1)</source>
-        <translation>(versió instal·lada desactualitzada és %1)</translation>
+        <translation>(la versió instal·lada desactualitzada és %1)</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="347"/>
@@ -800,7 +800,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="351"/>
         <source>Building package list...</source>
-        <translation>Construïnt la llista de paquets...</translation>
+        <translation>Construint la llista de paquets...</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="355"/>
@@ -810,7 +810,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="359"/>
         <source>There is one outdated package in your system:</source>
-        <translation>Hi ha un paquet desactualitzat al teu sistema:</translation>
+        <translation>Hi ha un paquet no actualitzat al sistema:</translation>
     </message>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="363"/>
@@ -850,7 +850,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="391"/>
         <source>Cleaning package cache...</source>
-        <translation>Netejant memòria cau del paquet...</translation>
+        <translation>Netejant la memòria cau del paquet...</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="395"/>
@@ -865,12 +865,12 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="403"/>
         <source>Press any key to continue...</source>
-        <translation>Prem qualsevol tecla per continuar...</translation>
+        <translation>Premeu qualsevol tecla per continuar...</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="411"/>
         <source>Sync database</source>
-        <translation>Sincronitzar base de dades</translation>
+        <translation>Sincronitza la base de dades</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="415"/>
@@ -885,17 +885,17 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="423"/>
         <source>Starting full system upgrade...</source>
-        <translation>Començant actualització completa del sistema...</translation>
+        <translation>Començant l&apos;actualització completa del sistema...</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="427"/>
         <source>Installing selected packages...</source>
-        <translation>Instal·lant paquets seleccionats...</translation>
+        <translation>Instal·lant els paquets seleccionats...</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="431"/>
         <source>Removing selected packages...</source>
-        <translation>Eliminant paquets seleccionats...</translation>
+        <translation>Eliminant els paquets seleccionats...</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="435"/>
@@ -905,22 +905,22 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="439"/>
         <source>Choose a terminal</source>
-        <translation>Escull un terminal</translation>
+        <translation>Escolliu un terminal</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="443"/>
         <source>Running command in terminal...</source>
-        <translation>Executant ordre al terminal...</translation>
+        <translation>Executant l&apos;ordre al terminal...</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="447"/>
         <source>Command finished OK!</source>
-        <translation>L&apos;ordre ha fintalitzat bé!</translation>
+        <translation>L&apos;ordre ha acabat bé!</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="451"/>
         <source>Command finished with errors!</source>
-        <translation>ordre finalitzada amb errors!</translation>
+        <translation>L&apos;ordre ha acabat amb errors!</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="455"/>
@@ -930,32 +930,32 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="459"/>
         <source>Total download size: %1 KB</source>
-        <translation>Mida total baixada: %1 KB</translation>
+        <translation>Mida total de la baixada: %1 KB</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="463"/>
         <source>The following package needs to be retrieved</source>
-        <translation>S&apos;han d&apos;obtenir els següents paquets</translation>
+        <translation>S&apos;han d&apos;obtenir els paquets següents:</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="467"/>
         <source>The following package will be removed</source>
-        <translation>Se suprimiran els següents paquets</translation>
+        <translation>Se suprimiran els paquets següents:</translation>
     </message>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="471"/>
         <source>The following %n packages need to be retrieved</source>
-        <translation><numerusform>S&apos;ha d&apos;obtenir el següent paquet (%n)</numerusform><numerusform>S&apos;han d&apos;obtenir els següents %n paquets</numerusform></translation>
+        <translation><numerusform>S&apos;ha d&apos;obtenir el següent paquet (%n)</numerusform><numerusform>S&apos;han d&apos;obtenir els %n paquets següents</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="475"/>
         <source>The following %n packages will be removed</source>
-        <translation><numerusform>Se suprimirà el següent paquet (%n)</numerusform><numerusform>Se suprimiran els següents %n paquets</numerusform></translation>
+        <translation><numerusform>Se suprimirà el paquet següent (%n)</numerusform><numerusform>Se suprimiran els %n paquets següents</numerusform></translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="479"/>
         <source>There are forbidden packages in the removal list!</source>
-        <translation>Hi ha paquets prohibits a la llista d&apos;eliminats!</translation>
+        <translation>Hi ha paquets prohibits a la llista d&apos;eliminació!</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="483"/>
@@ -975,7 +975,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="495"/>
         <source>Confirm?</source>
-        <translation>Confirmes?</translation>
+        <translation>Endavant?</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="499"/>
@@ -995,17 +995,17 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="511"/>
         <source>Do you want to execute this transaction in a Terminal?</source>
-        <translation>Vols executar aquesta transacció en el Terminal?</translation>
+        <translation>Voleu executar aquesta transacció al terminal?</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="515"/>
         <source>Do you really want to clean the package cache?</source>
-        <translation>Realment vols netejar la memòria cau de paquets?</translation>
+        <translation>Realment voleu netejar la memòria cau de paquets?</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="519"/>
         <source>Do you really want to remove Pacman&apos;s transaction lock file?</source>
-        <translation>Estàs segur de voler esborrar l&apos;arxiu de bloqueig de transacció Pacman?</translation>
+        <translation>Esteu segur de voler esborrar el fitxer de bloqueig de transacció del Pacman?</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="523"/>
@@ -1015,7 +1015,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="527"/>
         <source>Please, enter the administrator&apos;s password</source>
-        <translation>Sii us plau, entra la clau d&apos;accés de l&apos;administrador</translation>
+        <translation>Si us plau, escriviu la clau d&apos;accés de l&apos;administrador</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="533"/>
@@ -1025,7 +1025,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="537"/>
         <source>You&apos;ll need to install a su frontend like gksu or kdesu.</source>
-        <translation>Et caldrà instal·lar un frontal per a su com gksu o kdesu.</translation>
+        <translation>Us caldrà instal·lar un frontal per a su com ara gksu o kdesu.</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="541"/>
@@ -1040,12 +1040,12 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="549"/>
         <source>Do you really want to quit?</source>
-        <translation>Realment vols sortir?</translation>
+        <translation>Realment voleu sortir?</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="553"/>
         <source>Executing command</source>
-        <translation>Executant ordre</translation>
+        <translation>Executant l&apos;ordre</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="557"/>
@@ -1077,37 +1077,37 @@ Estàs segur que vols obrir-lo?</translation>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="578"/>
         <source>To be installed</source>
-        <translation>A instal·lar</translation>
+        <translation>Per instal·lar</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="582"/>
         <source>To be removed</source>
-        <translation>A eliminar</translation>
+        <translation>Per eliminar</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="586"/>
         <source>remove</source>
-        <translation>eliminar</translation>
+        <translation>elimina</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="590"/>
         <source>install</source>
-        <translation>instal·lar</translation>
+        <translation>instal·la</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="594"/>
         <source>Remove item</source>
-        <translation>Eliminar ítem</translation>
+        <translation>Elimina l&apos;element</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="598"/>
         <source>Remove items</source>
-        <translation>Eliminar ítems</translation>
+        <translation>Elimina l&apos;element</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="602"/>
         <source>Press Ctrl+A to select/deselect all</source>
-        <translation>Prem Ctrl+A per sel·leccionar/anul·lar la sel·lecció de tot</translation>
+        <translation>Premeu Ctrl+A per sel·leccionar/anul·lar la sel·lecció de tot</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="606"/>
@@ -1175,7 +1175,7 @@ Estàs segur que vols obrir-lo?</translation>
     <message>
         <location filename="Projects/octopi/src/searchbar.cpp" line="86"/>
         <source>Close</source>
-        <translation>Tancar</translation>
+        <translation>Tanca</translation>
     </message>
 </context>
 <context>
@@ -1188,7 +1188,7 @@ Estàs segur que vols obrir-lo?</translation>
     <message>
         <location filename="Projects/octopi/ui/transactiondialog.ui" line="133"/>
         <source>Run in terminal</source>
-        <translation>Executar al terminal</translation>
+        <translation>Executa al terminal</translation>
     </message>
 </context>
 </TS>

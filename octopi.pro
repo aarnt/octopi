@@ -36,7 +36,8 @@ HEADERS += src/QtSolutions/qtsingleapplication.h \
         src/model/packagemodel.h \
         src/ui/octopitabinfo.h \
         src/utils.h \
-        src/terminal.h
+        src/terminal.h \
+    src/pacmanexec.h
 
 greaterThan(QT_VERSION, 5.3): HEADERS += src/terminalselectordialog.h
 
@@ -68,7 +69,8 @@ SOURCES += src/QtSolutions/qtsingleapplication.cpp \
         src/model/packagemodel.cpp \
         src/ui/octopitabinfo.cpp \
         src/utils.cpp \
-        src/terminal.cpp
+        src/terminal.cpp \
+    src/pacmanexec.cpp
 
 greaterThan(QT_VERSION, 5.3): SOURCES += src/terminalselectordialog.cpp
 

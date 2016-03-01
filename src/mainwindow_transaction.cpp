@@ -574,7 +574,6 @@ void MainWindow::tvTransactionRowsChanged(const QModelIndex& parent)
 {
   QStandardItem *item = m_modelTransaction->itemFromIndex(parent);
   QString count = QString::number(item->rowCount());
-
   QStandardItem * itemRemove = getRemoveTransactionParentItem();
   QStandardItem * itemInstall = getInstallTransactionParentItem();
 
@@ -680,21 +679,19 @@ void MainWindow::doMirrorCheck()
   m_commandExecuting = ectn_MIRROR_CHECK;
   disableTransactionActions();
 
-  m_unixCommand = new UnixCommand(this);
-
+  m_progressWidget->setValue(0);
+  m_progressWidget->setMaximum(100);
   clearTabOutput();
-  writeToTabOutput("<b>" + StrConstants::getSyncMirror() + "</b><br><br>");
 
-  QObject::connect(m_unixCommand, SIGNAL( readyReadStandardError()),
-                   this, SLOT( actionsProcessReadOutputErrorMirrorCheck()));
+  m_pacmanExec = new PacmanExec();
 
-  QObject::connect(m_unixCommand, SIGNAL( readyReadStandardOutput()),
-                   this, SLOT( actionsProcessReadOutputMirrorCheck()));
-  QObject::connect(m_unixCommand, SIGNAL( finished ( int, QProcess::ExitStatus )),
-                   this, SLOT( actionsProcessFinished(int, QProcess::ExitStatus) ));
+  QObject::connect(m_pacmanExec, SIGNAL( finished ( int, QProcess::ExitStatus )),
+                   this, SLOT( pacmanProcessFinished(int, QProcess::ExitStatus) ));
 
-  QString command = ctn_MIRROR_CHECK_APP;
-  m_unixCommand->executeCommandAsNormalUser(command);
+  QObject::connect(m_pacmanExec, SIGNAL(percentage(int)), this, SLOT(incrementPercentage(int)));
+  QObject::connect(m_pacmanExec, SIGNAL(textToPrintExt(QString)), this, SLOT(outputText(QString)));
+
+  m_pacmanExec->doMirrorCheck();
 }
 
 /*
@@ -710,27 +707,20 @@ void MainWindow::doSyncDatabase()
 
   m_commandExecuting = ectn_SYNC_DATABASE;
   disableTransactionActions();
-  m_unixCommand = new UnixCommand(this);
 
-  QObject::connect(m_unixCommand, SIGNAL( started() ), this, SLOT( actionsProcessStarted()));
-  QObject::connect(m_unixCommand, SIGNAL( readyReadStandardOutput()),
-                   this, SLOT( actionsProcessReadOutput() ));
-  QObject::connect(m_unixCommand, SIGNAL( finished ( int, QProcess::ExitStatus )),
-                   this, SLOT( actionsProcessFinished(int, QProcess::ExitStatus) ));
-  QObject::connect(m_unixCommand, SIGNAL( readyReadStandardError() ),
-                   this, SLOT( actionsProcessRaisedError() ));
+  m_progressWidget->setValue(0);
+  m_progressWidget->setMaximum(100);
+  clearTabOutput();
 
-  QString command;
+  m_pacmanExec = new PacmanExec();
 
-  if (UnixCommand::isRootRunning())
-    command = "pacman -Sy";
-  else
-    command = "pacman -Syy";
+  QObject::connect(m_pacmanExec, SIGNAL( finished ( int, QProcess::ExitStatus )),
+                   this, SLOT( pacmanProcessFinished(int, QProcess::ExitStatus) ));
 
-  if (UnixCommand::hasTheExecutable("pkgfile") && !UnixCommand::isRootRunning())
-    command += "; pkgfile -u";
+  QObject::connect(m_pacmanExec, SIGNAL(percentage(int)), this, SLOT(incrementPercentage(int)));
+  QObject::connect(m_pacmanExec, SIGNAL(textToPrintExt(QString)), this, SLOT(outputText(QString)));
 
-  m_unixCommand->executeCommand(command);
+  m_pacmanExec->doSyncDatabase();
 }
 
 /*
@@ -750,29 +740,20 @@ void MainWindow::doAURUpgrade()
     listOfTargets += auxPkg + " ";
   }
 
-  m_lastCommandList.clear();
-
-  if (StrConstants::getForeignRepositoryToolName() == "pacaur")
-  {
-    m_lastCommandList.append(StrConstants::getForeignRepositoryToolName() + " -Sa " + listOfTargets + ";");
-  }
-  else if (StrConstants::getForeignRepositoryToolName() == "yaourt")
-  {
-    m_lastCommandList.append(StrConstants::getForeignRepositoryToolName() + " -S " + listOfTargets + ";");
-  }
-
-  m_lastCommandList.append("echo -e;");
-  m_lastCommandList.append("read -n 1 -p \"" + StrConstants::getPressAnyKey() + "\"");
-
   disableTransactionActions();
-  m_unixCommand = new UnixCommand(this);
+  m_progressWidget->setValue(0);
+  m_progressWidget->setMaximum(100);
+  clearTabOutput();
 
-  QObject::connect(m_unixCommand, SIGNAL( startedTerminal() ), this, SLOT( actionsProcessStarted()));
-  QObject::connect(m_unixCommand, SIGNAL( finishedTerminal ( int, QProcess::ExitStatus )),
-                   this, SLOT( actionsProcessFinished(int, QProcess::ExitStatus) ));
+  m_pacmanExec = new PacmanExec();
 
-  m_commandExecuting = ectn_RUN_IN_TERMINAL;
-  m_unixCommand->runCommandInTerminalAsNormalUser(m_lastCommandList);
+  QObject::connect(m_pacmanExec, SIGNAL( finished ( int, QProcess::ExitStatus )),
+                   this, SLOT( pacmanProcessFinished(int, QProcess::ExitStatus) ));
+
+  QObject::connect(m_pacmanExec, SIGNAL(percentage(int)), this, SLOT(incrementPercentage(int)));
+  QObject::connect(m_pacmanExec, SIGNAL(textToPrintExt(QString)), this, SLOT(outputText(QString)));
+
+  m_pacmanExec->doAURUpgrade(listOfTargets);
 }
 
 /*
@@ -783,20 +764,17 @@ void MainWindow::prepareSystemUpgrade()
   m_systemUpgradeDialog = false;
   if (!doRemovePacmanLockFile()) return;
 
-  m_lastCommandList.clear();
-  m_lastCommandList.append("pacman -Su;");
-  m_lastCommandList.append("echo -e;");
-  m_lastCommandList.append("read -n 1 -p \"" + StrConstants::getPressAnyKey() + "\"");
+  disableTransactionActions();
+  m_progressWidget->setValue(0);
+  m_progressWidget->setMaximum(100);
+  clearTabOutput();
 
-  m_unixCommand = new UnixCommand(this);
+  m_pacmanExec = new PacmanExec();
+  QObject::connect(m_pacmanExec, SIGNAL( finished ( int, QProcess::ExitStatus )),
+                   this, SLOT( pacmanProcessFinished(int, QProcess::ExitStatus) ));
 
-  QObject::connect(m_unixCommand, SIGNAL( started() ), this, SLOT( actionsProcessStarted()));
-  QObject::connect(m_unixCommand, SIGNAL( readyReadStandardOutput()),
-                   this, SLOT( actionsProcessReadOutput() ));
-  QObject::connect(m_unixCommand, SIGNAL( finished ( int, QProcess::ExitStatus )),
-                   this, SLOT( actionsProcessFinished(int, QProcess::ExitStatus) ));
-  QObject::connect(m_unixCommand, SIGNAL( readyReadStandardError() ),
-                   this, SLOT( actionsProcessRaisedError() ));
+  QObject::connect(m_pacmanExec, SIGNAL(percentage(int)), this, SLOT(incrementPercentage(int)));
+  QObject::connect(m_pacmanExec, SIGNAL(textToPrintExt(QString)), this, SLOT(outputText(QString)));
 
   disableTransactionActions();
 }
@@ -837,14 +815,14 @@ void MainWindow::doSystemUpgrade(SystemUpgradeOptions systemUpgradeOptions)
     if (targets->count() == 0 && m_outdatedStringList->count() == 0)
     {
       clearTabOutput();
-      writeToTabOutputExt("<b>" + StrConstants::getNoNewUpdatesAvailable() + "</b>");
+      writeToTabOutput("<b>" + StrConstants::getNoNewUpdatesAvailable() + "</b><br>");
       return;
     }
     else if (targets->count() == 0 && m_outdatedStringList->count() > 0)
     {
       //This is a bug and should be shown to the user!
       clearTabOutput();
-      writeToTabOutputExt(UnixCommand::getTargetUpgradeList());
+      writeToTabOutput(UnixCommand::getTargetUpgradeList());
       return;
     }
 
@@ -864,11 +842,7 @@ void MainWindow::doSystemUpgrade(SystemUpgradeOptions systemUpgradeOptions)
       prepareSystemUpgrade();
 
       m_commandExecuting = ectn_SYSTEM_UPGRADE;
-
-      QString command;
-      command = "pacman -Su --noconfirm";
-
-      m_unixCommand->executeCommand(command);
+      m_pacmanExec->doSystemUpgrade();
       m_commandQueued = ectn_NONE;
     }
     else
@@ -900,17 +874,13 @@ void MainWindow::doSystemUpgrade(SystemUpgradeOptions systemUpgradeOptions)
         if (result == QDialogButtonBox::Yes)
         {
           m_commandExecuting = ectn_SYSTEM_UPGRADE;
-
-          QString command;
-          command = "pacman -Su --noconfirm";
-
-          m_unixCommand->executeCommand(command);
+          m_pacmanExec->doSystemUpgrade();
           m_commandQueued = ectn_NONE;
         }
         else if (result == QDialogButtonBox::AcceptRole)
         {
           m_commandExecuting = ectn_RUN_SYSTEM_UPGRADE_IN_TERMINAL;
-          m_unixCommand->runCommandInTerminal(m_lastCommandList);
+          m_pacmanExec->doSystemUpgradeInTerminal();
           m_commandQueued = ectn_NONE;
         }
       }
@@ -1016,37 +986,28 @@ void MainWindow::doRemoveAndInstall()
   {
     if (!doRemovePacmanLockFile()) return;
 
-    QString command;
-    command = "pacman -R --noconfirm " + listOfRemoveTargets +
-        "; pacman -S --noconfirm " + listOfInstallTargets;
-
-    m_lastCommandList.clear();
-    m_lastCommandList.append("pacman -R " /*+ m_removeCommand + " "*/ + listOfRemoveTargets + ";");
-    m_lastCommandList.append("pacman -S " + listOfInstallTargets + ";");
-    m_lastCommandList.append("echo -e;");
-    m_lastCommandList.append("read -n 1 -p \"" + StrConstants::getPressAnyKey() + "\"");
-
-    m_unixCommand = new UnixCommand(this);
-
-    QObject::connect(m_unixCommand, SIGNAL( started() ), this, SLOT( actionsProcessStarted()));
-    QObject::connect(m_unixCommand, SIGNAL( readyReadStandardOutput()),
-                     this, SLOT( actionsProcessReadOutput() ));
-    QObject::connect(m_unixCommand, SIGNAL( finished ( int, QProcess::ExitStatus )),
-                     this, SLOT( actionsProcessFinished(int, QProcess::ExitStatus) ));
-    QObject::connect(m_unixCommand, SIGNAL( readyReadStandardError() ),
-                     this, SLOT( actionsProcessRaisedError() ));
-
     disableTransactionActions();
+    m_progressWidget->setValue(0);
+    m_progressWidget->setMaximum(100);
+    clearTabOutput();
+
+    m_pacmanExec = new PacmanExec();
+
+    QObject::connect(m_pacmanExec, SIGNAL( finished ( int, QProcess::ExitStatus )),
+                     this, SLOT( pacmanProcessFinished(int, QProcess::ExitStatus) ));
+
+    QObject::connect(m_pacmanExec, SIGNAL(percentage(int)), this, SLOT(incrementPercentage(int)));
+    QObject::connect(m_pacmanExec, SIGNAL(textToPrintExt(QString)), this, SLOT(outputText(QString)));
 
     if (result == QDialogButtonBox::Yes)
     {
       m_commandExecuting = ectn_REMOVE_INSTALL;
-      m_unixCommand->executeCommand(command);
+      m_pacmanExec->doRemoveAndInstall(listOfRemoveTargets, listOfInstallTargets);
     }
     else if (result == QDialogButtonBox::AcceptRole)
     {
       m_commandExecuting = ectn_RUN_IN_TERMINAL;
-      m_unixCommand->runCommandInTerminal(m_lastCommandList);
+      m_pacmanExec->doRemoveAndInstallInTerminal(listOfRemoveTargets, listOfInstallTargets);
     }
   }
 }
@@ -1095,36 +1056,29 @@ void MainWindow::doRemove()
   {
     if (!doRemovePacmanLockFile()) return;
 
-    QString command;
-    command = "pacman -R --noconfirm " + listOfTargets;
-
-    m_lastCommandList.clear();
-    m_lastCommandList.append("pacman -R " + /*m_removeCommand +*/ listOfTargets + ";");
-    m_lastCommandList.append("echo -e;");
-    m_lastCommandList.append("read -n 1 -p \"" + StrConstants::getPressAnyKey() + "\"");
-
-    m_unixCommand = new UnixCommand(this);
-
-    QObject::connect(m_unixCommand, SIGNAL( started() ), this, SLOT( actionsProcessStarted()));
-    QObject::connect(m_unixCommand, SIGNAL( readyReadStandardOutput()),
-                     this, SLOT( actionsProcessReadOutput() ));
-    QObject::connect(m_unixCommand, SIGNAL( finished ( int, QProcess::ExitStatus )),
-                     this, SLOT( actionsProcessFinished(int, QProcess::ExitStatus) ));
-    QObject::connect(m_unixCommand, SIGNAL( readyReadStandardError() ),
-                     this, SLOT( actionsProcessRaisedError() ));
-
     disableTransactionActions();
+    m_progressWidget->setValue(0);
+    m_progressWidget->setMaximum(100);
+    clearTabOutput();
+
+    m_pacmanExec = new PacmanExec();
+
+    QObject::connect(m_pacmanExec, SIGNAL( finished ( int, QProcess::ExitStatus )),
+                     this, SLOT( pacmanProcessFinished(int, QProcess::ExitStatus) ));
+
+    QObject::connect(m_pacmanExec, SIGNAL(percentage(int)), this, SLOT(incrementPercentage(int)));
+    QObject::connect(m_pacmanExec, SIGNAL(textToPrintExt(QString)), this, SLOT(outputText(QString)));
 
     if (result == QDialogButtonBox::Yes)
     {
       m_commandExecuting = ectn_REMOVE;
-      m_unixCommand->executeCommand(command);
+      m_pacmanExec->doRemove(listOfTargets);
     }
 
     if (result == QDialogButtonBox::AcceptRole)
     {
       m_commandExecuting = ectn_RUN_IN_TERMINAL;
-      m_unixCommand->runCommandInTerminal(m_lastCommandList);
+      m_pacmanExec->doRemoveInTerminal(listOfTargets);
     }
   }
 }
@@ -1137,10 +1091,7 @@ bool MainWindow::doRemovePacmanLockFile()
   //If there are no means to run the actions, we must warn!
   if (!isSUAvailable()) return false;
 
-  QString lockFilePath("/var/lib/pacman/db.lck");
-  QFile lockFile(lockFilePath);
-
-  if (lockFile.exists())
+  if (PacmanExec::isDatabaseLocked())
   {
     int res = QMessageBox::question(this, StrConstants::getConfirmation(),
                                     StrConstants::getRemovePacmanTransactionLockFileConfirmation(),
@@ -1151,9 +1102,9 @@ bool MainWindow::doRemovePacmanLockFile()
       qApp->processEvents();
 
       clearTabOutput();
-      writeToTabOutputExt("<b>" + StrConstants::getRemovingPacmanTransactionLockFile() + "</b>");
-      UnixCommand::execCommand("rm " + lockFilePath);
-      writeToTabOutputExt("<b>" + StrConstants::getCommandFinishedOK() + "</b>");
+      writeToTabOutput("<b>" + StrConstants::getRemovingPacmanTransactionLockFile() + "</b><br>");
+      PacmanExec::removeDatabaseLock();
+      writeToTabOutput("<b>" + StrConstants::getCommandFinishedOK() + "</b>");
     }
     else
     {
@@ -1202,28 +1153,20 @@ void MainWindow::doInstallAURPackage()
     return;
   }
 
-  m_lastCommandList.clear();
-
-  if (UnixCommand::getLinuxDistro() == ectn_KAOS)
-    m_lastCommandList.append(StrConstants::getForeignRepositoryToolName() + " -i " + listOfTargets + ";");
-  else if (StrConstants::getForeignRepositoryToolName() == "pacaur")
-    m_lastCommandList.append(StrConstants::getForeignRepositoryToolName() + " -Sa " + listOfTargets + ";");
-  else if (StrConstants::getForeignRepositoryToolName() == "yaourt" ||
-           StrConstants::getForeignRepositoryToolName() == "ccr")
-    m_lastCommandList.append(StrConstants::getForeignRepositoryToolName() + " -S " + listOfTargets + ";");
-
-  m_lastCommandList.append("echo -e;");
-  m_lastCommandList.append("read -n 1 -p \"" + StrConstants::getPressAnyKey() + "\"");
-
   disableTransactionActions();
-  m_unixCommand = new UnixCommand(this);
+  m_progressWidget->setValue(0);
+  m_progressWidget->setMaximum(100);
+  clearTabOutput();
 
-  QObject::connect(m_unixCommand, SIGNAL( startedTerminal() ), this, SLOT( actionsProcessStarted()));
-  QObject::connect(m_unixCommand, SIGNAL( finishedTerminal ( int, QProcess::ExitStatus )),
-                   this, SLOT( actionsProcessFinished(int, QProcess::ExitStatus) ));
+  m_pacmanExec = new PacmanExec();
 
-  m_commandExecuting = ectn_RUN_IN_TERMINAL;
-  m_unixCommand->runCommandInTerminalAsNormalUser(m_lastCommandList);
+  QObject::connect(m_pacmanExec, SIGNAL( finished ( int, QProcess::ExitStatus )),
+                   this, SLOT( pacmanProcessFinished(int, QProcess::ExitStatus) ));
+
+  QObject::connect(m_pacmanExec, SIGNAL(percentage(int)), this, SLOT(incrementPercentage(int)));
+  QObject::connect(m_pacmanExec, SIGNAL(textToPrintExt(QString)), this, SLOT(outputText(QString)));
+
+  m_pacmanExec->doAURInstall(listOfTargets);
 }
 
 /*
@@ -1247,35 +1190,20 @@ void MainWindow::doRemoveAURPackage()
     listOfTargets += package->name + " ";
   }
 
-  m_lastCommandList.clear();
-
-  if (StrConstants::getForeignRepositoryToolName() == "ccr" ||
-      StrConstants::getForeignRepositoryToolName() == "kcp")
-  {
-    m_lastCommandList.append("pacman -" + m_removeCommand + " " + listOfTargets + ";");
-  }
-  else
-  {
-    m_lastCommandList.append(StrConstants::getForeignRepositoryToolName() +
-                             " -" + m_removeCommand + " " + listOfTargets + ";");
-  }
-
-  m_lastCommandList.append("echo -e;");
-  m_lastCommandList.append("read -n 1 -p \"" + StrConstants::getPressAnyKey() + "\"");
-
   disableTransactionActions();
-  m_unixCommand = new UnixCommand(this);
+  m_progressWidget->setValue(0);
+  m_progressWidget->setMaximum(100);
+  clearTabOutput();
 
-  QObject::connect(m_unixCommand, SIGNAL( started() ), this, SLOT( actionsProcessStarted()));
-  QObject::connect(m_unixCommand, SIGNAL( readyReadStandardOutput()),
-                   this, SLOT( actionsProcessReadOutput() ));
-  QObject::connect(m_unixCommand, SIGNAL( finished ( int, QProcess::ExitStatus )),
-                   this, SLOT( actionsProcessFinished(int, QProcess::ExitStatus) ));
-  QObject::connect(m_unixCommand, SIGNAL( readyReadStandardError() ),
-                   this, SLOT( actionsProcessRaisedError() ));
+  m_pacmanExec = new PacmanExec();
 
-  m_commandExecuting = ectn_RUN_IN_TERMINAL;
-  m_unixCommand->runCommandInTerminal(m_lastCommandList);
+  QObject::connect(m_pacmanExec, SIGNAL( finished ( int, QProcess::ExitStatus )),
+                   this, SLOT( pacmanProcessFinished(int, QProcess::ExitStatus) ));
+
+  QObject::connect(m_pacmanExec, SIGNAL(percentage(int)), this, SLOT(incrementPercentage(int)));
+  QObject::connect(m_pacmanExec, SIGNAL(textToPrintExt(QString)), this, SLOT(outputText(QString)));
+
+  m_pacmanExec->doAURRemove(listOfTargets);
 }
 
 /*
@@ -1330,34 +1258,28 @@ void MainWindow::doInstall()
   {
     if (!doRemovePacmanLockFile()) return;
 
-    QString command;
-    command = "pacman -S --noconfirm " + listOfTargets;
-
-    m_lastCommandList.clear();
-    m_lastCommandList.append("pacman -S " + listOfTargets + ";");
-    m_lastCommandList.append("echo -e;");
-    m_lastCommandList.append("read -n 1 -p \"" + StrConstants::getPressAnyKey() + "\"");
-
     disableTransactionActions();
-    m_unixCommand = new UnixCommand(this);
+    m_progressWidget->setValue(0);
+    m_progressWidget->setMaximum(100);
+    clearTabOutput();
 
-    QObject::connect(m_unixCommand, SIGNAL( started() ), this, SLOT( actionsProcessStarted()));
-    QObject::connect(m_unixCommand, SIGNAL( finished ( int, QProcess::ExitStatus )),
-                     this, SLOT( actionsProcessFinished(int, QProcess::ExitStatus) ));
-    QObject::connect(m_unixCommand, SIGNAL( readyReadStandardOutput()),
-                     this, SLOT( actionsProcessReadOutput() ));
-    QObject::connect(m_unixCommand, SIGNAL( readyReadStandardError() ),
-                     this, SLOT( actionsProcessRaisedError() ));
+    m_pacmanExec = new PacmanExec();
+
+    QObject::connect(m_pacmanExec, SIGNAL( finished ( int, QProcess::ExitStatus )),
+                     this, SLOT( pacmanProcessFinished(int, QProcess::ExitStatus) ));
+
+    QObject::connect(m_pacmanExec, SIGNAL(percentage(int)), this, SLOT(incrementPercentage(int)));
+    QObject::connect(m_pacmanExec, SIGNAL(textToPrintExt(QString)), this, SLOT(outputText(QString)));
 
     if (result == QDialogButtonBox::Yes)
     {
       m_commandExecuting = ectn_INSTALL;
-      m_unixCommand->executeCommand(command);
+      m_pacmanExec->doInstall(listOfTargets);
     }
     else if (result == QDialogButtonBox::AcceptRole)
     {
       m_commandExecuting = ectn_RUN_IN_TERMINAL;
-      m_unixCommand->runCommandInTerminal(m_lastCommandList);
+      m_pacmanExec->doInstallInTerminal(listOfTargets);
     }
   }
 }
@@ -1406,35 +1328,28 @@ void MainWindow::doInstallLocalPackages()
   {
     if (!doRemovePacmanLockFile()) return;
 
-    QString command;
-    command = "pacman -U --force --noconfirm " + listOfTargets;
-
-    m_lastCommandList.clear();
-    m_lastCommandList.append("pacman -U --force " + listOfTargets + ";");
-    m_lastCommandList.append("echo -e;");
-    m_lastCommandList.append("read -n 1 -p \"" + StrConstants::getPressAnyKey() + "\"");
-
-    m_commandExecuting = ectn_INSTALL;
     disableTransactionActions();
-    m_unixCommand = new UnixCommand(this);
+    m_progressWidget->setValue(0);
+    m_progressWidget->setMaximum(100);
+    clearTabOutput();
 
-    QObject::connect(m_unixCommand, SIGNAL( started() ), this, SLOT( actionsProcessStarted()));
-    QObject::connect(m_unixCommand, SIGNAL( readyReadStandardOutput()),
-                     this, SLOT( actionsProcessReadOutput() ));
-    QObject::connect(m_unixCommand, SIGNAL( finished ( int, QProcess::ExitStatus )),
-                     this, SLOT( actionsProcessFinished(int, QProcess::ExitStatus) ));
-    QObject::connect(m_unixCommand, SIGNAL( readyReadStandardError() ),
-                     this, SLOT( actionsProcessRaisedError() ));
+    m_pacmanExec = new PacmanExec();
+
+    QObject::connect(m_pacmanExec, SIGNAL( finished ( int, QProcess::ExitStatus )),
+                     this, SLOT( pacmanProcessFinished(int, QProcess::ExitStatus) ));
+
+    QObject::connect(m_pacmanExec, SIGNAL(percentage(int)), this, SLOT(incrementPercentage(int)));
+    QObject::connect(m_pacmanExec, SIGNAL(textToPrintExt(QString)), this, SLOT(outputText(QString)));
 
     if (result == QDialogButtonBox::Yes)
     {
       m_commandExecuting = ectn_INSTALL;
-      m_unixCommand->executeCommand(command);
+      m_pacmanExec->doInstallLocal(listOfTargets);
     }
     else if (result == QDialogButtonBox::AcceptRole)
     {
       m_commandExecuting = ectn_RUN_IN_TERMINAL;
-      m_unixCommand->runCommandInTerminal(m_lastCommandList);
+      m_pacmanExec->doInstallLocalInTerminal(listOfTargets);
     }
   }
 }
@@ -1455,17 +1370,17 @@ void MainWindow::doCleanCache()
     qApp->processEvents();
 
     clearTabOutput();
-    writeToTabOutputExt("<b>" + StrConstants::getCleaningPackageCache() + "</b>");
+    writeToTabOutput("<b>" + StrConstants::getCleaningPackageCache() + "</b><br>");
     qApp->processEvents();
     bool res = UnixCommand::cleanPacmanCache();
     qApp->processEvents();
 
     if (res)
     {
-      writeToTabOutputExt("<b>" + StrConstants::getCommandFinishedOK() + "</b>");
+      writeToTabOutput("<b>" + StrConstants::getCommandFinishedOK() + "</b>");
     }
     else
-      writeToTabOutputExt("<b>" + StrConstants::getCommandFinishedWithErrors() + "</b>");
+      writeToTabOutput("<b>" + StrConstants::getCommandFinishedWithErrors() + "</b>");
   }
 }
 
@@ -1540,9 +1455,7 @@ void MainWindow::toggleTransactionActions(const bool value)
   m_actionSysInfo->setEnabled(value);
 
   m_actionSwitchToAURTool->setEnabled(value);
-  ui->actionGetNews->setEnabled(value);
-
-  ui->actionGetNews->setEnabled(value);
+  ui->actionGetNews->setEnabled(value);  
   ui->actionInstallLocalPackage->setEnabled(value);
   ui->actionOpenRootTerminal->setEnabled(value);
   ui->actionHelpUsage->setEnabled(value);
@@ -1619,78 +1532,26 @@ void MainWindow::cancelTransaction()
 }
 
 /*
- * This SLOT is called whenever Pacman's process has just started execution
+ * This SLOT is called when Pacman's process has finished execution [PacmanExec based!!!]
  */
-void MainWindow::actionsProcessStarted()
-{
-  m_progressWidget->setValue(0);
-  m_progressWidget->setMaximum(100);
-  m_iLoveCandy = UnixCommand::isILoveCandyEnabled();
-
-  clearTabOutput();
-
-  //First we output the name of action we are starting to execute!
-
-  if (m_commandExecuting == ectn_SYNC_DATABASE)
-  {
-    writeToTabOutput("<b>" + StrConstants::getSyncDatabases() + "</b><br><br>");
-  }
-  else if (m_commandExecuting == ectn_SYSTEM_UPGRADE || m_commandExecuting == ectn_RUN_SYSTEM_UPGRADE_IN_TERMINAL)
-  {
-    writeToTabOutput("<b>" + StrConstants::getSystemUpgrade() + "</b><br><br>");
-  }
-  else if (m_commandExecuting == ectn_REMOVE)
-  {
-    writeToTabOutput("<b>" + StrConstants::getRemovingPackages() + "</b><br><br>");
-  }
-  else if (m_commandExecuting == ectn_INSTALL)
-  {
-    writeToTabOutput("<b>" + StrConstants::getInstallingPackages() + "</b><br><br>");
-  }
-  else if (m_commandExecuting == ectn_REMOVE_INSTALL)
-  {
-    writeToTabOutput("<b>" + StrConstants::getRemovingAndInstallingPackages() + "</b><br><br>");
-  }
-  else if (m_commandExecuting == ectn_RUN_IN_TERMINAL)
-  {
-    writeToTabOutput("<b>" + StrConstants::getRunningCommandInTerminal() + "</b><br><br>");
-  }
-
-  QString msg = m_unixCommand->readAllStandardOutput();
-  msg = msg.trimmed();
-
-  if (!msg.isEmpty())
-  {
-    writeToTabOutputExt(msg);
-  }
-}
-
-/*
- * This SLOT is called when Pacman's process has finished execution
- *
- */
-void MainWindow::actionsProcessFinished(int exitCode, QProcess::ExitStatus exitStatus)
+void MainWindow::pacmanProcessFinished(int exitCode, QProcess::ExitStatus exitStatus)
 {
   bool bRefreshGroups = true;
   m_progressWidget->close();
 
   ui->twProperties->setTabText(ctn_TABINDEX_OUTPUT, StrConstants::getTabOutputName());
-
   //mate-terminal is returning code 255 sometimes...
-  //TODO: Have to improve this test!
   if ((exitCode == 0 || exitCode == 255) && exitStatus == QProcess::NormalExit)
   {
     //First, we empty the tabs cache!
     m_cachedPackageInInfo = "";
     m_cachedPackageInFiles = "";
 
-    writeToTabOutputExt("<br><b>" +
-                     StrConstants::getCommandFinishedOK() + "</b><br>");
+    writeToTabOutput("<br><b>" + StrConstants::getCommandFinishedOK() + "</b><br>");
   }
   else
   {
-    writeToTabOutputExt("<br><b>" +
-                     StrConstants::getCommandFinishedWithErrors() + "</b><br>");
+    writeToTabOutput("<br><b>" + StrConstants::getCommandFinishedWithErrors() + "</b><br>");
   }
 
   if(m_commandQueued == ectn_SYSTEM_UPGRADE)
@@ -1732,7 +1593,7 @@ void MainWindow::actionsProcessFinished(int exitCode, QProcess::ExitStatus exitS
           else if (StrConstants::getForeignRepositoryToolName() == "kcp")
           {
             metaBuildPackageList();
-            delete m_unixCommand;
+            delete m_pacmanExec;
             m_commandExecuting = ectn_NONE;
             enableTransactionActions();
             return;
@@ -1742,7 +1603,6 @@ void MainWindow::actionsProcessFinished(int exitCode, QProcess::ExitStatus exitS
       else if (m_commandExecuting == ectn_SYSTEM_UPGRADE ||
                m_commandExecuting == ectn_RUN_SYSTEM_UPGRADE_IN_TERMINAL)
       {
-        //buildPackageList(false);
         metaBuildPackageList();
       }
       else if (m_commandExecuting != ectn_MIRROR_CHECK)
@@ -1767,7 +1627,6 @@ void MainWindow::actionsProcessFinished(int exitCode, QProcess::ExitStatus exitS
           && m_outdatedStringList->count() > 0)
       {
         m_commandExecuting = ectn_NONE;
-        m_unixCommand->removeTemporaryFile();
         doSystemUpgrade();
         return;
       }
@@ -1782,7 +1641,7 @@ void MainWindow::actionsProcessFinished(int exitCode, QProcess::ExitStatus exitS
 
     if (res == QMessageBox::Yes)
     {
-      m_unixCommand->runCommandInTerminal(m_lastCommandList);
+      m_pacmanExec->runLastestCommandInTerminal();
       return;
     }
   }
@@ -1798,445 +1657,9 @@ void MainWindow::actionsProcessFinished(int exitCode, QProcess::ExitStatus exitS
 
   refreshMenuTools(); //Maybe some of octopi tools were added/removed...
 
-  m_unixCommand->removeTemporaryFile();
-
-  delete m_unixCommand; //EXPERIMENTAL
+  delete m_pacmanExec;
 
   m_commandExecuting = ectn_NONE;
-}
-
-/*
- * This SLOT is called whenever Mirror-check process has something to output to Standard ERROR out
- */
-void MainWindow::actionsProcessReadOutputErrorMirrorCheck()
-{
-  QString msg = m_unixCommand->readAllStandardError();
-
-  msg.remove("[01;33m");
-  msg.remove("\033[01;37m");
-  msg.remove("\033[00m");
-  msg.remove("\033[00;32m");
-  msg.remove("[00;31m");
-  msg.remove("\n");
-
-  if (msg.contains("Checking"), Qt::CaseInsensitive)
-    msg += "<br>";
-
-  writeToTabOutputExt(msg, ectn_DONT_TREAT_URL_LINK);
-}
-
-/*
- * This SLOT is called whenever Mirror-check process has something to output to Standard out
- */
-void MainWindow::actionsProcessReadOutputMirrorCheck()
-{
-  QString msg = m_unixCommand->readAllStandardOutput();
-
-  msg.remove("[01;33m");
-  msg.remove("\033[01;37m");
-  msg.remove("\033[00m");
-  msg.remove("\033[00;32m");
-  msg.remove("[00;31m");
-  msg.replace("[", "'");
-  msg.replace("]", "'");
-  msg.remove("\n");
-
-  if (msg.contains("Checking", Qt::CaseInsensitive))
-  {
-    msg += "<br>";
-  }
-
-  writeToTabOutputExt(msg, ectn_DONT_TREAT_URL_LINK);
-}
-
-/*
- * This SLOT is called whenever Pacman's process has something to output to Standard out
- */
-void MainWindow::actionsProcessReadOutput()
-{
-  if (WMHelper::getSUCommand().contains("kdesu"))
-  {
-    QString msg = m_unixCommand->readAllStandardOutput();
-
-    if (m_commandExecuting == ectn_SYNC_DATABASE &&
-        msg.contains("Usage: /usr/bin/kdesu [options] command"))
-      return;
-
-    msg = msg.remove("Fontconfig warning: \"/etc/fonts/conf.d/50-user.conf\", line 14:");
-    msg = msg.remove("reading configurations from ~/.fonts.conf is deprecated. please move it to /home/arnt/.config/fontconfig/fonts.conf manually");
-
-    if (!msg.trimmed().isEmpty())
-    {
-      splitOutputStrings(msg);
-    }
-  }
-  else if (WMHelper::getSUCommand().contains("gksu"))
-  {
-    QString msg = m_unixCommand->readAllStandardOutput();
-    msg = msg.trimmed();
-
-    if(!msg.isEmpty() &&
-       msg.indexOf(":: Synchronizing package databases...") == -1 &&
-       msg.indexOf(":: Starting full system upgrade...") == -1)
-    {
-      writeToTabOutputExt(msg);
-    }
-  }
-}
-
-/*
- * Searches the given msg for a series of verbs that a Pacman transaction may produce
- */
-bool MainWindow::searchForKeyVerbs(const QString &msg)
-{
-  return (msg.contains(QRegExp("checking ")) ||
-          msg.contains(QRegExp("loading ")) ||
-          msg.contains(QRegExp("installing ")) ||
-          msg.contains(QRegExp("upgrading ")) ||
-          msg.contains(QRegExp("downgrading ")) ||
-          msg.contains(QRegExp("resolving ")) ||
-          msg.contains(QRegExp("looking ")) ||
-          msg.contains(QRegExp("removing ")));
-}
-
-/*
- * Processes the output of the 'pacman process' so we can update percentages and messages at real time
- */
-void MainWindow::parsePacmanProcessOutput(const QString &pMsg)
-{
-  if (m_commandExecuting == ectn_RUN_IN_TERMINAL ||
-      m_commandExecuting == ectn_RUN_SYSTEM_UPGRADE_IN_TERMINAL) return;
-
-  bool continueTesting = false;
-  QString perc;
-  QString msg = pMsg;
-
-  QString progressRun;
-  QString progressEnd;
-  msg.remove(QRegExp(".+\\[Y/n\\].+"));
-
-  //Let's remove color codes from strings...
-  msg.remove("\033[0;1m");
-  msg.remove("\033[0m");
-  msg.remove("[1;33m");
-  msg.remove("[00;31m");
-  msg.remove("\033[1;34m");
-  msg.remove("\033[0;1m");
-
-  msg.remove("c");
-  msg.remove("C");
-  msg.remove("");
-  msg.remove("[m[0;37m");
-  msg.remove("o");
-  msg.remove("[m");
-  msg.remove(";37m");
-  msg.remove("[c");
-  msg.remove("[mo");
-
-  if (msg.contains("exists in filesystem") ||
-      (msg.contains(":: waiting for 1 process to finish repacking")) ||
-      (msg.contains(":: download complete in"))) return;
-
-  else if (msg.contains("download complete: "))
-  {
-    writeToTabOutput(msg + "<br>");
-    return;
-  }
-
-  //std::cout << "_treat: " << msg.toLatin1().data() << std::endl;
-
-  if (m_iLoveCandy)
-  {
-    progressRun = "m]";
-    progressEnd = "100%";
-  }
-  else
-  {
-    progressRun = "-]";
-    progressEnd = "#]";
-  }
-
-  //If it is a percentage, we are talking about curl output...
-  if(msg.indexOf(progressEnd) != -1)
-  {
-    perc = "100%";
-    if (!m_progressWidget->isVisible()) m_progressWidget->show();
-    m_progressWidget->setValue(100);
-    continueTesting = true;
-  }
-
-  if (msg.indexOf(progressRun) != -1 || continueTesting)
-  {
-    if (!continueTesting){
-      perc = msg.right(4).trimmed();
-      //std::cout << "percentage is: " << perc.toLatin1().data() << std::endl;
-    }
-
-    continueTesting = false;
-
-    int aux = msg.indexOf("[");
-    if (aux > 0 && !msg.at(aux-1).isSpace()) return;
-
-    QString target;
-    if (m_commandExecuting == ectn_INSTALL ||
-        m_commandExecuting == ectn_SYSTEM_UPGRADE ||
-        m_commandExecuting == ectn_SYNC_DATABASE ||
-        m_commandExecuting == ectn_REMOVE ||
-        m_commandExecuting == ectn_REMOVE_INSTALL)
-    {
-      int ini = msg.indexOf(QRegExp("\\(\\s{0,3}[0-9]{1,4}/[0-9]{1,4}\\) "));
-      if (ini == 0)
-      {
-        int rp = msg.indexOf(")");
-        msg = msg.remove(0, rp+2);
-
-        if (searchForKeyVerbs(msg))
-        {
-          int end = msg.indexOf("[");
-          msg = msg.remove(end, msg.size()-end).trimmed() + " ";
-          writeToTabOutputExt(msg);
-        }
-        else
-        {
-          //std::cout << "test1: " << target.toLatin1().data() << std::endl;
-          int pos = msg.indexOf(" ");
-          if (pos >=0)
-          {
-            target = msg.left(pos);
-            target = target.trimmed() + " ";
-            //std::cout << "target: " << target.toLatin1().data() << std::endl;
-
-            if(!target.isEmpty())
-            {
-              writeToTabOutputExt("<b><font color=\"#b4ab58\">" + target + "</font></b>"); //#C9BE62
-            }
-          }
-          else
-          {
-            writeToTabOutputExt("<b><font color=\"#b4ab58\">" + msg + "</font></b>"); //#C9BE62
-          }
-        }
-      }
-      else if (ini == -1)
-      {
-        if (searchForKeyVerbs(msg))
-        {
-          //std::cout << "test2: " << msg.toLatin1().data() << std::endl;
-
-          int end = msg.indexOf("[");
-          msg = msg.remove(end, msg.size()-end);
-          msg = msg.trimmed() + " ";
-
-          writeToTabOutputExt(msg);
-        }
-        else
-        {
-          int pos = msg.indexOf(" ");
-          if (pos >=0)
-          {
-            target = msg.left(pos);
-            target = target.trimmed() + " ";
-            //std::cout << "target: " << target.toLatin1().data() << std::endl;
-
-            if(!target.isEmpty() && !textInTabOutput(target))
-            {
-              if (target.indexOf(QRegExp("[a-z]+")) != -1)
-              {
-                if(m_commandExecuting == ectn_SYNC_DATABASE && !target.contains("/"))
-                {
-                  writeToTabOutputExt("<b><font color=\"#FF8040\">" +
-                                      StrConstants::getSyncing() + " " + target + "</font></b>");
-                }
-                else if (m_commandExecuting != ectn_SYNC_DATABASE)
-                {
-                  writeToTabOutputExt("<b><font color=\"#b4ab58\">" +
-                                      target + "</font></b>"); //#C9BE62
-                }
-              }
-            }
-          }
-          else
-          {
-            writeToTabOutputExt("<b><font color=\"blue\">" + msg + "</font></b>");
-          }
-        }
-      }
-    }
-
-    //Here we print the transaction percentage updating
-    if(!perc.isEmpty() && perc.indexOf("%") > 0)
-    {
-      int percentage = perc.left(perc.size()-1).toInt();
-      if (!m_progressWidget->isVisible()) m_progressWidget->show();
-      m_progressWidget->setValue(percentage);
-    }
-  }
-  //It's another error, so we have to output it
-  else
-  {
-    //Let's supress some annoying string bugs...
-    msg.remove(QRegExp("\\(process.+"));
-    msg.remove(QRegExp("Using the fallback.+"));
-    msg.remove(QRegExp("Gkr-Message:.+"));
-    msg.remove(QRegExp("kdesu.+"));
-    msg.remove(QRegExp("kbuildsycoca.+"));
-    msg.remove(QRegExp("Connecting to deprecated signal.+"));
-    msg.remove(QRegExp("QVariant.+"));
-    msg.remove(QRegExp("gksu-run.+"));
-    msg.remove(QRegExp("GConf Error:.+"));
-    msg.remove(QRegExp(":: Do you want.+"));
-    msg.remove(QRegExp("org\\.kde\\."));
-    msg.remove(QRegExp("QCommandLineParser"));
-    msg.remove(QRegExp("QCoreApplication.+"));
-    msg.remove(QRegExp("Fontconfig warning.+"));
-    msg.remove(QRegExp("reading configurations from.+"));
-    msg.remove(QRegExp(".+annot load library.+"));
-    msg = msg.trimmed();
-
-    //std::cout << "debug: " << msg.toLatin1().data() << std::endl;
-
-    QString order;
-    int ini = msg.indexOf(QRegExp("\\(\\s{0,3}[0-9]{1,4}/[0-9]{1,4}\\) "));
-    if (ini == 0)
-    {
-      int rp = msg.indexOf(")");
-      order = msg.left(rp+2);
-      msg = msg.remove(0, rp+2);
-    }
-
-    if (!msg.isEmpty())
-    {
-      if (msg.contains(QRegExp("removing ")) && !textInTabOutput(msg + " "))
-      {
-        //Does this package exist or is it a proccessOutput buggy string???
-        QString pkgName = msg.mid(9).trimmed();
-
-        const PackageRepository::PackageData*const package = m_packageRepo.getFirstPackageByName(pkgName);
-        if (pkgName.indexOf("...") != -1 || //TODO: maybe && was meant ?, what does pacman actually do here ?
-            (package != NULL && package->installed()))
-        {
-          writeToTabOutputExt("<b><font color=\"#E55451\">" + msg + "</font></b>"); //RED
-        }
-      }
-      else
-      {
-        QString altMsg = msg;
-
-        if (msg.contains(":: Updating") && m_commandExecuting == ectn_SYNC_DATABASE)
-          writeToTabOutputExt("<br><b>" + StrConstants::getSyncDatabases() + " (pkgfile -u)</b><br>");
-
-        else if (msg.contains("download complete: "))
-          writeToTabOutputExt(altMsg);
-
-        else if (msg.indexOf(":: Synchronizing package databases...") == -1 &&
-            msg.indexOf(":: Starting full system upgrade...") == -1)
-        {
-          //std::cout << "Entered here: " << msg.toLatin1().data() << std::endl;
-
-          if (m_commandExecuting == ectn_SYNC_DATABASE &&
-              msg.indexOf("is up to date"))
-          {
-            if (!m_progressWidget->isVisible()) m_progressWidget->show();
-            m_progressWidget->setValue(100);
-
-            int blank = msg.indexOf(" ");
-            QString repo = msg.left(blank);
-
-            if (repo.contains("error", Qt::CaseInsensitive) ||
-                repo.contains("gconf", Qt::CaseInsensitive) ||
-                repo.contains("failed", Qt::CaseInsensitive) ||
-                repo.contains("fontconfig", Qt::CaseInsensitive) ||
-                repo.contains("reading", Qt::CaseInsensitive)) return;
-
-            altMsg = repo + " " + StrConstants::getIsUpToDate();
-          }
-
-          writeToTabOutputExt(altMsg); //BLACK
-        }
-      }
-    }
-  }
-
-  if(m_commandExecuting == ectn_NONE)
-    ui->twProperties->setTabText(ctn_TABINDEX_OUTPUT, StrConstants::getTabOutputName());
-}
-
-/*
- * Breaks the output generated by QProcess so we can parse the strings
- * and give a better feedback to our users (including showing percentages)
- *
- * Returns true if the given output was split
- */
-bool MainWindow::splitOutputStrings(const QString &output)
-{
-  bool res = true;
-  QString msg = output.trimmed();
-  QStringList msgs = msg.split(QRegExp("\\n"), QString::SkipEmptyParts);
-
-  foreach (QString m, msgs)
-  {
-    QStringList m2 = m.split(QRegExp("\\(\\s{0,3}[0-9]{1,4}/[0-9]{1,4}\\) "), QString::SkipEmptyParts);
-
-    if (m2.count() == 1)
-    {
-      //Let's try another test... if it doesn't work, we give up.
-      QStringList maux = m.split(QRegExp("%"), QString::SkipEmptyParts);
-      if (maux.count() > 1)
-      {
-        foreach (QString aux, maux)
-        {
-          aux = aux.trimmed();
-          if (!aux.isEmpty())
-          {
-            if (aux.at(aux.count()-1).isDigit())
-            {
-              aux += "%";
-            }
-
-            //std::cout << "Error1: " << aux.toLatin1().data() << std::endl;
-            parsePacmanProcessOutput(aux);
-          }
-        }
-      }
-      else if (maux.count() == 1)
-      {
-        if (!m.isEmpty())
-        {
-          //std::cout << "Error2: " << m.toLatin1().data() << std::endl;
-          parsePacmanProcessOutput(m);
-        }
-      }
-    }
-    else if (m2.count() > 1)
-    {
-      foreach (QString m3, m2)
-      {
-        if (!m3.isEmpty())
-        {
-          //std::cout << "Error3: " << m3.toLatin1().data() << std::endl;
-          parsePacmanProcessOutput(m3);
-        }
-      }
-    }
-    else res = false;
-  }
-
-  return res;
-}
-
-/*
- * This SLOT is called whenever Pacman's process has something to output to Standard error
- */
-void MainWindow::actionsProcessRaisedError()
-{
-  QString msg = m_unixCommand->readAllStandardError();
-  msg = msg.remove("Fontconfig warning: \"/etc/fonts/conf.d/50-user.conf\", line 14:");
-  msg = msg.remove("reading configurations from ~/.fonts.conf is deprecated. please move it to /home/arnt/.config/fontconfig/fonts.conf manually");
-
-  if (!msg.trimmed().isEmpty())
-  {
-    splitOutputStrings(msg);
-  }
 }
 
 /*
@@ -2250,13 +1673,26 @@ void MainWindow::writeToTabOutput(const QString &msg, TreatURLLinks treatURLLink
     ensureTabVisible(ctn_TABINDEX_OUTPUT);
     positionTextEditCursorAtEnd();
 
+    QString newMsg = msg;
+
+    if(newMsg.contains("removing ") ||
+       newMsg.contains("could not ") ||
+       newMsg.contains("error:", Qt::CaseInsensitive) ||
+       newMsg.contains("failed") ||
+       newMsg.contains("is not synced") ||
+       newMsg.contains("could not be found") ||
+       newMsg.contains(StrConstants::getCommandFinishedWithErrors()))
+    {
+      newMsg = "<b><font color=\"#E55451\">" + newMsg + "&nbsp;</font></b>"; //RED
+    }
+
     if(treatURLLinks == ectn_TREAT_URL_LINK)
     {
-      text->insertHtml(Package::makeURLClickable(msg));
+      text->insertHtml(Package::makeURLClickable(newMsg));
     }
     else
     {
-      text->insertHtml(msg);
+      text->insertHtml(newMsg);
     }
 
     text->ensureCursorVisible();
@@ -2264,94 +1700,26 @@ void MainWindow::writeToTabOutput(const QString &msg, TreatURLLinks treatURLLink
 }
 
 /*
- * A helper method which writes the given string to OutputTab's textbrowser
- * This is the EXTENDED version, it checks lots of things before writing msg
+ * Sets new percentage value to the progressbar
  */
-void MainWindow::writeToTabOutputExt(const QString &msg, TreatURLLinks treatURLLinks)
+void MainWindow::incrementPercentage(int percentage)
 {
-  //std::cout << "To print: " << msg.toLatin1().data() << std::endl;
+  if (!m_progressWidget->isVisible()) m_progressWidget->show();
+  m_progressWidget->setValue(percentage);
+}
+
+/*
+ * A helper method which writes the given string to OutputTab's textbrowser
+ */
+void MainWindow::outputText(const QString &output)
+{
   QTextBrowser *text = ui->twProperties->widget(ctn_TABINDEX_OUTPUT)->findChild<QTextBrowser*>("textBrowser");
   if (text)
   {
-    //If the msg waiting to being print is from curl status OR any other unwanted string...
-    if ((msg.contains(QRegExp("\\(\\d")) &&
-         (!msg.contains("target", Qt::CaseInsensitive)) &&
-         (!msg.contains("package", Qt::CaseInsensitive))) ||
-       (msg.contains(QRegExp("\\d\\)")) &&
-        (!msg.contains("target", Qt::CaseInsensitive)) &&
-        (!msg.contains("package", Qt::CaseInsensitive))) ||
-
-        msg.indexOf("Enter a selection", Qt::CaseInsensitive) == 0 ||
-        msg.indexOf("Proceed with", Qt::CaseInsensitive) == 0 ||
-        msg.indexOf("%") != -1 ||
-        msg.indexOf("[") != -1 ||
-        msg.indexOf("]") != -1 ||
-        msg.indexOf("---") != -1)
-    {
-      return;
-    }
-
-    //If the msg waiting to being print has not yet been printed...
-    if(textInTabOutput(msg))
-    {
-      return;
-    }
-
-    QString newMsg = msg;
     ensureTabVisible(ctn_TABINDEX_OUTPUT);
     positionTextEditCursorAtEnd();
 
-    if(newMsg.contains(QRegExp("<font color")))
-    {
-      newMsg += "<br>";
-    }
-    else
-    {
-      if(newMsg.contains("removing ") ||
-         newMsg.contains("could not ") ||
-         newMsg.contains("error:", Qt::CaseInsensitive) ||
-         newMsg.contains("failed") ||
-         newMsg.contains("is not synced") ||
-         newMsg.contains("could not be found"))
-      {
-        newMsg = "<b><font color=\"#E55451\">" + newMsg + "&nbsp;</font></b>"; //RED
-      }
-      else if(newMsg.contains("checking ") ||
-              newMsg.contains("is synced") ||
-              newMsg.contains("-- reinstalling") ||
-              newMsg.contains("installing ") ||
-              newMsg.contains("upgrading ") ||
-              newMsg.contains("loading ") ||
-              newMsg.contains("resolving ") ||
-              newMsg.contains("looking "))
-      {
-         newMsg = "<b><font color=\"#4BC413\">" + newMsg + "</font></b>"; //GREEN
-      }
-      else if (newMsg.contains("warning") || (newMsg.contains("downgrading")))
-      {
-        newMsg = "<b><font color=\"#FF8040\">" + newMsg + "</font></b>"; //ORANGE
-      }
-      else if (!newMsg.contains("::"))
-      {
-        newMsg += "<br>";
-      }
-    }
-
-    if (newMsg.contains("::"))
-    {
-      newMsg = "<br><B>" + newMsg + "</B><br><br>";
-    }
-
-    if (!newMsg.contains(QRegExp("<br"))) //It was an else!
-    {
-      newMsg += "<br>";
-    }
-
-    if (treatURLLinks == ectn_TREAT_URL_LINK)
-      text->insertHtml(Package::makeURLClickable(newMsg));
-    else
-      text->insertHtml(newMsg);
-
+    text->insertHtml(output);
     text->ensureCursorVisible();
   }
 }

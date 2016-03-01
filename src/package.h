@@ -133,8 +133,8 @@ class Package{
     static QList<PackageListData> *getForeignPackageList();
     static QList<PackageListData> *getPackageList(const QString &packageName = "");
 
-    //AUR methods
-    static QList<PackageListData> * getAURPackageList(const QString& searchString);
+    static QList<PackageListData> * getAURPackageList(const QString& searchString);     //AUR methods
+    static QHash<QString, QString> getAUROutdatedPackagesNameVersion();    //AUR methods
 
     static PackageInfoData getKCPInformation(const QString &pkgName);
     static PackageInfoData getInformation(const QString &pkgName, bool foreignPackage = false);
@@ -142,7 +142,6 @@ class Package{
     static QString getInformationDescription(const QString &pkgName, bool foreignPackage = false);
     static QString getInformationInstalledSize(const QString &pkgName, bool foreignPackage = false);
 
-    static QHash<QString, QString> getAUROutdatedPackagesNameVersion();
     static QStringList getContents(const QString &pkgName, bool isInstalled);
     static QStringList getOptionalDeps(const QString &pkgName);
 
@@ -172,7 +171,6 @@ class Package{
     static QString makeURLClickable(const QString &information);
     static QString getBaseName( const QString& pkgName );
     static QString parseSearchString( QString searchStr, bool exactMatch = false );
-
     static bool hasPacmanDatabase();
 };
 

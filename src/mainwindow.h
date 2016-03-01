@@ -22,7 +22,7 @@
 #define MAINWINDOW_H
 
 #include <memory>
-#include "unixcommand.h"
+#include "pacmanexec.h"
 #include "uihelper.h"
 
 #include <QApplication>
@@ -60,7 +60,7 @@ const int ctn_TABINDEX_OUTPUT(3);
 const int ctn_TABINDEX_NEWS(4);
 const int ctn_TABINDEX_HELPUSAGE(5);
 
-enum TreatURLLinks { ectn_TREAT_URL_LINK, ectn_DONT_TREAT_URL_LINK };
+//enum TreatURLLinks { ectn_TREAT_URL_LINK, ectn_DONT_TREAT_URL_LINK };
 enum SystemUpgradeOptions { ectn_NO_OPT, ectn_SYNC_DATABASE_OPT, ectn_NOCONFIRM_OPT };
 
 namespace Ui {
@@ -87,6 +87,8 @@ protected:
 private:
   Ui::MainWindow *ui;
   CPUIntensiveComputing *m_cic;
+  PacmanExec *m_pacmanExec;
+
   UnixCommand *m_unixCommand;
   bool m_initializationCompleted;
 
@@ -286,7 +288,7 @@ private:
   bool isPropertiesTabWidgetVisible();
   bool isSUAvailable();
   void writeToTabOutput(const QString &msg, TreatURLLinks treatURLLinks = ectn_TREAT_URL_LINK);
-  void writeToTabOutputExt(const QString &msg, TreatURLLinks treatURLLinks = ectn_TREAT_URL_LINK);
+
   void initTabOutput();
   void clearTabOutput();
 
@@ -324,6 +326,8 @@ private slots:
   void openRootTerminal();
   void installLocalPackage();
   void findFileInPackage();
+  void incrementPercentage(int);
+  void outputText(const QString&);
 
   void tvPackagesSearchColumnChanged(QAction*);
   void tvPackagesSelectionChanged(const QItemSelection&, const QItemSelection&);
@@ -334,7 +338,6 @@ private slots:
   void buildPackagesFromGroupList(const QString group);
   void buildPackageList();
   void refreshPackageList();
-
   void metaBuildPackageList();
   void onPackageGroupChanged();
 
@@ -393,12 +396,7 @@ private slots:
   void selectedNonInstalledPackagesMenu();
   void selectedRepositoryMenu(QAction *actionRepoSelected);
 
-  void actionsProcessStarted();
-  void actionsProcessFinished(int exitCode, QProcess::ExitStatus);
-  void actionsProcessReadOutput();
-  void actionsProcessReadOutputErrorMirrorCheck();
-  void actionsProcessReadOutputMirrorCheck();
-  void actionsProcessRaisedError();
+  void pacmanProcessFinished(int exitCode, QProcess::ExitStatus exitStatus);
 
   void insertIntoRemovePackage();
   void insertIntoInstallPackage();

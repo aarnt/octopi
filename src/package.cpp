@@ -146,6 +146,7 @@ QString Package::kbytesToSize( float Bytes )
 QString Package::makeAnchorOfPackage(const QString &packages)
 {
   QString newDeps;
+  QString newDep;
   QStringList ldeps = packages.split(" ", QString::SkipEmptyParts);
 
   foreach(QString dep, ldeps)
@@ -158,7 +159,41 @@ QString Package::makeAnchorOfPackage(const QString &packages)
     }
     else
     {
-      newDeps += " " + dep + " ";
+      int p;
+
+      if (dep.contains("<"))
+      {
+        if (dep.contains("="))
+        {
+          p = dep.indexOf("<");
+          newDep = dep.left(p);
+        }
+        else
+        {
+          newDep = dep.left(p);
+          dep.replace("<", "&lt;");
+        }
+      }
+      else if (dep.contains(">"))
+      {
+        p = dep.indexOf(">");
+        if (dep.contains("="))
+        {
+          p = dep.indexOf(">");
+          newDep = dep.left(p);
+        }
+        else
+        {
+          newDep = dep.left(p);
+          dep.replace(">", "&gt;");
+        }
+      }
+      else if (dep.contains("="))
+      {
+        p = dep.indexOf("=");
+      }
+
+      newDeps += "<a href=\"goto:" + newDep + "\">" + dep + "</a> ";
     }
   }
 
@@ -240,7 +275,6 @@ QStringList *Package::getOutdatedAURStringList()
       {
         QString pkgName;
         pkgName = parts[0];
-
         pkgName = pkgName.remove("\033");
         pkgName = pkgName.remove("[1;35m");
         pkgName = pkgName.remove("[1;36m");
