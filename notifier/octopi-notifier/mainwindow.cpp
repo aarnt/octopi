@@ -310,10 +310,6 @@ void MainWindow::doSystemUpgrade()
   QString ds = Package::kbytesToSize(totalDownloadSize);
   TransactionDialog question(this);
 
-  //If we're in Chakra, there are no graphical system upgrades!
-  if (UnixCommand::getLinuxDistro() == ectn_CHAKRA)
-    question.removeYesButton();
-
   if(targets->count()==1)
     question.setText(StrConstants::getRetrievePackage() +
                      "\n\n" + StrConstants::getTotalDownloadSize().arg(ds).remove(" KB"));

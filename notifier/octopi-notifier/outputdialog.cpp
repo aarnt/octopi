@@ -94,8 +94,8 @@ void OutputDialog::doSystemUpgrade()
   QObject::connect(m_pacmanExec, SIGNAL(textToPrintExt(QString)), this, SLOT(onWriteOutput(QString)));
 
   m_upgradeRunning = true;
-  //m_pacmanExec->doSystemUpgrade();
-  m_pacmanExec->doInstall("octopi");
+  m_pacmanExec->doSystemUpgrade();
+  //m_pacmanExec->doInstall("octopi");  //TEST CODE!
 }
 
 /*
