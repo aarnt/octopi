@@ -30,7 +30,7 @@
 #include <QScreen>
 #include <QCloseEvent>
 #include <QMessageBox>
-#include <QGuiApplication>
+#include <QApplication>
 
 /*
  * Class that displays pacman output for system upgrade
