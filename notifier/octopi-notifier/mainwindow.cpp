@@ -328,6 +328,10 @@ void MainWindow::doSystemUpgrade()
   {
     //runOctopi(ectn_SYSUPGRADE_NOCONFIRM_EXEC_OPT);
 
+    m_systemUpgradeDialog = false;
+    toggleEnableInterface(false);
+    m_actionSystemUpgrade->setEnabled(false);
+
     OutputDialog *dlg = new OutputDialog(this);
     QObject::connect(dlg, SIGNAL( finished(int)),
                      this, SLOT( doSystemUpgradeFinished(int, QProcess::ExitStatus) ));
