@@ -326,7 +326,7 @@ void MainWindow::doSystemUpgrade()
 
   if (result == QDialogButtonBox::Yes)
   {
-    //runOctopi(ectn_SYSUPGRADE_NOCONFIRM_EXEC_OPT);
+    m_commandExecuting = ectn_SYSTEM_UPGRADE;
 
     m_systemUpgradeDialog = false;
     toggleEnableInterface(false);
