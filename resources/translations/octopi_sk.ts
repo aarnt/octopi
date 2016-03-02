@@ -580,7 +580,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="167"/>
         <source>Internet seems unavailable!</source>
-        <translation>Internetové pripojenie nie je dostupné!</translation>
+        <translation>Zdá sa, že internetové pripojenie nie je dostupné!</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="171"/>
@@ -970,7 +970,7 @@
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="491"/>
         <source>There are %n updates available!</source>
-        <translation><numerusform>%n aktualizácia je dostupná.</numerusform><numerusform>%n aktualizácie sú dostupné.</numerusform><numerusform>%n aktualizácií je dostupných.</numerusform></translation>
+        <translation><numerusform>Je dostupná %n aktualizácia!</numerusform><numerusform>Sú dostupné %n aktualizácie!</numerusform><numerusform>Je dostupných %n aktualizácií!</numerusform></translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="495"/>

@@ -140,7 +140,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="332"/>
         <source>Outdated packages</source>
-        <translation>Paquets desactualitzats</translation>
+        <translation>Paquets no actualitzats</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="341"/>
@@ -316,7 +316,7 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="85"/>
         <source>A foreign package, installed from</source>
-        <translation>Un paquet forani, instal·lat des de</translation>
+        <translation>Un paquet extern, instal·lat des de</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="88"/>
@@ -326,12 +326,12 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="91"/>
         <source>An outdated package</source>
-        <translation>Un paquet desactualitzat</translation>
+        <translation>Un paquet no actualitzat</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="94"/>
         <source>An outdated foreign package</source>
-        <translation>Un paquet extern desactualitzat</translation>
+        <translation>Un paquet extern no actualitzat</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="97"/>
@@ -396,77 +396,77 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="124"/>
         <source>Control+key sequences:</source>
-        <translation>Seqüències Control+tecla:</translation>
+        <translation>Seqüències de Control+tecla:</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="126"/>
         <source>Ctrl+D or &apos;File/Sync database&apos; to sync the local database with latest remote changes (pacman -Sy)</source>
-        <translation>Ctrl+D o &quot;Fitxer/Sincronitzar base de dades&quot; per sincronitzar la base de dades local amb els últims canvis remots (pacman -Sy)</translation>
+        <translation>Ctrl+D o &quot;Fitxer/Sincronitza la base de dades&quot; per sincronitzar la base de dades local amb els últims canvis remots (pacman -Sy)</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="128"/>
         <source>Ctrl+U or &apos;File/System upgrade&apos; to make a full system upgrade (pacman -Su)</source>
-        <translation>Ctrl+U  o &apos;Fitxer/Actualizar sistema&apos; per actualizar el sistema totalment (pacman -Su)</translation>
+        <translation>Ctrl+U  o &quot;Fitxer/Actualitza el sistema&quot; per actualitzar el sistema totalment (pacman -Su)</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="130"/>
         <source>Ctrl+L to find a package in the package list</source>
-        <translation>Ctrl+L per trobara un paquet a la llista de paquets</translation>
+        <translation>Ctrl+L per trobar un paquet a la llista de paquets</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="132"/>
         <source>Ctrl+F to search for text inside tab Files, News and Usage</source>
-        <translation>Ctrl+F  per cercar per text dins de les pestanyes Fitxers, Novetats i Ús</translation>
+        <translation>Ctrl+F  per cercar text dins de les pestanyes Fitxers, Novetats i Ús</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="136"/>
         <source>Ctrl+M or &apos;Transaction/Commit&apos; to start installation/removal of selected packages</source>
-        <translation>Ctrl+M o &apos;Transacció/Gravar&apos; per començar la instal·lació/eliminació dels paquets seleccionats</translation>
+        <translation>Ctrl+M o &quot;Transacció/Valida&quot; per començar la instal·lació/eliminació dels paquets seleccionats</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="138"/>
         <source>Ctrl+E or &apos;Transaction/Cancel&apos; to clear the selection of to be removed/installed packages</source>
-        <translation>Ctrl+E o &quot;Transacció / Cancel·la&quot; per netejar la selecció de paquets a suprimir / instal·lar</translation>
+        <translation>Ctrl+E o &quot;Transacció / Cancel·la&quot; per netejar la selecció de paquets a eliminar / instal·lar</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="140"/>
         <source>Ctrl+G or &apos;File/Get latest distro news&apos; to retrieve the latest RSS based distro news</source>
-        <translation>Ctrl+G o &apos;Fitxer/Obtenir les últimes noticies de la distro&apos; per recuperar els últims noticies de la distro basades en RSS</translation>
+        <translation>Ctrl+G o &quot;Fitxer/Obtén les últimes noticies de la distribució&quot; per recuperar les últimes noticies de la distribució basades en RSS</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="142"/>
         <source>Ctrl+Q or &apos;File/Exit&apos; to exit the application</source>
-        <translation>Ctrl+Q o &apos;Fitxer/Sortir&apos; per sortir de la aplicació</translation>
+        <translation>Ctrl+Q o &quot;Fitxer/Surt&quot; per sortir de l&apos;aplicació</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="145"/>
         <source>Control+shift+key sequences:</source>
-        <translation>Sequències control+shift+tecla:</translation>
+        <translation>Seqüències de control+maj.+tecla:</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="147"/>
         <source>Ctrl+Shift+C to clean local packages cache (pacman -Sc)</source>
-        <translation>Ctrl+Shift+C per netejar la memòria cau dels paquets locals (pacman -Sc)</translation>
+        <translation>Ctrl+Maj.+C per netejar la memòria cau dels paquets locals (pacman -Sc)</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="149"/>
         <source>Ctrl+Shift+G to display all package groups</source>
-        <translation>Ctrl+Shift+G per mostrar tots els grups de paquets</translation>
+        <translation>Ctrl+Maj.+G per mostrar tots els grups de paquets</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="151"/>
         <source>Ctrl+Shift+R to remove Pacman&apos;s transaction lock file</source>
-        <translation>Ctrl+Shift+R per esborrar l&apos;arxiu de bloqueig de transacció Pacman</translation>
+        <translation>Ctrl+Maj.+R per esborrar el fitxer de bloqueig de la transacció del Pacman</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="153"/>
         <source>Ctrl+Shift+Y to display %1 group</source>
-        <translation>Ctrl+Shift+Y per mostrar el grup %1 </translation>
+        <translation>Ctrl+Maj.+Y per mostrar el grup %1 </translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="156"/>
         <source>F+key sequences:</source>
-        <translation>Seqüències F+tecla:</translation>
+        <translation>Seqüències de F+tecla:</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="158"/>
@@ -476,12 +476,12 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="160"/>
         <source>F4 to open a Terminal whitin the selected directory at Files tab</source>
-        <translation>F4 per obrir un Terminal al directori seleccionat a la pestanya Fitxers</translation>
+        <translation>F4 per obrir un terminal dins del directori seleccionat a la pestanya Fitxers</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="162"/>
         <source>F6 to open a File Manager whitin the selected directory at Files tab</source>
-        <translation>F6 per obrir el Gestor de Fitxers al directori seleccionat a la pestanya Fitxers</translation>
+        <translation>F6 per obrir el Gestor de fitxers dins del directori seleccionat a la pestanya Fitxers</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="164"/>
@@ -491,7 +491,7 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="166"/>
         <source>F12 to maximize/demaximize Tab&apos;s view</source>
-        <translation>F12 per maximitzar/restaurar la vista de Pestanyes</translation>
+        <translation>F12 per maximitzar/restaurar la vista de pestanyes</translation>
     </message>
 </context>
 <context>
@@ -499,7 +499,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="43"/>
         <source>Octopi usage help:</source>
-        <translation>Ajuda d&apos;ús per Octopi:</translation>
+        <translation>Ajuda d&apos;ús per a l&apos;Octopi:</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="44"/>
@@ -569,7 +569,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="159"/>
         <source>No news could be found! Press Ctrl+G to download the latest news.</source>
-        <translation>No es poden trobar novetats! Prem Ctrl+G per descarregar les últimes novetats.</translation>
+        <translation>No es poden trobar novetats! Premeu Ctrl+G per descarregar les últimes novetats.</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="163"/>
@@ -610,7 +610,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="199"/>
         <source>Outdated version</source>
-        <translation>Versió desactualitzada</translation>
+        <translation>Versió no actualitzada</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="203"/>
@@ -790,7 +790,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="343"/>
         <source> (outdated installed version is %1)</source>
-        <translation>(la versió instal·lada desactualitzada és %1)</translation>
+        <translation>(la versió instal·lada no actualitzada és %1)</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="347"/>
@@ -805,7 +805,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="355"/>
         <source>Searching for %1 latest news...</source>
-        <translation>Cercant últimes novetats de %1...</translation>
+        <translation>Cercant les últimes novetats de %1...</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="359"/>
@@ -850,12 +850,12 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="391"/>
         <source>Cleaning package cache...</source>
-        <translation>Netejant la memòria cau del paquet...</translation>
+        <translation>Netejant la memòria cau de paquets...</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="395"/>
         <source>Removing Pacman&apos;s transaction lock file...</source>
-        <translation>Esborrant l&apos;arxiu de bloqueig de transacció Pacman</translation>
+        <translation>Eliminant el fitxer de bloqueig de transacció del Pacman</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="399"/>
@@ -875,7 +875,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="415"/>
         <source>Synchronizing databases...</source>
-        <translation>Sincronitzant bases de dades...</translation>
+        <translation>Sincronitzant les bases de dades...</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="419"/>
@@ -900,7 +900,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="435"/>
         <source>Removing/installing selected packages...</source>
-        <translation>Eliminant/instal·lant paquets seleccionats...</translation>
+        <translation>Eliminant / instal·lant els paquets seleccionats...</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="439"/>
@@ -940,7 +940,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="467"/>
         <source>The following package will be removed</source>
-        <translation>Se suprimiran els paquets següents:</translation>
+        <translation>S&apos;eliminaran els paquets següents:</translation>
     </message>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="471"/>
@@ -950,7 +950,7 @@
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="475"/>
         <source>The following %n packages will be removed</source>
-        <translation><numerusform>Se suprimirà el paquet següent (%n)</numerusform><numerusform>Se suprimiran els %n paquets següents</numerusform></translation>
+        <translation><numerusform>S&apos;eliminarà el paquet següent: %n</numerusform><numerusform>S&apos;eliminaran els %n paquets següents:</numerusform></translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="479"/>
@@ -980,7 +980,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="499"/>
         <source>Warning!!!</source>
-        <translation>Avís!!!</translation>
+        <translation>Avís!</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="503"/>
@@ -995,12 +995,12 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="511"/>
         <source>Do you want to execute this transaction in a Terminal?</source>
-        <translation>Voleu executar aquesta transacció al terminal?</translation>
+        <translation>Voleu executar aquesta transacció en un terminal?</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="515"/>
         <source>Do you really want to clean the package cache?</source>
-        <translation>Realment voleu netejar la memòria cau de paquets?</translation>
+        <translation>Realment voleu netejar la memòria cau dels paquets?</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="519"/>
@@ -1020,7 +1020,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="533"/>
         <source>There are no means to get administrator&apos;s credentials.</source>
-        <translation>No hi ha motius per obtenir les credencials de l&apos;administrador.</translation>
+        <translation>No hi ha mitjans per obtenir les credencials de l&apos;administrador.</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="537"/>
@@ -1030,12 +1030,12 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="541"/>
         <source>You can not run Octopi with administrator&apos;s credentials.</source>
-        <translation>No pots executar Octopi amb les credencials d&apos;administrador.</translation>
+        <translation>No es pot executar l&apos;Octopi amb les credencials d&apos;administrador.</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="545"/>
         <source>There is a pending transaction</source>
-        <translation>Hi ha una transacció pendent</translation>
+        <translation>Hi ha una transacció pendent.</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="549"/>
@@ -1050,29 +1050,29 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="557"/>
         <source>Run in terminal</source>
-        <translation>Executar en terminal</translation>
+        <translation>Executa en un terminal</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="561"/>
         <source>Needs application restart to take effect</source>
-        <translation>Cal reiniciar l&apos;aplicació per tal que tinguin efecte</translation>
+        <translation>Cal reiniciar l&apos;aplicació perquè tingui efecte.</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="565"/>
         <source>These changes need application restart to take effect!</source>
-        <translation>Aquests canvis requereixen reiniciar l&apos;aplicació per tenir efecte!</translation>
+        <translation>Aquests canvis requereixen reiniciar l&apos;aplicació perquè tinguin efecte!</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="569"/>
         <source>Select the packages you want to install</source>
-        <translation>Sel·lecciona els paquets que vols instal·lar</translation>
+        <translation>Seleccioneu els paquets que voleu instal·lar</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="573"/>
         <source>This file does not appear to be a simple text.
 Are you sure you want to open it?</source>
-        <translation>Aquest fitxer no sembla ser un text simple
-Estàs segur que vols obrir-lo?</translation>
+        <translation>Aquest fitxer no sembla que sigui un simple text.
+Esteu segur que voleu obrir-lo?</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="578"/>
@@ -1107,7 +1107,7 @@ Estàs segur que vols obrir-lo?</translation>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="602"/>
         <source>Press Ctrl+A to select/deselect all</source>
-        <translation>Premeu Ctrl+A per sel·leccionar/anul·lar la sel·lecció de tot</translation>
+        <translation>Premeu Ctrl+A per seleccionar-ho tot / anul·lar la selecció de tot</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="606"/>
