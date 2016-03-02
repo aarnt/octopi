@@ -334,7 +334,7 @@ void MainWindow::doSystemUpgrade()
 
     OutputDialog *dlg = new OutputDialog(this);
     QObject::connect(dlg, SIGNAL( finished(int)),
-                     this, SLOT( doSystemUpgradeFinished(int, QProcess::ExitStatus) ));
+                     this, SLOT( doSystemUpgradeFinished() ));
     dlg->show();
   }
   else if(result == QDialogButtonBox::AcceptRole)
