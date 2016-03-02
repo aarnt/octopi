@@ -19,6 +19,10 @@
 */
 
 #include "outputdialog.h"
+#include "../../src/pacmanexec.h"
+#include "../../src/searchbar.h"
+#include "../../src/uihelper.h"
+#include "../../src/strconstants.h"
 
 #include <QTextBrowser>
 #include <QVBoxLayout>
@@ -26,11 +30,7 @@
 #include <QScreen>
 #include <QCloseEvent>
 #include <QMessageBox>
-
-#include "../../src/pacmanexec.h"
-#include "../../src/searchbar.h"
-#include "../../src/uihelper.h"
-#include "../../src/strconstants.h"
+#include <QGuiApplication>
 
 /*
  * Class that displays pacman output for system upgrade
