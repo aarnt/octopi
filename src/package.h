@@ -22,6 +22,7 @@
 #define PACKAGE_H
 
 #include "settingsmanager.h"
+#include "constants.h"
 
 #include <QStringList>
 #include <QSettings>
@@ -30,15 +31,6 @@
 #include <QDateTime>
 #include <QHash>
 #include <QSet>
-
-const QString ctn_TEMP_ACTIONS_FILE ( QDir::tempPath() + QDir::separator() + ".qt_temp_" );
-const QString ctn_PACMAN_DATABASE_DIR = "/var/lib/pacman";
-const QString ctn_PACMAN_CORE_DB_FILE = "/var/lib/pacman/sync/core.db";
-
-enum PackageStatus { ectn_INSTALLED, ectn_NON_INSTALLED, ectn_OUTDATED, ectn_NEWER,
-                     ectn_FOREIGN, ectn_FOREIGN_OUTDATED };
-
-enum ViewOptions { ectn_ALL_PKGS, ectn_INSTALLED_PKGS, ectn_NON_INSTALLED_PKGS };
 
 struct PackageListData{
   QString name;

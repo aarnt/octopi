@@ -2,11 +2,8 @@
 #define PACMANEXEC_H
 
 #include <QObject>
-
+#include "constants.h"
 #include "unixcommand.h"
-
-enum TreatString { ectn_TREAT_STRING, ectn_DONT_TREAT_STRING };
-enum TreatURLLinks { ectn_TREAT_URL_LINK, ectn_DONT_TREAT_URL_LINK };
 
 class PacmanExec : public QObject
 {
@@ -27,7 +24,6 @@ private:
   void prepareTextToPrint(QString str, TreatString ts = ectn_TREAT_STRING, TreatURLLinks tl = ectn_TREAT_URL_LINK);
 
 private slots:
-
   //UnixCommand slots:
   void onStarted();
   void onReadOutput();
@@ -35,7 +31,6 @@ private slots:
   void onFinished(int exitCode, QProcess::ExitStatus);
 
 public:
-
   explicit PacmanExec(QObject *parent = 0);
   virtual ~PacmanExec();
 
@@ -72,9 +67,7 @@ public:
   void doAURRemove(const QString &listOfPackages);
 
 signals:
-
   void percentage(int);
-
   void started();
   void readOutput();
   void readOutputError();

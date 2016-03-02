@@ -21,9 +21,9 @@
 #define TRANSACTIONDIALOG_H
 
 #include "ui_transactiondialog.h"
+
 #include <QDialog>
 
-const int ctn_RUN_IN_TERMINAL(328);
 class QPushButton;
 
 class TransactionDialog : public QDialog

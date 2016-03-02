@@ -1671,31 +1671,7 @@ void MainWindow::writeToTabOutput(const QString &msg, TreatURLLinks treatURLLink
   if (text)
   {
     ensureTabVisible(ctn_TABINDEX_OUTPUT);
-    positionTextEditCursorAtEnd();
-
-    QString newMsg = msg;
-
-    if(newMsg.contains("removing ") ||
-       newMsg.contains("could not ") ||
-       newMsg.contains("error:", Qt::CaseInsensitive) ||
-       newMsg.contains("failed") ||
-       newMsg.contains("is not synced") ||
-       newMsg.contains("could not be found") ||
-       newMsg.contains(StrConstants::getCommandFinishedWithErrors()))
-    {
-      newMsg = "<b><font color=\"#E55451\">" + newMsg + "&nbsp;</font></b>"; //RED
-    }
-
-    if(treatURLLinks == ectn_TREAT_URL_LINK)
-    {
-      text->insertHtml(Package::makeURLClickable(newMsg));
-    }
-    else
-    {
-      text->insertHtml(newMsg);
-    }
-
-    text->ensureCursorVisible();
+    utils::writeToTextBrowser(text, msg, treatURLLinks);
   }
 }
 

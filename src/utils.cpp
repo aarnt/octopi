@@ -24,9 +24,11 @@
  * IT ONLY WORKS with terminal commands that start other subcommands, with an "-e" option
  */
 
+#include <iostream>
 #include "utils.h"
 #include "strconstants.h"
-#include <iostream>
+#include "pacmanexec.h"
+#include "searchbar.h"
 
 #include <QStandardItemModel>
 #include <QModelIndex>
@@ -35,6 +37,7 @@
 #include <QDomDocument>
 #include <QProcess>
 #include <QTimer>
+#include <QTextBrowser>
 
 /*
  * The needed constructor
@@ -530,4 +533,183 @@ QString utils::parseDistroNews()
 
   html += "</ul>";
   return html;
+}
+
+// ---------------------------- QTextBrowser related -----------------------------------
+
+/*
+ * Helper method to find the given "findText" in the given QTextEdit
+ */
+bool utils::strInQTextEdit(QTextBrowser *text, const QString& findText)
+{
+  bool res = false;
+
+  if (text)
+  {
+    positionTextEditCursorAtEnd(text);
+    res = text->find(findText, QTextDocument::FindBackward | QTextDocument::FindWholeWords);
+    positionTextEditCursorAtEnd(text);
+  }
+
+  return res;
+}
+
+/*
+ * Helper method to position the text cursor always in the end of doc
+ */
+void utils::positionTextEditCursorAtEnd(QTextEdit *textEdit)
+{
+  if (textEdit)
+  {
+    QTextCursor tc = textEdit->textCursor();
+    tc.clearSelection();
+    tc.movePosition(QTextCursor::End);
+    textEdit->setTextCursor(tc);
+  }
+}
+
+/*
+ * A helper method which writes the given string to a textbrowser
+ */
+void utils::writeToTextBrowser(QTextBrowser* text, const QString &str, TreatURLLinks treatURLLinks)
+{
+  if (text)
+  {
+    positionTextEditCursorAtEnd(text);
+
+    QString newStr = str;
+
+    if(newStr.contains("removing ") ||
+       newStr.contains("could not ") ||
+       newStr.contains("error:", Qt::CaseInsensitive) ||
+       newStr.contains("failed") ||
+       newStr.contains("is not synced") ||
+       newStr.contains("could not be found") ||
+       newStr.contains(StrConstants::getCommandFinishedWithErrors()))
+    {
+      newStr = "<b><font color=\"#E55451\">" + newStr + "&nbsp;</font></b>"; //RED
+    }
+
+    if(treatURLLinks == ectn_TREAT_URL_LINK)
+    {
+      text->insertHtml(Package::makeURLClickable(newStr));
+    }
+    else
+    {
+      text->insertHtml(newStr);
+    }
+
+    text->ensureCursorVisible();
+  }
+}
+
+// ------------------------------- SearchBar related -----------------------------------
+
+/*
+ * Helper to position in the first result when searching inside a textBrowser
+ */
+void utils::positionInFirstMatch(QTextBrowser *tb, SearchBar *sb)
+{
+  if (tb && sb && sb->isVisible() && !sb->getTextToSearch().isEmpty()){
+    tb->moveCursor(QTextCursor::Start);
+    if (tb->find(sb->getTextToSearch()))
+      sb->getSearchLineEdit()->setFoundStyle();
+    else
+      sb->getSearchLineEdit()->setNotFoundStyle();
+  }
+}
+
+/*
+ * Every time the user changes the text to search inside a textBrowser...
+ */
+void utils::searchBarTextChangedInTextBrowser(QTextBrowser *tb, SearchBar *sb, const QString textToSearch)
+{
+  QList<QTextEdit::ExtraSelection> extraSelections;
+
+  if (tb){
+    static int limit = 100;
+
+    if (textToSearch.isEmpty() || textToSearch.length() < 2){
+      sb->getSearchLineEdit()->initStyleSheet();
+      tb->setExtraSelections(extraSelections);
+      QTextCursor tc = tb->textCursor();
+      tc.clearSelection();
+      tb->setTextCursor(tc);
+      tb->moveCursor(QTextCursor::Start);
+      if (sb && sb->isHidden()) tb->setFocus();
+      return;
+    }
+
+    if (textToSearch.length() < 2) return;
+
+    tb->setExtraSelections(extraSelections);
+    tb->moveCursor(QTextCursor::Start);
+    QColor color = QColor(Qt::yellow).lighter(130);
+
+    while(tb->find(textToSearch)){
+      QTextEdit::ExtraSelection extra;
+      extra.format.setBackground(color);
+      extra.cursor = tb->textCursor();
+      extraSelections.append(extra);
+
+      if (limit > 0 && extraSelections.count() == limit)
+        break;
+    }
+
+    if (extraSelections.count()>0){
+      tb->setExtraSelections(extraSelections);
+      tb->setTextCursor(extraSelections.at(0).cursor);
+      QTextCursor tc = tb->textCursor();
+      tc.clearSelection();
+      tb->setTextCursor(tc);
+      positionInFirstMatch(tb, sb);
+    }
+    else sb->getSearchLineEdit()->setNotFoundStyle();
+  }
+}
+
+/*
+ * Every time the user presses Enter, Return, F3 or clicks Find Next inside a textBrowser...
+ */
+void utils::searchBarFindNextInTextBrowser(QTextBrowser *tb, SearchBar *sb)
+{
+  //QTextBrowser *tb = ui->twProperties->currentWidget()->findChild<QTextBrowser*>("textBrowser");
+  //SearchBar *sb = ui->twProperties->currentWidget()->findChild<SearchBar*>("searchbar");
+
+  if (tb && sb && !sb->getTextToSearch().isEmpty()){
+    if (!tb->find(sb->getTextToSearch())){
+      tb->moveCursor(QTextCursor::Start);
+      tb->find(sb->getTextToSearch());
+    }
+  }
+}
+
+/*
+ * Every time the user presses Shift+F3 or clicks Find Previous inside a textBrowser...
+ */
+void utils::searchBarFindPreviousInTextBrowser(QTextBrowser *tb, SearchBar *sb)
+{
+  //QTextBrowser *tb = ui->twProperties->currentWidget()->findChild<QTextBrowser*>("textBrowser");
+  //SearchBar *sb = ui->twProperties->currentWidget()->findChild<SearchBar*>("searchbar");
+
+  if (tb && sb && !sb->getTextToSearch().isEmpty()){
+    if (!tb->find(sb->getTextToSearch(), QTextDocument::FindBackward)){
+      tb->moveCursor(QTextCursor::End);
+      tb->find(sb->getTextToSearch(), QTextDocument::FindBackward);
+    }
+  }
+}
+
+/*
+ * Every time the user presses ESC or clicks the close button inside a textBrowser...
+ */
+void utils::searchBarClosedInTextBrowser(QTextBrowser *tb, SearchBar *sb)
+{
+  QTextCursor tc = tb->textCursor();
+  searchBarTextChangedInTextBrowser(tb, sb, "");
+  tc.clearSelection();
+  tb->setTextCursor(tc);
+
+  if (tb)
+    tb->setFocus();
 }

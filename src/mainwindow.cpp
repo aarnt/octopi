@@ -1174,10 +1174,7 @@ void MainWindow::positionTextEditCursorAtEnd()
 
   if (textEdit)
   {
-    QTextCursor tc = textEdit->textCursor();
-    tc.clearSelection();
-    tc.movePosition(QTextCursor::End);
-    textEdit->setTextCursor(tc);
+    utils::positionTextEditCursorAtEnd(textEdit);
   }
 }
 
@@ -1210,9 +1207,7 @@ bool MainWindow::textInTabOutput(const QString& findText)
       ui->twProperties->widget(ctn_TABINDEX_OUTPUT)->findChild<QTextBrowser*>("textBrowser");
   if (text)
   {
-    positionTextEditCursorAtEnd();
-    res = text->find(findText, QTextDocument::FindBackward | QTextDocument::FindWholeWords);
-    positionTextEditCursorAtEnd();
+    res = utils::strInQTextEdit(text,findText);
   }
 
   return res;
@@ -1439,6 +1434,7 @@ void MainWindow::gistSysInfo()
       m_commandExecuting != ectn_NONE) return;
 
   CPUIntensiveComputing *cic = new CPUIntensiveComputing(this);
+
   disableTransactionActions();
   QTime time = QTime::currentTime();
   qsrand(time.minute() + time.second() + time.msec());

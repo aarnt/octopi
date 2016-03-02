@@ -27,6 +27,7 @@ UI_DIR += ../build-octopi-notifier
 SOURCES += main.cpp \
     mainwindow.cpp \
     setupdialog.cpp \
+    outputdialog.cpp \
     ../../src/terminal.cpp \
     ../../src/unixcommand.cpp \
     ../../src/package.cpp \
@@ -35,11 +36,15 @@ SOURCES += main.cpp \
     ../pacmanhelper/pacmanhelperclient.cpp \
     ../../src/utils.cpp \
     ../../src/transactiondialog.cpp \
-    ../../src/argumentlist.cpp
+    ../../src/argumentlist.cpp \
+    ../../src/pacmanexec.cpp \
+    ../../src/searchlineedit.cpp \
+    ../../src/searchbar.cpp
 
 HEADERS  += \
     mainwindow.h \
     setupdialog.h \
+    outputdialog.h \
     ../../src/uihelper.h \
     ../../src/terminal.h \
     ../../src/unixcommand.h \
@@ -49,7 +54,10 @@ HEADERS  += \
     ../pacmanhelper/pacmanhelperclient.h \
     ../../src/utils.h \
     ../../src/transactiondialog.h \
-    ../../src/argumentlist.h
+    ../../src/argumentlist.h \
+    ../../src/pacmanexec.h \
+    ../../src/searchlineedit.h \
+    ../../src/searchbar.h
 
 FORMS += ../../ui/transactiondialog.ui \
     ui/setupdialog.ui
