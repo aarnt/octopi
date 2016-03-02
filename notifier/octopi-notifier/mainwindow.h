@@ -36,21 +36,10 @@ class QAction;
 class QFileSystemWatcher;
 class PacmanHelperClient;
 class SetupDialog;
-class QTextBrowser;
-class QVBoxLayout;
-class QProgressBar;
-class SearchBar;
 
 #ifdef KSTATUS
   class KStatusNotifierItem;
 #endif
-
-const QString ctn_PACMANHELPER_BINARY = "/usr/lib/octopi/pacmanhelper";
-
-const QString ctn_DBUS_PACMANHELPER_SERVICE = "/usr/share/dbus-1/system-services/org.octopi.pacmanhelper.service";
-
-enum ExecOpt { ectn_NORMAL_EXEC_OPT, ectn_SYSUPGRADE_EXEC_OPT,
-               ectn_SYSUPGRADE_NOCONFIRM_EXEC_OPT };
 
 class MainWindow : public QMainWindow
 {

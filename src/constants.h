@@ -138,4 +138,14 @@ const QString ctn_XTERM("xterm");
 
 enum EditOptions { ectn_EDIT_AS_ROOT, ectn_EDIT_AS_NORMAL_USER };
 
+
+//Octopi-notifier related  -------------------------------------------------------------------------------
+
+const QString ctn_PACMANHELPER_BINARY = "/usr/lib/octopi/pacmanhelper";
+
+const QString ctn_DBUS_PACMANHELPER_SERVICE = "/usr/share/dbus-1/system-services/org.octopi.pacmanhelper.service";
+
+enum ExecOpt { ectn_NORMAL_EXEC_OPT, ectn_SYSUPGRADE_EXEC_OPT,
+               ectn_SYSUPGRADE_NOCONFIRM_EXEC_OPT };
+
 #endif // CONSTANTS
