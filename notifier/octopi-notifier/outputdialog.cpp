@@ -68,7 +68,6 @@ void OutputDialog::init()
   connect(m_searchBar, SIGNAL(findNext()), this, SLOT(onSearchBarFindNext()));
   connect(m_searchBar, SIGNAL(findPrevious()), this, SLOT(onSearchBarFindPrevious()));
   m_mainLayout->addWidget(m_searchBar);
-
   m_mainLayout->addWidget(m_progressBar);
   m_mainLayout->setSpacing(0);
   m_mainLayout->setSizeConstraint(QLayout::SetMinimumSize);
@@ -255,7 +254,10 @@ void OutputDialog::closeEvent(QCloseEvent *event)
     event->ignore();
   }
   else
+  {
+    emit finished(0);
     event->accept();
+  }
 }
 
 /*

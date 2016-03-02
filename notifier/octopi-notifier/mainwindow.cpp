@@ -376,6 +376,7 @@ void MainWindow::doSystemUpgrade()
  */
 void MainWindow::doSystemUpgradeFinished()
 {
+  m_commandExecuting = ectn_NONE;
   refreshAppIcon();
 
   //Does it still need to upgrade another packages due to SyncFirst issues???
@@ -390,7 +391,6 @@ void MainWindow::doSystemUpgradeFinished()
     return;
   }
 
-  m_commandExecuting = ectn_NONE;
   m_unixCommand->removeTemporaryFile();
   toggleEnableInterface(true);
 }
