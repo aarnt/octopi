@@ -352,7 +352,7 @@ void MainWindow::doSystemUpgrade()
     m_unixCommand = new UnixCommand(this);
 
     QObject::connect(m_unixCommand, SIGNAL( finished ( int, QProcess::ExitStatus )),
-                     this, SLOT( doSystemUpgradeFinished(int, QProcess::ExitStatus) ));
+                     this, SLOT( doSystemUpgradeFinished() ));
 
     toggleEnableInterface(false);
     m_actionSystemUpgrade->setEnabled(false);
