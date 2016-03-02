@@ -33,52 +33,57 @@
  */
 void MainWindow::searchBarTextChangedInTextBrowser(const QString textToSearch)
 {
-  qApp->processEvents();
   QTextBrowser *tb = ui->twProperties->currentWidget()->findChild<QTextBrowser*>("textBrowser");
-  QList<QTextEdit::ExtraSelection> extraSelections;
+  SearchBar *sb = ui->twProperties->currentWidget()->findChild<SearchBar*>("searchbar");
 
-  if (tb){
-    static int limit = 100;
-
-    SearchBar *sb = ui->twProperties->currentWidget()->findChild<SearchBar*>("searchbar");
-    if (textToSearch.isEmpty() || textToSearch.length() < 2){
-      sb->getSearchLineEdit()->initStyleSheet();
-      tb->setExtraSelections(extraSelections);
-      QTextCursor tc = tb->textCursor();
-      tc.clearSelection();
-      tb->setTextCursor(tc);
-      tb->moveCursor(QTextCursor::Start);
-      if (sb && sb->isHidden()) tb->setFocus();
-      return;
-    }
-
-    if (textToSearch.length() < 2) return;
-
-    tb->setExtraSelections(extraSelections);
-    tb->moveCursor(QTextCursor::Start);
-    QColor color = QColor(Qt::yellow).lighter(130);
-
-    while(tb->find(textToSearch)){
-      QTextEdit::ExtraSelection extra;
-      extra.format.setBackground(color);
-      extra.cursor = tb->textCursor();
-      extraSelections.append(extra);
-
-      if (limit > 0 && extraSelections.count() == limit)
-        break;
-    }
-
-    if (extraSelections.count()>0){
-      tb->setExtraSelections(extraSelections);
-      tb->setTextCursor(extraSelections.at(0).cursor);
-      QTextCursor tc = tb->textCursor();
-      tc.clearSelection();
-      tb->setTextCursor(tc);
-      positionInFirstMatch();
-    }
-    else sb->getSearchLineEdit()->setNotFoundStyle();
-  }
+  utils::searchBarTextChangedInTextBrowser(tb, sb, textToSearch);
 }
+
+/*
+ * Every time the user presses Enter, Return, F3 or clicks Find Next inside a textBrowser...
+ */
+void MainWindow::searchBarFindNextInTextBrowser()
+{
+  QTextBrowser *tb = ui->twProperties->currentWidget()->findChild<QTextBrowser*>("textBrowser");
+  SearchBar *sb = ui->twProperties->currentWidget()->findChild<SearchBar*>("searchbar");
+
+  utils::searchBarFindNextInTextBrowser(tb, sb);
+}
+
+/*
+ * Every time the user presses Shift+F3 or clicks Find Previous inside a textBrowser...
+ */
+void MainWindow::searchBarFindPreviousInTextBrowser()
+{
+  QTextBrowser *tb = ui->twProperties->currentWidget()->findChild<QTextBrowser*>("textBrowser");
+  SearchBar *sb = ui->twProperties->currentWidget()->findChild<SearchBar*>("searchbar");
+
+  utils::searchBarFindPreviousInTextBrowser(tb, sb);
+}
+
+/*
+ * Every time the user presses ESC or clicks the close button inside a textBrowser...
+ */
+void MainWindow::searchBarClosedInTextBrowser()
+{
+  QTextBrowser *tb = ui->twProperties->currentWidget()->findChild<QTextBrowser*>("textBrowser");
+  SearchBar *sb = ui->twProperties->currentWidget()->findChild<SearchBar*>("searchbar");
+
+  utils::searchBarClosedInTextBrowser(tb, sb);
+}
+
+/*
+ * Helper to position in the first result when searching inside a textBrowser
+ */
+void MainWindow::positionInFirstMatch()
+{
+  QTextBrowser *tb = ui->twProperties->currentWidget()->findChild<QTextBrowser*>("textBrowser");
+  SearchBar *sb = ui->twProperties->currentWidget()->findChild<SearchBar*>("searchbar");
+
+  utils::positionInFirstMatch(tb, sb);
+}
+
+// ----------------------------- QTreeView related -------------------------------------------
 
 /*
  * Every time the user changes the text to search inside a treeView...
@@ -115,38 +120,6 @@ void MainWindow::searchBarTextChangedInTreeView(const QString textToSearch)
     {
       tvPkgFileList->setCurrentIndex(sim->index(0,0));
       sb->getSearchLineEdit()->setNotFoundStyle();
-    }
-  }
-}
-
-/*
- * Every time the user presses Enter, Return, F3 or clicks Find Next inside a textBrowser...
- */
-void MainWindow::searchBarFindNextInTextBrowser()
-{
-  QTextBrowser *tb = ui->twProperties->currentWidget()->findChild<QTextBrowser*>("textBrowser");
-  SearchBar *sb = ui->twProperties->currentWidget()->findChild<SearchBar*>("searchbar");
-
-  if (tb && sb && !sb->getTextToSearch().isEmpty()){
-    if (!tb->find(sb->getTextToSearch())){
-      tb->moveCursor(QTextCursor::Start);
-      tb->find(sb->getTextToSearch());
-    }
-  }
-}
-
-/*
- * Every time the user presses Shift+F3 or clicks Find Previous inside a textBrowser...
- */
-void MainWindow::searchBarFindPreviousInTextBrowser()
-{
-  QTextBrowser *tb = ui->twProperties->currentWidget()->findChild<QTextBrowser*>("textBrowser");
-  SearchBar *sb = ui->twProperties->currentWidget()->findChild<SearchBar*>("searchbar");
-
-  if (tb && sb && !sb->getTextToSearch().isEmpty()){
-    if (!tb->find(sb->getTextToSearch(), QTextDocument::FindBackward)){
-      tb->moveCursor(QTextCursor::End);
-      tb->find(sb->getTextToSearch(), QTextDocument::FindBackward);
     }
   }
 }
@@ -202,22 +175,6 @@ void MainWindow::searchBarFindPreviousInTreeView()
 }
 
 /*
- * Every time the user presses ESC or clicks the close button inside a textBrowser...
- */
-void MainWindow::searchBarClosedInTextBrowser()
-{
-  QTextBrowser *tb = ui->twProperties->currentWidget()->findChild<QTextBrowser*>("textBrowser");
-
-  QTextCursor tc = tb->textCursor();
-  searchBarTextChangedInTextBrowser("");
-  tc.clearSelection();
-  tb->setTextCursor(tc);
-
-  if (tb)
-    tb->setFocus();
-}
-
-/*
  * Every time the user presses ESC or clicks the close button inside a treeView...
  */
 void MainWindow::searchBarClosedInTreeView()
@@ -225,21 +182,4 @@ void MainWindow::searchBarClosedInTreeView()
   searchBarTextChangedInTreeView("");
   QTreeView *tb = ui->twProperties->currentWidget()->findChild<QTreeView*>("tvPkgFileList");
   if (tb) tb->setFocus();
-}
-
-/*
- * Helper to position in the first result when searching inside a textBrowser
- */
-void MainWindow::positionInFirstMatch()
-{
-  QTextBrowser *tb = ui->twProperties->currentWidget()->findChild<QTextBrowser*>("textBrowser");
-  SearchBar *sb = ui->twProperties->currentWidget()->findChild<SearchBar*>("searchbar");
-
-  if (tb && sb && sb->isVisible() && !sb->getTextToSearch().isEmpty()){
-    tb->moveCursor(QTextCursor::Start);
-    if (tb->find(sb->getTextToSearch()))
-      sb->getSearchLineEdit()->setFoundStyle();
-    else
-      sb->getSearchLineEdit()->setNotFoundStyle();
-  }
 }

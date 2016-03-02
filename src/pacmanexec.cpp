@@ -343,7 +343,6 @@ void PacmanExec::parsePacmanProcessOutput(QString output)
     msg.remove(QRegExp("Fontconfig warning.+"));
     msg.remove(QRegExp("reading configurations from.+"));
     msg.remove(QRegExp(".+annot load library.+"));
-
     msg = msg.trimmed();
 
     if (m_debugMode) std::cout << "debug: " << msg.toLatin1().data() << std::endl;
@@ -406,9 +405,6 @@ void PacmanExec::parsePacmanProcessOutput(QString output)
       }
     }
   }
-
-  //if(m_commandExecuting == ectn_NONE)
-  //  ui->twProperties->setTabText(ctn_TABINDEX_OUTPUT, StrConstants::getTabOutputName());
 }
 
 /*

@@ -480,7 +480,7 @@ void MainWindow::preBuildPackageList()
     if (!SettingsManager::getSkipMirrorCheckAtStartup())
       doMirrorCheck();
 #else
-    doMirrorCheck();
+    //doMirrorCheck();
 #endif
 
     secondTime=true;

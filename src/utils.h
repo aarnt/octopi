@@ -27,6 +27,12 @@
 #include <QModelIndex>
 #include <QProcess>
 
+#include "constants.h"
+
+class QTextEdit;
+class QTextBrowser;
+class SearchBar;
+
 namespace utils{
 
 class ProcessWrapper : public QObject
@@ -55,10 +61,26 @@ private slots:
   void onProcessStarted();
 };
 
+//TreeView related
 QString showFullPathOfItem( const QModelIndex &index );
 QList<QModelIndex> * findFileInTreeView( const QString& name, const QStandardItemModel *sim);
+
+//RSS related
 QString retrieveDistroNews(bool searchForLatestNews);
 QString parseDistroNews();
+
+//QTextBrowser related
+bool strInQTextEdit(QTextBrowser *text, const QString& findText);
+void positionTextEditCursorAtEnd(QTextEdit *textEdit);
+void writeToTextBrowser(QTextBrowser* text, const QString &str, TreatURLLinks treatURLLinks = ectn_TREAT_URL_LINK);
+
+//SearchBar related
+void positionInFirstMatch(QTextBrowser *tb, SearchBar *sb);
+
+void searchBarTextChangedInTextBrowser(QTextBrowser *tb, SearchBar *sb, const QString textToSearch);
+void searchBarFindNextInTextBrowser(QTextBrowser *tb, SearchBar *sb);
+void searchBarFindPreviousInTextBrowser(QTextBrowser *tb, SearchBar *sb);
+void searchBarClosedInTextBrowser(QTextBrowser *tb, SearchBar *sb);
 
 } //namespace utils
 

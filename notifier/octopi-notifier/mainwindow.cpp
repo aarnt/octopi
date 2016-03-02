@@ -20,6 +20,7 @@
 
 #include "mainwindow.h"
 #include "setupdialog.h"
+#include "outputdialog.h"
 #include "../pacmanhelper/pacmanhelperclient.h"
 #include "../../src/strconstants.h"
 #include "../../src/uihelper.h"
@@ -329,7 +330,12 @@ void MainWindow::doSystemUpgrade()
 
   if (result == QDialogButtonBox::Yes)
   {
-    runOctopi(ectn_SYSUPGRADE_NOCONFIRM_EXEC_OPT);
+    //runOctopi(ectn_SYSUPGRADE_NOCONFIRM_EXEC_OPT);
+
+    OutputDialog *dlg = new OutputDialog(this);
+    QObject::connect(dlg, SIGNAL( finished(int)),
+                     this, SLOT( doSystemUpgradeFinished(int, QProcess::ExitStatus) ));
+    dlg->show();
   }
   else if(result == QDialogButtonBox::AcceptRole)
   {

@@ -37,7 +37,8 @@ HEADERS += src/QtSolutions/qtsingleapplication.h \
         src/ui/octopitabinfo.h \
         src/utils.h \
         src/terminal.h \
-        src/pacmanexec.h
+        src/pacmanexec.h \
+        src/constants.h
 
 greaterThan(QT_VERSION, 5.3): HEADERS += src/terminalselectordialog.h
 

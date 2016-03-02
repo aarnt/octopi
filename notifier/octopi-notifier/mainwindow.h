@@ -22,7 +22,9 @@
 #define MAINWINDOW_H
 
 #include "../../src/unixcommand.h"
+#include "../../src/pacmanexec.h"
 
+#include <QDialog>
 #include <QProcess>
 #include <QString>
 #include <QMainWindow>
@@ -34,6 +36,10 @@ class QAction;
 class QFileSystemWatcher;
 class PacmanHelperClient;
 class SetupDialog;
+class QTextBrowser;
+class QVBoxLayout;
+class QProgressBar;
+class SearchBar;
 
 #ifdef KSTATUS
   class KStatusNotifierItem;
@@ -98,7 +104,6 @@ private:
   QStringList *m_outdatedStringList;
   QStringList *m_outdatedAURStringList;
   QTimer *m_pacmanHelperTimer;
-
   bool m_debugInfo;
 
 #ifdef KSTATUS
