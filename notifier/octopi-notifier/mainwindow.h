@@ -69,7 +69,7 @@ private slots:
   void hideOctopi();
   void exitNotifier();
   void doSystemUpgrade();
-  void doSystemUpgradeFinished(int, QProcess::ExitStatus);
+  void doSystemUpgradeFinished();
   void toggleEnableInterface(bool state);
   void showConfigDialog();
 

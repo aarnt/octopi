@@ -374,7 +374,7 @@ void MainWindow::doSystemUpgrade()
 /*
  * When system upgrade process is finished...
  */
-void MainWindow::doSystemUpgradeFinished(int, QProcess::ExitStatus)
+void MainWindow::doSystemUpgradeFinished()
 {
   refreshAppIcon();
 
