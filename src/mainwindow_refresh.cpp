@@ -83,7 +83,7 @@ void MainWindow::refreshMenuTools()
     m_actionMirrorCheck->setVisible(true);
   }
   else
-    m_actionMirrorCheck->setVisible(false);
+    if (m_actionMirrorCheck) m_actionMirrorCheck->setVisible(false);
 
   if(UnixCommand::hasTheExecutable("plv"))
   {
