@@ -609,7 +609,7 @@ QList<PackageListData> * Package::getAURPackageList(const QString& searchString)
       if (StrConstants::getForeignRepositoryToolName() != "ccr" && strVotes.count() > 0)
       {
         if (!strVotes.first().isEmpty())
-          pkgVotes = strVotes.last().replace('(', "").replace(')', "").toInt();
+          pkgVotes = strVotes.first().replace('(', "").replace(')', "").toInt();
         else
           pkgVotes = 0;
       }
