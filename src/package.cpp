@@ -191,6 +191,7 @@ QString Package::makeAnchorOfPackage(const QString &packages)
       else if (dep.contains("="))
       {
         p = dep.indexOf("=");
+        newDep = dep.left(p);
       }
 
       newDeps += "<a href=\"goto:" + newDep + "\">" + dep + "</a> ";
@@ -198,6 +199,7 @@ QString Package::makeAnchorOfPackage(const QString &packages)
   }
 
   newDeps = newDeps.trimmed();
+
   return newDeps;
 }
 
