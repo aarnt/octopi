@@ -20,6 +20,7 @@ HEADERS +=  cachecleaner.h \
             ../src/wmhelper.h \
             ../src/terminal.h \
             ../src/settingsmanager.h \
+            ../src/searchlineedit.h \
             ../src/utils.h \
             ../src/package.h \
             ../src/QtSolutions/qtsingleapplication.h \
@@ -35,6 +36,7 @@ SOURCES +=  main.cpp \
             ../src/wmhelper.cpp \
             ../src/terminal.cpp \
             ../src/settingsmanager.cpp \
+            ../src/searchlineedit.cpp \
             ../src/utils.cpp \
             ../src/package.cpp \
             ../src/QtSolutions/qtsingleapplication.cpp \
