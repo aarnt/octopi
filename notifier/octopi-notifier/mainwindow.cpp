@@ -802,7 +802,9 @@ void MainWindow::showConfigDialog()
   if (m_setupDialog == nullptr)
   {
     m_setupDialog = new SetupDialog(this);
+#if QT_VERSION >= 0x050000
     utils::positionWindowAtScreenCenter(m_setupDialog);
+#endif
     m_setupDialog->exec();
 
     delete m_setupDialog;
