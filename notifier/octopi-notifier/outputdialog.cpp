@@ -27,7 +27,6 @@
 #include <QTextBrowser>
 #include <QVBoxLayout>
 #include <QProgressBar>
-#include <QScreen>
 #include <QCloseEvent>
 #include <QMessageBox>
 
@@ -101,8 +100,9 @@ void OutputDialog::doSystemUpgrade()
  */
 void OutputDialog::show()
 {
+#if QT_VERSION >= 0x050000
   utils::positionWindowAtScreenCenter(this);
-
+#endif
   QDialog::show();
   doSystemUpgrade();
 }

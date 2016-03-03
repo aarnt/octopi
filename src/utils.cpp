@@ -38,7 +38,10 @@
 #include <QProcess>
 #include <QTimer>
 #include <QTextBrowser>
+
+#if QT_VERSION >= 0x050000
 #include <QScreen>
+#endif
 
 /*
  * The needed constructor
@@ -50,7 +53,6 @@ utils::ProcessWrapper::ProcessWrapper(QObject *parent) :
   QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
   //env.insert("LANG", "C");
   //env.insert("LC_MESSAGES", "C");
-
   env.remove("LANG");
   env.remove("LC_MESSAGES");
   env.insert("LANG", QLocale::system().name() + ".UTF-8");
@@ -709,6 +711,7 @@ void utils::searchBarClosedInTextBrowser(QTextBrowser *tb, SearchBar *sb)
     tb->setFocus();
 }
 
+#if QT_VERSION >= 0x050000
 void utils::positionWindowAtScreenCenter(QWidget *w)
 {
   QRect screen;
@@ -725,3 +728,4 @@ void utils::positionWindowAtScreenCenter(QWidget *w)
   int centerY = (screen.height() - w->height()) / 2;
   w->move(QPoint(centerX, centerY));
 }
+#endif

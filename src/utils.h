@@ -82,7 +82,9 @@ void searchBarFindPreviousInTextBrowser(QTextBrowser *tb, SearchBar *sb);
 void searchBarClosedInTextBrowser(QTextBrowser *tb, SearchBar *sb);
 
 //QDialog related
-void positionWindowAtScreenCenter(QWidget *w);
+#if QT_VERSION >= 0x050000
+  void positionWindowAtScreenCenter(QWidget *w);
+#endif
 
 } //namespace utils
 
