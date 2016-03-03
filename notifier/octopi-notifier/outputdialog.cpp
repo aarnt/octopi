@@ -30,7 +30,6 @@
 #include <QScreen>
 #include <QCloseEvent>
 #include <QMessageBox>
-#include <QApplication>
 
 /*
  * Class that displays pacman output for system upgrade
@@ -102,19 +101,7 @@ void OutputDialog::doSystemUpgrade()
  */
 void OutputDialog::show()
 {
-  QRect screen;
-
-  foreach(QScreen *s, QGuiApplication::screens())
-  {
-    if (s->name() == QGuiApplication::primaryScreen()->name())
-    {
-      screen = s->geometry();
-    }
-  }
-
-  int centerX = (screen.width() - this->width()) / 2;
-  int centerY = (screen.height() - this->height()) / 2;
-  move(QPoint(centerX, centerY));
+  utils::positionWindowAtScreenCenter(this);
 
   QDialog::show();
   doSystemUpgrade();
@@ -146,7 +133,6 @@ void OutputDialog::onPencertange(int percentage)
 void OutputDialog::positionTextEditCursorAtEnd()
 {
   QTextCursor tc = m_textBrowser->textCursor();
-
   tc.clearSelection();
   tc.movePosition(QTextCursor::End);
   m_textBrowser->setTextCursor(tc);

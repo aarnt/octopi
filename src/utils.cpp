@@ -38,6 +38,7 @@
 #include <QProcess>
 #include <QTimer>
 #include <QTextBrowser>
+#include <QScreen>
 
 /*
  * The needed constructor
@@ -673,9 +674,6 @@ void utils::searchBarTextChangedInTextBrowser(QTextBrowser *tb, SearchBar *sb, c
  */
 void utils::searchBarFindNextInTextBrowser(QTextBrowser *tb, SearchBar *sb)
 {
-  //QTextBrowser *tb = ui->twProperties->currentWidget()->findChild<QTextBrowser*>("textBrowser");
-  //SearchBar *sb = ui->twProperties->currentWidget()->findChild<SearchBar*>("searchbar");
-
   if (tb && sb && !sb->getTextToSearch().isEmpty()){
     if (!tb->find(sb->getTextToSearch())){
       tb->moveCursor(QTextCursor::Start);
@@ -689,9 +687,6 @@ void utils::searchBarFindNextInTextBrowser(QTextBrowser *tb, SearchBar *sb)
  */
 void utils::searchBarFindPreviousInTextBrowser(QTextBrowser *tb, SearchBar *sb)
 {
-  //QTextBrowser *tb = ui->twProperties->currentWidget()->findChild<QTextBrowser*>("textBrowser");
-  //SearchBar *sb = ui->twProperties->currentWidget()->findChild<SearchBar*>("searchbar");
-
   if (tb && sb && !sb->getTextToSearch().isEmpty()){
     if (!tb->find(sb->getTextToSearch(), QTextDocument::FindBackward)){
       tb->moveCursor(QTextCursor::End);
@@ -712,4 +707,21 @@ void utils::searchBarClosedInTextBrowser(QTextBrowser *tb, SearchBar *sb)
 
   if (tb)
     tb->setFocus();
+}
+
+void utils::positionWindowAtScreenCenter(QWidget *w)
+{
+  QRect screen;
+
+  foreach(QScreen *s, QGuiApplication::screens())
+  {
+    if (s->name() == QGuiApplication::primaryScreen()->name())
+    {
+      screen = s->geometry();
+    }
+  }
+
+  int centerX = (screen.width() - w->width()) / 2;
+  int centerY = (screen.height() - w->height()) / 2;
+  w->move(QPoint(centerX, centerY));
 }

@@ -75,7 +75,7 @@ private slots:
 
 private:
 
-  SetupDialog *m_configDialog;
+  SetupDialog *m_setupDialog;
   int m_numberOfOutdatedPackages;
   int m_numberOfOutdatedAURPackages;
   bool m_systemUpgradeDialog;

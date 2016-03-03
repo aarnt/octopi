@@ -50,7 +50,7 @@ MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent)
 {
   m_debugInfo = false;
-  m_configDialog = nullptr;
+  m_setupDialog = nullptr;
   m_pacmanDatabaseSystemWatcher =
             new QFileSystemWatcher(QStringList() << ctn_PACMAN_DATABASE_DIR, this);
 
@@ -246,7 +246,8 @@ void MainWindow::runOctopiSysUpgrade()
  */
 void MainWindow::aboutOctopiNotifier()
 {
-  QString aboutText = "<b>Octopi Notifier - " + StrConstants::getApplicationVersion() + "</b>" + " (" + StrConstants::getQtVersion() + ")<br>";
+  QString aboutText = "<b>Octopi Notifier - " +
+      StrConstants::getApplicationVersion() + "</b>" + " (" + StrConstants::getQtVersion() + ")<br>";
   aboutText += "<a href=\"http://octopiproject.wordpress.com/\">http://octopiproject.wordpress.com</a><br><br>";
   aboutText += "&copy; Alexandre Albuquerque Arnt";
   QMessageBox::about(this, StrConstants::getHelpAbout(), aboutText);
@@ -798,12 +799,13 @@ void MainWindow::runOctopi(ExecOpt execOptions)
  */
 void MainWindow::showConfigDialog()
 {
-  if (m_configDialog == nullptr)
+  if (m_setupDialog == nullptr)
   {
-    m_configDialog = new SetupDialog(this);
-    m_configDialog->exec();
+    m_setupDialog = new SetupDialog(this);
+    utils::positionWindowAtScreenCenter(m_setupDialog);
+    m_setupDialog->exec();
 
-    delete m_configDialog;
-    m_configDialog = nullptr;
+    delete m_setupDialog;
+    m_setupDialog = nullptr;
   }
 }

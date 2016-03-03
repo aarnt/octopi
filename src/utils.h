@@ -76,11 +76,13 @@ void writeToTextBrowser(QTextBrowser* text, const QString &str, TreatURLLinks tr
 
 //SearchBar related
 void positionInFirstMatch(QTextBrowser *tb, SearchBar *sb);
-
 void searchBarTextChangedInTextBrowser(QTextBrowser *tb, SearchBar *sb, const QString textToSearch);
 void searchBarFindNextInTextBrowser(QTextBrowser *tb, SearchBar *sb);
 void searchBarFindPreviousInTextBrowser(QTextBrowser *tb, SearchBar *sb);
 void searchBarClosedInTextBrowser(QTextBrowser *tb, SearchBar *sb);
+
+//QDialog related
+void positionWindowAtScreenCenter(QWidget *w);
 
 } //namespace utils
 
