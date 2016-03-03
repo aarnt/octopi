@@ -212,7 +212,12 @@ QByteArray UnixCommand::getAURPackageList(const QString &searchString)
   if (UnixCommand::getLinuxDistro() == ectn_KAOS)
     aur.start(StrConstants::getForeignRepositoryToolName() + " -l ");
   else
-    aur.start(StrConstants::getForeignRepositoryToolName() + " -Ss " + searchString);
+  {
+    if (StrConstants::getForeignRepositoryToolName() == "yaourt")
+      aur.start(StrConstants::getForeignRepositoryToolName() + " --nocolor -Ss " + searchString);
+    else
+      aur.start(StrConstants::getForeignRepositoryToolName() + " -Ss " + searchString);
+  }
 
   aur.waitForFinished(-1);
   result = aur.readAll();
