@@ -66,8 +66,8 @@ void OutputDialog::init()
   connect(m_searchBar, SIGNAL(closed()), this, SLOT(onSearchBarClosed()));
   connect(m_searchBar, SIGNAL(findNext()), this, SLOT(onSearchBarFindNext()));
   connect(m_searchBar, SIGNAL(findPrevious()), this, SLOT(onSearchBarFindPrevious()));
-  m_mainLayout->addWidget(m_searchBar);
   m_mainLayout->addWidget(m_progressBar);
+  m_mainLayout->addWidget(m_searchBar);
   m_mainLayout->setSpacing(0);
   m_mainLayout->setSizeConstraint(QLayout::SetMinimumSize);
   m_mainLayout->setContentsMargins(2, 2, 2, 2);
