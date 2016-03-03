@@ -638,10 +638,10 @@ void MainWindow::initActions()
   m_hasMirrorCheck = UnixCommand::hasTheExecutable(ctn_MIRROR_CHECK_APP);
 
   m_actionSysInfo = new QAction(this);
+  m_actionMirrorCheck = new QAction(this);
 
   if(m_hasMirrorCheck)
   {
-    m_actionMirrorCheck = new QAction(this);
     m_actionMirrorCheck->setShortcut(QKeySequence(Qt::ControlModifier|Qt::ShiftModifier|Qt::Key_M));
     m_actionMirrorCheck->setText("Mirror-Check");
     m_actionMirrorCheck->setIcon(IconHelper::getIconMirrorCheck());
