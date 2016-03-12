@@ -20,7 +20,6 @@ private:
   bool searchForKeyVerbs(QString output);
   bool splitOutputStrings(QString output);
   void parsePacmanProcessOutput(QString output);
-
   void prepareTextToPrint(QString str, TreatString ts = ectn_TREAT_STRING, TreatURLLinks tl = ectn_TREAT_URL_LINK);
 
 private slots:
@@ -37,6 +36,7 @@ public:
   void setDebugMode(bool value);
   void runLastestCommandInTerminal();
   void removeTemporaryFile();
+
   static bool isDatabaseLocked();
   static void removeDatabaseLock();
 
@@ -72,7 +72,6 @@ signals:
   void readOutput();
   void readOutputError();
   void finished(int exitCode, QProcess::ExitStatus);
-
   void textToPrintExt(QString m_textToPrint);
 
 };

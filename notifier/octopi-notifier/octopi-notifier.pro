@@ -7,6 +7,7 @@
 QT += core xml gui network dbus
 
 # This controls whether octopi-notifier uses KStatusNotifier lib
+# You SHOULD REALLY enable the following define in plasma 5 desktops!
 #DEFINES += KSTATUS
 
 contains(DEFINES, KSTATUS){
