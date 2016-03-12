@@ -894,19 +894,23 @@ void PacmanExec::doAURRemove(const QString &listOfPackages)
   if (StrConstants::getForeignRepositoryToolName() == "ccr" ||
       StrConstants::getForeignRepositoryToolName() == "kcp")
   {
-    m_lastCommandList.append("pacman -" + /*m_removeCommand + " " +*/ listOfPackages + ";");
+    m_lastCommandList.append("pacman -R " + listOfPackages + ";");
   }
   else
   {
     m_lastCommandList.append(StrConstants::getForeignRepositoryToolName() +
-                             " -" + /*m_removeCommand + " " +*/ listOfPackages + ";");
+                             " -R " + listOfPackages + ";");
   }
 
   m_lastCommandList.append("echo -e;");
   m_lastCommandList.append("read -n 1 -p \"" + StrConstants::getPressAnyKey() + "\"");
 
   m_commandExecuting = ectn_RUN_IN_TERMINAL;
-  m_unixCommand->runCommandInTerminalAsNormalUser(m_lastCommandList);
+
+  if (StrConstants::getForeignRepositoryToolName() != "yaourt" && StrConstants::getForeignRepositoryToolName() != "pacaur")
+    m_unixCommand->runCommandInTerminal(m_lastCommandList);
+  else
+    m_unixCommand->runCommandInTerminalAsNormalUser(m_lastCommandList);
 }
 
 /*
