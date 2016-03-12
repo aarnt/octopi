@@ -124,7 +124,7 @@ bool PacmanExec::splitOutputStrings(QString output)
               aux += "%";
             }
 
-            if (m_debugMode) std::cout << "split code - Error1: " << aux.toLatin1().data() << std::endl;
+            if (m_debugMode) std::cout << "_split - case1: " << aux.toLatin1().data() << std::endl;
             parsePacmanProcessOutput(aux);
           }
         }
@@ -133,7 +133,7 @@ bool PacmanExec::splitOutputStrings(QString output)
       {
         if (!m.isEmpty())
         {
-          if (m_debugMode) std::cout << "split code - Error2: " << m.toLatin1().data() << std::endl;
+          if (m_debugMode) std::cout << "_split - case2: " << m.toLatin1().data() << std::endl;
           parsePacmanProcessOutput(m);
         }
       }
@@ -144,7 +144,7 @@ bool PacmanExec::splitOutputStrings(QString output)
       {
         if (!m3.isEmpty())
         {
-          if (m_debugMode) std::cout << "split code - Error3: " << m3.toLatin1().data() << std::endl;
+          if (m_debugMode) std::cout << "_split - case3: " << m3.toLatin1().data() << std::endl;
           parsePacmanProcessOutput(m3);
         }
       }
@@ -381,7 +381,7 @@ void PacmanExec::parsePacmanProcessOutput(QString output)
         else if (msg.indexOf(":: Synchronizing package databases...") == -1 &&
             msg.indexOf(":: Starting full system upgrade...") == -1)
         {
-          if (m_debugMode) std::cout << "Entered here: " << msg.toLatin1().data() << std::endl;
+          if (m_debugMode) std::cout << "Print in black: " << msg.toLatin1().data() << std::endl;
 
           if (m_commandExecuting == ectn_SYNC_DATABASE &&
               msg.indexOf("is up to date"))

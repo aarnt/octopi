@@ -41,6 +41,15 @@ OutputDialog::OutputDialog(QWidget *parent): QDialog(parent)
 {
   init();
   m_upgradeRunning = false;
+  m_debugInfo = false;
+}
+
+/*
+ * Sets if pacmanExec will be called in debugMode or not
+ */
+void OutputDialog::setDebugMode(bool newValue)
+{
+  m_debugInfo = newValue;
 }
 
 /*
@@ -84,6 +93,10 @@ void OutputDialog::init()
 void OutputDialog::doSystemUpgrade()
 {
   m_pacmanExec = new PacmanExec();
+
+  if (m_debugInfo)
+    m_pacmanExec->setDebugMode(true);
+
   QObject::connect(m_pacmanExec, SIGNAL( finished ( int, QProcess::ExitStatus )),
                    this, SLOT( pacmanProcessFinished(int, QProcess::ExitStatus) ));
 
@@ -92,6 +105,7 @@ void OutputDialog::doSystemUpgrade()
 
   m_upgradeRunning = true;
   m_pacmanExec->doSystemUpgrade();
+
   //m_pacmanExec->doInstall("octopi");  //TEST CODE!
 }
 

@@ -532,7 +532,6 @@ void MainWindow::insertGroupIntoInstallPackage()
 void MainWindow::tvTransactionAdjustItemText(QStandardItem *item)
 {
   int countSelected=0;
-
   QTreeView *tvTransaction =
       ui->twProperties->currentWidget()->findChild<QTreeView*>("tvTransaction");
   if (!tvTransaction) return;
@@ -684,6 +683,8 @@ void MainWindow::doMirrorCheck()
   clearTabOutput();
 
   m_pacmanExec = new PacmanExec();
+  if (m_debugInfo)
+    m_pacmanExec->setDebugMode(true);
 
   QObject::connect(m_pacmanExec, SIGNAL( finished ( int, QProcess::ExitStatus )),
                    this, SLOT( pacmanProcessFinished(int, QProcess::ExitStatus) ));
@@ -713,6 +714,8 @@ void MainWindow::doSyncDatabase()
   clearTabOutput();
 
   m_pacmanExec = new PacmanExec();
+  if (m_debugInfo)
+    m_pacmanExec->setDebugMode(true);
 
   QObject::connect(m_pacmanExec, SIGNAL( finished ( int, QProcess::ExitStatus )),
                    this, SLOT( pacmanProcessFinished(int, QProcess::ExitStatus) ));
@@ -746,6 +749,8 @@ void MainWindow::doAURUpgrade()
   clearTabOutput();
 
   m_pacmanExec = new PacmanExec();
+  if (m_debugInfo)
+    m_pacmanExec->setDebugMode(true);
 
   QObject::connect(m_pacmanExec, SIGNAL( finished ( int, QProcess::ExitStatus )),
                    this, SLOT( pacmanProcessFinished(int, QProcess::ExitStatus) ));
@@ -770,6 +775,9 @@ void MainWindow::prepareSystemUpgrade()
   clearTabOutput();
 
   m_pacmanExec = new PacmanExec();
+  if (m_debugInfo)
+    m_pacmanExec->setDebugMode(true);
+
   QObject::connect(m_pacmanExec, SIGNAL( finished ( int, QProcess::ExitStatus )),
                    this, SLOT( pacmanProcessFinished(int, QProcess::ExitStatus) ));
 
@@ -992,6 +1000,8 @@ void MainWindow::doRemoveAndInstall()
     clearTabOutput();
 
     m_pacmanExec = new PacmanExec();
+    if (m_debugInfo)
+      m_pacmanExec->setDebugMode(true);
 
     QObject::connect(m_pacmanExec, SIGNAL( finished ( int, QProcess::ExitStatus )),
                      this, SLOT( pacmanProcessFinished(int, QProcess::ExitStatus) ));
@@ -1062,6 +1072,8 @@ void MainWindow::doRemove()
     clearTabOutput();
 
     m_pacmanExec = new PacmanExec();
+    if (m_debugInfo)
+      m_pacmanExec->setDebugMode(true);
 
     QObject::connect(m_pacmanExec, SIGNAL( finished ( int, QProcess::ExitStatus )),
                      this, SLOT( pacmanProcessFinished(int, QProcess::ExitStatus) ));
@@ -1159,6 +1171,8 @@ void MainWindow::doInstallAURPackage()
   clearTabOutput();
 
   m_pacmanExec = new PacmanExec();
+  if (m_debugInfo)
+    m_pacmanExec->setDebugMode(true);
 
   QObject::connect(m_pacmanExec, SIGNAL( finished ( int, QProcess::ExitStatus )),
                    this, SLOT( pacmanProcessFinished(int, QProcess::ExitStatus) ));
@@ -1196,6 +1210,8 @@ void MainWindow::doRemoveAURPackage()
   clearTabOutput();
 
   m_pacmanExec = new PacmanExec();
+  if (m_debugInfo)
+    m_pacmanExec->setDebugMode(true);
 
   QObject::connect(m_pacmanExec, SIGNAL( finished ( int, QProcess::ExitStatus )),
                    this, SLOT( pacmanProcessFinished(int, QProcess::ExitStatus) ));
@@ -1264,6 +1280,8 @@ void MainWindow::doInstall()
     clearTabOutput();
 
     m_pacmanExec = new PacmanExec();
+    if (m_debugInfo)
+      m_pacmanExec->setDebugMode(true);
 
     QObject::connect(m_pacmanExec, SIGNAL( finished ( int, QProcess::ExitStatus )),
                      this, SLOT( pacmanProcessFinished(int, QProcess::ExitStatus) ));
@@ -1334,6 +1352,8 @@ void MainWindow::doInstallLocalPackages()
     clearTabOutput();
 
     m_pacmanExec = new PacmanExec();
+    if (m_debugInfo)
+      m_pacmanExec->setDebugMode(true);
 
     QObject::connect(m_pacmanExec, SIGNAL( finished ( int, QProcess::ExitStatus )),
                      this, SLOT( pacmanProcessFinished(int, QProcess::ExitStatus) ));

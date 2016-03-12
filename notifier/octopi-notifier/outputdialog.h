@@ -47,6 +47,7 @@ private:
   PacmanExec *m_pacmanExec;
   SearchBar *m_searchBar;
   bool m_upgradeRunning;
+  bool m_debugInfo;
 
   void init();
 
@@ -72,6 +73,7 @@ protected:
 
 public:
   explicit OutputDialog(QWidget *parent = 0);
+  void setDebugMode(bool newValue);
 
 public slots:
   void show();

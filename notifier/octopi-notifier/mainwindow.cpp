@@ -334,6 +334,10 @@ void MainWindow::doSystemUpgrade()
     m_actionSystemUpgrade->setEnabled(false);
 
     OutputDialog *dlg = new OutputDialog(this);
+
+    if (m_debugInfo)
+      dlg->setDebugMode(true);
+
     QObject::connect(dlg, SIGNAL( finished(int)),
                      this, SLOT( doSystemUpgradeFinished() ));
     dlg->show();
