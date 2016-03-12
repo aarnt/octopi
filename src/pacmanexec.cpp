@@ -412,7 +412,7 @@ void PacmanExec::parsePacmanProcessOutput(QString output)
  */
 void PacmanExec::prepareTextToPrint(QString str, TreatString ts, TreatURLLinks tl)
 {
-  if (m_debugMode) std::cout << "To print: " << str.toLatin1().data() << std::endl;
+  if (m_debugMode) std::cout << "_print: " << str.toLatin1().data() << std::endl;
 
   if (ts == ectn_DONT_TREAT_STRING)
   {
