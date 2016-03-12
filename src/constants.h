@@ -24,6 +24,20 @@
 #include <QString>
 #include <QDir>
 
+//UnixCommand related
+const QString ctn_MIRROR_CHECK_APP("mirror-check");
+
+enum CommandExecuting { ectn_NONE, ectn_MIRROR_CHECK, ectn_SYNC_DATABASE,
+                        ectn_SYSTEM_UPGRADE, ectn_INSTALL, ectn_REMOVE,
+                        ectn_REMOVE_INSTALL, ectn_REMOVE_KCP_PKG,
+                        ectn_RUN_SYSTEM_UPGRADE_IN_TERMINAL, ectn_RUN_IN_TERMINAL };
+
+enum LinuxDistro { ectn_ANTERGOS, ectn_ARCHBANGLINUX, ectn_ARCHBSD, ectn_ARCHLINUX, ectn_CHAKRA,
+                   ectn_KAOS, ectn_MANJAROLINUX, ectn_MOOOSLINUX, ectn_NETRUNNER, ectn_PARABOLA, ectn_UNKNOWN };
+
+enum Language { ectn_LANG_ENGLISH, ectn_LANG_USER_DEFINED };
+
+
 //PacmanExec - QTextBrowser related
 enum TreatString { ectn_TREAT_STRING, ectn_DONT_TREAT_STRING };
 enum TreatURLLinks { ectn_TREAT_URL_LINK, ectn_DONT_TREAT_URL_LINK };

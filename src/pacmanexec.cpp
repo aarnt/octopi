@@ -653,6 +653,15 @@ void PacmanExec::onReadOutputError()
  */
 void PacmanExec::onFinished(int exitCode, QProcess::ExitStatus es)
 {
+  if (m_commandExecuting == ectn_REMOVE_KCP_PKG)
+  {
+    if (UnixCommand::getLinuxDistro() == ectn_KAOS &&
+        UnixCommand::hasTheExecutable("kcp") &&
+        !UnixCommand::isRootRunning())
+
+      UnixCommand::execCommandAsNormalUser("kcp -u");
+  }
+
   emit finished(exitCode, es);
 }
 
@@ -905,7 +914,10 @@ void PacmanExec::doAURRemove(const QString &listOfPackages)
   m_lastCommandList.append("echo -e;");
   m_lastCommandList.append("read -n 1 -p \"" + StrConstants::getPressAnyKey() + "\"");
 
-  m_commandExecuting = ectn_RUN_IN_TERMINAL;
+  if (StrConstants::getForeignRepositoryToolName() == "kcp")
+    m_commandExecuting = ectn_REMOVE_KCP_PKG;
+  else
+    m_commandExecuting = ectn_RUN_IN_TERMINAL;
 
   if (StrConstants::getForeignRepositoryToolName() != "yaourt" && StrConstants::getForeignRepositoryToolName() != "pacaur")
     m_unixCommand->runCommandInTerminal(m_lastCommandList);
