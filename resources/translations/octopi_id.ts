@@ -830,7 +830,7 @@
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="375"/>
         <source>%n selected</source>
-        <translation><numerusform>%n terpilih</numerusform></translation>
+        <translation><numerusform>%n dipilih</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="379"/>

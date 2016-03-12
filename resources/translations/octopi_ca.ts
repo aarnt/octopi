@@ -291,7 +291,7 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="58"/>
         <source>A Qt-based Pacman frontend,</source>
-        <translation>Una interficie de Pacman basada en QT,</translation>
+        <translation>Una interficie per a Pacman basada en QT,</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="59"/>
@@ -346,17 +346,17 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="102"/>
         <source>Position the mouse over a package to see its description</source>
-        <translation>Posiciona el ratolí sobre d&apos;un paquet per veure&apos;n la descripció</translation>
+        <translation>Posicioneu el ratolí sobre d&apos;un paquet per veure&apos;n la descripció</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="104"/>
         <source>Double click an installed package to see its contents</source>
-        <translation>Fes doble-clic en un paquet instal·lat per veure el seu contingut</translation>
+        <translation>Feu doble clic en un paquet instal·lat per veure&apos;n el contingut</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="106"/>
         <source>Right click package to install/reinstall or remove it</source>
-        <translation>Fes clic amb el botó dret en un paquet per instal·lar/reinstal·lar-lo o eliminar-lo</translation>
+        <translation>Feu clic amb el botó dret en un paquet per instal·lar/reinstal·lar-lo o eliminar-lo</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="109"/>
@@ -504,7 +504,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="44"/>
         <source>show application version.</source>
-        <translation>mostra la versió de la aplicació.</translation>
+        <translation>mostra la versió de l&apos;aplicació.</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="45"/>
@@ -514,7 +514,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="46"/>
         <source>use a different remove command (ex: -removecmd R).</source>
-        <translation>utilitza una ordre d&apos;esborrat diferent (ex: -removecmd R).</translation>
+        <translation>utilitza una ordre d&apos;eliminació diferent (ex: -removecmd R).</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="47"/>
@@ -700,7 +700,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="271"/>
         <source>Installed Size</source>
-        <translation>Mida Instala·lat</translation>
+        <translation>Mida un cop feta la instal·lació</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="275"/>
@@ -835,17 +835,17 @@
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="379"/>
         <source>%n installed</source>
-        <translation><numerusform>%n instal·lat</numerusform><numerusform>%n instal·lats</numerusform></translation>
+        <translation><numerusform>%n d&apos;instal·lat</numerusform><numerusform>%n d&apos;instal·lats</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="383"/>
         <source>%n outdated</source>
-        <translation><numerusform>%n no actualitzat</numerusform><numerusform>%n no actualitzats</numerusform></translation>
+        <translation><numerusform>%n de no actualitzat</numerusform><numerusform>%n de no actualitzats</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="387"/>
         <source>%n available</source>
-        <translation><numerusform>%n disponible</numerusform><numerusform>%n disponibles</numerusform></translation>
+        <translation><numerusform>%n de disponible</numerusform><numerusform>%n de disponibles</numerusform></translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="391"/>

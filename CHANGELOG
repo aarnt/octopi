@@ -6,8 +6,9 @@
   BugFix: When there's a pkg change outside Octopi, we trigger a flag to refresh the lists.
   BugFix: When you were searching for a pkg and the Files tab was selected, focus got lost.
   BugFix: Package dependencies with >, <, =, >= and <= signals were not clickable in Info tab.
-  Major refactoring: Decoupling of Pacman executor and parser code from the UI as well as SearchBar slots 
-	for QTextBrowser objects.
+  Stop using 'notify-send' in octopi-notifier: the era of annoying notifiers is over.
+  Major refactoring: Decoupling of Pacman executor and parser code from the UI as well as 
+	SearchBar slots for QTextBrowser objects.
   Added an output dialog to notifier, so users can do a system upgrade without a terminal.
   Added an entry for Mirror-check in Tools menu.
   Added support for Simplified Chinese (zh_CN).

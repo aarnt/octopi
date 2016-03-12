@@ -44,7 +44,7 @@
     <message>
         <location filename="Projects/octopi/repoeditor/addrepo.cpp" line="115"/>
         <source>Path to mirrors list file</source>
-        <translation>Camí al fitxer de la llista de miralls</translation>
+        <translation>Camí al fitxer de la llista de rèpliques</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/addrepo.cpp" line="124"/>
@@ -64,7 +64,7 @@
     <message>
         <location filename="Projects/octopi/repoeditor/addrepo.cpp" line="149"/>
         <source>Select mirrors list</source>
-        <translation>Seleccioneu una llista de miralls</translation>
+        <translation>Seleccioneu una llista de rèpliques</translation>
     </message>
 </context>
 <context>
@@ -116,7 +116,7 @@
     <message>
         <location filename="Projects/octopi/repoeditor/repoeditor.ui" line="14"/>
         <source>Repository Editor - Octopi</source>
-        <translation>Editor del repositori - Octopi</translation>
+        <translation>Editor de repositoris - Octopi</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/repoeditor.ui" line="28"/>
@@ -156,7 +156,7 @@
     <message>
         <location filename="Projects/octopi/repoeditor/repoeditor.ui" line="174"/>
         <source>Create backup on save</source>
-        <translation>Crea una còpia de seguretat en desar</translation>
+        <translation>Crea una còpia de seguretat en desar-ho</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/repoeditor.ui" line="197"/>

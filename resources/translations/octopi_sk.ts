@@ -595,7 +595,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="187"/>
         <source>About</source>
-        <translation>O Octopi</translation>
+        <translation>O programe Octopi</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="191"/>

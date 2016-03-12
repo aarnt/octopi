@@ -442,7 +442,7 @@ void MainWindow::afterPacmanHelperSyncDatabase()
                                         notification, m_systemTrayIcon->iconName());
         #else
           m_systemTrayIcon->setToolTip(notification);
-          if (!UnixCommand::isAppRunning("spun", true)) sendNotification(notification);
+          //if (!UnixCommand::isAppRunning("spun", true)) sendNotification(notification);
         #endif
       }
       else if (m_numberOfOutdatedPackages > 1)
@@ -455,7 +455,7 @@ void MainWindow::afterPacmanHelperSyncDatabase()
                                         notification, m_systemTrayIcon->iconName());
         #else
           m_systemTrayIcon->setToolTip(notification);
-          if (!UnixCommand::isAppRunning("spun", true)) sendNotification(notification);
+          //if (!UnixCommand::isAppRunning("spun", true)) sendNotification(notification);
         #endif
       }
     }
@@ -474,7 +474,7 @@ void MainWindow::afterPacmanHelperSyncDatabase()
                                       notification, m_systemTrayIcon->iconName());
       #else
         m_systemTrayIcon->setToolTip(notification);
-        if (!UnixCommand::isAppRunning("spun", true)) sendNotification(notification);
+        //if (!UnixCommand::isAppRunning("spun", true)) sendNotification(notification);
       #endif
     }
     else if (numberOfOutdatedPackages > 1)
@@ -487,7 +487,7 @@ void MainWindow::afterPacmanHelperSyncDatabase()
                                       notification, m_systemTrayIcon->iconName());
       #else
         m_systemTrayIcon->setToolTip(notification);
-        if (!UnixCommand::isAppRunning("spun", true)) sendNotification(notification);
+        //if (!UnixCommand::isAppRunning("spun", true)) sendNotification(notification);
       #endif
     }
   }
