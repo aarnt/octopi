@@ -136,7 +136,7 @@
      <x>0</x>
      <y>0</y>
      <width>552</width>
-     <height>19</height>
+     <height>30</height>
     </rect>
    </property>
    <property name="contextMenuPolicy">
@@ -524,6 +524,9 @@
    <property name="text">
     <string>Pacman Log Viewer</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+V</string>
+   </property>
    <property name="visible">
     <bool>true</bool>
    </property>
@@ -544,6 +547,9 @@
    </property>
    <property name="text">
     <string>Cache Cleaner</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+N</string>
    </property>
   </action>
   <action name="actionViewInstalledPackages">
