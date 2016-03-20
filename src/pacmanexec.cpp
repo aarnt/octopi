@@ -493,7 +493,7 @@ void PacmanExec::prepareTextToPrint(QString str, TreatString ts, TreatURLLinks t
     {
       newStr = "<b><font color=\"#4BC413\">" + newStr + "</font></b>"; //GREEN
     }
-    else if (newStr.contains("warning") || (newStr.contains("downgrading")))
+    else if (newStr.contains("warning", Qt::CaseInsensitive) || (newStr.contains("downgrading")))
     {
       newStr = "<b><font color=\"#FF8040\">" + newStr + "</font></b>"; //ORANGE
     }

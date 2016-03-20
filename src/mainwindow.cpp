@@ -1054,6 +1054,9 @@ void MainWindow::hideGroupsWidget(bool pSaveSettings)
     ui->splitterVertical->setSizes( l << tvPackagesWidth << 0);
     m_actionShowGroups->setChecked(false);
 
+    ui->tvPackages->setFocus();
+    ui->twGroups->setFocusPolicy(Qt::NoFocus);
+
     if(pSaveSettings)
       saveSettings(ectn_GROUPS);
   }
@@ -1070,7 +1073,8 @@ void MainWindow::hideGroupsWidget(bool pSaveSettings)
     }
 
     ui->splitterVertical->setSizes( l << tvPackagesWidth << ui->twGroups->maximumWidth() );
-    ui->tvPackages->setFocus();
+    ui->twGroups->setFocusPolicy(Qt::TabFocus);
+    ui->twGroups->setFocus();
     m_actionShowGroups->setChecked(true);
 
     if(pSaveSettings)

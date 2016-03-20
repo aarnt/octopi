@@ -24,6 +24,14 @@
 #include <QString>
 #include <QDir>
 
+/*
+ * Collection of Octopi constants and enums
+ */
+
+
+//MainWindow related
+enum SystemUpgradeOptions { ectn_NO_OPT, ectn_SYNC_DATABASE_OPT, ectn_NOCONFIRM_OPT };
+
 //UnixCommand related
 const QString ctn_MIRROR_CHECK_APP("mirror-check");
 

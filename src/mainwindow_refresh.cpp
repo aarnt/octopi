@@ -80,6 +80,8 @@ void MainWindow::refreshMenuTools()
   {
     availableTools++;
     ui->menuTools->menuAction()->setVisible(true);
+    if (!m_actionMirrorCheck->toolTip().contains("("))
+      m_actionMirrorCheck->setToolTip(m_actionMirrorCheck->toolTip() + "  (" + m_actionMirrorCheck->shortcut().toString() + ")" );
     m_actionMirrorCheck->setVisible(true);
   }
   else
@@ -238,6 +240,7 @@ void MainWindow::groupItemSelected()
   if (isAllGroupsSelected())
   {
     m_refreshPackageLists = false;
+    m_groupWidgetNeedsFocus = true;
   }
   else
   {
@@ -326,15 +329,13 @@ void MainWindow::buildPackagesFromGroupList(const QString group)
   ui->tvPackages->setCurrentIndex(maux);
 
   m_listOfPackagesFromGroup.reset();
-  //refreshTabInfo();
-  //refreshTabFiles();
-  //invalidateTabs();
-  ui->tvPackages->setFocus();
+  //ui->tvPackages->setFocus();
 
   refreshToolBar();
   refreshStatusBarToolButtons();
 
   tvPackagesSelectionChanged(QItemSelection(),QItemSelection());
+  ui->twGroups->setFocus();
 }
 
 /*
@@ -511,7 +512,7 @@ void MainWindow::preBuildPackagesFromGroupList()
  */
 void MainWindow::metaBuildPackageList()
 {
-  static bool firstTime = false;
+  static bool firstTime = true;
 
   if (!firstTime) m_time->start();
 
@@ -692,12 +693,6 @@ void MainWindow::buildPackageList()
 
     m_numberOfOutdatedPackages = m_outdatedStringList->count();
 
-    /*if (m_hasAURTool)
-    {
-      m_outdatedAURStringList = Package::getOutdatedAURStringList();
-      qApp->processEvents(QEventLoop::ExcludeUserInputEvents);
-    }*/
-
     delete m_unrequiredPackageList;
     m_unrequiredPackageList = NULL;
 
@@ -715,8 +710,6 @@ void MainWindow::buildPackageList()
   {
     if (!m_refreshPackageLists)
     {
-      //list->append(*m_foreignPackageList);
-
       if(m_debugInfo)
         std::cout << "Time elapsed setting outdated foreign pkgs from 'ALL group' list: " << m_time->elapsed() << " mili seconds." << std::endl;
     }
@@ -780,11 +773,7 @@ void MainWindow::buildPackageList()
   delete list;
   list = NULL;
 
-  //invalidateTabs();
-  //refreshTabInfo();
-  //refreshTabFiles();
-
-  if (isPackageTreeViewVisible())
+  if (!m_groupWidgetNeedsFocus && isPackageTreeViewVisible())
   {
     ui->tvPackages->setFocus();
   }
@@ -799,7 +788,7 @@ void MainWindow::buildPackageList()
   {
     if (isPackageTreeViewVisible())
     {
-      m_leFilterPackage->setFocus();
+      ui->tvPackages->setFocus(); //m_leFilterPackage->setFocus();
     }
 
     m_initializationCompleted = true;        
@@ -827,7 +816,6 @@ void MainWindow::buildPackageList()
 
   ui->tvPackages->setColumnWidth(PackageModel::ctn_PACKAGE_REPOSITORY_COLUMN, 10);
   refreshToolBar();
-  //refreshStatusBarToolButtons();
   m_refreshPackageLists = true;
 
   m_outdatedAURTimer->start();
@@ -877,6 +865,12 @@ void MainWindow::postBuildPackageList()
       connect(ui->tvPackages->selectionModel(), SIGNAL(selectionChanged(QItemSelection,QItemSelection)),
             this, SLOT(invalidateTabs()));
     }
+  }
+
+  if (m_groupWidgetNeedsFocus)
+  {
+    ui->twGroups->setFocus();
+    m_groupWidgetNeedsFocus = false;
   }
 }
 
@@ -1326,9 +1320,6 @@ void MainWindow::refreshTabFiles(bool clearContents, bool neverQuit)
       QStandardItemModel*const modelPkgFileList = qobject_cast<QStandardItemModel*>(tvPkgFileList->model());
       modelPkgFileList->clear();
       m_cachedPackageInFiles = "";
-
-      //bool filterHasFocus = m_leFilterPackage->hasFocus();
-      //bool tvPackagesHasFocus = ui->tvPackages->hasFocus();
       closeTabFilesSearchBar();
       if (filterHasFocus) m_leFilterPackage->setFocus();
       else if (tvPackagesHasFocus) ui->tvPackages->setFocus();
@@ -1376,6 +1367,7 @@ void MainWindow::refreshTabFiles(bool clearContents, bool neverQuit)
     QStandardItemModel *fakeModelPkgFileList = new QStandardItemModel(this);
     QStandardItemModel *modelPkgFileList = qobject_cast<QStandardItemModel*>(tvPkgFileList->model());
     modelPkgFileList->clear();
+
     QStandardItem *fakeRoot = fakeModelPkgFileList->invisibleRootItem();
     QStandardItem *root = modelPkgFileList->invisibleRootItem();
     QStandardItem *lastDir, *item, *lastItem=root, *parent;

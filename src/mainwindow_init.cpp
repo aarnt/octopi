@@ -289,12 +289,15 @@ void MainWindow::initToolBar()
   {
     m_separatorForActionAUR = ui->mainToolBar->addSeparator();
     ui->mainToolBar->addAction(m_actionSwitchToAURTool);
+    m_actionSwitchToAURTool->setToolTip(m_actionSwitchToAURTool->toolTip() + "  (Ctrl+Shift+Y)");
   }
 
   m_dummyAction = new QAction(this);
   m_dummyAction->setVisible(false);
   ui->mainToolBar->addAction(m_dummyAction);
+
   m_leFilterPackage->setMinimumHeight(24);
+  m_leFilterPackage->setPlaceholderText(m_leFilterPackage->placeholderText() + "  (Ctrl+L)");
   ui->mainToolBar->addWidget(m_leFilterPackage);
 
   QWidget * hSpacer = new QWidget(this);
@@ -302,6 +305,7 @@ void MainWindow::initToolBar()
   hSpacer->setMinimumWidth(3);
   hSpacer->setVisible(true);
   ui->mainToolBar->addWidget(hSpacer);
+  m_actionShowGroups->setToolTip(m_actionShowGroups->toolTip() + "  (F9)");
   ui->mainToolBar->addAction(m_actionShowGroups);
   ui->mainToolBar->toggleViewAction()->setEnabled(false);
   ui->mainToolBar->toggleViewAction()->setVisible(false);
@@ -578,7 +582,6 @@ void MainWindow::initTabFiles()
                                                   "MainWindow", aux.toUtf8(), 0/*, QApplication::UnicodeUTF8*/ ) );
   tvPkgFileList->setContextMenuPolicy(Qt::CustomContextMenu);
   SearchBar *searchBar = new SearchBar(this);
-
   connect(searchBar, SIGNAL(textChanged(QString)), this, SLOT(searchBarTextChangedInTreeView(QString)));
   connect(searchBar, SIGNAL(closed()), this, SLOT(searchBarClosedInTreeView()));
   connect(searchBar, SIGNAL(findNext()), this, SLOT(searchBarFindNextInTreeView()));
@@ -783,6 +786,11 @@ void MainWindow::initActions()
   {
     text = ac->text().remove("&");
     ac->setText(qApp->translate("MainWindow", text.toUtf8(), 0));
+
+    if (!ac->shortcut().isEmpty())
+    {
+      ac->setToolTip(ac->toolTip() + "  (" + ac->shortcut().toString() + ")");
+    }
   }
 
   toggleTransactionActions(true);

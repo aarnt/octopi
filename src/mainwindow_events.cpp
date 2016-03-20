@@ -70,7 +70,6 @@ void MainWindow::closeEvent(QCloseEvent *event)
       SettingsManager::setWindowSize(windowSize);
       SettingsManager::setSplitterHorizontalState(ui->splitterHorizontal->saveState());
       event->accept();
-
       qApp->quit();
     }
     else
@@ -258,7 +257,14 @@ void MainWindow::keyPressEvent(QKeyEvent* ke)
   {
     //The user wants to use "AUR tool" to search for pkgs
     m_actionSwitchToAURTool->trigger();
-    m_leFilterPackage->setFocus();
+    if (m_actionSwitchToAURTool->isChecked() && UnixCommand::getLinuxDistro() != ectn_KAOS)
+    {
+      m_leFilterPackage->setFocus();
+    }
+    else
+    {
+      ui->tvPackages->setFocus();
+    }
   }
   else if(ke->key() == Qt::Key_C && ke->modifiers() == (Qt::ShiftModifier|Qt::ControlModifier))
   {

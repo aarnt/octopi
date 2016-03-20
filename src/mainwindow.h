@@ -60,9 +60,6 @@ const int ctn_TABINDEX_OUTPUT(3);
 const int ctn_TABINDEX_NEWS(4);
 const int ctn_TABINDEX_HELPUSAGE(5);
 
-//enum TreatURLLinks { ectn_TREAT_URL_LINK, ectn_DONT_TREAT_URL_LINK };
-enum SystemUpgradeOptions { ectn_NO_OPT, ectn_SYNC_DATABASE_OPT, ectn_NOCONFIRM_OPT };
-
 namespace Ui {
 class MainWindow;
 }
@@ -130,6 +127,9 @@ private:
 
   //Controls if some PackageLists must be refreshed while the main pkg list is being build
   bool m_refreshPackageLists;
+
+  //Controls if Group Widget needs to regain focus
+  bool m_groupWidgetNeedsFocus;
 
   //Holds the remove command to be used: -Rcs/-R/-Rs or whichever the user has choosen
   QString m_removeCommand;
