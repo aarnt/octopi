@@ -74,7 +74,7 @@ MainWindow::MainWindow(QWidget *parent) :
   m_time = new QTime();
   m_unrequiredPackageList = NULL;
   m_foreignPackageList = NULL;
-
+  m_groupWidgetNeedsFocus = false;
   m_outdatedAURTimer = new QTimer();
   m_outdatedAURTimer->setInterval(50);
   connect(m_outdatedAURTimer, SIGNAL(timeout()), this, SLOT(postBuildPackageList()));
@@ -211,7 +211,6 @@ void MainWindow::showAnchorDescription(const QUrl &link)
 {
   if (link.toString().contains("goto:"))
   {
-    //qDebug() << "ENTERED!";
     QString pkgName = link.toString().mid(5);
 
     QFuture<QString> f;
@@ -275,7 +274,6 @@ void MainWindow::outputTextBrowserAnchorClicked(const QUrl &link)
     QItemSelectionModel*const selectionModel = ui->tvPackages->selectionModel();
     QModelIndex item = selectionModel->selectedRows(PackageModel::ctn_PACKAGE_NAME_COLUMN).first();
     const PackageRepository::PackageData*const selectedPackage = m_packageModel->getData(item);
-    //qDebug() << "Testing with index: " << m_indOfVisitedPackage;
 
     if (!m_listOfVisitedPackages.isEmpty())
     {
@@ -289,7 +287,7 @@ void MainWindow::outputTextBrowserAnchorClicked(const QUrl &link)
           indIncremented = true;
           m_listOfVisitedPackages.insert(m_indOfVisitedPackage, selectedPackage->name);
           m_listOfVisitedPackages.insert(m_indOfVisitedPackage+1, pkgName);
-          m_indOfVisitedPackage++; //CHANGED!!!
+          m_indOfVisitedPackage++;
         }
         else
         {
