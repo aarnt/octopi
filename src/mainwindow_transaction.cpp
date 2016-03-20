@@ -247,7 +247,7 @@ QString MainWindow::getTobeInstalledPackages()
  * Inserts the current selected packages for removal into the Transaction Treeview
  * This is the SLOT, it needs to call insertRemovePackageIntoTransaction(PackageName) to work!
  */
-void MainWindow::insertIntoRemovePackage()
+void MainWindow::insertIntoRemovePackage(QModelIndex *indexToInclude)
 {
   qApp->processEvents();
   bool checkDependencies=false;
@@ -256,7 +256,14 @@ void MainWindow::insertIntoRemovePackage()
   if (!isAURGroupSelected())
   {
     ensureTabVisible(ctn_TABINDEX_TRANSACTION);
-    QModelIndexList selectedRows = ui->tvPackages->selectionModel()->selectedRows();
+    QModelIndexList selectedRows;
+
+    if (indexToInclude == nullptr)
+      selectedRows = ui->tvPackages->selectionModel()->selectedRows();
+    else
+    {
+      selectedRows.append(*indexToInclude);
+    }
 
     //First, let's see if we are dealing with a package group
     if(!isAllGroupsSelected())
@@ -332,15 +339,22 @@ void MainWindow::insertGroupIntoRemovePackage()
  * Inserts the current selected packages for installation into the Transaction Treeview
  * This is the SLOT, it needs to call insertInstallPackageIntoTransaction(PackageName) to work!
  */
-void MainWindow::insertIntoInstallPackage()
+void MainWindow::insertIntoInstallPackage(QModelIndex *indexToInclude)
 {
   qApp->processEvents();
 
   if (!isAURGroupSelected())
   {
     ensureTabVisible(ctn_TABINDEX_TRANSACTION);
+    QModelIndexList selectedRows;
 
-    QModelIndexList selectedRows = ui->tvPackages->selectionModel()->selectedRows();
+    if (indexToInclude == nullptr)
+      selectedRows = ui->tvPackages->selectionModel()->selectedRows();
+    else
+    {
+      selectedRows.append(*indexToInclude);
+    }
+
     //First, let's see if we are dealing with a package group
     if(!isAllGroupsSelected())
     {
@@ -1680,6 +1694,8 @@ void MainWindow::pacmanProcessFinished(int exitCode, QProcess::ExitStatus exitSt
   delete m_pacmanExec;
 
   m_commandExecuting = ectn_NONE;
+
+  if (isPackageTreeViewVisible()) ui->tvPackages->setFocus();
 }
 
 /*

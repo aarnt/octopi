@@ -635,6 +635,56 @@ void MainWindow::changePackageListModel(ViewOptions viewOptions, QString selecte
 }
 
 /*
+ * Slot that treats <ENTER> key interaction in the package list
+ */
+void MainWindow::execEnterOnPackage()
+{
+  const QItemSelectionModel*const selectionModel = ui->tvPackages->selectionModel();
+  if (selectionModel != NULL && selectionModel->selectedRows().count() > 0)
+  {
+    QModelIndexList selectedRows = selectionModel->selectedRows();
+    if (selectedRows.count() == 1)
+    {
+      QModelIndex item = selectedRows.at(0);
+      const PackageRepository::PackageData*const package = m_packageModel->getData(item);
+      if (package && package->installed())
+      {
+        if (package->repository == StrConstants::getForeignRepositoryName())
+        {
+          doRemoveAURPackage();
+        }
+        else if (!package->required) insertIntoRemovePackage();
+      }
+      else if (package && !package->installed())
+      {
+        if (package->repository == StrConstants::getForeignRepositoryName())
+        {
+          doInstallAURPackage();
+        }
+        else insertIntoInstallPackage();
+      }
+    }
+    else //There are more than 1 package selected
+    {
+      foreach(QModelIndex item, selectedRows)
+      {
+        const PackageRepository::PackageData*const package = m_packageModel->getData(item);
+
+        if (package->repository == StrConstants::getForeignRepositoryName())
+        {
+          return;
+        }
+        if (!package->installed())
+        {
+          insertIntoInstallPackage(&item);
+        }
+        else if (!package->required) insertIntoRemovePackage(&item);
+      }
+    }
+  }
+}
+
+/*
  * Brings the context menu when the user clicks the right button above the package list
  */
 void MainWindow::execContextMenuPackages(QPoint point)

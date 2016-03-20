@@ -109,8 +109,12 @@ void MainWindow::keyPressEvent(QKeyEvent* ke)
 {
   if (ke->key() == Qt::Key_Return || ke->key() == Qt::Key_Enter)
   {
+    if (ui->tvPackages->hasFocus())
+    {
+      execEnterOnPackage();
+    }
     //We are searching for AUR foreign packages...
-    if (isAURGroupSelected() && m_leFilterPackage->hasFocus() && m_cic == NULL)
+    else if (isAURGroupSelected() && m_leFilterPackage->hasFocus() && m_cic == NULL)
     {
       if (UnixCommand::getLinuxDistro() == ectn_KAOS)
         return;

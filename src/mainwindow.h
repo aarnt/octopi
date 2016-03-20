@@ -356,6 +356,8 @@ private slots:
   void headerViewPackageListSortIndicatorClicked(int col, Qt::SortOrder order);
   void changePackageListModel(ViewOptions viewOptions, QString selectedRepo);
 
+  void execEnterOnPackage();
+
   void execContextMenuPackages(QPoint point);
   void execContextMenuPkgFileList(QPoint point);
   void execContextMenuTransaction(QPoint point);
@@ -398,8 +400,8 @@ private slots:
 
   void pacmanProcessFinished(int exitCode, QProcess::ExitStatus exitStatus);
 
-  void insertIntoRemovePackage();
-  void insertIntoInstallPackage();
+  void insertIntoRemovePackage(QModelIndex *indexToInclude = nullptr);
+  void insertIntoInstallPackage(QModelIndex *indexToInclude = nullptr);
   void insertIntoInstallPackageOptDeps(const QString &packageName);
   bool insertIntoRemovePackageDeps(const QStringList &dependencies);
   void insertGroupIntoRemovePackage();
