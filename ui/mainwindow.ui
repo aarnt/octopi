@@ -539,6 +539,9 @@
    <property name="text">
     <string>Repository Editor</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+P</string>
+   </property>
   </action>
   <action name="actionCacheCleaner">
    <property name="icon">
