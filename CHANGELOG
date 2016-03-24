@@ -7,7 +7,7 @@
   BugFix: When you were searching for a pkg and the Files tab was selected, focus got lost.
   BugFix: Package dependencies with >, <, =, >= and <= signals were not clickable in Info tab.
   Make Octopi more keyboard friendly.
-  Pressing <ENTER> or <RETURN> key on package list triggers package actions.
+  Pressing <ENTER>, <RETURN> and <DELETE> keys on package list triggers package actions.
   Stop using 'notify-send' in octopi-notifier: the era of annoying notifiers is over.
   Major refactoring: Decoupling of Pacman executor and parser code from the UI as well as 
 	SearchBar slots for QTextBrowser objects.

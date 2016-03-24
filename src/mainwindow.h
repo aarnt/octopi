@@ -356,7 +356,7 @@ private slots:
   void headerViewPackageListSortIndicatorClicked(int col, Qt::SortOrder order);
   void changePackageListModel(ViewOptions viewOptions, QString selectedRepo);
 
-  void execEnterOnPackage();
+  void execKeyActionOnPackage(CommandExecuting command);
 
   void execContextMenuPackages(QPoint point);
   void execContextMenuPkgFileList(QPoint point);

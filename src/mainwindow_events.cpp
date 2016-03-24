@@ -111,7 +111,7 @@ void MainWindow::keyPressEvent(QKeyEvent* ke)
   {
     if (ui->tvPackages->hasFocus())
     {
-      execEnterOnPackage();
+      execKeyActionOnPackage(ectn_INSTALL);
     }
     //We are searching for AUR foreign packages...
     else if (isAURGroupSelected() && m_leFilterPackage->hasFocus() && m_cic == NULL)

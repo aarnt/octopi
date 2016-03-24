@@ -635,7 +635,7 @@ void MainWindow::changePackageListModel(ViewOptions viewOptions, QString selecte
 /*
  * Slot that treats <ENTER> key interaction in the package list
  */
-void MainWindow::execEnterOnPackage()
+void MainWindow::execKeyActionOnPackage(CommandExecuting command)
 {
   const QItemSelectionModel*const selectionModel = ui->tvPackages->selectionModel();
   if (selectionModel != NULL && selectionModel->selectedRows().count() > 0)
@@ -645,21 +645,30 @@ void MainWindow::execEnterOnPackage()
     {
       QModelIndex item = selectedRows.at(0);
       const PackageRepository::PackageData*const package = m_packageModel->getData(item);
-      if (package && package->installed())
+      if (package)
       {
-        if (package->repository == StrConstants::getForeignRepositoryName())
+        if (package->installed() && command == ectn_REMOVE)
         {
-          doRemoveAURPackage();
+          if (package->repository == StrConstants::getForeignRepositoryName())
+          {
+            doRemoveAURPackage();
+          }
+          else if (!package->required)
+          {
+            insertIntoRemovePackage();
+          }
         }
-        else if (!package->required) insertIntoRemovePackage();
-      }
-      else if (package && !package->installed())
-      {
-        if (package->repository == StrConstants::getForeignRepositoryName())
+        else if (command == ectn_INSTALL)
         {
-          doInstallAURPackage();
+          if (package->repository == StrConstants::getForeignRepositoryName())
+          {
+            doInstallAURPackage();
+          }
+          else
+          {
+            insertIntoInstallPackage();
+          }
         }
-        else insertIntoInstallPackage();
       }
     }
     else //There are more than 1 package selected
@@ -672,11 +681,14 @@ void MainWindow::execEnterOnPackage()
         {
           return;
         }
-        if (!package->installed())
+        if (command == ectn_INSTALL)
         {
           insertIntoInstallPackage(&item);
         }
-        else if (!package->required) insertIntoRemovePackage(&item);
+        else if (package->installed() && command == ectn_REMOVE && !package->required)
+        {
+          insertIntoRemovePackage(&item);
+        }
       }
     }
   }

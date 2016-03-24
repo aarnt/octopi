@@ -627,36 +627,45 @@ void MainWindow::tvTransactionRowsRemoved(const QModelIndex& parent, int, int)
 }
 
 /*
+ * Whenever the user presses DEL over the main Packages TreeView we remove the selected pkg (if installed).
+ *
  * Whenever the user presses DEL over the Transaction TreeView, we:
  * - Delete the package if it's bellow of "To be removed" or "To be installed" parent;
  * - Delete all the parent's packages if the user clicked in "To be removed" or "To be installed" items.
  */
 void MainWindow::onPressDelete()
 {
-  QTreeView *tvTransaction =
-      ui->twProperties->widget(ctn_TABINDEX_TRANSACTION)->findChild<QTreeView*>("tvTransaction");
-
-  if (tvTransaction->hasFocus())
+  if (ui->tvPackages->hasFocus())
   {
-    if(tvTransaction->currentIndex() == getRemoveTransactionParentItem()->index()){
-      removePackagesFromRemoveTransaction();
-    }
-    else if(tvTransaction->currentIndex() == getInstallTransactionParentItem()->index()){
-      removePackagesFromInstallTransaction();
-    }
-    else
+    execKeyActionOnPackage(ectn_REMOVE);
+  }
+  else
+  {
+    QTreeView *tvTransaction =
+        ui->twProperties->widget(ctn_TABINDEX_TRANSACTION)->findChild<QTreeView*>("tvTransaction");
+
+    if (tvTransaction->hasFocus())
     {
-      for(int c=tvTransaction->selectionModel()->selectedIndexes().count()-1; c>=0; c--)
+      if(tvTransaction->currentIndex() == getRemoveTransactionParentItem()->index()){
+        removePackagesFromRemoveTransaction();
+      }
+      else if(tvTransaction->currentIndex() == getInstallTransactionParentItem()->index()){
+        removePackagesFromInstallTransaction();
+      }
+      else
       {
-        const QModelIndex mi = tvTransaction->selectionModel()->selectedIndexes().at(c);
-        if (m_modelTransaction->itemFromIndex(mi)->parent() != 0)
+        for(int c=tvTransaction->selectionModel()->selectedIndexes().count()-1; c>=0; c--)
         {
-          m_modelTransaction->removeRow(mi.row(), mi.parent());
+          const QModelIndex mi = tvTransaction->selectionModel()->selectedIndexes().at(c);
+          if (m_modelTransaction->itemFromIndex(mi)->parent() != 0)
+          {
+            m_modelTransaction->removeRow(mi.row(), mi.parent());
+          }
         }
       }
-    }
 
-    changeTransactionActionsState();
+      changeTransactionActionsState();
+    }
   }
 }
 
@@ -1574,6 +1583,7 @@ void MainWindow::pacmanProcessFinished(int exitCode, QProcess::ExitStatus exitSt
   m_progressWidget->close();
 
   ui->twProperties->setTabText(ctn_TABINDEX_OUTPUT, StrConstants::getTabOutputName());
+
   //mate-terminal is returning code 255 sometimes...
   if ((exitCode == 0 || exitCode == 255) && exitStatus == QProcess::NormalExit)
   {
