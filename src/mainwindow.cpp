@@ -633,10 +633,12 @@ void MainWindow::changePackageListModel(ViewOptions viewOptions, QString selecte
 }
 
 /*
- * Slot that treats <ENTER> key interaction in the package list
+ * Slot that treats <ENTER/RETURN/DELETE> key interactions in the package list
  */
 void MainWindow::execKeyActionOnPackage(CommandExecuting command)
 {
+  if (m_commandExecuting != ectn_NONE) return;
+
   const QItemSelectionModel*const selectionModel = ui->tvPackages->selectionModel();
   if (selectionModel != NULL && selectionModel->selectedRows().count() > 0)
   {

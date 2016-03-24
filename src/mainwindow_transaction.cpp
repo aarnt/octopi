@@ -1450,6 +1450,7 @@ void MainWindow::enableTransactionActions()
 void MainWindow::toggleTransactionActions(const bool value)
 {
   bool state = isThereAPendingTransaction();
+
   if (value == true && state == true)
   {
     ui->actionCommit->setEnabled(true);
@@ -1473,8 +1474,11 @@ void MainWindow::toggleTransactionActions(const bool value)
     if (value == true && m_outdatedStringList->count() > 0)
       ui->actionSystemUpgrade->setEnabled(true);
   }
-  else if (value == false && state == false)
+  else if (value == false) //&& state == false)
   {
+    ui->actionCommit->setEnabled(false); //CHANGED
+    ui->actionCancel->setEnabled(false); //CHANGED
+
     if(m_hasMirrorCheck) m_actionMirrorCheck->setEnabled(false);
     if(m_hasAURTool) m_actionSwitchToAURTool->setEnabled(false);
 
