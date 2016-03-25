@@ -1709,7 +1709,7 @@ void MainWindow::pacmanProcessFinished(int exitCode, QProcess::ExitStatus exitSt
 
   m_commandExecuting = ectn_NONE;
 
-  if (isPackageTreeViewVisible()) ui->tvPackages->setFocus();
+  if (isPackageTreeViewVisible() && !ui->tvPackages->hasFocus()) ui->tvPackages->setFocus();
 }
 
 /*

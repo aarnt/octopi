@@ -272,6 +272,8 @@ void MainWindow::outputTextBrowserAnchorClicked(const QUrl &link)
 
     bool indIncremented = false;
     QItemSelectionModel*const selectionModel = ui->tvPackages->selectionModel();
+    if (selectionModel->selectedRows().count() <= 0) return;
+
     QModelIndex item = selectionModel->selectedRows(PackageModel::ctn_PACKAGE_NAME_COLUMN).first();
     const PackageRepository::PackageData*const selectedPackage = m_packageModel->getData(item);
 
