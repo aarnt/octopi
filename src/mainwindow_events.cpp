@@ -191,6 +191,18 @@ void MainWindow::keyPressEvent(QKeyEvent* ke)
   {
     changeTabWidgetPropertiesIndex(ctn_TABINDEX_HELPUSAGE);
   }
+  else if(ke->key() == Qt::Key_F2)
+  {
+    if (isPackageTreeViewVisible())
+    {
+      if (!ui->tvPackages->hasFocus()) ui->tvPackages->setFocus();
+    }
+    else
+    {
+      maximizePropertiesTabWidget(false);
+      if (!ui->tvPackages->hasFocus()) ui->tvPackages->setFocus();
+    }
+  }
   else if(ke->key() == Qt::Key_F4)
   {
     openTerminal();
