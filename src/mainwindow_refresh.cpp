@@ -829,8 +829,9 @@ void MainWindow::buildPackageList()
 void MainWindow::postBuildPackageList()
 {
   m_outdatedAURTimer->stop();
+  LinuxDistro distro = UnixCommand::getLinuxDistro();
 
-  if (UnixCommand::getLinuxDistro() != ectn_KAOS && isAURGroupSelected()) return;
+  if (distro != ectn_KAOS && isAURGroupSelected()) return;
 
   if (m_hasAURTool)
   {
@@ -849,9 +850,10 @@ void MainWindow::postBuildPackageList()
     connect(&g_fwOutdatedAURStringList, SIGNAL(finished()), &el, SLOT(quit()));
     g_fwOutdatedAURStringList.setFuture(f);
     el.exec();
+
     m_outdatedAURStringList = g_fwOutdatedAURStringList.result();
 
-    if (UnixCommand::getLinuxDistro() != ectn_KAOS && isAURGroupSelected()) return;
+    if (distro != ectn_KAOS && isAURGroupSelected()) return;
 
     m_packageRepo.setAUROutdatedData(m_foreignPackageList, *m_outdatedAURStringList);
 
