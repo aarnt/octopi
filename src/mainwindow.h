@@ -222,12 +222,20 @@ private:
   void initAppIcon();
   void refreshAppIcon();
   void refreshMenuTools();
+  void refreshGroupsWidget();
+  void refreshStatusBar();
+  void refreshColumnSortSetup();
+
   void initMenuBar();
   void initPackageGroups();
-  void refreshGroupsWidget();
   void initToolBar();
   void initStatusBar();
+  void initTabFiles();
+  void initActions();
   void initLineEditFilterPackages();
+  void initPackageTreeView();
+  void initTabWidgetPropertiesIndex();
+  void initTabInfo();
 
   QString getSelectedGroup();
   bool isAllGroupsSelected();
@@ -235,11 +243,9 @@ private:
 
   bool isPackageInstalled(const QString &pkgName);
   bool isPackageTreeViewVisible();
-  void initPackageTreeView();
+
   void resizePackageView();
   void changeTabWidgetPropertiesIndex(const int newIndex);
-  void initTabWidgetPropertiesIndex();
-  void initTabInfo();
 
   //Tab Files related methods
   void closeTabFilesSearchBar();
@@ -247,9 +253,6 @@ private:
   QString extractBaseFileName(const QString &fileName);
   QString getSelectedDirectory();
 
-  void initTabFiles();
-  void initActions();
-  void refreshStatusBar();
   void clearStatusBar();
   void showPackagesWithNoDescription();
   void prepareSystemUpgrade();
@@ -416,6 +419,7 @@ private slots:
   void onTabNewsSourceChanged(QUrl newSource);
   void refreshDistroNews(bool searchForLatestNews = true, bool gotoNewsTab = true);
   void postRefreshDistroNews();
+
   void onPacmanDatabaseChanged();
   void onHelpUsage();
   void onHelpAbout();

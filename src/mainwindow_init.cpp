@@ -112,10 +112,15 @@ void MainWindow::saveSettings(SaveSettingsReason saveSettingsReason){
       SettingsManager::instance()->setShowGroupsPanel(1); //And also show Groups panel!
       break;
 
+    case ectn_AUR_PackageList:
+      SettingsManager::instance()->setAURPackageListOrderedCol(ui->tvPackages->header()->sortIndicatorSection());
+      SettingsManager::instance()->setAURPackageListSortOrder(ui->tvPackages->header()->sortIndicatorOrder());
+      break;
+
     case ectn_PackageList:
       SettingsManager::instance()->setPackageListOrderedCol(ui->tvPackages->header()->sortIndicatorSection());
       SettingsManager::instance()->setPackageListSortOrder(ui->tvPackages->header()->sortIndicatorOrder());
-      break;
+      break;            
 
     case ectn_GROUPS:
       QList<int> rl;
@@ -639,7 +644,6 @@ void MainWindow::initActions()
 {
   m_hasSLocate = UnixCommand::hasTheExecutable("slocate");
   m_hasMirrorCheck = UnixCommand::hasTheExecutable(ctn_MIRROR_CHECK_APP);
-
   m_actionSysInfo = new QAction(this);
   m_actionMirrorCheck = new QAction(this);
 
@@ -720,7 +724,7 @@ void MainWindow::initActions()
   connect(ui->actionHelpUsage, SIGNAL(triggered()), this, SLOT(onHelpUsage()));
   connect(ui->actionHelpAbout, SIGNAL(triggered()), this, SLOT(onHelpAbout()));
 
-  //Actions from tvPkgFileList context menu
+  // Actions from tvPkgFileList context menu
   connect(ui->actionCollapseAllItems, SIGNAL(triggered()), this, SLOT(collapseAllContentItems()));
   connect(ui->actionExpandAllItems, SIGNAL(triggered()), this, SLOT(expandAllContentItems()));
   connect(ui->actionCollapseItem, SIGNAL(triggered()), this, SLOT(collapseThisContentItems()));
@@ -756,7 +760,7 @@ void MainWindow::initActions()
   ui->actionOpenRootTerminal->setIcon(IconHelper::getIconTerminal());
   ui->actionInstallAUR->setIcon(IconHelper::getIconInstallItem());
 
-  //Actions for the View menu
+  // Actions for the View menu
   connect(ui->actionViewAllPackages, SIGNAL(triggered()), this, SLOT(selectedAllPackagesMenu()));
   connect(ui->actionViewInstalledPackages, SIGNAL(triggered()), this, SLOT(selectedInstalledPackagesMenu()));
   connect(ui->actionViewNonInstalledPackages, SIGNAL(triggered()), this, SLOT(selectedNonInstalledPackagesMenu()));

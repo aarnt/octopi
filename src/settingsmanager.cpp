@@ -166,6 +166,17 @@ int SettingsManager::getPackageListSortOrder(){
         ctn_KEY_PACKAGE_LIST_SORT_ORDER, Qt::AscendingOrder ).toInt();
 }
 
+int SettingsManager::getAURPackageListOrderedCol()
+{
+  return instance()->getSYSsettings()->value( ctn_KEY_AUR_PACKAGE_LIST_ORDERED_COL, 1 ).toInt();
+}
+
+int SettingsManager::getAURPackageListSortOrder()
+{
+  return instance()->getSYSsettings()->value(
+        ctn_KEY_AUR_PACKAGE_LIST_SORT_ORDER, Qt::AscendingOrder ).toInt();
+}
+
 int SettingsManager::getPackageIconColumnWidth()
 {
   return instance()->getSYSsettings()->value(
@@ -242,6 +253,18 @@ void SettingsManager::setPackageListSortOrder(int newValue){
   instance()->getSYSsettings()->sync();
 }
 
+void SettingsManager::setAURPackageListOrderedCol(int newValue)
+{
+  instance()->getSYSsettings()->setValue( ctn_KEY_AUR_PACKAGE_LIST_ORDERED_COL, newValue);
+  instance()->getSYSsettings()->sync();
+}
+
+void SettingsManager::setAURPackageListSortOrder(int newValue)
+{
+  instance()->getSYSsettings()->setValue( ctn_KEY_AUR_PACKAGE_LIST_SORT_ORDER, newValue);
+  instance()->getSYSsettings()->sync();
+}
+
 void SettingsManager::setShowGroupsPanel(int newValue)
 {
   instance()->getSYSsettings()->setValue( ctn_KEY_SHOW_GROUPS_PANEL, newValue);
@@ -310,6 +333,7 @@ void SettingsManager::setPackageVersionColumnWidth(int newValue)
 bool SettingsManager::isValidTerminalSelected()
 {
   QString userTerminal = getTerminal();
+
   if (userTerminal == ctn_AUTOMATIC)
     return true;
 

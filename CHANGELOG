@@ -7,6 +7,7 @@
   BugFix: When you were searching for a pkg and the Files tab was selected, focus got lost.
   BugFix: Package dependencies with >, <, =, >= and <= signals were not clickable in Info tab.
   BugFix: When user commits a transaction, commit and cancel buttons must get disabled.
+  Package list now also preserves sort column and sort order while in AUR/KCP/CCR mode.
   Make Octopi more keyboard friendly.
   Pressing <ENTER>, <RETURN> and <DELETE> keys on package list triggers package actions.
   Stop using 'notify-send' in octopi-notifier: the era of annoying notifiers is over.

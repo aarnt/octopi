@@ -51,7 +51,7 @@ enum TreatString { ectn_TREAT_STRING, ectn_DONT_TREAT_STRING };
 enum TreatURLLinks { ectn_TREAT_URL_LINK, ectn_DONT_TREAT_URL_LINK };
 
 //SettingsManager related
-enum SaveSettingsReason { ectn_PackageList, ectn_CurrentTabIndex, ectn_NORMAL=30,
+enum SaveSettingsReason { ectn_AUR_PackageList, ectn_PackageList, ectn_CurrentTabIndex, ectn_NORMAL=30,
                           ectn_MAXIMIZE_PACKAGES=40, ectn_MAXIMIZE_PROPERTIES=50, ectn_GROUPS=5 };
 
 const QString ctn_ORGANIZATION("octopi");
@@ -62,6 +62,8 @@ const QString ctn_KEY_TRANSACTION_WINDOW_SIZE("Transaction_Window_Size");
 const QString ctn_KEY_PANEL_ORGANIZING("Panel_Organizing");
 const QString ctn_KEY_PACKAGE_LIST_ORDERED_COL("PackageList_Ordered_Col");
 const QString ctn_KEY_PACKAGE_LIST_SORT_ORDER("PackageList_Sort_Order");
+const QString ctn_KEY_AUR_PACKAGE_LIST_ORDERED_COL("Aur_PackageList_Ordered_Col");
+const QString ctn_KEY_AUR_PACKAGE_LIST_SORT_ORDER("Aur_PackageList_Sort_Order");
 const QString ctn_KEY_SKIP_MIRRORCHECK_ON_STARTUP("Skip_Mirror_Check_At_Startup");
 const QString ctn_KEY_SPLITTER_HORIZONTAL_STATE("Splitter_Horizontal_State");
 const QString ctn_KEY_SHOW_GROUPS_PANEL("Show_Groups_Panel");

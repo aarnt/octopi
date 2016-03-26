@@ -54,6 +54,8 @@ class SettingsManager
     static int getPanelOrganizing();
     static int getPackageListOrderedCol();
     static int getPackageListSortOrder();
+    static int getAURPackageListOrderedCol();
+    static int getAURPackageListSortOrder();
     static int getPackageIconColumnWidth();
     static int getPackageNameColumnWidth();
     static int getPackageVersionColumnWidth();
@@ -76,8 +78,12 @@ class SettingsManager
 
     static void setCurrentTabIndex(int newValue);
     static void setPanelOrganizing(int newValue);
+
     static void setPackageListOrderedCol(int newValue);
-    static void setPackageListSortOrder(int newValue);
+    static void setPackageListSortOrder(int newValue);    
+    static void setAURPackageListOrderedCol(int newValue);
+    static void setAURPackageListSortOrder(int newValue);
+
     static void setShowGroupsPanel(int newValue);
     static void setWindowSize(QByteArray newValue);
     static void setTransactionWindowSize(QByteArray newValue);

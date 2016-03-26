@@ -210,7 +210,7 @@ void MainWindow::AURToolSelected()
   if (m_actionSwitchToAURTool->isChecked())
   {
     m_actionMenuRepository->setEnabled(false);
-    ui->twGroups->setEnabled(false);
+    ui->twGroups->setEnabled(false);        
   }
   else
   {
@@ -329,8 +329,8 @@ void MainWindow::buildPackagesFromGroupList(const QString group)
   ui->tvPackages->setCurrentIndex(maux);
 
   m_listOfPackagesFromGroup.reset();
-  //ui->tvPackages->setFocus();
 
+  refreshColumnSortSetup();
   refreshToolBar();
   refreshStatusBarToolButtons();
 
@@ -778,6 +778,8 @@ void MainWindow::buildPackageList()
     ui->tvPackages->setFocus();
   }
 
+  refreshColumnSortSetup();
+
   //Refresh statusbar widget
   refreshStatusBar();
 
@@ -871,6 +873,29 @@ void MainWindow::postBuildPackageList()
   {
     ui->twGroups->setFocus();
     m_groupWidgetNeedsFocus = false;
+  }
+}
+
+/*
+ * Whenever a package list is built, we refresh its column sort setup
+ */
+void MainWindow::refreshColumnSortSetup()
+{
+  if (isAURGroupSelected())
+  {
+    int packageListOrderedCol = SettingsManager::instance()->getAURPackageListOrderedCol();
+    Qt::SortOrder packageListSortOrder = (Qt::SortOrder) SettingsManager::instance()->getAURPackageListSortOrder();
+
+    ui->tvPackages->header()->setSortIndicator( packageListOrderedCol, packageListSortOrder );
+    ui->tvPackages->sortByColumn( packageListOrderedCol, packageListSortOrder );
+  }
+  else
+  {
+    int packageListOrderedCol = SettingsManager::instance()->getPackageListOrderedCol();
+    Qt::SortOrder packageListSortOrder = (Qt::SortOrder) SettingsManager::instance()->getPackageListSortOrder();
+
+    ui->tvPackages->header()->setSortIndicator( packageListOrderedCol, packageListSortOrder );
+    ui->tvPackages->sortByColumn( packageListOrderedCol, packageListSortOrder );
   }
 }
 
@@ -979,6 +1004,7 @@ void MainWindow::buildAURPackageList()
 
   ui->tvPackages->setColumnHidden(PackageModel::ctn_PACKAGE_REPOSITORY_COLUMN, true);
 
+  refreshColumnSortSetup();
   refreshToolBar();
   refreshStatusBarToolButtons();
 }

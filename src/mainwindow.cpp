@@ -1229,7 +1229,10 @@ void MainWindow::headerViewPackageListSortIndicatorClicked( int col, Qt::SortOrd
   connect(ui->tvPackages->header(), SIGNAL(sortIndicatorChanged(int,Qt::SortOrder)), this,
           SLOT(headerViewPackageListSortIndicatorClicked(int,Qt::SortOrder)));
 
-  saveSettings(ectn_PackageList);
+  if (isAURGroupSelected())
+    saveSettings(ectn_AUR_PackageList);
+  else
+    saveSettings(ectn_PackageList);
 }
 
 /*
@@ -1513,7 +1516,6 @@ void MainWindow::gistSysInfo()
   QString hostname = UnixCommand::getCommandOutput("hostname");
   hostname.remove("\n");
   QString homePath = QDir::homePath();
-
   QByteArray out;
 
   if (UnixCommand::getLinuxDistro() == ectn_KAOS)
