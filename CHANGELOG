@@ -1,4 +1,4 @@
-0.8.1 (dev)
+0.8.1
   BugFix: Updated CHAKRA RSS site (thanks to s8321414).
   BugFix: Distro news now works with https KaOS site.
   BugFix: Files tab was not refreshing when enabling KCP mode in KaOS.
