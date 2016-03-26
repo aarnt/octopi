@@ -824,11 +824,13 @@ void MainWindow::buildPackageList()
 }
 
 /*
- * This slot is called just once, after the list of packages is constructed
+ * This slot is called just after the list of packages is constructed
  */
 void MainWindow::postBuildPackageList()
 {
   m_outdatedAURTimer->stop();
+
+  if (UnixCommand::getLinuxDistro() != ectn_KAOS && isAURGroupSelected()) return;
 
   if (m_hasAURTool)
   {
