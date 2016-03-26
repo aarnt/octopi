@@ -851,6 +851,8 @@ void MainWindow::postBuildPackageList()
     el.exec();
     m_outdatedAURStringList = g_fwOutdatedAURStringList.result();
 
+    if (UnixCommand::getLinuxDistro() != ectn_KAOS && isAURGroupSelected()) return;
+
     m_packageRepo.setAUROutdatedData(m_foreignPackageList, *m_outdatedAURStringList);
 
     QModelIndex maux = m_packageModel->index(0, 0, QModelIndex());
