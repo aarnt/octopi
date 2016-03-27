@@ -1021,6 +1021,8 @@ void MainWindow::buildAURPackageList()
  */
 void MainWindow::showToolButtonAUR()
 {
+  if (isAURGroupSelected() && UnixCommand::getLinuxDistro() != ectn_KAOS) return;
+
   m_outdatedAURPackagesNameVersion = &g_fwOutdatedAURPackages.result()->content;
 
   if(m_outdatedAURStringList->count() > 0)
