@@ -1093,6 +1093,8 @@ void MainWindow::refreshToolBar()
  */
 void MainWindow::refreshStatusBarToolButtons()
 {
+  if (isAURGroupSelected() && UnixCommand::getLinuxDistro() != ectn_KAOS) return;
+
   if (m_hasAURTool)
   {
     QFuture<AUROutdatedPackages *> f;
