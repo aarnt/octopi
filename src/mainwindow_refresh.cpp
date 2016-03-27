@@ -1284,7 +1284,7 @@ void MainWindow::refreshTabInfo(bool clearContents, bool neverQuit)
             StrConstants::getForeignRepositoryToolName() == "pacaur")
         {
           QString url = Package::getAURUrl(pkgName);
-          if (!url.isEmpty() && url != "(null)")
+          if (!url.isEmpty() && !url.contains("(null)"))
           {
             html += "<tr><td>" + StrConstants::getURL() + "</td><td>" + url + "</td></tr>";
           }
