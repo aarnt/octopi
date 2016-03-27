@@ -237,7 +237,7 @@ void MainWindow::groupItemSelected()
   m_selectedRepository = "";
   m_actionRepositoryAll->setChecked(true);
 
-  if (isAllGroupsSelected())
+  if (m_actionShowGroups->isChecked() && isAllGroupsSelected())
   {
     m_refreshPackageLists = false;
     m_groupWidgetNeedsFocus = true;

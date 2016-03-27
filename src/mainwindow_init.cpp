@@ -204,7 +204,7 @@ void MainWindow::initPackageGroups()
 }
 
 /*
- * Whenever user changes the Groups combobox, this method will be triggered...
+ * Whenever user changes the Groups widget item, this method will be triggered...
  */
 void MainWindow::onPackageGroupChanged()
 {
