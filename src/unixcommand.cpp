@@ -208,8 +208,14 @@ QByteArray UnixCommand::getAURUrl(const QString &pkgName)
   env.insert("LC_MESSAGES", "C");
 
   aur.setProcessEnvironment(env);
-  aur.start(StrConstants::getForeignRepositoryToolName() + " -Sia " + pkgName);
+
+  if (StrConstants::getForeignRepositoryToolName() == "ccr")
+    aur.start(StrConstants::getForeignRepositoryToolName() + " -Si " + pkgName);
+  else
+    aur.start(StrConstants::getForeignRepositoryToolName() + " -Sia " + pkgName);
+
   aur.waitForFinished(-1);
+
   return (aur.readAll());
 }
 

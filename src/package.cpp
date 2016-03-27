@@ -540,12 +540,12 @@ QString Package::getAURUrl(const QString &pkgName)
 {
   QString url="";
 
-  if (StrConstants::getForeignRepositoryToolName() != "yaourt" ||
-    StrConstants::getForeignRepositoryToolName() != "pacaur")
+  if (StrConstants::getForeignRepositoryToolName() != "kcp")
   {
     QString pkgInfo = UnixCommand::getAURUrl(pkgName);
     url = getURL(pkgInfo);
   }
+
   return url;
 }
 
