@@ -534,6 +534,22 @@ QList<PackageListData> * Package::getPackageList(const QString &packageName)
 }
 
 /*
+ * Helper method to get URL information from remote package
+ */
+QString Package::getAURUrl(const QString &pkgName)
+{
+  QString url="";
+
+  if (StrConstants::getForeignRepositoryToolName() != "yaourt" ||
+    StrConstants::getForeignRepositoryToolName() != "pacaur")
+  {
+    QString pkgInfo = UnixCommand::getAURUrl(pkgName);
+    url = getURL(pkgInfo);
+  }
+  return url;
+}
+
+/*
  * Retrieves the list of all AUR packages in the database (installed + non-installed)
  * given the search parameter
  */

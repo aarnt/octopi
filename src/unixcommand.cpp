@@ -197,6 +197,23 @@ QByteArray UnixCommand::performAURCommand(const QString &args)
 }
 
 /*
+ * Retrieves URL information for remote AUR package
+ */
+QByteArray UnixCommand::getAURUrl(const QString &pkgName)
+{
+  QByteArray result("");
+  QProcess aur;
+  QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
+  env.insert("LANG", "C");
+  env.insert("LC_MESSAGES", "C");
+
+  aur.setProcessEnvironment(env);
+  aur.start(StrConstants::getForeignRepositoryToolName() + " -Sia " + pkgName);
+  aur.waitForFinished(-1);
+  return (aur.readAll());
+}
+
+/*
  * Returns a string containing all AUR packages given a searchString parameter
  */
 QByteArray UnixCommand::getAURPackageList(const QString &searchString)

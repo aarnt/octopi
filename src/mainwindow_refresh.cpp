@@ -1278,7 +1278,17 @@ void MainWindow::refreshTabInfo(bool clearContents, bool neverQuit)
         html += "<a style=\"font-size:16px;\">" + pkgDescription + "</a>";
         html += "<table border=\"0\">";
         html += "<tr><th width=\"20%\"></th><th width=\"80%\"></th></tr>";
-        html += "<tr><td>" + version + "</td><td>" + package->version + "</td></tr>";
+        html += "<tr><td>" + version + "</td><td>" + package->version + "</td></tr>";        
+
+        if (StrConstants::getForeignRepositoryToolName() == "yaourt" ||
+            StrConstants::getForeignRepositoryToolName() == "pacaur")
+        {
+          QString url = Package::getAURUrl(pkgName);
+          if (!url.isEmpty())
+          {
+            html += "<tr><td>" + StrConstants::getURL() + "</td><td>" + url + "</td></tr>";
+          }
+        }
       }
       else if (StrConstants::getForeignRepositoryToolName() == "kcp")
       {
@@ -1288,17 +1298,17 @@ void MainWindow::refreshTabInfo(bool clearContents, bool neverQuit)
         html += "<tr><td>" + version + "</td><td>" + package->version + "</td></tr>";
 
         if (kcp.url != "--")
-          html += "<tr><td>" + StrConstants::getURL() + "</td><td>" + kcp.url + "</td></tr>";;
+          html += "<tr><td>" + StrConstants::getURL() + "</td><td>" + kcp.url + "</td></tr>";
 
         if (kcp.license != "--")
-          html += "<tr><td>" + StrConstants::getLicenses() + "</td><td>" + kcp.license + "</td></tr>";;
+          html += "<tr><td>" + StrConstants::getLicenses() + "</td><td>" + kcp.license + "</td></tr>";
 
         if (kcp.provides != "--")
-          html += "<tr><td>" + StrConstants::getProvides() + "</td><td>" + kcp.provides + "</td></tr>";;
+          html += "<tr><td>" + StrConstants::getProvides() + "</td><td>" + kcp.provides + "</td></tr>";
 
         if (kcp.dependsOn != "--")
           html += "<tr><td>" + StrConstants::getDependsOn() + "</td><td>" +
-              Package::makeAnchorOfPackage(kcp.dependsOn) + "</td></tr>";;
+              Package::makeAnchorOfPackage(kcp.dependsOn) + "</td></tr>";
       }
 
       html += "</table>";

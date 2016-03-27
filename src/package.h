@@ -125,6 +125,8 @@ class Package{
     static QList<PackageListData> *getForeignPackageList();
     static QList<PackageListData> *getPackageList(const QString &packageName = "");
 
+    static QString getAURUrl(const QString& pkgName);
+
     static QList<PackageListData> * getAURPackageList(const QString& searchString);     //AUR methods
     static QHash<QString, QString> getAUROutdatedPackagesNameVersion();    //AUR methods
 
