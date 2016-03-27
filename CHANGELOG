@@ -13,6 +13,7 @@
   Stop using 'notify-send' in octopi-notifier: the era of annoying notifiers is over.
   Major refactoring: Decoupling of Pacman executor and parser code from the UI as well as 
 	SearchBar slots for QTextBrowser objects.
+  Added URL information to yaourt/pacaur remote pkgs at Info tab.
   Added <F2> shortcut to focus package list.
   Added an output dialog to notifier, so users can do a system upgrade without a terminal.
   Added an entry for Mirror-check in Tools menu.
