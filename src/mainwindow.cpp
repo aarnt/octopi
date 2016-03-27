@@ -212,7 +212,7 @@ void MainWindow::showAnchorDescription(const QUrl &link)
   if (link.toString().contains("goto:"))
   {
     QString pkgName = link.toString().mid(5);
-
+    if (pkgName == "sh") pkgName = "bash";
     QFuture<QString> f;
     disconnect(&g_fwToolTipInfo, SIGNAL(finished()), this, SLOT(execToolTip()));
     f = QtConcurrent::run(showPackageInfo, pkgName);
@@ -269,7 +269,7 @@ void MainWindow::outputTextBrowserAnchorClicked(const QUrl &link)
   if (link.toString().contains("goto:"))
   {
     QString pkgName = link.toString().mid(5);
-
+    if (pkgName == "sh") pkgName = "bash";
     bool indIncremented = false;
     QItemSelectionModel*const selectionModel = ui->tvPackages->selectionModel();
     if (selectionModel->selectedRows().count() <= 0) return;
