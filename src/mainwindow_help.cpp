@@ -51,28 +51,16 @@ void MainWindow::initTabHelpUsage()
   gridLayoutX->addWidget(text, 0, 0, 1, 1);
 
   QString iconPath = "<img height=\"16\" width=\"16\" src=\":/resources/images/";
-
   QString strForMoreInfo = tr("For more information, visit:");
   QString html =
     QString("<h2>Octopi</h2>") +
     QString("<h3><p>") + tr("A Qt-based Pacman frontend,") + " " +
     tr("licensed under the terms of") + " ";
 
-  if (UnixCommand::getLinuxDistro() == ectn_MANJAROLINUX &&
-      (!WMHelper::isKDERunning() && (!WMHelper::isRazorQtRunning())))
-  {
-    html +=
-        QString("<a style=\"color:'#4BC413'\" href=\"http://www.gnu.org/licenses/gpl-2.0.html\">GPL v2</a>.</p></h3>") +
-      QString("<h4><p>") + strForMoreInfo + " " +
-      QString("<a style=\"color:'#4BC413'\" href=\"http://octopiproject.wordpress.com\">http://octopiproject.wordpress.com</a>.</p></h4><br>");
-  }
-  else
-  {
     html +=
         QString("<a href=\"http://www.gnu.org/licenses/gpl-2.0.html\">GPL v2</a>.</p></h3>") +
       QString("<h4><p>") + strForMoreInfo + " " +
       QString("<a href=\"http://octopiproject.wordpress.com\">http://octopiproject.wordpress.com</a>.</p></h4><br>");
-  }
 
     html += tr("Package classification:") +
 
