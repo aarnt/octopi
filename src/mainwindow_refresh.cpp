@@ -1105,7 +1105,7 @@ void MainWindow::refreshStatusBarToolButtons()
     connect(&g_fwOutdatedAURPackages, SIGNAL(finished()), this, SLOT(showToolButtonAUR()));
   }
 
-  if (!isSearchByFileSelected() && !m_actionSwitchToAURTool->isChecked())
+  if (m_commandExecuting == ectn_NONE && !isSearchByFileSelected() && !m_actionSwitchToAURTool->isChecked())
     ui->twGroups->setEnabled(true);
 }
 

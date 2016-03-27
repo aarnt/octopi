@@ -269,6 +269,8 @@ void MainWindow::keyPressEvent(QKeyEvent* ke)
   else if(ke->key() == Qt::Key_Y && ke->modifiers() == (Qt::ShiftModifier|Qt::ControlModifier)
           && m_hasAURTool)
   {
+    if (m_commandExecuting != ectn_NONE) return;
+
     //The user wants to use "AUR tool" to search for pkgs
     m_actionSwitchToAURTool->trigger();
     if (m_actionSwitchToAURTool->isChecked() && UnixCommand::getLinuxDistro() != ectn_KAOS)
