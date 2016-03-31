@@ -47,7 +47,7 @@ In KaOS, "kcp" will be supported out of the box.
 
 ### Ways to help/support Octopi
 
- * You can "Star" it at the Github page - https://github.com/aarnt/octopi/star
+ * You can "Star" it at the Github page - https://github.com/aarnt/octopi/
  * You can vote in the AUR package available at https://aur.archlinux.org/packages/octopi/
  * You can translate it to your mother language at https://www.transifex.com/projects/p/octopi/
  * You can follow author's twitter account at https://twitter.com/aaarnt
