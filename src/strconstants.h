@@ -31,7 +31,7 @@ public:
   }
 
   static QString getApplicationVersion(){
-    return "0.8.1";
+    return "0.9.0 (dev)";
   }
 
   static QString getQtVersion(){

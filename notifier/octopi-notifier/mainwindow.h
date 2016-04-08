@@ -36,6 +36,7 @@ class QAction;
 class QFileSystemWatcher;
 class PacmanHelperClient;
 class SetupDialog;
+class TransactionDialog;
 
 #ifdef KSTATUS
   class KStatusNotifierItem;
@@ -75,6 +76,7 @@ private slots:
 
 private:
 
+  TransactionDialog *m_transactionDialog;
   SetupDialog *m_setupDialog;
   int m_numberOfOutdatedPackages;
   int m_numberOfOutdatedAURPackages;

@@ -49,6 +49,8 @@
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent)
 {
+  m_transactionDialog = nullptr;
+
   m_debugInfo = false;
   m_setupDialog = nullptr;
   m_pacmanDatabaseSystemWatcher =
@@ -246,11 +248,15 @@ void MainWindow::runOctopiSysUpgrade()
  */
 void MainWindow::aboutOctopiNotifier()
 {
+  m_actionAbout->setEnabled(false);
+
   QString aboutText = "<b>Octopi Notifier - " +
       StrConstants::getApplicationVersion() + "</b>" + " (" + StrConstants::getQtVersion() + ")<br>";
   aboutText += "<a href=\"http://octopiproject.wordpress.com/\">http://octopiproject.wordpress.com</a><br><br>";
   aboutText += "&copy; Alexandre Albuquerque Arnt";
   QMessageBox::about(this, StrConstants::getHelpAbout(), aboutText);
+
+  m_actionAbout->setEnabled(true);
 }
 
 /*
@@ -284,6 +290,15 @@ bool MainWindow::_isSUAvailable()
  */
 void MainWindow::doSystemUpgrade()
 {
+  if (m_transactionDialog != nullptr)
+  {
+    if (m_transactionDialog->isMinimized())
+      m_transactionDialog->setWindowState(Qt::WindowNoState);
+    else
+      m_transactionDialog->activateWindow();
+    return;
+  }
+
   //Shows a dialog indicating the targets needed to be retrieved and asks for the user's permission.
   QList<PackageListData> * targets = Package::getTargetUpgradeList();
 
@@ -309,21 +324,22 @@ void MainWindow::doSystemUpgrade()
 
   totalDownloadSize = totalDownloadSize / 1024;
   QString ds = Package::kbytesToSize(totalDownloadSize);
-  TransactionDialog question(this);
+  m_transactionDialog = new TransactionDialog(this);
 
   if(targets->count()==1)
-    question.setText(StrConstants::getRetrievePackage() +
+    m_transactionDialog->setText(StrConstants::getRetrievePackage() +
                      "\n\n" + StrConstants::getTotalDownloadSize().arg(ds).remove(" KB"));
   else
-    question.setText(StrConstants::getRetrievePackages(targets->count()) +
+    m_transactionDialog->setText(StrConstants::getRetrievePackages(targets->count()) +
                      "\n\n" + StrConstants::getTotalDownloadSize().arg(ds).remove(" KB"));
 
-  question.setWindowTitle(StrConstants::getConfirmation());
-  question.setInformativeText(StrConstants::getConfirmationQuestion());
-  question.setDetailedText(list);
+  m_transactionDialog->setWindowTitle(StrConstants::getConfirmation());
+  m_transactionDialog->setInformativeText(StrConstants::getConfirmationQuestion());
+  m_transactionDialog->setDetailedText(list);
 
   m_systemUpgradeDialog = true;
-  int result = question.exec();
+  int result = m_transactionDialog->exec();
+  m_transactionDialog = nullptr;
 
   if (result == QDialogButtonBox::Yes)
   {
