@@ -60,13 +60,13 @@
         <location filename="Projects/octopi/ui/mainwindow.ui" line="226"/>
         <source>About</source>
         <oldsource>&amp;About</oldsource>
-        <translation>За</translation>
+        <translation>Относно</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="240"/>
         <source>Non installed</source>
         <oldsource>&amp;Non installed</oldsource>
-        <translation>Без инсталиране</translation>
+        <translation>Не инсталирани</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="249"/>
@@ -251,7 +251,7 @@
         <location filename="Projects/octopi/ui/mainwindow.ui" line="508"/>
         <source>Install local package...</source>
         <oldsource>&amp;Install local package...</oldsource>
-        <translation>Инсталиране на налични пакети…</translation>
+        <translation>Инсталиране на локални пакети…</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="525"/>
@@ -263,7 +263,7 @@
         <location filename="Projects/octopi/ui/mainwindow.ui" line="537"/>
         <source>Repository Editor</source>
         <oldsource>&amp;Repository Editor</oldsource>
-        <translation>Редактор на източници</translation>
+        <translation>Редактор на хранилища</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="546"/>
@@ -291,7 +291,7 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="58"/>
         <source>A Qt-based Pacman frontend,</source>
-        <translation>Qt-зазиран Pacman интерфейс,</translation>
+        <translation>Qt-базиран Pacman интерфейс,</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="59"/>
@@ -351,7 +351,7 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="104"/>
         <source>Double click an installed package to see its contents</source>
-        <translation>Двойно щракване на инсталирания пакет за съдържание</translation>
+        <translation>Двойно щракване на инсталирания пакет за проверка на съдържанието му</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="106"/>
@@ -456,7 +456,7 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="151"/>
         <source>Ctrl+Shift+R to remove Pacman&apos;s transaction lock file</source>
-        <translation>Ctrl+Shift+R за премахване Pacman&apos;s transaction lock file</translation>
+        <translation>Ctrl+Shift+R за премахване на транзакционния заключващ файл на Pacman</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="153"/>
@@ -476,12 +476,12 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="160"/>
         <source>F4 to open a Terminal whitin the selected directory at Files tab</source>
-        <translation>F4 за отваряне на терминал с избраната директория в таб &quot;Файл&quot;</translation>
+        <translation>F4 за отваряне на терминал с избраната директория в таб &quot;Файлове&quot;</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="162"/>
         <source>F6 to open a File Manager whitin the selected directory at Files tab</source>
-        <translation>F6 за отваряне на файлов менажер с избраната директория в  Файлов таб</translation>
+        <translation>F6 за отваряне на файлов мениджър с избраната директория в таб Файлове</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="164"/>
@@ -504,17 +504,17 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="44"/>
         <source>show application version.</source>
-        <translation>версия на приложението.</translation>
+        <translation>покажи версията на приложението.</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="45"/>
         <source>use a different Qt4 style (ex: -style gtk).</source>
-        <translation>използване на друг Qt4 стил (ex: -style gtk).</translation>
+        <translation>използване на друг Qt4 стил (например: -style gtk).</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="46"/>
         <source>use a different remove command (ex: -removecmd R).</source>
-        <translation>използване на друга remove команда (ex: -removecmd R).</translation>
+        <translation>използване на друга команда за премахване (например: -removecmd R).</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="47"/>
@@ -655,7 +655,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="235"/>
         <source>Depends On</source>
-        <translation>Зависимост от</translation>
+        <translation>Зависи от</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="239"/>
@@ -775,7 +775,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="331"/>
         <source>Contents of &quot;%1&quot;</source>
-        <translation>Съдържа &quot;%1&quot;</translation>
+        <translation>Съдържание на &quot;%1&quot;</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="335"/>
@@ -840,7 +840,7 @@
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="383"/>
         <source>%n outdated</source>
-        <translation><numerusform>%n неактуален</numerusform><numerusform>%n неактуални</numerusform></translation>
+        <translation><numerusform>%n остарял</numerusform><numerusform>%n остарели</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="387"/>
@@ -855,7 +855,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="395"/>
         <source>Removing Pacman&apos;s transaction lock file...</source>
-        <translation>Премахване Pacman&apos;s transaction lock file...</translation>
+        <translation>Премахване на транзакционния заключващ файл на Pacman...</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="399"/>
@@ -865,7 +865,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="403"/>
         <source>Press any key to continue...</source>
-        <translation>Клавиш за продължение…</translation>
+        <translation>Натиснете клавиш за да продължите…</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="411"/>
@@ -995,7 +995,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="511"/>
         <source>Do you want to execute this transaction in a Terminal?</source>
-        <translation>Искате ли за стартирате транзакцията в терминал?</translation>
+        <translation>Искате ли да стартирате транзакцията в терминал?</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="515"/>
@@ -1005,7 +1005,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="519"/>
         <source>Do you really want to remove Pacman&apos;s transaction lock file?</source>
-        <translation>Наистина ли искате са премахнете Pacman&apos;s transaction lock file?</translation>
+        <translation>Наистина ли искате са премахнете транзакционния заключващ файл на Pacman?</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="523"/>
@@ -1055,7 +1055,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="561"/>
         <source>Needs application restart to take effect</source>
-        <translation>Трябва да рестартиране приложението</translation>
+        <translation>Трябва да рестартирате приложението</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="565"/>
@@ -1127,7 +1127,7 @@ Are you sure you want to open it?</source>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="618"/>
         <source>Sync database interval</source>
-        <translation>Време за синхронизация на базата</translation>
+        <translation>Време за синхронизация на базата данни</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="622"/>

@@ -955,7 +955,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="479"/>
         <source>There are forbidden packages in the removal list!</source>
-        <translation>Kaldırılıacaklar lstesinde yasaklı paketler var</translation>
+        <translation>Kaldırılacaklar lstesinde yasaklı paketler var</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="483"/>
