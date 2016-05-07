@@ -228,6 +228,8 @@ void MainWindow::keyPressEvent(QKeyEvent* ke)
   }
   else if(ke->key() == Qt::Key_F && ke->modifiers() == Qt::ControlModifier)
   {
+    if (m_commandExecuting != ectn_NONE) return;
+
     if (isPropertiesTabWidgetVisible() &&
         (ui->twProperties->currentIndex() == ctn_TABINDEX_INFORMATION ||
          ui->twProperties->currentIndex() == ctn_TABINDEX_OUTPUT ||
@@ -305,6 +307,8 @@ void MainWindow::keyPressEvent(QKeyEvent* ke)
   else if(ke->key() == Qt::Key_T && ke->modifiers() == (Qt::ShiftModifier|Qt::ControlModifier)
           && m_initializationCompleted)
   {
+    if (m_commandExecuting != ectn_NONE) return;
+
     QStringList terminals = Terminal::getListOfAvailableTerminals();
 
     if (terminals.count() > 2)
