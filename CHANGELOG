@@ -1,5 +1,7 @@
 0.9.0
   BugFix: About and System Upgrade dialogs could be opened twice in notifier.
+  Added "Install Reason" field at Info tab.
+  Prevent the user to install partial upgrades in his system (some of the outdated packages). 
 
 0.8.1
   BugFix: Updated CHAKRA RSS site (thanks to s8321414).

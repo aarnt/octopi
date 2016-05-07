@@ -271,6 +271,10 @@ public:
     return QObject::tr("Installed Size");
   }
 
+  static QString getInstallReason(){
+    return QObject::tr("Install Reason");
+  }
+
   static QString getPackager(){
     return QObject::tr("Packager");
   }
@@ -297,6 +301,10 @@ public:
 
   static QString getAttention(){
     return QObject::tr("Attention");
+  }
+
+  static QString getPartialUpdatesNotSupported(){
+    return QObject::tr("Partial updates are not supported!");
   }
 
   static QString getAutomaticSuCommand(){

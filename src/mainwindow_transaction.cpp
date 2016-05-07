@@ -934,6 +934,7 @@ void MainWindow::doRemoveAndInstall()
   QStringList *pRemoveTargets = Package::getTargetRemovalList(listOfRemoveTargets, m_removeCommand);
   QString removeList;
   QString allLists;
+  QStringList pkgsToInstall;
 
   TransactionDialog question(this);
   QString dialogText;
@@ -954,8 +955,12 @@ void MainWindow::doRemoveAndInstall()
     totalDownloadSize += installTarget.downloadSize;
     installList.append(StrConstants::getInstall() + " " +
                        installTarget.name + "-" + installTarget.version + "\n");
+    pkgsToInstall.append(installTarget.name);
   }
+
   installList.remove(installList.size()-1, 1);
+
+  if (hasPartialUpgrade(pkgsToInstall)) return;
 
   totalDownloadSize = totalDownloadSize / 1024;
   QString ds = Package::kbytesToSize(totalDownloadSize);
@@ -1246,21 +1251,76 @@ void MainWindow::doRemoveAURPackage()
 }
 
 /*
+ * Checks if the user is trying to install ONLY SOME of the outdated packages
+ */
+bool MainWindow::hasPartialUpgrade(QStringList &pkgsToInstall)
+{
+  bool result = false;
+  pkgsToInstall.sort();
+
+  if (m_numberOfOutdatedPackages > 0 && m_numberOfOutdatedPackages > pkgsToInstall.count())
+  {
+    foreach(QString n, pkgsToInstall)
+    {
+      if (m_outdatedStringList->contains(n))
+      {
+        result = true;
+      }
+    }
+  }
+  else if (pkgsToInstall.count() > m_numberOfOutdatedPackages)
+  {
+    int found=0;
+
+    foreach(QString n, pkgsToInstall)
+    {
+      if (m_outdatedStringList->contains(n)) found++;
+    }
+
+    if (found != m_numberOfOutdatedPackages)
+    {
+      result = true;
+    }
+  }
+  else if (m_numberOfOutdatedPackages == pkgsToInstall.count())
+  {
+    //We have to compare the lists...
+    if (*m_outdatedStringList != pkgsToInstall)
+    {
+      result = true;
+    }
+  }
+
+  if (result == true)
+  {
+    QMessageBox::warning(
+          this, StrConstants::getAttention(), StrConstants::getPartialUpdatesNotSupported(), QMessageBox::Ok);
+  }
+
+  return result;
+}
+
+/*
  * Installs ALL the packages selected by the user with "pacman -S (INCLUDING DEPENDENCIES)" !
  */
 void MainWindow::doInstall()
 {
   QString listOfTargets = getTobeInstalledPackages();
-  QList<PackageListData> *targets = Package::getTargetUpgradeList(listOfTargets);
+  QList<PackageListData> *targets = Package::getTargetUpgradeList(listOfTargets); 
   QString list;
+  QStringList pkgsToInstall;
 
   double totalDownloadSize = 0;
   foreach(PackageListData target, *targets)
   {
     totalDownloadSize += target.downloadSize;
+    pkgsToInstall.append(target.name);
     list = list + target.name + "-" + target.version + "\n";
   }
+
   list.remove(list.size()-1, 1);
+
+  if (hasPartialUpgrade(pkgsToInstall)) return;
 
   totalDownloadSize = totalDownloadSize / 1024;
   QString ds = Package::kbytesToSize(totalDownloadSize);

@@ -373,7 +373,6 @@ QList<PackageListData> *Package::getTargetUpgradeList(const QString &pkgName)
 {
   QString targets = UnixCommand::getTargetUpgradeList(pkgName);
   QStringList packageTuples = targets.split(QRegExp("\\n"), QString::SkipEmptyParts);
-
   QList<PackageListData> *res = new QList<PackageListData>();
   packageTuples.sort();
 
@@ -933,6 +932,14 @@ double Package::getInstalledSize(const QString &pkgInfo)
 }
 
 /*
+ * Retrieves "Install Reason" field of the given package information string represented by pkgInfo
+ */
+QString Package::getInstallReason(const QString &pkgInfo)
+{
+  return extractFieldFromInfo("Install Reason", pkgInfo);
+}
+
+/*
  * Retrieves "Installed Size" field of the given package information string represented by pkgInfo
  */
 QString Package::getInstalledSizeAsString(const QString &pkgInfo)
@@ -1169,6 +1176,7 @@ PackageInfoData Package::getInformation(const QString &pkgName, bool foreignPack
   res.installedSize = getInstalledSize(pkgInfo);
   res.downloadSizeAsString = getDownloadSizeAsString(pkgInfo);
   res.installedSizeAsString = getInstalledSizeAsString(pkgInfo);
+  res.installReason = getInstallReason(pkgInfo);
 
   return res;
 }

@@ -96,6 +96,7 @@ struct PackageInfoData{
   QString arch;
   QString description;
   QDateTime buildDate;
+  QString installReason;
   double downloadSize;
   double installedSize;
   QString downloadSizeAsString;
@@ -126,7 +127,6 @@ class Package{
     static QList<PackageListData> *getPackageList(const QString &packageName = "");
 
     static QString getAURUrl(const QString& pkgName);
-
     static QList<PackageListData> * getAURPackageList(const QString& searchString);     //AUR methods
     static QHash<QString, QString> getAUROutdatedPackagesNameVersion();    //AUR methods
 
@@ -138,7 +138,6 @@ class Package{
 
     static QStringList getContents(const QString &pkgName, bool isInstalled);
     static QStringList getOptionalDeps(const QString &pkgName);
-
     static QString getName(const QString &pkgInfo);
     static QString getVersion(const QString &pkgInfo);
     static QString getRepository(const QString &pkgInfo);
@@ -156,6 +155,7 @@ class Package{
     static QString getArch(const QString &pkgInfo);
     static QString getDescription(const QString &pkgInfo);
     static QDateTime getBuildDate(const QString &pkgInfo);
+    static QString getInstallReason(const QString &pkgInfo);
     static double getDownloadSize(const QString &pkgInfo);
     static QString getDownloadSizeAsString(const QString &pkgInfo);
     static double getInstalledSize(const QString &pkgInfo);

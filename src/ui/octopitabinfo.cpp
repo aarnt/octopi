@@ -68,6 +68,7 @@ QString OctopiTabInfo::formatTabInfo(const PackageRepository::PackageData& packa
   QString packager = StrConstants::getPackager();
   QString architecture = StrConstants::getArchitecture();
   QString buildDate = StrConstants::getBuildDate();
+  QString installReason = StrConstants::getInstallReason();
 
   //Let's put package description in UTF-8 format
   QString pkgDescription = pid.description;
@@ -170,6 +171,9 @@ QString OctopiTabInfo::formatTabInfo(const PackageRepository::PackageData& packa
   html += "<tr><td>" + architecture + "</td><td>" + pid.arch + "</td></tr>";
   html += "<tr><td>" + buildDate + "</td><td>" +
       pid.buildDate.toString("ddd - dd/MM/yyyy hh:mm:ss") + "</td></tr>";
+
+  if(!pid.installReason.isEmpty())
+    html += "<tr><td>" + installReason + "</td><td>" + pid.installReason + "</td></tr>";
 
   html += "</table>";
 

@@ -240,7 +240,7 @@ private:
   QString getSelectedGroup();
   bool isAllGroupsSelected();
   bool isAllGroups(const QString& group);
-
+  bool hasPartialUpgrade(QStringList &pkgsToInstall);
   bool isPackageInstalled(const QString &pkgName);
   bool isPackageTreeViewVisible();
 
