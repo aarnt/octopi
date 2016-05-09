@@ -1255,6 +1255,8 @@ void MainWindow::doRemoveAURPackage()
  */
 bool MainWindow::hasPartialUpgrade(QStringList &pkgsToInstall)
 {
+  if (m_numberOfOutdatedPackages == 0) return false;
+
   bool result = false;
   pkgsToInstall.sort();
 
