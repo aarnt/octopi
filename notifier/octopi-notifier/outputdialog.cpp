@@ -52,6 +52,16 @@ void OutputDialog::setDebugMode(bool newValue)
   m_debugInfo = newValue;
 }
 
+QFrame::Shape OutputDialog::frameShape()
+{
+    return m_textBrowser->frameShape();
+}
+
+void OutputDialog::setFrameShape(QFrame::Shape shape)
+{
+    m_textBrowser->setFrameShape(shape);
+}
+
 /*
  * Let's build the main widgets...
  */
