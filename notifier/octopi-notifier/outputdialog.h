@@ -25,6 +25,7 @@
 
 #include <QDialog>
 #include <QProcess>
+#include <QFrame>
 
 class PacmanExec;
 class QString;
@@ -39,6 +40,8 @@ class QKeyEvent;
 class OutputDialog : public QDialog
 {
   Q_OBJECT
+
+  Q_PROPERTY(QFrame::Shape frameShape READ frameShape WRITE setFrameShape USER true)
 
 private:
   QTextBrowser *m_textBrowser;
@@ -74,10 +77,12 @@ protected:
 public:
   explicit OutputDialog(QWidget *parent = 0);
   void setDebugMode(bool newValue);
+  QFrame::Shape frameShape();
 
 public slots:
   void show();
   void reject();
+  void setFrameShape(QFrame::Shape shape);
 };
 
 #endif // OUTPUTDIALOG_H
