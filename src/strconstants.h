@@ -85,7 +85,7 @@ public:
     if (first)
     {
       if( UnixCommand::getLinuxDistro() == ectn_CHAKRA )
-        ret = QLatin1String( "ccr" );
+        ret = QLatin1String( "chaser" );
       else if (UnixCommand::getLinuxDistro() == ectn_KAOS)
         ret = QLatin1String( "kcp" );
       else if (UnixCommand::hasTheExecutable("pacaur"))

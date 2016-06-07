@@ -902,9 +902,10 @@ void PacmanExec::doAURInstall(const QString &listOfPackages)
     m_lastCommandList.append(StrConstants::getForeignRepositoryToolName() + " -i " + listOfPackages + ";");
   else if (StrConstants::getForeignRepositoryToolName() == "pacaur")
     m_lastCommandList.append(StrConstants::getForeignRepositoryToolName() + " -Sa " + listOfPackages + ";");
-  else if (StrConstants::getForeignRepositoryToolName() == "yaourt" ||
-           StrConstants::getForeignRepositoryToolName() == "ccr")
+  else if (StrConstants::getForeignRepositoryToolName() == "yaourt")
     m_lastCommandList.append(StrConstants::getForeignRepositoryToolName() + " -S " + listOfPackages + ";");
+  else if (StrConstants::getForeignRepositoryToolName() == "chaser")
+    m_lastCommandList.append(StrConstants::getForeignRepositoryToolName() + " install " + listOfPackages + ";");
 
   m_lastCommandList.append("echo -e;");
   m_lastCommandList.append("read -n 1 -p \"" + StrConstants::getPressAnyKey() + "\"");
@@ -920,7 +921,7 @@ void PacmanExec::doAURRemove(const QString &listOfPackages)
 {
   m_lastCommandList.clear();
 
-  if (StrConstants::getForeignRepositoryToolName() == "ccr" ||
+  if (StrConstants::getForeignRepositoryToolName() == "chaser" ||
       StrConstants::getForeignRepositoryToolName() == "kcp")
   {
     m_lastCommandList.append("pacman -R " + listOfPackages + ";");
