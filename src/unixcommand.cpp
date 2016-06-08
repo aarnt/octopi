@@ -209,8 +209,8 @@ QByteArray UnixCommand::getAURUrl(const QString &pkgName)
 
   aur.setProcessEnvironment(env);
 
-  if (StrConstants::getForeignRepositoryToolName() == "ccr")
-    aur.start(StrConstants::getForeignRepositoryToolName() + " -Si " + pkgName);
+  if (StrConstants::getForeignRepositoryToolName() == "chaser")
+    aur.start(StrConstants::getForeignRepositoryToolName() + " info " + pkgName);
   else
     aur.start(StrConstants::getForeignRepositoryToolName() + " -Sia " + pkgName);
 
@@ -238,6 +238,8 @@ QByteArray UnixCommand::getAURPackageList(const QString &searchString)
   {
     if (StrConstants::getForeignRepositoryToolName() == "yaourt")
       aur.start(StrConstants::getForeignRepositoryToolName() + " --nocolor -Ss " + searchString);
+    else if (StrConstants::getForeignRepositoryToolName() == "chaser")
+      aur.start(StrConstants::getForeignRepositoryToolName() + " search " + searchString);
     else
       aur.start(StrConstants::getForeignRepositoryToolName() + " -Ss " + searchString);
   }
@@ -254,6 +256,18 @@ QByteArray UnixCommand::getAURPackageList(const QString &searchString)
     res.remove("[1;32m");
     res.remove("[1;34m");
     res.remove("[1;36m");
+
+    return res.toLatin1();
+  }
+  else if (UnixCommand::getLinuxDistro() == ectn_CHAKRA)
+  {
+    QString res = result;
+    res.remove("\033");
+    res.remove("[0m");
+    res.remove("[1m");
+    res.remove("[m");
+    res.remove("[32m");
+    res.remove("[35m");
 
     return res.toLatin1();
   }

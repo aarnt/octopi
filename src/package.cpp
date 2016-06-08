@@ -623,7 +623,7 @@ QList<PackageListData> * Package::getAURPackageList(const QString& searchString)
       //Chakra does not have popularity support in CCR
       QString aurTool = StrConstants::getForeignRepositoryToolName();
 
-      if (aurTool != "ccr" && aurTool != "pacaur" && strVotes.count() > 0)
+      if (aurTool != "chaser" && aurTool != "pacaur" && strVotes.count() > 0)
       {
         if (!strVotes.first().isEmpty())
           pkgVotes = strVotes.first().replace('(', "").replace(')', "").toInt();
