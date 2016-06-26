@@ -841,7 +841,7 @@ void PacmanExec::doSystemUpgrade()
 void PacmanExec::doSystemUpgradeInTerminal()
 {
   m_lastCommandList.clear();
-  m_lastCommandList.append("pacman -Su;");
+  m_lastCommandList.append("pacman -Syu;");
   m_lastCommandList.append("echo -e;");
   m_lastCommandList.append("read -n 1 -p \"" + StrConstants::getPressAnyKey() + "\"");
 

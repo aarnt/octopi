@@ -852,8 +852,28 @@ void MainWindow::doSystemUpgrade(SystemUpgradeOptions systemUpgradeOptions)
     else if (targets->count() == 0 && m_outdatedStringList->count() > 0)
     {
       //This is a bug and should be shown to the user!
-      clearTabOutput();
-      writeToTabOutput(UnixCommand::getTargetUpgradeList());
+      //This is bug, let us find if "breaks dependency" string is here:
+      if (UnixCommand::getTargetUpgradeList().contains("breaks dependency"))
+      {
+        QString msg = StrConstants::getThereHasBeenATransactionError() + "\n" +
+            StrConstants::getConfirmExecuteTransactionInTerminal();
+
+        int res = QMessageBox::question(this, StrConstants::getConfirmation(),
+                                        msg,
+                                        QMessageBox::Yes|QMessageBox::No, QMessageBox::No);
+
+        if (res == QMessageBox::Yes)
+        {
+          prepareSystemUpgrade();
+
+          m_commandExecuting = ectn_RUN_SYSTEM_UPGRADE_IN_TERMINAL;
+          m_pacmanExec->doSystemUpgradeInTerminal();
+          m_commandQueued = ectn_NONE;
+        }
+      }
+
+      //clearTabOutput();
+      //writeToTabOutput(UnixCommand::getTargetUpgradeList());
       return;
     }
 
