@@ -79,6 +79,7 @@ TRANSLATIONS += resources/translations/octopi_cachecleaner_pt_BR.ts \
     resources/translations/octopi_cachecleaner_en_GB.ts \
     resources/translations/octopi_cachecleaner_pt_PT.ts \
     resources/translations/octopi_cachecleaner_sv.ts \
+    resources/translations/octopi_cachecleaner_sl.ts \
     resources/translations/octopi_cachecleaner_hu.ts \
     resources/translations/octopi_cachecleaner_zh_TW.ts \
     resources/translations/octopi_cachecleaner_ms_MY.ts \

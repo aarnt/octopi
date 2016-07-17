@@ -1,4 +1,5 @@
 0.9.0
+  Added slovenian translation (thanks to the translation crew).
   BugFix: About and System Upgrade dialogs could be opened twice in notifier.
   Added "Install Reason" field at Info tab.
   Prevent the user to install partial upgrades in his system (some of the outdated packages). 
