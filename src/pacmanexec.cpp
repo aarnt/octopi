@@ -838,10 +838,15 @@ void PacmanExec::doSystemUpgrade()
 /*
  * Calls pacman to upgrade the entire system inside a terminal
  */
-void PacmanExec::doSystemUpgradeInTerminal()
+void PacmanExec::doSystemUpgradeInTerminal(CommandExecuting additionalCommand)
 {
   m_lastCommandList.clear();
-  m_lastCommandList.append("pacman -Syu;");
+
+  if (additionalCommand == ectn_NONE)
+    m_lastCommandList.append("pacman -Su;");
+  else if (additionalCommand == ectn_SYNC_DATABASE)
+    m_lastCommandList.append("pacman -Syu;");
+
   m_lastCommandList.append("echo -e;");
   m_lastCommandList.append("read -n 1 -p \"" + StrConstants::getPressAnyKey() + "\"");
 

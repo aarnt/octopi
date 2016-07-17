@@ -77,7 +77,7 @@ public:
   void doRemoveAndInstallInTerminal(const QString &listOfPackagestoRemove, const QString &listOfPackagestoInstall);
 
   void doSystemUpgrade();
-  void doSystemUpgradeInTerminal();
+  void doSystemUpgradeInTerminal(CommandExecuting additionalCommand = ectn_NONE);
 
   void doSyncDatabase();
 

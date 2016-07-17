@@ -853,7 +853,8 @@ void MainWindow::doSystemUpgrade(SystemUpgradeOptions systemUpgradeOptions)
     {
       //This is a bug and should be shown to the user!
       //This is bug, let us find if "breaks dependency" string is here:
-      if (UnixCommand::getTargetUpgradeList().contains("breaks dependency"))
+      if (UnixCommand::getTargetUpgradeList().contains("breaks dependency") ||
+          UnixCommand::getTargetUpgradeList().contains(": requires "))
       {
         QString msg = StrConstants::getThereHasBeenATransactionError() + "\n" +
             StrConstants::getConfirmExecuteTransactionInTerminal();
@@ -867,13 +868,11 @@ void MainWindow::doSystemUpgrade(SystemUpgradeOptions systemUpgradeOptions)
           prepareSystemUpgrade();
 
           m_commandExecuting = ectn_RUN_SYSTEM_UPGRADE_IN_TERMINAL;
-          m_pacmanExec->doSystemUpgradeInTerminal();
+          m_pacmanExec->doSystemUpgradeInTerminal(ectn_SYNC_DATABASE);
           m_commandQueued = ectn_NONE;
         }
       }
 
-      //clearTabOutput();
-      //writeToTabOutput(UnixCommand::getTargetUpgradeList());
       return;
     }
 
@@ -1826,7 +1825,6 @@ void MainWindow::outputText(const QString &output)
   {
     ensureTabVisible(ctn_TABINDEX_OUTPUT);
     positionTextEditCursorAtEnd();
-
     text->insertHtml(output);
     text->ensureCursorVisible();
   }
