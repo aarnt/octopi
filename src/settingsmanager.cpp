@@ -94,6 +94,7 @@ int SettingsManager::getSyncDbHour()
 //The syncDb interval is in MINUTES and it cannot be less than 5!
 int SettingsManager::getSyncDbInterval()
 {
+  const int ctn_MAX_MIN = 44640;
   SettingsManager p_instance;
   int n = p_instance.getSYSsettings()->value(ctn_KEY_SYNC_DB_INTERVAL, -1).toInt();
 
@@ -103,9 +104,9 @@ int SettingsManager::getSyncDbInterval()
     p_instance.getSYSsettings()->setValue(ctn_KEY_SYNC_DB_INTERVAL, n);
     p_instance.getSYSsettings()->sync();
   }
-  else if (n > 1380)
+  else if (n > ctn_MAX_MIN)
   {
-    n = 1380; //This is 23 hours, the maximum allowed!
+    n = ctn_MAX_MIN; //This is 1 month (31 days), the maximum allowed!
     p_instance.getSYSsettings()->setValue(ctn_KEY_SYNC_DB_INTERVAL, n);
     p_instance.getSYSsettings()->sync();
   }

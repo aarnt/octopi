@@ -72,7 +72,7 @@
         <location filename="Projects/octopi/ui/mainwindow.ui" line="249"/>
         <source>Commit</source>
         <oldsource>&amp;Commit</oldsource>
-        <translation type="unfinished"/>
+        <translation>Sačuvaj</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="252"/>
@@ -421,17 +421,17 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="136"/>
         <source>Ctrl+M or &apos;Transaction/Commit&apos; to start installation/removal of selected packages</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+M ili &apos;Transakcija/Izvrši&apos; za pokretanje instalacije/uklanjanja odabranih paketa</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="138"/>
         <source>Ctrl+E or &apos;Transaction/Cancel&apos; to clear the selection of to be removed/installed packages</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+E ili &apos;Transakcija/Odustani&apos; za čišćenje odabira paketa za uklanjanje/instalaciju</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="140"/>
         <source>Ctrl+G or &apos;File/Get latest distro news&apos; to retrieve the latest RSS based distro news</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+G ili &apos;Datoteka/Dohvati zadnje vijesti distibucije&apos; za dohvaćanje zadnjih RSS vijesti distribucije</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="142"/>
@@ -446,7 +446,7 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="147"/>
         <source>Ctrl+Shift+C to clean local packages cache (pacman -Sc)</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+Shift+C za čišćenje predmemorije lokalnih paketa (pacman -Sc)</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="149"/>
@@ -456,7 +456,7 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="151"/>
         <source>Ctrl+Shift+R to remove Pacman&apos;s transaction lock file</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+Shift+R za uklanjanje Pacman-ove transaction lock datoteke</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="153"/>
@@ -491,7 +491,7 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="166"/>
         <source>F12 to maximize/demaximize Tab&apos;s view</source>
-        <translation type="unfinished"/>
+        <translation>F12 za de-/maksimiziranje pregleda kartica</translation>
     </message>
 </context>
 <context>
@@ -559,12 +559,12 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="151"/>
         <source>Netrunner Rolling news</source>
-        <translation type="unfinished"/>
+        <translation>Netrunner Rolling vijesti</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="155"/>
         <source>Parabola GNU/Linux-libre news</source>
-        <translation type="unfinished"/>
+        <translation>Parabola GNU/Linux-libre vijesti</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="159"/>
@@ -650,7 +650,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="231"/>
         <source>Provides</source>
-        <translation type="unfinished"/>
+        <translation>Pruža</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="235"/>
@@ -705,7 +705,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="275"/>
         <source>Packager</source>
-        <translation type="unfinished"/>
+        <translation>Pakiratelj</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="279"/>
@@ -850,12 +850,12 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="391"/>
         <source>Cleaning package cache...</source>
-        <translation type="unfinished"/>
+        <translation>Čistim predmemoriju paketa...</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="395"/>
         <source>Removing Pacman&apos;s transaction lock file...</source>
-        <translation type="unfinished"/>
+        <translation>Uklanjam Pacman-ovu transaction lock datoteku...</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="399"/>
@@ -1000,12 +1000,12 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="515"/>
         <source>Do you really want to clean the package cache?</source>
-        <translation type="unfinished"/>
+        <translation>Želite li očistiti predmemoriju paketa?</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="519"/>
         <source>Do you really want to remove Pacman&apos;s transaction lock file?</source>
-        <translation type="unfinished"/>
+        <translation>Želite li ukloniti Pacman-ovu transaction lock datoteku?</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="523"/>

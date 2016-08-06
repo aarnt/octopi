@@ -1137,7 +1137,7 @@ Tem certeza que deseja abri-lo?</translation>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="626"/>
         <source>Once a day, at</source>
-        <translation>Uma vez por dia, as</translation>
+        <translation>Uma vez por dia, às</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="630"/>
