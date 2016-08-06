@@ -59,6 +59,7 @@ const QString ctn_APPLICATION("octopi");
 const QString ctn_KEY_CURRENT_TAB_INDEX("Current_Tab_Index");
 const QString ctn_KEY_WINDOW_SIZE("Window_Size");
 const QString ctn_KEY_TRANSACTION_WINDOW_SIZE("Transaction_Window_Size");
+const QString ctn_KEY_OPTIONALDEPS_WINDOW_SIZE("OptionalDeps_Window_Size");
 const QString ctn_KEY_PANEL_ORGANIZING("Panel_Organizing");
 const QString ctn_KEY_PACKAGE_LIST_ORDERED_COL("PackageList_Ordered_Col");
 const QString ctn_KEY_PACKAGE_LIST_SORT_ORDER("PackageList_Sort_Order");
@@ -166,7 +167,6 @@ enum EditOptions { ectn_EDIT_AS_ROOT, ectn_EDIT_AS_NORMAL_USER };
 //Octopi-notifier related  -------------------------------------------------------------------------------
 
 const QString ctn_PACMANHELPER_BINARY = "/usr/lib/octopi/pacmanhelper";
-
 const QString ctn_DBUS_PACMANHELPER_SERVICE = "/usr/share/dbus-1/system-services/org.octopi.pacmanhelper.service";
 
 enum ExecOpt { ectn_NORMAL_EXEC_OPT, ectn_SYSUPGRADE_EXEC_OPT,

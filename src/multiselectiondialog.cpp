@@ -153,6 +153,16 @@ bool MultiSelectionDialog::eventFilter(QObject *obj, QEvent *evt)
 }
 
 /*
+ * Slot called when this dialog pops into existence
+ */
+int MultiSelectionDialog::exec()
+{
+  //Let's restore the dialog size saved...
+  restoreGeometry(SettingsManager::getOptionalDepsWindowSize());
+  return QDialog::exec();
+}
+
+/*
  * Slot called when this dialog is cancelled (Cancel or ESC)
  */
 void MultiSelectionDialog::reject()
@@ -166,4 +176,12 @@ void MultiSelectionDialog::reject()
 void MultiSelectionDialog::slotOk()
 {
   done(QDialogButtonBox::Ok);
+}
+
+void MultiSelectionDialog::done(int p)
+{
+  //Let's save the dialog size value before closing it.
+  QByteArray windowSize=saveGeometry();
+  SettingsManager::setOptionalDepsWindowSize(windowSize);
+  QDialog::done(p);
 }

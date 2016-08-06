@@ -69,6 +69,7 @@ class SettingsManager
     static bool getShowGroupsPanel();
     static QByteArray getWindowSize();
     static QByteArray getTransactionWindowSize();
+    static QByteArray getOptionalDepsWindowSize();
     static QByteArray getSplitterHorizontalState();
     static bool isValidTerminalSelected();
 
@@ -87,6 +88,7 @@ class SettingsManager
     static void setShowGroupsPanel(int newValue);
     static void setWindowSize(QByteArray newValue);
     static void setTransactionWindowSize(QByteArray newValue);
+    static void setOptionalDepsWindowSize(QByteArray newValue);
     static void setSplitterHorizontalState(QByteArray newValue);
 
     static void setSyncDbHour(int newValue);

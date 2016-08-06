@@ -235,6 +235,11 @@ QByteArray SettingsManager::getTransactionWindowSize()
   return (instance()->getSYSsettings()->value( ctn_KEY_TRANSACTION_WINDOW_SIZE, 0).toByteArray());
 }
 
+QByteArray SettingsManager::getOptionalDepsWindowSize()
+{
+  return (instance()->getSYSsettings()->value( ctn_KEY_OPTIONALDEPS_WINDOW_SIZE, 0).toByteArray());
+}
+
 QByteArray SettingsManager::getSplitterHorizontalState(){
   return (instance()->getSYSsettings()->value( ctn_KEY_SPLITTER_HORIZONTAL_STATE, 0).toByteArray());
 }
@@ -285,6 +290,12 @@ void SettingsManager::setWindowSize(QByteArray newValue){
 void SettingsManager::setTransactionWindowSize(QByteArray newValue)
 {
   instance()->getSYSsettings()->setValue( ctn_KEY_TRANSACTION_WINDOW_SIZE, newValue);
+  instance()->getSYSsettings()->sync();
+}
+
+void SettingsManager::setOptionalDepsWindowSize(QByteArray newValue)
+{
+  instance()->getSYSsettings()->setValue( ctn_KEY_OPTIONALDEPS_WINDOW_SIZE, newValue);
   instance()->getSYSsettings()->sync();
 }
 

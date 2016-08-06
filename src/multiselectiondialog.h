@@ -49,8 +49,10 @@ private:
 
   bool m_actionIsToCheck;
 
-private slots:
-  void reject();
+public slots:
+  virtual int exec();
+  virtual void reject();
+  virtual void done(int p);
   void slotOk();
 };
 
