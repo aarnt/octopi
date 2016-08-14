@@ -731,10 +731,10 @@ void PacmanExec::doInstallInTerminal(const QString &listOfPackages)
  */
 void PacmanExec::doInstallLocal(const QString &listOfPackages)
 {
-  QString command = "pacman -U --force --noconfirm " + listOfPackages;
+  QString command = "pacman -U --force --noconfirm '" + listOfPackages.trimmed() + "'";
 
   m_lastCommandList.clear();
-  m_lastCommandList.append("pacman -U --force " + listOfPackages + ";");
+  m_lastCommandList.append("pacman -U --force \"" + listOfPackages.trimmed() + "\";");
   m_lastCommandList.append("echo -e;");
   m_lastCommandList.append("read -n 1 -p \"" + StrConstants::getPressAnyKey() + "\"");
 
@@ -748,7 +748,7 @@ void PacmanExec::doInstallLocal(const QString &listOfPackages)
 void PacmanExec::doInstallLocalInTerminal(const QString &listOfPackages)
 {
   m_lastCommandList.clear();
-  m_lastCommandList.append("pacman -U --force " + listOfPackages + ";");
+  m_lastCommandList.append("pacman -U --force \"" + listOfPackages.trimmed() + "\";");
   m_lastCommandList.append("echo -e;");
   m_lastCommandList.append("read -n 1 -p \"" + StrConstants::getPressAnyKey() + "\"");
 

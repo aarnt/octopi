@@ -1,5 +1,7 @@
 0.9.0
   Added slovenian translation (thanks to the translation crew).
+  BugFix: Install local packages did not work with space separated paths 
+	(thanks to voanhcuoc for pointing it out).
   BugFix: About and System Upgrade dialogs could be opened twice in notifier.
   BugFix: Max time in minutes for notification interval was not honoring > 1380.
   BugFix: Optional dependencies dialog can now be resized and new value is 
