@@ -66,13 +66,13 @@
         <location filename="Projects/octopi/ui/mainwindow.ui" line="240"/>
         <source>Non installed</source>
         <oldsource>&amp;Non installed</oldsource>
-        <translation>Neinstaliranih</translation>
+        <translation>Nije instalirano</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="249"/>
         <source>Commit</source>
         <oldsource>&amp;Commit</oldsource>
-        <translation>Sačuvaj</translation>
+        <translation>Izvrši</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="252"/>
@@ -84,7 +84,7 @@
         <location filename="Projects/octopi/ui/mainwindow.ui" line="264"/>
         <source>Cancel</source>
         <oldsource>Ca&amp;ncel</oldsource>
-        <translation>Otkaži</translation>
+        <translation>Odustani</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="267"/>
@@ -146,7 +146,7 @@
         <location filename="Projects/octopi/ui/mainwindow.ui" line="341"/>
         <source>Get latest distro news</source>
         <oldsource>&amp;Get latest distro news</oldsource>
-        <translation>Uzmi</translation>
+        <translation>Dohvati zadnje vijesti o distribuciji</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="344"/>
@@ -166,22 +166,22 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="371"/>
         <source>Collapse item</source>
-        <translation>Uruši stavku</translation>
+        <translation>Skupi stavku</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="380"/>
         <source>Expand item</source>
-        <translation>Razgranaj stavku</translation>
+        <translation>Proširi stavku</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="389"/>
         <source>Collapse all items</source>
-        <translation>Uruši sve stavke</translation>
+        <translation>Skupi sve stavke</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="398"/>
         <source>Expand all items</source>
-        <translation>Razgranaj sve stavke</translation>
+        <translation>Proširi sve stavke</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="407"/>
@@ -240,7 +240,7 @@
         <location filename="Projects/octopi/ui/mainwindow.ui" line="497"/>
         <source>Usage</source>
         <oldsource>&amp;Usage</oldsource>
-        <translation>Korištenost</translation>
+        <translation>Upotreba</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="500"/>
@@ -257,19 +257,19 @@
         <location filename="Projects/octopi/ui/mainwindow.ui" line="525"/>
         <source>Pacman Log Viewer</source>
         <oldsource>&amp;Pacman Log Viewer</oldsource>
-        <translation>Pacman log Preglednik</translation>
+        <translation>Preglednik Pacman zapisa</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="537"/>
         <source>Repository Editor</source>
         <oldsource>&amp;Repository Editor</oldsource>
-        <translation>Urednik repozitorija</translation>
+        <translation>Uređivač repozitorija</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="546"/>
         <source>Cache Cleaner</source>
         <oldsource>&amp;Cache Cleaner</oldsource>
-        <translation>Keš Čistač</translation>
+        <translation>Čistač predmemorije</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="554"/>
@@ -356,7 +356,7 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="106"/>
         <source>Right click package to install/reinstall or remove it</source>
-        <translation>Za (ponovnu) instalaciju ili uklanjanje paketa desni klik</translation>
+        <translation>Kliknite desnom tipkom miša na paket za instalaciju, ponovnu instalaciju ili uklanjanje paketa</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="109"/>
@@ -386,7 +386,7 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="119"/>
         <source>Alt+5 to switch to &apos;News&apos; tab</source>
-        <translation>Alt+5 za prijelaz na karticu &apos;Novosti&apos;</translation>
+        <translation>Alt+5 za prijelaz na karticu &apos;Vijesti&apos;</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="121"/>
@@ -401,12 +401,12 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="126"/>
         <source>Ctrl+D or &apos;File/Sync database&apos; to sync the local database with latest remote changes (pacman -Sy)</source>
-        <translation>Ctrl+D ili &apos;File/Sync database&apos; da sinhronizujete lokalnu bazu podataka sa poslednjim izmenama na spoljnoj bazi (pacman -Sy)</translation>
+        <translation>Ctrl+D ili &apos;File/Sync database&apos; da sinkronizirate lokalnu bazu podataka sa posljednjim izmjenama na udaljenoj bazi (pacman -Sy)</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="128"/>
         <source>Ctrl+U or &apos;File/System upgrade&apos; to make a full system upgrade (pacman -Su)</source>
-        <translation>Ctrl+U ili &apos;File/System upgrade&apos; da unapredite kompletan sistem (pacman -Su)</translation>
+        <translation>Ctrl+U ili &apos;File/System upgrade&apos; da nadogradite sustav (pacman -Su)</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="130"/>
@@ -416,17 +416,17 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="132"/>
         <source>Ctrl+F to search for text inside tab Files, News and Usage</source>
-        <translation>Ctrl+F da pretražite tekst unutar kartice Datoteke, Vesti i Korišćenje</translation>
+        <translation>Ctrl+F da pretražite tekst unutar kartice Datoteke, Vijesti i Korištenje</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="136"/>
         <source>Ctrl+M or &apos;Transaction/Commit&apos; to start installation/removal of selected packages</source>
-        <translation>Ctrl+M ili &apos;Transakcija/Izvrši&apos; za pokretanje instalacije/uklanjanja odabranih paketa</translation>
+        <translation>Ctrl+M ili &apos;Transakcija/Izvrši&apos; za pokretanje instalacije ili uklanjanja odabranih paketa</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="138"/>
         <source>Ctrl+E or &apos;Transaction/Cancel&apos; to clear the selection of to be removed/installed packages</source>
-        <translation>Ctrl+E ili &apos;Transakcija/Odustani&apos; za čišćenje odabira paketa za uklanjanje/instalaciju</translation>
+        <translation>Ctrl+E ili &apos;Transakcija/Odustani&apos; za čišćenje paketa odabranih za uklanjanje ili instalaciju</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="140"/>
@@ -436,7 +436,7 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="142"/>
         <source>Ctrl+Q or &apos;File/Exit&apos; to exit the application</source>
-        <translation>Ctrl+Q ili &apos;Datoteka/Izlaz&apos; za zatvoriti aplikaciju</translation>
+        <translation>Ctrl+Q ili &apos;Datoteka/Izlaz&apos; za izlaz iz aplikacije</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="145"/>
@@ -509,17 +509,17 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="45"/>
         <source>use a different Qt4 style (ex: -style gtk).</source>
-        <translation>upotrijebi drukčiji Qt4 stil (ex: -style gtk).</translation>
+        <translation>upotrijebi drukčiji Qt4 stil (primjer: -style gtk).</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="46"/>
         <source>use a different remove command (ex: -removecmd R).</source>
-        <translation>upotrijebi drukčiju zapovijed za uklanjanje (pr.: -removecmd R).</translation>
+        <translation>upotrijebi drukčiju naredbu za uklanjanje (primjer: -removecmd R).</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="47"/>
         <source>force a system upgrade at startup.</source>
-        <translation>prisili nadogradnju sustava pri njegovom dizanju.</translation>
+        <translation>prisili nadogradnju sustava prilikom pokretanja</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="53"/>
@@ -529,22 +529,22 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="127"/>
         <source>Antergos news</source>
-        <translation>Novosti o Antergosu</translation>
+        <translation>Vijesti o Antergos-u</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="131"/>
         <source>ArchBSD news</source>
-        <translation>Novosti o ArchBSD-u</translation>
+        <translation>Vijesti o ArchBSD-u</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="135"/>
         <source>Arch Linux news</source>
-        <translation>Vijesti o Arch Linux</translation>
+        <translation>Vijesti o Arch Linux-u</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="139"/>
         <source>Chakra news</source>
-        <translation>Vijesti o Chakra</translation>
+        <translation>Vijesti o Chakra Linux-u</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="143"/>
@@ -559,23 +559,23 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="151"/>
         <source>Netrunner Rolling news</source>
-        <translation>Netrunner Rolling vijesti</translation>
+        <translation>Vijesti o Netrunner Rolling-u</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="155"/>
         <source>Parabola GNU/Linux-libre news</source>
-        <translation>Parabola GNU/Linux-libre vijesti</translation>
+        <translation>Vijesti o GNU/Linux-libre </translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="159"/>
         <source>No news could be found! Press Ctrl+G to download the latest news.</source>
-        <translation>Vijesti nisu pronađene! Pritisnite Ctrl+G za skidanje najnovijih vijesti.</translation>
+        <translation>Vijesti nisu pronađene! Pritisnite Ctrl+G za preuzimanje najnovijih vijesti.</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="163"/>
         <source>This Linux distro seems to be incompatible with Octopi!</source>
         <oldsource>This GNU/Linux distro seems to be incompatible with Octopi!</oldsource>
-        <translation>Izgleda kako ova Linux distra nije kompatibilna s Octopijem!</translation>
+        <translation>Izgleda kako ova Linux distribucija nije kompatibilna s Octopijem!</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="167"/>
@@ -655,7 +655,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="235"/>
         <source>Depends On</source>
-        <translation>Ovisi o</translation>
+        <translation>Zavisi o</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="239"/>
@@ -665,17 +665,17 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="243"/>
         <source>Optional For</source>
-        <translation>Opcionalan za</translation>
+        <translation>Neobavezan za</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="247"/>
         <source>Optional Deps</source>
-        <translation>Opcionalne ovisnosti</translation>
+        <translation>Neobavezne zavisnosti</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="251"/>
         <source>Conflicts With</source>
-        <translation>U konfliktu s(a)</translation>
+        <translation>U konfliktu sa</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="255"/>
@@ -725,7 +725,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="291"/>
         <source>Build Date</source>
-        <translation>Datum gradnje</translation>
+        <translation>Datum stvaranja</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="295"/>
@@ -745,7 +745,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="307"/>
         <source>Password</source>
-        <translation>Zaporka</translation>
+        <translation>Lozinka</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="311"/>
@@ -915,27 +915,27 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="447"/>
         <source>Command finished OK!</source>
-        <translation>Zapovijed uredno izvršena!</translation>
+        <translation>Naredba uspješno izvršena!</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="451"/>
         <source>Command finished with errors!</source>
-        <translation>Izvršena zapovijed ima grešaka!</translation>
+        <translation>Naredba izvršena sa pogreškama!</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="455"/>
         <source>Retrieving %1</source>
-        <translation>Dohvaćanje %1</translation>
+        <translation>Preuzimanje %1</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="459"/>
         <source>Total download size: %1 KB</source>
-        <translation>Ukupna veličina za skidanje: %1 KB</translation>
+        <translation>Ukupna veličina za preuzimanje: %1 KB</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="463"/>
         <source>The following package needs to be retrieved</source>
-        <translation>Sljedeći paket treba dohvatiti</translation>
+        <translation>Sljedeći paket treba preuzeti</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="467"/>
@@ -945,7 +945,7 @@
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="471"/>
         <source>The following %n packages need to be retrieved</source>
-        <translation><numerusform>Sljedeći %n paket treba dohvatiti</numerusform><numerusform>Sljedeća %n paketa treba dohvatiti</numerusform><numerusform>Sljedećih %n paketa treba dohvatiti</numerusform></translation>
+        <translation><numerusform>Sljedeći %n paket treba preuzeti</numerusform><numerusform>Sljedeća %n paketa treba preuzeti</numerusform><numerusform>Sljedećih %n paketa treba preuzeti</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="475"/>
@@ -960,12 +960,12 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="483"/>
         <source>There are no new updates available!</source>
-        <translation>Nema novih nadogradnji na raspolaganju!</translation>
+        <translation>Nema novih nadogradnji!</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="487"/>
         <source>There is an update available!</source>
-        <translation>Nadogradnja je na raspolaganju</translation>
+        <translation>Nadogradnja je dostupna</translation>
     </message>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="491"/>
@@ -1015,7 +1015,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="527"/>
         <source>Please, enter the administrator&apos;s password</source>
-        <translation>Molim, unesite zaporku administratora</translation>
+        <translation>Molim, unesite lozinku administratora</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="533"/>
@@ -1107,7 +1107,7 @@ Sigurni ste da je želite otvoriti?</translation>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="602"/>
         <source>Press Ctrl+A to select/deselect all</source>
-        <translation>Pritisni Ctrl+A za (de)selektirati sve</translation>
+        <translation>Pritisni Ctrl+A za označiti/odznačiti sve</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="606"/>
@@ -1117,7 +1117,7 @@ Sigurni ste da je želite otvoriti?</translation>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="610"/>
         <source>Copy path to clipboard</source>
-        <translation>Kopiraj putanju u među-memoriju</translation>
+        <translation>Kopiraj putanju u međuspremnik</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="614"/>

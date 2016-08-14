@@ -1,4 +1,6 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="en" version="2.1">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="en">
 <context>
     <name>MainWindow</name>
     <message>
@@ -455,12 +457,12 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="160"/>
         <source>F4 to open a Terminal whitin the selected directory at Files tab</source>
-        <translation>F4 to open a Terminal whitin the selected directory at Files tab</translation>
+        <translation>F4 to open a Terminal within the selected directory at Files tab</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="162"/>
         <source>F6 to open a File Manager whitin the selected directory at Files tab</source>
-        <translation>F6 to open a File Manager whitin the selected directory at Files tab</translation>
+        <translation>F6 to open a File Manager within the selected directory at Files tab</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="164"/>
@@ -788,7 +790,10 @@
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="349"/>
         <source>There are %n outdated packages in your system:</source>
-        <translation><numerusform>There are %n outdated packages in your system:</numerusform><numerusform>There are %n outdated packages in your system:</numerusform></translation>
+        <translation>
+            <numerusform>There are %n outdated packages in your system:</numerusform>
+            <numerusform>There are %n outdated packages in your system:</numerusform>
+        </translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="353"/>
@@ -798,22 +803,34 @@
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="357"/>
         <source>%n (%2) packages</source>
-        <translation><numerusform>%n (%2) packages</numerusform><numerusform>%n (%2) packages</numerusform></translation>
+        <translation>
+            <numerusform>%n (%2) packages</numerusform>
+            <numerusform>%n (%2) packages</numerusform>
+        </translation>
     </message>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="361"/>
         <source>%n installed</source>
-        <translation><numerusform>%n installed</numerusform><numerusform>%n installed</numerusform></translation>
+        <translation>
+            <numerusform>%n installed</numerusform>
+            <numerusform>%n installed</numerusform>
+        </translation>
     </message>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="365"/>
         <source>%n outdated</source>
-        <translation><numerusform>%n outdated</numerusform><numerusform>%n outdated</numerusform></translation>
+        <translation>
+            <numerusform>%n outdated</numerusform>
+            <numerusform>%n outdated</numerusform>
+        </translation>
     </message>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="369"/>
         <source>%n available</source>
-        <translation><numerusform>%n available</numerusform><numerusform>%n available</numerusform></translation>
+        <translation>
+            <numerusform>%n available</numerusform>
+            <numerusform>%n available</numerusform>
+        </translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="373"/>
@@ -913,12 +930,18 @@
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="453"/>
         <source>The following %n packages need to be retrieved</source>
-        <translation><numerusform>The following %n packages need to be retrieved</numerusform><numerusform>The following %n packages need to be retrieved</numerusform></translation>
+        <translation>
+            <numerusform>The following %n packages need to be retrieved</numerusform>
+            <numerusform>The following %n packages need to be retrieved</numerusform>
+        </translation>
     </message>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="457"/>
         <source>The following %n packages will be removed</source>
-        <translation><numerusform>The following %n packages will be removed</numerusform><numerusform>The following %n packages will be removed</numerusform></translation>
+        <translation>
+            <numerusform>The following %n packages will be removed</numerusform>
+            <numerusform>The following %n packages will be removed</numerusform>
+        </translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="461"/>
@@ -938,7 +961,10 @@
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="473"/>
         <source>There are %n updates available!</source>
-        <translation><numerusform>There are %n updates available!</numerusform><numerusform>There are %n updates available!</numerusform></translation>
+        <translation>
+            <numerusform>There are %n updates available!</numerusform>
+            <numerusform>There are %n updates available!</numerusform>
+        </translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="477"/>

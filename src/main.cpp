@@ -82,8 +82,13 @@ int main(int argc, char *argv[])
   app.sendMessage("RAISE");
 
   QTranslator appTranslator;
-  appTranslator.load(":/resources/translations/octopi_" +
+  bool success = appTranslator.load(":/resources/translations/octopi_" +
                      QLocale::system().name());
+  if (!success)
+  {
+    appTranslator.load(":/resources/translations/octopi_en.qm");
+  }
+
   app.installTranslator(&appTranslator);
 
   if (argList->getSwitch("-help")){
