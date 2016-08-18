@@ -54,9 +54,9 @@ void MainWindow::closeEvent(QCloseEvent *event)
   //We cannot quit while there is a running transaction!
   if(m_commandExecuting != ectn_NONE)
   {
-  	QMessageBox::information(this, StrConstants::getThereIsAPendingTransaction(),
-  							 StrConstants::getThereIsAPendingTransaction(),
-  							 QMessageBox::Ok, QMessageBox::Ok);
+    QMessageBox::information(this, StrConstants::getThereIsAPendingTransaction(),
+                             StrConstants::getThereIsAPendingTransaction(),
+                             QMessageBox::Ok, QMessageBox::Ok);
     event->ignore();
   }
   else if(isThereAPendingTransaction())
