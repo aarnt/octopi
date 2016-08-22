@@ -375,11 +375,11 @@ void Terminal::runCommandInTerminal(const QStringList &commandList)
 
       if (UnixCommand::isRootRunning())
       {
-        cmd = "dbus-launch " + ctn_KDE_TERMINAL + " --nofork -e " + UnixCommand::getShell() + " -c " + ftemp->fileName();
+        cmd = "dbus-launch " + ctn_KDE_TERMINAL + " -e " + UnixCommand::getShell() + " -c " + ftemp->fileName();
       }
       else
       {
-        cmd = suCommand + " \"" + ctn_KDE_TERMINAL + " --nofork -e " + UnixCommand::getShell() + " -c " + ftemp->fileName() + "\"";
+        cmd = suCommand + " \"" + ctn_KDE_TERMINAL + " -e " + UnixCommand::getShell() + " " + ftemp->fileName() + "\"";
       }
 
       m_process->start(cmd);
@@ -440,11 +440,11 @@ void Terminal::runCommandInTerminal(const QStringList &commandList)
 
       if (UnixCommand::isRootRunning())
       {
-        cmd = "dbus-launch " + ctn_KDE_TERMINAL + " --nofork -e " + UnixCommand::getShell() + " -c " + ftemp->fileName();
+        cmd = "dbus-launch " + ctn_KDE_TERMINAL + " -e " + UnixCommand::getShell() + " -c " + ftemp->fileName();
       }
       else
       {
-        cmd = suCommand + " \"" + ctn_KDE_TERMINAL + " --nofork -e " + UnixCommand::getShell() + " -c " + ftemp->fileName() + "\"";
+        cmd = suCommand + " \"" + ctn_KDE_TERMINAL + " -e " + UnixCommand::getShell() + " -c " + ftemp->fileName() + "\"";
       }
 
       m_process->start(cmd);
@@ -523,7 +523,7 @@ void Terminal::runCommandInTerminalAsNormalUser(const QStringList &commandList)
     }
     else if (WMHelper::isKDERunning() && UnixCommand::hasTheExecutable(ctn_KDE_TERMINAL))
     {
-      cmd = ctn_KDE_TERMINAL + " --nofork -e " + UnixCommand::getShell() + " -c " + ftemp->fileName();
+      cmd = ctn_KDE_TERMINAL + " -e " + UnixCommand::getShell() + " -c " + ftemp->fileName();
     }
     else if (WMHelper::isTDERunning() && UnixCommand::hasTheExecutable(ctn_TDE_TERMINAL)){
       cmd = ctn_TDE_TERMINAL + " --nofork -e " + ftemp->fileName();
@@ -580,7 +580,7 @@ void Terminal::runCommandInTerminalAsNormalUser(const QStringList &commandList)
     }
     else if (m_selectedTerminal == ctn_KDE_TERMINAL)
     {
-      cmd = ctn_KDE_TERMINAL + " --nofork -e " + UnixCommand::getShell() + " -c " + ftemp->fileName();
+      cmd = ctn_KDE_TERMINAL + " -e " + UnixCommand::getShell() + " -c " + ftemp->fileName();
     }
     else if (m_selectedTerminal == ctn_TDE_TERMINAL){
       cmd = ctn_TDE_TERMINAL + " --nofork -e " + ftemp->fileName();
