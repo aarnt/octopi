@@ -279,7 +279,7 @@ QString utils::retrieveDistroNews(bool searchForLatestNews)
   const QString ctn_ANTERGOS_RSS_URL = "http://antergos.com/category/news/feed/";
   const QString ctn_ARCHBSD_RSS_URL = "http://archbsd.net/feeds/news/";
   const QString ctn_ARCH_LINUX_RSS_URL = "https://www.archlinux.org/feeds/news/";
-  const QString ctn_CHAKRA_RSS_URL = "https://chakraos.org/news/index.php?/feeds/index.rss2";
+  const QString ctn_CHAKRA_RSS_URL = "https://chakralinux.org/news/index.php?/feeds/index.rss2";
   const QString ctn_KAOS_RSS_URL = "https://kaosx.us/feed.xml";
   const QString ctn_MANJARO_LINUX_RSS_URL = "https://manjaro.org/feed/";
   //const QString ctn_MANJARO_LINUX_RSS_URL = "https://manjaro.github.io/feed.xml";
