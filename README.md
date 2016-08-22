@@ -8,7 +8,7 @@ Currently, 10 Linux distros are compatible with it
  * [ArchBang] (http://wiki.archbang.org/index.php?title=Main_Page)
  * [Arch] (https://www.archlinux.org/)
  * [ArchBSD] (https://pacbsd.org/)
- * [Chakra] (https://chakraos.org/)
+ * [Chakra] (https://chakralinux.org/)
  * [KaOS] (http://kaosx.us/)
  * [Manjaro] (http://manjaro.github.io/)
  * [mooOS] (http://mooos.org/)
