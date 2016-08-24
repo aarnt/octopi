@@ -5,7 +5,9 @@
   BugFix: About and System Upgrade dialogs could be opened twice in notifier.
   BugFix: Max time in minutes for notification interval was not honoring > 1380.
   BugFix: Optional dependencies dialog can now be resized and new value is 
-	persisted on disk.  
+	persisted on disk.
+  BugFix: Using the alpm algorithm for package version comparison. Previous code 
+	was reporting false newer packages.
   Added "Install Reason" field at Info tab.
   Prevent the user to install partial upgrades in his system (some of the outdated packages). 
 

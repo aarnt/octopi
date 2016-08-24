@@ -395,7 +395,7 @@ struct TSort0 {
 
 struct TSort2 {
   bool operator()(const PackageRepository::PackageData* a, const PackageRepository::PackageData* b) const {
-    const int cmp = Package::rpmvercmp(a->version.toLatin1().data(), b->version.toLatin1().data());
+    const int cmp = Package::alpm_pkg_vercmp(a->version.toLatin1().data(), b->version.toLatin1().data());
 
     if (cmp < 0) return true;
     if (cmp == 0)

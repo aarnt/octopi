@@ -114,7 +114,10 @@ class Package{
     static double simplePow(int base, int exp);
 
 	public:
+    static void parseEVR(char *evr, const char **ep, const char **vp, const char **rp);
     static int rpmvercmp(const char *a, const char *b);
+    static int alpm_pkg_vercmp(const char *a, const char *b);
+
     static QSet<QString>* getUnrequiredPackageList();
     static QStringList * getOutdatedStringList();
     static QStringList * getOutdatedAURStringList();
@@ -165,6 +168,7 @@ class Package{
     static QString makeURLClickable(const QString &information);
     static QString getBaseName( const QString& pkgName );
     static QString parseSearchString( QString searchStr, bool exactMatch = false );
+
     static bool hasPacmanDatabase();
 };
 

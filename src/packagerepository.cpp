@@ -282,7 +282,7 @@ PackageRepository::PackageData::PackageData(const PackageListData& pkg, const bo
     outdatedVersion(pkg.outatedVersion), downloadSize(pkg.downloadSize),
     status(pkg.status != ectn_OUTDATED ?
            pkg.status :
-           (Package::rpmvercmp(pkg.outatedVersion.toLatin1().data(), pkg.version.toLatin1().data()) == 1 ?
+           (Package::alpm_pkg_vercmp(pkg.outatedVersion.toLatin1().data(), pkg.version.toLatin1().data()) == 1 ?
              ectn_NEWER : ectn_OUTDATED)),
     popularity(isManagedByAUR ? pkg.popularity : -1),
     popularityString(isManagedByAUR ? QString::number(pkg.popularity) + " " + StrConstants::getVotes() : QString())

@@ -23,6 +23,8 @@
 #include "stdlib.h"
 #include "strconstants.h"
 #include <iostream>
+#include <string.h>
+#include <ctype.h>
 
 #include <QTextStream>
 #include <QList>
@@ -949,6 +951,51 @@ QString Package::getInstalledSizeAsString(const QString &pkgInfo)
 }
 
 /**
+ * Split EVR into epoch, version, and release components.
+ * @param evr		[epoch:]version[-release] string
+ * @retval *ep		pointer to epoch
+ * @retval *vp		pointer to version
+ * @retval *rp		pointer to release
+ */
+void Package::parseEVR(char *evr, const char **ep, const char **vp,
+    const char **rp)
+{
+  const char *epoch;
+  const char *version;
+  const char *release;
+  char *s, *se;
+
+  s = evr;
+  /* s points to epoch terminator */
+  while(*s && isdigit(*s)) s++;
+  /* se points to version terminator */
+  se = strrchr(s, '-');
+
+  if(*s == ':') {
+    epoch = evr;
+    *s++ = '\0';
+    version = s;
+    if(*epoch == '\0') {
+      epoch = "0";
+    }
+  } else {
+    /* different from RPM- always assume 0 epoch */
+    epoch = "0";
+    version = evr;
+  }
+  if(se) {
+    *se++ = '\0';
+    release = se;
+  } else {
+    release = NULL;
+  }
+
+  if(ep) *ep = epoch;
+  if(vp) *vp = version;
+  if(rp) *rp = release;
+}
+
+/**
  * This function was copied from ArchLinux Pacman project
  *
  * Compare alpha and numeric segments of two versions.
@@ -1087,6 +1134,63 @@ int Package::rpmvercmp(const char *a, const char *b){
 cleanup:
   free(str1);
   free(str2);
+  return ret;
+}
+
+/** Compare two version strings and determine which one is 'newer'.
+ * Returns a value comparable to the way strcmp works. Returns 1
+ * if a is newer than b, 0 if a and b are the same version, or -1
+ * if b is newer than a.
+ *
+ * Different epoch values for version strings will override any further
+ * comparison. If no epoch is provided, 0 is assumed.
+ *
+ * Keep in mind that the pkgrel is only compared if it is available
+ * on both versions handed to this function. For example, comparing
+ * 1.5-1 and 1.5 will yield 0; comparing 1.5-1 and 1.5-2 will yield
+ * -1 as expected. This is mainly for supporting versioned dependencies
+ * that do not include the pkgrel.
+ */
+int Package::alpm_pkg_vercmp(const char *a, const char *b)
+{
+  char *full1, *full2;
+  const char *epoch1, *ver1, *rel1;
+  const char *epoch2, *ver2, *rel2;
+  int ret;
+
+  /* ensure our strings are not null */
+  if(!a && !b) {
+    return 0;
+  } else if(!a) {
+    return -1;
+  } else if(!b) {
+    return 1;
+  }
+  /* another quick shortcut- if full version specs are equal */
+  if(strcmp(a, b) == 0) {
+    return 0;
+  }
+
+  /* Parse both versions into [epoch:]version[-release] triplets. We probably
+   * don't need epoch and release to support all the same magic, but it is
+   * easier to just run it all through the same code. */
+  full1 = strdup(a);
+  full2 = strdup(b);
+
+  /* parseEVR modifies passed in version, so have to dupe it first */
+  parseEVR(full1, &epoch1, &ver1, &rel1);
+  parseEVR(full2, &epoch2, &ver2, &rel2);
+
+  ret = rpmvercmp(epoch1, epoch2);
+  if(ret == 0) {
+    ret = rpmvercmp(ver1, ver2);
+    if(ret == 0 && rel1 && rel2) {
+      ret = rpmvercmp(rel1, rel2);
+    }
+  }
+
+  free(full1);
+  free(full2);
   return ret;
 }
 
