@@ -251,6 +251,11 @@ void MainWindow::initMenuBar()
     actionGroupRepositories->addAction(createdAction);
   }
 
+  subMenu->addSeparator();
+  QAction * m_actionForeignRepository = subMenu->addAction(StrConstants::getForeignRepositoryName());
+  m_actionForeignRepository->setCheckable(true);
+  actionGroupRepositories->addAction(m_actionForeignRepository);
+  
   actionGroupRepositories->addAction(m_actionRepositoryAll);
   actionGroupRepositories->setExclusive(true);
   m_actionMenuRepository->setMenu(subMenu);
