@@ -197,6 +197,15 @@ QByteArray UnixCommand::performAURCommand(const QString &args)
 }
 
 /*
+ * Searches for a given package in the official repos
+ */
+bool UnixCommand::hasPackage(const QString &pkgName)
+{
+  QString res = performQuery("-Ss " + pkgName);
+  return !res.isEmpty();
+}
+
+/*
  * Retrieves URL information for remote AUR package
  */
 QByteArray UnixCommand::getAURUrl(const QString &pkgName)

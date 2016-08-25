@@ -589,6 +589,15 @@ void MainWindow::refreshAppIcon()
   if (hasAURTool)
   {
     m_outdatedAURStringList = Package::getOutdatedAURStringList();
+
+    for(int c=0; c<m_outdatedAURStringList->count(); ++c)
+    {
+      //If we find an outdated AUR pkg in the official pkg list, let's remove it
+      if (UnixCommand::hasPackage(m_outdatedAURStringList->at(c)))
+      {
+        m_outdatedAURStringList->removeAt(c);
+      }
+    }
   }
   else
   {

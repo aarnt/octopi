@@ -79,6 +79,8 @@ public:
   static QByteArray performQuery(const QString &args);
   static QByteArray performAURCommand(const QString &args);
 
+  static bool hasPackage(const QString &pkgName);
+
   static QByteArray getAURUrl(const QString &pkgName);
   static QByteArray getAURPackageList(const QString &searchString);
   static QByteArray getUnrequiredPackageList();
