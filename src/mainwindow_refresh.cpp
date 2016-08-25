@@ -852,6 +852,15 @@ void MainWindow::postBuildPackageList()
     el.exec();
 
     m_outdatedAURStringList = g_fwOutdatedAURStringList.result();
+    for(int c=0; c<m_outdatedAURStringList->count(); ++c)
+    {
+      //If we find an outdated AUR pkg in the official pkg list, let's remove it
+      PackageRepository::PackageData * pd = m_packageRepo.getFirstPackageByName(m_outdatedAURStringList->at(c));
+      if (pd)
+      {
+        m_outdatedAURStringList->removeAt(c);
+      }
+    }
 
     if (distro != ectn_KAOS && isAURGroupSelected()) return;
 
