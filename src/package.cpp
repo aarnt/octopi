@@ -889,6 +889,8 @@ double Package::getDownloadSize(const QString &pkgInfo)
 {
   QString aux = extractFieldFromInfo("Download Size", pkgInfo);
   bool isMega = (aux.indexOf("MiB", Qt::CaseInsensitive) != -1);
+  bool isByte = (aux.indexOf(" B", Qt::CaseInsensitive) != -1);
+
   aux = aux.section(QRegExp("\\s"), 0, 0);
 
   bool ok;
@@ -897,6 +899,7 @@ double Package::getDownloadSize(const QString &pkgInfo)
   if (ok)
   {
     if (isMega) res *= 1024;
+    else if (isByte) res /= 1024;
     return res;
   }
   else
@@ -919,6 +922,8 @@ double Package::getInstalledSize(const QString &pkgInfo)
 {
   QString aux = extractFieldFromInfo("Installed Size", pkgInfo);
   bool isMega = (aux.indexOf("MiB", Qt::CaseInsensitive) != -1);
+  bool isByte = (aux.indexOf(" B", Qt::CaseInsensitive) != -1);
+
   aux = aux.section(QRegExp("\\s"), 0, 0);
 
   bool ok;
@@ -927,6 +932,7 @@ double Package::getInstalledSize(const QString &pkgInfo)
   if (ok)
   {
     if (isMega) res *= 1024;
+    else if (isByte) res /= 1024;
     return res;
   }
   else
