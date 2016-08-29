@@ -20,8 +20,12 @@
 
 #include "package.h"
 #include "unixcommand.h"
-#include "stdlib.h"
 #include "strconstants.h"
+
+#ifdef ALPM_BACKEND
+  #include "alpmbackend.h"
+#endif
+
 #include <iostream>
 #include <string.h>
 #include <ctype.h>
@@ -120,15 +124,16 @@ double Package::simplePow(int base, int exp)
  */
 QString Package::kbytesToSize( float Bytes )
 {
-  float tb = 1073741824;
-  float gb = 1048576;
-  float mb = 1024;
-  float kb = 1;
+  float gb = 1073741824;
+  float mb = 1048576;
+  float kb = 1024;
+  //float kb = 1;
   QString res;
 
-  if( Bytes >= tb )
-    res = res.sprintf("%.2f TiB", (float)Bytes/tb);
-  else if( Bytes >= gb && Bytes < tb )
+  //if( Bytes >= tb )
+  //  res = res.sprintf("%.2f TiB", (float)Bytes/tb);
+  //if( Bytes >= gb && Bytes < tb )
+  if( Bytes >= gb )
     res = res.sprintf("%.2f GiB", (float)Bytes/gb);
   else if( Bytes >= mb && Bytes < gb )
     res = res.sprintf("%.2f MiB", (float)Bytes/mb);
@@ -210,17 +215,33 @@ QString Package::makeAnchorOfPackage(const QString &packages)
  */
 QSet<QString>* Package::getUnrequiredPackageList()
 {
-  QString unrequiredPkgList = UnixCommand::getUnrequiredPackageList();
-  QStringList packageTuples = unrequiredPkgList.split(QRegExp("\\n"), QString::SkipEmptyParts);
   QSet<QString>* res = new QSet<QString>();
 
-  foreach(QString packageTuple, packageTuples)
+  if (SettingsManager::hasPacmanBackend())
   {
-    QStringList parts = packageTuple.split(' ');
+    QString unrequiredPkgList = UnixCommand::getUnrequiredPackageList();
+    QStringList packageTuples = unrequiredPkgList.split(QRegExp("\\n"), QString::SkipEmptyParts);
+
+    foreach(QString packageTuple, packageTuples)
     {
-      res->insert(parts[0]); //We only need the package name!
+      QStringList parts = packageTuple.split(' ');
+      {
+        res->insert(parts[0]); //We only need the package name!
+      }
     }
   }
+#ifdef ALPM_BACKEND
+  else
+  {
+    QStringList packageTuples = AlpmBackend::getUnrequiredList();
+
+    foreach(QString packageTuple, packageTuples)
+    {
+      res->insert(packageTuple); //We only need the package name!
+    }
+  }
+#endif
+
   return res;
 }
 
@@ -229,27 +250,46 @@ QSet<QString>* Package::getUnrequiredPackageList()
  */
 QStringList *Package::getOutdatedStringList()
 {
-  QString outPkgList = UnixCommand::getOutdatedPackageList();
-  QStringList packageTuples = outPkgList.split(QRegExp("\\n"), QString::SkipEmptyParts);
   QStringList * res = new QStringList();
-  QStringList ignorePkgList = UnixCommand::getIgnorePkgsFromPacmanConf();
 
-  foreach(QString packageTuple, packageTuples)
+  if (SettingsManager::hasPacmanBackend())
   {
-    QStringList parts = packageTuple.split(' ');
-    {
-      QString pkgName;
-      pkgName = parts[0];
+    QString outPkgList = UnixCommand::getOutdatedPackageList();
+    QStringList packageTuples = outPkgList.split(QRegExp("\\n"), QString::SkipEmptyParts);
+    QStringList ignorePkgList = UnixCommand::getIgnorePkgsFromPacmanConf();
 
-      //Let's ignore the "IgnorePkg" list of packages...
-      if (!ignorePkgList.contains(pkgName))
+    foreach(QString packageTuple, packageTuples)
+    {
+      QStringList parts = packageTuple.split(' ');
       {
-        res->append(pkgName); //We only need the package name!
+        QString pkgName;
+        pkgName = parts[0];
+
+        //Let's ignore the "IgnorePkg" list of packages...
+        if (!ignorePkgList.contains(pkgName))
+        {
+          res->append(pkgName); //We only need the package name!
+        }
       }
     }
-  }
 
-  res->sort();
+    res->sort();
+  }
+#ifdef ALPM_BACKEND
+  else
+  {
+    QStringList packageTuples = AlpmBackend::getOutdatedList();
+    QStringList ignorePkgList = UnixCommand::getIgnorePkgsFromPacmanConf();
+
+    foreach(QString packageTuple, packageTuples)
+    {
+      res->append(packageTuple);
+    }
+
+    res->sort();
+  }
+#endif
+
   return res;
 }
 
@@ -426,18 +466,34 @@ QStringList *Package::getTargetRemovalList(const QString &pkgName, const QString
  */
 QList<PackageListData> *Package::getForeignPackageList()
 {
-  QString foreignPkgList = UnixCommand::getForeignPackageList();
-  QStringList packageTuples = foreignPkgList.split(QRegExp("\\n"), QString::SkipEmptyParts);
   QList<PackageListData> * res = new QList<PackageListData>();
 
-  foreach(QString packageTuple, packageTuples)
+  if (SettingsManager::hasPacmanBackend())
   {
-    QStringList parts = packageTuple.split(' ');
-    if (parts.size() == 2)
+    QString foreignPkgList = UnixCommand::getForeignPackageList();
+    QStringList packageTuples = foreignPkgList.split(QRegExp("\\n"), QString::SkipEmptyParts);
+
+    foreach(QString packageTuple, packageTuples)
     {
+      QStringList parts = packageTuple.split(' ');
+      if (parts.size() == 2)
+      {
+        res->append(PackageListData(parts[0], "", parts[1], ectn_FOREIGN));
+      }
+    }
+  }
+#ifdef ALPM_BACKEND
+  else
+  {
+    QStringList packageTuples = AlpmBackend::getForeignList();
+
+    foreach(QString packageTuple, packageTuples)
+    {
+      QStringList parts = packageTuple.split(' ');
       res->append(PackageListData(parts[0], "", parts[1], ectn_FOREIGN));
     }
   }
+#endif
 
   return res;
 }
@@ -451,16 +507,100 @@ QList<PackageListData> * Package::getPackageList(const QString &packageName)
   //    A pacman wrapper with extended features and AUR support
   //community/libfm 1.1.0-4 (lxde) [installed: 1.1.0-3]
 
-  QString pkgName, pkgRepository, pkgVersion, pkgDescription, pkgOutVersion;
-  PackageStatus pkgStatus;
-  QString pkgList = UnixCommand::getPackageList(packageName);
-  QStringList packageTuples = pkgList.split(QRegExp("\\n"), QString::SkipEmptyParts);
   QList<PackageListData> * res = new QList<PackageListData>();
 
-  if(!pkgList.isEmpty())
+  if (SettingsManager::hasPacmanBackend())
   {
+    QString pkgName, pkgRepository, pkgVersion, pkgDescription, pkgOutVersion;
+    PackageStatus pkgStatus;
+    QString pkgList = UnixCommand::getPackageList(packageName);
+    QStringList packageTuples = pkgList.split(QRegExp("\\n"), QString::SkipEmptyParts);
+
+    if(!pkgList.isEmpty())
+    {
+      pkgDescription = "";
+      foreach(QString packageTuple, packageTuples)
+      {
+        if (!packageTuple[0].isSpace())
+        {
+          //Do we already have a description?
+          if (pkgDescription != "")
+          {
+            pkgDescription = pkgName + " " + pkgDescription;
+
+            PackageListData pld =
+                PackageListData(pkgName, pkgRepository, pkgVersion, pkgDescription, pkgStatus, pkgOutVersion);
+
+            if (packageName.isEmpty() || pkgName == packageName)
+            {
+              res->append(pld);
+            }
+
+            pkgDescription = "";
+          }
+
+          //First we get repository and name!
+          QStringList parts = packageTuple.split(' ');
+          QString repoName = parts[0];
+          int a = repoName.indexOf("/");
+          pkgRepository = repoName.left(a);
+          pkgName = repoName.mid(a+1);
+          pkgVersion = parts[1];
+
+          if(packageTuple.indexOf("[installed]") != -1)
+          {
+            //This is an installed package
+            pkgStatus = ectn_INSTALLED;
+            pkgOutVersion = "";
+          }
+          else if (packageTuple.indexOf("[installed:") != -1)
+          {
+            //This is an outdated installed package
+            pkgStatus = ectn_OUTDATED;
+
+            int i = packageTuple.indexOf("[installed:");
+            pkgOutVersion = packageTuple.mid(i+11);
+            pkgOutVersion = pkgOutVersion.remove(']').trimmed();
+          }
+          else
+          {
+            //This is an uninstalled package
+            pkgStatus = ectn_NON_INSTALLED;
+            pkgOutVersion = "";
+          }
+        }
+        else
+        {
+          //This is a description!
+          if (!packageTuple.trimmed().isEmpty())
+            pkgDescription += packageTuple.trimmed();
+          else
+            pkgDescription += " "; //StrConstants::getNoDescriptionAvailabe();
+        }
+      }
+
+      //And adds the very last package...
+      pkgDescription = pkgName + " " + pkgDescription;
+      PackageListData pld =
+          PackageListData(pkgName, pkgRepository, pkgVersion, pkgDescription, pkgStatus, pkgOutVersion);
+
+      if (packageName.isEmpty() || pkgName == packageName)
+      {
+        res->append(pld);
+      }
+    }
+  }
+#ifdef ALPM_BACKEND
+  else
+  {
+    QString pkgName, pkgRepository, pkgVersion, pkgDescription, pkgOutVersion, pkgSize;
+    PackageStatus pkgStatus;
+    double pkgDownSize=0;
+    QStringList pkgList = AlpmBackend::getPackageList();
+    bool ok;
+
     pkgDescription = "";
-    foreach(QString packageTuple, packageTuples)
+    foreach(QString packageTuple, pkgList)
     {
       if (!packageTuple[0].isSpace())
       {
@@ -470,7 +610,8 @@ QList<PackageListData> * Package::getPackageList(const QString &packageName)
           pkgDescription = pkgName + " " + pkgDescription;
 
           PackageListData pld =
-              PackageListData(pkgName, pkgRepository, pkgVersion, pkgDescription, pkgStatus, pkgOutVersion);
+              PackageListData(pkgName, pkgRepository, pkgVersion, pkgDescription,
+                              pkgStatus, pkgDownSize, pkgOutVersion);
 
           if (packageName.isEmpty() || pkgName == packageName)
           {
@@ -482,28 +623,25 @@ QList<PackageListData> * Package::getPackageList(const QString &packageName)
 
         //First we get repository and name!
         QStringList parts = packageTuple.split(' ');
-        QString repoName = parts[0];
-        int a = repoName.indexOf("/");
-        pkgRepository = repoName.left(a);
-        pkgName = repoName.mid(a+1);
-        pkgVersion = parts[1];
+        pkgRepository = parts[1];
+        pkgName = parts[2];
+        pkgVersion = parts[3];
+        pkgSize = parts[5];
+        pkgDownSize = pkgSize.toLong(&ok);
 
-        if(packageTuple.indexOf("[installed]") != -1)
+        if(parts[0] == "i")
         {
           //This is an installed package
           pkgStatus = ectn_INSTALLED;
           pkgOutVersion = "";
         }
-        else if (packageTuple.indexOf("[installed:") != -1)
+        else if (parts[0] == "o")
         {
           //This is an outdated installed package
           pkgStatus = ectn_OUTDATED;
-
-          int i = packageTuple.indexOf("[installed:");
-          pkgOutVersion = packageTuple.mid(i+11);
-          pkgOutVersion = pkgOutVersion.remove(']').trimmed();
+          pkgOutVersion = parts[4];
         }
-        else
+        else if (parts[0] == "n")
         {
           //This is an uninstalled package
           pkgStatus = ectn_NON_INSTALLED;
@@ -516,20 +654,21 @@ QList<PackageListData> * Package::getPackageList(const QString &packageName)
         if (!packageTuple.trimmed().isEmpty())
           pkgDescription += packageTuple.trimmed();
         else
-          pkgDescription += " "; //StrConstants::getNoDescriptionAvailabe();
+          pkgDescription += " ";
       }
     }
 
     //And adds the very last package...
     pkgDescription = pkgName + " " + pkgDescription;
     PackageListData pld =
-        PackageListData(pkgName, pkgRepository, pkgVersion, pkgDescription, pkgStatus, pkgOutVersion);
+        PackageListData(pkgName, pkgRepository, pkgVersion, pkgDescription, pkgStatus, pkgDownSize, pkgOutVersion);
 
     if (packageName.isEmpty() || pkgName == packageName)
     {
       res->append(pld);
     }
   }
+#endif
 
   return res;
 }
@@ -888,8 +1027,9 @@ QDateTime Package::getBuildDate(const QString &pkgInfo)
 double Package::getDownloadSize(const QString &pkgInfo)
 {
   QString aux = extractFieldFromInfo("Download Size", pkgInfo);
+  bool isKByte = (aux.indexOf("KiB", Qt::CaseInsensitive) != -1);
   bool isMega = (aux.indexOf("MiB", Qt::CaseInsensitive) != -1);
-  bool isByte = (aux.indexOf(" B", Qt::CaseInsensitive) != -1);
+  //bool isByte = (aux.indexOf(" B", Qt::CaseInsensitive) != -1);
 
   aux = aux.section(QRegExp("\\s"), 0, 0);
 
@@ -898,8 +1038,13 @@ double Package::getDownloadSize(const QString &pkgInfo)
 
   if (ok)
   {
-    if (isMega) res *= 1024;
-    else if (isByte) res /= 1024;
+    if (isKByte) res *= 1024;
+    else if (isMega)
+    {
+      res *= 1024;
+      res *= 1024;
+    }
+    //else if (isByte) res /= 1024.00;
     return res;
   }
   else
@@ -921,8 +1066,9 @@ QString Package::getDownloadSizeAsString(const QString &pkgInfo)
 double Package::getInstalledSize(const QString &pkgInfo)
 {
   QString aux = extractFieldFromInfo("Installed Size", pkgInfo);
+  bool isKByte = (aux.indexOf("KiB", Qt::CaseInsensitive) != -1);
   bool isMega = (aux.indexOf("MiB", Qt::CaseInsensitive) != -1);
-  bool isByte = (aux.indexOf(" B", Qt::CaseInsensitive) != -1);
+  //bool isByte = (aux.indexOf(" B", Qt::CaseInsensitive) != -1);
 
   aux = aux.section(QRegExp("\\s"), 0, 0);
 
@@ -931,8 +1077,13 @@ double Package::getInstalledSize(const QString &pkgInfo)
 
   if (ok)
   {
-    if (isMega) res *= 1024;
-    else if (isByte) res /= 1024;
+    if (isKByte) res *= 1024;
+    else if (isMega)
+    {
+      res *= 1024;
+      res *= 1024;
+    }
+    //else if (isByte) res /= 1024.00;
     return res;
   }
   else

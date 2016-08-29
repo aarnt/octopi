@@ -56,6 +56,7 @@ enum SaveSettingsReason { ectn_AUR_PackageList, ectn_PackageList, ectn_CurrentTa
 
 const QString ctn_ORGANIZATION("octopi");
 const QString ctn_APPLICATION("octopi");
+const QString ctn_KEY_BACKEND("Backend");
 const QString ctn_KEY_CURRENT_TAB_INDEX("Current_Tab_Index");
 const QString ctn_KEY_WINDOW_SIZE("Window_Size");
 const QString ctn_KEY_TRANSACTION_WINDOW_SIZE("Transaction_Window_Size");
@@ -71,6 +72,7 @@ const QString ctn_KEY_SHOW_GROUPS_PANEL("Show_Groups_Panel");
 const QString ctn_KEY_PACKAGE_ICON_COLUMN_WIDTH("Package_Icon_Column_Width");
 const QString ctn_KEY_PACKAGE_NAME_COLUMN_WIDTH("Package_Name_Column_Width");
 const QString ctn_KEY_PACKAGE_VERSION_COLUMN_WIDTH("Package_Version_Column_Width");
+const QString ctn_KEY_PACKAGE_REPOSITORY_COLUMN_WIDTH("Package_Repository_Column_Width");
 const QString ctn_KEY_TERMINAL("Terminal");
 const QString ctn_AUTOMATIC("automatic");
 

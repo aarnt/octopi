@@ -196,6 +196,12 @@ int SettingsManager::getPackageVersionColumnWidth()
         ctn_KEY_PACKAGE_VERSION_COLUMN_WIDTH, 260).toInt();
 }
 
+int SettingsManager::getPackageRepositoryColumnWidth()
+{
+  return instance()->getSYSsettings()->value(
+        ctn_KEY_PACKAGE_REPOSITORY_COLUMN_WIDTH, 150).toInt();
+}
+
 bool SettingsManager::getSkipMirrorCheckAtStartup(){
   if (!instance()->getSYSsettings()->contains(ctn_KEY_SKIP_MIRRORCHECK_ON_STARTUP)){
     instance()->getSYSsettings()->setValue(ctn_KEY_SKIP_MIRRORCHECK_ON_STARTUP, 0);
@@ -211,6 +217,23 @@ bool SettingsManager::getShowGroupsPanel()
   }
 
   return (instance()->getSYSsettings()->value( ctn_KEY_SHOW_GROUPS_PANEL, false).toInt() == 1);
+}
+
+/*
+ * Returns true if the property "backend" has anything different from "alpm"
+ */
+bool SettingsManager::hasPacmanBackend()
+{
+  if (!instance()->getSYSsettings()->contains(ctn_KEY_BACKEND))
+  {
+    instance()->getSYSsettings()->setValue(ctn_KEY_BACKEND, "pacman");
+    return true;
+  }
+  else
+  {
+    SettingsManager p_instance;
+    return (p_instance.getSYSsettings()->value( ctn_KEY_BACKEND, "pacman") != "alpm");
+  }
 }
 
 QString SettingsManager::getTerminal(){
@@ -336,6 +359,12 @@ void SettingsManager::setPackageNameColumnWidth(int newValue)
 void SettingsManager::setPackageVersionColumnWidth(int newValue)
 {
   instance()->getSYSsettings()->setValue(ctn_KEY_PACKAGE_VERSION_COLUMN_WIDTH, newValue);
+  instance()->getSYSsettings()->sync();
+}
+
+void SettingsManager::setPackageRepositoryColumnWidth(int newValue)
+{
+  instance()->getSYSsettings()->setValue(ctn_KEY_PACKAGE_REPOSITORY_COLUMN_WIDTH, newValue);
   instance()->getSYSsettings()->sync();
 }
 

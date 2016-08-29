@@ -73,7 +73,8 @@ int PackageModel::columnCount(const QModelIndex &parent) const
   if (!parent.isValid()) {
     if (UnixCommand::getLinuxDistro() == ectn_CHAKRA || !m_showColumnPopularity)
     {
-      return 4;
+      if (SettingsManager::hasPacmanBackend()) return 4;
+      else return 6;
     }
     else
     {
@@ -101,6 +102,16 @@ QVariant PackageModel::data(const QModelIndex &index, int role) const
             return QVariant(package->version);
           case ctn_PACKAGE_REPOSITORY_COLUMN:
             return QVariant(package->repository);
+          case ctn_PACKAGE_SIZE_COLUMN: {
+            off_t pkgSize = package->downloadSize;
+            float aux = pkgSize;
+            /*if (aux > 1024)
+            {
+              aux = (float) (pkgSize / 1024.00);
+            }*/
+
+            return QVariant(Package::kbytesToSize(aux));
+          }
           case ctn_PACKAGE_POPULARITY_COLUMN:
             if (package->popularity >= 0)
               return QVariant(package->popularityString);
@@ -144,6 +155,8 @@ QVariant PackageModel::headerData(int section, Qt::Orientation orientation, int 
         return QVariant(StrConstants::getVersion());
       case ctn_PACKAGE_REPOSITORY_COLUMN:
         return QVariant(StrConstants::getRepository());
+      case ctn_PACKAGE_SIZE_COLUMN:
+        return QVariant(StrConstants::getDownloadSize());
       case ctn_PACKAGE_POPULARITY_COLUMN:
         return QVariant(StrConstants::getPopularityHeader());
       default:
@@ -430,6 +443,16 @@ struct TSort4 {
   }
 };
 
+struct TSort5 {
+  bool operator()(const PackageRepository::PackageData* a, const PackageRepository::PackageData* b) const {
+    if (a->downloadSize < b->downloadSize) return true;
+    if (a->downloadSize == b->downloadSize) {
+      return a->name < b->name;
+    }
+    return false;
+  }
+};
+
 void PackageModel::sort()
 {
   switch (m_sortColumn) {
@@ -447,6 +470,9 @@ void PackageModel::sort()
     return;
   case ctn_PACKAGE_POPULARITY_COLUMN:
     qSort(m_columnSortedlistOfPackages.begin(), m_columnSortedlistOfPackages.end(), TSort4());
+    return;
+  case ctn_PACKAGE_SIZE_COLUMN:
+    qSort(m_columnSortedlistOfPackages.begin(), m_columnSortedlistOfPackages.end(), TSort5());
     return;
   default:
     return;

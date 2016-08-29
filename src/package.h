@@ -66,6 +66,18 @@ struct PackageListData{
                                     status(pkgStatus){
   }
 
+  PackageListData(QString n, QString r, QString v, QString d, PackageStatus pkgStatus,
+                  double downSize, QString outVersion="")
+                                    : name(n),
+                                    repository(r),
+                                    version(v),
+                                    description(d),
+                                    outatedVersion(outVersion.trimmed()),
+                                    downloadSize(downSize),
+                                    popularity(0),
+                                    status(pkgStatus){
+  }
+
   PackageListData(QString n, QString r, QString v, QString d, PackageStatus pkgStatus, QString outVersion="")
                                     : name(n),
                                     repository(r),

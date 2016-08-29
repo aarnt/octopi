@@ -5,9 +5,17 @@
 #-------------------------------------------------
 
 QT += core gui network xml dbus widgets quick quickwidgets
-DEFINES += OCTOPI_EXTENSIONS
-CONFIG += qt warn_on debug
-QMAKE_CXXFLAGS += -std=c++11
+DEFINES += OCTOPI_EXTENSIONS #ALPM_BACKEND
+CONFIG += qt warn_on debug link_pkgconfig #ALPM_BACKEND
+
+ALPM_BACKEND {
+  QMAKE_CXXFLAGS += -std=c++11
+  PKGCONFIG += glib-2.0
+  LIBS += -lglib-2.0 -lalpm -lalpm_utils
+} else {
+  QMAKE_CXXFLAGS += -std=c++11
+}
+
 TEMPLATE = app
 DESTDIR += bin
 OBJECTS_DIR += build
@@ -39,6 +47,10 @@ HEADERS += src/QtSolutions/qtsingleapplication.h \
         src/terminal.h \
         src/pacmanexec.h \
         src/constants.h
+
+ALPM_BACKEND{
+  HEADERS += src/alpmbackend.h
+}
 
 greaterThan(QT_VERSION, 5.3): HEADERS += src/terminalselectordialog.h
 
@@ -72,6 +84,10 @@ SOURCES += src/QtSolutions/qtsingleapplication.cpp \
         src/utils.cpp \
         src/terminal.cpp \
         src/pacmanexec.cpp
+
+ALPM_BACKEND{
+  SOURCES += src/alpmbackend.cpp
+}
 
 greaterThan(QT_VERSION, 5.3): SOURCES += src/terminalselectordialog.cpp
 

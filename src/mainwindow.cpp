@@ -71,6 +71,7 @@ MainWindow::MainWindow(QWidget *parent) :
   m_selectedRepository = "";
   m_numberOfInstalledPackages = 0;
   m_debugInfo = false;
+
   m_time = new QTime();
   m_unrequiredPackageList = NULL;
   m_foreignPackageList = NULL;
@@ -149,6 +150,7 @@ void MainWindow::show()
       refreshGroupsWidget();
     }        
 
+    ui->tvPackages->setColumnHidden(PackageModel::ctn_PACKAGE_POPULARITY_COLUMN, true);
     QMainWindow::show();
 
     m_listOfVisitedPackages.clear();

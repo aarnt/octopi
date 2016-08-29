@@ -38,8 +38,9 @@ public:
   static const int ctn_PACKAGE_VERSION_COLUMN     = 2;
   static const int ctn_PACKAGE_REPOSITORY_COLUMN  = 3;
   static const int ctn_PACKAGE_POPULARITY_COLUMN  = 4;
+  static const int ctn_PACKAGE_SIZE_COLUMN        = 5; //Download size
   // Pseudo Column indices for additional filter criterias
-  static const int ctn_PACKAGE_DESCRIPTION_FILTER_NO_COLUMN = 5;
+  static const int ctn_PACKAGE_DESCRIPTION_FILTER_NO_COLUMN = 6;
 
 public:
   explicit PackageModel(const PackageRepository& repo, QObject* parent = 0);

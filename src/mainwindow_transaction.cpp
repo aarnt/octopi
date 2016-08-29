@@ -898,7 +898,7 @@ void MainWindow::doSystemUpgrade(SystemUpgradeOptions systemUpgradeOptions)
     else
     {
       //Let's build the system upgrade transaction dialog...
-      totalDownloadSize = totalDownloadSize / 1024;
+      totalDownloadSize = totalDownloadSize; // / 1024;
       QString ds = Package::kbytesToSize(totalDownloadSize);
 
       TransactionDialog question(this);
@@ -981,7 +981,7 @@ void MainWindow::doRemoveAndInstall()
 
   if (hasPartialUpgrade(pkgsToInstall)) return;
 
-  totalDownloadSize = totalDownloadSize / 1024;
+  totalDownloadSize = totalDownloadSize; // / 1024;
   QString ds = Package::kbytesToSize(totalDownloadSize);
 
   if (installList.count() == 0)
@@ -1343,7 +1343,7 @@ void MainWindow::doInstall()
 
   if (hasPartialUpgrade(pkgsToInstall)) return;
 
-  totalDownloadSize = totalDownloadSize / 1024;
+  totalDownloadSize = totalDownloadSize; // / 1024;
   QString ds = Package::kbytesToSize(totalDownloadSize);
 
   if (list.count() == 0)

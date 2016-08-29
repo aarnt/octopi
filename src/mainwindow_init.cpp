@@ -148,6 +148,13 @@ void MainWindow::savePackageColumnWidths()
         ui->tvPackages->columnWidth(PackageModel::ctn_PACKAGE_NAME_COLUMN));
   SettingsManager::setPackageVersionColumnWidth(
         ui->tvPackages->columnWidth(PackageModel::ctn_PACKAGE_VERSION_COLUMN));
+
+  int width = ui->tvPackages->columnWidth(PackageModel::ctn_PACKAGE_REPOSITORY_COLUMN);
+  if (width > 0)
+  {
+    SettingsManager::setPackageRepositoryColumnWidth(
+        ui->tvPackages->columnWidth(PackageModel::ctn_PACKAGE_REPOSITORY_COLUMN));
+  }
 }
 
 /*
@@ -519,6 +526,8 @@ void MainWindow::resizePackageView()
                                  SettingsManager::getPackageNameColumnWidth());
   ui->tvPackages->setColumnWidth(PackageModel::ctn_PACKAGE_VERSION_COLUMN,
                                  SettingsManager::getPackageVersionColumnWidth());
+  ui->tvPackages->setColumnWidth(PackageModel::ctn_PACKAGE_REPOSITORY_COLUMN,
+                                 SettingsManager::getPackageRepositoryColumnWidth());
 }
 
 /*

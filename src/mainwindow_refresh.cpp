@@ -207,16 +207,29 @@ void MainWindow::refreshGroupsWidget()
  */
 void MainWindow::AURToolSelected()
 {
+  savePackageColumnWidths();
+
   if (m_actionSwitchToAURTool->isChecked())
   {
     m_actionMenuRepository->setEnabled(false);
-    ui->twGroups->setEnabled(false);        
+    ui->twGroups->setEnabled(false);           
+    ui->tvPackages->setColumnHidden(PackageModel::ctn_PACKAGE_REPOSITORY_COLUMN, true);
+
+    if (!SettingsManager::hasPacmanBackend())
+      ui->tvPackages->setColumnHidden(PackageModel::ctn_PACKAGE_SIZE_COLUMN, true);
+
+    ui->tvPackages->setColumnHidden(PackageModel::ctn_PACKAGE_POPULARITY_COLUMN, false);
   }
   else
   {
     m_actionMenuRepository->setEnabled(true);
     ui->twGroups->setEnabled(true);
+    ui->tvPackages->setColumnHidden(PackageModel::ctn_PACKAGE_POPULARITY_COLUMN, true);
+    ui->tvPackages->setColumnWidth(PackageModel::ctn_PACKAGE_REPOSITORY_COLUMN, SettingsManager::getPackageRepositoryColumnWidth());
     ui->tvPackages->setColumnHidden(PackageModel::ctn_PACKAGE_REPOSITORY_COLUMN, false);
+
+    if (!SettingsManager::hasPacmanBackend())
+      ui->tvPackages->setColumnHidden(PackageModel::ctn_PACKAGE_SIZE_COLUMN, false);
   }
 
   switchToViewAllPackages();
@@ -680,6 +693,8 @@ void MainWindow::showPackagesWithNoDescription()
  */
 void MainWindow::buildPackageList()
 {
+  ui->tvPackages->setColumnHidden(PackageModel::ctn_PACKAGE_POPULARITY_COLUMN, true);
+
   CPUIntensiveComputing cic;
   static bool firstTime = true;
 
@@ -816,7 +831,9 @@ void MainWindow::buildPackageList()
     }
   }
 
-  ui->tvPackages->setColumnWidth(PackageModel::ctn_PACKAGE_REPOSITORY_COLUMN, 10);
+  //ui->tvPackages->setColumnWidth(PackageModel::ctn_PACKAGE_REPOSITORY_COLUMN,
+  //                               SettingsManager::getPackageRepositoryColumnWidth());
+
   refreshToolBar();
   m_refreshPackageLists = true;
 
@@ -856,7 +873,7 @@ void MainWindow::postBuildPackageList()
     {
       //If we find an outdated AUR pkg in the official pkg list, let's remove it
       PackageRepository::PackageData * pd = m_packageRepo.getFirstPackageByName(m_outdatedAURStringList->at(c));
-      if (pd)
+      if (pd && pd->status != ectn_FOREIGN_OUTDATED)
       {
         m_outdatedAURStringList->removeAt(c);
       }
@@ -870,7 +887,7 @@ void MainWindow::postBuildPackageList()
     ui->tvPackages->setCurrentIndex(maux);
     ui->tvPackages->scrollTo(maux, QAbstractItemView::PositionAtCenter);
     ui->tvPackages->setCurrentIndex(maux);
-    ui->tvPackages->setColumnWidth(PackageModel::ctn_PACKAGE_REPOSITORY_COLUMN, 10);
+    //ui->tvPackages->setColumnWidth(PackageModel::ctn_PACKAGE_REPOSITORY_COLUMN, SettingsManager::getPackageRepositoryColumnWidth());
 
     if (m_outdatedStringList->count() == 0 && m_outdatedAURStringList->count() > 0)
       refreshAppIcon();
@@ -964,6 +981,8 @@ void MainWindow::refreshPackageList()
  */
 void MainWindow::buildAURPackageList()
 {
+  ui->tvPackages->setColumnHidden(PackageModel::ctn_PACKAGE_REPOSITORY_COLUMN, true);
+
   ui->actionSearchByDescription->setChecked(true);
   m_progressWidget->show();
 
@@ -1016,8 +1035,6 @@ void MainWindow::buildAURPackageList()
   counter = list->count();
   m_progressWidget->setValue(counter);
   m_progressWidget->close();
-
-  ui->tvPackages->setColumnHidden(PackageModel::ctn_PACKAGE_REPOSITORY_COLUMN, true);
 
   refreshColumnSortSetup();
   refreshToolBar();

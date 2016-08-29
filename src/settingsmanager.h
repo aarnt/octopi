@@ -56,17 +56,20 @@ class SettingsManager
     static int getPackageListSortOrder();
     static int getAURPackageListOrderedCol();
     static int getAURPackageListSortOrder();
+
     static int getPackageIconColumnWidth();
     static int getPackageNameColumnWidth();
     static int getPackageVersionColumnWidth();
+    static int getPackageRepositoryColumnWidth();
 
     //Notifier related
     static int getSyncDbHour();
     static int getSyncDbInterval();
     static QDateTime getLastSyncDbTime();
-
     static bool getSkipMirrorCheckAtStartup();
     static bool getShowGroupsPanel();
+    static bool hasPacmanBackend();
+
     static QByteArray getWindowSize();
     static QByteArray getTransactionWindowSize();
     static QByteArray getOptionalDepsWindowSize();
@@ -102,6 +105,7 @@ class SettingsManager
     static void setPackageIconColumnWidth(int newValue);
     static void setPackageNameColumnWidth(int newValue);
     static void setPackageVersionColumnWidth(int newValue);
+    static void setPackageRepositoryColumnWidth(int newValue);
 };
 
 #endif // SETTINGSMANAGER_H
