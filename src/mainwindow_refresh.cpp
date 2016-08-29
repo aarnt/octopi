@@ -225,7 +225,6 @@ void MainWindow::AURToolSelected()
     m_actionMenuRepository->setEnabled(true);
     ui->twGroups->setEnabled(true);
     ui->tvPackages->setColumnHidden(PackageModel::ctn_PACKAGE_POPULARITY_COLUMN, true);
-    ui->tvPackages->setColumnWidth(PackageModel::ctn_PACKAGE_REPOSITORY_COLUMN, SettingsManager::getPackageRepositoryColumnWidth());
     ui->tvPackages->setColumnHidden(PackageModel::ctn_PACKAGE_REPOSITORY_COLUMN, false);
 
     if (!SettingsManager::hasPacmanBackend())
@@ -831,8 +830,7 @@ void MainWindow::buildPackageList()
     }
   }
 
-  //ui->tvPackages->setColumnWidth(PackageModel::ctn_PACKAGE_REPOSITORY_COLUMN,
-  //                               SettingsManager::getPackageRepositoryColumnWidth());
+  resizePackageView();
 
   refreshToolBar();
   m_refreshPackageLists = true;
@@ -887,7 +885,6 @@ void MainWindow::postBuildPackageList()
     ui->tvPackages->setCurrentIndex(maux);
     ui->tvPackages->scrollTo(maux, QAbstractItemView::PositionAtCenter);
     ui->tvPackages->setCurrentIndex(maux);
-    //ui->tvPackages->setColumnWidth(PackageModel::ctn_PACKAGE_REPOSITORY_COLUMN, SettingsManager::getPackageRepositoryColumnWidth());
 
     if (m_outdatedStringList->count() == 0 && m_outdatedAURStringList->count() > 0)
       refreshAppIcon();
@@ -1381,6 +1378,7 @@ void MainWindow::refreshTabFiles(bool clearContents, bool neverQuit)
   bool tvPackagesHasFocus = ui->tvPackages->hasFocus();
 
   QItemSelectionModel*const selectionModel = ui->tvPackages->selectionModel();
+
   if (clearContents || selectionModel == NULL ||
       selectionModel->selectedRows(PackageModel::ctn_PACKAGE_NAME_COLUMN).count() == 0)
   {

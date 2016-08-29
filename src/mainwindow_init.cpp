@@ -142,14 +142,28 @@ void MainWindow::saveSettings(SaveSettingsReason saveSettingsReason){
  */
 void MainWindow::savePackageColumnWidths()
 {
+  int width = ui->tvPackages->columnWidth(PackageModel::ctn_PACKAGE_ICON_COLUMN);
+  if (width > 0)
+  {
   SettingsManager::setPackageIconColumnWidth(
         ui->tvPackages->columnWidth(PackageModel::ctn_PACKAGE_ICON_COLUMN));
+  }
+
+  width = ui->tvPackages->columnWidth(PackageModel::ctn_PACKAGE_NAME_COLUMN);
+  if (width > 0)
+  {
   SettingsManager::setPackageNameColumnWidth(
         ui->tvPackages->columnWidth(PackageModel::ctn_PACKAGE_NAME_COLUMN));
+  }
+
+  width = ui->tvPackages->columnWidth(PackageModel::ctn_PACKAGE_VERSION_COLUMN);
+  if (width > 0)
+  {
   SettingsManager::setPackageVersionColumnWidth(
         ui->tvPackages->columnWidth(PackageModel::ctn_PACKAGE_VERSION_COLUMN));
+  }
 
-  int width = ui->tvPackages->columnWidth(PackageModel::ctn_PACKAGE_REPOSITORY_COLUMN);
+  width = ui->tvPackages->columnWidth(PackageModel::ctn_PACKAGE_REPOSITORY_COLUMN);
   if (width > 0)
   {
     SettingsManager::setPackageRepositoryColumnWidth(
