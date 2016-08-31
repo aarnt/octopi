@@ -1,0 +1,9 @@
+libdir=@libdir@
+includedir=@includedir@
+
+Name: libalpm_octopi_utils
+Description: Library with alpm helper functions for octopi
+Version: 1.0
+Cflags: -I${includedir} 
+Libs: -L${libdir} -lalpm_octopi_utils
+Libs.private: -lglib-2.0 -lalpm

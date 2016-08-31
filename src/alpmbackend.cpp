@@ -22,7 +22,7 @@
 
 #include <alpm.h>
 #include <alpm_list.h>
-#include <alpm_utils.h>
+#include <alpm_octopi_utils.h>
 
 /*
  * This class encapsulates ALPM methods to retrieve package information
