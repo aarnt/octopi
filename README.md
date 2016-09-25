@@ -19,9 +19,9 @@ Currently, 10 Linux distros are compatible with it
 ### What you must install in your system to have Octopi fully functional
 
 You'll need:
- * [Alpm_octopi_utils lib] (https://github.com/aarnt/alpm_octopi_utils/) 
+ * [Alpm_octopi_utils] (https://github.com/aarnt/alpm_octopi_utils/) library
  * A privilege escalation tool to use it, once running as root will ONLY work in KDE. Octopi supports 
-gksu, kdesu and lxqt-sudo for that.
+gksu, kdesu and lxqt-sudo for that
  
 ### Simple steps to build Octopi code
 
