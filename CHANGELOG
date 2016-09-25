@@ -11,6 +11,8 @@
   BugFix: Using the alpm algorithm for package version comparison. Previous code 
 	was reporting false newer packages.
   Added "Install Reason" field at Info tab.
+  Added support for ALPM utils lib (thanks to guinux, from Pamac project).
+  Added link support in all Info tab package lists.
   Prevent the user to install partial upgrades in his system (some of the outdated packages). 
 
 0.8.1

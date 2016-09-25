@@ -150,7 +150,6 @@ class Package{
     static double getDownloadSizeDescription(const QString &pkgName);
     static QString getInformationDescription(const QString &pkgName, bool foreignPackage = false);
     static QString getInformationInstalledSize(const QString &pkgName, bool foreignPackage = false);
-
     static QStringList getContents(const QString &pkgName, bool isInstalled);
     static QStringList getOptionalDeps(const QString &pkgName);
     static QString getName(const QString &pkgInfo);
@@ -176,6 +175,7 @@ class Package{
     static double getInstalledSize(const QString &pkgInfo);
     static QString getInstalledSizeAsString(const QString &pkgInfo);
     static QString kbytesToSize(float Bytes );
+    static QString makeAnchorOfOptionalDep(const QString &optionalDeps);
     static QString makeAnchorOfPackage(const QString &packages);
     static QString makeURLClickable(const QString &information);
     static QString getBaseName( const QString& pkgName );

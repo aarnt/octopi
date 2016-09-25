@@ -33,6 +33,7 @@
 #include <QTextStream>
 #include <QList>
 #include <QFile>
+#include <QRegularExpression>
 
 /*
  * This class abstracts all the relevant package information and services
@@ -145,6 +146,36 @@ QString Package::kbytesToSize( float Bytes )
     res = res.sprintf("%.2f Bytes", Bytes);
 
   return res;
+}
+
+/*
+ * Parses optional package deps list and returns anchors for them
+ */
+QString Package::makeAnchorOfOptionalDep(const QString &optionalDeps)
+{
+  QString newDeps;
+  QString newDep;
+  QString name;
+  QStringList ldeps = optionalDeps.split("<br>", QString::SkipEmptyParts);
+  int colon;
+
+  //teste: isto eh um teste   colon = 5
+
+  foreach(QString dep, ldeps)
+  {
+    colon = dep.indexOf(":");
+    if (colon != -1)
+    {
+      name = dep.left(colon).trimmed();
+
+      newDep = "<a href=\"goto:" + name + "\">" + name + "</a> " + dep.right(dep.length()-colon);
+      newDeps += newDep + "<br>";
+    }
+  }
+
+  newDeps.remove(QRegularExpression("<br>$"));
+
+  return newDeps;
 }
 
 /*
