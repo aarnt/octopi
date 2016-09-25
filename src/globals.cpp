@@ -41,7 +41,6 @@ QFutureWatcher<QString> g_fwPackageOwnsFile;
 QFutureWatcher<QList<PackageListData> *> g_fwMarkForeignPackages;
 QFutureWatcher<QSet<QString> *> g_fwUnrequiredPacman;
 QFutureWatcher<PackageInfoData> g_fwKCPInformation;
-
 QFutureWatcher<QStringList *> g_fwOutdatedPkgStringList;
 QFutureWatcher<QStringList *> g_fwOutdatedAURStringList;
 
@@ -207,6 +206,9 @@ PackageInfoData getKCPInformation(QString pkgName)
   return Package::getKCPInformation(pkgName);
 }
 
+/*
+ * Retrives outdated package names
+ */
 QStringList *getOutdatedPkgStringList()
 {
   QStringList *res = Package::getOutdatedStringList();
@@ -214,6 +216,9 @@ QStringList *getOutdatedPkgStringList()
   return res;
 }
 
+/*
+ * Retrieves outdated AUR package names
+ */
 QStringList *getOutdatedAURStringList()
 {
   QStringList *res = Package::getOutdatedAURStringList();
