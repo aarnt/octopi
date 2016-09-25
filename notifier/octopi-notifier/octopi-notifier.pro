@@ -7,8 +7,17 @@
 QT += core xml gui network dbus
 
 # This controls whether octopi-notifier uses KStatusNotifier lib
-# You SHOULD REALLY enable the following define in plasma 5 desktops!
-#DEFINES += KSTATUS
+# You SHOULD REALLY enable KSTATUS define in plasma 5 desktops!
+DEFINES += ALPM_BACKEND #KSTATUS
+CONFIG += qt warn_on debug link_pkgconfig ALPM_BACKEND
+
+ALPM_BACKEND {
+  QMAKE_CXXFLAGS += -std=c++11
+  PKGCONFIG += glib-2.0
+  LIBS += -lglib-2.0 -lalpm -lalpm_octopi_utils
+} else {
+  QMAKE_CXXFLAGS += -std=c++11
+}
 
 contains(DEFINES, KSTATUS){
   QT += KNotifications
@@ -24,23 +33,6 @@ DESTDIR += ../bin
 OBJECTS_DIR += ../build-octopi-notifier
 MOC_DIR += ../build-octopi-notifier
 UI_DIR += ../build-octopi-notifier
-
-SOURCES += main.cpp \
-    mainwindow.cpp \
-    setupdialog.cpp \
-    outputdialog.cpp \
-    ../../src/terminal.cpp \
-    ../../src/unixcommand.cpp \
-    ../../src/package.cpp \
-    ../../src/wmhelper.cpp \
-    ../../src/settingsmanager.cpp \
-    ../pacmanhelper/pacmanhelperclient.cpp \
-    ../../src/utils.cpp \
-    ../../src/transactiondialog.cpp \
-    ../../src/argumentlist.cpp \
-    ../../src/pacmanexec.cpp \
-    ../../src/searchlineedit.cpp \
-    ../../src/searchbar.cpp
 
 HEADERS  += \
     mainwindow.h \
@@ -59,6 +51,31 @@ HEADERS  += \
     ../../src/pacmanexec.h \
     ../../src/searchlineedit.h \
     ../../src/searchbar.h
+
+ALPM_BACKEND{
+  HEADERS += ../../src/alpmbackend.h
+}
+
+SOURCES += main.cpp \
+    mainwindow.cpp \
+    setupdialog.cpp \
+    outputdialog.cpp \
+    ../../src/terminal.cpp \
+    ../../src/unixcommand.cpp \
+    ../../src/package.cpp \
+    ../../src/wmhelper.cpp \
+    ../../src/settingsmanager.cpp \
+    ../pacmanhelper/pacmanhelperclient.cpp \
+    ../../src/utils.cpp \
+    ../../src/transactiondialog.cpp \
+    ../../src/argumentlist.cpp \
+    ../../src/pacmanexec.cpp \
+    ../../src/searchlineedit.cpp \
+    ../../src/searchbar.cpp
+
+ALPM_BACKEND{
+  SOURCES += ../../src/alpmbackend.cpp
+}
 
 FORMS += ../../ui/transactiondialog.ui \
     ui/setupdialog.ui

@@ -144,26 +144,26 @@ QString OctopiTabInfo::formatTabInfo(const PackageRepository::PackageData& packa
     html += "<tr><td>" + groups + "</td><td>" + pid.group + "</td></tr>";
 
   if(! pid.provides.contains("None"))
-    html += "<tr><td>" + provides + "</td><td>" + pid.provides + "</td></tr>";
+    html += "<tr><td>" + provides + "</td><td>" + Package::makeAnchorOfPackage(pid.provides) + "</td></tr>";
 
   if(! pid.dependsOn.contains("None"))
     html += "<tr><td>" + dependsOn + "</td><td>" + Package::makeAnchorOfPackage(pid.dependsOn) + "</td></tr>";
 
   if(! pid.optDepends.contains("None"))
-    html += "<tr><td>" + optionalDeps + "</td><td>" + pid.optDepends + "</td></tr>";
+    html += "<tr><td>" + optionalDeps + "</td><td>" + Package::makeAnchorOfOptionalDep(pid.optDepends) + "</td></tr>";
 
   if(!pid.requiredBy.isEmpty() && !pid.requiredBy.contains("None"))
-    html += "<tr><td>" + requiredBy + "</td><td>" + pid.requiredBy + "</td></tr>";
+    html += "<tr><td>" + requiredBy + "</td><td>" + Package::makeAnchorOfPackage(pid.requiredBy) + "</td></tr>";
 
   if(!pid.optionalFor.isEmpty() && !pid.optionalFor.contains("None"))
-    html += "<tr><td>" + optionalFor + "</td><td>" + pid.optionalFor + "</td></tr>";
+    html += "<tr><td>" + optionalFor + "</td><td>" + Package::makeAnchorOfPackage(pid.optionalFor) + "</td></tr>";
 
   if(! pid.conflictsWith.contains("None"))
-    html += "<tr><td><b>" + conflictsWith + "</b></td><td><b>" + strConflictsWith +
+    html += "<tr><td><b>" + conflictsWith + "</b></td><td><b>" + Package::makeAnchorOfPackage(strConflictsWith) +
         "</b></font></td></tr>";
 
   if(! pid.replaces.contains("None"))
-    html += "<tr><td>" + replaces + "</td><td>" + pid.replaces + "</td></tr>";
+    html += "<tr><td>" + replaces + "</td><td>" + Package::makeAnchorOfPackage(pid.replaces) + "</td></tr>";
 
   html += "<tr><td>" + downloadSize + "</td><td>" + Package::kbytesToSize(pid.downloadSize) + "</td></tr>";
   html += "<tr><td>" + installedSize + "</td><td>" + Package::kbytesToSize(pid.installedSize) + "</td></tr>";

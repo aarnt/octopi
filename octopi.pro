@@ -5,8 +5,8 @@
 #-------------------------------------------------
 
 QT += core gui network xml dbus widgets quick quickwidgets
-DEFINES += OCTOPI_EXTENSIONS #ALPM_BACKEND
-CONFIG += qt warn_on debug link_pkgconfig #ALPM_BACKEND
+DEFINES += OCTOPI_EXTENSIONS ALPM_BACKEND
+CONFIG += qt warn_on debug link_pkgconfig ALPM_BACKEND
 
 ALPM_BACKEND {
   QMAKE_CXXFLAGS += -std=c++11
@@ -98,6 +98,7 @@ FORMS   += ui/mainwindow.ui \
 RESOURCES += resources.qrc
 
 TRANSLATIONS += resources/translations/octopi_pt_BR.ts \
+    resources/translations/octopi_fr \
     resources/translations/octopi_fr_FR.ts \
     resources/translations/octopi_es_ES.ts \
     resources/translations/octopi_es_419.ts \

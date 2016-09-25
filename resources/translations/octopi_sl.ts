@@ -251,7 +251,7 @@
         <location filename="Projects/octopi/ui/mainwindow.ui" line="508"/>
         <source>Install local package...</source>
         <oldsource>&amp;Install local package...</oldsource>
-        <translation>Namesti lokalni paket...</translation>
+        <translation>Namesti lokalni paket ...</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="525"/>
@@ -800,7 +800,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="351"/>
         <source>Building package list...</source>
-        <translation>Sestavljam seznam paketov...</translation>
+        <translation>Sestavljam seznam paketov ...</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="355"/>
@@ -850,12 +850,12 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="391"/>
         <source>Cleaning package cache...</source>
-        <translation>Čiščenje namestitvenih datotek paketov...</translation>
+        <translation>Čiščenje namestitvenih datotek paketov ...</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="395"/>
         <source>Removing Pacman&apos;s transaction lock file...</source>
-        <translation>Brisanje Pacman transakcijske zaklepne datoteke...</translation>
+        <translation>Brisanje Pacman transakcijske zaklepne datoteke ...</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="399"/>
@@ -865,7 +865,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="403"/>
         <source>Press any key to continue...</source>
-        <translation>Pritisnite poljubno tipko za nadaljevanje...</translation>
+        <translation>Pritisnite poljubno tipko za nadaljevanje ...</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="411"/>
@@ -875,7 +875,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="415"/>
         <source>Synchronizing databases...</source>
-        <translation>Sinhronizacija podatkovnih baz...</translation>
+        <translation>Sinhronizacija podatkovnih baz ...</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="419"/>
@@ -885,22 +885,22 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="423"/>
         <source>Starting full system upgrade...</source>
-        <translation>Začetek polne nadgradnje sistema...</translation>
+        <translation>Začetek polne nadgradnje sistema ...</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="427"/>
         <source>Installing selected packages...</source>
-        <translation>Nameščanje izbranih paketov...</translation>
+        <translation>Nameščanje izbranih paketov ...</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="431"/>
         <source>Removing selected packages...</source>
-        <translation>Odstranjevanje izbranih paketov...</translation>
+        <translation>Odstranjevanje izbranih paketov ...</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="435"/>
         <source>Removing/installing selected packages...</source>
-        <translation>Odstranjevanje/nameščanje izbranih paketov...</translation>
+        <translation>Odstranjevanje/nameščanje izbranih paketov ...</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="439"/>
@@ -910,7 +910,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="443"/>
         <source>Running command in terminal...</source>
-        <translation>Izvedi ukaz v terminalu...</translation>
+        <translation>Izvedi ukaz v terminalu ...</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="447"/>
@@ -1157,7 +1157,7 @@ Jo želite odpreti?</translation>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="642"/>
         <source>Set interval...</source>
-        <translation>Nastavi interval...</translation>
+        <translation>Nastavi interval ...</translation>
     </message>
 </context>
 <context>

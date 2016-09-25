@@ -44,6 +44,7 @@ RESOURCES += resources.qrc
     
 TRANSLATIONS += resources/translations/octopi_repoeditor_pt_BR.ts \
     resources/translations/octopi_repoeditor_fr_FR.ts \
+    resources/translations/octopi_repoeditor_fr.ts \
     resources/translations/octopi_repoeditor_es_ES.ts \
     resources/translations/octopi_repoeditor_es_419.ts \
     resources/translations/octopi_repoeditor_es_AR.ts \

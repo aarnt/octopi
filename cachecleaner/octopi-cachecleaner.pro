@@ -50,6 +50,7 @@ RESOURCES += resources.qrc
     
 TRANSLATIONS += resources/translations/octopi_cachecleaner_pt_BR.ts \
     resources/translations/octopi_cachecleaner_fr_FR.ts \
+    resources/translations/octopi_cachecleaner_fr.ts \
     resources/translations/octopi_cachecleaner_es_ES.ts \
     resources/translations/octopi_cachecleaner_es_419.ts \
     resources/translations/octopi_cachecleaner_es_AR.ts \
