@@ -29,7 +29,7 @@ Assuming you have Qt5 libs properly installed, go to the directory where the cod
 
 ```
 $ cd OCTOPI_PATH
-$ qmake
+$ qmake-qt5
 $ make
 ```
 
