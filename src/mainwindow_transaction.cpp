@@ -890,7 +890,6 @@ void MainWindow::doSystemUpgrade(SystemUpgradeOptions systemUpgradeOptions)
     if (systemUpgradeOptions == ectn_NOCONFIRM_OPT)
     {
       prepareSystemUpgrade();
-
       m_commandExecuting = ectn_SYSTEM_UPGRADE;
       m_pacmanExec->doSystemUpgrade();
       m_commandQueued = ectn_NONE;
@@ -898,7 +897,6 @@ void MainWindow::doSystemUpgrade(SystemUpgradeOptions systemUpgradeOptions)
     else
     {
       //Let's build the system upgrade transaction dialog...
-      totalDownloadSize = totalDownloadSize; // / 1024;
       QString ds = Package::kbytesToSize(totalDownloadSize);
 
       TransactionDialog question(this);
