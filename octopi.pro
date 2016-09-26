@@ -141,5 +141,5 @@ TRANSLATIONS += resources/translations/octopi_pt_BR.ts \
     resources/translations/octopi_gl_ES.ts \
     resources/translations/octopi_ast.ts \
     resources/translations/octopi_hr.ts \
-    resources/translations/octopi_zh-Hans.ts
+    resources/translations/octopi_zh-Hans.ts \
     resources/translations/octopi_zh_CN.ts
