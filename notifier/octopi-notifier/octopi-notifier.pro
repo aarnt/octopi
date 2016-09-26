@@ -82,3 +82,25 @@ FORMS += ../../ui/transactiondialog.ui \
 
 RESOURCES += \
     ../../resources.qrc
+    
+# install
+isEmpty(PREFIX) {
+    PREFIX = /usr
+}
+ 
+isEmpty(BINDIR) {
+    BINDIR = $$PREFIX/bin
+}
+
+isEmpty(DATADIR) {
+    DATADIR = $$PREFIX/share
+}
+    
+target.path = $$BINDIR
+sources.files = $$SOURCES $$HEADERS $$RESOURCES $$FORMS *.pro 
+sources.path = .
+
+desktop.path = $$DATADIR/applications
+desktop.files += octopi-notifier.desktop
+
+INSTALLS += target desktop

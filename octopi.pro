@@ -143,3 +143,68 @@ TRANSLATIONS += resources/translations/octopi_pt_BR.ts \
     resources/translations/octopi_hr.ts \
     resources/translations/octopi_zh-Hans.ts \
     resources/translations/octopi_zh_CN.ts
+    
+# install
+isEmpty(PREFIX) {
+    PREFIX = /usr
+}
+ 
+isEmpty(BINDIR) {
+    BINDIR = $$PREFIX/bin
+}
+ 
+isEmpty(DATADIR) {
+    DATADIR = $$PREFIX/share
+}
+
+isEmpty(ETCDIR) {
+    ETCDIR = /etc
+}
+
+isEmpty(LIBDIR) {
+    LIBDIR = $$PREFIX/lib
+}
+
+target.path = $$BINDIR
+sources.files = $$SOURCES $$HEADERS $$RESOURCES $$FORMS *.pro 
+sources.path = .
+
+autostart.path = $$ETCDIR/xdg/autostart
+autostart.files += octopi-notifier.desktop
+
+bin.path = $$BINDIR
+bin.files += speedup/speedup-octopi.sh
+
+dbus.path = $$ETCDIR/dbus-1/system.d
+dbus.files += notifier/pacmanhelper/polkit/org.octopi.pacmanhelper.conf
+
+desktop.path = $$DATADIR/applications
+desktop.files += octopi.desktop
+desktop.files += cachecleaner/octopi-cachecleaner.desktop
+
+gnome.path = $$DATADIR/icons/gnome/32x32/apps
+gnome.files += resources/images/octopi_green.png
+gnome.files += resources/images/octopi.png
+
+icon.path = $$DATADIR/icons
+icon.files += resources/images/octopi.png
+icon.files += resources/images/octopi_green.png
+icon.files += resources/images/octopi_red.png
+icon.files += resources/images/octopi_yellow.png
+
+interfaces.path = $$DATADIR/dbus-1/interfaces
+interfaces.files += notifier/pacmanhelper/polkit/org.octopi.pacmanhelper.xml
+
+license.path = $$DATADIR/licenses/octopi
+license.files += LICENSE
+
+polkit.path = $$DATADIR/polkit-1/actions
+polkit.files += notifier/pacmanhelper/polkit/org.octopi.pacman.policy
+
+service.path = $$LIBDIR/systemd/system
+service.files += speedup/octopi.service
+
+sys_service.path = $$DATADIR/dbus-1/system-services
+sys_service.files += notifier/pacmanhelper/polkit/org.octopi.pacmanhelper.service
+
+INSTALLS += target autostart bin dbus desktop gnome icon interfaces license polkit service sys_service
