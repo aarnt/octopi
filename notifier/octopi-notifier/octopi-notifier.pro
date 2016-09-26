@@ -95,12 +95,19 @@ isEmpty(BINDIR) {
 isEmpty(DATADIR) {
     DATADIR = $$PREFIX/share
 }
+
+isEmpty(ETCDIR) {
+    ETCDIR = /etc
+}
     
 target.path = $$BINDIR
 sources.files = $$SOURCES $$HEADERS $$RESOURCES $$FORMS *.pro 
 sources.path = .
 
+autostart.path = $$ETCDIR/xdg/autostart
+autostart.files += octopi-notifier.desktop
+
 desktop.path = $$DATADIR/applications
 desktop.files += octopi-notifier.desktop
 
-INSTALLS += target desktop
+INSTALLS += target autostart desktop
