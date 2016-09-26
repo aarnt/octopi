@@ -102,9 +102,16 @@ isEmpty(PREFIX) {
 isEmpty(BINDIR) {
     BINDIR = $$PREFIX/bin
 }
+
+isEmpty(DATADIR) {
+    DATADIR = $$PREFIX/share
+}
     
 target.path = $$BINDIR
 sources.files = $$SOURCES $$HEADERS $$RESOURCES $$FORMS *.pro 
 sources.path = .
 
-INSTALLS += target
+desktop.path = $$DATADIR/applications
+desktop.files += cachecleaner/octopi-cachecleaner.desktop
+
+INSTALLS += target desktop

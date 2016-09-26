@@ -180,7 +180,6 @@ dbus.files += notifier/pacmanhelper/polkit/org.octopi.pacmanhelper.conf
 
 desktop.path = $$DATADIR/applications
 desktop.files += octopi.desktop
-desktop.files += octopi-notifier.desktop
 desktop.files += cachecleaner/octopi-cachecleaner.desktop
 
 gnome.path = $$DATADIR/icons/gnome/32x32/apps
