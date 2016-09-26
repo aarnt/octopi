@@ -46,13 +46,12 @@ HEADERS += src/QtSolutions/qtsingleapplication.h \
         src/utils.h \
         src/terminal.h \
         src/pacmanexec.h \
-        src/constants.h
+        src/constants.h \
+        src/terminalselectordialog.h
 
 ALPM_BACKEND{
   HEADERS += src/alpmbackend.h
 }
-
-greaterThan(QT_VERSION, 5.3): HEADERS += src/terminalselectordialog.h
 
 SOURCES += src/QtSolutions/qtsingleapplication.cpp \
         src/QtSolutions/qtlocalpeer.cpp \
@@ -83,13 +82,12 @@ SOURCES += src/QtSolutions/qtsingleapplication.cpp \
         src/ui/octopitabinfo.cpp \
         src/utils.cpp \
         src/terminal.cpp \
-        src/pacmanexec.cpp
+        src/pacmanexec.cpp \
+        src/terminalselectordialog.cpp
 
 ALPM_BACKEND{
   SOURCES += src/alpmbackend.cpp
 }
-
-greaterThan(QT_VERSION, 5.3): SOURCES += src/terminalselectordialog.cpp
 
 FORMS   += ui/mainwindow.ui \
         ui/transactiondialog.ui \
