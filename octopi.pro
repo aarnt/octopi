@@ -167,9 +167,6 @@ target.path = $$BINDIR
 sources.files = $$SOURCES $$HEADERS $$RESOURCES $$FORMS *.pro 
 sources.path = .
 
-autostart.path = $$ETCDIR/xdg/autostart
-autostart.files += octopi-notifier.desktop
-
 bin.path = $$BINDIR
 bin.files += speedup/speedup-octopi.sh
 
@@ -205,4 +202,4 @@ service.files += speedup/octopi.service
 sys_service.path = $$DATADIR/dbus-1/system-services
 sys_service.files += notifier/pacmanhelper/polkit/org.octopi.pacmanhelper.service
 
-INSTALLS += target autostart bin dbus desktop gnome icon interfaces license polkit service sys_service
+INSTALLS += target bin dbus desktop gnome icon interfaces license polkit service sys_service
