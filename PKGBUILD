@@ -22,9 +22,7 @@ prepare() {
 
    # enable the kstatus switch, disable if you wish to build without Plasma/knotifications support
    sed -e "s|# DEFINES += KSTATUS| DEFINES += KSTATUS|" -i notifier/octopi-notifier/octopi-notifier.pro
-   # enable alpm backend, disable if you wish to build without alpm_octopi_utils
-   sed -e "s|#ALPM_BACKEND|ALPM_BACKEND|" -i octopi.pro
-   
+      
    cp resources/images/octopi_green.png resources/images/octopi.png
 }
          
