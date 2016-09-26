@@ -82,3 +82,18 @@ FORMS += ../../ui/transactiondialog.ui \
 
 RESOURCES += \
     ../../resources.qrc
+    
+# install
+isEmpty(PREFIX) {
+    PREFIX = /usr
+}
+ 
+isEmpty(BINDIR) {
+    BINDIR = $$PREFIX/bin
+}
+    
+target.path = $$BINDIR
+sources.files = $$SOURCES $$HEADERS $$RESOURCES $$FORMS *.pro 
+sources.path = .
+
+INSTALLS += target

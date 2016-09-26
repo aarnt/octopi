@@ -173,9 +173,6 @@ autostart.path = $$ETCDIR/xdg/autostart
 autostart.files += octopi-notifier.desktop
 
 bin.path = $$BINDIR
-bin.files = cachecleaner/bin/octopi-cachecleaner \
-        notifier/bin/octopi-notifier \
-        repoeditor/bin/octopi-repoeditor
 bin.files += speedup/speedup-octopi.sh
 
 dbus.path = $$ETCDIR/dbus-1/system.d
@@ -194,13 +191,10 @@ icon.path = $$DATADIR/icons
 icon.files += resources/images/octopi.png
 icon.files += resources/images/octopi_green.png
 icon.files += resources/images/octopi_red.png
-icon.files += resources/images/octopi_yellow
+icon.files += resources/images/octopi_yellow.png
 
 interfaces.path = $$DATADIR/dbus-1/interfaces
 interfaces.files += notifier/pacmanhelper/polkit/org.octopi.pacmanhelper.xml
-
-lib.path = $$LIBDIR/octopi
-lib.files = notifier/bin/pacmanhelper
 
 license.path = $$DATADIR/licenses/octopi
 license.files += LICENSE
@@ -214,4 +208,4 @@ service.files += speedup/octopi.service
 sys_service.path = $$DATADIR/dbus-1/system-services
 sys_service.files += notifier/pacmanhelper/polkit/org.octopi.pacmanhelper.service
 
-INSTALLS += target autostart bin dbus desktop gnome icon interfaces lib license polkit service sys_service
+INSTALLS += target autostart bin dbus desktop gnome icon interfaces license polkit service sys_service

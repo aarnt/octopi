@@ -18,16 +18,18 @@ source=("https://github.com/aarnt/octopi/archive/v${pkgver}.tar.gz")
 md5sums=('669b6fa406ad64c65d9f548996cb3d8c')
 
 prepare() {
-   cd ${pkgname}-${pkgver}/
+   cd ${pkgname}-${pkgver}
 
    # enable the kstatus switch, disable if you wish to build without Plasma/knotifications support
    sed -e "s|# DEFINES += KSTATUS| DEFINES += KSTATUS|" -i notifier/octopi-notifier/octopi-notifier.pro
    # enable alpm backend, disable if you wish to build without alpm_octopi_utils
    sed -e "s|#ALPM_BACKEND|ALPM_BACKEND|" -i octopi.pro
+   
+   cp resources/images/octopi_green.png resources/images/octopi.png
 }
          
 build() {
-   cd ${pkgname}-${pkgver}/
+   cd ${pkgname}-${pkgver}
    
    qmake-qt5 octopi.pro
    make
@@ -53,7 +55,21 @@ build() {
 }
 
 package() {
-   cd ${pkgname}
+   cd ${pkgname}-${pkgver}
+   make INSTALL_ROOT=${pkgdir} install
    
-   make INSTALL_ROOT=${pkgdir}/ install
+   cd notifier/pacmanhelper
+   make INSTALL_ROOT=${pkgdir} install
+   cd ../..
+   
+   cd notifier/octopi-notifier
+   make INSTALL_ROOT=${pkgdir} install
+   cd ../..
+   
+   cd repoeditor
+   make INSTALL_ROOT=${pkgdir} install
+   cd ..
+   
+   cd cachecleaner
+   make INSTALL_ROOT=${pkgdir} install
 }

@@ -93,3 +93,18 @@ TRANSLATIONS += resources/translations/octopi_cachecleaner_pt_BR.ts \
     resources/translations/octopi_cachecleaner_hr.ts \
     resources/translations/octopi_cachecleaner_zh-Hans.ts
     resources/translations/octopi_cachecleaner_zh_CN.ts
+    
+# install
+isEmpty(PREFIX) {
+    PREFIX = /usr
+}
+ 
+isEmpty(BINDIR) {
+    BINDIR = $$PREFIX/bin
+}
+    
+target.path = $$BINDIR
+sources.files = $$SOURCES $$HEADERS $$RESOURCES $$FORMS *.pro 
+sources.path = .
+
+INSTALLS += target
