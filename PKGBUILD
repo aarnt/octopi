@@ -21,7 +21,7 @@ prepare() {
    cd ${pkgname}-${pkgver}
 
    # enable the kstatus switch, disable if you wish to build without Plasma/knotifications support
-   sed -e "s|# DEFINES += KSTATUS| DEFINES += KSTATUS|" -i notifier/octopi-notifier/octopi-notifier.pro
+   sed -e "s|DEFINES += ALPM_BACKEND #KSTATUS|DEFINES += ALPM_BACKEND KSTATUS|" -i notifier/octopi-notifier/octopi-notifier.pro
       
    cp resources/images/octopi_green.png resources/images/octopi.png
 }
