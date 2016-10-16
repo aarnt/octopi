@@ -1,13 +1,13 @@
 import QtQuick 2.0
-import QtQuick.Controls 1.2
+import QtQuick.Controls 1.4
 
-Rectangle {
+Rectangle{
     id: terminals
 
     signal terminalSelected(int index)
     signal dialogOK()
-    width: 300
-    height: 215
+    width: 500
+    height: 400
 
     TableView {
         id: list

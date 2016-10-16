@@ -63,6 +63,7 @@ class SettingsManager
     static int getPackageRepositoryColumnWidth();
 
     static bool getUseDefaultAppIcon();
+    static QString getOctopiBusyIconPath();
     static QString getOctopiRedIconPath();
     static QString getOctopiYellowIconPath();
     static QString getOctopiGreenIconPath();
@@ -89,6 +90,7 @@ class SettingsManager
     static void setPanelOrganizing(int newValue);
 
     static void setUseDefaultAppIcon(bool newValue);
+    static void setOctopiBusyIconPath(const QString& newValue);
     static void setOctopiRedIconPath(const QString& newValue);
     static void setOctopiYellowIconPath(const QString& newValue);
     static void setOctopiGreenIconPath(const QString& newValue);

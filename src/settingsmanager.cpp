@@ -214,6 +214,12 @@ bool SettingsManager::getUseDefaultAppIcon()
   }
 }
 
+QString SettingsManager::getOctopiBusyIconPath()
+{
+  SettingsManager p_instance;
+  return (p_instance.getSYSsettings()->value( ctn_KEY_OCTOPI_BUSY_ICON_PATH, "")).toString();
+}
+
 QString SettingsManager::getOctopiRedIconPath()
 {
   SettingsManager p_instance;
@@ -341,6 +347,12 @@ void SettingsManager::setUseDefaultAppIcon(bool newValue)
   if (newValue) v=1;
 
   instance()->getSYSsettings()->setValue( ctn_KEY_USE_DEFAULT_APP_ICON, v);
+  instance()->getSYSsettings()->sync();
+}
+
+void SettingsManager::setOctopiBusyIconPath(const QString &newValue)
+{
+  instance()->getSYSsettings()->setValue( ctn_KEY_OCTOPI_BUSY_ICON_PATH, newValue);
   instance()->getSYSsettings()->sync();
 }
 

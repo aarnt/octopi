@@ -28,7 +28,6 @@
  * Collection of Octopi constants and enums
  */
 
-
 //MainWindow related
 enum SystemUpgradeOptions { ectn_NO_OPT, ectn_SYNC_DATABASE_OPT, ectn_NOCONFIRM_OPT };
 
@@ -66,6 +65,7 @@ const QString ctn_KEY_PANEL_ORGANIZING("Panel_Organizing");
 const QString ctn_KEY_PACKAGE_LIST_ORDERED_COL("PackageList_Ordered_Col");
 const QString ctn_KEY_PACKAGE_LIST_SORT_ORDER("PackageList_Sort_Order");
 const QString ctn_KEY_USE_DEFAULT_APP_ICON("Use_Default_App_Icon");
+const QString ctn_KEY_OCTOPI_BUSY_ICON_PATH("Octopi_Busy_Icon_Path");
 const QString ctn_KEY_OCTOPI_RED_ICON_PATH("Octopi_Red_Icon_Path");
 const QString ctn_KEY_OCTOPI_YELLOW_ICON_PATH("Octopi_Yellow_Icon_Path");
 const QString ctn_KEY_OCTOPI_GREEN_ICON_PATH("Octopi_Green_Icon_Path");

@@ -33,12 +33,90 @@
  * IconHelper provides some very used icons to the interface
  */
 
+enum AppIcon { ectn_OCTOPI_BUSY, ectn_OCTOPI_RED, ectn_OCTOPI_YELLOW, ectn_OCTOPI_GREEN };
+
 class IconHelper{
 public:
-  static QIcon getIconOctopiTransparent(){ return QIcon(":/resources/images/octopi_transparent.png"); }
-  static QIcon getIconOctopiRed(){ return QIcon(":/resources/images/octopi_red.png"); }
-  static QIcon getIconOctopiYellow(){ return QIcon(":/resources/images/octopi_yellow.png"); }
-  static QIcon getIconOctopiGreen(){ return QIcon(":/resources/images/octopi_green.png"); }
+
+  //App icon code
+  static QString getOctopiIconPath(AppIcon ic)
+  {
+    bool useDefaultIcons = SettingsManager::getUseDefaultAppIcon();
+
+    if (!useDefaultIcons)
+    {
+      //Let's test every choosen icon to see if the file is still there
+      QString path;
+      path = SettingsManager::getOctopiBusyIconPath();
+      if (path.isEmpty() || !QFile::exists(path))
+      {
+        useDefaultIcons=true;
+        goto switch_clause;
+      }
+
+      path = SettingsManager::getOctopiRedIconPath();
+      if (path.isEmpty() || !QFile::exists(path))
+      {
+        useDefaultIcons=true;
+        goto switch_clause;
+      }
+
+      path = SettingsManager::getOctopiYellowIconPath();
+      if (path.isEmpty() || !QFile::exists(path))
+      {
+        useDefaultIcons=true;
+        goto switch_clause;
+      }
+
+      path = SettingsManager::getOctopiGreenIconPath();
+      if (path.isEmpty() || !QFile::exists(path))
+      {
+        useDefaultIcons=true;
+        goto switch_clause;
+      }
+    }
+
+    switch_clause:
+    QString res;
+    switch (ic)
+    {
+      case ectn_OCTOPI_BUSY:
+        if (useDefaultIcons)
+          res = ":/resources/images/octopi_transparent.png";
+        else
+          res = SettingsManager::getOctopiBusyIconPath();
+
+      case ectn_OCTOPI_RED:
+        if (useDefaultIcons)
+          res = ":/resources/images/octopi_red.png";
+        else
+          res = SettingsManager::getOctopiRedIconPath();
+
+      case ectn_OCTOPI_YELLOW:
+        if (useDefaultIcons)
+          res = ":/resources/images/octopi_yellow.png";
+        else
+          res = SettingsManager::getOctopiYellowIconPath();
+
+      case ectn_OCTOPI_GREEN:
+        if (useDefaultIcons)
+          res = ":/resources/images/octopi_green.png";
+        else
+          res = SettingsManager::getOctopiGreenIconPath();
+    }
+
+    return res;
+  }
+
+  static QIcon getIconOctopiBusy(){
+    return QIcon(getOctopiIconPath(ectn_OCTOPI_BUSY));
+  }
+
+  static QIcon getIconOctopiRed(){ return QIcon(getOctopiIconPath(ectn_OCTOPI_RED)); }
+  static QIcon getIconOctopiYellow(){ return QIcon(getOctopiIconPath(ectn_OCTOPI_YELLOW)); }
+  static QIcon getIconOctopiGreen(){ return QIcon(getOctopiIconPath(ectn_OCTOPI_GREEN)); }
+  //App icon code
+
   static QIcon getIconFrozen(){ return QIcon(":/resources/images/tgz_frozen_flat.png"); }
   static QIcon getIconUnFrozen(){ return QIcon(":/resources/images/tgz4_flat.png"); }
   static QIcon getIconRPM(){ return QIcon(":/resources/images/rpm.png"); }

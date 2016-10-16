@@ -40,10 +40,10 @@ TerminalSelectorDialog::TerminalSelectorDialog(QWidget *parent, QStringList term
   m_quickWidget = new QQuickWidget(this);
   m_quickWidget->setResizeMode(QQuickWidget::SizeRootObjectToView);
 
-  setMinimumWidth(290);
-  setMaximumWidth(290);
-  setMinimumHeight(245);
-  setMaximumHeight(245);
+  setMinimumWidth(500);
+  setMaximumWidth(500);
+  setMinimumHeight(400);
+  setMaximumHeight(400);
 
   QQmlContext *context = m_quickWidget->rootContext();
 
