@@ -5,7 +5,7 @@ The project site is hosted at https://octopiproject.wordpress.com
 Currently, 10 Linux distros are compatible with it
 
  * [Antergos] (https://antergos.com/)
- * [ArchBang] (http://wiki.archbang.org/index.php?title=Main_Page)
+ * [ArchBang] (http://bbs.archbang.org/)
  * [Arch] (https://www.archlinux.org/)
  * [ArchBSD] (https://pacbsd.org/)
  * [Chakra] (https://chakralinux.org/)
@@ -29,7 +29,7 @@ Assuming you have Qt5 libs properly installed, go to the directory where the cod
 
 ```
 $ cd OCTOPI_PATH
-$ qmake
+$ qmake-qt5
 $ make
 ```
 

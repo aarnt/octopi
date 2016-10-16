@@ -1568,8 +1568,6 @@ void MainWindow::refreshTabFiles(bool clearContents, bool neverQuit)
 
       counter++;
       m_progressWidget->setValue(counter);
-      qApp->processEvents();
-
       lastItem = item;
       first = false;
     }

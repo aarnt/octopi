@@ -321,7 +321,6 @@ void MainWindow::doSystemUpgrade()
   }
   list.remove(list.size()-1, 1);
 
-  totalDownloadSize = totalDownloadSize / 1024;
   QString ds = Package::kbytesToSize(totalDownloadSize);
   m_transactionDialog = new TransactionDialog(this);
 
@@ -584,6 +583,7 @@ void MainWindow::refreshAppIcon()
   if (m_debugInfo)
     qDebug() << "At refreshAppIcon()...";
   m_outdatedStringList = Package::getOutdatedStringList();
+
   bool hasAURTool = UnixCommand::hasTheExecutable(StrConstants::getForeignRepositoryToolName());
 
   if (hasAURTool)
