@@ -1048,9 +1048,9 @@ void MainWindow::showToolButtonAUR()
 
   m_outdatedAURPackagesNameVersion = &g_fwOutdatedAURPackages.result()->content;
 
-  if(m_outdatedAURStringList->count() > 0)
+  if(m_outdatedAURPackagesNameVersion->count() > 0)
   {
-    if (m_outdatedAURStringList->count() == 1)
+    if (m_outdatedAURPackagesNameVersion->count() == 1)
     {
       m_toolButtonAUR->setText("(1)");
       m_toolButtonAUR->setToolTip(StrConstants::getOneNewUpdate());

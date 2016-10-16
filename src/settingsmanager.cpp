@@ -144,7 +144,6 @@ void SettingsManager::setLastSyncDbTime(QDateTime newValue)
   instance()->getSYSsettings()->setValue(ctn_KEY_LAST_SYNC_DB_TIME, newValue);
   instance()->getSYSsettings()->sync();
 }
-
 //Notifier related ------------------------------------------------------------------
 
 
@@ -200,6 +199,37 @@ int SettingsManager::getPackageRepositoryColumnWidth()
 {
   return instance()->getSYSsettings()->value(
         ctn_KEY_PACKAGE_REPOSITORY_COLUMN_WIDTH, 150).toInt();
+}
+
+bool SettingsManager::getUseDefaultAppIcon()
+{
+  if (!instance()->getSYSsettings()->contains(ctn_KEY_USE_DEFAULT_APP_ICON)){
+    instance()->getSYSsettings()->setValue(ctn_KEY_USE_DEFAULT_APP_ICON, 1);
+    return true;
+  }
+  else
+  {
+    SettingsManager p_instance;
+    return (p_instance.getSYSsettings()->value( ctn_KEY_USE_DEFAULT_APP_ICON, false).toInt() == 1);
+  }
+}
+
+QString SettingsManager::getOctopiRedIconPath()
+{
+  SettingsManager p_instance;
+  return (p_instance.getSYSsettings()->value( ctn_KEY_OCTOPI_RED_ICON_PATH, "")).toString();
+}
+
+QString SettingsManager::getOctopiYellowIconPath()
+{
+  SettingsManager p_instance;
+  return (p_instance.getSYSsettings()->value( ctn_KEY_OCTOPI_YELLOW_ICON_PATH, "")).toString();
+}
+
+QString SettingsManager::getOctopiGreenIconPath()
+{
+  SettingsManager p_instance;
+  return (p_instance.getSYSsettings()->value( ctn_KEY_OCTOPI_GREEN_ICON_PATH, "")).toString();
 }
 
 bool SettingsManager::getSkipMirrorCheckAtStartup(){
@@ -305,6 +335,39 @@ void SettingsManager::setPanelOrganizing(int newValue){
   instance()->getSYSsettings()->sync();
 }
 
+void SettingsManager::setUseDefaultAppIcon(bool newValue)
+{
+  int v=0;
+  if (newValue) v=1;
+
+  instance()->getSYSsettings()->setValue( ctn_KEY_USE_DEFAULT_APP_ICON, v);
+  instance()->getSYSsettings()->sync();
+}
+
+void SettingsManager::setOctopiRedIconPath(const QString &newValue)
+{
+  instance()->getSYSsettings()->setValue( ctn_KEY_OCTOPI_RED_ICON_PATH, newValue);
+  instance()->getSYSsettings()->sync();
+}
+
+void SettingsManager::setOctopiYellowIconPath(const QString &newValue)
+{
+  instance()->getSYSsettings()->setValue( ctn_KEY_OCTOPI_YELLOW_ICON_PATH, newValue);
+  instance()->getSYSsettings()->sync();
+}
+
+void SettingsManager::setOctopiGreenIconPath(const QString &newValue)
+{
+  instance()->getSYSsettings()->setValue( ctn_KEY_OCTOPI_GREEN_ICON_PATH, newValue);
+  instance()->getSYSsettings()->sync();
+}
+
+void SettingsManager::setBackend(const QString &newValue)
+{
+  instance()->getSYSsettings()->setValue( ctn_KEY_BACKEND, newValue);
+  instance()->getSYSsettings()->sync();
+}
+
 void SettingsManager::setWindowSize(QByteArray newValue){
   instance()->getSYSsettings()->setValue( ctn_KEY_WINDOW_SIZE, newValue);
   instance()->getSYSsettings()->sync();
@@ -327,7 +390,7 @@ void SettingsManager::setSplitterHorizontalState(QByteArray newValue){
   instance()->getSYSsettings()->sync();
 }
 
-void SettingsManager::setTerminal(QString newValue){
+void SettingsManager::setTerminal(const QString& newValue){
   instance()->getSYSsettings()->setValue( ctn_KEY_TERMINAL, newValue);
   instance()->getSYSsettings()->sync();
 }

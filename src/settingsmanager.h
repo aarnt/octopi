@@ -62,13 +62,22 @@ class SettingsManager
     static int getPackageVersionColumnWidth();
     static int getPackageRepositoryColumnWidth();
 
+    static bool getUseDefaultAppIcon();
+    static QString getOctopiRedIconPath();
+    static QString getOctopiYellowIconPath();
+    static QString getOctopiGreenIconPath();
+    static bool hasPacmanBackend();
+
+    //CacheCleaner related
+    static int getKeepNumInstalledPackages();
+    static int getKeepNumUninstalledPackages();
+
     //Notifier related
     static int getSyncDbHour();
     static int getSyncDbInterval();
     static QDateTime getLastSyncDbTime();
     static bool getSkipMirrorCheckAtStartup();
     static bool getShowGroupsPanel();
-    static bool hasPacmanBackend();
 
     static QByteArray getWindowSize();
     static QByteArray getTransactionWindowSize();
@@ -76,12 +85,14 @@ class SettingsManager
     static QByteArray getSplitterHorizontalState();
     static bool isValidTerminalSelected();
 
-    //CacheCleaner related
-    static int getKeepNumInstalledPackages();
-    static int getKeepNumUninstalledPackages();
-
     static void setCurrentTabIndex(int newValue);
     static void setPanelOrganizing(int newValue);
+
+    static void setUseDefaultAppIcon(bool newValue);
+    static void setOctopiRedIconPath(const QString& newValue);
+    static void setOctopiYellowIconPath(const QString& newValue);
+    static void setOctopiGreenIconPath(const QString& newValue);
+    static void setBackend(const QString& newValue);
 
     static void setPackageListOrderedCol(int newValue);
     static void setPackageListSortOrder(int newValue);    
@@ -98,7 +109,7 @@ class SettingsManager
     static void setSyncDbInterval(int newValue);
     static void setLastSyncDbTime(QDateTime newValue);
 
-    static void setTerminal(QString newValue);
+    static void setTerminal(const QString& newValue);
     static void setKeepNumInstalledPackages(int newValue);
     static void setKeepNumUninstalledPackages(int newValue);
 
