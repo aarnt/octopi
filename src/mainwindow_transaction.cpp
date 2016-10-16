@@ -1666,7 +1666,6 @@ void MainWindow::pacmanProcessFinished(int exitCode, QProcess::ExitStatus exitSt
 {
   bool bRefreshGroups = true;
   m_progressWidget->close();
-
   ui->twProperties->setTabText(ctn_TABINDEX_OUTPUT, StrConstants::getTabOutputName());
 
   //mate-terminal is returning code 255 sometimes...
@@ -1706,6 +1705,9 @@ void MainWindow::pacmanProcessFinished(int exitCode, QProcess::ExitStatus exitSt
       //After the command, we can refresh the package list, so any change can be seem.
       if (m_commandExecuting == ectn_SYNC_DATABASE)
       {
+        //Sets NOW as the last sync time value
+        SettingsManager::setLastSyncDbTime(QDateTime::currentDateTime());
+
         //Retrieves the RSS News from respective Distro site...
         refreshDistroNews(true, false);
 

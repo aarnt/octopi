@@ -50,7 +50,6 @@ MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent)
 {
   m_transactionDialog = nullptr;
-
   m_debugInfo = false;
   m_setupDialog = nullptr;
   m_pacmanDatabaseSystemWatcher =
@@ -556,6 +555,7 @@ void MainWindow::syncDatabase()
   }
 
   m_pacmanHelperClient->syncdb();
+  SettingsManager::setLastSyncDbTime(QDateTime::currentDateTime());
 }
 
 /*
