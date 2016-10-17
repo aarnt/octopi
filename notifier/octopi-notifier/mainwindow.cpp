@@ -524,7 +524,7 @@ void MainWindow::syncDatabase()
   if (m_debugInfo)
     qDebug() << now.currentTime().toString("HH:mm").toLatin1().data() <<  ": At syncDatabase()...";
   toggleEnableInterface(false);
-  m_icon = IconHelper::getIconOctopiTransparent();
+  m_icon = IconHelper::getIconOctopiBusy();
 
 #ifdef KSTATUS
   m_systemTrayIcon->setIconByPixmap(m_icon);
