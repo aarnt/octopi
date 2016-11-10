@@ -40,37 +40,7 @@
  * Checks if KDE is running
  */
 bool WMHelper::isKDERunning(){
-  static bool ret;
-  static bool firstTime = true;
-
-  if (firstTime)
-  {
-    QStringList slParam;
-    QProcess proc;
-    ret = false;
-    QStringList kdeDesktops = QStringList() << ctn_KDE_DESKTOP << ctn_KDE_X11_DESKTOP << ctn_KDE_WAYLAND_DESKTOP;
-    QStringList::const_iterator constIterator;
-
-    for (constIterator = kdeDesktops.constBegin(); constIterator != kdeDesktops.constEnd(); ++constIterator) {
-      QString desktop = (*constIterator).toLocal8Bit().constData();
-      slParam.clear();
-      slParam << "-C";
-      slParam << desktop;
-      proc.start("ps", slParam);
-      proc.waitForStarted();
-      proc.waitForFinished();
-
-      QString out = proc.readAll();
-      proc.close();
-
-      if (out.count(desktop)>0)
-        ret = true;
-    }
-
-    firstTime = false;
-  }
-
-  return ret;
+  return (qgetenv("XDG_CURRENT_DESKTOP").toLower() == QByteArray("kde"));
 }
 
 /*
@@ -142,21 +112,7 @@ bool WMHelper::isLXDERunning(){
  */
 bool WMHelper::isLXQTRunning()
 {
-  QStringList slParam;
-  QProcess proc;
-  slParam << "-C";
-  slParam << ctn_LXQT_DESKTOP;
-
-  proc.start("ps", slParam);
-  proc.waitForStarted();
-  proc.waitForFinished();
-  QString out = proc.readAll();
-  proc.close();
-
-  if (out.count(ctn_LXQT_DESKTOP)>0)
-    return true;
-  else
-    return false;
+  return (qgetenv("XDG_CURRENT_DESKTOP").toLower() == QByteArray("lxqt"));
 }
 
 /*
@@ -315,6 +271,9 @@ QString WMHelper::getSUCommand(){
   else if (isKDERunning() && UnixCommand::hasTheExecutable(ctn_KDESU)){
     result = getKDESUCommand();
   }
+  else if (isLXQTRunning() && UnixCommand::hasTheExecutable(ctn_LXQTSU)){
+    result = getLXQTSUCommand();
+  }
   else if (isTDERunning() && UnixCommand::hasTheExecutable(ctn_TDESU)){
     result = getTDESUCommand();
   }
@@ -326,9 +285,6 @@ QString WMHelper::getSUCommand(){
   }
   else if (UnixCommand::hasTheExecutable(ctn_TDESU)){
     result = getTDESUCommand();
-  }
-  else if (UnixCommand::hasTheExecutable(ctn_LXQTSU)){
-    result = getLXQTSUCommand();
   }
   return result;
 }
