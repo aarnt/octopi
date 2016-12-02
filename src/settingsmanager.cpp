@@ -56,11 +56,11 @@ SettingsManager* SettingsManager::instance(){
 
 //CacheCleaner related --------------------------------------------------------------
 int SettingsManager::getKeepNumInstalledPackages() {
-  return instance()->getSYSsettings()->value(ctn_KEEP_NUM_INSTALLED, 3).toInt();
+  return instance()->getSYSsettings()->value(ctn_KEEP_NUM_INSTALLED, 0).toInt();
 }
 
 int SettingsManager::getKeepNumUninstalledPackages() {
-  return instance()->getSYSsettings()->value(ctn_KEEP_NUM_UNINSTALLED, 1).toInt();
+  return instance()->getSYSsettings()->value(ctn_KEEP_NUM_UNINSTALLED, 0).toInt();
 }
 //CacheCleaner related --------------------------------------------------------------
 
