@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT += core gui network xml dbus widgets quick quickwidgets
+QT += core gui network xml dbus widgets
 DEFINES += OCTOPI_EXTENSIONS ALPM_BACKEND
 CONFIG += qt warn_on debug link_pkgconfig ALPM_BACKEND
 
@@ -47,7 +47,7 @@ HEADERS += src/QtSolutions/qtsingleapplication.h \
         src/terminal.h \
         src/pacmanexec.h \
         src/constants.h \
-        src/terminalselectordialog.h
+    src/optionsdialog.h
 
 ALPM_BACKEND{
   HEADERS += src/alpmbackend.h
@@ -83,7 +83,7 @@ SOURCES += src/QtSolutions/qtsingleapplication.cpp \
         src/utils.cpp \
         src/terminal.cpp \
         src/pacmanexec.cpp \
-        src/terminalselectordialog.cpp
+    src/optionsdialog.cpp
 
 ALPM_BACKEND{
   SOURCES += src/alpmbackend.cpp
@@ -91,7 +91,8 @@ ALPM_BACKEND{
 
 FORMS   += ui/mainwindow.ui \
         ui/transactiondialog.ui \
-        ui/multiselectiondialog.ui
+        ui/multiselectiondialog.ui \
+        ui/optionsdialog.ui
 
 RESOURCES += resources.qrc
 
