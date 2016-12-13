@@ -24,6 +24,7 @@
 #include "unixcommand.h"
 #include "wmhelper.h"
 #include "strconstants.h"
+#include "terminal.h"
 #include <QPushButton>
 #include <QFile>
 #include <QTextStream>
@@ -39,8 +40,6 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
 
   connect(buttonBox, SIGNAL(accepted()), this, SLOT(accept()));
   connect(buttonBox, SIGNAL(rejected()), this, SLOT(reject()));
-  connect(buttonBox, SIGNAL(clicked(QAbstractButton*)), this, SLOT(restoreDefaults(QAbstractButton*)));
-  connect(cbHighlightItems, SIGNAL(toggled(bool)), this, SLOT(toggleSpinBoxHighlightedSearchItems(bool)));
   connect(tabWidget, SIGNAL(currentChanged(int)), this, SLOT(currentTabChanged(int)));
 
   removeEventFilter(this);
@@ -50,14 +49,14 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
 
 void OptionsDialog::paintEvent(QPaintEvent *){
   //This member flag ensures the execution of this code for just ONE time.
-  /*if (!m_once){
-    QList<QTableWidgetItem *> l = twTerminal->findItems(SettingsManager::getUpdaterMirror(), Qt::MatchExactly);
+  if (!m_once){
+    QList<QTableWidgetItem *> l = twTerminal->findItems(SettingsManager::getTerminal(), Qt::MatchExactly);
     if (l.count() == 1){
-      twMirror->setCurrentItem(l.at(0));
-      twMirror->scrollToItem(l.at(0));
+      twTerminal->setCurrentItem(l.at(0));
+      twTerminal->scrollToItem(l.at(0));
     }
     m_once=true;
-  }*/
+  }
 }
 
 void OptionsDialog::currentTabChanged(int tabIndex){
@@ -70,132 +69,71 @@ void OptionsDialog::currentTabChanged(int tabIndex){
 void OptionsDialog::initialize(){
   setModal(true);
 
-  tabWidget->removeTab(0); //REMOVE IT LATER
-  tabWidget->setCurrentIndex(1);
   initButtonBox();
-  initCheckBoxes();
-  initComboPrivilege();
-  initFontSlider();
-  initGroupBox();
-  initTerminalTableWidget();
+  initTerminalTab();
+
+  tabWidget->setCurrentIndex(0);
 }
 
 void OptionsDialog::initButtonBox(){
   buttonBox->button(QDialogButtonBox::Ok)->setText(tr("Ok"));
   buttonBox->button(QDialogButtonBox::Cancel)->setText(tr("Cancel"));
-  buttonBox->button(QDialogButtonBox::RestoreDefaults)->setText(tr("Restore defaults"));
+
+  //buttonBox->button(QDialogButtonBox::RestoreDefaults)->setText(tr("Restore defaults"));
 }
 
-void OptionsDialog::initCheckBoxes(){
-  /*cbCloseButtonHidesApp->setChecked(SettingsManager::getWindowCloseHidesApp());
-  cbShowPackageTooltip->setToolTip(StrConstants::getNeedsAppRestart());
-  cbShowPackageTooltip->setChecked(SettingsManager::getShowPackageTooltip());
-  cbShowToolbar->setChecked(SettingsManager::getShowToolBar());
-  cbShowStatusBar->setChecked(SettingsManager::getShowStatusBar());
-  cbStartHidden->setChecked(SettingsManager::getStartIconified());
-  cbHighlightItems->setToolTip(StrConstants::getNeedsAppRestart());
-  sbHighlightItems->setToolTip(StrConstants::getNeedsAppRestart());
-
-  int limit = SettingsManager::getHighlightedSearchItems();
-  if (limit == 0){
-    cbHighlightItems->setChecked(false);
-    sbHighlightItems->setEnabled(false);
-  }
-  else{
-    cbHighlightItems->setChecked(true);
-    sbHighlightItems->setEnabled(true);
-    sbHighlightItems->setValue(limit);
-  }*/
+void OptionsDialog::initIconTab()
+{
+  //
 }
 
-void OptionsDialog::initFontSlider(){
-  /*sliderFont->setToolTip(StrConstants::getNeedsAppRestart());
-  lblFontSize->setToolTip(StrConstants::getNeedsAppRestart());
-  sliderFont->setMinimum(-4);
-  sliderFont->setMaximum(6);
-  sliderFont->setSingleStep(1);  
-  sliderFont->setPageStep(1);
-  sliderFont->setValue(SettingsManager::getFontSizeFactor());*/
-}
+void OptionsDialog::initTerminalTab(){
+  QStringList terminals = Terminal::getListOfAvailableTerminals();
 
-void OptionsDialog::initComboPrivilege(){
-  /*cbPrivilege->addItem(StrConstants::getAutomaticSuCommand());
-
-  if (UnixCommand::hasTheExecutable(ctn_GKSU_1) || (UnixCommand::hasTheExecutable(ctn_GKSU_2)))
-    cbPrivilege->addItem(ctn_GKSU_2);
-  if (UnixCommand::hasTheExecutable(ctn_KDESU))
-    cbPrivilege->addItem(ctn_KDESU);
-  if (UnixCommand::hasTheExecutable(ctn_TDESU))
-    cbPrivilege->addItem(ctn_TDESU);
-  if (UnixCommand::hasTheExecutable(ctn_KTSUSS) && UnixCommand::isKtsussVersionOK())
-    cbPrivilege->addItem(ctn_KTSUSS);
-
-  int index = cbPrivilege->findText(SettingsManager::getPrivilegeEscalationTool());
-  if (index >= 0)
-    cbPrivilege->setCurrentIndex(index);
-  else
-    cbPrivilege->setCurrentIndex(0);*/
-}
-
-void OptionsDialog::initGroupBox(){
-  /*rbPkgTools->setChecked(SettingsManager::getUsePkgTools());
-  rbSpkg->setChecked(!rbPkgTools->isChecked());
-  lblSpkg->setOpenExternalLinks(true);
-
-  QString spkg(tr("A fast and robust tool for Slackware package management") +
-               "<br>" + tr("Written by Ondrej Jirman, 2005-2006") +
-               "<br>" + tr("Official website: %1").arg("<a href=\"http://spkg.megous.com\">http://spkg.megous.com</a>."));
-  lblSpkg->setText("<html lang='utf-8'>" + spkg + "</html>");
-
-  if (!UnixCommand::isSpkgInstalled()){
-      rbSpkg->setEnabled(false);
-      lblSpkg->setEnabled(false);
+  if (terminals.count() <= 2)
+  {
+    twTerminal->setEnabled(false);
+    return;
   }
 
-  cbUseSilentOuput->setChecked(SettingsManager::getUseSilentActionOutput());*/
-}
+  twTerminal->setRowCount(terminals.count());
 
-void OptionsDialog::insertMirrorsInTable(QTextStream *stream, int row){
-  /*bool armedSlack = UnixCommand::getSlackArchitecture().contains("arm", Qt::CaseInsensitive);
+  int row=0;
+  QString terminal;
 
-  while (!stream->atEnd()) {
-    QTableWidgetItem *itemCountry = new QTableWidgetItem();
-    //Sets the item ReadOnly!
-    itemCountry->setFlags(itemCountry->flags() ^ Qt::ItemIsEditable);
-    QTableWidgetItem *itemURL = new QTableWidgetItem();
-    //Sets the item ReadOnly!
-    itemURL->setFlags(itemURL->flags() ^ Qt::ItemIsEditable);
+  twTerminal->setShowGrid(false);
+  twTerminal->setColumnCount(2);
+  twTerminal->setColumnWidth(0, 140);
+  twTerminal->setColumnWidth(1, 460);
+  twTerminal->verticalHeader()->hide();
+  //twTerminal->horizontalHeader()->setResizeMode(0, QHeaderView::Fixed);
+  //twTerminal->horizontalHeader()->setResizeMode(1, QHeaderView::Stretch);
+  //twTerminal->verticalHeader()->setResizeMode(QHeaderView::Fixed);
+  twTerminal->horizontalHeader()->setFixedHeight(22);
+  twTerminal->setSelectionBehavior(QAbstractItemView::SelectRows);
+  twTerminal->setSelectionMode(QAbstractItemView::SingleSelection);
 
-    QString line = stream->readLine().trimmed();
-    bool slackwarearmMirror = line.contains("(arm)", Qt::CaseInsensitive);
-    if ((slackwarearmMirror && !armedSlack) ||
-        (!slackwarearmMirror && armedSlack))
-        continue;
+  connect(twTerminal, SIGNAL(cellDoubleClicked(int,int)), this, SLOT(accept()));
 
-    QStringList res;
-    QString country, url;
+  QStringList slLabels;
+  slLabels << tr("Name");
+  twTerminal->setHorizontalHeaderLabels(slLabels);
 
-    //If it is not a comment...
-    if (!line.isEmpty() && line[0] != '#'){
-      res = line.split(",");
-      if (res.count() == 2){
-        country = res.at(0);
-        url = res.at(1).trimmed();
-        itemCountry->setText(country);
-        itemURL->setText(url);
-        twMirror->setItem(row, 0, itemCountry);
-        twMirror->setItem(row, 1, itemURL);
-        twMirror->setRowHeight(row, 25);
-        row++;
-      }
-    }
-  }*/
+  while (row < (terminals.count()-1))
+  {
+    QTableWidgetItem *itemTerminal = new QTableWidgetItem();
+    itemTerminal->setFlags(itemTerminal->flags() ^ Qt::ItemIsEditable);
+
+    itemTerminal->setText(terminals.at(row));
+    twTerminal->setItem(row, 0, itemTerminal);
+    twTerminal->setRowHeight(row, 25);
+    row++;
+  }
+
+  twTerminal->sortByColumn(0, Qt::AscendingOrder);
 }
 
 void OptionsDialog::initTerminalTableWidget(){
-  this->setMinimumHeight(430);
-  this->setMinimumWidth(665);
-
   /*twMirror->setShowGrid(false);
   twMirror->setColumnCount(2);
   twMirror->setColumnWidth(0, 140);
@@ -278,148 +216,24 @@ void OptionsDialog::initTerminalTableWidget(){
     userMirrorsFile.close();
 
   twMirror->sortByColumn(0, Qt::AscendingOrder);
-  cbAutoCheckUpdates->setChecked(SettingsManager::getAutomaticCheckUpdates());*/
-}
-
-void OptionsDialog::toggleSpinBoxHighlightedSearchItems(bool checkedState){
-  sbHighlightItems->setEnabled(checkedState);
-}
-
-void OptionsDialog::restoreDefaults(QAbstractButton* button){
-  /*if (buttonBox->standardButton(button)==QDialogButtonBox::RestoreDefaults){
-    int rep = QMessageBox::question(this, tr("Confirmation"),
-                                    tr("Do you really want to restore all default values?"),
-                                    QMessageBox::Yes | QMessageBox::No, QMessageBox::No);
-    if (rep == QMessageBox::Yes){
-      cbCloseButtonHidesApp->setChecked(false);
-      cbShowToolbar->setChecked(true);
-      cbShowPackageTooltip->setChecked(true);
-      cbShowStatusBar->setChecked(true);
-      cbStartHidden->setChecked(false);
-      cbHighlightItems->setChecked(true);
-      sbHighlightItems->setValue(100);
-      cbPrivilege->setCurrentIndex(0);
-      sliderFont->setValue(0);
-
-      rbPkgTools->setChecked(true);
-      rbSpkg->setChecked(false);
-      cbUseSilentOuput->setChecked(true);
-
-      QList<QTableWidgetItem*> l = twMirror->findItems(ctn_SLACKWARE_MIRROR_USA, Qt::MatchExactly);
-      if (l.count() == 1){
-        twMirror->setCurrentItem(l.at(0));
-      }
-
-      cbAutoCheckUpdates->setCheckable(true);
-    }
-  }*/
-}
-
-void OptionsDialog::setFontSize(const int fontSize){
-  /*setStyleSheet("QGroupBox, QRadioButton, QCheckBox, QLabel, QTableWidget, "
-                "QHeaderView, QPushButton, QComboBox, QSpinBox {"
-                "    font-family: \"Verdana\";"
-                "    font-size: " + QString::number(fontSize+1) + "px;"
-                "}"
-                "QTabWidget {"
-                "    border: 1px solid gray;}" );
-
-  tabWidget->setFont(QFont("Verdana", SettingsManager::getTodoFontSize() + 2));*/
+  */
 }
 
 void OptionsDialog::accept(){
-  /*QString selectedMirror;
-  bool needsAppRestart=false;
+  QString selectedTerminal;
 
-  if(twMirror->currentItem())
-    selectedMirror = twMirror->item(twMirror->row(twMirror->currentItem()), 1)->text();
+  //Set icons...
 
-  if (SettingsManager::getWindowCloseHidesApp() != cbCloseButtonHidesApp->isChecked()){
-    SettingsManager::setWindowCloseHidesApp(cbCloseButtonHidesApp->isChecked());
-    qApp->setQuitOnLastWindowClosed(!cbCloseButtonHidesApp->isChecked());
-  }
 
-  if (SettingsManager::getShowToolBar() != cbShowToolbar->isChecked())
-    SettingsManager::setShowToolBar(cbShowToolbar->isChecked());
 
-  if (SettingsManager::getShowStatusBar() != cbShowStatusBar->isChecked())
-    SettingsManager::setShowStatusBar(cbShowStatusBar->isChecked());
 
-  if (SettingsManager::getShowPackageTooltip() != cbShowPackageTooltip->isChecked()){
-    SettingsManager::setShowPackageTooltip(cbShowPackageTooltip->isChecked());
-    needsAppRestart = true;
-  }
+  //Set terminal...
+  if(twTerminal->currentItem())
+    selectedTerminal = twTerminal->item(twTerminal->row(twTerminal->currentItem()), 1)->text();
 
-  if (SettingsManager::getStartIconified() != cbStartHidden->isChecked())
-    SettingsManager::setStartIconified(cbStartHidden->isChecked());
+  if (SettingsManager::getTerminal() != selectedTerminal)
+    SettingsManager::setTerminal(selectedTerminal);
 
-  int newValue=-1;
 
-  if (cbHighlightItems->isChecked())
-    newValue = sbHighlightItems->value();
-  else
-    newValue = 0;
-
-  if (newValue != SettingsManager::getHighlightedSearchItems()){
-    SettingsManager::setHighlightedSearchItems(newValue);
-    needsAppRestart = true;
-  }
-
-  if (SettingsManager::getUpdaterMirror() != selectedMirror)
-    SettingsManager::setUpdaterMirror(selectedMirror);
-
-  if (SettingsManager::getAutomaticCheckUpdates() != cbAutoCheckUpdates->isChecked())
-    SettingsManager::setAutomaticCheckUpdates(cbAutoCheckUpdates->isChecked());
-
-  if (SettingsManager::getFontSizeFactor() != sliderFont->value()){
-    SettingsManager::setFontSizeFactor(sliderFont->value());
-    needsAppRestart = true;
-  }
-
-  if (SettingsManager::getUsePkgTools() != rbPkgTools->isChecked())
-    SettingsManager::setUsePkgTools(rbPkgTools->isChecked());
-
-  if (SettingsManager::getUseSilentActionOutput() != cbUseSilentOuput->isChecked())
-    SettingsManager::setUseSilentActionOutput(cbUseSilentOuput->isChecked());
-
-  if (SettingsManager::getPrivilegeEscalationTool() != cbPrivilege->currentText()){
-    if (cbPrivilege->currentIndex() != 0)
-      SettingsManager::setPrivilegeEscalationTool(cbPrivilege->currentText());
-    else
-      SettingsManager::setPrivilegeEscalationTool(ctn_AUTOMATIC);
-  }
-
-  if (needsAppRestart){
-    QMessageBox::information(this, StrConstants::getAttention(), StrConstants::getWarnNeedsAppRestart());
-  }
-
-  QDialog::accept();*/
+  QDialog::accept();
 }
-
-/*void OptionsDialog::testMirrors(){
-  for (int r=0; r<twMirror->rowCount(); r++){
-    QTableWidgetItem *item = twMirror->item(r, 1);
-    QString mirror = item->text();
-    QProcess proc;
-
-#if QT_VERSION >= 0x040600
-    QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
-    env.insert("LANG", "us_EN");
-    proc.setProcessEnvironment(env);
-#endif
-
-    proc.start("curl " + mirror);
-    proc.waitForFinished();
-
-    QString res = proc.readAllStandardOutput();
-
-    if (res.indexOf("slackware-13.37") >= 0 || res.indexOf("armedslack-13.37") >= 0){
-      std::cout << "Mirror " << mirror.toAscii().data() << " is OK." << std::endl;
-    }
-    else{
-      std::cout << "Mirror " << mirror.toAscii().data() << " IS PROBLEMATIC!!!" << std::endl;
-    }
-
-    proc.close();
-  }
-}*/

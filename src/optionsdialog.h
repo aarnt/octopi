@@ -33,29 +33,21 @@ private:
 
   void initialize();
   void initButtonBox();
-  void initCheckBoxes();
-  void initComboPrivilege();
-  void initFontSlider();
-  void initGroupBox();
 
-  void insertMirrorsInTable(QTextStream *stream, int row=0);
+  void initIconTab();
+  void initTerminalTab();
   void initTerminalTableWidget();
-
-  //void testMirrors();
 
 protected:
   virtual void paintEvent(QPaintEvent *);
 
 public:
   explicit OptionsDialog(QWidget *parent = 0);
-  void setFontSize(const int newValue);
 
 signals:
 
 private slots:
 
-  void toggleSpinBoxHighlightedSearchItems(bool);
-  void restoreDefaults(QAbstractButton*);
   void currentTabChanged(int tabIndex);
   virtual void accept();
 
