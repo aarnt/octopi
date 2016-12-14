@@ -31,6 +31,7 @@
 #include "searchbar.h"
 #include "globals.h"
 #include "terminal.h"
+#include "optionsdialog.h"
 
 #include <QCloseEvent>
 #include <QMessageBox>
@@ -302,24 +303,15 @@ void MainWindow::keyPressEvent(QKeyEvent* ke)
     gistSysInfo();
   }
 
-  /*else if(ke->key() == Qt::Key_T && ke->modifiers() == (Qt::ShiftModifier|Qt::ControlModifier)
+  else if(ke->key() == Qt::Key_T && ke->modifiers() == (Qt::ShiftModifier|Qt::ControlModifier)
           && m_initializationCompleted)
   {
     if (m_commandExecuting != ectn_NONE) return;
 
-    QStringList terminals = Terminal::getListOfAvailableTerminals();
-
-    if (terminals.count() > 2)
-    {
-      int index = terminals.indexOf(SettingsManager::getTerminal());
-      int newIndex = selectTerminal(index);
-
-      if (index != newIndex)
-      {
-        SettingsManager::setTerminal(terminals.at(newIndex));
-      }
-    }
-  }*/
+    OptionsDialog *od = new OptionsDialog(this);
+    int res = od->exec();
+    if (res) refreshAppIcon();
+  }
 
   else ke->ignore();
 }

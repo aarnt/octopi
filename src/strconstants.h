@@ -155,6 +155,10 @@ public:
     return QObject::tr("Parabola GNU/Linux-libre news");
   }
 
+  static QString getError(){
+    return QObject::tr("Error");
+  }
+
   static QString getNewsErrorMessage(){
     return QObject::tr("No news could be found! Press Ctrl+G to download the latest news.");
   }
@@ -543,6 +547,10 @@ public:
 
   static QString getYoullNeedSuFrontend(){
     return QObject::tr("You'll need to install a su frontend like gksu or kdesu.");
+  }
+
+  static QString getErrorIconPathInfoIncomplete(){
+    return QObject::tr("Icon path information is incomplete.");
   }
 
   static QString getErrorRunningWithRoot(){

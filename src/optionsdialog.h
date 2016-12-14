@@ -30,13 +30,18 @@ class OptionsDialog : public QDialog, public Ui_OptionsDialog
 
 private:
   bool m_once;
+  bool m_iconHasChanged;
+
+  QString m_redIconPath;
+  QString m_yellowIconPath;
+  QString m_greenIconPath;
+  QString m_busyIconPath;
 
   void initialize();
   void initButtonBox();
 
   void initIconTab();
   void initTerminalTab();
-  void initTerminalTableWidget();
 
 protected:
   virtual void paintEvent(QPaintEvent *);
@@ -44,13 +49,17 @@ protected:
 public:
   explicit OptionsDialog(QWidget *parent = 0);
 
-signals:
-
 private slots:
 
+  void defaultIconChecked(bool checked);
+  void selRedIconPath();
+  void selYellowIconPath();
+  void selGreenIconPath();
+  void selBusyIconPath();
   void currentTabChanged(int tabIndex);
-  virtual void accept();
 
+  virtual void accept();
+  virtual int done();
 };
 
 #endif // OptionsDialog_H

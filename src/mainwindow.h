@@ -220,7 +220,6 @@ private:
   void savePackageColumnWidths();
 
   void initAppIcon();
-  void refreshAppIcon();
   void refreshMenuTools();
   void refreshGroupsWidget();
   void refreshStatusBar();
@@ -445,6 +444,7 @@ private slots:
   void launchRepoEditor();
   void launchCacheCleaner();
   void gistSysInfo();
+  void refreshAppIcon();
 
 public slots:
   void doSystemUpgrade(SystemUpgradeOptions sysUpgradeOption = ectn_NO_OPT);

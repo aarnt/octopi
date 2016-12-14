@@ -25,17 +25,18 @@
 #include "wmhelper.h"
 #include "strconstants.h"
 #include "terminal.h"
+
 #include <QPushButton>
 #include <QFile>
 #include <QTextStream>
 #include <QProcess>
 #include <QMessageBox>
+#include <QFileDialog>
 
 OptionsDialog::OptionsDialog(QWidget *parent) :
   QDialog(parent),
-  m_once(false){
 
-  setAttribute(Qt::WA_DeleteOnClose);
+  m_once(false){
   setupUi(this);
 
   connect(buttonBox, SIGNAL(accepted()), this, SLOT(accept()));
@@ -44,7 +45,6 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
 
   removeEventFilter(this);
   initialize();
-  show();
 }
 
 void OptionsDialog::paintEvent(QPaintEvent *){
@@ -66,10 +66,79 @@ void OptionsDialog::currentTabChanged(int tabIndex){
   }
 }
 
+void OptionsDialog::defaultIconChecked(bool checked)
+{
+  if (checked)
+  {
+    leRedIcon->clear();
+    leYellowIcon->clear();
+    leGreenIcon->clear();
+    leBusyIcon->clear();
+    groupBoxIcons->setEnabled(false);
+  }
+  else
+  {
+    groupBoxIcons->setEnabled(true);
+  }
+}
+
+void OptionsDialog::selRedIconPath()
+{
+  QDir qd;
+  QString dir = "/usr/share/icons";
+  if (!leRedIcon->text().isEmpty()) dir = qd.filePath(leRedIcon->text());
+
+  QString fileName =
+      QFileDialog::getOpenFileName(this, tr("Open Image"), dir, tr("Image Files") + " (*.bmp *.jpg *.png *.svg *.xmp)");
+
+  if (!fileName.isEmpty())
+    leRedIcon->setText(fileName);
+}
+
+void OptionsDialog::selYellowIconPath()
+{
+  QDir qd;
+  QString dir = "/usr/share/icons";
+  if (!leYellowIcon->text().isEmpty()) dir = qd.filePath(leYellowIcon->text());
+
+  QString fileName =
+      QFileDialog::getOpenFileName(this, tr("Open Image"), dir, tr("Image Files") + " (*.bmp *.jpg *.png *.svg *.xmp)");
+
+  if (!fileName.isEmpty())
+    leYellowIcon->setText(fileName);
+}
+
+void OptionsDialog::selGreenIconPath()
+{
+  QDir qd;
+  QString dir = "/usr/share/icons";
+  if (!leGreenIcon->text().isEmpty()) dir = qd.filePath(leGreenIcon->text());
+
+  QString fileName =
+      QFileDialog::getOpenFileName(this, tr("Open Image"), dir, tr("Image Files") + " (*.bmp *.jpg *.png *.svg *.xmp)");
+
+  if (!fileName.isEmpty())
+    leGreenIcon->setText(fileName);
+}
+
+void OptionsDialog::selBusyIconPath()
+{
+  QDir qd;
+  QString dir = "/usr/share/icons";
+  if (!leBusyIcon->text().isEmpty()) dir = qd.filePath(leBusyIcon->text());
+
+  QString fileName =
+      QFileDialog::getOpenFileName(this, tr("Open Image"), dir, tr("Image Files") + " (*.bmp *.jpg *.png *.svg *.xmp)");
+
+  if (!fileName.isEmpty())
+    leBusyIcon->setText(fileName);
+}
+
 void OptionsDialog::initialize(){
-  setModal(true);
+  m_iconHasChanged = false;
 
   initButtonBox();
+  initIconTab();
   initTerminalTab();
 
   tabWidget->setCurrentIndex(0);
@@ -84,7 +153,34 @@ void OptionsDialog::initButtonBox(){
 
 void OptionsDialog::initIconTab()
 {
-  //
+  connect(cbUseDefaultIcons, SIGNAL(clicked(bool)), this, SLOT(defaultIconChecked(bool)));
+
+  connect(tbSelRedIcon, SIGNAL(clicked(bool)), this, SLOT(selRedIconPath()));
+  connect(tbSelYellowIcon, SIGNAL(clicked(bool)), this, SLOT(selYellowIconPath()));
+  connect(tbSelGreenIcon, SIGNAL(clicked(bool)), this, SLOT(selGreenIconPath()));
+  connect(tbSelBusyIcon, SIGNAL(clicked(bool)), this, SLOT(selBusyIconPath()));
+
+  //Do we use default icon path?
+  if (SettingsManager::getUseDefaultAppIcon())
+  {
+    cbUseDefaultIcons->setChecked(true);
+    groupBoxIcons->setEnabled(false);
+  }
+  else
+  {
+    cbUseDefaultIcons->setChecked(false);
+    groupBoxIcons->setEnabled((true));
+
+    leRedIcon->setText(SettingsManager::getOctopiRedIconPath());
+    leYellowIcon->setText(SettingsManager::getOctopiYellowIconPath());
+    leGreenIcon->setText(SettingsManager::getOctopiGreenIconPath());
+    leBusyIcon->setText(SettingsManager::getOctopiBusyIconPath());
+
+    m_redIconPath = leRedIcon->text();
+    m_yellowIconPath = leYellowIcon->text();
+    m_greenIconPath = leGreenIcon->text();
+    m_busyIconPath = leBusyIcon->text();
+  }
 }
 
 void OptionsDialog::initTerminalTab(){
@@ -102,14 +198,14 @@ void OptionsDialog::initTerminalTab(){
   QString terminal;
 
   twTerminal->setShowGrid(false);
-  twTerminal->setColumnCount(2);
-  twTerminal->setColumnWidth(0, 140);
-  twTerminal->setColumnWidth(1, 460);
+  twTerminal->setColumnCount(1);
+  twTerminal->setColumnWidth(0, 460);
   twTerminal->verticalHeader()->hide();
+  twTerminal->horizontalHeader()->hide();
   //twTerminal->horizontalHeader()->setResizeMode(0, QHeaderView::Fixed);
   //twTerminal->horizontalHeader()->setResizeMode(1, QHeaderView::Stretch);
   //twTerminal->verticalHeader()->setResizeMode(QHeaderView::Fixed);
-  twTerminal->horizontalHeader()->setFixedHeight(22);
+  //twTerminal->horizontalHeader()->setFixedHeight(22);
   twTerminal->setSelectionBehavior(QAbstractItemView::SelectRows);
   twTerminal->setSelectionMode(QAbstractItemView::SingleSelection);
 
@@ -119,7 +215,7 @@ void OptionsDialog::initTerminalTab(){
   slLabels << tr("Name");
   twTerminal->setHorizontalHeaderLabels(slLabels);
 
-  while (row < (terminals.count()-1))
+  while (row < (terminals.count()))
   {
     QTableWidgetItem *itemTerminal = new QTableWidgetItem();
     itemTerminal->setFlags(itemTerminal->flags() ^ Qt::ItemIsEditable);
@@ -133,107 +229,79 @@ void OptionsDialog::initTerminalTab(){
   twTerminal->sortByColumn(0, Qt::AscendingOrder);
 }
 
-void OptionsDialog::initTerminalTableWidget(){
-  /*twMirror->setShowGrid(false);
-  twMirror->setColumnCount(2);
-  twMirror->setColumnWidth(0, 140);
-  twMirror->setColumnWidth(1, 460);
-  twMirror->verticalHeader()->hide();
-  twMirror->horizontalHeader()->setResizeMode(0, QHeaderView::Fixed);
-  twMirror->horizontalHeader()->setResizeMode(1, QHeaderView::Stretch);
-  twMirror->verticalHeader()->setResizeMode(QHeaderView::Fixed);
-  twMirror->horizontalHeader()->setFixedHeight(22);
-  twMirror->setSelectionBehavior(QAbstractItemView::SelectRows);
-  twMirror->setSelectionMode(QAbstractItemView::SingleSelection);
+void OptionsDialog::accept(){
+  QString selectedTerminal;
+  bool emptyIconPath = false;
 
-  connect(twMirror, SIGNAL(cellDoubleClicked(int,int)), this, SLOT(accept()));
-
-  QStringList slLabels;
-  slLabels << tr("Country") << tr("URL");
-  twMirror->setHorizontalHeaderLabels(slLabels);
-
-  QFile mirrorsFile(":/resources/updater/mirrors2.txt");
-  int row=0;
-
-  if (!mirrorsFile.open(QIODevice::ReadOnly | QIODevice::Text)) return;
-
-  //First we populate the built-in mirror list
-  QTextStream in(&mirrorsFile);
-  QString s;
-
-  bool armedSlack = UnixCommand::getSlackArchitecture().contains("arm", Qt::CaseInsensitive);
-
-  while (!in.atEnd()) {
-    s = in.readLine().trimmed();
-
-    bool slackwarearmMirror = s.contains("(arm)", Qt::CaseInsensitive);
-
-    if ((slackwarearmMirror && !armedSlack) ||
-        (!slackwarearmMirror && armedSlack))
-        continue;
-
-    if (!s.isEmpty() && s[0] != '#') //If it is not a comment...
-      row++;
-  }
-
-  //Then, we populate the User defined mirror list, if any.
-  int rowUser = 0;
-  QFile userMirrorsFile(StrConstants::getUserMirrorsFile());
-  QTextStream in2(&userMirrorsFile);
-
-  if (userMirrorsFile.exists()){
-    if (userMirrorsFile.open(QIODevice::ReadOnly | QIODevice::Text)){
-      QString s2;
-      QStringList slAux;
-
-      while (!in2.atEnd()) {
-        s2 = in2.readLine().trimmed();
-
-        slAux = s2.split(",");
-        if(slAux.count() != 2)
-          continue;
-
-        s2.remove(QRegExp("\n"));
-        if (!s2.isEmpty() && s2[0] != '#') //If it is not a comment...
-          rowUser++;
-      }
+  if (!cbUseDefaultIcons->isChecked())
+  {
+    if (leRedIcon->text().isEmpty())
+    {
+      emptyIconPath = true;
+    }
+    else if (leYellowIcon->text().isEmpty())
+    {
+      emptyIconPath = true;
+    }
+    else if (leGreenIcon->text().isEmpty())
+    {
+      emptyIconPath = true;
+    }
+    else if (leBusyIcon->text().isEmpty())
+    {
+      emptyIconPath = true;
     }
   }
 
-  twMirror->setRowCount(row + rowUser);
+  if (emptyIconPath)
+  {
+    QMessageBox::critical(this, StrConstants::getError(), StrConstants::getErrorIconPathInfoIncomplete());
+    return;
+  }
 
-  in.seek(0);
-  if (userMirrorsFile.isOpen())
-    in2.seek(0);
+  //Set icon...
+  if (SettingsManager::getUseDefaultAppIcon() != cbUseDefaultIcons->isChecked())
+  {
+    SettingsManager::setUseDefaultAppIcon(cbUseDefaultIcons->isChecked());
+    m_iconHasChanged = true;
+  }
 
-  insertMirrorsInTable(&in);
+  if (leRedIcon->text() != m_redIconPath)
+  {
+    SettingsManager::setOctopiRedIconPath(leRedIcon->text());
+    m_iconHasChanged = true;
+  }
 
-  if (userMirrorsFile.isOpen())
-    insertMirrorsInTable(&in2, row);
+  if (leYellowIcon->text() != m_yellowIconPath)
+  {
+    SettingsManager::setOctopiYellowIconPath(leYellowIcon->text());
+    m_iconHasChanged = true;
+  }
 
-  mirrorsFile.close();
-  if (userMirrorsFile.isOpen())
-    userMirrorsFile.close();
+  if (leGreenIcon->text() != m_greenIconPath)
+  {
+    SettingsManager::setOctopiGreenIconPath(leGreenIcon->text());
+    m_iconHasChanged = true;
+  }
 
-  twMirror->sortByColumn(0, Qt::AscendingOrder);
-  */
-}
-
-void OptionsDialog::accept(){
-  QString selectedTerminal;
-
-  //Set icons...
-
-
-
+  if (leBusyIcon->text() != m_busyIconPath)
+  {
+    SettingsManager::setOctopiBusyIconPath(leBusyIcon->text());
+    m_iconHasChanged = true;
+  }
 
   //Set terminal...
-  if(twTerminal->currentItem())
-    selectedTerminal = twTerminal->item(twTerminal->row(twTerminal->currentItem()), 1)->text();
+  if (twTerminal->currentItem())
+    selectedTerminal = twTerminal->item(twTerminal->row(twTerminal->currentItem()), 0)->text();
 
   if (SettingsManager::getTerminal() != selectedTerminal)
     SettingsManager::setTerminal(selectedTerminal);
 
-
   QDialog::accept();
+}
+
+int OptionsDialog::done()
+{
+  if (m_iconHasChanged) return 1;
+  else return 0;
 }

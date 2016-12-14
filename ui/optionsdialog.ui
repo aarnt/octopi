@@ -13,8 +13,17 @@
     <height>432</height>
    </rect>
   </property>
+  <property name="minimumSize">
+   <size>
+    <width>665</width>
+    <height>432</height>
+   </size>
+  </property>
   <property name="windowTitle">
    <string>Options</string>
+  </property>
+  <property name="modal">
+   <bool>true</bool>
   </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="1" column="0">
@@ -46,7 +55,7 @@
           </spacer>
          </item>
          <item row="2" column="0">
-          <widget class="QGroupBox" name="groupBox">
+          <widget class="QGroupBox" name="groupBoxIcons">
            <property name="enabled">
             <bool>true</bool>
            </property>
@@ -56,7 +65,7 @@
            <property name="flat">
             <bool>false</bool>
            </property>
-           <widget class="QWidget" name="">
+           <widget class="QWidget" name="layoutWidget">
             <property name="geometry">
              <rect>
               <x>10</x>
@@ -108,6 +117,9 @@
                      <horstretch>0</horstretch>
                      <verstretch>0</verstretch>
                     </sizepolicy>
+                   </property>
+                   <property name="readOnly">
+                    <bool>true</bool>
                    </property>
                   </widget>
                  </item>
@@ -171,7 +183,11 @@
                   <number>2</number>
                  </property>
                  <item>
-                  <widget class="QLineEdit" name="leYellowIcon"/>
+                  <widget class="QLineEdit" name="leYellowIcon">
+                   <property name="readOnly">
+                    <bool>true</bool>
+                   </property>
+                  </widget>
                  </item>
                  <item>
                   <spacer name="horizontalSpacer_2">
@@ -227,7 +243,11 @@
                   <number>2</number>
                  </property>
                  <item>
-                  <widget class="QLineEdit" name="leGreenIcon"/>
+                  <widget class="QLineEdit" name="leGreenIcon">
+                   <property name="readOnly">
+                    <bool>true</bool>
+                   </property>
+                  </widget>
                  </item>
                  <item>
                   <spacer name="horizontalSpacer_3">
@@ -265,7 +285,7 @@
                 <number>5</number>
                </property>
                <item>
-                <widget class="QLabel" name="lblTransparentIcon">
+                <widget class="QLabel" name="lblBusyIcon">
                  <property name="sizePolicy">
                   <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                    <horstretch>0</horstretch>
@@ -273,7 +293,7 @@
                   </sizepolicy>
                  </property>
                  <property name="text">
-                  <string>Transparent icon</string>
+                  <string>Busy icon</string>
                  </property>
                 </widget>
                </item>
@@ -283,7 +303,11 @@
                   <number>2</number>
                  </property>
                  <item>
-                  <widget class="QLineEdit" name="leTransparentIcon"/>
+                  <widget class="QLineEdit" name="leBusyIcon">
+                   <property name="readOnly">
+                    <bool>true</bool>
+                   </property>
+                  </widget>
                  </item>
                  <item>
                   <spacer name="horizontalSpacer_4">
@@ -302,7 +326,7 @@
                   </spacer>
                  </item>
                  <item>
-                  <widget class="QToolButton" name="tbSelTransparentIcon">
+                  <widget class="QToolButton" name="tbSelBusyIcon">
                    <property name="text">
                     <string>...</string>
                    </property>
@@ -314,10 +338,6 @@
              </item>
             </layout>
            </widget>
-           <zorder>lblRedIcon</zorder>
-           <zorder>leRedIcon</zorder>
-           <zorder>tbSelRedIcon</zorder>
-           <zorder>lblRedIcon</zorder>
           </widget>
          </item>
          <item row="1" column="0">
@@ -403,8 +423,8 @@
   <tabstop>tbSelYellowIcon</tabstop>
   <tabstop>leGreenIcon</tabstop>
   <tabstop>tbSelGreenIcon</tabstop>
-  <tabstop>leTransparentIcon</tabstop>
-  <tabstop>tbSelTransparentIcon</tabstop>
+  <tabstop>leBusyIcon</tabstop>
+  <tabstop>tbSelBusyIcon</tabstop>
   <tabstop>twTerminal</tabstop>
  </tabstops>
  <resources/>
