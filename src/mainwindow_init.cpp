@@ -49,7 +49,8 @@
 /*
  * Loads various application settings configured in ~/.config/octopi/octopi.conf
  */
-void MainWindow::loadSettings(){
+void MainWindow::loadSettings()
+{
   if (ui->tvPackages->model() != NULL)
   {
     int packageListOrderedCol = SettingsManager::instance()->getPackageListOrderedCol();
@@ -68,7 +69,8 @@ void MainWindow::loadSettings(){
 /*
  * This method only retrieves the App saved panels settings
  */
-void MainWindow::loadPanelSettings(){
+void MainWindow::loadPanelSettings()
+{
   int panelOrganizing = SettingsManager::instance()->getPanelOrganizing();
 
   switch(panelOrganizing){
@@ -92,7 +94,8 @@ void MainWindow::loadPanelSettings(){
 /*
  * Saves all application settings to ~/.config/octopi/octopi.conf
  */
-void MainWindow::saveSettings(SaveSettingsReason saveSettingsReason){
+void MainWindow::saveSettings(SaveSettingsReason saveSettingsReason)
+{
   switch(saveSettingsReason){
     case ectn_CurrentTabIndex:
       SettingsManager::instance()->setCurrentTabIndex(ui->twProperties->currentIndex());
@@ -241,7 +244,9 @@ void MainWindow::onPackageGroupChanged()
  */
 void MainWindow::initMenuBar()
 {
-  ui->menuTools->insertAction(ui->actionCacheCleaner, m_actionMirrorCheck);
+  ui->menuTools->insertAction(ui->actionCacheCleaner, m_actionMenuMirrorCheck);
+  ui->menuTools->addSeparator();
+  ui->menuTools->addAction(m_actionMenuOptions);
 
   QActionGroup *actionGroupPackages = new QActionGroup(this);
   QActionGroup *actionGroupRepositories = new QActionGroup(this);
@@ -313,7 +318,7 @@ void MainWindow::initToolBar()
 
   if(m_hasMirrorCheck)
   {
-    ui->mainToolBar->addAction(m_actionMirrorCheck);
+    ui->mainToolBar->addAction(m_actionMenuMirrorCheck);
   }
 
   if (m_hasAURTool)
@@ -519,6 +524,7 @@ void MainWindow::initPackageTreeView()
   ui->tvPackages->header()->setSectionsMovable(false);
   ui->tvPackages->header()->setSectionResizeMode(QHeaderView::Interactive);
   ui->tvPackages->header()->setDefaultAlignment( Qt::AlignLeft );
+
   resizePackageView();
 
   connect(ui->tvPackages->selectionModel(), SIGNAL(selectionChanged(QItemSelection,QItemSelection)),
@@ -673,15 +679,19 @@ void MainWindow::initActions()
   m_hasSLocate = UnixCommand::hasTheExecutable("slocate");
   m_hasMirrorCheck = UnixCommand::hasTheExecutable(ctn_MIRROR_CHECK_APP);
   m_actionSysInfo = new QAction(this);
-  m_actionMirrorCheck = new QAction(this);
+  m_actionMenuMirrorCheck = new QAction(this);
+  m_actionMenuOptions = new QAction(this);
 
   if(m_hasMirrorCheck)
   {
-    m_actionMirrorCheck->setShortcut(QKeySequence(Qt::ControlModifier|Qt::ShiftModifier|Qt::Key_M));
-    m_actionMirrorCheck->setText("Mirror-Check");
-    m_actionMirrorCheck->setIcon(IconHelper::getIconMirrorCheck());
-    connect(m_actionMirrorCheck, SIGNAL(triggered()), this, SLOT(doMirrorCheck()));
+    m_actionMenuMirrorCheck->setShortcut(QKeySequence(Qt::ControlModifier|Qt::ShiftModifier|Qt::Key_M));
+    m_actionMenuMirrorCheck->setText("Mirror-Check");
+    m_actionMenuMirrorCheck->setIcon(IconHelper::getIconMirrorCheck());
+    connect(m_actionMenuMirrorCheck, SIGNAL(triggered()), this, SLOT(doMirrorCheck()));
   }  
+
+  m_actionMenuOptions->setText(StrConstants::getOptions());
+  connect(m_actionMenuOptions, SIGNAL(triggered()), this, SLOT(onOptions()));
 
   m_actionSwitchToAURTool = new QAction(this);
   m_actionSwitchToAURTool->setIcon(IconHelper::getIconForeignGreen());

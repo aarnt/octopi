@@ -48,7 +48,7 @@ void MainWindow::changeTransactionActionsState()
   ui->actionCancel->setEnabled(state);
   ui->actionSyncPackages->setEnabled(!state);
 
-  if(m_hasMirrorCheck) m_actionMirrorCheck->setEnabled(!state);
+  if(m_hasMirrorCheck) m_actionMenuMirrorCheck->setEnabled(!state);
   if(m_hasAURTool) m_actionSwitchToAURTool->setEnabled(!state);
 
   if (state == false && m_outdatedStringList->count() > 0)
@@ -1535,7 +1535,7 @@ void MainWindow::toggleTransactionActions(const bool value)
     ui->actionCommit->setEnabled(true);
     ui->actionCancel->setEnabled(true);
 
-    if(m_hasMirrorCheck) m_actionMirrorCheck->setEnabled(false);
+    if(m_hasMirrorCheck) m_actionMenuMirrorCheck->setEnabled(false);
     if(m_hasAURTool) m_actionSwitchToAURTool->setEnabled(false);
 
     ui->actionSyncPackages->setEnabled(false);
@@ -1546,7 +1546,7 @@ void MainWindow::toggleTransactionActions(const bool value)
     ui->actionCommit->setEnabled(false);
     ui->actionCancel->setEnabled(false);
 
-    if(m_hasMirrorCheck) m_actionMirrorCheck->setEnabled(true);
+    if(m_hasMirrorCheck) m_actionMenuMirrorCheck->setEnabled(true);
     if(m_hasAURTool) m_actionSwitchToAURTool->setEnabled(true);
 
     ui->actionSyncPackages->setEnabled(true);
@@ -1558,7 +1558,7 @@ void MainWindow::toggleTransactionActions(const bool value)
     ui->actionCommit->setEnabled(false); //CHANGED
     ui->actionCancel->setEnabled(false); //CHANGED
 
-    if(m_hasMirrorCheck) m_actionMirrorCheck->setEnabled(false);
+    if(m_hasMirrorCheck) m_actionMenuMirrorCheck->setEnabled(false);
     if(m_hasAURTool) m_actionSwitchToAURTool->setEnabled(false);
 
     ui->actionSyncPackages->setEnabled(false);
@@ -1598,7 +1598,7 @@ void MainWindow::toggleSystemActions(const bool value)
 
   if(m_hasMirrorCheck)
   {
-    m_actionMirrorCheck->setEnabled(value);
+    m_actionMenuMirrorCheck->setEnabled(value);
   }
 
   if (isAURGroupSelected() && StrConstants::getForeignRepositoryToolName() == "kcp")

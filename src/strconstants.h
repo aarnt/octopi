@@ -191,6 +191,10 @@ public:
     return QObject::tr("About");
   }
 
+  static QString getOptions(){
+    return QObject::tr("Options");
+  }
+
   static QString getName(){
     return QObject::tr("Name");
   }

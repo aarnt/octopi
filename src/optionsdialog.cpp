@@ -135,9 +135,11 @@ void OptionsDialog::selBusyIconPath()
 }
 
 void OptionsDialog::initialize(){
+  m_backendHasChanged = false;
   m_iconHasChanged = false;
 
   initButtonBox();
+  initBackendTab();
   initIconTab();
   initTerminalTab();
 
@@ -149,6 +151,14 @@ void OptionsDialog::initButtonBox(){
   buttonBox->button(QDialogButtonBox::Cancel)->setText(tr("Cancel"));
 
   //buttonBox->button(QDialogButtonBox::RestoreDefaults)->setText(tr("Restore defaults"));
+}
+
+void OptionsDialog::initBackendTab()
+{
+  if (SettingsManager::hasPacmanBackend())
+    rbPacman->setChecked(true);
+  else
+    rbAlpm->setChecked(true);
 }
 
 void OptionsDialog::initIconTab()
@@ -233,6 +243,18 @@ void OptionsDialog::accept(){
   QString selectedTerminal;
   bool emptyIconPath = false;
 
+  //Set backend...
+  if (SettingsManager::hasPacmanBackend() != rbPacman->isChecked() ||
+      (!SettingsManager::hasPacmanBackend()) != rbAlpm->isChecked())
+  {
+    if (rbPacman->isChecked())
+      SettingsManager::setBackend("pacman");
+    else
+      SettingsManager::setBackend("alpm");
+
+    m_backendHasChanged = true;
+  }
+
   if (!cbUseDefaultIcons->isChecked())
   {
     if (leRedIcon->text().isEmpty())
@@ -297,11 +319,17 @@ void OptionsDialog::accept(){
   if (SettingsManager::getTerminal() != selectedTerminal)
     SettingsManager::setTerminal(selectedTerminal);
 
-  QDialog::accept();
-}
+  Options::result res=0;
 
-int OptionsDialog::done()
-{
-  if (m_iconHasChanged) return 1;
-  else return 0;
+  if (m_iconHasChanged)
+  {
+    res |= Options::ectn_ICON;
+  }
+  if (m_backendHasChanged)
+  {
+    res |= Options::ectn_BACKEND;
+  }
+
+  setResult(res);
+  QDialog::accept();
 }

@@ -6,7 +6,7 @@ pkgdesc="This is Octopi, a powerful Pacman frontend using Qt libs"
 url="https://octopiproject.wordpress.com/"
 arch=('i686' 'x86_64')
 license=('GPL2')
-depends=('qt5-quickcontrols' 'pacman' 'pkgfile' 'knotifications' 'alpm_octopi_utils' 'xterm')
+depends=('pacman' 'pkgfile' 'knotifications' 'alpm_octopi_utils' 'xterm')
 optdepends=('kdesu: for KDE'
             'gksu: for XFCE, Gnome, LXDE, Cinnamon'
             'gnome-keyring: for password management'

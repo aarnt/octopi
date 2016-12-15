@@ -80,12 +80,12 @@ void MainWindow::refreshMenuTools()
   {
     availableTools++;
     ui->menuTools->menuAction()->setVisible(true);
-    if (!m_actionMirrorCheck->toolTip().contains("("))
-      m_actionMirrorCheck->setToolTip(m_actionMirrorCheck->toolTip() + "  (" + m_actionMirrorCheck->shortcut().toString() + ")" );
-    m_actionMirrorCheck->setVisible(true);
+    if (!m_actionMenuMirrorCheck->toolTip().contains("("))
+      m_actionMenuMirrorCheck->setToolTip(m_actionMenuMirrorCheck->toolTip() + "  (" + m_actionMenuMirrorCheck->shortcut().toString() + ")" );
+    m_actionMenuMirrorCheck->setVisible(true);
   }
   else
-    m_actionMirrorCheck->setVisible(false);
+    m_actionMenuMirrorCheck->setVisible(false);
 
   if(UnixCommand::hasTheExecutable("plv"))
   {

@@ -24,6 +24,11 @@
 #include "ui_optionsdialog.h"
 #include <QDialog>
 
+namespace Options
+{
+  enum { ectn_BACKEND=0x1, ectn_ICON=0x2 }; typedef long result;
+}
+
 class OptionsDialog : public QDialog, public Ui_OptionsDialog
 {
   Q_OBJECT
@@ -31,6 +36,7 @@ class OptionsDialog : public QDialog, public Ui_OptionsDialog
 private:
   bool m_once;
   bool m_iconHasChanged;
+  bool m_backendHasChanged;
 
   QString m_redIconPath;
   QString m_yellowIconPath;
@@ -39,12 +45,13 @@ private:
 
   void initialize();
   void initButtonBox();
-
+  void initBackendTab();
   void initIconTab();
   void initTerminalTab();
 
 protected:
   virtual void paintEvent(QPaintEvent *);
+  virtual void accept();
 
 public:
   explicit OptionsDialog(QWidget *parent = 0);
@@ -57,9 +64,6 @@ private slots:
   void selGreenIconPath();
   void selBusyIconPath();
   void currentTabChanged(int tabIndex);
-
-  virtual void accept();
-  virtual int done();
 };
 
 #endif // OptionsDialog_H

@@ -84,6 +84,7 @@ class SettingsManager
     static QByteArray getTransactionWindowSize();
     static QByteArray getOptionalDepsWindowSize();
     static QByteArray getSplitterHorizontalState();
+
     static bool isValidTerminalSelected();
 
     static void setCurrentTabIndex(int newValue);
