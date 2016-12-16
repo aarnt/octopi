@@ -1584,6 +1584,7 @@ void MainWindow::toggleTransactionActions(const bool value)
   ui->actionGetNews->setEnabled(value);  
   ui->actionInstallLocalPackage->setEnabled(value);
   ui->actionOpenRootTerminal->setEnabled(value);
+  m_actionMenuOptions->setEnabled(value);
   ui->actionHelpUsage->setEnabled(value);
   ui->actionHelpAbout->setEnabled(value);
   ui->actionExit->setEnabled(value);
@@ -1610,8 +1611,9 @@ void MainWindow::toggleSystemActions(const bool value)
     ui->actionSyncPackages->setEnabled(value);
   }
 
-  ui->actionInstallLocalPackage->setEnabled(value);
+  m_actionMenuOptions->setEnabled(value);
 
+  ui->actionInstallLocalPackage->setEnabled(value);
   ui->actionGetNews->setEnabled(value);
 
   if (value == true && m_outdatedStringList->count() > 0)
