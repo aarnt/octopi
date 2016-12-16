@@ -78,6 +78,7 @@ ALPM_BACKEND{
 }
 
 FORMS += ../../ui/transactiondialog.ui \
+    ui/outputdialog.ui \
     ui/setupdialog.ui
 
 RESOURCES += \
