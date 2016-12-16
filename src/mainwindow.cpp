@@ -187,7 +187,8 @@ void MainWindow::onOptions()
   if (m_commandExecuting != ectn_NONE) return;
 
   OptionsDialog *od = new OptionsDialog(this);
-  Options::result res = od->exec();
+  od->exec();
+  Options::result res = od->result();
   delete od;
 
   if (res & Options::ectn_ICON)

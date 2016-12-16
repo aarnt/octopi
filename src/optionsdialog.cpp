@@ -33,6 +33,10 @@
 #include <QMessageBox>
 #include <QFileDialog>
 
+/*
+ * This is the Options Dialog called by Octopi and Notifier
+ */
+
 OptionsDialog::OptionsDialog(QWidget *parent) :
   QDialog(parent),
 
@@ -60,9 +64,11 @@ void OptionsDialog::paintEvent(QPaintEvent *){
 }
 
 void OptionsDialog::currentTabChanged(int tabIndex){
-  if (tabIndex == 2){
+  if (tabWidget->tabText(tabIndex) == tr("Terminal"))
+  {
     twTerminal->setFocus();
-    twTerminal->setCurrentCell(twTerminal->currentIndex().row(), 0);
+    QList<QTableWidgetItem*> l = twTerminal->findItems(SettingsManager::getTerminal(), Qt::MatchExactly);
+    if (l.count() > 0) twTerminal->setCurrentItem(l.at(0));
   }
 }
 
@@ -212,10 +218,6 @@ void OptionsDialog::initTerminalTab(){
   twTerminal->setColumnWidth(0, 460);
   twTerminal->verticalHeader()->hide();
   twTerminal->horizontalHeader()->hide();
-  //twTerminal->horizontalHeader()->setResizeMode(0, QHeaderView::Fixed);
-  //twTerminal->horizontalHeader()->setResizeMode(1, QHeaderView::Stretch);
-  //twTerminal->verticalHeader()->setResizeMode(QHeaderView::Fixed);
-  //twTerminal->horizontalHeader()->setFixedHeight(22);
   twTerminal->setSelectionBehavior(QAbstractItemView::SelectRows);
   twTerminal->setSelectionMode(QAbstractItemView::SingleSelection);
 
@@ -330,6 +332,6 @@ void OptionsDialog::accept(){
     res |= Options::ectn_BACKEND;
   }
 
-  setResult(res);
   QDialog::accept();
+  setResult(res);
 }

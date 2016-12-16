@@ -26,7 +26,7 @@
 
 namespace Options
 {
-  enum { ectn_BACKEND=0x1, ectn_ICON=0x2 }; typedef long result;
+  enum { ectn_BACKEND=0x1, ectn_ICON=0x2 }; typedef unsigned long result;
 }
 
 class OptionsDialog : public QDialog, public Ui_OptionsDialog
@@ -37,7 +37,6 @@ private:
   bool m_once;
   bool m_iconHasChanged;
   bool m_backendHasChanged;
-
   QString m_redIconPath;
   QString m_yellowIconPath;
   QString m_greenIconPath;
@@ -57,7 +56,6 @@ public:
   explicit OptionsDialog(QWidget *parent = 0);
 
 private slots:
-
   void defaultIconChecked(bool checked);
   void selRedIconPath();
   void selYellowIconPath();
