@@ -1,4 +1,5 @@
 0.9.0
+  Added an options dialog to Octopi and Notifier.
   Added slovenian translation (thanks to the translation crew).
   BugFix: Some pkg download/installed sizes were not showing properly at Info tab.
   BugFix: If we find an outdated AUR pkg in the official pkg list, we remove it.

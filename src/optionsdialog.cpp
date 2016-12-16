@@ -38,11 +38,13 @@
  */
 
 OptionsDialog::OptionsDialog(QWidget *parent) :
-  QDialog(parent),
-
+  QDialog(parent),  
   m_once(false){
-  setupUi(this);
 
+  if (parent->windowTitle() == "Octopi") m_calledByOctopi = true;
+  else m_calledByOctopi = false;
+
+  setupUi(this);
   connect(buttonBox, SIGNAL(accepted()), this, SLOT(accept()));
   connect(buttonBox, SIGNAL(rejected()), this, SLOT(reject()));
   connect(tabWidget, SIGNAL(currentChanged(int)), this, SLOT(currentTabChanged(int)));
@@ -68,7 +70,11 @@ void OptionsDialog::currentTabChanged(int tabIndex){
   {
     twTerminal->setFocus();
     QList<QTableWidgetItem*> l = twTerminal->findItems(SettingsManager::getTerminal(), Qt::MatchExactly);
-    if (l.count() > 0) twTerminal->setCurrentItem(l.at(0));
+    if (l.count() == 1)
+    {
+      twTerminal->setCurrentItem(l.at(0));
+      twTerminal->scrollToItem(l.at(0));
+    }
   }
 }
 
@@ -147,7 +153,18 @@ void OptionsDialog::initialize(){
   initButtonBox();
   initBackendTab();
   initIconTab();
+  initSynchronizationTab();
   initTerminalTab();
+
+  if (m_calledByOctopi)
+  {
+    tabWidget->removeTab(2);
+  }
+  else
+  {
+    tabWidget->removeTab(0);
+    tabWidget->removeTab(2);
+  }
 
   tabWidget->setCurrentIndex(0);
 }
@@ -170,7 +187,6 @@ void OptionsDialog::initBackendTab()
 void OptionsDialog::initIconTab()
 {
   connect(cbUseDefaultIcons, SIGNAL(clicked(bool)), this, SLOT(defaultIconChecked(bool)));
-
   connect(tbSelRedIcon, SIGNAL(clicked(bool)), this, SLOT(selRedIconPath()));
   connect(tbSelYellowIcon, SIGNAL(clicked(bool)), this, SLOT(selYellowIconPath()));
   connect(tbSelGreenIcon, SIGNAL(clicked(bool)), this, SLOT(selGreenIconPath()));
@@ -196,6 +212,61 @@ void OptionsDialog::initIconTab()
     m_yellowIconPath = leYellowIcon->text();
     m_greenIconPath = leGreenIcon->text();
     m_busyIconPath = leBusyIcon->text();
+  }
+}
+
+void OptionsDialog::initSynchronizationTab()
+{
+  lblSync->setText(StrConstants::getNotiferSetupDialogGroupBoxTitle());
+  rbOnceADay->setText(StrConstants::getOnceADay());
+  rbOnceADayAt->setText(StrConstants::getOnceADayAt());
+  lblOnceADayAt->setText(StrConstants::getOnceADayAtDesc());
+  rbOnceEvery->setText(StrConstants::getOnceEvery());
+  lblOnceEvery->setText(StrConstants::getOnceEveryDesc().arg(5).arg(44640));
+
+  connect(rbOnceADay, SIGNAL(clicked()), this, SLOT(selectOnceADay()));
+  connect(rbOnceADayAt, SIGNAL(clicked()), this, SLOT(selectOnceADayAt()));
+  connect(rbOnceEvery, SIGNAL(clicked()), this, SLOT(selectOnceEvery()));
+
+  //First, which radio button do we select?
+  int syncDbInterval = SettingsManager::getSyncDbInterval();
+  int syncDbHour = SettingsManager::getSyncDbHour();
+  bool useSyncDbInterval = false;
+  bool useSyncDbHour = false;
+
+  if (syncDbInterval == -1)
+  {
+    spinOnceEvery->setValue(5);
+  }
+  else if (syncDbInterval != -1)
+  {
+    spinOnceEvery->setValue(syncDbInterval);
+    useSyncDbInterval = true;
+  }
+  if (syncDbHour == -1)
+  {
+    spinOnceADayAt->setValue(0);
+  }
+  else if (syncDbHour != -1)
+  {
+    spinOnceADayAt->setValue(syncDbHour);
+    useSyncDbHour = true;
+  }
+
+  if (useSyncDbInterval)
+  {
+    rbOnceEvery->setChecked(true);
+    selectOnceEvery();
+  }
+  else if (useSyncDbHour)
+  {
+    rbOnceADayAt->setChecked(true);
+    selectOnceADayAt();
+  }
+  else //We are using just "Once a day"!!!
+  {
+    rbOnceADay->setChecked(true);
+    selectOnceADay();
   }
 }
 
@@ -231,7 +302,6 @@ void OptionsDialog::initTerminalTab(){
   {
     QTableWidgetItem *itemTerminal = new QTableWidgetItem();
     itemTerminal->setFlags(itemTerminal->flags() ^ Qt::ItemIsEditable);
-
     itemTerminal->setText(terminals.at(row));
     twTerminal->setItem(row, 0, itemTerminal);
     twTerminal->setRowHeight(row, 25);
@@ -245,18 +315,22 @@ void OptionsDialog::accept(){
   QString selectedTerminal;
   bool emptyIconPath = false;
 
-  //Set backend...
-  if (SettingsManager::hasPacmanBackend() != rbPacman->isChecked() ||
-      (!SettingsManager::hasPacmanBackend()) != rbAlpm->isChecked())
+  if (m_calledByOctopi)
   {
-    if (rbPacman->isChecked())
-      SettingsManager::setBackend("pacman");
-    else
-      SettingsManager::setBackend("alpm");
+    //Set backend...
+    if (SettingsManager::hasPacmanBackend() != rbPacman->isChecked() ||
+        (!SettingsManager::hasPacmanBackend()) != rbAlpm->isChecked())
+    {
+      if (rbPacman->isChecked())
+        SettingsManager::setBackend("pacman");
+      else
+        SettingsManager::setBackend("alpm");
 
-    m_backendHasChanged = true;
+      m_backendHasChanged = true;
+    }
   }
 
+  //Set icon...
   if (!cbUseDefaultIcons->isChecked())
   {
     if (leRedIcon->text().isEmpty())
@@ -283,7 +357,6 @@ void OptionsDialog::accept(){
     return;
   }
 
-  //Set icon...
   if (SettingsManager::getUseDefaultAppIcon() != cbUseDefaultIcons->isChecked())
   {
     SettingsManager::setUseDefaultAppIcon(cbUseDefaultIcons->isChecked());
@@ -314,6 +387,25 @@ void OptionsDialog::accept(){
     m_iconHasChanged = true;
   }
 
+  if (!m_calledByOctopi)
+  {
+     //Set synchronization...
+    if (rbOnceADay->isChecked())
+    {
+      SettingsManager::setSyncDbHour(-1);
+      SettingsManager::setSyncDbInterval(-1);
+    }
+    else if (rbOnceADayAt->isChecked())
+    {
+      SettingsManager::setSyncDbHour(spinOnceADayAt->value());
+      SettingsManager::setSyncDbInterval(-1);
+    }
+    else if (rbOnceEvery->isChecked())
+    {
+      SettingsManager::setSyncDbInterval(spinOnceEvery->value());
+    }
+  }
+
   //Set terminal...
   if (twTerminal->currentItem())
     selectedTerminal = twTerminal->item(twTerminal->row(twTerminal->currentItem()), 0)->text();
@@ -334,4 +426,40 @@ void OptionsDialog::accept(){
 
   QDialog::accept();
   setResult(res);
+}
+
+/*
+ * Whenever user selects the first radio button, we have to disable some widgets
+ */
+void OptionsDialog::selectOnceADay()
+{
+  rbOnceADay->setChecked(true);
+  spinOnceADayAt->setEnabled(false);
+  spinOnceEvery->setEnabled(false);
+  rbOnceADayAt->setChecked(false);
+  rbOnceEvery->setChecked(false);
+}
+
+/*
+ * Whenever user selects the second radio button, we have to disable some widgets
+ */
+void OptionsDialog::selectOnceADayAt()
+{
+  rbOnceADayAt->setChecked(true);
+  spinOnceADayAt->setEnabled(true);
+  spinOnceEvery->setEnabled(false);
+  rbOnceADay->setChecked(false);
+  rbOnceEvery->setChecked(false);
+}
+
+/*
+ * Whenever user selects the third radio button, we have to disable some widgets
+ */
+void OptionsDialog::selectOnceEvery()
+{
+  rbOnceEvery->setChecked(true);
+  spinOnceADayAt->setEnabled(false);
+  spinOnceEvery->setEnabled(true);
+  rbOnceADay->setChecked(false);
+  rbOnceADayAt->setChecked(false);
 }

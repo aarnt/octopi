@@ -37,6 +37,8 @@ private:
   bool m_once;
   bool m_iconHasChanged;
   bool m_backendHasChanged;
+  bool m_calledByOctopi;
+
   QString m_redIconPath;
   QString m_yellowIconPath;
   QString m_greenIconPath;
@@ -46,6 +48,7 @@ private:
   void initButtonBox();
   void initBackendTab();
   void initIconTab();
+  void initSynchronizationTab();
   void initTerminalTab();
 
 protected:
@@ -62,6 +65,9 @@ private slots:
   void selGreenIconPath();
   void selBusyIconPath();
   void currentTabChanged(int tabIndex);
+  void selectOnceADay();
+  void selectOnceADayAt();
+  void selectOnceEvery();
 };
 
 #endif // OptionsDialog_H
