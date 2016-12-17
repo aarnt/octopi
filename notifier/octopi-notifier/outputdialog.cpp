@@ -63,13 +63,11 @@ void OutputDialog::init()
 {
   setWindowIcon(IconHelper::getIconSystemUpgrade());
 
-  m_searchBar = new SearchBar(this);
-  connect(m_searchBar, SIGNAL(textChanged(QString)), this, SLOT(onSearchBarTextChanged(QString)));
-  connect(m_searchBar, SIGNAL(closed()), this, SLOT(onSearchBarClosed()));
-  connect(m_searchBar, SIGNAL(findNext()), this, SLOT(onSearchBarFindNext()));
-  connect(m_searchBar, SIGNAL(findPrevious()), this, SLOT(onSearchBarFindPrevious()));
-  ui->m_mainLayout->addWidget(m_searchBar);
-  m_searchBar->show();
+  connect(ui->m_searchBar, SIGNAL(textChanged(QString)), this, SLOT(onSearchBarTextChanged(QString)));
+  connect(ui->m_searchBar, SIGNAL(closed()), this, SLOT(onSearchBarClosed()));
+  connect(ui->m_searchBar, SIGNAL(findNext()), this, SLOT(onSearchBarFindNext()));
+  connect(ui->m_searchBar, SIGNAL(findPrevious()), this, SLOT(onSearchBarFindPrevious()));
+  ui->m_searchBar->show();
   
   ui->m_progressBar->close();
 }
@@ -203,7 +201,7 @@ void OutputDialog::pacmanProcessFinished(int exitCode, QProcess::ExitStatus exit
  */
 void OutputDialog::onSearchBarTextChanged(QString strToSearch)
 {
-  utils::searchBarTextChangedInTextBrowser(ui->m_textBrowser, m_searchBar, strToSearch);
+  utils::searchBarTextChangedInTextBrowser(ui->m_textBrowser, ui->m_searchBar, strToSearch);
 }
 
 /*
@@ -211,7 +209,7 @@ void OutputDialog::onSearchBarTextChanged(QString strToSearch)
  */
 void OutputDialog::onSearchBarClosed()
 {
-  utils::searchBarClosedInTextBrowser(ui->m_textBrowser, m_searchBar);
+  utils::searchBarClosedInTextBrowser(ui->m_textBrowser, ui->m_searchBar);
 }
 
 /*
@@ -219,7 +217,7 @@ void OutputDialog::onSearchBarClosed()
  */
 void OutputDialog::onSearchBarFindNext()
 {
-  utils::searchBarFindNextInTextBrowser(ui->m_textBrowser, m_searchBar);
+  utils::searchBarFindNextInTextBrowser(ui->m_textBrowser, ui->m_searchBar);
 }
 
 /*
@@ -227,7 +225,7 @@ void OutputDialog::onSearchBarFindNext()
  */
 void OutputDialog::onSearchBarFindPrevious()
 {
-  utils::searchBarFindPreviousInTextBrowser(ui->m_textBrowser, m_searchBar);
+  utils::searchBarFindPreviousInTextBrowser(ui->m_textBrowser, ui->m_searchBar);
 }
 
 /*
@@ -254,7 +252,7 @@ void OutputDialog::keyPressEvent(QKeyEvent *ke)
 {
   if(ke->key() == Qt::Key_F && ke->modifiers() == Qt::ControlModifier)
   {
-    m_searchBar->show();
+    ui->m_searchBar->show();
   }
   else if(ke->key() == Qt::Key_Escape)
   {

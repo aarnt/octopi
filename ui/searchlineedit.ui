@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>SearchLineEdit</class>
+ <widget class="QLineEdit" name="SearchLineEdit">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>196</width>
+    <height>32</height>
+   </rect>
+  </property>
+  <property name="windowIcon">
+   <iconset theme="search"/>
+  </property>
+  <widget class="QToolButton" name="m_SearchButton">
+   <property name="geometry">
+    <rect>
+     <x>5</x>
+     <y>8</y>
+     <width>18</width>
+     <height>18</height>
+    </rect>
+   </property>
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+     <horstretch>18</horstretch>
+     <verstretch>18</verstretch>
+    </sizepolicy>
+   </property>
+   <property name="icon">
+    <iconset theme="search"/>
+   </property>
+   <property name="autoRaise">
+    <bool>true</bool>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

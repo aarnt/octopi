@@ -14,7 +14,8 @@
    <string>System upgrade</string>
   </property>
   <property name="windowIcon">
-   <iconset theme="go-up"/>
+   <iconset theme="go-up">
+    <normaloff>.</normaloff>.</iconset>
   </property>
   <layout class="QVBoxLayout" name="m_mainLayout">
    <property name="spacing">
@@ -55,8 +56,19 @@
      </property>
     </widget>
    </item>
+   <item>
+    <widget class="SearchBar" name="m_searchBar" native="true"/>
+   </item>
   </layout>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>SearchBar</class>
+   <extends>QWidget</extends>
+   <header>src/searchbar.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>
