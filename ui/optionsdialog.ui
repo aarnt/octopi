@@ -31,7 +31,7 @@
      <item>
       <widget class="QTabWidget" name="tabWidget">
        <property name="currentIndex">
-        <number>2</number>
+        <number>1</number>
        </property>
        <widget class="QWidget" name="tabBackend">
         <attribute name="title">
@@ -77,8 +77,11 @@
               <height>22</height>
              </rect>
             </property>
+            <property name="accessibleName">
+             <string notr="true"/>
+            </property>
             <property name="text">
-             <string>ALPM</string>
+             <string notr="true">ALPM</string>
             </property>
             <property name="checked">
              <bool>true</bool>
@@ -93,8 +96,11 @@
               <height>22</height>
              </rect>
             </property>
+            <property name="accessibleName">
+             <string notr="true"/>
+            </property>
             <property name="text">
-             <string>pacman</string>
+             <string notr="true">pacman</string>
             </property>
            </widget>
           </widget>
@@ -231,8 +237,11 @@
                      <verstretch>0</verstretch>
                     </sizepolicy>
                    </property>
+                   <property name="accessibleName">
+                    <string notr="true"/>
+                   </property>
                    <property name="text">
-                    <string>...</string>
+                    <string notr="true">...</string>
                    </property>
                   </widget>
                  </item>
@@ -291,8 +300,11 @@
                  </item>
                  <item>
                   <widget class="QToolButton" name="tbSelYellowIcon">
+                   <property name="accessibleName">
+                    <string notr="true"/>
+                   </property>
                    <property name="text">
-                    <string>...</string>
+                    <string notr="true">...</string>
                    </property>
                   </widget>
                  </item>
@@ -351,8 +363,11 @@
                  </item>
                  <item>
                   <widget class="QToolButton" name="tbSelGreenIcon">
+                   <property name="accessibleName">
+                    <string notr="true"/>
+                   </property>
                    <property name="text">
-                    <string>...</string>
+                    <string notr="true">...</string>
                    </property>
                   </widget>
                  </item>
@@ -411,8 +426,11 @@
                  </item>
                  <item>
                   <widget class="QToolButton" name="tbSelBusyIcon">
+                   <property name="accessibleName">
+                    <string notr="true"/>
+                   </property>
                    <property name="text">
-                    <string>...</string>
+                    <string notr="true">...</string>
                    </property>
                   </widget>
                  </item>
@@ -666,8 +684,11 @@
              <verstretch>0</verstretch>
             </sizepolicy>
            </property>
+           <property name="accessibleName">
+            <string notr="true"/>
+           </property>
            <property name="text">
-            <string>lblSync</string>
+            <string notr="true">lblSync</string>
            </property>
           </widget>
          </item>
