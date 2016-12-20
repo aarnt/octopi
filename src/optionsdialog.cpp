@@ -53,6 +53,9 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
   initialize();
 }
 
+/*
+ * When the dialog is first displayed
+ */
 void OptionsDialog::paintEvent(QPaintEvent *){
   //This member flag ensures the execution of this code for just ONE time.
   if (!m_once){
@@ -65,6 +68,9 @@ void OptionsDialog::paintEvent(QPaintEvent *){
   }
 }
 
+/*
+ * Whenever user changes selected tab
+ */
 void OptionsDialog::currentTabChanged(int tabIndex){
   if (tabWidget->tabText(tabIndex) == tr("Terminal"))
   {
@@ -78,6 +84,9 @@ void OptionsDialog::currentTabChanged(int tabIndex){
   }
 }
 
+/*
+ * Whenever user checks/unchecks "Use default icons" option
+ */
 void OptionsDialog::defaultIconChecked(bool checked)
 {
   if (checked)
@@ -94,6 +103,9 @@ void OptionsDialog::defaultIconChecked(bool checked)
   }
 }
 
+/*
+ * When user chooses new red icon path
+ */
 void OptionsDialog::selRedIconPath()
 {
   QDir qd;
@@ -107,6 +119,9 @@ void OptionsDialog::selRedIconPath()
     leRedIcon->setText(fileName);
 }
 
+/*
+ * When user chooses new yellow icon path
+ */
 void OptionsDialog::selYellowIconPath()
 {
   QDir qd;
@@ -120,6 +135,9 @@ void OptionsDialog::selYellowIconPath()
     leYellowIcon->setText(fileName);
 }
 
+/*
+ * When user chooses new green icon path
+ */
 void OptionsDialog::selGreenIconPath()
 {
   QDir qd;
@@ -133,6 +151,9 @@ void OptionsDialog::selGreenIconPath()
     leGreenIcon->setText(fileName);
 }
 
+/*
+ * When user chooses new busy icon path
+ */
 void OptionsDialog::selBusyIconPath()
 {
   QDir qd;
@@ -146,6 +167,9 @@ void OptionsDialog::selBusyIconPath()
     leBusyIcon->setText(fileName);
 }
 
+/*
+ * Main initialization code
+ */
 void OptionsDialog::initialize(){
   m_backendHasChanged = false;
   m_iconHasChanged = false;
@@ -172,10 +196,11 @@ void OptionsDialog::initialize(){
 void OptionsDialog::initButtonBox(){
   buttonBox->button(QDialogButtonBox::Ok)->setText(tr("Ok"));
   buttonBox->button(QDialogButtonBox::Cancel)->setText(tr("Cancel"));
-
-  //buttonBox->button(QDialogButtonBox::RestoreDefaults)->setText(tr("Restore defaults"));
 }
 
+/*
+ * Initializes Backend tab
+ */
 void OptionsDialog::initBackendTab()
 {
   if (SettingsManager::hasPacmanBackend())
@@ -184,6 +209,9 @@ void OptionsDialog::initBackendTab()
     rbAlpm->setChecked(true);
 }
 
+/*
+ * Initializes Icon tab
+ */
 void OptionsDialog::initIconTab()
 {
   connect(cbUseDefaultIcons, SIGNAL(clicked(bool)), this, SLOT(defaultIconChecked(bool)));
@@ -270,6 +298,9 @@ void OptionsDialog::initSynchronizationTab()
   }
 }
 
+/*
+ * Initializes Terminal tab
+ */
 void OptionsDialog::initTerminalTab(){
   QStringList terminals = Terminal::getListOfAvailableTerminals();
 
@@ -311,6 +342,9 @@ void OptionsDialog::initTerminalTab(){
   twTerminal->sortByColumn(0, Qt::AscendingOrder);
 }
 
+/*
+ * When user chooses OK button and saves all his changes
+ */
 void OptionsDialog::accept(){
   QString selectedTerminal;
   bool emptyIconPath = false;
@@ -389,7 +423,7 @@ void OptionsDialog::accept(){
 
   if (!m_calledByOctopi)
   {
-     //Set synchronization...
+    //Set synchronization...
     if (rbOnceADay->isChecked())
     {
       SettingsManager::setSyncDbHour(-1);
