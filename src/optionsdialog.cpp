@@ -325,10 +325,6 @@ void OptionsDialog::initTerminalTab(){
 
   connect(twTerminal, SIGNAL(cellDoubleClicked(int,int)), this, SLOT(accept()));
 
-  QStringList slLabels;
-  slLabels << tr("Name");
-  twTerminal->setHorizontalHeaderLabels(slLabels);
-
   while (row < (terminals.count()))
   {
     QTableWidgetItem *itemTerminal = new QTableWidgetItem();

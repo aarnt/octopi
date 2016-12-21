@@ -31,7 +31,7 @@
      <item>
       <widget class="QTabWidget" name="tabWidget">
        <property name="currentIndex">
-        <number>1</number>
+        <number>2</number>
        </property>
        <widget class="QWidget" name="tabBackend">
         <attribute name="title">
@@ -462,7 +462,7 @@
          <item row="2" column="0">
           <widget class="QGroupBox" name="gbSync">
            <property name="title">
-            <string notr="true"/>
+            <string/>
            </property>
            <property name="flat">
             <bool>true</bool>
@@ -564,7 +564,7 @@
                   </sizepolicy>
                  </property>
                  <property name="text">
-                  <string>(value in 24-hour format: 0 to 23)</string>
+                  <string notr="true">(value in 24-hour format: 0 to 23)</string>
                  </property>
                 </widget>
                </item>
@@ -650,7 +650,7 @@
                   </sizepolicy>
                  </property>
                  <property name="text">
-                  <string>(value in minutes: 5 to 1380)</string>
+                  <string notr="true">(value in minutes: 5 to 1380)</string>
                  </property>
                 </widget>
                </item>
