@@ -37,16 +37,16 @@ class QWidget;
 class QCloseEvent;
 class QKeyEvent;
 
+namespace Ui {
+class OutputDialog;
+}
+
 class OutputDialog : public QDialog
 {
   Q_OBJECT
 
-  Q_PROPERTY(QFrame::Shape frameShape READ frameShape WRITE setFrameShape USER true)
-
 private:
-  QTextBrowser *m_textBrowser;
-  QProgressBar *m_progressBar;
-  QVBoxLayout *m_mainLayout;
+  Ui::OutputDialog *ui;
   PacmanExec *m_pacmanExec;
   SearchBar *m_searchBar;
   bool m_upgradeRunning;
@@ -77,12 +77,10 @@ protected:
 public:
   explicit OutputDialog(QWidget *parent = 0);
   void setDebugMode(bool newValue);
-  QFrame::Shape frameShape();
 
 public slots:
   void show();
   void reject();
-  void setFrameShape(QFrame::Shape shape);
 };
 
 #endif // OUTPUTDIALOG_H
