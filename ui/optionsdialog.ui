@@ -31,7 +31,7 @@
      <item>
       <widget class="QTabWidget" name="tabWidget">
        <property name="currentIndex">
-        <number>0</number>
+        <number>2</number>
        </property>
        <widget class="QWidget" name="tabBackend">
         <attribute name="title">
@@ -77,8 +77,11 @@
               <height>22</height>
              </rect>
             </property>
+            <property name="accessibleName">
+             <string notr="true"/>
+            </property>
             <property name="text">
-             <string>ALPM</string>
+             <string notr="true">ALPM</string>
             </property>
             <property name="checked">
              <bool>true</bool>
@@ -93,8 +96,11 @@
               <height>22</height>
              </rect>
             </property>
+            <property name="accessibleName">
+             <string notr="true"/>
+            </property>
             <property name="text">
-             <string>pacman</string>
+             <string notr="true">pacman</string>
             </property>
            </widget>
           </widget>
@@ -231,8 +237,11 @@
                      <verstretch>0</verstretch>
                     </sizepolicy>
                    </property>
+                   <property name="accessibleName">
+                    <string notr="true"/>
+                   </property>
                    <property name="text">
-                    <string>...</string>
+                    <string notr="true">...</string>
                    </property>
                   </widget>
                  </item>
@@ -291,8 +300,11 @@
                  </item>
                  <item>
                   <widget class="QToolButton" name="tbSelYellowIcon">
+                   <property name="accessibleName">
+                    <string notr="true"/>
+                   </property>
                    <property name="text">
-                    <string>...</string>
+                    <string notr="true">...</string>
                    </property>
                   </widget>
                  </item>
@@ -351,8 +363,11 @@
                  </item>
                  <item>
                   <widget class="QToolButton" name="tbSelGreenIcon">
+                   <property name="accessibleName">
+                    <string notr="true"/>
+                   </property>
                    <property name="text">
-                    <string>...</string>
+                    <string notr="true">...</string>
                    </property>
                   </widget>
                  </item>
@@ -411,8 +426,11 @@
                  </item>
                  <item>
                   <widget class="QToolButton" name="tbSelBusyIcon">
+                   <property name="accessibleName">
+                    <string notr="true"/>
+                   </property>
                    <property name="text">
-                    <string>...</string>
+                    <string notr="true">...</string>
                    </property>
                   </widget>
                  </item>
@@ -431,6 +449,246 @@
            </property>
            <property name="checked">
             <bool>false</bool>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+       <widget class="QWidget" name="tabSync">
+        <attribute name="title">
+         <string>Synchronization</string>
+        </attribute>
+        <layout class="QGridLayout" name="gridLayout_6">
+         <item row="2" column="0">
+          <widget class="QGroupBox" name="gbSync">
+           <property name="title">
+            <string/>
+           </property>
+           <property name="flat">
+            <bool>true</bool>
+           </property>
+           <property name="checkable">
+            <bool>false</bool>
+           </property>
+           <widget class="QRadioButton" name="rbOnceADay">
+            <property name="geometry">
+             <rect>
+              <x>10</x>
+              <y>20</y>
+              <width>371</width>
+              <height>21</height>
+             </rect>
+            </property>
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text">
+             <string notr="true">Once a day</string>
+            </property>
+           </widget>
+           <widget class="QWidget" name="layoutWidget_2">
+            <property name="geometry">
+             <rect>
+              <x>10</x>
+              <y>50</y>
+              <width>481</width>
+              <height>64</height>
+             </rect>
+            </property>
+            <layout class="QVBoxLayout" name="verticalLayout_3">
+             <item>
+              <widget class="QRadioButton" name="rbOnceADayAt">
+               <property name="text">
+                <string notr="true">Once a day, but at:</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <layout class="QHBoxLayout" name="horizontalLayout_2">
+               <item>
+                <spacer name="horizontalSpacer_5">
+                 <property name="orientation">
+                  <enum>Qt::Horizontal</enum>
+                 </property>
+                 <property name="sizeType">
+                  <enum>QSizePolicy::Fixed</enum>
+                 </property>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>24</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                </spacer>
+               </item>
+               <item>
+                <widget class="QSpinBox" name="spinOnceADayAt">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="minimumSize">
+                  <size>
+                   <width>72</width>
+                   <height>0</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>150</width>
+                   <height>16777215</height>
+                  </size>
+                 </property>
+                 <property name="minimum">
+                  <number>0</number>
+                 </property>
+                 <property name="maximum">
+                  <number>23</number>
+                 </property>
+                 <property name="value">
+                  <number>0</number>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLabel" name="lblOnceADayAt">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="text">
+                  <string notr="true">(value in 24-hour format: 0 to 23)</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </item>
+            </layout>
+           </widget>
+           <widget class="QWidget" name="layoutWidget_1">
+            <property name="geometry">
+             <rect>
+              <x>10</x>
+              <y>120</y>
+              <width>481</width>
+              <height>64</height>
+             </rect>
+            </property>
+            <layout class="QVBoxLayout" name="verticalLayout_7">
+             <item>
+              <widget class="QRadioButton" name="rbOnceEvery">
+               <property name="text">
+                <string notr="true">Once e&amp;very:</string>
+               </property>
+               <property name="autoExclusive">
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <layout class="QHBoxLayout" name="horizontalLayout_6">
+               <item>
+                <spacer name="horizontalSpacer_6">
+                 <property name="orientation">
+                  <enum>Qt::Horizontal</enum>
+                 </property>
+                 <property name="sizeType">
+                  <enum>QSizePolicy::Fixed</enum>
+                 </property>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>24</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                </spacer>
+               </item>
+               <item>
+                <widget class="QSpinBox" name="spinOnceEvery">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="minimumSize">
+                  <size>
+                   <width>66</width>
+                   <height>0</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>150</width>
+                   <height>16777215</height>
+                  </size>
+                 </property>
+                 <property name="minimum">
+                  <number>5</number>
+                 </property>
+                 <property name="maximum">
+                  <number>44640</number>
+                 </property>
+                 <property name="value">
+                  <number>60</number>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLabel" name="lblOnceEvery">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="text">
+                  <string notr="true">(value in minutes: 5 to 1380)</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </item>
+            </layout>
+           </widget>
+          </widget>
+         </item>
+         <item row="0" column="0">
+          <spacer name="verticalSpacer_3">
+           <property name="orientation">
+            <enum>Qt::Vertical</enum>
+           </property>
+           <property name="sizeType">
+            <enum>QSizePolicy::Fixed</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>20</width>
+             <height>13</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item row="1" column="0">
+          <widget class="QLabel" name="lblSync">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="accessibleName">
+            <string notr="true"/>
+           </property>
+           <property name="text">
+            <string notr="true">lblSync</string>
            </property>
           </widget>
          </item>

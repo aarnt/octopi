@@ -35,7 +35,7 @@ class QMenu;
 class QAction;
 class QFileSystemWatcher;
 class PacmanHelperClient;
-class SetupDialog;
+class OptionsDialog;
 class TransactionDialog;
 
 #ifdef KSTATUS
@@ -77,7 +77,7 @@ private slots:
 private:
 
   TransactionDialog *m_transactionDialog;
-  SetupDialog *m_setupDialog;
+  OptionsDialog *m_optionsDialog;
   int m_numberOfOutdatedPackages;
   int m_numberOfOutdatedAURPackages;
   bool m_systemUpgradeDialog;
@@ -85,7 +85,7 @@ private:
   UnixCommand *m_unixCommand;
 
   QAction *m_actionOctopi;
-  QAction *m_actionSetInterval;
+  QAction *m_actionOptions;
   QAction *m_actionSyncDatabase;
   QAction *m_actionSystemUpgrade;
   QAction *m_actionAbout;

@@ -40,7 +40,6 @@ INCLUDEPATH += ../..
 
 HEADERS  += \
     mainwindow.h \
-    setupdialog.h \
     outputdialog.h \
     ../../src/uihelper.h \
     ../../src/terminal.h \
@@ -54,7 +53,8 @@ HEADERS  += \
     ../../src/argumentlist.h \
     ../../src/pacmanexec.h \
     ../../src/searchlineedit.h \
-    ../../src/searchbar.h
+    ../../src/searchbar.h \
+    ../../src/optionsdialog.h
 
 ALPM_BACKEND{
   HEADERS += ../../src/alpmbackend.h
@@ -62,7 +62,6 @@ ALPM_BACKEND{
 
 SOURCES += main.cpp \
     mainwindow.cpp \
-    setupdialog.cpp \
     outputdialog.cpp \
     ../../src/terminal.cpp \
     ../../src/unixcommand.cpp \
@@ -75,7 +74,8 @@ SOURCES += main.cpp \
     ../../src/argumentlist.cpp \
     ../../src/pacmanexec.cpp \
     ../../src/searchlineedit.cpp \
-    ../../src/searchbar.cpp
+    ../../src/searchbar.cpp \
+    ../../src/optionsdialog.cpp
 
 ALPM_BACKEND{
   SOURCES += ../../src/alpmbackend.cpp
@@ -84,6 +84,7 @@ ALPM_BACKEND{
 FORMS += ../../ui/transactiondialog.ui \
     ../../ui/searchlineedit.ui \
     ../../ui/searchbar.ui \
+    ../../ui/optionsdialog.ui \
     ui/outputdialog.ui \
     ui/setupdialog.ui
 
