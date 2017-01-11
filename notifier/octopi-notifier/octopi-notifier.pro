@@ -34,10 +34,6 @@ OBJECTS_DIR += ../build-octopi-notifier
 MOC_DIR += ../build-octopi-notifier
 UI_DIR += ../build-octopi-notifier
 
-# so that .ui files can find headers
-# no matter where they’re included from
-INCLUDEPATH += ../..
-
 HEADERS  += \
     mainwindow.h \
     outputdialog.h \
@@ -82,11 +78,7 @@ ALPM_BACKEND{
 }
 
 FORMS += ../../ui/transactiondialog.ui \
-    ../../ui/searchlineedit.ui \
-    ../../ui/searchbar.ui \
-    ../../ui/optionsdialog.ui \
-    ui/outputdialog.ui \
-    ui/setupdialog.ui
+    ../../ui/optionsdialog.ui
 
 RESOURCES += \
     ../../resources.qrc

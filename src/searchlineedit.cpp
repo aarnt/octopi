@@ -7,7 +7,6 @@
 */
 
 #include "searchlineedit.h"
-#include "ui_searchlineedit.h"
 #include "strconstants.h"
 #include "wmhelper.h"
 #include "uihelper.h"
@@ -21,10 +20,7 @@
 #include <QStringListModel>
 
 SearchLineEdit::SearchLineEdit(QWidget *parent, bool hasSLocate) :
-  QLineEdit(parent),
-  ui(new Ui::SearchLineEdit)
-{
-  ui->setupUi(this);
+  QLineEdit(parent){
 
   m_hasLocate = hasSLocate;
   m_completerModel = new QStringListModel(this);
@@ -35,11 +31,17 @@ SearchLineEdit::SearchLineEdit(QWidget *parent, bool hasSLocate) :
   m_completer->setMaxVisibleItems(10);
   setCompleter(m_completer);
 
+  // Create the search button and set its icon, cursor, and stylesheet
+  this->m_SearchButton = new QToolButton(this);
+
   // Increase button size a bit for kde
   if (WMHelper::isKDERunning())
-    ui->m_SearchButton->setFixedSize(20, 20);
+    this->m_SearchButton->setFixedSize(20, 20);
+  else
+    this->m_SearchButton->setFixedSize(18, 18);
 
-  ui->m_SearchButton->setStyleSheet(this->buttonStyleSheetForCurrentState());
+  this->m_SearchButton->setCursor(Qt::ArrowCursor);
+  this->m_SearchButton->setStyleSheet(this->buttonStyleSheetForCurrentState());
 
   m_defaultValidator = new QRegExpValidator(QRegExp("[a-zA-Z0-9_\\-\\$\\^\\*\\+\\(\\)\\[\\]\\.\\s\\\\]+"), this);
   m_aurValidator = new QRegExpValidator(QRegExp("[a-zA-Z0-9_\\-\\+\\s\\\\]+"), this);
@@ -93,21 +95,21 @@ void SearchLineEdit::refreshCompleterData()
 void SearchLineEdit::resizeEvent(QResizeEvent *event)
 {
   Q_UNUSED(event);
-  ui->m_SearchButton->move(5, (this->rect().height() - ui->m_SearchButton->height()) / 2);
+  this->m_SearchButton->move(5, (this->rect().height() - this->m_SearchButton->height()) / 2);
 }
 
 void SearchLineEdit::updateSearchButton(const QString &text)
 {
   if (!text.isEmpty()){
     // We have some text in the box - set the button to clear the text
-    QObject::connect(ui->m_SearchButton, SIGNAL(clicked()), SLOT(clear()));
+    QObject::connect(this->m_SearchButton, SIGNAL(clicked()), SLOT(clear()));
   }
   else{
     // The text box is empty - make the icon do nothing when clicked
-    QObject::disconnect(ui->m_SearchButton, SIGNAL(clicked()), this, SLOT(clear()));
+    QObject::disconnect(this->m_SearchButton, SIGNAL(clicked()), this, SLOT(clear()));
   }
 
-  ui->m_SearchButton->setStyleSheet(this->buttonStyleSheetForCurrentState());
+  this->m_SearchButton->setStyleSheet(this->buttonStyleSheetForCurrentState());
 }
 
 QString SearchLineEdit::styleSheetForCurrentState()
@@ -131,7 +133,7 @@ QString SearchLineEdit::styleSheetForCurrentState()
   if(UnixCommand::getLinuxDistro() != ectn_CHAKRA)
   {
     style += "padding-left: 20px;";
-    style += QString("padding-right: %1px;").arg(ui->m_SearchButton->sizeHint().width() + frameWidth + 1);
+    style += QString("padding-right: %1px;").arg(this->m_SearchButton->sizeHint().width() + frameWidth + 1);
     style += "border-width: 3px;";
     style += "border-image: url(:/resources/images/esf-border.png) 3 3 3 3 stretch;";
     style += "background-color: rgba(255, 255, 255, 255);"; //204);";
@@ -155,7 +157,7 @@ void SearchLineEdit::setFoundStyle(){
     style += "font-family: 'MS Sans Serif';";
     style += "font-style: italic;";
     style += "padding-left: 20px;";
-    style += QString("padding-right: %1px;").arg(ui->m_SearchButton->sizeHint().width() + 2);
+    style += QString("padding-right: %1px;").arg(this->m_SearchButton->sizeHint().width() + 2);
     style += "border-width: 3px;";
     style += "border-image: url(:/resources/images/esf-border.png) 3 3 3 3 stretch;";
     style += "color: black; ";
@@ -185,7 +187,7 @@ void SearchLineEdit::setNotFoundStyle(){
     style += "font-family: 'MS Sans Serif';";
     style += "font-style: italic;";
     style += "padding-left: 20px;";
-    style += QString("padding-right: %1px;").arg(ui->m_SearchButton->sizeHint().width() + 2);
+    style += QString("padding-right: %1px;").arg(this->m_SearchButton->sizeHint().width() + 2);
     style += "border-width: 3px;";
     style += "border-image: url(:/resources/images/esf-border.png) 3 3 3 3 stretch;";
     style += "color: white; ";
@@ -210,29 +212,30 @@ QString SearchLineEdit::buttonStyleSheetForCurrentState() const
 {
   // When using KDE avoid stylesheet customization
   if (WMHelper::isKDERunning() && UnixCommand::getLinuxDistro() != ectn_KAOS) {
-    this->text().isEmpty() ? ui->m_SearchButton->setIcon(IconHelper::getIconSearch())
-                           : ui->m_SearchButton->setIcon(IconHelper::getIconClear());
+    this->text().isEmpty() ? this->m_SearchButton->setIcon(IconHelper::getIconSearch())
+                           : this->m_SearchButton->setIcon(IconHelper::getIconClear());
+    this->m_SearchButton->setAutoRaise(true);
 
     if (!this->text().isEmpty())
-      ui->m_SearchButton->setToolTip(StrConstants::getClear());
+      this->m_SearchButton->setToolTip(StrConstants::getClear());
     else
-      ui->m_SearchButton->setToolTip("");
+      this->m_SearchButton->setToolTip("");
 
     return QString();
   }
 
   QString style;
   style += "QToolButton {";
-  style += "margin: 0; padding: 0;";
+  style += "border: none; margin: 0; padding: 0;";
   style += QString("background-image: url(:/resources/images/esf-%1.png);").arg(this->text().isEmpty() ? "search" : "clear");
   style += "}";
 
   if (!this->text().isEmpty())
   {
     style += "QToolButton:pressed { background-image: url(:/resources/images/esf-clear-active.png); }";
-    ui->m_SearchButton->setToolTip(StrConstants::getClear());
+    this->m_SearchButton->setToolTip(StrConstants::getClear());
   }
-  else ui->m_SearchButton->setToolTip("");
+  else this->m_SearchButton->setToolTip("");
 
   return style;
 }
