@@ -19,7 +19,6 @@
 */
 
 #include "outputdialog.h"
-#include "ui_outputdialog.h"
 #include "../../src/pacmanexec.h"
 #include "../../src/searchbar.h"
 #include "../../src/uihelper.h"
@@ -38,11 +37,8 @@
 /*
  * The obligatory constructor...
  */
-OutputDialog::OutputDialog(QWidget *parent):
-	QDialog(parent),
-	ui(new Ui::OutputDialog)
+OutputDialog::OutputDialog(QWidget *parent): QDialog(parent)
 {
-  ui->setupUi(this);
   init();
   m_upgradeRunning = false;
   m_debugInfo = false;
@@ -56,20 +52,49 @@ void OutputDialog::setDebugMode(bool newValue)
   m_debugInfo = newValue;
 }
 
+QFrame::Shape OutputDialog::frameShape()
+{
+    return m_textBrowser->frameShape();
+}
+
+void OutputDialog::setFrameShape(QFrame::Shape shape)
+{
+    m_textBrowser->setFrameShape(shape);
+}
+
 /*
  * Let's build the main widgets...
  */
 void OutputDialog::init()
 {
-  setWindowIcon(IconHelper::getIconSystemUpgrade());
+  this->resize(650, 500);
 
-  connect(ui->m_searchBar, SIGNAL(textChanged(QString)), this, SLOT(onSearchBarTextChanged(QString)));
-  connect(ui->m_searchBar, SIGNAL(closed()), this, SLOT(onSearchBarClosed()));
-  connect(ui->m_searchBar, SIGNAL(findNext()), this, SLOT(onSearchBarFindNext()));
-  connect(ui->m_searchBar, SIGNAL(findPrevious()), this, SLOT(onSearchBarFindPrevious()));
-  ui->m_searchBar->show();
-  
-  ui->m_progressBar->close();
+  setWindowTitle(QCoreApplication::translate("MainWindow", "System upgrade"));
+  setWindowIcon(IconHelper::getIconSystemUpgrade());
+  m_mainLayout = new QVBoxLayout(this);
+  m_textBrowser = new QTextBrowser(this);
+  m_progressBar = new QProgressBar(this);
+
+  m_textBrowser->setGeometry(QRect(0, 0, 650, 500));
+
+  m_mainLayout->addWidget(m_textBrowser);
+
+  m_searchBar = new SearchBar(this);
+  connect(m_searchBar, SIGNAL(textChanged(QString)), this, SLOT(onSearchBarTextChanged(QString)));
+  connect(m_searchBar, SIGNAL(closed()), this, SLOT(onSearchBarClosed()));
+  connect(m_searchBar, SIGNAL(findNext()), this, SLOT(onSearchBarFindNext()));
+  connect(m_searchBar, SIGNAL(findPrevious()), this, SLOT(onSearchBarFindPrevious()));
+  m_mainLayout->addWidget(m_progressBar);
+  m_mainLayout->addWidget(m_searchBar);
+  m_mainLayout->setSpacing(0);
+  m_mainLayout->setSizeConstraint(QLayout::SetMinimumSize);
+  m_mainLayout->setContentsMargins(2, 2, 2, 2);
+
+  m_progressBar->setMinimum(0);
+  m_progressBar->setMaximum(100);
+  m_progressBar->setValue(0);
+  m_progressBar->close();
+  m_searchBar->show();
 }
 
 /*
@@ -122,8 +147,8 @@ void OutputDialog::reject()
  */
 void OutputDialog::onPencertange(int percentage)
 {
-  if (percentage > 0 && !ui->m_progressBar->isVisible()) ui->m_progressBar->show();
-  ui->m_progressBar->setValue(percentage);
+  if (percentage > 0 && !m_progressBar->isVisible()) m_progressBar->show();
+  m_progressBar->setValue(percentage);
 }
 
 /*
@@ -131,10 +156,10 @@ void OutputDialog::onPencertange(int percentage)
  */
 void OutputDialog::positionTextEditCursorAtEnd()
 {
-  QTextCursor tc = ui->m_textBrowser->textCursor();
+  QTextCursor tc = m_textBrowser->textCursor();
   tc.clearSelection();
   tc.movePosition(QTextCursor::End);
-  ui->m_textBrowser->setTextCursor(tc);
+  m_textBrowser->setTextCursor(tc);
 }
 
 /*
@@ -142,7 +167,7 @@ void OutputDialog::positionTextEditCursorAtEnd()
  */
 void OutputDialog::writeToTabOutput(const QString &msg, TreatURLLinks treatURLLinks)
 {
-  utils::writeToTextBrowser(ui->m_textBrowser, msg, treatURLLinks);
+  utils::writeToTextBrowser(m_textBrowser, msg, treatURLLinks);
 }
 
 /*
@@ -150,9 +175,9 @@ void OutputDialog::writeToTabOutput(const QString &msg, TreatURLLinks treatURLLi
  */
 void OutputDialog::onWriteOutput(const QString &output)
 {
-  utils::positionTextEditCursorAtEnd(ui->m_textBrowser);
-  ui->m_textBrowser->insertHtml(output);
-  ui->m_textBrowser->ensureCursorVisible();
+  utils::positionTextEditCursorAtEnd(m_textBrowser);
+  m_textBrowser->insertHtml(output);
+  m_textBrowser->ensureCursorVisible();
 }
 
 /*
@@ -160,7 +185,7 @@ void OutputDialog::onWriteOutput(const QString &output)
  */
 bool OutputDialog::textInTabOutput(const QString& findText)
 {
-  return (utils::strInQTextEdit(ui->m_textBrowser, findText));
+  return (utils::strInQTextEdit(m_textBrowser, findText));
 }
 
 /*
@@ -168,7 +193,7 @@ bool OutputDialog::textInTabOutput(const QString& findText)
  */
 void OutputDialog::pacmanProcessFinished(int exitCode, QProcess::ExitStatus exitStatus)
 {
-  ui->m_progressBar->close();
+  m_progressBar->close();
 
   if ((exitCode == 0) && exitStatus == QProcess::NormalExit)
   {
@@ -201,7 +226,7 @@ void OutputDialog::pacmanProcessFinished(int exitCode, QProcess::ExitStatus exit
  */
 void OutputDialog::onSearchBarTextChanged(QString strToSearch)
 {
-  utils::searchBarTextChangedInTextBrowser(ui->m_textBrowser, ui->m_searchBar, strToSearch);
+  utils::searchBarTextChangedInTextBrowser(m_textBrowser, m_searchBar, strToSearch);
 }
 
 /*
@@ -209,7 +234,7 @@ void OutputDialog::onSearchBarTextChanged(QString strToSearch)
  */
 void OutputDialog::onSearchBarClosed()
 {
-  utils::searchBarClosedInTextBrowser(ui->m_textBrowser, ui->m_searchBar);
+  utils::searchBarClosedInTextBrowser(m_textBrowser, m_searchBar);
 }
 
 /*
@@ -217,7 +242,7 @@ void OutputDialog::onSearchBarClosed()
  */
 void OutputDialog::onSearchBarFindNext()
 {
-  utils::searchBarFindNextInTextBrowser(ui->m_textBrowser, ui->m_searchBar);
+  utils::searchBarFindNextInTextBrowser(m_textBrowser, m_searchBar);
 }
 
 /*
@@ -225,7 +250,7 @@ void OutputDialog::onSearchBarFindNext()
  */
 void OutputDialog::onSearchBarFindPrevious()
 {
-  utils::searchBarFindPreviousInTextBrowser(ui->m_textBrowser, ui->m_searchBar);
+  utils::searchBarFindPreviousInTextBrowser(m_textBrowser, m_searchBar);
 }
 
 /*
@@ -252,7 +277,7 @@ void OutputDialog::keyPressEvent(QKeyEvent *ke)
 {
   if(ke->key() == Qt::Key_F && ke->modifiers() == Qt::ControlModifier)
   {
-    ui->m_searchBar->show();
+    m_searchBar->show();
   }
   else if(ke->key() == Qt::Key_Escape)
   {

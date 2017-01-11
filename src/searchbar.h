@@ -28,16 +28,11 @@
 #include <QApplication>
 #include <QTextEdit>
 
-namespace Ui {
-class SearchBar;
-}
-
 class SearchBar : public QWidget
 {
   Q_OBJECT
 
 private:
-  Ui::SearchBar *ui;
   SearchLineEdit *m_searchLineEdit;
 
 protected:
