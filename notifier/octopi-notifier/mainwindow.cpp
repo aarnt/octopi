@@ -424,6 +424,7 @@ void MainWindow::toggleEnableInterface(bool state)
   m_actionOctopi->setEnabled(state);
   m_actionSyncDatabase->setEnabled(state);
   m_actionOptions->setEnabled(state);
+  m_actionSystemUpgrade->setEnabled(state);
   m_actionExit->setEnabled(state);
 }
 

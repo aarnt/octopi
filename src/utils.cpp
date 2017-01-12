@@ -643,8 +643,6 @@ void utils::searchBarTextChangedInTextBrowser(QTextBrowser *tb, SearchBar *sb, c
       return;
     }
 
-    if (textToSearch.length() < 2) return;
-
     tb->setExtraSelections(extraSelections);
     tb->moveCursor(QTextCursor::Start);
     QColor color = QColor(Qt::yellow).lighter(130);
