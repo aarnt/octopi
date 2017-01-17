@@ -139,6 +139,10 @@ QStringList AlpmBackend::getUnrequiredList()
     res.append(QString(pkgName));
   }
 
+  // free
+  alpm_utils_free (alpm_utils); // this will free all alpm_pkgs but not the alpm_list
+  alpm_list_free (founds);
+
   return res;
 }
 
@@ -172,6 +176,10 @@ QStringList AlpmBackend::getForeignList()
     res.append(line);
   }
 
+  // free
+  alpm_utils_free (alpm_utils); // this will free all alpm_pkgs but not the alpm_list
+  alpm_list_free (founds);
+
   return res;
 }
 
@@ -198,6 +206,10 @@ QStringList AlpmBackend::getOutdatedList()
     pkgName = alpm_pkg_get_name(pkg),
     res.append(QString(pkgName));
   }
+
+  // free
+  alpm_utils_free (alpm_utils); // this will free all alpm_pkgs but not the alpm_list
+  alpm_list_free (founds);
 
   return res;
 }
