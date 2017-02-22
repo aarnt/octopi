@@ -29,6 +29,7 @@
 #include "strconstants.h"
 #include "transactiondialog.h"
 #include "multiselectiondialog.h"
+#include "searchlineedit.h"
 #include <iostream>
 #include <cassert>
 
@@ -1792,7 +1793,8 @@ void MainWindow::pacmanProcessFinished(int exitCode, QProcess::ExitStatus exitSt
 
   m_commandExecuting = ectn_NONE;
 
-  if (isPackageTreeViewVisible() && !ui->tvPackages->hasFocus()) ui->tvPackages->setFocus();
+  //if (isPackageTreeViewVisible() && !ui->tvPackages->hasFocus()) ui->tvPackages->setFocus();
+  if (isPackageTreeViewVisible() && !m_leFilterPackage->hasFocus()) m_leFilterPackage->setFocus();
 }
 
 /*

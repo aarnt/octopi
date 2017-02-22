@@ -4,6 +4,7 @@
   Added "Install Reason" field at Info tab.
   Added support for ALPM utils lib (thanks to guinux, from Pamac project).
   Added link support in all Info tab package lists.
+  Find line edit is always focused when the program starts.
   Prevent the user to install partial upgrades in his system (some of the outdated packages). 
   BugFix: Some pkg download/installed sizes were not showing properly at Info tab.
   BugFix: If we find an outdated AUR pkg in the official pkg list, we remove it.

@@ -903,6 +903,7 @@ void MainWindow::postBuildPackageList()
     ui->twGroups->setFocus();
     m_groupWidgetNeedsFocus = false;
   }
+  else m_leFilterPackage->setFocus();
 }
 
 /*
