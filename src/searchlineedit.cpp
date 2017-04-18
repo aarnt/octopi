@@ -130,7 +130,7 @@ QString SearchLineEdit::styleSheetForCurrentState()
     setFont(font);
   }
 
-  if(UnixCommand::getLinuxDistro() != ectn_CHAKRA)
+  if (!WMHelper::isKDERunning()) //UnixCommand::getLinuxDistro() != ectn_CHAKRA)
   {
     style += "padding-left: 20px;";
     style += QString("padding-right: %1px;").arg(this->m_SearchButton->sizeHint().width() + frameWidth + 1);
@@ -152,7 +152,7 @@ void SearchLineEdit::setFoundStyle(){
   QString style;
   style += "QLineEdit {";
 
-  if (UnixCommand::getLinuxDistro() != ectn_CHAKRA)
+  if (!WMHelper::isKDERunning()) //(UnixCommand::getLinuxDistro() != ectn_CHAKRA)
   {
     style += "font-family: 'Sans Serif';";
     style += "font-style: italic;";
@@ -182,7 +182,7 @@ void SearchLineEdit::setNotFoundStyle(){
   QString style;
   style += "QLineEdit {";
 
-  if (UnixCommand::getLinuxDistro() != ectn_CHAKRA)
+  if (!WMHelper::isKDERunning()) //(UnixCommand::getLinuxDistro() != ectn_CHAKRA)
   {
     style += "font-family: 'Sans Serif';";
     style += "font-style: italic;";
