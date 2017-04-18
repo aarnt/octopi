@@ -9,7 +9,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="110"/>
         <source>Info</source>
-        <translation>info</translation>
+        <translation>Info</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="115"/>
@@ -25,7 +25,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="125"/>
         <source>Output</source>
-        <translation>Uddata</translation>
+        <translation>Output</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="147"/>
@@ -106,7 +106,7 @@
         <location filename="Projects/octopi/ui/mainwindow.ui" line="288"/>
         <source>Exit</source>
         <oldsource>&amp;Exit</oldsource>
-        <translation>Luk</translation>
+        <translation>Afslut</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="291"/>
@@ -140,7 +140,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="332"/>
         <source>Outdated packages</source>
-        <translation>Forældede pakker </translation>
+        <translation>Forældede pakker</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="341"/>
@@ -234,13 +234,13 @@
         <location filename="Projects/octopi/ui/mainwindow.ui" line="492"/>
         <source>Open root terminal</source>
         <oldsource>&amp;Open root terminal</oldsource>
-        <translation>Åben root terminal</translation>
+        <translation>Åbn root-terminal</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="497"/>
         <source>Usage</source>
         <oldsource>&amp;Usage</oldsource>
-        <translation>Forbrug</translation>
+        <translation>Anvendelse</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="500"/>
@@ -251,19 +251,19 @@
         <location filename="Projects/octopi/ui/mainwindow.ui" line="508"/>
         <source>Install local package...</source>
         <oldsource>&amp;Install local package...</oldsource>
-        <translation>Installér lokal pakke...</translation>
+        <translation>Installér lokal pakke ...</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="525"/>
         <source>Pacman Log Viewer</source>
         <oldsource>&amp;Pacman Log Viewer</oldsource>
-        <translation>Pacman log viser</translation>
+        <translation>Pacman logviser</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="537"/>
         <source>Repository Editor</source>
         <oldsource>&amp;Repository Editor</oldsource>
-        <translation>Repository Editor</translation>
+        <translation>Arkivredigering</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="546"/>
@@ -341,7 +341,7 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="100"/>
         <source>Basic usage help:</source>
-        <translation>Grundlæggende brugerhjælp:</translation>
+        <translation>Grundlæggende hjælp til anvendelse:</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="102"/>
@@ -366,27 +366,27 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="111"/>
         <source>Alt+1 to switch to &apos;Info&apos; tab</source>
-        <translation>Alt+1 for at skifte til &apos;Info&apos; tab</translation>
+        <translation>Alt+1 for at skifte til &apos;Info&apos;-faneblad</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="113"/>
         <source>Alt+2 to switch to &apos;Files&apos; tab</source>
-        <translation>Alt+2 for at skifte til &apos;Filer&apos; tab</translation>
+        <translation>Alt+2 for at skifte til &apos;Filer&apos;-faneblad</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="115"/>
         <source>Alt+3 to switch to &apos;Transaction&apos; tab</source>
-        <translation>Alt+3 for at skifte til &apos;Transaktion&apos; tab</translation>
+        <translation>Alt+3 for at skifte til &apos;Transaktion&apos;-faneblad</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="117"/>
         <source>Alt+4 to switch to &apos;Output&apos; tab</source>
-        <translation>Alt+4 for at skifte til &apos;Output&apos; tab</translation>
+        <translation>Alt+4 for at skifte til &apos;Output&apos;-faneblad</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="119"/>
         <source>Alt+5 to switch to &apos;News&apos; tab</source>
-        <translation>Alt+5 for at skifte til &apos;Nyheder&apos; tab</translation>
+        <translation>Alt+5 for at skifte til &apos;Nyheder&apos;-faneblad</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="121"/>
@@ -401,12 +401,12 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="126"/>
         <source>Ctrl+D or &apos;File/Sync database&apos; to sync the local database with latest remote changes (pacman -Sy)</source>
-        <translation>Ctrl+D or &apos;Fil/Sync database&apos; til at synkronisere den lokale database med seneste fjern-database ændringer (pacman -Sy)</translation>
+        <translation>Ctrl+D or &apos;Fil/Synkronisér database&apos; til at synkronisere den lokale database med seneste fjern-database ændringer (pacman -Sy)</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="128"/>
         <source>Ctrl+U or &apos;File/System upgrade&apos; to make a full system upgrade (pacman -Su)</source>
-        <translation>Ctrl+U eller &apos;Fil/System upgrade&apos;  for at lave en fuld systemopgradering (pacman-Su)</translation>
+        <translation>Ctrl+U eller &apos;Fil/Systemopgradering&apos; for at lave en fuld systemopgradering (pacman-Su)</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="130"/>
@@ -416,12 +416,12 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="132"/>
         <source>Ctrl+F to search for text inside tab Files, News and Usage</source>
-        <translation>Ctrl+F for at søge efter tekst inden for Tabfiler, Nyt og brug</translation>
+        <translation>Ctrl+F for at søge efter tekst i Filer-faneblad, Nyheder og Anvendelse</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="136"/>
         <source>Ctrl+M or &apos;Transaction/Commit&apos; to start installation/removal of selected packages</source>
-        <translation>Ctrl+M eller &apos;Transaction/Commit&apos; for at starte installation/fjernelse af udvalgte pakker</translation>
+        <translation>Ctrl+M eller &apos;Transaktion/Commit&apos; for at starte installation/fjernelse af udvalgte pakker</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="138"/>
@@ -431,12 +431,12 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="140"/>
         <source>Ctrl+G or &apos;File/Get latest distro news&apos; to retrieve the latest RSS based distro news</source>
-        <translation>Ctrl+G eller &apos;File/Get latest distro news&apos; for at hente det seneste RSS baserede distronyt</translation>
+        <translation>Ctrl+G eller &apos;Fil/Få de seneste nyheder fra din distribution&apos; for at hente det seneste RSS baserede distronyt</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="142"/>
         <source>Ctrl+Q or &apos;File/Exit&apos; to exit the application</source>
-        <translation>Ctrl+Q eller  &apos;File/Exit&apos; for at forlade programmet</translation>
+        <translation>Ctrl+Q eller &apos;Fil/Afslut&apos; for at forlade programmet</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="145"/>
@@ -476,12 +476,12 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="160"/>
         <source>F4 to open a Terminal whitin the selected directory at Files tab</source>
-        <translation>F4 for at åbne en Terminal indeni den udvalgte folder ved Filertab</translation>
+        <translation>F4 for at åbne en Terminal indeni den udvalgte folder ved Filer-faneblad</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="162"/>
         <source>F6 to open a File Manager whitin the selected directory at Files tab</source>
-        <translation>F6 at åbne en filhåndterer indeni den udvalgte folder ved Filertab</translation>
+        <translation>F6 at åbne en filhåndterer indeni den udvalgte folder ved Filer-faneblad</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="164"/>
@@ -491,7 +491,7 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="166"/>
         <source>F12 to maximize/demaximize Tab&apos;s view</source>
-        <translation>F12 for at maksimere/minimere Tabvisning</translation>
+        <translation>F12 for at maksimere/minimere fanebladets visning</translation>
     </message>
 </context>
 <context>
@@ -514,7 +514,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="46"/>
         <source>use a different remove command (ex: -removecmd R).</source>
-        <translation>brug en anderledes fjerner kommando (eksempel: -removecmd R).</translation>
+        <translation>brug en anden remove-kommando (eksempel: -removecmd R).</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="47"/>
@@ -529,47 +529,47 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="127"/>
         <source>Antergos news</source>
-        <translation>Antergos nyheder</translation>
+        <translation>Antergos-nyheder</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="131"/>
         <source>ArchBSD news</source>
-        <translation>ArchBSD nyheder</translation>
+        <translation>ArchBSD-nyheder</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="135"/>
         <source>Arch Linux news</source>
-        <translation>Arch Linux nyheder</translation>
+        <translation>Arch Linux-nyheder</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="139"/>
         <source>Chakra news</source>
-        <translation>Chakra nyheder</translation>
+        <translation>Chakra-nyheder</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="143"/>
         <source>KaOS news</source>
-        <translation>KaOS nyheder</translation>
+        <translation>KaOS-nyheder</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="147"/>
         <source>Manjaro Linux news</source>
-        <translation>Manjaro Linux nyheder</translation>
+        <translation>Manjaro Linux-nyheder</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="151"/>
         <source>Netrunner Rolling news</source>
-        <translation>Netrunner Rolling nyheder</translation>
+        <translation>Netrunner Rolling-nyheder</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="155"/>
         <source>Parabola GNU/Linux-libre news</source>
-        <translation>Parabola GNU/Linux-libre nyheder</translation>
+        <translation>Parabola GNU/Linux-libre-nyheder</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="159"/>
         <source>No news could be found! Press Ctrl+G to download the latest news.</source>
-        <translation>Ingen nyheder fundet! Brug Ctrl+G for at downloade sidste nyt.</translation>
+        <translation>Der blev ikke fundet nogen nyheder! Brug Ctrl+G for at downloade de seneste nyheder.</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="163"/>
@@ -590,7 +590,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="183"/>
         <source>Usage</source>
-        <translation>Brug</translation>
+        <translation>Anvendelse</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="187"/>
@@ -730,7 +730,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="295"/>
         <source>Description</source>
-        <translation>Beskrivelse </translation>
+        <translation>Beskrivelse</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="299"/>
@@ -745,12 +745,12 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="307"/>
         <source>Password</source>
-        <translation>Password</translation>
+        <translation>Kodeord</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="311"/>
         <source>Info</source>
-        <translation>info</translation>
+        <translation>Info</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="315"/>
@@ -790,12 +790,12 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="343"/>
         <source> (outdated installed version is %1)</source>
-        <translation>(forældet installeret version er %1)</translation>
+        <translation> (forældet installeret version er %1)</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="347"/>
         <source> (newer installed version is %1)</source>
-        <translation>(nyere installeret version er %1)</translation>
+        <translation> (nyere installeret version er %1)</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="351"/>
@@ -805,7 +805,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="355"/>
         <source>Searching for %1 latest news...</source>
-        <translation>Søger efter %1 senest nyt...</translation>
+        <translation>Søger efter %1 senest nyt ...</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="359"/>
@@ -870,12 +870,12 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="411"/>
         <source>Sync database</source>
-        <translation>Sync database</translation>
+        <translation>Synkronisér database</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="415"/>
         <source>Synchronizing databases...</source>
-        <translation>Synkroniserer databaser...</translation>
+        <translation>Synkroniserer databaser ...</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="419"/>
@@ -885,12 +885,12 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="423"/>
         <source>Starting full system upgrade...</source>
-        <translation>Starter fuld systemopgradering...</translation>
+        <translation>Starter fuld systemopgradering ...</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="427"/>
         <source>Installing selected packages...</source>
-        <translation>Installerer udvalgte pakker...</translation>
+        <translation>Installerer udvalgte pakker ...</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="431"/>
@@ -900,7 +900,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="435"/>
         <source>Removing/installing selected packages...</source>
-        <translation>Fjerner/installerer udvalgte pakker...</translation>
+        <translation>Fjerner/installerer udvalgte pakker ...</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="439"/>
@@ -910,7 +910,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="443"/>
         <source>Running command in terminal...</source>
-        <translation>Kører kommando i terminal...</translation>
+        <translation>Kører kommando i terminal ...</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="447"/>
@@ -960,9 +960,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="483"/>
         <source>There are no new updates available!</source>
-        <translation>Der er ingen nye opdateringer til rådighed!
-
-</translation>
+        <translation>Der er ingen nye opdateringer til rådighed!</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="487"/>
@@ -977,8 +975,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="495"/>
         <source>Confirm?</source>
-        <translation>
-Bekræft?</translation>
+        <translation>Bekræft?</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="499"/>
@@ -1003,13 +1000,12 @@ Bekræft?</translation>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="515"/>
         <source>Do you really want to clean the package cache?</source>
-        <translation>Vil du virkelig rense pakkecachen?
-</translation>
+        <translation>Vil du virkelig rense pakkecachen?</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="519"/>
         <source>Do you really want to remove Pacman&apos;s transaction lock file?</source>
-        <translation>Ønsker du virkelig at fjerne Pacman&apos;s transaktionslåsefil ?</translation>
+        <translation>Ønsker du virkelig at fjerne Pacman&apos;s transaktionslåsefil?</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="523"/>
@@ -1075,7 +1071,7 @@ Bekræft?</translation>
         <location filename="Projects/octopi/src/strconstants.h" line="573"/>
         <source>This file does not appear to be a simple text.
 Are you sure you want to open it?</source>
-        <translation>Denne fil synes ikke at være en simpel tekst
+        <translation>Denne fil synes ikke at være en simpel tekst.
 Er du sikker du vil åbne det?</translation>
     </message>
     <message>
@@ -1111,7 +1107,7 @@ Er du sikker du vil åbne det?</translation>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="602"/>
         <source>Press Ctrl+A to select/deselect all</source>
-        <translation>Vælg Ctrl+A  for at vælge /fravælge alt</translation>
+        <translation>Vælg Ctrl+A for at vælge/fravælge alt</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="606"/>
@@ -1131,7 +1127,7 @@ Er du sikker du vil åbne det?</translation>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="618"/>
         <source>Sync database interval</source>
-        <translation>Database synkroniseringsinterval</translation>
+        <translation>Interval for synkronisering af database</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="622"/>
@@ -1161,7 +1157,7 @@ Er du sikker du vil åbne det?</translation>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="642"/>
         <source>Set interval...</source>
-        <translation>Sæt interval...</translation>
+        <translation>Sæt interval ...</translation>
     </message>
 </context>
 <context>

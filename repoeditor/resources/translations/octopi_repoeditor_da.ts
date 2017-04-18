@@ -4,17 +4,17 @@
     <message>
         <location filename="Projects/octopi/repoeditor/addrepo.ui" line="14"/>
         <source>Add Repository - Octopi</source>
-        <translation>Tilføj Repository - Octopi</translation>
+        <translation>Tilføj arkiv - Octopi</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/addrepo.ui" line="22"/>
         <source>Repository:</source>
-        <translation>Repository:</translation>
+        <translation>Arkiv:</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/addrepo.ui" line="32"/>
         <source>Repository name</source>
-        <translation>Repository navn</translation>
+        <translation>Arkivnavn</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/addrepo.ui" line="39"/>
@@ -24,22 +24,22 @@
     <message>
         <location filename="Projects/octopi/repoeditor/addrepo.cpp" line="86"/>
         <source>The repository name field can&apos;t be blank.</source>
-        <translation>Repository navne feltet kan ikke være tomt.</translation>
+        <translation>Arkivnavn-feltet må ikke være tomt.</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/addrepo.cpp" line="101"/>
         <source>The repository location field is not valid.</source>
-        <translation>Repository belligenhed er ikke gyldig.</translation>
+        <translation>Arkivplacering-feltet er ikke gyldigt.</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/addrepo.cpp" line="104"/>
         <source>The repository name field is not valid.</source>
-        <translation>Repository navn er ikke gydig.</translation>
+        <translation>Arkivnavn-feltet er ikke gydigt.</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/addrepo.cpp" line="111"/>
         <source>Address of remote or local packages repository</source>
-        <translation>Adresse til fjern eller lokal pakke repository.</translation>
+        <translation>Adresse til fjern eller lokalt pakkearkiv</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/addrepo.cpp" line="115"/>
@@ -54,12 +54,12 @@
     <message>
         <location filename="Projects/octopi/repoeditor/addrepo.cpp" line="125"/>
         <source>Can&apos;t add repository.</source>
-        <translation>Kan ikke tilføje repository.</translation>
+        <translation>Kan ikke tilføje arkiv.</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/addrepo.cpp" line="136"/>
         <source>Select local repository</source>
-        <translation>Vælg lokal repository</translation>
+        <translation>Vælg lokalt arkiv</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/addrepo.cpp" line="149"/>
@@ -103,7 +103,7 @@
     <message>
         <location filename="Projects/octopi/repoeditor/repoconf.cpp" line="242"/>
         <source>Repository</source>
-        <translation>Repository</translation>
+        <translation>Arkiv</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/repoconf.cpp" line="242"/>
@@ -116,12 +116,12 @@
     <message>
         <location filename="Projects/octopi/repoeditor/repoeditor.ui" line="14"/>
         <source>Repository Editor - Octopi</source>
-        <translation>Repository Editor - Octopi</translation>
+        <translation>Arkivredigering - Octopi</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/repoeditor.ui" line="28"/>
         <source>Available Repositories</source>
-        <translation>Tilgængelige Repositories</translation>
+        <translation>Tilgængelige arkiver</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/repoeditor.ui" line="76"/>
@@ -181,12 +181,12 @@
     <message>
         <location filename="Projects/octopi/repoeditor/repoeditor.cpp" line="149"/>
         <source>Success</source>
-        <translation>Success</translation>
+        <translation>Succes</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/repoeditor.cpp" line="150"/>
         <source>Repositories configuration successfully saved.</source>
-        <translation>Repositories konfiguration gemt med success.</translation>
+        <translation>Arkivkonfiguration gemt med succes.</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/repoeditor.cpp" line="155"/>
@@ -196,7 +196,7 @@
     <message>
         <location filename="Projects/octopi/repoeditor/repoeditor.cpp" line="156"/>
         <source>Repositories configuration not saved.</source>
-        <translation>Repositories konfiguration ikke gemt.</translation>
+        <translation>Arkivkonfiguration ikke gemt.</translation>
     </message>
 </context>
 </TS>

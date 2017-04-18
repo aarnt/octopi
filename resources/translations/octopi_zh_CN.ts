@@ -31,13 +31,13 @@
         <location filename="Projects/octopi/ui/mainwindow.ui" line="147"/>
         <source>Help</source>
         <oldsource>He&amp;lp</oldsource>
-        <translation type="unfinished"/>
+        <translation>帮助</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="155"/>
         <source>View</source>
         <oldsource>V&amp;iew</oldsource>
-        <translation type="unfinished"/>
+        <translation>查看</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="171"/>
@@ -48,7 +48,7 @@
         <location filename="Projects/octopi/ui/mainwindow.ui" line="184"/>
         <source>Search</source>
         <oldsource>Se&amp;arch</oldsource>
-        <translation type="unfinished"/>
+        <translation>搜索</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="193"/>
@@ -66,13 +66,13 @@
         <location filename="Projects/octopi/ui/mainwindow.ui" line="240"/>
         <source>Non installed</source>
         <oldsource>&amp;Non installed</oldsource>
-        <translation type="unfinished"/>
+        <translation>未安装</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="249"/>
         <source>Commit</source>
         <oldsource>&amp;Commit</oldsource>
-        <translation type="unfinished"/>
+        <translation>提交</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="252"/>
@@ -95,7 +95,7 @@
         <location filename="Projects/octopi/ui/mainwindow.ui" line="276"/>
         <source>Sync database</source>
         <oldsource>&amp;Sync database</oldsource>
-        <translation type="unfinished"/>
+        <translation>同步数据库</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="279"/>
@@ -106,7 +106,7 @@
         <location filename="Projects/octopi/ui/mainwindow.ui" line="288"/>
         <source>Exit</source>
         <oldsource>&amp;Exit</oldsource>
-        <translation type="unfinished"/>
+        <translation>退出</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="291"/>
@@ -117,7 +117,7 @@
         <location filename="Projects/octopi/ui/mainwindow.ui" line="300"/>
         <source>System upgrade</source>
         <oldsource>System &amp;upgrade</oldsource>
-        <translation type="unfinished"/>
+        <translation>系统升级</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="303"/>
@@ -146,7 +146,7 @@
         <location filename="Projects/octopi/ui/mainwindow.ui" line="341"/>
         <source>Get latest distro news</source>
         <oldsource>&amp;Get latest distro news</oldsource>
-        <translation type="unfinished"/>
+        <translation>获取发行版最近的新闻</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="344"/>
@@ -217,13 +217,13 @@
         <location filename="Projects/octopi/ui/mainwindow.ui" line="466"/>
         <source>By description</source>
         <oldsource>By &amp;description</oldsource>
-        <translation type="unfinished"/>
+        <translation>按描述</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="474"/>
         <source>By name</source>
         <oldsource>&amp;By name</oldsource>
-        <translation type="unfinished"/>
+        <translation>按名称</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="483"/>
@@ -234,13 +234,13 @@
         <location filename="Projects/octopi/ui/mainwindow.ui" line="492"/>
         <source>Open root terminal</source>
         <oldsource>&amp;Open root terminal</oldsource>
-        <translation type="unfinished"/>
+        <translation>打开 root 终端</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="497"/>
         <source>Usage</source>
         <oldsource>&amp;Usage</oldsource>
-        <translation type="unfinished"/>
+        <translation>使用方法</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="500"/>
@@ -251,37 +251,37 @@
         <location filename="Projects/octopi/ui/mainwindow.ui" line="508"/>
         <source>Install local package...</source>
         <oldsource>&amp;Install local package...</oldsource>
-        <translation type="unfinished"/>
+        <translation>安装本地软件包...</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="525"/>
         <source>Pacman Log Viewer</source>
         <oldsource>&amp;Pacman Log Viewer</oldsource>
-        <translation type="unfinished"/>
+        <translation>Pacman 日志查看器</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="537"/>
         <source>Repository Editor</source>
         <oldsource>&amp;Repository Editor</oldsource>
-        <translation type="unfinished"/>
+        <translation>软件源编辑器</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="546"/>
         <source>Cache Cleaner</source>
         <oldsource>&amp;Cache Cleaner</oldsource>
-        <translation type="unfinished"/>
+        <translation>缓存清理器</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="554"/>
         <source>Installed</source>
         <oldsource>&amp;Installed</oldsource>
-        <translation type="unfinished"/>
+        <translation>已安装</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="570"/>
         <source>By file</source>
         <oldsource>By &amp;file</oldsource>
-        <translation type="unfinished"/>
+        <translation>按文件</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="55"/>
@@ -421,77 +421,77 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="136"/>
         <source>Ctrl+M or &apos;Transaction/Commit&apos; to start installation/removal of selected packages</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+M 或 &apos;处理/提交&apos; 开始安装/卸载选定的软件包</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="138"/>
         <source>Ctrl+E or &apos;Transaction/Cancel&apos; to clear the selection of to be removed/installed packages</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+E 或 &apos;处理/取消&apos; 清除对待安装/待卸载软件包的选择</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="140"/>
         <source>Ctrl+G or &apos;File/Get latest distro news&apos; to retrieve the latest RSS based distro news</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+G 或 &apos;文件/获取发行版最近的新闻&apos; 从 RSS 获取本发行版最近的新闻</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="142"/>
         <source>Ctrl+Q or &apos;File/Exit&apos; to exit the application</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+Q 或 &apos;文件/退出&apos; 退出本程序</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="145"/>
         <source>Control+shift+key sequences:</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+Shift+键 序列：</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="147"/>
         <source>Ctrl+Shift+C to clean local packages cache (pacman -Sc)</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+Shift+C 清理本地软件包缓存 (pacman -Sc)</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="149"/>
         <source>Ctrl+Shift+G to display all package groups</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+Shift+G 显示所有软件包组</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="151"/>
         <source>Ctrl+Shift+R to remove Pacman&apos;s transaction lock file</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+Shift+R 删除 Pacman 文件锁</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="153"/>
         <source>Ctrl+Shift+Y to display %1 group</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+Shift+Y 显示 %1 组</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="156"/>
         <source>F+key sequences:</source>
-        <translation type="unfinished"/>
+        <translation>功能键 序列：</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="158"/>
         <source>F1 to show this help page</source>
-        <translation type="unfinished"/>
+        <translation>F1 显示此帮助页面</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="160"/>
         <source>F4 to open a Terminal whitin the selected directory at Files tab</source>
-        <translation type="unfinished"/>
+        <translation>F4 在“文件”标签选定目录打开终端</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="162"/>
         <source>F6 to open a File Manager whitin the selected directory at Files tab</source>
-        <translation type="unfinished"/>
+        <translation>F6 在“文件”标签选定目录打开文件管理器</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="164"/>
         <source>F10 to maximize/demaximize package list view</source>
-        <translation type="unfinished"/>
+        <translation>F10 最大化/还原软件列表</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="166"/>
         <source>F12 to maximize/demaximize Tab&apos;s view</source>
-        <translation type="unfinished"/>
+        <translation>F12 最大化/还原标签页</translation>
     </message>
 </context>
 <context>
@@ -499,664 +499,665 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="43"/>
         <source>Octopi usage help:</source>
-        <translation type="unfinished"/>
+        <translation>Octopi 使用帮助：</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="44"/>
         <source>show application version.</source>
-        <translation type="unfinished"/>
+        <translation>显示程序版本。</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="45"/>
         <source>use a different Qt4 style (ex: -style gtk).</source>
-        <translation type="unfinished"/>
+        <translation>使用不同的 Qt4 外观 (例如：-style gtk)。</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="46"/>
         <source>use a different remove command (ex: -removecmd R).</source>
-        <translation type="unfinished"/>
+        <translation>使用不同的卸载命令 (例如：-removecmd R)。</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="47"/>
         <source>force a system upgrade at startup.</source>
-        <translation type="unfinished"/>
+        <translation>启动时强制进行系统升级。</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="53"/>
         <source>All</source>
-        <translation type="unfinished"/>
+        <translation>全部</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="127"/>
         <source>Antergos news</source>
-        <translation type="unfinished"/>
+        <translation>Antergos 新闻</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="131"/>
         <source>ArchBSD news</source>
-        <translation type="unfinished"/>
+        <translation>ArchBSD 新闻</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="135"/>
         <source>Arch Linux news</source>
-        <translation type="unfinished"/>
+        <translation>Arch Linux 新闻</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="139"/>
         <source>Chakra news</source>
-        <translation type="unfinished"/>
+        <translation>Chakra 新闻</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="143"/>
         <source>KaOS news</source>
-        <translation type="unfinished"/>
+        <translation>KaOS 新闻</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="147"/>
         <source>Manjaro Linux news</source>
-        <translation type="unfinished"/>
+        <translation>Manjaro Linux 新闻</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="151"/>
         <source>Netrunner Rolling news</source>
-        <translation type="unfinished"/>
+        <translation>Netrunner Rolling 新闻</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="155"/>
         <source>Parabola GNU/Linux-libre news</source>
-        <translation type="unfinished"/>
+        <translation>Parabola GNU/Linux-libre 新闻</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="159"/>
         <source>No news could be found! Press Ctrl+G to download the latest news.</source>
-        <translation type="unfinished"/>
+        <translation>找不到新闻！按 Ctrl+G 下载最近的新闻。</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="163"/>
         <source>This Linux distro seems to be incompatible with Octopi!</source>
         <oldsource>This GNU/Linux distro seems to be incompatible with Octopi!</oldsource>
-        <translation type="unfinished"/>
+        <translation>这个 Linux 发行版似乎与 Octopi 不兼容！</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="167"/>
         <source>Internet seems unavailable!</source>
-        <translation type="unfinished"/>
+        <translation>网络似乎不可用！</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="171"/>
         <source>Display all groups</source>
-        <translation type="unfinished"/>
+        <translation>显示所有组</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="183"/>
         <source>Usage</source>
-        <translation type="unfinished"/>
+        <translation>使用方法</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="187"/>
         <source>About</source>
-        <translation type="unfinished"/>
+        <translation>关于</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="191"/>
         <source>Name</source>
-        <translation type="unfinished"/>
+        <translation>名称</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="195"/>
         <source>Version</source>
-        <translation type="unfinished"/>
+        <translation>版本</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="199"/>
         <source>Outdated version</source>
-        <translation type="unfinished"/>
+        <translation>过期的版本</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="203"/>
         <source>Available version</source>
-        <translation type="unfinished"/>
+        <translation>可用版本</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="207"/>
         <source>No description available.</source>
-        <translation type="unfinished"/>
+        <translation>没有描述信息。</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="211"/>
         <source>URL</source>
-        <translation type="unfinished"/>
+        <translation>网址</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="215"/>
         <source>Repository</source>
-        <translation type="unfinished"/>
+        <translation>软件源</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="219"/>
         <source>Licenses</source>
-        <translation type="unfinished"/>
+        <translation>许可协议</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="223"/>
         <source>Group</source>
-        <translation type="unfinished"/>
+        <translation>组</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="227"/>
         <source>Groups</source>
-        <translation type="unfinished"/>
+        <translation>组</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="231"/>
         <source>Provides</source>
-        <translation type="unfinished"/>
+        <translation>提供</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="235"/>
         <source>Depends On</source>
-        <translation type="unfinished"/>
+        <translation>依赖</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="239"/>
         <source>Required By</source>
-        <translation type="unfinished"/>
+        <translation>被这些包依赖</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="243"/>
         <source>Optional For</source>
-        <translation type="unfinished"/>
+        <translation>被这些包依赖（可选）</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="247"/>
         <source>Optional Deps</source>
-        <translation type="unfinished"/>
+        <translation>依赖（可选）</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="251"/>
         <source>Conflicts With</source>
-        <translation type="unfinished"/>
+        <translation>与这些包冲突</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="255"/>
         <source>Replaces</source>
-        <translation type="unfinished"/>
+        <translation>替换这些包</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="259"/>
         <source>Popularity</source>
-        <translation type="unfinished"/>
+        <translation>流行度</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="263"/>
         <source>votes</source>
-        <translation type="unfinished"/>
+        <translation>投票</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="267"/>
         <source>Download Size</source>
-        <translation type="unfinished"/>
+        <translation>下载大小</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="271"/>
         <source>Installed Size</source>
-        <translation type="unfinished"/>
+        <translation>安装大小</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="275"/>
         <source>Packager</source>
-        <translation type="unfinished"/>
+        <translation>打包者</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="279"/>
         <source>Package</source>
-        <translation type="unfinished"/>
+        <translation>软件包</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="283"/>
         <source>Packages</source>
-        <translation type="unfinished"/>
+        <translation>软件包</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="287"/>
         <source>Architecture</source>
-        <translation type="unfinished"/>
+        <translation>架构</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="291"/>
         <source>Build Date</source>
-        <translation type="unfinished"/>
+        <translation>构建日期</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="295"/>
         <source>Description</source>
-        <translation type="unfinished"/>
+        <translation>描述</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="299"/>
         <source>Attention</source>
-        <translation type="unfinished"/>
+        <translation>注意</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="303"/>
         <source>automatic</source>
-        <translation type="unfinished"/>
+        <translation>自动</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="307"/>
         <source>Password</source>
-        <translation type="unfinished"/>
+        <translation>密码</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="311"/>
         <source>Info</source>
-        <translation type="unfinished"/>
+        <translation>信息</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="315"/>
         <source>Files</source>
-        <translation type="unfinished"/>
+        <translation>文件</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="319"/>
         <source>Transaction</source>
-        <translation type="unfinished"/>
+        <translation>处理</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="323"/>
         <source>Output</source>
-        <translation type="unfinished"/>
+        <translation>输出</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="327"/>
         <source>News</source>
-        <translation type="unfinished"/>
+        <translation>新闻</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="331"/>
         <source>Contents of &quot;%1&quot;</source>
-        <translation type="unfinished"/>
+        <translation>&quot;%1&quot; 的内容</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="335"/>
         <source>Find</source>
-        <translation type="unfinished"/>
+        <translation>查找</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="339"/>
         <source>Clear</source>
-        <translation type="unfinished"/>
+        <translation>清除</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="343"/>
         <source> (outdated installed version is %1)</source>
-        <translation type="unfinished"/>
+        <translation>(已安装的过时版本是 %1)</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="347"/>
         <source> (newer installed version is %1)</source>
-        <translation type="unfinished"/>
+        <translation>(已安装的较新版本是 %1)</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="351"/>
         <source>Building package list...</source>
-        <translation type="unfinished"/>
+        <translation>构建软件包列表...</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="355"/>
         <source>Searching for %1 latest news...</source>
-        <translation type="unfinished"/>
+        <translation>搜索 %1 最近的新闻...</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="359"/>
         <source>There is one outdated package in your system:</source>
-        <translation type="unfinished"/>
+        <translation>你的系统有 1 个过时的软件包：</translation>
     </message>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="363"/>
         <source>There are %n outdated packages in your system:</source>
-        <translation type="unfinished"><numerusform></numerusform></translation>
+        <translation><numerusform>你的系统有 %n 个过时的软件包：</numerusform></translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="367"/>
         <source>(version %1 is available)</source>
-        <translation type="unfinished"/>
+        <translation>(版本 %1 可用)</translation>
     </message>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="371"/>
         <source>%n packages</source>
-        <translation type="unfinished"><numerusform></numerusform></translation>
+        <translation><numerusform>%n 个软件包</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="375"/>
         <source>%n selected</source>
-        <translation type="unfinished"><numerusform></numerusform></translation>
+        <translation><numerusform>已选择 %n 个</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="379"/>
         <source>%n installed</source>
-        <translation type="unfinished"><numerusform></numerusform></translation>
+        <translation><numerusform>已安装 %n 个</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="383"/>
         <source>%n outdated</source>
-        <translation type="unfinished"><numerusform></numerusform></translation>
+        <translation><numerusform>%n 个过时</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="387"/>
         <source>%n available</source>
-        <translation type="unfinished"><numerusform></numerusform></translation>
+        <translation><numerusform>%n 个可用</numerusform></translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="391"/>
         <source>Cleaning package cache...</source>
-        <translation type="unfinished"/>
+        <translation>清除软件包缓存...</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="395"/>
         <source>Removing Pacman&apos;s transaction lock file...</source>
-        <translation type="unfinished"/>
+        <translation>删除 Pacman 文件锁...</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="399"/>
         <source>Syncing</source>
-        <translation type="unfinished"/>
+        <translation>正在同步</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="403"/>
         <source>Press any key to continue...</source>
-        <translation type="unfinished"/>
+        <translation>请按任意键继续...</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="411"/>
         <source>Sync database</source>
-        <translation type="unfinished"/>
+        <translation>同步数据库</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="415"/>
         <source>Synchronizing databases...</source>
-        <translation type="unfinished"/>
+        <translation>正在同步数据库...</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="419"/>
         <source>is up to date</source>
-        <translation type="unfinished"/>
+        <translation>已是最新</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="423"/>
         <source>Starting full system upgrade...</source>
-        <translation type="unfinished"/>
+        <translation>开始完整的系统升级...</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="427"/>
         <source>Installing selected packages...</source>
-        <translation type="unfinished"/>
+        <translation>安装选定软件包...</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="431"/>
         <source>Removing selected packages...</source>
-        <translation type="unfinished"/>
+        <translation>卸载选定软件包...</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="435"/>
         <source>Removing/installing selected packages...</source>
-        <translation type="unfinished"/>
+        <translation>安装/卸载选定软件包...</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="439"/>
         <source>Choose a terminal</source>
-        <translation type="unfinished"/>
+        <translation>选择终端</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="443"/>
         <source>Running command in terminal...</source>
-        <translation type="unfinished"/>
+        <translation>在终端运行命令...</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="447"/>
         <source>Command finished OK!</source>
-        <translation type="unfinished"/>
+        <translation>命令成功完成！</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="451"/>
         <source>Command finished with errors!</source>
-        <translation type="unfinished"/>
+        <translation>命令已完成，但有错误！</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="455"/>
         <source>Retrieving %1</source>
-        <translation type="unfinished"/>
+        <translation>获取 %1</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="459"/>
         <source>Total download size: %1 KB</source>
-        <translation type="unfinished"/>
+        <translation>总下载大小：%1 KB</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="463"/>
         <source>The following package needs to be retrieved</source>
-        <translation type="unfinished"/>
+        <translation>需要获取以下 1 个软件包</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="467"/>
         <source>The following package will be removed</source>
-        <translation type="unfinished"/>
+        <translation>将卸载以下 1 个软件包</translation>
     </message>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="471"/>
         <source>The following %n packages need to be retrieved</source>
-        <translation type="unfinished"><numerusform></numerusform></translation>
+        <translation><numerusform>需要获取以下 %n 个软件包</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="475"/>
         <source>The following %n packages will be removed</source>
-        <translation type="unfinished"><numerusform></numerusform></translation>
+        <translation><numerusform>将卸载以下 %n 个软件包</numerusform></translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="479"/>
         <source>There are forbidden packages in the removal list!</source>
-        <translation type="unfinished"/>
+        <translation>卸载列表里有被禁止的软件包！</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="483"/>
         <source>There are no new updates available!</source>
-        <translation type="unfinished"/>
+        <translation>没有可用更新！</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="487"/>
         <source>There is an update available!</source>
-        <translation type="unfinished"/>
+        <translation>1 个更新可用！</translation>
     </message>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.h" line="491"/>
         <source>There are %n updates available!</source>
-        <translation type="unfinished"><numerusform></numerusform></translation>
+        <translation><numerusform>%n 个更新可用！</numerusform></translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="495"/>
         <source>Confirm?</source>
-        <translation type="unfinished"/>
+        <translation>确定？</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="499"/>
         <source>Warning!!!</source>
-        <translation type="unfinished"/>
+        <translation>警告！！！</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="503"/>
         <source>Confirmation</source>
-        <translation type="unfinished"/>
+        <translation>确认</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="507"/>
         <source>There has been a transaction error!</source>
-        <translation type="unfinished"/>
+        <translation>处理出现错误！</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="511"/>
         <source>Do you want to execute this transaction in a Terminal?</source>
-        <translation type="unfinished"/>
+        <translation>你要在终端里执行这项操作吗？</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="515"/>
         <source>Do you really want to clean the package cache?</source>
-        <translation type="unfinished"/>
+        <translation>你确定要清除软件包缓存吗？</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="519"/>
         <source>Do you really want to remove Pacman&apos;s transaction lock file?</source>
-        <translation type="unfinished"/>
+        <translation>你确定要删除 Pacman 文件锁吗？</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="523"/>
         <source>Do you really want to cancel the transaction?</source>
-        <translation type="unfinished"/>
+        <translation>你确定要取消这些操作吗？</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="527"/>
         <source>Please, enter the administrator&apos;s password</source>
-        <translation type="unfinished"/>
+        <translation>请输入管理员密码</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="533"/>
         <source>There are no means to get administrator&apos;s credentials.</source>
-        <translation type="unfinished"/>
+        <translation>无法获得管理员权限。</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="537"/>
         <source>You&apos;ll need to install a su frontend like gksu or kdesu.</source>
-        <translation type="unfinished"/>
+        <translation>你需要安装一个 su 的前端，比如 gksu 或 kdesu。</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="541"/>
         <source>You can not run Octopi with administrator&apos;s credentials.</source>
-        <translation type="unfinished"/>
+        <translation>你不能以管理员权限运行 Octopi。</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="545"/>
         <source>There is a pending transaction</source>
-        <translation type="unfinished"/>
+        <translation>还有操作要执行。</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="549"/>
         <source>Do you really want to quit?</source>
-        <translation type="unfinished"/>
+        <translation>你确定要退出吗？</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="553"/>
         <source>Executing command</source>
-        <translation type="unfinished"/>
+        <translation>执行命令</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="557"/>
         <source>Run in terminal</source>
-        <translation type="unfinished"/>
+        <translation>在终端中运行</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="561"/>
         <source>Needs application restart to take effect</source>
-        <translation type="unfinished"/>
+        <translation>重启软件以生效</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="565"/>
         <source>These changes need application restart to take effect!</source>
-        <translation type="unfinished"/>
+        <translation>这些变更需要软件重启以生效！</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="569"/>
         <source>Select the packages you want to install</source>
-        <translation type="unfinished"/>
+        <translation>选择你想要安装的软件包</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="573"/>
         <source>This file does not appear to be a simple text.
 Are you sure you want to open it?</source>
-        <translation type="unfinished"/>
+        <translation>这个文件不像是一个纯文本文件。
+你确定要打开它吗？</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="578"/>
         <source>To be installed</source>
-        <translation type="unfinished"/>
+        <translation>将安装</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="582"/>
         <source>To be removed</source>
-        <translation type="unfinished"/>
+        <translation>将卸载</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="586"/>
         <source>remove</source>
-        <translation type="unfinished"/>
+        <translation>卸载</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="590"/>
         <source>install</source>
-        <translation type="unfinished"/>
+        <translation>安装</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="594"/>
         <source>Remove item</source>
-        <translation type="unfinished"/>
+        <translation>移除条目</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="598"/>
         <source>Remove items</source>
-        <translation type="unfinished"/>
+        <translation>移除条目</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="602"/>
         <source>Press Ctrl+A to select/deselect all</source>
-        <translation type="unfinished"/>
+        <translation>按 Ctrl+A 全选/全部不选</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="606"/>
         <source>Use &quot;%1&quot; tool</source>
-        <translation type="unfinished"/>
+        <translation>用 &quot;%1&quot; 工具</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="610"/>
         <source>Copy path to clipboard</source>
-        <translation type="unfinished"/>
+        <translation>复制路径到剪贴板</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="614"/>
         <source>Setup</source>
-        <translation type="unfinished"/>
+        <translation>设置</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="618"/>
         <source>Sync database interval</source>
-        <translation type="unfinished"/>
+        <translation>数据库同步频率</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="622"/>
         <source>Once a day</source>
-        <translation type="unfinished"/>
+        <translation>每天一次</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="626"/>
         <source>Once a day, at</source>
-        <translation type="unfinished"/>
+        <translation>每天一次，在 ... 时</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="630"/>
         <source>(value in 24-hour format: 0 to 23)</source>
-        <translation type="unfinished"/>
+        <translation>(24小时制: 0 到 23)</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="634"/>
         <source>Once every</source>
-        <translation type="unfinished"/>
+        <translation>每隔 ... 一次</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="638"/>
         <source>(value in minutes: %1 to %2)</source>
-        <translation type="unfinished"/>
+        <translation>(分钟：%1 到 %2)</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.h" line="642"/>
         <source>Set interval...</source>
-        <translation type="unfinished"/>
+        <translation>设置同步频率...</translation>
     </message>
 </context>
 <context>
@@ -1164,17 +1165,17 @@ Are you sure you want to open it?</source>
     <message>
         <location filename="Projects/octopi/src/searchbar.cpp" line="69"/>
         <source>Previous</source>
-        <translation type="unfinished"/>
+        <translation>上一个</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/searchbar.cpp" line="72"/>
         <source>Next</source>
-        <translation type="unfinished"/>
+        <translation>下一个</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/searchbar.cpp" line="86"/>
         <source>Close</source>
-        <translation type="unfinished"/>
+        <translation>关闭</translation>
     </message>
 </context>
 <context>
@@ -1182,12 +1183,12 @@ Are you sure you want to open it?</source>
     <message>
         <location filename="Projects/octopi/ui/transactiondialog.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished"/>
+        <translation>表单</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/transactiondialog.ui" line="133"/>
         <source>Run in terminal</source>
-        <translation type="unfinished"/>
+        <translation>在终端中运行</translation>
     </message>
 </context>
 </TS>
