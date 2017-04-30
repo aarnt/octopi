@@ -811,7 +811,7 @@ void MainWindow::initActions()
   }
 
   // Populate Tools menu
-  ui->menuTools->menuAction()->setVisible(false);
+  ui->menuTools->menuAction()->setVisible(true);
   refreshMenuTools();
 
   if (WMHelper::isXFCERunning())

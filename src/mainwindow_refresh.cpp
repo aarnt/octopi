@@ -74,11 +74,9 @@ void MainWindow::refreshMenuTools()
   static bool connectorRepo=false;
   static bool connectorCleaner=false;
   static bool connectorGist=false;
-  int availableTools=0;
 
   if (UnixCommand::hasTheExecutable("mirror-check"))
   {
-    availableTools++;
     ui->menuTools->menuAction()->setVisible(true);
     if (!m_actionMenuMirrorCheck->toolTip().contains("("))
       m_actionMenuMirrorCheck->setToolTip(m_actionMenuMirrorCheck->toolTip() + "  (" + m_actionMenuMirrorCheck->shortcut().toString() + ")" );
@@ -89,7 +87,6 @@ void MainWindow::refreshMenuTools()
 
   if(UnixCommand::hasTheExecutable("plv"))
   {
-    availableTools++;
     ui->menuTools->menuAction()->setVisible(true);
     ui->actionPacmanLogViewer->setVisible(true);
     ui->actionPacmanLogViewer->setIcon(QIcon::fromTheme("plv"));
@@ -105,7 +102,6 @@ void MainWindow::refreshMenuTools()
 
   if(UnixCommand::hasTheExecutable("octopi-repoeditor") && UnixCommand::getLinuxDistro() != ectn_KAOS)
   {
-    availableTools++;
     ui->menuTools->menuAction()->setVisible(true);
     ui->actionRepositoryEditor->setVisible(true);
 
@@ -120,7 +116,6 @@ void MainWindow::refreshMenuTools()
 
   if(UnixCommand::hasTheExecutable("octopi-cachecleaner"))
   {
-    availableTools++;
     ui->menuTools->menuAction()->setVisible(true);
     ui->actionCacheCleaner->setVisible(true);
 
@@ -141,7 +136,6 @@ void MainWindow::refreshMenuTools()
       ui->menuTools->addSeparator();
       m_actionSysInfo->setText("SysInfo -> gist.github.com");
       ui->menuTools->addAction(m_actionSysInfo);
-      availableTools++;
 
       if (!connectorGist)
       {
@@ -161,13 +155,8 @@ void MainWindow::refreshMenuTools()
           ui->menuTools->removeAction(act);
         }
       }
-
-      availableTools--;
     }
   }
-
-  if (availableTools == 0)
-    ui->menuTools->menuAction()->setVisible(false);
 
   foreach (QAction * act,  ui->menuBar->actions())
   {
