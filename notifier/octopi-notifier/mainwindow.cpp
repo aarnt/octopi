@@ -582,7 +582,7 @@ void MainWindow::refreshAppIcon()
     qDebug() << "At refreshAppIcon()...";
   m_outdatedStringList = Package::getOutdatedStringList();
 
-  bool hasAURTool = UnixCommand::hasTheExecutable(StrConstants::getForeignRepositoryToolName());
+  bool hasAURTool = UnixCommand::hasTheExecutable(Package::getForeignRepositoryToolName());
 
   if (hasAURTool)
   {
