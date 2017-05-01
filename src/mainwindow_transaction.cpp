@@ -1194,12 +1194,12 @@ void MainWindow::doInstallAURPackage()
     }
     if (package->repository != StrConstants::getForeignRepositoryName()) {
       std::cerr << "Octopi could not install selection using " <<
-                   StrConstants::getForeignRepositoryToolName().toLatin1().data() << std::endl;
+                   Package::getForeignRepositoryToolName().toLatin1().data() << std::endl;
       return;
     }
 
-    if (StrConstants::getForeignRepositoryToolName() != "pacaur" &&
-        StrConstants::getForeignRepositoryToolName() != "kcp")
+    if (Package::getForeignRepositoryToolName() != "pacaur" &&
+        Package::getForeignRepositoryToolName() != "kcp")
       listOfTargets += StrConstants::getForeignRepositoryTargetPrefix() + package->name + " ";
     else
       listOfTargets += package->name + " ";
@@ -1207,7 +1207,7 @@ void MainWindow::doInstallAURPackage()
 
   if (listOfTargets.isEmpty()) {
     std::cerr << "Octopi could not install selection using " <<
-                 StrConstants::getForeignRepositoryToolName().toLatin1().data() << std::endl;
+                 Package::getForeignRepositoryToolName().toLatin1().data() << std::endl;
     return;
   }
 
@@ -1603,7 +1603,7 @@ void MainWindow::toggleSystemActions(const bool value)
     m_actionMenuMirrorCheck->setEnabled(value);
   }
 
-  if (isAURGroupSelected() && StrConstants::getForeignRepositoryToolName() == "kcp")
+  if (isAURGroupSelected() && Package::getForeignRepositoryToolName() == "kcp")
   {
     ui->actionSyncPackages->setEnabled(true);
   }
@@ -1722,7 +1722,7 @@ void MainWindow::pacmanProcessFinished(int exitCode, QProcess::ExitStatus exitSt
           {
             metaBuildPackageList();
           }
-          else if (StrConstants::getForeignRepositoryToolName() == "kcp")
+          else if (Package::getForeignRepositoryToolName() == "kcp")
           {
             metaBuildPackageList();
             delete m_pacmanExec;

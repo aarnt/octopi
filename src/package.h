@@ -182,6 +182,8 @@ class Package{
     static QString parseSearchString( QString searchStr, bool exactMatch = false );
 
     static bool hasPacmanDatabase();
+
+    static QString getForeignRepositoryToolName();
 };
 
 #endif

@@ -332,9 +332,9 @@ QStringList *Package::getOutdatedAURStringList()
 {
   QStringList * res = new QStringList();
 
-  if (StrConstants::getForeignRepositoryToolName() != "yaourt" &&
-      StrConstants::getForeignRepositoryToolName() != "pacaur" &&
-      StrConstants::getForeignRepositoryToolName() != "kcp")
+  if (getForeignRepositoryToolName() != "yaourt" &&
+      getForeignRepositoryToolName() != "pacaur" &&
+      getForeignRepositoryToolName() != "kcp")
     return res;
 
   QString outPkgList = UnixCommand::getOutdatedAURPackageList();
@@ -345,8 +345,8 @@ QStringList *Package::getOutdatedAURStringList()
   {
     QStringList parts = packageTuple.split(' ', QString::SkipEmptyParts);
     {
-      if (StrConstants::getForeignRepositoryToolName() == "yaourt" ||
-          StrConstants::getForeignRepositoryToolName() == "kcp")
+      if (getForeignRepositoryToolName() == "yaourt" ||
+          getForeignRepositoryToolName() == "kcp")
       {
         QString pkgName;
         pkgName = parts[0];
@@ -355,7 +355,13 @@ QStringList *Package::getOutdatedAURStringList()
         pkgName = pkgName.remove("[1;36m");
         pkgName = pkgName.remove("[1;32m");
         pkgName = pkgName.remove("[m");
-        pkgName = pkgName.remove("[1m");
+        pkgName = pkgName.remove("[1m");       
+
+        if (getForeignRepositoryToolName() == "yaourt")
+        {
+          if (!pkgName.startsWith(StrConstants::getForeignRepositoryTargetPrefix()))
+              continue;
+        }
 
         if (pkgName.contains(StrConstants::getForeignRepositoryTargetPrefix(), Qt::CaseInsensitive))
         {
@@ -367,11 +373,14 @@ QStringList *Package::getOutdatedAURStringList()
           }
         }
       }
-      else if (StrConstants::getForeignRepositoryToolName() == "pacaur")
+      else if (getForeignRepositoryToolName() == "pacaur")
       {
         QString pkgName;
         if (parts.count() >= 2)
         {
+          if (parts[1] != StrConstants::getForeignRepositoryTargetPrefix())
+            continue;
+
           pkgName = parts[2];
           pkgName = pkgName.remove("\033");
           pkgName = pkgName.remove("[1;31m");
@@ -381,7 +390,7 @@ QStringList *Package::getOutdatedAURStringList()
           pkgName = pkgName.remove("[1;39m");
           pkgName = pkgName.remove("[m");
           pkgName = pkgName.remove("[0m");
-          pkgName = pkgName.remove("[1m");
+          pkgName = pkgName.remove("[1m");   
 
           //Let's ignore the "IgnorePkg" list of packages...
           if (!ignorePkgList.contains(pkgName))
@@ -711,7 +720,7 @@ QString Package::getAURUrl(const QString &pkgName)
 {
   QString url="";
 
-  if (StrConstants::getForeignRepositoryToolName() != "kcp")
+  if (getForeignRepositoryToolName() != "kcp")
   {
     QString pkgInfo = UnixCommand::getAURUrl(pkgName);
     url = getURL(pkgInfo);
@@ -793,7 +802,7 @@ QList<PackageListData> * Package::getAURPackageList(const QString& searchString)
       pkgVotes = 0;
 
       //Chakra does not have popularity support in CCR
-      QString aurTool = StrConstants::getForeignRepositoryToolName();
+      QString aurTool = getForeignRepositoryToolName();
 
       if (aurTool != "chaser" && aurTool != "pacaur" && strVotes.count() > 0)
       {
@@ -1508,9 +1517,9 @@ QHash<QString, QString> Package::getAUROutdatedPackagesNameVersion()
   QHash<QString, QString> hash;
 
   if(UnixCommand::getLinuxDistro() == ectn_CHAKRA ||
-      (StrConstants::getForeignRepositoryToolName() != "yaourt" &&
-      StrConstants::getForeignRepositoryToolName() != "pacaur" &&
-      StrConstants::getForeignRepositoryToolName() != "kcp"))
+      (getForeignRepositoryToolName() != "yaourt" &&
+      getForeignRepositoryToolName() != "pacaur" &&
+      getForeignRepositoryToolName() != "kcp"))
   {
     return hash;
   }
@@ -1519,8 +1528,8 @@ QHash<QString, QString> Package::getAUROutdatedPackagesNameVersion()
   QStringList listOfPkgs = res.split("\n", QString::SkipEmptyParts);
   QStringList ignorePkgList = UnixCommand::getIgnorePkgsFromPacmanConf();
 
-  if ((StrConstants::getForeignRepositoryToolName() == "yaourt") ||
-    (StrConstants::getForeignRepositoryToolName() == "kcp"))
+  if ((getForeignRepositoryToolName() == "yaourt") ||
+    (getForeignRepositoryToolName() == "kcp"))
   {
     foreach (QString line, listOfPkgs)
     {
@@ -1537,7 +1546,7 @@ QHash<QString, QString> Package::getAUROutdatedPackagesNameVersion()
         QStringList nameVersion = line.split(" ", QString::SkipEmptyParts);
         QString pkgName = nameVersion.at(0);
 
-        if (StrConstants::getForeignRepositoryToolName() == "kcp")
+        if (getForeignRepositoryToolName() == "kcp")
         {
           //Let's ignore the "IgnorePkg" list of packages...
           if (!ignorePkgList.contains(pkgName))
@@ -1545,8 +1554,11 @@ QHash<QString, QString> Package::getAUROutdatedPackagesNameVersion()
             hash.insert(pkgName, nameVersion.at(1));
           }
         }
-        else
+        else //It's yaourt!
         {
+          if (!pkgName.startsWith(StrConstants::getForeignRepositoryTargetPrefix()))
+            continue;
+
           //Let's ignore the "IgnorePkg" list of packages...
           if (!ignorePkgList.contains(pkgName))
           {
@@ -1559,7 +1571,7 @@ QHash<QString, QString> Package::getAUROutdatedPackagesNameVersion()
       }
     }
   }
-  else if (StrConstants::getForeignRepositoryToolName() == "pacaur")
+  else if (getForeignRepositoryToolName() == "pacaur")
   {
     foreach (QString line, listOfPkgs)
     {
@@ -1574,6 +1586,10 @@ QHash<QString, QString> Package::getAUROutdatedPackagesNameVersion()
       line = line.remove("[1m");
 
       QStringList sl = line.split(" ", QString::SkipEmptyParts);
+
+      if (sl[1] != StrConstants::getForeignRepositoryTargetPrefix())
+        continue;
+
       if (sl.count() >= 6)
       {
         hash.insert(sl.at(2), sl.at(5));
@@ -1700,4 +1716,26 @@ bool Package::hasPacmanDatabase()
   }
 
   return answer;
+}
+
+QString Package::getForeignRepositoryToolName()
+{
+  static bool first=true;
+  static QString ret;
+
+  if (first)
+  {
+    if( UnixCommand::getLinuxDistro() == ectn_CHAKRA )
+      ret = QLatin1String( "chaser" );
+    else if (UnixCommand::getLinuxDistro() == ectn_KAOS)
+      ret = QLatin1String( "kcp" );
+    else if (UnixCommand::hasTheExecutable("pacaur"))
+      ret = QLatin1String( "pacaur" );
+    else
+      ret = QLatin1String( "yaourt" );
+
+    first = false;
+  }
+
+  return ret;
 }

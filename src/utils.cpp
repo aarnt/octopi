@@ -154,9 +154,9 @@ void utils::ProcessWrapper::onSingleShot()
     }
     else
     {
-      if (out.contains(StrConstants::getForeignRepositoryToolName(), Qt::CaseInsensitive))
+      if (out.contains(Package::getForeignRepositoryToolName(), Qt::CaseInsensitive))
       {
-        pAux.start("ps -o pid -C " + StrConstants::getForeignRepositoryToolName());
+        pAux.start("ps -o pid -C " + Package::getForeignRepositoryToolName());
         pAux.waitForFinished(-1);
         saux = pAux.readAll();
         slist = saux.split("\n", QString::SkipEmptyParts);

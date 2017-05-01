@@ -54,7 +54,7 @@ MainWindow::MainWindow(QWidget *parent) :
   QMainWindow(parent), ui(new Ui::MainWindow), m_packageModel(new PackageModel(m_packageRepo))
 {
   m_hasAURTool =
-      UnixCommand::hasTheExecutable(StrConstants::getForeignRepositoryToolName()) && !UnixCommand::isRootRunning();
+      UnixCommand::hasTheExecutable(Package::getForeignRepositoryToolName()) && !UnixCommand::isRootRunning();
 
   m_packageRepo.registerDependency(*m_packageModel);
   m_foundFilesInPkgFileList = new QList<QModelIndex>();

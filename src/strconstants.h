@@ -77,28 +77,6 @@ public:
     return QLatin1String( "aur" );
   }
 
-  static QString getForeignRepositoryToolName()
-  {
-    static bool first=true;
-    static QString ret;
-
-    if (first)
-    {
-      if( UnixCommand::getLinuxDistro() == ectn_CHAKRA )
-        ret = QLatin1String( "chaser" );
-      else if (UnixCommand::getLinuxDistro() == ectn_KAOS)
-        ret = QLatin1String( "kcp" );
-      else if (UnixCommand::hasTheExecutable("pacaur"))
-        ret = QLatin1String( "pacaur" );
-      else
-        ret = QLatin1String( "yaourt" );
-
-      first = false;
-    }
-
-    return ret;
-  }
-
   static QString getForeignRepositoryGroupName()
   {
     if( UnixCommand::getLinuxDistro() == ectn_CHAKRA )
@@ -176,7 +154,7 @@ public:
   }
 
   static QString getForeignToolGroup(){
-    QString tool = getForeignRepositoryToolName();
+    QString tool = Package::getForeignRepositoryToolName();
     tool[0] = tool[0].toUpper();
     tool = "<" + tool + ">";
 
@@ -623,7 +601,7 @@ public:
   }
 
   static QString getUseAURTool(){
-    return QObject::tr("Use \"%1\" tool").arg(getForeignRepositoryToolName());
+    return QObject::tr("Use \"%1\" tool").arg(Package::getForeignRepositoryToolName());
   }
 
   static QString getCopyFullPath(){

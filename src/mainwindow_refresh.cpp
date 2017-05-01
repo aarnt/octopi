@@ -1074,7 +1074,7 @@ void MainWindow::showToolButtonAUR()
 void MainWindow::refreshToolBar()
 {
   m_hasAURTool =
-      UnixCommand::hasTheExecutable(StrConstants::getForeignRepositoryToolName()) && !UnixCommand::isRootRunning();
+      UnixCommand::hasTheExecutable(Package::getForeignRepositoryToolName()) && !UnixCommand::isRootRunning();
 
   if (m_hasAURTool)
   {
@@ -1266,7 +1266,7 @@ void MainWindow::refreshTabInfo(bool clearContents, bool neverQuit)
     {
       PackageInfoData kcp;
 
-      if (StrConstants::getForeignRepositoryToolName() == "kcp")
+      if (Package::getForeignRepositoryToolName() == "kcp")
       {
         QEventLoop el;
         QFuture<PackageInfoData> f;
@@ -1286,15 +1286,15 @@ void MainWindow::refreshTabInfo(bool clearContents, bool neverQuit)
       html += "<a id=\"" + anchorBegin + "\"></a>";            
       html += "<h2>" + pkgName + "</h2>";
 
-      if (StrConstants::getForeignRepositoryToolName() != "kcp")
+      if (Package::getForeignRepositoryToolName() != "kcp")
       {
         html += "<a style=\"font-size:16px;\">" + pkgDescription + "</a>";
         html += "<table border=\"0\">";
         html += "<tr><th width=\"20%\"></th><th width=\"80%\"></th></tr>";
         html += "<tr><td>" + version + "</td><td>" + package->version + "</td></tr>";        
 
-        if (StrConstants::getForeignRepositoryToolName() == "yaourt" ||
-            StrConstants::getForeignRepositoryToolName() == "pacaur")
+        if (Package::getForeignRepositoryToolName() == "yaourt" ||
+            Package::getForeignRepositoryToolName() == "pacaur")
         {
           QString url = Package::getAURUrl(pkgName);
           if (!url.isEmpty() && !url.contains("(null)"))
@@ -1303,7 +1303,7 @@ void MainWindow::refreshTabInfo(bool clearContents, bool neverQuit)
           }
         }
       }
-      else if (StrConstants::getForeignRepositoryToolName() == "kcp")
+      else if (Package::getForeignRepositoryToolName() == "kcp")
       {
         html += "<a style=\"font-size:16px;\">" + kcp.description + "</a>";
         html += "<table border=\"0\">";

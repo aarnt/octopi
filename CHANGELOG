@@ -1,4 +1,4 @@
-0.9.0
+0.9.0 (dev)
   Added an options dialog to Octopi and Notifier.
   Added slovenian translation (thanks to the translation crew).
   Added "Install Reason" field at Info tab.
@@ -19,6 +19,8 @@
 	was reporting false newer packages.
   BugFix: System upgrade button was not disabled while synching packages in notifier.
   BugFix: searchlineedit font fix.
+  BugFix: 'yaourt' and 'pacaur' no longer honor "-a" option when querying outdated 
+	foreign packages.
 
 0.8.1
   BugFix: Updated CHAKRA RSS site (thanks to s8321414).

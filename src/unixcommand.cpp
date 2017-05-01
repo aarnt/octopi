@@ -188,7 +188,7 @@ QByteArray UnixCommand::performAURCommand(const QString &args)
   env.insert("LC_MESSAGES", "C");
   aur.setProcessEnvironment(env);
 
-  aur.start(StrConstants::getForeignRepositoryToolName() + " " + args);
+  aur.start(Package::getForeignRepositoryToolName() + " " + args);
   aur.waitForFinished(-1);
   result = aur.readAllStandardOutput();
 
@@ -218,10 +218,10 @@ QByteArray UnixCommand::getAURUrl(const QString &pkgName)
 
   aur.setProcessEnvironment(env);
 
-  if (StrConstants::getForeignRepositoryToolName() == "chaser")
-    aur.start(StrConstants::getForeignRepositoryToolName() + " info " + pkgName);
+  if (Package::getForeignRepositoryToolName() == "chaser")
+    aur.start(Package::getForeignRepositoryToolName() + " info " + pkgName);
   else
-    aur.start(StrConstants::getForeignRepositoryToolName() + " -Sia " + pkgName);
+    aur.start(Package::getForeignRepositoryToolName() + " -Sia " + pkgName);
 
   aur.waitForFinished(-1);
 
@@ -242,15 +242,15 @@ QByteArray UnixCommand::getAURPackageList(const QString &searchString)
   aur.setProcessEnvironment(env);
 
   if (UnixCommand::getLinuxDistro() == ectn_KAOS)
-    aur.start(StrConstants::getForeignRepositoryToolName() + " -l ");
+    aur.start(Package::getForeignRepositoryToolName() + " -l ");
   else
   {
-    if (StrConstants::getForeignRepositoryToolName() == "yaourt")
-      aur.start(StrConstants::getForeignRepositoryToolName() + " --nocolor -Ss " + searchString);
-    else if (StrConstants::getForeignRepositoryToolName() == "chaser")
-      aur.start(StrConstants::getForeignRepositoryToolName() + " search " + searchString);
+    if (Package::getForeignRepositoryToolName() == "yaourt")
+      aur.start(Package::getForeignRepositoryToolName() + " --nocolor -Ss " + searchString);
+    else if (Package::getForeignRepositoryToolName() == "chaser")
+      aur.start(Package::getForeignRepositoryToolName() + " search " + searchString);
     else
-      aur.start(StrConstants::getForeignRepositoryToolName() + " -Ss " + searchString);
+      aur.start(Package::getForeignRepositoryToolName() + " -Ss " + searchString);
   }
 
   aur.waitForFinished(-1);
@@ -324,11 +324,11 @@ QByteArray UnixCommand::getOutdatedAURPackageList()
 {
   QByteArray result;
 
-  if (StrConstants::getForeignRepositoryToolName() == "kcp")
+  if (Package::getForeignRepositoryToolName() == "kcp")
   {
     result = performAURCommand("-lO");
   }
-  else if (StrConstants::getForeignRepositoryToolName() != "kcp")
+  else if (Package::getForeignRepositoryToolName() != "kcp")
   {
     result = performAURCommand("-Qua");
   }
@@ -410,11 +410,11 @@ QByteArray UnixCommand::getAURPackageVersionInformation()
 {
   QByteArray result;
 
-  if (StrConstants::getForeignRepositoryToolName() == "kcp")
+  if (Package::getForeignRepositoryToolName() == "kcp")
   {
     result = performAURCommand("-lO");
   }
-  else if (StrConstants::getForeignRepositoryToolName() != "kcp")
+  else if (Package::getForeignRepositoryToolName() != "kcp")
   {
     result = performAURCommand("-Qua");
   }
