@@ -18,7 +18,6 @@
 *
 */
 
-#include <iostream>
 #include "optionsdialog.h"
 #include "settingsmanager.h"
 #include "unixcommand.h"
