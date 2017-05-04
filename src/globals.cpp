@@ -81,7 +81,7 @@ QString showPackageInfo(QString pkgName)
   QString installedSize = Package::getInformationInstalledSize(pkgName, isForeignPkg);
 
   if (!installedSize.isEmpty() && installedSize != "0.00 Bytes")
-    return desc + " -> " + installedSize;
+    return desc + " → " + installedSize;
   else
     return desc;
 }
