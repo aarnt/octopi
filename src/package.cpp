@@ -378,7 +378,7 @@ QStringList *Package::getOutdatedAURStringList()
         QString pkgName;
         if (parts.count() >= 2)
         {
-          if (parts[1] != StrConstants::getForeignRepositoryTargetPrefix())
+          if (parts[1] != StrConstants::getForeignPkgRepositoryName())
             continue;
 
           pkgName = parts[2];
@@ -1587,7 +1587,7 @@ QHash<QString, QString> Package::getAUROutdatedPackagesNameVersion()
 
       QStringList sl = line.split(" ", QString::SkipEmptyParts);
 
-      if (sl[1] != StrConstants::getForeignRepositoryTargetPrefix())
+      if (sl[1] != StrConstants::getForeignPkgRepositoryName())
         continue;
 
       if (sl.count() >= 6)
