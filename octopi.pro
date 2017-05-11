@@ -47,7 +47,7 @@ HEADERS += src/QtSolutions/qtsingleapplication.h \
         src/terminal.h \
         src/pacmanexec.h \
         src/constants.h \
-    src/optionsdialog.h
+        src/optionsdialog.h
 
 ALPM_BACKEND{
   HEADERS += src/alpmbackend.h
@@ -83,7 +83,7 @@ SOURCES += src/QtSolutions/qtsingleapplication.cpp \
         src/utils.cpp \
         src/terminal.cpp \
         src/pacmanexec.cpp \
-    src/optionsdialog.cpp
+        src/optionsdialog.cpp
 
 ALPM_BACKEND{
   SOURCES += src/alpmbackend.cpp
@@ -92,7 +92,9 @@ ALPM_BACKEND{
 FORMS   += ui/mainwindow.ui \
         ui/transactiondialog.ui \
         ui/multiselectiondialog.ui \
-        ui/optionsdialog.ui
+        ui/optionsdialog.ui \
+        ui/searchbar.ui \
+        ui/searchlineedit.ui
 
 RESOURCES += resources.qrc
 

@@ -349,7 +349,6 @@ void MainWindow::doSystemUpgrade()
     m_actionSystemUpgrade->setEnabled(false);
 
     OutputDialog *dlg = new OutputDialog(this);
-    dlg->setFrameShape(QFrame::NoFrame);
 
     if (m_debugInfo)
       dlg->setDebugMode(true);

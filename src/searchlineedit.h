@@ -18,11 +18,16 @@ class QStringListModel;
 
 enum ValidatorType { ectn_AUR_VALIDATOR, ectn_FILE_VALIDATOR, ectn_DEFAULT_VALIDATOR };
 
+namespace Ui {
+class SearchLineEdit;
+}
+
 class SearchLineEdit : public QLineEdit
 {
   Q_OBJECT
 
 private:
+  Ui::SearchLineEdit *ui;
   bool m_hasLocate;
   QStringListModel *m_completerModel;
 

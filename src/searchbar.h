@@ -28,25 +28,31 @@
 #include <QApplication>
 #include <QTextEdit>
 
+namespace Ui {
+class SearchBar;
+}
+
 class SearchBar : public QWidget
 {
   Q_OBJECT
 
 private:
-  SearchLineEdit *m_searchLineEdit;
+  Ui::SearchBar *ui;
 
 protected:
   virtual void paintEvent(QPaintEvent *);
   virtual void keyPressEvent(QKeyEvent *);
 
 public:
+  static const char NAME[];
   explicit SearchBar(QWidget *parent = 0);
 
   void init();
-  inline SearchLineEdit *getSearchLineEdit(){ return m_searchLineEdit; }
-  inline QString getTextToSearch(){ return m_searchLineEdit->text(); }
-  inline bool hasFocus(){ return m_searchLineEdit->hasFocus(); }
-  inline void initSearchLineEdit(){ m_searchLineEdit->initStyleSheet(); }
+  SearchLineEdit *getSearchLineEdit();
+  QString getTextToSearch();
+  bool hasFocus();
+  void setFocus(Qt::FocusReason reason);
+  void initSearchLineEdit();
 
 signals:
   void closed();

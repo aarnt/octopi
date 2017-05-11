@@ -187,6 +187,8 @@
     <addaction name="actionSearchByDescription"/>
     <addaction name="separator"/>
     <addaction name="actionSearchByFile"/>
+    <addaction name="separator"/>
+    <addaction name="actionSearchInOutput"/>
    </widget>
    <widget class="QMenu" name="menuTools">
     <property name="title">
@@ -577,6 +579,17 @@
    </property>
    <property name="text">
     <string>By file</string>
+   </property>
+  </action>
+  <action name="actionSearchInOutput">
+   <property name="text">
+    <string>In ou&amp;tput</string>
+   </property>
+   <property name="toolTip">
+    <string>Search text in the output panel</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+F</string>
    </property>
   </action>
  </widget>
