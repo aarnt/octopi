@@ -1667,8 +1667,10 @@ void MainWindow::gistSysInfo()
     out = UnixCommand::getCommandOutput("cat /var/log/installation.log");
     out.replace(hostname, "<HOSTNAME>");
     out.replace(homePath, "<HOME_PATH>");
-
-    tempFile->write(out);
+    QString aux = QString::fromLatin1(out.data());
+    QByteArray aba;
+    aba += aux;
+    tempFile->write(aba);
     tempFile->flush();
     tempFile->close();
   }
