@@ -47,7 +47,7 @@ HEADERS += src/QtSolutions/qtsingleapplication.h \
         src/terminal.h \
         src/pacmanexec.h \
         src/constants.h \
-    src/optionsdialog.h
+        src/optionsdialog.h
 
 ALPM_BACKEND{
   HEADERS += src/alpmbackend.h
@@ -59,6 +59,7 @@ SOURCES += src/QtSolutions/qtsingleapplication.cpp \
         src/repoconf.cpp \
         src/main.cpp\
         src/mainwindow.cpp \
+        src/strconstants.cpp \
         src/searchlineedit.cpp \
         src/argumentlist.cpp \
         src/settingsmanager.cpp \
@@ -83,7 +84,7 @@ SOURCES += src/QtSolutions/qtsingleapplication.cpp \
         src/utils.cpp \
         src/terminal.cpp \
         src/pacmanexec.cpp \
-    src/optionsdialog.cpp
+        src/optionsdialog.cpp
 
 ALPM_BACKEND{
   SOURCES += src/alpmbackend.cpp

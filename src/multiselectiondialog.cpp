@@ -20,6 +20,7 @@
 
 #include "multiselectiondialog.h"
 #include "ui_multiselectiondialog.h"
+#include "settingsmanager.h"
 #include "strconstants.h"
 
 #include <QPushButton>
