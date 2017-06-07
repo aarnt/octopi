@@ -833,9 +833,7 @@ void MainWindow::showConfigDialog()
   {
     m_optionsDialog = new OptionsDialog(this);
 
-#if QT_VERSION >= 0x050000
     utils::positionWindowAtScreenCenter(m_optionsDialog);
-#endif
 
     m_optionsDialog->exec();
 

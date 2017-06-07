@@ -64,20 +64,6 @@ int main(int argc, char *argv[])
   }
 
   QApplication a(argc, argv);
-
-#if QT_VERSION < 0x050000
-  #ifndef NO_GTK_STYLE
-  QApplication::setGraphicsSystem(QLatin1String("raster"));
-
-  if(!WMHelper::isKDERunning() && (!WMHelper::isLXQTRunning()) && (!WMHelper::isRazorQtRunning()))
-  {
-    qApp->setStyle(new QGtkStyle());
-  }
-  else
-    qApp->setStyle(new QCleanlooksStyle);
-  #endif
-#endif
-
   QTranslator appTranslator;
   appTranslator.load(":/resources/translations/octopi_" +
                      QLocale::system().name());

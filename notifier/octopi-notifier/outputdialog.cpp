@@ -124,9 +124,7 @@ void OutputDialog::doSystemUpgrade()
  */
 void OutputDialog::show()
 {
-#if QT_VERSION >= 0x050000
   utils::positionWindowAtScreenCenter(this);
-#endif
   QDialog::show();
   doSystemUpgrade();
 }
