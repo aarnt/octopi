@@ -32,6 +32,7 @@ HEADERS +=  cachecleaner.h \
 SOURCES +=  main.cpp \
             cachecleaner.cpp \
             packagegroupmodel.cpp \
+            ../src/strconstants.cpp \
             ../src/unixcommand.cpp \
             ../src/wmhelper.cpp \
             ../src/terminal.cpp \

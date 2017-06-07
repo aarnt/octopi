@@ -63,6 +63,7 @@ SOURCES += main.cpp \
     ../../src/unixcommand.cpp \
     ../../src/package.cpp \
     ../../src/wmhelper.cpp \
+    ../../src/strconstants.cpp \
     ../../src/settingsmanager.cpp \
     ../pacmanhelper/pacmanhelperclient.cpp \
     ../../src/utils.cpp \
