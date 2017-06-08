@@ -238,6 +238,36 @@ QString SettingsManager::getOctopiGreenIconPath()
   return (p_instance.getSYSsettings()->value( ctn_KEY_OCTOPI_GREEN_ICON_PATH, "")).toString();
 }
 
+QString SettingsManager::getAURTool()
+{
+  SettingsManager p_instance;
+  QString ret = (p_instance.getSYSsettings()->value( ctn_KEY_AUR_TOOL, "")).toString();
+
+  if (ret.isEmpty())
+  {
+    if (UnixCommand::hasTheExecutable("pacaur"))
+    {
+      p_instance.setAURTool("pacaur");
+      p_instance.getSYSsettings()->sync();
+      ret = "pacaur";
+    }
+    else if (UnixCommand::hasTheExecutable("yaourt"))
+    {
+      p_instance.setAURTool("yaourt");
+      p_instance.getSYSsettings()->sync();
+      ret = "yaourt";
+    }
+  }
+
+  return ret;
+}
+
+QString SettingsManager::getSUTool()
+{
+  SettingsManager p_instance;
+  return (p_instance.getSYSsettings()->value( ctn_KEY_SU_TOOL, "")).toString();
+}
+
 bool SettingsManager::getSkipMirrorCheckAtStartup(){
   if (!instance()->getSYSsettings()->contains(ctn_KEY_SKIP_MIRRORCHECK_ON_STARTUP)){
     instance()->getSYSsettings()->setValue(ctn_KEY_SKIP_MIRRORCHECK_ON_STARTUP, 0);
@@ -440,6 +470,18 @@ void SettingsManager::setPackageVersionColumnWidth(int newValue)
 void SettingsManager::setPackageRepositoryColumnWidth(int newValue)
 {
   instance()->getSYSsettings()->setValue(ctn_KEY_PACKAGE_REPOSITORY_COLUMN_WIDTH, newValue);
+  instance()->getSYSsettings()->sync();
+}
+
+void SettingsManager::setAURTool(const QString &newValue)
+{
+  instance()->getSYSsettings()->setValue(ctn_KEY_AUR_TOOL, newValue);
+  instance()->getSYSsettings()->sync();
+}
+
+void SettingsManager::setSUTool(const QString &newValue)
+{
+  instance()->getSYSsettings()->setValue(ctn_KEY_SU_TOOL, newValue);
   instance()->getSYSsettings()->sync();
 }
 

@@ -1269,6 +1269,15 @@ void MainWindow::doRemoveAURPackage()
 }
 
 /*
+ * Whenever user chooses another AUR tool in OptionsDialog
+ */
+void MainWindow::onAURToolChanged()
+{
+  m_actionSwitchToAURTool->setText(StrConstants::getUseAURTool());
+  m_actionSwitchToAURTool->setToolTip(m_actionSwitchToAURTool->text() + "  (Ctrl+Shift+Y)");
+}
+
+/*
  * Checks if the user is trying to install ONLY SOME of the outdated packages
  */
 bool MainWindow::hasPartialUpgrade(QStringList &pkgsToInstall)

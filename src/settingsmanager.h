@@ -67,6 +67,9 @@ class SettingsManager
     static QString getOctopiRedIconPath();
     static QString getOctopiYellowIconPath();
     static QString getOctopiGreenIconPath();
+
+    static QString getAURTool();
+    static QString getSUTool();
     static bool hasPacmanBackend();
 
     //CacheCleaner related
@@ -120,6 +123,9 @@ class SettingsManager
     static void setPackageNameColumnWidth(int newValue);
     static void setPackageVersionColumnWidth(int newValue);
     static void setPackageRepositoryColumnWidth(int newValue);
+
+    static void setAURTool(const QString& newValue);
+    static void setSUTool(const QString& newValue);
 };
 
 #endif // SETTINGSMANAGER_H

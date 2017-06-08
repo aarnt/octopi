@@ -388,6 +388,8 @@ private slots:
   void doInstallAURPackage();
   void doRemoveAURPackage();
 
+  void onAURToolChanged();
+
   void disableTransactionActions();
   void enableTransactionActions();
   void toggleTransactionActions(const bool value);

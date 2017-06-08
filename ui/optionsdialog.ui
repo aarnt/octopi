@@ -31,15 +31,15 @@
      <item>
       <widget class="QTabWidget" name="tabWidget">
        <property name="currentIndex">
-        <number>2</number>
+        <number>1</number>
        </property>
-       <widget class="QWidget" name="tabBackend">
+       <widget class="QWidget" name="tabAUR">
         <attribute name="title">
-         <string>Backend</string>
+         <string>AUR</string>
         </attribute>
-        <layout class="QGridLayout" name="gridLayout_5">
+        <layout class="QGridLayout" name="gridLayout_7">
          <item row="0" column="0">
-          <spacer name="verticalSpacer_2">
+          <spacer name="verticalSpacer_4">
            <property name="orientation">
             <enum>Qt::Vertical</enum>
            </property>
@@ -54,6 +54,80 @@
            </property>
           </spacer>
          </item>
+         <item row="1" column="0">
+          <widget class="QLabel" name="lblSelAUR">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="midLineWidth">
+            <number>6</number>
+           </property>
+           <property name="text">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Select the AUR tool Octopi should use&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="0">
+          <widget class="QGroupBox" name="gbAUR">
+           <property name="title">
+            <string/>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+           </property>
+           <property name="flat">
+            <bool>true</bool>
+           </property>
+           <property name="checkable">
+            <bool>false</bool>
+           </property>
+           <widget class="QRadioButton" name="rbPacaur">
+            <property name="geometry">
+             <rect>
+              <x>10</x>
+              <y>20</y>
+              <width>105</width>
+              <height>22</height>
+             </rect>
+            </property>
+            <property name="accessibleName">
+             <string notr="true"/>
+            </property>
+            <property name="text">
+             <string notr="true">Pacaur</string>
+            </property>
+            <property name="checked">
+             <bool>true</bool>
+            </property>
+           </widget>
+           <widget class="QRadioButton" name="rbYaourt">
+            <property name="geometry">
+             <rect>
+              <x>10</x>
+              <y>50</y>
+              <width>105</width>
+              <height>22</height>
+             </rect>
+            </property>
+            <property name="accessibleName">
+             <string notr="true"/>
+            </property>
+            <property name="text">
+             <string notr="true">Yaourt</string>
+            </property>
+           </widget>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+       <widget class="QWidget" name="tabBackend">
+        <attribute name="title">
+         <string>Backend</string>
+        </attribute>
+        <layout class="QGridLayout" name="gridLayout_5">
          <item row="2" column="0">
           <widget class="QGroupBox" name="gbBackend">
            <property name="title">
@@ -120,6 +194,22 @@
             <string>Select the backend Octopi should use</string>
            </property>
           </widget>
+         </item>
+         <item row="0" column="0">
+          <spacer name="verticalSpacer_2">
+           <property name="orientation">
+            <enum>Qt::Vertical</enum>
+           </property>
+           <property name="sizeType">
+            <enum>QSizePolicy::Fixed</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>20</width>
+             <height>13</height>
+            </size>
+           </property>
+          </spacer>
          </item>
         </layout>
        </widget>
@@ -449,6 +539,49 @@
            </property>
            <property name="checked">
             <bool>false</bool>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+       <widget class="QWidget" name="tabSUTool">
+        <attribute name="title">
+         <string>SU tool</string>
+        </attribute>
+        <layout class="QGridLayout" name="gridLayout_8">
+         <item row="0" column="0">
+          <spacer name="verticalSpacer_6">
+           <property name="orientation">
+            <enum>Qt::Vertical</enum>
+           </property>
+           <property name="sizeType">
+            <enum>QSizePolicy::Minimum</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>20</width>
+             <height>13</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item row="1" column="0">
+          <widget class="QLabel" name="lblSUTool">
+           <property name="text">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Select the SU tool Octopi should use&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="0">
+          <widget class="QTableWidget" name="twSUTool">
+           <property name="baseSize">
+            <size>
+             <width>0</width>
+             <height>0</height>
+            </size>
+           </property>
+           <property name="frameShadow">
+            <enum>QFrame::Plain</enum>
            </property>
           </widget>
          </item>

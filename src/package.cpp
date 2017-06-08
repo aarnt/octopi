@@ -1718,24 +1718,30 @@ bool Package::hasPacmanDatabase()
   return answer;
 }
 
+/*
+ * Retrives user base package tool name
+ */
 QString Package::getForeignRepositoryToolName()
 {
-  static bool first=true;
+  //static bool first=true;
   static QString ret;
 
-  if (first)
-  {
+  //if (first)
+  //{
     if( UnixCommand::getLinuxDistro() == ectn_CHAKRA )
       ret = QLatin1String( "chaser" );
     else if (UnixCommand::getLinuxDistro() == ectn_KAOS)
       ret = QLatin1String( "kcp" );
-    else if (UnixCommand::hasTheExecutable("pacaur"))
+    else // We are talking about ARCH based distros...
+      ret = SettingsManager::getAURTool();
+
+    /*else if (UnixCommand::hasTheExecutable("pacaur"))
       ret = QLatin1String( "pacaur" );
     else
-      ret = QLatin1String( "yaourt" );
+      ret = QLatin1String( "yaourt" );*/
 
-    first = false;
-  }
+    //first = false;
+  //}
 
   return ret;
 }

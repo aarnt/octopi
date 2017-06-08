@@ -174,19 +174,21 @@ void OptionsDialog::initialize(){
   m_iconHasChanged = false;
 
   initButtonBox();
+  initAURTab();
   initBackendTab();
   initIconTab();
+  initSUToolTab();
   initSynchronizationTab();
   initTerminalTab();
 
   if (m_calledByOctopi)
   {
-    tabWidget->removeTab(2);
+    tabWidget->removeTab(Options::ectn_SYNC_TAB);
   }
   else
   {
-    tabWidget->removeTab(0);
-    tabWidget->removeTab(2);
+    tabWidget->removeTab(Options::ectn_BACKEND_TAB);
+    //tabWidget->removeTab(2);
   }
 
   tabWidget->setCurrentIndex(0);
@@ -195,6 +197,40 @@ void OptionsDialog::initialize(){
 void OptionsDialog::initButtonBox(){
   buttonBox->button(QDialogButtonBox::Ok)->setText(tr("Ok"));
   buttonBox->button(QDialogButtonBox::Cancel)->setText(tr("Cancel"));
+}
+
+/*
+ * Initializes available AUR tools (if any)
+ */
+void OptionsDialog::initAURTab()
+{
+  int numAURTools=0;
+
+  if ((UnixCommand::getLinuxDistro() != ectn_KAOS) &&
+    (UnixCommand::getLinuxDistro() != ectn_CHAKRA))
+  {
+    if (UnixCommand::hasTheExecutable("pacaur"))
+      numAURTools++;
+    if (UnixCommand::hasTheExecutable("yaourt"))
+      numAURTools++;
+  }
+
+  if (numAURTools == 0)
+  {
+    tabWidget->removeTab(Options::ectn_AUR_TAB);
+  }
+  else
+  {
+    if (SettingsManager::getAURTool() == "pacaur")
+      rbPacaur->setChecked(true);
+    else if (SettingsManager::getAURTool() == "yaourt")
+      rbYaourt->setChecked(true);
+    else
+    {
+      rbPacaur->setChecked(true);
+      SettingsManager::setAURTool("pacaur");
+    }
+  }
 }
 
 /*
@@ -240,6 +276,16 @@ void OptionsDialog::initIconTab()
     m_greenIconPath = leGreenIcon->text();
     m_busyIconPath = leBusyIcon->text();
   }
+}
+
+/*
+ * Initializes super user tool used
+ */
+void OptionsDialog::initSUToolTab()
+{
+  tabWidget->removeTab(4); //TODO
+
+
 }
 
 void OptionsDialog::initSynchronizationTab()
@@ -356,6 +402,21 @@ void OptionsDialog::accept(){
         SettingsManager::setBackend("alpm");
 
       m_backendHasChanged = true;
+    }
+  }
+
+  //Set AUR Tool...
+  if (tabAUR->isVisible())
+  {
+    if (rbPacaur->isChecked() && SettingsManager::getAURTool() != "pacaur")
+    {
+      SettingsManager::setAURTool("pacaur");
+      emit AURToolChanged();
+    }
+    else if (rbYaourt->isChecked() && SettingsManager::getAURTool() != "yaourt")
+    {
+      SettingsManager::setAURTool("yaourt");
+      emit AURToolChanged();
     }
   }
 

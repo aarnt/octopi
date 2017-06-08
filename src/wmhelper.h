@@ -40,7 +40,7 @@ public:
   static bool isLXQTRunning();
   static bool isMATERunning();
   static bool isCinnamonRunning();
-  static bool isRazorQtRunning();
+  //static bool isRazorQtRunning();
 
   static QString getKDEOpenHelper();
 

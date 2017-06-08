@@ -325,7 +325,7 @@ void MainWindow::initToolBar()
   {
     m_separatorForActionAUR = ui->mainToolBar->addSeparator();
     ui->mainToolBar->addAction(m_actionSwitchToAURTool);
-    m_actionSwitchToAURTool->setToolTip(m_actionSwitchToAURTool->toolTip() + "  (Ctrl+Shift+Y)");
+    m_actionSwitchToAURTool->setToolTip(m_actionSwitchToAURTool->text() + "  (Ctrl+Shift+Y)");
   }
 
   m_dummyAction = new QAction(this);

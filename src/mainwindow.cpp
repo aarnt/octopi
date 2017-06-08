@@ -187,6 +187,7 @@ void MainWindow::onOptions()
   if (m_commandExecuting != ectn_NONE) return;
 
   OptionsDialog *od = new OptionsDialog(this);
+  connect(od, SIGNAL(AURToolChanged()), this, SLOT(onAURToolChanged()));
   od->exec();
   Options::result res = od->result();
 
@@ -1233,7 +1234,7 @@ void MainWindow::maximizePropertiesTabWidget(bool pSaveSettings)
 
     if (ui->twProperties->currentIndex() == ctn_TABINDEX_FILES)
     {
-      QTreeView *tv = ui->twProperties->currentWidget()->findChild<QTreeView *>("tvPkgFileList") ;
+      QTreeView *tv = ui->twProperties->currentWidget()->findChild<QTreeView *>("tvPkgFileList");
       if (tv)
         tv->scrollTo(tv->currentIndex());
     }
