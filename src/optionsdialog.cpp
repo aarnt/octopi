@@ -198,7 +198,7 @@ void OptionsDialog::initialize(){
   else
   {
     tabWidget->removeTab(Options::ectn_BACKEND_TAB);
-    //tabWidget->removeTab(2);
+    tabWidget->removeTab(3); //Remove tab SYNC too
   }
 
   tabWidget->setCurrentIndex(0);
