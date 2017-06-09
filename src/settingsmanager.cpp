@@ -502,6 +502,36 @@ void SettingsManager::setSUTool(const QString &newValue)
 }
 
 /*
+ * Search all supported SU tools to see if the selected one is valid
+ */
+bool SettingsManager::isValidSUToolSelected()
+{
+  QString userSUTool = readSUToolValue();
+
+  if (userSUTool == ctn_AUTOMATIC)
+    return true;
+
+  if (userSUTool == ctn_GKSU_2 ||
+      userSUTool == ctn_KDESU ||
+      userSUTool == ctn_LXQTSU ||
+      userSUTool == ctn_TDESU)
+  {
+    if (UnixCommand::hasTheExecutable(userSUTool))
+    {
+      return true;
+    }
+    else
+    {
+      return false;
+    }
+  }
+  else
+  {
+    return false;
+  }
+}
+
+/*
  * Search all supported terminals to see if the selected one is valid
  */
 bool SettingsManager::isValidTerminalSelected()

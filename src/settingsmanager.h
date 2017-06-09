@@ -90,11 +90,11 @@ class SettingsManager
     static QByteArray getOptionalDepsWindowSize();
     static QByteArray getSplitterHorizontalState();
 
+    static bool isValidSUToolSelected();
     static bool isValidTerminalSelected();
 
     static void setCurrentTabIndex(int newValue);
     static void setPanelOrganizing(int newValue);
-
     static void setUseDefaultAppIcon(bool newValue);
     static void setOctopiBusyIconPath(const QString& newValue);
     static void setOctopiRedIconPath(const QString& newValue);

@@ -59,6 +59,10 @@ void MainWindow::loadSettings()
     ui->tvPackages->header()->setSortIndicator( packageListOrderedCol, packageListSortOrder );
     ui->tvPackages->sortByColumn( packageListOrderedCol, packageListSortOrder );
 
+    if (!SettingsManager::isValidSUToolSelected()){
+      SettingsManager::setSUTool(ctn_AUTOMATIC);
+    }
+
     if (!SettingsManager::isValidTerminalSelected()){
       SettingsManager::setTerminal(ctn_AUTOMATIC);
     }
