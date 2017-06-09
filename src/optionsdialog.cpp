@@ -193,12 +193,11 @@ void OptionsDialog::initialize(){
 
   if (m_calledByOctopi)
   {
-    tabWidget->removeTab(Options::ectn_SYNC_TAB);
+    removeTabByName(tr("Synchronization"));
   }
   else
   {
-    tabWidget->removeTab(Options::ectn_BACKEND_TAB);
-    tabWidget->removeTab(3); //Remove tab SYNC too
+    removeTabByName(tr("Backend"));
   }
 
   tabWidget->setCurrentIndex(0);
@@ -227,7 +226,7 @@ void OptionsDialog::initAURTab()
 
   if (numAURTools == 0)
   {
-    tabWidget->removeTab(Options::ectn_AUR_TAB);
+    removeTabByName("AUR");
   }
   else
   {
@@ -295,8 +294,8 @@ void OptionsDialog::initSUToolTab()
 {
   if (UnixCommand::getLinuxDistro() == ectn_KAOS)
   {
-    if (m_calledByOctopi) tabWidget->removeTab(2);
-    else tabWidget->removeTab(1);
+    if (m_calledByOctopi) removeTabByName(tr("SU tool"));
+    else removeTabByName(tr("SU tool"));
     return;
   }
 
@@ -318,8 +317,8 @@ void OptionsDialog::initSUToolTab()
 
   if (list.count() == 1)
   {
-    if (m_calledByOctopi) tabWidget->removeTab(3);
-    else tabWidget->removeTab(2);
+    if (m_calledByOctopi) removeTabByName(tr("SU tool"));
+    else removeTabByName(tr("SU tool"));
     return;
   }
 
@@ -622,4 +621,13 @@ void OptionsDialog::selectOnceEvery()
   spinOnceEvery->setEnabled(true);
   rbOnceADay->setChecked(false);
   rbOnceADayAt->setChecked(false);
+}
+
+void OptionsDialog::removeTabByName(const QString &tabName)
+{
+  for (int i=0; i < tabWidget->count(); ++i)
+  {
+    if (tabWidget->tabText(i) == tabName)
+      tabWidget->removeTab(i);
+  }
 }
