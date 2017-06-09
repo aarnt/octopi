@@ -27,7 +27,7 @@
 namespace Options
 {
   enum { ectn_BACKEND=0x1, ectn_ICON=0x2 }; typedef unsigned long result;
-  enum { ectn_AUR_TAB, ectn_BACKEND_TAB, ectn_ICON_TAB, ectn_SYNC_TAB, ectn_SU_TAB, ectn_TERM_TAB };
+  enum { ectn_AUR_TAB=0, ectn_BACKEND_TAB, ectn_ICON_TAB, ectn_SU_TAB, ectn_SYNC_TAB, ectn_TERM_TAB };
 }
 
 class OptionsDialog : public QDialog, public Ui_OptionsDialog

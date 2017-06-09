@@ -243,7 +243,7 @@ QString SettingsManager::getAURTool()
   SettingsManager p_instance;
   QString ret = (p_instance.getSYSsettings()->value( ctn_KEY_AUR_TOOL, "")).toString();
 
-  if (ret.isEmpty())
+  if (ret.isEmpty() || !UnixCommand::hasTheExecutable(ret))
   {
     if (UnixCommand::hasTheExecutable("pacaur"))
     {
@@ -265,7 +265,19 @@ QString SettingsManager::getAURTool()
 QString SettingsManager::getSUTool()
 {
   SettingsManager p_instance;
-  return (p_instance.getSYSsettings()->value( ctn_KEY_SU_TOOL, "")).toString();
+  QString ret = (p_instance.getSYSsettings()->value( ctn_KEY_SU_TOOL, "")).toString();
+
+  if (ret.isEmpty())
+  {
+    ret = WMHelper::getSUTool();
+    if (!ret.isEmpty())
+    {
+      p_instance.setSUTool(ret);
+      p_instance.getSYSsettings()->sync();
+    }
+  }
+
+  return ret;
 }
 
 bool SettingsManager::getSkipMirrorCheckAtStartup(){

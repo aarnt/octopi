@@ -265,27 +265,81 @@ QString WMHelper::getLXQTSUCommand(){
 QString WMHelper::getSUCommand(){
   QString result(ctn_NO_SU_COMMAND);
 
-  if (isXFCERunning() && (UnixCommand::hasTheExecutable(ctn_GKSU_2))){
-    result = getGKSUCommand();
+  if (UnixCommand::getLinuxDistro() != ectn_KAOS)
+  {
+    QString su = SettingsManager::getSUTool();
+    if (su == ctn_GKSU_2)
+      result = getGKSUCommand();
+    else if (su == ctn_KDESU)
+      result = getKDESUCommand();
+    else if (su == ctn_LXQTSU)
+      result = getLXQTSUCommand();
+    else if (su == ctn_TDESU)
+      result = getTDESUCommand();
+  }
+  else
+  {
+    if (isXFCERunning() && (UnixCommand::hasTheExecutable(ctn_GKSU_2))){
+      result = getGKSUCommand();
+    }
+    else if (isKDERunning() && UnixCommand::hasTheExecutable(ctn_KDESU)){
+      result = getKDESUCommand();
+    }
+    else if (isLXQTRunning() && UnixCommand::hasTheExecutable(ctn_LXQTSU)){
+      result = getLXQTSUCommand();
+    }
+    else if (isTDERunning() && UnixCommand::hasTheExecutable(ctn_TDESU)){
+      result = getTDESUCommand();
+    }
+    else if (UnixCommand::hasTheExecutable(ctn_GKSU_2)){
+      result = getGKSUCommand();
+    }
+    else if (UnixCommand::hasTheExecutable(ctn_KDESU)){
+      result = getKDESUCommand();
+    }
+    else if (UnixCommand::hasTheExecutable(ctn_LXQTSU)){
+      result = getLXQTSUCommand();
+    }
+    else if (UnixCommand::hasTheExecutable(ctn_TDESU)){
+      result = getTDESUCommand();
+    }
+  }
+
+  return result;
+}
+
+/*
+ * The generic SU get method. It retrieves the SU tool name you have installed in your system!
+ */
+QString WMHelper::getSUTool()
+{
+  QString result("");
+
+  if (isXFCERunning() && UnixCommand::hasTheExecutable(ctn_GKSU_2)){
+    result = ctn_GKSU_2;
   }
   else if (isKDERunning() && UnixCommand::hasTheExecutable(ctn_KDESU)){
-    result = getKDESUCommand();
+    result = ctn_KDESU;
   }
   else if (isLXQTRunning() && UnixCommand::hasTheExecutable(ctn_LXQTSU)){
-    result = getLXQTSUCommand();
+    result = ctn_LXQTSU;
   }
   else if (isTDERunning() && UnixCommand::hasTheExecutable(ctn_TDESU)){
-    result = getTDESUCommand();
+    result = ctn_TDESU;
   }
   else if (UnixCommand::hasTheExecutable(ctn_GKSU_2)){
-    result = getGKSUCommand();
+    result = ctn_GKSU_2;
   }
   else if (UnixCommand::hasTheExecutable(ctn_KDESU)){
-    result = getKDESUCommand();
+    result = ctn_KDESU;
+  }
+  else if (UnixCommand::hasTheExecutable(ctn_LXQTSU)){
+    result = ctn_LXQTSU;
   }
   else if (UnixCommand::hasTheExecutable(ctn_TDESU)){
-    result = getTDESUCommand();
+    result = ctn_TDESU;
   }
+
   return result;
 }
 

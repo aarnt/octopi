@@ -81,6 +81,16 @@ void OptionsDialog::currentTabChanged(int tabIndex){
       twTerminal->scrollToItem(l.at(0));
     }
   }
+  else if (tabWidget->tabText(tabIndex) == tr("SU tool"))
+  {
+    twSUTool->setFocus();
+    QList<QTableWidgetItem*> l = twSUTool->findItems(SettingsManager::getSUTool(), Qt::MatchExactly);
+    if (l.count() == 1)
+    {
+      twSUTool->setCurrentItem(l.at(0));
+      twSUTool->scrollToItem(l.at(0));
+    }
+  }
 }
 
 /*
@@ -283,9 +293,59 @@ void OptionsDialog::initIconTab()
  */
 void OptionsDialog::initSUToolTab()
 {
-  tabWidget->removeTab(4); //TODO
+  if (UnixCommand::getLinuxDistro() == ectn_KAOS)
+  {
+    if (m_calledByOctopi) tabWidget->removeTab(3);
+    else tabWidget->removeTab(2);
+    return;
+  }
 
+  QStringList list;
 
+  //Now we populate the list of available SU tools
+  if (UnixCommand::hasTheExecutable(ctn_GKSU_2)){
+    list << ctn_GKSU_2;
+  }
+  if (UnixCommand::hasTheExecutable(ctn_KDESU)){
+    list << ctn_KDESU;
+  }
+  if (UnixCommand::hasTheExecutable(ctn_LXQTSU)){
+    list << ctn_LXQTSU;
+  }
+  if (UnixCommand::hasTheExecutable(ctn_TDESU)){
+    list << ctn_TDESU;
+  }
+
+  if (list.count() == 1)
+  {
+    if (m_calledByOctopi) tabWidget->removeTab(3);
+    else tabWidget->removeTab(2);
+    return;
+  }
+
+  twSUTool->setRowCount(list.count());
+  twSUTool->setShowGrid(false);
+  twSUTool->setColumnCount(1);
+  twSUTool->setColumnWidth(0, 460);
+  twSUTool->verticalHeader()->hide();
+  twSUTool->horizontalHeader()->hide();
+  twSUTool->setSelectionBehavior(QAbstractItemView::SelectRows);
+  twSUTool->setSelectionMode(QAbstractItemView::SingleSelection);
+
+  int row = 0;
+  connect(twSUTool, SIGNAL(cellDoubleClicked(int,int)), this, SLOT(accept()));
+
+  while (row < (list.count()))
+  {
+    QTableWidgetItem *itemSU = new QTableWidgetItem();
+    itemSU->setFlags(itemSU->flags() ^ Qt::ItemIsEditable);
+    itemSU->setText(list.at(row));
+    twSUTool->setItem(row, 0, itemSU);
+    twSUTool->setRowHeight(row, 25);
+    row++;
+  }
+
+  twSUTool->sortByColumn(0, Qt::AscendingOrder);
 }
 
 void OptionsDialog::initSynchronizationTab()
@@ -387,7 +447,6 @@ void OptionsDialog::initTerminalTab(){
  * When user chooses OK button and saves all his changes
  */
 void OptionsDialog::accept(){
-  QString selectedTerminal;
   bool emptyIconPath = false;
 
   if (m_calledByOctopi)
@@ -496,7 +555,18 @@ void OptionsDialog::accept(){
     }
   }
 
+  //Set SU tool...
+  QString selectedSUTool;
+
+  if (twSUTool->currentItem())
+    selectedSUTool = twSUTool->item(twSUTool->row(twSUTool->currentItem()), 0)->text();
+
+  if (SettingsManager::getSUTool() != selectedSUTool)
+    SettingsManager::setSUTool(selectedSUTool);
+
   //Set terminal...
+  QString selectedTerminal;
+
   if (twTerminal->currentItem())
     selectedTerminal = twTerminal->item(twTerminal->row(twTerminal->currentItem()), 0)->text();
 
