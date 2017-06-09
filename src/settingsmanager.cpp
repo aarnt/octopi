@@ -262,19 +262,23 @@ QString SettingsManager::getAURTool()
   return ret;
 }
 
+/*
+ * Retrieves value of field "SU_TOOL", without guessing for AUTOMATIC
+ */
+QString SettingsManager::readSUToolValue()
+{
+  SettingsManager p_instance;
+  return (p_instance.getSYSsettings()->value( ctn_KEY_SU_TOOL, ctn_AUTOMATIC)).toString();
+}
+
 QString SettingsManager::getSUTool()
 {
   SettingsManager p_instance;
-  QString ret = (p_instance.getSYSsettings()->value( ctn_KEY_SU_TOOL, "")).toString();
+  QString ret = (p_instance.getSYSsettings()->value( ctn_KEY_SU_TOOL, ctn_AUTOMATIC)).toString();
 
-  if (ret.isEmpty())
+  if (ret == ctn_AUTOMATIC)
   {
     ret = WMHelper::getSUTool();
-    if (!ret.isEmpty())
-    {
-      p_instance.setSUTool(ret);
-      p_instance.getSYSsettings()->sync();
-    }
   }
 
   return ret;

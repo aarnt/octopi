@@ -84,7 +84,8 @@ void OptionsDialog::currentTabChanged(int tabIndex){
   else if (tabWidget->tabText(tabIndex) == tr("SU tool"))
   {
     twSUTool->setFocus();
-    QList<QTableWidgetItem*> l = twSUTool->findItems(SettingsManager::getSUTool(), Qt::MatchExactly);
+    QList<QTableWidgetItem*> l = twSUTool->findItems(SettingsManager::readSUToolValue(), Qt::MatchExactly);
+
     if (l.count() == 1)
     {
       twSUTool->setCurrentItem(l.at(0));
@@ -300,6 +301,7 @@ void OptionsDialog::initSUToolTab()
   }
 
   QStringList list;
+  list << ctn_AUTOMATIC;
 
   //Now we populate the list of available SU tools
   if (UnixCommand::hasTheExecutable(ctn_GKSU_2)){

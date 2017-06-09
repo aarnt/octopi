@@ -69,6 +69,8 @@ class SettingsManager
     static QString getOctopiGreenIconPath();
 
     static QString getAURTool();
+
+    static QString readSUToolValue();
     static QString getSUTool();
     static bool hasPacmanBackend();
 
