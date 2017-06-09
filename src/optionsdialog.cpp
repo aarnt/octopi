@@ -295,8 +295,8 @@ void OptionsDialog::initSUToolTab()
 {
   if (UnixCommand::getLinuxDistro() == ectn_KAOS)
   {
-    if (m_calledByOctopi) tabWidget->removeTab(3);
-    else tabWidget->removeTab(2);
+    if (m_calledByOctopi) tabWidget->removeTab(2);
+    else tabWidget->removeTab(1);
     return;
   }
 
