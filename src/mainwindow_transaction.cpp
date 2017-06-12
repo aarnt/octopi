@@ -1616,12 +1616,12 @@ void MainWindow::toggleSystemActions(const bool value)
   {
     ui->actionSyncPackages->setEnabled(true);
   }
-  else
+  else if (isAURGroupSelected())
   {
     ui->actionSyncPackages->setEnabled(value);
   }
-
-  m_actionMenuOptions->setEnabled(value);
+  else
+    m_actionMenuOptions->setEnabled(value);
 
   ui->actionInstallLocalPackage->setEnabled(value);
   ui->actionGetNews->setEnabled(value);
