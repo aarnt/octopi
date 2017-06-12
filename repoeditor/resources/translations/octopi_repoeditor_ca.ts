@@ -4,7 +4,7 @@
     <message>
         <location filename="Projects/octopi/repoeditor/addrepo.ui" line="14"/>
         <source>Add Repository - Octopi</source>
-        <translation>Afegeix un repositori - Octopi</translation>
+        <translation>Afegeix repositoris - Octopi</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/addrepo.ui" line="22"/>
@@ -136,7 +136,7 @@
     <message>
         <location filename="Projects/octopi/repoeditor/repoeditor.ui" line="106"/>
         <source>Remove</source>
-        <translation>Suprimeix</translation>
+        <translation>Elimina</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/repoeditor.ui" line="134"/>
