@@ -59,7 +59,7 @@
     </message>
     <message>
         <source>Cancel</source>
-        <translation>Atšaukti</translation>
+        <translation>Atsisakyti</translation>
     </message>
     <message>
         <source>Ctrl+E</source>
@@ -331,7 +331,7 @@
     </message>
     <message>
         <source>Ctrl+E or &apos;Transaction/Cancel&apos; to clear the selection of to be removed/installed packages</source>
-        <translation>Ctrl+E arba &apos;Operacija/Atšaukti&apos;, kad išvalytumėte šalinamų/diegiamų paketų pasirinkimą</translation>
+        <translation>Ctrl+E arba &apos;Operacija/Atsisakyti&apos;, kad išvalytumėte šalinamų/diegiamų paketų pasirinkimą</translation>
     </message>
     <message>
         <source>Ctrl+G or &apos;File/Get latest distro news&apos; to retrieve the latest RSS based distro news</source>
@@ -450,11 +450,11 @@
     </message>
     <message>
         <source>Ok</source>
-        <translation type="unfinished"/>
+        <translation>Gerai</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished"/>
+        <translation>Atsisakyti</translation>
     </message>
     <message>
         <source>Select the AUR tool Octopi should use</source>
@@ -525,7 +525,7 @@
     </message>
     <message>
         <source>Error</source>
-        <translation type="unfinished"/>
+        <translation>Klaida</translation>
     </message>
     <message>
         <source>No news could be found! Press Ctrl+G to download the latest news.</source>
@@ -893,7 +893,7 @@
     </message>
     <message>
         <source>Do you really want to cancel the transaction?</source>
-        <translation>Ar tikrai norite atšaukti operaciją?</translation>
+        <translation>Ar tikrai norite atsisakyti operacijos?</translation>
     </message>
     <message>
         <source>Please, enter the administrator&apos;s password</source>
