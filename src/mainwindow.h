@@ -125,8 +125,11 @@ private:
   //Controls if the NewsTab must be showed
   bool m_gotoNewsTab;
 
-  //Controls if some PackageLists must be refreshed while the main pkg list is being build
+  //Controls if some PackageLists must be refreshed while the main pkg list is being built
   bool m_refreshPackageLists;
+
+  //Controls if foreign pkg list must be refreshed while the main pkg list is being built
+  bool m_refreshForeignPackageList;
 
   //Controls if Group Widget needs to regain focus
   bool m_groupWidgetNeedsFocus;
@@ -266,7 +269,6 @@ private:
 
   bool isPackageInInstallTransaction(const QString &pkgName);
   bool isPackageInRemoveTransaction(const QString &pkgName);
-
   void insertRemovePackageIntoTransaction(const QString &pkgName);
   void insertInstallPackageIntoTransaction(const QString &pkgName);
   void removePackagesFromRemoveTransaction();

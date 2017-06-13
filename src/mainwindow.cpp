@@ -64,6 +64,7 @@ MainWindow::MainWindow(QWidget *parent) :
   m_initializationCompleted=false;
   m_systemUpgradeDialog = false;
   m_refreshPackageLists = false;
+  m_refreshForeignPackageList = false;
   m_cic = NULL;
   m_outdatedStringList = new QStringList();
   m_outdatedAURStringList = new QStringList();

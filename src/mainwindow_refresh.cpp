@@ -200,6 +200,7 @@ void MainWindow::AURToolSelected()
 
   if (m_actionSwitchToAURTool->isChecked())
   {
+    m_refreshForeignPackageList = false;
     m_actionMenuRepository->setEnabled(false);
     ui->twGroups->setEnabled(false);           
     ui->tvPackages->setColumnHidden(PackageModel::ctn_PACKAGE_REPOSITORY_COLUMN, true);
@@ -211,6 +212,7 @@ void MainWindow::AURToolSelected()
   }
   else
   {
+    m_refreshForeignPackageList = true;
     m_actionMenuRepository->setEnabled(true);
     ui->twGroups->setEnabled(true);
     ui->tvPackages->setColumnHidden(PackageModel::ctn_PACKAGE_POPULARITY_COLUMN, true);
@@ -715,8 +717,9 @@ void MainWindow::buildPackageList()
     {
       if(m_debugInfo)
         std::cout << "Time elapsed setting outdated foreign pkgs from 'ALL group' list: " << m_time->elapsed() << " mili seconds." << std::endl;
-    }
-    else
+    }  
+    //else
+    if (m_refreshForeignPackageList)
     {
       delete m_foreignPackageList;
       m_foreignPackageList = NULL;
@@ -823,7 +826,7 @@ void MainWindow::buildPackageList()
 
   refreshToolBar();
   m_refreshPackageLists = true;
-
+  m_refreshForeignPackageList = true;
   m_outdatedAURTimer->start();
 }
 
@@ -1002,7 +1005,6 @@ void MainWindow::buildAURPackageList()
   ui->tvPackages->setCurrentIndex(maux);
 
   list->clear();
-  //invalidateTabs();
 
   if (isPackageTreeViewVisible())
   {
