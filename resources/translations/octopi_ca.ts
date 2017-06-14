@@ -191,7 +191,7 @@
     </message>
     <message>
         <source>Ctrl+Shift+V</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+Maj.+V</translation>
     </message>
     <message>
         <source>Repository Editor</source>
@@ -199,7 +199,7 @@
     </message>
     <message>
         <source>Ctrl+Shift+P</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+Maj.+P</translation>
     </message>
     <message>
         <source>Cache Cleaner</source>
@@ -207,7 +207,7 @@
     </message>
     <message>
         <source>Ctrl+Shift+N</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+Maj.+N</translation>
     </message>
     <message>
         <source>Installed</source>
@@ -219,7 +219,7 @@
     </message>
     <message>
         <source>For more information, visit:</source>
-        <translation>Per a més informació, visiteu:</translation>
+        <translation>Per a més informació, visiteu el següent:</translation>
     </message>
     <message>
         <source>A Qt-based Pacman frontend,</source>
@@ -227,7 +227,7 @@
     </message>
     <message>
         <source>licensed under the terms of</source>
-        <translation>Llicenciat segons els termes de</translation>
+        <translation>Amb llicència segons els termes de</translation>
     </message>
     <message>
         <source>Package classification:</source>
@@ -263,7 +263,7 @@
     </message>
     <message>
         <source>Basic usage help:</source>
-        <translation>Ajuda d&apos;ús bàsic:</translation>
+        <translation>Ajuda bàsica d&apos;ús:</translation>
     </message>
     <message>
         <source>Position the mouse over a package to see its description</source>
@@ -279,7 +279,7 @@
     </message>
     <message>
         <source>Alt+key sequences:</source>
-        <translation>Seqüències Alt+tecla:</translation>
+        <translation>Seqüències d&apos;Alt+tecla:</translation>
     </message>
     <message>
         <source>Alt+1 to switch to &apos;Info&apos; tab</source>
@@ -311,11 +311,11 @@
     </message>
     <message>
         <source>Ctrl+D or &apos;File/Sync database&apos; to sync the local database with latest remote changes (pacman -Sy)</source>
-        <translation>Ctrl+D o &quot;Fitxer/Sincronitza la base de dades&quot; per sincronitzar la base de dades local amb els últims canvis remots (pacman -Sy)</translation>
+        <translation>Ctrl+D o &quot;Fitxer / Sincronitza la base de dades&quot; per sincronitzar la base de dades local amb els últims canvis remots (pacman -Sy)</translation>
     </message>
     <message>
         <source>Ctrl+U or &apos;File/System upgrade&apos; to make a full system upgrade (pacman -Su)</source>
-        <translation>Ctrl+U  o &quot;Fitxer/Actualitza el sistema&quot; per actualitzar el sistema totalment (pacman -Su)</translation>
+        <translation>Ctrl+U  o &quot;Fitxer / Actualitza el sistema&quot; per actualitzar el sistema totalment (pacman -Su)</translation>
     </message>
     <message>
         <source>Ctrl+L to find a package in the package list</source>
@@ -327,7 +327,7 @@
     </message>
     <message>
         <source>Ctrl+M or &apos;Transaction/Commit&apos; to start installation/removal of selected packages</source>
-        <translation>Ctrl+M o &quot;Transacció/Valida&quot; per començar la instal·lació / eliminació dels paquets seleccionats</translation>
+        <translation>Ctrl+M o &quot;Transacció / Valida&quot; per començar la instal·lació / eliminació dels paquets seleccionats</translation>
     </message>
     <message>
         <source>Ctrl+E or &apos;Transaction/Cancel&apos; to clear the selection of to be removed/installed packages</source>
@@ -335,11 +335,11 @@
     </message>
     <message>
         <source>Ctrl+G or &apos;File/Get latest distro news&apos; to retrieve the latest RSS based distro news</source>
-        <translation>Ctrl+G o &quot;Fitxer/Obtén les últimes noticies de la distribució&quot; per recuperar les últimes noticies de la distribució basades en RSS</translation>
+        <translation>Ctrl+G o &quot;Fitxer / Obtén les últimes noticies de la distribució&quot; per recuperar les últimes noticies de la distribució basades en RSS</translation>
     </message>
     <message>
         <source>Ctrl+Q or &apos;File/Exit&apos; to exit the application</source>
-        <translation>Ctrl+Q o &quot;Fitxer/Surt&quot; per sortir de l&apos;aplicació</translation>
+        <translation>Ctrl+Q o &quot;Fitxer / Surt&quot; per sortir de l&apos;aplicació</translation>
     </message>
     <message>
         <source>Control+shift+key sequences:</source>
@@ -375,94 +375,94 @@
     </message>
     <message>
         <source>F6 to open a File Manager whitin the selected directory at Files tab</source>
-        <translation>F6 per obrir el Gestor de fitxers dins del directori seleccionat a la pestanya Fitxers</translation>
+        <translation>F6 per obrir un Gestor de fitxers dins del directori seleccionat a la pestanya Fitxers</translation>
     </message>
     <message>
         <source>F10 to maximize/demaximize package list view</source>
-        <translation>F10 per maximitzar/restaurar la vista de llista de paquets</translation>
+        <translation>F10 per maximitzar / restaurar la vista de llista de paquets</translation>
     </message>
     <message>
         <source>F12 to maximize/demaximize Tab&apos;s view</source>
-        <translation>F12 per maximitzar/restaurar la vista de pestanyes</translation>
+        <translation>F12 per maximitzar / restaurar la vista de pestanyes</translation>
     </message>
 </context>
 <context>
     <name>OptionsDialog</name>
     <message>
         <source>Options</source>
-        <translation type="unfinished"/>
+        <translation>Opcions</translation>
     </message>
     <message>
         <source>Backend</source>
-        <translation type="unfinished"/>
+        <translation>Rerefons</translation>
     </message>
     <message>
         <source>Select the backend Octopi should use</source>
-        <translation type="unfinished"/>
+        <translation>Seleccioneu el rerefons que hauria d&apos;usar l&apos;Octopi</translation>
     </message>
     <message>
         <source>Icon</source>
-        <translation type="unfinished"/>
+        <translation>Icona</translation>
     </message>
     <message>
         <source>Red icon</source>
-        <translation type="unfinished"/>
+        <translation>Icona vermella</translation>
     </message>
     <message>
         <source>Yellow icon</source>
-        <translation type="unfinished"/>
+        <translation>Icona groga</translation>
     </message>
     <message>
         <source>Green icon</source>
-        <translation type="unfinished"/>
+        <translation>Icona verda</translation>
     </message>
     <message>
         <source>Busy icon</source>
-        <translation type="unfinished"/>
+        <translation>Icona d&apos;ocupat</translation>
     </message>
     <message>
         <source>Use default notification icons</source>
-        <translation type="unfinished"/>
+        <translation>Usa les icones de notificació per defecte</translation>
     </message>
     <message>
         <source>SU tool</source>
-        <translation type="unfinished"/>
+        <translation>Eina de SU</translation>
     </message>
     <message>
         <source>Synchronization</source>
-        <translation type="unfinished"/>
+        <translation>Sincronització</translation>
     </message>
     <message>
         <source>Terminal</source>
-        <translation type="unfinished"/>
+        <translation>Terminal</translation>
     </message>
     <message>
         <source>Select the terminal Octopi should use</source>
-        <translation type="unfinished"/>
+        <translation>Seleccioneu el terminal que hauria d&apos;usar l&apos;Octopi</translation>
     </message>
     <message>
         <source>Open Image</source>
-        <translation type="unfinished"/>
+        <translation>Obre una imatge</translation>
     </message>
     <message>
         <source>Image Files</source>
-        <translation type="unfinished"/>
+        <translation>Fitxers d&apos;imatges</translation>
     </message>
     <message>
         <source>Ok</source>
-        <translation type="unfinished"/>
+        <translation>D&apos;acord</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished"/>
+        <translation>Cancel·la</translation>
     </message>
     <message>
         <source>Select the AUR tool Octopi should use</source>
-        <translation type="unfinished"/>
+        <translation>Seleccioneu l&apos;eina de l&apos;AUR que hauria d&apos;usar l&apos;Octopi</translation>
     </message>
     <message>
         <source>Select the SU tool Octopi should use</source>
-        <translation type="unfinished"/>
+        <translation>Seleccioneu l&apos;eina de SU que hauria d&apos;usar l&apos;Octopi</translation>
     </message>
 </context>
 <context>
@@ -485,7 +485,7 @@
     </message>
     <message>
         <source>force a system upgrade at startup.</source>
-        <translation>força una actualització del sistema a l&apos;arrencada.</translation>
+        <translation>força una actualització del sistema a l&apos;inici.</translation>
     </message>
     <message>
         <source>All</source>
@@ -525,11 +525,11 @@
     </message>
     <message>
         <source>Error</source>
-        <translation type="unfinished"/>
+        <translation>Error</translation>
     </message>
     <message>
         <source>No news could be found! Press Ctrl+G to download the latest news.</source>
-        <translation>No es poden trobar novetats! Premeu Ctrl+G per descarregar les últimes novetats.</translation>
+        <translation>No es poden trobar novetats! Premeu Ctrl+G per baixar les últimes novetats.</translation>
     </message>
     <message>
         <source>This Linux distro seems to be incompatible with Octopi!</source>
@@ -545,7 +545,7 @@
     </message>
     <message>
         <source>Usage</source>
-        <translation>Ús</translation>
+        <translation>Ús / Sintaxi</translation>
     </message>
     <message>
         <source>About</source>
@@ -553,7 +553,7 @@
     </message>
     <message>
         <source>Options</source>
-        <translation type="unfinished"/>
+        <translation>Opcions</translation>
     </message>
     <message>
         <source>Name</source>
@@ -629,7 +629,7 @@
     </message>
     <message>
         <source>votes</source>
-        <translation>votacions</translation>
+        <translation>vots</translation>
     </message>
     <message>
         <source>Download Size</source>
@@ -641,7 +641,7 @@
     </message>
     <message>
         <source>Install Reason</source>
-        <translation type="unfinished"/>
+        <translation>Raó d&apos;instal·lació</translation>
     </message>
     <message>
         <source>Packager</source>
@@ -673,7 +673,7 @@
     </message>
     <message>
         <source>Partial updates are not supported!</source>
-        <translation type="unfinished"/>
+        <translation>No s&apos;admeten actualitzacions parcials!</translation>
     </message>
     <message>
         <source>automatic</source>
@@ -681,11 +681,11 @@
     </message>
     <message>
         <source>Password</source>
-        <translation>Clau d&apos;accés</translation>
+        <translation>Contrasenya</translation>
     </message>
     <message>
         <source>Info</source>
-        <translation>Info</translation>
+        <translation>Informació</translation>
     </message>
     <message>
         <source>Files</source>
@@ -769,7 +769,7 @@
     </message>
     <message>
         <source>Removing Pacman&apos;s transaction lock file...</source>
-        <translation>Eliminant el fitxer de bloqueig de transacció del Pacman</translation>
+        <translation>Eliminant el fitxer de bloqueig de transacció del Pacman...</translation>
     </message>
     <message>
         <source>Syncing</source>
@@ -833,19 +833,19 @@
     </message>
     <message>
         <source>The following package needs to be retrieved</source>
-        <translation>S&apos;han d&apos;obtenir els paquets següents:</translation>
+        <translation>S&apos;ha de recuperar el paquet següent:</translation>
     </message>
     <message>
         <source>The following package will be removed</source>
-        <translation>S&apos;eliminaran els paquets següents:</translation>
+        <translation>S&apos;eliminarà el paquet següent:</translation>
     </message>
     <message numerus="yes">
         <source>The following %n packages need to be retrieved</source>
-        <translation><numerusform>S&apos;ha d&apos;obtenir el següent paquet (%n)</numerusform><numerusform>S&apos;han d&apos;obtenir els %n paquets següents</numerusform></translation>
+        <translation><numerusform>S&apos;ha de recuperar el següent paquet (%n):</numerusform><numerusform>S&apos;han de recuperar els %n paquets següents:</numerusform></translation>
     </message>
     <message numerus="yes">
         <source>The following %n packages will be removed</source>
-        <translation><numerusform>S&apos;eliminarà el paquet següent (%n)</numerusform><numerusform>S&apos;eliminaran els %n paquets següents:</numerusform></translation>
+        <translation><numerusform>S&apos;eliminarà el paquet següent (%n):</numerusform><numerusform>S&apos;eliminaran els %n paquets següents:</numerusform></translation>
     </message>
     <message>
         <source>There are forbidden packages in the removal list!</source>
@@ -853,7 +853,7 @@
     </message>
     <message>
         <source>There are no new updates available!</source>
-        <translation>No hi ha noves actualitzacions disponibles!</translation>
+        <translation>No hi ha actualitzacions noves disponibles!</translation>
     </message>
     <message>
         <source>There is an update available!</source>
@@ -889,11 +889,11 @@
     </message>
     <message>
         <source>Do you really want to remove Pacman&apos;s transaction lock file?</source>
-        <translation>Esteu segur de voler eliminar el fitxer de bloqueig de transacció del Pacman?</translation>
+        <translation>Realment voleu eliminar el fitxer de bloqueig de transacció del Pacman?</translation>
     </message>
     <message>
         <source>Do you really want to cancel the transaction?</source>
-        <translation>Relament voleu cancel·lar la transacció?</translation>
+        <translation>Realment voleu cancel·lar la transacció?</translation>
     </message>
     <message>
         <source>Please, enter the administrator&apos;s password</source>
@@ -909,7 +909,7 @@
     </message>
     <message>
         <source>Icon path information is incomplete.</source>
-        <translation type="unfinished"/>
+        <translation>El camí de la informació de la icona no és complet.</translation>
     </message>
     <message>
         <source>You can not run Octopi with administrator&apos;s credentials.</source>
@@ -971,7 +971,7 @@ Esteu segur que voleu obrir-lo?</translation>
     </message>
     <message>
         <source>Remove items</source>
-        <translation>Elimina l&apos;element</translation>
+        <translation>Elimina els elements</translation>
     </message>
     <message>
         <source>Press Ctrl+A to select/deselect all</source>
@@ -1022,7 +1022,7 @@ Esteu segur que voleu obrir-lo?</translation>
     <name>SearchBar</name>
     <message>
         <source>Previous</source>
-        <translation>Previ</translation>
+        <translation>Anterior</translation>
     </message>
     <message>
         <source>Next</source>
