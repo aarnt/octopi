@@ -1614,11 +1614,11 @@ void MainWindow::toggleSystemActions(const bool value)
   {
     ui->actionSyncPackages->setEnabled(true);
   }
-  else if (isAURGroupSelected())
+  else if (Package::getForeignRepositoryToolName() != "kcp")
   {
     ui->actionSyncPackages->setEnabled(value);
   }
-  else
+  else if (!isAURGroupSelected())
     m_actionMenuOptions->setEnabled(value);
 
   ui->actionInstallLocalPackage->setEnabled(value);
