@@ -12,6 +12,8 @@ ALPM_BACKEND {
   QMAKE_CXXFLAGS += -std=c++11
   PKGCONFIG += glib-2.0 libalpm
   LIBS += -lalpm_octopi_utils
+} else {
+  QMAKE_CXXFLAGS += -std=c++11
 }
 
 TEMPLATE = app
