@@ -980,7 +980,6 @@ void MainWindow::doRemoveAndInstall()
 
   if (hasPartialUpgrade(pkgsToInstall)) return;
 
-  //totalDownloadSize = totalDownloadSize / 1024;
   QString ds = Package::kbytesToSize(totalDownloadSize);
 
   if (installList.count() == 0)
@@ -1351,7 +1350,6 @@ void MainWindow::doInstall()
 
   if (hasPartialUpgrade(pkgsToInstall)) return;
 
-  //totalDownloadSize = totalDownloadSize / 1024;
   QString ds = Package::kbytesToSize(totalDownloadSize);
 
   if (list.count() == 0)
@@ -1565,8 +1563,8 @@ void MainWindow::toggleTransactionActions(const bool value)
   }
   else if (value == false) //&& state == false)
   {
-    ui->actionCommit->setEnabled(false); //CHANGED
-    ui->actionCancel->setEnabled(false); //CHANGED
+    ui->actionCommit->setEnabled(false);
+    ui->actionCancel->setEnabled(false);
 
     if(m_hasMirrorCheck) m_actionMenuMirrorCheck->setEnabled(false);
     if(m_hasAURTool) m_actionSwitchToAURTool->setEnabled(false);
@@ -1802,7 +1800,6 @@ void MainWindow::pacmanProcessFinished(int exitCode, QProcess::ExitStatus exitSt
 
   m_commandExecuting = ectn_NONE;
 
-  //if (isPackageTreeViewVisible() && !ui->tvPackages->hasFocus()) ui->tvPackages->setFocus();
   if (isPackageTreeViewVisible() && !m_leFilterPackage->hasFocus()) m_leFilterPackage->setFocus();
 }
 
