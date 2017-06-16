@@ -197,7 +197,7 @@ QString Package::makeAnchorOfPackage(const QString &packages)
     }
     else
     {
-      int p;
+      int p=-1;
 
       if (dep.contains("<"))
       {
