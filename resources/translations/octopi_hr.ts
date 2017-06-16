@@ -191,7 +191,7 @@
     </message>
     <message>
         <source>Ctrl+Shift+V</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+Shift+V</translation>
     </message>
     <message>
         <source>Repository Editor</source>
@@ -199,7 +199,7 @@
     </message>
     <message>
         <source>Ctrl+Shift+P</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+Shift+P</translation>
     </message>
     <message>
         <source>Cache Cleaner</source>
@@ -207,7 +207,7 @@
     </message>
     <message>
         <source>Ctrl+Shift+N</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+Shift+N</translation>
     </message>
     <message>
         <source>Installed</source>
@@ -223,7 +223,7 @@
     </message>
     <message>
         <source>A Qt-based Pacman frontend,</source>
-        <translation>Pacman sučelje bazirano on Qt-u</translation>
+        <translation>Pacman sučelje bazirano na Qt-u</translation>
     </message>
     <message>
         <source>licensed under the terms of</source>
@@ -390,79 +390,79 @@
     <name>OptionsDialog</name>
     <message>
         <source>Options</source>
-        <translation type="unfinished"/>
+        <translation>Opcije</translation>
     </message>
     <message>
         <source>Backend</source>
-        <translation type="unfinished"/>
+        <translation>Pozadinski servis</translation>
     </message>
     <message>
         <source>Select the backend Octopi should use</source>
-        <translation type="unfinished"/>
+        <translation>Odaberite pozadinski servis za Octopi</translation>
     </message>
     <message>
         <source>Icon</source>
-        <translation type="unfinished"/>
+        <translation>Ikona</translation>
     </message>
     <message>
         <source>Red icon</source>
-        <translation type="unfinished"/>
+        <translation>Crvena ikona</translation>
     </message>
     <message>
         <source>Yellow icon</source>
-        <translation type="unfinished"/>
+        <translation>Žuta ikona</translation>
     </message>
     <message>
         <source>Green icon</source>
-        <translation type="unfinished"/>
+        <translation>Zelena ikona</translation>
     </message>
     <message>
         <source>Busy icon</source>
-        <translation type="unfinished"/>
+        <translation>Ikona zauzeća</translation>
     </message>
     <message>
         <source>Use default notification icons</source>
-        <translation type="unfinished"/>
+        <translation>Koristi zadane ikone obavijesti</translation>
     </message>
     <message>
         <source>SU tool</source>
-        <translation type="unfinished"/>
+        <translation>SU alat</translation>
     </message>
     <message>
         <source>Synchronization</source>
-        <translation type="unfinished"/>
+        <translation>Sinkronizacija</translation>
     </message>
     <message>
         <source>Terminal</source>
-        <translation type="unfinished"/>
+        <translation>Terminal</translation>
     </message>
     <message>
         <source>Select the terminal Octopi should use</source>
-        <translation type="unfinished"/>
+        <translation>Odaberi terminal za Octopi</translation>
     </message>
     <message>
         <source>Open Image</source>
-        <translation type="unfinished"/>
+        <translation>Otvori sliku</translation>
     </message>
     <message>
         <source>Image Files</source>
-        <translation type="unfinished"/>
+        <translation>Datoteke slike</translation>
     </message>
     <message>
         <source>Ok</source>
-        <translation type="unfinished"/>
+        <translation>OK</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished"/>
+        <translation>Odustani</translation>
     </message>
     <message>
         <source>Select the AUR tool Octopi should use</source>
-        <translation type="unfinished"/>
+        <translation>Odaberi AUR alat za Octopi</translation>
     </message>
     <message>
         <source>Select the SU tool Octopi should use</source>
-        <translation type="unfinished"/>
+        <translation>Odaberi SU alat za Octopi</translation>
     </message>
 </context>
 <context>
@@ -473,7 +473,7 @@
     </message>
     <message>
         <source>show application version.</source>
-        <translation>prikaži inačicu programa.</translation>
+        <translation>prikaži verziju programa.</translation>
     </message>
     <message>
         <source>use a different Qt4 style (ex: -style gtk).</source>
@@ -525,7 +525,7 @@
     </message>
     <message>
         <source>Error</source>
-        <translation type="unfinished"/>
+        <translation>Greška</translation>
     </message>
     <message>
         <source>No news could be found! Press Ctrl+G to download the latest news.</source>
@@ -553,7 +553,7 @@
     </message>
     <message>
         <source>Options</source>
-        <translation type="unfinished"/>
+        <translation>Opcije</translation>
     </message>
     <message>
         <source>Name</source>
@@ -561,7 +561,7 @@
     </message>
     <message>
         <source>Version</source>
-        <translation>Inačica</translation>
+        <translation>Verzija</translation>
     </message>
     <message>
         <source>Outdated version</source>
@@ -569,7 +569,7 @@
     </message>
     <message>
         <source>Available version</source>
-        <translation>Dostupna inačica</translation>
+        <translation>Dostupna verzija</translation>
     </message>
     <message>
         <source>No description available.</source>
@@ -633,7 +633,7 @@
     </message>
     <message>
         <source>Download Size</source>
-        <translation>Veličina skinutog</translation>
+        <translation>Veličina za preuzimanje</translation>
     </message>
     <message>
         <source>Installed Size</source>
@@ -641,7 +641,7 @@
     </message>
     <message>
         <source>Install Reason</source>
-        <translation type="unfinished"/>
+        <translation>Razlog instalacije</translation>
     </message>
     <message>
         <source>Packager</source>
@@ -673,7 +673,7 @@
     </message>
     <message>
         <source>Partial updates are not supported!</source>
-        <translation type="unfinished"/>
+        <translation>Djelomične nadogradnje nisu podržane!</translation>
     </message>
     <message>
         <source>automatic</source>
@@ -741,7 +741,7 @@
     </message>
     <message>
         <source>(version %1 is available)</source>
-        <translation>(inačica %1 je dostupna)</translation>
+        <translation>(verzija %1 je dostupna)</translation>
     </message>
     <message numerus="yes">
         <source>%n packages</source>
@@ -809,7 +809,7 @@
     </message>
     <message>
         <source>Choose a terminal</source>
-        <translation>Odaberite terminal</translation>
+        <translation>Odaberi terminal</translation>
     </message>
     <message>
         <source>Running command in terminal...</source>
@@ -909,7 +909,7 @@
     </message>
     <message>
         <source>Icon path information is incomplete.</source>
-        <translation type="unfinished"/>
+        <translation>Informacija o putanji ikone je nepotpuna.</translation>
     </message>
     <message>
         <source>You can not run Octopi with administrator&apos;s credentials.</source>
@@ -941,7 +941,7 @@
     </message>
     <message>
         <source>Select the packages you want to install</source>
-        <translation>izaberi pakete koje želiš instalirati</translation>
+        <translation>Odaberite pakete koje želite instalirati</translation>
     </message>
     <message>
         <source>This file does not appear to be a simple text.
