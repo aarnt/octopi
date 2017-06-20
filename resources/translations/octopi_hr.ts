@@ -223,7 +223,7 @@
     </message>
     <message>
         <source>A Qt-based Pacman frontend,</source>
-        <translation>Pacman sučelje bazirano na Qt-u</translation>
+        <translation>Pacman sučelje bazirano na Qt-u,</translation>
     </message>
     <message>
         <source>licensed under the terms of</source>
