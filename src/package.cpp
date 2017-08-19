@@ -1556,9 +1556,6 @@ QHash<QString, QString> Package::getAUROutdatedPackagesNameVersion()
         }
         else //It's yaourt!
         {
-          if (!pkgName.startsWith(StrConstants::getForeignRepositoryTargetPrefix()))
-            continue;
-
           //Let's ignore the "IgnorePkg" list of packages...
           if (!ignorePkgList.contains(pkgName))
           {
