@@ -394,11 +394,11 @@
     </message>
     <message>
         <source>Backend</source>
-        <translation type="unfinished"/>
+        <translation>Arka uç</translation>
     </message>
     <message>
         <source>Select the backend Octopi should use</source>
-        <translation type="unfinished"/>
+        <translation>Octopi&apos;nin kullanması gereken arka ucu seçin</translation>
     </message>
     <message>
         <source>Icon</source>
@@ -418,35 +418,35 @@
     </message>
     <message>
         <source>Busy icon</source>
-        <translation type="unfinished"/>
+        <translation>Meşgul simgesi</translation>
     </message>
     <message>
         <source>Use default notification icons</source>
-        <translation type="unfinished"/>
+        <translation>Varsayılan bildirim simgelerini kullan</translation>
     </message>
     <message>
         <source>SU tool</source>
-        <translation type="unfinished"/>
+        <translation>SU aracı</translation>
     </message>
     <message>
         <source>Synchronization</source>
-        <translation type="unfinished"/>
+        <translation>Eşzamanlama</translation>
     </message>
     <message>
         <source>Terminal</source>
-        <translation type="unfinished"/>
+        <translation>Uçbirim</translation>
     </message>
     <message>
         <source>Select the terminal Octopi should use</source>
-        <translation type="unfinished"/>
+        <translation>Octopi&apos;nin kullanması gereken uçbirimi seçin</translation>
     </message>
     <message>
         <source>Open Image</source>
-        <translation type="unfinished"/>
+        <translation>Kalıp Aç</translation>
     </message>
     <message>
         <source>Image Files</source>
-        <translation type="unfinished"/>
+        <translation>Kalıp Dosyaları</translation>
     </message>
     <message>
         <source>Ok</source>
@@ -458,11 +458,11 @@
     </message>
     <message>
         <source>Select the AUR tool Octopi should use</source>
-        <translation type="unfinished"/>
+        <translation>Octopi&apos;nin kullanması gereken AUR aracını seçin</translation>
     </message>
     <message>
         <source>Select the SU tool Octopi should use</source>
-        <translation type="unfinished"/>
+        <translation>Octopi&apos;nin kullanması gereken SU aracını seçin</translation>
     </message>
 </context>
 <context>
@@ -641,7 +641,7 @@
     </message>
     <message>
         <source>Install Reason</source>
-        <translation type="unfinished"/>
+        <translation>Yükleme Nedeni</translation>
     </message>
     <message>
         <source>Packager</source>
@@ -673,7 +673,7 @@
     </message>
     <message>
         <source>Partial updates are not supported!</source>
-        <translation type="unfinished"/>
+        <translation>Kısmi güncellemeler desteklenmiyor!</translation>
     </message>
     <message>
         <source>automatic</source>
@@ -909,7 +909,7 @@
     </message>
     <message>
         <source>Icon path information is incomplete.</source>
-        <translation type="unfinished"/>
+        <translation>Simge yolu bilgisi eksik.</translation>
     </message>
     <message>
         <source>You can not run Octopi with administrator&apos;s credentials.</source>

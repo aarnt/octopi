@@ -1,15 +1,15 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="zh-Hans" version="2.0">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="zh_CN" version="2.0">
 <context>
     <name>CacheCleaner</name>
     <message>
         <location filename="Projects/octopi/cachecleaner/ui/cachecleaner.ui" line="14"/>
         <source>Cache Cleaner - Octopi</source>
-        <translation>缓存清理 - Octopi</translation>
+        <translation> 缓存清理器 - Octopi </translation>
     </message>
     <message>
         <location filename="Projects/octopi/cachecleaner/ui/cachecleaner.ui" line="49"/>
         <source>Uninstalled packages</source>
-        <translation>未安装软件包</translation>
+        <translation>已卸载的软件包</translation>
     </message>
     <message>
         <location filename="Projects/octopi/cachecleaner/ui/cachecleaner.ui" line="75"/>
@@ -21,7 +21,7 @@
         <location filename="Projects/octopi/cachecleaner/ui/cachecleaner.ui" line="82"/>
         <location filename="Projects/octopi/cachecleaner/ui/cachecleaner.ui" line="157"/>
         <source>Number of old versions to keep</source>
-        <translation>要保留的旧版本数</translation>
+        <translation>要保留的旧版本数量</translation>
     </message>
     <message>
         <location filename="Projects/octopi/cachecleaner/ui/cachecleaner.ui" line="102"/>
@@ -32,7 +32,7 @@
     <message>
         <location filename="Projects/octopi/cachecleaner/ui/cachecleaner.ui" line="127"/>
         <source>Installed packages</source>
-        <translation>已安装软件包</translation>
+        <translation>已安装的软件包</translation>
     </message>
 </context>
 <context>

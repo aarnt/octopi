@@ -394,11 +394,11 @@
     </message>
     <message>
         <source>Backend</source>
-        <translation type="unfinished"/>
+        <translation>Backend</translation>
     </message>
     <message>
         <source>Select the backend Octopi should use</source>
-        <translation type="unfinished"/>
+        <translation>Виберіть backend, який повинен використовувати Octopi</translation>
     </message>
     <message>
         <source>Icon</source>

@@ -402,23 +402,23 @@
     </message>
     <message>
         <source>Icon</source>
-        <translation type="unfinished"/>
+        <translation>Ikono</translation>
     </message>
     <message>
         <source>Red icon</source>
-        <translation type="unfinished"/>
+        <translation>Ikono gorria</translation>
     </message>
     <message>
         <source>Yellow icon</source>
-        <translation type="unfinished"/>
+        <translation>Ikono horia</translation>
     </message>
     <message>
         <source>Green icon</source>
-        <translation type="unfinished"/>
+        <translation>Ikono berdea</translation>
     </message>
     <message>
         <source>Busy icon</source>
-        <translation type="unfinished"/>
+        <translation>Ikono okupatuta</translation>
     </message>
     <message>
         <source>Use default notification icons</source>
@@ -426,7 +426,7 @@
     </message>
     <message>
         <source>SU tool</source>
-        <translation type="unfinished"/>
+        <translation>SU tresna</translation>
     </message>
     <message>
         <source>Synchronization</source>
@@ -434,7 +434,7 @@
     </message>
     <message>
         <source>Terminal</source>
-        <translation type="unfinished"/>
+        <translation>Terminala</translation>
     </message>
     <message>
         <source>Select the terminal Octopi should use</source>
@@ -450,11 +450,11 @@
     </message>
     <message>
         <source>Ok</source>
-        <translation type="unfinished"/>
+        <translation>Ados</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished"/>
+        <translation>Ezeztatu</translation>
     </message>
     <message>
         <source>Select the AUR tool Octopi should use</source>

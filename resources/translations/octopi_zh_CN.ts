@@ -191,7 +191,7 @@
     </message>
     <message>
         <source>Ctrl+Shift+V</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+Shift+V</translation>
     </message>
     <message>
         <source>Repository Editor</source>
@@ -199,7 +199,7 @@
     </message>
     <message>
         <source>Ctrl+Shift+P</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+Shift+P</translation>
     </message>
     <message>
         <source>Cache Cleaner</source>
@@ -207,7 +207,7 @@
     </message>
     <message>
         <source>Ctrl+Shift+N</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+Shift+N</translation>
     </message>
     <message>
         <source>Installed</source>
@@ -259,7 +259,7 @@
     </message>
     <message>
         <source>A newer than repository package</source>
-        <translation>比软件仓库版本更新的软件包</translation>
+        <translation>一个软件包比其在软件库内的版本更高</translation>
     </message>
     <message>
         <source>Basic usage help:</source>
@@ -390,79 +390,79 @@
     <name>OptionsDialog</name>
     <message>
         <source>Options</source>
-        <translation type="unfinished"/>
+        <translation>选项</translation>
     </message>
     <message>
         <source>Backend</source>
-        <translation type="unfinished"/>
+        <translation>后端</translation>
     </message>
     <message>
         <source>Select the backend Octopi should use</source>
-        <translation type="unfinished"/>
+        <translation>选择 Octopi 要使用的后端软件</translation>
     </message>
     <message>
         <source>Icon</source>
-        <translation type="unfinished"/>
+        <translation>图标</translation>
     </message>
     <message>
         <source>Red icon</source>
-        <translation type="unfinished"/>
+        <translation>红色图标</translation>
     </message>
     <message>
         <source>Yellow icon</source>
-        <translation type="unfinished"/>
+        <translation>黄色图标</translation>
     </message>
     <message>
         <source>Green icon</source>
-        <translation type="unfinished"/>
+        <translation>绿色图标</translation>
     </message>
     <message>
         <source>Busy icon</source>
-        <translation type="unfinished"/>
+        <translation>忙碌图标</translation>
     </message>
     <message>
         <source>Use default notification icons</source>
-        <translation type="unfinished"/>
+        <translation>使用默认通知图标</translation>
     </message>
     <message>
         <source>SU tool</source>
-        <translation type="unfinished"/>
+        <translation>SU 工具</translation>
     </message>
     <message>
         <source>Synchronization</source>
-        <translation type="unfinished"/>
+        <translation>同步</translation>
     </message>
     <message>
         <source>Terminal</source>
-        <translation type="unfinished"/>
+        <translation>终端</translation>
     </message>
     <message>
         <source>Select the terminal Octopi should use</source>
-        <translation type="unfinished"/>
+        <translation>选择 Octopi 要使用的终端模拟器</translation>
     </message>
     <message>
         <source>Open Image</source>
-        <translation type="unfinished"/>
+        <translation>打开图片</translation>
     </message>
     <message>
         <source>Image Files</source>
-        <translation type="unfinished"/>
+        <translation>图片文件</translation>
     </message>
     <message>
         <source>Ok</source>
-        <translation type="unfinished"/>
+        <translation>确认</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished"/>
+        <translation>取消</translation>
     </message>
     <message>
         <source>Select the AUR tool Octopi should use</source>
-        <translation type="unfinished"/>
+        <translation>选择 Octopi 要使用的 AUR 包管理器</translation>
     </message>
     <message>
         <source>Select the SU tool Octopi should use</source>
-        <translation type="unfinished"/>
+        <translation>选择 Octopi 要使用的 SU 工具</translation>
     </message>
 </context>
 <context>
@@ -525,7 +525,7 @@
     </message>
     <message>
         <source>Error</source>
-        <translation type="unfinished"/>
+        <translation>错误</translation>
     </message>
     <message>
         <source>No news could be found! Press Ctrl+G to download the latest news.</source>
@@ -553,7 +553,7 @@
     </message>
     <message>
         <source>Options</source>
-        <translation type="unfinished"/>
+        <translation>选项</translation>
     </message>
     <message>
         <source>Name</source>
@@ -641,7 +641,7 @@
     </message>
     <message>
         <source>Install Reason</source>
-        <translation type="unfinished"/>
+        <translation>安装原因</translation>
     </message>
     <message>
         <source>Packager</source>
@@ -673,7 +673,7 @@
     </message>
     <message>
         <source>Partial updates are not supported!</source>
-        <translation type="unfinished"/>
+        <translation>不支持区部升级！</translation>
     </message>
     <message>
         <source>automatic</source>
@@ -909,7 +909,7 @@
     </message>
     <message>
         <source>Icon path information is incomplete.</source>
-        <translation type="unfinished"/>
+        <translation>不完整的图标路径</translation>
     </message>
     <message>
         <source>You can not run Octopi with administrator&apos;s credentials.</source>

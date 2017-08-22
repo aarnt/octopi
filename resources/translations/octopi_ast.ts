@@ -191,7 +191,7 @@
     </message>
     <message>
         <source>Ctrl+Shift+V</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+Shift+V</translation>
     </message>
     <message>
         <source>Repository Editor</source>
@@ -199,7 +199,7 @@
     </message>
     <message>
         <source>Ctrl+Shift+P</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+Shift+P</translation>
     </message>
     <message>
         <source>Cache Cleaner</source>
@@ -207,7 +207,7 @@
     </message>
     <message>
         <source>Ctrl+Shift+N</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+Shift+N</translation>
     </message>
     <message>
         <source>Installed</source>
@@ -390,79 +390,79 @@
     <name>OptionsDialog</name>
     <message>
         <source>Options</source>
-        <translation type="unfinished"/>
+        <translation>Opciones</translation>
     </message>
     <message>
         <source>Backend</source>
-        <translation type="unfinished"/>
+        <translation>Backend</translation>
     </message>
     <message>
         <source>Select the backend Octopi should use</source>
-        <translation type="unfinished"/>
+        <translation>Esbilla&apos;l backend que debería usar Octopi</translation>
     </message>
     <message>
         <source>Icon</source>
-        <translation type="unfinished"/>
+        <translation>Iconu</translation>
     </message>
     <message>
         <source>Red icon</source>
-        <translation type="unfinished"/>
+        <translation>Iconu bermeyu</translation>
     </message>
     <message>
         <source>Yellow icon</source>
-        <translation type="unfinished"/>
+        <translation>Iconu mariellu</translation>
     </message>
     <message>
         <source>Green icon</source>
-        <translation type="unfinished"/>
+        <translation>Iconu verde</translation>
     </message>
     <message>
         <source>Busy icon</source>
-        <translation type="unfinished"/>
+        <translation>Iconu ocupáu</translation>
     </message>
     <message>
         <source>Use default notification icons</source>
-        <translation type="unfinished"/>
+        <translation>Usar iconos d&apos;avisu predeterminaos</translation>
     </message>
     <message>
         <source>SU tool</source>
-        <translation type="unfinished"/>
+        <translation>Ferramienta SU</translation>
     </message>
     <message>
         <source>Synchronization</source>
-        <translation type="unfinished"/>
+        <translation>Sincronización</translation>
     </message>
     <message>
         <source>Terminal</source>
-        <translation type="unfinished"/>
+        <translation>Terminal</translation>
     </message>
     <message>
         <source>Select the terminal Octopi should use</source>
-        <translation type="unfinished"/>
+        <translation>Esbilla la terminal que debería usar Octopi</translation>
     </message>
     <message>
         <source>Open Image</source>
-        <translation type="unfinished"/>
+        <translation>Abrir imaxe</translation>
     </message>
     <message>
         <source>Image Files</source>
-        <translation type="unfinished"/>
+        <translation>Ficheros d&apos;imaxe</translation>
     </message>
     <message>
         <source>Ok</source>
-        <translation type="unfinished"/>
+        <translation>Aceutar</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished"/>
+        <translation>Encaboxar</translation>
     </message>
     <message>
         <source>Select the AUR tool Octopi should use</source>
-        <translation type="unfinished"/>
+        <translation>Esbilla la ferramienta d&apos;AUR que debería usar Octopi</translation>
     </message>
     <message>
         <source>Select the SU tool Octopi should use</source>
-        <translation type="unfinished"/>
+        <translation>Esbilla la ferramienta SU que debería usar Octopi</translation>
     </message>
 </context>
 <context>
@@ -525,7 +525,7 @@
     </message>
     <message>
         <source>Error</source>
-        <translation type="unfinished"/>
+        <translation>Fallu</translation>
     </message>
     <message>
         <source>No news could be found! Press Ctrl+G to download the latest news.</source>
@@ -553,7 +553,7 @@
     </message>
     <message>
         <source>Options</source>
-        <translation type="unfinished"/>
+        <translation>Opciones</translation>
     </message>
     <message>
         <source>Name</source>
@@ -641,7 +641,7 @@
     </message>
     <message>
         <source>Install Reason</source>
-        <translation type="unfinished"/>
+        <translation>Razón d&apos;instalación</translation>
     </message>
     <message>
         <source>Packager</source>
@@ -673,7 +673,7 @@
     </message>
     <message>
         <source>Partial updates are not supported!</source>
-        <translation type="unfinished"/>
+        <translation>¡Nun se sofiten los anovamientos parciales!</translation>
     </message>
     <message>
         <source>automatic</source>
@@ -849,11 +849,11 @@
     </message>
     <message>
         <source>There are forbidden packages in the removal list!</source>
-        <translation>¡Hai paquetes prohibios na llista de desaniciu!</translation>
+        <translation>¡Hai paquetes prohibíos nel llistáu de desaniciu!</translation>
     </message>
     <message>
         <source>There are no new updates available!</source>
-        <translation>¡Nun hai anovamientos nuevos disponibles!</translation>
+        <translation>¡Nun hai anovamientos disponibles!</translation>
     </message>
     <message>
         <source>There is an update available!</source>
@@ -909,7 +909,7 @@
     </message>
     <message>
         <source>Icon path information is incomplete.</source>
-        <translation type="unfinished"/>
+        <translation>La información del camín d&apos;iconos ta incompleta.</translation>
     </message>
     <message>
         <source>You can not run Octopi with administrator&apos;s credentials.</source>

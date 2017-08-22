@@ -398,7 +398,7 @@
     </message>
     <message>
         <source>Select the backend Octopi should use</source>
-        <translation type="unfinished"/>
+        <translation>Octopiが使うバックエンドを選択</translation>
     </message>
     <message>
         <source>Icon</source>
@@ -418,7 +418,7 @@
     </message>
     <message>
         <source>Busy icon</source>
-        <translation type="unfinished"/>
+        <translation>ビジーアイコン</translation>
     </message>
     <message>
         <source>Use default notification icons</source>
@@ -426,43 +426,43 @@
     </message>
     <message>
         <source>SU tool</source>
-        <translation type="unfinished"/>
+        <translation>SUツール</translation>
     </message>
     <message>
         <source>Synchronization</source>
-        <translation type="unfinished"/>
+        <translation>同期</translation>
     </message>
     <message>
         <source>Terminal</source>
-        <translation type="unfinished"/>
+        <translation>ターミナル</translation>
     </message>
     <message>
         <source>Select the terminal Octopi should use</source>
-        <translation type="unfinished"/>
+        <translation>Octopiが使うターミナルを選択</translation>
     </message>
     <message>
         <source>Open Image</source>
-        <translation type="unfinished"/>
+        <translation>画像を開く</translation>
     </message>
     <message>
         <source>Image Files</source>
-        <translation type="unfinished"/>
+        <translation>画像ファイル</translation>
     </message>
     <message>
         <source>Ok</source>
-        <translation type="unfinished"/>
+        <translation>OK</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished"/>
+        <translation>キャンセル</translation>
     </message>
     <message>
         <source>Select the AUR tool Octopi should use</source>
-        <translation type="unfinished"/>
+        <translation>Octopiが使うAURツールを選択</translation>
     </message>
     <message>
         <source>Select the SU tool Octopi should use</source>
-        <translation type="unfinished"/>
+        <translation>Octopiが使うSUツールを選択</translation>
     </message>
 </context>
 <context>
@@ -525,7 +525,7 @@
     </message>
     <message>
         <source>Error</source>
-        <translation type="unfinished"/>
+        <translation>エラー</translation>
     </message>
     <message>
         <source>No news could be found! Press Ctrl+G to download the latest news.</source>
@@ -553,7 +553,7 @@
     </message>
     <message>
         <source>Options</source>
-        <translation type="unfinished"/>
+        <translation>オプション</translation>
     </message>
     <message>
         <source>Name</source>
@@ -597,31 +597,31 @@
     </message>
     <message>
         <source>Provides</source>
-        <translation>提供するもの</translation>
+        <translation>このパッケージが提供するもの</translation>
     </message>
     <message>
         <source>Depends On</source>
-        <translation>必要なもの</translation>
+        <translation>このパッケージに必要なもの</translation>
     </message>
     <message>
         <source>Required By</source>
-        <translation>必要とされているもの</translation>
+        <translation>このパッケージを必要とするもの</translation>
     </message>
     <message>
         <source>Optional For</source>
-        <translation>オプションで必要とされているもの</translation>
+        <translation>このパッケージをオプションとするもの</translation>
     </message>
     <message>
         <source>Optional Deps</source>
-        <translation>オプションで必要なもの</translation>
+        <translation>オプションとして必要なもの</translation>
     </message>
     <message>
         <source>Conflicts With</source>
-        <translation>競合するもの</translation>
+        <translation>このパッケージと競合するもの</translation>
     </message>
     <message>
         <source>Replaces</source>
-        <translation>置き換えるもの</translation>
+        <translation>このパッケージが置き換えるもの</translation>
     </message>
     <message>
         <source>Popularity</source>
@@ -641,7 +641,7 @@
     </message>
     <message>
         <source>Install Reason</source>
-        <translation type="unfinished"/>
+        <translation>インストールした理由</translation>
     </message>
     <message>
         <source>Packager</source>
@@ -673,7 +673,7 @@
     </message>
     <message>
         <source>Partial updates are not supported!</source>
-        <translation type="unfinished"/>
+        <translation>部分的なアップデートはサポートしていません！</translation>
     </message>
     <message>
         <source>automatic</source>
@@ -909,7 +909,7 @@
     </message>
     <message>
         <source>Icon path information is incomplete.</source>
-        <translation type="unfinished"/>
+        <translation>アイコンのパス情報が不完全です。</translation>
     </message>
     <message>
         <source>You can not run Octopi with administrator&apos;s credentials.</source>

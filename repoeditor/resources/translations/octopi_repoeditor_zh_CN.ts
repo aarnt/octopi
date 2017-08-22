@@ -1,20 +1,20 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="zh-Hans" version="2.0">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="zh_CN" version="2.0">
 <context>
     <name>AddRepo</name>
     <message>
         <location filename="Projects/octopi/repoeditor/addrepo.ui" line="14"/>
         <source>Add Repository - Octopi</source>
-        <translation>添加软件源 - Octopi</translation>
+        <translation>添加软件库 - Octopi</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/addrepo.ui" line="22"/>
         <source>Repository:</source>
-        <translation>软件源：</translation>
+        <translation>软件库：</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/addrepo.ui" line="32"/>
         <source>Repository name</source>
-        <translation>软件源名称</translation>
+        <translation>软件库命名：</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/addrepo.ui" line="39"/>
@@ -24,27 +24,27 @@
     <message>
         <location filename="Projects/octopi/repoeditor/addrepo.cpp" line="86"/>
         <source>The repository name field can&apos;t be blank.</source>
-        <translation>软件源名称不能为空。</translation>
+        <translation>软件库名不能为空白。</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/addrepo.cpp" line="101"/>
         <source>The repository location field is not valid.</source>
-        <translation>软件源位置无效。</translation>
+        <translation>软件库位置无效。</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/addrepo.cpp" line="104"/>
         <source>The repository name field is not valid.</source>
-        <translation>软件源名称无效。</translation>
+        <translation>软件库名无效。</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/addrepo.cpp" line="111"/>
         <source>Address of remote or local packages repository</source>
-        <translation>远程或本地软件源的地址</translation>
+        <translation>本地或远程软件库地址</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/addrepo.cpp" line="115"/>
         <source>Path to mirrors list file</source>
-        <translation>镜像列表文件的路径</translation>
+        <translation>镜像列表文件路径</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/addrepo.cpp" line="124"/>
@@ -54,12 +54,12 @@
     <message>
         <location filename="Projects/octopi/repoeditor/addrepo.cpp" line="125"/>
         <source>Can&apos;t add repository.</source>
-        <translation>无法添加软件源。</translation>
+        <translation>无法添加软件库</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/addrepo.cpp" line="136"/>
         <source>Select local repository</source>
-        <translation>选择本地软件源</translation>
+        <translation>选择本地软件库</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/addrepo.cpp" line="149"/>
@@ -78,12 +78,12 @@
     <message>
         <location filename="Projects/octopi/repoeditor/repoconf.cpp" line="177"/>
         <source>Backup file already exists.</source>
-        <translation>备份文件已存在。</translation>
+        <translation>备份已存在</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/repoconf.cpp" line="177"/>
         <source>Do you want to overwrite it?</source>
-        <translation>你真的要覆盖它吗？</translation>
+        <translation>是否要覆盖？</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/repoconf.cpp" line="186"/>
@@ -93,17 +93,17 @@
     <message>
         <location filename="Projects/octopi/repoeditor/repoconf.cpp" line="186"/>
         <source>Do you want to proceed without a backup?</source>
-        <translation>你要在没有备份的情况下继续吗？</translation>
+        <translation>没有备份文件，是否继续？</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/repoconf.cpp" line="242"/>
         <source>Active</source>
-        <translation>可用</translation>
+        <translation>激活</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/repoconf.cpp" line="242"/>
         <source>Repository</source>
-        <translation>软件源</translation>
+        <translation>软件库</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/repoconf.cpp" line="242"/>
@@ -116,12 +116,12 @@
     <message>
         <location filename="Projects/octopi/repoeditor/repoeditor.ui" line="14"/>
         <source>Repository Editor - Octopi</source>
-        <translation>软件源编辑器 - Octopi</translation>
+        <translation>软件库编辑器 - Octopi</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/repoeditor.ui" line="28"/>
         <source>Available Repositories</source>
-        <translation>可用软件源</translation>
+        <translation>可用的软件库</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/repoeditor.ui" line="76"/>
@@ -136,17 +136,17 @@
     <message>
         <location filename="Projects/octopi/repoeditor/repoeditor.ui" line="106"/>
         <source>Remove</source>
-        <translation>删除</translation>
+        <translation>移除</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/repoeditor.ui" line="134"/>
         <source>Move Up</source>
-        <translation>向上移动</translation>
+        <translation>向上</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/repoeditor.ui" line="149"/>
         <source>Move Down</source>
-        <translation>向下移动</translation>
+        <translation>向下</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/repoeditor.ui" line="166"/>
@@ -156,12 +156,12 @@
     <message>
         <location filename="Projects/octopi/repoeditor/repoeditor.ui" line="174"/>
         <source>Create backup on save</source>
-        <translation>在保存时创建备份</translation>
+        <translation>在存档中创建备份</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/repoeditor.ui" line="197"/>
         <source>Load a backup file</source>
-        <translation>载入备份文件</translation>
+        <translation>加载备份文件</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/repoeditor.ui" line="213"/>
@@ -171,7 +171,7 @@
     <message>
         <location filename="Projects/octopi/repoeditor/repoeditor.cpp" line="99"/>
         <source>Can&apos;t load backup file</source>
-        <translation>无法载入备份文件</translation>
+        <translation>无法加载备份文件</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/repoeditor.cpp" line="100"/>
@@ -186,7 +186,7 @@
     <message>
         <location filename="Projects/octopi/repoeditor/repoeditor.cpp" line="150"/>
         <source>Repositories configuration successfully saved.</source>
-        <translation>软件源配置已成功保存。</translation>
+        <translation>软件库配置成功保存</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/repoeditor.cpp" line="155"/>
@@ -196,7 +196,7 @@
     <message>
         <location filename="Projects/octopi/repoeditor/repoeditor.cpp" line="156"/>
         <source>Repositories configuration not saved.</source>
-        <translation>软件源配置未保存。</translation>
+        <translation>软件库配置未保存</translation>
     </message>
 </context>
 </TS>
