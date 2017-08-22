@@ -115,8 +115,6 @@ void OutputDialog::doSystemUpgrade()
 
   m_upgradeRunning = true;
   m_pacmanExec->doSystemUpgrade();
-
-  //m_pacmanExec->doInstall("octopi");  //TEST CODE!
 }
 
 /*
