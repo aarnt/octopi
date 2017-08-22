@@ -200,8 +200,7 @@ void PackageGroupModel::finishedClean(int exitCode, QProcess::ExitStatus)
 
   if(exitCode != 0)
   {
-    //process failed, provide info on errors
-    QMessageBox::critical(m_listView, "Error whith the underlying process",m_acc->getErrors());
+    //process failed, return to main window
     m_refreshButton->setEnabled(true);
     m_cleanButton->setEnabled(true);
   }
