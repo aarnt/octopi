@@ -742,6 +742,10 @@ void MainWindow::execSystemTrayActivated(QSystemTrayIcon::ActivationReason ar)
     {
       hideOctopi();
     }
+    else
+    {
+      runOctopi(ectn_NORMAL_EXEC_OPT);
+    }
 
     break;
   }
