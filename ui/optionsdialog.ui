@@ -31,7 +31,7 @@
      <item>
       <widget class="QTabWidget" name="tabWidget">
        <property name="currentIndex">
-        <number>0</number>
+        <number>1</number>
        </property>
        <widget class="QWidget" name="tabAUR">
         <attribute name="title">
@@ -150,7 +150,7 @@
              <rect>
               <x>10</x>
               <y>20</y>
-              <width>105</width>
+              <width>151</width>
               <height>22</height>
              </rect>
             </property>
@@ -158,7 +158,7 @@
              <string notr="true"/>
             </property>
             <property name="text">
-             <string notr="true">ALPM</string>
+             <string notr="true">ALPM + pacman</string>
             </property>
             <property name="checked">
              <bool>true</bool>
