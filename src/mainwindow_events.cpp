@@ -302,41 +302,8 @@ void MainWindow::keyPressEvent(QKeyEvent* ke)
     gistSysInfo();
   }
 
-  /*else if(ke->key() == Qt::Key_T && ke->modifiers() == (Qt::ShiftModifier|Qt::ControlModifier)
-          && m_initializationCompleted)
-  {
-    if (m_commandExecuting != ectn_NONE) return;
-
-    OptionsDialog *od = new OptionsDialog(this);
-    int res = od->exec();
-    if (res) refreshAppIcon();
-  }*/
-
   else ke->ignore();
 }
-
-/*
- * Calls TerminalSelectorDialog to let user chooses which terminal to use with Octopi
- */
-/*int MainWindow::selectTerminal(const int initialTerminalIndex)
-{
-  int result = initialTerminalIndex;
-  std::unique_ptr<TerminalSelectorDialog> d(
-        new TerminalSelectorDialog(this, Terminal::getListOfAvailableTerminals()));
-
-  d->setInitialTerminalIndex(initialTerminalIndex);
-
-  if (d->exec() == QDialog::Accepted)
-  {
-    result = d->selectedTerminalIndex();
-  }
-  else
-  {
-    result = initialTerminalIndex;
-  }
-
-  return result;
-}*/
 
 /*
  * This Event method is called whenever the user releases a key
