@@ -151,7 +151,7 @@ void MainWindow::initTabHelpUsage()
   QString("</li><li>") +
      tr("F10 to maximize/demaximize package list view") +
   QString("</li><li>") +
-     tr("F12 to maximize/demaximize Tab's view") +
+     tr("F11 to maximize/demaximize Tab's view") +
   QString("</li></ul>");
 
   text->setText(html);

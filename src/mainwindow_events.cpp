@@ -212,7 +212,7 @@ void MainWindow::keyPressEvent(QKeyEvent* ke)
   {
     maximizePackagesTreeView(false);
   }
-  else if (ke->key() == Qt::Key_F12)
+  else if (ke->key() == Qt::Key_F11)
   {
     maximizePropertiesTabWidget(false);
   }
