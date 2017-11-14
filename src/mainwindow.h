@@ -258,7 +258,7 @@ private:
 
   void clearStatusBar();
   void showPackagesWithNoDescription();
-  void prepareSystemUpgrade();
+  bool prepareSystemUpgrade();
 
   //Tab Transaction related methods
   bool isThereAPendingTransaction();

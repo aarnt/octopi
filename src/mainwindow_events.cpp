@@ -254,6 +254,13 @@ void MainWindow::keyPressEvent(QKeyEvent* ke)
       }
     }
   }
+  else if(ke->key() == Qt::Key_Z && ke->modifiers() == Qt::ControlModifier)
+  {
+    if (m_commandExecuting != ectn_NONE && m_pacmanExec != NULL)
+    {
+      m_pacmanExec->cancelProcess();
+    }
+  }
   else if(ke->key() == Qt::Key_D && ke->modifiers() == (Qt::ShiftModifier|Qt::ControlModifier))
   {
     //The user wants to know which packages have no description!

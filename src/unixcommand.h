@@ -157,6 +157,8 @@ public:
   QString readAllStandardError();
   QString errorString();
 
+  void cancelProcess();
+
 public slots:
   void processReadyReadStandardOutput();
   void processReadyReadStandardError();

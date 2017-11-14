@@ -98,6 +98,14 @@ void PacmanExec::removeDatabaseLock()
 }
 
 /*
+ * Cancels the running process
+ */
+void PacmanExec::cancelProcess()
+{
+  m_unixCommand->cancelProcess();
+}
+
+/*
  * Searches the given output for a series of verbs that a Pacman transaction may produce
  */
 bool PacmanExec::searchForKeyVerbs(QString output)

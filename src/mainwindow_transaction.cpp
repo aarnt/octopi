@@ -788,10 +788,12 @@ void MainWindow::doAURUpgrade()
 /*
  * doSystemUpgrade shared code ...
  */
-void MainWindow::prepareSystemUpgrade()
+bool MainWindow::prepareSystemUpgrade()
 {
   m_systemUpgradeDialog = false;
-  if (!doRemovePacmanLockFile()) return;
+
+  bool res = doRemovePacmanLockFile();
+  if (!res) return false;
 
   disableTransactionActions();
   m_progressWidget->setValue(0);
@@ -809,6 +811,7 @@ void MainWindow::prepareSystemUpgrade()
   QObject::connect(m_pacmanExec, SIGNAL(textToPrintExt(QString)), this, SLOT(outputText(QString)));
 
   disableTransactionActions();
+  return true;
 }
 
 /*
@@ -832,6 +835,7 @@ void MainWindow::doSystemUpgrade(SystemUpgradeOptions systemUpgradeOptions)
   if (!isSUAvailable()) return;
 
   qApp->processEvents();
+  int res;
 
   if(systemUpgradeOptions == ectn_SYNC_DATABASE_OPT)
   {
@@ -866,7 +870,13 @@ void MainWindow::doSystemUpgrade(SystemUpgradeOptions systemUpgradeOptions)
 
         if (res == QMessageBox::Yes)
         {
-          prepareSystemUpgrade();
+          res = prepareSystemUpgrade();
+          if (!res)
+          {
+            m_systemUpgradeDialog = false;
+            enableTransactionActions();
+            return;
+          }
 
           m_commandExecuting = ectn_RUN_SYSTEM_UPGRADE_IN_TERMINAL;
           m_pacmanExec->doSystemUpgradeInTerminal(ectn_SYNC_DATABASE);
@@ -890,7 +900,14 @@ void MainWindow::doSystemUpgrade(SystemUpgradeOptions systemUpgradeOptions)
     //User already confirmed all updates in the notifier window!
     if (systemUpgradeOptions == ectn_NOCONFIRM_OPT)
     {
-      prepareSystemUpgrade();
+      res = prepareSystemUpgrade();
+      if (!res)
+      {
+        m_systemUpgradeDialog = false;
+        enableTransactionActions();
+        return;
+      }
+
       m_commandExecuting = ectn_SYSTEM_UPGRADE;
       m_pacmanExec->doSystemUpgrade();
       m_commandQueued = ectn_NONE;
@@ -918,7 +935,13 @@ void MainWindow::doSystemUpgrade(SystemUpgradeOptions systemUpgradeOptions)
 
       if(result == QDialogButtonBox::Yes || result == QDialogButtonBox::AcceptRole)
       {
-        prepareSystemUpgrade();
+        res = prepareSystemUpgrade();
+        if (!res)
+        {
+          m_systemUpgradeDialog = false;
+          enableTransactionActions();
+          return;
+        }
 
         if (result == QDialogButtonBox::Yes)
         {

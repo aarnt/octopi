@@ -333,6 +333,7 @@ QByteArray UnixCommand::getOutdatedAURPackageList()
     result = performAURCommand("-Qua");
   }
 
+  //return ":: aur  micro-git  v1.3.3.d6ccaf0-1  ->  v1.3.4\n";
   return result;
 }
 
@@ -419,6 +420,7 @@ QByteArray UnixCommand::getAURPackageVersionInformation()
     result = performAURCommand("-Qua");
   }
 
+  //return ":: aur  micro-git  v1.3.3.d6ccaf0-1  ->  v1.3.4\n";
   return result;
 }
 
@@ -876,6 +878,17 @@ QString UnixCommand::readAllStandardError()
 QString UnixCommand::errorString()
 {
   return m_errorString;
+}
+
+/*
+ * Cancels the running process
+ */
+void UnixCommand::cancelProcess()
+{
+  QProcess pacman;
+  QString command = WMHelper::getSUCommand() + " killall pacman";
+  pacman.start(command);
+  pacman.waitForFinished();
 }
 
 /*

@@ -60,6 +60,8 @@ public:
   static bool isDatabaseLocked();
   static void removeDatabaseLock();
 
+  void cancelProcess();
+
   //MIRROR-CHECK
   void doMirrorCheck();
 
