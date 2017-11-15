@@ -115,10 +115,13 @@ QString OctopiTabInfo::formatTabInfo(const PackageRepository::PackageData& packa
       if (package.status == ectn_FOREIGN_OUTDATED &&
           outdatedAURPackagesNameVersion.count() > 0)
       {
+        QString outdatedVersion = package.outdatedVersion;
+        if (outdatedVersion.isEmpty()) outdatedVersion = package.version;
         QString availableVersion = outdatedAURPackagesNameVersion.value(package.name);
         if (availableVersion.isEmpty()) availableVersion = package.version;
+
         html += "<tr><td>" + version + "</td><td>" + availableVersion + " <b><font color=\"#E55451\">"
-            + StrConstants::getOutdatedInstalledVersion().arg(package.outdatedVersion) +
+            + StrConstants::getOutdatedInstalledVersion().arg(outdatedVersion) +
             "</b></font></td></tr>";
       }
       else

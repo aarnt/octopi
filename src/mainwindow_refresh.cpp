@@ -198,6 +198,7 @@ void MainWindow::AURToolSelected()
 {
   savePackageColumnWidths();
 
+  //Here we are changing view to list AUR packages ONLY
   if (m_actionSwitchToAURTool->isChecked())
   {
     m_refreshForeignPackageList = false;
@@ -210,8 +211,10 @@ void MainWindow::AURToolSelected()
 
     ui->tvPackages->setColumnHidden(PackageModel::ctn_PACKAGE_POPULARITY_COLUMN, false);
   }
+  //Here we are changing view to list all packages
   else
   {
+    m_actionSwitchToAURTool->setEnabled(false);
     m_refreshForeignPackageList = true;
     m_actionMenuRepository->setEnabled(true);
     ui->twGroups->setEnabled(true);
