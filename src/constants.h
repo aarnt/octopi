@@ -57,6 +57,9 @@ const QString ctn_ORGANIZATION("octopi");
 const QString ctn_APPLICATION("octopi");
 
 const QString ctn_KEY_AUR_TOOL("Aur_Tool_Name");
+const QString ctn_KEY_PACAUR_NO_CONFIRM_PARAM("Pacaur_No_Confirm_Param");
+const QString ctn_KEY_PACAUR_NO_EDIT_PARAM("Pacaur_No_Edit_Param");
+const QString ctn_KEY_YAOURT_NO_CONFIRM_PARAM("Yaourt_No_Confirm_Param");
 const QString ctn_KEY_BACKEND("Backend");
 const QString ctn_KEY_CURRENT_TAB_INDEX("Current_Tab_Index");
 const QString ctn_KEY_WINDOW_SIZE("Window_Size");

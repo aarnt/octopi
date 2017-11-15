@@ -69,6 +69,10 @@ class SettingsManager
     static QString getOctopiGreenIconPath();
 
     static QString getAURTool();
+    static QString getAURToolName();
+    static bool getPacaurNoConfirmParam();
+    static bool getPacaurNoEditParam();
+    static bool getYaourtNoConfirmParam();
 
     static QString readSUToolValue();
     static QString getSUTool();
@@ -127,6 +131,9 @@ class SettingsManager
     static void setPackageRepositoryColumnWidth(int newValue);
 
     static void setAURTool(const QString& newValue);
+    static void setPacaurNoConfirmParam(bool newValue);
+    static void setPacaurNoEditParam(bool newValue);
+    static void setYaourtNoConfirmParam(bool newValue);
     static void setSUTool(const QString& newValue);
 };
 

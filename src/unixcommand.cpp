@@ -25,6 +25,7 @@
 #include <iostream>
 
 #include <QProcess>
+#include <QRegularExpression>
 #include <QFile>
 #include <QFileInfo>
 #include <QByteArray>
@@ -188,7 +189,7 @@ QByteArray UnixCommand::performAURCommand(const QString &args)
   env.insert("LC_MESSAGES", "C");
   aur.setProcessEnvironment(env);
 
-  aur.start(Package::getForeignRepositoryToolName() + " " + args);
+  aur.start(Package::getForeignRepositoryToolNameParam() + " " + args);
   aur.waitForFinished(-1);
   result = aur.readAllStandardOutput();
 
@@ -219,9 +220,9 @@ QByteArray UnixCommand::getAURUrl(const QString &pkgName)
   aur.setProcessEnvironment(env);
 
   if (Package::getForeignRepositoryToolName() == "chaser")
-    aur.start(Package::getForeignRepositoryToolName() + " info " + pkgName);
+    aur.start(Package::getForeignRepositoryToolNameParam() + " info " + pkgName);
   else
-    aur.start(Package::getForeignRepositoryToolName() + " -Sia " + pkgName);
+    aur.start(Package::getForeignRepositoryToolNameParam() + " -Sia " + pkgName);
 
   aur.waitForFinished(-1);
 
@@ -242,15 +243,15 @@ QByteArray UnixCommand::getAURPackageList(const QString &searchString)
   aur.setProcessEnvironment(env);
 
   if (UnixCommand::getLinuxDistro() == ectn_KAOS)
-    aur.start(Package::getForeignRepositoryToolName() + " -l ");
+    aur.start(Package::getForeignRepositoryToolNameParam() + " -l ");
   else
   {
     if (Package::getForeignRepositoryToolName() == "yaourt")
-      aur.start(Package::getForeignRepositoryToolName() + " --nocolor -Ss " + searchString);
+      aur.start(Package::getForeignRepositoryToolNameParam() + " --nocolor -Ss " + searchString);
     else if (Package::getForeignRepositoryToolName() == "chaser")
-      aur.start(Package::getForeignRepositoryToolName() + " search " + searchString);
+      aur.start(Package::getForeignRepositoryToolNameParam() + " search " + searchString);
     else
-      aur.start(Package::getForeignRepositoryToolName() + " -Ss " + searchString);
+      aur.start(Package::getForeignRepositoryToolNameParam() + " -Ss " + searchString);
   }
 
   aur.waitForFinished(-1);
@@ -650,11 +651,13 @@ bool UnixCommand::doInternetPingTest()
  */
 bool UnixCommand::hasTheExecutable( const QString& exeName )
 {
-  //std::cout << "Searching for the executable: " << exeName.toLatin1().data() << std::endl;
+  QRegularExpression re("\\s+\\S*");
+  QString exe = exeName;
+  exe.remove(re);
 
   QProcess proc;
   proc.setProcessChannelMode(QProcess::MergedChannels);
-  QString sParam = "\"which " + exeName + "\"";
+  QString sParam = "\"which " + exe + "\"";
   proc.start("/bin/sh -c " + sParam);
   proc.waitForFinished();
 

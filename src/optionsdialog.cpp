@@ -240,7 +240,11 @@ void OptionsDialog::initAURTab()
       rbPacaur->setChecked(true);
       SettingsManager::setAURTool("pacaur");
     }
-  }
+
+    cbPacaurNoConfirm->setChecked(SettingsManager::getPacaurNoConfirmParam());
+    cbPacaurNoEdit->setChecked(SettingsManager::getPacaurNoEditParam());
+    cbYaourtNoConfirm->setChecked(SettingsManager::getYaourtNoConfirmParam());
+  }    
 }
 
 /*
@@ -476,6 +480,22 @@ void OptionsDialog::accept(){
     else if (rbYaourt->isChecked() && SettingsManager::getAURTool() != "yaourt")
     {
       SettingsManager::setAURTool("yaourt");
+      emit AURToolChanged();
+    }
+
+    if (cbPacaurNoConfirm->isChecked() != SettingsManager::getPacaurNoConfirmParam())
+    {
+      SettingsManager::setPacaurNoConfirmParam(cbPacaurNoConfirm->isChecked());
+      emit AURToolChanged();
+    }
+    if (cbPacaurNoEdit->isChecked() != SettingsManager::getPacaurNoEditParam())
+    {
+      SettingsManager::setPacaurNoEditParam(cbPacaurNoEdit->isChecked());
+      emit AURToolChanged();
+    }
+    if (cbYaourtNoConfirm->isChecked() != SettingsManager::getYaourtNoConfirmParam())
+    {
+      SettingsManager::setYaourtNoConfirmParam(cbYaourtNoConfirm->isChecked());
       emit AURToolChanged();
     }
   }

@@ -1,5 +1,6 @@
 0.9.0 (dev)
   Added an Options dialog to Octopi and Notifier.
+  Added configurable "--noconfirm" and "--noedit" options to pacaur and "--noconfirm" to yaourt.
   Added slovenian translation (thanks to the translation crew).
   Added "ctrl+Z" to cancel running transaction.
   Added "Install Reason" field at Info tab.

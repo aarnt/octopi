@@ -240,26 +240,77 @@ QString SettingsManager::getOctopiGreenIconPath()
 
 QString SettingsManager::getAURTool()
 {
+  QString params;
+
   SettingsManager p_instance;
   QString ret = (p_instance.getSYSsettings()->value( ctn_KEY_AUR_TOOL, "")).toString();
 
-  if (ret.isEmpty() || !UnixCommand::hasTheExecutable(ret))
+  if (ret == "pacaur")
+  {
+    if (getPacaurNoConfirmParam()) params += " --noconfirm ";
+    if (getPacaurNoEditParam()) params += " --noedit ";
+    ret += params;
+  }
+  else if (ret == "yaourt")
+  {
+    if (getYaourtNoConfirmParam()) params += " --noconfirm ";
+    ret += params;
+  }
+  else if (ret.isEmpty() || !UnixCommand::hasTheExecutable(ret))
   {
     if (UnixCommand::hasTheExecutable("pacaur"))
     {
+      if (getPacaurNoConfirmParam()) params += " --noconfirm ";
+      if (getPacaurNoEditParam()) params += " --noedit ";
+
       p_instance.setAURTool("pacaur");
       p_instance.getSYSsettings()->sync();
-      ret = "pacaur";
+      ret = "pacaur" + params;
     }
     else if (UnixCommand::hasTheExecutable("yaourt"))
     {
+      if (getYaourtNoConfirmParam()) params += " --noconfirm ";
+
       p_instance.setAURTool("yaourt");
       p_instance.getSYSsettings()->sync();
-      ret = "yaourt";
+      ret = "yaourt" + params;
     }
   }
 
   return ret;
+}
+
+QString SettingsManager::getAURToolName()
+{
+  SettingsManager p_instance;
+  return p_instance.getSYSsettings()->value( ctn_KEY_AUR_TOOL, "").toString();
+}
+
+/*
+ * Tests if Pacaur is using "--noconfirm" parameter
+ */
+bool SettingsManager::getPacaurNoConfirmParam()
+{
+  SettingsManager p_instance;
+  return (p_instance.getSYSsettings()->value( ctn_KEY_PACAUR_NO_CONFIRM_PARAM, 0)).toBool();
+}
+
+/*
+ * Tests if Pacaur is using "--noedit" parameter
+ */
+bool SettingsManager::getPacaurNoEditParam()
+{
+  SettingsManager p_instance;
+  return (p_instance.getSYSsettings()->value( ctn_KEY_PACAUR_NO_EDIT_PARAM, 0)).toBool();
+}
+
+/*
+ * Tests if Yaourt is using "--noconfirm" parameter
+ */
+bool SettingsManager::getYaourtNoConfirmParam()
+{
+  SettingsManager p_instance;
+  return (p_instance.getSYSsettings()->value( ctn_KEY_YAOURT_NO_CONFIRM_PARAM, 0)).toBool();
 }
 
 /*
@@ -492,6 +543,33 @@ void SettingsManager::setPackageRepositoryColumnWidth(int newValue)
 void SettingsManager::setAURTool(const QString &newValue)
 {
   instance()->getSYSsettings()->setValue(ctn_KEY_AUR_TOOL, newValue);
+  instance()->getSYSsettings()->sync();
+}
+
+/*
+ * Sets if Pacaur tool will use "--noconfirm" parameter
+ */
+void SettingsManager::setPacaurNoConfirmParam(bool newValue)
+{
+  instance()->getSYSsettings()->setValue(ctn_KEY_PACAUR_NO_CONFIRM_PARAM, newValue);
+  instance()->getSYSsettings()->sync();
+}
+
+/*
+ * Sets if Pacaur tool will use "--noedit" parameter
+ */
+void SettingsManager::setPacaurNoEditParam(bool newValue)
+{
+  instance()->getSYSsettings()->setValue(ctn_KEY_PACAUR_NO_EDIT_PARAM, newValue);
+  instance()->getSYSsettings()->sync();
+}
+
+/*
+ * Sets if Yaourt tool will use "--noconfirm" parameter
+ */
+void SettingsManager::setYaourtNoConfirmParam(bool newValue)
+{
+  instance()->getSYSsettings()->setValue(ctn_KEY_YAOURT_NO_CONFIRM_PARAM, newValue);
   instance()->getSYSsettings()->sync();
 }
 

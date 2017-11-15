@@ -183,6 +183,7 @@ class Package{
 
     static bool hasPacmanDatabase();
 
+    static QString getForeignRepositoryToolNameParam();
     static QString getForeignRepositoryToolName();
 };
 

@@ -31,7 +31,7 @@
      <item>
       <widget class="QTabWidget" name="tabWidget">
        <property name="currentIndex">
-        <number>1</number>
+        <number>0</number>
        </property>
        <widget class="QWidget" name="tabAUR">
         <attribute name="title">
@@ -120,6 +120,60 @@
             </property>
             <property name="text">
              <string notr="true">Yaourt</string>
+            </property>
+           </widget>
+           <widget class="QCheckBox" name="cbPacaurNoConfirm">
+            <property name="geometry">
+             <rect>
+              <x>120</x>
+              <y>20</y>
+              <width>90</width>
+              <height>22</height>
+             </rect>
+            </property>
+            <property name="font">
+             <font>
+              <pointsize>10</pointsize>
+             </font>
+            </property>
+            <property name="text">
+             <string notr="true">--noconfirm</string>
+            </property>
+           </widget>
+           <widget class="QCheckBox" name="cbPacaurNoEdit">
+            <property name="geometry">
+             <rect>
+              <x>230</x>
+              <y>20</y>
+              <width>90</width>
+              <height>22</height>
+             </rect>
+            </property>
+            <property name="font">
+             <font>
+              <pointsize>10</pointsize>
+             </font>
+            </property>
+            <property name="text">
+             <string notr="true">--noedit</string>
+            </property>
+           </widget>
+           <widget class="QCheckBox" name="cbYaourtNoConfirm">
+            <property name="geometry">
+             <rect>
+              <x>120</x>
+              <y>50</y>
+              <width>90</width>
+              <height>22</height>
+             </rect>
+            </property>
+            <property name="font">
+             <font>
+              <pointsize>10</pointsize>
+             </font>
+            </property>
+            <property name="text">
+             <string notr="true">--noconfirm</string>
             </property>
            </widget>
           </widget>

@@ -890,11 +890,11 @@ void PacmanExec::doAURUpgrade(const QString &listOfPackages)
 
   if (Package::getForeignRepositoryToolName() == "pacaur")
   {
-    m_lastCommandList.append(Package::getForeignRepositoryToolName() + " -Sa " + listOfPackages + ";");
+    m_lastCommandList.append(Package::getForeignRepositoryToolNameParam() + " -Sa " + listOfPackages + ";");
   }
   else if (Package::getForeignRepositoryToolName() == "yaourt")
   {
-    m_lastCommandList.append(Package::getForeignRepositoryToolName() + " -S " + listOfPackages + ";");
+    m_lastCommandList.append(Package::getForeignRepositoryToolNameParam() + " -S " + listOfPackages + ";");
   }
 
   m_lastCommandList.append("echo -e;");
@@ -912,13 +912,13 @@ void PacmanExec::doAURInstall(const QString &listOfPackages)
   m_lastCommandList.clear();
 
   if (UnixCommand::getLinuxDistro() == ectn_KAOS)
-    m_lastCommandList.append(Package::getForeignRepositoryToolName() + " -i " + listOfPackages + ";");
+    m_lastCommandList.append(Package::getForeignRepositoryToolNameParam() + " -i " + listOfPackages + ";");
   else if (Package::getForeignRepositoryToolName() == "pacaur")
-    m_lastCommandList.append(Package::getForeignRepositoryToolName() + " -Sa " + listOfPackages + ";");
+    m_lastCommandList.append(Package::getForeignRepositoryToolNameParam() + " -Sa " + listOfPackages + ";");
   else if (Package::getForeignRepositoryToolName() == "yaourt")
-    m_lastCommandList.append(Package::getForeignRepositoryToolName() + " -S " + listOfPackages + ";");
+    m_lastCommandList.append(Package::getForeignRepositoryToolNameParam() + " -S " + listOfPackages + ";");
   else if (Package::getForeignRepositoryToolName() == "chaser")
-    m_lastCommandList.append(Package::getForeignRepositoryToolName() + " install " + listOfPackages + ";");
+    m_lastCommandList.append(Package::getForeignRepositoryToolNameParam() + " install " + listOfPackages + ";");
 
   m_lastCommandList.append("echo -e;");
   m_lastCommandList.append("read -n 1 -p \"" + StrConstants::getPressAnyKey() + "\"");
@@ -941,7 +941,7 @@ void PacmanExec::doAURRemove(const QString &listOfPackages)
   }
   else
   {
-    m_lastCommandList.append(Package::getForeignRepositoryToolName() +
+    m_lastCommandList.append(Package::getForeignRepositoryToolNameParam() +
                              " -R " + listOfPackages + ";");
   }
 
