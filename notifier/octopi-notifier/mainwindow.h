@@ -72,7 +72,7 @@ private slots:
   void doSystemUpgrade();
   void doSystemUpgradeFinished();
   void toggleEnableInterface(bool state);
-  void showConfigDialog();
+  void showOptionsDialog();
 
 private:
 

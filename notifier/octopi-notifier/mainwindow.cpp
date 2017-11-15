@@ -108,7 +108,7 @@ void MainWindow::initSystemTrayIcon()
 
   m_actionOptions = new QAction(this);
   m_actionOptions->setText(StrConstants::getOptions());
-  connect(m_actionOptions, SIGNAL(triggered()), this, SLOT(showConfigDialog()));
+  connect(m_actionOptions, SIGNAL(triggered()), this, SLOT(showOptionsDialog()));
 
   m_actionSyncDatabase = new QAction(this);
   m_actionSyncDatabase->setIconVisibleInMenu(true);
@@ -837,14 +837,14 @@ void MainWindow::runOctopi(ExecOpt execOptions)
 /*
  * Calls the QDialog to set notifier interval
  */
-void MainWindow::showConfigDialog()
+void MainWindow::showOptionsDialog()
 {
   if (m_optionsDialog == nullptr)
   {
     m_optionsDialog = new OptionsDialog(this);
+    connect(m_optionsDialog, SIGNAL(AURToolChanged()), this, SLOT(refreshAppIcon()));
 
     utils::positionWindowAtScreenCenter(m_optionsDialog);
-
     m_optionsDialog->exec();
 
     Options::result res = m_optionsDialog->result();
