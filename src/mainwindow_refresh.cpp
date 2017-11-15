@@ -530,6 +530,7 @@ void MainWindow::metaBuildPackageList()
   ui->twGroups->setEnabled(false);
   ui->tvPackages->setSelectionMode(QAbstractItemView::ExtendedSelection);
 
+  //Here we build the list of all available packages
   if (ui->twGroups->topLevelItemCount() == 0 || isAllGroupsSelected())
   {        
     ui->actionSearchByFile->setEnabled(true);
@@ -555,6 +556,7 @@ void MainWindow::metaBuildPackageList()
       std::cout << m_packageModel->getPackageCount() << " pkgs => " <<
                  "Time elapsed building pkgs from 'ALL group' list: " << m_time->elapsed() << " mili seconds." << std::endl << std::endl;
   }
+  //Here we build the list of all AUR/KCP packages
   else if (isAURGroupSelected())
   {
     m_toolButtonPacman->hide();
@@ -620,6 +622,7 @@ void MainWindow::metaBuildPackageList()
       m_leFilterPackage->setFocus();
     }
   }
+  //Here we build the list of packages available in the selected package group
   else
   {
     ui->actionSearchByFile->setEnabled(false);
@@ -718,8 +721,8 @@ void MainWindow::buildPackageList()
       if(m_debugInfo)
         std::cout << "Time elapsed setting outdated foreign pkgs from 'ALL group' list: " << m_time->elapsed() << " mili seconds." << std::endl;
     }  
-    //else
-    if (m_refreshForeignPackageList)
+
+    if (m_hasAURTool && m_refreshForeignPackageList)
     {
       delete m_foreignPackageList;
       m_foreignPackageList = NULL;
@@ -827,7 +830,8 @@ void MainWindow::buildPackageList()
   refreshToolBar();
   m_refreshPackageLists = true;
   m_refreshForeignPackageList = true;
-  m_outdatedAURTimer->start();
+
+  if (m_hasAURTool) m_outdatedAURTimer->start();
 }
 
 /*
@@ -852,22 +856,7 @@ void MainWindow::postBuildPackageList()
       reconnectSlot = true;
     }
 
-    QEventLoop el;
-    QFuture<QStringList *> f = QtConcurrent::run(getOutdatedAURStringList);
-    connect(&g_fwOutdatedAURStringList, SIGNAL(finished()), &el, SLOT(quit()));
-    g_fwOutdatedAURStringList.setFuture(f);
-    el.exec();
-
-    m_outdatedAURStringList = g_fwOutdatedAURStringList.result();
-    for(int c=0; c<m_outdatedAURStringList->count(); ++c)
-    {
-      //If we find an outdated AUR pkg in the official pkg list, let's remove it
-      PackageRepository::PackageData * pd = m_packageRepo.getFirstPackageByName(m_outdatedAURStringList->at(c));
-      if (pd && pd->status != ectn_FOREIGN_OUTDATED)
-      {
-        m_outdatedAURStringList->removeAt(c);
-      }
-    }
+    refreshOutdatedAURStringList();
 
     if (distro != ectn_KAOS && isAURGroupSelected()) return;
 
@@ -888,6 +877,8 @@ void MainWindow::postBuildPackageList()
       connect(ui->tvPackages->selectionModel(), SIGNAL(selectionChanged(QItemSelection,QItemSelection)),
             this, SLOT(invalidateTabs()));
     }
+
+    if (!m_actionSwitchToAURTool->isEnabled()) m_actionSwitchToAURTool->setEnabled(true);
   }
 
   if (m_groupWidgetNeedsFocus)
@@ -896,6 +887,29 @@ void MainWindow::postBuildPackageList()
     m_groupWidgetNeedsFocus = false;
   }
   else m_leFilterPackage->setFocus();
+}
+
+/*
+ * Refreshes the list of outdated AUR packages
+ */
+void MainWindow::refreshOutdatedAURStringList()
+{
+  QEventLoop el;
+  QFuture<QStringList *> f = QtConcurrent::run(getOutdatedAURStringList);
+  connect(&g_fwOutdatedAURStringList, SIGNAL(finished()), &el, SLOT(quit()));
+  g_fwOutdatedAURStringList.setFuture(f);
+  el.exec();
+
+  m_outdatedAURStringList = g_fwOutdatedAURStringList.result();
+  /*for(int c=0; c<m_outdatedAURStringList->count(); ++c)
+  {
+    //If we find an outdated AUR pkg in the official pkg list, let's remove it
+    PackageRepository::PackageData * pd = m_packageRepo.getFirstPackageByName(m_outdatedAURStringList->at(c));
+    if (pd && pd->status != ectn_FOREIGN_OUTDATED)
+    {
+      m_outdatedAURStringList->removeAt(c);
+    }
+  }*/
 }
 
 /*

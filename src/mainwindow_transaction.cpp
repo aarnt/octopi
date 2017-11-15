@@ -1295,8 +1295,24 @@ void MainWindow::doRemoveAURPackage()
  */
 void MainWindow::onAURToolChanged()
 {
-  m_actionSwitchToAURTool->setText(StrConstants::getUseAURTool());
-  m_actionSwitchToAURTool->setToolTip(m_actionSwitchToAURTool->text() + "  (Ctrl+Shift+Y)");
+  if (SettingsManager::getAURToolName() == "DO_NOT_USE_AUR")
+  {
+    m_hasAURTool = false;
+    m_actionSwitchToAURTool->setVisible(false);
+    m_refreshForeignPackageList = false;
+    m_outdatedAURPackagesNameVersion->clear();
+    m_outdatedAURStringList->clear();
+  }
+  else
+  {
+    m_hasAURTool = true;
+    m_actionSwitchToAURTool->setVisible(true);
+    m_actionSwitchToAURTool->setText(StrConstants::getUseAURTool());
+    m_actionSwitchToAURTool->setToolTip(m_actionSwitchToAURTool->text() + "  (Ctrl+Shift+Y)");
+    m_refreshForeignPackageList = true;
+  }
+
+  metaBuildPackageList();
 }
 
 /*

@@ -24,6 +24,7 @@
 #include "wmhelper.h"
 #include "strconstants.h"
 #include "terminal.h"
+#include "uihelper.h"
 
 #include <QPushButton>
 #include <QFile>
@@ -235,6 +236,8 @@ void OptionsDialog::initAURTab()
       rbPacaur->setChecked(true);
     else if (SettingsManager::getAURTool() == "yaourt")
       rbYaourt->setChecked(true);
+    else if (SettingsManager::getAURTool() == "DO_NOT_USE_AUR")
+      rbDoNotUse->setChecked(true);
     else
     {
       rbPacaur->setChecked(true);
@@ -452,7 +455,9 @@ void OptionsDialog::initTerminalTab(){
  * When user chooses OK button and saves all his changes
  */
 void OptionsDialog::accept(){
+  CPUIntensiveComputing cic;
   bool emptyIconPath = false;
+  bool AURHasChanged = false;
 
   if (m_calledByOctopi)
   {
@@ -475,28 +480,33 @@ void OptionsDialog::accept(){
     if (rbPacaur->isChecked() && SettingsManager::getAURTool() != "pacaur")
     {
       SettingsManager::setAURTool("pacaur");
-      emit AURToolChanged();
+      AURHasChanged = true;
     }
     else if (rbYaourt->isChecked() && SettingsManager::getAURTool() != "yaourt")
     {
       SettingsManager::setAURTool("yaourt");
-      emit AURToolChanged();
+      AURHasChanged = true;
+    }
+    else if (rbDoNotUse->isChecked() && SettingsManager::getAURTool() != "DO_NOT_USE_AUR")
+    {
+      SettingsManager::setAURTool("DO_NOT_USE_AUR");
+      AURHasChanged = true;
     }
 
     if (cbPacaurNoConfirm->isChecked() != SettingsManager::getPacaurNoConfirmParam())
     {
       SettingsManager::setPacaurNoConfirmParam(cbPacaurNoConfirm->isChecked());
-      emit AURToolChanged();
+      AURHasChanged = true;
     }
     if (cbPacaurNoEdit->isChecked() != SettingsManager::getPacaurNoEditParam())
     {
       SettingsManager::setPacaurNoEditParam(cbPacaurNoEdit->isChecked());
-      emit AURToolChanged();
+      AURHasChanged = true;
     }
     if (cbYaourtNoConfirm->isChecked() != SettingsManager::getYaourtNoConfirmParam())
     {
       SettingsManager::setYaourtNoConfirmParam(cbYaourtNoConfirm->isChecked());
-      emit AURToolChanged();
+      AURHasChanged = true;
     }
   }
 
@@ -577,7 +587,7 @@ void OptionsDialog::accept(){
   }
 
   //Set SU tool...
-  QString selectedSUTool;
+  QString selectedSUTool = SettingsManager::getSUTool();
 
   if (twSUTool->currentItem())
     selectedSUTool = twSUTool->item(twSUTool->row(twSUTool->currentItem()), 0)->text();
@@ -607,6 +617,8 @@ void OptionsDialog::accept(){
 
   QDialog::accept();
   setResult(res);
+
+  if (AURHasChanged) emit AURToolChanged();
 }
 
 /*

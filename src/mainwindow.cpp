@@ -144,6 +144,7 @@ void MainWindow::show()
     initAppIcon();
     initMenuBar();
     initToolBar();
+    if (m_hasAURTool) m_actionSwitchToAURTool->setEnabled(false);
     initTabWidgetPropertiesIndex();
     refreshDistroNews(false);
 

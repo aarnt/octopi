@@ -825,13 +825,13 @@ QList<PackageListData> * Package::getAURPackageList(const QString& searchString)
       if(packageTuple.indexOf("[installed]") != -1)
       {
         //This is an installed package
-        pkgStatus = ectn_INSTALLED;
+        pkgStatus = ectn_FOREIGN;
         pkgOutVersion = "";
       }
       else if (packageTuple.indexOf("[installed:") != -1)
       {
         //This is an outdated installed package
-        pkgStatus = ectn_OUTDATED;
+        pkgStatus = ectn_FOREIGN_OUTDATED;
 
         int i = packageTuple.indexOf("[installed:");
         pkgOutVersion = packageTuple.mid(i+11);

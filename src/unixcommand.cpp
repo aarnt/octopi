@@ -651,13 +651,9 @@ bool UnixCommand::doInternetPingTest()
  */
 bool UnixCommand::hasTheExecutable( const QString& exeName )
 {
-  QRegularExpression re("\\s+\\S*");
-  QString exe = exeName;
-  exe.remove(re);
-
   QProcess proc;
   proc.setProcessChannelMode(QProcess::MergedChannels);
-  QString sParam = "\"which " + exe + "\"";
+  QString sParam = "\"which " + exeName + "\"";
   proc.start("/bin/sh -c " + sParam);
   proc.waitForFinished();
 

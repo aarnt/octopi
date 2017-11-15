@@ -245,7 +245,8 @@ QString SettingsManager::getAURTool()
   SettingsManager p_instance;
   QString ret = (p_instance.getSYSsettings()->value( ctn_KEY_AUR_TOOL, "")).toString();
 
-  if (ret == "pacaur")
+  if (ret == "DO_NOT_USE_AUR") return ret;
+  else if (ret == "pacaur")
   {
     if (getPacaurNoConfirmParam()) params += " --noconfirm ";
     if (getPacaurNoEditParam()) params += " --noedit ";

@@ -353,6 +353,7 @@ private slots:
   void preBuildUnrequiredPackageList();
   void preBuildPackageList();
   void postBuildPackageList();
+  void refreshOutdatedAURStringList();
   void preBuildPackagesFromGroupList();
   void preBuildAURPackageList();
   void preBuildAURPackageListMeta();

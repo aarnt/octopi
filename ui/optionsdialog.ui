@@ -91,7 +91,7 @@
             <property name="geometry">
              <rect>
               <x>10</x>
-              <y>20</y>
+              <y>50</y>
               <width>105</width>
               <height>22</height>
              </rect>
@@ -110,7 +110,7 @@
             <property name="geometry">
              <rect>
               <x>10</x>
-              <y>50</y>
+              <y>80</y>
               <width>105</width>
               <height>22</height>
              </rect>
@@ -125,8 +125,8 @@
            <widget class="QCheckBox" name="cbPacaurNoConfirm">
             <property name="geometry">
              <rect>
-              <x>120</x>
-              <y>20</y>
+              <x>140</x>
+              <y>50</y>
               <width>101</width>
               <height>22</height>
              </rect>
@@ -143,8 +143,8 @@
            <widget class="QCheckBox" name="cbPacaurNoEdit">
             <property name="geometry">
              <rect>
-              <x>230</x>
-              <y>20</y>
+              <x>250</x>
+              <y>50</y>
               <width>90</width>
               <height>22</height>
              </rect>
@@ -161,8 +161,8 @@
            <widget class="QCheckBox" name="cbYaourtNoConfirm">
             <property name="geometry">
              <rect>
-              <x>120</x>
-              <y>50</y>
+              <x>140</x>
+              <y>80</y>
               <width>101</width>
               <height>22</height>
              </rect>
@@ -174,6 +174,19 @@
             </property>
             <property name="text">
              <string notr="true">--noconfirm</string>
+            </property>
+           </widget>
+           <widget class="QRadioButton" name="rbDoNotUse">
+            <property name="geometry">
+             <rect>
+              <x>10</x>
+              <y>20</y>
+              <width>271</width>
+              <height>23</height>
+             </rect>
+            </property>
+            <property name="text">
+             <string>Do not use AUR</string>
             </property>
            </widget>
           </widget>
