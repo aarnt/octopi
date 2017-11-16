@@ -191,7 +191,7 @@
     </message>
     <message>
         <source>Ctrl+Shift+V</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+Shift+V</translation>
     </message>
     <message>
         <source>Repository Editor</source>
@@ -199,7 +199,7 @@
     </message>
     <message>
         <source>Ctrl+Shift+P</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+Shift+P</translation>
     </message>
     <message>
         <source>Cache Cleaner</source>
@@ -207,7 +207,7 @@
     </message>
     <message>
         <source>Ctrl+Shift+N</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+Shift+N</translation>
     </message>
     <message>
         <source>Installed</source>
@@ -390,79 +390,79 @@
     <name>OptionsDialog</name>
     <message>
         <source>Options</source>
-        <translation type="unfinished"/>
+        <translation>Opsi</translation>
     </message>
     <message>
         <source>Backend</source>
-        <translation type="unfinished"/>
+        <translation>Backend</translation>
     </message>
     <message>
         <source>Select the backend Octopi should use</source>
-        <translation type="unfinished"/>
+        <translation>Pilih backend Octopi yang digunakan</translation>
     </message>
     <message>
         <source>Icon</source>
-        <translation type="unfinished"/>
+        <translation>Icon</translation>
     </message>
     <message>
         <source>Red icon</source>
-        <translation type="unfinished"/>
+        <translation>Icon merah</translation>
     </message>
     <message>
         <source>Yellow icon</source>
-        <translation type="unfinished"/>
+        <translation>Icon kuning</translation>
     </message>
     <message>
         <source>Green icon</source>
-        <translation type="unfinished"/>
+        <translation>Icon hijau</translation>
     </message>
     <message>
         <source>Busy icon</source>
-        <translation type="unfinished"/>
+        <translation>Icon sibuk</translation>
     </message>
     <message>
         <source>Use default notification icons</source>
-        <translation type="unfinished"/>
+        <translation>Gunakan notifikasi icon default</translation>
     </message>
     <message>
         <source>SU tool</source>
-        <translation type="unfinished"/>
+        <translation>SU tool</translation>
     </message>
     <message>
         <source>Synchronization</source>
-        <translation type="unfinished"/>
+        <translation>Sinkronisasi</translation>
     </message>
     <message>
         <source>Terminal</source>
-        <translation type="unfinished"/>
+        <translation>Terminal</translation>
     </message>
     <message>
         <source>Select the terminal Octopi should use</source>
-        <translation type="unfinished"/>
+        <translation>Pilih terminal yang Octopi gunakan</translation>
     </message>
     <message>
         <source>Open Image</source>
-        <translation type="unfinished"/>
+        <translation>Buka Gambar</translation>
     </message>
     <message>
         <source>Image Files</source>
-        <translation type="unfinished"/>
+        <translation>Berkas Gambar</translation>
     </message>
     <message>
         <source>Ok</source>
-        <translation type="unfinished"/>
+        <translation>Ok</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished"/>
+        <translation>Batalkan</translation>
     </message>
     <message>
         <source>Select the AUR tool Octopi should use</source>
-        <translation type="unfinished"/>
+        <translation>Pilih AUR tool yang Octopi gunakan</translation>
     </message>
     <message>
         <source>Select the SU tool Octopi should use</source>
-        <translation type="unfinished"/>
+        <translation>Pilih SU tool yang Octopi gunakan</translation>
     </message>
 </context>
 <context>
@@ -525,7 +525,7 @@
     </message>
     <message>
         <source>Error</source>
-        <translation type="unfinished"/>
+        <translation>Error</translation>
     </message>
     <message>
         <source>No news could be found! Press Ctrl+G to download the latest news.</source>
@@ -553,7 +553,7 @@
     </message>
     <message>
         <source>Options</source>
-        <translation type="unfinished"/>
+        <translation>Opsi</translation>
     </message>
     <message>
         <source>Name</source>
@@ -641,7 +641,7 @@
     </message>
     <message>
         <source>Install Reason</source>
-        <translation type="unfinished"/>
+        <translation>Alasan Instal</translation>
     </message>
     <message>
         <source>Packager</source>
@@ -673,7 +673,7 @@
     </message>
     <message>
         <source>Partial updates are not supported!</source>
-        <translation type="unfinished"/>
+        <translation>Update sebagian tidak didukung!</translation>
     </message>
     <message>
         <source>automatic</source>
@@ -909,7 +909,7 @@
     </message>
     <message>
         <source>Icon path information is incomplete.</source>
-        <translation type="unfinished"/>
+        <translation>Informasi icon path tidak lengkap</translation>
     </message>
     <message>
         <source>You can not run Octopi with administrator&apos;s credentials.</source>

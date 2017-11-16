@@ -191,7 +191,7 @@
     </message>
     <message>
         <source>Ctrl+Shift+V</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+Shift+V</translation>
     </message>
     <message>
         <source>Repository Editor</source>
@@ -199,7 +199,7 @@
     </message>
     <message>
         <source>Ctrl+Shift+P</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+Shift+P</translation>
     </message>
     <message>
         <source>Cache Cleaner</source>
@@ -207,7 +207,7 @@
     </message>
     <message>
         <source>Ctrl+Shift+N</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+Shift+N</translation>
     </message>
     <message>
         <source>Installed</source>
@@ -390,79 +390,79 @@
     <name>OptionsDialog</name>
     <message>
         <source>Options</source>
-        <translation type="unfinished"/>
+        <translation>Opzioni</translation>
     </message>
     <message>
         <source>Backend</source>
-        <translation type="unfinished"/>
+        <translation>Backend</translation>
     </message>
     <message>
         <source>Select the backend Octopi should use</source>
-        <translation type="unfinished"/>
+        <translation>Selezionare il backend che Octopi dovrebbe utilizzare</translation>
     </message>
     <message>
         <source>Icon</source>
-        <translation type="unfinished"/>
+        <translation>Icona</translation>
     </message>
     <message>
         <source>Red icon</source>
-        <translation type="unfinished"/>
+        <translation>Icona rossa</translation>
     </message>
     <message>
         <source>Yellow icon</source>
-        <translation type="unfinished"/>
+        <translation>Icona gialla</translation>
     </message>
     <message>
         <source>Green icon</source>
-        <translation type="unfinished"/>
+        <translation>Icona verde</translation>
     </message>
     <message>
         <source>Busy icon</source>
-        <translation type="unfinished"/>
+        <translation>Icona occupato</translation>
     </message>
     <message>
         <source>Use default notification icons</source>
-        <translation type="unfinished"/>
+        <translation>Utilizzare le icone di notifica predefinite</translation>
     </message>
     <message>
         <source>SU tool</source>
-        <translation type="unfinished"/>
+        <translation>Strumento SU</translation>
     </message>
     <message>
         <source>Synchronization</source>
-        <translation type="unfinished"/>
+        <translation>Sincronizzazione</translation>
     </message>
     <message>
         <source>Terminal</source>
-        <translation type="unfinished"/>
+        <translation>Terminale</translation>
     </message>
     <message>
         <source>Select the terminal Octopi should use</source>
-        <translation type="unfinished"/>
+        <translation>Selezionare il terminale che Octopi dovrebbe utilizzare</translation>
     </message>
     <message>
         <source>Open Image</source>
-        <translation type="unfinished"/>
+        <translation>Aprire Immagine</translation>
     </message>
     <message>
         <source>Image Files</source>
-        <translation type="unfinished"/>
+        <translation>File Immagine</translation>
     </message>
     <message>
         <source>Ok</source>
-        <translation type="unfinished"/>
+        <translation>Ok</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished"/>
+        <translation>Annullare</translation>
     </message>
     <message>
         <source>Select the AUR tool Octopi should use</source>
-        <translation type="unfinished"/>
+        <translation>Selezionare lo strumento AUR che Octopi dovrebbe utilizzare</translation>
     </message>
     <message>
         <source>Select the SU tool Octopi should use</source>
-        <translation type="unfinished"/>
+        <translation>Selezionare lo strumento SU che Octopi dovrebbe utilizzare</translation>
     </message>
 </context>
 <context>
@@ -525,7 +525,7 @@
     </message>
     <message>
         <source>Error</source>
-        <translation type="unfinished"/>
+        <translation>Errore</translation>
     </message>
     <message>
         <source>No news could be found! Press Ctrl+G to download the latest news.</source>
@@ -553,7 +553,7 @@
     </message>
     <message>
         <source>Options</source>
-        <translation type="unfinished"/>
+        <translation>Opzioni</translation>
     </message>
     <message>
         <source>Name</source>
@@ -641,7 +641,7 @@
     </message>
     <message>
         <source>Install Reason</source>
-        <translation type="unfinished"/>
+        <translation>Motivo Installazione</translation>
     </message>
     <message>
         <source>Packager</source>
@@ -673,7 +673,7 @@
     </message>
     <message>
         <source>Partial updates are not supported!</source>
-        <translation type="unfinished"/>
+        <translation>Gli aggiornamenti parziali non sono supportati!</translation>
     </message>
     <message>
         <source>automatic</source>
@@ -909,7 +909,7 @@
     </message>
     <message>
         <source>Icon path information is incomplete.</source>
-        <translation type="unfinished"/>
+        <translation>L&apos;informazione sul percorso dell&apos;icona è incompleta.</translation>
     </message>
     <message>
         <source>You can not run Octopi with administrator&apos;s credentials.</source>
