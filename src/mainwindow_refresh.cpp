@@ -835,6 +835,7 @@ void MainWindow::buildPackageList()
   m_refreshForeignPackageList = true;
 
   if (m_hasAURTool) m_outdatedAURTimer->start();
+  else if (!ui->twGroups->isEnabled()) ui->twGroups->setEnabled(true);
 }
 
 /*
