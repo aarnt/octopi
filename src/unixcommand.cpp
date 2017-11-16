@@ -884,10 +884,27 @@ QString UnixCommand::errorString()
  */
 void UnixCommand::cancelProcess()
 {
-  QProcess pacman;
-  QString command = WMHelper::getSUCommand() + " killall pacman";
-  pacman.start(command);
-  pacman.waitForFinished();
+  //First we check if we have pgrep installed
+  if (hasTheExecutable("pgrep"))
+  {
+    QProcess pgrep;
+    QString command = "pgrep pacman";
+    pgrep.start(command);
+    pgrep.waitForFinished();
+    QString res = pgrep.readAllStandardOutput();
+    QStringList sl = res.split("\n");
+
+    //If there is only ONE pacman process running, let's kill it
+    if (sl.count() == 2 && sl.at(1) == "")
+    {
+      QString pid = sl.at(0);
+
+      QProcess pacman;
+      command = WMHelper::getSUCommand() + " kill -9 " + pid;
+      pacman.start(command);
+      pacman.waitForFinished();
+    }
+  }
 }
 
 /*
