@@ -61,7 +61,6 @@ void MainWindow::initTabHelpUsage()
         QString("<a href=\"http://www.gnu.org/licenses/gpl-2.0.html\">GPL v2</a>.</p></h3>") +
       QString("<h4><p>") + strForMoreInfo + " " +
       QString("<a href=\"http://octopiproject.wordpress.com\">http://octopiproject.wordpress.com</a>.</p></h4><br>");
-
     html += tr("Package classification:") +
 
   QString("<ul type=\"square\"><li>") + iconPath + "installed.png\"/> " +
@@ -118,8 +117,6 @@ void MainWindow::initTabHelpUsage()
      tr("Ctrl+L to find a package in the package list") +
   QString("</li><li>") +
      tr("Ctrl+F to search for text inside tab Files, News and Usage") +
-  //QString("</li><li>") +
-  //   tr("Ctrl+N or 'View/Non installed' to show/hide non installed packages") +
   QString("</li><li>") +
      tr("Ctrl+M or 'Transaction/Commit' to start installation/removal of selected packages") +
   QString("</li><li>") +
@@ -131,8 +128,9 @@ void MainWindow::initTabHelpUsage()
   QString("</li></ul>") +
 
      tr("Control+shift+key sequences:") +
-  QString("<ul><li>") +
-     tr("Ctrl+Shift+C to clean local packages cache (pacman -Sc)") +
+  QString("<ul>") +
+  //QString("<ul><li>") +
+  //   tr("Ctrl+Shift+C to clean local packages cache (pacman -Sc)") +
   QString("</li><li>") +
      tr("Ctrl+Shift+G to display all package groups") +
   QString("</li><li>") +

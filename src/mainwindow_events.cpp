@@ -290,13 +290,13 @@ void MainWindow::keyPressEvent(QKeyEvent* ke)
       ui->tvPackages->setFocus();
     }
   }
-  else if(ke->key() == Qt::Key_C && ke->modifiers() == (Qt::ShiftModifier|Qt::ControlModifier))
+  /*else if(ke->key() == Qt::Key_C && ke->modifiers() == (Qt::ShiftModifier|Qt::ControlModifier))
   {
     if (m_commandExecuting == ectn_NONE)
     {
       doCleanCache(); //If we are not executing any command, let's clean the cache
     }
-  }
+  }*/
   else if(ke->key() == Qt::Key_R && ke->modifiers() == (Qt::ShiftModifier|Qt::ControlModifier))
   {
     if (m_commandExecuting == ectn_NONE)
