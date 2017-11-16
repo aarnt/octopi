@@ -215,30 +215,43 @@ void OptionsDialog::initButtonBox(){
  */
 void OptionsDialog::initAURTab()
 {
-  int numAURTools=0;
+  bool pacaurTool=false;
+  bool yaourtTool=false;
 
   if ((UnixCommand::getLinuxDistro() != ectn_KAOS) &&
     (UnixCommand::getLinuxDistro() != ectn_CHAKRA))
   {
     if (UnixCommand::hasTheExecutable("pacaur"))
-      numAURTools++;
+      pacaurTool=true;
     if (UnixCommand::hasTheExecutable("yaourt"))
-      numAURTools++;
+      yaourtTool=true;
   }
 
-  if (numAURTools == 0)
+  if (!pacaurTool && !yaourtTool)
   {
     removeTabByName("AUR");
   }
   else
   {
+    if (!pacaurTool)
+    {
+      rbPacaur->setEnabled(false);
+      cbPacaurNoConfirm->setEnabled(false);
+      cbPacaurNoEdit->setEnabled(false);
+    }
+    if (!yaourtTool)
+    {
+      rbYaourt->setEnabled(false);
+      cbYaourtNoConfirm->setEnabled(false);
+    }
+
     if (SettingsManager::getAURTool() == "pacaur")
       rbPacaur->setChecked(true);
     else if (SettingsManager::getAURTool() == "yaourt")
       rbYaourt->setChecked(true);
     else if (SettingsManager::getAURTool() == "DO_NOT_USE_AUR")
-      rbDoNotUse->setChecked(true);
-    else
+      rbDoNotUse->setChecked(true);    
+    else if (pacaurTool)
     {
       rbPacaur->setChecked(true);
       SettingsManager::setAURTool("pacaur");
