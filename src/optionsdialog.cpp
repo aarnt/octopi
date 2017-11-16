@@ -419,7 +419,7 @@ void OptionsDialog::initTerminalTab(){
 
   if (terminals.count() <= 2)
   {
-    twTerminal->setEnabled(false);
+    removeTabByName(tr("Terminal"));
     return;
   }
 
