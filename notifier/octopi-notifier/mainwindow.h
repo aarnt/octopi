@@ -64,12 +64,14 @@ private slots:
   void refreshAppIcon();
   void runOctopi(ExecOpt execOptions = ectn_SYSUPGRADE_EXEC_OPT);
   void runOctopiSysUpgrade();  
+  void runOctopiAURUpgrade();
 
   inline void startOctopi() { runOctopi(ectn_NORMAL_EXEC_OPT); }
   void aboutOctopiNotifier();
   void hideOctopi();
   void exitNotifier();
   void doSystemUpgrade();
+  void doAURUpgrade();
   void doSystemUpgradeFinished();
   void toggleEnableInterface(bool state);
   void showOptionsDialog();
@@ -88,8 +90,11 @@ private:
   QAction *m_actionOptions;
   QAction *m_actionSyncDatabase;
   QAction *m_actionSystemUpgrade;
+  QAction *m_actionAURUpgrade;
   QAction *m_actionAbout;
   QAction *m_actionExit;
+
+  PacmanExec *m_pacmanExec;
 
   QIcon m_icon;
   QStringList *m_outdatedStringList;
@@ -108,6 +113,7 @@ private:
   PacmanHelperClient *m_pacmanHelperClient;
 
   bool _isSUAvailable();
+  void initActions();
   void initSystemTrayIcon();
   void sendNotification(const QString &msg);
 };

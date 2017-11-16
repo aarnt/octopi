@@ -355,7 +355,11 @@ void QtSingleApplication::activateWindow(const QString &message)
     {
       if (!mw->isExecutingCommand())
       {
-        if (message == "SYSUPGRADE")
+        if (message == "AURUPGRADE")
+        {
+          mw->doAURUpgrade();
+        }
+        else if (message == "SYSUPGRADE")
         {
           mw->doSystemUpgrade();
         }

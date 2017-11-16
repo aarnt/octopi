@@ -95,7 +95,8 @@ private:
   QFileSystemWatcher *m_pacmanDatabaseSystemWatcher;
 
   // Package Data
-  PackageRepository           m_packageRepo;
+  PackageRepository m_packageRepo;
+  // Package Model
   std::unique_ptr<PackageModel> m_packageModel;
 
   //Controls if the dialog showing the packages to be upgraded is opened
@@ -387,7 +388,6 @@ private slots:
   void doCleanCache();
   void doSyncDatabase();
   void doMirrorCheck();
-  void doAURUpgrade();
   void doInstallAURPackage();
   void doRemoveAURPackage();
 
@@ -455,6 +455,7 @@ private slots:
 
 public slots:
   void doSystemUpgrade(SystemUpgradeOptions sysUpgradeOption = ectn_NO_OPT);
+  void doAURUpgrade();
 
 public:
   explicit MainWindow(QWidget *parent = 0);

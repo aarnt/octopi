@@ -48,7 +48,11 @@ int main(int argc, char *argv[])
 
   if (app.isRunning())
   {
-    if (argList->getSwitch("-sysupgrade"))
+    if (argList->getSwitch("-aurupgrade"))
+    {
+      app.sendMessage("AURUPGRADE");
+    }
+    else if (argList->getSwitch("-sysupgrade"))
     {
       app.sendMessage("SYSUPGRADE");
     }

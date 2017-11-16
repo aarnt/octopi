@@ -49,6 +49,7 @@
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent)
 {
+  m_pacmanExec = nullptr;
   m_transactionDialog = nullptr;
   m_debugInfo = false;
   m_optionsDialog = nullptr;
@@ -58,6 +59,7 @@ MainWindow::MainWindow(QWidget *parent) :
   connect(m_pacmanDatabaseSystemWatcher,
           SIGNAL(directoryChanged(QString)), this, SLOT(refreshAppIcon()));
 
+  initActions();
   initSystemTrayIcon();
 }
 
@@ -66,6 +68,45 @@ MainWindow::~MainWindow()
 #ifdef KSTATUS
   delete m_systemTrayIcon;
 #endif
+}
+
+/*
+ * Let's initialize all notifier's actions...
+ */
+void MainWindow::initActions()
+{
+  m_actionExit = new QAction(IconHelper::getIconExit(), tr("Exit"), this);
+  connect(m_actionExit, SIGNAL(triggered()), this, SLOT(exitNotifier()));
+
+  m_actionAbout = new QAction(StrConstants::getHelpAbout(), this);
+  m_actionAbout->setIconVisibleInMenu(true);
+  connect(m_actionAbout, SIGNAL(triggered()), this, SLOT(aboutOctopiNotifier()));
+
+  m_actionOctopi = new QAction(this);
+  m_actionOctopi->setText("Octopi...");
+  connect(m_actionOctopi, SIGNAL(triggered()), this, SLOT(startOctopi()));
+
+  m_actionOptions = new QAction(this);
+  m_actionOptions->setText(StrConstants::getOptions());
+  connect(m_actionOptions, SIGNAL(triggered()), this, SLOT(showOptionsDialog()));
+
+  m_actionSyncDatabase = new QAction(this);
+  m_actionSyncDatabase->setIconVisibleInMenu(true);
+  m_actionSyncDatabase->setText(StrConstants::getSyncDatabase());
+  m_actionSyncDatabase->setIcon(IconHelper::getIconSyncDatabase());
+  connect(m_actionSyncDatabase, SIGNAL(triggered()), this, SLOT(syncDatabase()));
+
+  m_actionSystemUpgrade = new QAction(this);
+  m_actionSystemUpgrade->setIconVisibleInMenu(true);
+  m_actionSystemUpgrade->setText(tr("System upgrade"));
+  m_actionSystemUpgrade->setIcon(IconHelper::getIconSystemUpgrade());
+  connect(m_actionSystemUpgrade, SIGNAL(triggered()), this, SLOT(runOctopiSysUpgrade()));
+
+  m_actionAURUpgrade = new QAction(this);
+  m_actionAURUpgrade->setIconVisibleInMenu(true);
+  m_actionAURUpgrade->setText(tr("System upgrade"));
+  m_actionAURUpgrade->setIcon(IconHelper::getIconForeignGreen());
+  connect(m_actionAURUpgrade, SIGNAL(triggered()), this, SLOT(runOctopiAURUpgrade()));
 }
 
 /*
@@ -95,39 +136,13 @@ void MainWindow::initSystemTrayIcon()
   m_systemTrayIcon->setIcon(m_icon); 
 #endif
 
-  m_actionExit = new QAction(IconHelper::getIconExit(), tr("Exit"), this);
-  connect(m_actionExit, SIGNAL(triggered()), this, SLOT(exitNotifier()));
-
-  m_actionAbout = new QAction(StrConstants::getHelpAbout(), this);
-  m_actionAbout->setIconVisibleInMenu(true);
-  connect(m_actionAbout, SIGNAL(triggered()), this, SLOT(aboutOctopiNotifier()));
-
-  m_actionOctopi = new QAction(this);
-  m_actionOctopi->setText("Octopi...");
-  connect(m_actionOctopi, SIGNAL(triggered()), this, SLOT(startOctopi()));
-
-  m_actionOptions = new QAction(this);
-  m_actionOptions->setText(StrConstants::getOptions());
-  connect(m_actionOptions, SIGNAL(triggered()), this, SLOT(showOptionsDialog()));
-
-  m_actionSyncDatabase = new QAction(this);
-  m_actionSyncDatabase->setIconVisibleInMenu(true);
-  m_actionSyncDatabase->setText(StrConstants::getSyncDatabase());
-  m_actionSyncDatabase->setIcon(IconHelper::getIconSyncDatabase());
-  connect(m_actionSyncDatabase, SIGNAL(triggered()), this, SLOT(syncDatabase()));
-
-  m_actionSystemUpgrade = new QAction(this);
-  m_actionSystemUpgrade->setIconVisibleInMenu(true);
-  m_actionSystemUpgrade->setText(tr("System upgrade"));
-  m_actionSystemUpgrade->setIcon(IconHelper::getIconSystemUpgrade());
-  connect(m_actionSystemUpgrade, SIGNAL(triggered()), this, SLOT(runOctopiSysUpgrade()));
-
   m_systemTrayIconMenu = new QMenu( this );
 
   if (UnixCommand::hasTheExecutable("octopi"))
     m_systemTrayIconMenu->addAction(m_actionOctopi);
 
   m_systemTrayIconMenu->addAction(m_actionSyncDatabase);
+  m_systemTrayIconMenu->addAction(m_actionAURUpgrade);
   m_systemTrayIconMenu->addAction(m_actionSystemUpgrade);
   m_systemTrayIconMenu->addSeparator();
   m_systemTrayIconMenu->addAction(m_actionOptions);
@@ -241,6 +256,14 @@ void MainWindow::pacmanHelperTimerTimeout()
 void MainWindow::runOctopiSysUpgrade()
 {
   runOctopi(ectn_SYSUPGRADE_EXEC_OPT);
+}
+
+/*
+ * Helper to a runOctopi with a call to AUR upgrade
+ */
+void MainWindow::runOctopiAURUpgrade()
+{
+  runOctopi(ectn_AUR_UPGRADE_EXEC_OPT);
 }
 
 /*
@@ -399,7 +422,32 @@ void MainWindow::doSystemUpgrade()
 }
 
 /*
- * When system upgrade process is finished...
+ * Calls the chosen terminal and run a system upgrade of the outdated AUR targets
+ */
+void MainWindow::doAURUpgrade()
+{
+  QString listOfTargets;
+  QString auxPkg;
+
+  foreach(QString pkg, *m_outdatedAURStringList)
+  {
+    auxPkg = pkg;
+    auxPkg.remove("[1;39m");
+    auxPkg.remove("[0m");
+    auxPkg.remove("");
+    listOfTargets += auxPkg + " ";
+  }
+
+  m_pacmanExec = new PacmanExec();
+
+  QObject::connect(m_pacmanExec, SIGNAL( finished ( int, QProcess::ExitStatus )),
+                   this, SLOT( refreshAppIcon()) );
+
+  m_pacmanExec->doAURUpgrade(listOfTargets);
+}
+
+/*
+ * When system upgrade process has finished...
  */
 void MainWindow::doSystemUpgradeFinished()
 {
@@ -581,6 +629,8 @@ void MainWindow::sendNotification(const QString &msg)
  */
 void MainWindow::refreshAppIcon()
 {
+  if (m_pacmanExec != nullptr) delete m_pacmanExec;
+
   disconnect(m_pacmanDatabaseSystemWatcher,
           SIGNAL(directoryChanged(QString)), this, SLOT(refreshAppIcon()));
 
@@ -668,6 +718,7 @@ void MainWindow::refreshAppIcon()
   {
     if(m_commandExecuting == ectn_NONE)
     {
+      m_actionAURUpgrade->setVisible(false);
       m_actionSystemUpgrade->setEnabled(true);
       m_actionSystemUpgrade->setVisible(true);
     }
@@ -685,6 +736,8 @@ void MainWindow::refreshAppIcon()
   }
   else if(m_outdatedAURStringList->count() > 0) //YELLOW ICON!
   {
+    m_actionAURUpgrade->setEnabled(true);
+    m_actionAURUpgrade->setVisible(true);
     m_actionSystemUpgrade->setVisible(false);
     m_icon = IconHelper::getIconOctopiYellow();
     if (m_debugInfo)
@@ -697,6 +750,7 @@ void MainWindow::refreshAppIcon()
   }
   else //YEAHHH... GREEN ICON!
   {
+    m_actionAURUpgrade->setVisible(false);
     m_actionSystemUpgrade->setVisible(false);
     m_icon = IconHelper::getIconOctopiGreen();
     if (m_debugInfo)
@@ -820,6 +874,16 @@ void MainWindow::runOctopi(ExecOpt execOptions)
     {
       QProcess::startDetached("octopi -sysupgrade");
     }
+  }
+  else if (execOptions == ectn_AUR_UPGRADE_EXEC_OPT &&
+      !UnixCommand::isAppRunning("octopi", true) && m_outdatedAURStringList->count() > 0)
+  {
+    doAURUpgrade();
+  }
+  else if (execOptions == ectn_AUR_UPGRADE_EXEC_OPT &&
+      UnixCommand::isAppRunning("octopi", true) && m_outdatedAURStringList->count() > 0)
+  {
+    QProcess::startDetached("octopi -aurupgrade");
   }
   else if (execOptions == ectn_NORMAL_EXEC_OPT)
   {
