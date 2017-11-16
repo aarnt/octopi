@@ -56,11 +56,17 @@ SettingsManager* SettingsManager::instance(){
 
 //CacheCleaner related --------------------------------------------------------------
 int SettingsManager::getKeepNumInstalledPackages() {
-  return instance()->getSYSsettings()->value(ctn_KEEP_NUM_INSTALLED, 0).toInt();
+  return instance()->getSYSsettings()->value(ctn_KEY_KEEP_NUM_INSTALLED, 0).toInt();
 }
 
 int SettingsManager::getKeepNumUninstalledPackages() {
-  return instance()->getSYSsettings()->value(ctn_KEEP_NUM_UNINSTALLED, 0).toInt();
+  return instance()->getSYSsettings()->value(ctn_KEY_KEEP_NUM_UNINSTALLED, 0).toInt();
+}
+
+void SettingsManager::setCacheCleanerWindowSize(QByteArray newValue)
+{
+  instance()->getSYSsettings()->setValue( ctn_KEY_CACHE_CLEANER_WINDOW_SIZE, newValue);
+  instance()->getSYSsettings()->sync();
 }
 //CacheCleaner related --------------------------------------------------------------
 
@@ -370,6 +376,11 @@ bool SettingsManager::hasPacmanBackend()
   }
 }
 
+QByteArray SettingsManager::getCacheCleanerWindowSize()
+{
+  return (instance()->getSYSsettings()->value( ctn_KEY_CACHE_CLEANER_WINDOW_SIZE, 0).toByteArray());
+}
+
 QString SettingsManager::getTerminal(){
   if (!instance()->getSYSsettings()->contains(ctn_KEY_TERMINAL))
   {
@@ -507,13 +518,13 @@ void SettingsManager::setTerminal(const QString& newValue){
 
 void SettingsManager::setKeepNumInstalledPackages(int newValue)
 {
-  instance()->getSYSsettings()->setValue(ctn_KEEP_NUM_INSTALLED, newValue);
+  instance()->getSYSsettings()->setValue(ctn_KEY_KEEP_NUM_INSTALLED, newValue);
   instance()->getSYSsettings()->sync();
 }
 
 void SettingsManager::setKeepNumUninstalledPackages(int newValue)
 {
-  instance()->getSYSsettings()->setValue(ctn_KEEP_NUM_UNINSTALLED, newValue);
+  instance()->getSYSsettings()->setValue(ctn_KEY_KEEP_NUM_UNINSTALLED, newValue);
   instance()->getSYSsettings()->sync();
 }
 

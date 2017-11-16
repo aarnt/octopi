@@ -49,7 +49,7 @@ enum Language { ectn_LANG_ENGLISH, ectn_LANG_USER_DEFINED };
 enum TreatString { ectn_TREAT_STRING, ectn_DONT_TREAT_STRING };
 enum TreatURLLinks { ectn_TREAT_URL_LINK, ectn_DONT_TREAT_URL_LINK };
 
-//SettingsManager related
+//SettingsManager - Octopi related
 enum SaveSettingsReason { ectn_AUR_PackageList, ectn_PackageList, ectn_CurrentTabIndex, ectn_NORMAL=30,
                           ectn_MAXIMIZE_PACKAGES=40, ectn_MAXIMIZE_PROPERTIES=50, ectn_GROUPS=5 };
 
@@ -86,14 +86,15 @@ const QString ctn_KEY_SU_TOOL("SU_Tool_Name");
 const QString ctn_KEY_TERMINAL("Terminal");
 const QString ctn_AUTOMATIC("automatic");
 
-//Notifier related
+//SettingsManager - Notifier related
 const QString ctn_KEY_LAST_SYNC_DB_TIME("LastSyncDbTime");
 const QString ctn_KEY_SYNC_DB_INTERVAL("SyncDbInterval");
 const QString ctn_KEY_SYNC_DB_HOUR("SyncDbHour");
 
-//CacheCleaner related
-const QString ctn_KEEP_NUM_INSTALLED("Keep_Num_Installed");
-const QString ctn_KEEP_NUM_UNINSTALLED("Keep_Num_Uninstalled");
+//SettingsManager - CacheCleaner related
+const QString ctn_KEY_CACHE_CLEANER_WINDOW_SIZE("Cache_Cleaner_Window_Size");
+const QString ctn_KEY_KEEP_NUM_INSTALLED("Keep_Num_Installed");
+const QString ctn_KEY_KEEP_NUM_UNINSTALLED("Keep_Num_Uninstalled");
 
 //Package related
 const QString ctn_TEMP_ACTIONS_FILE ( QDir::tempPath() + QDir::separator() + ".qt_temp_" );

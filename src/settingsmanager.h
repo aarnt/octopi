@@ -79,8 +79,13 @@ class SettingsManager
     static bool hasPacmanBackend();
 
     //CacheCleaner related
+    static QByteArray getCacheCleanerWindowSize();
     static int getKeepNumInstalledPackages();
     static int getKeepNumUninstalledPackages();
+
+    static void setCacheCleanerWindowSize(QByteArray newValue);
+    static void setKeepNumInstalledPackages(int newValue);
+    static void setKeepNumUninstalledPackages(int newValue);
 
     //Notifier related
     static int getSyncDbHour();
@@ -122,9 +127,6 @@ class SettingsManager
     static void setLastSyncDbTime(QDateTime newValue);
 
     static void setTerminal(const QString& newValue);
-    static void setKeepNumInstalledPackages(int newValue);
-    static void setKeepNumUninstalledPackages(int newValue);
-
     static void setPackageIconColumnWidth(int newValue);
     static void setPackageNameColumnWidth(int newValue);
     static void setPackageVersionColumnWidth(int newValue);
