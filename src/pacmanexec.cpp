@@ -490,6 +490,10 @@ void PacmanExec::prepareTextToPrint(QString str, TreatString ts, TreatURLLinks t
     {
       newStr = "<b><font color=\"#E55451\">" + newStr + "&nbsp;</font></b>"; //RED
     }
+    else if (newStr.contains("warning", Qt::CaseInsensitive) || (newStr.contains("downgrading")))
+    {
+      newStr = "<b><font color=\"#FF8040\">" + newStr + "</font></b>"; //ORANGE
+    }
     else if(newStr.contains("checking ") ||
             newStr.contains("is synced") ||
             newStr.contains("-- reinstalling") ||
@@ -500,10 +504,6 @@ void PacmanExec::prepareTextToPrint(QString str, TreatString ts, TreatURLLinks t
             newStr.contains("looking "))
     {
       newStr = "<b><font color=\"#4BC413\">" + newStr + "</font></b>"; //GREEN
-    }
-    else if (newStr.contains("warning", Qt::CaseInsensitive) || (newStr.contains("downgrading")))
-    {
-      newStr = "<b><font color=\"#FF8040\">" + newStr + "</font></b>"; //ORANGE
     }
     else if (!newStr.contains("::"))
     {

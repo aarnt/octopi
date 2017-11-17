@@ -188,7 +188,12 @@ void MainWindow::dropEvent(QDropEvent *ev)
 
   foreach(QUrl url, urls)
   {
-    m_packagesToInstallList.append(url.toLocalFile());
+    QString str = url.fileName();
+    QFileInfo f(str);
+    if (f.completeSuffix().contains("pkg.tar"))
+    {
+      m_packagesToInstallList.append(url.toLocalFile());
+    }
   }
 
   if (m_packagesToInstallList.count() > 0)
@@ -200,22 +205,22 @@ void MainWindow::dropEvent(QDropEvent *ev)
  */
 void MainWindow::dragEnterEvent(QDragEnterEvent *ev)
 {
-  bool fail = false;
+  bool success = false;
   QList<QUrl> urls = ev->mimeData()->urls();
 
   foreach(QUrl url, urls)
   {
     QString str = url.fileName();
     QFileInfo f(str);
-    if (!f.completeSuffix().contains("pkg.tar"))
+    if (f.completeSuffix().contains("pkg.tar"))
     {
-      fail=true;
+      success=true;
       break;
     }
   }
 
-  if (fail) ev->ignore();
-  else ev->accept();
+  if (success) ev->accept();
+  else ev->ignore();
 }
 
 /*
@@ -285,8 +290,11 @@ QTextBrowser *MainWindow::getOutputTextBrowser()
 void MainWindow::showAnchorDescription(const QUrl &link)
 {
   if (link.toString().contains("goto:"))
-  {
+  {            
     QString pkgName = link.toString().mid(5);
+    //Let's remove any "<" and "<=" symbol...
+    pkgName.remove(QRegularExpression("%3C\\S*"));
+
     if (pkgName == "sh") pkgName = "bash";
     QFuture<QString> f;
     disconnect(&g_fwToolTipInfo, SIGNAL(finished()), this, SLOT(execToolTip()));
@@ -399,6 +407,7 @@ void MainWindow::outputTextBrowserAnchorClicked(const QUrl &link)
 
     positionInPackageList(pkgName);
   }
+  //Otherwise, it's a remote URL which needs to be opened outside Octopi
   else
   {
     QDesktopServices::openUrl(link);

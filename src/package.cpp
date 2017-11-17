@@ -159,8 +159,6 @@ QString Package::makeAnchorOfOptionalDep(const QString &optionalDeps)
   QStringList ldeps = optionalDeps.split("<br>", QString::SkipEmptyParts);
   int colon;
 
-  //teste: isto eh um teste   colon = 5
-
   foreach(QString dep, ldeps)
   {
     colon = dep.indexOf(":");
