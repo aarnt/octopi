@@ -93,7 +93,9 @@ ALPM_BACKEND{
 FORMS   += ui/mainwindow.ui \
         ui/transactiondialog.ui \
         ui/multiselectiondialog.ui \
-        ui/optionsdialog.ui
+        ui/optionsdialog.ui \
+        ui/searchbar.ui \
+        ui/searchlineedit.ui
 
 RESOURCES += resources.qrc
 

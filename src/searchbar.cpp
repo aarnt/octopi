@@ -19,6 +19,7 @@
 */
 
 #include "searchbar.h"
+#include "ui_searchbar.h"
 #include "searchlineedit.h"
 #include "uihelper.h"
 #include <QAction>
@@ -35,10 +36,14 @@
  */
 
 SearchBar::SearchBar(QWidget *parent) :
-  QWidget(parent)
+  QWidget(parent),
+  ui(new Ui::SearchBar)
 {
+  ui->setupUi(this);
   init();
 }
+
+const char SearchBar::NAME[] = "SearchBar";
 
 /*
  * Obligatory initialization code.
@@ -46,61 +51,31 @@ SearchBar::SearchBar(QWidget *parent) :
 void SearchBar::init()
 {
   setVisible(false);
-  setObjectName("searchbar");
-  QHBoxLayout *layout = new QHBoxLayout(this);
-  layout->setSpacing(0);
-  layout->setMargin(4);
-
-  setStyleSheet("QWidget#searchbar{"
-                "border-top-width: .6px;"
-                "border-top-style: solid;"
-                "border-top-color: darkgray;}");
-
-  m_searchLineEdit = new SearchLineEdit(this);
-  m_searchLineEdit->setMinimumWidth(300);
-  QToolButton *m_previousButton = new QToolButton(this);
-  QToolButton *m_nextButton = new QToolButton(this);
-  m_previousButton->setToolButtonStyle(Qt::ToolButtonTextOnly);
-  m_nextButton->setToolButtonStyle(Qt::ToolButtonTextOnly);
 
   QAction *m_previousAction = new QAction(this);
   QAction *m_nextAction = new QAction(this);
 
   m_previousAction->setText("< " + tr("Previous"));
-  m_previousButton->setAutoRaise(true);
   m_previousAction->setShortcut(QKeySequence(Qt::SHIFT + Qt::Key_F3));
   m_nextAction->setText(tr("Next") + " >");
-  m_nextButton->setAutoRaise(true);
   m_nextAction->setShortcut(Qt::Key_F3);
-  m_previousButton->setDefaultAction(m_previousAction);
-  m_nextButton->setDefaultAction(m_nextAction);
 
-  QToolButton *tbClose = new QToolButton();
-  tbClose->setIcon(IconHelper::getIconClose());
+  ui->m_previousButton->setDefaultAction(m_previousAction);
+  ui->m_nextButton->setDefaultAction(m_nextAction);
 
-  tbClose->setAutoRaise(true);
-  tbClose->setStyleSheet("QToolButton{ font-size: 16px; font-family: verdana; border-radius: 4px; } "
-                         "QToolButton:hover{ background-color: palette(light); }"
-                         "QToolButton::pressed{ background-color: palette(mid); }");
+  ui->m_searchLineEdit->setFocus();
 
-  tbClose->setToolTip(tr("Close"));
-  tbClose->setShortcut(Qt::Key_Escape);
-
-  layout->addWidget(tbClose, 1, Qt::AlignLeft);
-  layout->addSpacing(3);
-  layout->addWidget(m_searchLineEdit, 0, Qt::AlignLeft);
-  layout->addSpacing(2);
-  layout->addWidget(m_previousButton, 1, Qt::AlignLeft);
-  layout->addWidget(m_nextButton, 20, Qt::AlignLeft);
-
-  setLayout(layout);
-  m_searchLineEdit->setFocus();
-
-  connect(tbClose, SIGNAL(clicked()), this, SLOT(close()));
-  connect(m_searchLineEdit, SIGNAL(textChanged(QString)), this, SIGNAL(textChanged(QString)));
+  connect(ui->tbClose, SIGNAL(clicked()), this, SLOT(close()));
+  connect(ui->m_searchLineEdit, SIGNAL(textChanged(QString)), this, SIGNAL(textChanged(QString)));
   connect(m_previousAction, SIGNAL(triggered()), this, SIGNAL(findPrevious()));
   connect(m_nextAction, SIGNAL(triggered()), this, SIGNAL(findNext()));
 }
+
+SearchLineEdit *SearchBar::getSearchLineEdit(){ return ui->m_searchLineEdit; }
+QString SearchBar::getTextToSearch(){ return ui->m_searchLineEdit->text(); }
+bool SearchBar::hasFocus(){ return ui->m_searchLineEdit->hasFocus(); }
+void SearchBar::setFocus(Qt::FocusReason reason = Qt::NoFocusReason){ return ui->m_searchLineEdit->setFocus(reason); }
+void SearchBar::initSearchLineEdit(){ ui->m_searchLineEdit->initStyleSheet(); }
 
 /*
  * Whenever the user presses the escape or clicks the close icon...
@@ -108,9 +83,9 @@ void SearchBar::init()
 void SearchBar::close()
 {
   hide();
-  disconnect(m_searchLineEdit, SIGNAL(textChanged(QString)), this, SIGNAL(textChanged(QString)));
-  m_searchLineEdit->setText("");
-  connect(m_searchLineEdit, SIGNAL(textChanged(QString)), this, SIGNAL(textChanged(QString)));
+  disconnect(ui->m_searchLineEdit, SIGNAL(textChanged(QString)), this, SIGNAL(textChanged(QString)));
+  ui->m_searchLineEdit->setText("");
+  connect(ui->m_searchLineEdit, SIGNAL(textChanged(QString)), this, SIGNAL(textChanged(QString)));
   emit closed();
 }
 
@@ -119,7 +94,7 @@ void SearchBar::close()
  */
 void SearchBar::clear()
 {
-  m_searchLineEdit->setText("");
+  ui->m_searchLineEdit->setText("");
 }
 
 /*
@@ -138,7 +113,7 @@ void SearchBar::paintEvent(QPaintEvent *)
  */
 void SearchBar::keyPressEvent(QKeyEvent *ke)
 {
-  if(!m_searchLineEdit->text().isEmpty() && (ke->key() == Qt::Key_Enter || ke->key() == Qt::Key_Return))
+  if(!ui->m_searchLineEdit->text().isEmpty() && (ke->key() == Qt::Key_Enter || ke->key() == Qt::Key_Return))
   {
     findNext();
   }
@@ -150,6 +125,6 @@ void SearchBar::keyPressEvent(QKeyEvent *ke)
 void SearchBar::show()
 {
   setVisible(true);
-  m_searchLineEdit->selectAll();
-  m_searchLineEdit->setFocus();
+  ui->m_searchLineEdit->selectAll();
+  ui->m_searchLineEdit->setFocus();
 }

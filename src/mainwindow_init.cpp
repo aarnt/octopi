@@ -742,6 +742,8 @@ void MainWindow::initActions()
   actionGroup->setExclusive(true);
   connect(actionGroup, SIGNAL(triggered(QAction*)), this, SLOT(tvPackagesSearchColumnChanged(QAction*)));
 
+  connect(ui->actionSearchInOutput, SIGNAL(triggered(bool)), this, SLOT(searchBarShow()));
+
   ui->actionInstallLocalPackage->setIcon(IconHelper::getIconFolder());
   ui->actionOpenDirectory->setIcon(IconHelper::getIconFolder());
 
