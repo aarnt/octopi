@@ -48,6 +48,8 @@ class SearchLineEdit;
 class QAction;
 class QTreeWidgetItem;
 class QTime;
+class QDropEvent;
+class QDragEnterEvent;
 
 #include "src/model/packagemodel.h"
 #include "src/packagerepository.h"
@@ -80,6 +82,8 @@ protected:
   void closeEvent(QCloseEvent *event);
   void keyPressEvent(QKeyEvent* ke);
   void keyReleaseEvent(QKeyEvent* ke);
+  void dropEvent(QDropEvent *ev);
+  void dragEnterEvent(QDragEnterEvent *ev);
 
 private:
   Ui::MainWindow *ui;

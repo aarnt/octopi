@@ -32,6 +32,8 @@
 #include <iostream>
 #include "optionsdialog.h"
 
+#include <QDropEvent>
+#include <QMimeData>
 #include <QStandardItemModel>
 #include <QString>
 #include <QTextBrowser>
@@ -97,6 +99,8 @@ MainWindow::MainWindow(QWidget *parent) :
 
   connect(m_pacmanDatabaseSystemWatcher,
           SIGNAL(directoryChanged(QString)), this, SLOT(onPacmanDatabaseChanged()));
+
+  setAcceptDrops(true);
 }
 
 /*
@@ -171,6 +175,47 @@ void MainWindow::show()
   }
   else
     QMainWindow::show();
+}
+
+/*
+ * Whenever a user drops a package from any outside source, we try to install it
+ */
+void MainWindow::dropEvent(QDropEvent *ev)
+{
+  m_packagesToInstallList.clear();
+
+  QList<QUrl> urls = ev->mimeData()->urls();
+
+  foreach(QUrl url, urls)
+  {
+    m_packagesToInstallList.append(url.toLocalFile());
+  }
+
+  if (m_packagesToInstallList.count() > 0)
+    doInstallLocalPackages();
+}
+
+/*
+ * Whenever an outside package enters Octopi mainwindow space, we check to see if it's really a package
+ */
+void MainWindow::dragEnterEvent(QDragEnterEvent *ev)
+{
+  bool fail = false;
+  QList<QUrl> urls = ev->mimeData()->urls();
+
+  foreach(QUrl url, urls)
+  {
+    QString str = url.fileName();
+    QFileInfo f(str);
+    if (!f.completeSuffix().contains("pkg.tar"))
+    {
+      fail=true;
+      break;
+    }
+  }
+
+  if (fail) ev->ignore();
+  else ev->accept();
 }
 
 /*
