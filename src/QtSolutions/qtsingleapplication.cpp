@@ -341,7 +341,9 @@ void QtSingleApplication::activateWindow(const QString &message)
         actWin->show();
     }
   }
-  else if (actWin && ((message == "SYSUPGRADE") || (message == "SYSUPGRADE_NOCONFIRM"))){
+  else if (actWin && ((message == "AURUPGRADE") || (message == "SYSUPGRADE") ||
+                      (message == "SYSUPGRADE_NOCONFIRM")))
+  {
     actWin->setWindowState(actWin->windowState() & ~Qt::WindowMinimized);
     actWin->raise();
     if (actWin->isHidden())
