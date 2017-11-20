@@ -37,6 +37,8 @@ private:
   QStringList m_lastCommandList; //run in terminal commands
   QStringList m_textPrinted;
 
+  bool m_processWasCanceled;
+
   bool searchForKeyVerbs(QString output);
   bool splitOutputStrings(QString output);
   void parsePacmanProcessOutput(QString output);

@@ -643,7 +643,11 @@ void MainWindow::sendNotification(const QString &msg)
  */
 void MainWindow::refreshAppIcon()
 {
-  if (m_pacmanExec != nullptr) delete m_pacmanExec;
+  if (m_pacmanExec != nullptr)
+  {
+    delete m_pacmanExec;
+    m_pacmanExec = nullptr;
+  }
 
   disconnect(m_pacmanDatabaseSystemWatcher,
           SIGNAL(directoryChanged(QString)), this, SLOT(refreshAppIcon()));
@@ -854,7 +858,7 @@ void MainWindow::exitNotifier()
     qDebug() << "At exitNotifier()...";
 
   //If Octopi was hidden, let's show its window again...
-  showOctopi();
+  if (UnixCommand::isAppRunning("octopi", true)) showOctopi();
   qApp->quit();
 }
 

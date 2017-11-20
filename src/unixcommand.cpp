@@ -900,7 +900,7 @@ void UnixCommand::cancelProcess()
       QString pid = sl.at(0);
 
       QProcess pacman;
-      command = WMHelper::getSUCommand() + " kill -9 " + pid;
+      command = WMHelper::getSUCommand() + "\" kill -9 " + pid + "\"";
       pacman.start(command);
       pacman.waitForFinished();
     }

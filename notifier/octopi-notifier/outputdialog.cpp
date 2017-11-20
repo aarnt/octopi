@@ -94,7 +94,7 @@ void OutputDialog::init()
   m_progressBar->setMaximum(100);
   m_progressBar->setValue(0);
   m_progressBar->close();
-  m_searchBar->show();
+  //m_searchBar->show();
 }
 
 /*
@@ -261,8 +261,8 @@ void OutputDialog::closeEvent(QCloseEvent *event)
   }
   else
   {
-    emit finished(0);
     event->accept();
+    emit finished(0);
   }
 }
 
@@ -274,6 +274,10 @@ void OutputDialog::keyPressEvent(QKeyEvent *ke)
   if(ke->key() == Qt::Key_F && ke->modifiers() == Qt::ControlModifier)
   {
     m_searchBar->show();
+  }
+  else if(ke->key() == Qt::Key_Z && ke->modifiers() == Qt::ControlModifier)
+  {
+    m_pacmanExec->cancelProcess();
   }
   else if(ke->key() == Qt::Key_Escape)
   {

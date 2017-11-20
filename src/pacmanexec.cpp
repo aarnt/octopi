@@ -34,10 +34,11 @@
  * Let's create the needed unixcommand object that will ultimately execute Pacman commands
  */
 PacmanExec::PacmanExec(QObject *parent) : QObject(parent)
-{
+{  
   m_unixCommand = new UnixCommand(parent);
   m_iLoveCandy = UnixCommand::isILoveCandyEnabled();
   m_debugMode = false;
+  m_processWasCanceled = false;
 
   QObject::connect(m_unixCommand, SIGNAL( started() ), this, SLOT( onStarted()));
 
@@ -104,6 +105,7 @@ void PacmanExec::removeDatabaseLock()
  */
 void PacmanExec::cancelProcess()
 {
+  m_processWasCanceled = true;
   m_unixCommand->cancelProcess();
 }
 
@@ -692,6 +694,8 @@ void PacmanExec::onFinished(int exitCode, QProcess::ExitStatus es)
 
       UnixCommand::execCommandAsNormalUser("kcp -u");
   }
+
+  if (m_processWasCanceled && PacmanExec::isDatabaseLocked()) exitCode = -1;
 
   emit finished(exitCode, es);
 }
