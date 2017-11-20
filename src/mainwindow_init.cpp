@@ -821,14 +821,14 @@ void MainWindow::initActions()
   if (WMHelper::isXFCERunning())
   {
     //Loop through all actions and set their icons (if any) visible to menus.
-    foreach(QAction* ac, this->findChildren<QAction*>(QRegExp("(m_a|a)ction\\S*")))
+    foreach(QAction* ac, this->findChildren<QAction*>(QRegularExpression("(m_a|a)ction\\S*")))
     {
       if (ac) ac->setIconVisibleInMenu(true);
     }
   }
 
   QString text;
-  foreach(QAction* ac, this->findChildren<QAction*>(QRegExp("(m_a|a)ction\\S*")))
+  foreach(QAction* ac, this->findChildren<QAction*>(QRegularExpression("(m_a|a)ction\\S*")))
   {
     text = ac->text().remove("&");
     ac->setText(qApp->translate("MainWindow", text.toUtf8(), 0));

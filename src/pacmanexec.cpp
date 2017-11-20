@@ -24,6 +24,8 @@
 #include "unixcommand.h"
 #include "wmhelper.h"
 
+#include <QRegularExpression>
+
 /*
  * This class decouples pacman commands executing and parser code from Octopi's interface
  */
@@ -110,14 +112,14 @@ void PacmanExec::cancelProcess()
  */
 bool PacmanExec::searchForKeyVerbs(QString output)
 {
-  return (output.contains(QRegExp("checking ")) ||
-          output.contains(QRegExp("loading ")) ||
-          output.contains(QRegExp("installing ")) ||
-          output.contains(QRegExp("upgrading ")) ||
-          output.contains(QRegExp("downgrading ")) ||
-          output.contains(QRegExp("resolving ")) ||
-          output.contains(QRegExp("looking ")) ||
-          output.contains(QRegExp("removing ")));
+  return (output.contains(QRegularExpression("checking ")) ||
+          output.contains(QRegularExpression("loading ")) ||
+          output.contains(QRegularExpression("installing ")) ||
+          output.contains(QRegularExpression("upgrading ")) ||
+          output.contains(QRegularExpression("downgrading ")) ||
+          output.contains(QRegularExpression("resolving ")) ||
+          output.contains(QRegularExpression("looking ")) ||
+          output.contains(QRegularExpression("removing ")));
 }
 
 /*
@@ -130,16 +132,16 @@ bool PacmanExec::splitOutputStrings(QString output)
 {
   bool res = true;
   QString msg = output.trimmed();
-  QStringList msgs = msg.split(QRegExp("\\n"), QString::SkipEmptyParts);
+  QStringList msgs = msg.split(QRegularExpression("\\n"), QString::SkipEmptyParts);
 
   foreach (QString m, msgs)
   {
-    QStringList m2 = m.split(QRegExp("\\(\\s{0,3}[0-9]{1,4}/[0-9]{1,4}\\) "), QString::SkipEmptyParts);
+    QStringList m2 = m.split(QRegularExpression("\\(\\s{0,3}[0-9]{1,4}/[0-9]{1,4}\\) "), QString::SkipEmptyParts);
 
     if (m2.count() == 1)
     {
       //Let's try another test... if it doesn't work, we give up.
-      QStringList maux = m.split(QRegExp("%"), QString::SkipEmptyParts);
+      QStringList maux = m.split(QRegularExpression("%"), QString::SkipEmptyParts);
       if (maux.count() > 1)
       {
         foreach (QString aux, maux)
@@ -197,7 +199,7 @@ void PacmanExec::parsePacmanProcessOutput(QString output)
   QString progressRun;
   QString progressEnd;
 
-  msg.remove(QRegExp(".+\\[Y/n\\].+"));
+  msg.remove(QRegularExpression(".+\\[Y/n\\].+"));
   //Let's remove color codes from strings...
   msg.remove("\033[0;1m");
   msg.remove("\033[0m");
@@ -266,7 +268,7 @@ void PacmanExec::parsePacmanProcessOutput(QString output)
         m_commandExecuting == ectn_REMOVE ||
         m_commandExecuting == ectn_REMOVE_INSTALL)
     {
-      int ini = msg.indexOf(QRegExp("\\(\\s{0,3}[0-9]{1,4}/[0-9]{1,4}\\) "));
+      int ini = msg.indexOf(QRegularExpression("\\(\\s{0,3}[0-9]{1,4}/[0-9]{1,4}\\) "));
       if (ini == 0)
       {
         int rp = msg.indexOf(")");
@@ -321,7 +323,7 @@ void PacmanExec::parsePacmanProcessOutput(QString output)
 
             if(!target.isEmpty() && !m_textPrinted.contains(target))
             {
-              if (target.indexOf(QRegExp("[a-z]+")) != -1)
+              if (target.indexOf(QRegularExpression("[a-z]+")) != -1)
               {
                 if(m_commandExecuting == ectn_SYNC_DATABASE && !target.contains("/"))
                 {
@@ -355,28 +357,29 @@ void PacmanExec::parsePacmanProcessOutput(QString output)
   else
   {
     //Let's supress some annoying string bugs...
-    msg.remove(QRegExp("\\(process.+"));
-    msg.remove(QRegExp("Using the fallback.+"));
-    msg.remove(QRegExp("Gkr-Message:.+"));
-    msg.remove(QRegExp("kdesu.+"));
-    msg.remove(QRegExp("kbuildsycoca.+"));
-    msg.remove(QRegExp("Connecting to deprecated signal.+"));
-    msg.remove(QRegExp("QVariant.+"));
-    msg.remove(QRegExp("gksu-run.+"));
-    msg.remove(QRegExp("GConf Error:.+"));
-    msg.remove(QRegExp(":: Do you want.+"));
-    msg.remove(QRegExp("org\\.kde\\."));
-    msg.remove(QRegExp("QCommandLineParser"));
-    msg.remove(QRegExp("QCoreApplication.+"));
-    msg.remove(QRegExp("Fontconfig warning.+"));
-    msg.remove(QRegExp("reading configurations from.+"));
-    msg.remove(QRegExp(".+annot load library.+"));
+    msg.remove(QRegularExpression("\\(process.+"));
+    msg.remove(QRegularExpression("QXcbConnection: XCB error:.+"));
+    msg.remove(QRegularExpression("Using the fallback.+"));
+    msg.remove(QRegularExpression("Gkr-Message:.+"));
+    msg.remove(QRegularExpression("kdesu.+"));
+    msg.remove(QRegularExpression("kbuildsycoca.+"));
+    msg.remove(QRegularExpression("Connecting to deprecated signal.+"));
+    msg.remove(QRegularExpression("QVariant.+"));
+    msg.remove(QRegularExpression("gksu-run.+"));
+    msg.remove(QRegularExpression("GConf Error:.+"));
+    msg.remove(QRegularExpression(":: Do you want.+"));
+    msg.remove(QRegularExpression("org\\.kde\\."));
+    msg.remove(QRegularExpression("QCommandLineParser"));
+    msg.remove(QRegularExpression("QCoreApplication.+"));
+    msg.remove(QRegularExpression("Fontconfig warning.+"));
+    msg.remove(QRegularExpression("reading configurations from.+"));
+    msg.remove(QRegularExpression(".+annot load library.+"));
     msg = msg.trimmed();
 
     if (m_debugMode) std::cout << "debug: " << msg.toLatin1().data() << std::endl;
 
     QString order;
-    int ini = msg.indexOf(QRegExp("\\(\\s{0,3}[0-9]{1,4}/[0-9]{1,4}\\) "));
+    int ini = msg.indexOf(QRegularExpression("\\(\\s{0,3}[0-9]{1,4}/[0-9]{1,4}\\) "));
     if (ini == 0)
     {
       int rp = msg.indexOf(")");
@@ -386,7 +389,7 @@ void PacmanExec::parsePacmanProcessOutput(QString output)
 
     if (!msg.isEmpty())
     {
-      if (msg.contains(QRegExp("removing ")) && !m_textPrinted.contains(msg + " "))
+      if (msg.contains(QRegularExpression("removing ")) && !m_textPrinted.contains(msg + " "))
       {
         //Does this package exist or is it a proccessOutput buggy string???
         QString pkgName = msg.mid(9).trimmed();
@@ -449,10 +452,10 @@ void PacmanExec::prepareTextToPrint(QString str, TreatString ts, TreatURLLinks t
   }
 
   //If the str waiting to being print is from curl status OR any other unwanted string...
-  if ((str.contains(QRegExp("\\(\\d")) &&
+  if ((str.contains(QRegularExpression("\\(\\d")) &&
        (!str.contains("target", Qt::CaseInsensitive)) &&
        (!str.contains("package", Qt::CaseInsensitive))) ||
-      (str.contains(QRegExp("\\d\\)")) &&
+      (str.contains(QRegularExpression("\\d\\)")) &&
        (!str.contains("target", Qt::CaseInsensitive)) &&
        (!str.contains("package", Qt::CaseInsensitive))) ||
 
@@ -474,7 +477,7 @@ void PacmanExec::prepareTextToPrint(QString str, TreatString ts, TreatURLLinks t
 
   QString newStr = str;
 
-  if(newStr.contains(QRegExp("<font color")))
+  if(newStr.contains(QRegularExpression("<font color")))
   {
     newStr += "<br>";
   }
@@ -516,7 +519,7 @@ void PacmanExec::prepareTextToPrint(QString str, TreatString ts, TreatURLLinks t
     newStr = "<br><B>" + newStr + "</B><br><br>";
   }
 
-  if (!newStr.contains(QRegExp("<br"))) //It was an else!
+  if (!newStr.contains(QRegularExpression("<br"))) //It was an else!
   {
     newStr += "<br>";
   }

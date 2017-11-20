@@ -27,17 +27,17 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 #include <QMessageBox>
 
 QString RepoConf::commentString = "";
-QRegExp RepoConf::repoMatch = QRegExp();
-QRegExp RepoConf::detailMatch = QRegExp();
-QRegExp RepoConf::sigLevelMatch = QRegExp();
+QRegularExpression RepoConf::repoMatch = QRegularExpression();
+QRegularExpression RepoConf::detailMatch = QRegularExpression();
+QRegularExpression RepoConf::sigLevelMatch = QRegularExpression();
 
 RepoConf::RepoConf()
 {
   repoConfFilePath = "/etc/pacman.conf";
-  repoMatch = QRegExp("^\\[(?!(options|repo-name|\\[|\\s))");
-  detailMatch = QRegExp("^(Server|Include)\\s*=\\s*.+");
-  sigLevelMatch = QRegExp("^(SigLevel)\\s*=\\s*.+");
-  RepoEntry::nameFilter = QRegExp("(\\s+|\\[|\\])");
+  repoMatch = QRegularExpression("^\\[(?!(options|repo-name|\\[|\\s))");
+  detailMatch = QRegularExpression("^(Server|Include)\\s*=\\s*.+");
+  sigLevelMatch = QRegularExpression("^(SigLevel)\\s*=\\s*.+");
+  RepoEntry::nameFilter = QRegularExpression("(\\s+|\\[|\\])");
   commentString = "#";
   RepoEntry::repoFormat = "[%repo%]";
 

@@ -217,7 +217,7 @@ void PackageGroupModel::finishedClean(int exitCode, QProcess::ExitStatus)
  * @param output The output of the dryrun process
  */
 void PackageGroupModel::processDryrunResult(QString output) {
-  QStringList lines = output.split(QRegExp("\\n"), QString::SkipEmptyParts);
+  QStringList lines = output.split(QRegularExpression("\\n"), QString::SkipEmptyParts);
 
   if(lines.length() == 1 || output.contains("*.pkg.tar?(.+([^.]))"))
   {

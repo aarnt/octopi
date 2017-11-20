@@ -22,7 +22,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 #include <QString>
 #include <QStringList>
-#include <QRegExp>
+#include <QRegularExpression>
 
 class RepoEntry{
 
@@ -42,7 +42,7 @@ public:
     explicit RepoEntry();
     explicit RepoEntry( QString name, bool active = false );
 
-    static QRegExp nameFilter; //Contains the filter to obtain the unformatted repo name (e.g. [main] -> main)
+    static QRegularExpression nameFilter; //Contains the filter to obtain the unformatted repo name (e.g. [main] -> main)
     static QString commentString;
     static QString repoFormat;
 

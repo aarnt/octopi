@@ -15,7 +15,7 @@
 #include <QApplication>
 #include <QToolButton>
 #include <QStyle>
-#include <QRegExpValidator>
+#include <QRegularExpressionValidator>
 #include <QCompleter>
 #include <QStringListModel>
 
@@ -43,9 +43,9 @@ SearchLineEdit::SearchLineEdit(QWidget *parent, bool hasSLocate) :
   this->m_SearchButton->setCursor(Qt::ArrowCursor);
   this->m_SearchButton->setStyleSheet(this->buttonStyleSheetForCurrentState());
 
-  m_defaultValidator = new QRegExpValidator(QRegExp("[a-zA-Z0-9_\\-\\$\\^\\*\\+\\(\\)\\[\\]\\.\\s\\\\]+"), this);
-  m_aurValidator = new QRegExpValidator(QRegExp("[a-zA-Z0-9_\\-\\+\\s\\\\]+"), this);
-  m_fileValidator = new QRegExpValidator(QRegExp("[a-zA-Z0-9_\\-\\/\\.]+"), this);
+  m_defaultValidator = new QRegularExpressionValidator(QRegularExpression("[a-zA-Z0-9_\\-\\$\\^\\*\\+\\(\\)\\[\\]\\.\\s\\\\]+"), this);
+  m_aurValidator = new QRegularExpressionValidator(QRegularExpression("[a-zA-Z0-9_\\-\\+\\s\\\\]+"), this);
+  m_fileValidator = new QRegularExpressionValidator(QRegularExpression("[a-zA-Z0-9_\\-\\/\\.]+"), this);
 
   setValidator(m_defaultValidator);
 

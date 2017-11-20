@@ -35,8 +35,8 @@ private:
   QString repoConfFilePath;
 
   static QString commentString;
-  static QRegExp repoMatch;
-  static QRegExp detailMatch;
+  static QRegularExpression repoMatch;
+  static QRegularExpression detailMatch;
   static bool matchRepo( QString line );
   static bool matchRepoDetails( QString line );
 

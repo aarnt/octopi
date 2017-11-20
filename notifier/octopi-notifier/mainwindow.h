@@ -69,6 +69,7 @@ private slots:
   inline void startOctopi() { runOctopi(ectn_NORMAL_EXEC_OPT); }
   void aboutOctopiNotifier();
   void hideOctopi();
+  void showOctopi();
   void exitNotifier();
   void doSystemUpgrade();
   void doAURUpgrade();

@@ -2,7 +2,7 @@
   Added an Options dialog to Octopi and Notifier.
   Added configurable "--noconfirm" and "--noedit" options to pacaur and "--noconfirm" to yaourt.
   Added slovenian translation (thanks to the translation crew).
-  Added "ctrl+Z" shortcut to cancel running transaction.
+  Added "ctrl+Z" shortcut to cancel running "pacman" transaction.
   Added support fo drag pacman packages to Octopi's mainwindow so they can be installed.
   Added "Install Reason" field at Info tab.
   Added support for ALPM utils lib (thanks to guinux, from Pamac project). So, now it's possible to 
@@ -11,6 +11,7 @@
   Added option to upgrade outdated foreign packages from Octopi Notifier.
   Find line edit is always focused when the program starts.
   Prevent the user to install partial upgrades in his system (only some of the outdated packages). 
+  BugFix: If Notifier hid Octopi and was closed, Octopi's window would stay hidden.
   BugFix: When no AUR helper exists, the group of packages panel stayed disabled.
   BugFix: Cache Cleaner now saves its window geometry.
   BugFix: Some pkg download/installed sizes were not showing properly at Info tab.

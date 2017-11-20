@@ -32,15 +32,15 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
 QString RepoConf::commentString = "";
-QRegExp RepoConf::repoMatch     = QRegExp();
-QRegExp RepoConf::detailMatch   = QRegExp();
+QRegularExpression RepoConf::repoMatch     = QRegularExpression();
+QRegularExpression RepoConf::detailMatch   = QRegularExpression();
 
 RepoConf::RepoConf()
 {
   repoConfFilePath = "/etc/pacman.conf";
-  repoMatch = QRegExp("^\\[(?!(options|repo-name|\\[|\\s))");
-  detailMatch = QRegExp("^(Server|Include)\\s*=\\s*.+");
-  RepoEntry::nameFilter = QRegExp("(\\s+|\\[|\\])");
+  repoMatch = QRegularExpression("^\\[(?!(options|repo-name|\\[|\\s))");
+  detailMatch = QRegularExpression("^(Server|Include)\\s*=\\s*.+");
+  RepoEntry::nameFilter = QRegularExpression("(\\s+|\\[|\\])");
   commentString = "#";
   RepoEntry::repoFormat = "[%repo%]";
 

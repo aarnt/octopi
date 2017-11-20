@@ -1066,7 +1066,7 @@ QStringList UnixCommand::getFieldFromPacmanConf(const QString &fieldName)
         int newLine = ignorePkg.indexOf("\n");
 
         ignorePkg = ignorePkg.mid(equal+1, newLine-(equal+1)).trimmed();
-        result = ignorePkg.split(QRegExp("\\s+"), QString::SkipEmptyParts);
+        result = ignorePkg.split(QRegularExpression("\\s+"), QString::SkipEmptyParts);
         break;
       }
       else if (str != "#")
@@ -1134,43 +1134,43 @@ LinuxDistro UnixCommand::getLinuxDistro()
 
       QString contents = file.readAll();
 
-      if (contents.contains(QRegExp("Antergos")))
+      if (contents.contains(QRegularExpression("Antergos")))
       {
         ret = ectn_ANTERGOS;
       }
-      else if (contents.contains(QRegExp("ArchBang")))
+      else if (contents.contains(QRegularExpression("ArchBang")))
       {
         ret = ectn_ARCHBANGLINUX;
       }
-      else if (contents.contains(QRegExp("Arch BSD")))
+      else if (contents.contains(QRegularExpression("Arch BSD")))
       {
         ret = ectn_ARCHBSD;
       }
-      else if (contents.contains(QRegExp("Arch Linux")))
+      else if (contents.contains(QRegularExpression("Arch Linux")))
       {
         ret = ectn_ARCHLINUX;
       }
-      else if (contents.contains(QRegExp("Chakra")))
+      else if (contents.contains(QRegularExpression("Chakra")))
       {
         ret = ectn_CHAKRA;
       }
-      else if (contents.contains(QRegExp("KaOS")))
+      else if (contents.contains(QRegularExpression("KaOS")))
       {
         ret = ectn_KAOS;
       }
-      else if (contents.contains(QRegExp("Manjaro")))
+      else if (contents.contains(QRegularExpression("Manjaro")))
       {
         ret = ectn_MANJAROLINUX;
       }
-      else if (contents.contains(QRegExp("mooOS")))
+      else if (contents.contains(QRegularExpression("mooOS")))
       {
         ret = ectn_MOOOSLINUX;
       }
-      else if (contents.contains(QRegExp("Netrunner")))
+      else if (contents.contains(QRegularExpression("Netrunner")))
       {
         ret = ectn_NETRUNNER;
       }
-      else if (contents.contains(QRegExp("Parabola GNU/Linux-libre")))
+      else if (contents.contains(QRegularExpression("Parabola GNU/Linux-libre")))
       {
         ret = ectn_PARABOLA;
       }

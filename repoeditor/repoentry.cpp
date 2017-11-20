@@ -19,7 +19,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 #include "repoentry.h"
 
-QRegExp RepoEntry::nameFilter = QRegExp( "" );
+QRegularExpression RepoEntry::nameFilter = QRegularExpression( "" );
 QString RepoEntry::commentString = "";
 QString RepoEntry::repoFormat = "";
 

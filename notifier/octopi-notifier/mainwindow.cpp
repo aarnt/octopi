@@ -297,6 +297,14 @@ void MainWindow::hideOctopi()
 }
 
 /*
+ * Shows Octopi Window if it is hidden
+ */
+void MainWindow::showOctopi()
+{
+  QProcess::startDetached("octopi -show");
+}
+
+/*
  * Checks if some SU utility is available...
  * Returns false if not!
  */
@@ -839,6 +847,8 @@ void MainWindow::exitNotifier()
   if (m_debugInfo)
     qDebug() << "At exitNotifier()...";
 
+  //If Octopi was hidden, let's show its window again...
+  showOctopi();
   qApp->quit();
 }
 
