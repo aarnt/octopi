@@ -10,7 +10,7 @@
   Added link support in all Info tab package lists.
   Added option to upgrade outdated foreign packages from Octopi Notifier.
   Find line edit is always focused when the program starts.
-  Prevent the user to install partial upgrades in his system (only some of the outdated packages). 
+  Prevent the user to install partial upgrades in his system (only some of the outdated packages).
   BugFix: If Notifier hid Octopi and was closed, Octopi's window would stay hidden.
   BugFix: When no AUR helper exists, the group of packages panel stayed disabled.
   BugFix: Cache Cleaner now saves its window geometry.
@@ -28,6 +28,8 @@
   BugFix: searchlineedit font fix.
   BugFix: 'yaourt' and 'pacaur' no longer honor "-a" option when querying outdated 
 	foreign packages.
+  BugFix: System upgrade shortcut changed to "ctrl+P" as "ctrl+U" is used to cut text in 
+	QLineEdit widgets.
 
 0.8.1
   BugFix: Updated CHAKRA RSS site (thanks to s8321414).

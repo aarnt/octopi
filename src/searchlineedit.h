@@ -38,7 +38,7 @@ private slots:
   void updateSearchButton(const QString &text);
 
 protected:
-  void resizeEvent(QResizeEvent *event);
+  virtual void resizeEvent(QResizeEvent *event);
 
 public:
   explicit SearchLineEdit(QWidget *parent = NULL, bool hasSLocate = false);
