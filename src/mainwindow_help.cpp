@@ -112,7 +112,7 @@ void MainWindow::initTabHelpUsage()
   QString("<ul><li>") +
      tr("Ctrl+D or 'File/Sync database' to sync the local database with latest remote changes (pacman -Sy)") +
   QString("</li><li>") +
-     tr("Ctrl+U or 'File/System upgrade' to make a full system upgrade (pacman -Su)") +
+     tr("Ctrl+P or 'File/System upgrade' to make a full system upgrade (pacman -Su)") +
   QString("</li><li>") +
      tr("Ctrl+L to find a package in the package list") +
   QString("</li><li>") +

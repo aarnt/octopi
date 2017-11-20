@@ -864,12 +864,9 @@ void MainWindow::postBuildPackageList()
 
     if (distro != ectn_KAOS && isAURGroupSelected()) return;
 
+    QModelIndex mi = ui->tvPackages->currentIndex();
     m_packageRepo.setAUROutdatedData(m_foreignPackageList, *m_outdatedAURStringList);
-
-    QModelIndex maux = m_packageModel->index(0, 0, QModelIndex());
-    ui->tvPackages->setCurrentIndex(maux);
-    ui->tvPackages->scrollTo(maux, QAbstractItemView::PositionAtCenter);
-    ui->tvPackages->setCurrentIndex(maux);
+    ui->tvPackages->setCurrentIndex(mi);
 
     if (m_outdatedStringList->count() == 0 && m_outdatedAURStringList->count() > 0)
       refreshAppIcon();
@@ -890,7 +887,11 @@ void MainWindow::postBuildPackageList()
     ui->twGroups->setFocus();
     m_groupWidgetNeedsFocus = false;
   }
-  else m_leFilterPackage->setFocus();
+  else
+  {
+    if (!ui->tvPackages->hasFocus())
+      m_leFilterPackage->setFocus();
+  }
 }
 
 /*
