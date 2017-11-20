@@ -327,6 +327,9 @@ bool MainWindow::_isSUAvailable()
  */
 void MainWindow::doSystemUpgrade()
 {
+  //If, for whatever reason, the pacman db is locked, let's abort the system upgrade for now!
+  if (PacmanExec::isDatabaseLocked()) return;
+
   if (m_transactionDialog != nullptr)
   {
     if (m_transactionDialog->isMinimized())
@@ -577,6 +580,9 @@ void MainWindow::afterPacmanHelperSyncDatabase()
  */
 void MainWindow::syncDatabase()
 {
+  //If, for whatever reason, the pacman db is locked, let's abort the synchronization for now!
+  if (PacmanExec::isDatabaseLocked()) return;
+
   disconnect(m_pacmanDatabaseSystemWatcher,
           SIGNAL(directoryChanged(QString)), this, SLOT(refreshAppIcon()));
 

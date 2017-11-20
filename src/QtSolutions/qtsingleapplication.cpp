@@ -341,7 +341,7 @@ void QtSingleApplication::activateWindow(const QString &message)
         actWin->show();
     }
   }
-  else if (actWin && message == "HIDE") {
+  else if (actWin && message == "SHOW") {
     if (actWin->isHidden()){
       actWin->setWindowState(actWin->windowState() & ~Qt::WindowMinimized);
       actWin->raise();
