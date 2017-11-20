@@ -540,9 +540,14 @@ void MainWindow::metaBuildPackageList()
     ui->actionSearchByName->setChecked(true);
 
     toggleSystemActions(false);
-    disconnect(m_leFilterPackage, SIGNAL(textChanged(QString)), this, SLOT(reapplyPackageFilter()));
-    connect(m_leFilterPackage, SIGNAL(textChanged(QString)), this, SLOT(reapplyPackageFilter()));
-    reapplyPackageFilter();
+
+    if (SettingsManager::isInstantSearchSelected())
+    {
+      disconnect(m_leFilterPackage, SIGNAL(textChanged(QString)), this, SLOT(reapplyPackageFilter()));
+      connect(m_leFilterPackage, SIGNAL(textChanged(QString)), this, SLOT(reapplyPackageFilter()));
+      reapplyPackageFilter();
+    }
+
     disconnect(&g_fwPacman, SIGNAL(finished()), this, SLOT(preBuildPackageList()));
 
     QEventLoop el;
@@ -630,9 +635,14 @@ void MainWindow::metaBuildPackageList()
   {
     ui->actionSearchByFile->setEnabled(false);
     toggleSystemActions(false);
-    disconnect(m_leFilterPackage, SIGNAL(textChanged(QString)), this, SLOT(reapplyPackageFilter()));
-    connect(m_leFilterPackage, SIGNAL(textChanged(QString)), this, SLOT(reapplyPackageFilter()));
-    reapplyPackageFilter();
+
+    if (SettingsManager::isInstantSearchSelected())
+    {
+      disconnect(m_leFilterPackage, SIGNAL(textChanged(QString)), this, SLOT(reapplyPackageFilter()));
+      connect(m_leFilterPackage, SIGNAL(textChanged(QString)), this, SLOT(reapplyPackageFilter()));
+      reapplyPackageFilter();
+    }
+
     disconnect(&g_fwPacmanGroup, SIGNAL(finished()), this, SLOT(preBuildPackagesFromGroupList()));
 
     QEventLoop el;
@@ -835,7 +845,15 @@ void MainWindow::buildPackageList()
   m_refreshForeignPackageList = true;
 
   if (m_hasAURTool) m_outdatedAURTimer->start();
-  else if (!ui->twGroups->isEnabled()) ui->twGroups->setEnabled(true);
+  else
+  {
+    QModelIndex mi = ui->tvPackages->currentIndex();
+    m_packageRepo.setAUROutdatedData(m_foreignPackageList, *m_outdatedAURStringList);
+    ui->tvPackages->setCurrentIndex(mi);
+    m_leFilterPackage->setFocus();
+  }
+
+  if (!ui->twGroups->isEnabled()) ui->twGroups->setEnabled(true);
 }
 
 /*
@@ -1648,7 +1666,8 @@ void MainWindow::reapplyPackageFilter()
     if (!m_leFilterPackage->text().isEmpty())
       m_leFilterPackage->refreshCompleterData();
 
-    connect(m_leFilterPackage, SIGNAL(textChanged(QString)), this, SLOT(reapplyPackageFilter()));
+    if (SettingsManager::isInstantSearchSelected())
+      connect(m_leFilterPackage, SIGNAL(textChanged(QString)), this, SLOT(reapplyPackageFilter()));
   }
 }
 

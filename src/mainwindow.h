@@ -399,6 +399,7 @@ private slots:
 
   void disableTransactionActions();
   void enableTransactionActions();
+  void toggleInstantSearch();
   void toggleTransactionActions(const bool value);
   void toggleSystemActions(const bool value);
   void commitTransaction();

@@ -84,6 +84,7 @@ const QString ctn_KEY_PACKAGE_VERSION_COLUMN_WIDTH("Package_Version_Column_Width
 const QString ctn_KEY_PACKAGE_REPOSITORY_COLUMN_WIDTH("Package_Repository_Column_Width");
 const QString ctn_KEY_SU_TOOL("SU_Tool_Name");
 const QString ctn_KEY_TERMINAL("Terminal");
+const QString ctn_KEY_INSTANT_SEARCH("Instant_Search");
 const QString ctn_AUTOMATIC("automatic");
 
 //SettingsManager - Notifier related

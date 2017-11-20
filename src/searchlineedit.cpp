@@ -62,12 +62,16 @@ SearchLineEdit::SearchLineEdit(QWidget *parent, bool hasSLocate) :
  */
 void SearchLineEdit::setRefreshValidator(ValidatorType validatorType)
 {
+  ValidatorType oldValidatorType = validatorType;
+
   if (validatorType == ectn_AUR_VALIDATOR)
     setValidator(m_aurValidator);
   else if (validatorType == ectn_FILE_VALIDATOR)
     setValidator(m_fileValidator);
   else if (validatorType == ectn_DEFAULT_VALIDATOR)
     setValidator(m_defaultValidator);
+
+  if (oldValidatorType == validatorType) return;
 
   //If the current string is not valid anymore, let's erase it!
   int pos = 0;

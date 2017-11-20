@@ -101,6 +101,7 @@ class SettingsManager
 
     static bool isValidSUToolSelected();
     static bool isValidTerminalSelected();
+    static bool isInstantSearchSelected();
 
     static void setCurrentTabIndex(int newValue);
     static void setPanelOrganizing(int newValue);
@@ -137,6 +138,7 @@ class SettingsManager
     static void setPacaurNoEditParam(bool newValue);
     static void setYaourtNoConfirmParam(bool newValue);
     static void setSUTool(const QString& newValue);
+    static void setInstantSearchSelected(bool newValue);
 };
 
 #endif // SETTINGSMANAGER_H

@@ -111,6 +111,10 @@ void MainWindow::keyPressEvent(QKeyEvent* ke)
     {
       execKeyActionOnPackage(ectn_INSTALL);
     }
+    else if (!isAURGroupSelected() && m_leFilterPackage->hasFocus() && !SettingsManager::isInstantSearchSelected())
+    {
+      reapplyPackageFilter();
+    }
     //We are searching for AUR foreign packages...
     else if (isAURGroupSelected() && m_leFilterPackage->hasFocus() && m_cic == NULL)
     {

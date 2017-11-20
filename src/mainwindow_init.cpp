@@ -505,7 +505,8 @@ void MainWindow::initTabTransaction()
  * This is the LineEdit widget used to filter the package list
  */
 void MainWindow::initLineEditFilterPackages(){
-  connect(m_leFilterPackage, SIGNAL(textChanged(QString)), this, SLOT(reapplyPackageFilter()));
+  if (SettingsManager::isInstantSearchSelected())
+    connect(m_leFilterPackage, SIGNAL(textChanged(QString)), this, SLOT(reapplyPackageFilter()));
 }
 
 /*
@@ -745,6 +746,7 @@ void MainWindow::initActions()
   ui->actionInstallLocalPackage->setIcon(IconHelper::getIconFolder());
   ui->actionOpenDirectory->setIcon(IconHelper::getIconFolder());
 
+  connect(ui->actionUseInstantSearch, SIGNAL(triggered(bool)), this, SLOT(toggleInstantSearch()));
   connect(ui->tvPackages->selectionModel(), SIGNAL(selectionChanged(QItemSelection,QItemSelection)),
           this, SLOT(invalidateTabs()));
   connect(ui->actionInstallLocalPackage, SIGNAL(triggered()), this, SLOT(installLocalPackage()));

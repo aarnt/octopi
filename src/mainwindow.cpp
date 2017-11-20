@@ -589,6 +589,24 @@ bool MainWindow::isSearchByFileSelected()
 }
 
 /*
+ * Enables/disables INSTANT SEARCH feature
+ */
+void MainWindow::toggleInstantSearch()
+{
+  if (ui->actionUseInstantSearch->isChecked())
+  {
+    SettingsManager::setInstantSearchSelected(true);
+    disconnect(m_leFilterPackage, SIGNAL(textChanged(QString)), this, SLOT(reapplyPackageFilter()));
+    connect(m_leFilterPackage, SIGNAL(textChanged(QString)), this, SLOT(reapplyPackageFilter()));
+  }
+  else
+  {
+    SettingsManager::setInstantSearchSelected(false);
+    disconnect(m_leFilterPackage, SIGNAL(textChanged(QString)), this, SLOT(reapplyPackageFilter()));
+  }
+}
+
+/*
  * Switches debugInfo ON!
  */
 void MainWindow::turnDebugInfoOn()

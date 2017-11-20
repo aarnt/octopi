@@ -591,6 +591,12 @@ void SettingsManager::setSUTool(const QString &newValue)
   instance()->getSYSsettings()->sync();
 }
 
+void SettingsManager::setInstantSearchSelected(bool newValue)
+{
+  instance()->getSYSsettings()->setValue(ctn_KEY_INSTANT_SEARCH, newValue);
+  instance()->getSYSsettings()->sync();
+}
+
 /*
  * Search all supported SU tools to see if the selected one is valid
  */
@@ -654,6 +660,12 @@ bool SettingsManager::isValidTerminalSelected()
   {
     return false;
   }
+}
+
+bool SettingsManager::isInstantSearchSelected()
+{
+  SettingsManager p_instance;
+  return (p_instance.getSYSsettings()->value( ctn_KEY_INSTANT_SEARCH, 1)).toBool();
 }
 
 //Octopi related --------------------------------------------------------------------
