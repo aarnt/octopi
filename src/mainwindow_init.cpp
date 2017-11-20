@@ -68,6 +68,8 @@ void MainWindow::loadSettings()
     }
   }
   else assert(false);
+
+  ui->actionUseInstantSearch->setChecked(SettingsManager::isInstantSearchSelected());
 }
 
 /*
