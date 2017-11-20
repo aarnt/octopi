@@ -887,11 +887,7 @@ void MainWindow::postBuildPackageList()
     ui->twGroups->setFocus();
     m_groupWidgetNeedsFocus = false;
   }
-  else
-  {
-    if (!ui->tvPackages->hasFocus())
-      m_leFilterPackage->setFocus();
-  }
+  else m_leFilterPackage->setFocus();
 }
 
 /*
