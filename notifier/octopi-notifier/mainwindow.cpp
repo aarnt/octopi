@@ -327,8 +327,19 @@ bool MainWindow::_isSUAvailable()
  */
 void MainWindow::doSystemUpgrade()
 {
-  //If, for whatever reason, the pacman db is locked, let's abort the system upgrade for now!
-  if (PacmanExec::isDatabaseLocked()) return;
+  //If, for whatever reason, the pacman db is locked, let's ask for lock removal
+  if (PacmanExec::isDatabaseLocked())
+  {
+    int res = QMessageBox::question(this, StrConstants::getConfirmation(),
+                                    StrConstants::getRemovePacmanTransactionLockFileConfirmation(),
+                                    QMessageBox::Yes|QMessageBox::No, QMessageBox::No);
+
+    if (res == QMessageBox::Yes)
+    {
+      PacmanExec::removeDatabaseLock();
+    }
+    else return;
+  }
 
   if (m_transactionDialog != nullptr)
   {
@@ -580,8 +591,19 @@ void MainWindow::afterPacmanHelperSyncDatabase()
  */
 void MainWindow::syncDatabase()
 {
-  //If, for whatever reason, the pacman db is locked, let's abort the synchronization for now!
-  if (PacmanExec::isDatabaseLocked()) return;
+  //If, for whatever reason, the pacman db is locked, let's ask for lock removal
+  if (PacmanExec::isDatabaseLocked())
+  {
+    int res = QMessageBox::question(this, StrConstants::getConfirmation(),
+                                    StrConstants::getRemovePacmanTransactionLockFileConfirmation(),
+                                    QMessageBox::Yes|QMessageBox::No, QMessageBox::No);
+
+    if (res == QMessageBox::Yes)
+    {
+      PacmanExec::removeDatabaseLock();
+    }
+    else return;
+  }
 
   disconnect(m_pacmanDatabaseSystemWatcher,
           SIGNAL(directoryChanged(QString)), this, SLOT(refreshAppIcon()));
