@@ -1,4 +1,5 @@
 0.9.0 (dev)
+  Parser changes: added counter for processed packages.
   Added an Options dialog to Octopi and Notifier.
   Added configurable "--noconfirm" and "--noedit" options to pacaur and "--noconfirm" to yaourt.
   Added "Search/Use Instant Search" toggle.

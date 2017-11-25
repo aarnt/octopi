@@ -32,6 +32,14 @@ class PacmanExec : public QObject
 private:
   bool m_iLoveCandy;
   bool m_debugMode;
+  //This flag guards if we parsed number of packages in the transaction
+  bool m_parsedNumberOfPackages;
+  //This variable holds total number of packages to be downloaded/removed
+  int m_numberOfPackages;
+  //This variable counts the package number being downloaded/removed
+  int m_packageCounter;
+  //This flag holds TRUE if the parser is parsing a package removal operation
+  bool m_parsingAPackageRemoval;
   UnixCommand *m_unixCommand;
   CommandExecuting m_commandExecuting;
   QStringList m_lastCommandList; //run in terminal commands

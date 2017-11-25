@@ -39,6 +39,10 @@ PacmanExec::PacmanExec(QObject *parent) : QObject(parent)
   m_iLoveCandy = UnixCommand::isILoveCandyEnabled();
   m_debugMode = false;
   m_processWasCanceled = false;
+  m_numberOfPackages = 0;
+  m_packageCounter = 0;
+  m_parsingAPackageRemoval = false;
+  m_parsedNumberOfPackages = false;
 
   QObject::connect(m_unixCommand, SIGNAL( started() ), this, SLOT( onStarted()));
 
@@ -114,13 +118,14 @@ void PacmanExec::cancelProcess()
  */
 bool PacmanExec::searchForKeyVerbs(QString output)
 {
-  return (output.contains(QRegularExpression("checking ")) ||
+  return (output.contains(QRegularExpression("Arming ")) ||
+          output.contains(QRegularExpression("checking ")) ||
           output.contains(QRegularExpression("loading ")) ||
           output.contains(QRegularExpression("installing ")) ||
           output.contains(QRegularExpression("upgrading ")) ||
           output.contains(QRegularExpression("downgrading ")) ||
-          output.contains(QRegularExpression("resolving ")) ||
-          output.contains(QRegularExpression("looking ")) ||
+          //output.contains(QRegularExpression("resolving ")) ||
+          //output.contains(QRegularExpression("looking ")) ||
           output.contains(QRegularExpression("removing ")));
 }
 
@@ -133,6 +138,7 @@ bool PacmanExec::searchForKeyVerbs(QString output)
 bool PacmanExec::splitOutputStrings(QString output)
 {
   bool res = true;
+
   QString msg = output.trimmed();
   QStringList msgs = msg.split(QRegularExpression("\\n"), QString::SkipEmptyParts);
 
@@ -192,6 +198,8 @@ bool PacmanExec::splitOutputStrings(QString output)
  */
 void PacmanExec::parsePacmanProcessOutput(QString output)
 {
+  m_parsingAPackageRemoval = false;
+
   if (m_commandExecuting == ectn_RUN_IN_TERMINAL ||
       m_commandExecuting == ectn_RUN_SYSTEM_UPGRADE_IN_TERMINAL) return;
 
@@ -219,6 +227,23 @@ void PacmanExec::parsePacmanProcessOutput(QString output)
   msg.remove(";37m");
   msg.remove("[c");
   msg.remove("[mo");
+
+  if (!m_parsedNumberOfPackages)
+  {
+    QRegularExpression re("Packages \\(\\d+\\)");
+    QRegularExpressionMatch match = re.match(msg);
+    if (match.hasMatch())
+    {
+      m_parsedNumberOfPackages = true;
+      QString aux_packages = match.captured(0);
+      aux_packages.remove("Packages (");
+      aux_packages.remove(")");
+      m_numberOfPackages = aux_packages.toInt();
+
+      if (m_numberOfPackages > 0) m_packageCounter = 1;
+      if (m_debugMode) std::cout << "Number of packages: " << m_numberOfPackages << std::endl;
+    }
+  }
 
   if (msg.contains("exists in filesystem") ||
       (msg.contains(":: waiting for 1 process to finish repacking")) ||
@@ -369,7 +394,7 @@ void PacmanExec::parsePacmanProcessOutput(QString output)
     msg.remove(QRegularExpression("QVariant.+"));
     msg.remove(QRegularExpression("gksu-run.+"));
     msg.remove(QRegularExpression("GConf Error:.+"));
-    msg.remove(QRegularExpression(":: Do you want.+"));
+    msg.remove(QRegularExpression(":: Do.*"));
     msg.remove(QRegularExpression("org\\.kde\\."));
     msg.remove(QRegularExpression("QCommandLineParser"));
     msg.remove(QRegularExpression("QCoreApplication.+"));
@@ -391,13 +416,16 @@ void PacmanExec::parsePacmanProcessOutput(QString output)
 
     if (!msg.isEmpty())
     {
-      if (msg.contains(QRegularExpression("removing ")) && !m_textPrinted.contains(msg + " "))
+      if (m_textPrinted.contains(msg + " ")) return;
+
+      if (msg.contains(QRegularExpression("removing "))) //&& !m_textPrinted.contains(msg + " "))
       {
         //Does this package exist or is it a proccessOutput buggy string???
         QString pkgName = msg.mid(9).trimmed();
 
         if (pkgName.indexOf("...") != -1 || UnixCommand::isPackageInstalled(pkgName))
         {
+          m_parsingAPackageRemoval = true;
           prepareTextToPrint("<b><font color=\"#E55451\">" + msg + "</font></b>"); //RED
         }
       }
@@ -445,7 +473,7 @@ void PacmanExec::parsePacmanProcessOutput(QString output)
  */
 void PacmanExec::prepareTextToPrint(QString str, TreatString ts, TreatURLLinks tl)
 {
-  if (m_debugMode) std::cout << "_print: " << str.toLatin1().data() << std::endl;
+  if (m_debugMode) std::cout << "_print (begin): " << str.toLatin1().data() << std::endl;
 
   if (ts == ectn_DONT_TREAT_STRING)
   {
@@ -454,22 +482,23 @@ void PacmanExec::prepareTextToPrint(QString str, TreatString ts, TreatURLLinks t
   }
 
   //If the str waiting to being print is from curl status OR any other unwanted string...
-  if ((str.contains(QRegularExpression("\\(\\d")) &&
-       (!str.contains("target", Qt::CaseInsensitive)) &&
-       (!str.contains("package", Qt::CaseInsensitive))) ||
-      (str.contains(QRegularExpression("\\d\\)")) &&
-       (!str.contains("target", Qt::CaseInsensitive)) &&
-       (!str.contains("package", Qt::CaseInsensitive))) ||
+  if (!str.contains(QRegularExpression("<font color")))
+    if ((str.contains(QRegularExpression("\\(\\d")) &&
+         (!str.contains("target", Qt::CaseInsensitive)) &&
+         (!str.contains("package", Qt::CaseInsensitive))) ||
+        (str.contains(QRegularExpression("\\d\\)")) &&
+         (!str.contains("target", Qt::CaseInsensitive)) &&
+         (!str.contains("package", Qt::CaseInsensitive))) ||
 
-      str.indexOf("Enter a selection", Qt::CaseInsensitive) == 0 ||
-      str.indexOf("Proceed with", Qt::CaseInsensitive) == 0 ||
-      str.indexOf("%") != -1 ||
-      str.indexOf("[") != -1 ||
-      str.indexOf("]") != -1 ||
-      str.indexOf("---") != -1)
-  {
-    return;
-  }
+        str.indexOf("Enter a selection", Qt::CaseInsensitive) == 0 ||
+        str.indexOf("Proceed with", Qt::CaseInsensitive) == 0 ||
+        str.indexOf("%") != -1 ||
+        str.indexOf("[") != -1 ||
+        str.indexOf("]") != -1 ||
+        str.indexOf("---") != -1)
+    {
+      return;
+    }
 
   //If the str waiting to being print has not yet been printed...
   if(m_textPrinted.contains(str))
@@ -493,6 +522,17 @@ void PacmanExec::prepareTextToPrint(QString str, TreatString ts, TreatURLLinks t
        newStr.contains("could not be found") ||
        newStr.contains(StrConstants::getCommandFinishedWithErrors()))
     {
+      if (newStr.contains("removing "))
+      {
+        //Does this package exist or is it a proccessOutput buggy string???
+        QString pkgName = newStr.mid(9).trimmed();
+
+        if ((pkgName.indexOf("...") == -1) || UnixCommand::isPackageInstalled(pkgName))
+        {
+          m_parsingAPackageRemoval = true;
+        }
+      }
+
       newStr = "<b><font color=\"#E55451\">" + newStr + "&nbsp;</font></b>"; //RED
     }
     else if (newStr.contains("warning", Qt::CaseInsensitive) || (newStr.contains("downgrading")))
@@ -505,8 +545,9 @@ void PacmanExec::prepareTextToPrint(QString str, TreatString ts, TreatURLLinks t
             newStr.contains("installing ") ||
             newStr.contains("upgrading ") ||
             newStr.contains("loading ") ||
-            newStr.contains("resolving ") ||
-            newStr.contains("looking "))
+            newStr.contains("Arming"))
+            //newStr.contains("resolving ") ||
+            //newStr.contains("looking "))
     {
       newStr = "<b><font color=\"#4BC413\">" + newStr + "</font></b>"; //GREEN
     }
@@ -529,7 +570,23 @@ void PacmanExec::prepareTextToPrint(QString str, TreatString ts, TreatURLLinks t
   if (tl == ectn_TREAT_URL_LINK)
     newStr = Package::makeURLClickable(newStr);
 
+  if (m_debugMode) std::cout << "_print (end): " << str.toLatin1().data() << std::endl;
+
   m_textPrinted.append(str);
+
+  if ((m_commandExecuting != ectn_SYNC_DATABASE) && (newStr.contains("#b4ab58")))
+  {
+    int c = newStr.indexOf("#b4ab58\">") + 9;
+    newStr.insert(c, "(" + QString::number(m_packageCounter) + "/" + QString::number(m_numberOfPackages) + ") ");
+    m_packageCounter++;
+  }
+
+  if (m_parsingAPackageRemoval)
+  {
+    int c = newStr.indexOf("#E55451\">") + 9;
+    newStr.insert(c, "(" + QString::number(m_packageCounter) + "/" + QString::number(m_numberOfPackages) + ") ");
+    m_packageCounter++;
+  }
 
   emit textToPrintExt(newStr);
 }
@@ -696,6 +753,8 @@ void PacmanExec::onFinished(int exitCode, QProcess::ExitStatus es)
   }
 
   if (m_processWasCanceled && PacmanExec::isDatabaseLocked()) exitCode = -1;
+
+  m_parsedNumberOfPackages = false;
 
   emit finished(exitCode, es);
 }

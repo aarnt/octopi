@@ -245,11 +245,11 @@ void OptionsDialog::initAURTab()
       cbYaourtNoConfirm->setEnabled(false);
     }
 
-    if (SettingsManager::getAURTool() == "pacaur")
+    if (SettingsManager::getAURToolName() == "pacaur")
       rbPacaur->setChecked(true);
-    else if (SettingsManager::getAURTool() == "yaourt")
+    else if (SettingsManager::getAURToolName() == "yaourt")
       rbYaourt->setChecked(true);
-    else if (SettingsManager::getAURTool() == "DO_NOT_USE_AUR")
+    else if (SettingsManager::getAURToolName() == "DO_NOT_USE_AUR")
       rbDoNotUse->setChecked(true);    
     else if (pacaurTool)
     {
@@ -490,17 +490,17 @@ void OptionsDialog::accept(){
   //Set AUR Tool...
   if (tabAUR->isVisible())
   {
-    if (rbPacaur->isChecked() && SettingsManager::getAURTool() != "pacaur")
+    if (rbPacaur->isChecked() && SettingsManager::getAURToolName() != "pacaur")
     {
       SettingsManager::setAURTool("pacaur");
       AURHasChanged = true;
     }
-    else if (rbYaourt->isChecked() && SettingsManager::getAURTool() != "yaourt")
+    else if (rbYaourt->isChecked() && SettingsManager::getAURToolName() != "yaourt")
     {
       SettingsManager::setAURTool("yaourt");
       AURHasChanged = true;
     }
-    else if (rbDoNotUse->isChecked() && SettingsManager::getAURTool() != "DO_NOT_USE_AUR")
+    else if (rbDoNotUse->isChecked() && SettingsManager::getAURToolName() != "DO_NOT_USE_AUR")
     {
       SettingsManager::setAURTool("DO_NOT_USE_AUR");
       AURHasChanged = true;
