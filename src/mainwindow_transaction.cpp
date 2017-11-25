@@ -1708,12 +1708,24 @@ void MainWindow::cancelTransaction()
 }
 
 /*
+ * Kills the running pacman command
+ */
+void MainWindow::stopTransaction()
+{
+  if (m_commandExecuting != ectn_NONE && m_pacmanExec != NULL)
+  {
+    m_pacmanExec->cancelProcess();
+  }
+}
+
+/*
  * This SLOT is called when Pacman's process has finished execution [PacmanExec based!!!]
  */
 void MainWindow::pacmanProcessFinished(int exitCode, QProcess::ExitStatus exitStatus)
 {
   bool bRefreshGroups = true;
   m_progressWidget->close();
+  m_toolButtonStopTransaction->setVisible(false);
   ui->twProperties->setTabText(ctn_TABINDEX_OUTPUT, StrConstants::getTabOutputName());
 
   //mate-terminal is returning code 255 sometimes...
@@ -1861,7 +1873,11 @@ void MainWindow::writeToTabOutput(const QString &msg, TreatURLLinks treatURLLink
  */
 void MainWindow::incrementPercentage(int percentage)
 {
-  if (!m_progressWidget->isVisible()) m_progressWidget->show();
+  if (!m_progressWidget->isVisible())
+  {
+    m_progressWidget->show();
+    m_toolButtonStopTransaction->setVisible(true);
+  }
   m_progressWidget->setValue(percentage);
 }
 

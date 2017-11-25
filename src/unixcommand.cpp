@@ -885,7 +885,7 @@ QString UnixCommand::errorString()
 void UnixCommand::cancelProcess()
 {
   QProcess pacman;
-  QString command = WMHelper::getSUCommand() + "killall pacman";
+  QString command = WMHelper::getSUCommand() + "\"killall pacman; rm /var/lib/pacman/db.lck\"";
   pacman.start(command);
   pacman.waitForFinished();
 

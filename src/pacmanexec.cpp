@@ -230,13 +230,13 @@ void PacmanExec::parsePacmanProcessOutput(QString output)
 
   if (!m_parsedNumberOfPackages)
   {
-    QRegularExpression re("Packages \\(\\d+\\)");
+    QRegularExpression re("Packages? \\(\\d+\\)");
     QRegularExpressionMatch match = re.match(msg);
     if (match.hasMatch())
     {
       m_parsedNumberOfPackages = true;
       QString aux_packages = match.captured(0);
-      aux_packages.remove("Packages (");
+      aux_packages.remove(QRegularExpression("Packages? \\("));
       aux_packages.remove(")");
       m_numberOfPackages = aux_packages.toInt();
 
@@ -578,14 +578,14 @@ void PacmanExec::prepareTextToPrint(QString str, TreatString ts, TreatURLLinks t
   {
     int c = newStr.indexOf("#b4ab58\">") + 9;
     newStr.insert(c, "(" + QString::number(m_packageCounter) + "/" + QString::number(m_numberOfPackages) + ") ");
-    m_packageCounter++;
+    if (m_packageCounter < m_numberOfPackages) m_packageCounter++;
   }
 
   if (m_parsingAPackageRemoval)
   {
     int c = newStr.indexOf("#E55451\">") + 9;
     newStr.insert(c, "(" + QString::number(m_packageCounter) + "/" + QString::number(m_numberOfPackages) + ") ");
-    m_packageCounter++;
+    if (m_packageCounter < m_numberOfPackages) m_packageCounter++;
   }
 
   emit textToPrintExt(newStr);

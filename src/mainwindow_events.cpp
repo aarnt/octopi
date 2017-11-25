@@ -222,10 +222,7 @@ void MainWindow::keyPressEvent(QKeyEvent* ke)
   }
   else if(ke->key() == Qt::Key_Z && ke->modifiers() == Qt::ControlModifier)
   {
-    if (m_commandExecuting != ectn_NONE && m_pacmanExec != NULL)
-    {
-      m_pacmanExec->cancelProcess();
-    }
+    stopTransaction();
   }
   else if(ke->key() == Qt::Key_C && ke->modifiers() == Qt::ControlModifier)
   {

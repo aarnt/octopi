@@ -365,7 +365,12 @@ void MainWindow::initStatusBar()
   m_progressWidget->setMaximumWidth(250);
   ui->statusBar->addWidget(m_lblSelCounter);
   ui->statusBar->addWidget(m_lblTotalCounters);
-  ui->statusBar->addPermanentWidget(m_progressWidget);
+  ui->statusBar->addPermanentWidget(m_progressWidget);  
+  m_toolButtonStopTransaction = new QToolButton(this);
+  m_toolButtonStopTransaction->setDefaultAction(m_actionStopTransaction);
+  m_toolButtonStopTransaction->setVisible(false);
+  m_toolButtonStopTransaction->setAutoRaise(true);
+  ui->statusBar->addPermanentWidget(m_toolButtonStopTransaction);
 }
 
 /*
@@ -699,6 +704,11 @@ void MainWindow::initActions()
 
   m_actionMenuOptions->setText(StrConstants::getOptions());
   connect(m_actionMenuOptions, SIGNAL(triggered()), this, SLOT(onOptions()));
+
+  m_actionStopTransaction = new QAction(this);
+  m_actionStopTransaction->setIcon(IconHelper::getIconStop());
+  m_actionStopTransaction->setText(StrConstants::getStop());
+  connect(m_actionStopTransaction, SIGNAL(triggered()), this, SLOT(stopTransaction()));
 
   m_actionSwitchToAURTool = new QAction(this);
   m_actionSwitchToAURTool->setIcon(IconHelper::getIconForeignGreen());

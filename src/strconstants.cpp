@@ -635,6 +635,11 @@ QString StrConstants::getSetInterval(){
   return QObject::tr("Set interval...");
 }
 
+QString StrConstants::getStop()
+{
+  return QObject::tr("Stop");
+}
+
 //Style Sheets ---------------------------------
 
 QString StrConstants::getToolBarCSS(){

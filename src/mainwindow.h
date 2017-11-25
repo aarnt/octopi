@@ -199,6 +199,8 @@ private:
   QAction *m_actionEditOctopiConf;
   QAction *m_actionCopyFullPath;
   QAction *m_actionSysInfo;
+  QAction *m_actionStopTransaction;
+  QToolButton *m_toolButtonStopTransaction;
 
   //Toggles use of AUR tool
   QAction *m_separatorForActionAUR;
@@ -404,6 +406,7 @@ private slots:
   void toggleSystemActions(const bool value);
   void commitTransaction();
   void cancelTransaction();
+  void stopTransaction();
 
   //View menu and submenu Repository actions...
   void selectedAllPackagesMenu();
