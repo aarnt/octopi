@@ -5,7 +5,6 @@
   Added configurable "--noconfirm" and "--noedit" options to pacaur and "--noconfirm" to yaourt.
   Added "Search/Use Instant Search" toggle.
   Added slovenian translation (thanks to the translation crew).
-  Added "ctrl+Z" shortcut to cancel running "pacman" transaction.
   Added support fo drag pacman packages to Octopi's mainwindow so they can be installed.
   Added "Install Reason" field at Info tab.
   Added support for ALPM utils lib (thanks to guinux, from Pamac project). So, now it's possible to 

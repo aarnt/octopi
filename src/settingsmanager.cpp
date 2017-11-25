@@ -244,6 +244,18 @@ QString SettingsManager::getOctopiGreenIconPath()
   return (p_instance.getSYSsettings()->value( ctn_KEY_OCTOPI_GREEN_ICON_PATH, "")).toString();
 }
 
+bool SettingsManager::getShowPackageNumbersOutput()
+{
+  SettingsManager p_instance;
+  return p_instance.getSYSsettings()->value( ctn_KEY_SHOW_PACKAGE_NUMBERS_OUTPUT, 0).toBool();
+}
+
+bool SettingsManager::getShowStopTransaction()
+{
+  SettingsManager p_instance;
+  return p_instance.getSYSsettings()->value( ctn_KEY_SHOW_STOP_TRANSACTION, 0).toBool();
+}
+
 QString SettingsManager::getAURTool()
 {
   QString params;
@@ -549,6 +561,18 @@ void SettingsManager::setPackageVersionColumnWidth(int newValue)
 void SettingsManager::setPackageRepositoryColumnWidth(int newValue)
 {
   instance()->getSYSsettings()->setValue(ctn_KEY_PACKAGE_REPOSITORY_COLUMN_WIDTH, newValue);
+  instance()->getSYSsettings()->sync();
+}
+
+void SettingsManager::setShowPackageNumbersOutput(bool newValue)
+{
+  instance()->getSYSsettings()->setValue(ctn_KEY_SHOW_PACKAGE_NUMBERS_OUTPUT, newValue);
+  instance()->getSYSsettings()->sync();
+}
+
+void SettingsManager::setShowStopTransaction(bool newValue)
+{
+  instance()->getSYSsettings()->setValue(ctn_KEY_SHOW_STOP_TRANSACTION, newValue);
   instance()->getSYSsettings()->sync();
 }
 

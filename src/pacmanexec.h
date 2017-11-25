@@ -39,7 +39,7 @@ private:
   //This variable counts the package number being downloaded/removed
   int m_packageCounter;
   //This flag holds TRUE if the parser is parsing a package removal operation
-  bool m_parsingAPackageRemoval;
+  bool m_parsingAPackageChange;
   UnixCommand *m_unixCommand;
   CommandExecuting m_commandExecuting;
   QStringList m_lastCommandList; //run in terminal commands

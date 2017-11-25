@@ -33,6 +33,37 @@
        <property name="currentIndex">
         <number>0</number>
        </property>
+       <widget class="QWidget" name="tabGeneral">
+        <attribute name="title">
+         <string>General</string>
+        </attribute>
+        <widget class="QCheckBox" name="cbShowPackageNumbersOutput">
+         <property name="geometry">
+          <rect>
+           <x>20</x>
+           <y>30</y>
+           <width>581</width>
+           <height>23</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Show package numbers in output tab</string>
+         </property>
+        </widget>
+        <widget class="QCheckBox" name="cbShowStopTransaction">
+         <property name="geometry">
+          <rect>
+           <x>20</x>
+           <y>60</y>
+           <width>611</width>
+           <height>23</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Show stop transaction button at statusbar</string>
+         </property>
+        </widget>
+       </widget>
        <widget class="QWidget" name="tabAUR">
         <attribute name="title">
          <string notr="true">AUR</string>

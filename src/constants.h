@@ -44,7 +44,6 @@ enum LinuxDistro { ectn_ANTERGOS, ectn_ARCHBANGLINUX, ectn_ARCHBSD, ectn_ARCHLIN
 
 enum Language { ectn_LANG_ENGLISH, ectn_LANG_USER_DEFINED };
 
-
 //PacmanExec - QTextBrowser related
 enum TreatString { ectn_TREAT_STRING, ectn_DONT_TREAT_STRING };
 enum TreatURLLinks { ectn_TREAT_URL_LINK, ectn_DONT_TREAT_URL_LINK };
@@ -56,6 +55,8 @@ enum SaveSettingsReason { ectn_AUR_PackageList, ectn_PackageList, ectn_CurrentTa
 const QString ctn_ORGANIZATION("octopi");
 const QString ctn_APPLICATION("octopi");
 
+const QString ctn_KEY_SHOW_PACKAGE_NUMBERS_OUTPUT("Show_Package_Numbers_Output");
+const QString ctn_KEY_SHOW_STOP_TRANSACTION("Show_Stop_Transaction");
 const QString ctn_KEY_AUR_TOOL("Aur_Tool_Name");
 const QString ctn_KEY_PACAUR_NO_CONFIRM_PARAM("Pacaur_No_Confirm_Param");
 const QString ctn_KEY_PACAUR_NO_EDIT_PARAM("Pacaur_No_Edit_Param");

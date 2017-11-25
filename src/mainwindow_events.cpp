@@ -220,10 +220,6 @@ void MainWindow::keyPressEvent(QKeyEvent* ke)
   {
     maximizePropertiesTabWidget(false);
   }
-  else if(ke->key() == Qt::Key_Z && ke->modifiers() == Qt::ControlModifier)
-  {
-    stopTransaction();
-  }
   else if(ke->key() == Qt::Key_C && ke->modifiers() == Qt::ControlModifier)
   {
     copyFullPathToClipboard();
@@ -291,13 +287,6 @@ void MainWindow::keyPressEvent(QKeyEvent* ke)
       ui->tvPackages->setFocus();
     }
   }
-  /*else if(ke->key() == Qt::Key_C && ke->modifiers() == (Qt::ShiftModifier|Qt::ControlModifier))
-  {
-    if (m_commandExecuting == ectn_NONE)
-    {
-      doCleanCache(); //If we are not executing any command, let's clean the cache
-    }
-  }*/
   else if(ke->key() == Qt::Key_R && ke->modifiers() == (Qt::ShiftModifier|Qt::ControlModifier))
   {
     if (m_commandExecuting == ectn_NONE)

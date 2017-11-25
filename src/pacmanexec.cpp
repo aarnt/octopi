@@ -41,8 +41,8 @@ PacmanExec::PacmanExec(QObject *parent) : QObject(parent)
   m_processWasCanceled = false;
   m_numberOfPackages = 0;
   m_packageCounter = 0;
-  m_parsingAPackageRemoval = false;
-  m_parsedNumberOfPackages = false;
+  m_parsingAPackageChange = false;
+  //m_parsedNumberOfPackages = false;
 
   QObject::connect(m_unixCommand, SIGNAL( started() ), this, SLOT( onStarted()));
 
@@ -198,7 +198,7 @@ bool PacmanExec::splitOutputStrings(QString output)
  */
 void PacmanExec::parsePacmanProcessOutput(QString output)
 {
-  m_parsingAPackageRemoval = false;
+  m_parsingAPackageChange = false;
 
   if (m_commandExecuting == ectn_RUN_IN_TERMINAL ||
       m_commandExecuting == ectn_RUN_SYSTEM_UPGRADE_IN_TERMINAL) return;
@@ -228,13 +228,13 @@ void PacmanExec::parsePacmanProcessOutput(QString output)
   msg.remove("[c");
   msg.remove("[mo");
 
-  if (!m_parsedNumberOfPackages)
+  if (/*!m_parsedNumberOfPackages &&*/ SettingsManager::getShowPackageNumbersOutput())
   {
     QRegularExpression re("Packages? \\(\\d+\\)");
     QRegularExpressionMatch match = re.match(msg);
     if (match.hasMatch())
     {
-      m_parsedNumberOfPackages = true;
+      //m_parsedNumberOfPackages = true;
       QString aux_packages = match.captured(0);
       aux_packages.remove(QRegularExpression("Packages? \\("));
       aux_packages.remove(")");
@@ -418,14 +418,14 @@ void PacmanExec::parsePacmanProcessOutput(QString output)
     {
       if (m_textPrinted.contains(msg + " ")) return;
 
-      if (msg.contains(QRegularExpression("removing "))) //&& !m_textPrinted.contains(msg + " "))
+      if (msg.contains(QRegularExpression("removing"))) //&& !m_textPrinted.contains(msg + " "))
       {
         //Does this package exist or is it a proccessOutput buggy string???
         QString pkgName = msg.mid(9).trimmed();
 
         if (pkgName.indexOf("...") != -1 || UnixCommand::isPackageInstalled(pkgName))
         {
-          m_parsingAPackageRemoval = true;
+          m_parsingAPackageChange = true;
           prepareTextToPrint("<b><font color=\"#E55451\">" + msg + "</font></b>"); //RED
         }
       }
@@ -522,14 +522,15 @@ void PacmanExec::prepareTextToPrint(QString str, TreatString ts, TreatURLLinks t
        newStr.contains("could not be found") ||
        newStr.contains(StrConstants::getCommandFinishedWithErrors()))
     {
-      if (newStr.contains("removing "))
+      newStr = newStr.trimmed();
+      if (newStr.contains(QRegularExpression("removing \\S+$")))
       {
         //Does this package exist or is it a proccessOutput buggy string???
         QString pkgName = newStr.mid(9).trimmed();
 
         if ((pkgName.indexOf("...") == -1) || UnixCommand::isPackageInstalled(pkgName))
         {
-          m_parsingAPackageRemoval = true;
+          m_parsingAPackageChange = true;
         }
       }
 
@@ -546,9 +547,17 @@ void PacmanExec::prepareTextToPrint(QString str, TreatString ts, TreatURLLinks t
             newStr.contains("upgrading ") ||
             newStr.contains("loading ") ||
             newStr.contains("Arming"))
-            //newStr.contains("resolving ") ||
-            //newStr.contains("looking "))
     {
+      newStr = newStr.trimmed();
+      if (newStr.contains(QRegularExpression("installing \\S+$")) || newStr.contains(QRegularExpression("upgrading \\S+$")))
+      {
+        if (SettingsManager::getShowPackageNumbersOutput())
+        {
+          newStr = "(" + QString::number(m_packageCounter) + "/" + QString::number(m_numberOfPackages) + ") " + newStr;
+          if (m_packageCounter < m_numberOfPackages) m_packageCounter++;
+        }
+      }
+
       newStr = "<b><font color=\"#4BC413\">" + newStr + "</font></b>"; //GREEN
     }
     else if (!newStr.contains("::"))
@@ -560,6 +569,9 @@ void PacmanExec::prepareTextToPrint(QString str, TreatString ts, TreatURLLinks t
   if (newStr.contains("::"))
   {
     newStr = "<br><B>" + newStr + "</B><br><br>";
+    if (SettingsManager::getShowPackageNumbersOutput() &&
+        (newStr.contains(":: Retrieving packages") || (newStr.contains(":: Processing package changes"))))
+        m_packageCounter = 1;
   }
 
   if (!newStr.contains(QRegularExpression("<br"))) //It was an else!
@@ -574,14 +586,14 @@ void PacmanExec::prepareTextToPrint(QString str, TreatString ts, TreatURLLinks t
 
   m_textPrinted.append(str);
 
-  if ((m_commandExecuting != ectn_SYNC_DATABASE) && (newStr.contains("#b4ab58")))
+  if (SettingsManager::getShowPackageNumbersOutput() && m_commandExecuting != ectn_SYNC_DATABASE && newStr.contains("#b4ab58"))
   {
     int c = newStr.indexOf("#b4ab58\">") + 9;
     newStr.insert(c, "(" + QString::number(m_packageCounter) + "/" + QString::number(m_numberOfPackages) + ") ");
     if (m_packageCounter < m_numberOfPackages) m_packageCounter++;
   }
 
-  if (m_parsingAPackageRemoval)
+  if (SettingsManager::getShowPackageNumbersOutput() && m_parsingAPackageChange)
   {
     int c = newStr.indexOf("#E55451\">") + 9;
     newStr.insert(c, "(" + QString::number(m_packageCounter) + "/" + QString::number(m_numberOfPackages) + ") ");
@@ -754,7 +766,7 @@ void PacmanExec::onFinished(int exitCode, QProcess::ExitStatus es)
 
   if (m_processWasCanceled && PacmanExec::isDatabaseLocked()) exitCode = -1;
 
-  m_parsedNumberOfPackages = false;
+  //m_parsedNumberOfPackages = false;
 
   emit finished(exitCode, es);
 }

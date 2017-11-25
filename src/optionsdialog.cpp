@@ -186,6 +186,7 @@ void OptionsDialog::initialize(){
   m_iconHasChanged = false;
 
   initButtonBox();
+  initGeneralTab();
   initAURTab();
   initBackendTab();
   initIconTab();
@@ -208,6 +209,15 @@ void OptionsDialog::initialize(){
 void OptionsDialog::initButtonBox(){
   buttonBox->button(QDialogButtonBox::Ok)->setText(tr("Ok"));
   buttonBox->button(QDialogButtonBox::Cancel)->setText(tr("Cancel"));
+}
+
+/*
+ * Initializes General tab
+ */
+void OptionsDialog::initGeneralTab()
+{
+  cbShowPackageNumbersOutput->setChecked(SettingsManager::getShowPackageNumbersOutput());
+  cbShowStopTransaction->setChecked(SettingsManager::getShowStopTransaction());
 }
 
 /*
@@ -485,6 +495,16 @@ void OptionsDialog::accept(){
 
       m_backendHasChanged = true;
     }
+  }
+
+  //Set General...
+  if (cbShowPackageNumbersOutput->isChecked() != SettingsManager::getShowPackageNumbersOutput())
+  {
+    SettingsManager::setShowPackageNumbersOutput(cbShowPackageNumbersOutput->isChecked());
+  }
+  if (cbShowStopTransaction->isChecked() != SettingsManager::getShowStopTransaction())
+  {
+    SettingsManager::setShowStopTransaction(cbShowStopTransaction->isChecked());
   }
 
   //Set AUR Tool...

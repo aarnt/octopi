@@ -1725,7 +1725,7 @@ void MainWindow::pacmanProcessFinished(int exitCode, QProcess::ExitStatus exitSt
 {
   bool bRefreshGroups = true;
   m_progressWidget->close();
-  m_toolButtonStopTransaction->setVisible(false);
+  if (SettingsManager::getShowStopTransaction()) m_toolButtonStopTransaction->setVisible(false);
   ui->twProperties->setTabText(ctn_TABINDEX_OUTPUT, StrConstants::getTabOutputName());
 
   //mate-terminal is returning code 255 sometimes...
@@ -1876,7 +1876,7 @@ void MainWindow::incrementPercentage(int percentage)
   if (!m_progressWidget->isVisible())
   {
     m_progressWidget->show();
-    m_toolButtonStopTransaction->setVisible(true);
+    if (SettingsManager::getShowStopTransaction()) m_toolButtonStopTransaction->setVisible(true);
   }
   m_progressWidget->setValue(percentage);
 }

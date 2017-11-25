@@ -46,6 +46,7 @@ private:
 
   void initialize();
   void initButtonBox();
+  void initGeneralTab();
   void initAURTab();
   void initBackendTab();
   void initIconTab();

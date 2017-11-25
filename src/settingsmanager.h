@@ -62,11 +62,14 @@ class SettingsManager
     static int getPackageVersionColumnWidth();
     static int getPackageRepositoryColumnWidth();
 
-    static bool getUseDefaultAppIcon();
+    static bool getUseDefaultAppIcon();    
     static QString getOctopiBusyIconPath();
     static QString getOctopiRedIconPath();
     static QString getOctopiYellowIconPath();
     static QString getOctopiGreenIconPath();
+
+    static bool getShowPackageNumbersOutput();
+    static bool getShowStopTransaction();
 
     static QString getAURTool();
     static QString getAURToolName();
@@ -82,7 +85,6 @@ class SettingsManager
     static QByteArray getCacheCleanerWindowSize();
     static int getKeepNumInstalledPackages();
     static int getKeepNumUninstalledPackages();
-
     static void setCacheCleanerWindowSize(QByteArray newValue);
     static void setKeepNumInstalledPackages(int newValue);
     static void setKeepNumUninstalledPackages(int newValue);
@@ -133,7 +135,10 @@ class SettingsManager
     static void setPackageVersionColumnWidth(int newValue);
     static void setPackageRepositoryColumnWidth(int newValue);
 
-    static void setAURTool(const QString& newValue);
+    static void setShowPackageNumbersOutput(bool newValue);
+    static void setShowStopTransaction(bool newValue);
+
+    static void setAURTool(const QString& newValue);        
     static void setPacaurNoConfirmParam(bool newValue);
     static void setPacaurNoEditParam(bool newValue);
     static void setYaourtNoConfirmParam(bool newValue);
