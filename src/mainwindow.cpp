@@ -1548,6 +1548,12 @@ QString MainWindow::getSelectedDirectory()
  */
 void MainWindow::tvPackagesSelectionChanged(const QItemSelection&, const QItemSelection&)
 {
+  if (m_packageModel->getPackageCount() == 0)
+  {
+    clearStatusBar();
+    return;
+  }
+
   const QItemSelectionModel*const selection = ui->tvPackages->selectionModel();
   const int selected = selection != NULL ? selection->selectedRows().count() : 0;
 

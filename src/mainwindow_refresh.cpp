@@ -196,7 +196,11 @@ void MainWindow::refreshGroupsWidget()
  */
 void MainWindow::AURToolSelected()
 {
+  static QStandardItemModel emptyModel;
   savePackageColumnWidths();
+
+  refreshTabInfo(true);
+  refreshTabFiles(true);
 
   //Here we are changing view to list AUR packages ONLY
   if (m_actionSwitchToAURTool->isChecked())
@@ -214,6 +218,8 @@ void MainWindow::AURToolSelected()
   //Here we are changing view to list all packages
   else
   {
+    ui->tvPackages->setModel(&emptyModel);
+    removePackageTreeViewConnections();
     m_actionSwitchToAURTool->setEnabled(false);
     m_refreshForeignPackageList = true;
     m_actionMenuRepository->setEnabled(true);
@@ -223,6 +229,8 @@ void MainWindow::AURToolSelected()
 
     if (!SettingsManager::hasPacmanBackend())
       ui->tvPackages->setColumnHidden(PackageModel::ctn_PACKAGE_SIZE_COLUMN, false);
+
+    clearStatusBar();
   }
 
   switchToViewAllPackages();
@@ -579,7 +587,6 @@ void MainWindow::metaBuildPackageList()
       ui->tvPackages->setSelectionMode(QAbstractItemView::SingleSelection);
 
       toggleSystemActions(false);
-      clearStatusBar();
       m_listOfAURPackages = new QList<PackageListData>();
       m_leFilterPackage->setFocus();
       ui->twGroups->setEnabled(false);
@@ -772,6 +779,13 @@ void MainWindow::buildPackageList()
 
   m_packageRepo.setData(list, *m_unrequiredPackageList);
 
+  if (ui->tvPackages->model() != m_packageModel.get())
+  {
+    ui->tvPackages->setModel(m_packageModel.get());
+    initPackageTreeView();
+    ui->tvPackages->setColumnHidden(PackageModel::ctn_PACKAGE_POPULARITY_COLUMN, true);
+  }
+
   if(m_debugInfo)
     std::cout << "Time elapsed setting the list to the treeview: " << m_time->elapsed() << " mili seconds." << std::endl;
 
@@ -844,9 +858,11 @@ void MainWindow::buildPackageList()
   m_refreshPackageLists = true;
   m_refreshForeignPackageList = true;
 
-  if (m_hasAURTool) m_outdatedAURTimer->start();
+  if (SettingsManager::getSearchOutdatedAURPackages()) m_outdatedAURTimer->start();
   else
   {
+    if (m_hasAURTool && !m_actionSwitchToAURTool->isEnabled()) m_actionSwitchToAURTool->setEnabled(true);
+
     QModelIndex mi = ui->tvPackages->currentIndex();
     m_packageRepo.setAUROutdatedData(m_foreignPackageList, *m_outdatedAURStringList);
     ui->tvPackages->setCurrentIndex(mi);
@@ -866,7 +882,7 @@ void MainWindow::postBuildPackageList()
 
   if (distro != ectn_KAOS && isAURGroupSelected()) return;
 
-  if (m_hasAURTool)
+  //if (m_hasAURTool)
   {
     bool reconnectSlot = false;
 
@@ -1039,10 +1055,10 @@ void MainWindow::buildAURPackageList()
 
   list->clear();
 
-  if (isPackageTreeViewVisible())
+  /*if (isPackageTreeViewVisible())
   {
     ui->tvPackages->setFocus();
-  }
+  }*/
 
   //Refresh counters
   m_numberOfInstalledPackages = installedCount;

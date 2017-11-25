@@ -332,6 +332,12 @@ bool SettingsManager::getYaourtNoConfirmParam()
   return (p_instance.getSYSsettings()->value( ctn_KEY_YAOURT_NO_CONFIRM_PARAM, 0)).toBool();
 }
 
+bool SettingsManager::getSearchOutdatedAURPackages()
+{
+  SettingsManager p_instance;
+  return (p_instance.getSYSsettings()->value( ctn_KEY_SEARCH_OUTDATED_AUR_PACKAGES, 0)).toBool();
+}
+
 /*
  * Retrieves value of field "SU_TOOL", without guessing for AUTOMATIC
  */
@@ -606,6 +612,12 @@ void SettingsManager::setPacaurNoEditParam(bool newValue)
 void SettingsManager::setYaourtNoConfirmParam(bool newValue)
 {
   instance()->getSYSsettings()->setValue(ctn_KEY_YAOURT_NO_CONFIRM_PARAM, newValue);
+  instance()->getSYSsettings()->sync();
+}
+
+void SettingsManager::setSearchOutdatedAURPackages(bool newValue)
+{
+  instance()->getSYSsettings()->setValue(ctn_KEY_SEARCH_OUTDATED_AUR_PACKAGES, newValue);
   instance()->getSYSsettings()->sync();
 }
 

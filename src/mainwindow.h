@@ -89,7 +89,6 @@ private:
   Ui::MainWindow *ui;
   CPUIntensiveComputing *m_cic;
   PacmanExec *m_pacmanExec;
-
   UnixCommand *m_unixCommand;
   bool m_initializationCompleted;
 
@@ -244,6 +243,7 @@ private:
   void initActions();
   void initLineEditFilterPackages();
   void initPackageTreeView();
+  void removePackageTreeViewConnections();
   void initTabWidgetPropertiesIndex();
   void initTabInfo();
 

@@ -255,6 +255,11 @@ void OptionsDialog::initAURTab()
       cbYaourtNoConfirm->setEnabled(false);
     }
 
+    if (!pacaurTool && !yaourtTool)
+    {
+      cbSearchOutdatedAURPackages->setEnabled(false);
+    }
+
     if (SettingsManager::getAURToolName() == "pacaur")
       rbPacaur->setChecked(true);
     else if (SettingsManager::getAURToolName() == "yaourt")
@@ -270,6 +275,7 @@ void OptionsDialog::initAURTab()
     cbPacaurNoConfirm->setChecked(SettingsManager::getPacaurNoConfirmParam());
     cbPacaurNoEdit->setChecked(SettingsManager::getPacaurNoEditParam());
     cbYaourtNoConfirm->setChecked(SettingsManager::getYaourtNoConfirmParam());
+    cbSearchOutdatedAURPackages->setChecked(SettingsManager::getSearchOutdatedAURPackages());
   }    
 }
 
@@ -539,6 +545,12 @@ void OptionsDialog::accept(){
     if (cbYaourtNoConfirm->isChecked() != SettingsManager::getYaourtNoConfirmParam())
     {
       SettingsManager::setYaourtNoConfirmParam(cbYaourtNoConfirm->isChecked());
+      AURHasChanged = true;
+    }
+
+    if (cbSearchOutdatedAURPackages->isChecked() != SettingsManager::getSearchOutdatedAURPackages())
+    {
+      SettingsManager::setSearchOutdatedAURPackages(cbSearchOutdatedAURPackages->isChecked());
       AURHasChanged = true;
     }
   }
