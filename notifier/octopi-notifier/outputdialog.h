@@ -70,6 +70,7 @@ private slots:
   void onWriteOutput(const QString &output);
   void pacmanProcessFinished(int exitCode, QProcess::ExitStatus exitStatus);
 
+  void onCanStopTransaction(bool yesNo);
   void stopTransaction();
 
   //SearchBar slots

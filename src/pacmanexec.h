@@ -105,7 +105,7 @@ signals:
   void readOutputError();
   void finished(int exitCode, QProcess::ExitStatus);
   void textToPrintExt(QString m_textToPrint);
-
+  void canStopTransaction(bool yesNo);
 };
 
 #endif // PACMANEXEC_H

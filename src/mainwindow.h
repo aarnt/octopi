@@ -406,7 +406,9 @@ private slots:
   void toggleSystemActions(const bool value);
   void commitTransaction();
   void cancelTransaction();
+
   void stopTransaction();
+  void onCanStopTransaction(bool yesNo);
 
   //View menu and submenu Repository actions...
   void selectedAllPackagesMenu();

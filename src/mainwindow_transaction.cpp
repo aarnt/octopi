@@ -745,7 +745,7 @@ void MainWindow::doSyncDatabase()
                    this, SLOT( pacmanProcessFinished(int, QProcess::ExitStatus) ));
 
   QObject::connect(m_pacmanExec, SIGNAL(percentage(int)), this, SLOT(incrementPercentage(int)));
-  QObject::connect(m_pacmanExec, SIGNAL(textToPrintExt(QString)), this, SLOT(outputText(QString)));
+  QObject::connect(m_pacmanExec, SIGNAL(textToPrintExt(QString)), this, SLOT(outputText(QString)));  
 
   m_pacmanExec->doSyncDatabase();
 }
@@ -809,6 +809,7 @@ bool MainWindow::prepareSystemUpgrade()
 
   QObject::connect(m_pacmanExec, SIGNAL(percentage(int)), this, SLOT(incrementPercentage(int)));
   QObject::connect(m_pacmanExec, SIGNAL(textToPrintExt(QString)), this, SLOT(outputText(QString)));
+  QObject::connect(m_pacmanExec, SIGNAL(canStopTransaction(bool)), this, SLOT(onCanStopTransaction(bool)));
 
   disableTransactionActions();
   return true;
@@ -1076,6 +1077,7 @@ void MainWindow::doRemoveAndInstall()
 
     QObject::connect(m_pacmanExec, SIGNAL(percentage(int)), this, SLOT(incrementPercentage(int)));
     QObject::connect(m_pacmanExec, SIGNAL(textToPrintExt(QString)), this, SLOT(outputText(QString)));
+    QObject::connect(m_pacmanExec, SIGNAL(canStopTransaction(bool)), this, SLOT(onCanStopTransaction(bool)));
 
     if (result == QDialogButtonBox::Yes)
     {
@@ -1148,6 +1150,7 @@ void MainWindow::doRemove()
 
     QObject::connect(m_pacmanExec, SIGNAL(percentage(int)), this, SLOT(incrementPercentage(int)));
     QObject::connect(m_pacmanExec, SIGNAL(textToPrintExt(QString)), this, SLOT(outputText(QString)));
+    QObject::connect(m_pacmanExec, SIGNAL(canStopTransaction(bool)), this, SLOT(onCanStopTransaction(bool)));
 
     if (result == QDialogButtonBox::Yes)
     {
@@ -1438,6 +1441,7 @@ void MainWindow::doInstall()
 
     QObject::connect(m_pacmanExec, SIGNAL(percentage(int)), this, SLOT(incrementPercentage(int)));
     QObject::connect(m_pacmanExec, SIGNAL(textToPrintExt(QString)), this, SLOT(outputText(QString)));
+    QObject::connect(m_pacmanExec, SIGNAL(canStopTransaction(bool)), this, SLOT(onCanStopTransaction(bool)));
 
     if (result == QDialogButtonBox::Yes)
     {
@@ -1510,6 +1514,7 @@ void MainWindow::doInstallLocalPackages()
 
     QObject::connect(m_pacmanExec, SIGNAL(percentage(int)), this, SLOT(incrementPercentage(int)));
     QObject::connect(m_pacmanExec, SIGNAL(textToPrintExt(QString)), this, SLOT(outputText(QString)));
+    QObject::connect(m_pacmanExec, SIGNAL(canStopTransaction(bool)), this, SLOT(onCanStopTransaction(bool)));
 
     if (result == QDialogButtonBox::Yes)
     {
@@ -1716,6 +1721,11 @@ void MainWindow::stopTransaction()
   {
     m_pacmanExec->cancelProcess();
   }
+}
+
+void MainWindow::onCanStopTransaction(bool yesNo)
+{
+  if (SettingsManager::getShowStopTransaction()) m_toolButtonStopTransaction->setVisible(yesNo);
 }
 
 /*

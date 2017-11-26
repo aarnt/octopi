@@ -129,6 +129,7 @@ void OutputDialog::doSystemUpgrade()
 
   QObject::connect(m_pacmanExec, SIGNAL(percentage(int)), this, SLOT(onPencertange(int)));
   QObject::connect(m_pacmanExec, SIGNAL(textToPrintExt(QString)), this, SLOT(onWriteOutput(QString)));
+  QObject::connect(m_pacmanExec, SIGNAL(canStopTransaction(bool)), this, SLOT(onCanStopTransaction(bool)));
 
   m_upgradeRunning = true;
   m_pacmanExec->doSystemUpgrade();
@@ -165,6 +166,7 @@ void OutputDialog::onPencertange(int percentage)
     m_progressBar->show();
     if (SettingsManager::getShowStopTransaction()) m_toolButtonStopTransaction->show();
   }
+
   m_progressBar->setValue(percentage);
 }
 
@@ -239,6 +241,17 @@ void OutputDialog::pacmanProcessFinished(int exitCode, QProcess::ExitStatus exit
   m_upgradeRunning = false;
 }
 
+/*
+ * Whenever PacmanExec says we can show/close the stop transaction toolbutton...
+ */
+void OutputDialog::onCanStopTransaction(bool yesNo)
+{
+  if (SettingsManager::getShowStopTransaction()) m_toolButtonStopTransaction->setVisible(yesNo);
+}
+
+/*
+ * Kills all pacman processes
+ */
 void OutputDialog::stopTransaction()
 {
   m_pacmanExec->cancelProcess();
