@@ -8,8 +8,8 @@ Currently, 10 Linux distros are compatible with it
  * [ArchBang] (http://bbs.archbang.org/)
  * [Arch] (https://www.archlinux.org/)
  * [Chakra] (https://chakralinux.org/)
- * [KaOS] (http://kaosx.us/)
- * [Manjaro] (http://manjaro.github.io/)
+ * [KaOS] (https://kaosx.us/)
+ * [Manjaro] (https://manjaro.org/)
  * [mooOS] (http://mooos.org/)
  * [Netrunner (rolling)] 
 (http://www.netrunner.com/netrunner-rolling-release/)
