@@ -38,14 +38,14 @@
      <number>0</number>
     </property>
     <item row="0" column="0">
-     <widget class="QSplitter" name="splitterHorizontal">
+    <widget class="QSplitter" name="splitterVertical">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+       <widget class="QSplitter" name="splitterHorizontal">
       <property name="orientation">
        <enum>Qt::Vertical</enum>
       </property>
-      <widget class="QSplitter" name="splitterVertical">
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
        <widget class="QTreeView" name="tvPackages">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Expanding" vsizetype="MinimumExpanding">
@@ -75,20 +75,6 @@
          <number>20</number>
         </property>
        </widget>
-       <widget class="QTreeWidget" name="twGroups">
-        <property name="maximumSize">
-         <size>
-          <width>265</width>
-          <height>16777215</height>
-         </size>
-        </property>
-        <column>
-         <property name="text">
-          <string notr="true">1</string>
-         </property>
-        </column>
-       </widget>
-      </widget>
       <widget class="QTabWidget" name="twProperties">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
@@ -127,6 +113,20 @@
        </widget>
       </widget>
      </widget>
+     <widget class="QTreeWidget" name="twGroups">
+      <property name="maximumSize">
+       <size>
+        <width>265</width>
+        <height>16777215</height>
+       </size>
+      </property>
+      <column>
+       <property name="text">
+        <string notr="true">1</string>
+       </property>
+      </column>
+     </widget>
+    </widget>
     </item>
    </layout>
   </widget>
