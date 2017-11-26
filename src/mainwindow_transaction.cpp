@@ -791,7 +791,6 @@ void MainWindow::doAURUpgrade()
 bool MainWindow::prepareSystemUpgrade()
 {
   m_systemUpgradeDialog = false;
-
   bool res = doRemovePacmanLockFile();
   if (!res) return false;
 
@@ -1725,6 +1724,7 @@ void MainWindow::stopTransaction()
 
 void MainWindow::onCanStopTransaction(bool yesNo)
 {
+  if (yesNo == true && m_progressWidget->isHidden()) return;
   if (SettingsManager::getShowStopTransaction()) m_toolButtonStopTransaction->setVisible(yesNo);
 }
 

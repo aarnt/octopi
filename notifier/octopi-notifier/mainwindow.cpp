@@ -678,19 +678,27 @@ void MainWindow::refreshAppIcon()
     qDebug() << "At refreshAppIcon()...";
   m_outdatedStringList = Package::getOutdatedStringList();
 
-  bool hasAURTool = UnixCommand::hasTheExecutable(Package::getForeignRepositoryToolName());
-
-  if (hasAURTool && SettingsManager::getSearchOutdatedAURPackages())
+  //We only need to check for outdated AUR pkgs IF we do NOT have outdated standard ones!
+  if (m_outdatedStringList->count() == 0)
   {
-    m_outdatedAURStringList = Package::getOutdatedAURStringList();
+    bool hasAURTool = UnixCommand::hasTheExecutable(Package::getForeignRepositoryToolName());
 
-    for(int c=0; c<m_outdatedAURStringList->count(); ++c)
+    if (hasAURTool && SettingsManager::getSearchOutdatedAURPackages())
     {
-      //If we find an outdated AUR pkg in the official pkg list, let's remove it
-      if (UnixCommand::hasPackage(m_outdatedAURStringList->at(c)))
+      m_outdatedAURStringList = Package::getOutdatedAURStringList();
+
+      for(int c=0; c<m_outdatedAURStringList->count(); ++c)
       {
-        m_outdatedAURStringList->removeAt(c);
+        //If we find an outdated AUR pkg in the official pkg list, let's remove it
+        if (UnixCommand::hasPackage(m_outdatedAURStringList->at(c)))
+        {
+          m_outdatedAURStringList->removeAt(c);
+        }
       }
+    }
+    else
+    {
+      m_outdatedAURStringList = new QStringList();
     }
   }
   else
