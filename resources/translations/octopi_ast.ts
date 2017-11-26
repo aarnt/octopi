@@ -665,8 +665,9 @@
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="104"/>
-        <source>ArchBSD news</source>
-        <translation>Anuncies d&apos;ArchBSD</translation>
+        <source>PacBSD news</source>
+        <oldsource>ArchBSD news</oldsource>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="108"/>
