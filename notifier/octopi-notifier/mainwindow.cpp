@@ -680,7 +680,7 @@ void MainWindow::refreshAppIcon()
 
   bool hasAURTool = UnixCommand::hasTheExecutable(Package::getForeignRepositoryToolName());
 
-  if (hasAURTool)
+  if (hasAURTool && SettingsManager::getSearchOutdatedAURPackages())
   {
     m_outdatedAURStringList = Package::getOutdatedAURStringList();
 

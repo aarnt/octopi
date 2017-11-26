@@ -20,10 +20,12 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 #include "repoeditor.h"
 #include "repoconf.h"
-
+#include "../src/strconstants.h"
+#include "../src/unixcommand.h"
 #include "../src/QtSolutions/qtsingleapplication.h"
 
 #include <QApplication>
+#include <QMessageBox>
 #include <QTranslator>
 #include <QLocale>
 #include <QLibraryInfo>
@@ -46,6 +48,11 @@ int main( int argc, char *argv[] )
   appTranslator.load(":/resources/translations/octopi_repoeditor_" +
                      QLocale::system().name());
   app.installTranslator(&appTranslator);
+
+  if (UnixCommand::isRootRunning()){
+    QMessageBox::critical( 0, StrConstants::getApplicationName(), StrConstants::getErrorRunningWithRoot());
+    return ( -2 );
+  }
 
   RepoEditor w;
   app.setActivationWindow(&w);

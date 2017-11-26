@@ -31,11 +31,13 @@ class PacmanExec;
 class QString;
 class QTextBrowser;
 class QVBoxLayout;
+class QHBoxLayout;
 class QProgressBar;
 class SearchBar;
 class QWidget;
 class QCloseEvent;
 class QKeyEvent;
+class QToolButton;
 
 class OutputDialog : public QDialog
 {
@@ -47,10 +49,14 @@ private:
   QTextBrowser *m_textBrowser;
   QProgressBar *m_progressBar;
   QVBoxLayout *m_mainLayout;
+  QHBoxLayout *m_horizLayout;
   PacmanExec *m_pacmanExec;
   SearchBar *m_searchBar;
   bool m_upgradeRunning;
   bool m_debugInfo;
+
+  QAction *m_actionStopTransaction;
+  QToolButton *m_toolButtonStopTransaction;
 
   void init();
 
@@ -64,10 +70,12 @@ private slots:
   void onWriteOutput(const QString &output);
   void pacmanProcessFinished(int exitCode, QProcess::ExitStatus exitStatus);
 
+  void stopTransaction();
+
   //SearchBar slots
   void onSearchBarTextChanged(QString strToSearch);
   void onSearchBarClosed();
-  void onSearchBarFindNext();
+  void onSearchBarFindNext();  
   void onSearchBarFindPrevious();
 
 protected:

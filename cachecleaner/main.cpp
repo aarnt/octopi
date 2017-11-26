@@ -19,10 +19,11 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
 #include "cachecleaner.h"
-
+#include "../../src/strconstants.h"
 #include "../src/QtSolutions/qtsingleapplication.h"
 
 #include <QApplication>
+#include <QMessageBox>
 #include <QTranslator>
 #include <QLocale>
 #include <QLibraryInfo>
@@ -46,10 +47,14 @@ int main( int argc, char *argv[] )
                      QLocale::system().name());
   app.installTranslator(&appTranslator);
 
+  if (UnixCommand::isRootRunning()){
+    QMessageBox::critical( 0, StrConstants::getApplicationName(), StrConstants::getErrorRunningWithRoot());
+    return ( -2 );
+  }
+
   CacheCleaner w;
   app.setActivationWindow(&w);
   w.show();
-
   QResource::registerResource("./resources.qrc");
 
   return app.exec();

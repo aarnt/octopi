@@ -68,6 +68,19 @@ void SettingsManager::setCacheCleanerWindowSize(QByteArray newValue)
   instance()->getSYSsettings()->setValue( ctn_KEY_CACHE_CLEANER_WINDOW_SIZE, newValue);
   instance()->getSYSsettings()->sync();
 }
+
+void SettingsManager::setKeepNumInstalledPackages(int newValue)
+{
+  instance()->getSYSsettings()->setValue(ctn_KEY_KEEP_NUM_INSTALLED, newValue);
+  instance()->getSYSsettings()->sync();
+}
+
+void SettingsManager::setKeepNumUninstalledPackages(int newValue)
+{
+  instance()->getSYSsettings()->setValue(ctn_KEY_KEEP_NUM_UNINSTALLED, newValue);
+  instance()->getSYSsettings()->sync();
+}
+
 //CacheCleaner related --------------------------------------------------------------
 
 
@@ -531,18 +544,6 @@ void SettingsManager::setSplitterHorizontalState(QByteArray newValue){
 
 void SettingsManager::setTerminal(const QString& newValue){
   instance()->getSYSsettings()->setValue( ctn_KEY_TERMINAL, newValue);
-  instance()->getSYSsettings()->sync();
-}
-
-void SettingsManager::setKeepNumInstalledPackages(int newValue)
-{
-  instance()->getSYSsettings()->setValue(ctn_KEY_KEEP_NUM_INSTALLED, newValue);
-  instance()->getSYSsettings()->sync();
-}
-
-void SettingsManager::setKeepNumUninstalledPackages(int newValue)
-{
-  instance()->getSYSsettings()->setValue(ctn_KEY_KEEP_NUM_UNINSTALLED, newValue);
   instance()->getSYSsettings()->sync();
 }
 

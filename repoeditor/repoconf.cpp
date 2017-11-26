@@ -18,13 +18,14 @@ along with AppSet; if not, write to the Free Software
 Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 #include "repoconf.h"
-
+#include "../src/unixcommand.h"
 #include <QApplication>
 #include <QStyle>
 #include <QFont>
 #include <QFile>
 #include <QTextStream>
 #include <QMessageBox>
+#include <QTemporaryFile>
 
 QString RepoConf::commentString = "";
 QRegularExpression RepoConf::repoMatch = QRegularExpression();
@@ -169,34 +170,43 @@ void RepoConf::reload()
   loadConf( repoConfFilePath );
 }
 
+/*
+ * Saves changes in pacman.conf using the available SU tool
+ */
 bool RepoConf::saveChanges( const QString & backup )
 {
+  QTemporaryFile tempFile;
+  UnixCommand *unixC = new UnixCommand(this);
+  QString command;
+
   if( !backup.isEmpty() ) {
     QMessageBox mbexists( QMessageBox::Warning,
                           tr( "Backup error" ),
                           tr( "Backup file already exists." ) + QString( "\n" ) + tr( "Do you want to overwrite it?" ),
                           QMessageBox::Yes | QMessageBox::No );
 
+    //First we test if backup file already exists. If so, we remove it!
     if( QFile::exists( backup ) && mbexists.exec() == QMessageBox::Yes ) {
-      QFile::remove( backup );
+      command = "rm " + backup;
     }
 
-    QMessageBox mberror( QMessageBox::Critical,
-                         tr( "Backup error" ),
-                         tr( "Can't create backup file." ) + QString( "\n" ) + tr( "Do you want to proceed without a backup?" ),
-                         QMessageBox::Yes | QMessageBox::No );
-
-    if( !QFile::copy( repoConfFilePath, backup ) && mberror.exec() == QMessageBox::No ) {
-      return false;
-    }
+    //Then we create a backup, with the user defined name
+    if (!command.isEmpty()) command += "; ";
+    command += "cp /etc/pacman.conf " + backup;
   }
 
-  QFile confFile( repoConfFilePath );
-  if( !confFile.open( QIODevice::WriteOnly ) )
+  if (!tempFile.open())
     return false;
 
-  confFile.write( toString().toLatin1() );
-  confFile.close();
+  tempFile.write( toString().toLatin1() );
+  tempFile.close();
+
+  //Last, we copy the tempfile to the repoconf path
+  if (!command.isEmpty()) command += "; ";
+  command += "cp " + tempFile.fileName() + " /etc/pacman.conf; chown root /etc/pacman.conf; chgrp root /etc/pacman.conf; chmod 644 /etc/pacman.conf";
+
+  unixC->execCommand(command);
+
   reload();
   return true;
 }

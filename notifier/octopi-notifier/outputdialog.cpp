@@ -29,6 +29,8 @@
 #include <QProgressBar>
 #include <QCloseEvent>
 #include <QMessageBox>
+#include <QAction>
+#include <QToolButton>
 
 /*
  * Class that displays pacman output for system upgrade
@@ -54,12 +56,12 @@ void OutputDialog::setDebugMode(bool newValue)
 
 QFrame::Shape OutputDialog::frameShape()
 {
-    return m_textBrowser->frameShape();
+  return m_textBrowser->frameShape();
 }
 
 void OutputDialog::setFrameShape(QFrame::Shape shape)
 {
-    m_textBrowser->setFrameShape(shape);
+  m_textBrowser->setFrameShape(shape);
 }
 
 /*
@@ -71,10 +73,25 @@ void OutputDialog::init()
 
   setWindowTitle(QCoreApplication::translate("MainWindow", "System upgrade"));
   setWindowIcon(IconHelper::getIconSystemUpgrade());
+
+  m_actionStopTransaction = new QAction(this);
+  m_actionStopTransaction->setIcon(IconHelper::getIconStop());
+  m_actionStopTransaction->setText(StrConstants::getStop());
+  connect(m_actionStopTransaction, SIGNAL(triggered()), this, SLOT(stopTransaction()));
+
+  m_toolButtonStopTransaction = new QToolButton(this);
+  m_toolButtonStopTransaction->setDefaultAction(m_actionStopTransaction);
+  m_toolButtonStopTransaction->setVisible(false);
+  m_toolButtonStopTransaction->setAutoRaise(true);
+
   m_mainLayout = new QVBoxLayout(this);
+  m_horizLayout = new QHBoxLayout(this);
   m_textBrowser = new QTextBrowser(this);
   m_progressBar = new QProgressBar(this);
 
+  m_horizLayout->addWidget(m_progressBar);
+  m_horizLayout->addSpacing(2);
+  m_horizLayout->addWidget(m_toolButtonStopTransaction);
   m_textBrowser->setGeometry(QRect(0, 0, 650, 500));
 
   m_mainLayout->addWidget(m_textBrowser);
@@ -84,7 +101,7 @@ void OutputDialog::init()
   connect(m_searchBar, SIGNAL(closed()), this, SLOT(onSearchBarClosed()));
   connect(m_searchBar, SIGNAL(findNext()), this, SLOT(onSearchBarFindNext()));
   connect(m_searchBar, SIGNAL(findPrevious()), this, SLOT(onSearchBarFindPrevious()));
-  m_mainLayout->addWidget(m_progressBar);
+  m_mainLayout->addLayout(m_horizLayout);
   m_mainLayout->addWidget(m_searchBar);
   m_mainLayout->setSpacing(0);
   m_mainLayout->setSizeConstraint(QLayout::SetMinimumSize);
@@ -143,7 +160,11 @@ void OutputDialog::reject()
  */
 void OutputDialog::onPencertange(int percentage)
 {
-  if (percentage > 0 && !m_progressBar->isVisible()) m_progressBar->show();
+  if (percentage > 0 && !m_progressBar->isVisible())
+  {
+    m_progressBar->show();
+    if (SettingsManager::getShowStopTransaction()) m_toolButtonStopTransaction->show();
+  }
   m_progressBar->setValue(percentage);
 }
 
@@ -190,6 +211,7 @@ bool OutputDialog::textInTabOutput(const QString& findText)
 void OutputDialog::pacmanProcessFinished(int exitCode, QProcess::ExitStatus exitStatus)
 {
   m_progressBar->close();
+  if (SettingsManager::getShowStopTransaction()) m_toolButtonStopTransaction->close();
 
   if ((exitCode == 0) && exitStatus == QProcess::NormalExit)
   {
@@ -215,6 +237,11 @@ void OutputDialog::pacmanProcessFinished(int exitCode, QProcess::ExitStatus exit
 
   delete m_pacmanExec;
   m_upgradeRunning = false;
+}
+
+void OutputDialog::stopTransaction()
+{
+  m_pacmanExec->cancelProcess();
 }
 
 /*
@@ -274,10 +301,6 @@ void OutputDialog::keyPressEvent(QKeyEvent *ke)
   if(ke->key() == Qt::Key_F && ke->modifiers() == Qt::ControlModifier)
   {
     m_searchBar->show();
-  }
-  else if(ke->key() == Qt::Key_Z && ke->modifiers() == Qt::ControlModifier)
-  {
-    m_pacmanExec->cancelProcess();
   }
   else if(ke->key() == Qt::Key_Escape)
   {
