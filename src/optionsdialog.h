@@ -75,6 +75,9 @@ private slots:
   void selectOnceADay();
   void selectOnceADayAt();
   void selectOnceEvery();
+  void onDoNotUseAURSelected(bool checked);
+  void onPacaurSelected(bool checked);
+  void onYaourtSelected(bool checked);
 };
 
 #endif // OptionsDialog_H

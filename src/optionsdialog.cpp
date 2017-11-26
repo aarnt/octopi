@@ -265,12 +265,19 @@ void OptionsDialog::initAURTab()
     else if (SettingsManager::getAURToolName() == "yaourt")
       rbYaourt->setChecked(true);
     else if (SettingsManager::getAURToolName() == "DO_NOT_USE_AUR")
-      rbDoNotUse->setChecked(true);    
+    {
+      rbDoNotUse->setChecked(true);
+      cbSearchOutdatedAURPackages->setEnabled(false);
+    }
     else if (pacaurTool)
     {
       rbPacaur->setChecked(true);
       SettingsManager::setAURTool("pacaur");
     }
+
+    connect(rbDoNotUse, SIGNAL(toggled(bool)), this, SLOT(onDoNotUseAURSelected(bool)));
+    connect(rbPacaur, SIGNAL(toggled(bool)), this, SLOT(onPacaurSelected(bool)));
+    connect(rbYaourt, SIGNAL(toggled(bool)), this, SLOT(onYaourtSelected(bool)));
 
     cbPacaurNoConfirm->setChecked(SettingsManager::getPacaurNoConfirmParam());
     cbPacaurNoEdit->setChecked(SettingsManager::getPacaurNoEditParam());
@@ -667,6 +674,39 @@ void OptionsDialog::accept(){
 }
 
 /*
+ * Whenever user selects to not use any AUR tool
+ */
+void OptionsDialog::onDoNotUseAURSelected(bool checked)
+{
+  if (checked) cbSearchOutdatedAURPackages->setEnabled(false);
+}
+
+/*
+ * Whenever user selects the Pacaur tool
+ */
+void OptionsDialog::onPacaurSelected(bool checked)
+{
+  if (checked) cbSearchOutdatedAURPackages->setEnabled(true);
+}
+
+/*
+ * Whenever user selects the Yaourt tool
+ */
+void OptionsDialog::onYaourtSelected(bool checked)
+{
+  if (checked) cbSearchOutdatedAURPackages->setEnabled(true);
+}
+
+void OptionsDialog::removeTabByName(const QString &tabName)
+{
+  for (int i=0; i < tabWidget->count(); ++i)
+  {
+    if (tabWidget->tabText(i) == tabName)
+      tabWidget->removeTab(i);
+  }
+}
+
+/*
  * Whenever user selects the first radio button, we have to disable some widgets
  */
 void OptionsDialog::selectOnceADay()
@@ -700,13 +740,4 @@ void OptionsDialog::selectOnceEvery()
   spinOnceEvery->setEnabled(true);
   rbOnceADay->setChecked(false);
   rbOnceADayAt->setChecked(false);
-}
-
-void OptionsDialog::removeTabByName(const QString &tabName)
-{
-  for (int i=0; i < tabWidget->count(); ++i)
-  {
-    if (tabWidget->tabText(i) == tabName)
-      tabWidget->removeTab(i);
-  }
 }
