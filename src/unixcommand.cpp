@@ -1146,7 +1146,7 @@ LinuxDistro UnixCommand::getLinuxDistro()
       {
         ret = ectn_ARCHBANGLINUX;
       }
-      else if (contents.contains(QRegularExpression("Arch BSD")))
+      else if (contents.contains(QRegularExpression("PacBSD")))
       {
         ret = ectn_PACBSD;
       }
