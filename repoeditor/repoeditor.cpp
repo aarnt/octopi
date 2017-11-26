@@ -87,7 +87,16 @@ RepoEditor::~RepoEditor()
 void RepoEditor::loadBackup()
 {
     RepoConf conf;
-    QString file = QFileDialog::getOpenFileName( this );
+    QFileInfo fi;
+    QString file;
+
+    if (!ui->backupFile->text().isEmpty())
+    {
+      fi.setFile(ui->backupFile->text());
+      file = QFileDialog::getOpenFileName( this, "Open file", fi.path() );
+    }
+    else
+      file = QFileDialog::getOpenFileName( this );
 
     if( file.isEmpty() )
         return;
@@ -121,7 +130,6 @@ void RepoEditor::editEntry()
 {
     QModelIndex repoMI = ui->tableView->model()->index(ui->tableView->currentIndex().row(), 1, QModelIndex());
     QModelIndex locationMI = ui->tableView->model()->index(ui->tableView->currentIndex().row(), 2, QModelIndex());
-
     addRepoDialog->setRepoName(ui->tableView->model()->data(repoMI).toString());
 
     // take the location
