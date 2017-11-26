@@ -36,7 +36,7 @@ public:
   static QString getForeignRepositoryGroupName();
   static QString getForeignRepositoryTargetPrefix();
   static QString getAntergosNews();
-  static QString getArchBSDNews();
+  static QString getPacBSDNews();
   static QString getArchLinuxNews();
   static QString getChakraNews();
   static QString getKaOSNews();

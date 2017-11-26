@@ -100,8 +100,8 @@ QString StrConstants::getAntergosNews(){
   return QObject::tr("Antergos news");
 }
 
-QString StrConstants::getArchBSDNews(){
-  return QObject::tr("ArchBSD news");
+QString StrConstants::getPacBSDNews(){
+  return QObject::tr("PacBSD news");
 }
 
 QString StrConstants::getArchLinuxNews(){

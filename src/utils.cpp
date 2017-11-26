@@ -138,7 +138,6 @@ void utils::ProcessWrapper::onSingleShot()
         for (int d=1; d<slist.count(); d++)
         {
           int candidatePid2 = slist.at(d).trimmed().toInt();
-
           if (candidatePid < candidatePid2)
           {
             m_pidSH = candidatePid;
@@ -274,13 +273,12 @@ QList<QModelIndex> * utils::findFileInTreeView( const QString& name, const QStan
  */
 QString utils::retrieveDistroNews(bool searchForLatestNews)
 {
-  const QString ctn_ANTERGOS_RSS_URL = "http://antergos.com/category/news/feed/";
-  const QString ctn_ARCHBSD_RSS_URL = "http://archbsd.net/feeds/news/";
+  const QString ctn_ANTERGOS_RSS_URL = "https://antergos.com/feed/";
+  const QString ctn_PACBSD_RSS_URL = "https://pacbsd.org/index.xml";
   const QString ctn_ARCH_LINUX_RSS_URL = "https://www.archlinux.org/feeds/news/";
   const QString ctn_CHAKRA_RSS_URL = "https://community.chakralinux.org/c/news.rss";
   const QString ctn_KAOS_RSS_URL = "https://kaosx.us/feed.xml";
   const QString ctn_MANJARO_LINUX_RSS_URL = "https://manjaro.org/feed/";
-  //const QString ctn_MANJARO_LINUX_RSS_URL = "https://manjaro.github.io/feed.xml";
   const QString ctn_NETRUNNER_RSS_URL = "http://www.netrunner-os.com/feed/";
   const QString ctn_PARABOLA_RSS_URL = "https://www.parabola.nu/feeds/news/";
 
@@ -307,9 +305,9 @@ QString utils::retrieveDistroNews(bool searchForLatestNews)
     {
       curlCommand = curlCommand.arg(ctn_ANTERGOS_RSS_URL).arg(tmpRssPath);
     }
-    else if (distro == ectn_ARCHBSD)
+    else if (distro == ectn_PACBSD)
     {
-      curlCommand = curlCommand.arg(ctn_ARCHBSD_RSS_URL).arg(tmpRssPath);
+      curlCommand = curlCommand.arg(ctn_PACBSD_RSS_URL).arg(tmpRssPath);
     }
     else if (distro == ectn_ARCHLINUX || distro == ectn_ARCHBANGLINUX || distro == ectn_MOOOSLINUX)
     {
@@ -427,9 +425,9 @@ QString utils::parseDistroNews()
   {
     html = "<p align=\"center\"><h2>" + StrConstants::getAntergosNews() + "</h2></p><ul>";
   }
-  else if (distro == ectn_ARCHBSD)
+  else if (distro == ectn_PACBSD)
   {
-    html = "<p align=\"center\"><h2>" + StrConstants::getArchBSDNews() + "</h2></p><ul>";
+    html = "<p align=\"center\"><h2>" + StrConstants::getPacBSDNews() + "</h2></p><ul>";
   }
   else if (distro == ectn_ARCHLINUX || distro == ectn_ARCHBANGLINUX || distro == ectn_MOOOSLINUX)
   {
