@@ -1161,7 +1161,7 @@ void MainWindow::refreshStatusBarToolButtons()
 {
   if (isAURGroupSelected() && UnixCommand::getLinuxDistro() != ectn_KAOS) return;
 
-  if (m_hasAURTool)
+  if (m_hasAURTool && SettingsManager::getSearchOutdatedAURPackages())
   {
     QFuture<AUROutdatedPackages *> f;
     f = QtConcurrent::run(getOutdatedAURPackages);
