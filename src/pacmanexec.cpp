@@ -545,8 +545,7 @@ void PacmanExec::prepareTextToPrint(QString str, TreatString ts, TreatURLLinks t
             newStr.contains("-- reinstalling") ||
             newStr.contains("installing ") ||
             newStr.contains("upgrading ") ||
-            newStr.contains("loading ") ||
-            newStr.contains("Arming"))
+            newStr.contains("loading "))
     {
       newStr = newStr.trimmed();
       if (newStr.contains(QRegularExpression("installing \\S+$")) || newStr.contains(QRegularExpression("upgrading \\S+$")))
