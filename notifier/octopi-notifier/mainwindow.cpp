@@ -34,6 +34,7 @@
 #include <QProcess>
 #include <QMessageBox>
 #include <QDebug>
+#include <QScreen>
 
 #ifdef KSTATUS
   #include <kstatusnotifieritem.h>
@@ -273,6 +274,14 @@ void MainWindow::aboutOctopiNotifier()
 {
   m_actionAbout->setEnabled(false);
 
+  //First we create a fake window to act as about dialog's parent
+  //Otherwise the dialog appears at a random screen point!
+  QMainWindow *fake = new QMainWindow();
+  fake->setWindowIcon(IconHelper::getIconOctopiGreen());
+  fake->setVisible(false);
+  QScreen *sc = QGuiApplication::primaryScreen();
+  fake->setGeometry(sc->geometry());
+
   QString aboutText = "<b>Octopi Notifier - " +
       StrConstants::getApplicationVersion() + "</b>" + " (" + StrConstants::getQtVersion() + ")<br>";
   aboutText += "<a href=\"http://octopiproject.wordpress.com/\">http://octopiproject.wordpress.com</a><br>";
@@ -283,8 +292,9 @@ void MainWindow::aboutOctopiNotifier()
   aboutText += "&copy; 2006-%1 Pacman Development Team<br>";
   aboutText += "&copy; 2002-2006 Judd Vinet";
   aboutText = aboutText.arg(d.year());
-  QMessageBox::about(this, StrConstants::getHelpAbout(), aboutText);
+  QMessageBox::about(fake, StrConstants::getHelpAbout(), aboutText);
 
+  delete fake;
   m_actionAbout->setEnabled(true);
 }
 
