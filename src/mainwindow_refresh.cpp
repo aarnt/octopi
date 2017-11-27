@@ -205,6 +205,14 @@ void MainWindow::AURToolSelected()
   //Here we are changing view to list AUR packages ONLY
   if (m_actionSwitchToAURTool->isChecked())
   {
+    if (!ui->actionUseInstantSearch->isChecked())
+    {
+      disconnect(m_leFilterPackage, SIGNAL(textChanged(QString)), this, SLOT(reapplyPackageFilter()));
+      connect(m_leFilterPackage, SIGNAL(textChanged(QString)), this, SLOT(reapplyPackageFilter()));
+    }
+
+    ui->actionUseInstantSearch->setEnabled(false);
+
     m_refreshForeignPackageList = false;
     m_actionMenuRepository->setEnabled(false);
     ui->twGroups->setEnabled(false);           
@@ -218,6 +226,13 @@ void MainWindow::AURToolSelected()
   //Here we are changing view to list all packages
   else
   {
+    ui->actionUseInstantSearch->setEnabled(true);
+    if (!ui->actionUseInstantSearch->isChecked())
+    {
+      disconnect(m_leFilterPackage, SIGNAL(textChanged(QString)), this, SLOT(reapplyPackageFilter()));
+      m_packageModel->applyFilter("");
+    }
+
     ui->tvPackages->setModel(&emptyModel);
     removePackageTreeViewConnections();
     m_actionSwitchToAURTool->setEnabled(false);
@@ -549,7 +564,7 @@ void MainWindow::metaBuildPackageList()
 
     toggleSystemActions(false);
 
-    if (SettingsManager::isInstantSearchSelected())
+    if (ui->actionUseInstantSearch->isChecked())
     {
       disconnect(m_leFilterPackage, SIGNAL(textChanged(QString)), this, SLOT(reapplyPackageFilter()));
       connect(m_leFilterPackage, SIGNAL(textChanged(QString)), this, SLOT(reapplyPackageFilter()));
@@ -643,7 +658,7 @@ void MainWindow::metaBuildPackageList()
     ui->actionSearchByFile->setEnabled(false);
     toggleSystemActions(false);
 
-    if (SettingsManager::isInstantSearchSelected())
+    if (ui->actionUseInstantSearch->isChecked())
     {
       disconnect(m_leFilterPackage, SIGNAL(textChanged(QString)), this, SLOT(reapplyPackageFilter()));
       connect(m_leFilterPackage, SIGNAL(textChanged(QString)), this, SLOT(reapplyPackageFilter()));
@@ -1720,7 +1735,7 @@ void MainWindow::reapplyPackageFilter()
     if (!m_leFilterPackage->text().isEmpty())
       m_leFilterPackage->refreshCompleterData();
 
-    if (SettingsManager::isInstantSearchSelected())
+    if (ui->actionUseInstantSearch->isChecked())
       connect(m_leFilterPackage, SIGNAL(textChanged(QString)), this, SLOT(reapplyPackageFilter()));
   }
 }

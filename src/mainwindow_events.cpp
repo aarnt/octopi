@@ -111,7 +111,7 @@ void MainWindow::keyPressEvent(QKeyEvent* ke)
     {
       execKeyActionOnPackage(ectn_INSTALL);
     }
-    else if (!isAURGroupSelected() && m_leFilterPackage->hasFocus() && !SettingsManager::isInstantSearchSelected())
+    else if (!isAURGroupSelected() && m_leFilterPackage->hasFocus() && !ui->actionUseInstantSearch->isChecked())
     {
       reapplyPackageFilter();
     }
