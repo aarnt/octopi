@@ -260,13 +260,13 @@ QString SettingsManager::getOctopiGreenIconPath()
 bool SettingsManager::getShowPackageNumbersOutput()
 {
   SettingsManager p_instance;
-  return p_instance.getSYSsettings()->value( ctn_KEY_SHOW_PACKAGE_NUMBERS_OUTPUT, 0).toBool();
+  return p_instance.getSYSsettings()->value( ctn_KEY_SHOW_PACKAGE_NUMBERS_OUTPUT, 1).toBool();
 }
 
 bool SettingsManager::getShowStopTransaction()
 {
   SettingsManager p_instance;
-  return p_instance.getSYSsettings()->value( ctn_KEY_SHOW_STOP_TRANSACTION, 0).toBool();
+  return p_instance.getSYSsettings()->value( ctn_KEY_SHOW_STOP_TRANSACTION, 1).toBool();
 }
 
 QString SettingsManager::getAURTool()
