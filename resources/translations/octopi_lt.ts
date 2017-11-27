@@ -112,7 +112,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="304"/>
         <source>Ctrl+P</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+P</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="313"/>
@@ -280,7 +280,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="588"/>
         <source>Use Instant Search</source>
-        <translation type="unfinished"/>
+        <translation>Naudoti greitąją paiešką</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="54"/>
@@ -405,7 +405,7 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="115"/>
         <source>Ctrl+P or &apos;File/System upgrade&apos; to make a full system upgrade (pacman -Su)</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+P arba &quot;Failas/Sistemos naujovinimas&quot;, kad būtų atliktas pilnas sistemos atnaujinimas (pacman -Su)</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="117"/>
@@ -485,7 +485,7 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="152"/>
         <source>F11 to maximize/demaximize Tab&apos;s view</source>
-        <translation type="unfinished"/>
+        <translation>F11, norint išdidinti/sumažinti kortelės rodinį</translation>
     </message>
 </context>
 <context>
@@ -498,17 +498,17 @@
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="38"/>
         <source>General</source>
-        <translation type="unfinished"/>
+        <translation>Bendra</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="50"/>
         <source>Show package numbers in output tab</source>
-        <translation type="unfinished"/>
+        <translation>Rodyti išvesties kortelėje paketų numerius</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="63"/>
         <source>Show stop transaction button at statusbar</source>
-        <translation type="unfinished"/>
+        <translation>Rodyti būsenos juostoje operacijos stabdymo mygtuką</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="100"/>
@@ -518,12 +518,12 @@
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="220"/>
         <source>Do not use AUR</source>
-        <translation type="unfinished"/>
+        <translation>Nenaudoti AUR</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="233"/>
         <source>Search for outdated AUR packages</source>
-        <translation type="unfinished"/>
+        <translation>Ieškoti pasenusių AUR paketų</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="242"/>
@@ -667,7 +667,7 @@
         <location filename="Projects/octopi/src/strconstants.cpp" line="104"/>
         <source>PacBSD news</source>
         <oldsource>ArchBSD news</oldsource>
-        <translation type="unfinished"/>
+        <translation>PacBSD naujienos</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="108"/>
@@ -1319,7 +1319,7 @@ Ar tikrai norite jį atverti?</translation>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="640"/>
         <source>Stop</source>
-        <translation type="unfinished"/>
+        <translation>Stabdyti</translation>
     </message>
 </context>
 <context>
