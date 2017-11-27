@@ -20,8 +20,7 @@ Currently, 10 Linux distros are compatible with it
 
 You'll need:
  * [Alpm_octopi_utils] (https://github.com/aarnt/alpm_octopi_utils/) library
- * A privilege escalation tool to use it, once running as root will ONLY work in KDE. Octopi supports 
-gksu, kdesu and lxqt-sudo for that
+ * A privilege escalation tool to use it. Octopi supports gksu, kdesu and lxqt-sudo for that
  
 ### Simple steps to build Octopi code
 
