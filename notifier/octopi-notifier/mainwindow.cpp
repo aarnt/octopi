@@ -185,7 +185,7 @@ void MainWindow::pacmanHelperTimerTimeout()
     refreshAppIcon();
 
 #ifdef KSTATUS
-    m_systemTrayIcon->setToolTipTitle("Octopi");
+    m_systemTrayIcon->setToolTipTitle("Octopi Notifier");
 #else
     m_systemTrayIcon->show();
 #endif
@@ -712,9 +712,9 @@ void MainWindow::refreshAppIcon()
   if (m_numberOfOutdatedPackages == 0 && m_numberOfOutdatedAURPackages == 0)
   {
     #ifdef KSTATUS
-      m_systemTrayIcon->setToolTipSubTitle("");
+      m_systemTrayIcon->setToolTipSubTitle("Octopi Notifier");
     #else
-      m_systemTrayIcon->setToolTip("");
+      m_systemTrayIcon->setToolTip("Octopi Notifier");
     #endif
   }
   else if (m_numberOfOutdatedPackages > 0)
