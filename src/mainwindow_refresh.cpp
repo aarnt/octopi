@@ -1669,7 +1669,7 @@ void MainWindow::refreshTabFiles(bool clearContents, bool neverQuit)
  */
 void MainWindow::reapplyPackageFilter()
 {
-  if (isAURGroupSelected())
+  if (isAURGroupSelected() && UnixCommand::getLinuxDistro() != ectn_KAOS)
   {
     if (m_leFilterPackage->text() == "")
     {
