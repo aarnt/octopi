@@ -613,7 +613,7 @@ void MainWindow::metaBuildPackageList()
     }
 
     toggleSystemActions(false);
-    disconnect(m_leFilterPackage, SIGNAL(textChanged(QString)), this, SLOT(reapplyPackageFilter()));
+    //disconnect(m_leFilterPackage, SIGNAL(textChanged(QString)), this, SLOT(reapplyPackageFilter())); //WATCH OUT!
     clearStatusBar();
 
     m_cic = new CPUIntensiveComputing();       
@@ -1060,6 +1060,23 @@ void MainWindow::buildAURPackageList()
     ui->tvPackages->setFocus();
   }*/
 
+  if (UnixCommand::getLinuxDistro() != ectn_KAOS)
+  {
+    m_leFilterPackage->initStyleSheet();
+    QString search = Package::parseSearchString(m_leFilterPackage->text());
+    m_packageModel->applyFilter(search);
+
+    ui->tvPackages->selectionModel()->clear();
+    QModelIndex mi = m_packageModel->index(0, PackageModel::ctn_PACKAGE_NAME_COLUMN, QModelIndex());
+    ui->tvPackages->setCurrentIndex(mi);
+    ui->tvPackages->scrollTo(mi);
+    invalidateTabs();
+  }
+  else
+  {
+    reapplyPackageFilter();
+  }
+
   //Refresh counters
   m_numberOfInstalledPackages = installedCount;
 
@@ -1068,7 +1085,6 @@ void MainWindow::buildAURPackageList()
 
   //Refresh application icon
   refreshAppIcon();
-  reapplyPackageFilter();
 
   counter = list->count();
   m_progressWidget->setValue(counter);
@@ -1178,6 +1194,8 @@ void MainWindow::refreshStatusBarToolButtons()
  */
 void MainWindow::refreshStatusBar()
 {
+  m_lblSelCounter->setVisible(true);
+  m_lblTotalCounters->setVisible(true);
   QString text;
   ui->statusBar->removeWidget(m_toolButtonPacman);
   ui->statusBar->removeWidget(m_toolButtonAUR);
@@ -1194,6 +1212,16 @@ void MainWindow::refreshStatusBar()
   }
   else
   {
+    if (isAURGroupSelected() && UnixCommand::getLinuxDistro() != ectn_KAOS)
+    {
+      if (m_packageModel->getPackageCount() == 0)
+      {
+        m_lblSelCounter->setText("");
+        m_lblSelCounter->setVisible(false);
+        m_lblTotalCounters->setVisible(false);
+      }
+    }
+
     text = StrConstants::getNumberInstalledPackages(0);
   }
 
@@ -1641,6 +1669,16 @@ void MainWindow::refreshTabFiles(bool clearContents, bool neverQuit)
  */
 void MainWindow::reapplyPackageFilter()
 {
+  if (isAURGroupSelected())
+  {
+    if (m_leFilterPackage->text() == "")
+    {
+      m_packageModel->applyFilter("ççç");
+      refreshStatusBar();
+    }
+    return;
+  }
+
   if (!isSearchByFileSelected())
   {
     bool isFilterPackageSelected = m_leFilterPackage->hasFocus();
