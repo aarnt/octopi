@@ -42,7 +42,6 @@ PacmanExec::PacmanExec(QObject *parent) : QObject(parent)
   m_numberOfPackages = 0;
   m_packageCounter = 0;
   m_parsingAPackageChange = false;
-  //m_parsedNumberOfPackages = false;
 
   QObject::connect(m_unixCommand, SIGNAL( started() ), this, SLOT( onStarted()));
 
@@ -228,13 +227,12 @@ void PacmanExec::parsePacmanProcessOutput(QString output)
   msg.remove("[c");
   msg.remove("[mo");
 
-  if (/*!m_parsedNumberOfPackages &&*/ SettingsManager::getShowPackageNumbersOutput())
+  if (SettingsManager::getShowPackageNumbersOutput())
   {
     QRegularExpression re("Packages? \\(\\d+\\)");
     QRegularExpressionMatch match = re.match(msg);
     if (match.hasMatch())
     {
-      //m_parsedNumberOfPackages = true;
       QString aux_packages = match.captured(0);
       aux_packages.remove(QRegularExpression("Packages? \\("));
       aux_packages.remove(")");
@@ -481,7 +479,7 @@ void PacmanExec::prepareTextToPrint(QString str, TreatString ts, TreatURLLinks t
     return;
   }
 
-  //If the str waiting to being print is from curl status OR any other unwanted string...
+  //If the string waiting to be printed is from curl status OR any other unwanted string...
   if (!str.contains(QRegularExpression("<font color")))
     if ((str.contains(QRegularExpression("\\(\\d")) &&
          (!str.contains("target", Qt::CaseInsensitive)) &&
@@ -508,10 +506,12 @@ void PacmanExec::prepareTextToPrint(QString str, TreatString ts, TreatURLLinks t
 
   QString newStr = str;
 
+  //If the string has already been colored...
   if(newStr.contains(QRegularExpression("<font color")))
   {
     newStr += "<br>";
   }
+  //Otherwise, let's process the string to see if it needs to be colored
   else
   {
     if(newStr.contains("removing ") ||
@@ -563,9 +563,13 @@ void PacmanExec::prepareTextToPrint(QString str, TreatString ts, TreatURLLinks t
     {
       newStr += "<br>";
     }
-  }
+  }//end of string coloring process
 
-  if (newStr.contains("::"))
+  if (newStr.contains("Synchronizing databases... (pkgfile -u)"))
+  {
+    emit canStopTransaction(false);
+  }
+  else if (newStr.contains("::"))
   {
     newStr = "<br><B>" + newStr + "</B><br><br>";
 
@@ -587,8 +591,10 @@ void PacmanExec::prepareTextToPrint(QString str, TreatString ts, TreatURLLinks t
 
   if (m_debugMode) std::cout << "_print (end): " << str.toLatin1().data() << std::endl;
 
+  //Let's append this string in the list of already printed strings (before we treat package counter code)
   m_textPrinted.append(str);
 
+  //Package counter code...
   if (SettingsManager::getShowPackageNumbersOutput() && m_commandExecuting != ectn_SYNC_DATABASE && newStr.contains("#b4ab58"))
   {
     int c = newStr.indexOf("#b4ab58\">") + 9;
@@ -602,6 +608,7 @@ void PacmanExec::prepareTextToPrint(QString str, TreatString ts, TreatURLLinks t
     newStr.insert(c, "(" + QString::number(m_packageCounter) + "/" + QString::number(m_numberOfPackages) + ") ");
     if (m_packageCounter < m_numberOfPackages) m_packageCounter++;
   }
+  //Package counter code...
 
   emit textToPrintExt(newStr);
 }
@@ -768,8 +775,6 @@ void PacmanExec::onFinished(int exitCode, QProcess::ExitStatus es)
   }
 
   if (m_processWasCanceled && PacmanExec::isDatabaseLocked()) exitCode = -1;
-
-  //m_parsedNumberOfPackages = false;
 
   emit finished(exitCode, es);
 }

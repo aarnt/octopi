@@ -745,7 +745,8 @@ void MainWindow::doSyncDatabase()
                    this, SLOT( pacmanProcessFinished(int, QProcess::ExitStatus) ));
 
   QObject::connect(m_pacmanExec, SIGNAL(percentage(int)), this, SLOT(incrementPercentage(int)));
-  QObject::connect(m_pacmanExec, SIGNAL(textToPrintExt(QString)), this, SLOT(outputText(QString)));  
+  QObject::connect(m_pacmanExec, SIGNAL(textToPrintExt(QString)), this, SLOT(outputText(QString)));
+  QObject::connect(m_pacmanExec, SIGNAL(canStopTransaction(bool)), this, SLOT(onCanStopTransaction(bool)));
 
   m_pacmanExec->doSyncDatabase();
 }
@@ -1744,7 +1745,6 @@ void MainWindow::pacmanProcessFinished(int exitCode, QProcess::ExitStatus exitSt
     //First, we empty the tabs cache!
     m_cachedPackageInInfo = "";
     m_cachedPackageInFiles = "";
-
     writeToTabOutput("<br><b>" + StrConstants::getCommandFinishedOK() + "</b><br>");
   }
   else
