@@ -318,6 +318,9 @@ private:
   void retrieveUnrequiredPackageList();
   void retrieveOutdatedPackageList();
 
+  bool isAURGroupSelected();
+  bool isSearchByFileSelected();
+
 private slots:
   void initToolButtonPacman();
   void initToolButtonAUR();
@@ -387,18 +390,16 @@ private slots:
   void changedTabIndex();
   void invalidateTabs(); //This method clears the current information showed on tab.
 
-  void doRemoveAndInstall();
-  void doRemove();
+  //Pacman transaction methods
   bool doRemovePacmanLockFile();
+  void doRemove();
+  void doRemoveAndInstall();
   void doInstall();
-  void doCleanCache();
   void doSyncDatabase();
   void doMirrorCheck();
   void doInstallAURPackage();
   void doRemoveAURPackage();
-
   void onAURToolChanged();
-
   void disableTransactionActions();
   void enableTransactionActions();
   void toggleInstantSearch();
@@ -406,24 +407,25 @@ private slots:
   void toggleSystemActions(const bool value);
   void commitTransaction();
   void cancelTransaction();
-
   void stopTransaction();
   void onCanStopTransaction(bool yesNo);
-
-  //View menu and submenu Repository actions...
-  void selectedAllPackagesMenu();
-  void selectedInstalledPackagesMenu();
-  void selectedNonInstalledPackagesMenu();
-  void selectedRepositoryMenu(QAction *actionRepoSelected);
-
   void pacmanProcessFinished(int exitCode, QProcess::ExitStatus exitStatus);
 
+  //Tab transaction methods
+  void changeTransactionActionsState();
+  void clearTransactionTreeView();
   void insertIntoRemovePackage(QModelIndex *indexToInclude = nullptr);
   void insertIntoInstallPackage(QModelIndex *indexToInclude = nullptr);
   void insertIntoInstallPackageOptDeps(const QString &packageName);
   bool insertIntoRemovePackageDeps(const QStringList &dependencies);
   void insertGroupIntoRemovePackage();
   void insertGroupIntoInstallPackage();
+
+  //View menu and submenu Repository actions...
+  void selectedAllPackagesMenu();
+  void selectedInstalledPackagesMenu();
+  void selectedNonInstalledPackagesMenu();
+  void selectedRepositoryMenu(QAction *actionRepoSelected);
 
   void hideGroupsWidget(bool pSaveSettings = true);
   void maximizePackagesTreeView(bool pSaveSettings = true);
@@ -441,8 +443,7 @@ private slots:
   void onHelpAbout();
   void onPressDelete();
 
-  void changeTransactionActionsState();
-  void clearTransactionTreeView();
+  //SearchBar methods
   void positionInPkgListSearchByFile();
   void positionInFirstMatch();
   void searchBarTextChangedInTextBrowser(const QString textToSearch);
@@ -453,6 +454,7 @@ private slots:
   void searchBarFindNextInTreeView();
   void searchBarFindPreviousInTreeView();
   void searchBarClosedInTreeView();
+
   void showAnchorDescription(const QUrl & link);
   void positionInPackageList(const QString &pkgName);
   void outputTextBrowserAnchorClicked(const QUrl & link);
@@ -466,6 +468,7 @@ private slots:
 public slots:
   void doSystemUpgrade(SystemUpgradeOptions sysUpgradeOption = ectn_NO_OPT);
   void doAURUpgrade();
+  void doInstallLocalPackages();
 
 public:
   explicit MainWindow(QWidget *parent = 0);
@@ -484,15 +487,12 @@ public:
   }
 
   const PackageRepository::PackageData* getFirstPackageFromRepo(const QString pkgName);
-  bool isAURGroupSelected();
-  bool isSearchByFileSelected();
 
   void turnDebugInfoOn();
   void setCallSystemUpgrade();
   void setCallSystemUpgradeNoConfirm();
   void setRemoveCommand(const QString &removeCommand);
   void setPackagesToInstallList(QStringList pkgList){ m_packagesToInstallList = pkgList; }
-  void doInstallLocalPackages();
   bool isExecutingCommand(){ return m_commandExecuting != ectn_NONE; }
 };
 

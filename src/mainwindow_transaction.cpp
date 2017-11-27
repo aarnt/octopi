@@ -430,8 +430,8 @@ void MainWindow::insertIntoInstallPackageOptDeps(const QString &packageName)
     QString candidate = optDep;
     int points = candidate.indexOf(":");
     candidate = candidate.mid(0, points).trimmed();
-
     const PackageRepository::PackageData*const package = m_packageRepo.getFirstPackageByName(candidate);
+
     if(!isPackageInInstallTransaction(candidate) &&
        !isPackageInstalled(candidate) && package != 0)
     {
@@ -459,6 +459,7 @@ void MainWindow::insertIntoInstallPackageOptDeps(const QString &packageName)
     if (msd->exec() == QMessageBox::Ok)
     {
       selectedPackages = msd->getSelectedPackages();
+
       foreach(QString pkg, selectedPackages)
       {
         insertInstallPackageIntoTransaction(pkg);
@@ -707,8 +708,7 @@ void MainWindow::doMirrorCheck()
   clearTabOutput();
 
   m_pacmanExec = new PacmanExec();
-  if (m_debugInfo)
-    m_pacmanExec->setDebugMode(true);
+  if (m_debugInfo) m_pacmanExec->setDebugMode(true);
 
   QObject::connect(m_pacmanExec, SIGNAL( finished ( int, QProcess::ExitStatus )),
                    this, SLOT( pacmanProcessFinished(int, QProcess::ExitStatus) ));
@@ -738,8 +738,7 @@ void MainWindow::doSyncDatabase()
   clearTabOutput();
 
   m_pacmanExec = new PacmanExec();
-  if (m_debugInfo)
-    m_pacmanExec->setDebugMode(true);
+  if (m_debugInfo) m_pacmanExec->setDebugMode(true);
 
   QObject::connect(m_pacmanExec, SIGNAL( finished ( int, QProcess::ExitStatus )),
                    this, SLOT( pacmanProcessFinished(int, QProcess::ExitStatus) ));
@@ -774,8 +773,7 @@ void MainWindow::doAURUpgrade()
   clearTabOutput();
 
   m_pacmanExec = new PacmanExec();
-  if (m_debugInfo)
-    m_pacmanExec->setDebugMode(true);
+  if (m_debugInfo) m_pacmanExec->setDebugMode(true);
 
   QObject::connect(m_pacmanExec, SIGNAL( finished ( int, QProcess::ExitStatus )),
                    this, SLOT( pacmanProcessFinished(int, QProcess::ExitStatus) ));
@@ -801,8 +799,7 @@ bool MainWindow::prepareSystemUpgrade()
   clearTabOutput();
 
   m_pacmanExec = new PacmanExec();
-  if (m_debugInfo)
-    m_pacmanExec->setDebugMode(true);
+  if (m_debugInfo) m_pacmanExec->setDebugMode(true);
 
   QObject::connect(m_pacmanExec, SIGNAL( finished ( int, QProcess::ExitStatus )),
                    this, SLOT( pacmanProcessFinished(int, QProcess::ExitStatus) ));
@@ -1069,8 +1066,7 @@ void MainWindow::doRemoveAndInstall()
     clearTabOutput();
 
     m_pacmanExec = new PacmanExec();
-    if (m_debugInfo)
-      m_pacmanExec->setDebugMode(true);
+    if (m_debugInfo) m_pacmanExec->setDebugMode(true);
 
     QObject::connect(m_pacmanExec, SIGNAL( finished ( int, QProcess::ExitStatus )),
                      this, SLOT( pacmanProcessFinished(int, QProcess::ExitStatus) ));
@@ -1142,8 +1138,7 @@ void MainWindow::doRemove()
     clearTabOutput();
 
     m_pacmanExec = new PacmanExec();
-    if (m_debugInfo)
-      m_pacmanExec->setDebugMode(true);
+    if (m_debugInfo) m_pacmanExec->setDebugMode(true);
 
     QObject::connect(m_pacmanExec, SIGNAL( finished ( int, QProcess::ExitStatus )),
                      this, SLOT( pacmanProcessFinished(int, QProcess::ExitStatus) ));
@@ -1242,8 +1237,7 @@ void MainWindow::doInstallAURPackage()
   clearTabOutput();
 
   m_pacmanExec = new PacmanExec();
-  if (m_debugInfo)
-    m_pacmanExec->setDebugMode(true);
+  if (m_debugInfo) m_pacmanExec->setDebugMode(true);
 
   QObject::connect(m_pacmanExec, SIGNAL( finished ( int, QProcess::ExitStatus )),
                    this, SLOT( pacmanProcessFinished(int, QProcess::ExitStatus) ));
@@ -1281,8 +1275,7 @@ void MainWindow::doRemoveAURPackage()
   clearTabOutput();
 
   m_pacmanExec = new PacmanExec();
-  if (m_debugInfo)
-    m_pacmanExec->setDebugMode(true);
+  if (m_debugInfo) m_pacmanExec->setDebugMode(true);
 
   QObject::connect(m_pacmanExec, SIGNAL( finished ( int, QProcess::ExitStatus )),
                    this, SLOT( pacmanProcessFinished(int, QProcess::ExitStatus) ));
@@ -1433,8 +1426,7 @@ void MainWindow::doInstall()
     clearTabOutput();
 
     m_pacmanExec = new PacmanExec();
-    if (m_debugInfo)
-      m_pacmanExec->setDebugMode(true);
+    if (m_debugInfo) m_pacmanExec->setDebugMode(true);
 
     QObject::connect(m_pacmanExec, SIGNAL( finished ( int, QProcess::ExitStatus )),
                      this, SLOT( pacmanProcessFinished(int, QProcess::ExitStatus) ));
@@ -1506,8 +1498,7 @@ void MainWindow::doInstallLocalPackages()
     clearTabOutput();
 
     m_pacmanExec = new PacmanExec();
-    if (m_debugInfo)
-      m_pacmanExec->setDebugMode(true);
+    if (m_debugInfo) m_pacmanExec->setDebugMode(true);
 
     QObject::connect(m_pacmanExec, SIGNAL( finished ( int, QProcess::ExitStatus )),
                      this, SLOT( pacmanProcessFinished(int, QProcess::ExitStatus) ));
@@ -1526,36 +1517,6 @@ void MainWindow::doInstallLocalPackages()
       m_commandExecuting = ectn_RUN_IN_TERMINAL;
       m_pacmanExec->doInstallLocalInTerminal(listOfTargets);
     }
-  }
-}
-
-/*
- * Clears the local package cache using "pacman -Sc"
- */
-void MainWindow::doCleanCache()
-{
-  if (!doRemovePacmanLockFile()) return;
-
-  int res = QMessageBox::question(this, StrConstants::getConfirmation(),
-                                  StrConstants::getCleanCacheConfirmation(),
-                                  QMessageBox::Yes|QMessageBox::No, QMessageBox::No);
-
-  if (res == QMessageBox::Yes)
-  {
-    qApp->processEvents();
-
-    clearTabOutput();
-    writeToTabOutput("<b>" + StrConstants::getCleaningPackageCache() + "</b><br>");
-    qApp->processEvents();
-    bool res = UnixCommand::cleanPacmanCache();
-    qApp->processEvents();
-
-    if (res)
-    {
-      writeToTabOutput("<b>" + StrConstants::getCommandFinishedOK() + "</b>");
-    }
-    else
-      writeToTabOutput("<b>" + StrConstants::getCommandFinishedWithErrors() + "</b>");
   }
 }
 
@@ -1723,6 +1684,9 @@ void MainWindow::stopTransaction()
   }
 }
 
+/*
+ * Called whenever Octopi's parser detects a potential for enabling/disabling stop transaction button
+ */
 void MainWindow::onCanStopTransaction(bool yesNo)
 {
   if (yesNo == true && m_progressWidget->isHidden()) return;

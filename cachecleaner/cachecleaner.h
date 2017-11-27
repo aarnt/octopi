@@ -38,7 +38,6 @@ class CacheCleaner : public QMainWindow
 
 private:
     Ui::CacheCleaner *ui;
-
     PackageGroupModel *m_installed;
     PackageGroupModel *m_uninstalled;
 
@@ -48,6 +47,7 @@ public:
 
 protected:
     void closeEvent(QCloseEvent *);
+    void keyPressEvent(QKeyEvent *);
 };
 
 #endif // CACHECLEANER_H

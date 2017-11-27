@@ -20,8 +20,9 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 #include "cachecleaner.h"
 #include "ui_cachecleaner.h"
-
 #include "../src/strconstants.h"
+
+#include <QKeyEvent>
 
 /*
  * CacheCleaner window constructor
@@ -76,4 +77,15 @@ void CacheCleaner::closeEvent(QCloseEvent *)
   SettingsManager::setCacheCleanerWindowSize(windowSize);
   SettingsManager::setKeepNumInstalledPackages(ui->keepInstalledPackagesSpinner->value());
   SettingsManager::setKeepNumUninstalledPackages(ui->keepUninstalledPackagesSpinner->value());
+}
+
+/*
+ * Whenever user presses ESC, we quit the program
+ */
+void CacheCleaner::keyPressEvent(QKeyEvent *ke)
+{
+  if (ke->key() == Qt::Key_Escape)
+  {
+    close();
+  }
 }

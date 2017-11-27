@@ -148,7 +148,9 @@ void MainWindow::show()
     initAppIcon();
     initMenuBar();
     initToolBar();
+
     if (m_hasAURTool) m_actionSwitchToAURTool->setEnabled(false);
+
     initTabWidgetPropertiesIndex();
     refreshDistroNews(false);
 
@@ -318,6 +320,9 @@ void MainWindow::execToolTip()
   QToolTip::showText(point, g_fwToolTipInfo.result());
 }
 
+/*
+ * Whenever we want to position the cursor in a specific package in the list
+ */
 void MainWindow::positionInPackageList(const QString &pkgName)
 {
   QModelIndex columnIndex = m_packageModel->index(0, PackageModel::ctn_PACKAGE_NAME_COLUMN, QModelIndex());
@@ -703,7 +708,6 @@ void MainWindow::tvPackagesSearchColumnChanged(QAction *actionSelected)
   if (!isSearchByFileSelected() && m_packageModel->getPackageCount() <= 1)
   {
     m_leFilterPackage->clear();
-    //metaBuildPackageList();
   }
 
   QModelIndex mi = m_packageModel->index(0, PackageModel::ctn_PACKAGE_NAME_COLUMN, QModelIndex());
@@ -711,9 +715,9 @@ void MainWindow::tvPackagesSearchColumnChanged(QAction *actionSelected)
   ui->tvPackages->scrollTo(mi);
 
   changedTabIndex();
-
-  if (isPackageTreeViewVisible() && !ui->tvPackages->hasFocus()) ui->tvPackages->setFocus();
-  else m_leFilterPackage->setFocus();
+  m_leFilterPackage->setFocus();
+  //if (isPackageTreeViewVisible() && !ui->tvPackages->hasFocus()) ui->tvPackages->setFocus();
+  //else m_leFilterPackage->setFocus();
 }
 
 /*
@@ -1425,6 +1429,7 @@ void MainWindow::openFile()
   {
     QString path = utils::showFullPathOfItem(tv->currentIndex());
     QFileInfo file(path);
+
     if (file.isFile())
     {
       WMHelper::openFile(path);
