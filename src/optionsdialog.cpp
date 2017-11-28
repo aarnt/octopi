@@ -188,7 +188,13 @@ void OptionsDialog::initialize(){
   initButtonBox();
   initGeneralTab();
   initAURTab();
+
+#ifdef ALPM_BACKEND
   initBackendTab();
+#else
+  removeTabByName(tr("Backend"));
+#endif
+
   initIconTab();
   initSUToolTab();
   initSynchronizationTab();

@@ -198,7 +198,7 @@ void MainWindow::AURToolSelected()
 {
   bool lightPackageFilterConnected = false;
   static QStandardItemModel emptyModel;
-  savePackageColumnWidths();
+  if (UnixCommand::getLinuxDistro() != ectn_CHAKRA) savePackageColumnWidths();
   refreshTabInfo(true);
   refreshTabFiles(true);
 
