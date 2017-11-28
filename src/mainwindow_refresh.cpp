@@ -255,7 +255,7 @@ void MainWindow::AURToolSelected()
     m_packageModel->applyFilter("");
     ui->tvPackages->setModel(&emptyModel);
     removePackageTreeViewConnections();
-    m_actionSwitchToAURTool->setEnabled(false);
+    //m_actionSwitchToAURTool->setEnabled(false);
     m_refreshForeignPackageList = true;
     m_actionMenuRepository->setEnabled(true);
     ui->twGroups->setEnabled(true);
@@ -593,14 +593,6 @@ void MainWindow::metaBuildPackageList()
     ui->actionSearchByName->setChecked(true);
 
     toggleSystemActions(false);
-
-    /*if (ui->actionUseInstantSearch->isChecked())
-    {
-      disconnect(m_leFilterPackage, SIGNAL(textChanged(QString)), this, SLOT(reapplyPackageFilter()));
-      connect(m_leFilterPackage, SIGNAL(textChanged(QString)), this, SLOT(reapplyPackageFilter()));
-      reapplyPackageFilter();
-    }*/
-
     disconnect(&g_fwPacman, SIGNAL(finished()), this, SLOT(preBuildPackageList()));
 
     QEventLoop el;
@@ -687,14 +679,6 @@ void MainWindow::metaBuildPackageList()
   {
     ui->actionSearchByFile->setEnabled(false);
     toggleSystemActions(false);
-
-    /*if (ui->actionUseInstantSearch->isChecked())
-    {
-      disconnect(m_leFilterPackage, SIGNAL(textChanged(QString)), this, SLOT(reapplyPackageFilter()));
-      connect(m_leFilterPackage, SIGNAL(textChanged(QString)), this, SLOT(reapplyPackageFilter()));
-      reapplyPackageFilter();
-    }*/
-
     disconnect(&g_fwPacmanGroup, SIGNAL(finished()), this, SLOT(preBuildPackagesFromGroupList()));
 
     QEventLoop el;

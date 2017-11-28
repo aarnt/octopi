@@ -272,7 +272,7 @@ void MainWindow::keyPressEvent(QKeyEvent* ke)
     }
   }
   else if(ke->key() == Qt::Key_Y && ke->modifiers() == (Qt::ShiftModifier|Qt::ControlModifier)
-          && m_hasAURTool)
+          && m_hasAURTool && m_actionSwitchToAURTool->isEnabled())
   {
     if (m_commandExecuting != ectn_NONE) return;
 

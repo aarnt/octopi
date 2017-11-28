@@ -234,6 +234,20 @@ void MainWindow::onPacmanDatabaseChanged()
 }
 
 /*
+ * Whenever user changes the Groups widget item...
+ */
+void MainWindow::onPackageGroupChanged()
+{
+  if (isAllGroupsSelected())
+  {
+    m_actionSwitchToAURTool->setEnabled(true);
+    ui->actionSearchByName->setChecked(true);
+    tvPackagesSearchColumnChanged(ui->actionSearchByName);
+  }
+  else m_actionSwitchToAURTool->setEnabled(false);
+}
+
+/*
  * Whenever we call Options menu
  */
 void MainWindow::onOptions()

@@ -92,7 +92,8 @@ void MainWindow::loadPanelSettings()
   }
 
   //Do we have to show or hide the Groups panel?
-  if (!SettingsManager::getShowGroupsPanel()){
+  if (!SettingsManager::getShowGroupsPanel())
+  {
     hideGroupsWidget();
   }
 }
@@ -231,18 +232,6 @@ void MainWindow::initPackageGroups()
   ui->twGroups->setSelectionMode(QAbstractItemView::SingleSelection);
 
   connect(ui->twGroups, SIGNAL(itemSelectionChanged()), this, SLOT(onPackageGroupChanged()));
-}
-
-/*
- * Whenever user changes the Groups widget item, this method will be triggered...
- */
-void MainWindow::onPackageGroupChanged()
-{
-  if (isAllGroupsSelected())
-  {
-    ui->actionSearchByName->setChecked(true);
-    tvPackagesSearchColumnChanged(ui->actionSearchByName);
-  }
 }
 
 /*
