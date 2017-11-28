@@ -838,11 +838,6 @@ void MainWindow::buildPackageList()
   delete list;
   list = NULL;
 
-  if (!m_groupWidgetNeedsFocus && isPackageTreeViewVisible())
-  {
-    ui->tvPackages->setFocus();
-  }
-
   refreshColumnSortSetup();
 
   //Refresh statusbar widget
@@ -853,11 +848,6 @@ void MainWindow::buildPackageList()
 
   if (firstTime)
   {
-    if (isPackageTreeViewVisible())
-    {
-      ui->tvPackages->setFocus(); //m_leFilterPackage->setFocus();
-    }
-
     m_initializationCompleted = true;        
     firstTime = false;
 

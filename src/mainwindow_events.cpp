@@ -278,14 +278,7 @@ void MainWindow::keyPressEvent(QKeyEvent* ke)
 
     //The user wants to use "AUR tool" to search for pkgs
     m_actionSwitchToAURTool->trigger();
-    if (m_actionSwitchToAURTool->isChecked() && UnixCommand::getLinuxDistro() != ectn_KAOS)
-    {
-      m_leFilterPackage->setFocus();
-    }
-    else
-    {
-      ui->tvPackages->setFocus();
-    }
+    m_leFilterPackage->setFocus();
   }
   else if(ke->key() == Qt::Key_R && ke->modifiers() == (Qt::ShiftModifier|Qt::ControlModifier))
   {
