@@ -205,21 +205,22 @@ void MainWindow::AURToolSelected()
   //Here we are changing view to list AUR packages ONLY
   if (m_actionSwitchToAURTool->isChecked())
   {
-    if (UnixCommand::getLinuxDistro() != ectn_KAOS && ui->actionUseInstantSearch->isChecked())
+    if ((UnixCommand::getLinuxDistro() != ectn_KAOS && ui->actionUseInstantSearch->isChecked()) ||
+         (UnixCommand::getLinuxDistro() == ectn_KAOS && !ui->actionUseInstantSearch->isChecked()))
     {
       disconnect(m_leFilterPackage, SIGNAL(textChanged(QString)), this, SLOT(reapplyPackageFilter()));
       disconnect(m_leFilterPackage, SIGNAL(textChanged(QString)), this, SLOT(lightPackageFilter()));
       connect(m_leFilterPackage, SIGNAL(textChanged(QString)), this, SLOT(lightPackageFilter()));
       lightPackageFilterConnected = true;
     }
-    else if (UnixCommand::getLinuxDistro() == ectn_KAOS && !ui->actionUseInstantSearch->isChecked())
+    else if (UnixCommand::getLinuxDistro() == ectn_KAOS && ui->actionUseInstantSearch->isChecked())
     {
       disconnect(m_leFilterPackage, SIGNAL(textChanged(QString)), this, SLOT(reapplyPackageFilter()));
       connect(m_leFilterPackage, SIGNAL(textChanged(QString)), this, SLOT(reapplyPackageFilter()));
       lightPackageFilterConnected = false;
     }
 
-    ui->actionUseInstantSearch->setEnabled(false);
+    if (UnixCommand::getLinuxDistro() != ectn_KAOS) ui->actionUseInstantSearch->setEnabled(false);
 
     m_refreshForeignPackageList = false;
     m_actionMenuRepository->setEnabled(false);
@@ -1065,7 +1066,6 @@ void MainWindow::refreshPackageList()
 void MainWindow::buildAURPackageList()
 {
   ui->tvPackages->setColumnHidden(PackageModel::ctn_PACKAGE_REPOSITORY_COLUMN, true);
-
   ui->actionSearchByDescription->setChecked(true);
   m_progressWidget->show();
 
@@ -1099,14 +1099,9 @@ void MainWindow::buildAURPackageList()
 
   list->clear();
 
-  /*if (isPackageTreeViewVisible())
+  if (UnixCommand::getLinuxDistro() != ectn_KAOS ||
+      (UnixCommand::getLinuxDistro() == ectn_KAOS && !ui->actionUseInstantSearch->isChecked()))
   {
-    ui->tvPackages->setFocus();
-  }*/
-
-  if (UnixCommand::getLinuxDistro() != ectn_KAOS)
-  {
-    //m_leFilterPackage->initStyleSheet();
     QString search = Package::parseSearchString(m_leFilterPackage->text());
     m_packageModel->applyFilter(search);
 
@@ -1758,16 +1753,11 @@ void MainWindow::reapplyPackageFilter()
   //If we are using "Search By file...
   else
   {
-    //disconnect(m_leFilterPackage, SIGNAL(textChanged(QString)), this, SLOT(reapplyPackageFilter()));
-
     m_leFilterPackage->initStyleSheet();
 
     //We need to provide QCompleter data to the SearchLineEdit...
     if (!m_leFilterPackage->text().isEmpty())
       m_leFilterPackage->refreshCompleterData();
-
-    /*if (ui->actionUseInstantSearch->isChecked())
-      connect(m_leFilterPackage, SIGNAL(textChanged(QString)), this, SLOT(reapplyPackageFilter()));*/
   }
 }
 
