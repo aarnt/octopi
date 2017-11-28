@@ -196,6 +196,7 @@ void MainWindow::refreshGroupsWidget()
  */
 void MainWindow::AURToolSelected()
 {
+  bool lightPackageFilterConnected = false;
   static QStandardItemModel emptyModel;
   savePackageColumnWidths();
 
@@ -210,6 +211,13 @@ void MainWindow::AURToolSelected()
       disconnect(m_leFilterPackage, SIGNAL(textChanged(QString)), this, SLOT(reapplyPackageFilter()));
       disconnect(m_leFilterPackage, SIGNAL(textChanged(QString)), this, SLOT(lightPackageFilter()));
       connect(m_leFilterPackage, SIGNAL(textChanged(QString)), this, SLOT(lightPackageFilter()));
+      lightPackageFilterConnected = true;
+    }
+    else if (UnixCommand::getLinuxDistro() == ectn_KAOS && ui->actionUseInstantSearch->isChecked())
+    {
+      disconnect(m_leFilterPackage, SIGNAL(textChanged(QString)), this, SLOT(reapplyPackageFilter()));
+      connect(m_leFilterPackage, SIGNAL(textChanged(QString)), this, SLOT(reapplyPackageFilter()));
+      lightPackageFilterConnected = false;
     }
 
     ui->actionUseInstantSearch->setEnabled(false);
@@ -229,12 +237,12 @@ void MainWindow::AURToolSelected()
   {
     ui->actionUseInstantSearch->setEnabled(true);
 
-    if (UnixCommand::getLinuxDistro() != ectn_KAOS && ui->actionUseInstantSearch->isChecked())
+    if (/*UnixCommand::getLinuxDistro() != ectn_KAOS &&*/ ui->actionUseInstantSearch->isChecked())
     {
       disconnect(m_leFilterPackage, SIGNAL(textChanged(QString)), this, SLOT(lightPackageFilter()));
       disconnect(m_leFilterPackage, SIGNAL(textChanged(QString)), this, SLOT(reapplyPackageFilter()));
       connect(m_leFilterPackage, SIGNAL(textChanged(QString)), this, SLOT(reapplyPackageFilter()));
-      //m_packageModel->applyFilter("");
+      lightPackageFilterConnected = false;
     }
 
     m_packageModel->applyFilter("");
@@ -259,12 +267,12 @@ void MainWindow::AURToolSelected()
   m_actionRepositoryAll->setChecked(true);
   m_refreshPackageLists = false;
 
-  if (UnixCommand::getLinuxDistro() != ectn_KAOS && !ui->actionUseInstantSearch->isChecked())
+  if (/*UnixCommand::getLinuxDistro() != ectn_KAOS &&*/ lightPackageFilterConnected && !ui->actionUseInstantSearch->isChecked())
     disconnect(m_leFilterPackage, SIGNAL(textChanged(QString)), this, SLOT(lightPackageFilter()));
 
   m_leFilterPackage->clear();
 
-  if (UnixCommand::getLinuxDistro() != ectn_KAOS && !ui->actionUseInstantSearch->isChecked())
+  if (/*UnixCommand::getLinuxDistro() != ectn_KAOS &&*/ lightPackageFilterConnected && !ui->actionUseInstantSearch->isChecked())
     connect(m_leFilterPackage, SIGNAL(textChanged(QString)), this, SLOT(lightPackageFilter()));
 
   metaBuildPackageList();
