@@ -213,7 +213,7 @@ void MainWindow::AURToolSelected()
       connect(m_leFilterPackage, SIGNAL(textChanged(QString)), this, SLOT(lightPackageFilter()));
       lightPackageFilterConnected = true;
     }
-    else if (UnixCommand::getLinuxDistro() == ectn_KAOS && ui->actionUseInstantSearch->isChecked())
+    else if (UnixCommand::getLinuxDistro() == ectn_KAOS && !ui->actionUseInstantSearch->isChecked())
     {
       disconnect(m_leFilterPackage, SIGNAL(textChanged(QString)), this, SLOT(reapplyPackageFilter()));
       connect(m_leFilterPackage, SIGNAL(textChanged(QString)), this, SLOT(reapplyPackageFilter()));
