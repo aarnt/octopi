@@ -332,7 +332,6 @@ void MainWindow::positionInPackageList(const QString &pkgName)
   if (foundItems.count() == 1)
   {
     proxyIndex = foundItems.first();
-
     if(proxyIndex.isValid())
     {
       ui->tvPackages->scrollTo(proxyIndex, QAbstractItemView::PositionAtCenter);
@@ -360,6 +359,7 @@ void MainWindow::outputTextBrowserAnchorClicked(const QUrl &link)
     if (pkgName == "sh") pkgName = "bash";
     bool indIncremented = false;
     QItemSelectionModel*const selectionModel = ui->tvPackages->selectionModel();
+
     if (selectionModel->selectedRows().count() <= 0) return;
 
     QModelIndex item = selectionModel->selectedRows(PackageModel::ctn_PACKAGE_NAME_COLUMN).first();
@@ -598,8 +598,6 @@ bool MainWindow::isSearchByFileSelected()
  */
 void MainWindow::toggleInstantSearch()
 {
-  //if (UnixCommand::getLinuxDistro() == ectn_KAOS) return;
-
   if (ui->actionUseInstantSearch->isChecked())
   {
     SettingsManager::setInstantSearchSelected(true);
@@ -1369,7 +1367,6 @@ void MainWindow::positionTextEditCursorAtEnd()
 {
   QTextBrowser *textEdit =
       ui->twProperties->widget(ctn_TABINDEX_OUTPUT)->findChild<QTextBrowser*>("textBrowser");
-
   if (textEdit)
   {
     utils::positionTextEditCursorAtEnd(textEdit);
@@ -1602,8 +1599,6 @@ void MainWindow::tvPackagesSelectionChanged(const QItemSelection&, const QItemSe
 
   m_lblTotalCounters->setText(text);
   m_lblSelCounter->setText(newMessage);
-  //m_lblTotalCounters->setVisible(true);
-  //m_lblSelCounter->setVisible(true);
 }
 
 /*
