@@ -199,7 +199,6 @@ void MainWindow::AURToolSelected()
   bool lightPackageFilterConnected = false;
   static QStandardItemModel emptyModel;
   savePackageColumnWidths();
-
   refreshTabInfo(true);
   refreshTabFiles(true);
 
@@ -277,6 +276,7 @@ void MainWindow::AURToolSelected()
     disconnect(m_leFilterPackage, SIGNAL(textChanged(QString)), this, SLOT(lightPackageFilter()));
 
   m_leFilterPackage->clear();
+  m_leFilterPackage->initStyleSheet();
 
   if (lightPackageFilterConnected && !ui->actionUseInstantSearch->isChecked())
     connect(m_leFilterPackage, SIGNAL(textChanged(QString)), this, SLOT(lightPackageFilter()));
@@ -1106,7 +1106,7 @@ void MainWindow::buildAURPackageList()
 
   if (UnixCommand::getLinuxDistro() != ectn_KAOS)
   {
-    m_leFilterPackage->initStyleSheet();
+    //m_leFilterPackage->initStyleSheet();
     QString search = Package::parseSearchString(m_leFilterPackage->text());
     m_packageModel->applyFilter(search);
 
@@ -1115,6 +1115,17 @@ void MainWindow::buildAURPackageList()
     ui->tvPackages->setCurrentIndex(mi);
     ui->tvPackages->scrollTo(mi);
     invalidateTabs();
+
+    int numPkgs = m_packageModel->getPackageCount();
+
+    if (m_leFilterPackage->text() != ""){
+      if (numPkgs > 0) m_leFilterPackage->setFoundStyle();
+      else m_leFilterPackage->setNotFoundStyle();
+    }
+    else{
+      m_leFilterPackage->initStyleSheet();
+      m_packageModel->applyFilter("");
+    }
   }
   else
   {
@@ -1770,6 +1781,7 @@ void MainWindow::lightPackageFilter()
     if (m_leFilterPackage->text() == "")
     {
       m_packageModel->applyFilter("ççç");
+      m_leFilterPackage->initStyleSheet();
       refreshStatusBar();
     }
   }
@@ -1778,9 +1790,7 @@ void MainWindow::lightPackageFilter()
     if (m_leFilterPackage->text() == "")
     {
       m_packageModel->applyFilter("");
-      m_leFilterPackage->initStyleSheet();
       reapplyPackageFilter();
-      //refreshStatusBar();
     }
   }
 }
