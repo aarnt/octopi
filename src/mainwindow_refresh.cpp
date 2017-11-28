@@ -205,7 +205,7 @@ void MainWindow::AURToolSelected()
   //Here we are changing view to list AUR packages ONLY
   if (m_actionSwitchToAURTool->isChecked())
   {
-    if (ui->actionUseInstantSearch->isChecked())
+    if (UnixCommand::getLinuxDistro() != ectn_KAOS && ui->actionUseInstantSearch->isChecked())
     {
       disconnect(m_leFilterPackage, SIGNAL(textChanged(QString)), this, SLOT(reapplyPackageFilter()));
       disconnect(m_leFilterPackage, SIGNAL(textChanged(QString)), this, SLOT(lightPackageFilter()));
@@ -229,7 +229,7 @@ void MainWindow::AURToolSelected()
   {
     ui->actionUseInstantSearch->setEnabled(true);
 
-    if (ui->actionUseInstantSearch->isChecked())
+    if (UnixCommand::getLinuxDistro() != ectn_KAOS && ui->actionUseInstantSearch->isChecked())
     {
       disconnect(m_leFilterPackage, SIGNAL(textChanged(QString)), this, SLOT(lightPackageFilter()));
       disconnect(m_leFilterPackage, SIGNAL(textChanged(QString)), this, SLOT(reapplyPackageFilter()));
@@ -259,12 +259,12 @@ void MainWindow::AURToolSelected()
   m_actionRepositoryAll->setChecked(true);
   m_refreshPackageLists = false;
 
-  if (!ui->actionUseInstantSearch->isChecked())
+  if (UnixCommand::getLinuxDistro() != ectn_KAOS && !ui->actionUseInstantSearch->isChecked())
     disconnect(m_leFilterPackage, SIGNAL(textChanged(QString)), this, SLOT(lightPackageFilter()));
 
   m_leFilterPackage->clear();
 
-  if (!ui->actionUseInstantSearch->isChecked())
+  if (UnixCommand::getLinuxDistro() != ectn_KAOS && !ui->actionUseInstantSearch->isChecked())
     connect(m_leFilterPackage, SIGNAL(textChanged(QString)), this, SLOT(lightPackageFilter()));
 
   metaBuildPackageList();

@@ -598,6 +598,8 @@ bool MainWindow::isSearchByFileSelected()
  */
 void MainWindow::toggleInstantSearch()
 {
+  if (UnixCommand::getLinuxDistro() == ectn_KAOS) return;
+
   if (ui->actionUseInstantSearch->isChecked())
   {
     SettingsManager::setInstantSearchSelected(true);
