@@ -118,7 +118,7 @@ void MainWindow::keyPressEvent(QKeyEvent* ke)
     //We are searching for AUR foreign packages...
     else if (isAURGroupSelected() && m_leFilterPackage->hasFocus() && m_cic == NULL)
     {
-      if (UnixCommand::getLinuxDistro() == ectn_KAOS) return;
+      if (UnixCommand::getLinuxDistro() == ectn_KAOS && ui->actionUseInstantSearch->isChecked()) return;
 
       ui->twGroups->setEnabled(false);
 

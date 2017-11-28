@@ -1766,13 +1766,21 @@ void MainWindow::reapplyPackageFilter()
  */
 void MainWindow::lightPackageFilter()
 {
-  if (isAURGroupSelected() && UnixCommand::getLinuxDistro() != ectn_KAOS)
+  if (isAURGroupSelected())
   {
     if (m_leFilterPackage->text() == "")
     {
-      m_packageModel->applyFilter("ççç");
-      m_leFilterPackage->initStyleSheet();
-      refreshStatusBar();
+      if (UnixCommand::getLinuxDistro() != ectn_KAOS)
+      {
+        m_packageModel->applyFilter("ççç");
+        m_leFilterPackage->initStyleSheet();
+        refreshStatusBar();
+      }
+      else
+      {
+        m_packageModel->applyFilter("");
+        reapplyPackageFilter();
+      }
     }
   }
   else if (!isAURGroupSelected())
