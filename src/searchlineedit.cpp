@@ -29,6 +29,8 @@ SearchLineEdit::SearchLineEdit(QWidget *parent, bool hasSLocate) :
   m_completer->setCompletionMode(QCompleter::PopupCompletion);
   m_completer->setCompletionColumn(0);
   m_completer->setMaxVisibleItems(10);
+  m_validatorType = ectn_DEFAULT_VALIDATOR;
+
   setCompleter(m_completer);
 
   // Create the search button and set its icon, cursor, and stylesheet
@@ -62,8 +64,6 @@ SearchLineEdit::SearchLineEdit(QWidget *parent, bool hasSLocate) :
  */
 void SearchLineEdit::setRefreshValidator(ValidatorType validatorType)
 {
-  ValidatorType oldValidatorType = validatorType;
-
   if (validatorType == ectn_AUR_VALIDATOR)
     setValidator(m_aurValidator);
   else if (validatorType == ectn_FILE_VALIDATOR)
@@ -71,13 +71,15 @@ void SearchLineEdit::setRefreshValidator(ValidatorType validatorType)
   else if (validatorType == ectn_DEFAULT_VALIDATOR)
     setValidator(m_defaultValidator);
 
-  if (oldValidatorType == validatorType) return;
+  if (m_validatorType == validatorType) return;
 
   //If the current string is not valid anymore, let's erase it!
   int pos = 0;
   QString search = text();
   if (this->validator()->validate(search, pos) == QValidator::Invalid)
     setText("");
+
+  m_validatorType = validatorType;
 }
 
 /*

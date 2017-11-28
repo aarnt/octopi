@@ -137,10 +137,10 @@ void MainWindow::show()
     initTabTransaction();
     initTabHelpUsage();
     initTabNews();
-    initLineEditFilterPackages();
     initPackageTreeView();
     initActions();
     loadSettings();
+    initLineEditFilterPackages();
     loadPanelSettings();
     initStatusBar();
     initToolButtonPacman();
@@ -601,13 +601,16 @@ void MainWindow::toggleInstantSearch()
   if (ui->actionUseInstantSearch->isChecked())
   {
     SettingsManager::setInstantSearchSelected(true);
+    disconnect(m_leFilterPackage, SIGNAL(textChanged(QString)), this, SLOT(lightPackageFilter()));
     disconnect(m_leFilterPackage, SIGNAL(textChanged(QString)), this, SLOT(reapplyPackageFilter()));
     connect(m_leFilterPackage, SIGNAL(textChanged(QString)), this, SLOT(reapplyPackageFilter()));
   }
   else
   {
     SettingsManager::setInstantSearchSelected(false);
+    disconnect(m_leFilterPackage, SIGNAL(textChanged(QString)), this, SLOT(lightPackageFilter()));
     disconnect(m_leFilterPackage, SIGNAL(textChanged(QString)), this, SLOT(reapplyPackageFilter()));
+    connect(m_leFilterPackage, SIGNAL(textChanged(QString)), this, SLOT(lightPackageFilter()));
   }
 }
 
@@ -670,6 +673,12 @@ void MainWindow::tvPackagesSearchColumnChanged(QAction *actionSelected)
   //We are in the realm of tradictional NAME search
   if (actionSelected->objectName() == ui->actionSearchByName->objectName())
   {
+    if (ui->actionUseInstantSearch->isChecked())
+    {
+      disconnect(m_leFilterPackage, SIGNAL(textChanged(QString)), this, SLOT(reapplyPackageFilter()));
+      connect(m_leFilterPackage, SIGNAL(textChanged(QString)), this, SLOT(reapplyPackageFilter()));
+    }
+
     ui->menuView->setEnabled(true);
     if (!m_actionSwitchToAURTool->isChecked()) ui->twGroups->setEnabled(true);
 
@@ -683,6 +692,12 @@ void MainWindow::tvPackagesSearchColumnChanged(QAction *actionSelected)
   //We are talking about slower 'search by description'...
   else if (actionSelected->objectName() == ui->actionSearchByDescription->objectName())
   {
+    if (ui->actionUseInstantSearch->isChecked())
+    {
+      disconnect(m_leFilterPackage, SIGNAL(textChanged(QString)), this, SLOT(reapplyPackageFilter()));
+      connect(m_leFilterPackage, SIGNAL(textChanged(QString)), this, SLOT(reapplyPackageFilter()));
+    }
+
     ui->menuView->setEnabled(true);
     if (!m_actionSwitchToAURTool->isChecked()) ui->twGroups->setEnabled(true);
 
@@ -695,6 +710,8 @@ void MainWindow::tvPackagesSearchColumnChanged(QAction *actionSelected)
   }
   else if (actionSelected->objectName() == ui->actionSearchByFile->objectName())
   {
+    disconnect(m_leFilterPackage, SIGNAL(textChanged(QString)), this, SLOT(reapplyPackageFilter()));
+
     m_leFilterPackage->clear();
     m_packageModel->applyFilter("");
     ui->actionViewAllPackages->trigger();
@@ -1583,6 +1600,8 @@ void MainWindow::tvPackagesSelectionChanged(const QItemSelection&, const QItemSe
 
   m_lblTotalCounters->setText(text);
   m_lblSelCounter->setText(newMessage);
+  //m_lblTotalCounters->setVisible(true);
+  //m_lblSelCounter->setVisible(true);
 }
 
 /*

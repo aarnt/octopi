@@ -381,6 +381,7 @@ private slots:
 
   //SearchLineEdit methods
   void reapplyPackageFilter();
+  void lightPackageFilter();
 
   //TabWidget methods
   void refreshTabInfo(QString pkgName);

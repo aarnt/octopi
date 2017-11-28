@@ -205,10 +205,11 @@ void MainWindow::AURToolSelected()
   //Here we are changing view to list AUR packages ONLY
   if (m_actionSwitchToAURTool->isChecked())
   {
-    if (!ui->actionUseInstantSearch->isChecked())
+    if (ui->actionUseInstantSearch->isChecked())
     {
       disconnect(m_leFilterPackage, SIGNAL(textChanged(QString)), this, SLOT(reapplyPackageFilter()));
-      connect(m_leFilterPackage, SIGNAL(textChanged(QString)), this, SLOT(reapplyPackageFilter()));
+      disconnect(m_leFilterPackage, SIGNAL(textChanged(QString)), this, SLOT(lightPackageFilter()));
+      connect(m_leFilterPackage, SIGNAL(textChanged(QString)), this, SLOT(lightPackageFilter()));
     }
 
     ui->actionUseInstantSearch->setEnabled(false);
@@ -227,11 +228,16 @@ void MainWindow::AURToolSelected()
   else
   {
     ui->actionUseInstantSearch->setEnabled(true);
-    if (!ui->actionUseInstantSearch->isChecked())
+
+    if (ui->actionUseInstantSearch->isChecked())
     {
+      disconnect(m_leFilterPackage, SIGNAL(textChanged(QString)), this, SLOT(lightPackageFilter()));
       disconnect(m_leFilterPackage, SIGNAL(textChanged(QString)), this, SLOT(reapplyPackageFilter()));
-      m_packageModel->applyFilter("");
+      connect(m_leFilterPackage, SIGNAL(textChanged(QString)), this, SLOT(reapplyPackageFilter()));
+      //m_packageModel->applyFilter("");
     }
+
+    m_packageModel->applyFilter("");
 
     ui->tvPackages->setModel(&emptyModel);
     removePackageTreeViewConnections();
@@ -252,7 +258,15 @@ void MainWindow::AURToolSelected()
   m_selectedRepository = "";
   m_actionRepositoryAll->setChecked(true);
   m_refreshPackageLists = false;
+
+  if (!ui->actionUseInstantSearch->isChecked())
+    disconnect(m_leFilterPackage, SIGNAL(textChanged(QString)), this, SLOT(lightPackageFilter()));
+
   m_leFilterPackage->clear();
+
+  if (!ui->actionUseInstantSearch->isChecked())
+    connect(m_leFilterPackage, SIGNAL(textChanged(QString)), this, SLOT(lightPackageFilter()));
+
   metaBuildPackageList();
 }
 
@@ -412,7 +426,8 @@ void MainWindow::preBuildAURPackageListMeta()
 
   if (UnixCommand::getLinuxDistro() == ectn_KAOS)
   {
-    connect(m_leFilterPackage, SIGNAL(textChanged(QString)), this, SLOT(reapplyPackageFilter()));   
+    disconnect(m_leFilterPackage, SIGNAL(textChanged(QString)), this, SLOT(reapplyPackageFilter()));
+    connect(m_leFilterPackage, SIGNAL(textChanged(QString)), this, SLOT(reapplyPackageFilter()));
     reapplyPackageFilter();
   }
 }
@@ -564,12 +579,12 @@ void MainWindow::metaBuildPackageList()
 
     toggleSystemActions(false);
 
-    if (ui->actionUseInstantSearch->isChecked())
+    /*if (ui->actionUseInstantSearch->isChecked())
     {
       disconnect(m_leFilterPackage, SIGNAL(textChanged(QString)), this, SLOT(reapplyPackageFilter()));
       connect(m_leFilterPackage, SIGNAL(textChanged(QString)), this, SLOT(reapplyPackageFilter()));
       reapplyPackageFilter();
-    }
+    }*/
 
     disconnect(&g_fwPacman, SIGNAL(finished()), this, SLOT(preBuildPackageList()));
 
@@ -658,12 +673,12 @@ void MainWindow::metaBuildPackageList()
     ui->actionSearchByFile->setEnabled(false);
     toggleSystemActions(false);
 
-    if (ui->actionUseInstantSearch->isChecked())
+    /*if (ui->actionUseInstantSearch->isChecked())
     {
       disconnect(m_leFilterPackage, SIGNAL(textChanged(QString)), this, SLOT(reapplyPackageFilter()));
       connect(m_leFilterPackage, SIGNAL(textChanged(QString)), this, SLOT(reapplyPackageFilter()));
       reapplyPackageFilter();
-    }
+    }*/
 
     disconnect(&g_fwPacmanGroup, SIGNAL(finished()), this, SLOT(preBuildPackagesFromGroupList()));
 
@@ -1221,15 +1236,15 @@ void MainWindow::refreshStatusBar()
   {
     text = StrConstants::getNumberInstalledPackages(numberOfInstalledPackages);
   }
-  else if (m_leFilterPackage->text().isEmpty() && !m_packageModel->isFiltered())
+  else if (m_packageModel->getPackageCount() > 0 && m_leFilterPackage->text().isEmpty() && !m_packageModel->isFiltered())
   {
     text = StrConstants::getNumberInstalledPackages(m_numberOfInstalledPackages);
   }
-  else
+  else if (m_packageModel->getPackageCount() == 0)
   {
-    if (isAURGroupSelected() && UnixCommand::getLinuxDistro() != ectn_KAOS)
+    //if (isAURGroupSelected() && UnixCommand::getLinuxDistro() != ectn_KAOS)
     {
-      if (m_packageModel->getPackageCount() == 0)
+      //if (m_packageModel->getPackageCount() == 0)
       {
         m_lblSelCounter->setText("");
         m_lblSelCounter->setVisible(false);
@@ -1684,16 +1699,7 @@ void MainWindow::refreshTabFiles(bool clearContents, bool neverQuit)
  */
 void MainWindow::reapplyPackageFilter()
 {
-  if (isAURGroupSelected() && UnixCommand::getLinuxDistro() != ectn_KAOS)
-  {
-    if (m_leFilterPackage->text() == "")
-    {
-      m_packageModel->applyFilter("ççç");
-      refreshStatusBar();
-    }
-    return;
-  }
-
+  //We are not in a search by filenames...
   if (!isSearchByFileSelected())
   {
     bool isFilterPackageSelected = m_leFilterPackage->hasFocus();
@@ -1727,7 +1733,7 @@ void MainWindow::reapplyPackageFilter()
   //If we are using "Search By file...
   else
   {
-    disconnect(m_leFilterPackage, SIGNAL(textChanged(QString)), this, SLOT(reapplyPackageFilter()));
+    //disconnect(m_leFilterPackage, SIGNAL(textChanged(QString)), this, SLOT(reapplyPackageFilter()));
 
     m_leFilterPackage->initStyleSheet();
 
@@ -1735,8 +1741,33 @@ void MainWindow::reapplyPackageFilter()
     if (!m_leFilterPackage->text().isEmpty())
       m_leFilterPackage->refreshCompleterData();
 
-    if (ui->actionUseInstantSearch->isChecked())
-      connect(m_leFilterPackage, SIGNAL(textChanged(QString)), this, SLOT(reapplyPackageFilter()));
+    /*if (ui->actionUseInstantSearch->isChecked())
+      connect(m_leFilterPackage, SIGNAL(textChanged(QString)), this, SLOT(reapplyPackageFilter()));*/
+  }
+}
+
+/*
+ * This SLOT is called every time we press a key at FilterLineEdit, but ONLY when INSTANT SEARCH is disabled
+ */
+void MainWindow::lightPackageFilter()
+{
+  if (isAURGroupSelected() && UnixCommand::getLinuxDistro() != ectn_KAOS)
+  {
+    if (m_leFilterPackage->text() == "")
+    {
+      m_packageModel->applyFilter("ççç");
+      refreshStatusBar();
+    }
+  }
+  else if (!isAURGroupSelected())
+  {
+    if (m_leFilterPackage->text() == "")
+    {
+      m_packageModel->applyFilter("");
+      m_leFilterPackage->initStyleSheet();
+      reapplyPackageFilter();
+      //refreshStatusBar();
+    }
   }
 }
 

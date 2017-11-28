@@ -512,8 +512,9 @@ void MainWindow::initTabTransaction()
  * This is the LineEdit widget used to filter the package list
  */
 void MainWindow::initLineEditFilterPackages(){
-  if (SettingsManager::isInstantSearchSelected())
-    connect(m_leFilterPackage, SIGNAL(textChanged(QString)), this, SLOT(reapplyPackageFilter()));
+  //if (SettingsManager::isInstantSearchSelected())
+  //  connect(m_leFilterPackage, SIGNAL(textChanged(QString)), this, SLOT(reapplyPackageFilter()));
+  toggleInstantSearch();
 }
 
 /*

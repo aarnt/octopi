@@ -111,7 +111,7 @@ void MainWindow::keyPressEvent(QKeyEvent* ke)
     {
       execKeyActionOnPackage(ectn_INSTALL);
     }
-    else if (!isAURGroupSelected() && m_leFilterPackage->hasFocus() && !ui->actionUseInstantSearch->isChecked())
+    else if (!isSearchByFileSelected() && !isAURGroupSelected() && m_leFilterPackage->hasFocus() && !ui->actionUseInstantSearch->isChecked())
     {
       reapplyPackageFilter();
     }
