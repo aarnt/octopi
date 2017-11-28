@@ -237,16 +237,22 @@ void MainWindow::AURToolSelected()
   {
     ui->actionUseInstantSearch->setEnabled(true);
 
-    if (/*UnixCommand::getLinuxDistro() != ectn_KAOS &&*/ ui->actionUseInstantSearch->isChecked())
+    if (UnixCommand::getLinuxDistro() != ectn_KAOS && ui->actionUseInstantSearch->isChecked())
     {
       disconnect(m_leFilterPackage, SIGNAL(textChanged(QString)), this, SLOT(lightPackageFilter()));
       disconnect(m_leFilterPackage, SIGNAL(textChanged(QString)), this, SLOT(reapplyPackageFilter()));
       connect(m_leFilterPackage, SIGNAL(textChanged(QString)), this, SLOT(reapplyPackageFilter()));
       lightPackageFilterConnected = false;
     }
+    else if (UnixCommand::getLinuxDistro() == ectn_KAOS && !ui->actionUseInstantSearch->isChecked())
+    {
+      disconnect(m_leFilterPackage, SIGNAL(textChanged(QString)), this, SLOT(lightPackageFilter()));
+      disconnect(m_leFilterPackage, SIGNAL(textChanged(QString)), this, SLOT(reapplyPackageFilter()));
+      connect(m_leFilterPackage, SIGNAL(textChanged(QString)), this, SLOT(lightPackageFilter()));
+      lightPackageFilterConnected = true;
+    }
 
     m_packageModel->applyFilter("");
-
     ui->tvPackages->setModel(&emptyModel);
     removePackageTreeViewConnections();
     m_actionSwitchToAURTool->setEnabled(false);
@@ -267,12 +273,12 @@ void MainWindow::AURToolSelected()
   m_actionRepositoryAll->setChecked(true);
   m_refreshPackageLists = false;
 
-  if (/*UnixCommand::getLinuxDistro() != ectn_KAOS &&*/ lightPackageFilterConnected && !ui->actionUseInstantSearch->isChecked())
+  if (lightPackageFilterConnected && !ui->actionUseInstantSearch->isChecked())
     disconnect(m_leFilterPackage, SIGNAL(textChanged(QString)), this, SLOT(lightPackageFilter()));
 
   m_leFilterPackage->clear();
 
-  if (/*UnixCommand::getLinuxDistro() != ectn_KAOS &&*/ lightPackageFilterConnected && !ui->actionUseInstantSearch->isChecked())
+  if (lightPackageFilterConnected && !ui->actionUseInstantSearch->isChecked())
     connect(m_leFilterPackage, SIGNAL(textChanged(QString)), this, SLOT(lightPackageFilter()));
 
   metaBuildPackageList();
