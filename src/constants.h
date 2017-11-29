@@ -66,6 +66,7 @@ const QString ctn_KEY_BACKEND("Backend");
 const QString ctn_KEY_CURRENT_TAB_INDEX("Current_Tab_Index");
 const QString ctn_KEY_WINDOW_SIZE("Window_Size");
 const QString ctn_KEY_TRANSACTION_WINDOW_SIZE("Transaction_Window_Size");
+const QString ctn_KEY_OUTPUTDIALOG_WINDOW_SIZE("OutputDialog_Window_Size");
 const QString ctn_KEY_OPTIONALDEPS_WINDOW_SIZE("OptionalDeps_Window_Size");
 const QString ctn_KEY_PANEL_ORGANIZING("Panel_Organizing");
 const QString ctn_KEY_PACKAGE_LIST_ORDERED_COL("PackageList_Ordered_Col");

@@ -140,7 +140,9 @@ void OutputDialog::doSystemUpgrade()
  */
 void OutputDialog::show()
 {
-  utils::positionWindowAtScreenCenter(this);
+  //utils::positionWindowAtScreenCenter(this);
+  //Let's restore the dialog size saved...
+  restoreGeometry(SettingsManager::getOutputDialogWindowSize());
   QDialog::show();
   doSystemUpgrade();
 }
@@ -152,6 +154,9 @@ void OutputDialog::reject()
 {
   if (!m_upgradeRunning)
   {
+    //Let's save the dialog size value before closing it.
+    QByteArray windowSize=saveGeometry();
+    SettingsManager::setOutputDialogWindowSize(windowSize);
     QDialog::reject();
   }
 }

@@ -99,6 +99,7 @@ class SettingsManager
 
     static QByteArray getWindowSize();
     static QByteArray getTransactionWindowSize();
+    static QByteArray getOutputDialogWindowSize();
     static QByteArray getOptionalDepsWindowSize();
     static QByteArray getSplitterHorizontalState();
 
@@ -123,6 +124,7 @@ class SettingsManager
     static void setShowGroupsPanel(int newValue);
     static void setWindowSize(QByteArray newValue);
     static void setTransactionWindowSize(QByteArray newValue);
+    static void setOutputDialogWindowSize(QByteArray newValue);
     static void setOptionalDepsWindowSize(QByteArray newValue);
     static void setSplitterHorizontalState(QByteArray newValue);
 

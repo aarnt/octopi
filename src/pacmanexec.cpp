@@ -382,6 +382,7 @@ void PacmanExec::parsePacmanProcessOutput(QString output)
   else
   {
     //Let's supress some annoying string bugs...
+    msg.remove(QRegularExpression("Don't need password!!"));
     msg.remove(QRegularExpression("\\(process.+"));
     msg.remove(QRegularExpression("QXcbConnection: XCB error:.+"));
     msg.remove(QRegularExpression("Using the fallback.+"));
