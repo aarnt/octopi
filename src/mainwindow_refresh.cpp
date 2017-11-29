@@ -1428,7 +1428,6 @@ void MainWindow::refreshTabInfo(bool clearContents, bool neverQuit)
       }
 
       html += "</table>";
-
       text->setHtml(html);
       text->scrollToAnchor(anchorBegin);
     }
@@ -1754,6 +1753,7 @@ void MainWindow::lightPackageFilter()
       {
         m_packageModel->applyFilter("");
         reapplyPackageFilter();
+        refreshStatusBar();
       }
     }
   }

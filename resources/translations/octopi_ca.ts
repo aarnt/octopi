@@ -71,7 +71,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="253"/>
         <source>Ctrl+M</source>
-        <translation>Ctrl+M</translation>
+        <translation>Ctrl + M</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="262"/>
@@ -82,7 +82,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="268"/>
         <source>Ctrl+E</source>
-        <translation>Ctrl+E</translation>
+        <translation>Ctrl + E</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="277"/>
@@ -92,7 +92,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="280"/>
         <source>Ctrl+D</source>
-        <translation>Ctrl+D</translation>
+        <translation>Ctrl + D</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="289"/>
@@ -102,7 +102,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="292"/>
         <source>Ctrl+Q</source>
-        <translation>Ctrl+Q</translation>
+        <translation>Ctrl + Q</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="301"/>
@@ -135,12 +135,12 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="342"/>
         <source>Get latest distro news</source>
-        <translation>Obtén les últimes notícies de la distribució</translation>
+        <translation>Obtén les últimes notícies de la distribució.</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="345"/>
         <source>Ctrl+G</source>
-        <translation>Ctrl+G</translation>
+        <translation>Ctrl + G</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="354"/>
@@ -215,7 +215,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="484"/>
         <source>Find a file</source>
-        <translation>Troba un fitxer</translation>
+        <translation>Trobeu un fitxer</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="493"/>
@@ -245,7 +245,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="529"/>
         <source>Ctrl+Shift+V</source>
-        <translation>Ctrl+Maj.+V</translation>
+        <translation>Ctrl + Maj. + V</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="541"/>
@@ -255,7 +255,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="544"/>
         <source>Ctrl+Shift+P</source>
-        <translation>Ctrl+Maj.+P</translation>
+        <translation>Ctrl + Maj. + P</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="553"/>
@@ -265,7 +265,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="556"/>
         <source>Ctrl+Shift+N</source>
-        <translation>Ctrl+Maj.+N</translation>
+        <translation>Ctrl + Maj. + N</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="564"/>
@@ -295,7 +295,7 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="58"/>
         <source>licensed under the terms of</source>
-        <translation>Amb llicència segons els termes de</translation>
+        <translation>amb llicència segons els termes de</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="64"/>
@@ -310,7 +310,7 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="69"/>
         <source>An installed package (not required by others)</source>
-        <translation>Un paquet desinstal·lat (no requerit per altres)</translation>
+        <translation>Un paquet instal·lat (no requerit per altres)</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="72"/>
@@ -345,147 +345,147 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="89"/>
         <source>Position the mouse over a package to see its description</source>
-        <translation>Posicioneu el ratolí sobre d&apos;un paquet per veure&apos;n la descripció</translation>
+        <translation>Posicioneu el ratolí sobre un paquet per veure&apos;n la descripció.</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="91"/>
         <source>Double click an installed package to see its contents</source>
-        <translation>Feu doble clic en un paquet instal·lat per veure&apos;n el contingut</translation>
+        <translation>Feu doble clic en un paquet instal·lat per veure&apos;n el contingut.</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="93"/>
         <source>Right click package to install/reinstall or remove it</source>
-        <translation>Feu clic amb el botó dret en un paquet per instal·lar / reinstal·lar-lo o eliminar-lo</translation>
+        <translation>Cliqueu amb el botó contrari en un paquet per instal·lar-lo, reinstal·lar-lo o eliminar-lo.</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="96"/>
         <source>Alt+key sequences:</source>
-        <translation>Seqüències d&apos;Alt+tecla:</translation>
+        <translation>Seqüències d&apos;Alt + tecla:</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="98"/>
         <source>Alt+1 to switch to &apos;Info&apos; tab</source>
-        <translation>Alt+1 per canviar a la pestanya Info</translation>
+        <translation>Alt + 1 per canviar a la pestanya d&apos;informació.</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="100"/>
         <source>Alt+2 to switch to &apos;Files&apos; tab</source>
-        <translation>Alt+2 per canviar a la pestanya Fitxers</translation>
+        <translation>Alt + 2 per canviar a la pestanya de fitxers.</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="102"/>
         <source>Alt+3 to switch to &apos;Transaction&apos; tab</source>
-        <translation>Alt+3 per canviar a la pestanya Transacció</translation>
+        <translation>Alt + 3 per canviar a la pestanya de transacció.</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="104"/>
         <source>Alt+4 to switch to &apos;Output&apos; tab</source>
-        <translation>Alt+4 per canviar a la pestanya Sortida</translation>
+        <translation>Alt + 4 per canviar a la pestanya de sortida.</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="106"/>
         <source>Alt+5 to switch to &apos;News&apos; tab</source>
-        <translation>Alt+5 per canviar a la pestanya Notícies</translation>
+        <translation>Alt + 5 per canviar a la pestanya de notícies.</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="108"/>
         <source>Alt+6 or &apos;F1&apos; to show this help page</source>
-        <translation>Alt+6 o F1 per mostrar aquesta pàgina d&apos;ajuda</translation>
+        <translation>Alt + 6 o F1 per mostrar aquesta pàgina d&apos;ajuda.</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="111"/>
         <source>Control+key sequences:</source>
-        <translation>Seqüències de Control+tecla:</translation>
+        <translation>Seqüències de Control + tecla:</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="113"/>
         <source>Ctrl+D or &apos;File/Sync database&apos; to sync the local database with latest remote changes (pacman -Sy)</source>
-        <translation>Ctrl+D o &quot;Fitxer / Sincronitza la base de dades&quot; per sincronitzar la base de dades local amb els últims canvis remots (pacman -Sy)</translation>
+        <translation>Ctrl + D o &quot;Fitxer / Sincronitza la base de dades&quot; per sincronitzar la base de dades local amb els últims canvis remots (pacman -Sy).</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="115"/>
         <source>Ctrl+P or &apos;File/System upgrade&apos; to make a full system upgrade (pacman -Su)</source>
-        <translation>Ctrl + P o &quot;Actualització del sistema&quot; per fer una actualització completa del sistema (pacman -Su)</translation>
+        <translation>Ctrl + P o &quot;Fitxer / Actualització del sistema&quot; per fer una actualització completa del sistema (pacman -Su).</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="117"/>
         <source>Ctrl+L to find a package in the package list</source>
-        <translation>Ctrl+L per trobar un paquet a la llista de paquets</translation>
+        <translation>Ctrl + L per trobar un paquet a la llista de paquets.</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="119"/>
         <source>Ctrl+F to search for text inside tab Files, News and Usage</source>
-        <translation>Ctrl+F  per cercar text dins de les pestanyes Fitxers, Novetats i Ús</translation>
+        <translation>Ctrl + F per cercar text dins les pestanyes de fitxers, novetats i ús.</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="121"/>
         <source>Ctrl+M or &apos;Transaction/Commit&apos; to start installation/removal of selected packages</source>
-        <translation>Ctrl+M o &quot;Transacció / Valida&quot; per començar la instal·lació / eliminació dels paquets seleccionats</translation>
+        <translation>Ctrl + M o &quot;Transacció / Valida-ho&quot; per començar la instal·lació / eliminació dels paquets seleccionats.</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="123"/>
         <source>Ctrl+E or &apos;Transaction/Cancel&apos; to clear the selection of to be removed/installed packages</source>
-        <translation>Ctrl+E o &quot;Transacció / Cancel·la&quot; per netejar la selecció de paquets a eliminar / instal·lar</translation>
+        <translation>Ctrl + E o &quot;Transacció / Cancel·la&quot; per netejar la selecció de paquets per eliminar / instal·lar.</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="125"/>
         <source>Ctrl+G or &apos;File/Get latest distro news&apos; to retrieve the latest RSS based distro news</source>
-        <translation>Ctrl+G o &quot;Fitxer / Obtén les últimes noticies de la distribució&quot; per recuperar les últimes noticies de la distribució basades en RSS</translation>
+        <translation>Ctrl + G o &quot;Fitxer / Obtén les últimes noticies de la distribució&quot; per recuperar les últimes noticies de la distribució basades en RSS.</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="127"/>
         <source>Ctrl+Q or &apos;File/Exit&apos; to exit the application</source>
-        <translation>Ctrl+Q o &quot;Fitxer / Surt&quot; per sortir de l&apos;aplicació</translation>
+        <translation>Ctrl + Q o &quot;Fitxer / Surt&quot; per sortir de l&apos;aplicació.</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="130"/>
         <source>Control+shift+key sequences:</source>
-        <translation>Seqüències de control+maj.+tecla:</translation>
+        <translation>Seqüències de control + maj. + tecla:</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="135"/>
         <source>Ctrl+Shift+G to display all package groups</source>
-        <translation>Ctrl+Maj.+G per mostrar tots els grups de paquets</translation>
+        <translation>Ctrl + Maj. + G per mostrar tots els grups de paquets.</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="137"/>
         <source>Ctrl+Shift+R to remove Pacman&apos;s transaction lock file</source>
-        <translation>Ctrl+Maj.+R per eliminar el fitxer de bloqueig de la transacció del Pacman</translation>
+        <translation>Ctrl + Maj. + R per eliminar el fitxer de bloqueig de la transacció del Pacman.</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="139"/>
         <source>Ctrl+Shift+Y to display %1 group</source>
-        <translation>Ctrl+Maj.+Y per mostrar el grup %1 </translation>
+        <translation>Ctrl + Maj. + Y per mostrar el grup %1.</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="142"/>
         <source>F+key sequences:</source>
-        <translation>Seqüències de F+tecla:</translation>
+        <translation>Seqüències de F + tecla:</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="144"/>
         <source>F1 to show this help page</source>
-        <translation>F1 per mostrar aquesta pàgina d&apos;ajuda</translation>
+        <translation>F1 per mostrar aquesta pàgina d&apos;ajuda.</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="146"/>
         <source>F4 to open a Terminal whitin the selected directory at Files tab</source>
-        <translation>F4 per obrir un terminal dins del directori seleccionat a la pestanya Fitxers</translation>
+        <translation>F4 per obrir un terminal dins el directori seleccionat a la pestanya de fitxers.</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="148"/>
         <source>F6 to open a File Manager whitin the selected directory at Files tab</source>
-        <translation>F6 per obrir un Gestor de fitxers dins del directori seleccionat a la pestanya Fitxers</translation>
+        <translation>F6 per obrir un gestor de fitxers ins del directori seleccionat a la pestanya de fitxers.</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="150"/>
         <source>F10 to maximize/demaximize package list view</source>
-        <translation>F10 per maximitzar / restaurar la vista de llista de paquets</translation>
+        <translation>F10 per maximitzar / desmaximitzar la vista de la llista de paquets.</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="152"/>
         <source>F11 to maximize/demaximize Tab&apos;s view</source>
-        <translation>F11 per maximitzar / desmaximitzar la vista de la pestanya</translation>
+        <translation>F11 per maximitzar / desmaximitzar la vista de la pestanya.</translation>
     </message>
 </context>
 <context>
@@ -513,7 +513,7 @@
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="100"/>
         <source>Select the AUR tool Octopi should use</source>
-        <translation>Seleccioneu l&apos;eina de l&apos;AUR que hauria d&apos;usar l&apos;Octopi</translation>
+        <translation>Seleccioneu l&apos;eina de l&apos;AUR que hauria d&apos;usar l&apos;Octopi.</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="220"/>
@@ -523,7 +523,7 @@
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="233"/>
         <source>Search for outdated AUR packages</source>
-        <translation type="unfinished"/>
+        <translation>Cerca paquets de l&apos;AUR no actualitzats.</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="242"/>
@@ -534,7 +534,7 @@
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="308"/>
         <source>Select the backend Octopi should use</source>
-        <translation>Seleccioneu el rerefons que hauria d&apos;usar l&apos;Octopi</translation>
+        <translation>Seleccioneu el rerefons que hauria d&apos;usar l&apos;Octopi.</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="332"/>
@@ -564,7 +564,7 @@
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="652"/>
         <source>Use default notification icons</source>
-        <translation>Usa les icones de notificació per defecte</translation>
+        <translation>Usa les icones de notificació per defecte.</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="663"/>
@@ -579,7 +579,7 @@
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="685"/>
         <source>Select the SU tool Octopi should use</source>
-        <translation>Seleccioneu l&apos;eina de SU que hauria d&apos;usar l&apos;Octopi</translation>
+        <translation>Seleccioneu l&apos;eina de SU que hauria d&apos;usar l&apos;Octopi.</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="709"/>
@@ -597,7 +597,7 @@
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="955"/>
         <source>Select the terminal Octopi should use</source>
-        <translation>Seleccioneu el terminal que hauria d&apos;usar l&apos;Octopi</translation>
+        <translation>Seleccioneu el terminal que hauria d&apos;usar l&apos;Octopi.</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/optionsdialog.cpp" line="127"/>
@@ -641,12 +641,12 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="40"/>
         <source>use a different Qt4 style (ex: -style gtk).</source>
-        <translation>fes servir un estil QT4 diferent (ex: -style gtk).</translation>
+        <translation>usa un estil de QT4 diferent (ex: -style gtk).</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="41"/>
         <source>use a different remove command (ex: -removecmd R).</source>
-        <translation>utilitza una ordre d&apos;eliminació diferent (ex: -removecmd R).</translation>
+        <translation>usa una ordre d&apos;eliminació diferent (ex: -removecmd R).</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="42"/>
@@ -667,7 +667,7 @@
         <location filename="Projects/octopi/src/strconstants.cpp" line="104"/>
         <source>PacBSD news</source>
         <oldsource>ArchBSD news</oldsource>
-        <translation type="unfinished"/>
+        <translation>Notícies del PacBSD</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="108"/>
@@ -687,17 +687,17 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="120"/>
         <source>Manjaro Linux news</source>
-        <translation>Novetats del Manjaro Linux</translation>
+        <translation>Notícies del Manjaro Linux</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="124"/>
         <source>Netrunner Rolling news</source>
-        <translation>Novetats del Netrunner Rolling</translation>
+        <translation>Notícies del Netrunner Rolling</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="128"/>
         <source>Parabola GNU/Linux-libre news</source>
-        <translation>Novetats del Parabola GNU/Linux-libre</translation>
+        <translation>Notícies del Parabola GNU/Linux-libre</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="132"/>
@@ -707,7 +707,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="136"/>
         <source>No news could be found! Press Ctrl+G to download the latest news.</source>
-        <translation>No es poden trobar novetats! Premeu Ctrl+G per baixar les últimes novetats.</translation>
+        <translation>No s&apos;ha pogut trobar cap notícia! Premeu Ctrl + G per baixar-ne les últimes.</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="140"/>
@@ -922,7 +922,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="316"/>
         <source>News</source>
-        <translation>Novetats</translation>
+        <translation>Notícies</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="320"/>
@@ -957,7 +957,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="344"/>
         <source>Searching for %1 latest news...</source>
-        <translation>Cercant les últimes novetats de %1...</translation>
+        <translation>Cercant les últimes notícies de %1...</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="348"/>
@@ -1062,7 +1062,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="432"/>
         <source>Running command in terminal...</source>
-        <translation>Executant l&apos;ordre al terminal...</translation>
+        <translation>S&apos;executa l&apos;ordre al terminal...</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="436"/>
@@ -1167,7 +1167,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="516"/>
         <source>Please, enter the administrator&apos;s password</source>
-        <translation>Si us plau, escriviu la clau d&apos;accés de l&apos;administrador</translation>
+        <translation>Si us plau, escriviu la clau d&apos;accés de l&apos;administrador.</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="522"/>
@@ -1182,12 +1182,12 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="530"/>
         <source>Icon path information is incomplete.</source>
-        <translation>El camí de la informació de la icona no és complet.</translation>
+        <translation>La informació del camí de la icona no és completa.</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="534"/>
         <source>You can not run Octopi with administrator&apos;s credentials.</source>
-        <translation>No es pot executar l&apos;Octopi amb les credencials d&apos;administrador.</translation>
+        <translation>No podeu executar l&apos;Octopi amb les credencials d&apos;administrador.</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="538"/>
@@ -1197,12 +1197,12 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="542"/>
         <source>Do you really want to quit?</source>
-        <translation>Realment voleu sortir?</translation>
+        <translation>Realment en voleu sortir?</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="546"/>
         <source>Executing command</source>
-        <translation>Executant l&apos;ordre</translation>
+        <translation>S&apos;executa l&apos;ordre</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="550"/>
@@ -1222,14 +1222,14 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="562"/>
         <source>Select the packages you want to install</source>
-        <translation>Seleccioneu els paquets que voleu instal·lar</translation>
+        <translation>Seleccioneu els paquets que voleu instal·lar.</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="566"/>
         <source>This file does not appear to be a simple text.
 Are you sure you want to open it?</source>
         <translation>Aquest fitxer no sembla que sigui un simple text.
-Esteu segur que voleu obrir-lo?</translation>
+Segur que voleu obrir-lo?</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="571"/>
@@ -1264,17 +1264,17 @@ Esteu segur que voleu obrir-lo?</translation>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="595"/>
         <source>Press Ctrl+A to select/deselect all</source>
-        <translation>Premeu Ctrl+A per seleccionar-ho tot / anul·lar la selecció de tot</translation>
+        <translation>Premeu Ctrl + A per seleccionar-ho tot / anul·lar la selecció de tot</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="599"/>
         <source>Use &quot;%1&quot; tool</source>
-        <translation>Usa l&apos;eina &quot;%1&quot;</translation>
+        <translation>Usa l&apos;eina &quot;%1&quot;.</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="603"/>
         <source>Copy path to clipboard</source>
-        <translation>Copia&apos;n la ruta al porta-retalls</translation>
+        <translation>Copia&apos;n la ruta al porta-retalls.</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="607"/>
@@ -1319,7 +1319,7 @@ Esteu segur que voleu obrir-lo?</translation>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="640"/>
         <source>Stop</source>
-        <translation type="unfinished"/>
+        <translation>Atura</translation>
     </message>
 </context>
 <context>
