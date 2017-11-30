@@ -82,6 +82,7 @@ class PackageGroupModel : public QObject
 
 private:
   bool isSUAvailable();
+  bool isExecutingCommand;
 
 public:
     PackageGroupModel(QString, QListWidget *, QSpinBox *, QPushButton *, QPushButton *);

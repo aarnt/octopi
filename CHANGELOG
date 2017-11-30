@@ -19,6 +19,8 @@
   BugFix: Notifier's about dialog was never screen centered.
   BugFix: When no AUR helper exists, the group of packages panel stayed disabled.
   BugFix: Cache Cleaner now saves its window geometry.
+  BugFix: Infinite wait cursor in Cache Cleaner when user press Enter for more than two
+	seconds in the spin boxes.
   BugFix: Some pkg download/installed sizes were not showing properly at Info tab.
   BugFix: If we find an outdated AUR pkg in the official pkg list, we remove it.
   BugFix: Install local packages did not work with space separated paths 

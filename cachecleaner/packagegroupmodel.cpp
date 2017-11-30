@@ -56,6 +56,8 @@ PackageGroupModel::PackageGroupModel(QString optionsString,
   connect( m_refreshButton, SIGNAL( clicked() ), SLOT( refreshCacheView() ) );
   connect( m_cleanButton, SIGNAL( clicked() ), SLOT( cleanCache() ) );
 
+  isExecutingCommand = false;
+
   //refresh cache informations at startup
   refreshCacheView();
 }
@@ -102,6 +104,8 @@ QString PackageGroupModel::getOptions()
  */
 void PackageGroupModel::refreshCacheView()
 {
+  if (isExecutingCommand) return;
+
   //update UI for background refresh
   QApplication::setOverrideCursor(Qt::WaitCursor);
   m_acc->reset();
@@ -116,6 +120,7 @@ void PackageGroupModel::refreshCacheView()
                    this, SLOT( finishedDryrun ( int, QProcess::ExitStatus )) );
 
   m_cmd->executeCommandAsNormalUser("paccache -v -d " + getOptions());
+  isExecutingCommand = true;
 }
 
 /*
@@ -144,6 +149,8 @@ bool PackageGroupModel::isSUAvailable()
  */
 void PackageGroupModel::cleanCache()
 {
+  if (isExecutingCommand) return;
+
   if (!isSUAvailable())
     return;
 
@@ -159,6 +166,7 @@ void PackageGroupModel::cleanCache()
 
   QByteArray tmp = "paccache -r " + getOptions().toLatin1();
   m_cmd->executeCommand(QLatin1String(tmp), ectn_LANG_USER_DEFINED);
+  isExecutingCommand = true;
 }
 
 /*
@@ -171,6 +179,8 @@ void PackageGroupModel::finishedDryrun(int exitCode, QProcess::ExitStatus)
                       this, SLOT( finishedDryrun ( int, QProcess::ExitStatus )) );
 
   QApplication::restoreOverrideCursor();
+
+  isExecutingCommand = false;
 
   if(exitCode > 1)
   {
@@ -197,6 +207,8 @@ void PackageGroupModel::finishedClean(int exitCode, QProcess::ExitStatus)
                       this, SLOT( finishedClean(int, QProcess::ExitStatus ) ) );
 
   QApplication::restoreOverrideCursor();
+
+  isExecutingCommand = false;
 
   if(exitCode != 0)
   {
