@@ -992,7 +992,7 @@ void MainWindow::refreshColumnSortSetup()
 /*
  * Repopulates the list of available packages (installed [+ non-installed])
  */
-void MainWindow::refreshPackageList()
+/*void MainWindow::refreshPackageList()
 {
   CPUIntensiveComputing cic;
   const std::unique_ptr<const QSet<QString> > unrequiredPackageList(Package::getUnrequiredPackageList());
@@ -1030,7 +1030,7 @@ void MainWindow::refreshPackageList()
   m_packageRepo.setData(list, *unrequiredPackageList);
   delete list;
   list = NULL;
-}
+}*/
 
 /*
  * Populates the list of found AUR packages (installed [+ non-installed])

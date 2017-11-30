@@ -91,7 +91,7 @@ public:
 
   static QByteArray getKCPPackageInformation(const QString &pkgName);
   static QByteArray getPackageInformation(const QString &pkgName, bool foreignPackage);
-  static QByteArray getAURPackageVersionInformation();
+  //static QByteArray getAURPackageVersionInformation();
   static QByteArray getPackageContentsUsingPacman(const QString &pkgName);
   static bool isPkgfileInstalled();
   static QByteArray getPackageContentsUsingPkgfile(const QString &pkgName);

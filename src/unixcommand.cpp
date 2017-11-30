@@ -339,6 +339,27 @@ QByteArray UnixCommand::getOutdatedAURPackageList()
 }
 
 /*
+ * Given an AUR package name, returns a string containing all of its information fields
+ * (ex: name, description, version, dependsOn...)
+ */
+/*QByteArray UnixCommand::getAURPackageVersionInformation()
+{
+  QByteArray result;
+
+  if (Package::getForeignRepositoryToolName() == "kcp")
+  {
+    result = performAURCommand("-lO");
+  }
+  else if (Package::getForeignRepositoryToolName() != "kcp")
+  {
+    result = performAURCommand("-Qua");
+  }
+
+  //return ":: aur  micro-git  v1.3.3.d6ccaf0-1  ->  v1.3.4\n";
+  return result;
+}*/
+
+/*
  * Returns a string containing all packages that are not contained in any repository
  * (probably the ones installed by a tool such as yaourt)
  */
@@ -401,27 +422,6 @@ QByteArray UnixCommand::getPackageInformation(const QString &pkgName, bool forei
     args << pkgName;
 
   QByteArray result = performQuery(args);
-  return result;
-}
-
-/*
- * Given an AUR package name, returns a string containing all of its information fields
- * (ex: name, description, version, dependsOn...)
- */
-QByteArray UnixCommand::getAURPackageVersionInformation()
-{
-  QByteArray result;
-
-  if (Package::getForeignRepositoryToolName() == "kcp")
-  {
-    result = performAURCommand("-lO");
-  }
-  else if (Package::getForeignRepositoryToolName() != "kcp")
-  {
-    result = performAURCommand("-Qua");
-  }
-
-  //return ":: aur  micro-git  v1.3.3.d6ccaf0-1  ->  v1.3.4\n";
   return result;
 }
 
