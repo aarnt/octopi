@@ -112,7 +112,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="304"/>
         <source>Ctrl+P</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+P</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="313"/>
@@ -280,7 +280,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="588"/>
         <source>Use Instant Search</source>
-        <translation type="unfinished"/>
+        <translation>Brug øjeblikkelig søgning</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="54"/>
@@ -405,7 +405,7 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="115"/>
         <source>Ctrl+P or &apos;File/System upgrade&apos; to make a full system upgrade (pacman -Su)</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+P eller &apos;Fil/Systemopgradering&apos; for at foretage en fuld systemopgradering (pacman -Su)</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="117"/>
@@ -480,12 +480,12 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="150"/>
         <source>F10 to maximize/demaximize package list view</source>
-        <translation>F10 for at maksimere/minimere pakkelistevisning</translation>
+        <translation>F10 for at maksimere/afmaksimere pakkelistevisning</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="152"/>
         <source>F11 to maximize/demaximize Tab&apos;s view</source>
-        <translation type="unfinished"/>
+        <translation>F11 for at maksimere/afmaksimere fanebladets visning</translation>
     </message>
 </context>
 <context>
@@ -503,12 +503,12 @@
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="50"/>
         <source>Show package numbers in output tab</source>
-        <translation type="unfinished"/>
+        <translation>Vis pakkenumre i output-faneblad</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="63"/>
         <source>Show stop transaction button at statusbar</source>
-        <translation type="unfinished"/>
+        <translation>Vis stop transaktion-knap i statuslinje</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="100"/>
@@ -837,7 +837,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="248"/>
         <source>Download Size</source>
-        <translation>Overførselsstørrelse</translation>
+        <translation>Downloadstørrelse</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="252"/>
@@ -1082,7 +1082,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="448"/>
         <source>Total download size: %1 KB</source>
-        <translation>Total download størrelse: %1 KB</translation>
+        <translation>Total downloadstørrelse: %1 KB</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="452"/>

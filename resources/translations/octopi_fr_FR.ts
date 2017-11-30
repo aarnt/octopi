@@ -112,7 +112,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="304"/>
         <source>Ctrl+P</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+P</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="313"/>
@@ -485,7 +485,7 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="152"/>
         <source>F11 to maximize/demaximize Tab&apos;s view</source>
-        <translation type="unfinished"/>
+        <translation>F11 pour maximiser/minimiser les onglets</translation>
     </message>
 </context>
 <context>
@@ -498,7 +498,7 @@
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="38"/>
         <source>General</source>
-        <translation type="unfinished"/>
+        <translation>Général</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="50"/>
@@ -518,12 +518,12 @@
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="220"/>
         <source>Do not use AUR</source>
-        <translation type="unfinished"/>
+        <translation>Ne pas utiliser l&apos;AUR</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="233"/>
         <source>Search for outdated AUR packages</source>
-        <translation type="unfinished"/>
+        <translation>Rechercher les paquets obsolètes de l&apos;AUR</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="242"/>
@@ -1319,7 +1319,7 @@ Are you sure you want to open it?</source>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="640"/>
         <source>Stop</source>
-        <translation type="unfinished"/>
+        <translation>Stop</translation>
     </message>
 </context>
 <context>
