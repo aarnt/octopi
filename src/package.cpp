@@ -359,7 +359,9 @@ QStringList *Package::getOutdatedAURStringList()
       getForeignRepositoryToolName() != "kcp")
     return res;
 
-  QString outPkgList = UnixCommand::getOutdatedAURPackageList();
+  QString outPkgList = removeColorCodesFromStr(UnixCommand::getOutdatedAURPackageList());
+  outPkgList = outPkgList.trimmed();
+
   qDebug() << "getOutdatedAURStringList(): return of UnixCommand::getOutdatedAURPackageList(): " << outPkgList;
 
   QStringList packageTuples = outPkgList.split(QRegularExpression("\\n"), QString::SkipEmptyParts);
@@ -377,7 +379,6 @@ QStringList *Package::getOutdatedAURStringList()
       {
         QString pkgName;
         pkgName = parts[0];
-        pkgName = removeColorCodesFromStr(pkgName);
 
         if (getForeignRepositoryToolName() == "yaourt")
         {
@@ -404,7 +405,6 @@ QStringList *Package::getOutdatedAURStringList()
             continue;
 
           pkgName = parts[2];
-          pkgName = removeColorCodesFromStr(pkgName);
 
           //Let's ignore the "IgnorePkg" list of packages...
           if (!ignorePkgList.contains(pkgName))
@@ -1540,7 +1540,9 @@ QHash<QString, QString> Package::getAUROutdatedPackagesNameVersion()
   }
 
   //QString res = UnixCommand::getAURPackageVersionInformation();
-  QString res = UnixCommand::getOutdatedAURPackageList();
+  QString res = removeColorCodesFromStr(UnixCommand::getOutdatedAURPackageList());
+  res = res.trimmed();
+
   qDebug() << "getAUROutdatedPackagesNameVersion(): return of UnixCommand::getOutdatedAURPackageList(): " << res;
 
   QStringList listOfPkgs = res.split("\n", QString::SkipEmptyParts);
@@ -1554,8 +1556,6 @@ QHash<QString, QString> Package::getAUROutdatedPackagesNameVersion()
   {
     foreach (QString line, listOfPkgs)
     {
-      line = removeColorCodesFromStr(line);
-
       if (line.contains(StrConstants::getForeignRepositoryTargetPrefix(), Qt::CaseInsensitive))
       {
         line = line.remove(StrConstants::getForeignRepositoryTargetPrefix());
@@ -1588,8 +1588,6 @@ QHash<QString, QString> Package::getAUROutdatedPackagesNameVersion()
   {
     foreach (QString line, listOfPkgs)
     {
-      line = removeColorCodesFromStr(line);
-
       QStringList sl = line.split(" ", QString::SkipEmptyParts);
 
       if (sl[1] != StrConstants::getForeignPkgRepositoryName())
