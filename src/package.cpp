@@ -34,7 +34,7 @@
 #include <QList>
 #include <QFile>
 #include <QRegularExpression>
-#include <QDebug>
+//#include <QDebug>
 
 /*
  * This class abstracts all the relevant package information and services
@@ -362,11 +362,11 @@ QStringList *Package::getOutdatedAURStringList()
   QString outPkgList = removeColorCodesFromStr(UnixCommand::getOutdatedAURPackageList());
   outPkgList = outPkgList.trimmed();
 
-  qDebug() << "getOutdatedAURStringList(): return of UnixCommand::getOutdatedAURPackageList(): " << outPkgList;
+  //qDebug() << "getOutdatedAURStringList(): return of UnixCommand::getOutdatedAURPackageList(): " << outPkgList;
 
   QStringList packageTuples = outPkgList.split(QRegularExpression("\\n"), QString::SkipEmptyParts);
-  foreach (QString outpkg, packageTuples)
-    qDebug() << "getOutdatedAURStringList(): pkg in packageTuples: " << outpkg;
+  //foreach (QString outpkg, packageTuples)
+  //  qDebug() << "getOutdatedAURStringList(): pkg in packageTuples: " << outpkg;
 
   QStringList ignorePkgList = UnixCommand::getIgnorePkgsFromPacmanConf();
 
@@ -410,7 +410,7 @@ QStringList *Package::getOutdatedAURStringList()
           if (!ignorePkgList.contains(pkgName))
           {
             res->append(pkgName); //We only need the package name!
-            qDebug() << "getOutdatedAURStringList(): outdated AUR package name: " << pkgName;
+            //qDebug() << "getOutdatedAURStringList(): outdated AUR package name: " << pkgName;
           }
         }
       }
@@ -1539,15 +1539,14 @@ QHash<QString, QString> Package::getAUROutdatedPackagesNameVersion()
     return hash;
   }
 
-  //QString res = UnixCommand::getAURPackageVersionInformation();
   QString res = removeColorCodesFromStr(UnixCommand::getOutdatedAURPackageList());
   res = res.trimmed();
 
-  qDebug() << "getAUROutdatedPackagesNameVersion(): return of UnixCommand::getOutdatedAURPackageList(): " << res;
+  //qDebug() << "getAUROutdatedPackagesNameVersion(): return of UnixCommand::getOutdatedAURPackageList(): " << res;
 
   QStringList listOfPkgs = res.split("\n", QString::SkipEmptyParts);
-  foreach (QString outpkg, listOfPkgs)
-    qDebug() << "getAUROutdatedPackagesNameVersion(): pkg in listOfPkgs: " << outpkg;
+  //foreach (QString outpkg, listOfPkgs)
+  //  qDebug() << "getAUROutdatedPackagesNameVersion(): pkg in listOfPkgs: " << outpkg;
 
   QStringList ignorePkgList = UnixCommand::getIgnorePkgsFromPacmanConf();
 
@@ -1596,7 +1595,7 @@ QHash<QString, QString> Package::getAUROutdatedPackagesNameVersion()
       if (sl.count() >= 6)
       {
         hash.insert(sl.at(2), sl.at(5));
-        qDebug() << "getAUROutdatedPackagesNameVersion(): adding package " << sl.at(2) << " with new version " << sl.at(5);
+        //qDebug() << "getAUROutdatedPackagesNameVersion(): adding package " << sl.at(2) << " with new version " << sl.at(5);
       }
     }
   }
