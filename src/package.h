@@ -181,6 +181,7 @@ class Package{
     static QString getBaseName( const QString& pkgName );
     static QString parseSearchString( QString searchStr, bool exactMatch = false );
 
+    static QString removeColorCodesFromStr(const QString &str);
     static bool hasPacmanDatabase();
 
     static QString getForeignRepositoryToolNameParam();

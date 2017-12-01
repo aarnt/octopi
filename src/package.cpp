@@ -324,6 +324,29 @@ QStringList *Package::getOutdatedStringList()
 }
 
 /*
+ * Removes color codes from given str parameter
+ */
+QString Package::removeColorCodesFromStr(const QString &str)
+{
+  QString ret = str;
+
+  ret = ret.remove("\033");
+  ret = ret.remove("[1;31m");
+  ret = ret.remove("[1;32m");
+  ret = ret.remove("[1;33m");
+  ret = ret.remove("[1;34m");
+  ret = ret.remove("[1;35m");
+  ret = ret.remove("[1;36m");
+  ret = ret.remove("[1;39m");
+  ret = ret.remove("[m");
+  ret = ret.remove("[0m");
+  ret = ret.remove("[1m");
+  ret = ret.remove("\u001B");
+
+  return ret;
+}
+
+/*
  * Retrieves the list of outdated Yaourt (AUR) packages
  * (those which have newer versions available to download)
  */
@@ -354,12 +377,7 @@ QStringList *Package::getOutdatedAURStringList()
       {
         QString pkgName;
         pkgName = parts[0];
-        pkgName = pkgName.remove("\033");
-        pkgName = pkgName.remove("[1;35m");
-        pkgName = pkgName.remove("[1;36m");
-        pkgName = pkgName.remove("[1;32m");
-        pkgName = pkgName.remove("[m");
-        pkgName = pkgName.remove("[1m");       
+        pkgName = removeColorCodesFromStr(pkgName);
 
         if (getForeignRepositoryToolName() == "yaourt")
         {
@@ -386,15 +404,7 @@ QStringList *Package::getOutdatedAURStringList()
             continue;
 
           pkgName = parts[2];
-          pkgName = pkgName.remove("\033");
-          pkgName = pkgName.remove("[1;31m");
-          pkgName = pkgName.remove("[1;32m");
-          pkgName = pkgName.remove("[1;34m");
-          pkgName = pkgName.remove("[1;35m");
-          pkgName = pkgName.remove("[1;39m");
-          pkgName = pkgName.remove("[m");
-          pkgName = pkgName.remove("[0m");
-          pkgName = pkgName.remove("[1m");   
+          pkgName = removeColorCodesFromStr(pkgName);
 
           //Let's ignore the "IgnorePkg" list of packages...
           if (!ignorePkgList.contains(pkgName))
@@ -1544,12 +1554,7 @@ QHash<QString, QString> Package::getAUROutdatedPackagesNameVersion()
   {
     foreach (QString line, listOfPkgs)
     {
-      line = line.remove("\033");
-      line = line.remove("[1;35m");
-      line = line.remove("[1;36m");
-      line = line.remove("[1;32m");
-      line = line.remove("[m");
-      line = line.remove("[1m");
+      line = removeColorCodesFromStr(line);
 
       if (line.contains(StrConstants::getForeignRepositoryTargetPrefix(), Qt::CaseInsensitive))
       {
@@ -1583,15 +1588,7 @@ QHash<QString, QString> Package::getAUROutdatedPackagesNameVersion()
   {
     foreach (QString line, listOfPkgs)
     {
-      line = line.remove("\033");
-      line = line.remove("[1;31m");
-      line = line.remove("[1;32m");
-      line = line.remove("[1;34m");
-      line = line.remove("[1;35m");
-      line = line.remove("[1;39m");
-      line = line.remove("[m");
-      line = line.remove("[0m");
-      line = line.remove("[1m");
+      line = removeColorCodesFromStr(line);
 
       QStringList sl = line.split(" ", QString::SkipEmptyParts);
 
