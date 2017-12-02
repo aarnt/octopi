@@ -50,6 +50,7 @@ class QTreeWidgetItem;
 class QTime;
 class QDropEvent;
 class QDragEnterEvent;
+class QTermWidget;
 
 #include "src/model/packagemodel.h"
 #include "src/packagerepository.h"
@@ -61,6 +62,7 @@ const int ctn_TABINDEX_TRANSACTION(2);
 const int ctn_TABINDEX_OUTPUT(3);
 const int ctn_TABINDEX_NEWS(4);
 const int ctn_TABINDEX_HELPUSAGE(5);
+const int ctn_TABINDEX_TERMINAL(6);
 
 namespace Ui {
 class MainWindow;
@@ -91,6 +93,8 @@ private:
   PacmanExec *m_pacmanExec;
   UnixCommand *m_unixCommand;
   bool m_initializationCompleted;
+
+  QTermWidget *m_console;
 
   SearchLineEdit *m_leFilterPackage;
   QList<QModelIndex> *m_foundFilesInPkgFileList;
@@ -246,6 +250,10 @@ private:
   void removePackageTreeViewConnections();
   void initTabWidgetPropertiesIndex();
   void initTabInfo();
+
+#ifdef TERMWIDGET
+  void initTabTerminal();
+#endif
 
   QString getSelectedGroup();
   bool isAllGroupsSelected();

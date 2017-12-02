@@ -313,6 +313,10 @@ void PacmanExec::parsePacmanProcessOutput(QString output)
           {
             target = msg.left(pos);
             target = target.trimmed() + " ";
+
+            if (m_commandExecuting != ectn_SYNC_DATABASE &&
+              (!target.contains("-i686") && !target.contains("-x86_64") && !target.contains("-any"))) return; //WATCHOUT!
+
             if (m_debugMode) std::cout << "target: " << target.toLatin1().data() << std::endl;
 
             if(!target.isEmpty())
@@ -345,6 +349,9 @@ void PacmanExec::parsePacmanProcessOutput(QString output)
             target = msg.left(pos);
             target = target.trimmed() + " ";
             if (m_debugMode) std::cout << "target: " << target.toLatin1().data() << std::endl;
+
+            if (m_commandExecuting != ectn_SYNC_DATABASE &&
+              (!target.contains("-i686") && !target.contains("-x86_64") && !target.contains("-any"))) return; //WATCHOUT!
 
             if(!target.isEmpty() && !m_textPrinted.contains(target))
             {

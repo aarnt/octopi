@@ -34,6 +34,10 @@
 #include <iostream>
 #include <cassert>
 
+#ifdef TERMWIDGET
+  #include "qtermwidget5/qtermwidget.h"
+#endif
+
 #include <QLabel>
 #include <QStandardItemModel>
 #include <QTextBrowser>
@@ -590,7 +594,7 @@ void MainWindow::initTabInfo(){
   QString tabName(StrConstants::getTabInfoName());
   ui->twProperties->removeTab(ctn_TABINDEX_INFORMATION);
   ui->twProperties->insertTab(ctn_TABINDEX_INFORMATION, tabInfo, QApplication::translate (
-      "MainWindow", tabName.toUtf8(), 0/*, QApplication::UnicodeUTF8*/ ) );
+      "MainWindow", tabName.toUtf8(), 0));
   ui->twProperties->setUsesScrollButtons(false);
 
   SearchBar *searchBar = new SearchBar(this);
@@ -604,6 +608,41 @@ void MainWindow::initTabInfo(){
   text->show();
   text->setFocus();
 }
+
+/*
+ * This is the QTermWidget used to exec AUR tool commands.
+ */
+#ifdef TERMWIDGET
+void MainWindow::initTabTerminal()
+{
+  QWidget *tabTerminal = new QWidget(this);
+  QGridLayout *gridLayoutX = new QGridLayout ( tabTerminal );
+  gridLayoutX->setSpacing ( 0 );
+  gridLayoutX->setMargin ( 0 );
+
+  m_console = new QTermWidget();
+  QFont font = QApplication::font();
+  font.setFamily("Monospace");
+  font.setPointSize(12);
+  m_console->setTerminalFont(font);
+  //m_console->setScrollBarPosition(QTermWidget::ScrollBarRight);
+  m_console->changeDir("/");
+  m_console->setColorScheme("WhiteOnBlack");
+  m_console->setEnabled(false);
+  QString enter("\r");
+
+  m_console->sendText("export TERM=xterm");
+  m_console->sendText(enter);
+  m_console->sendText("clear");
+  m_console->sendText(enter);
+
+  gridLayoutX->addWidget(m_console, 0, 0, 1, 1);
+  ui->twProperties->removeTab(ctn_TABINDEX_TERMINAL);
+  QString aux(Package::getForeignRepositoryToolName());
+  ui->twProperties->insertTab(ctn_TABINDEX_TERMINAL, tabTerminal, QApplication::translate (
+                                                  "MainWindow", aux.toUtf8(), 0) );
+}
+#endif
 
 /*
  * This is the files treeview, which shows the directory structure of ONLY installed packages's files.
