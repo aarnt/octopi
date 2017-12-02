@@ -1487,7 +1487,7 @@ void MainWindow::doInstallLocalPackages()
     question.setText(StrConstants::getRetrievePackages(m_packagesToInstallList.count()));
 
   int result = question.exec();
-
+  qApp->processEvents();
   if(result == QDialogButtonBox::Yes || result == QDialogButtonBox::AcceptRole)
   {
     if (!doRemovePacmanLockFile()) return;
