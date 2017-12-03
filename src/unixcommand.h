@@ -169,6 +169,8 @@ signals:
   void finished ( int, QProcess::ExitStatus );
   void readyReadStandardError();
 
+  void commandToExecInQTermWidget(QString);
+
   //ProcessWrapper signals
   void startedTerminal();
   void finishedTerminal(int, QProcess::ExitStatus);

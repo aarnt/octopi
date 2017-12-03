@@ -316,6 +316,11 @@ QString StrConstants::getTabNewsName(){
   return QObject::tr("News");
 }
 
+QString StrConstants::getTabTerminal()
+{
+  return QObject::tr("Terminal");
+}
+
 QString StrConstants::getContentsOf(){
   return QObject::tr("Contents of \"%1\"");
 }

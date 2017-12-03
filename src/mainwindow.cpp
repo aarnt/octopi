@@ -32,6 +32,10 @@
 #include <iostream>
 #include "optionsdialog.h"
 
+#ifdef QTERMWIDGET
+  #include "qtermwidget5/qtermwidget.h"
+#endif
+
 #include <QDropEvent>
 #include <QMimeData>
 #include <QStandardItemModel>
@@ -75,10 +79,11 @@ MainWindow::MainWindow(QWidget *parent) :
   m_selectedRepository = "";
   m_numberOfInstalledPackages = 0;
   m_debugInfo = false;
+  m_console = nullptr;
 
   m_time = new QTime();
-  m_unrequiredPackageList = NULL;
-  m_foreignPackageList = NULL;
+  m_unrequiredPackageList = nullptr;
+  m_foreignPackageList = nullptr;
   m_groupWidgetNeedsFocus = false;
   m_outdatedAURTimer = new QTimer();
   m_outdatedAURTimer->setInterval(50);
@@ -148,6 +153,10 @@ void MainWindow::show()
     initAppIcon();
     initMenuBar();
     initToolBar();
+
+#ifdef QTERMWIDGET
+    onTerminalChanged();
+#endif
 
     if (m_hasAURTool) m_actionSwitchToAURTool->setEnabled(false);
 
@@ -256,6 +265,11 @@ void MainWindow::onOptions()
 
   OptionsDialog *od = new OptionsDialog(this);
   connect(od, SIGNAL(AURToolChanged()), this, SLOT(onAURToolChanged()));
+
+#ifdef QTERMWIDGET
+  connect(od, SIGNAL(terminalChanged()), this, SLOT(onTerminalChanged()));
+#endif
+
   od->exec();
   Options::result res = od->result();
 
@@ -1220,6 +1234,13 @@ void MainWindow::changedTabIndex()
     refreshTabInfo();
   else if (ui->twProperties->currentIndex() == ctn_TABINDEX_FILES)
     refreshTabFiles();
+
+#ifdef QTERMWIDGET
+  else if (ui->twProperties->currentIndex() == ctn_TABINDEX_TERMINAL)
+  {
+    m_console->setFocus();
+  }
+#endif
 
   if(m_initializationCompleted)
     saveSettings(ectn_CurrentTabIndex);

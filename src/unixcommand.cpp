@@ -954,6 +954,9 @@ UnixCommand::UnixCommand(QObject *parent): QObject()
                    SIGNAL( startedTerminal()));
   QObject::connect(m_terminal, SIGNAL( finishedTerminal(int,QProcess::ExitStatus)), this,
                    SIGNAL( finishedTerminal(int,QProcess::ExitStatus)));
+
+  QObject::connect(m_terminal, SIGNAL(commandToExecInQTermWidget(QString)), this,
+                   SIGNAL(commandToExecInQTermWidget(QString)));
 }
 
 /*

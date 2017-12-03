@@ -34,7 +34,7 @@
 #include <iostream>
 #include <cassert>
 
-#ifdef TERMWIDGET
+#ifdef QTERMWIDGET
   #include "qtermwidget5/qtermwidget.h"
 #endif
 
@@ -49,6 +49,7 @@
 #include <QProgressBar>
 #include <QSystemTrayIcon>
 #include <QToolButton>
+#include <QDebug>
 
 /*
  * Loads various application settings configured in ~/.config/octopi/octopi.conf
@@ -609,10 +610,11 @@ void MainWindow::initTabInfo(){
   text->setFocus();
 }
 
+#ifdef QTERMWIDGET
+
 /*
- * This is the QTermWidget used to exec AUR tool commands.
+ * This is the QTermWidget used to exec AUR/pacman commands.
  */
-#ifdef TERMWIDGET
 void MainWindow::initTabTerminal()
 {
   QWidget *tabTerminal = new QWidget(this);
@@ -620,15 +622,16 @@ void MainWindow::initTabTerminal()
   gridLayoutX->setSpacing ( 0 );
   gridLayoutX->setMargin ( 0 );
 
-  m_console = new QTermWidget();
+  m_console = new QTermWidget(this);
+  m_console->setHistorySize(1);
   QFont font = QApplication::font();
   font.setFamily("Monospace");
   font.setPointSize(12);
   m_console->setTerminalFont(font);
-  //m_console->setScrollBarPosition(QTermWidget::ScrollBarRight);
+  m_console->setScrollBarPosition(QTermWidget::ScrollBarRight);
   m_console->changeDir("/");
   m_console->setColorScheme("WhiteOnBlack");
-  m_console->setEnabled(false);
+  connect(m_console, SIGNAL(finished()), this, SLOT(initTabTerminal()));
   QString enter("\r");
 
   m_console->sendText("export TERM=xterm");
@@ -638,10 +641,120 @@ void MainWindow::initTabTerminal()
 
   gridLayoutX->addWidget(m_console, 0, 0, 1, 1);
   ui->twProperties->removeTab(ctn_TABINDEX_TERMINAL);
-  QString aux(Package::getForeignRepositoryToolName());
+  QString aux(StrConstants::getTabTerminal());
   ui->twProperties->insertTab(ctn_TABINDEX_TERMINAL, tabTerminal, QApplication::translate (
                                                   "MainWindow", aux.toUtf8(), 0) );
+  ui->twProperties->setCurrentIndex(ctn_TABINDEX_TERMINAL);
+  m_console->setFocus();
 }
+
+/*
+ * Removes tab with the QTermWidget
+ */
+void MainWindow::removeTabTerminal()
+{
+  ui->twProperties->removeTab(ctn_TABINDEX_TERMINAL);
+  delete m_console;
+  m_console = nullptr;
+}
+
+/*
+ * Enables/Disables Tab Terminal if selected terminal is QTermWidget5
+ */
+void MainWindow::onTerminalChanged()
+{
+  if (SettingsManager::getTerminal() == ctn_QTERMWIDGET)
+    initTabTerminal();
+  else
+    removeTabTerminal();
+}
+
+/*
+ * Executes the given command in the QTermWidget5
+ */
+void MainWindow::onExecCommandInTabTerminal(QString command)
+{
+  ui->twProperties->setCurrentIndex(ctn_TABINDEX_TERMINAL);
+
+  disconnect(m_console, SIGNAL(receivedData(QString)), this, SLOT(parseTerminalOutput(QString)));
+  disconnect(m_console, SIGNAL(termKeyPressed(QKeyEvent*)), this, SLOT(onTerminalKeyPressed(QKeyEvent*)));
+  connect(m_console, SIGNAL(receivedData(QString)), this, SLOT(parseTerminalOutput(QString)));
+  connect(m_console, SIGNAL(termKeyPressed(QKeyEvent*)), this, SLOT(onTerminalKeyPressed(QKeyEvent*)));
+
+  QString enter("\r");
+  m_console->sendText(enter);
+  m_console->sendText("clear");
+  m_console->sendText(enter);
+  m_console->sendText(command);
+  m_console->sendText(enter);
+  m_console->setFocus();
+}
+
+/*
+ * Parses the contents of terminal output, so we can finish the transaction
+ */
+void MainWindow::parseTerminalOutput(QString str)
+{
+  //qDebug() << "Terminal: " << str;
+
+  if (str.contains(StrConstants::getPressAnyKey()))
+  {
+    QString enter("\r");
+    m_console->sendText(enter);
+    m_console->sendText("clear");
+    m_console->sendText(enter);
+    m_console->setFocus();
+
+    if (m_commandExecuting == ectn_NONE) return;
+
+    bool bRefreshGroups = true;
+    clearTransactionTreeView();
+
+    metaBuildPackageList();
+
+    if (isAURGroupSelected())
+    {
+      toggleSystemActions(false);
+      bRefreshGroups = false;
+    }
+
+    if (m_commandExecuting != ectn_MIRROR_CHECK && bRefreshGroups)
+      refreshGroupsWidget();
+
+    refreshMenuTools(); //Maybe some of octopi tools were added/removed...
+
+    enableTransactionActions();
+
+    if (m_pacmanExec == nullptr)
+      delete m_pacmanExec;
+
+    m_commandExecuting = ectn_NONE;
+
+    //disconnect(m_console, SIGNAL(receivedData(QString)), this, SLOT(parseTerminalOutput(QString)));
+    UnixCommand::removeTemporaryFiles();
+    m_console->clear();
+  }
+}
+
+void MainWindow::onTerminalKeyPressed(QKeyEvent *ke)
+{
+  if ((ke->key() == Qt::Key_Z && ke->modifiers() == Qt::ControlModifier) ||
+    (ke->key() == Qt::Key_D && ke->modifiers() == Qt::ControlModifier) ||
+    (ke->key() == Qt::Key_C && ke->modifiers() == Qt::ControlModifier))
+  {
+    if (m_commandExecuting != ectn_NONE)
+    {
+      clearTransactionTreeView();
+      enableTransactionActions();
+      delete m_pacmanExec;
+      m_pacmanExec = nullptr;
+      m_commandExecuting = ectn_NONE;
+      //disconnect(m_console, SIGNAL(receivedData(QString)), this, SLOT(parseTerminalOutput(QString)));
+      UnixCommand::removeTemporaryFiles();
+    }
+  }
+}
+
 #endif
 
 /*

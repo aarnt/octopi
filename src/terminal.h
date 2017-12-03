@@ -52,6 +52,8 @@ signals:
   void finished(int, QProcess::ExitStatus);
   void startedTerminal();
   void finishedTerminal(int, QProcess::ExitStatus);
+
+  void commandToExecInQTermWidget(QString);
 };
 
 #endif // TERMINAL_H

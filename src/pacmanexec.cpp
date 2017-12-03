@@ -57,7 +57,10 @@ PacmanExec::PacmanExec(QObject *parent) : QObject(parent)
                    this, SLOT( onReadOutput()));
 
   QObject::connect(m_unixCommand, SIGNAL( readyReadStandardError() ),
-                   this, SLOT( onReadOutputError()));
+                   this, SLOT( onReadOutputError()));  
+
+  QObject::connect(m_unixCommand, SIGNAL(commandToExecInQTermWidget(QString)),
+                   this, SIGNAL(commandToExecInQTermWidget(QString)));
 }
 
 /*
@@ -820,7 +823,13 @@ void PacmanExec::doInstall(const QString &listOfPackages)
 void PacmanExec::doInstallInTerminal(const QString &listOfPackages)
 {
   m_lastCommandList.clear();
+
+#ifdef QTERMWIDGET
+  m_lastCommandList.append("sudo pacman -S " + listOfPackages + ";");
+#else
   m_lastCommandList.append("pacman -S " + listOfPackages + ";");
+#endif
+
   m_lastCommandList.append("echo -e;");
   m_lastCommandList.append("read -n 1 -p \"" + StrConstants::getPressAnyKey() + "\"");
 
@@ -850,7 +859,13 @@ void PacmanExec::doInstallLocal(const QString &listOfPackages)
 void PacmanExec::doInstallLocalInTerminal(const QString &listOfPackages)
 {
   m_lastCommandList.clear();
+
+#ifdef QTERMWIDGET
+  m_lastCommandList.append("sudo pacman -U --force \"" + listOfPackages.trimmed() + "\";");
+#else
   m_lastCommandList.append("pacman -U --force \"" + listOfPackages.trimmed() + "\";");
+#endif
+
   m_lastCommandList.append("echo -e;");
   m_lastCommandList.append("read -n 1 -p \"" + StrConstants::getPressAnyKey() + "\"");
 
@@ -880,7 +895,13 @@ void PacmanExec::doRemove(const QString &listOfPackages)
 void PacmanExec::doRemoveInTerminal(const QString &listOfPackages)
 {
   m_lastCommandList.clear();
+
+#ifdef QTERMWIDGET
+  m_lastCommandList.append("sudo pacman -R " + listOfPackages + ";");
+#else
   m_lastCommandList.append("pacman -R " + listOfPackages + ";");
+#endif
+
   m_lastCommandList.append("echo -e;");
   m_lastCommandList.append("read -n 1 -p \"" + StrConstants::getPressAnyKey() + "\"");
 
@@ -912,8 +933,18 @@ void PacmanExec::doRemoveAndInstall(const QString &listOfPackagestoRemove, const
 void PacmanExec::doRemoveAndInstallInTerminal(const QString &listOfPackagestoRemove, const QString &listOfPackagestoInstall)
 {
   m_lastCommandList.clear();
+#ifdef QTERMWIDGET
+  m_lastCommandList.append("sudo pacman -R " + listOfPackagestoRemove + ";");
+#else
   m_lastCommandList.append("pacman -R " + listOfPackagestoRemove + ";");
+#endif
+
+#ifdef QTERMWIDGET
+  m_lastCommandList.append("sudo pacman -S " + listOfPackagestoInstall + ";");
+#else
   m_lastCommandList.append("pacman -S " + listOfPackagestoInstall + ";");
+#endif
+
   m_lastCommandList.append("echo -e;");
   m_lastCommandList.append("read -n 1 -p \"" + StrConstants::getPressAnyKey() + "\"");
 
@@ -945,9 +976,17 @@ void PacmanExec::doSystemUpgradeInTerminal(CommandExecuting additionalCommand)
   m_lastCommandList.clear();
 
   if (additionalCommand == ectn_NONE)
-    m_lastCommandList.append("pacman -Su;");
+#ifdef QTERMWIDGET
+  m_lastCommandList.append("sudo pacman -Su;");
+#else
+   m_lastCommandList.append("pacman -Su;");
+#endif
   else if (additionalCommand == ectn_SYNC_DATABASE)
-    m_lastCommandList.append("pacman -Syu;");
+#ifdef QTERMWIDGET
+  m_lastCommandList.append("sudo pacman -Syu;");
+#else
+   m_lastCommandList.append("pacman -Syu;");
+#endif
 
   m_lastCommandList.append("echo -e;");
   m_lastCommandList.append("read -n 1 -p \"" + StrConstants::getPressAnyKey() + "\"");

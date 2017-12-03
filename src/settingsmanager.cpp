@@ -685,6 +685,29 @@ bool SettingsManager::isValidTerminalSelected()
   if (userTerminal == ctn_AUTOMATIC)
     return true;
 
+#ifdef QTERMWIDGET
+  if (userTerminal == ctn_XFCE_TERMINAL ||
+      userTerminal == ctn_LXDE_TERMINAL ||
+      userTerminal == ctn_LXQT_TERMINAL ||
+      userTerminal == ctn_KDE_TERMINAL ||
+      userTerminal == ctn_TDE_TERMINAL ||
+      userTerminal == ctn_CINNAMON_TERMINAL ||
+      userTerminal == ctn_MATE_TERMINAL ||
+      userTerminal == ctn_RXVT_TERMINAL ||
+      userTerminal == ctn_QTERMWIDGET ||
+      userTerminal == ctn_XTERM)
+  {
+    if (userTerminal == ctn_QTERMWIDGET) return true;
+    else if (UnixCommand::hasTheExecutable(userTerminal))
+    {
+      return true;
+    }
+    else
+    {
+      return false;
+    }
+  }
+#else
   if (userTerminal == ctn_XFCE_TERMINAL ||
       userTerminal == ctn_LXDE_TERMINAL ||
       userTerminal == ctn_LXQT_TERMINAL ||
@@ -704,10 +727,13 @@ bool SettingsManager::isValidTerminalSelected()
       return false;
     }
   }
+#endif
+
   else
   {
     return false;
   }
+
 }
 
 bool SettingsManager::isInstantSearchSelected()

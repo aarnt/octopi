@@ -251,10 +251,6 @@ private:
   void initTabWidgetPropertiesIndex();
   void initTabInfo();
 
-#ifdef TERMWIDGET
-  void initTabTerminal();
-#endif
-
   QString getSelectedGroup();
   bool isAllGroupsSelected();
   bool isAllGroups(const QString& group);
@@ -330,6 +326,16 @@ private:
   bool isSearchByFileSelected();
 
 private slots:
+
+#ifdef QTERMWIDGET
+  void initTabTerminal();
+  void removeTabTerminal();
+  void onTerminalChanged();
+  void onExecCommandInTabTerminal(QString command);
+  void parseTerminalOutput(QString str);
+  void onTerminalKeyPressed(QKeyEvent *ke);
+#endif
+
   void initToolButtonPacman();
   void initToolButtonAUR();
   void showToolButtonAUR();

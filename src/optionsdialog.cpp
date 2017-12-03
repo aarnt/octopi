@@ -660,7 +660,10 @@ void OptionsDialog::accept(){
     selectedTerminal = twTerminal->item(twTerminal->row(twTerminal->currentItem()), 0)->text();
 
   if (SettingsManager::getTerminal() != selectedTerminal)
+  {
     SettingsManager::setTerminal(selectedTerminal);
+    emit terminalChanged();
+  }
 
   Options::result res=0;
 

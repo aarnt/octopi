@@ -104,6 +104,8 @@ signals:
   void finished(int exitCode, QProcess::ExitStatus);
   void textToPrintExt(QString m_textToPrint);
   void canStopTransaction(bool yesNo);
+
+  void commandToExecInQTermWidget(QString);
 };
 
 #endif // PACMANEXEC_H

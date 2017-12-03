@@ -424,6 +424,12 @@ void Terminal::runCommandInTerminal(const QStringList &commandList)
   }
   else //User has chosen his own terminal...
   {
+    if (m_selectedTerminal == ctn_QTERMWIDGET)
+    {
+      m_process->close();
+      QString cmd = UnixCommand::getShell() + " -c \"" + ftemp->fileName() + "\"";
+      emit commandToExecInQTermWidget(cmd);
+    }
     if (m_selectedTerminal == ctn_RXVT_TERMINAL)
     {
       QString cmd =
@@ -561,7 +567,13 @@ void Terminal::runCommandInTerminalAsNormalUser(const QStringList &commandList)
   }
   else //User has chosen his own terminal...
   {
-    if (m_selectedTerminal == ctn_RXVT_TERMINAL)
+    if (m_selectedTerminal == ctn_QTERMWIDGET)
+    {
+      m_process->close();
+      QString cmd = UnixCommand::getShell() + " -c \"" + ftemp->fileName() + "\"";
+      emit commandToExecInQTermWidget(cmd);
+    }
+    else if (m_selectedTerminal == ctn_RXVT_TERMINAL)
     {
       if (UnixCommand::isAppRunning("urxvtd"))
       {
@@ -643,6 +655,10 @@ QStringList Terminal::getListOfAvailableTerminals()
 
   if (UnixCommand::hasTheExecutable(ctn_XTERM))
     res.append(ctn_XTERM);
+
+#ifdef QTERMWIDGET
+  res.append(ctn_QTERMWIDGET);
+#endif
 
   res.removeDuplicates();
   res.sort();

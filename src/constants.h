@@ -177,6 +177,7 @@ const QString ctn_CINNAMON_TERMINAL("gnome-terminal");
 //const QString ctn_RAZORQT_DESKTOP("razor-session");
 const QString ctn_PEK_TERMINAL("sakura");
 const QString ctn_XTERM("xterm");
+const QString ctn_QTERMWIDGET("qtermwidget5");
 
 enum EditOptions { ectn_EDIT_AS_ROOT, ectn_EDIT_AS_NORMAL_USER };
 

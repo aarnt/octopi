@@ -64,6 +64,7 @@ public:
 
 signals:
   void AURToolChanged();
+  void terminalChanged();
 
 private slots:
   void defaultIconChecked(bool checked);

@@ -89,6 +89,7 @@ public:
   static QString getTabTransactionName();
   static QString getTabOutputName();
   static QString getTabNewsName();
+  static QString getTabTerminal();
   static QString getContentsOf();
   static QString getFind();
   static QString getClear();

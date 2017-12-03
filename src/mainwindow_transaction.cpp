@@ -781,6 +781,11 @@ void MainWindow::doAURUpgrade()
   QObject::connect(m_pacmanExec, SIGNAL(percentage(int)), this, SLOT(incrementPercentage(int)));
   QObject::connect(m_pacmanExec, SIGNAL(textToPrintExt(QString)), this, SLOT(outputText(QString)));
 
+#ifdef QTERMWIDGET
+    QObject::connect(m_pacmanExec, SIGNAL(commandToExecInQTermWidget(QString)), this, SLOT(onExecCommandInTabTerminal(QString)));
+#endif
+
+  m_commandExecuting = ectn_RUN_IN_TERMINAL;
   m_pacmanExec->doAURUpgrade(listOfTargets);
 }
 
@@ -807,6 +812,10 @@ bool MainWindow::prepareSystemUpgrade()
   QObject::connect(m_pacmanExec, SIGNAL(percentage(int)), this, SLOT(incrementPercentage(int)));
   QObject::connect(m_pacmanExec, SIGNAL(textToPrintExt(QString)), this, SLOT(outputText(QString)));
   QObject::connect(m_pacmanExec, SIGNAL(canStopTransaction(bool)), this, SLOT(onCanStopTransaction(bool)));
+
+#ifdef QTERMWIDGET
+    QObject::connect(m_pacmanExec, SIGNAL(commandToExecInQTermWidget(QString)), this, SLOT(onExecCommandInTabTerminal(QString)));
+#endif
 
   disableTransactionActions();
   return true;
@@ -1075,6 +1084,10 @@ void MainWindow::doRemoveAndInstall()
     QObject::connect(m_pacmanExec, SIGNAL(textToPrintExt(QString)), this, SLOT(outputText(QString)));
     QObject::connect(m_pacmanExec, SIGNAL(canStopTransaction(bool)), this, SLOT(onCanStopTransaction(bool)));
 
+#ifdef QTERMWIDGET
+    QObject::connect(m_pacmanExec, SIGNAL(commandToExecInQTermWidget(QString)), this, SLOT(onExecCommandInTabTerminal(QString)));
+#endif
+
     if (result == QDialogButtonBox::Yes)
     {
       m_commandExecuting = ectn_REMOVE_INSTALL;
@@ -1146,6 +1159,10 @@ void MainWindow::doRemove()
     QObject::connect(m_pacmanExec, SIGNAL(percentage(int)), this, SLOT(incrementPercentage(int)));
     QObject::connect(m_pacmanExec, SIGNAL(textToPrintExt(QString)), this, SLOT(outputText(QString)));
     QObject::connect(m_pacmanExec, SIGNAL(canStopTransaction(bool)), this, SLOT(onCanStopTransaction(bool)));
+
+#ifdef QTERMWIDGET
+    QObject::connect(m_pacmanExec, SIGNAL(commandToExecInQTermWidget(QString)), this, SLOT(onExecCommandInTabTerminal(QString)));
+#endif
 
     if (result == QDialogButtonBox::Yes)
     {
@@ -1245,6 +1262,11 @@ void MainWindow::doInstallAURPackage()
   QObject::connect(m_pacmanExec, SIGNAL(percentage(int)), this, SLOT(incrementPercentage(int)));
   QObject::connect(m_pacmanExec, SIGNAL(textToPrintExt(QString)), this, SLOT(outputText(QString)));
 
+#ifdef QTERMWIDGET
+    QObject::connect(m_pacmanExec, SIGNAL(commandToExecInQTermWidget(QString)), this, SLOT(onExecCommandInTabTerminal(QString)));
+#endif
+
+  m_commandExecuting = ectn_RUN_IN_TERMINAL;
   m_pacmanExec->doAURInstall(listOfTargets);
 }
 
@@ -1283,6 +1305,11 @@ void MainWindow::doRemoveAURPackage()
   QObject::connect(m_pacmanExec, SIGNAL(percentage(int)), this, SLOT(incrementPercentage(int)));
   QObject::connect(m_pacmanExec, SIGNAL(textToPrintExt(QString)), this, SLOT(outputText(QString)));
 
+#ifdef QTERMWIDGET
+    QObject::connect(m_pacmanExec, SIGNAL(commandToExecInQTermWidget(QString)), this, SLOT(onExecCommandInTabTerminal(QString)));
+#endif
+
+  m_commandExecuting = ectn_RUN_IN_TERMINAL;
   m_pacmanExec->doAURRemove(listOfTargets);
 }
 
@@ -1434,6 +1461,10 @@ void MainWindow::doInstall()
     QObject::connect(m_pacmanExec, SIGNAL(percentage(int)), this, SLOT(incrementPercentage(int)));
     QObject::connect(m_pacmanExec, SIGNAL(textToPrintExt(QString)), this, SLOT(outputText(QString)));
     QObject::connect(m_pacmanExec, SIGNAL(canStopTransaction(bool)), this, SLOT(onCanStopTransaction(bool)));
+
+#ifdef QTERMWIDGET
+    QObject::connect(m_pacmanExec, SIGNAL(commandToExecInQTermWidget(QString)), this, SLOT(onExecCommandInTabTerminal(QString)));
+#endif
 
     if (result == QDialogButtonBox::Yes)
     {
