@@ -33,7 +33,7 @@
 #include "optionsdialog.h"
 
 #ifdef QTERMWIDGET
-  #include "qtermwidget5/qtermwidget.h"
+  #include "termwidget.h"
 #endif
 
 #include <QDropEvent>

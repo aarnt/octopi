@@ -35,7 +35,7 @@
 #include <cassert>
 
 #ifdef QTERMWIDGET
-  #include "qtermwidget5/qtermwidget.h"
+  #include "termwidget.h"
 #endif
 
 #include <QLabel>
@@ -604,13 +604,12 @@ void MainWindow::initTabInfo(){
   connect(searchBar, SIGNAL(findNext()), this, SLOT(searchBarFindNextInTextBrowser()));
   connect(searchBar, SIGNAL(findPrevious()), this, SLOT(searchBarFindPreviousInTextBrowser()));
   gridLayoutX->addWidget(searchBar, 1, 0, 1, 1);
-
   ui->twProperties->setCurrentIndex(ctn_TABINDEX_INFORMATION);
   text->show();
   text->setFocus();
 }
 
-#ifdef QTERMWIDGET
+#ifdef QTERMWIDGET  //BEGIN OF QTERMWIDGET CODE
 
 /*
  * This is the QTermWidget used to exec AUR/pacman commands.
@@ -622,22 +621,9 @@ void MainWindow::initTabTerminal()
   gridLayoutX->setSpacing ( 0 );
   gridLayoutX->setMargin ( 0 );
 
-  m_console = new QTermWidget(this);
-  m_console->setHistorySize(1);
-  QFont font = QApplication::font();
-  font.setFamily("Monospace");
-  font.setPointSize(12);
-  m_console->setTerminalFont(font);
-  m_console->setScrollBarPosition(QTermWidget::ScrollBarRight);
-  m_console->changeDir("/");
-  m_console->setColorScheme("WhiteOnBlack");
+  m_console = new TermWidget(this);
   connect(m_console, SIGNAL(finished()), this, SLOT(initTabTerminal()));
-  QString enter("\r");
-
-  m_console->sendText("export TERM=xterm");
-  m_console->sendText(enter);
-  m_console->sendText("clear");
-  m_console->sendText(enter);
+  connect(m_console, SIGNAL(onKeyQuit()), this, SLOT(close()));
 
   gridLayoutX->addWidget(m_console, 0, 0, 1, 1);
   ui->twProperties->removeTab(ctn_TABINDEX_TERMINAL);
@@ -676,86 +662,72 @@ void MainWindow::onExecCommandInTabTerminal(QString command)
 {
   ui->twProperties->setCurrentIndex(ctn_TABINDEX_TERMINAL);
 
-  disconnect(m_console, SIGNAL(receivedData(QString)), this, SLOT(parseTerminalOutput(QString)));
-  disconnect(m_console, SIGNAL(termKeyPressed(QKeyEvent*)), this, SLOT(onTerminalKeyPressed(QKeyEvent*)));
-  connect(m_console, SIGNAL(receivedData(QString)), this, SLOT(parseTerminalOutput(QString)));
-  connect(m_console, SIGNAL(termKeyPressed(QKeyEvent*)), this, SLOT(onTerminalKeyPressed(QKeyEvent*)));
+  disconnect(m_console, SIGNAL(onPressAnyKeyToContinue()), this, SLOT(onPressAnyKeyToContinue()));
+  disconnect(m_console, SIGNAL(onCancelControlKey()), this, SLOT(onCancelControlKey()));
+  connect(m_console, SIGNAL(onPressAnyKeyToContinue()), this, SLOT(onPressAnyKeyToContinue()));
+  connect(m_console, SIGNAL(onCancelControlKey()), this, SLOT(onCancelControlKey()));
 
-  QString enter("\r");
-  m_console->sendText(enter);
-  m_console->sendText("clear");
-  m_console->sendText(enter);
-  m_console->sendText(command);
-  m_console->sendText(enter);
+  m_console->enter();
+  m_console->execute("clear");
+  m_console->execute(command);
   m_console->setFocus();
 }
 
 /*
  * Parses the contents of terminal output, so we can finish the transaction
  */
-void MainWindow::parseTerminalOutput(QString str)
+void MainWindow::onPressAnyKeyToContinue()
 {
-  //qDebug() << "Terminal: " << str;
+  QString enter("\r");
+  m_console->sendText(enter);
+  m_console->sendText("clear");
+  m_console->sendText(enter);
+  m_console->setFocus();
 
-  if (str.contains(StrConstants::getPressAnyKey()))
+  if (m_commandExecuting == ectn_NONE) return;
+
+  bool bRefreshGroups = true;
+  clearTransactionTreeView();
+  metaBuildPackageList();
+
+  if (isAURGroupSelected())
   {
-    QString enter("\r");
-    m_console->sendText(enter);
-    m_console->sendText("clear");
-    m_console->sendText(enter);
-    m_console->setFocus();
+    toggleSystemActions(false);
+    bRefreshGroups = false;
+  }
 
-    if (m_commandExecuting == ectn_NONE) return;
+  if (m_commandExecuting != ectn_MIRROR_CHECK && bRefreshGroups)
+    refreshGroupsWidget();
 
-    bool bRefreshGroups = true;
+  refreshMenuTools(); //Maybe some of octopi tools were added/removed...
+
+  enableTransactionActions();
+
+  if (m_pacmanExec == nullptr)
+    delete m_pacmanExec;
+
+  m_commandExecuting = ectn_NONE;
+  UnixCommand::removeTemporaryFiles();
+  m_console->clear();
+}
+
+void MainWindow::onCancelControlKey()
+{
+  if (m_commandExecuting != ectn_NONE)
+  {
     clearTransactionTreeView();
-
-    metaBuildPackageList();
-
-    if (isAURGroupSelected())
-    {
-      toggleSystemActions(false);
-      bRefreshGroups = false;
-    }
-
-    if (m_commandExecuting != ectn_MIRROR_CHECK && bRefreshGroups)
-      refreshGroupsWidget();
-
-    refreshMenuTools(); //Maybe some of octopi tools were added/removed...
-
     enableTransactionActions();
 
     if (m_pacmanExec == nullptr)
       delete m_pacmanExec;
 
+    m_pacmanExec = nullptr;
     m_commandExecuting = ectn_NONE;
-
-    //disconnect(m_console, SIGNAL(receivedData(QString)), this, SLOT(parseTerminalOutput(QString)));
     UnixCommand::removeTemporaryFiles();
-    m_console->clear();
   }
 }
 
-void MainWindow::onTerminalKeyPressed(QKeyEvent *ke)
-{
-  if ((ke->key() == Qt::Key_Z && ke->modifiers() == Qt::ControlModifier) ||
-    (ke->key() == Qt::Key_D && ke->modifiers() == Qt::ControlModifier) ||
-    (ke->key() == Qt::Key_C && ke->modifiers() == Qt::ControlModifier))
-  {
-    if (m_commandExecuting != ectn_NONE)
-    {
-      clearTransactionTreeView();
-      enableTransactionActions();
-      delete m_pacmanExec;
-      m_pacmanExec = nullptr;
-      m_commandExecuting = ectn_NONE;
-      //disconnect(m_console, SIGNAL(receivedData(QString)), this, SLOT(parseTerminalOutput(QString)));
-      UnixCommand::removeTemporaryFiles();
-    }
-  }
-}
-
-#endif
+#endif  //END OF QTERMWIDGET CODE
 
 /*
  * This is the files treeview, which shows the directory structure of ONLY installed packages's files.

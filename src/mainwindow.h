@@ -50,7 +50,7 @@ class QTreeWidgetItem;
 class QTime;
 class QDropEvent;
 class QDragEnterEvent;
-class QTermWidget;
+class TermWidget;
 
 #include "src/model/packagemodel.h"
 #include "src/packagerepository.h"
@@ -94,7 +94,7 @@ private:
   UnixCommand *m_unixCommand;
   bool m_initializationCompleted;
 
-  QTermWidget *m_console;
+  TermWidget *m_console;
 
   SearchLineEdit *m_leFilterPackage;
   QList<QModelIndex> *m_foundFilesInPkgFileList;
@@ -332,8 +332,8 @@ private slots:
   void removeTabTerminal();
   void onTerminalChanged();
   void onExecCommandInTabTerminal(QString command);
-  void parseTerminalOutput(QString str);
-  void onTerminalKeyPressed(QKeyEvent *ke);
+  void onPressAnyKeyToContinue();
+  void onCancelControlKey();
 #endif
 
   void initToolButtonPacman();

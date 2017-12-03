@@ -53,6 +53,10 @@ HEADERS += src/QtSolutions/qtsingleapplication.h \
         src/constants.h \
         src/optionsdialog.h
 
+QTERMWIDGET{
+  HEADERS += src/termwidget.h
+}
+
 ALPM_BACKEND{
   HEADERS += src/alpmbackend.h
 }
@@ -89,6 +93,10 @@ SOURCES += src/QtSolutions/qtsingleapplication.cpp \
         src/terminal.cpp \
         src/pacmanexec.cpp \
         src/optionsdialog.cpp
+
+QTERMWIDGET{
+  SOURCES += src/termwidget.cpp
+}
 
 ALPM_BACKEND{
   SOURCES += src/alpmbackend.cpp
