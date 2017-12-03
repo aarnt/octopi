@@ -8,8 +8,8 @@ QT += core xml gui network dbus
 
 # This controls whether octopi-notifier uses KStatusNotifier lib
 # You SHOULD REALLY enable KSTATUS define in plasma 5 desktops!
-DEFINES += ALPM_BACKEND #KSTATUS
-CONFIG += qt warn_on debug link_pkgconfig ALPM_BACKEND
+DEFINES += ALPM_BACKEND QTERMWIDGET #KSTATUS
+CONFIG += qt warn_on debug link_pkgconfig ALPM_BACKEND QTERMWIDGET
 
 ALPM_BACKEND {
   QMAKE_CXXFLAGS += -std=c++11
@@ -17,6 +17,10 @@ ALPM_BACKEND {
   LIBS += -lalpm_octopi_utils
 } else {
   QMAKE_CXXFLAGS += -std=c++11
+}
+
+QTERMWIDGET {
+  LIBS += -lqtermwidget5
 }
 
 contains(DEFINES, KSTATUS){
@@ -52,6 +56,10 @@ HEADERS  += \
     ../../src/searchbar.h \
     ../../src/optionsdialog.h
 
+QTERMWIDGET{
+  HEADERS += ../../src/termwidget.h
+}
+
 ALPM_BACKEND{
   HEADERS += ../../src/alpmbackend.h
 }
@@ -73,6 +81,10 @@ SOURCES += main.cpp \
     ../../src/searchlineedit.cpp \
     ../../src/searchbar.cpp \
     ../../src/optionsdialog.cpp
+
+QTERMWIDGET{
+  SOURCES += ../../src/termwidget.cpp
+}
 
 ALPM_BACKEND{
   SOURCES += ../../src/alpmbackend.cpp

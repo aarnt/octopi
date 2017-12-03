@@ -604,6 +604,7 @@ void MainWindow::initTabInfo(){
   connect(searchBar, SIGNAL(findNext()), this, SLOT(searchBarFindNextInTextBrowser()));
   connect(searchBar, SIGNAL(findPrevious()), this, SLOT(searchBarFindPreviousInTextBrowser()));
   gridLayoutX->addWidget(searchBar, 1, 0, 1, 1);
+
   ui->twProperties->setCurrentIndex(ctn_TABINDEX_INFORMATION);
   text->show();
   text->setFocus();
@@ -674,14 +675,12 @@ void MainWindow::onExecCommandInTabTerminal(QString command)
 }
 
 /*
- * Parses the contents of terminal output, so we can finish the transaction
+ * Whenever the terminal transaction has finished, we can update the UI
  */
 void MainWindow::onPressAnyKeyToContinue()
 {
-  QString enter("\r");
-  m_console->sendText(enter);
-  m_console->sendText("clear");
-  m_console->sendText(enter);
+  m_console->enter();
+  m_console->execute("clear");
   m_console->setFocus();
 
   if (m_commandExecuting == ectn_NONE) return;
@@ -711,6 +710,9 @@ void MainWindow::onPressAnyKeyToContinue()
   m_console->clear();
 }
 
+/*
+ * Whenever a user strikes Ctrl+C, Ctrl+D or Ctrl+Z in the terminal
+ */
 void MainWindow::onCancelControlKey()
 {
   if (m_commandExecuting != ectn_NONE)

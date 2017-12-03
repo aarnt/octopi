@@ -5,8 +5,8 @@
 #-------------------------------------------------
 
 QT += core gui network xml dbus widgets
-DEFINES += OCTOPI_EXTENSIONS ALPM_BACKEND #QTERMWIDGET
-CONFIG += qt warn_on debug link_pkgconfig ALPM_BACKEND #QTERMWIDGET
+DEFINES += OCTOPI_EXTENSIONS ALPM_BACKEND QTERMWIDGET
+CONFIG += qt warn_on debug link_pkgconfig ALPM_BACKEND QTERMWIDGET
 
 ALPM_BACKEND {
   QMAKE_CXXFLAGS += -std=c++11

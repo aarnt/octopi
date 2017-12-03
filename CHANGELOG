@@ -2,6 +2,8 @@
   Parser changes: added counter for processed packages.  
   Group pane now spans all window's height.
   Added Terminal tab if user compiles project with libqtermwidget5 support.
+  Added Terminal dialog in Notifier (AUR update) if user compiles project with 
+	libqtermwidget5 support.
   Added an Options dialog to Octopi and Notifier.
   Added button after progressbar to stop current running transaction.
   Added configurable "--noconfirm" and "--noedit" options to pacaur and "--noconfirm" to yaourt.

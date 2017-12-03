@@ -410,7 +410,8 @@ void MainWindow::doSystemUpgrade()
     m_actionSystemUpgrade->setEnabled(false);
 
     OutputDialog *dlg = new OutputDialog(this);
-    dlg->setFrameShape(QFrame::NoFrame);
+    dlg->setPacmanSystemUpgrade(true);
+    //dlg->setFrameShape(QFrame::NoFrame);
 
     if (m_debugInfo)
       dlg->setDebugMode(true);
@@ -454,7 +455,7 @@ void MainWindow::doSystemUpgrade()
 }
 
 /*
- * Calls the chosen terminal and run a system upgrade of the outdated AUR targets
+ * Calls the OutputDialog with TermWidget to execute the AUR upgrade commands
  */
 void MainWindow::doAURUpgrade()
 {
@@ -470,12 +471,31 @@ void MainWindow::doAURUpgrade()
     listOfTargets += auxPkg + " ";
   }
 
-  m_pacmanExec = new PacmanExec();
+#ifndef QTERMWIDGET
+  if (SettingsManager::getTerminal() == ctn_QTERMWIDGET)
+    SettingsManager::setTerminal(ctn_AUTOMATIC);
+#endif
 
-  QObject::connect(m_pacmanExec, SIGNAL( finished ( int, QProcess::ExitStatus )),
+  if (SettingsManager::getTerminal() == ctn_QTERMWIDGET)
+  {
+    OutputDialog *dlg = new OutputDialog(this);
+    dlg->setPacmanSystemUpgrade(false);
+    dlg->setListOfAURPackagesToUpgrade(listOfTargets);
+
+    QObject::connect(dlg, SIGNAL( finished(int)),
+                     this, SLOT( doSystemUpgradeFinished() ));
+    dlg->show();
+
+    //QObject::connect(m_pacmanExec, SIGNAL( finished ( int, QProcess::ExitStatus )),
+    //                 this, SLOT( refreshAppIcon()) );
+  }
+  else
+  {
+    m_pacmanExec = new PacmanExec();
+    QObject::connect(m_pacmanExec, SIGNAL( finished ( int, QProcess::ExitStatus )),
                    this, SLOT( refreshAppIcon()) );
-
-  m_pacmanExec->doAURUpgrade(listOfTargets);
+    m_pacmanExec->doAURUpgrade(listOfTargets);
+  }
 }
 
 /*
