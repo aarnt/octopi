@@ -22,7 +22,6 @@
 #include "strconstants.h"
 
 #include <QApplication>
-#include <QDebug>
 
 /*
  * This class extends some features of QTermWidget and adds some customizations
@@ -34,7 +33,6 @@ TermWidget::TermWidget(QWidget *parent):
   QFont font = QApplication::font();
   font.setFamily("Monospace");
   font.setPointSize(12);
-
   this->setHistorySize(1);
   this->setTerminalFont(font);
   this->setScrollBarPosition(QTermWidget::ScrollBarRight);
@@ -72,8 +70,6 @@ void TermWidget::enter()
  */
 void TermWidget::parseOutput(QString str)
 {
-  //qDebug() << "TermWidget : " << str;
-
   if (str.contains(StrConstants::getPressAnyKey()))
   {
     emit onPressAnyKeyToContinue();
