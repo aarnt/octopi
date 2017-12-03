@@ -16,7 +16,7 @@
   Added link support in all Info tab package lists.
   Added option to upgrade outdated foreign packages from Octopi Notifier.
   Find line edit is always focused when the program starts.
-  Prevent the user to install partial upgrades in his system (only some of the outdated packages).
+  Prevent user to install partial upgrades in his system (only some of the outdated packages).
   BugFix: repoeditor now runs as normal user and asks for root password on save.
   BugFix: If Notifier hid Octopi and was closed, Octopi's window would stay hidden.
   BugFix: Notifier's about dialog was never screen centered.
