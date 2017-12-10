@@ -11,6 +11,7 @@ optdepends=('kdesu: for KDE'
             'gksu: for XFCE, Gnome, LXDE, Cinnamon'
             'gnome-keyring: for password management'
             'gist: for SysInfo report'
+            'qtermwidget: for embedded terminal'  
             'yaourt: for AUR support')
 groups=('system')
 install=octopi.install

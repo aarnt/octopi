@@ -32,7 +32,7 @@ TermWidget::TermWidget(QWidget *parent):
 {
   QFont font = QApplication::font();
   font.setFamily("Monospace");
-  font.setPointSize(12);
+  font.setPointSize(11);
   //this->setHistorySize(1);
   this->setTerminalFont(font);
   this->setScrollBarPosition(QTermWidget::ScrollBarRight);

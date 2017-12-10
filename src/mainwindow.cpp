@@ -1226,6 +1226,20 @@ void MainWindow::onDoubleClickPackageList()
 }
 
 /*
+ * Whenever user selects a package in the pkg list
+ */
+void MainWindow::refreshInfoAndFileTabs()
+{
+  if(ui->twProperties->currentIndex() == ctn_TABINDEX_INFORMATION)
+    refreshTabInfo();
+  else if (ui->twProperties->currentIndex() == ctn_TABINDEX_FILES)
+    refreshTabFiles();
+
+  if(m_initializationCompleted)
+    saveSettings(ectn_CurrentTabIndex);
+}
+
+/*
  * When the user changes the current selected tab, we must take care of data refresh.
  */
 void MainWindow::changedTabIndex()
