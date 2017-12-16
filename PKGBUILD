@@ -34,22 +34,22 @@ build() {
    make
    
    cd notifier/pacmanhelper
-   qmake-qt5 pacmanhelper.pro
+   qmake-qt5 QMAKE_CFLAGS_RELEASE="${CFLAGS}" QMAKE_CXXFLAGS_RELEASE="${CXXFLAGS}" QMAKE_LFLAGS_RELEASE="${LDFLAGS}" pacmanhelper.pro
    make
    cd ../..
    
    cd notifier/octopi-notifier
-   qmake-qt5 octopi-notifier.pro
+   qmake-qt5 QMAKE_CFLAGS_RELEASE="${CFLAGS}" QMAKE_CXXFLAGS_RELEASE="${CXXFLAGS}" QMAKE_LFLAGS_RELEASE="${LDFLAGS}" octopi-notifier.pro
    make
    cd ../..
    
    cd repoeditor
-   qmake-qt5 octopi-repoeditor.pro
+   qmake-qt5 QMAKE_CFLAGS_RELEASE="${CFLAGS}" QMAKE_CXXFLAGS_RELEASE="${CXXFLAGS}" QMAKE_LFLAGS_RELEASE="${LDFLAGS}" octopi-repoeditor.pro
    make
    cd ..
    
    cd cachecleaner
-   qmake-qt5 octopi-cachecleaner.pro
+   qmake-qt5 QMAKE_CFLAGS_RELEASE="${CFLAGS}" QMAKE_CXXFLAGS_RELEASE="${CXXFLAGS}" QMAKE_LFLAGS_RELEASE="${LDFLAGS}" octopi-cachecleaner.pro
    make
 }
 
