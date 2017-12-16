@@ -6,20 +6,26 @@ pkgdesc="This is Octopi, a powerful Pacman frontend using Qt libs"
 url="https://octopiproject.wordpress.com/"
 arch=('i686' 'x86_64')
 license=('GPL2')
-depends=('pacman' 'pkgfile' 'knotifications' 'alpm_octopi_utils' 'xterm')
+depends=('pacman' 'pkgfile' 'knotifications' 'alpm_octopi_utils' 'xterm' 'qtermwidget')
 optdepends=('kdesu: for KDE'
             'gksu: for XFCE, Gnome, LXDE, Cinnamon'
             'gnome-keyring: for password management'
             'gist: for SysInfo report'
-            'qtermwidget: for embedded terminal'  
-            'yaourt: for AUR support')
+            'yaourt: for AUR support'
+            'pacaur: for AUR support'
+            'pacmanlogviewer: to view pacman log files')
 groups=('system')
 install=octopi.install
-source=("https://github.com/aarnt/octopi/archive/v${pkgver}.tar.gz")
-md5sums=('669b6fa406ad64c65d9f548996cb3d8c')
+source=("git+https://github.com/aarnt/octopi.git")
+md5sums=('SKIP')
+
+pkgver() {
+   cd ${pkgname}
+   printf $_pkgver".r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
+}
 
 prepare() {
-   cd ${pkgname}-${pkgver}
+   cd ${pkgname}
 
    # enable the kstatus switch, disable if you wish to build without Plasma/knotifications support
    sed -e "s|DEFINES += ALPM_BACKEND QTERMWIDGET #KSTATUS|DEFINES += ALPM_BACKEND QTERMWIDGET KSTATUS|" -i notifier/octopi-notifier/octopi-notifier.pro
@@ -28,7 +34,7 @@ prepare() {
 }
          
 build() {
-   cd ${pkgname}-${pkgver}
+   cd ${pkgname}
    
    qmake-qt5 octopi.pro
    make
@@ -54,7 +60,7 @@ build() {
 }
 
 package() {
-   cd ${pkgname}-${pkgver}
+   cd ${pkgname}
    make INSTALL_ROOT=${pkgdir} install
    
    cd notifier/pacmanhelper
