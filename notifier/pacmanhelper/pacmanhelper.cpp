@@ -28,7 +28,7 @@ void PacmanHelper::syncdb()
   env.insert("LANG", "us_EN");
   pacman.setProcessEnvironment(env);
 
-  QString command = "pacman -Sy";  //-Syy or -Sy - eternal doubt!
+  QString command = "pacman -Syy";  //-Syy or -Sy - eternal doubt!
   pacman.execute(command);
 
   emit syncdbcompleted();
