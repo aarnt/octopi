@@ -315,7 +315,7 @@ QString SettingsManager::getAURTool()
 QString SettingsManager::getAURToolName()
 {
   SettingsManager p_instance;
-  return p_instance.getSYSsettings()->value( ctn_KEY_AUR_TOOL, "").toString();
+  return p_instance.getSYSsettings()->value( ctn_KEY_AUR_TOOL, "DO_NOT_USE_AUR").toString();
 }
 
 /*
