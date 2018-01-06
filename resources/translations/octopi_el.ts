@@ -112,7 +112,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="304"/>
         <source>Ctrl+P</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+P</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="313"/>
@@ -280,7 +280,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="588"/>
         <source>Use Instant Search</source>
-        <translation type="unfinished"/>
+        <translation>Χρησιμοποίηση άμεσης αναζήτησης</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="54"/>
@@ -405,7 +405,7 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="115"/>
         <source>Ctrl+P or &apos;File/System upgrade&apos; to make a full system upgrade (pacman -Su)</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+P ή &apos;File/System upgrade&apos; για να κάνετε πλήρη αναβάθμιση του συστήματος (pacman -Su)</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="117"/>
@@ -485,7 +485,7 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="152"/>
         <source>F11 to maximize/demaximize Tab&apos;s view</source>
-        <translation type="unfinished"/>
+        <translation>F11 για να μεγιστοποιήσετε/απομεγιστοποιήσετε το παράθρο</translation>
     </message>
 </context>
 <context>
@@ -498,43 +498,43 @@
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="38"/>
         <source>General</source>
-        <translation type="unfinished"/>
+        <translation>Γενικά</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="50"/>
         <source>Show package numbers in output tab</source>
-        <translation type="unfinished"/>
+        <translation>Εμφάνισε τους αριθμούς πακέτων στην καρτέλα</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="63"/>
         <source>Show stop transaction button at statusbar</source>
-        <translation type="unfinished"/>
+        <translation>Εμφάνιση κουμπιού διακοπής των συναλλαγών στην γραμμή κατάστασης</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="100"/>
         <source>Select the AUR tool Octopi should use</source>
-        <translation type="unfinished"/>
+        <translation>Επιλέξτε το εργαλείο AUR που θα πρέπει να χρησιμοποιεί το Octopi</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="220"/>
         <source>Do not use AUR</source>
-        <translation type="unfinished"/>
+        <translation>Μην χρησιμοποιείς τα αποθετήρια AUR</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="233"/>
         <source>Search for outdated AUR packages</source>
-        <translation type="unfinished"/>
+        <translation>Αναζήτηση για ανενημέρωτα πακέτα του AUR</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="242"/>
         <location filename="Projects/octopi/src/optionsdialog.cpp" line="203"/>
         <source>Backend</source>
-        <translation type="unfinished"/>
+        <translation>Backend</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="308"/>
         <source>Select the backend Octopi should use</source>
-        <translation type="unfinished"/>
+        <translation>Επέλεξε το backend που θα χρησιμοποιεί το Octopi</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="332"/>
@@ -559,12 +559,12 @@
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="599"/>
         <source>Busy icon</source>
-        <translation type="unfinished"/>
+        <translation>Απασχολημένο εικονίδιο</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="652"/>
         <source>Use default notification icons</source>
-        <translation type="unfinished"/>
+        <translation>Χρησιμοποίηση προεπιλεγμένων εικονιδίων ενημέρωσης</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="663"/>
@@ -574,12 +574,12 @@
         <location filename="Projects/octopi/src/optionsdialog.cpp" line="365"/>
         <location filename="Projects/octopi/src/optionsdialog.cpp" line="366"/>
         <source>SU tool</source>
-        <translation type="unfinished"/>
+        <translation>Εργαλείο SU</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="685"/>
         <source>Select the SU tool Octopi should use</source>
-        <translation type="unfinished"/>
+        <translation>Επέλεξε το SU εργαλείο που θα χρησιμοποιεί το Octopi</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="709"/>
@@ -597,7 +597,7 @@
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="955"/>
         <source>Select the terminal Octopi should use</source>
-        <translation type="unfinished"/>
+        <translation>Επέλεξε το τερματικό που θα χρησιμοποιεί το Octopi</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/optionsdialog.cpp" line="127"/>
@@ -667,7 +667,7 @@
         <location filename="Projects/octopi/src/strconstants.cpp" line="104"/>
         <source>PacBSD news</source>
         <oldsource>ArchBSD news</oldsource>
-        <translation type="unfinished"/>
+        <translation>PacBSD νέα</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="108"/>
@@ -847,7 +847,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="256"/>
         <source>Install Reason</source>
-        <translation type="unfinished"/>
+        <translation>Εγκατάσταση Reason</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="260"/>
@@ -887,7 +887,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="288"/>
         <source>Partial updates are not supported!</source>
-        <translation type="unfinished"/>
+        <translation>Οι μεμονωμένες ενημερώσεις δεν υποστηρίζονται</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="292"/>
@@ -1182,7 +1182,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="530"/>
         <source>Icon path information is incomplete.</source>
-        <translation type="unfinished"/>
+        <translation>Οι πληροφορίες διαδρομής εικονιδίου είναι ελλιπείς.</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="534"/>
@@ -1319,7 +1319,7 @@ Are you sure you want to open it?</source>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="640"/>
         <source>Stop</source>
-        <translation type="unfinished"/>
+        <translation>Παύση</translation>
     </message>
 </context>
 <context>

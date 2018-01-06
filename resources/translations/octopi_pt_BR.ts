@@ -87,7 +87,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="277"/>
         <source>Sync database</source>
-        <translation>Sincronizar base de pacotes</translation>
+        <translation>Sincronizar bases de dados</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="280"/>
@@ -260,7 +260,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="553"/>
         <source>Cache Cleaner</source>
-        <translation>Limpeza do cache</translation>
+        <translation>Limpador do cache</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="556"/>
@@ -508,7 +508,7 @@
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="63"/>
         <source>Show stop transaction button at statusbar</source>
-        <translation>Exibir o botão de parar transação na barra de estados</translation>
+        <translation>Exibir o botão de parar transação na barra de estado</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="100"/>
@@ -564,7 +564,7 @@
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="652"/>
         <source>Use default notification icons</source>
-        <translation>Utilizar os ícones padrão</translation>
+        <translation>Utilizar ícones de notificação padrão</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="663"/>

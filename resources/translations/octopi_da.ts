@@ -66,7 +66,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="250"/>
         <source>Commit</source>
-        <translation>Commit</translation>
+        <translation>Gennemfør</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="253"/>
@@ -420,7 +420,7 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="121"/>
         <source>Ctrl+M or &apos;Transaction/Commit&apos; to start installation/removal of selected packages</source>
-        <translation>Ctrl+M eller &apos;Transaktion/Commit&apos; for at starte installation/fjernelse af udvalgte pakker</translation>
+        <translation>Ctrl+M eller &apos;Transaktion/Gennemfør&apos; for at starte installation/fjernelse af udvalgte pakker</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="123"/>

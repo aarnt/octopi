@@ -112,7 +112,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="304"/>
         <source>Ctrl+P</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+P</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="313"/>
@@ -245,7 +245,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="529"/>
         <source>Ctrl+Shift+V</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+Shift+V</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="541"/>
@@ -255,7 +255,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="544"/>
         <source>Ctrl+Shift+P</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+Shift+P</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="553"/>
@@ -265,7 +265,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="556"/>
         <source>Ctrl+Shift+N</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+Shift+N</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="564"/>
@@ -498,7 +498,7 @@
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="38"/>
         <source>General</source>
-        <translation type="unfinished"/>
+        <translation>Yleinen</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="50"/>
@@ -523,7 +523,7 @@
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="233"/>
         <source>Search for outdated AUR packages</source>
-        <translation type="unfinished"/>
+        <translation>Etsi vanhentuneita AUR-paketteja</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="242"/>
@@ -539,22 +539,22 @@
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="332"/>
         <source>Icon</source>
-        <translation type="unfinished"/>
+        <translation>Kuvake</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="395"/>
         <source>Red icon</source>
-        <translation type="unfinished"/>
+        <translation>Punainen kuvake</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="473"/>
         <source>Yellow icon</source>
-        <translation type="unfinished"/>
+        <translation>Keltainen kuvake</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="536"/>
         <source>Green icon</source>
-        <translation type="unfinished"/>
+        <translation>Vihreä kuvake</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="599"/>
@@ -564,7 +564,7 @@
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="652"/>
         <source>Use default notification icons</source>
-        <translation type="unfinished"/>
+        <translation>Käytä ilmoitusten oletuskuvakkeita</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="663"/>
@@ -585,19 +585,19 @@
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="709"/>
         <location filename="Projects/octopi/src/optionsdialog.cpp" line="199"/>
         <source>Synchronization</source>
-        <translation type="unfinished"/>
+        <translation>Synkronointi</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="949"/>
         <location filename="Projects/octopi/src/optionsdialog.cpp" line="75"/>
         <location filename="Projects/octopi/src/optionsdialog.cpp" line="458"/>
         <source>Terminal</source>
-        <translation type="unfinished"/>
+        <translation>Pääte</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="955"/>
         <source>Select the terminal Octopi should use</source>
-        <translation type="unfinished"/>
+        <translation>Valitse mitä päätettä Octopin pitäisi käyttää</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/optionsdialog.cpp" line="127"/>
@@ -605,7 +605,7 @@
         <location filename="Projects/octopi/src/optionsdialog.cpp" line="159"/>
         <location filename="Projects/octopi/src/optionsdialog.cpp" line="175"/>
         <source>Open Image</source>
-        <translation type="unfinished"/>
+        <translation>Avaa kuva</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/optionsdialog.cpp" line="127"/>
@@ -613,17 +613,17 @@
         <location filename="Projects/octopi/src/optionsdialog.cpp" line="159"/>
         <location filename="Projects/octopi/src/optionsdialog.cpp" line="175"/>
         <source>Image Files</source>
-        <translation type="unfinished"/>
+        <translation>Kuvatiedostot</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/optionsdialog.cpp" line="210"/>
         <source>Ok</source>
-        <translation type="unfinished"/>
+        <translation>Ok</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/optionsdialog.cpp" line="211"/>
         <source>Cancel</source>
-        <translation type="unfinished"/>
+        <translation>Peruuta</translation>
     </message>
 </context>
 <context>
@@ -667,7 +667,7 @@
         <location filename="Projects/octopi/src/strconstants.cpp" line="104"/>
         <source>PacBSD news</source>
         <oldsource>ArchBSD news</oldsource>
-        <translation type="unfinished"/>
+        <translation>PacBSD -uutiset</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="108"/>
@@ -702,7 +702,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="132"/>
         <source>Error</source>
-        <translation type="unfinished"/>
+        <translation>Virhe</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="136"/>
@@ -887,7 +887,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="288"/>
         <source>Partial updates are not supported!</source>
-        <translation type="unfinished"/>
+        <translation>Osittaiset päivitykset eivät ole tuettuja!</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="292"/>
