@@ -454,14 +454,15 @@ void PacmanExec::parsePacmanProcessOutput(QString output)
           if (m_debugMode) std::cout << "Print in black: " << msg.toLatin1().data() << std::endl;
 
           if (m_commandExecuting == ectn_SYNC_DATABASE &&
-              msg.indexOf("is up to date"))
+              msg.contains("is up to date"))
           {
             emit percentage(100);
 
             int blank = msg.indexOf(" ");
             QString repo = msg.left(blank);
 
-            if (repo.contains("error", Qt::CaseInsensitive) ||
+            if (repo.contains("warning", Qt::CaseInsensitive) ||
+                repo.contains("error", Qt::CaseInsensitive) ||
                 repo.contains("gconf", Qt::CaseInsensitive) ||
                 repo.contains("failed", Qt::CaseInsensitive) ||
                 repo.contains("fontconfig", Qt::CaseInsensitive) ||
@@ -470,6 +471,7 @@ void PacmanExec::parsePacmanProcessOutput(QString output)
             altMsg = repo + " " + StrConstants::getIsUpToDate();
           }
 
+          altMsg = Package::removeColorCodesFromStr(altMsg);
           prepareTextToPrint(altMsg); //BLACK
         }
       }
