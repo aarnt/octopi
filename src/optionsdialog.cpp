@@ -275,11 +275,11 @@ void OptionsDialog::initAURTab()
       rbDoNotUse->setChecked(true);
       cbSearchOutdatedAURPackages->setEnabled(false);
     }
-    /*else //There are no helpers selected, so let's default to "DO NOT USE AUR"
+    else //There are no helpers selected, so let's default to "DO NOT USE AUR"
     {
       rbDoNotUse->setChecked(true);
       SettingsManager::setAURTool("DO_NOT_USE_AUR");
-    }*/
+    }
 
     connect(rbDoNotUse, SIGNAL(toggled(bool)), this, SLOT(onDoNotUseAURSelected(bool)));
     connect(rbPacaur, SIGNAL(toggled(bool)), this, SLOT(onPacaurSelected(bool)));
