@@ -4,22 +4,21 @@ The project site is hosted at https://octopiproject.wordpress.com
 
 Currently, 10 Linux distros are compatible with it
 
- * [Antergos] (https://antergos.com/)
- * [ArchBang] (http://bbs.archbang.org/)
- * [Arch] (https://www.archlinux.org/)
- * [Chakra] (https://chakralinux.org/)
- * [KaOS] (https://kaosx.us/)
- * [Manjaro] (https://manjaro.org/)
- * [mooOS] (http://mooos.org/)
- * [Netrunner (rolling)] 
-(http://www.netrunner.com/netrunner-rolling-release/)
- * [PacBSD] (https://pacbsd.org/)
- * [Parabola GNU/Linux-libre] (https://www.parabola.nu/)
+ * [Antergos](https://antergos.com/)
+ * [ArchBang](http://bbs.archbang.org/)
+ * [Arch](https://www.archlinux.org/)
+ * [Chakra](https://chakralinux.org/)
+ * [KaOS](https://kaosx.us/)
+ * [Manjaro](https://manjaro.org/)
+ * [mooOS](http://mooos.org/)
+ * [Netrunner (rolling)](http://www.netrunner.com/netrunner-rolling-release/)
+ * [PacBSD](https://pacbsd.org/)
+ * [Parabola GNU/Linux-libre](https://www.parabola.nu/)
 
 ### What you must install in your system to have Octopi fully functional
 
 You'll need:
- * [Alpm_octopi_utils] (https://github.com/aarnt/alpm_octopi_utils/) library
+ * [Alpm_octopi_utils](https://github.com/aarnt/alpm_octopi_utils/) library
  * A privilege escalation tool to use it. Octopi supports gksu, kdesu and lxqt-sudo for that
  * qtermwidget >= 0.8 in order to build Octopi with embedded terminal support
  
