@@ -1665,7 +1665,7 @@ void MainWindow::launchPLV()
 void MainWindow::launchRepoEditor()
 {
   m_unixCommand = new UnixCommand(this);
-  m_unixCommand->executeCommand(QLatin1String("octopi-repoeditor"), ectn_LANG_USER_DEFINED);
+  m_unixCommand->execCommandAsNormalUser(QLatin1String("octopi-repoeditor"));
 }
 
 /*
