@@ -31,6 +31,7 @@
 #include <QByteArray>
 #include <QTextStream>
 #include <QtNetwork/QNetworkInterface>
+#include <QDebug>
 
 /*
  * Collection of methods to execute many Unix commands
@@ -822,7 +823,8 @@ void UnixCommand::executeCommand(const QString &pCommand, Language lang)
   {
     command = WMHelper::getSUCommand() + "\"" + pCommand + "\"";
   }
-
+  
+  qDebug() << "unixcommand start command: " << command;
   m_process->start(command);
 }
 
