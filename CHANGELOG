@@ -42,6 +42,7 @@
   BugFix: System upgrade shortcut changed to "ctrl+P" as "ctrl+U" is used to cut text in 
 	QLineEdit widgets.
   BugFix: When user selected another search option, line edit was not being cleared.
+  BugFix: Disable alien icon while in transaction.
 
 0.8.1
   BugFix: Updated CHAKRA RSS site (thanks to s8321414).

@@ -932,7 +932,7 @@ void MainWindow::postBuildPackageList()
             this, SLOT(invalidateTabs()));
     }
 
-    if (!m_actionSwitchToAURTool->isEnabled()) m_actionSwitchToAURTool->setEnabled(true);
+    if (m_commandExecuting == ectn_NONE && !m_actionSwitchToAURTool->isEnabled()) m_actionSwitchToAURTool->setEnabled(true);
   }
 
   if (m_groupWidgetNeedsFocus)

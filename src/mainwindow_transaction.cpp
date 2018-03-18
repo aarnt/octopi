@@ -1592,7 +1592,7 @@ void MainWindow::toggleTransactionActions(const bool value)
     ui->actionCancel->setEnabled(false);
 
     if(m_hasMirrorCheck) m_actionMenuMirrorCheck->setEnabled(true);
-    if(m_hasAURTool) m_actionSwitchToAURTool->setEnabled(true);
+    if(m_hasAURTool && m_commandExecuting == ectn_NONE) m_actionSwitchToAURTool->setEnabled(true);
 
     ui->actionSyncPackages->setEnabled(true);
     if (value == true && m_outdatedStringList->count() > 0)

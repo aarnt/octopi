@@ -249,7 +249,7 @@ void MainWindow::onPackageGroupChanged()
 {
   if (isAllGroupsSelected())
   {
-    m_actionSwitchToAURTool->setEnabled(true);
+    if (m_commandExecuting == ectn_NONE) m_actionSwitchToAURTool->setEnabled(true);
     ui->actionSearchByName->setChecked(true);
     tvPackagesSearchColumnChanged(ui->actionSearchByName);
   }
