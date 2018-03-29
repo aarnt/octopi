@@ -955,15 +955,6 @@ void MainWindow::refreshOutdatedAURStringList()
   el.exec();
 
   m_outdatedAURStringList = g_fwOutdatedAURStringList.result();
-  /*for(int c=0; c<m_outdatedAURStringList->count(); ++c)
-  {
-    //If we find an outdated AUR pkg in the official pkg list, let's remove it
-    PackageRepository::PackageData * pd = m_packageRepo.getFirstPackageByName(m_outdatedAURStringList->at(c));
-    if (pd && pd->status != ectn_FOREIGN_OUTDATED)
-    {
-      m_outdatedAURStringList->removeAt(c);
-    }
-  }*/
 }
 
 /*
@@ -988,49 +979,6 @@ void MainWindow::refreshColumnSortSetup()
     ui->tvPackages->sortByColumn( packageListOrderedCol, packageListSortOrder );
   }
 }
-
-/*
- * Repopulates the list of available packages (installed [+ non-installed])
- */
-/*void MainWindow::refreshPackageList()
-{
-  CPUIntensiveComputing cic;
-  const std::unique_ptr<const QSet<QString> > unrequiredPackageList(Package::getUnrequiredPackageList());
-  QList<PackageListData> *list = Package::getPackageList();
-
-  // Fetch foreign package list
-  std::unique_ptr<QList<PackageListData> > listForeign(Package::getForeignPackageList());
-  PackageListData pld;
-  QList<PackageListData>::const_iterator itForeign = listForeign->begin();
-
-  if (!isSearchByFileSelected())
-  {
-    while (itForeign != listForeign->end())
-    {
-      if (!m_hasAURTool || !m_outdatedAURStringList->contains(itForeign->name))
-      {
-        pld = PackageListData(
-              itForeign->name, itForeign->repository, itForeign->version,
-              itForeign->name + " " + Package::getInformationDescription(itForeign->name, true),
-              ectn_FOREIGN);
-      }
-      else
-      {
-        pld = PackageListData(
-              itForeign->name, itForeign->repository, itForeign->version,
-              itForeign->name + " " + Package::getInformationDescription(itForeign->name, true),
-              ectn_FOREIGN_OUTDATED);
-      }
-
-      list->append(pld);
-      ++itForeign;
-    }
-  }
-
-  m_packageRepo.setData(list, *unrequiredPackageList);
-  delete list;
-  list = NULL;
-}*/
 
 /*
  * Populates the list of found AUR packages (installed [+ non-installed])
