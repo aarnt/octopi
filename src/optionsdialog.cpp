@@ -233,6 +233,7 @@ void OptionsDialog::initAURTab()
 {
   bool pacaurTool=false;
   bool yaourtTool=false;
+  bool trizenTool=false;
 
   if ((UnixCommand::getLinuxDistro() != ectn_KAOS) &&
     (UnixCommand::getLinuxDistro() != ectn_CHAKRA))
@@ -241,9 +242,11 @@ void OptionsDialog::initAURTab()
       pacaurTool=true;
     if (UnixCommand::hasTheExecutable("yaourt"))
       yaourtTool=true;
+    if (UnixCommand::hasTheExecutable("trizen"))
+      trizenTool=true;
   }
 
-  if (!pacaurTool && !yaourtTool)
+  if (!pacaurTool && !yaourtTool && !trizenTool)
   {
     removeTabByName("AUR");
   }
@@ -260,8 +263,14 @@ void OptionsDialog::initAURTab()
       rbYaourt->setEnabled(false);
       cbYaourtNoConfirm->setEnabled(false);
     }
+    if (!trizenTool)
+    {
+      rbTrizen->setEnabled(false);
+      cbTrizenNoConfirm->setEnabled(false);
+      cbTrizenNoEdit->setEnabled(false);
+    }
 
-    if (!pacaurTool && !yaourtTool)
+    if (!pacaurTool && !yaourtTool && !trizenTool)
     {
       cbSearchOutdatedAURPackages->setEnabled(false);
     }
@@ -270,6 +279,8 @@ void OptionsDialog::initAURTab()
       rbPacaur->setChecked(true);
     else if (SettingsManager::getAURToolName() == "yaourt")
       rbYaourt->setChecked(true);
+    else if (SettingsManager::getAURToolName() == "trizen")
+      rbTrizen->setChecked(true);
     else if (SettingsManager::getAURToolName() == "DO_NOT_USE_AUR")
     {
       rbDoNotUse->setChecked(true);
@@ -284,9 +295,12 @@ void OptionsDialog::initAURTab()
     connect(rbDoNotUse, SIGNAL(toggled(bool)), this, SLOT(onDoNotUseAURSelected(bool)));
     connect(rbPacaur, SIGNAL(toggled(bool)), this, SLOT(onPacaurSelected(bool)));
     connect(rbYaourt, SIGNAL(toggled(bool)), this, SLOT(onYaourtSelected(bool)));
+    connect(rbTrizen, SIGNAL(toggled(bool)), this, SLOT(onTrizenSelected(bool)));
 
     cbPacaurNoConfirm->setChecked(SettingsManager::getPacaurNoConfirmParam());
     cbPacaurNoEdit->setChecked(SettingsManager::getPacaurNoEditParam());
+    cbTrizenNoConfirm->setChecked(SettingsManager::getTrizenNoConfirmParam());
+    cbTrizenNoEdit->setChecked(SettingsManager::getTrizenNoEditParam());
     cbYaourtNoConfirm->setChecked(SettingsManager::getYaourtNoConfirmParam());
     cbSearchOutdatedAURPackages->setChecked(SettingsManager::getSearchOutdatedAURPackages());
   }    
@@ -539,6 +553,11 @@ void OptionsDialog::accept(){
       SettingsManager::setAURTool("yaourt");
       AURHasChanged = true;
     }
+    else if (rbTrizen->isChecked() && SettingsManager::getAURToolName() != "trizen")
+    {
+      SettingsManager::setAURTool("trizen");
+      AURHasChanged = true;
+    }
     else if (rbDoNotUse->isChecked() && SettingsManager::getAURToolName() != "DO_NOT_USE_AUR")
     {
       SettingsManager::setAURTool("DO_NOT_USE_AUR");
@@ -558,6 +577,16 @@ void OptionsDialog::accept(){
     if (cbYaourtNoConfirm->isChecked() != SettingsManager::getYaourtNoConfirmParam())
     {
       SettingsManager::setYaourtNoConfirmParam(cbYaourtNoConfirm->isChecked());
+      AURHasChanged = true;
+    }
+    if (cbTrizenNoConfirm->isChecked() != SettingsManager::getTrizenNoConfirmParam())
+    {
+      SettingsManager::setTrizenNoConfirmParam(cbTrizenNoConfirm->isChecked());
+      AURHasChanged = true;
+    }
+    if (cbTrizenNoEdit->isChecked() != SettingsManager::getTrizenNoEditParam())
+    {
+      SettingsManager::setTrizenNoEditParam(cbTrizenNoEdit->isChecked());
       AURHasChanged = true;
     }
 
@@ -702,6 +731,14 @@ void OptionsDialog::onPacaurSelected(bool checked)
  * Whenever user selects the Yaourt tool
  */
 void OptionsDialog::onYaourtSelected(bool checked)
+{
+  if (checked) cbSearchOutdatedAURPackages->setEnabled(true);
+}
+
+/*
+ * Whenever user selects the Trizen tool
+ */
+void OptionsDialog::onTrizenSelected(bool checked)
 {
   if (checked) cbSearchOutdatedAURPackages->setEnabled(true);
 }

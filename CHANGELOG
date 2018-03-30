@@ -1,6 +1,7 @@
 0.9.0 (dev)
   Parser changes: added counter for processed packages.  
   Group pane now spans all window's height.
+  Added Trizen (AUR tool) support.
   Added Terminal tab if user compiles project with libqtermwidget5 support.
   Added Terminal dialog in Notifier (AUR update) if user compiles project with 
 	libqtermwidget5 support.

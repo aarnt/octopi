@@ -1031,6 +1031,10 @@ void PacmanExec::doAURUpgrade(const QString &listOfPackages)
   {
     m_lastCommandList.append(Package::getForeignRepositoryToolNameParam() + " -S " + listOfPackages + ";");
   }
+  else if (Package::getForeignRepositoryToolName() == "trizen")
+  {
+    m_lastCommandList.append(Package::getForeignRepositoryToolNameParam() + " -Sa " + listOfPackages + ";");
+  }
 
   m_lastCommandList.append("echo -e;");
   m_lastCommandList.append("read -n 1 -p \"" + StrConstants::getPressAnyKey() + "\"");
@@ -1050,8 +1054,10 @@ void PacmanExec::doAURInstall(const QString &listOfPackages)
     m_lastCommandList.append(Package::getForeignRepositoryToolNameParam() + " -i " + listOfPackages + ";");
   else if (Package::getForeignRepositoryToolName() == "pacaur")
     m_lastCommandList.append(Package::getForeignRepositoryToolNameParam() + " -Sa " + listOfPackages + ";");
-  else if (Package::getForeignRepositoryToolName() == "yaourt")
+  else if (Package::getForeignRepositoryToolName() == "yaourt")    
     m_lastCommandList.append(Package::getForeignRepositoryToolNameParam() + " -S " + listOfPackages + ";");
+  else if (Package::getForeignRepositoryToolName() == "trizen")
+    m_lastCommandList.append(Package::getForeignRepositoryToolNameParam() + " -Sa " + listOfPackages + ";");
   else if (Package::getForeignRepositoryToolName() == "chaser")
     m_lastCommandList.append(Package::getForeignRepositoryToolNameParam() + " install " + listOfPackages + ";");
 

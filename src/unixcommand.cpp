@@ -248,6 +248,8 @@ QByteArray UnixCommand::getAURPackageList(const QString &searchString)
   {
     if (Package::getForeignRepositoryToolName() == "yaourt")
       aur.start(Package::getForeignRepositoryToolNameParam() + " --nocolor -Ss " + searchString);
+    else if (Package::getForeignRepositoryToolName() == "trizen")
+        aur.start(Package::getForeignRepositoryToolNameParam() + " --nocolors -Ssa " + searchString);
     else if (Package::getForeignRepositoryToolName() == "chaser")
       aur.start(Package::getForeignRepositoryToolNameParam() + " search " + searchString);
     else

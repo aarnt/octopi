@@ -356,6 +356,7 @@ QStringList *Package::getOutdatedAURStringList()
 
   if (getForeignRepositoryToolName() != "yaourt" &&
       getForeignRepositoryToolName() != "pacaur" &&
+      getForeignRepositoryToolName() != "trizen" &&
       getForeignRepositoryToolName() != "kcp")
     return res;
 
@@ -375,6 +376,7 @@ QStringList *Package::getOutdatedAURStringList()
     QStringList parts = packageTuple.split(' ', QString::SkipEmptyParts);
     {
       if (getForeignRepositoryToolName() == "yaourt" ||
+          getForeignRepositoryToolName() == "trizen" ||
           getForeignRepositoryToolName() == "kcp")
       {
         QString pkgName;
@@ -387,9 +389,16 @@ QStringList *Package::getOutdatedAURStringList()
         }
 
         if (pkgName.contains(StrConstants::getForeignRepositoryTargetPrefix(), Qt::CaseInsensitive))
-        {
+        {          
           pkgName = pkgName.remove(StrConstants::getForeignRepositoryTargetPrefix());
           //Let's ignore the "IgnorePkg" list of packages...
+          if (!ignorePkgList.contains(pkgName))
+          {
+            res->append(pkgName); //We only need the package name!
+          }
+        }
+        else //We have a TRIZEN output
+        {
           if (!ignorePkgList.contains(pkgName))
           {
             res->append(pkgName); //We only need the package name!
@@ -814,12 +823,23 @@ QList<PackageListData> * Package::getAURPackageList(const QString& searchString)
       pkgVersion = parts[1];
 
       QStringList strVotes = parts.filter("(");
+      //Let's see if it's not a Trizen style
+      if (strVotes.isEmpty())
+        strVotes = parts.filter("+]");
+
       pkgVotes = 0;
 
       //Chakra does not have popularity support in CCR
       QString aurTool = getForeignRepositoryToolName();
 
-      if (aurTool != "chaser" && aurTool != "pacaur" && strVotes.count() > 0)
+      if (aurTool == "trizen")
+      {
+        if (!strVotes.first().isEmpty())
+          pkgVotes = strVotes.first().replace('[', "").replace(']', "").replace('+', "").toInt();
+        else
+          pkgVotes = 0;
+      }
+      else if (aurTool != "chaser" && aurTool != "pacaur" && strVotes.count() > 0)
       {
         if (!strVotes.first().isEmpty())
           pkgVotes = strVotes.first().replace('(', "").replace(')', "").toInt();
@@ -1534,6 +1554,7 @@ QHash<QString, QString> Package::getAUROutdatedPackagesNameVersion()
   if(UnixCommand::getLinuxDistro() == ectn_CHAKRA ||
       (getForeignRepositoryToolName() != "yaourt" &&
       getForeignRepositoryToolName() != "pacaur" &&
+      getForeignRepositoryToolName() != "trizen" &&
       getForeignRepositoryToolName() != "kcp"))
   {
     return hash;
@@ -1551,7 +1572,8 @@ QHash<QString, QString> Package::getAUROutdatedPackagesNameVersion()
   QStringList ignorePkgList = UnixCommand::getIgnorePkgsFromPacmanConf();
 
   if ((getForeignRepositoryToolName() == "yaourt") ||
-    (getForeignRepositoryToolName() == "kcp"))
+      (getForeignRepositoryToolName() == "trizen") ||
+      (getForeignRepositoryToolName() == "kcp"))
   {
     foreach (QString line, listOfPkgs)
     {
@@ -1579,6 +1601,21 @@ QHash<QString, QString> Package::getAUROutdatedPackagesNameVersion()
             else if (nameVersion.size() == 4)
               hash.insert(pkgName, nameVersion.at(3));
           }
+        }
+      }
+      else //We have TRIZEN output here
+      {
+        QStringList nameVersion = line.split(" ", QString::SkipEmptyParts);
+        QString pkgName = nameVersion.at(0);
+
+        if (pkgName=="::") continue;
+
+        if (!ignorePkgList.contains(pkgName))
+        {
+          if (nameVersion.size() == 2)
+            hash.insert(pkgName, nameVersion.at(1));
+          else if (nameVersion.size() == 4)
+            hash.insert(pkgName, nameVersion.at(3));
         }
       }
     }

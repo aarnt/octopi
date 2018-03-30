@@ -79,6 +79,7 @@ private slots:
   void onDoNotUseAURSelected(bool checked);
   void onPacaurSelected(bool checked);
   void onYaourtSelected(bool checked);
+  void onTrizenSelected(bool checked);
 };
 
 #endif // OptionsDialog_H

@@ -76,6 +76,8 @@ class SettingsManager
     static bool getPacaurNoConfirmParam();
     static bool getPacaurNoEditParam();
     static bool getYaourtNoConfirmParam();
+    static bool getTrizenNoConfirmParam();
+    static bool getTrizenNoEditParam();
     static bool getSearchOutdatedAURPackages();
 
     static QString readSUToolValue();
@@ -145,6 +147,8 @@ class SettingsManager
     static void setPacaurNoConfirmParam(bool newValue);
     static void setPacaurNoEditParam(bool newValue);
     static void setYaourtNoConfirmParam(bool newValue);
+    static void setTrizenNoConfirmParam(bool newValue);
+    static void setTrizenNoEditParam(bool newValue);
     static void setSearchOutdatedAURPackages(bool newValue);
     static void setSUTool(const QString& newValue);
     static void setInstantSearchSelected(bool newValue);

@@ -224,7 +224,7 @@
             <property name="geometry">
              <rect>
               <x>30</x>
-              <y>110</y>
+              <y>150</y>
               <width>571</width>
               <height>23</height>
              </rect>
@@ -236,6 +236,58 @@
             </property>
             <property name="text">
              <string>Search for outdated AUR packages</string>
+            </property>
+           </widget>
+           <widget class="QRadioButton" name="rbTrizen">
+            <property name="geometry">
+             <rect>
+              <x>10</x>
+              <y>110</y>
+              <width>105</width>
+              <height>22</height>
+             </rect>
+            </property>
+            <property name="accessibleName">
+             <string notr="true"/>
+            </property>
+            <property name="text">
+             <string notr="true">Trizen</string>
+            </property>
+           </widget>
+           <widget class="QCheckBox" name="cbTrizenNoConfirm">
+            <property name="geometry">
+             <rect>
+              <x>140</x>
+              <y>110</y>
+              <width>101</width>
+              <height>22</height>
+             </rect>
+            </property>
+            <property name="font">
+             <font>
+              <pointsize>10</pointsize>
+             </font>
+            </property>
+            <property name="text">
+             <string notr="true">--noconfirm</string>
+            </property>
+           </widget>
+           <widget class="QCheckBox" name="cbTrizenNoEdit">
+            <property name="geometry">
+             <rect>
+              <x>250</x>
+              <y>110</y>
+              <width>90</width>
+              <height>22</height>
+             </rect>
+            </property>
+            <property name="font">
+             <font>
+              <pointsize>10</pointsize>
+             </font>
+            </property>
+            <property name="text">
+             <string notr="true">--noedit</string>
             </property>
            </widget>
           </widget>

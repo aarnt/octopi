@@ -288,16 +288,22 @@ QString SettingsManager::getAURTool()
     if (getYaourtNoConfirmParam()) params += " --noconfirm ";
     ret += params;
   }
+  else if (ret == "trizen")
+  {
+    if (getTrizenNoConfirmParam()) params += " --noconfirm ";
+    if (getTrizenNoEditParam()) params += " --noedit ";
+    ret += params;
+  }
   else if (ret.isEmpty() || !UnixCommand::hasTheExecutable(ret))
   {
-    if (UnixCommand::hasTheExecutable("pacaur"))
+    if (UnixCommand::hasTheExecutable("trizen"))
     {
-      if (getPacaurNoConfirmParam()) params += " --noconfirm ";
-      if (getPacaurNoEditParam()) params += " --noedit ";
+      if (getTrizenNoConfirmParam()) params += " --noconfirm ";
+      if (getTrizenNoEditParam()) params += " --noedit ";
 
-      p_instance.setAURTool("pacaur");
+      p_instance.setAURTool("trizen");
       p_instance.getSYSsettings()->sync();
-      ret = "pacaur" + params;
+      ret = "trizen" + params;
     }
     else if (UnixCommand::hasTheExecutable("yaourt"))
     {
@@ -306,6 +312,15 @@ QString SettingsManager::getAURTool()
       p_instance.setAURTool("yaourt");
       p_instance.getSYSsettings()->sync();
       ret = "yaourt" + params;
+    }
+    else if (UnixCommand::hasTheExecutable("pacaur"))
+    {
+      if (getPacaurNoConfirmParam()) params += " --noconfirm ";
+      if (getPacaurNoEditParam()) params += " --noedit ";
+
+      p_instance.setAURTool("pacaur");
+      p_instance.getSYSsettings()->sync();
+      ret = "pacaur" + params;
     }
   }
 
@@ -343,6 +358,24 @@ bool SettingsManager::getYaourtNoConfirmParam()
 {
   SettingsManager p_instance;
   return (p_instance.getSYSsettings()->value( ctn_KEY_YAOURT_NO_CONFIRM_PARAM, 0)).toBool();
+}
+
+/*
+ * Tests if Trizen is using "--noconfirm" parameter
+ */
+bool SettingsManager::getTrizenNoConfirmParam()
+{
+  SettingsManager p_instance;
+  return (p_instance.getSYSsettings()->value( ctn_KEY_TRIZEN_NO_CONFIRM_PARAM, 0)).toBool();
+}
+
+/*
+ * Tests if Trizen is using "--noedit" parameter
+ */
+bool SettingsManager::getTrizenNoEditParam()
+{
+  SettingsManager p_instance;
+  return (p_instance.getSYSsettings()->value( ctn_KEY_TRIZEN_NO_EDIT_PARAM, 0)).toBool();
 }
 
 bool SettingsManager::getSearchOutdatedAURPackages()
@@ -624,6 +657,24 @@ void SettingsManager::setPacaurNoEditParam(bool newValue)
 void SettingsManager::setYaourtNoConfirmParam(bool newValue)
 {
   instance()->getSYSsettings()->setValue(ctn_KEY_YAOURT_NO_CONFIRM_PARAM, newValue);
+  instance()->getSYSsettings()->sync();
+}
+
+/*
+ * Sets if Trizen tool will use "--noconfirm" parameter
+ */
+void SettingsManager::setTrizenNoConfirmParam(bool newValue)
+{
+  instance()->getSYSsettings()->setValue(ctn_KEY_TRIZEN_NO_CONFIRM_PARAM, newValue);
+  instance()->getSYSsettings()->sync();
+}
+
+/*
+ * Sets if Trizen tool will use "--noedit" parameter
+ */
+void SettingsManager::setTrizenNoEditParam(bool newValue)
+{
+  instance()->getSYSsettings()->setValue(ctn_KEY_TRIZEN_NO_EDIT_PARAM, newValue);
   instance()->getSYSsettings()->sync();
 }
 
