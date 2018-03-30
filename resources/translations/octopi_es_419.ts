@@ -112,7 +112,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="304"/>
         <source>Ctrl+P</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+P</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="313"/>
@@ -245,7 +245,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="529"/>
         <source>Ctrl+Shift+V</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+Mayús+V</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="541"/>
@@ -255,7 +255,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="544"/>
         <source>Ctrl+Shift+P</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+Mayús+P</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="553"/>
@@ -265,7 +265,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="556"/>
         <source>Ctrl+Shift+N</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+Mayús+N</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="564"/>
@@ -280,7 +280,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="588"/>
         <source>Use Instant Search</source>
-        <translation type="unfinished"/>
+        <translation>Usar Búsqueda Instantánea</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="54"/>
@@ -405,7 +405,7 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="115"/>
         <source>Ctrl+P or &apos;File/System upgrade&apos; to make a full system upgrade (pacman -Su)</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+P o &apos;File/System upgrade&apos; para hacer una actualización completa del sistema (pacman -Su)</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="117"/>
@@ -485,7 +485,7 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="152"/>
         <source>F11 to maximize/demaximize Tab&apos;s view</source>
-        <translation type="unfinished"/>
+        <translation>F11 para maximizar/desmaximizar la vista de la Tabla</translation>
     </message>
 </context>
 <context>
@@ -498,17 +498,17 @@
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="38"/>
         <source>General</source>
-        <translation type="unfinished"/>
+        <translation>General</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="50"/>
         <source>Show package numbers in output tab</source>
-        <translation type="unfinished"/>
+        <translation>Mostrar los números de paquete en la pestaña de salida</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="63"/>
         <source>Show stop transaction button at statusbar</source>
-        <translation type="unfinished"/>
+        <translation>Mostrar el botón de detener transacción en la barra de estado</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="100"/>
@@ -518,18 +518,18 @@
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="220"/>
         <source>Do not use AUR</source>
-        <translation type="unfinished"/>
+        <translation>No use AUR</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="233"/>
         <source>Search for outdated AUR packages</source>
-        <translation type="unfinished"/>
+        <translation>Buscar paquetes AUR desactualizados</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="242"/>
         <location filename="Projects/octopi/src/optionsdialog.cpp" line="203"/>
         <source>Backend</source>
-        <translation type="unfinished"/>
+        <translation>Backend</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="308"/>
@@ -574,12 +574,12 @@
         <location filename="Projects/octopi/src/optionsdialog.cpp" line="365"/>
         <location filename="Projects/octopi/src/optionsdialog.cpp" line="366"/>
         <source>SU tool</source>
-        <translation type="unfinished"/>
+        <translation>Herramienta SU</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="685"/>
         <source>Select the SU tool Octopi should use</source>
-        <translation type="unfinished"/>
+        <translation>Seleccione la herramienta SU que Octopi debería usar</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="709"/>
@@ -618,7 +618,7 @@
     <message>
         <location filename="Projects/octopi/src/optionsdialog.cpp" line="210"/>
         <source>Ok</source>
-        <translation type="unfinished"/>
+        <translation>Vale</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/optionsdialog.cpp" line="211"/>
@@ -667,7 +667,7 @@
         <location filename="Projects/octopi/src/strconstants.cpp" line="104"/>
         <source>PacBSD news</source>
         <oldsource>ArchBSD news</oldsource>
-        <translation type="unfinished"/>
+        <translation>Noticias PacBSD</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="108"/>
@@ -847,7 +847,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="256"/>
         <source>Install Reason</source>
-        <translation type="unfinished"/>
+        <translation>Instalar Razón</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="260"/>
@@ -977,12 +977,12 @@
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.cpp" line="360"/>
         <source>%n packages</source>
-        <translation><numerusform>%n paquete</numerusform><numerusform>% paquetes</numerusform></translation>
+        <translation><numerusform>%n paquete</numerusform><numerusform>%n paquetes</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.cpp" line="364"/>
         <source>%n selected</source>
-        <translation><numerusform>%n seleccionado</numerusform><numerusform>% seleccionados</numerusform></translation>
+        <translation><numerusform>%n seleccionado</numerusform><numerusform>%n seleccionados</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.cpp" line="368"/>
@@ -1122,7 +1122,7 @@
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.cpp" line="480"/>
         <source>There are %n updates available!</source>
-        <translation><numerusform>¡Hay %n actualización disponible!</numerusform><numerusform>¡Hay %n actualizaciones disponibles!</numerusform></translation>
+        <translation><numerusform>¡Hay %n actualización disponible!</numerusform><numerusform>Hay %n actualizaciones disponibles!</numerusform></translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="484"/>
@@ -1182,7 +1182,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="530"/>
         <source>Icon path information is incomplete.</source>
-        <translation type="unfinished"/>
+        <translation>La información de la trayectoria del icono esta incompleta.</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="534"/>
@@ -1319,7 +1319,7 @@ Are you sure you want to open it?</source>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="640"/>
         <source>Stop</source>
-        <translation type="unfinished"/>
+        <translation>Detener</translation>
     </message>
 </context>
 <context>

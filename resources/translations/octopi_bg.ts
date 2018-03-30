@@ -405,7 +405,7 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="115"/>
         <source>Ctrl+P or &apos;File/System upgrade&apos; to make a full system upgrade (pacman -Su)</source>
-        <translation>Ctrl+U или &quot;Файл/Надграждане на системата&quot; за пълно надграждане на системата (pacman -Su)</translation>
+        <translation>Ctrl+Р или &quot;Файл/Надграждане на системата&quot; за пълно надграждане на системата (pacman -Su)</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="117"/>
@@ -498,12 +498,12 @@
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="38"/>
         <source>General</source>
-        <translation>Основни</translation>
+        <translation>Основен</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="50"/>
         <source>Show package numbers in output tab</source>
-        <translation>Покачи номерата на пакетите в изходен таб</translation>
+        <translation>Покажи броя на пакетите в изходния раздел</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="63"/>
@@ -523,7 +523,7 @@
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="233"/>
         <source>Search for outdated AUR packages</source>
-        <translation>Търси на остарели пакети от AUR</translation>
+        <translation>Търси остарели пакети от AUR</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="242"/>

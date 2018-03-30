@@ -112,7 +112,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="304"/>
         <source>Ctrl+P</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+P</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="313"/>
@@ -245,7 +245,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="529"/>
         <source>Ctrl+Shift+V</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+Shift+V</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="541"/>
@@ -255,7 +255,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="544"/>
         <source>Ctrl+Shift+P</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+Shift+P</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="553"/>
@@ -265,7 +265,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="556"/>
         <source>Ctrl+Shift+N</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+Shift+N</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="564"/>
@@ -280,7 +280,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="588"/>
         <source>Use Instant Search</source>
-        <translation type="unfinished"/>
+        <translation>Usar Búsqueda Instantánea</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="54"/>
@@ -493,12 +493,12 @@
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="23"/>
         <source>Options</source>
-        <translation type="unfinished"/>
+        <translation>Opciones</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="38"/>
         <source>General</source>
-        <translation type="unfinished"/>
+        <translation>General</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="50"/>
@@ -518,7 +518,7 @@
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="220"/>
         <source>Do not use AUR</source>
-        <translation type="unfinished"/>
+        <translation>No usar AUR</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="233"/>
@@ -585,7 +585,7 @@
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="709"/>
         <location filename="Projects/octopi/src/optionsdialog.cpp" line="199"/>
         <source>Synchronization</source>
-        <translation type="unfinished"/>
+        <translation>Sincronización</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="949"/>
@@ -618,12 +618,12 @@
     <message>
         <location filename="Projects/octopi/src/optionsdialog.cpp" line="210"/>
         <source>Ok</source>
-        <translation type="unfinished"/>
+        <translation>Ok</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/optionsdialog.cpp" line="211"/>
         <source>Cancel</source>
-        <translation type="unfinished"/>
+        <translation>Cancelar</translation>
     </message>
 </context>
 <context>
@@ -702,7 +702,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="132"/>
         <source>Error</source>
-        <translation type="unfinished"/>
+        <translation>Error</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="136"/>
@@ -737,7 +737,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="168"/>
         <source>Options</source>
-        <translation type="unfinished"/>
+        <translation>Opciones</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="172"/>
@@ -1318,7 +1318,7 @@ Are you sure you want to open it?</source>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="640"/>
         <source>Stop</source>
-        <translation type="unfinished"/>
+        <translation>Detener</translation>
     </message>
 </context>
 <context>

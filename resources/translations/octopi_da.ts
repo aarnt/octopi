@@ -310,12 +310,12 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="69"/>
         <source>An installed package (not required by others)</source>
-        <translation>En installeret pakke (ikke påkrævet af andre)</translation>
+        <translation>En installeret pakke (kræves ikke af andre)</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="72"/>
         <source>A foreign package, installed from</source>
-        <translation>En fremmed pakke, installeret fra</translation>
+        <translation>En fremmede pakke, installeret fra</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="75"/>
@@ -330,7 +330,7 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="81"/>
         <source>An outdated foreign package</source>
-        <translation>En forældet fremmed pakke</translation>
+        <translation>En forældet fremmede pakke</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="84"/>
@@ -350,7 +350,7 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="91"/>
         <source>Double click an installed package to see its contents</source>
-        <translation>Dobbelt-klik på en installeret pakke for at se dens indhold</translation>
+        <translation>Dobbeltklik på en installeret pakke for at se dens indhold</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="93"/>
@@ -420,7 +420,7 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="121"/>
         <source>Ctrl+M or &apos;Transaction/Commit&apos; to start installation/removal of selected packages</source>
-        <translation>Ctrl+M eller &apos;Transaktion/Gennemfør&apos; for at starte installation/fjernelse af udvalgte pakker</translation>
+        <translation>Ctrl+M eller &apos;Transaktion/Gennemfør&apos; for at starte installation/fjernelse af valgte pakker</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="123"/>
@@ -470,12 +470,12 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="146"/>
         <source>F4 to open a Terminal whitin the selected directory at Files tab</source>
-        <translation>F4 for at åbne en Terminal indeni den udvalgte folder ved Filer-faneblad</translation>
+        <translation>F4 for at åbne en Terminal i den valgte mappe i Filer-faneblad</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="148"/>
         <source>F6 to open a File Manager whitin the selected directory at Files tab</source>
-        <translation>F6 at åbne en filhåndterer indeni den udvalgte folder ved Filer-faneblad</translation>
+        <translation>F6 at åbne en filhåndterer indeni den valgte mappe i Filer-faneblad</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="150"/>
@@ -802,7 +802,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="220"/>
         <source>Required By</source>
-        <translation>Påkrævet af</translation>
+        <translation>Kræves af</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="224"/>
@@ -1042,17 +1042,17 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="416"/>
         <source>Installing selected packages...</source>
-        <translation>Installerer udvalgte pakker ...</translation>
+        <translation>Installerer valgte pakker ...</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="420"/>
         <source>Removing selected packages...</source>
-        <translation>Fjerner udvalgte pakker ...</translation>
+        <translation>Fjerner valgte pakker ...</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="424"/>
         <source>Removing/installing selected packages...</source>
-        <translation>Fjerner/installerer udvalgte pakker ...</translation>
+        <translation>Fjerner/installerer valgte pakker ...</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="428"/>
@@ -1067,12 +1067,12 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="436"/>
         <source>Command finished OK!</source>
-        <translation>Kommando færdiggjordt OK!</translation>
+        <translation>Kommando blev færdig!</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="440"/>
         <source>Command finished with errors!</source>
-        <translation>Kommando sluttede med fejl!</translation>
+        <translation>Kommando blev færdig med fejl!</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="444"/>
@@ -1082,27 +1082,27 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="448"/>
         <source>Total download size: %1 KB</source>
-        <translation>Total downloadstørrelse: %1 KB</translation>
+        <translation>Samlet downloadstørrelse: %1 KB</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="452"/>
         <source>The following package needs to be retrieved</source>
-        <translation>Følgende pakke er nødt til at blive hentet</translation>
+        <translation>Følgende pakke vil blive hentet</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="456"/>
         <source>The following package will be removed</source>
-        <translation>Følgende pakke vil blive slettet</translation>
+        <translation>Følgende pakke vil blive fjernet</translation>
     </message>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.cpp" line="460"/>
         <source>The following %n packages need to be retrieved</source>
-        <translation><numerusform>Følgende %n pakke er nødt til at blive hentet</numerusform><numerusform>Følgende %n pakker er nødt til at blive hentet</numerusform></translation>
+        <translation><numerusform>Følgende %n pakke vil blive hentet</numerusform><numerusform>Følgende %n pakker vil blive hentet</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.cpp" line="464"/>
         <source>The following %n packages will be removed</source>
-        <translation><numerusform>Følgende %n pakke vil blive slettet</numerusform><numerusform>Følgende %n pakker vil blive slettet</numerusform></translation>
+        <translation><numerusform>Følgende %n pakke vil blive fjernet</numerusform><numerusform>Følgende %n pakker vil blive fjernet</numerusform></translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="468"/>
@@ -1177,7 +1177,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="526"/>
         <source>You&apos;ll need to install a su frontend like gksu or kdesu.</source>
-        <translation>Du er nødt til at installere en su frontend som gksu eller kdesu.</translation>
+        <translation>Du er nødt til at installere en su-frontend såsom gksu eller kdesu.</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="530"/>
