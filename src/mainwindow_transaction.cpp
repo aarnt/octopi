@@ -1329,8 +1329,13 @@ void MainWindow::onAURToolChanged()
   else //We are using pacaur/yaourt tool
   {
     m_hasAURTool = true;
-    m_actionSwitchToAURTool->setVisible(true);
-    m_actionSwitchToAURTool->setEnabled(false);
+
+    if (!isAURGroupSelected())
+    {
+      m_actionSwitchToAURTool->setVisible(true);
+      m_actionSwitchToAURTool->setEnabled(false);
+    }
+
     m_actionSwitchToAURTool->setText(StrConstants::getUseAURTool());
     m_actionSwitchToAURTool->setToolTip(m_actionSwitchToAURTool->text() + "  (Ctrl+Shift+Y)");
     m_refreshForeignPackageList = true;
