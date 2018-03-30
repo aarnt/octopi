@@ -1037,8 +1037,8 @@ QStringList UnixCommand::getFieldFromPacmanConf(const QString &fieldName)
         int newLine = ignorePkg.indexOf("\n");
 
         ignorePkg = ignorePkg.mid(equal+1, newLine-(equal+1)).trimmed();
-        result = ignorePkg.split(QRegularExpression("\\s+"), QString::SkipEmptyParts);
-        break;
+        result += ignorePkg.split(QRegularExpression("\\s+"), QString::SkipEmptyParts);
+        from = newLine;
       }
       else if (str != "#")
         from += end + ctn_FIELD_LENGTH;
