@@ -81,7 +81,9 @@ QString OctopiTabInfo::formatTabInfo(const PackageRepository::PackageData& packa
   {
     html += "<h2>" + package.name + "</h2>";
   }
-  else if (UnixCommand::getLinuxDistro() != ectn_KAOS || UnixCommand::getLinuxDistro() != ectn_CHAKRA)
+  else if (UnixCommand::getLinuxDistro() == ectn_KAOS || UnixCommand::getLinuxDistro() == ectn_CHAKRA)
+    html += "<h2>" + package.name + "</h2>";
+  else
     html += "<h2><a href=\"https://aur.archlinux.org/packages/" + package.name + "\">" + package.name + "</a></h2>";
 
   html += "<a style=\"font-size:16px;\">" + pkgDescription + "</a>";
