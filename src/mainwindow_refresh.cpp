@@ -1335,7 +1335,11 @@ void MainWindow::refreshTabInfo(bool clearContents, bool neverQuit)
 
       html += "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">";
       html += "<a id=\"" + anchorBegin + "\"></a>";            
-      html += "<h2>" + pkgName + "</h2>";
+
+      if (UnixCommand::getLinuxDistro() != ectn_KAOS || UnixCommand::getLinuxDistro() != ectn_CHAKRA)
+        html += "<h2><a href=\"https://aur.archlinux.org/packages/" + pkgName + "\">" + pkgName + "</a></h2>";
+      else
+        html += "<h2>" + pkgName + "</h2>";
 
       if (Package::getForeignRepositoryToolName() != ctn_KCP_TOOL)
       {

@@ -21,6 +21,7 @@
 #include "octopitabinfo.h"
 #include "src/strconstants.h"
 #include "src/package.h"
+#include "src/unixcommand.h"
 
 /*
  * The OctopiTabInfo class provides functionality for the Tab "Info"
@@ -76,7 +77,13 @@ QString OctopiTabInfo::formatTabInfo(const PackageRepository::PackageData& packa
   html += "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">";
   html += "<a id=\"" + anchorBegin + "\"></a>";
 
-  html += "<h2>" + package.name + "</h2>";
+  if (package.repository != StrConstants::getForeignRepositoryName())
+  {
+    html += "<h2>" + package.name + "</h2>";
+  }
+  else if (UnixCommand::getLinuxDistro() != ectn_KAOS || UnixCommand::getLinuxDistro() != ectn_CHAKRA)
+    html += "<h2><a href=\"https://aur.archlinux.org/packages/" + package.name + "\">" + package.name + "</a></h2>";
+
   html += "<a style=\"font-size:16px;\">" + pkgDescription + "</a>";
 
   html += "<table border=\"0\">";
