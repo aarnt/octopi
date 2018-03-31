@@ -105,6 +105,7 @@ const QString ctn_KEY_KEEP_NUM_UNINSTALLED("Keep_Num_Uninstalled");
 //Package related
 const QString ctn_TEMP_ACTIONS_FILE ( QDir::tempPath() + QDir::separator() + ".qt_temp_" );
 const QString ctn_PACMAN_DATABASE_DIR = "/var/lib/pacman";
+const QString ctn_PACMAN_DATABASE_LOCK_FILE("/var/lib/pacman/db.lck");
 const QString ctn_PACMAN_CORE_DB_FILE = "/var/lib/pacman/sync/core.db";
 
 enum PackageStatus { ectn_INSTALLED, ectn_NON_INSTALLED, ectn_OUTDATED, ectn_NEWER,

@@ -92,7 +92,7 @@ void PacmanExec::removeTemporaryFile()
  */
 bool PacmanExec::isDatabaseLocked()
 {
-  QString lockFilePath("/var/lib/pacman/db.lck");
+  QString lockFilePath(ctn_PACMAN_DATABASE_LOCK_FILE);
   QFile lockFile(lockFilePath);
 
   return (lockFile.exists());
@@ -103,7 +103,7 @@ bool PacmanExec::isDatabaseLocked()
  */
 void PacmanExec::removeDatabaseLock()
 {
-  UnixCommand::execCommand("rm /var/lib/pacman/db.lck");
+  UnixCommand::execCommand("rm " + ctn_PACMAN_DATABASE_LOCK_FILE);
 }
 
 /*
@@ -808,9 +808,22 @@ void PacmanExec::doMirrorCheck()
  */
 void PacmanExec::doInstall(const QString &listOfPackages)
 {
-  QString command = "pacman -S --noconfirm " + listOfPackages;
+  QString command;
+
+  if (isDatabaseLocked())
+  {
+    command += "rm " + ctn_PACMAN_DATABASE_LOCK_FILE + "; ";
+  }
+
+  command += "pacman -S --noconfirm " + listOfPackages;
 
   m_lastCommandList.clear();
+
+  if (isDatabaseLocked())
+  {
+    m_lastCommandList.append("rm " + ctn_PACMAN_DATABASE_LOCK_FILE + ";");
+  }
+
   m_lastCommandList.append("pacman -S " + listOfPackages + ";");
   m_lastCommandList.append("echo -e;");
   m_lastCommandList.append("read -n 1 -p \"" + StrConstants::getPressAnyKey() + "\"");
@@ -825,6 +838,11 @@ void PacmanExec::doInstall(const QString &listOfPackages)
 void PacmanExec::doInstallInTerminal(const QString &listOfPackages)
 {
   m_lastCommandList.clear();
+
+  if (isDatabaseLocked())
+  {
+    m_lastCommandList.append("rm " + ctn_PACMAN_DATABASE_LOCK_FILE + ";");
+  }
 
 #ifdef QTERMWIDGET
   m_lastCommandList.append("sudo pacman -S " + listOfPackages + ";");
@@ -844,9 +862,22 @@ void PacmanExec::doInstallInTerminal(const QString &listOfPackages)
  */
 void PacmanExec::doInstallLocal(const QString &listOfPackages)
 {
-  QString command = "pacman -U --force --noconfirm '" + listOfPackages.trimmed() + "'";
+  QString command;
+
+  if (isDatabaseLocked())
+  {
+    command += "rm " + ctn_PACMAN_DATABASE_LOCK_FILE + "; ";
+  }
+
+  command += "pacman -U --force --noconfirm '" + listOfPackages.trimmed() + "'";
 
   m_lastCommandList.clear();
+
+  if (isDatabaseLocked())
+  {
+    m_lastCommandList.append("rm " + ctn_PACMAN_DATABASE_LOCK_FILE + ";");
+  }
+
   m_lastCommandList.append("pacman -U --force \"" + listOfPackages.trimmed() + "\";");
   m_lastCommandList.append("echo -e;");
   m_lastCommandList.append("read -n 1 -p \"" + StrConstants::getPressAnyKey() + "\"");
@@ -861,6 +892,11 @@ void PacmanExec::doInstallLocal(const QString &listOfPackages)
 void PacmanExec::doInstallLocalInTerminal(const QString &listOfPackages)
 {
   m_lastCommandList.clear();
+
+  if (isDatabaseLocked())
+  {
+    m_lastCommandList.append("rm " + ctn_PACMAN_DATABASE_LOCK_FILE + ";");
+  }
 
 #ifdef QTERMWIDGET
   m_lastCommandList.append("sudo pacman -U --force \"" + listOfPackages.trimmed() + "\";");
@@ -880,9 +916,22 @@ void PacmanExec::doInstallLocalInTerminal(const QString &listOfPackages)
  */
 void PacmanExec::doRemove(const QString &listOfPackages)
 {
-  QString command = "pacman -R --noconfirm " + listOfPackages;
+  QString command;
+
+  if (isDatabaseLocked())
+  {
+    command += "rm " + ctn_PACMAN_DATABASE_LOCK_FILE + "; ";
+  }
+
+  command += "pacman -R --noconfirm " + listOfPackages;
 
   m_lastCommandList.clear();
+
+  if (isDatabaseLocked())
+  {
+    m_lastCommandList.append("rm " + ctn_PACMAN_DATABASE_LOCK_FILE + ";");
+  }
+
   m_lastCommandList.append("pacman -R " + listOfPackages + ";");
   m_lastCommandList.append("echo -e;");
   m_lastCommandList.append("read -n 1 -p \"" + StrConstants::getPressAnyKey() + "\"");
@@ -897,6 +946,11 @@ void PacmanExec::doRemove(const QString &listOfPackages)
 void PacmanExec::doRemoveInTerminal(const QString &listOfPackages)
 {
   m_lastCommandList.clear();
+
+  if (isDatabaseLocked())
+  {
+    m_lastCommandList.append("rm " + ctn_PACMAN_DATABASE_LOCK_FILE + ";");
+  }
 
 #ifdef QTERMWIDGET
   m_lastCommandList.append("sudo pacman -R " + listOfPackages + ";");
@@ -916,10 +970,22 @@ void PacmanExec::doRemoveInTerminal(const QString &listOfPackages)
  */
 void PacmanExec::doRemoveAndInstall(const QString &listOfPackagestoRemove, const QString &listOfPackagestoInstall)
 {
-  QString command = "pacman -R --noconfirm " + listOfPackagestoRemove +
-      "; pacman -S --noconfirm " + listOfPackagestoInstall;
+  QString command;
+
+  if (isDatabaseLocked())
+  {
+    command += "rm " + ctn_PACMAN_DATABASE_LOCK_FILE + "; ";
+  }
+
+  command += "pacman -R --noconfirm " + listOfPackagestoRemove + "; pacman -S --noconfirm " + listOfPackagestoInstall;
 
   m_lastCommandList.clear();
+
+  if (isDatabaseLocked())
+  {
+    m_lastCommandList.append("rm " + ctn_PACMAN_DATABASE_LOCK_FILE + ";");
+  }
+
   m_lastCommandList.append("pacman -R " + listOfPackagestoRemove + ";");
   m_lastCommandList.append("pacman -S " + listOfPackagestoInstall + ";");
   m_lastCommandList.append("echo -e;");
@@ -935,6 +1001,12 @@ void PacmanExec::doRemoveAndInstall(const QString &listOfPackagestoRemove, const
 void PacmanExec::doRemoveAndInstallInTerminal(const QString &listOfPackagestoRemove, const QString &listOfPackagestoInstall)
 {
   m_lastCommandList.clear();
+
+  if (isDatabaseLocked())
+  {
+    m_lastCommandList.append("rm " + ctn_PACMAN_DATABASE_LOCK_FILE + ";");
+  }
+
 #ifdef QTERMWIDGET
   m_lastCommandList.append("sudo pacman -R " + listOfPackagestoRemove + ";");
 #else
@@ -959,9 +1031,22 @@ void PacmanExec::doRemoveAndInstallInTerminal(const QString &listOfPackagestoRem
  */
 void PacmanExec::doSystemUpgrade()
 {
-  QString command = "pacman -Su --noconfirm";
+  QString command;
+
+  if (isDatabaseLocked())
+  {
+    command += "rm " + ctn_PACMAN_DATABASE_LOCK_FILE + "; ";
+  }
+
+  command += "pacman -Su --noconfirm";
 
   m_lastCommandList.clear();
+
+  if (isDatabaseLocked())
+  {
+    m_lastCommandList.append("rm " + ctn_PACMAN_DATABASE_LOCK_FILE + ";");
+  }
+
   m_lastCommandList.append("pacman -Su;");
   m_lastCommandList.append("echo -e;");
   m_lastCommandList.append("read -n 1 -p \"" + StrConstants::getPressAnyKey() + "\"");
@@ -976,6 +1061,11 @@ void PacmanExec::doSystemUpgrade()
 void PacmanExec::doSystemUpgradeInTerminal(CommandExecuting additionalCommand)
 {
   m_lastCommandList.clear();
+
+  if (isDatabaseLocked())
+  {
+    m_lastCommandList.append("rm " + ctn_PACMAN_DATABASE_LOCK_FILE + ";");
+  }
 
   if (additionalCommand == ectn_NONE)
 #ifdef QTERMWIDGET
@@ -1004,10 +1094,15 @@ void PacmanExec::doSyncDatabase()
 {
   QString command;
 
+  if (isDatabaseLocked())
+  {
+    command += "rm " + ctn_PACMAN_DATABASE_LOCK_FILE + "; ";
+  }
+
   if (UnixCommand::isRootRunning())
-    command = "pacman -Sy";
+    command += "pacman -Sy";
   else
-    command = "pacman -Syy";
+    command += "pacman -Syy";
 
   if (UnixCommand::hasTheExecutable("pkgfile") && !UnixCommand::isRootRunning())
     command += "; pkgfile -u";

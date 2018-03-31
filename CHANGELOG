@@ -44,6 +44,7 @@
 	QLineEdit widgets.
   BugFix: When user selected another search option, line edit was not being cleared.
   BugFix: Disable alien icon while in transaction.
+  BugFix: Do not ask twice for password if a pacman lck file exists.
 
 0.8.1
   BugFix: Updated CHAKRA RSS site (thanks to s8321414).

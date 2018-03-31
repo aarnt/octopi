@@ -724,7 +724,8 @@ void MainWindow::doMirrorCheck()
  */
 void MainWindow::doSyncDatabase()
 {
-  if (!doRemovePacmanLockFile()) return;
+  //if (!doRemovePacmanLockFile()) return;
+  if (!isSUAvailable()) return;
 
   //Let's synchronize kcp database too...
   if (UnixCommand::getLinuxDistro() == ectn_KAOS && UnixCommand::hasTheExecutable(ctn_KCP_TOOL) && !UnixCommand::isRootRunning())
@@ -795,7 +796,8 @@ void MainWindow::doAURUpgrade()
 bool MainWindow::prepareSystemUpgrade()
 {
   m_systemUpgradeDialog = false;
-  bool res = doRemovePacmanLockFile();
+  //bool res = doRemovePacmanLockFile();
+  bool res = isSUAvailable();
   if (!res) return false;
 
   disableTransactionActions();
@@ -1067,7 +1069,8 @@ void MainWindow::doRemoveAndInstall()
 
   if(result == QDialogButtonBox::Yes || result == QDialogButtonBox::AcceptRole)
   {
-    if (!doRemovePacmanLockFile()) return;
+    //if (!doRemovePacmanLockFile()) return;
+    if (!isSUAvailable()) return;
 
     disableTransactionActions();
     m_progressWidget->setValue(0);
@@ -1143,7 +1146,8 @@ void MainWindow::doRemove()
 
   if(result == QDialogButtonBox::Yes || result == QDialogButtonBox::AcceptRole)
   {
-    if (!doRemovePacmanLockFile()) return;
+    //if (!doRemovePacmanLockFile()) return;
+    if (!isSUAvailable()) return;
 
     disableTransactionActions();
     m_progressWidget->setValue(0);
@@ -1450,7 +1454,8 @@ void MainWindow::doInstall()
 
   if(result == QDialogButtonBox::Yes || result == QDialogButtonBox::AcceptRole)
   {
-    if (!doRemovePacmanLockFile()) return;
+    //if (!doRemovePacmanLockFile()) return;
+    if (!isSUAvailable()) return;
 
     disableTransactionActions();
     m_progressWidget->setValue(0);
@@ -1526,7 +1531,8 @@ void MainWindow::doInstallLocalPackages()
   qApp->processEvents();
   if(result == QDialogButtonBox::Yes || result == QDialogButtonBox::AcceptRole)
   {
-    if (!doRemovePacmanLockFile()) return;
+    //if (!doRemovePacmanLockFile()) return;
+    if (!isSUAvailable()) return;
 
     disableTransactionActions();
     m_progressWidget->setValue(0);

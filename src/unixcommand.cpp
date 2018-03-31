@@ -341,27 +341,6 @@ QByteArray UnixCommand::getOutdatedAURPackageList()
 }
 
 /*
- * Given an AUR package name, returns a string containing all of its information fields
- * (ex: name, description, version, dependsOn...)
- */
-/*QByteArray UnixCommand::getAURPackageVersionInformation()
-{
-  QByteArray result;
-
-  if (Package::getForeignRepositoryToolName() == ctn_KCP_TOOL)
-  {
-    result = performAURCommand("-lO");
-  }
-  else if (Package::getForeignRepositoryToolName() != ctn_KCP_TOOL)
-  {
-    result = performAURCommand("-Qua");
-  }
-
-  //return ":: aur  micro-git  v1.3.3.d6ccaf0-1  ->  v1.3.4\n";
-  return result;
-}*/
-
-/*
  * Returns a string containing all packages that are not contained in any repository
  * (probably the ones installed by a tool such as yaourt)
  */
@@ -887,30 +866,10 @@ QString UnixCommand::errorString()
 void UnixCommand::cancelProcess()
 {
   QProcess pacman;
-  QString command = WMHelper::getSUCommand() + "\"killall pacman; rm /var/lib/pacman/db.lck\"";
+  //QString command = WMHelper::getSUCommand() + "\"killall pacman; rm /var/lib/pacman/db.lck\"";
+  QString command = WMHelper::getSUCommand() + "\"killall pacman; rm " + ctn_PACMAN_DATABASE_LOCK_FILE + "\"";
   pacman.start(command);
   pacman.waitForFinished();
-
-  //First we check if we have pgrep installed
-  /*if (hasTheExecutable("pgrep"))
-  {
-    QProcess pgrep;
-    QString command = "pgrep pacman";
-    pgrep.start(command);
-    pgrep.waitForFinished();
-    QString res = pgrep.readAllStandardOutput();
-    QStringList sl = res.split("\n");
-
-    //If there is only ONE pacman process running, let's kill it
-    if (sl.count() == 2 && sl.at(1) == "")
-    {
-      QString pid = sl.at(0);
-      QProcess pacman;
-      command = WMHelper::getSUCommand() + "\" kill -9 " + pid + "\"";
-      pacman.start(command);
-      pacman.waitForFinished();
-    }
-  }*/
 }
 
 /*
