@@ -238,11 +238,11 @@ void OptionsDialog::initAURTab()
   if ((UnixCommand::getLinuxDistro() != ectn_KAOS) &&
     (UnixCommand::getLinuxDistro() != ectn_CHAKRA))
   {
-    if (UnixCommand::hasTheExecutable("pacaur"))
+    if (UnixCommand::hasTheExecutable(ctn_PACAUR_TOOL))
       pacaurTool=true;
-    if (UnixCommand::hasTheExecutable("yaourt"))
+    if (UnixCommand::hasTheExecutable(ctn_YAOURT_TOOL))
       yaourtTool=true;
-    if (UnixCommand::hasTheExecutable("trizen"))
+    if (UnixCommand::hasTheExecutable(ctn_TRIZEN_TOOL))
       trizenTool=true;
   }
 
@@ -275,13 +275,13 @@ void OptionsDialog::initAURTab()
       cbSearchOutdatedAURPackages->setEnabled(false);
     }
 
-    if (SettingsManager::getAURToolName() == "pacaur")
+    if (SettingsManager::getAURToolName() == ctn_PACAUR_TOOL)
       rbPacaur->setChecked(true);
-    else if (SettingsManager::getAURToolName() == "yaourt")
+    else if (SettingsManager::getAURToolName() == ctn_YAOURT_TOOL)
       rbYaourt->setChecked(true);
-    else if (SettingsManager::getAURToolName() == "trizen")
+    else if (SettingsManager::getAURToolName() == ctn_TRIZEN_TOOL)
       rbTrizen->setChecked(true);
-    else if (SettingsManager::getAURToolName() == "DO_NOT_USE_AUR")
+    else if (SettingsManager::getAURToolName() == ctn_NO_AUR_TOOL)
     {
       rbDoNotUse->setChecked(true);
       cbSearchOutdatedAURPackages->setEnabled(false);
@@ -289,7 +289,7 @@ void OptionsDialog::initAURTab()
     else //There are no helpers selected, so let's default to "DO NOT USE AUR"
     {
       rbDoNotUse->setChecked(true);
-      SettingsManager::setAURTool("DO_NOT_USE_AUR");
+      SettingsManager::setAURTool(ctn_NO_AUR_TOOL);
     }
 
     connect(rbDoNotUse, SIGNAL(toggled(bool)), this, SLOT(onDoNotUseAURSelected(bool)));
@@ -543,24 +543,24 @@ void OptionsDialog::accept(){
   //Set AUR Tool...
   if (tabAUR->isVisible())
   {
-    if (rbPacaur->isChecked() && SettingsManager::getAURToolName() != "pacaur")
+    if (rbPacaur->isChecked() && SettingsManager::getAURToolName() != ctn_PACAUR_TOOL)
     {
-      SettingsManager::setAURTool("pacaur");
+      SettingsManager::setAURTool(ctn_PACAUR_TOOL);
       AURHasChanged = true;
     }
-    else if (rbYaourt->isChecked() && SettingsManager::getAURToolName() != "yaourt")
+    else if (rbYaourt->isChecked() && SettingsManager::getAURToolName() != ctn_YAOURT_TOOL)
     {
-      SettingsManager::setAURTool("yaourt");
+      SettingsManager::setAURTool(ctn_YAOURT_TOOL);
       AURHasChanged = true;
     }
-    else if (rbTrizen->isChecked() && SettingsManager::getAURToolName() != "trizen")
+    else if (rbTrizen->isChecked() && SettingsManager::getAURToolName() != ctn_TRIZEN_TOOL)
     {
-      SettingsManager::setAURTool("trizen");
+      SettingsManager::setAURTool(ctn_TRIZEN_TOOL);
       AURHasChanged = true;
     }
-    else if (rbDoNotUse->isChecked() && SettingsManager::getAURToolName() != "DO_NOT_USE_AUR")
+    else if (rbDoNotUse->isChecked() && SettingsManager::getAURToolName() != ctn_NO_AUR_TOOL)
     {
-      SettingsManager::setAURTool("DO_NOT_USE_AUR");
+      SettingsManager::setAURTool(ctn_NO_AUR_TOOL);
       AURHasChanged = true;
     }
 

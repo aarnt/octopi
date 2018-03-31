@@ -219,7 +219,7 @@ QByteArray UnixCommand::getAURUrl(const QString &pkgName)
 
   aur.setProcessEnvironment(env);
 
-  if (Package::getForeignRepositoryToolName() == "chaser")
+  if (Package::getForeignRepositoryToolName() == ctn_CHASER_TOOL)
     aur.start(Package::getForeignRepositoryToolNameParam() + " info " + pkgName);
   else
     aur.start(Package::getForeignRepositoryToolNameParam() + " -Sia " + pkgName);
@@ -246,11 +246,11 @@ QByteArray UnixCommand::getAURPackageList(const QString &searchString)
     aur.start(Package::getForeignRepositoryToolNameParam() + " -l ");
   else
   {
-    if (Package::getForeignRepositoryToolName() == "yaourt")
+    if (Package::getForeignRepositoryToolName() == ctn_YAOURT_TOOL)
       aur.start(Package::getForeignRepositoryToolNameParam() + " --nocolor -Ss " + searchString);
-    else if (Package::getForeignRepositoryToolName() == "trizen")
+    else if (Package::getForeignRepositoryToolName() == ctn_TRIZEN_TOOL)
         aur.start(Package::getForeignRepositoryToolNameParam() + " --nocolors -Ssa " + searchString);
-    else if (Package::getForeignRepositoryToolName() == "chaser")
+    else if (Package::getForeignRepositoryToolName() == ctn_CHASER_TOOL)
       aur.start(Package::getForeignRepositoryToolNameParam() + " search " + searchString);
     else
       aur.start(Package::getForeignRepositoryToolNameParam() + " -Ss " + searchString);
@@ -327,11 +327,11 @@ QByteArray UnixCommand::getOutdatedAURPackageList()
 {
   QByteArray result;
 
-  if (Package::getForeignRepositoryToolName() == "kcp")
+  if (Package::getForeignRepositoryToolName() == ctn_KCP_TOOL)
   {
     result = performAURCommand("-lO");
   }
-  else if (Package::getForeignRepositoryToolName() != "kcp")
+  else if (Package::getForeignRepositoryToolName() != ctn_KCP_TOOL)
   {
     result = performAURCommand("-Qua");
   }
@@ -348,11 +348,11 @@ QByteArray UnixCommand::getOutdatedAURPackageList()
 {
   QByteArray result;
 
-  if (Package::getForeignRepositoryToolName() == "kcp")
+  if (Package::getForeignRepositoryToolName() == ctn_KCP_TOOL)
   {
     result = performAURCommand("-lO");
   }
-  else if (Package::getForeignRepositoryToolName() != "kcp")
+  else if (Package::getForeignRepositoryToolName() != ctn_KCP_TOOL)
   {
     result = performAURCommand("-Qua");
   }

@@ -112,6 +112,15 @@ enum PackageStatus { ectn_INSTALLED, ectn_NON_INSTALLED, ectn_OUTDATED, ectn_NEW
 
 enum ViewOptions { ectn_ALL_PKGS, ectn_INSTALLED_PKGS, ectn_NON_INSTALLED_PKGS };
 
+//AUR HELPERS AND OTHER TOOLS
+const QString ctn_PACAUR_TOOL("pacaur");
+const QString ctn_YAOURT_TOOL("yaourt");
+const QString ctn_TRIZEN_TOOL("trizen");
+const QString ctn_NO_AUR_TOOL("DO_NOT_USE_AUR");
+
+const QString ctn_KCP_TOOL("kcp");
+const QString ctn_CHASER_TOOL("chaser");
+
 //TransactionDialog related
 const int ctn_RUN_IN_TERMINAL(328);
 

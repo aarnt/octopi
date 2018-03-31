@@ -1317,7 +1317,7 @@ void MainWindow::refreshTabInfo(bool clearContents, bool neverQuit)
     {
       PackageInfoData kcp;
 
-      if (Package::getForeignRepositoryToolName() == "kcp")
+      if (Package::getForeignRepositoryToolName() == ctn_KCP_TOOL)
       {
         QEventLoop el;
         QFuture<PackageInfoData> f;
@@ -1337,15 +1337,15 @@ void MainWindow::refreshTabInfo(bool clearContents, bool neverQuit)
       html += "<a id=\"" + anchorBegin + "\"></a>";            
       html += "<h2>" + pkgName + "</h2>";
 
-      if (Package::getForeignRepositoryToolName() != "kcp")
+      if (Package::getForeignRepositoryToolName() != ctn_KCP_TOOL)
       {
         html += "<a style=\"font-size:16px;\">" + pkgDescription + "</a>";
         html += "<table border=\"0\">";
         html += "<tr><th width=\"20%\"></th><th width=\"80%\"></th></tr>";
         html += "<tr><td>" + version + "</td><td>" + package->version + "</td></tr>";        
 
-        if (Package::getForeignRepositoryToolName() == "yaourt" ||
-            Package::getForeignRepositoryToolName() == "pacaur")
+        if (Package::getForeignRepositoryToolName() == ctn_YAOURT_TOOL ||
+            Package::getForeignRepositoryToolName() == ctn_PACAUR_TOOL)
         {
           QString url = Package::getAURUrl(pkgName);
           if (!url.isEmpty() && !url.contains("(null)"))
@@ -1354,7 +1354,7 @@ void MainWindow::refreshTabInfo(bool clearContents, bool neverQuit)
           }
         }
       }
-      else if (Package::getForeignRepositoryToolName() == "kcp")
+      else if (Package::getForeignRepositoryToolName() == ctn_KCP_TOOL)
       {
         html += "<a style=\"font-size:16px;\">" + kcp.description + "</a>";
         html += "<table border=\"0\">";

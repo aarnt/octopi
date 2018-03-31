@@ -128,7 +128,7 @@ void utils::ProcessWrapper::onSingleShot()
 
     if (UnixCommand::getLinuxDistro() == ectn_KAOS)
     {
-      if (out.contains("kcp", Qt::CaseInsensitive))
+      if (out.contains(ctn_KCP_TOOL, Qt::CaseInsensitive))
       {
         pAux.start("ps -o pid -C kcp");
         pAux.waitForFinished(-1);

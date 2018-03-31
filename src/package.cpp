@@ -354,10 +354,10 @@ QStringList *Package::getOutdatedAURStringList()
 {
   QStringList * res = new QStringList();
 
-  if (getForeignRepositoryToolName() != "yaourt" &&
-      getForeignRepositoryToolName() != "pacaur" &&
-      getForeignRepositoryToolName() != "trizen" &&
-      getForeignRepositoryToolName() != "kcp")
+  if (getForeignRepositoryToolName() != ctn_YAOURT_TOOL &&
+      getForeignRepositoryToolName() != ctn_PACAUR_TOOL &&
+      getForeignRepositoryToolName() != ctn_TRIZEN_TOOL &&
+      getForeignRepositoryToolName() != ctn_KCP_TOOL)
     return res;
 
   QString outPkgList = removeColorCodesFromStr(UnixCommand::getOutdatedAURPackageList());
@@ -375,14 +375,14 @@ QStringList *Package::getOutdatedAURStringList()
   {
     QStringList parts = packageTuple.split(' ', QString::SkipEmptyParts);
     {
-      if (getForeignRepositoryToolName() == "yaourt" ||
-          getForeignRepositoryToolName() == "trizen" ||
-          getForeignRepositoryToolName() == "kcp")
+      if (getForeignRepositoryToolName() == ctn_YAOURT_TOOL ||
+          getForeignRepositoryToolName() == ctn_TRIZEN_TOOL ||
+          getForeignRepositoryToolName() == ctn_KCP_TOOL)
       {
         QString pkgName;
         pkgName = parts[0];
 
-        if (getForeignRepositoryToolName() == "yaourt")
+        if (getForeignRepositoryToolName() == ctn_YAOURT_TOOL)
         {
           if (!pkgName.startsWith(StrConstants::getForeignRepositoryTargetPrefix()))
               continue;
@@ -405,7 +405,7 @@ QStringList *Package::getOutdatedAURStringList()
           }
         }
       }
-      else if (getForeignRepositoryToolName() == "pacaur")
+      else if (getForeignRepositoryToolName() == ctn_PACAUR_TOOL)
       {
         QString pkgName;
         if (parts.count() >= 2)
@@ -744,7 +744,7 @@ QString Package::getAURUrl(const QString &pkgName)
 {
   QString url="";
 
-  if (getForeignRepositoryToolName() != "kcp")
+  if (getForeignRepositoryToolName() != ctn_KCP_TOOL)
   {
     QString pkgInfo = UnixCommand::getAURUrl(pkgName);
     url = getURL(pkgInfo);
@@ -832,21 +832,21 @@ QList<PackageListData> * Package::getAURPackageList(const QString& searchString)
       //Chakra does not have popularity support in CCR
       QString aurTool = getForeignRepositoryToolName();
 
-      if (aurTool == "trizen")
+      if (aurTool == ctn_TRIZEN_TOOL)
       {
         if (!strVotes.first().isEmpty())
           pkgVotes = strVotes.first().replace('[', "").replace(']', "").replace('+', "").toInt();
         else
           pkgVotes = 0;
       }
-      else if (aurTool != "chaser" && aurTool != "pacaur" && strVotes.count() > 0)
+      else if (aurTool != ctn_CHASER_TOOL && aurTool != ctn_PACAUR_TOOL && strVotes.count() > 0)
       {
         if (!strVotes.first().isEmpty())
           pkgVotes = strVotes.first().replace('(', "").replace(')', "").toInt();
         else
           pkgVotes = 0;
       }
-      else if (aurTool == "pacaur" && strVotes.count() > 0)
+      else if (aurTool == ctn_PACAUR_TOOL && strVotes.count() > 0)
       {
         if (!strVotes.first().isEmpty())
         {
@@ -1552,10 +1552,10 @@ QHash<QString, QString> Package::getAUROutdatedPackagesNameVersion()
   QHash<QString, QString> hash;
 
   if(UnixCommand::getLinuxDistro() == ectn_CHAKRA ||
-      (getForeignRepositoryToolName() != "yaourt" &&
-      getForeignRepositoryToolName() != "pacaur" &&
-      getForeignRepositoryToolName() != "trizen" &&
-      getForeignRepositoryToolName() != "kcp"))
+      (getForeignRepositoryToolName() != ctn_YAOURT_TOOL &&
+      getForeignRepositoryToolName() != ctn_PACAUR_TOOL &&
+      getForeignRepositoryToolName() != ctn_TRIZEN_TOOL &&
+      getForeignRepositoryToolName() != ctn_KCP_TOOL))
   {
     return hash;
   }
@@ -1571,9 +1571,9 @@ QHash<QString, QString> Package::getAUROutdatedPackagesNameVersion()
 
   QStringList ignorePkgList = UnixCommand::getIgnorePkgsFromPacmanConf();
 
-  if ((getForeignRepositoryToolName() == "yaourt") ||
-      (getForeignRepositoryToolName() == "trizen") ||
-      (getForeignRepositoryToolName() == "kcp"))
+  if ((getForeignRepositoryToolName() == ctn_YAOURT_TOOL) ||
+      (getForeignRepositoryToolName() == ctn_TRIZEN_TOOL) ||
+      (getForeignRepositoryToolName() == ctn_KCP_TOOL))
   {
     foreach (QString line, listOfPkgs)
     {
@@ -1583,7 +1583,7 @@ QHash<QString, QString> Package::getAUROutdatedPackagesNameVersion()
         QStringList nameVersion = line.split(" ", QString::SkipEmptyParts);
         QString pkgName = nameVersion.at(0);
 
-        if (getForeignRepositoryToolName() == "kcp")
+        if (getForeignRepositoryToolName() == ctn_KCP_TOOL)
         {
           //Let's ignore the "IgnorePkg" list of packages...
           if (!ignorePkgList.contains(pkgName))
@@ -1620,7 +1620,7 @@ QHash<QString, QString> Package::getAUROutdatedPackagesNameVersion()
       }
     }
   }
-  else if (getForeignRepositoryToolName() == "pacaur")
+  else if (getForeignRepositoryToolName() == ctn_PACAUR_TOOL)
   {
     foreach (QString line, listOfPkgs)
     {

@@ -727,7 +727,7 @@ void MainWindow::doSyncDatabase()
   if (!doRemovePacmanLockFile()) return;
 
   //Let's synchronize kcp database too...
-  if (UnixCommand::getLinuxDistro() == ectn_KAOS && UnixCommand::hasTheExecutable("kcp") && !UnixCommand::isRootRunning())
+  if (UnixCommand::getLinuxDistro() == ectn_KAOS && UnixCommand::hasTheExecutable(ctn_KCP_TOOL) && !UnixCommand::isRootRunning())
     UnixCommand::execCommandAsNormalUser("kcp -u");
 
   m_commandExecuting = ectn_SYNC_DATABASE;
@@ -1235,8 +1235,8 @@ void MainWindow::doInstallAURPackage()
       return;
     }
 
-    if (Package::getForeignRepositoryToolName() != "pacaur" &&
-        Package::getForeignRepositoryToolName() != "kcp")
+    if (Package::getForeignRepositoryToolName() != ctn_PACAUR_TOOL &&
+        Package::getForeignRepositoryToolName() != ctn_KCP_TOOL)
       listOfTargets += StrConstants::getForeignRepositoryTargetPrefix() + package->name + " ";
     else
       listOfTargets += package->name + " ";
@@ -1318,7 +1318,7 @@ void MainWindow::doRemoveAURPackage()
  */
 void MainWindow::onAURToolChanged()
 {
-  if (SettingsManager::getAURToolName() == "DO_NOT_USE_AUR")
+  if (SettingsManager::getAURToolName() == ctn_NO_AUR_TOOL)
   {
     m_hasAURTool = false;
     m_actionSwitchToAURTool->setVisible(false);
@@ -1652,11 +1652,11 @@ void MainWindow::toggleSystemActions(const bool value)
     m_actionMenuMirrorCheck->setEnabled(value);
   }
 
-  if (isAURGroupSelected() && Package::getForeignRepositoryToolName() == "kcp")
+  if (isAURGroupSelected() && Package::getForeignRepositoryToolName() == ctn_KCP_TOOL)
   {
     ui->actionSyncPackages->setEnabled(true);
   }
-  else if (Package::getForeignRepositoryToolName() != "kcp")
+  else if (Package::getForeignRepositoryToolName() != ctn_KCP_TOOL)
   {
     ui->actionSyncPackages->setEnabled(value);
   }
@@ -1791,7 +1791,7 @@ void MainWindow::pacmanProcessFinished(int exitCode, QProcess::ExitStatus exitSt
           {
             metaBuildPackageList();
           }
-          else if (Package::getForeignRepositoryToolName() == "kcp")
+          else if (Package::getForeignRepositoryToolName() == ctn_KCP_TOOL)
           {
             metaBuildPackageList();
             delete m_pacmanExec;

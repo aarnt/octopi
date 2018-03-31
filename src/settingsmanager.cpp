@@ -276,19 +276,19 @@ QString SettingsManager::getAURTool()
   SettingsManager p_instance;
   QString ret = (p_instance.getSYSsettings()->value( ctn_KEY_AUR_TOOL, "")).toString();
 
-  if (ret == "DO_NOT_USE_AUR") return ret;
-  else if (ret == "pacaur")
+  if (ret == ctn_NO_AUR_TOOL) return ret;
+  else if (ret == ctn_PACAUR_TOOL)
   {
     if (getPacaurNoConfirmParam()) params += " --noconfirm ";
     if (getPacaurNoEditParam()) params += " --noedit ";
     ret += params;
   }
-  else if (ret == "yaourt")
+  else if (ret == ctn_YAOURT_TOOL)
   {
     if (getYaourtNoConfirmParam()) params += " --noconfirm ";
     ret += params;
   }
-  else if (ret == "trizen")
+  else if (ret == ctn_TRIZEN_TOOL)
   {
     if (getTrizenNoConfirmParam()) params += " --noconfirm ";
     if (getTrizenNoEditParam()) params += " --noedit ";
@@ -296,31 +296,31 @@ QString SettingsManager::getAURTool()
   }
   else if (ret.isEmpty() || !UnixCommand::hasTheExecutable(ret))
   {
-    if (UnixCommand::hasTheExecutable("trizen"))
+    if (UnixCommand::hasTheExecutable(ctn_TRIZEN_TOOL))
     {
       if (getTrizenNoConfirmParam()) params += " --noconfirm ";
       if (getTrizenNoEditParam()) params += " --noedit ";
 
-      p_instance.setAURTool("trizen");
+      p_instance.setAURTool(ctn_TRIZEN_TOOL);
       p_instance.getSYSsettings()->sync();
-      ret = "trizen" + params;
+      ret = ctn_TRIZEN_TOOL + params;
     }
-    else if (UnixCommand::hasTheExecutable("yaourt"))
+    else if (UnixCommand::hasTheExecutable(ctn_YAOURT_TOOL))
     {
       if (getYaourtNoConfirmParam()) params += " --noconfirm ";
 
-      p_instance.setAURTool("yaourt");
+      p_instance.setAURTool(ctn_YAOURT_TOOL);
       p_instance.getSYSsettings()->sync();
-      ret = "yaourt" + params;
+      ret = ctn_YAOURT_TOOL + params;
     }
-    else if (UnixCommand::hasTheExecutable("pacaur"))
+    else if (UnixCommand::hasTheExecutable(ctn_PACAUR_TOOL))
     {
       if (getPacaurNoConfirmParam()) params += " --noconfirm ";
       if (getPacaurNoEditParam()) params += " --noedit ";
 
-      p_instance.setAURTool("pacaur");
+      p_instance.setAURTool(ctn_PACAUR_TOOL);
       p_instance.getSYSsettings()->sync();
-      ret = "pacaur" + params;
+      ret = ctn_PACAUR_TOOL + params;
     }
   }
 
@@ -330,7 +330,7 @@ QString SettingsManager::getAURTool()
 QString SettingsManager::getAURToolName()
 {
   SettingsManager p_instance;
-  return p_instance.getSYSsettings()->value( ctn_KEY_AUR_TOOL, "DO_NOT_USE_AUR").toString();
+  return p_instance.getSYSsettings()->value( ctn_KEY_AUR_TOOL, ctn_NO_AUR_TOOL).toString();
 }
 
 /*
