@@ -234,6 +234,7 @@ void OptionsDialog::initAURTab()
   bool pacaurTool=false;
   bool yaourtTool=false;
   bool trizenTool=false;
+  bool pikaurTool=false;
 
   if ((UnixCommand::getLinuxDistro() != ectn_KAOS) &&
     (UnixCommand::getLinuxDistro() != ectn_CHAKRA))
@@ -244,9 +245,11 @@ void OptionsDialog::initAURTab()
       yaourtTool=true;
     if (UnixCommand::hasTheExecutable(ctn_TRIZEN_TOOL))
       trizenTool=true;
+    if (UnixCommand::hasTheExecutable(ctn_PIKAUR_TOOL))
+      pikaurTool=true;
   }
 
-  if (!pacaurTool && !yaourtTool && !trizenTool)
+  if (!pacaurTool && !yaourtTool && !trizenTool && !pikaurTool)
   {
     removeTabByName("AUR");
   }
@@ -269,8 +272,14 @@ void OptionsDialog::initAURTab()
       cbTrizenNoConfirm->setEnabled(false);
       cbTrizenNoEdit->setEnabled(false);
     }
+    if (!pikaurTool)
+    {
+      rbPikaur->setEnabled(false);
+      cbPikaurNoConfirm->setEnabled(false);
+      cbPikaurNoEdit->setEnabled(false);
+    }
 
-    if (!pacaurTool && !yaourtTool && !trizenTool)
+    if (!pacaurTool && !yaourtTool && !trizenTool && !pikaurTool)
     {
       cbSearchOutdatedAURPackages->setEnabled(false);
     }
@@ -281,6 +290,8 @@ void OptionsDialog::initAURTab()
       rbYaourt->setChecked(true);
     else if (SettingsManager::getAURToolName() == ctn_TRIZEN_TOOL)
       rbTrizen->setChecked(true);
+    else if (SettingsManager::getAURToolName() == ctn_PIKAUR_TOOL)
+      rbPikaur->setChecked(true);
     else if (SettingsManager::getAURToolName() == ctn_NO_AUR_TOOL)
     {
       rbDoNotUse->setChecked(true);
@@ -296,11 +307,14 @@ void OptionsDialog::initAURTab()
     connect(rbPacaur, SIGNAL(toggled(bool)), this, SLOT(onPacaurSelected(bool)));
     connect(rbYaourt, SIGNAL(toggled(bool)), this, SLOT(onYaourtSelected(bool)));
     connect(rbTrizen, SIGNAL(toggled(bool)), this, SLOT(onTrizenSelected(bool)));
+    connect(rbPikaur, SIGNAL(toggled(bool)), this, SLOT(onPikaurSelected(bool)));
 
     cbPacaurNoConfirm->setChecked(SettingsManager::getPacaurNoConfirmParam());
     cbPacaurNoEdit->setChecked(SettingsManager::getPacaurNoEditParam());
     cbTrizenNoConfirm->setChecked(SettingsManager::getTrizenNoConfirmParam());
     cbTrizenNoEdit->setChecked(SettingsManager::getTrizenNoEditParam());
+    cbPikaurNoConfirm->setChecked(SettingsManager::getPikaurNoConfirmParam());
+    cbPikaurNoEdit->setChecked(SettingsManager::getPikaurNoEditParam());
     cbYaourtNoConfirm->setChecked(SettingsManager::getYaourtNoConfirmParam());
     cbSearchOutdatedAURPackages->setChecked(SettingsManager::getSearchOutdatedAURPackages());
   }    
@@ -558,6 +572,11 @@ void OptionsDialog::accept(){
       SettingsManager::setAURTool(ctn_TRIZEN_TOOL);
       AURHasChanged = true;
     }
+    else if (rbPikaur->isChecked() && SettingsManager::getAURToolName() != ctn_PIKAUR_TOOL)
+    {
+      SettingsManager::setAURTool(ctn_PIKAUR_TOOL);
+      AURHasChanged = true;
+    }
     else if (rbDoNotUse->isChecked() && SettingsManager::getAURToolName() != ctn_NO_AUR_TOOL)
     {
       SettingsManager::setAURTool(ctn_NO_AUR_TOOL);
@@ -587,6 +606,16 @@ void OptionsDialog::accept(){
     if (cbTrizenNoEdit->isChecked() != SettingsManager::getTrizenNoEditParam())
     {
       SettingsManager::setTrizenNoEditParam(cbTrizenNoEdit->isChecked());
+      AURHasChanged = true;
+    }
+    if (cbPikaurNoConfirm->isChecked() != SettingsManager::getPikaurNoConfirmParam())
+    {
+      SettingsManager::setPikaurNoConfirmParam(cbPikaurNoConfirm->isChecked());
+      AURHasChanged = true;
+    }
+    if (cbPikaurNoEdit->isChecked() != SettingsManager::getPikaurNoEditParam())
+    {
+      SettingsManager::setPikaurNoEditParam(cbPikaurNoEdit->isChecked());
       AURHasChanged = true;
     }
 
@@ -739,6 +768,14 @@ void OptionsDialog::onYaourtSelected(bool checked)
  * Whenever user selects the Trizen tool
  */
 void OptionsDialog::onTrizenSelected(bool checked)
+{
+  if (checked) cbSearchOutdatedAURPackages->setEnabled(true);
+}
+
+/*
+ * Whenever user selects the Pikaur tool
+ */
+void OptionsDialog::onPikaurSelected(bool checked)
 {
   if (checked) cbSearchOutdatedAURPackages->setEnabled(true);
 }

@@ -342,6 +342,13 @@ QString Package::removeColorCodesFromStr(const QString &str)
   ret = ret.remove("[0m");
   ret = ret.remove("[1m");
   ret = ret.remove("\u001B");
+  ret = ret.remove("[030m");
+  ret = ret.remove("[031m");
+  ret = ret.remove("[032m");
+  ret = ret.remove("[033m");
+  ret = ret.remove("[034m");
+  ret = ret.remove("[035m");
+  ret = ret.remove("[036m");
 
   return ret;
 }
@@ -357,6 +364,7 @@ QStringList *Package::getOutdatedAURStringList()
   if (getForeignRepositoryToolName() != ctn_YAOURT_TOOL &&
       getForeignRepositoryToolName() != ctn_PACAUR_TOOL &&
       getForeignRepositoryToolName() != ctn_TRIZEN_TOOL &&
+      getForeignRepositoryToolName() != ctn_PIKAUR_TOOL &&
       getForeignRepositoryToolName() != ctn_KCP_TOOL)
     return res;
 
@@ -377,6 +385,7 @@ QStringList *Package::getOutdatedAURStringList()
     {
       if (getForeignRepositoryToolName() == ctn_YAOURT_TOOL ||
           getForeignRepositoryToolName() == ctn_TRIZEN_TOOL ||
+          getForeignRepositoryToolName() == ctn_PIKAUR_TOOL ||
           getForeignRepositoryToolName() == ctn_KCP_TOOL)
       {
         QString pkgName;
@@ -771,7 +780,7 @@ QList<PackageListData> * Package::getAURPackageList(const QString& searchString)
   if (UnixCommand::getLinuxDistro() != ectn_KAOS && searchString.isEmpty())
     return res;
 
-  QString pkgList = UnixCommand::getAURPackageList(searchString);
+  QString pkgList = removeColorCodesFromStr(UnixCommand::getAURPackageList(searchString));
   QStringList packageTuples = pkgList.split(QRegularExpression("\\n"), QString::SkipEmptyParts);
 
   pkgDescription = "";
@@ -839,14 +848,14 @@ QList<PackageListData> * Package::getAURPackageList(const QString& searchString)
         else
           pkgVotes = 0;
       }
-      else if (aurTool != ctn_CHASER_TOOL && aurTool != ctn_PACAUR_TOOL && strVotes.count() > 0)
+      else if (aurTool != ctn_CHASER_TOOL && aurTool != ctn_PACAUR_TOOL && aurTool != ctn_PIKAUR_TOOL && strVotes.count() > 0)
       {
         if (!strVotes.first().isEmpty())
           pkgVotes = strVotes.first().replace('(', "").replace(')', "").toInt();
         else
           pkgVotes = 0;
       }
-      else if (aurTool == ctn_PACAUR_TOOL && strVotes.count() > 0)
+      else if ( (aurTool == ctn_PACAUR_TOOL || aurTool == ctn_PIKAUR_TOOL) && strVotes.count() > 0)
       {
         if (!strVotes.first().isEmpty())
         {
@@ -857,7 +866,47 @@ QList<PackageListData> * Package::getAURPackageList(const QString& searchString)
         else pkgVotes = 0;
       }
 
-      if(packageTuple.indexOf("[installed]") != -1)
+      if (aurTool == ctn_PIKAUR_TOOL)
+      {
+        if(packageTuple.indexOf(" [") != -1)
+        {
+          if (packageTuple.indexOf(": ") != -1)
+          {
+            int i = packageTuple.indexOf(": ");
+            pkgOutVersion = packageTuple.mid(i+2);
+            pkgOutVersion = pkgOutVersion.remove(QRegularExpression("\\].*")).trimmed();
+
+            //Compare actual and new version
+            char const * pkgOutVersion_temp = pkgOutVersion.toStdString().c_str();
+            char const * pkgVersion_temp = pkgVersion.toStdString().c_str();
+            int pkgIsUptodate = alpm_pkg_vercmp(pkgVersion_temp, pkgOutVersion_temp);
+            if (pkgIsUptodate == -1)
+            {
+              //This is an outdated installed package
+              pkgStatus = ectn_FOREIGN_OUTDATED;
+            }
+            else
+            {
+              //This is an installed package
+              pkgStatus = ectn_FOREIGN;
+              pkgOutVersion = "";
+            }
+          }
+          else
+          {
+            //This is an installed package
+            pkgStatus = ectn_FOREIGN;
+            pkgOutVersion = "";
+          }
+        }
+        else
+        {
+          //This is an uninstalled package
+          pkgStatus = ectn_NON_INSTALLED;
+          pkgOutVersion = "";
+        }
+      }
+      else if(packageTuple.indexOf("[installed]") != -1)
       {
         //This is an installed package
         pkgStatus = ectn_FOREIGN;
@@ -1555,6 +1604,7 @@ QHash<QString, QString> Package::getAUROutdatedPackagesNameVersion()
       (getForeignRepositoryToolName() != ctn_YAOURT_TOOL &&
       getForeignRepositoryToolName() != ctn_PACAUR_TOOL &&
       getForeignRepositoryToolName() != ctn_TRIZEN_TOOL &&
+      getForeignRepositoryToolName() != ctn_PIKAUR_TOOL &&
       getForeignRepositoryToolName() != ctn_KCP_TOOL))
   {
     return hash;
@@ -1573,6 +1623,7 @@ QHash<QString, QString> Package::getAUROutdatedPackagesNameVersion()
 
   if ((getForeignRepositoryToolName() == ctn_YAOURT_TOOL) ||
       (getForeignRepositoryToolName() == ctn_TRIZEN_TOOL) ||
+      (getForeignRepositoryToolName() == ctn_PIKAUR_TOOL) ||
       (getForeignRepositoryToolName() == ctn_KCP_TOOL))
   {
     foreach (QString line, listOfPkgs)
