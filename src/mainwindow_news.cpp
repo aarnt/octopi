@@ -49,6 +49,13 @@ void MainWindow::refreshDistroNews(bool searchForLatestNews, bool gotoNewsTab)
 
   if (searchForLatestNews)
   {
+    if (!isInternetAvailable())
+    {
+      ui->actionGetNews->setEnabled(true);
+      ui->twProperties->setCurrentIndex(ctn_TABINDEX_NEWS);
+      return;
+    }
+
     LinuxDistro distro = UnixCommand::getLinuxDistro();
 
     if (gotoNewsTab)

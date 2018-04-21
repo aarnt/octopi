@@ -120,6 +120,8 @@ void MainWindow::keyPressEvent(QKeyEvent* ke)
     {
       if (UnixCommand::getLinuxDistro() == ectn_KAOS && ui->actionUseInstantSearch->isChecked()) return;
 
+      if (!isInternetAvailable()) return;
+
       ui->twGroups->setEnabled(false);
 
       QFuture<QList<PackageListData> *> f;

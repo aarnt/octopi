@@ -19,6 +19,7 @@
   Name of AUR package in Info tab act as link to its site at https://aur.archlinux.org.
   Find line edit is always focused when the program starts.
   Prevent user to install partial upgrades in his system (only some of the outdated packages).
+  BugFix: Exec internet tests before some commands.
   BugFix: Parser was not outputing repository errors when syncinc.
   BugFix: repoeditor now runs as normal user and asks for root password on save.
   BugFix: If Notifier hid Octopi and was closed, Octopi's window would stay hidden.
