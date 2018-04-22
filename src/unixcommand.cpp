@@ -597,10 +597,10 @@ bool UnixCommand::hasInternetConnection()
   }
 
   //It seems to be alright, but let's make a ping to see the result
-  /*if (result == true)
+  if (result == true)
   {
     result = UnixCommand::doInternetPingTest();
-  }*/
+  }
 
   return result;
 }

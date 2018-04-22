@@ -672,6 +672,23 @@ void MainWindow::onPressDelete()
 }
 
 /*
+ * Checks if Internet connection is up/down
+ */
+bool MainWindow::isInternetAvailable()
+{
+  bool res=true;
+
+  //Test if Internet access exists
+  if (!UnixCommand::hasInternetConnection())
+  {
+    QMessageBox::critical(this, StrConstants::getError(), StrConstants::getInternetUnavailableError());
+    res=false;
+  }
+
+  return res;
+}
+
+/*
  * Checks if some SU utility is available...
  * Returns false if not!
  */
@@ -726,6 +743,8 @@ void MainWindow::doSyncDatabase()
 {
   //if (!doRemovePacmanLockFile()) return;
   if (!isSUAvailable()) return;
+
+  if (!isInternetAvailable()) return;
 
   //Let's synchronize kcp database too...
   if (UnixCommand::getLinuxDistro() == ectn_KAOS && UnixCommand::hasTheExecutable(ctn_KCP_TOOL) && !UnixCommand::isRootRunning())
@@ -842,6 +861,8 @@ void MainWindow::doSystemUpgrade(SystemUpgradeOptions systemUpgradeOptions)
   }
 
   if (!isSUAvailable()) return;
+
+  if(!isInternetAvailable()) return;
 
   qApp->processEvents();
   int res;
@@ -1683,6 +1704,8 @@ void MainWindow::toggleSystemActions(const bool value)
  */
 void MainWindow::commitTransaction()
 {
+  if (!isInternetAvailable()) return;
+
   //Are there any remove actions to be commited?
   if(getRemoveTransactionParentItem()->rowCount() > 0 && getInstallTransactionParentItem()->rowCount() > 0)
   {

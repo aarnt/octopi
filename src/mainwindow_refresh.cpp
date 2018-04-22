@@ -201,6 +201,9 @@ void MainWindow::AURToolSelected()
   if (UnixCommand::getLinuxDistro() != ectn_CHAKRA) savePackageColumnWidths();
   refreshTabInfo(true);
   refreshTabFiles(true);
+  m_progressWidget->setRange(0, 100);
+  m_progressWidget->setValue(0);
+  m_progressWidget->show();
 
   //Here we are changing view to list AUR packages ONLY
   if (m_actionSwitchToAURTool->isChecked())
@@ -1054,6 +1057,7 @@ void MainWindow::buildAURPackageList()
 
   //Refresh statusbar widget
   refreshStatusBar();
+  tvPackagesSelectionChanged(QItemSelection(),QItemSelection());
 
   //Refresh application icon
   refreshAppIcon();
