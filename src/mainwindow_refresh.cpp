@@ -1057,6 +1057,7 @@ void MainWindow::buildAURPackageList()
 
   //Refresh statusbar widget
   refreshStatusBar();
+  tvPackagesSelectionChanged(QItemSelection(),QItemSelection());
 
   //Refresh application icon
   refreshAppIcon();
