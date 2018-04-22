@@ -780,7 +780,7 @@ QList<PackageListData> * Package::getAURPackageList(const QString& searchString)
   if (UnixCommand::getLinuxDistro() != ectn_KAOS && searchString.isEmpty())
     return res;
 
-  QString pkgList = removeColorCodesFromStr(UnixCommand::getAURPackageList(searchString));
+  QString pkgList = UnixCommand::getAURPackageList(searchString);
   QStringList packageTuples = pkgList.split(QRegularExpression("\\n"), QString::SkipEmptyParts);
 
   pkgDescription = "";
