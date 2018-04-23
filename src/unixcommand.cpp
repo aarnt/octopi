@@ -716,6 +716,19 @@ QByteArray UnixCommand::getCommandOutput(const QString &pCommand)
 }
 
 /*
+ * Runs a command with a QProcess blocking object and returns its output!
+ */
+QByteArray UnixCommand::getCommandOutput(const QString &pCommand, const QString fileName)
+{
+  QProcess p;
+
+  p.setStandardInputFile(fileName);
+  p.start(pCommand);
+  p.waitForFinished(-1);
+  return p.readAllStandardOutput();
+}
+
+/*
  * Given a filename, checks if it is a text file
  */
 bool UnixCommand::isTextFile(const QString& fileName)

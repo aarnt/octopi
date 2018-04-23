@@ -1680,9 +1680,9 @@ void MainWindow::launchCacheCleaner()
 /*
  * Makes a gist with a bunch of system file contents.
  */
-void MainWindow::gistSysInfo()
+void MainWindow::ptpbSysInfo()
 {
-  if (!UnixCommand::hasTheExecutable("gist") ||
+  if (!UnixCommand::hasTheExecutable("curl") ||
       m_commandExecuting != ectn_NONE) return;
 
   CPUIntensiveComputing *cic = new CPUIntensiveComputing(this);
@@ -1841,12 +1841,13 @@ void MainWindow::gistSysInfo()
 
   enableTransactionActions();
 
+
   //Now we gist the temp file just created!
-  QString gist = UnixCommand::getCommandOutput("gist " + tempFile->fileName());
+  QString ptpb = UnixCommand::getCommandOutput("curl -F c=@- https://ptpb.pw/?u=1", tempFile->fileName());
   delete cic;
 
   QString distroPrettyName = UnixCommand::getLinuxDistroPrettyName();
-  QMessageBox::information(this, distroPrettyName + " SysInfo", Package::makeURLClickable(gist), QMessageBox::Ok);
+  QMessageBox::information(this, distroPrettyName + " SysInfo", Package::makeURLClickable(ptpb), QMessageBox::Ok);
 }
 
 /*
