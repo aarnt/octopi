@@ -73,7 +73,7 @@ void MainWindow::refreshMenuTools()
   static bool connectorPlv=false;
   static bool connectorRepo=false;
   static bool connectorCleaner=false;
-  static bool connectorGist=false;
+  static bool connectorPtpb=false;
 
   if (UnixCommand::hasTheExecutable("mirror-check"))
   {
@@ -128,19 +128,19 @@ void MainWindow::refreshMenuTools()
   else
     ui->actionCacheCleaner->setVisible(false);
 
-  if (UnixCommand::hasTheExecutable("gist"))
+  if (UnixCommand::hasTheExecutable("curl"))
   {
     ui->menuTools->menuAction()->setVisible(true);
     if (ui->menuTools->actions().indexOf(m_actionSysInfo) == -1)
     {
       ui->menuTools->addSeparator();
-      m_actionSysInfo->setText("SysInfo → gist.github.com");
+      m_actionSysInfo->setText("SysInfo → ptpb.pw");
       ui->menuTools->addAction(m_actionSysInfo);
 
-      if (!connectorGist)
+      if (!connectorPtpb)
       {
-        connect(m_actionSysInfo, SIGNAL(triggered()), this, SLOT(gistSysInfo()));
-        connectorGist=true;
+        connect(m_actionSysInfo, SIGNAL(triggered()), this, SLOT(ptpbSysInfo()));
+        connectorPtpb=true;
       }
     }
   }
