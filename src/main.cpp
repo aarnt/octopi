@@ -31,6 +31,8 @@
 
 int main(int argc, char *argv[])
 {
+  QApplication::setAttribute(Qt::AA_UseHighDpiPixmaps);
+
   ArgumentList *argList = new ArgumentList(argc, argv);
   QString packagesToInstall;
   QString arg;
