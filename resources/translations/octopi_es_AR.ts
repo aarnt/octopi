@@ -405,7 +405,7 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="115"/>
         <source>Ctrl+P or &apos;File/System upgrade&apos; to make a full system upgrade (pacman -Su)</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+P o &apos;Archivo/Actualización del Sistema&apos; para realizar una actualización completa del sistema (pacman -Su)</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="117"/>
@@ -480,12 +480,12 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="150"/>
         <source>F10 to maximize/demaximize package list view</source>
-        <translation>F10 para maximizar / minimizar lista de paquetes vista</translation>
+        <translation>F10 para maximizar / minimizar la vista de la lista de paquetes</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="152"/>
         <source>F11 to maximize/demaximize Tab&apos;s view</source>
-        <translation type="unfinished"/>
+        <translation>F11 para maximizar/minimizar la vista de la Pestañas</translation>
     </message>
 </context>
 <context>
@@ -503,17 +503,17 @@
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="50"/>
         <source>Show package numbers in output tab</source>
-        <translation type="unfinished"/>
+        <translation>Mostrar los números de paquete en la pestaña de salida</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="63"/>
         <source>Show stop transaction button at statusbar</source>
-        <translation type="unfinished"/>
+        <translation>Mostrar el botón de detener transacción en la barra de estado</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="100"/>
         <source>Select the AUR tool Octopi should use</source>
-        <translation type="unfinished"/>
+        <translation>Seleccioná la herramienta de AUR que debería usar Octopi</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="220"/>
@@ -523,48 +523,48 @@
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="233"/>
         <source>Search for outdated AUR packages</source>
-        <translation type="unfinished"/>
+        <translation>Buscar paquetes de AUR antiguos</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="242"/>
         <location filename="Projects/octopi/src/optionsdialog.cpp" line="203"/>
         <source>Backend</source>
-        <translation type="unfinished"/>
+        <translation>Backend</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="308"/>
         <source>Select the backend Octopi should use</source>
-        <translation type="unfinished"/>
+        <translation>Seleccioná el backend que debería usar Octopi</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="332"/>
         <source>Icon</source>
-        <translation type="unfinished"/>
+        <translation>Icono</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="395"/>
         <source>Red icon</source>
-        <translation type="unfinished"/>
+        <translation>Icono rojo</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="473"/>
         <source>Yellow icon</source>
-        <translation type="unfinished"/>
+        <translation>Icono amarillo</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="536"/>
         <source>Green icon</source>
-        <translation type="unfinished"/>
+        <translation>Icono verde</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="599"/>
         <source>Busy icon</source>
-        <translation type="unfinished"/>
+        <translation>Icono ocupado</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="652"/>
         <source>Use default notification icons</source>
-        <translation type="unfinished"/>
+        <translation>Usar los iconos de notificación por defecto</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="663"/>
@@ -574,12 +574,12 @@
         <location filename="Projects/octopi/src/optionsdialog.cpp" line="365"/>
         <location filename="Projects/octopi/src/optionsdialog.cpp" line="366"/>
         <source>SU tool</source>
-        <translation type="unfinished"/>
+        <translation>Herramienta SU</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="685"/>
         <source>Select the SU tool Octopi should use</source>
-        <translation type="unfinished"/>
+        <translation>Seleccioná la herramienta SU que debería usar Octopi</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="709"/>
@@ -592,12 +592,12 @@
         <location filename="Projects/octopi/src/optionsdialog.cpp" line="75"/>
         <location filename="Projects/octopi/src/optionsdialog.cpp" line="458"/>
         <source>Terminal</source>
-        <translation type="unfinished"/>
+        <translation>Terminal</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="955"/>
         <source>Select the terminal Octopi should use</source>
-        <translation type="unfinished"/>
+        <translation>Seleccioná la terminal que debería usar Octopi</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/optionsdialog.cpp" line="127"/>
@@ -605,7 +605,7 @@
         <location filename="Projects/octopi/src/optionsdialog.cpp" line="159"/>
         <location filename="Projects/octopi/src/optionsdialog.cpp" line="175"/>
         <source>Open Image</source>
-        <translation type="unfinished"/>
+        <translation>Abrir Imagen</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/optionsdialog.cpp" line="127"/>
@@ -613,7 +613,7 @@
         <location filename="Projects/octopi/src/optionsdialog.cpp" line="159"/>
         <location filename="Projects/octopi/src/optionsdialog.cpp" line="175"/>
         <source>Image Files</source>
-        <translation type="unfinished"/>
+        <translation>Archivos de Imagen</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/optionsdialog.cpp" line="210"/>
@@ -667,7 +667,7 @@
         <location filename="Projects/octopi/src/strconstants.cpp" line="104"/>
         <source>PacBSD news</source>
         <oldsource>ArchBSD news</oldsource>
-        <translation type="unfinished"/>
+        <translation>Noticias de PacBSD</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="108"/>
@@ -847,7 +847,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="256"/>
         <source>Install Reason</source>
-        <translation type="unfinished"/>
+        <translation>Motivo de Instalación</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="260"/>
@@ -887,7 +887,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="288"/>
         <source>Partial updates are not supported!</source>
-        <translation type="unfinished"/>
+        <translation>¡No son soportadas actualizaciones parciales!</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="292"/>
@@ -1182,7 +1182,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="530"/>
         <source>Icon path information is incomplete.</source>
-        <translation type="unfinished"/>
+        <translation>Información de la ruta del icono está incompleta.</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="534"/>
@@ -1243,12 +1243,12 @@ Are you sure you want to open it?</source>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="579"/>
         <source>remove</source>
-        <translation>Eliminar</translation>
+        <translation>eliminar</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="583"/>
         <source>install</source>
-        <translation>Instalar</translation>
+        <translation>instalar</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="587"/>
