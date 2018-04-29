@@ -1390,7 +1390,12 @@ void MainWindow::maximizePropertiesTabWidget(bool pSaveSettings)
       if (tv)
         tv->scrollTo(tv->currentIndex());
     }
-
+#ifdef QTERMWIDGET
+    else if(ui->twProperties->currentIndex() == ctn_TABINDEX_TERMINAL)
+    {
+      m_console->setFocus();
+    }
+#endif
     if(pSaveSettings)
       saveSettings(ectn_NORMAL);
   }
