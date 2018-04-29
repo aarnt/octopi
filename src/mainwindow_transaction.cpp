@@ -1954,9 +1954,6 @@ void MainWindow::onCancelControlKey()
 {
   if (m_commandExecuting != ectn_NONE)
   {
-    m_progressWidget->setValue(0);
-    m_progressWidget->show();
-
     clearTransactionTreeView();
     enableTransactionActions();
 
