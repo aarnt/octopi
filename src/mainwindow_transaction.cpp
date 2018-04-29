@@ -33,6 +33,10 @@
 #include <iostream>
 #include <cassert>
 
+#ifdef QTERMWIDGET
+  #include "termwidget.h"
+#endif
+
 #include <QComboBox>
 #include <QProgressBar>
 #include <QMessageBox>
@@ -1765,6 +1769,10 @@ void MainWindow::pacmanProcessFinished(int exitCode, QProcess::ExitStatus exitSt
 {
   bool bRefreshGroups = true;
   m_progressWidget->close();
+
+  m_progressWidget->setValue(0);
+  m_progressWidget->show();
+
   if (SettingsManager::getShowStopTransaction()) m_toolButtonStopTransaction->setVisible(false);
   ui->twProperties->setTabText(ctn_TABINDEX_OUTPUT, StrConstants::getTabOutputName());
 
@@ -1826,6 +1834,7 @@ void MainWindow::pacmanProcessFinished(int exitCode, QProcess::ExitStatus exitSt
             delete m_pacmanExec;
             m_commandExecuting = ectn_NONE;
             enableTransactionActions();
+            m_progressWidget->close();
             return;
           }
         }
@@ -1858,6 +1867,7 @@ void MainWindow::pacmanProcessFinished(int exitCode, QProcess::ExitStatus exitSt
       {
         m_commandExecuting = ectn_NONE;
         doSystemUpgrade();
+        m_progressWidget->close();
         return;
       }
     }
@@ -1872,6 +1882,7 @@ void MainWindow::pacmanProcessFinished(int exitCode, QProcess::ExitStatus exitSt
     if (res == QMessageBox::Yes)
     {
       m_pacmanExec->runLastestCommandInTerminal();
+      m_progressWidget->close();
       return;
     }
   }
@@ -1893,6 +1904,72 @@ void MainWindow::pacmanProcessFinished(int exitCode, QProcess::ExitStatus exitSt
 
   if (isPackageTreeViewVisible() && !m_leFilterPackage->hasFocus()) m_leFilterPackage->setFocus();
 }
+
+#ifdef QTERMWIDGET  //BEGIN OF QTERMWIDGET CODE
+
+/*
+ * THIS IS THE COUNTERPART OF "pacmanProcessFinished" FOR QTERMWIDGET AUR COMMANDS
+ * Whenever the terminal transaction has finished, we can update the UI
+ */
+void MainWindow::onPressAnyKeyToContinue()
+{
+  m_console->enter();
+  m_console->execute("clear");
+  m_console->setFocus();
+
+  if (m_commandExecuting == ectn_NONE) return;
+
+  m_progressWidget->setValue(0);
+  m_progressWidget->show();
+
+  bool bRefreshGroups = true;
+  clearTransactionTreeView();
+  metaBuildPackageList();
+
+  if (isAURGroupSelected())
+  {
+    toggleSystemActions(false);
+    bRefreshGroups = false;
+  }
+
+  if (m_commandExecuting != ectn_MIRROR_CHECK && bRefreshGroups)
+    refreshGroupsWidget();
+
+  refreshMenuTools(); //Maybe some of octopi tools were added/removed...
+
+  enableTransactionActions();
+
+  if (m_pacmanExec == nullptr)
+    delete m_pacmanExec;
+
+  m_commandExecuting = ectn_NONE;
+  UnixCommand::removeTemporaryFiles();
+  m_console->clear();
+}
+
+/*
+ * Whenever a user strikes Ctrl+C, Ctrl+D or Ctrl+Z in the terminal
+ */
+void MainWindow::onCancelControlKey()
+{
+  if (m_commandExecuting != ectn_NONE)
+  {
+    m_progressWidget->setValue(0);
+    m_progressWidget->show();
+
+    clearTransactionTreeView();
+    enableTransactionActions();
+
+    if (m_pacmanExec == nullptr)
+      delete m_pacmanExec;
+
+    m_pacmanExec = nullptr;
+    m_commandExecuting = ectn_NONE;
+    UnixCommand::removeTemporaryFiles();
+  }
+}
+
+#endif  //END OF QTERMWIDGET CODE
 
 /*
  * A helper method which writes the given string to OutputTab's textbrowser
