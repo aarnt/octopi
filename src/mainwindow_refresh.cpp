@@ -1717,6 +1717,7 @@ void MainWindow::lightPackageFilter()
   {
     if (m_leFilterPackage->text() == "")
     {
+      CPUIntensiveComputing cic;
       m_packageModel->applyFilter("");
       reapplyPackageFilter();
     }
