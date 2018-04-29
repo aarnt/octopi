@@ -36,6 +36,9 @@ private:
   int m_numberOfPackages;
   //This variable counts the package number being downloaded/removed
   int m_packageCounter;
+  //This variable counts the number of "error: failed retrieving file" strings
+  int m_errorRetrievingFileCounter;
+
   //This flag holds TRUE if the parser is parsing a package removal operation
   bool m_parsingAPackageChange;
   UnixCommand *m_unixCommand;
