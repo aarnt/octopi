@@ -41,6 +41,7 @@ PacmanExec::PacmanExec(QObject *parent) : QObject(parent)
   m_processWasCanceled = false;
   m_numberOfPackages = 0;
   m_packageCounter = 0;
+  m_errorRetrievingFileCounter = 0;
   m_parsingAPackageChange = false;
 
   QObject::connect(m_unixCommand, SIGNAL( started() ), this, SLOT( onStarted()));
@@ -545,6 +546,12 @@ void PacmanExec::prepareTextToPrint(QString str, TreatString ts, TreatURLLinks t
         {
           m_parsingAPackageChange = true;
         }
+      }
+
+      if (newStr.contains("error: failed retrieving file"))
+      {
+        m_errorRetrievingFileCounter++;
+        if (m_errorRetrievingFileCounter > 50) return;
       }
 
       newStr = "<b><font color=\"#E55451\">" + newStr + "&nbsp;</font></b>"; //RED

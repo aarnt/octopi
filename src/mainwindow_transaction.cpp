@@ -718,8 +718,7 @@ bool MainWindow::isSUAvailable()
  */
 void MainWindow::doMirrorCheck()
 {
-  if (m_commandExecuting != ectn_NONE ||
-      !UnixCommand::hasInternetConnection()) return;
+  if (m_commandExecuting != ectn_NONE) return;
 
   m_commandExecuting = ectn_MIRROR_CHECK;
   disableTransactionActions();
