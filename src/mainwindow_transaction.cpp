@@ -1899,7 +1899,7 @@ void MainWindow::pacmanProcessFinished(int exitCode, QProcess::ExitStatus exitSt
   refreshMenuTools(); //Maybe some of octopi tools were added/removed...
 
   delete m_pacmanExec;
-
+  if (m_progressWidget->isVisible()) m_progressWidget->close();
   m_commandExecuting = ectn_NONE;
 
   if (isPackageTreeViewVisible() && !m_leFilterPackage->hasFocus()) m_leFilterPackage->setFocus();
