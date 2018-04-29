@@ -40,6 +40,7 @@
 #include <QTextBrowser>
 #include <QFutureWatcher>
 #include <QClipboard>
+#include <QProgressBar>
 #include <QtConcurrent/QtConcurrentRun>
 
 /*
@@ -121,6 +122,10 @@ void MainWindow::keyPressEvent(QKeyEvent* ke)
       if (UnixCommand::getLinuxDistro() == ectn_KAOS && ui->actionUseInstantSearch->isChecked()) return;
 
       if (!isInternetAvailable()) return;
+
+      m_progressWidget->setMaximum(100);
+      m_progressWidget->setValue(0);
+      m_progressWidget->show();
 
       ui->twGroups->setEnabled(false);
 

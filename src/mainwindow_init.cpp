@@ -674,61 +674,6 @@ void MainWindow::onExecCommandInTabTerminal(QString command)
   m_console->setFocus();
 }
 
-/*
- * Whenever the terminal transaction has finished, we can update the UI
- */
-void MainWindow::onPressAnyKeyToContinue()
-{
-  m_console->enter();
-  m_console->execute("clear");
-  m_console->setFocus();
-
-  if (m_commandExecuting == ectn_NONE) return;
-
-  bool bRefreshGroups = true;
-  clearTransactionTreeView();
-  metaBuildPackageList();
-
-  if (isAURGroupSelected())
-  {
-    toggleSystemActions(false);
-    bRefreshGroups = false;
-  }
-
-  if (m_commandExecuting != ectn_MIRROR_CHECK && bRefreshGroups)
-    refreshGroupsWidget();
-
-  refreshMenuTools(); //Maybe some of octopi tools were added/removed...
-
-  enableTransactionActions();
-
-  if (m_pacmanExec == nullptr)
-    delete m_pacmanExec;
-
-  m_commandExecuting = ectn_NONE;
-  UnixCommand::removeTemporaryFiles();
-  m_console->clear();
-}
-
-/*
- * Whenever a user strikes Ctrl+C, Ctrl+D or Ctrl+Z in the terminal
- */
-void MainWindow::onCancelControlKey()
-{
-  if (m_commandExecuting != ectn_NONE)
-  {
-    clearTransactionTreeView();
-    enableTransactionActions();
-
-    if (m_pacmanExec == nullptr)
-      delete m_pacmanExec;
-
-    m_pacmanExec = nullptr;
-    m_commandExecuting = ectn_NONE;
-    UnixCommand::removeTemporaryFiles();
-  }
-}
-
 #endif  //END OF QTERMWIDGET CODE
 
 /*
