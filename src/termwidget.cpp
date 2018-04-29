@@ -92,4 +92,8 @@ void TermWidget::onKeyPressed(QKeyEvent *ke)
   {
     emit onCancelControlKey();
   }
+  else if (ke->key() == Qt::Key_F11)
+  {
+    emit onKeyF11();
+  }
 }

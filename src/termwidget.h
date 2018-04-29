@@ -44,6 +44,7 @@ signals:
   void onPressAnyKeyToContinue();
   void onCancelControlKey();
   void onKeyQuit();
+  void onKeyF11();
 };
 
 #endif // TERMWIDGET_H

@@ -446,6 +446,7 @@ private slots:
 
   void hideGroupsWidget(bool pSaveSettings = true);
   void maximizePackagesTreeView(bool pSaveSettings = true);
+  void maximizeTerminalTab();
   void maximizePropertiesTabWidget(bool pSaveSettings = true);
   void outputOutdatedPackageList();
   void outputOutdatedAURPackageList();

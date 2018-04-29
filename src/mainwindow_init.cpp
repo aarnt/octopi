@@ -625,6 +625,7 @@ void MainWindow::initTabTerminal()
   m_console = new TermWidget(this);
   connect(m_console, SIGNAL(finished()), this, SLOT(initTabTerminal()));
   connect(m_console, SIGNAL(onKeyQuit()), this, SLOT(close()));
+  connect(m_console, SIGNAL(onKeyF11()), this, SLOT(maximizeTerminalTab()));
 
   gridLayoutX->addWidget(m_console, 0, 0, 1, 1);
   ui->twProperties->removeTab(ctn_TABINDEX_TERMINAL);

@@ -1352,6 +1352,14 @@ void MainWindow::maximizePackagesTreeView(bool pSaveSettings)
 }
 
 /*
+ * Maximizes/de-maximizes terminal tab
+ */
+void MainWindow::maximizeTerminalTab()
+{
+  maximizePropertiesTabWidget(false);
+}
+
+/*
  * Maximizes/de-maximizes the lower pane (tabwidget)
  */
 void MainWindow::maximizePropertiesTabWidget(bool pSaveSettings)
