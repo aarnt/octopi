@@ -77,6 +77,8 @@ TRANSLATIONS += resources/translations/octopi_repoeditor_pt_BR.ts \
     resources/translations/octopi_repoeditor_da.ts \
     resources/translations/octopi_repoeditor_cs.ts \
     resources/translations/octopi_repoeditor_he.ts \
+    resources/translations/octopi_repoeditor_hi.ts \
+    resources/translations/octopi_repoeditor_hi_IN.ts \
     resources/translations/octopi_repoeditor_lt.ts \
     resources/translations/octopi_repoeditor_nb.ts \
     resources/translations/octopi_repoeditor_sr@latin.ts \

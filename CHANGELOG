@@ -16,6 +16,7 @@
 	show "Download Size" in package list.
   Added link support in all Info tab package lists.
   Added option to upgrade outdated foreign packages from Octopi Notifier.
+  Added Hindi translation (thanks to Panwar108).
   Name of AUR package in Info tab act as link to its site at https://aur.archlinux.org.
   Find line edit is always focused when the program starts.
   Prevent user to install partial upgrades in his system (only some of the outdated packages).
