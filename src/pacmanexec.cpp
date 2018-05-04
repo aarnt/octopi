@@ -1132,7 +1132,7 @@ void PacmanExec::doAURUpgrade(const QString &listOfPackages)
   }
   else if (Package::getForeignRepositoryToolName() == ctn_PIKAUR_TOOL)
   {
-    m_lastCommandList.append(Package::getForeignRepositoryToolNameParam() + " -S --aur --color=never " + listOfPackages + ";");
+    m_lastCommandList.append(Package::getForeignRepositoryToolNameParam() + " -S --aur " + listOfPackages + ";");
   }
 
   m_lastCommandList.append("echo -e;");
