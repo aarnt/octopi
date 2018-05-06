@@ -1698,6 +1698,8 @@ void MainWindow::ptpbSysInfo()
   if (!UnixCommand::hasTheExecutable("curl") ||
       m_commandExecuting != ectn_NONE) return;
 
+  if (!isInternetAvailable()) return;
+
   CPUIntensiveComputing *cic = new CPUIntensiveComputing(this);
 
   disableTransactionActions();
