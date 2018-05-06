@@ -179,7 +179,7 @@ void MainWindow::pacmanHelperTimerTimeout()
 {
   static bool firstTime=true;
 
-  if (!UnixCommand::hasInternetConnection() || m_commandExecuting != ectn_NONE) return;
+  if (/*!UnixCommand::hasInternetConnection() ||*/ m_commandExecuting != ectn_NONE) return;
 
   if (firstTime)
   {
@@ -337,6 +337,8 @@ bool MainWindow::_isSUAvailable()
  */
 void MainWindow::doSystemUpgrade()
 {
+  if (!isInternetAvailable()) return;
+
   //If, for whatever reason, the pacman db is locked, let's ask for lock removal
   if (PacmanExec::isDatabaseLocked())
   {
@@ -617,10 +619,38 @@ void MainWindow::afterPacmanHelperSyncDatabase()
 }
 
 /*
+ * Checks if Internet connection is up/down
+ */
+bool MainWindow::isInternetAvailable()
+{
+  bool res=true;
+
+  //First we create a fake window to act as about dialog's parent
+  //Otherwise the dialog appears at a random screen point!
+  QMainWindow *fake = new QMainWindow();
+  fake->setWindowIcon(m_icon);
+  fake->setVisible(false);
+  QScreen *sc = QGuiApplication::primaryScreen();
+  fake->setGeometry(sc->geometry());
+
+  //Test if Internet access exists
+  if (!UnixCommand::hasInternetConnection())
+  {
+    QMessageBox::critical(fake, StrConstants::getError(), StrConstants::getInternetUnavailableError());
+    res=false;
+    delete fake;
+  }
+
+  return res;
+}
+
+/*
  * Called every time user selects "Sync databases..." menu option
  */
 void MainWindow::syncDatabase()
 {
+  if (!isInternetAvailable()) return;
+
   //If, for whatever reason, the pacman db is locked, let's ask for lock removal
   if (PacmanExec::isDatabaseLocked())
   {
