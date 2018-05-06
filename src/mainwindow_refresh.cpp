@@ -451,7 +451,7 @@ void MainWindow::preBuildAURPackageListMeta()
 }
 
 /*
- * Executes QFuture to retrieve Outdated AUR list of packages
+ * Executes QFuture to retrieve Foreign list of packages
  */
 void MainWindow::retrieveForeignPackageList()
 {

@@ -309,7 +309,6 @@ QStringList *Package::getOutdatedStringList()
   else
   {
     QStringList packageTuples = AlpmBackend::getOutdatedList();
-    QStringList ignorePkgList = UnixCommand::getIgnorePkgsFromPacmanConf();
 
     foreach(QString packageTuple, packageTuples)
     {
@@ -1028,7 +1027,7 @@ QString Package::getDependsOn(const QString &pkgInfo)
   if (res.isEmpty())
     res = extractFieldFromInfo("Depends on", pkgInfo);
 
-  return res; //extractFieldFromInfo("Depends On", pkgInfo);
+  return res;
 }
 
 /*
