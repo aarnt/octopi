@@ -548,7 +548,7 @@ void PacmanExec::prepareTextToPrint(QString str, TreatString ts, TreatURLLinks t
         }
       }
 
-      if (newStr.contains("error: failed retrieving file"))
+      if (newStr.contains("failed retrieving file"))
       {
         m_errorRetrievingFileCounter++;
         if (m_errorRetrievingFileCounter > 50) return;
