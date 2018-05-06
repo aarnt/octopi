@@ -114,6 +114,7 @@ private:
   PacmanHelperClient *m_pacmanHelperClient;
 
   bool _isSUAvailable();
+  bool isInternetAvailable();
   void initActions();
   void initSystemTrayIcon();
   void sendNotification(const QString &msg);
