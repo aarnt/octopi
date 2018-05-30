@@ -279,6 +279,7 @@ void MainWindow::AURToolSelected()
   if (lightPackageFilterConnected && !ui->actionUseInstantSearch->isChecked())
     disconnect(m_leFilterPackage, SIGNAL(textChanged(QString)), this, SLOT(lightPackageFilter()));
 
+  //TODO: Make this optional by the user
   m_leFilterPackage->clear();
   m_leFilterPackage->initStyleSheet();
 

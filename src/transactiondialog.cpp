@@ -26,6 +26,7 @@
 #include <QPushButton>
 #include <QDialog>
 #include <QCloseEvent>
+#include <QRegularExpression>
 
 /*
  * This is the dialog used to show the transaction summary
