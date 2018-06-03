@@ -170,6 +170,7 @@ public:
   static QString getOnceEveryDesc();
   static QString getSetInterval();
   static QString getStop();
+  static QString getExecutableCouldNotBeFound();
 
   //Style Sheets ---------------------------------
   static QString getToolBarCSS();

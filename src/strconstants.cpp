@@ -645,6 +645,11 @@ QString StrConstants::getStop()
   return QObject::tr("Stop");
 }
 
+QString StrConstants::getExecutableCouldNotBeFound()
+{
+  return QObject::tr("%1 could not be found in the system!");
+}
+
 //Style Sheets ---------------------------------
 
 QString StrConstants::getToolBarCSS(){

@@ -52,6 +52,12 @@ int main( int argc, char *argv[] )
     return ( -2 );
   }
 
+  if (!UnixCommand::hasTheExecutable("paccache"))
+  {
+    QMessageBox::critical( 0, StrConstants::getApplicationName(), StrConstants::getExecutableCouldNotBeFound().arg("\"paccache\""));
+    return ( -3 );
+  }
+
   CacheCleaner w;
   app.setActivationWindow(&w);
   w.show();
