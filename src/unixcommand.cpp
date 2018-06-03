@@ -652,7 +652,7 @@ void UnixCommand::removeTemporaryFiles()
 {
   QDir tempDir(QDir::tempPath());
   QStringList nameFilters;
-  nameFilters << "qtsingleapp*" << "gpg*" << ".qt_temp_*";
+  nameFilters << "qtsingleapp-Octopi*" << "qtsingleapp-CacheC*" << "qtsingleapp-Reposi*"  /*<< "gpg*"*/ << ".qt_temp_octopi*";
   QFileInfoList list = tempDir.entryInfoList(nameFilters, QDir::Dirs | QDir::Files | QDir::System | QDir::Hidden);
 
   foreach(QFileInfo file, list){
