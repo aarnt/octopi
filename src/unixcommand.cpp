@@ -612,6 +612,7 @@ bool UnixCommand::hasInternetConnection()
 bool UnixCommand::doInternetPingTest()
 {
   QProcess ping;
+  int res;
   QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
   env.insert("LANG", "C");
   env.insert("LC_MESSAGES", "C");
@@ -623,11 +624,23 @@ bool UnixCommand::doInternetPingTest()
     ping.start("ping -c 1 -W 3 www.google.com");
 
   ping.waitForFinished();
+  res = ping.exitCode();
 
-  int res = ping.exitCode();
+  if (res != 0)
+  {
+    //Let's try to ping www.baidu.com
+    if (UnixCommand::getLinuxDistro() == ectn_MOOOSLINUX)
+      ping.start("torsocks ping -c 1 -W 3 www.baidu.com");
+    else
+      ping.start("ping -c 1 -W 3 www.baidu.com");
+
+    ping.waitForFinished();
+    res = ping.exitCode();
+  }
+
   ping.close();
 
-  return (res == 0);
+  return (res == 0); //ZERO code means ping was alive!
 }
 
 /*
@@ -655,7 +668,7 @@ void UnixCommand::removeTemporaryFiles()
 {
   QDir tempDir(QDir::tempPath());
   QStringList nameFilters;
-  nameFilters << "qtsingleapp*" << "gpg*" << ".qt_temp_*";
+  nameFilters << "qtsingleapp-Octopi*" << "qtsingleapp-CacheC*" << "qtsingleapp-Reposi*"  /*<< "gpg*"*/ << ".qt_temp_octopi*";
   QFileInfoList list = tempDir.entryInfoList(nameFilters, QDir::Dirs | QDir::Files | QDir::System | QDir::Hidden);
 
   foreach(QFileInfo file, list){

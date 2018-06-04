@@ -5,12 +5,12 @@ The project site is hosted at https://octopiproject.wordpress.com
 Currently, 10 Linux distros are compatible with it
 
  * [Antergos](https://antergos.com/)
- * [ArchBang](http://bbs.archbang.org/)
+ * [ArchBang](http://archbang.org/)
  * [Arch](https://www.archlinux.org/)
  * [Chakra](https://chakralinux.org/)
  * [KaOS](https://kaosx.us/)
  * [Manjaro](https://manjaro.org/)
- * [mooOS](http://mooos.org/)
+ * [mooOS](http://mooos.sourceforge.net/)
  * [Netrunner (rolling)](http://www.netrunner.com/netrunner-rolling-release/)
  * [PacBSD](https://pacbsd.org/)
  * [Parabola GNU/Linux-libre](https://www.parabola.nu/)
