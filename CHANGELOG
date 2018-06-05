@@ -20,6 +20,7 @@
   Name of AUR package in Info tab act as link to its site at https://aur.archlinux.org.
   Find line edit is always focused when the program starts.
   Prevent user to install partial upgrades in his system (only some of the outdated packages).
+  BugFix: If threre are updated News after a synchronization, let's goto the News Tab.
   BugFix: Remove only Octopi tools related temporary files (qtsingleapp*).
   BugFix: Do not let program display an avalanche of internet related errors.
   BugFix: Exec internet tests before some commands in Octopi and Notifier.

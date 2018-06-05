@@ -1815,7 +1815,7 @@ void MainWindow::pacmanProcessFinished(int exitCode, QProcess::ExitStatus exitSt
         SettingsManager::setLastSyncDbTime(QDateTime::currentDateTime());
 
         //Retrieves the RSS News from respective Distro site...
-        refreshDistroNews(true, false);
+        refreshDistroNews(true, true);
 
         //Did it synchronize any repo? If so, let's refresh some things...
         if (UnixCommand::isAppRunning("octopi-notifier", true) ||
