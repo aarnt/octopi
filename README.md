@@ -39,7 +39,7 @@ $ cd OCTOPI_PATH
 $ makepkg -f
 ```
 
-### How to enable the "alien" icon at toolbar
+### How to enable AUR support (that "alien" icon at toolbar)
 
 To enable AUR support, you'll need to install [yaourt](https://archlinux.fr/yaourt-en), 
 [pacaur](https://github.com/rmarquis/pacaur) or [trizen](https://github.com/trizen/trizen) in your system.  
