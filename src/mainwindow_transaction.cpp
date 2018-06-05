@@ -1949,7 +1949,7 @@ void MainWindow::onPressAnyKeyToContinue()
 
   m_commandExecuting = ectn_NONE;
   UnixCommand::removeTemporaryFiles();
-  m_console->clear();
+  //m_console->clear();
 }
 
 /*
