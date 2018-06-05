@@ -1846,7 +1846,7 @@ void MainWindow::ptpbSysInfo()
     tempFile->write("head --bytes=256K /var/log/pacman.log\n");
     tempFile->write("----------------------------------------------------------------------------------------------------------\n\n");
     out = UnixCommand::getCommandOutput("head --bytes=256K /var/log/pacman.log");
-    //out.replace(hostname, "<HOSTNAME>");
+    out.replace(hostname, "<HOSTNAME>");
     out.replace(homePath, "<HOME_PATH>");
 
     tempFile->write(out);
@@ -1855,7 +1855,6 @@ void MainWindow::ptpbSysInfo()
   }
 
   enableTransactionActions();
-
 
   //Now we gist the temp file just created!
   QString ptpb = UnixCommand::getCommandOutput("curl -F c=@- https://ptpb.pw/?u=1", tempFile->fileName());
