@@ -1906,12 +1906,6 @@ void MainWindow::pacmanProcessFinished(int exitCode, QProcess::ExitStatus exitSt
   m_commandExecuting = ectn_NONE;
 
   if (isPackageTreeViewVisible() && !m_leFilterPackage->hasFocus()) m_leFilterPackage->setFocus();
-
-  //Let's check if there are updated "News"... if so, let's goto the News tab
-  if (ui->twProperties->tabText(ctn_TABINDEX_NEWS).contains("**"))
-  {
-    ui->twProperties->setCurrentIndex(ctn_TABINDEX_NEWS);
-  }
 }
 
 #ifdef QTERMWIDGET  //BEGIN OF QTERMWIDGET CODE

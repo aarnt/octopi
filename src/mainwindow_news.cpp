@@ -117,7 +117,11 @@ void MainWindow::refreshDistroNews(bool searchForLatestNews, bool gotoNewsTab)
  */
 void MainWindow::postRefreshDistroNews()
 {
-  showDistroNews(g_fwDistroNews.result(), true);
+  showDistroNews(g_fwDistroNews.result(), true); 
+  if (ui->twProperties->tabText(ctn_TABINDEX_NEWS).contains("**"))
+  {
+    ui->twProperties->setCurrentIndex(ctn_TABINDEX_NEWS);
+  }
 }
 
 /*
