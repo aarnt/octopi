@@ -1231,3 +1231,31 @@ QString UnixCommand::getPacmanVersion()
 
   return res;
 }
+
+/*
+ * Tests if the installed pacman version is >= 5.1
+ */
+bool UnixCommand::isPacmanFiveDotOneOrHigher()
+{
+  bool res = false;
+  QString major, minor;
+  int ma, mi;
+
+  //v5.1.0
+  QString pacmanVersion = UnixCommand::getPacmanVersion();
+  if (pacmanVersion.length() == 6)
+  {
+    major = pacmanVersion.at(1);
+    minor = pacmanVersion.at(3);
+
+    ma = major.toInt();
+    mi = minor.toInt();
+
+    if (ma != 0 && ma >=5)
+    {
+      if (mi >=1) res = true;
+    }
+  }
+
+  return res;
+}

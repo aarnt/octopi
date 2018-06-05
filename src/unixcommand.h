@@ -65,6 +65,7 @@ public:
   static QString getLinuxDistroPrettyName();
 
   static QString getPacmanVersion();
+  static bool isPacmanFiveDotOneOrHigher();
 
   static QString getShell();
 

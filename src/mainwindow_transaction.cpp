@@ -1573,6 +1573,10 @@ void MainWindow::doInstallLocalPackages()
     QObject::connect(m_pacmanExec, SIGNAL(textToPrintExt(QString)), this, SLOT(outputText(QString)));
     QObject::connect(m_pacmanExec, SIGNAL(canStopTransaction(bool)), this, SLOT(onCanStopTransaction(bool)));
 
+#ifdef QTERMWIDGET
+    QObject::connect(m_pacmanExec, SIGNAL(commandToExecInQTermWidget(QString)), this, SLOT(onExecCommandInTabTerminal(QString)));
+#endif
+
     if (result == QDialogButtonBox::Yes)
     {
       m_commandExecuting = ectn_INSTALL;

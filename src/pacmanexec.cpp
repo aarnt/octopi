@@ -870,13 +870,17 @@ void PacmanExec::doInstallInTerminal(const QString &listOfPackages)
 void PacmanExec::doInstallLocal(const QString &listOfPackages)
 {
   QString command;
+  bool dontUseForce = UnixCommand::isPacmanFiveDotOneOrHigher();
 
   if (isDatabaseLocked())
   {
     command += "rm " + ctn_PACMAN_DATABASE_LOCK_FILE + "; ";
   }
 
-  command += "pacman -U --force --noconfirm '" + listOfPackages.trimmed() + "'";
+  if (dontUseForce)
+    command += "pacman -U --noconfirm '" + listOfPackages.trimmed() + "'";
+  else
+    command += "pacman -U --force --noconfirm '" + listOfPackages.trimmed() + "'";
 
   m_lastCommandList.clear();
 
@@ -885,7 +889,11 @@ void PacmanExec::doInstallLocal(const QString &listOfPackages)
     m_lastCommandList.append("rm " + ctn_PACMAN_DATABASE_LOCK_FILE + ";");
   }
 
-  m_lastCommandList.append("pacman -U --force \"" + listOfPackages.trimmed() + "\";");
+  if (dontUseForce)
+    m_lastCommandList.append("pacman -U \"" + listOfPackages.trimmed() + "\";");
+  else
+    m_lastCommandList.append("pacman -U --force \"" + listOfPackages.trimmed() + "\";");
+
   m_lastCommandList.append("echo -e;");
   m_lastCommandList.append("read -n 1 -p \"" + StrConstants::getPressAnyKey() + "\"");
 
@@ -898,6 +906,8 @@ void PacmanExec::doInstallLocal(const QString &listOfPackages)
  */
 void PacmanExec::doInstallLocalInTerminal(const QString &listOfPackages)
 {
+  bool dontUseForce = UnixCommand::isPacmanFiveDotOneOrHigher();
+
   m_lastCommandList.clear();
 
   if (isDatabaseLocked())
@@ -906,9 +916,15 @@ void PacmanExec::doInstallLocalInTerminal(const QString &listOfPackages)
   }
 
 #ifdef QTERMWIDGET
-  m_lastCommandList.append("sudo pacman -U --force \"" + listOfPackages.trimmed() + "\";");
+  if (dontUseForce)
+    m_lastCommandList.append("sudo pacman -U \"" + listOfPackages.trimmed() + "\";");
+  else
+    m_lastCommandList.append("sudo pacman -U --force \"" + listOfPackages.trimmed() + "\";");
 #else
-  m_lastCommandList.append("pacman -U --force \"" + listOfPackages.trimmed() + "\";");
+  if (dontUseForce)
+    m_lastCommandList.append("pacman -U \"" + listOfPackages.trimmed() + "\";");
+  else
+    m_lastCommandList.append("pacman -U --force \"" + listOfPackages.trimmed() + "\";");
 #endif
 
   m_lastCommandList.append("echo -e;");
