@@ -1691,7 +1691,7 @@ void MainWindow::launchCacheCleaner()
 }
 
 /*
- * Makes a gist with a bunch of system file contents.
+ * Makes a ptpb with a bunch of system file contents.
  */
 void MainWindow::ptpbSysInfo()
 {
@@ -1702,6 +1702,7 @@ void MainWindow::ptpbSysInfo()
 
   CPUIntensiveComputing *cic = new CPUIntensiveComputing(this);
   disableTransactionActions();
+  m_commandExecuting = ectn_SYSINFO;
   clearTabOutput();
   writeToTabOutput("<b>SysInfo...</b><br>");
 
@@ -1907,6 +1908,7 @@ void MainWindow::ptpbSysInfo()
   el.exec();
 
   delete cic;
+  m_commandExecuting = ectn_NONE;
   writeToTabOutput("<br>" + g_fwGenerateSysInfo.result() + "<br>");
   writeToTabOutput("<br><b>" + StrConstants::getCommandFinishedOK() + "</b><br>");
   enableTransactionActions();
