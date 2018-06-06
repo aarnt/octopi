@@ -1700,7 +1700,6 @@ void MainWindow::ptpbSysInfo()
 
   if (!isInternetAvailable()) return;
 
-  CPUIntensiveComputing *cic = new CPUIntensiveComputing(this);
   disableTransactionActions();
   m_commandExecuting = ectn_SYSINFO;
   clearTabOutput();
@@ -1907,7 +1906,6 @@ void MainWindow::ptpbSysInfo()
   g_fwGenerateSysInfo.setFuture(f2);
   el.exec();
 
-  delete cic;
   m_commandExecuting = ectn_NONE;
   writeToTabOutput("<br>" + g_fwGenerateSysInfo.result() + "<br>");
   writeToTabOutput("<br><b>" + StrConstants::getCommandFinishedOK() + "</b><br>");
