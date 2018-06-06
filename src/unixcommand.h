@@ -147,6 +147,7 @@ public:
   void runCommandInTerminalAsNormalUser(const QStringList& commandList);
 
   static void execCommandAsNormalUser(const QString &pCommand);
+  static QByteArray execCommandAsNormalUserExt(const QString &pCommand);
   static void execCommand(const QString &pCommand);
 
   static QByteArray getCommandOutput(const QString &pCommand);

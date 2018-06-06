@@ -50,6 +50,8 @@ extern QFutureWatcher<QString> g_fwPackageOwnsFile;
 extern QFutureWatcher<PackageInfoData> g_fwKCPInformation;
 extern QFutureWatcher<QStringList *> g_fwOutdatedPkgStringList;
 extern QFutureWatcher<QStringList *> g_fwOutdatedAURStringList;
+extern QFutureWatcher<QByteArray> g_fwCommandToExecute;
+extern QFutureWatcher<QString> g_fwGenerateSysInfo;
 
 QString showPackageInfo(QString pkgName);
 QList<PackageListData> * searchPacmanPackages();
@@ -62,6 +64,8 @@ GroupMemberPair          searchPacmanPackagesFromGroup(QString groupName);
 AUROutdatedPackages * getOutdatedAURPackages();
 QString getLatestDistroNews();
 PackageInfoData getKCPInformation(QString pkgName);
+QByteArray execCommandInAnotherThread(QString cmd);
+QString generateSysInfo(QByteArray contents);
 
 QStringList            * getOutdatedPkgStringList();
 QStringList            * getOutdatedAURStringList();

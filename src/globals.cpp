@@ -43,6 +43,8 @@ QFutureWatcher<QSet<QString> *> g_fwUnrequiredPacman;
 QFutureWatcher<PackageInfoData> g_fwKCPInformation;
 QFutureWatcher<QStringList *> g_fwOutdatedPkgStringList;
 QFutureWatcher<QStringList *> g_fwOutdatedAURStringList;
+QFutureWatcher<QByteArray> g_fwCommandToExecute;
+QFutureWatcher<QString> g_fwGenerateSysInfo;
 
 /*
  * Given a packageName, returns its description
@@ -224,4 +226,32 @@ QStringList *getOutdatedAURStringList()
   QStringList *res = Package::getOutdatedAURStringList();
 
   return res;
+}
+
+/*
+ * Executes given cmd with QProcess class
+ */
+QByteArray execCommandInAnotherThread(QString cmd)
+{
+  return UnixCommand::execCommandAsNormalUserExt(cmd);
+}
+
+/*
+ * Generates SysInfo file and paste it to ptpb site
+ *
+ * Returns a clickable URL
+ */
+QString generateSysInfo(QByteArray contents)
+{
+  QTime time = QTime::currentTime();
+  qsrand(time.minute() + time.second() + time.msec());
+  QFile *tempFile = new QFile(ctn_TEMP_ACTIONS_FILE + QString::number(qrand()));
+  tempFile->open(QIODevice::ReadWrite|QIODevice::Text);
+  tempFile->setPermissions(QFile::Permissions(QFile::ExeOwner|QFile::ReadOwner));
+  tempFile->write(contents);
+  tempFile->flush();
+  tempFile->close();
+
+  QString ptpb = UnixCommand::getCommandOutput("curl -F c=@- https://ptpb.pw/?u=1", tempFile->fileName());
+  return ptpb;
 }

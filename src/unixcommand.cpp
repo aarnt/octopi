@@ -697,6 +697,26 @@ void UnixCommand::execCommandAsNormalUser(const QString &pCommand)
 }
 
 /*
+ * Execs a command as normal user and returns its output
+ */
+QByteArray UnixCommand::execCommandAsNormalUserExt(const QString &pCommand)
+{
+  QProcess p;
+  QByteArray res;
+  QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
+
+  env.insert("LANG", "C");
+  env.insert("LC_MESSAGES", "C");
+  p.setProcessEnvironment(env);
+
+  p.start(pCommand);
+  p.waitForFinished(-1);
+  res = p.readAllStandardOutput();
+  p.close();
+  return res;
+}
+
+/*
  * Runs a command with a QProcess blocking object!
  */
 void UnixCommand::execCommand(const QString &pCommand)
