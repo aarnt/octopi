@@ -30,7 +30,7 @@
 #include <QFileInfo>
 #include <QByteArray>
 #include <QTextStream>
-#include <QtNetwork/QNetworkInterface>
+#include <QtNetwork>
 
 /*
  * Collection of methods to execute many Unix commands
@@ -608,7 +608,23 @@ bool UnixCommand::hasInternetConnection()
  */
 bool UnixCommand::doInternetPingTest()
 {
-  QProcess ping;
+  QTcpSocket socket;
+  QString hostname = "www.google.com";
+
+  socket.connectToHost(hostname, 80);
+  if (socket.waitForConnected(5000))
+    return true;
+  else
+  {
+    hostname = "www.baidu.com";
+    socket.connectToHost(hostname, 80);
+    if (socket.waitForConnected(5000))
+      return true;
+    else
+      return false;
+  }
+
+/*  QProcess ping;
   int res;
   QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
   env.insert("LANG", "C");
@@ -638,6 +654,7 @@ bool UnixCommand::doInternetPingTest()
   ping.close();
 
   return (res == 0); //ZERO code means ping was alive!
+*/
 }
 
 /*
