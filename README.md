@@ -2,7 +2,7 @@
 
 The project site is hosted at https://octopiproject.wordpress.com
 
-Currently, 10 Linux distros are compatible with it
+Currently, 9 Linux distros are compatible with it
 
  * [Antergos](https://antergos.com/)
  * [ArchBang](http://archbang.org/)
@@ -12,7 +12,6 @@ Currently, 10 Linux distros are compatible with it
  * [Manjaro](https://manjaro.org/)
  * [mooOS](http://mooos.sourceforge.net/)
  * [Netrunner (rolling)](http://www.netrunner.com/netrunner-rolling-release/)
- * [PacBSD](https://pacbsd.org/)
  * [Parabola GNU/Linux-libre](https://www.parabola.nu/)
 
 ### What you must install in your system to have Octopi fully functional
