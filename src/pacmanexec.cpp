@@ -123,7 +123,7 @@ bool PacmanExec::searchForKeyVerbs(QString output)
 {
   return (output.contains(QRegularExpression("Arming ")) ||
           output.contains(QRegularExpression("checking ")) ||
-          output.contains(QRegularExpression("loading ")) ||
+          //output.contains(QRegularExpression("loading ")) ||
           output.contains(QRegularExpression("installing ")) ||
           output.contains(QRegularExpression("upgrading ")) ||
           output.contains(QRegularExpression("downgrading ")) ||
@@ -564,8 +564,8 @@ void PacmanExec::prepareTextToPrint(QString str, TreatString ts, TreatURLLinks t
             newStr.contains("is synced") ||
             newStr.contains("-- reinstalling") ||
             newStr.contains("installing ") ||
-            newStr.contains("upgrading ") ||
-            newStr.contains("loading "))
+            newStr.contains("upgrading ")) /*||
+            newStr.contains("loading "))*/
     {
       newStr = newStr.trimmed();
       if (newStr.contains(QRegularExpression("installing \\S+$")) || newStr.contains(QRegularExpression("upgrading \\S+$")))
