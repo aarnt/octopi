@@ -182,12 +182,18 @@ void MainWindow::onHelpUsage()
 void MainWindow::onHelpAbout()
 {
   QString aboutText =
-      "<b>" + StrConstants::getApplicationName() +
-      " - " + StrConstants::getApplicationVersion() + "</b>" + " (" + StrConstants::getQtVersion() + ")<br>";
-  aboutText += "<a href=\"http://octopiproject.wordpress.com/\">http://octopiproject.wordpress.com</a><br>";
+      "<b>" + StrConstants::getApplicationName() + "</b><br>";
+
+  aboutText += StrConstants::getVersion() + ": " + StrConstants::getApplicationVersion() + " - " + StrConstants::getQtVersion() + "<br>";
+  aboutText += StrConstants::getURL() + ": " + "<a href=\"http://octopiproject.wordpress.com/\">http://octopiproject.wordpress.com</a><br>";
+  aboutText += StrConstants::getLicenses() + ": " + QString("<a href=\"http://www.gnu.org/licenses/gpl-2.0.html\">GPL v2</a><br>");
   aboutText += "&copy; Alexandre Albuquerque Arnt<br><br>";
-  aboutText += "<b>Pacman - " + UnixCommand::getPacmanVersion() + "</b><br>";
-  aboutText += "<a href=\"https://www.archlinux.org/pacman/\">https://www.archlinux.org/pacman</a><br>";
+
+  aboutText += "<b>Pacman</b><br>";
+  QString pacmanV = UnixCommand::getPacmanVersion();
+  if (pacmanV.at(0) == 'v') pacmanV.remove(0, 1);
+  aboutText += StrConstants::getVersion() + ": " + pacmanV + "<br>";
+  aboutText += StrConstants::getURL() + ": " + "<a href=\"https://www.archlinux.org/pacman/\">https://www.archlinux.org/pacman</a><br>";
   QDate d = QDate::currentDate();
   aboutText += "&copy; 2006-%1 Pacman Development Team<br>";
   aboutText += "&copy; 2002-2006 Judd Vinet";
