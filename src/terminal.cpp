@@ -21,6 +21,7 @@
 #include "terminal.h"
 #include "wmhelper.h"
 #include "unixcommand.h"
+#include "strconstants.h"
 
 #include <QApplication>
 #include <QProcess>
@@ -341,9 +342,20 @@ void Terminal::runCommandInTerminal(const QStringList &commandList)
 {
   QFile *ftemp = UnixCommand::getTemporaryFile();
   QTextStream out(ftemp);
+  bool removedLines = false;
 
   foreach(QString line, commandList)
+  {
+    if ((line.contains("echo -e") || line.contains("read -n 1")) && m_selectedTerminal == ctn_QTERMWIDGET)
+    {
+      removedLines = true;
+      continue;
+    }
+
     out << line;
+  }
+
+  if (removedLines) out << "echo \"" << StrConstants::getPressAnyKey() + "\"";
 
   out.flush();
   ftemp->close();
@@ -494,9 +506,16 @@ void Terminal::runCommandInTerminalAsNormalUser(const QStringList &commandList)
 {
   QFile *ftemp = UnixCommand::getTemporaryFile();
   QTextStream out(ftemp);
+  bool removedLines = false;
 
   foreach(QString line, commandList)
   {
+    if ((line.contains("echo -e") || line.contains("read -n 1")) && m_selectedTerminal == ctn_QTERMWIDGET)
+    {
+      removedLines = true;
+      continue;
+    }
+
     //We must remove the "ccr/" prefix in Chakra, cos this will not work
     if(line.contains("ccr/"))
     {
@@ -505,6 +524,8 @@ void Terminal::runCommandInTerminalAsNormalUser(const QStringList &commandList)
 
     out << line;
   }
+
+  if (removedLines) out << "echo \"" << StrConstants::getPressAnyKey() + "\"";
 
   out.flush();
   ftemp->close();

@@ -237,7 +237,8 @@ void OptionsDialog::initAURTab()
   bool pikaurTool=false;
 
   if ((UnixCommand::getLinuxDistro() != ectn_KAOS) &&
-    (UnixCommand::getLinuxDistro() != ectn_CHAKRA))
+    (UnixCommand::getLinuxDistro() != ectn_CHAKRA &&
+     UnixCommand::getLinuxDistro() != ectn_PARABOLA))
   {
     if (UnixCommand::hasTheExecutable(ctn_PACAUR_TOOL))
       pacaurTool=true;

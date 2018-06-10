@@ -1,7 +1,6 @@
-0.9.0 (dev)
+0.9.0
   Parser changes: added counter for processed packages.  
   Group pane now spans all window's height.
-  Added Pikaur (AUR tool) support.
   Added Trizen (AUR tool) support.
   Added Terminal tab if user compiles project with libqtermwidget5 support.
   Added Terminal dialog in Notifier (AUR update) if user compiles project with 
@@ -19,8 +18,10 @@
   Added option to upgrade outdated foreign packages from Octopi Notifier.
   Added Hindi translation (thanks to Panwar108).
   Name of AUR package in Info tab act as link to its site at https://aur.archlinux.org.
-  Find line edit is always focused when the program starts.
-  Prevent user to install partial upgrades in his system (only some of the outdated packages).
+  Search line edit is always focused when the program starts.
+  Prevent user to install partial upgrades in his system (ex: only some of the outdated packages).
+  Do NOT clear search string when switching between AUR/pacman.
+  BugFix: If threre are updated News after a synchronization, let's goto the News Tab.
   BugFix: Remove only Octopi tools related temporary files (qtsingleapp*).
   BugFix: Do not let program display an avalanche of internet related errors.
   BugFix: Exec internet tests before some commands in Octopi and Notifier.

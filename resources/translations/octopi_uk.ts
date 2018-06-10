@@ -112,7 +112,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="304"/>
         <source>Ctrl+P</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+P</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="313"/>
@@ -280,7 +280,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="588"/>
         <source>Use Instant Search</source>
-        <translation type="unfinished"/>
+        <translation>Використовуйте миттєвий пошук</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="54"/>
@@ -405,7 +405,7 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="115"/>
         <source>Ctrl+P or &apos;File/System upgrade&apos; to make a full system upgrade (pacman -Su)</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+P or &apos;Файл/Оновлення системи&apos; для повного оновлення системи (pacman -Su)</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="117"/>
@@ -485,7 +485,7 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="152"/>
         <source>F11 to maximize/demaximize Tab&apos;s view</source>
-        <translation type="unfinished"/>
+        <translation>F11 розвернути/відновити панель вкладок</translation>
     </message>
 </context>
 <context>
@@ -498,17 +498,17 @@
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="38"/>
         <source>General</source>
-        <translation type="unfinished"/>
+        <translation>Загальне</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="50"/>
         <source>Show package numbers in output tab</source>
-        <translation type="unfinished"/>
+        <translation>Показати номери пакетів на вкладці виводу</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="63"/>
         <source>Show stop transaction button at statusbar</source>
-        <translation type="unfinished"/>
+        <translation>Показати кнопку зупинки транзакції в рядку стану</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="100"/>
@@ -518,12 +518,12 @@
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="220"/>
         <source>Do not use AUR</source>
-        <translation type="unfinished"/>
+        <translation>Не використовуйте AUR</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="233"/>
         <source>Search for outdated AUR packages</source>
-        <translation type="unfinished"/>
+        <translation>Пошук застарілих пакунків AUR</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="242"/>
@@ -667,7 +667,7 @@
         <location filename="Projects/octopi/src/strconstants.cpp" line="104"/>
         <source>PacBSD news</source>
         <oldsource>ArchBSD news</oldsource>
-        <translation type="unfinished"/>
+        <translation>Новини PacBSD</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="108"/>
@@ -967,7 +967,7 @@
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.cpp" line="352"/>
         <source>There are %n outdated packages in your system:</source>
-        <translation><numerusform>У Вашій системі %n застарілий пакунок</numerusform><numerusform>У Вашій системі %n застарілих пакунків</numerusform><numerusform>У Вашій системі %n застарілих пакунків</numerusform></translation>
+        <translation><numerusform>У Вашій системі %n застарілий пакунок</numerusform><numerusform>У Вашій системі %n застарілих пакунків</numerusform><numerusform>У Вашій системі %n застарілих пакунків</numerusform><numerusform>У Вашій системі %n застарілих пакунків</numerusform></translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="356"/>
@@ -977,27 +977,27 @@
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.cpp" line="360"/>
         <source>%n packages</source>
-        <translation><numerusform>%n пакунок</numerusform><numerusform>%n пакунків</numerusform><numerusform>%n пакунків</numerusform></translation>
+        <translation><numerusform>%n пакунок</numerusform><numerusform>%n пакунків</numerusform><numerusform>%n пакунків</numerusform><numerusform>%n пакунків</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.cpp" line="364"/>
         <source>%n selected</source>
-        <translation><numerusform>%n обраний</numerusform><numerusform>%n обрано</numerusform><numerusform>%n обрано</numerusform></translation>
+        <translation><numerusform>%n обраний</numerusform><numerusform>%n обрано</numerusform><numerusform>%n обрано</numerusform><numerusform>%n обрано</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.cpp" line="368"/>
         <source>%n installed</source>
-        <translation><numerusform>%n встановлений</numerusform><numerusform>%n встановлено</numerusform><numerusform>%n встановлено</numerusform></translation>
+        <translation><numerusform>%n встановлений</numerusform><numerusform>%n встановлено</numerusform><numerusform>%n встановлено</numerusform><numerusform>%n встановлено</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.cpp" line="372"/>
         <source>%n outdated</source>
-        <translation><numerusform>%n застарілий</numerusform><numerusform>%n застарілих</numerusform><numerusform>%n застарілих</numerusform></translation>
+        <translation><numerusform>%n застарілий</numerusform><numerusform>%n застарілих</numerusform><numerusform>%n застарілих</numerusform><numerusform>%n застарілих</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.cpp" line="376"/>
         <source>%n available</source>
-        <translation><numerusform>%n доступний</numerusform><numerusform>%n доступно</numerusform><numerusform>%n доступно</numerusform></translation>
+        <translation><numerusform>%n доступний</numerusform><numerusform>%n доступно</numerusform><numerusform>%n доступно</numerusform><numerusform>%n доступно</numerusform></translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="380"/>
@@ -1097,12 +1097,12 @@
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.cpp" line="460"/>
         <source>The following %n packages need to be retrieved</source>
-        <translation><numerusform>Наступний пакунок має бути встановлений</numerusform><numerusform>Наступні %n пакунків мають бути встановлені</numerusform><numerusform>Наступні %n пакунки мають бути встановлені</numerusform></translation>
+        <translation><numerusform>Наступний пакунок має бути встановлений</numerusform><numerusform>Наступні %n пакунків мають бути встановлені</numerusform><numerusform>Наступні %n пакунки мають бути встановлені</numerusform><numerusform>Наступні %n пакунки мають бути встановлені</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.cpp" line="464"/>
         <source>The following %n packages will be removed</source>
-        <translation><numerusform>Наступний пакунок буде видалено</numerusform><numerusform>Наступні %n пакунки будуть видалені</numerusform><numerusform>Наступні %n пакунки будуть видалені</numerusform></translation>
+        <translation><numerusform>Наступний пакунок буде видалено</numerusform><numerusform>Наступні %n пакунки будуть видалені</numerusform><numerusform>Наступні %n пакунки будуть видалені</numerusform><numerusform>Наступні %n пакунки будуть видалені</numerusform></translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="468"/>
@@ -1122,7 +1122,7 @@
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.cpp" line="480"/>
         <source>There are %n updates available!</source>
-        <translation><numerusform>Є одне доступне оновлення!</numerusform><numerusform>Є %n доступних оновлень!</numerusform><numerusform>Є %n доступних оновлення!</numerusform></translation>
+        <translation><numerusform>Є одне доступне оновлення!</numerusform><numerusform>Є %n доступних оновлень!</numerusform><numerusform>Є %n доступних оновлення!</numerusform><numerusform>Є %n доступних оновлення!</numerusform></translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="484"/>
@@ -1318,7 +1318,7 @@ Are you sure you want to open it?</source>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="640"/>
         <source>Stop</source>
-        <translation type="unfinished"/>
+        <translation>Стоп</translation>
     </message>
 </context>
 <context>

@@ -30,7 +30,7 @@
 #include <QFileInfo>
 #include <QByteArray>
 #include <QTextStream>
-#include <QtNetwork/QNetworkInterface>
+#include <QtNetwork>
 
 /*
  * Collection of methods to execute many Unix commands
@@ -611,7 +611,23 @@ bool UnixCommand::hasInternetConnection()
  */
 bool UnixCommand::doInternetPingTest()
 {
-  QProcess ping;
+  QTcpSocket socket;
+  QString hostname = "www.google.com";
+
+  socket.connectToHost(hostname, 80);
+  if (socket.waitForConnected(5000))
+    return true;
+  else
+  {
+    hostname = "www.baidu.com";
+    socket.connectToHost(hostname, 80);
+    if (socket.waitForConnected(5000))
+      return true;
+    else
+      return false;
+  }
+
+/*  QProcess ping;
   int res;
   QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
   env.insert("LANG", "C");
@@ -641,6 +657,7 @@ bool UnixCommand::doInternetPingTest()
   ping.close();
 
   return (res == 0); //ZERO code means ping was alive!
+*/
 }
 
 /*
@@ -697,6 +714,26 @@ void UnixCommand::removeTemporaryFiles()
 void UnixCommand::execCommandAsNormalUser(const QString &pCommand)
 {
   QProcess::startDetached(pCommand);
+}
+
+/*
+ * Execs a command as normal user and returns its output
+ */
+QByteArray UnixCommand::execCommandAsNormalUserExt(const QString &pCommand)
+{
+  QProcess p;
+  QByteArray res;
+  QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
+
+  env.insert("LANG", "C");
+  env.insert("LC_MESSAGES", "C");
+  p.setProcessEnvironment(env);
+
+  p.start(pCommand);
+  p.waitForFinished(-1);
+  res = p.readAllStandardOutput();
+  p.close();
+  return res;
 }
 
 /*
@@ -1139,10 +1176,10 @@ LinuxDistro UnixCommand::getLinuxDistro()
       {
         ret = ectn_ARCHBANGLINUX;
       }
-      else if (contents.contains(QRegularExpression("PacBSD")))
+      /*else if (contents.contains(QRegularExpression("PacBSD")))
       {
         ret = ectn_PACBSD;
-      }
+      }*/
       else if (contents.contains(QRegularExpression("Arch Linux")))
       {
         ret = ectn_ARCHLINUX;
@@ -1230,6 +1267,34 @@ QString UnixCommand::getPacmanVersion()
   if (p >=0 && q >= 0)
   {
     res = v.mid(p+6, q-(p+6)).trimmed();
+  }
+
+  return res;
+}
+
+/*
+ * Tests if the installed pacman version is >= 5.1
+ */
+bool UnixCommand::isPacmanFiveDotOneOrHigher()
+{
+  bool res = false;
+  QString major, minor;
+  int ma, mi;
+
+  //v5.1.0
+  QString pacmanVersion = UnixCommand::getPacmanVersion();
+  if (pacmanVersion.length() == 6)
+  {
+    major = pacmanVersion.at(1);
+    minor = pacmanVersion.at(3);
+
+    ma = major.toInt();
+    mi = minor.toInt();
+
+    if (ma != 0 && ma >=5)
+    {
+      if (mi >=1) res = true;
+    }
   }
 
   return res;

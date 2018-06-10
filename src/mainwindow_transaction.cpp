@@ -1573,6 +1573,10 @@ void MainWindow::doInstallLocalPackages()
     QObject::connect(m_pacmanExec, SIGNAL(textToPrintExt(QString)), this, SLOT(outputText(QString)));
     QObject::connect(m_pacmanExec, SIGNAL(canStopTransaction(bool)), this, SLOT(onCanStopTransaction(bool)));
 
+#ifdef QTERMWIDGET
+    QObject::connect(m_pacmanExec, SIGNAL(commandToExecInQTermWidget(QString)), this, SLOT(onExecCommandInTabTerminal(QString)));
+#endif
+
     if (result == QDialogButtonBox::Yes)
     {
       m_commandExecuting = ectn_INSTALL;
@@ -1912,9 +1916,9 @@ void MainWindow::pacmanProcessFinished(int exitCode, QProcess::ExitStatus exitSt
  */
 void MainWindow::onPressAnyKeyToContinue()
 {
-  m_console->enter();
-  m_console->execute("clear");
-  m_console->setFocus();
+  //m_console->execute("clear");
+  //m_console->setFocus();
+  //m_console->enter();
 
   if (m_commandExecuting == ectn_NONE) return;
 
@@ -1943,7 +1947,8 @@ void MainWindow::onPressAnyKeyToContinue()
 
   m_commandExecuting = ectn_NONE;
   UnixCommand::removeTemporaryFiles();
-  m_console->clear();
+  m_console->execute("");
+  m_console->setFocus();
 }
 
 /*

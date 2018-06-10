@@ -274,7 +274,7 @@ QList<QModelIndex> * utils::findFileInTreeView( const QString& name, const QStan
 QString utils::retrieveDistroNews(bool searchForLatestNews)
 {
   const QString ctn_ANTERGOS_RSS_URL = "https://antergos.com/feed/";
-  const QString ctn_PACBSD_RSS_URL = "https://pacbsd.org/index.xml";
+  //const QString ctn_PACBSD_RSS_URL = "https://pacbsd.org/index.xml";
   const QString ctn_ARCH_LINUX_RSS_URL = "https://www.archlinux.org/feeds/news/";
   const QString ctn_CHAKRA_RSS_URL = "https://community.chakralinux.org/c/news.rss";
   const QString ctn_KAOS_RSS_URL = "https://kaosx.us/feed.xml";
@@ -305,10 +305,10 @@ QString utils::retrieveDistroNews(bool searchForLatestNews)
     {
       curlCommand = curlCommand.arg(ctn_ANTERGOS_RSS_URL).arg(tmpRssPath);
     }
-    else if (distro == ectn_PACBSD)
+    /*else if (distro == ectn_PACBSD)
     {
       curlCommand = curlCommand.arg(ctn_PACBSD_RSS_URL).arg(tmpRssPath);
-    }
+    }*/
     else if (distro == ectn_ARCHLINUX || distro == ectn_ARCHBANGLINUX || distro == ectn_MOOOSLINUX)
     {
       curlCommand = curlCommand.arg(ctn_ARCH_LINUX_RSS_URL).arg(tmpRssPath);
@@ -425,10 +425,10 @@ QString utils::parseDistroNews()
   {
     html = "<p align=\"center\"><h2>" + StrConstants::getAntergosNews() + "</h2></p><ul>";
   }
-  else if (distro == ectn_PACBSD)
+  /*else if (distro == ectn_PACBSD)
   {
     html = "<p align=\"center\"><h2>" + StrConstants::getPacBSDNews() + "</h2></p><ul>";
-  }
+  }*/
   else if (distro == ectn_ARCHLINUX || distro == ectn_ARCHBANGLINUX || distro == ectn_MOOOSLINUX)
   {
     html = "<p align=\"center\"><h2>" + StrConstants::getArchLinuxNews() + "</h2></p><ul>";

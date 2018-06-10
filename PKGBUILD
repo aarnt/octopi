@@ -1,21 +1,19 @@
-
 pkgname=octopi
-pkgver=0.8.1
+pkgver=0.9.0
 pkgrel=1
 pkgdesc="This is Octopi, a powerful Pacman frontend using Qt libs"
 url="https://octopiproject.wordpress.com/"
 arch=('i686' 'x86_64')
 license=('GPL2')
-depends=('pacman' 'pacman-contrib' 'pkgfile' 'knotifications' 'alpm_octopi_utils' 'xterm')
+depends=('pacman' 'pacman-contrib' 'pkgfile' 'knotifications' 'alpm_octopi_utils' 'xterm' 'qtermwidget')
 optdepends=('kdesu: for KDE'
             'gksu: for XFCE, Gnome, LXDE, Cinnamon'
             'gnome-keyring: for password management'
-            'qtermwidget: for embedded terminal'  
             'yaourt: for AUR support')
 groups=('system')
 install=octopi.install
 source=("https://github.com/aarnt/octopi/archive/v${pkgver}.tar.gz")
-md5sums=('669b6fa406ad64c65d9f548996cb3d8c')
+#md5sums=('')
 
 prepare() {
    cd ${pkgname}-${pkgver}

@@ -1691,7 +1691,7 @@ void MainWindow::launchCacheCleaner()
 }
 
 /*
- * Makes a gist with a bunch of system file contents.
+ * Makes a ptpb with a bunch of system file contents.
  */
 void MainWindow::ptpbSysInfo()
 {
@@ -1700,169 +1700,216 @@ void MainWindow::ptpbSysInfo()
 
   if (!isInternetAvailable()) return;
 
-  CPUIntensiveComputing *cic = new CPUIntensiveComputing(this);
-
   disableTransactionActions();
-  QTime time = QTime::currentTime();
-  qsrand(time.minute() + time.second() + time.msec());
-  QFile *tempFile = new QFile(ctn_TEMP_ACTIONS_FILE + QString::number(qrand()));
-  tempFile->open(QIODevice::ReadWrite|QIODevice::Text);
-  tempFile->setPermissions(QFile::Permissions(QFile::ExeOwner|QFile::ReadOwner));
+  m_commandExecuting = ectn_SYSINFO;
+  clearTabOutput();
+  writeToTabOutput("<b>SysInfo...</b><br>");
 
-  QString hostname = UnixCommand::getCommandOutput("hostname");
+  QString command;
+  QEventLoop el;
+  QFuture<QByteArray> f;
+  command="hostname";
+  f = QtConcurrent::run(execCommandInAnotherThread, command);
+  connect(&g_fwCommandToExecute, SIGNAL(finished()), &el, SLOT(quit()));
+  g_fwCommandToExecute.setFuture(f);
+  el.exec();
+  QString hostname = g_fwCommandToExecute.result();
+
   hostname.remove("\n");
   QString homePath = QDir::homePath();
   QByteArray out;
 
   if (UnixCommand::getLinuxDistro() == ectn_KAOS)
   {
-    tempFile->write("----------------------------------------------------------------------------------------------------------\n");
-    tempFile->write("cat /etc/KaOS-release\n");
-    tempFile->write("----------------------------------------------------------------------------------------------------------\n\n");
-    out = UnixCommand::getCommandOutput("cat /etc/KaOS-release");
+    out += "----------------------------------------------------------------------------------------------------------\n";
+    out += "cat /etc/KaOS-release\n";
+    out += "----------------------------------------------------------------------------------------------------------\n\n";
+
+    command = "cat /etc/KaOS-release";
+    f = QtConcurrent::run(execCommandInAnotherThread, command);
+    connect(&g_fwCommandToExecute, SIGNAL(finished()), &el, SLOT(quit()));
+    g_fwCommandToExecute.setFuture(f);
+    el.exec();
+    out += g_fwCommandToExecute.result();
 
     out.replace(hostname, "<HOSTNAME>");
     out.replace(homePath, "<HOME_PATH>");
-
-    tempFile->write(out);
-    tempFile->write("\n\n");
+    out += "\n\n";
   }
   else
   {
-    tempFile->write("----------------------------------------------------------------------------------------------------------\n");
-    tempFile->write("cat /etc/lsb-release\n");
-    tempFile->write("----------------------------------------------------------------------------------------------------------\n\n");
-    out = UnixCommand::getCommandOutput("cat /etc/lsb-release");
+    out += "----------------------------------------------------------------------------------------------------------\n";
+    out += "cat /etc/lsb-release\n";
+    out += "----------------------------------------------------------------------------------------------------------\n\n";
+
+    command = "cat /etc/lsb-release";
+    f = QtConcurrent::run(execCommandInAnotherThread, command);
+    connect(&g_fwCommandToExecute, SIGNAL(finished()), &el, SLOT(quit()));
+    g_fwCommandToExecute.setFuture(f);
+    el.exec();
+    out += g_fwCommandToExecute.result();
 
     out.replace(hostname, "<HOSTNAME>");
     out.replace(homePath, "<HOME_PATH>");
-
-    tempFile->write(out);
-    tempFile->write("\n\n");
+    out += "\n\n";
   }
 
   if (UnixCommand::hasTheExecutable("inxi"))
   {
-    tempFile->write("----------------------------------------------------------------------------------------------------------\n");
-    tempFile->write("inxi -Fxz\n");
-    tempFile->write("----------------------------------------------------------------------------------------------------------\n\n");
-    out = UnixCommand::getCommandOutput("inxi -Fxz -c 0");
+    out += "----------------------------------------------------------------------------------------------------------\n";
+    out += "inxi -Fxz\n";
+    out += "----------------------------------------------------------------------------------------------------------\n\n";
+
+    command = "inxi -Fxz -c 0";
+    f = QtConcurrent::run(execCommandInAnotherThread, command);
+    connect(&g_fwCommandToExecute, SIGNAL(finished()), &el, SLOT(quit()));
+    g_fwCommandToExecute.setFuture(f);
+    el.exec();
+    out += g_fwCommandToExecute.result();
 
     out.replace(hostname, "<HOSTNAME>");
     out.replace(homePath, "<HOME_PATH>");
-
-    tempFile->write(out);
-    tempFile->write("\n\n");
+    out += "\n\n";
   }
   else
   {
-    tempFile->write("----------------------------------------------------------------------------------------------------------\n");
-    tempFile->write("uname -a\n");
-    tempFile->write("----------------------------------------------------------------------------------------------------------\n\n");
-    out = UnixCommand::getCommandOutput("uname -a");
+    out += "----------------------------------------------------------------------------------------------------------\n";
+    out += "uname -a\n";
+    out += "----------------------------------------------------------------------------------------------------------\n\n";
+
+    command = "uname -a";
+    f = QtConcurrent::run(execCommandInAnotherThread, command);
+    connect(&g_fwCommandToExecute, SIGNAL(finished()), &el, SLOT(quit()));
+    g_fwCommandToExecute.setFuture(f);
+    el.exec();
+    out += g_fwCommandToExecute.result();
 
     out.replace(hostname, "<HOSTNAME>");
     out.replace(homePath, "<HOME_PATH>");
-
-    tempFile->write(out);
-    tempFile->write("\n\n");
+    out += "\n\n";
   }
 
   if (UnixCommand::hasTheExecutable("mhwd"))
   {
-    tempFile->write("----------------------------------------------------------------------------------------------------------\n");
-    tempFile->write("mhwd -li -d\n");
-    tempFile->write("----------------------------------------------------------------------------------------------------------\n\n");
-    out = UnixCommand::getCommandOutput("mhwd -li -d");
+    out += "----------------------------------------------------------------------------------------------------------\n";
+    out += "mhwd -li -d\n";
+    out += "----------------------------------------------------------------------------------------------------------\n\n";
+
+    command = "mhwd -li -d";
+    f = QtConcurrent::run(execCommandInAnotherThread, command);
+    connect(&g_fwCommandToExecute, SIGNAL(finished()), &el, SLOT(quit()));
+    g_fwCommandToExecute.setFuture(f);
+    el.exec();
+    out += g_fwCommandToExecute.result();
 
     //out.replace(hostname, "<HOSTNAME>");
     out.replace(homePath, "<HOME_PATH>");
-
-    tempFile->write(out);
-    tempFile->write("\n\n");
+    out += "\n\n";
   }
 
-  tempFile->write("----------------------------------------------------------------------------------------------------------\n");
-  tempFile->write("journalctl -b -p err\n");
-  tempFile->write("----------------------------------------------------------------------------------------------------------\n\n");
-  out = UnixCommand::getCommandOutput("journalctl -b -p err");
+  out += "----------------------------------------------------------------------------------------------------------\n";
+  out += "journalctl -b -p err\n";
+  out += "----------------------------------------------------------------------------------------------------------\n\n";
+
+  command = "journalctl -b -p err";
+  f = QtConcurrent::run(execCommandInAnotherThread, command);
+  connect(&g_fwCommandToExecute, SIGNAL(finished()), &el, SLOT(quit()));
+  g_fwCommandToExecute.setFuture(f);
+  el.exec();
+  out += g_fwCommandToExecute.result();
 
   out.replace(hostname, "<HOSTNAME>");
   out.replace(homePath, "<HOME_PATH>");
+  out += "\n\n";
 
-  tempFile->write(out);
-  tempFile->write("\n\n");
+  out += "----------------------------------------------------------------------------------------------------------\n";
+  out += "cat /etc/pacman.conf\n";
+  out += "----------------------------------------------------------------------------------------------------------\n\n";
 
-  tempFile->write("----------------------------------------------------------------------------------------------------------\n");
-  tempFile->write("cat /etc/pacman.conf\n");
-  tempFile->write("----------------------------------------------------------------------------------------------------------\n\n");
-  out = UnixCommand::getCommandOutput("cat /etc/pacman.conf");
-
-  //out.replace(hostname, "<HOSTNAME>");
-  out.replace(homePath, "<HOME_PATH>");
-
-  tempFile->write(out);
-  tempFile->write("\n\n");
-
-  tempFile->write("----------------------------------------------------------------------------------------------------------\n");
-  tempFile->write("pacman -Qm\n");
-  tempFile->write("----------------------------------------------------------------------------------------------------------\n\n");
-  out = UnixCommand::getCommandOutput("pacman -Qm");
+  command = "cat /etc/pacman.conf";
+  f = QtConcurrent::run(execCommandInAnotherThread, command);
+  connect(&g_fwCommandToExecute, SIGNAL(finished()), &el, SLOT(quit()));
+  g_fwCommandToExecute.setFuture(f);
+  el.exec();
+  out += g_fwCommandToExecute.result();
 
   //out.replace(hostname, "<HOSTNAME>");
   out.replace(homePath, "<HOME_PATH>");
+  out += "\n\n";
 
-  tempFile->write(out);
-  tempFile->write("\n\n");
+  out += "----------------------------------------------------------------------------------------------------------\n";
+  out += "pacman -Qm\n";
+  out += "----------------------------------------------------------------------------------------------------------\n\n";
+
+  command = "pacman -Qm";
+  f = QtConcurrent::run(execCommandInAnotherThread, command);
+  connect(&g_fwCommandToExecute, SIGNAL(finished()), &el, SLOT(quit()));
+  g_fwCommandToExecute.setFuture(f);
+  el.exec();
+  out += g_fwCommandToExecute.result();
+
+  //out.replace(hostname, "<HOSTNAME>");
+  out.replace(homePath, "<HOME_PATH>");
+  out += "\n\n";
 
   if (UnixCommand::getLinuxDistro() == ectn_KAOS)
   {
-    tempFile->write("----------------------------------------------------------------------------------------------------------\n");
-    tempFile->write("cat /var/log/pacman.log\n");
-    tempFile->write("----------------------------------------------------------------------------------------------------------\n\n");
-    out = UnixCommand::getCommandOutput("cat /var/log/pacman.log");
+    out += "----------------------------------------------------------------------------------------------------------\n";
+    out += "cat /var/log/pacman.log\n";
+    out += "----------------------------------------------------------------------------------------------------------\n\n";
+
+    command = "cat /var/log/pacman.log";
+    f = QtConcurrent::run(execCommandInAnotherThread, command);
+    connect(&g_fwCommandToExecute, SIGNAL(finished()), &el, SLOT(quit()));
+    g_fwCommandToExecute.setFuture(f);
+    el.exec();
+    out += g_fwCommandToExecute.result();
+
     //out.replace(hostname, "<HOSTNAME>");
     out.replace(homePath, "<HOME_PATH>");
-    tempFile->write(out);
-    tempFile->flush();
+    out += "\n\n";
 
-    tempFile->write("\n\n");
-    tempFile->write("----------------------------------------------------------------------------------------------------------\n");
-    tempFile->write("cat /var/log/installation.log\n");
-    tempFile->write("----------------------------------------------------------------------------------------------------------\n\n");
-    out = UnixCommand::getCommandOutput("cat /var/log/installation.log");
+    out += "----------------------------------------------------------------------------------------------------------\n";
+    out += "cat /var/log/installation.log\n";
+    out += "----------------------------------------------------------------------------------------------------------\n\n";
+
+    command = "cat /var/log/installation.log";
+    f = QtConcurrent::run(execCommandInAnotherThread, command);
+    connect(&g_fwCommandToExecute, SIGNAL(finished()), &el, SLOT(quit()));
+    g_fwCommandToExecute.setFuture(f);
+    el.exec();
+    out += g_fwCommandToExecute.result();
     out.replace(hostname, "<HOSTNAME>");
     out.replace(homePath, "<HOME_PATH>");
     QString aux = QString::fromLatin1(out.data());
     QByteArray aba;
     aba += aux;
-    tempFile->write(aba);
-    tempFile->flush();
-    tempFile->close();
   }
   else
   {
-    tempFile->write("----------------------------------------------------------------------------------------------------------\n");
-    tempFile->write("head --bytes=256K /var/log/pacman.log\n");
-    tempFile->write("----------------------------------------------------------------------------------------------------------\n\n");
-    out = UnixCommand::getCommandOutput("head --bytes=256K /var/log/pacman.log");
-    //out.replace(hostname, "<HOSTNAME>");
-    out.replace(homePath, "<HOME_PATH>");
+    out += "----------------------------------------------------------------------------------------------------------\n";
+    out += "head --bytes=256K /var/log/pacman.log\n";
+    out += "----------------------------------------------------------------------------------------------------------\n\n";
 
-    tempFile->write(out);
-    tempFile->flush();
-    tempFile->close();
+    command = "head --bytes=256K /var/log/pacman.log";
+    f = QtConcurrent::run(execCommandInAnotherThread, command);
+    connect(&g_fwCommandToExecute, SIGNAL(finished()), &el, SLOT(quit()));
+    g_fwCommandToExecute.setFuture(f);
+    el.exec();
+    out += g_fwCommandToExecute.result();
+    out.replace(hostname, "<HOSTNAME>");
+    out.replace(homePath, "<HOME_PATH>");
   }
 
+  QFuture<QString> f2 = QtConcurrent::run(generateSysInfo, out);
+  connect(&g_fwGenerateSysInfo, SIGNAL(finished()), &el, SLOT(quit()));
+  g_fwGenerateSysInfo.setFuture(f2);
+  el.exec();
+
+  m_commandExecuting = ectn_NONE;
+  writeToTabOutput("<br>" + g_fwGenerateSysInfo.result() + "<br>");
+  writeToTabOutput("<br><b>" + StrConstants::getCommandFinishedOK() + "</b><br>");
   enableTransactionActions();
-
-
-  //Now we gist the temp file just created!
-  QString ptpb = UnixCommand::getCommandOutput("curl -F c=@- https://ptpb.pw/?u=1", tempFile->fileName());
-  delete cic;
-
-  QString distroPrettyName = UnixCommand::getLinuxDistroPrettyName();
-  QMessageBox::information(this, distroPrettyName + " SysInfo", Package::makeURLClickable(ptpb), QMessageBox::Ok);
 }
 
 /*

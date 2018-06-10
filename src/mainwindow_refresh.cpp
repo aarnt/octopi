@@ -280,8 +280,8 @@ void MainWindow::AURToolSelected()
     disconnect(m_leFilterPackage, SIGNAL(textChanged(QString)), this, SLOT(lightPackageFilter()));
 
   //TODO: Make this optional by the user
-  m_leFilterPackage->clear();
-  m_leFilterPackage->initStyleSheet();
+  //m_leFilterPackage->clear();
+  //m_leFilterPackage->initStyleSheet();
 
   if (lightPackageFilterConnected && !ui->actionUseInstantSearch->isChecked())
     connect(m_leFilterPackage, SIGNAL(textChanged(QString)), this, SLOT(lightPackageFilter()));
