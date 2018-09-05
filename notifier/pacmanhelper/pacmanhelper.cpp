@@ -27,7 +27,7 @@ void PacmanHelper::syncdb()
 {
   QProcess pacman;
   QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
-  env.insert("LANG", "us_EN");
+  env.insert("LANG", "en_US");
   pacman.setProcessEnvironment(env);
 
   QStringList params;
