@@ -254,7 +254,7 @@ QString WMHelper::getGKSUCommand(){
 QString WMHelper::getLXQTSUCommand(){
   QString result = ctn_LXQTSU;
 
-  result += " -s ";
+  result += " -d " + ctn_ROOT_SH;
 
   return result;
 }
