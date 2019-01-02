@@ -179,7 +179,7 @@ void MainWindow::pacmanHelperTimerTimeout()
 {
   static bool firstTime=true;
 
-  if (/*!UnixCommand::hasInternetConnection() ||*/ m_commandExecuting != ectn_NONE) return;
+  if (m_commandExecuting != ectn_NONE) return;
 
   if (firstTime)
   {
@@ -227,7 +227,7 @@ void MainWindow::pacmanHelperTimerTimeout()
            lastCheckTime.isNull() ||
            lastCheckTime.daysTo(now) >= 1)) || (syncTime))
     {
-      syncDatabase();
+      syncDatabase(ectn_auto_sync);
       //Then we set new LastCheckTime...
       SettingsManager::setLastSyncDbTime(now);
     }
@@ -236,7 +236,7 @@ void MainWindow::pacmanHelperTimerTimeout()
   {
     if (lastCheckTime.isNull() || now.addSecs(-(syncDbInterval * 60)) >= lastCheckTime)
     {
-      syncDatabase();
+      syncDatabase(ectn_auto_sync);
       //Then we set new LastCheckTime...
       SettingsManager::setLastSyncDbTime(now);
     }
@@ -652,9 +652,16 @@ bool MainWindow::isInternetAvailable()
 /*
  * Called every time user selects "Sync databases..." menu option
  */
-void MainWindow::syncDatabase()
+void MainWindow::syncDatabase(SyncDatabase syncDB)
 {
-  if (!isInternetAvailable()) return;
+  if (syncDB == ectn_auto_sync)
+  {
+    if (!UnixCommand::hasInternetConnection()) return;
+  }
+  else if (syncDB == ectn_user_sync)
+  {
+    if (!isInternetAvailable()) return;
+  }
 
   //If, for whatever reason, the pacman db is locked, let's ask for lock removal
   if (PacmanExec::isDatabaseLocked())

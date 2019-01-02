@@ -51,7 +51,8 @@ HEADERS += src/QtSolutions/qtsingleapplication.h \
         src/terminal.h \
         src/pacmanexec.h \
         src/constants.h \
-        src/optionsdialog.h
+        src/optionsdialog.h \
+        src/packagetreeview.h
 
 QTERMWIDGET{
   HEADERS += src/termwidget.h
@@ -92,7 +93,8 @@ SOURCES += src/QtSolutions/qtsingleapplication.cpp \
         src/utils.cpp \
         src/terminal.cpp \
         src/pacmanexec.cpp \
-        src/optionsdialog.cpp
+        src/optionsdialog.cpp \
+        src/packagetreeview.cpp
 
 QTERMWIDGET{
   SOURCES += src/termwidget.cpp

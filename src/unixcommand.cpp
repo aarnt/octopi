@@ -183,7 +183,6 @@ QByteArray UnixCommand::performAURCommand(const QString &args)
 {
   QByteArray result("");
   QProcess aur;
-
   QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
   env.insert("LANG", "C");
   env.insert("LC_MESSAGES", "C");
@@ -626,38 +625,6 @@ bool UnixCommand::doInternetPingTest()
     else
       return false;
   }
-
-/*  QProcess ping;
-  int res;
-  QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
-  env.insert("LANG", "C");
-  env.insert("LC_MESSAGES", "C");
-  ping.setProcessEnvironment(env);
-
-  if (UnixCommand::getLinuxDistro() == ectn_MOOOSLINUX)
-    ping.start("torsocks ping -c 1 -W 3 www.google.com");
-  else
-    ping.start("ping -c 1 -W 3 www.google.com");
-
-  ping.waitForFinished();
-  res = ping.exitCode();
-
-  if (res != 0)
-  {
-    //Let's try to ping www.baidu.com
-    if (UnixCommand::getLinuxDistro() == ectn_MOOOSLINUX)
-      ping.start("torsocks ping -c 1 -W 3 www.baidu.com");
-    else
-      ping.start("ping -c 1 -W 3 www.baidu.com");
-
-    ping.waitForFinished();
-    res = ping.exitCode();
-  }
-
-  ping.close();
-
-  return (res == 0); //ZERO code means ping was alive!
-*/
 }
 
 /*

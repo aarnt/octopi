@@ -1637,7 +1637,7 @@ void MainWindow::toggleTransactionActions(const bool value)
     if (value == true && m_outdatedStringList->count() > 0)
       ui->actionSystemUpgrade->setEnabled(true);
   }
-  else if (value == false) //&& state == false)
+  else if (value == false)
   {
     ui->actionCommit->setEnabled(false);
     ui->actionCancel->setEnabled(false);
@@ -1916,10 +1916,6 @@ void MainWindow::pacmanProcessFinished(int exitCode, QProcess::ExitStatus exitSt
  */
 void MainWindow::onPressAnyKeyToContinue()
 {
-  //m_console->execute("clear");
-  //m_console->setFocus();
-  //m_console->enter();
-
   if (m_commandExecuting == ectn_NONE) return;
 
   m_progressWidget->setValue(0);
