@@ -247,7 +247,8 @@ void OptionsDialog::initAURTab()
       trizenTool=true;
   }
 
-  if (!pacaurTool && !yaourtTool && !trizenTool)
+  //if (!pacaurTool && !yaourtTool && !trizenTool)
+  if (UnixCommand::getLinuxDistro() == ectn_KAOS)
   {
     removeTabByName("AUR");
   }

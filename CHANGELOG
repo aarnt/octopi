@@ -1,8 +1,10 @@
 0.9.1 (dev)
   Changed ptpb SysInfo logic to show more parameters and keep it remotely for 15 minutes.
   Left click on package icon in package list brings context menu.
+  Added "Info" option in package list context menu.
   BugFix: Notifier checked for available internet connection too early with an error dialog box.
   BugFix: Changed command to Reinstall/Update when package is already installed or outdated.
+  BugFix: Clear filter line edit when navigating thru package anchors at Info tab.
 
 0.9.0
   Parser changes: added counter for processed packages.  

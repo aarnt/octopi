@@ -53,7 +53,7 @@ extern QFutureWatcher<QStringList *> g_fwOutdatedAURStringList;
 extern QFutureWatcher<QByteArray> g_fwCommandToExecute;
 extern QFutureWatcher<QString> g_fwGenerateSysInfo;
 
-QString showPackageInfo(QString pkgName);
+QString showPackageDescription(QString pkgName);
 QList<PackageListData> * searchPacmanPackages();
 QSet<QString> * searchUnrequiredPacmanPackages();
 QList<PackageListData> * searchForeignPackages();

@@ -49,7 +49,7 @@ QFutureWatcher<QString> g_fwGenerateSysInfo;
 /*
  * Given a packageName, returns its description
  */
-QString showPackageInfo(QString pkgName)
+QString showPackageDescription(QString pkgName)
 {
   MainWindow *mw = MainWindow::returnMainWindow();
   const PackageRepository::PackageData*const package = mw->getFirstPackageFromRepo(pkgName);

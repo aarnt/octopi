@@ -59,7 +59,7 @@ bool TreeViewPackagesItemDelegate::helpEvent ( QHelpEvent *event, QAbstractItemV
       gPoint = tvPackages->mapToGlobal(event->pos());
       QFuture<QString> f;
       disconnect(&g_fwToolTip, SIGNAL(finished()), this, SLOT(execToolTip()));
-      f = QtConcurrent::run(showPackageInfo, si->name);
+      f = QtConcurrent::run(showPackageDescription, si->name);
       g_fwToolTip.setFuture(f);
       connect(&g_fwToolTip, SIGNAL(finished()), this, SLOT(execToolTip()));
     }
@@ -94,7 +94,7 @@ bool TreeViewPackagesItemDelegate::helpEvent ( QHelpEvent *event, QAbstractItemV
         gPoint = tvTransaction->mapToGlobal(event->pos());
         QFuture<QString> f;
         disconnect(&g_fwToolTip, SIGNAL(finished()), this, SLOT(execToolTip()));
-        f = QtConcurrent::run(showPackageInfo, pkgName);
+        f = QtConcurrent::run(showPackageDescription, pkgName);
         g_fwToolTip.setFuture(f);
         connect(&g_fwToolTip, SIGNAL(finished()), this, SLOT(execToolTip()));
       }
