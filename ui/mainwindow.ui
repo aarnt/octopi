@@ -38,15 +38,15 @@
      <number>0</number>
     </property>
     <item row="0" column="0">
-    <widget class="QSplitter" name="splitterVertical">
-     <property name="orientation">
-      <enum>Qt::Horizontal</enum>
-     </property>
-       <widget class="QSplitter" name="splitterHorizontal">
+     <widget class="QSplitter" name="splitterVertical">
       <property name="orientation">
-       <enum>Qt::Vertical</enum>
+       <enum>Qt::Horizontal</enum>
       </property>
-       <widget class="QTreeView" name="tvPackages">
+      <widget class="QSplitter" name="splitterHorizontal">
+       <property name="orientation">
+        <enum>Qt::Vertical</enum>
+       </property>
+       <widget class="PackageTreeView" name="tvPackages">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Expanding" vsizetype="MinimumExpanding">
           <horstretch>0</horstretch>
@@ -75,58 +75,58 @@
          <number>20</number>
         </property>
        </widget>
-      <widget class="QTabWidget" name="twProperties">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="minimumSize">
-        <size>
-         <width>0</width>
-         <height>235</height>
-        </size>
-       </property>
-       <property name="currentIndex">
-        <number>0</number>
-       </property>
-       <widget class="QWidget" name="tabInfo">
-        <attribute name="title">
-         <string>Info</string>
-        </attribute>
-       </widget>
-       <widget class="QWidget" name="tbFiles">
-        <attribute name="title">
-         <string>Files</string>
-        </attribute>
-       </widget>
-       <widget class="QWidget" name="tabTransaction">
-        <attribute name="title">
-         <string>Transaction</string>
-        </attribute>
-       </widget>
-       <widget class="QWidget" name="tabOutput">
-        <attribute name="title">
-         <string>Output</string>
-        </attribute>
+       <widget class="QTabWidget" name="twProperties">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>235</height>
+         </size>
+        </property>
+        <property name="currentIndex">
+         <number>0</number>
+        </property>
+        <widget class="QWidget" name="tabInfo">
+         <attribute name="title">
+          <string>Info</string>
+         </attribute>
+        </widget>
+        <widget class="QWidget" name="tbFiles">
+         <attribute name="title">
+          <string>Files</string>
+         </attribute>
+        </widget>
+        <widget class="QWidget" name="tabTransaction">
+         <attribute name="title">
+          <string>Transaction</string>
+         </attribute>
+        </widget>
+        <widget class="QWidget" name="tabOutput">
+         <attribute name="title">
+          <string>Output</string>
+         </attribute>
+        </widget>
        </widget>
       </widget>
-     </widget>
-     <widget class="QTreeWidget" name="twGroups">
-      <property name="maximumSize">
-       <size>
-        <width>265</width>
-        <height>16777215</height>
-       </size>
-      </property>
-      <column>
-       <property name="text">
-        <string notr="true">1</string>
+      <widget class="QTreeWidget" name="twGroups">
+       <property name="maximumSize">
+        <size>
+         <width>265</width>
+         <height>16777215</height>
+        </size>
        </property>
-      </column>
+       <column>
+        <property name="text">
+         <string notr="true">1</string>
+        </property>
+       </column>
+      </widget>
      </widget>
-    </widget>
     </item>
    </layout>
   </widget>
@@ -590,6 +590,13 @@
   </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
+ <customwidgets>
+  <customwidget>
+   <class>PackageTreeView</class>
+   <extends>QTreeView</extends>
+   <header>src/packagetreeview.h</header>
+  </customwidget>
+ </customwidgets>
  <tabstops>
   <tabstop>tvPackages</tabstop>
   <tabstop>twProperties</tabstop>

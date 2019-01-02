@@ -108,7 +108,7 @@ void PacmanExec::removeDatabaseLock()
 }
 
 /*
- * Cancels the running process
+ * Cancels the running pacman process using "killall pacman" and removing database lock file
  */
 void PacmanExec::cancelProcess()
 {
@@ -411,6 +411,7 @@ void PacmanExec::parsePacmanProcessOutput(QString output)
     msg.remove(QRegularExpression("Fontconfig warning.+"));
     msg.remove(QRegularExpression("reading configurations from.+"));
     msg.remove(QRegularExpression(".+annot load library.+"));
+    msg.remove(QRegularExpression("libGL error.+"));
     msg = msg.trimmed();
 
     if (m_debugMode) std::cout << "debug: " << msg.toLatin1().data() << std::endl;

@@ -38,6 +38,8 @@ class PacmanHelperClient;
 class OptionsDialog;
 class TransactionDialog;
 
+enum SyncDatabase { ectn_auto_sync, ectn_user_sync};
+
 #ifdef KSTATUS
   class KStatusNotifierItem;
 #endif
@@ -60,7 +62,7 @@ private slots:
   void execSystemTrayActivated(QSystemTrayIcon::ActivationReason);
   void execSystemTrayKF5();
 
-  void syncDatabase();
+  void syncDatabase(SyncDatabase syncDB = ectn_user_sync);
   void refreshAppIcon();
   void runOctopi(ExecOpt execOptions = ectn_SYSUPGRADE_EXEC_OPT);
   void runOctopiSysUpgrade();  

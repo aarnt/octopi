@@ -516,23 +516,9 @@ void MainWindow::initLineEditFilterPackages(){
  */
 void MainWindow::initPackageTreeView()
 {
-  ui->tvPackages->setAlternatingRowColors(true);
-  ui->tvPackages->setItemDelegate(new TreeViewPackagesItemDelegate(ui->tvPackages));
-  ui->tvPackages->setContextMenuPolicy(Qt::CustomContextMenu);
-  ui->tvPackages->setSelectionMode(QAbstractItemView::ExtendedSelection);
-  ui->tvPackages->setEditTriggers(QAbstractItemView::NoEditTriggers);
-  ui->tvPackages->setVerticalScrollMode(QAbstractItemView::ScrollPerItem);
-  ui->tvPackages->setAllColumnsShowFocus( true );
+  ui->tvPackages->init();
   ui->tvPackages->setModel(m_packageModel.get());
-  ui->tvPackages->setSortingEnabled( true );
-  ui->tvPackages->setIndentation( 0 );
-  ui->tvPackages->header()->setSortIndicatorShown(true);
-  ui->tvPackages->header()->setSectionsClickable(true);
-  ui->tvPackages->header()->setSectionsMovable(false);
-  ui->tvPackages->header()->setSectionResizeMode(QHeaderView::Interactive);
-  ui->tvPackages->header()->setDefaultAlignment( Qt::AlignLeft );
-
-  resizePackageView();
+  ui->tvPackages->resizePackageView();
 
   connect(ui->tvPackages->selectionModel(), SIGNAL(selectionChanged(QItemSelection,QItemSelection)),
           this, SLOT(tvPackagesSelectionChanged(QItemSelection,QItemSelection)));
@@ -563,6 +549,9 @@ void MainWindow::removePackageTreeViewConnections()
 
 void MainWindow::resizePackageView()
 {
+  ui->tvPackages->resizePackageView();
+
+/*
   ui->tvPackages->setColumnWidth(PackageModel::ctn_PACKAGE_ICON_COLUMN,
                                  SettingsManager::getPackageIconColumnWidth());
   ui->tvPackages->setColumnWidth(PackageModel::ctn_PACKAGE_NAME_COLUMN,
@@ -571,6 +560,7 @@ void MainWindow::resizePackageView()
                                  SettingsManager::getPackageVersionColumnWidth());
   ui->tvPackages->setColumnWidth(PackageModel::ctn_PACKAGE_REPOSITORY_COLUMN,
                                  SettingsManager::getPackageRepositoryColumnWidth());
+*/
 }
 
 /*

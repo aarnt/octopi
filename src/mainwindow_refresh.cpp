@@ -134,7 +134,7 @@ void MainWindow::refreshMenuTools()
     if (ui->menuTools->actions().indexOf(m_actionSysInfo) == -1)
     {
       ui->menuTools->addSeparator();
-      m_actionSysInfo->setText("SysInfo → ptpb.pw");
+      m_actionSysInfo->setText("SysInfo → https://ptpb.pw");
       ui->menuTools->addAction(m_actionSysInfo);
 
       if (!connectorPtpb)
