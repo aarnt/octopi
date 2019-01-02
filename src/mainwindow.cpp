@@ -883,6 +883,7 @@ void MainWindow::execContextMenuPackages(QPoint point)
     bool allRemovable = true;    
     int numberOfSelPkgs = selectedRows.count();
     int numberOfAUR = 0;
+    int numberOfOutdated = 0;
 
     foreach(QModelIndex item, selectedRows)
     {
@@ -893,6 +894,7 @@ void MainWindow::execContextMenuPackages(QPoint point)
         allInstallable = false;
         numberOfAUR++;
       }
+      if (package->outdated()) numberOfOutdated ++;
       if (package->installed() == false)
       {
         allRemovable = false;
@@ -902,7 +904,19 @@ void MainWindow::execContextMenuPackages(QPoint point)
     if (allInstallable) // implicitly foreign packages == 0
     {
       if (!isAllGroupsSelected() && !isAURGroupSelected()) menu->addAction(ui->actionInstallGroup);
+      if (allRemovable == false && numberOfOutdated != numberOfSelPkgs)
+      {
+        ui->actionInstall->setText(StrConstants::getInstall());
+      }
+      else if (allRemovable == true && numberOfOutdated == numberOfSelPkgs)
+      {
+        ui->actionInstall->setText(StrConstants::getUpdate());
+      }
+      else if (allRemovable == true)
+        ui->actionInstall->setText(StrConstants::getReinstall());
+
       menu->addAction(ui->actionInstall);
+
 
       if (!isAllGroupsSelected() && !isAURGroupSelected()) //&& numberOfSelPkgs > 1)
       {
