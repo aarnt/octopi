@@ -581,11 +581,21 @@ QString StrConstants::getTransactionRemoveText(){
 }
 
 QString StrConstants::getRemove(){
-  return QObject::tr("remove");
+  return QObject::tr("Remove");
 }
 
 QString StrConstants::getInstall(){
-  return QObject::tr("install");
+  return QObject::tr("Install");
+}
+
+QString StrConstants::getReinstall()
+{
+  return QObject::tr("Reinstall");
+}
+
+QString StrConstants::getUpdate()
+{
+  return QObject::tr("Update");
 }
 
 QString StrConstants::getRemoveItem(){

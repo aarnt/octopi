@@ -156,6 +156,8 @@ public:
   static QString getTransactionRemoveText();
   static QString getRemove();
   static QString getInstall();
+  static QString getReinstall();
+  static QString getUpdate();
   static QString getRemoveItem();
   static QString getRemoveItems();
   static QString getPressCtrlAToSelectAll();
