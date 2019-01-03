@@ -881,10 +881,8 @@ void MainWindow::execContextMenuPackages(QPoint point)
       {
         menu->addAction(m_actionPackageInfo);
       }
-
       if (package && package->installed()) {
         menu->addAction(ui->actionFindFileInPackage);
-        //menu->addSeparator();
       }
       if (!menu->actions().isEmpty()) menu->addSeparator();
     }

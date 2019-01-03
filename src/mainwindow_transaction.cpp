@@ -30,6 +30,7 @@
 #include "transactiondialog.h"
 #include "multiselectiondialog.h"
 #include "searchlineedit.h"
+#include "globals.h"
 #include <iostream>
 #include <cassert>
 
@@ -1840,7 +1841,9 @@ void MainWindow::pacmanProcessFinished(int exitCode, QProcess::ExitStatus exitSt
             m_progressWidget->close();
             return;
           }
-        }
+        }        
+        if (m_outdatedStringList->count() > 0)
+          execCommandInAnotherThread(ctn_PACMAN_SUP_COMMAND);
       }
       else if (m_commandExecuting == ectn_SYSTEM_UPGRADE ||
                m_commandExecuting == ectn_RUN_SYSTEM_UPGRADE_IN_TERMINAL)

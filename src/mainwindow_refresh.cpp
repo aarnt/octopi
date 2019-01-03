@@ -854,6 +854,8 @@ void MainWindow::buildPackageList()
   {
     m_initializationCompleted = true;        
     firstTime = false;
+    if (m_outdatedStringList->count() > 0)
+      execCommandInAnotherThread(ctn_PACMAN_SUP_COMMAND);
 
     if (m_callSystemUpgrade)
     {
