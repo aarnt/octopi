@@ -271,6 +271,10 @@ void MainWindow::AURToolSelected()
     clearStatusBar();
   }
 
+  //Let's clear the list of visited packages (pkg anchors in Info tab)
+  m_listOfVisitedPackages.clear();
+  m_indOfVisitedPackage = 0;
+
   switchToViewAllPackages();
   m_selectedRepository = "";
   m_actionRepositoryAll->setChecked(true);
@@ -287,6 +291,7 @@ void MainWindow::AURToolSelected()
     connect(m_leFilterPackage, SIGNAL(textChanged(QString)), this, SLOT(lightPackageFilter()));
 
   metaBuildPackageList();
+  refreshInfoAndFileTabs();
 }
 
 /*
