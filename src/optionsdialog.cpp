@@ -250,7 +250,8 @@ void OptionsDialog::initAURTab()
       pikaurTool=true;
   }
 
-  if (!pacaurTool && !yaourtTool && !trizenTool && !pikaurTool)
+  //if (!pacaurTool && !yaourtTool && !trizenTool)
+  if (UnixCommand::getLinuxDistro() == ectn_KAOS)
   {
     removeTabByName("AUR");
   }

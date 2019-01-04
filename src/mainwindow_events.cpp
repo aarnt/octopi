@@ -332,6 +332,7 @@ void MainWindow::keyReleaseEvent(QKeyEvent* ke)
   }
   else if(ke->key() == Qt::Key_Home && ke->modifiers() == Qt::AltModifier)
   {
+    if (!m_leFilterPackage->text().isEmpty()) m_leFilterPackage->clear();
     m_indOfVisitedPackage = 0;
 
     if (!m_listOfVisitedPackages.isEmpty())
@@ -339,6 +340,7 @@ void MainWindow::keyReleaseEvent(QKeyEvent* ke)
   }
   else if(ke->key() == Qt::Key_Left && ke->modifiers() == Qt::AltModifier)
   {
+    if (!m_leFilterPackage->text().isEmpty()) m_leFilterPackage->clear();
     if (m_indOfVisitedPackage > 0)
     {
       --m_indOfVisitedPackage;
@@ -349,6 +351,7 @@ void MainWindow::keyReleaseEvent(QKeyEvent* ke)
   }
   else if(ke->key() == Qt::Key_Right && ke->modifiers() == Qt::AltModifier)
   {
+    if (!m_leFilterPackage->text().isEmpty()) m_leFilterPackage->clear();
     if (m_indOfVisitedPackage < (m_listOfVisitedPackages.count()-1))
     {
       ++m_indOfVisitedPackage;
@@ -359,6 +362,7 @@ void MainWindow::keyReleaseEvent(QKeyEvent* ke)
   }
   else if(ke->key() == Qt::Key_End && ke->modifiers() == Qt::AltModifier)
   {
+    if (!m_leFilterPackage->text().isEmpty()) m_leFilterPackage->clear();
     m_indOfVisitedPackage = m_listOfVisitedPackages.count()-1;
 
     if (!m_listOfVisitedPackages.isEmpty())

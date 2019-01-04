@@ -105,6 +105,9 @@ const QString ctn_KEY_CACHE_CLEANER_WINDOW_SIZE("Cache_Cleaner_Window_Size");
 const QString ctn_KEY_KEEP_NUM_INSTALLED("Keep_Num_Installed");
 const QString ctn_KEY_KEEP_NUM_UNINSTALLED("Keep_Num_Uninstalled");
 
+//pacman command to retrieve list of upgradable packages with name, version and size
+const QString ctn_PACMAN_SUP_COMMAND = "pacman --print-format \"%n %v %s\" -Spu\"";
+
 //Package related
 const QString ctn_TEMP_ACTIONS_FILE ( QDir::tempPath() + QDir::separator() + ".qt_temp_octopi_" );
 const QString ctn_PACMAN_DATABASE_DIR = "/var/lib/pacman";
@@ -116,14 +119,16 @@ enum PackageStatus { ectn_INSTALLED, ectn_NON_INSTALLED, ectn_OUTDATED, ectn_NEW
 
 enum ViewOptions { ectn_ALL_PKGS, ectn_INSTALLED_PKGS, ectn_NON_INSTALLED_PKGS };
 
-//AUR HELPERS AND OTHER TOOLS
+//Supported AUR user base package tools
 const QString ctn_PACAUR_TOOL("pacaur");
 const QString ctn_YAOURT_TOOL("yaourt");
 const QString ctn_TRIZEN_TOOL("trizen");
 const QString ctn_PIKAUR_TOOL("pikaur");
 const QString ctn_NO_AUR_TOOL("DO_NOT_USE_AUR");
 
+//KaOS user base package tool
 const QString ctn_KCP_TOOL("kcp");
+//Chakra user base package tool
 const QString ctn_CHASER_TOOL("chaser");
 
 //TransactionDialog related
@@ -196,7 +201,6 @@ const QString ctn_XTERM("xterm");
 const QString ctn_QTERMWIDGET("qtermwidget5");
 
 enum EditOptions { ectn_EDIT_AS_ROOT, ectn_EDIT_AS_NORMAL_USER };
-
 
 //Octopi-notifier related  -------------------------------------------------------------------------------
 
