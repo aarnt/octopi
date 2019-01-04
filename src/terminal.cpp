@@ -204,7 +204,7 @@ void Terminal::openTerminal(const QString &dirName)
  */
 void Terminal::openRootTerminal()
 {
-  if (m_selectedTerminal == ctn_AUTOMATIC)
+  if (m_selectedTerminal == ctn_AUTOMATIC || m_selectedTerminal == ctn_QTERMWIDGET)
   {
     if (UnixCommand::getLinuxDistro() == ectn_MOOOSLINUX && UnixCommand::hasTheExecutable(ctn_RXVT_TERMINAL))
     {

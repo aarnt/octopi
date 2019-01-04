@@ -761,6 +761,8 @@ void MainWindow::initActions()
   m_actionSysInfo = new QAction(this);
   m_actionMenuMirrorCheck = new QAction(this);
   m_actionMenuOptions = new QAction(this);
+  m_actionPackageInfo = new QAction(this);
+  m_actionPackageInfo->setText(StrConstants::getTabInfoName());
 
   if(m_hasMirrorCheck)
   {
@@ -847,6 +849,7 @@ void MainWindow::initActions()
   connect(ui->twProperties, SIGNAL(currentChanged(int)), this, SLOT(changedTabIndex()));
   connect(ui->actionHelpUsage, SIGNAL(triggered()), this, SLOT(onHelpUsage()));
   connect(ui->actionHelpAbout, SIGNAL(triggered()), this, SLOT(onHelpAbout()));
+  connect(m_actionPackageInfo, SIGNAL(triggered()), this, SLOT(showPackageInfo()));
 
   // Actions from tvPkgFileList context menu
   connect(ui->actionCollapseAllItems, SIGNAL(triggered()), this, SLOT(collapseAllContentItems()));

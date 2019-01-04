@@ -192,6 +192,7 @@ private:
   QTimer *m_outdatedAURTimer;
 
   QAction *m_dummyAction;
+  QAction *m_actionPackageInfo;
   QAction *m_actionInstallPacmanUpdates;
   QAction *m_actionInstallAURUpdates;
   QAction *m_actionShowGroups;
@@ -343,7 +344,6 @@ private slots:
 
   //TreeView methods
   void copyFullPathToClipboard();
-
   void collapseAllContentItems();
   void collapseThisContentItems();
   void expandAllContentItems();
@@ -355,10 +355,10 @@ private slots:
   void openDirectory();
   void openRootTerminal();
   void installLocalPackage();
+  void showPackageInfo();
   void findFileInPackage();
   void incrementPercentage(int);
   void outputText(const QString&);
-
   void tvPackagesSearchColumnChanged(QAction*);
   void tvPackagesSelectionChanged(const QItemSelection&, const QItemSelection&);
   void tvTransactionSelectionChanged (const QItemSelection&, const QItemSelection&);

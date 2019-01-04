@@ -328,7 +328,7 @@ void MainWindow::showAnchorDescription(const QUrl &link)
     if (pkgName == "sh") pkgName = "bash";
     QFuture<QString> f;
     disconnect(&g_fwToolTipInfo, SIGNAL(finished()), this, SLOT(execToolTip()));
-    f = QtConcurrent::run(showPackageInfo, pkgName);
+    f = QtConcurrent::run(showPackageDescription, pkgName);
     g_fwToolTipInfo.setFuture(f);
     connect(&g_fwToolTipInfo, SIGNAL(finished()), this, SLOT(execToolTip()));
   }
@@ -374,6 +374,8 @@ void MainWindow::positionInPackageList(const QString &pkgName)
     ensureTabVisible(ctn_TABINDEX_INFORMATION);
     connect(ui->twProperties, SIGNAL(currentChanged(int)), this, SLOT(changedTabIndex()));
   }
+
+  ui->tvPackages->setFocus();
 }
 
 /*
@@ -386,11 +388,12 @@ void MainWindow::outputTextBrowserAnchorClicked(const QUrl &link)
     QString pkgName = link.toString().mid(5);
     if (pkgName == "sh") pkgName = "bash";
     bool indIncremented = false;
-    QItemSelectionModel*const selectionModel = ui->tvPackages->selectionModel();
+    const QItemSelectionModel*const selectionModel = ui->tvPackages->selectionModel();
 
     if (selectionModel->selectedRows().count() <= 0) return;
 
-    QModelIndex item = selectionModel->selectedRows(PackageModel::ctn_PACKAGE_NAME_COLUMN).first();
+    QModelIndexList selectedRows = selectionModel->selectedRows();
+    QModelIndex item = selectedRows.at(0);
     const PackageRepository::PackageData*const selectedPackage = m_packageModel->getData(item);
 
     if (!m_listOfVisitedPackages.isEmpty())
@@ -438,6 +441,7 @@ void MainWindow::outputTextBrowserAnchorClicked(const QUrl &link)
 
     if (indIncremented == false) m_indOfVisitedPackage++;
 
+    if (!m_leFilterPackage->text().isEmpty()) m_leFilterPackage->clear();
     positionInPackageList(pkgName);
   }
   //Otherwise, it's a remote URL which needs to be opened outside Octopi
@@ -873,10 +877,14 @@ void MainWindow::execContextMenuPackages(QPoint point)
     {
       QModelIndex item = selectedRows.at(0);
       const PackageRepository::PackageData*const package = m_packageModel->getData(item);
+      if (package)
+      {
+        menu->addAction(m_actionPackageInfo);
+      }
       if (package && package->installed()) {
         menu->addAction(ui->actionFindFileInPackage);
-        menu->addSeparator();
       }
+      if (!menu->actions().isEmpty()) menu->addSeparator();
     }
 
     bool allInstallable = true;
@@ -1596,7 +1604,15 @@ void MainWindow::installLocalPackage()
 }
 
 /*
- * Brings the user to the tab Files and position cursor inside searchBar
+ * Brings the user to the Info tab
+ */
+void MainWindow::showPackageInfo()
+{
+  refreshTabInfo(false, true);
+}
+
+/*
+ * Brings the user to the Files tab and position cursor inside searchBar
  * so he can find any file the selected package may have
  */
 void MainWindow::findFileInPackage()
