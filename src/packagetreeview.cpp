@@ -53,6 +53,7 @@ void PackageTreeView::init()
   header()->setSectionsMovable(false);
   header()->setSectionResizeMode(QHeaderView::Interactive);
   header()->setDefaultAlignment( Qt::AlignLeft );
+  setUniformRowHeights(true);
 }
 
 /*

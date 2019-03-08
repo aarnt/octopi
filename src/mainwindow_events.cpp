@@ -31,6 +31,8 @@
 #include "searchbar.h"
 #include "globals.h"
 #include "terminal.h"
+#include "termwidget.h"
+#include "settingsmanager.h"
 
 #include <QCloseEvent>
 #include <QMessageBox>

@@ -109,7 +109,7 @@ void MainWindow::loadPanelSettings()
 void MainWindow::saveSettings(SaveSettingsReason saveSettingsReason)
 {
   switch(saveSettingsReason){
-    case ectn_CurrentTabIndex:
+    case ectn_CURRENTTABINDEX:
       SettingsManager::instance()->setCurrentTabIndex(ui->twProperties->currentIndex());
       break;
 
@@ -127,12 +127,12 @@ void MainWindow::saveSettings(SaveSettingsReason saveSettingsReason)
       SettingsManager::instance()->setShowGroupsPanel(1); //And also show Groups panel!
       break;
 
-    case ectn_AUR_PackageList:
+    case ectn_AUR_PACKAGELIST:
       SettingsManager::instance()->setAURPackageListOrderedCol(ui->tvPackages->header()->sortIndicatorSection());
       SettingsManager::instance()->setAURPackageListSortOrder(ui->tvPackages->header()->sortIndicatorOrder());
       break;
 
-    case ectn_PackageList:
+    case ectn_PACKAGELIST:
       SettingsManager::instance()->setPackageListOrderedCol(ui->tvPackages->header()->sortIndicatorSection());
       SettingsManager::instance()->setPackageListSortOrder(ui->tvPackages->header()->sortIndicatorOrder());
       break;            
@@ -149,7 +149,7 @@ void MainWindow::saveSettings(SaveSettingsReason saveSettingsReason)
 
       SettingsManager::instance()->setShowGroupsPanel(show);
       break;
-  }
+  }  
 }
 
 /*
@@ -785,6 +785,7 @@ void MainWindow::initActions()
   m_actionSwitchToAURTool->setText(StrConstants::getUseAURTool());
   m_actionSwitchToAURTool->setCheckable(true);
   m_actionSwitchToAURTool->setChecked(false);
+  m_actionSwitchToAURTool->setEnabled(false);
   connect(m_actionSwitchToAURTool, SIGNAL(triggered()), this, SLOT(AURToolSelected()));
 
   m_actionInstallPacmanUpdates = new QAction(this);

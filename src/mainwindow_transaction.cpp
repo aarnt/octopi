@@ -745,7 +745,6 @@ void MainWindow::doMirrorCheck()
  */
 void MainWindow::doSyncDatabase()
 {
-  //if (!doRemovePacmanLockFile()) return;
   if (!isSUAvailable()) return;
 
   if (!isInternetAvailable()) return;
@@ -819,7 +818,6 @@ void MainWindow::doAURUpgrade()
 bool MainWindow::prepareSystemUpgrade()
 {
   m_systemUpgradeDialog = false;
-  //bool res = doRemovePacmanLockFile();
   bool res = isSUAvailable();
   if (!res) return false;
 
@@ -879,7 +877,18 @@ void MainWindow::doSystemUpgrade(SystemUpgradeOptions systemUpgradeOptions)
   else
   {
     //Shows a dialog indicating the targets needed to be retrieved and asks for the user's permission.
-    QList<PackageListData> * targets = Package::getTargetUpgradeList();
+    QList<PackageListData> * targets = nullptr;
+    bool doASystemUpgrade = true;
+
+    if (m_outdatedStringList->indexOf(QRegularExpression("^pacman$")) != -1) //There is "pacman in the outdated list
+    {
+      targets = Package::getTargetUpgradeList("pacman");
+      doASystemUpgrade = false;
+    }
+    else
+    {
+      targets = Package::getTargetUpgradeList();
+    }
 
     //There are no new updates to install!
     if (targets->count() == 0 && m_outdatedStringList->count() == 0)
@@ -931,8 +940,26 @@ void MainWindow::doSystemUpgrade(SystemUpgradeOptions systemUpgradeOptions)
     }
     list.remove(list.size()-1, 1);
 
-    //User already confirmed all updates in the notifier window!
-    if (systemUpgradeOptions == ectn_NOCONFIRM_OPT)
+    //Let's build the system upgrade transaction dialog...
+    QString ds = Package::kbytesToSize(totalDownloadSize);
+
+    TransactionDialog question(this);
+
+    if(targets->count()==1)
+      question.setText(StrConstants::getRetrievePackage() +
+                       "\n\n" + StrConstants::getTotalDownloadSize().arg(ds).remove(" KB"));
+    else
+      question.setText(StrConstants::getRetrievePackages(targets->count()) +
+                       "\n\n" + StrConstants::getTotalDownloadSize().arg(ds).remove(" KB"));
+
+    question.setWindowTitle(StrConstants::getConfirmation());
+    question.setInformativeText(StrConstants::getConfirmationQuestion());
+    question.setDetailedText(list);
+
+    m_systemUpgradeDialog = true;
+    int result = question.exec();
+
+    if(result == QDialogButtonBox::Yes || result == QDialogButtonBox::AcceptRole)
     {
       res = prepareSystemUpgrade();
       if (!res)
@@ -942,59 +969,36 @@ void MainWindow::doSystemUpgrade(SystemUpgradeOptions systemUpgradeOptions)
         return;
       }
 
-      m_commandExecuting = ectn_SYSTEM_UPGRADE;
-      m_pacmanExec->doSystemUpgrade();
-      m_commandQueued = ectn_NONE;
-    }
-    else
-    {
-      //Let's build the system upgrade transaction dialog...
-      QString ds = Package::kbytesToSize(totalDownloadSize);
-
-      TransactionDialog question(this);
-
-      if(targets->count()==1)
-        question.setText(StrConstants::getRetrievePackage() +
-                         "\n\n" + StrConstants::getTotalDownloadSize().arg(ds).remove(" KB"));
-      else
-        question.setText(StrConstants::getRetrievePackages(targets->count()) +
-                         "\n\n" + StrConstants::getTotalDownloadSize().arg(ds).remove(" KB"));
-
-      question.setWindowTitle(StrConstants::getConfirmation());
-      question.setInformativeText(StrConstants::getConfirmationQuestion());
-      question.setDetailedText(list);
-
-      m_systemUpgradeDialog = true;
-      int result = question.exec();
-
-      if(result == QDialogButtonBox::Yes || result == QDialogButtonBox::AcceptRole)
+      if (result == QDialogButtonBox::Yes)
       {
-        res = prepareSystemUpgrade();
-        if (!res)
-        {
-          m_systemUpgradeDialog = false;
-          enableTransactionActions();
-          return;
-        }
-
-        if (result == QDialogButtonBox::Yes)
+        if (doASystemUpgrade)
         {
           m_commandExecuting = ectn_SYSTEM_UPGRADE;
           m_pacmanExec->doSystemUpgrade();
-          m_commandQueued = ectn_NONE;
         }
-        else if (result == QDialogButtonBox::AcceptRole)
+
+        m_commandQueued = ectn_NONE;
+      }
+      else if (result == QDialogButtonBox::AcceptRole)
+      {
+        if (doASystemUpgrade)
         {
           m_commandExecuting = ectn_RUN_SYSTEM_UPGRADE_IN_TERMINAL;
           m_pacmanExec->doSystemUpgradeInTerminal();
-          m_commandQueued = ectn_NONE;
         }
+        else
+        {
+          m_commandExecuting = ectn_RUN_SYSTEM_UPGRADE_IN_TERMINAL;
+          m_pacmanExec->doInstallInTerminal("pacman");
+        }
+
+        m_commandQueued = ectn_NONE;
       }
-      else if (result == QDialogButtonBox::No)
-      {
-        m_systemUpgradeDialog = false;
-        enableTransactionActions();
-      }
+    }
+    else if (result == QDialogButtonBox::No)
+    {
+      m_systemUpgradeDialog = false;
+      enableTransactionActions();
     }
   }
 }
@@ -1094,7 +1098,6 @@ void MainWindow::doRemoveAndInstall()
 
   if(result == QDialogButtonBox::Yes || result == QDialogButtonBox::AcceptRole)
   {
-    //if (!doRemovePacmanLockFile()) return;
     if (!isSUAvailable()) return;
 
     disableTransactionActions();
@@ -1171,7 +1174,6 @@ void MainWindow::doRemove()
 
   if(result == QDialogButtonBox::Yes || result == QDialogButtonBox::AcceptRole)
   {
-    //if (!doRemovePacmanLockFile()) return;
     if (!isSUAvailable()) return;
 
     disableTransactionActions();
@@ -1479,7 +1481,6 @@ void MainWindow::doInstall()
 
   if(result == QDialogButtonBox::Yes || result == QDialogButtonBox::AcceptRole)
   {
-    //if (!doRemovePacmanLockFile()) return;
     if (!isSUAvailable()) return;
 
     disableTransactionActions();
@@ -1556,7 +1557,6 @@ void MainWindow::doInstallLocalPackages()
   qApp->processEvents();
   if(result == QDialogButtonBox::Yes || result == QDialogButtonBox::AcceptRole)
   {
-    //if (!doRemovePacmanLockFile()) return;
     if (!isSUAvailable()) return;
 
     disableTransactionActions();
@@ -1632,7 +1632,7 @@ void MainWindow::toggleTransactionActions(const bool value)
     ui->actionCancel->setEnabled(false);
 
     if(m_hasMirrorCheck) m_actionMenuMirrorCheck->setEnabled(true);
-    if(m_hasAURTool && m_commandExecuting == ectn_NONE) m_actionSwitchToAURTool->setEnabled(true);
+    if(m_hasAURTool && m_commandExecuting == ectn_NONE && m_initializationCompleted) m_actionSwitchToAURTool->setEnabled(true);
 
     ui->actionSyncPackages->setEnabled(true);
     if (value == true && m_outdatedStringList->count() > 0)
@@ -1665,7 +1665,8 @@ void MainWindow::toggleTransactionActions(const bool value)
   ui->actionRepositoryEditor->setEnabled(value);
   m_actionSysInfo->setEnabled(value);
 
-  m_actionSwitchToAURTool->setEnabled(value);
+  if (value == true && m_initializationCompleted) m_actionSwitchToAURTool->setEnabled(value);
+
   ui->actionGetNews->setEnabled(value);  
   ui->actionInstallLocalPackage->setEnabled(value);
   ui->actionOpenRootTerminal->setEnabled(value);
@@ -1887,7 +1888,7 @@ void MainWindow::pacmanProcessFinished(int exitCode, QProcess::ExitStatus exitSt
 
     if (res == QMessageBox::Yes)
     {
-      m_pacmanExec->runLastestCommandInTerminal();
+      m_pacmanExec->runLatestCommandInTerminal();
       m_progressWidget->close();
       return;
     }
@@ -1920,6 +1921,19 @@ void MainWindow::pacmanProcessFinished(int exitCode, QProcess::ExitStatus exitSt
 void MainWindow::onPressAnyKeyToContinue()
 {
   if (m_commandExecuting == ectn_NONE) return;
+
+  //For the situations where a Sysupgrade has "pacman" pkg
+  /*if (m_commandExecuting == ectn_RUN_SYSTEM_UPGRADE_IN_TERMINAL
+      && m_outdatedStringList->count() > 0)
+  {
+    metaBuildPackageList();
+    m_console->enter();
+    m_console->setFocus();
+    m_commandExecuting = ectn_NONE;
+    m_progressWidget->close();
+    doSystemUpgrade();
+    return;
+  }*/
 
   m_progressWidget->setValue(0);
   m_progressWidget->show();

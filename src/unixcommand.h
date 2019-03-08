@@ -44,6 +44,7 @@ private:
   Terminal *m_terminal;
   QProcess *m_process;
   static QFile *m_temporaryFile;
+  static QString buildOctopiHelperCommand(const QString &pCommand);
 
 public:
   UnixCommand(QObject *parent);
@@ -144,6 +145,7 @@ public:
 
   void openRootTerminal();
   void runCommandInTerminal(const QStringList& commandList);
+  void runOctopiHelperInTerminal(const QStringList& commandList);
   void runCommandInTerminalAsNormalUser(const QStringList& commandList);
 
   static void execCommandAsNormalUser(const QString &pCommand);

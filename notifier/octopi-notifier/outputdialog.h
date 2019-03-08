@@ -55,27 +55,17 @@ private:
   QString m_listOfAURPackagesToUpgrade;
   bool m_upgradeRunning;
   bool m_debugInfo;
-  bool m_pacmanSystemUpgrade;
+  bool m_viewAsTextBrowser;
 
   QAction *m_actionStopTransaction;
   QToolButton *m_toolButtonStopTransaction;
 
   void initAsTextBrowser();
-  void doSystemUpgrade();
-
   void positionTextEditCursorAtEnd();
   bool textInTabOutput(const QString& findText);
   void writeToTabOutput(const QString &msg, TreatURLLinks treatURLLinks = ectn_TREAT_URL_LINK);
 
 private slots:
-
-#ifdef QTERMWIDGET
-  void initAsTermWidget();
-  void doAURUpgrade();
-  void onExecCommandInTabTerminal(QString command);
-  void onPressAnyKeyToContinue();
-  void onCancelControlKey();
-#endif
 
   void onPencertange(int percentage);
   void onWriteOutput(const QString &output);
@@ -97,11 +87,23 @@ public:
   explicit OutputDialog(QWidget *parent = 0);
   void setDebugMode(bool newValue);
   void setListOfAURPackagesToUpgrade(const QString& list);
-  void setPacmanSystemUpgrade(bool value);
+  void setViewAsTextBrowser(bool value);
+  void doSystemUpgrade();
 
 public slots:
   void show();
   void reject();
+
+#ifdef QTERMWIDGET
+  void initAsTermWidget();
+  void doInstallInTerminal();
+  void doSystemUpgradeInTerminal();
+  void doAURUpgrade();
+  void onExecCommandInTabTerminal(QString command);
+  void onPressAnyKeyToContinue();
+  void onCancelControlKey();
+#endif
+
 };
 
 #endif // OUTPUTDIALOG_H

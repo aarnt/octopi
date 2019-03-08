@@ -378,6 +378,9 @@ void OptionsDialog::initSUToolTab()
   if (UnixCommand::hasTheExecutable(ctn_LXQTSU)){
     list << ctn_LXQTSU;
   }
+  /*if (UnixCommand::hasTheExecutable(ctn_OCTOPISUDO)){
+    list << ctn_OCTOPISUDO;
+  }*/
   if (UnixCommand::hasTheExecutable(ctn_TDESU)){
     list << ctn_TDESU;
   }

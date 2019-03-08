@@ -1,6 +1,6 @@
 /*
 * This file is part of Octopi, an open-source GUI for pacman.
-* Copyright (C) 2013 Alexandre Albuquerque Arnt
+* Copyright (C) 2019 Alexandre Albuquerque Arnt
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -18,42 +18,32 @@
 *
 */
 
-#ifndef TERMWIDGET_H
-#define TERMWIDGET_H
+#ifndef PKOCTOPIHELPER_H
+#define PKOCTOPIHELPER_H
 
-#include "qtermwidget5/qtermwidget.h"
-#include <QClipboard>
+#include <QString>
+#include <QProcess>
+#include <QObject>
 
-class QWidget;
-class QKeyEvent;
-
-class TermWidget : public QTermWidget
+class OctopiHelper: QObject
 {
-  Q_OBJECT
+Q_OBJECT
 
 private:
-  QAction *m_actionZoomIn, *m_actionZoomOut, *m_actionMaximize, *m_actionPaste;
-  int m_zoomFactor;
-  void paste(QClipboard::Mode);
-
-private slots:
-  void parseOutput(QString str);
-  void onKeyPressed(QKeyEvent *ke);
-  void execContextMenu(const QPoint &);
-  void onPaste();
-  void onZoomIn();
-  void onZoomOut();
+  int m_exitCode;
+  QProcess *m_process;
+  QProcessEnvironment getProcessEnvironment();
+  QString getTransactionTempFileName();
 
 public:
-  TermWidget(QWidget *parent);
-  void execute(QString command);
-  void enter();
+  OctopiHelper();
+  virtual ~OctopiHelper();
 
-signals:
-  void onPressAnyKeyToContinue();
-  void onCancelControlKey();
-  void onKeyQuit();
-  void onKeyF11();
+  int executePkgTransaction();
+  int executeSysUpgrade();
+  int executeSyncDB();
+
+  inline int getExitCode() { return m_exitCode; }
 };
 
-#endif // TERMWIDGET_H
+#endif // PKOCTOPIHELPER_H

@@ -280,6 +280,7 @@ QSet<QString>* Package::getUnrequiredPackageList()
  */
 QStringList *Package::getOutdatedStringList()
 {
+  //static int counter=1;
   QStringList * res = new QStringList();
 
   if (SettingsManager::hasPacmanBackend())
@@ -315,10 +316,12 @@ QStringList *Package::getOutdatedStringList()
       res->append(packageTuple);
     }
 
+    //if (counter == 1) res->append("pacman");
     res->sort();
   }
 #endif
 
+  //counter++;
   return res;
 }
 

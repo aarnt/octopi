@@ -367,8 +367,17 @@ void MainWindow::doSystemUpgrade()
     return;
   }
 
+  QList<PackageListData> * targets = nullptr;
+  bool doASystemUpgrade = true;
+
+  if (m_outdatedStringList->indexOf(QRegularExpression("^pacman$")) != -1) //There is "pacman in the outdated list
+  {
+    targets = Package::getTargetUpgradeList("pacman");
+    doASystemUpgrade = false;
+  }
   //Shows a dialog indicating the targets needed to be retrieved and asks for the user's permission.
-  QList<PackageListData> * targets = Package::getTargetUpgradeList();
+  else
+    targets = Package::getTargetUpgradeList();
 
   //There are no new updates to install!
   if (targets->count() == 0 && m_outdatedStringList->count() == 0)
@@ -410,22 +419,25 @@ void MainWindow::doSystemUpgrade()
 
   if (result == QDialogButtonBox::Yes)
   {
-    m_commandExecuting = ectn_SYSTEM_UPGRADE;
+    if (doASystemUpgrade)
+    {
+      m_commandExecuting = ectn_SYSTEM_UPGRADE;
 
-    m_systemUpgradeDialog = false;
-    toggleEnableInterface(false);
-    m_actionSystemUpgrade->setEnabled(false);
+      m_systemUpgradeDialog = false;
+      toggleEnableInterface(false);
+      m_actionSystemUpgrade->setEnabled(false);
 
-    OutputDialog *dlg = new OutputDialog(this);
-    dlg->setPacmanSystemUpgrade(true);
-    //dlg->setFrameShape(QFrame::NoFrame);
+      OutputDialog *dlg = new OutputDialog(this);
+      dlg->setViewAsTextBrowser(true);
 
-    if (m_debugInfo)
-      dlg->setDebugMode(true);
+      if (m_debugInfo)
+        dlg->setDebugMode(true);
 
-    QObject::connect(dlg, SIGNAL( finished(int)),
-                     this, SLOT( doSystemUpgradeFinished() ));
-    dlg->show();
+      QObject::connect(dlg, SIGNAL( finished(int)),
+                       this, SLOT( doSystemUpgradeFinished() ));
+      dlg->show();
+      dlg->doSystemUpgrade();
+    }
   }
   else if(result == QDialogButtonBox::AcceptRole)
   {
@@ -434,23 +446,20 @@ void MainWindow::doSystemUpgrade()
     //If there are no means to run the actions, we must warn!
     if (!_isSUAvailable()) return;
 
-    QStringList lastCommandList;
-    lastCommandList.append("pacman -Su;");
-    lastCommandList.append("echo -e;");
-    lastCommandList.append("read -n1 -p \"" + StrConstants::getPressAnyKey() + "\"");
+    OutputDialog *dlg = new OutputDialog(this);
+    dlg->setViewAsTextBrowser(false);
 
-    m_unixCommand = new UnixCommand(this);
-
-    QObject::connect(m_unixCommand, SIGNAL( finished ( int, QProcess::ExitStatus )),
-                     this, SLOT( doSystemUpgradeFinished() ));
-
-    toggleEnableInterface(false);
-    m_actionSystemUpgrade->setEnabled(false);
-
-    if (result == QDialogButtonBox::AcceptRole)
+    if (doASystemUpgrade)
     {
       m_commandExecuting = ectn_RUN_SYSTEM_UPGRADE_IN_TERMINAL;
-      m_unixCommand->runCommandInTerminal(lastCommandList);
+      dlg->show();
+      dlg->doSystemUpgradeInTerminal();
+    }
+    else
+    {
+      m_commandExecuting = ectn_RUN_SYSTEM_UPGRADE_IN_TERMINAL;
+      dlg->show();
+      dlg->doInstallInTerminal();
     }
   }
   else if (result == QDialogButtonBox::No)
@@ -486,12 +495,13 @@ void MainWindow::doAURUpgrade()
   if (SettingsManager::getTerminal() == ctn_QTERMWIDGET)
   {
     OutputDialog *dlg = new OutputDialog(this);
-    dlg->setPacmanSystemUpgrade(false);
+    dlg->setViewAsTextBrowser(false);
     dlg->setListOfAURPackagesToUpgrade(listOfTargets);
 
     QObject::connect(dlg, SIGNAL( finished(int)),
                      this, SLOT( doSystemUpgradeFinished() ));
     dlg->show();
+    dlg->doAURUpgrade();
 
     //QObject::connect(m_pacmanExec, SIGNAL( finished ( int, QProcess::ExitStatus )),
     //                 this, SLOT( refreshAppIcon()) );

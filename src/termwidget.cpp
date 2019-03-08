@@ -20,8 +20,13 @@
 
 #include "termwidget.h"
 #include "strconstants.h"
+#include "settingsmanager.h"
 
+#include <QClipboard>
 #include <QApplication>
+#include <QMenu>
+#include <QMessageBox>
+#include <QAbstractButton>
 
 /*
  * This class extends some features of QTermWidget and adds some customizations
@@ -32,17 +37,61 @@ TermWidget::TermWidget(QWidget *parent):
 {
   QFont font = QApplication::font();
   font.setFamily("Monospace");
-  font.setPointSize(11);
-  //this->setHistorySize(1);
-  this->setTerminalFont(font);
-  this->setScrollBarPosition(QTermWidget::ScrollBarRight);
-  this->changeDir("/");
-  this->setColorScheme("WhiteOnBlack");
-  this->execute("export TERM=xterm");
-  this->execute("clear");
+  //setHistorySize(1);
+
+  setTerminalFont(font);
+  setScrollBarPosition(QTermWidget::ScrollBarRight);
+  changeDir("/");
+  setColorScheme("WhiteOnBlack");
+  execute("export TERM=xterm");
+  execute("clear");
+  setContextMenuPolicy(Qt::CustomContextMenu);
+
+  m_actionZoomIn = new QAction(this);
+  m_actionZoomIn->setText(StrConstants::getZoomIn());
+  m_actionZoomIn->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_Plus));
+  connect(m_actionZoomIn, &QAction::triggered, this, &TermWidget::onZoomIn);
+
+  m_actionZoomOut = new QAction(this);
+  m_actionZoomOut->setText(StrConstants::getZoomOut());
+  m_actionZoomOut->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_Minus));
+  connect(m_actionZoomOut, &QAction::triggered, this, &TermWidget::onZoomOut);
+
+  m_actionMaximize = new QAction(this);
+  m_actionMaximize->setText(StrConstants::getMaximize());
+  m_actionMaximize->setShortcut(QKeySequence(Qt::Key_F11));
+  connect(m_actionMaximize, &QAction::triggered, this, &TermWidget::onKeyF11);
+
+  m_actionPaste = new QAction(this);
+  m_actionPaste->setText(StrConstants::getPaste());
+  connect(m_actionPaste, &QAction::triggered, this, &TermWidget::onPaste);
+
+  addAction(m_actionZoomIn);
+  addAction(m_actionZoomOut);
+  addAction(m_actionMaximize);
 
   connect(this, SIGNAL(receivedData(QString)), this, SLOT(parseOutput(QString)));
   connect(this, SIGNAL(termKeyPressed(QKeyEvent*)), this, SLOT(onKeyPressed(QKeyEvent*)));
+  connect(this, SIGNAL(customContextMenuRequested(const QPoint&)), this, SLOT(execContextMenu(const QPoint&)));
+
+  m_zoomFactor = SettingsManager::getConsoleFontSize();
+  if (m_zoomFactor != 0)
+  {
+    if (m_zoomFactor < 0)
+    {
+      m_zoomFactor=-m_zoomFactor;
+      for (int c=0; c<m_zoomFactor; c++)
+      {
+        emit zoomOut();
+      }
+    }
+    else {
+      for (int c=0; c<m_zoomFactor; c++)
+      {
+        emit zoomIn();
+      }
+    }
+  }
 }
 
 /*
@@ -92,8 +141,103 @@ void TermWidget::onKeyPressed(QKeyEvent *ke)
   {
     emit onCancelControlKey();
   }
-  else if (ke->key() == Qt::Key_F11)
+}
+
+/*
+ * Creates terminal's custom context menu with some options to configure its behaviour
+ */
+void TermWidget::execContextMenu(const QPoint & pos)
+{
+  QMenu menu;
+  menu.addAction(m_actionZoomIn);
+  menu.addAction(m_actionZoomOut);
+
+  if (qApp->clipboard()->text().isEmpty())
+    m_actionPaste->setEnabled(false);
+  else {
+    m_actionPaste->setEnabled(true);
+  }
+
+  menu.addAction(m_actionPaste);
+  menu.addAction(m_actionMaximize);
+  menu.exec(mapToGlobal(pos));
+}
+
+/*
+ * Calls paste() code
+ */
+void TermWidget::onPaste()
+{
+  paste(QClipboard::Clipboard);
+}
+
+/*
+ * Whenever user selects zoomIn, we must increment zoom factor!
+ */
+void TermWidget::onZoomIn()
+{
+  m_zoomFactor++;
+  emit zoomIn();
+  if (m_zoomFactor != 0) SettingsManager::setConsoleFontSize(m_zoomFactor);
+}
+
+/*
+ * Whenever user selects zoomIn, we must decrement zoom factor!
+ */
+void TermWidget::onZoomOut()
+{
+  m_zoomFactor--;
+  emit zoomOut();
+  if (m_zoomFactor != 0) SettingsManager::setConsoleFontSize(m_zoomFactor);
+}
+
+/*
+ * Paste code extracted from project "lxqt/qterminal"
+ */
+void TermWidget::paste(QClipboard::Mode mode)
+{
+  // Paste Clipboard by simulating keypress events
+  QString text = QApplication::clipboard()->text(mode);
+  if ( ! text.isEmpty() )
   {
-    emit onKeyF11();
+    text.replace(QLatin1String("\r\n"), QLatin1String("\n"));
+    text.replace(QLatin1Char('\n'), QLatin1Char('\r'));
+    QString trimmedTrailingNl(text);
+    trimmedTrailingNl.replace(QRegExp(QStringLiteral("\\r+$")), QString());
+    /*bool isMultiline = trimmedTrailingNl.contains(QLatin1Char('\r'));
+        if (!isMultiline && Properties::Instance()->trimPastedTrailingNewlines)
+        {
+            text = trimmedTrailingNl;
+        }
+    if (text.contains(QLatin1Char('\r')))
+    {
+      QMessageBox confirmation(this);
+      confirmation.setWindowTitle(tr("Paste multiline text"));
+      confirmation.setText(tr("Are you sure you want to paste this text?"));
+      confirmation.setDetailedText(text);
+      confirmation.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
+      // Click "Show details..." to show those by default
+      const auto buttons = confirmation.buttons();
+
+      for( QAbstractButton * btn : buttons )
+      {
+        if (confirmation.buttonRole(btn) == QMessageBox::ActionRole && btn->text() == QMessageBox::tr("Show Details..."))
+        {
+          btn->clicked();
+          break;
+        }
+      }
+      confirmation.setDefaultButton(QMessageBox::Yes);
+      confirmation.exec();
+
+      if (confirmation.standardButton(confirmation.clickedButton()) != QMessageBox::Yes)
+      {
+        return;
+      }
+    }*/
+
+    bracketText(text);
+    sendText(text);
+    qApp->clipboard()->clear();
   }
 }

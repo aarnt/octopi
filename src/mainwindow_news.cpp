@@ -75,6 +75,11 @@ void MainWindow::refreshDistroNews(bool searchForLatestNews, bool gotoNewsTab)
       writeToTabOutput("<b>" +
                           StrConstants::getSearchingForDistroNews().arg("Chakra") + "</b>");
     }
+    else if (gotoNewsTab && distro == ectn_CONDRESOS)
+    {
+      writeToTabOutput("<b>" +
+                          StrConstants::getSearchingForDistroNews().arg("Condres OS") + "</b>");
+    }
     else if (gotoNewsTab && distro == ectn_KAOS)
     {
       writeToTabOutput("<b>" +
