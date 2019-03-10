@@ -5,6 +5,7 @@
   Added CondresOS news support.
   Added support for sudo (and NOPASSWD) executing thru new octopi-helper subproject.
   BugFix: Huge delay when scrolling thru large package list.
+  BugFix: OptionsDialog was not saving AUR settings if tab changed before clicking OK.
   BugFix: Changed Manjaro news url.
   BugFix: If user chooses QTermWidget as his terminal, "Open root terminal" didn't work.
   BugFix: Notifier checked for available internet connection too early with an error dialog box.
