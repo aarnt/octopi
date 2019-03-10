@@ -448,6 +448,8 @@ void MainWindow::doSystemUpgrade()
 
     OutputDialog *dlg = new OutputDialog(this);
     dlg->setViewAsTextBrowser(false);
+    QObject::connect(dlg, SIGNAL( finished(int)),
+                     this, SLOT( doSystemUpgradeFinished() ));
 
     if (doASystemUpgrade)
     {
@@ -523,15 +525,11 @@ void MainWindow::doSystemUpgradeFinished()
   m_commandExecuting = ectn_NONE;
   refreshAppIcon();
 
-  //Does it still need to upgrade another packages due to SyncFirst issues???
-  if ((m_commandExecuting == ectn_RUN_SYSTEM_UPGRADE_IN_TERMINAL)
-      && m_outdatedStringList->count() > 0)
+  //Does it still need to upgrade another packages due to any issues???
+  if (m_outdatedStringList->count() > 0)
   {
     m_commandExecuting = ectn_NONE;
-    m_unixCommand->removeTemporaryFile();
-
     doSystemUpgrade();
-
     return;
   }
 
@@ -993,7 +991,9 @@ void MainWindow::runOctopi(ExecOpt execOptions)
   else if (execOptions == ectn_SYSUPGRADE_EXEC_OPT &&
       !UnixCommand::isAppRunning("octopi", true) && m_outdatedStringList->count() > 0)
   {
+    m_actionSystemUpgrade->setEnabled(false);
     doSystemUpgrade();
+    m_actionSystemUpgrade->setEnabled(true);
   }
   else if (execOptions == ectn_SYSUPGRADE_EXEC_OPT &&
       UnixCommand::isAppRunning("octopi", true) && m_outdatedStringList->count() > 0)

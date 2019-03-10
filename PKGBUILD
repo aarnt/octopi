@@ -30,6 +30,11 @@ build() {
    qmake-qt5 octopi.pro
    make
    
+   cd octopihelper
+   qmake-qt5 QMAKE_CFLAGS_RELEASE="${CFLAGS}" QMAKE_CXXFLAGS_RELEASE="${CXXFLAGS}" QMAKE_LFLAGS_RELEASE="${LDFLAGS}" octopihelper.pro
+   make
+   cd ..
+
    cd notifier/pacmanhelper
    qmake-qt5 QMAKE_CFLAGS_RELEASE="${CFLAGS}" QMAKE_CXXFLAGS_RELEASE="${CXXFLAGS}" QMAKE_LFLAGS_RELEASE="${LDFLAGS}" pacmanhelper.pro
    make
@@ -54,6 +59,10 @@ package() {
    cd ${pkgname}-${pkgver}
    make INSTALL_ROOT=${pkgdir} install
    
+   cd octopihelper
+   make INSTALL_ROOT=${pkgdir} install
+   cd ..
+
    cd notifier/pacmanhelper
    make INSTALL_ROOT=${pkgdir} install
    cd ../..
