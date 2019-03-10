@@ -104,6 +104,7 @@ int OctopiHelper::executePkgTransaction()
       (line.startsWith("echo ")) ||
       (line == "pkgfile -u") ||
       (line.startsWith("read ") && line.contains("read -n 1 -p")) ||
+      (line.startsWith("paccache -r")) ||
       (line.startsWith("pacman "))) { }
     else
       suspicious = true;
