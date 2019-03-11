@@ -543,6 +543,10 @@ QString StrConstants::getErrorRunningWithRoot(){
   return QObject::tr("You can not run Octopi with administrator's credentials.");
 }
 
+QString StrConstants::getThereIsARunningTransaction(){
+  return QObject::tr("Canceling the running transaction may damage your system!");
+}
+
 QString StrConstants::getThereIsAPendingTransaction(){
   return QObject::tr("There is a pending transaction");
 }

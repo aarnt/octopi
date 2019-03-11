@@ -145,6 +145,7 @@ public:
   static QString getYoullNeedSuFrontend();
   static QString getErrorIconPathInfoIncomplete();
   static QString getErrorRunningWithRoot();
+  static QString getThereIsARunningTransaction();
   static QString getThereIsAPendingTransaction();
   static QString getDoYouReallyWantToQuit();
   static QString getDoYouAgreeToUsePtpb();

@@ -4,6 +4,7 @@
   Added "Info" option in package list context menu.
   Added CondresOS news support.
   Added support for sudo (and NOPASSWD) executing thru new octopi-helper subproject.
+  Added option to exit Octopi while a transaction is already running.
   BugFix: Huge delay when scrolling thru large package list.
   BugFix: OptionsDialog was not saving AUR settings if tab changed before clicking OK.
   BugFix: Changed Manjaro news url.

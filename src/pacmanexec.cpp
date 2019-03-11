@@ -594,8 +594,8 @@ void PacmanExec::prepareTextToPrint(QString str, TreatString ts, TreatURLLinks t
   {
     newStr = "<br><B>" + newStr + "</B><br><br>";
 
-    if (newStr.contains(":: Retrieving packages")) emit canStopTransaction(true);
-    else if (newStr.contains(":: Processing package changes")) emit canStopTransaction(false);
+    /*if (newStr.contains(":: Retrieving packages")) emit canStopTransaction(true);
+    else if (newStr.contains(":: Processing package changes")) emit canStopTransaction(false);*/
 
     if (SettingsManager::getShowPackageNumbersOutput() &&
         (newStr.contains(":: Retrieving packages") || (newStr.contains(":: Processing package changes"))))
