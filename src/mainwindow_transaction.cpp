@@ -877,18 +877,7 @@ void MainWindow::doSystemUpgrade(SystemUpgradeOptions systemUpgradeOptions)
   else
   {
     //Shows a dialog indicating the targets needed to be retrieved and asks for the user's permission.
-    QList<PackageListData> * targets = nullptr;
-    bool doASystemUpgrade = true;
-
-    if (m_outdatedStringList->indexOf(QRegularExpression("^pacman$")) != -1) //There is "pacman in the outdated list
-    {
-      targets = Package::getTargetUpgradeList("pacman");
-      doASystemUpgrade = false;
-    }
-    else
-    {
-      targets = Package::getTargetUpgradeList();
-    }
+    QList<PackageListData> * targets = Package::getTargetUpgradeList();;
 
     //There are no new updates to install!
     if (targets->count() == 0 && m_outdatedStringList->count() == 0)
@@ -971,27 +960,14 @@ void MainWindow::doSystemUpgrade(SystemUpgradeOptions systemUpgradeOptions)
 
       if (result == QDialogButtonBox::Yes)
       {
-        if (doASystemUpgrade)
-        {
-          m_commandExecuting = ectn_SYSTEM_UPGRADE;
-          m_pacmanExec->doSystemUpgrade();
-        }
-
+        m_commandExecuting = ectn_SYSTEM_UPGRADE;
+        m_pacmanExec->doSystemUpgrade();
         m_commandQueued = ectn_NONE;
       }
       else if (result == QDialogButtonBox::AcceptRole)
       {
-        if (doASystemUpgrade)
-        {
-          m_commandExecuting = ectn_RUN_SYSTEM_UPGRADE_IN_TERMINAL;
-          m_pacmanExec->doSystemUpgradeInTerminal();
-        }
-        else
-        {
-          m_commandExecuting = ectn_RUN_SYSTEM_UPGRADE_IN_TERMINAL;
-          m_pacmanExec->doInstallInTerminal("pacman");
-        }
-
+        m_commandExecuting = ectn_RUN_SYSTEM_UPGRADE_IN_TERMINAL;
+        m_pacmanExec->doSystemUpgradeInTerminal();
         m_commandQueued = ectn_NONE;
       }
     }

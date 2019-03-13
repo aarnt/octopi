@@ -367,17 +367,7 @@ void MainWindow::doSystemUpgrade()
     return;
   }
 
-  QList<PackageListData> * targets = nullptr;
-  bool doASystemUpgrade = true;
-
-  if (m_outdatedStringList->indexOf(QRegularExpression("^pacman$")) != -1) //There is "pacman in the outdated list
-  {
-    targets = Package::getTargetUpgradeList("pacman");
-    doASystemUpgrade = false;
-  }
-  //Shows a dialog indicating the targets needed to be retrieved and asks for the user's permission.
-  else
-    targets = Package::getTargetUpgradeList();
+  QList<PackageListData> * targets = Package::getTargetUpgradeList();
 
   //There are no new updates to install!
   if (targets->count() == 0 && m_outdatedStringList->count() == 0)
@@ -419,25 +409,22 @@ void MainWindow::doSystemUpgrade()
 
   if (result == QDialogButtonBox::Yes)
   {
-    if (doASystemUpgrade)
-    {
-      m_commandExecuting = ectn_SYSTEM_UPGRADE;
+    m_commandExecuting = ectn_SYSTEM_UPGRADE;
 
-      m_systemUpgradeDialog = false;
-      toggleEnableInterface(false);
-      m_actionSystemUpgrade->setEnabled(false);
+    m_systemUpgradeDialog = false;
+    toggleEnableInterface(false);
+    m_actionSystemUpgrade->setEnabled(false);
 
-      OutputDialog *dlg = new OutputDialog(this);
-      dlg->setViewAsTextBrowser(true);
+    OutputDialog *dlg = new OutputDialog(this);
+    dlg->setViewAsTextBrowser(true);
 
-      if (m_debugInfo)
-        dlg->setDebugMode(true);
+    if (m_debugInfo)
+      dlg->setDebugMode(true);
 
-      QObject::connect(dlg, SIGNAL( finished(int)),
-                       this, SLOT( doSystemUpgradeFinished() ));
-      dlg->show();
-      dlg->doSystemUpgrade();
-    }
+    QObject::connect(dlg, SIGNAL( finished(int)),
+                     this, SLOT( doSystemUpgradeFinished() ));
+    dlg->show();
+    dlg->doSystemUpgrade();
   }
   else if(result == QDialogButtonBox::AcceptRole)
   {
@@ -451,18 +438,9 @@ void MainWindow::doSystemUpgrade()
     QObject::connect(dlg, SIGNAL( finished(int)),
                      this, SLOT( doSystemUpgradeFinished() ));
 
-    if (doASystemUpgrade)
-    {
-      m_commandExecuting = ectn_RUN_SYSTEM_UPGRADE_IN_TERMINAL;
-      dlg->show();
-      dlg->doSystemUpgradeInTerminal();
-    }
-    else
-    {
-      m_commandExecuting = ectn_RUN_SYSTEM_UPGRADE_IN_TERMINAL;
-      dlg->show();
-      dlg->doInstallInTerminal();
-    }
+    m_commandExecuting = ectn_RUN_SYSTEM_UPGRADE_IN_TERMINAL;
+    dlg->show();
+    dlg->doSystemUpgradeInTerminal();
   }
   else if (result == QDialogButtonBox::No)
   {   

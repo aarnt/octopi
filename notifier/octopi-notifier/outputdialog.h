@@ -66,7 +66,6 @@ private:
   void writeToTabOutput(const QString &msg, TreatURLLinks treatURLLinks = ectn_TREAT_URL_LINK);
 
 private slots:
-
   void onPencertange(int percentage);
   void onWriteOutput(const QString &output);
   void pacmanProcessFinished(int exitCode, QProcess::ExitStatus exitStatus);
@@ -96,7 +95,6 @@ public slots:
 
 #ifdef QTERMWIDGET
   void initAsTermWidget();
-  void doInstallInTerminal();
   void doSystemUpgradeInTerminal();
   void doAURUpgrade();
   void onExecCommandInTabTerminal(QString command);

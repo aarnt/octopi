@@ -147,18 +147,6 @@ void OutputDialog::initAsTermWidget()
 }
 
 /*
- * When user needs to upgrade important packages first, inside a terminal (like "pacman")
- */
-void OutputDialog::doInstallInTerminal()
-{
-  m_pacmanExec = new PacmanExec();
-  QObject::connect(m_pacmanExec, SIGNAL(commandToExecInQTermWidget(QString)), this,
-                   SLOT(onExecCommandInTabTerminal(QString)));
-  m_upgradeRunning = true;
-  m_pacmanExec->doInstallInTerminal("pacman");
-}
-
-/*
  * When user wants to upgrade system using a terminal
  */
 void OutputDialog::doSystemUpgradeInTerminal()
