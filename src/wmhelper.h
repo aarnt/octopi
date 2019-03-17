@@ -40,13 +40,12 @@ public:
   static bool isLXQTRunning();
   static bool isMATERunning();
   static bool isCinnamonRunning();
-  //static bool isRazorQtRunning();
 
   static QString getKDEOpenHelper();
   static QString getKDESUCommand();
-  static QString getTDESUCommand();
   static QString getGKSUCommand();
   static QString getLXQTSUCommand();
+  static QString getOctopiSudoCommand();
   static QString getXFCEEditor();
   static QString getSUCommand();
   static QString getSUTool();

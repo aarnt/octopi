@@ -158,8 +158,6 @@ void MainWindow::show()
     onTerminalChanged();
 #endif
 
-    if (m_hasAURTool) m_actionSwitchToAURTool->setEnabled(false);
-
     initTabWidgetPropertiesIndex();
     refreshDistroNews(false);
 
@@ -249,7 +247,7 @@ void MainWindow::onPackageGroupChanged()
 {
   if (isAllGroupsSelected())
   {
-    if (m_commandExecuting == ectn_NONE) m_actionSwitchToAURTool->setEnabled(true);
+    if (m_commandExecuting == ectn_NONE && m_initializationCompleted) m_actionSwitchToAURTool->setEnabled(true);
     ui->actionSearchByName->setChecked(true);
     tvPackagesSearchColumnChanged(ui->actionSearchByName);
   }
@@ -1258,7 +1256,7 @@ void MainWindow::refreshInfoAndFileTabs()
     refreshTabFiles();
 
   if(m_initializationCompleted)
-    saveSettings(ectn_CurrentTabIndex);
+    saveSettings(ectn_CURRENTTABINDEX);
 }
 
 /*
@@ -1279,7 +1277,7 @@ void MainWindow::changedTabIndex()
 #endif
 
   if(m_initializationCompleted)
-    saveSettings(ectn_CurrentTabIndex);
+    saveSettings(ectn_CURRENTTABINDEX);
 }
 
 /*
@@ -1439,9 +1437,9 @@ void MainWindow::headerViewPackageListSortIndicatorClicked( int col, Qt::SortOrd
           SLOT(headerViewPackageListSortIndicatorClicked(int,Qt::SortOrder)));
 
   if (isAURGroupSelected())
-    saveSettings(ectn_AUR_PackageList);
+    saveSettings(ectn_AUR_PACKAGELIST);
   else
-    saveSettings(ectn_PackageList);
+    saveSettings(ectn_PACKAGELIST);
 }
 
 /*
@@ -1730,6 +1728,13 @@ void MainWindow::ptpbSysInfo()
 
   if (!isInternetAvailable()) return;
 
+  //Asks user if he/she is sure about doing this
+  int res = QMessageBox::question(this, StrConstants::getConfirmation(),
+                                  StrConstants::getDoYouAgreeToUsePtpb(),
+                                  QMessageBox::Yes | QMessageBox::No,
+                                  QMessageBox::No);
+  if (res == QMessageBox::No) return;
+
   disableTransactionActions();
   m_commandExecuting = ectn_SYSINFO;
   clearTabOutput();
@@ -1937,7 +1942,19 @@ void MainWindow::ptpbSysInfo()
   el.exec();
 
   m_commandExecuting = ectn_NONE;
-  writeToTabOutput("<br>" + g_fwGenerateSysInfo.result() + "<br>");
+  QString result = g_fwGenerateSysInfo.result();
+
+  QRegularExpression re;
+  re.setPattern("uuid: (.*)\\n");
+  QRegularExpressionMatch m = re.match(result);
+  QString uuid = m.captured(1);
+
+  if (!uuid.isEmpty())
+  {
+    result += "<br>delete command: curl -X DELETE https://ptpb.pw/" + uuid;
+  }
+
+  writeToTabOutput("<br>" + result + "<br>");
   writeToTabOutput("<br><b>" + StrConstants::getCommandFinishedOK() + "</b><br>");
   enableTransactionActions();
 }

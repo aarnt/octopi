@@ -594,8 +594,8 @@ void PacmanExec::prepareTextToPrint(QString str, TreatString ts, TreatURLLinks t
   {
     newStr = "<br><B>" + newStr + "</B><br><br>";
 
-    if (newStr.contains(":: Retrieving packages")) emit canStopTransaction(true);
-    else if (newStr.contains(":: Processing package changes")) emit canStopTransaction(false);
+    /*if (newStr.contains(":: Retrieving packages")) emit canStopTransaction(true);
+    else if (newStr.contains(":: Processing package changes")) emit canStopTransaction(false);*/
 
     if (SettingsManager::getShowPackageNumbersOutput() &&
         (newStr.contains(":: Retrieving packages") || (newStr.contains(":: Processing package changes"))))
@@ -760,7 +760,7 @@ void PacmanExec::onReadOutputError()
     output.remove("[00;31m");
     output.remove("\n");
 
-    if (output.contains("Checking"), Qt::CaseInsensitive)
+    if (output.contains("Checking", Qt::CaseInsensitive))
       output += "<br>";
 
     prepareTextToPrint(output, ectn_TREAT_STRING, ectn_DONT_TREAT_URL_LINK);
@@ -853,16 +853,16 @@ void PacmanExec::doInstallInTerminal(const QString &listOfPackages)
   }
 
 #ifdef QTERMWIDGET
-  m_lastCommandList.append("sudo pacman -S " + listOfPackages + ";");
+  m_lastCommandList.append("pacman -S " + listOfPackages);
 #else
-  m_lastCommandList.append("pacman -S " + listOfPackages + ";");
+  m_lastCommandList.append("pacman -S " + listOfPackages);
 #endif
 
-  m_lastCommandList.append("echo -e;");
+  m_lastCommandList.append("echo -e");
   m_lastCommandList.append("read -n 1 -p \"" + StrConstants::getPressAnyKey() + "\"");
 
   m_commandExecuting = ectn_RUN_IN_TERMINAL;
-  m_unixCommand->runCommandInTerminal(m_lastCommandList);
+  m_unixCommand->runOctopiHelperInTerminal(m_lastCommandList);
 }
 
 /*
@@ -918,21 +918,21 @@ void PacmanExec::doInstallLocalInTerminal(const QString &listOfPackages)
 
 #ifdef QTERMWIDGET
   if (dontUseForce)
-    m_lastCommandList.append("sudo pacman -U \"" + listOfPackages.trimmed() + "\";");
+    m_lastCommandList.append("pacman -U \"" + listOfPackages.trimmed() + "\"");
   else
-    m_lastCommandList.append("sudo pacman -U --force \"" + listOfPackages.trimmed() + "\";");
+    m_lastCommandList.append("pacman -U --force \"" + listOfPackages.trimmed() + "\"");
 #else
   if (dontUseForce)
-    m_lastCommandList.append("pacman -U \"" + listOfPackages.trimmed() + "\";");
+    m_lastCommandList.append("pacman -U \"" + listOfPackages.trimmed() + "\"");
   else
-    m_lastCommandList.append("pacman -U --force \"" + listOfPackages.trimmed() + "\";");
+    m_lastCommandList.append("pacman -U --force \"" + listOfPackages.trimmed() + "\"");
 #endif
 
-  m_lastCommandList.append("echo -e;");
+  m_lastCommandList.append("echo -e");
   m_lastCommandList.append("read -n 1 -p \"" + StrConstants::getPressAnyKey() + "\"");
 
   m_commandExecuting = ectn_RUN_IN_TERMINAL;
-  m_unixCommand->runCommandInTerminal(m_lastCommandList);
+  m_unixCommand->runOctopiHelperInTerminal(m_lastCommandList);
 }
 
 /*
@@ -973,20 +973,20 @@ void PacmanExec::doRemoveInTerminal(const QString &listOfPackages)
 
   if (isDatabaseLocked())
   {
-    m_lastCommandList.append("rm " + ctn_PACMAN_DATABASE_LOCK_FILE + ";");
+    m_lastCommandList.append("rm " + ctn_PACMAN_DATABASE_LOCK_FILE);
   }
 
 #ifdef QTERMWIDGET
-  m_lastCommandList.append("sudo pacman -R " + listOfPackages + ";");
+  m_lastCommandList.append("pacman -R " + listOfPackages);
 #else
-  m_lastCommandList.append("pacman -R " + listOfPackages + ";");
+  m_lastCommandList.append("pacman -R " + listOfPackages);
 #endif
 
-  m_lastCommandList.append("echo -e;");
+  m_lastCommandList.append("echo -e");
   m_lastCommandList.append("read -n 1 -p \"" + StrConstants::getPressAnyKey() + "\"");
 
   m_commandExecuting = ectn_RUN_IN_TERMINAL;
-  m_unixCommand->runCommandInTerminal(m_lastCommandList);
+  m_unixCommand->runOctopiHelperInTerminal(m_lastCommandList);
 }
 
 /*
@@ -1028,26 +1028,26 @@ void PacmanExec::doRemoveAndInstallInTerminal(const QString &listOfPackagestoRem
 
   if (isDatabaseLocked())
   {
-    m_lastCommandList.append("rm " + ctn_PACMAN_DATABASE_LOCK_FILE + ";");
+    m_lastCommandList.append("rm " + ctn_PACMAN_DATABASE_LOCK_FILE);
   }
 
 #ifdef QTERMWIDGET
-  m_lastCommandList.append("sudo pacman -R " + listOfPackagestoRemove + ";");
+  m_lastCommandList.append("pacman -R " + listOfPackagestoRemove);
 #else
-  m_lastCommandList.append("pacman -R " + listOfPackagestoRemove + ";");
+  m_lastCommandList.append("pacman -R " + listOfPackagestoRemove);
 #endif
 
 #ifdef QTERMWIDGET
-  m_lastCommandList.append("sudo pacman -S " + listOfPackagestoInstall + ";");
+  m_lastCommandList.append("pacman -S " + listOfPackagestoInstall);
 #else
-  m_lastCommandList.append("pacman -S " + listOfPackagestoInstall + ";");
+  m_lastCommandList.append("pacman -S " + listOfPackagestoInstall);
 #endif
 
-  m_lastCommandList.append("echo -e;");
+  m_lastCommandList.append("echo -e");
   m_lastCommandList.append("read -n 1 -p \"" + StrConstants::getPressAnyKey() + "\"");
 
   m_commandExecuting = ectn_RUN_IN_TERMINAL;
-  m_unixCommand->runCommandInTerminal(m_lastCommandList);
+  m_unixCommand->runOctopiHelperInTerminal(m_lastCommandList);
 }
 
 /*
@@ -1088,27 +1088,27 @@ void PacmanExec::doSystemUpgradeInTerminal(CommandExecuting additionalCommand)
 
   if (isDatabaseLocked())
   {
-    m_lastCommandList.append("rm " + ctn_PACMAN_DATABASE_LOCK_FILE + ";");
+    m_lastCommandList.append("rm " + ctn_PACMAN_DATABASE_LOCK_FILE);
   }
 
   if (additionalCommand == ectn_NONE)
 #ifdef QTERMWIDGET
-  m_lastCommandList.append("sudo pacman -Su;");
+  m_lastCommandList.append("pacman -Su");
 #else
-   m_lastCommandList.append("pacman -Su;");
+   m_lastCommandList.append("pacman -Su");
 #endif
   else if (additionalCommand == ectn_SYNC_DATABASE)
 #ifdef QTERMWIDGET
-  m_lastCommandList.append("sudo pacman -Syu;");
+  m_lastCommandList.append("pacman -Syu");
 #else
-   m_lastCommandList.append("pacman -Syu;");
+   m_lastCommandList.append("pacman -Syu");
 #endif
 
-  m_lastCommandList.append("echo -e;");
+  m_lastCommandList.append("echo -e");
   m_lastCommandList.append("read -n 1 -p \"" + StrConstants::getPressAnyKey() + "\"");
 
   m_commandExecuting = ectn_RUN_SYSTEM_UPGRADE_IN_TERMINAL;
-  m_unixCommand->runCommandInTerminal(m_lastCommandList);
+  m_unixCommand->runOctopiHelperInTerminal(m_lastCommandList);
 }
 
 /*
@@ -1230,8 +1230,30 @@ void PacmanExec::doAURRemove(const QString &listOfPackages)
 /*
  * Runs latest command inside a terminal (probably due to some previous error)
  */
-void PacmanExec::runLastestCommandInTerminal()
+void PacmanExec::runLatestCommandInTerminal()
 {
   m_commandExecuting = ectn_RUN_IN_TERMINAL;
   m_unixCommand->runCommandInTerminal(m_lastCommandList);
+}
+
+/*
+ * Runs latest command inside a terminal using "octopi-helper -t"
+ */
+void PacmanExec::runLatestCommandWithOctopiHelper()
+{
+  m_commandExecuting = ectn_RUN_IN_TERMINAL;
+  m_unixCommand->runOctopiHelperInTerminal(m_lastCommandList);
+}
+
+/*
+ * Updates pacman pkg inside a terminal using "octopi-helper -t";
+ */
+void PacmanExec::updatePacmanWithOctopiHelper()
+{
+  QStringList commands;
+  commands << "pacman -S pacman";
+  commands << "echo -e";
+  commands << "read -n 1 -p \"" + StrConstants::getPressAnyKey() + "\"";
+
+  m_unixCommand->runOctopiHelperInTerminal(commands);
 }

@@ -40,6 +40,7 @@
 #include <QTextBrowser>
 #include <QScreen>
 #include <QRegularExpression>
+#include <QDebug>
 
 /*
  * The needed constructor
@@ -274,11 +275,11 @@ QList<QModelIndex> * utils::findFileInTreeView( const QString& name, const QStan
 QString utils::retrieveDistroNews(bool searchForLatestNews)
 {
   const QString ctn_ANTERGOS_RSS_URL = "https://antergos.com/feed/";
-  //const QString ctn_PACBSD_RSS_URL = "https://pacbsd.org/index.xml";
   const QString ctn_ARCH_LINUX_RSS_URL = "https://www.archlinux.org/feeds/news/";
   const QString ctn_CHAKRA_RSS_URL = "https://community.chakralinux.org/c/news.rss";
+  const QString ctn_CONDRESOS_RSS_URL = "https://condresos.codelinsoft.it/index.php/blog?format=feed&amp;type=rss";
   const QString ctn_KAOS_RSS_URL = "https://kaosx.us/feed.xml";
-  const QString ctn_MANJARO_LINUX_RSS_URL = "https://manjaro.org/feed/";
+  const QString ctn_MANJARO_LINUX_RSS_URL = "https://forum.manjaro.org/c/announcements.rss";
   const QString ctn_NETRUNNER_RSS_URL = "http://www.netrunner-os.com/feed/";
   const QString ctn_PARABOLA_RSS_URL = "https://www.parabola.nu/feeds/news/";
 
@@ -305,10 +306,6 @@ QString utils::retrieveDistroNews(bool searchForLatestNews)
     {
       curlCommand = curlCommand.arg(ctn_ANTERGOS_RSS_URL).arg(tmpRssPath);
     }
-    /*else if (distro == ectn_PACBSD)
-    {
-      curlCommand = curlCommand.arg(ctn_PACBSD_RSS_URL).arg(tmpRssPath);
-    }*/
     else if (distro == ectn_ARCHLINUX || distro == ectn_ARCHBANGLINUX || distro == ectn_MOOOSLINUX)
     {
       curlCommand = curlCommand.arg(ctn_ARCH_LINUX_RSS_URL).arg(tmpRssPath);
@@ -317,6 +314,11 @@ QString utils::retrieveDistroNews(bool searchForLatestNews)
     {
       curlCommand = "curl -k %1 -o %2";
       curlCommand = curlCommand.arg(ctn_CHAKRA_RSS_URL).arg(tmpRssPath);
+    }
+    else if (distro == ectn_CONDRESOS)
+    {
+      curlCommand = "curl -A \"Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0\" -k \"%1\" -o %2";
+      curlCommand = curlCommand.arg(ctn_CONDRESOS_RSS_URL).arg(tmpRssPath);
     }
     else if (distro == ectn_KAOS)
     {
@@ -350,8 +352,20 @@ QString utils::retrieveDistroNews(bool searchForLatestNews)
         if (!fileRss.open(QIODevice::ReadOnly | QIODevice::Text)) res = "";
         QTextStream in2(&fileRss);
         contentsRss = in2.readAll();
-        fileRss.close();
 
+        if (distro == ectn_CONDRESOS)
+        {
+          //Let's remove <lastBuildDate>XYZ</lastBuildDate> text so our SHA1 test works as expected
+          //qDebug() << contentsRss;
+          contentsRss.replace(QRegularExpression("(\\t*)(\\n*)<lastBuildDate>(.*)</lastBuildDate>(\\t*)(\\n*)"), "");
+          fileRss.close();
+          fileRss.remove();
+          if (!fileRss.open(QIODevice::WriteOnly | QIODevice::Text)) res = "";
+          in2 << contentsRss;
+          in2.flush();
+        }
+
+        fileRss.close();
         res = contentsRss;
       }
       else
@@ -365,6 +379,19 @@ QString utils::retrieveDistroNews(bool searchForLatestNews)
         if (!fileTmpRss.open(QIODevice::ReadOnly | QIODevice::Text)) res = "";
         QTextStream in(&fileTmpRss);
         contentsTmpRss = in.readAll();
+
+        if (distro == ectn_CONDRESOS)
+        {
+          //Let's remove <lastBuildDate>XYZ</lastBuildDate> text so our SHA1 test works as expected
+          contentsTmpRss.replace(QRegularExpression("(\\t*)(\\n*)<lastBuildDate>(.*)</lastBuildDate>(\\t*)(\\n*)"), "");
+
+          fileTmpRss.close();
+          fileTmpRss.remove();
+          if (!fileTmpRss.open(QIODevice::WriteOnly | QIODevice::Text)) res = "";
+          in << contentsTmpRss;
+          in.flush();
+        }
+
         fileTmpRss.close();
 
         tmpRssSHA1 = QCryptographicHash::hash(contentsTmpRss.toLatin1(), QCryptographicHash::Sha1);
@@ -425,10 +452,6 @@ QString utils::parseDistroNews()
   {
     html = "<p align=\"center\"><h2>" + StrConstants::getAntergosNews() + "</h2></p><ul>";
   }
-  /*else if (distro == ectn_PACBSD)
-  {
-    html = "<p align=\"center\"><h2>" + StrConstants::getPacBSDNews() + "</h2></p><ul>";
-  }*/
   else if (distro == ectn_ARCHLINUX || distro == ectn_ARCHBANGLINUX || distro == ectn_MOOOSLINUX)
   {
     html = "<p align=\"center\"><h2>" + StrConstants::getArchLinuxNews() + "</h2></p><ul>";
@@ -436,6 +459,10 @@ QString utils::parseDistroNews()
   else if (distro == ectn_CHAKRA)
   {
     html = "<p align=\"center\"><h2>" + StrConstants::getChakraNews() + "</h2></p><ul>";
+  }
+  else if (distro == ectn_CONDRESOS)
+  {
+    html = "<p align=\"center\"><h2>" + StrConstants::getCondresOSNews() + "</h2></p><ul>";
   }
   else if (distro == ectn_KAOS)
   {

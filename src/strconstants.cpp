@@ -112,6 +112,10 @@ QString StrConstants::getChakraNews(){
   return QObject::tr("Chakra news");
 }
 
+QString StrConstants::getCondresOSNews(){
+  return QObject::tr("Condres OS news");
+}
+
 QString StrConstants::getKaOSNews(){
   return QObject::tr("KaOS news");
 }
@@ -539,12 +543,25 @@ QString StrConstants::getErrorRunningWithRoot(){
   return QObject::tr("You can not run Octopi with administrator's credentials.");
 }
 
+QString StrConstants::getThereIsARunningTransaction(){
+  return QObject::tr("Canceling the running transaction may damage your system!");
+}
+
 QString StrConstants::getThereIsAPendingTransaction(){
   return QObject::tr("There is a pending transaction");
 }
 
 QString StrConstants::getDoYouReallyWantToQuit(){
   return QObject::tr("Do you really want to quit?");
+}
+
+QString StrConstants::getDoYouAgreeToUsePtpb()
+{
+  return QObject::tr("Do you agree to send the contents of:\n\n"
+                     "\"/etc/lsb-release\", \"inxi -Fxz\", \"uname -a\", \"mhwd -li -d,\"\n"
+                     "\"journalctl -b -p err\", \"cat /etc/pacman.conf\", \"pacman -Qm\"\n"
+                     "and \"head --bytes=256K /var/log/pacman.log\"\n\n"
+                     "to \"https://ptpb.pw\" for a 24h paste period?\n");
 }
 
 QString StrConstants::getExecutingCommand(){
@@ -658,6 +675,26 @@ QString StrConstants::getStop()
 QString StrConstants::getExecutableCouldNotBeFound()
 {
   return QObject::tr("%1 could not be found in the system!");
+}
+
+QString StrConstants::getZoomIn()
+{
+  return QObject::tr("Zoom in");
+}
+
+QString StrConstants::getZoomOut()
+{
+  return QObject::tr("Zoom out");
+}
+
+QString StrConstants::getMaximize()
+{
+  return QObject::tr("Maximize");
+}
+
+QString StrConstants::getPaste()
+{
+  return QObject::tr("Paste");
 }
 
 //Style Sheets ---------------------------------

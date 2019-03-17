@@ -417,6 +417,12 @@ bool SettingsManager::getSearchOutdatedAURPackages()
   return (p_instance.getSYSsettings()->value( ctn_KEY_SEARCH_OUTDATED_AUR_PACKAGES, 0)).toBool();
 }
 
+int SettingsManager::getConsoleFontSize()
+{
+  SettingsManager p_instance;
+  return (p_instance.getSYSsettings()->value( ctn_KEY_CONSOLE_SIZE, 0)).toInt();
+}
+
 /*
  * Retrieves value of field "SU_TOOL", without guessing for AUTOMATIC
  */
@@ -747,6 +753,12 @@ void SettingsManager::setInstantSearchSelected(bool newValue)
   instance()->getSYSsettings()->sync();
 }
 
+void SettingsManager::setConsoleFontSize(int newValue)
+{
+  instance()->getSYSsettings()->setValue(ctn_KEY_CONSOLE_SIZE, newValue);
+  instance()->getSYSsettings()->sync();
+}
+
 /*
  * Search all supported SU tools to see if the selected one is valid
  */
@@ -760,6 +772,7 @@ bool SettingsManager::isValidSUToolSelected()
   if (userSUTool == ctn_GKSU_2 ||
       userSUTool == ctn_KDESU ||
       userSUTool == ctn_LXQTSU ||
+      //userSUTool == ctn_OCTOPISUDO ||
       userSUTool == ctn_TDESU)
   {
     if (UnixCommand::hasTheExecutable(userSUTool))

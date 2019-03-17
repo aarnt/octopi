@@ -367,7 +367,6 @@ void MainWindow::doSystemUpgrade()
     return;
   }
 
-  //Shows a dialog indicating the targets needed to be retrieved and asks for the user's permission.
   QList<PackageListData> * targets = Package::getTargetUpgradeList();
 
   //There are no new updates to install!
@@ -417,8 +416,7 @@ void MainWindow::doSystemUpgrade()
     m_actionSystemUpgrade->setEnabled(false);
 
     OutputDialog *dlg = new OutputDialog(this);
-    dlg->setPacmanSystemUpgrade(true);
-    //dlg->setFrameShape(QFrame::NoFrame);
+    dlg->setViewAsTextBrowser(true);
 
     if (m_debugInfo)
       dlg->setDebugMode(true);
@@ -426,6 +424,7 @@ void MainWindow::doSystemUpgrade()
     QObject::connect(dlg, SIGNAL( finished(int)),
                      this, SLOT( doSystemUpgradeFinished() ));
     dlg->show();
+    dlg->doSystemUpgrade();
   }
   else if(result == QDialogButtonBox::AcceptRole)
   {
@@ -434,24 +433,14 @@ void MainWindow::doSystemUpgrade()
     //If there are no means to run the actions, we must warn!
     if (!_isSUAvailable()) return;
 
-    QStringList lastCommandList;
-    lastCommandList.append("pacman -Su;");
-    lastCommandList.append("echo -e;");
-    lastCommandList.append("read -n1 -p \"" + StrConstants::getPressAnyKey() + "\"");
-
-    m_unixCommand = new UnixCommand(this);
-
-    QObject::connect(m_unixCommand, SIGNAL( finished ( int, QProcess::ExitStatus )),
+    OutputDialog *dlg = new OutputDialog(this);
+    dlg->setViewAsTextBrowser(false);
+    QObject::connect(dlg, SIGNAL( finished(int)),
                      this, SLOT( doSystemUpgradeFinished() ));
 
-    toggleEnableInterface(false);
-    m_actionSystemUpgrade->setEnabled(false);
-
-    if (result == QDialogButtonBox::AcceptRole)
-    {
-      m_commandExecuting = ectn_RUN_SYSTEM_UPGRADE_IN_TERMINAL;
-      m_unixCommand->runCommandInTerminal(lastCommandList);
-    }
+    m_commandExecuting = ectn_RUN_SYSTEM_UPGRADE_IN_TERMINAL;
+    dlg->show();
+    dlg->doSystemUpgradeInTerminal();
   }
   else if (result == QDialogButtonBox::No)
   {   
@@ -486,12 +475,13 @@ void MainWindow::doAURUpgrade()
   if (SettingsManager::getTerminal() == ctn_QTERMWIDGET)
   {
     OutputDialog *dlg = new OutputDialog(this);
-    dlg->setPacmanSystemUpgrade(false);
+    dlg->setViewAsTextBrowser(false);
     dlg->setListOfAURPackagesToUpgrade(listOfTargets);
 
     QObject::connect(dlg, SIGNAL( finished(int)),
                      this, SLOT( doSystemUpgradeFinished() ));
     dlg->show();
+    dlg->doAURUpgrade();
 
     //QObject::connect(m_pacmanExec, SIGNAL( finished ( int, QProcess::ExitStatus )),
     //                 this, SLOT( refreshAppIcon()) );
@@ -513,15 +503,11 @@ void MainWindow::doSystemUpgradeFinished()
   m_commandExecuting = ectn_NONE;
   refreshAppIcon();
 
-  //Does it still need to upgrade another packages due to SyncFirst issues???
-  if ((m_commandExecuting == ectn_RUN_SYSTEM_UPGRADE_IN_TERMINAL)
-      && m_outdatedStringList->count() > 0)
+  //Does it still need to upgrade another packages due to any issues???
+  if (m_outdatedStringList->count() > 0)
   {
     m_commandExecuting = ectn_NONE;
-    m_unixCommand->removeTemporaryFile();
-
     doSystemUpgrade();
-
     return;
   }
 
@@ -983,7 +969,9 @@ void MainWindow::runOctopi(ExecOpt execOptions)
   else if (execOptions == ectn_SYSUPGRADE_EXEC_OPT &&
       !UnixCommand::isAppRunning("octopi", true) && m_outdatedStringList->count() > 0)
   {
+    m_actionSystemUpgrade->setEnabled(false);
     doSystemUpgrade();
+    m_actionSystemUpgrade->setEnabled(true);
   }
   else if (execOptions == ectn_SYSUPGRADE_EXEC_OPT &&
       UnixCommand::isAppRunning("octopi", true) && m_outdatedStringList->count() > 0)

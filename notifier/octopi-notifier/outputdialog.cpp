@@ -68,9 +68,9 @@ void OutputDialog::setListOfAURPackagesToUpgrade(const QString &list)
 /*
  * Controls if this dialog was called for Pacman or AUR upgrade
  */
-void OutputDialog::setPacmanSystemUpgrade(bool value)
+void OutputDialog::setViewAsTextBrowser(bool value)
 {
-  m_pacmanSystemUpgrade = value;
+  m_viewAsTextBrowser = value;
 }
 
 /*
@@ -144,6 +144,18 @@ void OutputDialog::initAsTermWidget()
   m_mainLayout->setSizeConstraint(QLayout::SetMinimumSize);
   m_mainLayout->setContentsMargins(2, 2, 2, 2);
   m_console->setFocus();
+}
+
+/*
+ * When user wants to upgrade system using a terminal
+ */
+void OutputDialog::doSystemUpgradeInTerminal()
+{
+  m_pacmanExec = new PacmanExec();
+  QObject::connect(m_pacmanExec, SIGNAL(commandToExecInQTermWidget(QString)), this,
+                   SLOT(onExecCommandInTabTerminal(QString)));
+  m_upgradeRunning = true;
+  m_pacmanExec->doSystemUpgradeInTerminal();
 }
 
 /*
@@ -236,21 +248,15 @@ void OutputDialog::doSystemUpgrade()
 void OutputDialog::show()
 {
   //If we are asking for a Pacman system upgrade...
-  if (m_pacmanSystemUpgrade) initAsTextBrowser();
+  if (m_viewAsTextBrowser) initAsTextBrowser();
 #ifdef QTERMWIDGET
   else initAsTermWidget();
 #endif
 
-  //utils::positionWindowAtScreenCenter(this);
   //Let's restore the dialog size saved...
   restoreGeometry(SettingsManager::getOutputDialogWindowSize());
 
   QDialog::show();
-
-  if (m_pacmanSystemUpgrade) doSystemUpgrade();
-#ifdef QTERMWIDGET
-  else doAURUpgrade();
-#endif
 }
 
 /*
@@ -343,7 +349,7 @@ void OutputDialog::pacmanProcessFinished(int exitCode, QProcess::ExitStatus exit
 
     if (res == QMessageBox::Yes)
     {
-      m_pacmanExec->runLastestCommandInTerminal();
+      m_pacmanExec->runLatestCommandInTerminal();
       return;
     }
   }

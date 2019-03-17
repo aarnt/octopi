@@ -392,6 +392,9 @@ void OptionsDialog::initSUToolTab()
   if (UnixCommand::hasTheExecutable(ctn_LXQTSU)){
     list << ctn_LXQTSU;
   }
+  /*if (UnixCommand::hasTheExecutable(ctn_OCTOPISUDO)){
+    list << ctn_OCTOPISUDO;
+  }*/
   if (UnixCommand::hasTheExecutable(ctn_TDESU)){
     list << ctn_TDESU;
   }
@@ -557,75 +560,72 @@ void OptionsDialog::accept(){
   }
 
   //Set AUR Tool...
-  if (tabAUR->isVisible())
+  if (rbPacaur->isChecked() && SettingsManager::getAURToolName() != ctn_PACAUR_TOOL)
   {
-    if (rbPacaur->isChecked() && SettingsManager::getAURToolName() != ctn_PACAUR_TOOL)
-    {
-      SettingsManager::setAURTool(ctn_PACAUR_TOOL);
-      AURHasChanged = true;
-    }
-    else if (rbYaourt->isChecked() && SettingsManager::getAURToolName() != ctn_YAOURT_TOOL)
-    {
-      SettingsManager::setAURTool(ctn_YAOURT_TOOL);
-      AURHasChanged = true;
-    }
-    else if (rbTrizen->isChecked() && SettingsManager::getAURToolName() != ctn_TRIZEN_TOOL)
-    {
-      SettingsManager::setAURTool(ctn_TRIZEN_TOOL);
-      AURHasChanged = true;
-    }
-    else if (rbPikaur->isChecked() && SettingsManager::getAURToolName() != ctn_PIKAUR_TOOL)
-    {
-      SettingsManager::setAURTool(ctn_PIKAUR_TOOL);
-      AURHasChanged = true;
-    }
-    else if (rbDoNotUse->isChecked() && SettingsManager::getAURToolName() != ctn_NO_AUR_TOOL)
-    {
-      SettingsManager::setAURTool(ctn_NO_AUR_TOOL);
-      AURHasChanged = true;
-    }
+    SettingsManager::setAURTool(ctn_PACAUR_TOOL);
+    AURHasChanged = true;
+  }
+  else if (rbYaourt->isChecked() && SettingsManager::getAURToolName() != ctn_YAOURT_TOOL)
+  {
+    SettingsManager::setAURTool(ctn_YAOURT_TOOL);
+    AURHasChanged = true;
+  }
+  else if (rbTrizen->isChecked() && SettingsManager::getAURToolName() != ctn_TRIZEN_TOOL)
+  {
+    SettingsManager::setAURTool(ctn_TRIZEN_TOOL);
+    AURHasChanged = true;
+  }
+  else if (rbPikaur->isChecked() && SettingsManager::getAURToolName() != ctn_PIKAUR_TOOL)
+  {
+    SettingsManager::setAURTool(ctn_PIKAUR_TOOL);
+    AURHasChanged = true;
+  }
+  else if (rbDoNotUse->isChecked() && SettingsManager::getAURToolName() != ctn_NO_AUR_TOOL)
+  {
+    SettingsManager::setAURTool(ctn_NO_AUR_TOOL);
+    AURHasChanged = true;
+  }
 
-    if (cbPacaurNoConfirm->isChecked() != SettingsManager::getPacaurNoConfirmParam())
-    {
-      SettingsManager::setPacaurNoConfirmParam(cbPacaurNoConfirm->isChecked());
-      AURHasChanged = true;
-    }
-    if (cbPacaurNoEdit->isChecked() != SettingsManager::getPacaurNoEditParam())
-    {
-      SettingsManager::setPacaurNoEditParam(cbPacaurNoEdit->isChecked());
-      AURHasChanged = true;
-    }
-    if (cbYaourtNoConfirm->isChecked() != SettingsManager::getYaourtNoConfirmParam())
-    {
-      SettingsManager::setYaourtNoConfirmParam(cbYaourtNoConfirm->isChecked());
-      AURHasChanged = true;
-    }
-    if (cbTrizenNoConfirm->isChecked() != SettingsManager::getTrizenNoConfirmParam())
-    {
-      SettingsManager::setTrizenNoConfirmParam(cbTrizenNoConfirm->isChecked());
-      AURHasChanged = true;
-    }
-    if (cbTrizenNoEdit->isChecked() != SettingsManager::getTrizenNoEditParam())
-    {
-      SettingsManager::setTrizenNoEditParam(cbTrizenNoEdit->isChecked());
-      AURHasChanged = true;
-    }
-    if (cbPikaurNoConfirm->isChecked() != SettingsManager::getPikaurNoConfirmParam())
-    {
-      SettingsManager::setPikaurNoConfirmParam(cbPikaurNoConfirm->isChecked());
-      AURHasChanged = true;
-    }
-    if (cbPikaurNoEdit->isChecked() != SettingsManager::getPikaurNoEditParam())
-    {
-      SettingsManager::setPikaurNoEditParam(cbPikaurNoEdit->isChecked());
-      AURHasChanged = true;
-    }
+  if (cbPacaurNoConfirm->isChecked() != SettingsManager::getPacaurNoConfirmParam())
+  {
+    SettingsManager::setPacaurNoConfirmParam(cbPacaurNoConfirm->isChecked());
+    AURHasChanged = true;
+  }
+  if (cbPacaurNoEdit->isChecked() != SettingsManager::getPacaurNoEditParam())
+  {
+    SettingsManager::setPacaurNoEditParam(cbPacaurNoEdit->isChecked());
+    AURHasChanged = true;
+  }
+  if (cbYaourtNoConfirm->isChecked() != SettingsManager::getYaourtNoConfirmParam())
+  {
+    SettingsManager::setYaourtNoConfirmParam(cbYaourtNoConfirm->isChecked());
+    AURHasChanged = true;
+  }
+  if (cbTrizenNoConfirm->isChecked() != SettingsManager::getTrizenNoConfirmParam())
+  {
+    SettingsManager::setTrizenNoConfirmParam(cbTrizenNoConfirm->isChecked());
+    AURHasChanged = true;
+  }
+  if (cbTrizenNoEdit->isChecked() != SettingsManager::getTrizenNoEditParam())
+  {
+    SettingsManager::setTrizenNoEditParam(cbTrizenNoEdit->isChecked());
+    AURHasChanged = true;
+  }
+  if (cbPikaurNoConfirm->isChecked() != SettingsManager::getPikaurNoConfirmParam())
+  {
+    SettingsManager::setPikaurNoConfirmParam(cbPikaurNoConfirm->isChecked());
+    AURHasChanged = true;
+  }
+  if (cbPikaurNoEdit->isChecked() != SettingsManager::getPikaurNoEditParam())
+  {
+    SettingsManager::setPikaurNoEditParam(cbPikaurNoEdit->isChecked());
+    AURHasChanged = true;
+  }
 
-    if (cbSearchOutdatedAURPackages->isChecked() != SettingsManager::getSearchOutdatedAURPackages())
-    {
-      SettingsManager::setSearchOutdatedAURPackages(cbSearchOutdatedAURPackages->isChecked());
-      AURHasChanged = true;
-    }
+  if (cbSearchOutdatedAURPackages->isChecked() != SettingsManager::getSearchOutdatedAURPackages())
+  {
+    SettingsManager::setSearchOutdatedAURPackages(cbSearchOutdatedAURPackages->isChecked());
+    AURHasChanged = true;
   }
 
   //Set icon...

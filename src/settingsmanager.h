@@ -82,6 +82,7 @@ class SettingsManager
     static bool getPikaurNoEditParam();
     static bool getSearchOutdatedAURPackages();
 
+    static int getConsoleFontSize();
     static QString readSUToolValue();
     static QString getSUTool();
     static bool hasPacmanBackend();
@@ -156,6 +157,7 @@ class SettingsManager
     static void setSearchOutdatedAURPackages(bool newValue);
     static void setSUTool(const QString& newValue);
     static void setInstantSearchSelected(bool newValue);
+    static void setConsoleFontSize(int newValue);
 };
 
 #endif // SETTINGSMANAGER_H

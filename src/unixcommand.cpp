@@ -39,6 +39,56 @@
 QFile *UnixCommand::m_temporaryFile = 0;
 
 /*
+ * UnixCommand's constructor: the relevant environment english setting and the connectors
+ */
+UnixCommand::UnixCommand(QObject *parent): QObject()
+{
+  m_process = new QProcess(parent);
+  //m_process->setInputChannelMode(QProcess::ForwardedInputChannel);
+  //m_process->setProcessChannelMode(QProcess::ForwardedOutputChannel);
+  m_terminal = new Terminal(parent, SettingsManager::getTerminal());
+
+  QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
+  env.insert("LANG", "C");
+  env.insert("LC_MESSAGES", "C");
+  m_process->setProcessEnvironment(env);
+
+  QObject::connect(m_process, SIGNAL( started() ), this,
+                   SIGNAL( started() ));
+  QObject::connect(this, SIGNAL( started() ), this,
+                   SLOT( processReadyReadStandardOutput() ));
+
+  QObject::connect(m_process, SIGNAL( readyReadStandardOutput() ), this,
+                   SIGNAL( readyReadStandardOutput() ));
+  QObject::connect(this, SIGNAL( readyReadStandardOutput() ), this,
+                   SLOT( processReadyReadStandardOutput() ));
+
+  QObject::connect(m_process, SIGNAL( finished ( int, QProcess::ExitStatus )), this,
+                   SIGNAL( finished ( int, QProcess::ExitStatus )) );
+  QObject::connect(this, SIGNAL( finished ( int, QProcess::ExitStatus )), this,
+                   SLOT( processReadyReadStandardOutput() ));
+
+  QObject::connect(m_process, SIGNAL( readyReadStandardError() ), this,
+                   SIGNAL( readyReadStandardError() ));
+  QObject::connect(this, SIGNAL( readyReadStandardError() ), this,
+                   SLOT( processReadyReadStandardError() ));
+
+  //Terminal signals
+  QObject::connect(m_terminal, SIGNAL( started()), this,
+                   SIGNAL( started()));
+  QObject::connect(m_terminal, SIGNAL( finished ( int, QProcess::ExitStatus )), this,
+                   SIGNAL( finished ( int, QProcess::ExitStatus )) );
+
+  QObject::connect(m_terminal, SIGNAL( startedTerminal()), this,
+                   SIGNAL( startedTerminal()));
+  QObject::connect(m_terminal, SIGNAL( finishedTerminal(int,QProcess::ExitStatus)), this,
+                   SIGNAL( finishedTerminal(int,QProcess::ExitStatus)));
+
+  QObject::connect(m_terminal, SIGNAL(commandToExecInQTermWidget(QString)), this,
+                   SIGNAL(commandToExecInQTermWidget(QString)));
+}
+
+/*
  * Executes given command and returns the StandardError Output.
  */
 QString UnixCommand::runCommand(const QString& commandToRun)
@@ -119,12 +169,7 @@ QString UnixCommand::discoverBinaryPath(const QString& binary){
 bool UnixCommand::cleanPacmanCache()
 {
   QProcess pacman;
-  /*QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
-  env.insert("LANG", "C");
-  env.insert("LC_MESSAGES", "C");
-  pacman.setProcessEnvironment(env);*/
   QString commandStr = "\"yes | pacman -Scc\"";
-
   QString command = WMHelper::getSUCommand() + " " + commandStr;
   pacman.start(command);
   pacman.waitForFinished();
@@ -783,14 +828,22 @@ void UnixCommand::openRootTerminal(){
 }
 
 /*
- * Executes given commandToRun inside a terminal, so the user can interact
+ * Executes given commandList as root inside a terminal, so the user can interact
  */
 void UnixCommand::runCommandInTerminal(const QStringList& commandList){
   m_terminal->runCommandInTerminal(commandList);
 }
 
 /*
- * Executes given commandToRun inside a terminal, as the current user!
+ * Executes given commandList as root inside a terminal using "octopi-helper -t", so the user can interact
+ */
+void UnixCommand::runOctopiHelperInTerminal(const QStringList &commandList)
+{
+  m_terminal->runOctopiHelperInTerminal(commandList);
+}
+
+/*
+ * Executes given commandList inside a terminal, as the current user!
  */
 void UnixCommand::runCommandInTerminalAsNormalUser(const QStringList &commandList)
 {
@@ -828,13 +881,15 @@ void UnixCommand::executeCommand(const QString &pCommand, Language lang)
     m_process->setProcessEnvironment(env);
   }
 
-  if(isRootRunning())
+  QString suCommand = WMHelper::getSUCommand();
+
+  if (suCommand == WMHelper::getLXQTSUCommand())
   {
-    command += "dbus-launch " + pCommand;
+    command = buildOctopiHelperCommand(pCommand);
   }
-  else
+  else //We are not using "octopi-sudo" utility...*/
   {
-    command = WMHelper::getSUCommand() + "\"" + pCommand + "\"";
+    command = suCommand + "\"" + pCommand + "\"";
   }
 
   m_process->start(command);
@@ -894,63 +949,66 @@ QString UnixCommand::errorString()
 }
 
 /*
+ * Constructs the octopi-sudo related command to execute given pCommand using "octopi-helper" utility
+ */
+QString UnixCommand::buildOctopiHelperCommand(const QString &pCommand)
+{
+  QString octopiHelperCommandParameter;
+  QStringList commandList;
+  QString suCommand = WMHelper::getSUCommand();
+  QFile *ftemp = UnixCommand::getTemporaryFile();
+  QTextStream out(ftemp);
+
+  //If this is a multiple command string, let's break it
+  if (pCommand.contains(";"))
+  {
+    commandList = pCommand.split(";", QString::SkipEmptyParts);
+
+    foreach(QString line, commandList)
+    {
+      out << line.trimmed() << "\n";
+    }
+  }
+  else //We have just one command here
+  {
+    commandList << pCommand.trimmed();
+    out << commandList.first();
+  }
+
+  out.flush();
+  ftemp->close();
+
+  //Here we select the proper "octopi-helper" parameter
+  if (commandList.count() ==1 && commandList.contains("pacman -Syy"))
+    octopiHelperCommandParameter = " -s";
+  else if (commandList.count() ==1 && commandList.contains("pacman -Su"))
+    octopiHelperCommandParameter = " -u";
+  else
+    octopiHelperCommandParameter = " -t";
+
+  return suCommand + ctn_OCTOPI_HELPER + octopiHelperCommandParameter;
+}
+
+/*
  * Cancels the running process
  */
 void UnixCommand::cancelProcess()
 {
   QProcess pacman;
-  //QString command = WMHelper::getSUCommand() + "\"killall pacman; rm /var/lib/pacman/db.lck\"";
-  QString command = WMHelper::getSUCommand() + "\"killall pacman; rm " + ctn_PACMAN_DATABASE_LOCK_FILE + "\"";
-  pacman.start(command);
-  pacman.waitForFinished();
-}
+  QString suCommand = WMHelper::getSUCommand();
+  QString pCommand = "killall pacman; rm " + ctn_PACMAN_DATABASE_LOCK_FILE;
+  QString result;
 
-/*
- * UnixCommand's constructor: the relevant environment english setting and the connectors
- */
-UnixCommand::UnixCommand(QObject *parent): QObject()
-{
-  m_process = new QProcess(parent);
-  m_terminal = new Terminal(parent, SettingsManager::getTerminal());
+  if (suCommand == WMHelper::getLXQTSUCommand())
+  {
+    result = buildOctopiHelperCommand(pCommand);
+  }
+  else {
+    result = suCommand + "\"" + pCommand + "\"";
+  }
 
-  QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
-  env.insert("LANG", "C");
-  env.insert("LC_MESSAGES", "C");
-  m_process->setProcessEnvironment(env);
-
-  QObject::connect(m_process, SIGNAL( started() ), this,
-                   SIGNAL( started() ));
-  QObject::connect(this, SIGNAL( started() ), this,
-                   SLOT( processReadyReadStandardOutput() ));
-
-  QObject::connect(m_process, SIGNAL( readyReadStandardOutput() ), this,
-                   SIGNAL( readyReadStandardOutput() ));
-  QObject::connect(this, SIGNAL( readyReadStandardOutput() ), this,
-                   SLOT( processReadyReadStandardOutput() ));
-
-  QObject::connect(m_process, SIGNAL( finished ( int, QProcess::ExitStatus )), this,
-                   SIGNAL( finished ( int, QProcess::ExitStatus )) );
-  QObject::connect(this, SIGNAL( finished ( int, QProcess::ExitStatus )), this,
-                   SLOT( processReadyReadStandardOutput() ));
-
-  QObject::connect(m_process, SIGNAL( readyReadStandardError() ), this,
-                   SIGNAL( readyReadStandardError() ));
-  QObject::connect(this, SIGNAL( readyReadStandardError() ), this,
-                   SLOT( processReadyReadStandardError() ));
-
-  //Terminal signals
-  QObject::connect(m_terminal, SIGNAL( started()), this,
-                   SIGNAL( started()));
-  QObject::connect(m_terminal, SIGNAL( finished ( int, QProcess::ExitStatus )), this,
-                   SIGNAL( finished ( int, QProcess::ExitStatus )) );
-
-  QObject::connect(m_terminal, SIGNAL( startedTerminal()), this,
-                   SIGNAL( startedTerminal()));
-  QObject::connect(m_terminal, SIGNAL( finishedTerminal(int,QProcess::ExitStatus)), this,
-                   SIGNAL( finishedTerminal(int,QProcess::ExitStatus)));
-
-  QObject::connect(m_terminal, SIGNAL(commandToExecInQTermWidget(QString)), this,
-                   SIGNAL(commandToExecInQTermWidget(QString)));
+  pacman.start(result);
+  pacman.waitForFinished(-1);
 }
 
 /*
@@ -1143,10 +1201,6 @@ LinuxDistro UnixCommand::getLinuxDistro()
       {
         ret = ectn_ARCHBANGLINUX;
       }
-      /*else if (contents.contains(QRegularExpression("PacBSD")))
-      {
-        ret = ectn_PACBSD;
-      }*/
       else if (contents.contains(QRegularExpression("Arch Linux")))
       {
         ret = ectn_ARCHLINUX;
@@ -1154,6 +1208,10 @@ LinuxDistro UnixCommand::getLinuxDistro()
       else if (contents.contains(QRegularExpression("Chakra")))
       {
         ret = ectn_CHAKRA;
+      }
+      else if (contents.contains(QRegularExpression("Condres OS")))
+      {
+        ret = ectn_CONDRESOS;
       }
       else if (contents.contains(QRegularExpression("KaOS")))
       {

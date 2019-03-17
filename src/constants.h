@@ -40,7 +40,7 @@ enum CommandExecuting { ectn_NONE, ectn_MIRROR_CHECK, ectn_SYNC_DATABASE,
                         ectn_RUN_SYSTEM_UPGRADE_IN_TERMINAL, ectn_RUN_IN_TERMINAL,
                         ectn_SYSINFO };
 
-enum LinuxDistro { ectn_ANTERGOS, ectn_ARCHBANGLINUX/*, ectn_PACBSD*/, ectn_ARCHLINUX, ectn_CHAKRA,
+enum LinuxDistro { ectn_ANTERGOS, ectn_ARCHBANGLINUX, ectn_ARCHLINUX, ectn_CHAKRA, ectn_CONDRESOS,
                    ectn_KAOS, ectn_MANJAROLINUX, ectn_MOOOSLINUX, ectn_NETRUNNER, ectn_PARABOLA, ectn_UNKNOWN };
 
 enum Language { ectn_LANG_ENGLISH, ectn_LANG_USER_DEFINED };
@@ -50,8 +50,8 @@ enum TreatString { ectn_TREAT_STRING, ectn_DONT_TREAT_STRING };
 enum TreatURLLinks { ectn_TREAT_URL_LINK, ectn_DONT_TREAT_URL_LINK };
 
 //SettingsManager - Octopi related
-enum SaveSettingsReason { ectn_AUR_PackageList, ectn_PackageList, ectn_CurrentTabIndex, ectn_NORMAL=30,
-                          ectn_MAXIMIZE_PACKAGES=40, ectn_MAXIMIZE_PROPERTIES=50, ectn_GROUPS=5 };
+enum SaveSettingsReason { ectn_AUR_PACKAGELIST, ectn_PACKAGELIST, ectn_CURRENTTABINDEX, ectn_NORMAL=30,
+                          ectn_MAXIMIZE_PACKAGES=40, ectn_MAXIMIZE_PROPERTIES=50, ectn_GROUPS=5, ectn_CONSOLE_FONT_SIZE };
 
 const QString ctn_ORGANIZATION("octopi");
 const QString ctn_APPLICATION("octopi");
@@ -67,6 +67,7 @@ const QString ctn_KEY_TRIZEN_NO_EDIT_PARAM("Trizen_No_Edit_Param");
 const QString ctn_KEY_PIKAUR_NO_CONFIRM_PARAM("Pikaur_No_Confirm_Param");
 const QString ctn_KEY_PIKAUR_NO_EDIT_PARAM("Pikaur_No_Edit_Param");
 const QString ctn_KEY_SEARCH_OUTDATED_AUR_PACKAGES("Search_Outdated_AUR_Packages");
+const QString ctn_KEY_CONSOLE_SIZE("Console_Font_Size");
 const QString ctn_KEY_BACKEND("Backend");
 const QString ctn_KEY_CURRENT_TAB_INDEX("Current_Tab_Index");
 const QString ctn_KEY_WINDOW_SIZE("Window_Size");
@@ -106,7 +107,7 @@ const QString ctn_KEY_KEEP_NUM_INSTALLED("Keep_Num_Installed");
 const QString ctn_KEY_KEEP_NUM_UNINSTALLED("Keep_Num_Uninstalled");
 
 //pacman command to retrieve list of upgradable packages with name, version and size
-const QString ctn_PACMAN_SUP_COMMAND = "pacman --print-format \"%n %v %s\" -Spu\"";
+const QString ctn_PACMAN_SUP_COMMAND = "pacman --print-format \"%n %v %s\" -Spu";
 
 //Package related
 const QString ctn_TEMP_ACTIONS_FILE ( QDir::tempPath() + QDir::separator() + ".qt_temp_octopi_" );
@@ -139,6 +140,9 @@ const QString ctn_NO_SU_COMMAND("none");
 const QString ctn_ROOT_SH("/bin/sh -c ");
 
 const QString ctn_LXQTSU("lxqt-sudo");
+
+const QString ctn_OCTOPISUDO("octopi-sudo");
+const QString ctn_OCTOPI_HELPER("/usr/lib/octopi/octopi-helper");
 
 const QString ctn_KDESU("kdesu");
 const QString ctn_KDE_DESKTOP("kwin");
@@ -195,7 +199,6 @@ const QString ctn_CINNAMON_EDITOR("gedit");
 const QString ctn_CINNAMON_FILE_MANAGER("nemo");
 const QString ctn_CINNAMON_TERMINAL("gnome-terminal");
 
-//const QString ctn_RAZORQT_DESKTOP("razor-session");
 const QString ctn_PEK_TERMINAL("sakura");
 const QString ctn_XTERM("xterm");
 const QString ctn_QTERMWIDGET("qtermwidget5");

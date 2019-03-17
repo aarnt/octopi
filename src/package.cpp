@@ -170,6 +170,11 @@ QString Package::makeAnchorOfOptionalDep(const QString &optionalDeps)
       newDep = "<a href=\"goto:" + name + "\">" + name + "</a> " + dep.right(dep.length()-colon);
       newDeps += newDep + "<br>";
     }
+    else
+    {
+      newDep = "<a href=\"goto:" + dep + "\">" + dep + "</a> ";
+      newDeps += newDep + "<br>";
+    }
   }
 
   newDeps.remove(QRegularExpression("<br>$"));
@@ -280,6 +285,7 @@ QSet<QString>* Package::getUnrequiredPackageList()
  */
 QStringList *Package::getOutdatedStringList()
 {
+  //static int counter=1;
   QStringList * res = new QStringList();
 
   if (SettingsManager::hasPacmanBackend())
@@ -315,10 +321,12 @@ QStringList *Package::getOutdatedStringList()
       res->append(packageTuple);
     }
 
+    //if (counter == 1) res->append("pacman");
     res->sort();
   }
 #endif
 
+  //counter++;
   return res;
 }
 
@@ -985,6 +993,9 @@ QString Package::extractFieldFromInfo(const QString &field, const QString &pkgIn
 
       aux = aux.left(fieldEnd).trimmed();
       aux = aux.replace("\n", "<br>");
+
+      if (aux.indexOf(":") == -1)
+        aux = aux.replace(" ", "");
     }
     else
     {

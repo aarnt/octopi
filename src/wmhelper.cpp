@@ -179,28 +179,6 @@ bool WMHelper::isCinnamonRunning(){
 }
 
 /*
- * Checks if RazorQt is running
- */
-/*bool WMHelper::isRazorQtRunning()
-{
-  QStringList slParam;
-  QProcess proc;
-  slParam << "-C";
-  slParam << ctn_RAZORQT_DESKTOP;
-
-  proc.start("ps", slParam);
-  proc.waitForStarted();
-  proc.waitForFinished();
-  QString out = proc.readAll();
-  proc.close();
-
-  if (out.count(ctn_RAZORQT_DESKTOP)>0)
-    return true;
-  else
-    return false;
-}*/
-
-/*
  * Retrieves the XFCE editor...
  */
 QString WMHelper::getXFCEEditor(){
@@ -219,20 +197,7 @@ QString WMHelper::getKDESUCommand(){
   result += " -d ";
   result += " -t ";
   result += " --noignorebutton ";
-  result += " -c";
-
-  return result;
-}
-
-/*
- * Retrieves the TDESU command...
- */
-QString WMHelper::getTDESUCommand(){
-  QString result = ctn_TDESU;
-
-  result += " -d ";
-  result += " -t ";
-  result += " --noignorebutton ";
+  result += " -c ";
 
   return result;
 }
@@ -254,7 +219,18 @@ QString WMHelper::getGKSUCommand(){
 QString WMHelper::getLXQTSUCommand(){
   QString result = ctn_LXQTSU;
 
-  result += " -d " + ctn_ROOT_SH;
+  result += " -d "; //+ ctn_ROOT_SH;
+
+  return result;
+}
+
+/*
+ * Retrieves the OctopiSudo command...
+ */
+QString WMHelper::getOctopiSudoCommand(){
+  QString result = ctn_OCTOPISUDO;
+
+  result += " -d "; //+ ctn_ROOT_SH;
 
   return result;
 }
@@ -274,8 +250,8 @@ QString WMHelper::getSUCommand(){
       result = getKDESUCommand();
     else if (su == ctn_LXQTSU)
       result = getLXQTSUCommand();
-    else if (su == ctn_TDESU)
-      result = getTDESUCommand();
+    else if (su == ctn_OCTOPISUDO)
+      result = getOctopiSudoCommand();
   }
   else
   {
@@ -287,9 +263,9 @@ QString WMHelper::getSUCommand(){
     }
     else if (isLXQTRunning() && UnixCommand::hasTheExecutable(ctn_LXQTSU)){
       result = getLXQTSUCommand();
-    }
-    else if (isTDERunning() && UnixCommand::hasTheExecutable(ctn_TDESU)){
-      result = getTDESUCommand();
+    }    
+    else if (UnixCommand::hasTheExecutable(ctn_OCTOPISUDO)){
+      result = getOctopiSudoCommand();
     }
     else if (UnixCommand::hasTheExecutable(ctn_GKSU_2)){
       result = getGKSUCommand();
@@ -299,9 +275,6 @@ QString WMHelper::getSUCommand(){
     }
     else if (UnixCommand::hasTheExecutable(ctn_LXQTSU)){
       result = getLXQTSUCommand();
-    }
-    else if (UnixCommand::hasTheExecutable(ctn_TDESU)){
-      result = getTDESUCommand();
     }
   }
 
@@ -324,21 +297,24 @@ QString WMHelper::getSUTool()
   else if (isLXQTRunning() && UnixCommand::hasTheExecutable(ctn_LXQTSU)){
     result = ctn_LXQTSU;
   }
-  else if (isTDERunning() && UnixCommand::hasTheExecutable(ctn_TDESU)){
+  /*else if (isTDERunning() && UnixCommand::hasTheExecutable(ctn_TDESU)){
     result = ctn_TDESU;
-  }
+  }*/
   else if (UnixCommand::hasTheExecutable(ctn_GKSU_2)){
     result = ctn_GKSU_2;
   }
   else if (UnixCommand::hasTheExecutable(ctn_KDESU)){
     result = ctn_KDESU;
   }
+  else if (UnixCommand::hasTheExecutable(ctn_OCTOPISUDO)){
+    return ctn_OCTOPISUDO;
+  }
   else if (UnixCommand::hasTheExecutable(ctn_LXQTSU)){
     result = ctn_LXQTSU;
   }
-  else if (UnixCommand::hasTheExecutable(ctn_TDESU)){
+  /*else if (UnixCommand::hasTheExecutable(ctn_TDESU)){
     result = ctn_TDESU;
-  }
+  }*/
 
   return result;
 }

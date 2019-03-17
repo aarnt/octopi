@@ -8,9 +8,16 @@
   Changed ptpb SysInfo logic to show more parameters and keep it remotely for 24 hours.
   Left click on package icon in package list brings context menu.
   Added "Info" option in package list context menu.
-  BugFix: If user chooses QTermWidget as his terminal, "Open root terminal" doesn't work.
+  Added CondresOS news support.
+  Added support for sudo (and NOPASSWD) executing thru new octopi-helper subproject.
+  Added option to exit Octopi while a transaction is already running.
+  BugFix: Some packages were not displaying Optional Deps at Info tab.
+  BugFix: Huge delay when scrolling thru large package list.
+  BugFix: OptionsDialog was not saving AUR settings if tab changed before clicking OK.
+  BugFix: Changed Manjaro news url.
+  BugFix: If user chooses QTermWidget as his terminal, "Open root terminal" didn't work.
   BugFix: Notifier checked for available internet connection too early with an error dialog box.
-  BugFix: Changed command to Reinstall/Update when package is already installed or outdated.
+  BugFix: Changed command string to Reinstall/Update when package is already installed or outdated.
   BugFix: Clear filter line edit when navigating thru package anchors at Info tab.
   BugFix: Info and Files tabs were not showing any info automaticaly when switching between 
 	foreign tool/pacman lists.

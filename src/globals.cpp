@@ -254,6 +254,7 @@ QString generateSysInfo(QByteArray contents)
 
   //Assign collected logs (contents) to a 24h ptpb paste lifetime
   QString ptpb = UnixCommand::getCommandOutput("curl -F sunset=86400 -F c=@- https://ptpb.pw/", tempFile->fileName());
+  //QString ptpb = UnixCommand::getCommandOutput("curl -F sunset=10 -F c=@- https://ptpb.pw/", tempFile->fileName());
   ptpb.replace("\n", "\n<br>");
   return ptpb;
 }

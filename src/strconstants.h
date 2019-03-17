@@ -39,6 +39,7 @@ public:
   static QString getPacBSDNews();
   static QString getArchLinuxNews();
   static QString getChakraNews();
+  static QString getCondresOSNews();
   static QString getKaOSNews();
   static QString getManjaroLinuxNews();
   static QString getNetrunnerNews();
@@ -144,8 +145,10 @@ public:
   static QString getYoullNeedSuFrontend();
   static QString getErrorIconPathInfoIncomplete();
   static QString getErrorRunningWithRoot();
+  static QString getThereIsARunningTransaction();
   static QString getThereIsAPendingTransaction();
   static QString getDoYouReallyWantToQuit();
+  static QString getDoYouAgreeToUsePtpb();
   static QString getExecutingCommand();
   static QString getRunInTerminal();
   static QString getNeedsAppRestart();
@@ -173,6 +176,10 @@ public:
   static QString getSetInterval();
   static QString getStop();
   static QString getExecutableCouldNotBeFound();
+  static QString getZoomIn();
+  static QString getZoomOut();
+  static QString getMaximize();
+  static QString getPaste();
 
   //Style Sheets ---------------------------------
   static QString getToolBarCSS();

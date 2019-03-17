@@ -65,7 +65,9 @@ public:
   virtual ~PacmanExec();
 
   void setDebugMode(bool value);
-  void runLastestCommandInTerminal();
+  void runLatestCommandInTerminal();
+  void runLatestCommandWithOctopiHelper();
+  void updatePacmanWithOctopiHelper();
   void removeTemporaryFile();
 
   static bool isDatabaseLocked();
