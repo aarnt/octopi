@@ -1199,9 +1199,9 @@ void PacmanExec::doAURInstall(const QString &listOfPackages)
 void PacmanExec::doAURRemove(const QString &listOfPackages)
 {
   m_lastCommandList.clear();
-
   if (Package::getForeignRepositoryToolName() == ctn_CHASER_TOOL ||
-      Package::getForeignRepositoryToolName() == ctn_KCP_TOOL)
+      Package::getForeignRepositoryToolName() == ctn_KCP_TOOL ||
+      Package::getForeignRepositoryToolName() == ctn_PIKAUR_TOOL)
   {
     m_lastCommandList.append("pacman -R " + listOfPackages + ";");
   }
@@ -1220,8 +1220,7 @@ void PacmanExec::doAURRemove(const QString &listOfPackages)
     m_commandExecuting = ectn_RUN_IN_TERMINAL;
 
   if (Package::getForeignRepositoryToolName() != ctn_YAOURT_TOOL &&
-      Package::getForeignRepositoryToolName() != ctn_PACAUR_TOOL &&
-      Package::getForeignRepositoryToolName() != ctn_PIKAUR_TOOL)
+      Package::getForeignRepositoryToolName() != ctn_PACAUR_TOOL)
     m_unixCommand->runCommandInTerminal(m_lastCommandList);
   else
     m_unixCommand->runCommandInTerminalAsNormalUser(m_lastCommandList);
