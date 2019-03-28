@@ -20,7 +20,7 @@
         <location filename="Projects/octopi/ui/mainwindow.ui" line="106"/>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="164"/>
         <source>Transaction</source>
-        <translation>Transacção</translation>
+        <translation>Transação</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="111"/>
@@ -280,7 +280,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="588"/>
         <source>Use Instant Search</source>
-        <translation>Usar procura rápida</translation>
+        <translation>Utilizar procura rápida</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="54"/>
@@ -375,7 +375,7 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="102"/>
         <source>Alt+3 to switch to &apos;Transaction&apos; tab</source>
-        <translation>Alt+3 para abrir o separador &apos;Transacção&apos;</translation>
+        <translation>Alt+3 para abrir o separador &apos;Transação&apos;</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="104"/>
@@ -415,22 +415,22 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="119"/>
         <source>Ctrl+F to search for text inside tab Files, News and Usage</source>
-        <translation>Ctrl+F para procurar por texto dentro de separador Arquivos, Notícias e Uso</translation>
+        <translation>Ctrl+F para procurar por texto dentro do separador Ficheiros, Notícias e Uso</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="121"/>
         <source>Ctrl+M or &apos;Transaction/Commit&apos; to start installation/removal of selected packages</source>
-        <translation>Ctrl+M ou &apos;Transacção/Submeter&apos; para iniciar a instalação/remoção dos pacotes seleccionados</translation>
+        <translation>Ctrl+M ou &apos;Transação/Submeter&apos; para iniciar a instalação/remoção dos pacotes seleccionados</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="123"/>
         <source>Ctrl+E or &apos;Transaction/Cancel&apos; to clear the selection of to be removed/installed packages</source>
-        <translation>Ctrl+E ou &apos;Transacção/Cancelar&apos; para apagar a selecção de pacotes removidos/instalados</translation>
+        <translation>Ctrl+E ou &apos;Transação/Cancelar&apos; para apagar a selecção de pacotes removidos/instalados</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="125"/>
         <source>Ctrl+G or &apos;File/Get latest distro news&apos; to retrieve the latest RSS based distro news</source>
-        <translation>Ctrl+G ou &apos;Ficheiro/Baixar últimas notícias da distro&apos; para recuperar as últimas notícias da distro baseadas no padrão RSS</translation>
+        <translation>Ctrl+G ou &apos;Ficheiro/Transferir as últimas notícias da distro&apos; para recuperar as últimas notícias da distro baseadas no padrão RSS</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="127"/>
@@ -450,7 +450,7 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="137"/>
         <source>Ctrl+Shift+R to remove Pacman&apos;s transaction lock file</source>
-        <translation>Ctrl+Shift+R para remover o ficheiro de bloqueio de transacção do Pacman</translation>
+        <translation>Ctrl+Shift+R para remover o ficheiro de bloqueio de transação do Pacman</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="139"/>
@@ -470,12 +470,12 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="146"/>
         <source>F4 to open a Terminal whitin the selected directory at Files tab</source>
-        <translation>F4 para abrir um Terminal na pasta que estiver seleccionada no separador &apos;Arquivos&apos;</translation>
+        <translation>F4 para abrir um Terminal na pasta que estiver selecionada no separador &apos;Ficheiros&apos;</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="148"/>
         <source>F6 to open a File Manager whitin the selected directory at Files tab</source>
-        <translation>F6 para abrir um Gestor de Ficheiros na pasta que estiver seleccionada no separador &apos;Arquivos&apos;</translation>
+        <translation>F6 para abrir um Gestor de Ficheiros na pasta que estiver selecionada no separador &apos;Ficheiros&apos;</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="150"/>
@@ -508,12 +508,12 @@
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="63"/>
         <source>Show stop transaction button at statusbar</source>
-        <translation>Exibe botão de parar transacção na barra de estado</translation>
+        <translation>Exibe botão de parar transação na barra de estado</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="100"/>
         <source>Select the AUR tool Octopi should use</source>
-        <translation>Selecione a ferramenta Octopi AUR a usar</translation>
+        <translation>Selecione a ferramenta Octopi AUR a utilizar</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="220"/>
@@ -534,7 +534,7 @@
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="308"/>
         <source>Select the backend Octopi should use</source>
-        <translation>Selecione o Backend que o Octopi deve usar</translation>
+        <translation>Selecione o backend que o Octopi deve utilizar</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="332"/>
@@ -544,7 +544,7 @@
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="395"/>
         <source>Red icon</source>
-        <translation>Ícone Vermelho</translation>
+        <translation>Ícone vermelho</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="473"/>
@@ -559,12 +559,12 @@
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="599"/>
         <source>Busy icon</source>
-        <translation>Ícone ocupado</translation>
+        <translation>Ícone de ocupado</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="652"/>
         <source>Use default notification icons</source>
-        <translation>Use ícones de notificação padrão</translation>
+        <translation>Utilize ícones de notificação padrão</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="663"/>
@@ -579,7 +579,7 @@
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="685"/>
         <source>Select the SU tool Octopi should use</source>
-        <translation>Selecione a ferramenta SU Octopi a usar</translation>
+        <translation>Selecione a ferramenta SU Octopi a utilizar</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="709"/>
@@ -597,7 +597,7 @@
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="955"/>
         <source>Select the terminal Octopi should use</source>
-        <translation>Selecione o terminal que o Octopi deve usar</translation>
+        <translation>Selecione o terminal que o Octopi deve utilizar</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/optionsdialog.cpp" line="127"/>
@@ -641,12 +641,12 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="40"/>
         <source>use a different Qt4 style (ex: -style gtk).</source>
-        <translation>usar um estilo Qt4 diferente (ex: -style gtk).</translation>
+        <translation>utilizar um estilo Qt4 diferente (ex: -style gtk).</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="41"/>
         <source>use a different remove command (ex: -removecmd R).</source>
-        <translation>use um comando de remoção diferente (ex: -removecmd R).</translation>
+        <translation>utilize um comando de remoção diferente (ex: -removecmd R).</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="42"/>
@@ -707,7 +707,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="136"/>
         <source>No news could be found! Press Ctrl+G to download the latest news.</source>
-        <translation>Nenhuma notícia pode ser encontrada! Pressione Ctrl+G para baixar as última notícias.</translation>
+        <translation>Nenhuma notícia pode ser encontrada! Pressione Ctrl+G para transferir as últimas notícias.</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="140"/>
@@ -837,7 +837,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="248"/>
         <source>Download Size</source>
-        <translation>Tamanho do Download</translation>
+        <translation>Tamanho da transferência</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="252"/>
@@ -912,7 +912,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="308"/>
         <source>Transaction</source>
-        <translation>Transacção</translation>
+        <translation>Transação</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="312"/>
@@ -1007,7 +1007,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="384"/>
         <source>Removing Pacman&apos;s transaction lock file...</source>
-        <translation>Removendo o ficheiro de bloqueio de transacção do Pacman...</translation>
+        <translation>Removendo o ficheiro de bloqueio de transação do Pacman...</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="388"/>
@@ -1082,7 +1082,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="448"/>
         <source>Total download size: %1 KB</source>
-        <translation>Tamanho total do download: %1 KB</translation>
+        <translation>Tamanho total da transferência: %1 KB</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="452"/>
@@ -1142,12 +1142,12 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="496"/>
         <source>There has been a transaction error!</source>
-        <translation>Ocorreu um erro na transacção!</translation>
+        <translation>Ocorreu um erro na transação!</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="500"/>
         <source>Do you want to execute this transaction in a Terminal?</source>
-        <translation>Gostaria de executar esta transacção num Terminal?</translation>
+        <translation>Gostaria de executar esta transação num Terminal?</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="504"/>
@@ -1157,12 +1157,12 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="508"/>
         <source>Do you really want to remove Pacman&apos;s transaction lock file?</source>
-        <translation>Deseja realmente remover o ficheiro de bloqueio de transacção do Pacman?</translation>
+        <translation>Deseja realmente remover o ficheiro de bloqueio de transação do Pacman?</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="512"/>
         <source>Do you really want to cancel the transaction?</source>
-        <translation>Deseja realmente cancelar a transacção?</translation>
+        <translation>Deseja realmente cancelar a transação?</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="516"/>
@@ -1192,7 +1192,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="538"/>
         <source>There is a pending transaction</source>
-        <translation>Existe uma transacção pendente</translation>
+        <translation>Existe uma transação pendente</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="542"/>
@@ -1228,7 +1228,7 @@
         <location filename="Projects/octopi/src/strconstants.cpp" line="566"/>
         <source>This file does not appear to be a simple text.
 Are you sure you want to open it?</source>
-        <translation>Este arquivo não parece ser um texto simples
+        <translation>Este ficheiro não parece ser um texto simples
 Tem certeza que deseja abri-lo?</translation>
     </message>
     <message>
@@ -1269,7 +1269,7 @@ Tem certeza que deseja abri-lo?</translation>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="599"/>
         <source>Use &quot;%1&quot; tool</source>
-        <translation>Usar ferramenta &quot;%1&quot;</translation>
+        <translation>Utilizar ferramenta &quot;%1&quot;</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="603"/>

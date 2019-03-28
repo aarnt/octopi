@@ -1284,7 +1284,7 @@ Tem certeza que deseja abri-lo?</translation>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="611"/>
         <source>Sync database interval</source>
-        <translation>Intervalo para sincronizar a base de dados</translation>
+        <translation>Intervalo de banco de dados de sincronização</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="615"/>

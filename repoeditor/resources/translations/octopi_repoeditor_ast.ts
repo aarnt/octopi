@@ -4,17 +4,17 @@
     <message>
         <location filename="Projects/octopi/repoeditor/addrepo.ui" line="14"/>
         <source>Add Repository - Octopi</source>
-        <translation>Amestar repositorios - Octopi</translation>
+        <translation>Amiestu d&apos;un depósitu - Octopi</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/addrepo.ui" line="22"/>
         <source>Repository:</source>
-        <translation>Repositoriu:</translation>
+        <translation>Depósitu:</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/addrepo.ui" line="32"/>
         <source>Repository name</source>
-        <translation>Nome del repositoriu</translation>
+        <translation>Nome del depósitu</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/addrepo.ui" line="39"/>
@@ -24,27 +24,27 @@
     <message>
         <location filename="Projects/octopi/repoeditor/addrepo.cpp" line="86"/>
         <source>The repository name field can&apos;t be blank.</source>
-        <translation>Nun pue tar baleru&apos;l nome&apos;l campu&apos;l repsitoriu.</translation>
+        <translation>El campu del nome del depósitu nun pue tar baleru.</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/addrepo.cpp" line="101"/>
         <source>The repository location field is not valid.</source>
-        <translation>Nun ye válidu&apos;l campu d&apos;allugamientu del repositoriu.</translation>
+        <translation>El campu del allugamientu del depósitu nun ye válidu.</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/addrepo.cpp" line="104"/>
         <source>The repository name field is not valid.</source>
-        <translation>Nun ye válidu&apos;l campu del nome del repositoriu.</translation>
+        <translation>El campu del nome del depósitu nun ye válidu.</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/addrepo.cpp" line="111"/>
         <source>Address of remote or local packages repository</source>
-        <translation>Direición del repositoriu de paquetes llocal o remotu</translation>
+        <translation>Direición del depósitu remotu o llocal de paquetes</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/addrepo.cpp" line="115"/>
         <source>Path to mirrors list file</source>
-        <translation>Camín al ficheru de llista d&apos;espeyos</translation>
+        <translation>Camín al ficheru de la llista d&apos;espeyos</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/addrepo.cpp" line="124"/>
@@ -54,17 +54,17 @@
     <message>
         <location filename="Projects/octopi/repoeditor/addrepo.cpp" line="125"/>
         <source>Can&apos;t add repository.</source>
-        <translation>Nun pue amestase&apos;l repositoriu.</translation>
+        <translation>Nun pue amestase&apos;l depósitu.</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/addrepo.cpp" line="136"/>
         <source>Select local repository</source>
-        <translation>Esbillar repositoriu llocal</translation>
+        <translation>Esbilla d&apos;un depósitu llocal</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/addrepo.cpp" line="149"/>
         <source>Select mirrors list</source>
-        <translation>Esbillar llistáu d&apos;espeyos</translation>
+        <translation>Esbilla d&apos;una llista d&apos;espeyos</translation>
     </message>
 </context>
 <context>
@@ -73,12 +73,12 @@
         <location filename="Projects/octopi/repoeditor/repoconf.cpp" line="176"/>
         <location filename="Projects/octopi/repoeditor/repoconf.cpp" line="185"/>
         <source>Backup error</source>
-        <translation>Fallu de copia de seguranza</translation>
+        <translation>Fallu de la copia de seguranza</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/repoconf.cpp" line="177"/>
         <source>Backup file already exists.</source>
-        <translation>Yá esiste&apos;l ficheru de copia de seguranza.</translation>
+        <translation>La copia de seguranza yá esiste.</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/repoconf.cpp" line="177"/>
@@ -88,22 +88,22 @@
     <message>
         <location filename="Projects/octopi/repoeditor/repoconf.cpp" line="186"/>
         <source>Can&apos;t create backup file.</source>
-        <translation>Nun pue crease&apos;l ficheru de copia de seguranza</translation>
+        <translation>Nun pue crease la copia de seguranza.</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/repoconf.cpp" line="186"/>
         <source>Do you want to proceed without a backup?</source>
-        <translation>¿De xuru que quies siguir ensin una copia de seguranza?</translation>
+        <translation>¿Quies siguir ensin una copia de seguranza?</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/repoconf.cpp" line="242"/>
         <source>Active</source>
-        <translation>Activu</translation>
+        <translation>Activación</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/repoconf.cpp" line="242"/>
         <source>Repository</source>
-        <translation>Repositoriu</translation>
+        <translation>Depósitu</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/repoconf.cpp" line="242"/>
@@ -116,12 +116,12 @@
     <message>
         <location filename="Projects/octopi/repoeditor/repoeditor.ui" line="14"/>
         <source>Repository Editor - Octopi</source>
-        <translation>Editor de repositoriu - Octopi</translation>
+        <translation>Editor de depósitos - Octopi</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/repoeditor.ui" line="28"/>
         <source>Available Repositories</source>
-        <translation>Respositorios disponibles</translation>
+        <translation>Depósitos disponibles</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/repoeditor.ui" line="76"/>
@@ -156,7 +156,7 @@
     <message>
         <location filename="Projects/octopi/repoeditor/repoeditor.ui" line="174"/>
         <source>Create backup on save</source>
-        <translation>Crear copia de seguranza al guardar</translation>
+        <translation>Crear una copia de seguranza al guardar</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/repoeditor.ui" line="197"/>
@@ -166,17 +166,17 @@
     <message>
         <location filename="Projects/octopi/repoeditor/repoeditor.ui" line="213"/>
         <source>Backup file:</source>
-        <translation>Ficheru de copia de seguranza:</translation>
+        <translation>Copia de seguranza:</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/repoeditor.cpp" line="99"/>
         <source>Can&apos;t load backup file</source>
-        <translation>Nun pue cargase&apos;l ficheru de copia de seguranza</translation>
+        <translation>Nun pue cargase la copia de seguranza</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/repoeditor.cpp" line="100"/>
         <source>Selected file is not valid</source>
-        <translation>Nun ye válidu&apos;l ficheru esbilláu</translation>
+        <translation>El ficheru esbilláu nun ye válidu</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/repoeditor.cpp" line="149"/>
@@ -186,7 +186,7 @@
     <message>
         <location filename="Projects/octopi/repoeditor/repoeditor.cpp" line="150"/>
         <source>Repositories configuration successfully saved.</source>
-        <translation>Guardóse con ésitu la configuración de los repositorios.</translation>
+        <translation>La configuración de los depósitos guardóse con ésitu.</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/repoeditor.cpp" line="155"/>
@@ -196,7 +196,7 @@
     <message>
         <location filename="Projects/octopi/repoeditor/repoeditor.cpp" line="156"/>
         <source>Repositories configuration not saved.</source>
-        <translation>Nun se guardó la configuración de los repositorios.</translation>
+        <translation>La configuración de los depósitos nun se guardó.</translation>
     </message>
 </context>
 </TS>

@@ -112,7 +112,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="304"/>
         <source>Ctrl+P</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+P</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="313"/>
@@ -280,7 +280,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="588"/>
         <source>Use Instant Search</source>
-        <translation type="unfinished"/>
+        <translation>Použít okamžité hledání</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="54"/>
@@ -405,7 +405,7 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="115"/>
         <source>Ctrl+P or &apos;File/System upgrade&apos; to make a full system upgrade (pacman -Su)</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+P nebo &apos;Soubor/Aktualizace systému&apos; pro provedení úplné aktualizace systému (pacman -Su)</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="117"/>
@@ -485,7 +485,7 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="152"/>
         <source>F11 to maximize/demaximize Tab&apos;s view</source>
-        <translation type="unfinished"/>
+        <translation>F11 pro zvětšení/zmenšení zobrazení karet</translation>
     </message>
 </context>
 <context>
@@ -498,17 +498,17 @@
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="38"/>
         <source>General</source>
-        <translation type="unfinished"/>
+        <translation>Obecné</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="50"/>
         <source>Show package numbers in output tab</source>
-        <translation type="unfinished"/>
+        <translation>Ukázat čísla balíčků v kartě s výstupem</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="63"/>
         <source>Show stop transaction button at statusbar</source>
-        <translation type="unfinished"/>
+        <translation>Ukázat tlačítko pro zastavení transakce ve stavovém řádku</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="100"/>
@@ -518,12 +518,12 @@
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="220"/>
         <source>Do not use AUR</source>
-        <translation type="unfinished"/>
+        <translation>Nepoužívat AUR</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="233"/>
         <source>Search for outdated AUR packages</source>
-        <translation type="unfinished"/>
+        <translation>Hledat zastaralé balíčky AUR</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="242"/>
@@ -667,7 +667,7 @@
         <location filename="Projects/octopi/src/strconstants.cpp" line="104"/>
         <source>PacBSD news</source>
         <oldsource>ArchBSD news</oldsource>
-        <translation type="unfinished"/>
+        <translation>Zprávy PacBSD</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="108"/>
@@ -967,7 +967,7 @@
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.cpp" line="352"/>
         <source>There are %n outdated packages in your system:</source>
-        <translation><numerusform>Ve vašem systému je %n zastaralý balíček:</numerusform><numerusform>Ve vašem systému jsou %n zastaralé balíčky:</numerusform><numerusform>Ve vašem systému je %n zastaralých balíčků:</numerusform></translation>
+        <translation><numerusform>Ve vašem systému je %n zastaralý balíček:</numerusform><numerusform>Ve vašem systému jsou %n zastaralé balíčky:</numerusform><numerusform>Ve vašem systému je %n zastaralých balíčků:</numerusform><numerusform>Ve vašem systému je %n zastaralých balíčků:</numerusform></translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="356"/>
@@ -977,27 +977,27 @@
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.cpp" line="360"/>
         <source>%n packages</source>
-        <translation><numerusform>%n balíček</numerusform><numerusform>%n balíčky</numerusform><numerusform>%n balíčků</numerusform></translation>
+        <translation><numerusform>%n balíček</numerusform><numerusform>%n balíčky</numerusform><numerusform>%n balíčků</numerusform><numerusform>%n balíčků</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.cpp" line="364"/>
         <source>%n selected</source>
-        <translation><numerusform>%n vybrán</numerusform><numerusform>%n vybrány</numerusform><numerusform>%n vybráno</numerusform></translation>
+        <translation><numerusform>%n vybrán</numerusform><numerusform>%n vybrány</numerusform><numerusform>%n vybráno</numerusform><numerusform>%n vybráno</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.cpp" line="368"/>
         <source>%n installed</source>
-        <translation><numerusform>%n nainstalován</numerusform><numerusform>%n nainstalovány</numerusform><numerusform>%n nainstalováno</numerusform></translation>
+        <translation><numerusform>%n nainstalován</numerusform><numerusform>%n nainstalovány</numerusform><numerusform>%n nainstalováno</numerusform><numerusform>%n nainstalováno</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.cpp" line="372"/>
         <source>%n outdated</source>
-        <translation><numerusform>%n zastaralý</numerusform><numerusform>%n zastaralé</numerusform><numerusform>%n zastaralých</numerusform></translation>
+        <translation><numerusform>%n zastaralý</numerusform><numerusform>%n zastaralé</numerusform><numerusform>%n zastaralých</numerusform><numerusform>%n zastaralých</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.cpp" line="376"/>
         <source>%n available</source>
-        <translation><numerusform>%n dostupný</numerusform><numerusform>%n dostupné</numerusform><numerusform>%n dostupných</numerusform></translation>
+        <translation><numerusform>%n dostupný</numerusform><numerusform>%n dostupné</numerusform><numerusform>%n dostupných</numerusform><numerusform>%n dostupných</numerusform></translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="380"/>
@@ -1097,12 +1097,12 @@
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.cpp" line="460"/>
         <source>The following %n packages need to be retrieved</source>
-        <translation><numerusform>Je potřeba získat %n následující balíček</numerusform><numerusform>Je potřeba získat %n následující balíčky</numerusform><numerusform>Je potřeba získat %n následujících balíčků</numerusform></translation>
+        <translation><numerusform>Je potřeba získat %n následující balíček</numerusform><numerusform>Je potřeba získat %n následující balíčky</numerusform><numerusform>Je potřeba získat %n následujících balíčků</numerusform><numerusform>Je potřeba získat %n následujících balíčků</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.cpp" line="464"/>
         <source>The following %n packages will be removed</source>
-        <translation><numerusform>Následující %n balíček bude odstraněn</numerusform><numerusform>Následující %n balíčky budou odstraněny</numerusform><numerusform>Následujících %n balíčků bude odstraněno</numerusform></translation>
+        <translation><numerusform>Následující %n balíček bude odstraněn</numerusform><numerusform>Následující %n balíčky budou odstraněny</numerusform><numerusform>Následujících %n balíčků bude odstraněno</numerusform><numerusform>Následujících %n balíčků bude odstraněno</numerusform></translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="468"/>
@@ -1122,7 +1122,7 @@
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.cpp" line="480"/>
         <source>There are %n updates available!</source>
-        <translation><numerusform>Je dostupná %n aktualizace!</numerusform><numerusform>Jsou dostupné %n aktualizace!</numerusform><numerusform>Je dostupných %n aktualizací!</numerusform></translation>
+        <translation><numerusform>Je dostupná %n aktualizace!</numerusform><numerusform>Jsou dostupné %n aktualizace!</numerusform><numerusform>Je dostupných %n aktualizací!</numerusform><numerusform>Je dostupných %n aktualizací!</numerusform></translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="484"/>
@@ -1319,7 +1319,7 @@ Opravdu jej chcete otevřít?</translation>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="640"/>
         <source>Stop</source>
-        <translation type="unfinished"/>
+        <translation>Zastavit</translation>
     </message>
 </context>
 <context>
