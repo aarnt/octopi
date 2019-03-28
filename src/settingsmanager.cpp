@@ -294,6 +294,12 @@ QString SettingsManager::getAURTool()
     if (getTrizenNoEditParam()) params += " --noedit ";
     ret += params;
   }
+  else if (ret == ctn_PIKAUR_TOOL)
+  {
+    if (getPikaurNoConfirmParam()) params += " --noconfirm ";
+    if (getPikaurNoEditParam()) params += " --noedit ";
+    ret += params;
+  }
   else if (ret.isEmpty() || !UnixCommand::hasTheExecutable(ret))
   {
     if (UnixCommand::hasTheExecutable(ctn_TRIZEN_TOOL))
@@ -321,6 +327,15 @@ QString SettingsManager::getAURTool()
       p_instance.setAURTool(ctn_PACAUR_TOOL);
       p_instance.getSYSsettings()->sync();
       ret = ctn_PACAUR_TOOL + params;
+    }
+    else if (UnixCommand::hasTheExecutable(ctn_PIKAUR_TOOL))
+    {
+      if (getPikaurNoConfirmParam()) params += " --noconfirm ";
+      if (getPikaurNoEditParam()) params += " --noedit ";
+
+      p_instance.setAURTool(ctn_PIKAUR_TOOL);
+      p_instance.getSYSsettings()->sync();
+      ret = ctn_PIKAUR_TOOL + params;
     }
   }
 
@@ -376,6 +391,24 @@ bool SettingsManager::getTrizenNoEditParam()
 {
   SettingsManager p_instance;
   return (p_instance.getSYSsettings()->value( ctn_KEY_TRIZEN_NO_EDIT_PARAM, 0)).toBool();
+}
+
+/*
+ * Tests if Pikaur is using "--noconfirm" parameter
+ */
+bool SettingsManager::getPikaurNoConfirmParam()
+{
+  SettingsManager p_instance;
+  return (p_instance.getSYSsettings()->value( ctn_KEY_PIKAUR_NO_CONFIRM_PARAM, 0)).toBool();
+}
+
+/*
+ * Tests if Pikaur is using "--noedit" parameter
+ */
+bool SettingsManager::getPikaurNoEditParam()
+{
+  SettingsManager p_instance;
+  return (p_instance.getSYSsettings()->value( ctn_KEY_PIKAUR_NO_EDIT_PARAM, 0)).toBool();
 }
 
 bool SettingsManager::getSearchOutdatedAURPackages()
@@ -681,6 +714,24 @@ void SettingsManager::setTrizenNoConfirmParam(bool newValue)
 void SettingsManager::setTrizenNoEditParam(bool newValue)
 {
   instance()->getSYSsettings()->setValue(ctn_KEY_TRIZEN_NO_EDIT_PARAM, newValue);
+  instance()->getSYSsettings()->sync();
+}
+
+/*
+ * Sets if Pikaur tool will use "--noconfirm" parameter
+ */
+void SettingsManager::setPikaurNoConfirmParam(bool newValue)
+{
+  instance()->getSYSsettings()->setValue(ctn_KEY_PIKAUR_NO_CONFIRM_PARAM, newValue);
+  instance()->getSYSsettings()->sync();
+}
+
+/*
+ * Sets if Pikaur tool will use "--noedit" parameter
+ */
+void SettingsManager::setPikaurNoEditParam(bool newValue)
+{
+  instance()->getSYSsettings()->setValue(ctn_KEY_PIKAUR_NO_EDIT_PARAM, newValue);
   instance()->getSYSsettings()->sync();
 }
 

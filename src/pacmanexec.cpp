@@ -1154,6 +1154,10 @@ void PacmanExec::doAURUpgrade(const QString &listOfPackages)
   {
     m_lastCommandList.append(Package::getForeignRepositoryToolNameParam() + " -Sa " + listOfPackages + ";");
   }
+  else if (Package::getForeignRepositoryToolName() == ctn_PIKAUR_TOOL)
+  {
+    m_lastCommandList.append(Package::getForeignRepositoryToolNameParam() + " -S --aur " + listOfPackages + ";");
+  }
 
   m_lastCommandList.append("echo -e;");
   m_lastCommandList.append("read -n 1 -p \"" + StrConstants::getPressAnyKey() + "\"");
@@ -1177,6 +1181,8 @@ void PacmanExec::doAURInstall(const QString &listOfPackages)
     m_lastCommandList.append(Package::getForeignRepositoryToolNameParam() + " -S " + listOfPackages + ";");
   else if (Package::getForeignRepositoryToolName() == ctn_TRIZEN_TOOL)
     m_lastCommandList.append(Package::getForeignRepositoryToolNameParam() + " -Sa " + listOfPackages + ";");
+  else if (Package::getForeignRepositoryToolName() == ctn_PIKAUR_TOOL)
+    m_lastCommandList.append(Package::getForeignRepositoryToolNameParam() + " -S --aur " + listOfPackages + ";");
   else if (Package::getForeignRepositoryToolName() == ctn_CHASER_TOOL)
     m_lastCommandList.append(Package::getForeignRepositoryToolNameParam() + " install " + listOfPackages + ";");
 
@@ -1193,9 +1199,9 @@ void PacmanExec::doAURInstall(const QString &listOfPackages)
 void PacmanExec::doAURRemove(const QString &listOfPackages)
 {
   m_lastCommandList.clear();
-
   if (Package::getForeignRepositoryToolName() == ctn_CHASER_TOOL ||
-      Package::getForeignRepositoryToolName() == ctn_KCP_TOOL)
+      Package::getForeignRepositoryToolName() == ctn_KCP_TOOL ||
+      Package::getForeignRepositoryToolName() == ctn_PIKAUR_TOOL)
   {
     m_lastCommandList.append("pacman -R " + listOfPackages + ";");
   }
@@ -1213,7 +1219,8 @@ void PacmanExec::doAURRemove(const QString &listOfPackages)
   else
     m_commandExecuting = ectn_RUN_IN_TERMINAL;
 
-  if (Package::getForeignRepositoryToolName() != ctn_YAOURT_TOOL && Package::getForeignRepositoryToolName() != ctn_PACAUR_TOOL)
+  if (Package::getForeignRepositoryToolName() != ctn_YAOURT_TOOL &&
+      Package::getForeignRepositoryToolName() != ctn_PACAUR_TOOL)
     m_unixCommand->runCommandInTerminal(m_lastCommandList);
   else
     m_unixCommand->runCommandInTerminalAsNormalUser(m_lastCommandList);

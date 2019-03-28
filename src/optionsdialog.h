@@ -80,6 +80,7 @@ private slots:
   void onPacaurSelected(bool checked);
   void onYaourtSelected(bool checked);
   void onTrizenSelected(bool checked);
+  void onPikaurSelected(bool checked);
 };
 
 #endif // OptionsDialog_H

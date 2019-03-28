@@ -283,6 +283,7 @@ QByteArray UnixCommand::getAURPackageList(const QString &searchString)
   QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
   env.insert("LANG", "C");
   env.insert("LC_MESSAGES", "C");
+  env.insert("LANGUAGE", "C");
 
   aur.setProcessEnvironment(env);
 
@@ -294,6 +295,8 @@ QByteArray UnixCommand::getAURPackageList(const QString &searchString)
       aur.start(Package::getForeignRepositoryToolNameParam() + " --nocolor -Ss " + searchString);
     else if (Package::getForeignRepositoryToolName() == ctn_TRIZEN_TOOL)
         aur.start(Package::getForeignRepositoryToolNameParam() + " --nocolors -Ssa " + searchString);
+    else if (Package::getForeignRepositoryToolName() == ctn_PIKAUR_TOOL)
+        aur.start(Package::getForeignRepositoryToolNameParam() + " --color=never -Ss --aur " + searchString);
     else if (Package::getForeignRepositoryToolName() == ctn_CHASER_TOOL)
       aur.start(Package::getForeignRepositoryToolNameParam() + " search " + searchString);
     else
