@@ -870,7 +870,7 @@ QList<PackageListData> * Package::getAURPackageList(const QString& searchString)
       {
         if(packageTuple.indexOf(" [") != -1)
         {
-          if (packageTuple.indexOf(": ") != -1)
+          if (packageTuple.indexOf("installed: ") != -1)
           {
             int i = packageTuple.indexOf(": ");
             pkgOutVersion = packageTuple.mid(i+2);
@@ -879,7 +879,7 @@ QList<PackageListData> * Package::getAURPackageList(const QString& searchString)
             //Compare actual and new version
             char const * pkgOutVersion_temp = pkgOutVersion.toStdString().c_str();
             char const * pkgVersion_temp = pkgVersion.toStdString().c_str();
-            int pkgIsUptodate = alpm_pkg_vercmp(pkgVersion_temp, pkgOutVersion_temp);
+            int pkgIsUptodate = alpm_pkg_vercmp(pkgOutVersion_temp, pkgVersion_temp);
             if (pkgIsUptodate == -1)
             {
               //This is an outdated installed package

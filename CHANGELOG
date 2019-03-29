@@ -1,12 +1,7 @@
 0.9.1 (dev)
-<<<<<<< HEAD
-  Changed ptpb SysInfo logic to show more parameters and keep it remotely for 15 minutes.
-  Left click on package icon in package list brings context menu.
-  BugFix: Notifier checked for available internet connection too early with an error dialog box.
-  BugFix: Changed command to Reinstall/Update when package is already installed or outdated.
-=======
   Changed ptpb SysInfo logic to show more parameters and keep it remotely for 24 hours.
   Left click on package icon in package list brings context menu.
+  Added "pikaur" AUR tool support (thanks to ewilly).
   Added "Info" option in package list context menu.
   Added CondresOS news support.
   Added support for sudo (and NOPASSWD) executing thru new octopi-helper subproject.
@@ -22,7 +17,6 @@
   BugFix: Clear filter line edit when navigating thru package anchors at Info tab.
   BugFix: Info and Files tabs were not showing any info automaticaly when switching between 
 	foreign tool/pacman lists.
->>>>>>> 359584ba93ebe95df63cbc6d680f74b9e20345c6
 
 0.9.0
   Parser changes: added counter for processed packages.  
