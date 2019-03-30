@@ -1729,11 +1729,11 @@ void MainWindow::ptpbSysInfo()
   if (!isInternetAvailable()) return;
 
   //Asks user if he/she is sure about doing this
-  /*int res = QMessageBox::question(this, StrConstants::getConfirmation(),
-                                  StrConstants::getDoYouAgreeToUsePtpb(),
+  int res = QMessageBox::question(this, StrConstants::getConfirmation(),
+                                  StrConstants::getDoYouAgreeToGenerateSysInfo(),
                                   QMessageBox::Yes | QMessageBox::No,
                                   QMessageBox::No);
-  if (res == QMessageBox::No) return;*/
+  if (res == QMessageBox::No) return;
 
   disableTransactionActions();
   m_commandExecuting = ectn_SYSINFO;

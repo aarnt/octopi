@@ -149,7 +149,7 @@ public:
   static QString getThereIsARunningTransaction();
   static QString getThereIsAPendingTransaction();
   static QString getDoYouReallyWantToQuit();
-  static QString getDoYouAgreeToUsePtpb();
+  static QString getDoYouAgreeToGenerateSysInfo();
   static QString getExecutingCommand();
   static QString getRunInTerminal();
   static QString getNeedsAppRestart();
