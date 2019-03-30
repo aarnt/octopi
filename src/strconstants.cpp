@@ -417,6 +417,11 @@ QString StrConstants::getIsUpToDate(){
   return QObject::tr("is up to date");
 }
 
+QString StrConstants::getSysInfoGenerated()
+{
+  return QObject::tr("SysInfo file generated at: %1");
+}
+
 QString StrConstants::getSystemUpgrade(){
   return QObject::tr("Starting full system upgrade...");
 }

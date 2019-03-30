@@ -1729,11 +1729,11 @@ void MainWindow::ptpbSysInfo()
   if (!isInternetAvailable()) return;
 
   //Asks user if he/she is sure about doing this
-  int res = QMessageBox::question(this, StrConstants::getConfirmation(),
+  /*int res = QMessageBox::question(this, StrConstants::getConfirmation(),
                                   StrConstants::getDoYouAgreeToUsePtpb(),
                                   QMessageBox::Yes | QMessageBox::No,
                                   QMessageBox::No);
-  if (res == QMessageBox::No) return;
+  if (res == QMessageBox::No) return;*/
 
   disableTransactionActions();
   m_commandExecuting = ectn_SYSINFO;
@@ -1936,7 +1936,7 @@ void MainWindow::ptpbSysInfo()
     out.replace(homePath, "<HOME_PATH>");
   }
 
-  QFuture<QString> f2 = QtConcurrent::run(generateSysInfo, out);
+  /*QFuture<QString> f2 = QtConcurrent::run(generateSysInfo, out);
   connect(&g_fwGenerateSysInfo, SIGNAL(finished()), &el, SLOT(quit()));
   g_fwGenerateSysInfo.setFuture(f2);
   el.exec();
@@ -1954,7 +1954,20 @@ void MainWindow::ptpbSysInfo()
     result += "<br>delete command: curl -X DELETE https://ptpb.pw/" + uuid;
   }
 
-  writeToTabOutput("<br>" + result + "<br>");
+  writeToTabOutput("<br>" + result + "<br>");*/
+
+  m_commandExecuting = ectn_NONE;
+  QTime time = QTime::currentTime();
+  qsrand(time.minute() + time.second() + time.msec());
+  QString fileName = homePath + QDir::separator() + "octopi-sysinfo-" + QString::number(qrand()) + ".log";
+  QFile *outFile = new QFile(fileName);
+  outFile->open(QIODevice::ReadWrite|QIODevice::Text);
+  outFile->setPermissions(QFile::Permissions(QFile::ExeOwner|QFile::ReadOwner));
+  outFile->write(out);
+  outFile->flush();
+  outFile->close();
+
+  writeToTabOutput("<br>" + StrConstants::getSysInfoGenerated().arg(fileName) + "<br>");
   writeToTabOutput("<br><b>" + StrConstants::getCommandFinishedOK() + "</b><br>");
   enableTransactionActions();
 }

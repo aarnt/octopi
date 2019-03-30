@@ -114,6 +114,7 @@ public:
   static QString getSyncDatabase();
   static QString getSyncDatabases();
   static QString getIsUpToDate();
+  static QString getSysInfoGenerated();
   static QString getSystemUpgrade();
   static QString getInstallingPackages();
   static QString getRemovingPackages();

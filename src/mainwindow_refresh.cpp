@@ -128,13 +128,13 @@ void MainWindow::refreshMenuTools()
   else
     ui->actionCacheCleaner->setVisible(false);
 
-  if (UnixCommand::hasTheExecutable("curl"))
+  //if (UnixCommand::hasTheExecutable("curl"))
   {
     ui->menuTools->menuAction()->setVisible(true);
     if (ui->menuTools->actions().indexOf(m_actionSysInfo) == -1)
     {
       ui->menuTools->addSeparator();
-      m_actionSysInfo->setText("SysInfo → https://ptpb.pw");
+      m_actionSysInfo->setText("SysInfo..."); //"SysInfo → https://ptpb.pw");
       ui->menuTools->addAction(m_actionSysInfo);
 
       if (!connectorPtpb)
@@ -144,7 +144,7 @@ void MainWindow::refreshMenuTools()
       }
     }
   }
-  else
+  /*else
   {
     if (ui->menuTools->actions().indexOf(m_actionSysInfo) != -1)
     {
@@ -156,7 +156,7 @@ void MainWindow::refreshMenuTools()
         }
       }
     }
-  }
+  }*/
 
   foreach (QAction * act,  ui->menuBar->actions())
   {
