@@ -2,6 +2,7 @@
   Changed ptpb SysInfo logic to show more parameters and keep it remotely for 24 hours.
   Left click on package icon in package list brings context menu.
   Added "pikaur" AUR tool support (thanks to ewilly).
+  Added option to never synchronize package db in Notifier.
   Added "Info" option in package list context menu.
   Added CondresOS news support.
   Added support for sudo (and NOPASSWD) executing thru new octopi-helper subproject.

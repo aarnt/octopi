@@ -76,6 +76,7 @@ private slots:
   void selectOnceADay();
   void selectOnceADayAt();
   void selectOnceEvery();
+  void selectNever();
   void onDoNotUseAURSelected(bool checked);
   void onPacaurSelected(bool checked);
   void onYaourtSelected(bool checked);

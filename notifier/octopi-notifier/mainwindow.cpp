@@ -232,7 +232,7 @@ void MainWindow::pacmanHelperTimerTimeout()
       SettingsManager::setLastSyncDbTime(now);
     }
   }
-  else
+  else if (syncDbInterval != -2) //Because if it's "-2" user does NOT want any database sync!
   {
     if (lastCheckTime.isNull() || now.addSecs(-(syncDbInterval * 60)) >= lastCheckTime)
     {
@@ -343,20 +343,6 @@ bool MainWindow::_isSUAvailable()
 void MainWindow::doSystemUpgrade()
 {
   if (!isInternetAvailable()) return;
-
-  //If, for whatever reason, the pacman db is locked, let's ask for lock removal
-  if (PacmanExec::isDatabaseLocked())
-  {
-    int res = QMessageBox::question(this, StrConstants::getConfirmation(),
-                                    StrConstants::getRemovePacmanTransactionLockFileConfirmation(),
-                                    QMessageBox::Yes|QMessageBox::No, QMessageBox::No);
-
-    if (res == QMessageBox::Yes)
-    {
-      PacmanExec::removeDatabaseLock();
-    }
-    else return;
-  }
 
   if (m_transactionDialog != nullptr)
   {
@@ -647,20 +633,6 @@ void MainWindow::syncDatabase(SyncDatabase syncDB)
   else if (syncDB == ectn_user_sync)
   {
     if (!isInternetAvailable()) return;
-  }
-
-  //If, for whatever reason, the pacman db is locked, let's ask for lock removal
-  if (PacmanExec::isDatabaseLocked())
-  {
-    int res = QMessageBox::question(this, StrConstants::getConfirmation(),
-                                    StrConstants::getRemovePacmanTransactionLockFileConfirmation(),
-                                    QMessageBox::Yes|QMessageBox::No, QMessageBox::No);
-
-    if (res == QMessageBox::Yes)
-    {
-      PacmanExec::removeDatabaseLock();
-    }
-    else return;
   }
 
   disconnect(m_pacmanDatabaseSystemWatcher,

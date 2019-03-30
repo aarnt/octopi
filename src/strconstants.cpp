@@ -702,6 +702,11 @@ QString StrConstants::getPaste()
   return QObject::tr("Paste");
 }
 
+QString StrConstants::getNever()
+{
+  return QObject::tr("Never");
+}
+
 //Style Sheets ---------------------------------
 
 QString StrConstants::getToolBarCSS(){

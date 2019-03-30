@@ -438,7 +438,8 @@ void OptionsDialog::initSynchronizationTab()
   rbOnceADayAt->setText(StrConstants::getOnceADayAt());
   lblOnceADayAt->setText(StrConstants::getOnceADayAtDesc());
   rbOnceEvery->setText(StrConstants::getOnceEvery());
-  lblOnceEvery->setText(StrConstants::getOnceEveryDesc().arg(5).arg(44640));
+  rbNever->setText(StrConstants::getNever());
+  lblOnceEvery->setText(StrConstants::getOnceEveryDesc().arg(5).arg(44640));  
 
   connect(rbOnceADay, SIGNAL(clicked()), this, SLOT(selectOnceADay()));
   connect(rbOnceADayAt, SIGNAL(clicked()), this, SLOT(selectOnceADayAt()));
@@ -450,7 +451,13 @@ void OptionsDialog::initSynchronizationTab()
   bool useSyncDbInterval = false;
   bool useSyncDbHour = false;
 
-  if (syncDbInterval == -1)
+  //User does NOT want to sync databases!
+  if (syncDbInterval == -2)
+  {
+    selectNever();
+    return;
+  }
+  else if (syncDbInterval == -1)
   {
     spinOnceEvery->setValue(5);
   }
@@ -459,6 +466,7 @@ void OptionsDialog::initSynchronizationTab()
     spinOnceEvery->setValue(syncDbInterval);
     useSyncDbInterval = true;
   }
+
   if (syncDbHour == -1)
   {
     spinOnceADayAt->setValue(0);
@@ -471,17 +479,14 @@ void OptionsDialog::initSynchronizationTab()
 
   if (useSyncDbInterval)
   {
-    rbOnceEvery->setChecked(true);
     selectOnceEvery();
   }
   else if (useSyncDbHour)
   {
-    rbOnceADayAt->setChecked(true);
     selectOnceADayAt();
   }
   else //We are using just "Once a day"!!!
   {
-    rbOnceADay->setChecked(true);
     selectOnceADay();
   }
 }
@@ -702,6 +707,10 @@ void OptionsDialog::accept(){
     {
       SettingsManager::setSyncDbInterval(spinOnceEvery->value());
     }
+    else if (rbNever->isChecked())
+    {
+      SettingsManager::setSyncDbInterval(-2);
+    }
   }
 
   //Set SU tool...
@@ -801,6 +810,7 @@ void OptionsDialog::selectOnceADay()
   spinOnceEvery->setEnabled(false);
   rbOnceADayAt->setChecked(false);
   rbOnceEvery->setChecked(false);
+  rbNever->setChecked(false);
 }
 
 /*
@@ -813,6 +823,7 @@ void OptionsDialog::selectOnceADayAt()
   spinOnceEvery->setEnabled(false);
   rbOnceADay->setChecked(false);
   rbOnceEvery->setChecked(false);
+  rbNever->setChecked(false);
 }
 
 /*
@@ -825,4 +836,18 @@ void OptionsDialog::selectOnceEvery()
   spinOnceEvery->setEnabled(true);
   rbOnceADay->setChecked(false);
   rbOnceADayAt->setChecked(false);
+  rbNever->setChecked(false);
+}
+
+/*
+ * Whenever user selects the forth radio button, we have to disable some widgets
+ */
+void OptionsDialog::selectNever()
+{
+  rbOnceEvery->setChecked(false);
+  spinOnceADayAt->setEnabled(false);
+  spinOnceEvery->setEnabled(false);
+  rbOnceADay->setChecked(false);
+  rbOnceADayAt->setChecked(false);
+  rbNever->setChecked(true);
 }

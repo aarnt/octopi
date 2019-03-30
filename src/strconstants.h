@@ -181,6 +181,7 @@ public:
   static QString getZoomOut();
   static QString getMaximize();
   static QString getPaste();
+  static QString getNever();
 
   //Style Sheets ---------------------------------
   static QString getToolBarCSS();

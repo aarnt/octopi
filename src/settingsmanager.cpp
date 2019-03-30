@@ -117,7 +117,7 @@ int SettingsManager::getSyncDbInterval()
   SettingsManager p_instance;
   int n = p_instance.getSYSsettings()->value(ctn_KEY_SYNC_DB_INTERVAL, -1).toInt();
 
-  if ((n != -1) && (n < 5))
+  if ((n != -1 && n != -2) && (n < 5))
   {
     n = 5;
     p_instance.getSYSsettings()->setValue(ctn_KEY_SYNC_DB_INTERVAL, n);

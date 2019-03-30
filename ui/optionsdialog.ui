@@ -31,7 +31,7 @@
      <item>
       <widget class="QTabWidget" name="tabWidget">
        <property name="currentIndex">
-        <number>1</number>
+        <number>5</number>
        </property>
        <widget class="QWidget" name="tabGeneral">
         <attribute name="title">
@@ -1016,6 +1016,25 @@
               </layout>
              </item>
             </layout>
+           </widget>
+           <widget class="QRadioButton" name="rbNever">
+            <property name="geometry">
+             <rect>
+              <x>10</x>
+              <y>190</y>
+              <width>371</width>
+              <height>21</height>
+             </rect>
+            </property>
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text">
+             <string notr="true">Never</string>
+            </property>
            </widget>
           </widget>
          </item>
