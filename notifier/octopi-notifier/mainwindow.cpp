@@ -35,6 +35,7 @@
 #include <QMessageBox>
 #include <QDebug>
 #include <QScreen>
+#include <QtConcurrent/QtConcurrentRun>
 
 #ifdef KSTATUS
   #include <kstatusnotifieritem.h>
@@ -850,6 +851,9 @@ void MainWindow::refreshAppIcon()
 
   connect(m_pacmanDatabaseSystemWatcher,
           SIGNAL(directoryChanged(QString)), this, SLOT(refreshAppIcon()));
+
+  if (m_outdatedStringList->count() > 0)
+    QtConcurrent::run(UnixCommand::execCommandAsNormalUserExt, ctn_PACMAN_SUP_COMMAND);
 }
 
 /*
