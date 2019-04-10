@@ -814,6 +814,7 @@ void MainWindow::buildPackageList()
   counter = list->count();
   m_progressWidget->setValue(counter);
   m_progressWidget->close();
+  qApp->processEvents();
 
   m_packageRepo.setData(list, *m_unrequiredPackageList);
 
@@ -861,7 +862,12 @@ void MainWindow::buildPackageList()
     //if (m_actionSwitchToAURTool->isVisible()) m_actionSwitchToAURTool->setEnabled(true);
     firstTime = false;
     if (m_outdatedStringList->count() > 0)
+    {
+      if(m_debugInfo)
+        std::cout << "Time elapsed until calling PACMAN_SUP: " << m_time->elapsed() << " mili seconds." << std::endl;
+
       execCommandInAnotherThread(ctn_PACMAN_SUP_COMMAND);
+    }
 
     if (m_callSystemUpgrade)
     {
@@ -895,7 +901,7 @@ void MainWindow::buildPackageList()
     if (m_hasAURTool && !m_actionSwitchToAURTool->isEnabled()) m_actionSwitchToAURTool->setEnabled(true);
 
     QModelIndex mi = ui->tvPackages->currentIndex();
-    m_packageRepo.setAUROutdatedData(m_foreignPackageList, *m_outdatedAURStringList);
+    m_packageRepo.setForeignData(m_foreignPackageList, *m_outdatedAURStringList);
     ui->tvPackages->setCurrentIndex(mi);
     m_leFilterPackage->setFocus();
   }

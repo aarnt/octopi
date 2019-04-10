@@ -41,7 +41,7 @@ enum CommandExecuting { ectn_NONE, ectn_MIRROR_CHECK, ectn_SYNC_DATABASE,
                         ectn_SYSINFO };
 
 enum LinuxDistro { ectn_ANTERGOS, ectn_ARCHBANGLINUX, ectn_ARCHLINUX, ectn_CHAKRA, ectn_CONDRESOS,
-                   ectn_KAOS, ectn_MANJAROLINUX, ectn_MOOOSLINUX, ectn_NETRUNNER, ectn_PARABOLA, ectn_UNKNOWN };
+                   ectn_KAOS, ectn_MANJAROLINUX, ectn_NETRUNNER, ectn_PARABOLA, ectn_SWAGARCH, ectn_UNKNOWN };
 
 enum Language { ectn_LANG_ENGLISH, ectn_LANG_USER_DEFINED };
 
@@ -170,7 +170,6 @@ const QString ctn_ANTERGOS_FILE_MANAGER("nautilus");
 const QString ctn_ARCHBANG_EDITOR("medit");
 const QString ctn_ARCHBANG_FILE_MANAGER("spacefm");
 
-const QString ctn_MOOOS_EDITOR("subl3");
 const QString ctn_RXVT_TERMINAL("urxvt");
 
 const QString ctn_XFCE_DESKTOP("xfdesktop");

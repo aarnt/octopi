@@ -866,7 +866,7 @@ void MainWindow::doSystemUpgrade(SystemUpgradeOptions systemUpgradeOptions)
 
   if(!isInternetAvailable()) return;
 
-  qApp->processEvents();
+  //qApp->processEvents();
   int res;
 
   if(systemUpgradeOptions == ectn_SYNC_DATABASE_OPT)
@@ -877,7 +877,7 @@ void MainWindow::doSystemUpgrade(SystemUpgradeOptions systemUpgradeOptions)
   else
   {
     //Shows a dialog indicating the targets needed to be retrieved and asks for the user's permission.
-    QList<PackageListData> * targets = Package::getTargetUpgradeList();;
+    QList<PackageListData> * targets = Package::getTargetUpgradeList();
 
     //There are no new updates to install!
     if (targets->count() == 0 && m_outdatedStringList->count() == 0)

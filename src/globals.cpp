@@ -231,9 +231,18 @@ QStringList *getOutdatedAURStringList()
 /*
  * Executes given cmd with QProcess class
  */
-QByteArray execCommandInAnotherThread(QString cmd)
+QByteArray execCommand(QString cmd)
 {
   return UnixCommand::execCommandAsNormalUserExt(cmd);
+}
+
+/*
+ * Executes given cmd with a non blocking QProcess class
+ */
+void execCommandInAnotherThread(QString cmd)
+{
+  QProcess p;
+  p.startDetached(cmd);
 }
 
 /*

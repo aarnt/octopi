@@ -364,7 +364,7 @@ void WMHelper::openFile(const QString& fileName){
     s << "file:" + fileToOpen;
     p->startDetached( ctn_KDE_FILE_MANAGER, s );
   }
-  else if ((distro == ectn_MOOOSLINUX || isKDERunning()) && UnixCommand::hasTheExecutable(ctn_KDE4_FILE_MANAGER)){
+  else if ((isKDERunning()) && UnixCommand::hasTheExecutable(ctn_KDE4_FILE_MANAGER)){
     s << fileToOpen;
 
     if (UnixCommand::isRootRunning())
@@ -418,10 +418,6 @@ void WMHelper::editFile( const QString& fileName, EditOptions opt ){
   if (distro == ectn_ARCHBANGLINUX && UnixCommand::hasTheExecutable(ctn_ARCHBANG_EDITOR))
   {
     p = ctn_ARCHBANG_EDITOR + " " + fileName;
-  }
-  else if (distro == ectn_MOOOSLINUX && UnixCommand::hasTheExecutable(ctn_MOOOS_EDITOR))
-  {
-    p = ctn_MOOOS_EDITOR + " " + fileName;
   }
   else if (isXFCERunning() && (UnixCommand::hasTheExecutable(ctn_XFCE_EDITOR) ||
                                UnixCommand::hasTheExecutable(ctn_XFCE_EDITOR_ALT))){
@@ -494,7 +490,7 @@ void WMHelper::openDirectory( const QString& dirName ){
       s << dir;
       p->startDetached( ctn_XFCE_FILE_MANAGER, s );
     }
-    else if (distro == ectn_MOOOSLINUX || isKDERunning())
+    else if (isKDERunning())
     {
       if (UnixCommand::hasTheExecutable(ctn_KDE4_FILE_MANAGER))
       {

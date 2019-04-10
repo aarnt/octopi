@@ -1744,7 +1744,7 @@ void MainWindow::ptpbSysInfo()
   QEventLoop el;
   QFuture<QByteArray> f;
   command="hostname";
-  f = QtConcurrent::run(execCommandInAnotherThread, command);
+  f = QtConcurrent::run(execCommand, command);
   connect(&g_fwCommandToExecute, SIGNAL(finished()), &el, SLOT(quit()));
   g_fwCommandToExecute.setFuture(f);
   el.exec();
@@ -1761,7 +1761,7 @@ void MainWindow::ptpbSysInfo()
     out += "----------------------------------------------------------------------------------------------------------\n\n";
 
     command = "cat /etc/KaOS-release";
-    f = QtConcurrent::run(execCommandInAnotherThread, command);
+    f = QtConcurrent::run(execCommand, command);
     connect(&g_fwCommandToExecute, SIGNAL(finished()), &el, SLOT(quit()));
     g_fwCommandToExecute.setFuture(f);
     el.exec();
@@ -1778,7 +1778,7 @@ void MainWindow::ptpbSysInfo()
     out += "----------------------------------------------------------------------------------------------------------\n\n";
 
     command = "cat /etc/lsb-release";
-    f = QtConcurrent::run(execCommandInAnotherThread, command);
+    f = QtConcurrent::run(execCommand, command);
     connect(&g_fwCommandToExecute, SIGNAL(finished()), &el, SLOT(quit()));
     g_fwCommandToExecute.setFuture(f);
     el.exec();
@@ -1796,7 +1796,7 @@ void MainWindow::ptpbSysInfo()
     out += "----------------------------------------------------------------------------------------------------------\n\n";
 
     command = "inxi -Fxz -c 0";
-    f = QtConcurrent::run(execCommandInAnotherThread, command);
+    f = QtConcurrent::run(execCommand, command);
     connect(&g_fwCommandToExecute, SIGNAL(finished()), &el, SLOT(quit()));
     g_fwCommandToExecute.setFuture(f);
     el.exec();
@@ -1813,7 +1813,7 @@ void MainWindow::ptpbSysInfo()
     out += "----------------------------------------------------------------------------------------------------------\n\n";
 
     command = "uname -a";
-    f = QtConcurrent::run(execCommandInAnotherThread, command);
+    f = QtConcurrent::run(execCommand, command);
     connect(&g_fwCommandToExecute, SIGNAL(finished()), &el, SLOT(quit()));
     g_fwCommandToExecute.setFuture(f);
     el.exec();
@@ -1831,7 +1831,7 @@ void MainWindow::ptpbSysInfo()
     out += "----------------------------------------------------------------------------------------------------------\n\n";
 
     command = "mhwd -li -d";
-    f = QtConcurrent::run(execCommandInAnotherThread, command);
+    f = QtConcurrent::run(execCommand, command);
     connect(&g_fwCommandToExecute, SIGNAL(finished()), &el, SLOT(quit()));
     g_fwCommandToExecute.setFuture(f);
     el.exec();
@@ -1847,7 +1847,7 @@ void MainWindow::ptpbSysInfo()
   out += "----------------------------------------------------------------------------------------------------------\n\n";
 
   command = "journalctl -b -p err";
-  f = QtConcurrent::run(execCommandInAnotherThread, command);
+  f = QtConcurrent::run(execCommand, command);
   connect(&g_fwCommandToExecute, SIGNAL(finished()), &el, SLOT(quit()));
   g_fwCommandToExecute.setFuture(f);
   el.exec();
@@ -1862,7 +1862,7 @@ void MainWindow::ptpbSysInfo()
   out += "----------------------------------------------------------------------------------------------------------\n\n";
 
   command = "cat /etc/pacman.conf";
-  f = QtConcurrent::run(execCommandInAnotherThread, command);
+  f = QtConcurrent::run(execCommand, command);
   connect(&g_fwCommandToExecute, SIGNAL(finished()), &el, SLOT(quit()));
   g_fwCommandToExecute.setFuture(f);
   el.exec();
@@ -1877,7 +1877,7 @@ void MainWindow::ptpbSysInfo()
   out += "----------------------------------------------------------------------------------------------------------\n\n";
 
   command = "pacman -Qm";
-  f = QtConcurrent::run(execCommandInAnotherThread, command);
+  f = QtConcurrent::run(execCommand, command);
   connect(&g_fwCommandToExecute, SIGNAL(finished()), &el, SLOT(quit()));
   g_fwCommandToExecute.setFuture(f);
   el.exec();
@@ -1894,7 +1894,7 @@ void MainWindow::ptpbSysInfo()
     out += "----------------------------------------------------------------------------------------------------------\n\n";
 
     command = "cat /var/log/pacman.log";
-    f = QtConcurrent::run(execCommandInAnotherThread, command);
+    f = QtConcurrent::run(execCommand, command);
     connect(&g_fwCommandToExecute, SIGNAL(finished()), &el, SLOT(quit()));
     g_fwCommandToExecute.setFuture(f);
     el.exec();
@@ -1909,7 +1909,7 @@ void MainWindow::ptpbSysInfo()
     out += "----------------------------------------------------------------------------------------------------------\n\n";
 
     command = "cat /var/log/installation.log";
-    f = QtConcurrent::run(execCommandInAnotherThread, command);
+    f = QtConcurrent::run(execCommand, command);
     connect(&g_fwCommandToExecute, SIGNAL(finished()), &el, SLOT(quit()));
     g_fwCommandToExecute.setFuture(f);
     el.exec();
@@ -1927,7 +1927,7 @@ void MainWindow::ptpbSysInfo()
     out += "----------------------------------------------------------------------------------------------------------\n\n";
 
     command = "head --bytes=256K /var/log/pacman.log";
-    f = QtConcurrent::run(execCommandInAnotherThread, command);
+    f = QtConcurrent::run(execCommand, command);
     connect(&g_fwCommandToExecute, SIGNAL(finished()), &el, SLOT(quit()));
     g_fwCommandToExecute.setFuture(f);
     el.exec();

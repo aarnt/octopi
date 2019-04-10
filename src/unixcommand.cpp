@@ -393,7 +393,7 @@ QByteArray UnixCommand::getOutdatedAURPackageList()
  */
 QByteArray UnixCommand::getForeignPackageList()
 {
-  QByteArray result = performQuery(QStringList("-Qm"));
+  QByteArray result = performQuery(QStringList("-Qem"));
   return result;
 }
 
@@ -1221,10 +1221,6 @@ LinuxDistro UnixCommand::getLinuxDistro()
       {
         ret = ectn_MANJAROLINUX;
       }
-      else if (contents.contains(QRegularExpression("mooOS")))
-      {
-        ret = ectn_MOOOSLINUX;
-      }
       else if (contents.contains(QRegularExpression("Netrunner")))
       {
         ret = ectn_NETRUNNER;
@@ -1232,6 +1228,10 @@ LinuxDistro UnixCommand::getLinuxDistro()
       else if (contents.contains(QRegularExpression("Parabola GNU/Linux-libre")))
       {
         ret = ectn_PARABOLA;
+      }
+      else if (contents.contains(QRegularExpression("SwagArch")))
+      {
+        ret = ectn_SWAGARCH;
       }
       else
       {

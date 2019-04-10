@@ -65,7 +65,7 @@ void MainWindow::refreshDistroNews(bool searchForLatestNews, bool gotoNewsTab)
 
     if (gotoNewsTab && (distro == ectn_ARCHLINUX ||
                         distro == ectn_ARCHBANGLINUX ||
-                        distro == ectn_MOOOSLINUX))
+                        distro == ectn_SWAGARCH))
     {
       writeToTabOutput("<b>" +
                           StrConstants::getSearchingForDistroNews().arg("Arch Linux") + "</b>");

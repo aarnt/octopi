@@ -208,14 +208,7 @@ void Terminal::openRootTerminal()
 {
   if (m_selectedTerminal == ctn_AUTOMATIC || m_selectedTerminal == ctn_QTERMWIDGET)
   {
-    if (UnixCommand::getLinuxDistro() == ectn_MOOOSLINUX && UnixCommand::hasTheExecutable(ctn_RXVT_TERMINAL))
-    {
-      QString cmd = WMHelper::getSUCommand() + " \"" + ctn_RXVT_TERMINAL +
-          " -name Urxvt -title Urxvt \"";
-
-      m_process->startDetached(cmd);
-    }
-    else if (UnixCommand::getLinuxDistro() == ectn_ANTERGOS && UnixCommand::hasTheExecutable(ctn_XTERM)){
+    if (UnixCommand::getLinuxDistro() == ectn_ANTERGOS && UnixCommand::hasTheExecutable(ctn_XTERM)){
       QString cmd = WMHelper::getSUCommand() + " \"" + ctn_XTERM +
           " -fn \"*-fixed-*-*-*-18-*\" -fg White -bg Black -title xterm \"";
       m_process->startDetached(cmd);
@@ -257,6 +250,13 @@ void Terminal::openRootTerminal()
     }
     else if (WMHelper::isCinnamonRunning() && UnixCommand::hasTheExecutable(ctn_CINNAMON_TERMINAL)){
       QString cmd = WMHelper::getSUCommand() + " \"" + ctn_CINNAMON_TERMINAL + "\"";
+      m_process->startDetached(cmd);
+    }
+    else if (UnixCommand::hasTheExecutable(ctn_RXVT_TERMINAL))
+    {
+      QString cmd = WMHelper::getSUCommand() + " \"" + ctn_RXVT_TERMINAL +
+          " -name Urxvt -title Urxvt \"";
+
       m_process->startDetached(cmd);
     }
     else if (UnixCommand::hasTheExecutable(ctn_PEK_TERMINAL)){
@@ -373,14 +373,7 @@ void Terminal::runCommandInTerminal(const QStringList &commandList)
 
   if (m_selectedTerminal == ctn_AUTOMATIC)
   {
-    if (UnixCommand::getLinuxDistro() == ectn_MOOOSLINUX && UnixCommand::hasTheExecutable(ctn_RXVT_TERMINAL))
-    {
-      QString cmd =
-          suCommand + " \"" + ctn_RXVT_TERMINAL + " -title pacman -name pacman -e " + UnixCommand::getShell() + " -c " + ftemp->fileName() + "\"";
-
-      m_process->start(cmd);
-    }
-    else if(WMHelper::isXFCERunning() && UnixCommand::hasTheExecutable(ctn_XFCE_TERMINAL)){
+    if(WMHelper::isXFCERunning() && UnixCommand::hasTheExecutable(ctn_XFCE_TERMINAL)){
       QString cmd = suCommand + " \"" + ctn_XFCE_TERMINAL + " -e \'" + UnixCommand::getShell() + " -c " + ftemp->fileName() + "'\"";
       m_process->start(cmd);
     }
@@ -416,6 +409,13 @@ void Terminal::runCommandInTerminal(const QStringList &commandList)
     }
     else if (WMHelper::isLXQTRunning() && UnixCommand::hasTheExecutable(ctn_LXQT_TERMINAL)){
       QString cmd = suCommand + " \"" + ctn_LXQT_TERMINAL + " -e \'" + UnixCommand::getShell() + " -c " + ftemp->fileName() + "'\"";
+      m_process->start(cmd);
+    }
+    else if (UnixCommand::hasTheExecutable(ctn_RXVT_TERMINAL))
+    {
+      QString cmd =
+          suCommand + " \"" + ctn_RXVT_TERMINAL + " -title pacman -name pacman -e " + UnixCommand::getShell() + " -c " + ftemp->fileName() + "\"";
+
       m_process->start(cmd);
     }
     else if (UnixCommand::hasTheExecutable(ctn_PEK_TERMINAL)){
@@ -538,14 +538,7 @@ void Terminal::runOctopiHelperInTerminal(const QStringList &commandList)
 
   if (m_selectedTerminal == ctn_AUTOMATIC)
   {
-    if (UnixCommand::getLinuxDistro() == ectn_MOOOSLINUX && UnixCommand::hasTheExecutable(ctn_RXVT_TERMINAL))
-    {
-      QString cmd =
-          suCommand + " \"" + ctn_RXVT_TERMINAL + " -title pacman -name pacman -e " + UnixCommand::getShell() + " -c " + commandToRun + "\"";
-
-      m_process->start(cmd);
-    }
-    else if(WMHelper::isXFCERunning() && UnixCommand::hasTheExecutable(ctn_XFCE_TERMINAL)){
+    if(WMHelper::isXFCERunning() && UnixCommand::hasTheExecutable(ctn_XFCE_TERMINAL)){
       QString cmd = suCommand + " \"" + ctn_XFCE_TERMINAL + " -e \'" + UnixCommand::getShell() + " -c " + commandToRun + "'\"";
       m_process->start(cmd);
     }
@@ -581,6 +574,13 @@ void Terminal::runOctopiHelperInTerminal(const QStringList &commandList)
     }
     else if (WMHelper::isLXQTRunning() && UnixCommand::hasTheExecutable(ctn_LXQT_TERMINAL)){
       QString cmd = suCommand + " \"" + ctn_LXQT_TERMINAL + " -e \'" + UnixCommand::getShell() + " -c " + commandToRun + "'\"";
+      m_process->start(cmd);
+    }
+    else if (UnixCommand::hasTheExecutable(ctn_RXVT_TERMINAL))
+    {
+      QString cmd =
+          suCommand + " \"" + ctn_RXVT_TERMINAL + " -title pacman -name pacman -e " + UnixCommand::getShell() + " -c " + commandToRun + "\"";
+
       m_process->start(cmd);
     }
     else if (UnixCommand::hasTheExecutable(ctn_PEK_TERMINAL)){
@@ -701,18 +701,7 @@ void Terminal::runCommandInTerminalAsNormalUser(const QStringList &commandList)
 
   if (m_selectedTerminal == ctn_AUTOMATIC)
   {
-    if (UnixCommand::getLinuxDistro() == ectn_MOOOSLINUX && UnixCommand::hasTheExecutable(ctn_RXVT_TERMINAL))
-    {
-      if (UnixCommand::isAppRunning("urxvtd"))
-      {
-        cmd = "urxvtc -name Urxvt -title Urxvt -e " + ftemp->fileName();
-      }
-      else
-      {
-        cmd = ctn_RXVT_TERMINAL + " -name Urxvt -title Urxvt -e " + ftemp->fileName();
-      }
-    }
-    else if(WMHelper::isXFCERunning() && UnixCommand::hasTheExecutable(ctn_XFCE_TERMINAL)){
+    if(WMHelper::isXFCERunning() && UnixCommand::hasTheExecutable(ctn_XFCE_TERMINAL)){
       cmd = ctn_XFCE_TERMINAL + " -e " + ftemp->fileName();
     }
     else if (WMHelper::isKDERunning() && UnixCommand::hasTheExecutable(ctn_KDE_TERMINAL))
@@ -733,6 +722,17 @@ void Terminal::runCommandInTerminalAsNormalUser(const QStringList &commandList)
     }
     else if (WMHelper::isCinnamonRunning() && UnixCommand::hasTheExecutable(ctn_CINNAMON_TERMINAL)){
       cmd = ctn_CINNAMON_TERMINAL + " -e " + ftemp->fileName();
+    }
+    else if (UnixCommand::hasTheExecutable(ctn_RXVT_TERMINAL))
+    {
+      if (UnixCommand::isAppRunning("urxvtd"))
+      {
+        cmd = "urxvtc -name Urxvt -title Urxvt -e " + ftemp->fileName();
+      }
+      else
+      {
+        cmd = ctn_RXVT_TERMINAL + " -name Urxvt -title Urxvt -e " + ftemp->fileName();
+      }
     }
     else if (UnixCommand::hasTheExecutable(ctn_PEK_TERMINAL)){
       cmd = ctn_PEK_TERMINAL + " -e " + ftemp->fileName();

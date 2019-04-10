@@ -64,7 +64,8 @@ GroupMemberPair          searchPacmanPackagesFromGroup(QString groupName);
 AUROutdatedPackages * getOutdatedAURPackages();
 QString getLatestDistroNews();
 PackageInfoData getKCPInformation(QString pkgName);
-QByteArray execCommandInAnotherThread(QString cmd);
+QByteArray execCommand(QString cmd);
+void execCommandInAnotherThread(QString cmd);
 QString generateSysInfo(QByteArray contents);
 
 QStringList            * getOutdatedPkgStringList();
