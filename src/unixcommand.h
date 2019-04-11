@@ -109,7 +109,7 @@ public:
   static QString getSystemArchitecture();
   static bool hasInternetConnection();
   static bool doInternetPingTest();
-  static bool isTextFile( const QString& fileName ); //fileName is Path + Name
+  static bool isTextFile(QString fileName); //fileName is Path + Name
 
   static bool hasTheExecutable( const QString& exeName );
   static bool isAppRunning(const QString &appName, bool justOneInstance = false);

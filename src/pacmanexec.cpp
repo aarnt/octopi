@@ -412,7 +412,7 @@ void PacmanExec::parsePacmanProcessOutput(QString output)
     msg.remove(QRegularExpression("reading configurations from.+"));
     msg.remove(QRegularExpression(".+annot load library.+"));
     msg.remove(QRegularExpression("libGL error.+"));
-    msg.remove(QRegularExpression("qt5ctl:.+"));
+    msg.remove(QRegularExpression("qt5ct:.+"));
     msg.remove(QRegularExpression("lxqt-sudo:.+"));
     msg = msg.trimmed();
 

@@ -7,6 +7,8 @@
   Added CondresOS news support.
   Added support for sudo (and NOPASSWD) executing thru new octopi-helper subproject.
   Added option to exit Octopi while a transaction is already running.
+  Added support for GNOME file manager/editor.
+  BugFix: Added support for symbolic lynks in "open file".
   BugFix: SysInfo no longer pushes the collected logs to a remote paste service. It saves them locally.
   BugFix: MultiselectionDialog did not resize pkg description automatically.
   BugFix: Some packages were not displaying Optional Deps at Info tab.

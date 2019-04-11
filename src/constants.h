@@ -172,6 +172,9 @@ const QString ctn_ARCHBANG_FILE_MANAGER("spacefm");
 
 const QString ctn_RXVT_TERMINAL("urxvt");
 
+const QString ctn_GNOME_EDITOR("gedit");
+const QString ctn_GNOME_FILE_MANAGER("nautilus");
+
 const QString ctn_XFCE_DESKTOP("xfdesktop");
 const QString ctn_XFCE_EDITOR("mousepad");
 const QString ctn_XFCE_EDITOR_ALT("leafpad");

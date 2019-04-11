@@ -31,6 +31,7 @@
 #include <QByteArray>
 #include <QTextStream>
 #include <QtNetwork>
+#include <QFileInfo>
 
 /*
  * Collection of methods to execute many Unix commands
@@ -796,8 +797,9 @@ QByteArray UnixCommand::getCommandOutput(const QString &pCommand, const QString 
 /*
  * Given a filename, checks if it is a text file
  */
-bool UnixCommand::isTextFile(const QString& fileName)
+bool UnixCommand::isTextFile(QString fileName)
 {
+  init:
   QProcess *p = new QProcess();
   QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
   env.insert("LANG", "C");
@@ -808,16 +810,26 @@ bool UnixCommand::isTextFile(const QString& fileName)
   p->start( "file", s );
   p->waitForFinished();
 
-  QByteArray output = p->readAllStandardOutput();
+  QString output = p->readAllStandardOutput();
   p->close();
   delete p;
 
-  int from = output.indexOf(":", 0)+1;
+  //If it's a symbolic link, let's discover what is the real target
+  if (output.contains(": symbolic link to"))
+  {
+    QFileInfo fi(fileName);
+    fileName = fi.symLinkTarget();
+    goto init;
+  }
+  else
+  {
+    int from = output.indexOf(":", 0)+1;
 
-  return (((output.indexOf( "ASCII", from ) != -1) ||
-          (output.indexOf( "text", from ) != -1) ||
-          (output.indexOf( "empty", from ) != -1)) &&
-          (output.indexOf( "executable", from) == -1));
+    return (((output.indexOf( "ASCII", from ) != -1) ||
+            (output.indexOf( "text", from ) != -1) ||
+            (output.indexOf( "empty", from ) != -1)) &&
+            (output.indexOf( "executable", from) == -1));
+  }
 }
 
 /*
