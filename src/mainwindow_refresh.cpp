@@ -128,35 +128,19 @@ void MainWindow::refreshMenuTools()
   else
     ui->actionCacheCleaner->setVisible(false);
 
-  //if (UnixCommand::hasTheExecutable("curl"))
+  ui->menuTools->menuAction()->setVisible(true);
+  if (ui->menuTools->actions().indexOf(m_actionSysInfo) == -1)
   {
-    ui->menuTools->menuAction()->setVisible(true);
-    if (ui->menuTools->actions().indexOf(m_actionSysInfo) == -1)
-    {
-      ui->menuTools->addSeparator();
-      m_actionSysInfo->setText("SysInfo..."); //"SysInfo → https://ptpb.pw");
-      ui->menuTools->addAction(m_actionSysInfo);
+    ui->menuTools->addSeparator();
+    m_actionSysInfo->setText("SysInfo...");
+    ui->menuTools->addAction(m_actionSysInfo);
 
-      if (!connectorPtpb)
-      {
-        connect(m_actionSysInfo, SIGNAL(triggered()), this, SLOT(ptpbSysInfo()));
-        connectorPtpb=true;
-      }
+    if (!connectorPtpb)
+    {
+      connect(m_actionSysInfo, SIGNAL(triggered()), this, SLOT(ptpbSysInfo()));
+      connectorPtpb=true;
     }
   }
-  /*else
-  {
-    if (ui->menuTools->actions().indexOf(m_actionSysInfo) != -1)
-    {
-      foreach(QAction *act, ui->menuTools->actions())
-      {
-        if (act->isSeparator() || (act->text() == "SysInfo") || (act->text() == "&SysInfo"))
-        {
-          ui->menuTools->removeAction(act);
-        }
-      }
-    }
-  }*/
 
   foreach (QAction * act,  ui->menuBar->actions())
   {
@@ -901,7 +885,8 @@ void MainWindow::buildPackageList()
     if (m_hasAURTool && !m_actionSwitchToAURTool->isEnabled()) m_actionSwitchToAURTool->setEnabled(true);
 
     QModelIndex mi = ui->tvPackages->currentIndex();
-    m_packageRepo.setForeignData(m_foreignPackageList, *m_outdatedAURStringList);
+    m_packageRepo.setAUROutdatedData(m_foreignPackageList, *m_outdatedAURStringList);
+    //m_packageRepo.setForeignData(m_foreignPackageList, *m_outdatedAURStringList);
     ui->tvPackages->setCurrentIndex(mi);
     m_leFilterPackage->setFocus();
   }
@@ -1029,8 +1014,13 @@ void MainWindow::buildAURPackageList()
   }
 
   m_packageRepo.setAURData(list, *unrequiredPackageList);
+
   m_packageModel->applyFilter(m_selectedViewOption, m_selectedRepository, StrConstants::getForeignToolGroup());
   m_packageModel->applyFilter(PackageModel::ctn_PACKAGE_DESCRIPTION_FILTER_NO_COLUMN);
+
+  if(m_debugInfo)
+    std::cout << m_packageModel->getPackageCount() << " pkgs => " <<
+               "Time elapsed building pkgs from 'AUR' list: " << m_time->elapsed() << " mili seconds." << std::endl << std::endl;
 
   QModelIndex maux = m_packageModel->index(0, 0, QModelIndex());
   ui->tvPackages->setCurrentIndex(maux);

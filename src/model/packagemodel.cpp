@@ -382,8 +382,8 @@ const QIcon& PackageModel::getIconFor(const PackageRepository::PackageData& pack
 struct TSort0 {
   bool operator()(const PackageRepository::PackageData* a, const PackageRepository::PackageData* b) const {
     if (a->status < b->status) return true;
-    if (a->status == b->status) {
-
+    if (a->status == b->status)
+    {
       if (a->repository == b->repository && (a->repository == StrConstants::getForeignRepositoryName()))
       {
         return (a->name < b->name);
@@ -460,19 +460,19 @@ void PackageModel::sort()
     m_columnSortedlistOfPackages = m_listOfPackages;
     return;
   case ctn_PACKAGE_ICON_COLUMN:
-    qSort(m_columnSortedlistOfPackages.begin(), m_columnSortedlistOfPackages.end(), TSort0());
+    std::sort(m_columnSortedlistOfPackages.begin(), m_columnSortedlistOfPackages.end(), TSort0());
     return;
   case ctn_PACKAGE_VERSION_COLUMN:
-    qSort(m_columnSortedlistOfPackages.begin(), m_columnSortedlistOfPackages.end(), TSort2());
+    std::sort(m_columnSortedlistOfPackages.begin(), m_columnSortedlistOfPackages.end(), TSort2());
     return;
   case ctn_PACKAGE_REPOSITORY_COLUMN:
-    qSort(m_columnSortedlistOfPackages.begin(), m_columnSortedlistOfPackages.end(), TSort3());
+    std::sort(m_columnSortedlistOfPackages.begin(), m_columnSortedlistOfPackages.end(), TSort3());
     return;
   case ctn_PACKAGE_POPULARITY_COLUMN:
-    qSort(m_columnSortedlistOfPackages.begin(), m_columnSortedlistOfPackages.end(), TSort4());
+    std::sort(m_columnSortedlistOfPackages.begin(), m_columnSortedlistOfPackages.end(), TSort4());
     return;
   case ctn_PACKAGE_SIZE_COLUMN:
-    qSort(m_columnSortedlistOfPackages.begin(), m_columnSortedlistOfPackages.end(), TSort5());
+    std::sort(m_columnSortedlistOfPackages.begin(), m_columnSortedlistOfPackages.end(), TSort5());
     return;
   default:
     return;

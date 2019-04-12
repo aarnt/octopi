@@ -49,51 +49,81 @@ QString StrConstants::getAll(){
 }
 
 QString StrConstants::getForeignRepositoryName(){
-  if (UnixCommand::getLinuxDistro() == ectn_CHAKRA)
-    return QLatin1String( "CCR" );
+  static bool firstTime=true;
+  static QString ret=QLatin1String("AUR");
 
-  if (UnixCommand::getLinuxDistro() == ectn_KAOS)
-    return QLatin1String( "KCP" );
+  if (firstTime)
+  {
+    if (UnixCommand::getLinuxDistro() == ectn_CHAKRA)
+      ret=QLatin1String("CCR");
+    if (UnixCommand::getLinuxDistro() == ectn_KAOS)
+      ret=QLatin1String("KCP");
+    if (UnixCommand::getLinuxDistro() == ectn_PARABOLA)
+      ret=QLatin1String("Custom");
 
-  if (UnixCommand::getLinuxDistro() == ectn_PARABOLA)
-    return QLatin1String( "Custom" );
+    firstTime=false;
+  }
 
-  return QLatin1String( "AUR" );
+  return ret;
 }
 
 QString StrConstants::getForeignPkgRepositoryName(){
-  if (UnixCommand::getLinuxDistro() == ectn_CHAKRA)
-    return QLatin1String( "ccr" );
-  else if (UnixCommand::getLinuxDistro() == ectn_KAOS)
-    return QLatin1String( "kcp" );
-  else if (UnixCommand::getLinuxDistro() == ectn_PARABOLA)
-    return QLatin1String( "custom" );
+  static bool firstTime=true;
+  static QString ret=QLatin1String("aur");
 
-  return QLatin1String( "aur" );
+  if (firstTime)
+  {
+    if (UnixCommand::getLinuxDistro() == ectn_CHAKRA)
+      ret=QLatin1String("ccr");
+    else if (UnixCommand::getLinuxDistro() == ectn_KAOS)
+      ret=QLatin1String("kcp");
+    else if (UnixCommand::getLinuxDistro() == ectn_PARABOLA)
+      ret=QLatin1String("custom");
+
+    firstTime=false;
+  }
+
+  return ret;
 }
 
 QString StrConstants::getForeignRepositoryGroupName()
 {
-  if( UnixCommand::getLinuxDistro() == ectn_CHAKRA )
-    return QLatin1String( "Ccr" );
-  else if (UnixCommand::getLinuxDistro() == ectn_KAOS)
-    return QLatin1String( "KCP" );
-  else if (UnixCommand::getLinuxDistro() == ectn_PARABOLA)
-    return QLatin1String( "Custom" );
+  static bool firstTime=true;
+  static QString ret=QLatin1String("AUR");
 
-  return QLatin1String( "AUR" );
+  if (firstTime)
+  {
+    if( UnixCommand::getLinuxDistro() == ectn_CHAKRA )
+      ret=QLatin1String("Ccr");
+    else if (UnixCommand::getLinuxDistro() == ectn_KAOS)
+      ret=QLatin1String("KCP");
+    else if (UnixCommand::getLinuxDistro() == ectn_PARABOLA)
+      ret=QLatin1String("Custom");
+
+    firstTime=false;
+  }
+
+  return ret;
 }
 
 QString StrConstants::getForeignRepositoryTargetPrefix()
 {
-  if( UnixCommand::getLinuxDistro() == ectn_CHAKRA )
-    return QLatin1String( "ccr/" );
-  else if (UnixCommand::getLinuxDistro() == ectn_KAOS)
-    return "kcp/";
-  else if (UnixCommand::getLinuxDistro() == ectn_PARABOLA)
-    return "custom/";
+  static bool firstTime=true;
+  static QString ret=QLatin1String("aur/");
 
-  return QLatin1String( "aur/" );
+  if (firstTime)
+  {
+    if( UnixCommand::getLinuxDistro() == ectn_CHAKRA )
+      ret=QLatin1String("ccr/");
+    else if (UnixCommand::getLinuxDistro() == ectn_KAOS)
+      ret=QLatin1String("kcp/");
+    else if (UnixCommand::getLinuxDistro() == ectn_PARABOLA)
+      ret=QLatin1String("custom/");
+
+    firstTime=false;
+  }
+
+  return ret;
 }
 
 QString StrConstants::getAntergosNews(){

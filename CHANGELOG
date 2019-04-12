@@ -13,6 +13,7 @@
   BugFix: MultiselectionDialog did not resize pkg description automatically.
   BugFix: Some packages were not displaying Optional Deps at Info tab.
   BugFix: Huge delay when scrolling thru large package list.
+  BugFix: Speed improvements in package list building.
   BugFix: OptionsDialog was not saving AUR settings if tab changed before clicking OK.
   BugFix: Changed Manjaro news url.
   BugFix: If user chooses QTermWidget as his terminal, "Open root terminal" didn't work.
