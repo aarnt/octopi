@@ -53,7 +53,7 @@ bool TreeViewPackagesItemDelegate::helpEvent ( QHelpEvent *event, QAbstractItemV
 
     const PackageRepository::PackageData*const si = sim->getData(index);
 
-    if (si != NULL)
+    if (si != nullptr)
     {
       QPoint p;
       gPoint = tvPackages->mapToGlobal(event->pos());

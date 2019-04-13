@@ -743,6 +743,7 @@ void MainWindow::buildPackageList()
 
     m_numberOfOutdatedPackages = m_outdatedStringList->count();
 
+    m_unrequiredPackageList->clear();
     delete m_unrequiredPackageList;
     m_unrequiredPackageList = NULL;
 
@@ -766,6 +767,7 @@ void MainWindow::buildPackageList()
 
     if (m_hasAURTool && m_refreshForeignPackageList)
     {
+      m_foreignPackageList->clear();
       delete m_foreignPackageList;
       m_foreignPackageList = NULL;
 
@@ -829,6 +831,7 @@ void MainWindow::buildPackageList()
   ui->tvPackages->scrollTo(maux, QAbstractItemView::PositionAtCenter);
   ui->tvPackages->setCurrentIndex(maux);
 
+  list->clear();
   delete list;
   list = NULL;
 
@@ -904,41 +907,38 @@ void MainWindow::postBuildPackageList()
 
   if (distro != ectn_KAOS && isAURGroupSelected()) return;
 
-  //if (m_hasAURTool)
+  bool reconnectSlot = false;
+
+  if (ui->twProperties->currentIndex() == ctn_TABINDEX_FILES)
   {
-    bool reconnectSlot = false;
+    disconnect(ui->tvPackages->selectionModel(), SIGNAL(selectionChanged(QItemSelection,QItemSelection)),
+               this, SLOT(invalidateTabs()));
 
-    if (ui->twProperties->currentIndex() == ctn_TABINDEX_FILES)
-    {
-      disconnect(ui->tvPackages->selectionModel(), SIGNAL(selectionChanged(QItemSelection,QItemSelection)),
-            this, SLOT(invalidateTabs()));
-
-      reconnectSlot = true;
-    }
-
-    refreshOutdatedAURStringList();
-
-    if (distro != ectn_KAOS && isAURGroupSelected()) return;
-
-    QModelIndex mi = ui->tvPackages->currentIndex();
-    m_packageRepo.setAUROutdatedData(m_foreignPackageList, *m_outdatedAURStringList);
-    ui->tvPackages->setCurrentIndex(mi);
-
-    if (m_outdatedStringList->count() == 0 && m_outdatedAURStringList->count() > 0)
-      refreshAppIcon();
-
-    refreshStatusBarToolButtons();
-
-    if (reconnectSlot)
-    {
-      connect(ui->tvPackages->selectionModel(), SIGNAL(selectionChanged(QItemSelection,QItemSelection)),
-            this, SLOT(invalidateTabs()));
-    }
-
-    if (m_commandExecuting == ectn_NONE && !m_actionSwitchToAURTool->isEnabled()) m_actionSwitchToAURTool->setEnabled(true);
+    reconnectSlot = true;
   }
 
-  if (m_groupWidgetNeedsFocus)
+  refreshOutdatedAURStringList();
+
+  if (distro != ectn_KAOS && isAURGroupSelected()) return;
+
+  QModelIndex mi = ui->tvPackages->currentIndex();
+  m_packageRepo.setAUROutdatedData(m_foreignPackageList, *m_outdatedAURStringList);
+  ui->tvPackages->setCurrentIndex(mi);
+
+  if (m_outdatedStringList->count() == 0 && m_outdatedAURStringList->count() > 0)
+    refreshAppIcon();
+
+  refreshStatusBarToolButtons();
+
+  if (reconnectSlot)
+  {
+    connect(ui->tvPackages->selectionModel(), SIGNAL(selectionChanged(QItemSelection,QItemSelection)),
+            this, SLOT(invalidateTabs()));
+  }
+
+  if (m_commandExecuting == ectn_NONE && !m_actionSwitchToAURTool->isEnabled()) m_actionSwitchToAURTool->setEnabled(true);
+
+  if (m_groupWidgetNeedsFocus && ui->splitterVertical->sizes().at(1) != 0) //if group is not hidden...
   {
     ui->twGroups->setFocus();
     m_groupWidgetNeedsFocus = false;
@@ -1249,7 +1249,7 @@ void MainWindow::clearStatusBar()
 void MainWindow::refreshTabInfo(QString pkgName)
 {
   const PackageRepository::PackageData*const package = m_packageRepo.getFirstPackageByName(pkgName);
-  if (package == NULL)
+  if (package == nullptr)
     return;
 
   CPUIntensiveComputing cic;
@@ -1292,7 +1292,7 @@ void MainWindow::refreshTabInfo(bool clearContents, bool neverQuit)
 
   QModelIndex item = selectionModel->selectedRows(PackageModel::ctn_PACKAGE_NAME_COLUMN).first();
   const PackageRepository::PackageData*const package = m_packageModel->getData(item);
-  if (package == NULL) {
+  if (package == nullptr) {
     assert(false);
     return;
   }
@@ -1454,7 +1454,7 @@ void MainWindow::refreshTabFiles(bool clearContents, bool neverQuit)
   QModelIndex item = selectionModel->selectedRows(PackageModel::ctn_PACKAGE_NAME_COLUMN).first();
   const PackageRepository::PackageData*const package = m_packageModel->getData(item);
 
-  if (package == NULL) {
+  if (package == nullptr) {
     assert(false);
     return;
   }

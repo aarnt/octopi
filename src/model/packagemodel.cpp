@@ -90,7 +90,7 @@ QVariant PackageModel::data(const QModelIndex &index, int role) const
     switch (role) {
       case Qt::DisplayRole: {
         const PackageRepository::PackageData*const package = getData(index);
-        if (package == NULL)
+        if (package == nullptr)
           return QVariant();
 
         switch (index.column()) {
@@ -105,11 +105,6 @@ QVariant PackageModel::data(const QModelIndex &index, int role) const
           case ctn_PACKAGE_SIZE_COLUMN: {
             off_t pkgSize = package->downloadSize;
             float aux = pkgSize;
-            /*if (aux > 1024)
-            {
-              aux = (float) (pkgSize / 1024.00);
-            }*/
-
             return QVariant(Package::kbytesToSize(aux));
           }
           case ctn_PACKAGE_POPULARITY_COLUMN:
@@ -123,7 +118,7 @@ QVariant PackageModel::data(const QModelIndex &index, int role) const
       }
       case Qt::DecorationRole: {
         const PackageRepository::PackageData*const package = getData(index);
-        if (package == NULL)
+        if (package == nullptr)
           return QVariant();
 
         if (index.column() == ctn_PACKAGE_ICON_COLUMN) {
@@ -170,8 +165,6 @@ QVariant PackageModel::headerData(int section, Qt::Orientation orientation, int 
 
 void PackageModel::sort(int column, Qt::SortOrder order)
 {
-//  std::cout << "sort column " << column << " in order " << order << std::endl;
-
   if (column != m_sortColumn || order != m_sortOrder)
   {
     m_sortColumn = column;
@@ -196,7 +189,9 @@ void PackageModel::beginResetRepository()
 {
   beginResetModel();
   m_listOfPackages.clear();
+  qDeleteAll(m_listOfPackages.begin(), m_listOfPackages.end());
   m_columnSortedlistOfPackages.clear();
+  qDeleteAll(m_columnSortedlistOfPackages.begin(), m_columnSortedlistOfPackages.end());
 }
 
 void PackageModel::endResetRepository()
@@ -273,7 +268,7 @@ const PackageRepository::PackageData* PackageModel::getData(const QModelIndex& i
       return m_columnSortedlistOfPackages.at(m_listOfPackages.size() - index.row() - 1);
     }
   }
-  return NULL;
+  return nullptr;
 }
 
 void PackageModel::applyFilter(ViewOptions pkgViewOptions, const QString& repo, const QString& group)
@@ -293,8 +288,6 @@ void PackageModel::applyFilter(ViewOptions pkgViewOptions, const QString& repo, 
 
 void PackageModel::applyFilter(bool packagesNotInstalled, const QString& group)
 {
-//  std::cout << "apply new group filter " << (packagesNotInstalled ? "true" : "false") << ", " << group.toStdString() << std::endl;
-
   beginResetRepository();
   m_filterPackagesNotInstalled   = packagesNotInstalled;
   m_filterPackagesNotInThisGroup = group;
@@ -314,7 +307,7 @@ void PackageModel::applyFilter(const QString& filterExp)
 void PackageModel::applyFilter(const int filterColumn, const QString& filterExp)
 {
   assert(filterExp.isNull() == false);
-//  std::cout << "apply new column filter " << filterColumn << ", " << filterExp.toStdString() << std::endl;
+
   beginResetRepository();
   m_filterColumn = filterColumn;
   m_filterRegExp.setPattern(filterExp);

@@ -55,17 +55,15 @@ struct EndResetModel {
 
 void PackageRepository::setData(const QList<PackageListData>*const listOfPackages, const QSet<QString>& unrequiredPackages)
 {
-//  std::cout << "received new package list" << std::endl;
-
   std::for_each(m_dependingModels.begin(), m_dependingModels.end(), BeginResetModel());
 
   // delete items in groups list
   for (QList<Group*>::const_iterator it = m_listOfGroups.begin(); it != m_listOfGroups.end(); ++it) {
-    if (*it != NULL) (*it)->invalidateList();
+    if (*it != nullptr) (*it)->invalidateList();
   }
   // delete items in list
   for (TListOfPackages::const_iterator it = m_listOfPackages.begin(); it != m_listOfPackages.end(); ++it) {
-    if (*it != NULL) delete *it;
+    if (*it != nullptr) delete *it;
   }
   m_listOfAURPackages.clear();
   m_listOfPackages.clear();
@@ -85,7 +83,7 @@ void PackageRepository::setAURData(const QList<PackageListData>*const listOfFore
 
   //delete AUR items in list
   for (TListOfPackages::iterator it = m_listOfPackages.begin(); it != m_listOfPackages.end(); ++it) {
-    if (*it != NULL && (*it)->managedByAUR) {
+    if (*it != nullptr && (*it)->managedByAUR) {
       delete *it;
       it = m_listOfPackages.erase(it);
     }
@@ -136,7 +134,7 @@ void PackageRepository::setAUROutdatedData(QList<PackageListData>*const listOfFo
 
   //delete AUR items in list
   for (TListOfPackages::iterator it = m_listOfPackages.begin(); it != m_listOfPackages.end(); ++it) {
-    if (*it != NULL && ((*it)->status == ectn_FOREIGN || (*it)->status == ectn_FOREIGN_OUTDATED)) {
+    if (*it != nullptr && ((*it)->status == ectn_FOREIGN || (*it)->status == ectn_FOREIGN_OUTDATED)) {
       delete *it;
       it = m_listOfPackages.erase(it);
     }
@@ -170,7 +168,7 @@ void PackageRepository::checkAndSetGroups(const QStringList& listOfGroups)
   if (memberListOfGroupsEquals(listOfGroups) == false) {
     std::for_each(m_dependingModels.begin(), m_dependingModels.end(), BeginResetModel());
     for (QList<Group*>::const_iterator it = m_listOfGroups.begin(); it != m_listOfGroups.end(); ++it) {
-      if (*it != NULL) delete *it;
+      if (*it != nullptr) delete *it;
     }
     m_listOfGroups.clear();
 
@@ -199,13 +197,12 @@ void PackageRepository::checkAndSetMembersOfGroup(const QString& groupName, cons
 {
   QList<Group*>::const_iterator groupIt = m_listOfGroups.begin();
   for (; groupIt != m_listOfGroups.end(); ++groupIt) {
-    if (*groupIt != NULL && (*groupIt)->getName() == groupName) {
+    if (*groupIt != nullptr && (*groupIt)->getName() == groupName) {
       break;
     }
   }
   if (groupIt != m_listOfGroups.end()) {
     Group& group = **groupIt;
-//    std::cout << "processing group " << group.getName().toStdString() << std::endl;
     if (group.memberListEquals(members) == false) {
 
       // invalidate and register all group members if lists are different
@@ -239,19 +236,17 @@ const PackageRepository::TListOfPackages& PackageRepository::getPackageList() co
 
 const QList<PackageRepository::PackageData*>& PackageRepository::getPackageList(const QString& group) const
 {
-//  std::cout << "get package list for group " << group.toStdString() << std::endl;
-
   if (!group.isEmpty()) {
     QList<Group*>::const_iterator groupIt = m_listOfGroups.begin();
     for (; groupIt != m_listOfGroups.end(); ++groupIt) {
-      if (*groupIt != NULL && (*groupIt)->getName() == group) {
+      if (*groupIt != nullptr && (*groupIt)->getName() == group) {
         break;
       }
     }
     if (groupIt != m_listOfGroups.end()) {
       Group& group = **groupIt;
       const TListOfPackages* list = group.getPackageList();
-      if (list != NULL) return *list;
+      if (list != nullptr) return *list;
     }
 
     // Workaround for AUR filter -> pre-built AUR packageList
@@ -269,7 +264,7 @@ PackageRepository::PackageData* PackageRepository::getFirstPackageByName(const Q
     if ((*it)->name == name)
       return *it;
   }
-  return NULL;
+  return nullptr;
 }
 
 /**
@@ -313,7 +308,7 @@ PackageRepository::PackageData::PackageData(const PackageListData& pkg, const bo
 //////// PackageRepository::Group //////////////////////////////
 
 PackageRepository::Group::Group(const QString& grpName)
-  : name(grpName), m_listOfPackages(NULL)
+  : name(grpName), m_listOfPackages(nullptr)
 {
 }
 
@@ -324,7 +319,7 @@ const QString& PackageRepository::Group::getName()
 
 bool PackageRepository::Group::memberListEquals(const QStringList& packagelist)
 {
-  if (m_listOfPackages == NULL || m_listOfPackages->size() != packagelist.size())
+  if (m_listOfPackages == nullptr || m_listOfPackages->size() != packagelist.size())
     return false;
 
   QStringList::const_iterator it2 = packagelist.begin();
@@ -338,7 +333,7 @@ bool PackageRepository::Group::memberListEquals(const QStringList& packagelist)
 
 void PackageRepository::Group::addPackage(PackageRepository::PackageData& package)
 {
-  if (m_listOfPackages == NULL)
+  if (m_listOfPackages == nullptr)
     m_listOfPackages = new TListOfPackages();
 
   m_listOfPackages->push_back(&package);
@@ -346,12 +341,12 @@ void PackageRepository::Group::addPackage(PackageRepository::PackageData& packag
 
 void PackageRepository::Group::invalidateList()
 {
-  //std::cout << "invalidate group " << name.toStdString() << std::endl;
-  if (m_listOfPackages == NULL)
+  if (m_listOfPackages == nullptr)
     return;
 
+  m_listOfPackages->clear();
   delete m_listOfPackages;
-  m_listOfPackages = NULL;
+  m_listOfPackages = nullptr;
 }
 
 const PackageRepository::TListOfPackages* PackageRepository::Group::getPackageList() const

@@ -490,7 +490,7 @@ void MainWindow::outputOutdatedPackageList()
       QString pkg = m_outdatedStringList->at(c);
       const PackageRepository::PackageData*const package = m_packageRepo.getFirstPackageByName(pkg);
 
-      if (package != NULL) {
+      if (package != nullptr) {
         html += "<tr><td><a href=\"goto:" + pkg + "\">" + pkg +
             "</td><td align=\"right\"><b><font color=\"#E55451\">" +
             package->outdatedVersion +
@@ -547,7 +547,7 @@ void MainWindow::outputOutdatedAURPackageList()
   {
     QString pkg = m_outdatedAURStringList->at(c);
     const PackageRepository::PackageData*const package = m_packageRepo.getFirstPackageByName(pkg);
-    if (package != NULL) {
+    if (package != nullptr) {
       QString availableVersion = m_outdatedAURPackagesNameVersion->value(m_outdatedAURStringList->at(c));
   
       html += "<tr><td><a href=\"goto:" + pkg + "\">" + pkg +
@@ -692,7 +692,7 @@ void MainWindow::setRemoveCommand(const QString &removeCommand)
 bool MainWindow::isPackageInstalled(const QString &pkgName)
 {
   const PackageRepository::PackageData*const package = m_packageRepo.getFirstPackageByName(pkgName);
-  return (package != NULL && package->installed());
+  return (package != nullptr && package->installed());
 }
 
 /*
@@ -1235,7 +1235,7 @@ QString MainWindow::extractBaseFileName(const QString &fileName)
 void MainWindow::onDoubleClickPackageList()
 {
   const PackageRepository::PackageData* package = m_packageModel->getData(ui->tvPackages->currentIndex());
-  if (package != NULL && package->installed())
+  if (package != nullptr && package->installed())
   {
     refreshTabFiles(false, true);
   }

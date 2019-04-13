@@ -291,7 +291,7 @@ void MainWindow::insertIntoRemovePackage(QModelIndex *indexToInclude)
     foreach(QModelIndex item, selectedRows)
     {
       const PackageRepository::PackageData*const package = m_packageModel->getData(item);
-      if (package == NULL) {
+      if (package == nullptr) {
         assert(false);
         continue;
       }
@@ -375,7 +375,7 @@ void MainWindow::insertIntoInstallPackage(QModelIndex *indexToInclude)
     foreach(QModelIndex item, selectedRows)
     {
       const PackageRepository::PackageData*const package = m_packageModel->getData(item);
-      if (package == NULL) {
+      if (package == nullptr) {
         assert(false);
         continue;
       }
@@ -400,7 +400,7 @@ bool MainWindow::isPackageInInstallTransaction(const QString &pkgName)
   const PackageRepository::PackageData*const package = m_packageRepo.getFirstPackageByName(pkgName);
   QString repo;
 
-  if (package != NULL) repo = package->repository;
+  if (package != nullptr) repo = package->repository;
 
   QList<QStandardItem *> foundItems = sim->findItems(repo + "/" + pkgName, Qt::MatchRecursive | Qt::MatchExactly);
 
@@ -438,7 +438,7 @@ void MainWindow::insertIntoInstallPackageOptDeps(const QString &packageName)
     const PackageRepository::PackageData*const package = m_packageRepo.getFirstPackageByName(candidate);
 
     if(!isPackageInInstallTransaction(candidate) &&
-       !isPackageInstalled(candidate) && package != 0)
+       !isPackageInstalled(candidate) && package != nullptr)
     {
       optionalPackages.append(package);
     }
@@ -490,7 +490,7 @@ bool MainWindow::insertIntoRemovePackageDeps(const QStringList &dependencies)
   foreach(QString dep, dependencies)
   {
     const PackageRepository::PackageData*const package = m_packageRepo.getFirstPackageByName(dep);
-    if (package != NULL && package->installed() && !isPackageInRemoveTransaction(dep))
+    if (package != nullptr && package->installed() && !isPackageInRemoveTransaction(dep))
     {
       newDeps.append(package);
     }
@@ -1232,7 +1232,7 @@ void MainWindow::doInstallAURPackage()
   foreach(QModelIndex item, selectedRows)
   {
     const PackageRepository::PackageData*const package = m_packageModel->getData(item);
-    if (package == NULL) {
+    if (package == nullptr) {
       assert(false);
       continue;
     }
@@ -1290,7 +1290,7 @@ void MainWindow::doRemoveAURPackage()
   foreach(QModelIndex item, selectedRows)
   {
     const PackageRepository::PackageData*const package = m_packageModel->getData(item);
-    if (package == NULL) {
+    if (package == nullptr) {
       assert(false);
       continue;
     }
