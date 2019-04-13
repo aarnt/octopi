@@ -772,6 +772,8 @@ void MainWindow::initActions()
     connect(m_actionMenuMirrorCheck, SIGNAL(triggered()), this, SLOT(doMirrorCheck()));
   }  
 
+  ui->actionOpenRootTerminal->setVisible(false);
+
   m_actionMenuOptions->setText(StrConstants::getOptions());
   connect(m_actionMenuOptions, SIGNAL(triggered()), this, SLOT(onOptions()));
 
@@ -861,7 +863,7 @@ void MainWindow::initActions()
   connect(ui->actionEditFile, SIGNAL(triggered()), this, SLOT(editFile()));
   connect(ui->actionOpenDirectory, SIGNAL(triggered()), this, SLOT(openDirectory()));
   connect(ui->actionOpenTerminal, SIGNAL(triggered()), this, SLOT(openTerminal()));
-  connect(ui->actionOpenRootTerminal, SIGNAL(triggered()), this, SLOT(openRootTerminal()));
+  //connect(ui->actionOpenRootTerminal, SIGNAL(triggered()), this, SLOT(openRootTerminal()));
 
   // Use theme icons for QActions
   ui->actionSyncPackages->setIcon(IconHelper::getIconSyncDatabase());
@@ -885,7 +887,7 @@ void MainWindow::initActions()
   ui->actionRemoveTransactionItem->setIcon(IconHelper::getIconClose());
   ui->actionRemoveTransactionItems->setIcon(IconHelper::getIconClose());
   ui->actionFindFileInPackage->setIcon(IconHelper::getIconFindFileInPackage());
-  ui->actionOpenRootTerminal->setIcon(IconHelper::getIconTerminal());
+  //ui->actionOpenRootTerminal->setIcon(IconHelper::getIconTerminal());
   ui->actionInstallAUR->setIcon(IconHelper::getIconInstallItem());
 
   // Actions for the View menu

@@ -174,6 +174,7 @@ const QString ctn_RXVT_TERMINAL("urxvt");
 
 const QString ctn_GNOME_EDITOR("gedit");
 const QString ctn_GNOME_FILE_MANAGER("nautilus");
+const QString ctn_GNOME_TERMINAL("gnome-terminal");
 
 const QString ctn_XFCE_DESKTOP("xfdesktop");
 const QString ctn_XFCE_EDITOR("mousepad");

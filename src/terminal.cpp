@@ -130,6 +130,10 @@ void Terminal::openTerminal(const QString &dirName)
 
       m_process->startDetached( cmd );
     }
+    else if (UnixCommand::hasTheExecutable(ctn_GNOME_TERMINAL)){
+      s << "--working-directory=" + dirName;
+      m_process->startDetached( ctn_GNOME_TERMINAL, s );
+    }
     else if (UnixCommand::hasTheExecutable(ctn_XTERM)){
       QString cmd = ctn_XTERM +
           " -fn \"*-fixed-*-*-*-18-*\" -fg White -bg Black -title xterm -e \"" +
@@ -191,6 +195,10 @@ void Terminal::openTerminal(const QString &dirName)
         cmd = ctn_RXVT_TERMINAL + " -name Urxvt -title Urxvt -cd " + dirName;
 
       m_process->startDetached( cmd );
+    }
+    else if (m_selectedTerminal == ctn_GNOME_TERMINAL){
+      s << "--working-directory=" + dirName;
+      m_process->startDetached( ctn_GNOME_TERMINAL, s );
     }
     else if (m_selectedTerminal == ctn_XTERM){
       QString cmd = ctn_XTERM +
