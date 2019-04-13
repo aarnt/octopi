@@ -34,7 +34,6 @@
 #include <QList>
 #include <QFile>
 #include <QRegularExpression>
-//#include <QDebug>
 
 /*
  * This class abstracts all the relevant package information and services
@@ -129,12 +128,8 @@ QString Package::kbytesToSize( float Bytes )
   float gb = 1073741824;
   float mb = 1048576;
   float kb = 1024;
-  //float kb = 1;
   QString res;
 
-  //if( Bytes >= tb )
-  //  res = res.sprintf("%.2f TiB", (float)Bytes/tb);
-  //if( Bytes >= gb && Bytes < tb )
   if( Bytes >= gb )
     res = res.sprintf("%.2f GiB", (float)Bytes/gb);
   else if( Bytes >= mb && Bytes < gb )
@@ -371,12 +366,7 @@ QStringList *Package::getOutdatedAURStringList()
   QString outPkgList = removeColorCodesFromStr(UnixCommand::getOutdatedAURPackageList());
   outPkgList = outPkgList.trimmed();
 
-  //qDebug() << "getOutdatedAURStringList(): return of UnixCommand::getOutdatedAURPackageList(): " << outPkgList;
-
   QStringList packageTuples = outPkgList.split(QRegularExpression("\\n"), QString::SkipEmptyParts);
-  //foreach (QString outpkg, packageTuples)
-  //  qDebug() << "getOutdatedAURStringList(): pkg in packageTuples: " << outpkg;
-
   QStringList ignorePkgList = UnixCommand::getIgnorePkgsFromPacmanConf();
 
   foreach(QString packageTuple, packageTuples)
@@ -428,7 +418,6 @@ QStringList *Package::getOutdatedAURStringList()
           if (!ignorePkgList.contains(pkgName))
           {
             res->append(pkgName); //We only need the package name!
-            //qDebug() << "getOutdatedAURStringList(): outdated AUR package name: " << pkgName;
           }
         }
       }
@@ -686,11 +675,7 @@ QList<PackageListData> * Package::getPackageList(const QString &packageName)
               PackageListData(pkgName, pkgRepository, pkgVersion, pkgDescription,
                               pkgStatus, pkgDownSize, pkgOutVersion);
 
-          if (packageName.isEmpty() || pkgName == packageName)
-          {
-            res->append(pld);
-          }
-
+          res->append(pld);
           pkgDescription = "";
         }
 
@@ -736,10 +721,7 @@ QList<PackageListData> * Package::getPackageList(const QString &packageName)
     PackageListData pld =
         PackageListData(pkgName, pkgRepository, pkgVersion, pkgDescription, pkgStatus, pkgDownSize, pkgOutVersion);
 
-    if (packageName.isEmpty() || pkgName == packageName)
-    {
-      res->append(pld);
-    }
+    res->append(pld);
   }
 #endif
 
@@ -1512,26 +1494,14 @@ PackageInfoData Package::getKCPInformation(const QString &pkgName)
   pkgInfo.remove("[1m");
   pkgInfo.remove("[m");
 
-  //res.name = pkgName;
-  //res.version = getVersion(pkgInfo);
   res.url = getURL(pkgInfo);
   res.license = getLicense(pkgInfo);
   res.dependsOn = getDependsOn(pkgInfo);
   res.optDepends = getOptDepends(pkgInfo);
-  //res.group = getGroup(pkgInfo);
   res.provides = getProvides(pkgInfo);
   res.replaces = getReplaces(pkgInfo);
-  //res.requiredBy = getRequiredBy(pkgInfo);
-  //res.optionalFor = getOptionalFor(pkgInfo);
   res.conflictsWith = getConflictsWith(pkgInfo);
-  //res.packager = getPackager(pkgInfo);
-  //res.arch = getArch(pkgInfo);
-  //res.buildDate = getBuildDate(pkgInfo);
   res.description = getDescription(pkgInfo);
-  //res.downloadSize = getDownloadSize(pkgInfo);
-  //res.installedSize = getInstalledSize(pkgInfo);
-  //res.downloadSizeAsString = getDownloadSizeAsString(pkgInfo);
-  //res.installedSizeAsString = getInstalledSizeAsString(pkgInfo);
 
   return res;
 }
@@ -1616,12 +1586,7 @@ QHash<QString, QString> Package::getAUROutdatedPackagesNameVersion()
   QString res = removeColorCodesFromStr(UnixCommand::getOutdatedAURPackageList());
   res = res.trimmed();
 
-  //qDebug() << "getAUROutdatedPackagesNameVersion(): return of UnixCommand::getOutdatedAURPackageList(): " << res;
-
   QStringList listOfPkgs = res.split("\n", QString::SkipEmptyParts);
-  //foreach (QString outpkg, listOfPkgs)
-  //  qDebug() << "getAUROutdatedPackagesNameVersion(): pkg in listOfPkgs: " << outpkg;
-
   QStringList ignorePkgList = UnixCommand::getIgnorePkgsFromPacmanConf();
 
   if ((getForeignRepositoryToolName() == ctn_YAOURT_TOOL) ||
@@ -1686,7 +1651,6 @@ QHash<QString, QString> Package::getAUROutdatedPackagesNameVersion()
       if (sl.count() >= 6)
       {
         hash.insert(sl.at(2), sl.at(5));
-        //qDebug() << "getAUROutdatedPackagesNameVersion(): adding package " << sl.at(2) << " with new version " << sl.at(5);
       }
     }
   }

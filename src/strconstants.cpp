@@ -592,11 +592,11 @@ QString StrConstants::getDoYouReallyWantToQuit(){
 
 QString StrConstants::getDoYouAgreeToGenerateSysInfo()
 {
-  return QObject::tr("Do you agree to create a log file with the contents of:\n\n"
+  return QObject::tr("You are about to generate \"octopi-sysinfo.log\" in your home path with the contents of:\n\n"
                      "\"/etc/lsb-release\", \"inxi -Fxz\", \"uname -a\", \"mhwd -li -d,\"\n"
                      "\"journalctl -b -p err\", \"cat /etc/pacman.conf\", \"pacman -Qm\"\n"
                      "and \"head --bytes=256K /var/log/pacman.log\"\n\n"
-                     "and save it to your home path?\n");
+                     "Do you want to continue?\n");
 }
 
 QString StrConstants::getExecutingCommand(){
