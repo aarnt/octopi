@@ -9,6 +9,7 @@
   Added option to exit Octopi while a transaction is already running.
   Added support for GNOME file manager/editor.
   BugFix: Always do a "pacman -Syu" in System Upgrade and remove Sync database option.
+  BugFix: Notifier now uses "checkupdates" instead "pacman -Sy[y]".
   BugFix: Added support for symbolic lynks in "open file".
   BugFix: Pkg build date obeys Locale datetime format.
   BugFix: SysInfo no longer pushes the collected logs to a remote paste service. It saves them locally.

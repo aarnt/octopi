@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT += core xml gui network dbus
+QT += core xml gui network #dbus
 
 # This controls whether octopi-notifier uses KStatusNotifier lib
 # You SHOULD REALLY enable KSTATUS define in plasma 5 desktops!
@@ -47,7 +47,7 @@ HEADERS  += \
     ../../src/wmhelper.h \
     ../../src/strconstants.h \
     ../../src/package.h \
-    ../pacmanhelper/pacmanhelperclient.h \
+    #../pacmanhelper/pacmanhelperclient.h \
     ../../src/utils.h \
     ../../src/transactiondialog.h \
     ../../src/argumentlist.h \
@@ -73,7 +73,7 @@ SOURCES += main.cpp \
     ../../src/wmhelper.cpp \
     ../../src/strconstants.cpp \
     ../../src/settingsmanager.cpp \
-    ../pacmanhelper/pacmanhelperclient.cpp \
+    #../pacmanhelper/pacmanhelperclient.cpp \
     ../../src/utils.cpp \
     ../../src/transactiondialog.cpp \
     ../../src/argumentlist.cpp \

@@ -34,7 +34,7 @@ class QIcon;
 class QMenu;
 class QAction;
 class QFileSystemWatcher;
-class PacmanHelperClient;
+//class PacmanHelperClient;
 class OptionsDialog;
 class TransactionDialog;
 
@@ -57,7 +57,7 @@ public:
 private slots:
 
   void pacmanHelperTimerTimeout();
-  void afterPacmanHelperSyncDatabase();
+  void afterCheckUpdates(int exitCode, QProcess::ExitStatus);
 
   void execSystemTrayActivated(QSystemTrayIcon::ActivationReason);
   void execSystemTrayKF5();
@@ -89,6 +89,8 @@ private:
   CommandExecuting m_commandExecuting;
   UnixCommand *m_unixCommand;
 
+  QProcess *m_process;
+
   QAction *m_actionOctopi;
   QAction *m_actionOptions;
   QAction *m_actionSyncDatabase;
@@ -113,7 +115,7 @@ private:
 
   QMenu *m_systemTrayIconMenu;
   QFileSystemWatcher *m_pacmanDatabaseSystemWatcher;
-  PacmanHelperClient *m_pacmanHelperClient;
+  //PacmanHelperClient *m_pacmanHelperClient;
 
   bool _isSUAvailable();
   bool isInternetAvailable();

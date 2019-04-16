@@ -20,7 +20,7 @@
 
 #include "mainwindow.h"
 #include "outputdialog.h"
-#include "../pacmanhelper/pacmanhelperclient.h"
+//#include "../pacmanhelper/pacmanhelperclient.h"
 #include "../../src/strconstants.h"
 #include "../../src/uihelper.h"
 #include "../../src/package.h"
@@ -163,8 +163,11 @@ void MainWindow::initSystemTrayIcon()
             this, SLOT( execSystemTrayActivated ( QSystemTrayIcon::ActivationReason ) ) );
 #endif
 
-  m_pacmanHelperClient = new PacmanHelperClient("org.octopi.pacmanhelper", "/", QDBusConnection::systemBus(), 0);
-  connect(m_pacmanHelperClient, SIGNAL(syncdbcompleted()), this, SLOT(afterPacmanHelperSyncDatabase()));
+  m_process = new QProcess(this);
+  connect (m_process, SIGNAL(finished(int, QProcess::ExitStatus)), this, SLOT(afterCheckUpdates(int, QProcess::ExitStatus)));
+
+  //m_pacmanHelperClient = new PacmanHelperClient("org.octopi.pacmanhelper", "/", QDBusConnection::systemBus(), 0);
+  //connect(m_pacmanHelperClient, SIGNAL(syncdbcompleted()), this, SLOT(afterPacmanHelperSyncDatabase()));
 
   m_pacmanHelperTimer = new QTimer();
   m_pacmanHelperTimer->setInterval(1000);
@@ -469,9 +472,6 @@ void MainWindow::doAURUpgrade()
                      this, SLOT( doSystemUpgradeFinished() ));
     dlg->show();
     dlg->doAURUpgrade();
-
-    //QObject::connect(m_pacmanExec, SIGNAL( finished ( int, QProcess::ExitStatus )),
-    //                 this, SLOT( refreshAppIcon()) );
   }
   else
   {
@@ -517,11 +517,15 @@ void MainWindow::toggleEnableInterface(bool state)
 /*
  * Called right after the PacmanHelper syncdb() method has finished!
  */
-void MainWindow::afterPacmanHelperSyncDatabase()
+void MainWindow::afterCheckUpdates(int exitCode, QProcess::ExitStatus)
 {
   if (m_debugInfo)
-    qDebug() << "At afterPacmanHelperSyncDatabase()...";
+    qDebug() << "At afterCheckUpdates()...";
   toggleEnableInterface(true);
+
+  if (exitCode != 0) return;
+
+  SettingsManager::setLastSyncDbTime(QDateTime::currentDateTime());
 
 #ifndef KSTATUS
   m_systemTrayIcon->setContextMenu(m_systemTrayIconMenu);
@@ -672,8 +676,10 @@ void MainWindow::syncDatabase(SyncDatabase syncDB)
     UnixCommand::execCommandAsNormalUser("kcp -u");
   }
 
-  m_pacmanHelperClient->syncdb();
-  SettingsManager::setLastSyncDbTime(QDateTime::currentDateTime());
+  m_process->start(ctn_CHECKUPDATES_BINARY);
+
+  //m_pacmanHelperClient->syncdb();
+  //SettingsManager::setLastSyncDbTime(QDateTime::currentDateTime());
 }
 
 /*
