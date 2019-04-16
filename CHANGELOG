@@ -1,5 +1,4 @@
 0.9.1 (dev)
-  Changed ptpb SysInfo logic to show more parameters and keep it remotely for 24 hours.
   Left click on package icon in package list brings context menu.
   Added "pikaur" AUR tool support (thanks to ewilly).
   Added option to never check for package updates in Notifier.
