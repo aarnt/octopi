@@ -231,6 +231,17 @@ void PacmanExec::parsePacmanProcessOutput(QString output)
   msg.remove("[c");
   msg.remove("[mo");
 
+  if (msg.indexOf(":: Synchronizing package databases...") != -1)
+    m_commandExecuting = ectn_SYNC_DATABASE;
+  else if (msg.indexOf(":: Starting full system upgrade...") != -1)
+  {
+    m_commandExecuting = ectn_SYSTEM_UPGRADE;
+  }
+  else if ((msg.indexOf("resolving dependencies...") != -1) && m_commandExecuting == ectn_SYSTEM_UPGRADE)
+  {
+    msg = "<br>" + msg;
+  }
+
   if (SettingsManager::getShowPackageNumbersOutput())
   {
     QRegularExpression re("Packages? \\(\\d+\\)");
@@ -1064,7 +1075,7 @@ void PacmanExec::doSystemUpgrade()
     command += "rm " + ctn_PACMAN_DATABASE_LOCK_FILE + "; ";
   }
 
-  command += "pacman -Su --noconfirm";
+  command += "pacman -Syu --noconfirm";
 
   m_lastCommandList.clear();
 
@@ -1073,7 +1084,7 @@ void PacmanExec::doSystemUpgrade()
     m_lastCommandList.append("rm " + ctn_PACMAN_DATABASE_LOCK_FILE + ";");
   }
 
-  m_lastCommandList.append("pacman -Su;");
+  m_lastCommandList.append("pacman -Syu;");
   m_lastCommandList.append("echo -e;");
   m_lastCommandList.append("read -n 1 -p \"" + StrConstants::getPressAnyKey() + "\"");
 
@@ -1095,9 +1106,9 @@ void PacmanExec::doSystemUpgradeInTerminal(CommandExecuting additionalCommand)
 
   if (additionalCommand == ectn_NONE)
 #ifdef QTERMWIDGET
-  m_lastCommandList.append("pacman -Su");
+  m_lastCommandList.append("pacman -Syu");
 #else
-   m_lastCommandList.append("pacman -Su");
+   m_lastCommandList.append("pacman -Syu");
 #endif
   else if (additionalCommand == ectn_SYNC_DATABASE)
 #ifdef QTERMWIDGET

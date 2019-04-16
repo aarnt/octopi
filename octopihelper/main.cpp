@@ -28,9 +28,7 @@ int main(int argc, char *argv[])
   QCoreApplication a(argc, argv);
   OctopiHelper helper;
 
-  if (argList->getSwitch("-s"))
-    return helper.executeSyncDB();
-  else if (argList->getSwitch("-t"))
+  if (argList->getSwitch("-t"))
     return helper.executePkgTransaction();
   else if (argList->getSwitch("-u"))
     return helper.executeSysUpgrade();

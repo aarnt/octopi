@@ -23,6 +23,8 @@
 #include "src/package.h"
 #include "src/unixcommand.h"
 
+#include <QLocale>
+
 /*
  * The OctopiTabInfo class provides functionality for the Tab "Info"
  */
@@ -182,8 +184,11 @@ QString OctopiTabInfo::formatTabInfo(const PackageRepository::PackageData& packa
   html += "<tr><td>" + installedSize + "</td><td>" + Package::kbytesToSize(pid.installedSize) + "</td></tr>";
   html += "<tr><td>" + packager + "</td><td>" + packagerName + "</td></tr>";
   html += "<tr><td>" + architecture + "</td><td>" + pid.arch + "</td></tr>";
+
+  QString dateTimeFormat = QLocale().dateTimeFormat();
+
   html += "<tr><td>" + buildDate + "</td><td>" +
-      pid.buildDate.toString("ddd - dd/MM/yyyy hh:mm:ss") + "</td></tr>";
+      pid.buildDate.toString(dateTimeFormat) + "</td></tr>";
 
   if(!pid.installReason.isEmpty())
     html += "<tr><td>" + installReason + "</td><td>" + pid.installReason + "</td></tr>";

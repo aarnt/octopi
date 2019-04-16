@@ -866,9 +866,7 @@ void MainWindow::doSystemUpgrade(SystemUpgradeOptions systemUpgradeOptions)
 
   if(!isInternetAvailable()) return;
 
-  //qApp->processEvents();
   int res;
-
   if(systemUpgradeOptions == ectn_SYNC_DATABASE_OPT)
   {
     m_commandQueued = ectn_SYSTEM_UPGRADE;

@@ -772,6 +772,7 @@ void MainWindow::initActions()
     connect(m_actionMenuMirrorCheck, SIGNAL(triggered()), this, SLOT(doMirrorCheck()));
   }  
 
+  ui->actionSyncPackages->setVisible(false);
   ui->actionOpenRootTerminal->setVisible(false);
 
   m_actionMenuOptions->setText(StrConstants::getOptions());
@@ -838,7 +839,7 @@ void MainWindow::initActions()
   connect(ui->actionRemoveTransactionItem, SIGNAL(triggered()), this, SLOT(onPressDelete()));
   connect(ui->actionRemoveTransactionItems, SIGNAL(triggered()), this, SLOT(onPressDelete()));
   connect(ui->actionExit, SIGNAL(triggered()), this, SLOT(close()));
-  connect(ui->actionSyncPackages, SIGNAL(triggered()), this, SLOT(doSyncDatabase()));
+  //connect(ui->actionSyncPackages, SIGNAL(triggered()), this, SLOT(doSyncDatabase()));
   connect(ui->actionSystemUpgrade, SIGNAL(triggered()), this, SLOT(doSystemUpgrade()));
   connect(ui->actionRemove, SIGNAL(triggered()), this, SLOT(insertIntoRemovePackage()));
   connect(ui->actionInstall, SIGNAL(triggered()), this, SLOT(insertIntoInstallPackage()));
@@ -866,7 +867,7 @@ void MainWindow::initActions()
   //connect(ui->actionOpenRootTerminal, SIGNAL(triggered()), this, SLOT(openRootTerminal()));
 
   // Use theme icons for QActions
-  ui->actionSyncPackages->setIcon(IconHelper::getIconSyncDatabase());
+  //ui->actionSyncPackages->setIcon(IconHelper::getIconSyncDatabase());
   ui->actionCommit->setIcon(IconHelper::getIconCommit());
   ui->actionCancel->setIcon(IconHelper::getIconRollback());
   ui->actionExit->setIcon(IconHelper::getIconExit());

@@ -135,7 +135,7 @@ int OctopiHelper::executeSysUpgrade()
 {
   QString command;
   m_process->setProcessEnvironment(getProcessEnvironment());
-  command = "/bin/sh -c \"pacman -Su --noconfirm\"";
+  command = "/bin/sh -c \"pacman -Syu --noconfirm\"";
   m_process->start(command);
   m_process->waitForStarted(-1);
   m_process->waitForFinished(-1);
