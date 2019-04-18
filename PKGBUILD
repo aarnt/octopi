@@ -34,12 +34,7 @@ build() {
    qmake-qt5 QMAKE_CFLAGS_RELEASE="${CFLAGS}" QMAKE_CXXFLAGS_RELEASE="${CXXFLAGS}" QMAKE_LFLAGS_RELEASE="${LDFLAGS}" octopi-helper.pro
    make
    cd ..
-
-   cd notifier/pacmanhelper
-   qmake-qt5 QMAKE_CFLAGS_RELEASE="${CFLAGS}" QMAKE_CXXFLAGS_RELEASE="${CXXFLAGS}" QMAKE_LFLAGS_RELEASE="${LDFLAGS}" pacmanhelper.pro
-   make
-   cd ../..
-   
+ 
    cd notifier/octopi-notifier
    qmake-qt5 QMAKE_CFLAGS_RELEASE="${CFLAGS}" QMAKE_CXXFLAGS_RELEASE="${CXXFLAGS}" QMAKE_LFLAGS_RELEASE="${LDFLAGS}" octopi-notifier.pro
    make
@@ -63,10 +58,6 @@ package() {
    make INSTALL_ROOT=${pkgdir} install
    cd ..
 
-   cd notifier/pacmanhelper
-   make INSTALL_ROOT=${pkgdir} install
-   cd ../..
-   
    cd notifier/octopi-notifier
    make INSTALL_ROOT=${pkgdir} install
    cd ../..
