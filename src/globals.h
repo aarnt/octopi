@@ -54,7 +54,7 @@ extern QFutureWatcher<QByteArray> g_fwCommandToExecute;
 extern QFutureWatcher<QString> g_fwGenerateSysInfo;
 
 QString showPackageDescription(QString pkgName);
-QList<PackageListData> * searchPacmanPackages();
+QList<PackageListData> * searchPacmanPackages(const QHash<QString, QString> *checkUpdatesOutdatedPackages);
 QSet<QString> * searchUnrequiredPacmanPackages();
 QList<PackageListData> * searchForeignPackages();
 QList<PackageListData> * markForeignPackagesInPkgList(bool hasAURTool, QStringList *outdatedAURStringList);

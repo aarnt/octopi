@@ -91,9 +91,9 @@ QString showPackageDescription(QString pkgName)
 /*
  * Starts the non blocking search for Pacman packages...
  */
-QList<PackageListData> * searchPacmanPackages()
+QList<PackageListData> * searchPacmanPackages(const QHash<QString, QString> *checkUpdatesOutdatedPackages)
 {
-  return Package::getPackageList("");
+  return Package::getPackageList("", checkUpdatesOutdatedPackages);
 }
 
 /*

@@ -139,7 +139,7 @@ class Package{
     static QStringList * getTargetRemovalList(const QString &pkgName, const QString &removeCommand);
 
     static QList<PackageListData> *getForeignPackageList();
-    static QList<PackageListData> *getPackageList(const QString &packageName = "");
+    static QList<PackageListData> *getPackageList(const QString &packageName, const QHash<QString, QString> *checkUpdatesOutdatedPackages);
 
     static QString getAURUrl(const QString& pkgName);
     static QList<PackageListData> * getAURPackageList(const QString& searchString);     //AUR methods

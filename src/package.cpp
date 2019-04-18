@@ -563,13 +563,14 @@ QList<PackageListData> *Package::getForeignPackageList()
 /*
  * Retrieves the list of all available packages in the database (installed + non-installed)
  */
-QList<PackageListData> * Package::getPackageList(const QString &packageName)
+QList<PackageListData> * Package::getPackageList(const QString &packageName, const QHash<QString, QString> *checkUpdatesOutdatedPackages)
 {
   //archlinuxfr/yaourt 1.2.2-1 [installed]
   //    A pacman wrapper with extended features and AUR support
   //community/libfm 1.1.0-4 (lxde) [installed: 1.1.0-3]
 
   QList<PackageListData> * res = new QList<PackageListData>();
+  bool hasOutdatedPackages = checkUpdatesOutdatedPackages->count() > 0;
 
   if (SettingsManager::hasPacmanBackend())
   {
@@ -690,8 +691,26 @@ QList<PackageListData> * Package::getPackageList(const QString &packageName)
         if(parts[0] == "i")
         {
           //This is an installed package
-          pkgStatus = ectn_INSTALLED;
-          pkgOutVersion = "";
+          if (!hasOutdatedPackages)
+          {
+            pkgStatus = ectn_INSTALLED;
+            pkgOutVersion = "";
+          }
+          else
+          {
+            QString newVersion = checkUpdatesOutdatedPackages->value(pkgName);
+            if (newVersion.isEmpty())
+            {
+              pkgStatus = ectn_INSTALLED;
+              pkgOutVersion = "";
+            }
+            else
+            {
+              pkgStatus = ectn_OUTDATED;
+              pkgOutVersion = pkgVersion;
+              pkgVersion = newVersion;
+            }
+          }
         }
         else if (parts[0] == "o")
         {

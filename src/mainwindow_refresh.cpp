@@ -594,7 +594,7 @@ void MainWindow::metaBuildPackageList()
 
     QEventLoop el;
     QFuture<QList<PackageListData> *> f;
-    f = QtConcurrent::run(searchPacmanPackages);
+    f = QtConcurrent::run(searchPacmanPackages, m_checkUpdatesNameNewVersion);
     connect(&g_fwPacman, SIGNAL(finished()), this, SLOT(preBuildPackageList()));
     disconnect(this, SIGNAL(buildPackageListDone()), &el, SLOT(quit()));
     connect(this, SIGNAL(buildPackageListDone()), &el, SLOT(quit()));
@@ -703,7 +703,7 @@ void MainWindow::metaBuildPackageList()
 void MainWindow::showPackagesWithNoDescription()
 {
   bool printHeader = false;
-  QList<PackageListData> *list = Package::getPackageList();
+  QList<PackageListData> *list = Package::getPackageList("", m_checkUpdatesNameNewVersion);
   QList<PackageListData>::const_iterator it = list->begin();
 
   while(it != list->end())
