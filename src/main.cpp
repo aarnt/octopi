@@ -31,6 +31,12 @@
 
 int main(int argc, char *argv[])
 {
+  if (!QFile::exists(ctn_CHECKUPDATES_BINARY))
+  {
+    qDebug() << "Aborting octopi as 'checkupdates' binary could not be found! [" << ctn_CHECKUPDATES_BINARY << "]";
+    return (-2);
+  }
+
   QApplication::setAttribute(Qt::AA_UseHighDpiPixmaps);
 
   ArgumentList *argList = new ArgumentList(argc, argv);
@@ -143,7 +149,7 @@ int main(int argc, char *argv[])
     w.setPackagesToInstallList(packagesToInstallList);
   }
 
-  w.setRemoveCommand("Rcs"); //argList->getSwitchArg("-removecmd", "Rcs"));
+  w.setRemoveCommand("Rcs");
   w.show();
 
   QResource::registerResource("./resources.qrc");

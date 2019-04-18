@@ -57,12 +57,6 @@ int main(int argc, char *argv[])
     return (-2);
   }
 
-  /*if (!QFile::exists(ctn_DBUS_PACMANHELPER_SERVICE))
-  {
-    qDebug() << "Aborting notifier as 'pacmanhelper' DBus service could not be found! [" << ctn_DBUS_PACMANHELPER_SERVICE << "]";
-    return (-3);
-  }*/
-
   QApplication a(argc, argv);
   QTranslator appTranslator;
   appTranslator.load(":/resources/translations/octopi_" +
