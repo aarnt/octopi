@@ -171,7 +171,7 @@
      <string>File</string>
     </property>
     <addaction name="actionGetNews"/>
-    <addaction name="actionSyncPackages"/>
+    <addaction name="actionCheckUpdates"/>
     <addaction name="actionSystemUpgrade"/>
     <addaction name="separator"/>
     <addaction name="actionInstallLocalPackage"/>
@@ -268,7 +268,7 @@
     <string>Ctrl+E</string>
    </property>
   </action>
-  <action name="actionSyncPackages">
+  <action name="actionCheckUpdates">
    <property name="icon">
     <iconset resource="../resources.qrc">
      <normaloff>:/resources/images/refresh.png</normaloff>:/resources/images/refresh.png</iconset>
@@ -277,7 +277,7 @@
     <string>Check updates</string>
    </property>
    <property name="shortcut">
-    <string>Ctrl+D</string>
+    <string>Ctrl+U</string>
    </property>
   </action>
   <action name="actionExit">

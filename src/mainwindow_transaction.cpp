@@ -52,7 +52,7 @@ void MainWindow::changeTransactionActionsState()
   bool state = isThereAPendingTransaction();
   ui->actionCommit->setEnabled(state);
   ui->actionCancel->setEnabled(state);
-  ui->actionSyncPackages->setEnabled(!state);
+  ui->actionCheckUpdates->setEnabled(!state);
 
   if(m_hasMirrorCheck) m_actionMenuMirrorCheck->setEnabled(!state);
   if(m_hasAURTool) m_actionSwitchToAURTool->setEnabled(!state);
@@ -1648,7 +1648,7 @@ void MainWindow::toggleTransactionActions(const bool value)
     if(m_hasMirrorCheck) m_actionMenuMirrorCheck->setEnabled(false);
     if(m_hasAURTool) m_actionSwitchToAURTool->setEnabled(false);
 
-    ui->actionSyncPackages->setEnabled(false);
+    ui->actionCheckUpdates->setEnabled(false);
     ui->actionSystemUpgrade->setEnabled(false);
   }
   else if (value == true && state == false)
@@ -1659,7 +1659,7 @@ void MainWindow::toggleTransactionActions(const bool value)
     if(m_hasMirrorCheck) m_actionMenuMirrorCheck->setEnabled(true);
     if(m_hasAURTool && m_commandExecuting == ectn_NONE && m_initializationCompleted) m_actionSwitchToAURTool->setEnabled(true);
 
-    ui->actionSyncPackages->setEnabled(true);
+    ui->actionCheckUpdates->setEnabled(true);
     if (value == true && m_outdatedStringList->count() > 0)
       ui->actionSystemUpgrade->setEnabled(true);
   }
@@ -1671,7 +1671,7 @@ void MainWindow::toggleTransactionActions(const bool value)
     if(m_hasMirrorCheck) m_actionMenuMirrorCheck->setEnabled(false);
     if(m_hasAURTool) m_actionSwitchToAURTool->setEnabled(false);
 
-    ui->actionSyncPackages->setEnabled(false);
+    ui->actionCheckUpdates->setEnabled(false);
     ui->actionSystemUpgrade->setEnabled(false);
   }
 
@@ -1715,11 +1715,11 @@ void MainWindow::toggleSystemActions(const bool value)
 
   if (isAURGroupSelected() && Package::getForeignRepositoryToolName() == ctn_KCP_TOOL)
   {
-    ui->actionSyncPackages->setEnabled(true);
+    ui->actionCheckUpdates->setEnabled(true);
   }
   else if (Package::getForeignRepositoryToolName() != ctn_KCP_TOOL)
   {
-    ui->actionSyncPackages->setEnabled(value);
+    ui->actionCheckUpdates->setEnabled(value);
   }
   else if (!isAURGroupSelected())
     m_actionMenuOptions->setEnabled(value);
