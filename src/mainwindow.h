@@ -171,6 +171,8 @@ private:
   QStringList m_lastCommandList;
 
   QStringList *m_outdatedStringList;
+  QStringList *m_checkupdatesStringList; //This is the outdated pkg list retrieved by checkupdates
+  QHash<QString, QString> *m_checkUpdatesNameNewVersion;
   QStringList *m_outdatedAURStringList;
 
   QList<PackageListData> *m_foreignPackageList;
@@ -412,6 +414,7 @@ private slots:
   void doRemove();
   void doRemoveAndInstall();
   void doInstall();
+  void doCheckUpdates();
   void doSyncDatabase();
   void doMirrorCheck();
   void doInstallAURPackage();

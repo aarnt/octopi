@@ -715,6 +715,38 @@ bool MainWindow::isSUAvailable()
 }
 
 /*
+ * Get list of outdated packages using a temporary db
+ */
+void MainWindow::doCheckUpdates()
+{
+  if (m_commandExecuting != ectn_NONE) return;
+
+  if (!isInternetAvailable()) return;
+
+  //Let's synchronize kcp database too...
+  if (UnixCommand::getLinuxDistro() == ectn_KAOS && UnixCommand::hasTheExecutable(ctn_KCP_TOOL) && !UnixCommand::isRootRunning())
+    UnixCommand::execCommandAsNormalUser("kcp -u");
+
+  m_commandExecuting = ectn_CHECK_UPDATES;
+  disableTransactionActions();
+
+  m_progressWidget->setValue(0);
+  m_progressWidget->setMaximum(100);
+  clearTabOutput();
+
+  m_pacmanExec = new PacmanExec();
+  if (m_debugInfo) m_pacmanExec->setDebugMode(true);
+
+  QObject::connect(m_pacmanExec, SIGNAL( finished ( int, QProcess::ExitStatus )),
+                   this, SLOT( pacmanProcessFinished(int, QProcess::ExitStatus) ));
+
+  QObject::connect(m_pacmanExec, SIGNAL(percentage(int)), this, SLOT(incrementPercentage(int)));
+  QObject::connect(m_pacmanExec, SIGNAL(textToPrintExt(QString)), this, SLOT(outputText(QString)));
+
+  m_pacmanExec->doCheckUpdates();
+}
+
+/*
  * This is KaOS specific code which uses mirror-check tool.
  */
 void MainWindow::doMirrorCheck()
@@ -875,7 +907,9 @@ void MainWindow::doSystemUpgrade(SystemUpgradeOptions systemUpgradeOptions)
   else
   {
     //Shows a dialog indicating the targets needed to be retrieved and asks for the user's permission.
-    QList<PackageListData> * targets = Package::getTargetUpgradeList();
+    QList<PackageListData> * targets = new QList<PackageListData>();
+    if (m_checkupdatesStringList->count() == 0)
+      targets = Package::getTargetUpgradeList();
 
     //There are no new updates to install!
     if (targets->count() == 0 && m_outdatedStringList->count() == 0)
@@ -912,9 +946,24 @@ void MainWindow::doSystemUpgrade(SystemUpgradeOptions systemUpgradeOptions)
           m_pacmanExec->doSystemUpgradeInTerminal(ectn_SYNC_DATABASE);
           m_commandQueued = ectn_NONE;
         }
-      }
 
-      return;
+        return;
+      }
+      else
+      {
+        foreach(QString name, *m_checkupdatesStringList)
+        {
+          PackageListData aux;
+          const PackageRepository::PackageData*const package = m_packageRepo.getFirstPackageByName(name);
+          QString size;
+          if (package)
+          {
+            size = size.number(package->downloadSize, 'f', 0);
+          }
+          aux = PackageListData(name, m_checkUpdatesNameNewVersion->value(name), size);
+          targets->append(aux);
+        }
+      }
     }
 
     QString list;
@@ -928,7 +977,9 @@ void MainWindow::doSystemUpgrade(SystemUpgradeOptions systemUpgradeOptions)
     list.remove(list.size()-1, 1);
 
     //Let's build the system upgrade transaction dialog...
-    QString ds = Package::kbytesToSize(totalDownloadSize);
+    QString ds;
+    if (totalDownloadSize > 0)
+      ds = Package::kbytesToSize(totalDownloadSize);
 
     TransactionDialog question(this);
 
@@ -1755,6 +1806,29 @@ void MainWindow::pacmanProcessFinished(int exitCode, QProcess::ExitStatus exitSt
   if (SettingsManager::getShowStopTransaction()) m_toolButtonStopTransaction->setVisible(false);
   ui->twProperties->setTabText(ctn_TABINDEX_OUTPUT, StrConstants::getTabOutputName());
 
+  if (m_commandExecuting == ectn_CHECK_UPDATES)
+  {
+    QStringList pkgs = m_pacmanExec->getOutdatedPackages();
+
+    //We have to treat outdated pkgs list...
+    //Each pkg is in this format: libpng 1.6.36-1 -> 1.6.37-1
+    if (pkgs.count() > 0)
+    {
+      m_checkupdatesStringList->clear();
+      m_checkUpdatesNameNewVersion->clear();
+
+      foreach(QString pkg, pkgs)
+      {
+        QStringList names = pkg.split(" ", QString::SkipEmptyParts);
+        if (names.count() > 0)
+        {
+          m_checkupdatesStringList->append(names.at(0));
+          m_checkUpdatesNameNewVersion->insert(names.at(0), names.at(3));
+        }
+      }
+    }
+  }
+
   //mate-terminal is returning code 255 sometimes...
   if ((exitCode == 0 || exitCode == 255) && exitStatus == QProcess::NormalExit)
   {
@@ -1789,7 +1863,7 @@ void MainWindow::pacmanProcessFinished(int exitCode, QProcess::ExitStatus exitSt
     if(exitCode == 0 || exitCode == 255) //mate-terminal is returning code 255 sometimes...
     {
       //After the command, we can refresh the package list, so any change can be seem.
-      if (m_commandExecuting == ectn_SYNC_DATABASE)
+      if (m_commandExecuting == ectn_SYNC_DATABASE || m_commandExecuting == ectn_CHECK_UPDATES)
       {
         //Sets NOW as the last sync time value
         SettingsManager::setLastSyncDbTime(QDateTime::currentDateTime());
@@ -1825,7 +1899,7 @@ void MainWindow::pacmanProcessFinished(int exitCode, QProcess::ExitStatus exitSt
       {
         metaBuildPackageList();
       }
-      else if (m_commandExecuting != ectn_MIRROR_CHECK)
+      else if (m_commandExecuting != ectn_MIRROR_CHECK && m_commandExecuting != ectn_CHECK_UPDATES)
       {
         //If we are in a package group, maybe we have installed/removed something, so...
         if (!isAURGroupSelected())
@@ -1874,7 +1948,7 @@ void MainWindow::pacmanProcessFinished(int exitCode, QProcess::ExitStatus exitSt
     toggleSystemActions(false);
   }
 
-  if (m_commandExecuting != ectn_MIRROR_CHECK && bRefreshGroups)
+  if ((m_commandExecuting != ectn_MIRROR_CHECK && m_commandExecuting != ectn_CHECK_UPDATES) && bRefreshGroups)
     refreshGroupsWidget();
 
   refreshMenuTools(); //Maybe some of octopi tools were added/removed...

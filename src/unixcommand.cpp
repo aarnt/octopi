@@ -993,7 +993,7 @@ QString UnixCommand::buildOctopiHelperCommand(const QString &pCommand)
   //Here we select the proper "octopi-helper" parameter
   if (commandList.count() ==1 && commandList.contains("pacman -Syy"))
     octopiHelperCommandParameter = " -s";
-  else if (commandList.count() ==1 && commandList.contains("pacman -Su"))
+  else if (commandList.count() ==1 && commandList.contains("pacman -Syu"))
     octopiHelperCommandParameter = " -u";
   else
     octopiHelperCommandParameter = " -t";

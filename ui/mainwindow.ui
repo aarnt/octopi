@@ -136,7 +136,7 @@
      <x>0</x>
      <y>0</y>
      <width>552</width>
-     <height>22</height>
+     <height>23</height>
     </rect>
    </property>
    <property name="contextMenuPolicy">
@@ -274,7 +274,7 @@
      <normaloff>:/resources/images/refresh.png</normaloff>:/resources/images/refresh.png</iconset>
    </property>
    <property name="text">
-    <string>Sync database</string>
+    <string>Check updates</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+D</string>

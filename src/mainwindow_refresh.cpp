@@ -588,6 +588,10 @@ void MainWindow::metaBuildPackageList()
     toggleSystemActions(false);
     disconnect(&g_fwPacman, SIGNAL(finished()), this, SLOT(preBuildPackageList()));
 
+    if(m_debugInfo)
+      std::cout << m_packageModel->getPackageCount() << " pkgs => " <<
+                 "Time elapsed before building pkgs from 'ALL group' list: " << m_time->elapsed() << " mili seconds." << std::endl << std::endl;
+
     QEventLoop el;
     QFuture<QList<PackageListData> *> f;
     f = QtConcurrent::run(searchPacmanPackages);
@@ -737,11 +741,15 @@ void MainWindow::buildPackageList()
   {
     //Let's get outdatedPackages list again!
     m_outdatedStringList = Package::getOutdatedStringList();
+    if (m_outdatedStringList->count() < m_checkupdatesStringList->count())
+      m_outdatedStringList = m_checkupdatesStringList;
 
     if(m_debugInfo)
       std::cout << "Time elapsed refreshing outdated pkgs from 'ALL group' list: " << m_time->elapsed() << " mili seconds." << std::endl;
 
     m_numberOfOutdatedPackages = m_outdatedStringList->count();
+    if (m_numberOfOutdatedPackages == 0 && m_checkupdatesStringList->count() > 0)
+      m_numberOfOutdatedPackages = m_checkupdatesStringList->count();
 
     m_unrequiredPackageList->clear();
     delete m_unrequiredPackageList;

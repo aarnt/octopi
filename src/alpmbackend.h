@@ -32,6 +32,7 @@ public:
   static QStringList getUnrequiredList();
   static QStringList getForeignList();
   static QStringList getOutdatedList();
+  static QString getPackageSize(const QString &pkgName);
 };
 
 #endif // ALPMBACKEND_H

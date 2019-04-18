@@ -30,6 +30,7 @@ public:
   static QString getApplicationVersion();
   static QString getQtVersion();
   static QString getApplicationCliHelp();
+  static QString getMissingPacmanDBFile();
   static QString getAll();
   static QString getForeignRepositoryName();
   static QString getForeignPkgRepositoryName();
@@ -110,6 +111,7 @@ public:
   static QString getRemovingPacmanTransactionLockFile();
   static QString getSyncing();
   static QString getPressAnyKey();
+  static QString getCheckingForUpdates();
   static QString getSyncMirror();
   static QString getSyncDatabase();
   static QString getSyncDatabases();

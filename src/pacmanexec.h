@@ -45,6 +45,7 @@ private:
   CommandExecuting m_commandExecuting;
   QStringList m_lastCommandList; //run in terminal commands
   QStringList m_textPrinted;
+  QStringList m_listOfOutatedPackages;
 
   bool m_processWasCanceled;
 
@@ -74,6 +75,8 @@ public:
   static void removeDatabaseLock();
 
   void cancelProcess();
+  void doCheckUpdates();
+  QStringList getOutdatedPackages();
 
   //MIRROR-CHECK
   void doMirrorCheck();

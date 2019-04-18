@@ -41,7 +41,12 @@ QString StrConstants::getApplicationCliHelp(){
       "-removecmd <Remove-command>: " + QObject::tr("use a different remove command (ex: -removecmd R).") + "\n" +
       "-sysupgrade: " + QObject::tr("force a system upgrade at startup.") + "\n";
 
-  return str;
+ return str;
+}
+
+QString StrConstants::getMissingPacmanDBFile()
+{
+  return QObject::tr("Pacman Database is missing!\nYou may need to synchronize database!");
 }
 
 QString StrConstants::getAll(){
@@ -388,7 +393,7 @@ QString StrConstants::getOneOutdatedPackage(){
 }
 
 QString StrConstants::getOutdatedPackages(int outdatedPackagesCount){
-  return QObject::tr("There are %n outdated packages in your system:", 0, outdatedPackagesCount);
+  return QObject::tr("There are %n outdated packages in your system:", nullptr, outdatedPackagesCount);
 }
 
 QString StrConstants::getNewVersionAvailable(){
@@ -396,23 +401,23 @@ QString StrConstants::getNewVersionAvailable(){
 }
 
 QString StrConstants::getTotalPackages(int packageCount){
-  return QObject::tr("%n packages", 0, packageCount);
+  return QObject::tr("%n packages", nullptr, packageCount);
 }
 
 QString StrConstants::getSelectedPackages(int selectedCount){
-  return QObject::tr("%n selected", 0, selectedCount);
+  return QObject::tr("%n selected", nullptr, selectedCount);
 }
 
 QString StrConstants::getNumberInstalledPackages(int installedPackagesCount){
-  return QObject::tr("%n installed", 0, installedPackagesCount);
+  return QObject::tr("%n installed", nullptr, installedPackagesCount);
 }
 
 QString StrConstants::getNumberOutdatedPackages(int outdatedPackagesCount){
-  return QObject::tr("%n outdated", 0, outdatedPackagesCount);
+  return QObject::tr("%n outdated", nullptr, outdatedPackagesCount);
 }
 
 QString StrConstants::getNumberAvailablePackages(int availablePackagesCount){
-  return QObject::tr("%n available", 0, availablePackagesCount);
+  return QObject::tr("%n available", nullptr, availablePackagesCount);
 }
 
 QString StrConstants::getCleaningPackageCache(){
@@ -429,6 +434,11 @@ QString StrConstants::getSyncing(){
 
 QString StrConstants::getPressAnyKey(){
   return QObject::tr("Press any key to continue...");
+}
+
+QString StrConstants::getCheckingForUpdates()
+{
+  return QObject::tr("Checking for updates...");
 }
 
 QString StrConstants::getSyncMirror(){
@@ -501,11 +511,11 @@ QString StrConstants::getRemovePackage(){
 }
 
 QString StrConstants::getRetrievePackages(int retrievePackagesCount){
-  return QObject::tr("The following %n packages need to be retrieved", 0, retrievePackagesCount);
+  return QObject::tr("The following %n packages need to be retrieved", nullptr, retrievePackagesCount);
 }
 
 QString StrConstants::getRemovePackages(int removePackagesCount){
-  return QObject::tr("The following %n packages will be removed", 0, removePackagesCount);
+  return QObject::tr("The following %n packages will be removed", nullptr, removePackagesCount);
 }
 
 QString StrConstants::getWarnHoldPkgFound() {
@@ -521,7 +531,7 @@ QString StrConstants::getOneNewUpdate(){
 }
 
 QString StrConstants::getNewUpdates(int newUpdatesCount){
-  return QObject::tr("There are %n updates available!", 0, newUpdatesCount);
+  return QObject::tr("There are %n updates available!", nullptr, newUpdatesCount);
 }
 
 QString StrConstants::getConfirmationQuestion(){

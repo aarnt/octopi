@@ -171,7 +171,7 @@ QString getLatestDistroNews()
 QList<PackageListData> * markForeignPackagesInPkgList(bool hasAURTool, QStringList *outdatedAURStringList)
 {
   QList<PackageListData> * result = new QList<PackageListData>();
-  std::unique_ptr<QList<PackageListData> > listForeign(Package::getForeignPackageList());
+  std::unique_ptr<QList<PackageListData>> listForeign(Package::getForeignPackageList());
   PackageListData pld;
 
   QList<PackageListData>::const_iterator itForeign = listForeign->begin();

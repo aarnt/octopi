@@ -653,7 +653,11 @@ void PacmanExec::prepareTextToPrint(QString str, TreatString ts, TreatURLLinks t
 void PacmanExec::onStarted()
 {
   //First we output the name of action we are starting to execute!
-  if (m_commandExecuting == ectn_MIRROR_CHECK)
+  if (m_commandExecuting == ectn_CHECK_UPDATES)
+  {
+    prepareTextToPrint("<b>" + StrConstants::getCheckingForUpdates() + "</b><br><br>", ectn_DONT_TREAT_STRING, ectn_DONT_TREAT_URL_LINK);
+  }
+  else if (m_commandExecuting == ectn_MIRROR_CHECK)
   {
     prepareTextToPrint("<b>" + StrConstants::getSyncMirror() + "</b><br><br>", ectn_DONT_TREAT_STRING, ectn_DONT_TREAT_URL_LINK);
   }
@@ -698,7 +702,25 @@ void PacmanExec::onStarted()
  */
 void PacmanExec::onReadOutput()
 {
-  if (m_commandExecuting == ectn_MIRROR_CHECK)
+  if (m_commandExecuting == ectn_CHECK_UPDATES)
+  {
+    QString output = m_unixCommand->readAllStandardOutput();
+
+    if (!output.isEmpty())
+    {
+      //checkupdates outputs outdated packages like this: "apr 1.6.5-1 -> 1.7.0-1"
+      m_listOfOutatedPackages = output.split("\n");
+    }
+
+    output.replace("\n", "<br>");
+    int i = output.lastIndexOf("<");
+    if (i != -1) output.remove(i, 4);
+    prepareTextToPrint(output, ectn_TREAT_STRING, ectn_DONT_TREAT_URL_LINK);
+
+    emit readOutput();
+    return;
+  }
+  else if (m_commandExecuting == ectn_MIRROR_CHECK)
   {
     QString output = m_unixCommand->readAllStandardOutput();
 
@@ -814,6 +836,23 @@ void PacmanExec::onFinished(int exitCode, QProcess::ExitStatus es)
 }
 
 // --------------------- DO METHODS ------------------------------------
+
+/*
+ * Uses checkupdates command to check for outdated packages in a temporary database
+ */
+void PacmanExec::doCheckUpdates()
+{
+  m_commandExecuting = ectn_CHECK_UPDATES;
+  m_unixCommand->executeCommandAsNormalUser(ctn_CHECKUPDATES_BINARY);
+}
+
+/*
+ * Retrieves outdated packages create by checkupdates
+ */
+QStringList PacmanExec::getOutdatedPackages()
+{
+  return m_listOfOutatedPackages;
+}
 
 /*
  * Calls mirro-check to check mirrors and returns output to UI

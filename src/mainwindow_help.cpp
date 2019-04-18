@@ -110,7 +110,7 @@ void MainWindow::initTabHelpUsage()
 
      tr("Control+key sequences:") +
   QString("<ul><li>") +
-     tr("Ctrl+D or 'File/Sync database' to sync the local database with latest remote changes (pacman -Sy)") +
+     tr("Ctrl+D or 'File/Check updates' to check mirror for latest updates (checkupdates)") +
   QString("</li><li>") +
      tr("Ctrl+P or 'File/System upgrade' to make a full system upgrade (pacman -Su)") +
   QString("</li><li>") +

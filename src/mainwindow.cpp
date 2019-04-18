@@ -73,6 +73,8 @@ MainWindow::MainWindow(QWidget *parent) :
   m_refreshForeignPackageList = false;
   m_cic = NULL;
   m_outdatedStringList = new QStringList();
+  m_checkupdatesStringList = new QStringList();
+  m_checkUpdatesNameNewVersion = new QHash<QString, QString>();
   m_outdatedAURStringList = new QStringList();
   m_outdatedAURPackagesNameVersion = new QHash<QString, QString>();
   m_selectedViewOption = ectn_ALL_PKGS;
@@ -126,6 +128,10 @@ MainWindow::~MainWindow()
  */
 void MainWindow::show()
 {
+  if(m_debugInfo)
+    std::cout << m_packageModel->getPackageCount() << " pkgs => " <<
+               "Time elapsed at begining of show(): " << m_time->elapsed() << " mili seconds." << std::endl << std::endl;
+
   if(m_initializationCompleted == false)
   {
     restoreGeometry(SettingsManager::getWindowSize());
@@ -163,6 +169,10 @@ void MainWindow::show()
 
     if (Package::hasPacmanDatabase())
     {
+      if(m_debugInfo)
+        std::cout << m_packageModel->getPackageCount() << " pkgs => " <<
+                   "Time elapsed before refreshGroupsWidget(): " << m_time->elapsed() << " mili seconds." << std::endl << std::endl;
+
       refreshGroupsWidget();
     }        
 
@@ -176,10 +186,10 @@ void MainWindow::show()
     {
       metaBuildPackageList();
     }
-    // Maybe this system has never run a pacman -Syy
+    // Maybe this system has never synchronized pacman database!
     else
     {
-      doSyncDatabase();
+      QMessageBox::critical(this, StrConstants::getError(), StrConstants::getMissingPacmanDBFile());
     }
   }
   else
@@ -455,13 +465,12 @@ void MainWindow::outputTextBrowserAnchorClicked(const QUrl &link)
 void MainWindow::outputOutdatedPackageList()
 {
   //We cannot output any list if there is a running transaction!
-  if (m_commandExecuting != ectn_NONE ||
-      isAURGroupSelected())
+  if (m_commandExecuting != ectn_NONE || isAURGroupSelected())
     return;
 
   m_numberOfOutdatedPackages = m_outdatedStringList->count();
 
-  if(m_numberOfOutdatedPackages > 0)
+  if(m_numberOfOutdatedPackages > 0 && m_checkupdatesStringList->count() == 0)
   {
     QString html = "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">";
     QString anchorBegin = "anchorBegin";
@@ -496,6 +505,56 @@ void MainWindow::outputOutdatedPackageList()
             package->outdatedVersion +
             "</b></font></td><td align=\"right\">" +
             package->version + "</td></tr>";
+      }
+    }
+
+    writeToTabOutput(html);
+
+    QTextBrowser *text =
+        ui->twProperties->widget(ctn_TABINDEX_OUTPUT)->findChild<QTextBrowser*>("textBrowser");
+
+    if (text)
+    {
+      text->scrollToAnchor(anchorBegin);
+    }
+
+    ui->twProperties->setCurrentIndex(ctn_TABINDEX_OUTPUT);
+  }
+  else {
+    QString html = "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">";
+    QString anchorBegin = "anchorBegin";
+    html += "<a id=\"" + anchorBegin + "\"></a>";
+
+    clearTabOutput();
+
+    if(m_outdatedStringList->count()==1){
+      html += "<h3>" + StrConstants::getOneOutdatedPackage() + "</h3>";
+    }
+    else
+    {
+      html += "<h3>" +
+          StrConstants::getOutdatedPackages(m_outdatedStringList->count()) + "</h3>";
+    }
+
+    html += "<br><table border=\"0\">";
+    html += "<tr><th width=\"25%\" align=\"left\">" + StrConstants::getName() +
+        "</th><th width=\"18%\" align=\"right\">" +
+        StrConstants::getOutdatedVersion() +
+        "</th><th width=\"18%\" align=\"right\">" +
+        StrConstants::getAvailableVersion() + "</th></tr>";
+
+    for (int c=0; c < m_checkupdatesStringList->count(); c++)
+    {
+      QString pkg = m_checkupdatesStringList->at(c);
+      QString newVersion = m_checkUpdatesNameNewVersion->value(pkg);
+      const PackageRepository::PackageData*const package = m_packageRepo.getFirstPackageByName(pkg);
+
+      if (package != nullptr) {
+        html += "<tr><td><a href=\"goto:" + pkg + "\">" + pkg +
+            "</td><td align=\"right\"><b><font color=\"#E55451\">" +
+            package->version +
+            "</b></font></td><td align=\"right\">" +
+            newVersion + "</td></tr>";
       }
     }
 
@@ -1504,6 +1563,7 @@ bool MainWindow::IsSyncingRepoInTabOutput()
     //We have to find at least two times, as "Synching" string will always be the first text in output
     res = text->find(StrConstants::getSyncing(), QTextDocument::FindBackward | QTextDocument::FindWholeWords);
     res = text->find(StrConstants::getSyncing(), QTextDocument::FindBackward | QTextDocument::FindWholeWords);
+    res = text->find(StrConstants::getCheckingForUpdates(), QTextDocument::FindBackward | QTextDocument::FindWholeWords);
 
     if (!res)
     {
