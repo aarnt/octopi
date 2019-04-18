@@ -1166,7 +1166,7 @@ void PacmanExec::doSystemUpgradeInTerminal(CommandExecuting additionalCommand)
 /*
  * Calls pacman to sync databases and returns output to UI
  */
-void PacmanExec::doSyncDatabase()
+/*void PacmanExec::doSyncDatabase()
 {
   QString command;
 
@@ -1185,7 +1185,7 @@ void PacmanExec::doSyncDatabase()
 
   m_commandExecuting = ectn_SYNC_DATABASE;
   m_unixCommand->executeCommand(command);
-}
+}*/
 
 /*
  * Calls AUR tool to upgrade given packages inside a terminal

@@ -415,7 +415,7 @@ private slots:
   void doRemoveAndInstall();
   void doInstall();
   void doCheckUpdates();
-  void doSyncDatabase();
+  //void doSyncDatabase();
   void doMirrorCheck();
   void doInstallAURPackage();
   void doRemoveAURPackage();

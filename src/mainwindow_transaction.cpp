@@ -775,7 +775,7 @@ void MainWindow::doMirrorCheck()
 /*
  * Does a repository sync with "pacman -Sy" !
  */
-void MainWindow::doSyncDatabase()
+/*void MainWindow::doSyncDatabase()
 {
   if (!isSUAvailable()) return;
 
@@ -803,7 +803,7 @@ void MainWindow::doSyncDatabase()
   QObject::connect(m_pacmanExec, SIGNAL(canStopTransaction(bool)), this, SLOT(onCanStopTransaction(bool)));
 
   m_pacmanExec->doSyncDatabase();
-}
+}*/
 
 /*
  * Updates the outdated AUR packages with "yaourt -S <list>"
@@ -899,12 +899,12 @@ void MainWindow::doSystemUpgrade(SystemUpgradeOptions systemUpgradeOptions)
   if(!isInternetAvailable()) return;
 
   int res;
-  if(systemUpgradeOptions == ectn_SYNC_DATABASE_OPT)
+  /*if(systemUpgradeOptions == ectn_SYNC_DATABASE_OPT)
   {
     m_commandQueued = ectn_SYSTEM_UPGRADE;
     doSyncDatabase();
   }
-  else
+  else*/
   {
     //Shows a dialog indicating the targets needed to be retrieved and asks for the user's permission.
     QList<PackageListData> * targets = new QList<PackageListData>();
