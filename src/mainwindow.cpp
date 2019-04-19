@@ -1777,9 +1777,9 @@ void MainWindow::launchCacheCleaner()
 }
 
 /*
- * Makes a ptpb with a bunch of system file contents.
+ * Creates "octopi-sysinfo.log" file in user's home path as a result of a bunch of commands.
  */
-void MainWindow::ptpbSysInfo()
+void MainWindow::doSysInfo()
 {
   if (!UnixCommand::hasTheExecutable("curl") ||
       m_commandExecuting != ectn_NONE) return;

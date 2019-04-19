@@ -73,7 +73,7 @@ void MainWindow::refreshMenuTools()
   static bool connectorPlv=false;
   static bool connectorRepo=false;
   static bool connectorCleaner=false;
-  static bool connectorPtpb=false;
+  static bool connectorSysInfo=false;
 
   if (UnixCommand::hasTheExecutable("mirror-check"))
   {
@@ -135,10 +135,10 @@ void MainWindow::refreshMenuTools()
     m_actionSysInfo->setText("SysInfo...");
     ui->menuTools->addAction(m_actionSysInfo);
 
-    if (!connectorPtpb)
+    if (!connectorSysInfo)
     {
-      connect(m_actionSysInfo, SIGNAL(triggered()), this, SLOT(ptpbSysInfo()));
-      connectorPtpb=true;
+      connect(m_actionSysInfo, SIGNAL(triggered()), this, SLOT(doSysInfo()));
+      connectorSysInfo=true;
     }
   }
 
