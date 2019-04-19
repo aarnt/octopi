@@ -546,15 +546,14 @@ void MainWindow::outputOutdatedPackageList()
     for (int c=0; c < m_checkupdatesStringList->count(); c++)
     {
       QString pkg = m_checkupdatesStringList->at(c);
-      QString newVersion = m_checkUpdatesNameNewVersion->value(pkg);
       const PackageRepository::PackageData*const package = m_packageRepo.getFirstPackageByName(pkg);
 
       if (package != nullptr) {
         html += "<tr><td><a href=\"goto:" + pkg + "\">" + pkg +
             "</td><td align=\"right\"><b><font color=\"#E55451\">" +
-            package->version +
+            package->outdatedVersion +
             "</b></font></td><td align=\"right\">" +
-            newVersion + "</td></tr>";
+            package->version + "</td></tr>";
       }
     }
 
@@ -1704,7 +1703,6 @@ QString MainWindow::getSelectedDirectory()
     {
       QString itemPath = utils::showFullPathOfItem(t->currentIndex());
       QFileInfo fi(itemPath);
-
       if (fi.isDir())
         targetDir = itemPath;
       else targetDir = fi.path();
