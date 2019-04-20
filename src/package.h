@@ -142,7 +142,8 @@ class Package{
     static QList<PackageListData> *getPackageList(const QString &packageName, const QHash<QString, QString> *checkUpdatesOutdatedPackages);
 
     static QString getAURUrl(const QString& pkgName);
-    static QList<PackageListData> * getAURPackageList(const QString& searchString);     //AUR methods
+    static QList<PackageListData> * getAURPackageList(const QString &searchString);     //AUR methods
+    static QList<PackageListData> * getYayPackageList(const QStringList &packageTuples);      //Yay specific AUR pkg list
     static QHash<QString, QString> getAUROutdatedPackagesNameVersion();    //AUR methods
 
     static PackageInfoData getKCPInformation(const QString &pkgName);

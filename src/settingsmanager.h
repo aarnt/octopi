@@ -80,6 +80,8 @@ class SettingsManager
     static bool getTrizenNoEditParam();
     static bool getPikaurNoConfirmParam();
     static bool getPikaurNoEditParam();
+    static bool getYayNoConfirmParam();
+    static bool getYayNoEditParam();
     static bool getSearchOutdatedAURPackages();
 
     static int getConsoleFontSize();
@@ -154,6 +156,8 @@ class SettingsManager
     static void setTrizenNoEditParam(bool newValue);
     static void setPikaurNoConfirmParam(bool newValue);
     static void setPikaurNoEditParam(bool newValue);
+    static void setYayNoConfirmParam(bool newValue);
+    static void setYayNoEditParam(bool newValue);
     static void setSearchOutdatedAURPackages(bool newValue);
     static void setSUTool(const QString& newValue);
     static void setInstantSearchSelected(bool newValue);

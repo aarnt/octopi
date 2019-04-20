@@ -296,7 +296,7 @@ QByteArray UnixCommand::getAURPackageList(const QString &searchString)
       aur.start(Package::getForeignRepositoryToolNameParam() + " --nocolor -Ss " + searchString);
     else if (Package::getForeignRepositoryToolName() == ctn_TRIZEN_TOOL)
         aur.start(Package::getForeignRepositoryToolNameParam() + " --nocolors -Ssa " + searchString);
-    else if (Package::getForeignRepositoryToolName() == ctn_PIKAUR_TOOL)
+    else if (Package::getForeignRepositoryToolName() == ctn_PIKAUR_TOOL || Package::getForeignRepositoryToolName() == ctn_YAY_TOOL)
         aur.start(Package::getForeignRepositoryToolNameParam() + " --color=never -Ss --aur " + searchString);
     else if (Package::getForeignRepositoryToolName() == ctn_CHASER_TOOL)
       aur.start(Package::getForeignRepositoryToolNameParam() + " search " + searchString);

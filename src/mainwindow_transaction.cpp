@@ -401,7 +401,6 @@ bool MainWindow::isPackageInInstallTransaction(const QString &pkgName)
   QString repo;
 
   if (package != nullptr) repo = package->repository;
-
   QList<QStandardItem *> foundItems = sim->findItems(repo + "/" + pkgName, Qt::MatchRecursive | Qt::MatchExactly);
 
   return (foundItems.size() > 0);
@@ -1638,9 +1637,9 @@ void MainWindow::enableTransactionActions()
  */
 void MainWindow::toggleTransactionActions(const bool value)
 {
-  bool state = isThereAPendingTransaction();
+  bool pendingTransaction = isThereAPendingTransaction();
 
-  if (value == true && state == true)
+  if (value == true && pendingTransaction == true)
   {
     ui->actionCommit->setEnabled(true);
     ui->actionCancel->setEnabled(true);
@@ -1651,7 +1650,7 @@ void MainWindow::toggleTransactionActions(const bool value)
     ui->actionCheckUpdates->setEnabled(false);
     ui->actionSystemUpgrade->setEnabled(false);
   }
-  else if (value == true && state == false)
+  else if (value == true && pendingTransaction == false)
   {
     ui->actionCommit->setEnabled(false);
     ui->actionCancel->setEnabled(false);
@@ -1659,9 +1658,17 @@ void MainWindow::toggleTransactionActions(const bool value)
     if(m_hasMirrorCheck) m_actionMenuMirrorCheck->setEnabled(true);
     if(m_hasAURTool && m_commandExecuting == ectn_NONE && m_initializationCompleted) m_actionSwitchToAURTool->setEnabled(true);
 
-    ui->actionCheckUpdates->setEnabled(true);
-    if (value == true && m_outdatedStringList->count() > 0)
-      ui->actionSystemUpgrade->setEnabled(true);
+    if (!isAURGroupSelected())
+    {
+      ui->actionCheckUpdates->setEnabled(true);
+      if (value == true && m_outdatedStringList->count() > 0)
+        ui->actionSystemUpgrade->setEnabled(true);
+    }
+    else
+    {
+      ui->actionCheckUpdates->setEnabled(false);
+      ui->actionSystemUpgrade->setEnabled(false);
+    }
   }
   else if (value == false)
   {
@@ -1693,8 +1700,7 @@ void MainWindow::toggleTransactionActions(const bool value)
   if (value == true && m_initializationCompleted) m_actionSwitchToAURTool->setEnabled(value);
 
   ui->actionGetNews->setEnabled(value);  
-  ui->actionInstallLocalPackage->setEnabled(value);
-  ui->actionOpenRootTerminal->setEnabled(value);
+  if (!isAURGroupSelected()) ui->actionInstallLocalPackage->setEnabled(value);
   m_actionMenuOptions->setEnabled(value);
   ui->actionHelpUsage->setEnabled(value);
   ui->actionHelpAbout->setEnabled(value);
@@ -1970,22 +1976,8 @@ void MainWindow::onPressAnyKeyToContinue()
 {
   if (m_commandExecuting == ectn_NONE) return;
 
-  //For the situations where a Sysupgrade has "pacman" pkg
-  /*if (m_commandExecuting == ectn_RUN_SYSTEM_UPGRADE_IN_TERMINAL
-      && m_outdatedStringList->count() > 0)
-  {
-    metaBuildPackageList();
-    m_console->enter();
-    m_console->setFocus();
-    m_commandExecuting = ectn_NONE;
-    m_progressWidget->close();
-    doSystemUpgrade();
-    return;
-  }*/
-
   m_progressWidget->setValue(0);
   m_progressWidget->show();
-
   bool bRefreshGroups = true;
   clearTransactionTreeView();
   metaBuildPackageList();

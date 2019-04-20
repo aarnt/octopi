@@ -1,12 +1,14 @@
 0.9.1 (dev)
   Left click on package icon in package list brings context menu.
   Added "pikaur" AUR tool support (thanks to ewilly).
+  Added "yay" AUR tool support.
   Added option to never check for package updates in Notifier.
   Added "Info" option in package list context menu.
   Added CondresOS and SwagArch distro support.
   Added support for sudo (and NOPASSWD) executing thru new octopi-helper subproject.
   Added option to exit Octopi while a transaction is already running.
   Added support for GNOME file manager/editor.
+  Reworked AUR tab in Options dialog.
   BugFix: Changed 'Sync database' to 'Check updates' command.
   BugFix: Always do a "pacman -Syu" in System Upgrade.
   BugFix: Notifier now uses "checkupdates" instead "pacman -Sy[y]".

@@ -781,8 +781,14 @@ QList<PackageListData> * Package::getAURPackageList(const QString& searchString)
   if (UnixCommand::getLinuxDistro() != ectn_KAOS && searchString.isEmpty())
     return res;
 
+  QString aurTool = getForeignRepositoryToolName();
   QString pkgList = UnixCommand::getAURPackageList(searchString);
   QStringList packageTuples = pkgList.split(QRegularExpression("\\n"), QString::SkipEmptyParts);
+
+  if (aurTool == ctn_YAY_TOOL)
+  {
+    return getYayPackageList(packageTuples);
+  }
 
   pkgDescription = "";
   foreach(QString packageTuple, packageTuples)
@@ -840,8 +846,7 @@ QList<PackageListData> * Package::getAURPackageList(const QString& searchString)
       pkgVotes = 0;
 
       //Chakra does not have popularity support in CCR
-      QString aurTool = getForeignRepositoryToolName();
-
+      //QString aurTool = getForeignRepositoryToolName();
       if (aurTool == ctn_TRIZEN_TOOL)
       {
         if (!strVotes.first().isEmpty())
@@ -941,6 +946,133 @@ QList<PackageListData> * Package::getAURPackageList(const QString& searchString)
           pkgDescription += " ";
       }
       else
+      {
+        if (!packageTuple.trimmed().isEmpty())
+          pkgDescription += packageTuple.trimmed();
+        else
+        {
+          pkgDescription += " ";
+        }
+      }
+    }
+  }
+
+  //And adds the very last package...
+  if (packageTuples.count() > 1)
+  {
+    pkgDescription = pkgName + " " + pkgDescription;
+    PackageListData pld =
+        PackageListData(pkgName, pkgRepository, pkgVersion, pkgDescription, pkgStatus, pkgOutVersion);
+    pld.popularity = pkgVotes;
+
+    res->append(pld);
+  }
+
+  if (res->count() > 0 && res->at(0).repository !=
+      StrConstants::getForeignPkgRepositoryName().toUpper()) res->removeAt(0);
+
+  return res;
+}
+
+/*
+ * Retrieves the list of all AUR packages in the database using Yay (installed + non-installed)
+ * given the search parameter
+ */
+QList<PackageListData> *Package::getYayPackageList(const QStringList &packageTuples)
+{
+  QString pkgName, pkgRepository, pkgVersion, pkgDescription, pkgOutVersion;
+  int pkgVotes;
+  PackageStatus pkgStatus;
+  QList<PackageListData> * res = new QList<PackageListData>();
+
+  //QString pkgList = UnixCommand::getAURPackageList(searchString);
+  //QStringList packageTuples = pkgList.split(QRegularExpression("\\n"), QString::SkipEmptyParts);
+
+  pkgDescription = "";
+  foreach(QString packageTuple, packageTuples)
+  {
+    if (packageTuple[0].isNumber())
+    {
+      int space=packageTuple.indexOf(" ");
+      packageTuple = packageTuple.mid(space+1);
+    }
+
+    if ((UnixCommand::getLinuxDistro() != ectn_KAOS && !packageTuple[0].isSpace()) ||
+        (UnixCommand::getLinuxDistro() == ectn_KAOS && packageTuple[0] != '\t'))
+    {
+      //Do we already have a description?
+      if (pkgDescription != "")
+      {
+        pkgDescription = pkgName + " " + pkgDescription;
+
+        PackageListData pld =
+            PackageListData(pkgName, pkgRepository, pkgVersion, pkgDescription, pkgStatus, pkgOutVersion);
+
+        pld.popularity = pkgVotes;
+
+        res->append(pld);
+        pkgDescription = "";
+      }
+
+      //First we get repository and name!
+      QStringList parts = packageTuple.split(' ');
+      QString repoName = parts[0];
+      int a = repoName.indexOf("/");
+      pkgRepository = repoName.left(a);
+
+      if (pkgRepository != StrConstants::getForeignPkgRepositoryName())
+      {
+        res->removeAt(res->count()-1);
+        continue;
+      }
+
+      pkgRepository = StrConstants::getForeignPkgRepositoryName().toUpper();
+      pkgName = repoName.mid(a+1);
+      pkgVersion = parts[1];
+
+      QStringList strVotes = parts.filter("(+");
+
+      pkgVotes = 0;
+      if (strVotes.count() > 0)
+      {
+        if (!strVotes.first().isEmpty())
+        {
+          //(+65 1.69%)
+          strVotes.first().replace('(', "").replace('+', "");
+          int space = strVotes.first().indexOf(" ");
+          strVotes = strVotes.mid(0, space);
+          if (!strVotes.isEmpty()) pkgVotes = strVotes.first().toInt();
+        }
+        else
+          pkgVotes = 0;
+      }
+
+      if(packageTuple.indexOf("(Installed)") != -1)
+      {
+        //This is an installed package
+        pkgStatus = ectn_FOREIGN;
+        pkgOutVersion = "";
+      }
+      else if (packageTuple.indexOf("(Installed:") != -1)
+      {
+        //This is an outdated installed package
+        pkgStatus = ectn_FOREIGN_OUTDATED;
+
+        int i = packageTuple.indexOf("(Installed:");
+        pkgOutVersion = packageTuple.mid(i+11);
+        pkgOutVersion = pkgOutVersion.remove(QRegularExpression("\\].*")).trimmed();
+      }
+      else
+      {
+        //This is an uninstalled package
+        pkgStatus = ectn_NON_INSTALLED;
+        pkgOutVersion = "";
+      }
+    }
+    else
+    {
+      //This is a description!
+      //else
       {
         if (!packageTuple.trimmed().isEmpty())
           pkgDescription += packageTuple.trimmed();

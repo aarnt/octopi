@@ -77,11 +77,7 @@ private slots:
   void selectOnceADayAt();
   void selectOnceEvery();
   void selectNever();
-  void onDoNotUseAURSelected(bool checked);
-  void onPacaurSelected(bool checked);
-  void onYaourtSelected(bool checked);
-  void onTrizenSelected(bool checked);
-  void onPikaurSelected(bool checked);
+  void comboAURChanged(const QString &text);
 };
 
 #endif // OptionsDialog_H

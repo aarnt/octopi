@@ -1235,6 +1235,8 @@ void PacmanExec::doAURInstall(const QString &listOfPackages)
     m_lastCommandList.append(Package::getForeignRepositoryToolNameParam() + " -Sa " + listOfPackages + ";");
   else if (Package::getForeignRepositoryToolName() == ctn_PIKAUR_TOOL)
     m_lastCommandList.append(Package::getForeignRepositoryToolNameParam() + " -S --aur " + listOfPackages + ";");
+  else if (Package::getForeignRepositoryToolName() == ctn_YAY_TOOL)
+    m_lastCommandList.append(Package::getForeignRepositoryToolNameParam() + " -S --aur " + listOfPackages + ";");
   else if (Package::getForeignRepositoryToolName() == ctn_CHASER_TOOL)
     m_lastCommandList.append(Package::getForeignRepositoryToolNameParam() + " install " + listOfPackages + ";");
 

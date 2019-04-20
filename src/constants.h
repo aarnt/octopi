@@ -66,6 +66,8 @@ const QString ctn_KEY_TRIZEN_NO_CONFIRM_PARAM("Trizen_No_Confirm_Param");
 const QString ctn_KEY_TRIZEN_NO_EDIT_PARAM("Trizen_No_Edit_Param");
 const QString ctn_KEY_PIKAUR_NO_CONFIRM_PARAM("Pikaur_No_Confirm_Param");
 const QString ctn_KEY_PIKAUR_NO_EDIT_PARAM("Pikaur_No_Edit_Param");
+const QString ctn_KEY_YAY_NO_CONFIRM_PARAM("Yay_No_Confirm_Param");
+const QString ctn_KEY_YAY_NO_EDIT_PARAM("Yay_No_Edit_Param");
 const QString ctn_KEY_SEARCH_OUTDATED_AUR_PACKAGES("Search_Outdated_AUR_Packages");
 const QString ctn_KEY_CONSOLE_SIZE("Console_Font_Size");
 const QString ctn_KEY_BACKEND("Backend");
@@ -125,6 +127,7 @@ const QString ctn_PACAUR_TOOL("pacaur");
 const QString ctn_YAOURT_TOOL("yaourt");
 const QString ctn_TRIZEN_TOOL("trizen");
 const QString ctn_PIKAUR_TOOL("pikaur");
+const QString ctn_YAY_TOOL("yay");
 const QString ctn_NO_AUR_TOOL("DO_NOT_USE_AUR");
 
 //KaOS user base package tool
@@ -140,7 +143,6 @@ const QString ctn_NO_SU_COMMAND("none");
 const QString ctn_ROOT_SH("/bin/sh -c ");
 
 const QString ctn_LXQTSU("lxqt-sudo");
-
 const QString ctn_OCTOPISUDO("octopi-sudo");
 const QString ctn_OCTOPI_HELPER("/usr/lib/octopi/octopi-helper");
 
