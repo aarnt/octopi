@@ -262,6 +262,8 @@ void MainWindow::pacmanHelperTimerTimeout()
  */
 void MainWindow::readCheckUpdatesProcessOutput()
 {
+  m_checkUpdatesStringList.clear();
+  m_checkUpdatesNameNewVersion->clear();
   QString output = m_checkUpdatesProcess->readAllStandardOutput();
 
   if (!output.isEmpty())
@@ -431,7 +433,6 @@ void MainWindow::doSystemUpgrade()
   m_transactionDialog->setWindowTitle(StrConstants::getConfirmation());
   m_transactionDialog->setInformativeText(StrConstants::getConfirmationQuestion());
   m_transactionDialog->setDetailedText(list);
-
   m_systemUpgradeDialog = true;
   int result = m_transactionDialog->exec();
   m_transactionDialog = nullptr;
