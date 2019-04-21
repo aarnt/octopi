@@ -279,31 +279,31 @@ QString SettingsManager::getAURTool()
   if (ret == ctn_NO_AUR_TOOL) return ret;
   else if (ret == ctn_PACAUR_TOOL)
   {
-    if (getPacaurNoConfirmParam()) params += " --noconfirm ";
-    if (getPacaurNoEditParam()) params += " --noedit ";
+    if (getAurNoConfirmParam()) params += " --noconfirm ";
+    if (getAurNoEditParam()) params += " --noedit ";
     ret += params;
   }
   else if (ret == ctn_YAOURT_TOOL)
   {
-    if (getYaourtNoConfirmParam()) params += " --noconfirm ";
+    if (getAurNoConfirmParam()) params += " --noconfirm ";
     ret += params;
   }
   else if (ret == ctn_TRIZEN_TOOL)
   {
-    if (getTrizenNoConfirmParam()) params += " --noconfirm ";
-    if (getTrizenNoEditParam()) params += " --noedit ";
+    if (getAurNoConfirmParam()) params += " --noconfirm ";
+    if (getAurNoEditParam()) params += " --noedit ";
     ret += params;
   }
   else if (ret == ctn_PIKAUR_TOOL)
   {
-    if (getPikaurNoConfirmParam()) params += " --noconfirm ";
-    if (getPikaurNoEditParam()) params += " --noedit ";
+    if (getAurNoConfirmParam()) params += " --noconfirm ";
+    if (getAurNoEditParam()) params += " --noedit ";
     ret += params;
   }
   else if (ret == ctn_YAY_TOOL)
   {
-    if (getYayNoConfirmParam()) params += " --noconfirm ";
-    if (getYayNoEditParam()) params += " --noeditmenu ";
+    if (getAurNoConfirmParam()) params += " --noconfirm ";
+    if (getAurNoEditParam()) params += " --noeditmenu ";
     ret += params;
   }
   //System does not have selected aurtool. Let's see if there are any other available...
@@ -311,8 +311,8 @@ QString SettingsManager::getAURTool()
   {
     if (UnixCommand::hasTheExecutable(ctn_TRIZEN_TOOL))
     {
-      if (getTrizenNoConfirmParam()) params += " --noconfirm ";
-      if (getTrizenNoEditParam()) params += " --noedit ";
+      if (getAurNoConfirmParam()) params += " --noconfirm ";
+      if (getAurNoEditParam()) params += " --noedit ";
 
       p_instance.setAURTool(ctn_TRIZEN_TOOL);
       p_instance.getSYSsettings()->sync();
@@ -320,8 +320,8 @@ QString SettingsManager::getAURTool()
     }
     else if (UnixCommand::hasTheExecutable(ctn_PIKAUR_TOOL))
     {
-      if (getPikaurNoConfirmParam()) params += " --noconfirm ";
-      if (getPikaurNoEditParam()) params += " --noedit ";
+      if (getAurNoConfirmParam()) params += " --noconfirm ";
+      if (getAurNoEditParam()) params += " --noedit ";
 
       p_instance.setAURTool(ctn_PIKAUR_TOOL);
       p_instance.getSYSsettings()->sync();
@@ -329,8 +329,8 @@ QString SettingsManager::getAURTool()
     }
     else if (UnixCommand::hasTheExecutable(ctn_YAY_TOOL))
     {
-      if (getYayNoConfirmParam()) params += " --noconfirm ";
-      if (getYayNoEditParam()) params += " --noeditmenu ";
+      if (getAurNoConfirmParam()) params += " --noconfirm ";
+      if (getAurNoEditParam()) params += " --noeditmenu ";
 
       p_instance.setAURTool(ctn_YAY_TOOL);
       p_instance.getSYSsettings()->sync();
@@ -338,7 +338,7 @@ QString SettingsManager::getAURTool()
     }
     else if (UnixCommand::hasTheExecutable(ctn_YAOURT_TOOL))
     {
-      if (getYaourtNoConfirmParam()) params += " --noconfirm ";
+      if (getAurNoConfirmParam()) params += " --noconfirm ";
 
       p_instance.setAURTool(ctn_YAOURT_TOOL);
       p_instance.getSYSsettings()->sync();
@@ -346,8 +346,8 @@ QString SettingsManager::getAURTool()
     }
     else if (UnixCommand::hasTheExecutable(ctn_PACAUR_TOOL))
     {
-      if (getPacaurNoConfirmParam()) params += " --noconfirm ";
-      if (getPacaurNoEditParam()) params += " --noedit ";
+      if (getAurNoConfirmParam()) params += " --noconfirm ";
+      if (getAurNoEditParam()) params += " --noedit ";
 
       p_instance.setAURTool(ctn_PACAUR_TOOL);
       p_instance.getSYSsettings()->sync();
@@ -367,82 +367,19 @@ QString SettingsManager::getAURToolName()
 /*
  * Tests if Pacaur is using "--noconfirm" parameter
  */
-bool SettingsManager::getPacaurNoConfirmParam()
+bool SettingsManager::getAurNoConfirmParam()
 {
   SettingsManager p_instance;
-  return (p_instance.getSYSsettings()->value( ctn_KEY_PACAUR_NO_CONFIRM_PARAM, 0)).toBool();
+  return (p_instance.getSYSsettings()->value( ctn_KEY_AUR_NO_CONFIRM_PARAM, 0)).toBool();
 }
 
 /*
  * Tests if Pacaur is using "--noedit" parameter
  */
-bool SettingsManager::getPacaurNoEditParam()
+bool SettingsManager::getAurNoEditParam()
 {
   SettingsManager p_instance;
-  return (p_instance.getSYSsettings()->value( ctn_KEY_PACAUR_NO_EDIT_PARAM, 0)).toBool();
-}
-
-/*
- * Tests if Yaourt is using "--noconfirm" parameter
- */
-bool SettingsManager::getYaourtNoConfirmParam()
-{
-  SettingsManager p_instance;
-  return (p_instance.getSYSsettings()->value( ctn_KEY_YAOURT_NO_CONFIRM_PARAM, 0)).toBool();
-}
-
-/*
- * Tests if Trizen is using "--noconfirm" parameter
- */
-bool SettingsManager::getTrizenNoConfirmParam()
-{
-  SettingsManager p_instance;
-  return (p_instance.getSYSsettings()->value( ctn_KEY_TRIZEN_NO_CONFIRM_PARAM, 0)).toBool();
-}
-
-/*
- * Tests if Trizen is using "--noedit" parameter
- */
-bool SettingsManager::getTrizenNoEditParam()
-{
-  SettingsManager p_instance;
-  return (p_instance.getSYSsettings()->value( ctn_KEY_TRIZEN_NO_EDIT_PARAM, 0)).toBool();
-}
-
-/*
- * Tests if Pikaur is using "--noconfirm" parameter
- */
-bool SettingsManager::getPikaurNoConfirmParam()
-{
-  SettingsManager p_instance;
-  return (p_instance.getSYSsettings()->value( ctn_KEY_PIKAUR_NO_CONFIRM_PARAM, 0)).toBool();
-}
-
-/*
- * Tests if Pikaur is using "--noedit" parameter
- */
-bool SettingsManager::getPikaurNoEditParam()
-{
-  SettingsManager p_instance;
-  return (p_instance.getSYSsettings()->value( ctn_KEY_PIKAUR_NO_EDIT_PARAM, 0)).toBool();
-}
-
-/*
- * Tests if Yay is using "--noconfirm" parameter
- */
-bool SettingsManager::getYayNoConfirmParam()
-{
-  SettingsManager p_instance;
-  return (p_instance.getSYSsettings()->value( ctn_KEY_YAY_NO_CONFIRM_PARAM, 0)).toBool();
-}
-
-/*
- * Tests if Yay is using "--noeditmenu" parameter
- */
-bool SettingsManager::getYayNoEditParam()
-{
-  SettingsManager p_instance;
-  return (p_instance.getSYSsettings()->value( ctn_KEY_YAY_NO_EDIT_PARAM, 0)).toBool();
+  return (p_instance.getSYSsettings()->value( ctn_KEY_AUR_NO_EDIT_PARAM, 0)).toBool();
 }
 
 bool SettingsManager::getSearchOutdatedAURPackages()
@@ -709,81 +646,18 @@ void SettingsManager::setAURTool(const QString &newValue)
 /*
  * Sets if Pacaur tool will use "--noconfirm" parameter
  */
-void SettingsManager::setPacaurNoConfirmParam(bool newValue)
+void SettingsManager::setAurNoConfirmParam(bool newValue)
 {
-  instance()->getSYSsettings()->setValue(ctn_KEY_PACAUR_NO_CONFIRM_PARAM, newValue);
+  instance()->getSYSsettings()->setValue(ctn_KEY_AUR_NO_CONFIRM_PARAM, newValue);
   instance()->getSYSsettings()->sync();
 }
 
 /*
  * Sets if Pacaur tool will use "--noedit" parameter
  */
-void SettingsManager::setPacaurNoEditParam(bool newValue)
+void SettingsManager::setAurNoEditParam(bool newValue)
 {
-  instance()->getSYSsettings()->setValue(ctn_KEY_PACAUR_NO_EDIT_PARAM, newValue);
-  instance()->getSYSsettings()->sync();
-}
-
-/*
- * Sets if Yaourt tool will use "--noconfirm" parameter
- */
-void SettingsManager::setYaourtNoConfirmParam(bool newValue)
-{
-  instance()->getSYSsettings()->setValue(ctn_KEY_YAOURT_NO_CONFIRM_PARAM, newValue);
-  instance()->getSYSsettings()->sync();
-}
-
-/*
- * Sets if Trizen tool will use "--noconfirm" parameter
- */
-void SettingsManager::setTrizenNoConfirmParam(bool newValue)
-{
-  instance()->getSYSsettings()->setValue(ctn_KEY_TRIZEN_NO_CONFIRM_PARAM, newValue);
-  instance()->getSYSsettings()->sync();
-}
-
-/*
- * Sets if Trizen tool will use "--noedit" parameter
- */
-void SettingsManager::setTrizenNoEditParam(bool newValue)
-{
-  instance()->getSYSsettings()->setValue(ctn_KEY_TRIZEN_NO_EDIT_PARAM, newValue);
-  instance()->getSYSsettings()->sync();
-}
-
-/*
- * Sets if Pikaur tool will use "--noconfirm" parameter
- */
-void SettingsManager::setPikaurNoConfirmParam(bool newValue)
-{
-  instance()->getSYSsettings()->setValue(ctn_KEY_PIKAUR_NO_CONFIRM_PARAM, newValue);
-  instance()->getSYSsettings()->sync();
-}
-
-/*
- * Sets if Pikaur tool will use "--noedit" parameter
- */
-void SettingsManager::setPikaurNoEditParam(bool newValue)
-{
-  instance()->getSYSsettings()->setValue(ctn_KEY_PIKAUR_NO_EDIT_PARAM, newValue);
-  instance()->getSYSsettings()->sync();
-}
-
-/*
- * Sets if Yay tool will use "--noconfirm" parameter
- */
-void SettingsManager::setYayNoConfirmParam(bool newValue)
-{
-  instance()->getSYSsettings()->setValue(ctn_KEY_YAY_NO_CONFIRM_PARAM, newValue);
-  instance()->getSYSsettings()->sync();
-}
-
-/*
- * Sets if Yay tool will use "--noeditmenu" parameter
- */
-void SettingsManager::setYayNoEditParam(bool newValue)
-{
-  instance()->getSYSsettings()->setValue(ctn_KEY_YAY_NO_EDIT_PARAM, newValue);
+  instance()->getSYSsettings()->setValue(ctn_KEY_AUR_NO_EDIT_PARAM, newValue);
   instance()->getSYSsettings()->sync();
 }
 

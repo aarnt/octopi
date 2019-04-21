@@ -73,15 +73,8 @@ class SettingsManager
 
     static QString getAURTool();
     static QString getAURToolName();
-    static bool getPacaurNoConfirmParam();
-    static bool getPacaurNoEditParam();
-    static bool getYaourtNoConfirmParam();
-    static bool getTrizenNoConfirmParam();
-    static bool getTrizenNoEditParam();
-    static bool getPikaurNoConfirmParam();
-    static bool getPikaurNoEditParam();
-    static bool getYayNoConfirmParam();
-    static bool getYayNoEditParam();
+    static bool getAurNoConfirmParam();
+    static bool getAurNoEditParam();
     static bool getSearchOutdatedAURPackages();
 
     static int getConsoleFontSize();
@@ -149,15 +142,8 @@ class SettingsManager
     static void setShowStopTransaction(bool newValue);
 
     static void setAURTool(const QString& newValue);        
-    static void setPacaurNoConfirmParam(bool newValue);
-    static void setPacaurNoEditParam(bool newValue);
-    static void setYaourtNoConfirmParam(bool newValue);
-    static void setTrizenNoConfirmParam(bool newValue);
-    static void setTrizenNoEditParam(bool newValue);
-    static void setPikaurNoConfirmParam(bool newValue);
-    static void setPikaurNoEditParam(bool newValue);
-    static void setYayNoConfirmParam(bool newValue);
-    static void setYayNoEditParam(bool newValue);
+    static void setAurNoConfirmParam(bool newValue);
+    static void setAurNoEditParam(bool newValue);
     static void setSearchOutdatedAURPackages(bool newValue);
     static void setSUTool(const QString& newValue);
     static void setInstantSearchSelected(bool newValue);
