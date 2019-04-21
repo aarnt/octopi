@@ -73,7 +73,7 @@
           </rect>
          </property>
          <property name="text">
-          <string>Use alternate row color in package list</string>
+          <string>Use alternating row colors in package list</string>
          </property>
         </widget>
        </widget>
