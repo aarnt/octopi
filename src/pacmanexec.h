@@ -51,7 +51,7 @@ private:
 
   bool searchForKeyVerbs(QString output);
   bool splitOutputStrings(QString output);
-  void parsePacmanProcessOutput(QString output);
+  void parsePacmanProcessOutput(const QString &output);
   void prepareTextToPrint(QString str, TreatString ts = ectn_TREAT_STRING, TreatURLLinks tl = ectn_TREAT_URL_LINK);
 
 private slots:

@@ -125,7 +125,7 @@ void utils::ProcessWrapper::onSingleShot()
     QString cmd = QString("ps -O cmd --ppid %1").arg(candidatePid);
     proc.start(cmd);
     proc.waitForFinished(-1);
-    QString out = proc.readAll();
+    out = proc.readAll();
 
     if (UnixCommand::getLinuxDistro() == ectn_KAOS)
     {
@@ -343,13 +343,13 @@ QString utils::retrieveDistroNews(bool searchForLatestNews)
     if (UnixCommand::runCurlCommand(curlCommand).isEmpty())
     {
       QFile fileTmpRss(tmpRssPath);
-      QFile fileRss(rssPath);
+      //QFile fileRss(rssPath);
 
       if (!fileRss.exists())
       {
         fileTmpRss.rename(tmpRssPath, rssPath);
 
-        if (!fileRss.open(QIODevice::ReadOnly | QIODevice::Text)) res = "";
+        if (!fileRss.open(QIODevice::ReadOnly | QIODevice::Text)) return("");
         QTextStream in2(&fileRss);
         contentsRss = in2.readAll();
 
@@ -360,7 +360,7 @@ QString utils::retrieveDistroNews(bool searchForLatestNews)
           contentsRss.replace(QRegularExpression("(\\t*)(\\n*)<lastBuildDate>(.*)</lastBuildDate>(\\t*)(\\n*)"), "");
           fileRss.close();
           fileRss.remove();
-          if (!fileRss.open(QIODevice::WriteOnly | QIODevice::Text)) res = "";
+          if (!fileRss.open(QIODevice::WriteOnly | QIODevice::Text)) return("");
           in2 << contentsRss;
           in2.flush();
         }
@@ -375,8 +375,8 @@ QString utils::retrieveDistroNews(bool searchForLatestNews)
         QString rssSHA1;
         QString contentsTmpRss;
 
-        QFile fileTmpRss(tmpRssPath);
-        if (!fileTmpRss.open(QIODevice::ReadOnly | QIODevice::Text)) res = "";
+        //QFile fileTmpRss(tmpRssPath);
+        if (!fileTmpRss.open(QIODevice::ReadOnly | QIODevice::Text)) return("");
         QTextStream in(&fileTmpRss);
         contentsTmpRss = in.readAll();
 
@@ -387,7 +387,7 @@ QString utils::retrieveDistroNews(bool searchForLatestNews)
 
           fileTmpRss.close();
           fileTmpRss.remove();
-          if (!fileTmpRss.open(QIODevice::WriteOnly | QIODevice::Text)) res = "";
+          if (!fileTmpRss.open(QIODevice::WriteOnly | QIODevice::Text)) return("");
           in << contentsTmpRss;
           in.flush();
         }
@@ -415,7 +415,7 @@ QString utils::retrieveDistroNews(bool searchForLatestNews)
   //Either we don't have internet or we weren't asked to retrieve the latest news
   else
   {
-    QFile fileRss(rssPath);
+    //QFile fileRss(rssPath);
 
     //Maybe we have a file in "./.config/octopi/distro_rss.xml"
     if (fileRss.exists())
@@ -648,7 +648,7 @@ void utils::positionInFirstMatch(QTextBrowser *tb, SearchBar *sb)
 /*
  * Every time the user changes the text to search inside a textBrowser...
  */
-void utils::searchBarTextChangedInTextBrowser(QTextBrowser *tb, SearchBar *sb, const QString textToSearch)
+void utils::searchBarTextChangedInTextBrowser(QTextBrowser *tb, SearchBar *sb, const QString &textToSearch)
 {
   QList<QTextEdit::ExtraSelection> extraSelections;
 
@@ -676,7 +676,7 @@ void utils::searchBarTextChangedInTextBrowser(QTextBrowser *tb, SearchBar *sb, c
       extra.cursor = tb->textCursor();
       extraSelections.append(extra);
 
-      if (limit > 0 && extraSelections.count() == limit)
+      if (extraSelections.count() == limit)
         break;
     }
 

@@ -31,12 +31,12 @@ class TransactionDialog : public QDialog
   Q_OBJECT
 
 public:
-  TransactionDialog(QWidget * parent);
+  explicit TransactionDialog(QWidget * parent);
   virtual ~TransactionDialog(){}
 
-  void setText(const QString text);
-  void setInformativeText(const QString text);
-  void setDetailedText(const QString detailedtext);
+  void setText(const QString &text);
+  void setInformativeText(const QString &text);
+  void setDetailedText(const QString &detailedtext);
 
   void removeYesButton();
 

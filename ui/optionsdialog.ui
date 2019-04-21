@@ -139,8 +139,8 @@
            <widget class="QCheckBox" name="cbNoEdit">
             <property name="geometry">
              <rect>
-              <x>130</x>
-              <y>90</y>
+              <x>20</x>
+              <y>120</y>
               <width>90</width>
               <height>22</height>
              </rect>
@@ -158,7 +158,7 @@
             <property name="geometry">
              <rect>
               <x>20</x>
-              <y>130</y>
+              <y>150</y>
               <width>571</width>
               <height>23</height>
              </rect>

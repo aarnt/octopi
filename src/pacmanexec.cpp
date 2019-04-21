@@ -199,7 +199,7 @@ bool PacmanExec::splitOutputStrings(QString output)
 /*
  * Processes the output of the 'pacman process' so we can update percentages and messages at real time
  */
-void PacmanExec::parsePacmanProcessOutput(QString output)
+void PacmanExec::parsePacmanProcessOutput(const QString &output)
 {
   m_parsingAPackageChange = false;
 

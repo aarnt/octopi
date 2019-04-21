@@ -100,7 +100,7 @@ void SearchLineEdit::refreshCompleterData()
 
 void SearchLineEdit::resizeEvent(QResizeEvent *event)
 {
-  Q_UNUSED(event);
+  Q_UNUSED(event)
   this->m_SearchButton->move(5, (this->rect().height() - this->m_SearchButton->height()) / 2);
 }
 
@@ -119,12 +119,11 @@ void SearchLineEdit::updateSearchButton(const QString &text)
 }
 
 QString SearchLineEdit::styleSheetForCurrentState()
-{
-  int frameWidth = 1;
+{ 
   QString style;
   style += "QLineEdit {";
 
-  if (/*this->text().isEmpty() && */ (UnixCommand::getLinuxDistro() != ectn_CHAKRA))
+  if (UnixCommand::getLinuxDistro() != ectn_CHAKRA)
   {
     style += "font-family: 'Sans Serif';";
     style += "font-style: italic;";
@@ -138,6 +137,7 @@ QString SearchLineEdit::styleSheetForCurrentState()
 
   if (!WMHelper::isKDERunning()) //UnixCommand::getLinuxDistro() != ectn_CHAKRA)
   {
+    int frameWidth = 1;
     style += "padding-left: 20px;";
     style += QString("padding-right: %1px;").arg(this->m_SearchButton->sizeHint().width() + frameWidth + 1);
     style += "border-width: 3px;";

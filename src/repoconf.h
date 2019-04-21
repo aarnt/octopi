@@ -30,9 +30,9 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 class RepoConf
 {
 private:
-  QList<RepoEntry> entries;
-  QStringList preamble;
-  QString repoConfFilePath;
+  QList<RepoEntry> m_entries;
+  QStringList m_preamble;
+  QString m_repoConfFilePath;
 
   static QString commentString;
   static QRegularExpression repoMatch;

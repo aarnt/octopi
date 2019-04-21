@@ -45,7 +45,7 @@ private slots:
   void onZoomOut();
 
 public:
-  TermWidget(QWidget *parent);
+  explicit TermWidget(QWidget *parent);
   void execute(QString command);
   void enter();
 

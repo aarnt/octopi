@@ -766,7 +766,7 @@ void Terminal::runCommandInTerminalAsNormalUser(const QStringList &commandList)
     if (m_selectedTerminal == ctn_QTERMWIDGET)
     {
       m_process->close();
-      QString cmd = UnixCommand::getShell() + " -c \"" + ftemp->fileName() + "\"";
+      cmd = UnixCommand::getShell() + " -c \"" + ftemp->fileName() + "\"";
       emit commandToExecInQTermWidget(cmd);
     }
     else if (m_selectedTerminal == ctn_RXVT_TERMINAL)

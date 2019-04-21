@@ -433,7 +433,7 @@ void OptionsDialog::initSynchronizationTab()
   {
     spinOnceEvery->setValue(5);
   }
-  else if (syncDbInterval != -1)
+  else
   {
     spinOnceEvery->setValue(syncDbInterval);
     useSyncDbInterval = true;
@@ -443,7 +443,7 @@ void OptionsDialog::initSynchronizationTab()
   {
     spinOnceADayAt->setValue(0);
   }
-  else if (syncDbHour != -1)
+  else
   {
     spinOnceADayAt->setValue(syncDbHour);
     useSyncDbHour = true;

@@ -35,16 +35,16 @@ QString RepoConf::commentString = "";
 QRegularExpression RepoConf::repoMatch     = QRegularExpression();
 QRegularExpression RepoConf::detailMatch   = QRegularExpression();
 
-RepoConf::RepoConf()
+RepoConf::RepoConf():
+  m_repoConfFilePath("/etc/pacman.conf")
 {
-  repoConfFilePath = "/etc/pacman.conf";
   repoMatch = QRegularExpression("^\\[(?!(options|repo-name|\\[|\\s))");
   detailMatch = QRegularExpression("^(Server|Include)\\s*=\\s*.+");
   RepoEntry::nameFilter = QRegularExpression("(\\s+|\\[|\\])");
   commentString = "#";
   RepoEntry::repoFormat = "[%repo%]";
 
-  loadConf( repoConfFilePath );
+  loadConf( m_repoConfFilePath );
 }
 
 bool RepoConf::isEmpty(QString line)
@@ -81,7 +81,7 @@ bool RepoConf::loadConf( const QString &eFile )
 
   RepoEntry::commentString = RepoConf::commentString;
 
-  entries.clear();
+  m_entries.clear();
 
   QStringList comments;
   while( !confFileStream.atEnd() ) {
@@ -107,7 +107,7 @@ bool RepoConf::loadConf( const QString &eFile )
       comments << line;
     else if( preamble ) {
       if( isEmpty(line) || !commented ) {
-        this->preamble << comments << line;
+        this->m_preamble << comments << line;
         comments.clear();
       } else if( commented )
         comments << line;
@@ -122,15 +122,15 @@ bool RepoConf::loadConf( const QString &eFile )
 
 void RepoConf::addEntry( const RepoEntry & entry )
 {
-  entries.push_back( entry );
+  m_entries.push_back( entry );
 }
 
 QStringList RepoConf::getRepos(){
   QStringList res;
 
-  for (int c=0; c<entries.count(); c++){
-    if (entries.at(c).isActive())
-      res.append(entries.at(c).getName());
+  for (int c=0; c<m_entries.count(); c++){
+    if (m_entries.at(c).isActive())
+      res.append(m_entries.at(c).getName());
   }
 
   return res;

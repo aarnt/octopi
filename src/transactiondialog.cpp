@@ -61,17 +61,17 @@ TransactionDialog::TransactionDialog(QWidget* parent) :
   }
 }
 
-void TransactionDialog::setText(const QString text)
+void TransactionDialog::setText(const QString &text)
 {
   ui->text->setText(text);
 }
 
-void TransactionDialog::setInformativeText(const QString text)
+void TransactionDialog::setInformativeText(const QString &text)
 {
   ui->informativeText->setText(text);
 }
 
-void TransactionDialog::setDetailedText(const QString detailedtext)
+void TransactionDialog::setDetailedText(const QString &detailedtext)
 {
   ui->detailedText->setText(detailedtext);
 
