@@ -223,13 +223,13 @@ int SettingsManager::getPackageRepositoryColumnWidth()
 bool SettingsManager::getUseDefaultAppIcon()
 {
   if (!instance()->getSYSsettings()->contains(ctn_KEY_USE_DEFAULT_APP_ICON)){
-    instance()->getSYSsettings()->setValue(ctn_KEY_USE_DEFAULT_APP_ICON, 1);
+    instance()->getSYSsettings()->setValue(ctn_KEY_USE_DEFAULT_APP_ICON, true);
     return true;
   }
   else
   {
     SettingsManager p_instance;
-    return (p_instance.getSYSsettings()->value( ctn_KEY_USE_DEFAULT_APP_ICON, false).toInt() == 1);
+    return (p_instance.getSYSsettings()->value( ctn_KEY_USE_DEFAULT_APP_ICON, true) == true);
   }
 }
 
@@ -388,6 +388,12 @@ bool SettingsManager::getSearchOutdatedAURPackages()
   return (p_instance.getSYSsettings()->value( ctn_KEY_SEARCH_OUTDATED_AUR_PACKAGES, 0)).toBool();
 }
 
+bool SettingsManager::getUseAlternateRowColor()
+{
+  SettingsManager p_instance;
+  return (p_instance.getSYSsettings()->value( ctn_KEY_USE_ALTERNATE_ROW_COLOR, 0)).toBool();
+}
+
 int SettingsManager::getConsoleFontSize()
 {
   SettingsManager p_instance;
@@ -531,10 +537,10 @@ void SettingsManager::setPanelOrganizing(int newValue){
 
 void SettingsManager::setUseDefaultAppIcon(bool newValue)
 {
-  int v=0;
-  if (newValue) v=1;
+  //int v=0;
+  //if (newValue) v=1;
 
-  instance()->getSYSsettings()->setValue( ctn_KEY_USE_DEFAULT_APP_ICON, v);
+  instance()->getSYSsettings()->setValue( ctn_KEY_USE_DEFAULT_APP_ICON, newValue);
   instance()->getSYSsettings()->sync();
 }
 
@@ -664,6 +670,12 @@ void SettingsManager::setAurNoEditParam(bool newValue)
 void SettingsManager::setSearchOutdatedAURPackages(bool newValue)
 {
   instance()->getSYSsettings()->setValue(ctn_KEY_SEARCH_OUTDATED_AUR_PACKAGES, newValue);
+  instance()->getSYSsettings()->sync();
+}
+
+void SettingsManager::setUseAlternateRowColor(bool newValue)
+{
+  instance()->getSYSsettings()->setValue(ctn_KEY_USE_ALTERNATE_ROW_COLOR, newValue);
   instance()->getSYSsettings()->sync();
 }
 

@@ -62,6 +62,7 @@ const QString ctn_KEY_AUR_TOOL("Aur_Tool_Name");
 const QString ctn_KEY_AUR_NO_CONFIRM_PARAM("Aur_No_Confirm_Param");
 const QString ctn_KEY_AUR_NO_EDIT_PARAM("Aur_No_Edit_Param");
 const QString ctn_KEY_SEARCH_OUTDATED_AUR_PACKAGES("Search_Outdated_AUR_Packages");
+const QString ctn_KEY_USE_ALTERNATE_ROW_COLOR("Use_Alternate_Row_Color");
 const QString ctn_KEY_CONSOLE_SIZE("Console_Font_Size");
 const QString ctn_KEY_BACKEND("Backend");
 const QString ctn_KEY_CURRENT_TAB_INDEX("Current_Tab_Index");

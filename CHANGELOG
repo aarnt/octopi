@@ -8,6 +8,7 @@
   Added support for sudo (and NOPASSWD) executing thru new octopi-helper subproject.
   Added option to exit Octopi while a transaction is already running.
   Added support for GNOME file manager/editor.
+  Added option for changing use of alternating row colors in package list.
   Reworked AUR tab in Options dialog.
   BugFix: Changed 'Sync database' to 'Check updates' command.
   BugFix: Always do a "pacman -Syu" in System Upgrade.

@@ -31,7 +31,7 @@
      <item>
       <widget class="QTabWidget" name="tabWidget">
        <property name="currentIndex">
-        <number>5</number>
+        <number>0</number>
        </property>
        <widget class="QWidget" name="tabGeneral">
         <attribute name="title">
@@ -61,6 +61,19 @@
          </property>
          <property name="text">
           <string>Show stop transaction button at statusbar</string>
+         </property>
+        </widget>
+        <widget class="QCheckBox" name="cbUseAlternateRowColor">
+         <property name="geometry">
+          <rect>
+           <x>20</x>
+           <y>90</y>
+           <width>611</width>
+           <height>23</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Use alternate row color in package list</string>
          </property>
         </widget>
        </widget>

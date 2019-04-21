@@ -224,6 +224,7 @@ void OptionsDialog::initGeneralTab()
 {
   cbShowPackageNumbersOutput->setChecked(SettingsManager::getShowPackageNumbersOutput());
   cbShowStopTransaction->setChecked(SettingsManager::getShowStopTransaction());
+  cbUseAlternateRowColor->setChecked(SettingsManager::getUseAlternateRowColor());
 }
 
 /*
@@ -534,6 +535,11 @@ void OptionsDialog::accept(){
   if (cbShowStopTransaction->isChecked() != SettingsManager::getShowStopTransaction())
   {
     SettingsManager::setShowStopTransaction(cbShowStopTransaction->isChecked());
+  }
+  if (cbUseAlternateRowColor->isChecked() != SettingsManager::getUseAlternateRowColor())
+  {
+    SettingsManager::setUseAlternateRowColor(cbUseAlternateRowColor->isChecked());
+    emit alternateRowColorsChanged();
   }
 
   //Set AUR Tool...

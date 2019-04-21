@@ -167,7 +167,7 @@ void SearchLineEdit::setFoundStyle(){
     style += "border-width: 3px;";
     style += "border-image: url(:/resources/images/esf-border.png) 3 3 3 3 stretch;";
     style += "color: black; ";
-    style += "background-color: rgb(255, 255, 200);";
+    style += "background-color: rgb(255, 255, 255);";
     style += "border-color: rgb(206, 204, 197);}";
     setStyleSheet(style);
   }

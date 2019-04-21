@@ -76,6 +76,7 @@ class SettingsManager
     static bool getAurNoConfirmParam();
     static bool getAurNoEditParam();
     static bool getSearchOutdatedAURPackages();
+    static bool getUseAlternateRowColor();
 
     static int getConsoleFontSize();
     static QString readSUToolValue();
@@ -145,6 +146,7 @@ class SettingsManager
     static void setAurNoConfirmParam(bool newValue);
     static void setAurNoEditParam(bool newValue);
     static void setSearchOutdatedAURPackages(bool newValue);
+    static void setUseAlternateRowColor(bool newValue);
     static void setSUTool(const QString& newValue);
     static void setInstantSearchSelected(bool newValue);
     static void setConsoleFontSize(int newValue);

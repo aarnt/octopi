@@ -39,7 +39,7 @@ PackageTreeView::PackageTreeView(QWidget *parent):QTreeView(parent)
  */
 void PackageTreeView::init()
 {
-  setAlternatingRowColors(true);
+  setAlternatingRowColors(SettingsManager::getUseAlternateRowColor());
   setItemDelegate(new TreeViewPackagesItemDelegate(this));
   setContextMenuPolicy(Qt::CustomContextMenu);
   setSelectionMode(QAbstractItemView::ExtendedSelection);

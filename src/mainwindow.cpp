@@ -275,6 +275,11 @@ void MainWindow::onOptions()
   OptionsDialog *od = new OptionsDialog(this);
   connect(od, SIGNAL(AURToolChanged()), this, SLOT(onAURToolChanged()));
 
+  connect(od, &OptionsDialog::alternateRowColorsChanged, [this] (){
+    this->ui->tvPackages->setAlternatingRowColors(SettingsManager::getUseAlternateRowColor());
+    //metaBuildPackageList();
+  });
+
 #ifdef QTERMWIDGET
   connect(od, SIGNAL(terminalChanged()), this, SLOT(onTerminalChanged()));
 #endif
