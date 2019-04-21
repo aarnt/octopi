@@ -85,6 +85,7 @@ int OctopiHelper::executePkgTransaction()
   //Let's view the contents of the tempFile...
   QFile f(tempFile);
   if (!f.open(QFile::ReadOnly | QFile::Text)) return 1;
+
   QTextStream in(&f);
   QString contents = in.readAll();
   f.close();
@@ -136,22 +137,6 @@ int OctopiHelper::executeSysUpgrade()
   QString command;
   m_process->setProcessEnvironment(getProcessEnvironment());
   command = "/bin/sh -c \"pacman -Syu --noconfirm\"";
-  m_process->start(command);
-  m_process->waitForStarted(-1);
-  m_process->waitForFinished(-1);
-
-  return m_process->exitCode();
-}
-
-/*
- * Executes command "pacman -Syy"
- * pk-octopi-helper -s
- */
-int OctopiHelper::executeSyncDB()
-{
-  QString command;
-  m_process->setProcessEnvironment(getProcessEnvironment());
-  command = "/bin/sh -c \"pacman -Syy\"";
   m_process->start(command);
   m_process->waitForStarted(-1);
   m_process->waitForFinished(-1);

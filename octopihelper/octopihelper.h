@@ -41,8 +41,6 @@ public:
 
   int executePkgTransaction();
   int executeSysUpgrade();
-  int executeSyncDB();
-
   inline int getExitCode() { return m_exitCode; }
 };
 
