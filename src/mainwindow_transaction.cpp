@@ -136,8 +136,8 @@ void MainWindow::insertRemovePackageIntoTransaction(const QString &pkgName)
 
   if (foundItems.size() == 0)
   {
-    int slash = pkgName.indexOf("/");
-    QString pkg = pkgName.mid(slash+1);
+    slash = pkgName.indexOf("/");
+    pkg = pkgName.mid(slash+1);
     QList<QStandardItem *> aux = sim->findItems(pkg, Qt::MatchRecursive | Qt::MatchExactly);
 
     if (aux.count() == 0) siRemoveParent->appendRow(siPackageToRemove);
@@ -256,11 +256,11 @@ QString MainWindow::getTobeInstalledPackages()
 void MainWindow::insertIntoRemovePackage(QModelIndex *indexToInclude)
 {
   qApp->processEvents();
-  bool checkDependencies=false;
   QStringList dependencies;
 
   if (!isAURGroupSelected())
   {
+    bool checkDependencies=false;
     ensureTabVisible(ctn_TABINDEX_TRANSACTION);
     QModelIndexList selectedRows;
 
@@ -897,7 +897,6 @@ void MainWindow::doSystemUpgrade(SystemUpgradeOptions systemUpgradeOptions)
 
   if(!isInternetAvailable()) return;
 
-  int res;
   /*if(systemUpgradeOptions == ectn_SYNC_DATABASE_OPT)
   {
     m_commandQueued = ectn_SYSTEM_UPGRADE;
@@ -998,7 +997,7 @@ void MainWindow::doSystemUpgrade(SystemUpgradeOptions systemUpgradeOptions)
 
     if(result == QDialogButtonBox::Yes || result == QDialogButtonBox::AcceptRole)
     {
-      res = prepareSystemUpgrade();
+      int res = prepareSystemUpgrade();
       if (!res)
       {
         m_systemUpgradeDialog = false;
@@ -1661,7 +1660,7 @@ void MainWindow::toggleTransactionActions(const bool value)
     if (!isAURGroupSelected())
     {
       ui->actionCheckUpdates->setEnabled(true);
-      if (value == true && m_outdatedStringList->count() > 0)
+      if (m_outdatedStringList->count() > 0)
         ui->actionSystemUpgrade->setEnabled(true);
     }
     else

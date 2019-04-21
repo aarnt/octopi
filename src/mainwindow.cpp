@@ -52,6 +52,7 @@
 #include <QFutureWatcher>
 #include <QToolTip>
 #include <QtConcurrent/QtConcurrentRun>
+#include <QRandomGenerator>
 
 /*
  * MainWindow's constructor: basic UI init
@@ -713,7 +714,7 @@ void MainWindow::turnDebugInfoOn()
 /*
  * Gets the first package which has name "pkgName" from default pkg cache
  */
-const PackageRepository::PackageData* MainWindow::getFirstPackageFromRepo(const QString pkgName)
+const PackageRepository::PackageData* MainWindow::getFirstPackageFromRepo(const QString &pkgName)
 {
   return m_packageRepo.getFirstPackageByName(pkgName);
 }
@@ -2015,9 +2016,8 @@ void MainWindow::doSysInfo()
   writeToTabOutput("<br>" + result + "<br>");*/
 
   m_commandExecuting = ectn_NONE;
-  QTime time = QTime::currentTime();
-  qsrand(time.minute() + time.second() + time.msec());
-  QString fileName = homePath + QDir::separator() + "octopi-sysinfo-" + QString::number(qrand()) + ".log";
+  quint32 gen = QRandomGenerator::global()->generate();
+  QString fileName = homePath + QDir::separator() + "octopi-sysinfo-" + QString::number(gen) + ".log";
   QFile *outFile = new QFile(fileName);
   outFile->open(QIODevice::ReadWrite|QIODevice::Text);
   outFile->setPermissions(QFile::Permissions(QFile::ExeOwner|QFile::ReadOwner));

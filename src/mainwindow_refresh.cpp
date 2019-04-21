@@ -70,11 +70,6 @@ void MainWindow::refreshAppIcon()
  */
 void MainWindow::refreshMenuTools()
 {
-  static bool connectorPlv=false;
-  static bool connectorRepo=false;
-  static bool connectorCleaner=false;
-  static bool connectorSysInfo=false;
-
   if (UnixCommand::hasTheExecutable("mirror-check"))
   {
     ui->menuTools->menuAction()->setVisible(true);
@@ -87,6 +82,8 @@ void MainWindow::refreshMenuTools()
 
   if(UnixCommand::hasTheExecutable("plv"))
   {
+    static bool connectorPlv=false;
+
     ui->menuTools->menuAction()->setVisible(true);
     ui->actionPacmanLogViewer->setVisible(true);
     ui->actionPacmanLogViewer->setIcon(QIcon::fromTheme("plv"));
@@ -102,6 +99,8 @@ void MainWindow::refreshMenuTools()
 
   if(UnixCommand::hasTheExecutable("octopi-repoeditor") && UnixCommand::getLinuxDistro() != ectn_KAOS)
   {
+    static bool connectorRepo=false;
+
     ui->menuTools->menuAction()->setVisible(true);
     ui->actionRepositoryEditor->setVisible(true);
 
@@ -116,6 +115,8 @@ void MainWindow::refreshMenuTools()
 
   if(UnixCommand::hasTheExecutable("octopi-cachecleaner"))
   {
+    static bool connectorCleaner=false;
+
     ui->menuTools->menuAction()->setVisible(true);
     ui->actionCacheCleaner->setVisible(true);
 
@@ -131,6 +132,8 @@ void MainWindow::refreshMenuTools()
   ui->menuTools->menuAction()->setVisible(true);
   if (ui->menuTools->actions().indexOf(m_actionSysInfo) == -1)
   {
+    static bool connectorSysInfo=false;
+
     ui->menuTools->addSeparator();
     m_actionSysInfo->setText("SysInfo...");
     ui->menuTools->addAction(m_actionSysInfo);
@@ -336,7 +339,7 @@ void MainWindow::positionInPkgListSearchByFile()
 /*
  * Populates the list of available packages from the given groupName
  */
-void MainWindow::buildPackagesFromGroupList(const QString group)
+void MainWindow::buildPackagesFromGroupList(const QString &group)
 {
   CPUIntensiveComputing cic;
   const QList<QString>*const list = m_listOfPackagesFromGroup.get();
@@ -1459,8 +1462,8 @@ void MainWindow::refreshTabFiles(bool clearContents, bool neverQuit)
     }
   }
 
-  QModelIndex item = selectionModel->selectedRows(PackageModel::ctn_PACKAGE_NAME_COLUMN).first();
-  const PackageRepository::PackageData*const package = m_packageModel->getData(item);
+  QModelIndex pkg = selectionModel->selectedRows(PackageModel::ctn_PACKAGE_NAME_COLUMN).first();
+  const PackageRepository::PackageData*const package = m_packageModel->getData(pkg);
 
   if (package == nullptr) {
     assert(false);
@@ -1517,8 +1520,6 @@ void MainWindow::refreshTabFiles(bool clearContents, bool neverQuit)
     fileList = fwPackageContents.result();
 
     QString fullPath;
-    bool isSymLinkToDir = false;
-
     int counter = 0;
     m_progressWidget->setRange(0, fileList.count());
     m_progressWidget->setValue(0);
@@ -1527,7 +1528,7 @@ void MainWindow::refreshTabFiles(bool clearContents, bool neverQuit)
     foreach ( QString file, fileList )
     {
       bool isDir = file.endsWith('/');
-      isSymLinkToDir = false;
+      bool isSymLinkToDir = false;
       QString baseFileName = extractBaseFileName(file);
 
       //Let's test if it is not a symbolic link to a dir

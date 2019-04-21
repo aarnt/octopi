@@ -367,7 +367,7 @@ private slots:
   void tvTransactionRowsInserted(const QModelIndex& parent, int, int);
   void tvTransactionRowsRemoved(const QModelIndex& parent, int, int);
 
-  void buildPackagesFromGroupList(const QString group);
+  void buildPackagesFromGroupList(const QString &group);
   void buildPackageList();
   //void refreshPackageList();
   void metaBuildPackageList();
@@ -467,11 +467,11 @@ private slots:
   //SearchBar methods
   void positionInPkgListSearchByFile();
   void positionInFirstMatch();
-  void searchBarTextChangedInTextBrowser(const QString textToSearch);
+  void searchBarTextChangedInTextBrowser(const QString &textToSearch);
   void searchBarFindNextInTextBrowser();
   void searchBarFindPreviousInTextBrowser();
   void searchBarClosedInTextBrowser();
-  void searchBarTextChangedInTreeView(const QString textToSearch);
+  void searchBarTextChangedInTreeView(const QString &textToSearch);
   void searchBarFindNextInTreeView();
   void searchBarFindPreviousInTreeView();
   void searchBarClosedInTreeView();
@@ -507,13 +507,13 @@ public:
     return w;
   }
 
-  const PackageRepository::PackageData* getFirstPackageFromRepo(const QString pkgName);
+  const PackageRepository::PackageData* getFirstPackageFromRepo(const QString &pkgName);
 
   void turnDebugInfoOn();
   void setCallSystemUpgrade();
   void setCallSystemUpgradeNoConfirm();
   void setRemoveCommand(const QString &removeCommand);
-  void setPackagesToInstallList(QStringList pkgList){ m_packagesToInstallList = pkgList; }
+  void setPackagesToInstallList(const QStringList &pkgList){ m_packagesToInstallList = pkgList; }
   bool isExecutingCommand(){ return m_commandExecuting != ectn_NONE; }
 };
 

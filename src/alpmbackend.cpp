@@ -54,7 +54,6 @@ QStringList AlpmBackend::getPackageList()
 
   // display pkgs information
   alpm_list_t* i;
-  const char* dbname;
   const char* installedVersion;
   const char* repoVersion;
   QString bInstalled;
@@ -67,7 +66,7 @@ QStringList AlpmBackend::getPackageList()
     alpm_pkg_t* pkg = (alpm_pkg_t*) i->data;
     alpm_db_t* db = alpm_pkg_get_db(pkg);
 
-    dbname = alpm_db_get_name(db);
+    const char* dbname = alpm_db_get_name(db);
     if (!strcmp(dbname, "local")) continue;
 
     repoVersion = alpm_pkg_get_version(pkg),
@@ -160,15 +159,14 @@ QStringList AlpmBackend::getForeignList()
   alpm_list_t* founds = alpm_utils_get_foreign_pkgs(alpm_utils);
 
   // display pkgs information
-  alpm_list_t* i;
-  const char* pkgName;
+  alpm_list_t* i;  
   QString version;
   QString line;
 
   for (i = founds; i; i = alpm_list_next(i))
   {
     alpm_pkg_t* pkg = (alpm_pkg_t*) i->data;
-    pkgName = alpm_pkg_get_name(pkg);
+    const char* pkgName = alpm_pkg_get_name(pkg);
     version = alpm_pkg_get_version(pkg);
 
     line = QString(pkgName) + " " + QString(version);
@@ -223,7 +221,6 @@ QString AlpmBackend::getPackageSize(const QString &pkgName)
   AlpmUtils* alpm_utils = alpm_utils_new ("/etc/pacman.conf");
 
   alpm_list_t* i;
-  const char* dbname;
   char size[10];
 
   std::string str = pkgName.toStdString();
@@ -236,7 +233,7 @@ QString AlpmBackend::getPackageSize(const QString &pkgName)
     alpm_pkg_t* pkg = (alpm_pkg_t*) i->data;
     alpm_db_t* db = alpm_pkg_get_db(pkg);
 
-    dbname = alpm_db_get_name(db);
+    const char* dbname = alpm_db_get_name(db);
     if (!strcmp(dbname, "local")) continue;
 
     if (pkg)

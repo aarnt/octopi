@@ -45,8 +45,6 @@ QFile *UnixCommand::m_temporaryFile = 0;
 UnixCommand::UnixCommand(QObject *parent): QObject()
 {
   m_process = new QProcess(parent);
-  //m_process->setInputChannelMode(QProcess::ForwardedInputChannel);
-  //m_process->setProcessChannelMode(QProcess::ForwardedOutputChannel);
   m_terminal = new Terminal(parent, SettingsManager::getTerminal());
 
   QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
@@ -181,11 +179,10 @@ bool UnixCommand::cleanPacmanCache()
 /*
  * Performs a pacman query
  */
-QByteArray UnixCommand::performQuery(const QStringList args)
+QByteArray UnixCommand::performQuery(const QStringList &args)
 {
   QByteArray result("");
   QProcess pacman;
-
   QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
   env.insert("LANG", "C");
   env.insert("LC_MESSAGES", "C");
@@ -784,7 +781,7 @@ QByteArray UnixCommand::getCommandOutput(const QString &pCommand)
 /*
  * Runs a command with a QProcess blocking object and returns its output!
  */
-QByteArray UnixCommand::getCommandOutput(const QString &pCommand, const QString fileName)
+QByteArray UnixCommand::getCommandOutput(const QString &pCommand, const QString &fileName)
 {
   QProcess p;
 
@@ -1080,12 +1077,10 @@ bool UnixCommand::isILoveCandyEnabled()
 
   QString contents = file.readAll();
   int end = contents.indexOf("ILoveCandy");
-  int start=0;
-
   if (end != -1)
   {
     //Does it contains a # before it???
-    start = end;
+    int start = end;
     do{
       start--;
     }while (contents.at(start) != '\n');
@@ -1118,12 +1113,10 @@ QStringList UnixCommand::getFieldFromPacmanConf(const QString &fieldName)
   do
   {
     int end = contents.indexOf(fieldName, from, Qt::CaseInsensitive);
-    int start=0;
-
     if (end != -1)
     {
       //Does it contains a # before it???
-      start = end;
+      int start = end;
       do{
         start--;
       }while (contents.at(start) != '\n');
@@ -1316,7 +1309,6 @@ bool UnixCommand::isPacmanFiveDotOneOrHigher()
 {
   bool res = false;
   QString major, minor;
-  int ma, mi;
 
   //v5.1.0
   QString pacmanVersion = UnixCommand::getPacmanVersion();
@@ -1324,11 +1316,10 @@ bool UnixCommand::isPacmanFiveDotOneOrHigher()
   {
     major = pacmanVersion.at(1);
     minor = pacmanVersion.at(3);
+    int ma = major.toInt();
+    int mi = minor.toInt();
 
-    ma = major.toInt();
-    mi = minor.toInt();
-
-    if (ma != 0 && ma >=5)
+    if (ma >=5)
     {
       if (mi >=1) res = true;
     }

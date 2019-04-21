@@ -23,6 +23,7 @@
 
 #include <QFutureWatcher>
 #include <QtConcurrent/QtConcurrentMap>
+#include <QRandomGenerator>
 
 /*
  * Global functions related to Octopi's multithread code
@@ -252,9 +253,8 @@ void execCommandInAnotherThread(QString cmd)
  */
 QString generateSysInfo(QByteArray contents)
 {
-  QTime time = QTime::currentTime();
-  qsrand(time.minute() + time.second() + time.msec());
-  QFile *tempFile = new QFile(ctn_TEMP_ACTIONS_FILE + QString::number(qrand()));
+  quint32 gen = QRandomGenerator::global()->generate();
+  QFile *tempFile = new QFile(ctn_TEMP_ACTIONS_FILE + QString::number(gen));
   tempFile->open(QIODevice::ReadWrite|QIODevice::Text);
   tempFile->setPermissions(QFile::Permissions(QFile::ExeOwner|QFile::ReadOwner));
   tempFile->write(contents);

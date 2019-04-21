@@ -31,7 +31,7 @@
 /*
  * Every time the user changes the text to search inside a textBrowser...
  */
-void MainWindow::searchBarTextChangedInTextBrowser(const QString textToSearch)
+void MainWindow::searchBarTextChangedInTextBrowser(const QString &textToSearch)
 {
   QTextBrowser *tb = ui->twProperties->currentWidget()->findChild<QTextBrowser*>("textBrowser");
   SearchBar *sb = ui->twProperties->currentWidget()->findChild<SearchBar*>("searchbar");
@@ -88,7 +88,7 @@ void MainWindow::positionInFirstMatch()
 /*
  * Every time the user changes the text to search inside a treeView...
  */
-void MainWindow::searchBarTextChangedInTreeView(const QString textToSearch)
+void MainWindow::searchBarTextChangedInTreeView(const QString &textToSearch)
 {
   m_foundFilesInPkgFileList->clear();
   m_indFoundFilesInPkgFileList = 0;

@@ -115,7 +115,7 @@ public:
 
   const TListOfPackages& getPackageList() const;
   const TListOfPackages& getPackageList(const QString& group) const;
-  PackageData*           getFirstPackageByName(const QString name) const;
+  PackageData*           getFirstPackageByName(const QString &name) const;
 
 private:
   std::vector<IDependency*> m_dependingModels;

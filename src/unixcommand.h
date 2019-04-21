@@ -23,7 +23,7 @@
 
 #include <QObject>
 #include <QProcess>
-#include <QTime>
+#include <QRandomGenerator>
 #include <unistd.h>
 
 #include "package.h"
@@ -47,7 +47,7 @@ private:
   static QString buildOctopiHelperCommand(const QString &pCommand);
 
 public:
-  UnixCommand(QObject *parent);
+  explicit UnixCommand(QObject *parent);
 
   inline QProcess * getProcess(){ return m_process; }
 
@@ -77,7 +77,7 @@ public:
 
   static bool cleanPacmanCache();
 
-  static QByteArray performQuery(const QStringList args);
+  static QByteArray performQuery(const QStringList &args);
   static QByteArray performQuery(const QString &args);
   static QByteArray performAURCommand(const QString &args);
 
@@ -120,10 +120,8 @@ public:
   }
 
   static QFile* getTemporaryFile(){
-    QTime time = QTime::currentTime();
-    qsrand(time.minute() + time.second() + time.msec());
-
-    m_temporaryFile = new QFile(ctn_TEMP_ACTIONS_FILE + QString::number(qrand()));
+    quint32 gen = QRandomGenerator::global()->generate();
+    m_temporaryFile = new QFile(ctn_TEMP_ACTIONS_FILE + QString::number(gen));
     m_temporaryFile->open(QIODevice::ReadWrite|QIODevice::Text);
     m_temporaryFile->setPermissions(QFile::Permissions(QFile::ExeOwner|QFile::ReadOwner));
 
@@ -153,7 +151,7 @@ public:
   static void execCommand(const QString &pCommand);
 
   static QByteArray getCommandOutput(const QString &pCommand);
-  static QByteArray getCommandOutput(const QString &pCommand, const QString fileName);
+  static QByteArray getCommandOutput(const QString &pCommand, const QString &fileName);
 
   void executeCommand(const QString &pCommand, Language lang=ectn_LANG_ENGLISH);
   void executeCommandAsNormalUser(const QString &pCommand);
@@ -173,7 +171,6 @@ signals:
   void readyReadStandardOutput();
   void finished ( int, QProcess::ExitStatus );
   void readyReadStandardError();
-
   void commandToExecInQTermWidget(QString);
 
   //ProcessWrapper signals

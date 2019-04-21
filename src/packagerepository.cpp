@@ -258,7 +258,7 @@ const QList<PackageRepository::PackageData*>& PackageRepository::getPackageList(
   return m_listOfPackages;
 }
 
-PackageRepository::PackageData* PackageRepository::getFirstPackageByName(const QString name) const
+PackageRepository::PackageData* PackageRepository::getFirstPackageByName(const QString &name) const
 {
   for (TListOfPackages::const_iterator it = m_listOfPackages.begin(); it != m_listOfPackages.end(); ++it) {
     if ((*it)->name == name)

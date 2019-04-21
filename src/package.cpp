@@ -48,10 +48,9 @@ QString Package::getBaseName( const QString& p )
 	QString aux(p);
 	int numberOfSegments = p.count('-')+1;
 	int nameSegment = numberOfSegments-3;
-	int a;
 
 	for (int i=1; i<= nameSegment; i++){
-		a=aux.indexOf("-");
+    int a=aux.indexOf("-");
 		packageBaseName += aux.left(a);
 		if (i<nameSegment) packageBaseName += "-";
 		aux = aux.mid(a+1);
@@ -131,15 +130,15 @@ QString Package::kbytesToSize( float Bytes )
   QString res;
 
   if( Bytes >= gb )
-    res = res.sprintf("%.2f GiB", (float)Bytes/gb);
+    res = res.asprintf("%.2f GiB", (float)Bytes/gb);
   else if( Bytes >= mb && Bytes < gb )
-    res = res.sprintf("%.2f MiB", (float)Bytes/mb);
+    res = res.asprintf("%.2f MiB", (float)Bytes/mb);
   else if( Bytes >= kb && Bytes < mb )
-    res = res.sprintf("%.2f KiB", (float)Bytes/kb);
+    res = res.asprintf("%.2f KiB", (float)Bytes/kb);
   else if ( Bytes < kb)
-    res = res.sprintf("%.2f Bytes", Bytes);
+    res = res.asprintf("%.2f Bytes", Bytes);
   else
-    res = res.sprintf("%.2f Bytes", Bytes);
+    res = res.asprintf("%.2f Bytes", Bytes);
 
   return res;
 }
@@ -153,11 +152,10 @@ QString Package::makeAnchorOfOptionalDep(const QString &optionalDeps)
   QString newDep;
   QString name;
   QStringList ldeps = optionalDeps.split("<br>", QString::SkipEmptyParts);
-  int colon;
 
   foreach(QString dep, ldeps)
   {
-    colon = dep.indexOf(":");
+    int colon = dep.indexOf(":");
     if (colon != -1)
     {
       name = dep.left(colon).trimmed();
@@ -570,7 +568,7 @@ QList<PackageListData> * Package::getPackageList(const QString &packageName, con
   //community/libfm 1.1.0-4 (lxde) [installed: 1.1.0-3]
 
   QList<PackageListData> * res = new QList<PackageListData>();
-  bool hasOutdatedPackages = checkUpdatesOutdatedPackages->count() > 0;
+  //bool hasOutdatedPackages = checkUpdatesOutdatedPackages->count() > 0;
 
   if (SettingsManager::hasPacmanBackend())
   {
@@ -661,6 +659,7 @@ QList<PackageListData> * Package::getPackageList(const QString &packageName, con
     double pkgDownSize=0;
     QStringList pkgList = AlpmBackend::getPackageList();
     bool ok;
+    bool hasOutdatedPackages = checkUpdatesOutdatedPackages->count() > 0;
 
     pkgDescription = "";
     foreach(QString packageTuple, pkgList)
@@ -1108,11 +1107,11 @@ QList<PackageListData> *Package::getYayPackageList(const QStringList &packageTup
 QString Package::extractFieldFromInfo(const QString &field, const QString &pkgInfo)
 {
   int fieldPos = pkgInfo.indexOf(field);
-  int fieldEnd, fieldEnd2;
   QString aux;
 
   if (fieldPos > 0)
   {
+    int fieldEnd;
     if(field == "Optional Deps")
     {
       fieldPos = pkgInfo.indexOf(":", fieldPos+1);
@@ -1120,7 +1119,7 @@ QString Package::extractFieldFromInfo(const QString &field, const QString &pkgIn
       aux = pkgInfo.mid(fieldPos);
 
       fieldEnd = aux.indexOf("Conflicts With");
-      fieldEnd2 = aux.indexOf("Required By");
+      int fieldEnd2 = aux.indexOf("Required By");
 
       if(fieldEnd > fieldEnd2 && fieldEnd2 != -1) fieldEnd = fieldEnd2;
 
