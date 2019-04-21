@@ -1616,7 +1616,12 @@ void MainWindow::openTerminal()
   QString dir = getSelectedDirectory();
   if (!dir.isEmpty())
   {
-    WMHelper::openTerminal(dir);
+    if (SettingsManager::getTerminal() == ctn_QTERMWIDGET)
+    {
+      m_console->execute("cd " + dir);
+      ensureTabVisible(ctn_TABINDEX_TERMINAL);
+    }
+    else WMHelper::openTerminal(dir);
   }
 }
 

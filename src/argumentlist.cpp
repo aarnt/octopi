@@ -17,7 +17,7 @@ void ArgumentList::argsToStringlist(int argc, char * argv []) {
     }
 }
 
-bool ArgumentList::getSwitch (QString option) {
+bool ArgumentList::getSwitch (const QString &option) {
     QMutableStringListIterator itr(*this);
     while (itr.hasNext()) {
         if (option == itr.next()) {
@@ -28,7 +28,7 @@ bool ArgumentList::getSwitch (QString option) {
     return false;
 }
 
-QString ArgumentList::getSwitchArg(QString option, QString defaultValue) {
+QString ArgumentList::getSwitchArg(const QString &option, const QString &defaultValue) {
     if (isEmpty())
         return defaultValue;
     QMutableStringListIterator itr(*this);

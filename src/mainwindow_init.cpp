@@ -608,7 +608,7 @@ void MainWindow::initTabInfo(){
 void MainWindow::initTabTerminal()
 {
   QWidget *tabTerminal = new QWidget(this);
-  QGridLayout *gridLayoutX = new QGridLayout ( tabTerminal );
+  QGridLayout *gridLayoutX = new QGridLayout(tabTerminal);
   gridLayoutX->setSpacing ( 0 );
   gridLayoutX->setMargin ( 0 );
 

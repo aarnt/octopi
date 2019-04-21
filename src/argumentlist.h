@@ -60,7 +60,7 @@ class ArgumentList : public QStringList {
         argsToStringlist(argc, argv);
     }
 
-    ArgumentList(const QStringList& argumentList): 
+    ArgumentList(const QStringList& argumentList):
        QStringList(argumentList) {}
 
 
@@ -69,7 +69,7 @@ class ArgumentList : public QStringList {
       @param option the switch to search for
       @return true if the switch was found
       */
-    bool getSwitch(QString option);
+    bool getSwitch(const QString &option);
 
     /**
     finds/removes a switch <b>and its accompanying argument</b>
@@ -80,8 +80,8 @@ class ArgumentList : public QStringList {
     @return the argument following option, or defaultValue if the option
     is not found.
     */
-    QString getSwitchArg(QString option, 
-                         QString defaultRetVal=QString());
+    QString getSwitchArg(const QString &option,
+                         const QString &defaultRetVal=QString());
   private:
     /**
     (Re)loads argument lists into this object. This function is private because
