@@ -91,9 +91,9 @@ class SettingsManager
     static void setKeepNumUninstalledPackages(int newValue);
 
     //Notifier related
-    static int getSyncDbHour();
-    static int getSyncDbInterval();
-    static QDateTime getLastSyncDbTime();
+    static int getCheckUpdatesHour();
+    static int getCheckUpdatesInterval();
+    static QDateTime getLastCheckUpdatesTime();
     static bool getSkipMirrorCheckAtStartup();
     static bool getShowGroupsPanel();
 
@@ -128,9 +128,9 @@ class SettingsManager
     static void setOptionalDepsWindowSize(QByteArray newValue);
     static void setSplitterHorizontalState(QByteArray newValue);
 
-    static void setSyncDbHour(int newValue);
-    static void setSyncDbInterval(int newValue);
-    static void setLastSyncDbTime(QDateTime newValue);
+    static void setCheckUpdatesHour(int newValue);
+    static void setCheckUpdatesInterval(int newValue);
+    static void setLastCheckUpdatesTime(QDateTime newValue);
 
     static void setTerminal(const QString& newValue);
     static void setPackageIconColumnWidth(int newValue);

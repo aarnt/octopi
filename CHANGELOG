@@ -12,6 +12,7 @@
   BugFix: Changed 'Sync database' to 'Check updates' command.
   BugFix: Always do a "pacman -Syu" in System Upgrade.
   BugFix: Notifier now uses "checkupdates" instead "pacman -Sy[y]".
+  BugFix: Make "Open terminal here" option work with qtermwidget.
   BugFix: Added support for symbolic lynks in "open file".
   BugFix: Pkg build date obeys Locale datetime format.
   BugFix: SysInfo no longer pushes the collected logs to a remote paste service. It saves them locally.

@@ -51,7 +51,7 @@ private:
   void initBackendTab();
   void initIconTab();
   void initSUToolTab();
-  void initSynchronizationTab();
+  void initUpdatesTab();
   void initTerminalTab();
   void removeTabByName(const QString &tabName);
 

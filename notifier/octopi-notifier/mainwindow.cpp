@@ -20,7 +20,6 @@
 
 #include "mainwindow.h"
 #include "outputdialog.h"
-//#include "../pacmanhelper/pacmanhelperclient.h"
 #include "../../src/strconstants.h"
 #include "../../src/uihelper.h"
 #include "../../src/package.h"
@@ -55,6 +54,9 @@ MainWindow::MainWindow(QWidget *parent) :
   m_transactionDialog = nullptr;
   m_debugInfo = false;
   m_optionsDialog = nullptr;
+  m_numberOfCheckUpdatesPackages = 0;
+  m_checkUpdatesNameNewVersion=new QHash<QString, QString>();
+
   m_pacmanDatabaseSystemWatcher =
             new QFileSystemWatcher(QStringList() << ctn_PACMAN_DATABASE_DIR, this);
 
@@ -92,11 +94,11 @@ void MainWindow::initActions()
   m_actionOptions->setText(StrConstants::getOptions());
   connect(m_actionOptions, SIGNAL(triggered()), this, SLOT(showOptionsDialog()));
 
-  m_actionSyncDatabase = new QAction(this);
-  m_actionSyncDatabase->setIconVisibleInMenu(true);
-  m_actionSyncDatabase->setText(StrConstants::getSyncDatabase());
-  m_actionSyncDatabase->setIcon(IconHelper::getIconSyncDatabase());
-  connect(m_actionSyncDatabase, SIGNAL(triggered()), this, SLOT(syncDatabase()));
+  m_actionCheckUpdates = new QAction(this);
+  m_actionCheckUpdates->setIconVisibleInMenu(true);
+  m_actionCheckUpdates->setText(StrConstants::getCheckUpdates());
+  m_actionCheckUpdates->setIcon(IconHelper::getIconCheckUpdates());
+  connect(m_actionCheckUpdates, SIGNAL(triggered()), this, SLOT(checkUpdates()));
 
   m_actionSystemUpgrade = new QAction(this);
   m_actionSystemUpgrade->setIconVisibleInMenu(true);
@@ -143,7 +145,7 @@ void MainWindow::initSystemTrayIcon()
   if (UnixCommand::hasTheExecutable("octopi"))
     m_systemTrayIconMenu->addAction(m_actionOctopi);
 
-  m_systemTrayIconMenu->addAction(m_actionSyncDatabase);
+  m_systemTrayIconMenu->addAction(m_actionCheckUpdates);
   m_systemTrayIconMenu->addAction(m_actionAURUpgrade);
   m_systemTrayIconMenu->addAction(m_actionSystemUpgrade);
   m_systemTrayIconMenu->addSeparator();
@@ -163,11 +165,10 @@ void MainWindow::initSystemTrayIcon()
             this, SLOT( execSystemTrayActivated ( QSystemTrayIcon::ActivationReason ) ) );
 #endif
 
-  m_process = new QProcess(this);
-  connect (m_process, SIGNAL(finished(int, QProcess::ExitStatus)), this, SLOT(afterCheckUpdates(int, QProcess::ExitStatus)));
+  m_checkUpdatesProcess = new QProcess(this);
 
-  //m_pacmanHelperClient = new PacmanHelperClient("org.octopi.pacmanhelper", "/", QDBusConnection::systemBus(), 0);
-  //connect(m_pacmanHelperClient, SIGNAL(syncdbcompleted()), this, SLOT(afterPacmanHelperSyncDatabase()));
+  connect(m_checkUpdatesProcess, SIGNAL(readyReadStandardOutput()), this, SLOT(readCheckUpdatesProcessOutput()));
+  connect(m_checkUpdatesProcess, SIGNAL(finished(int, QProcess::ExitStatus)), this, SLOT(afterCheckUpdates(int, QProcess::ExitStatus)));
 
   m_pacmanHelperTimer = new QTimer();
   m_pacmanHelperTimer->setInterval(1000);
@@ -177,7 +178,7 @@ void MainWindow::initSystemTrayIcon()
 }
 
 /*
- * Whenever this timer ticks, we need to call the PacmanHelper DBus interface to sync Pacman's dbs
+ * Whenever this timer ticks, we need to call the PacmanHelper DBus interface to check package updates
  */
 void MainWindow::pacmanHelperTimerTimeout()
 {
@@ -201,57 +202,80 @@ void MainWindow::pacmanHelperTimerTimeout()
     firstTime=false;
   }
 
-  //Is it time to syncdb again?
-  QDateTime lastCheckTime = SettingsManager::getLastSyncDbTime();
-  int syncDbInterval = SettingsManager::getSyncDbInterval();
-  QDateTime now = QDateTime::currentDateTime();
-  bool syncTime = false;
-  int syncHour = SettingsManager::getSyncDbHour();
+  //Is it time to check updates again?
+  QDateTime lastCheckTime = SettingsManager::getLastCheckUpdatesTime();
+  int checkUpdatesInterval = SettingsManager::getCheckUpdatesInterval();
+  QDateTime now = QDateTime::currentDateTime();  
+  int checkUpdatesHour = SettingsManager::getCheckUpdatesHour();
 
   //User did not set the check interval, so we assume it's once a day
-  if (syncDbInterval == -1)
+  if (checkUpdatesInterval == -1)
   {
-    if (syncHour >= 0) //Once a day at a certain time?
-    {
-      if (m_debugInfo)
-        qDebug() << "SyncDb is scheduled once a day, at " << syncHour << " hours";
+    bool checkUpdatesTime = false;
 
-      if (lastCheckTime.daysTo(now) >= 1 && now.time().hour() == syncHour)
+    if (checkUpdatesHour >= 0) //Once a day at a certain time?
+    {      
+      if (m_debugInfo)
+        qDebug() << "CheckUpdates is scheduled once a day, at " << checkUpdatesHour << " hours";
+
+      if (lastCheckTime.daysTo(now) >= 1 && now.time().hour() == checkUpdatesHour)
       {
-        syncTime = true;
+        checkUpdatesTime = true;
       }
     }
     else
     {
       if (m_debugInfo)
-        qDebug() << "SyncDb is scheduled once a day";
+        qDebug() << "CheckUpdates is scheduled once a day";
     }
 
-    if ((syncHour == -1 && (
+    if ((checkUpdatesHour == -1 && (
            lastCheckTime.isNull() ||
-           lastCheckTime.daysTo(now) >= 1)) || (syncTime))
+           lastCheckTime.daysTo(now) >= 1)) || (checkUpdatesTime))
     {
-      syncDatabase(ectn_auto_sync);
+      checkUpdates(ectn_AUTO_CHECK);
       //Then we set new LastCheckTime...
-      SettingsManager::setLastSyncDbTime(now);
+      SettingsManager::setLastCheckUpdatesTime(now);
     }
   }
-  else if (syncDbInterval != -2) //Because if it's "-2" user does NOT want any database sync!
+  else if (checkUpdatesInterval != -2) //Because if it's "-2" user does NOT want any checkupdates!
   {
-    if (lastCheckTime.isNull() || now.addSecs(-(syncDbInterval * 60)) >= lastCheckTime)
+    if (lastCheckTime.isNull() || now.addSecs(-(checkUpdatesInterval * 60)) >= lastCheckTime)
     {
-      syncDatabase(ectn_auto_sync);
+      checkUpdates(ectn_AUTO_CHECK);
       //Then we set new LastCheckTime...
-      SettingsManager::setLastSyncDbTime(now);
+      SettingsManager::setLastCheckUpdatesTime(now);
     }
     else
     {
       if (m_debugInfo)
-        qDebug() << "SyncDb is scheduled once every " << syncDbInterval << " minutes.";
+        qDebug() << "CheckUpdates is scheduled once every " << checkUpdatesInterval << " minutes.";
     }
 
     m_pacmanHelperTimer->stop();
     m_pacmanHelperTimer->start();
+  }
+}
+
+/*
+ * Whenever "checkupdates" command produces its list...
+ */
+void MainWindow::readCheckUpdatesProcessOutput()
+{
+  QString output = m_checkUpdatesProcess->readAllStandardOutput();
+
+  if (!output.isEmpty())
+  {
+    //checkupdates outputs outdated packages like this: "apr 1.6.5-1 -> 1.7.0-1"
+    QStringList lines = output.split("\n", QString::SkipEmptyParts);
+
+    foreach(QString line, lines)
+    {
+      QStringList aux = line.split(" ", QString::SkipEmptyParts);
+
+      m_checkUpdatesStringList.append(aux.at(0));
+      m_checkUpdatesNameNewVersion->insert(aux.at(0), aux.at(3));
+    }
   }
 }
 
@@ -360,17 +384,32 @@ void MainWindow::doSystemUpgrade()
   QList<PackageListData> * targets = Package::getTargetUpgradeList();
 
   //There are no new updates to install!
-  if (targets->count() == 0 && m_outdatedStringList->count() == 0)
+  if (targets->count() == 0 && m_numberOfOutdatedPackages == 0)
   {
     return;
   }
-  else if (targets->count() == 0 && m_outdatedStringList->count() > 0)
+  else if (targets->count() == 0 && m_checkUpdatesStringList.count() == 0)
   {
     return;
   }
 
   QString list;
   double totalDownloadSize = 0;
+
+  if (m_checkUpdatesStringList.count() > m_outdatedStringList->count())
+  {
+    foreach(QString name, m_checkUpdatesStringList)
+    {
+      PackageListData aux;
+      /*QString size;
+      if (package)
+      {
+        size = size.number(package->downloadSize, 'f', 0);
+      }*/
+      aux = PackageListData(name, m_checkUpdatesNameNewVersion->value(name), "0");
+      targets->append(aux);
+    }
+  }
 
   foreach(PackageListData target, *targets)
   {
@@ -508,14 +547,14 @@ void MainWindow::doSystemUpgradeFinished()
 void MainWindow::toggleEnableInterface(bool state)
 {
   m_actionOctopi->setEnabled(state);
-  m_actionSyncDatabase->setEnabled(state);
+  m_actionCheckUpdates->setEnabled(state);
   m_actionOptions->setEnabled(state);
   m_actionSystemUpgrade->setEnabled(state);
   m_actionExit->setEnabled(state);
 }
 
 /*
- * Called right after the PacmanHelper syncdb() method has finished!
+ * Called right after "checkupdates" has finished!
  */
 void MainWindow::afterCheckUpdates(int exitCode, QProcess::ExitStatus)
 {
@@ -525,7 +564,7 @@ void MainWindow::afterCheckUpdates(int exitCode, QProcess::ExitStatus)
 
   if (exitCode != 0) return;
 
-  SettingsManager::setLastSyncDbTime(QDateTime::currentDateTime());
+  SettingsManager::setLastCheckUpdatesTime(QDateTime::currentDateTime());
 
 #ifndef KSTATUS
   m_systemTrayIcon->setContextMenu(m_systemTrayIconMenu);
@@ -533,6 +572,8 @@ void MainWindow::afterCheckUpdates(int exitCode, QProcess::ExitStatus)
 #endif
 
   m_commandExecuting = ectn_NONE;
+
+  m_numberOfCheckUpdatesPackages = m_checkUpdatesStringList.count();
 
   int numberOfOutdatedPackages = m_numberOfOutdatedPackages;
   refreshAppIcon();
@@ -627,15 +668,15 @@ bool MainWindow::isInternetAvailable()
 }
 
 /*
- * Called every time user selects "Sync databases..." menu option
+ * Called every time user selects "Check updates..." menu option
  */
-void MainWindow::syncDatabase(SyncDatabase syncDB)
+void MainWindow::checkUpdates(CheckUpdate check)
 {
-  if (syncDB == ectn_auto_sync)
+  if (check == ectn_AUTO_CHECK)
   {
     if (!UnixCommand::hasInternetConnection()) return;
   }
-  else if (syncDB == ectn_user_sync)
+  else if (check == ectn_USER_CHECK)
   {
     if (!isInternetAvailable()) return;
   }
@@ -645,17 +686,17 @@ void MainWindow::syncDatabase(SyncDatabase syncDB)
 
   QTime now;
   if (m_debugInfo)
-    qDebug() << now.currentTime().toString("HH:mm").toLatin1().data() <<  ": At syncDatabase()...";
+    qDebug() << now.currentTime().toString("HH:mm").toLatin1().data() <<  ": At checkUpdates()...";
   toggleEnableInterface(false);
   m_icon = IconHelper::getIconOctopiBusy();
 
 #ifdef KSTATUS
   m_systemTrayIcon->setIconByPixmap(m_icon);
   m_systemTrayIcon->setToolTipIconByPixmap(m_icon);
-  m_systemTrayIcon->setToolTipSubTitle(StrConstants::getSyncDatabases());
+  m_systemTrayIcon->setToolTipSubTitle(StrConstants::getCheckingForUpdates());
 #else
   m_systemTrayIcon->setIcon(m_icon);
-  m_systemTrayIcon->setToolTip(StrConstants::getSyncDatabases());
+  m_systemTrayIcon->setToolTip(StrConstants::getCheckingForUpdates());
 #endif
 
   qApp->processEvents();
@@ -666,9 +707,9 @@ void MainWindow::syncDatabase(SyncDatabase syncDB)
   m_systemTrayIcon->setContextMenu(0);
 #endif
 
-  m_commandExecuting = ectn_SYNC_DATABASE;
+  m_commandExecuting = ectn_CHECK_UPDATES;
 
-  //Let's synchronize kcp database too...
+  //Let's synchronize kcp database...
   if (UnixCommand::getLinuxDistro() == ectn_KAOS && UnixCommand::hasTheExecutable("kcp"))
   {
     if (m_debugInfo)
@@ -676,10 +717,7 @@ void MainWindow::syncDatabase(SyncDatabase syncDB)
     UnixCommand::execCommandAsNormalUser("kcp -u");
   }
 
-  m_process->start(ctn_CHECKUPDATES_BINARY);
-
-  //m_pacmanHelperClient->syncdb();
-  //SettingsManager::setLastSyncDbTime(QDateTime::currentDateTime());
+  m_checkUpdatesProcess->start(ctn_CHECKUPDATES_BINARY);
 }
 
 /*
@@ -746,6 +784,9 @@ void MainWindow::refreshAppIcon()
   m_numberOfOutdatedPackages = m_outdatedStringList->count();
   m_numberOfOutdatedAURPackages = m_outdatedAURStringList->count();
 
+  if (m_numberOfOutdatedPackages < m_numberOfCheckUpdatesPackages)
+    m_numberOfOutdatedPackages=m_numberOfCheckUpdatesPackages;
+
   if (m_numberOfOutdatedPackages == 0 && m_numberOfOutdatedAURPackages == 0)
   {
     #ifdef KSTATUS
@@ -799,7 +840,7 @@ void MainWindow::refreshAppIcon()
     }
   }
 
-  if(m_outdatedStringList->count() > 0) //RED ICON!
+  if(m_numberOfOutdatedPackages > 0) //RED ICON!
   {
     if(m_commandExecuting == ectn_NONE)
     {
@@ -906,10 +947,10 @@ void MainWindow::execSystemTrayActivated(QSystemTrayIcon::ActivationReason ar)
  */
 void MainWindow::execSystemTrayKF5()
 {
-  static bool hidingOctopi = true;
-
   if (UnixCommand::isAppRunning("octopi", true))
   {
+    static bool hidingOctopi = true;
+
     if (!hidingOctopi)
       runOctopi(ectn_NORMAL_EXEC_OPT);
     else
@@ -949,14 +990,14 @@ void MainWindow::runOctopi(ExecOpt execOptions)
     }
   }
   else if (execOptions == ectn_SYSUPGRADE_EXEC_OPT &&
-      !UnixCommand::isAppRunning("octopi", true) && m_outdatedStringList->count() > 0)
+      !UnixCommand::isAppRunning("octopi", true) && (m_outdatedStringList->count() > 0 || m_checkUpdatesStringList.count() > 0))
   {
     m_actionSystemUpgrade->setEnabled(false);
     doSystemUpgrade();
     m_actionSystemUpgrade->setEnabled(true);
   }
   else if (execOptions == ectn_SYSUPGRADE_EXEC_OPT &&
-      UnixCommand::isAppRunning("octopi", true) && m_outdatedStringList->count() > 0)
+      UnixCommand::isAppRunning("octopi", true) && (m_outdatedStringList->count() > 0 || m_checkUpdatesStringList.count() > 0))
   {
     if (!WMHelper::isKDERunning() && (!WMHelper::isLXQTRunning()))
     {

@@ -31,7 +31,7 @@
      <item>
       <widget class="QTabWidget" name="tabWidget">
        <property name="currentIndex">
-        <number>1</number>
+        <number>5</number>
        </property>
        <widget class="QWidget" name="tabGeneral">
         <attribute name="title">
@@ -655,7 +655,7 @@
        </widget>
        <widget class="QWidget" name="tabSync">
         <attribute name="title">
-         <string>Synchronization</string>
+         <string>Updates</string>
         </attribute>
         <layout class="QGridLayout" name="gridLayout_6">
          <item row="2" column="0">
@@ -673,7 +673,7 @@
             <property name="geometry">
              <rect>
               <x>10</x>
-              <y>20</y>
+              <y>30</y>
               <width>371</width>
               <height>21</height>
              </rect>
@@ -692,7 +692,7 @@
             <property name="geometry">
              <rect>
               <x>10</x>
-              <y>50</y>
+              <y>60</y>
               <width>481</width>
               <height>64</height>
              </rect>
@@ -775,7 +775,7 @@
             <property name="geometry">
              <rect>
               <x>10</x>
-              <y>120</y>
+              <y>130</y>
               <width>481</width>
               <height>64</height>
              </rect>
@@ -861,7 +861,7 @@
             <property name="geometry">
              <rect>
               <x>10</x>
-              <y>190</y>
+              <y>200</y>
               <width>371</width>
               <height>21</height>
              </rect>
@@ -895,7 +895,7 @@
           </spacer>
          </item>
          <item row="1" column="0">
-          <widget class="QLabel" name="lblSync">
+          <widget class="QLabel" name="lblCheck">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
              <horstretch>0</horstretch>
@@ -906,7 +906,7 @@
             <string notr="true"/>
            </property>
            <property name="text">
-            <string notr="true">lblSync</string>
+            <string notr="true">lblCheck</string>
            </property>
           </widget>
          </item>

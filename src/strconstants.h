@@ -25,7 +25,6 @@
 
 class StrConstants{
 public:
-
   static QString getApplicationName();
   static QString getApplicationVersion();
   static QString getQtVersion();
@@ -111,6 +110,7 @@ public:
   static QString getRemovingPacmanTransactionLockFile();
   static QString getSyncing();
   static QString getPressAnyKey();
+  static QString getCheckUpdates();
   static QString getCheckingForUpdates();
   static QString getSyncMirror();
   static QString getSyncDatabase();

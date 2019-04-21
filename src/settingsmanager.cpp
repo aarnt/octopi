@@ -86,23 +86,23 @@ void SettingsManager::setKeepNumUninstalledPackages(int newValue)
 
 //Notifier related ------------------------------------------------------------------
 
-int SettingsManager::getSyncDbHour()
+int SettingsManager::getCheckUpdatesHour()
 {
   SettingsManager p_instance;
-  int h = p_instance.getSYSsettings()->value(ctn_KEY_SYNC_DB_HOUR, -1).toInt();
+  int h = p_instance.getSYSsettings()->value(ctn_KEY_CHECKUPDATES_HOUR, -1).toInt();
 
   if (h != -1)
   {
     if (h < 0)
     {
       h = 0;
-      p_instance.getSYSsettings()->setValue(ctn_KEY_SYNC_DB_HOUR, h);
+      p_instance.getSYSsettings()->setValue(ctn_KEY_CHECKUPDATES_HOUR, h);
       p_instance.getSYSsettings()->sync();
     }
     else if (h > 23)
     {
       h = 23;
-      p_instance.getSYSsettings()->setValue(ctn_KEY_SYNC_DB_HOUR, h);
+      p_instance.getSYSsettings()->setValue(ctn_KEY_CHECKUPDATES_HOUR, h);
       p_instance.getSYSsettings()->sync();
     }
   }
@@ -111,56 +111,56 @@ int SettingsManager::getSyncDbHour()
 }
 
 //The syncDb interval is in MINUTES and it cannot be less than 5!
-int SettingsManager::getSyncDbInterval()
+int SettingsManager::getCheckUpdatesInterval()
 {
   const int ctn_MAX_MIN = 44640;
   SettingsManager p_instance;
-  int n = p_instance.getSYSsettings()->value(ctn_KEY_SYNC_DB_INTERVAL, -1).toInt();
+  int n = p_instance.getSYSsettings()->value(ctn_KEY_CHECKUPDATES_INTERVAL, -1).toInt();
 
   if ((n != -1 && n != -2) && (n < 5))
   {
     n = 5;
-    p_instance.getSYSsettings()->setValue(ctn_KEY_SYNC_DB_INTERVAL, n);
+    p_instance.getSYSsettings()->setValue(ctn_KEY_CHECKUPDATES_INTERVAL, n);
     p_instance.getSYSsettings()->sync();
   }
   else if (n > ctn_MAX_MIN)
   {
     n = ctn_MAX_MIN; //This is 1 month (31 days), the maximum allowed!
-    p_instance.getSYSsettings()->setValue(ctn_KEY_SYNC_DB_INTERVAL, n);
+    p_instance.getSYSsettings()->setValue(ctn_KEY_CHECKUPDATES_INTERVAL, n);
     p_instance.getSYSsettings()->sync();
   }
 
   return n;
 }
 
-QDateTime SettingsManager::getLastSyncDbTime()
+QDateTime SettingsManager::getLastCheckUpdatesTime()
 {
-  if (!instance()->getSYSsettings()->contains(ctn_KEY_LAST_SYNC_DB_TIME))
+  if (!instance()->getSYSsettings()->contains(ctn_KEY_LAST_CHECKUPDATES_TIME))
   {
     return QDateTime();
   }
   else
   {
     SettingsManager p_instance;
-    return (p_instance.getSYSsettings()->value( ctn_KEY_LAST_SYNC_DB_TIME, 0)).toDateTime();
+    return (p_instance.getSYSsettings()->value( ctn_KEY_LAST_CHECKUPDATES_TIME, 0)).toDateTime();
   }
 }
 
-void SettingsManager::setSyncDbHour(int newValue)
+void SettingsManager::setCheckUpdatesHour(int newValue)
 {
-  instance()->getSYSsettings()->setValue(ctn_KEY_SYNC_DB_HOUR, newValue);
+  instance()->getSYSsettings()->setValue(ctn_KEY_CHECKUPDATES_HOUR, newValue);
   instance()->getSYSsettings()->sync();
 }
 
-void SettingsManager::setSyncDbInterval(int newValue)
+void SettingsManager::setCheckUpdatesInterval(int newValue)
 {
-  instance()->getSYSsettings()->setValue(ctn_KEY_SYNC_DB_INTERVAL, newValue);
+  instance()->getSYSsettings()->setValue(ctn_KEY_CHECKUPDATES_INTERVAL, newValue);
   instance()->getSYSsettings()->sync();
 }
 
-void SettingsManager::setLastSyncDbTime(QDateTime newValue)
+void SettingsManager::setLastCheckUpdatesTime(QDateTime newValue)
 {
-  instance()->getSYSsettings()->setValue(ctn_KEY_LAST_SYNC_DB_TIME, newValue);
+  instance()->getSYSsettings()->setValue(ctn_KEY_LAST_CHECKUPDATES_TIME, newValue);
   instance()->getSYSsettings()->sync();
 }
 //Notifier related ------------------------------------------------------------------

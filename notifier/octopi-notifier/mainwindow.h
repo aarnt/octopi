@@ -34,11 +34,10 @@ class QIcon;
 class QMenu;
 class QAction;
 class QFileSystemWatcher;
-//class PacmanHelperClient;
 class OptionsDialog;
 class TransactionDialog;
 
-enum SyncDatabase { ectn_auto_sync, ectn_user_sync};
+enum CheckUpdate { ectn_AUTO_CHECK, ectn_USER_CHECK};
 
 #ifdef KSTATUS
   class KStatusNotifierItem;
@@ -49,20 +48,19 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 public:
-
   explicit MainWindow(QWidget *parent = 0);
   virtual ~MainWindow();
   inline void turnDebugInfoOn() { m_debugInfo = true;}
 
 private slots:
-
   void pacmanHelperTimerTimeout();
+  void readCheckUpdatesProcessOutput();
   void afterCheckUpdates(int exitCode, QProcess::ExitStatus);
 
   void execSystemTrayActivated(QSystemTrayIcon::ActivationReason);
   void execSystemTrayKF5();
 
-  void syncDatabase(SyncDatabase syncDB = ectn_user_sync);
+  void checkUpdates(CheckUpdate check = ectn_USER_CHECK);
   void refreshAppIcon();
   void runOctopi(ExecOpt execOptions = ectn_SYSUPGRADE_EXEC_OPT);
   void runOctopiSysUpgrade();  
@@ -80,42 +78,40 @@ private slots:
   void showOptionsDialog();
 
 private:
-
-  TransactionDialog *m_transactionDialog;
-  OptionsDialog *m_optionsDialog;
+  bool m_debugInfo;
+  int m_numberOfCheckUpdatesPackages;
   int m_numberOfOutdatedPackages;
   int m_numberOfOutdatedAURPackages;
   bool m_systemUpgradeDialog;
   CommandExecuting m_commandExecuting;
   UnixCommand *m_unixCommand;
-
-  QProcess *m_process;
+  PacmanExec *m_pacmanExec;
+  QProcess *m_checkUpdatesProcess;
+  TransactionDialog *m_transactionDialog;
+  OptionsDialog *m_optionsDialog;
 
   QAction *m_actionOctopi;
   QAction *m_actionOptions;
-  QAction *m_actionSyncDatabase;
+  QAction *m_actionCheckUpdates;
   QAction *m_actionSystemUpgrade;
   QAction *m_actionAURUpgrade;
   QAction *m_actionAbout;
   QAction *m_actionExit;
 
-  PacmanExec *m_pacmanExec;
-
   QIcon m_icon;
+  QHash<QString, QString> *m_checkUpdatesNameNewVersion;
+  QStringList m_checkUpdatesStringList;
   QStringList *m_outdatedStringList;
   QStringList *m_outdatedAURStringList;
   QTimer *m_pacmanHelperTimer;
-  bool m_debugInfo;
+  QMenu *m_systemTrayIconMenu;
+  QFileSystemWatcher *m_pacmanDatabaseSystemWatcher;
 
 #ifdef KSTATUS
   KStatusNotifierItem * m_systemTrayIcon;
 #else
   QSystemTrayIcon *m_systemTrayIcon;
 #endif
-
-  QMenu *m_systemTrayIconMenu;
-  QFileSystemWatcher *m_pacmanDatabaseSystemWatcher;
-  //PacmanHelperClient *m_pacmanHelperClient;
 
   bool _isSUAvailable();
   bool isInternetAvailable();

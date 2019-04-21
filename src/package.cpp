@@ -278,7 +278,6 @@ QSet<QString>* Package::getUnrequiredPackageList()
  */
 QStringList *Package::getOutdatedStringList()
 {
-  //static int counter=1;
   QStringList * res = new QStringList();
 
   if (SettingsManager::hasPacmanBackend())
@@ -314,12 +313,10 @@ QStringList *Package::getOutdatedStringList()
       res->append(packageTuple);
     }
 
-    //if (counter == 1) res->append("pacman");
     res->sort();
   }
 #endif
 
-  //counter++;
   return res;
 }
 
@@ -568,7 +565,6 @@ QList<PackageListData> * Package::getPackageList(const QString &packageName, con
   //community/libfm 1.1.0-4 (lxde) [installed: 1.1.0-3]
 
   QList<PackageListData> * res = new QList<PackageListData>();
-  //bool hasOutdatedPackages = checkUpdatesOutdatedPackages->count() > 0;
 
   if (SettingsManager::hasPacmanBackend())
   {
@@ -1327,7 +1323,6 @@ double Package::getInstalledSize(const QString &pkgInfo)
   QString aux = extractFieldFromInfo("Installed Size", pkgInfo);
   bool isKByte = (aux.indexOf("KiB", Qt::CaseInsensitive) != -1);
   bool isMega = (aux.indexOf("MiB", Qt::CaseInsensitive) != -1);
-  //bool isByte = (aux.indexOf(" B", Qt::CaseInsensitive) != -1);
 
   aux = aux.section(QRegularExpression("\\s"), 0, 0);
 
@@ -1625,7 +1620,6 @@ PackageInfoData Package::getKCPInformation(const QString &pkgName)
 {
   PackageInfoData res;
   QString pkgInfo = UnixCommand::getKCPPackageInformation(pkgName);
-
   pkgInfo.remove("\033[0;1m");
   pkgInfo.remove("\033[0m");
   pkgInfo.remove("[1;33m");

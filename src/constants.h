@@ -92,9 +92,9 @@ const QString ctn_KEY_INSTANT_SEARCH("Instant_Search");
 const QString ctn_AUTOMATIC("automatic");
 
 //SettingsManager - Notifier related
-const QString ctn_KEY_LAST_SYNC_DB_TIME("LastSyncDbTime");
-const QString ctn_KEY_SYNC_DB_INTERVAL("SyncDbInterval");
-const QString ctn_KEY_SYNC_DB_HOUR("SyncDbHour");
+const QString ctn_KEY_LAST_CHECKUPDATES_TIME("LastCheckUpdatesTime");
+const QString ctn_KEY_CHECKUPDATES_INTERVAL("CheckUpdatesInterval");
+const QString ctn_KEY_CHECKUPDATES_HOUR("CheckUpdatesHour");
 
 //SettingsManager - CacheCleaner related
 const QString ctn_KEY_CACHE_CLEANER_WINDOW_SIZE("Cache_Cleaner_Window_Size");

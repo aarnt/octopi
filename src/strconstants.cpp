@@ -436,6 +436,11 @@ QString StrConstants::getPressAnyKey(){
   return QObject::tr("Press any key to continue...");
 }
 
+QString StrConstants::getCheckUpdates()
+{
+  return QObject::tr("Check updates");
+}
+
 QString StrConstants::getCheckingForUpdates()
 {
   return QObject::tr("Checking for updates...");
@@ -685,7 +690,7 @@ QString StrConstants::getNotifierSetupDialogTitle(){
 }
 
 QString StrConstants::getNotiferSetupDialogGroupBoxTitle(){
-  return QObject::tr("Sync database interval");
+  return QObject::tr("Check for package updates interval");
 }
 
 QString StrConstants::getOnceADay(){

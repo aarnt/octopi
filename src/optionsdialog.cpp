@@ -197,12 +197,12 @@ void OptionsDialog::initialize(){
 
   initIconTab();
   initSUToolTab();
-  initSynchronizationTab();
+  initUpdatesTab();
   initTerminalTab();
 
   if (m_calledByOctopi)
   {
-    removeTabByName(tr("Synchronization"));
+    removeTabByName(tr("Updates"));
   }
   else
   {
@@ -403,9 +403,9 @@ void OptionsDialog::initSUToolTab()
   twSUTool->sortByColumn(0, Qt::AscendingOrder);
 }
 
-void OptionsDialog::initSynchronizationTab()
+void OptionsDialog::initUpdatesTab()
 {
-  lblSync->setText(StrConstants::getNotiferSetupDialogGroupBoxTitle());
+  lblCheck->setText(StrConstants::getNotiferSetupDialogGroupBoxTitle());
   rbOnceADay->setText(StrConstants::getOnceADay());
   rbOnceADayAt->setText(StrConstants::getOnceADayAt());
   lblOnceADayAt->setText(StrConstants::getOnceADayAtDesc());
@@ -418,42 +418,42 @@ void OptionsDialog::initSynchronizationTab()
   connect(rbOnceEvery, SIGNAL(clicked()), this, SLOT(selectOnceEvery()));
 
   //First, which radio button do we select?
-  int syncDbInterval = SettingsManager::getSyncDbInterval();
-  int syncDbHour = SettingsManager::getSyncDbHour();
-  bool useSyncDbInterval = false;
-  bool useSyncDbHour = false;
+  int checkUpdatesInterval = SettingsManager::getCheckUpdatesInterval();
+  int checkUpdatesHour = SettingsManager::getCheckUpdatesHour();
+  bool useCheckUpdatesInterval = false;
+  bool useCheckUpdatesHour = false;
 
-  //User does NOT want to sync databases!
-  if (syncDbInterval == -2)
+  //User does NOT want to check for updates!
+  if (checkUpdatesInterval == -2)
   {
     selectNever();
     return;
   }
-  else if (syncDbInterval == -1)
+  else if (checkUpdatesInterval == -1)
   {
     spinOnceEvery->setValue(5);
   }
   else
   {
-    spinOnceEvery->setValue(syncDbInterval);
-    useSyncDbInterval = true;
+    spinOnceEvery->setValue(checkUpdatesInterval);
+    useCheckUpdatesInterval = true;
   }
 
-  if (syncDbHour == -1)
+  if (checkUpdatesHour == -1)
   {
     spinOnceADayAt->setValue(0);
   }
   else
   {
-    spinOnceADayAt->setValue(syncDbHour);
-    useSyncDbHour = true;
+    spinOnceADayAt->setValue(checkUpdatesHour);
+    useCheckUpdatesHour = true;
   }
 
-  if (useSyncDbInterval)
+  if (useCheckUpdatesInterval)
   {
     selectOnceEvery();
   }
-  else if (useSyncDbHour)
+  else if (useCheckUpdatesHour)
   {
     selectOnceADayAt();
   }
@@ -683,24 +683,24 @@ void OptionsDialog::accept(){
 
   if (!m_calledByOctopi)
   {
-    //Set synchronization...
+    //Set Check Updates interval...
     if (rbOnceADay->isChecked())
     {
-      SettingsManager::setSyncDbHour(-1);
-      SettingsManager::setSyncDbInterval(-1);
+      SettingsManager::setCheckUpdatesHour(-1);
+      SettingsManager::setCheckUpdatesInterval(-1);
     }
     else if (rbOnceADayAt->isChecked())
     {
-      SettingsManager::setSyncDbHour(spinOnceADayAt->value());
-      SettingsManager::setSyncDbInterval(-1);
+      SettingsManager::setCheckUpdatesHour(spinOnceADayAt->value());
+      SettingsManager::setCheckUpdatesInterval(-1);
     }
     else if (rbOnceEvery->isChecked())
     {
-      SettingsManager::setSyncDbInterval(spinOnceEvery->value());
+      SettingsManager::setCheckUpdatesInterval(spinOnceEvery->value());
     }
     else if (rbNever->isChecked())
     {
-      SettingsManager::setSyncDbInterval(-2);
+      SettingsManager::setCheckUpdatesInterval(-2);
     }
   }
 
