@@ -906,7 +906,7 @@ void MainWindow::doSystemUpgrade(SystemUpgradeOptions systemUpgradeOptions)
   {
     //Shows a dialog indicating the targets needed to be retrieved and asks for the user's permission.
     QList<PackageListData> * targets = new QList<PackageListData>();
-    if (m_checkupdatesStringList->count() == 0)
+    if (m_checkupdatesStringList->count() == 0 || (m_checkupdatesStringList->count() == m_outdatedStringList->count()))
       targets = Package::getTargetUpgradeList();
 
     //There are no new updates to install!
@@ -2058,8 +2058,13 @@ void MainWindow::outputText(const QString &output)
   QTextBrowser *text = ui->twProperties->widget(ctn_TABINDEX_OUTPUT)->findChild<QTextBrowser*>("textBrowser");
   if (text)
   {
-    ensureTabVisible(ctn_TABINDEX_OUTPUT);
-    positionTextEditCursorAtEnd();
+    if ((m_commandExecuting == ectn_RUN_IN_TERMINAL && SettingsManager::getTerminal() != ctn_QTERMWIDGET) ||
+        (m_commandExecuting != ectn_RUN_IN_TERMINAL && SettingsManager::getTerminal() == ctn_QTERMWIDGET))
+    {
+      ensureTabVisible(ctn_TABINDEX_OUTPUT);
+      positionTextEditCursorAtEnd();
+    }
+
     text->insertHtml(output);
     text->ensureCursorVisible();
   }

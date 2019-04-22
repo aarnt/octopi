@@ -355,6 +355,7 @@ QStringList *Package::getOutdatedAURStringList()
       getForeignRepositoryToolName() != ctn_PACAUR_TOOL &&
       getForeignRepositoryToolName() != ctn_TRIZEN_TOOL &&
       getForeignRepositoryToolName() != ctn_PIKAUR_TOOL &&
+      getForeignRepositoryToolName() != ctn_YAY_TOOL &&
       getForeignRepositoryToolName() != ctn_KCP_TOOL)
     return res;
 
@@ -371,6 +372,7 @@ QStringList *Package::getOutdatedAURStringList()
       if (getForeignRepositoryToolName() == ctn_YAOURT_TOOL ||
           getForeignRepositoryToolName() == ctn_TRIZEN_TOOL ||
           getForeignRepositoryToolName() == ctn_PIKAUR_TOOL ||
+          getForeignRepositoryToolName() == ctn_YAY_TOOL ||
           getForeignRepositoryToolName() == ctn_KCP_TOOL)
       {
         QString pkgName;
@@ -1722,7 +1724,8 @@ QHash<QString, QString> Package::getAUROutdatedPackagesNameVersion()
       getForeignRepositoryToolName() != ctn_PACAUR_TOOL &&
       getForeignRepositoryToolName() != ctn_TRIZEN_TOOL &&
       getForeignRepositoryToolName() != ctn_PIKAUR_TOOL &&
-      getForeignRepositoryToolName() != ctn_KCP_TOOL))
+      getForeignRepositoryToolName() != ctn_KCP_TOOL &&
+      getForeignRepositoryToolName() != ctn_YAY_TOOL))
   {
     return hash;
   }
@@ -1736,6 +1739,7 @@ QHash<QString, QString> Package::getAUROutdatedPackagesNameVersion()
   if ((getForeignRepositoryToolName() == ctn_YAOURT_TOOL) ||
       (getForeignRepositoryToolName() == ctn_TRIZEN_TOOL) ||
       (getForeignRepositoryToolName() == ctn_PIKAUR_TOOL) ||
+      (getForeignRepositoryToolName() == ctn_YAY_TOOL) ||
       (getForeignRepositoryToolName() == ctn_KCP_TOOL))
   {
     foreach (QString line, listOfPkgs)

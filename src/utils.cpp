@@ -144,7 +144,6 @@ void utils::ProcessWrapper::onSingleShot()
             m_pidSH = candidatePid;
             m_pidAUR = candidatePid2;
             m_timer->start();
-
             return;
           }
         }
@@ -159,15 +158,18 @@ void utils::ProcessWrapper::onSingleShot()
         saux = pAux.readAll();
         slist = saux.split("\n", QString::SkipEmptyParts);
 
-        for (int d=1; d<slist.count(); d++)
+        for (int d=slist.count()-1; d<slist.count(); d++)
         {
           int candidatePid2 = slist.at(d).trimmed().toInt();
 
           if (candidatePid < candidatePid2)
-          {
+          {                        
             m_pidSH = candidatePid;
             m_pidAUR = candidatePid2;
             m_timer->start();
+
+            //std::cout << "PID SH: " << m_pidSH << std::endl;
+            //std::cout << "PID AUR: " << m_pidAUR << std::endl;
 
             return;
           }
@@ -186,7 +188,6 @@ void utils::ProcessWrapper::onTimer()
 {
   QProcess proc;
   QString cmd = QString("ps -p %1 %2").arg(m_pidSH).arg(m_pidAUR);
-
   //std::cout << "PIDS: " << cmd.toLatin1().data() << "\n" << std::endl;
 
   proc.start(cmd);
@@ -194,10 +195,10 @@ void utils::ProcessWrapper::onTimer()
 
   //If any of the processes have finished...
   QString out = proc.readAll();
-
   //std::cout << "Output: " << out.toLatin1().data() << "\n" << std::endl;
 
-  if (!out.contains(".qt_temp_", Qt::CaseInsensitive))
+  //if (!out.contains(".qt_temp_", Qt::CaseInsensitive))
+  if (!out.contains(Package::getForeignRepositoryToolName(), Qt::CaseInsensitive))
   {
     emit finishedTerminal(0, QProcess::NormalExit);
     m_timer->stop();

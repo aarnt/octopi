@@ -652,7 +652,7 @@ void MainWindow::onTerminalChanged()
  */
 void MainWindow::onExecCommandInTabTerminal(QString command)
 {
-  ui->twProperties->setCurrentIndex(ctn_TABINDEX_TERMINAL);
+  ensureTabVisible(ctn_TABINDEX_TERMINAL);
 
   disconnect(m_console, SIGNAL(onPressAnyKeyToContinue()), this, SLOT(onPressAnyKeyToContinue()));
   disconnect(m_console, SIGNAL(onCancelControlKey()), this, SLOT(onCancelControlKey()));

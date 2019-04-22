@@ -1001,6 +1001,23 @@ void MainWindow::execContextMenuPackages(QPoint point)
     }
     else if (allInstallable == false && numberOfAUR == numberOfSelPkgs)
     {
+      bool allInstalled=false;
+      foreach(QModelIndex item, selectedRows)
+      {
+        const PackageRepository::PackageData*const package = m_packageModel->getData(item);
+
+        if (package->installed() || package->outdated())
+        {
+          allInstalled = true;
+        }
+        else allInstalled = false;
+      }
+
+      if (allInstalled)
+      {
+        ui->actionInstallAUR->setText(StrConstants::getReinstall());
+      }
+
       menu->addAction(ui->actionInstallAUR); // installs directly
     }
 
