@@ -24,6 +24,15 @@ HEADERS += \
     ../src/argumentlist.h \
     octopihelper.h
 
+# install
+isEmpty(PREFIX) {
+    PREFIX = /usr
+}
+ 
+isEmpty(LIBDIR) {
+    LIBDIR = $$PREFIX/lib
+}
+
 target.path = $$LIBDIR/octopi
 sources.files = $$SOURCES $$HEADERS *.pro
 sources.path = .
