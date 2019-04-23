@@ -427,7 +427,7 @@ void MainWindow::preBuildAURPackageListMeta()
 
   if (m_cic) {
     delete m_cic;
-    m_cic = 0;
+    m_cic = NULL;
   }
 
   if (m_packageModel->getPackageCount() == 0)
@@ -658,19 +658,27 @@ void MainWindow::metaBuildPackageList()
     if(!m_leFilterPackage->text().isEmpty())
     {
       m_toolButtonPacman->hide();
-      disconnect(&g_fwAURMeta, SIGNAL(finished()), this, SLOT(preBuildAURPackageListMeta()));
+      //disconnect(&g_fwAURMeta, SIGNAL(finished()), this, SLOT(preBuildAURPackageListMeta()));
+      disconnect(&g_fwAUR, SIGNAL(finished()), this, SLOT(preBuildAURPackageList()));
 
       QFuture<QList<PackageListData> *> f;
       f = QtConcurrent::run(searchAURPackages, m_leFilterPackage->text());
-      connect(&g_fwAURMeta, SIGNAL(finished()), this, SLOT(preBuildAURPackageListMeta()));
-      g_fwAURMeta.setFuture(f);
+      //connect(&g_fwAURMeta, SIGNAL(finished()), this, SLOT(preBuildAURPackageListMeta()));
+      connect(&g_fwAUR, SIGNAL(finished()), this, SLOT(preBuildAURPackageList()));
+      //g_fwAURMeta.setFuture(f);
+      g_fwAUR.setFuture(f);
     }
     else
     {
       m_listOfAURPackages = new QList<PackageListData>();
       buildAURPackageList();
-      delete m_cic;
-      m_cic = 0;
+
+      if (m_cic)
+      {
+        delete m_cic;
+        m_cic = NULL;
+      }
+
       m_leFilterPackage->setFocus();
     }
   }

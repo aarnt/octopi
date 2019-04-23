@@ -2002,6 +2002,12 @@ void MainWindow::onPressAnyKeyToContinue()
   UnixCommand::removeTemporaryFiles();
   m_console->execute("");
   m_console->setFocus();
+
+  if (m_cic)
+  {
+    delete m_cic;
+    m_cic = NULL;
+  }
 }
 
 /*
