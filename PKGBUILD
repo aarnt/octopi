@@ -25,47 +25,47 @@ prepare() {
 }
          
 build() {
-   cd ${pkgname}-${pkgver}
+   cd "${pkgname}-${pkgver}"
    
-   qmake-qt5 octopi.pro
+   qmake-qt5 PREFIX=/usr QMAKE_CFLAGS="${CFLAGS}" QMAKE_CXXFLAGS="${CXXFLAGS}" QMAKE_LFLAGS="${LDFLAGS}" octopi.pro
    make
    
    cd octopihelper
-   qmake-qt5 QMAKE_CFLAGS_RELEASE="${CFLAGS}" QMAKE_CXXFLAGS_RELEASE="${CXXFLAGS}" QMAKE_LFLAGS_RELEASE="${LDFLAGS}" octopi-helper.pro
+   qmake-qt5 PREFIX=/usr QMAKE_CFLAGS="${CFLAGS}" QMAKE_CXXFLAGS="${CXXFLAGS}" QMAKE_LFLAGS="${LDFLAGS}" octopi-helper.pro
    make
    cd ..
  
    cd notifier/octopi-notifier
-   qmake-qt5 QMAKE_CFLAGS_RELEASE="${CFLAGS}" QMAKE_CXXFLAGS_RELEASE="${CXXFLAGS}" QMAKE_LFLAGS_RELEASE="${LDFLAGS}" octopi-notifier.pro
+   qmake-qt5 PREFIX=/usr QMAKE_CFLAGS="${CFLAGS}" QMAKE_CXXFLAGS="${CXXFLAGS}" QMAKE_LFLAGS="${LDFLAGS}" octopi-notifier.pro
    make
    cd ../..
    
    cd repoeditor
-   qmake-qt5 QMAKE_CFLAGS_RELEASE="${CFLAGS}" QMAKE_CXXFLAGS_RELEASE="${CXXFLAGS}" QMAKE_LFLAGS_RELEASE="${LDFLAGS}" octopi-repoeditor.pro
+   qmake-qt5 PREFIX=/usr QMAKE_CFLAGS="${CFLAGS}" QMAKE_CXXFLAGS="${CXXFLAGS}" QMAKE_LFLAGS="${LDFLAGS}" octopi-repoeditor.pro
    make
    cd ..
    
    cd cachecleaner
-   qmake-qt5 QMAKE_CFLAGS_RELEASE="${CFLAGS}" QMAKE_CXXFLAGS_RELEASE="${CXXFLAGS}" QMAKE_LFLAGS_RELEASE="${LDFLAGS}" octopi-cachecleaner.pro
+   qmake-qt5 PREFIX=/usr QMAKE_CFLAGS="${CFLAGS}" QMAKE_CXXFLAGS="${CXXFLAGS}" QMAKE_LFLAGS="${LDFLAGS}" octopi-cachecleaner.pro
    make
 }
 
 package() {
-   cd ${pkgname}-${pkgver}
-   make INSTALL_ROOT=${pkgdir} install
+   cd "${pkgname}-${pkgver}"
+   make INSTALL_ROOT="${pkgdir}" install
    
    cd octopihelper
-   make INSTALL_ROOT=${pkgdir} install
+   make INSTALL_ROOT="${pkgdir}" install
    cd ..
 
    cd notifier/octopi-notifier
-   make INSTALL_ROOT=${pkgdir} install
+   make INSTALL_ROOT="${pkgdir}" install
    cd ../..
    
    cd repoeditor
-   make INSTALL_ROOT=${pkgdir} install
+   make INSTALL_ROOT="${pkgdir}" install
    cd ..
    
    cd cachecleaner
-   make INSTALL_ROOT=${pkgdir} install
+   make INSTALL_ROOT="${pkgdir}" install
 }
