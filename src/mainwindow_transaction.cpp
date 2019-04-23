@@ -916,7 +916,7 @@ void MainWindow::doSystemUpgrade(SystemUpgradeOptions systemUpgradeOptions)
       writeToTabOutput("<b>" + StrConstants::getNoNewUpdatesAvailable() + "</b><br>");
       return;
     }
-    else if (targets->count() == 0 && m_outdatedStringList->count() > 0)
+    else if (targets->count() < m_outdatedStringList->count())
     {
       //This is a bug and should be shown to the user!
       //This is bug, let us find if "breaks dependency" string is here:
@@ -949,6 +949,7 @@ void MainWindow::doSystemUpgrade(SystemUpgradeOptions systemUpgradeOptions)
       }
       else
       {
+        targets->clear();
         foreach(QString name, *m_checkupdatesStringList)
         {
           PackageListData aux;
