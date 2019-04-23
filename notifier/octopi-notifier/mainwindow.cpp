@@ -400,6 +400,7 @@ void MainWindow::doSystemUpgrade()
 
   if (m_checkUpdatesStringList.count() > m_outdatedStringList->count())
   {
+    targets->clear();
     foreach(QString name, m_checkUpdatesStringList)
     {
       PackageListData aux;
@@ -408,6 +409,7 @@ void MainWindow::doSystemUpgrade()
       {
         size = size.number(package->downloadSize, 'f', 0);
       }*/
+
       aux = PackageListData(name, m_checkUpdatesNameNewVersion->value(name), "0");
       targets->append(aux);
     }
