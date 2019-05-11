@@ -709,7 +709,19 @@ void PacmanExec::onReadOutput()
     if (!output.isEmpty())
     {
       //checkupdates outputs outdated packages like this: "apr 1.6.5-1 -> 1.7.0-1"
-      m_listOfOutatedPackages = output.split("\n");
+      if (m_listOfOutatedPackages.count() == 0)
+        m_listOfOutatedPackages = output.split("\n", QString::SkipEmptyParts);
+      else
+      {
+        //checkupdates returned more than 1 time from the QProcess event, so we have to concatenate the list...
+        QString lastPackage = m_listOfOutatedPackages.last();
+        m_listOfOutatedPackages.removeLast();
+        QStringList newList = output.split("\n", QString::SkipEmptyParts);
+        lastPackage += newList.first();
+        newList.removeFirst();
+        m_listOfOutatedPackages.append(lastPackage);
+        m_listOfOutatedPackages.append(newList);
+      }
     }
 
     output.replace("\n", "<br>");
@@ -843,6 +855,7 @@ void PacmanExec::onFinished(int exitCode, QProcess::ExitStatus es)
 void PacmanExec::doCheckUpdates()
 {
   m_commandExecuting = ectn_CHECK_UPDATES;
+  m_listOfOutatedPackages.clear();
   m_unixCommand->executeCommandAsNormalUser(ctn_CHECKUPDATES_BINARY);
 }
 
