@@ -165,11 +165,6 @@ void MainWindow::initSystemTrayIcon()
             this, SLOT( execSystemTrayActivated ( QSystemTrayIcon::ActivationReason ) ) );
 #endif
 
-  m_checkUpdatesProcess = new QProcess(this);
-
-  connect(m_checkUpdatesProcess, SIGNAL(readyReadStandardOutput()), this, SLOT(readCheckUpdatesProcessOutput()));
-  connect(m_checkUpdatesProcess, SIGNAL(finished(int, QProcess::ExitStatus)), this, SLOT(afterCheckUpdates(int, QProcess::ExitStatus)));
-
   m_pacmanHelperTimer = new QTimer();
   m_pacmanHelperTimer->setInterval(1000);
   m_pacmanHelperTimer->start();
@@ -254,30 +249,6 @@ void MainWindow::pacmanHelperTimerTimeout()
 
     m_pacmanHelperTimer->stop();
     m_pacmanHelperTimer->start();
-  }
-}
-
-/*
- * Whenever "checkupdates" command produces its list...
- */
-void MainWindow::readCheckUpdatesProcessOutput()
-{
-  m_checkUpdatesStringList.clear();
-  m_checkUpdatesNameNewVersion->clear();
-  QString output = m_checkUpdatesProcess->readAllStandardOutput();
-
-  if (!output.isEmpty())
-  {
-    //checkupdates outputs outdated packages like this: "apr 1.6.5-1 -> 1.7.0-1"
-    QStringList lines = output.split("\n", QString::SkipEmptyParts);
-
-    foreach(QString line, lines)
-    {
-      QStringList aux = line.split(" ", QString::SkipEmptyParts);
-
-      m_checkUpdatesStringList.append(aux.at(0));
-      m_checkUpdatesNameNewVersion->insert(aux.at(0), aux.at(3));
-    }
   }
 }
 
@@ -442,7 +413,6 @@ void MainWindow::doSystemUpgrade()
   if (result == QDialogButtonBox::Yes)
   {
     m_commandExecuting = ectn_SYSTEM_UPGRADE;
-
     m_systemUpgradeDialog = false;
     toggleEnableInterface(false);
     m_actionSystemUpgrade->setEnabled(false);
@@ -574,10 +544,21 @@ void MainWindow::afterCheckUpdates(int exitCode, QProcess::ExitStatus)
   m_systemTrayIconMenu->close();
 #endif
 
+  QStringList checkUpdatesList = m_pacmanExec->getOutdatedPackages();
+  m_checkUpdatesStringList.clear();
+  m_checkUpdatesNameNewVersion->clear();
+
   m_commandExecuting = ectn_NONE;
 
-  m_numberOfCheckUpdatesPackages = m_checkUpdatesStringList.count();
+  foreach(QString line, checkUpdatesList)
+  {
+    QStringList aux = line.split(" ", QString::SkipEmptyParts);
 
+    m_checkUpdatesStringList.append(aux.at(0));
+    m_checkUpdatesNameNewVersion->insert(aux.at(0), aux.at(3));
+  }
+
+  m_numberOfCheckUpdatesPackages = m_checkUpdatesStringList.count();
   int numberOfOutdatedPackages = m_numberOfOutdatedPackages;
   refreshAppIcon();
 
@@ -720,7 +701,10 @@ void MainWindow::checkUpdates(CheckUpdate check)
     UnixCommand::execCommandAsNormalUser("kcp -u");
   }
 
-  m_checkUpdatesProcess->start(ctn_CHECKUPDATES_BINARY);
+  m_pacmanExec = new PacmanExec(this);
+  m_commandExecuting = ectn_CHECK_UPDATES;
+  m_pacmanExec->doCheckUpdates();
+  connect(m_pacmanExec, SIGNAL(finished(int, QProcess::ExitStatus)), this, SLOT(afterCheckUpdates(int, QProcess::ExitStatus)));
 }
 
 /*

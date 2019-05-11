@@ -54,7 +54,6 @@ public:
 
 private slots:
   void pacmanHelperTimerTimeout();
-  void readCheckUpdatesProcessOutput();
   void afterCheckUpdates(int exitCode, QProcess::ExitStatus);
 
   void execSystemTrayActivated(QSystemTrayIcon::ActivationReason);
@@ -86,7 +85,6 @@ private:
   CommandExecuting m_commandExecuting;
   UnixCommand *m_unixCommand;
   PacmanExec *m_pacmanExec;
-  QProcess *m_checkUpdatesProcess;
   TransactionDialog *m_transactionDialog;
   OptionsDialog *m_optionsDialog;
 
