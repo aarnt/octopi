@@ -1177,30 +1177,6 @@ void PacmanExec::doSystemUpgradeInTerminal(CommandExecuting additionalCommand)
 }
 
 /*
- * Calls pacman to sync databases and returns output to UI
- */
-/*void PacmanExec::doSyncDatabase()
-{
-  QString command;
-
-  if (isDatabaseLocked())
-  {
-    command += "rm " + ctn_PACMAN_DATABASE_LOCK_FILE + "; ";
-  }
-
-  if (UnixCommand::isRootRunning())
-    command += "pacman -Sy";
-  else
-    command += "pacman -Syy";
-
-  if (UnixCommand::hasTheExecutable("pkgfile") && !UnixCommand::isRootRunning())
-    command += "; pkgfile -u";
-
-  m_commandExecuting = ectn_SYNC_DATABASE;
-  m_unixCommand->executeCommand(command);
-}*/
-
-/*
  * Calls AUR tool to upgrade given packages inside a terminal
  */
 void PacmanExec::doAURUpgrade(const QString &listOfPackages)

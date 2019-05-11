@@ -97,8 +97,6 @@ public:
   void doSystemUpgrade();
   void doSystemUpgradeInTerminal(CommandExecuting additionalCommand = ectn_NONE);
 
-  //void doSyncDatabase();
-
   //AUR
   void doAURUpgrade(const QString &listOfPackages);
   void doAURInstall(const QString &listOfPackages);
