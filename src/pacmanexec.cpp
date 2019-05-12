@@ -715,14 +715,16 @@ void PacmanExec::onReadOutput()
       {
         //checkupdates returned more than 1 time from the QProcess event, so we have to concatenate the list...
         QString lastPackage = m_listOfOutatedPackages.last();
+        QStringList newList = output.split("\n", QString::SkipEmptyParts);
+        QString firstPackage = newList.first();
+        QStringList partsLast = lastPackage.split(" ", QString::SkipEmptyParts);
+        QStringList partsFirst = firstPackage.split(" ", QString::SkipEmptyParts);
 
-        int space = lastPackage.indexOf(" ");
-        if (space == -1)
+        if (partsLast.count()<4 || partsFirst.count()<4)
         {
-          m_listOfOutatedPackages.removeLast();
-          QStringList newList = output.split("\n", QString::SkipEmptyParts);
-          lastPackage += newList.first();
+          m_listOfOutatedPackages.removeLast();          
           newList.removeFirst();
+          lastPackage += firstPackage;
           m_listOfOutatedPackages.append(lastPackage);
           m_listOfOutatedPackages.append(newList);
         }

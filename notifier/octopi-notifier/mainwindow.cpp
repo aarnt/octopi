@@ -441,6 +441,7 @@ void MainWindow::doSystemUpgrade()
                      this, SLOT( doSystemUpgradeFinished() ));
 
     m_commandExecuting = ectn_RUN_SYSTEM_UPGRADE_IN_TERMINAL;
+    m_actionSystemUpgrade->setEnabled(false);
     dlg->show();
     dlg->doSystemUpgradeInTerminal();
   }
@@ -503,12 +504,12 @@ void MainWindow::doSystemUpgradeFinished()
   refreshAppIcon();
 
   //Does it still need to upgrade another packages due to any issues???
-  if (m_outdatedStringList->count() > 0)
+  /*if (m_outdatedStringList->count() > 0)
   {
     m_commandExecuting = ectn_NONE;
     doSystemUpgrade();
     return;
-  }
+  }*/
 
   m_unixCommand->removeTemporaryFile();
   toggleEnableInterface(true);
@@ -727,6 +728,8 @@ void MainWindow::sendNotification(const QString &msg)
  */
 void MainWindow::refreshAppIcon()
 {
+  if (m_commandExecuting != ectn_NONE) return;
+
   if (m_pacmanExec != nullptr)
   {
     delete m_pacmanExec;
@@ -979,9 +982,7 @@ void MainWindow::runOctopi(ExecOpt execOptions)
   else if (execOptions == ectn_SYSUPGRADE_EXEC_OPT &&
       !UnixCommand::isAppRunning("octopi", true) && (m_outdatedStringList->count() > 0 || m_checkUpdatesStringList.count() > 0))
   {
-    m_actionSystemUpgrade->setEnabled(false);
     doSystemUpgrade();
-    m_actionSystemUpgrade->setEnabled(true);
   }
   else if (execOptions == ectn_SYSUPGRADE_EXEC_OPT &&
       UnixCommand::isAppRunning("octopi", true) && (m_outdatedStringList->count() > 0 || m_checkUpdatesStringList.count() > 0))

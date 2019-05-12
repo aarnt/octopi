@@ -415,7 +415,23 @@ void OutputDialog::closeEvent(QCloseEvent *event)
   //We cannot quit while there is a running transaction!
   if(m_upgradeRunning)
   {
-    event->ignore();
+    int res = QMessageBox::question(this, StrConstants::getConfirmation(),
+                          StrConstants::getThereIsARunningTransaction() + "\n" +
+                          StrConstants::getDoYouReallyWantToQuit(),
+                          QMessageBox::Yes | QMessageBox::No,
+                          QMessageBox::No);
+    if (res == QMessageBox::Yes)
+    {
+      stopTransaction();
+      m_upgradeRunning = false;
+      //event->accept();
+      //emit finished(0);
+      reject();
+    }
+    else
+    {
+      event->ignore();
+    }
   }
   else
   {
@@ -435,7 +451,23 @@ void OutputDialog::keyPressEvent(QKeyEvent *ke)
   }
   else if(ke->key() == Qt::Key_Escape)
   {
-    reject();
+    int res = QMessageBox::question(this, StrConstants::getConfirmation(),
+                          StrConstants::getThereIsARunningTransaction() + "\n" +
+                          StrConstants::getDoYouReallyWantToQuit(),
+                          QMessageBox::Yes | QMessageBox::No,
+                          QMessageBox::No);
+    if (res == QMessageBox::Yes)
+    {
+      stopTransaction();
+      m_upgradeRunning = false;
+      //event->accept();
+      //emit finished(0);
+      reject();
+    }
+    else
+    {
+      ke->ignore();
+    }
   }
   else ke->accept();
 }
