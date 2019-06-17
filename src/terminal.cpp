@@ -37,14 +37,10 @@ Terminal::Terminal(QObject *parent, const QString &selectedTerminal) : QObject(p
   m_process = new QProcess(parent);
   m_process->setInputChannelMode(QProcess::ForwardedInputChannel);
   m_process->setProcessChannelMode(QProcess::ForwardedChannels);
-  m_processWrapper = new utils::ProcessWrapper(parent);
 
   //Make the needed signal propagations...
   connect(m_process, SIGNAL(started()), this, SIGNAL(started()));
   connect(m_process, SIGNAL(finished(int,QProcess::ExitStatus)), this, SIGNAL(finished(int,QProcess::ExitStatus)));
-  connect(m_processWrapper, SIGNAL(startedTerminal()), this, SIGNAL(startedTerminal()));
-  connect(m_processWrapper, SIGNAL(finishedTerminal(int,QProcess::ExitStatus)),
-          this, SIGNAL(finishedTerminal(int,QProcess::ExitStatus)));
 
   QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
   env.insert("LANG", "C");
@@ -57,7 +53,6 @@ Terminal::~Terminal()
 {
   m_process->close();
   delete m_process;
-  delete m_processWrapper;
 }
 
 /*
@@ -757,7 +752,6 @@ void Terminal::runCommandInTerminalAsNormalUser(const QStringList &commandList)
     }
     else {
       std::cerr << "ERROR: Octopi found no suitable terminal!" << std::endl;
-      emit finishedTerminal(0, QProcess::CrashExit);
       return;
     }
   }
@@ -810,8 +804,6 @@ void Terminal::runCommandInTerminalAsNormalUser(const QStringList &commandList)
           " -fn \"*-fixed-*-*-*-18-*\" -fg White -bg Black -title xterm -e " + ftemp->fileName();
     }
   }
-
-  m_processWrapper->executeCommand(cmd);
 }
 
 /*

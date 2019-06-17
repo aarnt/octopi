@@ -462,7 +462,9 @@ QByteArray SettingsManager::getCacheCleanerWindowSize()
 }
 
 QString SettingsManager::getTerminal(){
-  if (!instance()->getSYSsettings()->contains(ctn_KEY_TERMINAL))
+  return ctn_QTERMWIDGET;
+
+  /*if (!instance()->getSYSsettings()->contains(ctn_KEY_TERMINAL))
   {
     instance()->getSYSsettings()->setValue(ctn_KEY_TERMINAL, ctn_AUTOMATIC);
     return ctn_AUTOMATIC;
@@ -471,7 +473,7 @@ QString SettingsManager::getTerminal(){
   {
     SettingsManager p_instance;
     return (p_instance.getSYSsettings()->value( ctn_KEY_TERMINAL, ctn_AUTOMATIC)).toString();
-  }
+  }*/
 }
 
 QByteArray SettingsManager::getWindowSize(){

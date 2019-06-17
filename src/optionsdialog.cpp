@@ -198,7 +198,8 @@ void OptionsDialog::initialize(){
   initIconTab();
   initSUToolTab();
   initUpdatesTab();
-  initTerminalTab();
+  //initTerminalTab();
+  removeTabByName(tr("Terminal"));
 
   if (m_calledByOctopi)
   {

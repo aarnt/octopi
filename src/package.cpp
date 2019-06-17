@@ -917,12 +917,32 @@ QList<PackageListData> * Package::getAURPackageList(const QString& searchString)
       }
       else if (packageTuple.indexOf("[installed:") != -1)
       {
-        //This is an outdated installed package
-        pkgStatus = ectn_FOREIGN_OUTDATED;
-
-        int i = packageTuple.indexOf("[installed:");
-        pkgOutVersion = packageTuple.mid(i+11);
+        int i = packageTuple.indexOf(": ");
+        pkgOutVersion = packageTuple.mid(i+2);
         pkgOutVersion = pkgOutVersion.remove(QRegularExpression("\\].*")).trimmed();
+
+        //Compare actual and new version
+        char const * pkgOutVersion_temp = pkgOutVersion.toStdString().c_str();
+        char const * pkgVersion_temp = pkgVersion.toStdString().c_str();
+        int pkgIsUptodate = alpm_pkg_vercmp(pkgOutVersion_temp, pkgVersion_temp);
+        if (pkgIsUptodate == -1)
+        {
+          //This is an outdated installed package
+          pkgStatus = ectn_FOREIGN_OUTDATED;
+        }
+        else
+        {
+          //This is an installed package
+          pkgStatus = ectn_FOREIGN;
+          pkgOutVersion = "";
+        }
+
+        //This is an outdated installed package
+        //pkgStatus = ectn_FOREIGN_OUTDATED;
+
+        //int i = packageTuple.indexOf("[installed:");
+        //pkgOutVersion = packageTuple.mid(i+11);
+        //pkgOutVersion = pkgOutVersion.remove(QRegularExpression("\\].*")).trimmed();
       }
       else
       {

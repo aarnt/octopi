@@ -49,10 +49,10 @@ PacmanExec::PacmanExec(QObject *parent) : QObject(parent)
   QObject::connect(m_unixCommand, SIGNAL( finished ( int, QProcess::ExitStatus )),
                    this, SLOT( onFinished(int, QProcess::ExitStatus)));
 
-  QObject::connect(m_unixCommand, SIGNAL( startedTerminal()), this, SLOT( onStarted()));
+  //QObject::connect(m_unixCommand, SIGNAL( startedTerminal()), this, SLOT( onStarted()));
 
-  QObject::connect(m_unixCommand, SIGNAL( finishedTerminal( int, QProcess::ExitStatus )),
-                   this, SLOT( onFinished(int, QProcess::ExitStatus)));
+  /*QObject::connect(m_unixCommand, SIGNAL( finishedTerminal( int, QProcess::ExitStatus )),
+                   this, SLOT( onFinished(int, QProcess::ExitStatus)));*/
 
   QObject::connect(m_unixCommand, SIGNAL( readyReadStandardOutput()),
                    this, SLOT( onReadOutput()));
@@ -730,7 +730,7 @@ void PacmanExec::onReadOutput()
         }
         else
         {
-          QStringList newList = output.split("\n", QString::SkipEmptyParts);
+          newList = output.split("\n", QString::SkipEmptyParts);
           m_listOfOutatedPackages.append(newList);
         }
       }

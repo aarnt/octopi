@@ -1902,7 +1902,9 @@ void MainWindow::pacmanProcessFinished(int exitCode, QProcess::ExitStatus exitSt
       }
       else if (m_commandExecuting == ectn_SYSTEM_UPGRADE ||
                m_commandExecuting == ectn_RUN_SYSTEM_UPGRADE_IN_TERMINAL)
-      {
+      {        
+        m_checkupdatesStringList->clear();
+        m_checkUpdatesNameNewVersion->clear();
         metaBuildPackageList();
       }
       else if (m_commandExecuting != ectn_MIRROR_CHECK && m_commandExecuting != ectn_CHECK_UPDATES)

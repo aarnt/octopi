@@ -501,6 +501,9 @@ void MainWindow::doAURUpgrade()
 void MainWindow::doSystemUpgradeFinished()
 {
   m_commandExecuting = ectn_NONE;
+  m_checkUpdatesStringList.clear();
+  m_checkUpdatesNameNewVersion->clear();
+  m_numberOfCheckUpdatesPackages=0;
   refreshAppIcon();
 
   //Does it still need to upgrade another packages due to any issues???

@@ -21,8 +21,6 @@
 #ifndef TERMINAL_H
 #define TERMINAL_H
 
-#include "utils.h"
-
 #include <QString>
 #include <QObject>
 #include <QProcess>
@@ -34,7 +32,6 @@ class Terminal : public QObject
 private:
   QString m_selectedTerminal;
   QProcess *m_process;
-  utils::ProcessWrapper *m_processWrapper;
 
 public:
   Terminal(QObject *parent, const QString& selectedTerminal);
@@ -56,9 +53,6 @@ public:
 signals:
   void started();
   void finished(int, QProcess::ExitStatus);
-  void startedTerminal();
-  void finishedTerminal(int, QProcess::ExitStatus);
-
   void commandToExecInQTermWidget(QString);
 };
 
