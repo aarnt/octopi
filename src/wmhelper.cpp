@@ -218,8 +218,7 @@ QString WMHelper::getGKSUCommand(){
  */
 QString WMHelper::getLXQTSUCommand(){
   QString result = ctn_LXQTSU;
-
-  result += " -d "; //+ ctn_ROOT_SH;
+  result += " -d ";
 
   return result;
 }
@@ -230,7 +229,7 @@ QString WMHelper::getLXQTSUCommand(){
 QString WMHelper::getOctopiSudoCommand(){
   QString result = ctn_OCTOPISUDO;
 
-  result += " -d "; //+ ctn_ROOT_SH;
+  result += " -d ";
 
   return result;
 }
