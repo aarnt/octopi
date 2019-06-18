@@ -19,7 +19,7 @@ prepare() {
    cd ${pkgname}-${pkgver}
 
    # enable the kstatus switch, disable if you wish to build without Plasma/knotifications support
-   sed -e "s|DEFINES += ALPM_BACKEND #KSTATUS|DEFINES += ALPM_BACKEND KSTATUS|" -i notifier/octopi-notifier/octopi-notifier.pro
+   sed -e "s|DEFINES += ALPM_BACKEND #KSTATUS|DEFINES += ALPM_BACKEND KSTATUS|" -i notifier/octopi-notifier.pro
       
    cp resources/images/octopi_green.png resources/images/octopi.png
 }
@@ -35,10 +35,10 @@ build() {
    make
    cd ..
  
-   cd notifier/octopi-notifier
+   cd notifier
    qmake-qt5 PREFIX=/usr QMAKE_CFLAGS="${CFLAGS}" QMAKE_CXXFLAGS="${CXXFLAGS}" QMAKE_LFLAGS="${LDFLAGS}" octopi-notifier.pro
    make
-   cd ../..
+   cd ..
    
    cd repoeditor
    qmake-qt5 PREFIX=/usr QMAKE_CFLAGS="${CFLAGS}" QMAKE_CXXFLAGS="${CXXFLAGS}" QMAKE_LFLAGS="${LDFLAGS}" octopi-repoeditor.pro
@@ -58,9 +58,9 @@ package() {
    make INSTALL_ROOT="${pkgdir}" install
    cd ..
 
-   cd notifier/octopi-notifier
+   cd notifier
    make INSTALL_ROOT="${pkgdir}" install
-   cd ../..
+   cd ..
    
    cd repoeditor
    make INSTALL_ROOT="${pkgdir}" install

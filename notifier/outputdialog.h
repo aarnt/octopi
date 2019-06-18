@@ -21,7 +21,7 @@
 #ifndef OUTPUTDIALOG_H
 #define OUTPUTDIALOG_H
 
-#include "../../src/constants.h"
+#include "../src/constants.h"
 
 #include <QDialog>
 #include <QProcess>

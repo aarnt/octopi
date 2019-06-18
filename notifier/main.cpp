@@ -18,10 +18,10 @@
 *
 */
 
-#include "../../src/unixcommand.h"
-#include "../../src/wmhelper.h"
-#include "../../src/strconstants.h"
-#include "../../src/argumentlist.h"
+#include "../src/unixcommand.h"
+#include "../src/wmhelper.h"
+#include "../src/strconstants.h"
+#include "../src/argumentlist.h"
 #include "mainwindow.h"
 
 #include <QApplication>

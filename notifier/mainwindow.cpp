@@ -20,11 +20,11 @@
 
 #include "mainwindow.h"
 #include "outputdialog.h"
-#include "../../src/strconstants.h"
-#include "../../src/uihelper.h"
-#include "../../src/package.h"
-#include "../../src/transactiondialog.h"
-#include "../../src/optionsdialog.h"
+#include "../src/strconstants.h"
+#include "../src/uihelper.h"
+#include "../src/package.h"
+#include "../src/transactiondialog.h"
+#include "../src/optionsdialog.h"
 
 #include <QTimer>
 #include <QSystemTrayIcon>

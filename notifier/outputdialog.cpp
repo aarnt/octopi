@@ -19,13 +19,13 @@
 */
 
 #include "outputdialog.h"
-#include "../../src/pacmanexec.h"
-#include "../../src/searchbar.h"
-#include "../../src/uihelper.h"
-#include "../../src/strconstants.h"
+#include "../src/pacmanexec.h"
+#include "../src/searchbar.h"
+#include "../src/uihelper.h"
+#include "../src/strconstants.h"
 
 #ifdef QTERMWIDGET
-  #include "../../src/termwidget.h"
+  #include "../src/termwidget.h"
 #endif
 
 #include <QTextBrowser>

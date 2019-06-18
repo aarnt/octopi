@@ -21,8 +21,8 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
-#include "../../src/unixcommand.h"
-#include "../../src/pacmanexec.h"
+#include "../src/unixcommand.h"
+#include "../src/pacmanexec.h"
 
 #include <QDialog>
 #include <QProcess>

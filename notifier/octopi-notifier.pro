@@ -33,66 +33,66 @@ CONFIG += qt console warn_on debug
 QMAKE_CXXFLAGS += -std=c++11
 TARGET = octopi-notifier
 TEMPLATE = app
-DESTDIR += ../bin
-OBJECTS_DIR += ../build-octopi-notifier
-MOC_DIR += ../build-octopi-notifier
-UI_DIR += ../build-octopi-notifier
+DESTDIR += ./bin
+OBJECTS_DIR += ./build
+MOC_DIR += ./build
+UI_DIR += ./build
 
 HEADERS  += \
     mainwindow.h \
     outputdialog.h \
-    ../../src/uihelper.h \
-    ../../src/terminal.h \
-    ../../src/unixcommand.h \
-    ../../src/wmhelper.h \
-    ../../src/strconstants.h \
-    ../../src/package.h \
-    ../../src/utils.h \
-    ../../src/transactiondialog.h \
-    ../../src/argumentlist.h \
-    ../../src/pacmanexec.h \
-    ../../src/searchlineedit.h \
-    ../../src/searchbar.h \
-    ../../src/optionsdialog.h
+    ../src/uihelper.h \
+    ../src/terminal.h \
+    ../src/unixcommand.h \
+    ../src/wmhelper.h \
+    ../src/strconstants.h \
+    ../src/package.h \
+    ../src/utils.h \
+    ../src/transactiondialog.h \
+    ../src/argumentlist.h \
+    ../src/pacmanexec.h \
+    ../src/searchlineedit.h \
+    ../src/searchbar.h \
+    ../src/optionsdialog.h
 
 QTERMWIDGET{
-  HEADERS += ../../src/termwidget.h
+  HEADERS += ../src/termwidget.h
 }
 
 ALPM_BACKEND{
-  HEADERS += ../../src/alpmbackend.h
+  HEADERS += ../src/alpmbackend.h
 }
 
 SOURCES += main.cpp \
     mainwindow.cpp \
     outputdialog.cpp \
-    ../../src/terminal.cpp \
-    ../../src/unixcommand.cpp \
-    ../../src/package.cpp \
-    ../../src/wmhelper.cpp \
-    ../../src/strconstants.cpp \
-    ../../src/settingsmanager.cpp \
-    ../../src/utils.cpp \
-    ../../src/transactiondialog.cpp \
-    ../../src/argumentlist.cpp \
-    ../../src/pacmanexec.cpp \
-    ../../src/searchlineedit.cpp \
-    ../../src/searchbar.cpp \
-    ../../src/optionsdialog.cpp
+    ../src/terminal.cpp \
+    ../src/unixcommand.cpp \
+    ../src/package.cpp \
+    ../src/wmhelper.cpp \
+    ../src/strconstants.cpp \
+    ../src/settingsmanager.cpp \
+    ../src/utils.cpp \
+    ../src/transactiondialog.cpp \
+    ../src/argumentlist.cpp \
+    ../src/pacmanexec.cpp \
+    ../src/searchlineedit.cpp \
+    ../src/searchbar.cpp \
+    ../src/optionsdialog.cpp
 
 QTERMWIDGET{
-  SOURCES += ../../src/termwidget.cpp
+  SOURCES += ../src/termwidget.cpp
 }
 
 ALPM_BACKEND{
-  SOURCES += ../../src/alpmbackend.cpp
+  SOURCES += ../src/alpmbackend.cpp
 }
 
-FORMS += ../../ui/transactiondialog.ui \
-    ../../ui/optionsdialog.ui
+FORMS += ../ui/transactiondialog.ui \
+    ../ui/optionsdialog.ui
 
 RESOURCES += \
-    ../../resources.qrc
+    ../resources.qrc
     
 # install
 isEmpty(PREFIX) {
