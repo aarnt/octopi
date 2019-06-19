@@ -411,13 +411,15 @@ QString SettingsManager::readSUToolValue()
 
 QString SettingsManager::getSUTool()
 {
-  SettingsManager p_instance;
+  /*SettingsManager p_instance;
   QString ret = (p_instance.getSYSsettings()->value( ctn_KEY_SU_TOOL, ctn_AUTOMATIC)).toString();
 
   if (ret == ctn_AUTOMATIC)
   {
     ret = WMHelper::getSUTool();
-  }
+  }*/
+
+  QString ret = ctn_OCTOPISUDO;
 
   return ret;
 }

@@ -424,7 +424,7 @@ void PacmanExec::parsePacmanProcessOutput(const QString &output)
     msg.remove(QRegularExpression(".+annot load library.+"));
     msg.remove(QRegularExpression("libGL error.+"));
     msg.remove(QRegularExpression("qt5ct:.+"));
-    msg.remove(QRegularExpression("lxqt-sudo:.+"));
+    msg.remove(QRegularExpression("(lxqt|octopi)-sudo:.+"));
     msg = msg.trimmed();
 
     if (m_debugMode) std::cout << "debug: " << msg.toLatin1().data() << std::endl;

@@ -48,6 +48,10 @@ build() {
    cd cachecleaner
    qmake-qt5 PREFIX=/usr QMAKE_CFLAGS="${CFLAGS}" QMAKE_CXXFLAGS="${CXXFLAGS}" QMAKE_LFLAGS="${LDFLAGS}" octopi-cachecleaner.pro
    make
+
+   cd sudo
+   qmake-qt5 PREFIX=/usr QMAKE_CFLAGS="${CFLAGS}" QMAKE_CXXFLAGS="${CXXFLAGS}" QMAKE_LFLAGS="${LDFLAGS}" octopi-sudo.pro
+   make
 }
 
 package() {
@@ -67,5 +71,8 @@ package() {
    cd ..
    
    cd cachecleaner
+   make INSTALL_ROOT="${pkgdir}" install
+
+   cd sudo
    make INSTALL_ROOT="${pkgdir}" install
 }

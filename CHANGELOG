@@ -1,5 +1,7 @@
 0.9.1 (dev)
   Left click on package icon in package list brings context menu.
+  Added a built-in default priviledge scalation tool: "octopi-sudo" as a slightly modified version 
+	of "lxqt-sudo" project.
   Added "pikaur" AUR tool support (thanks to ewilly).
   Added "yay" AUR tool support.
   Added option to never check for package updates in Notifier.

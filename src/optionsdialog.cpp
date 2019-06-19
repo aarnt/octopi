@@ -196,7 +196,8 @@ void OptionsDialog::initialize(){
 #endif
 
   initIconTab();
-  initSUToolTab();
+  //initSUToolTab();
+  removeTabByName("SU tool");
   initUpdatesTab();
   //initTerminalTab();
   removeTabByName(tr("Terminal"));

@@ -137,7 +137,7 @@ const QString ctn_NO_SU_COMMAND("none");
 const QString ctn_ROOT_SH("/bin/sh -c ");
 
 const QString ctn_LXQTSU("lxqt-sudo");
-const QString ctn_OCTOPISUDO("octopi-sudo");
+const QString ctn_OCTOPISUDO("/usr/lib/octopi/octopi-sudo");
 const QString ctn_OCTOPI_HELPER("/usr/lib/octopi/octopi-helper");
 
 const QString ctn_KDESU("kdesu");

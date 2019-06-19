@@ -75,7 +75,7 @@ QString OctopiHelper::getTransactionTempFileName()
 
 /*
  * Executes all commands inside Octopi's transaction tempfile
- * pk-octopi-helper -t
+ * octopi-helper -t
  */
 int OctopiHelper::executePkgTransaction()
 {
@@ -130,7 +130,7 @@ int OctopiHelper::executePkgTransaction()
 
 /*
  * Executes command "pacman -Su --noconfirm"
- * pk-octopi-helper -u
+ * octopi-helper -u
  */
 int OctopiHelper::executeSysUpgrade()
 {

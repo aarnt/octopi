@@ -892,11 +892,11 @@ void UnixCommand::executeCommand(const QString &pCommand, Language lang)
 
   QString suCommand = WMHelper::getSUCommand();
 
-  if (suCommand == WMHelper::getLXQTSUCommand())
+  if (suCommand == WMHelper::getLXQTSUCommand() || suCommand == WMHelper::getOctopiSudoCommand())
   {
     command = buildOctopiHelperCommand(pCommand);
   }
-  else //We are not using "octopi-sudo" utility...*/
+  else //We are not using "octopi-sudo" or "lxqt-sudo" utility...*/
   {
     command = suCommand + "\"" + pCommand + "\"";
   }
