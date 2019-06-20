@@ -33,10 +33,7 @@
 #include "repoconf.h"
 #include <iostream>
 #include <cassert>
-
-#ifdef QTERMWIDGET
-  #include "termwidget.h"
-#endif
+#include "termwidget.h"
 
 #include <QLabel>
 #include <QStandardItemModel>
@@ -68,9 +65,9 @@ void MainWindow::loadSettings()
       SettingsManager::setSUTool(ctn_AUTOMATIC);
     }
 
-    if (!SettingsManager::isValidTerminalSelected()){
+    /*if (!SettingsManager::isValidTerminalSelected()){
       SettingsManager::setTerminal(ctn_AUTOMATIC);
-    }
+    }*/
   }
   else assert(false);
 
@@ -600,8 +597,6 @@ void MainWindow::initTabInfo(){
   text->setFocus();
 }
 
-#ifdef QTERMWIDGET  //BEGIN OF QTERMWIDGET CODE
-
 /*
  * This is the QTermWidget used to exec AUR/pacman commands.
  */
@@ -664,8 +659,6 @@ void MainWindow::onExecCommandInTabTerminal(QString command)
   m_console->execute(command);
   m_console->setFocus();
 }
-
-#endif  //END OF QTERMWIDGET CODE
 
 /*
  * This is the files treeview, which shows the directory structure of ONLY installed packages's files.

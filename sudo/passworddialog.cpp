@@ -32,23 +32,23 @@
 #include <QToolButton>
 
 PasswordDialog::PasswordDialog(const QString & cmd
-        , const QString & backendName
-        , QWidget * parent/* = 0*/
-        , Qt::WindowFlags f/* = 0*/)
-    : QDialog(parent, f)
-    , ui(new Ui::PasswordDialog)
+                               , const QString & backendName
+                               , QWidget * parent/* = 0*/
+                               , Qt::WindowFlags f/* = 0*/)
+  : QDialog(parent, f)
+  , ui(new Ui::PasswordDialog)
 {
-    ui->setupUi(this);
+  ui->setupUi(this);
 
-    ui->commandL->setText(cmd);
+  ui->commandL->setText(cmd);
 
-    connect(ui->commandCopyBtn, &QToolButton::clicked, [cmd]() {
-        QApplication::clipboard()->setText (cmd);
-    });
+  connect(ui->commandCopyBtn, &QToolButton::clicked, [cmd]() {
+    QApplication::clipboard()->setText (cmd);
+  });
 
-    ui->backendL->setText(backendName);
-    ui->iconL->setPixmap(QIcon::fromTheme("dialog-password").pixmap(64, 64));
-    setWindowIcon(QIcon::fromTheme("security-high"));
+  ui->backendL->setText(backendName);
+  ui->iconL->setPixmap(QIcon::fromTheme("dialog-password").pixmap(64, 64));
+  setWindowIcon(QIcon::fromTheme("security-high"));
 }
 
 PasswordDialog::~PasswordDialog()
@@ -57,13 +57,12 @@ PasswordDialog::~PasswordDialog()
 
 void PasswordDialog::showEvent(QShowEvent * event)
 {
-    ui->errorL->setText(tr("Attempt #%1").arg(++mAttempt));
-    ui->passwordLE->setFocus();
-    return QDialog::showEvent(event);
+  ui->errorL->setText(tr("Attempt #%1").arg(++mAttempt));
+  ui->passwordLE->setFocus();
+  return QDialog::showEvent(event);
 }
 
 QString PasswordDialog::password() const
 {
-    return ui->passwordLE->text();
+  return ui->passwordLE->text();
 }
-

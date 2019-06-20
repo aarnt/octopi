@@ -47,7 +47,7 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
   setupUi(this);
   connect(buttonBox, SIGNAL(accepted()), this, SLOT(accept()));
   connect(buttonBox, SIGNAL(rejected()), this, SLOT(reject()));
-  connect(tabWidget, SIGNAL(currentChanged(int)), this, SLOT(currentTabChanged(int)));
+  //connect(tabWidget, SIGNAL(currentChanged(int)), this, SLOT(currentTabChanged(int)));
 
   removeEventFilter(this);
   initialize();
@@ -56,7 +56,7 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
 /*
  * When the dialog is first displayed
  */
-void OptionsDialog::paintEvent(QPaintEvent *){
+/*void OptionsDialog::paintEvent(QPaintEvent *){
   //This member flag ensures the execution of this code for just ONE time.
   if (!m_once){
     QList<QTableWidgetItem *> l = twTerminal->findItems(SettingsManager::getTerminal(), Qt::MatchExactly);
@@ -66,12 +66,12 @@ void OptionsDialog::paintEvent(QPaintEvent *){
     }
     m_once=true;
   }
-}
+}*/
 
 /*
  * Whenever user changes selected tab
  */
-void OptionsDialog::currentTabChanged(int tabIndex){
+/*void OptionsDialog::currentTabChanged(int tabIndex){
   if (tabWidget->tabText(tabIndex) == tr("Terminal"))
   {
     twTerminal->setFocus();
@@ -93,7 +93,7 @@ void OptionsDialog::currentTabChanged(int tabIndex){
       twSUTool->scrollToItem(l.at(0));
     }
   }
-}
+}*/
 
 /*
  * Whenever user checks/unchecks "Use default icons" option
@@ -345,7 +345,7 @@ void OptionsDialog::initIconTab()
 /*
  * Initializes super user tool used
  */
-void OptionsDialog::initSUToolTab()
+/*void OptionsDialog::initSUToolTab()
 {
   if (UnixCommand::getLinuxDistro() == ectn_KAOS)
   {
@@ -367,9 +367,9 @@ void OptionsDialog::initSUToolTab()
   if (UnixCommand::hasTheExecutable(ctn_LXQTSU)){
     list << ctn_LXQTSU;
   }
-  /*if (UnixCommand::hasTheExecutable(ctn_OCTOPISUDO)){
+  if (UnixCommand::hasTheExecutable(ctn_OCTOPISUDO)){
     list << ctn_OCTOPISUDO;
-  }*/
+  }
   if (UnixCommand::hasTheExecutable(ctn_TDESU)){
     list << ctn_TDESU;
   }
@@ -404,7 +404,7 @@ void OptionsDialog::initSUToolTab()
   }
 
   twSUTool->sortByColumn(0, Qt::AscendingOrder);
-}
+}*/
 
 void OptionsDialog::initUpdatesTab()
 {
@@ -469,7 +469,7 @@ void OptionsDialog::initUpdatesTab()
 /*
  * Initializes Terminal tab
  */
-void OptionsDialog::initTerminalTab(){
+/*void OptionsDialog::initTerminalTab(){
   QStringList terminals = Terminal::getListOfAvailableTerminals();
 
   if (terminals.count() <= 2)
@@ -504,7 +504,7 @@ void OptionsDialog::initTerminalTab(){
   }
 
   twTerminal->sortByColumn(0, Qt::AscendingOrder);
-}
+}*/
 
 /*
  * When user chooses OK button and saves all his changes
@@ -713,7 +713,7 @@ void OptionsDialog::accept(){
   }
 
   //Set SU tool...
-  QString selectedSUTool = SettingsManager::getSUTool();
+  /*QString selectedSUTool = SettingsManager::getSUTool();
 
   if (twSUTool->currentItem())
     selectedSUTool = twSUTool->item(twSUTool->row(twSUTool->currentItem()), 0)->text();
@@ -731,7 +731,7 @@ void OptionsDialog::accept(){
   {
     SettingsManager::setTerminal(selectedTerminal);
     emit terminalChanged();
-  }
+  }*/
 
   Options::result res=0;
 

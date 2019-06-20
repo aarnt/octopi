@@ -5,8 +5,8 @@
 #-------------------------------------------------
 
 QT += core gui network xml dbus widgets
-DEFINES += OCTOPI_EXTENSIONS ALPM_BACKEND QTERMWIDGET
-CONFIG += qt warn_on debug link_pkgconfig ALPM_BACKEND QTERMWIDGET
+DEFINES += OCTOPI_EXTENSIONS ALPM_BACKEND
+CONFIG += qt warn_on debug link_pkgconfig ALPM_BACKEND
 
 ALPM_BACKEND {
   QMAKE_CXXFLAGS += -std=c++11
@@ -16,9 +16,7 @@ ALPM_BACKEND {
   QMAKE_CXXFLAGS += -std=c++11
 }
 
-QTERMWIDGET {
-  LIBS += -lqtermwidget5
-}
+LIBS += -lqtermwidget5
 
 TEMPLATE = app
 DESTDIR += bin
@@ -52,11 +50,8 @@ HEADERS += src/QtSolutions/qtsingleapplication.h \
         src/pacmanexec.h \
         src/constants.h \
         src/optionsdialog.h \
-        src/packagetreeview.h
-
-QTERMWIDGET{
-  HEADERS += src/termwidget.h
-}
+        src/packagetreeview.h \
+        src/termwidget.h
 
 ALPM_BACKEND{
   HEADERS += src/alpmbackend.h
@@ -94,11 +89,8 @@ SOURCES += src/QtSolutions/qtsingleapplication.cpp \
         src/terminal.cpp \
         src/pacmanexec.cpp \
         src/optionsdialog.cpp \
-        src/packagetreeview.cpp
-
-QTERMWIDGET{
-  SOURCES += src/termwidget.cpp
-}
+        src/packagetreeview.cpp \
+        src/termwidget.cpp
 
 ALPM_BACKEND{
   SOURCES += src/alpmbackend.cpp

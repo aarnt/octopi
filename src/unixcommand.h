@@ -141,7 +141,7 @@ public:
 
   static void removeTemporaryFiles();
 
-  void openRootTerminal();
+  //void openRootTerminal();
   void runCommandInTerminal(const QStringList& commandList);
   void runOctopiHelperInTerminal(const QStringList& commandList);
   void runCommandInTerminalAsNormalUser(const QStringList& commandList);

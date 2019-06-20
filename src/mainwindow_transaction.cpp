@@ -33,10 +33,7 @@
 #include "globals.h"
 #include <iostream>
 #include <cassert>
-
-#ifdef QTERMWIDGET
-  #include "termwidget.h"
-#endif
+#include "termwidget.h"
 
 #include <QComboBox>
 #include <QProgressBar>
@@ -693,24 +690,20 @@ bool MainWindow::isInternetAvailable()
 }
 
 /*
- * Checks if some SU utility is available...
+ * Checks if we have "octopi-sudo" utility available...
  * Returns false if not!
  */
 bool MainWindow::isSUAvailable()
 {
-  //If there are no means to run the actions, we must warn!
-  if (UnixCommand::isRootRunning() && WMHelper::isKDERunning())
-  {
+  if (UnixCommand::hasTheExecutable(ctn_OCTOPISUDO))
     return true;
-  }
-  else if (WMHelper::getSUCommand() == ctn_NO_SU_COMMAND){
-    QMessageBox::critical( 0, StrConstants::getApplicationName(),
+  else
+  {
+    QMessageBox::critical( nullptr, StrConstants::getApplicationName(),
                            StrConstants::getErrorNoSuCommand() +
                            "\n" + StrConstants::getYoullNeedSuFrontend());
     return false;
   }
-  else
-    return true;
 }
 
 /*
@@ -834,10 +827,7 @@ void MainWindow::doAURUpgrade()
 
   QObject::connect(m_pacmanExec, SIGNAL(percentage(int)), this, SLOT(incrementPercentage(int)));
   QObject::connect(m_pacmanExec, SIGNAL(textToPrintExt(QString)), this, SLOT(outputText(QString)));
-
-#ifdef QTERMWIDGET
-    QObject::connect(m_pacmanExec, SIGNAL(commandToExecInQTermWidget(QString)), this, SLOT(onExecCommandInTabTerminal(QString)));
-#endif
+  QObject::connect(m_pacmanExec, SIGNAL(commandToExecInQTermWidget(QString)), this, SLOT(onExecCommandInTabTerminal(QString)));
 
   m_commandExecuting = ectn_RUN_IN_TERMINAL;
   m_pacmanExec->doAURUpgrade(listOfTargets);
@@ -866,10 +856,7 @@ bool MainWindow::prepareSystemUpgrade()
   QObject::connect(m_pacmanExec, SIGNAL(percentage(int)), this, SLOT(incrementPercentage(int)));
   QObject::connect(m_pacmanExec, SIGNAL(textToPrintExt(QString)), this, SLOT(outputText(QString)));
   QObject::connect(m_pacmanExec, SIGNAL(canStopTransaction(bool)), this, SLOT(onCanStopTransaction(bool)));
-
-#ifdef QTERMWIDGET
-    QObject::connect(m_pacmanExec, SIGNAL(commandToExecInQTermWidget(QString)), this, SLOT(onExecCommandInTabTerminal(QString)));
-#endif
+  QObject::connect(m_pacmanExec, SIGNAL(commandToExecInQTermWidget(QString)), this, SLOT(onExecCommandInTabTerminal(QString)));
 
   disableTransactionActions();
   return true;
@@ -1138,10 +1125,7 @@ void MainWindow::doRemoveAndInstall()
     QObject::connect(m_pacmanExec, SIGNAL(percentage(int)), this, SLOT(incrementPercentage(int)));
     QObject::connect(m_pacmanExec, SIGNAL(textToPrintExt(QString)), this, SLOT(outputText(QString)));
     QObject::connect(m_pacmanExec, SIGNAL(canStopTransaction(bool)), this, SLOT(onCanStopTransaction(bool)));
-
-#ifdef QTERMWIDGET
     QObject::connect(m_pacmanExec, SIGNAL(commandToExecInQTermWidget(QString)), this, SLOT(onExecCommandInTabTerminal(QString)));
-#endif
 
     if (result == QDialogButtonBox::Yes)
     {
@@ -1214,10 +1198,7 @@ void MainWindow::doRemove()
     QObject::connect(m_pacmanExec, SIGNAL(percentage(int)), this, SLOT(incrementPercentage(int)));
     QObject::connect(m_pacmanExec, SIGNAL(textToPrintExt(QString)), this, SLOT(outputText(QString)));
     QObject::connect(m_pacmanExec, SIGNAL(canStopTransaction(bool)), this, SLOT(onCanStopTransaction(bool)));
-
-#ifdef QTERMWIDGET
     QObject::connect(m_pacmanExec, SIGNAL(commandToExecInQTermWidget(QString)), this, SLOT(onExecCommandInTabTerminal(QString)));
-#endif
 
     if (result == QDialogButtonBox::Yes)
     {
@@ -1316,10 +1297,7 @@ void MainWindow::doInstallAURPackage()
 
   QObject::connect(m_pacmanExec, SIGNAL(percentage(int)), this, SLOT(incrementPercentage(int)));
   QObject::connect(m_pacmanExec, SIGNAL(textToPrintExt(QString)), this, SLOT(outputText(QString)));
-
-#ifdef QTERMWIDGET
-    QObject::connect(m_pacmanExec, SIGNAL(commandToExecInQTermWidget(QString)), this, SLOT(onExecCommandInTabTerminal(QString)));
-#endif
+  QObject::connect(m_pacmanExec, SIGNAL(commandToExecInQTermWidget(QString)), this, SLOT(onExecCommandInTabTerminal(QString)));
 
   m_commandExecuting = ectn_RUN_IN_TERMINAL;
   m_pacmanExec->doAURInstall(listOfTargets);
@@ -1359,10 +1337,7 @@ void MainWindow::doRemoveAURPackage()
 
   QObject::connect(m_pacmanExec, SIGNAL(percentage(int)), this, SLOT(incrementPercentage(int)));
   QObject::connect(m_pacmanExec, SIGNAL(textToPrintExt(QString)), this, SLOT(outputText(QString)));
-
-#ifdef QTERMWIDGET
-    QObject::connect(m_pacmanExec, SIGNAL(commandToExecInQTermWidget(QString)), this, SLOT(onExecCommandInTabTerminal(QString)));
-#endif
+  QObject::connect(m_pacmanExec, SIGNAL(commandToExecInQTermWidget(QString)), this, SLOT(onExecCommandInTabTerminal(QString)));
 
   m_commandExecuting = ectn_RUN_IN_TERMINAL;
   m_pacmanExec->doAURRemove(listOfTargets);
@@ -1521,10 +1496,7 @@ void MainWindow::doInstall()
     QObject::connect(m_pacmanExec, SIGNAL(percentage(int)), this, SLOT(incrementPercentage(int)));
     QObject::connect(m_pacmanExec, SIGNAL(textToPrintExt(QString)), this, SLOT(outputText(QString)));
     QObject::connect(m_pacmanExec, SIGNAL(canStopTransaction(bool)), this, SLOT(onCanStopTransaction(bool)));
-
-#ifdef QTERMWIDGET
     QObject::connect(m_pacmanExec, SIGNAL(commandToExecInQTermWidget(QString)), this, SLOT(onExecCommandInTabTerminal(QString)));
-#endif
 
     if (result == QDialogButtonBox::Yes)
     {
@@ -1597,10 +1569,7 @@ void MainWindow::doInstallLocalPackages()
     QObject::connect(m_pacmanExec, SIGNAL(percentage(int)), this, SLOT(incrementPercentage(int)));
     QObject::connect(m_pacmanExec, SIGNAL(textToPrintExt(QString)), this, SLOT(outputText(QString)));
     QObject::connect(m_pacmanExec, SIGNAL(canStopTransaction(bool)), this, SLOT(onCanStopTransaction(bool)));
-
-#ifdef QTERMWIDGET
     QObject::connect(m_pacmanExec, SIGNAL(commandToExecInQTermWidget(QString)), this, SLOT(onExecCommandInTabTerminal(QString)));
-#endif
 
     if (result == QDialogButtonBox::Yes)
     {
@@ -1968,8 +1937,6 @@ void MainWindow::pacmanProcessFinished(int exitCode, QProcess::ExitStatus exitSt
   if (isPackageTreeViewVisible() && !m_leFilterPackage->hasFocus()) m_leFilterPackage->setFocus();
 }
 
-#ifdef QTERMWIDGET  //BEGIN OF QTERMWIDGET CODE
-
 /*
  * THIS IS THE COUNTERPART OF "pacmanProcessFinished" FOR QTERMWIDGET AUR COMMANDS
  * Whenever the terminal transaction has finished, we can update the UI
@@ -2030,8 +1997,6 @@ void MainWindow::onCancelControlKey()
     UnixCommand::removeTemporaryFiles();
   }
 }
-
-#endif  //END OF QTERMWIDGET CODE
 
 /*
  * A helper method which writes the given string to OutputTab's textbrowser

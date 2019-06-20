@@ -331,14 +331,12 @@ private:
 
 private slots:
 
-#ifdef QTERMWIDGET
   void initTabTerminal();
   void removeTabTerminal();
   void onTerminalChanged();
   void onExecCommandInTabTerminal(QString command);
   void onPressAnyKeyToContinue();
   void onCancelControlKey();
-#endif
 
   void initToolButtonPacman();
   void initToolButtonAUR();
@@ -355,7 +353,7 @@ private slots:
   void editOctopiConf();
   void openTerminal();
   void openDirectory();
-  void openRootTerminal();
+  //void openRootTerminal();
   void installLocalPackage();
   void showPackageInfo();
   void findFileInPackage();

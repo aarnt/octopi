@@ -832,9 +832,9 @@ bool UnixCommand::isTextFile(QString fileName)
 /*
  * Opens a root terminal
  */
-void UnixCommand::openRootTerminal(){
+/*void UnixCommand::openRootTerminal(){
   m_terminal->openRootTerminal();
-}
+}*/
 
 /*
  * Executes given commandList as root inside a terminal, so the user can interact

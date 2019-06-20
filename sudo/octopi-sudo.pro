@@ -21,9 +21,17 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 # Input
-HEADERS += passworddialog.h sudo.h
+HEADERS += passworddialog.h \
+            sudo.h \
+            ../src/argumentlist.h
+
+SOURCES += main.cpp \
+            passworddialog.cpp \
+            sudo.cpp \
+            ../src/argumentlist.cpp
+
 FORMS += passworddialog.ui
-SOURCES += main.cpp passworddialog.cpp sudo.cpp
+
 TRANSLATIONS += translations/lxqt-sudo.ts \
                 translations/lxqt-sudo_ar.ts \
                 translations/lxqt-sudo_ca.ts \

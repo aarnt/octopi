@@ -541,9 +541,6 @@ void SettingsManager::setPanelOrganizing(int newValue){
 
 void SettingsManager::setUseDefaultAppIcon(bool newValue)
 {
-  //int v=0;
-  //if (newValue) v=1;
-
   instance()->getSYSsettings()->setValue( ctn_KEY_USE_DEFAULT_APP_ICON, newValue);
   instance()->getSYSsettings()->sync();
 }
@@ -735,14 +732,13 @@ bool SettingsManager::isValidSUToolSelected()
 /*
  * Search all supported terminals to see if the selected one is valid
  */
-bool SettingsManager::isValidTerminalSelected()
+/*bool SettingsManager::isValidTerminalSelected()
 {
   QString userTerminal = getTerminal();
 
   if (userTerminal == ctn_AUTOMATIC)
     return true;
 
-#ifdef QTERMWIDGET
   if (userTerminal == ctn_XFCE_TERMINAL ||
       userTerminal == ctn_LXDE_TERMINAL ||
       userTerminal == ctn_LXQT_TERMINAL ||
@@ -764,34 +760,11 @@ bool SettingsManager::isValidTerminalSelected()
       return false;
     }
   }
-#else
-  if (userTerminal == ctn_XFCE_TERMINAL ||
-      userTerminal == ctn_LXDE_TERMINAL ||
-      userTerminal == ctn_LXQT_TERMINAL ||
-      userTerminal == ctn_KDE_TERMINAL ||
-      userTerminal == ctn_TDE_TERMINAL ||
-      userTerminal == ctn_CINNAMON_TERMINAL ||
-      userTerminal == ctn_MATE_TERMINAL ||
-      userTerminal == ctn_RXVT_TERMINAL ||
-      userTerminal == ctn_XTERM)
-  {
-    if (UnixCommand::hasTheExecutable(userTerminal))
-    {
-      return true;
-    }
-    else
-    {
-      return false;
-    }
-  }
-#endif
-
   else
   {
     return false;
   }
-
-}
+}*/
 
 bool SettingsManager::isInstantSearchSelected()
 {

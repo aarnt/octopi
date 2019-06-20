@@ -31,10 +31,7 @@
 #include "globals.h"
 #include <iostream>
 #include "optionsdialog.h"
-
-#ifdef QTERMWIDGET
-  #include "termwidget.h"
-#endif
+#include "termwidget.h"
 
 #include <QDropEvent>
 #include <QMimeData>
@@ -160,10 +157,7 @@ void MainWindow::show()
     initAppIcon();
     initMenuBar();
     initToolBar();
-
-#ifdef QTERMWIDGET
     onTerminalChanged();
-#endif
 
     initTabWidgetPropertiesIndex();
     refreshDistroNews(false);
@@ -280,9 +274,7 @@ void MainWindow::onOptions()
     //metaBuildPackageList();
   });
 
-#ifdef QTERMWIDGET
   connect(od, SIGNAL(terminalChanged()), this, SLOT(onTerminalChanged()));
-#endif
 
   od->exec();
   Options::result res = od->result();
@@ -1349,13 +1341,10 @@ void MainWindow::changedTabIndex()
     refreshTabInfo();
   else if (ui->twProperties->currentIndex() == ctn_TABINDEX_FILES)
     refreshTabFiles();
-
-#ifdef QTERMWIDGET
   else if (ui->twProperties->currentIndex() == ctn_TABINDEX_TERMINAL)
   {
     m_console->setFocus();
   }
-#endif
 
   if(m_initializationCompleted)
     saveSettings(ectn_CURRENTTABINDEX);
@@ -1491,12 +1480,10 @@ void MainWindow::maximizePropertiesTabWidget(bool pSaveSettings)
       if (tv)
         tv->scrollTo(tv->currentIndex());
     }
-#ifdef QTERMWIDGET
     else if(ui->twProperties->currentIndex() == ctn_TABINDEX_TERMINAL)
     {
       m_console->setFocus();
     }
-#endif
     if(pSaveSettings)
       saveSettings(ectn_NORMAL);
   }
@@ -1638,12 +1625,8 @@ void MainWindow::openTerminal()
   QString dir = getSelectedDirectory();
   if (!dir.isEmpty())
   {
-    if (SettingsManager::getTerminal() == ctn_QTERMWIDGET)
-    {
-      m_console->execute("cd " + dir);
-      ensureTabVisible(ctn_TABINDEX_TERMINAL);
-    }
-    else WMHelper::openTerminal(dir);
+    m_console->execute("cd " + dir);
+    ensureTabVisible(ctn_TABINDEX_TERMINAL);
   }
 }
 
@@ -1662,14 +1645,14 @@ void MainWindow::openDirectory(){
 /*
  * Helper method which opens a root terminal
  */
-void MainWindow::openRootTerminal()
+/*void MainWindow::openRootTerminal()
 {
   //If there are no means to run the actions, we must warn!
   if (!isSUAvailable()) return;
 
   m_unixCommand = new UnixCommand(this);
   m_unixCommand->openRootTerminal();
-}
+}*/
 
 /*
  * Open a file chooser dialog for the user to select local packages to install (pacman -U)

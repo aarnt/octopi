@@ -570,7 +570,7 @@ void WMHelper::openDirectory( const QString& dirName ){
 /*
  * Opens a terminal based on your DE.
  */
-void WMHelper::openTerminal(const QString& dirName)
+/*void WMHelper::openTerminal(const QString& dirName)
 {
   QFileInfo f(dirName);
   if (f.exists())
@@ -578,4 +578,4 @@ void WMHelper::openTerminal(const QString& dirName)
     Terminal *term = new Terminal(0, SettingsManager::getTerminal());
     term->openTerminal(dirName);
   }
-}
+}*/

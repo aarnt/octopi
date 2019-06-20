@@ -1,7 +1,7 @@
-0.9.1 (dev)
-  Left click on package icon in package list brings context menu.
-  Added a built-in default priviledge scalation tool: "octopi-sudo" as a slightly modified version 
-	of "lxqt-sudo" project.
+0.10.0 (dev)
+  Added left click support on package icon in package list to launch context menu.
+  Added a built-in default priviledge escalation tool: "octopi-sudo" as a slightly modified version 
+	of "lxqt-sudo" project (version 0.14.1). It's the only escalation tool supported!
   Added "pikaur" AUR tool support (thanks to ewilly).
   Added "yay" AUR tool support.
   Added option to never check for package updates in Notifier.
@@ -11,10 +11,12 @@
   Added option to exit Octopi while a transaction is already running.
   Added support for GNOME file manager/editor.
   Added option for changing use of alternating row colors in package list.
-  Reworked AUR tab in Options dialog.
-  BugFix: Changed 'Sync database' to 'Check updates' command.
+  Added a redesigned AUR tab in Options dialog.
+  Dropped support for terminal applications. QTermWidget is mandatory now!
+  BugFix: Replaced 'Sync database' command text to 'Check updates'.
   BugFix: Always do a "pacman -Syu" in System Upgrade.
-  BugFix: Notifier now uses "checkupdates" instead "pacman -Sy[y]".
+  BugFix: Notifier now uses "checkupdates" instead "pacman -Sy[y]". This means Octopi no longer can lead 
+	the OS to a "partial updates" state and works gracefully with another package tools.
   BugFix: Make "Open terminal here" option work with qtermwidget.
   BugFix: Added support for symbolic lynks in "open file".
   BugFix: Pkg build date obeys Locale datetime format.

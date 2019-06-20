@@ -929,12 +929,7 @@ void PacmanExec::doInstallInTerminal(const QString &listOfPackages)
     m_lastCommandList.append("rm " + ctn_PACMAN_DATABASE_LOCK_FILE + ";");
   }
 
-#ifdef QTERMWIDGET
   m_lastCommandList.append("pacman -S " + listOfPackages);
-#else
-  m_lastCommandList.append("pacman -S " + listOfPackages);
-#endif
-
   m_lastCommandList.append("echo -e");
   m_lastCommandList.append("read -n 1 -p \"" + StrConstants::getPressAnyKey() + "\"");
 
@@ -993,17 +988,10 @@ void PacmanExec::doInstallLocalInTerminal(const QString &listOfPackages)
     m_lastCommandList.append("rm " + ctn_PACMAN_DATABASE_LOCK_FILE + ";");
   }
 
-#ifdef QTERMWIDGET
   if (dontUseForce)
     m_lastCommandList.append("pacman -U \"" + listOfPackages.trimmed() + "\"");
   else
     m_lastCommandList.append("pacman -U --force \"" + listOfPackages.trimmed() + "\"");
-#else
-  if (dontUseForce)
-    m_lastCommandList.append("pacman -U \"" + listOfPackages.trimmed() + "\"");
-  else
-    m_lastCommandList.append("pacman -U --force \"" + listOfPackages.trimmed() + "\"");
-#endif
 
   m_lastCommandList.append("echo -e");
   m_lastCommandList.append("read -n 1 -p \"" + StrConstants::getPressAnyKey() + "\"");
@@ -1053,12 +1041,7 @@ void PacmanExec::doRemoveInTerminal(const QString &listOfPackages)
     m_lastCommandList.append("rm " + ctn_PACMAN_DATABASE_LOCK_FILE);
   }
 
-#ifdef QTERMWIDGET
   m_lastCommandList.append("pacman -R " + listOfPackages);
-#else
-  m_lastCommandList.append("pacman -R " + listOfPackages);
-#endif
-
   m_lastCommandList.append("echo -e");
   m_lastCommandList.append("read -n 1 -p \"" + StrConstants::getPressAnyKey() + "\"");
 
@@ -1108,18 +1091,8 @@ void PacmanExec::doRemoveAndInstallInTerminal(const QString &listOfPackagestoRem
     m_lastCommandList.append("rm " + ctn_PACMAN_DATABASE_LOCK_FILE);
   }
 
-#ifdef QTERMWIDGET
   m_lastCommandList.append("pacman -R " + listOfPackagestoRemove);
-#else
-  m_lastCommandList.append("pacman -R " + listOfPackagestoRemove);
-#endif
-
-#ifdef QTERMWIDGET
   m_lastCommandList.append("pacman -S " + listOfPackagestoInstall);
-#else
-  m_lastCommandList.append("pacman -S " + listOfPackagestoInstall);
-#endif
-
   m_lastCommandList.append("echo -e");
   m_lastCommandList.append("read -n 1 -p \"" + StrConstants::getPressAnyKey() + "\"");
 
@@ -1169,17 +1142,9 @@ void PacmanExec::doSystemUpgradeInTerminal(CommandExecuting additionalCommand)
   }
 
   if (additionalCommand == ectn_NONE)
-#ifdef QTERMWIDGET
-  m_lastCommandList.append("pacman -Syu");
-#else
-   m_lastCommandList.append("pacman -Syu");
-#endif
+    m_lastCommandList.append("pacman -Syu");
   else if (additionalCommand == ectn_SYNC_DATABASE)
-#ifdef QTERMWIDGET
-  m_lastCommandList.append("pacman -Syu");
-#else
-   m_lastCommandList.append("pacman -Syu");
-#endif
+    m_lastCommandList.append("pacman -Syu");
 
   m_lastCommandList.append("echo -e");
   m_lastCommandList.append("read -n 1 -p \"" + StrConstants::getPressAnyKey() + "\"");

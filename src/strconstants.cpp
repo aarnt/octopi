@@ -26,7 +26,7 @@ QString StrConstants::getApplicationName(){
 }
 
 QString StrConstants::getApplicationVersion(){
-  return "0.9.1 (dev)";
+  return "0.10.0 (dev)";
 }
 
 QString StrConstants::getQtVersion(){
@@ -582,7 +582,7 @@ QString StrConstants::getErrorNoSuCommand(){
 }
 
 QString StrConstants::getYoullNeedSuFrontend(){
-  return QObject::tr("You'll need to install a su frontend like gksu or kdesu.");
+  return QObject::tr("You'll need to install \"octopi-sudo\" in order to use Octopi.");
 }
 
 QString StrConstants::getErrorIconPathInfoIncomplete(){

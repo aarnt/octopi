@@ -30,6 +30,4 @@ int main(int argc, char *argv[])
 
   if (argList->getSwitch("-t"))
     return helper.executePkgTransaction();
-  else if (argList->getSwitch("-u"))
-    return helper.executeSysUpgrade();
 }

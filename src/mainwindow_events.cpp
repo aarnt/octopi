@@ -209,14 +209,10 @@ void MainWindow::keyPressEvent(QKeyEvent* ke)
   {
     changeTabWidgetPropertiesIndex(ctn_TABINDEX_HELPUSAGE);
   }
-
-#ifdef QTERMWIDGET  //BEGIN OF QTERMWIDGET CODE
   else if(ke->key() == Qt::Key_7 && ke->modifiers() == Qt::AltModifier)
   {
     changeTabWidgetPropertiesIndex(ctn_TABINDEX_TERMINAL);
   }
-#endif
-
   else if(ke->key() == Qt::Key_F2)
   {
     if (isPackageTreeViewVisible())

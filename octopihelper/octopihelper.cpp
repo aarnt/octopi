@@ -127,19 +127,3 @@ int OctopiHelper::executePkgTransaction()
 
   return m_process->exitCode();
 }
-
-/*
- * Executes command "pacman -Su --noconfirm"
- * octopi-helper -u
- */
-int OctopiHelper::executeSysUpgrade()
-{
-  QString command;
-  m_process->setProcessEnvironment(getProcessEnvironment());
-  command = "/bin/sh -c \"pacman -Syu --noconfirm\"";
-  m_process->start(command);
-  m_process->waitForStarted(-1);
-  m_process->waitForFinished(-1);
-
-  return m_process->exitCode();
-}

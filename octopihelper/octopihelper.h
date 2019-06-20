@@ -38,9 +38,7 @@ private:
 public:
   OctopiHelper();
   virtual ~OctopiHelper();
-
   int executePkgTransaction();
-  int executeSysUpgrade();
   inline int getExitCode() { return m_exitCode; }
 };
 

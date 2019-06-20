@@ -105,7 +105,7 @@ class SettingsManager
     static QByteArray getSplitterHorizontalState();
 
     static bool isValidSUToolSelected();
-    static bool isValidTerminalSelected();
+    //static bool isValidTerminalSelected();
     static bool isInstantSearchSelected();
 
     static void setCurrentTabIndex(int newValue);

@@ -118,7 +118,7 @@ int main(int argc, char *argv[])
   }
 
   if (UnixCommand::isRootRunning()){
-    QMessageBox::critical( 0, StrConstants::getApplicationName(), StrConstants::getErrorRunningWithRoot());
+    QMessageBox::critical( nullptr, StrConstants::getApplicationName(), StrConstants::getErrorRunningWithRoot());
     return ( -2 );
   }
 

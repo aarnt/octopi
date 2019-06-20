@@ -37,8 +37,8 @@ public:
   Terminal(QObject *parent, const QString& selectedTerminal);
   virtual ~Terminal();
 
-  void openTerminal(const QString& dirName);
-  void openRootTerminal();
+  //void openTerminal(const QString& dirName);
+  //void openRootTerminal();
 
   //Executes the given commandList creating a temp transaction file and running it
   void runCommandInTerminal(const QStringList& commandList);
@@ -48,7 +48,7 @@ public:
 
   void runCommandInTerminalAsNormalUser(const QStringList& commandList);
 
-  static QStringList getListOfAvailableTerminals();
+  //static QStringList getListOfAvailableTerminals();
 
 signals:
   void started();
