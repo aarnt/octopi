@@ -449,23 +449,27 @@ void OutputDialog::keyPressEvent(QKeyEvent *ke)
   {
     m_searchBar->show();
   }
-  else if(ke->key() == Qt::Key_Escape && m_upgradeRunning)
+  else if(ke->key() == Qt::Key_Escape)
   {
-    int res = QMessageBox::question(this, StrConstants::getConfirmation(),
+    if (m_upgradeRunning)
+    {
+      int res = QMessageBox::question(this, StrConstants::getConfirmation(),
                           StrConstants::getThereIsARunningTransaction() + "\n" +
                           StrConstants::getDoYouReallyWantToQuit(),
                           QMessageBox::Yes | QMessageBox::No,
                           QMessageBox::No);
-    if (res == QMessageBox::Yes)
-    {
-      stopTransaction();
-      m_upgradeRunning = false;
-      reject();
+      if (res == QMessageBox::Yes)
+      {
+        stopTransaction();
+        m_upgradeRunning = false;
+        reject();
+      }
+      else
+      {
+        ke->ignore();
+      }
     }
-    else
-    {
-      ke->ignore();
-    }
+    else reject();
   }
   else ke->accept();
 }
