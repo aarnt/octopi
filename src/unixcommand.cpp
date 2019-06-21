@@ -78,11 +78,6 @@ UnixCommand::UnixCommand(QObject *parent): QObject()
   QObject::connect(m_terminal, SIGNAL( finished ( int, QProcess::ExitStatus )), this,
                    SIGNAL( finished ( int, QProcess::ExitStatus )) );
 
-  //QObject::connect(m_terminal, SIGNAL( startedTerminal()), this,
-  //                 SIGNAL( startedTerminal()));
-  //QObject::connect(m_terminal, SIGNAL( finishedTerminal(int,QProcess::ExitStatus)), this,
-  //                 SIGNAL( finishedTerminal(int,QProcess::ExitStatus)));
-
   QObject::connect(m_terminal, SIGNAL(commandToExecInQTermWidget(QString)), this,
                    SIGNAL(commandToExecInQTermWidget(QString)));
 }
@@ -1143,7 +1138,6 @@ QStringList UnixCommand::getFieldFromPacmanConf(const QString &fieldName)
   while(true);
 
   file.close();
-
   return result;
 }
 
