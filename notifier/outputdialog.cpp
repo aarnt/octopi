@@ -23,10 +23,7 @@
 #include "../src/searchbar.h"
 #include "../src/uihelper.h"
 #include "../src/strconstants.h"
-
-#ifdef QTERMWIDGET
-  #include "../src/termwidget.h"
-#endif
+#include "../src/termwidget.h"
 
 #include <QTextBrowser>
 #include <QVBoxLayout>
@@ -125,8 +122,6 @@ void OutputDialog::initAsTextBrowser()
   //m_searchBar->show();
 }
 
-#ifdef QTERMWIDGET
-
 /*
  * Let's build the main widgets for AUR Upgrade...
  */
@@ -219,8 +214,6 @@ void OutputDialog::onCancelControlKey()
   }
 }
 
-#endif
-
 /*
  * Calls PacmanExec to begin system upgrade
  */
@@ -248,10 +241,10 @@ void OutputDialog::doSystemUpgrade()
 void OutputDialog::show()
 {
   //If we are asking for a Pacman system upgrade...
-  if (m_viewAsTextBrowser) initAsTextBrowser();
-#ifdef QTERMWIDGET
-  else initAsTermWidget();
-#endif
+  if (m_viewAsTextBrowser)
+    initAsTextBrowser();
+  else
+    initAsTermWidget();
 
   //Let's restore the dialog size saved...
   restoreGeometry(SettingsManager::getOutputDialogWindowSize());

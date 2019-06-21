@@ -2,4 +2,4 @@
 
 This is a simple helper to execute pacman actions. It aims to ease integration with sudo NOPASSWD switch.
 
-NOPASSWD mode will *ONLY* work using "lxqt-sudo" root escalation tool.
+NOPASSWD mode will *ONLY* work with integrated "octopi-sudo" root escalation tool.

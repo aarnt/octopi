@@ -470,29 +470,14 @@ void MainWindow::doAURUpgrade()
     listOfTargets += auxPkg + " ";
   }
 
-#ifndef QTERMWIDGET
-  if (SettingsManager::getTerminal() == ctn_QTERMWIDGET)
-    SettingsManager::setTerminal(ctn_AUTOMATIC);
-#endif
+  OutputDialog *dlg = new OutputDialog(this);
+  dlg->setViewAsTextBrowser(false);
+  dlg->setListOfAURPackagesToUpgrade(listOfTargets);
 
-  if (SettingsManager::getTerminal() == ctn_QTERMWIDGET)
-  {
-    OutputDialog *dlg = new OutputDialog(this);
-    dlg->setViewAsTextBrowser(false);
-    dlg->setListOfAURPackagesToUpgrade(listOfTargets);
-
-    QObject::connect(dlg, SIGNAL( finished(int)),
-                     this, SLOT( doSystemUpgradeFinished() ));
-    dlg->show();
-    dlg->doAURUpgrade();
-  }
-  else
-  {
-    m_pacmanExec = new PacmanExec();
-    QObject::connect(m_pacmanExec, SIGNAL( finished ( int, QProcess::ExitStatus )),
-                   this, SLOT( refreshAppIcon()) );
-    m_pacmanExec->doAURUpgrade(listOfTargets);
-  }
+  QObject::connect(dlg, SIGNAL( finished(int)),
+                   this, SLOT( doSystemUpgradeFinished() ));
+  dlg->show();
+  dlg->doAURUpgrade();
 }
 
 /*

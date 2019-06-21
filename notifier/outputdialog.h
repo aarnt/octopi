@@ -83,7 +83,7 @@ protected:
   virtual void keyPressEvent(QKeyEvent * ke);
 
 public:
-  explicit OutputDialog(QWidget *parent = 0);
+  explicit OutputDialog(QWidget *parent = nullptr);
   void setDebugMode(bool newValue);
   void setListOfAURPackagesToUpgrade(const QString& list);
   void setViewAsTextBrowser(bool value);
@@ -93,14 +93,12 @@ public slots:
   void show();
   void reject();
 
-#ifdef QTERMWIDGET
   void initAsTermWidget();
   void doSystemUpgradeInTerminal();
   void doAURUpgrade();
   void onExecCommandInTabTerminal(QString command);
   void onPressAnyKeyToContinue();
   void onCancelControlKey();
-#endif
 
 };
 
