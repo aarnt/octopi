@@ -34,6 +34,12 @@ int main(int argc, char *argv[])
   if (!QFile::exists(ctn_CHECKUPDATES_BINARY))
   {
     qDebug() << "Aborting octopi as 'checkupdates' binary could not be found! [" << ctn_CHECKUPDATES_BINARY << "]";
+    return (-1);
+  }
+
+  if (!QFile::exists(ctn_OCTOPI_HELPER))
+  {
+    qDebug() << "Aborting octopi as 'octopi-helper' binary could not be found! [" << ctn_OCTOPI_HELPER << "]";
     return (-2);
   }
 
@@ -119,7 +125,7 @@ int main(int argc, char *argv[])
 
   if (UnixCommand::isRootRunning()){
     QMessageBox::critical( nullptr, StrConstants::getApplicationName(), StrConstants::getErrorRunningWithRoot());
-    return ( -2 );
+    return ( -3 );
   }
 
   MainWindow w;

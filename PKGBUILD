@@ -30,7 +30,7 @@ build() {
    qmake-qt5 PREFIX=/usr QMAKE_CFLAGS="${CFLAGS}" QMAKE_CXXFLAGS="${CXXFLAGS}" QMAKE_LFLAGS="${LDFLAGS}" octopi.pro
    make
    
-   cd octopihelper
+   cd helper
    qmake-qt5 PREFIX=/usr QMAKE_CFLAGS="${CFLAGS}" QMAKE_CXXFLAGS="${CXXFLAGS}" QMAKE_LFLAGS="${LDFLAGS}" octopi-helper.pro
    make
    cd ..
@@ -58,7 +58,7 @@ package() {
    cd "${pkgname}-${pkgver}"
    make INSTALL_ROOT="${pkgdir}" install
    
-   cd octopihelper
+   cd helper
    make INSTALL_ROOT="${pkgdir}" install
    cd ..
 
