@@ -64,10 +64,6 @@ void MainWindow::loadSettings()
     if (!SettingsManager::isValidSUToolSelected()){
       SettingsManager::setSUTool(ctn_AUTOMATIC);
     }
-
-    /*if (!SettingsManager::isValidTerminalSelected()){
-      SettingsManager::setTerminal(ctn_AUTOMATIC);
-    }*/
   }
   else assert(false);
 
@@ -227,12 +223,10 @@ void MainWindow::initPackageGroups()
   ui->twGroups->header()->setSectionsClickable(false);
   ui->twGroups->header()->setSectionsMovable(false);
   ui->twGroups->header()->setSectionResizeMode(QHeaderView::Fixed);
-
   ui->twGroups->setFrameShape(QFrame::NoFrame);
   ui->twGroups->setFrameShadow(QFrame::Plain);
   ui->twGroups->setStyleSheet(StrConstants::getTreeViewCSS());
   ui->twGroups->setSelectionMode(QAbstractItemView::SingleSelection);
-
   connect(ui->twGroups, SIGNAL(itemSelectionChanged()), this, SLOT(onPackageGroupChanged()));
 }
 
@@ -547,17 +541,6 @@ void MainWindow::removePackageTreeViewConnections()
 void MainWindow::resizePackageView()
 {
   ui->tvPackages->resizePackageView();
-
-/*
-  ui->tvPackages->setColumnWidth(PackageModel::ctn_PACKAGE_ICON_COLUMN,
-                                 SettingsManager::getPackageIconColumnWidth());
-  ui->tvPackages->setColumnWidth(PackageModel::ctn_PACKAGE_NAME_COLUMN,
-                                 SettingsManager::getPackageNameColumnWidth());
-  ui->tvPackages->setColumnWidth(PackageModel::ctn_PACKAGE_VERSION_COLUMN,
-                                 SettingsManager::getPackageVersionColumnWidth());
-  ui->tvPackages->setColumnWidth(PackageModel::ctn_PACKAGE_REPOSITORY_COLUMN,
-                                 SettingsManager::getPackageRepositoryColumnWidth());
-*/
 }
 
 /*
@@ -857,7 +840,6 @@ void MainWindow::initActions()
   connect(ui->actionEditFile, SIGNAL(triggered()), this, SLOT(editFile()));
   connect(ui->actionOpenDirectory, SIGNAL(triggered()), this, SLOT(openDirectory()));
   connect(ui->actionOpenTerminal, SIGNAL(triggered()), this, SLOT(openTerminal()));
-  //connect(ui->actionOpenRootTerminal, SIGNAL(triggered()), this, SLOT(openRootTerminal()));
 
   // Use theme icons for QActions
   ui->actionCheckUpdates->setIcon(IconHelper::getIconCheckUpdates());
