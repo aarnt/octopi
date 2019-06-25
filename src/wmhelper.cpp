@@ -189,46 +189,10 @@ QString WMHelper::getXFCEEditor(){
 }
 
 /*
- * Retrieves the KDESU command...
- */
-QString WMHelper::getKDESUCommand(){
-  QString result = ctn_KDESU;
-
-  result += " -d ";
-  result += " -t ";
-  result += " --noignorebutton ";
-  result += " -c ";
-
-  return result;
-}
-
-/*
- * Retrieves the GKSU command...
- */
-QString WMHelper::getGKSUCommand(){
-  QString result;
-  result = UnixCommand::discoverBinaryPath(ctn_GKSU_2);
-  result += " -u root -m " + QString("\"") + StrConstants::getEnterAdministratorsPassword() + QString("\" ");
-
-  return result;
-}
-
-/*
- * Retrieves the LXQTSU command...
- */
-QString WMHelper::getLXQTSUCommand(){
-  QString result = ctn_LXQTSU;
-  result += " -d ";
-
-  return result;
-}
-
-/*
  * Retrieves the OctopiSudo command...
  */
 QString WMHelper::getOctopiSudoCommand(){
   QString result = ctn_OCTOPISUDO;
-
   result += " -d ";
 
   return result;
@@ -243,37 +207,13 @@ QString WMHelper::getSUCommand(){
   if (UnixCommand::getLinuxDistro() != ectn_KAOS)
   {
     QString su = SettingsManager::getSUTool();
-    if (su == ctn_GKSU_2)
-      result = getGKSUCommand();
-    else if (su == ctn_KDESU)
-      result = getKDESUCommand();
-    else if (su == ctn_LXQTSU)
-      result = getLXQTSUCommand();
-    else if (su == ctn_OCTOPISUDO)
+    if (su == ctn_OCTOPISUDO)
       result = getOctopiSudoCommand();
   }
   else
   {
-    if (isXFCERunning() && (UnixCommand::hasTheExecutable(ctn_GKSU_2))){
-      result = getGKSUCommand();
-    }
-    else if (isKDERunning() && UnixCommand::hasTheExecutable(ctn_KDESU)){
-      result = getKDESUCommand();
-    }
-    else if (isLXQTRunning() && UnixCommand::hasTheExecutable(ctn_LXQTSU)){
-      result = getLXQTSUCommand();
-    }    
-    else if (UnixCommand::hasTheExecutable(ctn_OCTOPISUDO)){
+    if (UnixCommand::hasTheExecutable(ctn_OCTOPISUDO)){
       result = getOctopiSudoCommand();
-    }
-    else if (UnixCommand::hasTheExecutable(ctn_GKSU_2)){
-      result = getGKSUCommand();
-    }
-    else if (UnixCommand::hasTheExecutable(ctn_KDESU)){
-      result = getKDESUCommand();
-    }
-    else if (UnixCommand::hasTheExecutable(ctn_LXQTSU)){
-      result = getLXQTSUCommand();
     }
   }
 
@@ -287,33 +227,12 @@ QString WMHelper::getSUTool()
 {
   QString result("");
 
-  if (isXFCERunning() && UnixCommand::hasTheExecutable(ctn_GKSU_2)){
-    result = ctn_GKSU_2;
-  }
-  else if (isKDERunning() && UnixCommand::hasTheExecutable(ctn_KDESU)){
-    result = ctn_KDESU;
-  }
-  else if (isLXQTRunning() && UnixCommand::hasTheExecutable(ctn_LXQTSU)){
-    result = ctn_LXQTSU;
-  }
-  /*else if (isTDERunning() && UnixCommand::hasTheExecutable(ctn_TDESU)){
-    result = ctn_TDESU;
-  }*/
-  else if (UnixCommand::hasTheExecutable(ctn_GKSU_2)){
-    result = ctn_GKSU_2;
-  }
-  else if (UnixCommand::hasTheExecutable(ctn_KDESU)){
-    result = ctn_KDESU;
-  }
-  else if (UnixCommand::hasTheExecutable(ctn_OCTOPISUDO)){
+  if (UnixCommand::hasTheExecutable(ctn_OCTOPISUDO)){
     return ctn_OCTOPISUDO;
   }
   else if (UnixCommand::hasTheExecutable(ctn_LXQTSU)){
     result = ctn_LXQTSU;
   }
-  /*else if (UnixCommand::hasTheExecutable(ctn_TDESU)){
-    result = ctn_TDESU;
-  }*/
 
   return result;
 }
@@ -566,16 +485,3 @@ void WMHelper::openDirectory( const QString& dirName ){
     }
   }
 }
-
-/*
- * Opens a terminal based on your DE.
- */
-/*void WMHelper::openTerminal(const QString& dirName)
-{
-  QFileInfo f(dirName);
-  if (f.exists())
-  {
-    Terminal *term = new Terminal(0, SettingsManager::getTerminal());
-    term->openTerminal(dirName);
-  }
-}*/

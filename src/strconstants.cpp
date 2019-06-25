@@ -204,7 +204,7 @@ QString StrConstants::getHelpAbout(){
 }
 
 QString StrConstants::getOptions(){
-  return QObject::tr("Options");
+  return QObject::tr("&Options");
 }
 
 QString StrConstants::getName(){

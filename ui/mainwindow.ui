@@ -144,7 +144,7 @@
    </property>
    <widget class="QMenu" name="menuHelp">
     <property name="title">
-     <string>Help</string>
+     <string>&amp;Help</string>
     </property>
     <addaction name="actionHelpUsage"/>
     <addaction name="separator"/>
@@ -152,7 +152,7 @@
    </widget>
    <widget class="QMenu" name="menuView">
     <property name="title">
-     <string>View</string>
+     <string>&amp;View</string>
     </property>
     <addaction name="actionViewAllPackages"/>
     <addaction name="actionViewInstalledPackages"/>
@@ -161,27 +161,26 @@
    </widget>
    <widget class="QMenu" name="menuTransaction">
     <property name="title">
-     <string>Transaction</string>
+     <string>&amp;Transaction</string>
     </property>
     <addaction name="actionCommit"/>
     <addaction name="actionCancel"/>
    </widget>
    <widget class="QMenu" name="menuFile">
     <property name="title">
-     <string>File</string>
+     <string>&amp;File</string>
     </property>
     <addaction name="actionGetNews"/>
     <addaction name="actionCheckUpdates"/>
     <addaction name="actionSystemUpgrade"/>
     <addaction name="separator"/>
     <addaction name="actionInstallLocalPackage"/>
-    <addaction name="actionOpenRootTerminal"/>
     <addaction name="separator"/>
     <addaction name="actionExit"/>
    </widget>
    <widget class="QMenu" name="menuSearch">
     <property name="title">
-     <string>Search</string>
+     <string>&amp;Search</string>
     </property>
     <addaction name="actionSearchByDescription"/>
     <addaction name="actionSearchByFile"/>
@@ -191,7 +190,7 @@
    </widget>
    <widget class="QMenu" name="menuTools">
     <property name="title">
-     <string>Tools</string>
+     <string>T&amp;ools</string>
     </property>
     <addaction name="actionCacheCleaner"/>
     <addaction name="actionPacmanLogViewer"/>
@@ -221,7 +220,7 @@
   <widget class="QStatusBar" name="statusBar"/>
   <action name="actionHelpAbout">
    <property name="text">
-    <string>About</string>
+    <string>&amp;About</string>
    </property>
    <property name="iconText">
     <string>About</string>
@@ -247,7 +246,7 @@
      <normaloff>:/resources/images/commit.png</normaloff>:/resources/images/commit.png</iconset>
    </property>
    <property name="text">
-    <string>Commit</string>
+    <string>Co&amp;mmit</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+M</string>
@@ -259,7 +258,7 @@
      <normaloff>:/resources/images/rollback.png</normaloff>:/resources/images/rollback.png</iconset>
    </property>
    <property name="text">
-    <string>Cancel</string>
+    <string>Canc&amp;el</string>
    </property>
    <property name="toolTip">
     <string>Cancel</string>
@@ -274,19 +273,15 @@
      <normaloff>:/resources/images/refresh.png</normaloff>:/resources/images/refresh.png</iconset>
    </property>
    <property name="text">
-    <string>Check updates</string>
+    <string>Check &amp;updates</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+U</string>
    </property>
   </action>
   <action name="actionExit">
-   <property name="icon">
-    <iconset resource="../resources.qrc">
-     <normaloff>:/resources/images/exit.png</normaloff>:/resources/images/exit.png</iconset>
-   </property>
    <property name="text">
-    <string>Exit</string>
+    <string>E&amp;xit</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+Q</string>
@@ -298,7 +293,7 @@
      <normaloff>:/resources/images/fast_forward.png</normaloff>:/resources/images/fast_forward.png</iconset>
    </property>
    <property name="text">
-    <string>System upgrade</string>
+    <string>System u&amp;pgrade</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+P</string>
@@ -339,7 +334,7 @@
      <normaloff>:/resources/images/rss.png</normaloff>:/resources/images/rss.png</iconset>
    </property>
    <property name="text">
-    <string>Get latest distro news</string>
+    <string>&amp;Get latest distro news</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+G</string>
@@ -464,7 +459,7 @@
     <bool>true</bool>
    </property>
    <property name="text">
-    <string>By description</string>
+    <string>By &amp;description</string>
    </property>
   </action>
   <action name="actionSearchByName">
@@ -472,7 +467,7 @@
     <bool>true</bool>
    </property>
    <property name="text">
-    <string>By name</string>
+    <string>By &amp;name</string>
    </property>
   </action>
   <action name="actionFindFileInPackage">
@@ -506,7 +501,7 @@
   </action>
   <action name="actionInstallLocalPackage">
    <property name="text">
-    <string>Install local package...</string>
+    <string>&amp;Install local package...</string>
    </property>
   </action>
   <action name="actionInstallAUR">
@@ -577,7 +572,7 @@
     <bool>true</bool>
    </property>
    <property name="text">
-    <string>By file</string>
+    <string>By &amp;file</string>
    </property>
   </action>
   <action name="actionUseInstantSearch">

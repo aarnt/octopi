@@ -42,9 +42,6 @@ public:
   static bool isCinnamonRunning();
 
   static QString getKDEOpenHelper();
-  static QString getKDESUCommand();
-  static QString getGKSUCommand();
-  static QString getLXQTSUCommand();
   static QString getOctopiSudoCommand();
   static QString getXFCEEditor();
   static QString getSUCommand();
@@ -52,7 +49,6 @@ public:
   static void openFile(const QString& fileName); //fileName is Path + Name
   static void editFile(const QString& fileName , EditOptions opt = ectn_EDIT_AS_ROOT); //fileName is Path + Name
   static void openDirectory( const QString& dirName );
-  //static void openTerminal( const QString& dirName );
 };
 
 #endif // WMHELPER_H

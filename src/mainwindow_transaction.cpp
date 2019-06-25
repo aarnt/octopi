@@ -867,6 +867,8 @@ bool MainWindow::prepareSystemUpgrade()
  */
 void MainWindow::doSystemUpgrade(SystemUpgradeOptions systemUpgradeOptions)
 {
+  Q_UNUSED(systemUpgradeOptions)
+
   if (isAURGroupSelected() || m_systemUpgradeDialog) return;
 
   if(m_callSystemUpgrade && m_numberOfOutdatedPackages == 0)

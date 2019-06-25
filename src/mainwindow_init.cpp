@@ -102,6 +102,9 @@ void MainWindow::loadPanelSettings()
 void MainWindow::saveSettings(SaveSettingsReason saveSettingsReason)
 {
   switch(saveSettingsReason){
+    case ectn_CONSOLE_FONT_SIZE:
+      break;
+
     case ectn_CURRENTTABINDEX:
       SettingsManager::instance()->setCurrentTabIndex(ui->twProperties->currentIndex());
       break;
@@ -277,12 +280,12 @@ void MainWindow::initMenuBar()
   actionGroupRepositories->setExclusive(true);
   m_actionMenuRepository->setMenu(subMenu);
 
-  foreach (QAction * act,  ui->menuBar->actions())
+  /*foreach (QAction * act,  ui->menuBar->actions())
   {
     QString text = act->text();
     text = text.remove("&");
     act->setText(qApp->translate("MainWindow", text.toUtf8(), 0));
-  }
+  }*/
 
 #ifdef OCTOPI_DEV_CODE
   ui->menuFile->insertAction(ui->actionExit, m_actionEditOctopiConf);
@@ -894,8 +897,8 @@ void MainWindow::initActions()
   QString text;
   foreach(QAction* ac, this->findChildren<QAction*>(QRegularExpression("(m_a|a)ction\\S*")))
   {
-    text = ac->text().remove("&");
-    ac->setText(qApp->translate("MainWindow", text.toUtf8(), 0));
+    //text = ac->text().remove("&");
+    //ac->setText(qApp->translate("MainWindow", text.toUtf8(), 0));
 
     if (!ac->shortcut().isEmpty())
     {

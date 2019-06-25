@@ -887,11 +887,11 @@ void UnixCommand::executeCommand(const QString &pCommand, Language lang)
 
   QString suCommand = WMHelper::getSUCommand();
 
-  if (suCommand == WMHelper::getLXQTSUCommand() || suCommand == WMHelper::getOctopiSudoCommand())
+  if (suCommand == WMHelper::getOctopiSudoCommand())
   {
     command = buildOctopiHelperCommand(pCommand);
   }
-  else //We are not using "octopi-sudo" or "lxqt-sudo" utility...*/
+  else //We are not using "octopi-sudo" nor "lxqt-sudo" utility...*/
   {
     command = suCommand + "\"" + pCommand + "\"";
   }
@@ -1003,7 +1003,7 @@ void UnixCommand::cancelProcess()
   QString pCommand = "killall pacman; rm " + ctn_PACMAN_DATABASE_LOCK_FILE;
   QString result;
 
-  if (suCommand == WMHelper::getLXQTSUCommand())
+  if (suCommand == WMHelper::getOctopiSudoCommand())
   {
     result = buildOctopiHelperCommand(pCommand);
   }

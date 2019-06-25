@@ -145,12 +145,12 @@ void MainWindow::refreshMenuTools()
     }
   }
 
-  foreach (QAction * act,  ui->menuBar->actions())
+  /*foreach (QAction * act,  ui->menuBar->actions())
   {
     QString text = act->text();
     text = text.remove("&");
     act->setText(qApp->translate("MainWindow", text.toUtf8(), 0));
-  }
+  }*/
 }
 
 /*
