@@ -76,6 +76,19 @@
           <string>Use alternating row colors in package list</string>
          </property>
         </widget>
+        <widget class="QCheckBox" name="cbNoConfirmationDialogInSysUpgrade">
+         <property name="geometry">
+          <rect>
+           <x>20</x>
+           <y>120</y>
+           <width>611</width>
+           <height>23</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Disable confirmation dialog in system upgrade</string>
+         </property>
+        </widget>
        </widget>
        <widget class="QWidget" name="tabAUR">
         <attribute name="title">

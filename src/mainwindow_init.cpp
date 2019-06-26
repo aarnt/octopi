@@ -61,9 +61,9 @@ void MainWindow::loadSettings()
     ui->tvPackages->header()->setSortIndicator( packageListOrderedCol, packageListSortOrder );
     ui->tvPackages->sortByColumn( packageListOrderedCol, packageListSortOrder );
 
-    if (!SettingsManager::isValidSUToolSelected()){
+    /*if (!SettingsManager::isValidSUToolSelected()){
       SettingsManager::setSUTool(ctn_AUTOMATIC);
-    }
+    }*/
   }
   else assert(false);
 

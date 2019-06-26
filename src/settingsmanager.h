@@ -77,6 +77,7 @@ class SettingsManager
     static bool getAurNoEditParam();
     static bool getSearchOutdatedAURPackages();
     static bool getUseAlternateRowColor();
+    static bool getDisableConfirmationDialogInSysUpgrade();
 
     static int getConsoleFontSize();
     static QString readSUToolValue();
@@ -104,8 +105,6 @@ class SettingsManager
     static QByteArray getOptionalDepsWindowSize();
     static QByteArray getSplitterHorizontalState();
 
-    static bool isValidSUToolSelected();
-    //static bool isValidTerminalSelected();
     static bool isInstantSearchSelected();
 
     static void setCurrentTabIndex(int newValue);
@@ -147,6 +146,7 @@ class SettingsManager
     static void setAurNoEditParam(bool newValue);
     static void setSearchOutdatedAURPackages(bool newValue);
     static void setUseAlternateRowColor(bool newValue);
+    static void setDisableConfirmationDialogInSysUpgrade(bool newValue);
     static void setSUTool(const QString& newValue);
     static void setInstantSearchSelected(bool newValue);
     static void setConsoleFontSize(int newValue);

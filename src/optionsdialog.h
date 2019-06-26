@@ -34,7 +34,6 @@ class OptionsDialog : public QDialog, public Ui_OptionsDialog
   Q_OBJECT
 
 private:
-  bool m_once;
   bool m_iconHasChanged;
   bool m_backendHasChanged;
   bool m_calledByOctopi;
@@ -50,13 +49,10 @@ private:
   void initAURTab();
   void initBackendTab();
   void initIconTab();
-  //void initSUToolTab();
   void initUpdatesTab();
-  //void initTerminalTab();
   void removeTabByName(const QString &tabName);
 
 protected:
-  //virtual void paintEvent(QPaintEvent *);
   virtual void accept();
 
 public:
@@ -73,7 +69,6 @@ private slots:
   void selYellowIconPath();
   void selGreenIconPath();
   void selBusyIconPath();
-  //void currentTabChanged(int tabIndex);
   void selectOnceADay();
   void selectOnceADayAt();
   void selectOnceEvery();

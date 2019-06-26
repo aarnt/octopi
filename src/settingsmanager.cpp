@@ -394,6 +394,12 @@ bool SettingsManager::getUseAlternateRowColor()
   return (p_instance.getSYSsettings()->value( ctn_KEY_USE_ALTERNATE_ROW_COLOR, 0)).toBool();
 }
 
+bool SettingsManager::getDisableConfirmationDialogInSysUpgrade()
+{
+  SettingsManager p_instance;
+  return (p_instance.getSYSsettings()->value( ctn_KEY_DISABLE_TRANSACTION_DIALOG_IN_SYSTEM_UPGRADE, 0)).toBool();
+}
+
 int SettingsManager::getConsoleFontSize()
 {
   SettingsManager p_instance;
@@ -411,17 +417,7 @@ QString SettingsManager::readSUToolValue()
 
 QString SettingsManager::getSUTool()
 {
-  /*SettingsManager p_instance;
-  QString ret = (p_instance.getSYSsettings()->value( ctn_KEY_SU_TOOL, ctn_AUTOMATIC)).toString();
-
-  if (ret == ctn_AUTOMATIC)
-  {
-    ret = WMHelper::getSUTool();
-  }*/
-
-  QString ret = ctn_OCTOPISUDO;
-
-  return ret;
+  return ctn_OCTOPISUDO;
 }
 
 bool SettingsManager::getSkipMirrorCheckAtStartup(){
@@ -463,19 +459,9 @@ QByteArray SettingsManager::getCacheCleanerWindowSize()
   return (instance()->getSYSsettings()->value( ctn_KEY_CACHE_CLEANER_WINDOW_SIZE, 0).toByteArray());
 }
 
-QString SettingsManager::getTerminal(){
+QString SettingsManager::getTerminal()
+{
   return ctn_QTERMWIDGET;
-
-  /*if (!instance()->getSYSsettings()->contains(ctn_KEY_TERMINAL))
-  {
-    instance()->getSYSsettings()->setValue(ctn_KEY_TERMINAL, ctn_AUTOMATIC);
-    return ctn_AUTOMATIC;
-  }
-  else
-  {
-    SettingsManager p_instance;
-    return (p_instance.getSYSsettings()->value( ctn_KEY_TERMINAL, ctn_AUTOMATIC)).toString();
-  }*/
 }
 
 QByteArray SettingsManager::getWindowSize(){
@@ -680,6 +666,12 @@ void SettingsManager::setUseAlternateRowColor(bool newValue)
   instance()->getSYSsettings()->sync();
 }
 
+void SettingsManager::setDisableConfirmationDialogInSysUpgrade(bool newValue)
+{
+  instance()->getSYSsettings()->setValue(ctn_KEY_DISABLE_TRANSACTION_DIALOG_IN_SYSTEM_UPGRADE, newValue);
+  instance()->getSYSsettings()->sync();
+}
+
 void SettingsManager::setSUTool(const QString &newValue)
 {
   instance()->getSYSsettings()->setValue(ctn_KEY_SU_TOOL, newValue);
@@ -697,74 +689,6 @@ void SettingsManager::setConsoleFontSize(int newValue)
   instance()->getSYSsettings()->setValue(ctn_KEY_CONSOLE_SIZE, newValue);
   instance()->getSYSsettings()->sync();
 }
-
-/*
- * Search all supported SU tools to see if the selected one is valid
- */
-bool SettingsManager::isValidSUToolSelected()
-{
-  QString userSUTool = readSUToolValue();
-
-  if (userSUTool == ctn_AUTOMATIC)
-    return true;
-
-  if (userSUTool == ctn_GKSU_2 ||
-      userSUTool == ctn_KDESU ||
-      userSUTool == ctn_LXQTSU ||
-      //userSUTool == ctn_OCTOPISUDO ||
-      userSUTool == ctn_TDESU)
-  {
-    if (UnixCommand::hasTheExecutable(userSUTool))
-    {
-      return true;
-    }
-    else
-    {
-      return false;
-    }
-  }
-  else
-  {
-    return false;
-  }
-}
-
-/*
- * Search all supported terminals to see if the selected one is valid
- */
-/*bool SettingsManager::isValidTerminalSelected()
-{
-  QString userTerminal = getTerminal();
-
-  if (userTerminal == ctn_AUTOMATIC)
-    return true;
-
-  if (userTerminal == ctn_XFCE_TERMINAL ||
-      userTerminal == ctn_LXDE_TERMINAL ||
-      userTerminal == ctn_LXQT_TERMINAL ||
-      userTerminal == ctn_KDE_TERMINAL ||
-      userTerminal == ctn_TDE_TERMINAL ||
-      userTerminal == ctn_CINNAMON_TERMINAL ||
-      userTerminal == ctn_MATE_TERMINAL ||
-      userTerminal == ctn_RXVT_TERMINAL ||
-      userTerminal == ctn_QTERMWIDGET ||
-      userTerminal == ctn_XTERM)
-  {
-    if (userTerminal == ctn_QTERMWIDGET) return true;
-    else if (UnixCommand::hasTheExecutable(userTerminal))
-    {
-      return true;
-    }
-    else
-    {
-      return false;
-    }
-  }
-  else
-  {
-    return false;
-  }
-}*/
 
 bool SettingsManager::isInstantSearchSelected()
 {

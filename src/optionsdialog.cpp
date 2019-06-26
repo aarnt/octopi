@@ -38,62 +38,18 @@
  */
 
 OptionsDialog::OptionsDialog(QWidget *parent) :
-  QDialog(parent),  
-  m_once(false){
-
+  QDialog(parent)
+{
   if (parent->windowTitle() == "Octopi") m_calledByOctopi = true;
   else m_calledByOctopi = false;
 
   setupUi(this);
   connect(buttonBox, SIGNAL(accepted()), this, SLOT(accept()));
   connect(buttonBox, SIGNAL(rejected()), this, SLOT(reject()));
-  //connect(tabWidget, SIGNAL(currentChanged(int)), this, SLOT(currentTabChanged(int)));
 
   removeEventFilter(this);
   initialize();
 }
-
-/*
- * When the dialog is first displayed
- */
-/*void OptionsDialog::paintEvent(QPaintEvent *){
-  //This member flag ensures the execution of this code for just ONE time.
-  if (!m_once){
-    QList<QTableWidgetItem *> l = twTerminal->findItems(SettingsManager::getTerminal(), Qt::MatchExactly);
-    if (l.count() == 1){
-      twTerminal->setCurrentItem(l.at(0));
-      twTerminal->scrollToItem(l.at(0));
-    }
-    m_once=true;
-  }
-}*/
-
-/*
- * Whenever user changes selected tab
- */
-/*void OptionsDialog::currentTabChanged(int tabIndex){
-  if (tabWidget->tabText(tabIndex) == tr("Terminal"))
-  {
-    twTerminal->setFocus();
-    QList<QTableWidgetItem*> l = twTerminal->findItems(SettingsManager::getTerminal(), Qt::MatchExactly);
-    if (l.count() == 1)
-    {
-      twTerminal->setCurrentItem(l.at(0));
-      twTerminal->scrollToItem(l.at(0));
-    }
-  }
-  else if (tabWidget->tabText(tabIndex) == tr("SU tool"))
-  {
-    twSUTool->setFocus();
-    QList<QTableWidgetItem*> l = twSUTool->findItems(SettingsManager::readSUToolValue(), Qt::MatchExactly);
-
-    if (l.count() == 1)
-    {
-      twSUTool->setCurrentItem(l.at(0));
-      twSUTool->scrollToItem(l.at(0));
-    }
-  }
-}*/
 
 /*
  * Whenever user checks/unchecks "Use default icons" option
@@ -227,6 +183,7 @@ void OptionsDialog::initGeneralTab()
   cbShowPackageNumbersOutput->setChecked(SettingsManager::getShowPackageNumbersOutput());
   cbShowStopTransaction->setChecked(SettingsManager::getShowStopTransaction());
   cbUseAlternateRowColor->setChecked(SettingsManager::getUseAlternateRowColor());
+  cbNoConfirmationDialogInSysUpgrade->setChecked(SettingsManager::getDisableConfirmationDialogInSysUpgrade());
 }
 
 /*
@@ -342,70 +299,6 @@ void OptionsDialog::initIconTab()
   }
 }
 
-/*
- * Initializes super user tool used
- */
-/*void OptionsDialog::initSUToolTab()
-{
-  if (UnixCommand::getLinuxDistro() == ectn_KAOS)
-  {
-    if (m_calledByOctopi) removeTabByName(tr("SU tool"));
-    else removeTabByName(tr("SU tool"));
-    return;
-  }
-
-  QStringList list;
-  list << ctn_AUTOMATIC;
-
-  //Now we populate the list of available SU tools
-  if (UnixCommand::hasTheExecutable(ctn_GKSU_2)){
-    list << ctn_GKSU_2;
-  }
-  if (UnixCommand::hasTheExecutable(ctn_KDESU)){
-    list << ctn_KDESU;
-  }
-  if (UnixCommand::hasTheExecutable(ctn_LXQTSU)){
-    list << ctn_LXQTSU;
-  }
-  if (UnixCommand::hasTheExecutable(ctn_OCTOPISUDO)){
-    list << ctn_OCTOPISUDO;
-  }
-  if (UnixCommand::hasTheExecutable(ctn_TDESU)){
-    list << ctn_TDESU;
-  }
-
-  if (list.count() == 1)
-  {
-    if (m_calledByOctopi) removeTabByName(tr("SU tool"));
-    else removeTabByName(tr("SU tool"));
-    return;
-  }
-
-  twSUTool->setRowCount(list.count());
-  twSUTool->setShowGrid(false);
-  twSUTool->setColumnCount(1);
-  twSUTool->setColumnWidth(0, 460);
-  twSUTool->verticalHeader()->hide();
-  twSUTool->horizontalHeader()->hide();
-  twSUTool->setSelectionBehavior(QAbstractItemView::SelectRows);
-  twSUTool->setSelectionMode(QAbstractItemView::SingleSelection);
-
-  int row = 0;
-  connect(twSUTool, SIGNAL(cellDoubleClicked(int,int)), this, SLOT(accept()));
-
-  while (row < (list.count()))
-  {
-    QTableWidgetItem *itemSU = new QTableWidgetItem();
-    itemSU->setFlags(itemSU->flags() ^ Qt::ItemIsEditable);
-    itemSU->setText(list.at(row));
-    twSUTool->setItem(row, 0, itemSU);
-    twSUTool->setRowHeight(row, 25);
-    row++;
-  }
-
-  twSUTool->sortByColumn(0, Qt::AscendingOrder);
-}*/
-
 void OptionsDialog::initUpdatesTab()
 {
   lblCheck->setText(StrConstants::getNotiferSetupDialogGroupBoxTitle());
@@ -467,46 +360,6 @@ void OptionsDialog::initUpdatesTab()
 }
 
 /*
- * Initializes Terminal tab
- */
-/*void OptionsDialog::initTerminalTab(){
-  QStringList terminals = Terminal::getListOfAvailableTerminals();
-
-  if (terminals.count() <= 2)
-  {
-    removeTabByName(tr("Terminal"));
-    return;
-  }
-
-  twTerminal->setRowCount(terminals.count());
-
-  int row=0;
-  QString terminal;
-
-  twTerminal->setShowGrid(false);
-  twTerminal->setColumnCount(1);
-  twTerminal->setColumnWidth(0, 460);
-  twTerminal->verticalHeader()->hide();
-  twTerminal->horizontalHeader()->hide();
-  twTerminal->setSelectionBehavior(QAbstractItemView::SelectRows);
-  twTerminal->setSelectionMode(QAbstractItemView::SingleSelection);
-
-  connect(twTerminal, SIGNAL(cellDoubleClicked(int,int)), this, SLOT(accept()));
-
-  while (row < (terminals.count()))
-  {
-    QTableWidgetItem *itemTerminal = new QTableWidgetItem();
-    itemTerminal->setFlags(itemTerminal->flags() ^ Qt::ItemIsEditable);
-    itemTerminal->setText(terminals.at(row));
-    twTerminal->setItem(row, 0, itemTerminal);
-    twTerminal->setRowHeight(row, 25);
-    row++;
-  }
-
-  twTerminal->sortByColumn(0, Qt::AscendingOrder);
-}*/
-
-/*
  * When user chooses OK button and saves all his changes
  */
 void OptionsDialog::accept(){
@@ -542,6 +395,10 @@ void OptionsDialog::accept(){
   {
     SettingsManager::setUseAlternateRowColor(cbUseAlternateRowColor->isChecked());
     emit alternateRowColorsChanged();
+  }
+  if (cbNoConfirmationDialogInSysUpgrade->isChecked() != SettingsManager::getDisableConfirmationDialogInSysUpgrade())
+  {
+    SettingsManager::setDisableConfirmationDialogInSysUpgrade(cbNoConfirmationDialogInSysUpgrade->isChecked());
   }
 
   //Set AUR Tool...
@@ -711,27 +568,6 @@ void OptionsDialog::accept(){
       SettingsManager::setCheckUpdatesInterval(-2);
     }
   }
-
-  //Set SU tool...
-  /*QString selectedSUTool = SettingsManager::getSUTool();
-
-  if (twSUTool->currentItem())
-    selectedSUTool = twSUTool->item(twSUTool->row(twSUTool->currentItem()), 0)->text();
-
-  if (SettingsManager::getSUTool() != selectedSUTool)
-    SettingsManager::setSUTool(selectedSUTool);
-
-  //Set terminal...
-  QString selectedTerminal;
-
-  if (twTerminal->currentItem())
-    selectedTerminal = twTerminal->item(twTerminal->row(twTerminal->currentItem()), 0)->text();
-
-  if (SettingsManager::getTerminal() != selectedTerminal)
-  {
-    SettingsManager::setTerminal(selectedTerminal);
-    emit terminalChanged();
-  }*/
 
   Options::result res=0;
 

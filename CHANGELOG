@@ -1,4 +1,5 @@
 0.10.0 (dev)
+  Added option to disable confirmation dialog in system upgrade.
   Added left click support on package icon in package list to launch context menu.
   Added a built-in default priviledge escalation tool: "octopi-sudo" as a slightly modified version 
 	of "lxqt-sudo" project (version 0.14.1). It's the only escalation tool supported!

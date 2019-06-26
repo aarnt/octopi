@@ -57,6 +57,7 @@ const QString ctn_ORGANIZATION("octopi");
 const QString ctn_APPLICATION("octopi");
 
 const QString ctn_KEY_SHOW_PACKAGE_NUMBERS_OUTPUT("Show_Package_Numbers_Output");
+const QString ctn_KEY_DISABLE_TRANSACTION_DIALOG_IN_SYSTEM_UPGRADE("Disable_Transaction_Dialog_In_System_Upgrade");
 const QString ctn_KEY_SHOW_STOP_TRANSACTION("Show_Stop_Transaction");
 const QString ctn_KEY_AUR_TOOL("Aur_Tool_Name");
 const QString ctn_KEY_AUR_NO_CONFIRM_PARAM("Aur_No_Confirm_Param");

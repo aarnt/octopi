@@ -345,111 +345,153 @@ void MainWindow::doSystemUpgrade()
 {
   if (!isInternetAvailable()) return;
 
-  if (m_transactionDialog != nullptr)
+  if(SettingsManager::getDisableConfirmationDialogInSysUpgrade())
   {
-    if (m_transactionDialog->isMinimized())
-      m_transactionDialog->setWindowState(Qt::WindowNoState);
-    else
-      m_transactionDialog->activateWindow();
-    return;
-  }
-
-  QList<PackageListData> * targets = Package::getTargetUpgradeList();
-
-  //There are no new updates to install!
-  if (targets->count() == 0 && m_numberOfOutdatedPackages == 0)
-  {
-    return;
-  }
-  else if (targets->count() == 0 && m_checkUpdatesStringList.count() == 0)
-  {
-    return;
-  }
-
-  QString list;
-  double totalDownloadSize = 0;
-
-  if (m_checkUpdatesStringList.count() > m_outdatedStringList->count())
-  {
-    targets->clear();
-    foreach(QString name, m_checkUpdatesStringList)
+    if( (m_checkUpdatesStringList.count() != 0 && m_checkUpdatesStringList.contains("pacman")) ||
+        (m_outdatedStringList->count() != 0 && m_outdatedStringList->contains("pacman")) )
     {
-      PackageListData aux;
-      /*QString size;
-      if (package)
-      {
-        size = size.number(package->downloadSize, 'f', 0);
-      }*/
+      m_systemUpgradeDialog = false;
 
-      aux = PackageListData(name, m_checkUpdatesNameNewVersion->value(name), "0");
-      targets->append(aux);
+      //If there are no means to run the actions, we must warn!
+      if (!_isSUAvailable()) return;
+
+      OutputDialog *dlg = new OutputDialog(this);
+      dlg->setViewAsTextBrowser(false);
+      QObject::connect(dlg, SIGNAL( finished(int)),
+                       this, SLOT( doSystemUpgradeFinished() ));
+
+      m_commandExecuting = ectn_RUN_SYSTEM_UPGRADE_IN_TERMINAL;
+      m_actionSystemUpgrade->setEnabled(false);
+      dlg->show();
+      dlg->doSystemUpgradeInTerminal();
+    }
+    else
+    {
+      m_commandExecuting = ectn_SYSTEM_UPGRADE;
+      m_systemUpgradeDialog = false;
+      toggleEnableInterface(false);
+      m_actionSystemUpgrade->setEnabled(false);
+
+      OutputDialog *dlg = new OutputDialog(this);
+      dlg->setViewAsTextBrowser(true);
+
+      if (m_debugInfo)
+        dlg->setDebugMode(true);
+
+      QObject::connect(dlg, SIGNAL( finished(int)),
+                       this, SLOT( doSystemUpgradeFinished() ));
+      dlg->show();
+      dlg->doSystemUpgrade();
     }
   }
-
-  foreach(PackageListData target, *targets)
-  {
-    totalDownloadSize += target.downloadSize;
-    list = list + target.name + "-" + target.version + "\n";
-  }
-  list.remove(list.size()-1, 1);
-
-  QString ds = Package::kbytesToSize(totalDownloadSize);
-  m_transactionDialog = new TransactionDialog(this);
-
-  if(targets->count()==1)
-    m_transactionDialog->setText(StrConstants::getRetrievePackage() +
-                     "\n\n" + StrConstants::getTotalDownloadSize().arg(ds).remove(" KB"));
   else
-    m_transactionDialog->setText(StrConstants::getRetrievePackages(targets->count()) +
-                     "\n\n" + StrConstants::getTotalDownloadSize().arg(ds).remove(" KB"));
-
-  m_transactionDialog->setWindowTitle(StrConstants::getConfirmation());
-  m_transactionDialog->setInformativeText(StrConstants::getConfirmationQuestion());
-  m_transactionDialog->setDetailedText(list);
-  m_systemUpgradeDialog = true;
-  int result = m_transactionDialog->exec();
-  m_transactionDialog = nullptr;
-
-  if (result == QDialogButtonBox::Yes)
   {
-    m_commandExecuting = ectn_SYSTEM_UPGRADE;
-    m_systemUpgradeDialog = false;
-    toggleEnableInterface(false);
-    m_actionSystemUpgrade->setEnabled(false);
+    if (m_transactionDialog != nullptr)
+    {
+      if (m_transactionDialog->isMinimized())
+        m_transactionDialog->setWindowState(Qt::WindowNoState);
+      else
+        m_transactionDialog->activateWindow();
+      return;
+    }
 
-    OutputDialog *dlg = new OutputDialog(this);
-    dlg->setViewAsTextBrowser(true);
+    QList<PackageListData> * targets = Package::getTargetUpgradeList();
 
-    if (m_debugInfo)
-      dlg->setDebugMode(true);
+    //There are no new updates to install!
+    if (targets->count() == 0 && m_numberOfOutdatedPackages == 0)
+    {
+      return;
+    }
+    else if (targets->count() == 0 && m_checkUpdatesStringList.count() == 0)
+    {
+      return;
+    }
 
-    QObject::connect(dlg, SIGNAL( finished(int)),
-                     this, SLOT( doSystemUpgradeFinished() ));
-    dlg->show();
-    dlg->doSystemUpgrade();
-  }
-  else if(result == QDialogButtonBox::AcceptRole)
-  {
-    m_systemUpgradeDialog = false;
+    QString list;
+    double totalDownloadSize = 0;
 
-    //If there are no means to run the actions, we must warn!
-    if (!_isSUAvailable()) return;
+    if (m_checkUpdatesStringList.count() > m_outdatedStringList->count())
+    {
+      targets->clear();
+      foreach(QString name, m_checkUpdatesStringList)
+      {
+        PackageListData aux;
+        /*QString size;
+        if (package)
+        {
+          size = size.number(package->downloadSize, 'f', 0);
+        }*/
 
-    OutputDialog *dlg = new OutputDialog(this);
-    dlg->setViewAsTextBrowser(false);
-    QObject::connect(dlg, SIGNAL( finished(int)),
-                     this, SLOT( doSystemUpgradeFinished() ));
+        aux = PackageListData(name, m_checkUpdatesNameNewVersion->value(name), "0");
+        targets->append(aux);
+      }
+    }
 
-    m_commandExecuting = ectn_RUN_SYSTEM_UPGRADE_IN_TERMINAL;
-    m_actionSystemUpgrade->setEnabled(false);
-    dlg->show();
-    dlg->doSystemUpgradeInTerminal();
-  }
-  else if (result == QDialogButtonBox::No)
-  {   
-    m_systemUpgradeDialog = false;
-    toggleEnableInterface(true);
-    refreshAppIcon();
+    foreach(PackageListData target, *targets)
+    {
+      totalDownloadSize += target.downloadSize;
+      list = list + target.name + "-" + target.version + "\n";
+    }
+    list.remove(list.size()-1, 1);
+
+    QString ds = Package::kbytesToSize(totalDownloadSize);
+    m_transactionDialog = new TransactionDialog(this);
+
+    if(targets->count()==1)
+      m_transactionDialog->setText(StrConstants::getRetrievePackage() +
+                                   "\n\n" + StrConstants::getTotalDownloadSize().arg(ds).remove(" KB"));
+    else
+      m_transactionDialog->setText(StrConstants::getRetrievePackages(targets->count()) +
+                                   "\n\n" + StrConstants::getTotalDownloadSize().arg(ds).remove(" KB"));
+
+    m_transactionDialog->setWindowTitle(StrConstants::getConfirmation());
+    m_transactionDialog->setInformativeText(StrConstants::getConfirmationQuestion());
+    m_transactionDialog->setDetailedText(list);
+    m_systemUpgradeDialog = true;
+    int result = m_transactionDialog->exec();
+    m_transactionDialog = nullptr;
+
+    if (result == QDialogButtonBox::Yes)
+    {
+      m_commandExecuting = ectn_SYSTEM_UPGRADE;
+      m_systemUpgradeDialog = false;
+      toggleEnableInterface(false);
+      m_actionSystemUpgrade->setEnabled(false);
+
+      OutputDialog *dlg = new OutputDialog(this);
+      dlg->setViewAsTextBrowser(true);
+
+      if (m_debugInfo)
+        dlg->setDebugMode(true);
+
+      QObject::connect(dlg, SIGNAL( finished(int)),
+                       this, SLOT( doSystemUpgradeFinished() ));
+      dlg->show();
+      dlg->doSystemUpgrade();
+    }
+    else if(result == QDialogButtonBox::AcceptRole)
+    {
+      m_systemUpgradeDialog = false;
+
+      //If there are no means to run the actions, we must warn!
+      if (!_isSUAvailable()) return;
+
+      OutputDialog *dlg = new OutputDialog(this);
+      dlg->setViewAsTextBrowser(false);
+      QObject::connect(dlg, SIGNAL( finished(int)),
+                       this, SLOT( doSystemUpgradeFinished() ));
+
+      m_commandExecuting = ectn_RUN_SYSTEM_UPGRADE_IN_TERMINAL;
+      m_actionSystemUpgrade->setEnabled(false);
+      dlg->show();
+      dlg->doSystemUpgradeInTerminal();
+    }
+    else if (result == QDialogButtonBox::No)
+    {
+      m_systemUpgradeDialog = false;
+      toggleEnableInterface(true);
+      refreshAppIcon();
+    }
   }
 }
 
@@ -1016,7 +1058,6 @@ void MainWindow::showOptionsDialog()
   {
     m_optionsDialog = new OptionsDialog(this);
     connect(m_optionsDialog, SIGNAL(AURToolChanged()), this, SLOT(refreshAppIcon()));
-
     utils::positionWindowAtScreenCenter(m_optionsDialog);
     m_optionsDialog->exec();
 

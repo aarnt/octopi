@@ -49,11 +49,6 @@ PacmanExec::PacmanExec(QObject *parent) : QObject(parent)
   QObject::connect(m_unixCommand, SIGNAL( finished ( int, QProcess::ExitStatus )),
                    this, SLOT( onFinished(int, QProcess::ExitStatus)));
 
-  //QObject::connect(m_unixCommand, SIGNAL( startedTerminal()), this, SLOT( onStarted()));
-
-  /*QObject::connect(m_unixCommand, SIGNAL( finishedTerminal( int, QProcess::ExitStatus )),
-                   this, SLOT( onFinished(int, QProcess::ExitStatus)));*/
-
   QObject::connect(m_unixCommand, SIGNAL( readyReadStandardOutput()),
                    this, SLOT( onReadOutput()));
 
@@ -201,10 +196,15 @@ bool PacmanExec::splitOutputStrings(QString output)
  */
 void PacmanExec::parsePacmanProcessOutput(const QString &output)
 {
+  static QString msgCache;
+  static bool storeMsgCache=true;
   m_parsingAPackageChange = false;
 
   if (m_commandExecuting == ectn_RUN_IN_TERMINAL ||
-      m_commandExecuting == ectn_RUN_SYSTEM_UPGRADE_IN_TERMINAL) return;
+      m_commandExecuting == ectn_RUN_SYSTEM_UPGRADE_IN_TERMINAL)
+  {
+    return;
+  }
 
   bool continueTesting = false;
   QString perc;
@@ -230,6 +230,8 @@ void PacmanExec::parsePacmanProcessOutput(const QString &output)
   msg.remove(";37m");
   msg.remove("[c");
   msg.remove("[mo");
+
+  if (storeMsgCache) msgCache+=msg;
 
   if (msg.indexOf(":: Synchronizing package databases...") != -1)
     m_commandExecuting = ectn_SYNC_DATABASE;
@@ -258,7 +260,18 @@ void PacmanExec::parsePacmanProcessOutput(const QString &output)
     }
   }
 
-  if (msg.contains("exists in filesystem") ||
+  if (msg.contains("Total Download Size:"))
+  {
+    storeMsgCache=false;
+    msgCache.clear();
+
+    //If we ever find a "pacman" package being updated in GUI mode, let's stop this transaction: potential breakage!
+    if (msgCache.contains(QRegularExpression(".+Packages? \\(\\d+\\).+pacman-[0-9].+Total Download Size:.+")))
+    {
+      cancelProcess();
+    }
+  }
+  else if (msg.contains("exists in filesystem") ||
       (msg.contains(":: waiting for 1 process to finish repacking")) ||
       (msg.contains(":: download complete in"))) return;
 

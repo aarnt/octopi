@@ -22,7 +22,7 @@ ALPM_BACKEND {
 LIBS += -lqtermwidget5
 
 contains(DEFINES, KSTATUS){
-  QT += KNotifications
+  QT += dbus KNotifications
 }
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets

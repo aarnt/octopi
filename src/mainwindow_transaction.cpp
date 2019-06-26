@@ -886,12 +886,31 @@ void MainWindow::doSystemUpgrade(SystemUpgradeOptions systemUpgradeOptions)
 
   if(!isInternetAvailable()) return;
 
-  /*if(systemUpgradeOptions == ectn_SYNC_DATABASE_OPT)
+  if(SettingsManager::getDisableConfirmationDialogInSysUpgrade())
   {
-    m_commandQueued = ectn_SYSTEM_UPGRADE;
-    doSyncDatabase();
+    int res = prepareSystemUpgrade();
+    if (!res)
+    {
+      m_systemUpgradeDialog = false;
+      enableTransactionActions();
+      return;
+    }
+
+    if( (m_checkupdatesStringList->count() != 0 && m_checkupdatesStringList->contains("pacman")) ||
+        (m_outdatedStringList->count() != 0 && m_outdatedStringList->contains("pacman")) )
+    {
+      m_commandExecuting = ectn_RUN_SYSTEM_UPGRADE_IN_TERMINAL;
+      m_pacmanExec->doSystemUpgradeInTerminal();
+      m_commandQueued = ectn_NONE;
+    }
+    else
+    {
+      m_commandExecuting = ectn_SYSTEM_UPGRADE;
+      m_pacmanExec->doSystemUpgrade();
+      m_commandQueued = ectn_NONE;
+    }
   }
-  else*/
+  else
   {
     //Shows a dialog indicating the targets needed to be retrieved and asks for the user's permission.
     QList<PackageListData> * targets = new QList<PackageListData>();
