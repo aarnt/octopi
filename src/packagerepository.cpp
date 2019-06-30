@@ -109,6 +109,8 @@ void PackageRepository::setAURData(const QList<PackageListData>*const listOfFore
 void PackageRepository::setForeignData(QList<PackageListData>*const listOfForeignPackages,
                                            const QStringList& outdatedAURPackages)
 {
+  Q_UNUSED(outdatedAURPackages)
+
   std::for_each(m_dependingModels.begin(), m_dependingModels.end(), BeginResetModel());
 
   for (QList<PackageListData>::iterator it = listOfForeignPackages->begin();
