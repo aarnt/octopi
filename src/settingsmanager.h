@@ -77,7 +77,8 @@ class SettingsManager
     static bool getAurNoEditParam();
     static bool getSearchOutdatedAURPackages();
     static bool getUseAlternateRowColor();
-    static bool getDisableConfirmationDialogInSysUpgrade();
+    static bool getEnableConfirmationDialogInSysUpgrade();
+    static bool getEnableInternetChecking();
 
     static int getConsoleFontSize();
     static QString readSUToolValue();
@@ -146,7 +147,8 @@ class SettingsManager
     static void setAurNoEditParam(bool newValue);
     static void setSearchOutdatedAURPackages(bool newValue);
     static void setUseAlternateRowColor(bool newValue);
-    static void setDisableConfirmationDialogInSysUpgrade(bool newValue);
+    static void setEnableConfirmationDialogInSysUpgrade(bool newValue);
+    static void setEnableInternetChecking(bool newValue);
     static void setSUTool(const QString& newValue);
     static void setInstantSearchSelected(bool newValue);
     static void setConsoleFontSize(int newValue);

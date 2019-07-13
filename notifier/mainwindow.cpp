@@ -345,7 +345,7 @@ void MainWindow::doSystemUpgrade()
 {
   if (!isInternetAvailable()) return;
 
-  if(SettingsManager::getDisableConfirmationDialogInSysUpgrade())
+  if(!SettingsManager::getEnableConfirmationDialogInSysUpgrade())
   {
     if( (m_checkUpdatesStringList.count() != 0 && m_checkUpdatesStringList.contains("pacman")) ||
         (m_outdatedStringList->count() != 0 && m_outdatedStringList->contains("pacman")) )

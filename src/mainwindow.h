@@ -353,7 +353,6 @@ private slots:
   void editOctopiConf();
   void openTerminal();
   void openDirectory();
-  //void openRootTerminal();
   void installLocalPackage();
   void showPackageInfo();
   void findFileInPackage();
@@ -367,7 +366,7 @@ private slots:
 
   void buildPackagesFromGroupList(const QString &group);
   void buildPackageList();
-  //void refreshPackageList();
+  void horizontalSplitterMoved(int pos, int index);
   void metaBuildPackageList();
   void onPackageGroupChanged();
 
@@ -446,9 +445,11 @@ private slots:
   void selectedRepositoryMenu(QAction *actionRepoSelected);
 
   void hideGroupsWidget(bool pSaveSettings = true);
-  void maximizePackagesTreeView(bool pSaveSettings = true);
+  void maximizePackagesTreeView();
+  void maxDemaxPackagesTreeView(bool pSaveSettings = true);
   void maximizeTerminalTab();
-  void maximizePropertiesTabWidget(bool pSaveSettings = true);
+  void maximizePropertiesTabWidget();
+  void maxDemaxPropertiesTabWidget(bool pSaveSettings = true);
   void outputOutdatedPackageList();
   void outputOutdatedAURPackageList();
 

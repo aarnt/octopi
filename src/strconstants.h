@@ -125,6 +125,7 @@ public:
   static QString getRunningCommandInTerminal();
   static QString getCommandFinishedOK();
   static QString getCommandFinishedWithErrors();
+  static QString getErrorPacmanProcessExecuting();
   static QString geRetrievingPackage();
   static QString getTotalDownloadSize();
   static QString getRetrievePackage();

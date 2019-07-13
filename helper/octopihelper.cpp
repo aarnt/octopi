@@ -25,6 +25,38 @@
 #include <QObject>
 #include <QTextStream>
 
+/*
+ * If justOneInstance = false (default), returns TRUE if one instance of the app is ALREADY running
+ * Otherwise, it returns TRUE if the given app is running.
+ */
+bool isAppRunning(const QString &appName, bool justOneInstance)
+{
+  QStringList slParam;
+  QProcess proc;
+
+  slParam << "-C";
+  slParam << appName;
+  proc.start("ps", slParam);
+  proc.waitForFinished();
+  QString out = proc.readAll();
+  proc.close();
+
+  if (justOneInstance)
+  {
+    if (out.count(appName)>0)
+      return true;
+    else
+      return false;
+  }
+  else
+  {
+    if (out.count(appName)>1)
+      return true;
+    else
+      return false;
+  }
+}
+
 OctopiHelper::OctopiHelper()
 {
   m_exitCode = -9999;
@@ -80,7 +112,7 @@ QString OctopiHelper::getTransactionTempFileName()
 int OctopiHelper::executePkgTransaction()
 {
   QString tempFile = getTransactionTempFileName();
-  if (tempFile.isEmpty()) return 1;
+  if (tempFile.isEmpty()) return ctn_NO_TEMP_ACTIONS_FILE;
 
   //Let's view the contents of the tempFile...
   QFile f(tempFile);
@@ -114,8 +146,16 @@ int OctopiHelper::executePkgTransaction()
     {
       QTextStream qout(stdout);
       qout << endl << "octopi-helper[aborted]: Suspicious transaction detected -> \"" << line << "\"" << endl;
-      return 1;
+      return ctn_SUSPICIOUS_ACTIONS_FILE;
     }
+  }
+
+  //If there is a "pacman" process executing elsewhere, let's abort octopi-helper!
+  if (contents != "killall pacman\nrm " + ctn_PACMAN_DATABASE_LOCK_FILE +"\n" && isAppRunning("pacman", true))
+  {
+    QTextStream qout(stdout);
+    qout << endl << "octopi-helper[aborted]: Pacman process already running" << endl;
+    return(ctn_PACMAN_PROCESS_EXECUTING);
   }
 
   QString command;

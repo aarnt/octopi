@@ -183,7 +183,8 @@ void OptionsDialog::initGeneralTab()
   cbShowPackageNumbersOutput->setChecked(SettingsManager::getShowPackageNumbersOutput());
   cbShowStopTransaction->setChecked(SettingsManager::getShowStopTransaction());
   cbUseAlternateRowColor->setChecked(SettingsManager::getUseAlternateRowColor());
-  cbNoConfirmationDialogInSysUpgrade->setChecked(SettingsManager::getDisableConfirmationDialogInSysUpgrade());
+  cbConfirmationDialogInSysUpgrade->setChecked(SettingsManager::getEnableConfirmationDialogInSysUpgrade());
+  cbEnableInternetCheck->setChecked(SettingsManager::getEnableInternetChecking());
 }
 
 /*
@@ -396,9 +397,13 @@ void OptionsDialog::accept(){
     SettingsManager::setUseAlternateRowColor(cbUseAlternateRowColor->isChecked());
     emit alternateRowColorsChanged();
   }
-  if (cbNoConfirmationDialogInSysUpgrade->isChecked() != SettingsManager::getDisableConfirmationDialogInSysUpgrade())
+  if (cbConfirmationDialogInSysUpgrade->isChecked() != SettingsManager::getEnableConfirmationDialogInSysUpgrade())
   {
-    SettingsManager::setDisableConfirmationDialogInSysUpgrade(cbNoConfirmationDialogInSysUpgrade->isChecked());
+    SettingsManager::setEnableConfirmationDialogInSysUpgrade(cbConfirmationDialogInSysUpgrade->isChecked());
+  }
+  if (cbEnableInternetCheck->isChecked() != SettingsManager::getEnableInternetChecking())
+  {
+    SettingsManager::setEnableInternetChecking(cbEnableInternetCheck->isChecked());
   }
 
   //Set AUR Tool...

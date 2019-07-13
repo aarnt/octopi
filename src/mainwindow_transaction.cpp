@@ -680,7 +680,7 @@ bool MainWindow::isInternetAvailable()
   bool res=true;
 
   //Test if Internet access exists
-  if (!UnixCommand::hasInternetConnection())
+  if (SettingsManager::getEnableInternetChecking() && !UnixCommand::hasInternetConnection())
   {
     QMessageBox::critical(this, StrConstants::getError(), StrConstants::getInternetUnavailableError());
     res=false;
@@ -886,7 +886,7 @@ void MainWindow::doSystemUpgrade(SystemUpgradeOptions systemUpgradeOptions)
 
   if(!isInternetAvailable()) return;
 
-  if(SettingsManager::getDisableConfirmationDialogInSysUpgrade())
+  if(!SettingsManager::getEnableConfirmationDialogInSysUpgrade())
   {
     int res = prepareSystemUpgrade();
     if (!res)
@@ -1832,6 +1832,11 @@ void MainWindow::pacmanProcessFinished(int exitCode, QProcess::ExitStatus exitSt
     m_cachedPackageInInfo = "";
     m_cachedPackageInFiles = "";
     writeToTabOutput("<br><b>" + StrConstants::getCommandFinishedOK() + "</b><br>");
+  }
+  else if (exitCode == ctn_PACMAN_PROCESS_EXECUTING)
+  {
+    writeToTabOutput(StrConstants::getErrorPacmanProcessExecuting() + "<br>");
+    writeToTabOutput("<br><b>" + StrConstants::getCommandFinishedWithErrors() + "</b><br>");
   }
   else
   {

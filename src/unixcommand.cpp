@@ -967,7 +967,6 @@ QString UnixCommand::buildOctopiHelperCommand(const QString &pCommand)
   if (pCommand.contains(";"))
   {
     commandList = pCommand.split(";", QString::SkipEmptyParts);
-
     foreach(QString line, commandList)
     {
       out << line.trimmed() << "\n";
@@ -982,14 +981,7 @@ QString UnixCommand::buildOctopiHelperCommand(const QString &pCommand)
   out.flush();
   ftemp->close();
 
-  //Here we select the proper "octopi-helper" parameter
-  if (commandList.count() ==1 && commandList.contains("pacman -Syy"))
-    octopiHelperCommandParameter = " -s";
-  else if (commandList.count() ==1 && commandList.contains("pacman -Syu"))
-    octopiHelperCommandParameter = " -u";
-  else
-    octopiHelperCommandParameter = " -t";
-
+  octopiHelperCommandParameter = " -t";
   return suCommand + ctn_OCTOPI_HELPER + octopiHelperCommandParameter;
 }
 

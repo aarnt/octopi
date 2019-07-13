@@ -499,6 +499,10 @@ QString StrConstants::getCommandFinishedWithErrors(){
   return QObject::tr("Command finished with errors!");
 }
 
+QString StrConstants::getErrorPacmanProcessExecuting(){
+  return QObject::tr("error: there is an instance of pacman already running");
+}
+
 QString StrConstants::geRetrievingPackage(){
   return QObject::tr("Retrieving %1");
 }

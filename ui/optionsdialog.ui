@@ -41,7 +41,7 @@
          <property name="geometry">
           <rect>
            <x>20</x>
-           <y>30</y>
+           <y>88</y>
            <width>581</width>
            <height>23</height>
           </rect>
@@ -54,7 +54,7 @@
          <property name="geometry">
           <rect>
            <x>20</x>
-           <y>60</y>
+           <y>118</y>
            <width>611</width>
            <height>23</height>
           </rect>
@@ -67,7 +67,7 @@
          <property name="geometry">
           <rect>
            <x>20</x>
-           <y>90</y>
+           <y>148</y>
            <width>611</width>
            <height>23</height>
           </rect>
@@ -76,17 +76,30 @@
           <string>Use alternating row colors in package list</string>
          </property>
         </widget>
-        <widget class="QCheckBox" name="cbNoConfirmationDialogInSysUpgrade">
+        <widget class="QCheckBox" name="cbConfirmationDialogInSysUpgrade">
          <property name="geometry">
           <rect>
            <x>20</x>
-           <y>120</y>
+           <y>28</y>
            <width>611</width>
            <height>23</height>
           </rect>
          </property>
          <property name="text">
-          <string>Disable confirmation dialog in system upgrade</string>
+          <string>Enable confirmation dialog in system upgrade</string>
+         </property>
+        </widget>
+        <widget class="QCheckBox" name="cbEnableInternetCheck">
+         <property name="geometry">
+          <rect>
+           <x>20</x>
+           <y>58</y>
+           <width>611</width>
+           <height>23</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Enable internet checking</string>
          </property>
         </widget>
        </widget>

@@ -1,5 +1,6 @@
 0.10.0 (dev)
-  Added option to disable confirmation dialog in system upgrade.
+  Added option to enable/disable confirmation dialog in system upgrade.
+  Added option to enable/disable internet checking.
   Added left click support on package icon in package list to launch context menu.
   Added a built-in default priviledge escalation tool: "octopi-sudo" as a slightly modified version 
 	of "lxqt-sudo" project (version 0.14.1). It's the only escalation tool supported!
@@ -13,6 +14,7 @@
   Added support for GNOME file manager/editor.
   Added option for changing use of alternating row colors in package list.
   Added a redesigned AUR tab in Options dialog.
+  Maximization of properties pane now hides tab bar.
   Dropped support for terminal applications. QTermWidget is mandatory now!
   BugFix: Replaced 'Sync database' command text to 'Check updates'.
   BugFix: Always do a "pacman -Syu" in System Upgrade.

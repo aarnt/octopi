@@ -55,9 +55,9 @@ enum SaveSettingsReason { ectn_AUR_PACKAGELIST, ectn_PACKAGELIST, ectn_CURRENTTA
 
 const QString ctn_ORGANIZATION("octopi");
 const QString ctn_APPLICATION("octopi");
-
 const QString ctn_KEY_SHOW_PACKAGE_NUMBERS_OUTPUT("Show_Package_Numbers_Output");
-const QString ctn_KEY_DISABLE_TRANSACTION_DIALOG_IN_SYSTEM_UPGRADE("Disable_Transaction_Dialog_In_System_Upgrade");
+const QString ctn_KEY_ENABLE_TRANSACTION_DIALOG_IN_SYSTEM_UPGRADE("Enable_Transaction_Dialog_In_System_Upgrade");
+const QString ctn_KEY_ENABLE_INTERNET_CHECKING("Enable_Internet_Checking");
 const QString ctn_KEY_SHOW_STOP_TRANSACTION("Show_Stop_Transaction");
 const QString ctn_KEY_AUR_TOOL("Aur_Tool_Name");
 const QString ctn_KEY_AUR_NO_CONFIRM_PARAM("Aur_No_Confirm_Param");
@@ -212,5 +212,11 @@ const QString ctn_CHECKUPDATES_BINARY = "/usr/bin/checkupdates";
 const QString ctn_DBUS_PACMANHELPER_SERVICE = "/usr/share/dbus-1/system-services/org.octopi.pacmanhelper.service";
 
 enum ExecOpt { ectn_NORMAL_EXEC_OPT, ectn_SYSUPGRADE_EXEC_OPT, ectn_SYSUPGRADE_NOCONFIRM_EXEC_OPT, ectn_AUR_UPGRADE_EXEC_OPT };
+
+//Octopi-helper related ----------------------------------------------------------------------------------
+
+const int ctn_NO_TEMP_ACTIONS_FILE(1);
+const int ctn_PACMAN_PROCESS_EXECUTING(2);
+const int ctn_SUSPICIOUS_ACTIONS_FILE(3);
 
 #endif // CONSTANTS

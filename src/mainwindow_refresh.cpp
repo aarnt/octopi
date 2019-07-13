@@ -917,6 +917,28 @@ void MainWindow::buildPackageList()
 }
 
 /*
+ * Whenever horizontal splitter handler is moved
+ */
+void MainWindow::horizontalSplitterMoved(int pos, int index)
+{
+  Q_UNUSED(index);
+
+  QList<int> l, rl;
+  rl = ui->splitterHorizontal->sizes();
+
+  if (pos == 0 && rl[0] == 0)
+  {
+    ui->twProperties->tabBar()->hide();
+    //ui->mainToolBar->hide();
+  }
+  else
+  {
+    ui->twProperties->tabBar()->show();
+    //ui->mainToolBar->show();
+  }
+}
+
+/*
  * This slot is called just after the list of packages is constructed
  */
 void MainWindow::postBuildPackageList()

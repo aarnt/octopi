@@ -1411,9 +1411,18 @@ void MainWindow::hideGroupsWidget(bool pSaveSettings)
 }
 
 /*
+ * Maximizes the upper pane (tvPackages)
+ */
+void MainWindow::maximizePackagesTreeView()
+{
+  QList<int> l;
+  ui->splitterHorizontal->setSizes( l << ui->tvPackages->maximumHeight() << 0);
+}
+
+/*
  * Maximizes/de-maximizes the upper pane (tvPackages)
  */
-void MainWindow::maximizePackagesTreeView(bool pSaveSettings)
+void MainWindow::maxDemaxPackagesTreeView(bool pSaveSettings)
 {
   QList<int> savedSizes;
   savedSizes << 200 << 235;
@@ -1421,7 +1430,7 @@ void MainWindow::maximizePackagesTreeView(bool pSaveSettings)
   QList<int> l, rl;
   rl = ui->splitterHorizontal->sizes();
 
-  if ( rl[1] != 0 )
+  if ( rl[1] != 0 ) //Maximizes
   {
     ui->splitterHorizontal->setSizes( l << ui->tvPackages->maximumHeight() << 0);
     if(!ui->tvPackages->hasFocus())
@@ -1430,7 +1439,7 @@ void MainWindow::maximizePackagesTreeView(bool pSaveSettings)
     if(pSaveSettings)
       saveSettings(ectn_MAXIMIZE_PACKAGES);
   }
-  else
+  else //Demaximizes
   {
     ui->splitterHorizontal->setSizes(savedSizes);
     ui->tvPackages->scrollTo(ui->tvPackages->currentIndex());
@@ -1446,13 +1455,24 @@ void MainWindow::maximizePackagesTreeView(bool pSaveSettings)
  */
 void MainWindow::maximizeTerminalTab()
 {
-  maximizePropertiesTabWidget(false);
+  maxDemaxPropertiesTabWidget(false);
+}
+
+/*
+ * Maximizes the lower pane (tabwidget)
+ */
+void MainWindow::maximizePropertiesTabWidget()
+{
+  QList<int> l;
+  ui->splitterHorizontal->setSizes( l << 0 << ui->twProperties->maximumHeight());
+  ui->twProperties->currentWidget()->childAt(1,1)->setFocus();
+  ui->twProperties->tabBar()->hide();
 }
 
 /*
  * Maximizes/de-maximizes the lower pane (tabwidget)
  */
-void MainWindow::maximizePropertiesTabWidget(bool pSaveSettings)
+void MainWindow::maxDemaxPropertiesTabWidget(bool pSaveSettings)
 {
   QList<int> savedSizes;
   savedSizes << 200 << 235;
@@ -1460,16 +1480,18 @@ void MainWindow::maximizePropertiesTabWidget(bool pSaveSettings)
   QList<int> l, rl;
   rl = ui->splitterHorizontal->sizes();
 
-  if ( rl[0] != 0 )
+  if ( rl[0] != 0 ) //Maximize here
   {
     ui->splitterHorizontal->setSizes( l << 0 << ui->twProperties->maximumHeight());
     ui->twProperties->currentWidget()->childAt(1,1)->setFocus();
+    ui->twProperties->tabBar()->hide();
 
     if(pSaveSettings)
       saveSettings(ectn_MAXIMIZE_PROPERTIES);
   }
-  else
+  else //DeMaximize here
   {
+    ui->twProperties->tabBar()->show();
     ui->splitterHorizontal->setSizes(savedSizes);
     ui->tvPackages->scrollTo(ui->tvPackages->currentIndex());
     ui->tvPackages->setFocus();
@@ -1484,8 +1506,14 @@ void MainWindow::maximizePropertiesTabWidget(bool pSaveSettings)
     {
       m_console->setFocus();
     }
+
     if(pSaveSettings)
+    {
+      bool hideGroups=false;
+      if (!m_actionShowGroups->isChecked()) hideGroups=true;
       saveSettings(ectn_NORMAL);
+      if (hideGroups) SettingsManager::setShowGroupsPanel(0);
+    }
   }
 }
 
@@ -1641,18 +1669,6 @@ void MainWindow::openDirectory(){
     WMHelper::openDirectory(dir);
   }
 }
-
-/*
- * Helper method which opens a root terminal
- */
-/*void MainWindow::openRootTerminal()
-{
-  //If there are no means to run the actions, we must warn!
-  if (!isSUAvailable()) return;
-
-  m_unixCommand = new UnixCommand(this);
-  m_unixCommand->openRootTerminal();
-}*/
 
 /*
  * Open a file chooser dialog for the user to select local packages to install (pacman -U)
@@ -2004,26 +2020,6 @@ void MainWindow::doSysInfo()
     out.replace(hostname, "<HOSTNAME>");
     out.replace(homePath, "<HOME_PATH>");
   }
-
-  /*QFuture<QString> f2 = QtConcurrent::run(generateSysInfo, out);
-  connect(&g_fwGenerateSysInfo, SIGNAL(finished()), &el, SLOT(quit()));
-  g_fwGenerateSysInfo.setFuture(f2);
-  el.exec();
-
-  m_commandExecuting = ectn_NONE;
-  QString result = g_fwGenerateSysInfo.result();
-
-  QRegularExpression re;
-  re.setPattern("uuid: (.*)\\n");
-  QRegularExpressionMatch m = re.match(result);
-  QString uuid = m.captured(1);
-
-  if (!uuid.isEmpty())
-  {
-    result += "<br>delete command: curl -X DELETE https://ptpb.pw/" + uuid;
-  }
-
-  writeToTabOutput("<br>" + result + "<br>");*/
 
   m_commandExecuting = ectn_NONE;
   quint32 gen = QRandomGenerator::global()->generate();

@@ -221,7 +221,7 @@ void MainWindow::keyPressEvent(QKeyEvent* ke)
     }
     else
     {
-      maximizePropertiesTabWidget(false);
+      maxDemaxPropertiesTabWidget(false);
       if (!ui->tvPackages->hasFocus()) ui->tvPackages->setFocus();
     }
   }
@@ -239,11 +239,11 @@ void MainWindow::keyPressEvent(QKeyEvent* ke)
   }
   else if (ke->key() == Qt::Key_F10)
   {
-    maximizePackagesTreeView(false);
+    maxDemaxPackagesTreeView(true);
   }
   else if (ke->key() == Qt::Key_F11)
   {
-    maximizePropertiesTabWidget(false);
+    maxDemaxPropertiesTabWidget(true);
   }
   else if(ke->key() == Qt::Key_C && ke->modifiers() == Qt::ControlModifier)
   {

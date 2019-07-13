@@ -394,10 +394,16 @@ bool SettingsManager::getUseAlternateRowColor()
   return (p_instance.getSYSsettings()->value( ctn_KEY_USE_ALTERNATE_ROW_COLOR, 0)).toBool();
 }
 
-bool SettingsManager::getDisableConfirmationDialogInSysUpgrade()
+bool SettingsManager::getEnableConfirmationDialogInSysUpgrade()
 {
   SettingsManager p_instance;
-  return (p_instance.getSYSsettings()->value( ctn_KEY_DISABLE_TRANSACTION_DIALOG_IN_SYSTEM_UPGRADE, 0)).toBool();
+  return (p_instance.getSYSsettings()->value( ctn_KEY_ENABLE_TRANSACTION_DIALOG_IN_SYSTEM_UPGRADE, 1)).toBool();
+}
+
+bool SettingsManager::getEnableInternetChecking()
+{
+  SettingsManager p_instance;
+  return (p_instance.getSYSsettings()->value( ctn_KEY_ENABLE_INTERNET_CHECKING, 1)).toBool();
 }
 
 int SettingsManager::getConsoleFontSize()
@@ -666,9 +672,15 @@ void SettingsManager::setUseAlternateRowColor(bool newValue)
   instance()->getSYSsettings()->sync();
 }
 
-void SettingsManager::setDisableConfirmationDialogInSysUpgrade(bool newValue)
+void SettingsManager::setEnableConfirmationDialogInSysUpgrade(bool newValue)
 {
-  instance()->getSYSsettings()->setValue(ctn_KEY_DISABLE_TRANSACTION_DIALOG_IN_SYSTEM_UPGRADE, newValue);
+  instance()->getSYSsettings()->setValue(ctn_KEY_ENABLE_TRANSACTION_DIALOG_IN_SYSTEM_UPGRADE, newValue);
+  instance()->getSYSsettings()->sync();
+}
+
+void SettingsManager::setEnableInternetChecking(bool newValue)
+{
+  instance()->getSYSsettings()->setValue(ctn_KEY_ENABLE_INTERNET_CHECKING, newValue);
   instance()->getSYSsettings()->sync();
 }
 
