@@ -7,6 +7,7 @@
   Added "pikaur" AUR tool support (thanks to ewilly).
   Added "yay" AUR tool support.
   Added option to never check for package updates in Notifier.
+  Added tooltip "Upgrading..." while Notifier is upgrading the system.
   Added "Info" option in package list context menu.
   Added CondresOS and SwagArch distro support.
   Added support for sudo (and NOPASSWD) executing thru new octopi-helper subproject.
@@ -24,6 +25,7 @@
   BugFix: Added support for symbolic lynks in "open file".
   BugFix: Pkg build date obeys Locale datetime format.
   BugFix: SysInfo no longer pushes the collected logs to a remote paste service. It saves them locally.
+  BugFix: "exists in filesystem" messages during transactions are shown again.
   BugFix: MultiselectionDialog did not resize pkg description automatically.
   BugFix: Some packages were not displaying Optional Deps at Info tab.
   BugFix: Huge delay when scrolling thru large package list.

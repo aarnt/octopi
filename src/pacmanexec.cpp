@@ -271,7 +271,7 @@ void PacmanExec::parsePacmanProcessOutput(const QString &output)
       cancelProcess();
     }
   }
-  else if (msg.contains("exists in filesystem") ||
+  else if (/*msg.contains("exists in filesystem") ||*/
       (msg.contains(":: waiting for 1 process to finish repacking")) ||
       (msg.contains(":: download complete in"))) return;
 

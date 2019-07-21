@@ -116,6 +116,7 @@ private:
   void initActions();
   void initSystemTrayIcon();
   void sendNotification(const QString &msg);
+  void setUpgradingTooltip();
 };
 
 #endif // MAINWINDOW_H

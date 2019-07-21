@@ -338,6 +338,15 @@ bool MainWindow::_isSUAvailable()
     return true;
 }
 
+void MainWindow::setUpgradingTooltip()
+{
+#ifdef KSTATUS
+  m_systemTrayIcon->setToolTipSubTitle(StrConstants::getUpgrading());
+#else
+  m_systemTrayIcon->setToolTip(StrConstants::getUpgrading());
+#endif
+}
+
 /*
  * Calls only the Octopi system upgrade window
  */
@@ -362,6 +371,7 @@ void MainWindow::doSystemUpgrade()
 
       m_commandExecuting = ectn_RUN_SYSTEM_UPGRADE_IN_TERMINAL;
       m_actionSystemUpgrade->setEnabled(false);
+      setUpgradingTooltip();
       dlg->show();
       dlg->doSystemUpgradeInTerminal();
     }
@@ -380,6 +390,7 @@ void MainWindow::doSystemUpgrade()
 
       QObject::connect(dlg, SIGNAL( finished(int)),
                        this, SLOT( doSystemUpgradeFinished() ));
+      setUpgradingTooltip();
       dlg->show();
       dlg->doSystemUpgrade();
     }
@@ -466,6 +477,7 @@ void MainWindow::doSystemUpgrade()
 
       QObject::connect(dlg, SIGNAL( finished(int)),
                        this, SLOT( doSystemUpgradeFinished() ));
+      setUpgradingTooltip();
       dlg->show();
       dlg->doSystemUpgrade();
     }
@@ -483,6 +495,7 @@ void MainWindow::doSystemUpgrade()
 
       m_commandExecuting = ectn_RUN_SYSTEM_UPGRADE_IN_TERMINAL;
       m_actionSystemUpgrade->setEnabled(false);
+      setUpgradingTooltip();
       dlg->show();
       dlg->doSystemUpgradeInTerminal();
     }

@@ -185,6 +185,7 @@ public:
   static QString getMaximize();
   static QString getPaste();
   static QString getNever();
+  static QString getUpgrading();
 
   //Style Sheets ---------------------------------
   static QString getToolBarCSS();

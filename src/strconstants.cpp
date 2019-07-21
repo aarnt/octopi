@@ -756,6 +756,11 @@ QString StrConstants::getNever()
   return QObject::tr("Never");
 }
 
+QString StrConstants::getUpgrading()
+{
+  return QObject::tr("Upgrading...");
+}
+
 //Style Sheets ---------------------------------
 
 QString StrConstants::getToolBarCSS(){
