@@ -6,13 +6,14 @@ url="https://octopiproject.wordpress.com/"
 arch=('i686' 'x86_64')
 license=('GPL2')
 depends=('alpm_octopi_utils' 'pacman' 'pacman-contrib' 'pkgfile' 'qtermwidget' 'sudo')
+makedepends=('git')
 groups=('system')
 install=octopi.install
-source=("https://github.com/aarnt/octopi/archive/master.zip")
+source=("git+https://github.com/aarnt/octopi.git")
 md5sums=('SKIP')
 
 prepare() {
-   cd "${pkgname}"-master
+   cd "${pkgname}"
    
    # enable the kstatus switch, disable if you wish to build without Plasma/knotifications support
    sed -e "s|DEFINES += ALPM_BACKEND #KSTATUS|DEFINES += ALPM_BACKEND KSTATUS|" -i notifier/octopi-notifier.pro
@@ -21,7 +22,7 @@ prepare() {
 }
          
 build() {
-   cd "${pkgname}"-master
+   cd "${pkgname}"
    
    qmake-qt5 PREFIX=/usr QMAKE_CFLAGS="${CFLAGS}" QMAKE_CXXFLAGS="${CXXFLAGS}" QMAKE_LFLAGS="${LDFLAGS}" octopi.pro
    make
@@ -52,7 +53,7 @@ build() {
 }
 
 package() {
-   cd "${pkgname}"-master
+   cd "${pkgname}"
    make INSTALL_ROOT="${pkgdir}" install
    
    cd helper
