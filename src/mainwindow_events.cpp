@@ -66,10 +66,10 @@ void MainWindow::closeEvent(QCloseEvent *event)
     }
     else event->ignore();
   }
-  else if(isThereAPendingTransaction())
+  else if(areTherePendingActions())
   {
     int res = QMessageBox::question(this, StrConstants::getConfirmation(),
-                                    StrConstants::getThereIsAPendingTransaction() + "\n" +
+                                    StrConstants::getThereArePendingActions() + "\n" +
                                     StrConstants::getDoYouReallyWantToQuit(),
                                     QMessageBox::Yes | QMessageBox::No,
                                     QMessageBox::No);

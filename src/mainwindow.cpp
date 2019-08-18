@@ -1107,9 +1107,8 @@ void MainWindow::collapseItem(QTreeView* tv, QStandardItemModel* sim, QModelInde
   {
     if (sim->hasChildren(mi))
     {
-      QCoreApplication::processEvents();
       tv->collapse(mi);
-      QModelIndex mi2 = mi.child(i, 0);
+      QModelIndex mi2 = sim->index(i, 0, mi);
       collapseItem(tv, sim, mi2);
     }
   }
@@ -1120,9 +1119,10 @@ void MainWindow::collapseItem(QTreeView* tv, QStandardItemModel* sim, QModelInde
  */
 void MainWindow::expandItem(QTreeView* tv, QStandardItemModel* sim, QModelIndex* mi){
   for (int i=0; i<sim->rowCount(*mi); i++){
-    if (sim->hasChildren(*mi)){
+    if (sim->hasChildren(*mi))
+    {
       tv->expand(*mi);
-      QModelIndex mi2 = mi->child(i, 0);
+      QModelIndex mi2 = sim->index(i, 0, *mi);
       expandItem(tv, sim, &mi2);
     }
   }

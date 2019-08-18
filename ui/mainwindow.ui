@@ -148,6 +148,7 @@
     </property>
     <addaction name="actionHelpUsage"/>
     <addaction name="separator"/>
+    <addaction name="actionDonate"/>
     <addaction name="actionHelpAbout"/>
    </widget>
    <widget class="QMenu" name="menuView">
@@ -159,11 +160,11 @@
     <addaction name="actionViewNonInstalledPackages"/>
     <addaction name="separator"/>
    </widget>
-   <widget class="QMenu" name="menuTransaction">
+   <widget class="QMenu" name="menuActions">
     <property name="title">
-     <string>&amp;Transaction</string>
+     <string>&amp;Actions</string>
     </property>
-    <addaction name="actionCommit"/>
+    <addaction name="actionApply"/>
     <addaction name="actionCancel"/>
    </widget>
    <widget class="QMenu" name="menuFile">
@@ -199,7 +200,7 @@
    <addaction name="menuFile"/>
    <addaction name="menuView"/>
    <addaction name="menuSearch"/>
-   <addaction name="menuTransaction"/>
+   <addaction name="menuActions"/>
    <addaction name="menuTools"/>
    <addaction name="menuHelp"/>
   </widget>
@@ -240,16 +241,19 @@
     <string>Non installed</string>
    </property>
   </action>
-  <action name="actionCommit">
+  <action name="actionApply">
    <property name="icon">
     <iconset resource="../resources.qrc">
      <normaloff>:/resources/images/commit.png</normaloff>:/resources/images/commit.png</iconset>
    </property>
    <property name="text">
-    <string>Co&amp;mmit</string>
+    <string>Appl&amp;y</string>
    </property>
    <property name="shortcut">
-    <string>Ctrl+M</string>
+    <string>Ctrl+Y</string>
+   </property>
+   <property name="visible">
+    <bool>true</bool>
    </property>
   </action>
   <action name="actionCancel">
@@ -581,6 +585,11 @@
    </property>
    <property name="text">
     <string>Use Instant Search</string>
+   </property>
+  </action>
+  <action name="actionDonate">
+   <property name="text">
+    <string>Donate!</string>
    </property>
   </action>
  </widget>

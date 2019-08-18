@@ -347,6 +347,10 @@ QString StrConstants::getTabTransactionName(){
   return QObject::tr("Transaction");
 }
 
+QString StrConstants::getActions(){
+  return QObject::tr("Actions");
+}
+
 QString StrConstants::getTabOutputName(){
   return QObject::tr("Output");
 }
@@ -571,8 +575,8 @@ QString StrConstants::getRemovePacmanTransactionLockFileConfirmation(){
   return QObject::tr("Do you really want to remove Pacman's transaction lock file?");
 }
 
-QString StrConstants::getCancelTransactionConfirmation(){
-  return QObject::tr("Do you really want to cancel the transaction?");
+QString StrConstants::getCancelActionsConfirmation(){
+  return QObject::tr("Do you really want to cancel actions?");
 }
 
 QString StrConstants::getEnterAdministratorsPassword(){
@@ -601,8 +605,8 @@ QString StrConstants::getThereIsARunningTransaction(){
   return QObject::tr("Canceling the running transaction may damage your system!");
 }
 
-QString StrConstants::getThereIsAPendingTransaction(){
-  return QObject::tr("There is a pending transaction");
+QString StrConstants::getThereArePendingActions(){
+  return QObject::tr("There are pending actions");
 }
 
 QString StrConstants::getDoYouReallyWantToQuit(){

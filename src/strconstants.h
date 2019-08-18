@@ -88,6 +88,7 @@ public:
   static QString getTabInfoName();
   static QString getTabFilesName();
   static QString getTabTransactionName();
+  static QString getActions();
   static QString getTabOutputName();
   static QString getTabNewsName();
   static QString getTabTerminal();
@@ -143,14 +144,14 @@ public:
   static QString getConfirmExecuteTransactionInTerminal();
   static QString getCleanCacheConfirmation();
   static QString getRemovePacmanTransactionLockFileConfirmation();
-  static QString getCancelTransactionConfirmation();
+  static QString getCancelActionsConfirmation();
   static QString getEnterAdministratorsPassword();
   static QString getErrorNoSuCommand();
   static QString getYoullNeedSuFrontend();
   static QString getErrorIconPathInfoIncomplete();
   static QString getErrorRunningWithRoot();
   static QString getThereIsARunningTransaction();
-  static QString getThereIsAPendingTransaction();
+  static QString getThereArePendingActions();
   static QString getDoYouReallyWantToQuit();
   static QString getDoYouAgreeToGenerateSysInfo();
   static QString getExecutingCommand();

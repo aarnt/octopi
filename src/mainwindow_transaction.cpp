@@ -46,8 +46,8 @@
  */
 void MainWindow::changeTransactionActionsState()
 {
-  bool state = isThereAPendingTransaction();
-  ui->actionCommit->setEnabled(state);
+  bool state = areTherePendingActions();
+  ui->actionApply->setEnabled(state);
   ui->actionCancel->setEnabled(state);
   ui->actionCheckUpdates->setEnabled(!state);
 
@@ -72,7 +72,7 @@ void MainWindow::clearTransactionTreeView()
 /*
  * Looks if the Transaction's Remove or Install parent items have any package inside them
  */
-bool MainWindow::isThereAPendingTransaction()
+bool MainWindow::areTherePendingActions()
 {
   return (getRemoveTransactionParentItem()->hasChildren() ||
           getInstallTransactionParentItem()->hasChildren());
@@ -1627,11 +1627,11 @@ void MainWindow::enableTransactionActions()
  */
 void MainWindow::toggleTransactionActions(const bool value)
 {
-  bool pendingTransaction = isThereAPendingTransaction();
+  bool pendingTransaction = areTherePendingActions();
 
   if (value == true && pendingTransaction == true)
   {
-    ui->actionCommit->setEnabled(true);
+    ui->actionApply->setEnabled(true);
     ui->actionCancel->setEnabled(true);
 
     if(m_hasMirrorCheck) m_actionMenuMirrorCheck->setEnabled(false);
@@ -1642,7 +1642,7 @@ void MainWindow::toggleTransactionActions(const bool value)
   }
   else if (value == true && pendingTransaction == false)
   {
-    ui->actionCommit->setEnabled(false);
+    ui->actionApply->setEnabled(false);
     ui->actionCancel->setEnabled(false);
 
     if(m_hasMirrorCheck) m_actionMenuMirrorCheck->setEnabled(true);
@@ -1662,7 +1662,7 @@ void MainWindow::toggleTransactionActions(const bool value)
   }
   else if (value == false)
   {
-    ui->actionCommit->setEnabled(false);
+    ui->actionApply->setEnabled(false);
     ui->actionCancel->setEnabled(false);
 
     if(m_hasMirrorCheck) m_actionMenuMirrorCheck->setEnabled(false);
@@ -1758,7 +1758,7 @@ void MainWindow::cancelTransaction()
 {
   int res = QMessageBox::question(this,
                         StrConstants::getConfirmation(),
-                        StrConstants::getCancelTransactionConfirmation(),
+                        StrConstants::getCancelActionsConfirmation(),
                         QMessageBox::Yes|QMessageBox::No,
                         QMessageBox::No);
 

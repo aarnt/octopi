@@ -245,6 +245,8 @@ void MainWindow::initMenuBar()
   QActionGroup *actionGroupPackages = new QActionGroup(this);
   QActionGroup *actionGroupRepositories = new QActionGroup(this);
 
+  ui->menuActions->menuAction()->setVisible(false);
+
   ui->actionViewAllPackages->setText(StrConstants::getAll());
 
   actionGroupPackages->addAction(ui->actionViewAllPackages);
@@ -307,7 +309,7 @@ void MainWindow::initToolBar()
   else
     ui->actionSystemUpgrade->setEnabled(false);
 
-  ui->mainToolBar->addAction(ui->actionCommit);
+  ui->mainToolBar->addAction(ui->actionApply);
   ui->mainToolBar->addAction(ui->actionCancel);
 
   if(m_hasMirrorCheck)
@@ -482,7 +484,7 @@ void MainWindow::initTabTransaction()
 
   tvTransaction->setModel(m_modelTransaction);
 
-  QString aux(StrConstants::getTabTransactionName());
+  QString aux(StrConstants::getActions());
   ui->twProperties->removeTab(ctn_TABINDEX_TRANSACTION);
   ui->twProperties->insertTab(ctn_TABINDEX_TRANSACTION, tabTransaction, QApplication::translate (
                                 "MainWindow", aux.toUtf8(), 0/*, QApplication::UnicodeUTF8*/ ));
@@ -827,12 +829,13 @@ void MainWindow::initActions()
   connect(ui->actionFindFileInPackage, SIGNAL(triggered()), this, SLOT(findFileInPackage()));
   connect(ui->actionRemoveGroup, SIGNAL(triggered()), this, SLOT(insertGroupIntoRemovePackage()));
   connect(ui->actionInstallGroup, SIGNAL(triggered()), this, SLOT(insertGroupIntoInstallPackage()));
-  connect(ui->actionCommit, SIGNAL(triggered()), this, SLOT(commitTransaction()));
+  connect(ui->actionApply, SIGNAL(triggered()), this, SLOT(commitTransaction()));
   connect(ui->actionCancel, SIGNAL(triggered()), this, SLOT(cancelTransaction()));
   connect(ui->actionGetNews, SIGNAL(triggered()), this, SLOT(refreshDistroNews()));
   connect(ui->twProperties, SIGNAL(currentChanged(int)), this, SLOT(changedTabIndex()));
   connect(ui->actionHelpUsage, SIGNAL(triggered()), this, SLOT(onHelpUsage()));
   connect(ui->actionHelpAbout, SIGNAL(triggered()), this, SLOT(onHelpAbout()));
+  connect(ui->actionDonate, SIGNAL(triggered(bool)), this, SLOT(onHelpDonate()));
   connect(m_actionPackageInfo, SIGNAL(triggered()), this, SLOT(showPackageInfo()));
 
   // Actions from tvPkgFileList context menu
@@ -847,7 +850,7 @@ void MainWindow::initActions()
 
   // Use theme icons for QActions
   ui->actionCheckUpdates->setIcon(IconHelper::getIconCheckUpdates());
-  ui->actionCommit->setIcon(IconHelper::getIconCommit());
+  ui->actionApply->setIcon(IconHelper::getIconCommit());
   ui->actionCancel->setIcon(IconHelper::getIconRollback());
   ui->actionExit->setIcon(IconHelper::getIconExit());
   ui->actionSystemUpgrade->setIcon(IconHelper::getIconSystemUpgrade());

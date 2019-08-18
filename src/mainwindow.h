@@ -275,7 +275,7 @@ private:
   bool prepareSystemUpgrade();
 
   //Tab Transaction related methods
-  bool isThereAPendingTransaction();
+  bool areTherePendingActions();
   void tvTransactionAdjustItemText(QStandardItem *item);
   void tvTransactionRowsChanged(const QModelIndex& parent);
   QStandardItem * getRemoveTransactionParentItem();
@@ -460,6 +460,7 @@ private slots:
   void onPacmanDatabaseChanged();
   void onOptions();
   void onHelpUsage();
+  void onHelpDonate();
   void onHelpAbout();
   void onPressDelete();
 
