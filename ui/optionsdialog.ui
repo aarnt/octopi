@@ -31,7 +31,7 @@
      <item>
       <widget class="QTabWidget" name="tabWidget">
        <property name="currentIndex">
-        <number>0</number>
+        <number>4</number>
        </property>
        <widget class="QWidget" name="tabGeneral">
         <attribute name="title">
@@ -646,52 +646,6 @@
          </item>
         </layout>
        </widget>
-       <widget class="QWidget" name="tabSUTool">
-        <attribute name="title">
-         <string>SU tool</string>
-        </attribute>
-        <layout class="QGridLayout" name="gridLayout_8">
-         <item row="0" column="0">
-          <spacer name="verticalSpacer_6">
-           <property name="orientation">
-            <enum>Qt::Vertical</enum>
-           </property>
-           <property name="sizeType">
-            <enum>QSizePolicy::Minimum</enum>
-           </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>20</width>
-             <height>13</height>
-            </size>
-           </property>
-          </spacer>
-         </item>
-         <item row="1" column="0">
-          <widget class="QLabel" name="lblSUTool">
-           <property name="text">
-            <string>Select the SU tool Octopi should use</string>
-           </property>
-           <property name="textFormat">
-            <enum>Qt::PlainText</enum>
-           </property>
-          </widget>
-         </item>
-         <item row="2" column="0">
-          <widget class="QTableWidget" name="twSUTool">
-           <property name="baseSize">
-            <size>
-             <width>0</width>
-             <height>0</height>
-            </size>
-           </property>
-           <property name="frameShadow">
-            <enum>QFrame::Plain</enum>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </widget>
        <widget class="QWidget" name="tabSync">
         <attribute name="title">
          <string>Updates</string>
@@ -951,49 +905,6 @@
          </item>
         </layout>
        </widget>
-       <widget class="QWidget" name="tabTerminal">
-        <attribute name="title">
-         <string>Terminal</string>
-        </attribute>
-        <layout class="QGridLayout" name="gridLayout_2">
-         <item row="2" column="0">
-          <widget class="QLabel" name="lblTerminal">
-           <property name="text">
-            <string>Select the terminal Octopi should use</string>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="0">
-          <spacer name="verticalSpacer">
-           <property name="orientation">
-            <enum>Qt::Vertical</enum>
-           </property>
-           <property name="sizeType">
-            <enum>QSizePolicy::Minimum</enum>
-           </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>20</width>
-             <height>13</height>
-            </size>
-           </property>
-          </spacer>
-         </item>
-         <item row="3" column="0">
-          <widget class="QTableWidget" name="twTerminal">
-           <property name="baseSize">
-            <size>
-             <width>0</width>
-             <height>0</height>
-            </size>
-           </property>
-           <property name="frameShadow">
-            <enum>QFrame::Plain</enum>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </widget>
       </widget>
      </item>
      <item>
@@ -1023,7 +934,6 @@
   <tabstop>tbSelGreenIcon</tabstop>
   <tabstop>leBusyIcon</tabstop>
   <tabstop>tbSelBusyIcon</tabstop>
-  <tabstop>twTerminal</tabstop>
  </tabstops>
  <resources/>
  <connections/>

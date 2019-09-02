@@ -153,7 +153,7 @@ QVariant PackageModel::headerData(int section, Qt::Orientation orientation, int 
       case ctn_PACKAGE_SIZE_COLUMN:
         return QVariant(StrConstants::getDownloadSize());
       case ctn_PACKAGE_POPULARITY_COLUMN:
-        return QVariant(StrConstants::getPopularityHeader());
+        return QVariant(StrConstants::getVotesHeader());
       default:
         break;
       }

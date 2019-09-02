@@ -100,13 +100,15 @@ void MainWindow::initTabHelpUsage()
   QString("</li><li>") +
      tr("Alt+2 to switch to 'Files' tab") +
   QString("</li><li>") +
-     tr("Alt+3 to switch to 'Transaction' tab") +
+     tr("Alt+3 to switch to 'Actions' tab") +
   QString("</li><li>") +
      tr("Alt+4 to switch to 'Output' tab") +
   QString("</li><li>") +
      tr("Alt+5 to switch to 'News' tab") +
   QString("</li><li>") +
      tr("Alt+6 or 'F1' to show this help page") +
+  QString("</li><li>") +
+     tr("Alt+7 to switch to 'Terminal' tab") +
   QString("</li></ul>") +
 
      tr("Control+key sequences:") +

@@ -275,8 +275,8 @@ QString StrConstants::getReplaces(){
   return QObject::tr("Replaces");
 }
 
-QString StrConstants::getPopularityHeader(){
-  return QObject::tr("Popularity");
+QString StrConstants::getVotesHeader(){
+  return QObject::tr("Votes");
 }
 
 QString StrConstants::getVotes(){

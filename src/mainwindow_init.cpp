@@ -485,8 +485,8 @@ void MainWindow::initTabTransaction()
   tvTransaction->setModel(m_modelTransaction);
 
   QString aux(StrConstants::getActions());
-  ui->twProperties->removeTab(ctn_TABINDEX_TRANSACTION);
-  ui->twProperties->insertTab(ctn_TABINDEX_TRANSACTION, tabTransaction, QApplication::translate (
+  ui->twProperties->removeTab(ctn_TABINDEX_ACTIONS);
+  ui->twProperties->insertTab(ctn_TABINDEX_ACTIONS, tabTransaction, QApplication::translate (
                                 "MainWindow", aux.toUtf8(), 0/*, QApplication::UnicodeUTF8*/ ));
 
   connect(tvTransaction, SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(execContextMenuTransaction(QPoint)));

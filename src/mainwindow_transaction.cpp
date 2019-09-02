@@ -84,7 +84,7 @@ bool MainWindow::areTherePendingActions()
 QStandardItem * MainWindow::getRemoveTransactionParentItem()
 {
   QTreeView *tvTransaction =
-      ui->twProperties->widget(ctn_TABINDEX_TRANSACTION)->findChild<QTreeView*>("tvTransaction");
+      ui->twProperties->widget(ctn_TABINDEX_ACTIONS)->findChild<QTreeView*>("tvTransaction");
   QStandardItemModel *sim = qobject_cast<QStandardItemModel *>(tvTransaction->model());
   QStandardItem *si = 0;
 
@@ -102,7 +102,7 @@ QStandardItem * MainWindow::getRemoveTransactionParentItem()
 QStandardItem * MainWindow::getInstallTransactionParentItem()
 {
   QTreeView *tvTransaction =
-      ui->twProperties->widget(ctn_TABINDEX_TRANSACTION)->findChild<QTreeView*>("tvTransaction");
+      ui->twProperties->widget(ctn_TABINDEX_ACTIONS)->findChild<QTreeView*>("tvTransaction");
   QStandardItemModel *sim = qobject_cast<QStandardItemModel *>(tvTransaction->model());
   QStandardItem *si = 0;
 
@@ -120,7 +120,7 @@ QStandardItem * MainWindow::getInstallTransactionParentItem()
 void MainWindow::insertRemovePackageIntoTransaction(const QString &pkgName)
 {
   QTreeView *tvTransaction =
-      ui->twProperties->widget(ctn_TABINDEX_TRANSACTION)->findChild<QTreeView*>("tvTransaction");
+      ui->twProperties->widget(ctn_TABINDEX_ACTIONS)->findChild<QTreeView*>("tvTransaction");
   QStandardItem * siRemoveParent = getRemoveTransactionParentItem();
   QStandardItem * siInstallParent = getInstallTransactionParentItem();
   QStandardItem * siPackageToRemove = new QStandardItem(IconHelper::getIconRemoveItem(), pkgName);
@@ -145,7 +145,7 @@ void MainWindow::insertRemovePackageIntoTransaction(const QString &pkgName)
     siRemoveParent->appendRow(siPackageToRemove);
   }
 
-  ui->twProperties->setCurrentIndex(ctn_TABINDEX_TRANSACTION);
+  ui->twProperties->setCurrentIndex(ctn_TABINDEX_ACTIONS);
   tvTransaction->expandAll();
   changeTransactionActionsState();
 }
@@ -156,7 +156,7 @@ void MainWindow::insertRemovePackageIntoTransaction(const QString &pkgName)
 void MainWindow::insertInstallPackageIntoTransaction(const QString &pkgName)
 {
   QTreeView *tvTransaction =
-      ui->twProperties->widget(ctn_TABINDEX_TRANSACTION)->findChild<QTreeView*>("tvTransaction");
+      ui->twProperties->widget(ctn_TABINDEX_ACTIONS)->findChild<QTreeView*>("tvTransaction");
   QStandardItem * siInstallParent = getInstallTransactionParentItem();
   QStandardItem * siPackageToInstall = new QStandardItem(IconHelper::getIconInstallItem(), pkgName);
   QStandardItem * siRemoveParent = getRemoveTransactionParentItem();
@@ -178,7 +178,7 @@ void MainWindow::insertInstallPackageIntoTransaction(const QString &pkgName)
     siInstallParent->appendRow(siPackageToInstall);
   }
 
-  ui->twProperties->setCurrentIndex(ctn_TABINDEX_TRANSACTION);
+  ui->twProperties->setCurrentIndex(ctn_TABINDEX_ACTIONS);
   tvTransaction->expandAll();
   changeTransactionActionsState();
 }
@@ -258,7 +258,7 @@ void MainWindow::insertIntoRemovePackage(QModelIndex *indexToInclude)
   if (!isAURGroupSelected())
   {
     bool checkDependencies=false;
-    ensureTabVisible(ctn_TABINDEX_TRANSACTION);
+    ensureTabVisible(ctn_TABINDEX_ACTIONS);
     QModelIndexList selectedRows;
 
     if (indexToInclude == nullptr)
@@ -334,7 +334,7 @@ void MainWindow::insertIntoRemovePackage(QModelIndex *indexToInclude)
  */
 void MainWindow::insertGroupIntoRemovePackage()
 {
-  ensureTabVisible(ctn_TABINDEX_TRANSACTION);
+  ensureTabVisible(ctn_TABINDEX_ACTIONS);
   insertRemovePackageIntoTransaction(getSelectedGroup());
 }
 
@@ -348,7 +348,7 @@ void MainWindow::insertIntoInstallPackage(QModelIndex *indexToInclude)
 
   if (!isAURGroupSelected())
   {
-    ensureTabVisible(ctn_TABINDEX_TRANSACTION);
+    ensureTabVisible(ctn_TABINDEX_ACTIONS);
     QModelIndexList selectedRows;
 
     if (indexToInclude == nullptr)
@@ -539,7 +539,7 @@ bool MainWindow::insertIntoRemovePackageDeps(const QStringList &dependencies)
  */
 void MainWindow::insertGroupIntoInstallPackage()
 {
-  ensureTabVisible(ctn_TABINDEX_TRANSACTION);
+  ensureTabVisible(ctn_TABINDEX_ACTIONS);
   insertInstallPackageIntoTransaction(getSelectedGroup());
 }
 
@@ -645,7 +645,7 @@ void MainWindow::onPressDelete()
   else
   {
     QTreeView *tvTransaction =
-        ui->twProperties->widget(ctn_TABINDEX_TRANSACTION)->findChild<QTreeView*>("tvTransaction");
+        ui->twProperties->widget(ctn_TABINDEX_ACTIONS)->findChild<QTreeView*>("tvTransaction");
 
     if (tvTransaction->hasFocus())
     {
@@ -716,7 +716,7 @@ void MainWindow::doCheckUpdates()
   if (!isInternetAvailable()) return;
 
   //Let's synchronize kcp database too...
-  if (UnixCommand::getLinuxDistro() == ectn_KAOS && UnixCommand::hasTheExecutable(ctn_KCP_TOOL) && !UnixCommand::isRootRunning())
+  if (UnixCommand::getLinuxDistro() == ectn_KAOS && UnixCommand::hasTheExecutable(ctn_KCP_TOOL))
     UnixCommand::execCommandAsNormalUser("kcp -u");
 
   m_commandExecuting = ectn_CHECK_UPDATES;

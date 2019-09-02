@@ -58,7 +58,7 @@ MainWindow::MainWindow(QWidget *parent) :
   QMainWindow(parent), ui(new Ui::MainWindow), m_packageModel(new PackageModel(m_packageRepo))
 {
   m_hasAURTool =
-      UnixCommand::hasTheExecutable(Package::getForeignRepositoryToolName()) && !UnixCommand::isRootRunning();
+      UnixCommand::hasTheExecutable(Package::getForeignRepositoryToolName());
 
   m_packageRepo.registerDependency(*m_packageModel);
   m_foundFilesInPkgFileList = new QList<QModelIndex>();
@@ -277,7 +277,7 @@ void MainWindow::onOptions()
   connect(od, SIGNAL(terminalChanged()), this, SLOT(onTerminalChanged()));
 
   od->exec();
-  Options::result res = od->result();
+  Options::result res = static_cast<unsigned>(od->result());
 
   delete od;
 
@@ -1183,7 +1183,7 @@ void MainWindow::execContextMenuPkgFileList(QPoint point)
     {
       menu.addAction(ui->actionOpenFile);
     }
-    if (!UnixCommand::isRootRunning() && f.exists() && UnixCommand::isTextFile(selectedPath))
+    if (f.exists() && UnixCommand::isTextFile(selectedPath))
     {
       menu.addAction(ui->actionEditFile);
     }

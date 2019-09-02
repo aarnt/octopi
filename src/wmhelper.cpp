@@ -286,15 +286,7 @@ void WMHelper::openFile(const QString& fileName){
   }
   else if ((isKDERunning()) && UnixCommand::hasTheExecutable(ctn_KDE4_FILE_MANAGER)){
     s << fileToOpen;
-
-    if (UnixCommand::isRootRunning())
-    {
-      p->startDetached( "dbus-launch " + getKDEOpenHelper() + " " + fileToOpen );
-    }
-    else
-    {
-      p->startDetached( getKDEOpenHelper(), s );
-    }
+    p->startDetached( getKDEOpenHelper(), s );
   }
   else if (isTDERunning() && UnixCommand::hasTheExecutable(ctn_TDE_FILE_MANAGER)){
     s << "exec";
@@ -377,7 +369,7 @@ void WMHelper::editFile( const QString& fileName, EditOptions opt ){
     p = getXFCEEditor() + " " + fileName;
   }
 
-  if (UnixCommand::isRootRunning() || opt == ectn_EDIT_AS_NORMAL_USER)
+  if (opt == ectn_EDIT_AS_NORMAL_USER)
   {
     process->startDetached("/bin/sh -c \"" + p + "\"");
   }
@@ -422,15 +414,7 @@ void WMHelper::openDirectory( const QString& dirName ){
       if (UnixCommand::hasTheExecutable(ctn_KDE4_FILE_MANAGER))
       {
         s << dir;
-
-        if (UnixCommand::isRootRunning())
-        {
-          p->startDetached( "dbus-launch " + ctn_KDE4_FILE_MANAGER + " " + dir);
-        }
-        else
-        {
-          p->startDetached( ctn_KDE4_FILE_MANAGER, s);
-        }
+        p->startDetached( ctn_KDE4_FILE_MANAGER, s);
       }
       else if (UnixCommand::hasTheExecutable(ctn_KDE_FILE_MANAGER))
       {

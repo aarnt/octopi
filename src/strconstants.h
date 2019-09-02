@@ -70,7 +70,7 @@ public:
   static QString getOptionalDeps();
   static QString getConflictsWith();
   static QString getReplaces();
-  static QString getPopularityHeader();
+  static QString getVotesHeader();
   static QString getVotes();
   static QString getDownloadSize();
   static QString getInstalledSize();

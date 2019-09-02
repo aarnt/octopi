@@ -861,8 +861,7 @@ void PacmanExec::onFinished(int exitCode, QProcess::ExitStatus es)
   if (m_commandExecuting == ectn_REMOVE_KCP_PKG)
   {
     if (UnixCommand::getLinuxDistro() == ectn_KAOS &&
-        UnixCommand::hasTheExecutable(ctn_KCP_TOOL) &&
-        !UnixCommand::isRootRunning())
+        UnixCommand::hasTheExecutable(ctn_KCP_TOOL))
 
       UnixCommand::execCommandAsNormalUser("kcp -u");
   }

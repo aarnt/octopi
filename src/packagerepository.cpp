@@ -303,7 +303,7 @@ PackageRepository::PackageData::PackageData(const PackageListData& pkg, const bo
            (Package::alpm_pkg_vercmp(pkg.outatedVersion.toLatin1().data(), pkg.version.toLatin1().data()) == 1 ?
              ectn_NEWER : ectn_OUTDATED)),
     popularity(isManagedByAUR ? pkg.popularity : -1),
-    popularityString(isManagedByAUR ? QString::number(pkg.popularity) + " " + StrConstants::getVotes() : QString())
+    popularityString(isManagedByAUR ? QString::number(pkg.popularity) : QString())
 {
 }
 

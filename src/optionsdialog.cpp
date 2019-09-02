@@ -152,11 +152,7 @@ void OptionsDialog::initialize(){
 #endif
 
   initIconTab();
-  //initSUToolTab();
-  removeTabByName("SU tool");
   initUpdatesTab();
-  //initTerminalTab();
-  removeTabByName(tr("Terminal"));
 
   if (m_calledByOctopi)
   {
@@ -219,7 +215,6 @@ void OptionsDialog::initAURTab()
   else
   {
     connect(comboAUR, SIGNAL(currentTextChanged(const QString &)), this, SLOT(comboAURChanged(const QString &)));
-
     aurTools.sort();
     comboAUR->addItems(aurTools);
     comboAUR->setCurrentText(SettingsManager::getAURToolName());

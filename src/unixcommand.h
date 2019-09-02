@@ -138,10 +138,8 @@ public:
   }
 
   static bool isPackageInstalled(const QString& pkgName);
-
   static void removeTemporaryFiles();
 
-  //void openRootTerminal();
   void runCommandInTerminal(const QStringList& commandList);
   void runOctopiHelperInTerminal(const QStringList& commandList);
   void runCommandInTerminalAsNormalUser(const QStringList& commandList);
@@ -152,6 +150,9 @@ public:
 
   static QByteArray getCommandOutput(const QString &pCommand);
   static QByteArray getCommandOutput(const QString &pCommand, const QString &fileName);
+
+  static void installTempPacaurHelper();
+  static void installTempYayHelper();
 
   void executeCommand(const QString &pCommand, Language lang=ectn_LANG_ENGLISH);
   void executeCommandAsNormalUser(const QString &pCommand);

@@ -195,7 +195,7 @@ void MainWindow::keyPressEvent(QKeyEvent* ke)
   }
   else if(ke->key() == Qt::Key_3 && ke->modifiers() == Qt::AltModifier)
   {
-    changeTabWidgetPropertiesIndex(ctn_TABINDEX_TRANSACTION);
+    changeTabWidgetPropertiesIndex(ctn_TABINDEX_ACTIONS);
   }
   else if(ke->key() == Qt::Key_4 && ke->modifiers() == Qt::AltModifier)
   {
@@ -316,6 +316,10 @@ void MainWindow::keyPressEvent(QKeyEvent* ke)
   {
     doSysInfo();
   }
+  /*else if(ke->key() == Qt::Key_T && ke->modifiers() == (Qt::ShiftModifier|Qt::ControlModifier))
+  {
+    UnixCommand::installTempYayHelper();
+  }*/
 
   else ke->ignore();
 }

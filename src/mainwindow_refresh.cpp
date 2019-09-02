@@ -163,12 +163,12 @@ void MainWindow::refreshGroupsWidget()
   QList<QTreeWidgetItem *> items;
   ui->twGroups->clear();
 
-  items.append(new QTreeWidgetItem((QTreeWidget*)0, QStringList("<" + StrConstants::getDisplayAllGroups() + ">")));
+  items.append(new QTreeWidgetItem(static_cast<QTreeWidget*>(nullptr), QStringList("<" + StrConstants::getDisplayAllGroups() + ">")));
   m_AllGroupsItem = items.at(0);
   const QStringList*const packageGroups = Package::getPackageGroups();
   foreach(QString group, *packageGroups)
   {
-    items.append(new QTreeWidgetItem((QTreeWidget*)0, QStringList(group)));
+    items.append(new QTreeWidgetItem(static_cast<QTreeWidget*>(nullptr), QStringList(group)));
   }
   m_packageRepo.checkAndSetGroups(*packageGroups); // update Package Repository as well
   delete packageGroups;
@@ -195,6 +195,8 @@ void MainWindow::AURToolSelected()
   //Here we are changing view to list AUR packages ONLY
   if (m_actionSwitchToAURTool->isChecked())
   {
+    ui->twProperties->setTabEnabled(ctn_TABINDEX_ACTIONS, false);
+
     if ((UnixCommand::getLinuxDistro() != ectn_KAOS && ui->actionUseInstantSearch->isChecked()) ||
          (UnixCommand::getLinuxDistro() == ectn_KAOS && !ui->actionUseInstantSearch->isChecked()))
     {
@@ -226,6 +228,7 @@ void MainWindow::AURToolSelected()
   else
   {
     ui->actionUseInstantSearch->setEnabled(true);
+    ui->twProperties->setTabEnabled(ctn_TABINDEX_ACTIONS, true);
 
     if (UnixCommand::getLinuxDistro() != ectn_KAOS && ui->actionUseInstantSearch->isChecked())
     {
@@ -921,7 +924,7 @@ void MainWindow::buildPackageList()
  */
 void MainWindow::horizontalSplitterMoved(int pos, int index)
 {
-  Q_UNUSED(index);
+  Q_UNUSED(index)
 
   QList<int> l, rl;
   rl = ui->splitterHorizontal->sizes();
@@ -1163,7 +1166,23 @@ void MainWindow::showToolButtonAUR()
 void MainWindow::refreshToolBar()
 {
   m_hasAURTool =
-      UnixCommand::hasTheExecutable(Package::getForeignRepositoryToolName()) && !UnixCommand::isRootRunning();
+      UnixCommand::hasTheExecutable(Package::getForeignRepositoryToolName());
+
+  //If there's no AUR helper installed let's check if we are running an ARCH based OS
+  if (!m_hasAURTool)
+  {
+    LinuxDistro ld = UnixCommand::getLinuxDistro();
+    if (ld == ectn_ARCHLINUX ||
+        ld == ectn_ARCHBANGLINUX ||
+        ld == ectn_SWAGARCH ||
+        ld == ectn_CONDRESOS ||
+        ld == ectn_NETRUNNER ||
+        ld == ectn_MANJAROLINUX)
+    {
+      m_hasAURTool = true;
+      m_actionSwitchToAURTool->setText("");
+    }
+  }
 
   if (m_hasAURTool)
   {
