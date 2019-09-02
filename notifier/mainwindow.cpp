@@ -80,18 +80,22 @@ MainWindow::~MainWindow()
 void MainWindow::initActions()
 {
   m_actionExit = new QAction(IconHelper::getIconExit(), tr("Exit"), this);
+  m_actionExit->setIcon(QIcon::fromTheme("application-exit"));
   connect(m_actionExit, SIGNAL(triggered()), this, SLOT(exitNotifier()));
 
   m_actionAbout = new QAction(StrConstants::getHelpAbout(), this);
+  m_actionAbout->setIcon(QIcon::fromTheme("help-about"));
   m_actionAbout->setIconVisibleInMenu(true);
   connect(m_actionAbout, SIGNAL(triggered()), this, SLOT(aboutOctopiNotifier()));
 
   m_actionOctopi = new QAction(this);
   m_actionOctopi->setText("Octopi...");
+  m_actionOctopi->setIcon(QIcon::fromTheme("octopi"));
   connect(m_actionOctopi, SIGNAL(triggered()), this, SLOT(startOctopi()));
 
   m_actionOptions = new QAction(this);
   m_actionOptions->setText(StrConstants::getOptions());
+  m_actionOptions->setIcon(QIcon::fromTheme("settings-configure"));
   connect(m_actionOptions, SIGNAL(triggered()), this, SLOT(showOptionsDialog()));
 
   m_actionCheckUpdates = new QAction(this);
