@@ -68,6 +68,8 @@ int main(int argc, char *argv[])
   MainWindow w;
   QResource::registerResource("./resources.qrc");
 
+  QGuiApplication::setDesktopFileName("octopi-notifier");
+
   if (debugInfo)
     w.turnDebugInfoOn();
 
