@@ -1693,6 +1693,7 @@ void MainWindow::toggleTransactionActions(const bool value)
   if (!isAURGroupSelected()) ui->actionInstallLocalPackage->setEnabled(value);
   m_actionMenuOptions->setEnabled(value);
   ui->actionHelpUsage->setEnabled(value);
+  ui->actionDonate->setEnabled(value);
   ui->actionHelpAbout->setEnabled(value);
   ui->actionExit->setEnabled(value);
 

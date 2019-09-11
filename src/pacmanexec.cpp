@@ -1188,6 +1188,10 @@ void PacmanExec::doAURUpgrade(const QString &listOfPackages)
   {
     m_lastCommandList.append(Package::getForeignRepositoryToolNameParam() + " -S --aur " + listOfPackages + ";");
   }
+  else if (Package::getForeignRepositoryToolName() == ctn_YAY_TOOL)
+  {
+    m_lastCommandList.append(Package::getForeignRepositoryToolNameParam() + " -S " + listOfPackages + ";");
+  }
 
   m_lastCommandList.append("echo -e;");
   m_lastCommandList.append("read -n 1 -p \"" + StrConstants::getPressAnyKey() + "\"");
