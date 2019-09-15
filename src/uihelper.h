@@ -108,6 +108,12 @@ public:
     return res;
   }
 
+  static QIcon getIconOctopi(){
+    if (WMHelper::isKDERunning())
+      return QIcon::fromTheme("octopi", QIcon());
+    else return QIcon();
+  }
+
   static QIcon getIconOctopiBusy(){
     return QIcon(getOctopiIconPath(ectn_OCTOPI_BUSY));
   }
@@ -176,12 +182,10 @@ public:
   }
 
   static QIcon getIconExit(){    
-    /*if (WMHelper::isKDERunning() && (UnixCommand::getLinuxDistro() != ectn_KAOS))
-      return QIcon::fromTheme("application-exit", QIcon(":/resources/images/exit.png"));
+    if (WMHelper::isKDERunning() && (UnixCommand::getLinuxDistro() != ectn_KAOS))
+      return QIcon::fromTheme("application-exit", QIcon()); //QIcon(":/resources/images/exit.png"));
     else      
-      return QIcon(":/resources/images/exit.png");*/
-
-    return QIcon();
+      return QIcon(); //return QIcon(":/resources/images/exit.png");*/
   }
 
   // Icons for QActions
@@ -306,8 +310,21 @@ public:
       return QIcon(":/resources/images/esf-clear.png");
   }
 
+  static QIcon getIconOptions(){
+    if (WMHelper::isKDERunning() && (UnixCommand::getLinuxDistro() != ectn_KAOS))
+      return QIcon::fromTheme("settings-configure", QIcon());
+    else
+      return QIcon();
+  }
+
   //QActions without icons in Octopi does this works for gtk, too?
-  static QIcon getIconHelpAbout(){ return QIcon::fromTheme("help-about"); }
+  static QIcon getIconHelpAbout(){
+    if (WMHelper::isKDERunning() && (UnixCommand::getLinuxDistro() != ectn_KAOS))
+      return QIcon::fromTheme("help-about", QIcon());
+    else
+      return QIcon();
+  }
+
   static QIcon getIconHelpUsage(){ return QIcon::fromTheme("help-contents"); }
   static QIcon getIconInstallLocalPackage(){ return QIcon::fromTheme("utilities-file-archiver"); }
 };

@@ -80,18 +80,22 @@ MainWindow::~MainWindow()
 void MainWindow::initActions()
 {
   m_actionExit = new QAction(IconHelper::getIconExit(), tr("Exit"), this);
+  m_actionExit->setIcon(IconHelper::getIconExit());
   connect(m_actionExit, SIGNAL(triggered()), this, SLOT(exitNotifier()));
 
   m_actionAbout = new QAction(StrConstants::getHelpAbout(), this);
   m_actionAbout->setIconVisibleInMenu(true);
+  m_actionAbout->setIcon(IconHelper::getIconHelpAbout());
   connect(m_actionAbout, SIGNAL(triggered()), this, SLOT(aboutOctopiNotifier()));
 
   m_actionOctopi = new QAction(this);
   m_actionOctopi->setText("Octopi...");
+  m_actionOctopi->setIcon(IconHelper::getIconOctopi());
   connect(m_actionOctopi, SIGNAL(triggered()), this, SLOT(startOctopi()));
 
   m_actionOptions = new QAction(this);
   m_actionOptions->setText(StrConstants::getOptions());
+  m_actionOptions->setIcon(IconHelper::getIconOptions());
   connect(m_actionOptions, SIGNAL(triggered()), this, SLOT(showOptionsDialog()));
 
   m_actionCheckUpdates = new QAction(this);
@@ -329,7 +333,7 @@ bool MainWindow::_isSUAvailable()
   //If there are no means to run the actions, we must warn!
   if (WMHelper::getSUCommand() == ctn_NO_SU_COMMAND)
   {
-    QMessageBox::critical( 0, StrConstants::getApplicationName(),
+    QMessageBox::critical( nullptr, StrConstants::getApplicationName(),
                            StrConstants::getErrorNoSuCommand() +
                            "\n" + StrConstants::getYoullNeedSuFrontend());
     return false;
@@ -732,7 +736,7 @@ void MainWindow::checkUpdates(CheckUpdate check)
   m_systemTrayIconMenu->close();
 
 #ifndef KSTATUS
-  m_systemTrayIcon->setContextMenu(0);
+  m_systemTrayIcon->setContextMenu(nullptr);
 #endif
 
   m_commandExecuting = ectn_CHECK_UPDATES;
