@@ -995,6 +995,15 @@ void MainWindow::postBuildPackageList()
  */
 void MainWindow::refreshOutdatedAURStringList()
 {
+  /*static bool onlyOnce=true; //Testing purpose code
+  if (onlyOnce)
+  {
+    m_outdatedAURStringList->append("micro-bin");
+    m_outdatedAURPackagesNameVersion->insert("micro-bin", "1.5.9-1");
+    onlyOnce=false;
+    return;
+  }*/
+
   QEventLoop el;
   QFuture<QStringList *> f = QtConcurrent::run(getOutdatedAURStringList);
   connect(&g_fwOutdatedAURStringList, SIGNAL(finished()), &el, SLOT(quit()));
@@ -1002,6 +1011,11 @@ void MainWindow::refreshOutdatedAURStringList()
   el.exec();
 
   m_outdatedAURStringList = g_fwOutdatedAURStringList.result();
+
+  m_foreignPackageList->clear();
+  delete m_foreignPackageList;
+  m_foreignPackageList = nullptr;
+  m_foreignPackageList = markForeignPackagesInPkgList(m_hasAURTool, m_outdatedAURStringList);
 }
 
 /*

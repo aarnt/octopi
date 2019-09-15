@@ -207,7 +207,6 @@ void OptionsDialog::initAURTab()
       aurTools << ctn_YAY_TOOL;
   }
 
-  //if (!pacaurTool && !yaourtTool && !trizenTool)
   if (UnixCommand::getLinuxDistro() == ectn_KAOS)
   {
     removeTabByName("AUR");
@@ -356,10 +355,26 @@ void OptionsDialog::initUpdatesTab()
 }
 
 /*
+ * Change the active tabindex given the tabName
+ */
+void OptionsDialog::setCurrentIndexByTabName(const QString &tabName)
+{
+  for(int c=0; c<tabWidget->tabBar()->count(); c++)
+  {
+    if (tabWidget->tabText(c) == tabName)
+    {
+      tabWidget->setCurrentIndex(c);
+      break;
+    }
+  }
+}
+
+/*
  * When user chooses OK button and saves all his changes
  */
-void OptionsDialog::accept(){
-  CPUIntensiveComputing cic;
+void OptionsDialog::accept()
+{
+  CPUIntensiveComputing *cic=new CPUIntensiveComputing(this);
   bool emptyIconPath = false;
   bool AURHasChanged = false;
 
@@ -481,7 +496,6 @@ void OptionsDialog::accept(){
       AURHasChanged = true;
     }
 
-
     if (cbSearchOutdatedAURPackages->isChecked() != SettingsManager::getSearchOutdatedAURPackages())
     {
       SettingsManager::setSearchOutdatedAURPackages(cbSearchOutdatedAURPackages->isChecked());
@@ -512,6 +526,8 @@ void OptionsDialog::accept(){
 
   if (emptyIconPath)
   {
+    delete cic;
+    setCurrentIndexByTabName(tr("Icon"));
     QMessageBox::critical(this, StrConstants::getError(), StrConstants::getErrorIconPathInfoIncomplete());
     return;
   }
@@ -584,6 +600,7 @@ void OptionsDialog::accept(){
   setResult(res);
 
   if (AURHasChanged) emit AURToolChanged();
+  delete cic;
 }
 
 void OptionsDialog::removeTabByName(const QString &tabName)

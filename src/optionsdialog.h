@@ -51,6 +51,7 @@ private:
   void initIconTab();
   void initUpdatesTab();
   void removeTabByName(const QString &tabName);
+  void setCurrentIndexByTabName(const QString &tabName);
 
 protected:
   virtual void accept();
