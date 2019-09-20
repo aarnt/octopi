@@ -746,6 +746,16 @@ void MainWindow::initActions()
   m_actionPackageInfo = new QAction(this);
   m_actionPackageInfo->setText(StrConstants::getTabInfoName());
 
+  m_actionAURVote = new QAction(this);
+  m_actionAURVote->setText(StrConstants::getVote());
+  m_actionAURVote->setIcon(IconHelper::getIconVote());
+  connect(m_actionAURVote, SIGNAL(triggered()), this, SLOT(onAURVote()));
+
+  m_actionAURUnvote = new QAction(this);
+  m_actionAURUnvote->setText(StrConstants::getUnvote());
+  m_actionAURUnvote->setIcon(IconHelper::getIconUnvote());
+  connect(m_actionAURUnvote, SIGNAL(triggered()), this, SLOT(onAURUnvote()));
+
   if(m_hasMirrorCheck)
   {
     m_actionMenuMirrorCheck->setShortcut(QKeySequence(Qt::ControlModifier|Qt::ShiftModifier|Qt::Key_M));

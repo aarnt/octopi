@@ -67,6 +67,8 @@ class SettingsManager
     static QString getOctopiRedIconPath();
     static QString getOctopiYellowIconPath();
     static QString getOctopiGreenIconPath();
+    static bool isDistroRSSUrlEmpty();
+    static QString getDistroRSSUrl();
 
     static bool getShowPackageNumbersOutput();
     static bool getShowStopTransaction();
@@ -75,7 +77,10 @@ class SettingsManager
     static QString getAURToolName();
     static bool getAurNoConfirmParam();
     static bool getAurNoEditParam();
-    static bool getSearchOutdatedAURPackages();
+    static bool getSearchOutdatedAurPackages();
+    static bool getEnableAurVoting();
+    static QString getAurUserName();
+    static QString getAurPassword();
     static bool getUseAlternateRowColor();
     static bool getEnableConfirmationDialogInSysUpgrade();
     static bool getEnableInternetChecking();
@@ -116,6 +121,7 @@ class SettingsManager
     static void setOctopiYellowIconPath(const QString& newValue);
     static void setOctopiGreenIconPath(const QString& newValue);
     static void setBackend(const QString& newValue);
+    static void setDistroRSSUrl(const QString& newValue);
 
     static void setPackageListOrderedCol(int newValue);
     static void setPackageListSortOrder(int newValue);    
@@ -145,7 +151,10 @@ class SettingsManager
     static void setAURTool(const QString& newValue);        
     static void setAurNoConfirmParam(bool newValue);
     static void setAurNoEditParam(bool newValue);
-    static void setSearchOutdatedAURPackages(bool newValue);
+    static void setSearchOutdatedAurPackages(bool newValue);
+    static void setEnableAurVoting(bool newValue);
+    static void setAurUserName(const QString& newValue);
+    static void setAurPassword(const QString& newValue);
     static void setUseAlternateRowColor(bool newValue);
     static void setEnableConfirmationDialogInSysUpgrade(bool newValue);
     static void setEnableInternetChecking(bool newValue);

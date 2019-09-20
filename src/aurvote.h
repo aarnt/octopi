@@ -44,7 +44,7 @@ public:
 
   bool login();
   bool isLoggedIn();
-  bool isPkgVoted(const QString &pkgName);
+  int isPkgVoted(const QString &pkgName);
   void voteOnPkg(const QString &pkgName);
   void unvoteOnPkg(const QString &pkgName);
 

@@ -33,6 +33,7 @@
 #include <QList>
 #include <QUrl>
 
+class AurVote;
 class QTreeView;
 class QStandardItemModel;
 class QStandardItem;
@@ -94,6 +95,7 @@ private:
   UnixCommand *m_unixCommand;
   bool m_initializationCompleted;
 
+  AurVote *m_aurVote;
   TermWidget *m_console;
 
   SearchLineEdit *m_leFilterPackage;
@@ -206,6 +208,8 @@ private:
   QAction *m_actionCopyFullPath;
   QAction *m_actionSysInfo;
   QAction *m_actionStopTransaction;
+  QAction *m_actionAURVote;
+  QAction *m_actionAURUnvote;
   QToolButton *m_toolButtonStopTransaction;
 
   //Toggles use of AUR tool
@@ -321,7 +325,6 @@ private:
   void refreshStatusBarToolButtons();
 
   void switchToViewAllPackages();
-
   void retrieveForeignPackageList();
   void retrieveUnrequiredPackageList();
   void retrieveOutdatedPackageList();
@@ -370,6 +373,8 @@ private slots:
   void metaBuildPackageList();
   void onPackageGroupChanged();
 
+  void onAURVote();
+  void onAURUnvote();
   void AURToolSelected();
   void groupItemSelected();
 
@@ -417,6 +422,7 @@ private slots:
   void doInstallAURPackage();
   void doRemoveAURPackage();
   void onAURToolChanged();
+  void onAURVotingChanged();
   void disableTransactionActions();
   void enableTransactionActions();
   void toggleInstantSearch();

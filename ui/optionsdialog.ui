@@ -31,7 +31,7 @@
      <item>
       <widget class="QTabWidget" name="tabWidget">
        <property name="currentIndex">
-        <number>4</number>
+        <number>1</number>
        </property>
        <widget class="QWidget" name="tabGeneral">
         <attribute name="title">
@@ -198,8 +198,8 @@
              <rect>
               <x>20</x>
               <y>150</y>
-              <width>571</width>
-              <height>23</height>
+              <width>301</width>
+              <height>31</height>
              </rect>
             </property>
             <property name="font">
@@ -216,9 +216,107 @@
              <rect>
               <x>10</x>
               <y>31</y>
-              <width>281</width>
+              <width>271</width>
               <height>26</height>
              </rect>
+            </property>
+           </widget>
+           <widget class="QGroupBox" name="gbAURVoting">
+            <property name="geometry">
+             <rect>
+              <x>340</x>
+              <y>60</y>
+              <width>271</width>
+              <height>201</height>
+             </rect>
+            </property>
+            <property name="title">
+             <string notr="true">aur.archlinux.org</string>
+            </property>
+            <widget class="QLineEdit" name="leAurUserName">
+             <property name="geometry">
+              <rect>
+               <x>10</x>
+               <y>60</y>
+               <width>250</width>
+               <height>26</height>
+              </rect>
+             </property>
+            </widget>
+            <widget class="QLineEdit" name="leAurPassword">
+             <property name="geometry">
+              <rect>
+               <x>10</x>
+               <y>120</y>
+               <width>250</width>
+               <height>26</height>
+              </rect>
+             </property>
+            </widget>
+            <widget class="QLabel" name="lblAurUserName">
+             <property name="geometry">
+              <rect>
+               <x>10</x>
+               <y>40</y>
+               <width>221</width>
+               <height>18</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string>User name</string>
+             </property>
+            </widget>
+            <widget class="QLabel" name="lblAurPassword">
+             <property name="geometry">
+              <rect>
+               <x>10</x>
+               <y>100</y>
+               <width>221</width>
+               <height>18</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string>Password</string>
+             </property>
+            </widget>
+            <widget class="QPushButton" name="bRegister">
+             <property name="geometry">
+              <rect>
+               <x>140</x>
+               <y>160</y>
+               <width>121</width>
+               <height>26</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string>Register</string>
+             </property>
+            </widget>
+            <widget class="QPushButton" name="bConnect">
+             <property name="geometry">
+              <rect>
+               <x>10</x>
+               <y>160</y>
+               <width>121</width>
+               <height>26</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string>Connect</string>
+             </property>
+            </widget>
+           </widget>
+           <widget class="QCheckBox" name="cbEnableAURVoting">
+            <property name="geometry">
+             <rect>
+              <x>330</x>
+              <y>30</y>
+              <width>261</width>
+              <height>24</height>
+             </rect>
+            </property>
+            <property name="text">
+             <string>Enable AUR voting</string>
             </property>
            </widget>
           </widget>
@@ -925,6 +1023,22 @@
   </layout>
  </widget>
  <tabstops>
+  <tabstop>cbConfirmationDialogInSysUpgrade</tabstop>
+  <tabstop>cbEnableInternetCheck</tabstop>
+  <tabstop>cbShowPackageNumbersOutput</tabstop>
+  <tabstop>cbShowStopTransaction</tabstop>
+  <tabstop>cbUseAlternateRowColor</tabstop>
+  <tabstop>comboAUR</tabstop>
+  <tabstop>cbNoConfirm</tabstop>
+  <tabstop>cbNoEdit</tabstop>
+  <tabstop>cbSearchOutdatedAURPackages</tabstop>
+  <tabstop>cbEnableAURVoting</tabstop>
+  <tabstop>leAurUserName</tabstop>
+  <tabstop>leAurPassword</tabstop>
+  <tabstop>bConnect</tabstop>
+  <tabstop>bRegister</tabstop>
+  <tabstop>rbAlpm</tabstop>
+  <tabstop>rbPacman</tabstop>
   <tabstop>cbUseDefaultIcons</tabstop>
   <tabstop>leRedIcon</tabstop>
   <tabstop>tbSelRedIcon</tabstop>
@@ -934,6 +1048,13 @@
   <tabstop>tbSelGreenIcon</tabstop>
   <tabstop>leBusyIcon</tabstop>
   <tabstop>tbSelBusyIcon</tabstop>
+  <tabstop>rbOnceADay</tabstop>
+  <tabstop>rbOnceADayAt</tabstop>
+  <tabstop>spinOnceADayAt</tabstop>
+  <tabstop>rbOnceEvery</tabstop>
+  <tabstop>spinOnceEvery</tabstop>
+  <tabstop>rbNever</tabstop>
+  <tabstop>tabWidget</tabstop>
  </tabstops>
  <resources/>
  <connections/>

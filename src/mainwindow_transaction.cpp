@@ -34,6 +34,7 @@
 #include <iostream>
 #include <cassert>
 #include "termwidget.h"
+#include "aurvote.h"
 
 #include <QComboBox>
 #include <QProgressBar>
@@ -1393,6 +1394,21 @@ void MainWindow::onAURToolChanged()
   }
 
   metaBuildPackageList();
+}
+
+/*
+ * Whenever user updates AUR voting settings in OptionsDialog
+ */
+void MainWindow::onAURVotingChanged()
+{
+  if(SettingsManager::getEnableAurVoting())
+  {
+    delete m_aurVote;
+    m_aurVote = new AurVote(this);
+    m_aurVote->setUserName(SettingsManager::getAurUserName());
+    m_aurVote->setPassword(SettingsManager::getAurPassword());
+    m_aurVote->login();
+  }
 }
 
 /*

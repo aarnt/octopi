@@ -61,6 +61,7 @@ public:
 
 signals:
   void AURToolChanged();
+  void AURVotingChanged();
   void terminalChanged();
   void alternateRowColorsChanged();
 
@@ -75,6 +76,9 @@ private slots:
   void selectOnceEvery();
   void selectNever();
   void comboAURChanged(const QString &text);
+  void onEnableAURVoting(int state);
+  void onAURConnect();
+  void onAURRegister();
 };
 
 #endif // OptionsDialog_H

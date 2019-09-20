@@ -167,6 +167,10 @@ QString StrConstants::getParabolaNews(){
   return QObject::tr("Parabola GNU/Linux-libre news");
 }
 
+QString StrConstants::getInformation(){
+  return QObject::tr("Information");
+}
+
 QString StrConstants::getError(){
   return QObject::tr("Error");
 }
@@ -281,6 +285,16 @@ QString StrConstants::getVotesHeader(){
 
 QString StrConstants::getVotes(){
   return QObject::tr("votes");
+}
+
+QString StrConstants::getVote()
+{
+  return QObject::tr("Vote");
+}
+
+QString StrConstants::getUnvote()
+{
+  return QObject::tr("Unvote");
 }
 
 QString StrConstants::getDownloadSize(){
@@ -593,8 +607,28 @@ QString StrConstants::getYoullNeedSuFrontend(){
   return QObject::tr("You'll need to install \"octopi-sudo\" in order to use Octopi.");
 }
 
-QString StrConstants::getErrorIconPathInfoIncomplete(){
-  return QObject::tr("Icon path information is incomplete.");
+QString StrConstants::getAURConnectionIsOK()
+{
+  return QObject::tr("Connection is OK!");
+}
+
+QString StrConstants::getAURUserNameOrPasswordIsIncorrect()
+{
+  return QObject::tr("Username and/or password is/are incorrect.");
+}
+
+QString StrConstants::getErrorAURUserNameIsNotSet()
+{
+  return QObject::tr("AUR username is not set.");
+}
+
+QString StrConstants::getErrorAURPasswordIsNotSet()
+{
+  return QObject::tr("AUR password is not set.");
+}
+
+QString StrConstants::getErrorIconPathInfoIsNotSet(){
+  return QObject::tr("Icon path information is not set.");
 }
 
 QString StrConstants::getErrorRunningWithRoot(){

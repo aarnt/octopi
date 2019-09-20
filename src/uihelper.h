@@ -138,6 +138,8 @@ public:
   static QIcon getIconForeignGreen(){ return QIcon(":/resources/images/foreign_green.png"); }
   static QIcon getIconForeignRed(){ return QIcon(":/resources/images/foreign_red.png"); }
   static QIcon getIconStop(){ return QIcon(":/resources/images/stop_small_red.png"); }
+  static QIcon getIconVote(){ return QIcon(":/resources/images/vote.png"); }
+  static QIcon getIconUnvote(){ return QIcon(":/resources/images/un_vote.png"); }
 
   static QIcon getIconBinary(){
     if (WMHelper::isKDERunning() && (UnixCommand::getLinuxDistro() != ectn_KAOS))

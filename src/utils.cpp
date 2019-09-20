@@ -110,14 +110,14 @@ QList<QModelIndex> * utils::findFileInTreeView( const QString& name, const QStan
  */
 QString utils::retrieveDistroNews(bool searchForLatestNews)
 {
-  const QString ctn_ANTERGOS_RSS_URL = "https://antergos.com/feed/";
+  /*const QString ctn_ANTERGOS_RSS_URL = "https://antergos.com/feed/";
   const QString ctn_ARCH_LINUX_RSS_URL = "https://www.archlinux.org/feeds/news/";
   const QString ctn_CHAKRA_RSS_URL = "https://community.chakralinux.org/c/news.rss";
   const QString ctn_CONDRESOS_RSS_URL = "https://condresos.codelinsoft.it/index.php/blog?format=feed&amp;type=rss";
   const QString ctn_KAOS_RSS_URL = "https://kaosx.us/feed.xml";
   const QString ctn_MANJARO_LINUX_RSS_URL = "https://forum.manjaro.org/c/announcements.rss";
   const QString ctn_NETRUNNER_RSS_URL = "http://www.netrunner-os.com/feed/";
-  const QString ctn_PARABOLA_RSS_URL = "https://www.parabola.nu/feeds/news/";
+  const QString ctn_PARABOLA_RSS_URL = "https://www.parabola.nu/feeds/news/";*/
 
   LinuxDistro distro = UnixCommand::getLinuxDistro();
   QString res;
@@ -137,43 +137,44 @@ QString utils::retrieveDistroNews(bool searchForLatestNews)
   if(searchForLatestNews && UnixCommand::hasInternetConnection() && distro != ectn_UNKNOWN)
   {    
     QString curlCommand = "curl %1 -o %2";
+    QString distroRSSUrl = SettingsManager::getDistroRSSUrl();
 
     if (distro == ectn_ANTERGOS)
     {
-      curlCommand = curlCommand.arg(ctn_ANTERGOS_RSS_URL).arg(tmpRssPath);
+      curlCommand = curlCommand.arg(distroRSSUrl).arg(tmpRssPath);
     }
     else if (distro == ectn_ARCHLINUX || distro == ectn_ARCHBANGLINUX || distro == ectn_SWAGARCH)
     {
-      curlCommand = curlCommand.arg(ctn_ARCH_LINUX_RSS_URL).arg(tmpRssPath);
+      curlCommand = curlCommand.arg(distroRSSUrl).arg(tmpRssPath);
     }
     else if (distro == ectn_CHAKRA)
     {
       curlCommand = "curl -k %1 -o %2";
-      curlCommand = curlCommand.arg(ctn_CHAKRA_RSS_URL).arg(tmpRssPath);
+      curlCommand = curlCommand.arg(distroRSSUrl).arg(tmpRssPath);
     }
     else if (distro == ectn_CONDRESOS)
     {
       curlCommand = "curl -A \"Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0\" -k \"%1\" -o %2";
-      curlCommand = curlCommand.arg(ctn_CONDRESOS_RSS_URL).arg(tmpRssPath);
+      curlCommand = curlCommand.arg(distroRSSUrl).arg(tmpRssPath);
     }
     else if (distro == ectn_KAOS)
     {
       curlCommand = "curl -k %1 -o %2";
-      curlCommand = curlCommand.arg(ctn_KAOS_RSS_URL).arg(tmpRssPath);
+      curlCommand = curlCommand.arg(distroRSSUrl).arg(tmpRssPath);
     }
     else if (distro == ectn_MANJAROLINUX)
     {
-      curlCommand = curlCommand.arg(ctn_MANJARO_LINUX_RSS_URL).arg(tmpRssPath);
+      curlCommand = curlCommand.arg(distroRSSUrl).arg(tmpRssPath);
     }
     else if (distro == ectn_NETRUNNER)
     {
-      curlCommand = curlCommand.arg(ctn_NETRUNNER_RSS_URL).arg(tmpRssPath);
+      curlCommand = curlCommand.arg(distroRSSUrl).arg(tmpRssPath);
     }
     else if (distro == ectn_PARABOLA)
     {
       //Parabola has a certificate which is not "trusted" by default, so we use "curl -k"
       curlCommand = "curl -k %1 -o %2";
-      curlCommand = curlCommand.arg(ctn_PARABOLA_RSS_URL).arg(tmpRssPath);
+      curlCommand = curlCommand.arg(distroRSSUrl).arg(tmpRssPath);
     }
 
     if (UnixCommand::runCurlCommand(curlCommand).isEmpty())

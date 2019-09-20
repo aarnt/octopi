@@ -25,6 +25,7 @@
 #include "strconstants.h"
 #include "terminal.h"
 #include "uihelper.h"
+#include "aurvote.h"
 
 #include <QPushButton>
 #include <QFile>
@@ -32,6 +33,7 @@
 #include <QProcess>
 #include <QMessageBox>
 #include <QFileDialog>
+#include <QDesktopServices>
 
 /*
  * This is the Options Dialog called by Octopi and Notifier
@@ -214,6 +216,9 @@ void OptionsDialog::initAURTab()
   else
   {
     connect(comboAUR, SIGNAL(currentTextChanged(const QString &)), this, SLOT(comboAURChanged(const QString &)));
+    connect(bConnect, SIGNAL(clicked()), this, SLOT(onAURConnect()));
+    connect(bRegister, SIGNAL(clicked()), this, SLOT(onAURRegister()));
+
     aurTools.sort();
     comboAUR->addItems(aurTools);
     comboAUR->setCurrentText(SettingsManager::getAURToolName());
@@ -245,8 +250,15 @@ void OptionsDialog::initAURTab()
       cbNoEdit->setEnabled(false);
     }
 
-    cbSearchOutdatedAURPackages->setChecked(SettingsManager::getSearchOutdatedAURPackages());
-  }    
+    cbSearchOutdatedAURPackages->setChecked(SettingsManager::getSearchOutdatedAurPackages());
+    leAurPassword->setEchoMode(QLineEdit::Password);
+    cbEnableAURVoting->setChecked(SettingsManager::getEnableAurVoting());
+
+    leAurUserName->setText(SettingsManager::getAurUserName());
+    leAurPassword->setText(SettingsManager::getAurPassword());
+    onEnableAURVoting(cbEnableAURVoting->checkState());
+    connect(cbEnableAURVoting, SIGNAL(stateChanged(int)), this, SLOT(onEnableAURVoting(int)));
+  }
 }
 
 /*
@@ -377,6 +389,7 @@ void OptionsDialog::accept()
   CPUIntensiveComputing *cic=new CPUIntensiveComputing(this);
   bool emptyIconPath = false;
   bool AURHasChanged = false;
+  bool AURVotingHasChanged = false;
 
   if (m_calledByOctopi)
   {
@@ -496,10 +509,50 @@ void OptionsDialog::accept()
       AURHasChanged = true;
     }
 
-    if (cbSearchOutdatedAURPackages->isChecked() != SettingsManager::getSearchOutdatedAURPackages())
+    if (cbSearchOutdatedAURPackages->isChecked() != SettingsManager::getSearchOutdatedAurPackages())
     {
-      SettingsManager::setSearchOutdatedAURPackages(cbSearchOutdatedAURPackages->isChecked());
+      SettingsManager::setSearchOutdatedAurPackages(cbSearchOutdatedAURPackages->isChecked());
       AURHasChanged = true;
+    }
+
+    if (cbEnableAURVoting->isChecked() != SettingsManager::getEnableAurVoting() ||
+        leAurUserName->text() != SettingsManager::getAurUserName() ||
+        leAurPassword->text() != SettingsManager::getAurPassword())
+    {
+      if (cbEnableAURVoting->isChecked()) //If we are enabling the voting system, let's check some things
+      {
+        if (leAurUserName->text().isEmpty())
+        {
+          delete cic;
+          setCurrentIndexByTabName(tr("AUR"));
+          QMessageBox::critical(this, StrConstants::getError(), StrConstants::getErrorAURUserNameIsNotSet());
+          return;
+        }
+        if (leAurPassword->text().isEmpty())
+        {
+          delete cic;
+          setCurrentIndexByTabName(tr("AUR"));
+          QMessageBox::critical(this, StrConstants::getError(), StrConstants::getErrorAURPasswordIsNotSet());
+          return;
+        }
+
+        //Here we test if the connection is ok!
+        AurVote v;
+        v.setUserName(leAurUserName->text());
+        v.setPassword(leAurPassword->text());
+        if (!v.login())
+        {
+          delete cic;
+          QMessageBox::critical(this, StrConstants::getError(), StrConstants::getAURUserNameOrPasswordIsIncorrect());
+          return;
+        }
+      }
+
+      SettingsManager::setEnableAurVoting(cbEnableAURVoting->isChecked());
+      SettingsManager::setAurUserName(leAurUserName->text());
+      SettingsManager::setAurPassword(leAurPassword->text());
+
+      AURVotingHasChanged = true;
     }
   }
 
@@ -528,7 +581,7 @@ void OptionsDialog::accept()
   {
     delete cic;
     setCurrentIndexByTabName(tr("Icon"));
-    QMessageBox::critical(this, StrConstants::getError(), StrConstants::getErrorIconPathInfoIncomplete());
+    QMessageBox::critical(this, StrConstants::getError(), StrConstants::getErrorIconPathInfoIsNotSet());
     return;
   }
 
@@ -600,6 +653,7 @@ void OptionsDialog::accept()
   setResult(res);
 
   if (AURHasChanged) emit AURToolChanged();
+  if (AURVotingHasChanged) emit AURVotingChanged();
   delete cic;
 }
 
@@ -692,7 +746,7 @@ void OptionsDialog::comboAURChanged(const QString &text)
     cbSearchOutdatedAURPackages->setEnabled(true);
     cbNoConfirm->setChecked(SettingsManager::getAurNoConfirmParam());
     cbNoEdit->setChecked(SettingsManager::getAurNoEditParam());
-    cbSearchOutdatedAURPackages->setChecked(SettingsManager::getSearchOutdatedAURPackages());
+    cbSearchOutdatedAURPackages->setChecked(SettingsManager::getSearchOutdatedAurPackages());
   }
   else if (text == ctn_PIKAUR_TOOL)
   {
@@ -701,7 +755,7 @@ void OptionsDialog::comboAURChanged(const QString &text)
     cbSearchOutdatedAURPackages->setEnabled(true);
     cbNoConfirm->setChecked(SettingsManager::getAurNoConfirmParam());
     cbNoEdit->setChecked(SettingsManager::getAurNoEditParam());
-    cbSearchOutdatedAURPackages->setChecked(SettingsManager::getSearchOutdatedAURPackages());
+    cbSearchOutdatedAURPackages->setChecked(SettingsManager::getSearchOutdatedAurPackages());
   }
   else if (text == ctn_TRIZEN_TOOL)
   {
@@ -710,7 +764,7 @@ void OptionsDialog::comboAURChanged(const QString &text)
     cbSearchOutdatedAURPackages->setEnabled(true);
     cbNoConfirm->setChecked(SettingsManager::getAurNoConfirmParam());
     cbNoEdit->setChecked(SettingsManager::getAurNoEditParam());
-    cbSearchOutdatedAURPackages->setChecked(SettingsManager::getSearchOutdatedAURPackages());
+    cbSearchOutdatedAURPackages->setChecked(SettingsManager::getSearchOutdatedAurPackages());
   }
   else if (text == ctn_YAY_TOOL)
   {
@@ -719,6 +773,38 @@ void OptionsDialog::comboAURChanged(const QString &text)
     cbSearchOutdatedAURPackages->setEnabled(true);
     cbNoConfirm->setChecked(SettingsManager::getAurNoConfirmParam());
     cbNoEdit->setChecked(SettingsManager::getAurNoEditParam());
-    cbSearchOutdatedAURPackages->setChecked(SettingsManager::getSearchOutdatedAURPackages());
+    cbSearchOutdatedAURPackages->setChecked(SettingsManager::getSearchOutdatedAurPackages());
   }
+}
+
+/*
+ * Whenever user changes the state of 'Enable AUR voting' check box
+ */
+void OptionsDialog::onEnableAURVoting(int state)
+{
+  bool value=(state==Qt::Checked);
+  gbAURVoting->setEnabled(value);
+}
+
+/*
+ * Whenever user clicks "Connect" button to test AUR site connection
+ */
+void OptionsDialog::onAURConnect()
+{
+  AurVote v;
+  v.setUserName(leAurUserName->text());
+  v.setPassword(leAurPassword->text());
+  bool logged = v.login();
+  if(logged)
+    QMessageBox::information(this, StrConstants::getInformation(), StrConstants::getAURConnectionIsOK());
+  else
+    QMessageBox::critical(this, StrConstants::getError(), StrConstants::getAURUserNameOrPasswordIsIncorrect());
+}
+
+/*
+ * Whenever user clicks "Register" button he is redirected to a browser to create an account at AUR site
+ */
+void OptionsDialog::onAURRegister()
+{
+  QDesktopServices::openUrl(QUrl("https://aur.archlinux.org/register/"));
 }

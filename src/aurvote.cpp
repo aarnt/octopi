@@ -109,9 +109,16 @@ bool AurVote::isLoggedIn()
   return ret;
 }
 
-bool AurVote::isPkgVoted(const QString &pkgName)
+/*
+ * Checks if given package has been voted
+ * Returns:
+ *   0  if voted
+ *   1  if not voted
+ *   -1 if doesn't exist
+ */
+int AurVote::isPkgVoted(const QString &pkgName)
 {
-  bool ret = true;
+  int ret = 0;
   QEventLoop eventLoop;
   QNetworkRequest request(m_pkgUrl.arg(pkgName));
   request.setHeader(QNetworkRequest::ContentTypeHeader,"application/x-www-form-urlencoded");
@@ -121,10 +128,16 @@ bool AurVote::isPkgVoted(const QString &pkgName)
   disconnect(r, SIGNAL(finished()), &eventLoop, SLOT(quit()));
 
   QString res = r->readAll();
+  //qDebug() << res;
+
+  //If this package does not exist anymore...
+  QRegularExpression re("Page Not Found");
+  if (res.contains(re)) ret = -1;
+
   QRegularExpression re1("name=\"do_Vote\" value=\"Vote for this package\"");
   if (res.contains(re1))
   {
-    ret = false;
+    ret = 1;
   }
 
   return ret;

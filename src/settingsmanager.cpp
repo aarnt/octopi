@@ -26,12 +26,14 @@
 #include "settingsmanager.h"
 #include "unixcommand.h"
 #include "uihelper.h"
+#include "qaesencryption.h"
 
 #include <QString>
 #include <QStringList>
 #include <QVariant>
 #include <QSettings>
 #include <QDir>
+#include <QCryptographicHash>
 
 //Initialization of Singleton pointer...
 SettingsManager* SettingsManager::m_pinstance = 0;
@@ -65,7 +67,7 @@ int SettingsManager::getKeepNumUninstalledPackages() {
 
 void SettingsManager::setCacheCleanerWindowSize(QByteArray newValue)
 {
-  instance()->getSYSsettings()->setValue( ctn_KEY_CACHE_CLEANER_WINDOW_SIZE, newValue);
+  instance()->getSYSsettings()->setValue(ctn_KEY_CACHE_CLEANER_WINDOW_SIZE, newValue);
   instance()->getSYSsettings()->sync();
 }
 
@@ -142,7 +144,7 @@ QDateTime SettingsManager::getLastCheckUpdatesTime()
   else
   {
     SettingsManager p_instance;
-    return (p_instance.getSYSsettings()->value( ctn_KEY_LAST_CHECKUPDATES_TIME, 0)).toDateTime();
+    return (p_instance.getSYSsettings()->value(ctn_KEY_LAST_CHECKUPDATES_TIME, 0)).toDateTime();
   }
 }
 
@@ -173,11 +175,11 @@ int SettingsManager::getCurrentTabIndex(){
 }
 
 int SettingsManager::getPanelOrganizing(){
-  return instance()->getSYSsettings()->value( ctn_KEY_PANEL_ORGANIZING, ectn_NORMAL ).toInt();
+  return instance()->getSYSsettings()->value(ctn_KEY_PANEL_ORGANIZING, ectn_NORMAL ).toInt();
 }
 
 int SettingsManager::getPackageListOrderedCol(){
-  return instance()->getSYSsettings()->value( ctn_KEY_PACKAGE_LIST_ORDERED_COL, 1 ).toInt();
+  return instance()->getSYSsettings()->value(ctn_KEY_PACKAGE_LIST_ORDERED_COL, 1 ).toInt();
 }
 
 int SettingsManager::getPackageListSortOrder(){
@@ -187,7 +189,7 @@ int SettingsManager::getPackageListSortOrder(){
 
 int SettingsManager::getAURPackageListOrderedCol()
 {
-  return instance()->getSYSsettings()->value( ctn_KEY_AUR_PACKAGE_LIST_ORDERED_COL, 1 ).toInt();
+  return instance()->getSYSsettings()->value(ctn_KEY_AUR_PACKAGE_LIST_ORDERED_COL, 1 ).toInt();
 }
 
 int SettingsManager::getAURPackageListSortOrder()
@@ -229,32 +231,60 @@ bool SettingsManager::getUseDefaultAppIcon()
   else
   {
     SettingsManager p_instance;
-    return (p_instance.getSYSsettings()->value( ctn_KEY_USE_DEFAULT_APP_ICON, true) == true);
+    return (p_instance.getSYSsettings()->value(ctn_KEY_USE_DEFAULT_APP_ICON, true) == true);
   }
 }
 
 QString SettingsManager::getOctopiBusyIconPath()
 {
   SettingsManager p_instance;
-  return (p_instance.getSYSsettings()->value( ctn_KEY_OCTOPI_BUSY_ICON_PATH, "")).toString();
+  return (p_instance.getSYSsettings()->value(ctn_KEY_OCTOPI_BUSY_ICON_PATH, "")).toString();
 }
 
 QString SettingsManager::getOctopiRedIconPath()
 {
   SettingsManager p_instance;
-  return (p_instance.getSYSsettings()->value( ctn_KEY_OCTOPI_RED_ICON_PATH, "")).toString();
+  return (p_instance.getSYSsettings()->value(ctn_KEY_OCTOPI_RED_ICON_PATH, "")).toString();
 }
 
 QString SettingsManager::getOctopiYellowIconPath()
 {
   SettingsManager p_instance;
-  return (p_instance.getSYSsettings()->value( ctn_KEY_OCTOPI_YELLOW_ICON_PATH, "")).toString();
+  return (p_instance.getSYSsettings()->value(ctn_KEY_OCTOPI_YELLOW_ICON_PATH, "")).toString();
 }
 
 QString SettingsManager::getOctopiGreenIconPath()
 {
   SettingsManager p_instance;
-  return (p_instance.getSYSsettings()->value( ctn_KEY_OCTOPI_GREEN_ICON_PATH, "")).toString();
+  return (p_instance.getSYSsettings()->value(ctn_KEY_OCTOPI_GREEN_ICON_PATH, "")).toString();
+}
+
+bool SettingsManager::isDistroRSSUrlEmpty()
+{
+  SettingsManager p_instance;
+  return p_instance.getSYSsettings()->value(ctn_KEY_DISTRO_RSS_URL, "").toString().isEmpty();
+}
+
+QString SettingsManager::getDistroRSSUrl()
+{
+  SettingsManager p_instance;
+  LinuxDistro distro = UnixCommand::getLinuxDistro();
+
+  if (distro == ectn_ARCHLINUX || distro == ectn_ARCHBANGLINUX || distro == ectn_SWAGARCH)
+    return (p_instance.getSYSsettings()->value(ctn_KEY_DISTRO_RSS_URL, "https://www.archlinux.org/feeds/news/")).toString();
+  else if (distro == ectn_CHAKRA)
+    return (p_instance.getSYSsettings()->value(ctn_KEY_DISTRO_RSS_URL, "https://community.chakralinux.org/c/news.rss")).toString();
+  else if (distro == ectn_CONDRESOS)
+    return (p_instance.getSYSsettings()->value(ctn_KEY_DISTRO_RSS_URL, "https://condresos.codelinsoft.it/index.php/blog?format=feed&amp;type=rss")).toString();
+  else if (distro == ectn_KAOS)
+    return (p_instance.getSYSsettings()->value(ctn_KEY_DISTRO_RSS_URL, "https://kaosx.us/feed.xml")).toString();
+  else if (distro == ectn_MANJAROLINUX)
+    return (p_instance.getSYSsettings()->value(ctn_KEY_DISTRO_RSS_URL, "https://forum.manjaro.org/c/announcements.rss")).toString();
+  else if (distro == ectn_NETRUNNER)
+    return (p_instance.getSYSsettings()->value(ctn_KEY_DISTRO_RSS_URL, "http://www.netrunner-os.com/feed/")).toString();
+  else if (distro == ectn_PARABOLA)
+    return (p_instance.getSYSsettings()->value(ctn_KEY_DISTRO_RSS_URL, "https://www.parabola.nu/feeds/news/")).toString();
+  else return "";
 }
 
 bool SettingsManager::getShowPackageNumbersOutput()
@@ -266,7 +296,7 @@ bool SettingsManager::getShowPackageNumbersOutput()
 bool SettingsManager::getShowStopTransaction()
 {
   SettingsManager p_instance;
-  return p_instance.getSYSsettings()->value( ctn_KEY_SHOW_STOP_TRANSACTION, 1).toBool();
+  return p_instance.getSYSsettings()->value(ctn_KEY_SHOW_STOP_TRANSACTION, 1).toBool();
 }
 
 QString SettingsManager::getAURTool()
@@ -274,7 +304,7 @@ QString SettingsManager::getAURTool()
   QString params;
 
   SettingsManager p_instance;
-  QString ret = (p_instance.getSYSsettings()->value( ctn_KEY_AUR_TOOL, "")).toString();
+  QString ret = (p_instance.getSYSsettings()->value(ctn_KEY_AUR_TOOL, "")).toString();
 
   if (ret == ctn_NO_AUR_TOOL) return ret;
   else if (ret == ctn_PACAUR_TOOL)
@@ -361,7 +391,7 @@ QString SettingsManager::getAURTool()
 QString SettingsManager::getAURToolName()
 {
   SettingsManager p_instance;
-  return p_instance.getSYSsettings()->value( ctn_KEY_AUR_TOOL, ctn_NO_AUR_TOOL).toString();
+  return p_instance.getSYSsettings()->value(ctn_KEY_AUR_TOOL, ctn_NO_AUR_TOOL).toString();
 }
 
 /*
@@ -370,7 +400,7 @@ QString SettingsManager::getAURToolName()
 bool SettingsManager::getAurNoConfirmParam()
 {
   SettingsManager p_instance;
-  return (p_instance.getSYSsettings()->value( ctn_KEY_AUR_NO_CONFIRM_PARAM, 0)).toBool();
+  return (p_instance.getSYSsettings()->value(ctn_KEY_AUR_NO_CONFIRM_PARAM, 0)).toBool();
 }
 
 /*
@@ -379,37 +409,66 @@ bool SettingsManager::getAurNoConfirmParam()
 bool SettingsManager::getAurNoEditParam()
 {
   SettingsManager p_instance;
-  return (p_instance.getSYSsettings()->value( ctn_KEY_AUR_NO_EDIT_PARAM, 0)).toBool();
+  return (p_instance.getSYSsettings()->value(ctn_KEY_AUR_NO_EDIT_PARAM, 0)).toBool();
 }
 
-bool SettingsManager::getSearchOutdatedAURPackages()
+bool SettingsManager::getSearchOutdatedAurPackages()
 {
   SettingsManager p_instance;
-  return (p_instance.getSYSsettings()->value( ctn_KEY_SEARCH_OUTDATED_AUR_PACKAGES, 0)).toBool();
+  return (p_instance.getSYSsettings()->value(ctn_KEY_SEARCH_OUTDATED_AUR_PACKAGES, 0)).toBool();
+}
+
+bool SettingsManager::getEnableAurVoting()
+{
+  SettingsManager p_instance;
+  return (p_instance.getSYSsettings()->value(ctn_KEY_ENABLE_AUR_VOTING, 0)).toBool();
+}
+
+QString SettingsManager::getAurUserName()
+{
+  SettingsManager p_instance;
+  return (p_instance.getSYSsettings()->value(ctn_KEY_AUR_USERNAME, "")).toString();
+}
+
+QString SettingsManager::getAurPassword()
+{
+  SettingsManager p_instance;
+  QByteArray encryptedValue = (p_instance.getSYSsettings()->value(ctn_KEY_AUR_PASSWORD, "")).toByteArray();
+
+  QString aurUserName = getAurUserName();
+  if (aurUserName.isEmpty()) return "";
+
+  QByteArray hashKey = QCryptographicHash::hash(ctn_OCTOPI_COPYRIGHT.toLocal8Bit(), QCryptographicHash::Sha256);
+  QByteArray hashIV = QCryptographicHash::hash(aurUserName.toLocal8Bit(), QCryptographicHash::Md5);
+
+  QAESEncryption encryption(QAESEncryption::AES_256, QAESEncryption::CBC);
+  QByteArray decodeText = encryption.decode(encryptedValue, hashKey, hashIV);
+  QString decryptedValue = QString(encryption.removePadding(decodeText));
+  return decryptedValue;
 }
 
 bool SettingsManager::getUseAlternateRowColor()
 {
   SettingsManager p_instance;
-  return (p_instance.getSYSsettings()->value( ctn_KEY_USE_ALTERNATE_ROW_COLOR, 0)).toBool();
+  return (p_instance.getSYSsettings()->value(ctn_KEY_USE_ALTERNATE_ROW_COLOR, 0)).toBool();
 }
 
 bool SettingsManager::getEnableConfirmationDialogInSysUpgrade()
 {
   SettingsManager p_instance;
-  return (p_instance.getSYSsettings()->value( ctn_KEY_ENABLE_TRANSACTION_DIALOG_IN_SYSTEM_UPGRADE, 1)).toBool();
+  return (p_instance.getSYSsettings()->value(ctn_KEY_ENABLE_TRANSACTION_DIALOG_IN_SYSTEM_UPGRADE, 1)).toBool();
 }
 
 bool SettingsManager::getEnableInternetChecking()
 {
   SettingsManager p_instance;
-  return (p_instance.getSYSsettings()->value( ctn_KEY_ENABLE_INTERNET_CHECKING, 1)).toBool();
+  return (p_instance.getSYSsettings()->value(ctn_KEY_ENABLE_INTERNET_CHECKING, 1)).toBool();
 }
 
 int SettingsManager::getConsoleFontSize()
 {
   SettingsManager p_instance;
-  return (p_instance.getSYSsettings()->value( ctn_KEY_CONSOLE_SIZE, 0)).toInt();
+  return (p_instance.getSYSsettings()->value(ctn_KEY_CONSOLE_SIZE, 0)).toInt();
 }
 
 /*
@@ -418,7 +477,7 @@ int SettingsManager::getConsoleFontSize()
 QString SettingsManager::readSUToolValue()
 {
   SettingsManager p_instance;
-  return (p_instance.getSYSsettings()->value( ctn_KEY_SU_TOOL, ctn_AUTOMATIC)).toString();
+  return (p_instance.getSYSsettings()->value(ctn_KEY_SU_TOOL, ctn_AUTOMATIC)).toString();
 }
 
 QString SettingsManager::getSUTool()
@@ -440,7 +499,7 @@ bool SettingsManager::getShowGroupsPanel()
     instance()->getSYSsettings()->setValue(ctn_KEY_SHOW_GROUPS_PANEL, 1);
   }
 
-  return (instance()->getSYSsettings()->value( ctn_KEY_SHOW_GROUPS_PANEL, false).toInt() == 1);
+  return (instance()->getSYSsettings()->value(ctn_KEY_SHOW_GROUPS_PANEL, false).toInt() == 1);
 }
 
 /*
@@ -456,13 +515,13 @@ bool SettingsManager::hasPacmanBackend()
   else
   {
     SettingsManager p_instance;
-    return (p_instance.getSYSsettings()->value( ctn_KEY_BACKEND, "pacman") != "alpm");
+    return (p_instance.getSYSsettings()->value(ctn_KEY_BACKEND, "pacman") != "alpm");
   }
 }
 
 QByteArray SettingsManager::getCacheCleanerWindowSize()
 {
-  return (instance()->getSYSsettings()->value( ctn_KEY_CACHE_CLEANER_WINDOW_SIZE, 0).toByteArray());
+  return (instance()->getSYSsettings()->value(ctn_KEY_CACHE_CLEANER_WINDOW_SIZE, 0).toByteArray());
 }
 
 QString SettingsManager::getTerminal()
@@ -471,132 +530,138 @@ QString SettingsManager::getTerminal()
 }
 
 QByteArray SettingsManager::getWindowSize(){
-  return (instance()->getSYSsettings()->value( ctn_KEY_WINDOW_SIZE, 0).toByteArray());
+  return (instance()->getSYSsettings()->value(ctn_KEY_WINDOW_SIZE, 0).toByteArray());
 }
 
 QByteArray SettingsManager::getTransactionWindowSize()
 {
-  return (instance()->getSYSsettings()->value( ctn_KEY_TRANSACTION_WINDOW_SIZE, 0).toByteArray());
+  return (instance()->getSYSsettings()->value(ctn_KEY_TRANSACTION_WINDOW_SIZE, 0).toByteArray());
 }
 
 QByteArray SettingsManager::getOutputDialogWindowSize()
 {
-  return (instance()->getSYSsettings()->value( ctn_KEY_OUTPUTDIALOG_WINDOW_SIZE, 0).toByteArray());
+  return (instance()->getSYSsettings()->value(ctn_KEY_OUTPUTDIALOG_WINDOW_SIZE, 0).toByteArray());
 }
 
 QByteArray SettingsManager::getOptionalDepsWindowSize()
 {
-  return (instance()->getSYSsettings()->value( ctn_KEY_OPTIONALDEPS_WINDOW_SIZE, 0).toByteArray());
+  return (instance()->getSYSsettings()->value(ctn_KEY_OPTIONALDEPS_WINDOW_SIZE, 0).toByteArray());
 }
 
 QByteArray SettingsManager::getSplitterHorizontalState(){
-  return (instance()->getSYSsettings()->value( ctn_KEY_SPLITTER_HORIZONTAL_STATE, 0).toByteArray());
+  return (instance()->getSYSsettings()->value(ctn_KEY_SPLITTER_HORIZONTAL_STATE, 0).toByteArray());
 }
 
 void SettingsManager::setCurrentTabIndex(int newValue){
-  instance()->getSYSsettings()->setValue( ctn_KEY_CURRENT_TAB_INDEX, newValue);
+  instance()->getSYSsettings()->setValue(ctn_KEY_CURRENT_TAB_INDEX, newValue);
   instance()->getSYSsettings()->sync();
 }
 
 void SettingsManager::setPackageListOrderedCol(int newValue){
-  instance()->getSYSsettings()->setValue( ctn_KEY_PACKAGE_LIST_ORDERED_COL, newValue);
+  instance()->getSYSsettings()->setValue(ctn_KEY_PACKAGE_LIST_ORDERED_COL, newValue);
   instance()->getSYSsettings()->sync();
 }
 
 void SettingsManager::setPackageListSortOrder(int newValue){
-  instance()->getSYSsettings()->setValue( ctn_KEY_PACKAGE_LIST_SORT_ORDER, newValue);
+  instance()->getSYSsettings()->setValue(ctn_KEY_PACKAGE_LIST_SORT_ORDER, newValue);
   instance()->getSYSsettings()->sync();
 }
 
 void SettingsManager::setAURPackageListOrderedCol(int newValue)
 {
-  instance()->getSYSsettings()->setValue( ctn_KEY_AUR_PACKAGE_LIST_ORDERED_COL, newValue);
+  instance()->getSYSsettings()->setValue(ctn_KEY_AUR_PACKAGE_LIST_ORDERED_COL, newValue);
   instance()->getSYSsettings()->sync();
 }
 
 void SettingsManager::setAURPackageListSortOrder(int newValue)
 {
-  instance()->getSYSsettings()->setValue( ctn_KEY_AUR_PACKAGE_LIST_SORT_ORDER, newValue);
+  instance()->getSYSsettings()->setValue(ctn_KEY_AUR_PACKAGE_LIST_SORT_ORDER, newValue);
   instance()->getSYSsettings()->sync();
 }
 
 void SettingsManager::setShowGroupsPanel(int newValue)
 {
-  instance()->getSYSsettings()->setValue( ctn_KEY_SHOW_GROUPS_PANEL, newValue);
+  instance()->getSYSsettings()->setValue(ctn_KEY_SHOW_GROUPS_PANEL, newValue);
   instance()->getSYSsettings()->sync();
 }
 
 void SettingsManager::setPanelOrganizing(int newValue){
-  instance()->getSYSsettings()->setValue( ctn_KEY_PANEL_ORGANIZING, newValue);
+  instance()->getSYSsettings()->setValue(ctn_KEY_PANEL_ORGANIZING, newValue);
   instance()->getSYSsettings()->sync();
 }
 
 void SettingsManager::setUseDefaultAppIcon(bool newValue)
 {
-  instance()->getSYSsettings()->setValue( ctn_KEY_USE_DEFAULT_APP_ICON, newValue);
+  instance()->getSYSsettings()->setValue(ctn_KEY_USE_DEFAULT_APP_ICON, newValue);
   instance()->getSYSsettings()->sync();
 }
 
 void SettingsManager::setOctopiBusyIconPath(const QString &newValue)
 {
-  instance()->getSYSsettings()->setValue( ctn_KEY_OCTOPI_BUSY_ICON_PATH, newValue);
+  instance()->getSYSsettings()->setValue(ctn_KEY_OCTOPI_BUSY_ICON_PATH, newValue);
   instance()->getSYSsettings()->sync();
 }
 
 void SettingsManager::setOctopiRedIconPath(const QString &newValue)
 {
-  instance()->getSYSsettings()->setValue( ctn_KEY_OCTOPI_RED_ICON_PATH, newValue);
+  instance()->getSYSsettings()->setValue(ctn_KEY_OCTOPI_RED_ICON_PATH, newValue);
   instance()->getSYSsettings()->sync();
 }
 
 void SettingsManager::setOctopiYellowIconPath(const QString &newValue)
 {
-  instance()->getSYSsettings()->setValue( ctn_KEY_OCTOPI_YELLOW_ICON_PATH, newValue);
+  instance()->getSYSsettings()->setValue(ctn_KEY_OCTOPI_YELLOW_ICON_PATH, newValue);
   instance()->getSYSsettings()->sync();
 }
 
 void SettingsManager::setOctopiGreenIconPath(const QString &newValue)
 {
-  instance()->getSYSsettings()->setValue( ctn_KEY_OCTOPI_GREEN_ICON_PATH, newValue);
+  instance()->getSYSsettings()->setValue(ctn_KEY_OCTOPI_GREEN_ICON_PATH, newValue);
   instance()->getSYSsettings()->sync();
 }
 
 void SettingsManager::setBackend(const QString &newValue)
 {
-  instance()->getSYSsettings()->setValue( ctn_KEY_BACKEND, newValue);
+  instance()->getSYSsettings()->setValue(ctn_KEY_BACKEND, newValue);
+  instance()->getSYSsettings()->sync();
+}
+
+void SettingsManager::setDistroRSSUrl(const QString &newValue)
+{
+  instance()->getSYSsettings()->setValue(ctn_KEY_DISTRO_RSS_URL, newValue);
   instance()->getSYSsettings()->sync();
 }
 
 void SettingsManager::setWindowSize(QByteArray newValue){
-  instance()->getSYSsettings()->setValue( ctn_KEY_WINDOW_SIZE, newValue);
+  instance()->getSYSsettings()->setValue(ctn_KEY_WINDOW_SIZE, newValue);
   instance()->getSYSsettings()->sync();
 }
 
 void SettingsManager::setTransactionWindowSize(QByteArray newValue)
 {
-  instance()->getSYSsettings()->setValue( ctn_KEY_TRANSACTION_WINDOW_SIZE, newValue);
+  instance()->getSYSsettings()->setValue(ctn_KEY_TRANSACTION_WINDOW_SIZE, newValue);
   instance()->getSYSsettings()->sync();
 }
 
 void SettingsManager::setOutputDialogWindowSize(QByteArray newValue)
 {
-  instance()->getSYSsettings()->setValue( ctn_KEY_OUTPUTDIALOG_WINDOW_SIZE, newValue);
+  instance()->getSYSsettings()->setValue(ctn_KEY_OUTPUTDIALOG_WINDOW_SIZE, newValue);
   instance()->getSYSsettings()->sync();
 }
 
 void SettingsManager::setOptionalDepsWindowSize(QByteArray newValue)
 {
-  instance()->getSYSsettings()->setValue( ctn_KEY_OPTIONALDEPS_WINDOW_SIZE, newValue);
+  instance()->getSYSsettings()->setValue(ctn_KEY_OPTIONALDEPS_WINDOW_SIZE, newValue);
   instance()->getSYSsettings()->sync();
 }
 
 void SettingsManager::setSplitterHorizontalState(QByteArray newValue){
-  instance()->getSYSsettings()->setValue( ctn_KEY_SPLITTER_HORIZONTAL_STATE, newValue);
+  instance()->getSYSsettings()->setValue(ctn_KEY_SPLITTER_HORIZONTAL_STATE, newValue);
   instance()->getSYSsettings()->sync();
 }
 
 void SettingsManager::setTerminal(const QString& newValue){
-  instance()->getSYSsettings()->setValue( ctn_KEY_TERMINAL, newValue);
+  instance()->getSYSsettings()->setValue(ctn_KEY_TERMINAL, newValue);
   instance()->getSYSsettings()->sync();
 }
 
@@ -660,9 +725,38 @@ void SettingsManager::setAurNoEditParam(bool newValue)
   instance()->getSYSsettings()->sync();
 }
 
-void SettingsManager::setSearchOutdatedAURPackages(bool newValue)
+void SettingsManager::setSearchOutdatedAurPackages(bool newValue)
 {
   instance()->getSYSsettings()->setValue(ctn_KEY_SEARCH_OUTDATED_AUR_PACKAGES, newValue);
+  instance()->getSYSsettings()->sync();
+}
+
+void SettingsManager::setEnableAurVoting(bool newValue)
+{
+  instance()->getSYSsettings()->setValue(ctn_KEY_ENABLE_AUR_VOTING, newValue);
+  instance()->getSYSsettings()->sync();
+}
+
+void SettingsManager::setAurUserName(const QString &newValue)
+{
+  instance()->getSYSsettings()->setValue(ctn_KEY_AUR_USERNAME, newValue);
+  instance()->getSYSsettings()->sync();
+}
+
+void SettingsManager::setAurPassword(const QString &newValue)
+{
+  //We need to encrypt the given newValue
+
+  QString aurUserName = getAurUserName();
+  if (aurUserName.isEmpty()) return;
+
+  QByteArray hashKey = QCryptographicHash::hash(ctn_OCTOPI_COPYRIGHT.toLocal8Bit(), QCryptographicHash::Sha256);
+  QByteArray hashIV = QCryptographicHash::hash(aurUserName.toLocal8Bit(), QCryptographicHash::Md5);
+
+  QAESEncryption encryption(QAESEncryption::AES_256, QAESEncryption::CBC);
+  QByteArray encryptedValue = encryption.encode(newValue.toLocal8Bit(), hashKey, hashIV);
+
+  instance()->getSYSsettings()->setValue(ctn_KEY_AUR_PASSWORD, encryptedValue);
   instance()->getSYSsettings()->sync();
 }
 
@@ -705,7 +799,7 @@ void SettingsManager::setConsoleFontSize(int newValue)
 bool SettingsManager::isInstantSearchSelected()
 {
   SettingsManager p_instance;
-  return (p_instance.getSYSsettings()->value( ctn_KEY_INSTANT_SEARCH, 1)).toBool();
+  return (p_instance.getSYSsettings()->value(ctn_KEY_INSTANT_SEARCH, 1)).toBool();
 }
 
 //Octopi related --------------------------------------------------------------------

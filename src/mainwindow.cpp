@@ -32,6 +32,7 @@
 #include <iostream>
 #include "optionsdialog.h"
 #include "termwidget.h"
+#include "aurvote.h"
 
 #include <QDropEvent>
 #include <QMimeData>
@@ -81,6 +82,10 @@ MainWindow::MainWindow(QWidget *parent) :
   m_debugInfo = false;
   m_console = nullptr;
 
+  //Let's check if DistroRSSUrl is empty
+  if (SettingsManager::isDistroRSSUrlEmpty())
+    SettingsManager::setDistroRSSUrl(SettingsManager::getDistroRSSUrl());
+
   m_time = new QTime();
   m_unrequiredPackageList = nullptr;
   m_foreignPackageList = nullptr;
@@ -106,6 +111,14 @@ MainWindow::MainWindow(QWidget *parent) :
           SIGNAL(directoryChanged(QString)), this, SLOT(onPacmanDatabaseChanged()));
 
   setAcceptDrops(true);
+
+  if(SettingsManager::getEnableAurVoting())
+  {
+    m_aurVote = new AurVote(this);
+    m_aurVote->setUserName(SettingsManager::getAurUserName());
+    m_aurVote->setPassword(SettingsManager::getAurPassword());
+    m_aurVote->login();
+  }
 }
 
 /*
@@ -117,6 +130,7 @@ MainWindow::~MainWindow()
 
   //Let's garbage collect transaction files...
   UnixCommand::removeTemporaryFiles();
+  if (SettingsManager::getEnableAurVoting()) delete m_aurVote;
   delete ui;
 }
 
@@ -268,10 +282,10 @@ void MainWindow::onOptions()
 
   OptionsDialog *od = new OptionsDialog(this);
   connect(od, SIGNAL(AURToolChanged()), this, SLOT(onAURToolChanged()));
+  connect(od, SIGNAL(AURVotingChanged()), this, SLOT(onAURVotingChanged()));
 
   connect(od, &OptionsDialog::alternateRowColorsChanged, [this] (){
     this->ui->tvPackages->setAlternatingRowColors(SettingsManager::getUseAlternateRowColor());
-    //metaBuildPackageList();
   });
 
   connect(od, SIGNAL(terminalChanged()), this, SLOT(onTerminalChanged()));
@@ -979,7 +993,6 @@ void MainWindow::execContextMenuPackages(QPoint point)
 
       menu->addAction(ui->actionInstall);
 
-
       if (!isAllGroupsSelected() && !isAURGroupSelected()) //&& numberOfSelPkgs > 1)
       {
         //Is this group already installed?
@@ -993,10 +1006,12 @@ void MainWindow::execContextMenuPackages(QPoint point)
     }
     else if (allInstallable == false && numberOfAUR == numberOfSelPkgs)
     {
+      QString aurPkg;
       bool allInstalled=false;
       foreach(QModelIndex item, selectedRows)
       {
         const PackageRepository::PackageData*const package = m_packageModel->getData(item);
+        aurPkg = package->name;
 
         if (package->installed() || package->outdated())
         {
@@ -1008,6 +1023,18 @@ void MainWindow::execContextMenuPackages(QPoint point)
       if (allInstalled)
       {
         ui->actionInstallAUR->setText(StrConstants::getReinstall());
+      }
+      else
+      {
+        ui->actionInstallAUR->setText(StrConstants::getInstall());
+      }
+
+      if (selectedRows.count() == 1 && SettingsManager::getEnableAurVoting())
+      {
+        if (m_aurVote->isPkgVoted(aurPkg) == 0)
+          menu->addAction(m_actionAURUnvote);
+        else if (m_aurVote->isPkgVoted(aurPkg) == 1)
+          menu->addAction(m_actionAURVote);
       }
 
       menu->addAction(ui->actionInstallAUR); // installs directly
@@ -1035,6 +1062,44 @@ void MainWindow::execContextMenuPackages(QPoint point)
       QPoint pt2 = ui->tvPackages->mapToGlobal(point);
       pt2.setY(pt2.y() + ui->tvPackages->header()->height());
       menu->exec(pt2);
+    }
+  }
+}
+
+/*
+ * Given the selected AUR package we vote on it
+ */
+void MainWindow::onAURVote()
+{
+  const QItemSelectionModel*const selectionModel = ui->tvPackages->selectionModel();
+  if (selectionModel != NULL && selectionModel->selectedRows().count() > 0)
+  {
+    QModelIndexList selectedRows = selectionModel->selectedRows();
+    if (selectedRows.count() == 1)
+    {
+      QModelIndex item = selectedRows.at(0);
+      const PackageRepository::PackageData*const package = m_packageModel->getData(item);
+      m_aurVote->voteOnPkg(package->name);
+      if (isAURGroupSelected()) metaBuildPackageList();
+    }
+  }
+}
+
+/*
+ * Given the selected AUR package we remove its vote
+ */
+void MainWindow::onAURUnvote()
+{
+  const QItemSelectionModel*const selectionModel = ui->tvPackages->selectionModel();
+  if (selectionModel != NULL && selectionModel->selectedRows().count() > 0)
+  {
+    QModelIndexList selectedRows = selectionModel->selectedRows();
+    if (selectedRows.count() == 1)
+    {
+      QModelIndex item = selectedRows.at(0);
+      const PackageRepository::PackageData*const package = m_packageModel->getData(item);
+      m_aurVote->unvoteOnPkg(package->name);
+      if (isAURGroupSelected()) metaBuildPackageList();
     }
   }
 }

@@ -34,6 +34,27 @@ enum SystemUpgradeOptions { ectn_NO_OPT, ectn_SYNC_DATABASE_OPT, ectn_NOCONFIRM_
 //UnixCommand related
 const QString ctn_MIRROR_CHECK_APP("mirror-check");
 
+const QString ctn_OCTOPI_COPYRIGHT =
+    "/*"
+    "* This file is part of Octopi, an open-source GUI for pacman."
+    "* Copyright (C) 2013 Alexandre Albuquerque Arnt"
+    "*"
+    "* This program is free software; you can redistribute it and/or modify"
+    "* it under the terms of the GNU General Public License as published by"
+    "* the Free Software Foundation; either version 2 of the License, or"
+    "* (at your option) any later version."
+    "*"
+    "* This program is distributed in the hope that it will be useful,"
+    "* but WITHOUT ANY WARRANTY; without even the implied warranty of"
+    "* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the"
+    "* GNU General Public License for more details."
+    "*"
+    "* You should have received a copy of the GNU General Public License"
+    "* along with this program; if not, write to the Free Software"
+    "* Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA"
+    "*"
+    "*/";
+
 enum CommandExecuting { ectn_NONE, ectn_CHECK_UPDATES, ectn_MIRROR_CHECK,
                         ectn_SYNC_DATABASE, ectn_SYSTEM_UPGRADE, ectn_INSTALL, ectn_REMOVE,
                         ectn_REMOVE_INSTALL, ectn_REMOVE_KCP_PKG,
@@ -62,7 +83,10 @@ const QString ctn_KEY_SHOW_STOP_TRANSACTION("Show_Stop_Transaction");
 const QString ctn_KEY_AUR_TOOL("Aur_Tool_Name");
 const QString ctn_KEY_AUR_NO_CONFIRM_PARAM("Aur_No_Confirm_Param");
 const QString ctn_KEY_AUR_NO_EDIT_PARAM("Aur_No_Edit_Param");
-const QString ctn_KEY_SEARCH_OUTDATED_AUR_PACKAGES("Search_Outdated_AUR_Packages");
+const QString ctn_KEY_SEARCH_OUTDATED_AUR_PACKAGES("Search_Outdated_Aur_Packages");
+const QString ctn_KEY_ENABLE_AUR_VOTING("Enable_Aur_Voting");
+const QString ctn_KEY_AUR_USERNAME("Aur_Username");
+const QString ctn_KEY_AUR_PASSWORD("Aur_Password");
 const QString ctn_KEY_USE_ALTERNATE_ROW_COLOR("Use_Alternate_Row_Color");
 const QString ctn_KEY_CONSOLE_SIZE("Console_Font_Size");
 const QString ctn_KEY_BACKEND("Backend");
@@ -79,6 +103,7 @@ const QString ctn_KEY_OCTOPI_BUSY_ICON_PATH("Octopi_Busy_Icon_Path");
 const QString ctn_KEY_OCTOPI_RED_ICON_PATH("Octopi_Red_Icon_Path");
 const QString ctn_KEY_OCTOPI_YELLOW_ICON_PATH("Octopi_Yellow_Icon_Path");
 const QString ctn_KEY_OCTOPI_GREEN_ICON_PATH("Octopi_Green_Icon_Path");
+const QString ctn_KEY_DISTRO_RSS_URL("Distro_RSS_Url");
 const QString ctn_KEY_AUR_PACKAGE_LIST_ORDERED_COL("Aur_PackageList_Ordered_Col");
 const QString ctn_KEY_AUR_PACKAGE_LIST_SORT_ORDER("Aur_PackageList_Sort_Order");
 const QString ctn_KEY_SKIP_MIRRORCHECK_ON_STARTUP("Skip_Mirror_Check_At_Startup");

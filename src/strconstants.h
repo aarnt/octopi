@@ -44,6 +44,7 @@ public:
   static QString getManjaroLinuxNews();
   static QString getNetrunnerNews();
   static QString getParabolaNews();
+  static QString getInformation();
   static QString getError();
   static QString getNewsErrorMessage();
   static QString getIncompatibleLinuxDistroError();
@@ -72,6 +73,8 @@ public:
   static QString getReplaces();
   static QString getVotesHeader();
   static QString getVotes();
+  static QString getVote();
+  static QString getUnvote();
   static QString getDownloadSize();
   static QString getInstalledSize();
   static QString getInstallReason();
@@ -148,7 +151,11 @@ public:
   static QString getEnterAdministratorsPassword();
   static QString getErrorNoSuCommand();
   static QString getYoullNeedSuFrontend();
-  static QString getErrorIconPathInfoIncomplete();
+  static QString getAURConnectionIsOK();
+  static QString getAURUserNameOrPasswordIsIncorrect();
+  static QString getErrorAURUserNameIsNotSet();
+  static QString getErrorAURPasswordIsNotSet();
+  static QString getErrorIconPathInfoIsNotSet();
   static QString getErrorRunningWithRoot();
   static QString getThereIsARunningTransaction();
   static QString getThereArePendingActions();
