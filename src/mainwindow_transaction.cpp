@@ -1401,12 +1401,12 @@ void MainWindow::onAURToolChanged()
  */
 void MainWindow::onAURVotingChanged()
 {
-  if(SettingsManager::getEnableAurVoting())
+  if(SettingsManager::getEnableAURVoting())
   {
     delete m_aurVote;
     m_aurVote = new AurVote(this);
-    m_aurVote->setUserName(SettingsManager::getAurUserName());
-    m_aurVote->setPassword(SettingsManager::getAurPassword());
+    m_aurVote->setUserName(SettingsManager::getAURUserName());
+    m_aurVote->setPassword(SettingsManager::getAURPassword());
     m_aurVote->login();
   }
 }

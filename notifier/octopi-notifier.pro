@@ -52,7 +52,9 @@ HEADERS  += \
     ../src/searchlineedit.h \
     ../src/searchbar.h \
     ../src/optionsdialog.h \
-    ../src/termwidget.h
+    ../src/termwidget.h \
+    ../src/aurvote.h \
+    ../src/qaesencryption.h
 
 ALPM_BACKEND{
   HEADERS += ../src/alpmbackend.h
@@ -74,7 +76,9 @@ SOURCES += main.cpp \
     ../src/searchlineedit.cpp \
     ../src/searchbar.cpp \
     ../src/optionsdialog.cpp \
-    ../src/termwidget.cpp
+    ../src/termwidget.cpp \
+    ../src/aurvote.cpp \
+    ../src/qaesencryption.cpp
 
 ALPM_BACKEND{
   SOURCES += ../src/alpmbackend.cpp

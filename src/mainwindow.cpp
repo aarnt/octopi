@@ -112,11 +112,11 @@ MainWindow::MainWindow(QWidget *parent) :
 
   setAcceptDrops(true);
 
-  if(SettingsManager::getEnableAurVoting())
+  if(SettingsManager::getEnableAURVoting())
   {
     m_aurVote = new AurVote(this);
-    m_aurVote->setUserName(SettingsManager::getAurUserName());
-    m_aurVote->setPassword(SettingsManager::getAurPassword());
+    m_aurVote->setUserName(SettingsManager::getAURUserName());
+    m_aurVote->setPassword(SettingsManager::getAURPassword());
     m_aurVote->login();
   }
 }
@@ -130,7 +130,7 @@ MainWindow::~MainWindow()
 
   //Let's garbage collect transaction files...
   UnixCommand::removeTemporaryFiles();
-  if (SettingsManager::getEnableAurVoting()) delete m_aurVote;
+  if (SettingsManager::getEnableAURVoting()) delete m_aurVote;
   delete ui;
 }
 
@@ -1029,7 +1029,7 @@ void MainWindow::execContextMenuPackages(QPoint point)
         ui->actionInstallAUR->setText(StrConstants::getInstall());
       }
 
-      if (selectedRows.count() == 1 && SettingsManager::getEnableAurVoting())
+      if (selectedRows.count() == 1 && SettingsManager::getEnableAURVoting())
       {
         if (m_aurVote->isPkgVoted(aurPkg) == 0)
           menu->addAction(m_actionAURUnvote);

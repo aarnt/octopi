@@ -75,12 +75,12 @@ class SettingsManager
 
     static QString getAURTool();
     static QString getAURToolName();
-    static bool getAurNoConfirmParam();
-    static bool getAurNoEditParam();
-    static bool getSearchOutdatedAurPackages();
-    static bool getEnableAurVoting();
-    static QString getAurUserName();
-    static QString getAurPassword();
+    static bool getAURNoConfirmParam();
+    static bool getAURNoEditParam();
+    static bool getSearchOutdatedAURPackages();
+    static bool getEnableAURVoting();
+    static QString getAURUserName();
+    static QString getAURPassword();
     static bool getUseAlternateRowColor();
     static bool getEnableConfirmationDialogInSysUpgrade();
     static bool getEnableInternetChecking();
@@ -149,12 +149,12 @@ class SettingsManager
     static void setShowStopTransaction(bool newValue);
 
     static void setAURTool(const QString& newValue);        
-    static void setAurNoConfirmParam(bool newValue);
-    static void setAurNoEditParam(bool newValue);
-    static void setSearchOutdatedAurPackages(bool newValue);
-    static void setEnableAurVoting(bool newValue);
-    static void setAurUserName(const QString& newValue);
-    static void setAurPassword(const QString& newValue);
+    static void setAURNoConfirmParam(bool newValue);
+    static void setAURNoEditParam(bool newValue);
+    static void setSearchOutdatedAURPackages(bool newValue);
+    static void setEnableAURVoting(bool newValue);
+    static void setAURUserName(const QString& newValue);
+    static void setAURPassword(const QString& newValue);
     static void setUseAlternateRowColor(bool newValue);
     static void setEnableConfirmationDialogInSysUpgrade(bool newValue);
     static void setEnableInternetChecking(bool newValue);

@@ -309,31 +309,31 @@ QString SettingsManager::getAURTool()
   if (ret == ctn_NO_AUR_TOOL) return ret;
   else if (ret == ctn_PACAUR_TOOL)
   {
-    if (getAurNoConfirmParam()) params += " --noconfirm ";
-    if (getAurNoEditParam()) params += " --noedit ";
+    if (getAURNoConfirmParam()) params += " --noconfirm ";
+    if (getAURNoEditParam()) params += " --noedit ";
     ret += params;
   }
   else if (ret == ctn_YAOURT_TOOL)
   {
-    if (getAurNoConfirmParam()) params += " --noconfirm ";
+    if (getAURNoConfirmParam()) params += " --noconfirm ";
     ret += params;
   }
   else if (ret == ctn_TRIZEN_TOOL)
   {
-    if (getAurNoConfirmParam()) params += " --noconfirm ";
-    if (getAurNoEditParam()) params += " --noedit ";
+    if (getAURNoConfirmParam()) params += " --noconfirm ";
+    if (getAURNoEditParam()) params += " --noedit ";
     ret += params;
   }
   else if (ret == ctn_PIKAUR_TOOL)
   {
-    if (getAurNoConfirmParam()) params += " --noconfirm ";
-    if (getAurNoEditParam()) params += " --noedit ";
+    if (getAURNoConfirmParam()) params += " --noconfirm ";
+    if (getAURNoEditParam()) params += " --noedit ";
     ret += params;
   }
   else if (ret == ctn_YAY_TOOL)
   {
-    if (getAurNoConfirmParam()) params += " --noconfirm ";
-    if (getAurNoEditParam()) params += " --noeditmenu ";
+    if (getAURNoConfirmParam()) params += " --noconfirm ";
+    if (getAURNoEditParam()) params += " --noeditmenu ";
     ret += params;
   }
   //System does not have selected aurtool. Let's see if there are any other available...
@@ -341,8 +341,8 @@ QString SettingsManager::getAURTool()
   {
     if (UnixCommand::hasTheExecutable(ctn_TRIZEN_TOOL))
     {
-      if (getAurNoConfirmParam()) params += " --noconfirm ";
-      if (getAurNoEditParam()) params += " --noedit ";
+      if (getAURNoConfirmParam()) params += " --noconfirm ";
+      if (getAURNoEditParam()) params += " --noedit ";
 
       p_instance.setAURTool(ctn_TRIZEN_TOOL);
       p_instance.getSYSsettings()->sync();
@@ -350,8 +350,8 @@ QString SettingsManager::getAURTool()
     }
     else if (UnixCommand::hasTheExecutable(ctn_PIKAUR_TOOL))
     {
-      if (getAurNoConfirmParam()) params += " --noconfirm ";
-      if (getAurNoEditParam()) params += " --noedit ";
+      if (getAURNoConfirmParam()) params += " --noconfirm ";
+      if (getAURNoEditParam()) params += " --noedit ";
 
       p_instance.setAURTool(ctn_PIKAUR_TOOL);
       p_instance.getSYSsettings()->sync();
@@ -359,8 +359,8 @@ QString SettingsManager::getAURTool()
     }
     else if (UnixCommand::hasTheExecutable(ctn_YAY_TOOL))
     {
-      if (getAurNoConfirmParam()) params += " --noconfirm ";
-      if (getAurNoEditParam()) params += " --noeditmenu ";
+      if (getAURNoConfirmParam()) params += " --noconfirm ";
+      if (getAURNoEditParam()) params += " --noeditmenu ";
 
       p_instance.setAURTool(ctn_YAY_TOOL);
       p_instance.getSYSsettings()->sync();
@@ -368,7 +368,7 @@ QString SettingsManager::getAURTool()
     }
     else if (UnixCommand::hasTheExecutable(ctn_YAOURT_TOOL))
     {
-      if (getAurNoConfirmParam()) params += " --noconfirm ";
+      if (getAURNoConfirmParam()) params += " --noconfirm ";
 
       p_instance.setAURTool(ctn_YAOURT_TOOL);
       p_instance.getSYSsettings()->sync();
@@ -376,8 +376,8 @@ QString SettingsManager::getAURTool()
     }
     else if (UnixCommand::hasTheExecutable(ctn_PACAUR_TOOL))
     {
-      if (getAurNoConfirmParam()) params += " --noconfirm ";
-      if (getAurNoEditParam()) params += " --noedit ";
+      if (getAURNoConfirmParam()) params += " --noconfirm ";
+      if (getAURNoEditParam()) params += " --noedit ";
 
       p_instance.setAURTool(ctn_PACAUR_TOOL);
       p_instance.getSYSsettings()->sync();
@@ -397,7 +397,7 @@ QString SettingsManager::getAURToolName()
 /*
  * Tests if Pacaur is using "--noconfirm" parameter
  */
-bool SettingsManager::getAurNoConfirmParam()
+bool SettingsManager::getAURNoConfirmParam()
 {
   SettingsManager p_instance;
   return (p_instance.getSYSsettings()->value(ctn_KEY_AUR_NO_CONFIRM_PARAM, 0)).toBool();
@@ -406,36 +406,36 @@ bool SettingsManager::getAurNoConfirmParam()
 /*
  * Tests if Pacaur is using "--noedit" parameter
  */
-bool SettingsManager::getAurNoEditParam()
+bool SettingsManager::getAURNoEditParam()
 {
   SettingsManager p_instance;
   return (p_instance.getSYSsettings()->value(ctn_KEY_AUR_NO_EDIT_PARAM, 0)).toBool();
 }
 
-bool SettingsManager::getSearchOutdatedAurPackages()
+bool SettingsManager::getSearchOutdatedAURPackages()
 {
   SettingsManager p_instance;
   return (p_instance.getSYSsettings()->value(ctn_KEY_SEARCH_OUTDATED_AUR_PACKAGES, 0)).toBool();
 }
 
-bool SettingsManager::getEnableAurVoting()
+bool SettingsManager::getEnableAURVoting()
 {
   SettingsManager p_instance;
   return (p_instance.getSYSsettings()->value(ctn_KEY_ENABLE_AUR_VOTING, 0)).toBool();
 }
 
-QString SettingsManager::getAurUserName()
+QString SettingsManager::getAURUserName()
 {
   SettingsManager p_instance;
   return (p_instance.getSYSsettings()->value(ctn_KEY_AUR_USERNAME, "")).toString();
 }
 
-QString SettingsManager::getAurPassword()
+QString SettingsManager::getAURPassword()
 {
   SettingsManager p_instance;
   QByteArray encryptedValue = (p_instance.getSYSsettings()->value(ctn_KEY_AUR_PASSWORD, "")).toByteArray();
 
-  QString aurUserName = getAurUserName();
+  QString aurUserName = getAURUserName();
   if (aurUserName.isEmpty()) return "";
 
   QByteArray hashKey = QCryptographicHash::hash(ctn_OCTOPI_COPYRIGHT.toLocal8Bit(), QCryptographicHash::Sha256);
@@ -710,7 +710,7 @@ void SettingsManager::setAURTool(const QString &newValue)
 /*
  * Sets if Pacaur tool will use "--noconfirm" parameter
  */
-void SettingsManager::setAurNoConfirmParam(bool newValue)
+void SettingsManager::setAURNoConfirmParam(bool newValue)
 {
   instance()->getSYSsettings()->setValue(ctn_KEY_AUR_NO_CONFIRM_PARAM, newValue);
   instance()->getSYSsettings()->sync();
@@ -719,35 +719,35 @@ void SettingsManager::setAurNoConfirmParam(bool newValue)
 /*
  * Sets if Pacaur tool will use "--noedit" parameter
  */
-void SettingsManager::setAurNoEditParam(bool newValue)
+void SettingsManager::setAURNoEditParam(bool newValue)
 {
   instance()->getSYSsettings()->setValue(ctn_KEY_AUR_NO_EDIT_PARAM, newValue);
   instance()->getSYSsettings()->sync();
 }
 
-void SettingsManager::setSearchOutdatedAurPackages(bool newValue)
+void SettingsManager::setSearchOutdatedAURPackages(bool newValue)
 {
   instance()->getSYSsettings()->setValue(ctn_KEY_SEARCH_OUTDATED_AUR_PACKAGES, newValue);
   instance()->getSYSsettings()->sync();
 }
 
-void SettingsManager::setEnableAurVoting(bool newValue)
+void SettingsManager::setEnableAURVoting(bool newValue)
 {
   instance()->getSYSsettings()->setValue(ctn_KEY_ENABLE_AUR_VOTING, newValue);
   instance()->getSYSsettings()->sync();
 }
 
-void SettingsManager::setAurUserName(const QString &newValue)
+void SettingsManager::setAURUserName(const QString &newValue)
 {
   instance()->getSYSsettings()->setValue(ctn_KEY_AUR_USERNAME, newValue);
   instance()->getSYSsettings()->sync();
 }
 
-void SettingsManager::setAurPassword(const QString &newValue)
+void SettingsManager::setAURPassword(const QString &newValue)
 {
   //We need to encrypt the given newValue
 
-  QString aurUserName = getAurUserName();
+  QString aurUserName = getAURUserName();
   if (aurUserName.isEmpty()) return;
 
   QByteArray hashKey = QCryptographicHash::hash(ctn_OCTOPI_COPYRIGHT.toLocal8Bit(), QCryptographicHash::Sha256);

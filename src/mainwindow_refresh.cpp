@@ -904,7 +904,7 @@ void MainWindow::buildPackageList()
   m_refreshPackageLists = true;
   m_refreshForeignPackageList = true;
 
-  if (SettingsManager::getSearchOutdatedAurPackages()) m_outdatedAURTimer->start();
+  if (SettingsManager::getSearchOutdatedAURPackages()) m_outdatedAURTimer->start();
   else
   {
     if (m_hasAURTool && !m_actionSwitchToAURTool->isEnabled()) m_actionSwitchToAURTool->setEnabled(true);
@@ -1232,7 +1232,7 @@ void MainWindow::refreshStatusBarToolButtons()
 {
   if (isAURGroupSelected() && UnixCommand::getLinuxDistro() != ectn_KAOS) return;
 
-  if (m_hasAURTool && SettingsManager::getSearchOutdatedAurPackages())
+  if (m_hasAURTool && SettingsManager::getSearchOutdatedAURPackages())
   {
     QFuture<AUROutdatedPackages *> f;
     f = QtConcurrent::run(getOutdatedAURPackages);
