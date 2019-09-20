@@ -1079,7 +1079,7 @@ void MainWindow::onAURVote()
     {
       QModelIndex item = selectedRows.at(0);
       const PackageRepository::PackageData*const package = m_packageModel->getData(item);
-      m_aurVote->voteOnPkg(package->name);
+      m_aurVote->voteForPkg(package->name);
       if (isAURGroupSelected()) metaBuildPackageList();
     }
   }
@@ -1098,7 +1098,7 @@ void MainWindow::onAURUnvote()
     {
       QModelIndex item = selectedRows.at(0);
       const PackageRepository::PackageData*const package = m_packageModel->getData(item);
-      m_aurVote->unvoteOnPkg(package->name);
+      m_aurVote->unvoteForPkg(package->name);
       if (isAURGroupSelected()) metaBuildPackageList();
     }
   }

@@ -26,7 +26,7 @@
 #include <QRegularExpression>
 
 /*
- * This class provides a way to vote/unvote in AUR packages using a given AUR login/password
+ * This class provides a way to vote/unvote for AUR packages using a given AUR login/password
  */
 
 AurVote::AurVote(QObject *parent) : QObject(parent),
@@ -111,10 +111,12 @@ bool AurVote::isLoggedIn()
 
 /*
  * Checks if given package has been voted
- * Returns:
- *   0  if voted
- *   1  if not voted
- *   -1 if doesn't exist
+ * Returns an int because of its 3-state nature:
+ *
+ *     0   if voted
+ *     1   if not voted
+ *     -1  if doesn't exist
+ *
  */
 int AurVote::isPkgVoted(const QString &pkgName)
 {
@@ -128,7 +130,6 @@ int AurVote::isPkgVoted(const QString &pkgName)
   disconnect(r, SIGNAL(finished()), &eventLoop, SLOT(quit()));
 
   QString res = r->readAll();
-  //qDebug() << res;
 
   //If this package does not exist anymore...
   QRegularExpression re("Page Not Found");
@@ -143,7 +144,7 @@ int AurVote::isPkgVoted(const QString &pkgName)
   return ret;
 }
 
-void AurVote::voteOnPkg(const QString &pkgName)
+void AurVote::voteForPkg(const QString &pkgName)
 {
   QEventLoop eventLoop;
   QNetworkRequest request(m_pkgUrl.arg(pkgName));
@@ -180,7 +181,7 @@ void AurVote::voteOnPkg(const QString &pkgName)
   }
 }
 
-void AurVote::unvoteOnPkg(const QString &pkgName)
+void AurVote::unvoteForPkg(const QString &pkgName)
 {
   QEventLoop eventLoop;
   QNetworkRequest request(m_pkgUrl.arg(pkgName));

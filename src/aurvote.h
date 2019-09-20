@@ -45,8 +45,8 @@ public:
   bool login();
   bool isLoggedIn();
   int isPkgVoted(const QString &pkgName);
-  void voteOnPkg(const QString &pkgName);
-  void unvoteOnPkg(const QString &pkgName);
+  void voteForPkg(const QString &pkgName);
+  void unvoteForPkg(const QString &pkgName);
 
   void setUserName(const QString &userName);
   void setPassword(const QString &password);

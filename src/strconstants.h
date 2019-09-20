@@ -153,6 +153,7 @@ public:
   static QString getErrorNoSuCommand();
   static QString getYoullNeedSuFrontend();
   static QString getAURConnectionIsOK();
+  static QString getWouldYouLikeToHelpThisProject();
   static QString getAURUserNameOrPasswordIsIncorrect();
   static QString getErrorAURUserNameIsNotSet();
   static QString getErrorAURPasswordIsNotSet();

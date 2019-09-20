@@ -796,7 +796,32 @@ void OptionsDialog::onAURConnect()
   v.setPassword(leAurPassword->text());
   bool logged = v.login();
   if(logged)
-    QMessageBox::information(this, StrConstants::getInformation(), StrConstants::getAURConnectionIsOK());
+  {
+    //Connection was ok. Let's ask user if he wants to help Octopi project by voting for it
+    bool octopiVoted=false;
+    bool alpmUtilsVoted=false;
+    if (v.isPkgVoted("octopi")==0) octopiVoted=true;
+    if (v.isPkgVoted("alpm_octopi_utils")==0) alpmUtilsVoted=true;
+
+    if (octopiVoted && alpmUtilsVoted)
+    {
+      QMessageBox::information(this, StrConstants::getInformation(), StrConstants::getAURConnectionIsOK());
+    }
+    else
+    {
+      QMessageBox::StandardButton r = QMessageBox::question(this, StrConstants::getConfirmation(),
+                            StrConstants::getAURConnectionIsOK() + "\n" +
+                            StrConstants::getWouldYouLikeToHelpThisProject(),
+                            QMessageBox::Yes | QMessageBox::No,
+                            QMessageBox::Yes);
+      if (r == QMessageBox::Yes)
+      {
+        //User opted to help the project, so let's vote for the packages
+        if (!octopiVoted) v.voteForPkg("octopi");
+        if (!alpmUtilsVoted) v.voteForPkg("alpm_octopi_utils");
+      }
+    }
+  }
   else
     QMessageBox::critical(this, StrConstants::getError(), StrConstants::getAURUserNameOrPasswordIsIncorrect());
 }

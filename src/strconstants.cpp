@@ -616,6 +616,11 @@ QString StrConstants::getAURConnectionIsOK()
   return QObject::tr("Connection is OK!");
 }
 
+QString StrConstants::getWouldYouLikeToHelpThisProject(){
+  return QObject::tr("Would you like to help this project\n"
+                     "by voting for it?");
+}
+
 QString StrConstants::getAURUserNameOrPasswordIsIncorrect()
 {
   return QObject::tr("Username and/or password is/are incorrect.");
