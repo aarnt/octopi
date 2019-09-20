@@ -276,12 +276,14 @@ QString SettingsManager::getDistroRSSUrl()
     return (p_instance.getSYSsettings()->value(ctn_KEY_DISTRO_RSS_URL, "https://community.chakralinux.org/c/news.rss")).toString();
   else if (distro == ectn_CONDRESOS)
     return (p_instance.getSYSsettings()->value(ctn_KEY_DISTRO_RSS_URL, "https://condresos.codelinsoft.it/index.php/blog?format=feed&amp;type=rss")).toString();
+  else if (distro == ectn_ENDEAVOUROS)
+    return (p_instance.getSYSsettings()->value(ctn_KEY_DISTRO_RSS_URL, "https://endeavouros.com/feed/")).toString();
   else if (distro == ectn_KAOS)
     return (p_instance.getSYSsettings()->value(ctn_KEY_DISTRO_RSS_URL, "https://kaosx.us/feed.xml")).toString();
   else if (distro == ectn_MANJAROLINUX)
     return (p_instance.getSYSsettings()->value(ctn_KEY_DISTRO_RSS_URL, "https://forum.manjaro.org/c/announcements.rss")).toString();
   else if (distro == ectn_NETRUNNER)
-    return (p_instance.getSYSsettings()->value(ctn_KEY_DISTRO_RSS_URL, "http://www.netrunner-os.com/feed/")).toString();
+    return (p_instance.getSYSsettings()->value(ctn_KEY_DISTRO_RSS_URL, "https://www.netrunner.com/feed/")).toString();
   else if (distro == ectn_PARABOLA)
     return (p_instance.getSYSsettings()->value(ctn_KEY_DISTRO_RSS_URL, "https://www.parabola.nu/feeds/news/")).toString();
   else return "";

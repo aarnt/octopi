@@ -1257,6 +1257,10 @@ LinuxDistro UnixCommand::getLinuxDistro()
       {
         ret = ectn_CONDRESOS;
       }
+      else if (contents.contains(QRegularExpression("Endeavour")))
+      {
+        ret = ectn_ENDEAVOUROS;
+      }
       else if (contents.contains(QRegularExpression("KaOS")))
       {
         ret = ectn_KAOS;

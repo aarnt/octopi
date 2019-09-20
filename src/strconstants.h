@@ -40,6 +40,7 @@ public:
   static QString getArchLinuxNews();
   static QString getChakraNews();
   static QString getCondresOSNews();
+  static QString getEndeavourOSNews();
   static QString getKaOSNews();
   static QString getManjaroLinuxNews();
   static QString getNetrunnerNews();

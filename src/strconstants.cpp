@@ -151,6 +151,10 @@ QString StrConstants::getCondresOSNews(){
   return QObject::tr("Condres OS news");
 }
 
+QString StrConstants::getEndeavourOSNews(){
+  return QObject::tr("EndeavourOS news");
+}
+
 QString StrConstants::getKaOSNews(){
   return QObject::tr("KaOS news");
 }

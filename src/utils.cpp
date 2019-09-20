@@ -139,7 +139,7 @@ QString utils::retrieveDistroNews(bool searchForLatestNews)
     QString curlCommand = "curl %1 -o %2";
     QString distroRSSUrl = SettingsManager::getDistroRSSUrl();
 
-    if (distro == ectn_ANTERGOS)
+    if (distro == ectn_ENDEAVOUROS || distro == ectn_ANTERGOS)
     {
       curlCommand = curlCommand.arg(distroRSSUrl).arg(tmpRssPath);
     }
@@ -189,6 +189,12 @@ QString utils::retrieveDistroNews(bool searchForLatestNews)
         if (!fileRss.open(QIODevice::ReadOnly | QIODevice::Text)) return("");
         QTextStream in2(&fileRss);
         contentsRss = in2.readAll();
+        contentsRss = contentsRss.remove(QRegularExpression("^\\s*"));
+        fileRss.close();
+        fileRss.remove();
+        if (!fileRss.open(QIODevice::WriteOnly | QIODevice::Text)) return("");
+        in2 << contentsRss;
+        in2.flush();
 
         if (distro == ectn_CONDRESOS)
         {
@@ -216,6 +222,12 @@ QString utils::retrieveDistroNews(bool searchForLatestNews)
         if (!fileTmpRss.open(QIODevice::ReadOnly | QIODevice::Text)) return("");
         QTextStream in(&fileTmpRss);
         contentsTmpRss = in.readAll();
+        contentsTmpRss = contentsTmpRss.remove(QRegularExpression("^\\s*"));
+        fileTmpRss.close();
+        fileTmpRss.remove();
+        if (!fileTmpRss.open(QIODevice::WriteOnly | QIODevice::Text)) return("");
+        in << contentsTmpRss;
+        in.flush();
 
         if (distro == ectn_CONDRESOS)
         {
@@ -300,6 +312,10 @@ QString utils::parseDistroNews()
   else if (distro == ectn_CONDRESOS)
   {
     html = "<p align=\"center\"><h2>" + StrConstants::getCondresOSNews() + "</h2></p><ul>";
+  }
+  else if (distro == ectn_ENDEAVOUROS)
+  {
+    html = "<p align=\"center\"><h2>" + StrConstants::getEndeavourOSNews() + "</h2></p><ul>";
   }
   else if (distro == ectn_KAOS)
   {
