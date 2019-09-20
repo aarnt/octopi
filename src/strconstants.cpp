@@ -455,7 +455,8 @@ QString StrConstants::getSyncing(){
 }
 
 QString StrConstants::getPressAnyKey(){
-  return QObject::tr("Press any key to continue...");
+  return "Press any key to continue...";
+  //return QObject::tr("Press any key to continue...");
 }
 
 QString StrConstants::getCheckUpdates()

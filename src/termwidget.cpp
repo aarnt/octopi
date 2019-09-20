@@ -37,8 +37,6 @@ TermWidget::TermWidget(QWidget *parent):
 {
   QFont font = QApplication::font();
   font.setFamily("Monospace");
-  //setHistorySize(1);
-
   setTerminalFont(font);
   setScrollBarPosition(QTermWidget::ScrollBarRight);
   changeDir("/");
