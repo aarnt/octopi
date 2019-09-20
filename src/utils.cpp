@@ -19,9 +19,8 @@
 */
 
 /*
- * A wrapper for running a QProcess while providing feedback of its state
+ * A collection of functions to deal with distro news and find strings in models
  *
- * IT ONLY WORKS with terminal commands that start other subcommands, with an "-e" option
  */
 
 #include <iostream>
@@ -43,7 +42,8 @@
 /*
  * Returns the full path of a tree view item (normaly a file in a directory tree)
  */
-QString utils::showFullPathOfItem( const QModelIndex &index ){
+QString utils::showFullPathOfItem(const QModelIndex &index)
+{
   QString str;
   if (!index.isValid()) return str;
 
@@ -83,7 +83,7 @@ QString utils::showFullPathOfItem( const QModelIndex &index ){
  * Given a filename 'name', searches for it inside a QStandard item model
  * Result is a list containing all QModelIndex occurencies
  */
-QList<QModelIndex> * utils::findFileInTreeView( const QString& name, const QStandardItemModel *sim)
+QList<QModelIndex> * utils::findFileInTreeView(const QString& name, const QStandardItemModel *sim)
 {
   QList<QModelIndex> * res = new QList<QModelIndex>();
   QList<QStandardItem *> foundItems;
@@ -110,15 +110,6 @@ QList<QModelIndex> * utils::findFileInTreeView( const QString& name, const QStan
  */
 QString utils::retrieveDistroNews(bool searchForLatestNews)
 {
-  /*const QString ctn_ANTERGOS_RSS_URL = "https://antergos.com/feed/";
-  const QString ctn_ARCH_LINUX_RSS_URL = "https://www.archlinux.org/feeds/news/";
-  const QString ctn_CHAKRA_RSS_URL = "https://community.chakralinux.org/c/news.rss";
-  const QString ctn_CONDRESOS_RSS_URL = "https://condresos.codelinsoft.it/index.php/blog?format=feed&amp;type=rss";
-  const QString ctn_KAOS_RSS_URL = "https://kaosx.us/feed.xml";
-  const QString ctn_MANJARO_LINUX_RSS_URL = "https://forum.manjaro.org/c/announcements.rss";
-  const QString ctn_NETRUNNER_RSS_URL = "http://www.netrunner-os.com/feed/";
-  const QString ctn_PARABOLA_RSS_URL = "https://www.parabola.nu/feeds/news/";*/
-
   LinuxDistro distro = UnixCommand::getLinuxDistro();
   QString res;
   QString tmpRssPath = QDir::homePath() + QDir::separator() + ".config/octopi/.tmp_distro_rss.xml";
@@ -264,8 +255,6 @@ QString utils::retrieveDistroNews(bool searchForLatestNews)
   //Either we don't have internet or we weren't asked to retrieve the latest news
   else
   {
-    //QFile fileRss(rssPath);
-
     //Maybe we have a file in "./.config/octopi/distro_rss.xml"
     if (fileRss.exists())
     {
@@ -585,6 +574,9 @@ void utils::searchBarClosedInTextBrowser(QTextBrowser *tb, SearchBar *sb)
     tb->setFocus();
 }
 
+/*
+ * Positions the given QWidget pointer at the screen center
+ */
 void utils::positionWindowAtScreenCenter(QWidget *w)
 {
   QRect screen;
