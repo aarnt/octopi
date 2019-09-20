@@ -209,7 +209,9 @@ void OptionsDialog::initAURTab()
       aurTools << ctn_YAY_TOOL;
   }
 
-  if (UnixCommand::getLinuxDistro() == ectn_KAOS)
+  if (UnixCommand::getLinuxDistro() == ectn_KAOS ||
+      UnixCommand::getLinuxDistro() == ectn_CHAKRA ||
+      UnixCommand::getLinuxDistro() == ectn_PARABOLA)
   {
     removeTabByName("AUR");
   }
@@ -430,7 +432,9 @@ void OptionsDialog::accept()
   }
 
   //Set AUR Tool...
-  if (UnixCommand::getLinuxDistro() != ectn_KAOS)
+  if (UnixCommand::getLinuxDistro() != ectn_KAOS ||
+      UnixCommand::getLinuxDistro() != ectn_CHAKRA ||
+      UnixCommand::getLinuxDistro() != ectn_PARABOLA)
   {
     if (comboAUR->currentText() == ctn_PACAUR_TOOL && SettingsManager::getAURToolName() != ctn_PACAUR_TOOL)
     {
