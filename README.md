@@ -9,11 +9,11 @@ Currently, 10 Linux distros are compatible with it
  * [Arch](https://www.archlinux.org/)
  * [Chakra](https://chakralinux.org/)
  * [CondresOS](https://condresos.codelinsoft.it/)
+ * [EndeavourOS](https://endeavouros.com/)
  * [KaOS](https://kaosx.us/)
  * [Manjaro](https://manjaro.org/)
  * [Netrunner (rolling)](http://www.netrunner.com/netrunner-rolling-release/)
  * [Parabola GNU/Linux-libre](https://www.parabola.nu/)
- * [SwagArch](https://swagarch.gitlab.io/)
 
 ### What you must install in your system to have Octopi fully functional
 

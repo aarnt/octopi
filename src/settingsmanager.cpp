@@ -270,7 +270,7 @@ QString SettingsManager::getDistroRSSUrl()
   SettingsManager p_instance;
   LinuxDistro distro = UnixCommand::getLinuxDistro();
 
-  if (distro == ectn_ARCHLINUX || distro == ectn_ARCHBANGLINUX || distro == ectn_SWAGARCH)
+  if (distro == ectn_ARCHLINUX || distro == ectn_ARCHBANGLINUX /*|| distro == ectn_SWAGARCH*/)
     return (p_instance.getSYSsettings()->value(ctn_KEY_DISTRO_RSS_URL, "https://www.archlinux.org/feeds/news/")).toString();
   else if (distro == ectn_CHAKRA)
     return (p_instance.getSYSsettings()->value(ctn_KEY_DISTRO_RSS_URL, "https://community.chakralinux.org/c/news.rss")).toString();

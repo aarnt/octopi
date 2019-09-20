@@ -1257,7 +1257,7 @@ LinuxDistro UnixCommand::getLinuxDistro()
       {
         ret = ectn_CONDRESOS;
       }
-      else if (contents.contains(QRegularExpression("Endeavour")))
+      else if (contents.contains(QRegularExpression("EndeavourOS")))
       {
         ret = ectn_ENDEAVOUROS;
       }
@@ -1277,10 +1277,10 @@ LinuxDistro UnixCommand::getLinuxDistro()
       {
         ret = ectn_PARABOLA;
       }
-      else if (contents.contains(QRegularExpression("SwagArch")))
+      /*else if (contents.contains(QRegularExpression("SwagArch")))
       {
         ret = ectn_SWAGARCH;
-      }
+      }*/
       else
       {
         ret = ectn_UNKNOWN;

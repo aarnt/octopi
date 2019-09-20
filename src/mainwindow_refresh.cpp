@@ -1188,7 +1188,7 @@ void MainWindow::refreshToolBar()
     LinuxDistro ld = UnixCommand::getLinuxDistro();
     if (ld == ectn_ARCHLINUX ||
         ld == ectn_ARCHBANGLINUX ||
-        ld == ectn_SWAGARCH ||
+        //ld == ectn_SWAGARCH ||
         ld == ectn_CONDRESOS ||
         ld == ectn_NETRUNNER ||
         ld == ectn_MANJAROLINUX)
