@@ -26,7 +26,7 @@
 #include "src/strconstants.h"
 
 /*
- * The specific model which abstracts the package list data seem in the main treeview
+ * The specific model which abstracts the package list data seen in the main treeview
  */
 
 PackageModel::PackageModel(const PackageRepository& repo, QObject *parent)

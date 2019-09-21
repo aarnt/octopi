@@ -25,6 +25,11 @@
 #include <iostream>
 #include <QSet>
 
+/*
+ * This is a data repository where all pacman packages are stored
+ * Whenever some data changes, a message is sent to all models that are listening to it
+ */
+
 PackageRepository::PackageRepository()
 {
 }
@@ -34,21 +39,25 @@ void PackageRepository::registerDependency(PackageRepository::IDependency &depen
   m_dependingModels.push_back(&depends);
 }
 
-struct BeginResetModel {
-  inline void operator()(PackageRepository::IDependency* depends) {
+struct BeginResetModel
+{
+  inline void operator()(PackageRepository::IDependency* depends)
+  {
     assert(depends != NULL);
     depends->beginResetRepository();
   }
 };
 
-struct TSort {
+struct TSort
+{
   bool operator()(const PackageRepository::PackageData* a, const PackageRepository::PackageData* b) const {
     return a->name < b->name;
   }
 };
 
 struct EndResetModel {
-  inline void operator()(PackageRepository::IDependency* depends) {
+  inline void operator()(PackageRepository::IDependency* depends)
+  {
     depends->endResetRepository();
   }
 };
@@ -179,14 +188,17 @@ void PackageRepository::setAUROutdatedData(QList<PackageListData>*const listOfFo
  */
 void PackageRepository::checkAndSetGroups(const QStringList& listOfGroups)
 {
-  if (memberListOfGroupsEquals(listOfGroups) == false) {
+  if (memberListOfGroupsEquals(listOfGroups) == false)
+  {
     std::for_each(m_dependingModels.begin(), m_dependingModels.end(), BeginResetModel());
-    for (QList<Group*>::const_iterator it = m_listOfGroups.begin(); it != m_listOfGroups.end(); ++it) {
+    for (QList<Group*>::const_iterator it = m_listOfGroups.begin(); it != m_listOfGroups.end(); ++it)
+    {
       if (*it != nullptr) delete *it;
     }
     m_listOfGroups.clear();
 
-    for (QStringList::const_iterator it = listOfGroups.begin(); it != listOfGroups.end(); ++it) {
+    for (QStringList::const_iterator it = listOfGroups.begin(); it != listOfGroups.end(); ++it)
+    {
       m_listOfGroups.push_back(new Group(*it));
     }
     std::for_each(m_dependingModels.begin(), m_dependingModels.end(), EndResetModel());
@@ -194,10 +206,12 @@ void PackageRepository::checkAndSetGroups(const QStringList& listOfGroups)
 }
 
 struct TComp {
-  bool operator()(const PackageRepository::PackageData* a, const QString& b) const {
+  bool operator()(const PackageRepository::PackageData* a, const QString& b) const
+  {
     return a->name < b;
   }
-  bool operator()(const QString& b, const PackageRepository::PackageData* a) const {
+  bool operator()(const QString& b, const PackageRepository::PackageData* a) const
+  {
     return b < a->name;
   }
 };
@@ -211,23 +225,29 @@ void PackageRepository::checkAndSetMembersOfGroup(const QString& groupName, cons
 {
   QList<Group*>::const_iterator groupIt = m_listOfGroups.begin();
   for (; groupIt != m_listOfGroups.end(); ++groupIt) {
-    if (*groupIt != nullptr && (*groupIt)->getName() == groupName) {
+    if (*groupIt != nullptr && (*groupIt)->getName() == groupName)
+    {
       break;
     }
   }
-  if (groupIt != m_listOfGroups.end()) {
+  if (groupIt != m_listOfGroups.end())
+  {
     Group& group = **groupIt;
-    if (group.memberListEquals(members) == false) {
+    if (group.memberListEquals(members) == false)
+    {
 
       // invalidate and register all group members if lists are different
       std::for_each(m_dependingModels.begin(), m_dependingModels.end(), BeginResetModel());
       group.invalidateList();
 
-      for (QStringList::const_iterator it = members.begin(); it != members.end(); ++it) {
+      for (QStringList::const_iterator it = members.begin(); it != members.end(); ++it)
+      {
         typedef TListOfPackages::const_iterator TIter;
         std::pair<TIter, TIter> packageIt =  std::equal_range(m_listOfPackages.begin(), m_listOfPackages.end(), *it, TComp());
-        for (TIter iter = packageIt.first; iter != packageIt.second; ++iter) {
-          if ((*iter)->managedByAUR == false) {
+        for (TIter iter = packageIt.first; iter != packageIt.second; ++iter)
+        {
+          if ((*iter)->managedByAUR == false)
+          {
             group.addPackage(**iter);
             break;
           }
@@ -250,14 +270,17 @@ const PackageRepository::TListOfPackages& PackageRepository::getPackageList() co
 
 const QList<PackageRepository::PackageData*>& PackageRepository::getPackageList(const QString& group) const
 {
-  if (!group.isEmpty()) {
+  if (!group.isEmpty())
+  {
     QList<Group*>::const_iterator groupIt = m_listOfGroups.begin();
-    for (; groupIt != m_listOfGroups.end(); ++groupIt) {
+    for (; groupIt != m_listOfGroups.end(); ++groupIt)
+    {
       if (*groupIt != nullptr && (*groupIt)->getName() == group) {
         break;
       }
     }
-    if (groupIt != m_listOfGroups.end()) {
+    if (groupIt != m_listOfGroups.end())
+    {
       Group& group = **groupIt;
       const TListOfPackages* list = group.getPackageList();
       if (list != nullptr) return *list;
@@ -274,7 +297,8 @@ const QList<PackageRepository::PackageData*>& PackageRepository::getPackageList(
 
 PackageRepository::PackageData* PackageRepository::getFirstPackageByName(const QString &name) const
 {
-  for (TListOfPackages::const_iterator it = m_listOfPackages.begin(); it != m_listOfPackages.end(); ++it) {
+  for (TListOfPackages::const_iterator it = m_listOfPackages.begin(); it != m_listOfPackages.end(); ++it)
+  {
     if ((*it)->name == name)
       return *it;
   }
@@ -292,7 +316,8 @@ bool PackageRepository::memberListOfGroupsEquals(const QStringList& listOfGroups
     return false;
 
   QStringList::const_iterator it2 = listOfGroups.begin();
-  for (QList<Group*>::const_iterator it = m_listOfGroups.begin(); it != m_listOfGroups.end(); ++it, ++it2) {
+  for (QList<Group*>::const_iterator it = m_listOfGroups.begin(); it != m_listOfGroups.end(); ++it, ++it2)
+  {
     if ((*it)->getName() != *it2)
       return false;
   }
@@ -337,7 +362,8 @@ bool PackageRepository::Group::memberListEquals(const QStringList& packagelist)
     return false;
 
   QStringList::const_iterator it2 = packagelist.begin();
-  for (TListOfPackages::const_iterator it = m_listOfPackages->begin(); it != m_listOfPackages->end(); ++it, ++it2) {
+  for (TListOfPackages::const_iterator it = m_listOfPackages->begin(); it != m_listOfPackages->end(); ++it, ++it2)
+  {
     if ((*it)->name != *it2)
       return false;
   }
