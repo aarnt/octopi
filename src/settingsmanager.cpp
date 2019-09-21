@@ -231,7 +231,7 @@ bool SettingsManager::getUseDefaultAppIcon()
   else
   {
     SettingsManager p_instance;
-    return (p_instance.getSYSsettings()->value(ctn_KEY_USE_DEFAULT_APP_ICON, true) == true);
+    return (p_instance.getSYSsettings()->value(ctn_KEY_USE_DEFAULT_APP_ICON, true)).toBool();
   }
 }
 
@@ -487,21 +487,13 @@ QString SettingsManager::getSUTool()
   return ctn_OCTOPISUDO;
 }
 
-bool SettingsManager::getSkipMirrorCheckAtStartup(){
-  if (!instance()->getSYSsettings()->contains(ctn_KEY_SKIP_MIRRORCHECK_ON_STARTUP)){
-    instance()->getSYSsettings()->setValue(ctn_KEY_SKIP_MIRRORCHECK_ON_STARTUP, 0);
-  }
-
-  return (instance()->getSYSsettings()->value( ctn_KEY_SKIP_MIRRORCHECK_ON_STARTUP, false).toInt() == 1);
-}
-
 bool SettingsManager::getShowGroupsPanel()
 {
   if (!instance()->getSYSsettings()->contains(ctn_KEY_SHOW_GROUPS_PANEL)){
-    instance()->getSYSsettings()->setValue(ctn_KEY_SHOW_GROUPS_PANEL, 1);
+    instance()->getSYSsettings()->setValue(ctn_KEY_SHOW_GROUPS_PANEL, true);
   }
 
-  return (instance()->getSYSsettings()->value(ctn_KEY_SHOW_GROUPS_PANEL, false).toInt() == 1);
+  return (instance()->getSYSsettings()->value(ctn_KEY_SHOW_GROUPS_PANEL, false)).toBool();
 }
 
 /*
@@ -581,7 +573,7 @@ void SettingsManager::setAURPackageListSortOrder(int newValue)
   instance()->getSYSsettings()->sync();
 }
 
-void SettingsManager::setShowGroupsPanel(int newValue)
+void SettingsManager::setShowGroupsPanel(bool newValue)
 {
   instance()->getSYSsettings()->setValue(ctn_KEY_SHOW_GROUPS_PANEL, newValue);
   instance()->getSYSsettings()->sync();

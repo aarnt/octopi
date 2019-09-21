@@ -102,7 +102,6 @@ class SettingsManager
     static int getCheckUpdatesHour();
     static int getCheckUpdatesInterval();
     static QDateTime getLastCheckUpdatesTime();
-    static bool getSkipMirrorCheckAtStartup();
     static bool getShowGroupsPanel();
 
     static QByteArray getWindowSize();
@@ -128,7 +127,7 @@ class SettingsManager
     static void setAURPackageListOrderedCol(int newValue);
     static void setAURPackageListSortOrder(int newValue);
 
-    static void setShowGroupsPanel(int newValue);
+    static void setShowGroupsPanel(bool newValue);
     static void setWindowSize(QByteArray newValue);
     static void setTransactionWindowSize(QByteArray newValue);
     static void setOutputDialogWindowSize(QByteArray newValue);

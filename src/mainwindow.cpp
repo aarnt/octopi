@@ -1578,7 +1578,7 @@ void MainWindow::maxDemaxPropertiesTabWidget(bool pSaveSettings)
       bool hideGroups=false;
       if (!m_actionShowGroups->isChecked()) hideGroups=true;
       saveSettings(ectn_NORMAL);
-      if (hideGroups) SettingsManager::setShowGroupsPanel(0);
+      if (hideGroups) SettingsManager::setShowGroupsPanel(false);
     }
   }
 }

@@ -27,6 +27,11 @@ OTHER DEALINGS IN THE SOFTWARE.
 For more information, please refer to <http://unlicense.org>
 */
 
+/*
+ * AES encryption algorithm class
+ * Code extracted from project: https://github.com/bricke/Qt-AES
+ */
+
 #include "qaesencryption.h"
 
 /*

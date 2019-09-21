@@ -121,7 +121,7 @@ void MainWindow::saveSettings(SaveSettingsReason saveSettingsReason)
       SettingsManager::instance()->setPanelOrganizing(ectn_NORMAL);
       SettingsManager::instance()->setSplitterHorizontalState(ui->splitterHorizontal->saveState());
       if (m_actionShowGroups->isChecked())
-        SettingsManager::instance()->setShowGroupsPanel(1); //And also show Groups panel!
+        SettingsManager::instance()->setShowGroupsPanel(true); //And also show Groups panel!
       break;
 
     case ectn_AUR_PACKAGELIST:
@@ -138,10 +138,10 @@ void MainWindow::saveSettings(SaveSettingsReason saveSettingsReason)
       QList<int> rl;
       rl = ui->splitterVertical->sizes();
 
-      int show=0;
+      bool show=false;
       if ( rl[1] != 0 )
       {
-        show = 1;
+        show = true;
       }
 
       SettingsManager::instance()->setShowGroupsPanel(show);
