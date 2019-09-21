@@ -1230,6 +1230,21 @@ void PacmanExec::doAURInstall(const QString &listOfPackages)
 }
 
 /*
+ * Uses temporary yay-bin tool to get yay-bin package
+ */
+void PacmanExec::doInstallYayUsingTempYay()
+{
+  m_lastCommandList.clear();
+  QString octopiConfDir = QDir::homePath() + QDir::separator() + ".config/octopi";
+  QString cmd = octopiConfDir + QDir::separator() + "yay --noconfirm --noeditmenu -S yay-bin;";
+  m_lastCommandList.append(cmd);
+  m_lastCommandList.append("echo -e;");
+  m_lastCommandList.append("read -n 1 -p \"" + StrConstants::getPressAnyKey() + "\"");
+  m_commandExecuting = ectn_RUN_IN_TERMINAL;
+  m_unixCommand->runCommandInTerminalAsNormalUser(m_lastCommandList);
+}
+
+/*
  * Calls AUR tool to remove given packages inside a terminal
  */
 void PacmanExec::doAURRemove(const QString &listOfPackages)

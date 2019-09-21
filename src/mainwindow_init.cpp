@@ -321,7 +321,8 @@ void MainWindow::initToolBar()
   {
     m_separatorForActionAUR = ui->mainToolBar->addSeparator();
     ui->mainToolBar->addAction(m_actionSwitchToAURTool);
-    m_actionSwitchToAURTool->setToolTip(m_actionSwitchToAURTool->text() + "  (Ctrl+Shift+Y)");
+    if (SettingsManager::getAURTool() != ctn_NO_AUR_TOOL)
+      m_actionSwitchToAURTool->setToolTip(m_actionSwitchToAURTool->toolTip() + "  (Ctrl+Shift+Y)");
   }
 
   m_dummyAction = new QAction(this);
@@ -777,9 +778,15 @@ void MainWindow::initActions()
 
   m_actionSwitchToAURTool = new QAction(this);
   m_actionSwitchToAURTool->setIcon(IconHelper::getIconForeignGreen());
-  m_actionSwitchToAURTool->setText(StrConstants::getUseAURTool());
-  m_actionSwitchToAURTool->setCheckable(true);
-  m_actionSwitchToAURTool->setChecked(false);
+  if (SettingsManager::getAURTool() != ctn_NO_AUR_TOOL)
+  {
+    m_actionSwitchToAURTool->setToolTip(StrConstants::getUseAURTool());
+    m_actionSwitchToAURTool->setCheckable(true);
+    m_actionSwitchToAURTool->setChecked(false);
+  }
+
+  //m_actionSwitchToAURTool->setCheckable(true);
+  //m_actionSwitchToAURTool->setChecked(false);
   m_actionSwitchToAURTool->setEnabled(false);
   connect(m_actionSwitchToAURTool, SIGNAL(triggered()), this, SLOT(AURToolSelected()));
 

@@ -52,6 +52,7 @@ extern QFutureWatcher<QStringList *> g_fwOutdatedPkgStringList;
 extern QFutureWatcher<QStringList *> g_fwOutdatedAURStringList;
 extern QFutureWatcher<QByteArray> g_fwCommandToExecute;
 extern QFutureWatcher<QString> g_fwGenerateSysInfo;
+extern QFutureWatcher<bool> g_fwInstallTempYayHelper;
 
 QString showPackageDescription(QString pkgName);
 QList<PackageListData> * searchPacmanPackages(const QHash<QString, QString> *checkUpdatesOutdatedPackages);
@@ -67,6 +68,7 @@ PackageInfoData getKCPInformation(QString pkgName);
 QByteArray execCommand(QString cmd);
 void execCommandInAnotherThread(QString cmd);
 QString generateSysInfo(QByteArray contents);
+bool installTempYayHelper();
 
 QStringList            * getOutdatedPkgStringList();
 QStringList            * getOutdatedAURStringList();

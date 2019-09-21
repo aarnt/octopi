@@ -817,33 +817,30 @@ void UnixCommand::installTempPacaurHelper()
 }
 
 /*
- * Gets a temporary Yay-bin AUR helper to install one of the supported AUR helpers!
+ * Returns a list of the available AUR tools installed in the system
  */
-void UnixCommand::installTempYayHelper()
+QStringList UnixCommand::getAvailableAURTools()
 {
-  QString url = "https://github.com/Jguer/yay/releases/download/v9.2.1/yay_9.2.1_x86_64.tar.gz";
-  QString curl = "curl -L %1 --output %2";
-  QString yayFile = "yay_9.2.1_x86_64/yay";
-  QString tar = "tar xzf %1 -C %2 %3";
-  QString ln = "ln -s %1 %2";
-  QString octopiConfDir = QDir::homePath() + QDir::separator() + ".config/octopi";
-  curl=curl.arg(url).arg(octopiConfDir + QDir::separator() + "yay_9.2.1_x86_64.tar.gz");
+  QStringList aurTools;
 
-  QProcess p;
-  //First we download latest version of Pacaur
-  p.execute(curl);
+  if ((UnixCommand::getLinuxDistro() != ectn_KAOS) &&
+    (UnixCommand::getLinuxDistro() != ectn_CHAKRA &&
+     UnixCommand::getLinuxDistro() != ectn_PARABOLA))
+  {
+    aurTools << ctn_NO_AUR_TOOL;
+    if (UnixCommand::hasTheExecutable(ctn_PACAUR_TOOL))
+      aurTools << ctn_PACAUR_TOOL;
+    if (UnixCommand::hasTheExecutable(ctn_YAOURT_TOOL))
+      aurTools << ctn_YAOURT_TOOL;
+    if (UnixCommand::hasTheExecutable(ctn_TRIZEN_TOOL))
+      aurTools << ctn_TRIZEN_TOOL;
+    if (UnixCommand::hasTheExecutable(ctn_PIKAUR_TOOL))
+      aurTools << ctn_PIKAUR_TOOL;
+    if (UnixCommand::hasTheExecutable(ctn_YAY_TOOL))
+      aurTools << ctn_YAY_TOOL;
+  }
 
-  //Then we extract bash script from tarball
-  //tar xzf ~/.config/octopi/pacaur.tar.gz -C ~/.config/octopi pacaur-4.8.6/pacaur
-  tar = tar.arg(octopiConfDir + QDir::separator() + "yay_9.2.1_x86_64.tar.gz").arg(octopiConfDir).arg(yayFile);
-  p.execute(tar);
-
-  //Now we must symlink pacaur file to octopiConfDir/pacaur
-  ln = ln.arg(octopiConfDir + QDir::separator() + yayFile).arg(octopiConfDir + QDir::separator() + "yay");
-  p.execute(ln);
-
-  //Remove tarball
-  QFile::remove(octopiConfDir + QDir::separator() + "yay_9.2.1_x86_64.tar.gz");
+  return aurTools;
 }
 
 /*

@@ -41,6 +41,8 @@
 #include <QMessageBox>
 #include <QStandardItem>
 #include <QTextBrowser>
+#include <QFutureWatcher>
+#include <QtConcurrent/QtConcurrentRun>
 
 /*
  * Watches the state of tvTransaction treeview to see if Commit/Cancel actions must be activated/deactivated
@@ -1326,6 +1328,56 @@ void MainWindow::doInstallAURPackage()
 }
 
 /*
+ * Begins the download thread of temporary yay-bin
+ */
+void MainWindow::doPreDownloadTempYay()
+{
+  disableTransactionActions();
+  m_progressWidget->setValue(0);
+  m_progressWidget->setMaximum(100);
+  clearTabOutput();
+  writeToTabOutput(StrConstants::getDownloadingTempYay() + "<br>");
+
+  //Here we start the download thread... and bind its finished state to doInstallYayPackage()
+  QFuture<bool> f;
+  QEventLoop el;
+  f = QtConcurrent::run(installTempYayHelper);
+  connect(&g_fwInstallTempYayHelper, SIGNAL(finished()), &el, SLOT(quit()));
+  g_fwInstallTempYayHelper.setFuture(f);
+  el.exec();
+  doInstallYayPackage();
+}
+
+/*
+ * Installs yay-bin AUR package using temporary yay-bin
+ */
+void MainWindow::doInstallYayPackage()
+{
+  bool downloadedYay = g_fwInstallTempYayHelper.result();
+  if (!downloadedYay)
+  {
+    //We print a message saying the download did not go right
+    writeToTabOutput(StrConstants::getErrorCouldNotDownloadTempYay() + "<br>");
+    enableTransactionActions();
+  }
+
+  writeToTabOutput(StrConstants::getTempYayDownloaded() + "<br>");
+  m_pacmanExec = new PacmanExec();
+  if (m_debugInfo) m_pacmanExec->setDebugMode(true);
+
+  QObject::connect(m_pacmanExec, SIGNAL( finished ( int, QProcess::ExitStatus )),
+                   this, SLOT( pacmanProcessFinished(int, QProcess::ExitStatus) ));
+
+  QObject::connect(m_pacmanExec, SIGNAL(percentage(int)), this, SLOT(incrementPercentage(int)));
+  QObject::connect(m_pacmanExec, SIGNAL(textToPrintExt(QString)), this, SLOT(outputText(QString)));
+  QObject::connect(m_pacmanExec, SIGNAL(commandToExecInQTermWidget(QString)), this, SLOT(onExecCommandInTabTerminal(QString)));
+
+  m_tempYayInstalledYay = true;
+  m_commandExecuting = ectn_RUN_IN_TERMINAL;
+  m_pacmanExec->doInstallYayUsingTempYay();
+}
+
+/*
  * Removes the selected package with "yaourt -R"
  */
 void MainWindow::doRemoveAURPackage()
@@ -1987,6 +2039,16 @@ void MainWindow::pacmanProcessFinished(int exitCode, QProcess::ExitStatus exitSt
 void MainWindow::onPressAnyKeyToContinue()
 {
   if (m_commandExecuting == ectn_NONE) return;
+
+  if (m_tempYayInstalledYay)
+  {
+    m_tempYayInstalledYay = false;
+    SettingsManager::setAURTool(ctn_YAY_TOOL);
+    m_actionSwitchToAURTool->setToolTip(StrConstants::getUseAURTool());
+    m_actionSwitchToAURTool->setToolTip(m_actionSwitchToAURTool->toolTip() + "  (Ctrl+Shift+Y)");
+    m_actionSwitchToAURTool->setCheckable(true);
+    m_actionSwitchToAURTool->setChecked(false);
+  }
 
   m_progressWidget->setValue(0);
   m_progressWidget->show();

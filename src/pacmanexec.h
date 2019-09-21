@@ -100,6 +100,7 @@ public:
   //AUR
   void doAURUpgrade(const QString &listOfPackages);
   void doAURInstall(const QString &listOfPackages);
+  void doInstallYayUsingTempYay();
   void doAURRemove(const QString &listOfPackages);
 
 signals:

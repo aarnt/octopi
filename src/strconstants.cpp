@@ -522,6 +522,21 @@ QString StrConstants::getCommandFinishedWithErrors(){
   return QObject::tr("Command finished with errors!");
 }
 
+QString StrConstants::getErrorCouldNotDownloadTempYay()
+{
+  return QObject::tr("Temporary \"yay-bin\" could not be downloaded!");
+}
+
+QString StrConstants::getTempYayDownloaded()
+{
+  return QObject::tr("Temporary \"yay-bin\" downloaded.");
+}
+
+QString StrConstants::getDownloadingTempYay()
+{
+  return QObject::tr("Downloading temporary \"yay-bin\"...");
+}
+
 QString StrConstants::getErrorPacmanProcessExecuting(){
   return QObject::tr("error: there is an instance of pacman already running");
 }
@@ -612,14 +627,31 @@ QString StrConstants::getYoullNeedSuFrontend(){
   return QObject::tr("You'll need to install \"octopi-sudo\" in order to use Octopi.");
 }
 
+QString StrConstants::getYoullNeedToInstallAURTool()
+{
+  return QObject::tr("You'll need one of those tools to use AUR:\n\n"
+                     "%1, %2, %3, %4 or %5").arg("pacaur").arg("pikaur").arg("trizen").arg("yaourt").arg("yay");
+}
+
+QString StrConstants::getDoYouWantToInstallYayTool()
+{
+  return QObject::tr("You need a package in order to use AUR.\n"
+                     "Do you want to install it?");
+}
+
 QString StrConstants::getAURConnectionIsOK()
 {
   return QObject::tr("Connection is OK!");
 }
 
 QString StrConstants::getWouldYouLikeToHelpThisProject(){
-  return QObject::tr("Would you like to help this project\n"
-                     "by voting for it?");
+  return QObject::tr("Would you like to help this project by voting for it?\n"
+                     "You only need to accept and wait a few seconds.");
+}
+
+QString StrConstants::getThankYouForVoting()
+{
+  return QObject::tr("Thank you for voting for Octopi!");
 }
 
 QString StrConstants::getAURUserNameOrPasswordIsIncorrect()

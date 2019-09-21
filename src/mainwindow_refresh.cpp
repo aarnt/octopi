@@ -40,6 +40,8 @@
 #include <QStandardItem>
 #include <QFutureWatcher>
 #include <QtConcurrent/QtConcurrentRun>
+#include <QSysInfo>
+#include <QMessageBox>
 
 /*
  * If we have some outdated packages, let's put an angry red face icon in this app!
@@ -183,6 +185,32 @@ void MainWindow::refreshGroupsWidget()
  */
 void MainWindow::AURToolSelected()
 {
+  //If the system does not have any AUR tool, let's ask if user wants to get one
+  if (m_actionSwitchToAURTool->toolTip().isEmpty() && UnixCommand::getAvailableAURTools().count() ==1)
+  {
+    //Are we inside a 64bit platform?
+    if (QSysInfo::buildCpuArchitecture() == "x86_64")
+    {
+      //We can offer to install a temporary yay-bin and then get yay-bin package
+      QMessageBox::StandardButton r = QMessageBox::question(this, StrConstants::getConfirmation(),
+                            StrConstants::getDoYouWantToInstallYayTool(),
+                            QMessageBox::Yes | QMessageBox::No,
+                            QMessageBox::Yes);
+      if (r == QMessageBox::Yes)
+      {
+        doPreDownloadTempYay();
+      }
+    }
+    else
+    {
+      QMessageBox::information(this,
+                               StrConstants::getInformation(),
+                               StrConstants::getYoullNeedToInstallAURTool());
+    }
+
+    return;
+  }
+
   bool lightPackageFilterConnected = false;
   static QStandardItemModel emptyModel;
   if (UnixCommand::getLinuxDistro() != ectn_CHAKRA) savePackageColumnWidths();
@@ -272,10 +300,6 @@ void MainWindow::AURToolSelected()
 
   if (lightPackageFilterConnected && !ui->actionUseInstantSearch->isChecked())
     disconnect(m_leFilterPackage, SIGNAL(textChanged(QString)), this, SLOT(lightPackageFilter()));
-
-  //TODO: Make this optional by the user
-  //m_leFilterPackage->clear();
-  //m_leFilterPackage->initStyleSheet();
 
   if (lightPackageFilterConnected && !ui->actionUseInstantSearch->isChecked())
     connect(m_leFilterPackage, SIGNAL(textChanged(QString)), this, SLOT(lightPackageFilter()));
@@ -1186,15 +1210,14 @@ void MainWindow::refreshToolBar()
   if (!m_hasAURTool)
   {
     LinuxDistro ld = UnixCommand::getLinuxDistro();
-    if (ld == ectn_ARCHLINUX ||
-        ld == ectn_ARCHBANGLINUX ||
-        //ld == ectn_SWAGARCH ||
-        ld == ectn_CONDRESOS ||
-        ld == ectn_NETRUNNER ||
-        ld == ectn_MANJAROLINUX)
+    if (ld != ectn_KAOS &&
+        ld != ectn_CHAKRA &&
+        ld != ectn_PARABOLA)
     {
+      //Here the user lost the AUR tool he was using
       m_hasAURTool = true;
-      m_actionSwitchToAURTool->setText("");
+      m_actionSwitchToAURTool->setToolTip("");
+      SettingsManager::setAURTool(ctn_NO_AUR_TOOL);
     }
   }
 

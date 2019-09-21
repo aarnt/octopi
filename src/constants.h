@@ -144,9 +144,9 @@ enum ViewOptions { ectn_ALL_PKGS, ectn_INSTALLED_PKGS, ectn_NON_INSTALLED_PKGS }
 
 //Supported AUR user base package tools
 const QString ctn_PACAUR_TOOL("pacaur");
-const QString ctn_YAOURT_TOOL("yaourt");
-const QString ctn_TRIZEN_TOOL("trizen");
 const QString ctn_PIKAUR_TOOL("pikaur");
+const QString ctn_TRIZEN_TOOL("trizen");
+const QString ctn_YAOURT_TOOL("yaourt");
 const QString ctn_YAY_TOOL("yay");
 const QString ctn_NO_AUR_TOOL("DO_NOT_USE_AUR");
 

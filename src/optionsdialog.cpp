@@ -190,25 +190,6 @@ void OptionsDialog::initGeneralTab()
  */
 void OptionsDialog::initAURTab()
 {
-  QStringList aurTools;
-
-  if ((UnixCommand::getLinuxDistro() != ectn_KAOS) &&
-    (UnixCommand::getLinuxDistro() != ectn_CHAKRA &&
-     UnixCommand::getLinuxDistro() != ectn_PARABOLA))
-  {
-    aurTools << ctn_NO_AUR_TOOL;
-    if (UnixCommand::hasTheExecutable(ctn_PACAUR_TOOL))
-      aurTools << ctn_PACAUR_TOOL;
-    if (UnixCommand::hasTheExecutable(ctn_YAOURT_TOOL))
-      aurTools << ctn_YAOURT_TOOL;
-    if (UnixCommand::hasTheExecutable(ctn_TRIZEN_TOOL))
-      aurTools << ctn_TRIZEN_TOOL;
-    if (UnixCommand::hasTheExecutable(ctn_PIKAUR_TOOL))
-      aurTools << ctn_PIKAUR_TOOL;
-    if (UnixCommand::hasTheExecutable(ctn_YAY_TOOL))
-      aurTools << ctn_YAY_TOOL;
-  }
-
   if (UnixCommand::getLinuxDistro() == ectn_KAOS ||
       UnixCommand::getLinuxDistro() == ectn_CHAKRA ||
       UnixCommand::getLinuxDistro() == ectn_PARABOLA)
@@ -217,6 +198,8 @@ void OptionsDialog::initAURTab()
   }
   else
   {
+    QStringList aurTools=UnixCommand::getAvailableAURTools();
+
     connect(comboAUR, SIGNAL(currentTextChanged(const QString &)), this, SLOT(comboAURChanged(const QString &)));
     connect(bConnect, SIGNAL(clicked()), this, SLOT(onAURConnect()));
     connect(bRegister, SIGNAL(clicked()), this, SLOT(onAURRegister()));
@@ -823,6 +806,9 @@ void OptionsDialog::onAURConnect()
         //User opted to help the project, so let's vote for the packages
         if (!octopiVoted) v.voteForPkg("octopi");
         if (!alpmUtilsVoted) v.voteForPkg("alpm_octopi_utils");
+
+        //Let's thank user for voting!
+        QMessageBox::information(this, StrConstants::getInformation(), StrConstants::getThankYouForVoting());
       }
     }
   }

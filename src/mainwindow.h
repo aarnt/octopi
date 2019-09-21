@@ -97,7 +97,7 @@ private:
 
   AurVote *m_aurVote;
   TermWidget *m_console;
-
+  bool m_tempYayInstalledYay;
   SearchLineEdit *m_leFilterPackage;
   QList<QModelIndex> *m_foundFilesInPkgFileList;
   int m_indFoundFilesInPkgFileList;
@@ -420,6 +420,8 @@ private slots:
   //void doSyncDatabase();
   void doMirrorCheck();
   void doInstallAURPackage();
+  void doPreDownloadTempYay();
+  void doInstallYayPackage();
   void doRemoveAURPackage();
   void onAURToolChanged();
   void onAURVotingChanged();

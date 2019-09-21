@@ -24,6 +24,7 @@
 #include <QFutureWatcher>
 #include <QtConcurrent/QtConcurrentMap>
 #include <QRandomGenerator>
+#include <QRegularExpression>
 
 /*
  * Global functions related to Octopi's multithread code
@@ -46,6 +47,7 @@ QFutureWatcher<QStringList *> g_fwOutdatedPkgStringList;
 QFutureWatcher<QStringList *> g_fwOutdatedAURStringList;
 QFutureWatcher<QByteArray> g_fwCommandToExecute;
 QFutureWatcher<QString> g_fwGenerateSysInfo;
+QFutureWatcher<bool> g_fwInstallTempYayHelper;
 
 /*
  * Given a packageName, returns its description
@@ -266,4 +268,72 @@ QString generateSysInfo(QByteArray contents)
   //QString ptpb = UnixCommand::getCommandOutput("curl -F sunset=10 -F c=@- https://ptpb.pw/", tempFile->fileName());
   ptpb.replace("\n", "\n<br>");
   return ptpb;
+}
+
+/*
+ * Gets a temporary Yay-bin AUR helper to install one of the supported AUR helpers!
+ * Returns true if all went fine
+ *
+ */
+bool installTempYayHelper()
+{
+  bool res=true;
+  QString url="https://github.com/Jguer/yay/releases/latest/";
+  QString curl = "curl -L %1 --output %2";
+  QString tar = "tar xzf %1 -C %2 %3";
+  QString ln = "ln -s %1 %2";
+  QString removeLN = "rm %1";
+  QString htmlLatestYay="latestYay.html";
+  QString octopiConfDir = QDir::homePath() + QDir::separator() + ".config/octopi";
+  curl=curl.arg(url).arg(octopiConfDir + QDir::separator() + htmlLatestYay);
+
+  QProcess p;
+  //First we download latest html page of yay-bin at github.com
+  p.execute(curl);
+
+  QFile file(octopiConfDir + QDir::separator() + htmlLatestYay);
+  if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
+      return false;
+
+  QString html = file.readAll();
+  QString yayUrl;
+  QString yayTarball;
+  QString yayFile;
+
+  //We have to find this kind of string:
+  //<a href="/Jguer/yay/releases/download/v9.3.1/yay_9.3.1_x86_64.tar.gz"
+  QRegularExpression re("<a href=\"(?<site>\\S+/(?<file>yay\\S+_x86_64.tar.gz))\"");
+  QRegularExpressionMatch rem;
+  if (html.contains(re, &rem))
+  {
+    yayUrl = rem.captured("site");
+    yayTarball = rem.captured("file");
+    yayFile = yayTarball + QDir::separator() + "yay";
+    yayFile = yayFile.remove(".tar.gz");
+    yayUrl = "https://github.com" + yayUrl;
+    file.close();
+    file.remove();
+  }
+  else return false;
+
+  //Let's download latest version of yay-bin tarball
+  curl = "curl -L %1 --output %2";
+  curl=curl.arg(yayUrl).arg(octopiConfDir + QDir::separator() + yayTarball);
+  p.execute(curl);
+
+  //Then we extract binary from tarball
+  tar = tar.arg(octopiConfDir + QDir::separator() + yayTarball).arg(octopiConfDir).arg(yayFile);
+  p.execute(tar);
+
+  //Now we must symlink yay file to octopiConfDir/yay
+  removeLN = removeLN.arg(octopiConfDir + QDir::separator() + "yay");
+  if (QFile::exists(octopiConfDir + QDir::separator() + "yay")) p.execute(removeLN);
+
+  //Now we must symlink yay file to octopiConfDir/yayFile/yay
+  ln = ln.arg(octopiConfDir + QDir::separator() + yayFile).arg(octopiConfDir + QDir::separator() + "yay");
+  p.execute(ln);
+
+  //Remove tarball
+  QFile::remove(octopiConfDir + QDir::separator() + yayTarball);
+  return res;
 }

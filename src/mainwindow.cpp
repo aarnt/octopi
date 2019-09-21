@@ -81,6 +81,7 @@ MainWindow::MainWindow(QWidget *parent) :
   m_numberOfInstalledPackages = 0;
   m_debugInfo = false;
   m_console = nullptr;
+  m_tempYayInstalledYay = false;
 
   //Let's check if DistroRSSUrl is empty
   if (SettingsManager::isDistroRSSUrlEmpty())

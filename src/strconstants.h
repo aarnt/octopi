@@ -129,7 +129,10 @@ public:
   static QString getChooseATerminal();
   static QString getRunningCommandInTerminal();
   static QString getCommandFinishedOK();
-  static QString getCommandFinishedWithErrors();
+  static QString getCommandFinishedWithErrors();  
+  static QString getTempYayDownloaded();
+  static QString getDownloadingTempYay();
+  static QString getErrorCouldNotDownloadTempYay();
   static QString getErrorPacmanProcessExecuting();
   static QString geRetrievingPackage();
   static QString getTotalDownloadSize();
@@ -152,8 +155,11 @@ public:
   static QString getEnterAdministratorsPassword();
   static QString getErrorNoSuCommand();
   static QString getYoullNeedSuFrontend();
+  static QString getYoullNeedToInstallAURTool();
+  static QString getDoYouWantToInstallYayTool();
   static QString getAURConnectionIsOK();
   static QString getWouldYouLikeToHelpThisProject();
+  static QString getThankYouForVoting();
   static QString getAURUserNameOrPasswordIsIncorrect();
   static QString getErrorAURUserNameIsNotSet();
   static QString getErrorAURPasswordIsNotSet();
