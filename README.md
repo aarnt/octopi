@@ -15,7 +15,7 @@ Currently, 10 Linux distros are compatible with it
  * [Netrunner (rolling)](http://www.netrunner.com/netrunner-rolling-release/)
  * [Parabola GNU/Linux-libre](https://www.parabola.nu/)
 
-### What you must install in your system to have Octopi fully functional
+### What you must install in order to have Octopi fully functional
 
 You'll need:
  * [Alpm_octopi_utils](https://github.com/aarnt/alpm_octopi_utils/) library
