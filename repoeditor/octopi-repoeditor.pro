@@ -15,23 +15,24 @@ MOC_DIR += build
 UI_DIR += build
 
 HEADERS += addrepo.h \
-            checkboxdelegate.h \
-            optionsdelegate.h \
-            repoconf.h \
-            repoeditor.h \
-            repoentry.h \          
-            ../src/unixcommand.h \
-            ../src/strconstants.h \
-            ../src/wmhelper.h \
-            ../src/terminal.h \
-            ../src/settingsmanager.h \
-            ../src/searchlineedit.h \
-            ../src/utils.h \
-            ../src/package.h \
-            ../src/QtSolutions/qtsingleapplication.h \
-            ../src/QtSolutions/qtlocalpeer.h \
-            ../src/QtSolutions/qtlockedfile.h \
-            ../src/QtSolutions/qtsinglecoreapplication.h
+           checkboxdelegate.h \
+           optionsdelegate.h \
+           repoconf.h \
+           repoeditor.h \
+           repoentry.h \
+           ../src/qaesencryption.h \
+           ../src/unixcommand.h \
+           ../src/strconstants.h \
+           ../src/wmhelper.h \
+           ../src/terminal.h \
+           ../src/settingsmanager.h \
+           ../src/searchlineedit.h \
+           ../src/utils.h \
+           ../src/package.h \
+           ../src/QtSolutions/qtsingleapplication.h \
+           ../src/QtSolutions/qtlocalpeer.h \
+           ../src/QtSolutions/qtlockedfile.h \
+           ../src/QtSolutions/qtsinglecoreapplication.h
 
 SOURCES += addrepo.cpp \
            checkboxdelegate.cpp \
@@ -40,14 +41,15 @@ SOURCES += addrepo.cpp \
            repoconf.cpp \
            repoeditor.cpp \
            repoentry.cpp \
+           ../src/qaesencryption.cpp \
            ../src/unixcommand.cpp \
            ../src/strconstants.cpp \
-            ../src/wmhelper.cpp \
-            ../src/terminal.cpp \
-            ../src/settingsmanager.cpp \
-            ../src/searchlineedit.cpp \
-            ../src/utils.cpp \
-            ../src/package.cpp \
+           ../src/wmhelper.cpp \
+           ../src/terminal.cpp \
+           ../src/settingsmanager.cpp \
+           ../src/searchlineedit.cpp \
+           ../src/utils.cpp \
+           ../src/package.cpp \
            ../src/QtSolutions/qtsingleapplication.cpp \
            ../src/QtSolutions/qtlocalpeer.cpp \
            ../src/QtSolutions/qtlockedfile.cpp \
