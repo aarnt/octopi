@@ -162,7 +162,7 @@
              <rect>
               <x>20</x>
               <y>90</y>
-              <width>101</width>
+              <width>131</width>
               <height>22</height>
              </rect>
             </property>
@@ -180,7 +180,7 @@
              <rect>
               <x>20</x>
               <y>120</y>
-              <width>90</width>
+              <width>131</width>
               <height>22</height>
              </rect>
             </property>
@@ -197,9 +197,9 @@
             <property name="geometry">
              <rect>
               <x>20</x>
-              <y>145</y>
-              <width>301</width>
-              <height>31</height>
+              <y>150</y>
+              <width>311</width>
+              <height>22</height>
              </rect>
             </property>
             <property name="font">
