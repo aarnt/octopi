@@ -16,6 +16,7 @@ UI_DIR += build
 HEADERS +=  cachecleaner.h \
             packagegroupmodel.h \
             ../src/strconstants.h \
+            ../src/qaesencryption.h \
             ../src/unixcommand.h \
             ../src/wmhelper.h \
             ../src/terminal.h \
@@ -33,6 +34,7 @@ SOURCES +=  main.cpp \
             cachecleaner.cpp \
             packagegroupmodel.cpp \
             ../src/strconstants.cpp \
+            ../src/qaesencryption.cpp \
             ../src/unixcommand.cpp \
             ../src/wmhelper.cpp \
             ../src/terminal.cpp \
