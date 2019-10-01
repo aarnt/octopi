@@ -133,7 +133,7 @@ int AurVote::isPkgVoted(const QString &pkgName)
 
   //If this package does not exist anymore...
   QRegularExpression re("Page Not Found");
-  if (res.contains(re)) ret = -1;
+  if (res.contains(re)) return -1;
 
   QRegularExpression re1("name=\"do_Vote\" value=\"Vote for this package\"");
   if (res.contains(re1))
