@@ -217,3 +217,45 @@ void AurVote::unvoteForPkg(const QString &pkgName)
     disconnect(r, SIGNAL(finished()), &eventLoop, SLOT(quit()));
   }
 }
+
+/*
+ * Access AUR search site while logged in and retrieve user voted package names
+ */
+QStringList AurVote::getVotedPackages()
+{
+  QString searchUrl="https://aur.archlinux.org/packages/?O=0&SeB=nd&SB=w&SO=d&PP=250&do_Search=Go";
+  QEventLoop eventLoop;
+  QNetworkRequest request(searchUrl);
+  request.setHeader(QNetworkRequest::ContentTypeHeader,"application/x-www-form-urlencoded");
+  QNetworkReply *r = m_networkManager->get(request);
+  connect(r, SIGNAL(finished()), &eventLoop, SLOT(quit()));
+  eventLoop.exec();
+  disconnect(r, SIGNAL(finished()), &eventLoop, SLOT(quit()));
+
+  QString res = r->readAll();
+  res = res.remove(QRegularExpression("\\t"));
+  res = res.remove(QRegularExpression("\\n"));
+
+  QString packageToSearch="<td><a href=\"/packages/(.*)/\">(?<pkgName>\\S+)</a></td>";
+  QString blockToSearch="<tr class=\"(odd|even)\">(.*)</tr>";
+  QRegularExpression re(blockToSearch);
+  QStringList votedPackages;
+
+  QStringList rows = res.split(QRegularExpression("<tr class=\"(even|odd)\">"));
+  foreach(QString row, rows)
+  {
+    if (row.contains("<td>Yes</td>"))
+    {
+      QRegularExpression re(packageToSearch);
+      QRegularExpressionMatch rem;
+
+      if (row.contains(re, &rem))
+      {
+        QString votedPackage = rem.captured("pkgName");
+        votedPackages << votedPackage;
+      }
+    }
+  }
+
+  return votedPackages;
+}

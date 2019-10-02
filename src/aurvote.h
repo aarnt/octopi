@@ -48,6 +48,8 @@ public:
   void voteForPkg(const QString &pkgName);
   void unvoteForPkg(const QString &pkgName);
 
+  QStringList getVotedPackages();
+
   void setUserName(const QString &userName);
   void setPassword(const QString &password);
 };
