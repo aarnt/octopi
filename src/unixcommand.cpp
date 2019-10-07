@@ -1242,7 +1242,8 @@ LinuxDistro UnixCommand::getLinuxDistro()
       {
         ret = ectn_ARCHBANGLINUX;
       }
-      else if (contents.contains(QRegularExpression("Arch Linux")))
+      else if (contents.contains(QRegularExpression("Arch Linux")) ||
+               (contents.contains(QRegularExpression("arcolinux"))))
       {
         ret = ectn_ARCHLINUX;
       }
