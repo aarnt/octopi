@@ -1892,10 +1892,15 @@ void MainWindow::pacmanProcessFinished(int exitCode, QProcess::ExitStatus exitSt
         }
       }
     }
+    else if (pkgs.count()==0)
+    {
+      writeToTabOutput(StrConstants::getNoUpdatesAvailable() + "<br>");
+    }
   }
 
   //mate-terminal is returning code 255 sometimes...
-  if ((exitCode == 0 || exitCode == 255) && exitStatus == QProcess::NormalExit)
+  if ((exitCode == 0 || exitCode == 255 ||
+       (exitCode == 1 && m_commandExecuting == ectn_CHECK_UPDATES)) && exitStatus == QProcess::NormalExit)
   {
     //First, we empty the tabs cache!
     m_cachedPackageInInfo = "";

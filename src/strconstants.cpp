@@ -469,6 +469,11 @@ QString StrConstants::getCheckingForUpdates()
   return QObject::tr("Checking for updates...");
 }
 
+QString StrConstants::getNoUpdatesAvailable()
+{
+  return QObject::tr("No updates available");
+}
+
 QString StrConstants::getSyncMirror(){
   return "Mirror-check...";
 }

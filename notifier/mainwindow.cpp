@@ -583,7 +583,7 @@ void MainWindow::afterCheckUpdates(int exitCode, QProcess::ExitStatus)
     qDebug() << "At afterCheckUpdates()...";
   toggleEnableInterface(true);
 
-  if (exitCode != 0) return;
+  if (exitCode > 1) return;
 
   SettingsManager::setLastCheckUpdatesTime(QDateTime::currentDateTime());
 

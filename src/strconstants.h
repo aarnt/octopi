@@ -117,6 +117,7 @@ public:
   static QString getPressAnyKey();
   static QString getCheckUpdates();
   static QString getCheckingForUpdates();
+  static QString getNoUpdatesAvailable();
   static QString getSyncMirror();
   static QString getSyncDatabase();
   static QString getSyncDatabases();
