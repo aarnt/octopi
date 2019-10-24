@@ -785,12 +785,14 @@ void OptionsDialog::onAURConnect()
   if(logged)
   {
     //Connection was ok. Let's ask user if he wants to help Octopi project by voting for it
+    bool octopiDevVoted=false;
     bool octopiVoted=false;
     bool alpmUtilsVoted=false;
+    if (v.isPkgVoted("octopi-dev")==0) octopiDevVoted=true;
     if (v.isPkgVoted("octopi")==0) octopiVoted=true;
     if (v.isPkgVoted("alpm_octopi_utils")==0) alpmUtilsVoted=true;
 
-    if (octopiVoted && alpmUtilsVoted)
+    if (octopiDevVoted && octopiVoted && alpmUtilsVoted)
     {
       QMessageBox::information(this, StrConstants::getInformation(), StrConstants::getAURConnectionIsOK());
     }
@@ -804,6 +806,7 @@ void OptionsDialog::onAURConnect()
       if (r == QMessageBox::Yes)
       {
         //User opted to help the project, so let's vote for the packages
+        if (!octopiDevVoted) v.voteForPkg("octopi-dev");
         if (!octopiVoted) v.voteForPkg("octopi");
         if (!alpmUtilsVoted) v.voteForPkg("alpm_octopi_utils");
 
