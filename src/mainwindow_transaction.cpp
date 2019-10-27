@@ -1455,7 +1455,7 @@ void MainWindow::onAURVotingChanged()
 {
   if(SettingsManager::getEnableAURVoting())
   {
-    delete m_aurVote;
+    if (m_aurVote!=nullptr) delete m_aurVote;
     m_aurVote = new AurVote(this);
     m_aurVote->setUserName(SettingsManager::getAURUserName());
     m_aurVote->setPassword(SettingsManager::getAURPassword());

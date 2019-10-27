@@ -316,10 +316,10 @@ void MainWindow::keyPressEvent(QKeyEvent* ke)
   {
     doSysInfo();
   }
-  /*else if(ke->key() == Qt::Key_T && ke->modifiers() == (Qt::ShiftModifier|Qt::ControlModifier))
+  else if(ke->key() == Qt::Key_A && ke->modifiers() == (Qt::ShiftModifier|Qt::ControlModifier))
   {
-    UnixCommand::installTempYayHelper();
-  }*/
+    outputAURVotedPackageList();
+  }
 
   else ke->ignore();
 }

@@ -31,6 +31,7 @@
 #include "globals.h"
 #include <iostream>
 #include <cassert>
+#include "aurvote.h"
 
 #include <QTimer>
 #include <QLabel>
@@ -892,8 +893,16 @@ void MainWindow::buildPackageList()
   if (firstTime)
   {
     m_initializationCompleted = true;        
-    //if (m_actionSwitchToAURTool->isVisible()) m_actionSwitchToAURTool->setEnabled(true);
     firstTime = false;
+
+    if(SettingsManager::getEnableAURVoting())
+    {
+      m_aurVote = new AurVote(this);
+      m_aurVote->setUserName(SettingsManager::getAURUserName());
+      m_aurVote->setPassword(SettingsManager::getAURPassword());
+      m_aurVote->login();
+    }
+
     if (m_outdatedStringList->count() > 0)
     {
       if(m_debugInfo)

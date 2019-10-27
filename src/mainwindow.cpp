@@ -112,14 +112,7 @@ MainWindow::MainWindow(QWidget *parent) :
           SIGNAL(directoryChanged(QString)), this, SLOT(onPacmanDatabaseChanged()));
 
   setAcceptDrops(true);
-
-  if(SettingsManager::getEnableAURVoting())
-  {
-    m_aurVote = new AurVote(this);
-    m_aurVote->setUserName(SettingsManager::getAURUserName());
-    m_aurVote->setPassword(SettingsManager::getAURPassword());
-    m_aurVote->login();
-  }
+  m_aurVote=nullptr;
 }
 
 /*
@@ -585,6 +578,43 @@ void MainWindow::outputOutdatedPackageList()
 }
 
 /*
+ * Prints the list of voted AUR packages to the Output tab.
+ */
+void MainWindow::outputAURVotedPackageList()
+{
+  if (m_aurVote!=nullptr)
+  {
+    clearTabOutput();
+    QString html = "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">";
+    QString anchorBegin = "anchorBegin";
+    html += "<a id=\"" + anchorBegin + "\"></a>";
+    html += "<h3>" + StrConstants::getAURVotedPackageList() + "</h3>";
+    writeToTabOutput(html);
+    ui->twProperties->setCurrentIndex(ctn_TABINDEX_OUTPUT);
+
+    QStringList v=m_aurVote->getVotedPackages();
+    v.sort();
+    QString list="<ul>";
+    foreach(QString vote, v)
+    {
+      list += "<li>" + vote + "</li>";
+    }
+
+    list += "</ul>";
+
+    writeToTabOutput(list);
+
+    QTextBrowser *text =
+        ui->twProperties->widget(ctn_TABINDEX_OUTPUT)->findChild<QTextBrowser*>("textBrowser");
+
+    if (text)
+    {
+      text->scrollToAnchor(anchorBegin);
+    }
+  }
+}
+
+/*
  * Prints the list of outdated AUR packages to the Output tab.
  */
 void MainWindow::outputOutdatedAURPackageList()
@@ -1030,7 +1060,7 @@ void MainWindow::execContextMenuPackages(QPoint point)
         ui->actionInstallAUR->setText(StrConstants::getInstall());
       }
 
-      if (selectedRows.count() == 1 && SettingsManager::getEnableAURVoting())
+      if (selectedRows.count() == 1 && m_aurVote != nullptr)
       {
         if (m_aurVote->isPkgVoted(aurPkg) == 0)
           menu->addAction(m_actionAURUnvote);

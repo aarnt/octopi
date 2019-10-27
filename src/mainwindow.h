@@ -459,6 +459,7 @@ private slots:
   void maximizePropertiesTabWidget();
   void maxDemaxPropertiesTabWidget(bool pSaveSettings = true);
   void outputOutdatedPackageList();
+  void outputAURVotedPackageList();
   void outputOutdatedAURPackageList();
 
   void onTabNewsSourceChanged(QUrl newSource);

@@ -38,6 +38,11 @@ AurVote::AurVote(QObject *parent) : QObject(parent),
   m_networkManager = new QNetworkAccessManager(this);
 }
 
+AurVote::~AurVote()
+{
+
+}
+
 void AurVote::setUserName(const QString &userName)
 {
   m_userName = userName;

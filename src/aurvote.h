@@ -41,13 +41,13 @@ private:
 
 public:
   explicit AurVote(QObject *parent = nullptr);
+  virtual ~AurVote();
 
   bool login();
   bool isLoggedIn();
   int isPkgVoted(const QString &pkgName);
   void voteForPkg(const QString &pkgName);
   void unvoteForPkg(const QString &pkgName);
-
   QStringList getVotedPackages();
 
   void setUserName(const QString &userName);

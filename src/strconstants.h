@@ -75,6 +75,7 @@ public:
   static QString getVotesHeader();
   static QString getVotes();
   static QString getVote();
+  static QString getAURVotedPackageList();
   static QString getUnvote();
   static QString getDownloadSize();
   static QString getInstalledSize();

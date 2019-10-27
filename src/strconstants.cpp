@@ -296,6 +296,11 @@ QString StrConstants::getVote()
   return QObject::tr("Vote");
 }
 
+QString StrConstants::getAURVotedPackageList()
+{
+  return QObject::tr("AUR voted package list");
+}
+
 QString StrConstants::getUnvote()
 {
   return QObject::tr("Unvote");
