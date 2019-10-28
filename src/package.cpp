@@ -1719,8 +1719,15 @@ double Package::getDownloadSizeDescription(const QString &pkgName)
  */
 QString Package::getInformationDescription(const QString &pkgName, bool foreignPackage)
 {
-  QString pkgInfo = UnixCommand::getPackageInformation(pkgName, foreignPackage);
-  return getDescription(pkgInfo);
+  if (foreignPackage)
+  {
+    return UnixCommand::getExpacInfo(pkgName, "d");
+  }
+  else
+  {
+    QString pkgInfo = UnixCommand::getPackageInformation(pkgName, foreignPackage);
+    return getDescription(pkgInfo);
+  }
 }
 
 /*

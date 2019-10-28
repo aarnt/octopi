@@ -290,6 +290,8 @@ void MainWindow::AURToolSelected()
     clearStatusBar();
   }
 
+  m_cachedPackageInInfo="";
+
   //Let's clear the list of visited packages (pkg anchors in Info tab)
   m_listOfVisitedPackages.clear();
   m_indOfVisitedPackage = 0;

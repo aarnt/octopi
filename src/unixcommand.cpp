@@ -426,6 +426,27 @@ QByteArray UnixCommand::getKCPPackageInformation(const QString &pkgName)
 }
 
 /*
+ * Given a package name, returns its description using expac utility
+ */
+QByteArray UnixCommand::getExpacInfo(const QString &pkgName, const QString &info)
+{
+  QByteArray result("");
+  QProcess expac;
+  QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
+  env.insert("LANG", "C");
+  env.insert("LC_MESSAGES", "C");
+  env.insert("LC_ALL", "C");
+  expac.setProcessEnvironment(env);
+  QString expacStr = "expac -s \"%%1\" %2";
+  expac.start(expacStr.arg(info).arg(pkgName));
+  expac.waitForFinished();
+  result = expac.readAllStandardOutput();
+  expac.close();
+
+  return result;
+}
+
+/*
  * Given a package name and if it is default to the official repositories,
  * returns a string containing all of its information fields
  * (ex: name, description, version, dependsOn...)
