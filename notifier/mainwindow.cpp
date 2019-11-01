@@ -951,9 +951,9 @@ void MainWindow::execSystemTrayActivated(QSystemTrayIcon::ActivationReason ar)
   {
   case QSystemTrayIcon::DoubleClick:
   {
-    if (m_outdatedStringList->count() > 0)
+    if (m_numberOfOutdatedPackages > 0)
     {
-      runOctopi(ectn_SYSUPGRADE_EXEC_OPT);
+      doSystemUpgrade(); //runOctopi(ectn_SYSUPGRADE_EXEC_OPT);
     }
     else
     {
@@ -964,13 +964,19 @@ void MainWindow::execSystemTrayActivated(QSystemTrayIcon::ActivationReason ar)
   }
   case QSystemTrayIcon::Trigger:
   {
-    if (UnixCommand::isAppRunning("octopi", true))
+    if (m_numberOfOutdatedPackages > 0)
     {
-      hideOctopi();
+      doSystemUpgrade();
     }
-    else
-    {
-      runOctopi(ectn_NORMAL_EXEC_OPT);
+    else {
+      if (UnixCommand::isAppRunning("octopi", true))
+      {
+        hideOctopi();
+      }
+      else
+      {
+        runOctopi(ectn_NORMAL_EXEC_OPT);
+      }
     }
 
     break;
