@@ -31,6 +31,12 @@
 
 int main(int argc, char *argv[])
 {
+  if (!QFile::exists(ctn_EXPAC_BINARY))
+  {
+    qDebug() << "Aborting octopi as 'expac' binary could not be found! [" << ctn_EXPAC_BINARY << "]";
+    return (-1);
+  }
+
   if (!QFile::exists(ctn_CHECKUPDATES_BINARY))
   {
     qDebug() << "Aborting octopi as 'checkupdates' binary could not be found! [" << ctn_CHECKUPDATES_BINARY << "]";
