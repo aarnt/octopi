@@ -905,6 +905,8 @@ void MainWindow::buildPackageList()
       m_aurVote->login();
     }
 
+    refreshHelpUsageText();
+
     if (m_outdatedStringList->count() > 0)
     {
       if(m_debugInfo)

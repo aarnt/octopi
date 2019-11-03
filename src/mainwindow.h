@@ -468,6 +468,7 @@ private slots:
 
   void onPacmanDatabaseChanged();
   void onHelpUsage();
+  void refreshHelpUsageText();
   void onHelpDonate();
   void onHelpAbout();
   void onPressDelete();

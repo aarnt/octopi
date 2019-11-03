@@ -1111,6 +1111,20 @@ bool UnixCommand::isAppRunning(const QString &appName, bool justOneInstance)
 }
 
 /*
+ * Checks if current user is in "wheel" group
+ */
+bool UnixCommand::isUserInWheelGroup()
+{
+  bool result=false;
+  QProcess groups;
+  groups.start("groups");
+  groups.waitForFinished();
+  if (groups.readAllStandardOutput().contains("wheel"))
+    result=true;
+  return result;
+}
+
+/*
  * Given a 'pkgName' package name, checks if that one is installed in the system
  */
 bool UnixCommand::isPackageInstalled(const QString &pkgName)

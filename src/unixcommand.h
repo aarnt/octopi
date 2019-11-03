@@ -120,6 +120,8 @@ public:
     return (uid == 0); //Returns TRUE if root is running Octopi
   }
 
+  static bool isUserInWheelGroup();
+
   static QFile* getTemporaryFile(){
     quint32 gen = QRandomGenerator::global()->generate();
     m_temporaryFile = new QFile(ctn_TEMP_ACTIONS_FILE + QString::number(gen));

@@ -132,9 +132,7 @@ void MainWindow::initTabHelpUsage()
 
      tr("Control+shift+key sequences:") +
   QString("<ul>") +
-  //QString("<ul><li>") +
-  //   tr("Ctrl+Shift+C to clean local packages cache (pacman -Sc)") +
-  QString("</li><li>") +
+  QString("<li>") +
      tr("Ctrl+Shift+G to display all package groups") +
   QString("</li><li>") +
      tr("Ctrl+Shift+R to remove Pacman's transaction lock file") +
@@ -169,6 +167,130 @@ void MainWindow::initTabHelpUsage()
   text->show();
   ui->twProperties->setCurrentIndex(tindex);
   text->setFocus();
+}
+
+/*
+ * Refreshes html text displayed on Help/Usage
+ */
+void MainWindow::refreshHelpUsageText()
+{
+  QTextBrowser *text =
+      ui->twProperties->widget(ctn_TABINDEX_HELPUSAGE)->findChild<QTextBrowser*>("textBrowser");
+
+  if (!text) return;
+
+  QString strVote;
+  if(m_aurVote != nullptr)
+  {
+    strVote="<li>" +
+       tr("Ctrl+Shift+A to display AUR voted package list") + "</li>";
+  }
+  else strVote = "<li></li>";
+
+  QString iconPath = "<img height=\"16\" width=\"16\" src=\":/resources/images/";
+  QString strForMoreInfo = tr("For more information, visit:");
+  QString html =
+    QString("<h2>Octopi</h2>") +
+    QString("<h3><p>") + tr("A Qt-based Pacman frontend,") + " " +
+    tr("licensed under the terms of") + " ";
+
+    html +=
+        QString("<a href=\"http://www.gnu.org/licenses/gpl-2.0.html\">GPL v2</a>.</p></h3>") +
+      QString("<h4><p>") + strForMoreInfo + " " +
+      QString("<a href=\"http://octopiproject.wordpress.com\">http://octopiproject.wordpress.com</a>.</p></h4><br>");
+    html += tr("Package classification:") +
+
+  QString("<ul type=\"square\"><li>") + iconPath + "installed.png\"/> " +
+     tr("An installed package") + QString("</li>") +
+  QString("<li>") + iconPath + "unrequired.png\"/> " +
+     tr("An installed package (not required by others)") +
+  QString("</li>") +
+  QString("<li>" + iconPath + "foreign_green.png\"/> ") +
+     tr("A foreign package, installed from") + " " + StrConstants::getForeignRepositoryName() +
+  QString("</li>") +
+  QString("<li>") + iconPath + "noninstalled.png\"/> " +
+     tr("A non installed package") +
+  QString("</li>") +
+  QString("<li>") + iconPath + "outdated.png\"/> " +
+     tr("An outdated package") +
+  QString("</li>") +
+  QString("<li>") + iconPath + "foreign_red.png\"/> " +
+     tr("An outdated foreign package") +
+  QString("</li>") +
+  QString("<li>") + iconPath + "newer.png\"/> " +
+           tr("A newer than repository package") +
+  QString("</li></ul>") +
+
+     tr("Basic usage help:") +
+  QString("<ul><li>") +
+     tr("Position the mouse over a package to see its description") +
+  QString("</li><li>") +
+     tr("Double click an installed package to see its contents") +
+  QString("</li><li>") +
+     tr("Right click package to install/reinstall or remove it") +
+  QString("</li></ul>") +
+
+     tr("Alt+key sequences:") +
+  QString("<ul><li>") +
+     tr("Alt+1 to switch to 'Info' tab") +
+  QString("</li><li>") +
+     tr("Alt+2 to switch to 'Files' tab") +
+  QString("</li><li>") +
+     tr("Alt+3 to switch to 'Actions' tab") +
+  QString("</li><li>") +
+     tr("Alt+4 to switch to 'Output' tab") +
+  QString("</li><li>") +
+     tr("Alt+5 to switch to 'News' tab") +
+  QString("</li><li>") +
+     tr("Alt+6 or 'F1' to show this help page") +
+  QString("</li><li>") +
+     tr("Alt+7 to switch to 'Terminal' tab") +
+  QString("</li></ul>") +
+
+     tr("Control+key sequences:") +
+  QString("<ul><li>") +
+     tr("Ctrl+U or 'File/Check updates' to check mirror for latest updates (checkupdates)") +
+  QString("</li><li>") +
+     tr("Ctrl+P or 'File/System upgrade' to make a full system upgrade (pacman -Su)") +
+  QString("</li><li>") +
+     tr("Ctrl+L to find a package in the package list") +
+  QString("</li><li>") +
+     tr("Ctrl+F to search for text inside tab Files, News and Usage") +
+  QString("</li><li>") +
+     tr("Ctrl+Y or 'Actions/Apply' to start installation/removal of selected packages") +
+  QString("</li><li>") +
+     tr("Ctrl+E or 'Actions/Cancel' to clear the selection of to be removed/installed packages") +
+  QString("</li><li>") +
+     tr("Ctrl+G or 'File/Get latest distro news' to retrieve the latest RSS based distro news") +
+  QString("</li><li>") +
+     tr("Ctrl+Q or 'File/Exit' to exit the application") +
+  QString("</li></ul>") +
+
+     tr("Control+shift+key sequences:") +
+  QString("<ul>") +
+  strVote +
+  QString("<li>") +
+     tr("Ctrl+Shift+G to display all package groups") +
+  QString("</li><li>") +
+     tr("Ctrl+Shift+R to remove Pacman's transaction lock file") +
+  QString("</li><li>") +
+     tr("Ctrl+Shift+Y to display %1 group").arg(StrConstants::getForeignRepositoryGroupName()) +
+  QString("</li></ul>") +
+
+     tr("F+key sequences:") +
+  QString("<ul><li>") +
+     tr("F1 to show this help page") +
+  QString("</li><li>") +
+     tr("F4 to open a Terminal whitin the selected directory at Files tab") +
+  QString("</li><li>") +
+     tr("F6 to open a File Manager whitin the selected directory at Files tab") +
+  QString("</li><li>") +
+     tr("F10 to maximize/demaximize package list view") +
+  QString("</li><li>") +
+     tr("F11 to maximize/demaximize Tab's view") +
+  QString("</li></ul>");
+
+  text->setText(html);
 }
 
 /*
