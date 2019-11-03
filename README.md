@@ -53,8 +53,8 @@ $ /usr/lib/octopi/octopi-sudo -setnopasswd
 ### How to enable AUR support (that "alien" icon at toolbar)
 
 To enable AUR support, you'll need to install [yaourt](https://archlinux.fr/yaourt-en), 
-[pacaur](https://github.com/rmarquis/pacaur), [pikaur](https://github.com/actionless/pikaur) or 
-[trizen](https://github.com/trizen/trizen) in your system.
+[pacaur](https://github.com/rmarquis/pacaur), [pikaur](https://github.com/actionless/pikaur), 
+[trizen](https://github.com/trizen/trizen) or [yay](https://github.com/Jguer/yay) in your system.
 In Chakra, [chaser](https://github.com/ccr-tools/chaser) will be supported out of the box.
 In KaOS, [kcp](https://github.com/bvaudour/kcp) will be supported out of the box.
 
