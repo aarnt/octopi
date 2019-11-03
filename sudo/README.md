@@ -9,5 +9,5 @@ To use Octopi without a password your user need to be member of "wheel" group an
 following command as root (just one time):
 
 ```
-$ \usr\lib\octopi\octopi-sudo -setnopasswd
+$ /usr/lib/octopi/octopi-sudo -setnopasswd
 ```
