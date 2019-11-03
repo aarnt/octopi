@@ -467,7 +467,6 @@ private slots:
   void postRefreshDistroNews();
 
   void onPacmanDatabaseChanged();
-  void onOptions();
   void onHelpUsage();
   void onHelpDonate();
   void onHelpAbout();
@@ -499,6 +498,7 @@ public slots:
   void doSystemUpgrade(SystemUpgradeOptions sysUpgradeOption = ectn_NO_OPT);
   void doAURUpgrade();
   void doInstallLocalPackages();
+  void onOptions();
 
 public:
   explicit MainWindow(QWidget *parent = 0);

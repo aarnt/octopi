@@ -533,8 +533,8 @@ void PacmanExec::prepareTextToPrint(QString str, TreatString ts, TreatURLLinks t
         str.indexOf("Enter a selection", Qt::CaseInsensitive) == 0 ||
         str.indexOf("Proceed with", Qt::CaseInsensitive) == 0 ||
         str.indexOf("%") != -1 ||
-        str.indexOf("[") != -1 ||
-        str.indexOf("]") != -1 ||
+        //str.indexOf("[") != -1 ||
+        //str.indexOf("]") != -1 ||
         str.indexOf("---") != -1)
     {
       return;

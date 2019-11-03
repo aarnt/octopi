@@ -349,6 +349,19 @@ void QtSingleApplication::activateWindow(const QString &message)
         actWin->show();
     }
   }
+  else if (actWin && message == "OPTIONS") {
+    if (actWin->isHidden()){
+      actWin->setWindowState(actWin->windowState() & ~Qt::WindowMinimized);
+      actWin->raise();
+      if (actWin->isHidden())
+        actWin->show();
+    }
+    MainWindow *mw = qobject_cast<MainWindow *>(actWin);
+    if (mw)
+    {
+      mw->onOptions();
+    }
+  }
   else if (actWin && ((message == "AURUPGRADE") || (message == "SYSUPGRADE") ||
                       (message == "SYSUPGRADE_NOCONFIRM")))
   {

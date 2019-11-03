@@ -1077,7 +1077,11 @@ void MainWindow::runOctopi(ExecOpt execOptions)
  */
 void MainWindow::showOptionsDialog()
 {
-  if (m_optionsDialog == nullptr)
+  if (UnixCommand::isAppRunning("octopi", true))
+  {
+    QProcess::startDetached("octopi -options");
+  }
+  else if (m_optionsDialog == nullptr)
   {
     m_optionsDialog = new OptionsDialog(this);
     connect(m_optionsDialog, SIGNAL(AURToolChanged()), this, SLOT(refreshAppIcon()));

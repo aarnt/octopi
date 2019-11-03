@@ -88,6 +88,10 @@ int main(int argc, char *argv[])
     {
       app.sendMessage("HIDE");
     }
+    else if (argList->getSwitch("-options"))
+    {
+      app.sendMessage("OPTIONS");
+    }
     else if (argList->getSwitch("-show"))
     {
       app.sendMessage("SHOW");
