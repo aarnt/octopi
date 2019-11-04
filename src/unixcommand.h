@@ -154,8 +154,6 @@ public:
   static QByteArray getCommandOutput(const QString &pCommand);
   static QByteArray getCommandOutput(const QString &pCommand, const QString &fileName);
 
-  static void installTempPacaurHelper();
-  //static bool installTempYayHelper();
   static QStringList getAvailableAURTools();
 
   void executeCommand(const QString &pCommand, Language lang=ectn_LANG_ENGLISH);

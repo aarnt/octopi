@@ -808,36 +808,6 @@ QByteArray UnixCommand::getCommandOutput(const QString &pCommand, const QString 
 }
 
 /*
- * Gets a temporary bash AUR helper to install one of the supported AUR helpers!
- */
-void UnixCommand::installTempPacaurHelper()
-{
-  QString url = "https://github.com/E5ten/pacaur/archive/4.8.6.tar.gz";
-  QString curl = "curl -L %1 --output %2";
-  QString pacaurFile = "pacaur-4.8.6/pacaur";
-  QString tar = "tar xzf %1 -C %2 %3";
-  QString ln = "ln -s %1 %2";
-  QString octopiConfDir = QDir::homePath() + QDir::separator() + ".config/octopi";
-  curl=curl.arg(url).arg(octopiConfDir + QDir::separator() + "pacaur.tar.gz");
-
-  QProcess p;
-  //First we download latest version of Pacaur
-  p.execute(curl);
-
-  //Then we extract bash script from tarball
-  //tar xzf ~/.config/octopi/pacaur.tar.gz -C ~/.config/octopi pacaur-4.8.6/pacaur
-  tar = tar.arg(octopiConfDir + QDir::separator() + "pacaur.tar.gz").arg(octopiConfDir).arg(pacaurFile);
-  p.execute(tar);
-
-  //Now we must symlink pacaur file to octopiConfDir/pacaur
-  ln = ln.arg(octopiConfDir + QDir::separator() + pacaurFile).arg(octopiConfDir + QDir::separator() + "pacaur");
-  p.execute(ln);
-
-  //Remove tarball
-  QFile::remove(octopiConfDir + QDir::separator() + "pacaur.tar.gz");
-}
-
-/*
  * Returns a list of the available AUR tools installed in the system
  */
 QStringList UnixCommand::getAvailableAURTools()
