@@ -99,10 +99,22 @@ QString OctopiTabInfo::formatTabInfo(const PackageRepository::PackageData& packa
   {
     if (package.status != ectn_NEWER)
     {
-      //if (package.repository != StrConstants::getForeignRepositoryName())
+      if (package.status == ectn_OUTDATED)
       {
         QString outdatedVersion = package.outdatedVersion;
         html += "<tr><td>" + version + "</td><td>" + package.version + " <b><font color=\"#E55451\">"
+            + StrConstants::getOutdatedInstalledVersion().arg(outdatedVersion) +
+            "</b></font></td></tr>";
+      }
+      else if (package.status == ectn_FOREIGN_OUTDATED && //NEW ELSE
+          outdatedAURPackagesNameVersion.count() > 0)
+      {
+        QString outdatedVersion = package.outdatedVersion;
+        if (outdatedVersion.isEmpty()) outdatedVersion = package.version;
+        QString availableVersion = outdatedAURPackagesNameVersion.value(package.name);
+        if (availableVersion.isEmpty()) availableVersion = package.version;
+
+        html += "<tr><td>" + version + "</td><td>" + availableVersion + " <b><font color=\"#E55451\">"
             + StrConstants::getOutdatedInstalledVersion().arg(outdatedVersion) +
             "</b></font></td></tr>";
       }
@@ -115,7 +127,7 @@ QString OctopiTabInfo::formatTabInfo(const PackageRepository::PackageData& packa
           "</b></font></td></tr>";
     }
   }
-  else
+  else //Is this Else needed?
   {
     if (package.repository != StrConstants::getForeignRepositoryName())
     {

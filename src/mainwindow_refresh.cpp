@@ -777,6 +777,12 @@ void MainWindow::buildPackageList()
 
   CPUIntensiveComputing cic;
   static bool firstTime = true;
+  bool searchOutdatedPackages=SettingsManager::getSearchOutdatedAURPackages();
+  if (!searchOutdatedPackages)
+  {
+    m_outdatedAURStringList->clear();
+    m_outdatedAURPackagesNameVersion->clear();
+  }
 
   if(m_refreshPackageLists) //If it's not the starting of the app...
   {
@@ -940,7 +946,7 @@ void MainWindow::buildPackageList()
   m_refreshPackageLists = true;
   m_refreshForeignPackageList = true;
 
-  if (SettingsManager::getSearchOutdatedAURPackages()) m_outdatedAURTimer->start();
+  if (searchOutdatedPackages) m_outdatedAURTimer->start();
   else
   {
     if (m_hasAURTool && !m_actionSwitchToAURTool->isEnabled()) m_actionSwitchToAURTool->setEnabled(true);
