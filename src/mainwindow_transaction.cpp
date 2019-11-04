@@ -1425,10 +1425,15 @@ void MainWindow::onAURToolChanged()
   if (SettingsManager::getAURToolName() == ctn_NO_AUR_TOOL)
   {
     m_hasAURTool = false;
-    m_actionSwitchToAURTool->setVisible(false);
+    //m_actionSwitchToAURTool->setVisible(false);
     m_refreshForeignPackageList = false;
     m_outdatedAURPackagesNameVersion->clear();
     m_outdatedAURStringList->clear();
+
+    m_actionSwitchToAURTool->setText("");
+    m_actionSwitchToAURTool->setToolTip("");
+    m_actionSwitchToAURTool->setCheckable(false);
+    m_actionSwitchToAURTool->setChecked(false);
   }
   else //We are using pacaur/yaourt tool
   {
@@ -1436,7 +1441,8 @@ void MainWindow::onAURToolChanged()
 
     if (!isAURGroupSelected())
     {
-      m_actionSwitchToAURTool->setVisible(true);
+      //m_actionSwitchToAURTool->setVisible(true);
+      m_actionSwitchToAURTool->setCheckable(true);
       m_actionSwitchToAURTool->setEnabled(false);
     }
 
