@@ -1445,6 +1445,7 @@ void MainWindow::onAURToolChanged()
     m_refreshForeignPackageList = true;
   }
 
+  refreshHelpUsageText();
   metaBuildPackageList();
 }
 

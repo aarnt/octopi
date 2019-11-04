@@ -849,7 +849,6 @@ void MainWindow::buildPackageList()
   counter = list->count();
   m_progressWidget->setValue(counter);
   m_progressWidget->close();
-  qApp->processEvents();
 
   m_packageRepo.setData(list, *m_unrequiredPackageList);
 

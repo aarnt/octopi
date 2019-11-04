@@ -1039,6 +1039,7 @@ void MainWindow::execContextMenuPackages(QPoint point)
     {
       QString aurPkg;
       bool allInstalled=false;
+      int numOutdated=0;
       foreach(QModelIndex item, selectedRows)
       {
         const PackageRepository::PackageData*const package = m_packageModel->getData(item);
@@ -1046,12 +1047,20 @@ void MainWindow::execContextMenuPackages(QPoint point)
 
         if (package->installed() || package->outdated())
         {
+          if (package->outdated()) ++numOutdated;
           allInstalled = true;
         }
-        else allInstalled = false;
+        else
+        {
+          allInstalled = false;
+        }
       }
 
-      if (allInstalled)
+      if (allInstalled && (numOutdated==numberOfSelPkgs))
+      {
+        ui->actionInstallAUR->setText(StrConstants::getUpdate());
+      }
+      else if (allInstalled)
       {
         ui->actionInstallAUR->setText(StrConstants::getReinstall());
       }

@@ -320,6 +320,18 @@ void MainWindow::keyPressEvent(QKeyEvent* ke)
   {
     outputAURVotedPackageList();
   }
+  else if(ke->key() == Qt::Key_O && ke->modifiers() == (Qt::ShiftModifier|Qt::ControlModifier))
+  {
+    if(m_hasAURTool && !SettingsManager::getSearchOutdatedAURPackages() && !isAURGroupSelected())
+    {
+      m_outdatedAURTimer->start();
+
+      QFuture<AUROutdatedPackages *> f;
+      f = QtConcurrent::run(getOutdatedAURPackages);
+      g_fwOutdatedAURPackages.setFuture(f);
+      connect(&g_fwOutdatedAURPackages, SIGNAL(finished()), this, SLOT(showToolButtonAUR()));
+    }
+  }
 
   else ke->ignore();
 }

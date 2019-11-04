@@ -78,13 +78,21 @@ QString MainWindow::generateHelpUsageHtmlText()
       "<br>" + tr("and you must run the following command as root:") +
       "<ul><li>/usr/lib/octopi/octopi-sudo -setnopasswd</li></ul><br>";
 
+  QString strOutdatedAur;
+  if(m_hasAURTool && !SettingsManager::getSearchOutdatedAURPackages())
+  {
+    strOutdatedAur="<li>" +
+        tr("Ctrl+Shift+O to display outdated AUR packages") + "</li>";
+  }
+  else strOutdatedAur="<li></li>";
+
   QString strVote;
   if(m_aurVote != nullptr)
   {
     strVote="<li>" +
        tr("Ctrl+Shift+A to display AUR voted package list") + "</li>";
   }
-  else strVote = "<li></li>";
+  else strVote="<li></li>";
 
   QString iconPath = "<img height=\"16\" width=\"16\" src=\":/resources/images/";
   QString strForMoreInfo = tr("For more information, visit:");
@@ -170,7 +178,8 @@ QString MainWindow::generateHelpUsageHtmlText()
   strVote +
   QString("<li>") +
      tr("Ctrl+Shift+G to display all package groups") +
-  QString("</li><li>") +
+  QString("</li>") +
+     strOutdatedAur + "<li>" +
      tr("Ctrl+Shift+R to remove Pacman's transaction lock file") +
   QString("</li><li>") +
      tr("Ctrl+Shift+Y to display %1 group").arg(StrConstants::getForeignRepositoryGroupName()) +
@@ -199,7 +208,6 @@ void MainWindow::refreshHelpUsageText()
 {
   QTextBrowser *text =
       ui->twProperties->widget(ctn_TABINDEX_HELPUSAGE)->findChild<QTextBrowser*>("textBrowser");
-
   if (!text) return;
 
   text->setText(generateHelpUsageHtmlText());

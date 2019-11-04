@@ -64,7 +64,7 @@ public:
     }
 
     inline bool outdated() const {
-      return status == ectn_OUTDATED || status == ectn_NEWER;
+      return status == ectn_OUTDATED || status == ectn_NEWER || status == ectn_FOREIGN_OUTDATED;
     }
 
   public:
