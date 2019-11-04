@@ -468,6 +468,7 @@ private slots:
 
   void onPacmanDatabaseChanged();
   void onHelpUsage();
+  QString generateHelpUsageHtmlText();
   void refreshHelpUsageText();
   void onHelpDonate();
   void onHelpAbout();
