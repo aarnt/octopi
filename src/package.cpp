@@ -919,6 +919,8 @@ QList<PackageListData> * Package::getAURPackageList(const QString& searchString)
       {
         int i = packageTuple.indexOf(": ");
         pkgOutVersion = packageTuple.mid(i+2);
+        pkgOutVersion = pkgOutVersion.remove("(");
+        pkgOutVersion = pkgOutVersion.remove(")");
         pkgOutVersion = pkgOutVersion.remove(QRegularExpression("\\].*")).trimmed();
 
         //Compare actual and new version
@@ -1077,6 +1079,8 @@ QList<PackageListData> *Package::getYayPackageList(const QStringList &packageTup
 
         int i = packageTuple.indexOf("(Installed:");
         pkgOutVersion = packageTuple.mid(i+11);
+        pkgOutVersion = pkgOutVersion.remove("(");
+        pkgOutVersion = pkgOutVersion.remove(")");
         pkgOutVersion = pkgOutVersion.remove(QRegularExpression("\\].*")).trimmed();
       }
       else
