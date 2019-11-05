@@ -229,6 +229,7 @@ void MainWindow::AURToolSelected()
   //Here we are changing view to list AUR packages ONLY
   if (m_actionSwitchToAURTool->isChecked())
   {
+    ui->tvPackages->setModel(&emptyModel);
     ui->twProperties->setTabEnabled(ctn_TABINDEX_ACTIONS, false);
 
     if ((UnixCommand::getLinuxDistro() != ectn_KAOS && ui->actionUseInstantSearch->isChecked()) ||
@@ -1123,6 +1124,12 @@ void MainWindow::buildAURPackageList()
   }
 
   m_packageRepo.setAURData(list, *unrequiredPackageList);
+  if (ui->tvPackages->model() != m_packageModel.get())
+  {
+    ui->tvPackages->setModel(m_packageModel.get());
+    initPackageTreeView();
+    ui->tvPackages->setColumnHidden(PackageModel::ctn_PACKAGE_REPOSITORY_COLUMN, true);
+  }
 
   m_packageModel->applyFilter(m_selectedViewOption, m_selectedRepository, StrConstants::getForeignToolGroup());
   m_packageModel->applyFilter(PackageModel::ctn_PACKAGE_DESCRIPTION_FILTER_NO_COLUMN);
