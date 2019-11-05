@@ -2116,14 +2116,30 @@ void MainWindow::onPressAnyKeyToContinue()
 {
   if (m_commandExecuting == ectn_NONE) return;
 
-  if (m_commandExecuting == ectn_INSTALL_YAY && UnixCommand::hasTheExecutable("yay")) //m_tempYayInstalledYay)
+  if (m_commandExecuting == ectn_INSTALL_YAY) //m_tempYayInstalledYay)
   {
     //m_tempYayInstalledYay = false;
-    SettingsManager::setAURTool(ctn_YAY_TOOL);
-    m_actionSwitchToAURTool->setToolTip(StrConstants::getUseAURTool());
-    m_actionSwitchToAURTool->setToolTip(m_actionSwitchToAURTool->toolTip() + "  (Ctrl+Shift+Y)");
-    m_actionSwitchToAURTool->setCheckable(true);
-    m_actionSwitchToAURTool->setChecked(false);
+    QString octopiConfDir = QDir::homePath() + QDir::separator() + ".config/octopi";
+    QString yaySymlink = octopiConfDir + QDir::separator() + "yay";
+    QFileInfo info(yaySymlink);
+    if (info.isSymLink())
+    {
+      QFileInfo fi(info.symLinkTarget());
+      QFile::remove(yaySymlink);
+      QProcess remove;
+      remove.start("rm -Rf " + fi.canonicalPath());
+      remove.waitForFinished();
+    }
+
+    if (UnixCommand::hasTheExecutable("yay"))
+    {
+      refreshHelpUsageText();
+      SettingsManager::setAURTool(ctn_YAY_TOOL);
+      m_actionSwitchToAURTool->setToolTip(StrConstants::getUseAURTool());
+      m_actionSwitchToAURTool->setToolTip(m_actionSwitchToAURTool->toolTip() + "  (Ctrl+Shift+Y)");
+      m_actionSwitchToAURTool->setCheckable(true);
+      m_actionSwitchToAURTool->setChecked(false);
+    }
   }
 
   m_progressWidget->setValue(0);
