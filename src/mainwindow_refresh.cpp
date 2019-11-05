@@ -211,6 +211,11 @@ void MainWindow::AURToolSelected()
 
     return;
   }
+  else if (m_actionSwitchToAURTool->toolTip().isEmpty() && UnixCommand::getAvailableAURTools().count() >1)
+  {
+    onOptions(ectn_TAB_AUR);
+    return;
+  }
 
   bool lightPackageFilterConnected = false;
   static QStandardItemModel emptyModel;
@@ -1775,6 +1780,7 @@ void MainWindow::reapplyPackageFilter()
   {
     bool isFilterPackageSelected = m_leFilterPackage->hasFocus();
     QString search = Package::parseSearchString(m_leFilterPackage->text());
+    //QString search = m_leFilterPackage->text();
     m_packageModel->applyFilter(search);
     int numPkgs = m_packageModel->getPackageCount();
 

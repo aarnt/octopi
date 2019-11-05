@@ -81,7 +81,7 @@ MainWindow::MainWindow(QWidget *parent) :
   m_numberOfInstalledPackages = 0;
   m_debugInfo = false;
   m_console = nullptr;
-  m_tempYayInstalledYay = false;
+  //m_tempYayInstalledYay = false;
 
   //Let's check if DistroRSSUrl is empty
   if (SettingsManager::isDistroRSSUrlEmpty())
@@ -270,7 +270,7 @@ void MainWindow::onPackageGroupChanged()
 /*
  * Whenever we call Options menu
  */
-void MainWindow::onOptions()
+void MainWindow::onOptions(OptionsDialogTab tabToOpen)
 {
   if (m_commandExecuting != ectn_NONE) return;
 
@@ -283,6 +283,8 @@ void MainWindow::onOptions()
   });
 
   connect(od, SIGNAL(terminalChanged()), this, SLOT(onTerminalChanged()));
+
+  if (tabToOpen==ectn_TAB_AUR) od->gotoAURTab();
 
   od->exec();
   Options::result res = static_cast<unsigned>(od->result());

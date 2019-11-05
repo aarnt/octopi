@@ -1372,8 +1372,8 @@ void MainWindow::doInstallYayPackage()
   QObject::connect(m_pacmanExec, SIGNAL(textToPrintExt(QString)), this, SLOT(outputText(QString)));
   QObject::connect(m_pacmanExec, SIGNAL(commandToExecInQTermWidget(QString)), this, SLOT(onExecCommandInTabTerminal(QString)));
 
-  m_tempYayInstalledYay = true;
-  m_commandExecuting = ectn_RUN_IN_TERMINAL;
+  //m_tempYayInstalledYay = true;
+  m_commandExecuting = ectn_INSTALL_YAY;
   m_pacmanExec->doInstallYayUsingTempYay();
 }
 
@@ -1424,6 +1424,55 @@ void MainWindow::onAURToolChanged()
 {
   if (SettingsManager::getAURToolName() == ctn_NO_AUR_TOOL)
   {
+    if (m_actionSwitchToAURTool->isChecked())
+    {
+      ui->actionUseInstantSearch->setEnabled(true);
+      ui->twProperties->setTabEnabled(ctn_TABINDEX_ACTIONS, true);
+
+      if (ui->actionUseInstantSearch->isChecked())
+      {
+        disconnect(m_leFilterPackage, SIGNAL(textChanged(QString)), this, SLOT(lightPackageFilter()));
+        disconnect(m_leFilterPackage, SIGNAL(textChanged(QString)), this, SLOT(reapplyPackageFilter()));
+        connect(m_leFilterPackage, SIGNAL(textChanged(QString)), this, SLOT(reapplyPackageFilter()));
+      }
+
+      m_packageModel->applyFilter("");
+      static QStandardItemModel emptyModel;
+      ui->tvPackages->setModel(&emptyModel);
+      removePackageTreeViewConnections();
+      //m_actionSwitchToAURTool->setEnabled(false);
+      m_refreshForeignPackageList = true;
+      m_actionMenuRepository->setEnabled(true);
+      ui->twGroups->setEnabled(true);
+      ui->tvPackages->setColumnHidden(PackageModel::ctn_PACKAGE_POPULARITY_COLUMN, true);
+      ui->tvPackages->setColumnHidden(PackageModel::ctn_PACKAGE_REPOSITORY_COLUMN, false);
+
+      if (!SettingsManager::hasPacmanBackend())
+        ui->tvPackages->setColumnHidden(PackageModel::ctn_PACKAGE_SIZE_COLUMN, false);
+
+      clearStatusBar();
+      m_cachedPackageInInfo="";
+
+      //Let's clear the list of visited packages (pkg anchors in Info tab)
+      m_listOfVisitedPackages.clear();
+      m_indOfVisitedPackage = 0;
+
+      switchToViewAllPackages();
+      m_selectedRepository = "";
+      m_actionRepositoryAll->setChecked(true);
+      m_refreshPackageLists = false;
+
+      if (!ui->actionUseInstantSearch->isChecked())
+      {
+        disconnect(m_leFilterPackage, SIGNAL(textChanged(QString)), this, SLOT(lightPackageFilter()));
+        connect(m_leFilterPackage, SIGNAL(textChanged(QString)), this, SLOT(lightPackageFilter()));
+      }
+
+      m_actionSwitchToAURTool->setChecked(false);
+      metaBuildPackageList();
+      refreshInfoAndFileTabs();
+    }
+
     m_hasAURTool = false;
     //m_actionSwitchToAURTool->setVisible(false);
     m_refreshForeignPackageList = false;
@@ -1443,7 +1492,7 @@ void MainWindow::onAURToolChanged()
     {
       //m_actionSwitchToAURTool->setVisible(true);
       m_actionSwitchToAURTool->setCheckable(true);
-      m_actionSwitchToAURTool->setEnabled(false);
+      m_actionSwitchToAURTool->setChecked(false);
     }
 
     m_actionSwitchToAURTool->setText(StrConstants::getUseAURTool());
@@ -2037,6 +2086,21 @@ void MainWindow::pacmanProcessFinished(int exitCode, QProcess::ExitStatus exitSt
 
   refreshMenuTools(); //Maybe some of octopi tools were added/removed...
 
+  if(UnixCommand::getAvailableAURTools().count() > 1 && SettingsManager::getAURToolName() != ctn_NO_AUR_TOOL)
+  {
+    m_actionSwitchToAURTool->setCheckable(true);
+    m_actionSwitchToAURTool->setChecked(false);
+    m_actionSwitchToAURTool->setText(StrConstants::getUseAURTool());
+    m_actionSwitchToAURTool->setToolTip(m_actionSwitchToAURTool->text() + "  (Ctrl+Shift+Y)");
+  }
+  else //It seems the AUR tool has just been removed
+  {
+    m_actionSwitchToAURTool->setText("");
+    m_actionSwitchToAURTool->setToolTip("");
+    m_actionSwitchToAURTool->setCheckable(false);
+    m_actionSwitchToAURTool->setChecked(false);
+  }
+
   delete m_pacmanExec;
   if (m_progressWidget->isVisible()) m_progressWidget->close();
   m_commandExecuting = ectn_NONE;
@@ -2052,9 +2116,9 @@ void MainWindow::onPressAnyKeyToContinue()
 {
   if (m_commandExecuting == ectn_NONE) return;
 
-  if (m_tempYayInstalledYay)
+  if (m_commandExecuting == ectn_INSTALL_YAY && UnixCommand::hasTheExecutable("yay")) //m_tempYayInstalledYay)
   {
-    m_tempYayInstalledYay = false;
+    //m_tempYayInstalledYay = false;
     SettingsManager::setAURTool(ctn_YAY_TOOL);
     m_actionSwitchToAURTool->setToolTip(StrConstants::getUseAURTool());
     m_actionSwitchToAURTool->setToolTip(m_actionSwitchToAURTool->toolTip() + "  (Ctrl+Shift+Y)");

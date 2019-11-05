@@ -97,7 +97,7 @@ private:
 
   AurVote *m_aurVote;
   TermWidget *m_console;
-  bool m_tempYayInstalledYay;
+  //bool m_tempYayInstalledYay;
   SearchLineEdit *m_leFilterPackage;
   QList<QModelIndex> *m_foundFilesInPkgFileList;
   int m_indFoundFilesInPkgFileList;
@@ -500,7 +500,7 @@ public slots:
   void doSystemUpgrade(SystemUpgradeOptions sysUpgradeOption = ectn_NO_OPT);
   void doAURUpgrade();
   void doInstallLocalPackages();
-  void onOptions();
+  void onOptions(OptionsDialogTab tabToOpen=ectn_TAB_GENERAL);
 
 public:
   explicit MainWindow(QWidget *parent = 0);

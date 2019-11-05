@@ -58,6 +58,7 @@ protected:
 
 public:
   explicit OptionsDialog(QWidget *parent = 0);
+  void gotoAURTab();
 
 signals:
   void AURToolChanged();

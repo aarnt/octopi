@@ -54,6 +54,14 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
 }
 
 /*
+ * Opens AUR tab
+ */
+void OptionsDialog::gotoAURTab()
+{
+  setCurrentIndexByTabName("AUR");
+}
+
+/*
  * Whenever user checks/unchecks "Use default icons" option
  */
 void OptionsDialog::defaultIconChecked(bool checked)

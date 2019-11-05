@@ -322,7 +322,8 @@ void MainWindow::keyPressEvent(QKeyEvent* ke)
   }
   else if(ke->key() == Qt::Key_O && ke->modifiers() == (Qt::ShiftModifier|Qt::ControlModifier))
   {
-    if(m_hasAURTool && !SettingsManager::getSearchOutdatedAURPackages() && !isAURGroupSelected())
+    if(m_hasAURTool && SettingsManager::getAURToolName() != ctn_NO_AUR_TOOL &&
+       !SettingsManager::getSearchOutdatedAURPackages() && !isAURGroupSelected())
     {
       m_outdatedAURTimer->start();
 
