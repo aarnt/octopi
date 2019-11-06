@@ -519,14 +519,14 @@ void OptionsDialog::accept()
         if (leAurUserName->text().isEmpty())
         {
           delete cic;
-          setCurrentIndexByTabName(tr("AUR"));
+          setCurrentIndexByTabName("AUR");
           QMessageBox::critical(this, StrConstants::getError(), StrConstants::getErrorAURUserNameIsNotSet());
           return;
         }
         if (leAurPassword->text().isEmpty())
         {
           delete cic;
-          setCurrentIndexByTabName(tr("AUR"));
+          setCurrentIndexByTabName("AUR");
           QMessageBox::critical(this, StrConstants::getError(), StrConstants::getErrorAURPasswordIsNotSet());
           return;
         }
