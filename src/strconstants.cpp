@@ -298,7 +298,7 @@ QString StrConstants::getVote()
 
 QString StrConstants::getAURVotedPackageList()
 {
-  return QObject::tr("%1 voted package list").arg("AUR");
+  return QObject::tr("AUR voted package list");
 }
 
 QString StrConstants::getUnvote()
@@ -639,14 +639,14 @@ QString StrConstants::getYoullNeedSuFrontend(){
 
 QString StrConstants::getYoullNeedToInstallAURTool()
 {
-  return QObject::tr("You'll need one of those tools to use %1:\n\n"
-                     "%2, %3, %4, %5 or %6").arg("AUR").arg("pacaur").arg("pikaur").arg("trizen").arg("yaourt").arg("yay");
+  return QObject::tr("You'll need one of those tools to use AUR:\n\n"
+                     "%1, %2, %3 %4 or %5").arg("pacaur").arg("pikaur").arg("trizen").arg("yaourt").arg("yay");
 }
 
 QString StrConstants::getDoYouWantToInstallYayTool()
 {
-  return QObject::tr("You need a package in order to use %1.\n"
-                     "Do you want to install it?").arg("AUR");
+  return QObject::tr("You need a package in order to use AUR.\n"
+                     "Do you want to install it?");
 }
 
 QString StrConstants::getAURConnectionIsOK()
@@ -671,12 +671,12 @@ QString StrConstants::getAURUserNameOrPasswordIsIncorrect()
 
 QString StrConstants::getErrorAURUserNameIsNotSet()
 {
-  return QObject::tr("%1 username is not set.").arg("AUR");
+  return QObject::tr("AUR username is not set.");
 }
 
 QString StrConstants::getErrorAURPasswordIsNotSet()
 {
-  return QObject::tr("%1 password is not set.").arg("AUR");
+  return QObject::tr("AUR password is not set.");
 }
 
 QString StrConstants::getErrorIconPathInfoIsNotSet(){
