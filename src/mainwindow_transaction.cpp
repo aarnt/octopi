@@ -1332,6 +1332,8 @@ void MainWindow::doInstallAURPackage()
  */
 void MainWindow::doPreDownloadTempYay()
 {
+  if (!isInternetAvailable()) return;
+
   disableTransactionActions();
   m_progressWidget->setValue(0);
   m_progressWidget->setMaximum(100);
