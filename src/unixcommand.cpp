@@ -430,6 +430,18 @@ QByteArray UnixCommand::getKCPPackageInformation(const QString &pkgName)
  */
 QByteArray UnixCommand::getExpacInfo(const QString &pkgName, const QString &info)
 {
+  /*QByteArray result("");
+  QProcess grep;
+  QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
+  env.insert("LANG", "C");
+  env.insert("LC_MESSAGES", "C");
+  env.insert("LC_ALL", "C");
+  grep.setProcessEnvironment(env);
+  grep.start(getShell() + " -c \"pacman -Qi " + pkgName + " | grep --color=never -oP '(?<=Description     : ).*'\"");
+  grep.waitForFinished();
+  result = grep.readAllStandardOutput();
+  grep.close();*/
+
   QByteArray result("");
   QProcess expac;
   QProcessEnvironment env = QProcessEnvironment::systemEnvironment();

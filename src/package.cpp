@@ -548,8 +548,8 @@ QList<PackageListData> *Package::getForeignPackageList()
 
     foreach(QString packageTuple, packageTuples)
     {
-      QStringList parts = packageTuple.split(' ');
-      res->append(PackageListData(parts[0], "", parts[1], ectn_FOREIGN));
+      QStringList parts = packageTuple.split("<o'o>");
+      res->append(PackageListData(parts[0], "", parts[1], parts[0] + " " + parts[2], ectn_FOREIGN));
     }
   }
 #endif
@@ -1682,6 +1682,8 @@ PackageInfoData Package::getKCPInformation(const QString &pkgName)
 PackageInfoData Package::getInformation(const QString &pkgName, bool foreignPackage)
 {
   PackageInfoData res;
+  //res = AlpmBackend::getPackageInfo(pkgName, foreignPackage);
+
   QString pkgInfo = UnixCommand::getPackageInformation(pkgName, foreignPackage);
 
   res.name = pkgName;

@@ -21,6 +21,8 @@
 #ifndef ALPMBACKEND_H
 #define ALPMBACKEND_H
 
+#include "package.h"
+
 #include <QStringList>
 
 class AlpmBackend
@@ -33,6 +35,7 @@ public:
   static QStringList getForeignList();
   static QStringList getOutdatedList();
   static QString getPackageSize(const QString &pkgName);
+  static PackageInfoData getPackageInfo(const QString &pkgName, bool isForeign);
 };
 
 #endif // ALPMBACKEND_H

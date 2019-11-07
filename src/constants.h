@@ -234,7 +234,7 @@ enum EditOptions { ectn_EDIT_AS_ROOT, ectn_EDIT_AS_NORMAL_USER };
 //Octopi-notifier related  -------------------------------------------------------------------------------
 
 const QString ctn_CHECKUPDATES_BINARY = "/usr/bin/checkupdates";
-const QString ctn_EXPAC_BINARY = "/usr/bin/expac";
+//const QString ctn_EXPAC_BINARY = "/usr/bin/expac";
 enum ExecOpt { ectn_NORMAL_EXEC_OPT, ectn_SYSUPGRADE_EXEC_OPT, ectn_SYSUPGRADE_NOCONFIRM_EXEC_OPT, ectn_AUR_UPGRADE_EXEC_OPT };
 
 //Octopi-helper related ----------------------------------------------------------------------------------

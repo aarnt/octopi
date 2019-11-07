@@ -64,14 +64,14 @@ QString showPackageDescription(QString pkgName)
   bool isForeignPkg = (package->status == ectn_FOREIGN || package->status == ectn_FOREIGN_OUTDATED);
   QString description = package->description;
 
-  if (description.trimmed().isEmpty())
+  /*if (description.trimmed().isEmpty())
   {
     if (isForeignPkg)
     {
       description = pkgName + " " + Package::getInformationDescription(pkgName, true);
     }
     else return "";
-  }
+  }*/
 
   int space = description.indexOf(" ");
   QString desc = description.mid(space+1);
@@ -185,14 +185,14 @@ QList<PackageListData> * markForeignPackagesInPkgList(bool hasAURTool, QStringLi
     {
       pld = PackageListData(
             itForeign->name, itForeign->repository, itForeign->version,
-            itForeign->name + " " + Package::getInformationDescription(itForeign->name, true),
+            itForeign->name + " " + itForeign->description,
             ectn_FOREIGN);
     }
     else
     {
       pld = PackageListData(
             itForeign->name, itForeign->repository, itForeign->version,
-            itForeign->name + " " + Package::getInformationDescription(itForeign->name, true),
+            itForeign->name + " " + itForeign->description,
             ectn_FOREIGN_OUTDATED);
     }
 

@@ -162,14 +162,16 @@ QStringList AlpmBackend::getForeignList()
   alpm_list_t* i;  
   QString version;
   QString line;
+  QString description;
 
   for (i = founds; i; i = alpm_list_next(i))
   {
     alpm_pkg_t* pkg = (alpm_pkg_t*) i->data;
     const char* pkgName = alpm_pkg_get_name(pkg);
     version = alpm_pkg_get_version(pkg);
+    description = alpm_pkg_get_desc(pkg);
 
-    line = QString(pkgName) + " " + QString(version);
+    line = QString(pkgName) + "<o'o>" + QString(version) + "<o'o>" + QString(description);
 
     res.append(line);
   }
@@ -226,7 +228,7 @@ QString AlpmBackend::getPackageSize(const QString &pkgName)
   std::string str = pkgName.toStdString();
   const char* p = str.c_str();
 
-  alpm_list_t* founds = alpm_utils_search_all_dbs (alpm_utils, p);
+  alpm_list_t* founds = alpm_utils_search_all_dbs(alpm_utils, p);
 
   for (i = founds; i; i = alpm_list_next(i))
   {
@@ -236,7 +238,7 @@ QString AlpmBackend::getPackageSize(const QString &pkgName)
     const char* dbname = alpm_db_get_name(db);
     if (!strcmp(dbname, "local")) continue;
 
-    if (pkg)
+    if (pkg && strcmp(alpm_pkg_get_name(pkg),pkgName.toLatin1())==0)
     {
       off_t pkgSize = alpm_pkg_get_size(pkg);
       std::sprintf(size, "%ld", pkgSize);
@@ -249,4 +251,65 @@ QString AlpmBackend::getPackageSize(const QString &pkgName)
   alpm_list_free (founds);
 
   return QString(size);
+}
+
+/*
+ * Retrieves package information a la "pacman -Qi/-Si"
+ */
+PackageInfoData AlpmBackend::getPackageInfo(const QString &pkgName, bool isForeign)
+{
+  PackageInfoData info;
+  // create AlpmUtils instance
+  AlpmUtils* alpm_utils = alpm_utils_new ("/etc/pacman.conf");
+
+  alpm_list_t *i, *j;
+  char size[10];
+
+  std::string str = pkgName.toStdString();
+  const char* p = str.c_str();
+
+  alpm_list_t *founds = alpm_utils_search_all_dbs(alpm_utils, p);
+
+  for (i = founds; i; i = alpm_list_next(i))
+  {
+    alpm_pkg_t* pkg = (alpm_pkg_t*) i->data;
+    alpm_db_t* db = alpm_pkg_get_db(pkg);
+
+    const char* dbname = alpm_db_get_name(db);
+    if (!isForeign && !strcmp(dbname, "local")) continue;
+
+    if (pkg && strcmp(alpm_pkg_get_name(pkg),pkgName.toLatin1())==0)
+    {
+      info.url = alpm_pkg_get_url(pkg);
+      info.arch = alpm_pkg_get_arch(pkg);
+      /*char *temp;
+      QString strLicences;
+
+      alpm_list_t *licenses = alpm_pkg_get_groups(pkg);
+      for (j=licenses; j; j=alpm_list_next(j))
+      {
+        temp = reinterpret_cast <char*>(j->data);
+        strLicences += QString(temp) + " ";
+      }*/
+
+      info.packager = alpm_pkg_get_packager(pkg);
+      alpm_time_t buildDate = alpm_pkg_get_builddate(pkg);
+      info.buildDate = QDateTime::fromTime_t(buildDate);
+
+      std::sprintf(size, "%ld", alpm_pkg_get_size(pkg));
+      info.downloadSizeAsString = size;
+      info.downloadSize = alpm_pkg_get_size(pkg);
+      std::sprintf(size, "%ld", alpm_pkg_get_isize(pkg));
+      info.installedSizeAsString = size;
+      info.installedSize = alpm_pkg_get_isize(pkg);
+
+      break;
+    }
+  }
+
+  // free
+  alpm_utils_free (alpm_utils); // this will free all alpm_pkgs but not the alpm_list
+  alpm_list_free (founds);
+
+  return info;
 }
