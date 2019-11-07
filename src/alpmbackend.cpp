@@ -256,7 +256,7 @@ QString AlpmBackend::getPackageSize(const QString &pkgName)
 /*
  * Retrieves package information a la "pacman -Qi/-Si"
  */
-PackageInfoData AlpmBackend::getPackageInfo(const QString &pkgName, bool isForeign)
+/*PackageInfoData AlpmBackend::getPackageInfo(const QString &pkgName, bool isForeign)
 {
   PackageInfoData info;
   // create AlpmUtils instance
@@ -282,7 +282,7 @@ PackageInfoData AlpmBackend::getPackageInfo(const QString &pkgName, bool isForei
     {
       info.url = alpm_pkg_get_url(pkg);
       info.arch = alpm_pkg_get_arch(pkg);
-      /*char *temp;
+      char *temp;
       QString strLicences;
 
       alpm_list_t *licenses = alpm_pkg_get_groups(pkg);
@@ -290,7 +290,7 @@ PackageInfoData AlpmBackend::getPackageInfo(const QString &pkgName, bool isForei
       {
         temp = reinterpret_cast <char*>(j->data);
         strLicences += QString(temp) + " ";
-      }*/
+      }
 
       info.packager = alpm_pkg_get_packager(pkg);
       alpm_time_t buildDate = alpm_pkg_get_builddate(pkg);
@@ -312,4 +312,4 @@ PackageInfoData AlpmBackend::getPackageInfo(const QString &pkgName, bool isForei
   alpm_list_free (founds);
 
   return info;
-}
+}*/

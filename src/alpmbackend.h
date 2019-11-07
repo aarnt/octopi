@@ -35,7 +35,7 @@ public:
   static QStringList getForeignList();
   static QStringList getOutdatedList();
   static QString getPackageSize(const QString &pkgName);
-  static PackageInfoData getPackageInfo(const QString &pkgName, bool isForeign);
+  //static PackageInfoData getPackageInfo(const QString &pkgName, bool isForeign);
 };
 
 #endif // ALPMBACKEND_H
