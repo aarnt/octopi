@@ -1798,6 +1798,7 @@ void MainWindow::reapplyPackageFilter()
     else{
       m_leFilterPackage->initStyleSheet();
       m_packageModel->applyFilter("");
+      refreshStatusBar();
     }
 
     if (isFilterPackageSelected || numPkgs == 0)
@@ -1855,6 +1856,7 @@ void MainWindow::lightPackageFilter()
       CPUIntensiveComputing cic;
       m_packageModel->applyFilter("");
       reapplyPackageFilter();
+      refreshStatusBar();
     }
   }
 }
