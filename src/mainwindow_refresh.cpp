@@ -187,7 +187,7 @@ void MainWindow::refreshGroupsWidget()
 void MainWindow::AURToolSelected()
 {
   //If the system does not have any AUR tool, let's ask if user wants to get one
-  if (m_actionSwitchToAURTool->toolTip().isEmpty() && UnixCommand::getAvailableAURTools().count() ==1)
+  if (m_actionSwitchToAURTool->toolTip() == "AUR" && UnixCommand::getAvailableAURTools().count() ==1)
   {
     //Are we inside a 64bit platform?
     if (QSysInfo::buildCpuArchitecture() == "x86_64")
@@ -211,7 +211,7 @@ void MainWindow::AURToolSelected()
 
     return;
   }
-  else if (m_actionSwitchToAURTool->toolTip().isEmpty() && UnixCommand::getAvailableAURTools().count() >1)
+  else if (m_actionSwitchToAURTool->toolTip() == "AUR" && UnixCommand::getAvailableAURTools().count() >1)
   {
     onOptions(ectn_TAB_AUR);
     return;
@@ -1250,7 +1250,7 @@ void MainWindow::refreshToolBar()
     {
       //Here the user lost the AUR tool he was using
       m_hasAURTool = true;
-      m_actionSwitchToAURTool->setToolTip("");
+      m_actionSwitchToAURTool->setToolTip("AUR");
       SettingsManager::setAURTool(ctn_NO_AUR_TOOL);
     }
   }

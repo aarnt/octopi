@@ -718,6 +718,9 @@ void MainWindow::doCheckUpdates()
 
   if (!isInternetAvailable()) return;
 
+  m_toolButtonPacman->hide();
+  m_toolButtonAUR->hide();
+
   //Let's synchronize kcp database too...
   if (UnixCommand::getLinuxDistro() == ectn_KAOS && UnixCommand::hasTheExecutable(ctn_KCP_TOOL))
     UnixCommand::execCommandAsNormalUser("kcp -u");
@@ -1482,7 +1485,7 @@ void MainWindow::onAURToolChanged()
     m_outdatedAURStringList->clear();
 
     m_actionSwitchToAURTool->setText("");
-    m_actionSwitchToAURTool->setToolTip("");
+    m_actionSwitchToAURTool->setToolTip("AUR");
     m_actionSwitchToAURTool->setCheckable(false);
     m_actionSwitchToAURTool->setChecked(false);
   }
@@ -2098,7 +2101,7 @@ void MainWindow::pacmanProcessFinished(int exitCode, QProcess::ExitStatus exitSt
   else //It seems the AUR tool has just been removed
   {
     m_actionSwitchToAURTool->setText("");
-    m_actionSwitchToAURTool->setToolTip("");
+    m_actionSwitchToAURTool->setToolTip("AUR");
     m_actionSwitchToAURTool->setCheckable(false);
     m_actionSwitchToAURTool->setChecked(false);
   }
