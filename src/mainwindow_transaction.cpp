@@ -2091,14 +2091,15 @@ void MainWindow::pacmanProcessFinished(int exitCode, QProcess::ExitStatus exitSt
 
   refreshMenuTools(); //Maybe some of octopi tools were added/removed...
 
-  if(UnixCommand::getAvailableAURTools().count() > 1 && SettingsManager::getAURToolName() != ctn_NO_AUR_TOOL)
+  QStringList aurTools = UnixCommand::getAvailableAURTools();
+  if(aurTools.count() > 1 && SettingsManager::getAURToolName() != ctn_NO_AUR_TOOL)
   {
     m_actionSwitchToAURTool->setCheckable(true);
     m_actionSwitchToAURTool->setChecked(false);
     m_actionSwitchToAURTool->setText(StrConstants::getUseAURTool());
     m_actionSwitchToAURTool->setToolTip(m_actionSwitchToAURTool->text() + "  (Ctrl+Shift+Y)");
   }
-  else //It seems the AUR tool has just been removed
+  else if (aurTools.count() > 1) //It seems the AUR tool has just been removed...
   {
     m_actionSwitchToAURTool->setText("");
     m_actionSwitchToAURTool->setToolTip("AUR");

@@ -322,8 +322,10 @@ void MainWindow::keyPressEvent(QKeyEvent* ke)
   }
   else if(ke->key() == Qt::Key_O && ke->modifiers() == (Qt::ShiftModifier|Qt::ControlModifier))
   {
-    if(m_hasAURTool && SettingsManager::getAURToolName() != ctn_NO_AUR_TOOL &&
-       !SettingsManager::getSearchOutdatedAURPackages() && !isAURGroupSelected())
+    LinuxDistro ld=UnixCommand::getLinuxDistro();
+    if((ld == ectn_KAOS || ld == ectn_CHAKRA) || (
+       m_hasAURTool && SettingsManager::getAURToolName() != ctn_NO_AUR_TOOL &&
+       !isAURGroupSelected() && !SettingsManager::getSearchOutdatedAURPackages()))
     {
       m_outdatedAURTimer->start();
 
