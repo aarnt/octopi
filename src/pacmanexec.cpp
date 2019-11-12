@@ -964,9 +964,9 @@ void PacmanExec::doInstallLocal(const QString &listOfPackages)
   }
 
   if (dontUseForce)
-    command += "pacman -U --noconfirm " + listOfPackages.trimmed();
+    command += "pacman -U --noconfirm \"" + listOfPackages.trimmed() + "\"";
   else
-    command += "pacman -U --force --noconfirm " + listOfPackages.trimmed();
+    command += "pacman -U --force --noconfirm \"" + listOfPackages.trimmed() + "\"";
 
   m_lastCommandList.clear();
 
