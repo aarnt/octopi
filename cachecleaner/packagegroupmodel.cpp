@@ -96,7 +96,7 @@ void PackageGroupModel::keepArchivesChanged()
  */
 QString PackageGroupModel::getOptions()
 {
-  return m_optionsString + " -k " + QString::number(m_spinner->value());
+  return m_optionsString + "-k " + QString::number(m_spinner->value());
 }
 
 /*

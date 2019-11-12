@@ -123,22 +123,42 @@ int OctopiHelper::executePkgTransaction()
   f.close();
 
   bool suspicious = false;
+
   if (contents.contains(";") || contents.contains(",") || contents.contains("|") ||
-      contents.contains(">") || contents.contains("<") ||
-      contents.contains(">>") || contents.contains("<<")) suspicious = true;
+      contents.contains(">") || contents.contains("<") || contents.contains("&") ||
+      contents.contains("'") || contents.contains("'") || contents.contains("`") ||
+      contents.contains("^") || contents.contains("~") || contents.contains("@") ||
+      contents.contains("#") || contents.contains("$") || contents.contains("%") ||
+      contents.contains("*") || contents.contains("?") || contents.contains(":") ||
+      contents.contains("!") || contents.contains("+") || contents.contains("=") ||
+      contents.contains("\\"))
+      suspicious = true;
+
+  if (suspicious)
+  {
+    QTextStream qout(stdout);
+    qout << endl << "octopi-helper[aborted]: Suspicious transaction detected -> \"" << contents << "\"" << endl;
+    return ctn_SUSPICIOUS_ACTIONS_FILE;
+  }
 
   QStringList lines = contents.split("\n", QString::SkipEmptyParts);
 
   foreach (QString line, lines){
     line = line.trimmed();
+
     if ((line == "killall pacman") ||
       (line == "rm " + ctn_PACMAN_DATABASE_LOCK_FILE) ||
       (line == "echo -e") ||
-      (line.startsWith("echo ")) ||
+      (line == "echo \"Press any key to continue...\"") ||
+      (line == "read -n 1 -p \"Press any key to continue...\"") ||
       (line == "pkgfile -u") ||
-      (line.startsWith("read ") && line.contains("read -n 1 -p")) ||
-      (line.startsWith("paccache -r")) ||
-      (line.startsWith("pacman "))) { }
+      (line == "paccache -r -k 0") ||
+      (line == "paccache -r -k 1") ||
+      (line == "paccache -r -k 2") ||
+      (line == "paccache -r -k 3") ||
+      (line.startsWith("pacman -U ")) ||
+      (line.startsWith("pacman -S ")) ||
+      (line.startsWith("pacman -R "))) { }
     else
       suspicious = true;
 

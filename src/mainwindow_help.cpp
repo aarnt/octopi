@@ -105,7 +105,7 @@ QString MainWindow::generateHelpUsageHtmlText()
       QString("<a href=\"http://www.gnu.org/licenses/gpl-2.0.html\">GPL v2</a>.</p></h3>") +
       QString("<h4><p>") + strForMoreInfo + " " +
       QString("<a href=\"http://octopiproject.wordpress.com\">http://octopiproject.wordpress.com</a>.</p></h4><br>");
-    html += strNoPassword +
+    html +=
       tr("Package classification:") +
 
   QString("<ul type=\"square\"><li>") + iconPath + "installed.png\"/> " +
@@ -197,6 +197,8 @@ QString MainWindow::generateHelpUsageHtmlText()
   QString("</li><li>") +
      tr("F11 to maximize/demaximize Tab's view") +
   QString("</li></ul>");
+
+  html += "<br>" + strNoPassword;
 
   return html;
 }
