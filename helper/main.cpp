@@ -29,13 +29,6 @@ int main(int argc, char *argv[])
   QCoreApplication a(argc, argv);
   OctopiHelper helper;
 
-  /*if (!helper.isExecutingAction())
-  {
-    QTextStream qout(stdout);
-    qout << endl << "octopi-helper[aborted]: Forbidden execution mode!" << endl;
-    return -1;
-  }*/
-
   if (argList->getSwitch("-t"))
     return helper.executePkgTransaction();
 }

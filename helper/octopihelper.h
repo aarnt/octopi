@@ -39,7 +39,6 @@ public:
   OctopiHelper();
   virtual ~OctopiHelper();
 
-  bool isExecutingAction();
   int executePkgTransaction();
   inline int getExitCode() { return m_exitCode; }
 };
