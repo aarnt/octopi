@@ -1013,7 +1013,7 @@ QString UnixCommand::buildOctopiHelperCommand(const QString &pCommand)
   QString octopiHelperCommandParameter;
   QStringList commandList;
   QString suCommand = WMHelper::getSUCommand();
-  QFile *ftemp = UnixCommand::getTemporaryFile();
+  QFile *ftemp = UnixCommand::generateTemporaryFile();
   QTextStream out(ftemp);
 
   //If this is a multiple command string, let's break it

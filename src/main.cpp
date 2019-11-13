@@ -31,12 +31,6 @@
 
 int main(int argc, char *argv[])
 {
-  /*if (!QFile::exists(ctn_EXPAC_BINARY))
-  {
-    qDebug() << "Aborting octopi as 'expac' binary could not be found! [" << ctn_EXPAC_BINARY << "]";
-    return (-1);
-  }*/
-
   if (!QFile::exists(ctn_CHECKUPDATES_BINARY))
   {
     qDebug() << "Aborting octopi as 'checkupdates' binary could not be found! [" << ctn_CHECKUPDATES_BINARY << "]";
@@ -68,6 +62,16 @@ int main(int argc, char *argv[])
 
   if (app.isRunning())
   {
+    /*if (argList->getSwitch("-isexecutingaction"))
+    {
+      MainWindow *mw = qobject_cast<MainWindow *>(app.activationWindow());
+      if (mw)
+      {
+        if (mw->isExecutingCommand()) return 1;
+        else return 0;
+      }
+      else return 0;
+    }*/
     if (argList->getSwitch("-aurupgrade"))
     {
       app.sendMessage("AURUPGRADE");

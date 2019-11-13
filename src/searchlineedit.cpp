@@ -18,6 +18,7 @@
 #include <QRegularExpressionValidator>
 #include <QCompleter>
 #include <QStringListModel>
+#include <QKeyEvent>
 
 SearchLineEdit::SearchLineEdit(QWidget *parent, bool hasSLocate) :
   QLineEdit(parent){
@@ -102,6 +103,13 @@ void SearchLineEdit::resizeEvent(QResizeEvent *event)
 {
   Q_UNUSED(event)
   this->m_SearchButton->move(5, (this->rect().height() - this->m_SearchButton->height()) / 2);
+}
+
+void SearchLineEdit::keyPressEvent(QKeyEvent *event)
+{
+  if(event->key() == Qt::Key_U && event->modifiers() == Qt::ControlModifier)
+    event->ignore();
+  else return QLineEdit::keyPressEvent(event);
 }
 
 void SearchLineEdit::updateSearchButton(const QString &text)

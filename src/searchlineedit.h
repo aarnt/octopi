@@ -41,6 +41,7 @@ private slots:
 
 protected:
   virtual void resizeEvent(QResizeEvent *event);
+  virtual void keyPressEvent(QKeyEvent *event);
 
 public:
   explicit SearchLineEdit(QWidget *parent = NULL, bool hasSLocate = false);

@@ -60,7 +60,7 @@ Terminal::~Terminal()
  */
 void Terminal::runCommandInTerminal(const QStringList &commandList)
 {
-  QFile *ftemp = UnixCommand::getTemporaryFile();
+  QFile *ftemp = UnixCommand::generateTemporaryFile();
   QTextStream out(ftemp);
   bool removedLines = false;
 
@@ -97,7 +97,7 @@ void Terminal::runCommandInTerminal(const QStringList &commandList)
  */
 void Terminal::runOctopiHelperInTerminal(const QStringList &commandList)
 {
-  QFile *ftemp = UnixCommand::getTemporaryFile();
+  QFile *ftemp = UnixCommand::generateTemporaryFile();
   QTextStream out(ftemp);
   bool removedLines = false;
 
@@ -136,7 +136,7 @@ void Terminal::runOctopiHelperInTerminal(const QStringList &commandList)
  */
 void Terminal::runCommandInTerminalAsNormalUser(const QStringList &commandList)
 {
-  QFile *ftemp = UnixCommand::getTemporaryFile();
+  QFile *ftemp = UnixCommand::generateTemporaryFile();
   QTextStream out(ftemp);
   bool removedLines = false;
 

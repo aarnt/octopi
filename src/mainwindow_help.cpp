@@ -156,21 +156,23 @@ QString MainWindow::generateHelpUsageHtmlText()
 
      tr("Control+key sequences:") +
   QString("<ul><li>") +
-     tr("Ctrl+U or 'File/Check updates' to check mirror for latest updates (checkupdates)") +
-  QString("</li><li>") +
-     tr("Ctrl+P or 'File/System upgrade' to make a full system upgrade (pacman -Su)") +
-  QString("</li><li>") +
-     tr("Ctrl+L to find a package in the package list") +
+     tr("Ctrl+E or 'Actions/Cancel' to clear the selection of to be removed/installed packages") +
   QString("</li><li>") +
      tr("Ctrl+F to search for text inside tab Files, News and Usage") +
   QString("</li><li>") +
-     tr("Ctrl+Y or 'Actions/Apply' to start installation/removal of selected packages") +
-  QString("</li><li>") +
-     tr("Ctrl+E or 'Actions/Cancel' to clear the selection of to be removed/installed packages") +
-  QString("</li><li>") +
      tr("Ctrl+G or 'File/Get latest distro news' to retrieve the latest RSS based distro news") +
   QString("</li><li>") +
+     tr("Ctrl+K or 'File/Check updates' to check mirror for latest updates (checkupdates)") +
+  QString("</li><li>") +
+     tr("Ctrl+L to find a package in the package list") +
+  QString("</li><li>") +
+     tr("Ctrl+P to go to package list") +
+  QString("</li><li>") +
      tr("Ctrl+Q or 'File/Exit' to exit the application") +
+  QString("</li><li>") +
+     tr("Ctrl+U or 'File/System upgrade' to make a full system upgrade (pacman -Su)") +
+  QString("</li><li>") +
+     tr("Ctrl+Y or 'Actions/Apply' to start installation/removal of selected packages") +
   QString("</li></ul>") +
 
      tr("Control+shift+key sequences:") +

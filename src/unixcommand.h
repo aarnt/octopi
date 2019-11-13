@@ -43,6 +43,7 @@ private:
   QString m_errorString;
   Terminal *m_terminal;
   QProcess *m_process;
+
   static QFile *m_temporaryFile;
   static QString buildOctopiHelperCommand(const QString &pCommand);
 
@@ -122,7 +123,7 @@ public:
 
   static bool isUserInWheelGroup();
 
-  static QFile* getTemporaryFile(){
+  static QFile* generateTemporaryFile(){
     quint32 gen = QRandomGenerator::global()->generate();
     m_temporaryFile = new QFile(ctn_TEMP_ACTIONS_FILE + QString::number(gen));
     m_temporaryFile->open(QIODevice::ReadWrite|QIODevice::Text);
@@ -132,11 +133,11 @@ public:
   }
 
   static void removeTemporaryFile(){
-    if (m_temporaryFile != 0){
+    if (m_temporaryFile != nullptr){
       m_temporaryFile->close();
       m_temporaryFile->remove();
       delete m_temporaryFile;
-      m_temporaryFile = 0;
+      m_temporaryFile = nullptr;
     }
   }
 
@@ -177,8 +178,8 @@ signals:
   void commandToExecInQTermWidget(QString);
 
   //ProcessWrapper signals
-  void startedTerminal();
-  void finishedTerminal(int, QProcess::ExitStatus);
+  //void startedTerminal();
+  //void finishedTerminal(int, QProcess::ExitStatus);
 };
 
 #endif // UNIXCOMMAND_H

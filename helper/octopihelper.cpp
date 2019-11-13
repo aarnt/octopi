@@ -72,6 +72,30 @@ OctopiHelper::~OctopiHelper()
 }
 
 /*
+ * Checks if Octopi or Octopi-Notifier are executing actions
+ */
+bool OctopiHelper::isExecutingAction()
+{
+  bool res=false;
+  QProcess proc;
+
+  if (isAppRunning("octopi", true))
+  {
+    proc.start("octopi -isexecutingaction");
+    proc.waitForFinished();
+    res=(proc.exitCode()==1);
+  }
+  else if (isAppRunning("octopi-notifier", true))
+  {
+    proc.start("octopi-notifier -isexecutingaction");
+    proc.waitForFinished();
+    res=(proc.exitCode()==1);
+  }
+
+  return res;
+}
+
+/*
  * A bit of settings to better run "pacman" commands using QProcess
  */
 QProcessEnvironment OctopiHelper::getProcessEnvironment()
@@ -99,8 +123,14 @@ QString OctopiHelper::getTransactionTempFileName()
   QStringList nf;
   QFileInfoList list = dir.entryInfoList(nf << ".qt_temp_octopi*");
 
-  if (list.count() > 0) //If we find 2 or more files we use the most recent one
+  if (list.count() > 1) //If we find 2 or more files we ABORT!
+  {
+    return "";
+  }
+  else if (list.count()==1)
+  {
     res = list.first().filePath();
+  }
 
   return res;
 }
@@ -158,6 +188,7 @@ int OctopiHelper::executePkgTransaction()
       (line == "paccache -r -k 3") ||
       (line.startsWith("pacman -U ")) ||
       (line.startsWith("pacman -S ")) ||
+      (line.startsWith("pacman -Syu ")) ||
       (line.startsWith("pacman -R "))) { }
     else
       suspicious = true;
