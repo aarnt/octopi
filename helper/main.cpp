@@ -29,6 +29,13 @@ int main(int argc, char *argv[])
   QCoreApplication a(argc, argv);
   OctopiHelper helper;
 
+  if(!helper.isOctopiRunning() && !helper.isOctopiNotifierRunning())
+  {
+    QTextStream qout(stdout);
+    qout << endl << "octopi-helper[aborted]: Suspicious execution method" << endl;
+    return -1;
+  }
+
   if (argList->getSwitch("-t"))
     return helper.executePkgTransaction();
 }

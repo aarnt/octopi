@@ -41,6 +41,8 @@ public:
 
   int executePkgTransaction();
   inline int getExitCode() { return m_exitCode; }
+  bool isOctopiRunning();
+  bool isOctopiNotifierRunning();
 };
 
 #endif // PKOCTOPIHELPER_H

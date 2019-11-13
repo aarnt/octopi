@@ -112,6 +112,46 @@ QString OctopiHelper::getTransactionTempFileName()
 }
 
 /*
+ * Checks if Octopi is being executed
+ */
+bool OctopiHelper::isOctopiRunning()
+{
+  bool res=false;
+
+  QProcess proc;
+  proc.setProcessEnvironment(getProcessEnvironment());
+  proc.start("ps -C octopi -o command");
+  proc.waitForFinished();
+  QString out = proc.readAll().trimmed();
+  if (out.contains("|")) return false;
+  out=out.remove("\n");
+  out=out.remove("COMMAND");
+  if (out == "/usr/bin/octopi" || out.contains("/usr/bin/octopi ")) res=true;
+
+  return res;
+}
+
+/*
+ * Checks if Octopi-Notifier is being executed
+ */
+bool OctopiHelper::isOctopiNotifierRunning()
+{
+  bool res=false;
+
+  QProcess proc;
+  proc.setProcessEnvironment(getProcessEnvironment());
+  proc.start("ps -C octopi-notifier -o command");
+  proc.waitForFinished();
+  QString out = proc.readAll().trimmed();
+  if (out.contains("|")) return false;
+  out=out.remove("\n");
+  out=out.remove("COMMAND");
+  if (out == "/usr/bin/octopi-notifier" || out.contains("/usr/bin/octopi-notifier ")) res=true;
+
+  return res;
+}
+
+/*
  * Executes all commands inside Octopi's transaction tempfile
  * octopi-helper -t
  */
