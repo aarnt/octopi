@@ -52,6 +52,7 @@ class QTime;
 class QDropEvent;
 class QDragEnterEvent;
 class TermWidget;
+class QSharedMemory;
 
 #include "src/model/packagemodel.h"
 #include "src/packagerepository.h"
@@ -97,11 +98,12 @@ private:
 
   AurVote *m_aurVote;
   TermWidget *m_console;
-  //bool m_tempYayInstalledYay;
+
   SearchLineEdit *m_leFilterPackage;
   QList<QModelIndex> *m_foundFilesInPkgFileList;
   int m_indFoundFilesInPkgFileList;
   QFileSystemWatcher *m_pacmanDatabaseSystemWatcher;
+  QSharedMemory *m_sharedMem;
 
   // Package Data
   PackageRepository m_packageRepo;

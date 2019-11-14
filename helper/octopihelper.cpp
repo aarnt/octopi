@@ -24,6 +24,9 @@
 #include <QDir>
 #include <QObject>
 #include <QTextStream>
+#include <QSharedMemory>
+
+QFile *OctopiHelper::m_temporaryFile = 0;
 
 /*
  * If justOneInstance = false (default), returns TRUE if one instance of the app is ALREADY running
@@ -58,7 +61,7 @@ bool isAppRunning(const QString &appName, bool justOneInstance)
 }
 
 OctopiHelper::OctopiHelper()
-{
+{  
   m_exitCode = -9999;
   m_process = new QProcess();
   //This is the setting which enables all outputs from "pacman" go thru QProcess output methods
@@ -149,6 +152,102 @@ bool OctopiHelper::isOctopiNotifierRunning()
   if (out == "/usr/bin/octopi-notifier" || out.contains("/usr/bin/octopi-notifier ")) res=true;
 
   return res;
+}
+
+/*
+ * Executes all commands inside Octopi's SharedMemory
+ * octopi-helper -t
+ */
+int OctopiHelper::executePkgTransactionWithSharedMem()
+{
+  QSharedMemory *sharedMem = new QSharedMemory("org.arnt.octopi");
+  if (!sharedMem->attach()) //QSharedMemory::ReadOnly);
+  {
+    QTextStream qout(stdout);
+    qout << endl << "octopi-helper[aborted]: Couldn't attach to parent" << endl;
+    return -1;
+  }
+
+  QByteArray sharedData(sharedMem->size(), '\0');
+  memcpy(sharedData.data(), sharedMem->data(), sharedMem->size());
+  QString contents=QString::fromLatin1(sharedData);
+  sharedMem->detach();
+  delete sharedMem;
+
+  bool suspicious = false;
+
+  if (contents.contains(";") || contents.contains(",") || contents.contains("|") ||
+      contents.contains(">") || contents.contains("<") || contents.contains("&") ||
+      contents.contains("'") || contents.contains("'") || contents.contains("`") ||
+      contents.contains("^") || contents.contains("~") || contents.contains("@") ||
+      contents.contains("#") || contents.contains("$") || contents.contains("%") ||
+      contents.contains("*") || contents.contains("?") || contents.contains(":") ||
+      contents.contains("!") || contents.contains("+") || contents.contains("=") ||
+      contents.contains("\\"))
+      suspicious = true;
+
+  if (suspicious)
+  {
+    QTextStream qout(stdout);
+    qout << endl << "octopi-helper[aborted]: Suspicious transaction detected -> \"" << contents << "\"" << endl;
+    return ctn_SUSPICIOUS_ACTIONS_FILE;
+  }
+
+  QStringList lines = contents.split("\n", QString::SkipEmptyParts);
+
+  foreach (QString line, lines){
+    line = line.trimmed();
+
+    if ((line == "killall pacman") ||
+      (line == "rm " + ctn_PACMAN_DATABASE_LOCK_FILE) ||
+      (line == "echo -e") ||
+      (line == "echo \"Press any key to continue...\"") ||
+      (line == "read -n 1 -p \"Press any key to continue...\"") ||
+      (line == "pkgfile -u") ||
+      (line == "paccache -r -k 0") ||
+      (line == "paccache -r -k 1") ||
+      (line == "paccache -r -k 2") ||
+      (line == "paccache -r -k 3") ||
+      (line == "pacman -Syu") ||
+      (line == "pacman -Syu --noconfirm") ||
+      (line.startsWith("pacman -U ")) ||
+      (line.startsWith("pacman -S ")) ||
+      (line.startsWith("pacman -R "))) { }
+    else
+      suspicious = true;
+
+    if (suspicious)
+    {
+      QTextStream qout(stdout);
+      qout << endl << "octopi-helper[aborted]: Suspicious transaction detected -> \"" << line << "\"" << endl;
+      return ctn_SUSPICIOUS_ACTIONS_FILE;
+    }
+  }
+
+  //If there is a "pacman" process executing elsewhere, let's abort octopi-helper!
+  if (contents != "killall pacman\nrm " + ctn_PACMAN_DATABASE_LOCK_FILE +"\n" && isAppRunning("pacman", true))
+  {
+    QTextStream qout(stdout);
+    qout << endl << "octopi-helper[aborted]: Pacman process already running" << endl;
+    return(ctn_PACMAN_PROCESS_EXECUTING);
+  }
+
+  QFile *ftemp = generateTemporaryFile();
+  QTextStream out(ftemp);
+  out << contents;
+  out.flush();
+  ftemp->close();
+
+  QString command;
+  m_process->setProcessEnvironment(getProcessEnvironment());
+  command = "/bin/sh " + m_temporaryFile->fileName();
+  m_process->start(command);
+  m_process->waitForStarted(-1);
+  m_process->waitForFinished(-1);
+
+  //TODO: Remove temp file from filesystem
+
+  return m_process->exitCode();
 }
 
 /*

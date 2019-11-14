@@ -1651,6 +1651,7 @@ void MainWindow::doInstall()
     if (result == QDialogButtonBox::Yes)
     {
       m_commandExecuting = ectn_INSTALL;
+      m_pacmanExec->setSharedMemory(m_sharedMem);
       m_pacmanExec->doInstall(listOfTargets);
     }
     else if (result == QDialogButtonBox::AcceptRole)

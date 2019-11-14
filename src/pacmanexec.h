@@ -25,6 +25,8 @@
 #include "constants.h"
 #include "unixcommand.h"
 
+class QSharedMemory;
+
 class PacmanExec : public QObject
 {
   Q_OBJECT
@@ -49,6 +51,8 @@ private:
 
   bool m_processWasCanceled;
 
+  QSharedMemory *m_sharedMemory;
+
   bool searchForKeyVerbs(QString output);
   bool splitOutputStrings(QString output);
   void parsePacmanProcessOutput(const QString &output);
@@ -65,11 +69,13 @@ public:
   explicit PacmanExec(QObject *parent = 0);
   virtual ~PacmanExec();
 
+  void setSharedMemory(QSharedMemory *sm) { m_sharedMemory=sm; };
+
   void setDebugMode(bool value);
   void runLatestCommandInTerminal();
   void runLatestCommandWithOctopiHelper();
   void updatePacmanWithOctopiHelper();
-  void removeTemporaryFile();
+  void removeTemporaryFile();  
 
   static bool isDatabaseLocked();
   static void removeDatabaseLock();

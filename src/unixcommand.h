@@ -24,6 +24,7 @@
 #include <QObject>
 #include <QProcess>
 #include <QRandomGenerator>
+#include <QSharedMemory>
 #include <unistd.h>
 
 #include "package.h"
@@ -33,6 +34,7 @@
 class QString;
 class QStringList;
 class Terminal;
+class QSharedMemory;
 
 class UnixCommand : public QObject{
   Q_OBJECT
@@ -45,6 +47,7 @@ private:
   QProcess *m_process;
 
   static QFile *m_temporaryFile;
+  static QString buildOctopiHelperCommandWithSharedMem(const QString &pCommand, QSharedMemory *sharedMem);
   static QString buildOctopiHelperCommand(const QString &pCommand);
 
 public:
@@ -157,6 +160,7 @@ public:
 
   static QStringList getAvailableAURTools();
 
+  void executeCommandWithSharedMem(const QString &pCommand, QSharedMemory *sharedMem);
   void executeCommand(const QString &pCommand, Language lang=ectn_LANG_ENGLISH);
   void executeCommandAsNormalUser(const QString &pCommand);
 

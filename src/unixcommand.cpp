@@ -910,6 +910,37 @@ void UnixCommand::runCommandInTerminalAsNormalUser(const QStringList &commandLis
 /*
  * Executes the given command using QProcess async technology with ROOT credentials
  */
+void UnixCommand::executeCommandWithSharedMem(const QString &pCommand, QSharedMemory *sharedMem)
+{
+  QString command;
+
+  //COLUMNS variable code!
+  QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
+  env.remove("LANG");
+  env.remove("LC_MESSAGES");
+  env.insert("LANG", "C");
+  env.insert("LC_MESSAGES", "C");
+  env.remove("COLUMNS");
+  env.insert("COLUMNS", "132");
+  m_process->setProcessEnvironment(env);
+
+  QString suCommand = WMHelper::getSUCommand();
+
+  if (suCommand == WMHelper::getOctopiSudoCommand())
+  {
+    command = buildOctopiHelperCommandWithSharedMem(pCommand, sharedMem);
+  }
+  else //We are not using "octopi-sudo" nor "lxqt-sudo" utility...*/
+  {
+    command = suCommand + "\"" + pCommand + "\"";
+  }
+
+  m_process->start(command);
+}
+
+/*
+ * Executes the given command using QProcess async technology with ROOT credentials
+ */
 void UnixCommand::executeCommand(const QString &pCommand, Language lang)
 {
   QString command;
@@ -1003,6 +1034,43 @@ QString UnixCommand::readAllStandardError()
 QString UnixCommand::errorString()
 {
   return m_errorString;
+}
+
+QString UnixCommand::buildOctopiHelperCommandWithSharedMem(const QString &pCommand, QSharedMemory *sharedMem)
+{
+  QString octopiHelperCommandParameter;
+  QString suCommand = WMHelper::getSUCommand();
+  octopiHelperCommandParameter = " -t";
+  suCommand += ctn_OCTOPI_HELPER + octopiHelperCommandParameter;
+
+  QStringList commandList;
+  QString commands;
+  QByteArray sharedData;
+
+  //If this is a multiple command string, let's break it
+  if (pCommand.contains(";"))
+  {
+    commandList = pCommand.split(";", QString::SkipEmptyParts);
+    foreach(QString line, commandList)
+    {
+      commands += line.trimmed() + "\n";
+    }
+  }
+  else //We have just one command here
+  {
+    commandList << pCommand.trimmed();
+    commands += commandList.first();
+  }
+
+  sharedData=commands.toLatin1();
+  sharedMem->detach();
+  sharedMem=new QSharedMemory("org.arnt.octopi");
+  sharedMem->create(sharedData.size());
+  sharedMem->lock();
+  memcpy(sharedMem->data(), sharedData.data(), sharedData.size());
+  sharedMem->unlock();
+
+  return suCommand;
 }
 
 /*

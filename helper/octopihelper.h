@@ -21,9 +21,12 @@
 #ifndef PKOCTOPIHELPER_H
 #define PKOCTOPIHELPER_H
 
+#include "../src/constants.h"
 #include <QString>
 #include <QProcess>
 #include <QObject>
+#include <QFile>
+#include <QRandomGenerator>
 
 class OctopiHelper: QObject
 {
@@ -35,10 +38,22 @@ private:
   QProcessEnvironment getProcessEnvironment();
   QString getTransactionTempFileName();
 
+  static QFile *m_temporaryFile;
+
+  static QFile* generateTemporaryFile(){
+    quint32 gen = QRandomGenerator::global()->generate();
+    m_temporaryFile = new QFile(ctn_TEMP_ACTIONS_FILE + QString::number(gen));
+    m_temporaryFile->open(QIODevice::ReadWrite|QIODevice::Text);
+    m_temporaryFile->setPermissions(QFile::Permissions(QFile::ExeOwner|QFile::ReadOwner));
+
+    return m_temporaryFile;
+  }
+
 public:
   OctopiHelper();
   virtual ~OctopiHelper();
 
+  int executePkgTransactionWithSharedMem();
   int executePkgTransaction();
   inline int getExitCode() { return m_exitCode; }
   bool isOctopiRunning();

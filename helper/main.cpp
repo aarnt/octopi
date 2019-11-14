@@ -37,5 +37,5 @@ int main(int argc, char *argv[])
   }
 
   if (argList->getSwitch("-t"))
-    return helper.executePkgTransaction();
+    return helper.executePkgTransactionWithSharedMem(); //executePkgTransaction();
 }

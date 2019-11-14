@@ -58,6 +58,10 @@
 MainWindow::MainWindow(QWidget *parent) :
   QMainWindow(parent), ui(new Ui::MainWindow), m_packageModel(new PackageModel(m_packageRepo))
 {
+  //TODO: remove sharedmem files before trying to attaching
+  m_sharedMem = new QSharedMemory("org.arnt.octopi");
+  m_sharedMem->attach();
+
   m_hasAURTool =
       UnixCommand::hasTheExecutable(Package::getForeignRepositoryToolName());
 
@@ -81,7 +85,6 @@ MainWindow::MainWindow(QWidget *parent) :
   m_numberOfInstalledPackages = 0;
   m_debugInfo = false;
   m_console = nullptr;
-  //m_tempYayInstalledYay = false;
 
   //Let's check if DistroRSSUrl is empty
   if (SettingsManager::isDistroRSSUrlEmpty())
@@ -120,6 +123,8 @@ MainWindow::MainWindow(QWidget *parent) :
  */
 MainWindow::~MainWindow()
 {
+  if (m_sharedMem->isAttached()) m_sharedMem->detach();
+
   savePackageColumnWidths();
 
   //Let's garbage collect transaction files...

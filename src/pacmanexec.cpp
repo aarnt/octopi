@@ -927,7 +927,7 @@ void PacmanExec::doInstall(const QString &listOfPackages)
   m_lastCommandList.append("read -n 1 -p \"" + StrConstants::getPressAnyKey() + "\"");
 
   m_commandExecuting = ectn_INSTALL;
-  m_unixCommand->executeCommand(command);
+  m_unixCommand->executeCommandWithSharedMem(command, m_sharedMemory);
 }
 
 /*
