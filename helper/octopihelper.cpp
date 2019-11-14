@@ -25,8 +25,10 @@
 #include <QObject>
 #include <QTextStream>
 #include <QSharedMemory>
+#include <QRegularExpression>
+#include <QStringLiteral>
 
-QFile *OctopiHelper::m_temporaryFile = 0;
+QFile *OctopiHelper::m_temporaryFile = nullptr;
 
 /*
  * If justOneInstance = false (default), returns TRUE if one instance of the app is ALREADY running
@@ -64,6 +66,9 @@ OctopiHelper::OctopiHelper()
 {  
   m_exitCode = -9999;
   m_process = new QProcess();
+  //m_suspiciousChars = QStringLiteral("(\\s|[][!#$&'()*,;<=+>?\\^`{}|~])");
+  m_suspiciousChars = QStringLiteral("[\\[\\]!#$&'()*,;<=\\+>?\\^`{}|~]");
+
   //This is the setting which enables all outputs from "pacman" go thru QProcess output methods
   m_process->setProcessChannelMode(QProcess::ForwardedChannels);
   m_process->setInputChannelMode(QProcess::ForwardedInputChannel);
@@ -171,19 +176,23 @@ int OctopiHelper::executePkgTransactionWithSharedMem()
   QByteArray sharedData(sharedMem->size(), '\0');
   memcpy(sharedData.data(), sharedMem->data(), sharedMem->size());
   QString contents=QString::fromLatin1(sharedData);
+
+  contents += "\n";
+
   sharedMem->detach();
   delete sharedMem;
 
   bool suspicious = false;
 
-  if (contents.contains(";") || contents.contains(",") || contents.contains("|") ||
+  /*if (contents.contains(";") || contents.contains(",") || contents.contains("|") ||
       contents.contains(">") || contents.contains("<") || contents.contains("&") ||
       contents.contains("'") || contents.contains("'") || contents.contains("`") ||
       contents.contains("^") || contents.contains("~") || contents.contains("@") ||
       contents.contains("#") || contents.contains("$") || contents.contains("%") ||
       contents.contains("*") || contents.contains("?") || contents.contains(":") ||
       contents.contains("!") || contents.contains("+") || contents.contains("=") ||
-      contents.contains("\\"))
+      contents.contains("\\"))*/
+  if (contents.contains(QRegularExpression(m_suspiciousChars)))
       suspicious = true;
 
   if (suspicious)
@@ -269,15 +278,16 @@ int OctopiHelper::executePkgTransaction()
 
   bool suspicious = false;
 
-  if (contents.contains(";") || contents.contains(",") || contents.contains("|") ||
+  /*if (contents.contains(";") || contents.contains(",") || contents.contains("|") ||
       contents.contains(">") || contents.contains("<") || contents.contains("&") ||
       contents.contains("'") || contents.contains("'") || contents.contains("`") ||
       contents.contains("^") || contents.contains("~") || contents.contains("@") ||
       contents.contains("#") || contents.contains("$") || contents.contains("%") ||
       contents.contains("*") || contents.contains("?") || contents.contains(":") ||
       contents.contains("!") || contents.contains("+") || contents.contains("=") ||
-      contents.contains("\\"))
-      suspicious = true;
+      contents.contains("\\"))*/
+  if (contents.contains(QRegularExpression(m_suspiciousChars)))
+    suspicious = true;
 
   if (suspicious)
   {

@@ -37,6 +37,7 @@ private:
   QProcess *m_process;
   QProcessEnvironment getProcessEnvironment();
   QString getTransactionTempFileName();
+  QString m_suspiciousChars;
 
   static QFile *m_temporaryFile;
 
