@@ -723,7 +723,10 @@ void UnixCommand::removeTemporaryFiles()
 {
   QDir tempDir(QDir::tempPath());
   QStringList nameFilters;
-  nameFilters << "qtsingleapp-Octopi*" << "qtsingleapp-CacheC*" << "qtsingleapp-Reposi*"  /*<< "gpg*"*/ << ".qt_temp_octopi*";
+  nameFilters << "qtsingleapp-Octopi*" << "qtsingleapp-CacheC*" << "qtsingleapp-Reposi*"
+              << "qipc_sharedmemory_orgarntoctopi*"
+              << "qipc_systemsem_orgarntoctopi*"
+              << ".qt_temp_octopi*";
   QFileInfoList list = tempDir.entryInfoList(nameFilters, QDir::Dirs | QDir::Files | QDir::System | QDir::Hidden);
 
   foreach(QFileInfo file, list){
@@ -1040,7 +1043,7 @@ QString UnixCommand::buildOctopiHelperCommandWithSharedMem(const QString &pComma
 {
   QString octopiHelperCommandParameter;
   QString suCommand = WMHelper::getSUCommand();
-  octopiHelperCommandParameter = " -t";
+  octopiHelperCommandParameter = " -ts";
   suCommand += ctn_OCTOPI_HELPER + octopiHelperCommandParameter;
 
   QStringList commandList;
@@ -1063,13 +1066,23 @@ QString UnixCommand::buildOctopiHelperCommandWithSharedMem(const QString &pComma
   }
 
   sharedData=commands.toLatin1();
-  sharedMem->detach();
-  sharedMem=new QSharedMemory("org.arnt.octopi");
-  sharedMem->create(sharedData.size());
+
+  if (sharedMem != nullptr)
+  {
+    if (sharedMem->isAttached())
+      sharedMem->detach();
+    delete sharedMem;
+    sharedMem=nullptr;
+  }
+
+  sharedMem=new QSharedMemory("org.arnt.octopi", this);
+  //sharedMem->attach();
+  bool r = sharedMem->create(sharedData.size());
   sharedMem->lock();
   memcpy(sharedMem->data(), sharedData.data(), sharedData.size());
   sharedMem->unlock();
 
+  //delete sharedMem;
   return suCommand;
 }
 
@@ -1109,7 +1122,7 @@ QString UnixCommand::buildOctopiHelperCommand(const QString &pCommand)
 /*
  * Cancels the running process
  */
-void UnixCommand::cancelProcess()
+void UnixCommand::cancelProcess(QSharedMemory *sharedMem)
 {
   QProcess pacman;
   QString suCommand = WMHelper::getSUCommand();

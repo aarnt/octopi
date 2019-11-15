@@ -1924,6 +1924,8 @@ void MainWindow::onCanStopTransaction(bool yesNo)
  */
 void MainWindow::pacmanProcessFinished(int exitCode, QProcess::ExitStatus exitStatus)
 {
+  UnixCommand::removeTemporaryFiles();
+
   bool bRefreshGroups = true;
   m_progressWidget->close();
 

@@ -58,9 +58,8 @@
 MainWindow::MainWindow(QWidget *parent) :
   QMainWindow(parent), ui(new Ui::MainWindow), m_packageModel(new PackageModel(m_packageRepo))
 {
-  //TODO: remove sharedmem files before trying to attaching
-  m_sharedMem = new QSharedMemory("org.arnt.octopi");
-  m_sharedMem->attach();
+  UnixCommand::removeTemporaryFiles();
+  m_sharedMem=nullptr;
 
   m_hasAURTool =
       UnixCommand::hasTheExecutable(Package::getForeignRepositoryToolName());
@@ -123,8 +122,6 @@ MainWindow::MainWindow(QWidget *parent) :
  */
 MainWindow::~MainWindow()
 {
-  if (m_sharedMem->isAttached()) m_sharedMem->detach();
-
   savePackageColumnWidths();
 
   //Let's garbage collect transaction files...

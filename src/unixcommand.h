@@ -47,8 +47,8 @@ private:
   QProcess *m_process;
 
   static QFile *m_temporaryFile;
-  static QString buildOctopiHelperCommandWithSharedMem(const QString &pCommand, QSharedMemory *sharedMem);
   static QString buildOctopiHelperCommand(const QString &pCommand);
+  QString buildOctopiHelperCommandWithSharedMem(const QString &pCommand, QSharedMemory *sharedMem);
 
 public:
   explicit UnixCommand(QObject *parent);
@@ -168,7 +168,7 @@ public:
   QString readAllStandardError();
   QString errorString();
 
-  void cancelProcess();
+  void cancelProcess(QSharedMemory *sharedMem);
 
 public slots:
   void processReadyReadStandardOutput();

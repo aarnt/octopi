@@ -30,6 +30,37 @@
 
 QFile *OctopiHelper::m_temporaryFile = nullptr;
 
+
+void removeTemporaryFiles()
+{
+  QDir tempDir(QDir::tempPath());
+  QStringList nameFilters;
+  nameFilters //<< "qtsingleapp-Octopi*" << "qtsingleapp-CacheC*" << "qtsingleapp-Reposi*"
+              //<< "qipc_sharedmemory_orgarntoctopi*"
+              //<< "qipc_systemsem_orgarntoctopi*"
+              << ".qt_temp_octopi*";
+  QFileInfoList list = tempDir.entryInfoList(nameFilters, QDir::Dirs | QDir::Files | QDir::System | QDir::Hidden);
+
+  foreach(QFileInfo file, list){
+    QFile fileAux(file.filePath());
+
+    if (!file.isDir()){
+      fileAux.remove();
+    }
+    else{
+      QDir dir(file.filePath());
+      QFileInfoList listd = dir.entryInfoList(QDir::Files | QDir::System);
+
+      foreach(QFileInfo filed, listd){
+        QFile fileAuxd(filed.filePath());
+        fileAuxd.remove();
+      }
+
+      dir.rmdir(file.filePath());
+    }
+  }
+}
+
 /*
  * If justOneInstance = false (default), returns TRUE if one instance of the app is ALREADY running
  * Otherwise, it returns TRUE if the given app is running.
@@ -67,7 +98,7 @@ OctopiHelper::OctopiHelper()
   m_exitCode = -9999;
   m_process = new QProcess();
   //m_suspiciousChars = QStringLiteral("(\\s|[][!#$&'()*,;<=+>?\\^`{}|~])");
-  m_suspiciousChars = QStringLiteral("[\\[\\]!#$&'()*,;<=\\+>?\\^`{}|~]");
+  m_suspiciousChars = QStringLiteral("[!#$&'()*,;<=+>?\\^`{}|~\\[\\]]");
 
   //This is the setting which enables all outputs from "pacman" go thru QProcess output methods
   m_process->setProcessChannelMode(QProcess::ForwardedChannels);
@@ -77,6 +108,7 @@ OctopiHelper::OctopiHelper()
 OctopiHelper::~OctopiHelper()
 {
   m_process->close();
+  removeTemporaryFiles();
 }
 
 /*
@@ -107,11 +139,11 @@ QString OctopiHelper::getTransactionTempFileName()
   QStringList nf;
   QFileInfoList list = dir.entryInfoList(nf << ".qt_temp_octopi*");
 
-  if (list.count() > 1) //If we find 2 or more files we ABORT!
+  /*if (list.count() > 1) //If we find 2 or more files we ABORT!
   {
     return "";
-  }
-  else if (list.count()==1)
+  }*/
+  if (list.count()>=1)
   {
     res = list.first().filePath();
   }
@@ -165,8 +197,15 @@ bool OctopiHelper::isOctopiNotifierRunning()
  */
 int OctopiHelper::executePkgTransactionWithSharedMem()
 {
-  QSharedMemory *sharedMem = new QSharedMemory("org.arnt.octopi");
-  if (!sharedMem->attach()) //QSharedMemory::ReadOnly);
+  if(!isOctopiRunning() && !isOctopiNotifierRunning())
+  {
+    QTextStream qout(stdout);
+    qout << endl << "octopi-helper[aborted]: Suspicious execution method" << endl;
+    return -1;
+  }
+
+  QSharedMemory *sharedMem = new QSharedMemory("org.arnt.octopi", this);
+  if (!sharedMem->attach(QSharedMemory::ReadOnly))
   {
     QTextStream qout(stdout);
     qout << endl << "octopi-helper[aborted]: Couldn't attach to parent" << endl;
@@ -174,10 +213,15 @@ int OctopiHelper::executePkgTransactionWithSharedMem()
   }
 
   QByteArray sharedData(sharedMem->size(), '\0');
+  sharedMem->lock();
   memcpy(sharedData.data(), sharedMem->data(), sharedMem->size());
-  QString contents=QString::fromLatin1(sharedData);
+  sharedMem->unlock();
 
-  contents += "\n";
+  QString contents=QString::fromLatin1(sharedData);
+  QTextStream qout(stdout);
+  qout << endl << "octopi-helper[info]: contents -> \"" << contents << "\"" << endl;
+
+  //QString contents = "pacman -S cloc^\n";
 
   sharedMem->detach();
   delete sharedMem;
@@ -191,7 +235,7 @@ int OctopiHelper::executePkgTransactionWithSharedMem()
       contents.contains("#") || contents.contains("$") || contents.contains("%") ||
       contents.contains("*") || contents.contains("?") || contents.contains(":") ||
       contents.contains("!") || contents.contains("+") || contents.contains("=") ||
-      contents.contains("\\"))*/
+      contents.contains("(") || contents.contains(")"))*/
   if (contents.contains(QRegularExpression(m_suspiciousChars)))
       suspicious = true;
 
@@ -254,7 +298,8 @@ int OctopiHelper::executePkgTransactionWithSharedMem()
   m_process->waitForStarted(-1);
   m_process->waitForFinished(-1);
 
-  //TODO: Remove temp file from filesystem
+  if (m_temporaryFile != nullptr)
+    QFile::remove(m_temporaryFile->fileName());
 
   return m_process->exitCode();
 }
@@ -265,6 +310,13 @@ int OctopiHelper::executePkgTransactionWithSharedMem()
  */
 int OctopiHelper::executePkgTransaction()
 {
+  if(!isOctopiRunning() && !isOctopiNotifierRunning())
+  {
+    QTextStream qout(stdout);
+    qout << endl << "octopi-helper[aborted]: Suspicious execution method" << endl;
+    return -1;
+  }
+
   QString tempFile = getTransactionTempFileName();
   if (tempFile.isEmpty()) return ctn_NO_TEMP_ACTIONS_FILE;
 
@@ -275,17 +327,8 @@ int OctopiHelper::executePkgTransaction()
   QTextStream in(&f);
   QString contents = in.readAll();
   f.close();
-
   bool suspicious = false;
 
-  /*if (contents.contains(";") || contents.contains(",") || contents.contains("|") ||
-      contents.contains(">") || contents.contains("<") || contents.contains("&") ||
-      contents.contains("'") || contents.contains("'") || contents.contains("`") ||
-      contents.contains("^") || contents.contains("~") || contents.contains("@") ||
-      contents.contains("#") || contents.contains("$") || contents.contains("%") ||
-      contents.contains("*") || contents.contains("?") || contents.contains(":") ||
-      contents.contains("!") || contents.contains("+") || contents.contains("=") ||
-      contents.contains("\\"))*/
   if (contents.contains(QRegularExpression(m_suspiciousChars)))
     suspicious = true;
 

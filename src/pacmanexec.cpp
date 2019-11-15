@@ -108,7 +108,7 @@ void PacmanExec::removeDatabaseLock()
 void PacmanExec::cancelProcess()
 {
   m_processWasCanceled = true;
-  m_unixCommand->cancelProcess();
+  m_unixCommand->cancelProcess(m_sharedMemory);
 }
 
 /*
