@@ -218,10 +218,8 @@ int OctopiHelper::executePkgTransactionWithSharedMem()
   sharedMem->unlock();
 
   QString contents=QString::fromLatin1(sharedData);
-  QTextStream qout(stdout);
-  qout << endl << "octopi-helper[info]: contents -> \"" << contents << "\"" << endl;
-
-  //QString contents = "pacman -S cloc^\n";
+  //QTextStream qout(stdout);
+  //qout << endl << "octopi-helper[info]: contents -> \"" << contents << "\"" << endl;
 
   sharedMem->detach();
   delete sharedMem;
