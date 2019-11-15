@@ -37,7 +37,7 @@
  * Collection of methods to execute many Unix commands
  */
 
-QFile *UnixCommand::m_temporaryFile = 0;
+QFile *UnixCommand::m_temporaryFile = nullptr;
 
 /*
  * UnixCommand's constructor: the relevant environment english setting and the connectors
@@ -1076,13 +1076,11 @@ QString UnixCommand::buildOctopiHelperCommandWithSharedMem(const QString &pComma
   }
 
   sharedMem=new QSharedMemory("org.arnt.octopi", this);
-  //sharedMem->attach();
-  bool r = sharedMem->create(sharedData.size());
+  sharedMem->create(sharedData.size());
   sharedMem->lock();
   memcpy(sharedMem->data(), sharedData.data(), sharedData.size());
   sharedMem->unlock();
 
-  //delete sharedMem;
   return suCommand;
 }
 
@@ -1124,6 +1122,7 @@ QString UnixCommand::buildOctopiHelperCommand(const QString &pCommand)
  */
 void UnixCommand::cancelProcess(QSharedMemory *sharedMem)
 {
+  Q_UNUSED(sharedMem)
   QProcess pacman;
   QString suCommand = WMHelper::getSUCommand();
   QString pCommand = "killall pacman; rm " + ctn_PACMAN_DATABASE_LOCK_FILE;

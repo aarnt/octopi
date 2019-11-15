@@ -2125,9 +2125,8 @@ void MainWindow::onPressAnyKeyToContinue()
 {
   if (m_commandExecuting == ectn_NONE) return;
 
-  if (m_commandExecuting == ectn_INSTALL_YAY) //m_tempYayInstalledYay)
+  if (m_commandExecuting == ectn_INSTALL_YAY)
   {
-    //m_tempYayInstalledYay = false;
     QString octopiConfDir = QDir::homePath() + QDir::separator() + ".config/octopi";
     QString yaySymlink = octopiConfDir + QDir::separator() + "yay";
     QFileInfo info(yaySymlink);

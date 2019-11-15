@@ -117,7 +117,8 @@ void TermWidget::enter()
  */
 void TermWidget::parseOutput(QString str)
 {
-  if (str.contains(StrConstants::getPressAnyKey()))
+  if (str.contains(StrConstants::getPressAnyKey()) ||
+      str.contains(StrConstants::getSuspiciousTransactionDetected()))
   {
     emit onPressAnyKeyToContinue();
   }

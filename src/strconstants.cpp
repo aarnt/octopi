@@ -464,6 +464,11 @@ QString StrConstants::getPressAnyKey(){
   //return QObject::tr("Press any key to continue...");
 }
 
+QString StrConstants::getSuspiciousTransactionDetected()
+{
+  return "octopi-helper[aborted]: Suspicious transaction detected ->";
+}
+
 QString StrConstants::getCheckUpdates()
 {
   return QObject::tr("Check updates");
