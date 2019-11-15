@@ -48,9 +48,12 @@
 /*
  * Saves a file called "octopihelper" at /etc/sudoers.d so any user member of wheel group can run Octopi without entering a password
  */
-void setNoPwdUse()
+void setNoPasswdUse()
 {
-  QString cmd = "Cmnd_Alias  OCTOPIHELPER = /bin/sh -c unset LC_ALL; exec '/usr/lib/octopi/octopi-helper' '-t', /usr/lib/octopi/octopi-helper\n\n";
+  QString cmd = "Cmnd_Alias  OCTOPIHELPER = /bin/sh -c unset LC_ALL; "
+      "exec '/usr/lib/octopi/octopi-helper' '-t', "
+      "exec '/usr/lib/octopi/octopi-helper' '-ts', "
+      "/usr/lib/octopi/octopi-helper\n\n";
   cmd += "%wheel ALL=(root) NOPASSWD:SETENV:OCTOPIHELPER\n";
 
   QFile file("/etc/sudoers.d/octopihelper");
@@ -83,7 +86,7 @@ int main(int argc, char **argv)
     int uid = geteuid();
     if (uid == 0) //octopi-sudo is running as root
     {
-      setNoPwdUse();
+      setNoPasswdUse();
       return 0;
     }
     else

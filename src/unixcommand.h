@@ -80,7 +80,6 @@ public:
   static QString discoverBinaryPath(const QString&);
 
   static bool cleanPacmanCache();
-
   static QByteArray performQuery(const QStringList &args);
   static QByteArray performQuery(const QString &args);
   static QByteArray performAURCommand(const QString &args);
@@ -181,10 +180,6 @@ signals:
   void finished ( int, QProcess::ExitStatus );
   void readyReadStandardError();
   void commandToExecInQTermWidget(QString);
-
-  //ProcessWrapper signals
-  //void startedTerminal();
-  //void finishedTerminal(int, QProcess::ExitStatus);
 };
 
 #endif // UNIXCOMMAND_H
