@@ -116,6 +116,8 @@ public:
   static QString getRemovingPacmanTransactionLockFile();
   static QString getSyncing();
   static QString getPressAnyKey();
+  static QString getCouldNotAttachToParent();
+  static QString getSuspiciousExecutionDetected();
   static QString getSuspiciousTransactionDetected();
   static QString getCheckUpdates();
   static QString getCheckingForUpdates();

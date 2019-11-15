@@ -464,6 +464,16 @@ QString StrConstants::getPressAnyKey(){
   //return QObject::tr("Press any key to continue...");
 }
 
+QString StrConstants::getCouldNotAttachToParent()
+{
+  return "octopi-helper[aborted]: Couldn't attach to parent";
+}
+
+QString StrConstants::getSuspiciousExecutionDetected()
+{
+  return "octopi-helper[aborted]: Suspicious execution method";
+}
+
 QString StrConstants::getSuspiciousTransactionDetected()
 {
   return "octopi-helper[aborted]: Suspicious transaction detected ->";

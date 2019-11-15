@@ -45,7 +45,7 @@ QFile *UnixCommand::m_temporaryFile = nullptr;
 UnixCommand::UnixCommand(QObject *parent): QObject()
 {
   m_process = new QProcess(parent);
-  m_terminal = new Terminal(parent, SettingsManager::getTerminal());
+  m_terminal = new Terminal(parent);
 
   QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
   env.insert("LANG", "C");
@@ -895,6 +895,14 @@ void UnixCommand::runCommandInTerminal(const QStringList& commandList){
 }
 
 /*
+ * Executes given commandList as root inside a terminal using "octopi-helper -t" (passing cmds thru memory)
+ */
+void UnixCommand::runOctopiHelperInTerminalWithSharedMem(const QStringList &commandList, QSharedMemory *sharedMem)
+{
+  m_terminal->runOctopiHelperInTerminalWithSharedMem(commandList, sharedMem);
+}
+
+/*
  * Executes given commandList as root inside a terminal using "octopi-helper -t", so the user can interact
  */
 void UnixCommand::runOctopiHelperInTerminal(const QStringList &commandList)
@@ -1122,7 +1130,7 @@ QString UnixCommand::buildOctopiHelperCommand(const QString &pCommand)
  */
 void UnixCommand::cancelProcess(QSharedMemory *sharedMem)
 {
-  Q_UNUSED(sharedMem)
+  //Q_UNUSED(sharedMem)
   QProcess pacman;
   QString suCommand = WMHelper::getSUCommand();
   QString pCommand = "killall pacman; rm " + ctn_PACMAN_DATABASE_LOCK_FILE;
@@ -1130,7 +1138,8 @@ void UnixCommand::cancelProcess(QSharedMemory *sharedMem)
 
   if (suCommand == WMHelper::getOctopiSudoCommand())
   {
-    result = buildOctopiHelperCommand(pCommand);
+    removeTemporaryFiles();
+    result = buildOctopiHelperCommandWithSharedMem(pCommand, sharedMem);
   }
   else {
     result = suCommand + "\"" + pCommand + "\"";

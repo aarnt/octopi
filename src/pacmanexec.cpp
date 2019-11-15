@@ -947,7 +947,7 @@ void PacmanExec::doInstallInTerminal(const QString &listOfPackages)
   m_lastCommandList.append("read -n 1 -p \"" + StrConstants::getPressAnyKey() + "\"");
 
   m_commandExecuting = ectn_RUN_IN_TERMINAL;
-  m_unixCommand->runOctopiHelperInTerminal(m_lastCommandList);
+  m_unixCommand->runOctopiHelperInTerminalWithSharedMem(m_lastCommandList, m_sharedMemory);
 }
 
 /*
@@ -984,7 +984,7 @@ void PacmanExec::doInstallLocal(const QString &listOfPackages)
   m_lastCommandList.append("read -n 1 -p \"" + StrConstants::getPressAnyKey() + "\"");
 
   m_commandExecuting = ectn_INSTALL;
-  m_unixCommand->executeCommand(command);
+  m_unixCommand->executeCommandWithSharedMem(command, m_sharedMemory);
 }
 
 /*
@@ -1010,7 +1010,7 @@ void PacmanExec::doInstallLocalInTerminal(const QString &listOfPackages)
   m_lastCommandList.append("read -n 1 -p \"" + StrConstants::getPressAnyKey() + "\"");
 
   m_commandExecuting = ectn_RUN_IN_TERMINAL;
-  m_unixCommand->runOctopiHelperInTerminal(m_lastCommandList);
+  m_unixCommand->runOctopiHelperInTerminalWithSharedMem(m_lastCommandList, m_sharedMemory);
 }
 
 /*
@@ -1038,8 +1038,8 @@ void PacmanExec::doRemove(const QString &listOfPackages)
   m_lastCommandList.append("echo -e;");
   m_lastCommandList.append("read -n 1 -p \"" + StrConstants::getPressAnyKey() + "\"");
 
-  m_commandExecuting = ectn_REMOVE;
-  m_unixCommand->executeCommand(command);
+  m_commandExecuting = ectn_REMOVE;  
+  m_unixCommand->executeCommandWithSharedMem(command, m_sharedMemory);
 }
 
 /*
@@ -1059,7 +1059,7 @@ void PacmanExec::doRemoveInTerminal(const QString &listOfPackages)
   m_lastCommandList.append("read -n 1 -p \"" + StrConstants::getPressAnyKey() + "\"");
 
   m_commandExecuting = ectn_RUN_IN_TERMINAL;
-  m_unixCommand->runOctopiHelperInTerminal(m_lastCommandList);
+  m_unixCommand->runOctopiHelperInTerminalWithSharedMem(m_lastCommandList, m_sharedMemory);
 }
 
 /*
@@ -1089,7 +1089,7 @@ void PacmanExec::doRemoveAndInstall(const QString &listOfPackagestoRemove, const
   m_lastCommandList.append("read -n 1 -p \"" + StrConstants::getPressAnyKey() + "\"");
 
   m_commandExecuting = ectn_REMOVE_INSTALL;
-  m_unixCommand->executeCommand(command);
+  m_unixCommand->executeCommandWithSharedMem(command, m_sharedMemory);
 }
 
 /*
@@ -1110,7 +1110,7 @@ void PacmanExec::doRemoveAndInstallInTerminal(const QString &listOfPackagestoRem
   m_lastCommandList.append("read -n 1 -p \"" + StrConstants::getPressAnyKey() + "\"");
 
   m_commandExecuting = ectn_RUN_IN_TERMINAL;
-  m_unixCommand->runOctopiHelperInTerminal(m_lastCommandList);
+  m_unixCommand->runOctopiHelperInTerminalWithSharedMem(m_lastCommandList, m_sharedMemory);
 }
 
 /*
@@ -1139,7 +1139,7 @@ void PacmanExec::doSystemUpgrade()
   m_lastCommandList.append("read -n 1 -p \"" + StrConstants::getPressAnyKey() + "\"");
 
   m_commandExecuting = ectn_SYSTEM_UPGRADE;
-  m_unixCommand->executeCommand(command);
+  m_unixCommand->executeCommandWithSharedMem(command, m_sharedMemory);
 }
 
 /*
@@ -1163,7 +1163,7 @@ void PacmanExec::doSystemUpgradeInTerminal(CommandExecuting additionalCommand)
   m_lastCommandList.append("read -n 1 -p \"" + StrConstants::getPressAnyKey() + "\"");
 
   m_commandExecuting = ectn_RUN_SYSTEM_UPGRADE_IN_TERMINAL;
-  m_unixCommand->runOctopiHelperInTerminal(m_lastCommandList);
+  m_unixCommand->runOctopiHelperInTerminalWithSharedMem(m_lastCommandList, m_sharedMemory);
 }
 
 /*

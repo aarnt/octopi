@@ -906,12 +906,14 @@ void MainWindow::doSystemUpgrade(SystemUpgradeOptions systemUpgradeOptions)
         (m_outdatedStringList->count() != 0 && m_outdatedStringList->contains("pacman")) )
     {
       m_commandExecuting = ectn_RUN_SYSTEM_UPGRADE_IN_TERMINAL;
+      m_pacmanExec->setSharedMemory(m_sharedMem);
       m_pacmanExec->doSystemUpgradeInTerminal();
       m_commandQueued = ectn_NONE;
     }
     else
     {
       m_commandExecuting = ectn_SYSTEM_UPGRADE;
+      m_pacmanExec->setSharedMemory(m_sharedMem);
       m_pacmanExec->doSystemUpgrade();
       m_commandQueued = ectn_NONE;
     }
@@ -955,6 +957,7 @@ void MainWindow::doSystemUpgrade(SystemUpgradeOptions systemUpgradeOptions)
           }
 
           m_commandExecuting = ectn_RUN_SYSTEM_UPGRADE_IN_TERMINAL;
+          m_pacmanExec->setSharedMemory(m_sharedMem);
           m_pacmanExec->doSystemUpgradeInTerminal(ectn_SYNC_DATABASE);
           m_commandQueued = ectn_NONE;
         }
@@ -1023,12 +1026,14 @@ void MainWindow::doSystemUpgrade(SystemUpgradeOptions systemUpgradeOptions)
       if (result == QDialogButtonBox::Yes)
       {
         m_commandExecuting = ectn_SYSTEM_UPGRADE;
+        m_pacmanExec->setSharedMemory(m_sharedMem);
         m_pacmanExec->doSystemUpgrade();
         m_commandQueued = ectn_NONE;
       }
       else if (result == QDialogButtonBox::AcceptRole)
       {
         m_commandExecuting = ectn_RUN_SYSTEM_UPGRADE_IN_TERMINAL;
+        m_pacmanExec->setSharedMemory(m_sharedMem);
         m_pacmanExec->doSystemUpgradeInTerminal();
         m_commandQueued = ectn_NONE;
       }
@@ -1157,11 +1162,13 @@ void MainWindow::doRemoveAndInstall()
     if (result == QDialogButtonBox::Yes)
     {
       m_commandExecuting = ectn_REMOVE_INSTALL;
+      m_pacmanExec->setSharedMemory(m_sharedMem);
       m_pacmanExec->doRemoveAndInstall(listOfRemoveTargets, listOfInstallTargets);
     }
     else if (result == QDialogButtonBox::AcceptRole)
     {
       m_commandExecuting = ectn_RUN_IN_TERMINAL;
+      m_pacmanExec->setSharedMemory(m_sharedMem);
       m_pacmanExec->doRemoveAndInstallInTerminal(listOfRemoveTargets, listOfInstallTargets);
     }
   }
@@ -1230,12 +1237,14 @@ void MainWindow::doRemove()
     if (result == QDialogButtonBox::Yes)
     {
       m_commandExecuting = ectn_REMOVE;
+      m_pacmanExec->setSharedMemory(m_sharedMem);
       m_pacmanExec->doRemove(listOfTargets);
     }
 
     if (result == QDialogButtonBox::AcceptRole)
     {
       m_commandExecuting = ectn_RUN_IN_TERMINAL;
+      m_pacmanExec->setSharedMemory(m_sharedMem);
       m_pacmanExec->doRemoveInTerminal(listOfTargets);
     }
   }
@@ -1657,6 +1666,7 @@ void MainWindow::doInstall()
     else if (result == QDialogButtonBox::AcceptRole)
     {
       m_commandExecuting = ectn_RUN_IN_TERMINAL;
+      m_pacmanExec->setSharedMemory(m_sharedMem);
       m_pacmanExec->doInstallInTerminal(listOfTargets);
     }
   }
@@ -1725,11 +1735,13 @@ void MainWindow::doInstallLocalPackages()
     if (result == QDialogButtonBox::Yes)
     {
       m_commandExecuting = ectn_INSTALL;
+      m_pacmanExec->setSharedMemory(m_sharedMem);
       m_pacmanExec->doInstallLocal(listOfTargets);
     }
     else if (result == QDialogButtonBox::AcceptRole)
     {
       m_commandExecuting = ectn_RUN_IN_TERMINAL;
+      m_pacmanExec->setSharedMemory(m_sharedMem);
       m_pacmanExec->doInstallLocalInTerminal(listOfTargets);
     }
   }

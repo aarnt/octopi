@@ -148,6 +148,7 @@ public:
   static void removeTemporaryFiles();
 
   void runCommandInTerminal(const QStringList& commandList);
+  void runOctopiHelperInTerminalWithSharedMem(const QStringList& commandList, QSharedMemory *sharedMem);
   void runOctopiHelperInTerminal(const QStringList& commandList);
   void runCommandInTerminalAsNormalUser(const QStringList& commandList);
 

@@ -32,27 +32,12 @@
  * This class abstracts all the relevant terminal related code
  */
 
-Terminal::Terminal(QObject *parent, const QString &selectedTerminal) : QObject(parent)
+Terminal::Terminal(QObject *parent) : QObject(parent)
 {
-  m_process = new QProcess(parent);
-  m_process->setInputChannelMode(QProcess::ForwardedInputChannel);
-  m_process->setProcessChannelMode(QProcess::ForwardedChannels);
-
-  //Make the needed signal propagations...
-  connect(m_process, SIGNAL(started()), this, SIGNAL(started()));
-  connect(m_process, SIGNAL(finished(int,QProcess::ExitStatus)), this, SIGNAL(finished(int,QProcess::ExitStatus)));
-
-  QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
-  env.insert("LANG", "C");
-  env.insert("LC_MESSAGES", "C");
-  m_process->setProcessEnvironment(env);
-  m_selectedTerminal = selectedTerminal;
 }
 
 Terminal::~Terminal()
 {
-  m_process->close();
-  delete m_process;
 }
 
 /*
@@ -66,7 +51,7 @@ void Terminal::runCommandInTerminal(const QStringList &commandList)
 
   foreach(QString line, commandList)
   {
-    if ((line.contains("echo -e") || line.contains("read -n 1")) && m_selectedTerminal == ctn_QTERMWIDGET)
+    if ((line.contains("echo -e") || line.contains("read -n 1"))) //&& m_selectedTerminal == ctn_QTERMWIDGET)
     {
       removedLines = true;
       continue;
@@ -79,16 +64,50 @@ void Terminal::runCommandInTerminal(const QStringList &commandList)
 
   out.flush();
   ftemp->close();
-
-  QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
-  env.remove("LANG");
-  env.remove("LC_MESSAGES");
-  env.insert("LANG", QLocale::system().name() + ".UTF-8");
-  env.insert("LC_MESSAGES", QLocale::system().name() + ".UTF-8");
-  m_process->setProcessEnvironment(env);
-  m_process->close();
-
   QString cmd = UnixCommand::getShell() + " -c \"" + ftemp->fileName() + "\"";
+  emit commandToExecInQTermWidget(cmd);
+}
+
+/*
+ * Executes the given commandList creating a ROOT temp transaction file and calling "octopi-helper -ts"
+ */
+void Terminal::runOctopiHelperInTerminalWithSharedMem(const QStringList &commandList, QSharedMemory *sharedMem)
+{
+  QString out;
+  bool removedLines = false;
+
+  foreach(QString line, commandList)
+  {
+    if (line.contains("echo -e") || line.contains("read -n 1"))
+    {
+      removedLines = true;
+      continue;
+    }
+
+    out += line + "\n";
+  }
+
+  if (removedLines) out += "echo \"" + StrConstants::getPressAnyKey() + "\"";
+
+  QString suCommand = WMHelper::getSUCommand();
+  QString commandToRun = ctn_OCTOPI_HELPER + " -ts";
+  QString cmd = "sudo " + commandToRun;
+  QByteArray sharedData=out.toLatin1();
+
+  if (sharedMem != nullptr)
+  {
+    if (sharedMem->isAttached())
+      sharedMem->detach();
+    delete sharedMem;
+    sharedMem=nullptr;
+  }
+
+  sharedMem=new QSharedMemory("org.arnt.octopi", this);
+  sharedMem->create(sharedData.size());
+  sharedMem->lock();
+  memcpy(sharedMem->data(), sharedData.data(), sharedData.size());
+  sharedMem->unlock();
+
   emit commandToExecInQTermWidget(cmd);
 }
 
@@ -103,7 +122,7 @@ void Terminal::runOctopiHelperInTerminal(const QStringList &commandList)
 
   foreach(QString line, commandList)
   {
-    if ((line.contains("echo -e") || line.contains("read -n 1")) && m_selectedTerminal == ctn_QTERMWIDGET)
+    if ((line.contains("echo -e") || line.contains("read -n 1"))) //&& m_selectedTerminal == ctn_QTERMWIDGET)
     {
       removedLines = true;
       continue;
@@ -117,16 +136,8 @@ void Terminal::runOctopiHelperInTerminal(const QStringList &commandList)
   out.flush();
   ftemp->close();
 
-  QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
-  env.remove("LANG");
-  env.remove("LC_MESSAGES");
-  env.insert("LANG", QLocale::system().name() + ".UTF-8");
-  env.insert("LC_MESSAGES", QLocale::system().name() + ".UTF-8");
-  m_process->setProcessEnvironment(env);
-
   QString suCommand = WMHelper::getSUCommand();
   QString commandToRun = ctn_OCTOPI_HELPER + " -t";
-  m_process->close();
   QString cmd = "sudo " + commandToRun;
   emit commandToExecInQTermWidget(cmd);
 }
@@ -142,7 +153,7 @@ void Terminal::runCommandInTerminalAsNormalUser(const QStringList &commandList)
 
   foreach(QString line, commandList)
   {
-    if ((line.contains("echo -e") || line.contains("read -n 1")) && m_selectedTerminal == ctn_QTERMWIDGET)
+    if ((line.contains("echo -e") || line.contains("read -n 1"))) //&& m_selectedTerminal == ctn_QTERMWIDGET)
     {
       removedLines = true;
       continue;
@@ -163,7 +174,6 @@ void Terminal::runCommandInTerminalAsNormalUser(const QStringList &commandList)
   ftemp->close();
 
   QString cmd;
-  m_process->close();
   cmd = UnixCommand::getShell() + " -c \"" + ftemp->fileName() + "\"";
   emit commandToExecInQTermWidget(cmd);
 }

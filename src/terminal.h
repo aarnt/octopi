@@ -25,20 +25,21 @@
 #include <QObject>
 #include <QProcess>
 
+class QSharedMemory;
+
 class Terminal : public QObject
 {
   Q_OBJECT
 
-private:
-  QString m_selectedTerminal;
-  QProcess *m_process;
-
 public:
-  Terminal(QObject *parent, const QString& selectedTerminal);
+  Terminal(QObject *parent);
   virtual ~Terminal();
 
   //Executes the given commandList creating a temp transaction file and running it
   void runCommandInTerminal(const QStringList& commandList);
+
+  //Executes the given commandList creating a ROOT temp transaction file and calling "octopi-helper -ts"
+  void runOctopiHelperInTerminalWithSharedMem(const QStringList& commandList, QSharedMemory *sharedMem);
 
   //Executes the given commandList creating a temp transaction file and calling "octopi-helper -t"
   void runOctopiHelperInTerminal(const QStringList& commandList);
