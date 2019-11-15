@@ -97,6 +97,7 @@ protected:
     UnixCommand *m_cmd;
     ProcessOutputAccumulator *m_acc;
     int m_oldKeepValue;
+    QSharedMemory *m_sharedMem;
 
     void processDryrunResult(QString);
     QString getOptions();

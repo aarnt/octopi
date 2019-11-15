@@ -71,6 +71,7 @@ public:
 
   static QString getPacmanVersion();
   static bool isPacmanFiveDotOneOrHigher();
+  static bool isPacmanDbLocked();
 
   static QString getShell();
 

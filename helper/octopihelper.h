@@ -57,8 +57,7 @@ public:
   int executePkgTransactionWithSharedMem();
   int executePkgTransaction();
   inline int getExitCode() { return m_exitCode; }
-  bool isOctopiRunning();
-  bool isOctopiNotifierRunning();
+  bool isOctoToolRunning(const QString &octoToolName);
 };
 
 #endif // PKOCTOPIHELPER_H

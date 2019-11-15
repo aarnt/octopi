@@ -1474,3 +1474,11 @@ bool UnixCommand::isPacmanFiveDotOneOrHigher()
 
   return res;
 }
+
+/*
+ * Check if /var/lib/pacman/db.lck exists
+ */
+bool UnixCommand::isPacmanDbLocked()
+{
+  return QFile::exists(ctn_PACMAN_DATABASE_LOCK_FILE);
+}

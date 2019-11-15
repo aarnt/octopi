@@ -49,6 +49,8 @@ PackageGroupModel::PackageGroupModel(QString optionsString,
 {
   m_cleanButton->setText(tr("Clean"));
 
+  m_sharedMem=nullptr;
+
   //setup UI slots
   connect( m_spinner, SIGNAL( valueChanged(int) ), SLOT( updateKeepArchives() ) );
   connect( m_spinner, SIGNAL( valueChanged(int) ), SLOT( refreshCacheView() ) );
@@ -67,6 +69,7 @@ PackageGroupModel::PackageGroupModel(QString optionsString,
  */
 PackageGroupModel::~PackageGroupModel()
 {
+  UnixCommand::removeTemporaryFiles();
   delete m_acc;
   delete m_cmd;
 }
@@ -149,7 +152,7 @@ bool PackageGroupModel::isSUAvailable()
  */
 void PackageGroupModel::cleanCache()
 {
-  if (isExecutingCommand) return;
+  if (isExecutingCommand || UnixCommand::isPacmanDbLocked()) return;
 
   if (!isSUAvailable())
     return;
@@ -165,7 +168,9 @@ void PackageGroupModel::cleanCache()
                    this, SLOT( finishedClean( int, QProcess::ExitStatus )) );
 
   QByteArray tmp = "paccache -r " + getOptions().toLatin1();
-  m_cmd->executeCommand(QLatin1String(tmp), ectn_LANG_USER_DEFINED);
+  UnixCommand::removeTemporaryFiles();
+  m_cmd->executeCommandWithSharedMem(tmp, m_sharedMem);
+  //m_cmd->executeCommand(QLatin1String(tmp), ectn_LANG_USER_DEFINED);
   isExecutingCommand = true;
 }
 

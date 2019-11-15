@@ -30,7 +30,6 @@
 
 QFile *OctopiHelper::m_temporaryFile = nullptr;
 
-
 void removeTemporaryFiles()
 {
   QDir tempDir(QDir::tempPath());
@@ -152,41 +151,23 @@ QString OctopiHelper::getTransactionTempFileName()
 }
 
 /*
- * Checks if Octopi is being executed
+ * Checks if Octopi/Octopi-notifier, cache-cleaner, etc is being executed
  */
-bool OctopiHelper::isOctopiRunning()
+bool OctopiHelper::isOctoToolRunning(const QString &octoToolName)
 {
   bool res=false;
 
   QProcess proc;
   proc.setProcessEnvironment(getProcessEnvironment());
-  proc.start("ps -C octopi -o command");
+  QString cmd = "ps -C %1 -o command";
+  cmd = cmd.arg(octoToolName);
+  proc.start(cmd);
   proc.waitForFinished();
   QString out = proc.readAll().trimmed();
   if (out.contains("|")) return false;
   out=out.remove("\n");
   out=out.remove("COMMAND");
-  if (out == "/usr/bin/octopi" || out.contains("/usr/bin/octopi ")) res=true;
-
-  return res;
-}
-
-/*
- * Checks if Octopi-Notifier is being executed
- */
-bool OctopiHelper::isOctopiNotifierRunning()
-{
-  bool res=false;
-
-  QProcess proc;
-  proc.setProcessEnvironment(getProcessEnvironment());
-  proc.start("ps -C octopi-notifier -o command");
-  proc.waitForFinished();
-  QString out = proc.readAll().trimmed();
-  if (out.contains("|")) return false;
-  out=out.remove("\n");
-  out=out.remove("COMMAND");
-  if (out == "/usr/bin/octopi-notifier" || out.contains("/usr/bin/octopi-notifier ")) res=true;
+  if ((out == "/usr/bin/" + octoToolName) || out.contains("/usr/bin/" + octoToolName + " ")) res=true;
 
   return res;
 }
@@ -197,7 +178,9 @@ bool OctopiHelper::isOctopiNotifierRunning()
  */
 int OctopiHelper::executePkgTransactionWithSharedMem()
 {
-  if(!isOctopiRunning() && !isOctopiNotifierRunning())
+  if(!isOctoToolRunning("octopi") &&
+     !isOctoToolRunning("octopi-notifier") &&
+     !isOctoToolRunning("octopi-cacheclener"))
   {
     QTextStream qout(stdout);
     qout << endl << "octopi-helper[aborted]: Suspicious execution method" << endl;
@@ -308,7 +291,9 @@ int OctopiHelper::executePkgTransactionWithSharedMem()
  */
 int OctopiHelper::executePkgTransaction()
 {
-  if(!isOctopiRunning() && !isOctopiNotifierRunning())
+  if(!isOctoToolRunning("octopi") &&
+     !isOctoToolRunning("octopi-notifier") &&
+     !isOctoToolRunning("octopi-cacheclener"))
   {
     QTextStream qout(stdout);
     qout << endl << "octopi-helper[aborted]: Suspicious execution method" << endl;
