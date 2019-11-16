@@ -61,6 +61,22 @@ void removeTemporaryFiles()
 }
 
 /*
+ * Returns the SHELL environment variable, if not set defaults to bash.
+ */
+QString getShell()
+{
+  QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
+  QString shell = env.value("SHELL", "/bin/bash");
+
+  QFileInfo fi(shell);
+
+  if (fi.fileName() == "fish")
+    return "bash";
+  else
+    return fi.fileName();
+}
+
+/*
  * If justOneInstance = false (default), returns TRUE if one instance of the app is ALREADY running
  * Otherwise, it returns TRUE if the given app is running.
  */
@@ -122,7 +138,6 @@ QProcessEnvironment OctopiHelper::getProcessEnvironment()
   env.insert("LC_MESSAGES", "C");
   env.remove("COLUMNS");
   env.insert("COLUMNS", "132");
-
   return env;
 }
 
@@ -274,7 +289,7 @@ int OctopiHelper::executePkgTransactionWithSharedMem()
 
   QString command;
   m_process->setProcessEnvironment(getProcessEnvironment());
-  command = "/bin/sh " + m_temporaryFile->fileName();
+  command = getShell() + " " + m_temporaryFile->fileName();
   m_process->start(command);
   m_process->waitForStarted(-1);
   m_process->waitForFinished(-1);
@@ -363,7 +378,7 @@ int OctopiHelper::executePkgTransaction()
 
   QString command;
   m_process->setProcessEnvironment(getProcessEnvironment());
-  command = "/bin/sh " + getTransactionTempFileName();
+  command = getShell() + " " + getTransactionTempFileName();
   m_process->start(command);
   m_process->waitForStarted(-1);
   m_process->waitForFinished(-1);
