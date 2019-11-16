@@ -314,13 +314,13 @@ void MainWindow::keyPressEvent(QKeyEvent* ke)
     m_actionSwitchToAURTool->trigger();
     m_leFilterPackage->setFocus();
   }
-  else if(ke->key() == Qt::Key_R && ke->modifiers() == (Qt::ShiftModifier|Qt::ControlModifier))
+  /*else if(ke->key() == Qt::Key_R && ke->modifiers() == (Qt::ShiftModifier|Qt::ControlModifier))
   {
     if (m_commandExecuting == ectn_NONE)
     {
       doRemovePacmanLockFile(); //If we are not executing any command, let's remove Pacman's lock file
     }
-  } 
+  }*/
   else if(ke->key() == Qt::Key_S && ke->modifiers() == (Qt::ShiftModifier|Qt::ControlModifier))
   {
     doSysInfo();

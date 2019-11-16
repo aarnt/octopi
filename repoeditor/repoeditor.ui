@@ -47,14 +47,14 @@
         <property name="cornerButtonEnabled">
          <bool>false</bool>
         </property>
+        <attribute name="horizontalHeaderMinimumSectionSize">
+         <number>10</number>
+        </attribute>
         <attribute name="horizontalHeaderDefaultSectionSize">
          <number>66</number>
         </attribute>
         <attribute name="horizontalHeaderHighlightSections">
          <bool>false</bool>
-        </attribute>
-        <attribute name="horizontalHeaderMinimumSectionSize">
-         <number>10</number>
         </attribute>
         <attribute name="horizontalHeaderStretchLastSection">
          <bool>true</bool>
@@ -76,8 +76,7 @@
           </property>
           <property name="icon">
            <iconset theme="edit-rename">
-            <normaloff/>
-           </iconset>
+            <normaloff>.</normaloff>.</iconset>
           </property>
          </widget>
         </item>
@@ -91,8 +90,7 @@
           </property>
           <property name="icon">
            <iconset theme="list-add">
-            <normaloff/>
-           </iconset>
+            <normaloff>.</normaloff>.</iconset>
           </property>
          </widget>
         </item>
@@ -106,8 +104,7 @@
           </property>
           <property name="icon">
            <iconset theme="list-remove">
-            <normaloff/>
-           </iconset>
+            <normaloff>.</normaloff>.</iconset>
           </property>
          </widget>
         </item>
@@ -134,8 +131,7 @@
           </property>
           <property name="icon">
            <iconset theme="go-up">
-            <normaloff/>
-           </iconset>
+            <normaloff>.</normaloff>.</iconset>
           </property>
          </widget>
         </item>
@@ -149,8 +145,7 @@
           </property>
           <property name="icon">
            <iconset theme="go-down">
-            <normaloff/>
-           </iconset>
+            <normaloff>.</normaloff>.</iconset>
           </property>
          </widget>
         </item>
@@ -197,8 +192,7 @@
           </property>
           <property name="icon">
            <iconset theme="document-open">
-            <normaloff/>
-           </iconset>
+            <normaloff>.</normaloff>.</iconset>
           </property>
          </widget>
         </item>
@@ -214,7 +208,11 @@
          </widget>
         </item>
         <item>
-         <widget class="QLineEdit" name="backupFile"/>
+         <widget class="QLineEdit" name="backupFile">
+          <property name="readOnly">
+           <bool>true</bool>
+          </property>
+         </widget>
         </item>
        </layout>
       </item>

@@ -203,7 +203,13 @@ bool RepoConf::saveChanges( const QString & backup )
 
   //Last, we copy the tempfile to the repoconf path
   if (!command.isEmpty()) command += "; ";
-  command += "cp " + tempFile.fileName() + " /etc/pacman.conf; chown root /etc/pacman.conf; chgrp root /etc/pacman.conf; chmod 644 /etc/pacman.conf";
+
+  command +=
+      "cp " + tempFile.fileName() +
+      " /etc/pacman.conf;" +
+      " chown root /etc/pacman.conf;" +
+      " chgrp root /etc/pacman.conf;" +
+      "chmod 644 /etc/pacman.conf";
 
   unixC->execCommand(command);
 

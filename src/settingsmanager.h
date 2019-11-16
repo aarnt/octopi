@@ -98,6 +98,10 @@ class SettingsManager
     static void setKeepNumInstalledPackages(int newValue);
     static void setKeepNumUninstalledPackages(int newValue);
 
+    //RepoEditor related
+    static QByteArray getRepoEditorWindowSize();
+    static void setRepoEditorWindowSize(QByteArray newValue);
+
     //Notifier related
     static int getCheckUpdatesHour();
     static int getCheckUpdatesInterval();

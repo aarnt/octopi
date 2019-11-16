@@ -788,7 +788,7 @@ void UnixCommand::execCommand(const QString &pCommand)
   env.insert("LC_MESSAGES", "C");
   p.setProcessEnvironment(env);
 
-  p.start(WMHelper::getSUCommand() + "\"" + pCommand + "\"");
+  p.start(WMHelper::getSUCommand() + getShell() + " -c \"" + pCommand + "\"");
   p.waitForFinished(-1);
   p.close();
 }

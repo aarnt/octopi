@@ -83,6 +83,17 @@ void SettingsManager::setKeepNumUninstalledPackages(int newValue)
   instance()->getSYSsettings()->sync();
 }
 
+QByteArray SettingsManager::getRepoEditorWindowSize()
+{
+  return (instance()->getSYSsettings()->value(ctn_KEY_REPO_EDITOR_WINDOW_SIZE, 0).toByteArray());
+}
+
+void SettingsManager::setRepoEditorWindowSize(QByteArray newValue)
+{
+  instance()->getSYSsettings()->setValue(ctn_KEY_REPO_EDITOR_WINDOW_SIZE, newValue);
+  instance()->getSYSsettings()->sync();
+}
+
 //CacheCleaner related --------------------------------------------------------------
 
 

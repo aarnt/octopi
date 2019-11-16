@@ -97,14 +97,14 @@ public slots:
 
   void moveUp( int i ) {
     if( entries.count() && i > 0 ) {
-      entries.swap( i, i - 1 );
+      entries.swapItemsAt( i, i - 1 );
       emit dataChanged( QModelIndex(), QModelIndex() );
     }
   }
 
   void moveDown( int i ){
     if( entries.count() && i < entries.count() - 1 ) {
-      entries.swap( i, i + 1 );
+      entries.swapItemsAt( i, i + 1 );
       emit dataChanged( QModelIndex(), QModelIndex() );
     }
   }

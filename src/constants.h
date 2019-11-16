@@ -129,6 +129,9 @@ const QString ctn_KEY_CACHE_CLEANER_WINDOW_SIZE("Cache_Cleaner_Window_Size");
 const QString ctn_KEY_KEEP_NUM_INSTALLED("Keep_Num_Installed");
 const QString ctn_KEY_KEEP_NUM_UNINSTALLED("Keep_Num_Uninstalled");
 
+//SettingsManager - RepoEditor related
+const QString ctn_KEY_REPO_EDITOR_WINDOW_SIZE("Repo_Editor_Window_Size");
+
 //pacman command to retrieve list of upgradable packages with name, version and size
 const QString ctn_PACMAN_SUP_COMMAND = "pacman --print-format \"%n %v %s\" -Spu";
 

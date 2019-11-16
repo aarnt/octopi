@@ -182,8 +182,8 @@ QString MainWindow::generateHelpUsageHtmlText()
      tr("Ctrl+Shift+G to display all package groups") +
   QString("</li>") +
      strOutdatedAur + "<li>" +
-     tr("Ctrl+Shift+R to remove Pacman's transaction lock file") +
-  QString("</li><li>") +
+     //tr("Ctrl+Shift+R to remove Pacman's transaction lock file") +
+  //QString("</li><li>") +
      tr("Ctrl+Shift+Y to display %1 group").arg(StrConstants::getForeignRepositoryGroupName()) +
   QString("</li></ul>") +
 

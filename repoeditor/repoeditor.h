@@ -61,7 +61,6 @@ public slots:
     void removeEntry();
     void addEntry();
     void editEntry();
-
     void loadBackup();
 };
 
