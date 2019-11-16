@@ -74,7 +74,7 @@ public:
   void setDebugMode(bool value);
   void runLatestCommandInTerminal();
   void runLatestCommandWithOctopiHelper();
-  void updatePacmanWithOctopiHelper();
+  //void updatePacmanWithOctopiHelper();
   void removeTemporaryFile();  
 
   static bool isDatabaseLocked();

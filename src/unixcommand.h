@@ -47,7 +47,7 @@ private:
   QProcess *m_process;
 
   static QFile *m_temporaryFile;
-  static QString buildOctopiHelperCommand(const QString &pCommand);
+  //static QString buildOctopiHelperCommand(const QString &pCommand);
   QString buildOctopiHelperCommandWithSharedMem(const QString &pCommand, QSharedMemory *sharedMem);
 
 public:
@@ -126,14 +126,14 @@ public:
 
   static bool isUserInWheelGroup();
 
-  static QFile* generateTemporaryFile(){
+  /*static QFile* generateTemporaryFile(){
     quint32 gen = QRandomGenerator::global()->generate();
     m_temporaryFile = new QFile(ctn_TEMP_ACTIONS_FILE + QString::number(gen));
     m_temporaryFile->open(QIODevice::ReadWrite|QIODevice::Text);
     m_temporaryFile->setPermissions(QFile::Permissions(QFile::ExeOwner|QFile::ReadOwner));
 
     return m_temporaryFile;
-  }
+  }*/
 
   static void removeTemporaryFile(){
     if (m_temporaryFile != nullptr){
@@ -147,9 +147,9 @@ public:
   static bool isPackageInstalled(const QString& pkgName);
   static void removeTemporaryFiles();
 
-  void runCommandInTerminal(const QStringList& commandList);
+  //void runCommandInTerminal(const QStringList& commandList);
   void runOctopiHelperInTerminalWithSharedMem(const QStringList& commandList, QSharedMemory *sharedMem);
-  void runOctopiHelperInTerminal(const QStringList& commandList);
+  //void runOctopiHelperInTerminal(const QStringList& commandList);
   void runCommandInTerminalAsNormalUser(const QStringList& commandList);
 
   static void execCommandAsNormalUser(const QString &pCommand);
@@ -162,7 +162,7 @@ public:
   static QStringList getAvailableAURTools();
 
   void executeCommandWithSharedMem(const QString &pCommand, QSharedMemory *sharedMem);
-  void executeCommand(const QString &pCommand, Language lang=ectn_LANG_ENGLISH);
+  //void executeCommand(const QString &pCommand, Language lang=ectn_LANG_ENGLISH);
   void executeCommandAsNormalUser(const QString &pCommand);
 
   QString readAllStandardOutput();

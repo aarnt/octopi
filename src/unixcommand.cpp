@@ -890,9 +890,9 @@ bool UnixCommand::isTextFile(QString fileName)
 /*
  * Executes given commandList as root inside a terminal, so the user can interact
  */
-void UnixCommand::runCommandInTerminal(const QStringList& commandList){
+/*void UnixCommand::runCommandInTerminal(const QStringList& commandList){
   m_terminal->runCommandInTerminal(commandList);
-}
+}*/
 
 /*
  * Executes given commandList as root inside a terminal using "octopi-helper -t" (passing cmds thru memory)
@@ -905,10 +905,10 @@ void UnixCommand::runOctopiHelperInTerminalWithSharedMem(const QStringList &comm
 /*
  * Executes given commandList as root inside a terminal using "octopi-helper -t", so the user can interact
  */
-void UnixCommand::runOctopiHelperInTerminal(const QStringList &commandList)
+/*void UnixCommand::runOctopiHelperInTerminal(const QStringList &commandList)
 {
   m_terminal->runOctopiHelperInTerminal(commandList);
-}
+}*/
 
 /*
  * Executes given commandList inside a terminal, as the current user!
@@ -952,7 +952,7 @@ void UnixCommand::executeCommandWithSharedMem(const QString &pCommand, QSharedMe
 /*
  * Executes the given command using QProcess async technology with ROOT credentials
  */
-void UnixCommand::executeCommand(const QString &pCommand, Language lang)
+/*void UnixCommand::executeCommand(const QString &pCommand, Language lang)
 {
   QString command;
 
@@ -986,13 +986,14 @@ void UnixCommand::executeCommand(const QString &pCommand, Language lang)
   {
     command = buildOctopiHelperCommand(pCommand);
   }
-  else //We are not using "octopi-sudo" nor "lxqt-sudo" utility...*/
-  {
-    command = suCommand + "\"" + pCommand + "\"";
-  }
+  //We are not using "octopi-sudo" nor "lxqt-sudo" utility...
+  //else
+  //{
+  //  command = suCommand + "\"" + pCommand + "\"";
+  //}
 
   m_process->start(command);
-}
+}*/
 
 /*
  * Executes the given command using QProcess async technology as a normal user
@@ -1095,7 +1096,7 @@ QString UnixCommand::buildOctopiHelperCommandWithSharedMem(const QString &pComma
 /*
  * Constructs the octopi-sudo related command to execute given pCommand using "octopi-helper" utility
  */
-QString UnixCommand::buildOctopiHelperCommand(const QString &pCommand)
+/*QString UnixCommand::buildOctopiHelperCommand(const QString &pCommand)
 {
   QString octopiHelperCommandParameter;
   QStringList commandList;
@@ -1123,7 +1124,7 @@ QString UnixCommand::buildOctopiHelperCommand(const QString &pCommand)
 
   octopiHelperCommandParameter = " -t";
   return suCommand + ctn_OCTOPI_HELPER + octopiHelperCommandParameter;
-}
+}*/
 
 /*
  * Cancels the running process

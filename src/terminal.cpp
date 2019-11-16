@@ -43,7 +43,7 @@ Terminal::~Terminal()
 /*
  * Executes the given command list with root credentials
  */
-void Terminal::runCommandInTerminal(const QStringList &commandList)
+/*void Terminal::runCommandInTerminal(const QStringList &commandList)
 {
   QFile *ftemp = UnixCommand::generateTemporaryFile();
   QTextStream out(ftemp);
@@ -66,7 +66,7 @@ void Terminal::runCommandInTerminal(const QStringList &commandList)
   ftemp->close();
   QString cmd = UnixCommand::getShell() + " -c \"" + ftemp->fileName() + "\"";
   emit commandToExecInQTermWidget(cmd);
-}
+}*/
 
 /*
  * Executes the given commandList creating a ROOT temp transaction file and calling "octopi-helper -ts"
@@ -114,7 +114,7 @@ void Terminal::runOctopiHelperInTerminalWithSharedMem(const QStringList &command
 /*
  * Executes the given command list with root credentials using "octopi-helper -t"
  */
-void Terminal::runOctopiHelperInTerminal(const QStringList &commandList)
+/*void Terminal::runOctopiHelperInTerminal(const QStringList &commandList)
 {
   QFile *ftemp = UnixCommand::generateTemporaryFile();
   QTextStream out(ftemp);
@@ -140,15 +140,16 @@ void Terminal::runOctopiHelperInTerminal(const QStringList &commandList)
   QString commandToRun = ctn_OCTOPI_HELPER + " -t";
   QString cmd = "sudo " + commandToRun;
   emit commandToExecInQTermWidget(cmd);
-}
+}*/
 
 /*
  * Executes the given command list as normal user
  */
 void Terminal::runCommandInTerminalAsNormalUser(const QStringList &commandList)
 {
-  QFile *ftemp = UnixCommand::generateTemporaryFile();
-  QTextStream out(ftemp);
+  //QFile *ftemp = UnixCommand::generateTemporaryFile();
+  //QTextStream out(ftemp);
+  QString out;
   bool removedLines = false;
 
   foreach(QString line, commandList)
@@ -165,15 +166,15 @@ void Terminal::runCommandInTerminalAsNormalUser(const QStringList &commandList)
       line = line.replace("ccr/", "");
     }
 
-    out << line;
+    out += line;
   }
 
-  if (removedLines) out << "echo \"" << StrConstants::getPressAnyKey() + "\"";
+  if (removedLines) out += "echo '" + StrConstants::getPressAnyKey() + "'";
 
-  out.flush();
-  ftemp->close();
+  //out.flush();
+  //ftemp->close();
 
   QString cmd;
-  cmd = UnixCommand::getShell() + " -c \"" + ftemp->fileName() + "\"";
+  cmd = UnixCommand::getShell() + " -c \"" + out /*ftemp->fileName()*/ + "\"";
   emit commandToExecInQTermWidget(cmd);
 }

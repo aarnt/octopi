@@ -121,7 +121,7 @@ void TermWidget::enter()
  */
 void TermWidget::parseOutput(QString str)
 {
-  if (str.contains(StrConstants::getPressAnyKey()) ||
+  if ((str == StrConstants::getPressAnyKey() + "\r\n") ||
       str.contains(StrConstants::getSuspiciousExecutionDetected()) ||
       str.contains(StrConstants::getSuspiciousTransactionDetected()) ||
       str.contains(StrConstants::getCouldNotAttachToParent())

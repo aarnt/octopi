@@ -1277,7 +1277,10 @@ void PacmanExec::doAURRemove(const QString &listOfPackages)
 
   if (Package::getForeignRepositoryToolName() != ctn_YAOURT_TOOL &&
       Package::getForeignRepositoryToolName() != ctn_PACAUR_TOOL)
-    m_unixCommand->runCommandInTerminal(m_lastCommandList);
+  {
+    m_unixCommand->runOctopiHelperInTerminalWithSharedMem(m_lastCommandList, m_sharedMemory);
+    //m_unixCommand->runCommandInTerminal(m_lastCommandList);
+  }
   else
     m_unixCommand->runCommandInTerminalAsNormalUser(m_lastCommandList);
 }
@@ -1288,7 +1291,8 @@ void PacmanExec::doAURRemove(const QString &listOfPackages)
 void PacmanExec::runLatestCommandInTerminal()
 {
   m_commandExecuting = ectn_RUN_IN_TERMINAL;
-  m_unixCommand->runCommandInTerminal(m_lastCommandList);
+  m_unixCommand->runOctopiHelperInTerminalWithSharedMem(m_lastCommandList, m_sharedMemory);
+  //m_unixCommand->runCommandInTerminal(m_lastCommandList);
 }
 
 /*
@@ -1297,13 +1301,14 @@ void PacmanExec::runLatestCommandInTerminal()
 void PacmanExec::runLatestCommandWithOctopiHelper()
 {
   m_commandExecuting = ectn_RUN_IN_TERMINAL;
-  m_unixCommand->runOctopiHelperInTerminal(m_lastCommandList);
+  m_unixCommand->runOctopiHelperInTerminalWithSharedMem(m_lastCommandList, m_sharedMemory);
+  //m_unixCommand->runOctopiHelperInTerminal(m_lastCommandList);
 }
 
 /*
  * Updates pacman pkg inside a terminal using "octopi-helper -t";
  */
-void PacmanExec::updatePacmanWithOctopiHelper()
+/*void PacmanExec::updatePacmanWithOctopiHelper()
 {
   QStringList commands;
   commands << "pacman -S pacman";
@@ -1311,4 +1316,4 @@ void PacmanExec::updatePacmanWithOctopiHelper()
   commands << "read -n 1 -p \"" + StrConstants::getPressAnyKey() + "\"";
 
   m_unixCommand->runOctopiHelperInTerminal(commands);
-}
+}*/
