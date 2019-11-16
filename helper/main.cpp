@@ -29,8 +29,6 @@ int main(int argc, char *argv[])
   QCoreApplication a(argc, argv);
   OctopiHelper helper;
 
-  if (argList->getSwitch("-t"))
-    return helper.executePkgTransaction();
-  else if (argList->getSwitch("-ts"))
+  if (argList->getSwitch("-ts"))
     return helper.executePkgTransactionWithSharedMem();
 }
