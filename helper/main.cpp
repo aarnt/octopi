@@ -21,7 +21,6 @@
 #include "octopihelper.h"
 #include "../src/argumentlist.h"
 #include <QCoreApplication>
-#include <QTextStream>
 
 int main(int argc, char *argv[])
 {
