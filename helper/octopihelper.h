@@ -55,7 +55,7 @@ public:
   virtual ~OctopiHelper();
 
   int executePkgTransactionWithSharedMem();
-  int executePkgTransaction();
+  //int executePkgTransaction();
   inline int getExitCode() { return m_exitCode; }
   bool isOctoToolRunning(const QString &octoToolName);
 };

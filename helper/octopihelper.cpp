@@ -216,8 +216,8 @@ int OctopiHelper::executePkgTransactionWithSharedMem()
   sharedMem->unlock();
 
   QString contents=QString::fromLatin1(sharedData);
-  QTextStream qout(stdout);
-  qout << endl << "octopi-helper[info]: Reading from memory"; //contents -> \"" << contents << "\"" << endl;
+  //QTextStream qout(stdout);
+  //qout << endl << "octopi-helper[info]: Reading from memory" << endl;
 
   sharedMem->detach();
   delete sharedMem;
@@ -232,7 +232,7 @@ int OctopiHelper::executePkgTransactionWithSharedMem()
       contents.contains("*") || contents.contains("?") || contents.contains(":") ||
       contents.contains("!") || contents.contains("+") || contents.contains("=") ||
       contents.contains("(") || contents.contains(")"))*/
-  if (contents.contains(QRegularExpression(m_suspiciousChars)))
+  if (contents.isEmpty() || contents.contains(QRegularExpression(m_suspiciousChars)))
       suspicious = true;
 
   if (suspicious)
@@ -304,7 +304,7 @@ int OctopiHelper::executePkgTransactionWithSharedMem()
  * Executes all commands inside Octopi's transaction tempfile
  * octopi-helper -t
  */
-int OctopiHelper::executePkgTransaction()
+/*int OctopiHelper::executePkgTransaction()
 {
   if(!isOctoToolRunning("octopi") &&
      !isOctoToolRunning("octopi-notifier") &&
@@ -384,4 +384,4 @@ int OctopiHelper::executePkgTransaction()
   m_process->waitForFinished(-1);
 
   return m_process->exitCode();
-}
+}*/
