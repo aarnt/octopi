@@ -72,6 +72,8 @@ public:
   static QString getPacmanVersion();
   static bool isPacmanFiveDotOneOrHigher();
   static bool isPacmanDbLocked();
+  static QProcessEnvironment getProcessEnvironment();
+  static bool isOctopiHelperRunning();
 
   static QString getShell();
 

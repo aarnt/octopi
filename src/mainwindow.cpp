@@ -51,6 +51,8 @@
 #include <QToolTip>
 #include <QtConcurrent/QtConcurrentRun>
 #include <QRandomGenerator>
+#include <QTcpServer>
+#include <QTcpSocket>
 
 /*
  * MainWindow's constructor: basic UI init
@@ -81,6 +83,11 @@ MainWindow::MainWindow(QWidget *parent) :
   m_numberOfInstalledPackages = 0;
   m_debugInfo = false;
   m_console = nullptr;
+  m_commandExecuting=ectn_NONE;
+  m_commandQueued=ectn_NONE;
+
+  m_tcpServer = new QTcpServer(this);
+  connect(m_tcpServer, &QTcpServer::newConnection, this, &MainWindow::onSendInfoToOctopiHelper);
 
   //Let's check if DistroRSSUrl is empty
   if (SettingsManager::isDistroRSSUrlEmpty())
@@ -126,6 +133,21 @@ MainWindow::~MainWindow()
   delete ui;
 }
 
+bool MainWindow::startServer()
+{
+  bool res=true;
+
+  if (!m_tcpServer->listen(QHostAddress::LocalHost, 12701))
+  {
+    QMessageBox::critical(this, StrConstants::getApplicationName(),
+                          QString("Unable to start the server: %1.")
+                          .arg(m_tcpServer->errorString()));
+    res=false;
+  }
+
+  return res;
+}
+
 /*
  * The show() public SLOT, when the app is being drawn!!!
  * Init member variables and all UI widgets
@@ -139,8 +161,6 @@ void MainWindow::show()
   if(m_initializationCompleted == false)
   {
     restoreGeometry(SettingsManager::getWindowSize());
-    m_commandExecuting=ectn_NONE;
-    m_commandQueued=ectn_NONE;
     m_leFilterPackage = new SearchLineEdit(this, m_hasSLocate);
 
     setWindowTitle(StrConstants::getApplicationName());
@@ -195,6 +215,45 @@ void MainWindow::show()
   }
   else
     QMainWindow::show();
+}
+
+/*
+ * Sends if Octopi is executing some action or not
+ */
+void MainWindow::onSendInfoToOctopiHelper()
+{
+  QString msg;
+  QByteArray block;
+  QDataStream out(&block, QIODevice::WriteOnly);
+  out.setVersion(QDataStream::Qt_5_10);
+
+  //Is octopi-helper running?
+  bool isHelperExecuting=UnixCommand::isOctopiHelperRunning();
+
+  if (isHelperExecuting && m_commandExecuting)
+  {
+    msg="Octopi est occupatus";
+    out << msg;
+  }
+  else if (isHelperExecuting && !m_commandExecuting)
+  {
+    msg="Octopi serenum est";
+    out << msg;
+  }
+  else
+  {
+    msg="Atramento nigro";
+    out << msg;
+  }
+
+  QTcpSocket *clientConnection = m_tcpServer->nextPendingConnection();
+  if (clientConnection->isOpen())
+  {
+    connect(clientConnection, &QAbstractSocket::disconnected,
+          clientConnection, &QObject::deleteLater);
+    clientConnection->write(block);
+    clientConnection->disconnectFromHost();
+  }
 }
 
 /*

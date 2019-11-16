@@ -27,6 +27,9 @@
 #include <QSharedMemory>
 #include <QRegularExpression>
 #include <QStringLiteral>
+#include <QTcpServer>
+#include <QTcpSocket>
+#include <QDataStream>
 
 QFile *OctopiHelper::m_temporaryFile = nullptr;
 
@@ -244,7 +247,9 @@ int OctopiHelper::executePkgTransactionWithSharedMem()
 
   QStringList lines = contents.split("\n", QString::SkipEmptyParts);
 
-  foreach (QString line, lines){
+  bool testCommandFromOctopi=false;
+  foreach (QString line, lines)
+  {
     line = line.trimmed();
 
     if ((line == "killall pacman") ||
@@ -261,7 +266,15 @@ int OctopiHelper::executePkgTransactionWithSharedMem()
       (line == "pacman -Syu --noconfirm") ||
       (line.startsWith("pacman -U ")) ||
       (line.startsWith("pacman -S ")) ||
-      (line.startsWith("pacman -R "))) { }
+      (line.startsWith("pacman -R ")))
+    {
+      if (line.startsWith("pacman -U ") ||
+          line.startsWith("pacman -S ") ||
+          line.startsWith("pacman -R "))
+      {
+        testCommandFromOctopi=true;
+      }
+    }
     else
       suspicious = true;
 
@@ -281,6 +294,44 @@ int OctopiHelper::executePkgTransactionWithSharedMem()
     return(ctn_PACMAN_PROCESS_EXECUTING);
   }
 
+  if (testCommandFromOctopi)
+  {
+    //Let's make a connection to Octopi server to ensure it sent this command.
+    QTcpSocket socket;
+    socket.connectToHost("127.0.0.1", 12701);
+
+    if (!socket.waitForConnected())
+    {
+      QTextStream qout(stdout);
+      qout << endl << "octopi-helper[aborted]: Timeout connecting to Octopi" << endl;
+      return -1;
+    }
+
+    QDataStream in(&socket);
+    in.setVersion(QDataStream::Qt_5_10);
+    QString octopiResponse;
+
+    do
+    {
+      if (!socket.waitForReadyRead(-1))
+      {
+        QTextStream qout(stdout);
+        qout << endl << "octopi-helper[aborted]: Timeout contacting Octopi" << endl;
+        return -1;
+      }
+
+      in.startTransaction();
+      in >> octopiResponse;
+    } while (!in.commitTransaction());
+
+    if (octopiResponse != "Octopi est occupatus")
+    {
+      QTextStream qout(stdout);
+      qout << endl << "octopi-helper[aborted]: No transaction being executed in Octopi -> " << octopiResponse << endl;
+      return -1;
+    }
+  }
+
   QFile *ftemp = generateTemporaryFile();
   QTextStream out(ftemp);
   out << contents;
@@ -298,6 +349,17 @@ int OctopiHelper::executePkgTransactionWithSharedMem()
     QFile::remove(m_temporaryFile->fileName());
 
   return m_process->exitCode();
+}
+
+/*
+ * Execs a tcpServer to test Octopi
+ */
+int OctopiHelper::dummyServer()
+{
+  QTcpServer server;
+  server.listen(QHostAddress::LocalHost, 12701);
+
+  while(true){}
 }
 
 /*

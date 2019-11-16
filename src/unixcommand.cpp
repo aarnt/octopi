@@ -1483,3 +1483,41 @@ bool UnixCommand::isPacmanDbLocked()
 {
   return QFile::exists(ctn_PACMAN_DATABASE_LOCK_FILE);
 }
+
+/*
+ * A bit of settings to better run "pacman" commands using QProcess
+ */
+QProcessEnvironment UnixCommand::getProcessEnvironment()
+{
+  QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
+  env.remove("LANG");
+  env.remove("LC_MESSAGES");
+  env.insert("LANG", "C");
+  env.insert("LC_MESSAGES", "C");
+  env.remove("COLUMNS");
+  env.insert("COLUMNS", "132");
+  return env;
+}
+
+/*
+ * Checks if Octopi/Octopi-notifier, cache-cleaner, etc is being executed
+ */
+bool UnixCommand::isOctopiHelperRunning()
+{
+  bool res=false;
+
+  QProcess proc;
+  proc.setProcessEnvironment(getProcessEnvironment());
+  QString cmd = "ps -C %1 -o command";
+  QString octoToolName = "octopi-helper";
+  cmd = cmd.arg(octoToolName);
+  proc.start(cmd);
+  proc.waitForFinished();
+  QString out = proc.readAll().trimmed();
+  if (out.contains("|")) return false;
+  out=out.remove("\n");
+  out=out.remove("COMMAND");
+  if ((out == "/usr/lib/octopi/" + octoToolName) || out.contains("/usr/lib/octopi/" + octoToolName + " ")) res=true;
+
+  return res;
+}

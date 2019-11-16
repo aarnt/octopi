@@ -133,36 +133,40 @@ int main(int argc, char *argv[])
   }
 
   MainWindow w;
-  app.setActivationWindow(&w);
-  app.setQuitOnLastWindowClosed(false);
 
-  if (argList->getSwitch("-sysupgrade-noconfirm"))
+  if (w.startServer())
   {
-    w.setCallSystemUpgradeNoConfirm();
+    app.setActivationWindow(&w);
+    app.setQuitOnLastWindowClosed(false);
+
+    if (argList->getSwitch("-sysupgrade-noconfirm"))
+    {
+      w.setCallSystemUpgradeNoConfirm();
+    }
+    else if (argList->getSwitch("-sysupgrade"))
+    {
+      w.setCallSystemUpgrade();
+    }
+
+    if (argList->getSwitch("-d"))
+    {
+      //If user chooses to switch debug info on...
+      w.turnDebugInfoOn();
+    }
+
+    if (!packagesToInstall.isEmpty())
+    {
+      QStringList packagesToInstallList =
+          packagesToInstall.split(",", QString::SkipEmptyParts);
+
+      w.setPackagesToInstallList(packagesToInstallList);
+    }
+
+    w.setRemoveCommand("Rcs");
+    w.show();
+
+    QResource::registerResource("./resources.qrc");
+
+    return app.exec();
   }
-  else if (argList->getSwitch("-sysupgrade"))
-  {
-    w.setCallSystemUpgrade();
-  }
-
-  if (argList->getSwitch("-d"))
-  {
-    //If user chooses to switch debug info on...
-    w.turnDebugInfoOn();
-  }
-
-  if (!packagesToInstall.isEmpty())
-  {
-    QStringList packagesToInstallList =
-        packagesToInstall.split(",", QString::SkipEmptyParts);
-
-    w.setPackagesToInstallList(packagesToInstallList);
-  }
-
-  w.setRemoveCommand("Rcs");
-  w.show();
-
-  QResource::registerResource("./resources.qrc");
-
-  return app.exec();
 }

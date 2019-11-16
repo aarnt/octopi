@@ -52,6 +52,7 @@ class QTime;
 class QDropEvent;
 class QDragEnterEvent;
 class TermWidget;
+class QTcpServer;
 
 #include "src/model/packagemodel.h"
 #include "src/packagerepository.h"
@@ -66,7 +67,7 @@ const int ctn_TABINDEX_HELPUSAGE(5);
 const int ctn_TABINDEX_TERMINAL(6);
 
 namespace Ui {
-class MainWindow;
+  class MainWindow;
 }
 
 class MainWindow : public QMainWindow
@@ -77,9 +78,6 @@ signals:
   void buildPackageListDone();
   void buildAURPackageListDone();
   void buildPackagesFromGroupListDone();
-
-public slots:
-  void show();
 
 protected:
   void closeEvent(QCloseEvent *event);
@@ -97,6 +95,7 @@ private:
 
   AurVote *m_aurVote;
   TermWidget *m_console;
+  QTcpServer *m_tcpServer;
 
   SearchLineEdit *m_leFilterPackage;
   QList<QModelIndex> *m_foundFilesInPkgFileList;
@@ -340,7 +339,6 @@ private slots:
   void onExecCommandInTabTerminal(QString command);
   void onPressAnyKeyToContinue();
   void onCancelControlKey();
-
   void initToolButtonPacman();
   void initToolButtonAUR();
   void showToolButtonAUR();
@@ -495,8 +493,11 @@ private slots:
   void launchCacheCleaner();
   void doSysInfo();
   void refreshAppIcon();
+  void onSendInfoToOctopiHelper();
 
 public slots:
+  bool startServer();
+  void show();
   void doSystemUpgrade(SystemUpgradeOptions sysUpgradeOption = ectn_NO_OPT);
   void doAURUpgrade();
   void doInstallLocalPackages();
@@ -519,7 +520,6 @@ public:
   }
 
   const PackageRepository::PackageData* getFirstPackageFromRepo(const QString &pkgName);
-
   void turnDebugInfoOn();
   void setCallSystemUpgrade();
   void setCallSystemUpgradeNoConfirm();

@@ -54,6 +54,7 @@ public:
   OctopiHelper();
   virtual ~OctopiHelper();
 
+  int dummyServer();
   int executePkgTransactionWithSharedMem();
   //int executePkgTransaction();
   inline int getExitCode() { return m_exitCode; }
