@@ -60,6 +60,10 @@ TermWidget::TermWidget(QWidget *parent):
   m_actionMaximize->setShortcut(QKeySequence(Qt::Key_F11));
   connect(m_actionMaximize, &QAction::triggered, this, &TermWidget::onKeyF11);
 
+  m_actionCopy = new QAction(this);
+  m_actionCopy->setText(StrConstants::getCopy());
+  connect(m_actionCopy, &QAction::triggered, this, &TermWidget::onCopy);
+
   m_actionPaste = new QAction(this);
   m_actionPaste->setText(StrConstants::getPaste());
   connect(m_actionPaste, &QAction::triggered, this, &TermWidget::onPaste);
@@ -153,6 +157,7 @@ void TermWidget::execContextMenu(const QPoint & pos)
   QMenu menu;
   menu.addAction(m_actionZoomIn);
   menu.addAction(m_actionZoomOut);
+  menu.addAction(m_actionCopy);
 
   if (qApp->clipboard()->text().isEmpty())
     m_actionPaste->setEnabled(false);
@@ -163,6 +168,14 @@ void TermWidget::execContextMenu(const QPoint & pos)
   menu.addAction(m_actionPaste);
   menu.addAction(m_actionMaximize);
   menu.exec(mapToGlobal(pos));
+}
+
+/*
+ * Whenever user copies text to the clipboard
+ */
+void TermWidget::onCopy()
+{
+  QApplication::clipboard()->setText(this->selectedText());
 }
 
 /*
@@ -206,38 +219,6 @@ void TermWidget::paste(QClipboard::Mode mode)
     text.replace(QLatin1Char('\n'), QLatin1Char('\r'));
     QString trimmedTrailingNl(text);
     trimmedTrailingNl.replace(QRegExp(QStringLiteral("\\r+$")), QString());
-    /*bool isMultiline = trimmedTrailingNl.contains(QLatin1Char('\r'));
-        if (!isMultiline && Properties::Instance()->trimPastedTrailingNewlines)
-        {
-            text = trimmedTrailingNl;
-        }
-    if (text.contains(QLatin1Char('\r')))
-    {
-      QMessageBox confirmation(this);
-      confirmation.setWindowTitle(tr("Paste multiline text"));
-      confirmation.setText(tr("Are you sure you want to paste this text?"));
-      confirmation.setDetailedText(text);
-      confirmation.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
-      // Click "Show details..." to show those by default
-      const auto buttons = confirmation.buttons();
-
-      for( QAbstractButton * btn : buttons )
-      {
-        if (confirmation.buttonRole(btn) == QMessageBox::ActionRole && btn->text() == QMessageBox::tr("Show Details..."))
-        {
-          btn->clicked();
-          break;
-        }
-      }
-      confirmation.setDefaultButton(QMessageBox::Yes);
-      confirmation.exec();
-
-      if (confirmation.standardButton(confirmation.clickedButton()) != QMessageBox::Yes)
-      {
-        return;
-      }
-    }*/
-
     bracketText(text);
     sendText(text);
     qApp->clipboard()->clear();

@@ -204,6 +204,7 @@ public:
   static QString getZoomIn();
   static QString getZoomOut();
   static QString getMaximize();
+  static QString getCopy();
   static QString getPaste();
   static QString getNever();
   static QString getUpgrading();

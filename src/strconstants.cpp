@@ -851,6 +851,11 @@ QString StrConstants::getMaximize()
   return QObject::tr("Maximize");
 }
 
+QString StrConstants::getCopy()
+{
+  return QObject::tr("Copy");
+}
+
 QString StrConstants::getPaste()
 {
   return QObject::tr("Paste");

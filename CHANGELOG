@@ -1,5 +1,6 @@
 0.10.0 (dev)
   RepoEditor now saves window size and position.
+  Added "copy" command to octopi's embedded terminal context menu.
   Added option to enable/disable confirmation dialog in system upgrade.
   Added option to enable/disable internet checking.
   Added option to vote/unvote for AUR packages using aur.archlinux.org login.

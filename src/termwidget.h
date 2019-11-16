@@ -32,7 +32,7 @@ class TermWidget : public QTermWidget
   Q_OBJECT
 
 private:
-  QAction *m_actionZoomIn, *m_actionZoomOut, *m_actionMaximize, *m_actionPaste;
+  QAction *m_actionZoomIn, *m_actionZoomOut, *m_actionMaximize, *m_actionCopy, *m_actionPaste;
   int m_zoomFactor;
   void paste(QClipboard::Mode);
 
@@ -40,6 +40,7 @@ private slots:
   void parseOutput(QString str);
   void onKeyPressed(QKeyEvent *ke);
   void execContextMenu(const QPoint &);
+  void onCopy();
   void onPaste();
   void onZoomIn();
   void onZoomOut();
