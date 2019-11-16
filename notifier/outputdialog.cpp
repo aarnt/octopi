@@ -219,6 +219,9 @@ void OutputDialog::onCancelControlKey()
  */
 void OutputDialog::doSystemUpgrade()
 {
+  //Is pacman being executed?
+  if (UnixCommand::isPacmanDbLocked()) return;
+
   m_pacmanExec = new PacmanExec();
 
   if (m_debugInfo)

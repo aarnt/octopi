@@ -58,9 +58,6 @@
 MainWindow::MainWindow(QWidget *parent) :
   QMainWindow(parent), ui(new Ui::MainWindow), m_packageModel(new PackageModel(m_packageRepo))
 {
-  UnixCommand::removeTemporaryFiles();
-  m_sharedMem=nullptr;
-
   m_hasAURTool =
       UnixCommand::hasTheExecutable(Package::getForeignRepositoryToolName());
 
@@ -125,7 +122,6 @@ MainWindow::~MainWindow()
   savePackageColumnWidths();
 
   //Let's garbage collect transaction files...
-  UnixCommand::removeTemporaryFiles();
   if (SettingsManager::getEnableAURVoting()) delete m_aurVote;
   delete ui;
 }

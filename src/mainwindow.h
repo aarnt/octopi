@@ -52,7 +52,6 @@ class QTime;
 class QDropEvent;
 class QDragEnterEvent;
 class TermWidget;
-class QSharedMemory;
 
 #include "src/model/packagemodel.h"
 #include "src/packagerepository.h"
@@ -103,7 +102,6 @@ private:
   QList<QModelIndex> *m_foundFilesInPkgFileList;
   int m_indFoundFilesInPkgFileList;
   QFileSystemWatcher *m_pacmanDatabaseSystemWatcher;
-  QSharedMemory *m_sharedMem;
 
   // Package Data
   PackageRepository m_packageRepo;
@@ -505,13 +503,13 @@ public slots:
   void onOptions(OptionsDialogTab tabToOpen=ectn_TAB_GENERAL);
 
 public:
-  explicit MainWindow(QWidget *parent = 0);
+  explicit MainWindow(QWidget *parent = nullptr);
   virtual ~MainWindow();
 
   static MainWindow* returnMainWindow()
   {
-    static MainWindow *w=0;
-    if (w != 0) return w;
+    static MainWindow *w=nullptr;
+    if (w != nullptr) return w;
     foreach (QWidget *widget, QApplication::topLevelWidgets())
     {
       if (widget->objectName() == "MainWindow")

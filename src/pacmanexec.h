@@ -66,10 +66,10 @@ private slots:
   void onFinished(int exitCode, QProcess::ExitStatus);
 
 public:
-  explicit PacmanExec(QObject *parent = 0);
+  explicit PacmanExec(QObject *parent = nullptr);
   virtual ~PacmanExec();
 
-  void setSharedMemory(QSharedMemory *sm) { m_sharedMemory=sm; };
+  //void setSharedMemory(QSharedMemory *sm) { m_sharedMemory=sm; };
 
   void setDebugMode(bool value);
   void runLatestCommandInTerminal();

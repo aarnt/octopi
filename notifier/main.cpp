@@ -57,6 +57,11 @@ int main(int argc, char *argv[])
     return (-2);
   }
 
+  if (UnixCommand::isRootRunning()){
+    qDebug() << StrConstants::getErrorRunningWithRoot();
+    return ( -3 );
+  }
+
   QApplication a(argc, argv);
   QTranslator appTranslator;
   appTranslator.load(":/resources/translations/octopi_" +

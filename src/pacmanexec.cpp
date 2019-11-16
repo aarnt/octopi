@@ -44,6 +44,9 @@ PacmanExec::PacmanExec(QObject *parent) : QObject(parent)
   m_errorRetrievingFileCounter = 0;
   m_parsingAPackageChange = false;
 
+  m_sharedMemory=nullptr;
+  UnixCommand::removeTemporaryFiles();
+
   QObject::connect(m_unixCommand, SIGNAL( started() ), this, SLOT( onStarted()));
 
   QObject::connect(m_unixCommand, SIGNAL( finished ( int, QProcess::ExitStatus )),
@@ -64,6 +67,7 @@ PacmanExec::PacmanExec(QObject *parent) : QObject(parent)
  */
 PacmanExec::~PacmanExec()
 {
+  m_unixCommand->removeTemporaryFiles();
   m_unixCommand->removeTemporaryFile();
 }
 
