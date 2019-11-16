@@ -189,7 +189,7 @@ bool OctopiHelper::isOctoToolRunning(const QString &octoToolName)
 
 /*
  * Executes all commands inside Octopi's SharedMemory
- * octopi-helper -t
+ * octopi-helper -ts
  */
 int OctopiHelper::executePkgTransactionWithSharedMem()
 {
@@ -327,7 +327,7 @@ int OctopiHelper::executePkgTransactionWithSharedMem()
   f.close();
   bool suspicious = false;
 
-  if (contents.contains(QRegularExpression(m_suspiciousChars)))
+  if (contents.isEmpty() || contents.contains(QRegularExpression(m_suspiciousChars)))
     suspicious = true;
 
   if (suspicious)
