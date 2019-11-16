@@ -101,10 +101,10 @@ bool PacmanExec::isDatabaseLocked()
 /*
  * Removes Pacman DB lock file
  */
-void PacmanExec::removeDatabaseLock()
+/*void PacmanExec::removeDatabaseLock()
 {
   UnixCommand::execCommand("rm " + ctn_PACMAN_DATABASE_LOCK_FILE);
-}
+}*/
 
 /*
  * Cancels the running pacman process using "killall pacman" and removing database lock file

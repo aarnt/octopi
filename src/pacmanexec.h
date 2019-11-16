@@ -78,7 +78,7 @@ public:
   void removeTemporaryFile();  
 
   static bool isDatabaseLocked();
-  static void removeDatabaseLock();
+  //static void removeDatabaseLock();
 
   void cancelProcess();
   void doCheckUpdates();

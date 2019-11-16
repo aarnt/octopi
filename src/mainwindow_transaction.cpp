@@ -1253,7 +1253,7 @@ void MainWindow::doRemove()
 /*
  * If the Pacman lock file exists ("/var/run/pacman.lck"), removes it!
  */
-bool MainWindow::doRemovePacmanLockFile()
+/*bool MainWindow::doRemovePacmanLockFile()
 {
   //If there are no means to run the actions, we must warn!
   if (!isSUAvailable()) return false;
@@ -1280,7 +1280,7 @@ bool MainWindow::doRemovePacmanLockFile()
   }
 
   return true;
-}
+}*/
 
 /*
  * Installs the selected package with "yaourt -S"

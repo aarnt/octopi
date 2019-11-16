@@ -867,6 +867,7 @@ void MainWindow::buildPackageList()
   if (ui->tvPackages->model() != m_packageModel.get())
   {
     ui->tvPackages->setModel(m_packageModel.get());
+    removePackageTreeViewConnections();
     initPackageTreeView();
     ui->tvPackages->setColumnHidden(PackageModel::ctn_PACKAGE_POPULARITY_COLUMN, true);
   }
@@ -1127,6 +1128,7 @@ void MainWindow::buildAURPackageList()
   if (ui->tvPackages->model() != m_packageModel.get())
   {
     ui->tvPackages->setModel(m_packageModel.get());
+    removePackageTreeViewConnections();
     initPackageTreeView();
     ui->tvPackages->setColumnHidden(PackageModel::ctn_PACKAGE_REPOSITORY_COLUMN, true);
   }
