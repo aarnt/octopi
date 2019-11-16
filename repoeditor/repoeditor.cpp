@@ -28,6 +28,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 #include <QFileDialog>
 #include <QMessageBox>
 #include <QProcess>
+#include <QDateTime>
 
 RepoEditor::RepoEditor( QWidget *parent )
   : QDialog( parent )
@@ -43,7 +44,11 @@ RepoEditor::RepoEditor( QWidget *parent )
   ui->tableView->setItemDelegateForColumn( 2, new OptionsDelegate( this) );
 
   ui->tableView->setColumnWidth( 1, 133 );
-  ui->backupFile->setText( repoConf->getConfPath() + ".bak" );
+
+  QString dateFormat = QLocale().dateFormat(QLocale::NarrowFormat);
+  dateFormat = dateFormat.remove("/");
+  QDateTime dt=QDateTime::currentDateTime();
+  ui->backupFile->setText( repoConf->getConfPath() + ".bak." + dt.toString(dateFormat+"_HHmmss") );
 
   connect( ui->moveUp, SIGNAL( clicked() ),
            SLOT( moveUp() ) );
@@ -77,6 +82,7 @@ RepoEditor::RepoEditor( QWidget *parent )
            SLOT( loadBackup() ) );
 
   ui->tableView->selectRow(0);
+  ui->loadBackup->setVisible(false);
   restoreGeometry(SettingsManager::getRepoEditorWindowSize());
 }
 
