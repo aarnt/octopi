@@ -51,7 +51,6 @@
 void setNoPasswdUse()
 {
   QString cmd = "Cmnd_Alias  OCTOPIHELPER = /bin/sh -c unset LC_ALL; "
-      "exec '/usr/lib/octopi/octopi-helper' '-t', "
       "exec '/usr/lib/octopi/octopi-helper' '-ts', "
       "/usr/lib/octopi/octopi-helper\n\n";
   cmd += "%wheel ALL=(root) NOPASSWD:SETENV:OCTOPIHELPER\n";
