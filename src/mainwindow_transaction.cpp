@@ -1562,18 +1562,20 @@ bool MainWindow::hasPartialUpgrade(QStringList &pkgsToInstall)
       if (m_outdatedStringList->contains(n)) found++;
     }
 
-    if (found != m_numberOfOutdatedPackages)
+    if (found > 0)
     {
       result = true;
     }
+    else result = false;
   }
   else if (m_numberOfOutdatedPackages == pkgsToInstall.count())
   {
     //We have to compare the lists...
-    if (*m_outdatedStringList != pkgsToInstall)
+    if (*m_outdatedStringList == pkgsToInstall)
     {
       result = true;
     }
+    else result = false;
   }
 
   if (result == true)
