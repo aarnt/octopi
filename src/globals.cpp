@@ -57,7 +57,7 @@ QString showPackageDescription(QString pkgName)
   MainWindow *mw = MainWindow::returnMainWindow();
   const PackageRepository::PackageData*const package = mw->getFirstPackageFromRepo(pkgName);
 
-  if (package == NULL) {
+  if (package == nullptr) {
     return "";
   }
 

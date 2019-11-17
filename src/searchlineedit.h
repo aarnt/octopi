@@ -44,7 +44,7 @@ protected:
   virtual void keyPressEvent(QKeyEvent *event);
 
 public:
-  explicit SearchLineEdit(QWidget *parent = NULL, bool hasSLocate = false);
+  explicit SearchLineEdit(QWidget *parent = nullptr, bool hasSLocate = false);
 
   inline void initStyleSheet(){ setStyleSheet(styleSheetForCurrentState()); }
   void setRefreshValidator(ValidatorType validatorType);

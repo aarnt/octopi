@@ -127,7 +127,7 @@ void MainWindow::keyPressEvent(QKeyEvent* ke)
       reapplyPackageFilter();
     }
     //We are searching for AUR foreign packages...
-    else if (isAURGroupSelected() && m_leFilterPackage->hasFocus() && m_cic == NULL)
+    else if (isAURGroupSelected() && m_leFilterPackage->hasFocus() && m_cic == nullptr)
     {
       if (UnixCommand::getLinuxDistro() == ectn_KAOS && ui->actionUseInstantSearch->isChecked()) return;
 
@@ -147,7 +147,7 @@ void MainWindow::keyPressEvent(QKeyEvent* ke)
       connect(&g_fwAUR, SIGNAL(finished()), this, SLOT(preBuildAURPackageList()));
     }
     //We are searching for packages that own some file typed by user...
-    else if (isSearchByFileSelected() && m_leFilterPackage->hasFocus() && m_cic == NULL)
+    else if (isSearchByFileSelected() && m_leFilterPackage->hasFocus() && m_cic == nullptr)
     {
       ui->twGroups->setEnabled(false);
 

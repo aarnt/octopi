@@ -53,7 +53,7 @@
  */
 void MainWindow::loadSettings()
 {
-  if (ui->tvPackages->model() != NULL)
+  if (ui->tvPackages->model() != nullptr)
   {
     int packageListOrderedCol = SettingsManager::instance()->getPackageListOrderedCol();
     Qt::SortOrder packageListSortOrder = (Qt::SortOrder) SettingsManager::instance()->getPackageListSortOrder();

@@ -217,11 +217,7 @@ int OctopiHelper::executePkgTransactionWithSharedMem()
   sharedMem->lock();
   memcpy(sharedData.data(), sharedMem->data(), sharedMem->size());
   sharedMem->unlock();
-
   QString contents=QString::fromLatin1(sharedData);
-  //QTextStream qout(stdout);
-  //qout << endl << "octopi-helper[info]: Reading from memory" << endl;
-
   sharedMem->detach();
   delete sharedMem;
 
@@ -336,9 +332,10 @@ int OctopiHelper::executePkgTransactionWithSharedMem()
     } while (!in.commitTransaction());
 
     if (octopiResponse == "Octopi est occupatus")
+    {
       testCommandFromNotifier=false;
-
-    if (octopiResponse != "Octopi est occupatus" && !testCommandFromNotifier)
+    }
+    else if (octopiResponse != "Octopi est occupatus" && !testCommandFromNotifier)
     {
       QTextStream qout(stdout);
       qout << endl << "octopi-helper[aborted]: No transaction being executed in Octopi -> " << octopiResponse << endl;

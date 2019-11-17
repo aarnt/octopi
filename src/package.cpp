@@ -1424,7 +1424,7 @@ void Package::parseEVR(char *evr, const char **ep, const char **vp,
     *se++ = '\0';
     release = se;
   } else {
-    release = NULL;
+    release = nullptr;
   }
 
   if(ep) *ep = epoch;

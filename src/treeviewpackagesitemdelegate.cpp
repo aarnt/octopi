@@ -49,7 +49,7 @@ bool TreeViewPackagesItemDelegate::helpEvent ( QHelpEvent *event, QAbstractItemV
   {
     QTreeView* tvPackages = qobject_cast<QTreeView*>(this->parent());
     PackageModel* sim = qobject_cast<PackageModel*>(tvPackages->model());
-    if (sim == NULL || sim->getPackageCount() == 0) return false;
+    if (sim == nullptr || sim->getPackageCount() == 0) return false;
 
     const PackageRepository::PackageData*const si = sim->getData(index);
 

@@ -72,7 +72,7 @@ MainWindow::MainWindow(QWidget *parent) :
   m_systemUpgradeDialog = false;
   m_refreshPackageLists = false;
   m_refreshForeignPackageList = false;
-  m_cic = NULL;
+  m_cic = nullptr;
   m_outdatedStringList = new QStringList();
   m_checkupdatesStringList = new QStringList();
   m_checkUpdatesNameNewVersion = new QHash<QString, QString>();
@@ -375,7 +375,7 @@ void MainWindow::switchToViewAllPackages()
  */
 QTextBrowser *MainWindow::getOutputTextBrowser()
 {
-  QTextBrowser *ret=0;
+  QTextBrowser *ret=nullptr;
   QTextBrowser *text =
       ui->twProperties->widget(ctn_TABINDEX_OUTPUT)->findChild<QTextBrowser*>("textBrowser");
 
@@ -957,7 +957,7 @@ void MainWindow::execKeyActionOnPackage(CommandExecuting command)
   if (m_commandExecuting != ectn_NONE) return;
 
   const QItemSelectionModel*const selectionModel = ui->tvPackages->selectionModel();
-  if (selectionModel != NULL && selectionModel->selectedRows().count() > 0)
+  if (selectionModel != nullptr && selectionModel->selectedRows().count() > 0)
   {
     QModelIndexList selectedRows = selectionModel->selectedRows();
     if (selectedRows.count() == 1)
@@ -1027,7 +1027,7 @@ void MainWindow::execContextMenuPackages(QPoint point)
  *   connect(ui->actionRemoveGroup, SIGNAL(triggered()), this, SLOT(insertGroupIntoRemovePackage()));
  */
   const QItemSelectionModel*const selectionModel = ui->tvPackages->selectionModel();
-  if (selectionModel != NULL && selectionModel->selectedRows().count() > 0)
+  if (selectionModel != nullptr && selectionModel->selectedRows().count() > 0)
   {
     QMenu* menu = new QMenu(this);
     QModelIndexList selectedRows = selectionModel->selectedRows();
@@ -1171,7 +1171,7 @@ void MainWindow::execContextMenuPackages(QPoint point)
 void MainWindow::onAURVote()
 {
   const QItemSelectionModel*const selectionModel = ui->tvPackages->selectionModel();
-  if (selectionModel != NULL && selectionModel->selectedRows().count() > 0)
+  if (selectionModel != nullptr && selectionModel->selectedRows().count() > 0)
   {
     QModelIndexList selectedRows = selectionModel->selectedRows();
     if (selectedRows.count() == 1)
@@ -1190,7 +1190,7 @@ void MainWindow::onAURVote()
 void MainWindow::onAURUnvote()
 {
   const QItemSelectionModel*const selectionModel = ui->tvPackages->selectionModel();
-  if (selectionModel != NULL && selectionModel->selectedRows().count() > 0)
+  if (selectionModel != nullptr && selectionModel->selectedRows().count() > 0)
   {
     QModelIndexList selectedRows = selectionModel->selectedRows();
     if (selectedRows.count() == 1)
@@ -1208,7 +1208,7 @@ void MainWindow::onAURUnvote()
  */
 void MainWindow::collapseAllContentItems(){
   QTreeView *tv = ui->twProperties->currentWidget()->findChild<QTreeView *>("tvPkgFileList") ;
-  if (tv != 0)
+  if (tv != nullptr)
     tv->collapseAll();
 }
 
@@ -1217,7 +1217,7 @@ void MainWindow::collapseAllContentItems(){
  */
 void MainWindow::collapseThisContentItems(){
   QTreeView *tv = ui->twProperties->currentWidget()->findChild<QTreeView *>("tvPkgFileList") ;
-  if ( tv != 0 )
+  if (tv != nullptr)
   {
     tv->repaint(tv->rect());
     QCoreApplication::processEvents();
@@ -1236,7 +1236,7 @@ void MainWindow::collapseThisContentItems(){
  */
 void MainWindow::expandAllContentItems(){
   QTreeView *tv = ui->twProperties->currentWidget()->findChild<QTreeView *>("tvPkgFileList") ;
-  if ( tv != 0 )
+  if (tv != nullptr)
   {
     tv->repaint(tv->rect());
     QCoreApplication::processEvents();
@@ -1249,7 +1249,7 @@ void MainWindow::expandAllContentItems(){
  */
 void MainWindow::expandThisContentItems(){
   QTreeView *tv = ui->twProperties->currentWidget()->findChild<QTreeView *>("tvPkgFileList") ;
-  if ( tv != 0 )
+  if (tv != nullptr)
   {
     tv->repaint(tv->rect());
     QCoreApplication::processEvents();
@@ -1301,7 +1301,7 @@ void MainWindow::execContextMenuPkgFileList(QPoint point)
   QTreeView *tvPkgFileList =
       ui->twProperties->currentWidget()->findChild<QTreeView*>("tvPkgFileList");
 
-  if (tvPkgFileList == 0)
+  if (tvPkgFileList == nullptr)
   {
     return;
   }
@@ -1315,7 +1315,7 @@ void MainWindow::execContextMenuPkgFileList(QPoint point)
   {
     QStandardItem *si = sim->itemFromIndex(mi);
 
-    if (si == 0) return;
+    if (si == nullptr) return;
     if (si->hasChildren() && (!tvPkgFileList->isExpanded(mi)))
       menu.addAction(ui->actionExpandItem);
 
@@ -1915,7 +1915,7 @@ void MainWindow::tvPackagesSelectionChanged(const QItemSelection&, const QItemSe
   }
 
   const QItemSelectionModel*const selection = ui->tvPackages->selectionModel();
-  const int selected = selection != NULL ? selection->selectedRows().count() : 0;
+  const int selected = selection != nullptr ? selection->selectedRows().count() : 0;
 
   QString newMessage = StrConstants::getTotalPackages(m_packageModel->getPackageCount()) +
       " (" + StrConstants::getSelectedPackages(selected) + ") ";

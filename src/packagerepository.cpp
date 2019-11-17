@@ -43,7 +43,7 @@ struct BeginResetModel
 {
   inline void operator()(PackageRepository::IDependency* depends)
   {
-    assert(depends != NULL);
+    assert(depends != nullptr);
     depends->beginResetRepository();
   }
 };

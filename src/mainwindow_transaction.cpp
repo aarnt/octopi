@@ -89,7 +89,7 @@ QStandardItem * MainWindow::getRemoveTransactionParentItem()
   QTreeView *tvTransaction =
       ui->twProperties->widget(ctn_TABINDEX_ACTIONS)->findChild<QTreeView*>("tvTransaction");
   QStandardItemModel *sim = qobject_cast<QStandardItemModel *>(tvTransaction->model());
-  QStandardItem *si = 0;
+  QStandardItem *si = nullptr;
 
   if(sim)
   {
@@ -107,7 +107,7 @@ QStandardItem * MainWindow::getInstallTransactionParentItem()
   QTreeView *tvTransaction =
       ui->twProperties->widget(ctn_TABINDEX_ACTIONS)->findChild<QTreeView*>("tvTransaction");
   QStandardItemModel *sim = qobject_cast<QStandardItemModel *>(tvTransaction->model());
-  QStandardItem *si = 0;
+  QStandardItem *si = nullptr;
 
   if(sim)
   {
@@ -663,7 +663,7 @@ void MainWindow::onPressDelete()
         for(int c=tvTransaction->selectionModel()->selectedIndexes().count()-1; c>=0; c--)
         {
           const QModelIndex mi = tvTransaction->selectionModel()->selectedIndexes().at(c);
-          if (m_modelTransaction->itemFromIndex(mi)->parent() != 0)
+          if (m_modelTransaction->itemFromIndex(mi)->parent() != nullptr)
           {
             m_modelTransaction->removeRow(mi.row(), mi.parent());
           }
@@ -1088,7 +1088,7 @@ void MainWindow::doRemoveAndInstall()
 
   if (installList.count() == 0)
   {
-    installTargets->append(PackageListData(listOfInstallTargets, "", 0));
+    installTargets->append(PackageListData(listOfInstallTargets, "", nullptr));
     installList.append(StrConstants::getInstall() + " " + listOfInstallTargets);
   }
 
@@ -1288,7 +1288,7 @@ void MainWindow::doRemove()
 void MainWindow::doInstallAURPackage()
 {
   const QItemSelectionModel*const selectionModel = ui->tvPackages->selectionModel();
-  if (selectionModel == NULL || selectionModel->selectedRows().count() < 1 || m_hasAURTool == false) {
+  if (selectionModel == nullptr || selectionModel->selectedRows().count() < 1 || m_hasAURTool == false) {
     std::cerr << "Octopi could not install selection using AUR tool" << std::endl;
     return;
   }
@@ -1611,7 +1611,7 @@ void MainWindow::doInstall()
 
   if (list.count() == 0)
   {
-    targets->append(PackageListData(listOfTargets, "", 0));
+    targets->append(PackageListData(listOfTargets, "", nullptr));
     list.append(listOfTargets);
   }
 
@@ -1916,7 +1916,7 @@ void MainWindow::cancelTransaction()
  */
 void MainWindow::stopTransaction()
 {
-  if (m_commandExecuting != ectn_NONE && m_pacmanExec != NULL)
+  if (m_commandExecuting != ectn_NONE && m_pacmanExec != nullptr)
   {
     m_pacmanExec->cancelProcess();
   }
@@ -2192,7 +2192,7 @@ void MainWindow::onPressAnyKeyToContinue()
   if (m_cic)
   {
     delete m_cic;
-    m_cic = NULL;
+    m_cic = nullptr;
   }
 }
 

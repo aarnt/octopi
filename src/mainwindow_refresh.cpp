@@ -348,7 +348,7 @@ void MainWindow::positionInPkgListSearchByFile()
 {
   if (m_cic) {
     delete m_cic;
-    m_cic = NULL;
+    m_cic = nullptr;
   }
 
   QString pkgName = g_fwPackageOwnsFile.result();
@@ -439,7 +439,7 @@ void MainWindow::preBuildAURPackageList()
 
   if (m_cic) {
     delete m_cic;
-    m_cic = NULL;
+    m_cic = nullptr;
   }
 
   invalidateTabs();
@@ -463,7 +463,7 @@ void MainWindow::preBuildAURPackageListMeta()
 
   if (m_cic) {
     delete m_cic;
-    m_cic = NULL;
+    m_cic = nullptr;
   }
 
   if (m_packageModel->getPackageCount() == 0)
@@ -492,7 +492,7 @@ void MainWindow::retrieveForeignPackageList()
   g_fwForeignPacman.setFuture(f);
   el.exec();
 
-  assert(m_foreignPackageList != NULL);
+  assert(m_foreignPackageList != nullptr);
 }
 
 /*
@@ -508,7 +508,7 @@ void MainWindow::retrieveUnrequiredPackageList()
   g_fwUnrequiredPacman.setFuture(f);
   el.exec();
 
-  assert(m_unrequiredPackageList != NULL);
+  assert(m_unrequiredPackageList != nullptr);
 }
 
 /*
@@ -712,7 +712,7 @@ void MainWindow::metaBuildPackageList()
       if (m_cic)
       {
         delete m_cic;
-        m_cic = NULL;
+        m_cic = nullptr;
       }
 
       m_leFilterPackage->setFocus();
@@ -806,7 +806,7 @@ void MainWindow::buildPackageList()
 
     m_unrequiredPackageList->clear();
     delete m_unrequiredPackageList;
-    m_unrequiredPackageList = NULL;
+    m_unrequiredPackageList = nullptr;
 
     m_unrequiredPackageList = Package::getUnrequiredPackageList();
 
@@ -830,7 +830,7 @@ void MainWindow::buildPackageList()
     {
       m_foreignPackageList->clear();
       delete m_foreignPackageList;
-      m_foreignPackageList = NULL;
+      m_foreignPackageList = nullptr;
 
       m_foreignPackageList = markForeignPackagesInPkgList(m_hasAURTool, m_outdatedAURStringList);
 
@@ -894,7 +894,7 @@ void MainWindow::buildPackageList()
 
   list->clear();
   delete list;
-  list = NULL;
+  list = nullptr;
 
   refreshColumnSortSetup();
 
@@ -1408,7 +1408,7 @@ void MainWindow::refreshTabInfo(bool clearContents, bool neverQuit)
      (ui->twProperties->currentIndex() != ctn_TABINDEX_INFORMATION || !isPropertiesTabWidgetVisible())) return;
 
   QItemSelectionModel*const selectionModel = ui->tvPackages->selectionModel();
-  if (clearContents || selectionModel == NULL ||
+  if (clearContents || selectionModel == nullptr ||
       selectionModel->selectedRows(PackageModel::ctn_PACKAGE_NAME_COLUMN).count() == 0)
   {
     QTextBrowser *text =
@@ -1565,7 +1565,7 @@ void MainWindow::refreshTabFiles(bool clearContents, bool neverQuit)
 
   QItemSelectionModel*const selectionModel = ui->tvPackages->selectionModel();
 
-  if (clearContents || selectionModel == NULL ||
+  if (clearContents || selectionModel == nullptr ||
       selectionModel->selectedRows(PackageModel::ctn_PACKAGE_NAME_COLUMN).count() == 0)
   {
     QTreeView*const tvPkgFileList =

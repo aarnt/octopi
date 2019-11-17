@@ -25,6 +25,8 @@
 #include <QStyledItemDelegate>
 #include <QString>
 
+extern QPoint gPoint;
+
 class TreeViewPackagesItemDelegate : public QStyledItemDelegate
 {
   Q_OBJECT
