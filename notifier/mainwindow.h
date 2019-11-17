@@ -36,6 +36,7 @@ class QAction;
 class QFileSystemWatcher;
 class OptionsDialog;
 class TransactionDialog;
+class QTcpServer;
 
 enum CheckUpdate { ectn_AUTO_CHECK, ectn_USER_CHECK};
 
@@ -51,6 +52,7 @@ public:
   explicit MainWindow(QWidget *parent = nullptr);
   virtual ~MainWindow();
   inline void turnDebugInfoOn() { m_debugInfo = true;}
+  bool startServer();
 
 private slots:
   void pacmanHelperTimerTimeout();
@@ -75,6 +77,7 @@ private slots:
   void doSystemUpgradeFinished();
   void toggleEnableInterface(bool state);
   void showOptionsDialog();
+  void onSendInfoToOctopiHelper();
 
 private:
   bool m_debugInfo;
@@ -87,6 +90,7 @@ private:
   PacmanExec *m_pacmanExec;
   TransactionDialog *m_transactionDialog;
   OptionsDialog *m_optionsDialog;
+  QTcpServer *m_tcpServer;
 
   QAction *m_actionOctopi;
   QAction *m_actionOptions;

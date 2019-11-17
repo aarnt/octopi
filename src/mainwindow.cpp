@@ -230,12 +230,12 @@ void MainWindow::onSendInfoToOctopiHelper()
   //Is octopi-helper running?
   bool isHelperExecuting=UnixCommand::isOctopiHelperRunning();
 
-  if (isHelperExecuting && m_commandExecuting)
+  if (isHelperExecuting && m_commandExecuting != ectn_NONE)
   {
     msg="Octopi est occupatus";
     out << msg;
   }
-  else if (isHelperExecuting && !m_commandExecuting)
+  else if (isHelperExecuting && m_commandExecuting == ectn_NONE)
   {
     msg="Octopi serenum est";
     out << msg;

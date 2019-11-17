@@ -34,6 +34,8 @@
 #include <QMessageBox>
 #include <QDebug>
 #include <QScreen>
+#include <QTcpServer>
+#include <QTcpSocket>
 #include <QtConcurrent/QtConcurrentRun>
 
 #ifdef KSTATUS
@@ -62,6 +64,9 @@ MainWindow::MainWindow(QWidget *parent) :
 
   connect(m_pacmanDatabaseSystemWatcher,
           SIGNAL(directoryChanged(QString)), this, SLOT(refreshAppIcon()));
+
+  m_tcpServer = new QTcpServer(this);
+  connect(m_tcpServer, &QTcpServer::newConnection, this, &MainWindow::onSendInfoToOctopiHelper);
 
   initActions();
   initSystemTrayIcon();
@@ -115,6 +120,60 @@ void MainWindow::initActions()
   m_actionAURUpgrade->setText(tr("System upgrade"));
   m_actionAURUpgrade->setIcon(IconHelper::getIconForeignGreen());
   connect(m_actionAURUpgrade, SIGNAL(triggered()), this, SLOT(runOctopiAURUpgrade()));
+}
+
+bool MainWindow::startServer()
+{
+  bool res=true;
+
+  if (!m_tcpServer->listen(QHostAddress::LocalHost, 12702))
+  {
+    QMessageBox::critical(this, StrConstants::getApplicationName(),
+                          QString("Unable to start the server: %1.")
+                          .arg(m_tcpServer->errorString()));
+    res=false;
+  }
+
+  return res;
+}
+
+/*
+ * Sends if Octopi is executing some action or not
+ */
+void MainWindow::onSendInfoToOctopiHelper()
+{
+  QString msg;
+  QByteArray block;
+  QDataStream out(&block, QIODevice::WriteOnly);
+  out.setVersion(QDataStream::Qt_5_10);
+
+  //Is octopi-helper running?
+  bool isHelperExecuting=UnixCommand::isOctopiHelperRunning();
+
+  if (isHelperExecuting && m_commandExecuting != ectn_NONE)
+  {
+    msg="Octopi est occupatus";
+    out << msg;
+  }
+  else if (isHelperExecuting && m_commandExecuting == ectn_NONE)
+  {
+    msg="Octopi serenum est";
+    out << msg;
+  }
+  else
+  {
+    msg="Atramento nigro";
+    out << msg;
+  }
+
+  QTcpSocket *clientConnection = m_tcpServer->nextPendingConnection();
+  if (clientConnection->isOpen())
+  {
+    connect(clientConnection, &QAbstractSocket::disconnected,
+          clientConnection, &QObject::deleteLater);
+    clientConnection->write(block);
+    clientConnection->disconnectFromHost();
+  }
 }
 
 /*

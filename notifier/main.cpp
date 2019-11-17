@@ -71,12 +71,15 @@ int main(int argc, char *argv[])
   a.setQuitOnLastWindowClosed(false);
 
   MainWindow w;
-  QResource::registerResource("./resources.qrc");
+  if (w.startServer())
+  {
+    QResource::registerResource("./resources.qrc");
 
-  QGuiApplication::setDesktopFileName("octopi-notifier");
+    QGuiApplication::setDesktopFileName("octopi-notifier");
 
-  if (debugInfo)
-    w.turnDebugInfoOn();
+    if (debugInfo)
+      w.turnDebugInfoOn();
 
-  return a.exec();
+    return a.exec();
+  }
 }

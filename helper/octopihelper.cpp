@@ -248,6 +248,7 @@ int OctopiHelper::executePkgTransactionWithSharedMem()
   QStringList lines = contents.split("\n", QString::SkipEmptyParts);
 
   bool testCommandFromOctopi=false;
+  bool testCommandFromNotifier=false;
   foreach (QString line, lines)
   {
     line = line.trimmed();
@@ -273,6 +274,12 @@ int OctopiHelper::executePkgTransactionWithSharedMem()
           line.startsWith("pacman -R "))
       {
         testCommandFromOctopi=true;
+        testCommandFromNotifier=false;
+      }
+      else if (line.startsWith("pacman -Sy"))
+      {
+        testCommandFromOctopi=true;
+        testCommandFromNotifier=true;
       }
     }
     else
@@ -300,11 +307,15 @@ int OctopiHelper::executePkgTransactionWithSharedMem()
     QTcpSocket socket;
     socket.connectToHost("127.0.0.1", 12701);
 
-    if (!socket.waitForConnected())
+    if (!socket.waitForConnected(5000))
     {
-      QTextStream qout(stdout);
-      qout << endl << "octopi-helper[aborted]: Timeout connecting to Octopi" << endl;
-      return -1;
+      if (!testCommandFromNotifier)
+      {
+        QTextStream qout(stdout);
+        qout << endl << "octopi-helper[aborted]: Timeout connecting to Octopi" << endl;
+        return -1;
+      }
+      else goto testNotifierConnection;
     }
 
     QDataStream in(&socket);
@@ -313,7 +324,7 @@ int OctopiHelper::executePkgTransactionWithSharedMem()
 
     do
     {
-      if (!socket.waitForReadyRead(-1))
+      if (!socket.waitForReadyRead() && !testCommandFromNotifier)
       {
         QTextStream qout(stdout);
         qout << endl << "octopi-helper[aborted]: Timeout contacting Octopi" << endl;
@@ -324,10 +335,52 @@ int OctopiHelper::executePkgTransactionWithSharedMem()
       in >> octopiResponse;
     } while (!in.commitTransaction());
 
-    if (octopiResponse != "Octopi est occupatus")
+    if (octopiResponse == "Octopi est occupatus")
+      testCommandFromNotifier=false;
+
+    if (octopiResponse != "Octopi est occupatus" && !testCommandFromNotifier)
     {
       QTextStream qout(stdout);
       qout << endl << "octopi-helper[aborted]: No transaction being executed in Octopi -> " << octopiResponse << endl;
+      return -1;
+    }
+  }
+
+  testNotifierConnection:
+  if (testCommandFromNotifier)
+  {
+    //Let's make a connection to Octopi server to ensure it sent this command.
+    QTcpSocket socket;
+    socket.connectToHost("127.0.0.1", 12702);
+
+    if (!socket.waitForConnected(5000))
+    {
+      QTextStream qout(stdout);
+      qout << endl << "octopi-helper[aborted]: Timeout connecting to Octopi-Notifier" << endl;
+      return -1;
+    }
+
+    QDataStream in(&socket);
+    in.setVersion(QDataStream::Qt_5_10);
+    QString octopiResponse;
+
+    do
+    {
+      if (!socket.waitForReadyRead())
+      {
+        QTextStream qout(stdout);
+        qout << endl << "octopi-helper[aborted]: Timeout contacting Octopi-Notifier" << endl;
+        return -1;
+      }
+
+      in.startTransaction();
+      in >> octopiResponse;
+    } while (!in.commitTransaction());
+
+    if (octopiResponse != "Octopi est occupatus")
+    {
+      QTextStream qout(stdout);
+      qout << endl << "octopi-helper[aborted]: No transaction being executed in Octopi-Notifier -> " << octopiResponse << endl;
       return -1;
     }
   }
