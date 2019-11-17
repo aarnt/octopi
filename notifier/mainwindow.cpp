@@ -138,7 +138,7 @@ bool MainWindow::startServer()
 }
 
 /*
- * Sends if Octopi is executing some action or not
+ * Answers Helper if Octopi-Notifier is executing actions
  */
 void MainWindow::onSendInfoToOctopiHelper()
 {

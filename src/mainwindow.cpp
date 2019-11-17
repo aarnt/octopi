@@ -218,7 +218,7 @@ void MainWindow::show()
 }
 
 /*
- * Sends if Octopi is executing some action or not
+ * Answers Helper if Octopi is executing actions
  */
 void MainWindow::onSendInfoToOctopiHelper()
 {
