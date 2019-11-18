@@ -149,9 +149,12 @@ public:
   static bool isPackageInstalled(const QString& pkgName);
   static void removeTemporaryFiles();
 
-  //void runCommandInTerminal(const QStringList& commandList);
+  void runCommandInTerminalWithSudo(const QString& command);
+  void executeCommand(const QString &pCommand);
+  void executeCommandWithSharedMemHelper(const QString &pCommand, QSharedMemory *sharedMem);
+  //void executeCommand(const QString &pCommand, Language lang=ectn_LANG_ENGLISH);
+  void executeCommandAsNormalUser(const QString &pCommand);
   void runOctopiHelperInTerminalWithSharedMem(const QStringList& commandList, QSharedMemory *sharedMem);
-  //void runOctopiHelperInTerminal(const QStringList& commandList);
   void runCommandInTerminalAsNormalUser(const QStringList& commandList);
 
   static void execCommandAsNormalUser(const QString &pCommand);
@@ -162,10 +165,6 @@ public:
   static QByteArray getCommandOutput(const QString &pCommand, const QString &fileName);
 
   static QStringList getAvailableAURTools();
-
-  void executeCommandWithSharedMem(const QString &pCommand, QSharedMemory *sharedMem);
-  //void executeCommand(const QString &pCommand, Language lang=ectn_LANG_ENGLISH);
-  void executeCommandAsNormalUser(const QString &pCommand);
 
   QString readAllStandardOutput();
   QString readAllStandardError();

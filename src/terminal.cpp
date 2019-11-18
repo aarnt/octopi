@@ -43,30 +43,11 @@ Terminal::~Terminal()
 /*
  * Executes the given command list with root credentials
  */
-/*void Terminal::runCommandInTerminal(const QStringList &commandList)
+void Terminal::runCommandInTerminalWithSudo(const QString& command)
 {
-  QFile *ftemp = UnixCommand::generateTemporaryFile();
-  QTextStream out(ftemp);
-  bool removedLines = false;
-
-  foreach(QString line, commandList)
-  {
-    if ((line.contains("echo -e") || line.contains("read -n 1"))) //&& m_selectedTerminal == ctn_QTERMWIDGET)
-    {
-      removedLines = true;
-      continue;
-    }
-
-    out << line;
-  }
-
-  if (removedLines) out << "echo \"" << StrConstants::getPressAnyKey() + "\"";
-
-  out.flush();
-  ftemp->close();
-  QString cmd = UnixCommand::getShell() + " -c \"" + ftemp->fileName() + "\"";
+  QString cmd = "sudo " + UnixCommand::getShell() + " -c \"" + command + "\"";
   emit commandToExecInQTermWidget(cmd);
-}*/
+}
 
 /*
  * Executes the given commandList creating a ROOT temp transaction file and calling "octopi-helper -ts"

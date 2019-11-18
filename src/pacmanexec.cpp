@@ -931,7 +931,7 @@ void PacmanExec::doInstall(const QString &listOfPackages)
   m_lastCommandList.append("read -n 1 -p \"" + StrConstants::getPressAnyKey() + "\"");
 
   m_commandExecuting = ectn_INSTALL;
-  m_unixCommand->executeCommandWithSharedMem(command, m_sharedMemory);
+  m_unixCommand->executeCommandWithSharedMemHelper(command, m_sharedMemory);
 }
 
 /*
@@ -959,7 +959,8 @@ void PacmanExec::doInstallInTerminal(const QString &listOfPackages)
  */
 void PacmanExec::doInstallLocal(const QString &listOfPackages)
 {
-  QString command;
+  QString command, commands;
+  QStringList packages;
   bool dontUseForce = UnixCommand::isPacmanFiveDotOneOrHigher();
 
   if (isDatabaseLocked())
@@ -967,10 +968,16 @@ void PacmanExec::doInstallLocal(const QString &listOfPackages)
     command += "rm " + ctn_PACMAN_DATABASE_LOCK_FILE + "; ";
   }
 
-  if (dontUseForce)
-    command += "pacman -U --noconfirm \"" + listOfPackages.trimmed() + "\"";
-  else
-    command += "pacman -U --force --noconfirm \"" + listOfPackages.trimmed() + "\"";
+  packages=listOfPackages.split(";", QString::SkipEmptyParts);
+
+  foreach(QString p, packages)
+  {
+    if(p.trimmed().isEmpty()) continue;
+    if (dontUseForce)
+      command += "pacman -U --noconfirm \"" + p.trimmed() + "\";";
+    else
+      command += "pacman -U --force --noconfirm \"" + p.trimmed() + "\";";
+  }
 
   m_lastCommandList.clear();
 
@@ -979,16 +986,21 @@ void PacmanExec::doInstallLocal(const QString &listOfPackages)
     m_lastCommandList.append("rm " + ctn_PACMAN_DATABASE_LOCK_FILE + ";");
   }
 
-  if (dontUseForce)
-    m_lastCommandList.append("pacman -U \"" + listOfPackages.trimmed() + "\";");
-  else
-    m_lastCommandList.append("pacman -U --force \"" + listOfPackages.trimmed() + "\";");
+  foreach(QString p, packages)
+  {
+    if(p.trimmed().isEmpty()) continue;
+    if (dontUseForce)
+      m_lastCommandList.append("pacman -U \"" + p.trimmed() + "\";");
+    else
+      m_lastCommandList.append("pacman -U --force \"" + p.trimmed() + "\";");
+  }
 
   m_lastCommandList.append("echo -e;");
-  m_lastCommandList.append("read -n 1 -p \"" + StrConstants::getPressAnyKey() + "\"");
+  m_lastCommandList.append("read -n 1 -p '" + StrConstants::getPressAnyKey() + "'");
 
   m_commandExecuting = ectn_INSTALL;
-  m_unixCommand->executeCommandWithSharedMem(command, m_sharedMemory);
+  //std::cout << "COMMAND: " << command.toLatin1().data() << std::endl;
+  m_unixCommand->executeCommand(command);
 }
 
 /*
@@ -997,24 +1009,42 @@ void PacmanExec::doInstallLocal(const QString &listOfPackages)
 void PacmanExec::doInstallLocalInTerminal(const QString &listOfPackages)
 {
   bool dontUseForce = UnixCommand::isPacmanFiveDotOneOrHigher();
+  QString command;
+  QStringList packages;
 
   m_lastCommandList.clear();
 
   if (isDatabaseLocked())
   {
     m_lastCommandList.append("rm " + ctn_PACMAN_DATABASE_LOCK_FILE + ";");
+    command+="rm " + ctn_PACMAN_DATABASE_LOCK_FILE + ";";
   }
 
-  if (dontUseForce)
-    m_lastCommandList.append("pacman -U \"" + listOfPackages.trimmed() + "\"");
-  else
-    m_lastCommandList.append("pacman -U --force \"" + listOfPackages.trimmed() + "\"");
+  packages=listOfPackages.split(";", QString::SkipEmptyParts);
+
+  foreach(QString p, packages)
+  {
+    if(p.trimmed().isEmpty()) continue;
+
+    if (dontUseForce)
+    {
+      command+="pacman -U \"" + p.trimmed() + "\";";
+      m_lastCommandList.append("pacman -U \"" + p.trimmed() + "\"");
+    }
+    else
+    {
+      command+="pacman -U --force \"" + p.trimmed() + "\";";
+      m_lastCommandList.append("pacman -U --force \"" + p.trimmed() + "\"");
+    }
+  }
 
   m_lastCommandList.append("echo -e");
   m_lastCommandList.append("read -n 1 -p \"" + StrConstants::getPressAnyKey() + "\"");
+  command+="echo '" + StrConstants::getPressAnyKey() + "'";
 
   m_commandExecuting = ectn_RUN_IN_TERMINAL;
-  m_unixCommand->runOctopiHelperInTerminalWithSharedMem(m_lastCommandList, m_sharedMemory);
+  //std::cout << "COMMAND: " << command.toLatin1().data() << std::endl;
+  m_unixCommand->runCommandInTerminalWithSudo(command);
 }
 
 /*
@@ -1043,7 +1073,7 @@ void PacmanExec::doRemove(const QString &listOfPackages)
   m_lastCommandList.append("read -n 1 -p \"" + StrConstants::getPressAnyKey() + "\"");
 
   m_commandExecuting = ectn_REMOVE;  
-  m_unixCommand->executeCommandWithSharedMem(command, m_sharedMemory);
+  m_unixCommand->executeCommandWithSharedMemHelper(command, m_sharedMemory);
 }
 
 /*
@@ -1093,7 +1123,7 @@ void PacmanExec::doRemoveAndInstall(const QString &listOfPackagestoRemove, const
   m_lastCommandList.append("read -n 1 -p \"" + StrConstants::getPressAnyKey() + "\"");
 
   m_commandExecuting = ectn_REMOVE_INSTALL;
-  m_unixCommand->executeCommandWithSharedMem(command, m_sharedMemory);
+  m_unixCommand->executeCommandWithSharedMemHelper(command, m_sharedMemory);
 }
 
 /*
@@ -1143,7 +1173,7 @@ void PacmanExec::doSystemUpgrade()
   m_lastCommandList.append("read -n 1 -p \"" + StrConstants::getPressAnyKey() + "\"");
 
   m_commandExecuting = ectn_SYSTEM_UPGRADE;
-  m_unixCommand->executeCommandWithSharedMem(command, m_sharedMemory);
+  m_unixCommand->executeCommandWithSharedMemHelper(command, m_sharedMemory);
 }
 
 /*

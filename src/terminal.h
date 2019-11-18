@@ -35,8 +35,8 @@ public:
   Terminal(QObject *parent);
   virtual ~Terminal();
 
-  //Executes the given commandList creating a temp transaction file and running it
-  //void runCommandInTerminal(const QStringList& commandList);
+  //Executes the given command using sudo
+  void runCommandInTerminalWithSudo(const QString& command);
 
   //Executes the given commandList creating a ROOT temp transaction file and calling "octopi-helper -ts"
   void runOctopiHelperInTerminalWithSharedMem(const QStringList& commandList, QSharedMemory *sharedMem);

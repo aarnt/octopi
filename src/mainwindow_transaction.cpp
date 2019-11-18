@@ -1691,7 +1691,7 @@ void MainWindow::doInstallLocalPackages()
 
   foreach(QString pkgToInstall, m_packagesToInstallList)
   {
-    listOfTargets += pkgToInstall + " ";
+    listOfTargets += pkgToInstall + "; ";
   }
 
   TransactionDialog question(this);
@@ -1737,13 +1737,11 @@ void MainWindow::doInstallLocalPackages()
     if (result == QDialogButtonBox::Yes)
     {
       m_commandExecuting = ectn_INSTALL;
-      //m_pacmanExec->setSharedMemory(m_sharedMem);
       m_pacmanExec->doInstallLocal(listOfTargets);
     }
     else if (result == QDialogButtonBox::AcceptRole)
     {
       m_commandExecuting = ectn_RUN_IN_TERMINAL;
-      //m_pacmanExec->setSharedMemory(m_sharedMem);
       m_pacmanExec->doInstallLocalInTerminal(listOfTargets);
     }
   }

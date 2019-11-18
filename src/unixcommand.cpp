@@ -890,9 +890,9 @@ bool UnixCommand::isTextFile(QString fileName)
 /*
  * Executes given commandList as root inside a terminal, so the user can interact
  */
-/*void UnixCommand::runCommandInTerminal(const QStringList& commandList){
-  m_terminal->runCommandInTerminal(commandList);
-}*/
+void UnixCommand::runCommandInTerminalWithSudo(const QString& command){
+  m_terminal->runCommandInTerminalWithSudo(command);
+}
 
 /*
  * Executes given commandList as root inside a terminal using "octopi-helper -t" (passing cmds thru memory)
@@ -903,14 +903,6 @@ void UnixCommand::runOctopiHelperInTerminalWithSharedMem(const QStringList &comm
 }
 
 /*
- * Executes given commandList as root inside a terminal using "octopi-helper -t", so the user can interact
- */
-/*void UnixCommand::runOctopiHelperInTerminal(const QStringList &commandList)
-{
-  m_terminal->runOctopiHelperInTerminal(commandList);
-}*/
-
-/*
  * Executes given commandList inside a terminal, as the current user!
  */
 void UnixCommand::runCommandInTerminalAsNormalUser(const QStringList &commandList)
@@ -919,9 +911,31 @@ void UnixCommand::runCommandInTerminalAsNormalUser(const QStringList &commandLis
 }
 
 /*
+ * Executes the given command using QProcess async technology
+ */
+void UnixCommand::executeCommand(const QString &pCommand)
+{
+  QString command;
+
+  //COLUMNS variable code!
+  QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
+  env.remove("LANG");
+  env.remove("LC_MESSAGES");
+  env.insert("LANG", "C");
+  env.insert("LC_MESSAGES", "C");
+  env.remove("COLUMNS");
+  env.insert("COLUMNS", "132");
+  m_process->setProcessEnvironment(env);
+
+  QString suCommand = WMHelper::getSUCommand();
+  command = suCommand + getShell() + " -c " + "\"" + pCommand + "\"";
+  m_process->start(command);
+}
+
+/*
  * Executes the given command using QProcess async technology with ROOT credentials
  */
-void UnixCommand::executeCommandWithSharedMem(const QString &pCommand, QSharedMemory *sharedMem)
+void UnixCommand::executeCommandWithSharedMemHelper(const QString &pCommand, QSharedMemory *sharedMem)
 {
   QString command;
 

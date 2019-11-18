@@ -261,12 +261,10 @@ int OctopiHelper::executePkgTransactionWithSharedMem()
       (line == "paccache -r -k 3") ||
       (line == "pacman -Syu") ||
       (line == "pacman -Syu --noconfirm") ||
-      (line.startsWith("pacman -U ")) ||
       (line.startsWith("pacman -S ")) ||
       (line.startsWith("pacman -R ")))
     {
-      if (line.startsWith("pacman -U ") ||
-          line.startsWith("pacman -S ") ||
+      if (line.startsWith("pacman -S ") ||
           line.startsWith("pacman -R "))
       {
         testCommandFromOctopi=true;
@@ -466,7 +464,6 @@ int OctopiHelper::dummyServer()
       (line == "paccache -r -k 3") ||
       (line == "pacman -Syu") ||
       (line == "pacman -Syu --noconfirm") ||
-      (line.startsWith("pacman -U ")) ||
       (line.startsWith("pacman -S ")) ||
       (line.startsWith("pacman -R "))) { }
     else
