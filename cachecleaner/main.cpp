@@ -59,9 +59,12 @@ int main( int argc, char *argv[] )
   }
 
   CacheCleaner w;
-  app.setActivationWindow(&w);
-  w.show();
-  QResource::registerResource("./resources.qrc");
+  if (w.startServer())
+  {
+    app.setActivationWindow(&w);
+    w.show();
+    QResource::registerResource("./resources.qrc");
 
-  return app.exec();
+    return app.exec();
+  }
 }

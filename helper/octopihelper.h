@@ -56,7 +56,6 @@ public:
 
   int dummyServer();
   int executePkgTransactionWithSharedMem();
-  //int executePkgTransaction();
   inline int getExitCode() { return m_exitCode; }
   bool isOctoToolRunning(const QString &octoToolName);
 };

@@ -133,6 +133,9 @@ MainWindow::~MainWindow()
   delete ui;
 }
 
+/*
+ * Start listening for helper connections
+ */
 bool MainWindow::startServer()
 {
   bool res=true;

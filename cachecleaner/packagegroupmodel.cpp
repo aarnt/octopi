@@ -167,11 +167,11 @@ void PackageGroupModel::cleanCache()
   QObject::connect(m_cmd, SIGNAL( finished ( int, QProcess::ExitStatus )),
                    this, SLOT( finishedClean( int, QProcess::ExitStatus )) );
 
+  isExecutingCommand = true;
   QByteArray tmp = "paccache -r " + getOptions().toLatin1();
   UnixCommand::removeTemporaryFiles();
-  m_cmd->executeCommandWithSharedMem(tmp, m_sharedMem);
+  m_cmd->executeCommandWithSharedMemHelper(tmp, m_sharedMem);
   //m_cmd->executeCommand(QLatin1String(tmp), ectn_LANG_USER_DEFINED);
-  isExecutingCommand = true;
 }
 
 /*

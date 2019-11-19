@@ -25,6 +25,8 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 #include "packagegroupmodel.h"
 
+class QTcpServer;
+
 namespace Ui {
 class CacheCleaner;
 }
@@ -40,10 +42,15 @@ private:
     Ui::CacheCleaner *ui;
     PackageGroupModel *m_installed;
     PackageGroupModel *m_uninstalled;
+    QTcpServer *m_tcpServer;
+
+private slots:
+  void onSendInfoToOctopiHelper();
 
 public:
     explicit CacheCleaner(QWidget *parent = 0);
     ~CacheCleaner();
+    bool startServer();
 
 protected:
     void closeEvent(QCloseEvent *);

@@ -23,6 +23,9 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 #include "../src/strconstants.h"
 
 #include <QKeyEvent>
+#include <QTcpServer>
+#include <QTcpSocket>
+#include <QMessageBox>
 
 /*
  * CacheCleaner window constructor
@@ -40,7 +43,6 @@ CacheCleaner::CacheCleaner(QWidget *parent) :
   int keepUninstalled = SettingsManager::getKeepNumUninstalledPackages();
   ui->keepUninstalledPackagesSpinner->setValue(keepUninstalled);
 
-
   //create package group wrappers
   m_installed = new PackageGroupModel("",
                                       ui->installedPackagesList,
@@ -54,6 +56,9 @@ CacheCleaner::CacheCleaner(QWidget *parent) :
                                         ui->refreshUninstalledButton,                                                                                
                                         ui->cleanUninstalledButton);
 
+  m_tcpServer = new QTcpServer(this);
+  connect(m_tcpServer, &QTcpServer::newConnection, this, &CacheCleaner::onSendInfoToOctopiHelper);
+
   restoreGeometry(SettingsManager::getCacheCleanerWindowSize());
 }
 
@@ -65,6 +70,68 @@ CacheCleaner::~CacheCleaner()
   delete m_installed;
   delete m_uninstalled;
   delete ui;
+}
+
+/*
+ * Start listening for helper connections
+ */
+bool CacheCleaner::startServer()
+{
+  bool res=true;
+
+  if (!m_tcpServer->listen(QHostAddress::LocalHost, 12703))
+  {
+    QMessageBox::critical(this, StrConstants::getApplicationName(),
+                          QString("Unable to start the server: %1.")
+                          .arg(m_tcpServer->errorString()));
+    res=false;
+  }
+
+  return res;
+}
+
+/*
+ * Answers Helper if CacheCleaner is executing actions
+ */
+void CacheCleaner::onSendInfoToOctopiHelper()
+{
+  QString msg;
+  QByteArray block;
+  QDataStream out(&block, QIODevice::WriteOnly);
+  out.setVersion(QDataStream::Qt_5_10);
+
+  //Is octopi-helper running?
+  bool isHelperExecuting=UnixCommand::isOctopiHelperRunning();
+
+  bool commandExecuting = (m_installed->isExecutingCommand || m_uninstalled->isExecutingCommand);
+
+  if (isHelperExecuting && commandExecuting)
+  {
+    msg="Octopi est occupatus";
+    out << msg;
+  }
+  else if (isHelperExecuting && !commandExecuting)
+  {
+    msg="Octopi serenum est";
+    out << msg;
+  }
+  else
+  {
+    msg="Atramento nigro";
+    out << msg;
+  }
+
+  QTcpSocket *clientConnection = m_tcpServer->nextPendingConnection();
+  if (clientConnection->isOpen())
+  {
+    connect(clientConnection, &QAbstractSocket::disconnected,
+          clientConnection, &QObject::deleteLater);
+    clientConnection->write(block);
+    clientConnection->disconnectFromHost();
+  }
+
+  //m_installed->isExecutingCommand=false;
+  //m_uninstalled->isExecutingCommand=false;
 }
 
 /*
