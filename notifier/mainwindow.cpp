@@ -617,7 +617,7 @@ void MainWindow::doSystemUpgradeFinished()
     return;
   }*/
 
-  m_unixCommand->removeTemporaryFile();
+  //m_unixCommand->removeTemporaryFile();
   toggleEnableInterface(true);
 }
 

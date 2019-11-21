@@ -74,7 +74,6 @@ public:
   static bool isPacmanDbLocked();
   static QProcessEnvironment getProcessEnvironment();
   static bool isOctopiHelperRunning();
-
   static QString getShell();
 
   //Delegations from Package class (due to QProcess use)
@@ -137,16 +136,17 @@ public:
     return m_temporaryFile;
   }*/
 
-  static void removeTemporaryFile(){
+  /*static void removeTemporaryFile(){
     if (m_temporaryFile != nullptr){
       m_temporaryFile->close();
       m_temporaryFile->remove();
       delete m_temporaryFile;
       m_temporaryFile = nullptr;
     }
-  }
+  }*/
 
   static bool isPackageInstalled(const QString& pkgName);
+  static void removeSharedMemFiles();
   static void removeTemporaryFiles();
 
   void runCommandInTerminalWithSudo(const QString& command);

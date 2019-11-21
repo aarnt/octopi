@@ -1936,7 +1936,7 @@ void MainWindow::onCanStopTransaction(bool yesNo)
  */
 void MainWindow::pacmanProcessFinished(int exitCode, QProcess::ExitStatus exitStatus)
 {
-  UnixCommand::removeTemporaryFiles();
+  UnixCommand::removeSharedMemFiles();
 
   bool bRefreshGroups = true;
   m_progressWidget->close();
@@ -2185,7 +2185,7 @@ void MainWindow::onPressAnyKeyToContinue()
     delete m_pacmanExec;
 
   m_commandExecuting = ectn_NONE;
-  UnixCommand::removeTemporaryFiles();
+  UnixCommand::removeSharedMemFiles();
   m_console->execute("");
   m_console->setFocus();
 
@@ -2211,7 +2211,7 @@ void MainWindow::onCancelControlKey()
 
     m_pacmanExec = nullptr;
     m_commandExecuting = ectn_NONE;
-    UnixCommand::removeTemporaryFiles();
+    UnixCommand::removeSharedMemFiles();
   }
 }
 

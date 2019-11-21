@@ -45,7 +45,7 @@ PacmanExec::PacmanExec(QObject *parent) : QObject(parent)
   m_parsingAPackageChange = false;
 
   m_sharedMemory=nullptr;
-  UnixCommand::removeTemporaryFiles();
+  //UnixCommand::removeTemporaryFiles();
 
   QObject::connect(m_unixCommand, SIGNAL( started() ), this, SLOT( onStarted()));
 
@@ -67,8 +67,8 @@ PacmanExec::PacmanExec(QObject *parent) : QObject(parent)
  */
 PacmanExec::~PacmanExec()
 {
-  m_unixCommand->removeTemporaryFiles();
-  m_unixCommand->removeTemporaryFile();
+  m_unixCommand->removeSharedMemFiles();
+  //m_unixCommand->removeTemporaryFile();
 }
 
 /*
@@ -82,10 +82,10 @@ void PacmanExec::setDebugMode(bool value)
 /*
  * Removes Octopi's temporary transaction file
  */
-void PacmanExec::removeTemporaryFile()
+/*void PacmanExec::removeTemporaryFile()
 {
   m_unixCommand->removeTemporaryFile();
-}
+}*/
 
 /*
  * Searches for the presence of the db.lock file

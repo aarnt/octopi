@@ -127,6 +127,7 @@ MainWindow::MainWindow(QWidget *parent) :
 MainWindow::~MainWindow()
 {
   savePackageColumnWidths();
+  UnixCommand::removeTemporaryFiles();
 
   //Let's garbage collect transaction files...
   if (SettingsManager::getEnableAURVoting()) delete m_aurVote;

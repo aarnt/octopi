@@ -717,6 +717,38 @@ bool UnixCommand::hasTheExecutable( const QString& exeName )
 }
 
 /*
+ * Does some garbage collection, removing uneeded shared memory files
+ */
+void UnixCommand::removeSharedMemFiles()
+{
+  QDir tempDir(QDir::tempPath());
+  QStringList nameFilters;
+  nameFilters << "qipc_sharedmemory_orgarntoctopi*"
+              << "qipc_systemsem_orgarntoctopi*";
+
+  QFileInfoList list = tempDir.entryInfoList(nameFilters, QDir::Dirs | QDir::Files | QDir::System | QDir::Hidden);
+
+  foreach(QFileInfo file, list){
+    QFile fileAux(file.filePath());
+
+    if (!file.isDir()){
+      fileAux.remove();
+    }
+    else{
+      QDir dir(file.filePath());
+      QFileInfoList listd = dir.entryInfoList(QDir::Files | QDir::System);
+
+      foreach(QFileInfo filed, listd){
+        QFile fileAuxd(filed.filePath());
+        fileAuxd.remove();
+      }
+
+      dir.rmdir(file.filePath());
+    }
+  }
+}
+
+/*
  * Does some garbage collection, removing uneeded files
  */
 void UnixCommand::removeTemporaryFiles()
@@ -724,8 +756,8 @@ void UnixCommand::removeTemporaryFiles()
   QDir tempDir(QDir::tempPath());
   QStringList nameFilters;
   nameFilters << "qtsingleapp-Octopi*" << "qtsingleapp-CacheC*" << "qtsingleapp-Reposi*"
-              << "qipc_sharedmemory_orgarntoctopi*"
-              << "qipc_systemsem_orgarntoctopi*"
+              //<< "qipc_sharedmemory_orgarntoctopi*"
+              //<< "qipc_systemsem_orgarntoctopi*"
               << ".qt_temp_octopi*";
   QFileInfoList list = tempDir.entryInfoList(nameFilters, QDir::Dirs | QDir::Files | QDir::System | QDir::Hidden);
 
@@ -1096,6 +1128,7 @@ QString UnixCommand::buildOctopiHelperCommandWithSharedMem(const QString &pComma
       sharedMem->detach();
     delete sharedMem;
     sharedMem=nullptr;
+    removeSharedMemFiles();
   }
 
   sharedMem=new QSharedMemory("org.arnt.octopi", this);
@@ -1153,7 +1186,6 @@ void UnixCommand::cancelProcess(QSharedMemory *sharedMem)
 
   if (suCommand == WMHelper::getOctopiSudoCommand())
   {
-    removeTemporaryFiles();
     result = buildOctopiHelperCommandWithSharedMem(pCommand, sharedMem);
   }
   else {

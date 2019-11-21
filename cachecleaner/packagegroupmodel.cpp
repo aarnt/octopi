@@ -69,7 +69,7 @@ PackageGroupModel::PackageGroupModel(QString optionsString,
  */
 PackageGroupModel::~PackageGroupModel()
 {
-  UnixCommand::removeTemporaryFiles();
+  UnixCommand::removeSharedMemFiles();
   delete m_acc;
   delete m_cmd;
 }
@@ -169,7 +169,7 @@ void PackageGroupModel::cleanCache()
 
   isExecutingCommand = true;
   QByteArray tmp = "paccache -r " + getOptions().toLatin1();
-  UnixCommand::removeTemporaryFiles();
+  //UnixCommand::removeTemporaryFiles();
   m_cmd->executeCommandWithSharedMemHelper(tmp, m_sharedMem);
   //m_cmd->executeCommand(QLatin1String(tmp), ectn_LANG_USER_DEFINED);
 }

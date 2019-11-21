@@ -20,6 +20,7 @@
 
 #include "../src/constants.h"
 #include "octopihelper.h"
+
 #include <QProcess>
 #include <QDir>
 #include <QObject>
@@ -37,10 +38,7 @@ void removeTemporaryFiles()
 {
   QDir tempDir(QDir::tempPath());
   QStringList nameFilters;
-  nameFilters //<< "qtsingleapp-Octopi*" << "qtsingleapp-CacheC*" << "qtsingleapp-Reposi*"
-              //<< "qipc_sharedmemory_orgarntoctopi*"
-              //<< "qipc_systemsem_orgarntoctopi*"
-              << ".qt_temp_octopi*";
+  nameFilters << ".qt_temp_octopi*";
   QFileInfoList list = tempDir.entryInfoList(nameFilters, QDir::Dirs | QDir::Files | QDir::System | QDir::Hidden);
 
   foreach(QFileInfo file, list){
@@ -86,7 +84,6 @@ bool isAppRunning(const QString &appName, bool justOneInstance)
 {
   QStringList slParam;
   QProcess proc;
-
   slParam << "-C";
   slParam << appName;
   proc.start("ps", slParam);
@@ -442,9 +439,6 @@ int OctopiHelper::executePkgTransactionWithSharedMem()
   m_process->start(command);
   m_process->waitForStarted(-1);
   m_process->waitForFinished(-1);
-
-  //if (m_temporaryFile != nullptr)
-  //  QFile::remove(m_temporaryFile->fileName());
 
   return m_process->exitCode();
 }
