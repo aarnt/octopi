@@ -126,6 +126,7 @@ void CacheCleaner::onSendInfoToOctopiHelper()
   {
     connect(clientConnection, &QAbstractSocket::disconnected,
           clientConnection, &QObject::deleteLater);
+
     clientConnection->write(block);
     clientConnection->disconnectFromHost();
   }

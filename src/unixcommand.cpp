@@ -931,6 +931,9 @@ void UnixCommand::runCommandInTerminalWithSudo(const QString& command){
  */
 void UnixCommand::runOctopiHelperInTerminalWithSharedMem(const QStringList &commandList, QSharedMemory *sharedMem)
 {
+  //Checks if octopi-helper is running. If so, we exit!
+  if (isOctopiHelperRunning()) return;
+
   m_terminal->runOctopiHelperInTerminalWithSharedMem(commandList, sharedMem);
 }
 
@@ -969,6 +972,9 @@ void UnixCommand::executeCommand(const QString &pCommand)
  */
 void UnixCommand::executeCommandWithSharedMemHelper(const QString &pCommand, QSharedMemory *sharedMem)
 {
+  //Checks if octopi-helper is running. If so, we exit!
+  if (isOctopiHelperRunning()) return;
+
   QString command;
 
   //COLUMNS variable code!
@@ -1117,7 +1123,7 @@ QString UnixCommand::buildOctopiHelperCommandWithSharedMem(const QString &pComma
   else //We have just one command here
   {
     commandList << pCommand.trimmed();
-    commands += commandList.first();
+    commands += commandList.first() + "\n";
   }
 
   sharedData=commands.toLatin1();
@@ -1128,8 +1134,9 @@ QString UnixCommand::buildOctopiHelperCommandWithSharedMem(const QString &pComma
       sharedMem->detach();
     delete sharedMem;
     sharedMem=nullptr;
-    removeSharedMemFiles();
   }
+
+  removeSharedMemFiles();
 
   sharedMem=new QSharedMemory("org.arnt.octopi", this);
   sharedMem->create(sharedData.size());

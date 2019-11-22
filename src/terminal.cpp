@@ -83,6 +83,8 @@ void Terminal::runOctopiHelperInTerminalWithSharedMem(const QStringList &command
     sharedMem=nullptr;
   }
 
+  UnixCommand::removeSharedMemFiles();
+
   sharedMem=new QSharedMemory("org.arnt.octopi", this);
   sharedMem->create(sharedData.size());
   sharedMem->lock();

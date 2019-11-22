@@ -158,7 +158,12 @@ bool OctopiHelper::isOctoToolRunning(const QString &octoToolName)
   if (out.contains("|")) return false;
   out=out.remove("\n");
   out=out.remove("COMMAND");
-  if ((out == "/usr/bin/" + octoToolName) || out.contains("/usr/bin/" + octoToolName + " ")) res=true;
+
+  if (octoToolName=="octopi-cachecle")
+  {
+    if (out == "/usr/bin/octopi-cachecleaner") res=true;
+  }
+  else if ((out == "/usr/bin/" + octoToolName) || out.contains("/usr/bin/" + octoToolName + " ")) res=true;
 
   return res;
 }
@@ -171,7 +176,7 @@ int OctopiHelper::executePkgTransactionWithSharedMem()
 {
   if(!isOctoToolRunning("octopi") &&
      !isOctoToolRunning("octopi-notifier") &&
-     !isOctoToolRunning("octopi-cachecleaner"))
+     !isOctoToolRunning("octopi-cachecle"))
   {
     QTextStream qout(stdout);
     qout << endl << "octopi-helper[aborted]: Suspicious execution method" << endl;
@@ -220,6 +225,7 @@ int OctopiHelper::executePkgTransactionWithSharedMem()
   bool testCommandFromOctopi=false;
   bool testCommandFromNotifier=false;
   bool testCommandFromCacheCleaner=false;
+
   foreach (QString line, lines)
   {
     line = line.trimmed();
@@ -243,8 +249,6 @@ int OctopiHelper::executePkgTransactionWithSharedMem()
           line.startsWith("pacman -R "))
       {
         testCommandFromOctopi=true;
-        testCommandFromNotifier=false;
-        testCommandFromCacheCleaner=false;
       }
       else if (line.startsWith("pacman -Sy") ||
                line == "killall pacman" ||
@@ -252,12 +256,9 @@ int OctopiHelper::executePkgTransactionWithSharedMem()
       {
         testCommandFromOctopi=true;
         testCommandFromNotifier=true;
-        testCommandFromCacheCleaner=false;
       }
       else if (line.startsWith("paccache -r -k"))
       {
-        testCommandFromOctopi=false;
-        testCommandFromNotifier=false;
         testCommandFromCacheCleaner=true;
       }
     }
