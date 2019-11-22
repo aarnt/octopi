@@ -42,16 +42,6 @@ $ cd OCTOPI_PATH
 $ makepkg -f
 ```
 
-### Using Octopi without password
-
-From version 0.10.0 on, Octopi uses a new priviledge escalation tool based on [LXQt sudo project](https://github.com/lxqt/lxqt-sudo).
-To use Octopi without a password your user need to be member of "wheel" group and you must run the 
-following command as root (just one time):
-
-```
-$ /usr/lib/octopi/octopi-sudo -setnopasswd
-```
-
 ### How to enable AUR support (that "alien" icon at toolbar)
 
 To enable AUR support, you'll need to install [yaourt](https://archlinux.fr/yaourt-en), 
