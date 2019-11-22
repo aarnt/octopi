@@ -73,10 +73,10 @@ void MainWindow::initTabHelpUsage()
  */
 QString MainWindow::generateHelpUsageHtmlText()
 {
-  QString strNoPassword;
+  /*QString strNoPassword;
   strNoPassword=tr("To use Octopi without a password your user need to be member of the \"wheel\" group") +
       "<br>" + tr("and you must run the following command as root:") +
-      "<ul><li>/usr/lib/octopi/octopi-sudo -setnopasswd</li></ul><br>";
+      "<ul><li>/usr/lib/octopi/octopi-sudo -setnopasswd</li></ul><br>";*/
 
   QString strOutdatedAur;
   if(m_hasAURTool && !SettingsManager::getSearchOutdatedAURPackages())
@@ -200,7 +200,7 @@ QString MainWindow::generateHelpUsageHtmlText()
      tr("F11 to maximize/demaximize Tab's view") +
   QString("</li></ul>");
 
-  html += "<br>" + strNoPassword;
+  //html += "<br>" + strNoPassword;
 
   return html;
 }
