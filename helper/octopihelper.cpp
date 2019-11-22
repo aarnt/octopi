@@ -28,7 +28,6 @@
 #include <QSharedMemory>
 #include <QRegularExpression>
 #include <QStringLiteral>
-#include <QTcpServer>
 #include <QTcpSocket>
 #include <QDataStream>
 
@@ -419,15 +418,4 @@ int OctopiHelper::executePkgTransactionWithSharedMem()
   m_process->waitForFinished(-1);
 
   return m_process->exitCode();
-}
-
-/*
- * Execs a tcpServer to test Octopi
- */
-int OctopiHelper::dummyServer()
-{
-  QTcpServer server;
-  server.listen(QHostAddress::LocalHost, 12701);
-
-  while(true){}
 }

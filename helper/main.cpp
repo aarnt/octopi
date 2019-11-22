@@ -28,8 +28,6 @@ int main(int argc, char *argv[])
   QCoreApplication a(argc, argv);
   OctopiHelper helper;
 
-  /*if (argList->getSwitch("-dummy"))
-    return helper.dummyServer();*/
   if (argList->getSwitch("-ts"))
     return helper.executePkgTransactionWithSharedMem();
 }
