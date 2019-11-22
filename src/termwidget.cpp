@@ -39,8 +39,9 @@ TermWidget::TermWidget(QWidget *parent):
   font.setFamily("Monospace");
   setTerminalFont(font);
   setScrollBarPosition(QTermWidget::ScrollBarRight);
-  changeDir("/");
+  //changeDir("/");
   setColorScheme("WhiteOnBlack");
+  execute("cd ~");
   execute("export TERM=xterm");
   execute("clear");
   setContextMenuPolicy(Qt::CustomContextMenu);
