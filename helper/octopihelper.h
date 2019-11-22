@@ -18,10 +18,11 @@
 *
 */
 
-#ifndef PKOCTOPIHELPER_H
-#define PKOCTOPIHELPER_H
+#ifndef OCTOPIHELPER_H
+#define OCTOPIHELPER_H
 
 #include "../src/constants.h"
+
 #include <QString>
 #include <QProcess>
 #include <QObject>
@@ -36,7 +37,6 @@ private:
   int m_exitCode;
   QProcess *m_process;
   QProcessEnvironment getProcessEnvironment();
-  QString getTransactionTempFileName();
   QString m_suspiciousChars;
 
   static QFile *m_temporaryFile;
@@ -60,4 +60,4 @@ public:
   bool isOctoToolRunning(const QString &octoToolName);
 };
 
-#endif // PKOCTOPIHELPER_H
+#endif // OCTOPIHELPER_H

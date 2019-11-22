@@ -143,30 +143,6 @@ QProcessEnvironment OctopiHelper::getProcessEnvironment()
 }
 
 /*
- * Let's find the name of the Octopi's transaction tempfile in "/tmp/.qt_temp_octopi_"
- */
-QString OctopiHelper::getTransactionTempFileName()
-{
-  QString res("");
-  QDir dir(QDir::tempPath());
-  dir.setFilter(QDir::Files | QDir::Hidden | QDir::NoSymLinks);
-  dir.setSorting(QDir::Time);
-  QStringList nf;
-  QFileInfoList list = dir.entryInfoList(nf << ".qt_temp_octopi*");
-
-  /*if (list.count() > 1) //If we find 2 or more files we ABORT!
-  {
-    return "";
-  }*/
-  if (list.count()>=1)
-  {
-    res = list.first().filePath();
-  }
-
-  return res;
-}
-
-/*
  * Checks if Octopi/Octopi-notifier, cache-cleaner, etc is being executed
  */
 bool OctopiHelper::isOctoToolRunning(const QString &octoToolName)
@@ -269,6 +245,7 @@ int OctopiHelper::executePkgTransactionWithSharedMem()
       {
         testCommandFromOctopi=true;
         testCommandFromNotifier=false;
+        testCommandFromCacheCleaner=false;
       }
       else if (line.startsWith("pacman -Sy") ||
                line == "killall pacman" ||
@@ -276,6 +253,7 @@ int OctopiHelper::executePkgTransactionWithSharedMem()
       {
         testCommandFromOctopi=true;
         testCommandFromNotifier=true;
+        testCommandFromCacheCleaner=false;
       }
       else if (line.startsWith("paccache -r -k"))
       {
