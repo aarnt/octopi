@@ -319,6 +319,27 @@
              <string>Enable AUR voting</string>
             </property>
            </widget>
+           <widget class="QLabel" name="lblAURWarning">
+            <property name="geometry">
+             <rect>
+              <x>0</x>
+              <y>0</y>
+              <width>621</width>
+              <height>19</height>
+             </rect>
+            </property>
+            <property name="font">
+             <font>
+              <pointsize>10</pointsize>
+             </font>
+            </property>
+            <property name="text">
+             <string>AUR packages are user produced content. Any use of the provided files is at your own risk.</string>
+            </property>
+            <property name="textFormat">
+             <enum>Qt::AutoText</enum>
+            </property>
+           </widget>
           </widget>
          </item>
         </layout>
