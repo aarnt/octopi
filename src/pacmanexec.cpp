@@ -545,7 +545,7 @@ void PacmanExec::prepareTextToPrint(QString str, TreatString ts, TreatURLLinks t
     }
 
   //If the str waiting to being print has not yet been printed...
-  if(m_textPrinted.contains(str))
+  if(m_textPrinted.contains(str) && (!str.startsWith("==>") && !str.startsWith("->")))
   {
     return;
   }
