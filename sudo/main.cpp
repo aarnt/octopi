@@ -75,12 +75,12 @@ void setNoPasswdUse()
 
 int main(int argc, char **argv)
 {
-  ArgumentList *argList = new ArgumentList(argc, argv);
+  //ArgumentList *argList = new ArgumentList(argc, argv);
   QApplication app(argc, argv, true);
   app.setQuitOnLastWindowClosed(false);
   app.setAttribute(Qt::AA_UseHighDpiPixmaps, true);
 
-  if (argList->getSwitch("-setnopasswd"))
+  /*if (argList->getSwitch("-setnopasswd"))
   {
     int uid = geteuid();
     if (uid == 0) //octopi-sudo is running as root
@@ -93,7 +93,7 @@ int main(int argc, char **argv)
       std::cout << "octopi-sudo" << ": You need to run as root to exec with this parameter." << std::endl;
       return -1;
     }
-  }
+  }*/
 
   QTranslator translator;
   // look up e.g. :/translations/myapp_de.qm
