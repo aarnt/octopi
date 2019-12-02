@@ -242,6 +242,7 @@ enum ExecOpt { ectn_NORMAL_EXEC_OPT, ectn_SYSUPGRADE_EXEC_OPT, ectn_SYSUPGRADE_N
 
 //Octopi-helper related ----------------------------------------------------------------------------------
 
+const QString ctn_OCTOPI_HELPER_VERSION = "0.10 (dev)";
 const int ctn_NO_TEMP_ACTIONS_FILE(1);
 const int ctn_PACMAN_PROCESS_EXECUTING(2);
 const int ctn_SUSPICIOUS_ACTIONS_FILE(3);

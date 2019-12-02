@@ -33,6 +33,15 @@ bool isRootRunning()
 
 int main(int argc, char *argv[])
 {
+  ArgumentList *argList = new ArgumentList(argc, argv);
+
+  if (argList->getSwitch("-version"))
+  {
+    QTextStream qout(stdout);
+    qout << "octopi-helper: version " << ctn_OCTOPI_HELPER_VERSION << endl;
+    return 0;
+  }
+
   if (!isRootRunning())
   {
     QTextStream qout(stdout);
@@ -40,12 +49,13 @@ int main(int argc, char *argv[])
     return ctn_NO_ROOT_RUNNING;
   }
 
-  ArgumentList *argList = new ArgumentList(argc, argv);
   QCoreApplication a(argc, argv);
   OctopiHelper helper;
 
   if (argList->getSwitch("-ts"))
+  {
     return helper.executePkgTransactionWithSharedMem();
+  }
   else
   {
     QTextStream qout(stdout);
