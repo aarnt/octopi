@@ -250,9 +250,9 @@ int OctopiHelper::executePkgTransactionWithSharedMem()
       {
         testCommandFromOctopi=true;
       }
-      else if (line.startsWith("pacman -Sy") ||
+      else if (line.startsWith("pacman -Syu") /*||
                line == "killall pacman" ||
-               line == "rm " + ctn_PACMAN_DATABASE_LOCK_FILE)
+               line == "rm " + ctn_PACMAN_DATABASE_LOCK_FILE)*/)
       {
         testCommandFromOctopi=true;
         testCommandFromNotifier=true;
@@ -263,7 +263,9 @@ int OctopiHelper::executePkgTransactionWithSharedMem()
       }
     }
     else
+    {
       suspicious = true;
+    }
 
     if (suspicious)
     {
@@ -273,8 +275,17 @@ int OctopiHelper::executePkgTransactionWithSharedMem()
     }
   }
 
+  //Using full path binaries
+  contents = contents.replace("killall pacman", "/usr/bin/killall pacman");
+  contents = contents.replace("rm " + ctn_PACMAN_DATABASE_LOCK_FILE, "/usr/bin/rm " + ctn_PACMAN_DATABASE_LOCK_FILE);
+  contents = contents.replace("pkgfile -u", "/usr/bin/pkgfile -u");
+  contents = contents.replace("paccache -r", "/usr/bin/paccache -r");
+  contents = contents.replace("pacman -Syu", "/usr/bin/pacman -Syu");
+  contents = contents.replace("pacman -S ", "/usr/bin/pacman -S ");
+  contents = contents.replace("pacman -R ", "/usr/bin/pacman -R ");
+
   //If there is a "pacman" process executing elsewhere, let's abort octopi-helper!
-  if (contents != "killall pacman\nrm " + ctn_PACMAN_DATABASE_LOCK_FILE +"\n" && isAppRunning("pacman", true))
+  if (contents != "/usr/bin/killall pacman\n/usr/bin/rm " + ctn_PACMAN_DATABASE_LOCK_FILE +"\n" && isAppRunning("pacman", true))
   {
     QTextStream qout(stdout);
     qout << endl << "octopi-helper[aborted]: Pacman process already running" << endl;
