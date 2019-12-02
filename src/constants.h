@@ -245,5 +245,10 @@ enum ExecOpt { ectn_NORMAL_EXEC_OPT, ectn_SYSUPGRADE_EXEC_OPT, ectn_SYSUPGRADE_N
 const int ctn_NO_TEMP_ACTIONS_FILE(1);
 const int ctn_PACMAN_PROCESS_EXECUTING(2);
 const int ctn_SUSPICIOUS_ACTIONS_FILE(3);
+const int ctn_NO_ROOT_RUNNING(4);
+const int ctn_TIMEOUT_CONNECTING(5);
+const int ctn_NO_TRANSACTION_EXECUTING(6);
+const int ctn_SUSPICIOUS_EXECUTION_METHOD(7);
+const int ctn_COULD_NOT_ATTACH_TO_MEM(8);
 
 #endif // CONSTANTS

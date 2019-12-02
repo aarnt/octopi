@@ -20,14 +20,36 @@
 
 #include "octopihelper.h"
 #include "../src/argumentlist.h"
+#include <unistd.h>
+
 #include <QCoreApplication>
+#include <QTextStream>
+
+bool isRootRunning()
+{
+  int uid = geteuid();
+  return (uid == 0);
+}
 
 int main(int argc, char *argv[])
 {
+  if (!isRootRunning())
+  {
+    QTextStream qout(stdout);
+    qout << endl << "octopi-helper[aborted]: Only root can run..." << endl;
+    return ctn_NO_ROOT_RUNNING;
+  }
+
   ArgumentList *argList = new ArgumentList(argc, argv);
   QCoreApplication a(argc, argv);
   OctopiHelper helper;
 
   if (argList->getSwitch("-ts"))
     return helper.executePkgTransactionWithSharedMem();
+  else
+  {
+    QTextStream qout(stdout);
+    qout << endl << "octopi-helper[aborted]: Suspicious execution method" << endl;
+    return ctn_SUSPICIOUS_EXECUTION_METHOD;
+  }
 }

@@ -180,7 +180,7 @@ int OctopiHelper::executePkgTransactionWithSharedMem()
   {
     QTextStream qout(stdout);
     qout << endl << "octopi-helper[aborted]: Suspicious execution method" << endl;
-    return -1;
+    return ctn_SUSPICIOUS_EXECUTION_METHOD;
   }
 
   //Let's retrieve commands from sharedmem pool
@@ -188,8 +188,8 @@ int OctopiHelper::executePkgTransactionWithSharedMem()
   if (!sharedMem->attach(QSharedMemory::ReadOnly))
   {
     QTextStream qout(stdout);
-    qout << endl << "octopi-helper[aborted]: Couldn't attach to parent" << endl;
-    return -1;
+    qout << endl << "octopi-helper[aborted]: Couldn't attach to memory" << endl;
+    return ctn_COULD_NOT_ATTACH_TO_MEM;
   }
 
   QByteArray sharedData(sharedMem->size(), '\0');
@@ -289,7 +289,7 @@ int OctopiHelper::executePkgTransactionWithSharedMem()
   {
     QTextStream qout(stdout);
     qout << endl << "octopi-helper[aborted]: Pacman process already running" << endl;
-    return(ctn_PACMAN_PROCESS_EXECUTING);
+    return ctn_PACMAN_PROCESS_EXECUTING;
   }
 
   if (testCommandFromOctopi)
@@ -304,7 +304,7 @@ int OctopiHelper::executePkgTransactionWithSharedMem()
       {
         QTextStream qout(stdout);
         qout << endl << "octopi-helper[aborted]: Timeout connecting to Octopi" << endl;
-        return -1;
+        return ctn_TIMEOUT_CONNECTING;
       }
       else goto testNotifierConnection;
     }
@@ -319,7 +319,7 @@ int OctopiHelper::executePkgTransactionWithSharedMem()
       {
         QTextStream qout(stdout);
         qout << endl << "octopi-helper[aborted]: Timeout contacting Octopi" << endl;
-        return -1;
+        return ctn_TIMEOUT_CONNECTING;
       }
 
       in.startTransaction();
@@ -333,8 +333,8 @@ int OctopiHelper::executePkgTransactionWithSharedMem()
     else if (octopiResponse != "Octopi est occupatus" && !testCommandFromNotifier)
     {
       QTextStream qout(stdout);
-      qout << endl << "octopi-helper[aborted]: No transaction being executed in Octopi -> " << octopiResponse << endl;
-      return -1;
+      qout << endl << "octopi-helper[aborted]: No transaction being executed" << endl;
+      return ctn_NO_TRANSACTION_EXECUTING;
     }
   }
 
@@ -349,7 +349,7 @@ int OctopiHelper::executePkgTransactionWithSharedMem()
     {
       QTextStream qout(stdout);
       qout << endl << "octopi-helper[aborted]: Timeout connecting to Octopi-Notifier" << endl;
-      return -1;
+      return ctn_TIMEOUT_CONNECTING;
     }
 
     QDataStream in(&socket);
@@ -362,7 +362,7 @@ int OctopiHelper::executePkgTransactionWithSharedMem()
       {
         QTextStream qout(stdout);
         qout << endl << "octopi-helper[aborted]: Timeout contacting Octopi-Notifier" << endl;
-        return -1;
+        return ctn_TIMEOUT_CONNECTING;
       }
 
       in.startTransaction();
@@ -372,8 +372,8 @@ int OctopiHelper::executePkgTransactionWithSharedMem()
     if (octopiResponse != "Octopi est occupatus")
     {
       QTextStream qout(stdout);
-      qout << endl << "octopi-helper[aborted]: No transaction being executed in Octopi-Notifier -> " << octopiResponse << endl;
-      return -1;
+      qout << endl << "octopi-helper[aborted]: No transaction being executed" << endl;
+      return ctn_NO_TRANSACTION_EXECUTING;
     }
   }
 
@@ -387,7 +387,7 @@ int OctopiHelper::executePkgTransactionWithSharedMem()
     {
       QTextStream qout(stdout);
       qout << endl << "octopi-helper[aborted]: Timeout connecting to Octopi-CacheCleaner" << endl;
-      return -1;
+      return ctn_TIMEOUT_CONNECTING;
     }
 
     QDataStream in(&socket);
@@ -400,7 +400,7 @@ int OctopiHelper::executePkgTransactionWithSharedMem()
       {
         QTextStream qout(stdout);
         qout << endl << "octopi-helper[aborted]: Timeout contacting Octopi-CacheCleaner" << endl;
-        return -1;
+        return ctn_TIMEOUT_CONNECTING;
       }
 
       in.startTransaction();
@@ -410,15 +410,15 @@ int OctopiHelper::executePkgTransactionWithSharedMem()
     if (octopiResponse != "Octopi est occupatus")
     {
       QTextStream qout(stdout);
-      qout << endl << "octopi-helper[aborted]: No transaction being executed in Octopi-CacheCleaner -> " << octopiResponse << endl;
-      return -1;
+      qout << endl << "octopi-helper[aborted]: No transaction being executed" << endl;
+      return ctn_NO_TRANSACTION_EXECUTING;
     }
   }
 
   //Let's construct the root owned execution file
   QFile *ftemp = generateTemporaryFile();
   QTextStream out(ftemp);
-  out << contents;
+  out << "unalias -a\n" << contents;
   out.flush();
   ftemp->close();
 
