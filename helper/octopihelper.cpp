@@ -66,11 +66,11 @@ void removeTemporaryFiles()
 QString getShell()
 {
   QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
-  QString shell = env.value("SHELL", "/bin/bash");
+  QString shell = env.value("SHELL", "/usr/bin/bash");
   QFileInfo fi(shell);
 
   if (fi.fileName() == "fish")
-    return "bash";
+    return "/usr/bin/bash";
   else
     return fi.fileName();
 }
@@ -85,7 +85,7 @@ bool isAppRunning(const QString &appName, bool justOneInstance)
   QProcess proc;
   slParam << "-C";
   slParam << appName;
-  proc.start("ps", slParam);
+  proc.start("/usr/bin/ps", slParam);
   proc.waitForFinished();
   QString out = proc.readAll();
   proc.close();
@@ -150,7 +150,7 @@ bool OctopiHelper::isOctoToolRunning(const QString &octoToolName)
 
   QProcess proc;
   proc.setProcessEnvironment(getProcessEnvironment());
-  QString cmd = "ps -C %1 -o command";
+  QString cmd = "/usr/bin/ps -C %1 -o command";
   cmd = cmd.arg(octoToolName);
   proc.start(cmd);
   proc.waitForFinished();
