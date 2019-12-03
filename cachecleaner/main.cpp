@@ -49,13 +49,19 @@ int main( int argc, char *argv[] )
 
   if (UnixCommand::isRootRunning()){
     QMessageBox::critical( 0, StrConstants::getApplicationName(), StrConstants::getErrorRunningWithRoot());
-    return ( -2 );
+    return (-2);
   }
 
   if (!UnixCommand::hasTheExecutable("paccache"))
   {
     QMessageBox::critical( 0, StrConstants::getApplicationName(), StrConstants::getExecutableCouldNotBeFound().arg("\"paccache\""));
-    return ( -3 );
+    return (-3);
+  }
+
+  if (!QFile::exists(ctn_OCTOPI_HELPER_PATH))
+  {
+    qDebug() << "Aborting cache-cleaner as 'octphelper' binary could not be found! [" << ctn_OCTOPI_HELPER_PATH << "]";
+    return (-4);
   }
 
   CacheCleaner w;

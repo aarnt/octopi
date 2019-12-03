@@ -168,7 +168,6 @@ const QString ctn_ROOT_SH("/bin/sh -c ");
 
 const QString ctn_LXQTSU("lxqt-sudo");
 const QString ctn_OCTOPISUDO("/usr/lib/octopi/octopi-sudo");
-const QString ctn_OCTOPI_HELPER("/usr/lib/octopi/octopi-helper");
 
 const QString ctn_KDESU("kdesu");
 const QString ctn_KDE_DESKTOP("kwin");
@@ -243,6 +242,9 @@ enum ExecOpt { ectn_NORMAL_EXEC_OPT, ectn_SYSUPGRADE_EXEC_OPT, ectn_SYSUPGRADE_N
 //Octopi-helper related ----------------------------------------------------------------------------------
 
 const QString ctn_OCTOPI_HELPER_VERSION = "0.10 (dev)";
+const QString ctn_OCTOPI_HELPER_NAME("octphelper");
+const QString ctn_OCTOPI_HELPER_PATH("/usr/lib/octopi/octphelper"); //("/usr/lib/octopi/octopi-helper");
+
 const int ctn_NO_TEMP_ACTIONS_FILE(1);
 const int ctn_PACMAN_PROCESS_EXECUTING(2);
 const int ctn_SUSPICIOUS_ACTIONS_FILE(3);

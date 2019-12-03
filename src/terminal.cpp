@@ -71,7 +71,7 @@ void Terminal::runOctopiHelperInTerminalWithSharedMem(const QStringList &command
   if (removedLines) out += "echo \"" + StrConstants::getPressAnyKey() + "\"";
 
   QString suCommand = WMHelper::getSUCommand();
-  QString commandToRun = ctn_OCTOPI_HELPER + " -ts";
+  QString commandToRun = ctn_OCTOPI_HELPER_PATH + " -ts";
   QString cmd = "sudo " + commandToRun;
   QByteArray sharedData=out.toLatin1();
 

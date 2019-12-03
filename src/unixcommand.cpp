@@ -1105,7 +1105,7 @@ QString UnixCommand::buildOctopiHelperCommandWithSharedMem(const QString &pComma
   QString octopiHelperCommandParameter;
   QString suCommand = WMHelper::getSUCommand();
   octopiHelperCommandParameter = " -ts";
-  suCommand += ctn_OCTOPI_HELPER + octopiHelperCommandParameter;
+  suCommand += ctn_OCTOPI_HELPER_PATH + octopiHelperCommandParameter;
 
   QStringList commandList;
   QString commands;
@@ -1562,7 +1562,7 @@ bool UnixCommand::isOctopiHelperRunning()
   QProcess proc;
   proc.setProcessEnvironment(getProcessEnvironment());
   QString cmd = "ps -C %1 -o command";
-  QString octoToolName = "octopi-helper";
+  QString octoToolName = ctn_OCTOPI_HELPER_NAME;
   cmd = cmd.arg(octoToolName);
   proc.start(cmd);
   proc.waitForFinished();

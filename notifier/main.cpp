@@ -57,9 +57,15 @@ int main(int argc, char *argv[])
     return (-2);
   }
 
+  if (!QFile::exists(ctn_OCTOPI_HELPER_PATH))
+  {
+    qDebug() << "Aborting notifier as 'octphelper' binary could not be found! [" << ctn_OCTOPI_HELPER_PATH << "]";
+    return (-3);
+  }
+
   if (UnixCommand::isRootRunning()){
     qDebug() << StrConstants::getErrorRunningWithRoot();
-    return ( -3 );
+    return (-4);
   }
 
   QApplication a(argc, argv);
