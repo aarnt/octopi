@@ -33,6 +33,9 @@
 
 QFile *OctopiHelper::m_temporaryFile = nullptr;
 
+/*
+ * Removes temporary transaction files
+ */
 void removeTemporaryFiles()
 {
   QDir tempDir(QDir::tempPath());
@@ -112,8 +115,7 @@ OctopiHelper::OctopiHelper()
   m_process = new QProcess();
   //m_suspiciousChars = QStringLiteral("(\\s|[][!#$&'()*,;<=+>?\\^`{}|~])");
   m_suspiciousChars = QStringLiteral("[!#$&'()*,;<=+>?\\^`{}|~\\[\\]]");
-
-  //This is the setting which enables all outputs from "pacman" go thru QProcess output methods
+  //These settings enable all "pacman" output go thru QProcess output methods
   m_process->setProcessChannelMode(QProcess::ForwardedChannels);
   m_process->setInputChannelMode(QProcess::ForwardedInputChannel);
 }
