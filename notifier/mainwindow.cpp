@@ -1049,7 +1049,7 @@ void MainWindow::execSystemTrayActivated(QSystemTrayIcon::ActivationReason ar)
  */
 void MainWindow::execSystemTrayKF5()
 {
-  if (UnixCommand::isAppRunning("octopi", true))
+  /*if (UnixCommand::isAppRunning("octopi", true))
   {
     static bool hidingOctopi = true;
 
@@ -1059,6 +1059,15 @@ void MainWindow::execSystemTrayKF5()
       hideOctopi();
 
     hidingOctopi = !hidingOctopi;
+  }*/
+
+  if (m_numberOfOutdatedPackages > 0)
+  {
+    doSystemUpgrade();
+  }
+  else
+  {
+    runOctopi(ectn_NORMAL_EXEC_OPT);
   }
 }
 
