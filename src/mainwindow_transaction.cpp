@@ -2166,6 +2166,13 @@ void MainWindow::onPressAnyKeyToContinue()
   m_progressWidget->show();
   bool bRefreshGroups = true;
   clearTransactionTreeView();
+
+  if (m_commandExecuting == ectn_RUN_SYSTEM_UPGRADE_IN_TERMINAL)
+  {
+    m_checkupdatesStringList->clear();
+    m_checkUpdatesNameNewVersion->clear();
+  }
+
   metaBuildPackageList();
 
   if (isAURGroupSelected())

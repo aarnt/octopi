@@ -40,9 +40,6 @@ TermWidget::TermWidget(QWidget *parent):
   setTerminalFont(font);
   setScrollBarPosition(QTermWidget::ScrollBarRight);
   setColorScheme("WhiteOnBlack");
-  /*execute("cd ~");
-  execute("export TERM=xterm");
-  execute("clear");*/
   setContextMenuPolicy(Qt::CustomContextMenu);
 
   m_actionZoomIn = new QAction(this);

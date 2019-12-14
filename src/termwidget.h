@@ -34,6 +34,7 @@ class TermWidget : public QTermWidget
 private:
   QAction *m_actionZoomIn, *m_actionZoomOut, *m_actionMaximize, *m_actionCopy, *m_actionPaste;
   int m_zoomFactor;
+
   void paste(QClipboard::Mode);
 
 private slots:
