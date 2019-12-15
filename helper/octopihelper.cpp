@@ -119,7 +119,7 @@ OctopiHelper::OctopiHelper()
   m_exitCode = -9999;
   m_process = new QProcess();
   //m_suspiciousChars = QStringLiteral("(\\s|[][!#$&'()*,;<=+>?\\^`{}|~])");
-  m_suspiciousChars = QStringLiteral("[!#$&'()*,;<=+>?\\^`{}|~\\[\\]]");
+  m_suspiciousChars = QStringLiteral("[!#$&'()*,;<=>?\\^`{}|~\\[\\]]");
 
   //These settings enable all "pacman" output go thru QProcess output methods
   m_process->setProcessChannelMode(QProcess::ForwardedChannels);
