@@ -171,7 +171,6 @@ QString Package::makeAnchorOfOptionalDep(const QString &optionalDeps)
   }
 
   newDeps.remove(QRegularExpression("<br>$"));
-
   return newDeps;
 }
 
@@ -537,7 +536,8 @@ QList<PackageListData> *Package::getForeignPackageList()
       QStringList parts = packageTuple.split(' ');
       if (parts.size() == 2)
       {
-        res->append(PackageListData(parts[0], "", parts[1], ectn_FOREIGN));
+        QString desc=parts[0] + " " + Package::getInformationDescription(parts[0], true);
+        res->append(PackageListData(parts[0], "", parts[1], desc, ectn_FOREIGN));
       }
     }
   }
@@ -1725,15 +1725,8 @@ double Package::getDownloadSizeDescription(const QString &pkgName)
  */
 QString Package::getInformationDescription(const QString &pkgName, bool foreignPackage)
 {
-  if (foreignPackage)
-  {
-    return UnixCommand::getExpacInfo(pkgName, "d");
-  }
-  else
-  {
-    QString pkgInfo = UnixCommand::getPackageInformation(pkgName, foreignPackage);
-    return getDescription(pkgInfo);
-  }
+  QString pkgInfo = UnixCommand::getPackageInformation(pkgName, foreignPackage);
+  return getDescription(pkgInfo);
 }
 
 /*

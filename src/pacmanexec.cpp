@@ -443,6 +443,8 @@ void PacmanExec::parsePacmanProcessOutput(const QString &output)
     msg.remove(QRegularExpression("qt5ct:.+"));
     msg.remove(QRegularExpression("(lxqt|octopi)-sudo:.+"));
     msg.remove(QRegularExpression("qt.qpa.plugin:.+"));
+    msg.remove(QRegularExpression("qt.qpa.xcb:.+"));
+    msg.remove(QRegularExpression("Icon theme \".+"));
     msg = msg.trimmed();
 
     if (m_debugMode) std::cout << "debug: " << msg.toLatin1().data() << std::endl;
