@@ -35,9 +35,6 @@
 TermWidget::TermWidget(QWidget *parent):
   QTermWidget(parent)
 {
-  QFont font = QApplication::font();
-  font.setFamily("Monospace");
-  setTerminalFont(font);
   setScrollBarPosition(QTermWidget::ScrollBarRight);
   setColorScheme("WhiteOnBlack");
   setContextMenuPolicy(Qt::CustomContextMenu);
@@ -99,6 +96,7 @@ TermWidget::TermWidget(QWidget *parent):
 void TermWidget::execute(QString command)
 {
   this->sendText(command);
+
   //After every command, we must send ENTER/RETURN
   this->enter();
 }
