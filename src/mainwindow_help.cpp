@@ -82,7 +82,7 @@ QString MainWindow::generateHelpUsageHtmlText()
   if(m_hasAURTool && !SettingsManager::getSearchOutdatedAURPackages())
   {
     strOutdatedAur="<li>" +
-        tr("Ctrl+Shift+O to display outdated AUR packages") + "</li>";
+        tr("Ctrl+Shift+O to display outdated %1 packages").arg(StrConstants::getForeignRepositoryName()) + "</li>";
   }
   else strOutdatedAur="<li></li>";
 
