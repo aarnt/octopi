@@ -509,13 +509,14 @@ bool SettingsManager::getShowGroupsPanel()
 
 /*
  * Returns true if the property "backend" has anything different from "alpm"
+ * Defaults to using ALPM backend
  */
 bool SettingsManager::hasPacmanBackend()
 {
   if (!instance()->getSYSsettings()->contains(ctn_KEY_BACKEND))
   {
-    instance()->getSYSsettings()->setValue(ctn_KEY_BACKEND, "pacman");
-    return true;
+    instance()->getSYSsettings()->setValue(ctn_KEY_BACKEND, "alpm");
+    return false;
   }
   else
   {
