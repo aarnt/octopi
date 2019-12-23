@@ -61,8 +61,8 @@ enum CommandExecuting { ectn_NONE, ectn_CHECK_UPDATES, ectn_MIRROR_CHECK,
                         ectn_RUN_SYSTEM_UPGRADE_IN_TERMINAL, ectn_RUN_IN_TERMINAL,
                         ectn_INSTALL_YAY, ectn_SYSINFO };
 
-enum LinuxDistro { ectn_ANTERGOS, ectn_ARCHBANGLINUX, ectn_ARCHLINUX, ectn_CHAKRA, ectn_CONDRESOS, ectn_ENDEAVOUROS,
-                   ectn_KAOS, ectn_MANJAROLINUX, ectn_NETRUNNER, ectn_PARABOLA, ectn_SWAGARCH, ectn_UNKNOWN };
+enum LinuxDistro { /*ectn_ANTERGOS,*/ ectn_ARCHBANGLINUX, ectn_ARCHLINUX, ectn_CHAKRA, ectn_CONDRESOS, ectn_ENDEAVOUROS,
+                   ectn_KAOS, ectn_MANJAROLINUX, /*ectn_NETRUNNER,*/ ectn_PARABOLA, ectn_SWAGARCH, ectn_UNKNOWN };
 
 enum OptionsDialogTab { ectn_TAB_GENERAL, ectn_TAB_AUR };
 enum Language { ectn_LANG_ENGLISH, ectn_LANG_USER_DEFINED };

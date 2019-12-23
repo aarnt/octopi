@@ -35,15 +35,15 @@ public:
   static QString getForeignPkgRepositoryName();
   static QString getForeignRepositoryGroupName();
   static QString getForeignRepositoryTargetPrefix();
-  static QString getAntergosNews();
-  static QString getPacBSDNews();
+  //static QString getAntergosNews();
+  //static QString getPacBSDNews();
   static QString getArchLinuxNews();
   static QString getChakraNews();
   static QString getCondresOSNews();
   static QString getEndeavourOSNews();
   static QString getKaOSNews();
   static QString getManjaroLinuxNews();
-  static QString getNetrunnerNews();
+  //static QString getNetrunnerNews();
   static QString getParabolaNews();
   static QString getInformation();
   static QString getError();

@@ -130,13 +130,13 @@ QString StrConstants::getForeignRepositoryTargetPrefix()
   return ret;
 }
 
-QString StrConstants::getAntergosNews(){
+/*QString StrConstants::getAntergosNews(){
   return QObject::tr("Antergos news");
 }
 
 QString StrConstants::getPacBSDNews(){
   return QObject::tr("PacBSD news");
-}
+}*/
 
 QString StrConstants::getArchLinuxNews(){
   return QObject::tr("Arch Linux news");
@@ -162,9 +162,9 @@ QString StrConstants::getManjaroLinuxNews(){
   return QObject::tr("Manjaro Linux news");
 }
 
-QString StrConstants::getNetrunnerNews(){
+/*QString StrConstants::getNetrunnerNews(){
   return QObject::tr("Netrunner Rolling news");
-}
+}*/
 
 QString StrConstants::getParabolaNews(){
   return QObject::tr("Parabola GNU/Linux-libre news");

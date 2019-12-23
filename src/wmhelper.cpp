@@ -437,11 +437,11 @@ void WMHelper::openDirectory( const QString& dirName ){
       s << dir;
       p->startDetached( ctn_MATE_FILE_MANAGER, s );
     }
-    else if (UnixCommand::getLinuxDistro() == ectn_ANTERGOS && UnixCommand::hasTheExecutable(ctn_ANTERGOS_FILE_MANAGER))
+    /*else if (UnixCommand::getLinuxDistro() == ectn_ANTERGOS && UnixCommand::hasTheExecutable(ctn_ANTERGOS_FILE_MANAGER))
     {
       s << dir;
       p->startDetached( ctn_ANTERGOS_FILE_MANAGER, s );
-    }
+    }*/
     else if (isCinnamonRunning() && UnixCommand::hasTheExecutable(ctn_CINNAMON_FILE_MANAGER))
     {
       s << dir;

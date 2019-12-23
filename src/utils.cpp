@@ -130,11 +130,11 @@ QString utils::retrieveDistroNews(bool searchForLatestNews)
     QString curlCommand = "curl %1 -o %2";
     QString distroRSSUrl = SettingsManager::getDistroRSSUrl();
 
-    if (distro == ectn_ENDEAVOUROS || distro == ectn_ANTERGOS)
+    /*if (distro == ectn_ENDEAVOUROS || distro == ectn_ANTERGOS)
     {
       curlCommand = curlCommand.arg(distroRSSUrl).arg(tmpRssPath);
-    }
-    else if (distro == ectn_ARCHLINUX || distro == ectn_ARCHBANGLINUX /*|| distro == ectn_SWAGARCH*/)
+    }*/
+    if (distro == ectn_ARCHLINUX || distro == ectn_ARCHBANGLINUX /*|| distro == ectn_SWAGARCH*/)
     {
       curlCommand = curlCommand.arg(distroRSSUrl).arg(tmpRssPath);
     }
@@ -157,10 +157,10 @@ QString utils::retrieveDistroNews(bool searchForLatestNews)
     {
       curlCommand = curlCommand.arg(distroRSSUrl).arg(tmpRssPath);
     }
-    else if (distro == ectn_NETRUNNER)
+    /*else if (distro == ectn_NETRUNNER)
     {
       curlCommand = curlCommand.arg(distroRSSUrl).arg(tmpRssPath);
-    }
+    }*/
     else if (distro == ectn_PARABOLA)
     {
       //Parabola has a certificate which is not "trusted" by default, so we use "curl -k"
@@ -286,11 +286,11 @@ QString utils::parseDistroNews()
   QString html;
   LinuxDistro distro = UnixCommand::getLinuxDistro();
 
-  if (distro == ectn_ANTERGOS)
+  /*if (distro == ectn_ANTERGOS)
   {
     html = "<p align=\"center\"><h2>" + StrConstants::getAntergosNews() + "</h2></p><ul>";
-  }
-  else if (distro == ectn_ARCHLINUX || distro == ectn_ARCHBANGLINUX /*|| distro == ectn_SWAGARCH*/)
+  }*/
+  if (distro == ectn_ARCHLINUX || distro == ectn_ARCHBANGLINUX /*|| distro == ectn_SWAGARCH*/)
   {
     html = "<p align=\"center\"><h2>" + StrConstants::getArchLinuxNews() + "</h2></p><ul>";
   }
@@ -314,10 +314,10 @@ QString utils::parseDistroNews()
   {
     html = "<p align=\"center\"><h2>" + StrConstants::getManjaroLinuxNews() + "</h2></p><ul>";
   }
-  else if (distro == ectn_NETRUNNER)
+  /*else if (distro == ectn_NETRUNNER)
   {
     html = "<p align=\"center\"><h2>" + StrConstants::getNetrunnerNews() + "</h2></p><ul>";
-  }
+  }*/
   else if (distro == ectn_PARABOLA)
   {
     html = "<p align=\"center\"><h2>" + StrConstants::getParabolaNews() + "</h2></p><ul>";

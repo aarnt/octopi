@@ -89,10 +89,10 @@ void MainWindow::refreshDistroNews(bool searchForLatestNews, bool gotoNewsTab)
     {
       writeToTabOutput("<b>" + StrConstants::getSearchingForDistroNews().arg("Manjaro Linux") + "</b>");
     }
-    else if (gotoNewsTab && distro == ectn_NETRUNNER)
+    /*else if (gotoNewsTab && distro == ectn_NETRUNNER)
     {
       writeToTabOutput("<b>" + StrConstants::getSearchingForDistroNews().arg("Netrunner Rolling") + "</b>");
-    }
+    }*/
     else if (gotoNewsTab && distro == ectn_PARABOLA)
     {
       writeToTabOutput("<b>" + StrConstants::getSearchingForDistroNews().arg("Parabola GNU/Linux-libre") + "</b>");

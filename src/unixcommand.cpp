@@ -1394,11 +1394,11 @@ LinuxDistro UnixCommand::getLinuxDistro()
 
       QString contents = file.readAll();
 
-      if (contents.contains(QRegularExpression("Antergos")))
+      /*if (contents.contains(QRegularExpression("Antergos")))
       {
         ret = ectn_ANTERGOS;
-      }
-      else if (contents.contains(QRegularExpression("ArchBang")))
+      }*/
+      if (contents.contains(QRegularExpression("ArchBang")))
       {
         ret = ectn_ARCHBANGLINUX;
       }
@@ -1427,10 +1427,10 @@ LinuxDistro UnixCommand::getLinuxDistro()
       {
         ret = ectn_MANJAROLINUX;
       }
-      else if (contents.contains(QRegularExpression("Netrunner")))
+      /*else if (contents.contains(QRegularExpression("Netrunner")))
       {
         ret = ectn_NETRUNNER;
-      }
+      }*/
       else if (contents.contains(QRegularExpression("Parabola GNU/Linux-libre")))
       {
         ret = ectn_PARABOLA;
