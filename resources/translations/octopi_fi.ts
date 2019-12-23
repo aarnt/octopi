@@ -539,32 +539,32 @@
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="332"/>
         <source>Icon</source>
-        <translation type="unfinished"/>
+        <translation>Kuvake</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="395"/>
         <source>Red icon</source>
-        <translation type="unfinished"/>
+        <translation>Punainen kuvake</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="473"/>
         <source>Yellow icon</source>
-        <translation type="unfinished"/>
+        <translation> Keltainen kuvake</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="536"/>
         <source>Green icon</source>
-        <translation type="unfinished"/>
+        <translation>Vihreä kuvake</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="599"/>
         <source>Busy icon</source>
-        <translation type="unfinished"/>
+        <translation>Kiireinen kuvake</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="652"/>
         <source>Use default notification icons</source>
-        <translation type="unfinished"/>
+        <translation>Käytä ilmoitusten oletuskuvakkeita</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="663"/>
@@ -585,19 +585,19 @@
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="709"/>
         <location filename="Projects/octopi/src/optionsdialog.cpp" line="199"/>
         <source>Synchronization</source>
-        <translation type="unfinished"/>
+        <translation>Synkronointi</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="949"/>
         <location filename="Projects/octopi/src/optionsdialog.cpp" line="75"/>
         <location filename="Projects/octopi/src/optionsdialog.cpp" line="458"/>
         <source>Terminal</source>
-        <translation type="unfinished"/>
+        <translation>Pääte</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="955"/>
         <source>Select the terminal Octopi should use</source>
-        <translation type="unfinished"/>
+        <translation>Valitse mitä päätettä Octopin pitäisi käyttää</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/optionsdialog.cpp" line="127"/>
@@ -605,7 +605,7 @@
         <location filename="Projects/octopi/src/optionsdialog.cpp" line="159"/>
         <location filename="Projects/octopi/src/optionsdialog.cpp" line="175"/>
         <source>Open Image</source>
-        <translation type="unfinished"/>
+        <translation>Avaa kuva</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/optionsdialog.cpp" line="127"/>
@@ -623,7 +623,7 @@
     <message>
         <location filename="Projects/octopi/src/optionsdialog.cpp" line="211"/>
         <source>Cancel</source>
-        <translation type="unfinished"/>
+        <translation>Peruuta</translation>
     </message>
 </context>
 <context>
@@ -702,7 +702,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="132"/>
         <source>Error</source>
-        <translation type="unfinished"/>
+        <translation>Virhe</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="136"/>
@@ -737,7 +737,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="168"/>
         <source>Options</source>
-        <translation type="unfinished"/>
+        <translation>Asetukset</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="172"/>
@@ -847,7 +847,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="256"/>
         <source>Install Reason</source>
-        <translation type="unfinished"/>
+        <translation>Asennuksen syy</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="260"/>
@@ -1058,7 +1058,7 @@
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="428"/>
         <source>Choose a terminal</source>
-        <translation>valitse pääte</translation>
+        <translation>Valitse pääte</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="432"/>
