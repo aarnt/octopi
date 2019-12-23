@@ -53,6 +53,7 @@
 #include <QRandomGenerator>
 #include <QTcpServer>
 #include <QTcpSocket>
+#include <QElapsedTimer>
 
 /*
  * MainWindow's constructor: basic UI init
@@ -93,7 +94,7 @@ MainWindow::MainWindow(QWidget *parent) :
   if (SettingsManager::isDistroRSSUrlEmpty())
     SettingsManager::setDistroRSSUrl(SettingsManager::getDistroRSSUrl());
 
-  m_time = new QTime();
+  m_time = new QElapsedTimer();
   m_unrequiredPackageList = nullptr;
   m_foreignPackageList = nullptr;
   m_groupWidgetNeedsFocus = false;

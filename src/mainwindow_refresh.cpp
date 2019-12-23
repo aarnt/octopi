@@ -33,6 +33,7 @@
 #include <cassert>
 #include "aurvote.h"
 
+#include <QElapsedTimer>
 #include <QTimer>
 #include <QLabel>
 #include <QProgressBar>

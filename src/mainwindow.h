@@ -38,7 +38,7 @@ class QTreeView;
 class QStandardItemModel;
 class QStandardItem;
 class QModelIndex;
-class QTimer;
+class QElapsedTimer;
 class QLabel;
 class QComboBox;
 class QListView;
@@ -189,7 +189,7 @@ private:
   QMenu *m_menuToolButtonAUR;
 
   //This is a means for measuring the program's speed at some tasks
-  QTime *m_time;
+  QElapsedTimer *m_time;
 
   //This is the timer which controls the outdated AUR pkg list retrieval
   QTimer *m_outdatedAURTimer;
