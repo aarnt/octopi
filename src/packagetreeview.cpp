@@ -21,6 +21,7 @@
 #include "packagetreeview.h"
 #include <QTreeView>
 #include <QHeaderView>
+#include <QMouseEvent>
 
 #include "settingsmanager.h"
 #include "model/packagemodel.h"

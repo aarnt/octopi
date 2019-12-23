@@ -34,11 +34,11 @@ QString StrConstants::getQtVersion(){
 }
 
 QString StrConstants::getApplicationCliHelp(){
- QString str =
-      "\n" + QObject::tr("Octopi usage help:") + "\n\n" +
-      "-version: " + QObject::tr("show application version.") + "\n" +
-      "-removecmd <Remove-command>: " + QObject::tr("use a different remove command (ex: -removecmd R).") + "\n" +
-      "-sysupgrade: " + QObject::tr("force a system upgrade at startup.") + "\n";
+ QString str = getApplicationName() + " - " + getApplicationVersion() + "\n" +
+      "\n" + getHelpUsage() + "\n\n" +
+      "\t-version: " + QObject::tr("show application version.") + "\n" +
+      "\t-removecmd <Remove-command>: " + QObject::tr("use a different remove command (ex: -removecmd R).") + "\n" +
+      "\t-sysupgrade: " + QObject::tr("force a system upgrade at startup.") + "\n";
 
  return str;
 }
@@ -208,6 +208,10 @@ QString StrConstants::getHelpUsage(){
 
 QString StrConstants::getHelpAbout(){
   return QObject::tr("About");
+}
+
+QString StrConstants::getHelp(){
+  return QObject::tr("Help");
 }
 
 QString StrConstants::getOptions(){

@@ -54,6 +54,7 @@ public:
   static QString getForeignToolGroup();
   static QString getHelpUsage();
   static QString getHelpAbout();
+  static QString getHelp();
   static QString getOptions();
   static QString getName();
   static QString getVersion();

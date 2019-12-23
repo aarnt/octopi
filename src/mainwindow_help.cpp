@@ -53,8 +53,8 @@ void MainWindow::initTabHelpUsage()
 
   text->setHtml(generateHelpUsageHtmlText());
 
-  int tindex = ui->twProperties->addTab(tabHelpUsage, StrConstants::getHelpUsage() );
-  ui->twProperties->setTabText(ui->twProperties->indexOf(tabHelpUsage), StrConstants::getHelpUsage());
+  int tindex = ui->twProperties->addTab(tabHelpUsage, StrConstants::getHelp() );
+  ui->twProperties->setTabText(ui->twProperties->indexOf(tabHelpUsage), StrConstants::getHelp());
 
   SearchBar *searchBar = new SearchBar(this);
   connect(searchBar, SIGNAL(textChanged(QString)), this, SLOT(searchBarTextChangedInTextBrowser(QString)));
