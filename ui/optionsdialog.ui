@@ -322,9 +322,9 @@
            <widget class="QLabel" name="lblAURWarning">
             <property name="geometry">
              <rect>
-              <x>0</x>
-              <y>0</y>
-              <width>621</width>
+              <x>4</x>
+              <y>3</y>
+              <width>611</width>
               <height>19</height>
              </rect>
             </property>
@@ -332,6 +332,9 @@
              <font>
               <pointsize>10</pointsize>
              </font>
+            </property>
+            <property name="toolTip">
+             <string>AUR packages are user produced content. Any use of the provided files is at your own risk.</string>
             </property>
             <property name="text">
              <string>AUR packages are user produced content. Any use of the provided files is at your own risk.</string>
