@@ -27,6 +27,7 @@
 #include <QMenu>
 #include <QMessageBox>
 #include <QAbstractButton>
+//#include <QDebug>
 
 /*
  * This class extends some features of QTermWidget and adds some customizations
@@ -116,7 +117,10 @@ void TermWidget::enter()
  */
 void TermWidget::parseOutput(QString str)
 {
-  if ((str == StrConstants::getPressAnyKey() + "\r\n") ||
+  //qDebug() << "terminal: " << str << endl;
+
+  if ((str == StrConstants::getPressAnyKey() ||
+       str == StrConstants::getPressAnyKey() + "\r\n") ||
       str.contains(StrConstants::getSuspiciousExecutionDetected()) ||
       str.contains(StrConstants::getSuspiciousTransactionDetected()) ||
       str.contains(StrConstants::getCouldNotAttachToParent())
