@@ -2,7 +2,7 @@
 
 ![Main window](https://raw.githubusercontent.com/aarnt/octopi/master/octopi-mainwindow.png)
 
-The project site is hosted at https://octopiproject.wordpress.com
+The project site is hosted on https://octopiproject.wordpress.com
 
 Currently, 8 Linux distros are compatible with it
 
@@ -19,8 +19,8 @@ Currently, 8 Linux distros are compatible with it
 
 You'll need:
  * [Alpm_octopi_utils](https://github.com/aarnt/alpm_octopi_utils/) library
- * A helper to execute pacman commands called "octphelper", available at "./helper" dir
- * A priviledge escalation tool called "octopi-sudo", available at "./sudo" dir
+ * A helper to execute pacman commands called "octphelper", available on "./helper" dir
+ * A priviledge escalation tool called "octopi-sudo", available on "./sudo" dir
  * qtermwidget >= 0.14.1 in order to build Octopi with embedded terminal support
  
 ### Simple steps to build Octopi code
@@ -40,7 +40,7 @@ $ cd OCTOPI_PATH
 $ makepkg -f
 ```
 
-### How to enable AUR support (that "alien" icon at toolbar)
+### How to enable AUR support (that "alien" icon on toolbar)
 
 To enable AUR support, you'll need to install [yaourt](https://archlinux.fr/yaourt-en), 
 [pacaur](https://github.com/rmarquis/pacaur), [pikaur](https://github.com/actionless/pikaur), 
@@ -51,11 +51,11 @@ In KaOS, [kcp](https://github.com/bvaudour/kcp) will be supported out of the box
 
 ### Ways to help/support Octopi
 
- * You can "Star" it at the Github page - https://github.com/aarnt/octopi/
- * You can vote in the AUR package available at https://aur.archlinux.org/packages/octopi/
- * You can translate it to your mother language at https://www.transifex.com/projects/p/octopi/
- * You can follow author's twitter account at https://twitter.com/aaarnt
- * You can buy author's technical book (currently in portuguese) about Octopi and Qt5 at 
+ * You can "Star" it on the Github page - https://github.com/aarnt/octopi/
+ * You can vote in the AUR package available on https://aur.archlinux.org/packages/octopi/
+ * You can translate it to your mother language on https://www.transifex.com/projects/p/octopi/
+ * You can follow author's twitter account on https://twitter.com/aaarnt
+ * You can buy author's technical book (currently in portuguese) about Octopi and Qt5 on 
 http://www.amazon.com.br/Aprendendo-Qt-com-projeto-Octopi-ebook/dp/B015ICHKV6
  * You can write a review about it (text / video)
  * You can donate money to the project Paypal - http://sourceforge.net/donate/index.php?group_id=186459
