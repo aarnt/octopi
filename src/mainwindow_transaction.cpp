@@ -1976,7 +1976,7 @@ void MainWindow::pacmanProcessFinished(int exitCode, QProcess::ExitStatus exitSt
 
   //mate-terminal is returning code 255 sometimes...
   if ((exitCode == 0 || exitCode == 255 ||
-       (exitCode == 1 && m_commandExecuting == ectn_CHECK_UPDATES)) && exitStatus == QProcess::NormalExit)
+       (exitCode == 2 && m_commandExecuting == ectn_CHECK_UPDATES)) && exitStatus == QProcess::NormalExit)
   {
     //First, we empty the tabs cache!
     m_cachedPackageInInfo = "";
