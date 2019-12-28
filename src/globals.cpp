@@ -185,14 +185,14 @@ QList<PackageListData> * markForeignPackagesInPkgList(bool hasAURTool, QStringLi
     {
       pld = PackageListData(
             itForeign->name, itForeign->repository, itForeign->version,
-            itForeign->name + " " + itForeign->description,
+            /*itForeign->name + " " +*/ itForeign->description,
             ectn_FOREIGN);
     }
     else
     {
       pld = PackageListData(
             itForeign->name, itForeign->repository, itForeign->version,
-            itForeign->name + " " + itForeign->description,
+            /*itForeign->name + " " +*/ itForeign->description,
             ectn_FOREIGN_OUTDATED);
     }
 
