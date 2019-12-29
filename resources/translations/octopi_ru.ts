@@ -405,7 +405,7 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="115"/>
         <source>Ctrl+P or &apos;File/System upgrade&apos; to make a full system upgrade (pacman -Su)</source>
-        <translation>Ctrl+P или &apos;Файл/Обновить систему&apos;, чтобы выполнить полное обновление системы (pacman -Su)</translation>
+        <translation>Ctrl+P или &quot;Файл/Обновить систему&quot; - выполнить полное обновление системы (pacman -Su)</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="117"/>
@@ -485,7 +485,7 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="152"/>
         <source>F11 to maximize/demaximize Tab&apos;s view</source>
-        <translation>F11, чтобы развернуть/восстановить панель вкладок</translation>
+        <translation>F11 - развернуть/восстановить панель вкладок</translation>
     </message>
 </context>
 <context>
@@ -503,12 +503,12 @@
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="50"/>
         <source>Show package numbers in output tab</source>
-        <translation>Показывать номера пакетов на вкладке &apos;Вывод&apos;</translation>
+        <translation>Показывать номера пакетов на вкладке &quot;Вывод&quot;</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="63"/>
         <source>Show stop transaction button at statusbar</source>
-        <translation>Показывать кнопку &apos;Остановить транзакцию&apos; на панели статуса</translation>
+        <translation>Показывать кнопку &quot;Остановить транзакцию&quot; на панели статуса</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="100"/>
@@ -549,12 +549,12 @@
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="473"/>
         <source>Yellow icon</source>
-        <translation>Желтый значок</translation>
+        <translation>Жёлтый значок</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="536"/>
         <source>Green icon</source>
-        <translation>Зеленый значок</translation>
+        <translation>Зелёный значок</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="599"/>

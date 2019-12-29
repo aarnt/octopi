@@ -6,3 +6,4 @@ file_filter = resources/translations/octopi_<lang>.ts
 source_file = resources/translations/octopi_en.ts
 source_lang = en
 type = QT
+

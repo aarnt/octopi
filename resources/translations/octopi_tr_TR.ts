@@ -35,7 +35,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="155"/>
         <source>View</source>
-        <translation>Göster</translation>
+        <translation>Görünüm</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="171"/>
@@ -967,7 +967,7 @@
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.cpp" line="352"/>
         <source>There are %n outdated packages in your system:</source>
-        <translation><numerusform>Sisteminizde %n eski paket vardır:</numerusform></translation>
+        <translation><numerusform>Sisteminizde %n eski paket vardır:</numerusform><numerusform>Sisteminizde %n eski paket vardır:</numerusform></translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="356"/>
@@ -977,27 +977,27 @@
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.cpp" line="360"/>
         <source>%n packages</source>
-        <translation><numerusform>%n paketi</numerusform></translation>
+        <translation><numerusform>%n paketi</numerusform><numerusform>%n paketi</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.cpp" line="364"/>
         <source>%n selected</source>
-        <translation><numerusform>%n seçildi</numerusform></translation>
+        <translation><numerusform>%n seçildi</numerusform><numerusform>%n seçildi</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.cpp" line="368"/>
         <source>%n installed</source>
-        <translation><numerusform>%n yüklü</numerusform></translation>
+        <translation><numerusform>%n yüklü</numerusform><numerusform>%n yüklü</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.cpp" line="372"/>
         <source>%n outdated</source>
-        <translation><numerusform>%n güncelliğini yitirmiş</numerusform></translation>
+        <translation><numerusform>%n güncelliğini yitirmiş</numerusform><numerusform>%n güncelliğini yitirmiş</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.cpp" line="376"/>
         <source>%n available</source>
-        <translation><numerusform>%n mevcut</numerusform></translation>
+        <translation><numerusform>%n mevcut</numerusform><numerusform>%n mevcut</numerusform></translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="380"/>
@@ -1097,12 +1097,12 @@
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.cpp" line="460"/>
         <source>The following %n packages need to be retrieved</source>
-        <translation><numerusform>Aşağıdaki %n paketi gereklidir ve kurulmalıdır.</numerusform></translation>
+        <translation><numerusform>Aşağıdaki %n paketi gereklidir ve kurulmalıdır.</numerusform><numerusform>Aşağıdaki %n paketi gereklidir ve kurulmalıdır.</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.cpp" line="464"/>
         <source>The following %n packages will be removed</source>
-        <translation><numerusform>Aşağıdaki %n paketi kaldırılacak</numerusform></translation>
+        <translation><numerusform>Aşağıdaki %n paketi kaldırılacak</numerusform><numerusform>Aşağıdaki %n paketi kaldırılacak</numerusform></translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="468"/>
@@ -1122,7 +1122,7 @@
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.cpp" line="480"/>
         <source>There are %n updates available!</source>
-        <translation><numerusform>%n güncellemesi hazır!</numerusform></translation>
+        <translation><numerusform>%n güncellemesi hazır!</numerusform><numerusform>%n güncellemesi hazır!</numerusform></translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="484"/>
@@ -1279,7 +1279,7 @@ Açmak istediğinizden emin misiniz?</translation>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="607"/>
         <source>Setup</source>
-        <translation>Kur</translation>
+        <translation>Kurulum</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="611"/>
