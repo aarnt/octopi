@@ -68,6 +68,7 @@ MainWindow::MainWindow(QWidget *parent) :
   m_tcpServer = new QTcpServer(this);
   connect(m_tcpServer, &QTcpServer::newConnection, this, &MainWindow::onSendInfoToOctopiHelper);
 
+  m_outputDialog=nullptr;
   initActions();
   initSystemTrayIcon();
 }
@@ -427,16 +428,16 @@ void MainWindow::doSystemUpgrade()
       //If there are no means to run the actions, we must warn!
       if (!_isSUAvailable()) return;
 
-      OutputDialog *dlg = new OutputDialog(this);
-      dlg->setViewAsTextBrowser(false);
-      QObject::connect(dlg, SIGNAL( finished(int)),
+      m_outputDialog = new OutputDialog(this);
+      m_outputDialog->setViewAsTextBrowser(false);
+      QObject::connect(m_outputDialog, SIGNAL( finished(int)),
                        this, SLOT( doSystemUpgradeFinished() ));
 
       m_commandExecuting = ectn_RUN_SYSTEM_UPGRADE_IN_TERMINAL;
       m_actionSystemUpgrade->setEnabled(false);
       setUpgradingTooltip();
-      dlg->show();
-      dlg->doSystemUpgradeInTerminal();
+      m_outputDialog->show();
+      m_outputDialog->doSystemUpgradeInTerminal();
     }
     else
     {
@@ -445,17 +446,17 @@ void MainWindow::doSystemUpgrade()
       toggleEnableInterface(false);
       m_actionSystemUpgrade->setEnabled(false);
 
-      OutputDialog *dlg = new OutputDialog(this);
-      dlg->setViewAsTextBrowser(true);
+      m_outputDialog = new OutputDialog(this);
+      m_outputDialog->setViewAsTextBrowser(true);
 
       if (m_debugInfo)
-        dlg->setDebugMode(true);
+        m_outputDialog->setDebugMode(true);
 
-      QObject::connect(dlg, SIGNAL( finished(int)),
+      QObject::connect(m_outputDialog, SIGNAL( finished(int)),
                        this, SLOT( doSystemUpgradeFinished() ));
       setUpgradingTooltip();
-      dlg->show();
-      dlg->doSystemUpgrade();
+      m_outputDialog->show();
+      m_outputDialog->doSystemUpgrade();
     }
   }
   else
@@ -532,17 +533,17 @@ void MainWindow::doSystemUpgrade()
       toggleEnableInterface(false);
       m_actionSystemUpgrade->setEnabled(false);
 
-      OutputDialog *dlg = new OutputDialog(this);
-      dlg->setViewAsTextBrowser(true);
+      m_outputDialog = new OutputDialog(this);
+      m_outputDialog->setViewAsTextBrowser(true);
 
       if (m_debugInfo)
-        dlg->setDebugMode(true);
+        m_outputDialog->setDebugMode(true);
 
-      QObject::connect(dlg, SIGNAL( finished(int)),
+      QObject::connect(m_outputDialog, SIGNAL( finished(int)),
                        this, SLOT( doSystemUpgradeFinished() ));
       setUpgradingTooltip();
-      dlg->show();
-      dlg->doSystemUpgrade();
+      m_outputDialog->show();
+      m_outputDialog->doSystemUpgrade();
     }
     else if(result == QDialogButtonBox::AcceptRole)
     {
@@ -551,16 +552,16 @@ void MainWindow::doSystemUpgrade()
       //If there are no means to run the actions, we must warn!
       if (!_isSUAvailable()) return;
 
-      OutputDialog *dlg = new OutputDialog(this);
-      dlg->setViewAsTextBrowser(false);
-      QObject::connect(dlg, SIGNAL( finished(int)),
+      m_outputDialog = new OutputDialog(this);
+      m_outputDialog->setViewAsTextBrowser(false);
+      QObject::connect(m_outputDialog, SIGNAL( finished(int)),
                        this, SLOT( doSystemUpgradeFinished() ));
 
       m_commandExecuting = ectn_RUN_SYSTEM_UPGRADE_IN_TERMINAL;
       m_actionSystemUpgrade->setEnabled(false);
       setUpgradingTooltip();
-      dlg->show();
-      dlg->doSystemUpgradeInTerminal();
+      m_outputDialog->show();
+      m_outputDialog->doSystemUpgradeInTerminal();
     }
     else if (result == QDialogButtonBox::No)
     {
@@ -588,14 +589,14 @@ void MainWindow::doAURUpgrade()
     listOfTargets += auxPkg + " ";
   }
 
-  OutputDialog *dlg = new OutputDialog(this);
-  dlg->setViewAsTextBrowser(false);
-  dlg->setListOfAURPackagesToUpgrade(listOfTargets);
+  m_outputDialog = new OutputDialog(this);
+  m_outputDialog->setViewAsTextBrowser(false);
+  m_outputDialog->setListOfAURPackagesToUpgrade(listOfTargets);
 
-  QObject::connect(dlg, SIGNAL( finished(int)),
+  QObject::connect(m_outputDialog, SIGNAL( finished(int)),
                    this, SLOT( doSystemUpgradeFinished() ));
-  dlg->show();
-  dlg->doAURUpgrade();
+  m_outputDialog->show();
+  m_outputDialog->doAURUpgrade();
 }
 
 /*
@@ -1004,7 +1005,11 @@ void MainWindow::refreshAppIcon()
  */
 void MainWindow::execSystemTrayActivated(QSystemTrayIcon::ActivationReason ar)
 {
-  if (m_commandExecuting != ectn_NONE) return;
+  if (m_commandExecuting != ectn_NONE)
+  {
+    if (m_outputDialog != nullptr) m_outputDialog->activateWindow();
+    return;
+  }
 
   switch (ar)
   {
@@ -1060,6 +1065,12 @@ void MainWindow::execSystemTrayKF5()
 
     hidingOctopi = !hidingOctopi;
   }*/
+
+  if (m_commandExecuting != ectn_NONE)
+  {
+    if (m_outputDialog != nullptr) m_outputDialog->activateWindow();
+    return;
+  }
 
   if (m_numberOfOutdatedPackages > 0)
   {

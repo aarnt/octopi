@@ -234,6 +234,8 @@ void PacmanExec::parsePacmanProcessOutput(const QString &output)
   msg.remove(";37m");
   msg.remove("[c");
   msg.remove("[mo");
+  msg.remove("[32m");
+  msg.remove("(B[m");
 
   if (storeMsgCache) msgCache+=msg;
 

@@ -37,6 +37,7 @@ class QFileSystemWatcher;
 class OptionsDialog;
 class TransactionDialog;
 class QTcpServer;
+class OutputDialog;
 
 enum CheckUpdate { ectn_AUTO_CHECK, ectn_USER_CHECK};
 
@@ -85,6 +86,7 @@ private:
   int m_numberOfOutdatedPackages;
   int m_numberOfOutdatedAURPackages;
   bool m_systemUpgradeDialog;
+
   CommandExecuting m_commandExecuting;
   UnixCommand *m_unixCommand;
   PacmanExec *m_pacmanExec;
@@ -108,6 +110,7 @@ private:
   QTimer *m_pacmanHelperTimer;
   QMenu *m_systemTrayIconMenu;
   QFileSystemWatcher *m_pacmanDatabaseSystemWatcher;
+  OutputDialog *m_outputDialog;
 
 #ifdef KSTATUS
   KStatusNotifierItem * m_systemTrayIcon;
