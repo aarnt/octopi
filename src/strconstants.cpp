@@ -459,12 +459,11 @@ QString StrConstants::getRemovingPacmanTransactionLockFile(){
 }
 
 QString StrConstants::getSyncing(){
-  return QObject::tr("Syncing");
+  return "Syncing";
 }
 
 QString StrConstants::getPressAnyKey(){
   return "Press any key to continue...";
-  //return QObject::tr("Press any key to continue...");
 }
 
 QString StrConstants::getCouldNotAttachToParent()
@@ -480,6 +479,10 @@ QString StrConstants::getSuspiciousExecutionDetected()
 QString StrConstants::getSuspiciousTransactionDetected()
 {
   return "octopi-helper[aborted]: Suspicious transaction detected ->";
+}
+
+QString StrConstants::getErrorPacmanProcessExecuting(){
+  return "octopi-helper[aborted]: There is an instance of pacman already running";
 }
 
 QString StrConstants::getCheckUpdates()
@@ -510,7 +513,7 @@ QString StrConstants::getSyncDatabases(){
 }
 
 QString StrConstants::getIsUpToDate(){
-  return QObject::tr("is up to date");
+  return "is up to date";
 }
 
 QString StrConstants::getSysInfoGenerated()
@@ -534,9 +537,9 @@ QString StrConstants::getRemovingAndInstallingPackages(){
   return QObject::tr("Removing/installing selected packages...");
 }
 
-QString StrConstants::getChooseATerminal(){
+/*QString StrConstants::getChooseATerminal(){
   return QObject::tr("Choose a terminal");
-}
+}*/
 
 QString StrConstants::getRunningCommandInTerminal(){
   return QObject::tr("Running command in terminal...");
@@ -563,10 +566,6 @@ QString StrConstants::getTempYayDownloaded()
 QString StrConstants::getDownloadingTempYay()
 {
   return QObject::tr("Downloading temporary \"yay-bin\"...");
-}
-
-QString StrConstants::getErrorPacmanProcessExecuting(){
-  return QObject::tr("error: there is an instance of pacman already running");
 }
 
 QString StrConstants::geRetrievingPackage(){
@@ -629,13 +628,13 @@ QString StrConstants::getConfirmExecuteTransactionInTerminal(){
   return QObject::tr("Do you want to execute this transaction in a Terminal?");
 }
 
-QString StrConstants::getCleanCacheConfirmation(){
+/*QString StrConstants::getCleanCacheConfirmation(){
   return QObject::tr("Do you really want to clean the package cache?");
-}
+}*/
 
-QString StrConstants::getRemovePacmanTransactionLockFileConfirmation(){
+/*QString StrConstants::getRemovePacmanTransactionLockFileConfirmation(){
   return QObject::tr("Do you really want to remove Pacman's transaction lock file?");
-}
+}*/
 
 QString StrConstants::getCancelActionsConfirmation(){
   return QObject::tr("Do you really want to cancel actions?");
