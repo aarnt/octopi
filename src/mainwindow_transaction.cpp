@@ -994,7 +994,7 @@ void MainWindow::doSystemUpgrade(SystemUpgradeOptions systemUpgradeOptions)
 
     //Let's build the system upgrade transaction dialog...
     QString ds;
-    if (totalDownloadSize > 0)
+    if (totalDownloadSize >= 0)
       ds = Package::kbytesToSize(totalDownloadSize);
 
     TransactionDialog question(this);
