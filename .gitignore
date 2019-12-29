@@ -1,3 +1,4 @@
+*.user
 .qmake.stash
 Makefile
 bin/**
@@ -11,6 +12,8 @@ notifier/bin/**
 notifier/build/**
 octopi.pro.user
 qrc_resources.cpp
+repoeditor/bin/**
+repoeditor/build/**
 sudo/*.o
 sudo/moc*.*
 sudo/octopi-sudo
