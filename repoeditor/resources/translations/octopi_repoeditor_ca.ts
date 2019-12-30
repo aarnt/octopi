@@ -136,7 +136,7 @@
     <message>
         <location filename="Projects/octopi/repoeditor/repoeditor.ui" line="106"/>
         <source>Remove</source>
-        <translation>Elimina</translation>
+        <translation>Suprimeix</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/repoeditor.ui" line="134"/>

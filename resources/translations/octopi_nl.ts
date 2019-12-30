@@ -14,7 +14,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="106"/>
         <source>Actions</source>
-        <translation type="unfinished"/>
+        <translation>Acties</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="111"/>
@@ -24,32 +24,32 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="147"/>
         <source>&amp;Help</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Hulp</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="156"/>
         <source>&amp;View</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Beeld</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="172"/>
         <source>&amp;File</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Bestand</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="184"/>
         <source>&amp;Search</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Zoeken</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="194"/>
         <source>T&amp;ools</source>
-        <translation type="unfinished"/>
+        <translation>Hu&amp;lpmiddelen</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="224"/>
         <source>&amp;About</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Over</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="227"/>
@@ -64,7 +64,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="250"/>
         <source>Apply</source>
-        <translation type="unfinished"/>
+        <translation>Toepassen</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="271"/>
@@ -74,17 +74,17 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="283"/>
         <source>Check &amp;updates</source>
-        <translation type="unfinished"/>
+        <translation>Controleren op &amp;updates</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="291"/>
         <source>E&amp;xit</source>
-        <translation type="unfinished"/>
+        <translation>A&amp;fsluiten</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="303"/>
         <source>System u&amp;pgrade</source>
-        <translation type="unfinished"/>
+        <translation>Systeemu&amp;pgrade</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="315"/>
@@ -107,7 +107,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="344"/>
         <source>&amp;Get latest distro news</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Laatste distributienieuws ophalen</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="356"/>
@@ -172,12 +172,12 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="469"/>
         <source>By &amp;description</source>
-        <translation type="unfinished"/>
+        <translation>Op &amp;omschrijving</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="480"/>
         <source>By &amp;name</source>
-        <translation type="unfinished"/>
+        <translation>Op &amp;naam</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="492"/>
@@ -197,7 +197,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="517"/>
         <source>&amp;Install local package...</source>
-        <translation type="unfinished"/>
+        <translation>Lokaal pakket &amp;installeren...</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="534"/>
@@ -222,7 +222,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="594"/>
         <source>By &amp;file</source>
-        <translation type="unfinished"/>
+        <translation>Op &amp;bestand</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="605"/>
@@ -232,12 +232,12 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="613"/>
         <source>Donate!</source>
-        <translation type="unfinished"/>
+        <translation>Doneren!</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="85"/>
         <source>Ctrl+Shift+O to display outdated %1 packages</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+Shift+O om %1 verouderde pakketten te tonen</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="93"/>
@@ -490,7 +490,7 @@
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="102"/>
         <source>Enable internet checking</source>
-        <translation type="unfinished"/>
+        <translation>Internetcontrole gebruiken</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="139"/>
@@ -505,27 +505,27 @@
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="269"/>
         <source>User name</source>
-        <translation type="unfinished"/>
+        <translation>Gebruikersnaam</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="282"/>
         <source>Password</source>
-        <translation type="unfinished"/>
+        <translation>Wachtwoord</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="295"/>
         <source>Register</source>
-        <translation type="unfinished"/>
+        <translation>Registreren</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="308"/>
         <source>Connect</source>
-        <translation type="unfinished"/>
+        <translation>Verbinden</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="322"/>
         <source>Enable AUR voting</source>
-        <translation type="unfinished"/>
+        <translation>Stemmen op AUR inschakelen</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="343"/>
@@ -580,7 +580,7 @@ Any use of the provided files is at your own risk.</source>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="777"/>
         <location filename="Projects/octopi/src/optionsdialog.cpp" line="169"/>
         <source>Updates</source>
-        <translation type="unfinished"/>
+        <translation>Updates</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/optionsdialog.cpp" line="93"/>
@@ -630,7 +630,8 @@ Any use of the provided files is at your own risk.</source>
         <location filename="Projects/octopi/src/strconstants.cpp" line="48"/>
         <source>Pacman Database is missing!
 You may need to synchronize database!</source>
-        <translation type="unfinished"/>
+        <translation>De pacman-databank ontbreekt!
+Synchroniseer de databank.</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="52"/>
@@ -650,12 +651,12 @@ You may need to synchronize database!</source>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="150"/>
         <source>Condres OS news</source>
-        <translation type="unfinished"/>
+        <translation>Condres OS-nieuws</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="154"/>
         <source>EndeavourOS news</source>
-        <translation type="unfinished"/>
+        <translation>EndeavourOS-nieuws</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="158"/>
@@ -675,7 +676,7 @@ You may need to synchronize database!</source>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="174"/>
         <source>Information</source>
-        <translation type="unfinished"/>
+        <translation>Informatie</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="178"/>
@@ -715,12 +716,12 @@ You may need to synchronize database!</source>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="214"/>
         <source>Help</source>
-        <translation type="unfinished"/>
+        <translation>Hulp</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="218"/>
         <source>&amp;Options</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Opties</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="222"/>
@@ -810,7 +811,7 @@ You may need to synchronize database!</source>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="290"/>
         <source>Votes</source>
-        <translation type="unfinished"/>
+        <translation>Stemmen</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="294"/>
@@ -820,7 +821,7 @@ You may need to synchronize database!</source>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="299"/>
         <source>Vote</source>
-        <translation type="unfinished"/>
+        <translation>Stemmen</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="304"/>
@@ -830,7 +831,7 @@ You may need to synchronize database!</source>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="309"/>
         <source>Unvote</source>
-        <translation type="unfinished"/>
+        <translation>Stem intrekken</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="313"/>
@@ -915,7 +916,7 @@ You may need to synchronize database!</source>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="377"/>
         <source>Actions</source>
-        <translation type="unfinished"/>
+        <translation>Acties</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="381"/>
@@ -930,7 +931,7 @@ You may need to synchronize database!</source>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="390"/>
         <source>Terminal</source>
-        <translation type="unfinished"/>
+        <translation>Terminal</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="394"/>
@@ -1020,17 +1021,17 @@ You may need to synchronize database!</source>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="490"/>
         <source>Check updates</source>
-        <translation type="unfinished"/>
+        <translation>Controleren op updates</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="495"/>
         <source>Checking for updates...</source>
-        <translation type="unfinished"/>
+        <translation>Bezig met controlen op updates...</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="500"/>
         <source>No updates available</source>
-        <translation type="unfinished"/>
+        <translation>Geen updates beschikbaar</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="508"/>
@@ -1318,22 +1319,22 @@ Weet u zeker dat u het wilt openen?</translation>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="762"/>
         <source>Remove</source>
-        <translation type="unfinished"/>
+        <translation>Verwijderen</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="766"/>
         <source>Install</source>
-        <translation type="unfinished"/>
+        <translation>Installeren</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="771"/>
         <source>Reinstall</source>
-        <translation type="unfinished"/>
+        <translation>Opnieuw installeren</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="776"/>
         <source>Update</source>
-        <translation type="unfinished"/>
+        <translation>Updaten</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="780"/>
@@ -1408,42 +1409,42 @@ Weet u zeker dat u het wilt openen?</translation>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="838"/>
         <source>%1 could not be found in the system!</source>
-        <translation type="unfinished"/>
+        <translation>%1 is niet aangetroffen op het bestandssysteem!</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="843"/>
         <source>Zoom in</source>
-        <translation type="unfinished"/>
+        <translation>Inzoomen</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="848"/>
         <source>Zoom out</source>
-        <translation type="unfinished"/>
+        <translation>Uitzoomen</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="853"/>
         <source>Maximize</source>
-        <translation type="unfinished"/>
+        <translation>Maximaliseren</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="858"/>
         <source>Copy</source>
-        <translation type="unfinished"/>
+        <translation>Kopiëren</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="863"/>
         <source>Paste</source>
-        <translation type="unfinished"/>
+        <translation>Plakken</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="868"/>
         <source>Never</source>
-        <translation type="unfinished"/>
+        <translation>Nooit</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="873"/>
         <source>Upgrading...</source>
-        <translation type="unfinished"/>
+        <translation>Bezig met upgraden...</translation>
     </message>
 </context>
 <context>

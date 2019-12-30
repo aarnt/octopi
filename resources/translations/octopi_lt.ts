@@ -14,7 +14,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="106"/>
         <source>Actions</source>
-        <translation type="unfinished"/>
+        <translation>Veiksmai</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="111"/>
@@ -24,32 +24,32 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="147"/>
         <source>&amp;Help</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Pagalba</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="156"/>
         <source>&amp;View</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Rodinys</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="172"/>
         <source>&amp;File</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Failas</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="184"/>
         <source>&amp;Search</source>
-        <translation type="unfinished"/>
+        <translation>Ieš&amp;koti</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="194"/>
         <source>T&amp;ools</source>
-        <translation type="unfinished"/>
+        <translation>Į&amp;rankiai</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="224"/>
         <source>&amp;About</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Apie</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="227"/>
@@ -64,7 +64,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="250"/>
         <source>Apply</source>
-        <translation type="unfinished"/>
+        <translation>Taikyti</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="271"/>
@@ -74,17 +74,17 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="283"/>
         <source>Check &amp;updates</source>
-        <translation type="unfinished"/>
+        <translation>Tikrinti, ar yra at&amp;naujinimų</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="291"/>
         <source>E&amp;xit</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Išeiti</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="303"/>
         <source>System u&amp;pgrade</source>
-        <translation type="unfinished"/>
+        <translation>Sistemos na&amp;ujinimas</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="315"/>
@@ -107,7 +107,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="344"/>
         <source>&amp;Get latest distro news</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Gauti naujienas</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="356"/>
@@ -172,12 +172,12 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="469"/>
         <source>By &amp;description</source>
-        <translation type="unfinished"/>
+        <translation>Pagal a&amp;prašymą</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="480"/>
         <source>By &amp;name</source>
-        <translation type="unfinished"/>
+        <translation>Pagal pavadi&amp;nimą</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="492"/>
@@ -197,7 +197,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="517"/>
         <source>&amp;Install local package...</source>
-        <translation type="unfinished"/>
+        <translation>Į&amp;diegti vietinį paketą...</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="534"/>
@@ -222,7 +222,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="594"/>
         <source>By &amp;file</source>
-        <translation type="unfinished"/>
+        <translation>Pagal &amp;failą</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="605"/>
@@ -232,17 +232,17 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="613"/>
         <source>Donate!</source>
-        <translation type="unfinished"/>
+        <translation>Paaukokite!</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="85"/>
         <source>Ctrl+Shift+O to display outdated %1 packages</source>
-        <translation type="unfinished"/>
+        <translation>Vald+Lyg2+O, kad būtų rodomi pasenę %1 paketai</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="93"/>
         <source>Ctrl+Shift+A to display AUR voted package list</source>
-        <translation type="unfinished"/>
+        <translation>Vald+Lyg2+A, kad būtų rodomas AUR balsuotų paketų sąrašas</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="98"/>
@@ -337,7 +337,7 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="146"/>
         <source>Alt+3 to switch to &apos;Actions&apos; tab</source>
-        <translation type="unfinished"/>
+        <translation>Alt+3, kad būtų perjungta į &quot;Veiksmų&quot; kortelę</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="148"/>
@@ -357,7 +357,7 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="154"/>
         <source>Alt+7 to switch to &apos;Terminal&apos; tab</source>
-        <translation type="unfinished"/>
+        <translation>Alt+7, kad būtų perjungta į &quot;Terminalo&quot; kortelę</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="157"/>
@@ -367,7 +367,7 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="159"/>
         <source>Ctrl+E or &apos;Actions/Cancel&apos; to clear the selection of to be removed/installed packages</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+E arba &quot;Veiksmai/Atsisakyti&quot;, kad būtų išvalytas šalinamų/diegiamų paketų pasirinkimas</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="161"/>
@@ -382,7 +382,7 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="165"/>
         <source>Ctrl+K or &apos;File/Check updates&apos; to check mirror for latest updates (checkupdates)</source>
-        <translation type="unfinished"/>
+        <translation>Vald+K arba &quot;Failas/Tikrinti, ar yra atnaujinimų&quot;, kad tinklavietėje būtų patikrinti paskiausi atnaujinimai (checkupdates)</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="167"/>
@@ -392,7 +392,7 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="169"/>
         <source>Ctrl+P to go to package list</source>
-        <translation type="unfinished"/>
+        <translation>Vald+P, kad būtų pereita į paketų sąrašą</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="171"/>
@@ -402,12 +402,12 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="173"/>
         <source>Ctrl+U or &apos;File/System upgrade&apos; to make a full system upgrade (pacman -Su)</source>
-        <translation type="unfinished"/>
+        <translation>Vald+U arba &quot;Failas/Sistemos naujinimas&quot;, kad būtų atliktas pilnas sistemos naujinimas (pacman -Su)</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="175"/>
         <source>Ctrl+Y or &apos;Actions/Apply&apos; to start installation/removal of selected packages</source>
-        <translation type="unfinished"/>
+        <translation>Vald+Y arba &quot;Veiksmai/Taikyti&quot;, kad būtų pradėtas pasirinktų paketų įdiegimas/šalinimas</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="178"/>
@@ -480,17 +480,17 @@
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="76"/>
         <source>Use alternating row colors in package list</source>
-        <translation type="unfinished"/>
+        <translation>Naudoti paketų sąraše kintamas eilučių spalvas</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="89"/>
         <source>Enable confirmation dialog in system upgrade</source>
-        <translation type="unfinished"/>
+        <translation>Įjungti sistemos naujinimo patvirtinimo dialogą</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="102"/>
         <source>Enable internet checking</source>
-        <translation type="unfinished"/>
+        <translation>Įjungti interneto ryšio tikrinimą</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="139"/>
@@ -505,33 +505,34 @@
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="269"/>
         <source>User name</source>
-        <translation type="unfinished"/>
+        <translation>Naudotojo vardas</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="282"/>
         <source>Password</source>
-        <translation type="unfinished"/>
+        <translation>Slaptažodis</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="295"/>
         <source>Register</source>
-        <translation type="unfinished"/>
+        <translation>Registruotis</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="308"/>
         <source>Connect</source>
-        <translation type="unfinished"/>
+        <translation>Prisijungti</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="322"/>
         <source>Enable AUR voting</source>
-        <translation type="unfinished"/>
+        <translation>Įjungti balsavimą AUR</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="343"/>
         <source>AUR packages are user produced content. 
 Any use of the provided files is at your own risk.</source>
-        <translation type="unfinished"/>
+        <translation>AUR paketai yra naudotojų kuriamas turinys.
+Naudodami bet kokius pateiktus failus, prisiimate visą riziką.</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="356"/>
@@ -580,7 +581,7 @@ Any use of the provided files is at your own risk.</source>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="777"/>
         <location filename="Projects/octopi/src/optionsdialog.cpp" line="169"/>
         <source>Updates</source>
-        <translation type="unfinished"/>
+        <translation>Atnaujinimai</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/optionsdialog.cpp" line="93"/>
@@ -630,7 +631,8 @@ Any use of the provided files is at your own risk.</source>
         <location filename="Projects/octopi/src/strconstants.cpp" line="48"/>
         <source>Pacman Database is missing!
 You may need to synchronize database!</source>
-        <translation type="unfinished"/>
+        <translation>Trūksta Pacman duomenų bazės!
+Gali būti, kad turite sinchronizuoti duomenų bazes!</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="52"/>
@@ -650,12 +652,12 @@ You may need to synchronize database!</source>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="150"/>
         <source>Condres OS news</source>
-        <translation type="unfinished"/>
+        <translation>Condres OS naujienos</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="154"/>
         <source>EndeavourOS news</source>
-        <translation type="unfinished"/>
+        <translation>EndeavourOS naujienos</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="158"/>
@@ -675,7 +677,7 @@ You may need to synchronize database!</source>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="174"/>
         <source>Information</source>
-        <translation type="unfinished"/>
+        <translation>Informacija</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="178"/>
@@ -715,12 +717,12 @@ You may need to synchronize database!</source>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="214"/>
         <source>Help</source>
-        <translation type="unfinished"/>
+        <translation>Pagalba</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="218"/>
         <source>&amp;Options</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Parinktys</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="222"/>
@@ -810,7 +812,7 @@ You may need to synchronize database!</source>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="290"/>
         <source>Votes</source>
-        <translation type="unfinished"/>
+        <translation>Balsai</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="294"/>
@@ -820,17 +822,17 @@ You may need to synchronize database!</source>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="299"/>
         <source>Vote</source>
-        <translation type="unfinished"/>
+        <translation>Balsas</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="304"/>
         <source>AUR voted package list</source>
-        <translation type="unfinished"/>
+        <translation>AUR balsuotų paketų sąrašas</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="309"/>
         <source>Unvote</source>
-        <translation type="unfinished"/>
+        <translation>Panaikinti balsą</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="313"/>
@@ -915,7 +917,7 @@ You may need to synchronize database!</source>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="377"/>
         <source>Actions</source>
-        <translation type="unfinished"/>
+        <translation>Veiksmai</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="381"/>
@@ -930,7 +932,7 @@ You may need to synchronize database!</source>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="390"/>
         <source>Terminal</source>
-        <translation type="unfinished"/>
+        <translation>Terminalas</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="394"/>
@@ -1020,17 +1022,17 @@ You may need to synchronize database!</source>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="490"/>
         <source>Check updates</source>
-        <translation type="unfinished"/>
+        <translation>Tikrinti, ar yra atnaujinimų</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="495"/>
         <source>Checking for updates...</source>
-        <translation type="unfinished"/>
+        <translation>Tikrinama, ar yra atnaujinimų...</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="500"/>
         <source>No updates available</source>
-        <translation type="unfinished"/>
+        <translation>Nėra jokių prieinamų atnaujinimų</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="508"/>
@@ -1045,7 +1047,7 @@ You may need to synchronize database!</source>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="521"/>
         <source>SysInfo file generated on: %1&lt;br&gt;If you wish, post the output in your distro&apos;s forum for help.</source>
-        <translation type="unfinished"/>
+        <translation>SysInfo failas sukurtas ties: %1&lt;br&gt;Jei norite, paskelbkite išvestį savo platinamojo paketo forume, kad gautumėte pagalbos.</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="525"/>
@@ -1085,17 +1087,17 @@ You may need to synchronize database!</source>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="558"/>
         <source>Temporary &quot;yay-bin&quot; could not be downloaded!</source>
-        <translation type="unfinished"/>
+        <translation>Nepavyko atsisiųsti laikinojo &quot;yay-bin&quot;!</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="563"/>
         <source>Temporary &quot;yay-bin&quot; downloaded.</source>
-        <translation type="unfinished"/>
+        <translation>Laikinasis &quot;yay-bin&quot; atsisiųstas.</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="568"/>
         <source>Downloading temporary &quot;yay-bin&quot;...</source>
-        <translation type="unfinished"/>
+        <translation>Atsisiunčiamas laikinasis &quot;yay-bin&quot;...</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="572"/>
@@ -1175,7 +1177,7 @@ You may need to synchronize database!</source>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="640"/>
         <source>Do you really want to cancel actions?</source>
-        <translation type="unfinished"/>
+        <translation>Ar tikrai norite atsisakyti veiksmų?</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="644"/>
@@ -1190,56 +1192,60 @@ You may need to synchronize database!</source>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="654"/>
         <source>You&apos;ll need to install &quot;octopi-sudo&quot; in order to use Octopi.</source>
-        <translation type="unfinished"/>
+        <translation>Norėdami naudotis Octopi, turėsite įsidiegti &quot;octopi-sudo&quot;.</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="659"/>
         <source>You'll need one of those tools to use AUR:
 
 %1, %2, %3 %4 or %5</source>
-        <translation type="unfinished"/>
+        <translation>Norint naudotis AUR, jums reikės vieno iš šių įrankių:
+
+%1, %2, %3 %4 arba %5</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="665"/>
         <source>You need a package in order to use AUR.
 Do you want to install it?</source>
-        <translation type="unfinished"/>
+        <translation>Norint naudotis AUR, jums reikia paketo.
+Ar norite jį įdiegti?</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="671"/>
         <source>Connection is OK!</source>
-        <translation type="unfinished"/>
+        <translation>Ryšys veikia!</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="675"/>
         <source>Would you like to help this project by voting for it?
 You only need to accept and wait a few seconds.</source>
-        <translation type="unfinished"/>
+        <translation>Ar norėtumėte padėti šiam projektui ir už jį balsuoti?
+Jums tik reikia sutikti ir palaukti kelias sekundes.</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="681"/>
         <source>Thank you for voting for Octopi!</source>
-        <translation type="unfinished"/>
+        <translation>Dėkojame, kad balsavote už Octopi!</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="686"/>
         <source>Username and/or password is/are incorrect.</source>
-        <translation type="unfinished"/>
+        <translation>Naudotojo vardas ir/arba slaptažodis yra neteisingas/neteisingi.</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="691"/>
         <source>AUR username is not set.</source>
-        <translation type="unfinished"/>
+        <translation>Nėra nustatytas AUR naudotojo vardas.</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="696"/>
         <source>AUR password is not set.</source>
-        <translation type="unfinished"/>
+        <translation>Nėra nustatytas AUR slaptažodis.</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="700"/>
         <source>Icon path information is not set.</source>
-        <translation type="unfinished"/>
+        <translation>Nėra nustatyta piktogramos kelio informacija.</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="704"/>
@@ -1249,12 +1255,12 @@ You only need to accept and wait a few seconds.</source>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="708"/>
         <source>Canceling the running transaction may damage your system!</source>
-        <translation type="unfinished"/>
+        <translation>Atsisakius vykdomos operacijos, jūsų sistema gali būti sugadinta!</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="712"/>
         <source>There are pending actions</source>
-        <translation type="unfinished"/>
+        <translation>Yra laukiančių veiksmų</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="716"/>
@@ -1271,7 +1277,14 @@ and &quot;head --bytes=256K /var/log/pacman.log&quot;
 
 Do you want to continue?
 </source>
-        <translation type="unfinished"/>
+        <translation>Jūs ketinate savo namų kelyje sukurti &quot;octopi-sysinfo.log&quot;, kuriame bus turinys, sudarytas iš:
+
+&quot;/etc/lsb-release&quot;, &quot;inxi -Fxz&quot;, &quot;uname -a&quot;, &quot;mhwd -li -d,&quot;
+&quot;journalctl -b -p err&quot;, &quot;cat /etc/pacman.conf&quot;, &quot;pacman -Qm&quot;
+ir &quot;head --bytes=256K /var/log/pacman.log&quot;
+
+Ar norite tęsti?
+</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="729"/>
@@ -1318,22 +1331,22 @@ Ar tikrai norite jį atverti?</translation>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="762"/>
         <source>Remove</source>
-        <translation type="unfinished"/>
+        <translation>Šalinti</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="766"/>
         <source>Install</source>
-        <translation type="unfinished"/>
+        <translation>Įdiegti</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="771"/>
         <source>Reinstall</source>
-        <translation type="unfinished"/>
+        <translation>Įdiegti iš naujo</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="776"/>
         <source>Update</source>
-        <translation type="unfinished"/>
+        <translation>Atnaujinti</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="780"/>
@@ -1368,7 +1381,7 @@ Ar tikrai norite jį atverti?</translation>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="804"/>
         <source>Check for package updates interval</source>
-        <translation type="unfinished"/>
+        <translation>Paketų atnaujinimų tikrinimo intervalas</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="808"/>
@@ -1408,42 +1421,42 @@ Ar tikrai norite jį atverti?</translation>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="838"/>
         <source>%1 could not be found in the system!</source>
-        <translation type="unfinished"/>
+        <translation>Jūsų sistemoje nepavyko rasti %1!</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="843"/>
         <source>Zoom in</source>
-        <translation type="unfinished"/>
+        <translation>Didinti</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="848"/>
         <source>Zoom out</source>
-        <translation type="unfinished"/>
+        <translation>Mažinti</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="853"/>
         <source>Maximize</source>
-        <translation type="unfinished"/>
+        <translation>Išskleisti</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="858"/>
         <source>Copy</source>
-        <translation type="unfinished"/>
+        <translation>Kopijuoti</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="863"/>
         <source>Paste</source>
-        <translation type="unfinished"/>
+        <translation>Įdėti</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="868"/>
         <source>Never</source>
-        <translation type="unfinished"/>
+        <translation>Niekada</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="873"/>
         <source>Upgrading...</source>
-        <translation type="unfinished"/>
+        <translation>Naujinama...</translation>
     </message>
 </context>
 <context>
