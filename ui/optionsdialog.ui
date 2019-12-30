@@ -145,6 +145,9 @@
          </item>
          <item row="2" column="0">
           <widget class="QGroupBox" name="gbAUR">
+           <property name="toolTip">
+            <string notr="true"/>
+           </property>
            <property name="title">
             <string/>
            </property>
@@ -334,7 +337,7 @@
              </font>
             </property>
             <property name="toolTip">
-             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;AUR packages are user produced content. &lt;br/&gt;Any use of the provided files is at your own risk.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             <string/>
             </property>
             <property name="text">
              <string>AUR packages are user produced content. 
