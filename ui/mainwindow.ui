@@ -247,7 +247,7 @@
      <normaloff>:/resources/images/commit.png</normaloff>:/resources/images/commit.png</iconset>
    </property>
    <property name="text">
-    <string>Appl&amp;y</string>
+    <string>Apply</string>
    </property>
    <property name="shortcut">
     <string notr="true">Ctrl+Y</string>
@@ -263,6 +263,9 @@
    </property>
    <property name="text">
     <string notr="true">Canc&amp;el</string>
+   </property>
+   <property name="iconText">
+    <string notr="true">Cancel</string>
    </property>
    <property name="toolTip">
     <string>Cancel</string>
