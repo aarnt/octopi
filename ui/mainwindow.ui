@@ -247,7 +247,7 @@
      <normaloff>:/resources/images/commit.png</normaloff>:/resources/images/commit.png</iconset>
    </property>
    <property name="text">
-    <string notr="true">Appl&amp;y</string>
+    <string>Appl&amp;y</string>
    </property>
    <property name="shortcut">
     <string notr="true">Ctrl+Y</string>

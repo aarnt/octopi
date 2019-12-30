@@ -1530,6 +1530,13 @@ void MainWindow::onAURVotingChanged()
     m_aurVote->setUserName(SettingsManager::getAURUserName());
     m_aurVote->setPassword(SettingsManager::getAURPassword());
     m_aurVote->login();
+    refreshHelpUsageText();
+  }
+  else
+  {
+    delete m_aurVote;
+    m_aurVote = nullptr;
+    refreshHelpUsageText();
   }
 }
 
