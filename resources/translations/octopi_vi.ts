@@ -62,170 +62,175 @@
         <translation>Chưa được cài đặt</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="268"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="250"/>
+        <source>Apply</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="271"/>
         <source>Cancel</source>
         <translation>Hủy</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="280"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="283"/>
         <source>Check &amp;updates</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="288"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="291"/>
         <source>E&amp;xit</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="300"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="303"/>
         <source>System u&amp;pgrade</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="312"/>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="315"/>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="523"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="318"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="526"/>
         <source>Install</source>
         <translation>Cài đặt</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="324"/>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="327"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="330"/>
         <source>Remove</source>
         <translation>Gỡ bỏ</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="332"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="335"/>
         <source>Outdated packages</source>
         <translation>Các gói đã cũ</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="341"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="344"/>
         <source>&amp;Get latest distro news</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="353"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="356"/>
         <source>Remove group</source>
         <translation>Gỡ bỏ nhóm</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="362"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="365"/>
         <source>Install group</source>
         <translation>Cài đặt nhóm</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="371"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="374"/>
         <source>Collapse item</source>
         <translation>Thu hẹp</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="380"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="383"/>
         <source>Expand item</source>
         <translation>Mở rộng</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="389"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="392"/>
         <source>Collapse all items</source>
         <translation>Thu hẹp toàn bộ các mục</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="398"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="401"/>
         <source>Expand all items</source>
         <translation>Mở rộng toàn bộ các mục</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="407"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="410"/>
         <source>Open file</source>
         <translation>Mở tập tin</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="416"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="419"/>
         <source>Edit file</source>
         <translation>Sửa tập tin</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="425"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="428"/>
         <source>Open directory</source>
         <translation>Mở thư mục</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="434"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="437"/>
         <source>Open terminal here</source>
         <translation>Mở bằng dòng lệnh</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="443"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="446"/>
         <source>Remove item</source>
         <translation>Gỡ bỏ đối tượng</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="455"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="458"/>
         <source>Remove items</source>
         <translation>Gỡ bỏ các đối tượng</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="466"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="469"/>
         <source>By &amp;description</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="477"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="480"/>
         <source>By &amp;name</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="489"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="492"/>
         <source>Find a file</source>
         <translation>Tìm một tập tin</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="498"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="501"/>
         <source>Open root terminal</source>
         <translation>Mở dòng lệnh với quyền root</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="503"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="506"/>
         <source>Usage</source>
         <translation>Cách dùng</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="514"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="517"/>
         <source>&amp;Install local package...</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="531"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="534"/>
         <source>Pacman Log Viewer</source>
         <translation>Nhật ký Pacman</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="546"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="549"/>
         <source>Repository Editor</source>
         <translation>Chỉnh sửa kho phần mềm</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="558"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="561"/>
         <source>Cache Cleaner</source>
         <translation>Xóa bộ nhớ đệm</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="569"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="572"/>
         <source>Installed</source>
         <translation>Đã được cài đặt</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="591"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="594"/>
         <source>By &amp;file</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="602"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="605"/>
         <source>Use Instant Search</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="610"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="613"/>
         <source>Donate!</source>
         <translation type="unfinished"/>
     </message>

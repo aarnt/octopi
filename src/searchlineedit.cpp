@@ -108,8 +108,13 @@ void SearchLineEdit::resizeEvent(QResizeEvent *event)
 void SearchLineEdit::keyPressEvent(QKeyEvent *event)
 {
   if(event->key() == Qt::Key_U && event->modifiers() == Qt::ControlModifier)
+  {
     event->ignore();
-  else return QLineEdit::keyPressEvent(event);
+  }
+  else
+  {
+    return QLineEdit::keyPressEvent(event);
+  }
 }
 
 void SearchLineEdit::updateSearchButton(const QString &text)

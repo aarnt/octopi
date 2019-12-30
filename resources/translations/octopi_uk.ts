@@ -62,170 +62,175 @@
         <translation>Не встановлено</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="268"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="250"/>
+        <source>Apply</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="271"/>
         <source>Cancel</source>
         <translation>Скасувати</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="280"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="283"/>
         <source>Check &amp;updates</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="288"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="291"/>
         <source>E&amp;xit</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="300"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="303"/>
         <source>System u&amp;pgrade</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="312"/>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="315"/>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="523"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="318"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="526"/>
         <source>Install</source>
         <translation>Встановити</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="324"/>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="327"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="330"/>
         <source>Remove</source>
         <translation>Вилучити</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="332"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="335"/>
         <source>Outdated packages</source>
         <translation>Застарілі пакунки</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="341"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="344"/>
         <source>&amp;Get latest distro news</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="353"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="356"/>
         <source>Remove group</source>
         <translation>Вилучити групу</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="362"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="365"/>
         <source>Install group</source>
         <translation>Встановити групу</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="371"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="374"/>
         <source>Collapse item</source>
         <translation>Згорнути пункт</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="380"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="383"/>
         <source>Expand item</source>
         <translation>Розгорнути пункт</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="389"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="392"/>
         <source>Collapse all items</source>
         <translation>Згорнути всі елементи</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="398"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="401"/>
         <source>Expand all items</source>
         <translation>Розгорнути всі елементи</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="407"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="410"/>
         <source>Open file</source>
         <translation>Відкрити файл</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="416"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="419"/>
         <source>Edit file</source>
         <translation>Редагувати файл</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="425"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="428"/>
         <source>Open directory</source>
         <translation>Відкрити каталог</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="434"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="437"/>
         <source>Open terminal here</source>
         <translation>Відкрити термінал тут</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="443"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="446"/>
         <source>Remove item</source>
         <translation>Вилучити елемент</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="455"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="458"/>
         <source>Remove items</source>
         <translation>Вилучити елементи</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="466"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="469"/>
         <source>By &amp;description</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="477"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="480"/>
         <source>By &amp;name</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="489"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="492"/>
         <source>Find a file</source>
         <translation>Пошук файлу</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="498"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="501"/>
         <source>Open root terminal</source>
         <translation>Відкрити термінал з правами root</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="503"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="506"/>
         <source>Usage</source>
         <translation>Використання</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="514"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="517"/>
         <source>&amp;Install local package...</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="531"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="534"/>
         <source>Pacman Log Viewer</source>
         <translation>Переглядач логів Pacman</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="546"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="549"/>
         <source>Repository Editor</source>
         <translation>Редактор репозиторіїв</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="558"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="561"/>
         <source>Cache Cleaner</source>
         <translation>Очищувач кешу</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="569"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="572"/>
         <source>Installed</source>
         <translation>Встановлено</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="591"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="594"/>
         <source>By &amp;file</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="602"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="605"/>
         <source>Use Instant Search</source>
         <translation>Використовуйте миттєвий пошук</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="610"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="613"/>
         <source>Donate!</source>
         <translation type="unfinished"/>
     </message>

@@ -62,170 +62,175 @@
         <translation>Ikke installert</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="268"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="250"/>
+        <source>Apply</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="271"/>
         <source>Cancel</source>
         <translation>Avbryt</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="280"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="283"/>
         <source>Check &amp;updates</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="288"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="291"/>
         <source>E&amp;xit</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="300"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="303"/>
         <source>System u&amp;pgrade</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="312"/>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="315"/>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="523"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="318"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="526"/>
         <source>Install</source>
         <translation>Installer</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="324"/>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="327"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="330"/>
         <source>Remove</source>
         <translation>Fjern</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="332"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="335"/>
         <source>Outdated packages</source>
         <translation>Utdaterte pakker</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="341"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="344"/>
         <source>&amp;Get latest distro news</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="353"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="356"/>
         <source>Remove group</source>
         <translation>Fjern gruppe</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="362"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="365"/>
         <source>Install group</source>
         <translation>Installer gruppe</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="371"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="374"/>
         <source>Collapse item</source>
         <translation>Lukk</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="380"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="383"/>
         <source>Expand item</source>
         <translation>Utvid</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="389"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="392"/>
         <source>Collapse all items</source>
         <translation>Lukk alle</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="398"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="401"/>
         <source>Expand all items</source>
         <translation>Utvid alle</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="407"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="410"/>
         <source>Open file</source>
         <translation>Åpne fil</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="416"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="419"/>
         <source>Edit file</source>
         <translation>Rediger fil</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="425"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="428"/>
         <source>Open directory</source>
         <translation>Åpne mappe</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="434"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="437"/>
         <source>Open terminal here</source>
         <translation>Åpne terminalen her</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="443"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="446"/>
         <source>Remove item</source>
         <translation>Fjern</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="455"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="458"/>
         <source>Remove items</source>
         <translation>Fjern</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="466"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="469"/>
         <source>By &amp;description</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="477"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="480"/>
         <source>By &amp;name</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="489"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="492"/>
         <source>Find a file</source>
         <translation>Finn en fil</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="498"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="501"/>
         <source>Open root terminal</source>
         <translation>Åpne en root-terminal</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="503"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="506"/>
         <source>Usage</source>
         <translation>Bruk</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="514"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="517"/>
         <source>&amp;Install local package...</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="531"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="534"/>
         <source>Pacman Log Viewer</source>
         <translation>Pacman Logleser</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="546"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="549"/>
         <source>Repository Editor</source>
         <translation>Rediger pakkebrønn</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="558"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="561"/>
         <source>Cache Cleaner</source>
         <translation>Cache-tømmer</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="569"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="572"/>
         <source>Installed</source>
         <translation>Installert</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="591"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="594"/>
         <source>By &amp;file</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="602"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="605"/>
         <source>Use Instant Search</source>
         <translation>Bruk umiddelbart søk</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="610"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="613"/>
         <source>Donate!</source>
         <translation type="unfinished"/>
     </message>
