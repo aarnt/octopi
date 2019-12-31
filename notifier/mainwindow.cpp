@@ -85,7 +85,7 @@ MainWindow::~MainWindow()
  */
 void MainWindow::initActions()
 {
-  m_actionExit = new QAction(IconHelper::getIconExit(), tr("Exit"), this);
+  m_actionExit = new QAction(IconHelper::getIconExit(), StrConstants::getExit(), this);
   m_actionExit->setIcon(IconHelper::getIconExit());
   connect(m_actionExit, SIGNAL(triggered()), this, SLOT(exitNotifier()));
 
@@ -112,13 +112,13 @@ void MainWindow::initActions()
 
   m_actionSystemUpgrade = new QAction(this);
   m_actionSystemUpgrade->setIconVisibleInMenu(true);
-  m_actionSystemUpgrade->setText(tr("System upgrade"));
+  m_actionSystemUpgrade->setText(StrConstants::getSystemUpgrade());
   m_actionSystemUpgrade->setIcon(IconHelper::getIconSystemUpgrade());
   connect(m_actionSystemUpgrade, SIGNAL(triggered()), this, SLOT(runOctopiSysUpgrade()));
 
   m_actionAURUpgrade = new QAction(this);
   m_actionAURUpgrade->setIconVisibleInMenu(true);
-  m_actionAURUpgrade->setText(tr("System upgrade"));
+  m_actionAURUpgrade->setText(StrConstants::getSystemUpgrade());
   m_actionAURUpgrade->setIcon(IconHelper::getIconForeignGreen());
   connect(m_actionAURUpgrade, SIGNAL(triggered()), this, SLOT(runOctopiAURUpgrade()));
 }

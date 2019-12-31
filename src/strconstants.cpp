@@ -130,14 +130,6 @@ QString StrConstants::getForeignRepositoryTargetPrefix()
   return ret;
 }
 
-/*QString StrConstants::getAntergosNews(){
-  return QObject::tr("Antergos news");
-}
-
-QString StrConstants::getPacBSDNews(){
-  return QObject::tr("PacBSD news");
-}*/
-
 QString StrConstants::getArchLinuxNews(){
   return QObject::tr("Arch Linux news");
 }
@@ -161,10 +153,6 @@ QString StrConstants::getKaOSNews(){
 QString StrConstants::getManjaroLinuxNews(){
   return QObject::tr("Manjaro Linux news");
 }
-
-/*QString StrConstants::getNetrunnerNews(){
-  return QObject::tr("Netrunner Rolling news");
-}*/
 
 QString StrConstants::getParabolaNews(){
   return QObject::tr("Parabola GNU/Linux-libre news");
@@ -490,6 +478,11 @@ QString StrConstants::getCheckUpdates()
   return QObject::tr("Check updates");
 }
 
+QString StrConstants::getSystemUpgrade()
+{
+  return QObject::tr("System upgrade");
+}
+
 QString StrConstants::getCheckingForUpdates()
 {
   return QObject::tr("Checking for updates...");
@@ -521,7 +514,7 @@ QString StrConstants::getSysInfoGenerated()
   return QObject::tr("SysInfo file generated on: %1<br>If you wish, post the output in your distro's forum for help.");
 }
 
-QString StrConstants::getSystemUpgrade(){
+QString StrConstants::getSystemUpgradeMsg(){
   return QObject::tr("Starting full system upgrade...");
 }
 
@@ -536,10 +529,6 @@ QString StrConstants::getRemovingPackages(){
 QString StrConstants::getRemovingAndInstallingPackages(){
   return QObject::tr("Removing/installing selected packages...");
 }
-
-/*QString StrConstants::getChooseATerminal(){
-  return QObject::tr("Choose a terminal");
-}*/
 
 QString StrConstants::getRunningCommandInTerminal(){
   return QObject::tr("Running command in terminal...");
@@ -871,6 +860,11 @@ QString StrConstants::getNever()
 QString StrConstants::getUpgrading()
 {
   return QObject::tr("Upgrading...");
+}
+
+QString StrConstants::getExit()
+{
+  return QObject::tr("Exit");
 }
 
 //Style Sheets ---------------------------------

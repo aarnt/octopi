@@ -866,6 +866,8 @@ void MainWindow::initActions()
   connect(ui->actionOpenDirectory, SIGNAL(triggered()), this, SLOT(openDirectory()));
   connect(ui->actionOpenTerminal, SIGNAL(triggered()), this, SLOT(openTerminal()));
 
+  ui->actionSystemUpgrade->setToolTip(StrConstants::getSystemUpgrade());
+
   // Use theme icons for QActions
   ui->actionCheckUpdates->setIcon(IconHelper::getIconCheckUpdates());
   ui->actionApply->setIcon(IconHelper::getIconCommit());

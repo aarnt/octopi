@@ -35,15 +35,12 @@ public:
   static QString getForeignPkgRepositoryName();
   static QString getForeignRepositoryGroupName();
   static QString getForeignRepositoryTargetPrefix();
-  //static QString getAntergosNews();
-  //static QString getPacBSDNews();
   static QString getArchLinuxNews();
   static QString getChakraNews();
   static QString getCondresOSNews();
   static QString getEndeavourOSNews();
   static QString getKaOSNews();
   static QString getManjaroLinuxNews();
-  //static QString getNetrunnerNews();
   static QString getParabolaNews();
   static QString getInformation();
   static QString getError();
@@ -121,6 +118,7 @@ public:
   static QString getSuspiciousExecutionDetected();
   static QString getSuspiciousTransactionDetected();
   static QString getCheckUpdates();
+  static QString getSystemUpgrade();
   static QString getCheckingForUpdates();
   static QString getNoUpdatesAvailable();
   static QString getSyncMirror();
@@ -128,7 +126,7 @@ public:
   static QString getSyncDatabases();
   static QString getIsUpToDate();
   static QString getSysInfoGenerated();
-  static QString getSystemUpgrade();
+  static QString getSystemUpgradeMsg();
   static QString getInstallingPackages();
   static QString getRemovingPackages();
   static QString getRemovingAndInstallingPackages();
@@ -209,6 +207,7 @@ public:
   static QString getPaste();
   static QString getNever();
   static QString getUpgrading();
+  static QString getExit();
 
   //Style Sheets ---------------------------------
   static QString getToolBarCSS();

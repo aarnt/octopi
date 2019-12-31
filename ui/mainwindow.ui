@@ -290,6 +290,9 @@
    <property name="text">
     <string>E&amp;xit</string>
    </property>
+   <property name="toolTip">
+    <string notr="true">Exit</string>
+   </property>
    <property name="shortcut">
     <string notr="true">Ctrl+Q</string>
    </property>
@@ -301,6 +304,12 @@
    </property>
    <property name="text">
     <string>System u&amp;pgrade</string>
+   </property>
+   <property name="iconText">
+    <string>System upgrade</string>
+   </property>
+   <property name="toolTip">
+    <string notr="true">System upgrade</string>
    </property>
    <property name="shortcut">
     <string notr="true">Ctrl+U</string>

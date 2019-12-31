@@ -689,7 +689,7 @@ void PacmanExec::onStarted()
   }
   else if (m_commandExecuting == ectn_SYSTEM_UPGRADE || m_commandExecuting == ectn_RUN_SYSTEM_UPGRADE_IN_TERMINAL)
   {
-    prepareTextToPrint("<b>" + StrConstants::getSystemUpgrade() + "</b><br><br>", ectn_DONT_TREAT_STRING, ectn_DONT_TREAT_URL_LINK);
+    prepareTextToPrint("<b>" + StrConstants::getSystemUpgradeMsg() + "</b><br><br>", ectn_DONT_TREAT_STRING, ectn_DONT_TREAT_URL_LINK);
   }
   else if (m_commandExecuting == ectn_REMOVE)
   {
