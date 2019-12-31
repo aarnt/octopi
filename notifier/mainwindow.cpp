@@ -491,12 +491,6 @@ void MainWindow::doSystemUpgrade()
       foreach(QString name, m_checkUpdatesStringList)
       {
         PackageListData aux;
-        /*QString size;
-        if (package)
-        {
-          size = size.number(package->downloadSize, 'f', 0);
-        }*/
-
         aux = PackageListData(name, m_checkUpdatesNameNewVersion->value(name), "0");
         targets->append(aux);
       }
@@ -609,16 +603,6 @@ void MainWindow::doSystemUpgradeFinished()
   m_checkUpdatesNameNewVersion->clear();
   m_numberOfCheckUpdatesPackages=0;
   refreshAppIcon();
-
-  //Does it still need to upgrade another packages due to any issues???
-  /*if (m_outdatedStringList->count() > 0)
-  {
-    m_commandExecuting = ectn_NONE;
-    doSystemUpgrade();
-    return;
-  }*/
-
-  //m_unixCommand->removeTemporaryFile();
   toggleEnableInterface(true);
 }
 
@@ -826,6 +810,7 @@ void MainWindow::sendNotification(const QString &msg)
   {
     processToExec += " -i /usr/share/icons/octopi_red.png -t 5000 \"" +
         StrConstants::getApplicationName() + "\"  \"" + msg + "\"";
+
     QProcess::startDetached(processToExec);
   }
 }
@@ -1054,18 +1039,6 @@ void MainWindow::execSystemTrayActivated(QSystemTrayIcon::ActivationReason ar)
  */
 void MainWindow::execSystemTrayKF5()
 {
-  /*if (UnixCommand::isAppRunning("octopi", true))
-  {
-    static bool hidingOctopi = true;
-
-    if (!hidingOctopi)
-      runOctopi(ectn_NORMAL_EXEC_OPT);
-    else
-      hideOctopi();
-
-    hidingOctopi = !hidingOctopi;
-  }*/
-
   if (m_commandExecuting != ectn_NONE)
   {
     if (m_outputDialog != nullptr) m_outputDialog->activateWindow();
@@ -1102,14 +1075,7 @@ void MainWindow::runOctopi(ExecOpt execOptions)
 {
   if (execOptions == ectn_SYSUPGRADE_NOCONFIRM_EXEC_OPT)
   {
-    if (!WMHelper::isKDERunning() && (!WMHelper::isLXQTRunning()))
-    {
-      QProcess::startDetached("octopi -sysupgrade-noconfirm -style gtk");
-    }
-    else
-    {
-      QProcess::startDetached("octopi -sysupgrade-noconfirm");
-    }
+    QProcess::startDetached("octopi -sysupgrade-noconfirm");
   }
   else if (execOptions == ectn_SYSUPGRADE_EXEC_OPT &&
       !UnixCommand::isAppRunning("octopi", true) && (m_outdatedStringList->count() > 0 || m_checkUpdatesStringList.count() > 0))
@@ -1119,14 +1085,7 @@ void MainWindow::runOctopi(ExecOpt execOptions)
   else if (execOptions == ectn_SYSUPGRADE_EXEC_OPT &&
       UnixCommand::isAppRunning("octopi", true) && (m_outdatedStringList->count() > 0 || m_checkUpdatesStringList.count() > 0))
   {
-    if (!WMHelper::isKDERunning() && (!WMHelper::isLXQTRunning()))
-    {
-      QProcess::startDetached("octopi -sysupgrade -style gtk");
-    }
-    else
-    {
-      QProcess::startDetached("octopi -sysupgrade");
-    }
+    QProcess::startDetached("octopi -sysupgrade");
   }
   else if (execOptions == ectn_AUR_UPGRADE_EXEC_OPT &&
       !UnixCommand::isAppRunning("octopi", true) && m_outdatedAURStringList->count() > 0)
@@ -1140,14 +1099,7 @@ void MainWindow::runOctopi(ExecOpt execOptions)
   }
   else if (execOptions == ectn_NORMAL_EXEC_OPT)
   {
-    if (!WMHelper::isKDERunning() && (!WMHelper::isLXQTRunning()))
-    {
-      QProcess::startDetached("octopi -style gtk");
-    }
-    else
-    {
-      QProcess::startDetached("octopi");
-    }
+    QProcess::startDetached("octopi");
   }
 }
 
@@ -1156,7 +1108,7 @@ void MainWindow::runOctopi(ExecOpt execOptions)
  */
 void MainWindow::showOptionsDialog()
 {
-  if (UnixCommand::isAppRunning("octopi", true))
+  if (m_optionsDialog == nullptr && UnixCommand::isAppRunning("octopi", true))
   {
     QProcess::startDetached("octopi -options");
   }
@@ -1175,5 +1127,9 @@ void MainWindow::showOptionsDialog()
 
     delete m_optionsDialog;
     m_optionsDialog = nullptr;
+  }
+  else
+  {
+    m_optionsDialog->activateWindow();
   }
 }

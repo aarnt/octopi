@@ -84,6 +84,7 @@ MainWindow::MainWindow(QWidget *parent) :
   m_numberOfInstalledPackages = 0;
   m_debugInfo = false;
   m_console = nullptr;
+  m_optionsDialog = nullptr;
   m_commandExecuting=ectn_NONE;
   m_commandQueued=ectn_NONE;
 
@@ -334,24 +335,25 @@ void MainWindow::onPackageGroupChanged()
  */
 void MainWindow::onOptions(OptionsDialogTab tabToOpen)
 {
-  if (m_commandExecuting != ectn_NONE) return;
+  if (m_optionsDialog != nullptr || m_commandExecuting != ectn_NONE) return;
 
-  OptionsDialog *od = new OptionsDialog(this);
-  connect(od, SIGNAL(AURToolChanged()), this, SLOT(onAURToolChanged()));
-  connect(od, SIGNAL(AURVotingChanged()), this, SLOT(onAURVotingChanged()));
+  m_optionsDialog = new OptionsDialog(this);
+  connect(m_optionsDialog, SIGNAL(AURToolChanged()), this, SLOT(onAURToolChanged()));
+  connect(m_optionsDialog, SIGNAL(AURVotingChanged()), this, SLOT(onAURVotingChanged()));
 
-  connect(od, &OptionsDialog::alternateRowColorsChanged, [this] (){
+  connect(m_optionsDialog, &OptionsDialog::alternateRowColorsChanged, [this] (){
     this->ui->tvPackages->setAlternatingRowColors(SettingsManager::getUseAlternateRowColor());
   });
 
-  connect(od, SIGNAL(terminalChanged()), this, SLOT(onTerminalChanged()));
+  connect(m_optionsDialog, SIGNAL(terminalChanged()), this, SLOT(onTerminalChanged()));
 
-  if (tabToOpen==ectn_TAB_AUR) od->gotoAURTab();
+  if (tabToOpen==ectn_TAB_AUR) m_optionsDialog->gotoAURTab();
 
-  od->exec();
-  Options::result res = static_cast<unsigned>(od->result());
+  m_optionsDialog->exec();
+  Options::result res = static_cast<unsigned>(m_optionsDialog->result());
 
-  delete od;
+  delete m_optionsDialog;
+  m_optionsDialog=nullptr;
 
   if (res & Options::ectn_ICON)
   {

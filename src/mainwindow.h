@@ -53,6 +53,7 @@ class QDropEvent;
 class QDragEnterEvent;
 class TermWidget;
 class QTcpServer;
+class OptionsDialog;
 
 #include "src/model/packagemodel.h"
 #include "src/packagerepository.h"
@@ -231,6 +232,9 @@ private:
   QSet<QString> * m_unrequiredPackageList;
   QStringList m_listOfVisitedPackages;
   int m_indOfVisitedPackage;
+
+  //Controls OptionsDialog exec
+  OptionsDialog *m_optionsDialog;
 
   int selectTerminal(const int initialTerminalIndex);
 
