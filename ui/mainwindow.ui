@@ -306,7 +306,7 @@
     <string>System u&amp;pgrade</string>
    </property>
    <property name="iconText">
-    <string>System upgrade</string>
+    <string notr="true">System upgrade</string>
    </property>
    <property name="toolTip">
     <string notr="true">System upgrade</string>

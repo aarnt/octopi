@@ -82,155 +82,155 @@
         <translation>結束(&amp;X)</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="303"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="306"/>
         <source>System u&amp;pgrade</source>
         <translation>系統升級(&amp;P)</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="315"/>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="318"/>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="526"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="324"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="327"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="535"/>
         <source>Install</source>
         <translation>安裝</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="327"/>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="330"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="336"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="339"/>
         <source>Remove</source>
         <translation>移除</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="335"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="344"/>
         <source>Outdated packages</source>
         <translation>過期的套件</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="344"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="353"/>
         <source>&amp;Get latest distro news</source>
         <translation>取得最新散佈版新聞(&amp;G)</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="356"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="365"/>
         <source>Remove group</source>
         <translation>移除群組</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="365"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="374"/>
         <source>Install group</source>
         <translation>安裝群組</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="374"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="383"/>
         <source>Collapse item</source>
         <translation>摺疊項目</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="383"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="392"/>
         <source>Expand item</source>
         <translation>展開項目</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="392"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="401"/>
         <source>Collapse all items</source>
         <translation>摺疊所有項目</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="401"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="410"/>
         <source>Expand all items</source>
         <translation>展開所有項目</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="410"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="419"/>
         <source>Open file</source>
         <translation>開啟檔案</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="419"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="428"/>
         <source>Edit file</source>
         <translation>編輯檔案</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="428"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="437"/>
         <source>Open directory</source>
         <translation>開啟目錄</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="437"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="446"/>
         <source>Open terminal here</source>
         <translation>在這裡開啟終端機</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="446"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="455"/>
         <source>Remove item</source>
         <translation>移除項目</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="458"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="467"/>
         <source>Remove items</source>
         <translation>移除項目</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="469"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="478"/>
         <source>By &amp;description</source>
         <translation>依描述 (&amp;D)</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="480"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="489"/>
         <source>By &amp;name</source>
         <translation>依名稱 (&amp;N)</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="492"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="501"/>
         <source>Find a file</source>
         <translation>尋找檔案</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="501"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="510"/>
         <source>Open root terminal</source>
         <translation>以 root 身份開啟終端機</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="506"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="515"/>
         <source>Usage</source>
         <translation>使用方法</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="517"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="526"/>
         <source>&amp;Install local package...</source>
         <translation>安裝本機軟體包…… (&amp;I)</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="534"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="543"/>
         <source>Pacman Log Viewer</source>
         <translation>Pacman 日誌檢視器</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="549"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="558"/>
         <source>Repository Editor</source>
         <translation>套件庫編輯器</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="561"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="570"/>
         <source>Cache Cleaner</source>
         <translation>快取清除器</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="572"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="581"/>
         <source>Installed</source>
         <translation>已安裝</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="594"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="603"/>
         <source>By &amp;file</source>
         <translation>依檔案 (&amp;F)</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="605"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="614"/>
         <source>Use Instant Search</source>
         <translation>使用快速搜尋</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="613"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="622"/>
         <source>Donate!</source>
         <translation>捐款！</translation>
     </message>
@@ -640,562 +640,567 @@ You may need to synchronize database!</source>
         <translation>所有</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="142"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="134"/>
         <source>Arch Linux news</source>
         <translation>Arch Linux 新聞</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="146"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="138"/>
         <source>Chakra news</source>
         <translation>Chakra 新聞</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="150"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="142"/>
         <source>Condres OS news</source>
         <translation>Condres OS 新聞</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="154"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="146"/>
         <source>EndeavourOS news</source>
         <translation>EndeavourOS 新聞</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="158"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="150"/>
         <source>KaOS news</source>
         <translation>KaOS 新聞</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="162"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="154"/>
         <source>Manjaro Linux news</source>
         <translation>Manjaro Linux 新聞</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="170"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="158"/>
         <source>Parabola GNU/Linux-libre news</source>
         <translation>Parabola GNU/Linux-libre 新聞</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="174"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="162"/>
         <source>Information</source>
         <translation>資訊</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="178"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="166"/>
         <source>Error</source>
         <translation>錯誤</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="182"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="170"/>
         <source>No news could be found! Press Ctrl+G to download the latest news.</source>
         <translation>沒有發現新的訊息！請按下 Ctrl+G 以下載最新消息。</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="186"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="174"/>
         <source>This Linux distro seems to be incompatible with Octopi!</source>
         <translation>這個Linux發行版似乎與Octopi不相容</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="190"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="178"/>
         <source>Internet seems unavailable!</source>
         <translation>網路似乎無法使用！</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="194"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="182"/>
         <source>Display all groups</source>
         <translation>顯示所有套件群組</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="206"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="194"/>
         <source>Usage</source>
         <translation>使用方法</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="210"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="198"/>
         <source>About</source>
         <translation>關於</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="214"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="202"/>
         <source>Help</source>
         <translation>說明</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="218"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="206"/>
         <source>&amp;Options</source>
         <translation>選項(&amp;O)</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="222"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="210"/>
         <source>Name</source>
         <translation>名稱</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="226"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="214"/>
         <source>Version</source>
         <translation>版本</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="230"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="218"/>
         <source>Outdated version</source>
         <translation>過期的版本</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="234"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="222"/>
         <source>Available version</source>
         <translation>提供版本</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="238"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="226"/>
         <source>No description available.</source>
         <translation>沒有描述可提供。</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="242"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="230"/>
         <source>URL</source>
         <translation>URL</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="246"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="234"/>
         <source>Repository</source>
         <translation>套件庫</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="250"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="238"/>
         <source>Licenses</source>
         <translation>授權條款</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="254"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="242"/>
         <source>Group</source>
         <translation>套件群組</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="258"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="246"/>
         <source>Groups</source>
         <translation>套件群組</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="262"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="250"/>
         <source>Provides</source>
         <translation>提供</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="266"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="254"/>
         <source>Depends On</source>
         <translation>依賴於</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="270"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="258"/>
         <source>Required By</source>
         <translation>被依賴</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="274"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="262"/>
         <source>Optional For</source>
         <translation>可選依賴</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="278"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="266"/>
         <source>Optional Deps</source>
         <translation>可選依賴</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="282"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="270"/>
         <source>Conflicts With</source>
         <translation>與下列套件衝突</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="286"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="274"/>
         <source>Replaces</source>
         <translation>取代</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="290"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="278"/>
         <source>Votes</source>
         <translation>投票</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="294"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="282"/>
         <source>votes</source>
         <translation>投票數</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="299"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="287"/>
         <source>Vote</source>
         <translation>投票</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="304"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="292"/>
         <source>AUR voted package list</source>
         <translation>AUR 已投票軟體包清單</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="309"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="297"/>
         <source>Unvote</source>
         <translation>取消投票</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="313"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="301"/>
         <source>Download Size</source>
         <translation>下載大小</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="317"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="305"/>
         <source>Installed Size</source>
         <translation>安裝大小</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="321"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="309"/>
         <source>Install Reason</source>
         <translation>安裝理由</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="325"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="313"/>
         <source>Packager</source>
         <translation>打包者</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="329"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="317"/>
         <source>Package</source>
         <translation>套件</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="333"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="321"/>
         <source>Packages</source>
         <translation>套件</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="337"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="325"/>
         <source>Architecture</source>
         <translation>架構</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="341"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="329"/>
         <source>Build Date</source>
         <translation>建置日期</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="345"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="333"/>
         <source>Description</source>
         <translation>描述</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="349"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="337"/>
         <source>Attention</source>
         <translation>注意</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="353"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="341"/>
         <source>Partial updates are not supported!</source>
         <translation>不支援部份更新！</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="357"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="345"/>
         <source>automatic</source>
         <translation>自動</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="361"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="349"/>
         <source>Password</source>
         <translation>密碼</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="365"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="353"/>
         <source>Info</source>
         <translation>資訊</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="369"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="357"/>
         <source>Files</source>
         <translation>檔案</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="373"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="361"/>
         <source>Transaction</source>
         <translation>處理項目</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="377"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="365"/>
         <source>Actions</source>
         <translation>動作</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="381"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="369"/>
         <source>Output</source>
         <translation>輸出</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="385"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="373"/>
         <source>News</source>
         <translation>新聞</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="390"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="378"/>
         <source>Terminal</source>
         <translation>終端機</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="394"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="382"/>
         <source>Contents of &quot;%1&quot;</source>
         <translation>&quot;%1&quot; 的內容</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="398"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="386"/>
         <source>Find</source>
         <translation>尋找</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="402"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="390"/>
         <source>Clear</source>
         <translation>清除</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="406"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="394"/>
         <source> (outdated installed version is %1)</source>
         <translation> ( %1 是已安裝的過期版本)</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="410"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="398"/>
         <source> (newer installed version is %1)</source>
         <translation> (%1 是較新的版本)</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="414"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="402"/>
         <source>Building package list...</source>
         <translation>正在建置套件列表...</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="418"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="406"/>
         <source>Searching for %1 latest news...</source>
         <translation>搜尋 %1 最新訊息...</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="422"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="410"/>
         <source>There is one outdated package in your system:</source>
         <translation>您的系統上有一個過期的套件：</translation>
     </message>
     <message numerus="yes">
-        <location filename="Projects/octopi/src/strconstants.cpp" line="426"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="414"/>
         <source>There are %n outdated packages in your system:</source>
         <translation><numerusform>您的系統上有 %n 個過期的套件：</numerusform></translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="430"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="418"/>
         <source>(version %1 is available)</source>
         <translation>(版本 %1 已提供)</translation>
     </message>
     <message numerus="yes">
-        <location filename="Projects/octopi/src/strconstants.cpp" line="434"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="422"/>
         <source>%n packages</source>
         <translation><numerusform>%n 個套件</numerusform></translation>
     </message>
     <message numerus="yes">
-        <location filename="Projects/octopi/src/strconstants.cpp" line="438"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="426"/>
         <source>%n selected</source>
         <translation><numerusform>%n 個已選取</numerusform></translation>
     </message>
     <message numerus="yes">
-        <location filename="Projects/octopi/src/strconstants.cpp" line="442"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="430"/>
         <source>%n installed</source>
         <translation><numerusform>%n 個已安裝</numerusform></translation>
     </message>
     <message numerus="yes">
-        <location filename="Projects/octopi/src/strconstants.cpp" line="446"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="434"/>
         <source>%n outdated</source>
         <translation><numerusform>%n 個已過期</numerusform></translation>
     </message>
     <message numerus="yes">
-        <location filename="Projects/octopi/src/strconstants.cpp" line="450"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="438"/>
         <source>%n available</source>
         <translation><numerusform>%n 個可用</numerusform></translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="454"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="442"/>
         <source>Cleaning package cache...</source>
         <translation>正在清除套件快取....</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="458"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="446"/>
         <source>Removing Pacman&apos;s transaction lock file...</source>
         <translation>正在移除被 Pacman 處理項目鎖定的檔案...</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="490"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="478"/>
         <source>Check updates</source>
         <translation>檢查更新</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="495"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="483"/>
+        <source>System upgrade</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="488"/>
         <source>Checking for updates...</source>
         <translation>正在檢查更新……</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="500"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="493"/>
         <source>No updates available</source>
         <translation>沒有可用的更新</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="508"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="501"/>
         <source>Sync database</source>
         <translation>同步資料庫</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="512"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="505"/>
         <source>Synchronizing databases...</source>
         <translation>正在同步套件資料庫...</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="521"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="514"/>
         <source>SysInfo file generated on: %1&lt;br&gt;If you wish, post the output in your distro&apos;s forum for help.</source>
         <translation>Sysinfo 檔案已生成：%1&lt;br&gt;如果您想要的話，可以將輸出張貼到您的散佈版的論壇以尋求協助。</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="525"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="518"/>
         <source>Starting full system upgrade...</source>
         <translation>正在開始全系統升級...</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="529"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="522"/>
         <source>Installing selected packages...</source>
         <translation>正在安裝選取的套件...</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="533"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="526"/>
         <source>Removing selected packages...</source>
         <translation>正在移除選取的套件...</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="537"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="530"/>
         <source>Removing/installing selected packages...</source>
         <translation>正在移除/安裝選取的套件...</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="545"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="534"/>
         <source>Running command in terminal...</source>
         <translation>正在終端機內執行指令...</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="549"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="538"/>
         <source>Command finished OK!</source>
         <translation>指令成功的完成了！</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="553"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="542"/>
         <source>Command finished with errors!</source>
         <translation>指令執行錯誤！</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="558"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="547"/>
         <source>Temporary &quot;yay-bin&quot; could not be downloaded!</source>
         <translation>暫時的 &quot;yay-bin&quot; 無法下載！</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="563"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="552"/>
         <source>Temporary &quot;yay-bin&quot; downloaded.</source>
         <translation>暫時的 &quot;yay-bin&quot; 已下載。</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="568"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="557"/>
         <source>Downloading temporary &quot;yay-bin&quot;...</source>
         <translation>正在下載暫時的 &quot;yay-bin&quot;……</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="572"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="561"/>
         <source>Retrieving %1</source>
         <translation>正在擷取 %1</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="576"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="565"/>
         <source>Total download size: %1 KB</source>
         <translation>總共下載大小：%1 KB</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="580"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="569"/>
         <source>The following package needs to be retrieved</source>
         <translation>以下套件需要被擷取</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="584"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="573"/>
         <source>The following package will be removed</source>
         <translation>以下套件將被移除</translation>
     </message>
     <message numerus="yes">
-        <location filename="Projects/octopi/src/strconstants.cpp" line="588"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="577"/>
         <source>The following %n packages need to be retrieved</source>
         <translation><numerusform>以下 %n 個套件需要被擷取</numerusform></translation>
     </message>
     <message numerus="yes">
-        <location filename="Projects/octopi/src/strconstants.cpp" line="592"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="581"/>
         <source>The following %n packages will be removed</source>
         <translation><numerusform>以下 %n 個套件將被移除</numerusform></translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="596"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="585"/>
         <source>There are forbidden packages in the removal list!</source>
         <translation>這些是在移除清單中將被遺棄的套件！</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="600"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="589"/>
         <source>There are no new updates available!</source>
         <translation>目前沒有新的更新！</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="604"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="593"/>
         <source>There is an update available!</source>
         <translation>有 1 個更新可用！</translation>
     </message>
     <message numerus="yes">
-        <location filename="Projects/octopi/src/strconstants.cpp" line="608"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="597"/>
         <source>There are %n updates available!</source>
         <translation><numerusform>有 %n 個更新可用！</numerusform></translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="612"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="601"/>
         <source>Confirm?</source>
         <translation>確定？</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="616"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="605"/>
         <source>Warning!!!</source>
         <translation>警告！！！</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="620"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="609"/>
         <source>Confirmation</source>
         <translation>確定</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="624"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="613"/>
         <source>There has been a transaction error!</source>
         <translation>有一個處理項目的錯誤！</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="628"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="617"/>
         <source>Do you want to execute this transaction in a Terminal?</source>
         <translation>您確定要在終端機中執行這個處理項目嗎？</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="640"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="629"/>
         <source>Do you really want to cancel actions?</source>
         <translation>您真的想要取消動作嗎？</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="644"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="633"/>
         <source>Please, enter the administrator&apos;s password</source>
         <translation>請輸入超級使用者密碼</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="650"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="639"/>
         <source>There are no means to get administrator&apos;s credentials.</source>
         <translation>無法獲得超級使用者的授權。</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="654"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="643"/>
         <source>You&apos;ll need to install &quot;octopi-sudo&quot; in order to use Octopi.</source>
         <translation>您必須安裝 &quot;octopi-sudo&quot; 才能使用 Octopi。</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="659"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="648"/>
         <source>You'll need one of those tools to use AUR:
 
 %1, %2, %3 %4 or %5</source>
@@ -1204,71 +1209,71 @@ You may need to synchronize database!</source>
 %1, %2, %3 %4 或 %5</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="665"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="654"/>
         <source>You need a package in order to use AUR.
 Do you want to install it?</source>
         <translation>您需要軟體包才能使用 AUR。
 您想要安裝它嗎？</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="671"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="660"/>
         <source>Connection is OK!</source>
         <translation>連線正常！</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="675"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="664"/>
         <source>Would you like to help this project by voting for it?
 You only need to accept and wait a few seconds.</source>
         <translation>您想投票協助此專案嗎？
 您只需要接受並等待幾秒鐘。</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="681"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="670"/>
         <source>Thank you for voting for Octopi!</source>
         <translation>感謝您投票給 Octopi！</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="686"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="675"/>
         <source>Username and/or password is/are incorrect.</source>
         <translation>使用者與／或密碼不正確。</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="691"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="680"/>
         <source>AUR username is not set.</source>
         <translation>未設定 AUR 使用者名稱。</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="696"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="685"/>
         <source>AUR password is not set.</source>
         <translation>未設定 AUR 密碼。</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="700"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="689"/>
         <source>Icon path information is not set.</source>
         <translation>未設定圖示路徑資訊。</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="704"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="693"/>
         <source>You can not run Octopi with administrator&apos;s credentials.</source>
         <translation>您不能以超級使用者的權限執行 Octopi  。</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="708"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="697"/>
         <source>Canceling the running transaction may damage your system!</source>
         <translation>取消正在執行的處理項目可能會破壞您的系統！</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="712"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="701"/>
         <source>There are pending actions</source>
         <translation>有擱置中的動作</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="716"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="705"/>
         <source>Do you really want to quit?</source>
         <translation>確定要離開嗎？</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="721"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="710"/>
         <source>You are about to generate &quot;octopi-sysinfo.log&quot; in your home path with the contents of:
 
 &quot;/etc/lsb-release&quot;, &quot;inxi -Fxz&quot;, &quot;uname -a&quot;, &quot;mhwd -li -d,&quot;
@@ -1287,176 +1292,181 @@ Do you want to continue?
 </translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="729"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="718"/>
         <source>Executing command</source>
         <translation>正在執行指令</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="733"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="722"/>
         <source>Run in terminal</source>
         <translation>在終端機中執行</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="737"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="726"/>
         <source>Needs application restart to take effect</source>
         <translation>重新啟動程式以生效</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="741"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="730"/>
         <source>These changes need application restart to take effect!</source>
         <translation>這些更動需要重新啟動程式才能生效！</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="745"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="734"/>
         <source>Select the packages you want to install</source>
         <translation>選擇您想要安裝的套件</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="749"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="738"/>
         <source>This file does not appear to be a simple text.
 Are you sure you want to open it?</source>
         <translation>這個檔案似乎不是一般的文字檔。
 您確定您要開啟它嗎？</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="754"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="743"/>
         <source>To be installed</source>
         <translation>將要安裝</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="758"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="747"/>
         <source>To be removed</source>
         <translation>將要移除</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="762"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="751"/>
         <source>Remove</source>
         <translation>移除</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="766"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="755"/>
         <source>Install</source>
         <translation>安裝</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="771"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="760"/>
         <source>Reinstall</source>
         <translation>重新安裝</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="776"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="765"/>
         <source>Update</source>
         <translation>更新</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="780"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="769"/>
         <source>Remove item</source>
         <translation>移除項目</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="784"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="773"/>
         <source>Remove items</source>
         <translation>移除項目</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="788"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="777"/>
         <source>Press Ctrl+A to select/deselect all</source>
         <translation>按下 Ctrl+A 以選擇/取消選擇全部</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="792"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="781"/>
         <source>Use &quot;%1&quot; tool</source>
         <translation>使用「%1」工具</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="796"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="785"/>
         <source>Copy path to clipboard</source>
         <translation>複製路徑至剪貼簿</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="800"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="789"/>
         <source>Setup</source>
         <translation>設定</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="804"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="793"/>
         <source>Check for package updates interval</source>
         <translation>檢查軟體包更新間隔</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="808"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="797"/>
         <source>Once a day</source>
         <translation>一天一次</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="812"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="801"/>
         <source>Once a day, at</source>
         <translation>一天一次，在</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="816"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="805"/>
         <source>(value in 24-hour format: 0 to 23)</source>
         <translation>（24 小時格式的值：0 到 23）</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="820"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="809"/>
         <source>Once every</source>
         <translation>一次，每</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="824"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="813"/>
         <source>(value in minutes: %1 to %2)</source>
         <translation>（分鐘格式的值：%1 到 %2）</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="828"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="817"/>
         <source>Set interval...</source>
         <translation>設定間隔...</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="833"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="822"/>
         <source>Stop</source>
         <translation>停止</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="838"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="827"/>
         <source>%1 could not be found in the system!</source>
         <translation>在系統中找不到 %1！</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="843"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="832"/>
         <source>Zoom in</source>
         <translation>放大</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="848"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="837"/>
         <source>Zoom out</source>
         <translation>縮小</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="853"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="842"/>
         <source>Maximize</source>
         <translation>最大化</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="858"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="847"/>
         <source>Copy</source>
         <translation>複製</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="863"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="852"/>
         <source>Paste</source>
         <translation>貼上</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="868"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="857"/>
         <source>Never</source>
         <translation>從不</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="873"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="862"/>
         <source>Upgrading...</source>
         <translation>正在升級……</translation>
+    </message>
+    <message>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="867"/>
+        <source>Exit</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

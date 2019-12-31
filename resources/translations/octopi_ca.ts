@@ -82,155 +82,155 @@
         <translation>&amp;Surt</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="303"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="306"/>
         <source>System u&amp;pgrade</source>
         <translation>Actualit&amp;zació del sistema</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="315"/>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="318"/>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="526"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="324"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="327"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="535"/>
         <source>Install</source>
         <translation>Instal·la-ho</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="327"/>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="330"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="336"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="339"/>
         <source>Remove</source>
         <translation>Suprimeix-ho</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="335"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="344"/>
         <source>Outdated packages</source>
         <translation>Paquets no actualitzats</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="344"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="353"/>
         <source>&amp;Get latest distro news</source>
         <translation>O&amp;btén les darreres notícies de la distribució</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="356"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="365"/>
         <source>Remove group</source>
         <translation>Suprimeix el grup</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="365"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="374"/>
         <source>Install group</source>
         <translation>Instal·la el grup</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="374"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="383"/>
         <source>Collapse item</source>
         <translation>Redueix l&apos;element</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="383"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="392"/>
         <source>Expand item</source>
         <translation>Expandeix l&apos;element</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="392"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="401"/>
         <source>Collapse all items</source>
         <translation>Redueix tots els elements</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="401"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="410"/>
         <source>Expand all items</source>
         <translation>Expandeix tots els elements</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="410"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="419"/>
         <source>Open file</source>
         <translation>Obre un fitxer</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="419"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="428"/>
         <source>Edit file</source>
         <translation>Edita el fitxer</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="428"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="437"/>
         <source>Open directory</source>
         <translation>Obre un directori</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="437"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="446"/>
         <source>Open terminal here</source>
         <translation>Obre un terminal aquí</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="446"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="455"/>
         <source>Remove item</source>
         <translation>Suprimeix l&apos;element</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="458"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="467"/>
         <source>Remove items</source>
         <translation>Suprimeix els elements</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="469"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="478"/>
         <source>By &amp;description</source>
         <translation>Per &amp;descripció</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="480"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="489"/>
         <source>By &amp;name</source>
         <translation>Per &amp;nom</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="492"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="501"/>
         <source>Find a file</source>
         <translation>Trobeu un fitxer</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="501"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="510"/>
         <source>Open root terminal</source>
         <translation>Obre un terminal com a arrel</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="506"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="515"/>
         <source>Usage</source>
         <translation>Sintaxi</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="517"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="526"/>
         <source>&amp;Install local package...</source>
         <translation>&amp;Instal·la un paquet local...</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="534"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="543"/>
         <source>Pacman Log Viewer</source>
         <translation>Visualitzador del registre del Pacman</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="549"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="558"/>
         <source>Repository Editor</source>
         <translation>Editor de repositoris</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="561"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="570"/>
         <source>Cache Cleaner</source>
         <translation>Netejador de la cau</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="572"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="581"/>
         <source>Installed</source>
         <translation>Instal·lat</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="594"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="603"/>
         <source>By &amp;file</source>
         <translation>Per &amp;títol</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="605"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="614"/>
         <source>Use Instant Search</source>
         <translation>Usa la cerca instantània</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="613"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="622"/>
         <source>Donate!</source>
         <translation>Feu una donació!</translation>
     </message>
@@ -640,562 +640,567 @@ Potser heu de sincronitzar-la!</translation>
         <translation>Tot</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="142"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="134"/>
         <source>Arch Linux news</source>
         <translation>Notícies de l&apos;Arch Linux</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="146"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="138"/>
         <source>Chakra news</source>
         <translation>Notícies del Chakra</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="150"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="142"/>
         <source>Condres OS news</source>
         <translation>Notícies del Condres OS</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="154"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="146"/>
         <source>EndeavourOS news</source>
         <translation>Notícies de l&apos;EndeavourOS</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="158"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="150"/>
         <source>KaOS news</source>
         <translation>Notícies del KaOS</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="162"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="154"/>
         <source>Manjaro Linux news</source>
         <translation>Notícies del Manjaro Linux</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="170"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="158"/>
         <source>Parabola GNU/Linux-libre news</source>
         <translation>Notícies del Parabola GNU/Linux-libre</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="174"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="162"/>
         <source>Information</source>
         <translation>Informació</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="178"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="166"/>
         <source>Error</source>
         <translation>Error</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="182"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="170"/>
         <source>No news could be found! Press Ctrl+G to download the latest news.</source>
         <translation>No s&apos;ha pogut trobar cap notícia! Premeu Ctrl + G per baixar-ne les darreres.</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="186"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="174"/>
         <source>This Linux distro seems to be incompatible with Octopi!</source>
         <translation>Aquesta distribució Linux sembla incompatible amb l&apos;Octopi!</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="190"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="178"/>
         <source>Internet seems unavailable!</source>
         <translation>No sembla que hi hagi Internet disponible!</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="194"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="182"/>
         <source>Display all groups</source>
         <translation>Mostra tots els grups</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="206"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="194"/>
         <source>Usage</source>
         <translation>Ús / Sintaxi</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="210"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="198"/>
         <source>About</source>
         <translation>Quant a</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="214"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="202"/>
         <source>Help</source>
         <translation>Ajuda</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="218"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="206"/>
         <source>&amp;Options</source>
         <translation>&amp;Opcions</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="222"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="210"/>
         <source>Name</source>
         <translation>Nom</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="226"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="214"/>
         <source>Version</source>
         <translation>Versió</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="230"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="218"/>
         <source>Outdated version</source>
         <translation>Versió no actualitzada</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="234"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="222"/>
         <source>Available version</source>
         <translation>Versió disponible</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="238"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="226"/>
         <source>No description available.</source>
         <translation>Descripció no disponible.</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="242"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="230"/>
         <source>URL</source>
         <translation>URL</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="246"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="234"/>
         <source>Repository</source>
         <translation>Repositori</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="250"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="238"/>
         <source>Licenses</source>
         <translation>Llicències</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="254"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="242"/>
         <source>Group</source>
         <translation>Grup</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="258"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="246"/>
         <source>Groups</source>
         <translation>Grups</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="262"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="250"/>
         <source>Provides</source>
         <translation>Proporciona</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="266"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="254"/>
         <source>Depends On</source>
         <translation>Depèn de</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="270"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="258"/>
         <source>Required By</source>
         <translation>Requerit per</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="274"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="262"/>
         <source>Optional For</source>
         <translation>Opcional per a</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="278"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="266"/>
         <source>Optional Deps</source>
         <translation>Dependències opcionals</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="282"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="270"/>
         <source>Conflicts With</source>
         <translation>Té conflictes amb</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="286"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="274"/>
         <source>Replaces</source>
         <translation>Reemplaça</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="290"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="278"/>
         <source>Votes</source>
         <translation>Vots</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="294"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="282"/>
         <source>votes</source>
         <translation>vots</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="299"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="287"/>
         <source>Vote</source>
         <translation>Voteu-ho</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="304"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="292"/>
         <source>AUR voted package list</source>
         <translation>Llista de paquets de l&apos;AUR votats</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="309"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="297"/>
         <source>Unvote</source>
         <translation>No ho voteu</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="313"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="301"/>
         <source>Download Size</source>
         <translation>Mida de la baixada</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="317"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="305"/>
         <source>Installed Size</source>
         <translation>Mida de la instal·lació</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="321"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="309"/>
         <source>Install Reason</source>
         <translation>Raó d&apos;instal·lació</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="325"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="313"/>
         <source>Packager</source>
         <translation>Empaquetador</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="329"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="317"/>
         <source>Package</source>
         <translation>Paquet</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="333"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="321"/>
         <source>Packages</source>
         <translation>Paquets</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="337"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="325"/>
         <source>Architecture</source>
         <translation>Arquitectura</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="341"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="329"/>
         <source>Build Date</source>
         <translation>Data de muntatge</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="345"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="333"/>
         <source>Description</source>
         <translation>Descripció</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="349"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="337"/>
         <source>Attention</source>
         <translation>Atenció</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="353"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="341"/>
         <source>Partial updates are not supported!</source>
         <translation>No s&apos;admeten actualitzacions parcials!</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="357"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="345"/>
         <source>automatic</source>
         <translation>automàtic</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="361"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="349"/>
         <source>Password</source>
         <translation>Contrasenya</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="365"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="353"/>
         <source>Info</source>
         <translation>Informació</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="369"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="357"/>
         <source>Files</source>
         <translation>Fitxers</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="373"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="361"/>
         <source>Transaction</source>
         <translation>Transacció</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="377"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="365"/>
         <source>Actions</source>
         <translation>Accions</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="381"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="369"/>
         <source>Output</source>
         <translation>Sortida</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="385"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="373"/>
         <source>News</source>
         <translation>Notícies</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="390"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="378"/>
         <source>Terminal</source>
         <translation>Terminal</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="394"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="382"/>
         <source>Contents of &quot;%1&quot;</source>
         <translation>Contingut de %1</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="398"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="386"/>
         <source>Find</source>
         <translation>Troba</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="402"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="390"/>
         <source>Clear</source>
         <translation>Neteja</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="406"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="394"/>
         <source> (outdated installed version is %1)</source>
         <translation>(la versió instal·lada no actualitzada és %1)</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="410"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="398"/>
         <source> (newer installed version is %1)</source>
         <translation>(la versió instal·lada més nova és %1)</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="414"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="402"/>
         <source>Building package list...</source>
         <translation>Es construeix la llista de paquets...</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="418"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="406"/>
         <source>Searching for %1 latest news...</source>
         <translation>Se cerquen les darreres notícies per a %1...</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="422"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="410"/>
         <source>There is one outdated package in your system:</source>
         <translation>Hi ha un paquet no actualitzat al sistema:</translation>
     </message>
     <message numerus="yes">
-        <location filename="Projects/octopi/src/strconstants.cpp" line="426"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="414"/>
         <source>There are %n outdated packages in your system:</source>
         <translation><numerusform>Hi ha %n paquet no actualitzat al sistema:</numerusform><numerusform>Hi ha %n paquets no actualitzats al sistema:</numerusform></translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="430"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="418"/>
         <source>(version %1 is available)</source>
         <translation>(versió %1 disponible)</translation>
     </message>
     <message numerus="yes">
-        <location filename="Projects/octopi/src/strconstants.cpp" line="434"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="422"/>
         <source>%n packages</source>
         <translation><numerusform>%n paquet</numerusform><numerusform>%n paquets</numerusform></translation>
     </message>
     <message numerus="yes">
-        <location filename="Projects/octopi/src/strconstants.cpp" line="438"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="426"/>
         <source>%n selected</source>
         <translation><numerusform>%n de seleccionat</numerusform><numerusform>%n de seleccionats</numerusform></translation>
     </message>
     <message numerus="yes">
-        <location filename="Projects/octopi/src/strconstants.cpp" line="442"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="430"/>
         <source>%n installed</source>
         <translation><numerusform>%n d&apos;instal·lat</numerusform><numerusform>%n d&apos;instal·lats</numerusform></translation>
     </message>
     <message numerus="yes">
-        <location filename="Projects/octopi/src/strconstants.cpp" line="446"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="434"/>
         <source>%n outdated</source>
         <translation><numerusform>%n de no actualitzat</numerusform><numerusform>%n de no actualitzats</numerusform></translation>
     </message>
     <message numerus="yes">
-        <location filename="Projects/octopi/src/strconstants.cpp" line="450"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="438"/>
         <source>%n available</source>
         <translation><numerusform>%n de disponible</numerusform><numerusform>%n de disponibles</numerusform></translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="454"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="442"/>
         <source>Cleaning package cache...</source>
         <translation>Es neteja la memòria cau de paquets...</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="458"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="446"/>
         <source>Removing Pacman&apos;s transaction lock file...</source>
         <translation>Se suprimeix el fitxer de bloqueig de transacció del Pacman...</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="490"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="478"/>
         <source>Check updates</source>
         <translation>Comprova si hi ha actualitzacions</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="495"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="483"/>
+        <source>System upgrade</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="488"/>
         <source>Checking for updates...</source>
         <translation>Es comprova si hi ha actualitzacions...</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="500"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="493"/>
         <source>No updates available</source>
         <translation>No hi ha cap actualització disponible.</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="508"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="501"/>
         <source>Sync database</source>
         <translation>Sincronitza la base de dades</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="512"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="505"/>
         <source>Synchronizing databases...</source>
         <translation>Se sincronitzen les bases de dades...</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="521"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="514"/>
         <source>SysInfo file generated on: %1&lt;br&gt;If you wish, post the output in your distro&apos;s forum for help.</source>
         <translation>Fitxer d&apos;informació del sistema generat el %1&lt;br&gt;. Si voleu, pengeu-ne la sortda al fòrum d&apos;ajuda de la vostra distribució.</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="525"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="518"/>
         <source>Starting full system upgrade...</source>
         <translation>Es comença l&apos;actualització completa del sistema...</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="529"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="522"/>
         <source>Installing selected packages...</source>
         <translation>S&apos;instal·len els paquets seleccionats...</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="533"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="526"/>
         <source>Removing selected packages...</source>
         <translation>Se suprimeixen els paquets seleccionats...</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="537"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="530"/>
         <source>Removing/installing selected packages...</source>
         <translation>Se suprimeixen / s&apos;instal·len els paquets seleccionats...</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="545"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="534"/>
         <source>Running command in terminal...</source>
         <translation>S&apos;executa l&apos;ordre al terminal...</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="549"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="538"/>
         <source>Command finished OK!</source>
         <translation>L&apos;ordre ha acabat bé!</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="553"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="542"/>
         <source>Command finished with errors!</source>
         <translation>L&apos;ordre ha acabat amb errors!</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="558"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="547"/>
         <source>Temporary &quot;yay-bin&quot; could not be downloaded!</source>
         <translation>No s&apos;ha pogut descarregar el yay-bin temporal!</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="563"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="552"/>
         <source>Temporary &quot;yay-bin&quot; downloaded.</source>
         <translation>S&apos;ha descarregat el yay-bin temporal.</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="568"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="557"/>
         <source>Downloading temporary &quot;yay-bin&quot;...</source>
         <translation>Es descarrega el yay-bin temporal...</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="572"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="561"/>
         <source>Retrieving %1</source>
         <translation>Es recupera %1</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="576"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="565"/>
         <source>Total download size: %1 KB</source>
         <translation>Mida total de la baixada: %1 KB</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="580"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="569"/>
         <source>The following package needs to be retrieved</source>
         <translation>Cal recuperar el paquet següent:</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="584"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="573"/>
         <source>The following package will be removed</source>
         <translation>Se suprimirà el paquet següent:</translation>
     </message>
     <message numerus="yes">
-        <location filename="Projects/octopi/src/strconstants.cpp" line="588"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="577"/>
         <source>The following %n packages need to be retrieved</source>
         <translation><numerusform>Cal recuperar el següent paquet (%n):</numerusform><numerusform>Cal recuperar els %n paquets següents:</numerusform></translation>
     </message>
     <message numerus="yes">
-        <location filename="Projects/octopi/src/strconstants.cpp" line="592"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="581"/>
         <source>The following %n packages will be removed</source>
         <translation><numerusform>Se suprimirà el paquet següent (%n):</numerusform><numerusform>Se suprimiran els %n paquets següents:</numerusform></translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="596"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="585"/>
         <source>There are forbidden packages in the removal list!</source>
         <translation>Hi ha paquets prohibits a la llista de supressió!</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="600"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="589"/>
         <source>There are no new updates available!</source>
         <translation>No hi ha cap actualització nova disponible!</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="604"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="593"/>
         <source>There is an update available!</source>
         <translation>Hi ha una actualització disponible!</translation>
     </message>
     <message numerus="yes">
-        <location filename="Projects/octopi/src/strconstants.cpp" line="608"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="597"/>
         <source>There are %n updates available!</source>
         <translation><numerusform>Hi ha %n actualització disponible!</numerusform><numerusform>Hi ha %n actualitzacions disponibles!</numerusform></translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="612"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="601"/>
         <source>Confirm?</source>
         <translation>Endavant?</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="616"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="605"/>
         <source>Warning!!!</source>
         <translation>Avís!</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="620"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="609"/>
         <source>Confirmation</source>
         <translation>Confirmació</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="624"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="613"/>
         <source>There has been a transaction error!</source>
         <translation>Hi ha hagut un error de transacció!</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="628"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="617"/>
         <source>Do you want to execute this transaction in a Terminal?</source>
         <translation>Voleu executar aquesta transacció en un terminal?</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="640"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="629"/>
         <source>Do you really want to cancel actions?</source>
         <translation>Realment voleu cancel·lar les accions?</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="644"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="633"/>
         <source>Please, enter the administrator&apos;s password</source>
         <translation>Si us plau, escriviu la clau d&apos;accés de l&apos;administrador.</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="650"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="639"/>
         <source>There are no means to get administrator&apos;s credentials.</source>
         <translation>No hi ha manera d&apos;obtenir les credencials de l&apos;administrador.</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="654"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="643"/>
         <source>You&apos;ll need to install &quot;octopi-sudo&quot; in order to use Octopi.</source>
         <translation>Caldrà que instal·leu octopi-sudo per tal d&apos;usar l&apos;Octopi.</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="659"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="648"/>
         <source>You'll need one of those tools to use AUR:
 
 %1, %2, %3 %4 or %5</source>
@@ -1204,71 +1209,71 @@ Potser heu de sincronitzar-la!</translation>
 %1, %2, %3 %4 or %5</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="665"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="654"/>
         <source>You need a package in order to use AUR.
 Do you want to install it?</source>
         <translation>Us cal un paquet per tal d&apos;usar l&apos;AUR.
 El voleu instal·lar?</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="671"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="660"/>
         <source>Connection is OK!</source>
         <translation>La connexió és correcta!</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="675"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="664"/>
         <source>Would you like to help this project by voting for it?
 You only need to accept and wait a few seconds.</source>
         <translation>Voleu ajudar aquest projecte votant-hi a favor?
 Només cal que ho accepteu i que espereu un segons.</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="681"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="670"/>
         <source>Thank you for voting for Octopi!</source>
         <translation>Gràcies per votar a favor de l&apos;Octopi!</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="686"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="675"/>
         <source>Username and/or password is/are incorrect.</source>
         <translation>El nom d&apos;usuari o la contrasenya no són correctes.</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="691"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="680"/>
         <source>AUR username is not set.</source>
         <translation>No s&apos;ha establert el nom d&apos;usuari de l&apos;AUR.</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="696"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="685"/>
         <source>AUR password is not set.</source>
         <translation>No s&apos;ha estalert la contrasenya de l&apos;AUR.</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="700"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="689"/>
         <source>Icon path information is not set.</source>
         <translation>No s&apos;ha establert la informació del camí de la icona.</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="704"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="693"/>
         <source>You can not run Octopi with administrator&apos;s credentials.</source>
         <translation>No podeu executar l&apos;Octopi amb les credencials d&apos;administrador.</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="708"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="697"/>
         <source>Canceling the running transaction may damage your system!</source>
         <translation>Cancel·lar la transacció que s&apos;executa pot danyar el sistema!</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="712"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="701"/>
         <source>There are pending actions</source>
         <translation>Hi ha accions pendents.</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="716"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="705"/>
         <source>Do you really want to quit?</source>
         <translation>Realment en voleu sortir?</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="721"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="710"/>
         <source>You are about to generate &quot;octopi-sysinfo.log&quot; in your home path with the contents of:
 
 &quot;/etc/lsb-release&quot;, &quot;inxi -Fxz&quot;, &quot;uname -a&quot;, &quot;mhwd -li -d,&quot;
@@ -1287,176 +1292,181 @@ Voleu continuar?
 </translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="729"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="718"/>
         <source>Executing command</source>
         <translation>S&apos;executa l&apos;ordre</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="733"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="722"/>
         <source>Run in terminal</source>
         <translation>Executa en un terminal</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="737"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="726"/>
         <source>Needs application restart to take effect</source>
         <translation>Cal reiniciar l&apos;aplicació perquè tingui efecte.</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="741"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="730"/>
         <source>These changes need application restart to take effect!</source>
         <translation>Aquests canvis requereixen reiniciar l&apos;aplicació perquè tinguin efecte!</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="745"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="734"/>
         <source>Select the packages you want to install</source>
         <translation>Seleccioneu els paquets que voleu instal·lar.</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="749"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="738"/>
         <source>This file does not appear to be a simple text.
 Are you sure you want to open it?</source>
         <translation>Aquest fitxer no sembla que sigui un simple text.
 Segur que voleu obrir-lo?</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="754"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="743"/>
         <source>To be installed</source>
         <translation>Per instal·lar</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="758"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="747"/>
         <source>To be removed</source>
         <translation>Per suprimir</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="762"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="751"/>
         <source>Remove</source>
         <translation>Suprimeix</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="766"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="755"/>
         <source>Install</source>
         <translation>Instal·la</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="771"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="760"/>
         <source>Reinstall</source>
         <translation>Reinstal·la</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="776"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="765"/>
         <source>Update</source>
         <translation>Actualitza</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="780"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="769"/>
         <source>Remove item</source>
         <translation>Suprimeix l&apos;element</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="784"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="773"/>
         <source>Remove items</source>
         <translation>Suprimeix els elements</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="788"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="777"/>
         <source>Press Ctrl+A to select/deselect all</source>
         <translation>Premeu Ctrl + A per seleccionar-ho tot / anul·lar la selecció de tot.</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="792"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="781"/>
         <source>Use &quot;%1&quot; tool</source>
         <translation>Usa l&apos;eina %1.</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="796"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="785"/>
         <source>Copy path to clipboard</source>
         <translation>Copia&apos;n la ruta al porta-retalls.</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="800"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="789"/>
         <source>Setup</source>
         <translation>Configuració</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="804"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="793"/>
         <source>Check for package updates interval</source>
         <translation>Interval de comprovació de les actualitzacions de paquets</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="808"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="797"/>
         <source>Once a day</source>
         <translation>Un cop al dia</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="812"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="801"/>
         <source>Once a day, at</source>
         <translation>Un cop al dia, a les</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="816"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="805"/>
         <source>(value in 24-hour format: 0 to 23)</source>
         <translation>(valor en format de 24 hores: de 0 a 23)</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="820"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="809"/>
         <source>Once every</source>
         <translation>Un cop cada </translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="824"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="813"/>
         <source>(value in minutes: %1 to %2)</source>
         <translation>(valor en minuts: de %1 a %2)</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="828"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="817"/>
         <source>Set interval...</source>
         <translation>Estableix l&apos;interval...</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="833"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="822"/>
         <source>Stop</source>
         <translation>Atura</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="838"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="827"/>
         <source>%1 could not be found in the system!</source>
         <translation>No s&apos;ha pogut trobar %1 al sistema!</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="843"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="832"/>
         <source>Zoom in</source>
         <translation>Apropa</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="848"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="837"/>
         <source>Zoom out</source>
         <translation>Allunya</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="853"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="842"/>
         <source>Maximize</source>
         <translation>Mazimitza</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="858"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="847"/>
         <source>Copy</source>
         <translation>Copia</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="863"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="852"/>
         <source>Paste</source>
         <translation>Enganxa</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="868"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="857"/>
         <source>Never</source>
         <translation>Mai</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="873"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="862"/>
         <source>Upgrading...</source>
         <translation>S&apos;actualitza...</translation>
+    </message>
+    <message>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="867"/>
+        <source>Exit</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
