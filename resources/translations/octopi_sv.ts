@@ -1027,7 +1027,7 @@ Du behöver nog synkronisera databasen!</translation>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="483"/>
         <source>System upgrade</source>
-        <translation type="unfinished"/>
+        <translation>Systemuppgradering</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="488"/>
@@ -1466,7 +1466,7 @@ Are you sure you want to open it?</source>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="867"/>
         <source>Exit</source>
-        <translation type="unfinished"/>
+        <translation>Avsluta</translation>
     </message>
 </context>
 <context>

@@ -1027,7 +1027,7 @@ Gali būti, kad turite sinchronizuoti duomenų bazes!</translation>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="483"/>
         <source>System upgrade</source>
-        <translation type="unfinished"/>
+        <translation>Sistemos naujinimas</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="488"/>
@@ -1466,7 +1466,7 @@ Ar tikrai norite jį atverti?</translation>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="867"/>
         <source>Exit</source>
-        <translation type="unfinished"/>
+        <translation>Išeiti</translation>
     </message>
 </context>
 <context>

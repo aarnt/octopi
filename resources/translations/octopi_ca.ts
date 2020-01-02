@@ -1027,7 +1027,7 @@ Potser heu de sincronitzar-la!</translation>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="483"/>
         <source>System upgrade</source>
-        <translation type="unfinished"/>
+        <translation>Actualització del sistema</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="488"/>
@@ -1466,7 +1466,7 @@ Segur que voleu obrir-lo?</translation>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="867"/>
         <source>Exit</source>
-        <translation type="unfinished"/>
+        <translation>Surt</translation>
     </message>
 </context>
 <context>
