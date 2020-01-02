@@ -461,14 +461,17 @@ void MainWindow::doSystemUpgrade()
   }
   else
   {
-    if (m_transactionDialog != nullptr)
+    /*if (m_transactionDialog != nullptr)
     {
       if (m_transactionDialog->isMinimized())
         m_transactionDialog->setWindowState(Qt::WindowNoState);
       else
+      {
         m_transactionDialog->activateWindow();
+      }
+
       return;
-    }
+    }*/
 
     QList<PackageListData> * targets = Package::getTargetUpgradeList();
 
@@ -505,6 +508,7 @@ void MainWindow::doSystemUpgrade()
 
     QString ds = Package::kbytesToSize(totalDownloadSize);
     m_transactionDialog = new TransactionDialog(this);
+    m_transactionDialog->setWindowFlags(m_transactionDialog->windowFlags() | Qt::WindowStaysOnTopHint);
 
     if(targets->count()==1)
       m_transactionDialog->setText(StrConstants::getRetrievePackage() +
@@ -992,7 +996,13 @@ void MainWindow::execSystemTrayActivated(QSystemTrayIcon::ActivationReason ar)
 {
   if (m_commandExecuting != ectn_NONE)
   {
-    if (m_outputDialog != nullptr) m_outputDialog->activateWindow();
+    if (m_outputDialog != nullptr)
+    {
+      if (m_outputDialog->isMinimized())
+        m_outputDialog->setWindowState(Qt::WindowNoState);
+
+      m_outputDialog->activateWindow();
+    }
     return;
   }
 
@@ -1041,7 +1051,13 @@ void MainWindow::execSystemTrayKF5()
 {
   if (m_commandExecuting != ectn_NONE)
   {
-    if (m_outputDialog != nullptr) m_outputDialog->activateWindow();
+    if (m_outputDialog != nullptr)
+    {
+      if (m_outputDialog->isMinimized())
+        m_outputDialog->setWindowState(Qt::WindowNoState);
+
+      m_outputDialog->activateWindow();
+    }
     return;
   }
 
