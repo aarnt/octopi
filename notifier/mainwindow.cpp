@@ -461,7 +461,7 @@ void MainWindow::doSystemUpgrade()
   }
   else
   {
-    /*if (m_transactionDialog != nullptr)
+    if (m_transactionDialog != nullptr)
     {
       if (m_transactionDialog->isMinimized())
         m_transactionDialog->setWindowState(Qt::WindowNoState);
@@ -471,7 +471,7 @@ void MainWindow::doSystemUpgrade()
       }
 
       return;
-    }*/
+    }
 
     QList<PackageListData> * targets = Package::getTargetUpgradeList();
 
