@@ -49,6 +49,9 @@ public:
 private:
     Ui::RepoEditor *ui;
 
+protected:
+    void closeEvent(QCloseEvent *event);
+
 public slots:
     void moveUp();
     void moveDown();
@@ -61,7 +64,8 @@ public slots:
     void removeEntry();
     void addEntry();
     void editEntry();
-    void loadBackup();
+    void loadBackup();    
+    void reject();
 };
 
 #endif // REPOEDITOR_H

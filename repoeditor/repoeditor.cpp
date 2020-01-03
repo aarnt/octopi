@@ -17,6 +17,7 @@ You should have received a copy of the GNU General Public License
 along with AppSet; if not, write to the Free Software
 Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
+
 #include "repoeditor.h"
 #include "ui_repoeditor.h"
 
@@ -24,11 +25,13 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 #include "checkboxdelegate.h"
 #include "optionsdelegate.h"
 #include "../src/settingsmanager.h"
+#include "../src/strconstants.h"
 
 #include <QFileDialog>
 #include <QMessageBox>
 #include <QProcess>
 #include <QDateTime>
+#include <QCloseEvent>
 
 RepoEditor::RepoEditor( QWidget *parent )
   : QDialog( parent )
@@ -92,6 +95,46 @@ RepoEditor::~RepoEditor()
   SettingsManager::setRepoEditorWindowSize(windowSize);
 
   delete ui;
+}
+
+void RepoEditor::closeEvent(QCloseEvent *event)
+{
+  if (repoConf->hasAnyChanges())
+  {
+    int res = QMessageBox::question(this, StrConstants::getConfirmation(),
+                                    tr("There are unsaved changes.") + "\n" +
+                                    tr("Do you want to save them?"),
+                                    QMessageBox::Yes | QMessageBox::No,
+                                    QMessageBox::No);
+    if (res == QMessageBox::Yes)
+    {
+      apply();
+    }
+  }
+
+  event->accept();
+  qApp->quit();
+}
+
+/*
+ * Whenever user tries to reject dialog...
+ */
+void RepoEditor::reject()
+{
+  if (repoConf->hasAnyChanges())
+  {
+    int res = QMessageBox::question(this, StrConstants::getConfirmation(),
+                                    tr("There are unsaved changes.") + "\n" +
+                                    tr("Do you want to save them?"),
+                                    QMessageBox::Yes | QMessageBox::No,
+                                    QMessageBox::No);
+    if (res == QMessageBox::Yes)
+    {
+      apply();
+    }
+  }
+
+  QDialog::reject();
 }
 
 void RepoEditor::loadBackup()

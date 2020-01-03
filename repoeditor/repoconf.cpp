@@ -17,8 +17,10 @@ You should have received a copy of the GNU General Public License
 along with AppSet; if not, write to the Free Software
 Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
+
 #include "repoconf.h"
 #include "../src/unixcommand.h"
+
 #include <QApplication>
 #include <QStyle>
 #include <QFont>
@@ -78,6 +80,28 @@ bool RepoConf::exists( const QString &name )
     if( ( ( RepoEntry & )entries.at( i ) ).getName() == name)
       found = true;
   return found;
+}
+
+/*
+ * Let's compare actual "/etc/pacman.conf" to the UI to see if user changed anything
+ */
+bool RepoConf::hasAnyChanges()
+{
+  bool res=false;
+  QFile confFile("/etc/pacman.conf");
+  QTextStream confFileStream( &confFile );
+
+  if (!confFile.open(QIODevice::ReadOnly))
+  {
+    res=false;
+  }
+  else
+  {
+    QString contents = confFile.readAll();
+    res=(contents.toLatin1() != toString().toLatin1());
+  }
+
+  return res;
 }
 
 bool RepoConf::loadConf( const QString &eFile )

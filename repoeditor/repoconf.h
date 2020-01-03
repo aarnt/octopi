@@ -71,6 +71,8 @@ public:
     return repoConfFilePath;
   }
 
+  bool hasAnyChanges();
+
   //Table Model
   int rowCount( const QModelIndex & ) const {
     return count();

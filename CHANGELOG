@@ -22,6 +22,7 @@
   Added a redesigned AUR tab in Options dialog.
   Maximization of properties pane now hides tab bar.
   Dropped support for terminal applications. QTermWidget is mandatory now!
+  BugFix: Don't let user exits RepoEditor without answerig if he wants to save changes.
   BugFix: Sometimes non-outdated AUR packages did not get refreshed.
   BugFix: Now Actions tab is disable while in AUR mode.
   BugFix: Replaced 'Sync database' command text to 'Check updates'.
