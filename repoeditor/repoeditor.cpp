@@ -25,7 +25,6 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 #include "checkboxdelegate.h"
 #include "optionsdelegate.h"
 #include "../src/settingsmanager.h"
-#include "../src/strconstants.h"
 
 #include <QFileDialog>
 #include <QMessageBox>
@@ -101,7 +100,7 @@ void RepoEditor::closeEvent(QCloseEvent *event)
 {
   if (repoConf->hasAnyChanges())
   {
-    int res = QMessageBox::question(this, StrConstants::getConfirmation(),
+    int res = QMessageBox::question(this, tr("Confirmation"),
                                     tr("There are unsaved changes.") + "\n" +
                                     tr("Do you want to save them?"),
                                     QMessageBox::Yes | QMessageBox::No,
@@ -123,7 +122,7 @@ void RepoEditor::reject()
 {
   if (repoConf->hasAnyChanges())
   {
-    int res = QMessageBox::question(this, StrConstants::getConfirmation(),
+    int res = QMessageBox::question(this, tr("Confirmation"),
                                     tr("There are unsaved changes.") + "\n" +
                                     tr("Do you want to save them?"),
                                     QMessageBox::Yes | QMessageBox::No,

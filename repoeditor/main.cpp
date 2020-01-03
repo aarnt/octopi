@@ -50,7 +50,8 @@ int main( int argc, char *argv[] )
   app.installTranslator(&appTranslator);
 
   if (UnixCommand::isRootRunning()){
-    QMessageBox::critical( 0, StrConstants::getApplicationName(), StrConstants::getErrorRunningWithRoot());
+    QMessageBox::critical( 0, "Repository Editor - Octopi",
+                           QObject::tr("You can not run Repository Editor with administrator's credentials."));
     return ( -2 );
   }
 
