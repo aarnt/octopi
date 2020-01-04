@@ -1,4 +1,5 @@
 0.10.0 (dev)
+  Updated some UI icons and added an specific one for foreign non installed pkg.
   RepoEditor now saves window size and position.
   Print .pacnew list summary after upgrade (if any).
   Added "copy" command to octopi's embedded terminal context menu.

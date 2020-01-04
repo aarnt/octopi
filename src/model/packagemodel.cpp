@@ -37,7 +37,8 @@ PackageModel::PackageModel(const PackageRepository& repo, QObject *parent)
   m_iconNotInstalled(IconHelper::getIconNonInstalled()), m_iconInstalled(IconHelper::getIconInstalled()),
   m_iconInstalledUnrequired(IconHelper::getIconUnrequired()),
   m_iconNewer(IconHelper::getIconNewer()), m_iconOutdated(IconHelper::getIconOutdated()),
-  m_iconForeign(IconHelper::getIconForeignGreen()), m_iconForeignOutdated(IconHelper::getIconForeignRed())
+  m_iconForeign(IconHelper::getIconForeignGreen()), m_iconForeignOutdated(IconHelper::getIconForeignRed()),
+  m_iconForeignNotInstalled(IconHelper::getIconForeignWhite())
 {
   m_showColumnPopularity = false;
 }
@@ -366,7 +367,9 @@ const QIcon& PackageModel::getIconFor(const PackageRepository::PackageData& pack
       break;
     case ectn_NON_INSTALLED:
 //      if (package.required == false) std::cout << "not installed not required" << std::endl; // doesn't happen with pacman
-      return m_iconNotInstalled;
+      if (package.managedByAUR)
+        return m_iconForeignNotInstalled;
+      else return m_iconNotInstalled;
     default:
       assert(false);
   }

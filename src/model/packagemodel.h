@@ -113,6 +113,7 @@ private:
   QIcon   m_iconOutdated;
   QIcon   m_iconForeign;
   QIcon   m_iconForeignOutdated;
+  QIcon   m_iconForeignNotInstalled;
 };
 
 #endif // OCTOPI_PACKAGEMODEL_H

@@ -137,6 +137,7 @@ public:
   static QIcon getIconUnrequired(){ return QIcon(":/resources/images/unrequired.png"); }
   static QIcon getIconForeignGreen(){ return QIcon(":/resources/images/foreign_green.png"); }
   static QIcon getIconForeignRed(){ return QIcon(":/resources/images/foreign_red.png"); }
+  static QIcon getIconForeignWhite(){ return QIcon(":/resources/images/foreign_white.png"); }
   static QIcon getIconStop(){ return QIcon(":/resources/images/stop_small_red.png"); }
   static QIcon getIconVote(){ return QIcon(":/resources/images/vote.png"); }
   static QIcon getIconUnvote(){ return QIcon(":/resources/images/un_vote.png"); }
