@@ -43,6 +43,7 @@ PacmanExec::PacmanExec(QObject *parent) : QObject(parent)
   m_packageCounter = 0;
   m_errorRetrievingFileCounter = 0;
   m_parsingAPackageChange = false;
+  m_listOfDotPacnewFiles.clear();
 
   m_sharedMemory=nullptr;
   //UnixCommand::removeTemporaryFiles();
@@ -666,6 +667,13 @@ void PacmanExec::prepareTextToPrint(QString str, TreatString ts, TreatURLLinks t
   }
   //Package counter code...
 
+  //Let's insert in the ".pacnew" messages list if we found one!
+  if (newStr.contains(QRegularExpression("installed as \\S+.pacnew")))
+  {
+    if (!m_listOfDotPacnewFiles.contains(newStr))
+      m_listOfDotPacnewFiles.append(newStr);
+  }
+
   emit textToPrintExt(newStr);
 }
 
@@ -898,6 +906,14 @@ void PacmanExec::doCheckUpdates()
 QStringList PacmanExec::getOutdatedPackages()
 {
   return m_listOfOutatedPackages;
+}
+
+/*
+ * Retrieves .pacnew file list if any
+ */
+QStringList PacmanExec::getDotPacnewFileList()
+{
+  return m_listOfDotPacnewFiles;
 }
 
 /*

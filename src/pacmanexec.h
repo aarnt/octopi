@@ -49,6 +49,8 @@ private:
   QStringList m_textPrinted;
   QStringList m_listOfOutatedPackages;
 
+  QStringList m_listOfDotPacnewFiles; //contains the list of "blahblah installed as blahblah.pacnew" occurencies (if any)
+
   bool m_processWasCanceled;
 
   QSharedMemory *m_sharedMemory;
@@ -82,7 +84,9 @@ public:
 
   void cancelProcess();
   void doCheckUpdates();
+
   QStringList getOutdatedPackages();
+  QStringList getDotPacnewFileList();
 
   //MIRROR-CHECK
   void doMirrorCheck();

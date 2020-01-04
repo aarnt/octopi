@@ -35,6 +35,7 @@
 #include <cassert>
 #include "termwidget.h"
 #include "aurvote.h"
+#include "constants.h"
 
 #include <QComboBox>
 #include <QProgressBar>
@@ -1988,6 +1989,21 @@ void MainWindow::pacmanProcessFinished(int exitCode, QProcess::ExitStatus exitSt
     //First, we empty the tabs cache!
     m_cachedPackageInInfo = "";
     m_cachedPackageInFiles = "";
+
+    //If there are .pacnew files to print...
+    QStringList dotPacnewFiles = m_pacmanExec->getDotPacnewFileList();
+    if (dotPacnewFiles.count() > 0)
+    {
+      writeToTabOutput("<br>");
+      foreach(QString dotPacnewFile, dotPacnewFiles)
+      {
+        if (!dotPacnewFile.contains("<br>"))
+          writeToTabOutput( "<br>" + dotPacnewFile, ectn_DONT_TREAT_URL_LINK);
+        else
+          writeToTabOutput(dotPacnewFile, ectn_DONT_TREAT_URL_LINK);
+      }
+    }
+
     writeToTabOutput("<br><b>" + StrConstants::getCommandFinishedOK() + "</b><br>");
   }
   else if (exitCode == ctn_PACMAN_PROCESS_EXECUTING)
