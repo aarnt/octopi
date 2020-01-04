@@ -1403,7 +1403,7 @@ LinuxDistro UnixCommand::getLinuxDistro()
         ret = ectn_ARCHBANGLINUX;
       }
       else if (contents.contains(QRegularExpression("Arch Linux")) ||
-               (contents.contains(QRegularExpression("arcolinux"))))
+               (contents.contains(QRegularExpression("Arcolinux"))))
       {
         ret = ectn_ARCHLINUX;
       }

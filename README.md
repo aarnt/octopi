@@ -4,10 +4,11 @@
 
 The project site is hosted on https://octopiproject.wordpress.com
 
-Currently, 8 Linux distros are compatible with it
+Currently, 9 Linux distros are compatible with it
 
  * [ArchBang](http://archbang.org/)
  * [Arch Linux](https://www.archlinux.org/)
+ * [ArcoLinux](https://arcolinux.info/)
  * [Chakra](https://chakralinux.org/)
  * [CondresOS](https://condresos.codelinsoft.it/)
  * [EndeavourOS](https://endeavouros.com/)
