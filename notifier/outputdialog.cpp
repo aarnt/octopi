@@ -330,6 +330,20 @@ void OutputDialog::pacmanProcessFinished(int exitCode, QProcess::ExitStatus exit
 
   if ((exitCode == 0) && exitStatus == QProcess::NormalExit)
   {
+    //If there are .pacnew files to print...
+    QStringList dotPacnewFiles = m_pacmanExec->getDotPacnewFileList();
+    if (dotPacnewFiles.count() > 0)
+    {
+      writeToTabOutput("<br>");
+      foreach(QString dotPacnewFile, dotPacnewFiles)
+      {
+        if (!dotPacnewFile.contains("<br>"))
+          writeToTabOutput( "<br>" + dotPacnewFile, ectn_DONT_TREAT_URL_LINK);
+        else
+          writeToTabOutput(dotPacnewFile, ectn_DONT_TREAT_URL_LINK);
+      }
+    }
+
     writeToTabOutput("<br><b>" + StrConstants::getCommandFinishedOK() + "</b><br>");
   }
   else
