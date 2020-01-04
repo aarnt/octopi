@@ -242,7 +242,7 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="93"/>
         <source>Ctrl+Shift+A to display AUR voted package list</source>
-        <translation>Ctrl+Shift+A で AUR 投票済みパッケージリストを表示</translation>
+        <translation>Ctrl+Shift+A で AUR に投票済みのパッケージリストを表示</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="98"/>
@@ -500,7 +500,7 @@
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="214"/>
         <source>Search for outdated AUR packages</source>
-        <translation>古くなった AUR パッケージを検索</translation>
+        <translation>失効した AUR パッケージを検索する</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="269"/>
@@ -525,7 +525,7 @@
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="322"/>
         <source>Enable AUR voting</source>
-        <translation>AUR 投票を有効にする</translation>
+        <translation>AUR への投票を有効にする</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="343"/>
@@ -692,7 +692,7 @@ You may need to synchronize database!</source>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="174"/>
         <source>This Linux distro seems to be incompatible with Octopi!</source>
-        <translation>この Linuxディストロは Octopi と互換性が無いようです！</translation>
+        <translation>このLinuxディストロは Octopi と互換性が無いようです！</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="178"/>
@@ -827,7 +827,7 @@ You may need to synchronize database!</source>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="292"/>
         <source>AUR voted package list</source>
-        <translation>AUR 投票済みパッケージリスト</translation>
+        <translation>AUR に投票済みのパッケージリスト</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="297"/>
@@ -1082,7 +1082,7 @@ You may need to synchronize database!</source>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="538"/>
         <source>Command finished OK!</source>
-        <translation>コマンドが無事に終了！</translation>
+        <translation>コマンドは正常に終了しました！</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="542"/>
@@ -1092,17 +1092,17 @@ You may need to synchronize database!</source>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="547"/>
         <source>Temporary &quot;yay-bin&quot; could not be downloaded!</source>
-        <translation>一時的な &quot;yay-bin&quot; をダウンロードできませんでした！</translation>
+        <translation>&quot;yay-bin&quot; をダウンロードできませんでした！</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="552"/>
         <source>Temporary &quot;yay-bin&quot; downloaded.</source>
-        <translation>一時的な &quot;yay-bin&quot; をダウンロードしました。</translation>
+        <translation>&quot;yay-bin&quot; をダウンロードしました。</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="557"/>
         <source>Downloading temporary &quot;yay-bin&quot;...</source>
-        <translation>一時的な &quot;yay-bin&quot; をダウンロードしています...</translation>
+        <translation>&quot;yay-bin&quot; をダウンロードしています...</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="561"/>
