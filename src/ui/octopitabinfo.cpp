@@ -88,12 +88,12 @@ QString OctopiTabInfo::formatTabInfo(const PackageRepository::PackageData& packa
   else
     html += "<h2><a href=\"https://aur.archlinux.org/packages/" + package.name + "\">" + package.name + "</a></h2>";
 
-  html += "<a style=\"font-size:16px;\">" + pkgDescription + "</a>";
+  html += pkgDescription;
 
   html += "<table border=\"0\">";
 
   html += "<tr><th width=\"20%\"></th><th width=\"80%\"></th></tr>";
-  html += "<tr><td>" + url + "</td><td style=\"font-size:14px;\">" + pid.url + "</td></tr>";
+  html += "<tr><td>" + url + "</td><td>" + pid.url + "</td></tr>";
 
   if (package.outdated())
   {
