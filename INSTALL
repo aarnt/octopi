@@ -1,6 +1,6 @@
 Installing Octopi is a pretty straightforward task. 
 
-Assuming you have updated Qt4(*) libs installed in your system, all 
+Assuming you have updated Qt5 libs installed in your system, all
 you have to do is run:
 
 	makepkg -f
@@ -8,21 +8,10 @@ you have to do is run:
 Wait for the compilation and then install the generated package (as 
 root), using:
 
-	pacman -U [--force] <nameOfTheGeneratedOctopiPackage.tar.xz>
+        pacman -U <nameOfTheGeneratedOctopiPackage.tar.[xz|zst]>
 
-You can also install the generated package notifier, using:
-
-	pacman -U [--force] <nameOfTheGeneratedOctopiNotifierPackage.tar.xz>
-
-Octopi is located at the system utilities menu of your Desktop 
+Octopi is located on the system utilities menu of your Desktop
 Environment.
 
 
 Enjoy!
-
-(*) Octopi is also Qt5 compatible, you'll only have to adjust the 
-"depends" section in PKGBUILD.
-
-If you are compiling Octopi in a KDE centric-distro like KaOS and Chakra, you should 
-first uncomment the "#define NO_GTK_STYLE" string located at "src/main.cpp" and 
-"notifier/octopi-notifier/main.cpp", otherwise it won't compile at all.

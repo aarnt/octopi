@@ -405,7 +405,7 @@ void QtSingleApplication::activateWindow(const QString &message)
       }
     }
   }
-  else if (actWin && message.contains("pkg.tar.xz")) {
+  else if (actWin && (message.contains("pkg.tar.xz") || (message.contains("pkg.tar.zst")))) {
     actWin->setWindowState(actWin->windowState() & ~Qt::WindowMinimized);
     actWin->raise();
     if (actWin->isHidden())
