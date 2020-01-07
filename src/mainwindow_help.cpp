@@ -243,7 +243,7 @@ void MainWindow::onHelpAbout()
       "<b>" + StrConstants::getApplicationName() + "</b><br>";
 
   aboutText += StrConstants::getVersion() + ": " + StrConstants::getApplicationVersion() + " - " + StrConstants::getQtVersion() + "<br>";
-  aboutText += StrConstants::getURL() + ": " + "<a href=\"http://octopiproject.wordpress.com/\">http://octopiproject.wordpress.com</a><br>";
+  aboutText += StrConstants::getURL() + ": " + "<a href=\"https://tintaescura.com/projects/octopi/\">https://tintaescura.com/projects/octopi</a><br>";
   aboutText += StrConstants::getLicenses() + ": " + QString("<a href=\"http://www.gnu.org/licenses/gpl-2.0.html\">GPL v2</a><br>");
   aboutText += "&copy; Alexandre Albuquerque Arnt<br><br>";
 
