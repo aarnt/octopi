@@ -82,6 +82,7 @@ public:
   static bool isDatabaseLocked();
   //static void removeDatabaseLock();
 
+  inline void removeSharedMemory(){ delete m_sharedMemory; };
   void cancelProcess();
   void doCheckUpdates();
 

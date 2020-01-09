@@ -45,6 +45,8 @@
 #include <QProgressBar>
 #include <QtConcurrent/QtConcurrentRun>
 
+#include <QSharedMemory>
+
 /*
  * Before we close the application, let's confirm if there is a pending transaction...
  */
@@ -109,6 +111,50 @@ void MainWindow::copyFullPathToClipboard()
     QClipboard *clip = qApp->clipboard();
     clip->setText(path);
   }
+}
+
+/*
+ * THIS IS JUST A TEST CODE!
+ */
+void testSharedMem()
+{
+  QSharedMemory *sharedMem=new QSharedMemory("org.arnt.test");
+  QByteArray sharedData="abracadabra -abcd\ncadabraabra -xyz";
+
+  /*if (sharedMem != nullptr)
+  {
+    if (sharedMem->isAttached())
+      sharedMem->detach();
+    delete sharedMem;
+    sharedMem=nullptr;
+  }*/
+
+  //removeSharedMemFiles();
+
+  sharedMem->create(sharedData.size());
+  sharedMem->lock();
+  memcpy(sharedMem->data(), sharedData.data(), sharedData.size());
+  sharedMem->unlock();
+
+  //Let's retrieve commands from sharedmem pool
+  QSharedMemory *sharedMem2 = new QSharedMemory("org.arnt.test");
+  if (!sharedMem2->attach(QSharedMemory::ReadOnly))
+  {
+    QTextStream qout(stdout);
+    qout << endl << "ERROR: Couldn't attach to memory" << endl;
+  }
+
+  QByteArray sharedData2(sharedMem2->size(), '\0');
+  sharedMem2->lock();
+  memcpy(sharedData2.data(), sharedMem2->data(), sharedMem2->size());
+  sharedMem2->unlock();
+  QString contents=QString::fromLatin1(sharedData2);
+  QTextStream qout(stdout);
+  qout << endl << "What is in memory: " << contents << endl;
+
+  sharedMem2->detach();
+  delete sharedMem2;
+  delete sharedMem;
 }
 
 /*
@@ -343,6 +389,11 @@ void MainWindow::keyPressEvent(QKeyEvent* ke)
       g_fwOutdatedAURPackages.setFuture(f);
       connect(&g_fwOutdatedAURPackages, SIGNAL(finished()), this, SLOT(showToolButtonAUR()));
     }
+  }
+  else if(ke->key() == Qt::Key_Z && ke->modifiers() == (Qt::ShiftModifier|Qt::ControlModifier))
+  {
+    //THIS IS JUST A TEST CODE
+    testSharedMem();
   }
 
   else ke->ignore();

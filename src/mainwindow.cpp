@@ -259,6 +259,7 @@ void MainWindow::onSendInfoToOctopiHelper()
           clientConnection, &QObject::deleteLater);
     clientConnection->write(block);
     clientConnection->disconnectFromHost();
+    m_pacmanExec->removeSharedMemory();
   }
 }
 
