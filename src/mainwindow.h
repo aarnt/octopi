@@ -337,6 +337,8 @@ private:
   bool isAURGroupSelected();
   bool isSearchByFileSelected();
 
+  bool isNotifierBusy();
+
 private slots:
 
   void initTabTerminal();

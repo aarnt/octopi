@@ -721,7 +721,7 @@ bool UnixCommand::hasTheExecutable( const QString& exeName )
  */
 void UnixCommand::removeSharedMemFiles()
 {
-  /*QDir tempDir(QDir::tempPath());
+  QDir tempDir(QDir::tempPath());
   QStringList nameFilters;
   nameFilters << "qipc_sharedmemory_orgarntoctopi*"
               << "qipc_systemsem_orgarntoctopi*";
@@ -745,7 +745,7 @@ void UnixCommand::removeSharedMemFiles()
 
       dir.rmdir(file.filePath());
     }
-  }*/
+  }
 }
 
 /*
@@ -1232,6 +1232,33 @@ bool UnixCommand::isAppRunning(const QString &appName, bool justOneInstance)
     else
       return false;
   }
+}
+
+/*
+ * Checks if Octopi/Octopi-notifier, cache-cleaner, etc is being executed
+ */
+bool UnixCommand::isOctoToolRunning(const QString &octoToolName)
+{
+  bool res=false;
+
+  QProcess proc;
+  proc.setProcessEnvironment(getProcessEnvironment());
+  QString cmd = "/usr/bin/ps -C %1 -o command";
+  cmd = cmd.arg(octoToolName);
+  proc.start(cmd);
+  proc.waitForFinished();
+  QString out = proc.readAll().trimmed();
+  if (out.contains("|")) return false;
+  out=out.remove("\n");
+  out=out.remove("COMMAND");
+
+  if (octoToolName=="octopi-cachecle")
+  {
+    if (out == "/usr/bin/octopi-cachecleaner") res=true;
+  }
+  else if ((out == "/usr/bin/" + octoToolName) || out.contains("/usr/bin/" + octoToolName + " ")) res=true;
+
+  return res;
 }
 
 /*

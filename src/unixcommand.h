@@ -120,6 +120,8 @@ public:
   static bool hasTheExecutable( const QString& exeName );
   static bool isAppRunning(const QString &appName, bool justOneInstance = false);
 
+  static bool isOctoToolRunning(const QString &octoToolName);
+
   static bool isRootRunning(){
     int uid = geteuid();
     return (uid == 0); //Returns TRUE if root is running Octopi

@@ -162,6 +162,7 @@ bool OctopiHelper::isOctoToolRunning(const QString &octoToolName)
   cmd = cmd.arg(octoToolName);
   proc.start(cmd);
   proc.waitForFinished();
+
   QString out = proc.readAll().trimmed();
   if (out.contains("|")) return false;
   out=out.remove("\n");
@@ -182,9 +183,13 @@ bool OctopiHelper::isOctoToolRunning(const QString &octoToolName)
  */
 int OctopiHelper::executePkgTransactionWithSharedMem()
 {
-  if(!isOctoToolRunning("octopi") &&
-     !isOctoToolRunning("octopi-notifier") &&
-     !isOctoToolRunning("octopi-cachecle"))
+  bool isOctopiRunning=isOctoToolRunning("octopi");
+  bool isNotifierRunning=isOctoToolRunning("octopi-notifier");
+  bool isCacheCleanerRunning=isOctoToolRunning("octopi-cachecle");
+
+  if(!isOctopiRunning &&
+     !isNotifierRunning &&
+     !isCacheCleanerRunning)
   {
     QTextStream qout(stdout);
     qout << endl << "octopi-helper[aborted]: Suspicious execution method" << endl;
@@ -210,14 +215,6 @@ int OctopiHelper::executePkgTransactionWithSharedMem()
 
   bool suspicious = false;
 
-  /*if (contents.contains(";") || contents.contains(",") || contents.contains("|") ||
-      contents.contains(">") || contents.contains("<") || contents.contains("&") ||
-      contents.contains("'") || contents.contains("'") || contents.contains("`") ||
-      contents.contains("^") || contents.contains("~") || contents.contains("@") ||
-      contents.contains("#") || contents.contains("$") || contents.contains("%") ||
-      contents.contains("*") || contents.contains("?") || contents.contains(":") ||
-      contents.contains("!") || contents.contains("+") || contents.contains("=") ||
-      contents.contains("(") || contents.contains(")"))*/
   if (contents.isEmpty() || contents.contains(QRegularExpression(m_suspiciousChars)))
       suspicious = true;
 
@@ -258,9 +255,7 @@ int OctopiHelper::executePkgTransactionWithSharedMem()
       {
         testCommandFromOctopi=true;
       }
-      else if (line.startsWith("pacman -Syu") /*||
-               line == "killall pacman" ||
-               line == "rm " + ctn_PACMAN_DATABASE_LOCK_FILE)*/)
+      else if (line.startsWith("pacman -Syu"))
       {
         testCommandFromOctopi=true;
         testCommandFromNotifier=true;
@@ -302,6 +297,13 @@ int OctopiHelper::executePkgTransactionWithSharedMem()
 
   if (testCommandFromOctopi)
   {
+    if (!isOctopiRunning)
+    {
+      QTextStream qout(stdout);
+      qout << endl << "octopi-helper[aborted]: Suspicious execution method" << endl;
+      return ctn_SUSPICIOUS_EXECUTION_METHOD;
+    }
+
     //Let's make a connection to Octopi server to ensure it sent this command.
     QTcpSocket socket;
     socket.connectToHost("127.0.0.1", 12701);
@@ -349,6 +351,13 @@ int OctopiHelper::executePkgTransactionWithSharedMem()
   testNotifierConnection:
   if (testCommandFromNotifier)
   {
+    if (!isNotifierRunning)
+    {
+      QTextStream qout(stdout);
+      qout << endl << "octopi-helper[aborted]: Suspicious execution method" << endl;
+      return ctn_SUSPICIOUS_EXECUTION_METHOD;
+    }
+
     //Let's make a connection to Octopi-Notifier server to ensure it sent this command.
     QTcpSocket socket;
     socket.connectToHost("127.0.0.1", 12702);
@@ -387,6 +396,13 @@ int OctopiHelper::executePkgTransactionWithSharedMem()
 
   if (testCommandFromCacheCleaner)
   {
+    if (!isCacheCleanerRunning)
+    {
+      QTextStream qout(stdout);
+      qout << endl << "octopi-helper[aborted]: Suspicious execution method" << endl;
+      return ctn_SUSPICIOUS_EXECUTION_METHOD;
+    }
+
     //Let's make a connection to Octopi-Notifier server to ensure it sent this command.
     QTcpSocket socket;
     socket.connectToHost("127.0.0.1", 12703);

@@ -138,6 +138,51 @@ MainWindow::~MainWindow()
 }
 
 /*
+ * Checks if Notifier is running and busy
+ */
+bool MainWindow::isNotifierBusy()
+{
+  bool res=false;
+
+  //Checks first if octopi is running...
+  if (!UnixCommand::isOctoToolRunning("octopi-notifier")) return res;
+
+  QTcpSocket socket;
+  socket.connectToHost("127.0.0.1", 12702);
+
+  if (!socket.waitForConnected(5000))
+  {
+    res=false;
+  }
+
+  QDataStream in(&socket);
+  in.setVersion(QDataStream::Qt_5_10);
+  QString octopiResponse;
+
+  do
+  {
+    if (!socket.waitForReadyRead())
+    {
+      res=false;
+    }
+
+    in.startTransaction();
+    in >> octopiResponse;
+  } while (!in.commitTransaction());
+
+  if (octopiResponse != "Octopi est occupatus")
+  {
+    res=false;
+  }
+  else
+  {
+    res=true; //Notifier is executing an action!
+  }
+
+  return res;
+}
+
+/*
  * Start listening for helper connections
  */
 bool MainWindow::startServer()

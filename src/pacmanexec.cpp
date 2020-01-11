@@ -68,7 +68,7 @@ PacmanExec::PacmanExec(QObject *parent) : QObject(parent)
  */
 PacmanExec::~PacmanExec()
 {
-  m_unixCommand->removeSharedMemFiles();
+  //m_unixCommand->removeSharedMemFiles();
   //m_unixCommand->removeTemporaryFile();
 }
 

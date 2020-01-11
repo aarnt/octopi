@@ -4,7 +4,7 @@
     <message>
         <location filename="Projects/octopi/repoeditor/addrepo.ui" line="14"/>
         <source>Add Repository - Octopi</source>
-        <translation>pakettilähteiden editori</translation>
+        <translation>Lisää Pakettilähde - Octopi</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/addrepo.ui" line="22"/>
@@ -54,12 +54,12 @@
     <message>
         <location filename="Projects/octopi/repoeditor/addrepo.cpp" line="125"/>
         <source>Can&apos;t add repository.</source>
-        <translation>pakettilähdettä ei voi lisätä</translation>
+        <translation>Pakettilähdettä ei voi lisätä</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/addrepo.cpp" line="136"/>
         <source>Select local repository</source>
-        <translation>valitse paikallinen pakettilähde</translation>
+        <translation>Valitse paikallinen pakettilähde</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/addrepo.cpp" line="149"/>
@@ -72,7 +72,7 @@
     <message>
         <location filename="Projects/octopi/repoeditor/main.cpp" line="54"/>
         <source>You can not run Repository Editor with administrator&apos;s credentials.</source>
-        <translation type="unfinished"/>
+        <translation>Et voi käynnistää Pakettilähteiden editoria pääkäyttäjän oikeuksin</translation>
     </message>
 </context>
 <context>
@@ -113,7 +113,7 @@
     <message>
         <location filename="Projects/octopi/repoeditor/repoeditor.ui" line="14"/>
         <source>Repository Editor - Octopi</source>
-        <translation>pakettilähteiden editori - Octopi</translation>
+        <translation>Pakettilähteiden Editori - Octopi</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/repoeditor.ui" line="27"/>
@@ -138,12 +138,12 @@
     <message>
         <location filename="Projects/octopi/repoeditor/repoeditor.ui" line="130"/>
         <source>Move Up</source>
-        <translation>siirrä ylös</translation>
+        <translation>Siirrä Ylös</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/repoeditor.ui" line="144"/>
         <source>Move Down</source>
-        <translation>Siirrä alas</translation>
+        <translation>Siirrä Alas</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/repoeditor.ui" line="160"/>
@@ -163,25 +163,25 @@
     <message>
         <location filename="Projects/octopi/repoeditor/repoeditor.ui" line="206"/>
         <source>Backup file:</source>
-        <translation>Varmuuskopiotiedosto</translation>
+        <translation>Varmuuskopiotiedosto:</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/repoeditor.cpp" line="103"/>
         <location filename="Projects/octopi/repoeditor/repoeditor.cpp" line="125"/>
         <source>Confirmation</source>
-        <translation type="unfinished"/>
+        <translation>Vahvistus</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/repoeditor.cpp" line="104"/>
         <location filename="Projects/octopi/repoeditor/repoeditor.cpp" line="126"/>
         <source>There are unsaved changes.</source>
-        <translation type="unfinished"/>
+        <translation>Tallentamattomia muutoksia</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/repoeditor.cpp" line="105"/>
         <location filename="Projects/octopi/repoeditor/repoeditor.cpp" line="127"/>
         <source>Do you want to save them?</source>
-        <translation type="unfinished"/>
+        <translation>Haluatko tallentaa?</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/repoeditor.cpp" line="160"/>

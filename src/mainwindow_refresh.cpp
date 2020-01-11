@@ -907,7 +907,12 @@ void MainWindow::buildPackageList()
 
   if (firstTime)
   {
-    m_initializationCompleted = true;        
+    if (!isNotifierBusy())
+    {
+      UnixCommand::removeSharedMemFiles();
+    }
+
+    m_initializationCompleted = true;
     firstTime = false;
 
     if(SettingsManager::getEnableAURVoting())

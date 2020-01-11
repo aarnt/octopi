@@ -70,6 +70,12 @@ MainWindow::MainWindow(QWidget *parent) :
 
   m_outputDialog=nullptr;
   initActions();
+
+  if (!isOctopiBusy())
+  {
+    UnixCommand::removeSharedMemFiles();
+  }
+
   initSystemTrayIcon();
 }
 
@@ -78,6 +84,51 @@ MainWindow::~MainWindow()
 #ifdef KSTATUS
   delete m_systemTrayIcon;
 #endif
+}
+
+/*
+ * Checks if Octopi is running and busy
+ */
+bool MainWindow::isOctopiBusy()
+{
+  bool res=false;
+
+  //Checks first if octopi is running...
+  if (!UnixCommand::isOctoToolRunning("octopi")) return res;
+
+  QTcpSocket socket;
+  socket.connectToHost("127.0.0.1", 12701);
+
+  if (!socket.waitForConnected(5000))
+  {
+    res=false;
+  }
+
+  QDataStream in(&socket);
+  in.setVersion(QDataStream::Qt_5_10);
+  QString octopiResponse;
+
+  do
+  {
+    if (!socket.waitForReadyRead())
+    {
+      res=false;
+    }
+
+    in.startTransaction();
+    in >> octopiResponse;
+  } while (!in.commitTransaction());
+
+  if (octopiResponse != "Octopi est occupatus")
+  {
+    res=false;
+  }
+  else
+  {
+    res=true; //Octopi is executing an action!
+  }
+
+  return res;
 }
 
 /*
@@ -418,6 +469,8 @@ void MainWindow::doSystemUpgrade()
 {
   if (!isInternetAvailable()) return;
 
+  if (isOctopiBusy()) return;
+
   if(!SettingsManager::getEnableConfirmationDialogInSysUpgrade())
   {
     if( (m_checkUpdatesStringList.count() != 0 && m_checkUpdatesStringList.contains("pacman")) ||
@@ -575,6 +628,8 @@ void MainWindow::doSystemUpgrade()
  */
 void MainWindow::doAURUpgrade()
 {
+  if (isOctopiBusy()) return;
+
   QString listOfTargets;
   QString auxPkg;
 

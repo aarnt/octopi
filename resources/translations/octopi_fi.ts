@@ -14,7 +14,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="106"/>
         <source>Actions</source>
-        <translation type="unfinished"/>
+        <translation>Toiminnot</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="111"/>
@@ -24,32 +24,32 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="147"/>
         <source>&amp;Help</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Ohje</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="156"/>
         <source>&amp;View</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Näytä</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="172"/>
         <source>&amp;File</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Tiedosto</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="184"/>
         <source>&amp;Search</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Haku</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="194"/>
         <source>T&amp;ools</source>
-        <translation type="unfinished"/>
+        <translation>T&amp;yökalut</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="224"/>
         <source>&amp;About</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Tietoja</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="227"/>
@@ -64,7 +64,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="250"/>
         <source>Apply</source>
-        <translation type="unfinished"/>
+        <translation>Toteuta</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="271"/>
@@ -74,17 +74,17 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="283"/>
         <source>Check &amp;updates</source>
-        <translation type="unfinished"/>
+        <translation>Tarkista &amp;päivitykset</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="291"/>
         <source>E&amp;xit</source>
-        <translation type="unfinished"/>
+        <translation>P&amp;oistu</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="306"/>
         <source>System u&amp;pgrade</source>
-        <translation type="unfinished"/>
+        <translation>Järjestelmän p&amp;äivitys</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="324"/>
@@ -107,7 +107,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="353"/>
         <source>&amp;Get latest distro news</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Hae viimeisimmät jakelu-uutiset</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="365"/>
@@ -172,12 +172,12 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="478"/>
         <source>By &amp;description</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Kuvauksen mukaan</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="489"/>
         <source>By &amp;name</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Nimen mukaan</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="501"/>
@@ -197,7 +197,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="526"/>
         <source>&amp;Install local package...</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Asenna paikallinen paketti...</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="543"/>
@@ -222,27 +222,27 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="603"/>
         <source>By &amp;file</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Tiedoston mukaan</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="614"/>
         <source>Use Instant Search</source>
-        <translation type="unfinished"/>
+        <translation>Käytä Hakua</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="622"/>
         <source>Donate!</source>
-        <translation type="unfinished"/>
+        <translation>Lahjoita!</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="85"/>
         <source>Ctrl+Shift+O to display outdated %1 packages</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+Shift+O näyttääksesi vanhentuneet %1 paketit</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="93"/>
         <source>Ctrl+Shift+A to display AUR voted package list</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+Shift+A näyttääksesi AUR äänestetyn pakettilistauksen</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="98"/>
@@ -307,7 +307,7 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="133"/>
         <source>Position the mouse over a package to see its description</source>
-        <translation>Aseta kursori paketin yläpuolelle nähdäksesi sen kuvauksen</translation>
+        <translation>Vie kursori paketin yläpuolelle nähdäksesi sen kuvauksen</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="135"/>
@@ -337,7 +337,7 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="146"/>
         <source>Alt+3 to switch to &apos;Actions&apos; tab</source>
-        <translation type="unfinished"/>
+        <translation>Alt+3 vaihtaa Toiminnot-välilehdelle</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="148"/>
@@ -352,12 +352,12 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="152"/>
         <source>Alt+6 or &apos;F1&apos; to show this help page</source>
-        <translation>Alt+6 tai F1 näyttää tämän opastussivun</translation>
+        <translation>Alt+6 tai &apos;F1&apos; näyttää tämän ohjesivun</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="154"/>
         <source>Alt+7 to switch to &apos;Terminal&apos; tab</source>
-        <translation type="unfinished"/>
+        <translation>Alt+7 vaihtaa &apos;Pääte&apos;-välilehdelle</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="157"/>
@@ -432,7 +432,7 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="192"/>
         <source>F1 to show this help page</source>
-        <translation>F1 nähdäksesi tämän opastussivun</translation>
+        <translation>F1 näyttää tämän ohjesivun</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="194"/>
@@ -460,7 +460,7 @@
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="23"/>
         <source>Options</source>
-        <translation type="unfinished"/>
+        <translation>Valinnat</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="38"/>
@@ -580,7 +580,7 @@ Any use of the provided files is at your own risk.</source>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="777"/>
         <location filename="Projects/octopi/src/optionsdialog.cpp" line="169"/>
         <source>Updates</source>
-        <translation type="unfinished"/>
+        <translation>Päivitykset</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/optionsdialog.cpp" line="93"/>
@@ -715,12 +715,12 @@ You may need to synchronize database!</source>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="202"/>
         <source>Help</source>
-        <translation type="unfinished"/>
+        <translation>Ohje</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="206"/>
         <source>&amp;Options</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Valinnat</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="210"/>
@@ -885,7 +885,7 @@ You may need to synchronize database!</source>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="341"/>
         <source>Partial updates are not supported!</source>
-        <translation type="unfinished"/>
+        <translation>Osittaiset päivitykset eivät ole tuettuja!</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="345"/>
@@ -1021,7 +1021,7 @@ You may need to synchronize database!</source>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="478"/>
         <source>Check updates</source>
-        <translation type="unfinished"/>
+        <translation>Tarkista päivitykset</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="483"/>
@@ -1031,12 +1031,12 @@ You may need to synchronize database!</source>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="488"/>
         <source>Checking for updates...</source>
-        <translation type="unfinished"/>
+        <translation>Päivityksiä tarkistetaan...</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="493"/>
         <source>No updates available</source>
-        <translation type="unfinished"/>
+        <translation>Päivityksiä ei saatavilla</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="501"/>

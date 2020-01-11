@@ -87,6 +87,8 @@ private:
   int m_numberOfOutdatedAURPackages;
   bool m_systemUpgradeDialog;
 
+  bool isOctopiBusy();
+
   CommandExecuting m_commandExecuting;
   UnixCommand *m_unixCommand;
   PacmanExec *m_pacmanExec;

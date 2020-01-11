@@ -878,6 +878,8 @@ void MainWindow::doSystemUpgrade(SystemUpgradeOptions systemUpgradeOptions)
 {
   Q_UNUSED(systemUpgradeOptions)
 
+  if (isNotifierBusy()) return;
+
   if (isAURGroupSelected() || m_systemUpgradeDialog) return;
 
   if(m_callSystemUpgrade && m_numberOfOutdatedPackages == 0)
@@ -1894,6 +1896,8 @@ void MainWindow::commitTransaction()
 {
   if (!isInternetAvailable()) return;
 
+  if (isNotifierBusy()) return;
+
   //Are there any remove actions to be commited?
   if(getRemoveTransactionParentItem()->rowCount() > 0 && getInstallTransactionParentItem()->rowCount() > 0)
   {
@@ -1952,7 +1956,7 @@ void MainWindow::onCanStopTransaction(bool yesNo)
  */
 void MainWindow::pacmanProcessFinished(int exitCode, QProcess::ExitStatus exitStatus)
 {
-  UnixCommand::removeSharedMemFiles();
+  //UnixCommand::removeSharedMemFiles();
 
   bool bRefreshGroups = true;
   m_progressWidget->close();
@@ -2223,7 +2227,7 @@ void MainWindow::onPressAnyKeyToContinue()
     delete m_pacmanExec;
 
   m_commandExecuting = ectn_NONE;
-  UnixCommand::removeSharedMemFiles();
+  //UnixCommand::removeSharedMemFiles();
   m_console->execute("");
   m_console->setFocus();
 
@@ -2249,7 +2253,7 @@ void MainWindow::onCancelControlKey()
 
     m_pacmanExec = nullptr;
     m_commandExecuting = ectn_NONE;
-    UnixCommand::removeSharedMemFiles();
+    //UnixCommand::removeSharedMemFiles();
   }
 }
 
