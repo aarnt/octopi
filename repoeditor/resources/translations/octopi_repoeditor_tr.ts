@@ -1,70 +1,70 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="fi" version="2.1">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="tr" version="2.1">
 <context>
     <name>AddRepo</name>
     <message>
         <location filename="Projects/octopi/repoeditor/addrepo.ui" line="14"/>
         <source>Add Repository - Octopi</source>
-        <translation>Lisää Pakettilähde - Octopi</translation>
+        <translation>Depo Ekle - Octopi</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/addrepo.ui" line="22"/>
         <source>Repository:</source>
-        <translation>Pakettilähde:</translation>
+        <translation>Depo:</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/addrepo.ui" line="32"/>
         <source>Repository name</source>
-        <translation>Pakettilähteen nimi</translation>
+        <translation>Depo adı</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/addrepo.ui" line="39"/>
         <source>Location:</source>
-        <translation>Sijainti:</translation>
+        <translation>Yerel:</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/addrepo.cpp" line="86"/>
         <source>The repository name field can&apos;t be blank.</source>
-        <translation>Pakettilähteen nimikenttä ei voi olla tyhjä.</translation>
+        <translation>Depo adı kısmı boş bırakılamaz.</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/addrepo.cpp" line="101"/>
         <source>The repository location field is not valid.</source>
-        <translation>Pakettilähteen sijaintikenttä ei ole kelvollinen.</translation>
+        <translation>Depo konumu geçerli değil.</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/addrepo.cpp" line="104"/>
         <source>The repository name field is not valid.</source>
-        <translation>Pakettilähteen nimikenttä ei ole kelvollinen.</translation>
+        <translation>Depo adı geçerli biçimde değil</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/addrepo.cpp" line="111"/>
         <source>Address of remote or local packages repository</source>
-        <translation>Ulkoisen tai paikallisen pakettilähteen osoite</translation>
+        <translation>Uzak veya yerel paketleri depo adresi</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/addrepo.cpp" line="115"/>
         <source>Path to mirrors list file</source>
-        <translation>Polku mirror -listan tiedostoon</translation>
+        <translation>Yansı dosyası yolu</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/addrepo.cpp" line="124"/>
         <source>Error</source>
-        <translation>Virhe</translation>
+        <translation>Hata</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/addrepo.cpp" line="125"/>
         <source>Can&apos;t add repository.</source>
-        <translation>Pakettilähdettä ei voi lisätä.</translation>
+        <translation>Depo eklenemiyor.</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/addrepo.cpp" line="136"/>
         <source>Select local repository</source>
-        <translation>Valitse paikallinen pakettilähde</translation>
+        <translation>Yerel depo seç</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/addrepo.cpp" line="149"/>
         <source>Select mirrors list</source>
-        <translation>Valitse mirror -lista</translation>
+        <translation>Yansı listesi seç</translation>
     </message>
 </context>
 <context>
@@ -72,7 +72,7 @@
     <message>
         <location filename="Projects/octopi/repoeditor/main.cpp" line="54"/>
         <source>You can not run Repository Editor with administrator&apos;s credentials.</source>
-        <translation>Et voi käynnistää Pakettilähteiden editoria pääkäyttäjän oikeuksin.</translation>
+        <translation>Depo Düzenleyicisini yönetici olarak çalıştıramazsınız.</translation>
     </message>
 </context>
 <context>
@@ -80,32 +80,32 @@
     <message>
         <location filename="Projects/octopi/repoeditor/repoconf.cpp" line="208"/>
         <source>Backup error</source>
-        <translation>Varmuuskopiointi virhe</translation>
+        <translation>Yedekleme hatası</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/repoconf.cpp" line="209"/>
         <source>Backup file already exists.</source>
-        <translation>Varmuuskopiointitiedosto on jo olemassa.</translation>
+        <translation>Bu isimde bir yedekleme dosyası zaten var.</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/repoconf.cpp" line="209"/>
         <source>Do you want to overwrite it?</source>
-        <translation>Haluatko korvata sen?</translation>
+        <translation>Üzerine yazmak istiyor musunuz?</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/repoconf.cpp" line="282"/>
         <source>Active</source>
-        <translation>Aktiivinen</translation>
+        <translation>Aktif</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/repoconf.cpp" line="282"/>
         <source>Repository</source>
-        <translation>Pakettilähde</translation>
+        <translation>Depo</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/repoconf.cpp" line="282"/>
         <source>Options</source>
-        <translation>Asetukset</translation>
+        <translation>Seçenekler</translation>
     </message>
 </context>
 <context>
@@ -113,105 +113,105 @@
     <message>
         <location filename="Projects/octopi/repoeditor/repoeditor.ui" line="14"/>
         <source>Repository Editor - Octopi</source>
-        <translation>Pakettilähteiden Editori - Octopi</translation>
+        <translation>Depo Editörü - Octopi</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/repoeditor.ui" line="27"/>
         <source>Available Repositories</source>
-        <translation>Saatavilla olevat pakettilähteet</translation>
+        <translation>Kullanılabilir Depolar</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/repoeditor.ui" line="75"/>
         <source>Edit</source>
-        <translation>Muokkaa</translation>
+        <translation>Düzenle</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/repoeditor.ui" line="89"/>
         <source>Add</source>
-        <translation>Lisää</translation>
+        <translation>Ekle</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/repoeditor.ui" line="103"/>
         <source>Remove</source>
-        <translation>Poista</translation>
+        <translation>Kaldır</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/repoeditor.ui" line="130"/>
         <source>Move Up</source>
-        <translation>Siirrä Ylös</translation>
+        <translation>Üste Taşı</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/repoeditor.ui" line="144"/>
         <source>Move Down</source>
-        <translation>Siirrä Alas</translation>
+        <translation>Aşağı Taşı</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/repoeditor.ui" line="160"/>
         <source>Backup</source>
-        <translation>Varmuuskopio</translation>
+        <translation>Yedekle</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/repoeditor.ui" line="168"/>
         <source>Create backup on save</source>
-        <translation>Luo varmuuskopio tallennettaessa</translation>
+        <translation>Yedek oluşturup kaydet</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/repoeditor.ui" line="191"/>
         <source>Load a backup file</source>
-        <translation>Lataa varmuuskopio</translation>
+        <translation>Yedekleme dosyasını yükle</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/repoeditor.ui" line="206"/>
         <source>Backup file:</source>
-        <translation>Varmuuskopiotiedosto:</translation>
+        <translation>Yedekleme Dosyası:</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/repoeditor.cpp" line="103"/>
         <location filename="Projects/octopi/repoeditor/repoeditor.cpp" line="125"/>
         <source>Confirmation</source>
-        <translation>Vahvistus</translation>
+        <translation>Onaylama</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/repoeditor.cpp" line="104"/>
         <location filename="Projects/octopi/repoeditor/repoeditor.cpp" line="126"/>
         <source>There are unsaved changes.</source>
-        <translation>Tallentamattomia muutoksia.</translation>
+        <translation>Kaydedilmemiş değişiklikler var.</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/repoeditor.cpp" line="105"/>
         <location filename="Projects/octopi/repoeditor/repoeditor.cpp" line="127"/>
         <source>Do you want to save them?</source>
-        <translation>Haluatko tallentaa muutokset?</translation>
+        <translation>Onları kurtarmak ister misin?</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/repoeditor.cpp" line="160"/>
         <source>Can&apos;t load backup file</source>
-        <translation>Varmuuskopiota ei voi ladata</translation>
+        <translation>Yedekleme dosyası yüklenemiyor</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/repoeditor.cpp" line="161"/>
         <source>Selected file is not valid</source>
-        <translation>Valittu tiedosto ei ole kelvollinen</translation>
+        <translation>Seçilen dosya uygun değil</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/repoeditor.cpp" line="209"/>
         <source>Success</source>
-        <translation>Onnistui</translation>
+        <translation>Başarılı</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/repoeditor.cpp" line="210"/>
         <source>Repositories configuration successfully saved.</source>
-        <translation>Pakettilähteiden asetukset tallennettiin onnistuneesti.</translation>
+        <translation>Depo yapılandırmaları başarı ile kaydedildi</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/repoeditor.cpp" line="215"/>
         <source>Error</source>
-        <translation>Virhe</translation>
+        <translation>Hata</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/repoeditor.cpp" line="216"/>
         <source>Repositories configuration not saved.</source>
-        <translation>Pakettilähteiden asetuksia ei tallennettu.</translation>
+        <translation>Depo yapılandırmaları kaydedilemedi.</translation>
     </message>
 </context>
 </TS>

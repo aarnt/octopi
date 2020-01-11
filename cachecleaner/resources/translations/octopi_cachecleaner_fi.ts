@@ -15,7 +15,7 @@
         <location filename="Projects/octopi/cachecleaner/ui/cachecleaner.ui" line="75"/>
         <location filename="Projects/octopi/cachecleaner/ui/cachecleaner.ui" line="150"/>
         <source>Keep :</source>
-        <translation>Säilytä</translation>
+        <translation>Säilytä:</translation>
     </message>
     <message>
         <location filename="Projects/octopi/cachecleaner/ui/cachecleaner.ui" line="82"/>

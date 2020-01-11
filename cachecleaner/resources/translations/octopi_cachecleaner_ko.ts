@@ -1,38 +1,38 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="fi_FI" version="2.0">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="ko" version="2.0">
 <context>
     <name>CacheCleaner</name>
     <message>
         <location filename="Projects/octopi/cachecleaner/ui/cachecleaner.ui" line="14"/>
         <source>Cache Cleaner - Octopi</source>
-        <translation>Välimuistin tyhjennys - Octopi</translation>
+        <translation>캐시 클리너 - Octopi</translation>
     </message>
     <message>
         <location filename="Projects/octopi/cachecleaner/ui/cachecleaner.ui" line="49"/>
         <source>Uninstalled packages</source>
-        <translation>Asentamattomat paketit</translation>
+        <translation>제거된 패키지</translation>
     </message>
     <message>
         <location filename="Projects/octopi/cachecleaner/ui/cachecleaner.ui" line="75"/>
         <location filename="Projects/octopi/cachecleaner/ui/cachecleaner.ui" line="150"/>
         <source>Keep :</source>
-        <translation>Säilytä:</translation>
+        <translation>보관 :</translation>
     </message>
     <message>
         <location filename="Projects/octopi/cachecleaner/ui/cachecleaner.ui" line="82"/>
         <location filename="Projects/octopi/cachecleaner/ui/cachecleaner.ui" line="157"/>
         <source>Number of old versions to keep</source>
-        <translation>Säilytettävien vanhojen versioiden lukumäärä</translation>
+        <translation>보관할 이전 버전 수</translation>
     </message>
     <message>
         <location filename="Projects/octopi/cachecleaner/ui/cachecleaner.ui" line="102"/>
         <location filename="Projects/octopi/cachecleaner/ui/cachecleaner.ui" line="183"/>
         <source>Refresh</source>
-        <translation>Päivitä</translation>
+        <translation>새로 고침</translation>
     </message>
     <message>
         <location filename="Projects/octopi/cachecleaner/ui/cachecleaner.ui" line="127"/>
         <source>Installed packages</source>
-        <translation>Asennetut paketit</translation>
+        <translation>새로 고침</translation>
     </message>
 </context>
 <context>
@@ -40,12 +40,12 @@
     <message>
         <location filename="Projects/octopi/cachecleaner/packagegroupmodel.cpp" line="199"/>
         <source>Clean</source>
-        <translation>Tyhjennä</translation>
+        <translation>청소하기</translation>
     </message>
     <message>
         <location filename="Projects/octopi/cachecleaner/packagegroupmodel.cpp" line="222"/>
         <source>Clean %1</source>
-        <translation>Tyhjennä %1</translation>
+        <translation>%1 청소하기</translation>
     </message>
 </context>
 </TS>

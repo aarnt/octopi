@@ -42,12 +42,14 @@
         <file>resources/translations/octopi_repoeditor_sr_RS.qm</file>
         <file>resources/translations/octopi_repoeditor_sv.qm</file>
         <file>resources/translations/octopi_repoeditor_tr_TR.qm</file>
+        <file>resources/translations/octopi_repoeditor_tr.qm</file>
         <file>resources/translations/octopi_repoeditor_uk.qm</file>
         <file>resources/translations/octopi_repoeditor_uz.qm</file>
         <file>resources/translations/octopi_repoeditor_vi.qm</file>
         <file>resources/translations/octopi_repoeditor_zh_TW.qm</file>
         <file>resources/translations/octopi_repoeditor_zh-Hans.qm</file>
         <file>resources/translations/octopi_repoeditor_zh_CN.qm</file>
-        <file>resources/translations/octopi_repoeditor_hr.qm</file>        
+        <file>resources/translations/octopi_repoeditor_hr.qm</file>
+        <file>resources/translations/octopi_repoeditor_ko.qm</file>
     </qresource>
 </RCC>

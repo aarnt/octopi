@@ -60,6 +60,7 @@
         <file>resources/translations/octopi_it.qm</file>
         <file>resources/translations/octopi_ro.qm</file>
         <file>resources/translations/octopi_tr_TR.qm</file>
+        <file>resources/translations/octopi_tr.qm</file>
         <file>resources/translations/octopi_ar.qm</file>
         <file>resources/translations/octopi_ca.qm</file>
         <file>resources/translations/octopi_bg.qm</file>
@@ -99,5 +100,6 @@
         <file>resources/translations/octopi_hr.qm</file>
         <file>resources/translations/octopi_zh-Hans.qm</file>
         <file>resources/translations/octopi_zh_CN.qm</file>
+        <file>resources/translations/octopi_ko.qm</file>
     </qresource>
 </RCC>
