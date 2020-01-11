@@ -2,7 +2,7 @@
 
 ![Main window](https://raw.githubusercontent.com/aarnt/octopi/master/octopi-mainwindow.png)
 
-The project site is hosted on https://octopiproject.wordpress.com
+The project site is hosted on https://tintaescura.com/projects/octopi
 
 Currently, 9 Linux distros are compatible with it
 
