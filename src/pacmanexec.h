@@ -71,7 +71,7 @@ public:
   explicit PacmanExec(QObject *parent = nullptr);
   virtual ~PacmanExec();
 
-  //void setSharedMemory(QSharedMemory *sm) { m_sharedMemory=sm; };
+  void setSharedMemory(QSharedMemory *sm) { m_sharedMemory=sm; };
 
   void setDebugMode(bool value);
   void runLatestCommandInTerminal();
@@ -82,7 +82,6 @@ public:
   static bool isDatabaseLocked();
   //static void removeDatabaseLock();
 
-  inline void removeSharedMemory(){ delete m_sharedMemory; };
   void cancelProcess();
   void doCheckUpdates();
 

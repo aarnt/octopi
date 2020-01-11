@@ -87,6 +87,7 @@ MainWindow::MainWindow(QWidget *parent) :
   m_optionsDialog = nullptr;
   m_commandExecuting=ectn_NONE;
   m_commandQueued=ectn_NONE;
+  m_sharedMemory = new QSharedMemory("org.arnt.octopi", this);
 
   m_tcpServer = new QTcpServer(this);
   connect(m_tcpServer, &QTcpServer::newConnection, this, &MainWindow::onSendInfoToOctopiHelper);
@@ -255,11 +256,11 @@ void MainWindow::onSendInfoToOctopiHelper()
   QTcpSocket *clientConnection = m_tcpServer->nextPendingConnection();
   if (clientConnection->isOpen())
   {
+    m_sharedMemory->detach();
     connect(clientConnection, &QAbstractSocket::disconnected,
           clientConnection, &QObject::deleteLater);
     clientConnection->write(block);
     clientConnection->disconnectFromHost();
-    m_pacmanExec->removeSharedMemory();
   }
 }
 

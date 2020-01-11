@@ -721,7 +721,7 @@ bool UnixCommand::hasTheExecutable( const QString& exeName )
  */
 void UnixCommand::removeSharedMemFiles()
 {
-  QDir tempDir(QDir::tempPath());
+  /*QDir tempDir(QDir::tempPath());
   QStringList nameFilters;
   nameFilters << "qipc_sharedmemory_orgarntoctopi*"
               << "qipc_systemsem_orgarntoctopi*";
@@ -745,7 +745,7 @@ void UnixCommand::removeSharedMemFiles()
 
       dir.rmdir(file.filePath());
     }
-  }
+  }*/
 }
 
 /*
@@ -1128,17 +1128,16 @@ QString UnixCommand::buildOctopiHelperCommandWithSharedMem(const QString &pComma
 
   sharedData=commands.toLatin1();
 
-  if (sharedMem != nullptr)
+  /*if (sharedMem != nullptr)
   {
     if (sharedMem->isAttached())
       sharedMem->detach();
     delete sharedMem;
     sharedMem=nullptr;
-  }
+  }*/
 
-  removeSharedMemFiles();
-
-  sharedMem=new QSharedMemory("org.arnt.octopi", this);
+  //removeSharedMemFiles();
+  //sharedMem=new QSharedMemory("org.arnt.octopi", this);
   sharedMem->create(sharedData.size());
   sharedMem->lock();
   memcpy(sharedMem->data(), sharedData.data(), sharedData.size());

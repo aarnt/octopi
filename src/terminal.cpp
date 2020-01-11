@@ -75,17 +75,17 @@ void Terminal::runOctopiHelperInTerminalWithSharedMem(const QStringList &command
   QString cmd = "sudo " + commandToRun;
   QByteArray sharedData=out.toLatin1();
 
-  if (sharedMem != nullptr)
+  /*if (sharedMem != nullptr)
   {
     if (sharedMem->isAttached())
       sharedMem->detach();
     delete sharedMem;
     sharedMem=nullptr;
-  }
+  }*/
 
-  UnixCommand::removeSharedMemFiles();
+  //UnixCommand::removeSharedMemFiles();
 
-  sharedMem=new QSharedMemory("org.arnt.octopi", this);
+  //sharedMem=new QSharedMemory("org.arnt.octopi", this);
   sharedMem->create(sharedData.size());
   sharedMem->lock();
   memcpy(sharedMem->data(), sharedData.data(), sharedData.size());

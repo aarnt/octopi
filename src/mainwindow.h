@@ -53,6 +53,7 @@ class QDropEvent;
 class QDragEnterEvent;
 class TermWidget;
 class QTcpServer;
+class QSharedMemory;
 class OptionsDialog;
 
 #include "src/model/packagemodel.h"
@@ -107,6 +108,8 @@ private:
   PackageRepository m_packageRepo;
   // Package Model
   std::unique_ptr<PackageModel> m_packageModel;
+
+  QSharedMemory *m_sharedMemory;
 
   //Controls if the dialog showing the packages to be upgraded is opened
   bool m_systemUpgradeDialog;
@@ -169,9 +172,8 @@ private:
   CommandExecuting m_commandExecuting;
   CommandExecuting m_commandQueued;
 
-  //This member holds the last command string executed by Octopi
-  QStringList m_lastCommandList;
 
+  QStringList m_lastCommandList; //This member holds the last command string executed by Octopi
   QStringList *m_outdatedStringList;
   QStringList *m_checkupdatesStringList; //This is the outdated pkg list retrieved by checkupdates
   QHash<QString, QString> *m_checkUpdatesNameNewVersion;

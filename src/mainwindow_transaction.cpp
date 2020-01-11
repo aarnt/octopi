@@ -827,6 +827,7 @@ void MainWindow::doAURUpgrade()
   clearTabOutput();
 
   m_pacmanExec = new PacmanExec();
+  m_pacmanExec->setSharedMemory(m_sharedMemory);
   if (m_debugInfo) m_pacmanExec->setDebugMode(true);
 
   QObject::connect(m_pacmanExec, SIGNAL( finished ( int, QProcess::ExitStatus )),
@@ -855,6 +856,7 @@ bool MainWindow::prepareSystemUpgrade()
   clearTabOutput();
 
   m_pacmanExec = new PacmanExec();
+  m_pacmanExec->setSharedMemory(m_sharedMemory);
   if (m_debugInfo) m_pacmanExec->setDebugMode(true);
 
   QObject::connect(m_pacmanExec, SIGNAL( finished ( int, QProcess::ExitStatus )),
@@ -1150,6 +1152,7 @@ void MainWindow::doRemoveAndInstall()
     clearTabOutput();
 
     m_pacmanExec = new PacmanExec();
+    m_pacmanExec->setSharedMemory(m_sharedMemory);
     if (m_debugInfo) m_pacmanExec->setDebugMode(true);
 
     QObject::connect(m_pacmanExec, SIGNAL( finished ( int, QProcess::ExitStatus )),
@@ -1225,6 +1228,7 @@ void MainWindow::doRemove()
     clearTabOutput();
 
     m_pacmanExec = new PacmanExec();
+    m_pacmanExec->setSharedMemory(m_sharedMemory);
     if (m_debugInfo) m_pacmanExec->setDebugMode(true);
 
     QObject::connect(m_pacmanExec, SIGNAL( finished ( int, QProcess::ExitStatus )),
@@ -1327,6 +1331,7 @@ void MainWindow::doInstallAURPackage()
   clearTabOutput();
 
   m_pacmanExec = new PacmanExec();
+  m_pacmanExec->setSharedMemory(m_sharedMemory);
   if (m_debugInfo) m_pacmanExec->setDebugMode(true);
 
   QObject::connect(m_pacmanExec, SIGNAL( finished ( int, QProcess::ExitStatus )),
@@ -1419,6 +1424,7 @@ void MainWindow::doRemoveAURPackage()
   clearTabOutput();
 
   m_pacmanExec = new PacmanExec();
+  m_pacmanExec->setSharedMemory(m_sharedMemory);
   if (m_debugInfo) m_pacmanExec->setDebugMode(true);
 
   QObject::connect(m_pacmanExec, SIGNAL( finished ( int, QProcess::ExitStatus )),
@@ -1657,6 +1663,7 @@ void MainWindow::doInstall()
     clearTabOutput();
 
     m_pacmanExec = new PacmanExec();
+    m_pacmanExec->setSharedMemory(m_sharedMemory);
     if (m_debugInfo) m_pacmanExec->setDebugMode(true);
 
     QObject::connect(m_pacmanExec, SIGNAL( finished ( int, QProcess::ExitStatus )),
@@ -1927,6 +1934,7 @@ void MainWindow::stopTransaction()
   if (m_commandExecuting != ectn_NONE && m_pacmanExec != nullptr)
   {
     m_pacmanExec->cancelProcess();
+    m_sharedMemory->detach();
   }
 }
 
