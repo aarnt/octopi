@@ -84,6 +84,8 @@ protected:
   virtual void closeEvent(QCloseEvent * event);
   virtual void keyPressEvent(QKeyEvent * ke);
 
+  virtual bool eventFilter(QObject *, QEvent *);
+
 public:
   explicit OutputDialog(QWidget *parent = nullptr);
   void setDebugMode(bool newValue);

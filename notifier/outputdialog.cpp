@@ -139,7 +139,8 @@ void OutputDialog::initAsTermWidget()
   m_mainLayout->setSpacing(0);
   m_mainLayout->setSizeConstraint(QLayout::SetMinimumSize);
   m_mainLayout->setContentsMargins(2, 2, 2, 2);
-  m_console->setFocus();
+  m_console->setFocus();  
+  m_console->installEventFilter(this);
 }
 
 /*
@@ -494,4 +495,45 @@ void OutputDialog::keyPressEvent(QKeyEvent *ke)
     else reject();
   }
   else ke->accept();
+}
+
+/*
+ * Filters keypressevents from Console
+ */
+bool OutputDialog::eventFilter(QObject *, QEvent *event)
+{
+  if(event->type() == QKeyEvent::KeyRelease)
+  {
+    QKeyEvent *ke = static_cast<QKeyEvent*>(event);
+    if (ke->key() == Qt::Key_Escape)
+    {
+      if (m_upgradeRunning)
+      {
+        int res = QMessageBox::question(this, StrConstants::getConfirmation(),
+                                        StrConstants::getThereIsARunningTransaction() + "\n" +
+                                        StrConstants::getDoYouReallyWantToQuit(),
+                                        QMessageBox::Yes | QMessageBox::No,
+                                        QMessageBox::No);
+        if (res == QMessageBox::Yes)
+        {
+          stopTransaction();
+          m_upgradeRunning = false;
+          reject();
+          return true;
+        }
+        else
+        {
+          ke->ignore();
+          return true;
+        }
+      }
+      else
+      {
+        reject();
+        return true;
+      }
+    }
+  }
+
+  return false;
 }

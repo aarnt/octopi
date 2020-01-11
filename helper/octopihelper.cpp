@@ -297,7 +297,7 @@ int OctopiHelper::executePkgTransactionWithSharedMem()
 
   if (testCommandFromOctopi)
   {
-    if (!isOctopiRunning)
+    if (!isOctopiRunning && !testCommandFromNotifier)
     {
       QTextStream qout(stdout);
       qout << endl << "octopi-helper[aborted]: Suspicious execution method" << endl;
