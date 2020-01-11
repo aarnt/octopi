@@ -44,6 +44,8 @@ OutputDialog::OutputDialog(QWidget *parent): QDialog(parent)
 {
   m_upgradeRunning = false;
   m_debugInfo = false;
+
+  m_sharedMemory = new QSharedMemory("org.arnt.octopi", this);
 }
 
 /*
@@ -119,7 +121,6 @@ void OutputDialog::initAsTextBrowser()
   m_progressBar->setMaximum(100);
   m_progressBar->setValue(0);
   m_progressBar->close();
-  //m_searchBar->show();
 }
 
 /*
@@ -147,6 +148,8 @@ void OutputDialog::initAsTermWidget()
 void OutputDialog::doSystemUpgradeInTerminal()
 {
   m_pacmanExec = new PacmanExec();
+  m_pacmanExec->setSharedMemory(m_sharedMemory);
+
   QObject::connect(m_pacmanExec, SIGNAL(commandToExecInQTermWidget(QString)), this,
                    SLOT(onExecCommandInTabTerminal(QString)));
   m_upgradeRunning = true;
@@ -159,6 +162,8 @@ void OutputDialog::doSystemUpgradeInTerminal()
 void OutputDialog::doAURUpgrade()
 {
   m_pacmanExec = new PacmanExec();
+  m_pacmanExec->setSharedMemory(m_sharedMemory);
+
   QObject::connect(m_pacmanExec, SIGNAL(commandToExecInQTermWidget(QString)), this,
                    SLOT(onExecCommandInTabTerminal(QString)));
   m_upgradeRunning = true;
@@ -172,11 +177,13 @@ void OutputDialog::onExecCommandInTabTerminal(QString command)
 {
   disconnect(m_console, SIGNAL(onPressAnyKeyToContinue()), this, SLOT(onPressAnyKeyToContinue()));
   disconnect(m_console, SIGNAL(onCancelControlKey()), this, SLOT(onCancelControlKey()));
+  disconnect(m_console, SIGNAL(onKeyQuit()), this, SLOT(reject()));
   connect(m_console, SIGNAL(onPressAnyKeyToContinue()), this, SLOT(onPressAnyKeyToContinue()));
   connect(m_console, SIGNAL(onCancelControlKey()), this, SLOT(onCancelControlKey()));
+  connect(m_console, SIGNAL(onKeyQuit()), this, SLOT(reject()));
 
-  m_console->enter();
-  m_console->execute("clear");
+  //m_console->enter();
+  //m_console->execute("clear");
   m_console->execute(command);
   m_console->setFocus();
 }
@@ -186,16 +193,17 @@ void OutputDialog::onExecCommandInTabTerminal(QString command)
  */
 void OutputDialog::onPressAnyKeyToContinue()
 {
-  m_console->enter();
-  m_console->execute("clear");
+  //m_console->enter();
+  //m_console->execute("clear");
   m_console->setFocus();
 
   if (!m_upgradeRunning) return;
   if (m_pacmanExec == nullptr)
     delete m_pacmanExec;
 
+  if (m_sharedMemory->isAttached()) m_sharedMemory->detach();
   m_upgradeRunning = false;
-  reject();
+  //reject();
 }
 
 /*
@@ -208,9 +216,10 @@ void OutputDialog::onCancelControlKey()
     if (m_pacmanExec == nullptr)
       delete m_pacmanExec;
 
+    if (m_sharedMemory->isAttached()) m_sharedMemory->detach();
     m_pacmanExec = nullptr;
     m_upgradeRunning = false;
-    reject();
+    //reject();
   }
 }
 
@@ -223,6 +232,7 @@ void OutputDialog::doSystemUpgrade()
   if (UnixCommand::isPacmanDbLocked()) return;
 
   m_pacmanExec = new PacmanExec();
+  m_pacmanExec->setSharedMemory(m_sharedMemory);
 
   if (m_debugInfo)
     m_pacmanExec->setDebugMode(true);
@@ -365,6 +375,7 @@ void OutputDialog::pacmanProcessFinished(int exitCode, QProcess::ExitStatus exit
   }
 
   delete m_pacmanExec;
+  if (m_sharedMemory->isAttached()) m_sharedMemory->detach();
   m_upgradeRunning = false;
 }
 
@@ -383,6 +394,7 @@ void OutputDialog::onCanStopTransaction(bool yesNo)
 void OutputDialog::stopTransaction()
 {
   m_pacmanExec->cancelProcess();
+  if (m_sharedMemory->isAttached()) m_sharedMemory->detach();
 }
 
 /*

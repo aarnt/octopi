@@ -39,6 +39,7 @@ class QCloseEvent;
 class QKeyEvent;
 class QToolButton;
 class TermWidget;
+class QSharedMemory;
 
 class OutputDialog : public QDialog
 {
@@ -59,6 +60,7 @@ private:
 
   QAction *m_actionStopTransaction;
   QToolButton *m_toolButtonStopTransaction;
+  QSharedMemory *m_sharedMemory;
 
   void initAsTextBrowser();
   void positionTextEditCursorAtEnd();
