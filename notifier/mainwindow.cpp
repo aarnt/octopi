@@ -487,6 +487,7 @@ void MainWindow::doSystemUpgrade()
                        this, SLOT( doSystemUpgradeFinished() ));
 
       m_commandExecuting = ectn_RUN_SYSTEM_UPGRADE_IN_TERMINAL;
+      toggleEnableInterface(false);
       m_actionSystemUpgrade->setEnabled(false);
       setUpgradingTooltip();
       m_outputDialog->show();
@@ -609,6 +610,7 @@ void MainWindow::doSystemUpgrade()
                        this, SLOT( doSystemUpgradeFinished() ));
 
       m_commandExecuting = ectn_RUN_SYSTEM_UPGRADE_IN_TERMINAL;
+      toggleEnableInterface(false);
       m_actionSystemUpgrade->setEnabled(false);
       setUpgradingTooltip();
       m_outputDialog->show();
@@ -642,6 +644,7 @@ void MainWindow::doAURUpgrade()
     listOfTargets += auxPkg + " ";
   }
 
+  toggleEnableInterface(false);
   m_outputDialog = new OutputDialog(this);
   m_outputDialog->setViewAsTextBrowser(false);
   m_outputDialog->setListOfAURPackagesToUpgrade(listOfTargets);
