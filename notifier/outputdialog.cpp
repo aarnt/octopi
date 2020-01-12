@@ -134,12 +134,14 @@ void OutputDialog::initAsTermWidget()
 
   m_mainLayout = new QVBoxLayout(this);
   m_console = new TermWidget(this);
-  //connect(m_console, SIGNAL(finished()), this, SLOT(initAsTermWidget()));
   m_mainLayout->addWidget(m_console);
+
   m_mainLayout->setSpacing(0);
   m_mainLayout->setSizeConstraint(QLayout::SetMinimumSize);
   m_mainLayout->setContentsMargins(2, 2, 2, 2);
   m_console->setFocus();  
+  m_console->toggleShowSearchBar();
+
   m_console->installEventFilter(this);
 }
 
@@ -532,6 +534,10 @@ bool OutputDialog::eventFilter(QObject *, QEvent *event)
         reject();
         return true;
       }
+    }
+    else if(ke->key() == Qt::Key_F && ke->modifiers() == Qt::ControlModifier)
+    {
+      m_console->toggleShowSearchBar();
     }
   }
 

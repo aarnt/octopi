@@ -645,6 +645,7 @@ void MainWindow::doAURUpgrade()
   }
 
   toggleEnableInterface(false);
+  setUpgradingTooltip();
   m_outputDialog = new OutputDialog(this);
   m_outputDialog->setViewAsTextBrowser(false);
   m_outputDialog->setListOfAURPackagesToUpgrade(listOfTargets);
@@ -677,6 +678,7 @@ void MainWindow::toggleEnableInterface(bool state)
   m_actionCheckUpdates->setEnabled(state);
   m_actionOptions->setEnabled(state);
   m_actionSystemUpgrade->setEnabled(state);
+  m_actionAURUpgrade->setEnabled(state);
   m_actionExit->setEnabled(state);
 }
 
@@ -1070,7 +1072,11 @@ void MainWindow::execSystemTrayActivated(QSystemTrayIcon::ActivationReason ar)
   {
     if (m_numberOfOutdatedPackages > 0)
     {
-      doSystemUpgrade(); //runOctopi(ectn_SYSUPGRADE_EXEC_OPT);
+      doSystemUpgrade();
+    }
+    else if (m_numberOfOutdatedAURPackages > 0)
+    {
+      doAURUpgrade();
     }
     else
     {
@@ -1085,7 +1091,12 @@ void MainWindow::execSystemTrayActivated(QSystemTrayIcon::ActivationReason ar)
     {
       doSystemUpgrade();
     }
-    else {
+    else if (m_numberOfOutdatedAURPackages > 0)
+    {
+      doAURUpgrade();
+    }
+    else
+    {
       if (UnixCommand::isAppRunning("octopi", true))
       {
         hideOctopi();
@@ -1122,6 +1133,10 @@ void MainWindow::execSystemTrayKF5()
   if (m_numberOfOutdatedPackages > 0)
   {
     doSystemUpgrade();
+  }
+  else if (m_numberOfOutdatedAURPackages > 0)
+  {
+    doAURUpgrade();
   }
   else
   {
