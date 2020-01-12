@@ -58,6 +58,8 @@ private:
   bool m_debugInfo;
   bool m_viewAsTextBrowser;
 
+  bool m_AURUpgradeExecuting;
+
   QAction *m_actionStopTransaction;
   QToolButton *m_toolButtonStopTransaction;
   QSharedMemory *m_sharedMemory;
@@ -72,7 +74,7 @@ private slots:
   void onWriteOutput(const QString &output);
   void pacmanProcessFinished(int exitCode, QProcess::ExitStatus exitStatus);
   void onCanStopTransaction(bool yesNo);
-  void stopTransaction();
+  int stopTransaction();
 
   //SearchBar slots
   void onSearchBarTextChanged(QString strToSearch);

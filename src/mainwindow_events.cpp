@@ -62,9 +62,17 @@ void MainWindow::closeEvent(QCloseEvent *event)
                           QMessageBox::No);
     if (res == QMessageBox::Yes)
     {
-      stopTransaction();
-      event->accept();
-      qApp->quit();
+      bool ret=stopTransaction();
+      if (ret)
+      {
+        event->accept();
+        qApp->quit();
+      }
+      else
+      {
+        event->ignore();
+        return;
+      }
     }
     else event->ignore();
   }

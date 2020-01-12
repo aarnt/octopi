@@ -21,6 +21,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 #include "packagegroupmodel.h"
 #include "../src/strconstants.h"
 
+#include <QSharedMemory>
 #include <QApplication>
 #include <QMessageBox>
 
@@ -49,7 +50,7 @@ PackageGroupModel::PackageGroupModel(QString optionsString,
 {
   m_cleanButton->setText(tr("Clean"));
 
-  m_sharedMem=nullptr;
+  m_sharedMemory=new QSharedMemory("org.arnt.octopi", this);
 
   //setup UI slots
   connect( m_spinner, SIGNAL( valueChanged(int) ), SLOT( updateKeepArchives() ) );
@@ -170,8 +171,7 @@ void PackageGroupModel::cleanCache()
   isExecutingCommand = true;
   QByteArray tmp = "paccache -r " + getOptions().toLatin1();
   //UnixCommand::removeTemporaryFiles();
-  m_cmd->executeCommandWithSharedMemHelper(tmp, m_sharedMem);
-  //m_cmd->executeCommand(QLatin1String(tmp), ectn_LANG_USER_DEFINED);
+  m_cmd->executeCommandWithSharedMemHelper(tmp, m_sharedMemory);
 }
 
 /*

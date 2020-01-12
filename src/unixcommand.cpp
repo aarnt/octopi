@@ -1180,11 +1180,10 @@ QString UnixCommand::buildOctopiHelperCommandWithSharedMem(const QString &pComma
 }*/
 
 /*
- * Cancels the running process
+ * Cancels the running process. Returns octopi-sudo exit code.
  */
-void UnixCommand::cancelProcess(QSharedMemory *sharedMem)
+int UnixCommand::cancelProcess(QSharedMemory *sharedMem)
 {
-  //Q_UNUSED(sharedMem)
   QProcess pacman;
   QString suCommand = WMHelper::getSUCommand();
   QString pCommand = "killall pacman; rm " + ctn_PACMAN_DATABASE_LOCK_FILE;
@@ -1200,6 +1199,7 @@ void UnixCommand::cancelProcess(QSharedMemory *sharedMem)
 
   pacman.start(result);
   pacman.waitForFinished(-1);
+  return pacman.exitCode();
 }
 
 /*

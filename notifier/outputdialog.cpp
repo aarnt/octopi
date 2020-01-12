@@ -44,7 +44,7 @@ OutputDialog::OutputDialog(QWidget *parent): QDialog(parent)
 {
   m_upgradeRunning = false;
   m_debugInfo = false;
-
+  m_AURUpgradeExecuting = false;
   m_sharedMemory = new QSharedMemory("org.arnt.octopi", this);
 }
 
@@ -164,6 +164,7 @@ void OutputDialog::doSystemUpgradeInTerminal()
  */
 void OutputDialog::doAURUpgrade()
 {
+  m_AURUpgradeExecuting=true;
   m_pacmanExec = new PacmanExec();
   m_pacmanExec->setSharedMemory(m_sharedMemory);
 
@@ -393,11 +394,28 @@ void OutputDialog::onCanStopTransaction(bool yesNo)
 
 /*
  * Kills all pacman processes
+ *
+ * Returns octopi-sudo exit code
  */
-void OutputDialog::stopTransaction()
+int OutputDialog::stopTransaction()
 {
-  m_pacmanExec->cancelProcess();
-  if (m_sharedMemory->isAttached()) m_sharedMemory->detach();
+  int res=0;
+
+  if (m_AURUpgradeExecuting)
+  {
+    m_console->execute("^C");
+  }
+  else
+  {
+    res=m_pacmanExec->cancelProcess();
+  }
+
+  if (res != 1)
+  {
+    if (m_sharedMemory->isAttached()) m_sharedMemory->detach();
+  }
+
+  return res;
 }
 
 /*
@@ -447,10 +465,14 @@ void OutputDialog::closeEvent(QCloseEvent *event)
                           QMessageBox::No);
     if (res == QMessageBox::Yes)
     {
-      stopTransaction();
+      int ret=stopTransaction();
+      if (ret == 1)
+      {
+        event->ignore();
+        return;
+      }
+
       m_upgradeRunning = false;
-      //event->accept();
-      //emit finished(0);
       reject();
     }
     else
@@ -485,7 +507,13 @@ void OutputDialog::keyPressEvent(QKeyEvent *ke)
                           QMessageBox::No);
       if (res == QMessageBox::Yes)
       {
-        stopTransaction();
+        int ret=stopTransaction();
+        if (ret == 1)
+        {
+          ke->ignore();
+          return;
+        }
+
         m_upgradeRunning = false;
         reject();
       }
@@ -518,7 +546,13 @@ bool OutputDialog::eventFilter(QObject *, QEvent *event)
                                         QMessageBox::No);
         if (res == QMessageBox::Yes)
         {
-          stopTransaction();
+          int ret=stopTransaction();
+          if (ret == 1)
+          {
+            ke->ignore();
+            return false;
+          }
+
           m_upgradeRunning = false;
           reject();
           return true;

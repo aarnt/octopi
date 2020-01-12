@@ -172,7 +172,7 @@ public:
   QString readAllStandardError();
   QString errorString();
 
-  void cancelProcess(QSharedMemory *sharedMem);
+  int cancelProcess(QSharedMemory *sharedMem);
 
 public slots:
   void processReadyReadStandardOutput();

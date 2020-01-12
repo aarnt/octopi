@@ -1933,13 +1933,21 @@ void MainWindow::cancelTransaction()
 /*
  * Kills the running pacman command
  */
-void MainWindow::stopTransaction()
+bool MainWindow::stopTransaction()
 {
+  bool ret=false;
+
   if (m_commandExecuting != ectn_NONE && m_pacmanExec != nullptr)
   {
-    m_pacmanExec->cancelProcess();
-    m_sharedMemory->detach();
+    int res = m_pacmanExec->cancelProcess();
+    if (res != 1)
+    {
+      m_sharedMemory->detach();
+      ret=true;
+    }
   }
+
+  return ret;
 }
 
 /*

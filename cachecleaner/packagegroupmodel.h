@@ -82,6 +82,7 @@ class PackageGroupModel : public QObject
 
 private:
   bool isSUAvailable();
+  QSharedMemory *m_sharedMemory;
 
 public:
     PackageGroupModel(QString, QListWidget *, QSpinBox *, QPushButton *, QPushButton *);
@@ -97,7 +98,6 @@ protected:
     UnixCommand *m_cmd;
     ProcessOutputAccumulator *m_acc;
     int m_oldKeepValue;
-    QSharedMemory *m_sharedMem;
 
     void processDryrunResult(QString);
     QString getOptions();

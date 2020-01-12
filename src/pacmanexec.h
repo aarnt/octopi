@@ -82,7 +82,7 @@ public:
   static bool isDatabaseLocked();
   //static void removeDatabaseLock();
 
-  void cancelProcess();
+  int cancelProcess();
   void doCheckUpdates();
 
   QStringList getOutdatedPackages();

@@ -438,7 +438,7 @@ private slots:
   void toggleSystemActions(const bool value);
   void commitTransaction();
   void cancelTransaction();
-  void stopTransaction();
+  bool stopTransaction();
   void onCanStopTransaction(bool yesNo);
   void pacmanProcessFinished(int exitCode, QProcess::ExitStatus exitStatus);
 
