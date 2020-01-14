@@ -44,7 +44,6 @@
 #include <QClipboard>
 #include <QProgressBar>
 #include <QtConcurrent/QtConcurrentRun>
-
 #include <QSharedMemory>
 
 /*
@@ -62,16 +61,27 @@ void MainWindow::closeEvent(QCloseEvent *event)
                           QMessageBox::No);
     if (res == QMessageBox::Yes)
     {
-      bool ret=stopTransaction();
-      if (ret)
+      bool runInTerminalAction=(m_commandExecuting == ectn_RUN_SYSTEM_UPGRADE_IN_TERMINAL ||
+                                m_commandExecuting == ectn_RUN_IN_TERMINAL);
+
+      if (!runInTerminalAction)
       {
-        event->accept();
-        qApp->quit();
+        bool ret=stopTransaction();
+        if (ret)
+        {
+          event->accept();
+          qApp->quit();
+        }
+        else
+        {
+          event->ignore();
+          return;
+        }
       }
       else
       {
-        event->ignore();
-        return;
+        event->accept();
+        qApp->quit();
       }
     }
     else event->ignore();
@@ -128,14 +138,6 @@ void testSharedMem()
 {
   QSharedMemory *sharedMem=new QSharedMemory("org.arnt.test");
   QByteArray sharedData="abracadabra -abcd\ncadabraabra -xyz";
-
-  /*if (sharedMem != nullptr)
-  {
-    if (sharedMem->isAttached())
-      sharedMem->detach();
-    delete sharedMem;
-    sharedMem=nullptr;
-  }*/
 
   //removeSharedMemFiles();
 
@@ -368,13 +370,6 @@ void MainWindow::keyPressEvent(QKeyEvent* ke)
     m_actionSwitchToAURTool->trigger();
     m_leFilterPackage->setFocus();
   }
-  /*else if(ke->key() == Qt::Key_R && ke->modifiers() == (Qt::ShiftModifier|Qt::ControlModifier))
-  {
-    if (m_commandExecuting == ectn_NONE)
-    {
-      doRemovePacmanLockFile(); //If we are not executing any command, let's remove Pacman's lock file
-    }
-  }*/
   else if(ke->key() == Qt::Key_S && ke->modifiers() == (Qt::ShiftModifier|Qt::ControlModifier))
   {
     doSysInfo();

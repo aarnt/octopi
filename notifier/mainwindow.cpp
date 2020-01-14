@@ -482,6 +482,7 @@ void MainWindow::doSystemUpgrade()
       if (!_isSUAvailable()) return;
 
       m_outputDialog = new OutputDialog(this);
+      m_outputDialog->setAttribute(Qt::WA_DeleteOnClose);
       m_outputDialog->setViewAsTextBrowser(false);
       QObject::connect(m_outputDialog, SIGNAL( finished(int)),
                        this, SLOT( doSystemUpgradeFinished() ));
@@ -501,6 +502,7 @@ void MainWindow::doSystemUpgrade()
       m_actionSystemUpgrade->setEnabled(false);
 
       m_outputDialog = new OutputDialog(this);
+      m_outputDialog->setAttribute(Qt::WA_DeleteOnClose);
       m_outputDialog->setViewAsTextBrowser(true);
 
       if (m_debugInfo)
@@ -586,6 +588,7 @@ void MainWindow::doSystemUpgrade()
       m_actionSystemUpgrade->setEnabled(false);
 
       m_outputDialog = new OutputDialog(this);
+      m_outputDialog->setAttribute(Qt::WA_DeleteOnClose);
       m_outputDialog->setViewAsTextBrowser(true);
 
       if (m_debugInfo)
@@ -605,6 +608,7 @@ void MainWindow::doSystemUpgrade()
       if (!_isSUAvailable()) return;
 
       m_outputDialog = new OutputDialog(this);
+      m_outputDialog->setAttribute(Qt::WA_DeleteOnClose);
       m_outputDialog->setViewAsTextBrowser(false);
       QObject::connect(m_outputDialog, SIGNAL( finished(int)),
                        this, SLOT( doSystemUpgradeFinished() ));
@@ -647,6 +651,7 @@ void MainWindow::doAURUpgrade()
   toggleEnableInterface(false);
   setUpgradingTooltip();
   m_outputDialog = new OutputDialog(this);
+  m_outputDialog->setAttribute(Qt::WA_DeleteOnClose);
   m_outputDialog->setViewAsTextBrowser(false);
   m_outputDialog->setListOfAURPackagesToUpgrade(listOfTargets);
 

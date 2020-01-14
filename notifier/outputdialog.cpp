@@ -78,7 +78,6 @@ void OutputDialog::setViewAsTextBrowser(bool value)
 void OutputDialog::initAsTextBrowser()
 {
   this->resize(650, 500);
-
   setWindowTitle(QCoreApplication::translate("MainWindow", "System upgrade"));
   setWindowIcon(IconHelper::getIconSystemUpgrade());
 
@@ -150,7 +149,7 @@ void OutputDialog::initAsTermWidget()
  */
 void OutputDialog::doSystemUpgradeInTerminal()
 {
-  m_pacmanExec = new PacmanExec();
+  m_pacmanExec = new PacmanExec(this);
   m_pacmanExec->setSharedMemory(m_sharedMemory);
 
   QObject::connect(m_pacmanExec, SIGNAL(commandToExecInQTermWidget(QString)), this,
@@ -165,7 +164,7 @@ void OutputDialog::doSystemUpgradeInTerminal()
 void OutputDialog::doAURUpgrade()
 {
   m_AURUpgradeExecuting=true;
-  m_pacmanExec = new PacmanExec();
+  m_pacmanExec = new PacmanExec(this);
   m_pacmanExec->setSharedMemory(m_sharedMemory);
 
   QObject::connect(m_pacmanExec, SIGNAL(commandToExecInQTermWidget(QString)), this,
@@ -235,7 +234,7 @@ void OutputDialog::doSystemUpgrade()
   //Is pacman being executed?
   if (UnixCommand::isPacmanDbLocked()) return;
 
-  m_pacmanExec = new PacmanExec();
+  m_pacmanExec = new PacmanExec(this);
   m_pacmanExec->setSharedMemory(m_sharedMemory);
 
   if (m_debugInfo)
@@ -401,11 +400,7 @@ int OutputDialog::stopTransaction()
 {
   int res=0;
 
-  if (m_AURUpgradeExecuting)
-  {
-    m_console->execute("^C");
-  }
-  else
+  if (!m_AURUpgradeExecuting)
   {
     res=m_pacmanExec->cancelProcess();
   }
@@ -465,13 +460,17 @@ void OutputDialog::closeEvent(QCloseEvent *event)
                           QMessageBox::No);
     if (res == QMessageBox::Yes)
     {
-      int ret=stopTransaction();
-      if (ret == 1)
+      if (m_viewAsTextBrowser)
       {
-        event->ignore();
-        return;
+        int ret=stopTransaction();
+        if (ret == 1)
+        {
+          event->ignore();
+          return;
+        }
       }
 
+      if (m_sharedMemory->isAttached()) m_sharedMemory->detach();
       m_upgradeRunning = false;
       reject();
     }
@@ -507,11 +506,14 @@ void OutputDialog::keyPressEvent(QKeyEvent *ke)
                           QMessageBox::No);
       if (res == QMessageBox::Yes)
       {
-        int ret=stopTransaction();
-        if (ret == 1)
+        if (m_viewAsTextBrowser)
         {
-          ke->ignore();
-          return;
+          int ret=stopTransaction();
+          if (ret == 1)
+          {
+            ke->ignore();
+            return;
+          }
         }
 
         m_upgradeRunning = false;
@@ -546,13 +548,6 @@ bool OutputDialog::eventFilter(QObject *, QEvent *event)
                                         QMessageBox::No);
         if (res == QMessageBox::Yes)
         {
-          int ret=stopTransaction();
-          if (ret == 1)
-          {
-            ke->ignore();
-            return false;
-          }
-
           m_upgradeRunning = false;
           reject();
           return true;
