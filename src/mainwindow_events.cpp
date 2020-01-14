@@ -393,11 +393,11 @@ void MainWindow::keyPressEvent(QKeyEvent* ke)
       connect(&g_fwOutdatedAURPackages, SIGNAL(finished()), this, SLOT(showToolButtonAUR()));
     }
   }
-  else if(ke->key() == Qt::Key_Z && ke->modifiers() == (Qt::ShiftModifier|Qt::ControlModifier))
+  /*else if(ke->key() == Qt::Key_Z && ke->modifiers() == (Qt::ShiftModifier|Qt::ControlModifier))
   {
     //THIS IS JUST A TEST CODE
     testSharedMem();
-  }
+  }*/
 
   else ke->ignore();
 }
