@@ -418,12 +418,10 @@ private slots:
   void invalidateTabs(); //This method clears the current information showed on tab.
 
   //Pacman transaction methods
-  //bool doRemovePacmanLockFile();
   void doRemove();
   void doRemoveAndInstall();
   void doInstall();
   void doCheckUpdates();
-  //void doSyncDatabase();
   void doMirrorCheck();
   void doInstallAURPackage();
   void doPreDownloadTempYay();

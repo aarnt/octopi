@@ -772,39 +772,6 @@ void MainWindow::doMirrorCheck()
 }
 
 /*
- * Does a repository sync with "pacman -Sy" !
- */
-/*void MainWindow::doSyncDatabase()
-{
-  if (!isSUAvailable()) return;
-
-  if (!isInternetAvailable()) return;
-
-  //Let's synchronize kcp database too...
-  if (UnixCommand::getLinuxDistro() == ectn_KAOS && UnixCommand::hasTheExecutable(ctn_KCP_TOOL) && !UnixCommand::isRootRunning())
-    UnixCommand::execCommandAsNormalUser("kcp -u");
-
-  m_commandExecuting = ectn_SYNC_DATABASE;
-  disableTransactionActions();
-
-  m_progressWidget->setValue(0);
-  m_progressWidget->setMaximum(100);
-  clearTabOutput();
-
-  m_pacmanExec = new PacmanExec();
-  if (m_debugInfo) m_pacmanExec->setDebugMode(true);
-
-  QObject::connect(m_pacmanExec, SIGNAL( finished ( int, QProcess::ExitStatus )),
-                   this, SLOT( pacmanProcessFinished(int, QProcess::ExitStatus) ));
-
-  QObject::connect(m_pacmanExec, SIGNAL(percentage(int)), this, SLOT(incrementPercentage(int)));
-  QObject::connect(m_pacmanExec, SIGNAL(textToPrintExt(QString)), this, SLOT(outputText(QString)));
-  QObject::connect(m_pacmanExec, SIGNAL(canStopTransaction(bool)), this, SLOT(onCanStopTransaction(bool)));
-
-  m_pacmanExec->doSyncDatabase();
-}*/
-
-/*
  * Updates the outdated AUR packages with "yaourt -S <list>"
  */
 void MainWindow::doAURUpgrade()
@@ -911,14 +878,12 @@ void MainWindow::doSystemUpgrade(SystemUpgradeOptions systemUpgradeOptions)
         (m_outdatedStringList->count() != 0 && m_outdatedStringList->contains("pacman")) )
     {
       m_commandExecuting = ectn_RUN_SYSTEM_UPGRADE_IN_TERMINAL;
-      //m_pacmanExec->setSharedMemory(m_sharedMem);
       m_pacmanExec->doSystemUpgradeInTerminal();
       m_commandQueued = ectn_NONE;
     }
     else
     {
       m_commandExecuting = ectn_SYSTEM_UPGRADE;
-      //m_pacmanExec->setSharedMemory(m_sharedMem);
       m_pacmanExec->doSystemUpgrade();
       m_commandQueued = ectn_NONE;
     }
@@ -962,7 +927,6 @@ void MainWindow::doSystemUpgrade(SystemUpgradeOptions systemUpgradeOptions)
           }
 
           m_commandExecuting = ectn_RUN_SYSTEM_UPGRADE_IN_TERMINAL;
-          //m_pacmanExec->setSharedMemory(m_sharedMem);
           m_pacmanExec->doSystemUpgradeInTerminal(ectn_SYNC_DATABASE);
           m_commandQueued = ectn_NONE;
         }
@@ -1031,14 +995,12 @@ void MainWindow::doSystemUpgrade(SystemUpgradeOptions systemUpgradeOptions)
       if (result == QDialogButtonBox::Yes)
       {
         m_commandExecuting = ectn_SYSTEM_UPGRADE;
-        //m_pacmanExec->setSharedMemory(m_sharedMem);
         m_pacmanExec->doSystemUpgrade();
         m_commandQueued = ectn_NONE;
       }
       else if (result == QDialogButtonBox::AcceptRole)
       {
         m_commandExecuting = ectn_RUN_SYSTEM_UPGRADE_IN_TERMINAL;
-        //m_pacmanExec->setSharedMemory(m_sharedMem);
         m_pacmanExec->doSystemUpgradeInTerminal();
         m_commandQueued = ectn_NONE;
       }
@@ -1168,13 +1130,11 @@ void MainWindow::doRemoveAndInstall()
     if (result == QDialogButtonBox::Yes)
     {
       m_commandExecuting = ectn_REMOVE_INSTALL;
-      //m_pacmanExec->setSharedMemory(m_sharedMem);
       m_pacmanExec->doRemoveAndInstall(listOfRemoveTargets, listOfInstallTargets);
     }
     else if (result == QDialogButtonBox::AcceptRole)
     {
       m_commandExecuting = ectn_RUN_IN_TERMINAL;
-      //m_pacmanExec->setSharedMemory(m_sharedMem);
       m_pacmanExec->doRemoveAndInstallInTerminal(listOfRemoveTargets, listOfInstallTargets);
     }
   }
@@ -1244,50 +1204,16 @@ void MainWindow::doRemove()
     if (result == QDialogButtonBox::Yes)
     {
       m_commandExecuting = ectn_REMOVE;
-      //m_pacmanExec->setSharedMemory(m_sharedMem);
       m_pacmanExec->doRemove(listOfTargets);
     }
 
     if (result == QDialogButtonBox::AcceptRole)
     {
       m_commandExecuting = ectn_RUN_IN_TERMINAL;
-      //m_pacmanExec->setSharedMemory(m_sharedMem);
       m_pacmanExec->doRemoveInTerminal(listOfTargets);
     }
   }
 }
-
-/*
- * If the Pacman lock file exists ("/var/run/pacman.lck"), removes it!
- */
-/*bool MainWindow::doRemovePacmanLockFile()
-{
-  //If there are no means to run the actions, we must warn!
-  if (!isSUAvailable()) return false;
-
-  if (PacmanExec::isDatabaseLocked())
-  {
-    int res = QMessageBox::question(this, StrConstants::getConfirmation(),
-                                    StrConstants::getRemovePacmanTransactionLockFileConfirmation(),
-                                    QMessageBox::Yes|QMessageBox::No, QMessageBox::No);
-
-    if (res == QMessageBox::Yes)
-    {
-      qApp->processEvents();
-
-      clearTabOutput();
-      writeToTabOutput("<b>" + StrConstants::getRemovingPacmanTransactionLockFile() + "</b><br>");
-      PacmanExec::removeDatabaseLock();
-      writeToTabOutput("<b>" + StrConstants::getCommandFinishedOK() + "</b>");
-    }
-    else
-    {
-      return false;
-    }
-  }
-
-  return true;
-}*/
 
 /*
  * Installs the selected package with "yaourt -S"
@@ -1679,13 +1605,11 @@ void MainWindow::doInstall()
     if (result == QDialogButtonBox::Yes)
     {
       m_commandExecuting = ectn_INSTALL;
-      //m_pacmanExec->setSharedMemory(m_sharedMem);
       m_pacmanExec->doInstall(listOfTargets);
     }
     else if (result == QDialogButtonBox::AcceptRole)
     {
       m_commandExecuting = ectn_RUN_IN_TERMINAL;
-      //m_pacmanExec->setSharedMemory(m_sharedMem);
       m_pacmanExec->doInstallInTerminal(listOfTargets);
     }
   }
@@ -1964,8 +1888,6 @@ void MainWindow::onCanStopTransaction(bool yesNo)
  */
 void MainWindow::pacmanProcessFinished(int exitCode, QProcess::ExitStatus exitStatus)
 {
-  //UnixCommand::removeSharedMemFiles();
-
   bool bRefreshGroups = true;
   m_progressWidget->close();
 
@@ -2228,14 +2150,12 @@ void MainWindow::onPressAnyKeyToContinue()
     refreshGroupsWidget();
 
   refreshMenuTools(); //Maybe some of octopi tools were added/removed...
-
   enableTransactionActions();
 
   if (m_pacmanExec == nullptr)
     delete m_pacmanExec;
 
   m_commandExecuting = ectn_NONE;
-  //UnixCommand::removeSharedMemFiles();
   m_console->execute("");
   m_console->setFocus();
 
@@ -2261,7 +2181,6 @@ void MainWindow::onCancelControlKey()
 
     m_pacmanExec = nullptr;
     m_commandExecuting = ectn_NONE;
-    //UnixCommand::removeSharedMemFiles();
   }
 }
 
