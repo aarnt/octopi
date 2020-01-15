@@ -1320,7 +1320,7 @@ void MainWindow::doInstallYayPackage()
   QObject::connect(m_pacmanExec, SIGNAL(textToPrintExt(QString)), this, SLOT(outputText(QString)));
   QObject::connect(m_pacmanExec, SIGNAL(commandToExecInQTermWidget(QString)), this, SLOT(onExecCommandInTabTerminal(QString)));
 
-  writeToTabOutput(StrConstants::getInstallingPackages() + "<br>");
+  writeToTabOutput("<b>" + StrConstants::getInstallingPackages() + "</b><br>");
   m_commandExecuting = ectn_INSTALL_YAY;
   m_pacmanExec->doInstallYayUsingTempYay();
 }
