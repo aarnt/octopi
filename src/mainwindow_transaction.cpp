@@ -1320,7 +1320,7 @@ void MainWindow::doInstallYayPackage()
   QObject::connect(m_pacmanExec, SIGNAL(textToPrintExt(QString)), this, SLOT(outputText(QString)));
   QObject::connect(m_pacmanExec, SIGNAL(commandToExecInQTermWidget(QString)), this, SLOT(onExecCommandInTabTerminal(QString)));
 
-  //m_tempYayInstalledYay = true;
+  writeToTabOutput(StrConstants::getInstallingPackages() + "<br>");
   m_commandExecuting = ectn_INSTALL_YAY;
   m_pacmanExec->doInstallYayUsingTempYay();
 }
@@ -1992,7 +1992,6 @@ void MainWindow::pacmanProcessFinished(int exitCode, QProcess::ExitStatus exitSt
             (IsSyncingRepoInTabOutput()))
         {
           bool aurGroup = isAURGroupSelected();
-
           if (!aurGroup)
           {
             metaBuildPackageList();
@@ -2124,6 +2123,11 @@ void MainWindow::onPressAnyKeyToContinue()
       m_actionSwitchToAURTool->setToolTip(m_actionSwitchToAURTool->toolTip() + "  (Ctrl+Shift+Y)");
       m_actionSwitchToAURTool->setCheckable(true);
       m_actionSwitchToAURTool->setChecked(false);
+      writeToTabOutput("<br><b>" + StrConstants::getCommandFinishedOK() + "</b><br>");
+    }
+    else
+    {
+      writeToTabOutput("<br><b>" + StrConstants::getCommandFinishedWithErrors() + "</b><br>");
     }
   }
 
