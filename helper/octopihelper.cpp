@@ -172,8 +172,16 @@ bool OctopiHelper::isOctoToolRunning(const QString &octoToolName)
   {
     if (out == "/usr/bin/octopi-cachecleaner") res=true;
   }
-  else if ((out == "/usr/bin/" + octoToolName) || out.contains("/usr/bin/" + octoToolName + " ")) res=true;
+  else
+  {
+    QStringList options;
+    options << "/usr/bin/octopi-notifier -d";
+    options << "/usr/bin/octopi -d";
+    options << "/usr/bin/octopi -sysupgrade";
 
+    if (out == "/usr/bin/" + octoToolName || (options.indexOf(out)!=-1)) res=true;
+
+  }
   return res;
 }
 
