@@ -195,8 +195,7 @@ bool OctopiHelper::isOctoToolRunning(const QString &octoToolName)
 }
 
 /*
- * Executes all commands inside Octopi's SharedMemory
- * octopi-helper -ts
+ * Executes all commands inside Octopi's SharedMemory - "octopi-helper -ts"
  */
 int OctopiHelper::executePkgTransactionWithSharedMem()
 {
@@ -233,7 +232,7 @@ int OctopiHelper::executePkgTransactionWithSharedMem()
   bool suspicious = false;
 
   if (contents.isEmpty() || contents.contains(QRegularExpression(m_suspiciousChars)))
-      suspicious = true;
+    suspicious = true;
 
   if (suspicious)
   {
@@ -462,7 +461,14 @@ int OctopiHelper::executePkgTransactionWithSharedMem()
 
   QString proxySettings = getProxySettings();
   if (!proxySettings.isEmpty())
-    out << "export http_proxy=" + proxySettings + "\n";
+  {
+    if (proxySettings.contains("ftp://"))
+      out << "export ftp_proxy=" + proxySettings + "\n";
+    else if (proxySettings.contains("http://"))
+      out << "export http_proxy=" + proxySettings + "\n";
+    else if (proxySettings.contains("https://"))
+      out << "export https_proxy=" + proxySettings + "\n";
+  }
 
   out << "unalias -a\n" << contents;
   out.flush();
