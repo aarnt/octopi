@@ -41,6 +41,8 @@ private:
 
   static QFile *m_temporaryFile;
 
+  static QString getProxySettings();
+
   static QFile* generateTemporaryFile(){
     quint32 gen = QRandomGenerator::global()->generate();
     m_temporaryFile = new QFile(ctn_TEMP_ACTIONS_FILE + QString::number(gen));

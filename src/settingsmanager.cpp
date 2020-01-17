@@ -460,6 +460,12 @@ QString SettingsManager::getAURPassword()
   return decryptedValue;
 }
 
+QString SettingsManager::getProxySettings()
+{
+  SettingsManager p_instance;
+  return (p_instance.getSYSsettings()->value(ctn_KEY_PROXY_SETTINGS, ""));
+}
+
 bool SettingsManager::getUseAlternateRowColor()
 {
   SettingsManager p_instance;
@@ -764,6 +770,15 @@ void SettingsManager::setAURPassword(const QString &newValue)
 
   instance()->getSYSsettings()->setValue(ctn_KEY_AUR_PASSWORD, encryptedValue);
   instance()->getSYSsettings()->sync();
+}
+
+void SettingsManager::setProxySettings(const QString &newValue)
+{
+  if (!newValue.isEmpty())
+  {
+    instance()->getSYSsettings()->setValue(ctn_KEY_PROXY_SETTINGS, newValue);
+    instance()->getSYSsettings()->sync();
+  }
 }
 
 void SettingsManager::setUseAlternateRowColor(bool newValue)

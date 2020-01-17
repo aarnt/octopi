@@ -81,6 +81,7 @@ class SettingsManager
     static bool getEnableAURVoting();
     static QString getAURUserName();
     static QString getAURPassword();
+    static QString getProxySettings();
     static bool getUseAlternateRowColor();
     static bool getEnableConfirmationDialogInSysUpgrade();
     static bool getEnableInternetChecking();
@@ -158,6 +159,7 @@ class SettingsManager
     static void setEnableAURVoting(bool newValue);
     static void setAURUserName(const QString& newValue);
     static void setAURPassword(const QString& newValue);
+    static void setProxySettings(const QString& newValue);
     static void setUseAlternateRowColor(bool newValue);
     static void setEnableConfirmationDialogInSysUpgrade(bool newValue);
     static void setEnableInternetChecking(bool newValue);

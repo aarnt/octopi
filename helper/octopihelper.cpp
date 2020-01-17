@@ -31,6 +31,7 @@
 #include <QTcpSocket>
 #include <QDataStream>
 #include <QFile>
+#include <QSettings>
 
 QFile *OctopiHelper::m_temporaryFile = nullptr;
 
@@ -150,6 +151,15 @@ QProcessEnvironment OctopiHelper::getProcessEnvironment()
 }
 
 /*
+ * Retrieves Proxy_Settings config from "/root/.config/octopi/octopi.conf"
+ */
+QString OctopiHelper::getProxySettings()
+{
+  QSettings settings(QSettings::UserScope, ctn_ORGANIZATION, ctn_APPLICATION);
+  return (settings.value(ctn_KEY_PROXY_SETTINGS, "").toString());
+}
+
+/*
  * Checks if Octopi/Octopi-notifier, cache-cleaner, etc is being executed
  */
 bool OctopiHelper::isOctoToolRunning(const QString &octoToolName)
@@ -180,7 +190,6 @@ bool OctopiHelper::isOctoToolRunning(const QString &octoToolName)
     options << "/usr/bin/octopi -sysupgrade";
 
     if (out == "/usr/bin/" + octoToolName || (options.indexOf(out)!=-1)) res=true;
-
   }
   return res;
 }
@@ -450,6 +459,11 @@ int OctopiHelper::executePkgTransactionWithSharedMem()
   //Let's construct the root owned execution file
   QFile *ftemp = generateTemporaryFile();
   QTextStream out(ftemp);
+
+  QString proxySettings = getProxySettings();
+  if (!proxySettings.isEmpty())
+    out << "export http_proxy=" + proxySettings + "\n";
+
   out << "unalias -a\n" << contents;
   out.flush();
   ftemp->close();
