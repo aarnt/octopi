@@ -72,7 +72,7 @@
     <message>
         <location filename="Projects/octopi/repoeditor/main.cpp" line="54"/>
         <source>You can not run Repository Editor with administrator&apos;s credentials.</source>
-        <translation type="unfinished"/>
+        <translation>Du kan ikke køre arkivredigering med administrators loginoplysninger.</translation>
     </message>
 </context>
 <context>
@@ -169,19 +169,19 @@
         <location filename="Projects/octopi/repoeditor/repoeditor.cpp" line="103"/>
         <location filename="Projects/octopi/repoeditor/repoeditor.cpp" line="125"/>
         <source>Confirmation</source>
-        <translation type="unfinished"/>
+        <translation>Bekræftelse</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/repoeditor.cpp" line="104"/>
         <location filename="Projects/octopi/repoeditor/repoeditor.cpp" line="126"/>
         <source>There are unsaved changes.</source>
-        <translation type="unfinished"/>
+        <translation>Der er ændringer som ikke er blevet gemt.</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/repoeditor.cpp" line="105"/>
         <location filename="Projects/octopi/repoeditor/repoeditor.cpp" line="127"/>
         <source>Do you want to save them?</source>
-        <translation type="unfinished"/>
+        <translation>Vil du gemme dem?</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/repoeditor.cpp" line="160"/>
