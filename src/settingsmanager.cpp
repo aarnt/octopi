@@ -463,7 +463,7 @@ QString SettingsManager::getAURPassword()
 QString SettingsManager::getProxySettings()
 {
   SettingsManager p_instance;
-  return (p_instance.getSYSsettings()->value(ctn_KEY_PROXY_SETTINGS, ""));
+  return (p_instance.getSYSsettings()->value(ctn_KEY_PROXY_SETTINGS, "").toString());
 }
 
 bool SettingsManager::getUseAlternateRowColor()

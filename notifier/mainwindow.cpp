@@ -467,7 +467,7 @@ void MainWindow::setUpgradingTooltip()
  */
 void MainWindow::doSystemUpgrade()
 {
-  if (!isInternetAvailable()) return;
+  if (SettingsManager::getEnableInternetChecking() && !isInternetAvailable()) return;
 
   if (isOctopiBusy()) return;
 
@@ -819,11 +819,11 @@ void MainWindow::checkUpdates(CheckUpdate check)
 {
   if (check == ectn_AUTO_CHECK)
   {
-    if (!UnixCommand::hasInternetConnection()) return;
+    if (SettingsManager::getEnableInternetChecking() && !UnixCommand::hasInternetConnection()) return;
   }
   else if (check == ectn_USER_CHECK)
   {
-    if (!isInternetAvailable()) return;
+    if (SettingsManager::getEnableInternetChecking() && !isInternetAvailable()) return;
   }
 
   disconnect(m_pacmanDatabaseSystemWatcher,
