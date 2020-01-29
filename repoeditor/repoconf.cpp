@@ -97,7 +97,7 @@ bool RepoConf::hasAnyChanges()
   }
   else
   {
-    QString contents = confFile.readAll();
+    QString contents = confFile.readAll().trimmed();
     res=(contents.toLatin1() != toString().toLatin1());
   }
 
