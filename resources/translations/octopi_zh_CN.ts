@@ -14,7 +14,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="106"/>
         <source>Actions</source>
-        <translation type="unfinished"/>
+        <translation>操作</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="111"/>
@@ -24,32 +24,32 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="147"/>
         <source>&amp;Help</source>
-        <translation type="unfinished"/>
+        <translation>帮助(&amp;H)</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="156"/>
         <source>&amp;View</source>
-        <translation type="unfinished"/>
+        <translation>查看(&amp;V)</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="172"/>
         <source>&amp;File</source>
-        <translation type="unfinished"/>
+        <translation>文件(&amp;F)</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="184"/>
         <source>&amp;Search</source>
-        <translation type="unfinished"/>
+        <translation>搜索(&amp;S)</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="194"/>
         <source>T&amp;ools</source>
-        <translation type="unfinished"/>
+        <translation>工具(&amp;O)</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="224"/>
         <source>&amp;About</source>
-        <translation type="unfinished"/>
+        <translation>关于(&amp;A)</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="227"/>
@@ -64,7 +64,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="250"/>
         <source>Apply</source>
-        <translation type="unfinished"/>
+        <translation>应用</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="271"/>
@@ -74,17 +74,17 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="283"/>
         <source>Check &amp;updates</source>
-        <translation type="unfinished"/>
+        <translation>检查更新(&amp;U)</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="291"/>
         <source>E&amp;xit</source>
-        <translation type="unfinished"/>
+        <translation>退出(&amp;X)</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="306"/>
         <source>System u&amp;pgrade</source>
-        <translation type="unfinished"/>
+        <translation>系统升级(&amp;P)</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="324"/>
@@ -102,12 +102,12 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="344"/>
         <source>Outdated packages</source>
-        <translation>过期的软件包</translation>
+        <translation>过时的软件包</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="353"/>
         <source>&amp;Get latest distro news</source>
-        <translation type="unfinished"/>
+        <translation>获取最新发行版新闻(&amp;G)</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="365"/>
@@ -172,12 +172,12 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="478"/>
         <source>By &amp;description</source>
-        <translation type="unfinished"/>
+        <translation>按描述(&amp;D)</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="489"/>
         <source>By &amp;name</source>
-        <translation type="unfinished"/>
+        <translation>按名称(&amp;N)</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="501"/>
@@ -197,7 +197,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="526"/>
         <source>&amp;Install local package...</source>
-        <translation type="unfinished"/>
+        <translation>安装本地软件包(&amp;I)</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="543"/>
@@ -222,17 +222,17 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="603"/>
         <source>By &amp;file</source>
-        <translation type="unfinished"/>
+        <translation>按文件(&amp;F)</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="614"/>
         <source>Use Instant Search</source>
-        <translation>使用即刻搜索</translation>
+        <translation>使用即时搜索</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="622"/>
         <source>Donate!</source>
-        <translation type="unfinished"/>
+        <translation>捐赠！</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="85"/>
@@ -252,12 +252,12 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="101"/>
         <source>A Qt-based Pacman frontend,</source>
-        <translation>一个基于 Qt 的 Pacman 前端</translation>
+        <translation>一个基于 Qt 的 Pacman 前端，</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="102"/>
         <source>licensed under the terms of</source>
-        <translation>根据这些条款许可</translation>
+        <translation>在该许可证下授权发布：</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="109"/>
@@ -267,17 +267,17 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="112"/>
         <source>An installed package</source>
-        <translation>已经安装的软件包</translation>
+        <translation>已安装的软件包</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="114"/>
         <source>An installed package (not required by others)</source>
-        <translation>以及安装的软件包 (不被其他软件包所需要)</translation>
+        <translation>已安装的软件包 (不被其他软件包所依赖)</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="117"/>
         <source>A foreign package, installed from</source>
-        <translation>一个外部软件包，从此处安装：</translation>
+        <translation>外部软件包，从此处安装：</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="120"/>
@@ -287,22 +287,22 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="123"/>
         <source>An outdated package</source>
-        <translation>过期软件包</translation>
+        <translation>过时的软件包</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="126"/>
         <source>An outdated foreign package</source>
-        <translation>过期的外部软件包</translation>
+        <translation>过时的外部软件包</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="129"/>
         <source>A newer than repository package</source>
-        <translation>一个软件包比其在软件库内的版本更高</translation>
+        <translation>比其在软件库内的版本更高的软件包</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="131"/>
         <source>Basic usage help:</source>
-        <translation>基本使用方法帮助</translation>
+        <translation>基本使用方法帮助：</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="133"/>
@@ -322,137 +322,137 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="140"/>
         <source>Alt+key sequences:</source>
-        <translation>Alt+key 序列:</translation>
+        <translation>Alt+Key 组合键：</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="142"/>
         <source>Alt+1 to switch to &apos;Info&apos; tab</source>
-        <translation>Alt+1 切换到&quot;信息&quot;标签</translation>
+        <translation>按 Alt+1 切换到 信息 标签页</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="144"/>
         <source>Alt+2 to switch to &apos;Files&apos; tab</source>
-        <translation>Alt+2 切换到&quot;文件&quot;标签</translation>
+        <translation>按 Alt+2 切换到 文件 标签页</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="146"/>
         <source>Alt+3 to switch to &apos;Actions&apos; tab</source>
-        <translation type="unfinished"/>
+        <translation>按 Alt+3 切换到 操作 标签页</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="148"/>
         <source>Alt+4 to switch to &apos;Output&apos; tab</source>
-        <translation>Alt+4 切换到&quot;输出&quot;标签</translation>
+        <translation>按 Alt+4 切换到 输出 标签页</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="150"/>
         <source>Alt+5 to switch to &apos;News&apos; tab</source>
-        <translation>Alt+5 切换到&quot;新闻&quot;标签</translation>
+        <translation>按 Alt+5 切换到 新闻 标签页</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="152"/>
         <source>Alt+6 or &apos;F1&apos; to show this help page</source>
-        <translation>Alt+6 或 &apos;F1&apos; 显示帮助页面</translation>
+        <translation>按 Alt+6 或 F1 以显示此帮助页面</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="154"/>
         <source>Alt+7 to switch to &apos;Terminal&apos; tab</source>
-        <translation type="unfinished"/>
+        <translation>按 Alt+7 切换到 终端 标签页</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="157"/>
         <source>Control+key sequences:</source>
-        <translation>Control+key 序列:</translation>
+        <translation>Control+Key 组合键：</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="159"/>
         <source>Ctrl+E or &apos;Actions/Cancel&apos; to clear the selection of to be removed/installed packages</source>
-        <translation type="unfinished"/>
+        <translation>按 Ctrl+E 或 点击 &apos;操作-取消&apos; 以取消选择将被安装/卸载的软件包 </translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="161"/>
         <source>Ctrl+F to search for text inside tab Files, News and Usage</source>
-        <translation>Ctrl+F 在文件、新闻和使用方法便签中搜索文本</translation>
+        <translation>按 Ctrl+F 在文件、新闻和使用方法标签页中搜索文本</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="163"/>
         <source>Ctrl+G or &apos;File/Get latest distro news&apos; to retrieve the latest RSS based distro news</source>
-        <translation>Ctrl+G 或 &apos;文件/获取发行版最近的新闻&apos; 从 RSS 获取本发行版最近的新闻</translation>
+        <translation>按 Ctrl+G 或 点击 &apos;文件-获取最新发行版新闻&apos; 从 RSS 获取本发行版最近的新闻</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="165"/>
         <source>Ctrl+K or &apos;File/Check updates&apos; to check mirror for latest updates (checkupdates)</source>
-        <translation type="unfinished"/>
+        <translation>按 Ctrl+K 或 点击 &apos;文件-检查更新&apos; 以检查镜像的最新更新 (checkupdates)</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="167"/>
         <source>Ctrl+L to find a package in the package list</source>
-        <translation>Ctrl+L 在软件包列表里面搜索软件包</translation>
+        <translation>按 Ctrl+L 在软件包列表里面搜索软件包</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="169"/>
         <source>Ctrl+P to go to package list</source>
-        <translation type="unfinished"/>
+        <translation>按 Ctrl+P 前往软件包列表</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="171"/>
         <source>Ctrl+Q or &apos;File/Exit&apos; to exit the application</source>
-        <translation>Ctrl+Q 或 &apos;文件/退出&apos; 退出本程序</translation>
+        <translation>按 Ctrl+Q 或 点击 &apos;文件-退出&apos; 以退出本程序</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="173"/>
         <source>Ctrl+U or &apos;File/System upgrade&apos; to make a full system upgrade (pacman -Su)</source>
-        <translation type="unfinished"/>
+        <translation>按 Ctrl+U 或 点击 &apos;文件-系统升级&apos; 以进行全面系统升级 (pacman -Su)</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="175"/>
         <source>Ctrl+Y or &apos;Actions/Apply&apos; to start installation/removal of selected packages</source>
-        <translation type="unfinished"/>
+        <translation>按 Ctrl+Y 或 点击 &apos;操作-应用&apos; 以开始安装/卸载选定软件包</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="178"/>
         <source>Control+shift+key sequences:</source>
-        <translation>Ctrl+Shift+键 序列：</translation>
+        <translation>Ctrl+Shift+Key 组合键：</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="182"/>
         <source>Ctrl+Shift+G to display all package groups</source>
-        <translation>Ctrl+Shift+G 显示所有软件包组</translation>
+        <translation>按 Ctrl+Shift+G 显示所有软件包组</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="187"/>
         <source>Ctrl+Shift+Y to display %1 group</source>
-        <translation>Ctrl+Shift+Y 显示 %1 组</translation>
+        <translation>按 Ctrl+Shift+Y 显示 %1 组</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="190"/>
         <source>F+key sequences:</source>
-        <translation>功能键 序列：</translation>
+        <translation>功能键：</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="192"/>
         <source>F1 to show this help page</source>
-        <translation>F1 显示此帮助页面</translation>
+        <translation>按 F1 显示此帮助页面</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="194"/>
         <source>F4 to open a Terminal whitin the selected directory at Files tab</source>
-        <translation>F4 在“文件”标签选定目录打开终端</translation>
+        <translation>按 F4 在 文件 标签选定目录打开终端</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="196"/>
         <source>F6 to open a File Manager whitin the selected directory at Files tab</source>
-        <translation>F6 在“文件”标签选定目录打开文件管理器</translation>
+        <translation>按 F6 在 文件 标签选定目录打开文件管理器</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="198"/>
         <source>F10 to maximize/demaximize package list view</source>
-        <translation>F10 最大化/还原软件列表</translation>
+        <translation>按 F10 以最大化/还原 软件列表视图</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="200"/>
         <source>F11 to maximize/demaximize Tab&apos;s view</source>
-        <translation>按下 F11 以最大化/还原 标签视图大小</translation>
+        <translation>按 F11 以最大化/还原 标签页视图</translation>
     </message>
 </context>
 <context>
@@ -470,68 +470,69 @@
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="50"/>
         <source>Show package numbers in output tab</source>
-        <translation type="unfinished"/>
+        <translation>在 输出 标签页中显示软件包数量</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="63"/>
         <source>Show stop transaction button at statusbar</source>
-        <translation type="unfinished"/>
+        <translation>在状态栏显示中止事务按钮</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="76"/>
         <source>Use alternating row colors in package list</source>
-        <translation type="unfinished"/>
+        <translation>在软件包列表中使用交替行背景色</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="89"/>
         <source>Enable confirmation dialog in system upgrade</source>
-        <translation type="unfinished"/>
+        <translation>在系统升级中启用确认对话框</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="102"/>
         <source>Enable internet checking</source>
-        <translation type="unfinished"/>
+        <translation>启用互联网检查</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="139"/>
         <source>Select the AUR tool Octopi should use</source>
-        <translation>选择 Octopi 要使用的 AUR 包管理器</translation>
+        <translation>选择 Octopi 使用的 AUR 包管理器</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="214"/>
         <source>Search for outdated AUR packages</source>
-        <translation>搜索旧版本 AUR 软件包</translation>
+        <translation>搜索过时的 AUR 软件包</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="269"/>
         <source>User name</source>
-        <translation type="unfinished"/>
+        <translation>用户名</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="282"/>
         <source>Password</source>
-        <translation type="unfinished"/>
+        <translation>密码</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="295"/>
         <source>Register</source>
-        <translation type="unfinished"/>
+        <translation>注册</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="308"/>
         <source>Connect</source>
-        <translation type="unfinished"/>
+        <translation>连接</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="322"/>
         <source>Enable AUR voting</source>
-        <translation type="unfinished"/>
+        <translation>启用 AUR 投票</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="343"/>
         <source>AUR packages are user produced content. 
 Any use of the provided files is at your own risk.</source>
-        <translation type="unfinished"/>
+        <translation>AUR 软件包为用户创作内容，
+任何使用所给文件造成的风险由您自行承担。</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="356"/>
@@ -543,7 +544,7 @@ Any use of the provided files is at your own risk.</source>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="422"/>
         <source>Select the backend Octopi should use</source>
-        <translation>选择 Octopi 要使用的后端软件</translation>
+        <translation>选择 Octopi 使用的后端软件</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="446"/>
@@ -580,7 +581,7 @@ Any use of the provided files is at your own risk.</source>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="777"/>
         <location filename="Projects/octopi/src/optionsdialog.cpp" line="169"/>
         <source>Updates</source>
-        <translation type="unfinished"/>
+        <translation>更新</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/optionsdialog.cpp" line="93"/>
@@ -630,7 +631,8 @@ Any use of the provided files is at your own risk.</source>
         <location filename="Projects/octopi/src/strconstants.cpp" line="48"/>
         <source>Pacman Database is missing!
 You may need to synchronize database!</source>
-        <translation type="unfinished"/>
+        <translation>Pacman 数据库丢失！
+您或许需要同步数据库。</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="52"/>
@@ -650,12 +652,12 @@ You may need to synchronize database!</source>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="142"/>
         <source>Condres OS news</source>
-        <translation type="unfinished"/>
+        <translation>Condres OS 新闻</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="146"/>
         <source>EndeavourOS news</source>
-        <translation type="unfinished"/>
+        <translation>EndeavourOS 新闻</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="150"/>
@@ -675,7 +677,7 @@ You may need to synchronize database!</source>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="162"/>
         <source>Information</source>
-        <translation type="unfinished"/>
+        <translation>信息</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="166"/>
@@ -715,12 +717,12 @@ You may need to synchronize database!</source>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="202"/>
         <source>Help</source>
-        <translation type="unfinished"/>
+        <translation>帮助</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="206"/>
         <source>&amp;Options</source>
-        <translation type="unfinished"/>
+        <translation>选项 (&amp;O)</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="210"/>
@@ -735,7 +737,7 @@ You may need to synchronize database!</source>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="218"/>
         <source>Outdated version</source>
-        <translation>过期的版本</translation>
+        <translation>过时版本</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="222"/>
@@ -745,7 +747,7 @@ You may need to synchronize database!</source>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="226"/>
         <source>No description available.</source>
-        <translation>没有描述信息。</translation>
+        <translation>没有提供描述信息。</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="230"/>
@@ -810,27 +812,27 @@ You may need to synchronize database!</source>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="278"/>
         <source>Votes</source>
-        <translation type="unfinished"/>
+        <translation>投票</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="282"/>
         <source>votes</source>
-        <translation>投票</translation>
+        <translation>投票数</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="287"/>
         <source>Vote</source>
-        <translation type="unfinished"/>
+        <translation>投票</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="292"/>
         <source>AUR voted package list</source>
-        <translation type="unfinished"/>
+        <translation>AUR 已投票软件包列表</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="297"/>
         <source>Unvote</source>
-        <translation type="unfinished"/>
+        <translation>取消投票</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="301"/>
@@ -885,7 +887,7 @@ You may need to synchronize database!</source>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="341"/>
         <source>Partial updates are not supported!</source>
-        <translation>不支持区部升级！</translation>
+        <translation>不支持局部升级！</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="345"/>
@@ -910,12 +912,12 @@ You may need to synchronize database!</source>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="361"/>
         <source>Transaction</source>
-        <translation>处理</translation>
+        <translation>事务</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="365"/>
         <source>Actions</source>
-        <translation type="unfinished"/>
+        <translation>操作</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="369"/>
@@ -930,7 +932,7 @@ You may need to synchronize database!</source>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="378"/>
         <source>Terminal</source>
-        <translation type="unfinished"/>
+        <translation>终端</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="382"/>
@@ -970,12 +972,12 @@ You may need to synchronize database!</source>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="410"/>
         <source>There is one outdated package in your system:</source>
-        <translation>你的系统有 1 个过时的软件包：</translation>
+        <translation>您的系统有 1 个过时的软件包：</translation>
     </message>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.cpp" line="414"/>
         <source>There are %n outdated packages in your system:</source>
-        <translation><numerusform>你的系统有 %n 个过时的软件包：</numerusform></translation>
+        <translation><numerusform>您的系统有 %n 个过时的软件包：</numerusform></translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="418"/>
@@ -1015,27 +1017,27 @@ You may need to synchronize database!</source>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="446"/>
         <source>Removing Pacman&apos;s transaction lock file...</source>
-        <translation>删除 Pacman 文件锁...</translation>
+        <translation>删除 Pacman 事务锁文件...</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="478"/>
         <source>Check updates</source>
-        <translation type="unfinished"/>
+        <translation>检查更新</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="483"/>
         <source>System upgrade</source>
-        <translation type="unfinished"/>
+        <translation>系统升级</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="488"/>
         <source>Checking for updates...</source>
-        <translation type="unfinished"/>
+        <translation>正在检查更新...</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="493"/>
         <source>No updates available</source>
-        <translation type="unfinished"/>
+        <translation>没有可用更新</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="501"/>
@@ -1050,12 +1052,12 @@ You may need to synchronize database!</source>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="514"/>
         <source>SysInfo file generated on: %1&lt;br&gt;If you wish, post the output in your distro&apos;s forum for help.</source>
-        <translation type="unfinished"/>
+        <translation>系统信息文件已生成：%1&lt;br&gt;如果您需要的话，将输出发布到您使用的发行版的论坛上以获取帮助。</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="518"/>
         <source>Starting full system upgrade...</source>
-        <translation>开始完整的系统升级...</translation>
+        <translation>开始全面系统升级...</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="522"/>
@@ -1090,22 +1092,22 @@ You may need to synchronize database!</source>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="547"/>
         <source>Temporary &quot;yay-bin&quot; could not be downloaded!</source>
-        <translation type="unfinished"/>
+        <translation>无法下载临时 &quot;yay-bin&quot; ！</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="552"/>
         <source>Temporary &quot;yay-bin&quot; downloaded.</source>
-        <translation type="unfinished"/>
+        <translation>已下载临时 &quot;yay-bin&quot; 。</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="557"/>
         <source>Downloading temporary &quot;yay-bin&quot;...</source>
-        <translation type="unfinished"/>
+        <translation>正在下载临时 &quot;yay-bin&quot; ...</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="561"/>
         <source>Retrieving %1</source>
-        <translation>获取 %1</translation>
+        <translation>正在获取 %1</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="565"/>
@@ -1170,12 +1172,12 @@ You may need to synchronize database!</source>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="613"/>
         <source>There has been a transaction error!</source>
-        <translation>处理出现错误！</translation>
+        <translation>事务处理出现错误！</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="617"/>
         <source>Do you want to execute this transaction in a Terminal?</source>
-        <translation>你要在终端里执行这项操作吗？</translation>
+        <translation>您要在终端里执行这项事务吗？</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="629"/>
@@ -1254,7 +1256,7 @@ You only need to accept and wait a few seconds.</source>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="697"/>
         <source>Canceling the running transaction may damage your system!</source>
-        <translation type="unfinished"/>
+        <translation>取消运行中的事务可能会损坏您的系统！</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="701"/>
