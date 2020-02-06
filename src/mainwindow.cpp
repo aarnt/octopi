@@ -627,6 +627,7 @@ void MainWindow::outputOutdatedPackageList()
       }
     }
 
+    html += "</table><br>";
     writeToTabOutput(html);
 
     QTextBrowser *text =
@@ -676,6 +677,7 @@ void MainWindow::outputOutdatedPackageList()
       }
     }
 
+    html += "</table><br>";
     writeToTabOutput(html);
 
     QTextBrowser *text =
@@ -713,7 +715,7 @@ void MainWindow::outputAURVotedPackageList()
       list += "<li>" + vote + "</li>";
     }
 
-    list += "</ul>";
+    list += "</ul><br>";
 
     writeToTabOutput(list);
 
@@ -772,6 +774,7 @@ void MainWindow::outputOutdatedAURPackageList()
     }
   }
 
+  html += "</table><br>";
   writeToTabOutput(html);
 
   QTextBrowser *text =
