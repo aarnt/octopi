@@ -38,7 +38,7 @@ SearchLineEdit::SearchLineEdit(QWidget *parent, bool hasSLocate) :
   this->m_SearchButton = new QToolButton(this);
 
   // Increase button size a bit for kde
-  if (WMHelper::isKDERunning())
+  if (WMHelper::isKDERunning() && UnixCommand::getLinuxDistro() != ectn_KAOS)
     this->m_SearchButton->setFixedSize(18, 18);
   else
     this->m_SearchButton->setFixedSize(16, 16);
