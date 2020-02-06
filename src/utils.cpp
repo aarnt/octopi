@@ -400,6 +400,8 @@ QString utils::parseDistroNews()
   }
 
   html += "</ul>";
+  html = html.replace("<a href=", "<a style=\"color:'" + hyperlinkColor + "'\" href=");
+
   return html;
 }
 

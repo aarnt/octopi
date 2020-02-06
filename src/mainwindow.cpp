@@ -619,7 +619,7 @@ void MainWindow::outputOutdatedPackageList()
       const PackageRepository::PackageData*const package = m_packageRepo.getFirstPackageByName(pkg);
 
       if (package != nullptr) {
-        html += "<tr><td><a href=\"goto:" + pkg + "\">" + pkg +
+        html += "<tr><td><a style=\"color:'" + hyperlinkColor + "'\" href=\"goto:" + pkg + "\">" + pkg +
             "</td><td align=\"right\"><b><font color=\"#E55451\">" +
             package->outdatedVersion +
             "</b></font></td><td align=\"right\">" +
@@ -668,7 +668,7 @@ void MainWindow::outputOutdatedPackageList()
       const PackageRepository::PackageData*const package = m_packageRepo.getFirstPackageByName(pkg);
 
       if (package != nullptr) {
-        html += "<tr><td><a href=\"goto:" + pkg + "\">" + pkg +
+        html += "<tr><td><a style=\"color:'" + hyperlinkColor + "'\" href=\"goto:" + pkg + "\">" + pkg +
             "</td><td align=\"right\"><b><font color=\"#E55451\">" +
             package->outdatedVersion +
             "</b></font></td><td align=\"right\">" +
@@ -764,7 +764,7 @@ void MainWindow::outputOutdatedAURPackageList()
     if (package != nullptr) {
       QString availableVersion = m_outdatedAURPackagesNameVersion->value(m_outdatedAURStringList->at(c));
   
-      html += "<tr><td><a href=\"goto:" + pkg + "\">" + pkg +
+      html += "<tr><td><a style=\"color:'" + hyperlinkColor + "'\" href=\"goto:" + pkg + "\">" + pkg +
           "</td><td align=\"right\"><b><font color=\"#E55451\">" +
           package->version +
           "</b></font></td><td align=\"right\">" +

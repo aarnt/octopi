@@ -79,7 +79,7 @@ QString Package::makeURLClickable( const QString &s )
 		QString s1 = rx.cap();
     QString ns;
 
-    ns = "<a href=\"" + s1 + "\">" + s1 + "</a>";
+    ns = "<a style=\"color:'" + hyperlinkColor + "'\" href=\"" + s1 + "\">" + s1 + "</a>";
     sb.replace( ini, s1.length(), ns);
 		search = ini + (2*s1.length()) + 15;	
 	}
@@ -97,7 +97,7 @@ QString Package::makeURLClickable( const QString &s )
 		int blanks = s1.count(	QRegularExpression("^|[\\s]+") );
 		for (int i=0; i<blanks; i++) ns += " ";
 
-    ns += "<a href=\"http://" + s1.trimmed() + "\">" + s1.trimmed() + "</a>";
+    ns += "<a style=\"color:'" + hyperlinkColor + "'\" href=\"http://" + s1.trimmed() + "\">" + s1.trimmed() + "</a>";
     sb.replace( ini, s1.length(), ns);
 		search = ini + (2*s1.length()) + 15;	
 	}
@@ -160,12 +160,12 @@ QString Package::makeAnchorOfOptionalDep(const QString &optionalDeps)
     {
       name = dep.left(colon).trimmed();
 
-      newDep = "<a href=\"goto:" + name + "\">" + name + "</a> " + dep.right(dep.length()-colon);
+      newDep = "<a style=\"color:'" + hyperlinkColor + "'\" href=\"goto:" + name + "\">" + name + "</a> " + dep.right(dep.length()-colon);
       newDeps += newDep + "<br>";
     }
     else
     {
-      newDep = "<a href=\"goto:" + dep + "\">" + dep + "</a> ";
+      newDep = "<a style=\"color:'" + hyperlinkColor + "'\" href=\"goto:" + dep + "\">" + dep + "</a> ";
       newDeps += newDep + "<br>";
     }
   }
@@ -189,7 +189,7 @@ QString Package::makeAnchorOfPackage(const QString &packages)
         !dep.contains("<") &&
         !dep.contains(">"))
     {
-      newDeps += "<a href=\"goto:" + dep + "\">" + dep + "</a> ";
+      newDeps += "<a style=\"color:'" + hyperlinkColor + "'\" href=\"goto:" + dep + "\">" + dep + "</a> ";
     }
     else
     {
@@ -228,7 +228,7 @@ QString Package::makeAnchorOfPackage(const QString &packages)
         newDep = dep.left(p);
       }
 
-      newDeps += "<a href=\"goto:" + newDep + "\">" + dep + "</a> ";
+      newDeps += "<a style=\"color:'" + hyperlinkColor + "'\" href=\"goto:" + newDep + "\">" + dep + "</a> ";
     }
   }
 
