@@ -205,7 +205,7 @@ QString OctopiTabInfo::formatTabInfo(const PackageRepository::PackageData& packa
   if(!pid.installReason.isEmpty())
     html += "<tr><td>" + installReason + "</td><td>" + pid.installReason + "</td></tr>";
 
-  html += "</table>";
+  html += "</table><br>";
 
   return html;
 }

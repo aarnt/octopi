@@ -198,7 +198,7 @@ QString MainWindow::generateHelpUsageHtmlText()
      tr("F10 to maximize/demaximize package list view") +
   QString("</li><li>") +
      tr("F11 to maximize/demaximize Tab's view") +
-  QString("</li></ul>");
+  QString("</li></ul><br>");
 
   //html += "<br>" + strNoPassword;
 
