@@ -55,7 +55,7 @@ const QString ctn_OCTOPI_COPYRIGHT =
     "*"
     "*/";
 
-const QString hyperlinkColor("#4BC413");
+const QString hyperlinkColor("#00A8CB"); //#4BC413");
 
 enum CommandExecuting { ectn_NONE, ectn_CHECK_UPDATES, ectn_MIRROR_CHECK,
                         ectn_SYNC_DATABASE, ectn_SYSTEM_UPGRADE, ectn_INSTALL, ectn_REMOVE,
