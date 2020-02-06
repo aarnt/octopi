@@ -232,7 +232,7 @@ QString SearchLineEdit::buttonStyleSheetForCurrentState() const
   if (WMHelper::isKDERunning() && UnixCommand::getLinuxDistro() != ectn_KAOS) {
     this->text().isEmpty() ? this->m_SearchButton->setIcon(IconHelper::getIconSearch())
                            : this->m_SearchButton->setIcon(IconHelper::getIconClear());
-    //this->m_SearchButton->setAutoRaise(true);
+    this->m_SearchButton->setAutoRaise(true);
 
     if (!this->text().isEmpty())
       this->m_SearchButton->setToolTip(StrConstants::getClear());
