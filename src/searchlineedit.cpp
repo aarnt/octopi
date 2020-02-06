@@ -176,12 +176,12 @@ void SearchLineEdit::setFoundStyle(){
     style += "font-style: italic;";
     style += "padding-left: 20px;";
     style += QString("padding-right: %1px;").arg(this->m_SearchButton->sizeHint().width() + 2);
-    style += "border-width: 3px;";
+    style += "border-width: 3px;}";
     //style += "border-image: url(:/resources/images/esf-border.png) 3 3 3 3 stretch;";
     //style += "color: black; ";
     //style += "background-color: rgb(255, 255, 255);";
-    style += "border-color: rgb(206, 204, 197);}";
-    //setStyleSheet(style);
+    //style += "border-color: rgb(206, 204, 197);}";
+    setStyleSheet(style);
   }
   else
   // setPalette() must be called after setStyleSheet()
