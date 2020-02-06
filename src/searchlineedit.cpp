@@ -160,7 +160,7 @@ QString SearchLineEdit::styleSheetForCurrentState()
   else
   {
     style += "padding-left: 20px;}";
-    setPalette(QApplication::palette());
+    //setPalette(QApplication::palette());
   }
 
   return style;
@@ -187,12 +187,12 @@ void SearchLineEdit::setFoundStyle(){
   // setPalette() must be called after setStyleSheet()
   {
     style += "padding-left: 20px;}";
-    //setStyleSheet(style);
+    setStyleSheet(style);
 
-    QPalette palette(QApplication::palette());
+    /*QPalette palette(QApplication::palette());
     palette.setColor(QPalette::Base, QColor(255, 255, 200));
     palette.setColor(QPalette::Text, Qt::darkGray); // give more contrast to text
-    setPalette(palette);
+    setPalette(palette);*/
   }
 }
 
@@ -219,10 +219,10 @@ void SearchLineEdit::setNotFoundStyle(){
     style += "padding-left: 20px;}";
     setStyleSheet(style);
 
-    QPalette palette(QApplication::palette());
+    /*QPalette palette(QApplication::palette());
     palette.setColor(QPalette::Base, Qt::lightGray);
     palette.setColor(QPalette::Text, Qt::white);
-    setPalette(palette);
+    setPalette(palette);*/
   }
 }
 
@@ -232,7 +232,7 @@ QString SearchLineEdit::buttonStyleSheetForCurrentState() const
   if (WMHelper::isKDERunning() && UnixCommand::getLinuxDistro() != ectn_KAOS) {
     this->text().isEmpty() ? this->m_SearchButton->setIcon(IconHelper::getIconSearch())
                            : this->m_SearchButton->setIcon(IconHelper::getIconClear());
-    this->m_SearchButton->setAutoRaise(true);
+    //this->m_SearchButton->setAutoRaise(true);
 
     if (!this->text().isEmpty())
       this->m_SearchButton->setToolTip(StrConstants::getClear());
