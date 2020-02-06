@@ -14,7 +14,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="106"/>
         <source>Actions</source>
-        <translation type="unfinished"/>
+        <translation>Действия</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="111"/>
@@ -24,32 +24,32 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="147"/>
         <source>&amp;Help</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Помощ</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="156"/>
         <source>&amp;View</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Изглед</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="172"/>
         <source>&amp;File</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Файл</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="184"/>
         <source>&amp;Search</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Търсене</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="194"/>
         <source>T&amp;ools</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Инструменти</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="224"/>
         <source>&amp;About</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Относно</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="227"/>
@@ -64,7 +64,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="250"/>
         <source>Apply</source>
-        <translation type="unfinished"/>
+        <translation>Приложи</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="271"/>
@@ -74,12 +74,12 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="283"/>
         <source>Check &amp;updates</source>
-        <translation type="unfinished"/>
+        <translation>Провери за &amp;актуализации</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="291"/>
         <source>E&amp;xit</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Изход</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="306"/>
@@ -510,28 +510,29 @@
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="282"/>
         <source>Password</source>
-        <translation type="unfinished"/>
+        <translation>Парола</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="295"/>
         <source>Register</source>
-        <translation type="unfinished"/>
+        <translation>Регистър</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="308"/>
         <source>Connect</source>
-        <translation type="unfinished"/>
+        <translation>Връзка</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="322"/>
         <source>Enable AUR voting</source>
-        <translation type="unfinished"/>
+        <translation>Позволи AUR гласуване</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="343"/>
         <source>AUR packages are user produced content. 
 Any use of the provided files is at your own risk.</source>
-        <translation type="unfinished"/>
+        <translation>AUR пакети са с потребителско съдържание.
+Всяко използване на предоставените файлове е на ваш собствен риск.</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="356"/>
@@ -580,7 +581,7 @@ Any use of the provided files is at your own risk.</source>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="777"/>
         <location filename="Projects/octopi/src/optionsdialog.cpp" line="169"/>
         <source>Updates</source>
-        <translation type="unfinished"/>
+        <translation>Актуализации</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/optionsdialog.cpp" line="93"/>
@@ -630,7 +631,8 @@ Any use of the provided files is at your own risk.</source>
         <location filename="Projects/octopi/src/strconstants.cpp" line="48"/>
         <source>Pacman Database is missing!
 You may need to synchronize database!</source>
-        <translation type="unfinished"/>
+        <translation>Pacman Database липсва!
+Може да се наложи да синхронизирате базата от данни!</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="52"/>
@@ -650,12 +652,12 @@ You may need to synchronize database!</source>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="142"/>
         <source>Condres OS news</source>
-        <translation type="unfinished"/>
+        <translation>Condres OS новини</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="146"/>
         <source>EndeavourOS news</source>
-        <translation type="unfinished"/>
+        <translation>EndeavourOS новини</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="150"/>
@@ -675,7 +677,7 @@ You may need to synchronize database!</source>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="162"/>
         <source>Information</source>
-        <translation type="unfinished"/>
+        <translation>Информация</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="166"/>
@@ -715,12 +717,12 @@ You may need to synchronize database!</source>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="202"/>
         <source>Help</source>
-        <translation type="unfinished"/>
+        <translation>Помощ</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="206"/>
         <source>&amp;Options</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Настройки</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="210"/>
@@ -810,7 +812,7 @@ You may need to synchronize database!</source>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="278"/>
         <source>Votes</source>
-        <translation type="unfinished"/>
+        <translation>Гласувания</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="282"/>
@@ -820,17 +822,17 @@ You may need to synchronize database!</source>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="287"/>
         <source>Vote</source>
-        <translation type="unfinished"/>
+        <translation>Гласуване</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="292"/>
         <source>AUR voted package list</source>
-        <translation type="unfinished"/>
+        <translation>AUR списък на гласуваните </translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="297"/>
         <source>Unvote</source>
-        <translation type="unfinished"/>
+        <translation>Отказ от гласуване</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="301"/>
@@ -915,7 +917,7 @@ You may need to synchronize database!</source>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="365"/>
         <source>Actions</source>
-        <translation type="unfinished"/>
+        <translation>Действия</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="369"/>
@@ -930,7 +932,7 @@ You may need to synchronize database!</source>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="378"/>
         <source>Terminal</source>
-        <translation type="unfinished"/>
+        <translation>Конзола</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="382"/>
@@ -1020,7 +1022,7 @@ You may need to synchronize database!</source>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="478"/>
         <source>Check updates</source>
-        <translation type="unfinished"/>
+        <translation>Проверка на актуализации</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="483"/>
