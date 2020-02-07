@@ -400,7 +400,7 @@ QString utils::parseDistroNews()
   }
 
   html += "</ul>";
-  html = html.replace("<a href=", "<a style=\"color:'" + hyperlinkColor + "'\" href=");
+  //html = html.replace("<a href=", "<a style=\"color:'" + QGuiApplication::palette().link().color().name() + "'\" href=");
 
   return html;
 }

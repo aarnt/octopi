@@ -102,9 +102,9 @@ QString MainWindow::generateHelpUsageHtmlText()
     tr("licensed under the terms of") + " ";
 
     html +=
-      QString("<a style=\"color:'" + hyperlinkColor + "'\" href=\"http://www.gnu.org/licenses/gpl-2.0.html\">GPL v2</a>.</p></h3>") +
+      QString("<a href=\"http://www.gnu.org/licenses/gpl-2.0.html\">GPL v2</a>.</p></h3>") +
       QString("<h4><p>") + strForMoreInfo + " " +
-      QString("<a style=\"color:'" + hyperlinkColor + "'\" href=\"http://octopiproject.wordpress.com\">http://octopiproject.wordpress.com</a>.</p></h4><br>");
+      QString("<a href=\"http://octopiproject.wordpress.com\">http://octopiproject.wordpress.com</a>.</p></h4><br>");
     html +=
       tr("Package classification:") +
 
@@ -243,15 +243,17 @@ void MainWindow::onHelpAbout()
       "<b>" + StrConstants::getApplicationName() + "</b><br>";
 
   aboutText += StrConstants::getVersion() + ": " + StrConstants::getApplicationVersion() + " - " + StrConstants::getQtVersion() + "<br>";
-  aboutText += StrConstants::getURL() + ": " + "<a style=\"color:'" + hyperlinkColor + "'\" href=\"https://tintaescura.com/projects/octopi/\">https://tintaescura.com/projects/octopi</a><br>";
-  aboutText += StrConstants::getLicenses() + ": " + QString("<a style=\"color:'" + hyperlinkColor + "'\" href=\"http://www.gnu.org/licenses/gpl-2.0.html\">GPL v2</a><br>");
+  aboutText += StrConstants::getURL() + ": " +
+      "<a href=\"https://tintaescura.com/projects/octopi/\">https://tintaescura.com/projects/octopi</a><br>";
+  aboutText += StrConstants::getLicenses() + ": " + QString("<a href=\"http://www.gnu.org/licenses/gpl-2.0.html\">GPL v2</a><br>");
   aboutText += "&copy; Alexandre Albuquerque Arnt<br><br>";
 
   aboutText += "<b>Pacman</b><br>";
   QString pacmanV = UnixCommand::getPacmanVersion();
   if (pacmanV.at(0) == 'v') pacmanV.remove(0, 1);
   aboutText += StrConstants::getVersion() + ": " + pacmanV + "<br>";
-  aboutText += StrConstants::getURL() + ": " + "<a style=\"color:'" + hyperlinkColor + "'\" href=\"https://www.archlinux.org/pacman/\">https://www.archlinux.org/pacman</a><br>";
+  aboutText += StrConstants::getURL() + ": " +
+      "<a href=\"https://www.archlinux.org/pacman/\">https://www.archlinux.org/pacman</a><br>";
   QDate d = QDate::currentDate();
   aboutText += "&copy; 2006-%1 Pacman Development Team<br>";
   aboutText += "&copy; 2002-2006 Judd Vinet";
