@@ -72,7 +72,7 @@
     <message>
         <location filename="Projects/octopi/repoeditor/main.cpp" line="54"/>
         <source>You can not run Repository Editor with administrator&apos;s credentials.</source>
-        <translation>Вы не можете запустить Repository Editor с правами администратора.</translation>
+        <translation>Вы не можете запустить редактор репозиториев с правами администратора.</translation>
     </message>
 </context>
 <context>
@@ -175,13 +175,13 @@
         <location filename="Projects/octopi/repoeditor/repoeditor.cpp" line="104"/>
         <location filename="Projects/octopi/repoeditor/repoeditor.cpp" line="126"/>
         <source>There are unsaved changes.</source>
-        <translation>Присутствуют несохранённые изменения.</translation>
+        <translation>Есть несохранённые изменения.</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/repoeditor.cpp" line="105"/>
         <location filename="Projects/octopi/repoeditor/repoeditor.cpp" line="127"/>
         <source>Do you want to save them?</source>
-        <translation>Хотите сохранить их?</translation>
+        <translation>Хотите ли их сохранить?</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/repoeditor.cpp" line="160"/>
