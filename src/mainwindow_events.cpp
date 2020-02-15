@@ -291,6 +291,8 @@ void MainWindow::keyPressEvent(QKeyEvent* ke)
   }
   else if(ke->key() == Qt::Key_F5)
   {
+    if (m_commandExecuting != ectn_NONE) return;
+
     metaBuildPackageList();
   }
   else if(ke->key() == Qt::Key_F6)
