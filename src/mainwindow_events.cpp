@@ -174,6 +174,8 @@ void MainWindow::keyPressEvent(QKeyEvent* ke)
 {
   if (ke->key() == Qt::Key_Return || ke->key() == Qt::Key_Enter)
   {
+    if (m_commandExecuting != ectn_NONE) return;
+
     if (ui->tvPackages->hasFocus())
     {
       execKeyActionOnPackage(ectn_INSTALL);
@@ -238,6 +240,8 @@ void MainWindow::keyPressEvent(QKeyEvent* ke)
   }
   else if(ke->key() == Qt::Key_Delete)
   {
+    if (m_commandExecuting != ectn_NONE) return;
+
     onPressDelete();
   }    
   else if(ke->key() == Qt::Key_1 && ke->modifiers() == Qt::AltModifier)
@@ -346,15 +350,21 @@ void MainWindow::keyPressEvent(QKeyEvent* ke)
   }
   else if (ke->key() == Qt::Key_U && ke->modifiers() == Qt::ControlModifier)
   {
+    if (m_commandExecuting != ectn_NONE) return;
+
     if (ui->actionSystemUpgrade->isEnabled()) doSystemUpgrade();
   }
   else if(ke->key() == Qt::Key_D && ke->modifiers() == (Qt::ShiftModifier|Qt::ControlModifier))
   {
+    if (m_commandExecuting != ectn_NONE) return;
+
     //The user wants to know which packages have no description!
     showPackagesWithNoDescription();
   }
   else if(ke->key() == Qt::Key_G && ke->modifiers() == (Qt::ShiftModifier|Qt::ControlModifier))
   {
+    if (m_commandExecuting != ectn_NONE) return;
+
     //The user wants to go to "Display All groups"
     if (!isAllGroupsSelected())
     {
@@ -372,14 +382,20 @@ void MainWindow::keyPressEvent(QKeyEvent* ke)
   }
   else if(ke->key() == Qt::Key_S && ke->modifiers() == (Qt::ShiftModifier|Qt::ControlModifier))
   {
+    if (m_commandExecuting != ectn_NONE) return;
+
     doSysInfo();
   }
   else if(ke->key() == Qt::Key_A && ke->modifiers() == (Qt::ShiftModifier|Qt::ControlModifier))
   {
+    if (m_commandExecuting != ectn_NONE) return;
+
     outputAURVotedPackageList();
   }
   else if(ke->key() == Qt::Key_O && ke->modifiers() == (Qt::ShiftModifier|Qt::ControlModifier))
   {
+    if (m_commandExecuting != ectn_NONE) return;
+
     LinuxDistro ld=UnixCommand::getLinuxDistro();
     if((ld == ectn_KAOS || ld == ectn_CHAKRA) || (
        m_hasAURTool && SettingsManager::getAURToolName() != ctn_NO_AUR_TOOL &&
