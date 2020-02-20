@@ -1037,7 +1037,7 @@ You may need to synchronize database!</source>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="493"/>
         <source>No updates available</source>
-        <translation type="unfinished"/>
+        <translation>Обновлений нет</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="501"/>
@@ -1052,7 +1052,7 @@ You may need to synchronize database!</source>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="514"/>
         <source>SysInfo file generated on: %1&lt;br&gt;If you wish, post the output in your distro&apos;s forum for help.</source>
-        <translation type="unfinished"/>
+        <translation>Файл SysInfo сформирован на: %1&lt;br&gt;Если хотите, разместите вывод на форуме вашего дистрибутива, чтобы получить помощь.</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="518"/>
@@ -1092,17 +1092,17 @@ You may need to synchronize database!</source>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="547"/>
         <source>Temporary &quot;yay-bin&quot; could not be downloaded!</source>
-        <translation type="unfinished"/>
+        <translation>Не удалось загрузить временный &quot;yay-bin&quot;!</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="552"/>
         <source>Temporary &quot;yay-bin&quot; downloaded.</source>
-        <translation type="unfinished"/>
+        <translation>Временный &quot;yay-bin&quot; загружен.</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="557"/>
         <source>Downloading temporary &quot;yay-bin&quot;...</source>
-        <translation type="unfinished"/>
+        <translation>Загружается временный &quot;yay-bin&quot;...</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="561"/>
@@ -1182,7 +1182,7 @@ You may need to synchronize database!</source>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="629"/>
         <source>Do you really want to cancel actions?</source>
-        <translation type="unfinished"/>
+        <translation>Действительно отменить действия?</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="633"/>
@@ -1197,56 +1197,60 @@ You may need to synchronize database!</source>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="643"/>
         <source>You&apos;ll need to install &quot;octopi-sudo&quot; in order to use Octopi.</source>
-        <translation type="unfinished"/>
+        <translation>Чтобы использовать Octopi, нужно установить &quot;octopi-sudo&quot;.</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="648"/>
         <source>You'll need one of those tools to use AUR:
 
 %1, %2, %3 %4 or %5</source>
-        <translation type="unfinished"/>
+        <translation>Чтобы использовать AUR, нужен один из следующих инструментов:
+
+%1, %2, %3 %4 or %5</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="654"/>
         <source>You need a package in order to use AUR.
 Do you want to install it?</source>
-        <translation type="unfinished"/>
+        <translation>Чтобы использовать AUR, нужно установить пакет.
+Хотите его установить?</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="660"/>
         <source>Connection is OK!</source>
-        <translation type="unfinished"/>
+        <translation>Соединение в порядке!</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="664"/>
         <source>Would you like to help this project by voting for it?
 You only need to accept and wait a few seconds.</source>
-        <translation type="unfinished"/>
+        <translation>Не хотели бы вы поддержать этот проект голосованием?
+Нужно только подтвердить и подождать несколько секунд.</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="670"/>
         <source>Thank you for voting for Octopi!</source>
-        <translation type="unfinished"/>
+        <translation>Спасибо, что проголосовали за Octopi!</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="675"/>
         <source>Username and/or password is/are incorrect.</source>
-        <translation type="unfinished"/>
+        <translation>Имя пользователя и/или пароль неверны.</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="680"/>
         <source>AUR username is not set.</source>
-        <translation type="unfinished"/>
+        <translation>Не установлено имя пользователя AUR.</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="685"/>
         <source>AUR password is not set.</source>
-        <translation type="unfinished"/>
+        <translation>Не установлен пароль AUR.</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="689"/>
         <source>Icon path information is not set.</source>
-        <translation type="unfinished"/>
+        <translation>Не установлен путь к значкам.</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="693"/>
@@ -1256,12 +1260,12 @@ You only need to accept and wait a few seconds.</source>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="697"/>
         <source>Canceling the running transaction may damage your system!</source>
-        <translation type="unfinished"/>
+        <translation>Отмена активной транзакции может повредить систему!</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="701"/>
         <source>There are pending actions</source>
-        <translation type="unfinished"/>
+        <translation>Есть отложенные действия</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="705"/>
@@ -1278,7 +1282,14 @@ and &quot;head --bytes=256K /var/log/pacman.log&quot;
 
 Do you want to continue?
 </source>
-        <translation type="unfinished"/>
+        <translation>В домашней папке будет сформирован файл &quot;octopi-sysinfo.log&quot;, содержащий:
+
+&quot;/etc/lsb-release&quot;, &quot;inxi -Fxz&quot;, &quot;uname -a&quot;, &quot;mhwd -li -d,&quot;
+&quot;journalctl -b -p err&quot;, &quot;cat /etc/pacman.conf&quot;, &quot;pacman -Qm&quot;
+и &quot;head --bytes=256K /var/log/pacman.log&quot;
+
+Продолжить?
+</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="718"/>
@@ -1325,22 +1336,22 @@ Are you sure you want to open it?</source>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="751"/>
         <source>Remove</source>
-        <translation type="unfinished"/>
+        <translation>Удалить</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="755"/>
         <source>Install</source>
-        <translation type="unfinished"/>
+        <translation>Установить</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="760"/>
         <source>Reinstall</source>
-        <translation type="unfinished"/>
+        <translation>Переустановить</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="765"/>
         <source>Update</source>
-        <translation type="unfinished"/>
+        <translation>Обновить</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="769"/>
@@ -1375,7 +1386,7 @@ Are you sure you want to open it?</source>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="793"/>
         <source>Check for package updates interval</source>
-        <translation type="unfinished"/>
+        <translation>Интервал проверки обновлений пакета</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="797"/>
@@ -1415,47 +1426,47 @@ Are you sure you want to open it?</source>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="827"/>
         <source>%1 could not be found in the system!</source>
-        <translation type="unfinished"/>
+        <translation>%1 не удалось найти в системе!</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="832"/>
         <source>Zoom in</source>
-        <translation type="unfinished"/>
+        <translation>Увеличить</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="837"/>
         <source>Zoom out</source>
-        <translation type="unfinished"/>
+        <translation>Уменьшить</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="842"/>
         <source>Maximize</source>
-        <translation type="unfinished"/>
+        <translation>Развернуть</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="847"/>
         <source>Copy</source>
-        <translation type="unfinished"/>
+        <translation>Копировать</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="852"/>
         <source>Paste</source>
-        <translation type="unfinished"/>
+        <translation>Вставить</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="857"/>
         <source>Never</source>
-        <translation type="unfinished"/>
+        <translation>Никогда</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="862"/>
         <source>Upgrading...</source>
-        <translation type="unfinished"/>
+        <translation>Обновляется...</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="867"/>
         <source>Exit</source>
-        <translation type="unfinished"/>
+        <translation>Выйти</translation>
     </message>
 </context>
 <context>

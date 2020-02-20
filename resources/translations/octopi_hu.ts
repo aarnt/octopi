@@ -172,12 +172,12 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="478"/>
         <source>By &amp;description</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Leírás szerint</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="489"/>
         <source>By &amp;name</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Név szerint</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="501"/>
@@ -197,7 +197,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="526"/>
         <source>&amp;Install local package...</source>
-        <translation>&amp;Helyi csomag telepítése</translation>
+        <translation>&amp;Helyi csomag telepítése...</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="543"/>
@@ -222,7 +222,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="603"/>
         <source>By &amp;file</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Fájlok szerint</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="614"/>
@@ -232,12 +232,12 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="622"/>
         <source>Donate!</source>
-        <translation type="unfinished"/>
+        <translation>Adományozás!</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="85"/>
         <source>Ctrl+Shift+O to display outdated %1 packages</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+Shift+O lejárt csomagok %1 megjelenítése</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="93"/>
@@ -367,7 +367,7 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="159"/>
         <source>Ctrl+E or &apos;Actions/Cancel&apos; to clear the selection of to be removed/installed packages</source>
-        <translation type="unfinished"/>
+        <translation>Crtrl+E vagy &apos;Műveletek/Mégse&apos; a telepítésre vagy eltávolításra kijelölt csomagok kijelölésének megszüntetése</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="161"/>
@@ -480,17 +480,17 @@
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="76"/>
         <source>Use alternating row colors in package list</source>
-        <translation type="unfinished"/>
+        <translation>Váltakozó sorszínek használata a csomaglistában</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="89"/>
         <source>Enable confirmation dialog in system upgrade</source>
-        <translation type="unfinished"/>
+        <translation>Megerősítési párbeszédpanel bekapcsolása rendszerfrissítésnél</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="102"/>
         <source>Enable internet checking</source>
-        <translation type="unfinished"/>
+        <translation>Kapcsolat ellenőrzése</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="139"/>
@@ -515,17 +515,17 @@
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="295"/>
         <source>Register</source>
-        <translation type="unfinished"/>
+        <translation>Regisztráció</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="308"/>
         <source>Connect</source>
-        <translation type="unfinished"/>
+        <translation>Bejelentkezés</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="322"/>
         <source>Enable AUR voting</source>
-        <translation type="unfinished"/>
+        <translation>AUR szavazás engedélyezése</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="343"/>
@@ -580,7 +580,7 @@ Any use of the provided files is at your own risk.</source>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="777"/>
         <location filename="Projects/octopi/src/optionsdialog.cpp" line="169"/>
         <source>Updates</source>
-        <translation>Frissírtések</translation>
+        <translation>Frissítések</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/optionsdialog.cpp" line="93"/>
@@ -630,7 +630,8 @@ Any use of the provided files is at your own risk.</source>
         <location filename="Projects/octopi/src/strconstants.cpp" line="48"/>
         <source>Pacman Database is missing!
 You may need to synchronize database!</source>
-        <translation type="unfinished"/>
+        <translation>A Pacman adatbázis hiányzik!
+Szinkronizálnia kell az adatbázist!</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="52"/>
@@ -650,12 +651,12 @@ You may need to synchronize database!</source>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="142"/>
         <source>Condres OS news</source>
-        <translation type="unfinished"/>
+        <translation>Condres OS hírek</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="146"/>
         <source>EndeavourOS news</source>
-        <translation type="unfinished"/>
+        <translation>EndeavourOS hírek</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="150"/>
@@ -675,7 +676,7 @@ You may need to synchronize database!</source>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="162"/>
         <source>Information</source>
-        <translation type="unfinished"/>
+        <translation>Információ</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="166"/>
@@ -810,7 +811,7 @@ You may need to synchronize database!</source>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="278"/>
         <source>Votes</source>
-        <translation type="unfinished"/>
+        <translation>Szavazatok</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="282"/>
@@ -820,7 +821,7 @@ You may need to synchronize database!</source>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="287"/>
         <source>Vote</source>
-        <translation type="unfinished"/>
+        <translation>Szavazat</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="292"/>
@@ -1180,7 +1181,7 @@ You may need to synchronize database!</source>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="629"/>
         <source>Do you really want to cancel actions?</source>
-        <translation type="unfinished"/>
+        <translation>Tényleg visszavonja a műveleteket?</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="633"/>
@@ -1213,7 +1214,7 @@ Do you want to install it?</source>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="660"/>
         <source>Connection is OK!</source>
-        <translation type="unfinished"/>
+        <translation>A csatlakozás rendben!</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="664"/>
@@ -1224,27 +1225,27 @@ You only need to accept and wait a few seconds.</source>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="670"/>
         <source>Thank you for voting for Octopi!</source>
-        <translation type="unfinished"/>
+        <translation>Köszönjük, hogy szavazott az Octopira!</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="675"/>
         <source>Username and/or password is/are incorrect.</source>
-        <translation type="unfinished"/>
+        <translation>A felhasználónév és/vagy a jelszó helytelen.</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="680"/>
         <source>AUR username is not set.</source>
-        <translation type="unfinished"/>
+        <translation>AUR felhasználónév nincs beállítva.</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="685"/>
         <source>AUR password is not set.</source>
-        <translation type="unfinished"/>
+        <translation>AUR jelszó nincs beállítva.</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="689"/>
         <source>Icon path information is not set.</source>
-        <translation type="unfinished"/>
+        <translation>Az ikon elérési útja nincs beállítva.</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="693"/>
@@ -1254,12 +1255,12 @@ You only need to accept and wait a few seconds.</source>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="697"/>
         <source>Canceling the running transaction may damage your system!</source>
-        <translation type="unfinished"/>
+        <translation>A futó tranzakció bezárása károsíthatja a rendszert!</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="701"/>
         <source>There are pending actions</source>
-        <translation type="unfinished"/>
+        <translation>Függőben levő műveletek vannak</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="705"/>
@@ -1373,7 +1374,7 @@ Biztos abban, hogy megnyitja?</translation>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="793"/>
         <source>Check for package updates interval</source>
-        <translation type="unfinished"/>
+        <translation>Milyen gyakran keressen frissítéseket</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="797"/>
@@ -1413,7 +1414,7 @@ Biztos abban, hogy megnyitja?</translation>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="827"/>
         <source>%1 could not be found in the system!</source>
-        <translation type="unfinished"/>
+        <translation>%1 nem található a rendszerben!</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="832"/>
