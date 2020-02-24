@@ -372,7 +372,7 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="161"/>
         <source>Ctrl+F to search for text inside tab Files, News and Usage</source>
-        <translation>Ctrl+F - искать текст на вкладах «Файлы», «Новости» и «Использование»</translation>
+        <translation>Ctrl+F - искать текст на вкладах «Файлы», «Новости» и «Справка»</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="163"/>
@@ -495,7 +495,7 @@
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="139"/>
         <source>Select the AUR tool Octopi should use</source>
-        <translation>Выберите, какой инструмент AUR должен использоваться Octopi</translation>
+        <translation>Какой инструмент AUR использовать в Octopi</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="214"/>
@@ -515,7 +515,7 @@
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="295"/>
         <source>Register</source>
-        <translation>Зарегестрироваться</translation>
+        <translation>Регестрация</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="308"/>
@@ -532,7 +532,7 @@
         <source>AUR packages are user produced content. 
 Any use of the provided files is at your own risk.</source>
         <translation>Пакеты в AUR предоставлены пользователями. 
-Используйте предоставленные файлы на свой риск.</translation>
+Используйте на свой риск.</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="356"/>
@@ -544,7 +544,7 @@ Any use of the provided files is at your own risk.</source>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="422"/>
         <source>Select the backend Octopi should use</source>
-        <translation>Выберите, какой бэкенд должен использоваться Octopi</translation>
+        <translation>Какой бэкенд использовать в Octopi</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="446"/>
@@ -570,7 +570,7 @@ Any use of the provided files is at your own risk.</source>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="713"/>
         <source>Busy icon</source>
-        <translation>Значок &quot;занят&quot;</translation>
+        <translation>Значок «занят»</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="766"/>
