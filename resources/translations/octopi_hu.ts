@@ -392,7 +392,7 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="169"/>
         <source>Ctrl+P to go to package list</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+P a csomaglistára való ugráshoz</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="171"/>
@@ -495,7 +495,7 @@
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="139"/>
         <source>Select the AUR tool Octopi should use</source>
-        <translation>Válassz AUR eszközt Octopi- hoz</translation>
+        <translation>Válasszon AUR eszközt az Octopi-hoz</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="214"/>
@@ -538,12 +538,12 @@ Any use of the provided files is at your own risk.</source>
         <location filename="Projects/octopi/src/optionsdialog.cpp" line="161"/>
         <location filename="Projects/octopi/src/optionsdialog.cpp" line="173"/>
         <source>Backend</source>
-        <translation>Motor</translation>
+        <translation>Felület</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="422"/>
         <source>Select the backend Octopi should use</source>
-        <translation>Válassz Octopi motort</translation>
+        <translation>Válasszon Octopi felületet</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="446"/>
@@ -596,7 +596,7 @@ Any use of the provided files is at your own risk.</source>
         <location filename="Projects/octopi/src/optionsdialog.cpp" line="125"/>
         <location filename="Projects/octopi/src/optionsdialog.cpp" line="141"/>
         <source>Image Files</source>
-        <translation>Kép fájlok</translation>
+        <translation>Képfájlok</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/optionsdialog.cpp" line="180"/>
@@ -606,7 +606,7 @@ Any use of the provided files is at your own risk.</source>
     <message>
         <location filename="Projects/octopi/src/optionsdialog.cpp" line="181"/>
         <source>Cancel</source>
-        <translation>Mégsem</translation>
+        <translation>Mégse</translation>
     </message>
 </context>
 <context>
@@ -681,7 +681,7 @@ Szinkronizálnia kell az adatbázist!</translation>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="166"/>
         <source>Error</source>
-        <translation>Hiba történt</translation>
+        <translation>Hiba</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="170"/>
@@ -1181,7 +1181,7 @@ Szinkronizálnia kell az adatbázist!</translation>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="629"/>
         <source>Do you really want to cancel actions?</source>
-        <translation>Tényleg visszavonja a műveleteket?</translation>
+        <translation>Biztos visszavonja a műveleteket?</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="633"/>
@@ -1399,7 +1399,7 @@ Biztos abban, hogy megnyitja?</translation>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="813"/>
         <source>(value in minutes: %1 to %2)</source>
-        <translation>(érték megadása percekben: %1 és %2 között)</translation>
+        <translation>(érték megadása percben: %1 és %2 között)</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="817"/>
@@ -1409,7 +1409,7 @@ Biztos abban, hogy megnyitja?</translation>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="822"/>
         <source>Stop</source>
-        <translation>Tranzakció állj</translation>
+        <translation>Tranzakció leállítása</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="827"/>
@@ -1419,17 +1419,17 @@ Biztos abban, hogy megnyitja?</translation>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="832"/>
         <source>Zoom in</source>
-        <translation type="unfinished"/>
+        <translation>Nagyítás</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="837"/>
         <source>Zoom out</source>
-        <translation type="unfinished"/>
+        <translation>Kicsinyítés</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="842"/>
         <source>Maximize</source>
-        <translation type="unfinished"/>
+        <translation>Maximalizálás</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="847"/>
