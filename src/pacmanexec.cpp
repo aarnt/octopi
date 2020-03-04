@@ -81,14 +81,6 @@ void PacmanExec::setDebugMode(bool value)
 }
 
 /*
- * Removes Octopi's temporary transaction file
- */
-/*void PacmanExec::removeTemporaryFile()
-{
-  m_unixCommand->removeTemporaryFile();
-}*/
-
-/*
  * Searches for the presence of the db.lock file
  */
 bool PacmanExec::isDatabaseLocked()
@@ -98,14 +90,6 @@ bool PacmanExec::isDatabaseLocked()
 
   return (lockFile.exists());
 }
-
-/*
- * Removes Pacman DB lock file
- */
-/*void PacmanExec::removeDatabaseLock()
-{
-  UnixCommand::execCommand("rm " + ctn_PACMAN_DATABASE_LOCK_FILE);
-}*/
 
 /*
  * Cancels the running pacman process using "killall pacman" and removing database lock file
@@ -221,13 +205,17 @@ void PacmanExec::parsePacmanProcessOutput(const QString &output)
 
   msg.remove(QRegularExpression(".+\\[Y/n\\].+"));
   //Let's remove color codes from strings...
+
   msg.remove("\033[0;1m");
   msg.remove("\033[0m");
   msg.remove("[1;33m");
   msg.remove("[00;31m");
   msg.remove("\033[1;34m");
   msg.remove("\033[0;1m");
-
+  msg.remove("[1;1m");
+  msg.remove("[1;0m");
+  msg.remove("[1;m");
+  msg.remove("[1");
   msg.remove("c");
   msg.remove("C");
   msg.remove("");
@@ -1331,7 +1319,6 @@ void PacmanExec::doAURRemove(const QString &listOfPackages)
       Package::getForeignRepositoryToolName() != ctn_PACAUR_TOOL)
   {
     m_unixCommand->runOctopiHelperInTerminalWithSharedMem(m_lastCommandList, m_sharedMemory);
-    //m_unixCommand->runCommandInTerminal(m_lastCommandList);
   }
   else
     m_unixCommand->runCommandInTerminalAsNormalUser(m_lastCommandList);
@@ -1344,7 +1331,6 @@ void PacmanExec::runLatestCommandInTerminal()
 {
   m_commandExecuting = ectn_RUN_IN_TERMINAL;
   m_unixCommand->runOctopiHelperInTerminalWithSharedMem(m_lastCommandList, m_sharedMemory);
-  //m_unixCommand->runCommandInTerminal(m_lastCommandList);
 }
 
 /*
@@ -1354,18 +1340,4 @@ void PacmanExec::runLatestCommandWithOctopiHelper()
 {
   m_commandExecuting = ectn_RUN_IN_TERMINAL;
   m_unixCommand->runOctopiHelperInTerminalWithSharedMem(m_lastCommandList, m_sharedMemory);
-  //m_unixCommand->runOctopiHelperInTerminal(m_lastCommandList);
 }
-
-/*
- * Updates pacman pkg inside a terminal using "octopi-helper -t";
- */
-/*void PacmanExec::updatePacmanWithOctopiHelper()
-{
-  QStringList commands;
-  commands << "pacman -S pacman";
-  commands << "echo -e";
-  commands << "read -n 1 -p \"" + StrConstants::getPressAnyKey() + "\"";
-
-  m_unixCommand->runOctopiHelperInTerminal(commands);
-}*/

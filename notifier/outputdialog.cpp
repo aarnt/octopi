@@ -139,7 +139,7 @@ void OutputDialog::initAsTermWidget()
   m_mainLayout->setSizeConstraint(QLayout::SetMinimumSize);
   m_mainLayout->setContentsMargins(2, 2, 2, 2);
   m_console->setFocus();  
-  m_console->toggleShowSearchBar();
+  //m_console->toggleShowSearchBar();
 
   m_console->installEventFilter(this);
 }
