@@ -66,11 +66,11 @@ QString Package::getBaseName( const QString& p )
  */
 QString Package::makeURLClickable( const QString &s )
 {
-	QString sb = s;
+  QString sb = s;
   QRegExp rx("((ht|f)tp(s?))://(\\S)+[^\"|)|(|.|\\s|\\n]");
-  QRegExp rx1("^|[\\s]+(www\\.)(\\S)+[^\"|)|(|.|\\s|\\n]");
+  //QRegExp rx1("^|[\\s]+(www\\.)(\\S)+[^\"|)|(|.|\\s|\\n]");
   rx.setCaseSensitivity( Qt::CaseInsensitive );
-	rx1.setCaseSensitivity( Qt::CaseInsensitive );
+  //rx1.setCaseSensitivity( Qt::CaseInsensitive );
 	int search = 0;
 	int ini = 0;
 
@@ -84,7 +84,7 @@ QString Package::makeURLClickable( const QString &s )
 		search = ini + (2*s1.length()) + 15;	
 	}
 
-	search = 0;
+  /*search = 0;
 	ini = 0;
 
   //Now, we search for the 2nd pattern: rx1
@@ -100,7 +100,7 @@ QString Package::makeURLClickable( const QString &s )
     ns += "<a href=\"http://" + s1.trimmed() + "\">" + s1.trimmed() + "</a>";
     sb.replace( ini, s1.length(), ns);
 		search = ini + (2*s1.length()) + 15;	
-	}
+  }*/
 
   return sb;
 }
