@@ -201,7 +201,7 @@ void OutputDialog::onPressAnyKeyToContinue()
   m_console->setFocus();
 
   if (!m_upgradeRunning) return;
-  if (m_pacmanExec == nullptr)
+  if (m_pacmanExec != nullptr)
     delete m_pacmanExec;
 
   if (m_sharedMemory->isAttached()) m_sharedMemory->detach();
@@ -216,7 +216,7 @@ void OutputDialog::onCancelControlKey()
 {
   if (m_upgradeRunning)
   {
-    if (m_pacmanExec == nullptr)
+    if (m_pacmanExec != nullptr)
       delete m_pacmanExec;
 
     if (m_sharedMemory->isAttached()) m_sharedMemory->detach();
@@ -377,7 +377,7 @@ void OutputDialog::pacmanProcessFinished(int exitCode, QProcess::ExitStatus exit
     }
   }
 
-  delete m_pacmanExec;
+  if (m_pacmanExec != nullptr) delete m_pacmanExec;
   if (m_sharedMemory->isAttached()) m_sharedMemory->detach();
   m_upgradeRunning = false;
 }

@@ -1999,7 +1999,7 @@ void MainWindow::pacmanProcessFinished(int exitCode, QProcess::ExitStatus exitSt
           else if (Package::getForeignRepositoryToolName() == ctn_KCP_TOOL)
           {
             metaBuildPackageList();
-            delete m_pacmanExec;
+            if (m_pacmanExec != nullptr) delete m_pacmanExec;
             m_commandExecuting = ectn_NONE;
             enableTransactionActions();
             m_progressWidget->close();
@@ -2086,7 +2086,7 @@ void MainWindow::pacmanProcessFinished(int exitCode, QProcess::ExitStatus exitSt
     m_actionSwitchToAURTool->setChecked(false);
   }
 
-  delete m_pacmanExec;
+  if (m_pacmanExec != nullptr) delete m_pacmanExec;
   if (m_progressWidget->isVisible()) m_progressWidget->close();
   m_commandExecuting = ectn_NONE;
 
@@ -2156,7 +2156,7 @@ void MainWindow::onPressAnyKeyToContinue()
   refreshMenuTools(); //Maybe some of octopi tools were added/removed...
   enableTransactionActions();
 
-  if (m_pacmanExec == nullptr)
+  if (m_pacmanExec != nullptr)
     delete m_pacmanExec;
 
   m_commandExecuting = ectn_NONE;
@@ -2180,7 +2180,7 @@ void MainWindow::onCancelControlKey()
     clearTransactionTreeView();
     enableTransactionActions();
 
-    if (m_pacmanExec == nullptr)
+    if (m_pacmanExec != nullptr)
       delete m_pacmanExec;
 
     m_pacmanExec = nullptr;
