@@ -213,6 +213,11 @@ const QString ctn_LXDE_DESKTOP("lxsession");
 const QString ctn_LXDE_TERMINAL("lxterminal");
 const QString ctn_LXDE_FILE_MANAGER("pcmanfm");
 
+const QString ctn_LUMINA_DESKTOP("lumina-desktop");
+const QString ctn_LUMINA_EDITOR("lumina-textedit");
+const QString ctn_LUMINA_FILE_MANAGER("lumina-fm");
+const QString ctn_LUMINA_OPEN("lumina-open");
+
 const QString ctn_LXQT_DESKTOP("lxqt-session");
 const QString ctn_LXQT_TERMINAL("qterminal");
 const QString ctn_LXQT_FILE_MANAGER("pcmanfm-qt");

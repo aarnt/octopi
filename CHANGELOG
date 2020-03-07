@@ -8,6 +8,7 @@
   Updated some UI icons and added an specific one for foreign non installed pkg.
   Dropped support for external terminal applications. QTermWidget is mandatory now!
   Print .pacnew list summary after upgrade (if any).
+  Added Lumina desktop support.
   RepoEditor now saves window size and position.
   Added "copy" command to octopi's embedded terminal context menu.
   Added option to enable/disable confirmation dialog in system upgrade.

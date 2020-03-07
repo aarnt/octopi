@@ -179,6 +179,24 @@ bool WMHelper::isCinnamonRunning(){
 }
 
 /*
+ * Checks if Lumina is running
+ */
+bool WMHelper::isLuminaRunning()
+{
+  QProcess proc;
+  proc.start("ps -A -o command");
+  proc.waitForStarted();
+  proc.waitForFinished();
+  QString out = proc.readAll();
+  proc.close();
+
+  if (out.count(ctn_LUMINA_DESKTOP)>0)
+    return true;
+  else
+    return false;
+}
+
+/*
  * Retrieves the XFCE editor...
  */
 QString WMHelper::getXFCEEditor(){
@@ -305,6 +323,10 @@ void WMHelper::openFile(const QString& fileName){
     s << fileToOpen;
     p->startDetached( ctn_LXQT_FILE_MANAGER, s );
   }
+  else if (isLuminaRunning() && UnixCommand::hasTheExecutable(ctn_LUMINA_OPEN)){
+    s << fileToOpen;
+    p->startDetached( ctn_LUMINA_OPEN, s );
+  }
   else if (UnixCommand::hasTheExecutable(ctn_ARCHBANG_FILE_MANAGER)){
     s << fileToOpen;
     p->startDetached( ctn_ARCHBANG_FILE_MANAGER, s );
@@ -340,7 +362,6 @@ void WMHelper::editFile( const QString& fileName, EditOptions opt ){
   }
   else if (isXFCERunning() && (UnixCommand::hasTheExecutable(ctn_XFCE_EDITOR) ||
                                UnixCommand::hasTheExecutable(ctn_XFCE_EDITOR_ALT))){
-
     p = getXFCEEditor() + " " + fileName;
   }
   else if (isKDERunning() && UnixCommand::hasTheExecutable(ctn_KDE_EDITOR)){
@@ -357,6 +378,9 @@ void WMHelper::editFile( const QString& fileName, EditOptions opt ){
   }
   else if (isLXQTRunning() && UnixCommand::hasTheExecutable(ctn_LXQT_EDITOR)){
     p = ctn_LXQT_EDITOR + " " + fileName;
+  }
+  else if (isLuminaRunning() && UnixCommand::hasTheExecutable(ctn_LUMINA_EDITOR)){
+    p += ctn_LUMINA_EDITOR + " " + fileName;
   }
   if (UnixCommand::hasTheExecutable(ctn_ARCHBANG_EDITOR))
   {
@@ -437,11 +461,6 @@ void WMHelper::openDirectory( const QString& dirName ){
       s << dir;
       p->startDetached( ctn_MATE_FILE_MANAGER, s );
     }
-    /*else if (UnixCommand::getLinuxDistro() == ectn_ANTERGOS && UnixCommand::hasTheExecutable(ctn_ANTERGOS_FILE_MANAGER))
-    {
-      s << dir;
-      p->startDetached( ctn_ANTERGOS_FILE_MANAGER, s );
-    }*/
     else if (isCinnamonRunning() && UnixCommand::hasTheExecutable(ctn_CINNAMON_FILE_MANAGER))
     {
       s << dir;
@@ -451,6 +470,11 @@ void WMHelper::openDirectory( const QString& dirName ){
     {
       s << dir;
       p->startDetached( ctn_LXQT_FILE_MANAGER, s );
+    }
+    else if (isLuminaRunning() && UnixCommand::hasTheExecutable(ctn_LUMINA_FILE_MANAGER))
+    {
+      s << dir;
+      p->startDetached( ctn_LUMINA_FILE_MANAGER, s );
     }
     else if (UnixCommand::hasTheExecutable(ctn_XFCE_FILE_MANAGER))
     {
