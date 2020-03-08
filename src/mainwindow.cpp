@@ -292,6 +292,11 @@ void MainWindow::onSendInfoToOctopiHelper()
     msg="Octopi serenum est";
     out << msg;
   }
+  else if (m_checkupdatesStringList->count() > 0 || m_outdatedStringList->count() > 0)
+  {
+    msg="Renovatio potest";
+    out << msg;
+  }
   else
   {
     msg="Atramento nigro";
@@ -371,7 +376,8 @@ void MainWindow::onPackageGroupChanged()
   if (isAllGroupsSelected())
   {
     if (m_commandExecuting == ectn_NONE && m_initializationCompleted) m_actionSwitchToAURTool->setEnabled(true);
-    ui->actionSearchByName->setChecked(true);
+    //ui->actionSearchByName->setChecked(true);
+    m_actionLastSearchMethod->setChecked(true);
     tvPackagesSearchColumnChanged(ui->actionSearchByName);
   }
   else m_actionSwitchToAURTool->setEnabled(false);
@@ -917,6 +923,9 @@ bool MainWindow::isPackageInstalled(const QString &pkgName)
  */
 void MainWindow::tvPackagesSearchColumnChanged(QAction *actionSelected)
 {
+  if (!isAURGroupSelected())
+    m_actionLastSearchMethod = actionSelected;
+
   //We are in the realm of tradictional NAME search
   if (actionSelected->objectName() == ui->actionSearchByName->objectName())
   {
@@ -959,8 +968,8 @@ void MainWindow::tvPackagesSearchColumnChanged(QAction *actionSelected)
   {
     disconnect(m_leFilterPackage, SIGNAL(textChanged(QString)), this, SLOT(reapplyPackageFilter()));
 
-    m_leFilterPackage->clear();
-    m_packageModel->applyFilter("");
+    //m_leFilterPackage->clear();
+    //m_packageModel->applyFilter("");
     ui->actionViewAllPackages->trigger();
     m_actionRepositoryAll->trigger();
     ui->menuView->setEnabled(false);
@@ -969,10 +978,10 @@ void MainWindow::tvPackagesSearchColumnChanged(QAction *actionSelected)
     m_leFilterPackage->setRefreshValidator(ectn_FILE_VALIDATOR);
   }
 
-  if (!isSearchByFileSelected() && m_packageModel->getPackageCount() <= 1)
+  /*if (!isSearchByFileSelected() && m_packageModel->getPackageCount() <= 1)
   {
     m_leFilterPackage->clear();
-  }
+  }*/
 
   QModelIndex mi = m_packageModel->index(0, PackageModel::ctn_PACKAGE_NAME_COLUMN, QModelIndex());
   ui->tvPackages->setCurrentIndex(mi);

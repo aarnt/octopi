@@ -86,8 +86,8 @@ private:
   int m_numberOfOutdatedPackages;
   int m_numberOfOutdatedAURPackages;
   bool m_systemUpgradeDialog;
-
   bool isOctopiBusy();
+  bool canOctopiUpgrade();
 
   CommandExecuting m_commandExecuting;
   UnixCommand *m_unixCommand;

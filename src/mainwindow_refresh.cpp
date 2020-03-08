@@ -623,7 +623,10 @@ void MainWindow::metaBuildPackageList()
   if (ui->twGroups->topLevelItemCount() == 0 || isAllGroupsSelected())
   {        
     ui->actionSearchByFile->setEnabled(true);
-    ui->actionSearchByName->setChecked(true);
+    //ui->actionSearchByName->setChecked(true);
+    m_actionLastSearchMethod->setChecked(true);
+    if (ui->actionSearchByFile->isChecked()) m_leFilterPackage->setRefreshValidator(ectn_FILE_VALIDATOR);
+    else if (ui->actionSearchByName->isChecked()) m_leFilterPackage->setRefreshValidator(ectn_DEFAULT_VALIDATOR);
 
     toggleSystemActions(false);
     disconnect(&g_fwPacman, SIGNAL(finished()), this, SLOT(preBuildPackageList()));
@@ -1109,6 +1112,7 @@ void MainWindow::buildAURPackageList()
 {
   ui->tvPackages->setColumnHidden(PackageModel::ctn_PACKAGE_REPOSITORY_COLUMN, true);
   ui->actionSearchByDescription->setChecked(true);
+  m_leFilterPackage->setRefreshValidator(ectn_AUR_VALIDATOR);
   m_progressWidget->show();
 
   const QSet<QString>*const unrequiredPackageList = Package::getUnrequiredPackageList();

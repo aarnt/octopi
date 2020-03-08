@@ -826,6 +826,7 @@ void MainWindow::initActions()
   actionGroup->addAction(ui->actionSearchByName);
   actionGroup->addAction(ui->actionSearchByFile);
   ui->actionSearchByName->setChecked(true);
+  m_actionLastSearchMethod = ui->actionSearchByName;
   actionGroup->setExclusive(true);
   connect(actionGroup, SIGNAL(triggered(QAction*)), this, SLOT(tvPackagesSearchColumnChanged(QAction*)));
 

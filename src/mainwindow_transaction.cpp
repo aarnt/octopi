@@ -2014,6 +2014,7 @@ void MainWindow::pacmanProcessFinished(int exitCode, QProcess::ExitStatus exitSt
       {        
         m_checkupdatesStringList->clear();
         m_checkUpdatesNameNewVersion->clear();
+        m_leFilterPackage->clear();
         metaBuildPackageList();
       }
       else if (m_commandExecuting != ectn_MIRROR_CHECK && m_commandExecuting != ectn_CHECK_UPDATES)
@@ -2140,6 +2141,7 @@ void MainWindow::onPressAnyKeyToContinue()
   {
     m_checkupdatesStringList->clear();
     m_checkUpdatesNameNewVersion->clear();
+    m_leFilterPackage->clear();
   }
 
   metaBuildPackageList();

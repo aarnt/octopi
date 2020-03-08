@@ -132,6 +132,51 @@ bool MainWindow::isOctopiBusy()
 }
 
 /*
+ * Checks if Octopi can do a system upgrade
+ */
+bool MainWindow::canOctopiUpgrade()
+{
+  bool res=false;
+
+  //Checks first if octopi is running...
+  if (!UnixCommand::isOctoToolRunning("octopi")) return res;
+
+  QTcpSocket socket;
+  socket.connectToHost("127.0.0.1", 12701);
+
+  if (!socket.waitForConnected(5000))
+  {
+    res=false;
+  }
+
+  QDataStream in(&socket);
+  in.setVersion(QDataStream::Qt_5_10);
+  QString octopiResponse;
+
+  do
+  {
+    if (!socket.waitForReadyRead())
+    {
+      res=false;
+    }
+
+    in.startTransaction();
+    in >> octopiResponse;
+  } while (!in.commitTransaction());
+
+  if (octopiResponse != "Renovatio potest")
+  {
+    res=false;
+  }
+  else
+  {
+    res=true; //Octopi has outdated packages!
+  }
+
+  return res;
+}
+
+/*
  * Let's initialize all notifier's actions...
  */
 void MainWindow::initActions()
@@ -1094,7 +1139,7 @@ void MainWindow::execSystemTrayActivated(QSystemTrayIcon::ActivationReason ar)
   {
     if (m_numberOfOutdatedPackages > 0)
     {
-      doSystemUpgrade();
+      runOctopi(ectn_SYSUPGRADE_EXEC_OPT);
     }
     else if (m_numberOfOutdatedAURPackages > 0)
     {
@@ -1167,26 +1212,26 @@ void MainWindow::exitNotifier()
  */
 void MainWindow::runOctopi(ExecOpt execOptions)
 {
-  if (execOptions == ectn_SYSUPGRADE_NOCONFIRM_EXEC_OPT)
+  if (execOptions == ectn_SYSUPGRADE_NOCONFIRM_EXEC_OPT && canOctopiUpgrade())
   {
     QProcess::startDetached("octopi -sysupgrade-noconfirm");
   }
   else if (execOptions == ectn_SYSUPGRADE_EXEC_OPT &&
-      !UnixCommand::isAppRunning("octopi", true) && (m_outdatedStringList->count() > 0 || m_checkUpdatesStringList.count() > 0))
+      (!UnixCommand::isAppRunning("octopi", true) || !canOctopiUpgrade()) && (m_outdatedStringList->count() > 0 || m_checkUpdatesStringList.count() > 0))
   {
     doSystemUpgrade();
   }
-  else if (execOptions == ectn_SYSUPGRADE_EXEC_OPT &&
+  else if (execOptions == ectn_SYSUPGRADE_EXEC_OPT && canOctopiUpgrade() &&
       UnixCommand::isAppRunning("octopi", true) && (m_outdatedStringList->count() > 0 || m_checkUpdatesStringList.count() > 0))
   {
     QProcess::startDetached("octopi -sysupgrade");
   }
   else if (execOptions == ectn_AUR_UPGRADE_EXEC_OPT &&
-      !UnixCommand::isAppRunning("octopi", true) && m_outdatedAURStringList->count() > 0)
+      (!UnixCommand::isAppRunning("octopi", true) || !canOctopiUpgrade()) && m_outdatedAURStringList->count() > 0)
   {
     doAURUpgrade();
   }
-  else if (execOptions == ectn_AUR_UPGRADE_EXEC_OPT &&
+  else if (execOptions == ectn_AUR_UPGRADE_EXEC_OPT && canOctopiUpgrade() &&
       UnixCommand::isAppRunning("octopi", true) && m_outdatedAURStringList->count() > 0)
   {
     QProcess::startDetached("octopi -aurupgrade");
