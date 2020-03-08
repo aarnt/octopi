@@ -1778,7 +1778,7 @@ void MainWindow::toggleTransactionActions(const bool value)
   ui->actionHelpUsage->setEnabled(value);
   ui->actionDonate->setEnabled(value);
   ui->actionHelpAbout->setEnabled(value);
-  ui->actionExit->setEnabled(value);
+  //ui->actionExit->setEnabled(value);
 
   //We have to toggle the combobox groups as well
   if (m_initializationCompleted) ui->twGroups->setEnabled(value);

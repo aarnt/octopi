@@ -186,9 +186,9 @@ public:
 
   static QIcon getIconExit(){    
     if (WMHelper::isKDERunning() && (UnixCommand::getLinuxDistro() != ectn_KAOS))
-      return QIcon::fromTheme("application-exit", QIcon()); //QIcon(":/resources/images/exit.png"));
+      return QIcon::fromTheme("application-exit", QIcon(":/resources/images/exit.png"));
     else      
-      return QIcon(); //return QIcon(":/resources/images/exit.png");*/
+      return QIcon(":/resources/images/exit.png");
   }
 
   // Icons for QActions
