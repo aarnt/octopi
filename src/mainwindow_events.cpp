@@ -30,8 +30,6 @@
 #include "uihelper.h"
 #include "searchbar.h"
 #include "globals.h"
-#include "terminal.h"
-#include "termwidget.h"
 #include "settingsmanager.h"
 
 #include <QCloseEvent>
@@ -45,6 +43,7 @@
 #include <QProgressBar>
 #include <QtConcurrent/QtConcurrentRun>
 #include <QSharedMemory>
+#include <QTimer>
 
 /*
  * Before we close the application, let's confirm if there is a pending transaction...
@@ -61,30 +60,13 @@ void MainWindow::closeEvent(QCloseEvent *event)
                           QMessageBox::No);
     if (res == QMessageBox::Yes)
     {
-      bool runInTerminalAction=(m_commandExecuting == ectn_RUN_SYSTEM_UPGRADE_IN_TERMINAL ||
-                                m_commandExecuting == ectn_RUN_IN_TERMINAL);
-
-      if (!runInTerminalAction)
-      {
-        bool ret=stopTransaction();
-        if (ret)
-        {
-          event->accept();
-          qApp->quit();
-        }
-        else
-        {
-          event->ignore();
-          return;
-        }
-      }
-      else
-      {
-        event->accept();
-        qApp->quit();
-      }
+      event->accept();
+      qApp->quit();
     }
-    else event->ignore();
+    else
+    {
+      event->ignore();
+    }
   }
   else if(areTherePendingActions())
   {
