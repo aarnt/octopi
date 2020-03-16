@@ -450,7 +450,7 @@ QByteArray UnixCommand::getExpacInfo(const QString &pkgName, const QString &info
   env.insert("LC_ALL", "C");
   expac.setProcessEnvironment(env);
   QString expacStr = "expac -s \"%%1\" %2";
-  expac.start(expacStr.arg(info).arg(pkgName));
+  expac.start(expacStr.arg(info, pkgName));
   expac.waitForFinished();
   result = expac.readAllStandardOutput();
   expac.close();

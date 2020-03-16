@@ -132,40 +132,40 @@ QString utils::retrieveDistroNews(bool searchForLatestNews)
 
     /*if (distro == ectn_ENDEAVOUROS || distro == ectn_ANTERGOS)
     {
-      curlCommand = curlCommand.arg(distroRSSUrl).arg(tmpRssPath);
+      curlCommand = curlCommand.arg(distroRSSUrl, tmpRssPath);
     }*/
     if (distro == ectn_ARCHLINUX || distro == ectn_ARCHBANGLINUX /*|| distro == ectn_SWAGARCH*/)
     {
-      curlCommand = curlCommand.arg(distroRSSUrl).arg(tmpRssPath);
+      curlCommand = curlCommand.arg(distroRSSUrl, tmpRssPath);
     }
     else if (distro == ectn_CHAKRA)
     {
       curlCommand = "curl -k %1 -o %2";
-      curlCommand = curlCommand.arg(distroRSSUrl).arg(tmpRssPath);
+      curlCommand = curlCommand.arg(distroRSSUrl, tmpRssPath);
     }
     else if (distro == ectn_CONDRESOS)
     {
       curlCommand = "curl -A \"Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0\" -k \"%1\" -o %2";
-      curlCommand = curlCommand.arg(distroRSSUrl).arg(tmpRssPath);
+      curlCommand = curlCommand.arg(distroRSSUrl, tmpRssPath);
     }
     else if (distro == ectn_KAOS)
     {
       curlCommand = "curl -k %1 -o %2";
-      curlCommand = curlCommand.arg(distroRSSUrl).arg(tmpRssPath);
+      curlCommand = curlCommand.arg(distroRSSUrl, tmpRssPath);
     }
     else if (distro == ectn_MANJAROLINUX)
     {
-      curlCommand = curlCommand.arg(distroRSSUrl).arg(tmpRssPath);
+      curlCommand = curlCommand.arg(distroRSSUrl, tmpRssPath);
     }
     /*else if (distro == ectn_NETRUNNER)
     {
-      curlCommand = curlCommand.arg(distroRSSUrl).arg(tmpRssPath);
+      curlCommand = curlCommand.arg(distroRSSUrl, tmpRssPath);
     }*/
     else if (distro == ectn_PARABOLA)
     {
       //Parabola has a certificate which is not "trusted" by default, so we use "curl -k"
       curlCommand = "curl -k %1 -o %2";
-      curlCommand = curlCommand.arg(distroRSSUrl).arg(tmpRssPath);
+      curlCommand = curlCommand.arg(distroRSSUrl, tmpRssPath);
     }
 
     if (UnixCommand::runCurlCommand(curlCommand).isEmpty())

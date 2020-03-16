@@ -646,7 +646,7 @@ QString StrConstants::getYoullNeedSuFrontend(){
 QString StrConstants::getYoullNeedToInstallAURTool()
 {
   return QObject::tr("You'll need one of those tools to use AUR:\n\n"
-                     "%1, %2, %3 %4 or %5").arg("pacaur").arg("pikaur").arg("trizen").arg("yaourt").arg("yay");
+                     "%1, %2, %3 %4 or %5").arg("pacaur").arg("pikaur", "trizen", "yaourt", "yay");
 }
 
 QString StrConstants::getDoYouWantToInstallYayTool()
