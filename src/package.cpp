@@ -51,12 +51,12 @@ QString Package::getBaseName( const QString& p )
 
 	for (int i=1; i<= nameSegment; i++){
     int a=aux.indexOf("-");
-		packageBaseName += aux.left(a);
+		packageBaseName += aux.leftRef(a);
 		if (i<nameSegment) packageBaseName += "-";
 		aux = aux.mid(a+1);
 	}
 
-	if (packageBaseName == "") packageBaseName += p.left(p.indexOf("-"));
+	if (packageBaseName == "") packageBaseName += p.leftRef(p.indexOf("-"));
 	return packageBaseName;
 }
 
@@ -864,7 +864,7 @@ QList<PackageListData> * Package::getAURPackageList(const QString& searchString)
         {
           QString str = strVotes.first();
           int comma = str.indexOf(",");
-          pkgVotes = str.mid(1, comma-1).toInt();
+          pkgVotes = str.midRef(1, comma-1).toInt();
         }
         else pkgVotes = 0;
       }

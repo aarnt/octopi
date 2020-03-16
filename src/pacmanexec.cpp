@@ -406,7 +406,7 @@ void PacmanExec::parsePacmanProcessOutput(const QString &output)
     //Here we print the transaction percentage updating
     if(!perc.isEmpty() && perc.indexOf("%") > 0)
     {
-      int ipercentage = perc.left(perc.size()-1).toInt();
+      int ipercentage = perc.leftRef(perc.size()-1).toInt();
       emit percentage(ipercentage);
     }
   }
