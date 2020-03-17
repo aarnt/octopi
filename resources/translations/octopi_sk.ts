@@ -84,7 +84,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="306"/>
         <source>System u&amp;pgrade</source>
-        <translation type="unfinished"/>
+        <translation>Aktualizovať &amp;systém</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="324"/>
@@ -232,7 +232,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="622"/>
         <source>Donate!</source>
-        <translation type="unfinished"/>
+        <translation>Prispejte!</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="85"/>
@@ -470,7 +470,7 @@
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="50"/>
         <source>Show package numbers in output tab</source>
-        <translation type="unfinished"/>
+        <translation>Zobraziť čísla balíkov vo výstupnej karte</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="63"/>
@@ -485,12 +485,12 @@
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="89"/>
         <source>Enable confirmation dialog in system upgrade</source>
-        <translation type="unfinished"/>
+        <translation>Povoliť potvrdzovacie dialógové okno pri aktualizácii systému</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="102"/>
         <source>Enable internet checking</source>
-        <translation type="unfinished"/>
+        <translation>Povoliť kontrolu internetu</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="139"/>
@@ -515,23 +515,24 @@
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="295"/>
         <source>Register</source>
-        <translation type="unfinished"/>
+        <translation>Zaregistrovať sa</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="308"/>
         <source>Connect</source>
-        <translation type="unfinished"/>
+        <translation>Pripojiť sa</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="322"/>
         <source>Enable AUR voting</source>
-        <translation type="unfinished"/>
+        <translation>Povoliť hlasovanie v repozitári AUR</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="343"/>
         <source>AUR packages are user produced content. 
 Any use of the provided files is at your own risk.</source>
-        <translation type="unfinished"/>
+        <translation>Balíky repozitára AUR sú výsledkom práce používateľov.
+Akékoľvek používanie poskytnutých súborov je na vlastné riziko.</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="356"/>
@@ -580,7 +581,7 @@ Any use of the provided files is at your own risk.</source>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="777"/>
         <location filename="Projects/octopi/src/optionsdialog.cpp" line="169"/>
         <source>Updates</source>
-        <translation type="unfinished"/>
+        <translation>Aktualizácie</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/optionsdialog.cpp" line="93"/>
@@ -630,7 +631,8 @@ Any use of the provided files is at your own risk.</source>
         <location filename="Projects/octopi/src/strconstants.cpp" line="48"/>
         <source>Pacman Database is missing!
 You may need to synchronize database!</source>
-        <translation type="unfinished"/>
+        <translation>Chýba databáza programu Pacman!
+Musíte synchronizovať databázu!</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="52"/>
@@ -650,12 +652,12 @@ You may need to synchronize database!</source>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="142"/>
         <source>Condres OS news</source>
-        <translation type="unfinished"/>
+        <translation>Novinky systému Condres OS</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="146"/>
         <source>EndeavourOS news</source>
-        <translation type="unfinished"/>
+        <translation>Novinky systému EndeavourOS</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="150"/>
@@ -675,7 +677,7 @@ You may need to synchronize database!</source>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="162"/>
         <source>Information</source>
-        <translation type="unfinished"/>
+        <translation>Informácie</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="166"/>
@@ -715,12 +717,12 @@ You may need to synchronize database!</source>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="202"/>
         <source>Help</source>
-        <translation type="unfinished"/>
+        <translation>Pomocník</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="206"/>
         <source>&amp;Options</source>
-        <translation type="unfinished"/>
+        <translation>V&amp;oľby</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="210"/>
@@ -810,7 +812,7 @@ You may need to synchronize database!</source>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="278"/>
         <source>Votes</source>
-        <translation type="unfinished"/>
+        <translation>Hlasy</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="282"/>
@@ -820,7 +822,7 @@ You may need to synchronize database!</source>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="287"/>
         <source>Vote</source>
-        <translation type="unfinished"/>
+        <translation>Hlasovať</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="292"/>
@@ -830,7 +832,7 @@ You may need to synchronize database!</source>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="297"/>
         <source>Unvote</source>
-        <translation type="unfinished"/>
+        <translation>Zrušiť hlas</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="301"/>
@@ -915,7 +917,7 @@ You may need to synchronize database!</source>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="365"/>
         <source>Actions</source>
-        <translation type="unfinished"/>
+        <translation>Akcie</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="369"/>
@@ -930,7 +932,7 @@ You may need to synchronize database!</source>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="378"/>
         <source>Terminal</source>
-        <translation type="unfinished"/>
+        <translation>Terminál</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="382"/>
@@ -1020,17 +1022,17 @@ You may need to synchronize database!</source>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="478"/>
         <source>Check updates</source>
-        <translation type="unfinished"/>
+        <translation>Skontrolovať aktualizácie</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="483"/>
         <source>System upgrade</source>
-        <translation type="unfinished"/>
+        <translation>Aktualizácia systému</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="488"/>
         <source>Checking for updates...</source>
-        <translation type="unfinished"/>
+        <translation>Kontrolujú sa aktualizácie...</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="493"/>
@@ -1180,7 +1182,7 @@ You may need to synchronize database!</source>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="629"/>
         <source>Do you really want to cancel actions?</source>
-        <translation type="unfinished"/>
+        <translation>Naozaj chcete zrušiť akcie?</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="633"/>
@@ -1213,7 +1215,7 @@ Do you want to install it?</source>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="660"/>
         <source>Connection is OK!</source>
-        <translation type="unfinished"/>
+        <translation>Pripojenie je v poriadku!</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="664"/>
@@ -1224,12 +1226,12 @@ You only need to accept and wait a few seconds.</source>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="670"/>
         <source>Thank you for voting for Octopi!</source>
-        <translation type="unfinished"/>
+        <translation>Ďakujeme, že ste hlasovali za aplikáciu Octopi!</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="675"/>
         <source>Username and/or password is/are incorrect.</source>
-        <translation type="unfinished"/>
+        <translation>Používateľské meno alebo heslo nie je správne.</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="680"/>
@@ -1254,12 +1256,12 @@ You only need to accept and wait a few seconds.</source>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="697"/>
         <source>Canceling the running transaction may damage your system!</source>
-        <translation type="unfinished"/>
+        <translation>Zrušenie spustenej transakcie môže poškodiť váš systém!</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="701"/>
         <source>There are pending actions</source>
-        <translation type="unfinished"/>
+        <translation>Nie sú žiadne čakajúce akcie</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="705"/>
@@ -1323,22 +1325,22 @@ Naozaj si ho prajete otvoriť?</translation>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="751"/>
         <source>Remove</source>
-        <translation type="unfinished"/>
+        <translation>Odstrániť</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="755"/>
         <source>Install</source>
-        <translation type="unfinished"/>
+        <translation>Nainštalovať</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="760"/>
         <source>Reinstall</source>
-        <translation type="unfinished"/>
+        <translation>Preinštalovať</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="765"/>
         <source>Update</source>
-        <translation type="unfinished"/>
+        <translation>Aktualizovať</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="769"/>
@@ -1373,7 +1375,7 @@ Naozaj si ho prajete otvoriť?</translation>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="793"/>
         <source>Check for package updates interval</source>
-        <translation type="unfinished"/>
+        <translation>Interval kontroly aktualizácií balíkov</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="797"/>
@@ -1413,47 +1415,47 @@ Naozaj si ho prajete otvoriť?</translation>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="827"/>
         <source>%1 could not be found in the system!</source>
-        <translation type="unfinished"/>
+        <translation>Program %1 sa nepodarilo nájsť v systéme!</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="832"/>
         <source>Zoom in</source>
-        <translation type="unfinished"/>
+        <translation>Zväčšiť</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="837"/>
         <source>Zoom out</source>
-        <translation type="unfinished"/>
+        <translation>Zmenšiť</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="842"/>
         <source>Maximize</source>
-        <translation type="unfinished"/>
+        <translation>Maximalizovať</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="847"/>
         <source>Copy</source>
-        <translation type="unfinished"/>
+        <translation>Kopírovať</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="852"/>
         <source>Paste</source>
-        <translation type="unfinished"/>
+        <translation>Vložiť</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="857"/>
         <source>Never</source>
-        <translation type="unfinished"/>
+        <translation>Nikdy</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="862"/>
         <source>Upgrading...</source>
-        <translation type="unfinished"/>
+        <translation>Aktualizuje sa...</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="867"/>
         <source>Exit</source>
-        <translation type="unfinished"/>
+        <translation>Skončiť</translation>
     </message>
 </context>
 <context>

@@ -490,7 +490,7 @@
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="102"/>
         <source>Enable internet checking</source>
-        <translation type="unfinished"/>
+        <translation>Активиране на интернет проверка</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="139"/>
@@ -1052,7 +1052,7 @@ You may need to synchronize database!</source>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="514"/>
         <source>SysInfo file generated on: %1&lt;br&gt;If you wish, post the output in your distro&apos;s forum for help.</source>
-        <translation type="unfinished"/>
+        <translation>SysInfo файл, генериран от: %1&lt;br&gt;Ако желаете, впишете изхода във форума на дистрибуцията за помощ.</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="518"/>
@@ -1092,17 +1092,17 @@ You may need to synchronize database!</source>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="547"/>
         <source>Temporary &quot;yay-bin&quot; could not be downloaded!</source>
-        <translation type="unfinished"/>
+        <translation>Временно &quot;yay-bin&quot; не може да бъде изтеглен!</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="552"/>
         <source>Temporary &quot;yay-bin&quot; downloaded.</source>
-        <translation type="unfinished"/>
+        <translation>Временно изтеглен &quot;yay-bin&quot;.</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="557"/>
         <source>Downloading temporary &quot;yay-bin&quot;...</source>
-        <translation type="unfinished"/>
+        <translation>Изтегляне временен &quot;yay-bin&quot;...</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="561"/>
@@ -1182,7 +1182,7 @@ You may need to synchronize database!</source>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="629"/>
         <source>Do you really want to cancel actions?</source>
-        <translation type="unfinished"/>
+        <translation>Наистина ли искате да прекратите действията?</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="633"/>
@@ -1197,56 +1197,60 @@ You may need to synchronize database!</source>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="643"/>
         <source>You&apos;ll need to install &quot;octopi-sudo&quot; in order to use Octopi.</source>
-        <translation type="unfinished"/>
+        <translation>Ще трябва да инсталирате &quot;octopi-sudo&quot;, за да използвате Octopi.</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="648"/>
         <source>You'll need one of those tools to use AUR:
 
 %1, %2, %3 %4 or %5</source>
-        <translation type="unfinished"/>
+        <translation>Ще имате нужда поне един от тези инструменти да използвате AUR:
+
+%1, %2, %3 %4 or %5</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="654"/>
         <source>You need a package in order to use AUR.
 Do you want to install it?</source>
-        <translation type="unfinished"/>
+        <translation>Имате нужда от пакет, за да използвате AUR.
+Искате ли да го инсталирате?</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="660"/>
         <source>Connection is OK!</source>
-        <translation type="unfinished"/>
+        <translation>Връзката е ОК!</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="664"/>
         <source>Would you like to help this project by voting for it?
 You only need to accept and wait a few seconds.</source>
-        <translation type="unfinished"/>
+        <translation>Искали да помогнтее на този проект, като гласувате за него?
+Трябва само да приемете и изчакате няколко секунди.</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="670"/>
         <source>Thank you for voting for Octopi!</source>
-        <translation type="unfinished"/>
+        <translation>Благодаря ви, че гласувате за Octopi!</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="675"/>
         <source>Username and/or password is/are incorrect.</source>
-        <translation type="unfinished"/>
+        <translation>Потребителско име и/или паролата ви са неправилни.</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="680"/>
         <source>AUR username is not set.</source>
-        <translation type="unfinished"/>
+        <translation>AUR потребителското име не е зададено.</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="685"/>
         <source>AUR password is not set.</source>
-        <translation type="unfinished"/>
+        <translation>AUR няма зададена парола.</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="689"/>
         <source>Icon path information is not set.</source>
-        <translation type="unfinished"/>
+        <translation>Информация за пътя до иконата не е зададена.</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="693"/>
