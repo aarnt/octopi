@@ -285,7 +285,7 @@ bool installTempYayHelper()
   QString removeLN = "rm %1";
   QString htmlLatestYay="latestYay.html";
   QString octopiConfDir = QDir::homePath() + QDir::separator() + ".config/octopi";
-  curl=curl.arg(url).arg(octopiConfDir + QDir::separator() + htmlLatestYay);
+  curl=curl.arg(url, octopiConfDir + QDir::separator() + htmlLatestYay);
 
   QProcess p;
   //First we download latest html page of yay-bin at github.com
@@ -318,11 +318,11 @@ bool installTempYayHelper()
 
   //Let's download latest version of yay-bin tarball
   curl = "curl -L %1 --output %2";
-  curl=curl.arg(yayUrl).arg(octopiConfDir + QDir::separator() + yayTarball);
+  curl=curl.arg(yayUrl, octopiConfDir + QDir::separator() + yayTarball);
   p.execute(curl);
 
   //Then we extract binary from tarball
-  tar = tar.arg(octopiConfDir + QDir::separator() + yayTarball).arg(octopiConfDir).arg(yayFile);
+  tar = tar.arg(octopiConfDir + QDir::separator() + yayTarball, octopiConfDir, yayFile);
   p.execute(tar);
 
   //Now we must symlink yay file to octopiConfDir/yay
@@ -330,7 +330,7 @@ bool installTempYayHelper()
   if (QFile::exists(octopiConfDir + QDir::separator() + "yay")) p.execute(removeLN);
 
   //Now we must symlink yay file to octopiConfDir/yayFile/yay
-  ln = ln.arg(octopiConfDir + QDir::separator() + yayFile).arg(octopiConfDir + QDir::separator() + "yay");
+  ln = ln.arg(octopiConfDir + QDir::separator() + yayFile, octopiConfDir + QDir::separator() + "yay");
   p.execute(ln);
 
   //Remove tarball
