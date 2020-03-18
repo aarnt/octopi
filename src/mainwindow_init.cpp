@@ -452,7 +452,7 @@ void MainWindow::initTabTransaction()
   gridLayoutX->setMargin(0);
 
   QTreeView *tvTransaction = new QTreeView(tabTransaction);
-  tvTransaction->setObjectName("tvTransaction");
+  tvTransaction->setObjectName(QStringLiteral("tvTransaction"));
   tvTransaction->setContextMenuPolicy(Qt::CustomContextMenu);
   tvTransaction->setEditTriggers(QAbstractItemView::NoEditTriggers);
   tvTransaction->setDropIndicatorShown(false);
@@ -561,7 +561,7 @@ void MainWindow::initTabInfo(){
   gridLayoutX->setMargin ( 0 );
 
   QTextBrowser *text = new QTextBrowser(tabInfo);
-  text->setObjectName("textBrowser");
+  text->setObjectName(QStringLiteral("textBrowser"));
   text->setReadOnly(true);
   text->setFrameShape(QFrame::NoFrame);
   text->setFrameShadow(QFrame::Plain);
@@ -646,7 +646,7 @@ void MainWindow::onExecCommandInTabTerminal(QString command)
   connect(m_console, SIGNAL(onCancelControlKey()), this, SLOT(onCancelControlKey()));
 
   m_console->enter();
-  m_console->execute("clear");
+  m_console->execute(QStringLiteral("clear"));
   m_console->execute(command);
   m_console->setFocus();
 }
@@ -671,7 +671,7 @@ void MainWindow::initTabFiles()
   tvPkgFileList->header()->setSectionResizeMode(QHeaderView::Fixed);
   tvPkgFileList->setFrameShape(QFrame::NoFrame);
   tvPkgFileList->setFrameShadow(QFrame::Plain);
-  tvPkgFileList->setObjectName("tvPkgFileList");
+  tvPkgFileList->setObjectName(QStringLiteral("tvPkgFileList"));
   tvPkgFileList->setStyleSheet(StrConstants::getTreeViewCSS());
 
   modelPkgFileList->setSortRole(0);
@@ -708,7 +708,7 @@ void MainWindow::initTabOutput()
   gridLayoutX->setSpacing ( 0 );
   gridLayoutX->setMargin ( 0 );
   QTextBrowser *text = new QTextBrowser(tabOutput);
-  text->setObjectName("textBrowser");
+  text->setObjectName(QStringLiteral("textBrowser"));
   text->setReadOnly(true);
   text->setOpenLinks(false);
   text->setFrameShape(QFrame::NoFrame);
@@ -740,7 +740,7 @@ void MainWindow::initTabOutput()
  */
 void MainWindow::initActions()
 {
-  m_hasSLocate = UnixCommand::hasTheExecutable("slocate");
+  m_hasSLocate = UnixCommand::hasTheExecutable(QStringLiteral("slocate"));
   m_hasMirrorCheck = UnixCommand::hasTheExecutable(ctn_MIRROR_CHECK_APP);
   m_actionSysInfo = new QAction(this);
   m_actionMenuMirrorCheck = new QAction(this);
@@ -761,7 +761,7 @@ void MainWindow::initActions()
   if(m_hasMirrorCheck)
   {
     m_actionMenuMirrorCheck->setShortcut(QKeySequence(Qt::ControlModifier|Qt::ShiftModifier|Qt::Key_M));
-    m_actionMenuMirrorCheck->setText("Mirror-Check");
+    m_actionMenuMirrorCheck->setText(QStringLiteral("Mirror-Check"));
     m_actionMenuMirrorCheck->setIcon(IconHelper::getIconMirrorCheck());
     connect(m_actionMenuMirrorCheck, SIGNAL(triggered()), this, SLOT(doMirrorCheck()));
   }  
@@ -812,7 +812,7 @@ void MainWindow::initActions()
   connect(m_actionShowGroups, SIGNAL(triggered()), this, SLOT(hideGroupsWidget()));
 
   m_actionEditOctopiConf = new QAction(this);
-  m_actionEditOctopiConf->setText("octopi.conf...");
+  m_actionEditOctopiConf->setText(QStringLiteral("octopi.conf..."));
   m_actionEditOctopiConf->setIcon(IconHelper::getIconBinary());
   connect(m_actionEditOctopiConf, SIGNAL(triggered()), this, SLOT(editOctopiConf()));
 

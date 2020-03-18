@@ -59,7 +59,7 @@ void Terminal::runOctopiHelperInTerminalWithSharedMem(const QStringList &command
 
   foreach(QString line, commandList)
   {
-    if (line.contains("echo -e") || line.contains("read -n 1"))
+    if (line.contains(QLatin1String("echo -e")) || line.contains(QLatin1String("read -n 1")))
     {
       removedLines = true;
       continue;
@@ -137,16 +137,16 @@ void Terminal::runCommandInTerminalAsNormalUser(const QStringList &commandList)
 
   foreach(QString line, commandList)
   {
-    if ((line.contains("echo -e") || line.contains("read -n 1"))) //&& m_selectedTerminal == ctn_QTERMWIDGET)
+    if ((line.contains(QLatin1String("echo -e")) || line.contains(QLatin1String("read -n 1")))) //&& m_selectedTerminal == ctn_QTERMWIDGET)
     {
       removedLines = true;
       continue;
     }
 
     //We must remove the "ccr/" prefix in Chakra, cos this will not work
-    if(line.contains("ccr/"))
+    if(line.contains(QLatin1String("ccr/")))
     {
-      line = line.replace("ccr/", "");
+      line = line.replace(QLatin1String("ccr/"), QLatin1String(""));
     }
 
     out += line;

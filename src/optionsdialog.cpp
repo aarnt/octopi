@@ -42,7 +42,7 @@
 OptionsDialog::OptionsDialog(QWidget *parent) :
   QDialog(parent)
 {
-  if (parent->windowTitle() == "Octopi") m_calledByOctopi = true;
+  if (parent->windowTitle() == QLatin1String("Octopi")) m_calledByOctopi = true;
   else m_calledByOctopi = false;
 
   setupUi(this);
@@ -58,7 +58,7 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
  */
 void OptionsDialog::gotoAURTab()
 {
-  setCurrentIndexByTabName("AUR");
+  setCurrentIndexByTabName(QStringLiteral("AUR"));
 }
 
 /*
@@ -86,7 +86,7 @@ void OptionsDialog::defaultIconChecked(bool checked)
 void OptionsDialog::selRedIconPath()
 {
   QDir qd;
-  QString dir = "/usr/share/icons";
+  QString dir = QStringLiteral("/usr/share/icons");
   if (!leRedIcon->text().isEmpty()) dir = qd.filePath(leRedIcon->text());
 
   QString fileName =
@@ -102,7 +102,7 @@ void OptionsDialog::selRedIconPath()
 void OptionsDialog::selYellowIconPath()
 {
   QDir qd;
-  QString dir = "/usr/share/icons";
+  QString dir = QStringLiteral("/usr/share/icons");
   if (!leYellowIcon->text().isEmpty()) dir = qd.filePath(leYellowIcon->text());
 
   QString fileName =
@@ -118,7 +118,7 @@ void OptionsDialog::selYellowIconPath()
 void OptionsDialog::selGreenIconPath()
 {
   QDir qd;
-  QString dir = "/usr/share/icons";
+  QString dir = QStringLiteral("/usr/share/icons");
   if (!leGreenIcon->text().isEmpty()) dir = qd.filePath(leGreenIcon->text());
 
   QString fileName =
@@ -134,7 +134,7 @@ void OptionsDialog::selGreenIconPath()
 void OptionsDialog::selBusyIconPath()
 {
   QDir qd;
-  QString dir = "/usr/share/icons";
+  QString dir = QStringLiteral("/usr/share/icons");
   if (!leBusyIcon->text().isEmpty()) dir = qd.filePath(leBusyIcon->text());
 
   QString fileName =
@@ -202,11 +202,11 @@ void OptionsDialog::initAURTab()
       UnixCommand::getLinuxDistro() == ectn_CHAKRA ||
       UnixCommand::getLinuxDistro() == ectn_PARABOLA)
   {
-    removeTabByName("AUR");
+    removeTabByName(QStringLiteral("AUR"));
   }
   else
   {
-    lblAURWarning->setStyleSheet("QLabel{ color: red; }");
+    lblAURWarning->setStyleSheet(QStringLiteral("QLabel{ color: red; }"));
     QStringList aurTools=UnixCommand::getAvailableAURTools();
 
     connect(comboAUR, SIGNAL(currentTextChanged(const QString &)), this, SLOT(comboAURChanged(const QString &)));
@@ -392,9 +392,9 @@ void OptionsDialog::accept()
         (!SettingsManager::hasPacmanBackend()) != rbAlpm->isChecked())
     {
       if (rbPacman->isChecked())
-        SettingsManager::setBackend("pacman");
+        SettingsManager::setBackend(QStringLiteral("pacman"));
       else
-        SettingsManager::setBackend("alpm");
+        SettingsManager::setBackend(QStringLiteral("alpm"));
 
       m_backendHasChanged = true;
     }
@@ -520,14 +520,14 @@ void OptionsDialog::accept()
         if (leAurUserName->text().isEmpty())
         {
           delete cic;
-          setCurrentIndexByTabName("AUR");
+          setCurrentIndexByTabName(QStringLiteral("AUR"));
           QMessageBox::critical(this, StrConstants::getError(), StrConstants::getErrorAURUserNameIsNotSet());
           return;
         }
         if (leAurPassword->text().isEmpty())
         {
           delete cic;
-          setCurrentIndexByTabName("AUR");
+          setCurrentIndexByTabName(QStringLiteral("AUR"));
           QMessageBox::critical(this, StrConstants::getError(), StrConstants::getErrorAURPasswordIsNotSet());
           return;
         }
@@ -797,9 +797,9 @@ void OptionsDialog::onAURConnect()
     bool octopiDevVoted=false;
     bool octopiVoted=false;
     bool alpmUtilsVoted=false;
-    if (v.isPkgVoted("octopi-dev")==0) octopiDevVoted=true;
-    if (v.isPkgVoted("octopi")==0) octopiVoted=true;
-    if (v.isPkgVoted("alpm_octopi_utils")==0) alpmUtilsVoted=true;
+    if (v.isPkgVoted(QStringLiteral("octopi-dev"))==0) octopiDevVoted=true;
+    if (v.isPkgVoted(QStringLiteral("octopi"))==0) octopiVoted=true;
+    if (v.isPkgVoted(QStringLiteral("alpm_octopi_utils"))==0) alpmUtilsVoted=true;
 
     if (octopiDevVoted && octopiVoted && alpmUtilsVoted)
     {
@@ -815,9 +815,9 @@ void OptionsDialog::onAURConnect()
       if (r == QMessageBox::Yes)
       {
         //User opted to help the project, so let's vote for the packages
-        if (!octopiDevVoted) v.voteForPkg("octopi-dev");
-        if (!octopiVoted) v.voteForPkg("octopi");
-        if (!alpmUtilsVoted) v.voteForPkg("alpm_octopi_utils");
+        if (!octopiDevVoted) v.voteForPkg(QStringLiteral("octopi-dev"));
+        if (!octopiVoted) v.voteForPkg(QStringLiteral("octopi"));
+        if (!alpmUtilsVoted) v.voteForPkg(QStringLiteral("alpm_octopi_utils"));
 
         //Let's thank user for voting!
         QMessageBox::information(this, StrConstants::getInformation(), StrConstants::getThankYouForVoting());
@@ -833,5 +833,5 @@ void OptionsDialog::onAURConnect()
  */
 void OptionsDialog::onAURRegister()
 {
-  QDesktopServices::openUrl(QUrl("https://aur.archlinux.org/register/"));
+  QDesktopServices::openUrl(QUrl(QStringLiteral("https://aur.archlinux.org/register/")));
 }

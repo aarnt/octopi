@@ -88,7 +88,7 @@ bool MainWindow::areTherePendingActions()
 QStandardItem * MainWindow::getRemoveTransactionParentItem()
 {
   QTreeView *tvTransaction =
-      ui->twProperties->widget(ctn_TABINDEX_ACTIONS)->findChild<QTreeView*>("tvTransaction");
+      ui->twProperties->widget(ctn_TABINDEX_ACTIONS)->findChild<QTreeView*>(QStringLiteral("tvTransaction"));
   QStandardItemModel *sim = qobject_cast<QStandardItemModel *>(tvTransaction->model());
   QStandardItem *si = nullptr;
 
@@ -106,7 +106,7 @@ QStandardItem * MainWindow::getRemoveTransactionParentItem()
 QStandardItem * MainWindow::getInstallTransactionParentItem()
 {
   QTreeView *tvTransaction =
-      ui->twProperties->widget(ctn_TABINDEX_ACTIONS)->findChild<QTreeView*>("tvTransaction");
+      ui->twProperties->widget(ctn_TABINDEX_ACTIONS)->findChild<QTreeView*>(QStringLiteral("tvTransaction"));
   QStandardItemModel *sim = qobject_cast<QStandardItemModel *>(tvTransaction->model());
   QStandardItem *si = nullptr;
 
@@ -124,20 +124,20 @@ QStandardItem * MainWindow::getInstallTransactionParentItem()
 void MainWindow::insertRemovePackageIntoTransaction(const QString &pkgName)
 {
   QTreeView *tvTransaction =
-      ui->twProperties->widget(ctn_TABINDEX_ACTIONS)->findChild<QTreeView*>("tvTransaction");
+      ui->twProperties->widget(ctn_TABINDEX_ACTIONS)->findChild<QTreeView*>(QStringLiteral("tvTransaction"));
   QStandardItem * siRemoveParent = getRemoveTransactionParentItem();
   QStandardItem * siInstallParent = getInstallTransactionParentItem();
   QStandardItem * siPackageToRemove = new QStandardItem(IconHelper::getIconRemoveItem(), pkgName);
   QStandardItemModel *sim = qobject_cast<QStandardItemModel *>(siRemoveParent->model());
   QList<QStandardItem *> foundItems = sim->findItems(pkgName, Qt::MatchRecursive | Qt::MatchExactly);
 
-  int slash = pkgName.indexOf("/");
+  int slash = pkgName.indexOf(QLatin1String("/"));
   QString pkg = pkgName.mid(slash+1);
   siPackageToRemove->setText(pkg);
 
   if (foundItems.size() == 0)
   {
-    slash = pkgName.indexOf("/");
+    slash = pkgName.indexOf(QLatin1String("/"));
     pkg = pkgName.mid(slash+1);
     QList<QStandardItem *> aux = sim->findItems(pkg, Qt::MatchRecursive | Qt::MatchExactly);
 
@@ -160,7 +160,7 @@ void MainWindow::insertRemovePackageIntoTransaction(const QString &pkgName)
 void MainWindow::insertInstallPackageIntoTransaction(const QString &pkgName)
 {
   QTreeView *tvTransaction =
-      ui->twProperties->widget(ctn_TABINDEX_ACTIONS)->findChild<QTreeView*>("tvTransaction");
+      ui->twProperties->widget(ctn_TABINDEX_ACTIONS)->findChild<QTreeView*>(QStringLiteral("tvTransaction"));
   QStandardItem * siInstallParent = getInstallTransactionParentItem();
   QStandardItem * siPackageToInstall = new QStandardItem(IconHelper::getIconInstallItem(), pkgName);
   QStandardItem * siRemoveParent = getRemoveTransactionParentItem();
@@ -169,7 +169,7 @@ void MainWindow::insertInstallPackageIntoTransaction(const QString &pkgName)
 
   if (foundItems.size() == 0)
   {
-    int slash = pkgName.indexOf("/");
+    int slash = pkgName.indexOf(QLatin1String("/"));
     QString pkg = pkgName.mid(slash+1);
     QList<QStandardItem *> aux = sim->findItems(pkg, Qt::MatchRecursive | Qt::MatchExactly);
 
@@ -284,7 +284,7 @@ void MainWindow::insertIntoRemovePackage(QModelIndex *indexToInclude)
     }
 
     QString removeCmd = m_removeCommand;
-    if (removeCmd == "Rcs" )
+    if (removeCmd == QLatin1String("Rcs") )
     {
       checkDependencies = true;
     }
@@ -303,9 +303,9 @@ void MainWindow::insertIntoRemovePackage(QModelIndex *indexToInclude)
 
         foreach(QString target, *targets)
         {
-          int separator = target.lastIndexOf("-");
+          int separator = target.lastIndexOf(QLatin1String("-"));
           QString candidate = target.left(separator);
-          separator = candidate.lastIndexOf("-");
+          separator = candidate.lastIndexOf(QLatin1String("-"));
           candidate = candidate.left(separator);
 
           if (candidate != package->name)
@@ -316,7 +316,7 @@ void MainWindow::insertIntoRemovePackage(QModelIndex *indexToInclude)
 
         if (dependencies.count() > 0)
         {
-          if (!dependencies.at(0).contains("HoldPkg was found in"))
+          if (!dependencies.at(0).contains(QLatin1String("HoldPkg was found in")))
           {
             if (!insertIntoRemovePackageDeps(dependencies))
               return;
@@ -433,7 +433,7 @@ void MainWindow::insertIntoInstallPackageOptDeps(const QString &packageName)
   foreach(QString optDep, optDeps)
   {
     QString candidate = optDep;
-    int points = candidate.indexOf(":");
+    int points = candidate.indexOf(QLatin1String(":"));
     candidate = candidate.mid(0, points).trimmed();
     const PackageRepository::PackageData*const package = m_packageRepo.getFirstPackageByName(candidate);
 
@@ -454,7 +454,7 @@ void MainWindow::insertIntoInstallPackageOptDeps(const QString &packageName)
     foreach(const PackageRepository::PackageData* candidate, optionalPackages)
     {
       QString desc = candidate->description;
-      int space = desc.indexOf(" ");
+      int space = desc.indexOf(QLatin1String(" "));
       desc = desc.mid(space+1);
 
       msd->addPackageItem(candidate->name, candidate->description, candidate->repository);
@@ -507,7 +507,7 @@ bool MainWindow::insertIntoRemovePackageDeps(const QStringList &dependencies)
     foreach(const PackageRepository::PackageData* dep, newDeps)
     {
       QString desc = dep->description;
-      int space = desc.indexOf(" ");
+      int space = desc.indexOf(QLatin1String(" "));
       desc = desc.mid(space+1);
 
       /*if(dep->repository == StrConstants::getForeignRepositoryName() && dep->description.isEmpty())
@@ -554,7 +554,7 @@ void MainWindow::tvTransactionAdjustItemText(QStandardItem *item)
 {
   int countSelected=0;
   QTreeView *tvTransaction =
-      ui->twProperties->currentWidget()->findChild<QTreeView*>("tvTransaction");
+      ui->twProperties->currentWidget()->findChild<QTreeView*>(QStringLiteral("tvTransaction"));
   if (!tvTransaction) return;
 
   for(int c=0; c < item->rowCount(); c++)
@@ -566,14 +566,14 @@ void MainWindow::tvTransactionAdjustItemText(QStandardItem *item)
   }
 
   QString itemText = item->text();
-  int slash = itemText.indexOf("/");
-  int pos = itemText.indexOf(")");
+  int slash = itemText.indexOf(QLatin1String("/"));
+  int pos = itemText.indexOf(QLatin1String(")"));
 
   if (slash > 0){
     itemText.remove(slash, pos-slash);
   }
 
-  pos = itemText.indexOf(")");
+  pos = itemText.indexOf(QLatin1String(")"));
   itemText.insert(pos, "/" + QString::number(countSelected));
   item->setText(itemText);
 }
@@ -649,7 +649,7 @@ void MainWindow::onPressDelete()
   else
   {
     QTreeView *tvTransaction =
-        ui->twProperties->widget(ctn_TABINDEX_ACTIONS)->findChild<QTreeView*>("tvTransaction");
+        ui->twProperties->widget(ctn_TABINDEX_ACTIONS)->findChild<QTreeView*>(QStringLiteral("tvTransaction"));
 
     if (tvTransaction->hasFocus())
     {
@@ -724,7 +724,7 @@ void MainWindow::doCheckUpdates()
 
   //Let's synchronize kcp database too...
   if (UnixCommand::getLinuxDistro() == ectn_KAOS && UnixCommand::hasTheExecutable(ctn_KCP_TOOL))
-    UnixCommand::execCommandAsNormalUser("kcp -u");
+    UnixCommand::execCommandAsNormalUser(QStringLiteral("kcp -u"));
 
   m_commandExecuting = ectn_CHECK_UPDATES;
   disableTransactionActions();
@@ -782,9 +782,9 @@ void MainWindow::doAURUpgrade()
   foreach(QString pkg, *m_outdatedAURStringList)
   {
     auxPkg = pkg;
-    auxPkg.remove("[1;39m");
-    auxPkg.remove("[0m");
-    auxPkg.remove("");
+    auxPkg.remove(QStringLiteral("[1;39m"));
+    auxPkg.remove(QStringLiteral("[0m"));
+    auxPkg.remove(QStringLiteral(""));
     listOfTargets += auxPkg + " ";
   }
 
@@ -874,8 +874,8 @@ void MainWindow::doSystemUpgrade(SystemUpgradeOptions systemUpgradeOptions)
       return;
     }
 
-    if( (m_checkupdatesStringList->count() != 0 && m_checkupdatesStringList->contains("pacman")) ||
-        (m_outdatedStringList->count() != 0 && m_outdatedStringList->contains("pacman")) )
+    if( (m_checkupdatesStringList->count() != 0 && m_checkupdatesStringList->contains(QStringLiteral("pacman"))) ||
+        (m_outdatedStringList->count() != 0 && m_outdatedStringList->contains(QStringLiteral("pacman"))) )
     {
       m_commandExecuting = ectn_RUN_SYSTEM_UPGRADE_IN_TERMINAL;
       m_pacmanExec->doSystemUpgradeInTerminal();
@@ -970,10 +970,10 @@ void MainWindow::doSystemUpgrade(SystemUpgradeOptions systemUpgradeOptions)
 
     if(targets->count()==1)
       question.setText(StrConstants::getRetrievePackage() +
-                       "\n\n" + StrConstants::getTotalDownloadSize().arg(ds).remove(" KB"));
+                       "\n\n" + StrConstants::getTotalDownloadSize().arg(ds).remove(QStringLiteral(" KB")));
     else
       question.setText(StrConstants::getRetrievePackages(targets->count()) +
-                       "\n\n" + StrConstants::getTotalDownloadSize().arg(ds).remove(" KB"));
+                       "\n\n" + StrConstants::getTotalDownloadSize().arg(ds).remove(QStringLiteral(" KB")));
 
     question.setWindowTitle(StrConstants::getConfirmation());
     question.setInformativeText(StrConstants::getConfirmationQuestion());
@@ -1028,7 +1028,7 @@ void MainWindow::doRemoveAndInstall()
   TransactionDialog question(this);
   QString dialogText;
 
-  QStringList removeTargets = listOfRemoveTargets.split(" ", QString::SkipEmptyParts);
+  QStringList removeTargets = listOfRemoveTargets.split(QStringLiteral(" "), QString::SkipEmptyParts);
   foreach(QString target, removeTargets)
   {
     removeList = removeList + StrConstants::getRemove() + " "  + target + "\n";
@@ -1055,7 +1055,7 @@ void MainWindow::doRemoveAndInstall()
 
   if (installList.count() == 0)
   {
-    installTargets->append(PackageListData(listOfInstallTargets, "", nullptr));
+    installTargets->append(PackageListData(listOfInstallTargets, QLatin1String(""), nullptr));
     installList.append(StrConstants::getInstall() + " " + listOfInstallTargets);
   }
 
@@ -1064,7 +1064,7 @@ void MainWindow::doRemoveAndInstall()
 
   if(removeTargets.count()==1)
   {
-    if (pRemoveTargets->at(0).indexOf("HoldPkg was found in") != -1)
+    if (pRemoveTargets->at(0).indexOf(QLatin1String("HoldPkg was found in")) != -1)
     {
       QMessageBox::warning(
             this, StrConstants::getAttention(), StrConstants::getWarnHoldPkgFound(), QMessageBox::Ok);
@@ -1073,7 +1073,7 @@ void MainWindow::doRemoveAndInstall()
   }
   else if(installTargets->count()==1)
   {
-    if (installTargets->at(0).name.indexOf("HoldPkg was found in") != -1)
+    if (installTargets->at(0).name.indexOf(QLatin1String("HoldPkg was found in")) != -1)
     {
       QMessageBox::warning(
             this, StrConstants::getAttention(), StrConstants::getWarnHoldPkgFound(), QMessageBox::Ok);
@@ -1092,12 +1092,12 @@ void MainWindow::doRemoveAndInstall()
   if (installTargets->count() == 1)
   {
     dialogText += StrConstants::getRetrievePackage() +
-      "\n\n" + StrConstants::getTotalDownloadSize().arg(ds).remove(" KB");
+      "\n\n" + StrConstants::getTotalDownloadSize().arg(ds).remove(QStringLiteral(" KB"));
   }
   else if (installTargets->count() > 1)
   {
     dialogText += StrConstants::getRetrievePackages(installTargets->count()) +
-      "\n\n" + StrConstants::getTotalDownloadSize().arg(ds).remove(" KB");
+      "\n\n" + StrConstants::getTotalDownloadSize().arg(ds).remove(QStringLiteral(" KB"));
   }
 
   question.setText(dialogText);
@@ -1149,7 +1149,7 @@ void MainWindow::doRemove()
   m_targets = Package::getTargetRemovalList(listOfTargets, m_removeCommand);
   QString list;
 
-  QStringList targets = listOfTargets.split(" ", QString::SkipEmptyParts);
+  QStringList targets = listOfTargets.split(QStringLiteral(" "), QString::SkipEmptyParts);
   foreach(QString target, targets)
   {
     list = list + target + "\n";
@@ -1160,7 +1160,7 @@ void MainWindow::doRemove()
   //Shows a dialog indicating the targets which will be removed and asks for the user's permission.
   if(targets.count()==1)
   {
-    if (m_targets->at(0).indexOf("HoldPkg was found in") != -1)
+    if (m_targets->at(0).indexOf(QLatin1String("HoldPkg was found in")) != -1)
     {
       QMessageBox::warning(
             this, StrConstants::getAttention(), StrConstants::getWarnHoldPkgFound(), QMessageBox::Ok);
@@ -1385,7 +1385,7 @@ void MainWindow::onAURToolChanged()
         connect(m_leFilterPackage, SIGNAL(textChanged(QString)), this, SLOT(reapplyPackageFilter()));
       }
 
-      m_packageModel->applyFilter("");
+      m_packageModel->applyFilter(QLatin1String(""));
       static QStandardItemModel emptyModel;
       ui->tvPackages->setModel(&emptyModel);
       removePackageTreeViewConnections();
@@ -1400,14 +1400,14 @@ void MainWindow::onAURToolChanged()
         ui->tvPackages->setColumnHidden(PackageModel::ctn_PACKAGE_SIZE_COLUMN, false);
 
       clearStatusBar();
-      m_cachedPackageInInfo="";
+      m_cachedPackageInInfo=QLatin1String("");
 
       //Let's clear the list of visited packages (pkg anchors in Info tab)
       m_listOfVisitedPackages.clear();
       m_indOfVisitedPackage = 0;
 
       switchToViewAllPackages();
-      m_selectedRepository = "";
+      m_selectedRepository = QLatin1String("");
       m_actionRepositoryAll->setChecked(true);
       m_refreshPackageLists = false;
 
@@ -1428,8 +1428,8 @@ void MainWindow::onAURToolChanged()
     m_outdatedAURPackagesNameVersion->clear();
     m_outdatedAURStringList->clear();
 
-    m_actionSwitchToAURTool->setText("");
-    m_actionSwitchToAURTool->setToolTip("AUR");
+    m_actionSwitchToAURTool->setText(QLatin1String(""));
+    m_actionSwitchToAURTool->setToolTip(QStringLiteral("AUR"));
     m_actionSwitchToAURTool->setCheckable(false);
     m_actionSwitchToAURTool->setChecked(false);
   }
@@ -1555,7 +1555,7 @@ void MainWindow::doInstall()
 
   if (list.count() == 0)
   {
-    targets->append(PackageListData(listOfTargets, "", nullptr));
+    targets->append(PackageListData(listOfTargets, QLatin1String(""), nullptr));
     list.append(listOfTargets);
   }
 
@@ -1563,18 +1563,18 @@ void MainWindow::doInstall()
 
   if(targets->count()==1)
   {
-    if (targets->at(0).name.indexOf("HoldPkg was found in") != -1)
+    if (targets->at(0).name.indexOf(QLatin1String("HoldPkg was found in")) != -1)
     {
       QMessageBox::warning(
             this, StrConstants::getAttention(), StrConstants::getWarnHoldPkgFound(), QMessageBox::Ok);
       return;
     }
     else question.setText(StrConstants::getRetrievePackage() +
-                          "\n\n" + StrConstants::getTotalDownloadSize().arg(ds).remove(" KB"));
+                          "\n\n" + StrConstants::getTotalDownloadSize().arg(ds).remove(QStringLiteral(" KB")));
   }
   else
     question.setText(StrConstants::getRetrievePackages(targets->count()) +
-                     "\n\n" + StrConstants::getTotalDownloadSize().arg(ds).remove(" KB"));
+                     "\n\n" + StrConstants::getTotalDownloadSize().arg(ds).remove(QStringLiteral(" KB")));
 
   question.setWindowTitle(StrConstants::getConfirmation());
   question.setInformativeText(StrConstants::getConfirmationQuestion());
@@ -1642,7 +1642,7 @@ void MainWindow::doInstallLocalPackages()
 
   if(m_packagesToInstallList.count()==1)
   {
-    if (m_packagesToInstallList.at(0).indexOf("HoldPkg was found in") != -1)
+    if (m_packagesToInstallList.at(0).indexOf(QLatin1String("HoldPkg was found in")) != -1)
     {
       QMessageBox::warning(
             this, StrConstants::getAttention(), StrConstants::getWarnHoldPkgFound(), QMessageBox::Ok);
@@ -1910,7 +1910,7 @@ void MainWindow::pacmanProcessFinished(int exitCode, QProcess::ExitStatus exitSt
 
       foreach(QString pkg, pkgs)
       {
-        QStringList names = pkg.split(" ", QString::SkipEmptyParts);
+        QStringList names = pkg.split(QStringLiteral(" "), QString::SkipEmptyParts);
         if (names.count() > 0)
         {
           m_checkupdatesStringList->append(names.at(0));
@@ -1929,17 +1929,17 @@ void MainWindow::pacmanProcessFinished(int exitCode, QProcess::ExitStatus exitSt
        (exitCode == 2 && m_commandExecuting == ectn_CHECK_UPDATES)) && exitStatus == QProcess::NormalExit)
   {
     //First, we empty the tabs cache!
-    m_cachedPackageInInfo = "";
-    m_cachedPackageInFiles = "";
+    m_cachedPackageInInfo = QLatin1String("");
+    m_cachedPackageInFiles = QLatin1String("");
 
     //If there are .pacnew files to print...
     QStringList dotPacnewFiles = m_pacmanExec->getDotPacnewFileList();
     if (dotPacnewFiles.count() > 0)
     {
-      writeToTabOutput("<br>");
+      writeToTabOutput(QStringLiteral("<br>"));
       foreach(QString dotPacnewFile, dotPacnewFiles)
       {
-        if (!dotPacnewFile.contains("<br>"))
+        if (!dotPacnewFile.contains(QLatin1String("<br>")))
           writeToTabOutput( "<br>" + dotPacnewFile, ectn_DONT_TREAT_URL_LINK);
         else
           writeToTabOutput(dotPacnewFile, ectn_DONT_TREAT_URL_LINK);
@@ -1988,7 +1988,7 @@ void MainWindow::pacmanProcessFinished(int exitCode, QProcess::ExitStatus exitSt
         refreshDistroNews(true, false);
 
         //Did it synchronize any repo? If so, let's refresh some things...
-        if (UnixCommand::isAppRunning("octopi-notifier", true) ||
+        if (UnixCommand::isAppRunning(QStringLiteral("octopi-notifier"), true) ||
             (IsSyncingRepoInTabOutput()))
         {
           bool aurGroup = isAURGroupSelected();
@@ -2046,7 +2046,7 @@ void MainWindow::pacmanProcessFinished(int exitCode, QProcess::ExitStatus exitSt
     }
   }
 
-  if (exitCode != 0 && (textInTabOutput("conflict"))) //|| _textInTabOutput("could not satisfy dependencies")))
+  if (exitCode != 0 && (textInTabOutput(QStringLiteral("conflict")))) //|| _textInTabOutput("could not satisfy dependencies")))
   {
     int res = QMessageBox::question(this, StrConstants::getThereHasBeenATransactionError(),
                                     StrConstants::getConfirmExecuteTransactionInTerminal(),
@@ -2081,8 +2081,8 @@ void MainWindow::pacmanProcessFinished(int exitCode, QProcess::ExitStatus exitSt
   }
   else if (aurTools.count() > 1) //It seems the AUR tool has just been removed...
   {
-    m_actionSwitchToAURTool->setText("");
-    m_actionSwitchToAURTool->setToolTip("AUR");
+    m_actionSwitchToAURTool->setText(QLatin1String(""));
+    m_actionSwitchToAURTool->setToolTip(QStringLiteral("AUR"));
     m_actionSwitchToAURTool->setCheckable(false);
     m_actionSwitchToAURTool->setChecked(false);
   }
@@ -2116,7 +2116,7 @@ void MainWindow::onPressAnyKeyToContinue()
       remove.waitForFinished();
     }
 
-    if (UnixCommand::hasTheExecutable("yay"))
+    if (UnixCommand::hasTheExecutable(QStringLiteral("yay")))
     {
       refreshHelpUsageText();
       SettingsManager::setAURTool(ctn_YAY_TOOL);
@@ -2162,7 +2162,7 @@ void MainWindow::onPressAnyKeyToContinue()
     delete m_pacmanExec;
 
   m_commandExecuting = ectn_NONE;
-  m_console->execute("");
+  m_console->execute(QLatin1String(""));
   m_console->setFocus();
 
   if (m_cic)
@@ -2195,7 +2195,7 @@ void MainWindow::onCancelControlKey()
  */
 void MainWindow::writeToTabOutput(const QString &msg, TreatURLLinks treatURLLinks)
 {
-  QTextBrowser *text = ui->twProperties->widget(ctn_TABINDEX_OUTPUT)->findChild<QTextBrowser*>("textBrowser");
+  QTextBrowser *text = ui->twProperties->widget(ctn_TABINDEX_OUTPUT)->findChild<QTextBrowser*>(QStringLiteral("textBrowser"));
   if (text)
   {
     ensureTabVisible(ctn_TABINDEX_OUTPUT);
@@ -2221,7 +2221,7 @@ void MainWindow::incrementPercentage(int percentage)
  */
 void MainWindow::outputText(const QString &output)
 {
-  QTextBrowser *text = ui->twProperties->widget(ctn_TABINDEX_OUTPUT)->findChild<QTextBrowser*>("textBrowser");
+  QTextBrowser *text = ui->twProperties->widget(ctn_TABINDEX_OUTPUT)->findChild<QTextBrowser*>(QStringLiteral("textBrowser"));
   if (text)
   {
     if ((m_commandExecuting == ectn_RUN_IN_TERMINAL && SettingsManager::getTerminal() != ctn_QTERMWIDGET) ||

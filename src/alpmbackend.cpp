@@ -75,7 +75,7 @@ QStringList AlpmBackend::getPackageList()
 
     if (instPkg)
     {
-      bInstalled = "i";
+      bInstalled = QStringLiteral("i");
       installedVersion = alpm_pkg_get_version(instPkg);
 
       if (!strcmp(repoVersion, installedVersion))
@@ -84,12 +84,12 @@ QStringList AlpmBackend::getPackageList()
       }
       else
       {
-        bInstalled = "o";
+        bInstalled = QStringLiteral("o");
       }
     }
     else
     {
-      bInstalled = "n";
+      bInstalled = QStringLiteral("n");
       installedVersion = "same_version";
     }
 

@@ -82,25 +82,25 @@ public:
     {
       case ectn_OCTOPI_BUSY:
         if (useDefaultIcons)
-          res = ":/resources/images/octopi_transparent.png";
+          res = QStringLiteral(":/resources/images/octopi_transparent.png");
         else
           res = SettingsManager::getOctopiBusyIconPath();
         break;
       case ectn_OCTOPI_RED:
         if (useDefaultIcons)
-          res = ":/resources/images/octopi_red.png";
+          res = QStringLiteral(":/resources/images/octopi_red.png");
         else
           res = SettingsManager::getOctopiRedIconPath();
         break;
       case ectn_OCTOPI_YELLOW:
         if (useDefaultIcons)
-          res = ":/resources/images/octopi_yellow.png";
+          res = QStringLiteral(":/resources/images/octopi_yellow.png");
         else
           res = SettingsManager::getOctopiYellowIconPath();
         break;
       case ectn_OCTOPI_GREEN:
         if (useDefaultIcons)
-          res = ":/resources/images/octopi_green.png";
+          res = QStringLiteral(":/resources/images/octopi_green.png");
         else
           res = SettingsManager::getOctopiGreenIconPath();
     }

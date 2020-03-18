@@ -33,8 +33,8 @@
  */
 void MainWindow::searchBarTextChangedInTextBrowser(const QString &textToSearch)
 {
-  QTextBrowser *tb = ui->twProperties->currentWidget()->findChild<QTextBrowser*>("textBrowser");
-  SearchBar *sb = ui->twProperties->currentWidget()->findChild<SearchBar*>("searchbar");
+  QTextBrowser *tb = ui->twProperties->currentWidget()->findChild<QTextBrowser*>(QStringLiteral("textBrowser"));
+  SearchBar *sb = ui->twProperties->currentWidget()->findChild<SearchBar*>(QStringLiteral("searchbar"));
 
   utils::searchBarTextChangedInTextBrowser(tb, sb, textToSearch);
 }
@@ -44,8 +44,8 @@ void MainWindow::searchBarTextChangedInTextBrowser(const QString &textToSearch)
  */
 void MainWindow::searchBarFindNextInTextBrowser()
 {
-  QTextBrowser *tb = ui->twProperties->currentWidget()->findChild<QTextBrowser*>("textBrowser");
-  SearchBar *sb = ui->twProperties->currentWidget()->findChild<SearchBar*>("searchbar");
+  QTextBrowser *tb = ui->twProperties->currentWidget()->findChild<QTextBrowser*>(QStringLiteral("textBrowser"));
+  SearchBar *sb = ui->twProperties->currentWidget()->findChild<SearchBar*>(QStringLiteral("searchbar"));
 
   utils::searchBarFindNextInTextBrowser(tb, sb);
 }
@@ -55,8 +55,8 @@ void MainWindow::searchBarFindNextInTextBrowser()
  */
 void MainWindow::searchBarFindPreviousInTextBrowser()
 {
-  QTextBrowser *tb = ui->twProperties->currentWidget()->findChild<QTextBrowser*>("textBrowser");
-  SearchBar *sb = ui->twProperties->currentWidget()->findChild<SearchBar*>("searchbar");
+  QTextBrowser *tb = ui->twProperties->currentWidget()->findChild<QTextBrowser*>(QStringLiteral("textBrowser"));
+  SearchBar *sb = ui->twProperties->currentWidget()->findChild<SearchBar*>(QStringLiteral("searchbar"));
 
   utils::searchBarFindPreviousInTextBrowser(tb, sb);
 }
@@ -66,8 +66,8 @@ void MainWindow::searchBarFindPreviousInTextBrowser()
  */
 void MainWindow::searchBarClosedInTextBrowser()
 {
-  QTextBrowser *tb = ui->twProperties->currentWidget()->findChild<QTextBrowser*>("textBrowser");
-  SearchBar *sb = ui->twProperties->currentWidget()->findChild<SearchBar*>("searchbar");
+  QTextBrowser *tb = ui->twProperties->currentWidget()->findChild<QTextBrowser*>(QStringLiteral("textBrowser"));
+  SearchBar *sb = ui->twProperties->currentWidget()->findChild<SearchBar*>(QStringLiteral("searchbar"));
 
   utils::searchBarClosedInTextBrowser(tb, sb);
 }
@@ -77,8 +77,8 @@ void MainWindow::searchBarClosedInTextBrowser()
  */
 void MainWindow::positionInFirstMatch()
 {
-  QTextBrowser *tb = ui->twProperties->currentWidget()->findChild<QTextBrowser*>("textBrowser");
-  SearchBar *sb = ui->twProperties->currentWidget()->findChild<SearchBar*>("searchbar");
+  QTextBrowser *tb = ui->twProperties->currentWidget()->findChild<QTextBrowser*>(QStringLiteral("textBrowser"));
+  SearchBar *sb = ui->twProperties->currentWidget()->findChild<SearchBar*>(QStringLiteral("searchbar"));
 
   utils::positionInFirstMatch(tb, sb);
 }
@@ -94,12 +94,12 @@ void MainWindow::searchBarTextChangedInTreeView(const QString &textToSearch)
   m_indFoundFilesInPkgFileList = 0;
 
   QTreeView *tvPkgFileList =
-    ui->twProperties->widget(ctn_TABINDEX_FILES)->findChild<QTreeView*>("tvPkgFileList");
+    ui->twProperties->widget(ctn_TABINDEX_FILES)->findChild<QTreeView*>(QStringLiteral("tvPkgFileList"));
   if (tvPkgFileList)
   {
     QStandardItemModel *sim = qobject_cast<QStandardItemModel *>(tvPkgFileList->model());
     if (!sim) return;
-    SearchBar *sb = ui->twProperties->currentWidget()->findChild<SearchBar*>("searchbar");
+    SearchBar *sb = ui->twProperties->currentWidget()->findChild<SearchBar*>(QStringLiteral("searchbar"));
 
     if (!sb)
       return;
@@ -130,7 +130,7 @@ void MainWindow::searchBarTextChangedInTreeView(const QString &textToSearch)
 void MainWindow::searchBarFindNextInTreeView()
 {
   QTreeView *tvPkgFileList =
-    ui->twProperties->widget(ctn_TABINDEX_FILES)->findChild<QTreeView*>("tvPkgFileList");
+    ui->twProperties->widget(ctn_TABINDEX_FILES)->findChild<QTreeView*>(QStringLiteral("tvPkgFileList"));
 
   if (tvPkgFileList && tvPkgFileList->model()->rowCount() > 0 && m_foundFilesInPkgFileList->count() > 0)
   {
@@ -156,7 +156,7 @@ void MainWindow::searchBarFindNextInTreeView()
 void MainWindow::searchBarFindPreviousInTreeView()
 {
   QTreeView *tvPkgFileList =
-    ui->twProperties->widget(ctn_TABINDEX_FILES)->findChild<QTreeView*>("tvPkgFileList");
+    ui->twProperties->widget(ctn_TABINDEX_FILES)->findChild<QTreeView*>(QStringLiteral("tvPkgFileList"));
 
   if (tvPkgFileList && tvPkgFileList->model()->rowCount() > 0 && m_foundFilesInPkgFileList->count() > 0)
   {
@@ -179,7 +179,7 @@ void MainWindow::searchBarFindPreviousInTreeView()
  */
 void MainWindow::searchBarClosedInTreeView()
 {
-  searchBarTextChangedInTreeView("");
-  QTreeView *tb = ui->twProperties->currentWidget()->findChild<QTreeView*>("tvPkgFileList");
+  searchBarTextChangedInTreeView(QLatin1String(""));
+  QTreeView *tb = ui->twProperties->currentWidget()->findChild<QTreeView*>(QStringLiteral("tvPkgFileList"));
   if (tb) tb->setFocus();
 }
