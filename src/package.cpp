@@ -44,19 +44,19 @@
  */
 QString Package::getBaseName( const QString& p )
 {
-	QString packageBaseName="";
+	QString packageBaseName=QLatin1String("");
 	QString aux(p);
 	int numberOfSegments = p.count('-')+1;
 	int nameSegment = numberOfSegments-3;
 
 	for (int i=1; i<= nameSegment; i++){
-    int a=aux.indexOf("-");
+    int a=aux.indexOf(QLatin1String("-"));
 		packageBaseName += aux.leftRef(a);
-		if (i<nameSegment) packageBaseName += "-";
+		if (i<nameSegment) packageBaseName += QLatin1String("-");
 		aux = aux.mid(a+1);
 	}
 
-	if (packageBaseName == "") packageBaseName += p.leftRef(p.indexOf("-"));
+	if (packageBaseName == QLatin1String("")) packageBaseName += p.leftRef(p.indexOf(QLatin1String("-")));
 	return packageBaseName;
 }
 
@@ -151,11 +151,11 @@ QString Package::makeAnchorOfOptionalDep(const QString &optionalDeps)
   QString newDeps;
   QString newDep;
   QString name;
-  QStringList ldeps = optionalDeps.split("<br>", QString::SkipEmptyParts);
+  QStringList ldeps = optionalDeps.split(QStringLiteral("<br>"), QString::SkipEmptyParts);
 
   foreach(QString dep, ldeps)
   {
-    int colon = dep.indexOf(":");
+    int colon = dep.indexOf(QLatin1String(":"));
     if (colon != -1)
     {
       name = dep.left(colon).trimmed();
@@ -170,7 +170,7 @@ QString Package::makeAnchorOfOptionalDep(const QString &optionalDeps)
     }
   }
 
-  newDeps.remove(QRegularExpression("<br>$"));
+  newDeps.remove(QRegularExpression(QStringLiteral("<br>$")));
   return newDeps;
 }
 
@@ -181,13 +181,13 @@ QString Package::makeAnchorOfPackage(const QString &packages)
 {
   QString newDeps;
   QString newDep;
-  QStringList ldeps = packages.split(" ", QString::SkipEmptyParts);
+  QStringList ldeps = packages.split(QStringLiteral(" "), QString::SkipEmptyParts);
 
   foreach(QString dep, ldeps)
   {
-    if (!dep.contains("=") &&
-        !dep.contains("<") &&
-        !dep.contains(">"))
+    if (!dep.contains(QLatin1String("=")) &&
+        !dep.contains(QLatin1String("<")) &&
+        !dep.contains(QLatin1String(">")))
     {
       newDeps += "<a href=\"goto:" + dep + "\">" + dep + "</a> ";
     }
@@ -195,36 +195,36 @@ QString Package::makeAnchorOfPackage(const QString &packages)
     {
       int p=-1;
 
-      if (dep.contains("<"))
+      if (dep.contains(QLatin1String("<")))
       {
-        if (dep.contains("="))
+        if (dep.contains(QLatin1String("=")))
         {
-          p = dep.indexOf("<");
+          p = dep.indexOf(QLatin1String("<"));
           newDep = dep.left(p);
         }
         else
         {
           newDep = dep.left(p);
-          dep.replace("<", "&lt;");
+          dep.replace(QLatin1String("<"), QLatin1String("&lt;"));
         }
       }
-      else if (dep.contains(">"))
+      else if (dep.contains(QLatin1String(">")))
       {
-        p = dep.indexOf(">");
-        if (dep.contains("="))
+        p = dep.indexOf(QLatin1String(">"));
+        if (dep.contains(QLatin1String("=")))
         {
-          p = dep.indexOf(">");
+          p = dep.indexOf(QLatin1String(">"));
           newDep = dep.left(p);
         }
         else
         {
           newDep = dep.left(p);
-          dep.replace(">", "&gt;");
+          dep.replace(QLatin1String(">"), QLatin1String("&gt;"));
         }
       }
-      else if (dep.contains("="))
+      else if (dep.contains(QLatin1String("=")))
       {
-        p = dep.indexOf("=");
+        p = dep.indexOf(QLatin1String("="));
         newDep = dep.left(p);
       }
 
@@ -247,7 +247,7 @@ QSet<QString>* Package::getUnrequiredPackageList()
   if (SettingsManager::hasPacmanBackend())
   {
     QString unrequiredPkgList = UnixCommand::getUnrequiredPackageList();
-    QStringList packageTuples = unrequiredPkgList.split(QRegularExpression("\\n"), QString::SkipEmptyParts);
+    QStringList packageTuples = unrequiredPkgList.split(QRegularExpression(QStringLiteral("\\n")), QString::SkipEmptyParts);
 
     foreach(QString packageTuple, packageTuples)
     {
@@ -282,7 +282,7 @@ QStringList *Package::getOutdatedStringList()
   if (SettingsManager::hasPacmanBackend())
   {
     QString outPkgList = UnixCommand::getOutdatedPackageList();
-    QStringList packageTuples = outPkgList.split(QRegularExpression("\\n"), QString::SkipEmptyParts);
+    QStringList packageTuples = outPkgList.split(QRegularExpression(QStringLiteral("\\n")), QString::SkipEmptyParts);
     QStringList ignorePkgList = UnixCommand::getIgnorePkgsFromPacmanConf();
 
     foreach(QString packageTuple, packageTuples)
@@ -327,16 +327,16 @@ QString Package::removeColorCodesFromStr(const QString &str)
   QString ret = str;
 
   ret = ret.remove("\033");
-  ret = ret.remove("[1;31m");
-  ret = ret.remove("[1;32m");
-  ret = ret.remove("[1;33m");
-  ret = ret.remove("[1;34m");
-  ret = ret.remove("[1;35m");
-  ret = ret.remove("[1;36m");
-  ret = ret.remove("[1;39m");
-  ret = ret.remove("[m");
-  ret = ret.remove("[0m");
-  ret = ret.remove("[1m");
+  ret = ret.remove(QStringLiteral("[1;31m"));
+  ret = ret.remove(QStringLiteral("[1;32m"));
+  ret = ret.remove(QStringLiteral("[1;33m"));
+  ret = ret.remove(QStringLiteral("[1;34m"));
+  ret = ret.remove(QStringLiteral("[1;35m"));
+  ret = ret.remove(QStringLiteral("[1;36m"));
+  ret = ret.remove(QStringLiteral("[1;39m"));
+  ret = ret.remove(QStringLiteral("[m"));
+  ret = ret.remove(QStringLiteral("[0m"));
+  ret = ret.remove(QStringLiteral("[1m"));
   ret = ret.remove("\u001B");
 
   return ret;
@@ -361,7 +361,7 @@ QStringList *Package::getOutdatedAURStringList()
   QString outPkgList = removeColorCodesFromStr(UnixCommand::getOutdatedAURPackageList());
   outPkgList = outPkgList.trimmed();
 
-  QStringList packageTuples = outPkgList.split(QRegularExpression("\\n"), QString::SkipEmptyParts);
+  QStringList packageTuples = outPkgList.split(QRegularExpression(QStringLiteral("\\n")), QString::SkipEmptyParts);
   QStringList ignorePkgList = UnixCommand::getIgnorePkgsFromPacmanConf();
 
   foreach(QString packageTuple, packageTuples)
@@ -430,7 +430,7 @@ QStringList *Package::getOutdatedAURStringList()
 QStringList *Package::getPackageGroups()
 {
   QString packagesFromGroup = UnixCommand::getPackageGroups();
-  QStringList packageTuples = packagesFromGroup.split(QRegularExpression("\\n"), QString::SkipEmptyParts);
+  QStringList packageTuples = packagesFromGroup.split(QRegularExpression(QStringLiteral("\\n")), QString::SkipEmptyParts);
   QStringList * res = new QStringList();
 
   foreach(QString packageTuple, packageTuples)
@@ -453,7 +453,7 @@ QStringList *Package::getPackageGroups()
 QStringList *Package::getPackagesOfGroup(const QString &groupName)
 {
   QString packagesFromGroup = UnixCommand::getPackagesFromGroup(groupName);
-  QStringList packageTuples = packagesFromGroup.split(QRegularExpression("\\n"), QString::SkipEmptyParts);
+  QStringList packageTuples = packagesFromGroup.split(QRegularExpression(QStringLiteral("\\n")), QString::SkipEmptyParts);
   QStringList * res = new QStringList();
 
   foreach(QString packageTuple, packageTuples)
@@ -472,27 +472,27 @@ QStringList *Package::getPackagesOfGroup(const QString &groupName)
 QList<PackageListData> *Package::getTargetUpgradeList(const QString &pkgName)
 {
   QString targets = UnixCommand::getTargetUpgradeList(pkgName);
-  QStringList packageTuples = targets.split(QRegularExpression("\\n"), QString::SkipEmptyParts);
+  QStringList packageTuples = targets.split(QRegularExpression(QStringLiteral("\\n")), QString::SkipEmptyParts);
   QList<PackageListData> *res = new QList<PackageListData>();
   packageTuples.sort();
 
   foreach(QString packageTuple, packageTuples)
   {
     //TODO: Need to handle when this list has "::" conflict items!
-    if(packageTuple.indexOf("::")!=-1)
+    if(packageTuple.indexOf(QLatin1String("::"))!=-1)
     {
       continue;
     }
 
     PackageListData ld;
-    QStringList data = packageTuple.split(" ");
+    QStringList data = packageTuple.split(QStringLiteral(" "));
     if (data.count() == 3)
     {
       ld = PackageListData(data.at(0), data.at(1), data.at(2));
     }
     else if (data.count() == 1)
     {
-      ld = PackageListData(data.at(0), "", 0);
+      ld = PackageListData(data.at(0), QLatin1String(""), 0);
     }
 
     res->append(ld);
@@ -507,7 +507,7 @@ QList<PackageListData> *Package::getTargetUpgradeList(const QString &pkgName)
 QStringList *Package::getTargetRemovalList(const QString &pkgName, const QString &removeCommand)
 {
   QString targets = UnixCommand::getTargetRemovalList(pkgName, removeCommand);
-  QStringList packageTuples = targets.split(QRegularExpression("\\n"), QString::SkipEmptyParts);
+  QStringList packageTuples = targets.split(QRegularExpression(QStringLiteral("\\n")), QString::SkipEmptyParts);
   QStringList * res = new QStringList();
 
   foreach(QString packageTuple, packageTuples)
@@ -529,7 +529,7 @@ QList<PackageListData> *Package::getForeignPackageList()
   if (SettingsManager::hasPacmanBackend())
   {
     QString foreignPkgList = UnixCommand::getForeignPackageList();
-    QStringList packageTuples = foreignPkgList.split(QRegularExpression("\\n"), QString::SkipEmptyParts);
+    QStringList packageTuples = foreignPkgList.split(QRegularExpression(QStringLiteral("\\n")), QString::SkipEmptyParts);
 
     foreach(QString packageTuple, packageTuples)
     {
@@ -537,7 +537,7 @@ QList<PackageListData> *Package::getForeignPackageList()
       if (parts.size() == 2)
       {
         QString desc=parts[0] + " " + Package::getInformationDescription(parts[0], true);
-        res->append(PackageListData(parts[0], "", parts[1], desc, ectn_FOREIGN));
+        res->append(PackageListData(parts[0], QLatin1String(""), parts[1], desc, ectn_FOREIGN));
       }
     }
   }
@@ -573,17 +573,17 @@ QList<PackageListData> * Package::getPackageList(const QString &packageName, con
     QString pkgName, pkgRepository, pkgVersion, pkgDescription, pkgOutVersion;
     PackageStatus pkgStatus;
     QString pkgList = UnixCommand::getPackageList(packageName);
-    QStringList packageTuples = pkgList.split(QRegularExpression("\\n"), QString::SkipEmptyParts);
+    QStringList packageTuples = pkgList.split(QRegularExpression(QStringLiteral("\\n")), QString::SkipEmptyParts);
 
     if(!pkgList.isEmpty())
     {
-      pkgDescription = "";
+      pkgDescription = QLatin1String("");
       foreach(QString packageTuple, packageTuples)
       {
         if (!packageTuple[0].isSpace())
         {
           //Do we already have a description?
-          if (pkgDescription != "")
+          if (pkgDescription != QLatin1String(""))
           {
             pkgDescription = pkgName + " " + pkgDescription;
 
@@ -595,29 +595,29 @@ QList<PackageListData> * Package::getPackageList(const QString &packageName, con
               res->append(pld);
             }
 
-            pkgDescription = "";
+            pkgDescription = QLatin1String("");
           }
 
           //First we get repository and name!
           QStringList parts = packageTuple.split(' ');
           QString repoName = parts[0];
-          int a = repoName.indexOf("/");
+          int a = repoName.indexOf(QLatin1String("/"));
           pkgRepository = repoName.left(a);
           pkgName = repoName.mid(a+1);
           pkgVersion = parts[1];
 
-          if(packageTuple.indexOf("[installed]") != -1)
+          if(packageTuple.indexOf(QLatin1String("[installed]")) != -1)
           {
             //This is an installed package
             pkgStatus = ectn_INSTALLED;
-            pkgOutVersion = "";
+            pkgOutVersion = QLatin1String("");
           }
-          else if (packageTuple.indexOf("[installed:") != -1)
+          else if (packageTuple.indexOf(QLatin1String("[installed:")) != -1)
           {
             //This is an outdated installed package
             pkgStatus = ectn_OUTDATED;
 
-            int i = packageTuple.indexOf("[installed:");
+            int i = packageTuple.indexOf(QLatin1String("[installed:"));
             pkgOutVersion = packageTuple.mid(i+11);
             pkgOutVersion = pkgOutVersion.remove(']').trimmed();
           }
@@ -625,7 +625,7 @@ QList<PackageListData> * Package::getPackageList(const QString &packageName, con
           {
             //This is an uninstalled package
             pkgStatus = ectn_NON_INSTALLED;
-            pkgOutVersion = "";
+            pkgOutVersion = QLatin1String("");
           }
         }
         else
@@ -634,7 +634,7 @@ QList<PackageListData> * Package::getPackageList(const QString &packageName, con
           if (!packageTuple.trimmed().isEmpty())
             pkgDescription += packageTuple.trimmed();
           else
-            pkgDescription += " "; //StrConstants::getNoDescriptionAvailabe();
+            pkgDescription += QLatin1String(" "); //StrConstants::getNoDescriptionAvailabe();
         }
       }
 
@@ -749,7 +749,7 @@ QList<PackageListData> * Package::getPackageList(const QString &packageName, con
  */
 QString Package::getAURUrl(const QString &pkgName)
 {
-  QString url="";
+  QString url=QLatin1String("");
 
   if (getForeignRepositoryToolName() != ctn_KCP_TOOL)
   {
@@ -780,19 +780,19 @@ QList<PackageListData> * Package::getAURPackageList(const QString& searchString)
 
   QString aurTool = getForeignRepositoryToolName();
   QString pkgList = UnixCommand::getAURPackageList(searchString);
-  QStringList packageTuples = pkgList.split(QRegularExpression("\\n"), QString::SkipEmptyParts);
+  QStringList packageTuples = pkgList.split(QRegularExpression(QStringLiteral("\\n")), QString::SkipEmptyParts);
 
   if (aurTool == ctn_YAY_TOOL)
   {
     return getYayPackageList(packageTuples);
   }
 
-  pkgDescription = "";
+  pkgDescription = QLatin1String("");
   foreach(QString packageTuple, packageTuples)
   {
     if (packageTuple[0].isNumber())
     {
-      int space=packageTuple.indexOf(" ");
+      int space=packageTuple.indexOf(QLatin1String(" "));
       packageTuple = packageTuple.mid(space+1);
     }
 
@@ -800,7 +800,7 @@ QList<PackageListData> * Package::getAURPackageList(const QString& searchString)
         (UnixCommand::getLinuxDistro() == ectn_KAOS && packageTuple[0] != '\t'))
     {
       //Do we already have a description?
-      if (pkgDescription != "")
+      if (pkgDescription != QLatin1String(""))
       {
         pkgDescription = pkgName + " " + pkgDescription;
 
@@ -810,7 +810,7 @@ QList<PackageListData> * Package::getAURPackageList(const QString& searchString)
         pld.popularity = pkgVotes;
 
         res->append(pld);
-        pkgDescription = "";
+        pkgDescription = QLatin1String("");
       }
 
       //First we get repository and name!
@@ -818,11 +818,11 @@ QList<PackageListData> * Package::getAURPackageList(const QString& searchString)
 
       if (UnixCommand::getLinuxDistro() == ectn_KAOS)
       {
-        parts[0] = parts[0].remove("[1;35m");
+        parts[0] = parts[0].remove(QStringLiteral("[1;35m"));
       }
 
       QString repoName = parts[0];
-      int a = repoName.indexOf("/");
+      int a = repoName.indexOf(QLatin1String("/"));
       pkgRepository = repoName.left(a);
 
       if (pkgRepository != StrConstants::getForeignPkgRepositoryName())
@@ -835,10 +835,10 @@ QList<PackageListData> * Package::getAURPackageList(const QString& searchString)
       pkgName = repoName.mid(a+1);
       pkgVersion = parts[1];
 
-      QStringList strVotes = parts.filter("(");
+      QStringList strVotes = parts.filter(QStringLiteral("("));
       //Let's see if it's not a Trizen style
       if (strVotes.isEmpty())
-        strVotes = parts.filter("+]");
+        strVotes = parts.filter(QStringLiteral("+]"));
 
       pkgVotes = 0;
 
@@ -847,14 +847,14 @@ QList<PackageListData> * Package::getAURPackageList(const QString& searchString)
       if (aurTool == ctn_TRIZEN_TOOL)
       {
         if (!strVotes.first().isEmpty())
-          pkgVotes = strVotes.first().replace('[', "").replace(']', "").replace('+', "").toInt();
+          pkgVotes = strVotes.first().replace('[', QLatin1String("")).replace(']', QLatin1String("")).replace('+', QLatin1String("")).toInt();
         else
           pkgVotes = 0;
       }
       else if (aurTool != ctn_CHASER_TOOL && aurTool != ctn_PACAUR_TOOL && aurTool != ctn_PIKAUR_TOOL && strVotes.count() > 0)
       {
         if (!strVotes.first().isEmpty())
-          pkgVotes = strVotes.first().replace('(', "").replace(')', "").toInt();
+          pkgVotes = strVotes.first().replace('(', QLatin1String("")).replace(')', QLatin1String("")).toInt();
         else
           pkgVotes = 0;
       }
@@ -863,7 +863,7 @@ QList<PackageListData> * Package::getAURPackageList(const QString& searchString)
         if (!strVotes.first().isEmpty())
         {
           QString str = strVotes.first();
-          int comma = str.indexOf(",");
+          int comma = str.indexOf(QLatin1String(","));
           pkgVotes = str.midRef(1, comma-1).toInt();
         }
         else pkgVotes = 0;
@@ -871,13 +871,13 @@ QList<PackageListData> * Package::getAURPackageList(const QString& searchString)
 
       if (aurTool == ctn_PIKAUR_TOOL)
       {
-        if(packageTuple.indexOf(" [") != -1)
+        if(packageTuple.indexOf(QLatin1String(" [")) != -1)
         {
-          if (packageTuple.indexOf("installed: ") != -1)
+          if (packageTuple.indexOf(QLatin1String("installed: ")) != -1)
           {
-            int i = packageTuple.indexOf(": ");
+            int i = packageTuple.indexOf(QLatin1String(": "));
             pkgOutVersion = packageTuple.mid(i+2);
-            pkgOutVersion = pkgOutVersion.remove(QRegularExpression("\\].*")).trimmed();
+            pkgOutVersion = pkgOutVersion.remove(QRegularExpression(QStringLiteral("\\].*"))).trimmed();
 
             //Compare actual and new version
             char const * pkgOutVersion_temp = pkgOutVersion.toStdString().c_str();
@@ -892,36 +892,36 @@ QList<PackageListData> * Package::getAURPackageList(const QString& searchString)
             {
               //This is an installed package
               pkgStatus = ectn_FOREIGN;
-              pkgOutVersion = "";
+              pkgOutVersion = QLatin1String("");
             }
           }
           else
           {
             //This is an installed package
             pkgStatus = ectn_FOREIGN;
-            pkgOutVersion = "";
+            pkgOutVersion = QLatin1String("");
           }
         }
         else
         {
           //This is an uninstalled package
           pkgStatus = ectn_NON_INSTALLED;
-          pkgOutVersion = "";
+          pkgOutVersion = QLatin1String("");
         }
       }
-      else if(packageTuple.indexOf("[installed]") != -1)
+      else if(packageTuple.indexOf(QLatin1String("[installed]")) != -1)
       {
         //This is an installed package
         pkgStatus = ectn_FOREIGN;
-        pkgOutVersion = "";
+        pkgOutVersion = QLatin1String("");
       }
-      else if (packageTuple.indexOf("[installed:") != -1)
+      else if (packageTuple.indexOf(QLatin1String("[installed:")) != -1)
       {
-        int i = packageTuple.indexOf(": ");
+        int i = packageTuple.indexOf(QLatin1String(": "));
         pkgOutVersion = packageTuple.mid(i+2);
-        pkgOutVersion = pkgOutVersion.remove("(");
-        pkgOutVersion = pkgOutVersion.remove(")");
-        pkgOutVersion = pkgOutVersion.remove(QRegularExpression("\\].*")).trimmed();
+        pkgOutVersion = pkgOutVersion.remove(QStringLiteral("("));
+        pkgOutVersion = pkgOutVersion.remove(QStringLiteral(")"));
+        pkgOutVersion = pkgOutVersion.remove(QRegularExpression(QStringLiteral("\\].*"))).trimmed();
 
         //Compare actual and new version
         char const * pkgOutVersion_temp = pkgOutVersion.toStdString().c_str();
@@ -936,7 +936,7 @@ QList<PackageListData> * Package::getAURPackageList(const QString& searchString)
         {
           //This is an installed package
           pkgStatus = ectn_FOREIGN;
-          pkgOutVersion = "";
+          pkgOutVersion = QLatin1String("");
         }
 
         //This is an outdated installed package
@@ -950,7 +950,7 @@ QList<PackageListData> * Package::getAURPackageList(const QString& searchString)
       {
         //This is an uninstalled package
         pkgStatus = ectn_NON_INSTALLED;
-        pkgOutVersion = "";
+        pkgOutVersion = QLatin1String("");
       }
     }
     else
@@ -959,10 +959,10 @@ QList<PackageListData> * Package::getAURPackageList(const QString& searchString)
       if (UnixCommand::getLinuxDistro() == ectn_KAOS)
       {        
         pkgDescription = packageTuple;
-        pkgDescription.remove("\t");
+        pkgDescription.remove(QStringLiteral("\t"));
 
         if (pkgDescription.isEmpty())
-          pkgDescription += " ";
+          pkgDescription += QLatin1String(" ");
       }
       else
       {
@@ -970,7 +970,7 @@ QList<PackageListData> * Package::getAURPackageList(const QString& searchString)
           pkgDescription += packageTuple.trimmed();
         else
         {
-          pkgDescription += " ";
+          pkgDescription += QLatin1String(" ");
         }
       }
     }
@@ -1007,12 +1007,12 @@ QList<PackageListData> *Package::getYayPackageList(const QStringList &packageTup
   //QString pkgList = UnixCommand::getAURPackageList(searchString);
   //QStringList packageTuples = pkgList.split(QRegularExpression("\\n"), QString::SkipEmptyParts);
 
-  pkgDescription = "";
+  pkgDescription = QLatin1String("");
   foreach(QString packageTuple, packageTuples)
   {
     if (packageTuple[0].isNumber())
     {
-      int space=packageTuple.indexOf(" ");
+      int space=packageTuple.indexOf(QLatin1String(" "));
       packageTuple = packageTuple.mid(space+1);
     }
 
@@ -1020,7 +1020,7 @@ QList<PackageListData> *Package::getYayPackageList(const QStringList &packageTup
         (UnixCommand::getLinuxDistro() == ectn_KAOS && packageTuple[0] != '\t'))
     {
       //Do we already have a description?
-      if (pkgDescription != "")
+      if (pkgDescription != QLatin1String(""))
       {
         pkgDescription = pkgName + " " + pkgDescription;
 
@@ -1030,13 +1030,13 @@ QList<PackageListData> *Package::getYayPackageList(const QStringList &packageTup
         pld.popularity = pkgVotes;
 
         res->append(pld);
-        pkgDescription = "";
+        pkgDescription = QLatin1String("");
       }
 
       //First we get repository and name!
       QStringList parts = packageTuple.split(' ');
       QString repoName = parts[0];
-      int a = repoName.indexOf("/");
+      int a = repoName.indexOf(QLatin1String("/"));
       pkgRepository = repoName.left(a);
 
       if (pkgRepository != StrConstants::getForeignPkgRepositoryName())
@@ -1049,7 +1049,7 @@ QList<PackageListData> *Package::getYayPackageList(const QStringList &packageTup
       pkgName = repoName.mid(a+1);
       pkgVersion = parts[1];
 
-      QStringList strVotes = parts.filter("(+");
+      QStringList strVotes = parts.filter(QStringLiteral("(+"));
 
       pkgVotes = 0;
       if (strVotes.count() > 0)
@@ -1057,8 +1057,8 @@ QList<PackageListData> *Package::getYayPackageList(const QStringList &packageTup
         if (!strVotes.first().isEmpty())
         {
           //(+65 1.69%)
-          strVotes.first().replace('(', "").replace('+', "");
-          int space = strVotes.first().indexOf(" ");
+          strVotes.first().replace('(', QLatin1String("")).replace('+', QLatin1String(""));
+          int space = strVotes.first().indexOf(QLatin1String(" "));
           strVotes = strVotes.mid(0, space);
           if (!strVotes.isEmpty()) pkgVotes = strVotes.first().toInt();
         }
@@ -1066,28 +1066,28 @@ QList<PackageListData> *Package::getYayPackageList(const QStringList &packageTup
           pkgVotes = 0;
       }
 
-      if(packageTuple.indexOf("(Installed)") != -1)
+      if(packageTuple.indexOf(QLatin1String("(Installed)")) != -1)
       {
         //This is an installed package
         pkgStatus = ectn_FOREIGN;
-        pkgOutVersion = "";
+        pkgOutVersion = QLatin1String("");
       }
-      else if (packageTuple.indexOf("(Installed:") != -1)
+      else if (packageTuple.indexOf(QLatin1String("(Installed:")) != -1)
       {
         //This is an outdated installed package
         pkgStatus = ectn_FOREIGN_OUTDATED;
 
-        int i = packageTuple.indexOf("(Installed:");
+        int i = packageTuple.indexOf(QLatin1String("(Installed:"));
         pkgOutVersion = packageTuple.mid(i+11);
-        pkgOutVersion = pkgOutVersion.remove("(");
-        pkgOutVersion = pkgOutVersion.remove(")");
-        pkgOutVersion = pkgOutVersion.remove(QRegularExpression("\\].*")).trimmed();
+        pkgOutVersion = pkgOutVersion.remove(QStringLiteral("("));
+        pkgOutVersion = pkgOutVersion.remove(QStringLiteral(")"));
+        pkgOutVersion = pkgOutVersion.remove(QRegularExpression(QStringLiteral("\\].*"))).trimmed();
       }
       else
       {
         //This is an uninstalled package
         pkgStatus = ectn_NON_INSTALLED;
-        pkgOutVersion = "";
+        pkgOutVersion = QLatin1String("");
       }
     }
     else
@@ -1099,7 +1099,7 @@ QList<PackageListData> *Package::getYayPackageList(const QStringList &packageTup
           pkgDescription += packageTuple.trimmed();
         else
         {
-          pkgDescription += " ";
+          pkgDescription += QLatin1String(" ");
         }
       }
     }
@@ -1134,26 +1134,26 @@ QString Package::extractFieldFromInfo(const QString &field, const QString &pkgIn
   if (fieldPos > 0)
   {
     int fieldEnd;
-    if(field == "Optional Deps")
+    if(field == QLatin1String("Optional Deps"))
     {
-      fieldPos = pkgInfo.indexOf(":", fieldPos+1);
+      fieldPos = pkgInfo.indexOf(QLatin1String(":"), fieldPos+1);
       fieldPos+=2;
       aux = pkgInfo.mid(fieldPos);
 
-      fieldEnd = aux.indexOf("Conflicts With");
-      int fieldEnd2 = aux.indexOf("Required By");
+      fieldEnd = aux.indexOf(QLatin1String("Conflicts With"));
+      int fieldEnd2 = aux.indexOf(QLatin1String("Required By"));
 
       if(fieldEnd > fieldEnd2 && fieldEnd2 != -1) fieldEnd = fieldEnd2;
 
       aux = aux.left(fieldEnd).trimmed();
-      aux = aux.replace("\n", "<br>");
+      aux = aux.replace(QLatin1String("\n"), QLatin1String("<br>"));
 
-      if (aux.indexOf(":") == -1)
-        aux = aux.replace(" ", "");
+      if (aux.indexOf(QLatin1String(":")) == -1)
+        aux = aux.replace(QLatin1String(" "), QLatin1String(""));
     }
     else
     {
-      fieldPos = pkgInfo.indexOf(":", fieldPos+1);
+      fieldPos = pkgInfo.indexOf(QLatin1String(":"), fieldPos+1);
       fieldPos+=2;
       aux = pkgInfo.mid(fieldPos);
       fieldEnd = aux.indexOf('\n');
@@ -1169,7 +1169,7 @@ QString Package::extractFieldFromInfo(const QString &field, const QString &pkgIn
  */
 QString Package::getName(const QString& pkgInfo)
 {
-  return extractFieldFromInfo("Name", pkgInfo);
+  return extractFieldFromInfo(QStringLiteral("Name"), pkgInfo);
 }
 
 /*
@@ -1177,7 +1177,7 @@ QString Package::getName(const QString& pkgInfo)
  */
 QString Package::getVersion(const QString &pkgInfo)
 {
-  return extractFieldFromInfo("Version", pkgInfo);
+  return extractFieldFromInfo(QStringLiteral("Version"), pkgInfo);
 }
 
 /*
@@ -1185,7 +1185,7 @@ QString Package::getVersion(const QString &pkgInfo)
  */
 QString Package::getRepository(const QString &pkgInfo)
 {
-  return extractFieldFromInfo("Repository", pkgInfo);
+  return extractFieldFromInfo(QStringLiteral("Repository"), pkgInfo);
 }
 
 /*
@@ -1193,7 +1193,7 @@ QString Package::getRepository(const QString &pkgInfo)
  */
 QString Package::getURL(const QString &pkgInfo)
 {
-  QString URL = extractFieldFromInfo("\nURL", pkgInfo);
+  QString URL = extractFieldFromInfo(QStringLiteral("\nURL"), pkgInfo);
   if (!URL.isEmpty())
     return makeURLClickable(URL);
   else
@@ -1205,7 +1205,7 @@ QString Package::getURL(const QString &pkgInfo)
  */
 QString Package::getLicense(const QString &pkgInfo)
 {
-  return extractFieldFromInfo("Licenses", pkgInfo);
+  return extractFieldFromInfo(QStringLiteral("Licenses"), pkgInfo);
 }
 
 /*
@@ -1213,7 +1213,7 @@ QString Package::getLicense(const QString &pkgInfo)
  */
 QString Package::getGroup(const QString &pkgInfo)
 {
-  return extractFieldFromInfo("Groups", pkgInfo);
+  return extractFieldFromInfo(QStringLiteral("Groups"), pkgInfo);
 }
 
 /*
@@ -1221,7 +1221,7 @@ QString Package::getGroup(const QString &pkgInfo)
  */
 QString Package::getProvides(const QString &pkgInfo)
 {
-  return extractFieldFromInfo("Provides", pkgInfo);
+  return extractFieldFromInfo(QStringLiteral("Provides"), pkgInfo);
 }
 
 /*
@@ -1229,10 +1229,10 @@ QString Package::getProvides(const QString &pkgInfo)
  */
 QString Package::getDependsOn(const QString &pkgInfo)
 {
-  QString res = extractFieldFromInfo("Depends On", pkgInfo);
+  QString res = extractFieldFromInfo(QStringLiteral("Depends On"), pkgInfo);
 
   if (res.isEmpty())
-    res = extractFieldFromInfo("Depends on", pkgInfo);
+    res = extractFieldFromInfo(QStringLiteral("Depends on"), pkgInfo);
 
   return res;
 }
@@ -1242,7 +1242,7 @@ QString Package::getDependsOn(const QString &pkgInfo)
  */
 QString Package::getOptDepends(const QString &pkgInfo)
 {
-  return extractFieldFromInfo("Optional Deps", pkgInfo);
+  return extractFieldFromInfo(QStringLiteral("Optional Deps"), pkgInfo);
 }
 
 /*
@@ -1250,7 +1250,7 @@ QString Package::getOptDepends(const QString &pkgInfo)
  */
 QString Package::getConflictsWith(const QString &pkgInfo)
 {
-  return extractFieldFromInfo("Conflicts With", pkgInfo);
+  return extractFieldFromInfo(QStringLiteral("Conflicts With"), pkgInfo);
 }
 
 /*
@@ -1258,7 +1258,7 @@ QString Package::getConflictsWith(const QString &pkgInfo)
  */
 QString Package::getReplaces(const QString &pkgInfo)
 {
-  return extractFieldFromInfo("Replaces", pkgInfo);
+  return extractFieldFromInfo(QStringLiteral("Replaces"), pkgInfo);
 }
 
 /*
@@ -1266,7 +1266,7 @@ QString Package::getReplaces(const QString &pkgInfo)
  */
 QString Package::getRequiredBy(const QString &pkgInfo)
 {
-  return extractFieldFromInfo("Required By", pkgInfo);
+  return extractFieldFromInfo(QStringLiteral("Required By"), pkgInfo);
 }
 
 /*
@@ -1274,7 +1274,7 @@ QString Package::getRequiredBy(const QString &pkgInfo)
  */
 QString Package::getOptionalFor(const QString &pkgInfo)
 {
-  return extractFieldFromInfo("Optional For", pkgInfo);
+  return extractFieldFromInfo(QStringLiteral("Optional For"), pkgInfo);
 }
 
 /*
@@ -1282,7 +1282,7 @@ QString Package::getOptionalFor(const QString &pkgInfo)
  */
 QString Package::getPackager(const QString &pkgInfo)
 {
-  return extractFieldFromInfo("Packager", pkgInfo);
+  return extractFieldFromInfo(QStringLiteral("Packager"), pkgInfo);
 }
 
 /*
@@ -1290,7 +1290,7 @@ QString Package::getPackager(const QString &pkgInfo)
  */
 QString Package::getArch(const QString &pkgInfo)
 {
-  return extractFieldFromInfo("Architecture", pkgInfo);
+  return extractFieldFromInfo(QStringLiteral("Architecture"), pkgInfo);
 }
 
 /*
@@ -1298,7 +1298,7 @@ QString Package::getArch(const QString &pkgInfo)
  */
 QDateTime Package::getBuildDate(const QString &pkgInfo)
 {
-  QString aux = extractFieldFromInfo("Build Date", pkgInfo);
+  QString aux = extractFieldFromInfo(QStringLiteral("Build Date"), pkgInfo);
   return QDateTime::fromString(aux); //"ddd MMM d hh:mm:ss yyyy");
 }
 
@@ -1307,12 +1307,12 @@ QDateTime Package::getBuildDate(const QString &pkgInfo)
  */
 double Package::getDownloadSize(const QString &pkgInfo)
 {
-  QString aux = extractFieldFromInfo("Download Size", pkgInfo);
-  bool isKByte = (aux.indexOf("KiB", Qt::CaseInsensitive) != -1);
-  bool isMega = (aux.indexOf("MiB", Qt::CaseInsensitive) != -1);
+  QString aux = extractFieldFromInfo(QStringLiteral("Download Size"), pkgInfo);
+  bool isKByte = (aux.indexOf(QLatin1String("KiB"), Qt::CaseInsensitive) != -1);
+  bool isMega = (aux.indexOf(QLatin1String("MiB"), Qt::CaseInsensitive) != -1);
   //bool isByte = (aux.indexOf(" B", Qt::CaseInsensitive) != -1);
 
-  aux = aux.section(QRegularExpression("\\s"), 0, 0);
+  aux = aux.section(QRegularExpression(QStringLiteral("\\s")), 0, 0);
 
   bool ok;
   double res = aux.toDouble(&ok);
@@ -1337,7 +1337,7 @@ double Package::getDownloadSize(const QString &pkgInfo)
  */
 QString Package::getDownloadSizeAsString(const QString &pkgInfo)
 {
-  QString aux = extractFieldFromInfo("Download Size", pkgInfo);
+  QString aux = extractFieldFromInfo(QStringLiteral("Download Size"), pkgInfo);
   return aux;
 }
 
@@ -1346,11 +1346,11 @@ QString Package::getDownloadSizeAsString(const QString &pkgInfo)
  */
 double Package::getInstalledSize(const QString &pkgInfo)
 {
-  QString aux = extractFieldFromInfo("Installed Size", pkgInfo);
-  bool isKByte = (aux.indexOf("KiB", Qt::CaseInsensitive) != -1);
-  bool isMega = (aux.indexOf("MiB", Qt::CaseInsensitive) != -1);
+  QString aux = extractFieldFromInfo(QStringLiteral("Installed Size"), pkgInfo);
+  bool isKByte = (aux.indexOf(QLatin1String("KiB"), Qt::CaseInsensitive) != -1);
+  bool isMega = (aux.indexOf(QLatin1String("MiB"), Qt::CaseInsensitive) != -1);
 
-  aux = aux.section(QRegularExpression("\\s"), 0, 0);
+  aux = aux.section(QRegularExpression(QStringLiteral("\\s")), 0, 0);
 
   bool ok;
   double res = aux.toDouble(&ok);
@@ -1375,7 +1375,7 @@ double Package::getInstalledSize(const QString &pkgInfo)
  */
 QString Package::getInstallReason(const QString &pkgInfo)
 {
-  return extractFieldFromInfo("Install Reason", pkgInfo);
+  return extractFieldFromInfo(QStringLiteral("Install Reason"), pkgInfo);
 }
 
 /*
@@ -1383,7 +1383,7 @@ QString Package::getInstallReason(const QString &pkgInfo)
  */
 QString Package::getInstalledSizeAsString(const QString &pkgInfo)
 {
-  QString aux = extractFieldFromInfo("Installed Size", pkgInfo);
+  QString aux = extractFieldFromInfo(QStringLiteral("Installed Size"), pkgInfo);
   return aux;
 }
 
@@ -1636,7 +1636,7 @@ int Package::alpm_pkg_vercmp(const char *a, const char *b)
  */
 QString Package::getDescription(const QString &pkgInfo)
 {
-  return extractFieldFromInfo("Description", pkgInfo);
+  return extractFieldFromInfo(QStringLiteral("Description"), pkgInfo);
 }
 
 /*
@@ -1648,21 +1648,21 @@ PackageInfoData Package::getKCPInformation(const QString &pkgName)
   QString pkgInfo = UnixCommand::getKCPPackageInformation(pkgName);
   pkgInfo.remove("\033[0;1m");
   pkgInfo.remove("\033[0m");
-  pkgInfo.remove("[1;33m");
-  pkgInfo.remove("[00;31m");
+  pkgInfo.remove(QStringLiteral("[1;33m"));
+  pkgInfo.remove(QStringLiteral("[00;31m"));
   pkgInfo.remove("\033[1;34m");
   pkgInfo.remove("\033[0;1m");
-  pkgInfo.remove("c");
-  pkgInfo.remove("C");
-  pkgInfo.remove("");
-  pkgInfo.remove("[m[0;37m");
-  pkgInfo.remove("o");
-  pkgInfo.remove("[m");
-  pkgInfo.remove(";37m");
-  pkgInfo.remove("[c");
-  pkgInfo.remove("[mo");
-  pkgInfo.remove("[1m");
-  pkgInfo.remove("[m");
+  pkgInfo.remove(QStringLiteral("c"));
+  pkgInfo.remove(QStringLiteral("C"));
+  pkgInfo.remove(QStringLiteral(""));
+  pkgInfo.remove(QStringLiteral("[m[0;37m"));
+  pkgInfo.remove(QStringLiteral("o"));
+  pkgInfo.remove(QStringLiteral("[m"));
+  pkgInfo.remove(QStringLiteral(";37m"));
+  pkgInfo.remove(QStringLiteral("[c"));
+  pkgInfo.remove(QStringLiteral("[mo"));
+  pkgInfo.remove(QStringLiteral("[1m"));
+  pkgInfo.remove(QStringLiteral("[m"));
 
   res.url = getURL(pkgInfo);
   res.license = getLicense(pkgInfo);
@@ -1759,7 +1759,7 @@ QHash<QString, QString> Package::getAUROutdatedPackagesNameVersion()
   QString res = removeColorCodesFromStr(UnixCommand::getOutdatedAURPackageList());
   res = res.trimmed();
 
-  QStringList listOfPkgs = res.split("\n", QString::SkipEmptyParts);
+  QStringList listOfPkgs = res.split(QStringLiteral("\n"), QString::SkipEmptyParts);
   QStringList ignorePkgList = UnixCommand::getIgnorePkgsFromPacmanConf();
 
   if ((getForeignRepositoryToolName() == ctn_YAOURT_TOOL) ||
@@ -1773,7 +1773,7 @@ QHash<QString, QString> Package::getAUROutdatedPackagesNameVersion()
       if (line.contains(StrConstants::getForeignRepositoryTargetPrefix(), Qt::CaseInsensitive))
       {
         line = line.remove(StrConstants::getForeignRepositoryTargetPrefix());
-        QStringList nameVersion = line.split(" ", QString::SkipEmptyParts);
+        QStringList nameVersion = line.split(QStringLiteral(" "), QString::SkipEmptyParts);
         QString pkgName = nameVersion.at(0);
 
         if (getForeignRepositoryToolName() == ctn_KCP_TOOL)
@@ -1798,10 +1798,10 @@ QHash<QString, QString> Package::getAUROutdatedPackagesNameVersion()
       }
       else //We have TRIZEN output here
       {
-        QStringList nameVersion = line.split(" ", QString::SkipEmptyParts);
+        QStringList nameVersion = line.split(QStringLiteral(" "), QString::SkipEmptyParts);
         QString pkgName = nameVersion.at(0);
 
-        if (pkgName=="::") continue;
+        if (pkgName==QLatin1String("::")) continue;
 
         if (!ignorePkgList.contains(pkgName))
         {
@@ -1817,7 +1817,7 @@ QHash<QString, QString> Package::getAUROutdatedPackagesNameVersion()
   {
     foreach (QString line, listOfPkgs)
     {
-      QStringList sl = line.split(" ", QString::SkipEmptyParts);
+      QStringList sl = line.split(QStringLiteral(" "), QString::SkipEmptyParts);
 
       if (sl[1] != StrConstants::getForeignPkgRepositoryName())
         continue;
@@ -1854,15 +1854,15 @@ QStringList Package::getContents(const QString& pkgName, bool isInstalled)
   }
 
   QString aux(result);
-  QStringList rsl = aux.split("\n", QString::SkipEmptyParts);
+  QStringList rsl = aux.split(QStringLiteral("\n"), QString::SkipEmptyParts);
 
   if ( !rsl.isEmpty() ){
-    if (rsl.at(0) == "./"){
+    if (rsl.at(0) == QLatin1String("./")){
       rsl.removeFirst();
     }
     if (isInstalled)
     {
-      rsl.replaceInStrings(QRegularExpression(pkgName + " "), "");
+      rsl.replaceInStrings(QRegularExpression(pkgName + " "), QLatin1String(""));
       rsl.sort();
       slResult = rsl;
     }
@@ -1873,7 +1873,7 @@ QStringList Package::getContents(const QString& pkgName, bool isInstalled)
       QStringList rsl2;
       foreach(QString line, rsl)
       {
-        QStringList slAux = line.split("\t", QString::SkipEmptyParts);
+        QStringList slAux = line.split(QStringLiteral("\t"), QString::SkipEmptyParts);
         rsl2.append(QString(slAux.at(1).trimmed()));
       }
 
@@ -1892,8 +1892,8 @@ QStringList Package::getOptionalDeps(const QString &pkgName)
 {
   QString pkgInfo = UnixCommand::getPackageInformation(pkgName, false);
   QString aux = Package::getOptDepends(pkgInfo);
-  QStringList result = aux.split("<br>", QString::SkipEmptyParts);
-  result.removeAll("None");
+  QStringList result = aux.split(QStringLiteral("<br>"), QString::SkipEmptyParts);
+  result.removeAll(QStringLiteral("None"));
 
   return result;
 }
@@ -1903,32 +1903,32 @@ QStringList Package::getOptionalDeps(const QString &pkgName)
  */
 QString Package::parseSearchString(QString searchStr, bool exactMatch)
 {
-  if (searchStr.indexOf("*.") == 0){
+  if (searchStr.indexOf(QLatin1String("*.")) == 0){
     searchStr = searchStr.remove(0, 2);
     searchStr.insert(0, "\\S+\\.");
   }
 
-  if (searchStr.indexOf("*") == 0){
+  if (searchStr.indexOf(QLatin1String("*")) == 0){
     searchStr = searchStr.remove(0, 1);
     searchStr.insert(0, "\\S+");
   }
 
-  if (searchStr.endsWith("*")){
+  if (searchStr.endsWith(QLatin1String("*"))){
     searchStr.remove(searchStr.length()-1, 1);
     searchStr.append("\\S*");
   }
 
-  if (searchStr.indexOf("^") == -1 && searchStr.indexOf("\\S") != 0){
+  if (searchStr.indexOf(QLatin1String("^")) == -1 && searchStr.indexOf(QLatin1String("\\S")) != 0){
     if (!exactMatch) searchStr.insert(0, "\\S*");
     else searchStr.insert(0, "^");
   }
 
-  if (searchStr.indexOf("$") == -1){
-    if (!exactMatch && !searchStr.endsWith("\\S*")) searchStr.append("\\S*");
+  if (searchStr.indexOf(QLatin1String("$")) == -1){
+    if (!exactMatch && !searchStr.endsWith(QLatin1String("\\S*"))) searchStr.append("\\S*");
     else searchStr.append("$");
   }
 
-  searchStr.replace("?", ".");
+  searchStr.replace(QLatin1String("?"), QLatin1String("."));
   return searchStr;
 }
 
@@ -1958,9 +1958,9 @@ QString Package::getForeignRepositoryToolNameParam()
   static QString ret;
 
   if( UnixCommand::getLinuxDistro() == ectn_CHAKRA )
-    ret = QLatin1String( "chaser" );
+    ret = QStringLiteral( "chaser" );
   else if (UnixCommand::getLinuxDistro() == ectn_KAOS)
-    ret = QLatin1String( "kcp" );
+    ret = QStringLiteral( "kcp" );
   else // We are talking about ARCH based distros...
     ret = SettingsManager::getAURTool();
 
@@ -1975,9 +1975,9 @@ QString Package::getForeignRepositoryToolName()
   static QString ret;
 
   if( UnixCommand::getLinuxDistro() == ectn_CHAKRA )
-    ret = QLatin1String( "chaser" );
+    ret = QStringLiteral( "chaser" );
   else if (UnixCommand::getLinuxDistro() == ectn_KAOS)
-    ret = QLatin1String( "kcp" );
+    ret = QStringLiteral( "kcp" );
   else // We are talking about ARCH based distros...
     ret = SettingsManager::getAURToolName();
 

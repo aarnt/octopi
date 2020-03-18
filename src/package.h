@@ -42,7 +42,7 @@ struct PackageListData{
   int     popularity; //votes
   PackageStatus status;
 
-  PackageListData() : name(""),
+  PackageListData() : name(QLatin1String("")),
                     downloadSize(0.0),
                     popularity(0),
                     status(ectn_NON_INSTALLED){
@@ -56,7 +56,7 @@ struct PackageListData{
                                     status(ectn_NON_INSTALLED){
   }
 
-  PackageListData(QString n, QString r, QString v, PackageStatus pkgStatus, QString outVersion="")
+  PackageListData(QString n, QString r, QString v, PackageStatus pkgStatus, QString outVersion=QLatin1String(""))
                                     : name(n),
                                     repository(r),
                                     version(v),
@@ -67,7 +67,7 @@ struct PackageListData{
   }
 
   PackageListData(QString n, QString r, QString v, QString d, PackageStatus pkgStatus,
-                  double downSize, QString outVersion="")
+                  double downSize, QString outVersion=QLatin1String(""))
                                     : name(n),
                                     repository(r),
                                     version(v),
@@ -78,7 +78,7 @@ struct PackageListData{
                                     status(pkgStatus){
   }
 
-  PackageListData(QString n, QString r, QString v, QString d, PackageStatus pkgStatus, QString outVersion="")
+  PackageListData(QString n, QString r, QString v, QString d, PackageStatus pkgStatus, QString outVersion=QLatin1String(""))
                                     : name(n),
                                     repository(r),
                                     version(v),
@@ -135,7 +135,7 @@ class Package{
     static QStringList * getOutdatedAURStringList();
     static QStringList * getPackageGroups();
     static QStringList * getPackagesOfGroup(const QString &groupName);
-    static QList<PackageListData> * getTargetUpgradeList(const QString &pkgName = "");
+    static QList<PackageListData> * getTargetUpgradeList(const QString &pkgName = QLatin1String(""));
     static QStringList * getTargetRemovalList(const QString &pkgName, const QString &removeCommand);
 
     static QList<PackageListData> *getForeignPackageList();

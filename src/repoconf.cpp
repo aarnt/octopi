@@ -31,18 +31,18 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  * Gets all the repos available in system's Pacman configuration
  */
 
-QString RepoConf::commentString = "";
+QString RepoConf::commentString = QLatin1String("");
 QRegularExpression RepoConf::repoMatch     = QRegularExpression();
 QRegularExpression RepoConf::detailMatch   = QRegularExpression();
 
 RepoConf::RepoConf():
-  m_repoConfFilePath("/etc/pacman.conf")
+  m_repoConfFilePath(QStringLiteral("/etc/pacman.conf"))
 {
-  repoMatch = QRegularExpression("^\\[(?!(options|repo-name|\\[|\\s))");
-  detailMatch = QRegularExpression("^(Server|Include)\\s*=\\s*.+");
-  RepoEntry::nameFilter = QRegularExpression("(\\s+|\\[|\\])");
-  commentString = "#";
-  RepoEntry::repoFormat = "[%repo%]";
+  repoMatch = QRegularExpression(QStringLiteral("^\\[(?!(options|repo-name|\\[|\\s))"));
+  detailMatch = QRegularExpression(QStringLiteral("^(Server|Include)\\s*=\\s*.+"));
+  RepoEntry::nameFilter = QRegularExpression(QStringLiteral("(\\s+|\\[|\\])"));
+  commentString = QStringLiteral("#");
+  RepoEntry::repoFormat = QStringLiteral("[%repo%]");
 
   loadConf( m_repoConfFilePath );
 }

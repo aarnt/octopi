@@ -49,10 +49,10 @@ bool WMHelper::isKDERunning(){
 bool WMHelper::isTDERunning(){
   QStringList slParam;
   QProcess proc;
-  slParam << "-C";
+  slParam << QStringLiteral("-C");
   slParam << ctn_TDE_DESKTOP;
 
-  proc.start("ps", slParam);
+  proc.start(QStringLiteral("ps"), slParam);
   proc.waitForStarted();
   proc.waitForFinished();
 
@@ -71,10 +71,10 @@ bool WMHelper::isTDERunning(){
 bool WMHelper::isXFCERunning(){
   QStringList slParam;
   QProcess proc;
-  slParam << "-C";
+  slParam << QStringLiteral("-C");
   slParam << ctn_XFCE_DESKTOP;
 
-  proc.start("ps", slParam);
+  proc.start(QStringLiteral("ps"), slParam);
   proc.waitForStarted();
   proc.waitForFinished();
   QString out = proc.readAll();
@@ -92,10 +92,10 @@ bool WMHelper::isXFCERunning(){
 bool WMHelper::isLXDERunning(){
   QStringList slParam;
   QProcess proc;
-  slParam << "-C";
+  slParam << QStringLiteral("-C");
   slParam << ctn_LXDE_DESKTOP;
 
-  proc.start("ps", slParam);
+  proc.start(QStringLiteral("ps"), slParam);
   proc.waitForStarted();
   proc.waitForFinished();
   QString out = proc.readAll();
@@ -121,10 +121,10 @@ bool WMHelper::isLXQTRunning()
 bool WMHelper::isOPENBOXRunning(){
   QStringList slParam;
   QProcess proc;
-  slParam << "-C";
+  slParam << QStringLiteral("-C");
   slParam << ctn_OPENBOX_DESKTOP;
 
-  proc.start("ps", slParam);
+  proc.start(QStringLiteral("ps"), slParam);
   proc.waitForStarted();
   proc.waitForFinished();
   QString out = proc.readAll();
@@ -142,10 +142,10 @@ bool WMHelper::isOPENBOXRunning(){
 bool WMHelper::isMATERunning(){
   QStringList slParam;
   QProcess proc;
-  slParam << "-C";
+  slParam << QStringLiteral("-C");
   slParam << ctn_MATE_DESKTOP;
 
-  proc.start("ps", slParam);
+  proc.start(QStringLiteral("ps"), slParam);
   proc.waitForStarted();
   proc.waitForFinished();
   QString out = proc.readAll();
@@ -163,10 +163,10 @@ bool WMHelper::isMATERunning(){
 bool WMHelper::isCinnamonRunning(){
   QStringList slParam;
   QProcess proc;
-  slParam << "-fC";
+  slParam << QStringLiteral("-fC");
   slParam << ctn_CINNAMON_DESKTOP;
 
-  proc.start("ps", slParam);
+  proc.start(QStringLiteral("ps"), slParam);
   proc.waitForStarted();
   proc.waitForFinished();
   QString out = proc.readAll();
@@ -184,7 +184,7 @@ bool WMHelper::isCinnamonRunning(){
 bool WMHelper::isLuminaRunning()
 {
   QProcess proc;
-  proc.start("ps -A -o command");
+  proc.start(QStringLiteral("ps -A -o command"));
   proc.waitForStarted();
   proc.waitForFinished();
   QString out = proc.readAll();
@@ -211,7 +211,7 @@ QString WMHelper::getXFCEEditor(){
  */
 QString WMHelper::getOctopiSudoCommand(){
   QString result = ctn_OCTOPISUDO;
-  result += " -d ";
+  result += QLatin1String(" -d ");
 
   return result;
 }
@@ -243,7 +243,7 @@ QString WMHelper::getSUCommand(){
  */
 QString WMHelper::getSUTool()
 {
-  QString result("");
+  QString result(QLatin1String(""));
 
   if (UnixCommand::hasTheExecutable(ctn_OCTOPISUDO)){
     return ctn_OCTOPISUDO;
@@ -264,7 +264,7 @@ QString WMHelper::getKDEOpenHelper(){
   else if (UnixCommand::hasTheExecutable(ctn_KDE5_OPEN))
     return ctn_KDE5_OPEN;
   else
-    return "NONE";
+    return QStringLiteral("NONE");
 }
 
 /*
@@ -298,7 +298,7 @@ void WMHelper::openFile(const QString& fileName){
     p->startDetached( ctn_XFCE_FILE_MANAGER, s );
   }
   else if (isKDERunning() && UnixCommand::hasTheExecutable(ctn_KDE_FILE_MANAGER)){
-    s << "exec";
+    s << QStringLiteral("exec");
     s << "file:" + fileToOpen;
     p->startDetached( ctn_KDE_FILE_MANAGER, s );
   }
@@ -307,7 +307,7 @@ void WMHelper::openFile(const QString& fileName){
     p->startDetached( getKDEOpenHelper(), s );
   }
   else if (isTDERunning() && UnixCommand::hasTheExecutable(ctn_TDE_FILE_MANAGER)){
-    s << "exec";
+    s << QStringLiteral("exec");
     s << "file:" + fileToOpen;
     p->startDetached( ctn_TDE_FILE_MANAGER, s );
   }
@@ -442,7 +442,7 @@ void WMHelper::openDirectory( const QString& dirName ){
       }
       else if (UnixCommand::hasTheExecutable(ctn_KDE_FILE_MANAGER))
       {
-        s << "newTab";
+        s << QStringLiteral("newTab");
         s << dir;
         p->startDetached( ctn_KDE_FILE_MANAGER, s );
       }
@@ -451,7 +451,7 @@ void WMHelper::openDirectory( const QString& dirName ){
     {
       if (UnixCommand::hasTheExecutable(ctn_TDE_FILE_MANAGER))
       {
-        s << "newTab";
+        s << QStringLiteral("newTab");
         s << dir;
         p->startDetached( ctn_TDE_FILE_MANAGER, s );
       }

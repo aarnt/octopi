@@ -32,7 +32,7 @@
 /**
  * @brief OctopiTabInfo::anchorBegin for navigation
  */
-const QString OctopiTabInfo::anchorBegin("anchorBegin");
+const QString OctopiTabInfo::anchorBegin(QStringLiteral("anchorBegin"));
 
 OctopiTabInfo::OctopiTabInfo()
 {
@@ -76,24 +76,24 @@ QString OctopiTabInfo::formatTabInfo(const PackageRepository::PackageData& packa
   //Let's put package description in UTF-8 format
   QString pkgDescription = pid.description;
   QString html;
-  html += "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">";
-  html += "<a id=\"" + anchorBegin + "\"></a>";
+  html += QLatin1String("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">");
+  html += QLatin1String("<a id=\"") + anchorBegin + QLatin1String("\"></a>");
 
   if (package.repository != StrConstants::getForeignRepositoryName())
   {
-    html += "<h2>" + package.name + "</h2>";
+    html += QLatin1String("<h2>") + package.name + QLatin1String("</h2>");
   }
   else if (UnixCommand::getLinuxDistro() == ectn_KAOS || UnixCommand::getLinuxDistro() == ectn_CHAKRA)
-    html += "<h2>" + package.name + "</h2>";
+    html += QLatin1String("<h2>") + package.name + QLatin1String("</h2>");
   else
-    html += "<h2><a href=\"https://aur.archlinux.org/packages/" + package.name + "\">" + package.name + "</a></h2>";
+    html += QLatin1String("<h2><a href=\"https://aur.archlinux.org/packages/") + package.name + QLatin1String("\">") + package.name + QLatin1String("</a></h2>");
 
   html += pkgDescription;
 
-  html += "<table border=\"0\">";
+  html += QLatin1String("<table border=\"0\">");
 
-  html += "<tr><th width=\"20%\"></th><th width=\"80%\"></th></tr>";
-  html += "<tr><td>" + url + "</td><td>" + pid.url + "</td></tr>";
+  html += QLatin1String("<tr><th width=\"20%\"></th><th width=\"80%\"></th></tr>");
+  html += QLatin1String("<tr><td>") + url + QLatin1String("</td><td>") + pid.url + QLatin1String("</td></tr>");
 
   if (package.outdated())
   {
@@ -102,9 +102,9 @@ QString OctopiTabInfo::formatTabInfo(const PackageRepository::PackageData& packa
       if (package.status == ectn_OUTDATED)
       {
         QString outdatedVersion = package.outdatedVersion;
-        html += "<tr><td>" + version + "</td><td>" + package.version + " <b><font color=\"#E55451\">"
+        html += QLatin1String("<tr><td>") + version + QLatin1String("</td><td>") + package.version + QLatin1String(" <b><font color=\"#E55451\">")
             + StrConstants::getOutdatedInstalledVersion().arg(outdatedVersion) +
-            "</b></font></td></tr>";
+            QLatin1String("</b></font></td></tr>");
       }
       else if (package.status == ectn_FOREIGN_OUTDATED && //NEW ELSE
           outdatedAURPackagesNameVersion.count() > 0)
@@ -114,24 +114,24 @@ QString OctopiTabInfo::formatTabInfo(const PackageRepository::PackageData& packa
         QString availableVersion = outdatedAURPackagesNameVersion.value(package.name);
         if (availableVersion.isEmpty()) availableVersion = package.version;
 
-        html += "<tr><td>" + version + "</td><td>" + availableVersion + " <b><font color=\"#E55451\">"
+        html += QLatin1String("<tr><td>") + version + QLatin1String("</td><td>") + availableVersion + QLatin1String(" <b><font color=\"#E55451\">")
             + StrConstants::getOutdatedInstalledVersion().arg(outdatedVersion) +
-            "</b></font></td></tr>";
+            QLatin1String("</b></font></td></tr>");
       }
     }
     else
     {
       QString newerVersion = package.outdatedVersion;
-      html += "<tr><td>" + version + "</td><td>" + package.version + " <b><font color=\"#FF8040\">"
+      html += QLatin1String("<tr><td>") + version + QLatin1String("</td><td>") + package.version + QLatin1String(" <b><font color=\"#FF8040\">")
           + StrConstants::getNewerInstalledVersion().arg(newerVersion) +
-          "</b></font></td></tr>";
+          QLatin1String("</b></font></td></tr>");
     }
   }
   else //Is this Else needed?
   {
     if (package.repository != StrConstants::getForeignRepositoryName())
     {
-      html += "<tr><td>" + version + "</td><td>" + package.version + "</td></tr>";
+      html += QLatin1String("<tr><td>") + version + QLatin1String("</td><td>") + package.version + QLatin1String("</td></tr>");
     }
     else
     {
@@ -143,69 +143,69 @@ QString OctopiTabInfo::formatTabInfo(const PackageRepository::PackageData& packa
         QString availableVersion = outdatedAURPackagesNameVersion.value(package.name);
         if (availableVersion.isEmpty()) availableVersion = package.version;
 
-        html += "<tr><td>" + version + "</td><td>" + availableVersion + " <b><font color=\"#E55451\">"
+        html += QLatin1String("<tr><td>") + version + QLatin1String("</td><td>") + availableVersion + QLatin1String(" <b><font color=\"#E55451\">")
             + StrConstants::getOutdatedInstalledVersion().arg(outdatedVersion) +
-            "</b></font></td></tr>";
+            QLatin1String("</b></font></td></tr>");
       }
       else
       {
-        html += "<tr><td>" + version + "</td><td>" + package.version + "</td></tr>";
+        html += QLatin1String("<tr><td>") + version + QLatin1String("</td><td>") + package.version + QLatin1String("</td></tr>");
       }
     }
   }
 
   //This is needed as packager names could be encoded in different charsets, resulting in an error
   QString packagerName = pid.packager;
-  packagerName = packagerName.replace("<", "&lt;");
-  packagerName = packagerName.replace(">", "&gt;");
+  packagerName = packagerName.replace(QLatin1String("<"), QLatin1String("&lt;"));
+  packagerName = packagerName.replace(QLatin1String(">"), QLatin1String("&gt;"));
 
   QString strConflictsWith = pid.conflictsWith;
-  strConflictsWith = strConflictsWith.replace("<", "&lt;");
-  strConflictsWith = strConflictsWith.replace(">", "&gt;");
-  strConflictsWith = strConflictsWith.replace("&lt;br&gt;", "<br>");
+  strConflictsWith = strConflictsWith.replace(QLatin1String("<"), QLatin1String("&lt;"));
+  strConflictsWith = strConflictsWith.replace(QLatin1String(">"), QLatin1String("&gt;"));
+  strConflictsWith = strConflictsWith.replace(QLatin1String("&lt;br&gt;"), QLatin1String("<br>"));
 
-  html += "<tr><td>" + licenses + "</td><td>" + pid.license + "</td></tr>";
+  html += QLatin1String("<tr><td>") + licenses + QLatin1String("</td><td>") + pid.license + QLatin1String("</td></tr>");
 
   //Show this info only if there's something to show
-  if(! pid.group.contains("None"))
-    html += "<tr><td>" + groups + "</td><td>" + pid.group + "</td></tr>";
+  if(! pid.group.contains(QLatin1String("None")))
+    html += QLatin1String("<tr><td>") + groups + QLatin1String("</td><td>") + pid.group + QLatin1String("</td></tr>");
 
-  if(! pid.provides.contains("None"))
-    html += "<tr><td>" + provides + "</td><td>" + Package::makeAnchorOfPackage(pid.provides) + "</td></tr>";
+  if(! pid.provides.contains(QLatin1String("None")))
+    html += QLatin1String("<tr><td>") + provides + QLatin1String("</td><td>") + Package::makeAnchorOfPackage(pid.provides) + QLatin1String("</td></tr>");
 
-  if(! pid.dependsOn.contains("None"))
-    html += "<tr><td>" + dependsOn + "</td><td>" + Package::makeAnchorOfPackage(pid.dependsOn) + "</td></tr>";
+  if(! pid.dependsOn.contains(QLatin1String("None")))
+    html += QLatin1String("<tr><td>") + dependsOn + QLatin1String("</td><td>") + Package::makeAnchorOfPackage(pid.dependsOn) + QLatin1String("</td></tr>");
 
-  if(! pid.optDepends.contains("None"))
-    html += "<tr><td>" + optionalDeps + "</td><td>" + Package::makeAnchorOfOptionalDep(pid.optDepends) + "</td></tr>";
+  if(! pid.optDepends.contains(QLatin1String("None")))
+    html += QLatin1String("<tr><td>") + optionalDeps + QLatin1String("</td><td>") + Package::makeAnchorOfOptionalDep(pid.optDepends) + QLatin1String("</td></tr>");
 
-  if(!pid.requiredBy.isEmpty() && !pid.requiredBy.contains("None"))
-    html += "<tr><td>" + requiredBy + "</td><td>" + Package::makeAnchorOfPackage(pid.requiredBy) + "</td></tr>";
+  if(!pid.requiredBy.isEmpty() && !pid.requiredBy.contains(QLatin1String("None")))
+    html += QLatin1String("<tr><td>") + requiredBy + QLatin1String("</td><td>") + Package::makeAnchorOfPackage(pid.requiredBy) + QLatin1String("</td></tr>");
 
-  if(!pid.optionalFor.isEmpty() && !pid.optionalFor.contains("None"))
-    html += "<tr><td>" + optionalFor + "</td><td>" + Package::makeAnchorOfPackage(pid.optionalFor) + "</td></tr>";
+  if(!pid.optionalFor.isEmpty() && !pid.optionalFor.contains(QLatin1String("None")))
+    html += QLatin1String("<tr><td>") + optionalFor + QLatin1String("</td><td>") + Package::makeAnchorOfPackage(pid.optionalFor) + QLatin1String("</td></tr>");
 
-  if(! pid.conflictsWith.contains("None"))
-    html += "<tr><td><b>" + conflictsWith + "</b></td><td><b>" + Package::makeAnchorOfPackage(strConflictsWith) +
-        "</b></font></td></tr>";
+  if(! pid.conflictsWith.contains(QLatin1String("None")))
+    html += QLatin1String("<tr><td><b>") + conflictsWith + QLatin1String("</b></td><td><b>") + Package::makeAnchorOfPackage(strConflictsWith) +
+        QLatin1String("</b></font></td></tr>");
 
-  if(! pid.replaces.contains("None"))
-    html += "<tr><td>" + replaces + "</td><td>" + Package::makeAnchorOfPackage(pid.replaces) + "</td></tr>";
+  if(! pid.replaces.contains(QLatin1String("None")))
+    html += QLatin1String("<tr><td>") + replaces + QLatin1String("</td><td>") + Package::makeAnchorOfPackage(pid.replaces) + QLatin1String("</td></tr>");
 
-  html += "<tr><td>" + downloadSize + "</td><td>" + Package::kbytesToSize(pid.downloadSize) + "</td></tr>";
-  html += "<tr><td>" + installedSize + "</td><td>" + Package::kbytesToSize(pid.installedSize) + "</td></tr>";
-  html += "<tr><td>" + packager + "</td><td>" + packagerName + "</td></tr>";
-  html += "<tr><td>" + architecture + "</td><td>" + pid.arch + "</td></tr>";
+  html += QLatin1String("<tr><td>") + downloadSize + QLatin1String("</td><td>") + Package::kbytesToSize(pid.downloadSize) + QLatin1String("</td></tr>");
+  html += QLatin1String("<tr><td>") + installedSize + QLatin1String("</td><td>") + Package::kbytesToSize(pid.installedSize) + QLatin1String("</td></tr>");
+  html += QLatin1String("<tr><td>") + packager + QLatin1String("</td><td>") + packagerName + QLatin1String("</td></tr>");
+  html += QLatin1String("<tr><td>") + architecture + QLatin1String("</td><td>") + pid.arch + QLatin1String("</td></tr>");
 
   QString dateTimeFormat = QLocale().dateTimeFormat();
 
-  html += "<tr><td>" + buildDate + "</td><td>" +
-      pid.buildDate.toString(dateTimeFormat) + "</td></tr>";
+  html += QLatin1String("<tr><td>") + buildDate + QLatin1String("</td><td>") +
+      pid.buildDate.toString(dateTimeFormat) + QLatin1String("</td></tr>");
 
   if(!pid.installReason.isEmpty())
-    html += "<tr><td>" + installReason + "</td><td>" + pid.installReason + "</td></tr>";
+    html += QLatin1String("<tr><td>") + installReason + QLatin1String("</td><td>") + pid.installReason + QLatin1String("</td></tr>");
 
-  html += "</table><br>";
+  html += QLatin1String("</table><br>");
 
   return html;
 }

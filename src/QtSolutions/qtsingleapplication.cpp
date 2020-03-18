@@ -430,7 +430,7 @@ void QtSingleApplication::activateWindow(const QString &message)
 
 #else
 
-  if (actWin && message == "RAISE") {
+  if (actWin && message == QLatin1String("RAISE")) {
         actWin->setWindowState(actWin->windowState() & ~Qt::WindowMinimized);
         actWin->raise();
         if (actWin->isHidden())
@@ -438,7 +438,7 @@ void QtSingleApplication::activateWindow(const QString &message)
         else
           actWin->activateWindow();
     }
-  else if (actWin && message == "HIDE") {
+  else if (actWin && message == QLatin1String("HIDE")) {
     if (!actWin->isHidden())
       actWin->hide();
     else
@@ -449,7 +449,7 @@ void QtSingleApplication::activateWindow(const QString &message)
         actWin->show();
     }
   }
-  else if (actWin && message == "CLOSE") {
+  else if (actWin && message == QLatin1String("CLOSE")) {
     if (!actWin->close())
     {
       if (actWin->isHidden())

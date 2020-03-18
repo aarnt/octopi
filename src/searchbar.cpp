@@ -46,7 +46,7 @@ SearchBar::SearchBar(QWidget *parent) :
 void SearchBar::init()
 {
   setVisible(false);
-  setObjectName("searchbar");
+  setObjectName(QStringLiteral("searchbar"));
   QHBoxLayout *layout = new QHBoxLayout(this);
   layout->setSpacing(0);
   layout->setMargin(4);
@@ -109,7 +109,7 @@ void SearchBar::close()
 {
   hide();
   disconnect(m_searchLineEdit, SIGNAL(textChanged(QString)), this, SIGNAL(textChanged(QString)));
-  m_searchLineEdit->setText("");
+  m_searchLineEdit->setText(QLatin1String(""));
   connect(m_searchLineEdit, SIGNAL(textChanged(QString)), this, SIGNAL(textChanged(QString)));
   emit closed();
 }
@@ -119,7 +119,7 @@ void SearchBar::close()
  */
 void SearchBar::clear()
 {
-  m_searchLineEdit->setText("");
+  m_searchLineEdit->setText(QLatin1String(""));
 }
 
 /*

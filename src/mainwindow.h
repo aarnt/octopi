@@ -520,7 +520,7 @@ public:
     if (w != nullptr) return w;
     foreach (QWidget *widget, QApplication::topLevelWidgets())
     {
-      if (widget->objectName() == "MainWindow")
+      if (widget->objectName() == QLatin1String("MainWindow"))
         w = dynamic_cast<MainWindow*>(widget);
     }
     return w;

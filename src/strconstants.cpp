@@ -22,15 +22,15 @@
 #include "unixcommand.h"
 
 QString StrConstants::getApplicationName(){
-  return "Octopi";
+  return QStringLiteral("Octopi");
 }
 
 QString StrConstants::getApplicationVersion(){
-  return "0.10.0 (dev)";
+  return QStringLiteral("0.10.0 (dev)");
 }
 
 QString StrConstants::getQtVersion(){
-  return "Qt " + QString(QT_VERSION_STR);
+  return "Qt " + QStringLiteral(QT_VERSION_STR);
 }
 
 QString StrConstants::getApplicationCliHelp(){
@@ -54,16 +54,16 @@ QString StrConstants::getAll(){
 
 QString StrConstants::getForeignRepositoryName(){
   static bool firstTime=true;
-  static QString ret=QLatin1String("AUR");
+  static QString ret=QStringLiteral("AUR");
 
   if (firstTime)
   {
     if (UnixCommand::getLinuxDistro() == ectn_CHAKRA)
-      ret=QLatin1String("CCR");
+      ret=QStringLiteral("CCR");
     if (UnixCommand::getLinuxDistro() == ectn_KAOS)
-      ret=QLatin1String("KCP");
+      ret=QStringLiteral("KCP");
     if (UnixCommand::getLinuxDistro() == ectn_PARABOLA)
-      ret=QLatin1String("Custom");
+      ret=QStringLiteral("Custom");
 
     firstTime=false;
   }
@@ -73,16 +73,16 @@ QString StrConstants::getForeignRepositoryName(){
 
 QString StrConstants::getForeignPkgRepositoryName(){
   static bool firstTime=true;
-  static QString ret=QLatin1String("aur");
+  static QString ret=QStringLiteral("aur");
 
   if (firstTime)
   {
     if (UnixCommand::getLinuxDistro() == ectn_CHAKRA)
-      ret=QLatin1String("ccr");
+      ret=QStringLiteral("ccr");
     else if (UnixCommand::getLinuxDistro() == ectn_KAOS)
-      ret=QLatin1String("kcp");
+      ret=QStringLiteral("kcp");
     else if (UnixCommand::getLinuxDistro() == ectn_PARABOLA)
-      ret=QLatin1String("custom");
+      ret=QStringLiteral("custom");
 
     firstTime=false;
   }
@@ -93,16 +93,16 @@ QString StrConstants::getForeignPkgRepositoryName(){
 QString StrConstants::getForeignRepositoryGroupName()
 {
   static bool firstTime=true;
-  static QString ret=QLatin1String("AUR");
+  static QString ret=QStringLiteral("AUR");
 
   if (firstTime)
   {
     if( UnixCommand::getLinuxDistro() == ectn_CHAKRA )
-      ret=QLatin1String("Ccr");
+      ret=QStringLiteral("Ccr");
     else if (UnixCommand::getLinuxDistro() == ectn_KAOS)
-      ret=QLatin1String("KCP");
+      ret=QStringLiteral("KCP");
     else if (UnixCommand::getLinuxDistro() == ectn_PARABOLA)
-      ret=QLatin1String("Custom");
+      ret=QStringLiteral("Custom");
 
     firstTime=false;
   }
@@ -113,16 +113,16 @@ QString StrConstants::getForeignRepositoryGroupName()
 QString StrConstants::getForeignRepositoryTargetPrefix()
 {
   static bool firstTime=true;
-  static QString ret=QLatin1String("aur/");
+  static QString ret=QStringLiteral("aur/");
 
   if (firstTime)
   {
     if( UnixCommand::getLinuxDistro() == ectn_CHAKRA )
-      ret=QLatin1String("ccr/");
+      ret=QStringLiteral("ccr/");
     else if (UnixCommand::getLinuxDistro() == ectn_KAOS)
-      ret=QLatin1String("kcp/");
+      ret=QStringLiteral("kcp/");
     else if (UnixCommand::getLinuxDistro() == ectn_PARABOLA)
-      ret=QLatin1String("custom/");
+      ret=QStringLiteral("custom/");
 
     firstTime=false;
   }
@@ -447,30 +447,30 @@ QString StrConstants::getRemovingPacmanTransactionLockFile(){
 }
 
 QString StrConstants::getSyncing(){
-  return "Syncing";
+  return QStringLiteral("Syncing");
 }
 
 QString StrConstants::getPressAnyKey(){
-  return "Press any key to continue...";
+  return QStringLiteral("Press any key to continue...");
 }
 
 QString StrConstants::getCouldNotAttachToParent()
 {
-  return "octopi-helper[aborted]: Couldn't attach to parent";
+  return QStringLiteral("octopi-helper[aborted]: Couldn't attach to parent");
 }
 
 QString StrConstants::getSuspiciousExecutionDetected()
 {
-  return "octopi-helper[aborted]: Suspicious execution method";
+  return QStringLiteral("octopi-helper[aborted]: Suspicious execution method");
 }
 
 QString StrConstants::getSuspiciousTransactionDetected()
 {
-  return "octopi-helper[aborted]: Suspicious transaction detected ->";
+  return QStringLiteral("octopi-helper[aborted]: Suspicious transaction detected ->");
 }
 
 QString StrConstants::getErrorPacmanProcessExecuting(){
-  return "octopi-helper[aborted]: There is an instance of pacman already running";
+  return QStringLiteral("octopi-helper[aborted]: There is an instance of pacman already running");
 }
 
 QString StrConstants::getCheckUpdates()
@@ -494,7 +494,7 @@ QString StrConstants::getNoUpdatesAvailable()
 }
 
 QString StrConstants::getSyncMirror(){
-  return "Mirror-check...";
+  return QStringLiteral("Mirror-check...");
 }
 
 QString StrConstants::getSyncDatabase(){
@@ -506,7 +506,7 @@ QString StrConstants::getSyncDatabases(){
 }
 
 QString StrConstants::getIsUpToDate(){
-  return "is up to date";
+  return QStringLiteral("is up to date");
 }
 
 QString StrConstants::getSysInfoGenerated()
@@ -646,7 +646,7 @@ QString StrConstants::getYoullNeedSuFrontend(){
 QString StrConstants::getYoullNeedToInstallAURTool()
 {
   return QObject::tr("You'll need one of those tools to use AUR:\n\n"
-                     "%1, %2, %3 %4 or %5").arg("pacaur").arg("pikaur", "trizen", "yaourt", "yay");
+                     "%1, %2, %3 %4 or %5").arg(QStringLiteral("pacaur")).arg("pikaur", "trizen", "yaourt", "yay");
 }
 
 QString StrConstants::getDoYouWantToInstallYayTool()

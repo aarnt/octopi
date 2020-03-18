@@ -297,7 +297,7 @@ QString SettingsManager::getDistroRSSUrl()
     return (p_instance.getSYSsettings()->value(ctn_KEY_DISTRO_RSS_URL, "https://www.netrunner.com/feed/")).toString();*/
   else if (distro == ectn_PARABOLA)
     return (p_instance.getSYSsettings()->value(ctn_KEY_DISTRO_RSS_URL, "https://www.parabola.nu/feeds/news/")).toString();
-  else return "";
+  else return QLatin1String("");
 }
 
 bool SettingsManager::getShowPackageNumbersOutput()
@@ -322,31 +322,31 @@ QString SettingsManager::getAURTool()
   if (ret == ctn_NO_AUR_TOOL) return ret;
   else if (ret == ctn_PACAUR_TOOL)
   {
-    if (getAURNoConfirmParam()) params += " --noconfirm ";
-    if (getAURNoEditParam()) params += " --noedit ";
+    if (getAURNoConfirmParam()) params += QLatin1String(" --noconfirm ");
+    if (getAURNoEditParam()) params += QLatin1String(" --noedit ");
     ret += params;
   }
   else if (ret == ctn_YAOURT_TOOL)
   {
-    if (getAURNoConfirmParam()) params += " --noconfirm ";
+    if (getAURNoConfirmParam()) params += QLatin1String(" --noconfirm ");
     ret += params;
   }
   else if (ret == ctn_TRIZEN_TOOL)
   {
-    if (getAURNoConfirmParam()) params += " --noconfirm ";
-    if (getAURNoEditParam()) params += " --noedit ";
+    if (getAURNoConfirmParam()) params += QLatin1String(" --noconfirm ");
+    if (getAURNoEditParam()) params += QLatin1String(" --noedit ");
     ret += params;
   }
   else if (ret == ctn_PIKAUR_TOOL)
   {
-    if (getAURNoConfirmParam()) params += " --noconfirm ";
-    if (getAURNoEditParam()) params += " --noedit ";
+    if (getAURNoConfirmParam()) params += QLatin1String(" --noconfirm ");
+    if (getAURNoEditParam()) params += QLatin1String(" --noedit ");
     ret += params;
   }
   else if (ret == ctn_YAY_TOOL)
   {
-    if (getAURNoConfirmParam()) params += " --noconfirm ";
-    if (getAURNoEditParam()) params += " --noeditmenu ";
+    if (getAURNoConfirmParam()) params += QLatin1String(" --noconfirm ");
+    if (getAURNoEditParam()) params += QLatin1String(" --noeditmenu ");
     ret += params;
   }
   //System does not have selected aurtool. Let's see if there are any other available...
@@ -354,8 +354,8 @@ QString SettingsManager::getAURTool()
   {
     if (UnixCommand::hasTheExecutable(ctn_TRIZEN_TOOL))
     {
-      if (getAURNoConfirmParam()) params += " --noconfirm ";
-      if (getAURNoEditParam()) params += " --noedit ";
+      if (getAURNoConfirmParam()) params += QLatin1String(" --noconfirm ");
+      if (getAURNoEditParam()) params += QLatin1String(" --noedit ");
 
       p_instance.setAURTool(ctn_TRIZEN_TOOL);
       p_instance.getSYSsettings()->sync();
@@ -363,8 +363,8 @@ QString SettingsManager::getAURTool()
     }
     else if (UnixCommand::hasTheExecutable(ctn_PIKAUR_TOOL))
     {
-      if (getAURNoConfirmParam()) params += " --noconfirm ";
-      if (getAURNoEditParam()) params += " --noedit ";
+      if (getAURNoConfirmParam()) params += QLatin1String(" --noconfirm ");
+      if (getAURNoEditParam()) params += QLatin1String(" --noedit ");
 
       p_instance.setAURTool(ctn_PIKAUR_TOOL);
       p_instance.getSYSsettings()->sync();
@@ -372,8 +372,8 @@ QString SettingsManager::getAURTool()
     }
     else if (UnixCommand::hasTheExecutable(ctn_YAY_TOOL))
     {
-      if (getAURNoConfirmParam()) params += " --noconfirm ";
-      if (getAURNoEditParam()) params += " --noeditmenu ";
+      if (getAURNoConfirmParam()) params += QLatin1String(" --noconfirm ");
+      if (getAURNoEditParam()) params += QLatin1String(" --noeditmenu ");
 
       p_instance.setAURTool(ctn_YAY_TOOL);
       p_instance.getSYSsettings()->sync();
@@ -381,7 +381,7 @@ QString SettingsManager::getAURTool()
     }
     else if (UnixCommand::hasTheExecutable(ctn_YAOURT_TOOL))
     {
-      if (getAURNoConfirmParam()) params += " --noconfirm ";
+      if (getAURNoConfirmParam()) params += QLatin1String(" --noconfirm ");
 
       p_instance.setAURTool(ctn_YAOURT_TOOL);
       p_instance.getSYSsettings()->sync();
@@ -389,8 +389,8 @@ QString SettingsManager::getAURTool()
     }
     else if (UnixCommand::hasTheExecutable(ctn_PACAUR_TOOL))
     {
-      if (getAURNoConfirmParam()) params += " --noconfirm ";
-      if (getAURNoEditParam()) params += " --noedit ";
+      if (getAURNoConfirmParam()) params += QLatin1String(" --noconfirm ");
+      if (getAURNoEditParam()) params += QLatin1String(" --noedit ");
 
       p_instance.setAURTool(ctn_PACAUR_TOOL);
       p_instance.getSYSsettings()->sync();
@@ -449,7 +449,7 @@ QString SettingsManager::getAURPassword()
   QByteArray encryptedValue = (p_instance.getSYSsettings()->value(ctn_KEY_AUR_PASSWORD, "")).toByteArray();
 
   QString aurUserName = getAURUserName();
-  if (aurUserName.isEmpty()) return "";
+  if (aurUserName.isEmpty()) return QLatin1String("");
 
   QByteArray hashKey = QCryptographicHash::hash(ctn_OCTOPI_COPYRIGHT.toLocal8Bit(), QCryptographicHash::Sha256);
   QByteArray hashIV = QCryptographicHash::hash(aurUserName.toLocal8Bit(), QCryptographicHash::Md5);

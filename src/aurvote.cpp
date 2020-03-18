@@ -30,10 +30,10 @@
  */
 
 AurVote::AurVote(QObject *parent) : QObject(parent),
-  m_loginUrl("https://aur.archlinux.org/login/"),
-  m_voteUrl("https://aur.archlinux.org/pkgbase/%1/vote/"),
-  m_unvoteUrl("https://aur.archlinux.org/pkgbase/%1/unvote/"),
-  m_pkgUrl("https://aur.archlinux.org/packages/%1/")
+  m_loginUrl(QStringLiteral("https://aur.archlinux.org/login/")),
+  m_voteUrl(QStringLiteral("https://aur.archlinux.org/pkgbase/%1/vote/")),
+  m_unvoteUrl(QStringLiteral("https://aur.archlinux.org/pkgbase/%1/unvote/")),
+  m_pkgUrl(QStringLiteral("https://aur.archlinux.org/packages/%1/"))
 {
   m_networkManager = new QNetworkAccessManager(this);
 }
@@ -60,9 +60,9 @@ bool AurVote::login()
   if (m_userName.isEmpty() || m_password.isEmpty()) return false;
 
   QUrlQuery postData;
-  postData.addQueryItem("user", m_userName);
-  postData.addQueryItem("passwd", m_password);
-  postData.addQueryItem("remember_me", "on");
+  postData.addQueryItem(QStringLiteral("user"), m_userName);
+  postData.addQueryItem(QStringLiteral("passwd"), m_password);
+  postData.addQueryItem(QStringLiteral("remember_me"), QStringLiteral("on"));
 
   QNetworkRequest request(m_loginUrl);
   request.setHeader(QNetworkRequest::ContentTypeHeader,"application/x-www-form-urlencoded");
@@ -84,7 +84,7 @@ bool AurVote::login()
 
     QString res = r->readAll();
 
-    if (res.contains("Logout"))
+    if (res.contains(QLatin1String("Logout")))
     {
       ret = true;
     }
@@ -106,7 +106,7 @@ bool AurVote::isLoggedIn()
 
   QString res = r->readAll();
 
-  if (res.contains("Logout"))
+  if (res.contains(QLatin1String("Logout")))
   {
     ret = true;
   }
@@ -137,10 +137,10 @@ int AurVote::isPkgVoted(const QString &pkgName)
   QString res = r->readAll();
 
   //If this package does not exist anymore...
-  QRegularExpression re("Page Not Found");
+  QRegularExpression re(QStringLiteral("Page Not Found"));
   if (res.contains(re)) return -1;
 
-  QRegularExpression re1("name=\"do_Vote\" value=\"Vote for this package\"");
+  QRegularExpression re1(QStringLiteral("name=\"do_Vote\" value=\"Vote for this package\""));
   if (res.contains(re1))
   {
     ret = 1;
@@ -163,20 +163,20 @@ void AurVote::voteForPkg(const QString &pkgName)
   QString res = r->readAll();
 
   //Get token
-  QRegularExpression re("name=\"token\" value=\"(?<token>\\w+)\"");
+  QRegularExpression re(QStringLiteral("name=\"token\" value=\"(?<token>\\w+)\""));
   QRegularExpressionMatch rem;
   if (res.contains(re, &rem))
   {
-    token = rem.captured("token");
+    token = rem.captured(QStringLiteral("token"));
   }
 
-  QRegularExpression re1("name=\"do_Vote\" value=\"Vote for this package\"");
+  QRegularExpression re1(QStringLiteral("name=\"do_Vote\" value=\"Vote for this package\""));
   if (res.contains(re1))
   {
     QUrlQuery postData;
     postData.clear();
-    postData.addQueryItem("token", token);
-    postData.addQueryItem("do_Vote", "Vote+for+this+package");
+    postData.addQueryItem(QStringLiteral("token"), token);
+    postData.addQueryItem(QStringLiteral("do_Vote"), QStringLiteral("Vote+for+this+package"));
 
     request.setUrl(m_unvoteUrl.arg(pkgName));
     r = m_networkManager->post(request, postData.query().toUtf8());
@@ -200,20 +200,20 @@ void AurVote::unvoteForPkg(const QString &pkgName)
   QString res = r->readAll();
 
   //Get token
-  QRegularExpression re("name=\"token\" value=\"(?<token>\\w+)\"");
+  QRegularExpression re(QStringLiteral("name=\"token\" value=\"(?<token>\\w+)\""));
   QRegularExpressionMatch rem;
   if (res.contains(re, &rem))
   {
-    token = rem.captured("token");
+    token = rem.captured(QStringLiteral("token"));
   }
 
-  QRegularExpression re1("name=\"do_UnVote\" value=\"Remove vote\"");
+  QRegularExpression re1(QStringLiteral("name=\"do_UnVote\" value=\"Remove vote\""));
   if (res.contains(re1))
   {
     QUrlQuery postData;
     postData.clear();
-    postData.addQueryItem("token", token);
-    postData.addQueryItem("do_UnVote", "Remove+vote");
+    postData.addQueryItem(QStringLiteral("token"), token);
+    postData.addQueryItem(QStringLiteral("do_UnVote"), QStringLiteral("Remove+vote"));
 
     request.setUrl(m_unvoteUrl.arg(pkgName));
     r = m_networkManager->post(request, postData.query().toUtf8());
@@ -228,7 +228,7 @@ void AurVote::unvoteForPkg(const QString &pkgName)
  */
 QStringList AurVote::getVotedPackages()
 {
-  QString searchUrl="https://aur.archlinux.org/packages/?O=0&SeB=nd&SB=w&SO=d&PP=250&do_Search=Go";
+  QString searchUrl=QStringLiteral("https://aur.archlinux.org/packages/?O=0&SeB=nd&SB=w&SO=d&PP=250&do_Search=Go");
   QEventLoop eventLoop;
   QNetworkRequest request(searchUrl);
   request.setHeader(QNetworkRequest::ContentTypeHeader,"application/x-www-form-urlencoded");
@@ -238,25 +238,25 @@ QStringList AurVote::getVotedPackages()
   disconnect(r, SIGNAL(finished()), &eventLoop, SLOT(quit()));
 
   QString res = r->readAll();
-  res = res.remove(QRegularExpression("\\t"));
-  res = res.remove(QRegularExpression("\\n"));
+  res = res.remove(QRegularExpression(QStringLiteral("\\t")));
+  res = res.remove(QRegularExpression(QStringLiteral("\\n")));
 
-  QString packageToSearch="<td><a href=\"/packages/(.*)/\">(?<pkgName>\\S+)</a></td>";
-  QString blockToSearch="<tr class=\"(odd|even)\">(.*)</tr>";
+  QString packageToSearch=QStringLiteral("<td><a href=\"/packages/(.*)/\">(?<pkgName>\\S+)</a></td>");
+  QString blockToSearch=QStringLiteral("<tr class=\"(odd|even)\">(.*)</tr>");
   QRegularExpression re(blockToSearch);
   QStringList votedPackages;
 
-  QStringList rows = res.split(QRegularExpression("<tr class=\"(even|odd)\">"));
+  QStringList rows = res.split(QRegularExpression(QStringLiteral("<tr class=\"(even|odd)\">")));
   foreach(QString row, rows)
   {
-    if (row.contains("<td>Yes</td>"))
+    if (row.contains(QLatin1String("<td>Yes</td>")))
     {
       QRegularExpression re(packageToSearch);
       QRegularExpressionMatch rem;
 
       if (row.contains(re, &rem))
       {
-        QString votedPackage = rem.captured("pkgName");
+        QString votedPackage = rem.captured(QStringLiteral("pkgName"));
         votedPackages << votedPackage;
       }
     }

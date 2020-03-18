@@ -67,27 +67,27 @@ void MainWindow::refreshDistroNews(bool searchForLatestNews, bool gotoNewsTab)
                         distro == ectn_ARCHBANGLINUX /*||
                         distro == ectn_SWAGARCH*/))
     {
-      writeToTabOutput("<b>" + StrConstants::getSearchingForDistroNews().arg("Arch Linux") + "</b>");
+      writeToTabOutput("<b>" + StrConstants::getSearchingForDistroNews().arg(QStringLiteral("Arch Linux")) + "</b>");
     }
     else if (gotoNewsTab && distro == ectn_CHAKRA)
     {
-      writeToTabOutput("<b>" + StrConstants::getSearchingForDistroNews().arg("Chakra") + "</b>");
+      writeToTabOutput("<b>" + StrConstants::getSearchingForDistroNews().arg(QStringLiteral("Chakra")) + "</b>");
     }
     else if (gotoNewsTab && distro == ectn_CONDRESOS)
     {
-      writeToTabOutput("<b>" + StrConstants::getSearchingForDistroNews().arg("Condres OS") + "</b>");
+      writeToTabOutput("<b>" + StrConstants::getSearchingForDistroNews().arg(QStringLiteral("Condres OS")) + "</b>");
     }
     else if (gotoNewsTab && distro == ectn_ENDEAVOUROS)
     {
-      writeToTabOutput("<b>" + StrConstants::getSearchingForDistroNews().arg("EndeavourOS") + "</b>");
+      writeToTabOutput("<b>" + StrConstants::getSearchingForDistroNews().arg(QStringLiteral("EndeavourOS")) + "</b>");
     }
     else if (gotoNewsTab && distro == ectn_KAOS)
     {
-      writeToTabOutput("<b>" + StrConstants::getSearchingForDistroNews().arg("KaOS") + "</b>");
+      writeToTabOutput("<b>" + StrConstants::getSearchingForDistroNews().arg(QStringLiteral("KaOS")) + "</b>");
     }
     else if (gotoNewsTab && distro == ectn_MANJAROLINUX)
     {
-      writeToTabOutput("<b>" + StrConstants::getSearchingForDistroNews().arg("Manjaro Linux") + "</b>");
+      writeToTabOutput("<b>" + StrConstants::getSearchingForDistroNews().arg(QStringLiteral("Manjaro Linux")) + "</b>");
     }
     /*else if (gotoNewsTab && distro == ectn_NETRUNNER)
     {
@@ -95,7 +95,7 @@ void MainWindow::refreshDistroNews(bool searchForLatestNews, bool gotoNewsTab)
     }*/
     else if (gotoNewsTab && distro == ectn_PARABOLA)
     {
-      writeToTabOutput("<b>" + StrConstants::getSearchingForDistroNews().arg("Parabola GNU/Linux-libre") + "</b>");
+      writeToTabOutput("<b>" + StrConstants::getSearchingForDistroNews().arg(QStringLiteral("Parabola GNU/Linux-libre")) + "</b>");
     }
 
     /*
@@ -120,7 +120,7 @@ void MainWindow::refreshDistroNews(bool searchForLatestNews, bool gotoNewsTab)
 void MainWindow::postRefreshDistroNews()
 {
   showDistroNews(g_fwDistroNews.result(), true); 
-  if (ui->twProperties->tabText(ctn_TABINDEX_NEWS).contains("**"))
+  if (ui->twProperties->tabText(ctn_TABINDEX_NEWS).contains(QLatin1String("**")))
   {
     ui->twProperties->setCurrentIndex(ctn_TABINDEX_NEWS);
   }
@@ -170,7 +170,7 @@ void MainWindow::showDistroNews(QString distroRSSXML, bool searchForLatestNews)
   }
 
   //Now that we have the html table code, let's put it into TextBrowser's News tab
-  QTextBrowser *text = ui->twProperties->widget(ctn_TABINDEX_NEWS)->findChild<QTextBrowser*>("textBrowser");
+  QTextBrowser *text = ui->twProperties->widget(ctn_TABINDEX_NEWS)->findChild<QTextBrowser*>(QStringLiteral("textBrowser"));
   if (text)
   {
     text->clear();
@@ -198,7 +198,7 @@ void MainWindow::onTabNewsSourceChanged(QUrl newSource)
   if(newSource.isRelative())
   {
     //If the user clicked a relative and impossible to display link...
-    QTextBrowser *text = ui->twProperties->widget(ctn_TABINDEX_NEWS)->findChild<QTextBrowser*>("textBrowser");
+    QTextBrowser *text = ui->twProperties->widget(ctn_TABINDEX_NEWS)->findChild<QTextBrowser*>(QStringLiteral("textBrowser"));
     if (text)
     {
       disconnect(text, SIGNAL(sourceChanged(QUrl)), this, SLOT(onTabNewsSourceChanged(QUrl)));
@@ -220,7 +220,7 @@ void MainWindow::initTabNews()
   gridLayoutX->setMargin(0);
 
   QTextBrowser *text = new QTextBrowser(tabNews);
-  text->setObjectName("textBrowser");
+  text->setObjectName(QStringLiteral("textBrowser"));
   text->setReadOnly(true);
   text->setFrameShape(QFrame::NoFrame);
   text->setFrameShadow(QFrame::Plain);
