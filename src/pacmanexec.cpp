@@ -206,12 +206,12 @@ void PacmanExec::parsePacmanProcessOutput(const QString &output)
   msg.remove(QRegularExpression(QStringLiteral(".+\\[Y/n\\].+")));
   //Let's remove color codes from strings...
 
-  msg.remove("\033[0;1m");
-  msg.remove("\033[0m");
+  msg.remove(QStringLiteral("\033[0;1m"));
+  msg.remove(QStringLiteral("\033[0m"));
   msg.remove(QStringLiteral("[1;33m"));
   msg.remove(QStringLiteral("[00;31m"));
-  msg.remove("\033[1;34m");
-  msg.remove("\033[0;1m");
+  msg.remove(QStringLiteral("\033[1;34m"));
+  msg.remove(QStringLiteral("\033[0;1m"));
   msg.remove(QStringLiteral("[1;1m"));
   msg.remove(QStringLiteral("[1;0m"));
   msg.remove(QStringLiteral("[1;m"));
@@ -238,7 +238,7 @@ void PacmanExec::parsePacmanProcessOutput(const QString &output)
   }
   else if ((msg.indexOf(QLatin1String("resolving dependencies...")) != -1) && m_commandExecuting == ectn_SYSTEM_UPGRADE)
   {
-    msg = "<br>" + msg;
+    msg = QLatin1String("<br>") + msg;
   }
 
   if (SettingsManager::getShowPackageNumbersOutput())
@@ -274,7 +274,7 @@ void PacmanExec::parsePacmanProcessOutput(const QString &output)
 
   else if (msg.contains(QLatin1String("download complete: ")))
   {
-    prepareTextToPrint(msg + "<br>");
+    prepareTextToPrint(msg + QLatin1String("<br>"));
     return;
   }
 
@@ -327,7 +327,7 @@ void PacmanExec::parsePacmanProcessOutput(const QString &output)
         if (searchForKeyVerbs(msg))
         {
           int end = msg.indexOf(QLatin1String("["));
-          msg = msg.remove(end, msg.size()-end).trimmed() + " ";
+          msg = msg.remove(end, msg.size()-end).trimmed() + QLatin1Char(' ');
           prepareTextToPrint(msg);
         }
         else
@@ -337,7 +337,7 @@ void PacmanExec::parsePacmanProcessOutput(const QString &output)
           if (pos >=0)
           {
             target = msg.left(pos);
-            target = target.trimmed() + " ";
+            target = target.trimmed() + QLatin1Char(' ');
 
             if (m_commandExecuting != ectn_SYNC_DATABASE &&
               (!target.contains(QLatin1String("-i686")) && !target.contains(QLatin1String("-x86_64")) && !target.contains(QLatin1String("-any")))) return; //WATCHOUT!
@@ -346,12 +346,12 @@ void PacmanExec::parsePacmanProcessOutput(const QString &output)
 
             if(!target.isEmpty())
             {
-              prepareTextToPrint("<b><font color=\"#b4ab58\">" + target + "</font></b>"); //#C9BE62
+              prepareTextToPrint(QLatin1String("<b><font color=\"#b4ab58\">") + target + QLatin1String("</font></b>")); //#C9BE62
             }
           }
           else
           {
-            prepareTextToPrint("<b><font color=\"#b4ab58\">" + msg + "</font></b>"); //#C9BE62
+            prepareTextToPrint(QLatin1String("<b><font color=\"#b4ab58\">") + msg + QLatin1String("</font></b>")); //#C9BE62
           }
         }
       }
@@ -363,7 +363,7 @@ void PacmanExec::parsePacmanProcessOutput(const QString &output)
 
           int end = msg.indexOf(QLatin1String("["));
           msg = msg.remove(end, msg.size()-end);
-          msg = msg.trimmed() + " ";
+          msg = msg.trimmed() + QLatin1Char(' ');
           prepareTextToPrint(msg);
         }
         else
@@ -372,7 +372,7 @@ void PacmanExec::parsePacmanProcessOutput(const QString &output)
           if (pos >=0)
           {
             target = msg.left(pos);
-            target = target.trimmed() + " ";
+            target = target.trimmed() + QLatin1Char(' ');
             if (m_debugMode) std::cout << "target: " << target.toLatin1().data() << std::endl;
 
             if (m_commandExecuting != ectn_SYNC_DATABASE &&
@@ -384,20 +384,20 @@ void PacmanExec::parsePacmanProcessOutput(const QString &output)
               {
                 if(m_commandExecuting == ectn_SYNC_DATABASE && !target.contains(QLatin1String("/")))
                 {
-                  prepareTextToPrint("<b><font color=\"#FF8040\">" +
-                                      StrConstants::getSyncing() + " " + target + "</font></b>");
+                  prepareTextToPrint(QLatin1String("<b><font color=\"#FF8040\">") +
+                                      StrConstants::getSyncing() + QLatin1Char(' ') + target + QLatin1String("</font></b>"));
                 }
                 else if (m_commandExecuting != ectn_SYNC_DATABASE)
                 {
-                  prepareTextToPrint("<b><font color=\"#b4ab58\">" +
-                                      target + "</font></b>"); //#C9BE62
+                  prepareTextToPrint(QLatin1String("<b><font color=\"#b4ab58\">") +
+                                      target + QLatin1String("</font></b>")); //#C9BE62
                 }
               }
             }
           }
           else
           {
-            prepareTextToPrint("<b><font color=\"blue\">" + msg + "</font></b>");
+            prepareTextToPrint(QLatin1String("<b><font color=\"blue\">") + msg + QLatin1String("</font></b>"));
           }
         }
       }
@@ -453,7 +453,7 @@ void PacmanExec::parsePacmanProcessOutput(const QString &output)
 
     if (!msg.isEmpty())
     {
-      if (m_textPrinted.contains(msg + " ")) return;
+      if (m_textPrinted.contains(msg + QLatin1Char(' '))) return;
 
       if (msg.contains(QRegularExpression(QStringLiteral("removing")))) //&& !m_textPrinted.contains(msg + " "))
       {
@@ -463,7 +463,7 @@ void PacmanExec::parsePacmanProcessOutput(const QString &output)
         if (pkgName.indexOf(QLatin1String("...")) != -1 || UnixCommand::isPackageInstalled(pkgName))
         {
           m_parsingAPackageChange = true;
-          prepareTextToPrint("<b><font color=\"#E55451\">" + msg + "</font></b>"); //RED
+          prepareTextToPrint(QLatin1String("<b><font color=\"#E55451\">") + msg + QLatin1String("</font></b>")); //RED
         }
       }
       else
@@ -471,7 +471,7 @@ void PacmanExec::parsePacmanProcessOutput(const QString &output)
         QString altMsg = msg;
 
         if (msg.contains(QLatin1String(":: Updating")) && m_commandExecuting == ectn_SYNC_DATABASE)
-          prepareTextToPrint("<br><b>" + StrConstants::getSyncDatabases() + " (pkgfile -u)</b><br>");
+          prepareTextToPrint(QLatin1String("<br><b>") + StrConstants::getSyncDatabases() + QLatin1String(" (pkgfile -u)</b><br>"));
 
         else if (msg.contains(QLatin1String("download complete: ")))
           prepareTextToPrint(altMsg);
@@ -496,7 +496,7 @@ void PacmanExec::parsePacmanProcessOutput(const QString &output)
                 repo.contains(QLatin1String("fontconfig"), Qt::CaseInsensitive) ||
                 repo.contains(QLatin1String("reading"), Qt::CaseInsensitive)) return;
 
-            altMsg = repo + " " + StrConstants::getIsUpToDate();
+            altMsg = repo + QLatin1Char(' ') + StrConstants::getIsUpToDate();
           }
 
           altMsg = Package::removeColorCodesFromStr(altMsg);
@@ -581,11 +581,11 @@ void PacmanExec::prepareTextToPrint(QString str, TreatString ts, TreatURLLinks t
         if (m_errorRetrievingFileCounter > 50) return;
       }
 
-      newStr = "<b><font color=\"#E55451\">" + newStr + "&nbsp;</font></b>"; //RED
+      newStr = QLatin1String("<b><font color=\"#E55451\">") + newStr + QLatin1String("&nbsp;</font></b>"); //RED
     }
     else if (newStr.contains(QLatin1String("warning"), Qt::CaseInsensitive) || (newStr.contains(QLatin1String("downgrading"))))
     {
-      newStr = "<b><font color=\"#FF8040\">" + newStr + "</font></b>"; //ORANGE
+      newStr = QLatin1String("<b><font color=\"#FF8040\">") + newStr + QLatin1String("</font></b>"); //ORANGE
     }
     else if(newStr.contains(QLatin1String("checking ")) ||
             newStr.contains(QLatin1String("is synced")) ||
@@ -599,12 +599,12 @@ void PacmanExec::prepareTextToPrint(QString str, TreatString ts, TreatURLLinks t
       {
         if (SettingsManager::getShowPackageNumbersOutput())
         {
-          newStr = "(" + QString::number(m_packageCounter) + "/" + QString::number(m_numberOfPackages) + ") " + newStr;
+          newStr = QLatin1Char('(') + QString::number(m_packageCounter) + QLatin1Char('/') + QString::number(m_numberOfPackages) + QLatin1String(") ") + newStr;
           if (m_packageCounter < m_numberOfPackages) m_packageCounter++;
         }
       }
 
-      newStr = "<b><font color=\"#4BC413\">" + newStr + "</font></b>"; //GREEN
+      newStr = QLatin1String("<b><font color=\"#4BC413\">") + newStr + QLatin1String("</font></b>"); //GREEN
     }
     else if (!newStr.contains(QLatin1String("::")))
     {
@@ -618,7 +618,7 @@ void PacmanExec::prepareTextToPrint(QString str, TreatString ts, TreatURLLinks t
   }
   else if (newStr.contains(QLatin1String("::")))
   {
-    newStr = "<br><B>" + newStr + "</B><br><br>";
+    newStr = QLatin1String("<br><B>") + newStr + QLatin1String("</B><br><br>");
 
     /*if (newStr.contains(":: Retrieving packages")) emit canStopTransaction(true);
     else if (newStr.contains(":: Processing package changes")) emit canStopTransaction(false);*/
@@ -645,14 +645,14 @@ void PacmanExec::prepareTextToPrint(QString str, TreatString ts, TreatURLLinks t
   if (SettingsManager::getShowPackageNumbersOutput() && m_commandExecuting != ectn_SYNC_DATABASE && newStr.contains(QLatin1String("#b4ab58")))
   {
     int c = newStr.indexOf(QLatin1String("#b4ab58\">")) + 9;
-    newStr.insert(c, "(" + QString::number(m_packageCounter) + "/" + QString::number(m_numberOfPackages) + ") ");
+    newStr.insert(c, QLatin1Char('(') + QString::number(m_packageCounter) + QLatin1Char('/') + QString::number(m_numberOfPackages) + QLatin1String(") "));
     if (m_packageCounter < m_numberOfPackages) m_packageCounter++;
   }
 
   if (SettingsManager::getShowPackageNumbersOutput() && m_parsingAPackageChange)
   {
     int c = newStr.indexOf(QLatin1String("#E55451\">")) + 9;
-    newStr.insert(c, "(" + QString::number(m_packageCounter) + "/" + QString::number(m_numberOfPackages) + ") ");
+    newStr.insert(c, QStringLiteral("(") + QString::number(m_packageCounter) + QLatin1Char('/') + QString::number(m_numberOfPackages) + QLatin1String(") "));
     if (m_packageCounter < m_numberOfPackages) m_packageCounter++;
   }
   //Package counter code...
@@ -675,35 +675,35 @@ void PacmanExec::onStarted()
   //First we output the name of action we are starting to execute!
   if (m_commandExecuting == ectn_CHECK_UPDATES)
   {
-    prepareTextToPrint("<b>" + StrConstants::getCheckingForUpdates() + "</b><br><br>", ectn_DONT_TREAT_STRING, ectn_DONT_TREAT_URL_LINK);
+    prepareTextToPrint(QLatin1String("<b>") + StrConstants::getCheckingForUpdates() + QLatin1String("</b><br><br>"), ectn_DONT_TREAT_STRING, ectn_DONT_TREAT_URL_LINK);
   }
   else if (m_commandExecuting == ectn_MIRROR_CHECK)
   {
-    prepareTextToPrint("<b>" + StrConstants::getSyncMirror() + "</b><br><br>", ectn_DONT_TREAT_STRING, ectn_DONT_TREAT_URL_LINK);
+    prepareTextToPrint(QLatin1String("<b>") + StrConstants::getSyncMirror() + QLatin1String("</b><br><br>"), ectn_DONT_TREAT_STRING, ectn_DONT_TREAT_URL_LINK);
   }
   else if (m_commandExecuting == ectn_SYNC_DATABASE)
   {
-    prepareTextToPrint("<b>" + StrConstants::getSyncDatabases() + "</b><br><br>", ectn_DONT_TREAT_STRING, ectn_DONT_TREAT_URL_LINK);
+    prepareTextToPrint(QLatin1String("<b>") + StrConstants::getSyncDatabases() + QLatin1String("</b><br><br>"), ectn_DONT_TREAT_STRING, ectn_DONT_TREAT_URL_LINK);
   }
   else if (m_commandExecuting == ectn_SYSTEM_UPGRADE || m_commandExecuting == ectn_RUN_SYSTEM_UPGRADE_IN_TERMINAL)
   {
-    prepareTextToPrint("<b>" + StrConstants::getSystemUpgradeMsg() + "</b><br><br>", ectn_DONT_TREAT_STRING, ectn_DONT_TREAT_URL_LINK);
+    prepareTextToPrint(QLatin1String("<b>") + StrConstants::getSystemUpgradeMsg() + QLatin1String("</b><br><br>"), ectn_DONT_TREAT_STRING, ectn_DONT_TREAT_URL_LINK);
   }
   else if (m_commandExecuting == ectn_REMOVE)
   {
-    prepareTextToPrint("<b>" + StrConstants::getRemovingPackages() + "</b><br><br>", ectn_DONT_TREAT_STRING, ectn_DONT_TREAT_URL_LINK);
+    prepareTextToPrint(QLatin1String("<b>") + StrConstants::getRemovingPackages() + QLatin1String("</b><br><br>"), ectn_DONT_TREAT_STRING, ectn_DONT_TREAT_URL_LINK);
   }
   else if (m_commandExecuting == ectn_INSTALL)
   {
-    prepareTextToPrint("<b>" + StrConstants::getInstallingPackages() + "</b><br><br>", ectn_DONT_TREAT_STRING, ectn_DONT_TREAT_URL_LINK);
+    prepareTextToPrint(QLatin1String("<b>") + StrConstants::getInstallingPackages() + QLatin1String("</b><br><br>"), ectn_DONT_TREAT_STRING, ectn_DONT_TREAT_URL_LINK);
   }
   else if (m_commandExecuting == ectn_REMOVE_INSTALL)
   {
-    prepareTextToPrint("<b>" + StrConstants::getRemovingAndInstallingPackages() + "</b><br><br>", ectn_DONT_TREAT_STRING, ectn_DONT_TREAT_URL_LINK);
+    prepareTextToPrint(QLatin1String("<b>") + StrConstants::getRemovingAndInstallingPackages() + QLatin1String("</b><br><br>"), ectn_DONT_TREAT_STRING, ectn_DONT_TREAT_URL_LINK);
   }
   else if (m_commandExecuting == ectn_RUN_IN_TERMINAL)
   {
-    prepareTextToPrint("<b>" + StrConstants::getRunningCommandInTerminal() + "</b><br><br>", ectn_DONT_TREAT_STRING, ectn_DONT_TREAT_URL_LINK);
+    prepareTextToPrint(QLatin1String("<b>") + StrConstants::getRunningCommandInTerminal() + QLatin1String("</b><br><br>"), ectn_DONT_TREAT_STRING, ectn_DONT_TREAT_URL_LINK);
   }
 
   QString output = m_unixCommand->readAllStandardOutput();
@@ -769,9 +769,9 @@ void PacmanExec::onReadOutput()
     QString output = m_unixCommand->readAllStandardOutput();
 
     output.remove(QStringLiteral("[01;33m"));
-    output.remove("\033[01;37m");
-    output.remove("\033[00m");
-    output.remove("\033[00;32m");
+    output.remove(QStringLiteral("\033[01;37m"));
+    output.remove(QStringLiteral("\033[00m"));
+    output.remove(QStringLiteral("\033[00;32m"));
     output.remove(QStringLiteral("[00;31m"));
     output.replace(QLatin1String("["), QLatin1String("'"));
     output.replace(QLatin1String("]"), QLatin1String("'"));
@@ -833,9 +833,9 @@ void PacmanExec::onReadOutputError()
     QString output = m_unixCommand->readAllStandardError();
 
     output.remove(QStringLiteral("[01;33m"));
-    output.remove("\033[01;37m");
-    output.remove("\033[00m");
-    output.remove("\033[00;32m");
+    output.remove(QStringLiteral("\033[01;37m"));
+    output.remove(QStringLiteral("\033[00m"));
+    output.remove(QStringLiteral("\033[00;32m"));
     output.remove(QStringLiteral("[00;31m"));
     output.remove(QStringLiteral("\n"));
 
@@ -924,21 +924,21 @@ void PacmanExec::doInstall(const QString &listOfPackages)
 
   if (isDatabaseLocked())
   {
-    command += "rm " + ctn_PACMAN_DATABASE_LOCK_FILE + "; ";
+    command += QLatin1String("rm ") + ctn_PACMAN_DATABASE_LOCK_FILE + QLatin1String("; ");
   }
 
-  command += "pacman -S --noconfirm " + listOfPackages;
+  command += QLatin1String("pacman -S --noconfirm ") + listOfPackages;
 
   m_lastCommandList.clear();
 
   if (isDatabaseLocked())
   {
-    m_lastCommandList.append("rm " + ctn_PACMAN_DATABASE_LOCK_FILE + ";");
+    m_lastCommandList.append(QLatin1String("rm ") + ctn_PACMAN_DATABASE_LOCK_FILE + QLatin1Char(';'));
   }
 
-  m_lastCommandList.append("pacman -S " + listOfPackages + ";");
+  m_lastCommandList.append(QLatin1String("pacman -S ") + listOfPackages + QLatin1Char(';'));
   m_lastCommandList.append(QStringLiteral("echo -e;"));
-  m_lastCommandList.append("read -n 1 -p \"" + StrConstants::getPressAnyKey() + "\"");
+  m_lastCommandList.append(QLatin1String("read -n 1 -p \"") + StrConstants::getPressAnyKey() + QLatin1Char('"'));
 
   m_commandExecuting = ectn_INSTALL;
   m_unixCommand->executeCommandWithSharedMemHelper(command, m_sharedMemory);
@@ -953,12 +953,12 @@ void PacmanExec::doInstallInTerminal(const QString &listOfPackages)
 
   if (isDatabaseLocked())
   {
-    m_lastCommandList.append("rm " + ctn_PACMAN_DATABASE_LOCK_FILE + ";");
+    m_lastCommandList.append(QLatin1String("rm ") + ctn_PACMAN_DATABASE_LOCK_FILE + QLatin1Char(';'));
   }
 
-  m_lastCommandList.append("pacman -S " + listOfPackages);
+  m_lastCommandList.append(QLatin1String("pacman -S ") + listOfPackages);
   m_lastCommandList.append(QStringLiteral("echo -e"));
-  m_lastCommandList.append("read -n 1 -p \"" + StrConstants::getPressAnyKey() + "\"");
+  m_lastCommandList.append(QLatin1String("read -n 1 -p \"") + StrConstants::getPressAnyKey() + QLatin1Char('"'));
 
   m_commandExecuting = ectn_RUN_IN_TERMINAL;
   m_unixCommand->runOctopiHelperInTerminalWithSharedMem(m_lastCommandList, m_sharedMemory);
@@ -975,7 +975,7 @@ void PacmanExec::doInstallLocal(const QString &listOfPackages)
 
   if (isDatabaseLocked())
   {
-    command += "rm " + ctn_PACMAN_DATABASE_LOCK_FILE + "; ";
+    command += QLatin1String("rm ") + ctn_PACMAN_DATABASE_LOCK_FILE + QLatin1String("; ");
   }
 
   packages=listOfPackages.split(QStringLiteral(";"), QString::SkipEmptyParts);
@@ -984,29 +984,29 @@ void PacmanExec::doInstallLocal(const QString &listOfPackages)
   {
     if(p.trimmed().isEmpty()) continue;
     if (dontUseForce)
-      command += "pacman -U --noconfirm \"" + p.trimmed() + "\";";
+      command += QLatin1String("pacman -U --noconfirm \"") + p.trimmed() + QLatin1String("\";");
     else
-      command += "pacman -U --force --noconfirm \"" + p.trimmed() + "\";";
+      command += QLatin1String("pacman -U --force --noconfirm \"") + p.trimmed() + QLatin1String("\";");
   }
 
   m_lastCommandList.clear();
 
   if (isDatabaseLocked())
   {
-    m_lastCommandList.append("rm " + ctn_PACMAN_DATABASE_LOCK_FILE + ";");
+    m_lastCommandList.append(QLatin1String("rm ") + ctn_PACMAN_DATABASE_LOCK_FILE + QLatin1Char(';'));
   }
 
   foreach(QString p, packages)
   {
     if(p.trimmed().isEmpty()) continue;
     if (dontUseForce)
-      m_lastCommandList.append("pacman -U \"" + p.trimmed() + "\";");
+      m_lastCommandList.append(QLatin1String("pacman -U \"") + p.trimmed() + QLatin1String("\";"));
     else
-      m_lastCommandList.append("pacman -U --force \"" + p.trimmed() + "\";");
+      m_lastCommandList.append(QLatin1String("pacman -U --force \"") + p.trimmed() + QLatin1String("\";"));
   }
 
   m_lastCommandList.append(QStringLiteral("echo -e;"));
-  m_lastCommandList.append("read -n 1 -p '" + StrConstants::getPressAnyKey() + "'");
+  m_lastCommandList.append(QLatin1String("read -n 1 -p '") + StrConstants::getPressAnyKey() + QLatin1Char('\''));
 
   m_commandExecuting = ectn_INSTALL;
   //std::cout << "COMMAND: " << command.toLatin1().data() << std::endl;
@@ -1026,8 +1026,8 @@ void PacmanExec::doInstallLocalInTerminal(const QString &listOfPackages)
 
   if (isDatabaseLocked())
   {
-    m_lastCommandList.append("rm " + ctn_PACMAN_DATABASE_LOCK_FILE + ";");
-    command+="rm " + ctn_PACMAN_DATABASE_LOCK_FILE + ";";
+    m_lastCommandList.append(QLatin1String("rm ") + ctn_PACMAN_DATABASE_LOCK_FILE + QLatin1Char(';'));
+    command+=QLatin1String("rm ") + ctn_PACMAN_DATABASE_LOCK_FILE + QLatin1Char(';');
   }
 
   packages=listOfPackages.split(QStringLiteral(";"), QString::SkipEmptyParts);
@@ -1038,19 +1038,19 @@ void PacmanExec::doInstallLocalInTerminal(const QString &listOfPackages)
 
     if (dontUseForce)
     {
-      command+="pacman -U \"" + p.trimmed() + "\";";
-      m_lastCommandList.append("pacman -U \"" + p.trimmed() + "\"");
+      command+=QLatin1String("pacman -U \"") + p.trimmed() + QLatin1String("\";");
+      m_lastCommandList.append(QLatin1String("pacman -U \"") + p.trimmed() + QLatin1Char('"'));
     }
     else
     {
-      command+="pacman -U --force \"" + p.trimmed() + "\";";
-      m_lastCommandList.append("pacman -U --force \"" + p.trimmed() + "\"");
+      command+=QLatin1String("pacman -U --force \"") + p.trimmed() + QLatin1String("\";");
+      m_lastCommandList.append(QLatin1String("pacman -U --force \"") + p.trimmed() + QLatin1Char('"'));
     }
   }
 
   m_lastCommandList.append(QStringLiteral("echo -e"));
-  m_lastCommandList.append("read -n 1 -p \"" + StrConstants::getPressAnyKey() + "\"");
-  command+="echo '" + StrConstants::getPressAnyKey() + "'";
+  m_lastCommandList.append(QLatin1String("read -n 1 -p \"") + StrConstants::getPressAnyKey() + QLatin1Char('"'));
+  command+=QLatin1String("echo '") + StrConstants::getPressAnyKey() + QLatin1Char('\'');
 
   m_commandExecuting = ectn_RUN_IN_TERMINAL;
   //std::cout << "COMMAND: " << command.toLatin1().data() << std::endl;
@@ -1066,21 +1066,21 @@ void PacmanExec::doRemove(const QString &listOfPackages)
 
   if (isDatabaseLocked())
   {
-    command += "rm " + ctn_PACMAN_DATABASE_LOCK_FILE + "; ";
+    command += QLatin1String("rm ") + ctn_PACMAN_DATABASE_LOCK_FILE + QLatin1String("; ");
   }
 
-  command += "pacman -R --noconfirm " + listOfPackages;
+  command += QLatin1String("pacman -R --noconfirm ") + listOfPackages;
 
   m_lastCommandList.clear();
 
   if (isDatabaseLocked())
   {
-    m_lastCommandList.append("rm " + ctn_PACMAN_DATABASE_LOCK_FILE + ";");
+    m_lastCommandList.append(QLatin1String("rm ") + ctn_PACMAN_DATABASE_LOCK_FILE + QLatin1Char(';'));
   }
 
-  m_lastCommandList.append("pacman -R " + listOfPackages + ";");
+  m_lastCommandList.append(QLatin1String("pacman -R ") + listOfPackages + QLatin1Char(';'));
   m_lastCommandList.append(QStringLiteral("echo -e;"));
-  m_lastCommandList.append("read -n 1 -p \"" + StrConstants::getPressAnyKey() + "\"");
+  m_lastCommandList.append(QLatin1String("read -n 1 -p \"") + StrConstants::getPressAnyKey() + QLatin1Char('"'));
 
   m_commandExecuting = ectn_REMOVE;  
   m_unixCommand->executeCommandWithSharedMemHelper(command, m_sharedMemory);
@@ -1095,12 +1095,12 @@ void PacmanExec::doRemoveInTerminal(const QString &listOfPackages)
 
   if (isDatabaseLocked())
   {
-    m_lastCommandList.append("rm " + ctn_PACMAN_DATABASE_LOCK_FILE);
+    m_lastCommandList.append(QLatin1String("rm ") + ctn_PACMAN_DATABASE_LOCK_FILE);
   }
 
-  m_lastCommandList.append("pacman -R " + listOfPackages);
+  m_lastCommandList.append(QLatin1String("pacman -R ") + listOfPackages);
   m_lastCommandList.append(QStringLiteral("echo -e"));
-  m_lastCommandList.append("read -n 1 -p \"" + StrConstants::getPressAnyKey() + "\"");
+  m_lastCommandList.append(QLatin1String("read -n 1 -p \"") + StrConstants::getPressAnyKey() + QLatin1Char('"'));
 
   m_commandExecuting = ectn_RUN_IN_TERMINAL;
   m_unixCommand->runOctopiHelperInTerminalWithSharedMem(m_lastCommandList, m_sharedMemory);
@@ -1115,22 +1115,22 @@ void PacmanExec::doRemoveAndInstall(const QString &listOfPackagestoRemove, const
 
   if (isDatabaseLocked())
   {
-    command += "rm " + ctn_PACMAN_DATABASE_LOCK_FILE + "; ";
+    command += QLatin1String("rm ") + ctn_PACMAN_DATABASE_LOCK_FILE + QLatin1String("; ");
   }
 
-  command += "pacman -R --noconfirm " + listOfPackagestoRemove + "; pacman -S --noconfirm " + listOfPackagestoInstall;
+  command += QLatin1String("pacman -R --noconfirm ") + listOfPackagestoRemove + QLatin1String("; pacman -S --noconfirm ") + listOfPackagestoInstall;
 
   m_lastCommandList.clear();
 
   if (isDatabaseLocked())
   {
-    m_lastCommandList.append("rm " + ctn_PACMAN_DATABASE_LOCK_FILE + ";");
+    m_lastCommandList.append(QLatin1String("rm ") + ctn_PACMAN_DATABASE_LOCK_FILE + QLatin1Char(';'));
   }
 
-  m_lastCommandList.append("pacman -R " + listOfPackagestoRemove + ";");
-  m_lastCommandList.append("pacman -S " + listOfPackagestoInstall + ";");
+  m_lastCommandList.append(QLatin1String("pacman -R ") + listOfPackagestoRemove + QLatin1Char(';'));
+  m_lastCommandList.append(QLatin1String("pacman -S ") + listOfPackagestoInstall + QLatin1Char(';'));
   m_lastCommandList.append(QStringLiteral("echo -e;"));
-  m_lastCommandList.append("read -n 1 -p \"" + StrConstants::getPressAnyKey() + "\"");
+  m_lastCommandList.append(QLatin1String("read -n 1 -p \"") + StrConstants::getPressAnyKey() + QLatin1Char('"'));
 
   m_commandExecuting = ectn_REMOVE_INSTALL;
   m_unixCommand->executeCommandWithSharedMemHelper(command, m_sharedMemory);
@@ -1145,13 +1145,13 @@ void PacmanExec::doRemoveAndInstallInTerminal(const QString &listOfPackagestoRem
 
   if (isDatabaseLocked())
   {
-    m_lastCommandList.append("rm " + ctn_PACMAN_DATABASE_LOCK_FILE);
+    m_lastCommandList.append(QLatin1String("rm ") + ctn_PACMAN_DATABASE_LOCK_FILE);
   }
 
-  m_lastCommandList.append("pacman -R " + listOfPackagestoRemove);
-  m_lastCommandList.append("pacman -S " + listOfPackagestoInstall);
+  m_lastCommandList.append(QLatin1String("pacman -R ") + listOfPackagestoRemove);
+  m_lastCommandList.append(QLatin1String("pacman -S ") + listOfPackagestoInstall);
   m_lastCommandList.append(QStringLiteral("echo -e"));
-  m_lastCommandList.append("read -n 1 -p \"" + StrConstants::getPressAnyKey() + "\"");
+  m_lastCommandList.append(QLatin1String("read -n 1 -p \"") + StrConstants::getPressAnyKey() + QLatin1Char('"'));
 
   m_commandExecuting = ectn_RUN_IN_TERMINAL;
   m_unixCommand->runOctopiHelperInTerminalWithSharedMem(m_lastCommandList, m_sharedMemory);
@@ -1166,7 +1166,7 @@ void PacmanExec::doSystemUpgrade()
 
   if (isDatabaseLocked())
   {
-    command += "rm " + ctn_PACMAN_DATABASE_LOCK_FILE + "; ";
+    command += QLatin1String("rm ") + ctn_PACMAN_DATABASE_LOCK_FILE + QLatin1String("; ");
   }
 
   command += QLatin1String("pacman -Syu --noconfirm");
@@ -1175,12 +1175,12 @@ void PacmanExec::doSystemUpgrade()
 
   if (isDatabaseLocked())
   {
-    m_lastCommandList.append("rm " + ctn_PACMAN_DATABASE_LOCK_FILE + ";");
+    m_lastCommandList.append(QLatin1String("rm ") + ctn_PACMAN_DATABASE_LOCK_FILE + QLatin1Char(';'));
   }
 
   m_lastCommandList.append(QStringLiteral("pacman -Syu;"));
   m_lastCommandList.append(QStringLiteral("echo -e;"));
-  m_lastCommandList.append("read -n 1 -p \"" + StrConstants::getPressAnyKey() + "\"");
+  m_lastCommandList.append(QLatin1String("read -n 1 -p \"") + StrConstants::getPressAnyKey() + QLatin1Char('"'));
 
   m_commandExecuting = ectn_SYSTEM_UPGRADE;
   m_unixCommand->executeCommandWithSharedMemHelper(command, m_sharedMemory);
@@ -1195,7 +1195,7 @@ void PacmanExec::doSystemUpgradeInTerminal(CommandExecuting additionalCommand)
 
   if (isDatabaseLocked())
   {
-    m_lastCommandList.append("rm " + ctn_PACMAN_DATABASE_LOCK_FILE);
+    m_lastCommandList.append(QLatin1String("rm ") + ctn_PACMAN_DATABASE_LOCK_FILE);
   }
 
   if (additionalCommand == ectn_NONE)
@@ -1204,7 +1204,7 @@ void PacmanExec::doSystemUpgradeInTerminal(CommandExecuting additionalCommand)
     m_lastCommandList.append(QStringLiteral("pacman -Syu"));
 
   m_lastCommandList.append(QStringLiteral("echo -e"));
-  m_lastCommandList.append("read -n 1 -p \"" + StrConstants::getPressAnyKey() + "\"");
+  m_lastCommandList.append(QLatin1String("read -n 1 -p \"") + StrConstants::getPressAnyKey() + QLatin1Char('"'));
 
   m_commandExecuting = ectn_RUN_SYSTEM_UPGRADE_IN_TERMINAL;
   m_unixCommand->runOctopiHelperInTerminalWithSharedMem(m_lastCommandList, m_sharedMemory);
@@ -1219,27 +1219,27 @@ void PacmanExec::doAURUpgrade(const QString &listOfPackages)
 
   if (Package::getForeignRepositoryToolName() == ctn_PACAUR_TOOL)
   {
-    m_lastCommandList.append(Package::getForeignRepositoryToolNameParam() + " -Sa " + listOfPackages + ";");
+    m_lastCommandList.append(Package::getForeignRepositoryToolNameParam() + QLatin1String(" -Sa ") + listOfPackages + QLatin1Char(';'));
   }
   else if (Package::getForeignRepositoryToolName() == ctn_YAOURT_TOOL)
   {
-    m_lastCommandList.append(Package::getForeignRepositoryToolNameParam() + " -S " + listOfPackages + ";");
+    m_lastCommandList.append(Package::getForeignRepositoryToolNameParam() + QLatin1String(" -S ") + listOfPackages + QLatin1Char(';'));
   }
   else if (Package::getForeignRepositoryToolName() == ctn_TRIZEN_TOOL)
   {
-    m_lastCommandList.append(Package::getForeignRepositoryToolNameParam() + " -Sa " + listOfPackages + ";");
+    m_lastCommandList.append(Package::getForeignRepositoryToolNameParam() + QLatin1String(" -Sa ") + listOfPackages + QLatin1Char(';'));
   }
   else if (Package::getForeignRepositoryToolName() == ctn_PIKAUR_TOOL)
   {
-    m_lastCommandList.append(Package::getForeignRepositoryToolNameParam() + " -S --aur " + listOfPackages + ";");
+    m_lastCommandList.append(Package::getForeignRepositoryToolNameParam() + QLatin1String(" -S --aur ") + listOfPackages + QLatin1Char(';'));
   }
   else if (Package::getForeignRepositoryToolName() == ctn_YAY_TOOL)
   {
-    m_lastCommandList.append(Package::getForeignRepositoryToolNameParam() + " -S " + listOfPackages + ";");
+    m_lastCommandList.append(Package::getForeignRepositoryToolNameParam() + QLatin1String(" -S ") + listOfPackages + QLatin1Char(';'));
   }
 
   m_lastCommandList.append(QStringLiteral("echo -e;"));
-  m_lastCommandList.append("read -n 1 -p \"" + StrConstants::getPressAnyKey() + "\"");
+  m_lastCommandList.append(QLatin1String("read -n 1 -p \"") + StrConstants::getPressAnyKey() + QLatin1Char('"'));
 
   m_commandExecuting = ectn_RUN_IN_TERMINAL;
   m_unixCommand->runCommandInTerminalAsNormalUser(m_lastCommandList);
@@ -1253,22 +1253,22 @@ void PacmanExec::doAURInstall(const QString &listOfPackages)
   m_lastCommandList.clear();
 
   if (UnixCommand::getLinuxDistro() == ectn_KAOS)
-    m_lastCommandList.append(Package::getForeignRepositoryToolNameParam() + " -i " + listOfPackages + ";");
+    m_lastCommandList.append(Package::getForeignRepositoryToolNameParam() + QLatin1String(" -i ") + listOfPackages + QLatin1Char(';'));
   else if (Package::getForeignRepositoryToolName() == ctn_PACAUR_TOOL)
-    m_lastCommandList.append(Package::getForeignRepositoryToolNameParam() + " -Sa " + listOfPackages + ";");
+    m_lastCommandList.append(Package::getForeignRepositoryToolNameParam() + QLatin1String(" -Sa ") + listOfPackages + QLatin1Char(';'));
   else if (Package::getForeignRepositoryToolName() == ctn_YAOURT_TOOL)
-    m_lastCommandList.append(Package::getForeignRepositoryToolNameParam() + " -S " + listOfPackages + ";");
+    m_lastCommandList.append(Package::getForeignRepositoryToolNameParam() + QLatin1String(" -S ") + listOfPackages + QLatin1Char(';'));
   else if (Package::getForeignRepositoryToolName() == ctn_TRIZEN_TOOL)
-    m_lastCommandList.append(Package::getForeignRepositoryToolNameParam() + " -Sa " + listOfPackages + ";");
+    m_lastCommandList.append(Package::getForeignRepositoryToolNameParam() + QLatin1String(" -Sa ") + listOfPackages + QLatin1Char(';'));
   else if (Package::getForeignRepositoryToolName() == ctn_PIKAUR_TOOL)
-    m_lastCommandList.append(Package::getForeignRepositoryToolNameParam() + " -S --aur " + listOfPackages + ";");
+    m_lastCommandList.append(Package::getForeignRepositoryToolNameParam() + QLatin1String(" -S --aur ") + listOfPackages + QLatin1Char(';'));
   else if (Package::getForeignRepositoryToolName() == ctn_YAY_TOOL)
-    m_lastCommandList.append(Package::getForeignRepositoryToolNameParam() + " -S --aur " + listOfPackages + ";");
+    m_lastCommandList.append(Package::getForeignRepositoryToolNameParam() + QLatin1String(" -S --aur ") + listOfPackages + QLatin1Char(';'));
   else if (Package::getForeignRepositoryToolName() == ctn_CHASER_TOOL)
-    m_lastCommandList.append(Package::getForeignRepositoryToolNameParam() + " install " + listOfPackages + ";");
+    m_lastCommandList.append(Package::getForeignRepositoryToolNameParam() + QLatin1String(" install ") + listOfPackages + QLatin1Char(';'));
 
   m_lastCommandList.append(QStringLiteral("echo -e;"));
-  m_lastCommandList.append("read -n 1 -p \"" + StrConstants::getPressAnyKey() + "\"");
+  m_lastCommandList.append(QLatin1String("read -n 1 -p \"") + StrConstants::getPressAnyKey() + QLatin1Char('"'));
 
   m_commandExecuting = ectn_RUN_IN_TERMINAL;
   m_unixCommand->runCommandInTerminalAsNormalUser(m_lastCommandList);
@@ -1280,11 +1280,11 @@ void PacmanExec::doAURInstall(const QString &listOfPackages)
 void PacmanExec::doInstallYayUsingTempYay()
 {
   m_lastCommandList.clear();
-  QString octopiConfDir = QDir::homePath() + QDir::separator() + ".config/octopi";
-  QString cmd = octopiConfDir + QDir::separator() + "yay --noconfirm --noeditmenu -S yay-bin;";
+  QString octopiConfDir = QDir::homePath() + QDir::separator() + QLatin1String(".config/octopi");
+  QString cmd = octopiConfDir + QDir::separator() + QLatin1String("yay --noconfirm --noeditmenu -S yay-bin;");
   m_lastCommandList.append(cmd);
   m_lastCommandList.append(QStringLiteral("echo -e;"));
-  m_lastCommandList.append("read -n 1 -p \"" + StrConstants::getPressAnyKey() + "\"");
+  m_lastCommandList.append(QLatin1String("read -n 1 -p \"") + StrConstants::getPressAnyKey() + QLatin1Char('"'));
   m_commandExecuting = ectn_RUN_IN_TERMINAL;
   m_unixCommand->runCommandInTerminalAsNormalUser(m_lastCommandList);
 }
@@ -1299,16 +1299,16 @@ void PacmanExec::doAURRemove(const QString &listOfPackages)
       Package::getForeignRepositoryToolName() == ctn_KCP_TOOL ||
       Package::getForeignRepositoryToolName() == ctn_PIKAUR_TOOL)
   {
-    m_lastCommandList.append("pacman -R " + listOfPackages + ";");
+    m_lastCommandList.append(QLatin1String("pacman -R ") + listOfPackages + QLatin1Char(';'));
   }
   else
   {
     m_lastCommandList.append(Package::getForeignRepositoryToolNameParam() +
-                             " -R " + listOfPackages + ";");
+                             QLatin1String(" -R ") + listOfPackages + QLatin1Char(';'));
   }
 
   m_lastCommandList.append(QStringLiteral("echo -e;"));
-  m_lastCommandList.append("read -n 1 -p \"" + StrConstants::getPressAnyKey() + "\"");
+  m_lastCommandList.append(QLatin1String("read -n 1 -p \"") + StrConstants::getPressAnyKey() + QLatin1Char('"'));
 
   if (Package::getForeignRepositoryToolName() == ctn_KCP_TOOL)
     m_commandExecuting = ectn_REMOVE_KCP_PKG;

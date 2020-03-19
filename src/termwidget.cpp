@@ -120,7 +120,7 @@ void TermWidget::parseOutput(QString str)
   //qDebug() << "terminal: " << str << endl;
 
   if ((str == StrConstants::getPressAnyKey() ||
-       str == StrConstants::getPressAnyKey() + "\r\n") ||
+       str == StrConstants::getPressAnyKey() + QLatin1String("\r\n")) ||
       str.contains(StrConstants::getSuspiciousExecutionDetected()) ||
       str.contains(StrConstants::getSuspiciousTransactionDetected()) ||
       str.contains(StrConstants::getCouldNotAttachToParent())

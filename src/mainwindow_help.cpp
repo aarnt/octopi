@@ -81,16 +81,16 @@ QString MainWindow::generateHelpUsageHtmlText()
   QString strOutdatedAur;
   if(m_hasAURTool && UnixCommand::getLinuxDistro() != ectn_CHAKRA && !SettingsManager::getSearchOutdatedAURPackages())
   {
-    strOutdatedAur="<li>" +
-        tr("Ctrl+Shift+O to display outdated %1 packages").arg(StrConstants::getForeignRepositoryName()) + "</li>";
+    strOutdatedAur=QLatin1String("<li>") +
+        tr("Ctrl+Shift+O to display outdated %1 packages").arg(StrConstants::getForeignRepositoryName()) + QLatin1String("</li>");
   }
   else strOutdatedAur=QStringLiteral("<li></li>");
 
   QString strVote;
   if(m_aurVote != nullptr)
   {
-    strVote="<li>" +
-       tr("Ctrl+Shift+A to display AUR voted package list") + "</li>";
+    strVote=QLatin1String("<li>") +
+       tr("Ctrl+Shift+A to display AUR voted package list") + QLatin1String("</li>");
   }
   else strVote=QStringLiteral("<li></li>");
 
@@ -98,34 +98,34 @@ QString MainWindow::generateHelpUsageHtmlText()
   QString strForMoreInfo = tr("For more information, visit:");
   QString html =
     QStringLiteral("<h2>Octopi</h2>") +
-    QStringLiteral("<h3><p>") + tr("A Qt-based Pacman frontend,") + " " +
-    tr("licensed under the terms of") + " ";
+    QStringLiteral("<h3><p>") + tr("A Qt-based Pacman frontend,") + QLatin1Char(' ') +
+    tr("licensed under the terms of") + QLatin1Char(' ');
 
     html +=
       QStringLiteral("<a href=\"http://www.gnu.org/licenses/gpl-2.0.html\">GPL v2</a>.</p></h3>") +
-      QStringLiteral("<h4><p>") + strForMoreInfo + " " +
+      QStringLiteral("<h4><p>") + strForMoreInfo + QLatin1Char(' ') +
       QStringLiteral("<a href=\"http://octopiproject.wordpress.com\">http://octopiproject.wordpress.com</a>.</p></h4><br>");
     html +=
       tr("Package classification:") +
 
-  QStringLiteral("<ul type=\"square\"><li>") + iconPath + "installed.png\"/> " +
+  QStringLiteral("<ul type=\"square\"><li>") + iconPath + QLatin1String("installed.png\"/> ") +
      tr("An installed package") + QStringLiteral("</li>") +
-  QStringLiteral("<li>") + iconPath + "unrequired.png\"/> " +
+  QStringLiteral("<li>") + iconPath + QLatin1String("unrequired.png\"/> ") +
      tr("An installed package (not required by others)") +
   QStringLiteral("</li>") +
-  QString("<li>" + iconPath + "foreign_green.png\"/> ") +
-     tr("A foreign package, installed from") + " " + StrConstants::getForeignRepositoryName() +
+  QString(QLatin1String("<li>") + iconPath + QLatin1String("foreign_green.png\"/> ")) +
+     tr("A foreign package, installed from") + QLatin1Char(' ') + StrConstants::getForeignRepositoryName() +
   QStringLiteral("</li>") +
-  QStringLiteral("<li>") + iconPath + "noninstalled.png\"/> " +
+  QStringLiteral("<li>") + iconPath + QLatin1String("noninstalled.png\"/> ") +
      tr("A non installed package") +
   QStringLiteral("</li>") +
-  QStringLiteral("<li>") + iconPath + "outdated.png\"/> " +
+  QStringLiteral("<li>") + iconPath + QLatin1String("outdated.png\"/> ") +
      tr("An outdated package") +
   QStringLiteral("</li>") +
-  QStringLiteral("<li>") + iconPath + "foreign_red.png\"/> " +
+  QStringLiteral("<li>") + iconPath + QLatin1String("foreign_red.png\"/> ") +
      tr("An outdated foreign package") +
   QStringLiteral("</li>") +
-  QStringLiteral("<li>") + iconPath + "newer.png\"/> " +
+  QStringLiteral("<li>") + iconPath + QLatin1String("newer.png\"/> ") +
            tr("A newer than repository package") +
   QStringLiteral("</li></ul>") +
      tr("Basic usage help:") +
@@ -181,7 +181,7 @@ QString MainWindow::generateHelpUsageHtmlText()
   QStringLiteral("<li>") +
      tr("Ctrl+Shift+G to display all package groups") +
   QStringLiteral("</li>") +
-     strOutdatedAur + "<li>" +
+     strOutdatedAur + QLatin1String("<li>") +
      //tr("Ctrl+Shift+R to remove Pacman's transaction lock file") +
   //QString("</li><li>") +
      tr("Ctrl+Shift+Y to display %1 group").arg(StrConstants::getForeignRepositoryGroupName()) +
@@ -240,20 +240,20 @@ void MainWindow::onHelpDonate()
 void MainWindow::onHelpAbout()
 {
   QString aboutText =
-      "<b>" + StrConstants::getApplicationName() + "</b><br>";
+      QLatin1String("<b>") + StrConstants::getApplicationName() + QLatin1String("</b><br>");
 
-  aboutText += StrConstants::getVersion() + ": " + StrConstants::getApplicationVersion() + " - " + StrConstants::getQtVersion() + "<br>";
-  aboutText += StrConstants::getURL() + ": " +
-      "<a href=\"https://tintaescura.com/projects/octopi/\">https://tintaescura.com/projects/octopi</a><br>";
-  aboutText += StrConstants::getLicenses() + ": " + QStringLiteral("<a href=\"http://www.gnu.org/licenses/gpl-2.0.html\">GPL v2</a><br>");
+  aboutText += StrConstants::getVersion() + QLatin1String(": ") + StrConstants::getApplicationVersion() + QLatin1String(" - ") + StrConstants::getQtVersion() + QLatin1String("<br>");
+  aboutText += StrConstants::getURL() + QLatin1String(": ") +
+      QStringLiteral("<a href=\"https://tintaescura.com/projects/octopi/\">https://tintaescura.com/projects/octopi</a><br>");
+  aboutText += StrConstants::getLicenses() + QLatin1String(": ") + QStringLiteral("<a href=\"http://www.gnu.org/licenses/gpl-2.0.html\">GPL v2</a><br>");
   aboutText += QLatin1String("&copy; Alexandre Albuquerque Arnt<br><br>");
 
   aboutText += QLatin1String("<b>Pacman</b><br>");
   QString pacmanV = UnixCommand::getPacmanVersion();
-  if (pacmanV.at(0) == 'v') pacmanV.remove(0, 1);
-  aboutText += StrConstants::getVersion() + ": " + pacmanV + "<br>";
-  aboutText += StrConstants::getURL() + ": " +
-      "<a href=\"https://www.archlinux.org/pacman/\">https://www.archlinux.org/pacman</a><br>";
+  if (pacmanV.at(0) == QLatin1Char('v')) pacmanV.remove(0, 1);
+  aboutText += StrConstants::getVersion() + QLatin1String(": ") + pacmanV + QLatin1String("<br>");
+  aboutText += StrConstants::getURL() + QLatin1String(": ") +
+      QLatin1String("<a href=\"https://www.archlinux.org/pacman/\">https://www.archlinux.org/pacman</a><br>");
   QDate d = QDate::currentDate();
   aboutText += QLatin1String("&copy; 2006-%1 Pacman Development Team<br>");
   aboutText += QLatin1String("&copy; 2002-2006 Judd Vinet");

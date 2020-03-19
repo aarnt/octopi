@@ -137,7 +137,7 @@ const QString ctn_KEY_REPO_EDITOR_WINDOW_SIZE(QStringLiteral("Repo_Editor_Window
 const QString ctn_PACMAN_SUP_COMMAND = QStringLiteral("pacman --print-format \"%n %v %s\" -Spu");
 
 //Package related
-const QString ctn_TEMP_ACTIONS_FILE ( QDir::tempPath() + QDir::separator() + ".qt_temp_octopi_" );
+const QString ctn_TEMP_ACTIONS_FILE ( QDir::tempPath() + QDir::separator() + QLatin1String(".qt_temp_octopi_") );
 const QString ctn_PACMAN_DATABASE_DIR = QStringLiteral("/var/lib/pacman");
 const QString ctn_PACMAN_DATABASE_LOCK_FILE(QStringLiteral("/var/lib/pacman/db.lck"));
 const QString ctn_PACMAN_CORE_DB_FILE = QStringLiteral("/var/lib/pacman/sync/core.db");

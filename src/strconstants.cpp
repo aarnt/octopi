@@ -30,15 +30,15 @@ QString StrConstants::getApplicationVersion(){
 }
 
 QString StrConstants::getQtVersion(){
-  return "Qt " + QStringLiteral(QT_VERSION_STR);
+  return QLatin1String("Qt ") + QStringLiteral(QT_VERSION_STR);
 }
 
 QString StrConstants::getApplicationCliHelp(){
- QString str = getApplicationName() + " - " + getApplicationVersion() + "\n" +
-      "\n" + getHelpUsage() + "\n\n" +
-      "\t-version: " + QObject::tr("show application version.") + "\n" +
-      "\t-removecmd <Remove-command>: " + QObject::tr("use a different remove command (ex: -removecmd R).") + "\n" +
-      "\t-sysupgrade: " + QObject::tr("force a system upgrade at startup.") + "\n";
+ QString str = getApplicationName() + QLatin1String(" - ") + getApplicationVersion() + QLatin1String("\n") +
+      QLatin1String("\n") + getHelpUsage() + QLatin1String("\n\n") +
+      QLatin1String("\t-version: ") + QObject::tr("show application version.") + QLatin1String("\n") +
+      QLatin1String("\t-removecmd <Remove-command>: ") + QObject::tr("use a different remove command (ex: -removecmd R).") + QLatin1String("\n") +
+      QLatin1String("\t-sysupgrade: ") + QObject::tr("force a system upgrade at startup.") + QLatin1String("\n");
 
  return str;
 }
@@ -185,9 +185,9 @@ QString StrConstants::getDisplayAllGroups(){
 QString StrConstants::getForeignToolGroup(){
  QString tool = Package::getForeignRepositoryToolName();
   tool[0] = tool[0].toUpper();
-  tool = "<" + tool + ">";
+  tool = QLatin1String("<") + tool + QLatin1String(">");
 
-  return tool.toLatin1();
+  return tool;
 }
 
 QString StrConstants::getHelpUsage(){
@@ -646,7 +646,7 @@ QString StrConstants::getYoullNeedSuFrontend(){
 QString StrConstants::getYoullNeedToInstallAURTool()
 {
   return QObject::tr("You'll need one of those tools to use AUR:\n\n"
-                     "%1, %2, %3 %4 or %5").arg(QStringLiteral("pacaur")).arg("pikaur", "trizen", "yaourt", "yay");
+                     "%1, %2, %3 %4 or %5").arg(QStringLiteral("pacaur")).arg(QStringLiteral("pikaur"), QStringLiteral("trizen"), QStringLiteral("yaourt"), QStringLiteral("yay"));
 }
 
 QString StrConstants::getDoYouWantToInstallYayTool()
@@ -870,45 +870,45 @@ QString StrConstants::getExit()
 //Style Sheets ---------------------------------
 
 QString StrConstants::getToolBarCSS(){
-  return QString("QToolBar { border: 5px; } "
-                 "QToolTip {}");
+  return QString(QStringLiteral("QToolBar { border: 5px; } "
+                 "QToolTip {}"));
 }
 
 QString StrConstants::getFilterPackageNotFoundCSS(){
-  return QString("QLineEdit{ color: white; "
+  return QString(QStringLiteral("QLineEdit{ color: white; "
                  "background-color: rgb(207, 135, 142);"
-                 "border-color: rgb(206, 204, 197);}"
+                 "border-color: rgb(206, 204, 197);}")
                  );
 }
 
 QString StrConstants::getFilterPackageFoundCSS(){
-  return QString("QLineEdit, SearchLineEdit{ color: black; "
+  return QString(QStringLiteral("QLineEdit, SearchLineEdit{ color: black; "
                  "background-color: rgb(255, 255, 200);"
-                 "border-color: rgb(206, 204, 197);}"
+                 "border-color: rgb(206, 204, 197);}")
                  );
 }
 
 QString StrConstants::getDockWidgetTitleCSS(){
-  return QString("QDockWidget::title { "
+  return QString(QStringLiteral("QDockWidget::title { "
                  "text-align: right;"
                  "background: transparent;"
-                 "padding-right: 5px;}"
+                 "padding-right: 5px;}")
                  );
 }
 
 QString StrConstants::getTabBarCSS(){
-  return QString("QTabBar::close-button {"
+  return QString(QStringLiteral("QTabBar::close-button {"
                  "image: url(:/resources/images/window-close.png);"
                  "border-radius: 4px}"
                  "QTabBar::close-button:hover {"
                  "background-color: palette(light)}"
                  "QTabBar::close-button:pressed {"
-                 "background-color: palette(mid)}"
+                 "background-color: palette(mid)}")
                  );
 }
 
 QString StrConstants::getTreeViewCSS(){
-  return QString("QTreeView::branch:has-siblings:!adjoins-item {"
+  return QString(QStringLiteral("QTreeView::branch:has-siblings:!adjoins-item {"
                  "   border-image: url(:/resources/styles/vline.png) 0;}"
                  "QTreeView::branch:has-siblings:adjoins-item {"
                  "    border-image: url(:/resources/styles/branch-more.png) 0;}"
@@ -921,5 +921,5 @@ QString StrConstants::getTreeViewCSS(){
                  "QTreeView::branch:open:has-children:!has-siblings,"
                  "QTreeView::branch:open:has-children:has-siblings  {"
                  "       border-image: none;"
-                 "       image: url(:/resources/styles/branch-open_BW.png);}");
+                 "       image: url(:/resources/styles/branch-open_BW.png);}"));
 }

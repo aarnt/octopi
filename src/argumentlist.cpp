@@ -13,7 +13,7 @@ ArgumentList::ArgumentList() {
 
 void ArgumentList::argsToStringlist(int argc, char * argv []) {
     for (int i=0; i < argc; ++i) {
-        *this += argv[i];
+        *this += QString::fromLocal8Bit(argv[i]);
     }
 }
 

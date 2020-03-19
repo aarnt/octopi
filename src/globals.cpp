@@ -80,13 +80,13 @@ QString showPackageDescription(QString pkgName)
   if (desc.size() > 120)
   {
     desc.chop(size - 120);
-    desc = desc + " ...";
+    desc = desc + QLatin1String(" ...");
   }
 
   QString installedSize = Package::getInformationInstalledSize(pkgName, isForeignPkg);
 
   if (!installedSize.isEmpty() && installedSize != QLatin1String("0.00 Bytes"))
-    return desc + " → " + installedSize;
+    return desc + QString::fromUtf8(" → ") + installedSize;
   else
     return desc;
 }
@@ -264,7 +264,7 @@ QString generateSysInfo(QByteArray contents)
   tempFile->close();
 
   //Assign collected logs (contents) to a 24h ptpb paste lifetime
-  QString ptpb = UnixCommand::getCommandOutput(QStringLiteral("curl -F sunset=86400 -F c=@- https://ptpb.pw/"), tempFile->fileName());
+  QString ptpb = QString::fromUtf8(UnixCommand::getCommandOutput(QStringLiteral("curl -F sunset=86400 -F c=@- https://ptpb.pw/"), tempFile->fileName()));
   //QString ptpb = UnixCommand::getCommandOutput("curl -F sunset=10 -F c=@- https://ptpb.pw/", tempFile->fileName());
   ptpb.replace(QLatin1String("\n"), QLatin1String("\n<br>"));
   return ptpb;
@@ -284,7 +284,7 @@ bool installTempYayHelper()
   QString ln = QStringLiteral("ln -s %1 %2");
   QString removeLN = QStringLiteral("rm %1");
   QString htmlLatestYay=QStringLiteral("latestYay.html");
-  QString octopiConfDir = QDir::homePath() + QDir::separator() + ".config/octopi";
+  QString octopiConfDir = QDir::homePath() + QDir::separator() + QLatin1String(".config/octopi");
   curl=curl.arg(url, octopiConfDir + QDir::separator() + htmlLatestYay);
 
   QProcess p;
@@ -295,7 +295,7 @@ bool installTempYayHelper()
   if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
       return false;
 
-  QString html = file.readAll();
+  QString html = QString::fromUtf8(file.readAll());
   QString yayUrl;
   QString yayTarball;
   QString yayFile;
@@ -308,9 +308,9 @@ bool installTempYayHelper()
   {
     yayUrl = rem.captured(QStringLiteral("site"));
     yayTarball = rem.captured(QStringLiteral("file"));
-    yayFile = yayTarball + QDir::separator() + "yay";
+    yayFile = yayTarball + QDir::separator() + QLatin1String("yay");
     yayFile = yayFile.remove(QStringLiteral(".tar.gz"));
-    yayUrl = "https://github.com" + yayUrl;
+    yayUrl = QLatin1String("https://github.com") + yayUrl;
     file.close();
     file.remove();
   }
@@ -326,11 +326,11 @@ bool installTempYayHelper()
   p.execute(tar);
 
   //Now we must symlink yay file to octopiConfDir/yay
-  removeLN = removeLN.arg(octopiConfDir + QDir::separator() + "yay");
-  if (QFile::exists(octopiConfDir + QDir::separator() + "yay")) p.execute(removeLN);
+  removeLN = removeLN.arg(octopiConfDir + QDir::separator() + QLatin1String("yay"));
+  if (QFile::exists(octopiConfDir + QDir::separator() + QLatin1String("yay"))) p.execute(removeLN);
 
   //Now we must symlink yay file to octopiConfDir/yayFile/yay
-  ln = ln.arg(octopiConfDir + QDir::separator() + yayFile, octopiConfDir + QDir::separator() + "yay");
+  ln = ln.arg(octopiConfDir + QDir::separator() + yayFile, octopiConfDir + QDir::separator() + QLatin1String("yay"));
   p.execute(ln);
 
   //Remove tarball

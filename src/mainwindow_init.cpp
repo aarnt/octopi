@@ -323,7 +323,7 @@ void MainWindow::initToolBar()
     m_separatorForActionAUR = ui->mainToolBar->addSeparator();
     ui->mainToolBar->addAction(m_actionSwitchToAURTool);
     if (SettingsManager::getAURTool() != ctn_NO_AUR_TOOL)
-      m_actionSwitchToAURTool->setToolTip(m_actionSwitchToAURTool->toolTip() + "  (Ctrl+Shift+Y)");
+      m_actionSwitchToAURTool->setToolTip(m_actionSwitchToAURTool->toolTip() + QLatin1String("  (Ctrl+Shift+Y)"));
   }
 
   m_dummyAction = new QAction(this);
@@ -331,7 +331,7 @@ void MainWindow::initToolBar()
   ui->mainToolBar->addAction(m_dummyAction);
 
   m_leFilterPackage->setMinimumHeight(24);
-  m_leFilterPackage->setPlaceholderText(m_leFilterPackage->placeholderText() + "  (Ctrl+L)");
+  m_leFilterPackage->setPlaceholderText(m_leFilterPackage->placeholderText() + QLatin1String("  (Ctrl+L)"));
   ui->mainToolBar->addWidget(m_leFilterPackage);
 
   QWidget * hSpacer = new QWidget(this);
@@ -339,7 +339,7 @@ void MainWindow::initToolBar()
   hSpacer->setMinimumWidth(3);
   hSpacer->setVisible(true);
   ui->mainToolBar->addWidget(hSpacer);
-  m_actionShowGroups->setToolTip(m_actionShowGroups->toolTip() + "  (F9)");
+  m_actionShowGroups->setToolTip(m_actionShowGroups->toolTip() + QLatin1String("  (F9)"));
   ui->mainToolBar->addAction(m_actionShowGroups);
   ui->mainToolBar->toggleViewAction()->setEnabled(false);
   ui->mainToolBar->toggleViewAction()->setVisible(false);
@@ -913,21 +913,21 @@ void MainWindow::initActions()
   if (WMHelper::isXFCERunning())
   {
     //Loop through all actions and set their icons (if any) visible to menus.
-    foreach(QAction* ac, this->findChildren<QAction*>(QRegularExpression("(m_a|a)ction\\S*")))
+    foreach(QAction* ac, this->findChildren<QAction*>(QRegularExpression(QLatin1String("(m_a|a)ction\\S*"))))
     {
       if (ac) ac->setIconVisibleInMenu(true);
     }
   }
 
   QString text;
-  foreach(QAction* ac, this->findChildren<QAction*>(QRegularExpression("(m_a|a)ction\\S*")))
+  foreach(QAction* ac, this->findChildren<QAction*>(QRegularExpression(QLatin1String("(m_a|a)ction\\S*"))))
   {
     //text = ac->text().remove("&");
     //ac->setText(qApp->translate("MainWindow", text.toUtf8(), 0));
 
     if (!ac->shortcut().isEmpty())
     {
-      ac->setToolTip(ac->toolTip() + "  (" + ac->shortcut().toString() + ")");
+      ac->setToolTip(ac->toolTip() + QLatin1String("  (") + ac->shortcut().toString() + QLatin1String(")"));
     }
   }
 

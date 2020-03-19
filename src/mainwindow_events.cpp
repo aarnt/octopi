@@ -54,7 +54,7 @@ void MainWindow::closeEvent(QCloseEvent *event)
   if(m_commandExecuting != ectn_NONE)
   {
     int res = QMessageBox::question(this, StrConstants::getConfirmation(),
-                          StrConstants::getThereIsARunningTransaction() + "\n" +
+                          StrConstants::getThereIsARunningTransaction() + QLatin1Char('\n') +
                           StrConstants::getDoYouReallyWantToQuit(),
                           QMessageBox::Yes | QMessageBox::No,
                           QMessageBox::No);
@@ -71,7 +71,7 @@ void MainWindow::closeEvent(QCloseEvent *event)
   else if(areTherePendingActions())
   {
     int res = QMessageBox::question(this, StrConstants::getConfirmation(),
-                                    StrConstants::getThereArePendingActions() + "\n" +
+                                    StrConstants::getThereArePendingActions() + QLatin1Char('\n') +
                                     StrConstants::getDoYouReallyWantToQuit(),
                                     QMessageBox::Yes | QMessageBox::No,
                                     QMessageBox::No);

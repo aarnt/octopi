@@ -96,7 +96,7 @@ QStringList MultiSelectionDialog::getSelectedPackages()
     {
       name = ui->twDepPackages->item(row, 0)->text();
       repository = ui->twDepPackages->item(row, 2)->text();
-      result.append(repository + "/" + name);
+      result.append(repository + QLatin1Char('/') + name);
     }
   }
 

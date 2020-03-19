@@ -599,25 +599,25 @@ void MainWindow::outputOutdatedPackageList()
   {
     QString html = QStringLiteral("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">");
     QString anchorBegin = QStringLiteral("anchorBegin");
-    html += "<a id=\"" + anchorBegin + "\"></a>";
+    html += QLatin1String("<a id=\"") + anchorBegin + QLatin1String("\"></a>");
 
     clearTabOutput();
 
     if(m_outdatedStringList->count()==1){
-      html += "<h3>" + StrConstants::getOneOutdatedPackage() + "</h3>";
+      html += QLatin1String("<h3>") + StrConstants::getOneOutdatedPackage() + QLatin1String("</h3>");
     }
     else
     {
-      html += "<h3>" +
-          StrConstants::getOutdatedPackages(m_outdatedStringList->count()) + "</h3>";
+      html += QLatin1String("<h3>") +
+          StrConstants::getOutdatedPackages(m_outdatedStringList->count()) + QLatin1String("</h3>");
     }
 
     html += QLatin1String("<br><table border=\"0\">");
-    html += "<tr><th width=\"25%\" align=\"left\">" + StrConstants::getName() +
-        "</th><th width=\"18%\" align=\"right\">" +
+    html += QLatin1String("<tr><th width=\"25%\" align=\"left\">") + StrConstants::getName() +
+        QLatin1String("</th><th width=\"18%\" align=\"right\">") +
         StrConstants::getOutdatedVersion() +
-        "</th><th width=\"18%\" align=\"right\">" +
-        StrConstants::getAvailableVersion() + "</th></tr>";
+        QLatin1String("</th><th width=\"18%\" align=\"right\">") +
+        StrConstants::getAvailableVersion() + QLatin1String("</th></tr>");
 
     for (int c=0; c < m_outdatedStringList->count(); c++)
     {
@@ -625,11 +625,11 @@ void MainWindow::outputOutdatedPackageList()
       const PackageRepository::PackageData*const package = m_packageRepo.getFirstPackageByName(pkg);
 
       if (package != nullptr) {
-        html += "<tr><td><a href=\"goto:" + pkg + "\">" + pkg +
-            "</td><td align=\"right\"><b><font color=\"#E55451\">" +
+        html += QLatin1String("<tr><td><a href=\"goto:") + pkg + QLatin1String("\">") + pkg +
+            QLatin1String("</td><td align=\"right\"><b><font color=\"#E55451\">") +
             package->outdatedVersion +
-            "</b></font></td><td align=\"right\">" +
-            package->version + "</td></tr>";
+            QLatin1String("</b></font></td><td align=\"right\">") +
+            package->version + QLatin1String("</td></tr>");
       }
     }
 
@@ -649,25 +649,25 @@ void MainWindow::outputOutdatedPackageList()
   else {
     QString html = QStringLiteral("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">");
     QString anchorBegin = QStringLiteral("anchorBegin");
-    html += "<a id=\"" + anchorBegin + "\"></a>";
+    html += QLatin1String("<a id=\"") + anchorBegin + QLatin1String("\"></a>");
 
     clearTabOutput();
 
     if(m_outdatedStringList->count()==1){
-      html += "<h3>" + StrConstants::getOneOutdatedPackage() + "</h3>";
+      html += QLatin1String("<h3>") + StrConstants::getOneOutdatedPackage() + QLatin1String("</h3>");
     }
     else
     {
-      html += "<h3>" +
-          StrConstants::getOutdatedPackages(m_outdatedStringList->count()) + "</h3>";
+      html += QLatin1String("<h3>") +
+          StrConstants::getOutdatedPackages(m_outdatedStringList->count()) + QLatin1String("</h3>");
     }
 
     html += QLatin1String("<br><table border=\"0\">");
-    html += "<tr><th width=\"25%\" align=\"left\">" + StrConstants::getName() +
-        "</th><th width=\"18%\" align=\"right\">" +
+    html += QLatin1String("<tr><th width=\"25%\" align=\"left\">") + StrConstants::getName() +
+        QLatin1String("</th><th width=\"18%\" align=\"right\">") +
         StrConstants::getOutdatedVersion() +
-        "</th><th width=\"18%\" align=\"right\">" +
-        StrConstants::getAvailableVersion() + "</th></tr>";
+        QLatin1String("</th><th width=\"18%\" align=\"right\">") +
+        StrConstants::getAvailableVersion() + QLatin1String("</th></tr>");
 
     for (int c=0; c < m_checkupdatesStringList->count(); c++)
     {
@@ -675,11 +675,11 @@ void MainWindow::outputOutdatedPackageList()
       const PackageRepository::PackageData*const package = m_packageRepo.getFirstPackageByName(pkg);
 
       if (package != nullptr) {
-        html += "<tr><td><a href=\"goto:" + pkg + "\">" + pkg +
-            "</td><td align=\"right\"><b><font color=\"#E55451\">" +
+        html += QLatin1String("<tr><td><a href=\"goto:") + pkg + QLatin1String("\">") + pkg +
+            QLatin1String("</td><td align=\"right\"><b><font color=\"#E55451\">") +
             package->outdatedVersion +
-            "</b></font></td><td align=\"right\">" +
-            package->version + "</td></tr>";
+            QLatin1String("</b></font></td><td align=\"right\">") +
+            package->version + QLatin1String("</td></tr>");
       }
     }
 
@@ -708,8 +708,8 @@ void MainWindow::outputAURVotedPackageList()
     clearTabOutput();
     QString html = QStringLiteral("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">");
     QString anchorBegin = QStringLiteral("anchorBegin");
-    html += "<a id=\"" + anchorBegin + "\"></a>";
-    html += "<h3>" + StrConstants::getAURVotedPackageList() + "</h3>";
+    html += QLatin1String("<a id=\"") + anchorBegin + QLatin1String("\"></a>");
+    html += QLatin1String("<h3>") + StrConstants::getAURVotedPackageList() + QLatin1String("</h3>");
     writeToTabOutput(html);
     ui->twProperties->setCurrentIndex(ctn_TABINDEX_OUTPUT);
 
@@ -718,7 +718,7 @@ void MainWindow::outputAURVotedPackageList()
     QString list=QStringLiteral("<ul>");
     foreach(QString vote, v)
     {
-      list += "<li>" + vote + "</li>";
+      list += QLatin1String("<li>") + vote + QLatin1String("</li>");
     }
 
     list += QLatin1String("</ul><br>");
@@ -745,25 +745,25 @@ void MainWindow::outputOutdatedAURPackageList()
 
   QString html = QStringLiteral("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">");
   QString anchorBegin = QStringLiteral("anchorBegin");
-  html += "<a id=\"" + anchorBegin + "\"></a>";
+  html += QLatin1String("<a id=\"") + anchorBegin + QLatin1String("\"></a>");
 
   clearTabOutput();
 
   if(m_outdatedAURStringList->count()==1){
-    html += "<h3>" + StrConstants::getOneOutdatedPackage() + "</h3>";
+    html += QLatin1String("<h3>") + StrConstants::getOneOutdatedPackage() + QLatin1String("</h3>");
   }
   else
   {
-    html += "<h3>" +
-        StrConstants::getOutdatedPackages(m_outdatedAURStringList->count()) + "</h3>";
+    html += QLatin1String("<h3>") +
+        StrConstants::getOutdatedPackages(m_outdatedAURStringList->count()) + QLatin1String("</h3>");
   }
 
   html += QLatin1String("<br><table border=\"0\">");
-  html += "<tr><th width=\"25%\" align=\"left\">" + StrConstants::getName() +
-      "</th><th width=\"18%\" align=\"right\">" +
+  html += QLatin1String("<tr><th width=\"25%\" align=\"left\">") + StrConstants::getName() +
+      QLatin1String("</th><th width=\"18%\" align=\"right\">") +
       StrConstants::getOutdatedVersion() +
-      "</th><th width=\"18%\" align=\"right\">" +
-      StrConstants::getAvailableVersion() + "</th></tr>";
+      QLatin1String("</th><th width=\"18%\" align=\"right\">") +
+      StrConstants::getAvailableVersion() + QLatin1String("</th></tr>");
 
   for (int c=0; c < m_outdatedAURStringList->count(); c++)
   {
@@ -772,11 +772,11 @@ void MainWindow::outputOutdatedAURPackageList()
     if (package != nullptr) {
       QString availableVersion = m_outdatedAURPackagesNameVersion->value(m_outdatedAURStringList->at(c));
   
-      html += "<tr><td><a href=\"goto:" + pkg + "\">" + pkg +
-          "</td><td align=\"right\"><b><font color=\"#E55451\">" +
+      html += QLatin1String("<tr><td><a href=\"goto:") + pkg + QLatin1String("\">") + pkg +
+          QLatin1String("</td><td align=\"right\"><b><font color=\"#E55451\">") +
           package->version +
-          "</b></font></td><td align=\"right\">" +
-          availableVersion + "</td></tr>";
+          QLatin1String("</b></font></td><td align=\"right\">") +
+          availableVersion + QLatin1String("</td></tr>");
     }
   }
 
@@ -827,7 +827,7 @@ bool MainWindow::isAllGroupsSelected()
 
 bool MainWindow::isAllGroups(const QString& group)
 {
-  return ((group == "<" + StrConstants::getDisplayAllGroups() + ">") && !(m_actionSwitchToAURTool->isChecked()));
+  return ((group == QLatin1String("<") + StrConstants::getDisplayAllGroups() + QLatin1String(">")) && !(m_actionSwitchToAURTool->isChecked()));
 }
 
 /*
@@ -1524,12 +1524,12 @@ QString MainWindow::extractBaseFileName(const QString &fileName)
 {
   QString baseFileName(fileName);
 
-  if (fileName.endsWith('/'))
+  if (fileName.endsWith(QLatin1Char('/')))
   {
     baseFileName.remove(baseFileName.size()-1, 1);
   }
 
-  return baseFileName.right(baseFileName.size() - baseFileName.lastIndexOf('/') -1);
+  return baseFileName.right(baseFileName.size() - baseFileName.lastIndexOf(QLatin1Char('/')) -1);
 }
 
 /*
@@ -1883,7 +1883,7 @@ void MainWindow::openTerminal()
   QString dir = getSelectedDirectory();
   if (!dir.isEmpty())
   {
-    m_console->execute("cd " + dir);
+    m_console->execute(QLatin1String("cd ") + dir);
     ensureTabVisible(ctn_TABINDEX_TERMINAL);
   }
 }
@@ -1911,7 +1911,7 @@ void MainWindow::installLocalPackage()
       QFileDialog::getOpenFileNames(this,
                                     StrConstants::getFileChooserTitle(),
                                     QDir::homePath(),
-                                    StrConstants::getPackages() + " (*.pkg.tar*)");
+                                    StrConstants::getPackages() + QLatin1String(" (*.pkg.tar*)"));
 
   if (m_packagesToInstallList.count() > 0)
     doInstallLocalPackages();
@@ -1984,7 +1984,7 @@ void MainWindow::tvPackagesSelectionChanged(const QItemSelection&, const QItemSe
   const int selected = selection != nullptr ? selection->selectedRows().count() : 0;
 
   QString newMessage = StrConstants::getTotalPackages(m_packageModel->getPackageCount()) +
-      " (" + StrConstants::getSelectedPackages(selected) + ") ";
+      QLatin1String(" (") + StrConstants::getSelectedPackages(selected) + QLatin1String(") ");
 
   QString text;
   int numberOfInstalledPackages = m_packageModel->getInstalledPackagesCount();
@@ -2063,7 +2063,7 @@ void MainWindow::doSysInfo()
   connect(&g_fwCommandToExecute, SIGNAL(finished()), &el, SLOT(quit()));
   g_fwCommandToExecute.setFuture(f);
   el.exec();
-  QString hostname = g_fwCommandToExecute.result();
+  QString hostname = QString::fromUtf8(g_fwCommandToExecute.result());
 
   hostname.remove(QStringLiteral("\n"));
   QString homePath = QDir::homePath();
@@ -2253,7 +2253,7 @@ void MainWindow::doSysInfo()
 
   m_commandExecuting = ectn_NONE;
   quint32 gen = QRandomGenerator::global()->generate();
-  QString fileName = homePath + QDir::separator() + "octopi-sysinfo-" + QString::number(gen) + ".log";
+  QString fileName = homePath + QDir::separator() + QLatin1String("octopi-sysinfo-") + QString::number(gen) + QLatin1String(".log");
   QFile *outFile = new QFile(fileName);
   outFile->open(QIODevice::ReadWrite|QIODevice::Text);
   outFile->setPermissions(QFile::Permissions(QFile::ExeOwner|QFile::ReadOwner));
@@ -2261,8 +2261,8 @@ void MainWindow::doSysInfo()
   outFile->flush();
   outFile->close();
 
-  writeToTabOutput("<br>" + StrConstants::getSysInfoGenerated().arg(fileName) + "<br>");
-  writeToTabOutput("<br><b>" + StrConstants::getCommandFinishedOK() + "</b><br>");
+  writeToTabOutput(QLatin1String("<br>") + StrConstants::getSysInfoGenerated().arg(fileName) + QLatin1String("<br>"));
+  writeToTabOutput(QLatin1String("<br><b>") + StrConstants::getCommandFinishedOK() + QLatin1String("</b><br>"));
   enableTransactionActions();
 }
 

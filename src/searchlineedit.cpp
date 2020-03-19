@@ -245,7 +245,7 @@ QString SearchLineEdit::buttonStyleSheetForCurrentState() const
   QString style;
   style += QLatin1String("QToolButton {");
   style += QLatin1String("border: none; margin: 0; padding: 0;");
-  style += QStringLiteral("background-image: url(:/resources/images/esf-%1.png);").arg(this->text().isEmpty() ? "search" : "clear");
+  style += QStringLiteral("background-image: url(:/resources/images/esf-%1.png);").arg(this->text().isEmpty() ? QStringLiteral("search") : QStringLiteral("clear"));
   style += QLatin1String("}");
 
   if (!this->text().isEmpty())
