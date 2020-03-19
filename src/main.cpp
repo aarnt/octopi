@@ -51,10 +51,10 @@ int main(int argc, char *argv[])
 
   for (int c=1; c<argc; c++)
   {
-    arg = argv[c];
+    arg = QString::fromLocal8Bit(argv[c]);
     if (arg.contains(QRegularExpression(QStringLiteral("pkg.tar.[xz|zst]"))))
     {
-      packagesToInstall += arg + ",";
+      packagesToInstall += arg + QLatin1Char(',');
     }
   }
 
@@ -108,7 +108,7 @@ int main(int argc, char *argv[])
   app.sendMessage(QStringLiteral("RAISE"));
 
   QTranslator appTranslator;
-  bool success = appTranslator.load(":/resources/translations/octopi_" +
+  bool success = appTranslator.load(QLatin1String(":/resources/translations/octopi_") +
                      QLocale::system().name());
   if (!success)
   {

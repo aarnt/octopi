@@ -51,10 +51,10 @@ void SearchBar::init()
   layout->setSpacing(0);
   layout->setMargin(4);
 
-  setStyleSheet("QWidget#searchbar{"
+  setStyleSheet(QLatin1String("QWidget#searchbar{"
                 "border-top-width: .6px;"
                 "border-top-style: solid;"
-                "border-top-color: darkgray;}");
+                "border-top-color: darkgray;}"));
 
   m_searchLineEdit = new SearchLineEdit(this);
   m_searchLineEdit->setMinimumWidth(300);
@@ -66,10 +66,10 @@ void SearchBar::init()
   QAction *m_previousAction = new QAction(this);
   QAction *m_nextAction = new QAction(this);
 
-  m_previousAction->setText("< " + tr("Previous"));
+  m_previousAction->setText(QLatin1String("< ") + tr("Previous"));
   m_previousButton->setAutoRaise(true);
   m_previousAction->setShortcut(QKeySequence(Qt::SHIFT + Qt::Key_F3));
-  m_nextAction->setText(tr("Next") + " >");
+  m_nextAction->setText(tr("Next") + QLatin1String(" >"));
   m_nextButton->setAutoRaise(true);
   m_nextAction->setShortcut(Qt::Key_F3);
   m_previousButton->setDefaultAction(m_previousAction);
@@ -79,9 +79,9 @@ void SearchBar::init()
   tbClose->setIcon(IconHelper::getIconClose());
 
   tbClose->setAutoRaise(true);
-  tbClose->setStyleSheet("QToolButton{ font-size: 16px; font-family: verdana; border-radius: 4px; } "
+  tbClose->setStyleSheet(QLatin1String("QToolButton{ font-size: 16px; font-family: verdana; border-radius: 4px; } "
                          "QToolButton:hover{ background-color: palette(light); }"
-                         "QToolButton::pressed{ background-color: palette(mid); }");
+                         "QToolButton::pressed{ background-color: palette(mid); }"));
 
   tbClose->setToolTip(tr("Close"));
   tbClose->setShortcut(Qt::Key_Escape);

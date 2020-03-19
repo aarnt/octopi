@@ -78,7 +78,7 @@ void MainWindow::refreshMenuTools()
   {
     ui->menuTools->menuAction()->setVisible(true);
     if (!m_actionMenuMirrorCheck->toolTip().contains(QLatin1String("(")))
-      m_actionMenuMirrorCheck->setToolTip(m_actionMenuMirrorCheck->toolTip() + "  (" + m_actionMenuMirrorCheck->shortcut().toString() + ")" );
+      m_actionMenuMirrorCheck->setToolTip(m_actionMenuMirrorCheck->toolTip() + QLatin1String("  (") + m_actionMenuMirrorCheck->shortcut().toString() + QLatin1Char(')') );
     m_actionMenuMirrorCheck->setVisible(true);
   }
   else
@@ -167,7 +167,7 @@ void MainWindow::refreshGroupsWidget()
   QList<QTreeWidgetItem *> items;
   ui->twGroups->clear();
 
-  items.append(new QTreeWidgetItem(static_cast<QTreeWidget*>(nullptr), QStringList("<" + StrConstants::getDisplayAllGroups() + ">")));
+  items.append(new QTreeWidgetItem(static_cast<QTreeWidget*>(nullptr), QStringList(QLatin1Char('<') + StrConstants::getDisplayAllGroups() + QLatin1Char('>'))));
   m_AllGroupsItem = items.at(0);
   const QStringList*const packageGroups = Package::getPackageGroups();
   foreach(QString group, *packageGroups)
@@ -761,7 +761,7 @@ void MainWindow::showPackagesWithNoDescription()
   {
     PackageListData pld = *it;
 
-    if (pld.description == (pld.name + "  "))
+    if (pld.description == (pld.name + QLatin1String("  ")))
     {
       if (!printHeader)
       {
@@ -1223,7 +1223,7 @@ void MainWindow::showToolButtonAUR()
     }
     else
     {
-      m_toolButtonAUR->setText("(" + QString::number(m_outdatedAURPackagesNameVersion->count()) + ")");
+      m_toolButtonAUR->setText(QLatin1Char('(') + QString::number(m_outdatedAURPackagesNameVersion->count()) + QLatin1Char(')'));
       m_toolButtonAUR->setToolTip(
           StrConstants::getNewUpdates(m_outdatedAURPackagesNameVersion->count()));
     }
@@ -1363,7 +1363,7 @@ void MainWindow::refreshStatusBar()
     }
     else
     {
-      m_toolButtonPacman->setText("(" + QString::number(m_numberOfOutdatedPackages) + ")");
+      m_toolButtonPacman->setText(QLatin1Char('(') + QString::number(m_numberOfOutdatedPackages) + QLatin1Char(')'));
       m_toolButtonPacman->setToolTip(StrConstants::getNewUpdates(m_numberOfOutdatedPackages));
     }
 
@@ -1441,7 +1441,7 @@ void MainWindow::refreshTabInfo(bool clearContents, bool neverQuit)
   }
 
   //If we are trying to refresh an already displayed package...
-  if (m_cachedPackageInInfo == package->repository+"#"+package->name+"#"+package->version)
+  if (m_cachedPackageInInfo == package->repository+QLatin1Char('#')+package->name+QLatin1Char('#')+package->version)
   {
     if (neverQuit)
     {
@@ -1459,7 +1459,7 @@ void MainWindow::refreshTabInfo(bool clearContents, bool neverQuit)
   if (isAURGroupSelected() && package->installed() == false)
   {
     QString aux_desc = package->description;
-    int space = aux_desc.indexOf(' ');
+    int space = aux_desc.indexOf(QLatin1Char(' '));
     QString pkgDescription = aux_desc.mid(space+1);
     QString version = StrConstants::getVersion();
     QTextBrowser*const text = ui->twProperties->widget(
@@ -1486,19 +1486,19 @@ void MainWindow::refreshTabInfo(bool clearContents, bool neverQuit)
       QString anchorBegin = QStringLiteral("anchorBegin");
 
       html += QLatin1String("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">");
-      html += "<a id=\"" + anchorBegin + "\"></a>";            
+      html += QLatin1String("<a id=\"") + anchorBegin + QLatin1String("\"></a>");
 
       if (UnixCommand::getLinuxDistro() != ectn_KAOS && UnixCommand::getLinuxDistro() != ectn_CHAKRA)
-        html += "<h2><a href=\"https://aur.archlinux.org/packages/" + pkgName + "\">" + pkgName + "</a></h2>";
+        html += QLatin1String("<h2><a href=\"https://aur.archlinux.org/packages/") + pkgName + QLatin1String("\">") + pkgName + QLatin1String("</a></h2>");
       else
-        html += "<h2>" + pkgName + "</h2>";
+        html += QLatin1String("<h2>") + pkgName + QLatin1String("</h2>");
 
       if (Package::getForeignRepositoryToolName() != ctn_KCP_TOOL)
       {
-        html += "<a style=\"font-size:16px;\">" + pkgDescription + "</a>";
+        html += QLatin1String("<a style=\"font-size:16px;\">") + pkgDescription + QLatin1String("</a>");
         html += QLatin1String("<table border=\"0\">");
         html += QLatin1String("<tr><th width=\"20%\"></th><th width=\"80%\"></th></tr>");
-        html += "<tr><td>" + version + "</td><td>" + package->version + "</td></tr>";        
+        html += QLatin1String("<tr><td>") + version + QLatin1String("</td><td>") + package->version + QLatin1String("</td></tr>");
 
         if (Package::getForeignRepositoryToolName() == ctn_YAOURT_TOOL ||
             Package::getForeignRepositoryToolName() == ctn_PACAUR_TOOL)
@@ -1506,29 +1506,29 @@ void MainWindow::refreshTabInfo(bool clearContents, bool neverQuit)
           QString url = Package::getAURUrl(pkgName);
           if (!url.isEmpty() && !url.contains(QLatin1String("(null)")))
           {
-            html += "<tr><td>" + StrConstants::getURL() + "</td><td>" + url + "</td></tr>";
+            html += QLatin1String("<tr><td>") + StrConstants::getURL() + QLatin1String("</td><td>") + url + QLatin1String("</td></tr>");
           }
         }
       }
       else if (Package::getForeignRepositoryToolName() == ctn_KCP_TOOL)
       {
-        html += "<a style=\"font-size:16px;\">" + kcp.description + "</a>";
+        html += QLatin1String("<a style=\"font-size:16px;\">") + kcp.description + QLatin1String("</a>");
         html += QLatin1String("<table border=\"0\">");
         html += QLatin1String("<tr><th width=\"20%\"></th><th width=\"80%\"></th></tr>");
-        html += "<tr><td>" + version + "</td><td>" + package->version + "</td></tr>";
+        html += QLatin1String("<tr><td>") + version + QLatin1String("</td><td>") + package->version + QLatin1String("</td></tr>");
 
         if (kcp.url != QLatin1String("--"))
-          html += "<tr><td>" + StrConstants::getURL() + "</td><td>" + kcp.url + "</td></tr>";
+          html += QLatin1String("<tr><td>") + StrConstants::getURL() + QLatin1String("</td><td>") + kcp.url + QLatin1String("</td></tr>");
 
         if (kcp.license != QLatin1String("--"))
-          html += "<tr><td>" + StrConstants::getLicenses() + "</td><td>" + kcp.license + "</td></tr>";
+          html += QLatin1String("<tr><td>") + StrConstants::getLicenses() + QLatin1String("</td><td>") + kcp.license + QLatin1String("</td></tr>");
 
         if (kcp.provides != QLatin1String("--"))
-          html += "<tr><td>" + StrConstants::getProvides() + "</td><td>" + kcp.provides + "</td></tr>";
+          html += QLatin1String("<tr><td>") + StrConstants::getProvides() + QLatin1String("</td><td>") + kcp.provides + QLatin1String("</td></tr>");
 
         if (kcp.dependsOn != QLatin1String("--"))
-          html += "<tr><td>" + StrConstants::getDependsOn() + "</td><td>" +
-              Package::makeAnchorOfPackage(kcp.dependsOn) + "</td></tr>";
+          html += QLatin1String("<tr><td>") + StrConstants::getDependsOn() + QLatin1String("</td><td>") +
+              Package::makeAnchorOfPackage(kcp.dependsOn) + QLatin1String("</td></tr>");
       }
 
       html += QLatin1String("</table>");
@@ -1549,7 +1549,7 @@ void MainWindow::refreshTabInfo(bool clearContents, bool neverQuit)
     }
   }
 
-  m_cachedPackageInInfo = package->repository+"#"+package->name+"#"+package->version;
+  m_cachedPackageInInfo = package->repository+QLatin1Char('#')+package->name+QLatin1String("#")+package->version;
 
   if (neverQuit)
   {
@@ -1603,7 +1603,7 @@ void MainWindow::refreshTabFiles(bool clearContents, bool neverQuit)
   }
 
   //If we are trying to refresh an already displayed package...
-  if (m_cachedPackageInFiles == package->repository+"#"+package->name+"#"+package->version)
+  if (m_cachedPackageInFiles == package->repository+QLatin1Char('#')+package->name+QLatin1Char('#')+package->version)
   {
     if (neverQuit)
     {
@@ -1659,7 +1659,7 @@ void MainWindow::refreshTabFiles(bool clearContents, bool neverQuit)
 
     foreach ( QString file, fileList )
     {
-      bool isDir = file.endsWith('/');
+      bool isDir = file.endsWith(QLatin1Char('/'));
       bool isSymLinkToDir = false;
       QString baseFileName = extractBaseFileName(file);
 
@@ -1677,7 +1677,7 @@ void MainWindow::refreshTabFiles(bool clearContents, bool neverQuit)
       if(isDir){
         if ( first == true ){
           item = new QStandardItem ( IconHelper::getIconFolder(), baseFileName );
-          item->setAccessibleDescription("directory " + item->text());
+          item->setAccessibleDescription(QLatin1String("directory ") + item->text());
           fakeRoot->appendRow ( item );
         }
         else{
@@ -1686,7 +1686,7 @@ void MainWindow::refreshTabFiles(bool clearContents, bool neverQuit)
           if ( file.contains ( fullPath )) {
             //std::cout << "It contains !!! So " << fullPath.toLatin1().data() << " is its parent." << std::endl;
             item = new QStandardItem ( IconHelper::getIconFolder(), baseFileName );
-            item->setAccessibleDescription("directory " + item->text());
+            item->setAccessibleDescription(QLatin1String("directory ") + item->text());
             lastDir->appendRow ( item );
           }
           else{
@@ -1703,7 +1703,7 @@ void MainWindow::refreshTabFiles(bool clearContents, bool neverQuit)
             while ( parent != fakeRoot );
 
             item = new QStandardItem ( IconHelper::getIconFolder(), baseFileName );
-            item->setAccessibleDescription("directory " + item->text());
+            item->setAccessibleDescription(QLatin1String("directory ") + item->text());
 
             if ( parent != 0 )
             {
@@ -1723,7 +1723,7 @@ void MainWindow::refreshTabFiles(bool clearContents, bool neverQuit)
       else if (isSymLinkToDir)
       {
         item = new QStandardItem ( IconHelper::getIconFolder(), baseFileName );
-        item->setAccessibleDescription("directory " + item->text());
+        item->setAccessibleDescription(QLatin1String("directory ") + item->text());
         parent = lastDir;
         if (parent != 0) fullPath = utils::showFullPathOfItem(parent->index());
 
@@ -1746,7 +1746,7 @@ void MainWindow::refreshTabFiles(bool clearContents, bool neverQuit)
       else
       {
         item = new QStandardItem ( IconHelper::getIconBinary(), baseFileName );
-        item->setAccessibleDescription("file " + item->text());
+        item->setAccessibleDescription(QLatin1String("file ") + item->text());
         parent = lastDir;
         if (parent != 0) fullPath = utils::showFullPathOfItem(parent->index());
 
@@ -1775,7 +1775,7 @@ void MainWindow::refreshTabFiles(bool clearContents, bool neverQuit)
     modelPkgFileList->setHorizontalHeaderLabels( QStringList() << StrConstants::getContentsOf().arg(pkgName));
   }
 
-  m_cachedPackageInFiles = package->repository+"#"+package->name+"#"+package->version;
+  m_cachedPackageInFiles = package->repository+QLatin1Char('#')+package->name+QLatin1Char('#')+package->version;
 
   if (neverQuit)
   {

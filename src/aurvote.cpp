@@ -65,7 +65,7 @@ bool AurVote::login()
   postData.addQueryItem(QStringLiteral("remember_me"), QStringLiteral("on"));
 
   QNetworkRequest request(m_loginUrl);
-  request.setHeader(QNetworkRequest::ContentTypeHeader,"application/x-www-form-urlencoded");
+  request.setHeader(QNetworkRequest::ContentTypeHeader,QStringLiteral("application/x-www-form-urlencoded"));
 
   QNetworkReply *r = m_networkManager->post(request, postData.query().toUtf8());
   connect(r, SIGNAL(finished()), &eventLoop, SLOT(quit()) );
@@ -82,7 +82,7 @@ bool AurVote::login()
     eventLoop.exec();
     disconnect(r, SIGNAL(finished()), &eventLoop, SLOT(quit()) );
 
-    QString res = r->readAll();
+    QString res = QString::fromUtf8(r->readAll());
 
     if (res.contains(QLatin1String("Logout")))
     {
@@ -98,13 +98,13 @@ bool AurVote::isLoggedIn()
   bool ret = false;
   QEventLoop eventLoop;
   QNetworkRequest request(m_loginUrl);
-  request.setHeader(QNetworkRequest::ContentTypeHeader,"application/x-www-form-urlencoded");
+  request.setHeader(QNetworkRequest::ContentTypeHeader,QStringLiteral("application/x-www-form-urlencoded"));
   QNetworkReply *r = m_networkManager->get(request);
   connect(r, SIGNAL(finished()), &eventLoop, SLOT(quit()) );
   eventLoop.exec();
   disconnect(r, SIGNAL(finished()), &eventLoop, SLOT(quit()) );
 
-  QString res = r->readAll();
+  QString res = QString::fromUtf8(r->readAll());
 
   if (res.contains(QLatin1String("Logout")))
   {
@@ -128,13 +128,13 @@ int AurVote::isPkgVoted(const QString &pkgName)
   int ret = 0;
   QEventLoop eventLoop;
   QNetworkRequest request(m_pkgUrl.arg(pkgName));
-  request.setHeader(QNetworkRequest::ContentTypeHeader,"application/x-www-form-urlencoded");
+  request.setHeader(QNetworkRequest::ContentTypeHeader,QStringLiteral("application/x-www-form-urlencoded"));
   QNetworkReply *r = m_networkManager->get(request);
   connect(r, SIGNAL(finished()), &eventLoop, SLOT(quit()));
   eventLoop.exec();
   disconnect(r, SIGNAL(finished()), &eventLoop, SLOT(quit()));
 
-  QString res = r->readAll();
+  QString res = QString::fromUtf8(r->readAll());
 
   //If this package does not exist anymore...
   QRegularExpression re(QStringLiteral("Page Not Found"));
@@ -153,14 +153,14 @@ void AurVote::voteForPkg(const QString &pkgName)
 {
   QEventLoop eventLoop;
   QNetworkRequest request(m_pkgUrl.arg(pkgName));
-  request.setHeader(QNetworkRequest::ContentTypeHeader,"application/x-www-form-urlencoded");
+  request.setHeader(QNetworkRequest::ContentTypeHeader,QStringLiteral("application/x-www-form-urlencoded"));
   QNetworkReply *r = m_networkManager->get(request);
   connect(r, SIGNAL(finished()), &eventLoop, SLOT(quit()));
   eventLoop.exec();
   disconnect(r, SIGNAL(finished()), &eventLoop, SLOT(quit()));
   QString token;
 
-  QString res = r->readAll();
+  QString res = QString::fromUtf8(r->readAll());
 
   //Get token
   QRegularExpression re(QStringLiteral("name=\"token\" value=\"(?<token>\\w+)\""));
@@ -190,14 +190,14 @@ void AurVote::unvoteForPkg(const QString &pkgName)
 {
   QEventLoop eventLoop;
   QNetworkRequest request(m_pkgUrl.arg(pkgName));
-  request.setHeader(QNetworkRequest::ContentTypeHeader,"application/x-www-form-urlencoded");
+  request.setHeader(QNetworkRequest::ContentTypeHeader,QStringLiteral("application/x-www-form-urlencoded"));
   QNetworkReply *r = m_networkManager->get(request);
   connect(r, SIGNAL(finished()), &eventLoop, SLOT(quit()));
   eventLoop.exec();
   disconnect(r, SIGNAL(finished()), &eventLoop, SLOT(quit()));
   QString token;
 
-  QString res = r->readAll();
+  QString res = QString::fromUtf8(r->readAll());
 
   //Get token
   QRegularExpression re(QStringLiteral("name=\"token\" value=\"(?<token>\\w+)\""));
@@ -231,13 +231,13 @@ QStringList AurVote::getVotedPackages()
   QString searchUrl=QStringLiteral("https://aur.archlinux.org/packages/?O=0&SeB=nd&SB=w&SO=d&PP=250&do_Search=Go");
   QEventLoop eventLoop;
   QNetworkRequest request(searchUrl);
-  request.setHeader(QNetworkRequest::ContentTypeHeader,"application/x-www-form-urlencoded");
+  request.setHeader(QNetworkRequest::ContentTypeHeader,QStringLiteral("application/x-www-form-urlencoded"));
   QNetworkReply *r = m_networkManager->get(request);
   connect(r, SIGNAL(finished()), &eventLoop, SLOT(quit()));
   eventLoop.exec();
   disconnect(r, SIGNAL(finished()), &eventLoop, SLOT(quit()));
 
-  QString res = r->readAll();
+  QString res = QString::fromUtf8(r->readAll());
   res = res.remove(QRegularExpression(QStringLiteral("\\t")));
   res = res.remove(QRegularExpression(QStringLiteral("\\n")));
 

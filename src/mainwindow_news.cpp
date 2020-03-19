@@ -67,27 +67,27 @@ void MainWindow::refreshDistroNews(bool searchForLatestNews, bool gotoNewsTab)
                         distro == ectn_ARCHBANGLINUX /*||
                         distro == ectn_SWAGARCH*/))
     {
-      writeToTabOutput("<b>" + StrConstants::getSearchingForDistroNews().arg(QStringLiteral("Arch Linux")) + "</b>");
+      writeToTabOutput(QLatin1String("<b>") + StrConstants::getSearchingForDistroNews().arg(QStringLiteral("Arch Linux")) + QLatin1String("</b>"));
     }
     else if (gotoNewsTab && distro == ectn_CHAKRA)
     {
-      writeToTabOutput("<b>" + StrConstants::getSearchingForDistroNews().arg(QStringLiteral("Chakra")) + "</b>");
+      writeToTabOutput(QLatin1String("<b>") + StrConstants::getSearchingForDistroNews().arg(QStringLiteral("Chakra")) + QLatin1String("</b>"));
     }
     else if (gotoNewsTab && distro == ectn_CONDRESOS)
     {
-      writeToTabOutput("<b>" + StrConstants::getSearchingForDistroNews().arg(QStringLiteral("Condres OS")) + "</b>");
+      writeToTabOutput(QLatin1String("<b>") + StrConstants::getSearchingForDistroNews().arg(QStringLiteral("Condres OS")) + QLatin1String("</b>"));
     }
     else if (gotoNewsTab && distro == ectn_ENDEAVOUROS)
     {
-      writeToTabOutput("<b>" + StrConstants::getSearchingForDistroNews().arg(QStringLiteral("EndeavourOS")) + "</b>");
+      writeToTabOutput(QLatin1String("<b>") + StrConstants::getSearchingForDistroNews().arg(QStringLiteral("EndeavourOS")) + QLatin1String("</b>"));
     }
     else if (gotoNewsTab && distro == ectn_KAOS)
     {
-      writeToTabOutput("<b>" + StrConstants::getSearchingForDistroNews().arg(QStringLiteral("KaOS")) + "</b>");
+      writeToTabOutput(QLatin1String("<b>") + StrConstants::getSearchingForDistroNews().arg(QStringLiteral("KaOS")) + QLatin1String("</b>"));
     }
     else if (gotoNewsTab && distro == ectn_MANJAROLINUX)
     {
-      writeToTabOutput("<b>" + StrConstants::getSearchingForDistroNews().arg(QStringLiteral("Manjaro Linux")) + "</b>");
+      writeToTabOutput(QLatin1String("<b>") + StrConstants::getSearchingForDistroNews().arg(QStringLiteral("Manjaro Linux")) + QLatin1String("</b>"));
     }
     /*else if (gotoNewsTab && distro == ectn_NETRUNNER)
     {
@@ -95,7 +95,7 @@ void MainWindow::refreshDistroNews(bool searchForLatestNews, bool gotoNewsTab)
     }*/
     else if (gotoNewsTab && distro == ectn_PARABOLA)
     {
-      writeToTabOutput("<b>" + StrConstants::getSearchingForDistroNews().arg(QStringLiteral("Parabola GNU/Linux-libre")) + "</b>");
+      writeToTabOutput(QLatin1String("<b>") + StrConstants::getSearchingForDistroNews().arg(QStringLiteral("Parabola GNU/Linux-libre")) + QLatin1String("</b>"));
     }
 
     /*
@@ -135,7 +135,7 @@ void MainWindow::showDistroNews(QString distroRSSXML, bool searchForLatestNews)
 
   if (distroRSSXML.count() >= 200)
   {
-    if (distroRSSXML.at(0)=='*')
+    if (distroRSSXML.at(0)==QLatin1Char('*'))
     {
       /* If this is an updated RSS, we must warn the user!
        And if the main window is hidden... */
@@ -144,7 +144,7 @@ void MainWindow::showDistroNews(QString distroRSSXML, bool searchForLatestNews)
         show();
       }
 
-      ui->twProperties->setTabText(ctn_TABINDEX_NEWS, "** " + StrConstants::getTabNewsName() + " **");
+      ui->twProperties->setTabText(ctn_TABINDEX_NEWS, QLatin1String("** ") + StrConstants::getTabNewsName() + QLatin1String(" **"));
       if (m_gotoNewsTab)
       {
         ui->twProperties->setCurrentIndex(ctn_TABINDEX_NEWS);

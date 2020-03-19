@@ -112,8 +112,8 @@ QString utils::retrieveDistroNews(bool searchForLatestNews)
 {
   LinuxDistro distro = UnixCommand::getLinuxDistro();
   QString res;
-  QString tmpRssPath = QDir::homePath() + QDir::separator() + ".config/octopi/.tmp_distro_rss.xml";
-  QString rssPath = QDir::homePath() + QDir::separator() + ".config/octopi/distro_rss.xml";
+  QString tmpRssPath = QDir::homePath() + QDir::separator() + QLatin1String(".config/octopi/.tmp_distro_rss.xml");
+  QString rssPath = QDir::homePath() + QDir::separator() + QLatin1String(".config/octopi/distro_rss.xml");
   QString contentsRss;
 
   QFile fileRss(rssPath);
@@ -177,13 +177,13 @@ QString utils::retrieveDistroNews(bool searchForLatestNews)
       {
         fileTmpRss.rename(tmpRssPath, rssPath);
 
-        if (!fileRss.open(QIODevice::ReadOnly | QIODevice::Text)) return("");
+        if (!fileRss.open(QIODevice::ReadOnly | QIODevice::Text)) return(QLatin1String(""));
         QTextStream in2(&fileRss);
         contentsRss = in2.readAll();
         contentsRss = contentsRss.remove(QRegularExpression(QStringLiteral("^\\s*")));
         fileRss.close();
         fileRss.remove();
-        if (!fileRss.open(QIODevice::WriteOnly | QIODevice::Text)) return("");
+        if (!fileRss.open(QIODevice::WriteOnly | QIODevice::Text)) return(QLatin1String(""));
         in2 << contentsRss;
         in2.flush();
 
@@ -194,7 +194,7 @@ QString utils::retrieveDistroNews(bool searchForLatestNews)
           contentsRss.replace(QRegularExpression(QStringLiteral("(\\t*)(\\n*)<lastBuildDate>(.*)</lastBuildDate>(\\t*)(\\n*)")), QLatin1String(""));
           fileRss.close();
           fileRss.remove();
-          if (!fileRss.open(QIODevice::WriteOnly | QIODevice::Text)) return("");
+          if (!fileRss.open(QIODevice::WriteOnly | QIODevice::Text)) return(QLatin1String(""));
           in2 << contentsRss;
           in2.flush();
         }
@@ -210,13 +210,13 @@ QString utils::retrieveDistroNews(bool searchForLatestNews)
         QString contentsTmpRss;
 
         //QFile fileTmpRss(tmpRssPath);
-        if (!fileTmpRss.open(QIODevice::ReadOnly | QIODevice::Text)) return("");
+        if (!fileTmpRss.open(QIODevice::ReadOnly | QIODevice::Text)) return(QLatin1String(""));
         QTextStream in(&fileTmpRss);
         contentsTmpRss = in.readAll();
         contentsTmpRss = contentsTmpRss.remove(QRegularExpression(QStringLiteral("^\\s*")));
         fileTmpRss.close();
         fileTmpRss.remove();
-        if (!fileTmpRss.open(QIODevice::WriteOnly | QIODevice::Text)) return("");
+        if (!fileTmpRss.open(QIODevice::WriteOnly | QIODevice::Text)) return(QLatin1String(""));
         in << contentsTmpRss;
         in.flush();
 
@@ -227,21 +227,21 @@ QString utils::retrieveDistroNews(bool searchForLatestNews)
 
           fileTmpRss.close();
           fileTmpRss.remove();
-          if (!fileTmpRss.open(QIODevice::WriteOnly | QIODevice::Text)) return("");
+          if (!fileTmpRss.open(QIODevice::WriteOnly | QIODevice::Text)) return(QLatin1String(""));
           in << contentsTmpRss;
           in.flush();
         }
 
         fileTmpRss.close();
 
-        tmpRssSHA1 = QCryptographicHash::hash(contentsTmpRss.toLatin1(), QCryptographicHash::Sha1);
-        rssSHA1 = QCryptographicHash::hash(contentsRss.toLatin1(), QCryptographicHash::Sha1);
+        tmpRssSHA1 = QString::fromUtf8(QCryptographicHash::hash(contentsTmpRss.toLatin1(), QCryptographicHash::Sha1));
+        rssSHA1 = QString::fromUtf8(QCryptographicHash::hash(contentsRss.toLatin1(), QCryptographicHash::Sha1));
 
         if (tmpRssSHA1 != rssSHA1){
           fileRss.remove();
           fileTmpRss.rename(tmpRssPath, rssPath);
 
-          res = "*" + contentsTmpRss; //The asterisk indicates there is a MORE updated rss!
+          res = QLatin1String("*") + contentsTmpRss; //The asterisk indicates there is a MORE updated rss!
         }
         else
         {
@@ -262,15 +262,15 @@ QString utils::retrieveDistroNews(bool searchForLatestNews)
     }
     else if (searchForLatestNews)
     {
-      res = "<h3><font color=\"#E55451\">" + StrConstants::getInternetUnavailableError() + "</font></h3>";
+      res = QLatin1String("<h3><font color=\"#E55451\">") + StrConstants::getInternetUnavailableError() + QLatin1String("</font></h3>");
     }
     else if (distro != ectn_UNKNOWN)
     {
-      res = "<h3><font color=\"#E55451\">" + StrConstants::getNewsErrorMessage() + "</font></h3>";
+      res = QLatin1String("<h3><font color=\"#E55451\">") + StrConstants::getNewsErrorMessage() + QLatin1String("</font></h3>");
     }
     else
     {
-      res = "<h3><font color=\"#E55451\">" + StrConstants::getIncompatibleLinuxDistroError() + "</font></h3>";
+      res = QLatin1String("<h3><font color=\"#E55451\">") + StrConstants::getIncompatibleLinuxDistroError() + QLatin1String("</font></h3>");
     }
   }
 
@@ -292,27 +292,27 @@ QString utils::parseDistroNews()
   }*/
   if (distro == ectn_ARCHLINUX || distro == ectn_ARCHBANGLINUX /*|| distro == ectn_SWAGARCH*/)
   {
-    html = "<p align=\"center\"><h2>" + StrConstants::getArchLinuxNews() + "</h2></p><ul>";
+    html = QLatin1String("<p align=\"center\"><h2>") + StrConstants::getArchLinuxNews() + QLatin1String("</h2></p><ul>");
   }
   else if (distro == ectn_CHAKRA)
   {
-    html = "<p align=\"center\"><h2>" + StrConstants::getChakraNews() + "</h2></p><ul>";
+    html = QLatin1String("<p align=\"center\"><h2>") + StrConstants::getChakraNews() + QLatin1String("</h2></p><ul>");
   }
   else if (distro == ectn_CONDRESOS)
   {
-    html = "<p align=\"center\"><h2>" + StrConstants::getCondresOSNews() + "</h2></p><ul>";
+    html = QLatin1String("<p align=\"center\"><h2>") + StrConstants::getCondresOSNews() + QLatin1String("</h2></p><ul>");
   }
   else if (distro == ectn_ENDEAVOUROS)
   {
-    html = "<p align=\"center\"><h2>" + StrConstants::getEndeavourOSNews() + "</h2></p><ul>";
+    html = QLatin1String("<p align=\"center\"><h2>") + StrConstants::getEndeavourOSNews() + QLatin1String("</h2></p><ul>");
   }
   else if (distro == ectn_KAOS)
   {
-    html = "<p align=\"center\"><h2>" + StrConstants::getKaOSNews() + "</h2></p><ul>";
+    html = QLatin1String("<p align=\"center\"><h2>") + StrConstants::getKaOSNews() + QLatin1String("</h2></p><ul>");
   }
   else if (distro == ectn_MANJAROLINUX)
   {
-    html = "<p align=\"center\"><h2>" + StrConstants::getManjaroLinuxNews() + "</h2></p><ul>";
+    html = QLatin1String("<p align=\"center\"><h2>") + StrConstants::getManjaroLinuxNews() + QLatin1String("</h2></p><ul>");
   }
   /*else if (distro == ectn_NETRUNNER)
   {
@@ -320,10 +320,10 @@ QString utils::parseDistroNews()
   }*/
   else if (distro == ectn_PARABOLA)
   {
-    html = "<p align=\"center\"><h2>" + StrConstants::getParabolaNews() + "</h2></p><ul>";
+    html = QLatin1String("<p align=\"center\"><h2>") + StrConstants::getParabolaNews() + QLatin1String("</h2></p><ul>");
   }
 
-  QString rssPath = QDir::homePath() + QDir::separator() + ".config/octopi/distro_rss.xml";
+  QString rssPath = QDir::homePath() + QDir::separator() + QLatin1String(".config/octopi/distro_rss.xml");
   QDomDocument doc(QStringLiteral("rss"));
   int itemCounter=0;
 
@@ -363,7 +363,7 @@ QString utils::parseDistroNews()
           {
             if (eText.tagName() == QLatin1String("title"))
             {
-              itemTitle = "<h3>" + eText.text() + "</h3>";
+              itemTitle = QLatin1String("<h3>") + eText.text() + QLatin1String("</h3>");
             }
             else if (eText.tagName() == QLatin1String("link"))
             {
@@ -383,7 +383,7 @@ QString utils::parseDistroNews()
 
               if (pos > -1)
               {
-                itemPubDate = itemPubDate.mid(0, pos-1).trimmed() + "<br>";
+                itemPubDate = itemPubDate.mid(0, pos-1).trimmed() + QLatin1String("<br>");
               }
             }
           }
@@ -391,7 +391,7 @@ QString utils::parseDistroNews()
           text = text.nextSibling();
         }
 
-        html += "<li><p>" + itemTitle + " " + itemPubDate + "<br>" + itemLink + itemDescription + "</p></li>";
+        html += QLatin1String("<li><p>") + itemTitle + QLatin1Char(' ') + itemPubDate + QLatin1String("<br>") + itemLink + itemDescription + QLatin1String("</p></li>");
         itemCounter++;
       }
     }
@@ -457,7 +457,7 @@ void utils::writeToTextBrowser(QTextBrowser* text, const QString &str, TreatURLL
        newStr.contains(QLatin1String("could not be found")) ||
        newStr.contains(StrConstants::getCommandFinishedWithErrors()))
     {
-      newStr = "<b><font color=\"#E55451\">" + newStr + "&nbsp;</font></b>"; //RED
+      newStr = QLatin1String("<b><font color=\"#E55451\">") + newStr + QLatin1String("&nbsp;</font></b>"); //RED
     }
 
     if(treatURLLinks == ectn_TREAT_URL_LINK)

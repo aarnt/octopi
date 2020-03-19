@@ -90,7 +90,7 @@ void OptionsDialog::selRedIconPath()
   if (!leRedIcon->text().isEmpty()) dir = qd.filePath(leRedIcon->text());
 
   QString fileName =
-      QFileDialog::getOpenFileName(this, tr("Open Image"), dir, tr("Image Files") + " (*.bmp *.jpg *.png *.svg *.xmp)");
+      QFileDialog::getOpenFileName(this, tr("Open Image"), dir, tr("Image Files") + QLatin1String(" (*.bmp *.jpg *.png *.svg *.xmp)"));
 
   if (!fileName.isEmpty())
     leRedIcon->setText(fileName);
@@ -106,7 +106,7 @@ void OptionsDialog::selYellowIconPath()
   if (!leYellowIcon->text().isEmpty()) dir = qd.filePath(leYellowIcon->text());
 
   QString fileName =
-      QFileDialog::getOpenFileName(this, tr("Open Image"), dir, tr("Image Files") + " (*.bmp *.jpg *.png *.svg *.xmp)");
+      QFileDialog::getOpenFileName(this, tr("Open Image"), dir, tr("Image Files") + QLatin1String(" (*.bmp *.jpg *.png *.svg *.xmp)"));
 
   if (!fileName.isEmpty())
     leYellowIcon->setText(fileName);
@@ -122,7 +122,7 @@ void OptionsDialog::selGreenIconPath()
   if (!leGreenIcon->text().isEmpty()) dir = qd.filePath(leGreenIcon->text());
 
   QString fileName =
-      QFileDialog::getOpenFileName(this, tr("Open Image"), dir, tr("Image Files") + " (*.bmp *.jpg *.png *.svg *.xmp)");
+      QFileDialog::getOpenFileName(this, tr("Open Image"), dir, tr("Image Files") + QLatin1String(" (*.bmp *.jpg *.png *.svg *.xmp)"));
 
   if (!fileName.isEmpty())
     leGreenIcon->setText(fileName);
@@ -138,7 +138,7 @@ void OptionsDialog::selBusyIconPath()
   if (!leBusyIcon->text().isEmpty()) dir = qd.filePath(leBusyIcon->text());
 
   QString fileName =
-      QFileDialog::getOpenFileName(this, tr("Open Image"), dir, tr("Image Files") + " (*.bmp *.jpg *.png *.svg *.xmp)");
+      QFileDialog::getOpenFileName(this, tr("Open Image"), dir, tr("Image Files") + QLatin1String(" (*.bmp *.jpg *.png *.svg *.xmp)"));
 
   if (!fileName.isEmpty())
     leBusyIcon->setText(fileName);
@@ -808,7 +808,7 @@ void OptionsDialog::onAURConnect()
     else
     {
       QMessageBox::StandardButton r = QMessageBox::question(this, StrConstants::getConfirmation(),
-                            StrConstants::getAURConnectionIsOK() + "\n" +
+                            StrConstants::getAURConnectionIsOK() + QLatin1Char('\n') +
                             StrConstants::getWouldYouLikeToHelpThisProject(),
                             QMessageBox::Yes | QMessageBox::No,
                             QMessageBox::Yes);

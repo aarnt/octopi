@@ -45,7 +45,7 @@ Terminal::~Terminal()
  */
 void Terminal::runCommandInTerminalWithSudo(const QString& command)
 {
-  QString cmd = "sudo " + UnixCommand::getShell() + " -c \"" + command + "\"";
+  QString cmd = QLatin1String("sudo ") + UnixCommand::getShell() + QLatin1String(" -c \"") + command + QLatin1Char('"');
   emit commandToExecInQTermWidget(cmd);
 }
 
@@ -65,14 +65,14 @@ void Terminal::runOctopiHelperInTerminalWithSharedMem(const QStringList &command
       continue;
     }
 
-    out += line + "\n";
+    out += line + QLatin1Char('\n');
   }
 
-  if (removedLines) out += "echo \"" + StrConstants::getPressAnyKey() + "\"";
+  if (removedLines) out += QLatin1String("echo \"") + StrConstants::getPressAnyKey() + QLatin1String("\"");
 
   QString suCommand = WMHelper::getSUCommand();
-  QString commandToRun = ctn_OCTOPI_HELPER_PATH + " -ts";
-  QString cmd = "sudo " + commandToRun;
+  QString commandToRun = ctn_OCTOPI_HELPER_PATH + QLatin1String(" -ts");
+  QString cmd = QLatin1String("sudo ") + commandToRun;
   QByteArray sharedData=out.toLatin1();
 
   /*if (sharedMem != nullptr)
@@ -152,12 +152,12 @@ void Terminal::runCommandInTerminalAsNormalUser(const QStringList &commandList)
     out += line;
   }
 
-  if (removedLines) out += "echo '" + StrConstants::getPressAnyKey() + "'";
+  if (removedLines) out += QLatin1String("echo '") + StrConstants::getPressAnyKey() + QLatin1Char('\'');
 
   //out.flush();
   //ftemp->close();
 
   QString cmd;
-  cmd = UnixCommand::getShell() + " -c \"" + out /*ftemp->fileName()*/ + "\"";
+  cmd = UnixCommand::getShell() + QLatin1String(" -c \"") + out /*ftemp->fileName()*/ + QLatin1Char('"');
   emit commandToExecInQTermWidget(cmd);
 }
