@@ -2082,8 +2082,8 @@ void MainWindow::doSysInfo()
     el.exec();
     out += g_fwCommandToExecute.result();
 
-    out.replace(hostname, "<HOSTNAME>");
-    out.replace(homePath, "<HOME_PATH>");
+    out.replace(hostname.toUtf8().constData(), "<HOSTNAME>");
+    out.replace(homePath.toUtf8().constData(), "<HOME_PATH>");
     out += "\n\n";
   }
   else
@@ -2099,8 +2099,8 @@ void MainWindow::doSysInfo()
     el.exec();
     out += g_fwCommandToExecute.result();
 
-    out.replace(hostname, "<HOSTNAME>");
-    out.replace(homePath, "<HOME_PATH>");
+    out.replace(hostname.toUtf8().constData(), "<HOSTNAME>");
+    out.replace(homePath.toUtf8().constData(), "<HOME_PATH>");
     out += "\n\n";
   }
 
@@ -2117,8 +2117,8 @@ void MainWindow::doSysInfo()
     el.exec();
     out += g_fwCommandToExecute.result();
 
-    out.replace(hostname, "<HOSTNAME>");
-    out.replace(homePath, "<HOME_PATH>");
+    out.replace(hostname.toUtf8().constData(), "<HOSTNAME>");
+    out.replace(homePath.toUtf8().constData(), "<HOME_PATH>");
     out += "\n\n";
   }
   else
@@ -2134,8 +2134,8 @@ void MainWindow::doSysInfo()
     el.exec();
     out += g_fwCommandToExecute.result();
 
-    out.replace(hostname, "<HOSTNAME>");
-    out.replace(homePath, "<HOME_PATH>");
+    out.replace(hostname.toUtf8().constData(), "<HOSTNAME>");
+    out.replace(homePath.toUtf8().constData(), "<HOME_PATH>");
     out += "\n\n";
   }
 
@@ -2153,7 +2153,7 @@ void MainWindow::doSysInfo()
     out += g_fwCommandToExecute.result();
 
     //out.replace(hostname, "<HOSTNAME>");
-    out.replace(homePath, "<HOME_PATH>");
+    out.replace(homePath.toUtf8().constData(), "<HOME_PATH>");
     out += "\n\n";
   }
 
@@ -2168,8 +2168,8 @@ void MainWindow::doSysInfo()
   el.exec();
   out += g_fwCommandToExecute.result();
 
-  out.replace(hostname, "<HOSTNAME>");
-  out.replace(homePath, "<HOME_PATH>");
+  out.replace(hostname.toUtf8().constData(), "<HOSTNAME>");
+  out.replace(homePath.toUtf8().constData(), "<HOME_PATH>");
   out += "\n\n";
 
   out += "----------------------------------------------------------------------------------------------------------\n";
@@ -2184,7 +2184,7 @@ void MainWindow::doSysInfo()
   out += g_fwCommandToExecute.result();
 
   //out.replace(hostname, "<HOSTNAME>");
-  out.replace(homePath, "<HOME_PATH>");
+  out.replace(homePath.toUtf8().constData(), "<HOME_PATH>");
   out += "\n\n";
 
   out += "----------------------------------------------------------------------------------------------------------\n";
@@ -2199,7 +2199,7 @@ void MainWindow::doSysInfo()
   out += g_fwCommandToExecute.result();
 
   //out.replace(hostname, "<HOSTNAME>");
-  out.replace(homePath, "<HOME_PATH>");
+  out.replace(homePath.toUtf8().constData(), "<HOME_PATH>");
   out += "\n\n";
 
   if (UnixCommand::getLinuxDistro() == ectn_KAOS)
@@ -2216,7 +2216,7 @@ void MainWindow::doSysInfo()
     out += g_fwCommandToExecute.result();
 
     //out.replace(hostname, "<HOSTNAME>");
-    out.replace(homePath, "<HOME_PATH>");
+    out.replace(homePath.toUtf8().constData(), "<HOME_PATH>");
     out += "\n\n";
 
     out += "----------------------------------------------------------------------------------------------------------\n";
@@ -2229,11 +2229,11 @@ void MainWindow::doSysInfo()
     g_fwCommandToExecute.setFuture(f);
     el.exec();
     out += g_fwCommandToExecute.result();
-    out.replace(hostname, "<HOSTNAME>");
-    out.replace(homePath, "<HOME_PATH>");
-    QString aux = QString::fromLatin1(out.data());
+    out.replace(hostname.toUtf8().constData(), "<HOSTNAME>");
+    out.replace(homePath.toUtf8().constData(), "<HOME_PATH>");
+
     QByteArray aba;
-    aba += aux;
+    aba += out;
   }
   else
   {
@@ -2247,8 +2247,8 @@ void MainWindow::doSysInfo()
     g_fwCommandToExecute.setFuture(f);
     el.exec();
     out += g_fwCommandToExecute.result();
-    out.replace(hostname, "<HOSTNAME>");
-    out.replace(homePath, "<HOME_PATH>");
+    out.replace(hostname.toUtf8().constData(), "<HOSTNAME>");
+    out.replace(homePath.toUtf8().constData(), "<HOME_PATH>");
   }
 
   m_commandExecuting = ectn_NONE;
