@@ -322,7 +322,7 @@ QWidget* QtSingleApplication::activationWindow() const
 void QtSingleApplication::activateWindow(const QString &message)
 {
 #ifdef OCTOPI_EXTENSIONS
-  if (actWin && message == "RAISE") {
+  if (actWin && message == QLatin1String("RAISE")) {
         actWin->setWindowState(actWin->windowState() & ~Qt::WindowMinimized);
         actWin->raise();
         if (actWin->isHidden())
@@ -330,7 +330,7 @@ void QtSingleApplication::activateWindow(const QString &message)
         else
           actWin->activateWindow();
     }
-  else if (actWin && message == "HIDE") {
+  else if (actWin && message == QLatin1String("HIDE")) {
     if (!actWin->isHidden())
       actWin->hide();
     else
@@ -341,7 +341,7 @@ void QtSingleApplication::activateWindow(const QString &message)
         actWin->show();
     }
   }
-  else if (actWin && message == "SHOW") {
+  else if (actWin && message == QLatin1String("SHOW")) {
     if (actWin->isHidden()){
       actWin->setWindowState(actWin->windowState() & ~Qt::WindowMinimized);
       actWin->raise();
@@ -349,7 +349,7 @@ void QtSingleApplication::activateWindow(const QString &message)
         actWin->show();
     }
   }
-  else if (actWin && message == "OPTIONS") {
+  else if (actWin && message == QLatin1String("OPTIONS")) {
     if (actWin->isHidden()){
       actWin->setWindowState(actWin->windowState() & ~Qt::WindowMinimized);
       actWin->raise();
@@ -362,8 +362,8 @@ void QtSingleApplication::activateWindow(const QString &message)
       mw->onOptions();
     }
   }
-  else if (actWin && ((message == "AURUPGRADE") || (message == "SYSUPGRADE") ||
-                      (message == "SYSUPGRADE_NOCONFIRM")))
+  else if (actWin && ((message == QLatin1String("AURUPGRADE")) || (message == QLatin1String("SYSUPGRADE")) ||
+                      (message == QLatin1String("SYSUPGRADE_NOCONFIRM"))))
   {
     actWin->setWindowState(actWin->windowState() & ~Qt::WindowMinimized);
     actWin->raise();
@@ -378,11 +378,11 @@ void QtSingleApplication::activateWindow(const QString &message)
     {
       if (!mw->isExecutingCommand())
       {
-        if (message == "AURUPGRADE")
+        if (message == QLatin1String("AURUPGRADE"))
         {
           mw->doAURUpgrade();
         }
-        else if (message == "SYSUPGRADE")
+        else if (message == QLatin1String("SYSUPGRADE"))
         {
           mw->doSystemUpgrade();
         }
@@ -393,7 +393,7 @@ void QtSingleApplication::activateWindow(const QString &message)
       }
     }
   }
-  else if (actWin && message == "CLOSE") {
+  else if (actWin && message == QLatin1String("CLOSE")) {
     if (!actWin->close())
     {
       if (actWin->isHidden())
@@ -405,7 +405,7 @@ void QtSingleApplication::activateWindow(const QString &message)
       }
     }
   }
-  else if (actWin && (message.contains("pkg.tar.xz") || (message.contains("pkg.tar.zst")))) {
+  else if (actWin && (message.contains(QLatin1String("pkg.tar.xz")) || (message.contains(QLatin1String("pkg.tar.zst"))))) {
     actWin->setWindowState(actWin->windowState() & ~Qt::WindowMinimized);
     actWin->raise();
     if (actWin->isHidden())
@@ -414,7 +414,7 @@ void QtSingleApplication::activateWindow(const QString &message)
       actWin->activateWindow();
 
     QStringList packagesToInstallList =
-        message.split(",", QString::SkipEmptyParts);
+        message.split(QLatin1Char(','), QString::SkipEmptyParts);
 
     MainWindow *mw = qobject_cast<MainWindow *>(actWin);
 
@@ -430,7 +430,7 @@ void QtSingleApplication::activateWindow(const QString &message)
 
 #else
 
-  if (actWin && message == "RAISE") {
+  if (actWin && message == QLatin1String("RAISE")) {
         actWin->setWindowState(actWin->windowState() & ~Qt::WindowMinimized);
         actWin->raise();
         if (actWin->isHidden())
@@ -438,7 +438,7 @@ void QtSingleApplication::activateWindow(const QString &message)
         else
           actWin->activateWindow();
     }
-  else if (actWin && message == "HIDE") {
+  else if (actWin && message == QLatin1String("HIDE")) {
     if (!actWin->isHidden())
       actWin->hide();
     else
@@ -449,7 +449,7 @@ void QtSingleApplication::activateWindow(const QString &message)
         actWin->show();
     }
   }
-  else if (actWin && message == "CLOSE") {
+  else if (actWin && message == QLatin1String("CLOSE")) {
     if (!actWin->close())
     {
       if (actWin->isHidden())

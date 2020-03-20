@@ -323,7 +323,7 @@ void MainWindow::initToolBar()
     m_separatorForActionAUR = ui->mainToolBar->addSeparator();
     ui->mainToolBar->addAction(m_actionSwitchToAURTool);
     if (SettingsManager::getAURTool() != ctn_NO_AUR_TOOL)
-      m_actionSwitchToAURTool->setToolTip(m_actionSwitchToAURTool->toolTip() + "  (Ctrl+Shift+Y)");
+      m_actionSwitchToAURTool->setToolTip(m_actionSwitchToAURTool->toolTip() + QLatin1String("  (Ctrl+Shift+Y)"));
   }
 
   m_dummyAction = new QAction(this);
@@ -331,7 +331,7 @@ void MainWindow::initToolBar()
   ui->mainToolBar->addAction(m_dummyAction);
 
   m_leFilterPackage->setMinimumHeight(24);
-  m_leFilterPackage->setPlaceholderText(m_leFilterPackage->placeholderText() + "  (Ctrl+L)");
+  m_leFilterPackage->setPlaceholderText(m_leFilterPackage->placeholderText() + QLatin1String("  (Ctrl+L)"));
   ui->mainToolBar->addWidget(m_leFilterPackage);
 
   QWidget * hSpacer = new QWidget(this);
@@ -339,7 +339,7 @@ void MainWindow::initToolBar()
   hSpacer->setMinimumWidth(3);
   hSpacer->setVisible(true);
   ui->mainToolBar->addWidget(hSpacer);
-  m_actionShowGroups->setToolTip(m_actionShowGroups->toolTip() + "  (F9)");
+  m_actionShowGroups->setToolTip(m_actionShowGroups->toolTip() + QLatin1String("  (F9)"));
   ui->mainToolBar->addAction(m_actionShowGroups);
   ui->mainToolBar->toggleViewAction()->setEnabled(false);
   ui->mainToolBar->toggleViewAction()->setVisible(false);
@@ -452,7 +452,7 @@ void MainWindow::initTabTransaction()
   gridLayoutX->setMargin(0);
 
   QTreeView *tvTransaction = new QTreeView(tabTransaction);
-  tvTransaction->setObjectName("tvTransaction");
+  tvTransaction->setObjectName(QStringLiteral("tvTransaction"));
   tvTransaction->setContextMenuPolicy(Qt::CustomContextMenu);
   tvTransaction->setEditTriggers(QAbstractItemView::NoEditTriggers);
   tvTransaction->setDropIndicatorShown(false);
@@ -489,7 +489,7 @@ void MainWindow::initTabTransaction()
   QString aux(StrConstants::getActions());
   ui->twProperties->removeTab(ctn_TABINDEX_ACTIONS);
   ui->twProperties->insertTab(ctn_TABINDEX_ACTIONS, tabTransaction, QApplication::translate (
-                                "MainWindow", aux.toUtf8(), 0/*, QApplication::UnicodeUTF8*/ ));
+                                "MainWindow", aux.toUtf8().constData(), 0/*, QApplication::UnicodeUTF8*/ ));
 
   connect(tvTransaction, SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(execContextMenuTransaction(QPoint)));
   connect(tvTransaction->selectionModel(), SIGNAL(selectionChanged(QItemSelection,QItemSelection)),
@@ -561,7 +561,7 @@ void MainWindow::initTabInfo(){
   gridLayoutX->setMargin ( 0 );
 
   QTextBrowser *text = new QTextBrowser(tabInfo);
-  text->setObjectName("textBrowser");
+  text->setObjectName(QStringLiteral("textBrowser"));
   text->setReadOnly(true);
   text->setFrameShape(QFrame::NoFrame);
   text->setFrameShadow(QFrame::Plain);
@@ -573,7 +573,7 @@ void MainWindow::initTabInfo(){
   QString tabName(StrConstants::getTabInfoName());
   ui->twProperties->removeTab(ctn_TABINDEX_INFORMATION);
   ui->twProperties->insertTab(ctn_TABINDEX_INFORMATION, tabInfo, QApplication::translate (
-      "MainWindow", tabName.toUtf8(), 0));
+      "MainWindow", tabName.toUtf8().constData(), 0));
   ui->twProperties->setUsesScrollButtons(false);
 
   SearchBar *searchBar = new SearchBar(this);
@@ -607,7 +607,7 @@ void MainWindow::initTabTerminal()
   ui->twProperties->removeTab(ctn_TABINDEX_TERMINAL);
   QString aux(StrConstants::getTabTerminal());
   ui->twProperties->insertTab(ctn_TABINDEX_TERMINAL, tabTerminal, QApplication::translate (
-                                                  "MainWindow", aux.toUtf8(), 0) );
+                                                  "MainWindow", aux.toUtf8().constData(), 0) );
   ui->twProperties->setCurrentIndex(ctn_TABINDEX_TERMINAL);
   m_console->setFocus();
 }
@@ -646,7 +646,7 @@ void MainWindow::onExecCommandInTabTerminal(QString command)
   connect(m_console, SIGNAL(onCancelControlKey()), this, SLOT(onCancelControlKey()));
 
   m_console->enter();
-  m_console->execute("clear");
+  m_console->execute(QStringLiteral("clear"));
   m_console->execute(command);
   m_console->setFocus();
 }
@@ -671,7 +671,7 @@ void MainWindow::initTabFiles()
   tvPkgFileList->header()->setSectionResizeMode(QHeaderView::Fixed);
   tvPkgFileList->setFrameShape(QFrame::NoFrame);
   tvPkgFileList->setFrameShadow(QFrame::Plain);
-  tvPkgFileList->setObjectName("tvPkgFileList");
+  tvPkgFileList->setObjectName(QStringLiteral("tvPkgFileList"));
   tvPkgFileList->setStyleSheet(StrConstants::getTreeViewCSS());
 
   modelPkgFileList->setSortRole(0);
@@ -682,7 +682,7 @@ void MainWindow::initTabFiles()
   QString aux(StrConstants::getTabFilesName());
   ui->twProperties->removeTab(ctn_TABINDEX_FILES);
   ui->twProperties->insertTab(ctn_TABINDEX_FILES, tabPkgFileList, QApplication::translate (
-                                                  "MainWindow", aux.toUtf8(), 0/*, QApplication::UnicodeUTF8*/ ) );
+                                                  "MainWindow", aux.toUtf8().constData(), 0/*, QApplication::UnicodeUTF8*/ ) );
   tvPkgFileList->setContextMenuPolicy(Qt::CustomContextMenu);
   SearchBar *searchBar = new SearchBar(this);
   connect(searchBar, SIGNAL(textChanged(QString)), this, SLOT(searchBarTextChangedInTreeView(QString)));
@@ -708,7 +708,7 @@ void MainWindow::initTabOutput()
   gridLayoutX->setSpacing ( 0 );
   gridLayoutX->setMargin ( 0 );
   QTextBrowser *text = new QTextBrowser(tabOutput);
-  text->setObjectName("textBrowser");
+  text->setObjectName(QStringLiteral("textBrowser"));
   text->setReadOnly(true);
   text->setOpenLinks(false);
   text->setFrameShape(QFrame::NoFrame);
@@ -721,7 +721,7 @@ void MainWindow::initTabOutput()
   QString aux(StrConstants::getTabOutputName());
   ui->twProperties->removeTab(ctn_TABINDEX_OUTPUT);
   ui->twProperties->insertTab(ctn_TABINDEX_OUTPUT, tabOutput, QApplication::translate (
-      "MainWindow", aux.toUtf8(), 0/*, QApplication::UnicodeUTF8*/ ) );
+      "MainWindow", aux.toUtf8().constData(), 0/*, QApplication::UnicodeUTF8*/ ) );
 
   SearchBar *searchBar = new SearchBar(this);
   connect(searchBar, SIGNAL(textChanged(QString)), this, SLOT(searchBarTextChangedInTextBrowser(QString)));
@@ -740,7 +740,7 @@ void MainWindow::initTabOutput()
  */
 void MainWindow::initActions()
 {
-  m_hasSLocate = UnixCommand::hasTheExecutable("slocate");
+  m_hasSLocate = UnixCommand::hasTheExecutable(QStringLiteral("slocate"));
   m_hasMirrorCheck = UnixCommand::hasTheExecutable(ctn_MIRROR_CHECK_APP);
   m_actionSysInfo = new QAction(this);
   m_actionMenuMirrorCheck = new QAction(this);
@@ -761,7 +761,7 @@ void MainWindow::initActions()
   if(m_hasMirrorCheck)
   {
     m_actionMenuMirrorCheck->setShortcut(QKeySequence(Qt::ControlModifier|Qt::ShiftModifier|Qt::Key_M));
-    m_actionMenuMirrorCheck->setText("Mirror-Check");
+    m_actionMenuMirrorCheck->setText(QStringLiteral("Mirror-Check"));
     m_actionMenuMirrorCheck->setIcon(IconHelper::getIconMirrorCheck());
     connect(m_actionMenuMirrorCheck, SIGNAL(triggered()), this, SLOT(doMirrorCheck()));
   }  
@@ -812,7 +812,7 @@ void MainWindow::initActions()
   connect(m_actionShowGroups, SIGNAL(triggered()), this, SLOT(hideGroupsWidget()));
 
   m_actionEditOctopiConf = new QAction(this);
-  m_actionEditOctopiConf->setText("octopi.conf...");
+  m_actionEditOctopiConf->setText(QStringLiteral("octopi.conf..."));
   m_actionEditOctopiConf->setIcon(IconHelper::getIconBinary());
   connect(m_actionEditOctopiConf, SIGNAL(triggered()), this, SLOT(editOctopiConf()));
 
@@ -913,21 +913,21 @@ void MainWindow::initActions()
   if (WMHelper::isXFCERunning())
   {
     //Loop through all actions and set their icons (if any) visible to menus.
-    foreach(QAction* ac, this->findChildren<QAction*>(QRegularExpression("(m_a|a)ction\\S*")))
+    foreach(QAction* ac, this->findChildren<QAction*>(QRegularExpression(QLatin1String("(m_a|a)ction\\S*"))))
     {
       if (ac) ac->setIconVisibleInMenu(true);
     }
   }
 
   QString text;
-  foreach(QAction* ac, this->findChildren<QAction*>(QRegularExpression("(m_a|a)ction\\S*")))
+  foreach(QAction* ac, this->findChildren<QAction*>(QRegularExpression(QLatin1String("(m_a|a)ction\\S*"))))
   {
     //text = ac->text().remove("&");
     //ac->setText(qApp->translate("MainWindow", text.toUtf8(), 0));
 
     if (!ac->shortcut().isEmpty())
     {
-      ac->setToolTip(ac->toolTip() + "  (" + ac->shortcut().toString() + ")");
+      ac->setToolTip(ac->toolTip() + QLatin1String("  (") + ac->shortcut().toString() + QLatin1String(")"));
     }
   }
 

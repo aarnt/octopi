@@ -37,7 +37,7 @@ TermWidget::TermWidget(QWidget *parent):
   QTermWidget(parent)
 {
   setScrollBarPosition(QTermWidget::ScrollBarRight);
-  setColorScheme("WhiteOnBlack");
+  setColorScheme(QStringLiteral("WhiteOnBlack"));
   setContextMenuPolicy(Qt::CustomContextMenu);
 
   m_actionZoomIn = new QAction(this);
@@ -108,7 +108,7 @@ void TermWidget::execute(QString command)
 void TermWidget::enter()
 {
   //This is the ENTER/RETURN key!
-  QString enter("\r");
+  QString enter(QStringLiteral("\r"));
   this->sendText(enter);
 }
 
@@ -120,7 +120,7 @@ void TermWidget::parseOutput(QString str)
   //qDebug() << "terminal: " << str << endl;
 
   if ((str == StrConstants::getPressAnyKey() ||
-       str == StrConstants::getPressAnyKey() + "\r\n") ||
+       str == StrConstants::getPressAnyKey() + QLatin1String("\r\n")) ||
       str.contains(StrConstants::getSuspiciousExecutionDetected()) ||
       str.contains(StrConstants::getSuspiciousTransactionDetected()) ||
       str.contains(StrConstants::getCouldNotAttachToParent())
@@ -128,8 +128,8 @@ void TermWidget::parseOutput(QString str)
   {
     emit onPressAnyKeyToContinue();
   }
-  else if (str.contains("quit: command not found") ||
-           str.contains("close: command not found"))
+  else if (str.contains(QLatin1String("quit: command not found")) ||
+           str.contains(QLatin1String("close: command not found")))
   {
     emit onKeyQuit();
   }

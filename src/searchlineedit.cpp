@@ -46,9 +46,9 @@ SearchLineEdit::SearchLineEdit(QWidget *parent, bool hasSLocate) :
   this->m_SearchButton->setCursor(Qt::ArrowCursor);
   this->m_SearchButton->setStyleSheet(this->buttonStyleSheetForCurrentState());
 
-  m_defaultValidator = new QRegularExpressionValidator(QRegularExpression("[a-zA-Z0-9_\\-\\$\\^\\*\\+\\(\\)\\[\\]\\.\\s\\\\]+"), this);
-  m_aurValidator = new QRegularExpressionValidator(QRegularExpression("[a-zA-Z0-9_\\-\\+\\s\\\\]+"), this);
-  m_fileValidator = new QRegularExpressionValidator(QRegularExpression("[a-zA-Z0-9_\\-\\/\\.]+"), this);
+  m_defaultValidator = new QRegularExpressionValidator(QRegularExpression(QStringLiteral("[a-zA-Z0-9_\\-\\$\\^\\*\\+\\(\\)\\[\\]\\.\\s\\\\]+")), this);
+  m_aurValidator = new QRegularExpressionValidator(QRegularExpression(QStringLiteral("[a-zA-Z0-9_\\-\\+\\s\\\\]+")), this);
+  m_fileValidator = new QRegularExpressionValidator(QRegularExpression(QStringLiteral("[a-zA-Z0-9_\\-\\/\\.]+")), this);
   setValidator(m_defaultValidator);
 
   // Update the search button when the text changes
@@ -77,7 +77,7 @@ void SearchLineEdit::setRefreshValidator(ValidatorType validatorType)
   int pos = 0;
   QString search = text();
   if (this->validator()->validate(search, pos) == QValidator::Invalid)
-    setText("");
+    setText(QLatin1String(""));
 
   m_validatorType = validatorType;
 }
@@ -133,12 +133,12 @@ void SearchLineEdit::updateSearchButton(const QString &text)
 QString SearchLineEdit::styleSheetForCurrentState()
 { 
   QString style;
-  style += "QLineEdit {";
+  style += QLatin1String("QLineEdit {");
 
   if (UnixCommand::getLinuxDistro() != ectn_CHAKRA)
   {
-    style += "font-family: 'Sans Serif';";
-    style += "font-style: italic;";
+    style += QLatin1String("font-family: 'Sans Serif';");
+    style += QLatin1String("font-style: italic;");
   }
   else
   {
@@ -150,16 +150,16 @@ QString SearchLineEdit::styleSheetForCurrentState()
   if (!WMHelper::isKDERunning()) //UnixCommand::getLinuxDistro() != ectn_CHAKRA)
   {
     int frameWidth = 1;
-    style += "padding-left: 20px;";
-    style += QString("padding-right: %1px;").arg(this->m_SearchButton->sizeHint().width() + frameWidth + 1);
-    style += "border-width: 3px;}";
+    style += QLatin1String("padding-left: 20px;");
+    style += QStringLiteral("padding-right: %1px;").arg(this->m_SearchButton->sizeHint().width() + frameWidth + 1);
+    style += QLatin1String("border-width: 3px;}");
     //style += "border-image: url(:/resources/images/esf-border.png) 3 3 3 3 stretch;}";
     //style += "background-color: rgba(255, 255, 255, 255);"; //204);";
     //style += "color: black;}";
   }
   else
   {
-    style += "padding-left: 20px;}";
+    style += QLatin1String("padding-left: 20px;}");
     //setPalette(QApplication::palette());
   }
 
@@ -168,15 +168,15 @@ QString SearchLineEdit::styleSheetForCurrentState()
 
 void SearchLineEdit::setFoundStyle(){
   QString style;
-  style += "QLineEdit {";
+  style += QLatin1String("QLineEdit {");
 
   if (!WMHelper::isKDERunning()) //(UnixCommand::getLinuxDistro() != ectn_CHAKRA)
   {
-    style += "font-family: 'Sans Serif';";
-    style += "font-style: italic;";
-    style += "padding-left: 20px;";
-    style += QString("padding-right: %1px;").arg(this->m_SearchButton->sizeHint().width() + 2);
-    style += "border-width: 3px;}";
+    style += QLatin1String("font-family: 'Sans Serif';");
+    style += QLatin1String("font-style: italic;");
+    style += QLatin1String("padding-left: 20px;");
+    style += QStringLiteral("padding-right: %1px;").arg(this->m_SearchButton->sizeHint().width() + 2);
+    style += QLatin1String("border-width: 3px;}");
     //style += "border-image: url(:/resources/images/esf-border.png) 3 3 3 3 stretch;";
     //style += "color: black; ";
     //style += "background-color: rgb(255, 255, 255);";
@@ -186,7 +186,7 @@ void SearchLineEdit::setFoundStyle(){
   else
   // setPalette() must be called after setStyleSheet()
   {
-    style += "padding-left: 20px;}";
+    style += QLatin1String("padding-left: 20px;}");
     setStyleSheet(style);
 
     /*QPalette palette(QApplication::palette());
@@ -198,25 +198,25 @@ void SearchLineEdit::setFoundStyle(){
 
 void SearchLineEdit::setNotFoundStyle(){
   QString style;
-  style += "QLineEdit {";
+  style += QLatin1String("QLineEdit {");
 
   if (!WMHelper::isKDERunning()) //(UnixCommand::getLinuxDistro() != ectn_CHAKRA)
   {
-    style += "font-family: 'Sans Serif';";
-    style += "font-style: italic;";
-    style += "padding-left: 20px;";
-    style += QString("padding-right: %1px;").arg(this->m_SearchButton->sizeHint().width() + 2);
-    style += "border-width: 3px;";
+    style += QLatin1String("font-family: 'Sans Serif';");
+    style += QLatin1String("font-style: italic;");
+    style += QLatin1String("padding-left: 20px;");
+    style += QStringLiteral("padding-right: %1px;").arg(this->m_SearchButton->sizeHint().width() + 2);
+    style += QLatin1String("border-width: 3px;");
     //style += "border-image: url(:/resources/images/esf-border.png) 3 3 3 3 stretch;";
     //style += "color: white; ";
     //style += "background-color: lightgray;"; //rgb(255, 108, 108); //palette(mid);"; //rgb(207, 135, 142);";
-    style += "border-color: rgb(206, 204, 197);}";
+    style += QLatin1String("border-color: rgb(206, 204, 197);}");
     setStyleSheet(style);
   }
   // setPalette() must be called after setStyleSheet()
   else
   {
-    style += "padding-left: 20px;}";
+    style += QLatin1String("padding-left: 20px;}");
     setStyleSheet(style);
 
     /*QPalette palette(QApplication::palette());
@@ -237,23 +237,23 @@ QString SearchLineEdit::buttonStyleSheetForCurrentState() const
     if (!this->text().isEmpty())
       this->m_SearchButton->setToolTip(StrConstants::getClear());
     else
-      this->m_SearchButton->setToolTip("");
+      this->m_SearchButton->setToolTip(QLatin1String(""));
 
     return QString();
   }
 
   QString style;
-  style += "QToolButton {";
-  style += "border: none; margin: 0; padding: 0;";
-  style += QString("background-image: url(:/resources/images/esf-%1.png);").arg(this->text().isEmpty() ? "search" : "clear");
-  style += "}";
+  style += QLatin1String("QToolButton {");
+  style += QLatin1String("border: none; margin: 0; padding: 0;");
+  style += QStringLiteral("background-image: url(:/resources/images/esf-%1.png);").arg(this->text().isEmpty() ? QStringLiteral("search") : QStringLiteral("clear"));
+  style += QLatin1String("}");
 
   if (!this->text().isEmpty())
   {
-    style += "QToolButton:pressed { background-image: url(:/resources/images/esf-clear.png); }";
+    style += QLatin1String("QToolButton:pressed { background-image: url(:/resources/images/esf-clear.png); }");
     this->m_SearchButton->setToolTip(StrConstants::getClear());
   }
-  else this->m_SearchButton->setToolTip("");
+  else this->m_SearchButton->setToolTip(QLatin1String(""));
 
   return style;
 }

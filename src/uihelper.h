@@ -82,25 +82,25 @@ public:
     {
       case ectn_OCTOPI_BUSY:
         if (useDefaultIcons)
-          res = ":/resources/images/octopi_transparent.png";
+          res = QStringLiteral(":/resources/images/octopi_transparent.png");
         else
           res = SettingsManager::getOctopiBusyIconPath();
         break;
       case ectn_OCTOPI_RED:
         if (useDefaultIcons)
-          res = ":/resources/images/octopi_red.png";
+          res = QStringLiteral(":/resources/images/octopi_red.png");
         else
           res = SettingsManager::getOctopiRedIconPath();
         break;
       case ectn_OCTOPI_YELLOW:
         if (useDefaultIcons)
-          res = ":/resources/images/octopi_yellow.png";
+          res = QStringLiteral(":/resources/images/octopi_yellow.png");
         else
           res = SettingsManager::getOctopiYellowIconPath();
         break;
       case ectn_OCTOPI_GREEN:
         if (useDefaultIcons)
-          res = ":/resources/images/octopi_green.png";
+          res = QStringLiteral(":/resources/images/octopi_green.png");
         else
           res = SettingsManager::getOctopiGreenIconPath();
     }
@@ -110,7 +110,7 @@ public:
 
   static QIcon getIconOctopi(){
     if (WMHelper::isKDERunning())
-      return QIcon::fromTheme("octopi", QIcon());
+      return QIcon::fromTheme(QStringLiteral("octopi"), QIcon());
     else return QIcon();
   }
 
@@ -123,199 +123,199 @@ public:
   static QIcon getIconOctopiGreen(){ return QIcon(getOctopiIconPath(ectn_OCTOPI_GREEN)); }
   //App icon code
 
-  static QIcon getIconFrozen(){ return QIcon(":/resources/images/tgz_frozen_flat.png"); }
-  static QIcon getIconUnFrozen(){ return QIcon(":/resources/images/tgz4_flat.png"); }
-  static QIcon getIconRPM(){ return QIcon(":/resources/images/rpm.png"); }
-  static QIcon getIconInferior(){ return QIcon(":/resources/images/inferiorversion_red.png"); }
-  static QIcon getIconSuperior(){ return QIcon(":/resources/images/superiorversion.png"); }
-  static QIcon getIconOtherVersion(){ return QIcon(":/resources/images/agent.png"); }
-  static QIcon getIconOtherArch(){ return QIcon(":/resources/images/cpu.png"); }
-  static QIcon getIconInstalled(){ return QIcon(":/resources/images/installed.png"); }
-  static QIcon getIconNonInstalled(){ return QIcon(":/resources/images/noninstalled.png"); }
-  static QIcon getIconOutdated(){ return QIcon(":/resources/images/outdated.png"); }
-  static QIcon getIconNewer(){ return QIcon(":/resources/images/newer.png"); }
-  static QIcon getIconUnrequired(){ return QIcon(":/resources/images/unrequired.png"); }
-  static QIcon getIconForeignGreen(){ return QIcon(":/resources/images/foreign_green.png"); }
-  static QIcon getIconForeignRed(){ return QIcon(":/resources/images/foreign_red.png"); }
-  static QIcon getIconForeignWhite(){ return QIcon(":/resources/images/foreign_white.png"); }
-  static QIcon getIconStop(){ return QIcon(":/resources/images/stop_small_red.png"); }
-  static QIcon getIconVote(){ return QIcon(":/resources/images/vote.png"); }
-  static QIcon getIconUnvote(){ return QIcon(":/resources/images/un_vote.png"); }
+  static QIcon getIconFrozen(){ return QIcon(QStringLiteral(":/resources/images/tgz_frozen_flat.png")); }
+  static QIcon getIconUnFrozen(){ return QIcon(QStringLiteral(":/resources/images/tgz4_flat.png")); }
+  static QIcon getIconRPM(){ return QIcon(QStringLiteral(":/resources/images/rpm.png")); }
+  static QIcon getIconInferior(){ return QIcon(QStringLiteral(":/resources/images/inferiorversion_red.png")); }
+  static QIcon getIconSuperior(){ return QIcon(QStringLiteral(":/resources/images/superiorversion.png")); }
+  static QIcon getIconOtherVersion(){ return QIcon(QStringLiteral(":/resources/images/agent.png")); }
+  static QIcon getIconOtherArch(){ return QIcon(QStringLiteral(":/resources/images/cpu.png")); }
+  static QIcon getIconInstalled(){ return QIcon(QStringLiteral(":/resources/images/installed.png")); }
+  static QIcon getIconNonInstalled(){ return QIcon(QStringLiteral(":/resources/images/noninstalled.png")); }
+  static QIcon getIconOutdated(){ return QIcon(QStringLiteral(":/resources/images/outdated.png")); }
+  static QIcon getIconNewer(){ return QIcon(QStringLiteral(":/resources/images/newer.png")); }
+  static QIcon getIconUnrequired(){ return QIcon(QStringLiteral(":/resources/images/unrequired.png")); }
+  static QIcon getIconForeignGreen(){ return QIcon(QStringLiteral(":/resources/images/foreign_green.png")); }
+  static QIcon getIconForeignRed(){ return QIcon(QStringLiteral(":/resources/images/foreign_red.png")); }
+  static QIcon getIconForeignWhite(){ return QIcon(QStringLiteral(":/resources/images/foreign_white.png")); }
+  static QIcon getIconStop(){ return QIcon(QStringLiteral(":/resources/images/stop_small_red.png")); }
+  static QIcon getIconVote(){ return QIcon(QStringLiteral(":/resources/images/vote.png")); }
+  static QIcon getIconUnvote(){ return QIcon(QStringLiteral(":/resources/images/un_vote.png")); }
 
   static QIcon getIconBinary(){
     if (WMHelper::isKDERunning() && (UnixCommand::getLinuxDistro() != ectn_KAOS))
-      return QIcon::fromTheme("application-x-object",QIcon(":/resources/images/binary.png"));
+      return QIcon::fromTheme(QStringLiteral("application-x-object"),QIcon(QStringLiteral(":/resources/images/binary.png")));
     else
-      return QIcon(":/resources/images/binary.png");
+      return QIcon(QStringLiteral(":/resources/images/binary.png"));
   }
 
   static QIcon getIconToRemove(){
     if (WMHelper::isKDERunning() && (UnixCommand::getLinuxDistro() != ectn_KAOS))
-      return QIcon::fromTheme("dialog-cancel", QIcon(":/resources/images/toremove.png"));
+      return QIcon::fromTheme(QStringLiteral("dialog-cancel"), QIcon(QStringLiteral(":/resources/images/toremove.png")));
     else
-      return QIcon(":/resources/images/toremove.png");
+      return QIcon(QStringLiteral(":/resources/images/toremove.png"));
   }
 
   static QIcon getIconToInstall(){
     if (WMHelper::isKDERunning() && (UnixCommand::getLinuxDistro() != ectn_KAOS))
-      return QIcon::fromTheme("download", QIcon(":/resources/images/toinstall.png"));
+      return QIcon::fromTheme(QStringLiteral("download"), QIcon(QStringLiteral(":/resources/images/toinstall.png")));
     else
-      return QIcon(":/resources/images/toinstall.png");
+      return QIcon(QStringLiteral(":/resources/images/toinstall.png"));
   }
 
   static QIcon getIconTerminal(){
     if (WMHelper::isKDERunning() && (UnixCommand::getLinuxDistro() != ectn_KAOS))
-      return QIcon::fromTheme("utilities-terminal", QIcon(":/resources/images/terminal.png"));
+      return QIcon::fromTheme(QStringLiteral("utilities-terminal"), QIcon(QStringLiteral(":/resources/images/terminal.png")));
     else
-      return QIcon(":/resources/images/terminal.png");
+      return QIcon(QStringLiteral(":/resources/images/terminal.png"));
   }
 
   static QIcon getIconRemoveItem() {
     if (WMHelper::isKDERunning() && (UnixCommand::getLinuxDistro() != ectn_KAOS))
-      return QIcon::fromTheme("list-remove", QIcon(":/resources/images/toremove.png"));
+      return QIcon::fromTheme(QStringLiteral("list-remove"), QIcon(QStringLiteral(":/resources/images/toremove.png")));
     else
-      return QIcon(":/resources/images/toremove.png");
+      return QIcon(QStringLiteral(":/resources/images/toremove.png"));
   }
 
   static QIcon getIconInstallItem() {
     if (WMHelper::isKDERunning() && (UnixCommand::getLinuxDistro() != ectn_KAOS))
-      return QIcon::fromTheme("list-add", QIcon(":/resources/images/toinstall.png"));
+      return QIcon::fromTheme(QStringLiteral("list-add"), QIcon(QStringLiteral(":/resources/images/toinstall.png")));
     else
-      return QIcon(":/resources/images/toinstall.png");
+      return QIcon(QStringLiteral(":/resources/images/toinstall.png"));
   }
 
   static QIcon getIconExit(){    
     if (WMHelper::isKDERunning() && (UnixCommand::getLinuxDistro() != ectn_KAOS))
-      return QIcon::fromTheme("application-exit", QIcon(":/resources/images/exit.png"));
+      return QIcon::fromTheme(QStringLiteral("application-exit"), QIcon(QStringLiteral(":/resources/images/exit.png")));
     else      
-      return QIcon(":/resources/images/exit.png");
+      return QIcon(QStringLiteral(":/resources/images/exit.png"));
   }
 
   // Icons for QActions
   static QIcon getIconCheckUpdates(){
     if (WMHelper::isKDERunning() && (UnixCommand::getLinuxDistro() != ectn_KAOS))
-      return QIcon::fromTheme("view-refresh", QIcon(":/resources/images/refresh.png"));
+      return QIcon::fromTheme(QStringLiteral("view-refresh"), QIcon(QStringLiteral(":/resources/images/refresh.png")));
     else
-      return QIcon(":/resources/images/refresh.png");
+      return QIcon(QStringLiteral(":/resources/images/refresh.png"));
   }
 
   static QIcon getIconCommit(){
     if (WMHelper::isKDERunning() && (UnixCommand::getLinuxDistro() != ectn_KAOS))
-      return QIcon::fromTheme("dialog-ok-apply", QIcon(":/resources/images/commit.png"));
+      return QIcon::fromTheme(QStringLiteral("dialog-ok-apply"), QIcon(QStringLiteral(":/resources/images/commit.png")));
     else
-      return QIcon(":/resources/images/commit.png");
+      return QIcon(QStringLiteral(":/resources/images/commit.png"));
   }
 
   static QIcon getIconRollback(){
     if (WMHelper::isKDERunning() && (UnixCommand::getLinuxDistro() != ectn_KAOS))
-      return QIcon::fromTheme("edit-undo", QIcon(":/resources/images/rollback.png"));
+      return QIcon::fromTheme(QStringLiteral("edit-undo"), QIcon(QStringLiteral(":/resources/images/rollback.png")));
     else
-      return QIcon(":/resources/images/rollback.png");
+      return QIcon(QStringLiteral(":/resources/images/rollback.png"));
   }
 
   static QIcon getIconSystemUpgrade(){
     if (WMHelper::isKDERunning() && (UnixCommand::getLinuxDistro() != ectn_KAOS))
-      return QIcon::fromTheme("go-up", QIcon(":/resources/images/fast_forward.png"));
+      return QIcon::fromTheme(QStringLiteral("go-up"), QIcon(QStringLiteral(":/resources/images/fast_forward.png")));
     else
-      return QIcon(":/resources/images/fast_forward.png");
+      return QIcon(QStringLiteral(":/resources/images/fast_forward.png"));
   }
 
   static QIcon getIconGetNews(){
     if (WMHelper::isKDERunning() && (UnixCommand::getLinuxDistro() != ectn_KAOS))
-      return QIcon::fromTheme("application-rss+xml", QIcon(":/resources/images/rss.png"));
+      return QIcon::fromTheme(QStringLiteral("application-rss+xml"), QIcon(QStringLiteral(":/resources/images/rss.png")));
     else
-      return QIcon(":/resources/images/rss.png");
+      return QIcon(QStringLiteral(":/resources/images/rss.png"));
   }
 
   static QIcon getIconCollapse(){
     if (WMHelper::isKDERunning() && (UnixCommand::getLinuxDistro() != ectn_KAOS))
-      return QIcon::fromTheme("zoom-out", QIcon(":/resources/images/collapse.png"));
+      return QIcon::fromTheme(QStringLiteral("zoom-out"), QIcon(QStringLiteral(":/resources/images/collapse.png")));
     else
-      return QIcon(":/resources/images/collapse.png");
+      return QIcon(QStringLiteral(":/resources/images/collapse.png"));
   }
 
   static QIcon getIconExpand(){
     if (WMHelper::isKDERunning() && (UnixCommand::getLinuxDistro() != ectn_KAOS))
-      return QIcon::fromTheme("zoom-in", QIcon(":/resources/images/expand.png"));
+      return QIcon::fromTheme(QStringLiteral("zoom-in"), QIcon(QStringLiteral(":/resources/images/expand.png")));
     else
-      return QIcon(":/resources/images/expand.png");
+      return QIcon(QStringLiteral(":/resources/images/expand.png"));
   }
 
   static QIcon getIconEditFile(){
     if (WMHelper::isKDERunning() && (UnixCommand::getLinuxDistro() != ectn_KAOS))
-      return QIcon::fromTheme("document-edit", QIcon(":/resources/images/editfile.png"));
+      return QIcon::fromTheme(QStringLiteral("document-edit"), QIcon(QStringLiteral(":/resources/images/editfile.png")));
     else
-      return QIcon(":/resources/images/editfile.png");
+      return QIcon(QStringLiteral(":/resources/images/editfile.png"));
   }
 
   static QIcon getIconEditCopy(){
     if (WMHelper::isKDERunning() && (UnixCommand::getLinuxDistro() != ectn_KAOS))
-      return QIcon::fromTheme("edit-copy", QIcon(":/resources/images/edit-copy.png"));
+      return QIcon::fromTheme(QStringLiteral("edit-copy"), QIcon(QStringLiteral(":/resources/images/edit-copy.png")));
     else
-      return QIcon(":/resources/images/edit-copy.png");
+      return QIcon(QStringLiteral(":/resources/images/edit-copy.png"));
   }
 
   static QIcon getIconFolder(){
     if (WMHelper::isKDERunning() && (UnixCommand::getLinuxDistro() != ectn_KAOS))
-      return QIcon::fromTheme("document-open-folder", QIcon(":/resources/images/folder.png"));
+      return QIcon::fromTheme(QStringLiteral("document-open-folder"), QIcon(QStringLiteral(":/resources/images/folder.png")));
     else
     {
       if (WMHelper::isKDERunning() || WMHelper::isLuminaRunning() || WMHelper::isLXQTRunning())
       {
-        return QIcon(":/resources/images/folder.png");
+        return QIcon(QStringLiteral(":/resources/images/folder.png"));
       }
       else
       {
-        return QIcon(":/resources/images/folder_gnome.png");
+        return QIcon(QStringLiteral(":/resources/images/folder_gnome.png"));
       }
     }
   }
 
   static QIcon getIconFindFileInPackage(){
     if (WMHelper::isKDERunning() && (UnixCommand::getLinuxDistro() != ectn_KAOS))
-      return QIcon::fromTheme("edit-find", QIcon(":/resources/images/find.png"));
+      return QIcon::fromTheme(QStringLiteral("edit-find"), QIcon(QStringLiteral(":/resources/images/find.png")));
     else
-      return QIcon(":/resources/images/find.png");
+      return QIcon(QStringLiteral(":/resources/images/find.png"));
   }
 
   static QIcon getIconMirrorCheck(){
     if (WMHelper::isKDERunning() && (UnixCommand::getLinuxDistro() != ectn_KAOS))
-      return QIcon::fromTheme("svn-update", QIcon(":/resources/images/mirror-check.png"));
+      return QIcon::fromTheme(QStringLiteral("svn-update"), QIcon(QStringLiteral(":/resources/images/mirror-check.png")));
     else
-      return QIcon(":/resources/images/mirror-check.png");
+      return QIcon(QStringLiteral(":/resources/images/mirror-check.png"));
   }
 
   static QIcon getIconShowGroups(){
     if (WMHelper::isKDERunning() && (UnixCommand::getLinuxDistro() != ectn_KAOS))
-      return QIcon::fromTheme("view-list-tree", QIcon(":/resources/images/show_groups.png"));
+      return QIcon::fromTheme(QStringLiteral("view-list-tree"), QIcon(QStringLiteral(":/resources/images/show_groups.png")));
     else
-      return QIcon(":/resources/images/show_groups.png");
+      return QIcon(QStringLiteral(":/resources/images/show_groups.png"));
   }
 
   static QIcon getIconClose(){
     if (WMHelper::isKDERunning() && (UnixCommand::getLinuxDistro() != ectn_KAOS))
-      return QIcon::fromTheme("edit-delete", QIcon(":/resources/images/window_close.png"));
+      return QIcon::fromTheme(QStringLiteral("edit-delete"), QIcon(QStringLiteral(":/resources/images/window_close.png")));
     else
-      return QIcon(":/resources/images/window_close.png");
+      return QIcon(QStringLiteral(":/resources/images/window_close.png"));
   }
 
   static QIcon getIconSearch(){
     if (WMHelper::isKDERunning() && (UnixCommand::getLinuxDistro() != ectn_KAOS))
-      return QIcon::fromTheme("edit-find", QIcon(":/resources/images/esf-search.png"));
+      return QIcon::fromTheme(QStringLiteral("edit-find"), QIcon(QStringLiteral(":/resources/images/esf-search.png")));
     else
-      return QIcon(":/resources/images/esf-search.png");
+      return QIcon(QStringLiteral(":/resources/images/esf-search.png"));
   }
 
   static QIcon getIconClear(){
     if (WMHelper::isKDERunning() && (UnixCommand::getLinuxDistro() != ectn_KAOS))
-      return QIcon::fromTheme("edit-clear-locationbar-ltr", QIcon(":/resources/images/esf-clear.png"));
+      return QIcon::fromTheme(QStringLiteral("edit-clear-locationbar-ltr"), QIcon(QStringLiteral(":/resources/images/esf-clear.png")));
     else
-      return QIcon(":/resources/images/esf-clear.png");
+      return QIcon(QStringLiteral(":/resources/images/esf-clear.png"));
   }
 
   static QIcon getIconOptions(){
     if (WMHelper::isKDERunning() && (UnixCommand::getLinuxDistro() != ectn_KAOS))
-      return QIcon::fromTheme("settings-configure", QIcon());
+      return QIcon::fromTheme(QStringLiteral("settings-configure"), QIcon());
     else
       return QIcon();
   }
@@ -323,13 +323,13 @@ public:
   //QActions without icons in Octopi does this works for gtk, too?
   static QIcon getIconHelpAbout(){
     if (WMHelper::isKDERunning() && (UnixCommand::getLinuxDistro() != ectn_KAOS))
-      return QIcon::fromTheme("help-about", QIcon());
+      return QIcon::fromTheme(QStringLiteral("help-about"), QIcon());
     else
       return QIcon();
   }
 
-  static QIcon getIconHelpUsage(){ return QIcon::fromTheme("help-contents"); }
-  static QIcon getIconInstallLocalPackage(){ return QIcon::fromTheme("utilities-file-archiver"); }
+  static QIcon getIconHelpUsage(){ return QIcon::fromTheme(QStringLiteral("help-contents")); }
+  static QIcon getIconInstallLocalPackage(){ return QIcon::fromTheme(QStringLiteral("utilities-file-archiver")); }
 };
 
 //This is a RAII class used when the GUI is going to face a very CPU intensive action

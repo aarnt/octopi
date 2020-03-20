@@ -94,7 +94,7 @@ public:
   static QByteArray getOutdatedPackageList();
   static QByteArray getOutdatedAURPackageList();
   static QByteArray getForeignPackageList();
-  static QByteArray getPackageList(const QString &pkgName = "");
+  static QByteArray getPackageList(const QString &pkgName = QLatin1String(""));
 
   static QByteArray getKCPPackageInformation(const QString &pkgName);
   static QByteArray getExpacInfo(const QString &pkgName, const QString &info);
@@ -109,7 +109,7 @@ public:
 
   static QByteArray getPackageGroups();
   static QByteArray getPackagesFromGroup(const QString &groupName);
-  static QByteArray getTargetUpgradeList(const QString &pkgName = "");
+  static QByteArray getTargetUpgradeList(const QString &pkgName = QLatin1String(""));
   static QByteArray getTargetRemovalList(const QString &pkgName, const QString &removeCommand);
 
   static QString getSystemArchitecture();

@@ -74,23 +74,23 @@ void MainWindow::refreshAppIcon()
  */
 void MainWindow::refreshMenuTools()
 {
-  if (UnixCommand::hasTheExecutable("mirror-check"))
+  if (UnixCommand::hasTheExecutable(QStringLiteral("mirror-check")))
   {
     ui->menuTools->menuAction()->setVisible(true);
-    if (!m_actionMenuMirrorCheck->toolTip().contains("("))
-      m_actionMenuMirrorCheck->setToolTip(m_actionMenuMirrorCheck->toolTip() + "  (" + m_actionMenuMirrorCheck->shortcut().toString() + ")" );
+    if (!m_actionMenuMirrorCheck->toolTip().contains(QLatin1String("(")))
+      m_actionMenuMirrorCheck->setToolTip(m_actionMenuMirrorCheck->toolTip() + QLatin1String("  (") + m_actionMenuMirrorCheck->shortcut().toString() + QLatin1Char(')') );
     m_actionMenuMirrorCheck->setVisible(true);
   }
   else
     m_actionMenuMirrorCheck->setVisible(false);
 
-  if(UnixCommand::hasTheExecutable("plv"))
+  if(UnixCommand::hasTheExecutable(QStringLiteral("plv")))
   {
     static bool connectorPlv=false;
 
     ui->menuTools->menuAction()->setVisible(true);
     ui->actionPacmanLogViewer->setVisible(true);
-    ui->actionPacmanLogViewer->setIcon(QIcon::fromTheme("plv"));
+    ui->actionPacmanLogViewer->setIcon(QIcon::fromTheme(QStringLiteral("plv")));
 
     if (!connectorPlv)
     {
@@ -101,7 +101,7 @@ void MainWindow::refreshMenuTools()
   else
     ui->actionPacmanLogViewer->setVisible(false);
 
-  if(UnixCommand::hasTheExecutable("octopi-repoeditor") && UnixCommand::getLinuxDistro() != ectn_KAOS)
+  if(UnixCommand::hasTheExecutable(QStringLiteral("octopi-repoeditor")) && UnixCommand::getLinuxDistro() != ectn_KAOS)
   {
     static bool connectorRepo=false;
 
@@ -117,7 +117,7 @@ void MainWindow::refreshMenuTools()
   else
     ui->actionRepositoryEditor->setVisible(false);
 
-  if(UnixCommand::hasTheExecutable("octopi-cachecleaner"))
+  if(UnixCommand::hasTheExecutable(QStringLiteral("octopi-cachecleaner")))
   {
     static bool connectorCleaner=false;
 
@@ -139,7 +139,7 @@ void MainWindow::refreshMenuTools()
     static bool connectorSysInfo=false;
 
     ui->menuTools->addSeparator();
-    m_actionSysInfo->setText("SysInfo...");
+    m_actionSysInfo->setText(QStringLiteral("SysInfo..."));
     ui->menuTools->addAction(m_actionSysInfo);
 
     if (!connectorSysInfo)
@@ -167,7 +167,7 @@ void MainWindow::refreshGroupsWidget()
   QList<QTreeWidgetItem *> items;
   ui->twGroups->clear();
 
-  items.append(new QTreeWidgetItem(static_cast<QTreeWidget*>(nullptr), QStringList("<" + StrConstants::getDisplayAllGroups() + ">")));
+  items.append(new QTreeWidgetItem(static_cast<QTreeWidget*>(nullptr), QStringList(QLatin1Char('<') + StrConstants::getDisplayAllGroups() + QLatin1Char('>'))));
   m_AllGroupsItem = items.at(0);
   const QStringList*const packageGroups = Package::getPackageGroups();
   foreach(QString group, *packageGroups)
@@ -188,10 +188,10 @@ void MainWindow::refreshGroupsWidget()
 void MainWindow::AURToolSelected()
 {
   //If the system does not have any AUR tool, let's ask if user wants to get one
-  if (m_actionSwitchToAURTool->toolTip() == "AUR" && UnixCommand::getAvailableAURTools().count() ==1)
+  if (m_actionSwitchToAURTool->toolTip() == QLatin1String("AUR") && UnixCommand::getAvailableAURTools().count() ==1)
   {
     //Are we inside a 64bit platform?
-    if (QSysInfo::buildCpuArchitecture() == "x86_64")
+    if (QSysInfo::buildCpuArchitecture() == QLatin1String("x86_64"))
     {
       //We can offer to install a temporary yay-bin and then get yay-bin package
       QMessageBox::StandardButton r = QMessageBox::question(this, StrConstants::getConfirmation(),
@@ -212,7 +212,7 @@ void MainWindow::AURToolSelected()
 
     return;
   }
-  else if (m_actionSwitchToAURTool->toolTip() == "AUR" && UnixCommand::getAvailableAURTools().count() >1)
+  else if (m_actionSwitchToAURTool->toolTip() == QLatin1String("AUR") && UnixCommand::getAvailableAURTools().count() >1)
   {
     onOptions(ectn_TAB_AUR);
     return;
@@ -281,7 +281,7 @@ void MainWindow::AURToolSelected()
       lightPackageFilterConnected = true;
     }
 
-    m_packageModel->applyFilter("");
+    m_packageModel->applyFilter(QLatin1String(""));
     ui->tvPackages->setModel(&emptyModel);
     removePackageTreeViewConnections();
     //m_actionSwitchToAURTool->setEnabled(false);
@@ -297,14 +297,14 @@ void MainWindow::AURToolSelected()
     clearStatusBar();
   }
 
-  m_cachedPackageInInfo="";
+  m_cachedPackageInInfo=QLatin1String("");
 
   //Let's clear the list of visited packages (pkg anchors in Info tab)
   m_listOfVisitedPackages.clear();
   m_indOfVisitedPackage = 0;
 
   switchToViewAllPackages();
-  m_selectedRepository = "";
+  m_selectedRepository = QLatin1String("");
   m_actionRepositoryAll->setChecked(true);
   m_refreshPackageLists = false;
 
@@ -325,7 +325,7 @@ void MainWindow::groupItemSelected()
 {
   //Let us select ALL pkgs from ALL repos!
   switchToViewAllPackages();
-  m_selectedRepository = "";
+  m_selectedRepository = QLatin1String("");
   m_actionRepositoryAll->setChecked(true);
 
   if (m_actionShowGroups->isChecked() && isAllGroupsSelected())
@@ -405,7 +405,7 @@ void MainWindow::buildPackagesFromGroupList(const QString &group)
   m_progressWidget->close();
 
   m_packageRepo.checkAndSetMembersOfGroup(group, *list);
-  m_packageModel->applyFilter(m_selectedViewOption, m_selectedRepository, isAllGroups(group) ? "" : group);
+  m_packageModel->applyFilter(m_selectedViewOption, m_selectedRepository, isAllGroups(group) ? QLatin1String("") : group);
 
   //Refresh counters
   m_numberOfInstalledPackages = installedCount;
@@ -754,14 +754,14 @@ void MainWindow::metaBuildPackageList()
 void MainWindow::showPackagesWithNoDescription()
 {
   bool printHeader = false;
-  QList<PackageListData> *list = Package::getPackageList("", m_checkUpdatesNameNewVersion);
+  QList<PackageListData> *list = Package::getPackageList(QLatin1String(""), m_checkUpdatesNameNewVersion);
   QList<PackageListData>::const_iterator it = list->begin();
 
   while(it != list->end())
   {
     PackageListData pld = *it;
 
-    if (pld.description == (pld.name + "  "))
+    if (pld.description == (pld.name + QLatin1String("  ")))
     {
       if (!printHeader)
       {
@@ -888,8 +888,8 @@ void MainWindow::buildPackageList()
     m_packageModel->applyFilter(PackageModel::ctn_PACKAGE_NAME_COLUMN);
   }
 
-  if (isAllGroupsSelected()) m_packageModel->applyFilter(m_selectedViewOption, m_selectedRepository, "");
-  if (m_leFilterPackage->text() != "") reapplyPackageFilter();
+  if (isAllGroupsSelected()) m_packageModel->applyFilter(m_selectedViewOption, m_selectedRepository, QLatin1String(""));
+  if (m_leFilterPackage->text() != QLatin1String("")) reapplyPackageFilter();
 
   QModelIndex maux = m_packageModel->index(0, 0, QModelIndex());
   ui->tvPackages->setCurrentIndex(maux);
@@ -1171,13 +1171,13 @@ void MainWindow::buildAURPackageList()
 
     int numPkgs = m_packageModel->getPackageCount();
 
-    if (m_leFilterPackage->text() != ""){
+    if (m_leFilterPackage->text() != QLatin1String("")){
       if (numPkgs > 0) m_leFilterPackage->setFoundStyle();
       else m_leFilterPackage->setNotFoundStyle();
     }
     else{
       m_leFilterPackage->initStyleSheet();
-      m_packageModel->applyFilter("");
+      m_packageModel->applyFilter(QLatin1String(""));
     }
   }
   else
@@ -1218,12 +1218,12 @@ void MainWindow::showToolButtonAUR()
   {
     if (m_outdatedAURPackagesNameVersion->count() == 1)
     {
-      m_toolButtonAUR->setText("(1)");
+      m_toolButtonAUR->setText(QStringLiteral("(1)"));
       m_toolButtonAUR->setToolTip(StrConstants::getOneNewUpdate());
     }
     else
     {
-      m_toolButtonAUR->setText("(" + QString::number(m_outdatedAURPackagesNameVersion->count()) + ")");
+      m_toolButtonAUR->setText(QLatin1Char('(') + QString::number(m_outdatedAURPackagesNameVersion->count()) + QLatin1Char(')'));
       m_toolButtonAUR->setToolTip(
           StrConstants::getNewUpdates(m_outdatedAURPackagesNameVersion->count()));
     }
@@ -1236,8 +1236,8 @@ void MainWindow::showToolButtonAUR()
   }
   else
   {
-    m_toolButtonAUR->setText("");
-    m_toolButtonAUR->setToolTip("");
+    m_toolButtonAUR->setText(QLatin1String(""));
+    m_toolButtonAUR->setToolTip(QLatin1String(""));
     m_toolButtonAUR->hide();
   }
 
@@ -1262,7 +1262,7 @@ void MainWindow::refreshToolBar()
     {
       //Here the user lost the AUR tool he was using
       m_hasAURTool = true;
-      m_actionSwitchToAURTool->setToolTip("AUR");
+      m_actionSwitchToAURTool->setToolTip(QStringLiteral("AUR"));
       SettingsManager::setAURTool(ctn_NO_AUR_TOOL);
     }
   }
@@ -1340,7 +1340,7 @@ void MainWindow::refreshStatusBar()
     {
       //if (m_packageModel->getPackageCount() == 0)
       {
-        m_lblSelCounter->setText("");
+        m_lblSelCounter->setText(QLatin1String(""));
         m_lblSelCounter->setVisible(false);
         m_lblTotalCounters->setVisible(false);
       }
@@ -1358,12 +1358,12 @@ void MainWindow::refreshStatusBar()
 
     if (m_numberOfOutdatedPackages == 1)
     {
-      m_toolButtonPacman->setText("(1)");
+      m_toolButtonPacman->setText(QStringLiteral("(1)"));
       m_toolButtonPacman->setToolTip(StrConstants::getOneNewUpdate());
     }
     else
     {
-      m_toolButtonPacman->setText("(" + QString::number(m_numberOfOutdatedPackages) + ")");
+      m_toolButtonPacman->setText(QLatin1Char('(') + QString::number(m_numberOfOutdatedPackages) + QLatin1Char(')'));
       m_toolButtonPacman->setToolTip(StrConstants::getNewUpdates(m_numberOfOutdatedPackages));
     }
 
@@ -1372,8 +1372,8 @@ void MainWindow::refreshStatusBar()
   else
   {
     m_toolButtonPacman->hide();
-    m_toolButtonPacman->setText("");
-    m_toolButtonPacman->setToolTip("");
+    m_toolButtonPacman->setText(QLatin1String(""));
+    m_toolButtonPacman->setToolTip(QLatin1String(""));
   }
 }
 
@@ -1397,7 +1397,7 @@ void MainWindow::refreshTabInfo(QString pkgName)
 
   CPUIntensiveComputing cic;
   QTextBrowser *text = ui->twProperties->widget(
-        ctn_TABINDEX_INFORMATION)->findChild<QTextBrowser*>("textBrowser");
+        ctn_TABINDEX_INFORMATION)->findChild<QTextBrowser*>(QStringLiteral("textBrowser"));
 
   if (text)
   {
@@ -1405,7 +1405,7 @@ void MainWindow::refreshTabInfo(QString pkgName)
     text->setHtml(OctopiTabInfo::formatTabInfo(*package, *m_outdatedAURPackagesNameVersion));
     text->scrollToAnchor(OctopiTabInfo::anchorBegin);
     //We have to clear the cached Info contents...
-    m_cachedPackageInInfo = "";
+    m_cachedPackageInInfo = QLatin1String("");
   }
 }
 
@@ -1422,14 +1422,14 @@ void MainWindow::refreshTabInfo(bool clearContents, bool neverQuit)
       selectionModel->selectedRows(PackageModel::ctn_PACKAGE_NAME_COLUMN).count() == 0)
   {
     QTextBrowser *text =
-        ui->twProperties->widget(ctn_TABINDEX_INFORMATION)->findChild<QTextBrowser*>("textBrowser");
+        ui->twProperties->widget(ctn_TABINDEX_INFORMATION)->findChild<QTextBrowser*>(QStringLiteral("textBrowser"));
 
     if (text)
     {
       text->clear();
     }
 
-    m_cachedPackageInInfo = "";
+    m_cachedPackageInInfo = QLatin1String("");
     return;
   }
 
@@ -1441,7 +1441,7 @@ void MainWindow::refreshTabInfo(bool clearContents, bool neverQuit)
   }
 
   //If we are trying to refresh an already displayed package...
-  if (m_cachedPackageInInfo == package->repository+"#"+package->name+"#"+package->version)
+  if (m_cachedPackageInInfo == package->repository+QLatin1Char('#')+package->name+QLatin1Char('#')+package->version)
   {
     if (neverQuit)
     {
@@ -1459,11 +1459,11 @@ void MainWindow::refreshTabInfo(bool clearContents, bool neverQuit)
   if (isAURGroupSelected() && package->installed() == false)
   {
     QString aux_desc = package->description;
-    int space = aux_desc.indexOf(' ');
+    int space = aux_desc.indexOf(QLatin1Char(' '));
     QString pkgDescription = aux_desc.mid(space+1);
     QString version = StrConstants::getVersion();
     QTextBrowser*const text = ui->twProperties->widget(
-          ctn_TABINDEX_INFORMATION)->findChild<QTextBrowser*>("textBrowser");
+          ctn_TABINDEX_INFORMATION)->findChild<QTextBrowser*>(QStringLiteral("textBrowser"));
 
     if (text)
     {
@@ -1483,55 +1483,55 @@ void MainWindow::refreshTabInfo(bool clearContents, bool neverQuit)
 
       QString html;
       text->clear();
-      QString anchorBegin = "anchorBegin";
+      QString anchorBegin = QStringLiteral("anchorBegin");
 
-      html += "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">";
-      html += "<a id=\"" + anchorBegin + "\"></a>";            
+      html += QLatin1String("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">");
+      html += QLatin1String("<a id=\"") + anchorBegin + QLatin1String("\"></a>");
 
       if (UnixCommand::getLinuxDistro() != ectn_KAOS && UnixCommand::getLinuxDistro() != ectn_CHAKRA)
-        html += "<h2><a href=\"https://aur.archlinux.org/packages/" + pkgName + "\">" + pkgName + "</a></h2>";
+        html += QLatin1String("<h2><a href=\"https://aur.archlinux.org/packages/") + pkgName + QLatin1String("\">") + pkgName + QLatin1String("</a></h2>");
       else
-        html += "<h2>" + pkgName + "</h2>";
+        html += QLatin1String("<h2>") + pkgName + QLatin1String("</h2>");
 
       if (Package::getForeignRepositoryToolName() != ctn_KCP_TOOL)
       {
-        html += "<a style=\"font-size:16px;\">" + pkgDescription + "</a>";
-        html += "<table border=\"0\">";
-        html += "<tr><th width=\"20%\"></th><th width=\"80%\"></th></tr>";
-        html += "<tr><td>" + version + "</td><td>" + package->version + "</td></tr>";        
+        html += QLatin1String("<a style=\"font-size:16px;\">") + pkgDescription + QLatin1String("</a>");
+        html += QLatin1String("<table border=\"0\">");
+        html += QLatin1String("<tr><th width=\"20%\"></th><th width=\"80%\"></th></tr>");
+        html += QLatin1String("<tr><td>") + version + QLatin1String("</td><td>") + package->version + QLatin1String("</td></tr>");
 
         if (Package::getForeignRepositoryToolName() == ctn_YAOURT_TOOL ||
             Package::getForeignRepositoryToolName() == ctn_PACAUR_TOOL)
         {
           QString url = Package::getAURUrl(pkgName);
-          if (!url.isEmpty() && !url.contains("(null)"))
+          if (!url.isEmpty() && !url.contains(QLatin1String("(null)")))
           {
-            html += "<tr><td>" + StrConstants::getURL() + "</td><td>" + url + "</td></tr>";
+            html += QLatin1String("<tr><td>") + StrConstants::getURL() + QLatin1String("</td><td>") + url + QLatin1String("</td></tr>");
           }
         }
       }
       else if (Package::getForeignRepositoryToolName() == ctn_KCP_TOOL)
       {
-        html += "<a style=\"font-size:16px;\">" + kcp.description + "</a>";
-        html += "<table border=\"0\">";
-        html += "<tr><th width=\"20%\"></th><th width=\"80%\"></th></tr>";
-        html += "<tr><td>" + version + "</td><td>" + package->version + "</td></tr>";
+        html += QLatin1String("<a style=\"font-size:16px;\">") + kcp.description + QLatin1String("</a>");
+        html += QLatin1String("<table border=\"0\">");
+        html += QLatin1String("<tr><th width=\"20%\"></th><th width=\"80%\"></th></tr>");
+        html += QLatin1String("<tr><td>") + version + QLatin1String("</td><td>") + package->version + QLatin1String("</td></tr>");
 
-        if (kcp.url != "--")
-          html += "<tr><td>" + StrConstants::getURL() + "</td><td>" + kcp.url + "</td></tr>";
+        if (kcp.url != QLatin1String("--"))
+          html += QLatin1String("<tr><td>") + StrConstants::getURL() + QLatin1String("</td><td>") + kcp.url + QLatin1String("</td></tr>");
 
-        if (kcp.license != "--")
-          html += "<tr><td>" + StrConstants::getLicenses() + "</td><td>" + kcp.license + "</td></tr>";
+        if (kcp.license != QLatin1String("--"))
+          html += QLatin1String("<tr><td>") + StrConstants::getLicenses() + QLatin1String("</td><td>") + kcp.license + QLatin1String("</td></tr>");
 
-        if (kcp.provides != "--")
-          html += "<tr><td>" + StrConstants::getProvides() + "</td><td>" + kcp.provides + "</td></tr>";
+        if (kcp.provides != QLatin1String("--"))
+          html += QLatin1String("<tr><td>") + StrConstants::getProvides() + QLatin1String("</td><td>") + kcp.provides + QLatin1String("</td></tr>");
 
-        if (kcp.dependsOn != "--")
-          html += "<tr><td>" + StrConstants::getDependsOn() + "</td><td>" +
-              Package::makeAnchorOfPackage(kcp.dependsOn) + "</td></tr>";
+        if (kcp.dependsOn != QLatin1String("--"))
+          html += QLatin1String("<tr><td>") + StrConstants::getDependsOn() + QLatin1String("</td><td>") +
+              Package::makeAnchorOfPackage(kcp.dependsOn) + QLatin1String("</td></tr>");
       }
 
-      html += "</table>";
+      html += QLatin1String("</table>");
       text->setHtml(html);
       text->scrollToAnchor(anchorBegin);
     }
@@ -1539,7 +1539,7 @@ void MainWindow::refreshTabInfo(bool clearContents, bool neverQuit)
   else //We are not in the AUR group
   {
     QTextBrowser *text = ui->twProperties->widget(
-          ctn_TABINDEX_INFORMATION)->findChild<QTextBrowser*>("textBrowser");
+          ctn_TABINDEX_INFORMATION)->findChild<QTextBrowser*>(QStringLiteral("textBrowser"));
 
     if (text)
     {
@@ -1549,7 +1549,7 @@ void MainWindow::refreshTabInfo(bool clearContents, bool neverQuit)
     }
   }
 
-  m_cachedPackageInInfo = package->repository+"#"+package->name+"#"+package->version;
+  m_cachedPackageInInfo = package->repository+QLatin1Char('#')+package->name+QLatin1String("#")+package->version;
 
   if (neverQuit)
   {
@@ -1579,13 +1579,13 @@ void MainWindow::refreshTabFiles(bool clearContents, bool neverQuit)
       selectionModel->selectedRows(PackageModel::ctn_PACKAGE_NAME_COLUMN).count() == 0)
   {
     QTreeView*const tvPkgFileList =
-        ui->twProperties->widget(ctn_TABINDEX_FILES)->findChild<QTreeView*>("tvPkgFileList");
+        ui->twProperties->widget(ctn_TABINDEX_FILES)->findChild<QTreeView*>(QStringLiteral("tvPkgFileList"));
 
     if(tvPkgFileList)
     {
       QStandardItemModel*const modelPkgFileList = qobject_cast<QStandardItemModel*>(tvPkgFileList->model());
       modelPkgFileList->clear();
-      m_cachedPackageInFiles = "";
+      m_cachedPackageInFiles = QLatin1String("");
       closeTabFilesSearchBar();
       if (filterHasFocus) m_leFilterPackage->setFocus();
       else if (tvPackagesHasFocus) ui->tvPackages->setFocus();
@@ -1603,7 +1603,7 @@ void MainWindow::refreshTabFiles(bool clearContents, bool neverQuit)
   }
 
   //If we are trying to refresh an already displayed package...
-  if (m_cachedPackageInFiles == package->repository+"#"+package->name+"#"+package->version)
+  if (m_cachedPackageInFiles == package->repository+QLatin1Char('#')+package->name+QLatin1Char('#')+package->version)
   {
     if (neverQuit)
     {
@@ -1612,7 +1612,7 @@ void MainWindow::refreshTabFiles(bool clearContents, bool neverQuit)
     }
     else
     {
-      QTreeView*const tv = ui->twProperties->currentWidget()->findChild<QTreeView *>("tvPkgFileList") ;
+      QTreeView*const tv = ui->twProperties->currentWidget()->findChild<QTreeView *>(QStringLiteral("tvPkgFileList")) ;
       if (tv)
         tv->scrollTo(tv->currentIndex());
     }
@@ -1624,7 +1624,7 @@ void MainWindow::refreshTabFiles(bool clearContents, bool neverQuit)
   bool nonInstalled = (package->installed() == false);
 
   QTreeView*const tvPkgFileList =
-      ui->twProperties->widget(ctn_TABINDEX_FILES)->findChild<QTreeView*>("tvPkgFileList");
+      ui->twProperties->widget(ctn_TABINDEX_FILES)->findChild<QTreeView*>(QStringLiteral("tvPkgFileList"));
 
   if (tvPkgFileList)
   {
@@ -1659,7 +1659,7 @@ void MainWindow::refreshTabFiles(bool clearContents, bool neverQuit)
 
     foreach ( QString file, fileList )
     {
-      bool isDir = file.endsWith('/');
+      bool isDir = file.endsWith(QLatin1Char('/'));
       bool isSymLinkToDir = false;
       QString baseFileName = extractBaseFileName(file);
 
@@ -1677,7 +1677,7 @@ void MainWindow::refreshTabFiles(bool clearContents, bool neverQuit)
       if(isDir){
         if ( first == true ){
           item = new QStandardItem ( IconHelper::getIconFolder(), baseFileName );
-          item->setAccessibleDescription("directory " + item->text());
+          item->setAccessibleDescription(QLatin1String("directory ") + item->text());
           fakeRoot->appendRow ( item );
         }
         else{
@@ -1686,7 +1686,7 @@ void MainWindow::refreshTabFiles(bool clearContents, bool neverQuit)
           if ( file.contains ( fullPath )) {
             //std::cout << "It contains !!! So " << fullPath.toLatin1().data() << " is its parent." << std::endl;
             item = new QStandardItem ( IconHelper::getIconFolder(), baseFileName );
-            item->setAccessibleDescription("directory " + item->text());
+            item->setAccessibleDescription(QLatin1String("directory ") + item->text());
             lastDir->appendRow ( item );
           }
           else{
@@ -1703,7 +1703,7 @@ void MainWindow::refreshTabFiles(bool clearContents, bool neverQuit)
             while ( parent != fakeRoot );
 
             item = new QStandardItem ( IconHelper::getIconFolder(), baseFileName );
-            item->setAccessibleDescription("directory " + item->text());
+            item->setAccessibleDescription(QLatin1String("directory ") + item->text());
 
             if ( parent != 0 )
             {
@@ -1723,7 +1723,7 @@ void MainWindow::refreshTabFiles(bool clearContents, bool neverQuit)
       else if (isSymLinkToDir)
       {
         item = new QStandardItem ( IconHelper::getIconFolder(), baseFileName );
-        item->setAccessibleDescription("directory " + item->text());
+        item->setAccessibleDescription(QLatin1String("directory ") + item->text());
         parent = lastDir;
         if (parent != 0) fullPath = utils::showFullPathOfItem(parent->index());
 
@@ -1746,7 +1746,7 @@ void MainWindow::refreshTabFiles(bool clearContents, bool neverQuit)
       else
       {
         item = new QStandardItem ( IconHelper::getIconBinary(), baseFileName );
-        item->setAccessibleDescription("file " + item->text());
+        item->setAccessibleDescription(QLatin1String("file ") + item->text());
         parent = lastDir;
         if (parent != 0) fullPath = utils::showFullPathOfItem(parent->index());
 
@@ -1775,7 +1775,7 @@ void MainWindow::refreshTabFiles(bool clearContents, bool neverQuit)
     modelPkgFileList->setHorizontalHeaderLabels( QStringList() << StrConstants::getContentsOf().arg(pkgName));
   }
 
-  m_cachedPackageInFiles = package->repository+"#"+package->name+"#"+package->version;
+  m_cachedPackageInFiles = package->repository+QLatin1Char('#')+package->name+QLatin1Char('#')+package->version;
 
   if (neverQuit)
   {
@@ -1803,13 +1803,13 @@ void MainWindow::reapplyPackageFilter()
     m_packageModel->applyFilter(search);
     int numPkgs = m_packageModel->getPackageCount();
 
-    if (m_leFilterPackage->text() != ""){
+    if (m_leFilterPackage->text() != QLatin1String("")){
       if (numPkgs > 0) m_leFilterPackage->setFoundStyle();
       else m_leFilterPackage->setNotFoundStyle();
     }
     else{
       m_leFilterPackage->initStyleSheet();
-      m_packageModel->applyFilter("");
+      m_packageModel->applyFilter(QLatin1String(""));
       refreshStatusBar();
     }
 
@@ -1845,17 +1845,17 @@ void MainWindow::lightPackageFilter()
 {
   if (isAURGroupSelected())
   {
-    if (m_leFilterPackage->text() == "")
+    if (m_leFilterPackage->text() == QLatin1String(""))
     {
       if (UnixCommand::getLinuxDistro() != ectn_KAOS)
       {
-        m_packageModel->applyFilter("ççç");
+        m_packageModel->applyFilter(QStringLiteral("ççç"));
         m_leFilterPackage->initStyleSheet();
         refreshStatusBar();
       }
       else
       {
-        m_packageModel->applyFilter("");
+        m_packageModel->applyFilter(QLatin1String(""));
         reapplyPackageFilter();
         refreshStatusBar();
       }
@@ -1863,10 +1863,10 @@ void MainWindow::lightPackageFilter()
   }
   else if (!isAURGroupSelected())
   {
-    if (m_leFilterPackage->text() == "")
+    if (m_leFilterPackage->text() == QLatin1String(""))
     {
       CPUIntensiveComputing cic;
-      m_packageModel->applyFilter("");
+      m_packageModel->applyFilter(QLatin1String(""));
       reapplyPackageFilter();
       refreshStatusBar();
     }
@@ -1907,7 +1907,7 @@ void MainWindow::selectedNonInstalledPackagesMenu()
 void MainWindow::selectedRepositoryMenu(QAction *actionRepoSelected)
 {
   if (actionRepoSelected->text() == StrConstants::getAll())
-    m_selectedRepository = "";
+    m_selectedRepository = QLatin1String("");
   else
     m_selectedRepository = actionRepoSelected->text();
 

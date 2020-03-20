@@ -47,7 +47,7 @@ class SettingsManager
     static QString getOctopiConfPath()
     {
       return QDir::homePath() +
-          QDir::separator() + ".config/octopi/octopi.conf";
+          QDir::separator() + QLatin1String(".config/octopi/octopi.conf");
     }
 
     static int getCurrentTabIndex();

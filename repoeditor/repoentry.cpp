@@ -19,9 +19,9 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 #include "repoentry.h"
 
-QRegularExpression RepoEntry::nameFilter = QRegularExpression( "" );
-QString RepoEntry::commentString = "";
-QString RepoEntry::repoFormat = "";
+QRegularExpression RepoEntry::nameFilter = QRegularExpression( QLatin1String("") );
+QString RepoEntry::commentString = QLatin1String("");
+QString RepoEntry::repoFormat = QLatin1String("");
 
 RepoEntry::RepoEntry()
     : valid( false )
@@ -39,7 +39,7 @@ RepoEntry::RepoEntry( QString name, bool active )
 QString RepoEntry::getName() const
 {
     if( !nameFilter.isValid() || !isValid() )
-        return "";
+        return QLatin1String("");
 
     QString ret = name;
 
@@ -82,12 +82,12 @@ QString RepoEntry::toString() const
     QStringList list,list2,list3,retList;
 
     if( !isValid() )
-        return "";
+        return QLatin1String("");
 
     if( comments.isEmpty() )
         list << ( active ? name : commentString + name );
     else
-        list << comments.join( "\n" ) << name;
+        list << comments.join( QStringLiteral("\n") ) << name;
 
     if( sigLevelsComments.isEmpty() ) {
         if( !active && !sigLevels.isEmpty() ) {
@@ -97,7 +97,7 @@ QString RepoEntry::toString() const
         } else
             list3 << sigLevels;
     } else
-        list3 << sigLevelsComments.join( "\n" ) << details;
+        list3 << sigLevelsComments.join( QStringLiteral("\n") ) << details;
 
     if( detailsComments.isEmpty() ) {
         if( !active && !details.isEmpty() ) {
@@ -107,13 +107,13 @@ QString RepoEntry::toString() const
         } else
             list2 << details;
     } else
-        list2 << detailsComments.join( "\n" ) << details;
+        list2 << detailsComments.join( QStringLiteral("\n") ) << details;
 
-    retList <<  list.join( QString( "\n" ) + ( active ? "" : commentString ) );
-    retList << list3.join( QString( "\n" ) + ( active ? "" : commentString ) );
-    retList << list2.join( QString( "\n" ) + ( active ? "" : commentString ) );
+    retList <<  list.join( QStringLiteral( "\n" ) + ( active ? QLatin1String("") : commentString ) );
+    retList << list3.join( QStringLiteral( "\n" ) + ( active ? QLatin1String("") : commentString ) );
+    retList << list2.join( QStringLiteral( "\n" ) + ( active ? QLatin1String("") : commentString ) );
 
-    return retList.join( "\n" );
+    return retList.join( QStringLiteral("\n") );
 }
 
 void RepoEntry::setRealName( const QString &realName )

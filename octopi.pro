@@ -7,6 +7,14 @@
 QT += core gui network xml widgets
 #QT += core gui network xml dbus widgets
 DEFINES += OCTOPI_EXTENSIONS ALPM_BACKEND
+
+# Disable automatic string conversions
+DEFINES += QT_USE_QSTRINGBUILDER \
+           QT_NO_CAST_FROM_ASCII \
+           QT_NO_CAST_TO_ASCII \
+           QT_NO_URL_CAST_FROM_STRING \
+           QT_NO_CAST_FROM_BYTEARRAY
+
 CONFIG += qt warn_on debug link_pkgconfig ALPM_BACKEND
 
 ALPM_BACKEND {

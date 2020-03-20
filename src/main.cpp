@@ -51,10 +51,10 @@ int main(int argc, char *argv[])
 
   for (int c=1; c<argc; c++)
   {
-    arg = argv[c];
-    if (arg.contains(QRegularExpression("pkg.tar.[xz|zst]")))
+    arg = QString::fromLocal8Bit(argv[c]);
+    if (arg.contains(QRegularExpression(QStringLiteral("pkg.tar.[xz|zst]"))))
     {
-      packagesToInstall += arg + ",";
+      packagesToInstall += arg + QLatin1Char(',');
     }
   }
 
@@ -62,33 +62,33 @@ int main(int argc, char *argv[])
 
   if (app.isRunning())
   {
-    if (argList->getSwitch("-aurupgrade"))
+    if (argList->getSwitch(QStringLiteral("-aurupgrade")))
     {
-      app.sendMessage("AURUPGRADE");
+      app.sendMessage(QStringLiteral("AURUPGRADE"));
     }
-    else if (argList->getSwitch("-sysupgrade"))
+    else if (argList->getSwitch(QStringLiteral("-sysupgrade")))
     {
-      app.sendMessage("SYSUPGRADE");
+      app.sendMessage(QStringLiteral("SYSUPGRADE"));
     }
-    else if (argList->getSwitch("-sysupgrade-noconfirm"))
+    else if (argList->getSwitch(QStringLiteral("-sysupgrade-noconfirm")))
     {
-      app.sendMessage("SYSUPGRADE_NOCONFIRM");
+      app.sendMessage(QStringLiteral("SYSUPGRADE_NOCONFIRM"));
     }
-    else if (argList->getSwitch("-close"))
+    else if (argList->getSwitch(QStringLiteral("-close")))
     {
-      app.sendMessage("CLOSE");
+      app.sendMessage(QStringLiteral("CLOSE"));
     }
-    else if (argList->getSwitch("-hide"))
+    else if (argList->getSwitch(QStringLiteral("-hide")))
     {
-      app.sendMessage("HIDE");
+      app.sendMessage(QStringLiteral("HIDE"));
     }
-    else if (argList->getSwitch("-options"))
+    else if (argList->getSwitch(QStringLiteral("-options")))
     {
-      app.sendMessage("OPTIONS");
+      app.sendMessage(QStringLiteral("OPTIONS"));
     }
-    else if (argList->getSwitch("-show"))
+    else if (argList->getSwitch(QStringLiteral("-show")))
     {
-      app.sendMessage("SHOW");
+      app.sendMessage(QStringLiteral("SHOW"));
     }
     else if (!packagesToInstall.isEmpty())
     {
@@ -96,32 +96,32 @@ int main(int argc, char *argv[])
     }
     else
     {
-      app.sendMessage("RAISE");
+      app.sendMessage(QStringLiteral("RAISE"));
     }
 
     return 0;
   }
-  else if (UnixCommand::isAppRunning("octopi", false))
+  else if (UnixCommand::isAppRunning(QStringLiteral("octopi"), false))
     return 0;
 
   //This sends a message just to enable the socket-based QtSingleApplication engine
-  app.sendMessage("RAISE");
+  app.sendMessage(QStringLiteral("RAISE"));
 
   QTranslator appTranslator;
-  bool success = appTranslator.load(":/resources/translations/octopi_" +
+  bool success = appTranslator.load(QLatin1String(":/resources/translations/octopi_") +
                      QLocale::system().name());
   if (!success)
   {
-    appTranslator.load(":/resources/translations/octopi_en.qm");
+    appTranslator.load(QStringLiteral(":/resources/translations/octopi_en.qm"));
   }
 
   app.installTranslator(&appTranslator);
 
-  if (argList->getSwitch("-help")){
+  if (argList->getSwitch(QStringLiteral("-help"))){
     std::cout << StrConstants::getApplicationCliHelp().toLatin1().data() << std::endl;
     return(0);
   }
-  else if (argList->getSwitch("-version")){
+  else if (argList->getSwitch(QStringLiteral("-version"))){
     std::cout << "\n" << StrConstants::getApplicationName().toLatin1().data() <<
                  " " << StrConstants::getApplicationVersion().toLatin1().data() << "\n" << std::endl;
     return(0);
@@ -139,16 +139,16 @@ int main(int argc, char *argv[])
     app.setActivationWindow(&w);
     app.setQuitOnLastWindowClosed(false);
 
-    if (argList->getSwitch("-sysupgrade-noconfirm"))
+    if (argList->getSwitch(QStringLiteral("-sysupgrade-noconfirm")))
     {
       w.setCallSystemUpgradeNoConfirm();
     }
-    else if (argList->getSwitch("-sysupgrade"))
+    else if (argList->getSwitch(QStringLiteral("-sysupgrade")))
     {
       w.setCallSystemUpgrade();
     }
 
-    if (argList->getSwitch("-d"))
+    if (argList->getSwitch(QStringLiteral("-d")))
     {
       //If user chooses to switch debug info on...
       w.turnDebugInfoOn();
@@ -157,15 +157,15 @@ int main(int argc, char *argv[])
     if (!packagesToInstall.isEmpty())
     {
       QStringList packagesToInstallList =
-          packagesToInstall.split(",", QString::SkipEmptyParts);
+          packagesToInstall.split(QStringLiteral(","), QString::SkipEmptyParts);
 
       w.setPackagesToInstallList(packagesToInstallList);
     }
 
-    w.setRemoveCommand("Rcs");
+    w.setRemoveCommand(QStringLiteral("Rcs"));
     w.show();
 
-    QResource::registerResource("./resources.qrc");
+    QResource::registerResource(QStringLiteral("./resources.qrc"));
 
     return app.exec();
   }

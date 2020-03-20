@@ -32,8 +32,8 @@
 PackageModel::PackageModel(const PackageRepository& repo, QObject *parent)
 : QAbstractItemModel(parent), m_installedPackagesCount(0), m_showColumnPopularity(false), m_packageRepo(repo),
   m_sortOrder(Qt::AscendingOrder), m_sortColumn(1), m_filterPackagesInstalled(false),
-  m_filterPackagesNotInstalled(false), m_filterPackagesNotInThisGroup(""),
-  m_filterColumn(-1), m_filterRegExp("", Qt::CaseInsensitive, QRegExp::RegExp),
+  m_filterPackagesNotInstalled(false), m_filterPackagesNotInThisGroup(QLatin1String("")),
+  m_filterColumn(-1), m_filterRegExp(QLatin1String(""), Qt::CaseInsensitive, QRegExp::RegExp),
   m_iconNotInstalled(IconHelper::getIconNonInstalled()), m_iconInstalled(IconHelper::getIconInstalled()),
   m_iconInstalledUnrequired(IconHelper::getIconUnrequired()),
   m_iconNewer(IconHelper::getIconNewer()), m_iconOutdated(IconHelper::getIconOutdated()),
@@ -280,8 +280,8 @@ void PackageModel::applyFilter(ViewOptions pkgViewOptions, const QString& repo, 
   m_filterPackagesNotInThisGroup = group;
 
   QString r = repo;
-  r = r.remove(QRegExp("&"));
-  if (r == StrConstants::getAll()) r = "";
+  r = r.remove(QRegExp(QStringLiteral("&")));
+  if (r == StrConstants::getAll()) r = QLatin1String("");
 
   m_filterPackagesNotInThisRepo = r;
   endResetRepository();
@@ -348,7 +348,7 @@ const QIcon& PackageModel::getIconFor(const PackageRepository::PackageData& pack
     case ectn_INSTALLED:
       // Does no other package depend on this package ? (unrequired package list)
 
-      if (package.repository != "KCP")
+      if (package.repository != QLatin1String("KCP"))
       {
         if (package.required)
         {

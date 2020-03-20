@@ -48,8 +48,8 @@ UnixCommand::UnixCommand(QObject *parent): QObject()
   m_terminal = new Terminal(parent);
 
   QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
-  env.insert("LANG", "C");
-  env.insert("LC_MESSAGES", "C");
+  env.insert(QStringLiteral("LANG"), QStringLiteral("C"));
+  env.insert(QStringLiteral("LC_MESSAGES"), QStringLiteral("C"));
   m_process->setProcessEnvironment(env);
 
   QObject::connect(m_process, SIGNAL( started() ), this,
@@ -89,16 +89,16 @@ QString UnixCommand::runCommand(const QString& commandToRun)
 {
   QProcess proc;
   QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
-  env.remove("LANG");
-  env.remove("LC_MESSAGES");
-  env.insert("LANG", "C");
-  env.insert("LC_MESSAGES", "C");
+  env.remove(QStringLiteral("LANG"));
+  env.remove(QStringLiteral("LC_MESSAGES"));
+  env.insert(QStringLiteral("LANG"), QStringLiteral("C"));
+  env.insert(QStringLiteral("LC_MESSAGES"), QStringLiteral("C"));
   proc.setProcessEnvironment(env);
   proc.start(commandToRun);
   proc.waitForStarted();
   proc.waitForFinished(-1);
 
-  QString res = proc.readAllStandardError();
+  QString res = QString::fromUtf8(proc.readAllStandardError());
   proc.close();
 
   return res;
@@ -110,18 +110,18 @@ QString UnixCommand::runCommand(const QString& commandToRun)
 QString UnixCommand::runCurlCommand(const QString& commandToRun){
   QProcess proc;
   QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
-  env.insert("LANG", "C");
-  env.insert("LC_MESSAGES", "C");
+  env.insert(QStringLiteral("LANG"), QStringLiteral("C"));
+  env.insert(QStringLiteral("LC_MESSAGES"), QStringLiteral("C"));
   proc.setProcessEnvironment(env);
   proc.start(commandToRun);
   proc.waitForStarted();
   proc.waitForFinished(-1);
 
-  QString res("");
+  QString res(QLatin1String(""));
 
   if (proc.exitCode() != 0)
   {
-    res = proc.readAllStandardError();
+    res = QString::fromUtf8(proc.readAllStandardError());
   }
 
   proc.close();
@@ -134,22 +134,22 @@ QString UnixCommand::runCurlCommand(const QString& commandToRun){
 QString UnixCommand::discoverBinaryPath(const QString& binary){
   QProcess proc;
   QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
-  env.insert("LANG", "C");
-  env.insert("LC_MESSAGES", "C");
+  env.insert(QStringLiteral("LANG"), QStringLiteral("C"));
+  env.insert(QStringLiteral("LC_MESSAGES"), QStringLiteral("C"));
   proc.setProcessEnvironment(env);
 
-  proc.start("/bin/sh -c \"which " + binary + "\"");
+  proc.start(QLatin1String("/bin/sh -c \"which ") + binary + QLatin1String("\""));
   proc.waitForFinished();
-  QString res = proc.readAllStandardOutput();
+  QString res = QString::fromUtf8(proc.readAllStandardOutput());
 
   proc.close();
-  res = res.remove('\n');
+  res = res.remove(QLatin1Char('\n'));
 
   //If it still didn't find it, try "/sbin" dir...
   if (res.isEmpty()){
-    QFile fbin("/sbin/" + binary);
+    QFile fbin(QLatin1String("/sbin/") + binary);
     if (fbin.exists()){
-      res = "/sbin/" + binary;
+      res = QLatin1String("/sbin/") + binary;
     }
   }
 
@@ -163,8 +163,8 @@ QString UnixCommand::discoverBinaryPath(const QString& binary){
 bool UnixCommand::cleanPacmanCache()
 {
   QProcess pacman;
-  QString commandStr = "\"yes | pacman -Scc\"";
-  QString command = WMHelper::getSUCommand() + " " + commandStr;
+  QString commandStr = QStringLiteral("\"yes | pacman -Scc\"");
+  QString command = WMHelper::getSUCommand() + QLatin1String(" ") + commandStr;
   pacman.start(command);
   pacman.waitForFinished();
 
@@ -179,12 +179,12 @@ QByteArray UnixCommand::performQuery(const QStringList &args)
   QByteArray result("");
   QProcess pacman;
   QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
-  env.insert("LANG", "C");
-  env.insert("LC_MESSAGES", "C");
-  env.insert("LC_ALL", "C");
+  env.insert(QStringLiteral("LANG"), QStringLiteral("C"));
+  env.insert(QStringLiteral("LC_MESSAGES"), QStringLiteral("C"));
+  env.insert(QStringLiteral("LC_ALL"), QStringLiteral("C"));
   pacman.setProcessEnvironment(env);
 
-  pacman.start("pacman", args);
+  pacman.start(QStringLiteral("pacman"), args);
   pacman.waitForFinished();
   result = pacman.readAllStandardOutput();
   pacman.close();
@@ -202,12 +202,12 @@ QByteArray UnixCommand::performQuery(const QString &args)
   QProcess pacman;
 
   QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
-  env.insert("LANG", "C");
-  env.insert("LC_MESSAGES", "C");
-  env.insert("LC_ALL", "C");
+  env.insert(QStringLiteral("LANG"), QStringLiteral("C"));
+  env.insert(QStringLiteral("LC_MESSAGES"), QStringLiteral("C"));
+  env.insert(QStringLiteral("LC_ALL"), QStringLiteral("C"));
   pacman.setProcessEnvironment(env);
 
-  pacman.start("pacman " + args);
+  pacman.start(QLatin1String("pacman ") + args);
   pacman.waitForFinished();
   result = pacman.readAllStandardOutput();
   pacman.close();
@@ -222,11 +222,11 @@ QByteArray UnixCommand::performAURCommand(const QString &args)
   QByteArray result("");
   QProcess aur;
   QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
-  env.insert("LANG", "C");
-  env.insert("LC_MESSAGES", "C");
+  env.insert(QStringLiteral("LANG"), QStringLiteral("C"));
+  env.insert(QStringLiteral("LC_MESSAGES"), QStringLiteral("C"));
   aur.setProcessEnvironment(env);
 
-  aur.start(Package::getForeignRepositoryToolNameParam() + " " + args);
+  aur.start(Package::getForeignRepositoryToolNameParam() + QLatin1Char(' ') + args);
   aur.waitForFinished(-1);
   result = aur.readAllStandardOutput();
 
@@ -239,7 +239,7 @@ QByteArray UnixCommand::performAURCommand(const QString &args)
  */
 bool UnixCommand::hasPackage(const QString &pkgName)
 {
-  QString res = performQuery("-Ss " + pkgName);
+  QString res = QString::fromUtf8(performQuery(QLatin1String("-Ss ") + pkgName));
   return !res.isEmpty();
 }
 
@@ -251,15 +251,15 @@ QByteArray UnixCommand::getAURUrl(const QString &pkgName)
   QByteArray result("");
   QProcess aur;
   QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
-  env.insert("LANG", "C");
-  env.insert("LC_MESSAGES", "C");
+  env.insert(QStringLiteral("LANG"), QStringLiteral("C"));
+  env.insert(QStringLiteral("LC_MESSAGES"), QStringLiteral("C"));
 
   aur.setProcessEnvironment(env);
 
   if (Package::getForeignRepositoryToolName() == ctn_CHASER_TOOL)
-    aur.start(Package::getForeignRepositoryToolNameParam() + " info " + pkgName);
+    aur.start(Package::getForeignRepositoryToolNameParam() + QLatin1String(" info ") + pkgName);
   else
-    aur.start(Package::getForeignRepositoryToolNameParam() + " -Sia " + pkgName);
+    aur.start(Package::getForeignRepositoryToolNameParam() + QLatin1String(" -Sia ") + pkgName);
 
   aur.waitForFinished(-1);
 
@@ -274,26 +274,26 @@ QByteArray UnixCommand::getAURPackageList(const QString &searchString)
   QByteArray result("");
   QProcess aur;
   QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
-  env.insert("LANG", "C");
-  env.insert("LC_MESSAGES", "C");
-  env.insert("LANGUAGE", "C");
+  env.insert(QStringLiteral("LANG"), QStringLiteral("C"));
+  env.insert(QStringLiteral("LC_MESSAGES"), QStringLiteral("C"));
+  env.insert(QStringLiteral("LANGUAGE"), QStringLiteral("C"));
 
   aur.setProcessEnvironment(env);
 
   if (UnixCommand::getLinuxDistro() == ectn_KAOS)
-    aur.start(Package::getForeignRepositoryToolNameParam() + " -l ");
+    aur.start(Package::getForeignRepositoryToolNameParam() + QLatin1String(" -l "));
   else
   {
     if (Package::getForeignRepositoryToolName() == ctn_YAOURT_TOOL)
-      aur.start(Package::getForeignRepositoryToolNameParam() + " --nocolor -Ss " + searchString);
+      aur.start(Package::getForeignRepositoryToolNameParam() + QLatin1String(" --nocolor -Ss ") + searchString);
     else if (Package::getForeignRepositoryToolName() == ctn_TRIZEN_TOOL)
-        aur.start(Package::getForeignRepositoryToolNameParam() + " --nocolors -Ssa " + searchString);
+        aur.start(Package::getForeignRepositoryToolNameParam() + tr(" --nocolors -Ssa ") + searchString);
     else if (Package::getForeignRepositoryToolName() == ctn_PIKAUR_TOOL || Package::getForeignRepositoryToolName() == ctn_YAY_TOOL)
-        aur.start(Package::getForeignRepositoryToolNameParam() + " --color=never -Ss --aur " + searchString);
+        aur.start(Package::getForeignRepositoryToolNameParam() + QLatin1String(" --color=never -Ss --aur ") + searchString);
     else if (Package::getForeignRepositoryToolName() == ctn_CHASER_TOOL)
-      aur.start(Package::getForeignRepositoryToolNameParam() + " search " + searchString);
+      aur.start(Package::getForeignRepositoryToolNameParam() + QLatin1String(" search ") + searchString);
     else
-      aur.start(Package::getForeignRepositoryToolNameParam() + " -Ss " + searchString);
+      aur.start(Package::getForeignRepositoryToolNameParam() + QLatin1String(" -Ss ") + searchString);
   }
 
   aur.waitForFinished(-1);
@@ -301,25 +301,25 @@ QByteArray UnixCommand::getAURPackageList(const QString &searchString)
 
   if (UnixCommand::getLinuxDistro() == ectn_KAOS)
   {
-    QString res = result;
-    res.remove("\033");
-    res.remove("[1m");
-    res.remove("[m");
-    res.remove("[1;32m");
-    res.remove("[1;34m");
-    res.remove("[1;36m");
+    QString res = QString::fromUtf8(result);
+    res.remove(QStringLiteral("\033"));
+    res.remove(QStringLiteral("[1m"));
+    res.remove(QStringLiteral("[m"));
+    res.remove(QStringLiteral("[1;32m"));
+    res.remove(QStringLiteral("[1;34m"));
+    res.remove(QStringLiteral("[1;36m"));
 
     return res.toLatin1();
   }
   else if (UnixCommand::getLinuxDistro() == ectn_CHAKRA)
   {
-    QString res = result;
-    res.remove("\033");
-    res.remove("[0m");
-    res.remove("[1m");
-    res.remove("[m");
-    res.remove("[32m");
-    res.remove("[35m");
+    QString res = QString::fromUtf8(result);
+    res.remove(QStringLiteral("\033"));
+    res.remove(QStringLiteral("[0m"));
+    res.remove(QStringLiteral("[1m"));
+    res.remove(QStringLiteral("[m"));
+    res.remove(QStringLiteral("[32m"));
+    res.remove(QStringLiteral("[35m"));
 
     return res.toLatin1();
   }
@@ -333,12 +333,12 @@ QByteArray UnixCommand::getAURPackageList(const QString &searchString)
 QString UnixCommand::getShell()
 {
   QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
-  QString shell = env.value("SHELL", "/bin/bash");
+  QString shell = env.value(QStringLiteral("SHELL"), QStringLiteral("/bin/bash"));
 
   QFileInfo fi(shell);
 
-  if (fi.fileName() == "fish")
-    return "bash";
+  if (fi.fileName() == QLatin1String("fish"))
+    return QStringLiteral("bash");
   else
     return fi.fileName();
 }
@@ -348,7 +348,7 @@ QString UnixCommand::getShell()
  */
 QByteArray UnixCommand::getUnrequiredPackageList()
 {
-  QByteArray result = performQuery(QStringList("-Qt"));
+  QByteArray result = performQuery(QStringList(QStringLiteral("-Qt")));
   return result;
 }
 
@@ -357,7 +357,7 @@ QByteArray UnixCommand::getUnrequiredPackageList()
  */
 QByteArray UnixCommand::getOutdatedPackageList()
 {
-  return performQuery(QStringList("-Qu"));
+  return performQuery(QStringList(QStringLiteral("-Qu")));
 }
 
 /*
@@ -369,11 +369,11 @@ QByteArray UnixCommand::getOutdatedAURPackageList()
 
   if (Package::getForeignRepositoryToolName() == ctn_KCP_TOOL)
   {
-    result = performAURCommand("-lO");
+    result = performAURCommand(QStringLiteral("-lO"));
   }
   else if (Package::getForeignRepositoryToolName() != ctn_KCP_TOOL)
   {
-    result = performAURCommand("-Qua");
+    result = performAURCommand(QStringLiteral("-Qua"));
   }
 
   //return ":: aur  micro-git  v1.3.3.d6ccaf0-1  ->  v1.3.4\n";
@@ -386,7 +386,7 @@ QByteArray UnixCommand::getOutdatedAURPackageList()
  */
 QByteArray UnixCommand::getForeignPackageList()
 {
-  QByteArray result = performQuery(QStringList("-Qem"));
+  QByteArray result = performQuery(QStringList(QStringLiteral("-Qem")));
   return result;
 }
 
@@ -401,11 +401,11 @@ QByteArray UnixCommand::getPackageList(const QString &pkgName)
   QByteArray result;
 
   if (pkgName.isEmpty())
-    result = performQuery(QStringList("-Ss"));
+    result = performQuery(QStringList(QStringLiteral("-Ss")));
   else
   {
     QStringList sl;
-    sl << "-Ss";
+    sl << QStringLiteral("-Ss");
     sl << pkgName;
     result = performQuery(sl);
   }
@@ -420,7 +420,7 @@ QByteArray UnixCommand::getPackageList(const QString &pkgName)
  */
 QByteArray UnixCommand::getKCPPackageInformation(const QString &pkgName)
 {
-  QString args = "--information " + pkgName;
+  QString args = QLatin1String("--information ") + pkgName;
   QByteArray result = performAURCommand(args);
   return result;
 }
@@ -445,11 +445,11 @@ QByteArray UnixCommand::getExpacInfo(const QString &pkgName, const QString &info
   QByteArray result("");
   QProcess expac;
   QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
-  env.insert("LANG", "C");
-  env.insert("LC_MESSAGES", "C");
-  env.insert("LC_ALL", "C");
+  env.insert(QStringLiteral("LANG"), QStringLiteral("C"));
+  env.insert(QStringLiteral("LC_MESSAGES"), QStringLiteral("C"));
+  env.insert(QStringLiteral("LC_ALL"), QStringLiteral("C"));
   expac.setProcessEnvironment(env);
-  QString expacStr = "expac -s \"%%1\" %2";
+  QString expacStr = QStringLiteral("expac -s \"%%1\" %2");
   expac.start(expacStr.arg(info, pkgName));
   expac.waitForFinished();
   result = expac.readAllStandardOutput();
@@ -468,9 +468,9 @@ QByteArray UnixCommand::getPackageInformation(const QString &pkgName, bool forei
   QStringList args;
 
   if(foreignPackage)
-    args << "-Qi";
+    args << QStringLiteral("-Qi");
   else
-    args << "-Si";
+    args << QStringLiteral("-Si");
 
   if (pkgName.isEmpty() == false) // enables get for all ("")
     args << pkgName;
@@ -485,7 +485,7 @@ QByteArray UnixCommand::getPackageInformation(const QString &pkgName, bool forei
 QByteArray UnixCommand::getPackageContentsUsingPacman(const QString& pkgName)
 {
   QStringList args;
-  args << "-Ql";
+  args << QStringLiteral("-Ql");
   args << pkgName;
 
   QByteArray res = performQuery(args);
@@ -502,7 +502,7 @@ bool UnixCommand::isPkgfileInstalled()
   QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
   pkgfile.setProcessEnvironment(env);
 
-  pkgfile.start("pkgfile -V");
+  pkgfile.start(QStringLiteral("pkgfile -V"));
   pkgfile.waitForFinished();
 
   return pkgfile.exitStatus() == QProcess::NormalExit;
@@ -518,11 +518,11 @@ QByteArray UnixCommand::getPackageContentsUsingPkgfile(const QString &pkgName)
   QByteArray result("");
   QProcess pkgfile;
   QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
-  env.insert("LANG", "C");
-  env.insert("LC_MESSAGES", "C");
+  env.insert(QStringLiteral("LANG"), QStringLiteral("C"));
+  env.insert(QStringLiteral("LC_MESSAGES"), QStringLiteral("C"));
   pkgfile.setProcessEnvironment(env);
 
-  pkgfile.start("pkgfile -l " + pkgName);
+  pkgfile.start(QLatin1String("pkgfile -l ") + pkgName);
   pkgfile.waitForFinished();
   result = pkgfile.readAllStandardOutput();
 
@@ -535,18 +535,18 @@ QByteArray UnixCommand::getPackageContentsUsingPkgfile(const QString &pkgName)
 QString UnixCommand::getPackageByFilePath(const QString &filePath)
 {
   QStringList sl;
-  sl << "-Qo";
+  sl << QStringLiteral("-Qo");
   sl << filePath;
 
-  QString out = performQuery(sl);
-  QStringList s = out.split("\n", QString::SkipEmptyParts);
+  QString out = QString::fromUtf8(performQuery(sl));
+  QStringList s = out.split(QStringLiteral("\n"), QString::SkipEmptyParts);
 
   if (s.count() >= 1)
   {
-    QStringList res = s.at(0).split(" ", QString::SkipEmptyParts);
+    QStringList res = s.at(0).split(QStringLiteral(" "), QString::SkipEmptyParts);
     return res.at(res.count()-2);
   }
-  else return "";
+  else return QLatin1String("");
 }
 
 /*
@@ -556,14 +556,14 @@ QStringList UnixCommand::getFilePathSuggestions(const QString &file)
 {
   QProcess slocate;
   QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
-  env.insert("LANG", "C");
-  env.insert("LC_MESSAGES", "C");
+  env.insert(QStringLiteral("LANG"), QStringLiteral("C"));
+  env.insert(QStringLiteral("LC_MESSAGES"), QStringLiteral("C"));
   slocate.setProcessEnvironment(env);
-  slocate.start("slocate -l 8 " + file);
+  slocate.start(QLatin1String("slocate -l 8 ") + file);
   slocate.waitForFinished();
 
-  QString ba = slocate.readAllStandardOutput();
-  return ba.split("\n", QString::SkipEmptyParts);
+  QString ba = QString::fromUtf8(slocate.readAllStandardOutput());
+  return ba.split(QStringLiteral("\n"), QString::SkipEmptyParts);
 }
 
 /*
@@ -571,7 +571,7 @@ QStringList UnixCommand::getFilePathSuggestions(const QString &file)
  */
 QByteArray UnixCommand::getPackageGroups()
 {
-  QByteArray res = performQuery(QStringList("-Sg"));
+  QByteArray res = performQuery(QStringList(QStringLiteral("-Sg")));
   return res;
 }
 
@@ -581,7 +581,7 @@ QByteArray UnixCommand::getPackageGroups()
 QByteArray UnixCommand::getPackagesFromGroup(const QString &groupName)
 {
   QByteArray res =
-      performQuery(QString("--print-format \"%r %n\" -Spg " ) + groupName);
+      performQuery(QStringLiteral("--print-format \"%r %n\" -Spg " ) + groupName);
 
   return res;
 }
@@ -595,11 +595,11 @@ QByteArray UnixCommand::getTargetUpgradeList(const QString &pkgName)
 
   if(!pkgName.isEmpty())
   {
-    args = "--print-format \"%n %v %s\" -Sp " + pkgName;
+    args = QLatin1String("--print-format \"%n %v %s\" -Sp ") + pkgName;
   }
   else
   {
-    args = "--print-format \"%n %v %s\" -Spu";
+    args = QStringLiteral("--print-format \"%n %v %s\" -Spu");
   }
 
   QByteArray res = performQuery(args);
@@ -612,7 +612,7 @@ QByteArray UnixCommand::getTargetUpgradeList(const QString &pkgName)
 QByteArray UnixCommand::getTargetRemovalList(const QString &pkgName, const QString &removeCommand)
 {
   QString args;
-  args = "-" + removeCommand + "p " + pkgName;
+  args = QLatin1Char('-') + removeCommand + QLatin1String("p ") + pkgName;
 
   QByteArray res = performQuery(args);
   return res;
@@ -626,15 +626,15 @@ QString UnixCommand::getSystemArchitecture()
   QStringList slParam;
   QProcess proc;
   QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
-  env.insert("LANG", "C");
-  env.insert("LC_MESSAGES", "C");
+  env.insert(QStringLiteral("LANG"), QStringLiteral("C"));
+  env.insert(QStringLiteral("LC_MESSAGES"), QStringLiteral("C"));
   proc.setProcessEnvironment(env);
 
-  slParam << "-m";
-  proc.start("uname", slParam);
+  slParam << QStringLiteral("-m");
+  proc.start(QStringLiteral("uname"), slParam);
   proc.waitForFinished();
 
-  QString out = proc.readAllStandardOutput();
+  QString out = QString::fromUtf8(proc.readAllStandardOutput());
   proc.close();
 
   return out;
@@ -682,14 +682,14 @@ bool UnixCommand::hasInternetConnection()
 bool UnixCommand::doInternetPingTest()
 {
   QTcpSocket socket;
-  QString hostname = "www.google.com";
+  QString hostname = QStringLiteral("www.google.com");
 
   socket.connectToHost(hostname, 80);
   if (socket.waitForConnected(5000))
     return true;
   else
   {
-    hostname = "www.baidu.com";
+    hostname = QStringLiteral("www.baidu.com");
     socket.connectToHost(hostname, 80);
     if (socket.waitForConnected(5000))
       return true;
@@ -705,14 +705,14 @@ bool UnixCommand::hasTheExecutable( const QString& exeName )
 {
   QProcess proc;
   proc.setProcessChannelMode(QProcess::MergedChannels);
-  QString sParam = "\"which " + exeName + "\"";
-  proc.start("/bin/sh -c " + sParam);
+  QString sParam = QLatin1String("\"which ") + exeName + QLatin1Char('"');
+  proc.start(QLatin1String("/bin/sh -c ") + sParam);
   proc.waitForFinished();
 
-  QString out = proc.readAllStandardOutput();
+  QString out = QString::fromUtf8(proc.readAllStandardOutput());
   proc.close();
 
-  if (out.isEmpty() || out.count("which") > 0) return false;
+  if (out.isEmpty() || out.count(QStringLiteral("which")) > 0) return false;
   else return true;
 }
 
@@ -723,8 +723,8 @@ void UnixCommand::removeSharedMemFiles()
 {
   QDir tempDir(QDir::tempPath());
   QStringList nameFilters;
-  nameFilters << "qipc_sharedmemory_orgarntoctopi*"
-              << "qipc_systemsem_orgarntoctopi*";
+  nameFilters << QStringLiteral("qipc_sharedmemory_orgarntoctopi*")
+              << QStringLiteral("qipc_systemsem_orgarntoctopi*");
 
   QFileInfoList list = tempDir.entryInfoList(nameFilters, QDir::Dirs | QDir::Files | QDir::System | QDir::Hidden);
 
@@ -755,10 +755,10 @@ void UnixCommand::removeTemporaryFiles()
 {
   QDir tempDir(QDir::tempPath());
   QStringList nameFilters;
-  nameFilters << "qtsingleapp-Octopi*" << "qtsingleapp-CacheC*" << "qtsingleapp-Reposi*"
+  nameFilters << QStringLiteral("qtsingleapp-Octopi*") << QStringLiteral("qtsingleapp-CacheC*") << QStringLiteral("qtsingleapp-Reposi*")
               //<< "qipc_sharedmemory_orgarntoctopi*"
               //<< "qipc_systemsem_orgarntoctopi*"
-              << ".qt_temp_octopi*";
+              << QStringLiteral(".qt_temp_octopi*");
   QFileInfoList list = tempDir.entryInfoList(nameFilters, QDir::Dirs | QDir::Files | QDir::System | QDir::Hidden);
 
   foreach(QFileInfo file, list){
@@ -798,8 +798,8 @@ QByteArray UnixCommand::execCommandAsNormalUserExt(const QString &pCommand)
   QByteArray res;
   QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
 
-  env.insert("LANG", "C");
-  env.insert("LC_MESSAGES", "C");
+  env.insert(QStringLiteral("LANG"), QStringLiteral("C"));
+  env.insert(QStringLiteral("LC_MESSAGES"), QStringLiteral("C"));
   p.setProcessEnvironment(env);
 
   p.start(pCommand);
@@ -816,11 +816,11 @@ void UnixCommand::execCommand(const QString &pCommand)
 {
   QProcess p;
   QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
-  env.insert("LANG", "C");
-  env.insert("LC_MESSAGES", "C");
+  env.insert(QStringLiteral("LANG"), QStringLiteral("C"));
+  env.insert(QStringLiteral("LC_MESSAGES"), QStringLiteral("C"));
   p.setProcessEnvironment(env);
 
-  p.start(WMHelper::getSUCommand() + getShell() + " -c \"" + pCommand + "\"");
+  p.start(WMHelper::getSUCommand() + getShell() + QLatin1String(" -c \"") + pCommand + QLatin1Char('"'));
   p.waitForFinished(-1);
   p.close();
 }
@@ -889,20 +889,20 @@ bool UnixCommand::isTextFile(QString fileName)
   init:
   QProcess *p = new QProcess();
   QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
-  env.insert("LANG", "C");
-  env.insert("LC_MESSAGES", "C");
+  env.insert(QStringLiteral("LANG"), QStringLiteral("C"));
+  env.insert(QStringLiteral("LC_MESSAGES"), QStringLiteral("C"));
   p->setProcessEnvironment(env);
 
   QStringList s(fileName);
-  p->start( "file", s );
+  p->start( QStringLiteral("file"), s );
   p->waitForFinished();
 
-  QString output = p->readAllStandardOutput();
+  QString output = QString::fromUtf8(p->readAllStandardOutput());
   p->close();
   delete p;
 
   //If it's a symbolic link, let's discover what is the real target
-  if (output.contains(": symbolic link to"))
+  if (output.contains(QLatin1String(": symbolic link to")))
   {
     QFileInfo fi(fileName);
     fileName = fi.symLinkTarget();
@@ -910,12 +910,12 @@ bool UnixCommand::isTextFile(QString fileName)
   }
   else
   {
-    int from = output.indexOf(":", 0)+1;
+    int from = output.indexOf(QLatin1String(":"), 0)+1;
 
-    return (((output.indexOf( "ASCII", from ) != -1) ||
-            (output.indexOf( "text", from ) != -1) ||
-            (output.indexOf( "empty", from ) != -1)) &&
-            (output.indexOf( "executable", from) == -1));
+    return (((output.indexOf( QLatin1String("ASCII"), from ) != -1) ||
+            (output.indexOf( QLatin1String("text"), from ) != -1) ||
+            (output.indexOf( QLatin1String("empty"), from ) != -1)) &&
+            (output.indexOf( QLatin1String("executable"), from) == -1));
   }
 }
 
@@ -954,16 +954,16 @@ void UnixCommand::executeCommand(const QString &pCommand)
 
   //COLUMNS variable code!
   QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
-  env.remove("LANG");
-  env.remove("LC_MESSAGES");
-  env.insert("LANG", "C");
-  env.insert("LC_MESSAGES", "C");
-  env.remove("COLUMNS");
-  env.insert("COLUMNS", "132");
+  env.remove(QStringLiteral("LANG"));
+  env.remove(QStringLiteral("LC_MESSAGES"));
+  env.insert(QStringLiteral("LANG"), QStringLiteral("C"));
+  env.insert(QStringLiteral("LC_MESSAGES"), QStringLiteral("C"));
+  env.remove(QStringLiteral("COLUMNS"));
+  env.insert(QStringLiteral("COLUMNS"), QStringLiteral("132"));
   m_process->setProcessEnvironment(env);
 
   QString suCommand = WMHelper::getSUCommand();
-  command = suCommand + getShell() + " -c " + "\"" + pCommand + "\"";
+  command = suCommand + getShell() + QLatin1String(" -c ") + QLatin1Char('"') + pCommand + QLatin1Char('"');
   m_process->start(command);
 }
 
@@ -979,12 +979,12 @@ void UnixCommand::executeCommandWithSharedMemHelper(const QString &pCommand, QSh
 
   //COLUMNS variable code!
   QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
-  env.remove("LANG");
-  env.remove("LC_MESSAGES");
-  env.insert("LANG", "C");
-  env.insert("LC_MESSAGES", "C");
-  env.remove("COLUMNS");
-  env.insert("COLUMNS", "132");
+  env.remove(QStringLiteral("LANG"));
+  env.remove(QStringLiteral("LC_MESSAGES"));
+  env.insert(QStringLiteral("LANG"), QStringLiteral("C"));
+  env.insert(QStringLiteral("LC_MESSAGES"), QStringLiteral("C"));
+  env.remove(QStringLiteral("COLUMNS"));
+  env.insert(QStringLiteral("COLUMNS"), QStringLiteral("132"));
   m_process->setProcessEnvironment(env);
 
   QString suCommand = WMHelper::getSUCommand();
@@ -995,7 +995,7 @@ void UnixCommand::executeCommandWithSharedMemHelper(const QString &pCommand, QSh
   }
   else //We are not using "octopi-sudo" nor "lxqt-sudo" utility...*/
   {
-    command = suCommand + "\"" + pCommand + "\"";
+    command = suCommand + QLatin1Char('"') + pCommand + QLatin1Char('"');
   }
 
   m_process->start(command);
@@ -1061,7 +1061,7 @@ void UnixCommand::executeCommandAsNormalUser(const QString &pCommand)
 void UnixCommand::processReadyReadStandardOutput()
 {
   if (m_process->isOpen())
-    m_readAllStandardOutput = m_process->readAllStandardOutput();
+    m_readAllStandardOutput = QString::fromUtf8(m_process->readAllStandardOutput());
 }
 
 /*
@@ -1071,7 +1071,7 @@ void UnixCommand::processReadyReadStandardError()
 {
   if (m_process->isOpen())
   {
-    m_readAllStandardError = m_process->readAllStandardError();
+    m_readAllStandardError = QString::fromUtf8(m_process->readAllStandardError());
     m_errorString = m_process->errorString();
   }
 }
@@ -1104,7 +1104,7 @@ QString UnixCommand::buildOctopiHelperCommandWithSharedMem(const QString &pComma
 {
   QString octopiHelperCommandParameter;
   QString suCommand = WMHelper::getSUCommand();
-  octopiHelperCommandParameter = " -ts";
+  octopiHelperCommandParameter = QStringLiteral(" -ts");
   suCommand += ctn_OCTOPI_HELPER_PATH + octopiHelperCommandParameter;
 
   QStringList commandList;
@@ -1112,18 +1112,18 @@ QString UnixCommand::buildOctopiHelperCommandWithSharedMem(const QString &pComma
   QByteArray sharedData;
 
   //If this is a multiple command string, let's break it
-  if (pCommand.contains(";"))
+  if (pCommand.contains(QLatin1String(";")))
   {
-    commandList = pCommand.split(";", QString::SkipEmptyParts);
+    commandList = pCommand.split(QStringLiteral(";"), QString::SkipEmptyParts);
     foreach(QString line, commandList)
     {
-      commands += line.trimmed() + "\n";
+      commands += line.trimmed() + QLatin1Char('\n');
     }
   }
   else //We have just one command here
   {
     commandList << pCommand.trimmed();
-    commands += commandList.first() + "\n";
+    commands += commandList.first() + QLatin1Char('\n');
   }
 
   sharedData=commands.toLatin1();
@@ -1186,7 +1186,7 @@ int UnixCommand::cancelProcess(QSharedMemory *sharedMem)
 {
   QProcess pacman;
   QString suCommand = WMHelper::getSUCommand();
-  QString pCommand = "killall pacman; rm " + ctn_PACMAN_DATABASE_LOCK_FILE;
+  QString pCommand = QLatin1String("killall pacman; rm ") + ctn_PACMAN_DATABASE_LOCK_FILE;
   QString result;
 
   if (suCommand == WMHelper::getOctopiSudoCommand())
@@ -1194,7 +1194,7 @@ int UnixCommand::cancelProcess(QSharedMemory *sharedMem)
     result = buildOctopiHelperCommandWithSharedMem(pCommand, sharedMem);
   }
   else {
-    result = suCommand + "\"" + pCommand + "\"";
+    result = suCommand + QLatin1Char('"') + pCommand + QLatin1Char('"');
   }
 
   pacman.start(result);
@@ -1211,11 +1211,11 @@ bool UnixCommand::isAppRunning(const QString &appName, bool justOneInstance)
   QStringList slParam;
   QProcess proc;
 
-  slParam << "-C";
+  slParam << QStringLiteral("-C");
   slParam << appName;
-  proc.start("ps", slParam);
+  proc.start(QStringLiteral("ps"), slParam);
   proc.waitForFinished();
-  QString out = proc.readAll();
+  QString out = QString::fromUtf8(proc.readAll());
   proc.close();
 
   if (justOneInstance)
@@ -1243,20 +1243,20 @@ bool UnixCommand::isOctoToolRunning(const QString &octoToolName)
 
   QProcess proc;
   proc.setProcessEnvironment(getProcessEnvironment());
-  QString cmd = "/usr/bin/ps -C %1 -o command";
+  QString cmd = QStringLiteral("/usr/bin/ps -C %1 -o command");
   cmd = cmd.arg(octoToolName);
   proc.start(cmd);
   proc.waitForFinished();
-  QString out = proc.readAll().trimmed();
-  if (out.contains("|")) return false;
-  out=out.remove("\n");
-  out=out.remove("COMMAND");
+  QString out = QString::fromUtf8(proc.readAll().trimmed());
+  if (out.contains(QLatin1String("|"))) return false;
+  out=out.remove(QStringLiteral("\n"));
+  out=out.remove(QStringLiteral("COMMAND"));
 
-  if (octoToolName=="octopi-cachecle")
+  if (octoToolName==QLatin1String("octopi-cachecle"))
   {
-    if (out == "/usr/bin/octopi-cachecleaner") res=true;
+    if (out == QLatin1String("/usr/bin/octopi-cachecleaner")) res=true;
   }
-  else if ((out == "/usr/bin/" + octoToolName) || out.contains("/usr/bin/" + octoToolName + " ")) res=true;
+  else if ((out == QLatin1String("/usr/bin/") + octoToolName) || out.contains(QLatin1String("/usr/bin/") + octoToolName + QLatin1Char(' '))) res=true;
 
   return res;
 }
@@ -1268,7 +1268,7 @@ bool UnixCommand::isUserInWheelGroup()
 {
   bool result=false;
   QProcess groups;
-  groups.start("groups");
+  groups.start(QStringLiteral("groups"));
   groups.waitForFinished();
   if (groups.readAllStandardOutput().contains("wheel"))
     result=true;
@@ -1281,7 +1281,7 @@ bool UnixCommand::isUserInWheelGroup()
 bool UnixCommand::isPackageInstalled(const QString &pkgName)
 {
   QProcess pacman;
-  QString command = "pacman -Q " + pkgName;
+  QString command = QLatin1String("pacman -Q ") + pkgName;
   pacman.start(command);
   pacman.waitForFinished();
   return (pacman.exitCode() == 0);
@@ -1293,20 +1293,20 @@ bool UnixCommand::isPackageInstalled(const QString &pkgName)
 bool UnixCommand::isILoveCandyEnabled()
 {
   bool res=false;
-  QFile file("/etc/pacman.conf");
+  QFile file(QStringLiteral("/etc/pacman.conf"));
 
   if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
     return false;
 
-  QString contents = file.readAll();
-  int end = contents.indexOf("ILoveCandy");
+  QString contents = QString::fromUtf8(file.readAll());
+  int end = contents.indexOf(QLatin1String("ILoveCandy"));
   if (end != -1)
   {
     //Does it contains a # before it???
     int start = end;
     do{
       start--;
-    }while (contents.at(start) != '\n');
+    }while (contents.at(start) != QLatin1Char('\n'));
 
     QString str = contents.mid(start+1, (end-start-1)).trimmed();
 
@@ -1325,11 +1325,11 @@ bool UnixCommand::isILoveCandyEnabled()
 QStringList UnixCommand::getFieldFromPacmanConf(const QString &fieldName)
 {
   QStringList result;
-  QFile file("/etc/pacman.conf");
+  QFile file(QStringLiteral("/etc/pacman.conf"));
   if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
     return result;
 
-  QString contents = file.readAll();
+  QString contents = QString::fromUtf8(file.readAll());
   int from = 0;
   const int ctn_FIELD_LENGTH = fieldName.length();
 
@@ -1342,21 +1342,21 @@ QStringList UnixCommand::getFieldFromPacmanConf(const QString &fieldName)
       int start = end;
       do{
         start--;
-      }while (contents.at(start) != '\n');
+      }while (contents.at(start) != QLatin1Char('\n'));
 
       QString str = contents.mid(start+1, (end-start-1)).trimmed();
 
       if (str.isEmpty())
       {
         QString ignorePkg = contents.mid(end);
-        int equal = ignorePkg.indexOf("=");
-        int newLine = ignorePkg.indexOf("\n");
+        int equal = ignorePkg.indexOf(QLatin1String("="));
+        int newLine = ignorePkg.indexOf(QLatin1String("\n"));
 
         ignorePkg = ignorePkg.mid(equal+1, newLine-(equal+1)).trimmed();
-        result += ignorePkg.split(QRegularExpression("\\s+"), QString::SkipEmptyParts);
+        result += ignorePkg.split(QRegularExpression(QStringLiteral("\\s+")), QString::SkipEmptyParts);
         from = end + newLine;
       }
-      else if (str != "#")
+      else if (str != QLatin1String("#"))
         from += end + ctn_FIELD_LENGTH;
       else
         from += ctn_FIELD_LENGTH;
@@ -1377,8 +1377,8 @@ QStringList UnixCommand::getIgnorePkgsFromPacmanConf()
   QStringList resPkgs;
   QStringList resGroups;
 
-  resPkgs = getFieldFromPacmanConf("IgnorePkg");
-  resGroups = getFieldFromPacmanConf("IgnoreGroup");
+  resPkgs = getFieldFromPacmanConf(QStringLiteral("IgnorePkg"));
+  resGroups = getFieldFromPacmanConf(QStringLiteral("IgnoreGroup"));
 
   if (!resGroups.isEmpty())
   {
@@ -1411,45 +1411,45 @@ LinuxDistro UnixCommand::getLinuxDistro()
 
   if (firstTime)
   {
-    if (QFile::exists("/etc/os-release"))
+    if (QFile::exists(QStringLiteral("/etc/os-release")))
     {
-      QFile file("/etc/os-release");
+      QFile file(QStringLiteral("/etc/os-release"));
 
       if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
         ret = ectn_UNKNOWN;
 
-      QString contents = file.readAll();
+      QString contents = QString::fromUtf8(file.readAll());
 
       /*if (contents.contains(QRegularExpression("Antergos")))
       {
         ret = ectn_ANTERGOS;
       }*/
-      if (contents.contains(QRegularExpression("ArchBang")))
+      if (contents.contains(QRegularExpression(QStringLiteral("ArchBang"))))
       {
         ret = ectn_ARCHBANGLINUX;
       }
-      else if (contents.contains(QRegularExpression("Arch Linux")) ||
-               (contents.contains(QRegularExpression("Arcolinux"))))
+      else if (contents.contains(QRegularExpression(QStringLiteral("Arch Linux"))) ||
+               (contents.contains(QRegularExpression(QStringLiteral("Arcolinux")))))
       {
         ret = ectn_ARCHLINUX;
       }
-      else if (contents.contains(QRegularExpression("Chakra")))
+      else if (contents.contains(QRegularExpression(QStringLiteral("Chakra"))))
       {
         ret = ectn_CHAKRA;
       }
-      else if (contents.contains(QRegularExpression("Condres OS")))
+      else if (contents.contains(QRegularExpression(QStringLiteral("Condres OS"))))
       {
         ret = ectn_CONDRESOS;
       }
-      else if (contents.contains(QRegularExpression("EndeavourOS")))
+      else if (contents.contains(QRegularExpression(QStringLiteral("EndeavourOS"))))
       {
         ret = ectn_ENDEAVOUROS;
       }
-      else if (contents.contains(QRegularExpression("KaOS")))
+      else if (contents.contains(QRegularExpression(QStringLiteral("KaOS"))))
       {
         ret = ectn_KAOS;
       }
-      else if (contents.contains(QRegularExpression("Manjaro")))
+      else if (contents.contains(QRegularExpression(QStringLiteral("Manjaro"))))
       {
         ret = ectn_MANJAROLINUX;
       }
@@ -1457,7 +1457,7 @@ LinuxDistro UnixCommand::getLinuxDistro()
       {
         ret = ectn_NETRUNNER;
       }*/
-      else if (contents.contains(QRegularExpression("Parabola GNU/Linux-libre")))
+      else if (contents.contains(QRegularExpression(QStringLiteral("Parabola GNU/Linux-libre"))))
       {
         ret = ectn_PARABOLA;
       }
@@ -1484,20 +1484,20 @@ LinuxDistro UnixCommand::getLinuxDistro()
  */
 QString UnixCommand::getLinuxDistroPrettyName()
 {
-  static QString ret("");
+  static QString ret(QLatin1String(""));
   static bool firstTime = true;
 
   if (firstTime)
   {
-    if (QFile::exists("/etc/os-release"))
+    if (QFile::exists(QStringLiteral("/etc/os-release")))
     {
-      QFile file("/etc/os-release");
+      QFile file(QStringLiteral("/etc/os-release"));
       if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
-        ret = "";
+        ret = QLatin1String("");
 
-      QString contents = file.readAll();
-      int ind = contents.indexOf("PRETTY_NAME", Qt::CaseInsensitive);
-      int end = contents.indexOf("\n", ind);
+      QString contents = QString::fromUtf8(file.readAll());
+      int ind = contents.indexOf(QLatin1String("PRETTY_NAME"), Qt::CaseInsensitive);
+      int end = contents.indexOf(QLatin1String("\n"), ind);
 
       if (ind != -1)
       {
@@ -1516,10 +1516,10 @@ QString UnixCommand::getLinuxDistroPrettyName()
  */
 QString UnixCommand::getPacmanVersion()
 {
-  QString v = performQuery("--version");
-  QString res = "???";
-  int p = v.indexOf("Pacman");
-  int q = v.indexOf("- libalpm");
+  QString v = QString::fromUtf8(performQuery(QStringLiteral("--version")));
+  QString res = QStringLiteral("???");
+  int p = v.indexOf(QLatin1String("Pacman"));
+  int q = v.indexOf(QLatin1String("- libalpm"));
 
   if (p >=0 && q >= 0)
   {
@@ -1569,12 +1569,12 @@ bool UnixCommand::isPacmanDbLocked()
 QProcessEnvironment UnixCommand::getProcessEnvironment()
 {
   QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
-  env.remove("LANG");
-  env.remove("LC_MESSAGES");
-  env.insert("LANG", "C");
-  env.insert("LC_MESSAGES", "C");
-  env.remove("COLUMNS");
-  env.insert("COLUMNS", "132");
+  env.remove(QStringLiteral("LANG"));
+  env.remove(QStringLiteral("LC_MESSAGES"));
+  env.insert(QStringLiteral("LANG"), QStringLiteral("C"));
+  env.insert(QStringLiteral("LC_MESSAGES"), QStringLiteral("C"));
+  env.remove(QStringLiteral("COLUMNS"));
+  env.insert(QStringLiteral("COLUMNS"), QStringLiteral("132"));
   return env;
 }
 
@@ -1587,16 +1587,16 @@ bool UnixCommand::isOctopiHelperRunning()
 
   QProcess proc;
   proc.setProcessEnvironment(getProcessEnvironment());
-  QString cmd = "ps -C %1 -o command";
+  QString cmd = QStringLiteral("ps -C %1 -o command");
   QString octoToolName = ctn_OCTOPI_HELPER_NAME;
   cmd = cmd.arg(octoToolName);
   proc.start(cmd);
   proc.waitForFinished();
-  QString out = proc.readAll().trimmed();
-  if (out.contains("|")) return false;
-  out=out.remove("\n");
-  out=out.remove("COMMAND");
-  if ((out == "/usr/lib/octopi/" + octoToolName) || out.contains("/usr/lib/octopi/" + octoToolName + " ")) res=true;
+  QString out = QString::fromUtf8(proc.readAll().trimmed());
+  if (out.contains(QLatin1String("|"))) return false;
+  out=out.remove(QStringLiteral("\n"));
+  out=out.remove(QStringLiteral("COMMAND"));
+  if ((out == QLatin1String("/usr/lib/octopi/") + octoToolName) || out.contains(QLatin1String("/usr/lib/octopi/") + octoToolName + QLatin1String(" "))) res=true;
 
   return res;
 }

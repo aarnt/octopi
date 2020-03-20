@@ -49,14 +49,14 @@ bool WMHelper::isKDERunning(){
 bool WMHelper::isTDERunning(){
   QStringList slParam;
   QProcess proc;
-  slParam << "-C";
+  slParam << QStringLiteral("-C");
   slParam << ctn_TDE_DESKTOP;
 
-  proc.start("ps", slParam);
+  proc.start(QStringLiteral("ps"), slParam);
   proc.waitForStarted();
   proc.waitForFinished();
 
-  QString out = proc.readAll();
+  QString out = QString::fromUtf8(proc.readAll());
   proc.close();
 
   if (out.count(ctn_TDE_DESKTOP)>0)
@@ -71,13 +71,13 @@ bool WMHelper::isTDERunning(){
 bool WMHelper::isXFCERunning(){
   QStringList slParam;
   QProcess proc;
-  slParam << "-C";
+  slParam << QStringLiteral("-C");
   slParam << ctn_XFCE_DESKTOP;
 
-  proc.start("ps", slParam);
+  proc.start(QStringLiteral("ps"), slParam);
   proc.waitForStarted();
   proc.waitForFinished();
-  QString out = proc.readAll();
+  QString out = QString::fromUtf8(proc.readAll());
   proc.close();
 
   if (out.count(ctn_XFCE_DESKTOP)>0)
@@ -92,13 +92,13 @@ bool WMHelper::isXFCERunning(){
 bool WMHelper::isLXDERunning(){
   QStringList slParam;
   QProcess proc;
-  slParam << "-C";
+  slParam << QStringLiteral("-C");
   slParam << ctn_LXDE_DESKTOP;
 
-  proc.start("ps", slParam);
+  proc.start(QStringLiteral("ps"), slParam);
   proc.waitForStarted();
   proc.waitForFinished();
-  QString out = proc.readAll();
+  QString out = QString::fromUtf8(proc.readAll());
   proc.close();
 
   if (out.count(ctn_LXDE_DESKTOP)>0)
@@ -121,13 +121,13 @@ bool WMHelper::isLXQTRunning()
 bool WMHelper::isOPENBOXRunning(){
   QStringList slParam;
   QProcess proc;
-  slParam << "-C";
+  slParam << QStringLiteral("-C");
   slParam << ctn_OPENBOX_DESKTOP;
 
-  proc.start("ps", slParam);
+  proc.start(QStringLiteral("ps"), slParam);
   proc.waitForStarted();
   proc.waitForFinished();
-  QString out = proc.readAll();
+  QString out = QString::fromUtf8(proc.readAll());
   proc.close();
 
   if (out.count(ctn_OPENBOX_DESKTOP)>0)
@@ -142,13 +142,13 @@ bool WMHelper::isOPENBOXRunning(){
 bool WMHelper::isMATERunning(){
   QStringList slParam;
   QProcess proc;
-  slParam << "-C";
+  slParam << QStringLiteral("-C");
   slParam << ctn_MATE_DESKTOP;
 
-  proc.start("ps", slParam);
+  proc.start(QStringLiteral("ps"), slParam);
   proc.waitForStarted();
   proc.waitForFinished();
-  QString out = proc.readAll();
+  QString out = QString::fromUtf8(proc.readAll());
   proc.close();
 
   if (out.count(ctn_MATE_DESKTOP)>0)
@@ -163,13 +163,13 @@ bool WMHelper::isMATERunning(){
 bool WMHelper::isCinnamonRunning(){
   QStringList slParam;
   QProcess proc;
-  slParam << "-fC";
+  slParam << QStringLiteral("-fC");
   slParam << ctn_CINNAMON_DESKTOP;
 
-  proc.start("ps", slParam);
+  proc.start(QStringLiteral("ps"), slParam);
   proc.waitForStarted();
   proc.waitForFinished();
-  QString out = proc.readAll();
+  QString out = QString::fromUtf8(proc.readAll());
   proc.close();
 
   if (out.count(ctn_CINNAMON_DESKTOP)>0)
@@ -184,10 +184,10 @@ bool WMHelper::isCinnamonRunning(){
 bool WMHelper::isLuminaRunning()
 {
   QProcess proc;
-  proc.start("ps -A -o command");
+  proc.start(QStringLiteral("ps -A -o command"));
   proc.waitForStarted();
   proc.waitForFinished();
-  QString out = proc.readAll();
+  QString out = QString::fromUtf8(proc.readAll());
   proc.close();
 
   if (out.count(ctn_LUMINA_DESKTOP)>0)
@@ -211,7 +211,7 @@ QString WMHelper::getXFCEEditor(){
  */
 QString WMHelper::getOctopiSudoCommand(){
   QString result = ctn_OCTOPISUDO;
-  result += " -d ";
+  result += QLatin1String(" -d ");
 
   return result;
 }
@@ -243,7 +243,7 @@ QString WMHelper::getSUCommand(){
  */
 QString WMHelper::getSUTool()
 {
-  QString result("");
+  QString result(QLatin1String(""));
 
   if (UnixCommand::hasTheExecutable(ctn_OCTOPISUDO)){
     return ctn_OCTOPISUDO;
@@ -264,7 +264,7 @@ QString WMHelper::getKDEOpenHelper(){
   else if (UnixCommand::hasTheExecutable(ctn_KDE5_OPEN))
     return ctn_KDE5_OPEN;
   else
-    return "NONE";
+    return QStringLiteral("NONE");
 }
 
 /*
@@ -298,8 +298,8 @@ void WMHelper::openFile(const QString& fileName){
     p->startDetached( ctn_XFCE_FILE_MANAGER, s );
   }
   else if (isKDERunning() && UnixCommand::hasTheExecutable(ctn_KDE_FILE_MANAGER)){
-    s << "exec";
-    s << "file:" + fileToOpen;
+    s << QStringLiteral("exec");
+    s << QLatin1String("file:") + fileToOpen;
     p->startDetached( ctn_KDE_FILE_MANAGER, s );
   }
   else if ((isKDERunning()) && UnixCommand::hasTheExecutable(ctn_KDE4_FILE_MANAGER)){
@@ -307,8 +307,8 @@ void WMHelper::openFile(const QString& fileName){
     p->startDetached( getKDEOpenHelper(), s );
   }
   else if (isTDERunning() && UnixCommand::hasTheExecutable(ctn_TDE_FILE_MANAGER)){
-    s << "exec";
-    s << "file:" + fileToOpen;
+    s << QStringLiteral("exec");
+    s << QLatin1String("file:") + fileToOpen;
     p->startDetached( ctn_TDE_FILE_MANAGER, s );
   }
   else if (isMATERunning() && UnixCommand::hasTheExecutable(ctn_MATE_EDITOR)){
@@ -358,44 +358,44 @@ void WMHelper::editFile( const QString& fileName, EditOptions opt ){
   LinuxDistro distro = UnixCommand::getLinuxDistro();
   if (distro == ectn_ARCHBANGLINUX && UnixCommand::hasTheExecutable(ctn_ARCHBANG_EDITOR))
   {
-    p = ctn_ARCHBANG_EDITOR + " " + fileName;
+    p = ctn_ARCHBANG_EDITOR + QLatin1Char(' ') + fileName;
   }
   else if (isXFCERunning() && (UnixCommand::hasTheExecutable(ctn_XFCE_EDITOR) ||
                                UnixCommand::hasTheExecutable(ctn_XFCE_EDITOR_ALT))){
-    p = getXFCEEditor() + " " + fileName;
+    p = getXFCEEditor() + QLatin1Char(' ') + fileName;
   }
   else if (isKDERunning() && UnixCommand::hasTheExecutable(ctn_KDE_EDITOR)){
-    p += ctn_KDE_EDITOR + " " + fileName;
+    p += ctn_KDE_EDITOR + QLatin1Char(' ') + fileName;
   }
   else if (isKDERunning() && UnixCommand::hasTheExecutable(ctn_KDE4_EDITOR)){
-    p += ctn_KDE4_EDITOR + " " + fileName;
+    p += ctn_KDE4_EDITOR + QLatin1Char(' ') + fileName;
   }
   else if (isTDERunning() && UnixCommand::hasTheExecutable(ctn_TDE_EDITOR)){
-    p += ctn_TDE_EDITOR + " " + fileName;
+    p += ctn_TDE_EDITOR + QLatin1Char(' ') + fileName;
   }
   else if (isMATERunning() && UnixCommand::hasTheExecutable(ctn_MATE_EDITOR)){
-    p = ctn_MATE_EDITOR + " " + fileName;
+    p = ctn_MATE_EDITOR + QLatin1Char(' ') + fileName;
   }
   else if (isLXQTRunning() && UnixCommand::hasTheExecutable(ctn_LXQT_EDITOR)){
-    p = ctn_LXQT_EDITOR + " " + fileName;
+    p = ctn_LXQT_EDITOR + QLatin1Char(' ') + fileName;
   }
   else if (isLuminaRunning() && UnixCommand::hasTheExecutable(ctn_LUMINA_EDITOR)){
-    p += ctn_LUMINA_EDITOR + " " + fileName;
+    p += ctn_LUMINA_EDITOR + QLatin1Char(' ') + fileName;
   }
   if (UnixCommand::hasTheExecutable(ctn_ARCHBANG_EDITOR))
   {
-    p = ctn_ARCHBANG_EDITOR + " " + fileName;
+    p = ctn_ARCHBANG_EDITOR + QLatin1Char(' ') + fileName;
   }
   else if (UnixCommand::hasTheExecutable(ctn_CINNAMON_EDITOR)){
-    p = ctn_CINNAMON_EDITOR + " " + fileName;
+    p = ctn_CINNAMON_EDITOR + QLatin1Char(' ') + fileName;
   }
   else if (UnixCommand::hasTheExecutable(ctn_XFCE_EDITOR) || UnixCommand::hasTheExecutable(ctn_XFCE_EDITOR_ALT)){
-    p = getXFCEEditor() + " " + fileName;
+    p = getXFCEEditor() + QLatin1Char(' ') + fileName;
   }
 
   if (opt == ectn_EDIT_AS_NORMAL_USER)
   {
-    process->startDetached("/bin/sh -c \"" + p + "\"");
+    process->startDetached(QLatin1String("/bin/sh -c \"") + p + QLatin1Char('"'));
   }
   else
   {
@@ -442,7 +442,7 @@ void WMHelper::openDirectory( const QString& dirName ){
       }
       else if (UnixCommand::hasTheExecutable(ctn_KDE_FILE_MANAGER))
       {
-        s << "newTab";
+        s << QStringLiteral("newTab");
         s << dir;
         p->startDetached( ctn_KDE_FILE_MANAGER, s );
       }
@@ -451,7 +451,7 @@ void WMHelper::openDirectory( const QString& dirName ){
     {
       if (UnixCommand::hasTheExecutable(ctn_TDE_FILE_MANAGER))
       {
-        s << "newTab";
+        s << QStringLiteral("newTab");
         s << dir;
         p->startDetached( ctn_TDE_FILE_MANAGER, s );
       }

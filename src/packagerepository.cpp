@@ -333,7 +333,7 @@ bool PackageRepository::memberListOfGroupsEquals(const QStringList& listOfGroups
 PackageRepository::PackageData::PackageData(const PackageListData& pkg, const bool isRequired, const bool isManagedByAUR)
   : required(isRequired), managedByAUR(isManagedByAUR), name(pkg.name),
     repository(pkg.repository.isEmpty() ? StrConstants::getForeignRepositoryName() : pkg.repository),
-    version(pkg.version), description(pkg.description.toLatin1()), // octopi wants it converted to utf8
+    version(pkg.version), description(pkg.description), // octopi wants it converted to utf8
     outdatedVersion(pkg.outatedVersion), downloadSize(pkg.downloadSize),
     status(pkg.status != ectn_OUTDATED ?
            pkg.status :

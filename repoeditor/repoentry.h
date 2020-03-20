@@ -48,7 +48,7 @@ public:
 
     static QString formatRepoName( const QString & name ) {
         QString aux = repoFormat;
-        return aux.replace("%repo%",name);
+        return aux.replace(QLatin1String("%repo%"),name);
     }
 
     QString getName() const; //returns the unformatted repo name

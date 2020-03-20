@@ -54,7 +54,7 @@ void MainWindow::closeEvent(QCloseEvent *event)
   if(m_commandExecuting != ectn_NONE)
   {
     int res = QMessageBox::question(this, StrConstants::getConfirmation(),
-                          StrConstants::getThereIsARunningTransaction() + "\n" +
+                          StrConstants::getThereIsARunningTransaction() + QLatin1Char('\n') +
                           StrConstants::getDoYouReallyWantToQuit(),
                           QMessageBox::Yes | QMessageBox::No,
                           QMessageBox::No);
@@ -71,7 +71,7 @@ void MainWindow::closeEvent(QCloseEvent *event)
   else if(areTherePendingActions())
   {
     int res = QMessageBox::question(this, StrConstants::getConfirmation(),
-                                    StrConstants::getThereArePendingActions() + "\n" +
+                                    StrConstants::getThereArePendingActions() + QLatin1Char('\n') +
                                     StrConstants::getDoYouReallyWantToQuit(),
                                     QMessageBox::Yes | QMessageBox::No,
                                     QMessageBox::No);
@@ -104,7 +104,7 @@ void MainWindow::closeEvent(QCloseEvent *event)
  */
 void MainWindow::copyFullPathToClipboard()
 {
-  QTreeView *tb = ui->twProperties->currentWidget()->findChild<QTreeView*>("tvPkgFileList");
+  QTreeView *tb = ui->twProperties->currentWidget()->findChild<QTreeView*>(QStringLiteral("tvPkgFileList"));
   if (tb && tb->hasFocus())
   {
     QString path = utils::showFullPathOfItem(tb->currentIndex());
@@ -118,7 +118,7 @@ void MainWindow::copyFullPathToClipboard()
  */
 void testSharedMem()
 {
-  QSharedMemory *sharedMem=new QSharedMemory("org.arnt.test");
+  QSharedMemory *sharedMem=new QSharedMemory(QStringLiteral("org.arnt.test"));
   QByteArray sharedData="abracadabra -abcd\ncadabraabra -xyz";
 
   //removeSharedMemFiles();
@@ -129,7 +129,7 @@ void testSharedMem()
   sharedMem->unlock();
 
   //Let's retrieve commands from sharedmem pool
-  QSharedMemory *sharedMem2 = new QSharedMemory("org.arnt.test");
+  QSharedMemory *sharedMem2 = new QSharedMemory(QStringLiteral("org.arnt.test"));
   if (!sharedMem2->attach(QSharedMemory::ReadOnly))
   {
     QTextStream qout(stdout);
@@ -202,7 +202,7 @@ void MainWindow::keyPressEvent(QKeyEvent* ke)
     else
     {
       QTreeView *tvPkgFileList =
-          ui->twProperties->widget(ctn_TABINDEX_FILES)->findChild<QTreeView*>("tvPkgFileList");
+          ui->twProperties->widget(ctn_TABINDEX_FILES)->findChild<QTreeView*>(QStringLiteral("tvPkgFileList"));
 
       if(tvPkgFileList)
       {
@@ -308,8 +308,8 @@ void MainWindow::keyPressEvent(QKeyEvent* ke)
          ui->twProperties->currentIndex() == ctn_TABINDEX_NEWS ||
          ui->twProperties->currentIndex() == ctn_TABINDEX_HELPUSAGE))
     {
-      QTextBrowser *tb = ui->twProperties->currentWidget()->findChild<QTextBrowser*>("textBrowser");
-      SearchBar *searchBar = ui->twProperties->currentWidget()->findChild<SearchBar*>("searchbar");
+      QTextBrowser *tb = ui->twProperties->currentWidget()->findChild<QTextBrowser*>(QStringLiteral("textBrowser"));
+      SearchBar *searchBar = ui->twProperties->currentWidget()->findChild<SearchBar*>(QStringLiteral("searchbar"));
 
       if (tb && tb->toPlainText().size() > 0 && searchBar)
       {
@@ -318,8 +318,8 @@ void MainWindow::keyPressEvent(QKeyEvent* ke)
     }
     else if (isPropertiesTabWidgetVisible() && ui->twProperties->currentIndex() == ctn_TABINDEX_FILES)
     {
-      QTreeView *tb = ui->twProperties->currentWidget()->findChild<QTreeView*>("tvPkgFileList");
-      SearchBar *searchBar = ui->twProperties->currentWidget()->findChild<SearchBar*>("searchbar");
+      QTreeView *tb = ui->twProperties->currentWidget()->findChild<QTreeView*>(QStringLiteral("tvPkgFileList"));
+      SearchBar *searchBar = ui->twProperties->currentWidget()->findChild<SearchBar*>(QStringLiteral("searchbar"));
 
       if (tb && tb->model()->rowCount() > 0 && searchBar)
       {

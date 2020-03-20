@@ -249,31 +249,31 @@ bool SettingsManager::getUseDefaultAppIcon()
 QString SettingsManager::getOctopiBusyIconPath()
 {
   SettingsManager p_instance;
-  return (p_instance.getSYSsettings()->value(ctn_KEY_OCTOPI_BUSY_ICON_PATH, "")).toString();
+  return (p_instance.getSYSsettings()->value(ctn_KEY_OCTOPI_BUSY_ICON_PATH, QLatin1String(""))).toString();
 }
 
 QString SettingsManager::getOctopiRedIconPath()
 {
   SettingsManager p_instance;
-  return (p_instance.getSYSsettings()->value(ctn_KEY_OCTOPI_RED_ICON_PATH, "")).toString();
+  return (p_instance.getSYSsettings()->value(ctn_KEY_OCTOPI_RED_ICON_PATH, QLatin1String(""))).toString();
 }
 
 QString SettingsManager::getOctopiYellowIconPath()
 {
   SettingsManager p_instance;
-  return (p_instance.getSYSsettings()->value(ctn_KEY_OCTOPI_YELLOW_ICON_PATH, "")).toString();
+  return (p_instance.getSYSsettings()->value(ctn_KEY_OCTOPI_YELLOW_ICON_PATH, QLatin1String(""))).toString();
 }
 
 QString SettingsManager::getOctopiGreenIconPath()
 {
   SettingsManager p_instance;
-  return (p_instance.getSYSsettings()->value(ctn_KEY_OCTOPI_GREEN_ICON_PATH, "")).toString();
+  return (p_instance.getSYSsettings()->value(ctn_KEY_OCTOPI_GREEN_ICON_PATH, QLatin1String(""))).toString();
 }
 
 bool SettingsManager::isDistroRSSUrlEmpty()
 {
   SettingsManager p_instance;
-  return p_instance.getSYSsettings()->value(ctn_KEY_DISTRO_RSS_URL, "").toString().isEmpty();
+  return p_instance.getSYSsettings()->value(ctn_KEY_DISTRO_RSS_URL, QLatin1String("")).toString().isEmpty();
 }
 
 QString SettingsManager::getDistroRSSUrl()
@@ -282,22 +282,22 @@ QString SettingsManager::getDistroRSSUrl()
   LinuxDistro distro = UnixCommand::getLinuxDistro();
 
   if (distro == ectn_ARCHLINUX || distro == ectn_ARCHBANGLINUX /*|| distro == ectn_SWAGARCH*/)
-    return (p_instance.getSYSsettings()->value(ctn_KEY_DISTRO_RSS_URL, "https://www.archlinux.org/feeds/news/")).toString();
+    return (p_instance.getSYSsettings()->value(ctn_KEY_DISTRO_RSS_URL, QStringLiteral("https://www.archlinux.org/feeds/news/"))).toString();
   else if (distro == ectn_CHAKRA)
-    return (p_instance.getSYSsettings()->value(ctn_KEY_DISTRO_RSS_URL, "https://community.chakralinux.org/c/news.rss")).toString();
+    return (p_instance.getSYSsettings()->value(ctn_KEY_DISTRO_RSS_URL, QStringLiteral("https://community.chakralinux.org/c/news.rss"))).toString();
   else if (distro == ectn_CONDRESOS)
-    return (p_instance.getSYSsettings()->value(ctn_KEY_DISTRO_RSS_URL, "https://condresos.codelinsoft.it/index.php/blog?format=feed&amp;type=rss")).toString();
+    return (p_instance.getSYSsettings()->value(ctn_KEY_DISTRO_RSS_URL, QStringLiteral("https://condresos.codelinsoft.it/index.php/blog?format=feed&amp;type=rss"))).toString();
   else if (distro == ectn_ENDEAVOUROS)
-    return (p_instance.getSYSsettings()->value(ctn_KEY_DISTRO_RSS_URL, "https://endeavouros.com/feed/")).toString();
+    return (p_instance.getSYSsettings()->value(ctn_KEY_DISTRO_RSS_URL, QStringLiteral("https://endeavouros.com/feed/"))).toString();
   else if (distro == ectn_KAOS)
-    return (p_instance.getSYSsettings()->value(ctn_KEY_DISTRO_RSS_URL, "https://kaosx.us/feed.xml")).toString();
+    return (p_instance.getSYSsettings()->value(ctn_KEY_DISTRO_RSS_URL, QStringLiteral("https://kaosx.us/feed.xml"))).toString();
   else if (distro == ectn_MANJAROLINUX)
-    return (p_instance.getSYSsettings()->value(ctn_KEY_DISTRO_RSS_URL, "https://forum.manjaro.org/c/announcements.rss")).toString();
+    return (p_instance.getSYSsettings()->value(ctn_KEY_DISTRO_RSS_URL, QStringLiteral("https://forum.manjaro.org/c/announcements.rss"))).toString();
   /*else if (distro == ectn_NETRUNNER)
     return (p_instance.getSYSsettings()->value(ctn_KEY_DISTRO_RSS_URL, "https://www.netrunner.com/feed/")).toString();*/
   else if (distro == ectn_PARABOLA)
-    return (p_instance.getSYSsettings()->value(ctn_KEY_DISTRO_RSS_URL, "https://www.parabola.nu/feeds/news/")).toString();
-  else return "";
+    return (p_instance.getSYSsettings()->value(ctn_KEY_DISTRO_RSS_URL, QStringLiteral("https://www.parabola.nu/feeds/news/"))).toString();
+  else return QLatin1String("");
 }
 
 bool SettingsManager::getShowPackageNumbersOutput()
@@ -317,36 +317,36 @@ QString SettingsManager::getAURTool()
   QString params;
 
   SettingsManager p_instance;
-  QString ret = (p_instance.getSYSsettings()->value(ctn_KEY_AUR_TOOL, "")).toString();
+  QString ret = (p_instance.getSYSsettings()->value(ctn_KEY_AUR_TOOL, QLatin1String(""))).toString();
 
   if (ret == ctn_NO_AUR_TOOL) return ret;
   else if (ret == ctn_PACAUR_TOOL)
   {
-    if (getAURNoConfirmParam()) params += " --noconfirm ";
-    if (getAURNoEditParam()) params += " --noedit ";
+    if (getAURNoConfirmParam()) params += QLatin1String(" --noconfirm ");
+    if (getAURNoEditParam()) params += QLatin1String(" --noedit ");
     ret += params;
   }
   else if (ret == ctn_YAOURT_TOOL)
   {
-    if (getAURNoConfirmParam()) params += " --noconfirm ";
+    if (getAURNoConfirmParam()) params += QLatin1String(" --noconfirm ");
     ret += params;
   }
   else if (ret == ctn_TRIZEN_TOOL)
   {
-    if (getAURNoConfirmParam()) params += " --noconfirm ";
-    if (getAURNoEditParam()) params += " --noedit ";
+    if (getAURNoConfirmParam()) params += QLatin1String(" --noconfirm ");
+    if (getAURNoEditParam()) params += QLatin1String(" --noedit ");
     ret += params;
   }
   else if (ret == ctn_PIKAUR_TOOL)
   {
-    if (getAURNoConfirmParam()) params += " --noconfirm ";
-    if (getAURNoEditParam()) params += " --noedit ";
+    if (getAURNoConfirmParam()) params += QLatin1String(" --noconfirm ");
+    if (getAURNoEditParam()) params += QLatin1String(" --noedit ");
     ret += params;
   }
   else if (ret == ctn_YAY_TOOL)
   {
-    if (getAURNoConfirmParam()) params += " --noconfirm ";
-    if (getAURNoEditParam()) params += " --noeditmenu ";
+    if (getAURNoConfirmParam()) params += QLatin1String(" --noconfirm ");
+    if (getAURNoEditParam()) params += QLatin1String(" --noeditmenu ");
     ret += params;
   }
   //System does not have selected aurtool. Let's see if there are any other available...
@@ -354,8 +354,8 @@ QString SettingsManager::getAURTool()
   {
     if (UnixCommand::hasTheExecutable(ctn_TRIZEN_TOOL))
     {
-      if (getAURNoConfirmParam()) params += " --noconfirm ";
-      if (getAURNoEditParam()) params += " --noedit ";
+      if (getAURNoConfirmParam()) params += QLatin1String(" --noconfirm ");
+      if (getAURNoEditParam()) params += QLatin1String(" --noedit ");
 
       p_instance.setAURTool(ctn_TRIZEN_TOOL);
       p_instance.getSYSsettings()->sync();
@@ -363,8 +363,8 @@ QString SettingsManager::getAURTool()
     }
     else if (UnixCommand::hasTheExecutable(ctn_PIKAUR_TOOL))
     {
-      if (getAURNoConfirmParam()) params += " --noconfirm ";
-      if (getAURNoEditParam()) params += " --noedit ";
+      if (getAURNoConfirmParam()) params += QLatin1String(" --noconfirm ");
+      if (getAURNoEditParam()) params += QLatin1String(" --noedit ");
 
       p_instance.setAURTool(ctn_PIKAUR_TOOL);
       p_instance.getSYSsettings()->sync();
@@ -372,8 +372,8 @@ QString SettingsManager::getAURTool()
     }
     else if (UnixCommand::hasTheExecutable(ctn_YAY_TOOL))
     {
-      if (getAURNoConfirmParam()) params += " --noconfirm ";
-      if (getAURNoEditParam()) params += " --noeditmenu ";
+      if (getAURNoConfirmParam()) params += QLatin1String(" --noconfirm ");
+      if (getAURNoEditParam()) params += QLatin1String(" --noeditmenu ");
 
       p_instance.setAURTool(ctn_YAY_TOOL);
       p_instance.getSYSsettings()->sync();
@@ -381,7 +381,7 @@ QString SettingsManager::getAURTool()
     }
     else if (UnixCommand::hasTheExecutable(ctn_YAOURT_TOOL))
     {
-      if (getAURNoConfirmParam()) params += " --noconfirm ";
+      if (getAURNoConfirmParam()) params += QLatin1String(" --noconfirm ");
 
       p_instance.setAURTool(ctn_YAOURT_TOOL);
       p_instance.getSYSsettings()->sync();
@@ -389,8 +389,8 @@ QString SettingsManager::getAURTool()
     }
     else if (UnixCommand::hasTheExecutable(ctn_PACAUR_TOOL))
     {
-      if (getAURNoConfirmParam()) params += " --noconfirm ";
-      if (getAURNoEditParam()) params += " --noedit ";
+      if (getAURNoConfirmParam()) params += QLatin1String(" --noconfirm ");
+      if (getAURNoEditParam()) params += QLatin1String(" --noedit ");
 
       p_instance.setAURTool(ctn_PACAUR_TOOL);
       p_instance.getSYSsettings()->sync();
@@ -440,30 +440,30 @@ bool SettingsManager::getEnableAURVoting()
 QString SettingsManager::getAURUserName()
 {
   SettingsManager p_instance;
-  return (p_instance.getSYSsettings()->value(ctn_KEY_AUR_USERNAME, "")).toString();
+  return (p_instance.getSYSsettings()->value(ctn_KEY_AUR_USERNAME, QLatin1String(""))).toString();
 }
 
 QString SettingsManager::getAURPassword()
 {
   SettingsManager p_instance;
-  QByteArray encryptedValue = (p_instance.getSYSsettings()->value(ctn_KEY_AUR_PASSWORD, "")).toByteArray();
+  QByteArray encryptedValue = (p_instance.getSYSsettings()->value(ctn_KEY_AUR_PASSWORD, QLatin1String(""))).toByteArray();
 
   QString aurUserName = getAURUserName();
-  if (aurUserName.isEmpty()) return "";
+  if (aurUserName.isEmpty()) return QLatin1String("");
 
   QByteArray hashKey = QCryptographicHash::hash(ctn_OCTOPI_COPYRIGHT.toLocal8Bit(), QCryptographicHash::Sha256);
   QByteArray hashIV = QCryptographicHash::hash(aurUserName.toLocal8Bit(), QCryptographicHash::Md5);
 
   QAESEncryption encryption(QAESEncryption::AES_256, QAESEncryption::CBC);
   QByteArray decodeText = encryption.decode(encryptedValue, hashKey, hashIV);
-  QString decryptedValue = QString(encryption.removePadding(decodeText));
+  QString decryptedValue = QString::fromUtf8(encryption.removePadding(decodeText));
   return decryptedValue;
 }
 
 QString SettingsManager::getProxySettings()
 {
   SettingsManager p_instance;
-  return (p_instance.getSYSsettings()->value(ctn_KEY_PROXY_SETTINGS, "").toString());
+  return (p_instance.getSYSsettings()->value(ctn_KEY_PROXY_SETTINGS, QLatin1String("")).toString());
 }
 
 bool SettingsManager::getUseAlternateRowColor()
@@ -521,13 +521,13 @@ bool SettingsManager::hasPacmanBackend()
 {
   if (!instance()->getSYSsettings()->contains(ctn_KEY_BACKEND))
   {
-    instance()->getSYSsettings()->setValue(ctn_KEY_BACKEND, "alpm");
+    instance()->getSYSsettings()->setValue(ctn_KEY_BACKEND, QStringLiteral("alpm"));
     return false;
   }
   else
   {
     SettingsManager p_instance;
-    return (p_instance.getSYSsettings()->value(ctn_KEY_BACKEND, "pacman") != "alpm");
+    return (p_instance.getSYSsettings()->value(ctn_KEY_BACKEND, QStringLiteral("pacman")) != QLatin1String("alpm"));
   }
 }
 

@@ -67,27 +67,27 @@ void MainWindow::refreshDistroNews(bool searchForLatestNews, bool gotoNewsTab)
                         distro == ectn_ARCHBANGLINUX /*||
                         distro == ectn_SWAGARCH*/))
     {
-      writeToTabOutput("<b>" + StrConstants::getSearchingForDistroNews().arg("Arch Linux") + "</b>");
+      writeToTabOutput(QLatin1String("<b>") + StrConstants::getSearchingForDistroNews().arg(QStringLiteral("Arch Linux")) + QLatin1String("</b>"));
     }
     else if (gotoNewsTab && distro == ectn_CHAKRA)
     {
-      writeToTabOutput("<b>" + StrConstants::getSearchingForDistroNews().arg("Chakra") + "</b>");
+      writeToTabOutput(QLatin1String("<b>") + StrConstants::getSearchingForDistroNews().arg(QStringLiteral("Chakra")) + QLatin1String("</b>"));
     }
     else if (gotoNewsTab && distro == ectn_CONDRESOS)
     {
-      writeToTabOutput("<b>" + StrConstants::getSearchingForDistroNews().arg("Condres OS") + "</b>");
+      writeToTabOutput(QLatin1String("<b>") + StrConstants::getSearchingForDistroNews().arg(QStringLiteral("Condres OS")) + QLatin1String("</b>"));
     }
     else if (gotoNewsTab && distro == ectn_ENDEAVOUROS)
     {
-      writeToTabOutput("<b>" + StrConstants::getSearchingForDistroNews().arg("EndeavourOS") + "</b>");
+      writeToTabOutput(QLatin1String("<b>") + StrConstants::getSearchingForDistroNews().arg(QStringLiteral("EndeavourOS")) + QLatin1String("</b>"));
     }
     else if (gotoNewsTab && distro == ectn_KAOS)
     {
-      writeToTabOutput("<b>" + StrConstants::getSearchingForDistroNews().arg("KaOS") + "</b>");
+      writeToTabOutput(QLatin1String("<b>") + StrConstants::getSearchingForDistroNews().arg(QStringLiteral("KaOS")) + QLatin1String("</b>"));
     }
     else if (gotoNewsTab && distro == ectn_MANJAROLINUX)
     {
-      writeToTabOutput("<b>" + StrConstants::getSearchingForDistroNews().arg("Manjaro Linux") + "</b>");
+      writeToTabOutput(QLatin1String("<b>") + StrConstants::getSearchingForDistroNews().arg(QStringLiteral("Manjaro Linux")) + QLatin1String("</b>"));
     }
     /*else if (gotoNewsTab && distro == ectn_NETRUNNER)
     {
@@ -95,7 +95,7 @@ void MainWindow::refreshDistroNews(bool searchForLatestNews, bool gotoNewsTab)
     }*/
     else if (gotoNewsTab && distro == ectn_PARABOLA)
     {
-      writeToTabOutput("<b>" + StrConstants::getSearchingForDistroNews().arg("Parabola GNU/Linux-libre") + "</b>");
+      writeToTabOutput(QLatin1String("<b>") + StrConstants::getSearchingForDistroNews().arg(QStringLiteral("Parabola GNU/Linux-libre")) + QLatin1String("</b>"));
     }
 
     /*
@@ -120,7 +120,7 @@ void MainWindow::refreshDistroNews(bool searchForLatestNews, bool gotoNewsTab)
 void MainWindow::postRefreshDistroNews()
 {
   showDistroNews(g_fwDistroNews.result(), true); 
-  if (ui->twProperties->tabText(ctn_TABINDEX_NEWS).contains("**"))
+  if (ui->twProperties->tabText(ctn_TABINDEX_NEWS).contains(QLatin1String("**")))
   {
     ui->twProperties->setCurrentIndex(ctn_TABINDEX_NEWS);
   }
@@ -135,7 +135,7 @@ void MainWindow::showDistroNews(QString distroRSSXML, bool searchForLatestNews)
 
   if (distroRSSXML.count() >= 200)
   {
-    if (distroRSSXML.at(0)=='*')
+    if (distroRSSXML.at(0)==QLatin1Char('*'))
     {
       /* If this is an updated RSS, we must warn the user!
        And if the main window is hidden... */
@@ -144,7 +144,7 @@ void MainWindow::showDistroNews(QString distroRSSXML, bool searchForLatestNews)
         show();
       }
 
-      ui->twProperties->setTabText(ctn_TABINDEX_NEWS, "** " + StrConstants::getTabNewsName() + " **");
+      ui->twProperties->setTabText(ctn_TABINDEX_NEWS, QLatin1String("** ") + StrConstants::getTabNewsName() + QLatin1String(" **"));
       if (m_gotoNewsTab)
       {
         ui->twProperties->setCurrentIndex(ctn_TABINDEX_NEWS);
@@ -170,7 +170,7 @@ void MainWindow::showDistroNews(QString distroRSSXML, bool searchForLatestNews)
   }
 
   //Now that we have the html table code, let's put it into TextBrowser's News tab
-  QTextBrowser *text = ui->twProperties->widget(ctn_TABINDEX_NEWS)->findChild<QTextBrowser*>("textBrowser");
+  QTextBrowser *text = ui->twProperties->widget(ctn_TABINDEX_NEWS)->findChild<QTextBrowser*>(QStringLiteral("textBrowser"));
   if (text)
   {
     text->clear();
@@ -198,7 +198,7 @@ void MainWindow::onTabNewsSourceChanged(QUrl newSource)
   if(newSource.isRelative())
   {
     //If the user clicked a relative and impossible to display link...
-    QTextBrowser *text = ui->twProperties->widget(ctn_TABINDEX_NEWS)->findChild<QTextBrowser*>("textBrowser");
+    QTextBrowser *text = ui->twProperties->widget(ctn_TABINDEX_NEWS)->findChild<QTextBrowser*>(QStringLiteral("textBrowser"));
     if (text)
     {
       disconnect(text, SIGNAL(sourceChanged(QUrl)), this, SLOT(onTabNewsSourceChanged(QUrl)));
@@ -220,7 +220,7 @@ void MainWindow::initTabNews()
   gridLayoutX->setMargin(0);
 
   QTextBrowser *text = new QTextBrowser(tabNews);
-  text->setObjectName("textBrowser");
+  text->setObjectName(QStringLiteral("textBrowser"));
   text->setReadOnly(true);
   text->setFrameShape(QFrame::NoFrame);
   text->setFrameShadow(QFrame::Plain);
@@ -229,9 +229,9 @@ void MainWindow::initTabNews()
   text->show();
 
   int tindex = ui->twProperties->insertTab(ctn_TABINDEX_NEWS, tabNews, QApplication::translate (
-      "MainWindow", aux.toUtf8(), 0/*, QApplication::UnicodeUTF8*/ ) );
+      "MainWindow", aux.toUtf8().constData(), 0/*, QApplication::UnicodeUTF8*/ ) );
   ui->twProperties->setTabText(ui->twProperties->indexOf(tabNews), QApplication::translate(
-      "MainWindow", aux.toUtf8(), 0/*, QApplication::UnicodeUTF8*/));
+      "MainWindow", aux.toUtf8().constData(), 0/*, QApplication::UnicodeUTF8*/));
 
   SearchBar *searchBar = new SearchBar(this);
 

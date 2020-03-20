@@ -80,14 +80,14 @@ MainWindow::MainWindow(QWidget *parent) :
   m_outdatedAURStringList = new QStringList();
   m_outdatedAURPackagesNameVersion = new QHash<QString, QString>();
   m_selectedViewOption = ectn_ALL_PKGS;
-  m_selectedRepository = "";
+  m_selectedRepository = QLatin1String("");
   m_numberOfInstalledPackages = 0;
   m_debugInfo = false;
   m_console = nullptr;
   m_optionsDialog = nullptr;
   m_commandExecuting=ectn_NONE;
   m_commandQueued=ectn_NONE;
-  m_sharedMemory = new QSharedMemory("org.arnt.octopi", this);
+  m_sharedMemory = new QSharedMemory(QStringLiteral("org.arnt.octopi"), this);
 
   m_tcpServer = new QTcpServer(this);
   connect(m_tcpServer, &QTcpServer::newConnection, this, &MainWindow::onSendInfoToOctopiHelper);
@@ -145,10 +145,10 @@ bool MainWindow::isNotifierBusy()
   bool res=false;
 
   //Checks first if octopi is running...
-  if (!UnixCommand::isOctoToolRunning("octopi-notifier")) return res;
+  if (!UnixCommand::isOctoToolRunning(QStringLiteral("octopi-notifier"))) return res;
 
   QTcpSocket socket;
-  socket.connectToHost("127.0.0.1", 12702);
+  socket.connectToHost(QStringLiteral("127.0.0.1"), 12702);
 
   if (!socket.waitForConnected(5000))
   {
@@ -170,7 +170,7 @@ bool MainWindow::isNotifierBusy()
     in >> octopiResponse;
   } while (!in.commitTransaction());
 
-  if (octopiResponse != "Octopi est occupatus")
+  if (octopiResponse != QLatin1String("Octopi est occupatus"))
   {
     res=false;
   }
@@ -192,7 +192,7 @@ bool MainWindow::startServer()
   if (!m_tcpServer->listen(QHostAddress::LocalHost, 12701))
   {
     QMessageBox::critical(this, StrConstants::getApplicationName(),
-                          QString("Unable to start the server: %1.")
+                          QStringLiteral("Unable to start the server: %1.")
                           .arg(m_tcpServer->errorString()));
     res=false;
   }
@@ -284,22 +284,22 @@ void MainWindow::onSendInfoToOctopiHelper()
 
   if (isHelperExecuting && m_commandExecuting != ectn_NONE)
   {
-    msg="Octopi est occupatus";
+    msg=QStringLiteral("Octopi est occupatus");
     out << msg;
   }
   else if (isHelperExecuting && m_commandExecuting == ectn_NONE)
   {
-    msg="Octopi serenum est";
+    msg=QStringLiteral("Octopi serenum est");
     out << msg;
   }
   else if (m_checkupdatesStringList->count() > 0 || m_outdatedStringList->count() > 0)
   {
-    msg="Renovatio potest";
+    msg=QStringLiteral("Renovatio potest");
     out << msg;
   }
   else
   {
-    msg="Atramento nigro";
+    msg=QStringLiteral("Atramento nigro");
     out << msg;
   }
 
@@ -327,7 +327,7 @@ void MainWindow::dropEvent(QDropEvent *ev)
   {
     QString str = url.fileName();
     QFileInfo f(str);
-    if (f.completeSuffix().contains("pkg.tar"))
+    if (f.completeSuffix().contains(QLatin1String("pkg.tar")))
     {
       m_packagesToInstallList.append(url.toLocalFile());
     }
@@ -349,7 +349,7 @@ void MainWindow::dragEnterEvent(QDragEnterEvent *ev)
   {
     QString str = url.fileName();
     QFileInfo f(str);
-    if (f.completeSuffix().contains("pkg.tar"))
+    if (f.completeSuffix().contains(QLatin1String("pkg.tar")))
     {
       success=true;
       break;
@@ -437,7 +437,7 @@ QTextBrowser *MainWindow::getOutputTextBrowser()
 {
   QTextBrowser *ret=nullptr;
   QTextBrowser *text =
-      ui->twProperties->widget(ctn_TABINDEX_OUTPUT)->findChild<QTextBrowser*>("textBrowser");
+      ui->twProperties->widget(ctn_TABINDEX_OUTPUT)->findChild<QTextBrowser*>(QStringLiteral("textBrowser"));
 
   if (text)
   {
@@ -452,13 +452,13 @@ QTextBrowser *MainWindow::getOutputTextBrowser()
  */
 void MainWindow::showAnchorDescription(const QUrl &link)
 {
-  if (link.toString().contains("goto:"))
+  if (link.toString().contains(QLatin1String("goto:")))
   {            
     QString pkgName = link.toString().mid(5);
     //Let's remove any "<" and "<=" symbol...
-    pkgName.remove(QRegularExpression("%3C\\S*"));
+    pkgName.remove(QRegularExpression(QStringLiteral("%3C\\S*")));
 
-    if (pkgName == "sh") pkgName = "bash";
+    if (pkgName == QLatin1String("sh")) pkgName = QStringLiteral("bash");
     QFuture<QString> f;
     disconnect(&g_fwToolTipInfo, SIGNAL(finished()), this, SLOT(execToolTip()));
     f = QtConcurrent::run(showPackageDescription, pkgName);
@@ -516,10 +516,10 @@ void MainWindow::positionInPackageList(const QString &pkgName)
  */
 void MainWindow::outputTextBrowserAnchorClicked(const QUrl &link)
 {
-  if (link.toString().contains("goto:"))
+  if (link.toString().contains(QLatin1String("goto:")))
   {
     QString pkgName = link.toString().mid(5);
-    if (pkgName == "sh") pkgName = "bash";
+    if (pkgName == QLatin1String("sh")) pkgName = QStringLiteral("bash");
     bool indIncremented = false;
     const QItemSelectionModel*const selectionModel = ui->tvPackages->selectionModel();
 
@@ -597,27 +597,27 @@ void MainWindow::outputOutdatedPackageList()
 
   if(m_numberOfOutdatedPackages > 0 && m_checkupdatesStringList->count() == 0)
   {
-    QString html = "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">";
-    QString anchorBegin = "anchorBegin";
-    html += "<a id=\"" + anchorBegin + "\"></a>";
+    QString html = QStringLiteral("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">");
+    QString anchorBegin = QStringLiteral("anchorBegin");
+    html += QLatin1String("<a id=\"") + anchorBegin + QLatin1String("\"></a>");
 
     clearTabOutput();
 
     if(m_outdatedStringList->count()==1){
-      html += "<h3>" + StrConstants::getOneOutdatedPackage() + "</h3>";
+      html += QLatin1String("<h3>") + StrConstants::getOneOutdatedPackage() + QLatin1String("</h3>");
     }
     else
     {
-      html += "<h3>" +
-          StrConstants::getOutdatedPackages(m_outdatedStringList->count()) + "</h3>";
+      html += QLatin1String("<h3>") +
+          StrConstants::getOutdatedPackages(m_outdatedStringList->count()) + QLatin1String("</h3>");
     }
 
-    html += "<br><table border=\"0\">";
-    html += "<tr><th width=\"25%\" align=\"left\">" + StrConstants::getName() +
-        "</th><th width=\"18%\" align=\"right\">" +
+    html += QLatin1String("<br><table border=\"0\">");
+    html += QLatin1String("<tr><th width=\"25%\" align=\"left\">") + StrConstants::getName() +
+        QLatin1String("</th><th width=\"18%\" align=\"right\">") +
         StrConstants::getOutdatedVersion() +
-        "</th><th width=\"18%\" align=\"right\">" +
-        StrConstants::getAvailableVersion() + "</th></tr>";
+        QLatin1String("</th><th width=\"18%\" align=\"right\">") +
+        StrConstants::getAvailableVersion() + QLatin1String("</th></tr>");
 
     for (int c=0; c < m_outdatedStringList->count(); c++)
     {
@@ -625,19 +625,19 @@ void MainWindow::outputOutdatedPackageList()
       const PackageRepository::PackageData*const package = m_packageRepo.getFirstPackageByName(pkg);
 
       if (package != nullptr) {
-        html += "<tr><td><a href=\"goto:" + pkg + "\">" + pkg +
-            "</td><td align=\"right\"><b><font color=\"#E55451\">" +
+        html += QLatin1String("<tr><td><a href=\"goto:") + pkg + QLatin1String("\">") + pkg +
+            QLatin1String("</td><td align=\"right\"><b><font color=\"#E55451\">") +
             package->outdatedVersion +
-            "</b></font></td><td align=\"right\">" +
-            package->version + "</td></tr>";
+            QLatin1String("</b></font></td><td align=\"right\">") +
+            package->version + QLatin1String("</td></tr>");
       }
     }
 
-    html += "</table><br>";
+    html += QLatin1String("</table><br>");
     writeToTabOutput(html);
 
     QTextBrowser *text =
-        ui->twProperties->widget(ctn_TABINDEX_OUTPUT)->findChild<QTextBrowser*>("textBrowser");
+        ui->twProperties->widget(ctn_TABINDEX_OUTPUT)->findChild<QTextBrowser*>(QStringLiteral("textBrowser"));
 
     if (text)
     {
@@ -647,27 +647,27 @@ void MainWindow::outputOutdatedPackageList()
     ui->twProperties->setCurrentIndex(ctn_TABINDEX_OUTPUT);
   }
   else {
-    QString html = "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">";
-    QString anchorBegin = "anchorBegin";
-    html += "<a id=\"" + anchorBegin + "\"></a>";
+    QString html = QStringLiteral("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">");
+    QString anchorBegin = QStringLiteral("anchorBegin");
+    html += QLatin1String("<a id=\"") + anchorBegin + QLatin1String("\"></a>");
 
     clearTabOutput();
 
     if(m_outdatedStringList->count()==1){
-      html += "<h3>" + StrConstants::getOneOutdatedPackage() + "</h3>";
+      html += QLatin1String("<h3>") + StrConstants::getOneOutdatedPackage() + QLatin1String("</h3>");
     }
     else
     {
-      html += "<h3>" +
-          StrConstants::getOutdatedPackages(m_outdatedStringList->count()) + "</h3>";
+      html += QLatin1String("<h3>") +
+          StrConstants::getOutdatedPackages(m_outdatedStringList->count()) + QLatin1String("</h3>");
     }
 
-    html += "<br><table border=\"0\">";
-    html += "<tr><th width=\"25%\" align=\"left\">" + StrConstants::getName() +
-        "</th><th width=\"18%\" align=\"right\">" +
+    html += QLatin1String("<br><table border=\"0\">");
+    html += QLatin1String("<tr><th width=\"25%\" align=\"left\">") + StrConstants::getName() +
+        QLatin1String("</th><th width=\"18%\" align=\"right\">") +
         StrConstants::getOutdatedVersion() +
-        "</th><th width=\"18%\" align=\"right\">" +
-        StrConstants::getAvailableVersion() + "</th></tr>";
+        QLatin1String("</th><th width=\"18%\" align=\"right\">") +
+        StrConstants::getAvailableVersion() + QLatin1String("</th></tr>");
 
     for (int c=0; c < m_checkupdatesStringList->count(); c++)
     {
@@ -675,19 +675,19 @@ void MainWindow::outputOutdatedPackageList()
       const PackageRepository::PackageData*const package = m_packageRepo.getFirstPackageByName(pkg);
 
       if (package != nullptr) {
-        html += "<tr><td><a href=\"goto:" + pkg + "\">" + pkg +
-            "</td><td align=\"right\"><b><font color=\"#E55451\">" +
+        html += QLatin1String("<tr><td><a href=\"goto:") + pkg + QLatin1String("\">") + pkg +
+            QLatin1String("</td><td align=\"right\"><b><font color=\"#E55451\">") +
             package->outdatedVersion +
-            "</b></font></td><td align=\"right\">" +
-            package->version + "</td></tr>";
+            QLatin1String("</b></font></td><td align=\"right\">") +
+            package->version + QLatin1String("</td></tr>");
       }
     }
 
-    html += "</table><br>";
+    html += QLatin1String("</table><br>");
     writeToTabOutput(html);
 
     QTextBrowser *text =
-        ui->twProperties->widget(ctn_TABINDEX_OUTPUT)->findChild<QTextBrowser*>("textBrowser");
+        ui->twProperties->widget(ctn_TABINDEX_OUTPUT)->findChild<QTextBrowser*>(QStringLiteral("textBrowser"));
 
     if (text)
     {
@@ -706,27 +706,27 @@ void MainWindow::outputAURVotedPackageList()
   if (m_aurVote!=nullptr)
   {
     clearTabOutput();
-    QString html = "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">";
-    QString anchorBegin = "anchorBegin";
-    html += "<a id=\"" + anchorBegin + "\"></a>";
-    html += "<h3>" + StrConstants::getAURVotedPackageList() + "</h3>";
+    QString html = QStringLiteral("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">");
+    QString anchorBegin = QStringLiteral("anchorBegin");
+    html += QLatin1String("<a id=\"") + anchorBegin + QLatin1String("\"></a>");
+    html += QLatin1String("<h3>") + StrConstants::getAURVotedPackageList() + QLatin1String("</h3>");
     writeToTabOutput(html);
     ui->twProperties->setCurrentIndex(ctn_TABINDEX_OUTPUT);
 
     QStringList v=m_aurVote->getVotedPackages();
     v.sort();
-    QString list="<ul>";
+    QString list=QStringLiteral("<ul>");
     foreach(QString vote, v)
     {
-      list += "<li>" + vote + "</li>";
+      list += QLatin1String("<li>") + vote + QLatin1String("</li>");
     }
 
-    list += "</ul><br>";
+    list += QLatin1String("</ul><br>");
 
     writeToTabOutput(list);
 
     QTextBrowser *text =
-        ui->twProperties->widget(ctn_TABINDEX_OUTPUT)->findChild<QTextBrowser*>("textBrowser");
+        ui->twProperties->widget(ctn_TABINDEX_OUTPUT)->findChild<QTextBrowser*>(QStringLiteral("textBrowser"));
 
     if (text)
     {
@@ -743,27 +743,27 @@ void MainWindow::outputOutdatedAURPackageList()
   //We cannot output any list if there is a running transaction!
   if (m_commandExecuting != ectn_NONE) return;
 
-  QString html = "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">";
-  QString anchorBegin = "anchorBegin";
-  html += "<a id=\"" + anchorBegin + "\"></a>";
+  QString html = QStringLiteral("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">");
+  QString anchorBegin = QStringLiteral("anchorBegin");
+  html += QLatin1String("<a id=\"") + anchorBegin + QLatin1String("\"></a>");
 
   clearTabOutput();
 
   if(m_outdatedAURStringList->count()==1){
-    html += "<h3>" + StrConstants::getOneOutdatedPackage() + "</h3>";
+    html += QLatin1String("<h3>") + StrConstants::getOneOutdatedPackage() + QLatin1String("</h3>");
   }
   else
   {
-    html += "<h3>" +
-        StrConstants::getOutdatedPackages(m_outdatedAURStringList->count()) + "</h3>";
+    html += QLatin1String("<h3>") +
+        StrConstants::getOutdatedPackages(m_outdatedAURStringList->count()) + QLatin1String("</h3>");
   }
 
-  html += "<br><table border=\"0\">";
-  html += "<tr><th width=\"25%\" align=\"left\">" + StrConstants::getName() +
-      "</th><th width=\"18%\" align=\"right\">" +
+  html += QLatin1String("<br><table border=\"0\">");
+  html += QLatin1String("<tr><th width=\"25%\" align=\"left\">") + StrConstants::getName() +
+      QLatin1String("</th><th width=\"18%\" align=\"right\">") +
       StrConstants::getOutdatedVersion() +
-      "</th><th width=\"18%\" align=\"right\">" +
-      StrConstants::getAvailableVersion() + "</th></tr>";
+      QLatin1String("</th><th width=\"18%\" align=\"right\">") +
+      StrConstants::getAvailableVersion() + QLatin1String("</th></tr>");
 
   for (int c=0; c < m_outdatedAURStringList->count(); c++)
   {
@@ -772,19 +772,19 @@ void MainWindow::outputOutdatedAURPackageList()
     if (package != nullptr) {
       QString availableVersion = m_outdatedAURPackagesNameVersion->value(m_outdatedAURStringList->at(c));
   
-      html += "<tr><td><a href=\"goto:" + pkg + "\">" + pkg +
-          "</td><td align=\"right\"><b><font color=\"#E55451\">" +
+      html += QLatin1String("<tr><td><a href=\"goto:") + pkg + QLatin1String("\">") + pkg +
+          QLatin1String("</td><td align=\"right\"><b><font color=\"#E55451\">") +
           package->version +
-          "</b></font></td><td align=\"right\">" +
-          availableVersion + "</td></tr>";
+          QLatin1String("</b></font></td><td align=\"right\">") +
+          availableVersion + QLatin1String("</td></tr>");
     }
   }
 
-  html += "</table><br>";
+  html += QLatin1String("</table><br>");
   writeToTabOutput(html);
 
   QTextBrowser *text =
-      ui->twProperties->widget(ctn_TABINDEX_OUTPUT)->findChild<QTextBrowser*>("textBrowser");
+      ui->twProperties->widget(ctn_TABINDEX_OUTPUT)->findChild<QTextBrowser*>(QStringLiteral("textBrowser"));
 
   if (text)
   {
@@ -799,7 +799,7 @@ void MainWindow::outputOutdatedAURPackageList()
  */
 void MainWindow::clearTabOutput()
 {
-  QTextBrowser *text = ui->twProperties->widget(ctn_TABINDEX_OUTPUT)->findChild<QTextBrowser*>("textBrowser");
+  QTextBrowser *text = ui->twProperties->widget(ctn_TABINDEX_OUTPUT)->findChild<QTextBrowser*>(QStringLiteral("textBrowser"));
   if (text)
   {
     text->clear();
@@ -827,7 +827,7 @@ bool MainWindow::isAllGroupsSelected()
 
 bool MainWindow::isAllGroups(const QString& group)
 {
-  return ((group == "<" + StrConstants::getDisplayAllGroups() + ">") && !(m_actionSwitchToAURTool->isChecked()));
+  return ((group == QLatin1String("<") + StrConstants::getDisplayAllGroups() + QLatin1String(">")) && !(m_actionSwitchToAURTool->isChecked()));
 }
 
 /*
@@ -905,8 +905,8 @@ void MainWindow::setCallSystemUpgradeNoConfirm()
 void MainWindow::setRemoveCommand(const QString &removeCommand)
 {
   m_removeCommand = removeCommand;
-  m_removeCommand.remove("=");
-  m_removeCommand.remove("-");
+  m_removeCommand.remove(QStringLiteral("="));
+  m_removeCommand.remove(QStringLiteral("-"));
 }
 
 /*
@@ -1000,11 +1000,11 @@ void MainWindow::tvPackagesSearchColumnChanged(QAction *actionSelected)
 void MainWindow::changePackageListModel(ViewOptions viewOptions, QString selectedRepo)
 {  
   if (m_actionSwitchToAURTool->isChecked())
-    m_packageModel->applyFilter(viewOptions, "", StrConstants::getForeignToolGroup());
+    m_packageModel->applyFilter(viewOptions, QLatin1String(""), StrConstants::getForeignToolGroup());
   else
-    m_packageModel->applyFilter(viewOptions, selectedRepo, isAllGroupsSelected() ? "" : getSelectedGroup());
+    m_packageModel->applyFilter(viewOptions, selectedRepo, isAllGroupsSelected() ? QLatin1String("") : getSelectedGroup());
 
-  if (m_leFilterPackage->text() != "") reapplyPackageFilter();
+  if (m_leFilterPackage->text() != QLatin1String("")) reapplyPackageFilter();
 
   QModelIndex cIcon = m_packageModel->index(0, PackageModel::ctn_PACKAGE_ICON_COLUMN, QModelIndex());
 
@@ -1273,7 +1273,7 @@ void MainWindow::onAURUnvote()
  * This SLOT collapses all treeview items
  */
 void MainWindow::collapseAllContentItems(){
-  QTreeView *tv = ui->twProperties->currentWidget()->findChild<QTreeView *>("tvPkgFileList") ;
+  QTreeView *tv = ui->twProperties->currentWidget()->findChild<QTreeView *>(QStringLiteral("tvPkgFileList")) ;
   if (tv != nullptr)
     tv->collapseAll();
 }
@@ -1282,7 +1282,7 @@ void MainWindow::collapseAllContentItems(){
  * This SLOT collapses only the currently selected item
  */
 void MainWindow::collapseThisContentItems(){
-  QTreeView *tv = ui->twProperties->currentWidget()->findChild<QTreeView *>("tvPkgFileList") ;
+  QTreeView *tv = ui->twProperties->currentWidget()->findChild<QTreeView *>(QStringLiteral("tvPkgFileList")) ;
   if (tv != nullptr)
   {
     tv->repaint(tv->rect());
@@ -1301,7 +1301,7 @@ void MainWindow::collapseThisContentItems(){
  * This SLOT expands all treeview items
  */
 void MainWindow::expandAllContentItems(){
-  QTreeView *tv = ui->twProperties->currentWidget()->findChild<QTreeView *>("tvPkgFileList") ;
+  QTreeView *tv = ui->twProperties->currentWidget()->findChild<QTreeView *>(QStringLiteral("tvPkgFileList")) ;
   if (tv != nullptr)
   {
     tv->repaint(tv->rect());
@@ -1314,7 +1314,7 @@ void MainWindow::expandAllContentItems(){
  * This SLOT expands only the currently selected item
  */
 void MainWindow::expandThisContentItems(){
-  QTreeView *tv = ui->twProperties->currentWidget()->findChild<QTreeView *>("tvPkgFileList") ;
+  QTreeView *tv = ui->twProperties->currentWidget()->findChild<QTreeView *>(QStringLiteral("tvPkgFileList")) ;
   if (tv != nullptr)
   {
     tv->repaint(tv->rect());
@@ -1365,7 +1365,7 @@ void MainWindow::expandItem(QTreeView* tv, QStandardItemModel* sim, QModelIndex*
 void MainWindow::execContextMenuPkgFileList(QPoint point)
 {
   QTreeView *tvPkgFileList =
-      ui->twProperties->currentWidget()->findChild<QTreeView*>("tvPkgFileList");
+      ui->twProperties->currentWidget()->findChild<QTreeView*>(QStringLiteral("tvPkgFileList"));
 
   if (tvPkgFileList == nullptr)
   {
@@ -1430,7 +1430,7 @@ void MainWindow::execContextMenuPkgFileList(QPoint point)
  */
 void MainWindow::execContextMenuTransaction(QPoint point)
 {
-  QTreeView *tvTransaction = ui->twProperties->currentWidget()->findChild<QTreeView*>("tvTransaction");
+  QTreeView *tvTransaction = ui->twProperties->currentWidget()->findChild<QTreeView*>(QStringLiteral("tvTransaction"));
   if (!tvTransaction) return;
 
   if ((tvTransaction->currentIndex() == getRemoveTransactionParentItem()->index() &&
@@ -1493,7 +1493,7 @@ bool MainWindow::isPackageTreeViewVisible()
  */
 void MainWindow::selectFirstItemOfPkgFileList()
 {
-  QTreeView *tvPkgFileList = ui->twProperties->widget(ctn_TABINDEX_FILES)->findChild<QTreeView*>("tvPkgFileList");
+  QTreeView *tvPkgFileList = ui->twProperties->widget(ctn_TABINDEX_FILES)->findChild<QTreeView*>(QStringLiteral("tvPkgFileList"));
   if(tvPkgFileList)
   {
     tvPkgFileList->setFocus();
@@ -1507,7 +1507,7 @@ void MainWindow::selectFirstItemOfPkgFileList()
  */
 void MainWindow::closeTabFilesSearchBar()
 {
-  SearchBar *searchBar = ui->twProperties->widget(ctn_TABINDEX_FILES)->findChild<SearchBar*>("searchbar");
+  SearchBar *searchBar = ui->twProperties->widget(ctn_TABINDEX_FILES)->findChild<SearchBar*>(QStringLiteral("searchbar"));
   if (searchBar)
   {
     if (ui->twProperties->currentIndex() == ctn_TABINDEX_FILES)
@@ -1524,12 +1524,12 @@ QString MainWindow::extractBaseFileName(const QString &fileName)
 {
   QString baseFileName(fileName);
 
-  if (fileName.endsWith('/'))
+  if (fileName.endsWith(QLatin1Char('/')))
   {
     baseFileName.remove(baseFileName.size()-1, 1);
   }
 
-  return baseFileName.right(baseFileName.size() - baseFileName.lastIndexOf('/') -1);
+  return baseFileName.right(baseFileName.size() - baseFileName.lastIndexOf(QLatin1Char('/')) -1);
 }
 
 /*
@@ -1728,7 +1728,7 @@ void MainWindow::maxDemaxPropertiesTabWidget(bool pSaveSettings)
 
     if (ui->twProperties->currentIndex() == ctn_TABINDEX_FILES)
     {
-      QTreeView *tv = ui->twProperties->currentWidget()->findChild<QTreeView *>("tvPkgFileList");
+      QTreeView *tv = ui->twProperties->currentWidget()->findChild<QTreeView *>(QStringLiteral("tvPkgFileList"));
       if (tv)
         tv->scrollTo(tv->currentIndex());
     }
@@ -1774,7 +1774,7 @@ void MainWindow::headerViewPackageListSortIndicatorClicked( int col, Qt::SortOrd
 void MainWindow::positionTextEditCursorAtEnd()
 {
   QTextBrowser *textEdit =
-      ui->twProperties->widget(ctn_TABINDEX_OUTPUT)->findChild<QTextBrowser*>("textBrowser");
+      ui->twProperties->widget(ctn_TABINDEX_OUTPUT)->findChild<QTextBrowser*>(QStringLiteral("textBrowser"));
   if (textEdit)
   {
     utils::positionTextEditCursorAtEnd(textEdit);
@@ -1807,7 +1807,7 @@ bool MainWindow::textInTabOutput(const QString& findText)
 {
   bool res = false;
   QTextBrowser *text =
-      ui->twProperties->widget(ctn_TABINDEX_OUTPUT)->findChild<QTextBrowser*>("textBrowser");
+      ui->twProperties->widget(ctn_TABINDEX_OUTPUT)->findChild<QTextBrowser*>(QStringLiteral("textBrowser"));
   if (text)
   {
     res = utils::strInQTextEdit(text,findText);
@@ -1823,7 +1823,7 @@ bool MainWindow::IsSyncingRepoInTabOutput()
 {
   bool res = false;
   QTextBrowser *text =
-      ui->twProperties->widget(ctn_TABINDEX_OUTPUT)->findChild<QTextBrowser*>("textBrowser");
+      ui->twProperties->widget(ctn_TABINDEX_OUTPUT)->findChild<QTextBrowser*>(QStringLiteral("textBrowser"));
   if (text)
   {
     positionTextEditCursorAtEnd();
@@ -1835,7 +1835,7 @@ bool MainWindow::IsSyncingRepoInTabOutput()
     if (!res)
     {
       positionTextEditCursorAtEnd();
-      res = text->find("downloading", QTextDocument::FindBackward | QTextDocument::FindWholeWords);
+      res = text->find(QStringLiteral("downloading"), QTextDocument::FindBackward | QTextDocument::FindWholeWords);
     }
 
     positionTextEditCursorAtEnd();
@@ -1849,7 +1849,7 @@ bool MainWindow::IsSyncingRepoInTabOutput()
  */
 void MainWindow::openFile()
 {
-  QTreeView *tv = ui->twProperties->currentWidget()->findChild<QTreeView *>("tvPkgFileList") ;
+  QTreeView *tv = ui->twProperties->currentWidget()->findChild<QTreeView *>(QStringLiteral("tvPkgFileList")) ;
   if (tv)
   {
     QString path = utils::showFullPathOfItem(tv->currentIndex());
@@ -1867,7 +1867,7 @@ void MainWindow::openFile()
  */
 void MainWindow::editFile()
 {
-  QTreeView *tv = ui->twProperties->currentWidget()->findChild<QTreeView *>("tvPkgFileList") ;
+  QTreeView *tv = ui->twProperties->currentWidget()->findChild<QTreeView *>(QStringLiteral("tvPkgFileList")) ;
   if (tv)
   {
     QString path = utils::showFullPathOfItem(tv->currentIndex());
@@ -1883,7 +1883,7 @@ void MainWindow::openTerminal()
   QString dir = getSelectedDirectory();
   if (!dir.isEmpty())
   {
-    m_console->execute("cd " + dir);
+    m_console->execute(QLatin1String("cd ") + dir);
     ensureTabVisible(ctn_TABINDEX_TERMINAL);
   }
 }
@@ -1911,7 +1911,7 @@ void MainWindow::installLocalPackage()
       QFileDialog::getOpenFileNames(this,
                                     StrConstants::getFileChooserTitle(),
                                     QDir::homePath(),
-                                    StrConstants::getPackages() + " (*.pkg.tar*)");
+                                    StrConstants::getPackages() + QLatin1String(" (*.pkg.tar*)"));
 
   if (m_packagesToInstallList.count() > 0)
     doInstallLocalPackages();
@@ -1933,8 +1933,8 @@ void MainWindow::findFileInPackage()
 {
   refreshTabFiles(false, true);
 
-  QTreeView *tb = ui->twProperties->currentWidget()->findChild<QTreeView*>("tvPkgFileList");
-  SearchBar *searchBar = ui->twProperties->currentWidget()->findChild<SearchBar*>("searchbar");
+  QTreeView *tb = ui->twProperties->currentWidget()->findChild<QTreeView*>(QStringLiteral("tvPkgFileList"));
+  SearchBar *searchBar = ui->twProperties->currentWidget()->findChild<SearchBar*>(QStringLiteral("searchbar"));
 
   if (tb && tb->model()->rowCount() > 0 && searchBar)
   {
@@ -1955,7 +1955,7 @@ QString MainWindow::getSelectedDirectory()
   QString targetDir;
   if (isPropertiesTabWidgetVisible() && ui->twProperties->currentIndex() == ctn_TABINDEX_FILES)
   {
-    QTreeView *t = ui->twProperties->currentWidget()->findChild<QTreeView*>("tvPkgFileList");
+    QTreeView *t = ui->twProperties->currentWidget()->findChild<QTreeView*>(QStringLiteral("tvPkgFileList"));
     if(t && t->currentIndex().isValid())
     {
       QString itemPath = utils::showFullPathOfItem(t->currentIndex());
@@ -1984,7 +1984,7 @@ void MainWindow::tvPackagesSelectionChanged(const QItemSelection&, const QItemSe
   const int selected = selection != nullptr ? selection->selectedRows().count() : 0;
 
   QString newMessage = StrConstants::getTotalPackages(m_packageModel->getPackageCount()) +
-      " (" + StrConstants::getSelectedPackages(selected) + ") ";
+      QLatin1String(" (") + StrConstants::getSelectedPackages(selected) + QLatin1String(") ");
 
   QString text;
   int numberOfInstalledPackages = m_packageModel->getInstalledPackagesCount();
@@ -2012,7 +2012,7 @@ void MainWindow::tvPackagesSelectionChanged(const QItemSelection&, const QItemSe
 void MainWindow::launchPLV()
 {
   QProcess *proc = new QProcess();
-  proc->startDetached("plv");
+  proc->startDetached(QStringLiteral("plv"));
 }
 
 /*
@@ -2021,7 +2021,7 @@ void MainWindow::launchPLV()
 void MainWindow::launchRepoEditor()
 {
   m_unixCommand = new UnixCommand(this);
-  m_unixCommand->execCommandAsNormalUser(QLatin1String("octopi-repoeditor"));
+  m_unixCommand->execCommandAsNormalUser(QStringLiteral("octopi-repoeditor"));
 }
 
 /*
@@ -2030,7 +2030,7 @@ void MainWindow::launchRepoEditor()
 void MainWindow::launchCacheCleaner()
 {
   m_unixCommand = new UnixCommand(this);
-  m_unixCommand->execCommandAsNormalUser(QLatin1String("octopi-cachecleaner"));
+  m_unixCommand->execCommandAsNormalUser(QStringLiteral("octopi-cachecleaner"));
 }
 
 /*
@@ -2038,7 +2038,7 @@ void MainWindow::launchCacheCleaner()
  */
 void MainWindow::doSysInfo()
 {
-  if (!UnixCommand::hasTheExecutable("curl") ||
+  if (!UnixCommand::hasTheExecutable(QStringLiteral("curl")) ||
       m_commandExecuting != ectn_NONE) return;
 
   if (!isInternetAvailable()) return;
@@ -2053,19 +2053,19 @@ void MainWindow::doSysInfo()
   disableTransactionActions();
   m_commandExecuting = ectn_SYSINFO;
   clearTabOutput();
-  writeToTabOutput("<b>SysInfo...</b><br>");
+  writeToTabOutput(QStringLiteral("<b>SysInfo...</b><br>"));
 
   QString command;
   QEventLoop el;
   QFuture<QByteArray> f;
-  command="hostname";
+  command=QStringLiteral("hostname");
   f = QtConcurrent::run(execCommand, command);
   connect(&g_fwCommandToExecute, SIGNAL(finished()), &el, SLOT(quit()));
   g_fwCommandToExecute.setFuture(f);
   el.exec();
-  QString hostname = g_fwCommandToExecute.result();
+  QString hostname = QString::fromUtf8(g_fwCommandToExecute.result());
 
-  hostname.remove("\n");
+  hostname.remove(QStringLiteral("\n"));
   QString homePath = QDir::homePath();
   QByteArray out;
 
@@ -2075,15 +2075,15 @@ void MainWindow::doSysInfo()
     out += "cat /etc/KaOS-release\n";
     out += "----------------------------------------------------------------------------------------------------------\n\n";
 
-    command = "cat /etc/KaOS-release";
+    command = QStringLiteral("cat /etc/KaOS-release");
     f = QtConcurrent::run(execCommand, command);
     connect(&g_fwCommandToExecute, SIGNAL(finished()), &el, SLOT(quit()));
     g_fwCommandToExecute.setFuture(f);
     el.exec();
     out += g_fwCommandToExecute.result();
 
-    out.replace(hostname, "<HOSTNAME>");
-    out.replace(homePath, "<HOME_PATH>");
+    out.replace(hostname.toUtf8().constData(), "<HOSTNAME>");
+    out.replace(homePath.toUtf8().constData(), "<HOME_PATH>");
     out += "\n\n";
   }
   else
@@ -2092,33 +2092,33 @@ void MainWindow::doSysInfo()
     out += "cat /etc/lsb-release\n";
     out += "----------------------------------------------------------------------------------------------------------\n\n";
 
-    command = "cat /etc/lsb-release";
+    command = QStringLiteral("cat /etc/lsb-release");
     f = QtConcurrent::run(execCommand, command);
     connect(&g_fwCommandToExecute, SIGNAL(finished()), &el, SLOT(quit()));
     g_fwCommandToExecute.setFuture(f);
     el.exec();
     out += g_fwCommandToExecute.result();
 
-    out.replace(hostname, "<HOSTNAME>");
-    out.replace(homePath, "<HOME_PATH>");
+    out.replace(hostname.toUtf8().constData(), "<HOSTNAME>");
+    out.replace(homePath.toUtf8().constData(), "<HOME_PATH>");
     out += "\n\n";
   }
 
-  if (UnixCommand::hasTheExecutable("inxi"))
+  if (UnixCommand::hasTheExecutable(QStringLiteral("inxi")))
   {
     out += "----------------------------------------------------------------------------------------------------------\n";
     out += "inxi -Fxz\n";
     out += "----------------------------------------------------------------------------------------------------------\n\n";
 
-    command = "inxi -Fxz -c 0";
+    command = QStringLiteral("inxi -Fxz -c 0");
     f = QtConcurrent::run(execCommand, command);
     connect(&g_fwCommandToExecute, SIGNAL(finished()), &el, SLOT(quit()));
     g_fwCommandToExecute.setFuture(f);
     el.exec();
     out += g_fwCommandToExecute.result();
 
-    out.replace(hostname, "<HOSTNAME>");
-    out.replace(homePath, "<HOME_PATH>");
+    out.replace(hostname.toUtf8().constData(), "<HOSTNAME>");
+    out.replace(homePath.toUtf8().constData(), "<HOME_PATH>");
     out += "\n\n";
   }
   else
@@ -2127,25 +2127,25 @@ void MainWindow::doSysInfo()
     out += "uname -a\n";
     out += "----------------------------------------------------------------------------------------------------------\n\n";
 
-    command = "uname -a";
+    command = QStringLiteral("uname -a");
     f = QtConcurrent::run(execCommand, command);
     connect(&g_fwCommandToExecute, SIGNAL(finished()), &el, SLOT(quit()));
     g_fwCommandToExecute.setFuture(f);
     el.exec();
     out += g_fwCommandToExecute.result();
 
-    out.replace(hostname, "<HOSTNAME>");
-    out.replace(homePath, "<HOME_PATH>");
+    out.replace(hostname.toUtf8().constData(), "<HOSTNAME>");
+    out.replace(homePath.toUtf8().constData(), "<HOME_PATH>");
     out += "\n\n";
   }
 
-  if (UnixCommand::hasTheExecutable("mhwd"))
+  if (UnixCommand::hasTheExecutable(QStringLiteral("mhwd")))
   {
     out += "----------------------------------------------------------------------------------------------------------\n";
     out += "mhwd -li -d\n";
     out += "----------------------------------------------------------------------------------------------------------\n\n";
 
-    command = "mhwd -li -d";
+    command = QStringLiteral("mhwd -li -d");
     f = QtConcurrent::run(execCommand, command);
     connect(&g_fwCommandToExecute, SIGNAL(finished()), &el, SLOT(quit()));
     g_fwCommandToExecute.setFuture(f);
@@ -2153,7 +2153,7 @@ void MainWindow::doSysInfo()
     out += g_fwCommandToExecute.result();
 
     //out.replace(hostname, "<HOSTNAME>");
-    out.replace(homePath, "<HOME_PATH>");
+    out.replace(homePath.toUtf8().constData(), "<HOME_PATH>");
     out += "\n\n";
   }
 
@@ -2161,22 +2161,22 @@ void MainWindow::doSysInfo()
   out += "journalctl -b -p err\n";
   out += "----------------------------------------------------------------------------------------------------------\n\n";
 
-  command = "journalctl -b -p err";
+  command = QStringLiteral("journalctl -b -p err");
   f = QtConcurrent::run(execCommand, command);
   connect(&g_fwCommandToExecute, SIGNAL(finished()), &el, SLOT(quit()));
   g_fwCommandToExecute.setFuture(f);
   el.exec();
   out += g_fwCommandToExecute.result();
 
-  out.replace(hostname, "<HOSTNAME>");
-  out.replace(homePath, "<HOME_PATH>");
+  out.replace(hostname.toUtf8().constData(), "<HOSTNAME>");
+  out.replace(homePath.toUtf8().constData(), "<HOME_PATH>");
   out += "\n\n";
 
   out += "----------------------------------------------------------------------------------------------------------\n";
   out += "cat /etc/pacman.conf\n";
   out += "----------------------------------------------------------------------------------------------------------\n\n";
 
-  command = "cat /etc/pacman.conf";
+  command = QStringLiteral("cat /etc/pacman.conf");
   f = QtConcurrent::run(execCommand, command);
   connect(&g_fwCommandToExecute, SIGNAL(finished()), &el, SLOT(quit()));
   g_fwCommandToExecute.setFuture(f);
@@ -2184,14 +2184,14 @@ void MainWindow::doSysInfo()
   out += g_fwCommandToExecute.result();
 
   //out.replace(hostname, "<HOSTNAME>");
-  out.replace(homePath, "<HOME_PATH>");
+  out.replace(homePath.toUtf8().constData(), "<HOME_PATH>");
   out += "\n\n";
 
   out += "----------------------------------------------------------------------------------------------------------\n";
   out += "pacman -Qm\n";
   out += "----------------------------------------------------------------------------------------------------------\n\n";
 
-  command = "pacman -Qm";
+  command = QStringLiteral("pacman -Qm");
   f = QtConcurrent::run(execCommand, command);
   connect(&g_fwCommandToExecute, SIGNAL(finished()), &el, SLOT(quit()));
   g_fwCommandToExecute.setFuture(f);
@@ -2199,7 +2199,7 @@ void MainWindow::doSysInfo()
   out += g_fwCommandToExecute.result();
 
   //out.replace(hostname, "<HOSTNAME>");
-  out.replace(homePath, "<HOME_PATH>");
+  out.replace(homePath.toUtf8().constData(), "<HOME_PATH>");
   out += "\n\n";
 
   if (UnixCommand::getLinuxDistro() == ectn_KAOS)
@@ -2208,7 +2208,7 @@ void MainWindow::doSysInfo()
     out += "cat /var/log/pacman.log\n";
     out += "----------------------------------------------------------------------------------------------------------\n\n";
 
-    command = "cat /var/log/pacman.log";
+    command = QStringLiteral("cat /var/log/pacman.log");
     f = QtConcurrent::run(execCommand, command);
     connect(&g_fwCommandToExecute, SIGNAL(finished()), &el, SLOT(quit()));
     g_fwCommandToExecute.setFuture(f);
@@ -2216,24 +2216,24 @@ void MainWindow::doSysInfo()
     out += g_fwCommandToExecute.result();
 
     //out.replace(hostname, "<HOSTNAME>");
-    out.replace(homePath, "<HOME_PATH>");
+    out.replace(homePath.toUtf8().constData(), "<HOME_PATH>");
     out += "\n\n";
 
     out += "----------------------------------------------------------------------------------------------------------\n";
     out += "cat /var/log/installation.log\n";
     out += "----------------------------------------------------------------------------------------------------------\n\n";
 
-    command = "cat /var/log/installation.log";
+    command = QStringLiteral("cat /var/log/installation.log");
     f = QtConcurrent::run(execCommand, command);
     connect(&g_fwCommandToExecute, SIGNAL(finished()), &el, SLOT(quit()));
     g_fwCommandToExecute.setFuture(f);
     el.exec();
     out += g_fwCommandToExecute.result();
-    out.replace(hostname, "<HOSTNAME>");
-    out.replace(homePath, "<HOME_PATH>");
-    QString aux = QString::fromLatin1(out.data());
+    out.replace(hostname.toUtf8().constData(), "<HOSTNAME>");
+    out.replace(homePath.toUtf8().constData(), "<HOME_PATH>");
+
     QByteArray aba;
-    aba += aux;
+    aba += out;
   }
   else
   {
@@ -2241,19 +2241,19 @@ void MainWindow::doSysInfo()
     out += "head --bytes=256K /var/log/pacman.log\n";
     out += "----------------------------------------------------------------------------------------------------------\n\n";
 
-    command = "head --bytes=256K /var/log/pacman.log";
+    command = QStringLiteral("head --bytes=256K /var/log/pacman.log");
     f = QtConcurrent::run(execCommand, command);
     connect(&g_fwCommandToExecute, SIGNAL(finished()), &el, SLOT(quit()));
     g_fwCommandToExecute.setFuture(f);
     el.exec();
     out += g_fwCommandToExecute.result();
-    out.replace(hostname, "<HOSTNAME>");
-    out.replace(homePath, "<HOME_PATH>");
+    out.replace(hostname.toUtf8().constData(), "<HOSTNAME>");
+    out.replace(homePath.toUtf8().constData(), "<HOME_PATH>");
   }
 
   m_commandExecuting = ectn_NONE;
   quint32 gen = QRandomGenerator::global()->generate();
-  QString fileName = homePath + QDir::separator() + "octopi-sysinfo-" + QString::number(gen) + ".log";
+  QString fileName = homePath + QDir::separator() + QLatin1String("octopi-sysinfo-") + QString::number(gen) + QLatin1String(".log");
   QFile *outFile = new QFile(fileName);
   outFile->open(QIODevice::ReadWrite|QIODevice::Text);
   outFile->setPermissions(QFile::Permissions(QFile::ExeOwner|QFile::ReadOwner));
@@ -2261,8 +2261,8 @@ void MainWindow::doSysInfo()
   outFile->flush();
   outFile->close();
 
-  writeToTabOutput("<br>" + StrConstants::getSysInfoGenerated().arg(fileName) + "<br>");
-  writeToTabOutput("<br><b>" + StrConstants::getCommandFinishedOK() + "</b><br>");
+  writeToTabOutput(QLatin1String("<br>") + StrConstants::getSysInfoGenerated().arg(fileName) + QLatin1String("<br>"));
+  writeToTabOutput(QLatin1String("<br><b>") + StrConstants::getCommandFinishedOK() + QLatin1String("</b><br>"));
   enableTransactionActions();
 }
 
