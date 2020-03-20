@@ -22,6 +22,7 @@
 
 #include <QEventLoop>
 #include <QtNetwork/QNetworkReply>
+#include <QUrl>
 #include <QUrlQuery>
 #include <QRegularExpression>
 
@@ -64,7 +65,7 @@ bool AurVote::login()
   postData.addQueryItem(QStringLiteral("passwd"), m_password);
   postData.addQueryItem(QStringLiteral("remember_me"), QStringLiteral("on"));
 
-  QNetworkRequest request(m_loginUrl);
+  QNetworkRequest request{QUrl{m_loginUrl}};
   request.setHeader(QNetworkRequest::ContentTypeHeader,QStringLiteral("application/x-www-form-urlencoded"));
 
   QNetworkReply *r = m_networkManager->post(request, postData.query().toUtf8());
@@ -97,7 +98,7 @@ bool AurVote::isLoggedIn()
 {
   bool ret = false;
   QEventLoop eventLoop;
-  QNetworkRequest request(m_loginUrl);
+  QNetworkRequest request{QUrl{m_loginUrl}};
   request.setHeader(QNetworkRequest::ContentTypeHeader,QStringLiteral("application/x-www-form-urlencoded"));
   QNetworkReply *r = m_networkManager->get(request);
   connect(r, SIGNAL(finished()), &eventLoop, SLOT(quit()) );
@@ -127,7 +128,7 @@ int AurVote::isPkgVoted(const QString &pkgName)
 {
   int ret = 0;
   QEventLoop eventLoop;
-  QNetworkRequest request(m_pkgUrl.arg(pkgName));
+  QNetworkRequest request(QUrl{m_pkgUrl.arg(pkgName)});
   request.setHeader(QNetworkRequest::ContentTypeHeader,QStringLiteral("application/x-www-form-urlencoded"));
   QNetworkReply *r = m_networkManager->get(request);
   connect(r, SIGNAL(finished()), &eventLoop, SLOT(quit()));
@@ -152,7 +153,7 @@ int AurVote::isPkgVoted(const QString &pkgName)
 void AurVote::voteForPkg(const QString &pkgName)
 {
   QEventLoop eventLoop;
-  QNetworkRequest request(m_pkgUrl.arg(pkgName));
+  QNetworkRequest request(QUrl{m_pkgUrl.arg(pkgName)});
   request.setHeader(QNetworkRequest::ContentTypeHeader,QStringLiteral("application/x-www-form-urlencoded"));
   QNetworkReply *r = m_networkManager->get(request);
   connect(r, SIGNAL(finished()), &eventLoop, SLOT(quit()));
@@ -178,7 +179,7 @@ void AurVote::voteForPkg(const QString &pkgName)
     postData.addQueryItem(QStringLiteral("token"), token);
     postData.addQueryItem(QStringLiteral("do_Vote"), QStringLiteral("Vote+for+this+package"));
 
-    request.setUrl(m_unvoteUrl.arg(pkgName));
+    request.setUrl(QUrl{m_unvoteUrl.arg(pkgName)});
     r = m_networkManager->post(request, postData.query().toUtf8());
     connect(r, SIGNAL(finished()), &eventLoop, SLOT(quit()));
     eventLoop.exec();
@@ -189,7 +190,7 @@ void AurVote::voteForPkg(const QString &pkgName)
 void AurVote::unvoteForPkg(const QString &pkgName)
 {
   QEventLoop eventLoop;
-  QNetworkRequest request(m_pkgUrl.arg(pkgName));
+  QNetworkRequest request(QUrl{m_pkgUrl.arg(pkgName)});
   request.setHeader(QNetworkRequest::ContentTypeHeader,QStringLiteral("application/x-www-form-urlencoded"));
   QNetworkReply *r = m_networkManager->get(request);
   connect(r, SIGNAL(finished()), &eventLoop, SLOT(quit()));
@@ -215,7 +216,7 @@ void AurVote::unvoteForPkg(const QString &pkgName)
     postData.addQueryItem(QStringLiteral("token"), token);
     postData.addQueryItem(QStringLiteral("do_UnVote"), QStringLiteral("Remove+vote"));
 
-    request.setUrl(m_unvoteUrl.arg(pkgName));
+    request.setUrl(QUrl{m_unvoteUrl.arg(pkgName)});
     r = m_networkManager->post(request, postData.query().toUtf8());
     connect(r, SIGNAL(finished()), &eventLoop, SLOT(quit()));
     eventLoop.exec();
@@ -230,7 +231,7 @@ QStringList AurVote::getVotedPackages()
 {
   QString searchUrl=QStringLiteral("https://aur.archlinux.org/packages/?O=0&SeB=nd&SB=w&SO=d&PP=250&do_Search=Go");
   QEventLoop eventLoop;
-  QNetworkRequest request(searchUrl);
+  QNetworkRequest request(QUrl{searchUrl});
   request.setHeader(QNetworkRequest::ContentTypeHeader,QStringLiteral("application/x-www-form-urlencoded"));
   QNetworkReply *r = m_networkManager->get(request);
   connect(r, SIGNAL(finished()), &eventLoop, SLOT(quit()));
