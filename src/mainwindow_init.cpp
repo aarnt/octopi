@@ -489,7 +489,7 @@ void MainWindow::initTabTransaction()
   QString aux(StrConstants::getActions());
   ui->twProperties->removeTab(ctn_TABINDEX_ACTIONS);
   ui->twProperties->insertTab(ctn_TABINDEX_ACTIONS, tabTransaction, QApplication::translate (
-                                "MainWindow", aux.toUtf8(), 0/*, QApplication::UnicodeUTF8*/ ));
+                                "MainWindow", aux.toUtf8().constData(), 0/*, QApplication::UnicodeUTF8*/ ));
 
   connect(tvTransaction, SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(execContextMenuTransaction(QPoint)));
   connect(tvTransaction->selectionModel(), SIGNAL(selectionChanged(QItemSelection,QItemSelection)),
@@ -573,7 +573,7 @@ void MainWindow::initTabInfo(){
   QString tabName(StrConstants::getTabInfoName());
   ui->twProperties->removeTab(ctn_TABINDEX_INFORMATION);
   ui->twProperties->insertTab(ctn_TABINDEX_INFORMATION, tabInfo, QApplication::translate (
-      "MainWindow", tabName.toUtf8(), 0));
+      "MainWindow", tabName.toUtf8().constData(), 0));
   ui->twProperties->setUsesScrollButtons(false);
 
   SearchBar *searchBar = new SearchBar(this);
@@ -607,7 +607,7 @@ void MainWindow::initTabTerminal()
   ui->twProperties->removeTab(ctn_TABINDEX_TERMINAL);
   QString aux(StrConstants::getTabTerminal());
   ui->twProperties->insertTab(ctn_TABINDEX_TERMINAL, tabTerminal, QApplication::translate (
-                                                  "MainWindow", aux.toUtf8(), 0) );
+                                                  "MainWindow", aux.toUtf8().constData(), 0) );
   ui->twProperties->setCurrentIndex(ctn_TABINDEX_TERMINAL);
   m_console->setFocus();
 }
@@ -682,7 +682,7 @@ void MainWindow::initTabFiles()
   QString aux(StrConstants::getTabFilesName());
   ui->twProperties->removeTab(ctn_TABINDEX_FILES);
   ui->twProperties->insertTab(ctn_TABINDEX_FILES, tabPkgFileList, QApplication::translate (
-                                                  "MainWindow", aux.toUtf8(), 0/*, QApplication::UnicodeUTF8*/ ) );
+                                                  "MainWindow", aux.toUtf8().constData(), 0/*, QApplication::UnicodeUTF8*/ ) );
   tvPkgFileList->setContextMenuPolicy(Qt::CustomContextMenu);
   SearchBar *searchBar = new SearchBar(this);
   connect(searchBar, SIGNAL(textChanged(QString)), this, SLOT(searchBarTextChangedInTreeView(QString)));
@@ -721,7 +721,7 @@ void MainWindow::initTabOutput()
   QString aux(StrConstants::getTabOutputName());
   ui->twProperties->removeTab(ctn_TABINDEX_OUTPUT);
   ui->twProperties->insertTab(ctn_TABINDEX_OUTPUT, tabOutput, QApplication::translate (
-      "MainWindow", aux.toUtf8(), 0/*, QApplication::UnicodeUTF8*/ ) );
+      "MainWindow", aux.toUtf8().constData(), 0/*, QApplication::UnicodeUTF8*/ ) );
 
   SearchBar *searchBar = new SearchBar(this);
   connect(searchBar, SIGNAL(textChanged(QString)), this, SLOT(searchBarTextChangedInTextBrowser(QString)));

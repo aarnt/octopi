@@ -238,7 +238,7 @@ QString AlpmBackend::getPackageSize(const QString &pkgName)
     const char* dbname = alpm_db_get_name(db);
     if (!strcmp(dbname, "local")) continue;
 
-    if (pkg && strcmp(alpm_pkg_get_name(pkg),pkgName.toLatin1())==0)
+    if (pkg && strcmp(alpm_pkg_get_name(pkg),pkgName.toLatin1().constData())==0)
     {
       off_t pkgSize = alpm_pkg_get_size(pkg);
       std::sprintf(size, "%ld", pkgSize);
