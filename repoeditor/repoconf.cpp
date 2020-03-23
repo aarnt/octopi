@@ -29,20 +29,20 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 #include <QMessageBox>
 #include <QTemporaryFile>
 
-QString RepoConf::commentString = "";
+QString RepoConf::commentString = QLatin1String("");
 QRegularExpression RepoConf::repoMatch = QRegularExpression();
 QRegularExpression RepoConf::detailMatch = QRegularExpression();
 QRegularExpression RepoConf::sigLevelMatch = QRegularExpression();
 
 RepoConf::RepoConf()
 {
-  repoConfFilePath = "/etc/pacman.conf";
-  repoMatch = QRegularExpression("^\\[(?!(options|repo-name|\\[|\\s))");
-  detailMatch = QRegularExpression("^(Server|Include)\\s*=\\s*.+");
-  sigLevelMatch = QRegularExpression("^(SigLevel)\\s*=\\s*.+");
-  RepoEntry::nameFilter = QRegularExpression("(\\s+|\\[|\\])");
-  commentString = "#";
-  RepoEntry::repoFormat = "[%repo%]";
+  repoConfFilePath = QLatin1String("/etc/pacman.conf");
+  repoMatch = QRegularExpression(QStringLiteral("^\\[(?!(options|repo-name|\\[|\\s))"));
+  detailMatch = QRegularExpression(QStringLiteral("^(Server|Include)\\s*=\\s*.+"));
+  sigLevelMatch = QRegularExpression(QStringLiteral("^(SigLevel)\\s*=\\s*.+"));
+  RepoEntry::nameFilter = QRegularExpression(QStringLiteral("(\\s+|\\[|\\])"));
+  commentString = QLatin1String("#");
+  RepoEntry::repoFormat = QLatin1String("[%repo%]");
 
   loadConf( repoConfFilePath );
 }
@@ -88,7 +88,7 @@ bool RepoConf::exists( const QString &name )
 bool RepoConf::hasAnyChanges()
 {
   bool res=false;
-  QFile confFile("/etc/pacman.conf");
+  QFile confFile(QStringLiteral("/etc/pacman.conf"));
   QTextStream confFileStream( &confFile );
 
   if (!confFile.open(QIODevice::ReadOnly))
@@ -97,7 +97,7 @@ bool RepoConf::hasAnyChanges()
   }
   else
   {
-    QString contents = confFile.readAll().trimmed();
+    QString contents = QString::fromUtf8(confFile.readAll().trimmed());
     res=(contents.toLatin1() != toString().toLatin1());
   }
 
@@ -206,17 +206,17 @@ bool RepoConf::saveChanges( const QString & backup )
   if( !backup.isEmpty() ) {
     QMessageBox mbexists( QMessageBox::Warning,
                           tr( "Backup error" ),
-                          tr( "Backup file already exists." ) + QString( "\n" ) + tr( "Do you want to overwrite it?" ),
+                          tr( "Backup file already exists." ) + QStringLiteral( "\n" ) + tr( "Do you want to overwrite it?" ),
                           QMessageBox::Yes | QMessageBox::No );
 
     //First we test if backup file already exists. If so, we remove it!
     if( QFile::exists( backup ) && mbexists.exec() == QMessageBox::Yes ) {
-      command = "rm " + backup;
+      command = QLatin1String("rm ") + backup;
     }
 
     //Then we create a backup, with the user defined name
-    if (!command.isEmpty()) command += "; ";
-    command += "cp /etc/pacman.conf " + backup;
+    if (!command.isEmpty()) command += QLatin1String("; ");
+    command += QLatin1String("cp /etc/pacman.conf ") + backup;
   }
 
   if (!tempFile.open())
@@ -226,14 +226,14 @@ bool RepoConf::saveChanges( const QString & backup )
   tempFile.close();
 
   //Last, we copy the tempfile to the repoconf path
-  if (!command.isEmpty()) command += "; ";
+  if (!command.isEmpty()) command += QLatin1String("; ");
 
   command +=
-      "cp " + tempFile.fileName() +
-      " /etc/pacman.conf;" +
-      " chown root /etc/pacman.conf;" +
-      " chgrp root /etc/pacman.conf;" +
-      "chmod 644 /etc/pacman.conf";
+      QLatin1String("cp ") + tempFile.fileName() +
+      QLatin1String(" /etc/pacman.conf;") +
+      QLatin1String(" chown root /etc/pacman.conf;") +
+      QLatin1String(" chgrp root /etc/pacman.conf;") +
+      QLatin1String("chmod 644 /etc/pacman.conf");
 
   unixC->execCommand(command);
 
@@ -262,7 +262,7 @@ QString RepoConf::toString() const
     ret << ( ( RepoEntry & )entries.at( i ) ).toString();
   }
 
-  return preamble.join( "\n" ).trimmed() + QString( "\n\n" ) + ret.join( "\n\n" );
+  return preamble.join( QStringLiteral("\n") ).trimmed() + QStringLiteral( "\n\n" ) + ret.join( QStringLiteral("\n\n") );
 }
 
 bool RepoConf::detailsExists() const
@@ -305,7 +305,7 @@ QVariant RepoConf::data( const QModelIndex &index, int role ) const
     case 1 :
       return ( ( RepoEntry & )entries.at( index.row() ) ).getName();
     case 2 :
-      return ( ( RepoEntry & )entries.at( index.row() ) ).getDetails().join( "\n" );
+      return ( ( RepoEntry & )entries.at( index.row() ) ).getDetails().join( QStringLiteral("\n") );
     }
 
     break;
@@ -321,10 +321,10 @@ QVariant RepoConf::data( const QModelIndex &index, int role ) const
     switch( index.column() ) {
     case 2 :
       return ( ( ( ( RepoEntry & )entries.at( index.row() ) ).getDetailsComments().isEmpty() )
-               ? ( ( ( RepoEntry & )entries.at( index.row() ) ).getComments().join( "\n" ) )
-               : ( ( ( RepoEntry & )entries.at( index.row() ) ).getDetailsComments().join( "\n" ) ) );
+               ? ( ( ( RepoEntry & )entries.at( index.row() ) ).getComments().join( QStringLiteral("\n") ) )
+               : ( ( ( RepoEntry & )entries.at( index.row() ) ).getDetailsComments().join( QStringLiteral("\n") ) ) );
     default :
-      return ( ( RepoEntry & )entries.at( index.row() ) ).getComments().join( "\n" );
+      return ( ( RepoEntry & )entries.at( index.row() ) ).getComments().join( QStringLiteral("\n") );
     }
     break;
   }
@@ -347,7 +347,7 @@ bool RepoConf::setData( const QModelIndex &index, const QVariant &value, int rol
       ( ( RepoEntry & )entries.at( index.row() ) ).setName( value.toString() );
       break;
     case 2:
-      QStringList list = value.toString().trimmed().split( "\n" );
+      QStringList list = value.toString().trimmed().split( QStringLiteral("\n") );
       for( int i = 0; i < list.count(); ++i) {
         list[i] = list.at( i ).trimmed();
         if( !matchRepoDetails( list.at(i) ) )

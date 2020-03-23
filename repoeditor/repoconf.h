@@ -95,7 +95,7 @@ public slots:
   bool loadConf( const QString &eFile );
 
   void reload(); //Reloads entries from configured file
-  bool saveChanges( const QString & backup = "" );
+  bool saveChanges( const QString & backup = QLatin1String("") );
 
   void moveUp( int i ) {
     if( entries.count() && i > 0 ) {

@@ -48,9 +48,9 @@ RepoEditor::RepoEditor( QWidget *parent )
   ui->tableView->setColumnWidth( 1, 133 );
 
   QString dateFormat = QLocale().dateFormat(QLocale::NarrowFormat);
-  dateFormat = dateFormat.remove("/");
+  dateFormat = dateFormat.remove(QStringLiteral("/"));
   QDateTime dt=QDateTime::currentDateTime();
-  ui->backupFile->setText( repoConf->getConfPath() + ".bak." + dt.toString(dateFormat+"_HHmmss") );
+  ui->backupFile->setText( repoConf->getConfPath() + QLatin1String(".bak.") + dt.toString(dateFormat+QLatin1String("_HHmmss")) );
 
   connect( ui->moveUp, SIGNAL( clicked() ),
            SLOT( moveUp() ) );
@@ -101,7 +101,7 @@ void RepoEditor::closeEvent(QCloseEvent *event)
   if (repoConf->hasAnyChanges())
   {
     int res = QMessageBox::question(this, tr("Confirmation"),
-                                    tr("There are unsaved changes.") + "\n" +
+                                    tr("There are unsaved changes.") + QLatin1Char('\n') +
                                     tr("Do you want to save them?"),
                                     QMessageBox::Yes | QMessageBox::No,
                                     QMessageBox::No);
@@ -123,7 +123,7 @@ void RepoEditor::reject()
   if (repoConf->hasAnyChanges())
   {
     int res = QMessageBox::question(this, tr("Confirmation"),
-                                    tr("There are unsaved changes.") + "\n" +
+                                    tr("There are unsaved changes.") + QLatin1Char('\n') +
                                     tr("Do you want to save them?"),
                                     QMessageBox::Yes | QMessageBox::No,
                                     QMessageBox::No);
@@ -145,7 +145,7 @@ void RepoEditor::loadBackup()
   if (!ui->backupFile->text().isEmpty())
   {
     fi.setFile(ui->backupFile->text());
-    file = QFileDialog::getOpenFileName( this, "Open file", fi.path() );
+    file = QFileDialog::getOpenFileName( this, QStringLiteral("Open file"), fi.path() );
   }
   else
     file = QFileDialog::getOpenFileName( this );
@@ -164,14 +164,14 @@ void RepoEditor::loadBackup()
     mb.exec();
   } else {
     repoConf->loadConf( file );
-    ui->backupFile->setText( repoConf->getConfPath() + ".bak" );
+    ui->backupFile->setText( repoConf->getConfPath() + QLatin1String(".bak") );
   }
 }
 
 void RepoEditor::addEntry()
 {
-  addRepoDialog->setRepoName("");
-  addRepoDialog->setRepoLocation("");
+  addRepoDialog->setRepoName(QLatin1String(""));
+  addRepoDialog->setRepoLocation(QLatin1String(""));
   if( addRepoDialog->exec() == QDialog::Accepted ) {
     if( !repoConf->exists( addRepoDialog->entry.getName() ) )
       repoConf->addEntry( addRepoDialog->entry );
@@ -188,23 +188,24 @@ void RepoEditor::editEntry()
   QString location = ui->tableView->model()->data(locationMI).toString();
 
   // take the type and address
-  QRegExp locationMatch("^(Server|Include)\\s*=\\s*(.+)");
+  QRegExp locationMatch(QLatin1String("^(Server|Include)\\s*=\\s*(.+)"));
   locationMatch.indexIn(location);
   location = locationMatch.cap(2);
 
   // fill remaining fields
   addRepoDialog->setRepoLocation(location);
-  addRepoDialog->setLocationType(locationMatch.cap(1) == "Server" ? 1 : 0);
+  addRepoDialog->setLocationType(locationMatch.cap(1) == QLatin1String("Server") ? 1 : 0);
 
   if( addRepoDialog->exec() == QDialog::Accepted ) {
     ui->tableView->model()->setData( repoMI, addRepoDialog->getRepoName() );
-    ui->tableView->model()->setData( locationMI, ( addRepoDialog->getLocationType() == 0 ? "Include = " : "Server = " ) + addRepoDialog->getRepoLocation() );
+    const QLatin1String tmp = addRepoDialog->getLocationType() == 0 ? QLatin1String("Include = ") : QLatin1String("Server = ");
+    ui->tableView->model()->setData( locationMI, QVariant(tmp + addRepoDialog->getRepoLocation()) );
   }
 }
 
 void RepoEditor::apply()
 {
-  if( repoConf->saveChanges( ui->checkBox->isChecked() ? ui->backupFile->text() : "" ) ) {
+  if( repoConf->saveChanges( ui->checkBox->isChecked() ? ui->backupFile->text() : QLatin1String("") ) ) {
     QMessageBox::information( this,
                               tr( "Success" ),
                               tr( "Repositories configuration successfully saved." ),
