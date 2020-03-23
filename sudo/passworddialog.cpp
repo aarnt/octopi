@@ -47,8 +47,8 @@ PasswordDialog::PasswordDialog(const QString & cmd
   });
 
   ui->backendL->setText(backendName);
-  ui->iconL->setPixmap(QIcon::fromTheme("dialog-password").pixmap(64, 64));
-  setWindowIcon(QIcon::fromTheme("security-high"));
+  ui->iconL->setPixmap(QIcon::fromTheme(QStringLiteral("dialog-password")).pixmap(64, 64));
+  setWindowIcon(QIcon::fromTheme(QStringLiteral("security-high")));
 }
 
 PasswordDialog::~PasswordDialog()
