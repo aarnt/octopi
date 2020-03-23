@@ -44,13 +44,13 @@ CacheCleaner::CacheCleaner(QWidget *parent) :
   ui->keepUninstalledPackagesSpinner->setValue(keepUninstalled);
 
   //create package group wrappers
-  m_installed = new PackageGroupModel("",
+  m_installed = new PackageGroupModel(QLatin1String(""),
                                       ui->installedPackagesList,
                                       ui->keepInstalledPackagesSpinner,
                                       ui->refreshInstalledButton,
                                       ui->cleanInstalledButton);
 
-  m_uninstalled = new PackageGroupModel("-u",
+  m_uninstalled = new PackageGroupModel(QStringLiteral("-u"),
                                         ui->uninstalledPackagesList,
                                         ui->keepUninstalledPackagesSpinner,
                                         ui->refreshUninstalledButton,                                                                                
@@ -82,7 +82,7 @@ bool CacheCleaner::startServer()
   if (!m_tcpServer->listen(QHostAddress::LocalHost, 12703))
   {
     QMessageBox::critical(this, StrConstants::getApplicationName(),
-                          QString("Unable to start the server: %1.")
+                          QStringLiteral("Unable to start the server: %1.")
                           .arg(m_tcpServer->errorString()));
     res=false;
   }
@@ -107,17 +107,17 @@ void CacheCleaner::onSendInfoToOctopiHelper()
 
   if (isHelperExecuting && commandExecuting)
   {
-    msg="Octopi est occupatus";
+    msg=QLatin1String("Octopi est occupatus");
     out << msg;
   }
   else if (isHelperExecuting && !commandExecuting)
   {
-    msg="Octopi serenum est";
+    msg=QLatin1String("Octopi serenum est");
     out << msg;
   }
   else
   {
-    msg="Atramento nigro";
+    msg=QLatin1String("Atramento nigro");
     out << msg;
   }
 
