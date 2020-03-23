@@ -35,17 +35,17 @@ int main(int argc, char *argv[])
   bool debugInfo = false;
 
   ArgumentList *argList = new ArgumentList(argc, argv);
-  if (argList->getSwitch("-d"))
+  if (argList->getSwitch(QStringLiteral("-d")))
   {
     //If user chooses to switch debug info on...
     debugInfo = true;
   }
 
   if (debugInfo)
-    qDebug() << QString("Octopi Notifier - " + StrConstants::getApplicationVersion() +
-                  " (" + StrConstants::getQtVersion() + ")");
+    qDebug() << QString(QLatin1String("Octopi Notifier - ") + StrConstants::getApplicationVersion() +
+                  QLatin1String(" (") + StrConstants::getQtVersion() + QLatin1String(")"));
 
-  if (UnixCommand::isAppRunning("octopi-notifier"))
+  if (UnixCommand::isAppRunning(QStringLiteral("octopi-notifier")))
   {
     qDebug() << "Aborting notifier as another instance is already running!";
     return (-1);
@@ -70,7 +70,7 @@ int main(int argc, char *argv[])
 
   QApplication a(argc, argv);
   QTranslator appTranslator;
-  appTranslator.load(":/resources/translations/octopi_" +
+  appTranslator.load(QLatin1String(":/resources/translations/octopi_") +
                      QLocale::system().name());
 
   a.installTranslator(&appTranslator);
@@ -79,9 +79,9 @@ int main(int argc, char *argv[])
   MainWindow w;
   if (w.startServer())
   {
-    QResource::registerResource("./resources.qrc");
+    QResource::registerResource(QStringLiteral("./resources.qrc"));
 
-    QGuiApplication::setDesktopFileName("octopi-notifier");
+    QGuiApplication::setDesktopFileName(QStringLiteral("octopi-notifier"));
 
     if (debugInfo)
       w.turnDebugInfoOn();
