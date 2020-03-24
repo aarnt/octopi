@@ -15,6 +15,13 @@ INCLUDEPATH += .
 # deprecated API in order to know how to port your code away from it.
 DEFINES += QT_DEPRECATED_WARNINGS
 
+# Disable automatic string conversions
+DEFINES += QT_USE_QSTRINGBUILDER \
+           QT_NO_CAST_FROM_ASCII \
+           QT_NO_CAST_TO_ASCII \
+           QT_NO_URL_CAST_FROM_STRING \
+           QT_NO_CAST_FROM_BYTEARRAY
+
 # You can also make your code fail to compile if you use deprecated APIs.
 # In order to do so, uncomment the following line.
 # You can also select to disable deprecated APIs only up to a certain version of Qt.
