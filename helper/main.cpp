@@ -35,7 +35,7 @@ int main(int argc, char *argv[])
 {
   ArgumentList *argList = new ArgumentList(argc, argv);
 
-  if (argList->getSwitch("-version"))
+  if (argList->getSwitch(QStringLiteral("-version")))
   {
     QTextStream qout(stdout);
     qout << "octopi-helper: version " << ctn_OCTOPI_HELPER_VERSION << endl;
@@ -52,7 +52,7 @@ int main(int argc, char *argv[])
   QCoreApplication a(argc, argv);
   OctopiHelper helper;
 
-  if (argList->getSwitch("-ts"))
+  if (argList->getSwitch(QStringLiteral("-ts")))
   {
     return helper.executePkgTransactionWithSharedMem();
   }
