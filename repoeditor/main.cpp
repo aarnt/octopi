@@ -33,24 +33,24 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 int main( int argc, char *argv[] )
 {
-  QtSingleApplication app( "Repository Editor - Octopi", argc, argv );
+  QtSingleApplication app( QStringLiteral("Repository Editor - Octopi"), argc, argv );
 
   //If there is already an instance running...
   if (app.isRunning())
   {
-    app.sendMessage("RAISE");
+    app.sendMessage(QStringLiteral("RAISE"));
     return 0;
   }
 
-  app.sendMessage("RAISE");
+  app.sendMessage(QStringLiteral("RAISE"));
 
   QTranslator appTranslator;
-  appTranslator.load(":/resources/translations/octopi_repoeditor_" +
+  appTranslator.load(QLatin1String(":/resources/translations/octopi_repoeditor_") +
                      QLocale::system().name());
   app.installTranslator(&appTranslator);
 
   if (UnixCommand::isRootRunning()){
-    QMessageBox::critical( 0, "Repository Editor - Octopi",
+    QMessageBox::critical( 0, QStringLiteral("Repository Editor - Octopi"),
                            QObject::tr("You can not run Repository Editor with administrator's credentials."));
     return ( -2 );
   }
@@ -59,7 +59,7 @@ int main( int argc, char *argv[] )
   app.setActivationWindow(&w);
   w.show();
 
-  QResource::registerResource("./resources.qrc");
+  QResource::registerResource(QStringLiteral("./resources.qrc"));
 
   return app.exec();
 }

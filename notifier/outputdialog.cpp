@@ -45,7 +45,7 @@ OutputDialog::OutputDialog(QWidget *parent): QDialog(parent)
   m_upgradeRunning = false;
   m_debugInfo = false;
   m_AURUpgradeExecuting = false;
-  m_sharedMemory = new QSharedMemory("org.arnt.octopi", this);
+  m_sharedMemory = new QSharedMemory(QStringLiteral("org.arnt.octopi"), this);
 }
 
 /*
@@ -347,24 +347,24 @@ void OutputDialog::pacmanProcessFinished(int exitCode, QProcess::ExitStatus exit
     QStringList dotPacnewFiles = m_pacmanExec->getDotPacnewFileList();
     if (dotPacnewFiles.count() > 0)
     {
-      writeToTabOutput("<br>");
+      writeToTabOutput(QStringLiteral("<br>"));
       foreach(QString dotPacnewFile, dotPacnewFiles)
       {
-        if (!dotPacnewFile.contains("<br>"))
-          writeToTabOutput( "<br>" + dotPacnewFile, ectn_DONT_TREAT_URL_LINK);
+        if (!dotPacnewFile.contains(QLatin1String("<br>")))
+          writeToTabOutput( QLatin1String("<br>") + dotPacnewFile, ectn_DONT_TREAT_URL_LINK);
         else
           writeToTabOutput(dotPacnewFile, ectn_DONT_TREAT_URL_LINK);
       }
     }
 
-    writeToTabOutput("<br><b>" + StrConstants::getCommandFinishedOK() + "</b><br>");
+    writeToTabOutput(QLatin1String("<br><b>") + StrConstants::getCommandFinishedOK() + QLatin1String("</b><br>"));
   }
   else
   {
-    writeToTabOutput("<br><b>" + StrConstants::getCommandFinishedWithErrors() + "</b><br>");
+    writeToTabOutput(QLatin1String("<br><b>") + StrConstants::getCommandFinishedWithErrors() + QLatin1String("</b><br>"));
   }
 
-  if (exitCode != 0 && (textInTabOutput("conflict"))) //|| _textInTabOutput("could not satisfy dependencies")))
+  if (exitCode != 0 && (textInTabOutput(QStringLiteral("conflict")))) //|| _textInTabOutput("could not satisfy dependencies")))
   {
     int res = QMessageBox::question(this, StrConstants::getThereHasBeenATransactionError(),
                                     StrConstants::getConfirmExecuteTransactionInTerminal(),
@@ -454,7 +454,7 @@ void OutputDialog::closeEvent(QCloseEvent *event)
   if(m_upgradeRunning)
   {
     int res = QMessageBox::question(this, StrConstants::getConfirmation(),
-                          StrConstants::getThereIsARunningTransaction() + "\n" +
+                          StrConstants::getThereIsARunningTransaction() + QLatin1Char('\n') +
                           StrConstants::getDoYouReallyWantToQuit(),
                           QMessageBox::Yes | QMessageBox::No,
                           QMessageBox::No);
@@ -500,7 +500,7 @@ void OutputDialog::keyPressEvent(QKeyEvent *ke)
     if (m_upgradeRunning)
     {
       int res = QMessageBox::question(this, StrConstants::getConfirmation(),
-                          StrConstants::getThereIsARunningTransaction() + "\n" +
+                          StrConstants::getThereIsARunningTransaction() + QLatin1Char('\n') +
                           StrConstants::getDoYouReallyWantToQuit(),
                           QMessageBox::Yes | QMessageBox::No,
                           QMessageBox::No);
@@ -542,7 +542,7 @@ bool OutputDialog::eventFilter(QObject *, QEvent *event)
       if (m_upgradeRunning)
       {
         int res = QMessageBox::question(this, StrConstants::getConfirmation(),
-                                        StrConstants::getThereIsARunningTransaction() + "\n" +
+                                        StrConstants::getThereIsARunningTransaction() + QLatin1Char('\n') +
                                         StrConstants::getDoYouReallyWantToQuit(),
                                         QMessageBox::Yes | QMessageBox::No,
                                         QMessageBox::No);

@@ -42,7 +42,7 @@ void removeTemporaryFiles()
 {
   QDir tempDir(QDir::tempPath());
   QStringList nameFilters;
-  nameFilters << ".qt_temp_octopi*";
+  nameFilters << QStringLiteral(".qt_temp_octopi*");
   QFileInfoList list = tempDir.entryInfoList(nameFilters, QDir::Dirs | QDir::Files | QDir::System | QDir::Hidden);
 
   foreach(QFileInfo file, list){
@@ -71,11 +71,11 @@ void removeTemporaryFiles()
 QString getShell()
 {
   QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
-  QString shell = env.value("SHELL", "/usr/bin/bash");
+  QString shell = env.value(QStringLiteral("SHELL"), QStringLiteral("/usr/bin/bash"));
   QFileInfo fi(shell);
 
-  if (fi.fileName() == "fish")
-    return "/usr/bin/bash";
+  if (fi.fileName() == QLatin1String("fish"))
+    return QStringLiteral("/usr/bin/bash");
   else
     return fi.fileName();
 }
@@ -88,11 +88,11 @@ bool isAppRunning(const QString &appName, bool justOneInstance)
 {
   QStringList slParam;
   QProcess proc;
-  slParam << "-C";
+  slParam << QStringLiteral("-C");
   slParam << appName;
-  proc.start("/usr/bin/ps", slParam);
+  proc.start(QStringLiteral("/usr/bin/ps"), slParam);
   proc.waitForFinished();
-  QString out = proc.readAll();
+  QString out = QString::fromUtf8(proc.readAll());
   proc.close();
 
   if (justOneInstance)
@@ -114,8 +114,8 @@ bool isAppRunning(const QString &appName, bool justOneInstance)
 OctopiHelper::OctopiHelper()
 {  
   //If old helper still exists, let's remove it
-  if (QFileInfo::exists("/usr/lib/octopi/octopi-helper"))
-    QFile::remove("/usr/lib/octopi/octopi-helper");
+  if (QFileInfo::exists(QStringLiteral("/usr/lib/octopi/octopi-helper")))
+    QFile::remove(QStringLiteral("/usr/lib/octopi/octopi-helper"));
 
   m_exitCode = -9999;
   m_process = new QProcess();
@@ -141,12 +141,12 @@ OctopiHelper::~OctopiHelper()
 QProcessEnvironment OctopiHelper::getProcessEnvironment()
 {
   QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
-  env.remove("LANG");
-  env.remove("LC_MESSAGES");
-  env.insert("LANG", "C");
-  env.insert("LC_MESSAGES", "C");
-  env.remove("COLUMNS");
-  env.insert("COLUMNS", "132");
+  env.remove(QStringLiteral("LANG"));
+  env.remove(QStringLiteral("LC_MESSAGES"));
+  env.insert(QStringLiteral("LANG"), QStringLiteral("C"));
+  env.insert(QStringLiteral("LC_MESSAGES"), QStringLiteral("C"));
+  env.remove(QStringLiteral("COLUMNS"));
+  env.insert(QStringLiteral("COLUMNS"), QStringLiteral("132"));
   return env;
 }
 
@@ -156,7 +156,7 @@ QProcessEnvironment OctopiHelper::getProcessEnvironment()
 QString OctopiHelper::getProxySettings()
 {
   QSettings settings(QSettings::UserScope, ctn_ORGANIZATION, ctn_APPLICATION);
-  return (settings.value(ctn_KEY_PROXY_SETTINGS, "").toString());
+  return (settings.value(ctn_KEY_PROXY_SETTINGS, QLatin1String("")).toString());
 }
 
 /*
@@ -168,28 +168,28 @@ bool OctopiHelper::isOctoToolRunning(const QString &octoToolName)
 
   QProcess proc;
   proc.setProcessEnvironment(getProcessEnvironment());
-  QString cmd = "/usr/bin/ps -C %1 -o command";
+  QString cmd = QStringLiteral("/usr/bin/ps -C %1 -o command");
   cmd = cmd.arg(octoToolName);
   proc.start(cmd);
   proc.waitForFinished();
 
-  QString out = proc.readAll().trimmed();
-  if (out.contains("|")) return false;
-  out=out.remove("\n");
-  out=out.remove("COMMAND");
+  QString out = QString::fromUtf8(proc.readAll().trimmed());
+  if (out.contains(QLatin1String("|"))) return false;
+  out=out.remove(QStringLiteral("\n"));
+  out=out.remove(QStringLiteral("COMMAND"));
 
-  if (octoToolName=="octopi-cachecle")
+  if (octoToolName==QLatin1String("octopi-cachecle"))
   {
-    if (out == "/usr/bin/octopi-cachecleaner") res=true;
+    if (out == QLatin1String("/usr/bin/octopi-cachecleaner")) res=true;
   }
   else
   {
     QStringList options;
-    options << "/usr/bin/octopi-notifier -d";
-    options << "/usr/bin/octopi -d";
-    options << "/usr/bin/octopi -sysupgrade";
+    options << QStringLiteral("/usr/bin/octopi-notifier -d");
+    options << QStringLiteral("/usr/bin/octopi -d");
+    options << QStringLiteral("/usr/bin/octopi -sysupgrade");
 
-    if (out == "/usr/bin/" + octoToolName || (options.indexOf(out)!=-1)) res=true;
+    if (out == QLatin1String("/usr/bin/") + octoToolName || (options.indexOf(out)!=-1)) res=true;
   }
   return res;
 }
@@ -199,9 +199,9 @@ bool OctopiHelper::isOctoToolRunning(const QString &octoToolName)
  */
 int OctopiHelper::executePkgTransactionWithSharedMem()
 {
-  bool isOctopiRunning=isOctoToolRunning("octopi");
-  bool isNotifierRunning=isOctoToolRunning("octopi-notifier");
-  bool isCacheCleanerRunning=isOctoToolRunning("octopi-cachecle");
+  bool isOctopiRunning=isOctoToolRunning(QStringLiteral("octopi"));
+  bool isNotifierRunning=isOctoToolRunning(QStringLiteral("octopi-notifier"));
+  bool isCacheCleanerRunning=isOctoToolRunning(QStringLiteral("octopi-cachecle"));
 
   if(!isOctopiRunning &&
      !isNotifierRunning &&
@@ -213,7 +213,7 @@ int OctopiHelper::executePkgTransactionWithSharedMem()
   }
 
   //Let's retrieve commands from sharedmem pool
-  QSharedMemory *sharedMem = new QSharedMemory("org.arnt.octopi", this);
+  QSharedMemory *sharedMem = new QSharedMemory(QStringLiteral("org.arnt.octopi"), this);
   if (!sharedMem->attach(QSharedMemory::ReadOnly))
   {
     QTextStream qout(stdout);
@@ -241,7 +241,7 @@ int OctopiHelper::executePkgTransactionWithSharedMem()
     return ctn_SUSPICIOUS_ACTIONS_FILE;
   }
 
-  QStringList lines = contents.split("\n", QString::SkipEmptyParts);
+  QStringList lines = contents.split(QStringLiteral("\n"), QString::SkipEmptyParts);
 
   bool testCommandFromOctopi=false;
   bool testCommandFromNotifier=false;
@@ -251,32 +251,32 @@ int OctopiHelper::executePkgTransactionWithSharedMem()
   {
     line = line.trimmed();
 
-    if ((line == "killall pacman") ||
-      (line == "rm " + ctn_PACMAN_DATABASE_LOCK_FILE) ||
-      (line == "echo -e") ||
-      (line == "echo \"Press any key to continue...\"") ||
-      (line == "read -n 1 -p \"Press any key to continue...\"") ||
-      (line == "pkgfile -u") ||
-      (line == "paccache -r -k 0") ||
-      (line == "paccache -r -k 1") ||
-      (line == "paccache -r -k 2") ||
-      (line == "paccache -r -k 3") ||
-      (line == "pacman -Syu") ||
-      (line == "pacman -Syu --noconfirm") ||
-      (line.startsWith("pacman -S ")) ||
-      (line.startsWith("pacman -R ")))
+    if ((line == QLatin1String("killall pacman")) ||
+      (line == QLatin1String("rm ") + ctn_PACMAN_DATABASE_LOCK_FILE) ||
+      (line == QLatin1String("echo -e")) ||
+      (line == QLatin1String("echo \"Press any key to continue...\"")) ||
+      (line == QLatin1String("read -n 1 -p \"Press any key to continue...\"")) ||
+      (line == QLatin1String("pkgfile -u")) ||
+      (line == QLatin1String("paccache -r -k 0")) ||
+      (line == QLatin1String("paccache -r -k 1")) ||
+      (line == QLatin1String("paccache -r -k 2")) ||
+      (line == QLatin1String("paccache -r -k 3")) ||
+      (line == QLatin1String("pacman -Syu")) ||
+      (line == QLatin1String("pacman -Syu --noconfirm")) ||
+      (line.startsWith(QLatin1String("pacman -S "))) ||
+      (line.startsWith(QLatin1String("pacman -R "))))
     {
-      if (line.startsWith("pacman -S ") ||
-          line.startsWith("pacman -R "))
+      if (line.startsWith(QLatin1String("pacman -S ")) ||
+          line.startsWith(QLatin1String("pacman -R ")))
       {
         testCommandFromOctopi=true;
       }
-      else if (line.startsWith("pacman -Syu"))
+      else if (line.startsWith(QLatin1String("pacman -Syu")))
       {
         testCommandFromOctopi=true;
         testCommandFromNotifier=true;
       }
-      else if (line.startsWith("paccache -r -k"))
+      else if (line.startsWith(QLatin1String("paccache -r -k")))
       {
         testCommandFromCacheCleaner=true;
       }
@@ -295,16 +295,16 @@ int OctopiHelper::executePkgTransactionWithSharedMem()
   }
 
   //Using full path binaries
-  contents = contents.replace("killall pacman", "/usr/bin/killall pacman");
-  contents = contents.replace("rm " + ctn_PACMAN_DATABASE_LOCK_FILE, "/usr/bin/rm " + ctn_PACMAN_DATABASE_LOCK_FILE);
-  contents = contents.replace("pkgfile -u", "/usr/bin/pkgfile -u");
-  contents = contents.replace("paccache -r", "/usr/bin/paccache -r");
-  contents = contents.replace("pacman -Syu", "/usr/bin/pacman -Syu");
-  contents = contents.replace("pacman -S ", "/usr/bin/pacman -S ");
-  contents = contents.replace("pacman -R ", "/usr/bin/pacman -R ");
+  contents = contents.replace(QLatin1String("killall pacman"), QLatin1String("/usr/bin/killall pacman"));
+  contents = contents.replace(QLatin1String("rm ") + ctn_PACMAN_DATABASE_LOCK_FILE, QLatin1String("/usr/bin/rm ") + ctn_PACMAN_DATABASE_LOCK_FILE);
+  contents = contents.replace(QLatin1String("pkgfile -u"), QLatin1String("/usr/bin/pkgfile -u"));
+  contents = contents.replace(QLatin1String("paccache -r"), QLatin1String("/usr/bin/paccache -r"));
+  contents = contents.replace(QLatin1String("pacman -Syu"), QLatin1String("/usr/bin/pacman -Syu"));
+  contents = contents.replace(QLatin1String("pacman -S "), QLatin1String("/usr/bin/pacman -S "));
+  contents = contents.replace(QLatin1String("pacman -R "), QLatin1String("/usr/bin/pacman -R "));
 
   //If there is a "pacman" process executing elsewhere, let's abort octopi-helper!
-  if (contents != "/usr/bin/killall pacman\n/usr/bin/rm " + ctn_PACMAN_DATABASE_LOCK_FILE +"\n" && isAppRunning("pacman", true))
+  if (contents != QLatin1String("/usr/bin/killall pacman\n/usr/bin/rm ") + ctn_PACMAN_DATABASE_LOCK_FILE +QLatin1Char('\n') && isAppRunning(QStringLiteral("pacman"), true))
   {
     QTextStream qout(stdout);
     qout << endl << "octopi-helper[aborted]: Pacman process already running" << endl;
@@ -322,7 +322,7 @@ int OctopiHelper::executePkgTransactionWithSharedMem()
 
     //Let's make a connection to Octopi server to ensure it sent this command.
     QTcpSocket socket;
-    socket.connectToHost("127.0.0.1", 12701);
+    socket.connectToHost(QStringLiteral("127.0.0.1"), 12701);
 
     if (!socket.waitForConnected(5000))
     {
@@ -352,11 +352,11 @@ int OctopiHelper::executePkgTransactionWithSharedMem()
       in >> octopiResponse;
     } while (!in.commitTransaction());
 
-    if (octopiResponse == "Octopi est occupatus")
+    if (octopiResponse == QLatin1String("Octopi est occupatus"))
     {
       testCommandFromNotifier=false;
     }
-    else if (octopiResponse != "Octopi est occupatus" && !testCommandFromNotifier)
+    else if (octopiResponse != QLatin1String("Octopi est occupatus") && !testCommandFromNotifier)
     {
       QTextStream qout(stdout);
       qout << endl << "octopi-helper[aborted]: No transaction being executed" << endl;
@@ -376,7 +376,7 @@ int OctopiHelper::executePkgTransactionWithSharedMem()
 
     //Let's make a connection to Octopi-Notifier server to ensure it sent this command.
     QTcpSocket socket;
-    socket.connectToHost("127.0.0.1", 12702);
+    socket.connectToHost(QStringLiteral("127.0.0.1"), 12702);
 
     if (!socket.waitForConnected(5000))
     {
@@ -402,7 +402,7 @@ int OctopiHelper::executePkgTransactionWithSharedMem()
       in >> octopiResponse;
     } while (!in.commitTransaction());
 
-    if (octopiResponse != "Octopi est occupatus")
+    if (octopiResponse != QLatin1String("Octopi est occupatus"))
     {
       QTextStream qout(stdout);
       qout << endl << "octopi-helper[aborted]: No transaction being executed" << endl;
@@ -421,7 +421,7 @@ int OctopiHelper::executePkgTransactionWithSharedMem()
 
     //Let's make a connection to Octopi-Notifier server to ensure it sent this command.
     QTcpSocket socket;
-    socket.connectToHost("127.0.0.1", 12703);
+    socket.connectToHost(QStringLiteral("127.0.0.1"), 12703);
 
     if (!socket.waitForConnected(5000))
     {
@@ -447,7 +447,7 @@ int OctopiHelper::executePkgTransactionWithSharedMem()
       in >> octopiResponse;
     } while (!in.commitTransaction());
 
-    if (octopiResponse != "Octopi est occupatus")
+    if (octopiResponse != QLatin1String("Octopi est occupatus"))
     {
       QTextStream qout(stdout);
       qout << endl << "octopi-helper[aborted]: No transaction being executed" << endl;
@@ -462,21 +462,21 @@ int OctopiHelper::executePkgTransactionWithSharedMem()
   QString proxySettings = getProxySettings();
   if (!proxySettings.isEmpty())
   {
-    if (proxySettings.contains("ftp://"))
-      out << "export ftp_proxy=" + proxySettings + "\n";
-    else if (proxySettings.contains("http://"))
-      out << "export http_proxy=" + proxySettings + "\n";
-    else if (proxySettings.contains("https://"))
-      out << "export https_proxy=" + proxySettings + "\n";
+    if (proxySettings.contains(QLatin1String("ftp://")))
+      out << QLatin1String("export ftp_proxy=") + proxySettings + QLatin1Char('\n');
+    else if (proxySettings.contains(QLatin1String("http://")))
+      out << QLatin1String("export http_proxy=") + proxySettings + QLatin1Char('\n');
+    else if (proxySettings.contains(QLatin1String("https://")))
+      out << QLatin1String("export https_proxy=") + proxySettings + QLatin1Char('\n');
   }
 
-  out << "unalias -a\n" << contents;
+  out << QLatin1String("unalias -a\n") << contents;
   out.flush();
   ftemp->close();
 
   QString command;
   m_process->setProcessEnvironment(getProcessEnvironment());
-  command = getShell() + " " + m_temporaryFile->fileName();
+  command = getShell() + QLatin1Char(' ') + m_temporaryFile->fileName();
   m_process->start(command);
   m_process->waitForStarted(-1);
   m_process->waitForFinished(-1);

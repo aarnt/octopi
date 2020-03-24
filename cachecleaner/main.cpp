@@ -31,19 +31,19 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 int main( int argc, char *argv[] )
 {
-  QtSingleApplication app( "Cache Cleaner - Octopi", argc, argv );
+  QtSingleApplication app( QStringLiteral("Cache Cleaner - Octopi"), argc, argv );
 
   //If there is already an instance running...
   if (app.isRunning())
   {
-    app.sendMessage("RAISE");
+    app.sendMessage(QStringLiteral("RAISE"));
     return 0;
   }
 
-  app.sendMessage("RAISE");
+  app.sendMessage(QStringLiteral("RAISE"));
 
   QTranslator appTranslator;
-  appTranslator.load(":/resources/translations/octopi_cachecleaner_" +
+  appTranslator.load(QLatin1String(":/resources/translations/octopi_cachecleaner_") +
                      QLocale::system().name());
   app.installTranslator(&appTranslator);
 
@@ -52,9 +52,9 @@ int main( int argc, char *argv[] )
     return (-2);
   }
 
-  if (!UnixCommand::hasTheExecutable("paccache"))
+  if (!UnixCommand::hasTheExecutable(QStringLiteral("paccache")))
   {
-    QMessageBox::critical( 0, StrConstants::getApplicationName(), StrConstants::getExecutableCouldNotBeFound().arg("\"paccache\""));
+    QMessageBox::critical( 0, StrConstants::getApplicationName(), StrConstants::getExecutableCouldNotBeFound().arg(QStringLiteral("\"paccache\"")));
     return (-3);
   }
 
@@ -69,7 +69,7 @@ int main( int argc, char *argv[] )
   {
     app.setActivationWindow(&w);
     w.show();
-    QResource::registerResource("./resources.qrc");
+    QResource::registerResource(QStringLiteral("./resources.qrc"));
 
     return app.exec();
   }

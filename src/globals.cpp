@@ -177,9 +177,9 @@ QList<PackageListData> * markForeignPackagesInPkgList(bool hasAURTool, QStringLi
   std::unique_ptr<QList<PackageListData>> listForeign(Package::getForeignPackageList());
   PackageListData pld;
 
-  QList<PackageListData>::const_iterator itForeign = listForeign->begin();
+  QList<PackageListData>::const_iterator itForeign = listForeign->cbegin();
 
-  while (itForeign != listForeign->end())
+  while (itForeign != listForeign->cend())
   {
     if (!hasAURTool || !outdatedAURStringList->contains(itForeign->name))
     {

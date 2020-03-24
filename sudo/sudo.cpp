@@ -121,9 +121,9 @@ inline std::string env_workarounds()
   for (auto const & key : QProcessEnvironment::systemEnvironment().keys())
   {
     auto const & i = std::lower_bound(ALLOWED_VARS, ALLOWED_END, key, [] (char const * const a, QString const & b) {
-      return b > a;
+      return b > QString::fromUtf8(a);
     });
-    if (i == ALLOWED_END || key != *i)
+    if (i == ALLOWED_END || key != QString::fromUtf8(*i))
     {
       unsetenv(key.toLatin1().data());
     }
@@ -136,9 +136,9 @@ inline QString quoteShellArg(const QString& arg, bool userFriendly)
   QString rv = arg;
 
   //^ check if thre are any bash special file characters
-  if (!userFriendly || arg.contains(QRegExp("(\\s|[][!\"#$&'()*,;<=>?\\^`{}|~])"))) {
+  if (!userFriendly || arg.contains(QRegExp(QLatin1String("(\\s|[][!\"#$&'()*,;<=>?\\^`{}|~])")))) {
     rv.replace(QStringLiteral("'"), QStringLiteral("'\\''"));
-    rv.prepend ('\'').append('\'');
+    rv.prepend (QLatin1Char('\'')).append(QLatin1Char('\''));
   }
 
   return rv;
@@ -167,19 +167,19 @@ int Sudo::main()
   {
     //simple option check
     QString const & arg1 = mArgs[0];
-    if ("-h" == arg1 || "--help" == arg1)
+    if (QLatin1String("-h") == arg1 || QLatin1String("--help") == arg1)
     {
       usage();
       return 0;
-    } else if ("-v" == arg1 || "--version" == arg1)
+    } else if (QLatin1String("-v") == arg1 || QLatin1String("--version") == arg1)
     {
       version();
       return 0;
-    } else if ("-s" == arg1 || "--su" == arg1)
+    } else if (QLatin1String("-s") == arg1 || QLatin1String("--su") == arg1)
     {
       mBackend = BACK_SU;
       mArgs.removeAt(0);
-    } else if ("-d" == arg1 || "--sudo" == arg1)
+    } else if (QLatin1String("-d") == arg1 || QLatin1String("--sudo") == arg1)
     {
       mBackend = BACK_SUDO;
       mArgs.removeAt(0);
@@ -213,7 +213,7 @@ int Sudo::main()
 
   if (-1 == mChildPid)
     QMessageBox(QMessageBox::Critical, mDlg->windowTitle()
-                , tr("Syscall error, failed to fork: %1").arg(strerror(errno)), QMessageBox::Ok).exec();
+                , tr("Syscall error, failed to fork: %1").arg(QString::fromUtf8(strerror(errno))), QMessageBox::Ok).exec();
   else
     return parent();
 
@@ -226,7 +226,7 @@ QString Sudo::squashedArgs(bool userFriendly) const
 
   rv = quoteShellArg (mArgs[0], userFriendly);
   for (auto argP = ++mArgs.begin(); argP != mArgs.end(); ++argP) {
-    rv.append (' ').append(quoteShellArg (*argP, userFriendly));
+    rv.append (QLatin1Char(' ')).append(quoteShellArg (*argP, userFriendly));
   }
 
   return rv;
@@ -289,7 +289,7 @@ void Sudo::child()
     // for privileged execution via the LC_ALL
     if (nullptr != strchr(env_lc_all, '\''))
     {
-      QTextStream{stderr, QIODevice::WriteOnly} << tr("%1: Detected attempt to inject privileged command via LC_ALL env(%2). Exiting!\n").arg(app_master).arg(env_lc_all);
+      QTextStream{stderr, QIODevice::WriteOnly} << tr("%1: Detected attempt to inject privileged command via LC_ALL env(%2). Exiting!\n").arg(app_master).arg(QString::fromUtf8(env_lc_all));
       exit(1);
     }
     command = "LC_ALL='";
@@ -308,7 +308,7 @@ void Sudo::child()
   execvp(params[0], const_cast<char **>(params.get()));
 
   //exec never returns in case of success
-  QTextStream{stderr, QIODevice::WriteOnly} << tr("%1: Failed to exec '%2': %3\n").arg(app_master).arg(params[0]).arg(strerror(errno));
+  QTextStream{stderr, QIODevice::WriteOnly} << tr("%1: Failed to exec '%2': %3\n").arg(app_master).arg(QString::fromUtf8(params[0])).arg(QString::fromUtf8(strerror(errno)));
   exit(1);
 }
 
@@ -331,7 +331,7 @@ int Sudo::parent()
   if (0 != fcntl(mPwdFd, F_SETFL, O_NONBLOCK))
   {
     QMessageBox(QMessageBox::Critical, mDlg->windowTitle()
-                , tr("Syscall error, failed to bring pty to non-block mode: %1").arg(strerror(errno)), QMessageBox::Ok).exec();
+                , tr("Syscall error, failed to bring pty to non-block mode: %1").arg(QString::fromUtf8(strerror(errno))), QMessageBox::Ok).exec();
     return 1;
   }
 
@@ -339,7 +339,7 @@ int Sudo::parent()
   if (nullptr == pwd_f)
   {
     QMessageBox(QMessageBox::Critical, mDlg->windowTitle()
-                , tr("Syscall error, failed to fdopen pty: %1").arg(strerror(errno)), QMessageBox::Ok).exec();
+                , tr("Syscall error, failed to fdopen pty: %1").arg(QString::fromUtf8(strerror(errno))), QMessageBox::Ok).exec();
     return 1;
   }
 
