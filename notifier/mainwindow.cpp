@@ -94,10 +94,10 @@ bool MainWindow::isOctopiBusy()
   bool res=false;
 
   //Checks first if octopi is running...
-  if (!UnixCommand::isOctoToolRunning("octopi")) return res;
+  if (!UnixCommand::isOctoToolRunning(QStringLiteral("octopi"))) return res;
 
   QTcpSocket socket;
-  socket.connectToHost("127.0.0.1", 12701);
+  socket.connectToHost(QStringLiteral("127.0.0.1"), 12701);
 
   if (!socket.waitForConnected(5000))
   {
@@ -119,7 +119,7 @@ bool MainWindow::isOctopiBusy()
     in >> octopiResponse;
   } while (!in.commitTransaction());
 
-  if (octopiResponse != "Octopi est occupatus")
+  if (octopiResponse != QLatin1String("Octopi est occupatus"))
   {
     res=false;
   }
@@ -139,10 +139,10 @@ bool MainWindow::canOctopiUpgrade()
   bool res=false;
 
   //Checks first if octopi is running...
-  if (!UnixCommand::isOctoToolRunning("octopi")) return res;
+  if (!UnixCommand::isOctoToolRunning(QStringLiteral("octopi"))) return res;
 
   QTcpSocket socket;
-  socket.connectToHost("127.0.0.1", 12701);
+  socket.connectToHost(QStringLiteral("127.0.0.1"), 12701);
 
   if (!socket.waitForConnected(5000))
   {
@@ -164,7 +164,7 @@ bool MainWindow::canOctopiUpgrade()
     in >> octopiResponse;
   } while (!in.commitTransaction());
 
-  if (octopiResponse != "Renovatio potest")
+  if (octopiResponse != QLatin1String("Renovatio potest"))
   {
     res=false;
   }
@@ -191,7 +191,7 @@ void MainWindow::initActions()
   connect(m_actionAbout, SIGNAL(triggered()), this, SLOT(aboutOctopiNotifier()));
 
   m_actionOctopi = new QAction(this);
-  m_actionOctopi->setText("Octopi...");
+  m_actionOctopi->setText(QStringLiteral("Octopi..."));
   m_actionOctopi->setIcon(IconHelper::getIconOctopi());
   connect(m_actionOctopi, SIGNAL(triggered()), this, SLOT(startOctopi()));
 
@@ -226,7 +226,7 @@ bool MainWindow::startServer()
   if (!m_tcpServer->listen(QHostAddress::LocalHost, 12702))
   {
     QMessageBox::critical(this, StrConstants::getApplicationName(),
-                          QString("Unable to start the server: %1.")
+                          QStringLiteral("Unable to start the server: %1.")
                           .arg(m_tcpServer->errorString()));
     res=false;
   }
@@ -249,17 +249,17 @@ void MainWindow::onSendInfoToOctopiHelper()
 
   if (isHelperExecuting && m_commandExecuting != ectn_NONE)
   {
-    msg="Octopi est occupatus";
+    msg=QLatin1String("Octopi est occupatus");
     out << msg;
   }
   else if (isHelperExecuting && m_commandExecuting == ectn_NONE)
   {
-    msg="Octopi serenum est";
+    msg=QLatin1String("Octopi serenum est");
     out << msg;
   }
   else
   {
-    msg="Atramento nigro";
+    msg=QLatin1String("Atramento nigro");
     out << msg;
   }
 
@@ -290,19 +290,19 @@ void MainWindow::initSystemTrayIcon()
   m_systemTrayIcon = new QSystemTrayIcon(this);
 #endif
 
-  m_systemTrayIcon->setObjectName("systemTrayIcon");
+  m_systemTrayIcon->setObjectName(QStringLiteral("systemTrayIcon"));
 
 #ifdef KSTATUS
   m_systemTrayIcon->setIconByPixmap(m_icon);
   m_systemTrayIcon->setToolTipIconByPixmap(m_icon);
-  m_systemTrayIcon->setTitle("Octopi Notifier");
+  m_systemTrayIcon->setTitle(QLatin1String("Octopi Notifier"));
 #else
   m_systemTrayIcon->setIcon(m_icon); 
 #endif
 
   m_systemTrayIconMenu = new QMenu( this );
 
-  if (UnixCommand::hasTheExecutable("octopi"))
+  if (UnixCommand::hasTheExecutable(QStringLiteral("octopi")))
     m_systemTrayIconMenu->addAction(m_actionOctopi);
 
   m_systemTrayIconMenu->addAction(m_actionCheckUpdates);
@@ -346,7 +346,7 @@ void MainWindow::pacmanHelperTimerTimeout()
     refreshAppIcon();
 
 #ifdef KSTATUS
-    m_systemTrayIcon->setToolTipTitle("Octopi Notifier");
+    m_systemTrayIcon->setToolTipTitle(QLatin1String("Octopi Notifier"));
 #else
     m_systemTrayIcon->show();
 #endif
@@ -443,20 +443,20 @@ void MainWindow::aboutOctopiNotifier()
   QScreen *sc = QGuiApplication::primaryScreen();
   fake->setGeometry(sc->geometry());
 
-  QString aboutText = "<b>Octopi Notifier</b><br>";
-  aboutText += StrConstants::getVersion() + ": " + StrConstants::getApplicationVersion() + "</b>" + " - " + StrConstants::getQtVersion() + "<br>";
-  aboutText += StrConstants::getURL() + ": " + "<a href=\"https://tintaescura.com/projects/octopi/\">https://tintaescura.com/projects/octopi</a><br>";
-  aboutText += StrConstants::getLicenses() + ": " + QString("<a href=\"http://www.gnu.org/licenses/gpl-2.0.html\">GPL v2</a><br>");
-  aboutText += "&copy; Alexandre Albuquerque Arnt<br><br>";
+  QString aboutText = QStringLiteral("<b>Octopi Notifier</b><br>");
+  aboutText += StrConstants::getVersion() + QLatin1String(": ") + StrConstants::getApplicationVersion() + QLatin1String("</b>") + QLatin1String(" - ") + StrConstants::getQtVersion() + QLatin1String("<br>");
+  aboutText += StrConstants::getURL() + QLatin1String(": ") + QLatin1String("<a href=\"https://tintaescura.com/projects/octopi/\">https://tintaescura.com/projects/octopi</a><br>");
+  aboutText += StrConstants::getLicenses() + QLatin1String(": ") + QLatin1String("<a href=\"http://www.gnu.org/licenses/gpl-2.0.html\">GPL v2</a><br>");
+  aboutText += QLatin1String("&copy; Alexandre Albuquerque Arnt<br><br>");
 
-  aboutText += "<b>Pacman</b><br>";
+  aboutText += QLatin1String("<b>Pacman</b><br>");
   QString pacmanV = UnixCommand::getPacmanVersion();
-  if (pacmanV.at(0) == 'v') pacmanV.remove(0, 1);
-  aboutText += StrConstants::getVersion() + ": " + pacmanV + "<br>";
-  aboutText += StrConstants::getURL() + ": " + "<a href=\"https://www.archlinux.org/pacman/\">https://www.archlinux.org/pacman</a><br>";
+  if (pacmanV.at(0) == QLatin1Char('v')) pacmanV.remove(0, 1);
+  aboutText += StrConstants::getVersion() + QLatin1String(": ") + pacmanV + QLatin1String("<br>");
+  aboutText += StrConstants::getURL() + QLatin1String(": ") + QLatin1String("<a href=\"https://www.archlinux.org/pacman/\">https://www.archlinux.org/pacman</a><br>");
   QDate d = QDate::currentDate();
-  aboutText += "&copy; 2006-%1 Pacman Development Team<br>";
-  aboutText += "&copy; 2002-2006 Judd Vinet";
+  aboutText += QLatin1String("&copy; 2006-%1 Pacman Development Team<br>");
+  aboutText += QLatin1String("&copy; 2002-2006 Judd Vinet");
   aboutText = aboutText.arg(d.year());
   QMessageBox::about(fake, StrConstants::getHelpAbout(), aboutText);
 
@@ -469,7 +469,7 @@ void MainWindow::aboutOctopiNotifier()
  */
 void MainWindow::hideOctopi()
 {  
-  QProcess::startDetached("octopi -hide");
+  QProcess::startDetached(QStringLiteral("octopi -hide"));
 }
 
 /*
@@ -477,7 +477,7 @@ void MainWindow::hideOctopi()
  */
 void MainWindow::showOctopi()
 {
-  QProcess::startDetached("octopi -show");
+  QProcess::startDetached(QStringLiteral("octopi -show"));
 }
 
 /*
@@ -491,7 +491,7 @@ bool MainWindow::_isSUAvailable()
   {
     QMessageBox::critical( nullptr, StrConstants::getApplicationName(),
                            StrConstants::getErrorNoSuCommand() +
-                           "\n" + StrConstants::getYoullNeedSuFrontend());
+                           QLatin1Char('\n') + StrConstants::getYoullNeedSuFrontend());
     return false;
   }
   else
@@ -518,8 +518,8 @@ void MainWindow::doSystemUpgrade()
 
   if(!SettingsManager::getEnableConfirmationDialogInSysUpgrade())
   {
-    if( (m_checkUpdatesStringList.count() != 0 && m_checkUpdatesStringList.contains("pacman")) ||
-        (m_outdatedStringList->count() != 0 && m_outdatedStringList->contains("pacman")) )
+    if( (m_checkUpdatesStringList.count() != 0 && m_checkUpdatesStringList.contains(QStringLiteral("pacman"))) ||
+        (m_outdatedStringList->count() != 0 && m_outdatedStringList->contains(QStringLiteral("pacman"))) )
     {
       m_systemUpgradeDialog = false;
 
@@ -595,7 +595,7 @@ void MainWindow::doSystemUpgrade()
       foreach(QString name, m_checkUpdatesStringList)
       {
         PackageListData aux;
-        aux = PackageListData(name, m_checkUpdatesNameNewVersion->value(name), "0");
+        aux = PackageListData(name, m_checkUpdatesNameNewVersion->value(name), QStringLiteral("0"));
         targets->append(aux);
       }
     }
@@ -603,7 +603,7 @@ void MainWindow::doSystemUpgrade()
     foreach(PackageListData target, *targets)
     {
       totalDownloadSize += target.downloadSize;
-      list = list + target.name + "-" + target.version + "\n";
+      list = list + target.name + QLatin1Char('-') + target.version + QLatin1Char('\n');
     }
     list.remove(list.size()-1, 1);
 
@@ -613,10 +613,10 @@ void MainWindow::doSystemUpgrade()
 
     if(targets->count()==1)
       m_transactionDialog->setText(StrConstants::getRetrievePackage() +
-                                   "\n\n" + StrConstants::getTotalDownloadSize().arg(ds).remove(" KB"));
+                                   QLatin1String("\n\n") + StrConstants::getTotalDownloadSize().arg(ds).remove(QStringLiteral(" KB")));
     else
       m_transactionDialog->setText(StrConstants::getRetrievePackages(targets->count()) +
-                                   "\n\n" + StrConstants::getTotalDownloadSize().arg(ds).remove(" KB"));
+                                   QLatin1String("\n\n") + StrConstants::getTotalDownloadSize().arg(ds).remove(QStringLiteral(" KB")));
 
     m_transactionDialog->setWindowTitle(StrConstants::getConfirmation());
     m_transactionDialog->setInformativeText(StrConstants::getConfirmationQuestion());
@@ -687,10 +687,10 @@ void MainWindow::doAURUpgrade()
   foreach(QString pkg, *m_outdatedAURStringList)
   {
     auxPkg = pkg;
-    auxPkg.remove("[1;39m");
-    auxPkg.remove("[0m");
-    auxPkg.remove("");
-    listOfTargets += auxPkg + " ";
+    auxPkg.remove(QStringLiteral("[1;39m"));
+    auxPkg.remove(QStringLiteral("[0m"));
+    auxPkg.remove(QStringLiteral(""));
+    listOfTargets += auxPkg + QLatin1Char(' ');
   }
 
   toggleEnableInterface(false);
@@ -758,7 +758,7 @@ void MainWindow::afterCheckUpdates(int exitCode, QProcess::ExitStatus)
 
   foreach(QString line, checkUpdatesList)
   {
-    QStringList aux = line.split(" ", QString::SkipEmptyParts);
+    QStringList aux = line.split(QStringLiteral(" "), QString::SkipEmptyParts);
 
     m_checkUpdatesStringList.append(aux.at(0));
     m_checkUpdatesNameNewVersion->insert(aux.at(0), aux.at(3));
@@ -780,7 +780,7 @@ void MainWindow::afterCheckUpdates(int exitCode, QProcess::ExitStatus)
 
         #ifdef KSTATUS
           m_systemTrayIcon->setToolTipSubTitle(notification);
-          m_systemTrayIcon->showMessage("Octopi",
+          m_systemTrayIcon->showMessage(QLatin1String("Octopi"),
                                         notification, m_systemTrayIcon->iconName());
         #else
           m_systemTrayIcon->setToolTip(notification);
@@ -792,7 +792,7 @@ void MainWindow::afterCheckUpdates(int exitCode, QProcess::ExitStatus)
 
         #ifdef KSTATUS
           m_systemTrayIcon->setToolTipSubTitle(notification);
-          m_systemTrayIcon->showMessage("Octopi",
+          m_systemTrayIcon->showMessage(QLatin1String("Octopi"),
                                         notification, m_systemTrayIcon->iconName());
         #else
           m_systemTrayIcon->setToolTip(notification);
@@ -810,7 +810,7 @@ void MainWindow::afterCheckUpdates(int exitCode, QProcess::ExitStatus)
 
       #ifdef KSTATUS
         m_systemTrayIcon->setToolTipSubTitle(notification);
-        m_systemTrayIcon->showMessage("Octopi",
+        m_systemTrayIcon->showMessage(QLatin1String("Octopi"),
                                       notification, m_systemTrayIcon->iconName());
       #else
         m_systemTrayIcon->setToolTip(notification);
@@ -822,7 +822,7 @@ void MainWindow::afterCheckUpdates(int exitCode, QProcess::ExitStatus)
 
       #ifdef KSTATUS
         m_systemTrayIcon->setToolTipSubTitle(notification);
-        m_systemTrayIcon->showMessage("Octopi",
+        m_systemTrayIcon->showMessage(QLatin1String("Octopi"),
                                       notification, m_systemTrayIcon->iconName());
       #else
         m_systemTrayIcon->setToolTip(notification);
@@ -876,7 +876,7 @@ void MainWindow::checkUpdates(CheckUpdate check)
 
   QTime now;
   if (m_debugInfo)
-    qDebug() << now.currentTime().toString("HH:mm").toLatin1().data() <<  ": At checkUpdates()...";
+    qDebug() << now.currentTime().toString(QStringLiteral("HH:mm")).toLatin1().data() <<  ": At checkUpdates()...";
   toggleEnableInterface(false);
   m_icon = IconHelper::getIconOctopiBusy();
 
@@ -900,11 +900,11 @@ void MainWindow::checkUpdates(CheckUpdate check)
   m_commandExecuting = ectn_CHECK_UPDATES;
 
   //Let's synchronize kcp database...
-  if (UnixCommand::getLinuxDistro() == ectn_KAOS && UnixCommand::hasTheExecutable("kcp"))
+  if (UnixCommand::getLinuxDistro() == ectn_KAOS && UnixCommand::hasTheExecutable(QStringLiteral("kcp")))
   {
     if (m_debugInfo)
       qDebug() << "Synchronizing kcp database...";
-    UnixCommand::execCommandAsNormalUser("kcp -u");
+    UnixCommand::execCommandAsNormalUser(QStringLiteral("kcp -u"));
   }
 
   m_pacmanExec = new PacmanExec(this);
@@ -918,12 +918,12 @@ void MainWindow::checkUpdates(CheckUpdate check)
  */
 void MainWindow::sendNotification(const QString &msg)
 {
-  QString processToExec("notify-send");
+  QString processToExec(QStringLiteral("notify-send"));
 
   if (UnixCommand::hasTheExecutable(processToExec))
   {
-    processToExec += " -i /usr/share/icons/octopi_red.png -t 5000 \"" +
-        StrConstants::getApplicationName() + "\"  \"" + msg + "\"";
+    processToExec += QLatin1String(" -i /usr/share/icons/octopi_red.png -t 5000 \"") +
+        StrConstants::getApplicationName() + QLatin1String("\"  \"") + msg + QLatin1Char('"');
 
     QProcess::startDetached(processToExec);
   }
@@ -986,9 +986,9 @@ void MainWindow::refreshAppIcon()
   if (m_numberOfOutdatedPackages == 0 && m_numberOfOutdatedAURPackages == 0)
   {
     #ifdef KSTATUS
-      m_systemTrayIcon->setToolTipSubTitle("Octopi Notifier");
+      m_systemTrayIcon->setToolTipSubTitle(QLatin1String("Octopi Notifier"));
     #else
-      m_systemTrayIcon->setToolTip("Octopi Notifier");
+      m_systemTrayIcon->setToolTip(QStringLiteral("Octopi Notifier"));
     #endif
   }
   else if (m_numberOfOutdatedPackages > 0)
@@ -1017,10 +1017,10 @@ void MainWindow::refreshAppIcon()
     {
       #ifdef KSTATUS
         m_systemTrayIcon->setToolTipSubTitle(StrConstants::getOneNewUpdate() +
-                                             " (" + StrConstants::getForeignRepositoryName() + ")");
+                                             QLatin1String(" (") + StrConstants::getForeignRepositoryName() + QLatin1Char(')'));
       #else
         m_systemTrayIcon->setToolTip(StrConstants::getOneNewUpdate() +
-                                     " (" + StrConstants::getForeignRepositoryName() + ")");
+                                     QLatin1String(" (") + StrConstants::getForeignRepositoryName() + QLatin1Char(')'));
       #endif
     }
     else if (m_numberOfOutdatedAURPackages > 1)
@@ -1028,10 +1028,10 @@ void MainWindow::refreshAppIcon()
       #ifdef KSTATUS
         m_systemTrayIcon->setToolTipSubTitle(
               StrConstants::getNewUpdates(m_numberOfOutdatedAURPackages) +
-              " (" + StrConstants::getForeignRepositoryName() + ")");
+              QLatin1String(" (") + StrConstants::getForeignRepositoryName() + QLatin1Char(')'));
       #else
         m_systemTrayIcon->setToolTip(StrConstants::getNewUpdates(m_numberOfOutdatedAURPackages) +
-                                     " (" + StrConstants::getForeignRepositoryName() + ")");
+                                     QLatin1String(" (") + StrConstants::getForeignRepositoryName() + QLatin1Char(')'));
       #endif
     }
   }
@@ -1147,7 +1147,7 @@ void MainWindow::execSystemTrayActivated(QSystemTrayIcon::ActivationReason ar)
     }
     else
     {
-      if (UnixCommand::isAppRunning("octopi", true))
+      if (UnixCommand::isAppRunning(QStringLiteral("octopi"), true))
       {
         hideOctopi();
       }
@@ -1203,7 +1203,7 @@ void MainWindow::exitNotifier()
     qDebug() << "At exitNotifier()...";
 
   //If Octopi was hidden, let's show its window again...
-  if (UnixCommand::isAppRunning("octopi", true)) showOctopi();
+  if (UnixCommand::isAppRunning(QStringLiteral("octopi"), true)) showOctopi();
   qApp->quit();
 }
 
@@ -1214,31 +1214,31 @@ void MainWindow::runOctopi(ExecOpt execOptions)
 {
   if (execOptions == ectn_SYSUPGRADE_NOCONFIRM_EXEC_OPT && canOctopiUpgrade())
   {
-    QProcess::startDetached("octopi -sysupgrade-noconfirm");
+    QProcess::startDetached(QStringLiteral("octopi -sysupgrade-noconfirm"));
   }
   else if (execOptions == ectn_SYSUPGRADE_EXEC_OPT &&
-      (!UnixCommand::isAppRunning("octopi", true) || !canOctopiUpgrade()) && (m_outdatedStringList->count() > 0 || m_checkUpdatesStringList.count() > 0))
+      (!UnixCommand::isAppRunning(QStringLiteral("octopi"), true) || !canOctopiUpgrade()) && (m_outdatedStringList->count() > 0 || m_checkUpdatesStringList.count() > 0))
   {
     doSystemUpgrade();
   }
   else if (execOptions == ectn_SYSUPGRADE_EXEC_OPT && canOctopiUpgrade() &&
-      UnixCommand::isAppRunning("octopi", true) && (m_outdatedStringList->count() > 0 || m_checkUpdatesStringList.count() > 0))
+      UnixCommand::isAppRunning(QStringLiteral("octopi"), true) && (m_outdatedStringList->count() > 0 || m_checkUpdatesStringList.count() > 0))
   {
-    QProcess::startDetached("octopi -sysupgrade");
+    QProcess::startDetached(QStringLiteral("octopi -sysupgrade"));
   }
   else if (execOptions == ectn_AUR_UPGRADE_EXEC_OPT &&
-      (!UnixCommand::isAppRunning("octopi", true) || !canOctopiUpgrade()) && m_outdatedAURStringList->count() > 0)
+      (!UnixCommand::isAppRunning(QStringLiteral("octopi"), true) || !canOctopiUpgrade()) && m_outdatedAURStringList->count() > 0)
   {
     doAURUpgrade();
   }
   else if (execOptions == ectn_AUR_UPGRADE_EXEC_OPT && canOctopiUpgrade() &&
-      UnixCommand::isAppRunning("octopi", true) && m_outdatedAURStringList->count() > 0)
+      UnixCommand::isAppRunning(QStringLiteral("octopi"), true) && m_outdatedAURStringList->count() > 0)
   {
-    QProcess::startDetached("octopi -aurupgrade");
+    QProcess::startDetached(QStringLiteral("octopi -aurupgrade"));
   }
   else if (execOptions == ectn_NORMAL_EXEC_OPT)
   {
-    QProcess::startDetached("octopi");
+    QProcess::startDetached(QStringLiteral("octopi"));
   }
 }
 
@@ -1247,9 +1247,9 @@ void MainWindow::runOctopi(ExecOpt execOptions)
  */
 void MainWindow::showOptionsDialog()
 {
-  if (m_optionsDialog == nullptr && UnixCommand::isAppRunning("octopi", true))
+  if (m_optionsDialog == nullptr && UnixCommand::isAppRunning(QStringLiteral("octopi"), true))
   {
-    QProcess::startDetached("octopi -options");
+    QProcess::startDetached(QStringLiteral("octopi -options"));
   }
   else if (m_optionsDialog == nullptr)
   {
