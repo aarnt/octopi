@@ -755,9 +755,9 @@ void MainWindow::showPackagesWithNoDescription()
 {
   bool printHeader = false;
   QList<PackageListData> *list = Package::getPackageList(QLatin1String(""), m_checkUpdatesNameNewVersion);
-  QList<PackageListData>::const_iterator it = list->begin();
+  QList<PackageListData>::const_iterator it = list->cbegin();
 
-  while(it != list->end())
+  while(it != list->cend())
   {
     PackageListData pld = *it;
 
@@ -850,9 +850,9 @@ void MainWindow::buildPackageList()
   m_progressWidget->show();
 
   int counter=0;
-  QList<PackageListData>::const_iterator it = list->begin();
+  QList<PackageListData>::const_iterator it = list->cbegin();
 
-  while(it != list->end())
+  while(it != list->cend())
   {
     counter++;
     m_progressWidget->setValue(counter);
@@ -1122,9 +1122,9 @@ void MainWindow::buildAURPackageList()
   m_progressWidget->setValue(0);
   int counter=0;
   int installedCount = 0;
-  QList<PackageListData>::const_iterator it = list->begin();
+  QList<PackageListData>::const_iterator it = list->cbegin();
 
-  while(it != list->end())
+  while(it != list->cend())
   {
     if (isPackageInstalled(it->name)) {
       ++installedCount;
