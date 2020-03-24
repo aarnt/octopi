@@ -37,7 +37,7 @@ void CheckBoxDelegate::paint( QPainter *painter,
     cbo.rect = option.rect;
     cbo.rect.setLeft( option.rect.center().x() - 10 );
     cbo.state = value ? QStyle::State_On : QStyle::State_Off;
-    cbo.text = "";
+    cbo.text = QLatin1String("");
     cbo.state = cbo.state | QStyle::State_Enabled;
 
 

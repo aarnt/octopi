@@ -85,9 +85,9 @@ void AddRepo::checkAndApply()
     if( ui->repo->text().remove( RepoConf::commentString ).trimmed().isEmpty() ) {
         showError( tr( "The repository name field can't be blank." ) );
     } else if ( RepoConf::matchRepo( RepoEntry::formatRepoName( ui->repo->text() ) ) ) {
-        QString prefix = "";
+        QString prefix = QLatin1String("");
 
-        QString location = ui->locationCB->currentText() + " = " + ui->location->text();
+        QString location = ui->locationCB->currentText() + QLatin1String(" = ") + ui->location->text();
         bool valid = true;
 
         if( !RepoConf::matchRepoDetails( location ) )
@@ -107,7 +107,7 @@ void AddRepo::checkAndApply()
 
 void AddRepo::locationChanged( int )
 {
-    if( ui->locationCB->currentText() == "Server" ) {
+    if( ui->locationCB->currentText() == QLatin1String("Server") ) {
         ui->location->setPlaceholderText( tr( "Address of remote or local packages repository" ) );
         ui->selectLocalDirectory->setVisible( true );
         ui->selectServerList->setVisible( false );
@@ -122,7 +122,7 @@ void AddRepo::showError(QString error)
 {
     QMessageBox mb( QMessageBox::Critical,
                     tr( "Error" ),
-                    tr( "Can't add repository." ) + QString( "\n" ) + error,
+                    tr( "Can't add repository." ) + QStringLiteral( "\n" ) + error,
                     QMessageBox::Ok,
                     this);
     mb.exec();
@@ -132,20 +132,20 @@ void AddRepo::selectLocalRepository()
 {
     QStringList list;
     QFileDialog dialog( this );
-    dialog.setDirectory( "/" );
+    dialog.setDirectory( QStringLiteral("/") );
     dialog.setWindowTitle( tr( "Select local repository" ) );
     dialog.setFileMode( QFileDialog::Directory );
     if( dialog.exec() )
         list = dialog.selectedFiles();
     if( list.count() > 0 )
-        ui->location->setText( ( ui->locationCB->currentIndex() == 1 ? "file://" : "") + list.at( 0 ) );
+        ui->location->setText( ( ui->locationCB->currentIndex() == 1 ? QLatin1String("file://") : QLatin1String("")) + list.at( 0 ) );
 }
 
 void AddRepo::selectServerList()
 {
     QStringList list;
     QFileDialog dialog( this );
-    dialog.setDirectory( "/" );
+    dialog.setDirectory( QStringLiteral("/") );
     dialog.setWindowTitle( tr( "Select mirrors list" ) );
     dialog.setFileMode( QFileDialog::AnyFile );
     if ( dialog.exec() )
