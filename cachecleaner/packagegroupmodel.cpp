@@ -50,7 +50,7 @@ PackageGroupModel::PackageGroupModel(QString optionsString,
 {
   m_cleanButton->setText(tr("Clean"));
 
-  m_sharedMemory=new QSharedMemory("org.arnt.octopi", this);
+  m_sharedMemory=new QSharedMemory(QStringLiteral("org.arnt.octopi"), this);
 
   //setup UI slots
   connect( m_spinner, SIGNAL( valueChanged(int) ), SLOT( updateKeepArchives() ) );
@@ -100,7 +100,7 @@ void PackageGroupModel::keepArchivesChanged()
  */
 QString PackageGroupModel::getOptions()
 {
-  return m_optionsString + "-k " + QString::number(m_spinner->value());
+  return m_optionsString + QLatin1String("-k ") + QString::number(m_spinner->value());
 }
 
 /*
@@ -123,7 +123,7 @@ void PackageGroupModel::refreshCacheView()
   QObject::connect(m_cmd, SIGNAL( finished ( int, QProcess::ExitStatus )),
                    this, SLOT( finishedDryrun ( int, QProcess::ExitStatus )) );
 
-  m_cmd->executeCommandAsNormalUser("paccache -v -d " + getOptions());
+  m_cmd->executeCommandAsNormalUser(QLatin1String("paccache -v -d ") + getOptions());
   isExecutingCommand = true;
 }
 
@@ -141,7 +141,7 @@ bool PackageGroupModel::isSUAvailable()
   else if (WMHelper::getSUCommand() == ctn_NO_SU_COMMAND){
     QMessageBox::critical( 0, StrConstants::getApplicationName(),
                            StrConstants::getErrorNoSuCommand() +
-                           "\n" + StrConstants::getYoullNeedSuFrontend());
+                           QLatin1String("\n") + StrConstants::getYoullNeedSuFrontend());
     return false;
   }
   else
@@ -169,7 +169,7 @@ void PackageGroupModel::cleanCache()
                    this, SLOT( finishedClean( int, QProcess::ExitStatus )) );
 
   isExecutingCommand = true;
-  QByteArray tmp = "paccache -r " + getOptions().toLatin1();
+  const QString tmp = QLatin1String("paccache -r ") + getOptions();
   //UnixCommand::removeTemporaryFiles();
   m_cmd->executeCommandWithSharedMemHelper(tmp, m_sharedMemory);
 }
@@ -190,7 +190,7 @@ void PackageGroupModel::finishedDryrun(int exitCode, QProcess::ExitStatus)
   if(exitCode > 1)
   {
     //process failed, provide info on errors
-    QMessageBox::critical(m_listView, "Error whith the underlying process", m_acc->getErrors());
+    QMessageBox::critical(m_listView, QStringLiteral("Error whith the underlying process"), m_acc->getErrors());
   }
   else if (exitCode == 0)
   {
@@ -234,9 +234,9 @@ void PackageGroupModel::finishedClean(int exitCode, QProcess::ExitStatus)
  * @param output The output of the dryrun process
  */
 void PackageGroupModel::processDryrunResult(QString output) {
-  QStringList lines = output.split(QRegularExpression("\\n"), QString::SkipEmptyParts);
+  QStringList lines = output.split(QRegularExpression(QStringLiteral("\\n")), QString::SkipEmptyParts);
 
-  if(lines.length() == 1 || output.contains("*.pkg.tar?(.+([^.]))"))
+  if(lines.length() == 1 || output.contains(QLatin1String("*.pkg.tar?(.+([^.]))")))
   {
     //"==> no candidate packages found for pruning"
     m_cleanButton->setText(tr("Clean"));
@@ -255,14 +255,14 @@ void PackageGroupModel::processDryrunResult(QString output) {
       else if(i == lines.length() - 1)
       {
         //extract size from "==> finished dry run: 8 candidates (disk space saved: 19.11 MiB)")
-        QStringList components = line.split(" ");
+        QStringList components = line.split(QStringLiteral(" "));
 
         QString unit = components.takeLast();
         unit.remove(unit.length() - 1, 1);
 
         QString size = components.takeLast();
 
-        m_cleanButton->setText(tr("Clean %1").arg(" " + size + " " + unit));
+        m_cleanButton->setText(tr("Clean %1").arg(QLatin1Char(' ') + size + QLatin1Char(' ') + unit));
       }
       else
         m_listView->addItem(line);

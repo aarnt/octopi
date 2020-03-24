@@ -7,6 +7,14 @@
 QT += core gui network xml widgets
 
 CONFIG += qt console warn_on debug
+
+# Disable automatic string conversions
+DEFINES += QT_USE_QSTRINGBUILDER \
+           QT_NO_CAST_FROM_ASCII \
+           QT_NO_CAST_TO_ASCII \
+           QT_NO_URL_CAST_FROM_STRING \
+           QT_NO_CAST_FROM_BYTEARRAY
+
 TEMPLATE = app
 DESTDIR += bin
 OBJECTS_DIR += build
