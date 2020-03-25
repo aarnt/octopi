@@ -57,17 +57,17 @@ public:
     };
 
     static QByteArray Crypt(QAESEncryption::Aes level, QAESEncryption::Mode mode, const QByteArray &rawText, const QByteArray &key,
-                            const QByteArray &iv = NULL, QAESEncryption::Padding padding = QAESEncryption::ISO);
+                            const QByteArray &iv = nullptr, QAESEncryption::Padding padding = QAESEncryption::ISO);
     static QByteArray Decrypt(QAESEncryption::Aes level, QAESEncryption::Mode mode, const QByteArray &rawText, const QByteArray &key,
-                              const QByteArray &iv = NULL, QAESEncryption::Padding padding = QAESEncryption::ISO);
+                              const QByteArray &iv = nullptr, QAESEncryption::Padding padding = QAESEncryption::ISO);
     static QByteArray ExpandKey(QAESEncryption::Aes level, QAESEncryption::Mode mode, const QByteArray &key);
     static QByteArray RemovePadding(const QByteArray &rawText, QAESEncryption::Padding padding);
 
     QAESEncryption(QAESEncryption::Aes level, QAESEncryption::Mode mode,
                    QAESEncryption::Padding padding = QAESEncryption::ISO);
 
-    QByteArray encode(const QByteArray &rawText, const QByteArray &key, const QByteArray &iv = NULL);
-    QByteArray decode(const QByteArray &rawText, const QByteArray &key, const QByteArray &iv = NULL);
+    QByteArray encode(const QByteArray &rawText, const QByteArray &key, const QByteArray &iv = nullptr);
+    QByteArray decode(const QByteArray &rawText, const QByteArray &key, const QByteArray &iv = nullptr);
     QByteArray removePadding(const QByteArray &rawText);
     QByteArray expandKey(const QByteArray &key);
 

@@ -229,9 +229,9 @@ void MainWindow::initTabNews()
   text->show();
 
   int tindex = ui->twProperties->insertTab(ctn_TABINDEX_NEWS, tabNews, QApplication::translate (
-      "MainWindow", aux.toUtf8().constData(), 0/*, QApplication::UnicodeUTF8*/ ) );
+      "MainWindow", aux.toUtf8().constData(), nullptr/*, QApplication::UnicodeUTF8*/ ) );
   ui->twProperties->setTabText(ui->twProperties->indexOf(tabNews), QApplication::translate(
-      "MainWindow", aux.toUtf8().constData(), 0/*, QApplication::UnicodeUTF8*/));
+      "MainWindow", aux.toUtf8().constData(), nullptr/*, QApplication::UnicodeUTF8*/));
 
   SearchBar *searchBar = new SearchBar(this);
 

@@ -339,7 +339,7 @@ private:
 
 public:
   CPUIntensiveComputing(){
-    m_parent = 0;
+    m_parent = nullptr;
     QApplication::setOverrideCursor(Qt::WaitCursor);
   }
 
