@@ -51,8 +51,8 @@ typedef BOOL(WINAPI*PProcessIdToSessionId)(DWORD,DWORD*);
 static PProcessIdToSessionId pProcessIdToSessionId = 0;
 #endif
 #if defined(Q_OS_UNIX)
+#include <ctime>
 #include <unistd.h> //needed by GCC-4.7 compilers
-#include <time.h>
 #endif
 
 namespace QtLP_Private {
