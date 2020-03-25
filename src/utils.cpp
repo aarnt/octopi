@@ -57,7 +57,7 @@ QString utils::showFullPathOfItem(const QModelIndex &index)
 
     nindex = index;
 
-    while (1){
+    while (true){
       nindex = sim->parent( nindex );
       if ( nindex != sim->invisibleRootItem()->index() ) sl << sim->itemFromIndex( nindex )->text();
       else break;
