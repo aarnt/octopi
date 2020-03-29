@@ -40,7 +40,7 @@ protected:
   virtual void keyPressEvent(QKeyEvent *);
 
 public:
-  explicit SearchBar(QWidget *parent = 0);
+  explicit SearchBar(QWidget *parent = nullptr);
 
   void init();
   inline SearchLineEdit *getSearchLineEdit(){ return m_searchLineEdit; }

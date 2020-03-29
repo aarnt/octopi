@@ -33,8 +33,8 @@ class SettingsManager
     static SettingsManager *m_pinstance;
     QSettings *m_SYSsettings;
 
-    SettingsManager(const SettingsManager&);
-    SettingsManager& operator= (const SettingsManager&);
+    SettingsManager(const SettingsManager&) = delete;
+    SettingsManager& operator= (const SettingsManager&) = delete;
     SettingsManager();
     virtual ~SettingsManager();
     QSettings* getSYSsettings() { return m_SYSsettings; }

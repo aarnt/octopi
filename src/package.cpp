@@ -26,9 +26,9 @@
   #include "alpmbackend.h"
 #endif
 
+#include <cctype>
+#include <cstring>
 #include <iostream>
-#include <string.h>
-#include <ctype.h>
 
 #include <QTextStream>
 #include <QList>

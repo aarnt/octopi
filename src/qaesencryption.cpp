@@ -125,7 +125,7 @@ QAESEncryption::QAESEncryption(Aes level, Mode mode,
                                Padding padding)
     : m_nb(4), m_blocklen(16), m_level(level), m_mode(mode), m_padding(padding)
 {
-    m_state = NULL;
+    m_state = nullptr;
 
     switch (level)
     {

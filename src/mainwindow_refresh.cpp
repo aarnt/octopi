@@ -1692,20 +1692,20 @@ void MainWindow::refreshTabFiles(bool clearContents, bool neverQuit)
           else{
             //std::cout << "It doens't contain..." << std::endl;
             parent = lastItem->parent();
-            if (parent != 0) fullPath = utils::showFullPathOfItem(parent->index());
+            if (parent != nullptr) fullPath = utils::showFullPathOfItem(parent->index());
 
             do{
               //if (parent != 0) std::cout << "Testing if " << file.toLatin1().data() << " contains " << fullPath.toLatin1().data() << std::endl;
-              if ( parent == 0 || file.contains ( fullPath )) break;
+              if ( parent == nullptr || file.contains ( fullPath )) break;
               parent = parent->parent();
-              if (parent != 0) fullPath = utils::showFullPathOfItem(parent->index());
+              if (parent != nullptr) fullPath = utils::showFullPathOfItem(parent->index());
             }
             while ( parent != fakeRoot );
 
             item = new QStandardItem ( IconHelper::getIconFolder(), baseFileName );
             item->setAccessibleDescription(QLatin1String("directory ") + item->text());
 
-            if ( parent != 0 )
+            if ( parent != nullptr )
             {
               //std::cout << item->text().toLatin1().data() << " is son of " << fullPath.toLatin1().data() << std::endl;
               parent->appendRow ( item );
@@ -1725,16 +1725,16 @@ void MainWindow::refreshTabFiles(bool clearContents, bool neverQuit)
         item = new QStandardItem ( IconHelper::getIconFolder(), baseFileName );
         item->setAccessibleDescription(QLatin1String("directory ") + item->text());
         parent = lastDir;
-        if (parent != 0) fullPath = utils::showFullPathOfItem(parent->index());
+        if (parent != nullptr) fullPath = utils::showFullPathOfItem(parent->index());
 
         do{
-          if ( parent == 0 || file.contains ( fullPath )) break;
+          if ( parent == nullptr || file.contains ( fullPath )) break;
           parent = parent->parent();
-          if (parent != 0) fullPath = utils::showFullPathOfItem(parent->index());
+          if (parent != nullptr) fullPath = utils::showFullPathOfItem(parent->index());
         }
         while ( parent != fakeRoot );
 
-        if (parent != 0)
+        if (parent != nullptr)
         {
           parent->appendRow ( item );
         }
@@ -1748,12 +1748,12 @@ void MainWindow::refreshTabFiles(bool clearContents, bool neverQuit)
         item = new QStandardItem ( IconHelper::getIconBinary(), baseFileName );
         item->setAccessibleDescription(QLatin1String("file ") + item->text());
         parent = lastDir;
-        if (parent != 0) fullPath = utils::showFullPathOfItem(parent->index());
+        if (parent != nullptr) fullPath = utils::showFullPathOfItem(parent->index());
 
         do{
-          if ( parent == 0 || file.contains ( fullPath )) break;
+          if ( parent == nullptr || file.contains ( fullPath )) break;
           parent = parent->parent();
-          if (parent != 0) fullPath = utils::showFullPathOfItem(parent->index());
+          if (parent != nullptr) fullPath = utils::showFullPathOfItem(parent->index());
         }
         while ( parent != fakeRoot );
 

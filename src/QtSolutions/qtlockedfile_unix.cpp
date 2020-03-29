@@ -37,10 +37,10 @@
 **
 ****************************************************************************/
 
-#include <string.h>
-#include <errno.h>
-#include <unistd.h>
+#include <cerrno>
+#include <cstring>
 #include <fcntl.h>
+#include <unistd.h>
 
 #include "qtlockedfile.h"
 

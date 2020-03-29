@@ -36,7 +36,7 @@
 #include <QCryptographicHash>
 
 //Initialization of Singleton pointer...
-SettingsManager* SettingsManager::m_pinstance = 0;
+SettingsManager* SettingsManager::m_pinstance = nullptr;
 
 SettingsManager::SettingsManager(){
   m_SYSsettings = new QSettings(QSettings::UserScope, ctn_ORGANIZATION, ctn_APPLICATION);
@@ -48,7 +48,7 @@ SettingsManager::~SettingsManager(){
 
 // Class singleton
 SettingsManager* SettingsManager::instance(){
-  if (m_pinstance == 0)
+  if (m_pinstance == nullptr)
   {
     m_pinstance = new SettingsManager();
   }

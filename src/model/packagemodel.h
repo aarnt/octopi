@@ -43,7 +43,7 @@ public:
   static const int ctn_PACKAGE_DESCRIPTION_FILTER_NO_COLUMN = 6;
 
 public:
-  explicit PackageModel(const PackageRepository& repo, QObject* parent = 0);
+  explicit PackageModel(const PackageRepository& repo, QObject* parent = nullptr);
 
 signals:
 

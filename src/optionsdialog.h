@@ -57,7 +57,7 @@ protected:
   virtual void accept();
 
 public:
-  explicit OptionsDialog(QWidget *parent = 0);
+  explicit OptionsDialog(QWidget *parent = nullptr);
   void gotoAURTab();
 
 signals:

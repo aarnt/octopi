@@ -7,7 +7,7 @@
   running QApplication */
 
 ArgumentList::ArgumentList() {
-    if (qApp != NULL)  /* a global pointer to the current qApplication */
+    if (qApp != nullptr)  /* a global pointer to the current qApplication */
         *this = qApp->arguments();
 }
 
