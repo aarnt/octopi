@@ -1460,7 +1460,7 @@ void MainWindow::onAURVotingChanged()
 {
   if(SettingsManager::getEnableAURVoting())
   {
-    if (m_aurVote!=nullptr) delete m_aurVote;
+    delete m_aurVote;
     m_aurVote = new AurVote(this);
     m_aurVote->setUserName(SettingsManager::getAURUserName());
     m_aurVote->setPassword(SettingsManager::getAURPassword());
@@ -1999,7 +1999,7 @@ void MainWindow::pacmanProcessFinished(int exitCode, QProcess::ExitStatus exitSt
           else if (Package::getForeignRepositoryToolName() == ctn_KCP_TOOL)
           {
             metaBuildPackageList();
-            if (m_pacmanExec != nullptr) delete m_pacmanExec;
+            delete m_pacmanExec;
             m_commandExecuting = ectn_NONE;
             enableTransactionActions();
             m_progressWidget->close();
@@ -2087,7 +2087,7 @@ void MainWindow::pacmanProcessFinished(int exitCode, QProcess::ExitStatus exitSt
     m_actionSwitchToAURTool->setChecked(false);
   }
 
-  if (m_pacmanExec != nullptr) delete m_pacmanExec;
+  delete m_pacmanExec;
   if (m_progressWidget->isVisible()) m_progressWidget->close();
   m_commandExecuting = ectn_NONE;
 
@@ -2158,8 +2158,7 @@ void MainWindow::onPressAnyKeyToContinue()
   refreshMenuTools(); //Maybe some of octopi tools were added/removed...
   enableTransactionActions();
 
-  if (m_pacmanExec != nullptr)
-    delete m_pacmanExec;
+  delete m_pacmanExec;
 
   m_commandExecuting = ectn_NONE;
   m_console->execute(QLatin1String(""));
@@ -2182,8 +2181,7 @@ void MainWindow::onCancelControlKey()
     clearTransactionTreeView();
     enableTransactionActions();
 
-    if (m_pacmanExec != nullptr)
-      delete m_pacmanExec;
+    delete m_pacmanExec;
 
     m_pacmanExec = nullptr;
     m_commandExecuting = ectn_NONE;
