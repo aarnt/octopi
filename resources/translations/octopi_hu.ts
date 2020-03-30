@@ -402,7 +402,7 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="173"/>
         <source>Ctrl+U or &apos;File/System upgrade&apos; to make a full system upgrade (pacman -Su)</source>
-        <translation>Ctrl+U vagy &apos;Fájl/ Rendszer frissítése&apos; a teljes rendszer frissítésére (pacman -Su)</translation>
+        <translation>Ctrl+U vagy &apos;Fájl/ Rendszer frissítése&apos; a teljes rendszer frissítéséhez (pacman -Su)</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="175"/>
@@ -452,7 +452,7 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="200"/>
         <source>F11 to maximize/demaximize Tab&apos;s view</source>
-        <translation>F11 a fül maximalizálásához/visszakicsinyítéséhez</translation>
+        <translation>F11 a fül maximalizálásához/visszaállításához</translation>
     </message>
 </context>
 <context>
@@ -470,12 +470,12 @@
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="50"/>
         <source>Show package numbers in output tab</source>
-        <translation>Mutassa a csomagok számát a kimenet fülön</translation>
+        <translation>Csomagok számának mejelenítése a kimenet fülön</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="63"/>
         <source>Show stop transaction button at statusbar</source>
-        <translation>Mutassa a tranzakció megállítása gombot az állapotsoron</translation>
+        <translation>Tranzakció leállítása gomb megjelenítése az állapotsoron</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="76"/>
@@ -495,7 +495,7 @@
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="139"/>
         <source>Select the AUR tool Octopi should use</source>
-        <translation>Válasszon AUR eszközt az Octopi-hoz</translation>
+        <translation>Válasszon AUR-kezelőt az Octopi-hoz</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="214"/>
@@ -539,12 +539,12 @@ A használatuk csak saját felelősségre.</translation>
         <location filename="Projects/octopi/src/optionsdialog.cpp" line="161"/>
         <location filename="Projects/octopi/src/optionsdialog.cpp" line="173"/>
         <source>Backend</source>
-        <translation>Felület</translation>
+        <translation>Backend</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="422"/>
         <source>Select the backend Octopi should use</source>
-        <translation>Válasszon Octopi felületet</translation>
+        <translation>Válasszon Octopi backendet</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="446"/>
@@ -1052,7 +1052,7 @@ Szinkronizálnia kell az adatbázist!</translation>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="514"/>
         <source>SysInfo file generated on: %1&lt;br&gt;If you wish, post the output in your distro&apos;s forum for help.</source>
-        <translation>SysInfo fájl a %1&lt;br&gt;helyre lett generálva. Ha szeretné, tegye közzé a kimenetet a disztró  fórumán segítségért.</translation>
+        <translation>SysInfo fájl a %1&lt;br&gt;helyre lett generálva. Ha szeretné, tegye közzé a kimenetet a disztrója  fórumán segítségért.</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="518"/>
@@ -1204,13 +1204,13 @@ Szinkronizálnia kell az adatbázist!</translation>
         <source>You'll need one of those tools to use AUR:
 
 %1, %2, %3 %4 or %5</source>
-        <translation>Az AUR használatához egyet telepítenie kell ezek közül: %1, %2, %3 %4 vagy %5.</translation>
+        <translation>Az AUR használatához az egyiket telepítenie kell ezek közül: %1, %2, %3 %4 vagy %5.</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="654"/>
         <source>You need a package in order to use AUR.
 Do you want to install it?</source>
-        <translation>Az AUR használatához egy csomag szükséges.
+        <translation>Az AUR használatához szükséges egy csomag.
 Szeretné telepíteni?</translation>
     </message>
     <message>
@@ -1222,7 +1222,7 @@ Szeretné telepíteni?</translation>
         <location filename="Projects/octopi/src/strconstants.cpp" line="664"/>
         <source>Would you like to help this project by voting for it?
 You only need to accept and wait a few seconds.</source>
-        <translation>Szeretné segíteni ezt a projektet, úgy szavaz rá?
+        <translation>Szeretné segíteni ezt a projektet, úgy hogy szavaz rá?
 Csak pár másodperc.</translation>
     </message>
     <message>
@@ -1284,7 +1284,7 @@ Do you want to continue?
 
 &quot;/etc/lsb-release&quot;, &quot;inxi -Fxz&quot;, &quot;uname -a&quot;, &quot;mhwd -li -d,&quot;
 &quot;journalctl -b -p err&quot;, &quot;cat /etc/pacman.conf&quot;, &quot;pacman -Qm&quot;
-and &quot;head --bytes=256K /var/log/pacman.log&quot;
+és &quot;head --bytes=256K /var/log/pacman.log&quot;
 
 Akarja folytatni?
 </translation>
@@ -1384,7 +1384,7 @@ Biztos abban, hogy megnyitja?</translation>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="793"/>
         <source>Check for package updates interval</source>
-        <translation>Milyen gyakran keressen frissítéseket</translation>
+        <translation>Frissítések keresésének gyakorisága</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="797"/>

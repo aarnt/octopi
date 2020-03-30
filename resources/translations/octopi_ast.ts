@@ -14,7 +14,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="106"/>
         <source>Actions</source>
-        <translation type="unfinished"/>
+        <translation>Aiciones</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="111"/>
@@ -24,32 +24,32 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="147"/>
         <source>&amp;Help</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Ayuda</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="156"/>
         <source>&amp;View</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Ver</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="172"/>
         <source>&amp;File</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Ficheru</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="184"/>
         <source>&amp;Search</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Guetar</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="194"/>
         <source>T&amp;ools</source>
-        <translation type="unfinished"/>
+        <translation>F&amp;erramientes</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="224"/>
         <source>&amp;About</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Tocante a</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="227"/>
@@ -64,7 +64,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="250"/>
         <source>Apply</source>
-        <translation type="unfinished"/>
+        <translation>Aplicar</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="271"/>
@@ -74,17 +74,17 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="283"/>
         <source>Check &amp;updates</source>
-        <translation type="unfinished"/>
+        <translation>Comprobar &amp;anovamientos</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="291"/>
         <source>E&amp;xit</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Colar</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="306"/>
         <source>System u&amp;pgrade</source>
-        <translation type="unfinished"/>
+        <translation>A&amp;novamientu del sistema</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="324"/>
@@ -505,12 +505,12 @@
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="269"/>
         <source>User name</source>
-        <translation type="unfinished"/>
+        <translation>Nome d&apos;usuariu</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="282"/>
         <source>Password</source>
-        <translation type="unfinished"/>
+        <translation>Contraseña</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="295"/>
