@@ -1285,6 +1285,7 @@ void PacmanExec::doInstallYayUsingTempYay()
   m_lastCommandList.append(cmd);
   m_lastCommandList.append(QStringLiteral("echo -e;"));
   m_lastCommandList.append(QLatin1String("read -n 1 -p \"") + StrConstants::getPressAnyKey() + QLatin1Char('"'));
+
   m_commandExecuting = ectn_RUN_IN_TERMINAL;
   m_unixCommand->runCommandInTerminalAsNormalUser(m_lastCommandList);
 }
@@ -1295,18 +1296,7 @@ void PacmanExec::doInstallYayUsingTempYay()
 void PacmanExec::doAURRemove(const QString &listOfPackages)
 {
   m_lastCommandList.clear();
-  if (Package::getForeignRepositoryToolName() == ctn_CHASER_TOOL ||
-      Package::getForeignRepositoryToolName() == ctn_KCP_TOOL ||
-      Package::getForeignRepositoryToolName() == ctn_PIKAUR_TOOL)
-  {
-    m_lastCommandList.append(QLatin1String("pacman -R ") + listOfPackages + QLatin1Char(';'));
-  }
-  else
-  {
-    m_lastCommandList.append(Package::getForeignRepositoryToolNameParam() +
-                             QLatin1String(" -R ") + listOfPackages + QLatin1Char(';'));
-  }
-
+  m_lastCommandList.append(QLatin1String("pacman -R ") + listOfPackages + QLatin1Char(';'));
   m_lastCommandList.append(QStringLiteral("echo -e;"));
   m_lastCommandList.append(QLatin1String("read -n 1 -p \"") + StrConstants::getPressAnyKey() + QLatin1Char('"'));
 
@@ -1315,13 +1305,7 @@ void PacmanExec::doAURRemove(const QString &listOfPackages)
   else
     m_commandExecuting = ectn_RUN_IN_TERMINAL;
 
-  if (Package::getForeignRepositoryToolName() != ctn_YAOURT_TOOL &&
-      Package::getForeignRepositoryToolName() != ctn_PACAUR_TOOL)
-  {
-    m_unixCommand->runOctopiHelperInTerminalWithSharedMem(m_lastCommandList, m_sharedMemory);
-  }
-  else
-    m_unixCommand->runCommandInTerminalAsNormalUser(m_lastCommandList);
+  m_unixCommand->runOctopiHelperInTerminalWithSharedMem(m_lastCommandList, m_sharedMemory);
 }
 
 /*
