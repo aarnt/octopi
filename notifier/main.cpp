@@ -72,9 +72,11 @@ int main(int argc, char *argv[])
   QTranslator appTranslator;
   appTranslator.load(QLatin1String(":/resources/translations/octopi_") +
                      QLocale::system().name());
-
   a.installTranslator(&appTranslator);
   a.setQuitOnLastWindowClosed(false);
+
+  setenv("COLORTERM", "truecolor", 1);
+  setenv("TERM", "xterm-256color", 1);
 
   MainWindow w;
   if (w.startServer())

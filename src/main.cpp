@@ -132,6 +132,9 @@ int main(int argc, char *argv[])
     return ( -3 );
   }
 
+  setenv("COLORTERM", "truecolor", 1);
+  setenv("TERM", "xterm-256color", 1);
+
   MainWindow w;
 
   if (w.startServer())
