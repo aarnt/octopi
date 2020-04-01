@@ -693,6 +693,7 @@ void MainWindow::doAURUpgrade()
     listOfTargets += auxPkg + QLatin1Char(' ');
   }
 
+  m_commandExecuting = ectn_RUN_IN_TERMINAL;
   toggleEnableInterface(false);
   setUpgradingTooltip();
   m_outputDialog = new OutputDialog(this);
