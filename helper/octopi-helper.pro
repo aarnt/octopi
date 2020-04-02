@@ -16,7 +16,8 @@ DEFINES += QT_USE_QSTRINGBUILDER \
            QT_NO_CAST_FROM_ASCII \
            QT_NO_CAST_TO_ASCII \
            QT_NO_URL_CAST_FROM_STRING \
-           QT_NO_CAST_FROM_BYTEARRAY
+           QT_NO_CAST_FROM_BYTEARRAY \
+           QT_NO_FOREACH
 
 # You can also make your code fail to compile if it uses deprecated APIs.
 # In order to do so, uncomment the following line.
