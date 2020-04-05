@@ -43,9 +43,9 @@ void removeTemporaryFiles()
   QDir tempDir(QDir::tempPath());
   QStringList nameFilters;
   nameFilters << QStringLiteral(".qt_temp_octopi*");
-  QFileInfoList list = tempDir.entryInfoList(nameFilters, QDir::Dirs | QDir::Files | QDir::System | QDir::Hidden);
+  const QFileInfoList list = tempDir.entryInfoList(nameFilters, QDir::Dirs | QDir::Files | QDir::System | QDir::Hidden);
 
-  foreach(QFileInfo file, list){
+  for(const auto &file : list){
     QFile fileAux(file.filePath());
 
     if (!file.isDir()){
@@ -53,9 +53,9 @@ void removeTemporaryFiles()
     }
     else{
       QDir dir(file.filePath());
-      QFileInfoList listd = dir.entryInfoList(QDir::Files | QDir::System);
+      const QFileInfoList listd = dir.entryInfoList(QDir::Files | QDir::System);
 
-      foreach(QFileInfo filed, listd){
+      for(const auto &filed : listd){
         QFile fileAuxd(filed.filePath());
         fileAuxd.remove();
       }
@@ -241,13 +241,13 @@ int OctopiHelper::executePkgTransactionWithSharedMem()
     return ctn_SUSPICIOUS_ACTIONS_FILE;
   }
 
-  QStringList lines = contents.split(QStringLiteral("\n"), QString::SkipEmptyParts);
+  const QStringList lines = contents.split(QStringLiteral("\n"), QString::SkipEmptyParts);
 
   bool testCommandFromOctopi=false;
   bool testCommandFromNotifier=false;
   bool testCommandFromCacheCleaner=false;
 
-  foreach (QString line, lines)
+  for(auto line : lines)
   {
     line = line.trimmed();
 
