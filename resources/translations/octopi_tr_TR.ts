@@ -59,7 +59,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="241"/>
         <source>Non installed</source>
-        <translation>Kurulmamış Paketler</translation>
+        <translation>Yüklenmemiş</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="250"/>
@@ -69,12 +69,12 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="271"/>
         <source>Cancel</source>
-        <translation>Vazgeç</translation>
+        <translation>İptal</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="283"/>
         <source>Check &amp;updates</source>
-        <translation>&amp;Güncellemeleri göster</translation>
+        <translation>&amp;Güncellemeleri Kontrol Et</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="291"/>
@@ -187,12 +187,12 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="510"/>
         <source>Open root terminal</source>
-        <translation>Yetkili olarak konsol aç</translation>
+        <translation>Kök konsolunu aç</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="515"/>
         <source>Usage</source>
-        <translation>Octopi Kılavuzu</translation>
+        <translation>Kullanım</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="526"/>
@@ -202,7 +202,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="543"/>
         <source>Pacman Log Viewer</source>
-        <translation>Pacman Log İzleyici</translation>
+        <translation>Pacman Günlük Görüntüleyici</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="558"/>
@@ -217,22 +217,22 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="581"/>
         <source>Installed</source>
-        <translation>Kurulu Paketler</translation>
+        <translation>Yüklü</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="603"/>
         <source>By &amp;file</source>
-        <translation>&amp;dosya</translation>
+        <translation>&amp;dosya Tarafından</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="614"/>
         <source>Use Instant Search</source>
-        <translation>Anında Arama&apos;yı Kullan</translation>
+        <translation>Anlık Arama&apos;yı Kullan</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="622"/>
         <source>Donate!</source>
-        <translation>Bağış!</translation>
+        <translation>Bağışla!</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="85"/>
@@ -357,7 +357,7 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="154"/>
         <source>Alt+7 to switch to &apos;Terminal&apos; tab</source>
-        <translation>&apos;Uçbirim&apos; sekmesine geçmek için Alt+7</translation>
+        <translation>&apos;Terminal&apos; sekmesine geçmek için Alt+7</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="157"/>
@@ -475,7 +475,7 @@
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="63"/>
         <source>Show stop transaction button at statusbar</source>
-        <translation>Durum çubuğundaki işlem durdur düğmesini göster</translation>
+        <translation>Durum çubuğunda işlem durdur düğmesini göster</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="76"/>
@@ -977,7 +977,7 @@ Veritabanını senkronize etmeniz gerekebilir!</translation>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.cpp" line="414"/>
         <source>There are %n outdated packages in your system:</source>
-        <translation><numerusform>Sisteminizde %n eski paket vardır:</numerusform><numerusform>Sisteminizde %n eski paket vardır:</numerusform></translation>
+        <translation><numerusform>Sisteminizde %n eski paket vardır:</numerusform><numerusform>Sisteminizde %n adet eski paket bulunmaktadır:</numerusform></translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="418"/>
@@ -987,27 +987,27 @@ Veritabanını senkronize etmeniz gerekebilir!</translation>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.cpp" line="422"/>
         <source>%n packages</source>
-        <translation><numerusform>%n paketi</numerusform><numerusform>%n paketi</numerusform></translation>
+        <translation><numerusform>%n paketi</numerusform><numerusform>%n adet paket</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.cpp" line="426"/>
         <source>%n selected</source>
-        <translation><numerusform>%n seçildi</numerusform><numerusform>%n seçildi</numerusform></translation>
+        <translation><numerusform>%n seçildi</numerusform><numerusform>%n adet seçili</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.cpp" line="430"/>
         <source>%n installed</source>
-        <translation><numerusform>%n yüklü</numerusform><numerusform>%n yüklü</numerusform></translation>
+        <translation><numerusform>%n yüklü</numerusform><numerusform>%n adet yüklü</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.cpp" line="434"/>
         <source>%n outdated</source>
-        <translation><numerusform>%n güncelliğini yitirmiş</numerusform><numerusform>%n güncelliğini yitirmiş</numerusform></translation>
+        <translation><numerusform>%n güncelliğini yitirmiş</numerusform><numerusform>%n adet güncelliğini yitirmiş</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.cpp" line="438"/>
         <source>%n available</source>
-        <translation><numerusform>%n mevcut</numerusform><numerusform>%n mevcut</numerusform></translation>
+        <translation><numerusform>%n mevcut</numerusform><numerusform>%n adet mevcut</numerusform></translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="442"/>
@@ -1027,7 +1027,7 @@ Veritabanını senkronize etmeniz gerekebilir!</translation>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="483"/>
         <source>System upgrade</source>
-        <translation>Sistemi yükselt</translation>
+        <translation>Sistem yükseltmesi</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="488"/>
@@ -1371,7 +1371,7 @@ Açmak istediğinizden emin misiniz?</translation>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="781"/>
         <source>Use &quot;%1&quot; tool</source>
-        <translation>&quot;%1&quot; aracı kullan</translation>
+        <translation>&quot;%1&quot; aracını kullan</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="785"/>
@@ -1391,12 +1391,12 @@ Açmak istediğinizden emin misiniz?</translation>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="797"/>
         <source>Once a day</source>
-        <translation>Günde bir kez güncelle</translation>
+        <translation>Günde bir</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="801"/>
         <source>Once a day, at</source>
-        <translation>Günde en az bir kez güncelle</translation>
+        <translation>Günde bir, saat</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="805"/>
@@ -1406,7 +1406,7 @@ Açmak istediğinizden emin misiniz?</translation>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="809"/>
         <source>Once every</source>
-        <translation>Daha sık güncelle</translation>
+        <translation>Her</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="813"/>
@@ -1416,7 +1416,7 @@ Açmak istediğinizden emin misiniz?</translation>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="817"/>
         <source>Set interval...</source>
-        <translation>Güncelleme Sıklığı...</translation>
+        <translation>Sıklığını belirle...</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="822"/>
@@ -1441,7 +1441,7 @@ Açmak istediğinizden emin misiniz?</translation>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="842"/>
         <source>Maximize</source>
-        <translation>Büyüt</translation>
+        <translation>Tam boyut</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="847"/>
