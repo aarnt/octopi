@@ -249,28 +249,6 @@ void execCommandInAnotherThread(QString cmd)
 }
 
 /*
- * Generates SysInfo file and paste it to ptpb site
- *
- * Returns a clickable URL
- */
-QString generateSysInfo(QByteArray contents)
-{
-  quint32 gen = QRandomGenerator::global()->generate();
-  QFile *tempFile = new QFile(ctn_TEMP_ACTIONS_FILE + QString::number(gen));
-  tempFile->open(QIODevice::ReadWrite|QIODevice::Text);
-  tempFile->setPermissions(QFile::Permissions(QFile::ExeOwner|QFile::ReadOwner));
-  tempFile->write(contents);
-  tempFile->flush();
-  tempFile->close();
-
-  //Assign collected logs (contents) to a 24h ptpb paste lifetime
-  QString ptpb = QString::fromUtf8(UnixCommand::getCommandOutput(QStringLiteral("curl -F sunset=86400 -F c=@- https://ptpb.pw/"), tempFile->fileName()));
-  //QString ptpb = UnixCommand::getCommandOutput("curl -F sunset=10 -F c=@- https://ptpb.pw/", tempFile->fileName());
-  ptpb.replace(QLatin1String("\n"), QLatin1String("\n<br>"));
-  return ptpb;
-}
-
-/*
  * Gets a temporary Yay-bin AUR helper to install one of the supported AUR helpers!
  * Returns true if all went fine
  *

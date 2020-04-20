@@ -67,7 +67,6 @@ QString getLatestDistroNews();
 PackageInfoData getKCPInformation(QString pkgName);
 QByteArray execCommand(QString cmd);
 void execCommandInAnotherThread(QString cmd);
-QString generateSysInfo(QByteArray contents);
 bool installTempYayHelper();
 
 QStringList            * getOutdatedPkgStringList();
