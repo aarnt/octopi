@@ -1,6 +1,6 @@
 0.10.0 (dev)
   Added a built-in default priviledge escalation tool: "octopi-sudo" as a slightly modified version 
-	of "lxqt-sudo" project (version 0.14.1). It's the only escalation tool supported!
+	of "lxqt-sudo" project (version 0.15.0). It's the only escalation tool supported!
   Added option to vote/unvote for AUR packages using aur.archlinux.org login.
   Added "pikaur" AUR tool support (thanks to ewilly).
   Added "yay" AUR tool support.

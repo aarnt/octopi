@@ -5,46 +5,55 @@
     <name>PasswordDialog</name>
     <message>
         <location filename="../passworddialog.ui" line="6"/>
+        <location filename="../obj-x86_64-linux-gnu/lxqt-sudo_autogen/include/ui_passworddialog.h" line="171"/>
         <source>LXQt sudo</source>
         <translation>LXQt sudo (superutilisateur)</translation>
     </message>
     <message>
         <location filename="../passworddialog.ui" line="42"/>
+        <location filename="../obj-x86_64-linux-gnu/lxqt-sudo_autogen/include/ui_passworddialog.h" line="173"/>
         <source>Copy command to clipboard</source>
         <translation>Copier la commande dans le presse-papier</translation>
     </message>
     <message>
         <location filename="../passworddialog.ui" line="45"/>
+        <location filename="../obj-x86_64-linux-gnu/lxqt-sudo_autogen/include/ui_passworddialog.h" line="175"/>
         <source>&amp;Copy</source>
         <translation>&amp;Copier</translation>
     </message>
     <message>
         <location filename="../passworddialog.ui" line="83"/>
+        <location filename="../obj-x86_64-linux-gnu/lxqt-sudo_autogen/include/ui_passworddialog.h" line="176"/>
         <source>The requested action needs administrative privileges.&lt;br&gt;Please enter your password.</source>
         <translation>L&apos;action demandée nécessite des privilèges d&apos;administrateur.&lt;br&gt;Veuillez entrer votre mot de passe.</translation>
     </message>
     <message>
         <location filename="../passworddialog.ui" line="106"/>
+        <location filename="../obj-x86_64-linux-gnu/lxqt-sudo_autogen/include/ui_passworddialog.h" line="178"/>
         <source>LXQt sudo backend</source>
         <translation>LXQt sudo en arrière-plan</translation>
     </message>
     <message>
         <location filename="../passworddialog.ui" line="109"/>
-        <source>A program LXQt sudo calls in background to elevate priveledges.</source>
-        <translation>Un programme LXQt sudo appelle en arrière-plan pour élever les privilèges.</translation>
+        <location filename="../obj-x86_64-linux-gnu/lxqt-sudo_autogen/include/ui_passworddialog.h" line="181"/>
+        <source>A program LXQt sudo calls in background to elevate privileges.</source>
+        <translation>Un programme que LXQt sudo appelle en arrière-plan pour faire une élévation de privilèges.</translation>
     </message>
     <message>
         <location filename="../passworddialog.ui" line="119"/>
+        <location filename="../obj-x86_64-linux-gnu/lxqt-sudo_autogen/include/ui_passworddialog.h" line="183"/>
         <source>Command:</source>
         <translation>Commande :</translation>
     </message>
     <message>
         <location filename="../passworddialog.ui" line="126"/>
+        <location filename="../obj-x86_64-linux-gnu/lxqt-sudo_autogen/include/ui_passworddialog.h" line="184"/>
         <source>Password:</source>
         <translation>Mot de passe :</translation>
     </message>
     <message>
         <location filename="../passworddialog.ui" line="133"/>
+        <location filename="../obj-x86_64-linux-gnu/lxqt-sudo_autogen/include/ui_passworddialog.h" line="186"/>
         <source>Enter password</source>
         <translation>Entrer le mot de passe</translation>
     </message>
@@ -57,7 +66,7 @@
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../sudo.cpp" line="67"/>
+        <location filename="../sudo.cpp" line="69"/>
         <source>Usage: %1 option [command [arguments...]]
 
 GUI frontend for %2/%3
@@ -88,7 +97,7 @@ Arguments:
 </translation>
     </message>
     <message>
-        <location filename="../sudo.cpp" line="84"/>
+        <location filename="../sudo.cpp" line="86"/>
         <source>%1 version %2
 </source>
         <translation>%1 version %2
@@ -98,52 +107,52 @@ Arguments:
 <context>
     <name>Sudo</name>
     <message>
-        <location filename="../sudo.cpp" line="183"/>
+        <location filename="../sudo.cpp" line="189"/>
         <source>%1: no command to run provided!</source>
         <translation>%1: aucune commande à exécuter n&apos;a été spécifiée !</translation>
     </message>
     <message>
-        <location filename="../sudo.cpp" line="190"/>
+        <location filename="../sudo.cpp" line="196"/>
         <source>%1: no backend chosen!</source>
         <translation>%1: aucun Backend n&apos;a été choisi !</translation>
     </message>
     <message>
-        <location filename="../sudo.cpp" line="207"/>
+        <location filename="../sudo.cpp" line="213"/>
         <source>Syscall error, failed to fork: %1</source>
         <translation>Erreur d&apos;appel système, échec de la conversion: %1</translation>
     </message>
     <message>
-        <location filename="../sudo.cpp" line="234"/>
+        <location filename="../sudo.cpp" line="240"/>
         <source>unset</source>
         <extracomment>shouldn&apos;t be actually used but keep as short as possible in translations just in case.</extracomment>
         <translation>non spécifié</translation>
     </message>
     <message>
-        <location filename="../sudo.cpp" line="270"/>
+        <location filename="../sudo.cpp" line="289"/>
         <source>%1: Detected attempt to inject privileged command via LC_ALL env(%2). Exiting!
 </source>
         <translation>%1: Tentative détectée d&apos;injection d&apos;une commande privilégiée via LC_ALL env(%2). En sortant!
 </translation>
     </message>
     <message>
-        <location filename="../sudo.cpp" line="314"/>
+        <location filename="../sudo.cpp" line="331"/>
         <source>Syscall error, failed to bring pty to non-block mode: %1</source>
         <translation>Erreur d&apos;appel système, échec du transfert de pty en mode sans blocage: %1</translation>
     </message>
     <message>
-        <location filename="../sudo.cpp" line="322"/>
+        <location filename="../sudo.cpp" line="339"/>
         <source>Syscall error, failed to fdopen pty: %1</source>
         <translation>Erreur d&apos;appel système, échec de fdopen pty: %1</translation>
     </message>
     <message>
-        <location filename="../sudo.cpp" line="291"/>
+        <location filename="../sudo.cpp" line="308"/>
         <source>%1: Failed to exec &apos;%2&apos;: %3
 </source>
         <translation>%1: Impossible d&apos;exécuter &apos;%2&apos;: %3
 </translation>
     </message>
     <message>
-        <location filename="../sudo.cpp" line="353"/>
+        <location filename="../sudo.cpp" line="370"/>
         <source>Child &apos;%1&apos; process failed!
 %2</source>
         <translation>Échec du processus fils &apos;%1&apos; !
