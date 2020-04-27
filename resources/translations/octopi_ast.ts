@@ -322,7 +322,7 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="140"/>
         <source>Alt+key sequences:</source>
-        <translation>Secuencies d&apos;Alt+tecla:</translation>
+        <translation>Secuencies d&apos;Alt+Tecla:</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="142"/>
@@ -362,7 +362,7 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="157"/>
         <source>Control+key sequences:</source>
-        <translation>Secuencies de control+tecla</translation>
+        <translation>Secuencies de Ctrl+Tecla</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="159"/>
@@ -412,7 +412,7 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="178"/>
         <source>Control+shift+key sequences:</source>
-        <translation>Secuencies de control+mayús+tecla:</translation>
+        <translation>Secuencies de Ctrl+Mayús+Tecla:</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="182"/>
@@ -427,7 +427,7 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="190"/>
         <source>F+key sequences:</source>
-        <translation>Secuencies de F+tecla:</translation>
+        <translation>Secuencies de F+Tecla:</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="192"/>
@@ -810,7 +810,7 @@ You may need to synchronize database!</source>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="278"/>
         <source>Votes</source>
-        <translation type="unfinished"/>
+        <translation>Votos</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="282"/>
@@ -820,7 +820,7 @@ You may need to synchronize database!</source>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="287"/>
         <source>Vote</source>
-        <translation type="unfinished"/>
+        <translation>Votu</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="292"/>
@@ -1090,7 +1090,7 @@ You may need to synchronize database!</source>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="547"/>
         <source>Temporary &quot;yay-bin&quot; could not be downloaded!</source>
-        <translation type="unfinished"/>
+        <translation>¡Nun pudo baxase&apos;l «yay-bin» temporal!</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="552"/>
@@ -1100,7 +1100,7 @@ You may need to synchronize database!</source>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="557"/>
         <source>Downloading temporary &quot;yay-bin&quot;...</source>
-        <translation type="unfinished"/>
+        <translation>Baxando&apos;l «yay-bin» temporal...</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="561"/>
@@ -1303,7 +1303,7 @@ Do you want to continue?
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="734"/>
         <source>Select the packages you want to install</source>
-        <translation>Esbilla los paquetes que quies instalar</translation>
+        <translation>Esbilla de los paquetes que quies instalar</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="738"/>
@@ -1335,7 +1335,7 @@ Are you sure you want to open it?</source>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="760"/>
         <source>Reinstall</source>
-        <translation type="unfinished"/>
+        <translation>Reinstalar</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="765"/>
@@ -1450,7 +1450,7 @@ Are you sure you want to open it?</source>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="862"/>
         <source>Upgrading...</source>
-        <translation type="unfinished"/>
+        <translation>Anovando...</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="867"/>
