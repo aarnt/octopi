@@ -219,30 +219,34 @@ void OptionsDialog::initAURTab()
 
     if (comboAUR->currentText() == ctn_PACAUR_TOOL)
     {
+      cbDevel->setChecked(SettingsManager::getAURDevelParam());
       cbNoConfirm->setChecked(SettingsManager::getAURNoConfirmParam());
       cbNoEdit->setChecked(SettingsManager::getAURNoEditParam());
     }
     else if (comboAUR->currentText() == ctn_TRIZEN_TOOL)
     {
+      cbDevel->setChecked(SettingsManager::getAURDevelParam());
       cbNoConfirm->setChecked(SettingsManager::getAURNoConfirmParam());
       cbNoEdit->setChecked(SettingsManager::getAURNoEditParam());
     }
     else if (comboAUR->currentText() == ctn_PIKAUR_TOOL)
     {
+      cbDevel->setChecked(SettingsManager::getAURDevelParam());
       cbNoConfirm->setChecked(SettingsManager::getAURNoConfirmParam());
       cbNoEdit->setChecked(SettingsManager::getAURNoEditParam());
     }
     else if (comboAUR->currentText() == ctn_YAY_TOOL)
     {
+      cbDevel->setChecked(SettingsManager::getAURDevelParam());
       cbNoConfirm->setChecked(SettingsManager::getAURNoConfirmParam());
       cbNoEdit->setChecked(SettingsManager::getAURNoEditParam());
     }
-    else if (comboAUR->currentText() == ctn_YAOURT_TOOL)
+    /*else if (comboAUR->currentText() == ctn_YAOURT_TOOL)
     {
       cbNoConfirm->setChecked(SettingsManager::getAURNoConfirmParam());
       cbNoEdit->setChecked(false);
       cbNoEdit->setEnabled(false);
-    }
+    }*/
 
     cbSearchOutdatedAURPackages->setChecked(SettingsManager::getSearchOutdatedAURPackages());
     leAurPassword->setEchoMode(QLineEdit::Password);
@@ -433,11 +437,11 @@ void OptionsDialog::accept()
       SettingsManager::setAURTool(ctn_PACAUR_TOOL);
       AURHasChanged = true;
     }
-    else if (comboAUR->currentText() == ctn_YAOURT_TOOL && SettingsManager::getAURToolName() != ctn_YAOURT_TOOL)
+    /*else if (comboAUR->currentText() == ctn_YAOURT_TOOL && SettingsManager::getAURToolName() != ctn_YAOURT_TOOL)
     {
       SettingsManager::setAURTool(ctn_YAOURT_TOOL);
       AURHasChanged = true;
-    }
+    }*/
     else if (comboAUR->currentText() == ctn_TRIZEN_TOOL && SettingsManager::getAURToolName() != ctn_TRIZEN_TOOL)
     {
       SettingsManager::setAURTool(ctn_TRIZEN_TOOL);
@@ -459,6 +463,11 @@ void OptionsDialog::accept()
       AURHasChanged = true;
     }
 
+    if (comboAUR->currentText() == ctn_PACAUR_TOOL && cbDevel->isChecked() != SettingsManager::getAURDevelParam())
+    {
+      SettingsManager::setAURDevelParam(cbDevel->isChecked());
+      AURHasChanged = true;
+    }
     if (comboAUR->currentText() == ctn_PACAUR_TOOL && cbNoConfirm->isChecked() != SettingsManager::getAURNoConfirmParam())
     {
       SettingsManager::setAURNoConfirmParam(cbNoConfirm->isChecked());
@@ -469,9 +478,14 @@ void OptionsDialog::accept()
       SettingsManager::setAURNoEditParam(cbNoEdit->isChecked());
       AURHasChanged = true;
     }
-    if (comboAUR->currentText() == ctn_YAOURT_TOOL && cbNoConfirm->isChecked() != SettingsManager::getAURNoConfirmParam())
+    /*if (comboAUR->currentText() == ctn_YAOURT_TOOL && cbNoConfirm->isChecked() != SettingsManager::getAURNoConfirmParam())
     {
       SettingsManager::setAURNoConfirmParam(cbNoConfirm->isChecked());
+      AURHasChanged = true;
+    }*/
+    if (comboAUR->currentText() == ctn_TRIZEN_TOOL && cbDevel->isChecked() != SettingsManager::getAURDevelParam())
+    {
+      SettingsManager::setAURDevelParam(cbDevel->isChecked());
       AURHasChanged = true;
     }
     if (comboAUR->currentText() == ctn_TRIZEN_TOOL && cbNoConfirm->isChecked() != SettingsManager::getAURNoConfirmParam())
@@ -484,6 +498,11 @@ void OptionsDialog::accept()
       SettingsManager::setAURNoEditParam(cbNoEdit->isChecked());
       AURHasChanged = true;
     }
+    if (comboAUR->currentText() == ctn_PIKAUR_TOOL && cbDevel->isChecked() != SettingsManager::getAURDevelParam())
+    {
+      SettingsManager::setAURDevelParam(cbDevel->isChecked());
+      AURHasChanged = true;
+    }
     if (comboAUR->currentText() == ctn_PIKAUR_TOOL && cbNoConfirm->isChecked() != SettingsManager::getAURNoConfirmParam())
     {
       SettingsManager::setAURNoConfirmParam(cbNoConfirm->isChecked());
@@ -492,6 +511,11 @@ void OptionsDialog::accept()
     if (comboAUR->currentText() == ctn_PIKAUR_TOOL && cbNoEdit->isChecked() != SettingsManager::getAURNoEditParam())
     {
       SettingsManager::setAURNoEditParam(cbNoEdit->isChecked());
+      AURHasChanged = true;
+    }
+    if (comboAUR->currentText() == ctn_YAY_TOOL && cbDevel->isChecked() != SettingsManager::getAURDevelParam())
+    {
+      SettingsManager::setAURDevelParam(cbDevel->isChecked());
       AURHasChanged = true;
     }
     if (comboAUR->currentText() == ctn_YAY_TOOL && cbNoConfirm->isChecked() != SettingsManager::getAURNoConfirmParam())
@@ -728,13 +752,13 @@ void OptionsDialog::comboAURChanged(const QString &text)
     cbSearchOutdatedAURPackages->setChecked(false);
     cbSearchOutdatedAURPackages->setEnabled(false);
   }
-  else if (text == ctn_YAOURT_TOOL)
+  /*else if (text == ctn_YAOURT_TOOL)
   {
     cbNoConfirm->setEnabled(true);
     cbNoEdit->setEnabled(true);
     cbSearchOutdatedAURPackages->setEnabled(true);
     cbNoConfirm->setChecked(SettingsManager::getAURNoConfirmParam());
-  }
+  }*/
   else if (text == ctn_PACAUR_TOOL)
   {
     cbNoConfirm->setEnabled(true);

@@ -284,9 +284,9 @@ QByteArray UnixCommand::getAURPackageList(const QString &searchString)
     aur.start(Package::getForeignRepositoryToolNameParam() + QLatin1String(" -l "));
   else
   {
-    if (Package::getForeignRepositoryToolName() == ctn_YAOURT_TOOL)
-      aur.start(Package::getForeignRepositoryToolNameParam() + QLatin1String(" --nocolor -Ss ") + searchString);
-    else if (Package::getForeignRepositoryToolName() == ctn_TRIZEN_TOOL)
+    //if (Package::getForeignRepositoryToolName() == ctn_YAOURT_TOOL)
+    //  aur.start(Package::getForeignRepositoryToolNameParam() + QLatin1String(" --nocolor -Ss ") + searchString);
+    if (Package::getForeignRepositoryToolName() == ctn_TRIZEN_TOOL)
         aur.start(Package::getForeignRepositoryToolNameParam() + tr(" --nocolors -Ssa ") + searchString);
     else if (Package::getForeignRepositoryToolName() == ctn_PIKAUR_TOOL || Package::getForeignRepositoryToolName() == ctn_YAY_TOOL)
         aur.start(Package::getForeignRepositoryToolNameParam() + QLatin1String(" --color=never -Ss --aur ") + searchString);
@@ -373,7 +373,10 @@ QByteArray UnixCommand::getOutdatedAURPackageList()
   }
   else if (Package::getForeignRepositoryToolName() != ctn_KCP_TOOL)
   {
-    result = performAURCommand(QStringLiteral("-Qua"));
+    if (SettingsManager::getAURDevelParam())
+      result = performAURCommand(QStringLiteral("-Qua --devel"));
+    else
+      result = performAURCommand(QStringLiteral("-Qua"));
   }
 
   //return ":: aur  micro-git  v1.3.3.d6ccaf0-1  ->  v1.3.4\n";
@@ -428,20 +431,8 @@ QByteArray UnixCommand::getKCPPackageInformation(const QString &pkgName)
 /*
  * Given a package name, returns its description using expac utility
  */
-QByteArray UnixCommand::getExpacInfo(const QString &pkgName, const QString &info)
+/*QByteArray UnixCommand::getExpacInfo(const QString &pkgName, const QString &info)
 {
-  /*QByteArray result("");
-  QProcess grep;
-  QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
-  env.insert("LANG", "C");
-  env.insert("LC_MESSAGES", "C");
-  env.insert("LC_ALL", "C");
-  grep.setProcessEnvironment(env);
-  grep.start(getShell() + " -c \"pacman -Qi " + pkgName + " | grep --color=never -oP '(?<=Description     : ).*'\"");
-  grep.waitForFinished();
-  result = grep.readAllStandardOutput();
-  grep.close();*/
-
   QByteArray result("");
   QProcess expac;
   QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
@@ -456,7 +447,7 @@ QByteArray UnixCommand::getExpacInfo(const QString &pkgName, const QString &info
   expac.close();
 
   return result;
-}
+}*/
 
 /*
  * Given a package name and if it is default to the official repositories,
@@ -868,8 +859,8 @@ QStringList UnixCommand::getAvailableAURTools()
     aurTools << ctn_NO_AUR_TOOL;
     if (UnixCommand::hasTheExecutable(ctn_PACAUR_TOOL))
       aurTools << ctn_PACAUR_TOOL;
-    if (UnixCommand::hasTheExecutable(ctn_YAOURT_TOOL))
-      aurTools << ctn_YAOURT_TOOL;
+    //if (UnixCommand::hasTheExecutable(ctn_YAOURT_TOOL))
+    //  aurTools << ctn_YAOURT_TOOL;
     if (UnixCommand::hasTheExecutable(ctn_TRIZEN_TOOL))
       aurTools << ctn_TRIZEN_TOOL;
     if (UnixCommand::hasTheExecutable(ctn_PIKAUR_TOOL))

@@ -1500,7 +1500,7 @@ void MainWindow::refreshTabInfo(bool clearContents, bool neverQuit)
         html += QLatin1String("<tr><th width=\"20%\"></th><th width=\"80%\"></th></tr>");
         html += QLatin1String("<tr><td>") + version + QLatin1String("</td><td>") + package->version + QLatin1String("</td></tr>");
 
-        if (Package::getForeignRepositoryToolName() == ctn_YAOURT_TOOL ||
+        if (//Package::getForeignRepositoryToolName() == ctn_YAOURT_TOOL ||
             Package::getForeignRepositoryToolName() == ctn_PACAUR_TOOL)
         {
           QString url = Package::getAURUrl(pkgName);

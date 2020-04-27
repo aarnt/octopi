@@ -164,7 +164,7 @@
             <property name="geometry">
              <rect>
               <x>20</x>
-              <y>116</y>
+              <y>140</y>
               <width>131</width>
               <height>22</height>
              </rect>
@@ -173,6 +173,9 @@
              <font>
               <pointsize>8</pointsize>
              </font>
+            </property>
+            <property name="toolTip">
+             <string notr="true"/>
             </property>
             <property name="text">
              <string notr="true">--noconfirm</string>
@@ -182,7 +185,7 @@
             <property name="geometry">
              <rect>
               <x>20</x>
-              <y>146</y>
+              <y>170</y>
               <width>131</width>
               <height>22</height>
              </rect>
@@ -192,6 +195,9 @@
               <pointsize>8</pointsize>
              </font>
             </property>
+            <property name="toolTip">
+             <string notr="true"/>
+            </property>
             <property name="text">
              <string notr="true">--noedit</string>
             </property>
@@ -200,7 +206,7 @@
             <property name="geometry">
              <rect>
               <x>20</x>
-              <y>176</y>
+              <y>200</y>
               <width>311</width>
               <height>22</height>
              </rect>
@@ -209,6 +215,9 @@
              <font>
               <pointsize>8</pointsize>
              </font>
+            </property>
+            <property name="toolTip">
+             <string notr="true"/>
             </property>
             <property name="text">
              <string>Search for outdated AUR packages</string>
@@ -345,6 +354,27 @@ Any use of the provided files is at your own risk.</string>
             </property>
             <property name="textFormat">
              <enum>Qt::AutoText</enum>
+            </property>
+           </widget>
+           <widget class="QCheckBox" name="cbDevel">
+            <property name="geometry">
+             <rect>
+              <x>20</x>
+              <y>110</y>
+              <width>131</width>
+              <height>22</height>
+             </rect>
+            </property>
+            <property name="font">
+             <font>
+              <pointsize>8</pointsize>
+             </font>
+            </property>
+            <property name="toolTip">
+             <string notr="true"/>
+            </property>
+            <property name="text">
+             <string notr="true">--devel</string>
             </property>
            </widget>
           </widget>

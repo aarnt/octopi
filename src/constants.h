@@ -82,6 +82,7 @@ const QString ctn_KEY_ENABLE_TRANSACTION_DIALOG_IN_SYSTEM_UPGRADE(QStringLiteral
 const QString ctn_KEY_ENABLE_INTERNET_CHECKING(QStringLiteral("Enable_Internet_Checking"));
 const QString ctn_KEY_SHOW_STOP_TRANSACTION(QStringLiteral("Show_Stop_Transaction"));
 const QString ctn_KEY_AUR_TOOL(QStringLiteral("Aur_Tool_Name"));
+const QString ctn_KEY_AUR_DEVEL_PARAM(QStringLiteral("Aur_Devel_Param"));
 const QString ctn_KEY_AUR_NO_CONFIRM_PARAM(QStringLiteral("Aur_No_Confirm_Param"));
 const QString ctn_KEY_AUR_NO_EDIT_PARAM(QStringLiteral("Aur_No_Edit_Param"));
 const QString ctn_KEY_SEARCH_OUTDATED_AUR_PACKAGES(QStringLiteral("Search_Outdated_Aur_Packages"));
@@ -151,7 +152,7 @@ enum ViewOptions { ectn_ALL_PKGS, ectn_INSTALLED_PKGS, ectn_NON_INSTALLED_PKGS }
 const QString ctn_PACAUR_TOOL(QStringLiteral("pacaur"));
 const QString ctn_PIKAUR_TOOL(QStringLiteral("pikaur"));
 const QString ctn_TRIZEN_TOOL(QStringLiteral("trizen"));
-const QString ctn_YAOURT_TOOL(QStringLiteral("yaourt"));
+//const QString ctn_YAOURT_TOOL(QStringLiteral("yaourt"));
 const QString ctn_YAY_TOOL(QStringLiteral("yay"));
 const QString ctn_NO_AUR_TOOL(QStringLiteral("DO_NOT_USE_AUR"));
 

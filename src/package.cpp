@@ -350,7 +350,7 @@ QStringList *Package::getOutdatedAURStringList()
 {
   QStringList * res = new QStringList();
 
-  if (getForeignRepositoryToolName() != ctn_YAOURT_TOOL &&
+  if (//getForeignRepositoryToolName() != ctn_YAOURT_TOOL &&
       getForeignRepositoryToolName() != ctn_PACAUR_TOOL &&
       getForeignRepositoryToolName() != ctn_TRIZEN_TOOL &&
       getForeignRepositoryToolName() != ctn_PIKAUR_TOOL &&
@@ -368,7 +368,7 @@ QStringList *Package::getOutdatedAURStringList()
   {
     QStringList parts = packageTuple.split(QLatin1Char(' '), QString::SkipEmptyParts);
     {
-      if (getForeignRepositoryToolName() == ctn_YAOURT_TOOL ||
+      if (//getForeignRepositoryToolName() == ctn_YAOURT_TOOL ||
           getForeignRepositoryToolName() == ctn_TRIZEN_TOOL ||
           getForeignRepositoryToolName() == ctn_PIKAUR_TOOL ||
           getForeignRepositoryToolName() == ctn_YAY_TOOL ||
@@ -377,11 +377,11 @@ QStringList *Package::getOutdatedAURStringList()
         QString pkgName;
         pkgName = parts[0];
 
-        if (getForeignRepositoryToolName() == ctn_YAOURT_TOOL)
+        /*if (getForeignRepositoryToolName() == ctn_YAOURT_TOOL)
         {
           if (!pkgName.startsWith(StrConstants::getForeignRepositoryTargetPrefix()))
               continue;
-        }
+        }*/
 
         if (pkgName.contains(StrConstants::getForeignRepositoryTargetPrefix(), Qt::CaseInsensitive))
         {          
@@ -1746,7 +1746,7 @@ QHash<QString, QString> Package::getAUROutdatedPackagesNameVersion()
   QHash<QString, QString> hash;
 
   if(UnixCommand::getLinuxDistro() == ectn_CHAKRA ||
-      (getForeignRepositoryToolName() != ctn_YAOURT_TOOL &&
+      (//getForeignRepositoryToolName() != ctn_YAOURT_TOOL &&
       getForeignRepositoryToolName() != ctn_PACAUR_TOOL &&
       getForeignRepositoryToolName() != ctn_TRIZEN_TOOL &&
       getForeignRepositoryToolName() != ctn_PIKAUR_TOOL &&
@@ -1762,7 +1762,7 @@ QHash<QString, QString> Package::getAUROutdatedPackagesNameVersion()
   QStringList listOfPkgs = res.split(QStringLiteral("\n"), QString::SkipEmptyParts);
   QStringList ignorePkgList = UnixCommand::getIgnorePkgsFromPacmanConf();
 
-  if ((getForeignRepositoryToolName() == ctn_YAOURT_TOOL) ||
+  if (//(getForeignRepositoryToolName() == ctn_YAOURT_TOOL) ||
       (getForeignRepositoryToolName() == ctn_TRIZEN_TOOL) ||
       (getForeignRepositoryToolName() == ctn_PIKAUR_TOOL) ||
       (getForeignRepositoryToolName() == ctn_YAY_TOOL) ||

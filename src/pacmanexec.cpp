@@ -1224,10 +1224,10 @@ void PacmanExec::doAURUpgrade(const QString &listOfPackages)
   {
     m_lastCommandList.append(Package::getForeignRepositoryToolNameParam() + QLatin1String(" -Sa ") + listOfPackages + QLatin1Char(';'));
   }
-  else if (Package::getForeignRepositoryToolName() == ctn_YAOURT_TOOL)
+  /*else if (Package::getForeignRepositoryToolName() == ctn_YAOURT_TOOL)
   {
     m_lastCommandList.append(Package::getForeignRepositoryToolNameParam() + QLatin1String(" -S ") + listOfPackages + QLatin1Char(';'));
-  }
+  }*/
   else if (Package::getForeignRepositoryToolName() == ctn_TRIZEN_TOOL)
   {
     m_lastCommandList.append(Package::getForeignRepositoryToolNameParam() + QLatin1String(" -Sa ") + listOfPackages + QLatin1Char(';'));
@@ -1259,8 +1259,8 @@ void PacmanExec::doAURInstall(const QString &listOfPackages)
     m_lastCommandList.append(Package::getForeignRepositoryToolNameParam() + QLatin1String(" -i ") + listOfPackages + QLatin1Char(';'));
   else if (Package::getForeignRepositoryToolName() == ctn_PACAUR_TOOL)
     m_lastCommandList.append(Package::getForeignRepositoryToolNameParam() + QLatin1String(" -Sa ") + listOfPackages + QLatin1Char(';'));
-  else if (Package::getForeignRepositoryToolName() == ctn_YAOURT_TOOL)
-    m_lastCommandList.append(Package::getForeignRepositoryToolNameParam() + QLatin1String(" -S ") + listOfPackages + QLatin1Char(';'));
+  //else if (Package::getForeignRepositoryToolName() == ctn_YAOURT_TOOL)
+  //  m_lastCommandList.append(Package::getForeignRepositoryToolNameParam() + QLatin1String(" -S ") + listOfPackages + QLatin1Char(';'));
   else if (Package::getForeignRepositoryToolName() == ctn_TRIZEN_TOOL)
     m_lastCommandList.append(Package::getForeignRepositoryToolNameParam() + QLatin1String(" -Sa ") + listOfPackages + QLatin1Char(';'));
   else if (Package::getForeignRepositoryToolName() == ctn_PIKAUR_TOOL)

@@ -4,6 +4,7 @@
   Added option to vote/unvote for AUR packages using aur.archlinux.org login.
   Added "pikaur" AUR tool support (thanks to ewilly).
   Added "yay" AUR tool support.
+  Added option "--devel" in AUR tab to check for newer versions of dev packages.
   Added option to download a temporary yay-bin to enable AUR.
   Updated some UI icons and added an specific one for foreign non installed pkg.
   Dropped support for external terminal applications. QTermWidget is mandatory now!

@@ -326,11 +326,11 @@ QString SettingsManager::getAURTool()
     if (getAURNoEditParam()) params += QLatin1String(" --noedit ");
     ret += params;
   }
-  else if (ret == ctn_YAOURT_TOOL)
+  /*else if (ret == ctn_YAOURT_TOOL)
   {
     if (getAURNoConfirmParam()) params += QLatin1String(" --noconfirm ");
     ret += params;
-  }
+  }*/
   else if (ret == ctn_TRIZEN_TOOL)
   {
     if (getAURNoConfirmParam()) params += QLatin1String(" --noconfirm ");
@@ -379,14 +379,14 @@ QString SettingsManager::getAURTool()
       p_instance.getSYSsettings()->sync();
       ret = ctn_YAY_TOOL + params;
     }
-    else if (UnixCommand::hasTheExecutable(ctn_YAOURT_TOOL))
+    /*else if (UnixCommand::hasTheExecutable(ctn_YAOURT_TOOL))
     {
       if (getAURNoConfirmParam()) params += QLatin1String(" --noconfirm ");
 
       p_instance.setAURTool(ctn_YAOURT_TOOL);
       p_instance.getSYSsettings()->sync();
       ret = ctn_YAOURT_TOOL + params;
-    }
+    }*/
     else if (UnixCommand::hasTheExecutable(ctn_PACAUR_TOOL))
     {
       if (getAURNoConfirmParam()) params += QLatin1String(" --noconfirm ");
@@ -408,7 +408,16 @@ QString SettingsManager::getAURToolName()
 }
 
 /*
- * Tests if Pacaur is using "--noconfirm" parameter
+ * Tests if AUR is using "--devel" parameter
+ */
+bool SettingsManager::getAURDevelParam()
+{
+  SettingsManager p_instance;
+  return (p_instance.getSYSsettings()->value(ctn_KEY_AUR_DEVEL_PARAM, 0)).toBool();
+}
+
+/*
+ * Tests if AUR is using "--noconfirm" parameter
  */
 bool SettingsManager::getAURNoConfirmParam()
 {
@@ -417,7 +426,7 @@ bool SettingsManager::getAURNoConfirmParam()
 }
 
 /*
- * Tests if Pacaur is using "--noedit" parameter
+ * Tests if AUR is using "--noedit" parameter
  */
 bool SettingsManager::getAURNoEditParam()
 {
@@ -720,7 +729,16 @@ void SettingsManager::setAURTool(const QString &newValue)
 }
 
 /*
- * Sets if Pacaur tool will use "--noconfirm" parameter
+ * Sets if AUR tool will use "--devel" parameter
+ */
+void SettingsManager::setAURDevelParam(bool newValue)
+{
+  instance()->getSYSsettings()->setValue(ctn_KEY_AUR_DEVEL_PARAM, newValue);
+  instance()->getSYSsettings()->sync();
+}
+
+/*
+ * Sets if AUR tool will use "--noconfirm" parameter
  */
 void SettingsManager::setAURNoConfirmParam(bool newValue)
 {
@@ -729,7 +747,7 @@ void SettingsManager::setAURNoConfirmParam(bool newValue)
 }
 
 /*
- * Sets if Pacaur tool will use "--noedit" parameter
+ * Sets if AUR tool will use "--noedit" parameter
  */
 void SettingsManager::setAURNoEditParam(bool newValue)
 {
