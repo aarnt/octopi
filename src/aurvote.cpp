@@ -94,7 +94,7 @@ bool AurVote::login()
 
     QString res = QString::fromUtf8(r->readAll());
 
-    if (res.contains(QLatin1String("Logout")))
+    if (res.contains(QLatin1String("Logout"), Qt::CaseInsensitive))
     {
       qDebug() << "AurVote::login(): Second post replied with: " << res;
       ret = true;
@@ -121,7 +121,7 @@ bool AurVote::isLoggedIn()
 
   QString res = QString::fromUtf8(r->readAll());
 
-  if (res.contains(QLatin1String("Logout")))
+  if (res.contains(QLatin1String("Logout"), Qt::CaseInsensitive))
   {
     ret = true;
   }
