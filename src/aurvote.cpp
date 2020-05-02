@@ -25,6 +25,7 @@
 #include <QUrl>
 #include <QUrlQuery>
 #include <QRegularExpression>
+#include <QDebug>
 
 /*
  * This class provides a way to vote/unvote for AUR packages using a given AUR login/password
@@ -36,6 +37,7 @@ AurVote::AurVote(QObject *parent) : QObject(parent),
   m_unvoteUrl(QStringLiteral("https://aur.archlinux.org/pkgbase/%1/unvote/")),
   m_pkgUrl(QStringLiteral("https://aur.archlinux.org/packages/%1/"))
 {
+  m_debugInfo = false;
   m_networkManager = new QNetworkAccessManager(this);
 }
 
@@ -52,6 +54,11 @@ void AurVote::setUserName(const QString &userName)
 void AurVote::setPassword(const QString &password)
 {
   m_password = password;
+}
+
+void AurVote::turnDebugInfoOn()
+{
+  m_debugInfo = true;
 }
 
 bool AurVote::login()
@@ -72,8 +79,10 @@ bool AurVote::login()
   connect(r, SIGNAL(finished()), &eventLoop, SLOT(quit()) );
   eventLoop.exec();
   disconnect(r, SIGNAL(finished()), &eventLoop, SLOT(quit()) );
+
   if (r->error() > 0)
   {
+    qDebug() << "AurVote::login(): First post replied with error: " << r->errorString();
     ret = false;
   }
   else
@@ -87,7 +96,12 @@ bool AurVote::login()
 
     if (res.contains(QLatin1String("Logout")))
     {
+      qDebug() << "AurVote::login(): Second post replied with: " << res;
       ret = true;
+    }
+    else
+    {
+      qDebug() << "AurVote::login(): Second post replied with: " << res;
     }
   }
 

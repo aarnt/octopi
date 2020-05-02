@@ -37,6 +37,7 @@ private:
   bool m_iconHasChanged;
   bool m_backendHasChanged;
   bool m_calledByOctopi;
+  bool m_debugInfo;
 
   QString m_redIconPath;
   QString m_yellowIconPath;
@@ -59,6 +60,7 @@ protected:
 public:
   explicit OptionsDialog(QWidget *parent = nullptr);
   void gotoAURTab();
+  void turnDebugInfoOn();
 
 signals:
   void AURToolChanged();

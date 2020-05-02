@@ -45,6 +45,7 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
   if (parent->windowTitle() == QLatin1String("Octopi")) m_calledByOctopi = true;
   else m_calledByOctopi = false;
 
+  m_debugInfo = false;
   setupUi(this);
   connect(buttonBox, SIGNAL(accepted()), this, SLOT(accept()));
   connect(buttonBox, SIGNAL(rejected()), this, SLOT(reject()));
@@ -59,6 +60,11 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
 void OptionsDialog::gotoAURTab()
 {
   setCurrentIndexByTabName(QStringLiteral("AUR"));
+}
+
+void OptionsDialog::turnDebugInfoOn()
+{
+  m_debugInfo = true;
 }
 
 /*
@@ -814,6 +820,9 @@ void OptionsDialog::onAURConnect()
   AurVote v;
   v.setUserName(leAurUserName->text());
   v.setPassword(leAurPassword->text());
+
+  if (m_debugInfo) v.turnDebugInfoOn();
+
   bool logged = v.login();
   if(logged)
   {

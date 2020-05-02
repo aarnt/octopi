@@ -30,6 +30,7 @@ class AurVote : public QObject
   Q_OBJECT
 
 private:
+  bool m_debugInfo;
   QString m_loginUrl;
   QString m_voteUrl;
   QString m_unvoteUrl;
@@ -52,6 +53,7 @@ public:
 
   void setUserName(const QString &userName);
   void setPassword(const QString &password);
+  void turnDebugInfoOn();
 };
 
 #endif // AURSITE_H

@@ -391,6 +391,9 @@ void MainWindow::onOptions(OptionsDialogTab tabToOpen)
   if (m_optionsDialog != nullptr || m_commandExecuting != ectn_NONE) return;
 
   m_optionsDialog = new OptionsDialog(this);
+
+  if (m_debugInfo) m_optionsDialog->turnDebugInfoOn();
+
   connect(m_optionsDialog, SIGNAL(AURToolChanged()), this, SLOT(onAURToolChanged()));
   connect(m_optionsDialog, SIGNAL(AURVotingChanged()), this, SLOT(onAURVotingChanged()));
 
