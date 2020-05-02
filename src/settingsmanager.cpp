@@ -303,13 +303,13 @@ QString SettingsManager::getDistroRSSUrl()
 bool SettingsManager::getShowPackageNumbersOutput()
 {
   SettingsManager p_instance;
-  return p_instance.getSYSsettings()->value( ctn_KEY_SHOW_PACKAGE_NUMBERS_OUTPUT, 1).toBool();
+  return p_instance.getSYSsettings()->value( ctn_KEY_SHOW_PACKAGE_NUMBERS_OUTPUT, true).toBool();
 }
 
 bool SettingsManager::getShowStopTransaction()
 {
   SettingsManager p_instance;
-  return p_instance.getSYSsettings()->value(ctn_KEY_SHOW_STOP_TRANSACTION, 1).toBool();
+  return p_instance.getSYSsettings()->value(ctn_KEY_SHOW_STOP_TRANSACTION, true).toBool();
 }
 
 QString SettingsManager::getAURTool()
@@ -413,7 +413,7 @@ QString SettingsManager::getAURToolName()
 bool SettingsManager::getAURDevelParam()
 {
   SettingsManager p_instance;
-  return (p_instance.getSYSsettings()->value(ctn_KEY_AUR_DEVEL_PARAM, 0)).toBool();
+  return (p_instance.getSYSsettings()->value(ctn_KEY_AUR_DEVEL_PARAM, false)).toBool();
 }
 
 /*
@@ -422,7 +422,7 @@ bool SettingsManager::getAURDevelParam()
 bool SettingsManager::getAURNoConfirmParam()
 {
   SettingsManager p_instance;
-  return (p_instance.getSYSsettings()->value(ctn_KEY_AUR_NO_CONFIRM_PARAM, 0)).toBool();
+  return (p_instance.getSYSsettings()->value(ctn_KEY_AUR_NO_CONFIRM_PARAM, false)).toBool();
 }
 
 /*
@@ -431,19 +431,19 @@ bool SettingsManager::getAURNoConfirmParam()
 bool SettingsManager::getAURNoEditParam()
 {
   SettingsManager p_instance;
-  return (p_instance.getSYSsettings()->value(ctn_KEY_AUR_NO_EDIT_PARAM, 0)).toBool();
+  return (p_instance.getSYSsettings()->value(ctn_KEY_AUR_NO_EDIT_PARAM, false)).toBool();
 }
 
 bool SettingsManager::getSearchOutdatedAURPackages()
 {
   SettingsManager p_instance;
-  return (p_instance.getSYSsettings()->value(ctn_KEY_SEARCH_OUTDATED_AUR_PACKAGES, 0)).toBool();
+  return (p_instance.getSYSsettings()->value(ctn_KEY_SEARCH_OUTDATED_AUR_PACKAGES, false)).toBool();
 }
 
 bool SettingsManager::getEnableAURVoting()
 {
   SettingsManager p_instance;
-  return (p_instance.getSYSsettings()->value(ctn_KEY_ENABLE_AUR_VOTING, 0)).toBool();
+  return (p_instance.getSYSsettings()->value(ctn_KEY_ENABLE_AUR_VOTING, false)).toBool();
 }
 
 QString SettingsManager::getAURUserName()
@@ -478,19 +478,19 @@ QString SettingsManager::getProxySettings()
 bool SettingsManager::getUseAlternateRowColor()
 {
   SettingsManager p_instance;
-  return (p_instance.getSYSsettings()->value(ctn_KEY_USE_ALTERNATE_ROW_COLOR, 0)).toBool();
+  return (p_instance.getSYSsettings()->value(ctn_KEY_USE_ALTERNATE_ROW_COLOR, false)).toBool();
 }
 
 bool SettingsManager::getEnableConfirmationDialogInSysUpgrade()
 {
   SettingsManager p_instance;
-  return (p_instance.getSYSsettings()->value(ctn_KEY_ENABLE_TRANSACTION_DIALOG_IN_SYSTEM_UPGRADE, 1)).toBool();
+  return (p_instance.getSYSsettings()->value(ctn_KEY_ENABLE_TRANSACTION_DIALOG_IN_SYSTEM_UPGRADE, true)).toBool();
 }
 
 bool SettingsManager::getEnableInternetChecking()
 {
   SettingsManager p_instance;
-  return (p_instance.getSYSsettings()->value(ctn_KEY_ENABLE_INTERNET_CHECKING, 1)).toBool();
+  return (p_instance.getSYSsettings()->value(ctn_KEY_ENABLE_INTERNET_CHECKING, true)).toBool();
 }
 
 int SettingsManager::getConsoleFontSize()
@@ -571,6 +571,12 @@ QByteArray SettingsManager::getOptionalDepsWindowSize()
 
 QByteArray SettingsManager::getSplitterHorizontalState(){
   return (instance()->getSYSsettings()->value(ctn_KEY_SPLITTER_HORIZONTAL_STATE, 0).toByteArray());
+}
+
+bool SettingsManager::isInstantSearchSelected()
+{
+  SettingsManager p_instance;
+  return (p_instance.getSYSsettings()->value(ctn_KEY_INSTANT_SEARCH, true)).toBool();
 }
 
 void SettingsManager::setCurrentTabIndex(int newValue){
@@ -833,12 +839,6 @@ void SettingsManager::setConsoleFontSize(int newValue)
 {
   instance()->getSYSsettings()->setValue(ctn_KEY_CONSOLE_SIZE, newValue);
   instance()->getSYSsettings()->sync();
-}
-
-bool SettingsManager::isInstantSearchSelected()
-{
-  SettingsManager p_instance;
-  return (p_instance.getSYSsettings()->value(ctn_KEY_INSTANT_SEARCH, 1)).toBool();
 }
 
 //Octopi related --------------------------------------------------------------------

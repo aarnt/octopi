@@ -102,6 +102,7 @@ MainWindow::MainWindow(QWidget *parent) :
   m_groupWidgetNeedsFocus = false;
   m_outdatedAURTimer = new QTimer();
   m_outdatedAURTimer->setInterval(50);
+  m_reconectSlotInvalidateTabs = false;
   connect(m_outdatedAURTimer, SIGNAL(timeout()), this, SLOT(postBuildPackageList()));
 
   //Here we try to speed up first pkg list build!

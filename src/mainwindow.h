@@ -147,6 +147,9 @@ private:
   //Controls if Group Widget needs to regain focus
   bool m_groupWidgetNeedsFocus;
 
+  //Controls wether slot "invalidateTabs is reconnected to tab Files
+  bool m_reconectSlotInvalidateTabs;
+
   //Holds the remove command to be used: -Rcs/-R/-Rs or whichever the user has choosen
   QString m_removeCommand;
 
@@ -171,7 +174,6 @@ private:
   //This member holds the current command type being executed by Octopi
   CommandExecuting m_commandExecuting;
   CommandExecuting m_commandQueued;
-
 
   QStringList m_lastCommandList; //This member holds the last command string executed by Octopi
   QStringList *m_outdatedStringList;
@@ -390,6 +392,7 @@ private slots:
   void preBuildPackageList();
   void postBuildPackageList();
   void refreshOutdatedAURStringList();
+  void postRefreshOutdatedAURStringList();
   void preBuildPackagesFromGroupList();
   void preBuildAURPackageList();
   void preBuildAURPackageListMeta();

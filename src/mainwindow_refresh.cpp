@@ -1009,18 +1009,80 @@ void MainWindow::postBuildPackageList()
 
   if (distro != ectn_KAOS && isAURGroupSelected()) return;
 
-  bool reconnectSlot = false;
+  m_reconectSlotInvalidateTabs = false;
+  //bool reconnectSlot = false;
 
   if (ui->twProperties->currentIndex() == ctn_TABINDEX_FILES)
   {
     disconnect(ui->tvPackages->selectionModel(), SIGNAL(selectionChanged(QItemSelection,QItemSelection)),
                this, SLOT(invalidateTabs()));
 
-    reconnectSlot = true;
+    //reconnectSlot = true;
+    m_reconectSlotInvalidateTabs = true;
   }
 
   refreshOutdatedAURStringList();
 
+  /*if (distro != ectn_KAOS && isAURGroupSelected()) return;
+
+  QModelIndex mi = ui->tvPackages->currentIndex();
+  m_packageRepo.setAUROutdatedData(m_foreignPackageList, *m_outdatedAURStringList);
+  ui->tvPackages->setCurrentIndex(mi);
+
+  if (m_outdatedStringList->count() == 0 && m_outdatedAURStringList->count() > 0)
+    refreshAppIcon();
+
+  refreshStatusBarToolButtons();
+
+  //if (reconnectSlot)
+  if (m_reconectSlotInvalidadeTabs)
+  {
+    connect(ui->tvPackages->selectionModel(), SIGNAL(selectionChanged(QItemSelection,QItemSelection)),
+            this, SLOT(invalidateTabs()));
+  }
+
+  if (m_commandExecuting == ectn_NONE && !m_actionSwitchToAURTool->isEnabled()) m_actionSwitchToAURTool->setEnabled(true);
+
+  if (m_groupWidgetNeedsFocus && ui->splitterVertical->sizes().at(1) != 0) //if group is not hidden...
+  {
+    ui->twGroups->setFocus();
+    m_groupWidgetNeedsFocus = false;
+  }
+  else
+  {
+    if (SettingsManager::getSearchOutdatedAURPackages())
+      m_leFilterPackage->setFocus();
+  }*/
+}
+
+/*
+ * Refreshes the list of outdated AUR packages
+ */
+void MainWindow::refreshOutdatedAURStringList()
+{
+  //QEventLoop el;
+  QFuture<QStringList *> f = QtConcurrent::run(getOutdatedAURStringList);
+  //connect(&g_fwOutdatedAURStringList, SIGNAL(finished()), &el, SLOT(quit()));
+  connect(&g_fwOutdatedAURStringList, SIGNAL(finished()), this, SLOT(postRefreshOutdatedAURStringList()));
+  g_fwOutdatedAURStringList.setFuture(f);
+  //el.exec();
+
+  /*m_outdatedAURStringList = g_fwOutdatedAURStringList.result();
+  m_foreignPackageList->clear();
+  delete m_foreignPackageList;
+  m_foreignPackageList = nullptr;
+  m_foreignPackageList = markForeignPackagesInPkgList(m_hasAURTool, m_outdatedAURStringList);*/
+}
+
+void MainWindow::postRefreshOutdatedAURStringList()
+{
+  m_outdatedAURStringList = g_fwOutdatedAURStringList.result();
+  m_foreignPackageList->clear();
+  delete m_foreignPackageList;
+  m_foreignPackageList = nullptr;
+  m_foreignPackageList = markForeignPackagesInPkgList(m_hasAURTool, m_outdatedAURStringList);
+
+  LinuxDistro distro = UnixCommand::getLinuxDistro();
   if (distro != ectn_KAOS && isAURGroupSelected()) return;
 
   QModelIndex mi = ui->tvPackages->currentIndex();
@@ -1032,7 +1094,7 @@ void MainWindow::postBuildPackageList()
 
   refreshStatusBarToolButtons();
 
-  if (reconnectSlot)
+  if (m_reconectSlotInvalidateTabs)
   {
     connect(ui->tvPackages->selectionModel(), SIGNAL(selectionChanged(QItemSelection,QItemSelection)),
             this, SLOT(invalidateTabs()));
@@ -1050,34 +1112,6 @@ void MainWindow::postBuildPackageList()
     if (SettingsManager::getSearchOutdatedAURPackages())
       m_leFilterPackage->setFocus();
   }
-}
-
-/*
- * Refreshes the list of outdated AUR packages
- */
-void MainWindow::refreshOutdatedAURStringList()
-{
-  /*static bool onlyOnce=true; //Testing purpose code
-  if (onlyOnce)
-  {
-    m_outdatedAURStringList->append("micro-bin");
-    m_outdatedAURPackagesNameVersion->insert("micro-bin", "1.5.9-1");
-    onlyOnce=false;
-    return;
-  }*/
-
-  QEventLoop el;
-  QFuture<QStringList *> f = QtConcurrent::run(getOutdatedAURStringList);
-  connect(&g_fwOutdatedAURStringList, SIGNAL(finished()), &el, SLOT(quit()));
-  g_fwOutdatedAURStringList.setFuture(f);
-  el.exec();
-
-  m_outdatedAURStringList = g_fwOutdatedAURStringList.result();
-
-  m_foreignPackageList->clear();
-  delete m_foreignPackageList;
-  m_foreignPackageList = nullptr;
-  m_foreignPackageList = markForeignPackagesInPkgList(m_hasAURTool, m_outdatedAURStringList);
 }
 
 /*

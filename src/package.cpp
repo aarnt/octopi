@@ -1746,8 +1746,7 @@ QHash<QString, QString> Package::getAUROutdatedPackagesNameVersion()
   QHash<QString, QString> hash;
 
   if(UnixCommand::getLinuxDistro() == ectn_CHAKRA ||
-      (//getForeignRepositoryToolName() != ctn_YAOURT_TOOL &&
-      getForeignRepositoryToolName() != ctn_PACAUR_TOOL &&
+      (getForeignRepositoryToolName() != ctn_PACAUR_TOOL &&
       getForeignRepositoryToolName() != ctn_TRIZEN_TOOL &&
       getForeignRepositoryToolName() != ctn_PIKAUR_TOOL &&
       getForeignRepositoryToolName() != ctn_KCP_TOOL &&
@@ -1762,14 +1761,15 @@ QHash<QString, QString> Package::getAUROutdatedPackagesNameVersion()
   QStringList listOfPkgs = res.split(QStringLiteral("\n"), QString::SkipEmptyParts);
   QStringList ignorePkgList = UnixCommand::getIgnorePkgsFromPacmanConf();
 
-  if (//(getForeignRepositoryToolName() == ctn_YAOURT_TOOL) ||
-      (getForeignRepositoryToolName() == ctn_TRIZEN_TOOL) ||
+  if ((getForeignRepositoryToolName() == ctn_TRIZEN_TOOL) ||
       (getForeignRepositoryToolName() == ctn_PIKAUR_TOOL) ||
       (getForeignRepositoryToolName() == ctn_YAY_TOOL) ||
       (getForeignRepositoryToolName() == ctn_KCP_TOOL))
   {
     foreach (QString line, listOfPkgs)
     {
+      line = line.trimmed();
+      if (line.contains(QLatin1String("Reading "))) continue;
       if (line.contains(StrConstants::getForeignRepositoryTargetPrefix(), Qt::CaseInsensitive))
       {
         line = line.remove(StrConstants::getForeignRepositoryTargetPrefix());
@@ -1784,19 +1784,25 @@ QHash<QString, QString> Package::getAUROutdatedPackagesNameVersion()
             hash.insert(pkgName, nameVersion.at(1));
           }
         }
-        else //It's yaourt!
+      }
+      else if (getForeignRepositoryToolName() == ctn_PIKAUR_TOOL)
+      {
+        QStringList nameVersion = line.split(QStringLiteral(" "), QString::SkipEmptyParts);
+        QString pkgName = nameVersion.at(0);
+
+        //Let's ignore the "IgnorePkg" list of packages...
+        if (!ignorePkgList.contains(pkgName))
         {
-          //Let's ignore the "IgnorePkg" list of packages...
-          if (!ignorePkgList.contains(pkgName))
+          if (nameVersion.size() == 2)
+            hash.insert(pkgName, nameVersion.at(1));
+          else if (nameVersion.size() >= 4)
           {
-            if (nameVersion.size() == 2)
-              hash.insert(pkgName, nameVersion.at(1));
-            else if (nameVersion.size() == 4)
-              hash.insert(pkgName, nameVersion.at(3));
+            hash.insert(pkgName, nameVersion.at(3));
           }
         }
       }
-      else //We have TRIZEN output here
+      else if (getForeignRepositoryToolName() == ctn_YAY_TOOL ||
+               getForeignRepositoryToolName() == ctn_TRIZEN_TOOL)
       {
         QStringList nameVersion = line.split(QStringLiteral(" "), QString::SkipEmptyParts);
         QString pkgName = nameVersion.at(0);
