@@ -627,7 +627,8 @@ void PacmanExec::prepareTextToPrint(QString str, TreatString ts, TreatURLLinks t
     else if (newStr.contains(":: Processing package changes")) emit canStopTransaction(false);*/
 
     if (SettingsManager::getShowPackageNumbersOutput() &&
-        (newStr.contains(QLatin1String(":: Retrieving packages")) || (newStr.contains(QLatin1String(":: Processing package changes")))))
+        (newStr.contains(QLatin1String(":: Retrieving packages")) || (newStr.contains(QLatin1String(":: Processing package changes"))) ||
+         (newStr.contains(QLatin1String(":: Running pre-transaction hooks")))))
         m_packageCounter = 1;
   }
 
