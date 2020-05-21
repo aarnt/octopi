@@ -68,6 +68,10 @@ MainWindow::MainWindow(QWidget *parent) :
   m_tcpServer = new QTcpServer(this);
   connect(m_tcpServer, &QTcpServer::newConnection, this, &MainWindow::onSendInfoToOctopiHelper);
 
+  m_callRefreshAppIcon = new QTimer();
+  m_callRefreshAppIcon->setInterval(1500);
+  connect(m_callRefreshAppIcon, &QTimer::timeout, this, &MainWindow::onCallRefreshAppIcon);
+
   m_outputDialog=nullptr;
   initActions();
 
@@ -684,7 +688,7 @@ void MainWindow::doAURUpgrade()
   QString listOfTargets;
   QString auxPkg;
 
-  for(const QString pkg : qAsConst(*m_outdatedAURStringList))
+  for(const QString &pkg : qAsConst(*m_outdatedAURStringList))
   {
     auxPkg = pkg;
     auxPkg.remove(QStringLiteral("[1;39m"));
@@ -716,6 +720,18 @@ void MainWindow::doSystemUpgradeFinished()
   m_checkUpdatesStringList.clear();
   m_checkUpdatesNameNewVersion->clear();
   m_numberOfCheckUpdatesPackages=0;
+
+  m_callRefreshAppIcon->start();
+  /*refreshAppIcon();
+  toggleEnableInterface(true);*/
+}
+
+/*
+ * After a second upgrade window was closed...
+ */
+void MainWindow::onCallRefreshAppIcon()
+{
+  m_callRefreshAppIcon->stop();
   refreshAppIcon();
   toggleEnableInterface(true);
 }
@@ -946,8 +962,8 @@ void MainWindow::refreshAppIcon()
   disconnect(m_pacmanDatabaseSystemWatcher,
           SIGNAL(directoryChanged(QString)), this, SLOT(refreshAppIcon()));
 
-  if (m_debugInfo)
-    qDebug() << "At refreshAppIcon()...";
+  if (m_debugInfo) qDebug() << "At refreshAppIcon()...";
+
   m_outdatedStringList = Package::getOutdatedStringList();
 
   //We only need to check for outdated AUR pkgs IF we do NOT have outdated standard ones!

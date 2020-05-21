@@ -481,8 +481,8 @@ void OutputDialog::closeEvent(QCloseEvent *event)
   }
   else
   {
-    event->accept();
     emit finished(0);
+    event->accept();
   }
 }
 

@@ -79,6 +79,7 @@ private slots:
   void toggleEnableInterface(bool state);
   void showOptionsDialog();
   void onSendInfoToOctopiHelper();
+  void onCallRefreshAppIcon();
 
 private:
   bool m_debugInfo;
@@ -110,6 +111,7 @@ private:
   QStringList *m_outdatedStringList;
   QStringList *m_outdatedAURStringList;
   QTimer *m_pacmanHelperTimer;
+  QTimer *m_callRefreshAppIcon;
   QMenu *m_systemTrayIconMenu;
   QFileSystemWatcher *m_pacmanDatabaseSystemWatcher;
   OutputDialog *m_outputDialog;
