@@ -75,7 +75,7 @@ QStringList AlpmBackend::getPackageList()
 
     if (instPkg)
     {
-      bInstalled = QStringLiteral("i");
+      bInstalled = "i";
       installedVersion = alpm_pkg_get_version(instPkg);
 
       if (!strcmp(repoVersion, installedVersion))
@@ -84,12 +84,12 @@ QStringList AlpmBackend::getPackageList()
       }
       else
       {
-        bInstalled = QStringLiteral("o");
+        bInstalled = "o";
       }
     }
     else
     {
-      bInstalled = QStringLiteral("n");
+      bInstalled = "n";
       installedVersion = "same_version";
     }
 
@@ -98,12 +98,12 @@ QStringList AlpmBackend::getPackageList()
 
     std::sprintf(size, "%ld", pkgSize);
 
-    line = bInstalled + QLatin1Char(' ') + QString::fromUtf8(dbname) + QLatin1Char(' ') +
-           QString::fromUtf8(pkgName) + QLatin1Char(' ') + QString::fromUtf8(repoVersion) + QLatin1Char(' ') +
-           QString::fromUtf8(installedVersion) + QLatin1Char(' ') + QString::fromUtf8(size);
+    line = bInstalled + " " + dbname + " " +
+           pkgName + " " + repoVersion + " " +
+           installedVersion + " " + QString(size);
 
     res.append(line);
-    line = QLatin1Char('\t') + QString::fromUtf8(alpm_pkg_get_desc(pkg));
+    line = "\t" + QString(alpm_pkg_get_desc(pkg));
     res.append(line);
   }
 
@@ -135,7 +135,7 @@ QStringList AlpmBackend::getUnrequiredList()
   {
     alpm_pkg_t* pkg = (alpm_pkg_t*) i->data;
     pkgName = alpm_pkg_get_name(pkg),
-    res.append(QString::fromUtf8(pkgName));
+    res.append(QString(pkgName));
   }
 
   // free
@@ -168,10 +168,10 @@ QStringList AlpmBackend::getForeignList()
   {
     alpm_pkg_t* pkg = (alpm_pkg_t*) i->data;
     const char* pkgName = alpm_pkg_get_name(pkg);
-    version = QString::fromUtf8(alpm_pkg_get_version(pkg));
-    description = QString::fromUtf8(alpm_pkg_get_desc(pkg));
+    version = alpm_pkg_get_version(pkg);
+    description = alpm_pkg_get_desc(pkg);
 
-    line = QString::fromUtf8(pkgName) + QLatin1String("<o'o>") + QString(version) + QLatin1String("<o'o>") + QString(description);
+    line = QString(pkgName) + "<o'o>" + QString(version) + "<o'o>" + QString(description);
 
     res.append(line);
   }
@@ -204,7 +204,7 @@ QStringList AlpmBackend::getOutdatedList()
   {
     alpm_pkg_t* pkg = (alpm_pkg_t*) i->data;
     pkgName = alpm_pkg_get_name(pkg),
-    res.append(QString::fromUtf8(pkgName));
+    res.append(QString(pkgName));
   }
 
   // free
@@ -238,7 +238,7 @@ QString AlpmBackend::getPackageSize(const QString &pkgName)
     const char* dbname = alpm_db_get_name(db);
     if (!strcmp(dbname, "local")) continue;
 
-    if (pkg && strcmp(alpm_pkg_get_name(pkg),pkgName.toLatin1().constData())==0)
+    if (pkg && strcmp(alpm_pkg_get_name(pkg),pkgName.toLatin1())==0)
     {
       off_t pkgSize = alpm_pkg_get_size(pkg);
       std::sprintf(size, "%ld", pkgSize);
@@ -250,7 +250,7 @@ QString AlpmBackend::getPackageSize(const QString &pkgName)
   alpm_utils_free (alpm_utils); // this will free all alpm_pkgs but not the alpm_list
   alpm_list_free (founds);
 
-  return QString::fromUtf8(size);
+  return QString(size);
 }
 
 /*
