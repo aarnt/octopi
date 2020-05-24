@@ -59,6 +59,7 @@ QStringList AlpmBackend::getPackageList()
   QString bInstalled;
   const char* pkgName;
   alpm_pkg_t* instPkg;
+  char size[20];
   QString line;
 
   for (i = founds; i; i = alpm_list_next(i))
@@ -75,7 +76,7 @@ QStringList AlpmBackend::getPackageList()
 
     if (instPkg)
     {
-      bInstalled = "i";
+      bInstalled = QStringLiteral("i");
       installedVersion = alpm_pkg_get_version(instPkg);
 
       if (!strcmp(repoVersion, installedVersion))
@@ -84,26 +85,24 @@ QStringList AlpmBackend::getPackageList()
       }
       else
       {
-        bInstalled = "o";
+        bInstalled = QStringLiteral("o");
       }
     }
     else
     {
-      bInstalled = "n";
+      bInstalled = QStringLiteral("n");
       installedVersion = "same_version";
     }
 
-    char size[10];
     off_t pkgSize = alpm_pkg_get_size(pkg);
-
     std::sprintf(size, "%ld", pkgSize);
 
-    line = bInstalled + " " + dbname + " " +
-           pkgName + " " + repoVersion + " " +
-           installedVersion + " " + QString(size);
+    line = bInstalled + QLatin1Char(' ') + QString::fromUtf8(dbname) + QLatin1Char(' ') +
+           QString::fromUtf8(pkgName) + QLatin1Char(' ') + QString::fromUtf8(repoVersion) + QLatin1Char(' ') +
+           QString::fromUtf8(installedVersion) + QLatin1Char(' ') + QString::fromUtf8(size);
 
     res.append(line);
-    line = "\t" + QString(alpm_pkg_get_desc(pkg));
+    line = QLatin1Char('\t') + QString::fromUtf8(alpm_pkg_get_desc(pkg));
     res.append(line);
   }
 
@@ -135,7 +134,7 @@ QStringList AlpmBackend::getUnrequiredList()
   {
     alpm_pkg_t* pkg = (alpm_pkg_t*) i->data;
     pkgName = alpm_pkg_get_name(pkg),
-    res.append(QString(pkgName));
+    res.append(QString::fromUtf8(pkgName));
   }
 
   // free
@@ -168,10 +167,10 @@ QStringList AlpmBackend::getForeignList()
   {
     alpm_pkg_t* pkg = (alpm_pkg_t*) i->data;
     const char* pkgName = alpm_pkg_get_name(pkg);
-    version = alpm_pkg_get_version(pkg);
-    description = alpm_pkg_get_desc(pkg);
+    version = QString::fromUtf8(alpm_pkg_get_version(pkg));
+    description = QString::fromUtf8(alpm_pkg_get_desc(pkg));
 
-    line = QString(pkgName) + "<o'o>" + QString(version) + "<o'o>" + QString(description);
+    line = QString::fromUtf8(pkgName) + QLatin1String("<o'o>") + QString(version) + QLatin1String("<o'o>") + QString(description);
 
     res.append(line);
   }
@@ -204,7 +203,7 @@ QStringList AlpmBackend::getOutdatedList()
   {
     alpm_pkg_t* pkg = (alpm_pkg_t*) i->data;
     pkgName = alpm_pkg_get_name(pkg),
-    res.append(QString(pkgName));
+    res.append(QString::fromUtf8(pkgName));
   }
 
   // free
@@ -223,7 +222,7 @@ QString AlpmBackend::getPackageSize(const QString &pkgName)
   AlpmUtils* alpm_utils = alpm_utils_new ("/etc/pacman.conf");
 
   alpm_list_t* i;
-  char size[10];
+  char size[20];
 
   std::string str = pkgName.toStdString();
   const char* p = str.c_str();
@@ -238,7 +237,7 @@ QString AlpmBackend::getPackageSize(const QString &pkgName)
     const char* dbname = alpm_db_get_name(db);
     if (!strcmp(dbname, "local")) continue;
 
-    if (pkg && strcmp(alpm_pkg_get_name(pkg),pkgName.toLatin1())==0)
+    if (pkg && strcmp(alpm_pkg_get_name(pkg),pkgName.toLatin1().constData())==0)
     {
       off_t pkgSize = alpm_pkg_get_size(pkg);
       std::sprintf(size, "%ld", pkgSize);
@@ -250,7 +249,7 @@ QString AlpmBackend::getPackageSize(const QString &pkgName)
   alpm_utils_free (alpm_utils); // this will free all alpm_pkgs but not the alpm_list
   alpm_list_free (founds);
 
-  return QString(size);
+  return QString::fromUtf8(size);
 }
 
 /*
@@ -263,7 +262,7 @@ QString AlpmBackend::getPackageSize(const QString &pkgName)
   AlpmUtils* alpm_utils = alpm_utils_new ("/etc/pacman.conf");
 
   alpm_list_t *i, *j;
-  char size[10];
+  char size[20];
 
   std::string str = pkgName.toStdString();
   const char* p = str.c_str();
@@ -274,7 +273,6 @@ QString AlpmBackend::getPackageSize(const QString &pkgName)
   {
     alpm_pkg_t* pkg = (alpm_pkg_t*) i->data;
     alpm_db_t* db = alpm_pkg_get_db(pkg);
-
     const char* dbname = alpm_db_get_name(db);
     if (!isForeign && !strcmp(dbname, "local")) continue;
 
