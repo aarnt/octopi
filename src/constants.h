@@ -117,6 +117,9 @@ const QString ctn_KEY_PACKAGE_VERSION_COLUMN_WIDTH(QStringLiteral("Package_Versi
 const QString ctn_KEY_PACKAGE_REPOSITORY_COLUMN_WIDTH(QStringLiteral("Package_Repository_Column_Width"));
 const QString ctn_KEY_SU_TOOL(QStringLiteral("SU_Tool_Name"));
 const QString ctn_KEY_TERMINAL(QStringLiteral("Terminal"));
+const QString ctn_KEY_TERMINAL_COLOR_SCHEME(QStringLiteral("Terminal_Color_Scheme"));
+const QString ctn_KEY_TERMINAL_FONT_FAMILY(QStringLiteral("Terminal_Font_Family"));
+const QString ctn_KEY_TERMINAL_FONT_POINT_SIZE(QStringLiteral("Terminal_Font_Point_Size"));
 const QString ctn_KEY_INSTANT_SEARCH(QStringLiteral("Instant_Search"));
 const QString ctn_KEY_PROXY_SETTINGS(QStringLiteral("Proxy_Settings"));
 const QString ctn_AUTOMATIC(QStringLiteral("automatic"));
@@ -248,9 +251,9 @@ enum ExecOpt { ectn_NORMAL_EXEC_OPT, ectn_SYSUPGRADE_EXEC_OPT, ectn_SYSUPGRADE_N
 
 //Octopi-helper related ----------------------------------------------------------------------------------
 
-const QString ctn_OCTOPI_HELPER_VERSION = QStringLiteral("0.10 (dev)");
+const QString ctn_OCTOPI_HELPER_VERSION = QStringLiteral("0.10.0 (dev)");
 const QString ctn_OCTOPI_HELPER_NAME(QStringLiteral("octphelper"));
-const QString ctn_OCTOPI_HELPER_PATH(QStringLiteral("/usr/lib/octopi/octphelper")); //("/usr/lib/octopi/octopi-helper");
+const QString ctn_OCTOPI_HELPER_PATH(QStringLiteral("/usr/lib/octopi/octphelper"));
 
 const int ctn_NO_TEMP_ACTIONS_FILE(1);
 const int ctn_PACMAN_PROCESS_EXECUTING(2);

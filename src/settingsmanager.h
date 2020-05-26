@@ -44,6 +44,10 @@ class SettingsManager
     static SettingsManager* instance();
     static QString getTerminal();
 
+    static QString getTerminalColorScheme();
+    static QString getTerminalFontFamily();
+    static qreal getTerminalFontPointSize();
+
     static QString getOctopiConfPath()
     {
       return QDir::homePath() +

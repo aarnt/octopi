@@ -36,9 +36,15 @@
 TermWidget::TermWidget(QWidget *parent):
   QTermWidget(parent)
 {
+  setHistorySize(6000);
   setScrollBarPosition(QTermWidget::ScrollBarRight);
-  setColorScheme(QStringLiteral("WhiteOnBlack"));
   setContextMenuPolicy(Qt::CustomContextMenu);
+
+  setColorScheme(SettingsManager::getTerminalColorScheme());
+  QFont f = QApplication::font();
+  f.setFamily(SettingsManager::getTerminalFontFamily());
+  f.setPointSizeF(SettingsManager::getTerminalFontPointSize());
+  setTerminalFont(f);
 
   m_actionZoomIn = new QAction(this);
   m_actionZoomIn->setText(StrConstants::getZoomIn());

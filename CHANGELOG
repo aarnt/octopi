@@ -25,7 +25,7 @@
   Added support for GNOME file manager/editor.
   Added option for changing use of alternating row colors in package list.
   Added a redesigned AUR tab in Options dialog.
-  Show QtermWidget search box on notifier's AUR upgrades.
+  Added option to change terminal's color scheme, font family and font size through ~/.config/octopi/octopi.conf.
   Maximization of properties pane now hides tab bar.
   BugFix: Many clazy/manual code enhancements merged from luis-pereira (from LXQt organization).
   BugFix: AUR upgrades in notifier were not setting m_commandExecuting flag.

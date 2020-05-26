@@ -1409,6 +1409,11 @@ void MainWindow::refreshStatusBar()
     m_toolButtonPacman->setText(QLatin1String(""));
     m_toolButtonPacman->setToolTip(QLatin1String(""));
   }
+  if (m_outdatedAURStringList->count() > 0 && !isAURGroupSelected())
+  {
+    m_toolButtonAUR->show();
+    ui->statusBar->addWidget(m_toolButtonAUR);
+  }
 }
 
 /*
