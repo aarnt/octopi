@@ -59,7 +59,8 @@ const QString app_master{QStringLiteral("octopi-sudo")};
 const QString app_version{QStringLiteral("0.15.0")};
 const QString app_lxsu{QStringLiteral("su")};
 const QString app_lxsudo{QStringLiteral("sudo")};
-
+const QString octopihelper{QStringLiteral("/usr/lib/octopi/octphelper")};
+const QString octopihelper_params{QStringLiteral("-ts")};
 const QString su_prog{QStringLiteral("su")};
 const QString sudo_prog{QStringLiteral("sudo")};
 const QString pwd_prompt_end{QStringLiteral(": ")};
@@ -135,7 +136,11 @@ inline QString quoteShellArg(const QString& arg, bool userFriendly)
 {
   QString rv = arg;
 
-  //^ check if thre are any bash special file characters
+  if (arg == octopihelper || arg == octopihelper_params){
+    return rv;
+  }
+
+  //^ check if thre are any bash special file characters  
   if (!userFriendly || arg.contains(QRegExp(QLatin1String("(\\s|[][!\"#$&'()*,;<=>?\\^`{}|~])")))) {
     rv.replace(QStringLiteral("'"), QStringLiteral("'\\''"));
     rv.prepend (QLatin1Char('\'')).append(QLatin1Char('\''));
@@ -389,7 +394,7 @@ int Sudo::parent()
       }
       QTextStream{stderr, QIODevice::WriteOnly} << line;
       //assuming text oriented output
-      QStringList lines = line.split(nl, QString::SkipEmptyParts);
+      QStringList lines = line.split(nl, Qt::SkipEmptyParts);
       last_line = lines.isEmpty() ? QString() : lines.back();
     }
 

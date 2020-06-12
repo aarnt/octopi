@@ -133,7 +133,7 @@ void testSharedMem()
   if (!sharedMem2->attach(QSharedMemory::ReadOnly))
   {
     QTextStream qout(stdout);
-    qout << endl << "ERROR: Couldn't attach to memory" << endl;
+    qout << Qt::endl << "ERROR: Couldn't attach to memory" << Qt::endl;
   }
 
   QByteArray sharedData2(sharedMem2->size(), '\0');
@@ -142,7 +142,7 @@ void testSharedMem()
   sharedMem2->unlock();
   QString contents=QString::fromLatin1(sharedData2);
   QTextStream qout(stdout);
-  qout << endl << "What is in memory: " << contents << endl;
+  qout << Qt::endl << "What is in memory: " << contents << Qt::endl;
 
   sharedMem2->detach();
   delete sharedMem2;

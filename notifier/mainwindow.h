@@ -126,7 +126,7 @@ private:
   bool isInternetAvailable();
   void initActions();
   void initSystemTrayIcon();
-  void sendNotification(const QString &msg);
+  //void sendNotification(const QString &msg);
   void setUpgradingTooltip();
 };
 

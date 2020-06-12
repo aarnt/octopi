@@ -315,7 +315,6 @@ bool SettingsManager::getShowStopTransaction()
 QString SettingsManager::getAURTool()
 {
   QString params;
-
   SettingsManager p_instance;
   QString ret = (p_instance.getSYSsettings()->value(ctn_KEY_AUR_TOOL, QLatin1String(""))).toString();
 
@@ -326,11 +325,6 @@ QString SettingsManager::getAURTool()
     if (getAURNoEditParam()) params += QLatin1String(" --noedit ");
     ret += params;
   }
-  /*else if (ret == ctn_YAOURT_TOOL)
-  {
-    if (getAURNoConfirmParam()) params += QLatin1String(" --noconfirm ");
-    ret += params;
-  }*/
   else if (ret == ctn_TRIZEN_TOOL)
   {
     if (getAURNoConfirmParam()) params += QLatin1String(" --noconfirm ");
@@ -379,14 +373,6 @@ QString SettingsManager::getAURTool()
       p_instance.getSYSsettings()->sync();
       ret = ctn_YAY_TOOL + params;
     }
-    /*else if (UnixCommand::hasTheExecutable(ctn_YAOURT_TOOL))
-    {
-      if (getAURNoConfirmParam()) params += QLatin1String(" --noconfirm ");
-
-      p_instance.setAURTool(ctn_YAOURT_TOOL);
-      p_instance.getSYSsettings()->sync();
-      ret = ctn_YAOURT_TOOL + params;
-    }*/
     else if (UnixCommand::hasTheExecutable(ctn_PACAUR_TOOL))
     {
       if (getAURNoConfirmParam()) params += QLatin1String(" --noconfirm ");

@@ -38,14 +38,14 @@ int main(int argc, char *argv[])
   if (argList->getSwitch(QStringLiteral("-version")))
   {
     QTextStream qout(stdout);
-    qout << "octopi-helper: version " << ctn_OCTOPI_HELPER_VERSION << endl;
+    qout << "octopi-helper: version " << ctn_OCTOPI_HELPER_VERSION << Qt::endl;
     return 0;
   }
 
   if (!isRootRunning())
   {
     QTextStream qout(stdout);
-    qout << endl << "octopi-helper[aborted]: Only root can run..." << endl;
+    qout << Qt::endl << "octopi-helper[aborted]: Only root can run..." << Qt::endl;
     return ctn_NO_ROOT_RUNNING;
   }
 
@@ -59,7 +59,7 @@ int main(int argc, char *argv[])
   else
   {
     QTextStream qout(stdout);
-    qout << endl << "octopi-helper[aborted]: Suspicious execution method" << endl;
+    qout << Qt::endl << "octopi-helper[aborted]: Suspicious execution method" << Qt::endl;
     return ctn_SUSPICIOUS_EXECUTION_METHOD;
   }
 }

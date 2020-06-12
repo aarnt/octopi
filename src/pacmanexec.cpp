@@ -129,16 +129,16 @@ bool PacmanExec::splitOutputStrings(QString output)
   bool res = true;
 
   QString msg = output.trimmed();
-  QStringList msgs = msg.split(QRegularExpression(QStringLiteral("\\n")), QString::SkipEmptyParts);
+  QStringList msgs = msg.split(QRegularExpression(QStringLiteral("\\n")), Qt::SkipEmptyParts);
 
   foreach (QString m, msgs)
   {
-    QStringList m2 = m.split(QRegularExpression(QStringLiteral("\\(\\s{0,3}[0-9]{1,4}/[0-9]{1,4}\\) ")), QString::SkipEmptyParts);
+    QStringList m2 = m.split(QRegularExpression(QStringLiteral("\\(\\s{0,3}[0-9]{1,4}/[0-9]{1,4}\\) ")), Qt::SkipEmptyParts);
 
     if (m2.count() == 1)
     {
       //Let's try another test... if it doesn't work, we give up.
-      QStringList maux = m.split(QRegularExpression(QStringLiteral("%")), QString::SkipEmptyParts);
+      QStringList maux = m.split(QRegularExpression(QStringLiteral("%")), Qt::SkipEmptyParts);
       if (maux.count() > 1)
       {
         foreach (QString aux, maux)
@@ -734,15 +734,15 @@ void PacmanExec::onReadOutput()
     {
       //checkupdates outputs outdated packages like this: "apr 1.6.5-1 -> 1.7.0-1"
       if (m_listOfOutatedPackages.count() == 0)
-        m_listOfOutatedPackages = output.split(QStringLiteral("\n"), QString::SkipEmptyParts);
+        m_listOfOutatedPackages = output.split(QStringLiteral("\n"), Qt::SkipEmptyParts);
       else
       {
         //checkupdates returned more than 1 time from the QProcess event, so we have to concatenate the list...
         QString lastPackage = m_listOfOutatedPackages.last();
-        QStringList newList = output.split(QStringLiteral("\n"), QString::SkipEmptyParts);
+        QStringList newList = output.split(QStringLiteral("\n"), Qt::SkipEmptyParts);
         QString firstPackage = newList.first();
-        QStringList partsLast = lastPackage.split(QStringLiteral(" "), QString::SkipEmptyParts);
-        QStringList partsFirst = firstPackage.split(QStringLiteral(" "), QString::SkipEmptyParts);
+        QStringList partsLast = lastPackage.split(QStringLiteral(" "), Qt::SkipEmptyParts);
+        QStringList partsFirst = firstPackage.split(QStringLiteral(" "), Qt::SkipEmptyParts);
 
         if (partsLast.count()<4 || partsFirst.count()<4)
         {
@@ -754,7 +754,7 @@ void PacmanExec::onReadOutput()
         }
         else
         {
-          newList = output.split(QStringLiteral("\n"), QString::SkipEmptyParts);
+          newList = output.split(QStringLiteral("\n"), Qt::SkipEmptyParts);
           m_listOfOutatedPackages.append(newList);
         }
       }
@@ -874,7 +874,7 @@ void PacmanExec::onFinished(int exitCode, QProcess::ExitStatus es)
     if (UnixCommand::getLinuxDistro() == ectn_KAOS &&
         UnixCommand::hasTheExecutable(ctn_KCP_TOOL))
 
-      UnixCommand::execCommandAsNormalUser(QStringLiteral("kcp -u"));
+      UnixCommand::execCommandAsNormalUser(QStringLiteral("kcp"), QStringList() << QStringLiteral("-u"));
   }
 
   if (m_processWasCanceled && PacmanExec::isDatabaseLocked()) exitCode = -1;
@@ -891,7 +891,7 @@ void PacmanExec::doCheckUpdates()
 {
   m_commandExecuting = ectn_CHECK_UPDATES;
   m_listOfOutatedPackages.clear();
-  m_unixCommand->executeCommandAsNormalUser(ctn_CHECKUPDATES_BINARY);
+  m_unixCommand->executeCommandAsNormalUser(ctn_CHECKUPDATES_BINARY, QStringList());
 }
 
 /*
@@ -916,7 +916,7 @@ QStringList PacmanExec::getDotPacnewFileList()
 void PacmanExec::doMirrorCheck()
 {
   m_commandExecuting = ectn_MIRROR_CHECK;
-  m_unixCommand->executeCommandAsNormalUser(ctn_MIRROR_CHECK_APP);
+  m_unixCommand->executeCommandAsNormalUser(ctn_MIRROR_CHECK_APP, QStringList());
 }
 
 /*
@@ -982,7 +982,7 @@ void PacmanExec::doInstallLocal(const QString &listOfPackages)
     command += QLatin1String("rm ") + ctn_PACMAN_DATABASE_LOCK_FILE + QLatin1String("; ");
   }
 
-  packages=listOfPackages.split(QStringLiteral(";"), QString::SkipEmptyParts);
+  packages=listOfPackages.split(QStringLiteral(";"), Qt::SkipEmptyParts);
 
   foreach(QString p, packages)
   {
@@ -1034,7 +1034,7 @@ void PacmanExec::doInstallLocalInTerminal(const QString &listOfPackages)
     command+=QLatin1String("rm ") + ctn_PACMAN_DATABASE_LOCK_FILE + QLatin1Char(';');
   }
 
-  packages=listOfPackages.split(QStringLiteral(";"), QString::SkipEmptyParts);
+  packages=listOfPackages.split(QStringLiteral(";"), Qt::SkipEmptyParts);
 
   foreach(QString p, packages)
   {

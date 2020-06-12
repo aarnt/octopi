@@ -473,7 +473,7 @@ void MainWindow::aboutOctopiNotifier()
  */
 void MainWindow::hideOctopi()
 {  
-  QProcess::startDetached(QStringLiteral("octopi -hide"));
+  QProcess::startDetached(QStringLiteral("octopi"), QStringList() << QStringLiteral("-hide"));
 }
 
 /*
@@ -481,7 +481,7 @@ void MainWindow::hideOctopi()
  */
 void MainWindow::showOctopi()
 {
-  QProcess::startDetached(QStringLiteral("octopi -show"));
+  QProcess::startDetached(QStringLiteral("octopi"), QStringList() << QStringLiteral("-show"));
 }
 
 /*
@@ -775,7 +775,7 @@ void MainWindow::afterCheckUpdates(int exitCode, QProcess::ExitStatus)
 
   for(const QString &line : qAsConst(checkUpdatesList))
   {
-    QStringList aux = line.split(QStringLiteral(" "), QString::SkipEmptyParts);
+    QStringList aux = line.split(QStringLiteral(" "), Qt::SkipEmptyParts);
 
     m_checkUpdatesStringList.append(aux.at(0));
     m_checkUpdatesNameNewVersion->insert(aux.at(0), aux.at(3));
@@ -921,7 +921,7 @@ void MainWindow::checkUpdates(CheckUpdate check)
   {
     if (m_debugInfo)
       qDebug() << "Synchronizing kcp database...";
-    UnixCommand::execCommandAsNormalUser(QStringLiteral("kcp -u"));
+    UnixCommand::execCommandAsNormalUser(QStringLiteral("kcp"), QStringList() << QStringLiteral("-u"));
   }
 
   m_pacmanExec = new PacmanExec(this);
@@ -933,7 +933,7 @@ void MainWindow::checkUpdates(CheckUpdate check)
 /*
  * Uses notify-send to send a notification to the systray area
  */
-void MainWindow::sendNotification(const QString &msg)
+/*void MainWindow::sendNotification(const QString &msg)
 {
   QString processToExec(QStringLiteral("notify-send"));
 
@@ -944,7 +944,7 @@ void MainWindow::sendNotification(const QString &msg)
 
     QProcess::startDetached(processToExec);
   }
-}
+}*/
 
 /*
  * If we have some outdated packages, let's put an angry red face icon in this app!
@@ -1231,7 +1231,7 @@ void MainWindow::runOctopi(ExecOpt execOptions)
 {
   if (execOptions == ectn_SYSUPGRADE_NOCONFIRM_EXEC_OPT && canOctopiUpgrade())
   {
-    QProcess::startDetached(QStringLiteral("octopi -sysupgrade-noconfirm"));
+    QProcess::startDetached(QStringLiteral("octopi"), QStringList() << QStringLiteral("-sysupgrade-noconfirm"));
   }
   else if (execOptions == ectn_SYSUPGRADE_EXEC_OPT &&
       (!UnixCommand::isAppRunning(QStringLiteral("octopi"), true) || !canOctopiUpgrade()) && (m_outdatedStringList->count() > 0 || m_checkUpdatesStringList.count() > 0))
@@ -1241,7 +1241,7 @@ void MainWindow::runOctopi(ExecOpt execOptions)
   else if (execOptions == ectn_SYSUPGRADE_EXEC_OPT && canOctopiUpgrade() &&
       UnixCommand::isAppRunning(QStringLiteral("octopi"), true) && (m_outdatedStringList->count() > 0 || m_checkUpdatesStringList.count() > 0))
   {
-    QProcess::startDetached(QStringLiteral("octopi -sysupgrade"));
+    QProcess::startDetached(QStringLiteral("octopi"), QStringList() << QStringLiteral("-sysupgrade"));
   }
   else if (execOptions == ectn_AUR_UPGRADE_EXEC_OPT &&
       (!UnixCommand::isAppRunning(QStringLiteral("octopi"), true) || !canOctopiUpgrade()) && m_outdatedAURStringList->count() > 0)
@@ -1251,11 +1251,11 @@ void MainWindow::runOctopi(ExecOpt execOptions)
   else if (execOptions == ectn_AUR_UPGRADE_EXEC_OPT && canOctopiUpgrade() &&
       UnixCommand::isAppRunning(QStringLiteral("octopi"), true) && m_outdatedAURStringList->count() > 0)
   {
-    QProcess::startDetached(QStringLiteral("octopi -aurupgrade"));
+    QProcess::startDetached(QStringLiteral("octopi"), QStringList() << QStringLiteral("-aurupgrade"));
   }
   else if (execOptions == ectn_NORMAL_EXEC_OPT)
   {
-    QProcess::startDetached(QStringLiteral("octopi"));
+    QProcess::startDetached(QStringLiteral("octopi"), QStringList());
   }
 }
 
@@ -1266,7 +1266,7 @@ void MainWindow::showOptionsDialog()
 {
   if (m_optionsDialog == nullptr && UnixCommand::isAppRunning(QStringLiteral("octopi"), true))
   {
-    QProcess::startDetached(QStringLiteral("octopi -options"));
+    QProcess::startDetached(QStringLiteral("octopi"), QStringList() << QStringLiteral("-options"));
   }
   else if (m_optionsDialog == nullptr)
   {

@@ -184,7 +184,7 @@ bool WMHelper::isCinnamonRunning(){
 bool WMHelper::isLuminaRunning()
 {
   QProcess proc;
-  proc.start(QStringLiteral("ps -A -o command"));
+  proc.start(QStringLiteral("ps -A -o command"), QStringList());
   proc.waitForStarted();
   proc.waitForFinished();
   QString out = QString::fromUtf8(proc.readAll());
@@ -211,7 +211,7 @@ QString WMHelper::getXFCEEditor(){
  */
 QString WMHelper::getOctopiSudoCommand(){
   QString result = ctn_OCTOPISUDO;
-  result += QLatin1String(" -d ");
+  result += ctn_OCTOPISUDO_PARAMS;
 
   return result;
 }
@@ -222,17 +222,8 @@ QString WMHelper::getOctopiSudoCommand(){
 QString WMHelper::getSUCommand(){
   QString result(ctn_NO_SU_COMMAND);
 
-  if (UnixCommand::getLinuxDistro() != ectn_KAOS)
-  {
-    QString su = SettingsManager::getSUTool();
-    if (su == ctn_OCTOPISUDO)
-      result = getOctopiSudoCommand();
-  }
-  else
-  {
-    if (UnixCommand::hasTheExecutable(ctn_OCTOPISUDO)){
-      result = getOctopiSudoCommand();
-    }
+  if (QFile::exists(ctn_OCTOPISUDO)){
+    result = ctn_OCTOPISUDO; //getOctopiSudoCommand();
   }
 
   return result;
@@ -245,12 +236,12 @@ QString WMHelper::getSUTool()
 {
   QString result(QLatin1String(""));
 
-  if (UnixCommand::hasTheExecutable(ctn_OCTOPISUDO)){
+  if (QFile::exists(ctn_OCTOPISUDO)){
     return ctn_OCTOPISUDO;
   }
-  else if (UnixCommand::hasTheExecutable(ctn_LXQTSU)){
+  /*else if (UnixCommand::hasTheExecutable(ctn_LXQTSU)){
     result = ctn_LXQTSU;
-  }
+  }*/
 
   return result;
 }
@@ -395,11 +386,11 @@ void WMHelper::editFile( const QString& fileName, EditOptions opt ){
 
   if (opt == ectn_EDIT_AS_NORMAL_USER)
   {
-    process->startDetached(QLatin1String("/bin/sh -c \"") + p + QLatin1Char('"'));
+    process->startDetached(QLatin1String("/bin/sh -c \"") + p + QLatin1Char('"'), QStringList());
   }
   else
   {
-    process->startDetached(getSUCommand() + p);
+    process->startDetached(getSUCommand() + p, QStringList());
   }
 }
 

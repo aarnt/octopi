@@ -724,7 +724,7 @@ void MainWindow::doCheckUpdates()
 
   //Let's synchronize kcp database too...
   if (UnixCommand::getLinuxDistro() == ectn_KAOS && UnixCommand::hasTheExecutable(ctn_KCP_TOOL))
-    UnixCommand::execCommandAsNormalUser(QStringLiteral("kcp -u"));
+    UnixCommand::execCommandAsNormalUser(QStringLiteral("kcp"), QStringList() << QStringLiteral("-u"));
 
   m_commandExecuting = ectn_CHECK_UPDATES;
   disableTransactionActions();
@@ -1028,7 +1028,7 @@ void MainWindow::doRemoveAndInstall()
   TransactionDialog question(this);
   QString dialogText;
 
-  QStringList removeTargets = listOfRemoveTargets.split(QStringLiteral(" "), QString::SkipEmptyParts);
+  QStringList removeTargets = listOfRemoveTargets.split(QStringLiteral(" "), Qt::SkipEmptyParts);
   foreach(QString target, removeTargets)
   {
     removeList = removeList + StrConstants::getRemove() + QLatin1Char(' ')  + target + QLatin1Char('\n');
@@ -1149,8 +1149,8 @@ void MainWindow::doRemove()
   m_targets = Package::getTargetRemovalList(listOfTargets, m_removeCommand);
   QString list;
 
-  QStringList targets = listOfTargets.split(QStringLiteral(" "), QString::SkipEmptyParts);
-  foreach(QString target, targets)
+  QStringList targets = listOfTargets.split(QStringLiteral(" "), Qt::SkipEmptyParts);
+  for(QString target: targets)
   {
     list = list + target + QLatin1Char('\n');
   }
@@ -1910,7 +1910,7 @@ void MainWindow::pacmanProcessFinished(int exitCode, QProcess::ExitStatus exitSt
 
       foreach(QString pkg, pkgs)
       {
-        QStringList names = pkg.split(QStringLiteral(" "), QString::SkipEmptyParts);
+        QStringList names = pkg.split(QStringLiteral(" "), Qt::SkipEmptyParts);
         if (names.count() > 0)
         {
           m_checkupdatesStringList->append(names.at(0));
@@ -2007,7 +2007,11 @@ void MainWindow::pacmanProcessFinished(int exitCode, QProcess::ExitStatus exitSt
           }
         }        
         if (m_outdatedStringList->count() > 0)
-          execCommandInAnotherThread(ctn_PACMAN_SUP_COMMAND);
+        {
+          QStringList sl;
+          sl << QStringLiteral("--print-format") << QStringLiteral("%n %v %s") << QStringLiteral("-Spu");
+          execCommandInAnotherThread(QStringLiteral("pacman"), sl);
+        }
       }
       else if (m_commandExecuting == ectn_SYSTEM_UPGRADE ||
                m_commandExecuting == ectn_RUN_SYSTEM_UPGRADE_IN_TERMINAL)
@@ -2112,7 +2116,7 @@ void MainWindow::onPressAnyKeyToContinue()
       QFileInfo fi(info.symLinkTarget());
       QFile::remove(yaySymlink);
       QProcess remove;
-      remove.start(QLatin1String("rm -Rf ") + fi.canonicalPath());
+      remove.start(QStringLiteral("rm"), QStringList() << QStringLiteral("-Rf") << fi.canonicalPath());
       remove.waitForFinished();
     }
 

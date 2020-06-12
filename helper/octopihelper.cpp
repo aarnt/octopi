@@ -168,9 +168,14 @@ bool OctopiHelper::isOctoToolRunning(const QString &octoToolName)
 
   QProcess proc;
   proc.setProcessEnvironment(getProcessEnvironment());
-  QString cmd = QStringLiteral("/usr/bin/ps -C %1 -o command");
-  cmd = cmd.arg(octoToolName);
-  proc.start(cmd);
+  //QString cmd = QStringLiteral("/usr/bin/ps -C %1 -o command");
+  //cmd = cmd.arg(octoToolName);
+  QStringList sl;
+  sl << QStringLiteral("-C");
+  sl << octoToolName;
+  sl << QStringLiteral("-o");
+  sl << QStringLiteral("command");
+  proc.start(QStringLiteral("/usr/bin/ps"), sl);
   proc.waitForFinished();
 
   QString out = QString::fromUtf8(proc.readAll().trimmed());
@@ -208,7 +213,7 @@ int OctopiHelper::executePkgTransactionWithSharedMem()
      !isCacheCleanerRunning)
   {
     QTextStream qout(stdout);
-    qout << endl << "octopi-helper[aborted]: Suspicious execution method" << endl;
+    qout << Qt::endl << "octopi-helper[aborted]: Suspicious execution method" << Qt::endl;
     return ctn_SUSPICIOUS_EXECUTION_METHOD;
   }
 
@@ -217,7 +222,7 @@ int OctopiHelper::executePkgTransactionWithSharedMem()
   if (!sharedMem->attach(QSharedMemory::ReadOnly))
   {
     QTextStream qout(stdout);
-    qout << endl << "octopi-helper[aborted]: Couldn't attach to memory" << endl;
+    qout << Qt::endl << "octopi-helper[aborted]: Couldn't attach to memory" << Qt::endl;
     return ctn_COULD_NOT_ATTACH_TO_MEM;
   }
 
@@ -237,11 +242,11 @@ int OctopiHelper::executePkgTransactionWithSharedMem()
   if (suspicious)
   {
     QTextStream qout(stdout);
-    qout << endl << "octopi-helper[aborted]: Suspicious transaction detected -> \"" << contents << "\"" << endl;
+    qout << Qt::endl << "octopi-helper[aborted]: Suspicious transaction detected -> \"" << contents << "\"" << Qt::endl;
     return ctn_SUSPICIOUS_ACTIONS_FILE;
   }
 
-  const QStringList lines = contents.split(QStringLiteral("\n"), QString::SkipEmptyParts);
+  const QStringList lines = contents.split(QStringLiteral("\n"), Qt::SkipEmptyParts);
 
   bool testCommandFromOctopi=false;
   bool testCommandFromNotifier=false;
@@ -289,7 +294,7 @@ int OctopiHelper::executePkgTransactionWithSharedMem()
     if (suspicious)
     {
       QTextStream qout(stdout);
-      qout << endl << "octopi-helper[aborted]: Suspicious transaction detected -> \"" << line << "\"" << endl;
+      qout << Qt::endl << "octopi-helper[aborted]: Suspicious transaction detected -> \"" << line << "\"" << Qt::endl;
       return ctn_SUSPICIOUS_ACTIONS_FILE;
     }
   }
@@ -307,7 +312,7 @@ int OctopiHelper::executePkgTransactionWithSharedMem()
   if (contents != QLatin1String("/usr/bin/killall pacman\n/usr/bin/rm ") + ctn_PACMAN_DATABASE_LOCK_FILE +QLatin1Char('\n') && isAppRunning(QStringLiteral("pacman"), true))
   {
     QTextStream qout(stdout);
-    qout << endl << "octopi-helper[aborted]: Pacman process already running" << endl;
+    qout << Qt::endl << "octopi-helper[aborted]: Pacman process already running" << Qt::endl;
     return ctn_PACMAN_PROCESS_EXECUTING;
   }
 
@@ -316,7 +321,7 @@ int OctopiHelper::executePkgTransactionWithSharedMem()
     if (!isOctopiRunning && !testCommandFromNotifier)
     {
       QTextStream qout(stdout);
-      qout << endl << "octopi-helper[aborted]: Suspicious execution method" << endl;
+      qout << Qt::endl << "octopi-helper[aborted]: Suspicious execution method" << Qt::endl;
       return ctn_SUSPICIOUS_EXECUTION_METHOD;
     }
 
@@ -329,7 +334,7 @@ int OctopiHelper::executePkgTransactionWithSharedMem()
       if (!testCommandFromNotifier)
       {
         QTextStream qout(stdout);
-        qout << endl << "octopi-helper[aborted]: Timeout connecting to Octopi" << endl;
+        qout << Qt::endl << "octopi-helper[aborted]: Timeout connecting to Octopi" << Qt::endl;
         return ctn_TIMEOUT_CONNECTING;
       }
       else goto testNotifierConnection;
@@ -344,7 +349,7 @@ int OctopiHelper::executePkgTransactionWithSharedMem()
       if (!socket.waitForReadyRead() && !testCommandFromNotifier)
       {
         QTextStream qout(stdout);
-        qout << endl << "octopi-helper[aborted]: Timeout contacting Octopi" << endl;
+        qout << Qt::endl << "octopi-helper[aborted]: Timeout contacting Octopi" << Qt::endl;
         return ctn_TIMEOUT_CONNECTING;
       }
 
@@ -359,7 +364,7 @@ int OctopiHelper::executePkgTransactionWithSharedMem()
     else if (octopiResponse != QLatin1String("Octopi est occupatus") && !testCommandFromNotifier)
     {
       QTextStream qout(stdout);
-      qout << endl << "octopi-helper[aborted]: No transaction being executed" << endl;
+      qout << Qt::endl << "octopi-helper[aborted]: No transaction being executed" << Qt::endl;
       return ctn_NO_TRANSACTION_EXECUTING;
     }
   }
@@ -370,7 +375,7 @@ int OctopiHelper::executePkgTransactionWithSharedMem()
     if (!isNotifierRunning)
     {
       QTextStream qout(stdout);
-      qout << endl << "octopi-helper[aborted]: Suspicious execution method" << endl;
+      qout << Qt::endl << "octopi-helper[aborted]: Suspicious execution method" << Qt::endl;
       return ctn_SUSPICIOUS_EXECUTION_METHOD;
     }
 
@@ -381,7 +386,7 @@ int OctopiHelper::executePkgTransactionWithSharedMem()
     if (!socket.waitForConnected(5000))
     {
       QTextStream qout(stdout);
-      qout << endl << "octopi-helper[aborted]: Timeout connecting to Octopi-Notifier" << endl;
+      qout << Qt::endl << "octopi-helper[aborted]: Timeout connecting to Octopi-Notifier" << Qt::endl;
       return ctn_TIMEOUT_CONNECTING;
     }
 
@@ -394,7 +399,7 @@ int OctopiHelper::executePkgTransactionWithSharedMem()
       if (!socket.waitForReadyRead())
       {
         QTextStream qout(stdout);
-        qout << endl << "octopi-helper[aborted]: Timeout contacting Octopi-Notifier" << endl;
+        qout << Qt::endl << "octopi-helper[aborted]: Timeout contacting Octopi-Notifier" << Qt::endl;
         return ctn_TIMEOUT_CONNECTING;
       }
 
@@ -405,7 +410,7 @@ int OctopiHelper::executePkgTransactionWithSharedMem()
     if (octopiResponse != QLatin1String("Octopi est occupatus"))
     {
       QTextStream qout(stdout);
-      qout << endl << "octopi-helper[aborted]: No transaction being executed" << endl;
+      qout << Qt::endl << "octopi-helper[aborted]: No transaction being executed" << Qt::endl;
       return ctn_NO_TRANSACTION_EXECUTING;
     }
   }
@@ -415,7 +420,7 @@ int OctopiHelper::executePkgTransactionWithSharedMem()
     if (!isCacheCleanerRunning)
     {
       QTextStream qout(stdout);
-      qout << endl << "octopi-helper[aborted]: Suspicious execution method" << endl;
+      qout << Qt::endl << "octopi-helper[aborted]: Suspicious execution method" << Qt::endl;
       return ctn_SUSPICIOUS_EXECUTION_METHOD;
     }
 
@@ -426,7 +431,7 @@ int OctopiHelper::executePkgTransactionWithSharedMem()
     if (!socket.waitForConnected(5000))
     {
       QTextStream qout(stdout);
-      qout << endl << "octopi-helper[aborted]: Timeout connecting to Octopi-CacheCleaner" << endl;
+      qout << Qt::endl << "octopi-helper[aborted]: Timeout connecting to Octopi-CacheCleaner" << Qt::endl;
       return ctn_TIMEOUT_CONNECTING;
     }
 
@@ -439,7 +444,7 @@ int OctopiHelper::executePkgTransactionWithSharedMem()
       if (!socket.waitForReadyRead())
       {
         QTextStream qout(stdout);
-        qout << endl << "octopi-helper[aborted]: Timeout contacting Octopi-CacheCleaner" << endl;
+        qout << Qt::endl << "octopi-helper[aborted]: Timeout contacting Octopi-CacheCleaner" << Qt::endl;
         return ctn_TIMEOUT_CONNECTING;
       }
 
@@ -450,7 +455,7 @@ int OctopiHelper::executePkgTransactionWithSharedMem()
     if (octopiResponse != QLatin1String("Octopi est occupatus"))
     {
       QTextStream qout(stdout);
-      qout << endl << "octopi-helper[aborted]: No transaction being executed" << endl;
+      qout << Qt::endl << "octopi-helper[aborted]: No transaction being executed" << Qt::endl;
       return ctn_NO_TRANSACTION_EXECUTING;
     }
   }
@@ -474,10 +479,10 @@ int OctopiHelper::executePkgTransactionWithSharedMem()
   out.flush();
   ftemp->close();
 
-  QString command;
+  //QString command;
   m_process->setProcessEnvironment(getProcessEnvironment());
-  command = getShell() + QLatin1Char(' ') + m_temporaryFile->fileName();
-  m_process->start(command);
+  //command = getShell() + QLatin1Char(' ') + m_temporaryFile->fileName();
+  m_process->start(getShell(), QStringList() << m_temporaryFile->fileName());
   m_process->waitForStarted(-1);
   m_process->waitForFinished(-1);
 

@@ -933,7 +933,9 @@ void MainWindow::buildPackageList()
       if(m_debugInfo)
         std::cout << "Time elapsed until calling PACMAN_SUP: " << m_time->elapsed() << " mili seconds." << std::endl;
 
-      execCommandInAnotherThread(ctn_PACMAN_SUP_COMMAND);
+      QStringList sl;
+      sl << QStringLiteral("--print-format") << QStringLiteral("%n %v %s") << QStringLiteral("-Spu");
+      execCommandInAnotherThread(QStringLiteral("pacman"), sl);
     }
 
     if (m_callSystemUpgrade)
@@ -1539,8 +1541,7 @@ void MainWindow::refreshTabInfo(bool clearContents, bool neverQuit)
         html += QLatin1String("<tr><th width=\"20%\"></th><th width=\"80%\"></th></tr>");
         html += QLatin1String("<tr><td>") + version + QLatin1String("</td><td>") + package->version + QLatin1String("</td></tr>");
 
-        if (//Package::getForeignRepositoryToolName() == ctn_YAOURT_TOOL ||
-            Package::getForeignRepositoryToolName() == ctn_PACAUR_TOOL)
+        //if (Package::getForeignRepositoryToolName() == ctn_PACAUR_TOOL)
         {
           QString url = Package::getAURUrl(pkgName);
           if (!url.isEmpty() && !url.contains(QLatin1String("(null)")))

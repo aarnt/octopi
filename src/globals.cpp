@@ -242,10 +242,10 @@ QByteArray execCommand(QString cmd)
 /*
  * Executes given cmd with a non blocking QProcess class
  */
-void execCommandInAnotherThread(QString cmd)
+void execCommandInAnotherThread(QString cmd, QStringList &params)
 {
   QProcess p;
-  p.startDetached(cmd);
+  p.startDetached(cmd, params);
 }
 
 /*
@@ -263,11 +263,13 @@ bool installTempYayHelper()
   QString removeLN = QStringLiteral("rm %1");
   QString htmlLatestYay=QStringLiteral("latestYay.html");
   QString octopiConfDir = QDir::homePath() + QDir::separator() + QLatin1String(".config/octopi");
-  curl=curl.arg(url, octopiConfDir + QDir::separator() + htmlLatestYay);
+  //curl=curl.arg(url, octopiConfDir + QDir::separator() + htmlLatestYay);
+  QStringList sl;
 
   QProcess p;
   //First we download latest html page of yay-bin at github.com
-  p.execute(curl);
+  sl << QStringLiteral("-L") << url << QStringLiteral("--output") << octopiConfDir + QDir::separator() + htmlLatestYay;
+  p.execute(QStringLiteral("curl"), sl);
 
   QFile file(octopiConfDir + QDir::separator() + htmlLatestYay);
   if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
@@ -296,20 +298,33 @@ bool installTempYayHelper()
 
   //Let's download latest version of yay-bin tarball
   curl = QStringLiteral("curl -L %1 --output %2");
-  curl=curl.arg(yayUrl, octopiConfDir + QDir::separator() + yayTarball);
-  p.execute(curl);
+  //curl=curl.arg(yayUrl, octopiConfDir + QDir::separator() + yayTarball);
+  sl.clear();
+  sl << QStringLiteral("-L") << yayUrl << QStringLiteral("--output") << octopiConfDir + QDir::separator() + yayTarball;
+  p.execute(QStringLiteral("curl"), sl);
 
   //Then we extract binary from tarball
+  //QString tar = QStringLiteral("tar xzf %1 -C %2 %3");
   tar = tar.arg(octopiConfDir + QDir::separator() + yayTarball, octopiConfDir, yayFile);
-  p.execute(tar);
+  sl.clear();
+  sl << QStringLiteral("xzf") << octopiConfDir + QDir::separator() + yayTarball << QStringLiteral("-C") << octopiConfDir << yayFile;
+  p.execute(QStringLiteral("tar"), sl);
 
   //Now we must symlink yay file to octopiConfDir/yay
   removeLN = removeLN.arg(octopiConfDir + QDir::separator() + QLatin1String("yay"));
-  if (QFile::exists(octopiConfDir + QDir::separator() + QLatin1String("yay"))) p.execute(removeLN);
+  if (QFile::exists(octopiConfDir + QDir::separator() + QLatin1String("yay")))
+  {
+    sl.clear();
+    sl << octopiConfDir + QDir::separator() + QLatin1String("yay");
+    p.execute(QStringLiteral("rm"), sl);
+  }
 
   //Now we must symlink yay file to octopiConfDir/yayFile/yay
   ln = ln.arg(octopiConfDir + QDir::separator() + yayFile, octopiConfDir + QDir::separator() + QLatin1String("yay"));
-  p.execute(ln);
+  //QString ln = QStringLiteral("ln -s %1 %2");
+  sl.clear();
+  sl << QStringLiteral("-s") << octopiConfDir + QDir::separator() + yayFile << octopiConfDir + QDir::separator() + QLatin1String("yay");
+  p.execute(QStringLiteral("ln"), sl);
 
   //Remove tarball
   QFile::remove(octopiConfDir + QDir::separator() + yayTarball);

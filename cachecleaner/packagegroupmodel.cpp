@@ -123,7 +123,12 @@ void PackageGroupModel::refreshCacheView()
   QObject::connect(m_cmd, SIGNAL( finished ( int, QProcess::ExitStatus )),
                    this, SLOT( finishedDryrun ( int, QProcess::ExitStatus )) );
 
-  m_cmd->executeCommandAsNormalUser(QLatin1String("paccache -v -d ") + getOptions());
+  QStringList sl;
+  sl << QStringLiteral("-v");
+  sl << QStringLiteral("-d");
+  QStringList opt = getOptions().split(QStringLiteral(" "), Qt::SkipEmptyParts);
+  sl << opt;
+  m_cmd->executeCommandAsNormalUser(QStringLiteral("/usr/bin/paccache"), sl);
   isExecutingCommand = true;
 }
 
@@ -234,7 +239,7 @@ void PackageGroupModel::finishedClean(int exitCode, QProcess::ExitStatus)
  * @param output The output of the dryrun process
  */
 void PackageGroupModel::processDryrunResult(QString output) {
-  QStringList lines = output.split(QRegularExpression(QStringLiteral("\\n")), QString::SkipEmptyParts);
+  QStringList lines = output.split(QRegularExpression(QStringLiteral("\\n")), Qt::SkipEmptyParts);
 
   if(lines.length() == 1 || output.contains(QLatin1String("*.pkg.tar?(.+([^.]))")))
   {

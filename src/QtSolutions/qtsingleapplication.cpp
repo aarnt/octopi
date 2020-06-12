@@ -414,7 +414,7 @@ void QtSingleApplication::activateWindow(const QString &message)
       actWin->activateWindow();
 
     QStringList packagesToInstallList =
-        message.split(QLatin1Char(','), QString::SkipEmptyParts);
+        message.split(QLatin1Char(','), Qt::SkipEmptyParts);
 
     MainWindow *mw = qobject_cast<MainWindow *>(actWin);
 

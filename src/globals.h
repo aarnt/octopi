@@ -66,7 +66,7 @@ AUROutdatedPackages * getOutdatedAURPackages();
 QString getLatestDistroNews();
 PackageInfoData getKCPInformation(QString pkgName);
 QByteArray execCommand(QString cmd);
-void execCommandInAnotherThread(QString cmd);
+void execCommandInAnotherThread(QString cmd, QStringList &params);
 bool installTempYayHelper();
 
 QStringList            * getOutdatedPkgStringList();

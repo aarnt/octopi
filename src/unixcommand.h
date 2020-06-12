@@ -48,7 +48,7 @@ private:
 
   static QFile *m_temporaryFile;
   //static QString buildOctopiHelperCommand(const QString &pCommand);
-  QString buildOctopiHelperCommandWithSharedMem(const QString &pCommand, QSharedMemory *sharedMem);
+  void buildOctopiHelperCommandWithSharedMem(const QString &pCommand, QSharedMemory *sharedMem);
 
 public:
   explicit UnixCommand(QObject *parent);
@@ -77,11 +77,11 @@ public:
   static QString getShell();
 
   //Delegations from Package class (due to QProcess use)
-  static QString runCommand(const QString& commandToRun);
-  static QString runCurlCommand(const QString& commandToRun);
-  static QString discoverBinaryPath(const QString&);
+  //static QString runCommand(const QString& commandToRun);
+  static QString runCurlCommand(QStringList &params);
+  //static QString discoverBinaryPath(const QString&);
 
-  static bool cleanPacmanCache();
+  //static bool cleanPacmanCache();
   static QByteArray performQuery(const QStringList &args);
   static QByteArray performQuery(const QString &args);
   static QByteArray performAURCommand(const QString &args);
@@ -155,16 +155,16 @@ public:
   void executeCommand(const QString &pCommand);
   void executeCommandWithSharedMemHelper(const QString &pCommand, QSharedMemory *sharedMem);
   //void executeCommand(const QString &pCommand, Language lang=ectn_LANG_ENGLISH);
-  void executeCommandAsNormalUser(const QString &pCommand);
+  void executeCommandAsNormalUser(const QString &pCommand, QStringList params);
   void runOctopiHelperInTerminalWithSharedMem(const QStringList& commandList, QSharedMemory *sharedMem);
   void runCommandInTerminalAsNormalUser(const QStringList& commandList);
 
-  static void execCommandAsNormalUser(const QString &pCommand);
+  static void execCommandAsNormalUser(const QString pCommand, QStringList params);
   static QByteArray execCommandAsNormalUserExt(const QString &pCommand);
   static void execCommand(const QString &pCommand);
 
-  static QByteArray getCommandOutput(const QString &pCommand);
-  static QByteArray getCommandOutput(const QString &pCommand, const QString &fileName);
+  //static QByteArray getCommandOutput(const QString &pCommand);
+  //static QByteArray getCommandOutput(const QString &pCommand, const QString &fileName);
 
   static QStringList getAvailableAURTools();
 

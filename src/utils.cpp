@@ -127,7 +127,8 @@ QString utils::retrieveDistroNews(bool searchForLatestNews)
 
   if(searchForLatestNews && UnixCommand::hasInternetConnection() && distro != ectn_UNKNOWN)
   {    
-    QString curlCommand = QStringLiteral("curl %1 -o %2");
+    QString curlCommand = QStringLiteral("%1 -o %2");
+    QStringList curlParams;
     QString distroRSSUrl = SettingsManager::getDistroRSSUrl();
 
     /*if (distro == ectn_ENDEAVOUROS || distro == ectn_ANTERGOS)
@@ -137,25 +138,30 @@ QString utils::retrieveDistroNews(bool searchForLatestNews)
     if (distro == ectn_ARCHLINUX || distro == ectn_ARCHBANGLINUX /*|| distro == ectn_SWAGARCH*/)
     {
       curlCommand = curlCommand.arg(distroRSSUrl, tmpRssPath);
+      curlParams = curlCommand.split(QLatin1Char(' '), Qt::SkipEmptyParts);
     }
     else if (distro == ectn_CHAKRA)
     {
-      curlCommand = QStringLiteral("curl -k %1 -o %2");
+      curlCommand = QStringLiteral("-k %1 -o %2");
       curlCommand = curlCommand.arg(distroRSSUrl, tmpRssPath);
+      curlParams = curlCommand.split(QLatin1Char(' '), Qt::SkipEmptyParts);
     }
     else if (distro == ectn_CONDRESOS)
     {
-      curlCommand = QStringLiteral("curl -A \"Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0\" -k \"%1\" -o %2");
+      curlCommand = QStringLiteral("-A \"Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0\" -k \"%1\" -o %2");
       curlCommand = curlCommand.arg(distroRSSUrl, tmpRssPath);
+      curlParams = curlCommand.split(QLatin1Char(' '), Qt::SkipEmptyParts);
     }
     else if (distro == ectn_KAOS)
     {
-      curlCommand = QStringLiteral("curl -k %1 -o %2");
+      curlCommand = QStringLiteral("-k %1 -o %2");
       curlCommand = curlCommand.arg(distroRSSUrl, tmpRssPath);
+      curlParams = curlCommand.split(QLatin1Char(' '), Qt::SkipEmptyParts);
     }
     else if (distro == ectn_MANJAROLINUX)
     {
       curlCommand = curlCommand.arg(distroRSSUrl, tmpRssPath);
+      curlParams = curlCommand.split(QLatin1Char(' '), Qt::SkipEmptyParts);
     }
     /*else if (distro == ectn_NETRUNNER)
     {
@@ -164,11 +170,12 @@ QString utils::retrieveDistroNews(bool searchForLatestNews)
     else if (distro == ectn_PARABOLA)
     {
       //Parabola has a certificate which is not "trusted" by default, so we use "curl -k"
-      curlCommand = QStringLiteral("curl -k %1 -o %2");
+      curlCommand = QStringLiteral("-k %1 -o %2");
       curlCommand = curlCommand.arg(distroRSSUrl, tmpRssPath);
+      curlParams = curlCommand.split(QLatin1Char(' '), Qt::SkipEmptyParts);
     }
 
-    if (UnixCommand::runCurlCommand(curlCommand).isEmpty())
+    if (UnixCommand::runCurlCommand(curlParams).isEmpty())
     {
       QFile fileTmpRss(tmpRssPath);
       //QFile fileRss(rssPath);

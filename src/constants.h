@@ -173,6 +173,7 @@ const QString ctn_ROOT_SH(QStringLiteral("/bin/sh -c "));
 
 const QString ctn_LXQTSU(QStringLiteral("lxqt-sudo"));
 const QString ctn_OCTOPISUDO(QStringLiteral("/usr/lib/octopi/octopi-sudo"));
+const QString ctn_OCTOPISUDO_PARAMS(QStringLiteral("-d"));
 
 const QString ctn_KDESU(QStringLiteral("kdesu"));
 const QString ctn_KDE_DESKTOP(QStringLiteral("kwin"));

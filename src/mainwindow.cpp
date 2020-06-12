@@ -2020,7 +2020,7 @@ void MainWindow::tvPackagesSelectionChanged(const QItemSelection&, const QItemSe
 void MainWindow::launchPLV()
 {
   QProcess *proc = new QProcess();
-  proc->startDetached(QStringLiteral("plv"));
+  proc->startDetached(QStringLiteral("plv"), QStringList());
 }
 
 /*
@@ -2029,7 +2029,7 @@ void MainWindow::launchPLV()
 void MainWindow::launchRepoEditor()
 {
   m_unixCommand = new UnixCommand(this);
-  m_unixCommand->execCommandAsNormalUser(QStringLiteral("octopi-repoeditor"));
+  m_unixCommand->execCommandAsNormalUser(QStringLiteral("octopi-repoeditor"), QStringList());
 }
 
 /*
@@ -2038,7 +2038,7 @@ void MainWindow::launchRepoEditor()
 void MainWindow::launchCacheCleaner()
 {
   m_unixCommand = new UnixCommand(this);
-  m_unixCommand->execCommandAsNormalUser(QStringLiteral("octopi-cachecleaner"));
+  m_unixCommand->execCommandAsNormalUser(QStringLiteral("octopi-cachecleaner"), QStringList());
 }
 
 /*
