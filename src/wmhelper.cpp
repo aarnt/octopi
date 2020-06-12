@@ -184,7 +184,11 @@ bool WMHelper::isCinnamonRunning(){
 bool WMHelper::isLuminaRunning()
 {
   QProcess proc;
-  proc.start(QStringLiteral("ps -A -o command"), QStringList());
+  QStringList sl;
+  sl << QStringLiteral("-A");
+  sl << QStringLiteral("-o");
+  sl << QStringLiteral("command");
+  proc.start(QStringLiteral("ps"), sl);
   proc.waitForStarted();
   proc.waitForFinished();
   QString out = QString::fromUtf8(proc.readAll());
@@ -386,11 +390,16 @@ void WMHelper::editFile( const QString& fileName, EditOptions opt ){
 
   if (opt == ectn_EDIT_AS_NORMAL_USER)
   {
-    process->startDetached(QLatin1String("/bin/sh -c \"") + p + QLatin1Char('"'), QStringList());
+    QStringList sl;
+    sl << QStringLiteral("-c");
+    QStringList params = p.split(QStringLiteral(" "), Qt::SkipEmptyParts);
+    sl << params;
+    process->startDetached(UnixCommand::getShell(), sl);
   }
   else
   {
-    process->startDetached(getSUCommand() + p, QStringList());
+    QStringList params = p.split(QStringLiteral(" "), Qt::SkipEmptyParts);
+    process->startDetached(getSUCommand(), params);
   }
 }
 
