@@ -183,12 +183,12 @@ bool WMHelper::isCinnamonRunning(){
  */
 bool WMHelper::isLuminaRunning()
 {
+  QStringList slParam;
   QProcess proc;
-  QStringList sl;
-  sl << QStringLiteral("-A");
-  sl << QStringLiteral("-o");
-  sl << QStringLiteral("command");
-  proc.start(QStringLiteral("ps"), sl);
+  slParam << QStringLiteral("-C");
+  slParam << ctn_LUMINA_DESKTOP;
+
+  proc.start(QStringLiteral("ps"), slParam);
   proc.waitForStarted();
   proc.waitForFinished();
   QString out = QString::fromUtf8(proc.readAll());
