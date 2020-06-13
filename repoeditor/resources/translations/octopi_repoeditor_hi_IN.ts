@@ -72,7 +72,7 @@
     <message>
         <location filename="Projects/octopi/repoeditor/main.cpp" line="54"/>
         <source>You can not run Repository Editor with administrator&apos;s credentials.</source>
-        <translation type="unfinished"/>
+        <translation>आप प्रबंधक विशेषाधिकार द्वारा पैकेज-संग्रह संपादक उपयोग नहीं कर सकते।</translation>
     </message>
 </context>
 <context>
@@ -169,19 +169,19 @@
         <location filename="Projects/octopi/repoeditor/repoeditor.cpp" line="103"/>
         <location filename="Projects/octopi/repoeditor/repoeditor.cpp" line="125"/>
         <source>Confirmation</source>
-        <translation type="unfinished"/>
+        <translation>पुष्टि</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/repoeditor.cpp" line="104"/>
         <location filename="Projects/octopi/repoeditor/repoeditor.cpp" line="126"/>
         <source>There are unsaved changes.</source>
-        <translation type="unfinished"/>
+        <translation>कुछ बदलाव संचित नहीं हुए।</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/repoeditor.cpp" line="105"/>
         <location filename="Projects/octopi/repoeditor/repoeditor.cpp" line="127"/>
         <source>Do you want to save them?</source>
-        <translation type="unfinished"/>
+        <translation>क्या आप उन्हें संचित करना चाहते हैं?</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/repoeditor.cpp" line="160"/>
