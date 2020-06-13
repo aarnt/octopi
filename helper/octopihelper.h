@@ -38,7 +38,6 @@ private:
   QProcess *m_process;
   QProcessEnvironment getProcessEnvironment();
   QString m_suspiciousChars;
-
   static QFile *m_temporaryFile;
 
   static QString getProxySettings();
@@ -56,7 +55,7 @@ public:
   OctopiHelper();
   virtual ~OctopiHelper();
 
-  int dummyServer();
+  void log(const QString &str);
   int executePkgTransactionWithSharedMem();
   inline int getExitCode() { return m_exitCode; }
   bool isOctoToolRunning(const QString &octoToolName);

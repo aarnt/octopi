@@ -136,6 +136,23 @@ OctopiHelper::~OctopiHelper()
 }
 
 /*
+ * Logs passed str in a file called "octphelper.log" (for debugging purposes)
+ */
+void OctopiHelper::log(const QString &str)
+{
+  QString fname = QStringLiteral("/usr/lib/octopi/octphelper.log");
+  QFile file(fname);
+  if (!file.open(QIODevice::WriteOnly | QIODevice::Text))
+      return;
+
+  QTextStream out(&file);
+  out << str << Qt::endl;
+
+  file.flush();
+  file.close();
+}
+
+/*
  * A bit of settings to better run "pacman" commands using QProcess
  */
 QProcessEnvironment OctopiHelper::getProcessEnvironment()
@@ -168,8 +185,6 @@ bool OctopiHelper::isOctoToolRunning(const QString &octoToolName)
 
   QProcess proc;
   proc.setProcessEnvironment(getProcessEnvironment());
-  //QString cmd = QStringLiteral("/usr/bin/ps -C %1 -o command");
-  //cmd = cmd.arg(octoToolName);
   QStringList sl;
   sl << QStringLiteral("-C");
   sl << octoToolName;
@@ -247,7 +262,6 @@ int OctopiHelper::executePkgTransactionWithSharedMem()
   }
 
   const QStringList lines = contents.split(QStringLiteral("\n"), Qt::SkipEmptyParts);
-
   bool testCommandFromOctopi=false;
   bool testCommandFromNotifier=false;
   bool testCommandFromCacheCleaner=false;
@@ -295,6 +309,7 @@ int OctopiHelper::executePkgTransactionWithSharedMem()
     {
       QTextStream qout(stdout);
       qout << Qt::endl << "octopi-helper[aborted]: Suspicious transaction detected -> \"" << line << "\"" << Qt::endl;
+      //log(QStringLiteral("Offending line: ") + line);
       return ctn_SUSPICIOUS_ACTIONS_FILE;
     }
   }
@@ -479,9 +494,7 @@ int OctopiHelper::executePkgTransactionWithSharedMem()
   out.flush();
   ftemp->close();
 
-  //QString command;
   m_process->setProcessEnvironment(getProcessEnvironment());
-  //command = getShell() + QLatin1Char(' ') + m_temporaryFile->fileName();
   m_process->start(getShell(), QStringList() << m_temporaryFile->fileName());
   m_process->waitForStarted(-1);
   m_process->waitForFinished(-1);

@@ -85,7 +85,6 @@ private slots:
 protected:
   virtual void closeEvent(QCloseEvent * event);
   virtual void keyPressEvent(QKeyEvent * ke);
-
   virtual bool eventFilter(QObject *, QEvent *);
 
 public:
@@ -94,6 +93,7 @@ public:
   void setListOfAURPackagesToUpgrade(const QString& list);
   void setViewAsTextBrowser(bool value);
   void doSystemUpgrade();
+  void detachSharedMemory();
 
 public slots:
   void show();

@@ -270,6 +270,11 @@ void MainWindow::onSendInfoToOctopiHelper()
   QTcpSocket *clientConnection = m_tcpServer->nextPendingConnection();
   if (clientConnection->isOpen())
   {
+    if (m_outputDialog != nullptr)
+    {
+      m_outputDialog->detachSharedMemory();
+    }
+
     connect(clientConnection, &QAbstractSocket::disconnected,
           clientConnection, &QObject::deleteLater);
     clientConnection->write(block);
@@ -332,7 +337,6 @@ void MainWindow::initSystemTrayIcon()
   m_pacmanHelperTimer = new QTimer();
   m_pacmanHelperTimer->setInterval(1000);
   m_pacmanHelperTimer->start();
-
   connect(m_pacmanHelperTimer, SIGNAL(timeout()), this, SLOT(pacmanHelperTimerTimeout()));
 }
 
@@ -929,22 +933,6 @@ void MainWindow::checkUpdates(CheckUpdate check)
   m_pacmanExec->doCheckUpdates();
   connect(m_pacmanExec, SIGNAL(finished(int, QProcess::ExitStatus)), this, SLOT(afterCheckUpdates(int, QProcess::ExitStatus)));
 }
-
-/*
- * Uses notify-send to send a notification to the systray area
- */
-/*void MainWindow::sendNotification(const QString &msg)
-{
-  QString processToExec(QStringLiteral("notify-send"));
-
-  if (UnixCommand::hasTheExecutable(processToExec))
-  {
-    processToExec += QLatin1String(" -i /usr/share/icons/octopi_red.png -t 5000 \"") +
-        StrConstants::getApplicationName() + QLatin1String("\"  \"") + msg + QLatin1Char('"');
-
-    QProcess::startDetached(processToExec);
-  }
-}*/
 
 /*
  * If we have some outdated packages, let's put an angry red face icon in this app!

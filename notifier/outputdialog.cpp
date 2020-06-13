@@ -166,7 +166,6 @@ void OutputDialog::doAURUpgrade()
   m_AURUpgradeExecuting=true;
   m_pacmanExec = new PacmanExec(this);
   m_pacmanExec->setSharedMemory(m_sharedMemory);
-
   QObject::connect(m_pacmanExec, SIGNAL(commandToExecInQTermWidget(QString)), this,
                    SLOT(onExecCommandInTabTerminal(QString)));
   m_upgradeRunning = true;
@@ -185,8 +184,6 @@ void OutputDialog::onExecCommandInTabTerminal(QString command)
   connect(m_console, SIGNAL(onCancelControlKey()), this, SLOT(onCancelControlKey()));
   connect(m_console, SIGNAL(onKeyQuit()), this, SLOT(reject()));
 
-  //m_console->enter();
-  //m_console->execute("clear");
   m_console->execute(command);
   m_console->setFocus();
 }
@@ -196,8 +193,6 @@ void OutputDialog::onExecCommandInTabTerminal(QString command)
  */
 void OutputDialog::onPressAnyKeyToContinue()
 {
-  //m_console->enter();
-  //m_console->execute("clear");
   m_console->setFocus();
 
   if (!m_upgradeRunning) return;
@@ -206,7 +201,6 @@ void OutputDialog::onPressAnyKeyToContinue()
 
   if (m_sharedMemory->isAttached()) m_sharedMemory->detach();
   m_upgradeRunning = false;
-  //reject();
 }
 
 /*
@@ -222,7 +216,6 @@ void OutputDialog::onCancelControlKey()
     if (m_sharedMemory->isAttached()) m_sharedMemory->detach();
     m_pacmanExec = nullptr;
     m_upgradeRunning = false;
-    //reject();
   }
 }
 
@@ -249,6 +242,14 @@ void OutputDialog::doSystemUpgrade()
 
   m_upgradeRunning = true;
   m_pacmanExec->doSystemUpgrade();
+}
+
+/*
+ * Make the shared memory available again
+ */
+void OutputDialog::detachSharedMemory()
+{
+  m_sharedMemory->detach();
 }
 
 /*

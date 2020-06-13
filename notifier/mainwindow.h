@@ -96,7 +96,6 @@ private:
   TransactionDialog *m_transactionDialog;
   OptionsDialog *m_optionsDialog;
   QTcpServer *m_tcpServer;
-
   QAction *m_actionOctopi;
   QAction *m_actionOptions;
   QAction *m_actionCheckUpdates;
@@ -104,7 +103,6 @@ private:
   QAction *m_actionAURUpgrade;
   QAction *m_actionAbout;
   QAction *m_actionExit;
-
   QIcon m_icon;
   QHash<QString, QString> *m_checkUpdatesNameNewVersion;
   QStringList m_checkUpdatesStringList;
@@ -114,6 +112,7 @@ private:
   QTimer *m_callRefreshAppIcon;
   QMenu *m_systemTrayIconMenu;
   QFileSystemWatcher *m_pacmanDatabaseSystemWatcher;
+
   OutputDialog *m_outputDialog;
 
 #ifdef KSTATUS
@@ -126,7 +125,6 @@ private:
   bool isInternetAvailable();
   void initActions();
   void initSystemTrayIcon();
-  //void sendNotification(const QString &msg);
   void setUpgradingTooltip();
 };
 

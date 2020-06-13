@@ -252,7 +252,7 @@ enum ExecOpt { ectn_NORMAL_EXEC_OPT, ectn_SYSUPGRADE_EXEC_OPT, ectn_SYSUPGRADE_N
 
 //Octopi-helper related ----------------------------------------------------------------------------------
 
-const QString ctn_OCTOPI_HELPER_VERSION = QStringLiteral("0.10.0 (dev)");
+const QString ctn_OCTOPI_HELPER_VERSION = QStringLiteral("0.10.0");
 const QString ctn_OCTOPI_HELPER_NAME(QStringLiteral("octphelper"));
 const QString ctn_OCTOPI_HELPER_PATH(QStringLiteral("/usr/lib/octopi/octphelper"));
 
