@@ -42,7 +42,7 @@ public:
     PasswordDialog(const QString & cmd
             , const QString & backendName
             , QWidget * parent = 0
-            , Qt::WindowFlags f = 0);
+            , Qt::WindowFlags f = Qt::WindowFlags());
     ~PasswordDialog();
 
     QString password() const;
