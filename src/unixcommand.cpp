@@ -462,7 +462,7 @@ QByteArray UnixCommand::getPackageContentsUsingPacman(const QString& pkgName)
 /*
  * Check if pkgfile is installed on the system
  */
-bool UnixCommand::isPkgfileInstalled()
+/*bool UnixCommand::isPkgfileInstalled()
 {
   QProcess pkgfile;
 
@@ -472,7 +472,7 @@ bool UnixCommand::isPkgfileInstalled()
   pkgfile.waitForFinished();
 
   return pkgfile.exitStatus() == QProcess::NormalExit;
-}
+}*/
 
 /*
  * Given a package name, which can be installed or uninstalled on system

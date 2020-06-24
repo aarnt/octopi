@@ -53,6 +53,8 @@
   BugFix: Clear filter line edit when navigating thru package anchors at Info tab.
   BugFix: Info and Files tabs were not showing any info automaticaly when switching between 
 	foreign tool/pacman lists.
+  BugFix: Enable a more complete UI lockdown during transactions.
+  BugFix: Enable "Find a file" context menu option on a non installed pkg.
 
 0.9.0
   Parser changes: added counter for processed packages.  
