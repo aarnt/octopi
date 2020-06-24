@@ -341,6 +341,10 @@ void WMHelper::openFile(const QString& fileName){
     else
       p->startDetached( ctn_GNOME_FILE_MANAGER, s );
   }
+  else if (UnixCommand::hasTheExecutable(ctn_XDG_OPEN)){
+    s << fileToOpen;
+    p->startDetached( ctn_XDG_OPEN, s );
+  }
 }
 
 /*

@@ -207,6 +207,8 @@ const QString ctn_GNOME_EDITOR(QStringLiteral("gedit"));
 const QString ctn_GNOME_FILE_MANAGER(QStringLiteral("nautilus"));
 const QString ctn_GNOME_TERMINAL(QStringLiteral("gnome-terminal"));
 
+const QString ctn_XDG_OPEN(QStringLiteral("xdg-open"));
+
 const QString ctn_XFCE_DESKTOP(QStringLiteral("xfdesktop"));
 const QString ctn_XFCE_EDITOR(QStringLiteral("mousepad"));
 const QString ctn_XFCE_EDITOR_ALT(QStringLiteral("leafpad"));
