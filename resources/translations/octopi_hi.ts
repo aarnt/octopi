@@ -9,7 +9,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="101"/>
         <source>Files</source>
-        <translation>फ़ाइलें</translation>
+        <translation>फ़ाइल</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="106"/>
@@ -24,32 +24,32 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="147"/>
         <source>&amp;Help</source>
-        <translation type="unfinished"/>
+        <translation>सहायता (&amp;H)</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="156"/>
         <source>&amp;View</source>
-        <translation type="unfinished"/>
+        <translation>देखें (&amp;V)</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="172"/>
         <source>&amp;File</source>
-        <translation type="unfinished"/>
+        <translation>फ़ाइल (&amp;F)</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="184"/>
         <source>&amp;Search</source>
-        <translation type="unfinished"/>
+        <translation>खोजेँ (&amp;S)</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="194"/>
         <source>T&amp;ools</source>
-        <translation type="unfinished"/>
+        <translation>साधन (&amp;o)</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="224"/>
         <source>&amp;About</source>
-        <translation type="unfinished"/>
+        <translation>बारे में (&amp;A)</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="227"/>
@@ -74,17 +74,17 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="283"/>
         <source>Check &amp;updates</source>
-        <translation type="unfinished"/>
+        <translation>अपडेट खोजें (&amp;u)</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="291"/>
         <source>E&amp;xit</source>
-        <translation type="unfinished"/>
+        <translation>बंद करें (&amp;x)</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="306"/>
         <source>System u&amp;pgrade</source>
-        <translation type="unfinished"/>
+        <translation>सिस्टम अपग्रेड (&amp;p)</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="324"/>
@@ -107,17 +107,17 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="353"/>
         <source>&amp;Get latest distro news</source>
-        <translation type="unfinished"/>
+        <translation>लिनक्स-वितरण के नवीनतम समाचार प्राप्त करें (&amp;G)</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="365"/>
         <source>Remove group</source>
-        <translation>समूह को हटाएँ</translation>
+        <translation>समूह हटाएँ</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="374"/>
         <source>Install group</source>
-        <translation>समूह को इंस्टॉल करें</translation>
+        <translation>समूह इंस्टॉल करें</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="383"/>
@@ -172,17 +172,17 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="478"/>
         <source>By &amp;description</source>
-        <translation type="unfinished"/>
+        <translation>विवरणानुसार (&amp;d)</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="489"/>
         <source>By &amp;name</source>
-        <translation type="unfinished"/>
+        <translation>नामानुसार (&amp;n)</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="501"/>
         <source>Find a file</source>
-        <translation>फ़ाइल ढूँढें</translation>
+        <translation>फ़ाइल खोजें</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="510"/>
@@ -197,7 +197,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="526"/>
         <source>&amp;Install local package...</source>
-        <translation type="unfinished"/>
+        <translation>लोकल पैकेज इंस्टॉल करें (&amp;I) ...</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="543"/>
@@ -212,7 +212,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="570"/>
         <source>Cache Cleaner</source>
-        <translation>कैश हटाए</translation>
+        <translation>कैश हटाने हेतु साधन</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="581"/>
@@ -222,12 +222,12 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="603"/>
         <source>By &amp;file</source>
-        <translation type="unfinished"/>
+        <translation>फ़ाइल अनुसार (&amp;f)</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="614"/>
         <source>Use Instant Search</source>
-        <translation>तुरंत ढूँढें</translation>
+        <translation>त्वरित खोज</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="622"/>
@@ -237,27 +237,27 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="85"/>
         <source>Ctrl+Shift+O to display outdated %1 packages</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+Shift+O पुराने %1 पैकेज दिखाने हेतु</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="93"/>
         <source>Ctrl+Shift+A to display AUR voted package list</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+Shift+A वोट युक्त AUR पैकेज सूची दिखाने हेतु</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="98"/>
         <source>For more information, visit:</source>
-        <translation>अधिक जानकारी हेतु यहाँ जाएँ :</translation>
+        <translation>अधिक जानकारी हेतु, यह देखें :</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="101"/>
         <source>A Qt-based Pacman frontend,</source>
-        <translation>Pacman का एक Qt-आधारित frontend,</translation>
+        <translation>पैकमैन का एक क्यूटी-आधारित फ्रंट-एंड सॉफ्टवेयर,</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="102"/>
         <source>licensed under the terms of</source>
-        <translation>निम्नलिखित की शर्तों के तहत लाइसेंस प्राप्त है</translation>
+        <translation>इन शर्तों के अंतर्गत लाइसेंस प्राप्त</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="109"/>
@@ -267,62 +267,62 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="112"/>
         <source>An installed package</source>
-        <translation>एक इंस्टॉल हो रखा पैकेज</translation>
+        <translation>इंस्टॉल हो रखा पैकेज</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="114"/>
         <source>An installed package (not required by others)</source>
-        <translation>एक इंस्टॉल हो रखा पैकेज (जो अन्य पैकेजों के लिए अनावश्यक है)</translation>
+        <translation>इंस्टॉल हो रखा पैकेज (अन्य पैकेज हेतु अनावश्यक)</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="117"/>
         <source>A foreign package, installed from</source>
-        <translation>एक बाहरी पैकेज, जिसे निम्नलिखित से इंस्टॉल किया गया</translation>
+        <translation>बाह्य पैकेज, यहाँ से इंस्टॉल</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="120"/>
         <source>A non installed package</source>
-        <translation>एक पैकेज जो इंस्टॉल नहीं है</translation>
+        <translation>पैकेज जो इंस्टॉल नहीं है</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="123"/>
         <source>An outdated package</source>
-        <translation>एक पुराना पैकेज</translation>
+        <translation>पुराना पैकेज</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="126"/>
         <source>An outdated foreign package</source>
-        <translation>एक पुराना बाहरी पैकेज</translation>
+        <translation>पुराना बाह्य पैकेज</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="129"/>
         <source>A newer than repository package</source>
-        <translation>एक पैकेज जो पैकेज-संग्रह वाले से नया है</translation>
+        <translation>पैकेज-संग्रह से नवीन पैकेज</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="131"/>
         <source>Basic usage help:</source>
-        <translation>सामान्य उपयोग हेतु मदद :</translation>
+        <translation>उपयोग हेतु सहायता :</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="133"/>
         <source>Position the mouse over a package to see its description</source>
-        <translation>पैकेज के ऊपर माउस पॉइंटर ले जाकर उसका विवरण देखें</translation>
+        <translation>विवरण देखने हेतु पैकेज पर माउस पॉइंटर ले जाएँ</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="135"/>
         <source>Double click an installed package to see its contents</source>
-        <translation>इंस्टॉल हो रखे पैकेज की सामग्री देखने हेतु उस पर डबल-क्लिक करें</translation>
+        <translation>इंस्टॉल हो रखे पैकेज पर द्वि-क्लिक कर उसकी सामग्री देखें</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="137"/>
         <source>Right click package to install/reinstall or remove it</source>
-        <translation>पैकेज को इंस्टॉल/पुनः इंस्टॉल करने हेतु उस पर राइट-क्लिक करें</translation>
+        <translation>पैकेज पर दायां-क्लिक कर उसे इंस्टॉल/पुनः इंस्टॉल या हटाएँ</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="140"/>
         <source>Alt+key sequences:</source>
-        <translation>Alt+कुंजी अनुक्रम :</translation>
+        <translation>Alt+ कुंजी अनुक्रम :</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="142"/>
@@ -332,12 +332,12 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="144"/>
         <source>Alt+2 to switch to &apos;Files&apos; tab</source>
-        <translation>Alt+2 &apos;फ़ाइलें&apos; हेतु</translation>
+        <translation>Alt+2 &apos;फ़ाइल&apos; हेतु</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="146"/>
         <source>Alt+3 to switch to &apos;Actions&apos; tab</source>
-        <translation type="unfinished"/>
+        <translation>Alt+3 &apos;कार्य&apos; टैब हेतु</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="148"/>
@@ -347,17 +347,17 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="150"/>
         <source>Alt+5 to switch to &apos;News&apos; tab</source>
-        <translation>Alt+5 &apos;ख़बरें&apos; हेतु</translation>
+        <translation>Alt+5 &apos;समाचार&apos; हेतु</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="152"/>
         <source>Alt+6 or &apos;F1&apos; to show this help page</source>
-        <translation>Alt+6 या &apos;F1&apos; &apos;मदद&apos; हेतु</translation>
+        <translation>Alt+6 या &apos;F1&apos; इस सहायता पृष्ठ हेतु</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="154"/>
         <source>Alt+7 to switch to &apos;Terminal&apos; tab</source>
-        <translation type="unfinished"/>
+        <translation>Alt+7 &apos;टर्मिनल&apos; टैब हेतु</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="157"/>
@@ -367,52 +367,52 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="159"/>
         <source>Ctrl+E or &apos;Actions/Cancel&apos; to clear the selection of to be removed/installed packages</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+E या &apos;कार्य/रद्द करें&apos; हटने/इंस्टॉल होने वाले पैकेज अचयनित करने हेतु</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="161"/>
         <source>Ctrl+F to search for text inside tab Files, News and Usage</source>
-        <translation>Ctrl+F फ़ाइलें, खबरें व उपयोग में टेक्स्ट ढूँढने हेतु</translation>
+        <translation>Ctrl+F फ़ाइल, समाचार व उपयोग में खोजने हेतु</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="163"/>
         <source>Ctrl+G or &apos;File/Get latest distro news&apos; to retrieve the latest RSS based distro news</source>
-        <translation>Ctrl+G या &apos;फ़ाइल/नवीनतम लिनक्स-वितरण ख़बरें प्राप्त करें&apos; यानि RSS आधारित लिनक्स-वितरण ख़बरें प्राप्त करने हेतु</translation>
+        <translation>Ctrl+G या &apos;फ़ाइल/नवीनतम लिनक्स-वितरण समाचार&apos; आरएसएस से लिनक्स-वितरण समाचार प्राप्त करने हेतु</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="165"/>
         <source>Ctrl+K or &apos;File/Check updates&apos; to check mirror for latest updates (checkupdates)</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+K या &apos;फ़ाइल/अपडेट खोजें&apos; सर्वर-मिरर द्वारा नवीनतम अपडेट खोजने हेतु (checkupdates)</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="167"/>
         <source>Ctrl+L to find a package in the package list</source>
-        <translation>Ctrl+L पैकेज सूची में पैकेज ढूँढने हेतु</translation>
+        <translation>सूची में पैकेज ढूँढने हेतु Ctrl+L</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="169"/>
         <source>Ctrl+P to go to package list</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+P पैकेज सूची हेतु</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="171"/>
         <source>Ctrl+Q or &apos;File/Exit&apos; to exit the application</source>
-        <translation>Ctrl+Q या &apos;फ़ाइल/बंद करें&apos; यानि अनुप्रयोग बंद करने हेतु</translation>
+        <translation>Ctrl+Q या &apos;फ़ाइल/बंद करें&apos; अनुप्रयोग बंद करने हेतु</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="173"/>
         <source>Ctrl+U or &apos;File/System upgrade&apos; to make a full system upgrade (pacman -Su)</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+U या &apos;फ़ाइल/सिस्टम अपग्रेड&apos; पूर्ण सिस्टम अपग्रेड हेतु (pacman -Su)</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="175"/>
         <source>Ctrl+Y or &apos;Actions/Apply&apos; to start installation/removal of selected packages</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+Y या &apos;कार्य/लागू करें&apos; चयनित पैकेज इंस्टॉल करने/हटाने हेतु</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="178"/>
         <source>Control+shift+key sequences:</source>
-        <translation>Ctrl+Shift+कुंजी अनुक्रम :</translation>
+        <translation>Ctrl+Shift+ कुंजी अनुक्रम :</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="182"/>
@@ -427,32 +427,32 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="190"/>
         <source>F+key sequences:</source>
-        <translation>Fn+कुंजी अनुक्रम :</translation>
+        <translation>Fn+ कुंजी अनुक्रम :</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="192"/>
         <source>F1 to show this help page</source>
-        <translation>F1 मदद हेतु</translation>
+        <translation>F1 इस सहायता पृष्ठ हेतु</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="194"/>
         <source>F4 to open a Terminal whitin the selected directory at Files tab</source>
-        <translation>F4 फाइलें में चयनित डायरेक्टरी में टर्मिनल खोलने हेतु</translation>
+        <translation>F4 फ़ाइल टैब की चयनित डायरेक्टरी में टर्मिनल खोलने हेतु</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="196"/>
         <source>F6 to open a File Manager whitin the selected directory at Files tab</source>
-        <translation>F6 फाइलें में चयनित डायरेक्टरी में फ़ाइल प्रबंधक खोलने हेतु</translation>
+        <translation>F6 फ़ाइल टैब की चयनित डायरेक्टरी में फ़ाइल प्रबंधक खोलने हेतु</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="198"/>
         <source>F10 to maximize/demaximize package list view</source>
-        <translation>F10 पैकेज सूची के दृश्य को विस्तृत/संक्षिप्त करने हेतु</translation>
+        <translation>F10 पैकेज सूची दृश्य को विस्तृत/संक्षिप्त करने हेतु</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="200"/>
         <source>F11 to maximize/demaximize Tab&apos;s view</source>
-        <translation>F11 टैब के दृश्य को विस्तृत/संक्षिप्त करने हेतु</translation>
+        <translation>F11 टैब दृश्य को विस्तृत/संक्षिप्त करने हेतु</translation>
     </message>
 </context>
 <context>
@@ -475,32 +475,32 @@
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="63"/>
         <source>Show stop transaction button at statusbar</source>
-        <translation>स्टेटस बार में हस्तांतरण रोकें का बटन दिखाएँ</translation>
+        <translation>स्थिति सूचक में संचालन रोकने हेतु बटन दिखाएँ</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="76"/>
         <source>Use alternating row colors in package list</source>
-        <translation type="unfinished"/>
+        <translation>पैकेज सूची पंक्तियों में एकांतर रंग उपयोग करें</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="89"/>
         <source>Enable confirmation dialog in system upgrade</source>
-        <translation type="unfinished"/>
+        <translation>सिस्टम अपग्रेड में पुष्टिकरण सूचक सक्रिय करें</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="102"/>
         <source>Enable internet checking</source>
-        <translation type="unfinished"/>
+        <translation>इंटरनेट जाँच सक्रिय करें</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="139"/>
         <source>Select the AUR tool Octopi should use</source>
-        <translation>Octopi के उपयोग हेतु AUR साधन चुनें</translation>
+        <translation>ऑक्टोपी द्वारा के उपयोग हेतु AUR साधन चुनें</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="214"/>
         <source>Search for outdated AUR packages</source>
-        <translation>पुराने AUR पैकेज ढूँढें</translation>
+        <translation>पुराने AUR पैकेज खोजें</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="269"/>
@@ -515,35 +515,36 @@
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="295"/>
         <source>Register</source>
-        <translation type="unfinished"/>
+        <translation>पंजीकरण करें</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="308"/>
         <source>Connect</source>
-        <translation type="unfinished"/>
+        <translation>कनेक्ट करें</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="322"/>
         <source>Enable AUR voting</source>
-        <translation type="unfinished"/>
+        <translation>AUR वोट सक्रिय करें</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="343"/>
         <source>AUR packages are user produced content. 
 Any use of the provided files is at your own risk.</source>
-        <translation type="unfinished"/>
+        <translation>AUR पैकेज उपयोक्ता निर्मित सामग्री हैं।
+प्रदान फाइलों का उपयोग अपने जोखिम पर करें।</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="356"/>
         <location filename="Projects/octopi/src/optionsdialog.cpp" line="161"/>
         <location filename="Projects/octopi/src/optionsdialog.cpp" line="173"/>
         <source>Backend</source>
-        <translation>Backend</translation>
+        <translation>बैक-एंड सॉफ्टवेयर</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="422"/>
         <source>Select the backend Octopi should use</source>
-        <translation>Octopi के उपयोग हेतु backend चुनें</translation>
+        <translation>ऑक्टोपी द्वारा उपयोग हेतु बैक-एंड सॉफ्टवेयर चुनें</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="446"/>
@@ -574,7 +575,7 @@ Any use of the provided files is at your own risk.</source>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="766"/>
         <source>Use default notification icons</source>
-        <translation>डिफ़ॉल्ट सूचना आइकन उपयोग करें</translation>
+        <translation>डिफ़ॉल्ट अधिसूचना आइकन उपयोग करें</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="777"/>
@@ -588,7 +589,7 @@ Any use of the provided files is at your own risk.</source>
         <location filename="Projects/octopi/src/optionsdialog.cpp" line="125"/>
         <location filename="Projects/octopi/src/optionsdialog.cpp" line="141"/>
         <source>Open Image</source>
-        <translation>छवि खोलें</translation>
+        <translation>फ़ाइल खोलें</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/optionsdialog.cpp" line="93"/>
@@ -596,7 +597,7 @@ Any use of the provided files is at your own risk.</source>
         <location filename="Projects/octopi/src/optionsdialog.cpp" line="125"/>
         <location filename="Projects/octopi/src/optionsdialog.cpp" line="141"/>
         <source>Image Files</source>
-        <translation>छवि फ़ाइलें</translation>
+        <translation>फ़ाइलें</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/optionsdialog.cpp" line="180"/>
@@ -619,18 +620,19 @@ Any use of the provided files is at your own risk.</source>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="40"/>
         <source>use a different remove command (ex: -removecmd R).</source>
-        <translation>हटाने हेतु एक अलग कमांड उपयोग करें (जैसे : -removecmd R)।</translation>
+        <translation>हटाने हेतु विभिन्न कमांड उपयोग करें (जैसे : -removecmd R)।</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="41"/>
         <source>force a system upgrade at startup.</source>
-        <translation>सिस्टम शुरू होते ही सिस्टम अपग्रेड करें।</translation>
+        <translation>सिस्टम आरंभ पर अपग्रेड करें।</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="48"/>
         <source>Pacman Database is missing!
 You may need to synchronize database!</source>
-        <translation type="unfinished"/>
+        <translation>पैकमैन डेटाबेस अनुपलब्ध।
+कृपया डेटाबेस समकालीन करें!</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="52"/>
@@ -640,42 +642,42 @@ You may need to synchronize database!</source>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="134"/>
         <source>Arch Linux news</source>
-        <translation>Arch Linux ख़बर</translation>
+        <translation>आर्च लिनक्स समाचार</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="138"/>
         <source>Chakra news</source>
-        <translation>Chakra ख़बर</translation>
+        <translation>चक्र समाचार</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="142"/>
         <source>Condres OS news</source>
-        <translation type="unfinished"/>
+        <translation>कोंद्रेस ओएस समाचार</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="146"/>
         <source>EndeavourOS news</source>
-        <translation type="unfinished"/>
+        <translation>एंडेवर-ओएस समाचार</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="150"/>
         <source>KaOS news</source>
-        <translation>KaOS ख़बर</translation>
+        <translation>कैओस समाचार</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="154"/>
         <source>Manjaro Linux news</source>
-        <translation>Manjaro Linux ख़बर</translation>
+        <translation>मंजारो लिनक्स समाचार</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="158"/>
         <source>Parabola GNU/Linux-libre news</source>
-        <translation>Parabola GNU/Linux-libre ख़बर</translation>
+        <translation>पैराबोला ग्नू/ लिनक्स-लिब्रे समाचार</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="162"/>
         <source>Information</source>
-        <translation type="unfinished"/>
+        <translation>जानकारी</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="166"/>
@@ -685,17 +687,17 @@ You may need to synchronize database!</source>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="170"/>
         <source>No news could be found! Press Ctrl+G to download the latest news.</source>
-        <translation>कोई ख़बर नहीं मिली! नवीनतम ख़बरें डाउनलोड करने के लिए Ctrl+G दबाएँ।</translation>
+        <translation>कोई समाचार नहीं! नवीनतम समाचार हेतु Ctrl+G दबाएँ।</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="174"/>
         <source>This Linux distro seems to be incompatible with Octopi!</source>
-        <translation>लगता है, यह लिनक्स वितरण Octopi के साथ असंगत है!</translation>
+        <translation>प्रतीत होता है, यह लिनक्स वितरण ऑक्टोपी के साथ असंगत है!</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="178"/>
         <source>Internet seems unavailable!</source>
-        <translation>लगता है, इंटरनेट अनुपलब्ध है!</translation>
+        <translation>प्रतीत होता है, इंटरनेट अनुपलब्ध है!</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="182"/>
@@ -715,12 +717,12 @@ You may need to synchronize database!</source>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="202"/>
         <source>Help</source>
-        <translation>मदद</translation>
+        <translation>सहायता</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="206"/>
         <source>&amp;Options</source>
-        <translation type="unfinished"/>
+        <translation>विकल्प (&amp;O)</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="210"/>
@@ -750,7 +752,7 @@ You may need to synchronize database!</source>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="230"/>
         <source>URL</source>
-        <translation>URL</translation>
+        <translation>यूआरएल</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="234"/>
@@ -780,32 +782,32 @@ You may need to synchronize database!</source>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="254"/>
         <source>Depends On</source>
-        <translation>निर्भर करता है</translation>
+        <translation>इन पर आश्रित</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="258"/>
         <source>Required By</source>
-        <translation>के लिए आवश्यक</translation>
+        <translation>इन हेतु आवश्यक</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="262"/>
         <source>Optional For</source>
-        <translation>के लिए वैकल्पिक</translation>
+        <translation>इन हेतु वैकल्पिक</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="266"/>
         <source>Optional Deps</source>
-        <translation>वैकल्पिक निर्भरताएँ</translation>
+        <translation>वैकल्पिक आश्रित पैकेज</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="270"/>
         <source>Conflicts With</source>
-        <translation>के साथ विरोध में</translation>
+        <translation>के विरुद्ध</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="274"/>
         <source>Replaces</source>
-        <translation>की जगह लेता है</translation>
+        <translation>इनके स्थान पर</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="278"/>
@@ -825,32 +827,32 @@ You may need to synchronize database!</source>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="292"/>
         <source>AUR voted package list</source>
-        <translation type="unfinished"/>
+        <translation>वोट युक्त AUR पैकेज सूची</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="297"/>
         <source>Unvote</source>
-        <translation type="unfinished"/>
+        <translation>वोट वापस लें</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="301"/>
         <source>Download Size</source>
-        <translation>डाउनलोड का आकार</translation>
+        <translation>डाउनलोड आकार</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="305"/>
         <source>Installed Size</source>
-        <translation>इंस्टॉल का आकार</translation>
+        <translation>इंस्टॉल आकार</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="309"/>
         <source>Install Reason</source>
-        <translation>इंस्टॉल का कारण</translation>
+        <translation>इंस्टॉल कारण</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="313"/>
         <source>Packager</source>
-        <translation>पैकेज बनाने वाला</translation>
+        <translation>पैकेज निर्माता</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="317"/>
@@ -865,12 +867,12 @@ You may need to synchronize database!</source>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="325"/>
         <source>Architecture</source>
-        <translation>स्थापत्य</translation>
+        <translation>संरचना</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="329"/>
         <source>Build Date</source>
-        <translation>बनने की तिथि</translation>
+        <translation>बिल्ड दिनांक</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="333"/>
@@ -905,17 +907,17 @@ You may need to synchronize database!</source>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="357"/>
         <source>Files</source>
-        <translation>फ़ाइलें</translation>
+        <translation>फ़ाइल</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="361"/>
         <source>Transaction</source>
-        <translation>हस्तांतरण</translation>
+        <translation>संचालन</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="365"/>
         <source>Actions</source>
-        <translation type="unfinished"/>
+        <translation>कार्य</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="369"/>
@@ -925,7 +927,7 @@ You may need to synchronize database!</source>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="373"/>
         <source>News</source>
-        <translation>ख़बरें</translation>
+        <translation>समाचार</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="378"/>
@@ -940,7 +942,7 @@ You may need to synchronize database!</source>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="386"/>
         <source>Find</source>
-        <translation>ढूँढें</translation>
+        <translation>खोजें</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="390"/>
@@ -955,17 +957,17 @@ You may need to synchronize database!</source>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="398"/>
         <source> (newer installed version is %1)</source>
-        <translation>(इंस्टॉल हो रखा नया संस्करण %1)</translation>
+        <translation>(इंस्टॉल किया गया नवीन संस्करण %1)</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="402"/>
         <source>Building package list...</source>
-        <translation>पैकेज सूची बनाई जा रही है...</translation>
+        <translation>पैकेज सूची बनाई जा रही है ...</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="406"/>
         <source>Searching for %1 latest news...</source>
-        <translation>%1 की नवीनतम ख़बरें ढूँढी जा रही हैं...</translation>
+        <translation>%1 हेतु नवीनतम समाचार खोजें जा रहे हैं ...</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="410"/>
@@ -975,7 +977,7 @@ You may need to synchronize database!</source>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.cpp" line="414"/>
         <source>There are %n outdated packages in your system:</source>
-        <translation><numerusform>आपके सिस्टम में %n पुराने पैकेज हैं :</numerusform><numerusform>आपके सिस्टम में %n पुराने पैकेज हैं :</numerusform></translation>
+        <translation><numerusform>सिस्टम में %n पुराने पैकेज हैं :</numerusform><numerusform>सिस्टम में %n पुराने पैकेज हैं :</numerusform></translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="418"/>
@@ -1010,17 +1012,17 @@ You may need to synchronize database!</source>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="442"/>
         <source>Cleaning package cache...</source>
-        <translation>पैकेज कैश हटाई जा रही है...</translation>
+        <translation>पैकेज कैश हटाई जा रही है ...</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="446"/>
         <source>Removing Pacman&apos;s transaction lock file...</source>
-        <translation>पैकमैन की हस्तांतरण लॉक फ़ाइल हटाई जा रही है...</translation>
+        <translation>पैकमैन संचालन लॉक फ़ाइल हटाई जा रही है...</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="478"/>
         <source>Check updates</source>
-        <translation type="unfinished"/>
+        <translation>अपडेट खोजें</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="483"/>
@@ -1030,7 +1032,7 @@ You may need to synchronize database!</source>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="488"/>
         <source>Checking for updates...</source>
-        <translation type="unfinished"/>
+        <translation>अपडेट खोजी जा रही हैं ...</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="493"/>
@@ -1045,97 +1047,97 @@ You may need to synchronize database!</source>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="505"/>
         <source>Synchronizing databases...</source>
-        <translation>डाटाबेस समकालीन किए जा रहे हैं...</translation>
+        <translation>डेटाबेस समकालीन हो रहे हैं ...</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="514"/>
         <source>SysInfo file generated on: %1&lt;br&gt;If you wish, post the output in your distro&apos;s forum for help.</source>
-        <translation type="unfinished"/>
+        <translation>यहाँ सिस्टम जानकारी फ़ाइल बनाई गई : %1 &lt;br&gt; इच्छुक हो तो, आउटपुट अपने लिनक्स-वितरण के चर्चा-मंच पर सहायता हेतु पोस्ट करें।</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="518"/>
         <source>Starting full system upgrade...</source>
-        <translation>पूर्ण सिस्टम अपग्रेड चालू हो रही है...</translation>
+        <translation>पूर्ण सिस्टम अपग्रेड आरंभ हो रही है ...</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="522"/>
         <source>Installing selected packages...</source>
-        <translation>चयनित पैकेज इंस्टॉल किए जा रहे हैं...</translation>
+        <translation>चयनित पैकेज इंस्टॉल हो रहे हैं ...</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="526"/>
         <source>Removing selected packages...</source>
-        <translation>चयनित पैकेज हटाए जा रहे हैं...</translation>
+        <translation>चयनित पैकेज हटाए जा रहे हैं ...</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="530"/>
         <source>Removing/installing selected packages...</source>
-        <translation>चयनित पैकेज इंस्टॉल/हटाए जा रहे हैं...</translation>
+        <translation>चयनित पैकेज इंस्टॉल/हटाए जा रहे हैं ...</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="534"/>
         <source>Running command in terminal...</source>
-        <translation>टर्मिनल में कमांड निष्पादित की जा रही है...</translation>
+        <translation>टर्मिनल में कमांड निष्पादित हो रही है ...</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="538"/>
         <source>Command finished OK!</source>
-        <translation>कमांड सफलतापूर्वक निष्पादित!</translation>
+        <translation>कमांड सफलतापूर्वक पूर्ण हुई!</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="542"/>
         <source>Command finished with errors!</source>
-        <translation>कमांड त्रुटियों के साथ निष्पादित!</translation>
+        <translation>कमांड त्रुटियों के साथ पूर्ण हुई!</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="547"/>
         <source>Temporary &quot;yay-bin&quot; could not be downloaded!</source>
-        <translation type="unfinished"/>
+        <translation>अल्पकालिक पैकेज &quot;yay-bin&quot; डाउनलोड नहीं हो सका!</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="552"/>
         <source>Temporary &quot;yay-bin&quot; downloaded.</source>
-        <translation type="unfinished"/>
+        <translation>अल्पकालिक पैकेज &quot;yay-bin&quot; डाउनलोड किया गया।</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="557"/>
         <source>Downloading temporary &quot;yay-bin&quot;...</source>
-        <translation type="unfinished"/>
+        <translation>अल्पकालिक पैकेज &quot;yay-bin&quot; डाउनलोड हो रहा है ...</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="561"/>
         <source>Retrieving %1</source>
-        <translation>%1 डाउनलोड किया गया</translation>
+        <translation>%1 प्राप्त हो रहा है</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="565"/>
         <source>Total download size: %1 KB</source>
-        <translation>डाउनलोड का कुल आकार : %1 KB</translation>
+        <translation>कुल डाउनलोड आकार : %1 KB</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="569"/>
         <source>The following package needs to be retrieved</source>
-        <translation>निम्नलिखित पैकेज डाउनलोड किया जाएगा</translation>
+        <translation>निम्नलिखित पैकेज डाउनलोड होंगे</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="573"/>
         <source>The following package will be removed</source>
-        <translation>निम्नलिखित पैकेज हटाया जाएगा</translation>
+        <translation>निम्नलिखित पैकेज हटेंगे</translation>
     </message>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.cpp" line="577"/>
         <source>The following %n packages need to be retrieved</source>
-        <translation><numerusform>निम्नलिखित %n पैकेज डाउनलोड किए जाएँगे</numerusform><numerusform>निम्नलिखित %n पैकेज डाउनलोड किए जाएँगे</numerusform></translation>
+        <translation><numerusform>निम्नलिखित %n पैकेज डाउनलोड होंगे</numerusform><numerusform>निम्नलिखित %n पैकेज डाउनलोड होंगे</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.cpp" line="581"/>
         <source>The following %n packages will be removed</source>
-        <translation><numerusform>निम्नलिखित %n पैकेज हटाए जाएँगे</numerusform><numerusform>निम्नलिखित %n पैकेज हटाए जाएँगे</numerusform></translation>
+        <translation><numerusform>निम्नलिखित %n पैकेज हटेंगे</numerusform><numerusform>निम्नलिखित %n पैकेज हटेंगे</numerusform></translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="585"/>
         <source>There are forbidden packages in the removal list!</source>
-        <translation>हटाए जाने वाले पैकेजों की सूची में ऐसे पैकेज शामिल हैं, जिन्हें हटाया नहीं जा सकता है!</translation>
+        <translation>हटने वाले पैकेज की सूची में ऐसे पैकेज हैं जिन्हें हटाना वर्जित है!</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="589"/>
@@ -1170,66 +1172,70 @@ You may need to synchronize database!</source>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="613"/>
         <source>There has been a transaction error!</source>
-        <translation>हस्तांतरण के दौरान त्रुटि हुई!</translation>
+        <translation>संचालन त्रुटि हुई!</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="617"/>
         <source>Do you want to execute this transaction in a Terminal?</source>
-        <translation>क्या आप वाकई इस हस्तांतरण को टर्मिनल में निष्पादित करना चाहते हैं?</translation>
+        <translation>क्या आप यह संचालन टर्मिनल में निष्पादित करना चाहते हैं?</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="629"/>
         <source>Do you really want to cancel actions?</source>
-        <translation type="unfinished"/>
+        <translation>क्या आप निश्चित ही सभी कार्य रद्द करना चाहते हैं?</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="633"/>
         <source>Please, enter the administrator&apos;s password</source>
-        <translation>कृपया, प्रबंधक कूटशब्द दर्ज़ करें</translation>
+        <translation>कृपया, प्रशासक कूटशब्द दर्ज़ करें</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="639"/>
         <source>There are no means to get administrator&apos;s credentials.</source>
-        <translation>प्रबंधक विशेषाधिकार प्राप्त नहीं किए जा सकते।</translation>
+        <translation>प्रशासक विशेषाधिकार प्राप्त नहीं हो सके।</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="643"/>
         <source>You&apos;ll need to install &quot;octopi-sudo&quot; in order to use Octopi.</source>
-        <translation type="unfinished"/>
+        <translation>ऑक्टोपी उपयोग करने हेतु &quot;octopi-sudo&quot; इंस्टॉल करना होगा।</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="648"/>
         <source>You'll need one of those tools to use AUR:
 
 %1, %2, %3 %4 or %5</source>
-        <translation type="unfinished"/>
+        <translation>AUR उपयोग करने हेतु निम्नलिखित में से एक साधन आवश्यक है :
+
+%1, %2, %3 %4 or %5</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="654"/>
         <source>You need a package in order to use AUR.
 Do you want to install it?</source>
-        <translation type="unfinished"/>
+        <translation>उपयोग करने हेतु एक पैकेज आवश्यक है।
+क्या आप उसे इंस्टॉल करना चाहते हैं?</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="660"/>
         <source>Connection is OK!</source>
-        <translation type="unfinished"/>
+        <translation>कनेक्शन ठीक है!</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="664"/>
         <source>Would you like to help this project by voting for it?
 You only need to accept and wait a few seconds.</source>
-        <translation type="unfinished"/>
+        <translation>क्या आप इस प्रोजेक्ट के लिए वोट कर सहायता करना चाहते हैं?
+केवल स्वीकृत कर कुछ देर प्रतीक्षा करें।</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="670"/>
         <source>Thank you for voting for Octopi!</source>
-        <translation type="unfinished"/>
+        <translation>ऑक्टोपी के लिए वोट करने हेतु धन्यवाद!</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="675"/>
         <source>Username and/or password is/are incorrect.</source>
-        <translation>उपयोक्ता नाम या कूटशब्द गलत हैं।</translation>
+        <translation>उपयोक्ता नाम या कूटशब्द गलत है।</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="680"/>
@@ -1239,32 +1245,32 @@ You only need to accept and wait a few seconds.</source>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="685"/>
         <source>AUR password is not set.</source>
-        <translation>AUR कूटशब्द नाम सेट नहीं है।</translation>
+        <translation>AUR कूटशब्द सेट नहीं है।</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="689"/>
         <source>Icon path information is not set.</source>
-        <translation type="unfinished"/>
+        <translation>आइकन फ़ाइल पथ हेतु सूचना सेट नहीं है।</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="693"/>
         <source>You can not run Octopi with administrator&apos;s credentials.</source>
-        <translation>आप बिना प्रबंधक विशेषाधिकार के Octopi नहीं चला सकते।</translation>
+        <translation>आप बिना प्रशासक विशेषाधिकार ऑक्टोपी उपयोग नहीं कर सकते।</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="697"/>
         <source>Canceling the running transaction may damage your system!</source>
-        <translation type="unfinished"/>
+        <translation>कार्यरत प्रक्रिया रद्द करने से सिस्टम को हानि हो सकती है।</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="701"/>
         <source>There are pending actions</source>
-        <translation type="unfinished"/>
+        <translation>कुछ कार्य शेष हैं</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="705"/>
         <source>Do you really want to quit?</source>
-        <translation>क्या आप वाकई छोड़ना चाहते हैं?</translation>
+        <translation>क्या आप निश्चित ही प्रक्रिया निरस्त करना चाहते हैं?</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="710"/>
@@ -1276,12 +1282,19 @@ and &quot;head --bytes=256K /var/log/pacman.log&quot;
 
 Do you want to continue?
 </source>
-        <translation type="unfinished"/>
+        <translation>आपके होम फोल्डर पथ में निम्नलिखित सामग्री युक्त &quot;octopi-sysinfo.log&quot; फ़ाइल बनाई जाएगी :
+
+&quot;/etc/lsb-release&quot;, &quot;inxi -Fxz&quot;, &quot;uname -a&quot;, &quot;mhwd -li -d,&quot;
+&quot;journalctl -b -p err&quot;, &quot;cat /etc/pacman.conf&quot;, &quot;pacman -Qm&quot;
+व &quot;head --bytes=256K /var/log/pacman.log&quot;
+
+क्या आप जारी रखना चाहते हैं?
+</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="718"/>
         <source>Executing command</source>
-        <translation>कमांड निष्पादित की जा रही है</translation>
+        <translation>कमांड निष्पादित हो रही है</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="722"/>
@@ -1291,24 +1304,24 @@ Do you want to continue?
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="726"/>
         <source>Needs application restart to take effect</source>
-        <translation>बदलाव लागू करने हेतु अनुप्रयोग को पुनः आरंभ करना आवश्यक है</translation>
+        <translation>बदलाव लागू करने हेतु अनुप्रयोग पुनः आरंभ करना आवश्यक है</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="730"/>
         <source>These changes need application restart to take effect!</source>
-        <translation>ये बदलाव अनुप्रयोग के पुनः आरंभ होने के बाद ही लागू होंगे!</translation>
+        <translation>ये बदलाव अनुप्रयोग पुनः आरंभ होने के बाद ही लागू होंगे!</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="734"/>
         <source>Select the packages you want to install</source>
-        <translation>उन पैकेजों का चयन करें जिन्हें आप इंस्टॉल करना चाहते हैं</translation>
+        <translation>इंस्टॉल करने हेतु पैकेज चुनें</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="738"/>
         <source>This file does not appear to be a simple text.
 Are you sure you want to open it?</source>
-        <translation>यह फ़ाइल एक साधारण टेक्स्ट फ़ाइल नहीं लगती।
-क्या आप वाकई इसे खोलना चाहते हैं?</translation>
+        <translation>यह फ़ाइल कोई सामान्य टेक्स्ट फ़ाइल प्रतीत नहीं होती।
+क्या आप निश्चित ही इसे खोलना चाहते हैं?</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="743"/>
@@ -1318,7 +1331,7 @@ Are you sure you want to open it?</source>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="747"/>
         <source>To be removed</source>
-        <translation>हटाए जाने वाले</translation>
+        <translation>हटने वाले</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="751"/>
@@ -1343,17 +1356,17 @@ Are you sure you want to open it?</source>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="769"/>
         <source>Remove item</source>
-        <translation>पैकेज हटाएँ</translation>
+        <translation>वस्तु हटाएँ</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="773"/>
         <source>Remove items</source>
-        <translation>पैकेज हटाएँ</translation>
+        <translation>वस्तुएँ हटाएँ</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="777"/>
         <source>Press Ctrl+A to select/deselect all</source>
-        <translation>सभी को चयनित/अचयनित करने के लिए Ctrl+A दबाएँ</translation>
+        <translation>सभी को चयनित/अचयनित करने हेतु Ctrl+A दबाएँ</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="781"/>
@@ -1373,7 +1386,7 @@ Are you sure you want to open it?</source>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="793"/>
         <source>Check for package updates interval</source>
-        <translation type="unfinished"/>
+        <translation>पैकेज अपडेट खोजने हेतु अंतराल</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="797"/>
@@ -1393,12 +1406,12 @@ Are you sure you want to open it?</source>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="809"/>
         <source>Once every</source>
-        <translation>एक बार हर</translation>
+        <translation>एक बार प्रत्येक</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="813"/>
         <source>(value in minutes: %1 to %2)</source>
-        <translation>(मान मिनटों में: %1 से %2)</translation>
+        <translation>(मान मिनट में: %1 से %2)</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="817"/>
@@ -1428,7 +1441,7 @@ Are you sure you want to open it?</source>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="842"/>
         <source>Maximize</source>
-        <translation>विंडो विस्तृत करें</translation>
+        <translation>विस्तृत करें</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="847"/>

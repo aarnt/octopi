@@ -4,7 +4,7 @@
     <message>
         <location filename="Projects/octopi/repoeditor/addrepo.ui" line="14"/>
         <source>Add Repository - Octopi</source>
-        <translation>पैकेज-संग्रह जोड़ें - Octopi</translation>
+        <translation>पैकेज-संग्रह जोड़ें - ऑक्टोपी</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/addrepo.ui" line="22"/>
@@ -14,7 +14,7 @@
     <message>
         <location filename="Projects/octopi/repoeditor/addrepo.ui" line="32"/>
         <source>Repository name</source>
-        <translation>पैकेज-संग्रह का नाम</translation>
+        <translation>पैकेज-संग्रह नाम</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/addrepo.ui" line="39"/>
@@ -24,27 +24,27 @@
     <message>
         <location filename="Projects/octopi/repoeditor/addrepo.cpp" line="86"/>
         <source>The repository name field can&apos;t be blank.</source>
-        <translation>पैकेज-संग्रह का नाम खाली नहीं छोड़ा जा सकता।</translation>
+        <translation>पैकेज-संग्रह नाम रिक्त नहीं होना चाहिए।</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/addrepo.cpp" line="101"/>
         <source>The repository location field is not valid.</source>
-        <translation>पैकेज-संग्रह का स्थान अमान्य है।</translation>
+        <translation>अमान्य पैकेज-संग्रह स्थान।</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/addrepo.cpp" line="104"/>
         <source>The repository name field is not valid.</source>
-        <translation>पैकेज-संग्रह का नाम अमान्य है।</translation>
+        <translation>अमान्य पैकेज-संग्रह नाम।</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/addrepo.cpp" line="111"/>
         <source>Address of remote or local packages repository</source>
-        <translation>दूरस्थ व लोकल पैकेजों के पैकेज-संग्रह का पता</translation>
+        <translation>दूरस्थ व लोकल पैकेज के पैकेज-संग्रह का पता</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/addrepo.cpp" line="115"/>
         <source>Path to mirrors list file</source>
-        <translation>मिरर-सर्वर सूची की फ़ाइल का पथ</translation>
+        <translation>सर्वर-मिरर सूची फ़ाइल हेतु पथ </translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/addrepo.cpp" line="124"/>
@@ -54,7 +54,7 @@
     <message>
         <location filename="Projects/octopi/repoeditor/addrepo.cpp" line="125"/>
         <source>Can&apos;t add repository.</source>
-        <translation>पैकेज-संग्रह जोड़ा नहीं जा सका।</translation>
+        <translation>पैकेज-संग्रह जोड़ा नहीं गया।</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/addrepo.cpp" line="136"/>
@@ -64,7 +64,7 @@
     <message>
         <location filename="Projects/octopi/repoeditor/addrepo.cpp" line="149"/>
         <source>Select mirrors list</source>
-        <translation>मिरर-सर्वर सूची चुनें</translation>
+        <translation>सर्वर-मिरर सूची चुनें</translation>
     </message>
 </context>
 <context>
@@ -72,7 +72,7 @@
     <message>
         <location filename="Projects/octopi/repoeditor/main.cpp" line="54"/>
         <source>You can not run Repository Editor with administrator&apos;s credentials.</source>
-        <translation>आप प्रबंधक विशेषाधिकार द्वारा पैकेज-संग्रह संपादक उपयोग नहीं कर सकते।</translation>
+        <translation>आप बिना प्रबंधक विशेषाधिकार के पैकेज-संग्रह संपादक नहीं चला सकते।</translation>
     </message>
 </context>
 <context>
@@ -113,7 +113,7 @@
     <message>
         <location filename="Projects/octopi/repoeditor/repoeditor.ui" line="14"/>
         <source>Repository Editor - Octopi</source>
-        <translation>पैकेज-संग्रह संपादक - Octopi</translation>
+        <translation>पैकेज-संग्रह संपादक - ऑक्टोपी</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/repoeditor.ui" line="27"/>
@@ -133,17 +133,17 @@
     <message>
         <location filename="Projects/octopi/repoeditor/repoeditor.ui" line="103"/>
         <source>Remove</source>
-        <translation>हटाए</translation>
+        <translation>हटाएँ</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/repoeditor.ui" line="130"/>
         <source>Move Up</source>
-        <translation>ऊपर</translation>
+        <translation>ऊपर ले जाएँ</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/repoeditor.ui" line="144"/>
         <source>Move Down</source>
-        <translation>नीचे</translation>
+        <translation>नीचे ले जाएँ</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/repoeditor.ui" line="160"/>
@@ -163,19 +163,19 @@
     <message>
         <location filename="Projects/octopi/repoeditor/repoeditor.ui" line="206"/>
         <source>Backup file:</source>
-        <translation>बैकअप फाइल:</translation>
+        <translation>बैकअप फाइल :</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/repoeditor.cpp" line="103"/>
         <location filename="Projects/octopi/repoeditor/repoeditor.cpp" line="125"/>
         <source>Confirmation</source>
-        <translation>पुष्टि</translation>
+        <translation>पुष्टिकरण</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/repoeditor.cpp" line="104"/>
         <location filename="Projects/octopi/repoeditor/repoeditor.cpp" line="126"/>
         <source>There are unsaved changes.</source>
-        <translation>कुछ बदलाव संचित नहीं हुए।</translation>
+        <translation>कुछ बदलाव संचित नहीं किये गए हैं।</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/repoeditor.cpp" line="105"/>
@@ -186,7 +186,7 @@
     <message>
         <location filename="Projects/octopi/repoeditor/repoeditor.cpp" line="160"/>
         <source>Can&apos;t load backup file</source>
-        <translation>बैकअप फ़ाइल लोड नहीं की जा सकी</translation>
+        <translation>बैकअप फ़ाइल लोड नहीं हो सकी</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/repoeditor.cpp" line="161"/>
@@ -201,7 +201,7 @@
     <message>
         <location filename="Projects/octopi/repoeditor/repoeditor.cpp" line="210"/>
         <source>Repositories configuration successfully saved.</source>
-        <translation>पैकेज-संग्रहों की विन्यास सेटिंग्स सफलतापूर्वक संचित कर ली गई।</translation>
+        <translation>पैकेज-संग्रह हेतु विन्यास सफलतापूर्वक संचित की गई।</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/repoeditor.cpp" line="215"/>
@@ -211,7 +211,7 @@
     <message>
         <location filename="Projects/octopi/repoeditor/repoeditor.cpp" line="216"/>
         <source>Repositories configuration not saved.</source>
-        <translation>पैकेज-संग्रहों की विन्यास सेटिंग्स संचित नहीं की जा सकी।</translation>
+        <translation>पैकेज-संग्रह हेतु विन्यास संचित नहीं हो सकी।</translation>
     </message>
 </context>
 </TS>
