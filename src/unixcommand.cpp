@@ -1259,8 +1259,12 @@ LinuxDistro UnixCommand::getLinuxDistro()
   static bool firstTime = true;
 
   if (firstTime)
-  {
-    if (QFile::exists(QStringLiteral("/etc/os-release")))
+  {    
+    if (QFile::exists(QStringLiteral("/etc/artix-release")))
+    {
+      ret = ectn_ARTIXLINUX;
+    }
+    else if (QFile::exists(QStringLiteral("/etc/os-release")))
     {
       QFile file(QStringLiteral("/etc/os-release"));
 
@@ -1274,7 +1278,7 @@ LinuxDistro UnixCommand::getLinuxDistro()
         ret = ectn_ARCHBANGLINUX;
       }
       else if (contents.contains(QRegularExpression(QStringLiteral("Arch Linux"))) ||
-               (contents.contains(QRegularExpression(QStringLiteral("Arcolinux")))))
+               (contents.contains(QRegularExpression(QStringLiteral("ArcoLinux")))))
       {
         ret = ectn_ARCHLINUX;
       }
