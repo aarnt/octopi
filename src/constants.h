@@ -61,8 +61,8 @@ enum CommandExecuting { ectn_NONE, ectn_CHECK_UPDATES, ectn_MIRROR_CHECK,
                         ectn_RUN_SYSTEM_UPGRADE_IN_TERMINAL, ectn_RUN_IN_TERMINAL,
                         ectn_INSTALL_YAY, ectn_SYSINFO };
 
-enum LinuxDistro { /*ectn_ANTERGOS,*/ ectn_ARCHBANGLINUX, ectn_ARCHLINUX, ectn_CHAKRA, ectn_CONDRESOS, ectn_ENDEAVOUROS,
-                   ectn_KAOS, ectn_MANJAROLINUX, /*ectn_NETRUNNER,*/ ectn_PARABOLA, ectn_SWAGARCH, ectn_UNKNOWN };
+enum LinuxDistro { ectn_ARCHBANGLINUX, ectn_ARCHLINUX, ectn_ARTIXLINUX, ectn_CHAKRA, ectn_CONDRESOS, ectn_ENDEAVOUROS,
+                   ectn_KAOS, ectn_MANJAROLINUX, ectn_PARABOLA, ectn_SWAGARCH, ectn_UNKNOWN };
 
 enum OptionsDialogTab { ectn_TAB_GENERAL, ectn_TAB_AUR };
 enum Language { ectn_LANG_ENGLISH, ectn_LANG_USER_DEFINED };
@@ -145,6 +145,9 @@ const QString ctn_TEMP_ACTIONS_FILE ( QDir::tempPath() + QDir::separator() + QLa
 const QString ctn_PACMAN_DATABASE_DIR = QStringLiteral("/var/lib/pacman");
 const QString ctn_PACMAN_DATABASE_LOCK_FILE(QStringLiteral("/var/lib/pacman/db.lck"));
 const QString ctn_PACMAN_CORE_DB_FILE = QStringLiteral("/var/lib/pacman/sync/core.db");
+
+//ARTIX MAIN DB FILE
+const QString ctn_PACMAN_SYSTEM_DB_FILE = QStringLiteral("/var/lib/pacman/sync/system.db");
 
 enum PackageStatus { ectn_INSTALLED, ectn_NON_INSTALLED, ectn_OUTDATED, ectn_NEWER,
                      ectn_FOREIGN, ectn_FOREIGN_OUTDATED };

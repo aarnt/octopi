@@ -43,6 +43,12 @@ int main(int argc, char *argv[])
     return (-2);
   }
 
+  if (!QFile::exists(ctn_OCTOPISUDO))
+  {
+    qDebug() << "Aborting octopi as 'octopi-sudo' binary could not be found! [" << ctn_OCTOPISUDO << "]";
+    return (-3);
+  }
+
   QApplication::setAttribute(Qt::AA_UseHighDpiPixmaps);
 
   ArgumentList *argList = new ArgumentList(argc, argv);
@@ -129,7 +135,7 @@ int main(int argc, char *argv[])
 
   if (UnixCommand::isRootRunning()){
     QMessageBox::critical( nullptr, StrConstants::getApplicationName(), StrConstants::getErrorRunningWithRoot());
-    return ( -3 );
+    return ( -4 );
   }
 
   setenv("COLORTERM", "truecolor", 1);

@@ -1942,9 +1942,18 @@ bool Package::hasPacmanDatabase()
 
   if (!done)
   {
-    QFile f(ctn_PACMAN_CORE_DB_FILE);
-    answer = f.exists();
-    done = true;
+    if (UnixCommand::getLinuxDistro() == ectn_ARTIXLINUX)
+    {
+      QFile f(ctn_PACMAN_SYSTEM_DB_FILE);
+      answer = f.exists();
+      done = true;
+    }
+    else
+    {
+      QFile f(ctn_PACMAN_CORE_DB_FILE);
+      answer = f.exists();
+      done = true;
+    }
   }
 
   return answer;

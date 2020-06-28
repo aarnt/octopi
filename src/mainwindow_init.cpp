@@ -931,5 +931,6 @@ void MainWindow::initActions()
     }
   }
 
+  m_actionMenuRepository = new QAction(this);
   toggleTransactionActions(true);
 }
