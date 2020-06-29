@@ -64,6 +64,12 @@ int main( int argc, char *argv[] )
     return (-4);
   }
 
+  if (!QFile::exists(ctn_OCTOPISUDO))
+  {
+    qDebug() << "Aborting cache-cleaner as 'octopi-sudo' binary could not be found! [" << ctn_OCTOPISUDO << "]";
+    return (-5);
+  }
+
   CacheCleaner w;
   if (w.startServer())
   {

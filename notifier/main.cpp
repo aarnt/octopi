@@ -63,9 +63,15 @@ int main(int argc, char *argv[])
     return (-3);
   }
 
+  if (!QFile::exists(ctn_OCTOPISUDO))
+  {
+    qDebug() << "Aborting notifier as 'octopi-sudo' binary could not be found! [" << ctn_OCTOPISUDO << "]";
+    return (-4);
+  }
+
   if (UnixCommand::isRootRunning()){
     qDebug() << StrConstants::getErrorRunningWithRoot();
-    return (-4);
+    return (-5);
   }
 
   QApplication a(argc, argv);

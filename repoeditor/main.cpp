@@ -52,7 +52,13 @@ int main( int argc, char *argv[] )
   if (UnixCommand::isRootRunning()){
     QMessageBox::critical( 0, QStringLiteral("Repository Editor - Octopi"),
                            QObject::tr("You can not run Repository Editor with administrator's credentials."));
-    return ( -2 );
+    return (-2);
+  }
+
+  if (!QFile::exists(ctn_OCTOPISUDO))
+  {
+    qDebug() << "Aborting Repository Editor as 'octopi-sudo' binary could not be found! [" << ctn_OCTOPISUDO << "]";
+    return (-3);
   }
 
   RepoEditor w;
