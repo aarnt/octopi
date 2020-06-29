@@ -126,6 +126,7 @@ void TermWidget::parseOutput(QString str)
   //qDebug() << "terminal: " << str << endl;
 
   if ((str == StrConstants::getPressAnyKey() ||
+       str == StrConstants::getPressAnyKey() + QLatin1String("\r") ||
        str == StrConstants::getPressAnyKey() + QLatin1String("\r\n")) ||
       str.contains(StrConstants::getSuspiciousExecutionDetected()) ||
       str.contains(StrConstants::getSuspiciousTransactionDetected()) ||
@@ -218,6 +219,7 @@ void TermWidget::paste(QClipboard::Mode mode)
 {
   // Paste Clipboard by simulating keypress events
   QString text = QApplication::clipboard()->text(mode);
+
   if ( ! text.isEmpty() )
   {
     text.replace(QLatin1String("\r\n"), QLatin1String("\n"));

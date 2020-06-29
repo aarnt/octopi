@@ -19,7 +19,7 @@
   Added option to never check for package updates in Notifier.
   Added tooltip "Upgrading..." while Notifier is upgrading the system.
   Added "Info" option in package list context menu.
-  Added CondresOS, EndeavourOS and SwagArch (now dead) distro support.
+  Added ArcoLinux, Artix Linux, CondresOS and EndeavourOS distro support.
   Added support for sudo (and NOPASSWD) executing thru new octopi-helper subproject.
   Added option to exit Octopi while a transaction is already running.
   Added support for GNOME file manager/editor.
