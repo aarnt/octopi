@@ -435,6 +435,8 @@ void MainWindow::buildPackagesFromGroupList(const QString &group)
  */
 void MainWindow::preBuildAURPackageList()
 {
+  m_time->start();
+
   m_listOfAURPackages = g_fwAUR.result();
   buildAURPackageList();
 
