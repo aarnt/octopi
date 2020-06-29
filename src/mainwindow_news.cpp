@@ -64,10 +64,13 @@ void MainWindow::refreshDistroNews(bool searchForLatestNews, bool gotoNewsTab)
     }
 
     if (gotoNewsTab && (distro == ectn_ARCHLINUX ||
-                        distro == ectn_ARCHBANGLINUX /*||
-                        distro == ectn_SWAGARCH*/))
+                        distro == ectn_ARCHBANGLINUX))
     {
       writeToTabOutput(QLatin1String("<b>") + StrConstants::getSearchingForDistroNews().arg(QStringLiteral("Arch Linux")) + QLatin1String("</b>"));
+    }
+    if (gotoNewsTab && distro == ectn_ARTIXLINUX)
+    {
+      writeToTabOutput(QLatin1String("<b>") + StrConstants::getSearchingForDistroNews().arg(QStringLiteral("Artix Linux")) + QLatin1String("</b>"));
     }
     else if (gotoNewsTab && distro == ectn_CHAKRA)
     {

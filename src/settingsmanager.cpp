@@ -281,8 +281,10 @@ QString SettingsManager::getDistroRSSUrl()
   SettingsManager p_instance;
   LinuxDistro distro = UnixCommand::getLinuxDistro();
 
-  if (distro == ectn_ARCHLINUX || distro == ectn_ARCHBANGLINUX /*|| distro == ectn_SWAGARCH*/)
+  if (distro == ectn_ARCHLINUX || distro == ectn_ARCHBANGLINUX)
     return (p_instance.getSYSsettings()->value(ctn_KEY_DISTRO_RSS_URL, QStringLiteral("https://www.archlinux.org/feeds/news/"))).toString();
+  else if (distro == ectn_ARTIXLINUX)
+    return (p_instance.getSYSsettings()->value(ctn_KEY_DISTRO_RSS_URL, QStringLiteral("https://artixlinux.org/feed.php"))).toString();
   else if (distro == ectn_CHAKRA)
     return (p_instance.getSYSsettings()->value(ctn_KEY_DISTRO_RSS_URL, QStringLiteral("https://community.chakralinux.org/c/news.rss"))).toString();
   else if (distro == ectn_CONDRESOS)
@@ -293,8 +295,6 @@ QString SettingsManager::getDistroRSSUrl()
     return (p_instance.getSYSsettings()->value(ctn_KEY_DISTRO_RSS_URL, QStringLiteral("https://kaosx.us/feed.xml"))).toString();
   else if (distro == ectn_MANJAROLINUX)
     return (p_instance.getSYSsettings()->value(ctn_KEY_DISTRO_RSS_URL, QStringLiteral("https://forum.manjaro.org/c/announcements.rss"))).toString();
-  /*else if (distro == ectn_NETRUNNER)
-    return (p_instance.getSYSsettings()->value(ctn_KEY_DISTRO_RSS_URL, "https://www.netrunner.com/feed/")).toString();*/
   else if (distro == ectn_PARABOLA)
     return (p_instance.getSYSsettings()->value(ctn_KEY_DISTRO_RSS_URL, QStringLiteral("https://www.parabola.nu/feeds/news/"))).toString();
   else return QLatin1String("");

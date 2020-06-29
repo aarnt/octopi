@@ -131,12 +131,14 @@ QString utils::retrieveDistroNews(bool searchForLatestNews)
     QStringList curlParams;
     QString distroRSSUrl = SettingsManager::getDistroRSSUrl();
 
-    /*if (distro == ectn_ENDEAVOUROS || distro == ectn_ANTERGOS)
+    if (distro == ectn_ARCHLINUX || distro == ectn_ARCHBANGLINUX)
     {
       curlCommand = curlCommand.arg(distroRSSUrl, tmpRssPath);
-    }*/
-    if (distro == ectn_ARCHLINUX || distro == ectn_ARCHBANGLINUX /*|| distro == ectn_SWAGARCH*/)
+      curlParams = curlCommand.split(QLatin1Char(' '), Qt::SkipEmptyParts);
+    }
+    else if (distro == ectn_ARTIXLINUX)
     {
+      curlCommand = QStringLiteral("-k %1 -o %2");
       curlCommand = curlCommand.arg(distroRSSUrl, tmpRssPath);
       curlParams = curlCommand.split(QLatin1Char(' '), Qt::SkipEmptyParts);
     }
@@ -163,10 +165,6 @@ QString utils::retrieveDistroNews(bool searchForLatestNews)
       curlCommand = curlCommand.arg(distroRSSUrl, tmpRssPath);
       curlParams = curlCommand.split(QLatin1Char(' '), Qt::SkipEmptyParts);
     }
-    /*else if (distro == ectn_NETRUNNER)
-    {
-      curlCommand = curlCommand.arg(distroRSSUrl, tmpRssPath);
-    }*/
     else if (distro == ectn_PARABOLA)
     {
       //Parabola has a certificate which is not "trusted" by default, so we use "curl -k"
@@ -293,13 +291,13 @@ QString utils::parseDistroNews()
   QString html;
   LinuxDistro distro = UnixCommand::getLinuxDistro();
 
-  /*if (distro == ectn_ANTERGOS)
-  {
-    html = "<p align=\"center\"><h2>" + StrConstants::getAntergosNews() + "</h2></p><ul>";
-  }*/
-  if (distro == ectn_ARCHLINUX || distro == ectn_ARCHBANGLINUX /*|| distro == ectn_SWAGARCH*/)
+  if (distro == ectn_ARCHLINUX || distro == ectn_ARCHBANGLINUX)
   {
     html = QLatin1String("<p align=\"center\"><h2>") + StrConstants::getArchLinuxNews() + QLatin1String("</h2></p><ul>");
+  }
+  else if (distro == ectn_ARTIXLINUX)
+  {
+    html = QLatin1String("<p align=\"center\"><h2>") + StrConstants::getArtixLinuxNews() + QLatin1String("</h2></p><ul>");
   }
   else if (distro == ectn_CHAKRA)
   {
@@ -321,10 +319,6 @@ QString utils::parseDistroNews()
   {
     html = QLatin1String("<p align=\"center\"><h2>") + StrConstants::getManjaroLinuxNews() + QLatin1String("</h2></p><ul>");
   }
-  /*else if (distro == ectn_NETRUNNER)
-  {
-    html = "<p align=\"center\"><h2>" + StrConstants::getNetrunnerNews() + "</h2></p><ul>";
-  }*/
   else if (distro == ectn_PARABOLA)
   {
     html = QLatin1String("<p align=\"center\"><h2>") + StrConstants::getParabolaNews() + QLatin1String("</h2></p><ul>");

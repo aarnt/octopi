@@ -134,6 +134,10 @@ QString StrConstants::getArchLinuxNews(){
   return QObject::tr("Arch Linux news");
 }
 
+QString StrConstants::getArtixLinuxNews(){
+  return QObject::tr("Artix Linux news");
+}
+
 QString StrConstants::getChakraNews(){
   return QObject::tr("Chakra news");
 }
