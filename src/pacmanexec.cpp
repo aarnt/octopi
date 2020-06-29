@@ -230,6 +230,7 @@ void PacmanExec::parsePacmanProcessOutput(const QString &output)
   msg.remove(QStringLiteral("[32m"));
   msg.remove(QStringLiteral("[33m"));
   msg.remove(QStringLiteral("(B[m"));
+  msg.remove(QRegularExpression(QStringLiteral("^($")));
 
   if (storeMsgCache) msgCache+=msg;
 
@@ -963,7 +964,6 @@ void PacmanExec::doInstallInTerminal(const QString &listOfPackages)
   m_lastCommandList.append(QLatin1String("pacman -S ") + listOfPackages);
   m_lastCommandList.append(QStringLiteral("echo -e"));
   m_lastCommandList.append(QLatin1String("read -n 1 -p \"") + StrConstants::getPressAnyKey() + QLatin1Char('"'));
-
   m_commandExecuting = ectn_RUN_IN_TERMINAL;
   m_unixCommand->runOctopiHelperInTerminalWithSharedMem(m_lastCommandList, m_sharedMemory);
 }
@@ -1225,10 +1225,6 @@ void PacmanExec::doAURUpgrade(const QString &listOfPackages)
   {
     m_lastCommandList.append(Package::getForeignRepositoryToolNameParam() + QLatin1String(" -Sa ") + listOfPackages + QLatin1Char(';'));
   }
-  /*else if (Package::getForeignRepositoryToolName() == ctn_YAOURT_TOOL)
-  {
-    m_lastCommandList.append(Package::getForeignRepositoryToolNameParam() + QLatin1String(" -S ") + listOfPackages + QLatin1Char(';'));
-  }*/
   else if (Package::getForeignRepositoryToolName() == ctn_TRIZEN_TOOL)
   {
     m_lastCommandList.append(Package::getForeignRepositoryToolNameParam() + QLatin1String(" -Sa ") + listOfPackages + QLatin1Char(';'));
@@ -1260,8 +1256,6 @@ void PacmanExec::doAURInstall(const QString &listOfPackages)
     m_lastCommandList.append(Package::getForeignRepositoryToolNameParam() + QLatin1String(" -i ") + listOfPackages + QLatin1Char(';'));
   else if (Package::getForeignRepositoryToolName() == ctn_PACAUR_TOOL)
     m_lastCommandList.append(Package::getForeignRepositoryToolNameParam() + QLatin1String(" -Sa ") + listOfPackages + QLatin1Char(';'));
-  //else if (Package::getForeignRepositoryToolName() == ctn_YAOURT_TOOL)
-  //  m_lastCommandList.append(Package::getForeignRepositoryToolNameParam() + QLatin1String(" -S ") + listOfPackages + QLatin1Char(';'));
   else if (Package::getForeignRepositoryToolName() == ctn_TRIZEN_TOOL)
     m_lastCommandList.append(Package::getForeignRepositoryToolNameParam() + QLatin1String(" -Sa ") + listOfPackages + QLatin1Char(';'));
   else if (Package::getForeignRepositoryToolName() == ctn_PIKAUR_TOOL)

@@ -247,12 +247,6 @@ void OptionsDialog::initAURTab()
       cbNoConfirm->setChecked(SettingsManager::getAURNoConfirmParam());
       cbNoEdit->setChecked(SettingsManager::getAURNoEditParam());
     }
-    /*else if (comboAUR->currentText() == ctn_YAOURT_TOOL)
-    {
-      cbNoConfirm->setChecked(SettingsManager::getAURNoConfirmParam());
-      cbNoEdit->setChecked(false);
-      cbNoEdit->setEnabled(false);
-    }*/
 
     cbSearchOutdatedAURPackages->setChecked(SettingsManager::getSearchOutdatedAURPackages());
     leAurPassword->setEchoMode(QLineEdit::Password);
@@ -751,6 +745,8 @@ void OptionsDialog::comboAURChanged(const QString &text)
 {
   if (text == ctn_NO_AUR_TOOL)
   {
+    cbDevel->setChecked(false);
+    cbDevel->setEnabled(false);
     cbNoConfirm->setChecked(false);
     cbNoConfirm->setEnabled(false);
     cbNoEdit->setChecked(false);
@@ -758,15 +754,10 @@ void OptionsDialog::comboAURChanged(const QString &text)
     cbSearchOutdatedAURPackages->setChecked(false);
     cbSearchOutdatedAURPackages->setEnabled(false);
   }
-  /*else if (text == ctn_YAOURT_TOOL)
-  {
-    cbNoConfirm->setEnabled(true);
-    cbNoEdit->setEnabled(true);
-    cbSearchOutdatedAURPackages->setEnabled(true);
-    cbNoConfirm->setChecked(SettingsManager::getAURNoConfirmParam());
-  }*/
   else if (text == ctn_PACAUR_TOOL)
   {
+    cbDevel->setEnabled(true);
+    cbDevel->setChecked(SettingsManager::getAURDevelParam());
     cbNoConfirm->setEnabled(true);
     cbNoEdit->setEnabled(true);
     cbSearchOutdatedAURPackages->setEnabled(true);
@@ -776,6 +767,8 @@ void OptionsDialog::comboAURChanged(const QString &text)
   }
   else if (text == ctn_PIKAUR_TOOL)
   {
+    cbDevel->setEnabled(true);
+    cbDevel->setChecked(SettingsManager::getAURDevelParam());
     cbNoConfirm->setEnabled(true);
     cbNoEdit->setEnabled(true);
     cbSearchOutdatedAURPackages->setEnabled(true);
@@ -785,6 +778,8 @@ void OptionsDialog::comboAURChanged(const QString &text)
   }
   else if (text == ctn_TRIZEN_TOOL)
   {
+    cbDevel->setEnabled(true);
+    cbDevel->setChecked(SettingsManager::getAURDevelParam());
     cbNoConfirm->setEnabled(true);
     cbNoEdit->setEnabled(true);
     cbSearchOutdatedAURPackages->setEnabled(true);
@@ -794,6 +789,8 @@ void OptionsDialog::comboAURChanged(const QString &text)
   }
   else if (text == ctn_YAY_TOOL)
   {
+    cbDevel->setEnabled(true);
+    cbDevel->setChecked(SettingsManager::getAURDevelParam());
     cbNoConfirm->setEnabled(true);
     cbNoEdit->setEnabled(true);
     cbSearchOutdatedAURPackages->setEnabled(true);
