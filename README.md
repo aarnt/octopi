@@ -25,26 +25,73 @@ You'll need:
  * A priviledge escalation tool called "octopi-sudo", available on "./sudo" dir
  * qtermwidget >= 0.14.1 in order to build Octopi with embedded terminal support
  
-### Simple steps to build Octopi code
+### To install Octopi using pacman
 
-Assuming you have Qt5 libs properly installed, go to the directory where the code is located:
+If Octopi package is available in your distro's repository, you can just type:
 
 ```
-$ cd OCTOPI_PATH
+# pacman -S octopi
+```
+
+### Steps to build Octopi source code
+
+Assuming you have vala compiler and Qt5 libs properly installed, follow these steps:
+
+```
+$ git clone https://github.com/aarnt/alpm_octopi_utils
+$ cd alpm_octopi_utils
+$ make
+# make install
+$ cd ..
+$ git clone https://github.com/aarnt/octopi
+$ cd octopi/sudo
 $ qmake-qt5
 $ make
+# make install
+$ cd ../helper
+$ qmake-qt5
+$ make
+# make install
+$ cd ../notifier
+$ qmake-qt5
+$ make
+# make install
+$ cd ../cachecleaner
+$ qmake-qt5
+$ make
+# make install
+$ cd ../repoeditor
+$ qmake-qt5
+$ make
+# make install
+$ cd ..
+$ qmake-qt5
+$ make
+# make install
 ```
 
 You can also use the available PKGBUILD script that helps you build Octopi with all its tools:
 
 ```
-$ cd OCTOPI_PATH
+$ cd OCTOPI_PATH (where you git cloned the source code)
 $ makepkg -f
 ```
 
-### How to enable AUR support (that "alien" icon on toolbar)
+### To run Octopi
 
-To enable AUR support, you'll need to install [pacaur](https://github.com/rmarquis/pacaur), 
+```
+$ octopi
+```
+
+### To run Octopi Notifier
+
+```
+$ octopi-notifier
+```
+
+### To enable AUR support (that "green alien" icon on toolbar)
+
+You'll need to install [pacaur](https://github.com/rmarquis/pacaur), 
 [pikaur](https://github.com/actionless/pikaur), [trizen](https://github.com/trizen/trizen) or 
 [yay](https://github.com/Jguer/yay) in your system. 
 If neither of the previous tools are found Octopi will download latest "yay-bin" github binary.
