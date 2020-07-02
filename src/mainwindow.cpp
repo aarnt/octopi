@@ -1593,6 +1593,9 @@ void MainWindow::changedTabIndex()
  */
 void MainWindow::invalidateTabs()
 {
+  disconnect(ui->tvPackages->selectionModel(), SIGNAL(selectionChanged(QItemSelection,QItemSelection)),
+          this, SLOT(invalidateTabs()));
+
   if(ui->twProperties->currentIndex() == ctn_TABINDEX_INFORMATION) //This is TabInfo
   {
     refreshTabInfo(false, false);
@@ -1603,6 +1606,9 @@ void MainWindow::invalidateTabs()
     refreshTabFiles(); //true
     return;
   }
+
+  connect(ui->tvPackages->selectionModel(), SIGNAL(selectionChanged(QItemSelection,QItemSelection)),
+          this, SLOT(invalidateTabs()));
 }
 
 /*

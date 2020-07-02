@@ -27,6 +27,7 @@
 #include <QMenu>
 #include <QMessageBox>
 #include <QAbstractButton>
+#include <QRegularExpression>
 //#include <QDebug>
 
 /*
@@ -225,7 +226,7 @@ void TermWidget::paste(QClipboard::Mode mode)
     text.replace(QLatin1String("\r\n"), QLatin1String("\n"));
     text.replace(QLatin1Char('\n'), QLatin1Char('\r'));
     QString trimmedTrailingNl(text);
-    trimmedTrailingNl.replace(QRegExp(QStringLiteral("\\r+$")), QString());
+    trimmedTrailingNl.replace(QRegularExpression(QStringLiteral("\\r+$")), QString());
     bracketText(text);
     sendText(text);
     qApp->clipboard()->clear();
