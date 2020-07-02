@@ -1,4 +1,4 @@
-## This is Octopi, a powerful Pacman/AUR frontend using Qt libs.
+## This is Octopi, a powerful Pacman/AUR front end using Qt libs.
 
 ![Main window](https://raw.githubusercontent.com/aarnt/octopi/master/octopi-mainwindow.png)
 
