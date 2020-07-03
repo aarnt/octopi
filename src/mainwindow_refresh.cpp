@@ -1463,7 +1463,7 @@ void MainWindow::refreshTabInfo(QString pkgName)
 void MainWindow::refreshTabInfo(bool clearContents, bool neverQuit)
 {
   if(neverQuit == false &&
-     (ui->twProperties->currentIndex() != ctn_TABINDEX_INFORMATION || !isPropertiesTabWidgetVisible())) return;
+     (ui->twProperties->currentIndex() != ctn_TABINDEX_INFORMATION || !isPropertiesTabWidgetVisible() || !m_initializationCompleted)) return;
 
   QItemSelectionModel*const selectionModel = ui->tvPackages->selectionModel();
   if (clearContents || selectionModel == nullptr ||
