@@ -80,13 +80,13 @@ $ makepkg -f
 ### To run Octopi
 
 ```
-$ octopi
+$ /usr/bin/octopi
 ```
 
 ### To run Octopi Notifier
 
 ```
-$ octopi-notifier
+$ /usr/bin/octopi-notifier
 ```
 
 ### To enable AUR support (that "green alien" icon on toolbar)
