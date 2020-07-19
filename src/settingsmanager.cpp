@@ -294,7 +294,7 @@ QString SettingsManager::getDistroRSSUrl()
   else if (distro == ectn_KAOS)
     return (p_instance.getSYSsettings()->value(ctn_KEY_DISTRO_RSS_URL, QStringLiteral("https://kaosx.us/feed.xml"))).toString();
   else if (distro == ectn_MANJAROLINUX)
-    return (p_instance.getSYSsettings()->value(ctn_KEY_DISTRO_RSS_URL, QStringLiteral("https://forum.manjaro.org/c/announcements.rss"))).toString();
+    return (p_instance.getSYSsettings()->value(ctn_KEY_DISTRO_RSS_URL, QStringLiteral("https://forum.manjaro.org/c/announcements/8.rss"))).toString();
   else if (distro == ectn_PARABOLA)
     return (p_instance.getSYSsettings()->value(ctn_KEY_DISTRO_RSS_URL, QStringLiteral("https://www.parabola.nu/feeds/news/"))).toString();
   else return QLatin1String("");
