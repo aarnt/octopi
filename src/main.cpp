@@ -107,8 +107,6 @@ int main(int argc, char *argv[])
 
     return 0;
   }
-  /*else if (UnixCommand::isAppRunning(QStringLiteral("octopi"), false))
-    return 0;*/
 
   //This sends a message just to enable the socket-based QtSingleApplication engine
   app.sendMessage(QStringLiteral("RAISE"));
@@ -137,6 +135,8 @@ int main(int argc, char *argv[])
     QMessageBox::critical( nullptr, StrConstants::getApplicationName(), StrConstants::getErrorRunningWithRoot());
     return ( -4 );
   }
+
+  unsetenv("TMPDIR");
 
   setenv("COLORTERM", "truecolor", 1);
   setenv("TERM", "xterm-256color", 1);

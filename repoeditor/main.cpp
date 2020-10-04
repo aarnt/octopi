@@ -61,6 +61,8 @@ int main( int argc, char *argv[] )
     return (-3);
   }
 
+  unsetenv("TMPDIR");
+
   RepoEditor w;
   app.setActivationWindow(&w);
   w.show();

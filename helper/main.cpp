@@ -50,6 +50,8 @@ int main(int argc, char *argv[])
   }
 
   QCoreApplication a(argc, argv);
+  unsetenv("TMPDIR");
+
   OctopiHelper helper;
 
   if (argList->getSwitch(QStringLiteral("-ts")))

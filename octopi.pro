@@ -192,7 +192,7 @@ sources.files = $$SOURCES $$HEADERS $$RESOURCES $$FORMS *.pro
 sources.path = .
 
 bin.path = $$BINDIR
-bin.files += speedup/speedup-octopi.sh
+#bin.files += speedup/speedup-octopi.sh
 
 #dbus.path = $$ETCDIR/dbus-1/system.d
 #dbus.files += notifier/pacmanhelper/polkit/org.octopi.pacmanhelper.conf
@@ -220,8 +220,8 @@ license.files += LICENSE
 #polkit.path = $$DATADIR/polkit-1/actions
 #polkit.files += notifier/pacmanhelper/polkit/org.octopi.pacman.policy
 
-service.path = $$LIBDIR/systemd/system
-service.files += speedup/octopi.service
+#service.path = $$LIBDIR/systemd/system
+#service.files += speedup/octopi.service
 
 #sys_service.path = $$DATADIR/dbus-1/system-services
 #sys_service.files += notifier/pacmanhelper/polkit/org.octopi.pacmanhelper.service

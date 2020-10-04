@@ -70,6 +70,8 @@ int main( int argc, char *argv[] )
     return (-5);
   }
 
+  unsetenv("TMPDIR");
+
   CacheCleaner w;
   if (w.startServer())
   {

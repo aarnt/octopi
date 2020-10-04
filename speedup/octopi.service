@@ -1,9 +1,0 @@
-[Unit]
-Description=Executes pacman commands to speed up first octopi startup time
-
-[Service]
-Type=oneshot
-ExecStart=/bin/bash /usr/bin/speedup-octopi.sh
-
-[Install]
-WantedBy=multi-user.target
