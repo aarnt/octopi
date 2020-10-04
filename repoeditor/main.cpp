@@ -33,6 +33,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 int main( int argc, char *argv[] )
 {
+  unsetenv("TMPDIR");
   QtSingleApplication app( QStringLiteral("Repository Editor - Octopi"), argc, argv );
 
   //If there is already an instance running...
@@ -60,8 +61,6 @@ int main( int argc, char *argv[] )
     qDebug() << "Aborting Repository Editor as 'octopi-sudo' binary could not be found! [" << ctn_OCTOPISUDO << "]";
     return (-3);
   }
-
-  unsetenv("TMPDIR");
 
   RepoEditor w;
   app.setActivationWindow(&w);

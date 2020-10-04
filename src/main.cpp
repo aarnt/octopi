@@ -64,6 +64,8 @@ int main(int argc, char *argv[])
     }
   }
 
+  unsetenv("TMPDIR");
+
   QtSingleApplication app( StrConstants::getApplicationName(), argc, argv );
 
   if (app.isRunning())
@@ -135,8 +137,6 @@ int main(int argc, char *argv[])
     QMessageBox::critical( nullptr, StrConstants::getApplicationName(), StrConstants::getErrorRunningWithRoot());
     return ( -4 );
   }
-
-  unsetenv("TMPDIR");
 
   setenv("COLORTERM", "truecolor", 1);
   setenv("TERM", "xterm-256color", 1);
