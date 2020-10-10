@@ -408,7 +408,6 @@ void MainWindow::onOptions(OptionsDialogTab tabToOpen)
 
   connect(m_optionsDialog, &OptionsDialog::columnsChanged, [this] (){
     ui->tvPackages->resizePackageView();
-    initPackageTreeView();
   });
 
   connect(m_optionsDialog, SIGNAL(terminalChanged()), this, SLOT(onTerminalChanged()));
