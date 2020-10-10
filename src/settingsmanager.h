@@ -65,6 +65,18 @@ class SettingsManager
     static int getPackageNameColumnWidth();
     static int getPackageVersionColumnWidth();
     static int getPackageRepositoryColumnWidth();
+    static int getPackageLicensesColumnWidth();
+    static int getPackageDownloadSizeColumnWidth();
+    static int getPackageInstalledSizeColumnWidth();
+    static int getPackageBuildDateColumnWidth();
+    static int getPackageInstallDateColumnWidth();
+    static int getPackageInstallReasonColumnWidth();
+
+    static bool getShowPackageLicensesColumn();
+    static bool getShowPackageInstalledSizeColumn();
+    static bool getShowPackageBuildDateColumn();
+    static bool getShowPackageInstallDateColumn();
+    static bool getShowPackageInstallReasonColumn();
 
     static bool getUseDefaultAppIcon();    
     static QString getOctopiBusyIconPath();
@@ -153,6 +165,18 @@ class SettingsManager
     static void setPackageNameColumnWidth(int newValue);
     static void setPackageVersionColumnWidth(int newValue);
     static void setPackageRepositoryColumnWidth(int newValue);
+    static void setPackageLicensesColumnWidth(int newValue);
+    static void setPackageDownloadSizeColumnWidth(int newValue);
+    static void setPackageInstalledSizeColumnWidth(int newValue);
+    static void setPackageBuildDateColumnWidth(int newValue);
+    static void setPackageInstallDateColumnWidth(int newValue);
+    static void setPackageInstallReasonColumnWidth(int newValue);
+
+    static void setShowPackageLicensesColumn(bool newValue);
+    static void setShowPackageInstalledSizeColumn(bool newValue);
+    static void setShowPackageBuildDateColumn(bool newValue);
+    static void setShowPackageInstallDateColumn(bool newValue);
+    static void setShowPackageInstallReasonColumn(bool newValue);
 
     static void setShowPackageNumbersOutput(bool newValue);
     static void setShowStopTransaction(bool newValue);

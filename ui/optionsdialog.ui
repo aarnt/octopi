@@ -63,19 +63,6 @@
           <string>Show stop transaction button at statusbar</string>
          </property>
         </widget>
-        <widget class="QCheckBox" name="cbUseAlternateRowColor">
-         <property name="geometry">
-          <rect>
-           <x>20</x>
-           <y>148</y>
-           <width>611</width>
-           <height>23</height>
-          </rect>
-         </property>
-         <property name="text">
-          <string>Use alternating row colors in package list</string>
-         </property>
-        </widget>
         <widget class="QCheckBox" name="cbConfirmationDialogInSysUpgrade">
          <property name="geometry">
           <rect>
@@ -100,6 +87,89 @@
          </property>
          <property name="text">
           <string>Enable internet checking</string>
+         </property>
+        </widget>
+       </widget>
+       <widget class="QWidget" name="tabPackageList">
+        <attribute name="title">
+         <string>Package List</string>
+        </attribute>
+        <widget class="QCheckBox" name="cbUseAlternateRowColor">
+         <property name="geometry">
+          <rect>
+           <x>20</x>
+           <y>28</y>
+           <width>611</width>
+           <height>23</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Use alternating row colors</string>
+         </property>
+        </widget>
+        <widget class="QCheckBox" name="cbShowLicensesColumn">
+         <property name="geometry">
+          <rect>
+           <x>20</x>
+           <y>58</y>
+           <width>611</width>
+           <height>23</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Show &quot;Licenses&quot; column</string>
+         </property>
+        </widget>
+        <widget class="QCheckBox" name="cbShowInstalledSizeColumn">
+         <property name="geometry">
+          <rect>
+           <x>20</x>
+           <y>88</y>
+           <width>611</width>
+           <height>23</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Show &quot;Installed Size&quot; column</string>
+         </property>
+        </widget>
+        <widget class="QCheckBox" name="cbShowBuildDateColumn">
+         <property name="geometry">
+          <rect>
+           <x>20</x>
+           <y>118</y>
+           <width>611</width>
+           <height>23</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Show &quot;Build Date&quot; column</string>
+         </property>
+        </widget>
+        <widget class="QCheckBox" name="cbShowInstallDateColumn">
+         <property name="geometry">
+          <rect>
+           <x>20</x>
+           <y>148</y>
+           <width>611</width>
+           <height>23</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Show &quot;Install Date&quot; column</string>
+         </property>
+        </widget>
+        <widget class="QCheckBox" name="cbShowInstallReasonColumn">
+         <property name="geometry">
+          <rect>
+           <x>20</x>
+           <y>178</y>
+           <width>611</width>
+           <height>23</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Show &quot;Install Reason&quot; column</string>
          </property>
         </widget>
        </widget>
@@ -1085,7 +1155,6 @@ Any use of the provided files is at your own risk.</string>
   <tabstop>cbEnableInternetCheck</tabstop>
   <tabstop>cbShowPackageNumbersOutput</tabstop>
   <tabstop>cbShowStopTransaction</tabstop>
-  <tabstop>cbUseAlternateRowColor</tabstop>
   <tabstop>comboAUR</tabstop>
   <tabstop>cbNoConfirm</tabstop>
   <tabstop>cbNoEdit</tabstop>
@@ -1112,7 +1181,6 @@ Any use of the provided files is at your own risk.</string>
   <tabstop>rbOnceEvery</tabstop>
   <tabstop>spinOnceEvery</tabstop>
   <tabstop>rbNever</tabstop>
-  <tabstop>tabWidget</tabstop>
  </tabstops>
  <resources/>
  <connections/>

@@ -76,6 +76,11 @@ public:
     const QString description;
     const QString outdatedVersion;
     const double  downloadSize;
+    const double installedSize;
+    const double buildDate;
+    const double installDate;
+    const QString license;
+    const QString installReason;
     const PackageStatus status;
     const int     popularity; // -1 for non AUR
     const QString popularityString;

@@ -233,6 +233,72 @@ int SettingsManager::getPackageRepositoryColumnWidth()
         ctn_KEY_PACKAGE_REPOSITORY_COLUMN_WIDTH, 150).toInt();
 }
 
+int SettingsManager::getPackageLicensesColumnWidth()
+{
+  return instance()->getSYSsettings()->value(
+        ctn_KEY_PACKAGE_LICENSES_COLUMN_WIDTH, 250).toInt();
+}
+
+int SettingsManager::getPackageDownloadSizeColumnWidth()
+{
+  return instance()->getSYSsettings()->value(
+        ctn_KEY_PACKAGE_DOWNLOAD_SIZE_COLUMN_WITH, 120).toInt();
+}
+
+int SettingsManager::getPackageInstalledSizeColumnWidth()
+{
+  return instance()->getSYSsettings()->value(
+        ctn_KEY_PACKAGE_INSTALLED_SIZE_COLUMN_WITH, 120).toInt();
+}
+
+int SettingsManager::getPackageBuildDateColumnWidth()
+{
+  return instance()->getSYSsettings()->value(
+        ctn_KEY_PACKAGE_BUILD_DATE_COLUMN_WITH, 140).toInt();
+}
+
+int SettingsManager::getPackageInstallDateColumnWidth()
+{
+  return instance()->getSYSsettings()->value(
+        ctn_KEY_PACKAGE_INSTALL_DATE_COLUMN_WITH, 140).toInt();
+}
+
+int SettingsManager::getPackageInstallReasonColumnWidth()
+{
+  return instance()->getSYSsettings()->value(
+        ctn_KEY_PACKAGE_INSTALL_REASON_COLUMN_WITH, 120).toInt();
+}
+
+bool SettingsManager::getShowPackageLicensesColumn()
+{
+  SettingsManager p_instance;
+  return (p_instance.getSYSsettings()->value(ctn_KEY_SHOW_PACKAGE_LICENSES_COLUMN, false)).toBool();
+}
+
+bool SettingsManager::getShowPackageInstalledSizeColumn()
+{
+  SettingsManager p_instance;
+  return (p_instance.getSYSsettings()->value(ctn_KEY_SHOW_PACKAGE_INSTALLED_SIZE_COLUMN, false)).toBool();
+}
+
+bool SettingsManager::getShowPackageBuildDateColumn()
+{
+  SettingsManager p_instance;
+  return (p_instance.getSYSsettings()->value(ctn_KEY_SHOW_PACKAGE_BUILD_DATE_COLUMN, false)).toBool();
+}
+
+bool SettingsManager::getShowPackageInstallDateColumn()
+{
+  SettingsManager p_instance;
+  return (p_instance.getSYSsettings()->value(ctn_KEY_SHOW_PACKAGE_INSTALL_DATE_COLUMN, false)).toBool();
+}
+
+bool SettingsManager::getShowPackageInstallReasonColumn()
+{
+  SettingsManager p_instance;
+  return (p_instance.getSYSsettings()->value(ctn_KEY_SHOW_PACKAGE_INSTALL_REASON_COLUMN, false)).toBool();
+}
+
 bool SettingsManager::getUseDefaultAppIcon()
 {
   if (!instance()->getSYSsettings()->contains(ctn_KEY_USE_DEFAULT_APP_ICON)){
@@ -714,6 +780,72 @@ void SettingsManager::setPackageVersionColumnWidth(int newValue)
 void SettingsManager::setPackageRepositoryColumnWidth(int newValue)
 {
   instance()->getSYSsettings()->setValue(ctn_KEY_PACKAGE_REPOSITORY_COLUMN_WIDTH, newValue);
+  instance()->getSYSsettings()->sync();
+}
+
+void SettingsManager::setPackageLicensesColumnWidth(int newValue)
+{
+  instance()->getSYSsettings()->setValue(ctn_KEY_PACKAGE_LICENSES_COLUMN_WIDTH, newValue);
+  instance()->getSYSsettings()->sync();
+}
+
+void SettingsManager::setPackageDownloadSizeColumnWidth(int newValue)
+{
+  instance()->getSYSsettings()->setValue(ctn_KEY_PACKAGE_DOWNLOAD_SIZE_COLUMN_WITH, newValue);
+  instance()->getSYSsettings()->sync();
+}
+
+void SettingsManager::setPackageInstalledSizeColumnWidth(int newValue)
+{
+  instance()->getSYSsettings()->setValue(ctn_KEY_PACKAGE_INSTALLED_SIZE_COLUMN_WITH, newValue);
+  instance()->getSYSsettings()->sync();
+}
+
+void SettingsManager::setPackageBuildDateColumnWidth(int newValue)
+{
+  instance()->getSYSsettings()->setValue(ctn_KEY_PACKAGE_BUILD_DATE_COLUMN_WITH, newValue);
+  instance()->getSYSsettings()->sync();
+}
+
+void SettingsManager::setPackageInstallDateColumnWidth(int newValue)
+{
+  instance()->getSYSsettings()->setValue(ctn_KEY_PACKAGE_INSTALL_DATE_COLUMN_WITH, newValue);
+  instance()->getSYSsettings()->sync();
+}
+
+void SettingsManager::setPackageInstallReasonColumnWidth(int newValue)
+{
+  instance()->getSYSsettings()->setValue(ctn_KEY_PACKAGE_INSTALL_REASON_COLUMN_WITH, newValue);
+  instance()->getSYSsettings()->sync();
+}
+
+void SettingsManager::setShowPackageLicensesColumn(bool newValue)
+{
+  instance()->getSYSsettings()->setValue(ctn_KEY_SHOW_PACKAGE_LICENSES_COLUMN, newValue);
+  instance()->getSYSsettings()->sync();
+}
+
+void SettingsManager::setShowPackageInstalledSizeColumn(bool newValue)
+{
+  instance()->getSYSsettings()->setValue(ctn_KEY_SHOW_PACKAGE_INSTALLED_SIZE_COLUMN, newValue);
+  instance()->getSYSsettings()->sync();
+}
+
+void SettingsManager::setShowPackageBuildDateColumn(bool newValue)
+{
+  instance()->getSYSsettings()->setValue(ctn_KEY_SHOW_PACKAGE_BUILD_DATE_COLUMN, newValue);
+  instance()->getSYSsettings()->sync();
+}
+
+void SettingsManager::setShowPackageInstallDateColumn(bool newValue)
+{
+  instance()->getSYSsettings()->setValue(ctn_KEY_SHOW_PACKAGE_INSTALL_DATE_COLUMN, newValue);
+  instance()->getSYSsettings()->sync();
+}
+
+void SettingsManager::setShowPackageInstallReasonColumn(bool newValue)
+{
+  instance()->getSYSsettings()->setValue(ctn_KEY_SHOW_PACKAGE_INSTALL_REASON_COLUMN, newValue);
   instance()->getSYSsettings()->sync();
 }
 

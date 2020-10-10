@@ -181,6 +181,48 @@ void MainWindow::savePackageColumnWidths()
     SettingsManager::setPackageRepositoryColumnWidth(
         ui->tvPackages->columnWidth(PackageModel::ctn_PACKAGE_REPOSITORY_COLUMN));
   }
+
+  width = ui->tvPackages->columnWidth(PackageModel::ctn_PACKAGE_LICENSES_COLUMN);
+  if (width > 0)
+  {
+    SettingsManager::setPackageLicensesColumnWidth(
+        ui->tvPackages->columnWidth(PackageModel::ctn_PACKAGE_LICENSES_COLUMN));
+  }
+
+  width = ui->tvPackages->columnWidth(PackageModel::ctn_PACKAGE_SIZE_COLUMN);
+  if (width > 0)
+  {
+    SettingsManager::setPackageDownloadSizeColumnWidth(
+        ui->tvPackages->columnWidth(PackageModel::ctn_PACKAGE_SIZE_COLUMN));
+  }
+
+  width = ui->tvPackages->columnWidth(PackageModel::ctn_PACKAGE_ISIZE_COLUMN);
+  if (width > 0)
+  {
+    SettingsManager::setPackageInstalledSizeColumnWidth(
+        ui->tvPackages->columnWidth(PackageModel::ctn_PACKAGE_ISIZE_COLUMN));
+  }
+
+  width = ui->tvPackages->columnWidth(PackageModel::ctn_PACKAGE_BDATE_COLUMN);
+  if (width > 0)
+  {
+    SettingsManager::setPackageBuildDateColumnWidth(
+        ui->tvPackages->columnWidth(PackageModel::ctn_PACKAGE_BDATE_COLUMN));
+  }
+
+  width = ui->tvPackages->columnWidth(PackageModel::ctn_PACKAGE_IDATE_COLUMN);
+  if (width > 0)
+  {
+    SettingsManager::setPackageInstallDateColumnWidth(
+        ui->tvPackages->columnWidth(PackageModel::ctn_PACKAGE_IDATE_COLUMN));
+  }
+
+  width = ui->tvPackages->columnWidth(PackageModel::ctn_PACKAGE_INSTALL_REASON_COLUMN);
+  if (width > 0)
+  {
+    SettingsManager::setPackageInstallReasonColumnWidth(
+        ui->tvPackages->columnWidth(PackageModel::ctn_PACKAGE_INSTALL_REASON_COLUMN));
+  }
 }
 
 /*
@@ -786,8 +828,6 @@ void MainWindow::initActions()
     m_actionSwitchToAURTool->setChecked(false);
   }
 
-  //m_actionSwitchToAURTool->setCheckable(true);
-  //m_actionSwitchToAURTool->setChecked(false);
   m_actionSwitchToAURTool->setEnabled(false);
   connect(m_actionSwitchToAURTool, SIGNAL(triggered()), this, SLOT(AURToolSelected()));
 

@@ -159,6 +159,7 @@ void OptionsDialog::initialize(){
 
   initButtonBox();
   initGeneralTab();
+  initPackageListTab();
   initAURTab();
 
 #ifdef ALPM_BACKEND
@@ -177,6 +178,7 @@ void OptionsDialog::initialize(){
   else
   {
     removeTabByName(tr("Backend"));
+    removeTabByName(tr("Package List"));
   }
 
   tabWidget->setCurrentIndex(0);
@@ -194,9 +196,21 @@ void OptionsDialog::initGeneralTab()
 {
   cbShowPackageNumbersOutput->setChecked(SettingsManager::getShowPackageNumbersOutput());
   cbShowStopTransaction->setChecked(SettingsManager::getShowStopTransaction());
-  cbUseAlternateRowColor->setChecked(SettingsManager::getUseAlternateRowColor());
   cbConfirmationDialogInSysUpgrade->setChecked(SettingsManager::getEnableConfirmationDialogInSysUpgrade());
   cbEnableInternetCheck->setChecked(SettingsManager::getEnableInternetChecking());
+}
+
+/*
+ * Initializes Package List tab
+ */
+void OptionsDialog::initPackageListTab()
+{
+  cbUseAlternateRowColor->setChecked(SettingsManager::getUseAlternateRowColor());
+  cbShowLicensesColumn->setChecked(SettingsManager::getShowPackageLicensesColumn());
+  cbShowInstalledSizeColumn->setChecked(SettingsManager::getShowPackageInstalledSizeColumn());
+  cbShowBuildDateColumn->setChecked(SettingsManager::getShowPackageBuildDateColumn());
+  cbShowInstallDateColumn->setChecked(SettingsManager::getShowPackageInstallDateColumn());
+  cbShowInstallReasonColumn->setChecked(SettingsManager::getShowPackageInstallReasonColumn());
 }
 
 /*
@@ -388,6 +402,7 @@ void OptionsDialog::accept()
   bool emptyIconPath = false;
   bool AURHasChanged = false;
   bool AURVotingHasChanged = false;
+  bool ColumnsChanged = false;
 
   if (m_calledByOctopi)
   {
@@ -413,11 +428,6 @@ void OptionsDialog::accept()
   {
     SettingsManager::setShowStopTransaction(cbShowStopTransaction->isChecked());
   }
-  if (cbUseAlternateRowColor->isChecked() != SettingsManager::getUseAlternateRowColor())
-  {
-    SettingsManager::setUseAlternateRowColor(cbUseAlternateRowColor->isChecked());
-    emit alternateRowColorsChanged();
-  }
   if (cbConfirmationDialogInSysUpgrade->isChecked() != SettingsManager::getEnableConfirmationDialogInSysUpgrade())
   {
     SettingsManager::setEnableConfirmationDialogInSysUpgrade(cbConfirmationDialogInSysUpgrade->isChecked());
@@ -425,6 +435,38 @@ void OptionsDialog::accept()
   if (cbEnableInternetCheck->isChecked() != SettingsManager::getEnableInternetChecking())
   {
     SettingsManager::setEnableInternetChecking(cbEnableInternetCheck->isChecked());
+  }
+
+  //Set Package List...
+  if (cbUseAlternateRowColor->isChecked() != SettingsManager::getUseAlternateRowColor())
+  {
+    SettingsManager::setUseAlternateRowColor(cbUseAlternateRowColor->isChecked());
+    emit alternateRowColorsChanged();
+  }
+  if (cbShowLicensesColumn->isChecked() != SettingsManager::getShowPackageLicensesColumn())
+  {
+    SettingsManager::setShowPackageLicensesColumn(cbShowLicensesColumn->isChecked());
+    ColumnsChanged = true;
+  }
+  if (cbShowInstalledSizeColumn->isChecked() != SettingsManager::getShowPackageInstalledSizeColumn())
+  {
+    SettingsManager::setShowPackageInstalledSizeColumn(cbShowInstalledSizeColumn->isChecked());
+    ColumnsChanged = true;
+  }
+  if (cbShowBuildDateColumn->isChecked() != SettingsManager::getShowPackageBuildDateColumn())
+  {
+    SettingsManager::setShowPackageBuildDateColumn(cbShowBuildDateColumn->isChecked());
+    ColumnsChanged = true;
+  }
+  if (cbShowInstallDateColumn->isChecked() != SettingsManager::getShowPackageInstallDateColumn())
+  {
+    SettingsManager::setShowPackageInstallDateColumn(cbShowInstallDateColumn->isChecked());
+    ColumnsChanged = true;
+  }
+  if (cbShowInstallReasonColumn->isChecked() != SettingsManager::getShowPackageInstallReasonColumn())
+  {
+    SettingsManager::setShowPackageInstallReasonColumn(cbShowInstallReasonColumn->isChecked());
+    ColumnsChanged = true;
   }
 
   //Set AUR Tool...
@@ -674,6 +716,7 @@ void OptionsDialog::accept()
 
   if (AURHasChanged) emit AURToolChanged();
   if (AURVotingHasChanged) emit AURVotingChanged();
+  if (ColumnsChanged) emit columnsChanged();
   delete cic;
 }
 

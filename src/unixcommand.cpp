@@ -186,9 +186,9 @@ bool UnixCommand::hasPackage(const QString &pkgName)
 }
 
 /*
- * Retrieves URL information for remote AUR package
+ * Retrieves information for remote AUR package
  */
-QByteArray UnixCommand::getAURUrl(const QString &pkgName)
+QByteArray UnixCommand::getAURInformation(const QString &pkgName)
 {
   QByteArray result("");
   QProcess aur;

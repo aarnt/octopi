@@ -1548,12 +1548,19 @@ void MainWindow::refreshTabInfo(bool clearContents, bool neverQuit)
         html += QLatin1String("<tr><th width=\"20%\"></th><th width=\"80%\"></th></tr>");
         html += QLatin1String("<tr><td>") + version + QLatin1String("</td><td>") + package->version + QLatin1String("</td></tr>");
 
-        //if (Package::getForeignRepositoryToolName() == ctn_PACAUR_TOOL)
+        QString aurPkgInfo = QString::fromUtf8(UnixCommand::getAURInformation(pkgName));
+        QString url = Package::getURL(aurPkgInfo);
+        if (!url.isEmpty() && !url.contains(QLatin1String("(null)")))
         {
-          QString url = Package::getAURUrl(pkgName);
-          if (!url.isEmpty() && !url.contains(QLatin1String("(null)")))
+          html += QLatin1String("<tr><td>") + StrConstants::getURL() + QLatin1String("</td><td>") + url + QLatin1String("</td></tr>");
+        }
+
+        if (Package::getForeignRepositoryToolName() != ctn_CHASER_TOOL)
+        {
+          QString licenses= Package::getLicense(aurPkgInfo);
+          if (!licenses.isEmpty() && !licenses.contains(QLatin1String("(null)")))
           {
-            html += QLatin1String("<tr><td>") + StrConstants::getURL() + QLatin1String("</td><td>") + url + QLatin1String("</td></tr>");
+            html += QLatin1String("<tr><td>") + StrConstants::getLicenses() + QLatin1String("</td><td>") + licenses + QLatin1String("</td></tr>");
           }
         }
       }
@@ -1898,6 +1905,7 @@ void MainWindow::lightPackageFilter()
       {
         m_packageModel->applyFilter(QStringLiteral("ççç"));
         m_leFilterPackage->initStyleSheet();
+        invalidateTabs();
         refreshStatusBar();
       }
       else

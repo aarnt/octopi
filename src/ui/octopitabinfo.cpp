@@ -71,6 +71,7 @@ QString OctopiTabInfo::formatTabInfo(const PackageRepository::PackageData& packa
   QString packager = StrConstants::getPackager();
   QString architecture = StrConstants::getArchitecture();
   QString buildDate = StrConstants::getBuildDate();
+  QString installDate = StrConstants::getInstallDate();
   QString installReason = StrConstants::getInstallReason();
 
   //Let's put package description in UTF-8 format
@@ -93,7 +94,7 @@ QString OctopiTabInfo::formatTabInfo(const PackageRepository::PackageData& packa
   html += QLatin1String("<table border=\"0\">");
 
   html += QLatin1String("<tr><th width=\"20%\"></th><th width=\"80%\"></th></tr>");
-  html += QLatin1String("<tr><td>") + url + QLatin1String("</td><td>") + pid.url + QLatin1String("</td></tr>");
+  html += QLatin1String("<tr><td>") + url + QLatin1String("</td><td>") + pid.url + QLatin1String("</td>");
 
   if (package.outdated())
   {
@@ -192,8 +193,12 @@ QString OctopiTabInfo::formatTabInfo(const PackageRepository::PackageData& packa
   if(! pid.replaces.contains(QLatin1String("None")))
     html += QLatin1String("<tr><td>") + replaces + QLatin1String("</td><td>") + Package::makeAnchorOfPackage(pid.replaces) + QLatin1String("</td></tr>");
 
-  html += QLatin1String("<tr><td>") + downloadSize + QLatin1String("</td><td>") + Package::kbytesToSize(pid.downloadSize) + QLatin1String("</td></tr>");
-  html += QLatin1String("<tr><td>") + installedSize + QLatin1String("</td><td>") + Package::kbytesToSize(pid.installedSize) + QLatin1String("</td></tr>");
+  if (!pid.downloadSize.isNull())
+    html += QLatin1String("<tr><td>") + downloadSize + QLatin1String("</td><td>") + /*Package::kbytesToSize*/ (pid.downloadSize) + QLatin1String("</td></tr>");
+
+  if (!pid.installedSize.isNull())
+    html += QLatin1String("<tr><td>") + installedSize + QLatin1String("</td><td>") + /*Package::kbytesToSize*/ (pid.installedSize) + QLatin1String("</td></tr>");
+
   html += QLatin1String("<tr><td>") + packager + QLatin1String("</td><td>") + packagerName + QLatin1String("</td></tr>");
   html += QLatin1String("<tr><td>") + architecture + QLatin1String("</td><td>") + pid.arch + QLatin1String("</td></tr>");
 
@@ -201,6 +206,10 @@ QString OctopiTabInfo::formatTabInfo(const PackageRepository::PackageData& packa
 
   html += QLatin1String("<tr><td>") + buildDate + QLatin1String("</td><td>") +
       pid.buildDate.toString(dateTimeFormat) + QLatin1String("</td></tr>");
+
+  if (!pid.installDate.isNull())
+    html += QLatin1String("<tr><td>") + installDate + QLatin1String("</td><td>") +
+        pid.installDate.toString(dateTimeFormat) + QLatin1String("</td></tr>");
 
   if(!pid.installReason.isEmpty())
     html += QLatin1String("<tr><td>") + installReason + QLatin1String("</td><td>") + pid.installReason + QLatin1String("</td></tr>");

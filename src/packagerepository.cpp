@@ -334,7 +334,8 @@ PackageRepository::PackageData::PackageData(const PackageListData& pkg, const bo
   : required(isRequired), managedByAUR(isManagedByAUR), name(pkg.name),
     repository(pkg.repository.isEmpty() ? StrConstants::getForeignRepositoryName() : pkg.repository),
     version(pkg.version), description(pkg.description), // octopi wants it converted to utf8
-    outdatedVersion(pkg.outatedVersion), downloadSize(pkg.downloadSize),
+    outdatedVersion(pkg.outatedVersion), downloadSize(pkg.downloadSize), installedSize(pkg.installedSize),
+    buildDate(pkg.buildDate), installDate(pkg.installDate), license(pkg.license), installReason(pkg.installReason),
     status(pkg.status != ectn_OUTDATED ?
            pkg.status :
            (Package::alpm_pkg_vercmp(pkg.outatedVersion.toLatin1().data(), pkg.version.toLatin1().data()) == 1 ?

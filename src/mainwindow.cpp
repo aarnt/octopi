@@ -406,6 +406,11 @@ void MainWindow::onOptions(OptionsDialogTab tabToOpen)
     this->ui->tvPackages->setAlternatingRowColors(SettingsManager::getUseAlternateRowColor());
   });
 
+  connect(m_optionsDialog, &OptionsDialog::columnsChanged, [this] (){
+    ui->tvPackages->resizePackageView();
+    initPackageTreeView();
+  });
+
   connect(m_optionsDialog, SIGNAL(terminalChanged()), this, SLOT(onTerminalChanged()));
 
   if (tabToOpen==ectn_TAB_AUR) m_optionsDialog->gotoAURTab();

@@ -313,6 +313,14 @@ QString StrConstants::getInstallReason(){
   return QObject::tr("Install Reason");
 }
 
+QString StrConstants::getExplicitly(){
+  return QObject::tr("Explicitly");
+}
+
+QString StrConstants::getAsDependency(){
+  return QObject::tr("As dependency");
+}
+
 QString StrConstants::getPackager(){
   return QObject::tr("Packager");
 }
@@ -331,6 +339,10 @@ QString StrConstants::getArchitecture(){
 
 QString StrConstants::getBuildDate(){
   return QObject::tr("Build Date");
+}
+
+QString StrConstants::getInstallDate(){
+  return QObject::tr("Install Date");
 }
 
 QString StrConstants::getDescription(){

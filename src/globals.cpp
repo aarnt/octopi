@@ -186,6 +186,11 @@ QList<PackageListData> * markForeignPackagesInPkgList(bool hasAURTool, QStringLi
       pld = PackageListData(
             itForeign->name, itForeign->repository, itForeign->version,
             /*itForeign->name + " " +*/ itForeign->description,
+            itForeign->installedSize,
+            itForeign->buildDate,
+            itForeign->installDate,
+            itForeign->license,
+            itForeign->installReason,
             ectn_FOREIGN);
     }
     else
@@ -193,6 +198,11 @@ QList<PackageListData> * markForeignPackagesInPkgList(bool hasAURTool, QStringLi
       pld = PackageListData(
             itForeign->name, itForeign->repository, itForeign->version,
             /*itForeign->name + " " +*/ itForeign->description,
+            itForeign->installedSize,
+            itForeign->buildDate,
+            itForeign->installDate,
+            itForeign->license,
+            itForeign->installReason,
             ectn_FOREIGN_OUTDATED);
     }
 

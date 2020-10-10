@@ -1,4 +1,8 @@
 0.11 (dev)
+  Added "Install Date" at Info tab.
+  Added "Licenses" at Info tab while in AUR mode.
+  Added option to display "Licenses", "Installed Size", "Build Date", "Install Date" and
+	"Install Reason" columns in the package list.
   Updated PKGBUILD file following MatMoul's suggestion.
   Removed unused speedup service.
   BugFix: unset TMPDIR environment variable on every Octo tool startup 

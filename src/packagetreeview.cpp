@@ -63,13 +63,60 @@ void PackageTreeView::init()
 void PackageTreeView::resizePackageView()
 {
   setColumnWidth(PackageModel::ctn_PACKAGE_ICON_COLUMN,
-                                 SettingsManager::getPackageIconColumnWidth());
+                 SettingsManager::getPackageIconColumnWidth());
   setColumnWidth(PackageModel::ctn_PACKAGE_NAME_COLUMN,
-                                 SettingsManager::getPackageNameColumnWidth());
+                 SettingsManager::getPackageNameColumnWidth());
   setColumnWidth(PackageModel::ctn_PACKAGE_VERSION_COLUMN,
-                                 SettingsManager::getPackageVersionColumnWidth());
+                 SettingsManager::getPackageVersionColumnWidth());
   setColumnWidth(PackageModel::ctn_PACKAGE_REPOSITORY_COLUMN,
                  SettingsManager::getPackageRepositoryColumnWidth());
+  setColumnWidth(PackageModel::ctn_PACKAGE_SIZE_COLUMN,
+                 SettingsManager::getPackageDownloadSizeColumnWidth());
+
+  if (SettingsManager::getShowPackageLicensesColumn())
+  {
+    showColumn(PackageModel::ctn_PACKAGE_LICENSES_COLUMN);
+    setColumnWidth(PackageModel::ctn_PACKAGE_LICENSES_COLUMN,
+                   SettingsManager::getPackageLicensesColumnWidth());
+  }
+  else
+    hideColumn(PackageModel::ctn_PACKAGE_LICENSES_COLUMN);
+
+  if (SettingsManager::getShowPackageInstalledSizeColumn())
+  {
+    showColumn(PackageModel::ctn_PACKAGE_ISIZE_COLUMN);
+    setColumnWidth(PackageModel::ctn_PACKAGE_ISIZE_COLUMN,
+                   SettingsManager::getPackageInstalledSizeColumnWidth());
+  }
+  else
+    hideColumn(PackageModel::ctn_PACKAGE_ISIZE_COLUMN);
+
+  if (SettingsManager::getShowPackageBuildDateColumn())
+  {
+    showColumn(PackageModel::ctn_PACKAGE_BDATE_COLUMN);
+    setColumnWidth(PackageModel::ctn_PACKAGE_BDATE_COLUMN,
+                   SettingsManager::getPackageInstalledSizeColumnWidth());
+  }
+  else
+    hideColumn(PackageModel::ctn_PACKAGE_BDATE_COLUMN);
+
+  if (SettingsManager::getShowPackageInstallDateColumn())
+  {
+    showColumn(PackageModel::ctn_PACKAGE_IDATE_COLUMN);
+    setColumnWidth(PackageModel::ctn_PACKAGE_IDATE_COLUMN,
+                   SettingsManager::getPackageInstallDateColumnWidth());
+  }
+  else
+    hideColumn(PackageModel::ctn_PACKAGE_IDATE_COLUMN);
+
+  if (SettingsManager::getShowPackageInstallReasonColumn())
+  {
+    showColumn(PackageModel::ctn_PACKAGE_INSTALL_REASON_COLUMN);
+    setColumnWidth(PackageModel::ctn_PACKAGE_INSTALL_REASON_COLUMN,
+                   SettingsManager::getPackageInstallReasonColumnWidth());
+  }
+  else
+    hideColumn(PackageModel::ctn_PACKAGE_INSTALL_REASON_COLUMN);
 }
 
 /*

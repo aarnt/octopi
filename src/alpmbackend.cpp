@@ -19,6 +19,7 @@
 */
 
 #include "alpmbackend.h"
+#include "strconstants.h"
 
 #include <alpm.h>
 #include <alpm_list.h>
@@ -30,6 +31,7 @@
 
 AlpmBackend::AlpmBackend()
 {
+
 }
 
 /*
@@ -41,9 +43,11 @@ QStringList AlpmBackend::getPackageList()
 
   // create AlpmUtils instance
   AlpmUtils* alpm_utils = alpm_utils_new ("/etc/pacman.conf");
-
   // return a alpm_list of alpm_pkg, see alpm.h and alpm_list.h
   alpm_list_t* founds = alpm_utils_search_all_dbs (alpm_utils, "\\S");
+
+  // display pkgs information
+  // return a alpm_list of alpm_pkg, see alpm.h and alpm_list.h
   //alpm_list_t* founds = alpm_utils_get_all_pkgs(alpm_utils);
   //alpm_list_t* founds = alpm_utils_get_group_pkgs(alpm_utils, "base-devel");
   //alpm_list_t* founds = alpm_utils_get_updates(alpm_utils);
@@ -52,21 +56,22 @@ QStringList AlpmBackend::getPackageList()
   //alpm_list_t* founds = alpm_utils_get_foreign_pkgs(alpm_utils);
   //alpm_pkg_t* pkg = alpm_utils_get_installed_pkg(alpm_utils, "octopi");
 
-  // display pkgs information
-  alpm_list_t* i;
+  alpm_list_t *i, *l;
   const char* installedVersion;
   const char* repoVersion;
-  QString bInstalled;
+  QString bInstalled, installReason;
   const char* pkgName;
   alpm_pkg_t* instPkg;
-  char size[20];
+  char size[20], instSize[20], bDate[20], iDate[20];
   QString line;
+  alpm_time_t installDate;
+  char *temp;
+  QString strLicences;
 
   for (i = founds; i; i = alpm_list_next(i))
   {
     alpm_pkg_t* pkg = (alpm_pkg_t*) i->data;
     alpm_db_t* db = alpm_pkg_get_db(pkg);
-
     const char* dbname = alpm_db_get_name(db);
     if (!strcmp(dbname, "local")) continue;
 
@@ -78,6 +83,14 @@ QStringList AlpmBackend::getPackageList()
     {
       bInstalled = QStringLiteral("i");
       installedVersion = alpm_pkg_get_version(instPkg);
+
+      alpm_pkg_t* iPkg = alpm_utils_get_installed_pkg(alpm_utils, pkgName);
+      installDate = alpm_pkg_get_installdate(iPkg);
+      std::sprintf(iDate, "%ld", installDate);
+
+      alpm_pkgreason_t reason = alpm_pkg_get_reason(instPkg);
+      if (reason==ALPM_PKG_REASON_EXPLICIT) installReason=StrConstants::getExplicitly();
+      else installReason=StrConstants::getAsDependency();
 
       if (!strcmp(repoVersion, installedVersion))
       {
@@ -92,14 +105,40 @@ QStringList AlpmBackend::getPackageList()
     {
       bInstalled = QStringLiteral("n");
       installedVersion = "same_version";
+      installDate = 0;
+      installReason.clear();
+      std::sprintf(iDate, "%ld", installDate);
     }
 
     off_t pkgSize = alpm_pkg_get_size(pkg);
     std::sprintf(size, "%ld", pkgSize);
 
-    line = bInstalled + QLatin1Char(' ') + QString::fromUtf8(dbname) + QLatin1Char(' ') +
-           QString::fromUtf8(pkgName) + QLatin1Char(' ') + QString::fromUtf8(repoVersion) + QLatin1Char(' ') +
-           QString::fromUtf8(installedVersion) + QLatin1Char(' ') + QString::fromUtf8(size);
+    off_t pkgInstSize = alpm_pkg_get_isize(pkg);
+    std::sprintf(instSize, "%ld", pkgInstSize);
+
+    alpm_time_t buildDate = alpm_pkg_get_builddate(pkg);
+    std::sprintf(bDate, "%ld", buildDate);
+
+    alpm_list_t *licenses = alpm_pkg_get_licenses(pkg);
+    strLicences.clear();
+
+    for (l=licenses; l; l=alpm_list_next(l))
+    {
+      temp = reinterpret_cast <char*>(l->data);
+      strLicences += QLatin1String(temp) + QLatin1String(" ");
+    }
+
+    line = bInstalled + QStringLiteral("<o'o>") +
+           QString::fromUtf8(dbname) + QStringLiteral("<o'o>") +
+           QString::fromUtf8(pkgName) + QStringLiteral("<o'o>") +
+           QString::fromUtf8(repoVersion) + QStringLiteral("<o'o>") +
+           QString::fromUtf8(installedVersion) + QStringLiteral("<o'o>") +
+           QString::fromUtf8(size) + QStringLiteral("<o'o>") +
+           QString::fromUtf8(instSize) + QStringLiteral("<o'o>") +
+           QString::fromUtf8(bDate) + QStringLiteral("<o'o>") +
+           QString::fromUtf8(iDate) + QStringLiteral("<o'o>") +
+           strLicences + QStringLiteral("<o'o>") +
+           installReason;
 
     res.append(line);
     line = QLatin1Char('\t') + QString::fromUtf8(alpm_pkg_get_desc(pkg));
@@ -158,10 +197,15 @@ QStringList AlpmBackend::getForeignList()
   alpm_list_t* founds = alpm_utils_get_foreign_pkgs(alpm_utils);
 
   // display pkgs information
-  alpm_list_t* i;  
+  alpm_list_t *i, *l;
   QString version;
   QString line;
   QString description;
+  char *temp;
+  QString strLicences;
+  QString installReason;
+  alpm_time_t installDate;
+  char instSize[20], bDate[20], iDate[20];
 
   for (i = founds; i; i = alpm_list_next(i))
   {
@@ -170,7 +214,35 @@ QStringList AlpmBackend::getForeignList()
     version = QString::fromUtf8(alpm_pkg_get_version(pkg));
     description = QString::fromUtf8(alpm_pkg_get_desc(pkg));
 
-    line = QString::fromUtf8(pkgName) + QLatin1String("<o'o>") + QString(version) + QLatin1String("<o'o>") + QString(description);
+    off_t pkgInstSize = alpm_pkg_get_isize(pkg);
+    std::sprintf(instSize, "%ld", pkgInstSize);
+
+    alpm_time_t buildDate = alpm_pkg_get_builddate(pkg);
+    std::sprintf(bDate, "%ld", buildDate);
+
+    alpm_pkg_t* iPkg = alpm_utils_get_installed_pkg(alpm_utils, pkgName);
+    installDate = alpm_pkg_get_installdate(iPkg);
+    std::sprintf(iDate, "%ld", installDate);
+    alpm_list_t *licenses = alpm_pkg_get_licenses(iPkg);
+    strLicences.clear();
+    for (l=licenses; l; l=alpm_list_next(l))
+    {
+      temp = reinterpret_cast <char*>(l->data);
+      strLicences += QLatin1String(temp) + QLatin1String(" ");
+    }
+
+    alpm_pkgreason_t reason = alpm_pkg_get_reason(iPkg);
+    if (reason==ALPM_PKG_REASON_EXPLICIT) installReason=StrConstants::getExplicitly();
+    else installReason=StrConstants::getAsDependency();
+
+    line = QString::fromUtf8(pkgName) + QLatin1String("<o'o>") +
+        QString(version) + QLatin1String("<o'o>") +
+        QString(description) + QLatin1String("<o'o>") +
+        QString::fromUtf8(instSize) + QLatin1String("<o'o>") +
+        QString::fromUtf8(bDate) + QLatin1String("<o'o>") +
+        QString::fromUtf8(iDate) + QLatin1String("<o'o>") +
+        strLicences + QLatin1String("<o'o>") +
+        installReason;
 
     res.append(line);
   }

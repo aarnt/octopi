@@ -115,6 +115,17 @@ const QString ctn_KEY_PACKAGE_ICON_COLUMN_WIDTH(QStringLiteral("Package_Icon_Col
 const QString ctn_KEY_PACKAGE_NAME_COLUMN_WIDTH(QStringLiteral("Package_Name_Column_Width"));
 const QString ctn_KEY_PACKAGE_VERSION_COLUMN_WIDTH(QStringLiteral("Package_Version_Column_Width"));
 const QString ctn_KEY_PACKAGE_REPOSITORY_COLUMN_WIDTH(QStringLiteral("Package_Repository_Column_Width"));
+const QString ctn_KEY_PACKAGE_LICENSES_COLUMN_WIDTH(QStringLiteral("Package_Licenses_Column_Width"));
+const QString ctn_KEY_PACKAGE_DOWNLOAD_SIZE_COLUMN_WITH(QStringLiteral("Package_Download_Size_Column_Width"));
+const QString ctn_KEY_PACKAGE_INSTALLED_SIZE_COLUMN_WITH(QStringLiteral("Package_Installed_Size_Column_Width"));
+const QString ctn_KEY_PACKAGE_BUILD_DATE_COLUMN_WITH(QStringLiteral("Package_Build_Date_Column_Width"));
+const QString ctn_KEY_PACKAGE_INSTALL_DATE_COLUMN_WITH(QStringLiteral("Package_Install_Date_Column_Width"));
+const QString ctn_KEY_PACKAGE_INSTALL_REASON_COLUMN_WITH(QStringLiteral("Package_Install_Reason_Column_Width"));
+const QString ctn_KEY_SHOW_PACKAGE_LICENSES_COLUMN(QStringLiteral("Show_Package_Licenses_Column"));
+const QString ctn_KEY_SHOW_PACKAGE_INSTALLED_SIZE_COLUMN(QStringLiteral("Show_Package_Installed_Size_Column"));
+const QString ctn_KEY_SHOW_PACKAGE_BUILD_DATE_COLUMN(QStringLiteral("Show_Package_Build_Date_Column"));
+const QString ctn_KEY_SHOW_PACKAGE_INSTALL_DATE_COLUMN(QStringLiteral("Show_Package_Install_Date_Column"));
+const QString ctn_KEY_SHOW_PACKAGE_INSTALL_REASON_COLUMN(QStringLiteral("Show_Package_Install_Reason_Column"));
 const QString ctn_KEY_SU_TOOL(QStringLiteral("SU_Tool_Name"));
 const QString ctn_KEY_TERMINAL(QStringLiteral("Terminal"));
 const QString ctn_KEY_TERMINAL_COLOR_SCHEME(QStringLiteral("Terminal_Color_Scheme"));
