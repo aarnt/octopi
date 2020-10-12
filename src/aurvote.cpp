@@ -262,7 +262,7 @@ QStringList AurVote::getVotedPackages()
   QStringList votedPackages;
 
   QStringList rows = res.split(QRegularExpression(QStringLiteral("<tr class=\"(even|odd)\">")));
-  foreach(QString row, rows)
+  for(QString row: rows)
   {
     if (row.contains(QLatin1String("<td>Yes</td>")))
     {

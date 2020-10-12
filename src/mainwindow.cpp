@@ -328,7 +328,7 @@ void MainWindow::dropEvent(QDropEvent *ev)
 
   QList<QUrl> urls = ev->mimeData()->urls();
 
-  foreach(QUrl url, urls)
+  for(QUrl url: urls)
   {
     QString str = url.fileName();
     QFileInfo f(str);
@@ -350,7 +350,7 @@ void MainWindow::dragEnterEvent(QDragEnterEvent *ev)
   bool success = false;
   QList<QUrl> urls = ev->mimeData()->urls();
 
-  foreach(QUrl url, urls)
+  for(QUrl url: urls)
   {
     QString str = url.fileName();
     QFileInfo f(str);
@@ -728,7 +728,7 @@ void MainWindow::outputAURVotedPackageList()
     QStringList v=m_aurVote->getVotedPackages();
     v.sort();
     QString list=QStringLiteral("<ul>");
-    foreach(QString vote, v)
+    for(QString vote: v)
     {
       list += QLatin1String("<li>") + vote + QLatin1String("</li>");
     }
@@ -1070,7 +1070,7 @@ void MainWindow::execKeyActionOnPackage(CommandExecuting command)
     }
     else //There are more than 1 package selected
     {
-      foreach(QModelIndex item, selectedRows)
+      for(QModelIndex item: selectedRows)
       {
         const PackageRepository::PackageData*const package = m_packageModel->getData(item);
 
@@ -1129,7 +1129,7 @@ void MainWindow::execContextMenuPackages(QPoint point)
     int numberOfAUR = 0;
     int numberOfOutdated = 0;
 
-    foreach(QModelIndex item, selectedRows)
+    for(QModelIndex item: selectedRows)
     {
       const PackageRepository::PackageData*const package = m_packageModel->getData(item);
 
@@ -1177,7 +1177,7 @@ void MainWindow::execContextMenuPackages(QPoint point)
       QString aurPkg;
       bool allInstalled=false;
       int numOutdated=0;
-      foreach(QModelIndex item, selectedRows)
+      for(QModelIndex item: selectedRows)
       {
         const PackageRepository::PackageData*const package = m_packageModel->getData(item);
         aurPkg = package->name;

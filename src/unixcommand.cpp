@@ -699,7 +699,7 @@ void UnixCommand::removeSharedMemFiles()
 
   QFileInfoList list = tempDir.entryInfoList(nameFilters, QDir::Dirs | QDir::Files | QDir::System | QDir::Hidden);
 
-  foreach(QFileInfo file, list){
+  for(QFileInfo file: list){
     QFile fileAux(file.filePath());
 
     if (!file.isDir()){
@@ -709,7 +709,7 @@ void UnixCommand::removeSharedMemFiles()
       QDir dir(file.filePath());
       QFileInfoList listd = dir.entryInfoList(QDir::Files | QDir::System);
 
-      foreach(QFileInfo filed, listd){
+      for(QFileInfo filed: listd){
         QFile fileAuxd(filed.filePath());
         fileAuxd.remove();
       }
@@ -732,7 +732,7 @@ void UnixCommand::removeTemporaryFiles()
               << QStringLiteral(".qt_temp_octopi*");
   QFileInfoList list = tempDir.entryInfoList(nameFilters, QDir::Dirs | QDir::Files | QDir::System | QDir::Hidden);
 
-  foreach(QFileInfo file, list){
+  for(QFileInfo file: list){
     QFile fileAux(file.filePath());
 
     if (!file.isDir()){
@@ -742,7 +742,7 @@ void UnixCommand::removeTemporaryFiles()
       QDir dir(file.filePath());
       QFileInfoList listd = dir.entryInfoList(QDir::Files | QDir::System);
 
-      foreach(QFileInfo filed, listd){
+      for(QFileInfo filed: listd){
         QFile fileAuxd(filed.filePath());
         fileAuxd.remove();
       }
@@ -1008,7 +1008,7 @@ void UnixCommand::buildOctopiHelperCommandWithSharedMem(const QString &pCommand,
   if (pCommand.contains(QLatin1String(";")))
   {
     commandList = pCommand.split(QStringLiteral(";"), Qt::SkipEmptyParts);
-    foreach(QString line, commandList)
+    for(QString line: commandList)
     {
       commands += line.trimmed() + QLatin1Char('\n');
     }
@@ -1232,12 +1232,12 @@ QStringList UnixCommand::getIgnorePkgsFromPacmanConf()
   if (!resGroups.isEmpty())
   {
     //Let's retrieve all pkgs that live inside each group
-    foreach (QString group, resGroups)
+    for (QString group: resGroups)
     {
       QStringList *packagesOfGroup = Package::getPackagesOfGroup(group);
       if (!packagesOfGroup->isEmpty())
       {
-        foreach (QString pkg, *packagesOfGroup)
+        for (QString pkg: *packagesOfGroup)
         {
           resPkgs.append(pkg);
         }

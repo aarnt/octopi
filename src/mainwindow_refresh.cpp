@@ -149,7 +149,7 @@ void MainWindow::refreshMenuTools()
     }
   }
 
-  /*foreach (QAction * act,  ui->menuBar->actions())
+  /*for (QAction * act,  ui->menuBar->actions())
   {
     QString text = act->text();
     text = text.remove("&");
@@ -170,7 +170,7 @@ void MainWindow::refreshGroupsWidget()
   items.append(new QTreeWidgetItem(static_cast<QTreeWidget*>(nullptr), QStringList(QLatin1Char('<') + StrConstants::getDisplayAllGroups() + QLatin1Char('>'))));
   m_AllGroupsItem = items.at(0);
   const QStringList*const packageGroups = Package::getPackageGroups();
-  foreach(QString group, *packageGroups)
+  for(QString group: *packageGroups)
   {
     items.append(new QTreeWidgetItem(static_cast<QTreeWidget*>(nullptr), QStringList(group)));
   }
@@ -986,6 +986,23 @@ void MainWindow::buildPackageList()
   if (!ui->twGroups->isEnabled()) ui->twGroups->setEnabled(true);
 }
 
+void MainWindow::refreshOutdatedPackageList()
+{
+  m_packageRepo.setOutdatedData(*m_checkUpdatesNameNewVersion);
+
+  if (m_outdatedStringList->count() < m_checkupdatesStringList->count())
+    m_outdatedStringList = m_checkupdatesStringList;
+
+  m_numberOfOutdatedPackages = m_outdatedStringList->count();
+  if (m_numberOfOutdatedPackages == 0 && m_checkupdatesStringList->count() > 0)
+    m_numberOfOutdatedPackages = m_checkupdatesStringList->count();
+
+  refreshColumnSortSetup();
+  refreshStatusBar();
+  refreshAppIcon();
+}
+
+
 /*
  * Whenever horizontal splitter handler is moved
  */
@@ -1711,7 +1728,7 @@ void MainWindow::refreshTabFiles(bool clearContents, bool neverQuit)
     m_progressWidget->setValue(0);
     m_progressWidget->show();
 
-    foreach ( QString file, fileList )
+    for ( QString file: fileList )
     {
       bool isDir = file.endsWith(QLatin1Char('/'));
       bool isSymLinkToDir = false;
