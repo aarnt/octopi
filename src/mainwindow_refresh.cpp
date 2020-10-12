@@ -1869,19 +1869,21 @@ void MainWindow::reapplyPackageFilter()
   if (!isSearchByFileSelected())
   {
     bool isFilterPackageSelected = m_leFilterPackage->hasFocus();
-    QString search = Package::parseSearchString(m_leFilterPackage->text());
-    //QString search = m_leFilterPackage->text();
-    m_packageModel->applyFilter(search);
     int numPkgs = m_packageModel->getPackageCount();
 
-    if (m_leFilterPackage->text() != QLatin1String("")){
+    //QString search = Package::parseSearchString(m_leFilterPackage->text());
+    if (m_leFilterPackage->text() != QLatin1String(""))
+    {
+      QString search = m_leFilterPackage->text();
+      m_packageModel->applyFilter(search);
+
       if (numPkgs > 0) m_leFilterPackage->setFoundStyle();
       else m_leFilterPackage->setNotFoundStyle();
     }
-    else{
+    else
+    {
       m_leFilterPackage->initStyleSheet();
       m_packageModel->applyFilter(QLatin1String(""));
-      refreshStatusBar();
     }
 
     if (isFilterPackageSelected || numPkgs == 0)
