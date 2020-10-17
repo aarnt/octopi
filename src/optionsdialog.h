@@ -47,6 +47,7 @@ private:
   void initialize();
   void initButtonBox();
   void initGeneralTab();
+  void initPackageListTab();
   void initAURTab();
   void initBackendTab();
   void initIconTab();
@@ -67,6 +68,7 @@ signals:
   void AURVotingChanged();
   void terminalChanged();
   void alternateRowColorsChanged();
+  void columnsChanged();
 
 private slots:
   void defaultIconChecked(bool checked);

@@ -57,7 +57,7 @@ void Terminal::runOctopiHelperInTerminalWithSharedMem(const QStringList &command
   QString out;
   bool removedLines = false;
 
-  foreach(QString line, commandList)
+  for(QString line: commandList)
   {
     if (line.contains(QLatin1String("echo -e")) || line.contains(QLatin1String("read -n 1")))
     {
@@ -92,7 +92,7 @@ void Terminal::runCommandInTerminalAsNormalUser(const QStringList &commandList)
   QString out;
   bool removedLines = false;
 
-  foreach(QString line, commandList)
+  for(QString line: commandList)
   {
     if ((line.contains(QLatin1String("echo -e")) || line.contains(QLatin1String("read -n 1"))))
     {

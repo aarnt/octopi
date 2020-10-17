@@ -146,6 +146,49 @@ void PackageRepository::setForeignData(QList<PackageListData>*const listOfForeig
 }
 
 /*
+ * Iterates over the package list to mark outdated packages (returned by "checkupdates")
+ */
+void PackageRepository::setOutdatedData(const QHash<QString, QString> &outdatedPackages)
+{
+  std::for_each(m_dependingModels.begin(), m_dependingModels.end(), BeginResetModel());
+  QList<PackageListData*> newPkgs;
+
+  for (TListOfPackages::iterator it = m_listOfPackages.begin(); it != m_listOfPackages.end(); ++it)
+  {
+    if (*it != nullptr && outdatedPackages.contains((*it)->name))
+    {
+      PackageListData *pld = new PackageListData();
+      pld->status=ectn_OUTDATED;
+      pld->name=(*it)->name;
+      pld->description=(*it)->description;
+      pld->outatedVersion=(*it)->version;
+      pld->version=outdatedPackages.value((*it)->name);
+      pld->repository=(*it)->repository;
+      pld->downloadSize=(*it)->downloadSize;
+      pld->license=(*it)->license;
+      pld->installedSize=(*it)->installedSize;
+      pld->buildDate=(*it)->buildDate;
+      pld->installDate=(*it)->installDate;
+      pld->installReason=(*it)->installReason;
+      newPkgs.append(pld);
+
+      delete *it;
+      it = m_listOfPackages.erase(it);
+      --it;
+    }
+  }
+
+  for (int c=0; c<newPkgs.count(); ++c)
+  {
+    PackageData*const pkg = new PackageData(*newPkgs.at(c), true, false);
+    m_listOfPackages.push_back(pkg);
+  }
+
+  std::sort(m_listOfPackages.begin(), m_listOfPackages.end(), TSort());
+  std::for_each(m_dependingModels.begin(), m_dependingModels.end(), EndResetModel());
+}
+
+/*
  * Iterates over the package list to mark outdated foreign packages
  */
 void PackageRepository::setAUROutdatedData(QList<PackageListData>*const listOfForeignPackages,
@@ -334,7 +377,8 @@ PackageRepository::PackageData::PackageData(const PackageListData& pkg, const bo
   : required(isRequired), managedByAUR(isManagedByAUR), name(pkg.name),
     repository(pkg.repository.isEmpty() ? StrConstants::getForeignRepositoryName() : pkg.repository),
     version(pkg.version), description(pkg.description), // octopi wants it converted to utf8
-    outdatedVersion(pkg.outatedVersion), downloadSize(pkg.downloadSize),
+    outdatedVersion(pkg.outatedVersion), downloadSize(pkg.downloadSize), installedSize(pkg.installedSize),
+    buildDate(pkg.buildDate), installDate(pkg.installDate), license(pkg.license), installReason(pkg.installReason),
     status(pkg.status != ectn_OUTDATED ?
            pkg.status :
            (Package::alpm_pkg_vercmp(pkg.outatedVersion.toLatin1().data(), pkg.version.toLatin1().data()) == 1 ?

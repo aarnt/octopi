@@ -23,55 +23,30 @@ prepare() {
          
 build() {
    cd "${pkgname}"
-   
+   echo "Starting build..."   
    qmake-qt5 PREFIX=/usr QMAKE_CFLAGS="${CFLAGS}" QMAKE_CXXFLAGS="${CXXFLAGS}" QMAKE_LFLAGS="${LDFLAGS}" octopi.pro
    make
-   
-   cd helper
-   qmake-qt5 PREFIX=/usr QMAKE_CFLAGS="${CFLAGS}" QMAKE_CXXFLAGS="${CXXFLAGS}" QMAKE_LFLAGS="${LDFLAGS}" octopi-helper.pro
-   make
-   cd ..
- 
-   cd notifier
-   qmake-qt5 PREFIX=/usr QMAKE_CFLAGS="${CFLAGS}" QMAKE_CXXFLAGS="${CXXFLAGS}" QMAKE_LFLAGS="${LDFLAGS}" octopi-notifier.pro
-   make
-   cd ..
-   
-   cd repoeditor
-   qmake-qt5 PREFIX=/usr QMAKE_CFLAGS="${CFLAGS}" QMAKE_CXXFLAGS="${CXXFLAGS}" QMAKE_LFLAGS="${LDFLAGS}" octopi-repoeditor.pro
-   make
-   cd ..
-   
-   cd cachecleaner
-   qmake-qt5 PREFIX=/usr QMAKE_CFLAGS="${CFLAGS}" QMAKE_CXXFLAGS="${CXXFLAGS}" QMAKE_LFLAGS="${LDFLAGS}" octopi-cachecleaner.pro
-   make
-   cd ..
 
-   cd sudo
-   qmake-qt5 PREFIX=/usr QMAKE_CFLAGS="${CFLAGS}" QMAKE_CXXFLAGS="${CXXFLAGS}" QMAKE_LFLAGS="${LDFLAGS}" octopi-sudo.pro
-   make
+   _subdirs="cachecleaner helper notifier repoeditor sudo"
+
+   for _subdir in $_subdirs; do
+     pushd $_subdir
+     echo "Building octopi-$_subdir..."
+     qmake-qt5 PREFIX=/usr QMAKE_CFLAGS="${CFLAGS}" QMAKE_CXXFLAGS="${CXXFLAGS}" QMAKE_LFLAGS="${LDFLAGS}" "octopi-$_subdir.pro"
+     make
+     popd
+   done  
 }
 
 package() {
    cd "${pkgname}"
    make INSTALL_ROOT="${pkgdir}" install
-   
-   cd helper
-   make INSTALL_ROOT="${pkgdir}" install
-   cd ..
 
-   cd notifier
-   make INSTALL_ROOT="${pkgdir}" install
-   cd ..
-   
-   cd repoeditor
-   make INSTALL_ROOT="${pkgdir}" install
-   cd ..
-   
-   cd cachecleaner
-   make INSTALL_ROOT="${pkgdir}" install
-   cd ..
+   _subdirs="cachecleaner helper notifier repoeditor sudo"
 
-   cd sudo
-   make INSTALL_ROOT="${pkgdir}" install
+   for _subdir in $_subdirs; do
+     pushd $_subdir
+     make INSTALL_ROOT="${pkgdir}" install
+     popd
+   done   
 }

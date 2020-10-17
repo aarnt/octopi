@@ -181,6 +181,48 @@ void MainWindow::savePackageColumnWidths()
     SettingsManager::setPackageRepositoryColumnWidth(
         ui->tvPackages->columnWidth(PackageModel::ctn_PACKAGE_REPOSITORY_COLUMN));
   }
+
+  width = ui->tvPackages->columnWidth(PackageModel::ctn_PACKAGE_LICENSES_COLUMN);
+  if (width > 0)
+  {
+    SettingsManager::setPackageLicensesColumnWidth(
+        ui->tvPackages->columnWidth(PackageModel::ctn_PACKAGE_LICENSES_COLUMN));
+  }
+
+  width = ui->tvPackages->columnWidth(PackageModel::ctn_PACKAGE_SIZE_COLUMN);
+  if (width > 0)
+  {
+    SettingsManager::setPackageDownloadSizeColumnWidth(
+        ui->tvPackages->columnWidth(PackageModel::ctn_PACKAGE_SIZE_COLUMN));
+  }
+
+  width = ui->tvPackages->columnWidth(PackageModel::ctn_PACKAGE_ISIZE_COLUMN);
+  if (width > 0)
+  {
+    SettingsManager::setPackageInstalledSizeColumnWidth(
+        ui->tvPackages->columnWidth(PackageModel::ctn_PACKAGE_ISIZE_COLUMN));
+  }
+
+  width = ui->tvPackages->columnWidth(PackageModel::ctn_PACKAGE_BDATE_COLUMN);
+  if (width > 0)
+  {
+    SettingsManager::setPackageBuildDateColumnWidth(
+        ui->tvPackages->columnWidth(PackageModel::ctn_PACKAGE_BDATE_COLUMN));
+  }
+
+  width = ui->tvPackages->columnWidth(PackageModel::ctn_PACKAGE_IDATE_COLUMN);
+  if (width > 0)
+  {
+    SettingsManager::setPackageInstallDateColumnWidth(
+        ui->tvPackages->columnWidth(PackageModel::ctn_PACKAGE_IDATE_COLUMN));
+  }
+
+  width = ui->tvPackages->columnWidth(PackageModel::ctn_PACKAGE_INSTALL_REASON_COLUMN);
+  if (width > 0)
+  {
+    SettingsManager::setPackageInstallReasonColumnWidth(
+        ui->tvPackages->columnWidth(PackageModel::ctn_PACKAGE_INSTALL_REASON_COLUMN));
+  }
 }
 
 /*
@@ -267,7 +309,7 @@ void MainWindow::initMenuBar()
   RepoConf *repoConf = new RepoConf();
   QStringList repos = repoConf->getRepos();
 
-  foreach(QString repo, repos)
+  for(QString repo: repos)
   {
     QAction * createdAction = subMenu->addAction(repo);
     createdAction->setCheckable(true);
@@ -283,7 +325,7 @@ void MainWindow::initMenuBar()
   actionGroupRepositories->setExclusive(true);
   m_actionMenuRepository->setMenu(subMenu);
 
-  /*foreach (QAction * act,  ui->menuBar->actions())
+  /*for (QAction * act,  ui->menuBar->actions())
   {
     QString text = act->text();
     text = text.remove("&");
@@ -786,8 +828,6 @@ void MainWindow::initActions()
     m_actionSwitchToAURTool->setChecked(false);
   }
 
-  //m_actionSwitchToAURTool->setCheckable(true);
-  //m_actionSwitchToAURTool->setChecked(false);
   m_actionSwitchToAURTool->setEnabled(false);
   connect(m_actionSwitchToAURTool, SIGNAL(triggered()), this, SLOT(AURToolSelected()));
 
@@ -913,14 +953,14 @@ void MainWindow::initActions()
   if (WMHelper::isXFCERunning())
   {
     //Loop through all actions and set their icons (if any) visible to menus.
-    foreach(QAction* ac, this->findChildren<QAction*>(QRegularExpression(QLatin1String("(m_a|a)ction\\S*"))))
+    for(QAction* ac: this->findChildren<QAction*>(QRegularExpression(QLatin1String("(m_a|a)ction\\S*"))))
     {
       if (ac) ac->setIconVisibleInMenu(true);
     }
   }
 
   QString text;
-  foreach(QAction* ac, this->findChildren<QAction*>(QRegularExpression(QLatin1String("(m_a|a)ction\\S*"))))
+  for(QAction* ac: this->findChildren<QAction*>(QRegularExpression(QLatin1String("(m_a|a)ction\\S*"))))
   {
     //text = ac->text().remove("&");
     //ac->setText(qApp->translate("MainWindow", text.toUtf8(), 0));

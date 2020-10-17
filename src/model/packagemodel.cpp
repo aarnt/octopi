@@ -75,7 +75,7 @@ int PackageModel::columnCount(const QModelIndex &parent) const
     if (UnixCommand::getLinuxDistro() == ectn_CHAKRA || !m_showColumnPopularity)
     {
       if (SettingsManager::hasPacmanBackend()) return 4;
-      else return 6;
+      else return 11;
     }
     else
     {
@@ -102,11 +102,38 @@ QVariant PackageModel::data(const QModelIndex &index, int role) const
           case ctn_PACKAGE_VERSION_COLUMN:
             return QVariant(package->version);
           case ctn_PACKAGE_REPOSITORY_COLUMN:
-            return QVariant(package->repository);
+            return QVariant(package->repository);          
           case ctn_PACKAGE_SIZE_COLUMN: {
             off_t pkgSize = package->downloadSize;
             float aux = pkgSize;
             return QVariant(Package::kbytesToSize(aux));
+          }
+          case ctn_PACKAGE_ISIZE_COLUMN: {
+            off_t pkgISize = package->installedSize;
+            float auxI = pkgISize;
+            return QVariant(Package::kbytesToSize(auxI));
+          }
+          case ctn_PACKAGE_BDATE_COLUMN: {
+            off_t pkgBDate = package->buildDate;
+            if (pkgBDate <= 0) return QVariant(QStringLiteral(""));
+
+            QString dateTimeFormat = QLocale().dateTimeFormat(QLocale::ShortFormat);
+            QDateTime bdt = QDateTime::fromSecsSinceEpoch(pkgBDate);
+            return QVariant(bdt.toString(dateTimeFormat));
+          }
+          case ctn_PACKAGE_IDATE_COLUMN: {
+            off_t pkgIDate = package->installDate;
+            if (pkgIDate <= 0) return QVariant(QStringLiteral(""));
+
+            QString dateTimeFormat = QLocale().dateTimeFormat(QLocale::ShortFormat);
+            QDateTime idt = QDateTime::fromSecsSinceEpoch(pkgIDate);
+            return QVariant(idt.toString(dateTimeFormat));
+          }
+          case ctn_PACKAGE_LICENSES_COLUMN: {
+            return QVariant(package->license);
+          }
+          case ctn_PACKAGE_INSTALL_REASON_COLUMN: {
+            return QVariant(package->installReason);
           }
           case ctn_PACKAGE_POPULARITY_COLUMN:
             if (package->popularity >= 0)
@@ -151,10 +178,20 @@ QVariant PackageModel::headerData(int section, Qt::Orientation orientation, int 
         return QVariant(StrConstants::getVersion());
       case ctn_PACKAGE_REPOSITORY_COLUMN:
         return QVariant(StrConstants::getRepository());
-      case ctn_PACKAGE_SIZE_COLUMN:
+      case ctn_PACKAGE_SIZE_COLUMN:        
         return QVariant(StrConstants::getDownloadSize());
+      case ctn_PACKAGE_ISIZE_COLUMN:
+        return QVariant(StrConstants::getInstalledSize());
+      case ctn_PACKAGE_BDATE_COLUMN:
+        return QVariant(StrConstants::getBuildDate());
+      case ctn_PACKAGE_IDATE_COLUMN:
+        return QVariant(StrConstants::getInstallDate());
+      case ctn_PACKAGE_LICENSES_COLUMN:
+        return QVariant(StrConstants::getLicenses());
+      case ctn_PACKAGE_INSTALL_REASON_COLUMN:
+        return QVariant(StrConstants::getInstallReason());
       case ctn_PACKAGE_POPULARITY_COLUMN:
-        return QVariant(StrConstants::getVotesHeader());
+        return QVariant(StrConstants::getVotesHeader());        
       default:
         break;
       }
@@ -226,6 +263,13 @@ void PackageModel::endResetRepository()
         {
           m_listOfPackages.push_back(*it);
           if ((*it)->installed()) m_installedPackagesCount++;
+        }
+        break;
+      case ctn_PACKAGE_INSTALL_REASON_COLUMN:
+        if (m_filterRegExp.indexIn((*it)->installReason) != -1)
+        {
+          m_listOfPackages.push_back(*it);
+          m_installedPackagesCount++;
         }
         break;
       default:
@@ -449,6 +493,56 @@ struct TSort5 {
   }
 };
 
+struct TSort6 {
+  bool operator()(const PackageRepository::PackageData* a, const PackageRepository::PackageData* b) const {
+    if (a->installedSize < b->installedSize) return true;
+    if (a->installedSize == b->installedSize) {
+      return a->name < b->name;
+    }
+    return false;
+  }
+};
+
+struct TSort7 {
+  bool operator()(const PackageRepository::PackageData* a, const PackageRepository::PackageData* b) const {
+    if (a->buildDate < b->buildDate) return true;
+    if (a->buildDate == b->buildDate) {
+      return a->name < b->name;
+    }
+    return false;
+  }
+};
+
+struct TSort8 {
+  bool operator()(const PackageRepository::PackageData* a, const PackageRepository::PackageData* b) const {
+    if (a->installDate < b->installDate) return true;
+    if (a->installDate == b->installDate) {
+      return a->name < b->name;
+    }
+    return false;
+  }
+};
+
+struct TSort9 {
+  bool operator()(const PackageRepository::PackageData* a, const PackageRepository::PackageData* b) const {
+    if (a->license < b->license) return true;
+    if (a->license == b->license) {
+      return a->name < b->name;
+    }
+    return false;
+  }
+};
+
+struct TSort10 {
+  bool operator()(const PackageRepository::PackageData* a, const PackageRepository::PackageData* b) const {
+    if (a->installReason < b->installReason) return true;
+    if (a->installReason == b->installReason) {
+      return a->name < b->name;
+    }
+    return false;
+  }
+};
+
 void PackageModel::sort()
 {
   switch (m_sortColumn) {
@@ -469,6 +563,21 @@ void PackageModel::sort()
     return;
   case ctn_PACKAGE_SIZE_COLUMN:
     std::sort(m_columnSortedlistOfPackages.begin(), m_columnSortedlistOfPackages.end(), TSort5());
+    return;
+  case ctn_PACKAGE_ISIZE_COLUMN:
+    std::sort(m_columnSortedlistOfPackages.begin(), m_columnSortedlistOfPackages.end(), TSort6());
+    return;
+  case ctn_PACKAGE_BDATE_COLUMN:
+    std::sort(m_columnSortedlistOfPackages.begin(), m_columnSortedlistOfPackages.end(), TSort7());
+    return;
+  case ctn_PACKAGE_IDATE_COLUMN:
+    std::sort(m_columnSortedlistOfPackages.begin(), m_columnSortedlistOfPackages.end(), TSort8());
+    return;
+  case ctn_PACKAGE_LICENSES_COLUMN:
+    std::sort(m_columnSortedlistOfPackages.begin(), m_columnSortedlistOfPackages.end(), TSort9());
+    return;
+  case ctn_PACKAGE_INSTALL_REASON_COLUMN:
+    std::sort(m_columnSortedlistOfPackages.begin(), m_columnSortedlistOfPackages.end(), TSort10());
     return;
   default:
     return;

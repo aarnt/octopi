@@ -153,7 +153,7 @@ QString Package::makeAnchorOfOptionalDep(const QString &optionalDeps)
   QString name;
   QStringList ldeps = optionalDeps.split(QStringLiteral("<br>"), Qt::SkipEmptyParts);
 
-  foreach(QString dep, ldeps)
+  for(QString dep: ldeps)
   {
     int colon = dep.indexOf(QLatin1String(":"));
     if (colon != -1)
@@ -183,7 +183,7 @@ QString Package::makeAnchorOfPackage(const QString &packages)
   QString newDep;
   QStringList ldeps = packages.split(QStringLiteral(" "), Qt::SkipEmptyParts);
 
-  foreach(QString dep, ldeps)
+  for(QString dep: ldeps)
   {
     if (!dep.contains(QLatin1String("=")) &&
         !dep.contains(QLatin1String("<")) &&
@@ -249,7 +249,7 @@ QSet<QString>* Package::getUnrequiredPackageList()
     QString unrequiredPkgList = QString::fromUtf8(UnixCommand::getUnrequiredPackageList());
     QStringList packageTuples = unrequiredPkgList.split(QRegularExpression(QStringLiteral("\\n")), Qt::SkipEmptyParts);
 
-    foreach(QString packageTuple, packageTuples)
+    for(QString packageTuple: packageTuples)
     {
       QStringList parts = packageTuple.split(QLatin1Char(' '));
       {
@@ -262,7 +262,7 @@ QSet<QString>* Package::getUnrequiredPackageList()
   {
     QStringList packageTuples = AlpmBackend::getUnrequiredList();
 
-    foreach(QString packageTuple, packageTuples)
+    for(QString packageTuple: packageTuples)
     {
       res->insert(packageTuple); //We only need the package name!
     }
@@ -285,7 +285,7 @@ QStringList *Package::getOutdatedStringList()
     QStringList packageTuples = outPkgList.split(QRegularExpression(QStringLiteral("\\n")), Qt::SkipEmptyParts);
     QStringList ignorePkgList = UnixCommand::getIgnorePkgsFromPacmanConf();
 
-    foreach(QString packageTuple, packageTuples)
+    for(QString packageTuple: packageTuples)
     {
       QStringList parts = packageTuple.split(QLatin1Char(' '));
       {
@@ -307,7 +307,7 @@ QStringList *Package::getOutdatedStringList()
   {
     QStringList packageTuples = AlpmBackend::getOutdatedList();
 
-    foreach(QString packageTuple, packageTuples)
+    for(QString packageTuple: packageTuples)
     {
       res->append(packageTuple);
     }
@@ -364,7 +364,7 @@ QStringList *Package::getOutdatedAURStringList()
   QStringList packageTuples = outPkgList.split(QRegularExpression(QStringLiteral("\\n")), Qt::SkipEmptyParts);
   QStringList ignorePkgList = UnixCommand::getIgnorePkgsFromPacmanConf();
 
-  foreach(QString packageTuple, packageTuples)
+  for(QString packageTuple: packageTuples)
   {
     QStringList parts = packageTuple.split(QLatin1Char(' '), Qt::SkipEmptyParts);
     {
@@ -433,7 +433,7 @@ QStringList *Package::getPackageGroups()
   QStringList packageTuples = packagesFromGroup.split(QRegularExpression(QStringLiteral("\\n")), Qt::SkipEmptyParts);
   QStringList * res = new QStringList();
 
-  foreach(QString packageTuple, packageTuples)
+  for(QString packageTuple: packageTuples)
   {
     packageTuple = packageTuple.trimmed();
     if (!packageTuple.isEmpty())
@@ -456,7 +456,7 @@ QStringList *Package::getPackagesOfGroup(const QString &groupName)
   QStringList packageTuples = packagesFromGroup.split(QRegularExpression(QStringLiteral("\\n")), Qt::SkipEmptyParts);
   QStringList * res = new QStringList();
 
-  foreach(QString packageTuple, packageTuples)
+  for(QString packageTuple: packageTuples)
   {
     QStringList parts = packageTuple.split(QLatin1Char(' '));
     res->append(parts[1]); //We only need the package name!
@@ -476,7 +476,7 @@ QList<PackageListData> *Package::getTargetUpgradeList(const QString &pkgName)
   QList<PackageListData> *res = new QList<PackageListData>();
   packageTuples.sort();
 
-  foreach(QString packageTuple, packageTuples)
+  for(QString packageTuple: packageTuples)
   {
     //TODO: Need to handle when this list has "::" conflict items!
     if(packageTuple.indexOf(QLatin1String("::"))!=-1)
@@ -510,7 +510,7 @@ QStringList *Package::getTargetRemovalList(const QString &pkgName, const QString
   QStringList packageTuples = targets.split(QRegularExpression(QStringLiteral("\\n")), Qt::SkipEmptyParts);
   QStringList * res = new QStringList();
 
-  foreach(QString packageTuple, packageTuples)
+  for(QString packageTuple: packageTuples)
   {
     res->append(packageTuple);
   }
@@ -531,7 +531,7 @@ QList<PackageListData> *Package::getForeignPackageList()
     QString foreignPkgList = QString::fromUtf8(UnixCommand::getForeignPackageList());
     QStringList packageTuples = foreignPkgList.split(QRegularExpression(QStringLiteral("\\n")), Qt::SkipEmptyParts);
 
-    foreach(QString packageTuple, packageTuples)
+    for(QString packageTuple: packageTuples)
     {
       QStringList parts = packageTuple.split(QLatin1Char(' '));
       if (parts.size() == 2)
@@ -544,12 +544,23 @@ QList<PackageListData> *Package::getForeignPackageList()
 #ifdef ALPM_BACKEND
   else
   {
+    bool ok;
+    QString instSize, buildDate, installDate, license, installReason;
     QStringList packageTuples = AlpmBackend::getForeignList();
 
-    foreach(QString packageTuple, packageTuples)
+    for(QString packageTuple: packageTuples)
     {
       QStringList parts = packageTuple.split(QStringLiteral("<o'o>"));
-      res->append(PackageListData(parts[0], QLatin1String(""), parts[1], parts[0] + QLatin1Char(' ') + parts[2], ectn_FOREIGN));
+      //NAME, REPO, VERSION, "NAME DESCRIPTION", FOREIGN
+      //res->append(PackageListData(parts[0], QLatin1String(""), parts[1], parts[0] + QLatin1Char(' ') + parts[2], ectn_FOREIGN));
+      instSize=parts[3];
+      buildDate=parts[4];
+      installDate=parts[5];
+      license=parts[6];
+      installReason=parts[7];
+
+      res->append(PackageListData(parts[0], QLatin1String(""), parts[1], parts[0] + QLatin1Char(' ') + parts[2],
+          instSize.toDouble(&ok), buildDate.toDouble(&ok), installDate.toDouble(&ok), license, installReason, ectn_FOREIGN));
     }
   }
 #endif
@@ -578,7 +589,7 @@ QList<PackageListData> * Package::getPackageList(const QString &packageName, con
     if(!pkgList.isEmpty())
     {
       pkgDescription = QLatin1String("");
-      foreach(QString packageTuple, packageTuples)
+      for(QString packageTuple: packageTuples)
       {
         if (!packageTuple[0].isSpace())
         {
@@ -652,15 +663,20 @@ QList<PackageListData> * Package::getPackageList(const QString &packageName, con
 #ifdef ALPM_BACKEND
   else
   {
-    QString pkgName, pkgRepository, pkgVersion, pkgDescription, pkgOutVersion, pkgSize;
+    QString pkgName, pkgRepository, pkgVersion, pkgDescription,
+        pkgOutVersion, pkgSize, pkgISize, pkgBDate, pkgIDate, pkgLicense, pkgInstallReason;
     PackageStatus pkgStatus;
     double pkgDownSize=0;
+    double pkgInstSize=0;
+    double pkgBuildDate=0;
+    double pkgInstallDate=0;
+
     QStringList pkgList = AlpmBackend::getPackageList();
     bool ok;
     bool hasOutdatedPackages = checkUpdatesOutdatedPackages->count() > 0;
 
     pkgDescription = QLatin1String("");
-    foreach(QString packageTuple, pkgList)
+    for(QString packageTuple: pkgList)
     {
       if (!packageTuple[0].isSpace())
       {
@@ -671,19 +687,28 @@ QList<PackageListData> * Package::getPackageList(const QString &packageName, con
 
           PackageListData pld =
               PackageListData(pkgName, pkgRepository, pkgVersion, pkgDescription,
-                              pkgStatus, pkgDownSize, pkgOutVersion);
+                              pkgStatus, pkgDownSize, pkgInstSize, pkgBuildDate,
+                              pkgInstallDate, pkgLicense, pkgInstallReason, pkgOutVersion);
 
           res->append(pld);
           pkgDescription = QLatin1String("");
         }
 
         //First we get repository and name!
-        QStringList parts = packageTuple.split(QLatin1Char(' '));
+        QStringList parts = packageTuple.split(QStringLiteral("<o'o>"));
         pkgRepository = parts[1];
         pkgName = parts[2];
         pkgVersion = parts[3];
         pkgSize = parts[5];
+        pkgISize = parts[6];
+        pkgBDate = parts[7];
+        pkgIDate = parts[8];
+        pkgLicense = parts[9];
+        pkgInstallReason = parts[10];
         pkgDownSize = pkgSize.toLong(&ok);
+        pkgInstSize = pkgISize.toLong(&ok);
+        pkgBuildDate = pkgBDate.toLong(&ok);
+        pkgInstallDate = pkgIDate.toLong(&ok);
 
         if(parts[0] == QLatin1Char('i'))
         {
@@ -735,7 +760,9 @@ QList<PackageListData> * Package::getPackageList(const QString &packageName, con
     //And adds the very last package...
     pkgDescription = pkgName + QLatin1String(" ") + pkgDescription;
     PackageListData pld =
-        PackageListData(pkgName, pkgRepository, pkgVersion, pkgDescription, pkgStatus, pkgDownSize, pkgOutVersion);
+        PackageListData(pkgName, pkgRepository, pkgVersion, pkgDescription,
+                        pkgStatus, pkgDownSize, pkgInstSize, pkgBuildDate,
+                        pkgInstallDate, pkgLicense, pkgInstallReason, pkgOutVersion);
 
     res->append(pld);
   }
@@ -747,18 +774,34 @@ QList<PackageListData> * Package::getPackageList(const QString &packageName, con
 /*
  * Helper method to get URL information from remote package
  */
-QString Package::getAURUrl(const QString &pkgName)
+/*QString Package::getAURUrl(const QString &pkgName)
 {
   QString url=QLatin1String("");
 
   if (getForeignRepositoryToolName() != ctn_KCP_TOOL)
   {
-    QString pkgInfo = QString::fromUtf8(UnixCommand::getAURUrl(pkgName));
+    QString pkgInfo = QString::fromUtf8(UnixCommand::getAURInformation(pkgName));
     url = getURL(pkgInfo);
   }
 
   return url;
-}
+}*/
+
+/*
+ * Helper method to get Licenses information from remote package
+ */
+/*QString Package::getAURLicenses(const QString &pkgName)
+{
+  QString licenses=QLatin1String("");
+
+  if (getForeignRepositoryToolName() != ctn_KCP_TOOL)
+  {
+    QString pkgInfo = QString::fromUtf8(UnixCommand::getAURInformation(pkgName));
+    licenses = getLicense(pkgInfo);
+  }
+
+  return licenses;
+}*/
 
 /*
  * Retrieves the list of all AUR packages in the database (installed + non-installed)
@@ -788,7 +831,7 @@ QList<PackageListData> * Package::getAURPackageList(const QString& searchString)
   }
 
   pkgDescription = QLatin1String("");
-  foreach(QString packageTuple, packageTuples)
+  for(QString packageTuple: packageTuples)
   {
     if (packageTuple[0].isNumber())
     {
@@ -1002,7 +1045,7 @@ QList<PackageListData> *Package::getYayPackageList(const QStringList &packageTup
   //QStringList packageTuples = pkgList.split(QRegularExpression("\\n"), QString::SkipEmptyParts);
 
   pkgDescription = QLatin1String("");
-  foreach(QString packageTuple, packageTuples)
+  for(QString packageTuple: packageTuples)
   {
     if (packageTuple[0].isNumber())
     {
@@ -1297,15 +1340,23 @@ QDateTime Package::getBuildDate(const QString &pkgInfo)
 }
 
 /*
+ * Retrieves "Install Date" field of the given package information string represented by pkgInfo
+ */
+QDateTime Package::getInstallDate(const QString &pkgInfo)
+{
+  QString aux = extractFieldFromInfo(QStringLiteral("Install Date"), pkgInfo);
+  return QDateTime::fromString(aux); //"ddd MMM d hh:mm:ss yyyy");
+}
+
+/*
  * Retrieves "Download Size" field of the given package information string represented by pkgInfo
  */
 double Package::getDownloadSize(const QString &pkgInfo)
 {
   QString aux = extractFieldFromInfo(QStringLiteral("Download Size"), pkgInfo);
+
   bool isKByte = (aux.indexOf(QLatin1String("KiB"), Qt::CaseInsensitive) != -1);
   bool isMega = (aux.indexOf(QLatin1String("MiB"), Qt::CaseInsensitive) != -1);
-  //bool isByte = (aux.indexOf(" B", Qt::CaseInsensitive) != -1);
-
   aux = aux.section(QRegularExpression(QStringLiteral("\\s")), 0, 0);
 
   bool ok;
@@ -1319,7 +1370,6 @@ double Package::getDownloadSize(const QString &pkgInfo)
       res *= 1024;
       res *= 1024;
     }
-    //else if (isByte) res /= 1024.00;
     return res;
   }
   else
@@ -1695,9 +1745,10 @@ PackageInfoData Package::getInformation(const QString &pkgName, bool foreignPack
   res.packager = getPackager(pkgInfo);
   res.arch = getArch(pkgInfo);
   res.buildDate = getBuildDate(pkgInfo);
+  res.installDate = getInstallDate(pkgInfo);
   res.description = getDescription(pkgInfo);
-  res.downloadSize = getDownloadSize(pkgInfo);
-  res.installedSize = getInstalledSize(pkgInfo);
+  res.downloadSize = getDownloadSizeAsString(pkgInfo);
+  res.installedSize = getInstalledSizeAsString(pkgInfo);
   res.downloadSizeAsString = getDownloadSizeAsString(pkgInfo);
   res.installedSizeAsString = getInstalledSizeAsString(pkgInfo);
   res.installReason = getInstallReason(pkgInfo);
@@ -1760,7 +1811,7 @@ QHash<QString, QString> Package::getAUROutdatedPackagesNameVersion()
       (getForeignRepositoryToolName() == ctn_YAY_TOOL) ||
       (getForeignRepositoryToolName() == ctn_KCP_TOOL))
   {
-    foreach (QString line, listOfPkgs)
+    for (QString line: listOfPkgs)
     {
       line = line.trimmed();
       if (line.contains(QLatin1String("Reading "))) continue;
@@ -1815,7 +1866,7 @@ QHash<QString, QString> Package::getAUROutdatedPackagesNameVersion()
   }
   else if (getForeignRepositoryToolName() == ctn_PACAUR_TOOL)
   {
-    foreach (QString line, listOfPkgs)
+    for (QString line: listOfPkgs)
     {
       QStringList sl = line.split(QStringLiteral(" "), Qt::SkipEmptyParts);
 
@@ -1871,7 +1922,7 @@ QStringList Package::getContents(const QString& pkgName, bool isInstalled)
     else
     {
       QStringList rsl2;
-      foreach(QString line, rsl)
+      for(QString line: rsl)
       {
         QStringList slAux = line.split(QStringLiteral("\t"), Qt::SkipEmptyParts);
         rsl2.append(QString(slAux.at(1).trimmed()));

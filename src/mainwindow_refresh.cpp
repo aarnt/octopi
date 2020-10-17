@@ -149,7 +149,7 @@ void MainWindow::refreshMenuTools()
     }
   }
 
-  /*foreach (QAction * act,  ui->menuBar->actions())
+  /*for (QAction * act,  ui->menuBar->actions())
   {
     QString text = act->text();
     text = text.remove("&");
@@ -170,7 +170,7 @@ void MainWindow::refreshGroupsWidget()
   items.append(new QTreeWidgetItem(static_cast<QTreeWidget*>(nullptr), QStringList(QLatin1Char('<') + StrConstants::getDisplayAllGroups() + QLatin1Char('>'))));
   m_AllGroupsItem = items.at(0);
   const QStringList*const packageGroups = Package::getPackageGroups();
-  foreach(QString group, *packageGroups)
+  for(QString group: *packageGroups)
   {
     items.append(new QTreeWidgetItem(static_cast<QTreeWidget*>(nullptr), QStringList(group)));
   }
@@ -986,6 +986,23 @@ void MainWindow::buildPackageList()
   if (!ui->twGroups->isEnabled()) ui->twGroups->setEnabled(true);
 }
 
+void MainWindow::refreshOutdatedPackageList()
+{
+  m_packageRepo.setOutdatedData(*m_checkUpdatesNameNewVersion);
+
+  if (m_outdatedStringList->count() < m_checkupdatesStringList->count())
+    m_outdatedStringList = m_checkupdatesStringList;
+
+  m_numberOfOutdatedPackages = m_outdatedStringList->count();
+  if (m_numberOfOutdatedPackages == 0 && m_checkupdatesStringList->count() > 0)
+    m_numberOfOutdatedPackages = m_checkupdatesStringList->count();
+
+  refreshColumnSortSetup();
+  refreshStatusBar();
+  refreshAppIcon();
+}
+
+
 /*
  * Whenever horizontal splitter handler is moved
  */
@@ -1548,12 +1565,19 @@ void MainWindow::refreshTabInfo(bool clearContents, bool neverQuit)
         html += QLatin1String("<tr><th width=\"20%\"></th><th width=\"80%\"></th></tr>");
         html += QLatin1String("<tr><td>") + version + QLatin1String("</td><td>") + package->version + QLatin1String("</td></tr>");
 
-        //if (Package::getForeignRepositoryToolName() == ctn_PACAUR_TOOL)
+        QString aurPkgInfo = QString::fromUtf8(UnixCommand::getAURInformation(pkgName));
+        QString url = Package::getURL(aurPkgInfo);
+        if (!url.isEmpty() && !url.contains(QLatin1String("(null)")))
         {
-          QString url = Package::getAURUrl(pkgName);
-          if (!url.isEmpty() && !url.contains(QLatin1String("(null)")))
+          html += QLatin1String("<tr><td>") + StrConstants::getURL() + QLatin1String("</td><td>") + url + QLatin1String("</td></tr>");
+        }
+
+        if (Package::getForeignRepositoryToolName() != ctn_CHASER_TOOL)
+        {
+          QString licenses= Package::getLicense(aurPkgInfo);
+          if (!licenses.isEmpty() && !licenses.contains(QLatin1String("(null)")))
           {
-            html += QLatin1String("<tr><td>") + StrConstants::getURL() + QLatin1String("</td><td>") + url + QLatin1String("</td></tr>");
+            html += QLatin1String("<tr><td>") + StrConstants::getLicenses() + QLatin1String("</td><td>") + licenses + QLatin1String("</td></tr>");
           }
         }
       }
@@ -1704,7 +1728,7 @@ void MainWindow::refreshTabFiles(bool clearContents, bool neverQuit)
     m_progressWidget->setValue(0);
     m_progressWidget->show();
 
-    foreach ( QString file, fileList )
+    for ( QString file: fileList )
     {
       bool isDir = file.endsWith(QLatin1Char('/'));
       bool isSymLinkToDir = false;
@@ -1845,19 +1869,21 @@ void MainWindow::reapplyPackageFilter()
   if (!isSearchByFileSelected())
   {
     bool isFilterPackageSelected = m_leFilterPackage->hasFocus();
-    QString search = Package::parseSearchString(m_leFilterPackage->text());
-    //QString search = m_leFilterPackage->text();
-    m_packageModel->applyFilter(search);
     int numPkgs = m_packageModel->getPackageCount();
 
-    if (m_leFilterPackage->text() != QLatin1String("")){
+    //QString search = Package::parseSearchString(m_leFilterPackage->text());
+    if (m_leFilterPackage->text() != QLatin1String(""))
+    {
+      QString search = m_leFilterPackage->text();
+      m_packageModel->applyFilter(search);
+
       if (numPkgs > 0) m_leFilterPackage->setFoundStyle();
       else m_leFilterPackage->setNotFoundStyle();
     }
-    else{
+    else
+    {
       m_leFilterPackage->initStyleSheet();
       m_packageModel->applyFilter(QLatin1String(""));
-      refreshStatusBar();
     }
 
     if (isFilterPackageSelected || numPkgs == 0)
@@ -1898,6 +1924,7 @@ void MainWindow::lightPackageFilter()
       {
         m_packageModel->applyFilter(QStringLiteral("ççç"));
         m_leFilterPackage->initStyleSheet();
+        invalidateTabs();
         refreshStatusBar();
       }
       else

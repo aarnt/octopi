@@ -81,6 +81,8 @@ int main(int argc, char *argv[])
   a.installTranslator(&appTranslator);
   a.setQuitOnLastWindowClosed(false);
 
+  unsetenv("TMPDIR");
+
   setenv("COLORTERM", "truecolor", 1);
   setenv("TERM", "xterm-256color", 1);
 

@@ -39,6 +39,11 @@ struct PackageListData{
   QString description;
   QString outatedVersion;
   double  downloadSize;
+  double installedSize;
+  double buildDate;
+  double installDate;
+  QString license;
+  QString installReason;
   int     popularity; //votes
   PackageStatus status;
 
@@ -78,6 +83,24 @@ struct PackageListData{
                                     status(pkgStatus){
   }
 
+  //The latest constructor
+  PackageListData(QString n, QString r, QString v, QString d, PackageStatus pkgStatus,
+                  double downSize, double instSize, double bDate, double iDate, QString licenses, QString iReason, QString outVersion=QLatin1String(""))
+                                    : name(n),
+                                    repository(r),
+                                    version(v),
+                                    description(d),
+                                    outatedVersion(outVersion.trimmed()),
+                                    downloadSize(downSize),
+                                    installedSize(instSize),
+                                    buildDate(bDate),
+                                    installDate(iDate),
+                                    license(licenses),
+                                    installReason(iReason),
+                                    popularity(0),
+                                    status(pkgStatus){
+  }
+
   PackageListData(QString n, QString r, QString v, QString d, PackageStatus pkgStatus, QString outVersion=QLatin1String(""))
                                     : name(n),
                                     repository(r),
@@ -85,6 +108,23 @@ struct PackageListData{
                                     description(d),
                                     outatedVersion(outVersion.trimmed()),
                                     downloadSize(0.0),
+                                    popularity(0),
+                                    status(pkgStatus){
+  }
+
+  PackageListData(QString n, QString r, QString v, QString d, double instSize, double bDate, double iDate,
+                  QString licenses, QString iReason, PackageStatus pkgStatus, QString outVersion=QLatin1String(""))
+                                    : name(n),
+                                    repository(r),
+                                    version(v),
+                                    description(d),
+                                    outatedVersion(outVersion.trimmed()),
+                                    downloadSize(0.0),
+                                    installedSize(instSize),
+                                    buildDate(bDate),
+                                    installDate(iDate),
+                                    license(licenses),
+                                    installReason(iReason),
                                     popularity(0),
                                     status(pkgStatus){
   }
@@ -108,9 +148,10 @@ struct PackageInfoData{
   QString arch;
   QString description;
   QDateTime buildDate;
+  QDateTime installDate;
   QString installReason;
-  double downloadSize;
-  double installedSize;
+  QString downloadSize;
+  QString installedSize;
   QString downloadSizeAsString;
   QString installedSizeAsString;
 };
@@ -141,7 +182,8 @@ class Package{
     static QList<PackageListData> *getForeignPackageList();
     static QList<PackageListData> *getPackageList(const QString &packageName, const QHash<QString, QString> *checkUpdatesOutdatedPackages);
 
-    static QString getAURUrl(const QString& pkgName);
+    //static QString getAURUrl(const QString& pkgName);
+    //static QString getAURLicenses(const QString& pkgName);
     static QList<PackageListData> * getAURPackageList(const QString &searchString);     //AUR methods
     static QList<PackageListData> * getYayPackageList(const QStringList &packageTuples);      //Yay specific AUR pkg list
     static QHash<QString, QString> getAUROutdatedPackagesNameVersion();    //AUR methods
@@ -170,6 +212,7 @@ class Package{
     static QString getArch(const QString &pkgInfo);
     static QString getDescription(const QString &pkgInfo);
     static QDateTime getBuildDate(const QString &pkgInfo);
+    static QDateTime getInstallDate(const QString &pkgInfo);
     static QString getInstallReason(const QString &pkgInfo);
     static double getDownloadSize(const QString &pkgInfo);
     static QString getDownloadSizeAsString(const QString &pkgInfo);

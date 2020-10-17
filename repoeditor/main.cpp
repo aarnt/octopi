@@ -33,6 +33,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 int main( int argc, char *argv[] )
 {
+  unsetenv("TMPDIR");
   QtSingleApplication app( QStringLiteral("Repository Editor - Octopi"), argc, argv );
 
   //If there is already an instance running...

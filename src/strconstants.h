@@ -79,11 +79,14 @@ public:
   static QString getDownloadSize();
   static QString getInstalledSize();
   static QString getInstallReason();
+  static QString getExplicitly();
+  static QString getAsDependency();
   static QString getPackager();
   static QString getPackage();
   static QString getPackages();
   static QString getArchitecture();
   static QString getBuildDate();
+  static QString getInstallDate();
   static QString getDescription();
   static QString getAttention();
   static QString getPartialUpdatesNotSupported();

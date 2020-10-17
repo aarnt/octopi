@@ -76,6 +76,11 @@ public:
     const QString description;
     const QString outdatedVersion;
     const double  downloadSize;
+    const double installedSize;
+    const double buildDate;
+    const double installDate;
+    const QString license;
+    const QString installReason;
     const PackageStatus status;
     const int     popularity; // -1 for non AUR
     const QString popularityString;
@@ -108,8 +113,8 @@ public:
   void setData(const QList<PackageListData>*const listOfPackages, const QSet<QString>& unrequiredPackages);
   void setAURData(const QList<PackageListData>*const listOfForeignPackages, const QSet<QString>& unrequiredPackages);
   void setForeignData(QList<PackageListData>*const listOfForeignPackages, const QStringList& outdatedAURPackages);
+  void setOutdatedData(const QHash<QString, QString> &outdatedPackages);
   void setAUROutdatedData(QList<PackageListData>*const listOfForeignPackages, const QStringList& outdatedAURPackages);
-
   void checkAndSetGroups(const QStringList& listOfGroups);
   void checkAndSetMembersOfGroup(const QString& group, const QStringList& members);
 

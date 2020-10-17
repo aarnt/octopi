@@ -378,6 +378,7 @@ private slots:
 
   void buildPackagesFromGroupList(const QString &group);
   void buildPackageList();
+  void refreshOutdatedPackageList();
   void horizontalSplitterMoved(int pos, int index);
   void metaBuildPackageList();
   void onPackageGroupChanged();
@@ -521,7 +522,7 @@ public:
   {
     static MainWindow *w=nullptr;
     if (w != nullptr) return w;
-    foreach (QWidget *widget, QApplication::topLevelWidgets())
+    for (QWidget *widget: QApplication::topLevelWidgets())
     {
       if (widget->objectName() == QLatin1String("MainWindow"))
         w = dynamic_cast<MainWindow*>(widget);

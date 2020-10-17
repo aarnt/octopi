@@ -50,9 +50,8 @@
  */
 void setNoPasswdUse()
 {
-  QString cmd = QLatin1String("Cmnd_Alias  OCTOPIHELPER = /bin/sh -c unset LC_ALL; "
-      "exec '/usr/lib/octopi/octopi-helper' '-ts', "
-      "/usr/lib/octopi/octopi-helper\n\n");
+  QString cmd = QLatin1String("Cmnd_Alias  OCTOPIHELPER=/bin/sh -c unset LC_ALL; "
+      "exec /usr/lib/octopi/octphelper -ts\n\n");
   cmd += QLatin1String("%wheel ALL=(root) NOPASSWD:SETENV:OCTOPIHELPER\n");
 
   QFile file(QStringLiteral("/etc/sudoers.d/octopihelper"));

@@ -33,14 +33,19 @@ class PackageModel : public QAbstractItemModel, public PackageRepository::IDepen
 
 public:
   // Column indices for Package's treeview
-  static const int ctn_PACKAGE_ICON_COLUMN        = 0;
-  static const int ctn_PACKAGE_NAME_COLUMN        = 1;
-  static const int ctn_PACKAGE_VERSION_COLUMN     = 2;
-  static const int ctn_PACKAGE_REPOSITORY_COLUMN  = 3;
-  static const int ctn_PACKAGE_POPULARITY_COLUMN  = 4;
-  static const int ctn_PACKAGE_SIZE_COLUMN        = 5; //Download size
+  static const int ctn_PACKAGE_ICON_COLUMN                  = 0;
+  static const int ctn_PACKAGE_NAME_COLUMN                  = 1;
+  static const int ctn_PACKAGE_VERSION_COLUMN               = 2;
+  static const int ctn_PACKAGE_REPOSITORY_COLUMN            = 3;
+  static const int ctn_PACKAGE_POPULARITY_COLUMN            = 4;
+  static const int ctn_PACKAGE_LICENSES_COLUMN              = 5;
+  static const int ctn_PACKAGE_SIZE_COLUMN                  = 6;  //Download size
+  static const int ctn_PACKAGE_ISIZE_COLUMN                 = 7;  //Installed size
+  static const int ctn_PACKAGE_BDATE_COLUMN                 = 8;  //Build Date
+  static const int ctn_PACKAGE_IDATE_COLUMN                 = 9;  //Install Date
+  static const int ctn_PACKAGE_INSTALL_REASON_COLUMN        = 10; //Explicitly installed or Installed as dependency
   // Pseudo Column indices for additional filter criterias
-  static const int ctn_PACKAGE_DESCRIPTION_FILTER_NO_COLUMN = 6;
+  static const int ctn_PACKAGE_DESCRIPTION_FILTER_NO_COLUMN = 11;
 
 public:
   explicit PackageModel(const PackageRepository& repo, QObject* parent = nullptr);

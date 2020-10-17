@@ -1,3 +1,14 @@
+0.11 (dev)
+  Added "Install Date" at Info tab.
+  Added "Licenses" at Info tab while in AUR mode.
+  Added option to display "Licenses", "Installed Size", "Build Date", "Install Date" and
+	"Install Reason" columns in the package list.
+  Added a faster refresh package list code after checking for updates.
+  Updated PKGBUILD file following MatMoul's suggestion.
+  Removed unused speedup service.
+  BugFix: unset TMPDIR environment variable on every Octo tool startup 
+	(to avoid "octopi-helper[aborted]: Couldn't attach to memory" errors).
+
 0.10.0
   Added a built-in default priviledge escalation tool: "octopi-sudo" as a slightly modified version 
 	of "lxqt-sudo" project (version 0.15.0). It's the only escalation tool supported!

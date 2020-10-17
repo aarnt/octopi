@@ -64,6 +64,8 @@ int main(int argc, char *argv[])
     }
   }
 
+  unsetenv("TMPDIR");
+
   QtSingleApplication app( StrConstants::getApplicationName(), argc, argv );
 
   if (app.isRunning())
@@ -107,8 +109,6 @@ int main(int argc, char *argv[])
 
     return 0;
   }
-  /*else if (UnixCommand::isAppRunning(QStringLiteral("octopi"), false))
-    return 0;*/
 
   //This sends a message just to enable the socket-based QtSingleApplication engine
   app.sendMessage(QStringLiteral("RAISE"));

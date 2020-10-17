@@ -115,6 +115,17 @@ const QString ctn_KEY_PACKAGE_ICON_COLUMN_WIDTH(QStringLiteral("Package_Icon_Col
 const QString ctn_KEY_PACKAGE_NAME_COLUMN_WIDTH(QStringLiteral("Package_Name_Column_Width"));
 const QString ctn_KEY_PACKAGE_VERSION_COLUMN_WIDTH(QStringLiteral("Package_Version_Column_Width"));
 const QString ctn_KEY_PACKAGE_REPOSITORY_COLUMN_WIDTH(QStringLiteral("Package_Repository_Column_Width"));
+const QString ctn_KEY_PACKAGE_LICENSES_COLUMN_WIDTH(QStringLiteral("Package_Licenses_Column_Width"));
+const QString ctn_KEY_PACKAGE_DOWNLOAD_SIZE_COLUMN_WITH(QStringLiteral("Package_Download_Size_Column_Width"));
+const QString ctn_KEY_PACKAGE_INSTALLED_SIZE_COLUMN_WITH(QStringLiteral("Package_Installed_Size_Column_Width"));
+const QString ctn_KEY_PACKAGE_BUILD_DATE_COLUMN_WITH(QStringLiteral("Package_Build_Date_Column_Width"));
+const QString ctn_KEY_PACKAGE_INSTALL_DATE_COLUMN_WITH(QStringLiteral("Package_Install_Date_Column_Width"));
+const QString ctn_KEY_PACKAGE_INSTALL_REASON_COLUMN_WITH(QStringLiteral("Package_Install_Reason_Column_Width"));
+const QString ctn_KEY_SHOW_PACKAGE_LICENSES_COLUMN(QStringLiteral("Show_Package_Licenses_Column"));
+const QString ctn_KEY_SHOW_PACKAGE_INSTALLED_SIZE_COLUMN(QStringLiteral("Show_Package_Installed_Size_Column"));
+const QString ctn_KEY_SHOW_PACKAGE_BUILD_DATE_COLUMN(QStringLiteral("Show_Package_Build_Date_Column"));
+const QString ctn_KEY_SHOW_PACKAGE_INSTALL_DATE_COLUMN(QStringLiteral("Show_Package_Install_Date_Column"));
+const QString ctn_KEY_SHOW_PACKAGE_INSTALL_REASON_COLUMN(QStringLiteral("Show_Package_Install_Reason_Column"));
 const QString ctn_KEY_SU_TOOL(QStringLiteral("SU_Tool_Name"));
 const QString ctn_KEY_TERMINAL(QStringLiteral("Terminal"));
 const QString ctn_KEY_TERMINAL_COLOR_SCHEME(QStringLiteral("Terminal_Color_Scheme"));
@@ -174,11 +185,9 @@ const int ctn_RUN_IN_TERMINAL(328);
 const QString ctn_NO_SU_COMMAND(QStringLiteral("none"));
 const QString ctn_ROOT_SH(QStringLiteral("/bin/sh -c "));
 
-const QString ctn_LXQTSU(QStringLiteral("lxqt-sudo"));
 const QString ctn_OCTOPISUDO(QStringLiteral("/usr/lib/octopi/octopi-sudo"));
 const QString ctn_OCTOPISUDO_PARAMS(QStringLiteral("-d"));
 
-const QString ctn_KDESU(QStringLiteral("kdesu"));
 const QString ctn_KDE_DESKTOP(QStringLiteral("kwin"));
 const QString ctn_KDE_X11_DESKTOP(QStringLiteral("kwin_x11"));
 const QString ctn_KDE_WAYLAND_DESKTOP(QStringLiteral("kwin_wayland"));
@@ -195,9 +204,6 @@ const QString ctn_TDE_DESKTOP(QStringLiteral("twin"));
 const QString ctn_TDE_EDITOR(QStringLiteral("kwrite"));
 const QString ctn_TDE_FILE_MANAGER(QStringLiteral("kfmclient"));
 const QString ctn_TDE_TERMINAL(QStringLiteral("konsole"));
-
-const QString ctn_GKSU_1(QStringLiteral("/usr/libexec/gksu"));
-const QString ctn_GKSU_2(QStringLiteral("gksu"));
 
 const QString ctn_ANTERGOS_FILE_MANAGER(QStringLiteral("nautilus"));
 
@@ -252,12 +258,11 @@ enum EditOptions { ectn_EDIT_AS_ROOT, ectn_EDIT_AS_NORMAL_USER };
 //Octopi-notifier related  -------------------------------------------------------------------------------
 
 const QString ctn_CHECKUPDATES_BINARY = QStringLiteral("/usr/bin/checkupdates");
-//const QString ctn_EXPAC_BINARY = "/usr/bin/expac";
 enum ExecOpt { ectn_NORMAL_EXEC_OPT, ectn_SYSUPGRADE_EXEC_OPT, ectn_SYSUPGRADE_NOCONFIRM_EXEC_OPT, ectn_AUR_UPGRADE_EXEC_OPT };
 
 //Octopi-helper related ----------------------------------------------------------------------------------
 
-const QString ctn_OCTOPI_HELPER_VERSION = QStringLiteral("0.10.0");
+const QString ctn_OCTOPI_HELPER_VERSION = QStringLiteral("0.11 (dev)");
 const QString ctn_OCTOPI_HELPER_NAME(QStringLiteral("octphelper"));
 const QString ctn_OCTOPI_HELPER_PATH(QStringLiteral("/usr/lib/octopi/octphelper"));
 
