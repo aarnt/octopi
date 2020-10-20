@@ -98,7 +98,14 @@ bool RepoConf::hasAnyChanges()
   else
   {
     QString contents = QString::fromUtf8(confFile.readAll().trimmed());
-    res=(contents.toLatin1() != toString().toLatin1());
+    QByteArray file=contents.toLatin1();
+    QByteArray repoeditor=toString().toLatin1();
+    if (file != repoeditor)
+    {
+      int cFile=file.count('\n');
+      int cRepoeditor=repoeditor.count('\n');
+      if (file.size() != (repoeditor.size() - (cRepoeditor-cFile))) return true;
+    }
   }
 
   return res;
