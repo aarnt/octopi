@@ -12,7 +12,7 @@ add_subdirectory(notifier)
 add_subdirectory(cachecleaner)
 add_subdirectory(repoeditor)
 
-find_package(Qt5 REQUIRED COMPONENTS Core Gui Network Xml Widgets LinguistTools)
+find_package(Qt5 5.14.0 REQUIRED COMPONENTS Core Gui Network Xml Widgets LinguistTools)
 find_package(qtermwidget5 REQUIRED)
 find_package(alpm_octopi_utils REQUIRED)
 
