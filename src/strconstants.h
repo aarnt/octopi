@@ -131,6 +131,7 @@ public:
   static QString getIsUpToDate();
   static QString getSysInfoGenerated();
   static QString getSystemUpgradeMsg();
+  static QString getChangingInstallReason();
   static QString getInstallingPackages();
   static QString getRemovingPackages();
   static QString getRemovingAndInstallingPackages();
@@ -188,6 +189,7 @@ public:
   static QString getRemove();
   static QString getInstall();
   static QString getReinstall();
+  static QString getChangeInstallReason();
   static QString getUpdate();
   static QString getRemoveItem();
   static QString getRemoveItems();

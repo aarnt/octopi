@@ -698,6 +698,10 @@ void PacmanExec::onStarted()
   {
     prepareTextToPrint(QLatin1String("<b>") + StrConstants::getRemovingPackages() + QLatin1String("</b><br><br>"), ectn_DONT_TREAT_STRING, ectn_DONT_TREAT_URL_LINK);
   }
+  else if (m_commandExecuting == ectn_CHANGE_INSTALL_REASON)
+  {
+    prepareTextToPrint(QLatin1String("<b>") + StrConstants::getChangingInstallReason() + QLatin1String("</b><br><br>"), ectn_DONT_TREAT_STRING, ectn_DONT_TREAT_URL_LINK);
+  }
   else if (m_commandExecuting == ectn_INSTALL)
   {
     prepareTextToPrint(QLatin1String("<b>") + StrConstants::getInstallingPackages() + QLatin1String("</b><br><br>"), ectn_DONT_TREAT_STRING, ectn_DONT_TREAT_URL_LINK);
@@ -918,6 +922,40 @@ void PacmanExec::doMirrorCheck()
 {
   m_commandExecuting = ectn_MIRROR_CHECK;
   m_unixCommand->executeCommandAsNormalUser(ctn_MIRROR_CHECK_APP, QStringList());
+}
+
+/*
+ * Calls pacman to change the "Install Reason" flag of each pkg in the list.
+ * If the Install Reason was as dependency, change to explicitly.
+ * If the Install Reason was explicitly, change to as dependency.
+ */
+void PacmanExec::doChangeInstallReason(const QHash<QString, QString> &listOfPackages)
+{
+  QString command;
+  m_lastCommandList.clear();
+
+  if (isDatabaseLocked())
+  {
+    command += QLatin1String("rm ") + ctn_PACMAN_DATABASE_LOCK_FILE + QLatin1String("; ");
+  }
+
+  QHash<QString, QString>::const_iterator i = listOfPackages.constBegin();
+  while(i != listOfPackages.constEnd())
+  {
+    if (i.value()==StrConstants::getExplicitly())
+    {
+      command += QLatin1String("pacman -D --asdeps ") + i.key() + QLatin1String("; ");
+    }
+    else if (i.value()==StrConstants::getAsDependency())
+    {
+      command += QLatin1String("pacman -D --asexplicit ") + i.key() + QLatin1String("; ");
+    }
+
+    ++i;
+  }
+
+  m_commandExecuting = ectn_CHANGE_INSTALL_REASON;
+  m_unixCommand->executeCommandWithSharedMemHelper(command, m_sharedMemory);
 }
 
 /*

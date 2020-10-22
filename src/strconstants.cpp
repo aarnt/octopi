@@ -534,6 +534,10 @@ QString StrConstants::getSystemUpgradeMsg(){
   return QObject::tr("Starting full system upgrade...");
 }
 
+QString StrConstants::getChangingInstallReason(){
+  return QObject::tr("Changing the install reason of selected packages...");
+}
+
 QString StrConstants::getInstallingPackages(){
   return QObject::tr("Installing selected packages...");
 }
@@ -774,6 +778,11 @@ QString StrConstants::getInstall(){
 QString StrConstants::getReinstall()
 {
   return QObject::tr("Reinstall");
+}
+
+QString StrConstants::getChangeInstallReason()
+{
+  return QObject::tr("Change Install Reason");
 }
 
 QString StrConstants::getUpdate()

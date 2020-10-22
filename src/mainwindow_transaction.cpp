@@ -343,6 +343,52 @@ void MainWindow::insertGroupIntoRemovePackage()
 }
 
 /*
+ * Whenever user selects a bunch of packages from the main package list to change their "Install Reason"
+ */
+void MainWindow::onChangeInstallReason()
+{
+  QHash<QString, QString> pkgList;
+  QModelIndexList selectedRows = ui->tvPackages->selectionModel()->selectedRows();
+
+  for(QModelIndex item: selectedRows)
+  {
+    const PackageRepository::PackageData*const package = m_packageModel->getData(item);
+    if (package == nullptr) {
+      assert(false);
+      continue;
+    }
+
+    pkgList.insert(package->name, package->installReason);
+  }
+
+  doChangeInstallReason(pkgList);
+}
+
+/*
+ * Changes "Install Reason" field for every package in listOfTargets (uses "pacman -D")
+ */
+void MainWindow::doChangeInstallReason(const QHash<QString, QString> &listOfTargets)
+{
+  disableTransactionActions();
+  clearTabOutput();
+
+  m_pacmanExec = new PacmanExec();
+  m_pacmanExec->setSharedMemory(m_sharedMemory);
+  if (m_debugInfo) m_pacmanExec->setDebugMode(true);
+
+  QObject::connect(m_pacmanExec, SIGNAL( finished ( int, QProcess::ExitStatus )),
+                   this, SLOT( pacmanProcessFinished(int, QProcess::ExitStatus) ));
+
+  QObject::connect(m_pacmanExec, SIGNAL(percentage(int)), this, SLOT(incrementPercentage(int)));
+  QObject::connect(m_pacmanExec, SIGNAL(textToPrintExt(QString)), this, SLOT(outputText(QString)));
+  QObject::connect(m_pacmanExec, SIGNAL(canStopTransaction(bool)), this, SLOT(onCanStopTransaction(bool)));
+  QObject::connect(m_pacmanExec, SIGNAL(commandToExecInQTermWidget(QString)), this, SLOT(onExecCommandInTabTerminal(QString)));
+
+  m_commandExecuting = ectn_CHANGE_INSTALL_REASON;
+  m_pacmanExec->doChangeInstallReason(listOfTargets);
+}
+
+/*
  * Inserts the current selected packages for installation into the Transaction Treeview
  * This is the SLOT, it needs to call insertInstallPackageIntoTransaction(PackageName) to work!
  */

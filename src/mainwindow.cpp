@@ -1124,7 +1124,7 @@ void MainWindow::execContextMenuPackages(QPoint point)
     }
 
     bool allInstallable = true;
-    bool allRemovable = true;    
+    bool allRemovable = true;
     int numberOfSelPkgs = selectedRows.count();
     int numberOfAUR = 0;
     int numberOfOutdated = 0;
@@ -1220,6 +1220,7 @@ void MainWindow::execContextMenuPackages(QPoint point)
     if (allRemovable)
     {
       menu->addAction(ui->actionRemove);
+      menu->addAction(m_actionChangeInstallReason);
 
       if (!isAllGroupsSelected() && !isAURGroupSelected())
       {

@@ -215,6 +215,7 @@ private:
   QAction *m_actionStopTransaction;
   QAction *m_actionAURVote;
   QAction *m_actionAURUnvote;
+  QAction *m_actionChangeInstallReason;
   QToolButton *m_toolButtonStopTransaction;
 
   //Toggles use of AUR tool
@@ -426,6 +427,7 @@ private slots:
   void doRemove();
   void doRemoveAndInstall();
   void doInstall();
+  void doChangeInstallReason(const QHash<QString, QString> &listOfTargets);
   void doCheckUpdates();
   void doMirrorCheck();
   void doInstallAURPackage();
@@ -475,6 +477,7 @@ private slots:
   void refreshDistroNews(bool searchForLatestNews = true, bool gotoNewsTab = true);
   void postRefreshDistroNews();
 
+  void onChangeInstallReason();
   void onPacmanDatabaseChanged();
   void onHelpUsage();
   QString generateHelpUsageHtmlText();

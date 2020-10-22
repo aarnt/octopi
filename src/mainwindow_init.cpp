@@ -873,6 +873,10 @@ void MainWindow::initActions()
   ui->actionInstallLocalPackage->setIcon(IconHelper::getIconFolder());
   ui->actionOpenDirectory->setIcon(IconHelper::getIconFolder());
 
+  m_actionChangeInstallReason = new QAction(this);
+  m_actionChangeInstallReason->setText(StrConstants::getChangeInstallReason());
+
+  connect(m_actionChangeInstallReason, SIGNAL(triggered()), this, SLOT(onChangeInstallReason()));
   connect(ui->actionUseInstantSearch, SIGNAL(triggered(bool)), this, SLOT(toggleInstantSearch()));
   connect(ui->tvPackages->selectionModel(), SIGNAL(selectionChanged(QItemSelection,QItemSelection)),
           this, SLOT(invalidateTabs()));

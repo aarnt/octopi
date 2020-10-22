@@ -103,6 +103,8 @@ public:
   void doSystemUpgrade();
   void doSystemUpgradeInTerminal(CommandExecuting additionalCommand = ectn_NONE);
 
+  void doChangeInstallReason(const QHash<QString, QString> &listOfPackages);
+
   //AUR
   void doAURUpgrade(const QString &listOfPackages);
   void doAURInstall(const QString &listOfPackages);
