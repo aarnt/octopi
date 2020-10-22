@@ -10,6 +10,7 @@
 	(to avoid "octopi-helper[aborted]: Couldn't attach to memory" errors).
   BugFix: Pressing ESC in repoeditor could ask if you wanted to save your changes even
 	if there were no changes made.
+  BugFix: Running Notifier within a DE session would lead to a "Suspicious execution method" error.
 
 0.10.0
   Added a built-in default priviledge escalation tool: "octopi-sudo" as a slightly modified version 
