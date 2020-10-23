@@ -961,7 +961,7 @@ void PacmanExec::doChangeInstallReason(const QHash<QString, QString> &listOfPack
 /*
  * Calls pacman to install given packages and returns output to UI
  */
-void PacmanExec::doInstall(const QString &listOfPackages)
+void PacmanExec::doInstall(const QString &listOfPackages, const QString &listOfDeps)
 {
   QString command;
 
@@ -971,6 +971,8 @@ void PacmanExec::doInstall(const QString &listOfPackages)
   }
 
   command += QLatin1String("pacman -S --noconfirm ") + listOfPackages;
+  if (!listOfDeps.isEmpty())
+    command += QLatin1String("; pacman -S --noconfirm --asdeps ") + listOfDeps;
 
   m_lastCommandList.clear();
 
@@ -980,6 +982,10 @@ void PacmanExec::doInstall(const QString &listOfPackages)
   }
 
   m_lastCommandList.append(QLatin1String("pacman -S ") + listOfPackages + QLatin1Char(';'));
+
+  if (!listOfDeps.isEmpty())
+    m_lastCommandList.append(QLatin1String("pacman -S --asdeps ") + listOfDeps + QLatin1Char(';'));
+
   m_lastCommandList.append(QStringLiteral("echo -e;"));
   m_lastCommandList.append(QLatin1String("read -n 1 -p \"") + StrConstants::getPressAnyKey() + QLatin1Char('"'));
 
@@ -990,7 +996,7 @@ void PacmanExec::doInstall(const QString &listOfPackages)
 /*
  * Calls pacman to install given packages inside a terminal
  */
-void PacmanExec::doInstallInTerminal(const QString &listOfPackages)
+void PacmanExec::doInstallInTerminal(const QString &listOfPackages, const QString &listOfPackageDeps)
 {
   m_lastCommandList.clear();
 
@@ -1000,6 +1006,10 @@ void PacmanExec::doInstallInTerminal(const QString &listOfPackages)
   }
 
   m_lastCommandList.append(QLatin1String("pacman -S ") + listOfPackages);
+
+  if (!listOfPackageDeps.isEmpty())
+    m_lastCommandList.append(QStringLiteral("pacman -S --asdeps ") + listOfPackageDeps);
+
   m_lastCommandList.append(QStringLiteral("echo -e"));
   m_lastCommandList.append(QLatin1String("read -n 1 -p \"") + StrConstants::getPressAnyKey() + QLatin1Char('"'));
   m_commandExecuting = ectn_RUN_IN_TERMINAL;
@@ -1151,7 +1161,7 @@ void PacmanExec::doRemoveInTerminal(const QString &listOfPackages)
 /*
  * Calls pacman to remove and install given packages and returns output to UI
  */
-void PacmanExec::doRemoveAndInstall(const QString &listOfPackagestoRemove, const QString &listOfPackagestoInstall)
+void PacmanExec::doRemoveAndInstall(const QString &listOfPackagestoRemove, const QString &listOfPackagestoInstall, const QString &listOfPackagestoInstallDeps)
 {
   QString command;
 
@@ -1162,6 +1172,9 @@ void PacmanExec::doRemoveAndInstall(const QString &listOfPackagestoRemove, const
 
   command += QLatin1String("pacman -R --noconfirm ") + listOfPackagestoRemove + QLatin1String("; pacman -S --noconfirm ") + listOfPackagestoInstall;
 
+  if (!listOfPackagestoInstallDeps.isEmpty())
+    command += QLatin1String("; pacman -S --noconfirm --asdeps ") + listOfPackagestoInstallDeps;
+
   m_lastCommandList.clear();
 
   if (isDatabaseLocked())
@@ -1171,6 +1184,10 @@ void PacmanExec::doRemoveAndInstall(const QString &listOfPackagestoRemove, const
 
   m_lastCommandList.append(QLatin1String("pacman -R ") + listOfPackagestoRemove + QLatin1Char(';'));
   m_lastCommandList.append(QLatin1String("pacman -S ") + listOfPackagestoInstall + QLatin1Char(';'));
+
+  if (!listOfPackagestoInstallDeps.isEmpty())
+    m_lastCommandList.append(QLatin1String("pacman -S --asdeps ") + listOfPackagestoInstallDeps);
+
   m_lastCommandList.append(QStringLiteral("echo -e;"));
   m_lastCommandList.append(QLatin1String("read -n 1 -p \"") + StrConstants::getPressAnyKey() + QLatin1Char('"'));
 
@@ -1181,7 +1198,7 @@ void PacmanExec::doRemoveAndInstall(const QString &listOfPackagestoRemove, const
 /*
  * Calls pacman to remove and install given packages inside a terminal
  */
-void PacmanExec::doRemoveAndInstallInTerminal(const QString &listOfPackagestoRemove, const QString &listOfPackagestoInstall)
+void PacmanExec::doRemoveAndInstallInTerminal(const QString &listOfPackagestoRemove, const QString &listOfPackagestoInstall, const QString &listOfPackagesToInstallDeps)
 {
   m_lastCommandList.clear();
 
@@ -1192,6 +1209,10 @@ void PacmanExec::doRemoveAndInstallInTerminal(const QString &listOfPackagestoRem
 
   m_lastCommandList.append(QLatin1String("pacman -R ") + listOfPackagestoRemove);
   m_lastCommandList.append(QLatin1String("pacman -S ") + listOfPackagestoInstall);
+
+  if (!listOfPackagesToInstallDeps.isEmpty())
+    m_lastCommandList.append(QLatin1String("pacman -S --asdeps ") + listOfPackagesToInstallDeps);
+
   m_lastCommandList.append(QStringLiteral("echo -e"));
   m_lastCommandList.append(QLatin1String("read -n 1 -p \"") + StrConstants::getPressAnyKey() + QLatin1Char('"'));
 

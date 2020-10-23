@@ -156,13 +156,15 @@ void MainWindow::insertRemovePackageIntoTransaction(const QString &pkgName)
 
 /*
  * Inserts the given package into the Install parent item of the Transaction treeview
+ * If flag "isDep" is true, the package is marked for installation as dependency with "pacman -S --asdeps"
  */
-void MainWindow::insertInstallPackageIntoTransaction(const QString &pkgName)
+void MainWindow::insertInstallPackageIntoTransaction(const QString &pkgName, bool isDep)
 {
   QTreeView *tvTransaction =
       ui->twProperties->widget(ctn_TABINDEX_ACTIONS)->findChild<QTreeView*>(QStringLiteral("tvTransaction"));
   QStandardItem * siInstallParent = getInstallTransactionParentItem();
   QStandardItem * siPackageToInstall = new QStandardItem(IconHelper::getIconInstallItem(), pkgName);
+  if (isDep) siPackageToInstall->setStatusTip(QStringLiteral("isDep"));
   QStandardItem * siRemoveParent = getRemoveTransactionParentItem();
   QStandardItemModel *sim = qobject_cast<QStandardItemModel *>(siInstallParent->model());
   QList<QStandardItem *> foundItems = sim->findItems(pkgName, Qt::MatchRecursive | Qt::MatchExactly);
@@ -235,18 +237,22 @@ QString MainWindow::getTobeRemovedPackages()
 
 /*
  * Retrieves the list of all packages scheduled to be installed
+ * The returned QHash contains the name of the package and if it needs to be installed "--asdeps"
  */
-QString MainWindow::getTobeInstalledPackages()
+QHash<QString, bool> MainWindow::getTobeInstalledPackages()
 {
   QStandardItem * siInstall = getInstallTransactionParentItem();
-  QString res;
+  QHash<QString, bool> res;
+  QString aux;
 
   for(int c=0; c < siInstall->rowCount(); c++)
   {
-    res += siInstall->child(c)->text() + QLatin1Char(' ');
+    aux=siInstall->child(c)->text();
+    aux=aux.trimmed();
+    res.insert(aux, siInstall->child(c)->statusTip()==QStringLiteral("isDep"));
   }
 
-  res = res.trimmed();
+  //res = res.trimmed();
   return res;
 }
 
@@ -513,7 +519,7 @@ void MainWindow::insertIntoInstallPackageOptDeps(const QString &packageName)
 
       for(QString pkg: selectedPackages)
       {
-        insertInstallPackageIntoTransaction(pkg);
+        insertInstallPackageIntoTransaction(pkg, true);
       }
     }
 
@@ -1066,6 +1072,8 @@ void MainWindow::doSystemUpgrade(SystemUpgradeOptions systemUpgradeOptions)
 void MainWindow::doRemoveAndInstall()
 {
   QString listOfRemoveTargets = getTobeRemovedPackages();
+  QString listOfInstallTargets;
+  QString listOfInstallDeps;
   QStringList *pRemoveTargets = Package::getTargetRemovalList(listOfRemoveTargets, m_removeCommand);
   QString removeList;
   QString allLists;
@@ -1080,9 +1088,26 @@ void MainWindow::doRemoveAndInstall()
     removeList = removeList + StrConstants::getRemove() + QLatin1Char(' ')  + target + QLatin1Char('\n');
   }
 
-  QString listOfInstallTargets = getTobeInstalledPackages();
+  QHash<QString, bool> listToBeInst = getTobeInstalledPackages();
+  listOfInstallTargets = listToBeInst.keys().join(QStringLiteral(" "));
   QList<PackageListData> *installTargets = Package::getTargetUpgradeList(listOfInstallTargets);
   QString installList;
+
+  listOfInstallTargets.clear();
+  QHash<QString, bool>::const_iterator i = listToBeInst.constBegin();
+  while (i != listToBeInst.constEnd())
+  {
+    if (i.value() == true)
+    {
+      listOfInstallDeps += i.key() + QLatin1Char(' ');
+    }
+    else
+    {
+      listOfInstallTargets += i.key() + QLatin1Char(' ');
+    }
+
+    ++i;
+  }
 
   double totalDownloadSize = 0;
   for(PackageListData installTarget: *installTargets)
@@ -1176,12 +1201,12 @@ void MainWindow::doRemoveAndInstall()
     if (result == QDialogButtonBox::Yes)
     {
       m_commandExecuting = ectn_REMOVE_INSTALL;
-      m_pacmanExec->doRemoveAndInstall(listOfRemoveTargets, listOfInstallTargets);
+      m_pacmanExec->doRemoveAndInstall(listOfRemoveTargets, listOfInstallTargets, listOfInstallDeps);
     }
     else if (result == QDialogButtonBox::AcceptRole)
     {
       m_commandExecuting = ectn_RUN_IN_TERMINAL;
-      m_pacmanExec->doRemoveAndInstallInTerminal(listOfRemoveTargets, listOfInstallTargets);
+      m_pacmanExec->doRemoveAndInstallInTerminal(listOfRemoveTargets, listOfInstallTargets, listOfInstallDeps);
     }
   }
 }
@@ -1580,10 +1605,30 @@ bool MainWindow::hasPartialUpgrade(QStringList &pkgsToInstall)
  */
 void MainWindow::doInstall()
 {
-  QString listOfTargets = getTobeInstalledPackages();
-  QList<PackageListData> *targets = Package::getTargetUpgradeList(listOfTargets); 
+  QString listOfTargets;
+  QString listOfDeps;
   QString list;
   QStringList pkgsToInstall;
+
+  QHash<QString, bool> listToBeInst = getTobeInstalledPackages();
+  listOfTargets = listToBeInst.keys().join(QStringLiteral(" "));
+  QList<PackageListData> *targets = Package::getTargetUpgradeList(listOfTargets);
+
+  listOfTargets.clear();
+  QHash<QString, bool>::const_iterator i = listToBeInst.constBegin();
+  while (i != listToBeInst.constEnd())
+  {
+    if (i.value() == true)
+    {
+      listOfDeps += i.key() + QLatin1Char(' ');
+    }
+    else
+    {
+      listOfTargets += i.key() + QLatin1Char(' ');
+    }
+
+    ++i;
+  }
 
   double totalDownloadSize = 0;
   for(PackageListData target: *targets)
@@ -1651,12 +1696,12 @@ void MainWindow::doInstall()
     if (result == QDialogButtonBox::Yes)
     {
       m_commandExecuting = ectn_INSTALL;
-      m_pacmanExec->doInstall(listOfTargets);
+      m_pacmanExec->doInstall(listOfTargets, listOfDeps);
     }
     else if (result == QDialogButtonBox::AcceptRole)
     {
       m_commandExecuting = ectn_RUN_IN_TERMINAL;
-      m_pacmanExec->doInstallInTerminal(listOfTargets);
+      m_pacmanExec->doInstallInTerminal(listOfTargets, listOfDeps);
     }
   }
 }

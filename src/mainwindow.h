@@ -297,12 +297,12 @@ private:
   bool isPackageInInstallTransaction(const QString &pkgName);
   bool isPackageInRemoveTransaction(const QString &pkgName);
   void insertRemovePackageIntoTransaction(const QString &pkgName);
-  void insertInstallPackageIntoTransaction(const QString &pkgName);
+  void insertInstallPackageIntoTransaction(const QString &pkgName, bool isDep=false);
   void removePackagesFromRemoveTransaction();
   void removePackagesFromInstallTransaction();
   int getNumberOfTobeRemovedPackages();
   QString getTobeRemovedPackages();
-  QString getTobeInstalledPackages();
+  QHash<QString, bool> getTobeInstalledPackages();
   void initTabTransaction();
 
   //Tab Output related methods

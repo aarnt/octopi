@@ -557,11 +557,17 @@ QByteArray UnixCommand::getPackagesFromGroup(const QString &groupName)
  */
 QByteArray UnixCommand::getTargetUpgradeList(const QString &pkgName)
 {
-  QStringList args;
+  QStringList args, pkgs;
 
   if(!pkgName.isEmpty())
   {
-    args << QStringLiteral("--print-format") << QStringLiteral("%n %v %s") << QStringLiteral("-Sp") << pkgName;
+    args << QStringLiteral("--print-format") << QStringLiteral("%n %v %s") << QStringLiteral("-Sp");
+    pkgs = pkgName.split(QStringLiteral(" "), Qt::SkipEmptyParts);
+
+    for (QString p: pkgs)
+    {
+      args << p;
+    }
   }
   else
   {

@@ -88,8 +88,8 @@ public:
   void doMirrorCheck();
 
   //PACMAN
-  void doInstall(const QString &listOfPackages);
-  void doInstallInTerminal(const QString &listOfPackages);
+  void doInstall(const QString &listOfPackages, const QString &listOfPackageDeps);
+  void doInstallInTerminal(const QString &listOfPackages, const QString &listOfPackageDeps);
 
   void doInstallLocal(const QString &listOfPackages);
   void doInstallLocalInTerminal(const QString &listOfPackages);
@@ -97,8 +97,8 @@ public:
   void doRemove(const QString &listOfPackages);
   void doRemoveInTerminal(const QString &listOfPackages);
 
-  void doRemoveAndInstall(const QString &listOfPackagestoRemove, const QString &listOfPackagestoInstall);
-  void doRemoveAndInstallInTerminal(const QString &listOfPackagestoRemove, const QString &listOfPackagestoInstall);
+  void doRemoveAndInstall(const QString &listOfPackagestoRemove, const QString &listOfPackagestoInstall, const QString &listOfPackagesToInstallDeps);
+  void doRemoveAndInstallInTerminal(const QString &listOfPackagestoRemove, const QString &listOfPackagestoInstall, const QString &listOfPackagesToInstallDeps);
 
   void doSystemUpgrade();
   void doSystemUpgradeInTerminal(CommandExecuting additionalCommand = ectn_NONE);
