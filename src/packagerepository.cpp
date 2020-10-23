@@ -163,6 +163,10 @@ void PackageRepository::setOutdatedData(const QHash<QString, QString> &outdatedP
       pld->description=(*it)->description;
       pld->outatedVersion=(*it)->version;
       pld->version=outdatedPackages.value((*it)->name);
+
+      if (pld->version == pld->outatedVersion)
+        pld->outatedVersion=(*it)->outdatedVersion;
+
       pld->repository=(*it)->repository;
       pld->downloadSize=(*it)->downloadSize;
       pld->license=(*it)->license;
