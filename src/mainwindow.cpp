@@ -1220,7 +1220,7 @@ void MainWindow::execContextMenuPackages(QPoint point)
     if (allRemovable)
     {
       menu->addAction(ui->actionRemove);
-      menu->addAction(m_actionChangeInstallReason);
+      if (!isAURGroupSelected()) menu->addAction(m_actionChangeInstallReason);
 
       if (!isAllGroupsSelected() && !isAURGroupSelected())
       {

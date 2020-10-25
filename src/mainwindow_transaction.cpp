@@ -353,6 +353,9 @@ void MainWindow::insertGroupIntoRemovePackage()
  */
 void MainWindow::onChangeInstallReason()
 {
+  /*bool isAURSelected=isAURGroupSelected();
+  PackageInfoData pkgInfo;
+  QString installReason;*/
   QHash<QString, QString> pkgList;
   QModelIndexList selectedRows = ui->tvPackages->selectionModel()->selectedRows();
 
@@ -364,7 +367,22 @@ void MainWindow::onChangeInstallReason()
       continue;
     }
 
-    pkgList.insert(package->name, package->installReason);
+    /*if (isAURSelected)
+    {
+      pkgInfo=Package::getInformation(package->name, true);
+      if (pkgInfo.installReason == QStringLiteral("Explicitly installed"))
+      {
+        installReason=QStringLiteral("Explicitly");
+      }
+      else if (pkgInfo.installReason == QStringLiteral("Installed as a dependency for another package"))
+      {
+        installReason=QStringLiteral("As dependency");
+      }
+
+      pkgList.insert(package->name, installReason);
+    }
+    else*/
+      pkgList.insert(package->name, package->installReason);
   }
 
   doChangeInstallReason(pkgList);

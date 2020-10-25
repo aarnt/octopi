@@ -220,7 +220,7 @@ void MainWindow::AURToolSelected()
 
   bool lightPackageFilterConnected = false;
   static QStandardItemModel emptyModel;
-  if (UnixCommand::getLinuxDistro() != ectn_CHAKRA) savePackageColumnWidths();
+  //if (UnixCommand::getLinuxDistro() != ectn_CHAKRA) savePackageColumnWidths();
   refreshTabInfo(true);
   refreshTabFiles(true);
   m_progressWidget->setRange(0, 100);
