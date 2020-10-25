@@ -37,8 +37,9 @@ QString StrConstants::getApplicationCliHelp(){
  QString str = getApplicationName() + QLatin1String(" - ") + getApplicationVersion() + QLatin1String("\n") +
       QLatin1String("\n") + getHelpUsage() + QLatin1String("\n\n") +
       QLatin1String("\t-version: ") + QObject::tr("show application version.") + QLatin1String("\n") +
-      QLatin1String("\t-removecmd <Remove-command>: ") + QObject::tr("use a different remove command (ex: -removecmd R).") + QLatin1String("\n") +
-      QLatin1String("\t-sysupgrade: ") + QObject::tr("force a system upgrade at startup.") + QLatin1String("\n");
+      //QLatin1String("\t-removecmd <Remove-command>: ") + QObject::tr("use a different remove command (ex: -removecmd R).") + QLatin1String("\n") +
+      QLatin1String("\t-sysupgrade: ") + QObject::tr("force a system upgrade at startup.") + QLatin1String("\n") +
+      QLatin1String("\t-sysupgrade-noconfirm: ") + QObject::tr("force a system upgrade at startup, withou asking for confirmation.") + QLatin1String("\n");
 
  return str;
 }

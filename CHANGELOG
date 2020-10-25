@@ -12,8 +12,10 @@
 	(to avoid "octopi-helper[aborted]: Couldn't attach to memory" errors).
   BugFix: Pressing ESC in repoeditor could ask if you wanted to save your changes even
 	if there were no changes made.
-  BugFix: Running Notifier within a DE session would lead to a "Suspicious execution method" error.
+  BugFix: Running Notifier within a DE session could lead to a "Suspicious execution method" error.
   BugFix: The list of targets to install were not showing ok in the transaction dialog.
+  BugFix: Restored support for command line parameters like "-sysupgrade-noconfirm" and "-style".
+  BugFix: Updated "-help" output text..
 
 0.10.0
   Added a built-in default priviledge escalation tool: "octopi-sudo" as a slightly modified version 
