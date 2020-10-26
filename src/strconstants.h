@@ -172,6 +172,7 @@ public:
   static QString getAURUserNameOrPasswordIsIncorrect();
   static QString getErrorAURUserNameIsNotSet();
   static QString getErrorAURPasswordIsNotSet();
+  static QString getSelectAURBuildDir();
   static QString getErrorIconPathInfoIsNotSet();
   static QString getErrorRunningWithRoot();
   static QString getThereIsARunningTransaction();

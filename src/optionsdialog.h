@@ -84,6 +84,8 @@ private slots:
   void onEnableAURVoting(int state);
   void onAURConnect();
   void onAURRegister();
+  void onSelAURBuildDir();
+  void onClearAURBuildDir();
 };
 
 #endif // OptionsDialog_H

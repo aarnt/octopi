@@ -232,6 +232,8 @@ void OptionsDialog::initAURTab()
     connect(comboAUR, SIGNAL(currentTextChanged(const QString &)), this, SLOT(comboAURChanged(const QString &)));
     connect(bConnect, SIGNAL(clicked()), this, SLOT(onAURConnect()));
     connect(bRegister, SIGNAL(clicked()), this, SLOT(onAURRegister()));
+    connect(bSelAURBuildDir, SIGNAL(clicked()), this, SLOT(onSelAURBuildDir()));
+    connect(bClearAURBuildDir, SIGNAL(clicked()), this, SLOT(onClearAURBuildDir()));
 
     aurTools.sort();
     comboAUR->addItems(aurTools);
@@ -268,6 +270,11 @@ void OptionsDialog::initAURTab()
 
     leAurUserName->setText(SettingsManager::getAURUserName());
     leAurPassword->setText(SettingsManager::getAURPassword());
+    leAURBuildDir->setText(SettingsManager::getAURBuildDir());
+    bClearAURBuildDir->setIcon(IconHelper::getIconClear());
+    bClearAURBuildDir->setToolTip(StrConstants::getClear());
+    bSelAURBuildDir->setToolTip(StrConstants::getSelectAURBuildDir());
+
     onEnableAURVoting(cbEnableAURVoting->checkState());
     connect(cbEnableAURVoting, SIGNAL(stateChanged(int)), this, SLOT(onEnableAURVoting(int)));
   }
@@ -602,6 +609,7 @@ void OptionsDialog::accept()
         AurVote v;
         v.setUserName(leAurUserName->text());
         v.setPassword(leAurPassword->text());
+
         if (!v.login())
         {
           delete cic;
@@ -615,6 +623,12 @@ void OptionsDialog::accept()
       SettingsManager::setAURPassword(leAurPassword->text());
 
       AURVotingHasChanged = true;
+    }
+
+    if (leAURBuildDir->text() != SettingsManager::getAURBuildDir())
+    {
+      SettingsManager::setAURBuildDir(leAURBuildDir->text());
+      QMessageBox::warning(this, StrConstants::getWarning(), StrConstants::getWarnNeedsAppRestart());
     }
   }
 
@@ -862,7 +876,6 @@ void OptionsDialog::onAURConnect()
   v.setPassword(leAurPassword->text());
 
   if (m_debugInfo) v.turnDebugInfoOn();
-
   bool logged = v.login();
   if(logged)
   {
@@ -907,4 +920,28 @@ void OptionsDialog::onAURConnect()
 void OptionsDialog::onAURRegister()
 {
   QDesktopServices::openUrl(QUrl(QStringLiteral("https://aur.archlinux.org/register/")));
+}
+
+/*
+ * When user tries to modify AUR build directory
+ */
+void OptionsDialog::onSelAURBuildDir()
+{
+  QString buildDir=QFileDialog::getExistingDirectory(this, StrConstants::getSelectAURBuildDir());
+
+  if (!buildDir.isEmpty())
+  {
+    leAURBuildDir->setText(buildDir);
+  }
+}
+
+/*
+ * When user clears AUR build directory text
+ */
+void OptionsDialog::onClearAURBuildDir()
+{
+  if (!leAURBuildDir->text().isEmpty())
+  {
+    leAURBuildDir->setText(QStringLiteral(""));
+  }
 }

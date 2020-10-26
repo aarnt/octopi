@@ -31,7 +31,7 @@
      <item>
       <widget class="QTabWidget" name="tabWidget">
        <property name="currentIndex">
-        <number>1</number>
+        <number>2</number>
        </property>
        <widget class="QWidget" name="tabGeneral">
         <attribute name="title">
@@ -234,7 +234,7 @@
             <property name="geometry">
              <rect>
               <x>20</x>
-              <y>140</y>
+              <y>200</y>
               <width>131</width>
               <height>22</height>
              </rect>
@@ -255,7 +255,7 @@
             <property name="geometry">
              <rect>
               <x>20</x>
-              <y>170</y>
+              <y>230</y>
               <width>131</width>
               <height>22</height>
              </rect>
@@ -276,7 +276,7 @@
             <property name="geometry">
              <rect>
               <x>20</x>
-              <y>200</y>
+              <y>260</y>
               <width>311</width>
               <height>22</height>
              </rect>
@@ -430,7 +430,7 @@ Any use of the provided files is at your own risk.</string>
             <property name="geometry">
              <rect>
               <x>20</x>
-              <y>110</y>
+              <y>170</y>
               <width>131</width>
               <height>22</height>
              </rect>
@@ -445,6 +445,68 @@ Any use of the provided files is at your own risk.</string>
             </property>
             <property name="text">
              <string notr="true">--devel</string>
+            </property>
+           </widget>
+           <widget class="QLineEdit" name="leAURBuildDir">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+            <property name="geometry">
+             <rect>
+              <x>19</x>
+              <y>130</y>
+              <width>220</width>
+              <height>26</height>
+             </rect>
+            </property>
+            <property name="font">
+             <font>
+              <pointsize>8</pointsize>
+             </font>
+            </property>
+           </widget>
+           <widget class="QLabel" name="lblAURBuildDir">
+            <property name="geometry">
+             <rect>
+              <x>21</x>
+              <y>110</y>
+              <width>241</width>
+              <height>18</height>
+             </rect>
+            </property>
+            <property name="font">
+             <font>
+              <pointsize>8</pointsize>
+             </font>
+            </property>
+            <property name="text">
+             <string>Build directory</string>
+            </property>
+           </widget>
+           <widget class="QPushButton" name="bSelAURBuildDir">
+            <property name="geometry">
+             <rect>
+              <x>239</x>
+              <y>130</y>
+              <width>21</width>
+              <height>26</height>
+             </rect>
+            </property>
+            <property name="text">
+             <string>...</string>
+            </property>
+           </widget>
+           <widget class="QPushButton" name="bClearAURBuildDir">
+            <property name="geometry">
+             <rect>
+              <x>260</x>
+              <y>130</y>
+              <width>21</width>
+              <height>26</height>
+             </rect>
+            </property>
+            <property name="text">
+             <string/>
             </property>
            </widget>
           </widget>

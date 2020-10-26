@@ -86,6 +86,12 @@ int main(int argc, char *argv[])
   setenv("COLORTERM", "truecolor", 1);
   setenv("TERM", "xterm-256color", 1);
 
+  QString buildDir=SettingsManager::getAURBuildDir();
+  if (!buildDir.isEmpty())
+  {
+    setenv("BUILDDIR", buildDir.toLatin1().data(), 1);
+  }
+
   MainWindow w;
   if (w.startServer())
   {

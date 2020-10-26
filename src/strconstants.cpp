@@ -706,6 +706,11 @@ QString StrConstants::getErrorAURPasswordIsNotSet()
   return QObject::tr("AUR password is not set.");
 }
 
+QString StrConstants::getSelectAURBuildDir()
+{
+  return QObject::tr("Select the build directory for the AUR packages");
+}
+
 QString StrConstants::getErrorIconPathInfoIsNotSet(){
   return QObject::tr("Icon path information is not set.");
 }
@@ -744,7 +749,7 @@ QString StrConstants::getRunInTerminal(){
 }
 
 QString StrConstants::getNeedsAppRestart(){
-  return QObject::tr("Needs application restart to take effect");
+  return QObject::tr("This change needs application restart to take effect");
 }
 
 QString StrConstants::getWarnNeedsAppRestart(){

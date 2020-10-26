@@ -94,6 +94,7 @@ class SettingsManager
     static bool getAURDevelParam();
     static bool getAURNoConfirmParam();
     static bool getAURNoEditParam();
+    static QString getAURBuildDir();
     static bool getSearchOutdatedAURPackages();
     static bool getEnableAURVoting();
     static QString getAURUserName();
@@ -181,10 +182,11 @@ class SettingsManager
     static void setShowPackageNumbersOutput(bool newValue);
     static void setShowStopTransaction(bool newValue);
 
-    static void setAURTool(const QString& newValue);        
+    static void setAURTool(const QString &newValue);
     static void setAURDevelParam(bool newValue);
     static void setAURNoConfirmParam(bool newValue);
     static void setAURNoEditParam(bool newValue);
+    static void setAURBuildDir(const QString &newValue);
     static void setSearchOutdatedAURPackages(bool newValue);
     static void setEnableAURVoting(bool newValue);
     static void setAURUserName(const QString& newValue);

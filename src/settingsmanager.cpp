@@ -486,6 +486,12 @@ bool SettingsManager::getAURNoEditParam()
   return (p_instance.getSYSsettings()->value(ctn_KEY_AUR_NO_EDIT_PARAM, false)).toBool();
 }
 
+QString SettingsManager::getAURBuildDir()
+{
+  SettingsManager p_instance;
+  return p_instance.getSYSsettings()->value(ctn_KEY_AUR_BUILDDIR, QStringLiteral("")).toString();
+}
+
 bool SettingsManager::getSearchOutdatedAURPackages()
 {
   SettingsManager p_instance;
@@ -891,6 +897,15 @@ void SettingsManager::setAURNoConfirmParam(bool newValue)
 void SettingsManager::setAURNoEditParam(bool newValue)
 {
   instance()->getSYSsettings()->setValue(ctn_KEY_AUR_NO_EDIT_PARAM, newValue);
+  instance()->getSYSsettings()->sync();
+}
+
+/*
+ * Sets the environment variable BUILDDIR
+ */
+void SettingsManager::setAURBuildDir(const QString &newValue)
+{
+  instance()->getSYSsettings()->setValue(ctn_KEY_AUR_BUILDDIR, newValue);
   instance()->getSYSsettings()->sync();
 }
 
