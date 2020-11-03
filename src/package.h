@@ -200,6 +200,9 @@ class Package{
     static QString getRepository(const QString &pkgInfo);
     static QString getURL(const QString &pkgInfo);
     static QString getLicense(const QString &pkgInfo);
+    static QString getMaintainer(const QString &pkgInfo);
+    static QString getLastModified(const QString &pkgInfo);
+    static QString getOutOfDate(const QString &pkgInfo);
     static QString getGroup(const QString &pkgInfo);
     static QString getProvides(const QString &pkgInfo);
     static QString getDependsOn(const QString &pkgInfo);

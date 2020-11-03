@@ -243,6 +243,18 @@ QString StrConstants::getLicenses(){
   return QObject::tr("Licenses");
 }
 
+QString StrConstants::getMaintainer(){
+  return QObject::tr("Maintainer");
+}
+
+QString StrConstants::getLastModified(){
+  return QObject::tr("Last Modified");
+}
+
+QString StrConstants::getOutOfDate(){
+  return QObject::tr("Out-of-date");
+}
+
 QString StrConstants::getGroup(){
   return QObject::tr("Group");
 }

@@ -62,6 +62,9 @@ public:
   static QString getURL();
   static QString getRepository();
   static QString getLicenses();
+  static QString getMaintainer();
+  static QString getLastModified();
+  static QString getOutOfDate();
   static QString getGroup();
   static QString getGroups();
   static QString getProvides();

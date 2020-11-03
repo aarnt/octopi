@@ -1246,6 +1246,30 @@ QString Package::getLicense(const QString &pkgInfo)
 }
 
 /*
+ * Retrieves "Maintainer" field of the given package information string represented by pkgInfo
+ */
+QString Package::getMaintainer(const QString &pkgInfo)
+{
+  return extractFieldFromInfo(QStringLiteral("Maintainer"), pkgInfo);
+}
+
+/*
+ * Retrieves "Last Modified" field of the given package information string represented by pkgInfo
+ */
+QString Package::getLastModified(const QString &pkgInfo)
+{
+  return extractFieldFromInfo(QStringLiteral("Last Modified"), pkgInfo);
+}
+
+/*
+ * Retrieves "Out-of-date" field of the given package information string represented by pkgInfo
+ */
+QString Package::getOutOfDate(const QString &pkgInfo)
+{
+  return extractFieldFromInfo(QStringLiteral("Out-of-date"), pkgInfo);
+}
+
+/*
  * Retrieves "Groups" field of the given package information string represented by pkgInfo
  */
 QString Package::getGroup(const QString &pkgInfo)

@@ -1574,10 +1574,28 @@ void MainWindow::refreshTabInfo(bool clearContents, bool neverQuit)
 
         if (Package::getForeignRepositoryToolName() != ctn_CHASER_TOOL)
         {
-          QString licenses= Package::getLicense(aurPkgInfo);
+          QString licenses=Package::getLicense(aurPkgInfo);
           if (!licenses.isEmpty() && !licenses.contains(QLatin1String("(null)")))
           {
             html += QLatin1String("<tr><td>") + StrConstants::getLicenses() + QLatin1String("</td><td>") + licenses + QLatin1String("</td></tr>");
+          }
+
+          QString maintainer=Package::getMaintainer(aurPkgInfo);
+          if (!maintainer.isEmpty())
+          {
+            html += QLatin1String("<tr><td>") + StrConstants::getMaintainer() + QLatin1String("</td><td>") + maintainer + QLatin1String("</td></tr>");
+          }
+
+          QString lastModified=Package::getLastModified(aurPkgInfo);
+          if (!lastModified.isEmpty())
+          {
+            html += QLatin1String("<tr><td>") + StrConstants::getLastModified() + QLatin1String("</td><td>") + lastModified + QLatin1String("</td></tr>");
+          }
+
+          QString outOfDate=Package::getOutOfDate(aurPkgInfo);
+          if (!outOfDate.isEmpty())
+          {
+            html += QLatin1String("<tr><td>") + StrConstants::getOutOfDate() + QLatin1String("</td><td>") + outOfDate + QLatin1String("</td></tr>");
           }
         }
       }
