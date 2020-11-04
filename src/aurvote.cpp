@@ -76,12 +76,12 @@ bool AurVote::login()
   postData.addQueryItem(QStringLiteral("remember_me"), QStringLiteral("on"));
 
   QNetworkRequest request{QUrl{m_loginUrl}};
-  request.setHeader(QNetworkRequest::ContentTypeHeader,QStringLiteral("application/x-www-form-urlencoded"));
+  request.setHeader(QNetworkRequest::ContentTypeHeader, QStringLiteral("application/x-www-form-urlencoded"));
 
-  QNetworkReply *r = m_networkManager->post(request, postData.query().toUtf8());
-  connect(r, SIGNAL(finished()), &eventLoop, SLOT(quit()) );
+  QNetworkReply *r = m_networkManager->post(request, postData.query().toLocal8Bit()); //toUtf8());
+  connect(r, SIGNAL(finished()), &eventLoop, SLOT(quit()));
   eventLoop.exec();
-  disconnect(r, SIGNAL(finished()), &eventLoop, SLOT(quit()) );
+  disconnect(r, SIGNAL(finished()), &eventLoop, SLOT(quit()));
 
   if (r->error() > 0)
   {
