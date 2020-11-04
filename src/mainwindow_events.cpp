@@ -397,8 +397,7 @@ void MainWindow::keyPressEvent(QKeyEvent* ke)
   {
     QString passw=SettingsManager::getAURPassword();
     QMessageBox::warning(this, StrConstants::getApplicationName(),
-                          QStringLiteral("AURVote password: %1.")
-                          .arg(passw));
+                          QStringLiteral("AURVote password: \"") + passw + QStringLiteral("\""));
 
     //THIS IS JUST A TEST CODE
     //testSharedMem();
