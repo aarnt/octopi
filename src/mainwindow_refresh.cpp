@@ -923,6 +923,7 @@ void MainWindow::buildPackageList()
     if(SettingsManager::getEnableAURVoting())
     {
       m_aurVote = new AurVote(this);
+      if (m_debugInfo) m_aurVote->turnDebugInfoOn();
       m_aurVote->setUserName(SettingsManager::getAURUserName());
       m_aurVote->setPassword(SettingsManager::getAURPassword());
       m_aurVote->login();

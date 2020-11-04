@@ -67,6 +67,9 @@ bool AurVote::login()
   QEventLoop eventLoop;
   if (m_userName.isEmpty() || m_password.isEmpty()) return false;
 
+  if (m_debugInfo)
+    qDebug() << "AurVote::login(): Will try to connect using password: " << m_password << Qt::endl;
+
   QUrlQuery postData;
   postData.addQueryItem(QStringLiteral("user"), m_userName);
   postData.addQueryItem(QStringLiteral("passwd"), m_password);
@@ -82,7 +85,9 @@ bool AurVote::login()
 
   if (r->error() > 0)
   {
-    qDebug() << "AurVote::login(): First post replied with error: " << r->errorString();
+    if (m_debugInfo)
+      qDebug() << "AurVote::login(): First post replied with error: " << r->errorString();
+
     ret = false;
   }
   else
@@ -96,7 +101,9 @@ bool AurVote::login()
 
     if (res.contains(QLatin1String("Logout"), Qt::CaseInsensitive))
     {
-      qDebug() << "AurVote::login(): Second post replied with: " << res;
+      if (m_debugInfo)
+        qDebug() << "AurVote::login(): Second post replied with: " << res;
+
       ret = true;
     }
     else
