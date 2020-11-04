@@ -105,7 +105,7 @@ QString MainWindow::generateHelpUsageHtmlText()
       QStringLiteral("<a href=\"http://www.gnu.org/licenses/gpl-2.0.html\">GPL v2</a>.</p></h3>") +
       QStringLiteral("<h4><p>") + strForMoreInfo + QLatin1Char(' ') +
       QStringLiteral("<a href=\"https://tintaescura.com/projects/octopi/\">https://tintaescura.com/projects/octopi</a><br>");
-    html +=
+    html += QStringLiteral("<br>") +
       tr("Package classification:") +
 
   QStringLiteral("<ul type=\"square\"><li>") + iconPath + QLatin1String("installed.png\"/> ") +

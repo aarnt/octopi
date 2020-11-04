@@ -67,8 +67,8 @@ bool AurVote::login()
   QEventLoop eventLoop;
   if (m_userName.isEmpty() || m_password.isEmpty()) return false;
 
-  if (m_debugInfo)
-    qDebug() << "AurVote::login(): Will try to connect using password: " << m_password << Qt::endl;
+  //if (m_debugInfo)
+  //  qDebug() << "AurVote::login(): Will try to connect using password: " << m_password << Qt::endl;
 
   QUrlQuery postData;
   postData.addQueryItem(QStringLiteral("user"), m_userName);
@@ -78,7 +78,7 @@ bool AurVote::login()
   QNetworkRequest request{QUrl{m_loginUrl}};
   request.setHeader(QNetworkRequest::ContentTypeHeader, QStringLiteral("application/x-www-form-urlencoded"));
 
-  QNetworkReply *r = m_networkManager->post(request, postData.query().toLocal8Bit()); //toUtf8());
+  QNetworkReply *r = m_networkManager->post(request, postData.query().toUtf8());
   connect(r, SIGNAL(finished()), &eventLoop, SLOT(quit()));
   eventLoop.exec();
   disconnect(r, SIGNAL(finished()), &eventLoop, SLOT(quit()));
