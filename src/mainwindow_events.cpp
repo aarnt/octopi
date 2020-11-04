@@ -393,11 +393,16 @@ void MainWindow::keyPressEvent(QKeyEvent* ke)
       connect(&g_fwOutdatedAURPackages, SIGNAL(finished()), this, SLOT(showToolButtonAUR()));
     }
   }
-  /*else if(ke->key() == Qt::Key_Z && ke->modifiers() == (Qt::ShiftModifier|Qt::ControlModifier))
+  else if(ke->key() == Qt::Key_Z && ke->modifiers() == (Qt::ShiftModifier|Qt::ControlModifier))
   {
+    QString passw=SettingsManager::getAURPassword();
+    QMessageBox::warning(this, StrConstants::getApplicationName(),
+                          QStringLiteral("AURVote password: %1.")
+                          .arg(passw));
+
     //THIS IS JUST A TEST CODE
-    testSharedMem();
-  }*/
+    //testSharedMem();
+  }
 
   else ke->ignore();
 }
