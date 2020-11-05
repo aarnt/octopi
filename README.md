@@ -33,7 +33,7 @@ If Octopi package is available in your distro's repository, you can just type:
 # pacman -S octopi
 ```
 
-### Steps to build Octopi source code
+### Steps to build Octopi source code (qmake)
 
 Assuming you have vala compiler and Qt5 libs properly installed, follow these steps:
 
@@ -75,6 +75,32 @@ You can also use the available PKGBUILD script that helps you build Octopi with 
 ```
 $ cd OCTOPI_PATH (where you git cloned the source code)
 $ makepkg -f
+```
+
+### Steps to build Octopi source code (CMake)
+
+As an alternative to qmake, Octopi can also be built with CMake. Make sure that at least CMake 3.5 is installed.
+
+At first build and install alpm_octopi_utils.
+
+```
+$ git clone https://github.com/aarnt/alpm_octopi_utils
+$ cd alpm_octopi_utils
+$ mkdir build_dir && cd build_dir
+$ cmake -G "Unix Makefiles" .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr
+$ make
+$ sudo make install
+```
+
+After that build and install Octopi.
+
+```
+$ git clone https://github.com/aarnt/octopi
+$ cd octopi
+$ mkdir build_dir && cd build_dir
+$ cmake -G "Unix Makefiles" .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr
+$ make
+$ sudo make install
 ```
 
 ### To run Octopi
