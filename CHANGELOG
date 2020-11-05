@@ -1,4 +1,5 @@
 0.11 (dev)
+  Added support for CMake build system (thanks to Tereius).
   Added "Install Date" at Info tab.
   Added "Licenses", "Maintainer", "Last Modified" and "Out-of-date" fields
 	at Info tab while in AUR mode.
