@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="nb_NO">
+<TS version="2.1" language="hr">
 <context>
     <name>PasswordDialog</name>
     <message>
@@ -11,47 +11,47 @@
     <message>
         <location filename="../passworddialog.ui" line="42"/>
         <source>Copy command to clipboard</source>
-        <translation>Kopier kommando til utklippsboken</translation>
+        <translation>Kopiraj naredbu u međuspremnik</translation>
     </message>
     <message>
         <location filename="../passworddialog.ui" line="45"/>
         <source>&amp;Copy</source>
-        <translation>&amp;Kopier</translation>
+        <translation>&amp;Kopiraj</translation>
     </message>
     <message>
         <location filename="../passworddialog.ui" line="83"/>
         <source>The requested action needs administrative privileges.&lt;br&gt;Please enter your password.</source>
-        <translation>Den forespurte handlingen krever administrative tillatelser.&lt;br&gt;Vennligst tast inn ditt passord.</translation>
+        <translation>Zatražena radnja zahtijeva administrativna prava.&lt;br&gt;Upiši svoju lozinku.</translation>
     </message>
     <message>
         <location filename="../passworddialog.ui" line="106"/>
         <source>LXQt sudo backend</source>
-        <translation>LXQt sudo-backend</translation>
+        <translation>Pozadinski sustav za LXQt sudo</translation>
     </message>
     <message>
         <location filename="../passworddialog.ui" line="109"/>
         <source>A program LXQt sudo calls in background to elevate privileges.</source>
-        <translation>Et program LXQT sudo kontakter i bakgrunnen for å heve tillatelser.</translation>
+        <translation>Program koji LXQt sudo poziva u pozadini za mijenjanje korisničkih prava.</translation>
     </message>
     <message>
         <location filename="../passworddialog.ui" line="119"/>
         <source>Command:</source>
-        <translation>Kommando:</translation>
+        <translation>Naredba:</translation>
     </message>
     <message>
         <location filename="../passworddialog.ui" line="126"/>
         <source>Password:</source>
-        <translation>Passord:</translation>
+        <translation>Lozinka:</translation>
     </message>
     <message>
         <location filename="../passworddialog.ui" line="133"/>
         <source>Enter password</source>
-        <translation>Tast inn passord</translation>
+        <translation>Upiši lozinku</translation>
     </message>
     <message>
         <location filename="../passworddialog.cpp" line="60"/>
         <source>Attempt #%1</source>
-        <translation>Forsøk #%1</translation>
+        <translation>%1. pokušaj</translation>
     </message>
 </context>
 <context>
@@ -72,18 +72,18 @@ Arguments:
   arguments        Optional arguments for command.
 
 </source>
-        <translation>Bruk: %1 valg [kommando [argumenter...]]
+        <translation>Upotreba: %1 opcija [naredba [argumenti …]]
 
-GUI-visning for %2/%3
+Grafičko sučelje za %2/%3
 
-Argumenter:
-  valg:
-    -h|--help      Skriv denne hjelpen.
-    -v|--version  Skriv versjonsinformasjon.
-    -s|--su         Bruk %3(1) som backend.
-    -d|--sudo     Bruk %2(8) som backend.
-  kommando          Kommand å kjøre.
-  argumenter         Valgfrie argumenter for kommandoen.
+Argumenti:
+  opcije:
+    -h|--help      Ispiši ovu pomoć.
+    -v|--version   Ispiši podatke o verziji.
+    -s|--su        Koristi %3(1) kao pozadinski sustav.
+    -d|--sudo      Koristi %2(8) kao pozadinski sustav.
+  command          Naredba koja se pokreće.
+  arguments        Opcionalni argumenti za naredbu.
 
 </translation>
     </message>
@@ -91,7 +91,7 @@ Argumenter:
         <location filename="../sudo.cpp" line="92"/>
         <source>%1 version %2
 </source>
-        <translation>%1 versjon %2
+        <translation>%1 verzija %2
 </translation>
     </message>
 </context>
@@ -100,53 +100,53 @@ Argumenter:
     <message>
         <location filename="../sudo.cpp" line="195"/>
         <source>%1: no command to run provided!</source>
-        <translation>%1: ingen kommando å kjøre oppgitt!</translation>
+        <translation>%1: nijedna naredba za pokretanje nije zadana!</translation>
     </message>
     <message>
         <location filename="../sudo.cpp" line="202"/>
         <source>%1: no backend chosen!</source>
-        <translation>%1: ingen backend valgt!</translation>
+        <translation>%1: nije odabran niti jedan pozadinski sustav!</translation>
     </message>
     <message>
         <location filename="../sudo.cpp" line="219"/>
         <source>Syscall error, failed to fork: %1</source>
-        <translation>Feil med Syscall. Klarte ikke å dele: %1</translation>
+        <translation>Greška poziva sustava, neuspjelo kopiranje: %1</translation>
     </message>
     <message>
         <location filename="../sudo.cpp" line="246"/>
         <source>unset</source>
         <extracomment>shouldn&apos;t be actually used but keep as short as possible in translations just in case.</extracomment>
-        <translation>nullstill</translation>
+        <translation>nepostavljeno</translation>
     </message>
     <message>
         <location filename="../sudo.cpp" line="295"/>
         <source>%1: Detected attempt to inject privileged command via LC_ALL env(%2). Exiting!
 </source>
-        <translation>%1: Oppdaget et forsøk på å legge inn en kommando som krever høye tillatelser via LC_ALL env (%2). Avslutter!
+        <translation>%1: Otkriven je pokušaj dodavanja privilegirane naredbe putem LC_ALL env(% 2). Program se zatvara!
 </translation>
     </message>
     <message>
         <location filename="../sudo.cpp" line="337"/>
         <source>Syscall error, failed to bring pty to non-block mode: %1</source>
-        <translation>Feil med Syscall. Klarte ikke å bringe pty til non-block modus: %1</translation>
+        <translation>Greška poziva sustava, neuspjelo postavljanje pty-a u neblokirajući način: %1</translation>
     </message>
     <message>
         <location filename="../sudo.cpp" line="345"/>
         <source>Syscall error, failed to fdopen pty: %1</source>
-        <translation>Feil med Syscall. Klarte ikke å kjøre fdopen pty: %1</translation>
+        <translation>Greška poziva sustava, neuspjelo fdopen pty: %1</translation>
     </message>
     <message>
         <location filename="../sudo.cpp" line="314"/>
         <source>%1: Failed to exec &apos;%2&apos;: %3
 </source>
-        <translation>%1: Kunne ikke kjøre &apos;%2&apos;: %3
+        <translation>%1: Neuspjelo izvršavanje „%2”: %3
 </translation>
     </message>
     <message>
         <location filename="../sudo.cpp" line="376"/>
         <source>Child &apos;%1&apos; process failed!
 %2</source>
-        <translation>Underprossessn &apos;%1&apos; feilet!
+        <translation>Neuspio podređeni „%1” proces!
 %2</translation>
     </message>
 </context>

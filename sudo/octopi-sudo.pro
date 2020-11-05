@@ -53,6 +53,7 @@ TRANSLATIONS += translations/lxqt-sudo_arn.ts \
                 translations/lxqt-sudo_fr.ts \
                 translations/lxqt-sudo_gl.ts \
                 translations/lxqt-sudo_he.ts \
+                translations/lxqt-sudo_hr.ts \
                 translations/lxqt-sudo_hu.ts \
                 translations/lxqt-sudo_id.ts \
                 translations/lxqt-sudo_it.ts \
