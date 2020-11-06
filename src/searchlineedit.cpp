@@ -219,6 +219,14 @@ void SearchLineEdit::setNotFoundStyle(){
     style += QLatin1String("padding-left: 20px;}");
     setStyleSheet(style);
 
+    if (UnixCommand::getLinuxDistro() == ectn_KAOS)
+    {
+      QPalette palette(QApplication::palette());
+      palette.setColor(QPalette::Base, Qt::lightGray);
+      palette.setColor(QPalette::Text, Qt::darkRed);
+      setPalette(palette);
+    }
+
     /*QPalette palette(QApplication::palette());
     palette.setColor(QPalette::Base, Qt::lightGray);
     palette.setColor(QPalette::Text, Qt::white);
