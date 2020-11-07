@@ -79,6 +79,7 @@ public:
   static QString getVote();
   static QString getAURVotedPackageList();
   static QString getUnvote();
+  static QString getOpenPKGBUILD();
   static QString getDownloadSize();
   static QString getInstalledSize();
   static QString getInstallReason();

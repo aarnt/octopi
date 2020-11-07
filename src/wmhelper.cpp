@@ -394,11 +394,15 @@ void WMHelper::editFile( const QString& fileName, EditOptions opt ){
 
   if (opt == ectn_EDIT_AS_NORMAL_USER)
   {
-    QStringList sl;
+    /*QStringList sl;
     sl << QStringLiteral("-c");
     QStringList params = p.split(QStringLiteral(" "), Qt::SkipEmptyParts);
     sl << params;
-    process->startDetached(UnixCommand::getShell(), sl);
+    process->startDetached(UnixCommand::getShell(), sl);*/
+
+    QStringList params = p.split(QStringLiteral(" "), Qt::SkipEmptyParts);
+    QStringList fn;
+    process->startDetached(params.at(0), fn << fileName);
   }
   else
   {

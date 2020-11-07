@@ -314,6 +314,11 @@ QString StrConstants::getUnvote()
   return QObject::tr("Unvote");
 }
 
+QString StrConstants::getOpenPKGBUILD()
+{
+  return QObject::tr("Open PKGBUILD");
+}
+
 QString StrConstants::getDownloadSize(){
   return QObject::tr("Download Size");
 }

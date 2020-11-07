@@ -297,7 +297,7 @@
             <property name="geometry">
              <rect>
               <x>10</x>
-              <y>57</y>
+              <y>55</y>
               <width>271</width>
               <height>26</height>
              </rect>
@@ -405,14 +405,14 @@
             <property name="geometry">
              <rect>
               <x>11</x>
-              <y>10</y>
+              <y>8</y>
               <width>601</width>
               <height>41</height>
              </rect>
             </property>
             <property name="font">
              <font>
-              <pointsize>11</pointsize>
+              <pointsize>10</pointsize>
              </font>
             </property>
             <property name="toolTip">

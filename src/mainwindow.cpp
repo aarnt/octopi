@@ -1214,6 +1214,11 @@ void MainWindow::execContextMenuPackages(QPoint point)
           menu->addAction(m_actionAURVote);
       }
 
+      if (selectedRows.count() == 1 && StrConstants::getForeignRepositoryName() == QStringLiteral("AUR"))
+      {
+        menu->addAction(m_actionAUROpenPKGBUILD);
+      }
+
       menu->addAction(ui->actionInstallAUR); // installs directly
     }
 
@@ -1278,6 +1283,37 @@ void MainWindow::onAURUnvote()
       const PackageRepository::PackageData*const package = m_packageModel->getData(item);
       m_aurVote->unvoteForPkg(package->name);
       if (isAURGroupSelected()) metaBuildPackageList();
+    }
+  }
+}
+
+/*
+ * Given the selected AUR package we download its PKGBUILD from
+ * https://aur.archlinux.org/cgit/aur.git/tree/PKGBUILD?h=AUR-PKG-NAME
+ */
+void MainWindow::onAUROpenPKGBUILD()
+{
+  const QItemSelectionModel*const selectionModel = ui->tvPackages->selectionModel();
+  if (selectionModel != nullptr && selectionModel->selectedRows().count() > 0)
+  {
+    QModelIndexList selectedRows = selectionModel->selectedRows();
+    if (selectedRows.count() == 1)
+    {
+      QModelIndex item = selectedRows.at(0);
+      const PackageRepository::PackageData*const package = m_packageModel->getData(item);
+      QString pkgbuildSite(QStringLiteral("https://aur.archlinux.org/cgit/aur.git/plain/PKGBUILD?h=%1").arg(package->name));
+      QString tempFileName(QStringLiteral(".temp_octopi_") + package->name + QStringLiteral("_PKGBUILD"));
+
+      QProcess curl;
+      QStringList params;
+      params << pkgbuildSite;
+      params << QStringLiteral("-o");
+      params << QDir::tempPath() + QDir::separator() + tempFileName;
+      curl.start(QStringLiteral("curl"), params);
+      curl.waitForFinished(-1);
+
+      if (curl.exitCode() == 0)
+        WMHelper::editFile(QDir::tempPath() + QDir::separator() + tempFileName, ectn_EDIT_AS_NORMAL_USER);
     }
   }
 }
@@ -2288,7 +2324,7 @@ void MainWindow::doSysInfo()
 /*
  * Opens "~/.config/octopi/octopi.conf" file for edition
  */
-void MainWindow::editOctopiConf()
+/*void MainWindow::editOctopiConf()
 {
   WMHelper::editFile(SettingsManager::getOctopiConfPath(), ectn_EDIT_AS_NORMAL_USER);
-}
+}*/

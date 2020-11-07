@@ -226,7 +226,7 @@ void OptionsDialog::initAURTab()
   }
   else
   {
-    lblAURWarning->setStyleSheet(QStringLiteral("QLabel{ color: red; }"));
+    lblAURWarning->setStyleSheet(QStringLiteral("QLabel{ margin-left: 3px; background: white; color: red; }"));
     QStringList aurTools=UnixCommand::getAvailableAURTools();
 
     connect(comboAUR, SIGNAL(currentTextChanged(const QString &)), this, SLOT(comboAURChanged(const QString &)));

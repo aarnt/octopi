@@ -209,12 +209,13 @@ private:
   QAction *m_actionMenuRepository;
   QAction *m_actionMenuOptions;
   QAction *m_actionRepositoryAll;
-  QAction *m_actionEditOctopiConf;
+  //QAction *m_actionEditOctopiConf;
   QAction *m_actionCopyFullPath;
   QAction *m_actionSysInfo;
   QAction *m_actionStopTransaction;
   QAction *m_actionAURVote;
   QAction *m_actionAURUnvote;
+  QAction *m_actionAUROpenPKGBUILD;
   QAction *m_actionChangeInstallReason;
   QToolButton *m_toolButtonStopTransaction;
 
@@ -363,7 +364,7 @@ private slots:
   void expandThisContentItems();
   void openFile();
   void editFile();
-  void editOctopiConf();
+  //void editOctopiConf();
   void openTerminal();
   void openDirectory();
   void installLocalPackage();
@@ -386,6 +387,7 @@ private slots:
 
   void onAURVote();
   void onAURUnvote();
+  void onAUROpenPKGBUILD();
   void AURToolSelected();
   void groupItemSelected();
 

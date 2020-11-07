@@ -795,6 +795,11 @@ void MainWindow::initActions()
   m_actionAURVote->setIcon(IconHelper::getIconVote());
   connect(m_actionAURVote, SIGNAL(triggered()), this, SLOT(onAURVote()));
 
+  m_actionAUROpenPKGBUILD = new QAction(this);
+  m_actionAUROpenPKGBUILD->setText(StrConstants::getOpenPKGBUILD());
+  m_actionAUROpenPKGBUILD->setIcon(IconHelper::getIconBinary());
+  connect(m_actionAUROpenPKGBUILD, SIGNAL(triggered()), this, SLOT(onAUROpenPKGBUILD()));
+
   m_actionAURUnvote = new QAction(this);
   m_actionAURUnvote->setText(StrConstants::getUnvote());
   m_actionAURUnvote->setIcon(IconHelper::getIconUnvote());
@@ -851,10 +856,10 @@ void MainWindow::initActions()
   m_actionShowGroups->setShortcut(QKeySequence(Qt::Key_F9));
   connect(m_actionShowGroups, SIGNAL(triggered()), this, SLOT(hideGroupsWidget()));
 
-  m_actionEditOctopiConf = new QAction(this);
+  /*m_actionEditOctopiConf = new QAction(this);
   m_actionEditOctopiConf->setText(QStringLiteral("octopi.conf..."));
   m_actionEditOctopiConf->setIcon(IconHelper::getIconBinary());
-  connect(m_actionEditOctopiConf, SIGNAL(triggered()), this, SLOT(editOctopiConf()));
+  connect(m_actionEditOctopiConf, SIGNAL(triggered()), this, SLOT(editOctopiConf()));*/
 
   m_actionCopyFullPath = new QAction(this);
   m_actionCopyFullPath->setText(StrConstants::getCopyFullPath());

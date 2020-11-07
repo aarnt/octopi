@@ -735,6 +735,7 @@ void UnixCommand::removeTemporaryFiles()
   nameFilters << QStringLiteral("qtsingleapp-Octopi*") << QStringLiteral("qtsingleapp-CacheC*") << QStringLiteral("qtsingleapp-Reposi*")
               //<< "qipc_sharedmemory_orgarntoctopi*"
               //<< "qipc_systemsem_orgarntoctopi*"
+              << QStringLiteral(".temp_octopi*")
               << QStringLiteral(".qt_temp_octopi*");
   QFileInfoList list = tempDir.entryInfoList(nameFilters, QDir::Dirs | QDir::Files | QDir::System | QDir::Hidden);
 
