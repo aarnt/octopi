@@ -395,9 +395,9 @@ void MainWindow::keyPressEvent(QKeyEvent* ke)
   }
   /*else if(ke->key() == Qt::Key_Z && ke->modifiers() == (Qt::ShiftModifier|Qt::ControlModifier))
   {
-    QString passw=SettingsManager::getAURPassword();
-    QMessageBox::warning(this, StrConstants::getApplicationName(),
-                          QStringLiteral("AURVote password: \"") + passw + QStringLiteral("\""));
+    //QString passw=SettingsManager::getAURPassword();
+    //QMessageBox::warning(this, StrConstants::getApplicationName(),
+    //                      QStringLiteral("AURVote password: \"") + passw + QStringLiteral("\""));
 
     //THIS IS JUST A TEST CODE
     //testSharedMem();

@@ -279,7 +279,7 @@ bool installTempYayHelper()
   QProcess p;
   //First we download latest html page of yay-bin at github.com
   sl << QStringLiteral("-L") << url << QStringLiteral("--output") << octopiConfDir + QDir::separator() + htmlLatestYay;
-  p.execute(QStringLiteral("curl"), sl);
+  p.execute(QStringLiteral("/usr/bin/curl"), sl);
 
   QFile file(octopiConfDir + QDir::separator() + htmlLatestYay);
   if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
@@ -311,7 +311,7 @@ bool installTempYayHelper()
   //curl=curl.arg(yayUrl, octopiConfDir + QDir::separator() + yayTarball);
   sl.clear();
   sl << QStringLiteral("-L") << yayUrl << QStringLiteral("--output") << octopiConfDir + QDir::separator() + yayTarball;
-  p.execute(QStringLiteral("curl"), sl);
+  p.execute(QStringLiteral("/usr/bin/curl"), sl);
 
   //Then we extract binary from tarball
   //QString tar = QStringLiteral("tar xzf %1 -C %2 %3");

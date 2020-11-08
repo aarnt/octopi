@@ -216,6 +216,7 @@ private:
   QAction *m_actionAURVote;
   QAction *m_actionAURUnvote;
   QAction *m_actionAUROpenPKGBUILD;
+  QAction *m_actionAURShowPKGBUILDDiff;
   QAction *m_actionChangeInstallReason;
   QToolButton *m_toolButtonStopTransaction;
 
@@ -388,6 +389,7 @@ private slots:
   void onAURVote();
   void onAURUnvote();
   void onAUROpenPKGBUILD();
+  void onAURShowPKGBUILDDiff();
   void AURToolSelected();
   void groupItemSelected();
 

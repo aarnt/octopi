@@ -319,6 +319,11 @@ QString StrConstants::getOpenPKGBUILD()
   return QObject::tr("Open PKGBUILD");
 }
 
+QString StrConstants::getShowPKGBUILDDiff()
+{
+  return QObject::tr("Show PKGBUILD diff");
+}
+
 QString StrConstants::getDownloadSize(){
   return QObject::tr("Download Size");
 }

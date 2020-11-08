@@ -54,6 +54,8 @@
 #include <QTcpServer>
 #include <QTcpSocket>
 #include <QElapsedTimer>
+#include <QNetworkAccessManager>
+#include <QNetworkReply>
 
 /*
  * MainWindow's constructor: basic UI init
@@ -1217,6 +1219,7 @@ void MainWindow::execContextMenuPackages(QPoint point)
       if (selectedRows.count() == 1 && StrConstants::getForeignRepositoryName() == QStringLiteral("AUR"))
       {
         menu->addAction(m_actionAUROpenPKGBUILD);
+        menu->addAction(m_actionAURShowPKGBUILDDiff);
       }
 
       menu->addAction(ui->actionInstallAUR); // installs directly
@@ -1299,6 +1302,7 @@ void MainWindow::onAUROpenPKGBUILD()
     QModelIndexList selectedRows = selectionModel->selectedRows();
     if (selectedRows.count() == 1)
     {
+      CPUIntensiveComputing cic;
       QModelIndex item = selectedRows.at(0);
       const PackageRepository::PackageData*const package = m_packageModel->getData(item);
       QString pkgbuildSite(QStringLiteral("https://aur.archlinux.org/cgit/aur.git/plain/PKGBUILD?h=%1").arg(package->name));
@@ -1309,11 +1313,87 @@ void MainWindow::onAUROpenPKGBUILD()
       params << pkgbuildSite;
       params << QStringLiteral("-o");
       params << QDir::tempPath() + QDir::separator() + tempFileName;
-      curl.start(QStringLiteral("curl"), params);
+      curl.start(QStringLiteral("/usr/bin/curl"), params);
       curl.waitForFinished(-1);
 
       if (curl.exitCode() == 0)
         WMHelper::editFile(QDir::tempPath() + QDir::separator() + tempFileName, ectn_EDIT_AS_NORMAL_USER);
+    }
+  }
+}
+
+/*
+ * Given the selected AUR package we download its PKGBUILD diff and show in a text editor
+ */
+void MainWindow::onAURShowPKGBUILDDiff()
+{
+  //https://aur.archlinux.org/cgit/aur.git/log/PKGBUILD?h=AUR_PKG_NAME
+  const QItemSelectionModel*const selectionModel = ui->tvPackages->selectionModel();
+  if (selectionModel != nullptr && selectionModel->selectedRows().count() > 0)
+  {
+    QModelIndexList selectedRows = selectionModel->selectedRows();
+    if (selectedRows.count() == 1)
+    {
+      CPUIntensiveComputing cic;
+      QModelIndex item = selectedRows.at(0);
+      const PackageRepository::PackageData*const package = m_packageModel->getData(item);
+      QString pkglogSite(QStringLiteral("https://aur.archlinux.org/cgit/aur.git/log/PKGBUILD?h=%1").arg(package->name));
+      QString latestVersion, previousVersion;
+
+      //Let's download LOG html page and find the two newest version commit hashes
+      QNetworkAccessManager manager;
+      QNetworkReply *response = manager.get(QNetworkRequest(QUrl(pkglogSite)));
+      QEventLoop event;
+      connect(response, SIGNAL(finished()), &event, SLOT(quit()));
+      event.exec();
+      QString res = QString::fromUtf8(response->readAll());
+      QRegularExpression re(QStringLiteral(";id=(?<commit>[a-f0-9]+)"));
+      QRegularExpressionMatchIterator i = re.globalMatch(res);
+      QStringList commits;
+
+      while (i.hasNext())
+      {
+        QRegularExpressionMatch match = i.next();
+        if (match.hasMatch())
+        {
+          commits << match.captured(QStringLiteral("commit"));
+          if (commits.count() == 2) break;
+        }
+      }
+
+      if (commits.count() != 2) return;
+
+      QString pkgCommit(QStringLiteral("https://aur.archlinux.org/cgit/aur.git/plain/PKGBUILD?h=%1"));
+      QString tempPkgLatest(QStringLiteral(".temp_octopi_commit_latest"));
+      QString tempPkgPrevious(QStringLiteral(".temp_octopi_commit_previous"));
+
+      QProcess p;
+      QStringList params;
+      params << pkgCommit.arg(commits.at(0));
+      params << QStringLiteral("-o");
+      params << QDir::tempPath() + QDir::separator() + tempPkgLatest;
+      p.start(QStringLiteral("/usr/bin/curl"), params);
+      p.waitForFinished(-1);
+
+      params.clear();
+      params << pkgCommit.arg(commits.at(1));
+      params << QStringLiteral("-o");
+      params << QDir::tempPath() + QDir::separator() + tempPkgPrevious;
+      p.start(QStringLiteral("/usr/bin/curl"), params);
+      p.waitForFinished(-1);
+
+      params.clear();
+      QString tempPkgDiff(QStringLiteral(".temp_octopi_commit_diff"));
+      p.setStandardOutputFile(QDir::tempPath() + QDir::separator() + tempPkgDiff);
+      params << QStringLiteral("-u");
+      params << QDir::tempPath() + QDir::separator() + tempPkgPrevious;
+      params << QDir::tempPath() + QDir::separator() + tempPkgLatest;
+      p.start(QStringLiteral("/usr/bin/diff"), params);
+      p.waitForFinished(-1);
+
+      //Diff returns a "1" exit code if files are different!
+      if (p.exitCode() == 1)
+        WMHelper::editFile(QDir::tempPath() + QDir::separator() + tempPkgDiff, ectn_EDIT_AS_NORMAL_USER);
     }
   }
 }
@@ -2289,11 +2369,3 @@ void MainWindow::doSysInfo()
   writeToTabOutput(QLatin1String("<br><b>") + StrConstants::getCommandFinishedOK() + QLatin1String("</b><br>"));
   enableTransactionActions();
 }
-
-/*
- * Opens "~/.config/octopi/octopi.conf" file for edition
- */
-/*void MainWindow::editOctopiConf()
-{
-  WMHelper::editFile(SettingsManager::getOctopiConfPath(), ectn_EDIT_AS_NORMAL_USER);
-}*/

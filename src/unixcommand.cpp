@@ -92,7 +92,7 @@ QString UnixCommand::runCurlCommand(QStringList& params){
   env.insert(QStringLiteral("LC_MESSAGES"), QStringLiteral("C"));
   proc.setProcessEnvironment(env);
 
-  proc.start(QLatin1String("curl"), params);
+  proc.start(QLatin1String("/usr/bin/curl"), params);
   proc.waitForStarted();
   proc.waitForFinished(-1);
 

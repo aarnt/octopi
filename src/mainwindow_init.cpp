@@ -800,6 +800,11 @@ void MainWindow::initActions()
   m_actionAUROpenPKGBUILD->setIcon(IconHelper::getIconBinary());
   connect(m_actionAUROpenPKGBUILD, SIGNAL(triggered()), this, SLOT(onAUROpenPKGBUILD()));
 
+  m_actionAURShowPKGBUILDDiff = new QAction(this);
+  m_actionAURShowPKGBUILDDiff->setText(StrConstants::getShowPKGBUILDDiff());
+  m_actionAURShowPKGBUILDDiff->setIcon(IconHelper::getIconBinary());
+  connect(m_actionAURShowPKGBUILDDiff, SIGNAL(triggered()), this, SLOT(onAURShowPKGBUILDDiff()));
+
   m_actionAURUnvote = new QAction(this);
   m_actionAURUnvote->setText(StrConstants::getUnvote());
   m_actionAURUnvote->setIcon(IconHelper::getIconUnvote());
