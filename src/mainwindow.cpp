@@ -239,7 +239,6 @@ void MainWindow::show()
     initMenuBar();
     initToolBar();
     onTerminalChanged();
-
     initTabWidgetPropertiesIndex();
     refreshDistroNews(false);
 
@@ -1291,6 +1290,30 @@ void MainWindow::onAURUnvote()
 }
 
 /*
+ * Given the package name, retrieve "Package Base" value from AUR site
+ */
+QString MainWindow::getAURPackageBase(const QString& packageName)
+{
+  QString res;
+  QString pkgAUR(QStringLiteral("https://aur.archlinux.org/packages/%1/"));
+  QNetworkAccessManager manager;
+  QNetworkReply *response = manager.get(QNetworkRequest(QUrl(pkgAUR.arg(packageName))));
+  QEventLoop event;
+  connect(response, SIGNAL(finished()), &event, SLOT(quit()));
+  event.exec();
+
+  QString contents = QString::fromUtf8(response->readAll());
+  QRegularExpression re(QStringLiteral("a href=\"/pkgbase/(?<packageBase>\\S+)/\""));
+  QRegularExpressionMatch rem;
+  if (contents.contains(re, &rem))
+  {
+    res=rem.captured(QStringLiteral("packageBase"));
+  }
+
+  return res;
+}
+
+/*
  * Given the selected AUR package we download its PKGBUILD from
  * https://aur.archlinux.org/cgit/aur.git/tree/PKGBUILD?h=AUR-PKG-NAME
  */
@@ -1305,12 +1328,12 @@ void MainWindow::onAUROpenPKGBUILD()
       CPUIntensiveComputing cic;
       QModelIndex item = selectedRows.at(0);
       const PackageRepository::PackageData*const package = m_packageModel->getData(item);
-      QString pkgbuildSite(QStringLiteral("https://aur.archlinux.org/cgit/aur.git/plain/PKGBUILD?h=%1").arg(package->name));
+      QString pkgbuildSite(QStringLiteral("https://aur.archlinux.org/cgit/aur.git/plain/PKGBUILD?h=%1"));
       QString tempFileName(QStringLiteral(".temp_octopi_") + package->name + QStringLiteral("_PKGBUILD"));
 
       QProcess curl;
       QStringList params;
-      params << pkgbuildSite;
+      params << pkgbuildSite.arg(getAURPackageBase(package->name));
       params << QStringLiteral("-o");
       params << QDir::tempPath() + QDir::separator() + tempFileName;
       curl.start(QStringLiteral("/usr/bin/curl"), params);
@@ -1334,18 +1357,19 @@ void MainWindow::onAURShowPKGBUILDDiff()
     QModelIndexList selectedRows = selectionModel->selectedRows();
     if (selectedRows.count() == 1)
     {
-      CPUIntensiveComputing cic;
+      CPUIntensiveComputing *cic=new CPUIntensiveComputing();
       QModelIndex item = selectedRows.at(0);
       const PackageRepository::PackageData*const package = m_packageModel->getData(item);
-      QString pkglogSite(QStringLiteral("https://aur.archlinux.org/cgit/aur.git/log/PKGBUILD?h=%1").arg(package->name));
+      QString pkglogSite(QStringLiteral("https://aur.archlinux.org/cgit/aur.git/log/PKGBUILD?h=%1"));
       QString latestVersion, previousVersion;
 
       //Let's download LOG html page and find the two newest version commit hashes
       QNetworkAccessManager manager;
-      QNetworkReply *response = manager.get(QNetworkRequest(QUrl(pkglogSite)));
+      QNetworkReply *response = manager.get(QNetworkRequest(QUrl(pkglogSite.arg(getAURPackageBase(package->name)))));
       QEventLoop event;
       connect(response, SIGNAL(finished()), &event, SLOT(quit()));
       event.exec();
+
       QString res = QString::fromUtf8(response->readAll());
       QRegularExpression re(QStringLiteral(";id=(?<commit>[a-f0-9]+)"));
       QRegularExpressionMatchIterator i = re.globalMatch(res);
@@ -1361,7 +1385,13 @@ void MainWindow::onAURShowPKGBUILDDiff()
         }
       }
 
-      if (commits.count() != 2) return;
+      if (commits.count() != 2)
+      {
+        delete cic;
+        QMessageBox::information(this, StrConstants::getApplicationName(),
+                                 StrConstants::getThereIsOnlyOneVersionAvailable().arg(package->name));
+        return;
+      }
 
       QString pkgCommit(QStringLiteral("https://aur.archlinux.org/cgit/aur.git/plain/PKGBUILD?h=%1"));
       QString tempPkgLatest(QStringLiteral(".temp_octopi_commit_latest"));
@@ -1390,6 +1420,8 @@ void MainWindow::onAURShowPKGBUILDDiff()
       params << QDir::tempPath() + QDir::separator() + tempPkgLatest;
       p.start(QStringLiteral("/usr/bin/diff"), params);
       p.waitForFinished(-1);
+
+      delete cic;
 
       //Diff returns a "1" exit code if files are different!
       if (p.exitCode() == 1)

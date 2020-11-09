@@ -388,6 +388,7 @@ private slots:
 
   void onAURVote();
   void onAURUnvote();
+  QString getAURPackageBase(const QString& packageName);
   void onAUROpenPKGBUILD();
   void onAURShowPKGBUILDDiff();
   void AURToolSelected();

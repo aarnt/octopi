@@ -81,6 +81,7 @@ public:
   static QString getUnvote();
   static QString getOpenPKGBUILD();
   static QString getShowPKGBUILDDiff();
+  static QString getThereIsOnlyOneVersionAvailable();
   static QString getDownloadSize();
   static QString getInstalledSize();
   static QString getInstallReason();

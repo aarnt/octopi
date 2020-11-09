@@ -324,6 +324,11 @@ QString StrConstants::getShowPKGBUILDDiff()
   return QObject::tr("Show PKGBUILD diff");
 }
 
+QString StrConstants::getThereIsOnlyOneVersionAvailable()
+{
+  return QObject::tr("There is only one version available of \"%1\"");
+}
+
 QString StrConstants::getDownloadSize(){
   return QObject::tr("Download Size");
 }

@@ -40,13 +40,31 @@
  */
 
 /*
+ * Retrieves the basic package name, without latest "-" part
+ */
+QString Package::getBasePkgName(const QString &p)
+{
+  QString packageBaseName=QLatin1String("");
+  QString aux(p);
+  int numberOfSegments = p.count(QLatin1Char('-'));
+
+  if (numberOfSegments > 1)
+  {
+    int lastSep=p.lastIndexOf(QLatin1Char('-'));
+    packageBaseName=p.left(lastSep);
+  }
+
+  return packageBaseName;
+}
+
+/*
  * Retrieves the basic package name, without version numbers
  */
-QString Package::getBaseName( const QString& p )
+QString Package::getBaseName(const QString& p)
 {
 	QString packageBaseName=QLatin1String("");
 	QString aux(p);
-    int numberOfSegments = p.count(QLatin1Char('-'))+1;
+  int numberOfSegments = p.count(QLatin1Char('-'))+1;
 	int nameSegment = numberOfSegments-3;
 
 	for (int i=1; i<= nameSegment; i++){
@@ -64,7 +82,7 @@ QString Package::getBaseName( const QString& p )
  * Given a QString, this method searches for a link pattern and inserts an URL html/ftp link tag
  * Returns the modified (or not) QString
  */
-QString Package::makeURLClickable( const QString &s )
+QString Package::makeURLClickable(const QString &s)
 {
   QString sb = s;
   QRegExp rx(QStringLiteral("((ht|f)tp(s?))://(\\S)+[^\"|)|(|.|\\s|\\n]"));
@@ -122,7 +140,7 @@ double Package::simplePow(int base, int exp)
 /*
  * Converts a size in kbytes to a readable QString representation
  */
-QString Package::kbytesToSize( float Bytes )
+QString Package::kbytesToSize(float Bytes)
 {
   float gb = 1073741824;
   float mb = 1048576;

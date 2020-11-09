@@ -225,8 +225,9 @@ class Package{
     static QString makeAnchorOfOptionalDep(const QString &optionalDeps);
     static QString makeAnchorOfPackage(const QString &packages);
     static QString makeURLClickable(const QString &information);
-    static QString getBaseName( const QString& pkgName );
-    static QString parseSearchString( QString searchStr, bool exactMatch = false );
+    static QString getBasePkgName(const QString &p);
+    static QString getBaseName(const QString& pkgName);
+    static QString parseSearchString(QString searchStr, bool exactMatch = false);
 
     static QString removeColorCodesFromStr(const QString &str);
     static bool hasPacmanDatabase();
