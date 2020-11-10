@@ -288,13 +288,12 @@ QStringList AlpmBackend::getOutdatedList()
 /*
  * Retrieves package download size
  */
-QString AlpmBackend::getPackageSize(const QString &pkgName)
+double AlpmBackend::getPackageSize(const QString &pkgName)
 {
   // create AlpmUtils instance
   AlpmUtils* alpm_utils = alpm_utils_new ("/etc/pacman.conf");
-
   alpm_list_t* i;
-  char size[20];
+  off_t pkgSize=0;
 
   std::string str = pkgName.toStdString();
   const char* p = str.c_str();
@@ -311,8 +310,7 @@ QString AlpmBackend::getPackageSize(const QString &pkgName)
 
     if (pkg && strcmp(alpm_pkg_get_name(pkg),pkgName.toLatin1().constData())==0)
     {
-      off_t pkgSize = alpm_pkg_get_size(pkg);
-      std::sprintf(size, "%ld", pkgSize);
+      pkgSize = alpm_pkg_get_size(pkg);
       break;
     }
   }
@@ -321,7 +319,7 @@ QString AlpmBackend::getPackageSize(const QString &pkgName)
   alpm_utils_free (alpm_utils); // this will free all alpm_pkgs but not the alpm_list
   alpm_list_free (founds);
 
-  return QString::fromUtf8(size);
+  return pkgSize;
 }
 
 /*

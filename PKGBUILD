@@ -1,5 +1,5 @@
 pkgname=octopi
-pkgver=0.10.0
+pkgver=0.11.0
 pkgrel=1
 pkgdesc="This is Octopi, a powerful Pacman frontend using Qt libs"
 url="https://tintaescura.com/projects/octopi/"

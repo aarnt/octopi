@@ -20,6 +20,7 @@
 
 #include "mainwindow.h"
 #include "outputdialog.h"
+//#include "../src/alpmbackend.h"
 #include "../src/strconstants.h"
 #include "../src/uihelper.h"
 #include "../src/package.h"
@@ -608,8 +609,23 @@ void MainWindow::doSystemUpgrade()
       }
     }
 
+    //double retSize;
+
     for(const auto &target : qAsConst(*targets))
     {
+/*
+#ifdef ALPM_BACKEND
+      if (target.downloadSize == 0)
+      {
+        retSize=AlpmBackend::getPackageSize(target.name);
+        totalDownloadSize += retSize;
+      }
+      else
+        totalDownloadSize += target.downloadSize;
+#else
+      totalDownloadSize += target.downloadSize;
+#endif
+*/
       totalDownloadSize += target.downloadSize;
       list = list + target.name + QLatin1Char('-') + target.version + QLatin1Char('\n');
     }
