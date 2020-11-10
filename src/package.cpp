@@ -825,7 +825,7 @@ QList<PackageListData> * Package::getPackageList(const QString &packageName, con
  * Retrieves the list of all AUR packages in the database (installed + non-installed)
  * given the search parameter
  */
-QList<PackageListData> * Package::getAURPackageList(const QString& searchString)
+QList<PackageListData> * Package::getAURPackageList(const QString &searchString)
 {
   //aur/yaourt 1.2.2-1 [installed]
   //    A pacman wrapper with extended features and AUR support
@@ -833,6 +833,7 @@ QList<PackageListData> * Package::getAURPackageList(const QString& searchString)
 
   QString pkgName, pkgRepository, pkgVersion, pkgDescription, pkgOutVersion;
   int pkgVotes;
+  bool addPkg;
   PackageStatus pkgStatus;
   QList<PackageListData> * res = new QList<PackageListData>();
 
@@ -840,12 +841,15 @@ QList<PackageListData> * Package::getAURPackageList(const QString& searchString)
     return res;
 
   QString aurTool = getForeignRepositoryToolName();
-  QString pkgList = QString::fromUtf8(UnixCommand::getAURPackageList(searchString));
+  QString auxSearchString=searchString;
+  auxSearchString.remove(QLatin1Char('^'));
+  auxSearchString.remove(QLatin1Char('$'));
+  QString pkgList = QString::fromUtf8(UnixCommand::getAURPackageList(auxSearchString));
   QStringList packageTuples = pkgList.split(QRegularExpression(QStringLiteral("\\n")), Qt::SkipEmptyParts);
 
   if (aurTool == ctn_YAY_TOOL)
   {
-    return getYayPackageList(packageTuples);
+    return getYayPackageList(searchString, packageTuples);
   }
 
   pkgDescription = QLatin1String("");
@@ -860,9 +864,19 @@ QList<PackageListData> * Package::getAURPackageList(const QString& searchString)
     if ((UnixCommand::getLinuxDistro() != ectn_KAOS && !packageTuple[0].isSpace()) ||
         (UnixCommand::getLinuxDistro() == ectn_KAOS && packageTuple[0] != QLatin1Char('\t')))
     {
+      addPkg=true;
       //Do we already have a description?
       if (pkgDescription != QLatin1String(""))
       {
+        //Tests if pkgName matches "^" or "$" criteria
+        if (searchString.at(0) == QLatin1Char('^') || searchString.at(searchString.length()-1) == QLatin1Char('$'))
+        {
+          QRegularExpression re(searchString);
+          QRegularExpressionMatch match = re.match(pkgName);
+
+          if (!match.hasMatch()) addPkg=false;
+        }
+
         pkgDescription = pkgName + QLatin1String(" ") + pkgDescription;
 
         PackageListData pld =
@@ -870,7 +884,7 @@ QList<PackageListData> * Package::getAURPackageList(const QString& searchString)
 
         pld.popularity = pkgVotes;
 
-        res->append(pld);
+        if (addPkg) res->append(pld);
         pkgDescription = QLatin1String("");
       }
 
@@ -1031,8 +1045,23 @@ QList<PackageListData> * Package::getAURPackageList(const QString& searchString)
     }
   }
 
+  bool addLast=false;
+
   //And adds the very last package...
   if (packageTuples.count() > 1)
+  {
+    addLast=true;
+    //Tests if pkgName matches "^" or "$" criteria
+    if (searchString.at(0) == QLatin1Char('^') || searchString.at(searchString.length()-1) == QLatin1Char('$'))
+    {
+      QRegularExpression re(searchString);
+      QRegularExpressionMatch match = re.match(pkgName);
+
+      if (!match.hasMatch()) addLast = false;
+    }
+  }
+
+  if (addLast)
   {
     pkgDescription = pkgName + QLatin1String(" ") + pkgDescription;
     PackageListData pld =
@@ -1052,9 +1081,10 @@ QList<PackageListData> * Package::getAURPackageList(const QString& searchString)
  * Retrieves the list of all AUR packages in the database using Yay (installed + non-installed)
  * given the search parameter
  */
-QList<PackageListData> *Package::getYayPackageList(const QStringList &packageTuples)
+QList<PackageListData> *Package::getYayPackageList(const QString& searchString, const QStringList &packageTuples)
 {
   QString pkgName, pkgRepository, pkgVersion, pkgDescription, pkgOutVersion;
+  bool addPkg;
   int pkgVotes;
   PackageStatus pkgStatus;
   QList<PackageListData> * res = new QList<PackageListData>();
@@ -1074,9 +1104,19 @@ QList<PackageListData> *Package::getYayPackageList(const QStringList &packageTup
     if ((UnixCommand::getLinuxDistro() != ectn_KAOS && !packageTuple[0].isSpace()) ||
         (UnixCommand::getLinuxDistro() == ectn_KAOS && packageTuple[0] != QLatin1Char('\t')))
     {
+      addPkg=true;
       //Do we already have a description?
       if (pkgDescription != QLatin1String(""))
       {
+        //Tests if pkgName matches "^" or "$" criteria
+        if (searchString.at(0) == QLatin1Char('^') || searchString.at(searchString.length()-1) == QLatin1Char('$'))
+        {
+          QRegularExpression re(searchString);
+          QRegularExpressionMatch match = re.match(pkgName);
+
+          if (!match.hasMatch()) addPkg=false;
+        }
+
         pkgDescription = pkgName + QLatin1String(" ") + pkgDescription;
 
         PackageListData pld =
@@ -1084,7 +1124,7 @@ QList<PackageListData> *Package::getYayPackageList(const QStringList &packageTup
 
         pld.popularity = pkgVotes;
 
-        res->append(pld);
+        if (addPkg) res->append(pld);
         pkgDescription = QLatin1String("");
       }
 
@@ -1160,8 +1200,23 @@ QList<PackageListData> *Package::getYayPackageList(const QStringList &packageTup
     }
   }
 
+  bool addLast=false;
+
   //And adds the very last package...
   if (packageTuples.count() > 1)
+  {
+    addLast=true;
+    //Tests if pkgName matches "^" or "$" criteria
+    if (searchString.at(0) == QLatin1Char('^') || searchString.at(searchString.length()-1) == QLatin1Char('$'))
+    {
+      QRegularExpression re(searchString);
+      QRegularExpressionMatch match = re.match(pkgName);
+
+      if (!match.hasMatch()) addLast = false;
+    }
+  }
+
+  if (addLast)
   {
     pkgDescription = pkgName + QLatin1String(" ") + pkgDescription;
     PackageListData pld =
@@ -1194,7 +1249,6 @@ QString Package::extractFieldFromInfo(const QString &field, const QString &pkgIn
       fieldPos = pkgInfo.indexOf(QLatin1String(":"), fieldPos+1);
       fieldPos+=2;
       aux = pkgInfo.mid(fieldPos);
-
       fieldEnd = aux.indexOf(QLatin1String("Conflicts With"));
       int fieldEnd2 = aux.indexOf(QLatin1String("Required By"));
 

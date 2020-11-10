@@ -1222,6 +1222,8 @@ void MainWindow::buildAURPackageList()
       (UnixCommand::getLinuxDistro() == ectn_KAOS && !ui->actionUseInstantSearch->isChecked()))
   {
     QString search = Package::parseSearchString(m_leFilterPackage->text());
+    search.remove(QLatin1Char('^'));
+    search.remove(QLatin1Char('$'));
     m_packageModel->applyFilter(search);
 
     ui->tvPackages->selectionModel()->clear();
@@ -1747,7 +1749,7 @@ void MainWindow::refreshTabFiles(bool clearContents, bool neverQuit)
     m_progressWidget->setValue(0);
     m_progressWidget->show();
 
-    for ( QString file: fileList )
+    for (QString file: fileList)
     {
       bool isDir = file.endsWith(QLatin1Char('/'));
       bool isSymLinkToDir = false;
@@ -1764,13 +1766,16 @@ void MainWindow::refreshTabFiles(bool clearContents, bool neverQuit)
         }
       }
 
-      if(isDir){
-        if ( first == true ){
+      if(isDir)
+      {
+        if ( first == true )
+        {
           item = new QStandardItem ( IconHelper::getIconFolder(), baseFileName );
           item->setAccessibleDescription(QLatin1String("directory ") + item->text());
           fakeRoot->appendRow ( item );
         }
-        else{
+        else
+        {
           fullPath = utils::showFullPathOfItem(lastDir->index());
           //std::cout << "Testing if " << file.toLatin1().data() << " contains " << fullPath.toLatin1().data() << std::endl;
           if ( file.contains ( fullPath )) {
@@ -1779,18 +1784,20 @@ void MainWindow::refreshTabFiles(bool clearContents, bool neverQuit)
             item->setAccessibleDescription(QLatin1String("directory ") + item->text());
             lastDir->appendRow ( item );
           }
-          else{
+          else
+          {
             //std::cout << "It doens't contain..." << std::endl;
             parent = lastItem->parent();
             if (parent != nullptr) fullPath = utils::showFullPathOfItem(parent->index());
 
-            do{
+            do
+            {
               //if (parent != 0) std::cout << "Testing if " << file.toLatin1().data() << " contains " << fullPath.toLatin1().data() << std::endl;
               if ( parent == nullptr || file.contains ( fullPath )) break;
               parent = parent->parent();
               if (parent != nullptr) fullPath = utils::showFullPathOfItem(parent->index());
             }
-            while ( parent != fakeRoot );
+            while (parent != fakeRoot);
 
             item = new QStandardItem ( IconHelper::getIconFolder(), baseFileName );
             item->setAccessibleDescription(QLatin1String("directory ") + item->text());
@@ -1817,7 +1824,8 @@ void MainWindow::refreshTabFiles(bool clearContents, bool neverQuit)
         parent = lastDir;
         if (parent != nullptr) fullPath = utils::showFullPathOfItem(parent->index());
 
-        do{
+        do
+        {
           if ( parent == nullptr || file.contains ( fullPath )) break;
           parent = parent->parent();
           if (parent != nullptr) fullPath = utils::showFullPathOfItem(parent->index());
@@ -1840,7 +1848,8 @@ void MainWindow::refreshTabFiles(bool clearContents, bool neverQuit)
         parent = lastDir;
         if (parent != nullptr) fullPath = utils::showFullPathOfItem(parent->index());
 
-        do{
+        do
+        {
           if ( parent == nullptr || file.contains ( fullPath )) break;
           parent = parent->parent();
           if (parent != nullptr) fullPath = utils::showFullPathOfItem(parent->index());
