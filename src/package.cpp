@@ -1101,8 +1101,7 @@ QList<PackageListData> *Package::getYayPackageList(const QString& searchString, 
       packageTuple = packageTuple.mid(space+1);
     }
 
-    if ((UnixCommand::getLinuxDistro() != ectn_KAOS && !packageTuple[0].isSpace()) ||
-        (UnixCommand::getLinuxDistro() == ectn_KAOS && packageTuple[0] != QLatin1Char('\t')))
+    if (!packageTuple[0].isSpace())
     {
       addPkg=true;
       //Do we already have a description?
