@@ -57,6 +57,7 @@ void MainWindow::initTabHelpUsage()
   ui->twProperties->setTabText(ui->twProperties->indexOf(tabHelpUsage), StrConstants::getHelp());
 
   SearchBar *searchBar = new SearchBar(this);
+  searchBar->setFocusPolicy(Qt::NoFocus);
   connect(searchBar, SIGNAL(textChanged(QString)), this, SLOT(searchBarTextChangedInTextBrowser(QString)));
   connect(searchBar, SIGNAL(closed()), this, SLOT(searchBarClosedInTextBrowser()));
   connect(searchBar, SIGNAL(findNext()), this, SLOT(searchBarFindNextInTextBrowser()));

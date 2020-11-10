@@ -25,6 +25,7 @@
   BugFix: The list of targets to install were not showing ok in the transaction dialog.
   BugFix: Restored support for command line parameters like "-sysupgrade-noconfirm" and "-style".
   BugFix: Updated "-help" output text..
+  BugFix: Tab navigation improvements.
 
 0.10.0
   Added a built-in default priviledge escalation tool: "octopi-sudo" as a slightly modified version 

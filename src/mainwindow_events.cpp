@@ -225,7 +225,7 @@ void MainWindow::keyPressEvent(QKeyEvent* ke)
     if (m_commandExecuting != ectn_NONE) return;
 
     onPressDelete();
-  }    
+  }
   else if(ke->key() == Qt::Key_1 && ke->modifiers() == Qt::AltModifier)
   {
     changeTabWidgetPropertiesIndex(ctn_TABINDEX_INFORMATION);

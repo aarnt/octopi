@@ -68,6 +68,7 @@ void MainWindow::loadSettings()
   else assert(false);
 
   ui->actionUseInstantSearch->setChecked(SettingsManager::isInstantSearchSelected());
+  ui->twProperties->setFocusPolicy(Qt::NoFocus);
 }
 
 /*
@@ -273,6 +274,7 @@ void MainWindow::initPackageGroups()
   ui->twGroups->setFrameShadow(QFrame::Plain);
   ui->twGroups->setStyleSheet(StrConstants::getTreeViewCSS());
   ui->twGroups->setSelectionMode(QAbstractItemView::SingleSelection);
+  ui->twGroups->setFocusPolicy(Qt::NoFocus);
   connect(ui->twGroups, SIGNAL(itemSelectionChanged()), this, SLOT(onPackageGroupChanged()));
 }
 
@@ -344,6 +346,7 @@ void MainWindow::initToolBar()
 {
   initPackageGroups();
 
+  ui->mainToolBar->setFocusPolicy(Qt::NoFocus);
   ui->mainToolBar->addAction(ui->actionCheckUpdates);
   ui->mainToolBar->addAction(ui->actionSystemUpgrade);
 
@@ -381,6 +384,7 @@ void MainWindow::initToolBar()
   hSpacer->setMinimumWidth(3);
   hSpacer->setVisible(true);
   ui->mainToolBar->addWidget(hSpacer);
+  hSpacer->setFocusPolicy(Qt::NoFocus);
   m_actionShowGroups->setToolTip(m_actionShowGroups->toolTip() + QLatin1String("  (F9)"));
   ui->mainToolBar->addAction(m_actionShowGroups);
   ui->mainToolBar->toggleViewAction()->setEnabled(false);
@@ -619,6 +623,7 @@ void MainWindow::initTabInfo(){
   ui->twProperties->setUsesScrollButtons(false);
 
   SearchBar *searchBar = new SearchBar(this);
+  searchBar->setFocusPolicy(Qt::NoFocus);
   connect(searchBar, SIGNAL(textChanged(QString)), this, SLOT(searchBarTextChangedInTextBrowser(QString)));
   connect(searchBar, SIGNAL(closed()), this, SLOT(searchBarClosedInTextBrowser()));
   connect(searchBar, SIGNAL(findNext()), this, SLOT(searchBarFindNextInTextBrowser()));
@@ -727,6 +732,7 @@ void MainWindow::initTabFiles()
                                                   "MainWindow", aux.toUtf8().constData(), nullptr/*, QApplication::UnicodeUTF8*/ ) );
   tvPkgFileList->setContextMenuPolicy(Qt::CustomContextMenu);
   SearchBar *searchBar = new SearchBar(this);
+  searchBar->setFocusPolicy(Qt::NoFocus);
   connect(searchBar, SIGNAL(textChanged(QString)), this, SLOT(searchBarTextChangedInTreeView(QString)));
   connect(searchBar, SIGNAL(closed()), this, SLOT(searchBarClosedInTreeView()));
   connect(searchBar, SIGNAL(findNext()), this, SLOT(searchBarFindNextInTreeView()));
@@ -766,6 +772,7 @@ void MainWindow::initTabOutput()
       "MainWindow", aux.toUtf8().constData(), nullptr/*, QApplication::UnicodeUTF8*/ ) );
 
   SearchBar *searchBar = new SearchBar(this);
+  searchBar->setFocusPolicy(Qt::NoFocus);
   connect(searchBar, SIGNAL(textChanged(QString)), this, SLOT(searchBarTextChangedInTextBrowser(QString)));
   connect(searchBar, SIGNAL(closed()), this, SLOT(searchBarClosedInTextBrowser()));
   connect(searchBar, SIGNAL(findNext()), this, SLOT(searchBarFindNextInTextBrowser()));

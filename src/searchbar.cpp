@@ -57,9 +57,12 @@ void SearchBar::init()
                 "border-top-color: darkgray;}"));
 
   m_searchLineEdit = new SearchLineEdit(this);
+  m_searchLineEdit->setFocusPolicy(Qt::NoFocus);
   m_searchLineEdit->setMinimumWidth(300);
   QToolButton *m_previousButton = new QToolButton(this);
   QToolButton *m_nextButton = new QToolButton(this);
+  m_previousButton->setFocusPolicy(Qt::NoFocus);
+  m_nextButton->setFocusPolicy(Qt::NoFocus);
   m_previousButton->setToolButtonStyle(Qt::ToolButtonTextOnly);
   m_nextButton->setToolButtonStyle(Qt::ToolButtonTextOnly);
 
@@ -76,6 +79,7 @@ void SearchBar::init()
   m_nextButton->setDefaultAction(m_nextAction);
 
   QToolButton *tbClose = new QToolButton();
+  tbClose->setFocusPolicy(Qt::NoFocus);
   tbClose->setIcon(IconHelper::getIconClose());
 
   tbClose->setAutoRaise(true);

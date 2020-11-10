@@ -46,14 +46,14 @@ void PackageTreeView::init()
   setSelectionMode(QAbstractItemView::ExtendedSelection);
   setEditTriggers(QAbstractItemView::NoEditTriggers);
   setVerticalScrollMode(QAbstractItemView::ScrollPerItem);
-  setAllColumnsShowFocus( true );
-  setSortingEnabled( true );
-  setIndentation( 0 );
+  setAllColumnsShowFocus(true);
+  setSortingEnabled(true);
+  setIndentation(0);
   header()->setSortIndicatorShown(true);
   header()->setSectionsClickable(true);
   header()->setSectionsMovable(false);
   header()->setSectionResizeMode(QHeaderView::Interactive);
-  header()->setDefaultAlignment( Qt::AlignLeft );
+  header()->setDefaultAlignment(Qt::AlignLeft);
   setUniformRowHeights(true);
 }
 

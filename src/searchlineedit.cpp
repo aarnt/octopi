@@ -36,7 +36,7 @@ SearchLineEdit::SearchLineEdit(QWidget *parent, bool hasSLocate) :
 
   // Create the search button and set its icon, cursor, and stylesheet
   this->m_SearchButton = new QToolButton(this);
-
+  this->m_SearchButton->setFocusPolicy(Qt::NoFocus);
   // Increase button size a bit for kde
   if (WMHelper::isKDERunning() && UnixCommand::getLinuxDistro() == ectn_CHAKRA)
     this->m_SearchButton->setFixedSize(18, 18);
@@ -47,7 +47,7 @@ SearchLineEdit::SearchLineEdit(QWidget *parent, bool hasSLocate) :
   this->m_SearchButton->setStyleSheet(this->buttonStyleSheetForCurrentState());
 
   m_defaultValidator = new QRegularExpressionValidator(QRegularExpression(QStringLiteral("[a-zA-Z0-9_\\-\\$\\^\\*\\+\\(\\)\\[\\]\\.\\s\\\\]+")), this);
-  m_aurValidator = new QRegularExpressionValidator(QRegularExpression(QStringLiteral("[a-zA-Z0-9_\\-\\$\\^\\+\\s\\\\]+")), this);
+  m_aurValidator = new QRegularExpressionValidator(QRegularExpression(QStringLiteral("[a-zA-Z0-9_\\-\\$\\^\\+\\s]+")), this); //\\\\]+")), this);
   m_fileValidator = new QRegularExpressionValidator(QRegularExpression(QStringLiteral("[a-zA-Z0-9_\\-\\/\\.]+")), this);
   setValidator(m_defaultValidator);
 
@@ -57,6 +57,7 @@ SearchLineEdit::SearchLineEdit(QWidget *parent, bool hasSLocate) :
   // Some stylesheet and size corrections for the text box
   this->setPlaceholderText(StrConstants::getFind());
   this->setStyleSheet(this->styleSheetForCurrentState());
+  this->setFocusPolicy(Qt::StrongFocus);
 }
 
 /*
@@ -106,7 +107,7 @@ void SearchLineEdit::resizeEvent(QResizeEvent *event)
 
 void SearchLineEdit::keyPressEvent(QKeyEvent *event)
 {
-  if(event->key() == Qt::Key_U && event->modifiers() == Qt::ControlModifier)
+  if (event->key() == Qt::Key_U && event->modifiers() == Qt::ControlModifier)
   {
     event->ignore();
   }
