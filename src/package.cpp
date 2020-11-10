@@ -1371,6 +1371,19 @@ QString Package::getDependsOn(const QString &pkgInfo)
 }
 
 /*
+ * Retrieves "Make Deps" field of the given AUR package information string represented by pkgInfo
+ */
+QString Package::getMakeDeps(const QString &pkgInfo)
+{
+  QString res = extractFieldFromInfo(QStringLiteral("Make Deps"), pkgInfo);
+
+  if (res.isEmpty())
+    res = extractFieldFromInfo(QStringLiteral("Make Deps"), pkgInfo);
+
+  return res;
+}
+
+/*
  * Retrieves "Optional Deps" field of the given package information string represented by pkgInfo
  */
 QString Package::getOptDepends(const QString &pkgInfo)

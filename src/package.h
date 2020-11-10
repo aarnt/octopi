@@ -206,6 +206,7 @@ class Package{
     static QString getGroup(const QString &pkgInfo);
     static QString getProvides(const QString &pkgInfo);
     static QString getDependsOn(const QString &pkgInfo);
+    static QString getMakeDeps(const QString &pkgInfo);
     static QString getOptDepends(const QString &pkgInfo);
     static QString getConflictsWith(const QString &pkgInfo);
     static QString getReplaces(const QString &pkgInfo);

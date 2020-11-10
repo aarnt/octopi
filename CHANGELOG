@@ -4,8 +4,8 @@
   Added "Show PKGBUILD diff" option to show the differences between latest and previous
 	PKGBUILD files of the selected AUR package in a text editor.
   Added "Install Date" at Info tab.
-  Added "Licenses", "Maintainer", "Last Modified" and "Out-of-date" fields
-	at Info tab while in AUR mode.
+  Added "Licenses", "Maintainer", "Depends On", "Make Deps", "Last Modified" and "Out-of-date" 
+	fields at Info tab while in AUR mode.
   Added option to display "Licenses", "Installed Size", "Build Date", "Install Date" and
 	"Install Reason" columns in the package list.
   Added option to "Change Install Reason" of selected packages (Explicitly <-> As Dependency).

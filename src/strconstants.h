@@ -69,6 +69,7 @@ public:
   static QString getGroups();
   static QString getProvides();
   static QString getDependsOn();
+  static QString getMakeDeps();
   static QString getRequiredBy();
   static QString getOptionalFor();
   static QString getOptionalDeps();

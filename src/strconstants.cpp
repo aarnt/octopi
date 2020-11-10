@@ -271,6 +271,10 @@ QString StrConstants::getDependsOn(){
   return QObject::tr("Depends On");
 }
 
+QString StrConstants::getMakeDeps(){
+  return QObject::tr("Make Deps");
+}
+
 QString StrConstants::getRequiredBy(){
   return QObject::tr("Required By");
 }

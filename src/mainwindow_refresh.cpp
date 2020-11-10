@@ -1589,6 +1589,18 @@ void MainWindow::refreshTabInfo(bool clearContents, bool neverQuit)
             html += QLatin1String("<tr><td>") + StrConstants::getMaintainer() + QLatin1String("</td><td>") + maintainer + QLatin1String("</td></tr>");
           }
 
+          QString dependsOn=Package::getDependsOn(aurPkgInfo);
+          if (!dependsOn.isEmpty())
+          {
+            html += QLatin1String("<tr><td>") + StrConstants::getDependsOn() + QLatin1String("</td><td>") + dependsOn + QLatin1String("</td></tr>");
+          }
+
+          QString makeDeps=Package::getMakeDeps(aurPkgInfo);
+          if (!makeDeps.isEmpty())
+          {
+            html += QLatin1String("<tr><td>") + StrConstants::getMakeDeps() + QLatin1String("</td><td>") + makeDeps + QLatin1String("</td></tr>");
+          }
+
           QString lastModified=Package::getLastModified(aurPkgInfo);
           if (!lastModified.isEmpty())
           {
