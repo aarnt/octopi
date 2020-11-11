@@ -405,6 +405,7 @@ void MainWindow::initStatusBar()
   ui->statusBar->addWidget(m_lblTotalCounters);
   ui->statusBar->addPermanentWidget(m_progressWidget);  
   m_toolButtonStopTransaction = new QToolButton(this);
+  m_toolButtonStopTransaction->setFocusPolicy(Qt::NoFocus);
   m_toolButtonStopTransaction->setDefaultAction(m_actionStopTransaction);
   m_toolButtonStopTransaction->setVisible(false);
   m_toolButtonStopTransaction->setAutoRaise(true);
@@ -954,7 +955,6 @@ void MainWindow::initActions()
   ui->actionRemoveTransactionItem->setIcon(IconHelper::getIconClose());
   ui->actionRemoveTransactionItems->setIcon(IconHelper::getIconClose());
   ui->actionFindFileInPackage->setIcon(IconHelper::getIconFindFileInPackage());
-  //ui->actionOpenRootTerminal->setIcon(IconHelper::getIconTerminal());
   ui->actionInstallAUR->setIcon(IconHelper::getIconInstallItem());
 
   // Actions for the View menu
