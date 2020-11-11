@@ -417,6 +417,7 @@ void MainWindow::initStatusBar()
 void MainWindow::initToolButtonPacman()
 {
   m_toolButtonPacman = new QToolButton(this);
+  m_toolButtonPacman->setFocusPolicy(Qt::NoFocus);
   m_toolButtonPacman->setIconSize(QSize(16, 16));
   m_toolButtonPacman->setIcon(IconHelper::getIconOutdated());
   m_toolButtonPacman->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
@@ -436,6 +437,7 @@ void MainWindow::initToolButtonPacman()
 void MainWindow::initToolButtonAUR()
 {
   m_toolButtonAUR = new QToolButton(this);
+  m_toolButtonAUR->setFocusPolicy(Qt::NoFocus);
   m_toolButtonAUR->setIconSize(QSize(16, 16));
   m_toolButtonAUR->setIcon(IconHelper::getIconForeignRed());
   m_toolButtonAUR->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
