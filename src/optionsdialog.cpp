@@ -226,7 +226,7 @@ void OptionsDialog::initAURTab()
   }
   else
   {
-    lblAURWarning->setStyleSheet(QStringLiteral("QLabel{ margin-left: 3px; background: white; color: red; }"));
+    lblAURWarning->setStyleSheet(QStringLiteral("QLabel{ border: 1px solid red; margin-left: 3px; background: white; color: red; }"));
     QStringList aurTools=UnixCommand::getAvailableAURTools();
 
     connect(comboAUR, SIGNAL(currentTextChanged(const QString &)), this, SLOT(comboAURChanged(const QString &)));
@@ -486,11 +486,6 @@ void OptionsDialog::accept()
       SettingsManager::setAURTool(ctn_PACAUR_TOOL);
       AURHasChanged = true;
     }
-    /*else if (comboAUR->currentText() == ctn_YAOURT_TOOL && SettingsManager::getAURToolName() != ctn_YAOURT_TOOL)
-    {
-      SettingsManager::setAURTool(ctn_YAOURT_TOOL);
-      AURHasChanged = true;
-    }*/
     else if (comboAUR->currentText() == ctn_TRIZEN_TOOL && SettingsManager::getAURToolName() != ctn_TRIZEN_TOOL)
     {
       SettingsManager::setAURTool(ctn_TRIZEN_TOOL);
@@ -527,11 +522,6 @@ void OptionsDialog::accept()
       SettingsManager::setAURNoEditParam(cbNoEdit->isChecked());
       AURHasChanged = true;
     }
-    /*if (comboAUR->currentText() == ctn_YAOURT_TOOL && cbNoConfirm->isChecked() != SettingsManager::getAURNoConfirmParam())
-    {
-      SettingsManager::setAURNoConfirmParam(cbNoConfirm->isChecked());
-      AURHasChanged = true;
-    }*/
     if (comboAUR->currentText() == ctn_TRIZEN_TOOL && cbDevel->isChecked() != SettingsManager::getAURDevelParam())
     {
       SettingsManager::setAURDevelParam(cbDevel->isChecked());
