@@ -772,7 +772,7 @@ void MainWindow::initTabOutput()
   QString aux(StrConstants::getTabOutputName());
   ui->twProperties->removeTab(ctn_TABINDEX_OUTPUT);
   ui->twProperties->insertTab(ctn_TABINDEX_OUTPUT, tabOutput, QApplication::translate (
-      "MainWindow", aux.toUtf8().constData(), nullptr/*, QApplication::UnicodeUTF8*/ ) );
+      "MainWindow", aux.toUtf8().constData(), nullptr) );
 
   SearchBar *searchBar = new SearchBar(this);
   searchBar->setFocusPolicy(Qt::NoFocus);
@@ -828,7 +828,6 @@ void MainWindow::initActions()
     connect(m_actionMenuMirrorCheck, SIGNAL(triggered()), this, SLOT(doMirrorCheck()));
   }  
 
-  //ui->actionSyncPackages->setVisible(false);
   ui->actionOpenRootTerminal->setVisible(false);
 
   m_actionMenuOptions->setText(StrConstants::getOptions());
@@ -870,11 +869,6 @@ void MainWindow::initActions()
   m_actionShowGroups->setChecked(true);
   m_actionShowGroups->setShortcut(QKeySequence(Qt::Key_F9));
   connect(m_actionShowGroups, SIGNAL(triggered()), this, SLOT(hideGroupsWidget()));
-
-  /*m_actionEditOctopiConf = new QAction(this);
-  m_actionEditOctopiConf->setText(QStringLiteral("octopi.conf..."));
-  m_actionEditOctopiConf->setIcon(IconHelper::getIconBinary());
-  connect(m_actionEditOctopiConf, SIGNAL(triggered()), this, SLOT(editOctopiConf()));*/
 
   m_actionCopyFullPath = new QAction(this);
   m_actionCopyFullPath->setText(StrConstants::getCopyFullPath());

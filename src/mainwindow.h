@@ -209,7 +209,6 @@ private:
   QAction *m_actionMenuRepository;
   QAction *m_actionMenuOptions;
   QAction *m_actionRepositoryAll;
-  //QAction *m_actionEditOctopiConf;
   QAction *m_actionCopyFullPath;
   QAction *m_actionSysInfo;
   QAction *m_actionStopTransaction;
