@@ -155,6 +155,8 @@ public:
   static void execCommand(const QString &pCommand);
   static QStringList getAvailableAURTools();
 
+  static double getCheckUpdatesSize();
+
   QString readAllStandardOutput();
   QString readAllStandardError();
   QString errorString();

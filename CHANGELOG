@@ -19,6 +19,7 @@
   Removed unused speedup service.
   BugFix: unset TMPDIR environment variable on every Octo tool startup 
 	(to avoid "octopi-helper[aborted]: Couldn't attach to memory" errors).
+  BugFix: "total download size" showed the value 0 in Notifier if the database was not synched.
   BugFix: Pressing ESC in repoeditor could ask if you wanted to save your changes even
 	if there were no changes made.
   BugFix: Running Notifier within a DE session could lead to a "Suspicious execution method" error.

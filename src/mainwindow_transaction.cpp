@@ -914,6 +914,7 @@ bool MainWindow::prepareSystemUpgrade()
 void MainWindow::doSystemUpgrade(SystemUpgradeOptions systemUpgradeOptions)
 {
   Q_UNUSED(systemUpgradeOptions)
+  double totalDownloadSize = 0;
 
   if (isNotifierBusy()) return;
 
@@ -1005,30 +1006,36 @@ void MainWindow::doSystemUpgrade(SystemUpgradeOptions systemUpgradeOptions)
       }
       else
       {
+        totalDownloadSize = UnixCommand::getCheckUpdatesSize();
+
         targets->clear();
         for(QString name: *m_checkupdatesStringList)
         {
           PackageListData aux;
-          const PackageRepository::PackageData*const package = m_packageRepo.getFirstPackageByName(name);
-          QString size;
-          if (package)
-          {
-            size = size.number(package->downloadSize, 'f', 0);
-          }
-          aux = PackageListData(name, m_checkUpdatesNameNewVersion->value(name), size);
+          aux = PackageListData(name, m_checkUpdatesNameNewVersion->value(name), QStringLiteral("0")); //size);
           targets->append(aux);
         }
       }
     }
 
     QString list;
-    double totalDownloadSize = 0;
 
-    for(PackageListData target: *targets)
+    if (totalDownloadSize == 0)
     {
-      totalDownloadSize += target.downloadSize;
-      list = list + target.name + QLatin1Char('-') + target.version + QLatin1Char('\n');
+      for(PackageListData target: *targets)
+      {
+        totalDownloadSize += target.downloadSize;
+        list = list + target.name + QLatin1Char('-') + target.version + QLatin1Char('\n');
+      }
     }
+    else
+    {
+      for(PackageListData target: *targets)
+      {
+        list = list + target.name + QLatin1Char('-') + target.version + QLatin1Char('\n');
+      }
+    }
+
     list.remove(list.size()-1, 1);
 
     //Let's build the system upgrade transaction dialog...
@@ -2195,6 +2202,7 @@ void MainWindow::pacmanProcessFinished(int exitCode, QProcess::ExitStatus exitSt
   }
 
   enableTransactionActions();
+
   if (isAURGroupSelected())
   {
     toggleSystemActions(false);

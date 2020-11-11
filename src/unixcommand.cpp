@@ -32,6 +32,7 @@
 #include <QTextStream>
 #include <QtNetwork>
 #include <QFileInfo>
+#include <QtGlobal>
 
 /*
  * Collection of methods to execute many Unix commands
@@ -833,6 +834,46 @@ QStringList UnixCommand::getAvailableAURTools()
   }
 
   return aurTools;
+}
+
+/*
+ * Goes to the checkupdates pacmandb tempdir and tries to retrieve total download size
+ */
+double UnixCommand::getCheckUpdatesSize()
+{
+  double totalSize=0;
+  QString userID;
+  QStringList params;
+
+  //First we discover user's id
+  QProcess p;
+  params << QStringLiteral("-u");
+  params << qEnvironmentVariable("USER", QStringLiteral(""));
+
+  if (params.at(1).isEmpty()) return totalSize;
+
+  p.start(QStringLiteral("id"), params);
+  p.waitForFinished();
+  userID=QString::fromUtf8(p.readAllStandardOutput());
+  userID.remove(QLatin1Char('\n'));
+
+  if (userID.isEmpty()) return totalSize;
+
+  //pacman -Spu --print-format "%s" --dbpath "/tmp/checkup-db-1000/" | awk '{sum+=$1;}END{print sum;}'
+  QString tempPath = QDir::tempPath() + QDir::separator() + QStringLiteral("checkup-db-") + userID + QDir::separator();
+
+  if (!QFile::exists(tempPath)) return totalSize;
+
+  params.clear();
+  params << QStringLiteral("-c");
+  params << QStringLiteral("pacman -Spu --print-format \"%s\" --dbpath \"") + tempPath + QStringLiteral("\" | awk '{sum+=$1;}END{print sum;}'");
+  p.start(getShell(), params);
+  p.waitForFinished();
+
+  bool ok;
+  totalSize = p.readAllStandardOutput().toDouble(&ok);
+
+  return totalSize;
 }
 
 /*
