@@ -37,9 +37,9 @@ QString StrConstants::getApplicationCliHelp(){
  QString str = getApplicationName() + QLatin1String(" - ") + getApplicationVersion() + QLatin1String("\n") +
       QLatin1String("\n") + getHelpUsage() + QLatin1String("\n\n") +
       QLatin1String("\t-version: ") + QObject::tr("show application version.") + QLatin1String("\n") +
-      //QLatin1String("\t-removecmd <Remove-command>: ") + QObject::tr("use a different remove command (ex: -removecmd R).") + QLatin1String("\n") +
       QLatin1String("\t-sysupgrade: ") + QObject::tr("force a system upgrade at startup.") + QLatin1String("\n") +
-      QLatin1String("\t-sysupgrade-noconfirm: ") + QObject::tr("force a system upgrade at startup, withou asking for confirmation.") + QLatin1String("\n");
+      QLatin1String("\t-sysupgrade-noconfirm: ") + QObject::tr("force a system upgrade at startup, withou asking for confirmation.") +
+     QLatin1String("\n");
 
  return str;
 }
@@ -173,6 +173,11 @@ QString StrConstants::getError(){
 
 QString StrConstants::getNewsErrorMessage(){
   return QObject::tr("No news could be found! Press Ctrl+G to download the latest news.");
+}
+
+QString StrConstants::getShowingCachedNews()
+{
+  return QObject::tr("Showing cached news.");
 }
 
 QString StrConstants::getIncompatibleLinuxDistroError(){
@@ -326,6 +331,11 @@ QString StrConstants::getOpenPKGBUILD()
 QString StrConstants::getShowPKGBUILDDiff()
 {
   return QObject::tr("Show PKGBUILD diff");
+}
+
+QString StrConstants::getOpenNewsInBrowser()
+{
+  return QObject::tr("Open news in a browser");
 }
 
 QString StrConstants::getThereIsOnlyOneVersionAvailable()
@@ -669,14 +679,6 @@ QString StrConstants::getConfirmExecuteTransactionInTerminal(){
   return QObject::tr("Do you want to execute this transaction in a Terminal?");
 }
 
-/*QString StrConstants::getCleanCacheConfirmation(){
-  return QObject::tr("Do you really want to clean the package cache?");
-}*/
-
-/*QString StrConstants::getRemovePacmanTransactionLockFileConfirmation(){
-  return QObject::tr("Do you really want to remove Pacman's transaction lock file?");
-}*/
-
 QString StrConstants::getCancelActionsConfirmation(){
   return QObject::tr("Do you really want to cancel actions?");
 }
@@ -698,7 +700,10 @@ QString StrConstants::getYoullNeedSuFrontend(){
 QString StrConstants::getYoullNeedToInstallAURTool()
 {
   return QObject::tr("You'll need one of those tools to use AUR:\n\n"
-                     "%1, %2, %3 %4 or %5").arg(QStringLiteral("pacaur")).arg(QStringLiteral("pikaur"), QStringLiteral("trizen"), QStringLiteral("yaourt"), QStringLiteral("yay"));
+                     "%1, %2, %3 %4 or %5").arg(QStringLiteral("pacaur")).arg(QStringLiteral("pikaur"),
+                                                                              QStringLiteral("trizen"),
+                                                                              QStringLiteral("yaourt"),
+                                                                              QStringLiteral("yay"));
 }
 
 QString StrConstants::getDoYouWantToInstallYayTool()

@@ -2026,7 +2026,6 @@ void MainWindow::pacmanProcessFinished(int exitCode, QProcess::ExitStatus exitSt
 {
   bool bRefreshGroups = true;
   m_progressWidget->close();
-
   m_progressWidget->setValue(0);
   m_progressWidget->show();
 
@@ -2060,9 +2059,8 @@ void MainWindow::pacmanProcessFinished(int exitCode, QProcess::ExitStatus exitSt
     }
   }
 
-  //mate-terminal is returning code 255 sometimes...
-  if ((exitCode == 0 || exitCode == 255 ||
-       (exitCode == 2 && m_commandExecuting == ectn_CHECK_UPDATES)) && exitStatus == QProcess::NormalExit)
+  if ((exitCode == 0 || (exitCode == 2 && m_commandExecuting == ectn_CHECK_UPDATES)) &&
+      exitStatus == QProcess::NormalExit)
   {
     //First, we empty the tabs cache!
     m_cachedPackageInInfo = QLatin1String("");
@@ -2112,10 +2110,10 @@ void MainWindow::pacmanProcessFinished(int exitCode, QProcess::ExitStatus exitSt
   }
   else if (m_commandQueued == ectn_NONE)
   {
-    if(exitCode == 0 || exitCode == 255) //mate-terminal is returning code 255 sometimes...
+    if(exitCode == 0)
     {
       //After the command, we can refresh the package list, so any change can be seem.
-      if (/*m_commandExecuting == ectn_SYNC_DATABASE ||*/ m_commandExecuting == ectn_CHECK_UPDATES)
+      if (m_commandExecuting == ectn_CHECK_UPDATES)
       {
         //Sets NOW as the last sync time value
         SettingsManager::setLastCheckUpdatesTime(QDateTime::currentDateTime());

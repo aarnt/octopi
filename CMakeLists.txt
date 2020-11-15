@@ -26,6 +26,7 @@ set(src
     src/QtSolutions/qtlocalpeer.cpp
     repoeditor/repoentry.cpp
     src/aurvote.cpp
+    src/propertiestabwidget.cpp
     src/qaesencryption.cpp
     src/repoconf.cpp
     src/main.cpp
@@ -65,6 +66,7 @@ set(header
     src/QtSolutions/qtlocalpeer.h
     repoeditor/repoentry.h
     src/aurvote.h
+    src/propertiestabwidget.h
     src/qaesencryption.h
     src/repoconf.h
     src/mainwindow.h

@@ -30,9 +30,30 @@
 #include "uihelper.h"
 #include "globals.h"
 
+#include <QMessageBox>
 #include <QTextBrowser>
 #include <QFutureWatcher>
 #include <QtConcurrent/QtConcurrentRun>
+
+/*
+ * This is the TextBrowser News tab, which shows the latest news from Distro news feed
+ */
+void MainWindow::initTabNews()
+{
+  ui->twProperties->initTabNews();
+
+  connect(ui->twProperties->getSearchBarNews(), SIGNAL(textChanged(QString)),
+          this, SLOT(searchBarTextChangedInTextBrowser(QString)));
+  connect(ui->twProperties->getSearchBarNews(), SIGNAL(closed()),
+          this, SLOT(searchBarClosedInTextBrowser()));
+  connect(ui->twProperties->getSearchBarNews(), SIGNAL(findNext()),
+          this, SLOT(searchBarFindNextInTextBrowser()));
+  connect(ui->twProperties->getSearchBarNews(), SIGNAL(findPrevious()),
+          this, SLOT(searchBarFindPreviousInTextBrowser()));
+
+  connect(ui->twProperties->getTextNews(), SIGNAL(sourceChanged(QUrl)),
+          this, SLOT(onTabNewsSourceChanged(QUrl)));
+}
 
 /*
  * This is the high level method that orquestrates the Distro RSS News printing in tabNews
@@ -49,8 +70,13 @@ void MainWindow::refreshDistroNews(bool searchForLatestNews, bool gotoNewsTab)
 
   if (searchForLatestNews)
   {
-    if (!isInternetAvailable())
+    if (!UnixCommand::hasInternetConnection())
     {
+      QMessageBox::warning(this,
+                           StrConstants::getApplicationName(),
+                           StrConstants::getInternetUnavailableError() + QLatin1Char('\n') +
+                           StrConstants::getShowingCachedNews());
+
       ui->actionGetNews->setEnabled(true);
       ui->twProperties->setCurrentIndex(ctn_TABINDEX_NEWS);
       return;
@@ -92,10 +118,6 @@ void MainWindow::refreshDistroNews(bool searchForLatestNews, bool gotoNewsTab)
     {
       writeToTabOutput(QLatin1String("<b>") + StrConstants::getSearchingForDistroNews().arg(QStringLiteral("Manjaro Linux")) + QLatin1String("</b>"));
     }
-    /*else if (gotoNewsTab && distro == ectn_NETRUNNER)
-    {
-      writeToTabOutput("<b>" + StrConstants::getSearchingForDistroNews().arg("Netrunner Rolling") + "</b>");
-    }*/
     else if (gotoNewsTab && distro == ectn_PARABOLA)
     {
       writeToTabOutput(QLatin1String("<b>") + StrConstants::getSearchingForDistroNews().arg(QStringLiteral("Parabola GNU/Linux-libre")) + QLatin1String("</b>"));
@@ -123,6 +145,7 @@ void MainWindow::refreshDistroNews(bool searchForLatestNews, bool gotoNewsTab)
 void MainWindow::postRefreshDistroNews()
 {
   showDistroNews(g_fwDistroNews.result(), true); 
+
   if (ui->twProperties->tabText(ctn_TABINDEX_NEWS).contains(QLatin1String("**")))
   {
     ui->twProperties->setCurrentIndex(ctn_TABINDEX_NEWS);
@@ -209,46 +232,4 @@ void MainWindow::onTabNewsSourceChanged(QUrl newSource)
       connect(text, SIGNAL(sourceChanged(QUrl)), this, SLOT(onTabNewsSourceChanged(QUrl)));
     }
   }
-}
-
-/*
- * This is the TextBrowser News tab, which shows the latest news from Distro news feed
- */
-void MainWindow::initTabNews()
-{
-  QString aux(StrConstants::getTabNewsName());
-  QWidget *tabNews = new QWidget();
-  QGridLayout *gridLayoutX = new QGridLayout(tabNews);
-  gridLayoutX->setSpacing(0);
-  gridLayoutX->setMargin(0);
-
-  QTextBrowser *text = new QTextBrowser(tabNews);
-  text->setObjectName(QStringLiteral("textBrowser"));
-  text->setReadOnly(true);
-  text->setFrameShape(QFrame::NoFrame);
-  text->setFrameShadow(QFrame::Plain);
-  text->setOpenExternalLinks(true);
-  gridLayoutX->addWidget(text, 0, 0, 1, 1);
-  text->show();
-
-  int tindex = ui->twProperties->insertTab(ctn_TABINDEX_NEWS, tabNews, QApplication::translate (
-      "MainWindow", aux.toUtf8().constData(), nullptr/*, QApplication::UnicodeUTF8*/ ) );
-  ui->twProperties->setTabText(ui->twProperties->indexOf(tabNews), QApplication::translate(
-      "MainWindow", aux.toUtf8().constData(), nullptr/*, QApplication::UnicodeUTF8*/));
-
-  SearchBar *searchBar = new SearchBar(this);
-
-  connect(searchBar, SIGNAL(textChanged(QString)), this, SLOT(searchBarTextChangedInTextBrowser(QString)));
-  connect(searchBar, SIGNAL(closed()), this, SLOT(searchBarClosedInTextBrowser()));
-  connect(searchBar, SIGNAL(findNext()), this, SLOT(searchBarFindNextInTextBrowser()));
-  connect(searchBar, SIGNAL(findPrevious()), this, SLOT(searchBarFindPreviousInTextBrowser()));
-
-  gridLayoutX->addWidget(searchBar, 1, 0, 1, 1);
-
-  connect(text, SIGNAL(sourceChanged(QUrl)), this, SLOT(onTabNewsSourceChanged(QUrl)));
-
-  text->show();
-
-  ui->twProperties->setCurrentIndex(tindex);
-  text->setFocus();
 }

@@ -85,6 +85,7 @@ class SettingsManager
     static QString getOctopiGreenIconPath();
     static bool isDistroRSSUrlEmpty();
     static QString getDistroRSSUrl();
+    static QString getDistroNewsSite();
 
     static bool getShowPackageNumbersOutput();
     static bool getShowStopTransaction();

@@ -46,6 +46,7 @@ public:
   static QString getInformation();
   static QString getError();
   static QString getNewsErrorMessage();
+  static QString getShowingCachedNews();
   static QString getIncompatibleLinuxDistroError();
   static QString getInternetUnavailableError();
   static QString getDisplayAllGroups();
@@ -80,8 +81,9 @@ public:
   static QString getVote();
   static QString getAURVotedPackageList();
   static QString getUnvote();
-  static QString getOpenPKGBUILD();
+  static QString getOpenPKGBUILD();  
   static QString getShowPKGBUILDDiff();
+  static QString getOpenNewsInBrowser();
   static QString getThereIsOnlyOneVersionAvailable();
   static QString getDownloadSize();
   static QString getInstalledSize();

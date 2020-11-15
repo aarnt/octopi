@@ -224,7 +224,7 @@ void MainWindow::show()
     initTabOutput();
     initTabInfo();
     initTabFiles();
-    initTabTransaction();
+    initTabActions();
     initTabHelpUsage();
     initTabNews();
     initPackageTreeView();

@@ -366,6 +366,29 @@ QString SettingsManager::getDistroRSSUrl()
   else return QLatin1String("");
 }
 
+QString SettingsManager::getDistroNewsSite()
+{
+  LinuxDistro distro = UnixCommand::getLinuxDistro();
+
+  if (distro == ectn_ARCHLINUX || distro == ectn_ARCHBANGLINUX)
+    return QStringLiteral("https://www.archlinux.org");
+  else if (distro == ectn_ARTIXLINUX)
+    return QStringLiteral("https://artixlinux.org/");
+  else if (distro == ectn_CHAKRA)
+    return QStringLiteral("https://community.chakralinux.org/c/news");
+  else if (distro == ectn_CONDRESOS)
+    return QStringLiteral("https://www.codelinsoft.it/sito/blog.html");
+  else if (distro == ectn_ENDEAVOUROS)
+    return QStringLiteral("https://endeavouros.com/news");
+  else if (distro == ectn_KAOS)
+    return QStringLiteral("https://kaosx.us/news");
+  else if (distro == ectn_MANJAROLINUX)
+    return QStringLiteral("https://manjaro.org/news");
+  else if (distro == ectn_PARABOLA)
+    return QStringLiteral("https://www.parabola.nu");
+  else return QLatin1String("");
+}
+
 bool SettingsManager::getShowPackageNumbersOutput()
 {
   SettingsManager p_instance;

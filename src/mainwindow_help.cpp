@@ -38,35 +38,17 @@
  */
 void MainWindow::initTabHelpUsage()
 {
-  QWidget *tabHelpUsage = new QWidget();
-  QGridLayout *gridLayoutX = new QGridLayout(tabHelpUsage);
-  gridLayoutX->setSpacing(0);
-  gridLayoutX->setMargin(0);
+  ui->twProperties->setHelpUsageText(generateHelpUsageHtmlText());
+  ui->twProperties->initTabHelpUsage();
 
-  QTextBrowser *text = new QTextBrowser(tabHelpUsage);
-  text->setObjectName(QStringLiteral("textBrowser"));
-  text->setReadOnly(true);
-  text->setFrameShape(QFrame::NoFrame);
-  text->setFrameShadow(QFrame::Plain);
-  text->setOpenExternalLinks(true);
-  gridLayoutX->addWidget(text, 0, 0, 1, 1);
-
-  text->setHtml(generateHelpUsageHtmlText());
-
-  int tindex = ui->twProperties->addTab(tabHelpUsage, StrConstants::getHelp() );
-  ui->twProperties->setTabText(ui->twProperties->indexOf(tabHelpUsage), StrConstants::getHelp());
-
-  SearchBar *searchBar = new SearchBar(this);
-  searchBar->setFocusPolicy(Qt::NoFocus);
-  connect(searchBar, SIGNAL(textChanged(QString)), this, SLOT(searchBarTextChangedInTextBrowser(QString)));
-  connect(searchBar, SIGNAL(closed()), this, SLOT(searchBarClosedInTextBrowser()));
-  connect(searchBar, SIGNAL(findNext()), this, SLOT(searchBarFindNextInTextBrowser()));
-  connect(searchBar, SIGNAL(findPrevious()), this, SLOT(searchBarFindPreviousInTextBrowser()));
-  gridLayoutX->addWidget(searchBar, 1, 0, 1, 1);
-
-  text->show();
-  ui->twProperties->setCurrentIndex(tindex);
-  text->setFocus();
+  connect(ui->twProperties->getSearchBarHelpUsage(), SIGNAL(textChanged(QString)),
+          this, SLOT(searchBarTextChangedInTextBrowser(QString)));
+  connect(ui->twProperties->getSearchBarHelpUsage(), SIGNAL(closed()),
+          this, SLOT(searchBarClosedInTextBrowser()));
+  connect(ui->twProperties->getSearchBarHelpUsage(), SIGNAL(findNext()),
+          this, SLOT(searchBarFindNextInTextBrowser()));
+  connect(ui->twProperties->getSearchBarHelpUsage(), SIGNAL(findPrevious()),
+          this, SLOT(searchBarFindPreviousInTextBrowser()));
 }
 
 /*

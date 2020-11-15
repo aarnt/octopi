@@ -75,7 +75,7 @@
          <number>20</number>
         </property>
        </widget>
-       <widget class="QTabWidget" name="twProperties">
+       <widget class="PropertiesTabWidget" name="twProperties">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
           <horstretch>0</horstretch>
@@ -136,7 +136,7 @@
      <x>0</x>
      <y>0</y>
      <width>552</width>
-     <height>24</height>
+     <height>23</height>
     </rect>
    </property>
    <property name="contextMenuPolicy">
@@ -632,6 +632,12 @@
    <class>PackageTreeView</class>
    <extends>QTreeView</extends>
    <header>src/packagetreeview.h</header>
+  </customwidget>
+  <customwidget>
+   <class>PropertiesTabWidget</class>
+   <extends>QTabWidget</extends>
+   <header>src/propertiestabwidget.h</header>
+   <container>1</container>
   </customwidget>
  </customwidgets>
  <tabstops>

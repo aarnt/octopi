@@ -492,61 +492,18 @@ void MainWindow::initTabWidgetPropertiesIndex()
  * This is the 4th tab (Transaction).
  * It pops up whenever the user selects a remove/install action on a selected package
  */
-void MainWindow::initTabTransaction()
+void MainWindow::initTabActions()
 {
-  m_modelTransaction = new QStandardItemModel(this);
-  QWidget *tabTransaction = new QWidget();
-  QGridLayout *gridLayoutX = new QGridLayout(tabTransaction);
-  gridLayoutX->setSpacing(0);
-  gridLayoutX->setMargin(0);
+  ui->twProperties->setModelTransaction(m_modelTransaction);
+  ui->twProperties->initTabActions();
 
-  QTreeView *tvTransaction = new QTreeView(tabTransaction);
-  tvTransaction->setObjectName(QStringLiteral("tvTransaction"));
-  tvTransaction->setContextMenuPolicy(Qt::CustomContextMenu);
-  tvTransaction->setEditTriggers(QAbstractItemView::NoEditTriggers);
-  tvTransaction->setDropIndicatorShown(false);
-  tvTransaction->setAcceptDrops(false);
-  tvTransaction->setSelectionMode(QAbstractItemView::ExtendedSelection);
-  tvTransaction->setItemDelegate(new TreeViewPackagesItemDelegate(tvTransaction));
-  tvTransaction->header()->setSortIndicatorShown(false);
-  tvTransaction->header()->setSectionsClickable(false);
-  tvTransaction->header()->setSectionsMovable(false);
-  tvTransaction->header()->setSectionResizeMode(QHeaderView::Fixed);
-  tvTransaction->setFrameShape(QFrame::NoFrame);
-  tvTransaction->setFrameShadow(QFrame::Plain);
-  tvTransaction->setStyleSheet(StrConstants::getTreeViewCSS());
-  tvTransaction->expandAll();
-
-  m_modelTransaction->setSortRole(0);
-  m_modelTransaction->setColumnCount(0);
-
-  QStringList sl;
-  m_modelTransaction->setHorizontalHeaderLabels(sl << StrConstants::getPackages());
-
-  QStandardItem *siToBeRemoved = new QStandardItem(IconHelper::getIconToRemove(),
-                                                   StrConstants::getTransactionRemoveText());
-  QStandardItem *siToBeInstalled = new QStandardItem(IconHelper::getIconToInstall(),
-                                                     StrConstants::getTransactionInstallText());
-
-  m_modelTransaction->appendRow(siToBeRemoved);
-  m_modelTransaction->appendRow(siToBeInstalled);
-
-  gridLayoutX->addWidget(tvTransaction, 0, 0, 1, 1);
-
-  tvTransaction->setModel(m_modelTransaction);
-
-  QString aux(StrConstants::getActions());
-  ui->twProperties->removeTab(ctn_TABINDEX_ACTIONS);
-  ui->twProperties->insertTab(ctn_TABINDEX_ACTIONS, tabTransaction, QApplication::translate (
-                                "MainWindow", aux.toUtf8().constData(), nullptr/*, QApplication::UnicodeUTF8*/ ));
-
-  connect(tvTransaction, SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(execContextMenuTransaction(QPoint)));
-  connect(tvTransaction->selectionModel(), SIGNAL(selectionChanged(QItemSelection,QItemSelection)),
+  connect(ui->twProperties->getTvTransaction(), SIGNAL(customContextMenuRequested(QPoint)),
+          this, SLOT(execContextMenuTransaction(QPoint)));
+  connect(ui->twProperties->getTvTransaction()->selectionModel(), SIGNAL(selectionChanged(QItemSelection,QItemSelection)),
           this, SLOT(tvTransactionSelectionChanged(QItemSelection,QItemSelection)));
-
-  connect(tvTransaction->model(), SIGNAL(rowsInserted ( const QModelIndex , int, int )),
+  connect(ui->twProperties->getTvTransaction()->model(), SIGNAL(rowsInserted ( const QModelIndex , int, int )),
           this, SLOT(tvTransactionRowsInserted(QModelIndex,int,int)));
-  connect(tvTransaction->model(), SIGNAL(rowsRemoved ( const QModelIndex , int, int )),
+  connect(ui->twProperties->getTvTransaction()->model(), SIGNAL(rowsRemoved ( const QModelIndex , int, int )),
           this, SLOT(tvTransactionRowsRemoved(QModelIndex,int,int)));
 }
 
@@ -604,38 +561,15 @@ void MainWindow::resizePackageView()
  * This tab has a QTextBrowser which shows information about the selected package
  */
 void MainWindow::initTabInfo(){
-  QWidget *tabInfo = new QWidget();
-  QGridLayout *gridLayoutX = new QGridLayout ( tabInfo );
-  gridLayoutX->setSpacing ( 0 );
-  gridLayoutX->setMargin ( 0 );
+  ui->twProperties->initTabInfo();
 
-  QTextBrowser *text = new QTextBrowser(tabInfo);
-  text->setObjectName(QStringLiteral("textBrowser"));
-  text->setReadOnly(true);
-  text->setFrameShape(QFrame::NoFrame);
-  text->setFrameShadow(QFrame::Plain);
-  text->setOpenLinks(false);
-  connect(text, SIGNAL(anchorClicked(QUrl)), this, SLOT(outputTextBrowserAnchorClicked(QUrl)));
-  connect(text, SIGNAL(highlighted(QUrl)), this, SLOT(showAnchorDescription(QUrl)));
-  gridLayoutX->addWidget ( text, 0, 0, 1, 1 );
+  connect(ui->twProperties->getTextInfo(), SIGNAL(anchorClicked(QUrl)), this, SLOT(outputTextBrowserAnchorClicked(QUrl)));
+  connect(ui->twProperties->getTextInfo(), SIGNAL(highlighted(QUrl)), this, SLOT(showAnchorDescription(QUrl)));
 
-  QString tabName(StrConstants::getTabInfoName());
-  ui->twProperties->removeTab(ctn_TABINDEX_INFORMATION);
-  ui->twProperties->insertTab(ctn_TABINDEX_INFORMATION, tabInfo, QApplication::translate (
-      "MainWindow", tabName.toUtf8().constData(), nullptr));
-  ui->twProperties->setUsesScrollButtons(false);
-
-  SearchBar *searchBar = new SearchBar(this);
-  searchBar->setFocusPolicy(Qt::NoFocus);
-  connect(searchBar, SIGNAL(textChanged(QString)), this, SLOT(searchBarTextChangedInTextBrowser(QString)));
-  connect(searchBar, SIGNAL(closed()), this, SLOT(searchBarClosedInTextBrowser()));
-  connect(searchBar, SIGNAL(findNext()), this, SLOT(searchBarFindNextInTextBrowser()));
-  connect(searchBar, SIGNAL(findPrevious()), this, SLOT(searchBarFindPreviousInTextBrowser()));
-  gridLayoutX->addWidget(searchBar, 1, 0, 1, 1);
-
-  ui->twProperties->setCurrentIndex(ctn_TABINDEX_INFORMATION);
-  text->show();
-  text->setFocus();
+  connect(ui->twProperties->getSearchBarInfo(), SIGNAL(textChanged(QString)), this, SLOT(searchBarTextChangedInTextBrowser(QString)));
+  connect(ui->twProperties->getSearchBarInfo(), SIGNAL(closed()), this, SLOT(searchBarClosedInTextBrowser()));
+  connect(ui->twProperties->getSearchBarInfo(), SIGNAL(findNext()), this, SLOT(searchBarFindNextInTextBrowser()));
+  connect(ui->twProperties->getSearchBarInfo(), SIGNAL(findPrevious()), this, SLOT(searchBarFindPreviousInTextBrowser()));
 }
 
 /*
@@ -643,23 +577,13 @@ void MainWindow::initTabInfo(){
  */
 void MainWindow::initTabTerminal()
 {
-  QWidget *tabTerminal = new QWidget(this);
-  QGridLayout *gridLayoutX = new QGridLayout(tabTerminal);
-  gridLayoutX->setSpacing ( 0 );
-  gridLayoutX->setMargin ( 0 );
-
   m_console = new TermWidget(this);
+  ui->twProperties->setConsole(m_console);
+  ui->twProperties->initTabTerminal();
+
   connect(m_console, SIGNAL(finished()), this, SLOT(initTabTerminal()));
   connect(m_console, SIGNAL(onKeyQuit()), this, SLOT(close()));
   connect(m_console, SIGNAL(onKeyF11()), this, SLOT(maximizeTerminalTab()));
-
-  gridLayoutX->addWidget(m_console, 0, 0, 1, 1);
-  ui->twProperties->removeTab(ctn_TABINDEX_TERMINAL);
-  QString aux(StrConstants::getTabTerminal());
-  ui->twProperties->insertTab(ctn_TABINDEX_TERMINAL, tabTerminal, QApplication::translate (
-                                                  "MainWindow", aux.toUtf8().constData(), nullptr) );
-  ui->twProperties->setCurrentIndex(ctn_TABINDEX_TERMINAL);
-  m_console->setFocus();
 }
 
 /*
@@ -706,46 +630,20 @@ void MainWindow::onExecCommandInTabTerminal(QString command)
  */
 void MainWindow::initTabFiles()
 {
-  QWidget *tabPkgFileList = new QWidget(this);
-  QGridLayout *gridLayoutX = new QGridLayout ( tabPkgFileList );
-  gridLayoutX->setSpacing ( 0 );
-  gridLayoutX->setMargin ( 0 );
-  QStandardItemModel *modelPkgFileList = new QStandardItemModel(this);
-  QTreeView *tvPkgFileList = new QTreeView(tabPkgFileList);
-  tvPkgFileList->setEditTriggers(QAbstractItemView::NoEditTriggers);
-  tvPkgFileList->setDropIndicatorShown(false);
-  tvPkgFileList->setAcceptDrops(false);
-  tvPkgFileList->header()->setSortIndicatorShown(false);
-  tvPkgFileList->header()->setSectionsClickable(false);
-  tvPkgFileList->header()->setSectionsMovable(false);
-  tvPkgFileList->header()->setSectionResizeMode(QHeaderView::Fixed);
-  tvPkgFileList->setFrameShape(QFrame::NoFrame);
-  tvPkgFileList->setFrameShadow(QFrame::Plain);
-  tvPkgFileList->setObjectName(QStringLiteral("tvPkgFileList"));
-  tvPkgFileList->setStyleSheet(StrConstants::getTreeViewCSS());
+  ui->twProperties->initTabFiles();
 
-  modelPkgFileList->setSortRole(0);
-  modelPkgFileList->setColumnCount(0);
-  gridLayoutX->addWidget(tvPkgFileList, 0, 0, 1, 1);
-  tvPkgFileList->setModel(modelPkgFileList);
+  connect(ui->twProperties->getSearchBarFiles(), SIGNAL(textChanged(QString)),
+          this, SLOT(searchBarTextChangedInTreeView(QString)));
+  connect(ui->twProperties->getSearchBarFiles(), SIGNAL(closed()),
+          this, SLOT(searchBarClosedInTreeView()));
+  connect(ui->twProperties->getSearchBarFiles(), SIGNAL(findNext()),
+          this, SLOT(searchBarFindNextInTreeView()));
+  connect(ui->twProperties->getSearchBarFiles(), SIGNAL(findPrevious()),
+          this, SLOT(searchBarFindPreviousInTreeView()));
 
-  QString aux(StrConstants::getTabFilesName());
-  ui->twProperties->removeTab(ctn_TABINDEX_FILES);
-  ui->twProperties->insertTab(ctn_TABINDEX_FILES, tabPkgFileList, QApplication::translate (
-                                                  "MainWindow", aux.toUtf8().constData(), nullptr/*, QApplication::UnicodeUTF8*/ ) );
-  tvPkgFileList->setContextMenuPolicy(Qt::CustomContextMenu);
-  SearchBar *searchBar = new SearchBar(this);
-  searchBar->setFocusPolicy(Qt::NoFocus);
-  connect(searchBar, SIGNAL(textChanged(QString)), this, SLOT(searchBarTextChangedInTreeView(QString)));
-  connect(searchBar, SIGNAL(closed()), this, SLOT(searchBarClosedInTreeView()));
-  connect(searchBar, SIGNAL(findNext()), this, SLOT(searchBarFindNextInTreeView()));
-  connect(searchBar, SIGNAL(findPrevious()), this, SLOT(searchBarFindPreviousInTreeView()));
-
-  gridLayoutX->addWidget(searchBar, 1, 0, 1, 1);
-
-  connect(tvPkgFileList, SIGNAL(customContextMenuRequested(QPoint)),
+  connect(ui->twProperties->getTvPkgFileList(), SIGNAL(customContextMenuRequested(QPoint)),
           this, SLOT(execContextMenuPkgFileList(QPoint)));
-  connect(tvPkgFileList, SIGNAL(doubleClicked (const QModelIndex&)),
+  connect(ui->twProperties->getTvPkgFileList(), SIGNAL(doubleClicked (const QModelIndex&)),
           this, SLOT(openFile()));
 }
 
@@ -754,37 +652,21 @@ void MainWindow::initTabFiles()
  */
 void MainWindow::initTabOutput()
 {
-  QWidget *tabOutput = new QWidget();
-  QGridLayout *gridLayoutX = new QGridLayout(tabOutput);
-  gridLayoutX->setSpacing ( 0 );
-  gridLayoutX->setMargin ( 0 );
-  QTextBrowser *text = new QTextBrowser(tabOutput);
-  text->setObjectName(QStringLiteral("textBrowser"));
-  text->setReadOnly(true);
-  text->setOpenLinks(false);
-  text->setFrameShape(QFrame::NoFrame);
-  text->setFrameShadow(QFrame::Plain);
+  ui->twProperties->initTabOutput();
 
-  connect(text, SIGNAL(anchorClicked(QUrl)), this, SLOT(outputTextBrowserAnchorClicked(QUrl)));
-  connect(text, SIGNAL(highlighted(QUrl)), this, SLOT(showAnchorDescription(QUrl)));
-  gridLayoutX->addWidget (text, 0, 0, 1, 1);  
+  connect(ui->twProperties->getTextOutput(), SIGNAL(anchorClicked(QUrl)),
+          this, SLOT(outputTextBrowserAnchorClicked(QUrl)));
+  connect(ui->twProperties->getTextOutput(), SIGNAL(highlighted(QUrl)),
+          this, SLOT(showAnchorDescription(QUrl)));
 
-  QString aux(StrConstants::getTabOutputName());
-  ui->twProperties->removeTab(ctn_TABINDEX_OUTPUT);
-  ui->twProperties->insertTab(ctn_TABINDEX_OUTPUT, tabOutput, QApplication::translate (
-      "MainWindow", aux.toUtf8().constData(), nullptr) );
-
-  SearchBar *searchBar = new SearchBar(this);
-  searchBar->setFocusPolicy(Qt::NoFocus);
-  connect(searchBar, SIGNAL(textChanged(QString)), this, SLOT(searchBarTextChangedInTextBrowser(QString)));
-  connect(searchBar, SIGNAL(closed()), this, SLOT(searchBarClosedInTextBrowser()));
-  connect(searchBar, SIGNAL(findNext()), this, SLOT(searchBarFindNextInTextBrowser()));
-  connect(searchBar, SIGNAL(findPrevious()), this, SLOT(searchBarFindPreviousInTextBrowser()));
-  gridLayoutX->addWidget(searchBar, 1, 0, 1, 1);
-
-  ui->twProperties->setCurrentIndex(ctn_TABINDEX_OUTPUT);
-  text->show();
-  text->setFocus();
+  connect(ui->twProperties->getSearchBarOutput(), SIGNAL(textChanged(QString)),
+          this, SLOT(searchBarTextChangedInTextBrowser(QString)));
+  connect(ui->twProperties->getSearchBarOutput(), SIGNAL(closed()),
+          this, SLOT(searchBarClosedInTextBrowser()));
+  connect(ui->twProperties->getSearchBarOutput(), SIGNAL(findNext()),
+          this, SLOT(searchBarFindNextInTextBrowser()));
+  connect(ui->twProperties->getSearchBarOutput(), SIGNAL(findPrevious()),
+          this, SLOT(searchBarFindPreviousInTextBrowser()));
 }
 
 /*

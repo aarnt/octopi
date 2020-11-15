@@ -59,15 +59,6 @@ class OptionsDialog;
 #include "src/model/packagemodel.h"
 #include "src/packagerepository.h"
 
-//Tab indices for Properties' tabview
-const int ctn_TABINDEX_INFORMATION(0);
-const int ctn_TABINDEX_FILES(1);
-const int ctn_TABINDEX_ACTIONS(2);
-const int ctn_TABINDEX_OUTPUT(3);
-const int ctn_TABINDEX_NEWS(4);
-const int ctn_TABINDEX_HELPUSAGE(5);
-const int ctn_TABINDEX_TERMINAL(6);
-
 namespace Ui {
   class MainWindow;
 }
@@ -304,7 +295,7 @@ private:
   int getNumberOfTobeRemovedPackages();
   QString getTobeRemovedPackages();
   QHash<QString, bool> getTobeInstalledPackages();
-  void initTabTransaction();
+  void initTabActions();
 
   //Tab Output related methods
   QTextBrowser *getOutputTextBrowser();

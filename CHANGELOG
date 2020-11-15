@@ -12,7 +12,8 @@
   Added a faster refresh package list code after checking for updates.
   Added "Build directory" option in AUR tab on options dialog, so users can change where
 	makepkg builds the source code.
-  Added support for '^' and '$' chars in AUR search.
+  Added support for '^' and '$' chars in AUR search
+  Added "Open news in a browser" option on right clicking the News tab.
   Optional package dependencies are now installed with "--asdeps" parameter.
   Octopi-sudo code was synced to match lxqt-sudo version 0.16.0.
   Updated PKGBUILD file following MatMoul's suggestion.
