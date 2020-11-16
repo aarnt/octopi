@@ -89,6 +89,7 @@ MainWindow::MainWindow(QWidget *parent) :
   m_optionsDialog = nullptr;
   m_commandExecuting=ectn_NONE;
   m_commandQueued=ectn_NONE;
+
   m_sharedMemory = new QSharedMemory(QStringLiteral("org.arnt.octopi"), this);
 
   m_tcpServer = new QTcpServer(this);
@@ -173,13 +174,13 @@ bool MainWindow::isNotifierBusy()
     in >> octopiResponse;
   } while (!in.commitTransaction());
 
-  if (octopiResponse != QLatin1String("Octopi est occupatus"))
+  if (octopiResponse == QLatin1String("Octopi est occupatus"))
   {
-    res=false;
+    res=true;
   }
   else
   {
-    res=true; //Notifier is executing an action!
+    res=false;
   }
 
   return res;

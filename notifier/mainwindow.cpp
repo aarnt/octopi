@@ -268,6 +268,7 @@ void MainWindow::onSendInfoToOctopiHelper()
   }
 
   QTcpSocket *clientConnection = m_tcpServer->nextPendingConnection();
+
   if (clientConnection->isOpen())
   {
     if (m_outputDialog != nullptr)
@@ -452,16 +453,21 @@ void MainWindow::aboutOctopiNotifier()
   fake->setGeometry(sc->geometry());
 
   QString aboutText = QStringLiteral("<b>Octopi Notifier</b><br>");
-  aboutText += StrConstants::getVersion() + QLatin1String(": ") + StrConstants::getApplicationVersion() + QLatin1String("</b>") + QLatin1String(" - ") + StrConstants::getQtVersion() + QLatin1String("<br>");
-  aboutText += StrConstants::getURL() + QLatin1String(": ") + QLatin1String("<a href=\"https://tintaescura.com/projects/octopi/\">https://tintaescura.com/projects/octopi</a><br>");
-  aboutText += StrConstants::getLicenses() + QLatin1String(": ") + QLatin1String("<a href=\"http://www.gnu.org/licenses/gpl-2.0.html\">GPL v2</a><br>");
+  aboutText += StrConstants::getVersion() + QLatin1String(": ") +
+      StrConstants::getApplicationVersion() + QLatin1String("</b>") +
+      QLatin1String(" - ") + StrConstants::getQtVersion() + QLatin1String("<br>");
+  aboutText += StrConstants::getURL() + QLatin1String(": ") +
+      QLatin1String("<a href=\"https://tintaescura.com/projects/octopi/\">https://tintaescura.com/projects/octopi</a><br>");
+  aboutText += StrConstants::getLicenses() + QLatin1String(": ") +
+      QLatin1String("<a href=\"http://www.gnu.org/licenses/gpl-2.0.html\">GPL v2</a><br>");
   aboutText += QLatin1String("&copy; Alexandre Albuquerque Arnt<br><br>");
 
   aboutText += QLatin1String("<b>Pacman</b><br>");
   QString pacmanV = UnixCommand::getPacmanVersion();
   if (pacmanV.at(0) == QLatin1Char('v')) pacmanV.remove(0, 1);
   aboutText += StrConstants::getVersion() + QLatin1String(": ") + pacmanV + QLatin1String("<br>");
-  aboutText += StrConstants::getURL() + QLatin1String(": ") + QLatin1String("<a href=\"https://www.archlinux.org/pacman/\">https://www.archlinux.org/pacman</a><br>");
+  aboutText += StrConstants::getURL() + QLatin1String(": ") +
+      QLatin1String("<a href=\"https://www.archlinux.org/pacman/\">https://www.archlinux.org/pacman</a><br>");
   QDate d = QDate::currentDate();
   aboutText += QLatin1String("&copy; 2006-%1 Pacman Development Team<br>");
   aboutText += QLatin1String("&copy; 2002-2006 Judd Vinet");
@@ -722,6 +728,7 @@ void MainWindow::doAURUpgrade()
  */
 void MainWindow::doSystemUpgradeFinished()
 {
+  m_outputDialog = nullptr;
   m_commandExecuting = ectn_NONE;
   m_checkUpdatesStringList.clear();
   m_checkUpdatesNameNewVersion->clear();
@@ -1224,12 +1231,15 @@ void MainWindow::runOctopi(ExecOpt execOptions)
     QProcess::startDetached(QStringLiteral("octopi"), QStringList() << QStringLiteral("-sysupgrade-noconfirm"));
   }
   else if (execOptions == ectn_SYSUPGRADE_EXEC_OPT &&
-      (!UnixCommand::isAppRunning(QStringLiteral("octopi"), true) || !canOctopiUpgrade()) && (m_outdatedStringList->count() > 0 || m_checkUpdatesStringList.count() > 0))
+      (!UnixCommand::isAppRunning(QStringLiteral("octopi"), true) ||
+       !canOctopiUpgrade()) && (m_outdatedStringList->count() > 0 ||
+                                m_checkUpdatesStringList.count() > 0))
   {
     doSystemUpgrade();
   }
   else if (execOptions == ectn_SYSUPGRADE_EXEC_OPT && canOctopiUpgrade() &&
-      UnixCommand::isAppRunning(QStringLiteral("octopi"), true) && (m_outdatedStringList->count() > 0 || m_checkUpdatesStringList.count() > 0))
+      UnixCommand::isAppRunning(QStringLiteral("octopi"), true) &&
+           (m_outdatedStringList->count() > 0 || m_checkUpdatesStringList.count() > 0))
   {
     QProcess::startDetached(QStringLiteral("octopi"), QStringList() << QStringLiteral("-sysupgrade"));
   }
