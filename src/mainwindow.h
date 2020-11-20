@@ -145,7 +145,7 @@ private:
   QString m_removeCommand;
 
   //This model provides the list of pending actions of a transaction
-  QStandardItemModel *m_modelTransaction;
+  //QStandardItemModel *m_modelTransaction;
 
   //This member holds the result list of AUR packages searched by the user
   QList<PackageListData> *m_listOfAURPackages;

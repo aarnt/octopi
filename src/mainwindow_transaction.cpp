@@ -87,9 +87,11 @@ bool MainWindow::areTherePendingActions()
  */
 QStandardItem * MainWindow::getRemoveTransactionParentItem()
 {
-  QTreeView *tvTransaction =
+  /*QTreeView *tvTransaction =
       ui->twProperties->widget(ctn_TABINDEX_ACTIONS)->findChild<QTreeView*>(QStringLiteral("tvTransaction"));
-  QStandardItemModel *sim = qobject_cast<QStandardItemModel *>(tvTransaction->model());
+  QStandardItemModel *sim = qobject_cast<QStandardItemModel *>(tvTransaction->model());*/
+
+  QStandardItemModel *sim = ui->twProperties->getModelTransaction();
   QStandardItem *si = nullptr;
 
   if(sim)
@@ -105,9 +107,11 @@ QStandardItem * MainWindow::getRemoveTransactionParentItem()
  */
 QStandardItem * MainWindow::getInstallTransactionParentItem()
 {
-  QTreeView *tvTransaction =
+  /*QTreeView *tvTransaction =
       ui->twProperties->widget(ctn_TABINDEX_ACTIONS)->findChild<QTreeView*>(QStringLiteral("tvTransaction"));
-  QStandardItemModel *sim = qobject_cast<QStandardItemModel *>(tvTransaction->model());
+  QStandardItemModel *sim = qobject_cast<QStandardItemModel *>(tvTransaction->model());*/
+
+  QStandardItemModel *sim = ui->twProperties->getModelTransaction();
   QStandardItem *si = nullptr;
 
   if(sim)
@@ -662,7 +666,8 @@ void MainWindow::tvTransactionSelectionChanged(const QItemSelection&, const QIte
  */
 void MainWindow::tvTransactionRowsChanged(const QModelIndex& parent)
 {
-  QStandardItem *item = m_modelTransaction->itemFromIndex(parent);
+  //QStandardItem *item = m_modelTransaction->itemFromIndex(parent);
+  QStandardItem *item = ui->twProperties->getModelTransaction()->itemFromIndex(parent);
   QString count = QString::number(item->rowCount());
   QStandardItem * itemRemove = getRemoveTransactionParentItem();
   QStandardItem * itemInstall = getInstallTransactionParentItem();
@@ -734,9 +739,9 @@ void MainWindow::onPressDelete()
         for(int c=tvTransaction->selectionModel()->selectedIndexes().count()-1; c>=0; c--)
         {
           const QModelIndex mi = tvTransaction->selectionModel()->selectedIndexes().at(c);
-          if (m_modelTransaction->itemFromIndex(mi)->parent() != nullptr)
+          if (ui->twProperties->getModelTransaction()->itemFromIndex(mi)->parent() != nullptr)
           {
-            m_modelTransaction->removeRow(mi.row(), mi.parent());
+            ui->twProperties->getModelTransaction()->removeRow(mi.row(), mi.parent());
           }
         }
       }

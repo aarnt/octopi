@@ -494,7 +494,8 @@ void MainWindow::initTabWidgetPropertiesIndex()
  */
 void MainWindow::initTabActions()
 {
-  ui->twProperties->setModelTransaction(m_modelTransaction);
+  //m_modelTransaction = new QStandardItemModel(this);
+  //ui->twProperties->setModelTransaction(m_modelTransaction);
   ui->twProperties->initTabActions();
 
   connect(ui->twProperties->getTvTransaction(), SIGNAL(customContextMenuRequested(QPoint)),

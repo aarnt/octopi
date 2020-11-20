@@ -44,9 +44,10 @@ public:
   void initTabHelpUsage();
   void initTabTerminal();
 
+  QStandardItemModel *getModelTransaction() { return m_modelTransaction; };
   void setConsole(TermWidget *console);
-  void setModelTransaction(QStandardItemModel *model);
-  void setHelpUsageText(QString text);
+  //void setModelTransaction(QStandardItemModel *model);
+  void setHelpUsageText(QString text);  
 
   inline QTextBrowser* getTextInfo() { return m_textInfo; };
   inline SearchBar* getSearchBarInfo() { return m_searchBarInfo; };

@@ -126,9 +126,11 @@ void TermWidget::parseOutput(QString str)
 {
   //qDebug() << "terminal: " << str << endl;
 
-  if ((str == StrConstants::getPressAnyKey() ||
-       str == StrConstants::getPressAnyKey() + QLatin1String("\r") ||
-       str == StrConstants::getPressAnyKey() + QLatin1String("\r\n")) ||
+  if ((//str == StrConstants::getPressAnyKey() ||
+       str.contains(QRegularExpression(QLatin1Char('^') + StrConstants::getPressAnyKey()))) ||
+       /*str == StrConstants::getPressAnyKey() + QLatin1String("\r") ||
+       str == StrConstants::getPressAnyKey() + QLatin1String("\r\n")) ||*/
+
       str.contains(StrConstants::getSuspiciousExecutionDetected()) ||
       str.contains(StrConstants::getSuspiciousTransactionDetected()) ||
       str.contains(StrConstants::getCouldNotAttachToParent())

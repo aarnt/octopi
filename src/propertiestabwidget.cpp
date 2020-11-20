@@ -321,10 +321,10 @@ void PropertiesTabWidget::setConsole(TermWidget *console)
   m_console = console;
 }
 
-void PropertiesTabWidget::setModelTransaction(QStandardItemModel *model)
+/*void PropertiesTabWidget::setModelTransaction(QStandardItemModel *model)
 {
   m_modelTransaction = model;
-}
+}*/
 
 void PropertiesTabWidget::setHelpUsageText(QString text)
 {
