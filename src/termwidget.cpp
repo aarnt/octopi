@@ -124,12 +124,11 @@ void TermWidget::enter()
  */
 void TermWidget::parseOutput(QString str)
 {
-  //qDebug() << "terminal: " << str << endl;
+  //qDebug() << "terminal: " << str << Qt::endl;
 
-  if ((//str == StrConstants::getPressAnyKey() ||
-       str.contains(QRegularExpression(QLatin1Char('^') + StrConstants::getPressAnyKey()))) ||
-       /*str == StrConstants::getPressAnyKey() + QLatin1String("\r") ||
-       str == StrConstants::getPressAnyKey() + QLatin1String("\r\n")) ||*/
+  if ((str == StrConstants::getPressAnyKey() ||
+       (str.contains(QRegularExpression(QStringLiteral("\\r*\\n*") + StrConstants::getPressAnyKey())) &&
+       (!str.contains(QStringLiteral("echo '") + StrConstants::getPressAnyKey())))) ||
 
       str.contains(StrConstants::getSuspiciousExecutionDetected()) ||
       str.contains(StrConstants::getSuspiciousTransactionDetected()) ||
