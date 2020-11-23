@@ -1,6 +1,6 @@
 /*
 * This file is part of Octopi, an open-source GUI for pacman.
-* Copyright (C) 2013 Alexandre Albuquerque Arnt
+* Copyright (C) 2020 Alexandre Albuquerque Arnt
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -46,7 +46,6 @@ public:
 
   QStandardItemModel *getModelTransaction() { return m_modelTransaction; };
   void setConsole(TermWidget *console);
-  //void setModelTransaction(QStandardItemModel *model);
   void setHelpUsageText(QString text);  
 
   inline QTextBrowser* getTextInfo() { return m_textInfo; };

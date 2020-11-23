@@ -1,6 +1,6 @@
 /*
 * This file is part of Octopi, an open-source GUI for pacman.
-* Copyright (C) 2013 Alexandre Albuquerque Arnt
+* Copyright (C) 2020 Alexandre Albuquerque Arnt
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -61,8 +61,7 @@ void PropertiesTabWidget::initTabInfo()
   m_textInfo->setFrameShape(QFrame::NoFrame);
   m_textInfo->setFrameShadow(QFrame::Plain);
   m_textInfo->setOpenLinks(false);
-  //connect(m_textInfo, SIGNAL(anchorClicked(QUrl)), this, SLOT(outputTextBrowserAnchorClicked(QUrl)));
-  //connect(m_textInfo, SIGNAL(highlighted(QUrl)), this, SLOT(showAnchorDescription(QUrl)));
+
   gridLayoutX->addWidget ( m_textInfo, 0, 0, 1, 1 );
 
   QString tabName(StrConstants::getTabInfoName());
@@ -73,10 +72,6 @@ void PropertiesTabWidget::initTabInfo()
 
   m_searchBarInfo = new SearchBar(this);
   m_searchBarInfo->setFocusPolicy(Qt::NoFocus);
-  //connect(m_searchBarInfo, SIGNAL(textChanged(QString)), this, SLOT(searchBarTextChangedInTextBrowser(QString)));
-  //connect(m_searchBarInfo, SIGNAL(closed()), this, SLOT(searchBarClosedInTextBrowser()));
-  //connect(m_searchBarInfo, SIGNAL(findNext()), this, SLOT(searchBarFindNextInTextBrowser()));
-  //connect(m_searchBarInfo, SIGNAL(findPrevious()), this, SLOT(searchBarFindPreviousInTextBrowser()));
   gridLayoutX->addWidget(m_searchBarInfo, 1, 0, 1, 1);
 
   setCurrentIndex(ctn_TABINDEX_INFORMATION);
@@ -90,6 +85,7 @@ void PropertiesTabWidget::initTabFiles()
   QGridLayout *gridLayoutX = new QGridLayout ( tabPkgFileList );
   gridLayoutX->setSpacing ( 0 );
   gridLayoutX->setMargin ( 0 );
+
   QStandardItemModel *modelPkgFileList = new QStandardItemModel(this);
   m_tvPkgFileList = new QTreeView(tabPkgFileList);
   m_tvPkgFileList->setEditTriggers(QAbstractItemView::NoEditTriggers);
@@ -116,17 +112,8 @@ void PropertiesTabWidget::initTabFiles()
   m_tvPkgFileList->setContextMenuPolicy(Qt::CustomContextMenu);
   m_searchBarFiles = new SearchBar(this);
   m_searchBarFiles->setFocusPolicy(Qt::NoFocus);
-  //connect(searchBar, SIGNAL(textChanged(QString)), this, SLOT(searchBarTextChangedInTreeView(QString)));
-  //connect(searchBar, SIGNAL(closed()), this, SLOT(searchBarClosedInTreeView()));
-  //connect(searchBar, SIGNAL(findNext()), this, SLOT(searchBarFindNextInTreeView()));
-  //connect(searchBar, SIGNAL(findPrevious()), this, SLOT(searchBarFindPreviousInTreeView()));
 
   gridLayoutX->addWidget(m_searchBarFiles, 1, 0, 1, 1);
-
-  /*connect(tvPkgFileList, SIGNAL(customContextMenuRequested(QPoint)),
-          this, SLOT(execContextMenuPkgFileList(QPoint)));
-  connect(tvPkgFileList, SIGNAL(doubleClicked (const QModelIndex&)),
-          this, SLOT(openFile()));*/
 }
 
 void PropertiesTabWidget::initTabActions()
@@ -176,14 +163,6 @@ void PropertiesTabWidget::initTabActions()
   removeTab(ctn_TABINDEX_ACTIONS);
   insertTab(ctn_TABINDEX_ACTIONS, tabTransaction, QApplication::translate (
                                 "MainWindow", aux.toUtf8().constData(), nullptr/*, QApplication::UnicodeUTF8*/ ));
-
-  /*connect(tvTransaction, SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(execContextMenuTransaction(QPoint)));
-  connect(tvTransaction->selectionModel(), SIGNAL(selectionChanged(QItemSelection,QItemSelection)),
-          this, SLOT(tvTransactionSelectionChanged(QItemSelection,QItemSelection)));
-  connect(tvTransaction->model(), SIGNAL(rowsInserted ( const QModelIndex , int, int )),
-          this, SLOT(tvTransactionRowsInserted(QModelIndex,int,int)));
-  connect(tvTransaction->model(), SIGNAL(rowsRemoved ( const QModelIndex , int, int )),
-          this, SLOT(tvTransactionRowsRemoved(QModelIndex,int,int)));*/
 }
 
 void PropertiesTabWidget::initTabNews()
@@ -211,17 +190,9 @@ void PropertiesTabWidget::initTabNews()
   m_searchBarNews = new SearchBar(this);
   m_searchBarNews->setFocusPolicy(Qt::NoFocus);
 
-  /*connect(searchBar, SIGNAL(textChanged(QString)), this, SLOT(searchBarTextChangedInTextBrowser(QString)));
-  connect(searchBar, SIGNAL(closed()), this, SLOT(searchBarClosedInTextBrowser()));
-  connect(searchBar, SIGNAL(findNext()), this, SLOT(searchBarFindNextInTextBrowser()));
-  connect(searchBar, SIGNAL(findPrevious()), this, SLOT(searchBarFindPreviousInTextBrowser()));*/
-
   gridLayoutX->addWidget(m_searchBarNews, 1, 0, 1, 1);
 
-  //connect(text, SIGNAL(sourceChanged(QUrl)), this, SLOT(onTabNewsSourceChanged(QUrl)));
-
   m_textNews->show();
-
   setCurrentIndex(tindex);
   m_textNews->setFocus();
 }
@@ -240,8 +211,6 @@ void PropertiesTabWidget::initTabOutput()
   m_textOutput->setFrameShape(QFrame::NoFrame);
   m_textOutput->setFrameShadow(QFrame::Plain);
 
-  //connect(text, SIGNAL(anchorClicked(QUrl)), this, SLOT(outputTextBrowserAnchorClicked(QUrl)));
-  //connect(text, SIGNAL(highlighted(QUrl)), this, SLOT(showAnchorDescription(QUrl)));
   gridLayoutX->addWidget (m_textOutput, 0, 0, 1, 1);
 
   QString aux(StrConstants::getTabOutputName());
@@ -251,10 +220,7 @@ void PropertiesTabWidget::initTabOutput()
 
   m_searchBarOutput = new SearchBar(this);
   m_searchBarOutput->setFocusPolicy(Qt::NoFocus);
-  /*connect(searchBar, SIGNAL(textChanged(QString)), this, SLOT(searchBarTextChangedInTextBrowser(QString)));
-  connect(searchBar, SIGNAL(closed()), this, SLOT(searchBarClosedInTextBrowser()));
-  connect(searchBar, SIGNAL(findNext()), this, SLOT(searchBarFindNextInTextBrowser()));
-  connect(searchBar, SIGNAL(findPrevious()), this, SLOT(searchBarFindPreviousInTextBrowser()));*/
+
   gridLayoutX->addWidget(m_searchBarOutput, 1, 0, 1, 1);
 
   setCurrentIndex(ctn_TABINDEX_OUTPUT);
@@ -284,10 +250,7 @@ void PropertiesTabWidget::initTabHelpUsage()
 
   m_searchBarHelpUsage = new SearchBar(this);
   m_searchBarHelpUsage->setFocusPolicy(Qt::NoFocus);
-  /*connect(searchBar, SIGNAL(textChanged(QString)), this, SLOT(searchBarTextChangedInTextBrowser(QString)));
-  connect(searchBar, SIGNAL(closed()), this, SLOT(searchBarClosedInTextBrowser()));
-  connect(searchBar, SIGNAL(findNext()), this, SLOT(searchBarFindNextInTextBrowser()));
-  connect(searchBar, SIGNAL(findPrevious()), this, SLOT(searchBarFindPreviousInTextBrowser()));*/
+
   gridLayoutX->addWidget(m_searchBarHelpUsage, 1, 0, 1, 1);
 
   text->show();
@@ -301,12 +264,6 @@ void PropertiesTabWidget::initTabTerminal()
   QGridLayout *gridLayoutX = new QGridLayout(tabTerminal);
   gridLayoutX->setSpacing ( 0 );
   gridLayoutX->setMargin ( 0 );
-
-  //m_console = new TermWidget(this);
-  //connect(m_console, SIGNAL(finished()), this, SLOT(initTabTerminal()));
-  //connect(m_console, SIGNAL(onKeyQuit()), this, SLOT(close()));
-  //connect(m_console, SIGNAL(onKeyF11()), this, SLOT(maximizeTerminalTab()));
-
   gridLayoutX->addWidget(m_console, 0, 0, 1, 1);
   removeTab(ctn_TABINDEX_TERMINAL);
   QString aux(StrConstants::getTabTerminal());
@@ -320,11 +277,6 @@ void PropertiesTabWidget::setConsole(TermWidget *console)
 {
   m_console = console;
 }
-
-/*void PropertiesTabWidget::setModelTransaction(QStandardItemModel *model)
-{
-  m_modelTransaction = model;
-}*/
 
 void PropertiesTabWidget::setHelpUsageText(QString text)
 {

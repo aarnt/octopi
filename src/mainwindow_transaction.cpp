@@ -87,10 +87,6 @@ bool MainWindow::areTherePendingActions()
  */
 QStandardItem * MainWindow::getRemoveTransactionParentItem()
 {
-  /*QTreeView *tvTransaction =
-      ui->twProperties->widget(ctn_TABINDEX_ACTIONS)->findChild<QTreeView*>(QStringLiteral("tvTransaction"));
-  QStandardItemModel *sim = qobject_cast<QStandardItemModel *>(tvTransaction->model());*/
-
   QStandardItemModel *sim = ui->twProperties->getModelTransaction();
   QStandardItem *si = nullptr;
 
@@ -107,10 +103,6 @@ QStandardItem * MainWindow::getRemoveTransactionParentItem()
  */
 QStandardItem * MainWindow::getInstallTransactionParentItem()
 {
-  /*QTreeView *tvTransaction =
-      ui->twProperties->widget(ctn_TABINDEX_ACTIONS)->findChild<QTreeView*>(QStringLiteral("tvTransaction"));
-  QStandardItemModel *sim = qobject_cast<QStandardItemModel *>(tvTransaction->model());*/
-
   QStandardItemModel *sim = ui->twProperties->getModelTransaction();
   QStandardItem *si = nullptr;
 
@@ -127,8 +119,8 @@ QStandardItem * MainWindow::getInstallTransactionParentItem()
  */
 void MainWindow::insertRemovePackageIntoTransaction(const QString &pkgName)
 {
-  QTreeView *tvTransaction =
-      ui->twProperties->widget(ctn_TABINDEX_ACTIONS)->findChild<QTreeView*>(QStringLiteral("tvTransaction"));
+  QTreeView *tvTransaction = ui->twProperties->getTvTransaction();
+
   QStandardItem * siRemoveParent = getRemoveTransactionParentItem();
   QStandardItem * siInstallParent = getInstallTransactionParentItem();
   QStandardItem * siPackageToRemove = new QStandardItem(IconHelper::getIconRemoveItem(), pkgName);
@@ -164,8 +156,8 @@ void MainWindow::insertRemovePackageIntoTransaction(const QString &pkgName)
  */
 void MainWindow::insertInstallPackageIntoTransaction(const QString &pkgName, bool isDep)
 {
-  QTreeView *tvTransaction =
-      ui->twProperties->widget(ctn_TABINDEX_ACTIONS)->findChild<QTreeView*>(QStringLiteral("tvTransaction"));
+  QTreeView *tvTransaction = ui->twProperties->getTvTransaction();
+
   QStandardItem * siInstallParent = getInstallTransactionParentItem();
   QStandardItem * siPackageToInstall = new QStandardItem(IconHelper::getIconInstallItem(), pkgName);
   if (isDep) siPackageToInstall->setStatusTip(QStringLiteral("isDep"));
@@ -627,8 +619,8 @@ void MainWindow::insertGroupIntoInstallPackage()
 void MainWindow::tvTransactionAdjustItemText(QStandardItem *item)
 {
   int countSelected=0;
-  QTreeView *tvTransaction =
-      ui->twProperties->currentWidget()->findChild<QTreeView*>(QStringLiteral("tvTransaction"));
+  QTreeView *tvTransaction = ui->twProperties->getTvTransaction();
+
   if (!tvTransaction) return;
 
   for(int c=0; c < item->rowCount(); c++)
@@ -723,8 +715,7 @@ void MainWindow::onPressDelete()
   }
   else
   {
-    QTreeView *tvTransaction =
-        ui->twProperties->widget(ctn_TABINDEX_ACTIONS)->findChild<QTreeView*>(QStringLiteral("tvTransaction"));
+    QTreeView *tvTransaction = ui->twProperties->getTvTransaction();
 
     if (tvTransaction->hasFocus())
     {
@@ -1883,6 +1874,8 @@ void MainWindow::toggleTransactionActions(const bool value)
   ui->actionInstallAUR->setEnabled(value);
   m_actionInstallPacmanUpdates->setEnabled(value);
   m_actionInstallAURUpdates->setEnabled(value);
+  m_actionAUROpenPKGBUILD->setEnabled(value);
+  m_actionAURShowPKGBUILDDiff->setEnabled(value);
 
   ui->actionRemoveTransactionItem->setEnabled(value);
   ui->actionRemoveTransactionItems->setEnabled(value);
