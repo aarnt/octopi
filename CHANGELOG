@@ -1,5 +1,7 @@
 0.11 (dev)
   Added support for CMake build system (thanks to Tereius).
+  Added support to build multiple foreign packages at the same time (they are first
+	copied to the Actions' tree view just like official packages).
   Added "Open PKGBUILD" option to open the AUR PKGBUILD file in a text editor.
   Added "Show PKGBUILD diff" option to show the differences between latest and previous
 	PKGBUILD files of the selected AUR package in a text editor.

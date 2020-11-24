@@ -425,10 +425,13 @@ private slots:
   void doChangeInstallReason(const QHash<QString, QString> &listOfTargets);
   void doCheckUpdates();
   void doMirrorCheck();
+  void doInstallAUR();
   void doInstallAURPackage();
   void doPreDownloadTempYay();
   void doInstallYayPackage();
+  void doRemoveAUR();
   void doRemoveAURPackage();
+  void doRemoveAndInstallAUR();
   void onAURToolChanged();
   void onAURVotingChanged();
   void disableTransactionActions();

@@ -110,6 +110,7 @@ public:
   void doAURInstall(const QString &listOfPackages);
   void doInstallYayUsingTempYay();
   void doAURRemove(const QString &listOfPackages);
+  void doAURRemoveAndInstallInTerminal(const QString &listOfPackagestoRemove, const QString &listOfPackagestoInstall);
 
 signals:
   void percentage(int);

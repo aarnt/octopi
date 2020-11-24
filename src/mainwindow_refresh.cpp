@@ -231,7 +231,7 @@ void MainWindow::AURToolSelected()
   if (m_actionSwitchToAURTool->isChecked())
   {
     ui->tvPackages->setModel(&emptyModel);
-    ui->twProperties->setTabEnabled(ctn_TABINDEX_ACTIONS, false);
+    //ui->twProperties->setTabEnabled(ctn_TABINDEX_ACTIONS, false);
 
     if ((UnixCommand::getLinuxDistro() != ectn_KAOS && ui->actionUseInstantSearch->isChecked()) ||
          (UnixCommand::getLinuxDistro() == ectn_KAOS && !ui->actionUseInstantSearch->isChecked()))
@@ -264,7 +264,7 @@ void MainWindow::AURToolSelected()
   else
   {
     ui->actionUseInstantSearch->setEnabled(true);
-    ui->twProperties->setTabEnabled(ctn_TABINDEX_ACTIONS, true);
+    //ui->twProperties->setTabEnabled(ctn_TABINDEX_ACTIONS, true);
 
     if (UnixCommand::getLinuxDistro() != ectn_KAOS && ui->actionUseInstantSearch->isChecked())
     {

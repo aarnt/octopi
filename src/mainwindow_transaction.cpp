@@ -261,7 +261,7 @@ void MainWindow::insertIntoRemovePackage(QModelIndex *indexToInclude)
   qApp->processEvents();
   QStringList dependencies;
 
-  if (!isAURGroupSelected())
+  //if (!isAURGroupSelected())
   {
     bool checkDependencies=false;
     ensureTabVisible(ctn_TABINDEX_ACTIONS);
@@ -321,7 +321,9 @@ void MainWindow::insertIntoRemovePackage(QModelIndex *indexToInclude)
           if (!dependencies.at(0).contains(QLatin1String("HoldPkg was found in")))
           {
             if (!insertIntoRemovePackageDeps(dependencies))
+            {
               return;
+            }
           }
         }
       }
@@ -329,10 +331,10 @@ void MainWindow::insertIntoRemovePackage(QModelIndex *indexToInclude)
       insertRemovePackageIntoTransaction(package->repository + QLatin1Char('/') + package->name);
     }
   }
-  else
+  /*else
   {
     doRemoveAURPackage();
-  }
+  }*/
 }
 
 /*
@@ -416,7 +418,7 @@ void MainWindow::insertIntoInstallPackage(QModelIndex *indexToInclude)
 {
   qApp->processEvents();
 
-  if (!isAURGroupSelected())
+  //if (!isAURGroupSelected())
   {
     ensureTabVisible(ctn_TABINDEX_ACTIONS);
     QModelIndexList selectedRows;
@@ -451,10 +453,10 @@ void MainWindow::insertIntoInstallPackage(QModelIndex *indexToInclude)
       insertInstallPackageIntoTransaction(package->repository + QLatin1Char('/') + package->name);
     }
   }
-  else
+  /*else
   {
     doInstallAURPackage();
-  }
+  }*/
 }
 
 /*
@@ -1088,6 +1090,39 @@ void MainWindow::doSystemUpgrade(SystemUpgradeOptions systemUpgradeOptions)
 
 /*
  * Removes and Installs all selected packages in one transaction just using:
+ * "pacman -R alltoRemove; AUR-TOOL -S alltoInstall"
+ */
+void MainWindow::doRemoveAndInstallAUR()
+{
+  QString listOfRemoveTargets = getTobeRemovedPackages();
+  listOfRemoveTargets.replace(StrConstants::getForeignRepositoryGroupName() + QLatin1Char('/'), QStringLiteral(""));
+  QHash<QString, bool> listToBeInst = getTobeInstalledPackages();
+  QString listOfInstallTargets = listToBeInst.keys().join(QStringLiteral(" "));
+  listOfInstallTargets.replace(StrConstants::getForeignRepositoryGroupName() + QLatin1Char('/'), QStringLiteral(""));
+
+  disableTransactionActions();
+  m_progressWidget->setValue(0);
+  m_progressWidget->setMaximum(100);
+  clearTabOutput();
+
+  m_pacmanExec = new PacmanExec();
+  m_pacmanExec->setSharedMemory(m_sharedMemory);
+  if (m_debugInfo) m_pacmanExec->setDebugMode(true);
+
+  QObject::connect(m_pacmanExec, SIGNAL( finished ( int, QProcess::ExitStatus )),
+                   this, SLOT( pacmanProcessFinished(int, QProcess::ExitStatus) ));
+
+  QObject::connect(m_pacmanExec, SIGNAL(percentage(int)), this, SLOT(incrementPercentage(int)));
+  QObject::connect(m_pacmanExec, SIGNAL(textToPrintExt(QString)), this, SLOT(outputText(QString)));
+  QObject::connect(m_pacmanExec, SIGNAL(canStopTransaction(bool)), this, SLOT(onCanStopTransaction(bool)));
+  QObject::connect(m_pacmanExec, SIGNAL(commandToExecInQTermWidget(QString)), this, SLOT(onExecCommandInTabTerminal(QString)));
+
+  m_commandExecuting = ectn_RUN_IN_TERMINAL;
+  m_pacmanExec->doAURRemoveAndInstallInTerminal(listOfRemoveTargets, listOfInstallTargets);
+}
+
+/*
+ * Removes and Installs all selected packages in one transaction just using:
  * "pacman -R alltoRemove; pacman -S alltoInstall"
  */
 void MainWindow::doRemoveAndInstall()
@@ -1418,6 +1453,35 @@ void MainWindow::doInstallYayPackage()
 }
 
 /*
+ * Removes selected packages with the proper AUR tool
+ */
+void MainWindow::doRemoveAUR()
+{
+  QString listOfTargets = getTobeRemovedPackages();
+  //listOfTargets = listToBeInst.keys().join(QStringLiteral(" "));
+  listOfTargets.replace(StrConstants::getForeignRepositoryGroupName() + QLatin1Char('/'), QStringLiteral(""));
+
+  disableTransactionActions();
+  m_progressWidget->setValue(0);
+  m_progressWidget->setMaximum(100);
+  clearTabOutput();
+
+  m_pacmanExec = new PacmanExec();
+  m_pacmanExec->setSharedMemory(m_sharedMemory);
+  if (m_debugInfo) m_pacmanExec->setDebugMode(true);
+
+  QObject::connect(m_pacmanExec, SIGNAL( finished ( int, QProcess::ExitStatus )),
+                   this, SLOT( pacmanProcessFinished(int, QProcess::ExitStatus) ));
+
+  QObject::connect(m_pacmanExec, SIGNAL(percentage(int)), this, SLOT(incrementPercentage(int)));
+  QObject::connect(m_pacmanExec, SIGNAL(textToPrintExt(QString)), this, SLOT(outputText(QString)));
+  QObject::connect(m_pacmanExec, SIGNAL(commandToExecInQTermWidget(QString)), this, SLOT(onExecCommandInTabTerminal(QString)));
+
+  m_commandExecuting = ectn_RUN_IN_TERMINAL;
+  m_pacmanExec->doAURRemove(listOfTargets);
+}
+
+/*
  * Removes the selected package with "yaourt -R"
  */
 void MainWindow::doRemoveAURPackage()
@@ -1619,6 +1683,38 @@ bool MainWindow::hasPartialUpgrade(QStringList &pkgsToInstall)
   }
 
   return result;
+}
+
+/*
+ * Installs ALL AUR packages selected by the user
+ */
+void MainWindow::doInstallAUR()
+{
+  QString listOfTargets;
+  QHash<QString, bool> listToBeInst = getTobeInstalledPackages();
+  listOfTargets = listToBeInst.keys().join(QStringLiteral(" "));
+  listOfTargets.replace(StrConstants::getForeignRepositoryGroupName() + QLatin1Char('/'), QStringLiteral(""));
+
+  disableTransactionActions();
+  m_progressWidget->setValue(0);
+  m_progressWidget->setMaximum(100);
+  clearTabOutput();
+
+  m_pacmanExec = new PacmanExec();
+  m_pacmanExec->setSharedMemory(m_sharedMemory);
+  if (m_debugInfo) m_pacmanExec->setDebugMode(true);
+
+  QObject::connect(m_pacmanExec, SIGNAL( finished ( int, QProcess::ExitStatus )),
+                   this, SLOT( pacmanProcessFinished(int, QProcess::ExitStatus) ));
+
+  QObject::connect(m_pacmanExec, SIGNAL(percentage(int)), this, SLOT(incrementPercentage(int)));
+  QObject::connect(m_pacmanExec, SIGNAL(textToPrintExt(QString)), this, SLOT(outputText(QString)));
+  QObject::connect(m_pacmanExec, SIGNAL(commandToExecInQTermWidget(QString)), this, SLOT(onExecCommandInTabTerminal(QString)));
+
+  m_commandExecuting = ectn_RUN_IN_TERMINAL;
+  m_pacmanExec->doAURInstall(listOfTargets);
+
+  //QMessageBox::warning(this, StrConstants::getApplicationName(), listOfTargets);
 }
 
 /*
@@ -1959,15 +2055,24 @@ void MainWindow::commitTransaction()
   //Are there any remove actions to be commited?
   if(getRemoveTransactionParentItem()->rowCount() > 0 && getInstallTransactionParentItem()->rowCount() > 0)
   {
-    doRemoveAndInstall();
+    if (!isAURGroupSelected())
+      doRemoveAndInstall();
+    else
+      doRemoveAndInstallAUR();
   }
   else if(getRemoveTransactionParentItem()->rowCount() > 0)
   {
-    doRemove();
+    if (!isAURGroupSelected())
+      doRemove();
+    else
+      doRemoveAUR();
   }
   else if(getInstallTransactionParentItem()->rowCount() > 0)
   {
-    doInstall();
+    if (!isAURGroupSelected())
+      doInstall();
+    else
+      doInstallAUR();
   }
 }
 
@@ -2316,7 +2421,7 @@ void MainWindow::onCancelControlKey()
 {
   if (m_commandExecuting != ectn_NONE)
   {
-    clearTransactionTreeView();
+    //clearTransactionTreeView();
     enableTransactionActions();
 
     delete m_pacmanExec;

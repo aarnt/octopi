@@ -1305,6 +1305,35 @@ void PacmanExec::doAURUpgrade(const QString &listOfPackages)
 }
 
 /*
+ * Calls AUR tool to remove and install given packages inside a terminal
+ */
+void PacmanExec::doAURRemoveAndInstallInTerminal(const QString &listOfPackagestoRemove, const QString &listOfPackagestoInstall)
+{
+  m_lastCommandList.clear();
+
+  m_lastCommandList.append(QLatin1String("sudo pacman -R ") + listOfPackagestoRemove + QLatin1Char(';'));
+
+  if (UnixCommand::getLinuxDistro() == ectn_KAOS)
+    m_lastCommandList.append(Package::getForeignRepositoryToolNameParam() + QLatin1String(" -i ") + listOfPackagestoInstall + QLatin1Char(';'));
+  else if (Package::getForeignRepositoryToolName() == ctn_PACAUR_TOOL)
+    m_lastCommandList.append(Package::getForeignRepositoryToolNameParam() + QLatin1String(" -Sa ") + listOfPackagestoInstall + QLatin1Char(';'));
+  else if (Package::getForeignRepositoryToolName() == ctn_TRIZEN_TOOL)
+    m_lastCommandList.append(Package::getForeignRepositoryToolNameParam() + QLatin1String(" -Sa ") + listOfPackagestoInstall + QLatin1Char(';'));
+  else if (Package::getForeignRepositoryToolName() == ctn_PIKAUR_TOOL)
+    m_lastCommandList.append(Package::getForeignRepositoryToolNameParam() + QLatin1String(" -S --aur ") + listOfPackagestoInstall + QLatin1Char(';'));
+  else if (Package::getForeignRepositoryToolName() == ctn_YAY_TOOL)
+    m_lastCommandList.append(Package::getForeignRepositoryToolNameParam() + QLatin1String(" -S --aur ") + listOfPackagestoInstall + QLatin1Char(';'));
+  else if (Package::getForeignRepositoryToolName() == ctn_CHASER_TOOL)
+    m_lastCommandList.append(Package::getForeignRepositoryToolNameParam() + QLatin1String(" install ") + listOfPackagestoInstall + QLatin1Char(';'));
+
+  m_lastCommandList.append(QStringLiteral("echo -e;"));
+  m_lastCommandList.append(QLatin1String("read -n 1 -p \"") + StrConstants::getPressAnyKey() + QLatin1Char('"'));
+
+  m_commandExecuting = ectn_RUN_IN_TERMINAL;
+  m_unixCommand->runCommandInTerminalAsNormalUser(m_lastCommandList);
+}
+
+/*
  * Calls AUR tool to install given packages inside a terminal
  */
 void PacmanExec::doAURInstall(const QString &listOfPackages)

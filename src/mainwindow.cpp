@@ -1048,22 +1048,22 @@ void MainWindow::execKeyActionOnPackage(CommandExecuting command)
       {
         if (package->installed() && command == ectn_REMOVE)
         {
-          if (package->repository == StrConstants::getForeignRepositoryName())
+          /*if (package->repository == StrConstants::getForeignRepositoryName())
           {
             doRemoveAURPackage();
-          }
-          else if (!package->required)
+          }*/
+          if (package->repository == StrConstants::getForeignRepositoryName())
           {
             insertIntoRemovePackage();
           }
         }
         else if (command == ectn_INSTALL)
         {
-          if (package->repository == StrConstants::getForeignRepositoryName())
+          /*if (package->repository == StrConstants::getForeignRepositoryName())
           {
             doInstallAURPackage();
-          }
-          else
+          }*/
+          if (package->repository != StrConstants::getForeignRepositoryName())
           {
             insertIntoInstallPackage();
           }
@@ -1078,7 +1078,17 @@ void MainWindow::execKeyActionOnPackage(CommandExecuting command)
 
         if (package->repository == StrConstants::getForeignRepositoryName())
         {
-          return;
+          if (!isAURGroupSelected() && package->installed() && command == ectn_REMOVE)
+          {
+            insertIntoRemovePackage(&item);
+          }
+          else if (isAURGroupSelected())
+          {
+            if (command == ectn_INSTALL)
+              insertIntoInstallPackage(&item);
+            else if (package->installed() && command == ectn_REMOVE)
+              insertIntoRemovePackage(&item);
+          }
         }
         if (command == ectn_INSTALL)
         {
@@ -1197,15 +1207,15 @@ void MainWindow::execContextMenuPackages(QPoint point)
 
       if (allInstalled && (numOutdated==numberOfSelPkgs))
       {
-        ui->actionInstallAUR->setText(StrConstants::getUpdate());
+        ui->actionInstall->setText(StrConstants::getUpdate()); //AUR
       }
       else if (allInstalled)
       {
-        ui->actionInstallAUR->setText(StrConstants::getReinstall());
+        ui->actionInstall->setText(StrConstants::getReinstall()); //AUR
       }
       else
       {
-        ui->actionInstallAUR->setText(StrConstants::getInstall());
+        ui->actionInstall->setText(StrConstants::getInstall()); //AUR
       }
 
       if (selectedRows.count() == 1 && m_aurVote != nullptr)
@@ -1222,7 +1232,8 @@ void MainWindow::execContextMenuPackages(QPoint point)
         menu->addAction(m_actionAURShowPKGBUILDDiff);
       }
 
-      menu->addAction(ui->actionInstallAUR); // installs directly
+      if (isAURGroupSelected())
+        menu->addAction(ui->actionInstall); //AUR); // installs directly
     }
 
     if (allRemovable)
