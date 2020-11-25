@@ -233,6 +233,7 @@ class Package{
     static QString removeColorCodesFromStr(const QString &str);
     static bool hasPacmanDatabase();
 
+    static bool isAURBased();
     static QString getForeignRepositoryToolNameParam();
     static QString getForeignRepositoryToolName();
 };

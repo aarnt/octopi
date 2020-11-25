@@ -356,12 +356,12 @@ void MainWindow::keyPressEvent(QKeyEvent* ke)
     }
   }
   else if(ke->key() == Qt::Key_Y && ke->modifiers() == (Qt::ShiftModifier|Qt::ControlModifier)
-          && m_hasAURTool && m_actionSwitchToAURTool->isEnabled())
+          && m_hasForeignTool && m_actionSwitchToForeignTool->isEnabled())
   {
     if (m_commandExecuting != ectn_NONE) return;
 
     //The user wants to use "AUR tool" to search for pkgs
-    m_actionSwitchToAURTool->trigger();
+    m_actionSwitchToForeignTool->trigger();
     m_leFilterPackage->setFocus();
   }
   else if(ke->key() == Qt::Key_S && ke->modifiers() == (Qt::ShiftModifier|Qt::ControlModifier))
@@ -382,7 +382,7 @@ void MainWindow::keyPressEvent(QKeyEvent* ke)
 
     LinuxDistro ld=UnixCommand::getLinuxDistro();
     if((ld == ectn_KAOS || ld == ectn_CHAKRA) || (
-       m_hasAURTool && SettingsManager::getAURToolName() != ctn_NO_AUR_TOOL &&
+       m_hasForeignTool && SettingsManager::getAURToolName() != ctn_NO_AUR_TOOL &&
        !isAURGroupSelected() && !SettingsManager::getSearchOutdatedAURPackages()))
     {
       m_outdatedAURTimer->start();

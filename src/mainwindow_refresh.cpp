@@ -188,7 +188,7 @@ void MainWindow::refreshGroupsWidget()
 void MainWindow::AURToolSelected()
 {
   //If the system does not have any AUR tool, let's ask if user wants to get one
-  if (m_actionSwitchToAURTool->toolTip() == QLatin1String("AUR") && UnixCommand::getAvailableAURTools().count() ==1)
+  if (m_actionSwitchToForeignTool->toolTip() == QLatin1String("AUR") && UnixCommand::getAvailableAURTools().count() ==1)
   {
     //Are we inside a 64bit platform?
     if (QSysInfo::buildCpuArchitecture() == QLatin1String("x86_64"))
@@ -212,7 +212,7 @@ void MainWindow::AURToolSelected()
 
     return;
   }
-  else if (m_actionSwitchToAURTool->toolTip() == QLatin1String("AUR") && UnixCommand::getAvailableAURTools().count() >1)
+  else if (m_actionSwitchToForeignTool->toolTip() == QLatin1String("AUR") && UnixCommand::getAvailableAURTools().count() >1)
   {
     onOptions(ectn_TAB_AUR);
     return;
@@ -228,7 +228,7 @@ void MainWindow::AURToolSelected()
   m_progressWidget->show();
 
   //Here we are changing view to list AUR packages ONLY
-  if (m_actionSwitchToAURTool->isChecked())
+  if (m_actionSwitchToForeignTool->isChecked())
   {
     ui->tvPackages->setModel(&emptyModel);
     //ui->twProperties->setTabEnabled(ctn_TABINDEX_ACTIONS, false);
@@ -832,13 +832,13 @@ void MainWindow::buildPackageList()
         std::cout << "Time elapsed setting outdated foreign pkgs from 'ALL group' list: " << m_time->elapsed() << " mili seconds." << std::endl;
     }  
 
-    if (m_hasAURTool && m_refreshForeignPackageList)
+    if (m_hasForeignTool && m_refreshForeignPackageList)
     {
       m_foreignPackageList->clear();
       delete m_foreignPackageList;
       m_foreignPackageList = nullptr;
 
-      m_foreignPackageList = markForeignPackagesInPkgList(m_hasAURTool, m_outdatedAURStringList);
+      m_foreignPackageList = markForeignPackagesInPkgList(m_hasForeignTool, m_outdatedAURStringList);
 
       list->append(*m_foreignPackageList);
 
@@ -975,7 +975,7 @@ void MainWindow::buildPackageList()
   if (searchOutdatedPackages) m_outdatedAURTimer->start();
   else
   {
-    if (m_hasAURTool && !m_actionSwitchToAURTool->isEnabled()) m_actionSwitchToAURTool->setEnabled(true);
+    if (m_hasForeignTool && !m_actionSwitchToForeignTool->isEnabled()) m_actionSwitchToForeignTool->setEnabled(true);
 
     QModelIndex mi = ui->tvPackages->currentIndex();
     m_packageRepo.setAUROutdatedData(m_foreignPackageList, *m_outdatedAURStringList);
@@ -1107,7 +1107,7 @@ void MainWindow::postRefreshOutdatedAURStringList()
   m_foreignPackageList->clear();
   delete m_foreignPackageList;
   m_foreignPackageList = nullptr;
-  m_foreignPackageList = markForeignPackagesInPkgList(m_hasAURTool, m_outdatedAURStringList);
+  m_foreignPackageList = markForeignPackagesInPkgList(m_hasForeignTool, m_outdatedAURStringList);
 
   LinuxDistro distro = UnixCommand::getLinuxDistro();
   if (distro != ectn_KAOS && isAURGroupSelected()) return;
@@ -1127,7 +1127,7 @@ void MainWindow::postRefreshOutdatedAURStringList()
             this, SLOT(invalidateTabs()));
   }
 
-  if (m_commandExecuting == ectn_NONE && !m_actionSwitchToAURTool->isEnabled()) m_actionSwitchToAURTool->setEnabled(true);
+  if (m_commandExecuting == ectn_NONE && !m_actionSwitchToForeignTool->isEnabled()) m_actionSwitchToForeignTool->setEnabled(true);
 
   if (m_groupWidgetNeedsFocus && ui->splitterVertical->sizes().at(1) != 0) //if group is not hidden...
   {
@@ -1148,8 +1148,8 @@ void MainWindow::refreshColumnSortSetup()
 {
   if (isAURGroupSelected())
   {
-    int packageListOrderedCol = SettingsManager::instance()->getAURPackageListOrderedCol();
-    Qt::SortOrder packageListSortOrder = (Qt::SortOrder) SettingsManager::instance()->getAURPackageListSortOrder();
+    int packageListOrderedCol = SettingsManager::instance()->getForeignPackageListOrderedCol();
+    Qt::SortOrder packageListSortOrder = (Qt::SortOrder) SettingsManager::instance()->getForeignPackageListSortOrder();
 
     ui->tvPackages->header()->setSortIndicator( packageListOrderedCol, packageListSortOrder );
     ui->tvPackages->sortByColumn( packageListOrderedCol, packageListSortOrder );
@@ -1312,11 +1312,11 @@ void MainWindow::showToolButtonAUR()
  */
 void MainWindow::refreshToolBar()
 {
-  m_hasAURTool =
+  m_hasForeignTool =
       UnixCommand::hasTheExecutable(Package::getForeignRepositoryToolName());
 
   //If there's no AUR helper installed let's check if we are running an ARCH based OS
-  if (!m_hasAURTool)
+  if (!m_hasForeignTool)
   {
     LinuxDistro ld = UnixCommand::getLinuxDistro();
     if (ld != ectn_KAOS &&
@@ -1324,32 +1324,32 @@ void MainWindow::refreshToolBar()
         ld != ectn_PARABOLA)
     {
       //Here the user lost the AUR tool he was using
-      m_hasAURTool = true;
-      m_actionSwitchToAURTool->setToolTip(QStringLiteral("AUR"));
+      m_hasForeignTool = true;
+      m_actionSwitchToForeignTool->setToolTip(QStringLiteral("AUR"));
       SettingsManager::setAURTool(ctn_NO_AUR_TOOL);
     }
   }
 
-  if (m_hasAURTool)
+  if (m_hasForeignTool)
   {
-    if (!ui->mainToolBar->actions().contains(m_actionSwitchToAURTool))
+    if (!ui->mainToolBar->actions().contains(m_actionSwitchToForeignTool))
     {
-      ui->mainToolBar->insertAction(m_dummyAction, m_actionSwitchToAURTool);
-      m_separatorForActionAUR = ui->mainToolBar->insertSeparator(m_actionSwitchToAURTool);
+      ui->mainToolBar->insertAction(m_dummyAction, m_actionSwitchToForeignTool);
+      m_separatorForActionForeign = ui->mainToolBar->insertSeparator(m_actionSwitchToForeignTool);
     }
   }
   else
   {
-    if (ui->mainToolBar->actions().contains(m_actionSwitchToAURTool))
+    if (ui->mainToolBar->actions().contains(m_actionSwitchToForeignTool))
     {
-      bool wasChecked = (m_actionSwitchToAURTool->isChecked());
+      bool wasChecked = (m_actionSwitchToForeignTool->isChecked());
 
-      ui->mainToolBar->removeAction(m_actionSwitchToAURTool);
-      ui->mainToolBar->removeAction(m_separatorForActionAUR);
+      ui->mainToolBar->removeAction(m_actionSwitchToForeignTool);
+      ui->mainToolBar->removeAction(m_separatorForActionForeign);
 
       if (wasChecked)
       {
-        m_actionSwitchToAURTool->setChecked(false);
+        m_actionSwitchToForeignTool->setChecked(false);
         ui->twGroups->setEnabled(true);
         groupItemSelected();
       }
@@ -1364,7 +1364,7 @@ void MainWindow::refreshStatusBarToolButtons()
 {
   if (isAURGroupSelected() && UnixCommand::getLinuxDistro() != ectn_KAOS) return;
 
-  if (m_hasAURTool && SettingsManager::getSearchOutdatedAURPackages())
+  if (m_hasForeignTool && SettingsManager::getSearchOutdatedAURPackages())
   {
     QFuture<AUROutdatedPackages *> f;
     f = QtConcurrent::run(getOutdatedAURPackages);
@@ -1372,7 +1372,7 @@ void MainWindow::refreshStatusBarToolButtons()
     connect(&g_fwOutdatedAURPackages, SIGNAL(finished()), this, SLOT(showToolButtonAUR()));
   }
 
-  if (m_commandExecuting == ectn_NONE && !isSearchByFileSelected() && !m_actionSwitchToAURTool->isChecked())
+  if (m_commandExecuting == ectn_NONE && !isSearchByFileSelected() && !m_actionSwitchToForeignTool->isChecked())
     ui->twGroups->setEnabled(true);
 }
 

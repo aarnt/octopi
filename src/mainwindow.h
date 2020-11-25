@@ -118,7 +118,7 @@ private:
   bool m_callSystemUpgradeNoConfirm;
 
   //Controls if this Linux box has an AUR tool installed
-  bool m_hasAURTool;
+  bool m_hasForeignTool;
 
   //Controls if this Linux box has slocate utility
   bool m_hasSLocate;
@@ -211,8 +211,8 @@ private:
   QToolButton *m_toolButtonStopTransaction;
 
   //Toggles use of AUR tool
-  QAction *m_separatorForActionAUR;
-  QAction *m_actionSwitchToAURTool;
+  QAction *m_separatorForActionForeign;
+  QAction *m_actionSwitchToForeignTool;
 
   QByteArray m_horizontalSplit;
   QTreeWidgetItem *m_AllGroupsItem;

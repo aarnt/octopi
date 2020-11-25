@@ -62,7 +62,7 @@ QString MainWindow::generateHelpUsageHtmlText()
       "<ul><li>/usr/lib/octopi/octopi-sudo -setnopasswd</li></ul><br>";*/
 
   QString strOutdatedAur;
-  if(m_hasAURTool && UnixCommand::getLinuxDistro() != ectn_CHAKRA && !SettingsManager::getSearchOutdatedAURPackages())
+  if(m_hasForeignTool && UnixCommand::getLinuxDistro() != ectn_CHAKRA && !SettingsManager::getSearchOutdatedAURPackages())
   {
     strOutdatedAur=QLatin1String("<li>") +
         tr("Ctrl+Shift+O to display outdated %1 packages").arg(StrConstants::getForeignRepositoryName()) + QLatin1String("</li>");

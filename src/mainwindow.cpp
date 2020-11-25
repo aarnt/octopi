@@ -63,7 +63,7 @@
 MainWindow::MainWindow(QWidget *parent) :
   QMainWindow(parent), ui(new Ui::MainWindow), m_packageModel(new PackageModel(m_packageRepo))
 {
-  m_hasAURTool =
+  m_hasForeignTool =
       UnixCommand::hasTheExecutable(Package::getForeignRepositoryToolName());
 
   m_packageRepo.registerDependency(*m_packageModel);
@@ -382,12 +382,12 @@ void MainWindow::onPackageGroupChanged()
 {
   if (isAllGroupsSelected())
   {
-    if (m_commandExecuting == ectn_NONE && m_initializationCompleted) m_actionSwitchToAURTool->setEnabled(true);
+    if (m_commandExecuting == ectn_NONE && m_initializationCompleted) m_actionSwitchToForeignTool->setEnabled(true);
     //ui->actionSearchByName->setChecked(true);
     m_actionLastSearchMethod->setChecked(true);
     tvPackagesSearchColumnChanged(ui->actionSearchByName);
   }
-  else m_actionSwitchToAURTool->setEnabled(false);
+  else m_actionSwitchToForeignTool->setEnabled(false);
 }
 
 /*
@@ -841,7 +841,7 @@ bool MainWindow::isAllGroupsSelected()
 
 bool MainWindow::isAllGroups(const QString& group)
 {
-  return ((group == QLatin1String("<") + StrConstants::getDisplayAllGroups() + QLatin1String(">")) && !(m_actionSwitchToAURTool->isChecked()));
+  return ((group == QLatin1String("<") + StrConstants::getDisplayAllGroups() + QLatin1String(">")) && !(m_actionSwitchToForeignTool->isChecked()));
 }
 
 /*
@@ -849,7 +849,7 @@ bool MainWindow::isAllGroups(const QString& group)
  */
 bool MainWindow::isAURGroupSelected()
 {
-  return (m_actionSwitchToAURTool->isChecked());
+  return (m_actionSwitchToForeignTool->isChecked());
 }
 
 /*
@@ -950,7 +950,7 @@ void MainWindow::tvPackagesSearchColumnChanged(QAction *actionSelected)
     }
 
     ui->menuView->setEnabled(true);
-    if (!m_actionSwitchToAURTool->isChecked()) ui->twGroups->setEnabled(true);
+    if (!m_actionSwitchToForeignTool->isChecked()) ui->twGroups->setEnabled(true);
 
     if (isAURGroupSelected())
       m_leFilterPackage->setRefreshValidator(ectn_AUR_VALIDATOR);
@@ -969,7 +969,7 @@ void MainWindow::tvPackagesSearchColumnChanged(QAction *actionSelected)
     }
 
     ui->menuView->setEnabled(true);
-    if (!m_actionSwitchToAURTool->isChecked()) ui->twGroups->setEnabled(true);
+    if (!m_actionSwitchToForeignTool->isChecked()) ui->twGroups->setEnabled(true);
 
     if (isAURGroupSelected())
       m_leFilterPackage->setRefreshValidator(ectn_AUR_VALIDATOR);
@@ -1013,7 +1013,7 @@ void MainWindow::tvPackagesSearchColumnChanged(QAction *actionSelected)
  */
 void MainWindow::changePackageListModel(ViewOptions viewOptions, QString selectedRepo)
 {  
-  if (m_actionSwitchToAURTool->isChecked())
+  if (m_actionSwitchToForeignTool->isChecked())
     m_packageModel->applyFilter(viewOptions, QLatin1String(""), StrConstants::getForeignToolGroup());
   else
     m_packageModel->applyFilter(viewOptions, selectedRepo, isAllGroupsSelected() ? QLatin1String("") : getSelectedGroup());
@@ -1226,7 +1226,7 @@ void MainWindow::execContextMenuPackages(QPoint point)
           menu->addAction(m_actionAURVote);
       }
 
-      if (selectedRows.count() == 1 && StrConstants::getForeignRepositoryName() == QStringLiteral("AUR"))
+      if (selectedRows.count() == 1 && Package::isAURBased())
       {
         menu->addAction(m_actionAUROpenPKGBUILD);
         menu->addAction(m_actionAURShowPKGBUILDDiff);

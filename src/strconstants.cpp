@@ -844,7 +844,7 @@ QString StrConstants::getPressCtrlAToSelectAll(){
   return QObject::tr("Press Ctrl+A to select/deselect all");
 }
 
-QString StrConstants::getUseAURTool(){
+QString StrConstants::getUseForeignTool(){
   return QObject::tr("Use \"%1\" tool").arg(Package::getForeignRepositoryToolName());
 }
 

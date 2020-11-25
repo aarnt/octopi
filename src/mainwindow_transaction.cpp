@@ -56,7 +56,7 @@ void MainWindow::changeTransactionActionsState()
   ui->actionCheckUpdates->setEnabled(!state);
 
   if(m_hasMirrorCheck) m_actionMenuMirrorCheck->setEnabled(!state);
-  if(m_hasAURTool) m_actionSwitchToAURTool->setEnabled(!state);
+  if(m_hasForeignTool) m_actionSwitchToForeignTool->setEnabled(!state);
 
   if (state == false && m_outdatedStringList->count() > 0)
     ui->actionSystemUpgrade->setEnabled(true);
@@ -1348,7 +1348,7 @@ void MainWindow::doRemove()
 void MainWindow::doInstallAURPackage()
 {
   const QItemSelectionModel*const selectionModel = ui->tvPackages->selectionModel();
-  if (selectionModel == nullptr || selectionModel->selectedRows().count() < 1 || m_hasAURTool == false) {
+  if (selectionModel == nullptr || selectionModel->selectedRows().count() < 1 || m_hasForeignTool == false) {
     std::cerr << "Octopi could not install selection using AUR tool" << std::endl;
     return;
   }
@@ -1529,7 +1529,7 @@ void MainWindow::onAURToolChanged()
 {
   if (SettingsManager::getAURToolName() == ctn_NO_AUR_TOOL)
   {
-    if (m_actionSwitchToAURTool->isChecked())
+    if (m_actionSwitchToForeignTool->isChecked())
     {
       ui->actionUseInstantSearch->setEnabled(true);
       ui->twProperties->setTabEnabled(ctn_TABINDEX_ACTIONS, true);
@@ -1573,35 +1573,35 @@ void MainWindow::onAURToolChanged()
         connect(m_leFilterPackage, SIGNAL(textChanged(QString)), this, SLOT(lightPackageFilter()));
       }
 
-      m_actionSwitchToAURTool->setChecked(false);
+      m_actionSwitchToForeignTool->setChecked(false);
       metaBuildPackageList();
       refreshInfoAndFileTabs();
     }
 
-    m_hasAURTool = false;
+    m_hasForeignTool = false;
     //m_actionSwitchToAURTool->setVisible(false);
     m_refreshForeignPackageList = false;
     m_outdatedAURPackagesNameVersion->clear();
     m_outdatedAURStringList->clear();
 
-    m_actionSwitchToAURTool->setText(QLatin1String(""));
-    m_actionSwitchToAURTool->setToolTip(QStringLiteral("AUR"));
-    m_actionSwitchToAURTool->setCheckable(false);
-    m_actionSwitchToAURTool->setChecked(false);
+    m_actionSwitchToForeignTool->setText(QLatin1String(""));
+    m_actionSwitchToForeignTool->setToolTip(QStringLiteral("AUR"));
+    m_actionSwitchToForeignTool->setCheckable(false);
+    m_actionSwitchToForeignTool->setChecked(false);
   }
   else //We are using pacaur/yaourt tool
   {
-    m_hasAURTool = true;
+    m_hasForeignTool = true;
 
     if (!isAURGroupSelected())
     {
       //m_actionSwitchToAURTool->setVisible(true);
-      m_actionSwitchToAURTool->setCheckable(true);
-      m_actionSwitchToAURTool->setChecked(false);
+      m_actionSwitchToForeignTool->setCheckable(true);
+      m_actionSwitchToForeignTool->setChecked(false);
     }
 
-    m_actionSwitchToAURTool->setText(StrConstants::getUseAURTool());
-    m_actionSwitchToAURTool->setToolTip(m_actionSwitchToAURTool->text() + QLatin1String("  (Ctrl+Shift+Y)"));
+    m_actionSwitchToForeignTool->setText(StrConstants::getUseForeignTool());
+    m_actionSwitchToForeignTool->setToolTip(m_actionSwitchToForeignTool->text() + QLatin1String("  (Ctrl+Shift+Y)"));
     m_refreshForeignPackageList = true;
   }
 
@@ -1926,7 +1926,7 @@ void MainWindow::toggleTransactionActions(const bool value)
     ui->actionCancel->setEnabled(true);
 
     if(m_hasMirrorCheck) m_actionMenuMirrorCheck->setEnabled(false);
-    if(m_hasAURTool) m_actionSwitchToAURTool->setEnabled(false);
+    if(m_hasForeignTool) m_actionSwitchToForeignTool->setEnabled(false);
 
     ui->actionCheckUpdates->setEnabled(false);
     ui->actionSystemUpgrade->setEnabled(false);
@@ -1937,7 +1937,7 @@ void MainWindow::toggleTransactionActions(const bool value)
     ui->actionCancel->setEnabled(false);
 
     if(m_hasMirrorCheck) m_actionMenuMirrorCheck->setEnabled(true);
-    if(m_hasAURTool && m_commandExecuting == ectn_NONE && m_initializationCompleted) m_actionSwitchToAURTool->setEnabled(true);
+    if(m_hasForeignTool && m_commandExecuting == ectn_NONE && m_initializationCompleted) m_actionSwitchToForeignTool->setEnabled(true);
 
     if (!isAURGroupSelected())
     {
@@ -1957,7 +1957,7 @@ void MainWindow::toggleTransactionActions(const bool value)
     ui->actionCancel->setEnabled(false);
 
     if(m_hasMirrorCheck) m_actionMenuMirrorCheck->setEnabled(false);
-    if(m_hasAURTool) m_actionSwitchToAURTool->setEnabled(false);
+    if(m_hasForeignTool) m_actionSwitchToForeignTool->setEnabled(false);
 
     ui->actionCheckUpdates->setEnabled(false);
     ui->actionSystemUpgrade->setEnabled(false);
@@ -1982,7 +1982,7 @@ void MainWindow::toggleTransactionActions(const bool value)
   ui->actionRepositoryEditor->setEnabled(value);
   m_actionSysInfo->setEnabled(value);
 
-  if (value == true && m_initializationCompleted) m_actionSwitchToAURTool->setEnabled(value);
+  if (value == true && m_initializationCompleted) m_actionSwitchToForeignTool->setEnabled(value);
 
   ui->actionGetNews->setEnabled(value);  
   if (!isAURGroupSelected()) ui->actionInstallLocalPackage->setEnabled(value);
@@ -2317,17 +2317,17 @@ void MainWindow::pacmanProcessFinished(int exitCode, QProcess::ExitStatus exitSt
   QStringList aurTools = UnixCommand::getAvailableAURTools();
   if(aurTools.count() > 1 && SettingsManager::getAURToolName() != ctn_NO_AUR_TOOL)
   {
-    m_actionSwitchToAURTool->setCheckable(true);
-    m_actionSwitchToAURTool->setChecked(false);
-    m_actionSwitchToAURTool->setText(StrConstants::getUseAURTool());
-    m_actionSwitchToAURTool->setToolTip(m_actionSwitchToAURTool->text() + QLatin1String("  (Ctrl+Shift+Y)"));
+    m_actionSwitchToForeignTool->setCheckable(true);
+    m_actionSwitchToForeignTool->setChecked(false);
+    m_actionSwitchToForeignTool->setText(StrConstants::getUseForeignTool());
+    m_actionSwitchToForeignTool->setToolTip(m_actionSwitchToForeignTool->text() + QLatin1String("  (Ctrl+Shift+Y)"));
   }
   else if (aurTools.count() > 1) //It seems the AUR tool has just been removed...
   {
-    m_actionSwitchToAURTool->setText(QLatin1String(""));
-    m_actionSwitchToAURTool->setToolTip(QStringLiteral("AUR"));
-    m_actionSwitchToAURTool->setCheckable(false);
-    m_actionSwitchToAURTool->setChecked(false);
+    m_actionSwitchToForeignTool->setText(QLatin1String(""));
+    m_actionSwitchToForeignTool->setToolTip(QStringLiteral("AUR"));
+    m_actionSwitchToForeignTool->setCheckable(false);
+    m_actionSwitchToForeignTool->setChecked(false);
   }
 
   delete m_pacmanExec;
@@ -2363,10 +2363,10 @@ void MainWindow::onPressAnyKeyToContinue()
     {
       refreshHelpUsageText();
       SettingsManager::setAURTool(ctn_YAY_TOOL);
-      m_actionSwitchToAURTool->setToolTip(StrConstants::getUseAURTool());
-      m_actionSwitchToAURTool->setToolTip(m_actionSwitchToAURTool->toolTip() + QLatin1String("  (Ctrl+Shift+Y)"));
-      m_actionSwitchToAURTool->setCheckable(true);
-      m_actionSwitchToAURTool->setChecked(false);
+      m_actionSwitchToForeignTool->setToolTip(StrConstants::getUseForeignTool());
+      m_actionSwitchToForeignTool->setToolTip(m_actionSwitchToForeignTool->toolTip() + QLatin1String("  (Ctrl+Shift+Y)"));
+      m_actionSwitchToForeignTool->setCheckable(true);
+      m_actionSwitchToForeignTool->setChecked(false);
       writeToTabOutput(QLatin1String("<br><b>") + StrConstants::getCommandFinishedOK() + QLatin1String("</b><br>"));
     }
     else

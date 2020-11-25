@@ -204,7 +204,7 @@ public:
   static QString getRemoveItem();
   static QString getRemoveItems();
   static QString getPressCtrlAToSelectAll();
-  static QString getUseAURTool();
+  static QString getUseForeignTool();
   static QString getCopyFullPath();
   static QString getNotifierSetupDialogTitle();
   static QString getNotiferSetupDialogGroupBoxTitle();

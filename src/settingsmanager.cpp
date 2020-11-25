@@ -198,12 +198,12 @@ int SettingsManager::getPackageListSortOrder(){
         ctn_KEY_PACKAGE_LIST_SORT_ORDER, Qt::AscendingOrder ).toInt();
 }
 
-int SettingsManager::getAURPackageListOrderedCol()
+int SettingsManager::getForeignPackageListOrderedCol()
 {
   return instance()->getSYSsettings()->value(ctn_KEY_AUR_PACKAGE_LIST_ORDERED_COL, 1 ).toInt();
 }
 
-int SettingsManager::getAURPackageListSortOrder()
+int SettingsManager::getForeignPackageListSortOrder()
 {
   return instance()->getSYSsettings()->value(
         ctn_KEY_AUR_PACKAGE_LIST_SORT_ORDER, Qt::AscendingOrder ).toInt();

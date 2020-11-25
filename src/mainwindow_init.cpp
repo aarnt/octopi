@@ -363,12 +363,12 @@ void MainWindow::initToolBar()
     ui->mainToolBar->addAction(m_actionMenuMirrorCheck);
   }
 
-  if (m_hasAURTool)
+  if (m_hasForeignTool)
   {
-    m_separatorForActionAUR = ui->mainToolBar->addSeparator();
-    ui->mainToolBar->addAction(m_actionSwitchToAURTool);
+    m_separatorForActionForeign = ui->mainToolBar->addSeparator();
+    ui->mainToolBar->addAction(m_actionSwitchToForeignTool);
     if (SettingsManager::getAURTool() != ctn_NO_AUR_TOOL)
-      m_actionSwitchToAURTool->setToolTip(m_actionSwitchToAURTool->toolTip() + QLatin1String("  (Ctrl+Shift+Y)"));
+      m_actionSwitchToForeignTool->setToolTip(m_actionSwitchToForeignTool->toolTip() + QLatin1String("  (Ctrl+Shift+Y)"));
   }
 
   m_dummyAction = new QAction(this);
@@ -721,17 +721,17 @@ void MainWindow::initActions()
   m_actionStopTransaction->setText(StrConstants::getStop());
   connect(m_actionStopTransaction, SIGNAL(triggered()), this, SLOT(stopTransaction()));
 
-  m_actionSwitchToAURTool = new QAction(this);
-  m_actionSwitchToAURTool->setIcon(IconHelper::getIconForeignGreen());
+  m_actionSwitchToForeignTool = new QAction(this);
+  m_actionSwitchToForeignTool->setIcon(IconHelper::getIconForeignGreen());
   if (SettingsManager::getAURTool() != ctn_NO_AUR_TOOL)
   {
-    m_actionSwitchToAURTool->setToolTip(StrConstants::getUseAURTool());
-    m_actionSwitchToAURTool->setCheckable(true);
-    m_actionSwitchToAURTool->setChecked(false);
+    m_actionSwitchToForeignTool->setToolTip(StrConstants::getUseForeignTool());
+    m_actionSwitchToForeignTool->setCheckable(true);
+    m_actionSwitchToForeignTool->setChecked(false);
   }
 
-  m_actionSwitchToAURTool->setEnabled(false);
-  connect(m_actionSwitchToAURTool, SIGNAL(triggered()), this, SLOT(AURToolSelected()));
+  m_actionSwitchToForeignTool->setEnabled(false);
+  connect(m_actionSwitchToForeignTool, SIGNAL(triggered()), this, SLOT(AURToolSelected()));
 
   m_actionInstallPacmanUpdates = new QAction(this);
   m_actionInstallPacmanUpdates->setIcon(IconHelper::getIconToInstall());

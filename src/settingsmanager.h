@@ -58,8 +58,8 @@ class SettingsManager
     static int getPanelOrganizing();
     static int getPackageListOrderedCol();
     static int getPackageListSortOrder();
-    static int getAURPackageListOrderedCol();
-    static int getAURPackageListSortOrder();
+    static int getForeignPackageListOrderedCol();
+    static int getForeignPackageListSortOrder();
 
     static int getPackageIconColumnWidth();
     static int getPackageNameColumnWidth();

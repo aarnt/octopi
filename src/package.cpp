@@ -2136,6 +2136,29 @@ QString Package::getForeignRepositoryToolNameParam()
 }
 
 /*
+ * Checks if the system is AUR based
+ */
+bool Package::isAURBased()
+{
+  static bool firstTime=true;
+  static bool ret=false;
+
+  if (firstTime)
+  {
+    QString ft=getForeignRepositoryToolName();
+
+    if (ft != QStringLiteral("chaser") && ft != QStringLiteral("kcp"))
+      ret=true;
+    else
+      ret=false;
+
+    firstTime=false;
+  }
+
+  return ret;
+}
+
+/*
  * Retrives user base package tool name
  */
 QString Package::getForeignRepositoryToolName()
