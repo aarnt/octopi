@@ -94,7 +94,7 @@ void MainWindow::searchBarTextChangedInTreeView(const QString &textToSearch)
   m_indFoundFilesInPkgFileList = 0;
 
   QTreeView *tvPkgFileList =
-    ui->twProperties->widget(ctn_TABINDEX_FILES)->findChild<QTreeView*>(QStringLiteral("tvPkgFileList"));
+    ui->twProperties->getTvPkgFileList();
   if (tvPkgFileList)
   {
     QStandardItemModel *sim = qobject_cast<QStandardItemModel *>(tvPkgFileList->model());
@@ -130,7 +130,7 @@ void MainWindow::searchBarTextChangedInTreeView(const QString &textToSearch)
 void MainWindow::searchBarFindNextInTreeView()
 {
   QTreeView *tvPkgFileList =
-    ui->twProperties->widget(ctn_TABINDEX_FILES)->findChild<QTreeView*>(QStringLiteral("tvPkgFileList"));
+    ui->twProperties->getTvPkgFileList();
 
   if (tvPkgFileList && tvPkgFileList->model()->rowCount() > 0 && m_foundFilesInPkgFileList->count() > 0)
   {
@@ -156,7 +156,7 @@ void MainWindow::searchBarFindNextInTreeView()
 void MainWindow::searchBarFindPreviousInTreeView()
 {
   QTreeView *tvPkgFileList =
-    ui->twProperties->widget(ctn_TABINDEX_FILES)->findChild<QTreeView*>(QStringLiteral("tvPkgFileList"));
+    ui->twProperties->getTvPkgFileList();
 
   if (tvPkgFileList && tvPkgFileList->model()->rowCount() > 0 && m_foundFilesInPkgFileList->count() > 0)
   {
@@ -180,6 +180,6 @@ void MainWindow::searchBarFindPreviousInTreeView()
 void MainWindow::searchBarClosedInTreeView()
 {
   searchBarTextChangedInTreeView(QLatin1String(""));
-  QTreeView *tb = ui->twProperties->currentWidget()->findChild<QTreeView*>(QStringLiteral("tvPkgFileList"));
+  QTreeView *tb = ui->twProperties->getTvPkgFileList();
   if (tb) tb->setFocus();
 }

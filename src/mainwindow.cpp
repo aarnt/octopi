@@ -1446,7 +1446,7 @@ void MainWindow::onAURShowPKGBUILDDiff()
  * This SLOT collapses all treeview items
  */
 void MainWindow::collapseAllContentItems(){
-  QTreeView *tv = ui->twProperties->currentWidget()->findChild<QTreeView *>(QStringLiteral("tvPkgFileList")) ;
+  QTreeView *tv = ui->twProperties->getTvPkgFileList();
   if (tv != nullptr)
     tv->collapseAll();
 }
@@ -1455,7 +1455,7 @@ void MainWindow::collapseAllContentItems(){
  * This SLOT collapses only the currently selected item
  */
 void MainWindow::collapseThisContentItems(){
-  QTreeView *tv = ui->twProperties->currentWidget()->findChild<QTreeView *>(QStringLiteral("tvPkgFileList")) ;
+  QTreeView *tv = ui->twProperties->getTvPkgFileList();
   if (tv != nullptr)
   {
     tv->repaint(tv->rect());
@@ -1474,7 +1474,7 @@ void MainWindow::collapseThisContentItems(){
  * This SLOT expands all treeview items
  */
 void MainWindow::expandAllContentItems(){
-  QTreeView *tv = ui->twProperties->currentWidget()->findChild<QTreeView *>(QStringLiteral("tvPkgFileList")) ;
+  QTreeView *tv = ui->twProperties->getTvPkgFileList();
   if (tv != nullptr)
   {
     tv->repaint(tv->rect());
@@ -1487,7 +1487,7 @@ void MainWindow::expandAllContentItems(){
  * This SLOT expands only the currently selected item
  */
 void MainWindow::expandThisContentItems(){
-  QTreeView *tv = ui->twProperties->currentWidget()->findChild<QTreeView *>(QStringLiteral("tvPkgFileList")) ;
+  QTreeView *tv = ui->twProperties->getTvPkgFileList();
   if (tv != nullptr)
   {
     tv->repaint(tv->rect());
@@ -1538,7 +1538,7 @@ void MainWindow::expandItem(QTreeView* tv, QStandardItemModel* sim, QModelIndex*
 void MainWindow::execContextMenuPkgFileList(QPoint point)
 {
   QTreeView *tvPkgFileList =
-      ui->twProperties->currentWidget()->findChild<QTreeView*>(QStringLiteral("tvPkgFileList"));
+      ui->twProperties->getTvPkgFileList();
 
   if (tvPkgFileList == nullptr)
   {
@@ -1603,7 +1603,7 @@ void MainWindow::execContextMenuPkgFileList(QPoint point)
  */
 void MainWindow::execContextMenuTransaction(QPoint point)
 {
-  QTreeView *tvTransaction = ui->twProperties->currentWidget()->findChild<QTreeView*>(QStringLiteral("tvTransaction"));
+  QTreeView *tvTransaction = ui->twProperties->getTvTransaction();
   if (!tvTransaction) return;
 
   if ((tvTransaction->currentIndex() == getRemoveTransactionParentItem()->index() &&
@@ -1666,7 +1666,7 @@ bool MainWindow::isPackageTreeViewVisible()
  */
 void MainWindow::selectFirstItemOfPkgFileList()
 {
-  QTreeView *tvPkgFileList = ui->twProperties->widget(ctn_TABINDEX_FILES)->findChild<QTreeView*>(QStringLiteral("tvPkgFileList"));
+  QTreeView *tvPkgFileList = ui->twProperties->getTvPkgFileList();
   if(tvPkgFileList)
   {
     tvPkgFileList->setFocus();
@@ -1907,7 +1907,7 @@ void MainWindow::maxDemaxPropertiesTabWidget(bool pSaveSettings)
 
     if (ui->twProperties->currentIndex() == ctn_TABINDEX_FILES)
     {
-      QTreeView *tv = ui->twProperties->currentWidget()->findChild<QTreeView *>(QStringLiteral("tvPkgFileList"));
+      QTreeView *tv = ui->twProperties->getTvPkgFileList();
       if (tv)
         tv->scrollTo(tv->currentIndex());
     }
@@ -2028,7 +2028,7 @@ bool MainWindow::IsSyncingRepoInTabOutput()
  */
 void MainWindow::openFile()
 {
-  QTreeView *tv = ui->twProperties->currentWidget()->findChild<QTreeView *>(QStringLiteral("tvPkgFileList")) ;
+  QTreeView *tv = ui->twProperties->getTvPkgFileList();
   if (tv)
   {
     QString path = utils::showFullPathOfItem(tv->currentIndex());
@@ -2046,7 +2046,7 @@ void MainWindow::openFile()
  */
 void MainWindow::editFile()
 {
-  QTreeView *tv = ui->twProperties->currentWidget()->findChild<QTreeView *>(QStringLiteral("tvPkgFileList")) ;
+  QTreeView *tv = ui->twProperties->getTvPkgFileList();
   if (tv)
   {
     QString path = utils::showFullPathOfItem(tv->currentIndex());
@@ -2112,7 +2112,7 @@ void MainWindow::findFileInPackage()
 {
   refreshTabFiles(false, true);
 
-  QTreeView *tb = ui->twProperties->currentWidget()->findChild<QTreeView*>(QStringLiteral("tvPkgFileList"));
+  QTreeView *tb = ui->twProperties->getTvPkgFileList();
   SearchBar *searchBar = ui->twProperties->currentWidget()->findChild<SearchBar*>(QStringLiteral("searchbar"));
 
   if (tb && tb->model()->rowCount() > 0 && searchBar)
@@ -2134,7 +2134,7 @@ QString MainWindow::getSelectedDirectory()
   QString targetDir;
   if (isPropertiesTabWidgetVisible() && ui->twProperties->currentIndex() == ctn_TABINDEX_FILES)
   {
-    QTreeView *t = ui->twProperties->currentWidget()->findChild<QTreeView*>(QStringLiteral("tvPkgFileList"));
+    QTreeView *t = ui->twProperties->getTvPkgFileList();
     if(t && t->currentIndex().isValid())
     {
       QString itemPath = utils::showFullPathOfItem(t->currentIndex());

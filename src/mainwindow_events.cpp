@@ -104,7 +104,7 @@ void MainWindow::closeEvent(QCloseEvent *event)
  */
 void MainWindow::copyFullPathToClipboard()
 {
-  QTreeView *tb = ui->twProperties->currentWidget()->findChild<QTreeView*>(QStringLiteral("tvPkgFileList"));
+  QTreeView *tb = ui->twProperties->getTvPkgFileList();
   if (tb && tb->hasFocus())
   {
     QString path = utils::showFullPathOfItem(tb->currentIndex());
@@ -202,7 +202,7 @@ void MainWindow::keyPressEvent(QKeyEvent* ke)
     else
     {
       QTreeView *tvPkgFileList =
-          ui->twProperties->widget(ctn_TABINDEX_FILES)->findChild<QTreeView*>(QStringLiteral("tvPkgFileList"));
+          ui->twProperties->getTvPkgFileList();
 
       if(tvPkgFileList)
       {
@@ -318,7 +318,7 @@ void MainWindow::keyPressEvent(QKeyEvent* ke)
     }
     else if (isPropertiesTabWidgetVisible() && ui->twProperties->currentIndex() == ctn_TABINDEX_FILES)
     {
-      QTreeView *tb = ui->twProperties->currentWidget()->findChild<QTreeView*>(QStringLiteral("tvPkgFileList"));
+      QTreeView *tb = ui->twProperties->getTvPkgFileList();
       SearchBar *searchBar = ui->twProperties->currentWidget()->findChild<SearchBar*>(QStringLiteral("searchbar"));
 
       if (tb && tb->model()->rowCount() > 0 && searchBar)

@@ -1683,7 +1683,7 @@ void MainWindow::refreshTabFiles(bool clearContents, bool neverQuit)
       selectionModel->selectedRows(PackageModel::ctn_PACKAGE_NAME_COLUMN).count() == 0)
   {
     QTreeView*const tvPkgFileList =
-        ui->twProperties->widget(ctn_TABINDEX_FILES)->findChild<QTreeView*>(QStringLiteral("tvPkgFileList"));
+        ui->twProperties->getTvPkgFileList();
 
     if(tvPkgFileList)
     {
@@ -1716,7 +1716,7 @@ void MainWindow::refreshTabFiles(bool clearContents, bool neverQuit)
     }
     else
     {
-      QTreeView*const tv = ui->twProperties->currentWidget()->findChild<QTreeView *>(QStringLiteral("tvPkgFileList")) ;
+      QTreeView*const tv = ui->twProperties->getTvPkgFileList();
       if (tv)
         tv->scrollTo(tv->currentIndex());
     }
@@ -1728,7 +1728,7 @@ void MainWindow::refreshTabFiles(bool clearContents, bool neverQuit)
   bool nonInstalled = (package->installed() == false);
 
   QTreeView*const tvPkgFileList =
-      ui->twProperties->widget(ctn_TABINDEX_FILES)->findChild<QTreeView*>(QStringLiteral("tvPkgFileList"));
+      ui->twProperties->getTvPkgFileList();
 
   if (tvPkgFileList)
   {
