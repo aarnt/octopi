@@ -1343,16 +1343,34 @@ void MainWindow::onAUROpenPKGBUILD()
       QString pkgbuildSite(QStringLiteral("https://aur.archlinux.org/cgit/aur.git/plain/PKGBUILD?h=%1"));
       QString tempFileName(QStringLiteral(".temp_octopi_") + package->name + QStringLiteral("_PKGBUILD"));
 
-      QProcess curl;
+      /*QProcess curl;
       QStringList params;
       params << pkgbuildSite.arg(getAURPackageBase(package->name));
       params << QStringLiteral("-o");
       params << QDir::tempPath() + QDir::separator() + tempFileName;
       curl.start(QStringLiteral("/usr/bin/curl"), params);
-      curl.waitForFinished(-1);
+      curl.waitForFinished(-1);*/
 
-      if (curl.exitCode() == 0)
+      QNetworkAccessManager manager;
+      QNetworkReply *response = manager.get(QNetworkRequest(QUrl(pkgbuildSite.arg(getAURPackageBase(package->name)))));
+      QEventLoop event;
+      connect(response, SIGNAL(finished()), &event, SLOT(quit()));
+      event.exec();
+
+      QString contents = QString::fromUtf8(response->readAll());
+
+      if (!contents.isEmpty())
+      {
+        QFile file(QDir::tempPath() + QDir::separator() + tempFileName);
+        if (!file.open(QIODevice::WriteOnly | QIODevice::Text))
+          return;
+
+        QTextStream out(&file);
+        out << contents;
+        out.flush();
+
         WMHelper::editFile(QDir::tempPath() + QDir::separator() + tempFileName, ectn_EDIT_AS_NORMAL_USER);
+      }
     }
   }
 }
@@ -1409,22 +1427,56 @@ void MainWindow::onAURShowPKGBUILDDiff()
       QString tempPkgLatest(QStringLiteral(".temp_octopi_commit_latest"));
       QString tempPkgPrevious(QStringLiteral(".temp_octopi_commit_previous"));
 
-      QProcess p;
+      /*QProcess p;
       QStringList params;
       params << pkgCommit.arg(commits.at(0));
       params << QStringLiteral("-o");
       params << QDir::tempPath() + QDir::separator() + tempPkgLatest;
       p.start(QStringLiteral("/usr/bin/curl"), params);
-      p.waitForFinished(-1);
+      p.waitForFinished(-1);*/
 
-      params.clear();
+      /*params.clear();
       params << pkgCommit.arg(commits.at(1));
       params << QStringLiteral("-o");
       params << QDir::tempPath() + QDir::separator() + tempPkgPrevious;
       p.start(QStringLiteral("/usr/bin/curl"), params);
-      p.waitForFinished(-1);
+      p.waitForFinished(-1);*/
 
-      params.clear();
+      response = manager.get(QNetworkRequest(QUrl(pkgCommit.arg(commits.at(0)))));
+      connect(response, SIGNAL(finished()), &event, SLOT(quit()));
+      event.exec();
+      QString contents = QString::fromUtf8(response->readAll());
+
+      if (!contents.isEmpty())
+      {
+        QFile file(QDir::tempPath() + QDir::separator() + tempPkgLatest);
+        if (!file.open(QIODevice::WriteOnly | QIODevice::Text))
+          return;
+
+        QTextStream out(&file);
+        out << contents;
+        out.flush();
+      }
+
+      response = manager.get(QNetworkRequest(QUrl(pkgCommit.arg(commits.at(1)))));
+      connect(response, SIGNAL(finished()), &event, SLOT(quit()));
+      event.exec();
+      contents = QString::fromUtf8(response->readAll());
+
+      if (!contents.isEmpty())
+      {
+        QFile file(QDir::tempPath() + QDir::separator() + tempPkgPrevious);
+        if (!file.open(QIODevice::WriteOnly | QIODevice::Text))
+          return;
+
+        QTextStream out(&file);
+        out << contents;
+        out.flush();
+      }
+
+      //params.clear();
+      QProcess p;
+      QStringList params;
       QString tempPkgDiff(QStringLiteral(".temp_octopi_commit_diff"));
       p.setStandardOutputFile(QDir::tempPath() + QDir::separator() + tempPkgDiff);
       params << QStringLiteral("-u");
