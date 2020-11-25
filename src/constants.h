@@ -223,6 +223,7 @@ const QString ctn_ARCHBANG_FILE_MANAGER(QStringLiteral("spacefm"));
 
 const QString ctn_RXVT_TERMINAL(QStringLiteral("urxvt"));
 
+const QString ctn_GNOME_DESKTOP(QStringLiteral("mutter"));
 const QString ctn_GNOME_EDITOR(QStringLiteral("gedit"));
 const QString ctn_GNOME_FILE_MANAGER(QStringLiteral("nautilus"));
 const QString ctn_GNOME_TERMINAL(QStringLiteral("gnome-terminal"));

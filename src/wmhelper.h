@@ -34,6 +34,7 @@ class WMHelper
 public:
   static bool isKDERunning();
   static bool isTDERunning();
+  static bool isGNOMERunning();
   static bool isXFCERunning();
   static bool isOPENBOXRunning();
   static bool isLXDERunning();
@@ -41,7 +42,6 @@ public:
   static bool isMATERunning();
   static bool isCinnamonRunning();
   static bool isLuminaRunning();
-
   static QString getKDEOpenHelper();
   static QString getOctopiSudoCommand();
   static QString getXFCEEditor();

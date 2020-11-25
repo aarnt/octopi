@@ -39,14 +39,16 @@
 /*
  * Checks if KDE is running
  */
-bool WMHelper::isKDERunning(){
+bool WMHelper::isKDERunning()
+{
   return (qgetenv("XDG_CURRENT_DESKTOP").toLower() == QByteArray("kde"));
 }
 
 /*
  * Checks if TDE is running
  */
-bool WMHelper::isTDERunning(){
+bool WMHelper::isTDERunning()
+{
   QStringList slParam;
   QProcess proc;
   slParam << QStringLiteral("-C");
@@ -66,9 +68,32 @@ bool WMHelper::isTDERunning(){
 }
 
 /*
+ * Checks if GNOME is running
+ */
+bool WMHelper::isGNOMERunning()
+{
+  QStringList slParam;
+  QProcess proc;
+  slParam << QStringLiteral("-C");
+  slParam << ctn_GNOME_DESKTOP;
+
+  proc.start(QStringLiteral("ps"), slParam);
+  proc.waitForStarted();
+  proc.waitForFinished();
+  QString out = QString::fromUtf8(proc.readAll());
+  proc.close();
+
+  if (out.count(ctn_GNOME_DESKTOP)>0)
+    return true;
+  else
+    return false;
+}
+
+/*
  * Checks if XFCE is running
  */
-bool WMHelper::isXFCERunning(){
+bool WMHelper::isXFCERunning()
+{
   QStringList slParam;
   QProcess proc;
   slParam << QStringLiteral("-C");
@@ -89,7 +114,8 @@ bool WMHelper::isXFCERunning(){
 /*
  * Checks if LXDE is running
  */
-bool WMHelper::isLXDERunning(){
+bool WMHelper::isLXDERunning()
+{
   QStringList slParam;
   QProcess proc;
   slParam << QStringLiteral("-C");
@@ -118,7 +144,8 @@ bool WMHelper::isLXQTRunning()
 /*
  * Checks if OpenBox is running
  */
-bool WMHelper::isOPENBOXRunning(){
+bool WMHelper::isOPENBOXRunning()
+{
   QStringList slParam;
   QProcess proc;
   slParam << QStringLiteral("-C");
@@ -139,7 +166,8 @@ bool WMHelper::isOPENBOXRunning(){
 /*
  * Checks if MATE is running
  */
-bool WMHelper::isMATERunning(){
+bool WMHelper::isMATERunning()
+{
   QStringList slParam;
   QProcess proc;
   slParam << QStringLiteral("-C");
@@ -160,7 +188,8 @@ bool WMHelper::isMATERunning(){
 /*
  * Checks if Cinnamon is running
  */
-bool WMHelper::isCinnamonRunning(){
+bool WMHelper::isCinnamonRunning()
+{
   QStringList slParam;
   QProcess proc;
   slParam << QStringLiteral("-fC");
@@ -203,7 +232,8 @@ bool WMHelper::isLuminaRunning()
 /*
  * Retrieves the XFCE editor...
  */
-QString WMHelper::getXFCEEditor(){
+QString WMHelper::getXFCEEditor()
+{
   if (UnixCommand::hasTheExecutable(ctn_XFCE_EDITOR))
     return ctn_XFCE_EDITOR;
   else
@@ -213,7 +243,8 @@ QString WMHelper::getXFCEEditor(){
 /*
  * Retrieves the OctopiSudo command...
  */
-QString WMHelper::getOctopiSudoCommand(){
+QString WMHelper::getOctopiSudoCommand()
+{
   QString result = ctn_OCTOPISUDO;
   result += ctn_OCTOPISUDO_PARAMS;
 
@@ -223,7 +254,8 @@ QString WMHelper::getOctopiSudoCommand(){
 /*
  * The generic SU get method. It retrieves the SU you have installed in your system!
  */
-QString WMHelper::getSUCommand(){
+QString WMHelper::getSUCommand()
+{
   QString result(ctn_NO_SU_COMMAND);
 
   if (QFile::exists(ctn_OCTOPISUDO)){
@@ -253,7 +285,8 @@ QString WMHelper::getSUTool()
 /*
  * Chooses whether to use kde-open or kde5-open
  */
-QString WMHelper::getKDEOpenHelper(){
+QString WMHelper::getKDEOpenHelper()
+{
   if (UnixCommand::hasTheExecutable(ctn_KDE4_OPEN))
     return ctn_KDE4_OPEN;
   else if (UnixCommand::hasTheExecutable(ctn_KDE5_OPEN))
@@ -265,9 +298,9 @@ QString WMHelper::getKDEOpenHelper(){
 /*
  * Opens a file based on your DE
  */
-void WMHelper::openFile(const QString& fileName){
+void WMHelper::openFile(const QString& fileName)
+{
   QString fileToOpen(fileName);
-
   bool isTextFile = UnixCommand::isTextFile(fileToOpen);
 
   if (!isTextFile){
@@ -366,7 +399,8 @@ void WMHelper::openFile(const QString& fileName){
 /*
  * Edits a file based on your DE.
  */
-void WMHelper::editFile( const QString& fileName, EditOptions opt ){
+void WMHelper::editFile(const QString& fileName, EditOptions opt)
+{
   QProcess *process = new QProcess(qApp->activeWindow());
   QString p;
 
@@ -374,6 +408,10 @@ void WMHelper::editFile( const QString& fileName, EditOptions opt ){
   if (distro == ectn_ARCHBANGLINUX && UnixCommand::hasTheExecutable(ctn_ARCHBANG_EDITOR))
   {
     p = ctn_ARCHBANG_EDITOR + QLatin1Char(' ') + fileName;
+  }
+  else if (isGNOMERunning() && UnixCommand::hasTheExecutable(ctn_GNOME_EDITOR))
+  {
+    p = ctn_GNOME_EDITOR + QLatin1Char(' ') + fileName;
   }
   else if (isXFCERunning() && (UnixCommand::hasTheExecutable(ctn_XFCE_EDITOR) ||
                                UnixCommand::hasTheExecutable(ctn_XFCE_EDITOR_ALT))){
@@ -410,12 +448,6 @@ void WMHelper::editFile( const QString& fileName, EditOptions opt ){
 
   if (opt == ectn_EDIT_AS_NORMAL_USER)
   {
-    /*QStringList sl;
-    sl << QStringLiteral("-c");
-    QStringList params = p.split(QStringLiteral(" "), Qt::SkipEmptyParts);
-    sl << params;
-    process->startDetached(UnixCommand::getShell(), sl);*/
-
     QStringList params = p.split(QStringLiteral(" "), Qt::SkipEmptyParts);
     QStringList fn;
     process->startDetached(params.at(0), fn << fileName);
@@ -430,7 +462,8 @@ void WMHelper::editFile( const QString& fileName, EditOptions opt ){
 /*
  * Opens a directory based on your DE.
  */
-void WMHelper::openDirectory( const QString& dirName ){
+void WMHelper::openDirectory(const QString& dirName)
+{
   QProcess *p = new QProcess(qApp->activeWindow());
   QStringList s;
   QString dir(dirName);
@@ -451,6 +484,11 @@ void WMHelper::openDirectory( const QString& dirName ){
     {
       s << dir;
       p->startDetached( ctn_ARCHBANG_FILE_MANAGER, s );
+    }
+    else if (isGNOMERunning() && UnixCommand::hasTheExecutable(ctn_GNOME_FILE_MANAGER))
+    {
+      s << dir;
+      p->startDetached( ctn_GNOME_FILE_MANAGER, s );
     }
     else if(isXFCERunning() && UnixCommand::hasTheExecutable(ctn_XFCE_FILE_MANAGER))
     {
