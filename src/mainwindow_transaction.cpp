@@ -1970,8 +1970,8 @@ void MainWindow::toggleTransactionActions(const bool value)
   ui->actionInstallAUR->setEnabled(value);
   m_actionInstallPacmanUpdates->setEnabled(value);
   m_actionInstallAURUpdates->setEnabled(value);
-  m_actionAUROpenPKGBUILD->setEnabled(value);
-  m_actionAURShowPKGBUILDDiff->setEnabled(value);
+  //m_actionAUROpenPKGBUILD->setEnabled(value);
+  //m_actionAURShowPKGBUILDDiff->setEnabled(value);
 
   ui->actionRemoveTransactionItem->setEnabled(value);
   ui->actionRemoveTransactionItems->setEnabled(value);
