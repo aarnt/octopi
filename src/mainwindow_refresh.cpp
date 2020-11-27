@@ -223,6 +223,7 @@ void MainWindow::AURToolSelected()
   //if (UnixCommand::getLinuxDistro() != ectn_CHAKRA) savePackageColumnWidths();
   refreshTabInfo(true);
   refreshTabFiles(true);
+
   m_progressWidget->setRange(0, 100);
   m_progressWidget->setValue(0);
   m_progressWidget->show();
@@ -459,7 +460,7 @@ void MainWindow::preBuildAURPackageList()
  * Helper method to deal with the QFutureWatcher result before calling
  * AUR package list building method
  */
-void MainWindow::preBuildAURPackageListMeta()
+/*void MainWindow::preBuildAURPackageListMeta()
 {
   m_listOfAURPackages = g_fwAURMeta.result();
   buildAURPackageList();
@@ -480,7 +481,7 @@ void MainWindow::preBuildAURPackageListMeta()
     connect(m_leFilterPackage, SIGNAL(textChanged(QString)), this, SLOT(reapplyPackageFilter()));
     reapplyPackageFilter();
   }
-}
+}*/
 
 /*
  * Executes QFuture to retrieve Foreign list of packages
@@ -1916,6 +1917,7 @@ void MainWindow::reapplyPackageFilter()
     {
       QString search = m_leFilterPackage->text();
       m_packageModel->applyFilter(search);
+      numPkgs = m_packageModel->getPackageCount();
 
       if (numPkgs > 0) m_leFilterPackage->setFoundStyle();
       else m_leFilterPackage->setNotFoundStyle();

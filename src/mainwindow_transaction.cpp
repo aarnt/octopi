@@ -53,9 +53,14 @@ void MainWindow::changeTransactionActionsState()
   bool state = areTherePendingActions();
   ui->actionApply->setEnabled(state);
   ui->actionCancel->setEnabled(state);
-  ui->actionCheckUpdates->setEnabled(!state);
 
-  if(m_hasMirrorCheck) m_actionMenuMirrorCheck->setEnabled(!state);
+  if (!isAURGroupSelected()) ui->actionCheckUpdates->setEnabled(!state);
+
+  if(m_hasMirrorCheck && !isAURGroupSelected())
+  {
+    m_actionMenuMirrorCheck->setEnabled(!state);
+  }
+
   if(m_hasForeignTool) m_actionSwitchToForeignTool->setEnabled(!state);
 
   if (state == false && m_outdatedStringList->count() > 0)
@@ -148,6 +153,15 @@ void MainWindow::insertRemovePackageIntoTransaction(const QString &pkgName)
   ui->twProperties->setCurrentIndex(ctn_TABINDEX_ACTIONS);
   tvTransaction->expandAll();
   changeTransactionActionsState();
+}
+
+/*
+ * Returns true if there are any package in the Install action tree view
+ */
+bool MainWindow::hasInstallActions()
+{
+  QStandardItem * siInstallParent = getInstallTransactionParentItem();
+  return (siInstallParent->rowCount());
 }
 
 /*
@@ -1936,7 +1950,7 @@ void MainWindow::toggleTransactionActions(const bool value)
     ui->actionApply->setEnabled(false);
     ui->actionCancel->setEnabled(false);
 
-    if(m_hasMirrorCheck) m_actionMenuMirrorCheck->setEnabled(true);
+    if(m_hasMirrorCheck && !isAURGroupSelected()) m_actionMenuMirrorCheck->setEnabled(true);
     if(m_hasForeignTool && m_commandExecuting == ectn_NONE && m_initializationCompleted) m_actionSwitchToForeignTool->setEnabled(true);
 
     if (!isAURGroupSelected())
@@ -1984,9 +1998,22 @@ void MainWindow::toggleTransactionActions(const bool value)
 
   if (value == true && m_initializationCompleted) m_actionSwitchToForeignTool->setEnabled(value);
 
-  ui->actionGetNews->setEnabled(value);  
-  if (!isAURGroupSelected()) ui->actionInstallLocalPackage->setEnabled(value);
-  m_actionMenuOptions->setEnabled(value);
+  //ui->actionGetNews->setEnabled(value);
+
+  if (!isAURGroupSelected())
+  {
+    ui->actionInstallLocalPackage->setEnabled(value);
+    m_actionMenuOptions->setEnabled(value);
+    ui->actionGetNews->setEnabled(value);
+  }
+  else
+  {
+    ui->actionInstallLocalPackage->setEnabled(false);
+    m_actionMenuOptions->setEnabled(false);
+    ui->actionGetNews->setEnabled(false);
+    ui->actionCheckUpdates->setEnabled(false);
+  }
+
   ui->actionHelpUsage->setEnabled(value);
   ui->actionDonate->setEnabled(value);
   ui->actionHelpAbout->setEnabled(value);
@@ -2020,22 +2047,37 @@ void MainWindow::toggleSystemActions(const bool value)
 
   if(m_hasMirrorCheck)
   {
-    m_actionMenuMirrorCheck->setEnabled(value);
+    if (!isAURGroupSelected())
+      m_actionMenuMirrorCheck->setEnabled(value);
+    else
+    {
+      if (value==false) m_actionMenuMirrorCheck->setEnabled(false);
+    }
   }
 
-  if (isAURGroupSelected() && Package::getForeignRepositoryToolName() == ctn_KCP_TOOL)
+  /*if (isAURGroupSelected() && Package::getForeignRepositoryToolName() == ctn_KCP_TOOL)
   {
     ui->actionCheckUpdates->setEnabled(true);
-  }
+  }*;
   else if (Package::getForeignRepositoryToolName() != ctn_KCP_TOOL)
   {
     ui->actionCheckUpdates->setEnabled(value);
-  }
-  else if (!isAURGroupSelected())
+  }*/
+  if (!isAURGroupSelected())
+  {
     m_actionMenuOptions->setEnabled(value);
+    ui->actionGetNews->setEnabled(value);
+    ui->actionInstallLocalPackage->setEnabled(value);
+    ui->actionCheckUpdates->setEnabled(value);
+  }
+  else
+  {
+    m_actionMenuOptions->setEnabled(false);
+    ui->actionGetNews->setEnabled(false);
+    ui->actionInstallLocalPackage->setEnabled(false);
+    ui->actionCheckUpdates->setEnabled(false);
+  }
 
-  ui->actionInstallLocalPackage->setEnabled(value);
-  ui->actionGetNews->setEnabled(value);
 
   if (value == true && m_outdatedStringList->count() > 0)
     ui->actionSystemUpgrade->setEnabled(true);

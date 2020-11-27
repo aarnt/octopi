@@ -869,7 +869,7 @@ QList<PackageListData> * Package::getAURPackageList(const QString &searchString)
       if (pkgDescription != QLatin1String(""))
       {
         //Tests if pkgName matches "^" or "$" criteria
-        if (searchString.at(0) == QLatin1Char('^') || searchString.at(searchString.length()-1) == QLatin1Char('$'))
+        if (!searchString.isEmpty() && (searchString.at(0) == QLatin1Char('^') || searchString.at(searchString.length()-1) == QLatin1Char('$')))
         {
           QRegularExpression re(searchString);
           QRegularExpressionMatch match = re.match(pkgName);
@@ -1052,7 +1052,7 @@ QList<PackageListData> * Package::getAURPackageList(const QString &searchString)
   {
     addLast=true;
     //Tests if pkgName matches "^" or "$" criteria
-    if (searchString.at(0) == QLatin1Char('^') || searchString.at(searchString.length()-1) == QLatin1Char('$'))
+    if (!searchString.isEmpty() && (searchString.at(0) == QLatin1Char('^') || searchString.at(searchString.length()-1) == QLatin1Char('$')))
     {
       QRegularExpression re(searchString);
       QRegularExpressionMatch match = re.match(pkgName);

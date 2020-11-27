@@ -1063,7 +1063,12 @@ void MainWindow::execKeyActionOnPackage(CommandExecuting command)
           {
             doInstallAURPackage();
           }*/
-          if (package->repository != StrConstants::getForeignRepositoryName())
+          //if (package->repository != StrConstants::getForeignRepositoryName())
+          if (UnixCommand::getLinuxDistro() != ectn_KAOS)
+          {
+            insertIntoInstallPackage();
+          }
+          else if (!hasInstallActions())
           {
             insertIntoInstallPackage();
           }
@@ -1233,7 +1238,14 @@ void MainWindow::execContextMenuPackages(QPoint point)
       }
 
       if (isAURGroupSelected())
-        menu->addAction(ui->actionInstall); //AUR); // installs directly
+      {
+        if (UnixCommand::getLinuxDistro() != ectn_KAOS)
+          menu->addAction(ui->actionInstall); //AUR);
+        else
+        {
+          if (!hasInstallActions()) menu->addAction(ui->actionInstall);
+        }
+      }
     }
 
     if (allRemovable)

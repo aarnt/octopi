@@ -32,6 +32,7 @@
   BugFix: Restored support for command line parameters like "-sysupgrade-noconfirm" and "-style".
   BugFix: Updated "-help" output text..
   BugFix: Tab navigation improvements.
+  BugFix: Statusbar showed a number of packages when the list was empty (the previous value).
 
 0.10.0
   Added a built-in default priviledge escalation tool: "octopi-sudo" as a slightly modified version 

@@ -289,6 +289,7 @@ private:
   bool isPackageInInstallTransaction(const QString &pkgName);
   bool isPackageInRemoveTransaction(const QString &pkgName);
   void insertRemovePackageIntoTransaction(const QString &pkgName);
+  bool hasInstallActions();
   void insertInstallPackageIntoTransaction(const QString &pkgName, bool isDep=false);
   void removePackagesFromRemoveTransaction();
   void removePackagesFromInstallTransaction();
@@ -392,7 +393,7 @@ private slots:
   void postRefreshOutdatedAURStringList();
   void preBuildPackagesFromGroupList();
   void preBuildAURPackageList();
-  void preBuildAURPackageListMeta();
+  //void preBuildAURPackageListMeta();
   void buildAURPackageList();
 
   void headerViewPackageListSortIndicatorClicked(int col, Qt::SortOrder order);
