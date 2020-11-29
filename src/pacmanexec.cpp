@@ -42,7 +42,6 @@ PacmanExec::PacmanExec(QObject *parent) : QObject(parent)
   m_numberOfPackages = 0;
   m_packageCounter = 0;
   m_errorRetrievingFileCounter = 0;
-  m_parsingAPackageChange = false;
   m_listOfDotPacnewFiles.clear();
 
   m_sharedMemory=nullptr;
@@ -204,8 +203,8 @@ void PacmanExec::parsePacmanProcessOutput(const QString &output)
   QString progressEnd;
 
   msg.remove(QRegularExpression(QStringLiteral(".+\\[Y/n\\].+")));
-  //Let's remove color codes from strings...
 
+  //Let's remove color codes from strings...
   msg.remove(QStringLiteral("\033[0;1m"));
   msg.remove(QStringLiteral("\033[0m"));
   msg.remove(QStringLiteral("[1;33m"));
@@ -272,7 +271,7 @@ void PacmanExec::parsePacmanProcessOutput(const QString &output)
       cancelProcess();
     }
   }
-  else if (/*msg.contains("exists in filesystem") ||*/
+  else if (
       (msg.contains(QLatin1String(":: waiting for 1 process to finish repacking"))) ||
       (msg.contains(QLatin1String(":: download complete in")))) return;
 
@@ -512,6 +511,20 @@ void PacmanExec::parsePacmanProcessOutput(const QString &output)
 }
 
 /*
+ * Returns true if pacman processing hits post-download phase
+ */
+bool PacmanExec::criticalPhaseInTransaction(const QString &str)
+{
+  if (str.contains(QStringLiteral("checking keys in keyring")) ||
+      str.contains(QStringLiteral("checking package integrity")) ||
+      str.contains(QStringLiteral("checking for file conflicts")) ||
+      str.contains(QStringLiteral(":: Running pre-transaction hooks")) ||
+      str.contains(QStringLiteral(":: Processing package changes")))
+      return true;
+  else return false;
+}
+
+/*
  * Prepares a string parsed from pacman output to be printed by the UI
  */
 void PacmanExec::prepareTextToPrint(QString str, TreatString ts, TreatURLLinks tl)
@@ -536,8 +549,6 @@ void PacmanExec::prepareTextToPrint(QString str, TreatString ts, TreatURLLinks t
         str.indexOf(QLatin1String("Enter a selection"), Qt::CaseInsensitive) == 0 ||
         str.indexOf(QLatin1String("Proceed with"), Qt::CaseInsensitive) == 0 ||
         str.indexOf(QLatin1String("%")) != -1 ||
-        //str.indexOf("[") != -1 ||
-        //str.indexOf("]") != -1 ||
         str.indexOf(QLatin1String("---")) != -1)
     {
       return;
@@ -624,8 +635,8 @@ void PacmanExec::prepareTextToPrint(QString str, TreatString ts, TreatURLLinks t
   {
     newStr = QLatin1String("<br><B>") + newStr + QLatin1String("</B><br><br>");
 
-    /*if (newStr.contains(":: Retrieving packages")) emit canStopTransaction(true);
-    else if (newStr.contains(":: Processing package changes")) emit canStopTransaction(false);*/
+    if (newStr.contains(QStringLiteral(":: Retrieving packages"))) emit canStopTransaction(true);
+    else if (criticalPhaseInTransaction(newStr)) emit canStopTransaction(false);
 
     if (SettingsManager::getShowPackageNumbersOutput() &&
         (newStr.contains(QLatin1String(":: Retrieving packages")) || (newStr.contains(QLatin1String(":: Processing package changes"))) ||
@@ -1061,7 +1072,6 @@ void PacmanExec::doInstallLocal(const QString &listOfPackages)
   m_lastCommandList.append(QLatin1String("read -n 1 -p '") + StrConstants::getPressAnyKey() + QLatin1Char('\''));
 
   m_commandExecuting = ectn_INSTALL;
-  //std::cout << "COMMAND: " << command.toLatin1().data() << std::endl;
   m_unixCommand->executeCommand(command);
 }
 

@@ -40,15 +40,14 @@ private:
   int m_packageCounter;
   //This variable counts the number of "error: failed retrieving file" strings
   int m_errorRetrievingFileCounter;
-
-  //This flag holds TRUE if the parser is parsing a package removal operation
+  //This flag holds TRUE if the parser is parsing a valid package removal operation
   bool m_parsingAPackageChange;
+
   UnixCommand *m_unixCommand;
   CommandExecuting m_commandExecuting;
   QStringList m_lastCommandList; //run in terminal commands
   QStringList m_textPrinted;
   QStringList m_listOfOutatedPackages;
-
   QStringList m_listOfDotPacnewFiles; //contains the list of "blahblah installed as blahblah.pacnew" occurencies (if any)
 
   bool m_processWasCanceled;
@@ -58,6 +57,7 @@ private:
   bool searchForKeyVerbs(QString output);
   bool splitOutputStrings(QString output);
   void parsePacmanProcessOutput(const QString &output);
+  bool criticalPhaseInTransaction(const QString &str);
   void prepareTextToPrint(QString str, TreatString ts = ectn_TREAT_STRING, TreatURLLinks tl = ectn_TREAT_URL_LINK);
 
 private slots:

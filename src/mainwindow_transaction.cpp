@@ -2005,6 +2005,7 @@ void MainWindow::toggleTransactionActions(const bool value)
     ui->actionInstallLocalPackage->setEnabled(value);
     m_actionMenuOptions->setEnabled(value);
     ui->actionGetNews->setEnabled(value);
+    m_actionChangeInstallReason->setEnabled(value);
   }
   else
   {
@@ -2012,6 +2013,7 @@ void MainWindow::toggleTransactionActions(const bool value)
     m_actionMenuOptions->setEnabled(false);
     ui->actionGetNews->setEnabled(false);
     ui->actionCheckUpdates->setEnabled(false);
+    m_actionChangeInstallReason->setEnabled(false);
   }
 
   ui->actionHelpUsage->setEnabled(value);
@@ -2069,6 +2071,7 @@ void MainWindow::toggleSystemActions(const bool value)
     ui->actionGetNews->setEnabled(value);
     ui->actionInstallLocalPackage->setEnabled(value);
     ui->actionCheckUpdates->setEnabled(value);
+    m_actionChangeInstallReason->setEnabled(value);
   }
   else
   {
@@ -2076,6 +2079,7 @@ void MainWindow::toggleSystemActions(const bool value)
     ui->actionGetNews->setEnabled(false);
     ui->actionInstallLocalPackage->setEnabled(false);
     ui->actionCheckUpdates->setEnabled(false);
+    m_actionChangeInstallReason->setEnabled(false);
   }
 
 
