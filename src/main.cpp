@@ -70,6 +70,10 @@ int main(int argc, char *argv[])
 
   if (app.isRunning())
   {
+    if (argList->getSwitch(QStringLiteral("-checkupdates")))
+    {
+      app.sendMessage(QStringLiteral("CHECKUPDATES"));
+    }
     if (argList->getSwitch(QStringLiteral("-aurupgrade")))
     {
       app.sendMessage(QStringLiteral("AURUPGRADE"));

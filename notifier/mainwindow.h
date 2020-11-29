@@ -52,6 +52,7 @@ class MainWindow : public QMainWindow
 public:
   explicit MainWindow(QWidget *parent = nullptr);
   virtual ~MainWindow();
+
   inline void turnDebugInfoOn() { m_debugInfo = true;}
   bool startServer();
 
@@ -65,7 +66,8 @@ private slots:
   void checkUpdates(CheckUpdate check = ectn_USER_CHECK);
   void refreshAppIcon();
   void runOctopi(ExecOpt execOptions = ectn_SYSUPGRADE_EXEC_OPT);
-  void runOctopiSysUpgrade();  
+  void runOctopiCheckUpdates();
+  void runOctopiSysUpgrade();
   void runOctopiAURUpgrade();
 
   inline void startOctopi() { runOctopi(ectn_NORMAL_EXEC_OPT); }

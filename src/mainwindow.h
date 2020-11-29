@@ -424,7 +424,6 @@ private slots:
   void doRemoveAndInstall();
   void doInstall();
   void doChangeInstallReason(const QHash<QString, QString> &listOfTargets);
-  void doCheckUpdates();
   void doMirrorCheck();
   void doInstallAUR();
   void doInstallAURPackage();
@@ -511,6 +510,7 @@ private slots:
 public slots:
   bool startServer();
   void show();
+  void doCheckUpdates();
   void doSystemUpgrade(SystemUpgradeOptions sysUpgradeOption = ectn_NO_OPT);
   void doAURUpgrade();
   void doInstallLocalPackages();

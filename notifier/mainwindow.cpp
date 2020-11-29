@@ -208,7 +208,7 @@ void MainWindow::initActions()
   m_actionCheckUpdates->setIconVisibleInMenu(true);
   m_actionCheckUpdates->setText(StrConstants::getCheckUpdates());
   m_actionCheckUpdates->setIcon(IconHelper::getIconCheckUpdates());
-  connect(m_actionCheckUpdates, SIGNAL(triggered()), this, SLOT(checkUpdates()));
+  connect(m_actionCheckUpdates, SIGNAL(triggered()), this, SLOT(runOctopiCheckUpdates()));
 
   m_actionSystemUpgrade = new QAction(this);
   m_actionSystemUpgrade->setIconVisibleInMenu(true);
@@ -1230,6 +1230,16 @@ void MainWindow::runOctopi(ExecOpt execOptions)
   {
     QProcess::startDetached(QStringLiteral("octopi"), QStringList() << QStringLiteral("-sysupgrade-noconfirm"));
   }
+  else if (execOptions == ectn_CHECKUPDATES_EXEC_OPT &&
+           !UnixCommand::isAppRunning(QStringLiteral("octopi"), true))
+  {
+    checkUpdates();
+  }
+  else if (execOptions == ectn_CHECKUPDATES_EXEC_OPT &&
+           UnixCommand::isAppRunning(QStringLiteral("octopi"), true))
+  {
+    QProcess::startDetached(QStringLiteral("octopi"), QStringList() << QStringLiteral("-checkupdates"));
+  }
   else if (execOptions == ectn_SYSUPGRADE_EXEC_OPT &&
       (!UnixCommand::isAppRunning(QStringLiteral("octopi"), true) ||
        !canOctopiUpgrade()) && (m_outdatedStringList->count() > 0 ||
@@ -1257,6 +1267,14 @@ void MainWindow::runOctopi(ExecOpt execOptions)
   {
     QProcess::startDetached(QStringLiteral("octopi"), QStringList());
   }
+}
+
+/*
+ * Whenever user selects "Check updates" menu option
+ */
+void MainWindow::runOctopiCheckUpdates()
+{
+  runOctopi(ectn_CHECKUPDATES_EXEC_OPT);
 }
 
 /*

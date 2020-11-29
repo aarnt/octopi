@@ -363,7 +363,7 @@ void QtSingleApplication::activateWindow(const QString &message)
     }
   }
   else if (actWin && ((message == QLatin1String("AURUPGRADE")) || (message == QLatin1String("SYSUPGRADE")) ||
-                      (message == QLatin1String("SYSUPGRADE_NOCONFIRM"))))
+                      (message == QLatin1String("CHECKUPDATES")) || (message == QLatin1String("SYSUPGRADE_NOCONFIRM"))))
   {
     actWin->setWindowState(actWin->windowState() & ~Qt::WindowMinimized);
     actWin->raise();
@@ -378,7 +378,11 @@ void QtSingleApplication::activateWindow(const QString &message)
     {
       if (!mw->isExecutingCommand())
       {
-        if (message == QLatin1String("AURUPGRADE"))
+        if (message == QLatin1String("CHECKUPDATES"))
+        {
+          mw->doCheckUpdates();
+        }
+        else if (message == QLatin1String("AURUPGRADE"))
         {
           mw->doAURUpgrade();
         }

@@ -270,7 +270,8 @@ enum EditOptions { ectn_EDIT_AS_ROOT, ectn_EDIT_AS_NORMAL_USER };
 //Octopi-notifier related  -------------------------------------------------------------------------------
 
 const QString ctn_CHECKUPDATES_BINARY = QStringLiteral("/usr/bin/checkupdates");
-enum ExecOpt { ectn_NORMAL_EXEC_OPT, ectn_SYSUPGRADE_EXEC_OPT, ectn_SYSUPGRADE_NOCONFIRM_EXEC_OPT, ectn_AUR_UPGRADE_EXEC_OPT };
+enum ExecOpt { ectn_NORMAL_EXEC_OPT, ectn_CHECKUPDATES_EXEC_OPT, ectn_SYSUPGRADE_EXEC_OPT,
+               ectn_SYSUPGRADE_NOCONFIRM_EXEC_OPT, ectn_AUR_UPGRADE_EXEC_OPT };
 
 //Octopi-helper related ----------------------------------------------------------------------------------
 
