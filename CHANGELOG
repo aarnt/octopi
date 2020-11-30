@@ -203,7 +203,7 @@
   Help/About dialog now shows Pacman information.
   StatusBar msg got updated with number of selected packages more visible.  
 
-0.7.0 (2015-04-27))
+0.7.0 (2015-04-27)
   Major speed fix: Faster pkg list building.
   Reverted to showing ALL packages at startup.
   Added a systemd service to speed up the very first octopi startup time.
