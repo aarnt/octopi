@@ -39,6 +39,7 @@ PacmanExec::PacmanExec(QObject *parent) : QObject(parent)
   m_iLoveCandy = UnixCommand::isILoveCandyEnabled();
   m_debugMode = false;
   m_processWasCanceled = false;
+  m_parsingAPackageChange = false;
   m_numberOfPackages = 0;
   m_packageCounter = 0;
   m_errorRetrievingFileCounter = 0;
