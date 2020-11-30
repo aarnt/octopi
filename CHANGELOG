@@ -20,6 +20,7 @@
   Octopi-sudo code was synced to match lxqt-sudo version 0.16.0.
   Updated PKGBUILD file following MatMoul's suggestion.
   Removed unused speedup service.
+  BugFix: Disable Info/Files tab refresh while typing in filter/search line edit.
   BugFix: unset TMPDIR environment variable on every Octo tool startup 
 	(to avoid "octopi-helper[aborted]: Couldn't attach to memory" errors).
   BugFix: "total download size" showed the value 0 in Notifier if the database was not synched.
@@ -30,11 +31,11 @@
 	notifier crash and an octopi freeze (thanks to linuxer for pointing that out).
   BugFix: The list of targets to install were not showing ok in the transaction dialog.
   BugFix: Restored support for command line parameters like "-sysupgrade-noconfirm" and "-style".
-  BugFix: Updated "-help" output text..
+  BugFix: Updated "-help" output text.
   BugFix: Tab navigation improvements.
   BugFix: Statusbar showed a number of packages when the list was empty (the previous value).
 
-0.10.0
+0.10.0 (2020-07-19)
   Added a built-in default priviledge escalation tool: "octopi-sudo" as a slightly modified version 
 	of "lxqt-sudo" project (version 0.15.0). It's the only escalation tool supported!
   Added option to vote/unvote for AUR packages using aur.archlinux.org login.
@@ -92,7 +93,7 @@
   BugFix: Enable a more complete UI lockdown during transactions.
   BugFix: Enable "Find a file" context menu option on a non installed pkg.
 
-0.9.0
+0.9.0 (2018-06-08)
   Parser changes: added counter for processed packages.  
   Group pane now spans all window's height.
   SysInfo now uses ptpb site and does not block interface.
@@ -148,7 +149,7 @@
   BugFix: Disable alien icon while in transaction.
   BugFix: Do not ask twice for password if a pacman lck file exists.
 
-0.8.1
+0.8.1 (2016-03-27)
   BugFix: Updated CHAKRA RSS site (thanks to s8321414).
   BugFix: Distro news now works with https KaOS site.
   BugFix: Files tab was not refreshing when enabling KCP mode in KaOS.
@@ -171,7 +172,7 @@
   Added support for lxqt-sudo tool (thanks to Manjaro team).
   Added "pkgfile -u" (if available) in sync db transaction.
 
-0.8.0
+0.8.0 (2015-11-08)
   This is a Qt5 only version (with the exception of 'octopi-notifier').
   BugFix: Speed optimizations in startup code (AUR outdated list).
   BugFix: Octopi now honors the $SHELL variable (thanks to LAC1213).
@@ -202,7 +203,7 @@
   Help/About dialog now shows Pacman information.
   StatusBar msg got updated with number of selected packages more visible.  
 
-0.7.0
+0.7.0 (2015-04-27))
   Major speed fix: Faster pkg list building.
   Reverted to showing ALL packages at startup.
   Added a systemd service to speed up the very first octopi startup time.
@@ -232,7 +233,7 @@
   BugFix: If user had no gksu/kdesu/root when clicking "clean" button in 
 	cachecleaner, cursor would remain waiting (thanks to imperator-).
 
-0.6.0
+0.6.0 (2015-02-27)
   BugFix: Pkg list was being refreshed twice sometimes.
   BugFix: Removed some buggy strings from Output tab while in KF5.
   BugFix: ArrowUp/Down, PageUp/Down and Home/End keys now refresh Package Info tab.
@@ -260,7 +261,7 @@
   Refactorings in SearchLineEdit.
   BugFixes in RepoEditor translation support (repoeditor is now in Transifex too).
 
-0.5.0
+0.5.0 (2014-11-08)
   BugFix: RepoEditor would not compile with Qt5 lib (thanks to Philm).
   BugFix: Suppress GConf error strings in output.
   BugFix: mate-terminal is returning code 255 even when execution of 
@@ -286,14 +287,14 @@
   Added support for KStatusNotifier while in KDE (thanks to brcha).
   Updated translations.
 
-0.4.2
+0.4.2 (2014-07-26)
   BugFix: when searching AUR pkgs, given search string was not being matched 
 	by package descriptions.
   BugFix: Sometimes got a gconf bug string at sync db.
   Updated a bunch of translations.
   Added support for the new kcp tool (Go version).
 
-0.4.1
+0.4.1 (2014-07-12)
   Added basque translation (thanks to tarteka).
   Added es_AR translation (thanks to javier).
   Added japanese translation (thanks to UTUMI Hirosi - utuhiro78).
@@ -321,7 +322,7 @@
   Added Search by file feature (pacman -Qo).
   Added a string validator in the search edit widget.
 
-0.4.0
+0.4.0 (2014-05-24)
   Huge refactorings in model/view that brings consistent memory and 
 	speed improvements - a single model and a central data storage (thanks to 
 	Thomas Binkau - tbinkau).
@@ -375,7 +376,7 @@
   Fixed getBuildDate code to always convert dates to english format.
   Updated some translations.
 
-0.3.2
+0.3.2 (2014-02-14)
   Cleaned unused code.
   Added icon for mirror-check while in KaOS.
   Does a mirror-check at startup while in KaOS.
@@ -390,7 +391,7 @@
   BugFix: When the user had no yaourt in the system, there were a zombie 
 	octopi process 'left running'.
 
-0.3.1
+0.3.1 (2014-01-14)
   Added support for Qt5.
   Added chinese (Taiwan), malay, slovak and ukrainian translations.
   Added support to KaOS, a lean KDE centric Linux distro.
@@ -401,7 +402,7 @@
 	first searches into transaction queue for them.
   BugFix: Prevent header resizing in File and Transaction tabs.
 
-0.3
+0.3.0 (2013-11-03) 
   Code cleanings.
   BugFix: No need to refresh package list after a cache clean.
   BugFix: Konsole was not working with yaourt package installation.
@@ -448,7 +449,7 @@
   Added an About Dialog to Octopi Notifier.
   Updated translations.
 
-0.2
+0.2.0 (2013-08-24)
   Splitted the project in "octopi" and "octopi-notifier".
   Yaourt no longer runs with root permissions.
   Added support for package multi selection in Yaourt mode.
@@ -469,23 +470,23 @@
   IgnorePkg option is now used to build outdated package list.
   BugFix: Empty pkg descriptions are now shown as empty.
 
-0.1.9.1
+0.1.9.1 (2013-07-14)
   Important bugfixes to deal with multithreaded code.
   Added a "globals.h/.cpp" file to group QFutureWatcher globals.
   Updated style changing code in main.cpp.
   BugFix: when user cancelled a sysupgrade transaction inside a 
 terminal, the package actions remained disabled.
 
-0.1.9
+0.1.9 (2013-07-09)
   Added yaourt support.
   Updated most of the translations.
 
-0.1.8
+0.1.8 (2013-06-16)
   Added czech translation.
   Added support to ArchBang Linux.
   Added a systemtray icon notifier feature using DBus technology.
 
-0.1.7.3
+0.1.7.3 (2013-05-26)
   Added a TRANSLATIONS file.
   Added danish translation.
   Added indonesian translation.
@@ -495,14 +496,14 @@ terminal, the package actions remained disabled.
   Bugfix: sysupgrade must refresh packagelist after syncdatabase.
   Bugfix: if sysupgrade uses SyncFirst, makes it automatically start a second upgrade.
 
-0.1.7.2
+0.1.7.2 (2013-05-17)
   Added catalan translation.
   Bugfix: updated new binary translation files to the resources.
 
-0.1.7.1
+0.1.7.1 (2013-05-11)
   Bugfix: menu icons were not being shown while in Xfce.
 
-0.1.7
+0.1.7 (2013-05-11)
   Added "-sysupgrade" command line option.
   Added "-removecmd" command line option.
   Added lots of translations.
@@ -510,11 +511,11 @@ terminal, the package actions remained disabled.
   Added an About dialog.
   Changed the old About tab to Usage tab.
 
-0.1.6.1
+0.1.6.1 (2013-04-25)
   Added pt_BR translation.
   Added "Open root terminal" option in File menu.
 
-0.1.6
+0.1.6 (2013-04-12)
   Added a new Transaction Dialog.
   Added a Firefox-like search inside Files, News and About tabs.
   Added support for Chakra.
@@ -522,33 +523,33 @@ terminal, the package actions remained disabled.
   Added option to execute any transaction inside a terminal.
   Changed ProgressDialog to a progressBar at the screen bottom.
   
-0.1.5
+0.1.5 (2013-04-06)
   Added option to search packages by description and name.
   Added support for pacman version 4.1.
   Transactions with conflict errors can be re-executed inside a terminal.
   Reworked Manjaro Linux theme.
 
-0.1.4.1
+0.1.4.1 (2013-03-30)
   Bugfix release
   Added total download size information in transaction dialog.
 
-0.1.4
+0.1.4 (2013-03-28)
   Added a Manjaro Linux theme.
   Changed position of filter line edit to the toolbar.
 
-0.1.3
+0.1.3 (2013-03-19)
   Added better support to Qt dark themes.
   Added context menu support inside Files tab.
   Made URLs clickable inside Output tab.
   Fixed the annoying Packager information display bug.
 
-0.1.2
+0.1.2 (2013-03-18)
   Tons of refactorings and bugfixes.
   Small changes in UI.
 
-0.1.1 
+0.1.1 (2013-03-17)
   Added all six tabs.
   Added support for groups of packages.
 
-0.1.0 
+0.1.0 (2013-03-11)
   Initial Proof of Concept release.

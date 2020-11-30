@@ -1766,6 +1766,29 @@ void MainWindow::changedTabIndex()
 }
 
 /*
+ * Clears the contents of Info or Files tabs depending which one is selected
+ */
+void MainWindow::clearTabsInfoOrFiles()
+{
+  disconnect(ui->tvPackages->selectionModel(), SIGNAL(selectionChanged(QItemSelection,QItemSelection)),
+          this, SLOT(invalidateTabs()));
+
+  if(ui->twProperties->currentIndex() == ctn_TABINDEX_INFORMATION) //This is TabInfo
+  {
+    refreshTabInfo(true, false);
+    return;
+  }
+  else if(ui->twProperties->currentIndex() == ctn_TABINDEX_FILES) //This is TabFiles
+  {
+    refreshTabFiles(true, false);
+    return;
+  }
+
+  connect(ui->tvPackages->selectionModel(), SIGNAL(selectionChanged(QItemSelection,QItemSelection)),
+          this, SLOT(invalidateTabs()));
+}
+
+/*
  * Clears the information showed on the current tab (Info or Files).
  */
 void MainWindow::invalidateTabs()
@@ -1780,7 +1803,7 @@ void MainWindow::invalidateTabs()
   }
   else if(ui->twProperties->currentIndex() == ctn_TABINDEX_FILES) //This is TabFiles
   {
-    refreshTabFiles(); //true
+    refreshTabFiles();
     return;
   }
 

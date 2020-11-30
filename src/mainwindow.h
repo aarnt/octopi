@@ -417,6 +417,7 @@ private slots:
   void onDoubleClickPackageList();
   void refreshInfoAndFileTabs();
   void changedTabIndex();
+  void clearTabsInfoOrFiles();
   void invalidateTabs(); //This method clears the current information showed on tab.
 
   //Pacman transaction methods
