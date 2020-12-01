@@ -229,4 +229,4 @@ license.files += LICENSE
 #sys_service.files += notifier/pacmanhelper/polkit/org.octopi.pacmanhelper.service
 
 #INSTALLS += target bin dbus desktop gnome icon interfaces license polkit service sys_service
-INSTALLS += target bin desktop gnome icon license service
+INSTALLS += target bin desktop gnome icon license
