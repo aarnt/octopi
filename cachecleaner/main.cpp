@@ -71,6 +71,12 @@ int main( int argc, char *argv[] )
     return (-5);
   }
 
+  if (!UnixCommand::isOctoToolRunning(QStringLiteral("octopi-cachecle")))
+  {
+    QMessageBox::critical(nullptr, StrConstants::getApplicationName(), StrConstants::getErrorRunOctopiCacheCleanerAsUsrBin());
+    return (-6);
+  }
+
   CacheCleaner w;
   if (w.startServer())
   {

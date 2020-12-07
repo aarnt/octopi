@@ -183,6 +183,9 @@ public:
   static QString getErrorAURPasswordIsNotSet();
   static QString getSelectAURBuildDir();
   static QString getErrorIconPathInfoIsNotSet();
+  static QString getErrorRunOctopiAsUsrBin();
+  static QString getErrorRunOctopiNotifierAsUsrBin();
+  static QString getErrorRunOctopiCacheCleanerAsUsrBin();
   static QString getErrorRunningWithRoot();
   static QString getThereIsARunningTransaction();
   static QString getThereArePendingActions();

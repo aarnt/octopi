@@ -20,6 +20,7 @@
   Octopi-sudo code was synced to match lxqt-sudo version 0.16.0.
   Updated PKGBUILD file following MatMoul's suggestion.
   Removed unused speedup service.
+  Prevent users from running Octopi, Notifier and Cache Cleaner outside "/usr/bin" dir.
   BugFix: Disable Info/Files tab refresh while typing in filter/search line edit.
   BugFix: unset TMPDIR environment variable on every Octo tool startup 
 	(to avoid "octopi-helper[aborted]: Couldn't attach to memory" errors).

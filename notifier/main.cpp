@@ -26,6 +26,7 @@
 
 #include <QApplication>
 #include <QtGui>
+#include <QMessageBox>
 #include <QDebug>
 
 #define NO_GTK_STYLE
@@ -69,17 +70,23 @@ int main(int argc, char *argv[])
     return (-4);
   }
 
-  if (UnixCommand::isRootRunning()){
-    qDebug() << StrConstants::getErrorRunningWithRoot();
-    return (-5);
-  }
-
   QApplication a(argc, argv);
   QTranslator appTranslator;
   appTranslator.load(QLatin1String(":/resources/translations/octopi_") +
                      QLocale::system().name());
   a.installTranslator(&appTranslator);
   a.setQuitOnLastWindowClosed(false);
+
+  if (!UnixCommand::isOctoToolRunning(QStringLiteral("octopi-notifier")))
+  {
+    QMessageBox::critical(nullptr, StrConstants::getApplicationName(), StrConstants::getErrorRunOctopiNotifierAsUsrBin());
+    return (-6);
+  }
+
+  if (UnixCommand::isRootRunning()){
+    QMessageBox::critical(nullptr, StrConstants::getApplicationName(), StrConstants::getErrorRunningWithRoot());
+    return (-5);
+  }
 
   unsetenv("TMPDIR");
 

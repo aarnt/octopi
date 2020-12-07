@@ -137,10 +137,16 @@ int main(int argc, char *argv[])
     return(0);
   }
 
-  if (UnixCommand::isRootRunning()){
-    QMessageBox::critical( nullptr, StrConstants::getApplicationName(), StrConstants::getErrorRunningWithRoot());
-    return ( -4 );
+  if (!UnixCommand::isOctoToolRunning(QStringLiteral("octopi")))
+  {
+    QMessageBox::critical(nullptr, StrConstants::getApplicationName(), StrConstants::getErrorRunOctopiAsUsrBin());
+    return (-5);
   }
+
+  if (UnixCommand::isRootRunning()){
+    QMessageBox::critical(nullptr, StrConstants::getApplicationName(), StrConstants::getErrorRunningWithRoot());
+    return (-4);
+  }        
 
   setenv("COLORTERM", "truecolor", 1);
   setenv("TERM", "xterm-256color", 1);
