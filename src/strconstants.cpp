@@ -752,15 +752,15 @@ QString StrConstants::getErrorIconPathInfoIsNotSet(){
 }
 
 QString StrConstants::getErrorRunOctopiAsUsrBin(){
-  return QObject::tr("You must use \"/usr/bin/octopi\" command to run Octopi");
+  return QObject::tr("You must use \"/usr/bin/octopi\" to run Octopi");
 }
 
 QString StrConstants::getErrorRunOctopiNotifierAsUsrBin(){
-  return QObject::tr("You must use \"/usr/bin/octopi-notifier\" command to run Octopi Notifier");
+  return QObject::tr("You must use \"/usr/bin/octopi-notifier\" to run Octopi Notifier");
 }
 
 QString StrConstants::getErrorRunOctopiCacheCleanerAsUsrBin(){
-  return QObject::tr("You must use \"/usr/bin/octopi-cachecleaner\" command to run Octopi Cache Cleaner");
+  return QObject::tr("You must use \"/usr/bin/octopi-cachecleaner\" to run Octopi Cache Cleaner");
 }
 
 QString StrConstants::getErrorRunningWithRoot(){
