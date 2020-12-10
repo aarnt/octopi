@@ -493,7 +493,7 @@ Any use of the provided files is at your own risk.</string>
              </rect>
             </property>
             <property name="text">
-             <string>...</string>
+             <string notr="true">...</string>
             </property>
            </widget>
            <widget class="QPushButton" name="bClearAURBuildDir">
