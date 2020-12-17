@@ -51,8 +51,8 @@ bool WMHelper::isTDERunning()
 {
   QStringList slParam;
   QProcess proc;
-  slParam << QStringLiteral("-C");
-  slParam << ctn_TDE_DESKTOP;
+  slParam << QStringLiteral("-aux");
+  //slParam << ctn_TDE_DESKTOP;
 
   proc.start(QStringLiteral("ps"), slParam);
   proc.waitForStarted();
@@ -74,8 +74,8 @@ bool WMHelper::isGNOMERunning()
 {
   QStringList slParam;
   QProcess proc;
-  slParam << QStringLiteral("-C");
-  slParam << ctn_GNOME_DESKTOP;
+  slParam << QStringLiteral("-aux");
+  //slParam << ctn_GNOME_DESKTOP;
 
   proc.start(QStringLiteral("ps"), slParam);
   proc.waitForStarted();
@@ -96,8 +96,8 @@ bool WMHelper::isXFCERunning()
 {
   QStringList slParam;
   QProcess proc;
-  slParam << QStringLiteral("-C");
-  slParam << ctn_XFCE_DESKTOP;
+  slParam << QStringLiteral("-aux");
+  //slParam << ctn_XFCE_DESKTOP;
 
   proc.start(QStringLiteral("ps"), slParam);
   proc.waitForStarted();
@@ -118,8 +118,8 @@ bool WMHelper::isLXDERunning()
 {
   QStringList slParam;
   QProcess proc;
-  slParam << QStringLiteral("-C");
-  slParam << ctn_LXDE_DESKTOP;
+  slParam << QStringLiteral("-aux");
+  //slParam << ctn_LXDE_DESKTOP;
 
   proc.start(QStringLiteral("ps"), slParam);
   proc.waitForStarted();
@@ -148,8 +148,8 @@ bool WMHelper::isOPENBOXRunning()
 {
   QStringList slParam;
   QProcess proc;
-  slParam << QStringLiteral("-C");
-  slParam << ctn_OPENBOX_DESKTOP;
+  slParam << QStringLiteral("-aux");
+  //slParam << ctn_OPENBOX_DESKTOP;
 
   proc.start(QStringLiteral("ps"), slParam);
   proc.waitForStarted();
@@ -170,8 +170,8 @@ bool WMHelper::isMATERunning()
 {
   QStringList slParam;
   QProcess proc;
-  slParam << QStringLiteral("-C");
-  slParam << ctn_MATE_DESKTOP;
+  slParam << QStringLiteral("-aux");
+  //slParam << ctn_MATE_DESKTOP;
 
   proc.start(QStringLiteral("ps"), slParam);
   proc.waitForStarted();
@@ -192,8 +192,8 @@ bool WMHelper::isCinnamonRunning()
 {
   QStringList slParam;
   QProcess proc;
-  slParam << QStringLiteral("-fC");
-  slParam << ctn_CINNAMON_DESKTOP;
+  slParam << QStringLiteral("-aux");
+  //slParam << ctn_CINNAMON_DESKTOP;
 
   proc.start(QStringLiteral("ps"), slParam);
   proc.waitForStarted();
@@ -214,8 +214,8 @@ bool WMHelper::isLuminaRunning()
 {
   QStringList slParam;
   QProcess proc;
-  slParam << QStringLiteral("-C");
-  slParam << ctn_LUMINA_DESKTOP;
+  slParam << QStringLiteral("-aux");
+  //slParam << ctn_LUMINA_DESKTOP;
 
   proc.start(QStringLiteral("ps"), slParam);
   proc.waitForStarted();
@@ -259,7 +259,7 @@ QString WMHelper::getSUCommand()
   QString result(ctn_NO_SU_COMMAND);
 
   if (QFile::exists(ctn_OCTOPISUDO)){
-    result = ctn_OCTOPISUDO; //getOctopiSudoCommand();
+    result = ctn_OCTOPISUDO;
   }
 
   return result;
@@ -275,9 +275,6 @@ QString WMHelper::getSUTool()
   if (QFile::exists(ctn_OCTOPISUDO)){
     return ctn_OCTOPISUDO;
   }
-  /*else if (UnixCommand::hasTheExecutable(ctn_LXQTSU)){
-    result = ctn_LXQTSU;
-  }*/
 
   return result;
 }

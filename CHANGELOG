@@ -17,7 +17,7 @@
   Added support for '^' and '$' chars in AUR search
   Added "Open news in a browser" option on right clicking the News tab.
   Optional package dependencies are now installed with "--asdeps" parameter.
-  Octopi-sudo code was synced to match lxqt-sudo version 0.16.0.
+  Octopi-sudo code was synced to match project "lxqt-sudo" version 0.16.0.
   Updated PKGBUILD file following MatMoul's suggestion.
   Removed unused speedup service.
   Prevent users from running Octopi, Notifier and Cache Cleaner outside "/usr/bin" dir.
@@ -35,6 +35,7 @@
   BugFix: Updated "-help" output text.
   BugFix: Tab navigation improvements.
   BugFix: Statusbar showed a number of packages when the list was empty (the previous value).
+  BugFix: WM detection now uses "ps -aux".
 
 0.10.0 (2020-07-19)
   Added a built-in default priviledge escalation tool: "octopi-sudo" as a slightly modified version 
@@ -46,7 +47,7 @@
   Added option to download a temporary yay-bin to enable AUR.
   Updated some UI icons and added an specific one for foreign non installed pkg.
   Dropped support for external terminal applications. QTermWidget is mandatory now!
-  Print .pacnew list summary after upgrade (if any).
+  Print ".pacnew" file list summary after upgrade (if any).
   Added Lumina desktop support.
   RepoEditor now saves window size and position.
   Added "copy" command to octopi's embedded terminal context menu.

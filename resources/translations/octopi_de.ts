@@ -237,12 +237,12 @@
     <message>
         <location filename="../Projects/octopi/src/mainwindow_help.cpp" line="68"/>
         <source>Ctrl+Shift+O to display outdated %1 packages</source>
-        <translation>Strg+Umschalt+O um veraltete %1 Pakete anzuzeigen</translation>
+        <translation>Strg+Umschalt+O für das Anzeigen von %1 veralteten Paketen</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/mainwindow_help.cpp" line="76"/>
         <source>Ctrl+Shift+A to display AUR voted package list</source>
-        <translation>Strg+Umschalt+A um Paketliste mit AUR-Bewertungen anzuzeigen</translation>
+        <translation>Strg+Umschalt+A für das Anzeigen der Paketliste mit AUR-Bewertungen</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/mainwindow_help.cpp" line="81"/>
@@ -526,12 +526,12 @@
     <message>
         <location filename="../Projects/octopi/ui/optionsdialog.ui" line="209"/>
         <source>Select the AUR tool Octopi should use</source>
-        <translation>Wähle das AUR Werkzeug aus, das Octopi verwenden soll</translation>
+        <translation>Wählen Sie das AUR-Werkzeug, das Octopi verwenden soll</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/ui/optionsdialog.ui" line="293"/>
         <source>Search for outdated AUR packages</source>
-        <translation>Nach veralteten AUR Paketen suchen</translation>
+        <translation>Nach veralteten AUR-Paketen suchen</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/ui/optionsdialog.ui" line="348"/>
@@ -580,7 +580,7 @@ Benutzung geschieht auf eigenes Risiko.</translation>
     <message>
         <location filename="../Projects/octopi/ui/optionsdialog.ui" line="584"/>
         <source>Select the backend Octopi should use</source>
-        <translation>Wähle das Backend aus, das Octopi verwenden soll</translation>
+        <translation>Wählen Sie das Backend, das Octopi verwenden soll</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/ui/optionsdialog.ui" line="608"/>
@@ -611,7 +611,7 @@ Benutzung geschieht auf eigenes Risiko.</translation>
     <message>
         <location filename="../Projects/octopi/ui/optionsdialog.ui" line="928"/>
         <source>Use default notification icons</source>
-        <translation>Die Standard Benachrichtigungssymbole verwenden</translation>
+        <translation>Standard-Benachrichtigungssymbole verwenden</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/ui/optionsdialog.ui" line="939"/>
@@ -667,7 +667,8 @@ Benutzung geschieht auf eigenes Risiko.</translation>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="49"/>
         <source>Pacman Database is missing!
 You may need to synchronize database!</source>
-        <translation>Pacman-Datenbank fehlt!Möglicherweise müssen Sie die Datenbank synchronisieren!</translation>
+        <translation>Pacman-Datenbank fehlt!
+Möglicherweise müssen Sie die Datenbank synchronisieren!</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="53"/>
@@ -682,7 +683,7 @@ You may need to synchronize database!</source>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="139"/>
         <source>Artix Linux news</source>
-        <translation>Nachrichten zu Artix Linux</translation>
+        <translation>Neuigkeiten zu Artix Linux</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="143"/>
@@ -692,12 +693,12 @@ You may need to synchronize database!</source>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="147"/>
         <source>Condres OS news</source>
-        <translation>Neuigkeiten von Condres OS</translation>
+        <translation>Neuigkeiten zu Condres OS</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="151"/>
         <source>EndeavourOS news</source>
-        <translation>Neuigkeiten von EndeavourOS</translation>
+        <translation>Neuigkeiten zu EndeavourOS</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="155"/>
@@ -712,7 +713,7 @@ You may need to synchronize database!</source>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="163"/>
         <source>Parabola GNU/Linux-libre news</source>
-        <translation>Parabola GNU/Linux-libre Nachrichten</translation>
+        <translation>Neuigkeiten zu Parabola GNU/Linux-libre</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="167"/>
@@ -907,7 +908,7 @@ You may need to synchronize database!</source>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="333"/>
         <source>Show PKGBUILD diff</source>
-        <translation>PKGBUILD diff anzeigen</translation>
+        <translation>Diff des PKGBUILD anzeigen</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="338"/>

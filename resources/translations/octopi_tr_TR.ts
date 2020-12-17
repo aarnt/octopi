@@ -491,37 +491,37 @@
         <location filename="../Projects/octopi/ui/optionsdialog.ui" line="95"/>
         <location filename="../Projects/octopi/src/optionsdialog.cpp" line="181"/>
         <source>Package List</source>
-        <translation type="unfinished"/>
+        <translation>Paket Listesi</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/ui/optionsdialog.ui" line="107"/>
         <source>Use alternating row colors</source>
-        <translation type="unfinished"/>
+        <translation>Alternatif satır renkleri kullan</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/ui/optionsdialog.ui" line="120"/>
         <source>Show &quot;Licenses&quot; column</source>
-        <translation type="unfinished"/>
+        <translation>&quot;Lisanslar&quot; sütununu göster</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/ui/optionsdialog.ui" line="133"/>
         <source>Show &quot;Installed Size&quot; column</source>
-        <translation type="unfinished"/>
+        <translation>&quot;Yüklü Boyut&quot; sütununu göster</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/ui/optionsdialog.ui" line="146"/>
         <source>Show &quot;Build Date&quot; column</source>
-        <translation type="unfinished"/>
+        <translation>&quot;Derleme Tarihi&quot; sütununu göster</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/ui/optionsdialog.ui" line="159"/>
         <source>Show &quot;Install Date&quot; column</source>
-        <translation type="unfinished"/>
+        <translation>&quot;Yükleme Tarihi&quot; sütununu göster</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/ui/optionsdialog.ui" line="172"/>
         <source>Show &quot;Install Reason&quot; column</source>
-        <translation type="unfinished"/>
+        <translation>&quot;Yükleme Nedeni&quot; sütununu göster</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/ui/optionsdialog.ui" line="209"/>
@@ -568,7 +568,7 @@ Paketlerin ve uygulamaların kullanımı sizin sorumluluğunuzdadır.</translati
     <message>
         <location filename="../Projects/octopi/ui/optionsdialog.ui" line="483"/>
         <source>Build directory</source>
-        <translation type="unfinished"/>
+        <translation>İnşa dizini</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/ui/optionsdialog.ui" line="518"/>
@@ -661,7 +661,7 @@ Paketlerin ve uygulamaların kullanımı sizin sorumluluğunuzdadır.</translati
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="41"/>
         <source>force a system upgrade at startup, withou asking for confirmation.</source>
-        <translation type="unfinished"/>
+        <translation>başlangıçta onay istemeden sistem yükseltmesini zorlar.</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="49"/>
@@ -683,7 +683,7 @@ Veritabanını senkronize etmeniz gerekebilir!</translation>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="139"/>
         <source>Artix Linux news</source>
-        <translation type="unfinished"/>
+        <translation>Artix Linux haberleri</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="143"/>
@@ -733,7 +733,7 @@ Veritabanını senkronize etmeniz gerekebilir!</translation>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="180"/>
         <source>Showing cached news.</source>
-        <translation type="unfinished"/>
+        <translation>Önbelleğe alınan haberler gösteriliyor.</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="184"/>
@@ -813,17 +813,17 @@ Veritabanını senkronize etmeniz gerekebilir!</translation>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="252"/>
         <source>Maintainer</source>
-        <translation type="unfinished"/>
+        <translation>Bakımcı</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="256"/>
         <source>Last Modified</source>
-        <translation type="unfinished"/>
+        <translation>Son Düzenleme</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="260"/>
         <source>Out-of-date</source>
-        <translation type="unfinished"/>
+        <translation>Tarihi geçmiş</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="264"/>
@@ -848,7 +848,7 @@ Veritabanını senkronize etmeniz gerekebilir!</translation>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="280"/>
         <source>Make Deps</source>
-        <translation type="unfinished"/>
+        <translation>İnşa Bağımlılıkları</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="284"/>
@@ -903,22 +903,22 @@ Veritabanını senkronize etmeniz gerekebilir!</translation>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="328"/>
         <source>Open PKGBUILD</source>
-        <translation type="unfinished"/>
+        <translation>PKGBUILD Aç</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="333"/>
         <source>Show PKGBUILD diff</source>
-        <translation type="unfinished"/>
+        <translation>PKGBUILD farkını göster</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="338"/>
         <source>Open news in a browser</source>
-        <translation type="unfinished"/>
+        <translation>Haberleri bir tarayıcıda aç</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="343"/>
         <source>There is only one version available of &quot;%1&quot;</source>
-        <translation type="unfinished"/>
+        <translation>&quot;%1&quot; için yalnızca bir sürüm mevcut</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="347"/>
@@ -938,12 +938,12 @@ Veritabanını senkronize etmeniz gerekebilir!</translation>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="359"/>
         <source>Explicitly</source>
-        <translation type="unfinished"/>
+        <translation>Açıkça</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="363"/>
         <source>As dependency</source>
-        <translation type="unfinished"/>
+        <translation>Bağımlılık olarak</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="367"/>
@@ -973,7 +973,7 @@ Veritabanını senkronize etmeniz gerekebilir!</translation>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="387"/>
         <source>Install Date</source>
-        <translation type="unfinished"/>
+        <translation>Yükleme Tarihi</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="391"/>
@@ -1078,7 +1078,7 @@ Veritabanını senkronize etmeniz gerekebilir!</translation>
     <message numerus="yes">
         <location filename="../Projects/octopi/src/strconstants.cpp" line="472"/>
         <source>There are %n outdated packages in your system:</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>Sisteminizde %n güncel olmayan paket var:</numerusform><numerusform>Sisteminizde %n güncel olmayan paket var:</numerusform></translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="476"/>
@@ -1088,7 +1088,7 @@ Veritabanını senkronize etmeniz gerekebilir!</translation>
     <message numerus="yes">
         <location filename="../Projects/octopi/src/strconstants.cpp" line="480"/>
         <source>%n packages</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>%n paket</numerusform><numerusform>%n paket</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="../Projects/octopi/src/strconstants.cpp" line="484"/>
@@ -1163,7 +1163,7 @@ Veritabanını senkronize etmeniz gerekebilir!</translation>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="580"/>
         <source>Changing the install reason of selected packages...</source>
-        <translation type="unfinished"/>
+        <translation>Seçili paketlerin kurulum nedeni değiştiriliyor...</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="584"/>
@@ -1233,12 +1233,12 @@ Veritabanını senkronize etmeniz gerekebilir!</translation>
     <message numerus="yes">
         <location filename="../Projects/octopi/src/strconstants.cpp" line="639"/>
         <source>The following %n packages need to be retrieved</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>Aşağıdaki paketin alınması gerekiyor</numerusform><numerusform>Aşağıdaki %n paketin alınması gerekiyor</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="../Projects/octopi/src/strconstants.cpp" line="643"/>
         <source>The following %n packages will be removed</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>Aşağıdaki paket kaldırılacak</numerusform><numerusform>Aşağıdaki %n paket kaldırılacak</numerusform></translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="647"/>
@@ -1258,7 +1258,7 @@ Veritabanını senkronize etmeniz gerekebilir!</translation>
     <message numerus="yes">
         <location filename="../Projects/octopi/src/strconstants.cpp" line="659"/>
         <source>There are %n updates available!</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>%n Güncelleme var!</numerusform><numerusform>%n güncelleme var!</numerusform></translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="663"/>
@@ -1356,7 +1356,7 @@ Sadece birkaç saniye kabul etmeniz ve beklemeniz gerekir.</translation>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="747"/>
         <source>Select the build directory for the AUR packages</source>
-        <translation type="unfinished"/>
+        <translation>AUR paketleri için derleme dizinini seçin</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="751"/>
@@ -1366,17 +1366,17 @@ Sadece birkaç saniye kabul etmeniz ve beklemeniz gerekir.</translation>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="755"/>
         <source>You must use &quot;/usr/bin/octopi&quot; to run Octopi</source>
-        <translation type="unfinished"/>
+        <translation>Octopi&apos;yi çalıştırmak için &quot;/usr/bin/octopi&quot; kullanmalısınız</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="759"/>
         <source>You must use &quot;/usr/bin/octopi-notifier&quot; to run Octopi Notifier</source>
-        <translation type="unfinished"/>
+        <translation>Octopi Notifier&apos;ı çalıştırmak için &quot;/usr/bin/octopi-notifier&quot; kullanmanız gerekir</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="763"/>
         <source>You must use &quot;/usr/bin/octopi-cachecleaner&quot; to run Octopi Cache Cleaner</source>
-        <translation type="unfinished"/>
+        <translation>Octopi Önbellek Temizleyiciyi çalıştırmak için &quot;/usr/bin/octopi-cachecleaner&quot; kullanmanız gerekir</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="767"/>
@@ -1430,7 +1430,7 @@ Devam etmek istiyor musun?
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="800"/>
         <source>This change needs application restart to take effect</source>
-        <translation type="unfinished"/>
+        <translation>Bu değişikliğin etkili olması için uygulamanın yeniden başlatılması gerekiyor</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="804"/>
@@ -1477,7 +1477,7 @@ Açmak istediğinizden emin misiniz?</translation>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="839"/>
         <source>Change Install Reason</source>
-        <translation type="unfinished"/>
+        <translation>Yükleme Nedenini Değiştirin</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="844"/>
