@@ -54,14 +54,17 @@ QString utils::showFullPathOfItem(const QModelIndex &index)
     QStringList sl;
     QModelIndex nindex;
     sl << sim->itemFromIndex( index )->text();
-
     nindex = index;
 
     while (true){
       nindex = sim->parent( nindex );
-      if ( nindex != sim->invisibleRootItem()->index() ) sl << sim->itemFromIndex( nindex )->text();
+
+      if (nindex != sim->invisibleRootItem()->index())
+        sl << sim->itemFromIndex( nindex )->text();
+
       else break;
     }
+
     str = QDir::separator() + str;
 
     for ( int i=sl.count()-1; i>=0; i-- ){
