@@ -348,7 +348,7 @@ QString SettingsManager::getDistroRSSUrl()
   LinuxDistro distro = UnixCommand::getLinuxDistro();
 
   if (distro == ectn_ARCHLINUX || distro == ectn_ARCHBANGLINUX)
-    return (p_instance.getSYSsettings()->value(ctn_KEY_DISTRO_RSS_URL, QStringLiteral("https://www.archlinux.org/feeds/news/"))).toString();
+    return (p_instance.getSYSsettings()->value(ctn_KEY_DISTRO_RSS_URL, QStringLiteral("https://archlinux.org/feeds/news/"))).toString();
   else if (distro == ectn_ARTIXLINUX)
     return (p_instance.getSYSsettings()->value(ctn_KEY_DISTRO_RSS_URL, QStringLiteral("https://artixlinux.org/feed.php"))).toString();
   else if (distro == ectn_CHAKRA)
@@ -371,7 +371,7 @@ QString SettingsManager::getDistroNewsSite()
   LinuxDistro distro = UnixCommand::getLinuxDistro();
 
   if (distro == ectn_ARCHLINUX || distro == ectn_ARCHBANGLINUX)
-    return QStringLiteral("https://www.archlinux.org");
+    return QStringLiteral("https://archlinux.org");
   else if (distro == ectn_ARTIXLINUX)
     return QStringLiteral("https://artixlinux.org/");
   else if (distro == ectn_CHAKRA)

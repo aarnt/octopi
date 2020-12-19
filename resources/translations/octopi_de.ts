@@ -207,7 +207,7 @@
     <message>
         <location filename="../Projects/octopi/ui/mainwindow.ui" line="558"/>
         <source>Repository Editor</source>
-        <translation>Paketquellen editieren</translation>
+        <translation>Paketquellen bearbeiten</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/ui/mainwindow.ui" line="570"/>
@@ -988,7 +988,7 @@ Möglicherweise müssen Sie die Datenbank synchronisieren!</translation>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="399"/>
         <source>Partial updates are not supported!</source>
-        <translation>partielle Updates werden nicht unterstützt!</translation>
+        <translation>Partielle Updates werden nicht unterstützt!</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="403"/>
@@ -1123,7 +1123,7 @@ Möglicherweise müssen Sie die Datenbank synchronisieren!</translation>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="536"/>
         <source>Check updates</source>
-        <translation>Auf Aktualisierungen prüfen</translation>
+        <translation>Aktualisierungen prüfen</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="541"/>
@@ -1133,7 +1133,7 @@ Möglicherweise müssen Sie die Datenbank synchronisieren!</translation>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="546"/>
         <source>Checking for updates...</source>
-        <translation>Prüfe auf Aktualisierungen ...</translation>
+        <translation>Prüfe auf Aktualisierungen...</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="551"/>
@@ -1312,7 +1312,7 @@ Möglicherweise müssen Sie die Datenbank synchronisieren!</translation>
 %1, %2, %3 %4 or %5</source>
         <translation>Sie benötigen eines dieser Pakete, um das AUR zu benutzen:
 
-%1, %2, %3 %4 or %5</translation>
+%1, %2, %3, %4 or %5</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="711"/>
@@ -1537,7 +1537,7 @@ Wollen Sie sie wirklich öffnen ?</translation>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="888"/>
         <source>Once every</source>
-        <translation>Einmal alle</translation>
+        <translation>Einmal pro</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="892"/>
