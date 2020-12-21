@@ -4,47 +4,47 @@
     <message>
         <location filename="Projects/octopi/repoeditor/addrepo.ui" line="14"/>
         <source>Add Repository - Octopi</source>
-        <translation>Repository hinzufügen - Octopi</translation>
+        <translation>Paketquelle hinzufügen - Octopi</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/addrepo.ui" line="22"/>
         <source>Repository:</source>
-        <translation>Repository:</translation>
+        <translation>Paketquelle:</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/addrepo.ui" line="32"/>
         <source>Repository name</source>
-        <translation>Repository-Name</translation>
+        <translation>Name der Paketquelle</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/addrepo.ui" line="39"/>
         <source>Location:</source>
-        <translation>Lokation:</translation>
+        <translation>Standort:</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/addrepo.cpp" line="86"/>
         <source>The repository name field can&apos;t be blank.</source>
-        <translation>Das Repository-Namens-Feld kann nicht leer bleiben.</translation>
+        <translation>Das Feld &quot;Namen&quot; der Paketquelle darf nicht leer sein</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/addrepo.cpp" line="101"/>
         <source>The repository location field is not valid.</source>
-        <translation>Das Lokalisations-Feld ist nicht gültig.</translation>
+        <translation>Das Feld &quot;Lokalisation&quot; der Paketquelle ist nicht gültig.</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/addrepo.cpp" line="104"/>
         <source>The repository name field is not valid.</source>
-        <translation>Das Namens-Feld ist nicht gültig.</translation>
+        <translation>Das Feld &quot;Namen&quot; der Paketquelle ist nicht gültig.</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/addrepo.cpp" line="111"/>
         <source>Address of remote or local packages repository</source>
-        <translation>Addresse des Servers oder der lokalen Repository</translation>
+        <translation>Addresse der entfernten oder der lokalen Paketquelle</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/addrepo.cpp" line="115"/>
         <source>Path to mirrors list file</source>
-        <translation>Pfad der Mirrorlisten-Datei</translation>
+        <translation>Pfad zur Liste der Spiegelserver</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/addrepo.cpp" line="124"/>
@@ -54,17 +54,17 @@
     <message>
         <location filename="Projects/octopi/repoeditor/addrepo.cpp" line="125"/>
         <source>Can&apos;t add repository.</source>
-        <translation>Kann Repository nicht hinzufügen.</translation>
+        <translation>Paketquelle kann nicht hinzugefügt werden.</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/addrepo.cpp" line="136"/>
         <source>Select local repository</source>
-        <translation>Lokale Repository auswählen</translation>
+        <translation>Lokale Paketquelle auswählen</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/addrepo.cpp" line="149"/>
         <source>Select mirrors list</source>
-        <translation>Mirrorliste auswählen</translation>
+        <translation>Liste der Spiegelserver auswählen</translation>
     </message>
 </context>
 <context>
@@ -72,7 +72,7 @@
     <message>
         <location filename="Projects/octopi/repoeditor/main.cpp" line="54"/>
         <source>You can not run Repository Editor with administrator&apos;s credentials.</source>
-        <translation>Der Editor für Softwarequellen darf nicht mit Administratorrechten ausgeführt werden.</translation>
+        <translation>Der Editor für Paketquellen darf nicht mit Administratorrechten ausgeführt werden.</translation>
     </message>
 </context>
 <context>
@@ -80,12 +80,12 @@
     <message>
         <location filename="Projects/octopi/repoeditor/repoconf.cpp" line="208"/>
         <source>Backup error</source>
-        <translation>Backup-Fehler</translation>
+        <translation>Fehler beim Backup</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/repoconf.cpp" line="209"/>
         <source>Backup file already exists.</source>
-        <translation>Backup-Datei existiert bereits.</translation>
+        <translation>Die Datei für das Backup existiert bereits.</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/repoconf.cpp" line="209"/>
@@ -100,7 +100,7 @@
     <message>
         <location filename="Projects/octopi/repoeditor/repoconf.cpp" line="282"/>
         <source>Repository</source>
-        <translation>Repository</translation>
+        <translation>Paketquelle</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/repoconf.cpp" line="282"/>
@@ -113,12 +113,12 @@
     <message>
         <location filename="Projects/octopi/repoeditor/repoeditor.ui" line="14"/>
         <source>Repository Editor - Octopi</source>
-        <translation>Repository Editor - Octopi</translation>
+        <translation>Paketquellen-Editor - Octopi</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/repoeditor.ui" line="27"/>
         <source>Available Repositories</source>
-        <translation>Verfügbare Repositorien</translation>
+        <translation>Verfügbare Paketquellen</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/repoeditor.ui" line="75"/>
@@ -148,22 +148,22 @@
     <message>
         <location filename="Projects/octopi/repoeditor/repoeditor.ui" line="160"/>
         <source>Backup</source>
-        <translation>Backup</translation>
+        <translation>Sicherung</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/repoeditor.ui" line="168"/>
         <source>Create backup on save</source>
-        <translation>Erstelle Backup beim Speichern</translation>
+        <translation>Erstelle Sicherung beim Speichern</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/repoeditor.ui" line="191"/>
         <source>Load a backup file</source>
-        <translation>Lade Backup-Datei</translation>
+        <translation>Lade Sicherungsdatei</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/repoeditor.ui" line="206"/>
         <source>Backup file:</source>
-        <translation>Backup-Datei:</translation>
+        <translation>Sicherungsdatei:</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/repoeditor.cpp" line="103"/>
@@ -186,22 +186,22 @@
     <message>
         <location filename="Projects/octopi/repoeditor/repoeditor.cpp" line="160"/>
         <source>Can&apos;t load backup file</source>
-        <translation>Kann Backup-Datei nicht laden</translation>
+        <translation>Sicherungsdatei kann nicht geladen werden</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/repoeditor.cpp" line="161"/>
         <source>Selected file is not valid</source>
-        <translation>Ausgewählte Datei ist ungültig</translation>
+        <translation>Die ausgewählte Datei ist ungültig</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/repoeditor.cpp" line="209"/>
         <source>Success</source>
-        <translation>Erfolg</translation>
+        <translation>Erfolgreich</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/repoeditor.cpp" line="210"/>
         <source>Repositories configuration successfully saved.</source>
-        <translation>Konfiguration der Repositorien erfolgreich gespeichert.</translation>
+        <translation>Konfiguration der Paketquellen erfolgreich gespeichert.</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/repoeditor.cpp" line="215"/>
@@ -211,7 +211,7 @@
     <message>
         <location filename="Projects/octopi/repoeditor/repoeditor.cpp" line="216"/>
         <source>Repositories configuration not saved.</source>
-        <translation>Repositorien konnten nicht gespeichert werden.</translation>
+        <translation>Konfiguration der Paketquellen wurde nicht gespeichert.</translation>
     </message>
 </context>
 </TS>

@@ -84,7 +84,7 @@
     <message>
         <location filename="../Projects/octopi/ui/mainwindow.ui" line="306"/>
         <source>System u&amp;pgrade</source>
-        <translation>Systemaktualisierung</translation>
+        <translation>System aktualisieren</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/ui/mainwindow.ui" line="324"/>
@@ -107,7 +107,7 @@
     <message>
         <location filename="../Projects/octopi/ui/mainwindow.ui" line="353"/>
         <source>&amp;Get latest distro news</source>
-        <translation>Neueste Nachrichten zu Ihrer Distro</translation>
+        <translation>Neui&amp;gkeiten von Ihrer Distribution</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/ui/mainwindow.ui" line="365"/>
@@ -172,7 +172,7 @@
     <message>
         <location filename="../Projects/octopi/ui/mainwindow.ui" line="478"/>
         <source>By &amp;description</source>
-        <translation>Nach &amp;Beschreibung</translation>
+        <translation>Nach Beschreibung</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/ui/mainwindow.ui" line="489"/>
@@ -222,7 +222,7 @@
     <message>
         <location filename="../Projects/octopi/ui/mainwindow.ui" line="603"/>
         <source>By &amp;file</source>
-        <translation>Nach &amp;Datei</translation>
+        <translation>Nach Datei</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/ui/mainwindow.ui" line="614"/>
@@ -297,7 +297,7 @@
     <message>
         <location filename="../Projects/octopi/src/mainwindow_help.cpp" line="112"/>
         <source>A newer than repository package</source>
-        <translation>Ein neueres Paket als im Repositorium</translation>
+        <translation>Ein neueres Paket als in der Paketquelle</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/mainwindow_help.cpp" line="114"/>
@@ -337,7 +337,7 @@
     <message>
         <location filename="../Projects/octopi/src/mainwindow_help.cpp" line="129"/>
         <source>Alt+3 to switch to &apos;Actions&apos; tab</source>
-        <translation>Alt+3 um zum Reiter &apos;Aktionen&apos; zu wechseln</translation>
+        <translation>Alt+3 drücken, um zum Reiter &apos;Aktionen&apos; zu wechseln</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/mainwindow_help.cpp" line="131"/>
@@ -357,7 +357,7 @@
     <message>
         <location filename="../Projects/octopi/src/mainwindow_help.cpp" line="137"/>
         <source>Alt+7 to switch to &apos;Terminal&apos; tab</source>
-        <translation>Alt+7 um zum Reiter &apos;Terminal&apos; zu wechseln</translation>
+        <translation>Alt+7 drücken, um zum Reiter &apos;Terminal&apos; zu wechseln</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/mainwindow_help.cpp" line="140"/>
@@ -367,7 +367,7 @@
     <message>
         <location filename="../Projects/octopi/src/mainwindow_help.cpp" line="142"/>
         <source>Ctrl+E or &apos;Actions/Cancel&apos; to clear the selection of to be removed/installed packages</source>
-        <translation>Strg+E oder &apos;Aktionen/Abbrechen&apos; um die Auswahl der zu entfernenden/installierenden Pakete aufzuheben</translation>
+        <translation>Strg+E drücken oder &apos;Aktionen/Abbrechen&apos; klicken, um die Auswahl der zu entfernenden/installierenden Pakete aufzuheben</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/mainwindow_help.cpp" line="144"/>
@@ -382,7 +382,7 @@
     <message>
         <location filename="../Projects/octopi/src/mainwindow_help.cpp" line="148"/>
         <source>Ctrl+K or &apos;File/Check updates&apos; to check mirror for latest updates (checkupdates)</source>
-        <translation>Strg+K oder &apos;Datei/Aktualisierungen suchen&apos; um den Spiegelserver auf Aktualisierungen zu überprüfen (checkupdates)</translation>
+        <translation>Strg+K drücken oder &apos;Datei/Aktualisierungen suchen&apos; klicken, um den Spiegelserver auf Aktualisierungen zu überprüfen (checkupdates)</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/mainwindow_help.cpp" line="150"/>
@@ -392,7 +392,7 @@
     <message>
         <location filename="../Projects/octopi/src/mainwindow_help.cpp" line="152"/>
         <source>Ctrl+P to go to package list</source>
-        <translation>Strg+P um die Paketliste anzuzeigen</translation>
+        <translation>Strg+P drücken, um die Paketliste anzuzeigen</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/mainwindow_help.cpp" line="154"/>
@@ -402,12 +402,12 @@
     <message>
         <location filename="../Projects/octopi/src/mainwindow_help.cpp" line="156"/>
         <source>Ctrl+U or &apos;File/System upgrade&apos; to make a full system upgrade (pacman -Su)</source>
-        <translation>Strg+U oder &apos;Datei/Systemaktualisierung&apos; um eine vollständige Systemaktualisierung durchzuführen (pacman -Su)</translation>
+        <translation>Strg+U drücken oder &apos;Datei/Systemaktualisierung&apos; klicken, um eine vollständige Systemaktualisierung durchzuführen (pacman -Su)</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/mainwindow_help.cpp" line="158"/>
         <source>Ctrl+Y or &apos;Actions/Apply&apos; to start installation/removal of selected packages</source>
-        <translation>Strg+Y oder &apos;Aktionen/Anwenden&apos; um die Installation/Entfernung der ausgewählten Pakete zu starten</translation>
+        <translation>Strg+Y drücken oder &apos;Aktionen/Anwenden&apos; klicken, um die Installation/Entfernung der ausgewählten Pakete zu starten</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/mainwindow_help.cpp" line="161"/>
@@ -422,7 +422,7 @@
     <message>
         <location filename="../Projects/octopi/src/mainwindow_help.cpp" line="170"/>
         <source>Ctrl+Shift+Y to display %1 group</source>
-        <translation>Strg+Shift+Y um die %1 Gruppe anzuzeigen</translation>
+        <translation>Strg+Shift+Y drücken, um die Gruppe %1 anzuzeigen</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/mainwindow_help.cpp" line="173"/>
@@ -452,7 +452,7 @@
     <message>
         <location filename="../Projects/octopi/src/mainwindow_help.cpp" line="183"/>
         <source>F11 to maximize/demaximize Tab&apos;s view</source>
-        <translation>F11 um Reiteransicht zu vergrößern/-kleinern</translation>
+        <translation>F11 drücken, um Reiteransicht zu maximieren/verkleinern</translation>
     </message>
 </context>
 <context>
@@ -768,7 +768,7 @@ Möglicherweise müssen Sie die Datenbank synchronisieren!</translation>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="216"/>
         <source>&amp;Options</source>
-        <translation>&amp;Optionen</translation>
+        <translation>Einstellungen bearbeiten</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="220"/>
@@ -803,7 +803,7 @@ Möglicherweise müssen Sie die Datenbank synchronisieren!</translation>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="244"/>
         <source>Repository</source>
-        <translation>Repository</translation>
+        <translation>Paketquelle</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="248"/>
@@ -893,7 +893,7 @@ Möglicherweise müssen Sie die Datenbank synchronisieren!</translation>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="318"/>
         <source>AUR voted package list</source>
-        <translation>Liste bewerteter AUR-Pakete</translation>
+        <translation>Bewertete Liste der AUR-Pakete</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="323"/>
@@ -1153,7 +1153,7 @@ Möglicherweise müssen Sie die Datenbank synchronisieren!</translation>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="572"/>
         <source>SysInfo file generated on: %1&lt;br&gt;If you wish, post the output in your distro&apos;s forum for help.</source>
-        <translation>SysInfo-Datei erstellt auf: %1&lt;br&gt;Wenn Sie Hilfe wünschen, veröffentlichen Sie die Ausgabe im Forum Ihrer Distribution.</translation>
+        <translation>Datei mit Systeminformationen erstellt auf: %1&lt;br&gt;Wenn Sie Hilfe wünschen, veröffentlichen Sie die Ausgabe-Datei im Forum Ihrer Distribution.</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="576"/>
@@ -1408,7 +1408,7 @@ and &quot;head --bytes=256K /var/log/pacman.log&quot;
 
 Do you want to continue?
 </source>
-        <translation>Sie sind dabei,  die Datei &quot;octopi-sysinfo.log&quot; in Ihrem Home-Verzeichnis mit dem folgenden Inhalt zu generieren:
+        <translation>Sie sind im Begriff, die Datei &quot;octopi-sysinfo.log&quot; in Ihrem Home-Verzeichnis mit dem folgenden Inhalt zu generieren:
 
 &quot;/etc/lsb-release&quot;, &quot;inxi -Fxz&quot;, &quot;uname -a&quot;, &quot;mhwd -li -d,&quot;
 &quot;journalctl -b -p err&quot;, &quot;cat /etc/pacman.conf&quot;, &quot;pacman -Qm&quot;
