@@ -42,6 +42,7 @@
  */
 OutputDialog::OutputDialog(QWidget *parent): QDialog(parent)
 {
+  m_exitCode = 0;
   m_upgradeRunning = false;
   m_debugInfo = false;
   m_AURUpgradeExecuting = false;
@@ -279,6 +280,8 @@ void OutputDialog::reject()
     //Let's save the dialog size value before closing it.
     QByteArray windowSize=saveGeometry();
     SettingsManager::setOutputDialogWindowSize(windowSize);
+
+    emit finished(m_exitCode);
     QDialog::reject();
   }
 }
@@ -339,6 +342,8 @@ bool OutputDialog::textInTabOutput(const QString& findText)
  */
 void OutputDialog::pacmanProcessFinished(int exitCode, QProcess::ExitStatus exitStatus)
 {
+  m_exitCode = exitCode;
+
   m_progressBar->close();
   if (SettingsManager::getShowStopTransaction()) m_toolButtonStopTransaction->close();
 
@@ -482,7 +487,6 @@ void OutputDialog::closeEvent(QCloseEvent *event)
   }
   else
   {
-    emit finished(0);
     event->accept();
   }
 }

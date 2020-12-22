@@ -544,7 +544,7 @@ void MainWindow::doSystemUpgrade()
       m_outputDialog->setAttribute(Qt::WA_DeleteOnClose);
       m_outputDialog->setViewAsTextBrowser(false);
       QObject::connect(m_outputDialog, SIGNAL( finished(int)),
-                       this, SLOT( doSystemUpgradeFinished() ));
+                       this, SLOT( doSystemUpgradeFinished(int) ));
 
       m_commandExecuting = ectn_RUN_SYSTEM_UPGRADE_IN_TERMINAL;
       toggleEnableInterface(false);
@@ -568,7 +568,7 @@ void MainWindow::doSystemUpgrade()
         m_outputDialog->setDebugMode(true);
 
       QObject::connect(m_outputDialog, SIGNAL( finished(int)),
-                       this, SLOT( doSystemUpgradeFinished() ));
+                       this, SLOT( doSystemUpgradeFinished(int) ));
       setUpgradingTooltip();
       m_outputDialog->show();
       m_outputDialog->doSystemUpgrade();
@@ -656,7 +656,7 @@ void MainWindow::doSystemUpgrade()
         m_outputDialog->setDebugMode(true);
 
       QObject::connect(m_outputDialog, SIGNAL( finished(int)),
-                       this, SLOT( doSystemUpgradeFinished() ));
+                       this, SLOT( doSystemUpgradeFinished(int) ));
       setUpgradingTooltip();
       m_outputDialog->show();
       m_outputDialog->doSystemUpgrade();
@@ -672,7 +672,7 @@ void MainWindow::doSystemUpgrade()
       m_outputDialog->setAttribute(Qt::WA_DeleteOnClose);
       m_outputDialog->setViewAsTextBrowser(false);
       QObject::connect(m_outputDialog, SIGNAL( finished(int)),
-                       this, SLOT( doSystemUpgradeFinished() ));
+                       this, SLOT( doSystemUpgradeFinished(int) ));
 
       m_commandExecuting = ectn_RUN_SYSTEM_UPGRADE_IN_TERMINAL;
       toggleEnableInterface(false);
@@ -718,7 +718,7 @@ void MainWindow::doAURUpgrade()
   m_outputDialog->setListOfAURPackagesToUpgrade(listOfTargets);
 
   QObject::connect(m_outputDialog, SIGNAL( finished(int)),
-                   this, SLOT( doSystemUpgradeFinished() ));
+                   this, SLOT( doSystemUpgradeFinished(int) ));
   m_outputDialog->show();
   m_outputDialog->doAURUpgrade();
 }
@@ -726,17 +726,27 @@ void MainWindow::doAURUpgrade()
 /*
  * When system upgrade process has finished...
  */
-void MainWindow::doSystemUpgradeFinished()
+void MainWindow::doSystemUpgradeFinished(int exitCode)
 {
+  QObject::disconnect(m_outputDialog, SIGNAL( finished(int)),
+                   this, SLOT( doSystemUpgradeFinished(int) ));
+
+  //qDebug() << "doSystemUpgradeFinished(): " << exitCode << Qt::endl;
   m_outputDialog = nullptr;
   m_commandExecuting = ectn_NONE;
-  m_checkUpdatesStringList.clear();
-  m_checkUpdatesNameNewVersion->clear();
-  m_numberOfCheckUpdatesPackages=0;
 
-  m_callRefreshAppIcon->start();
-  /*refreshAppIcon();
-  toggleEnableInterface(true);*/
+  if (exitCode == 0)
+  {
+    m_checkUpdatesStringList.clear();
+    m_checkUpdatesNameNewVersion->clear();
+    m_numberOfCheckUpdatesPackages=0;
+    m_callRefreshAppIcon->start();
+  }
+  else
+  {
+    toggleEnableInterface(true);
+    refreshOutdatedPkgsTooltip();
+  }
 }
 
 /*
@@ -944,6 +954,65 @@ void MainWindow::checkUpdates(CheckUpdate check)
 }
 
 /*
+ * Checks the number of outdated packages (pacman/AUR) to refresh notifier's tooltip
+ */
+void MainWindow::refreshOutdatedPkgsTooltip()
+{
+  if (m_numberOfOutdatedPackages == 0 && m_numberOfOutdatedAURPackages == 0)
+  {
+#ifdef KSTATUS
+    m_systemTrayIcon->setToolTipSubTitle(QLatin1String("Octopi Notifier"));
+#else
+    m_systemTrayIcon->setToolTip(QStringLiteral("Octopi Notifier"));
+#endif
+  }
+  else if (m_numberOfOutdatedPackages > 0)
+  {
+    if (m_numberOfOutdatedPackages == 1)
+    {
+#ifdef KSTATUS
+      m_systemTrayIcon->setToolTipSubTitle(StrConstants::getOneNewUpdate());
+#else
+      m_systemTrayIcon->setToolTip(StrConstants::getOneNewUpdate());
+#endif
+    }
+    else if (m_numberOfOutdatedPackages > 1)
+    {
+#ifdef KSTATUS
+      m_systemTrayIcon->setToolTipSubTitle(
+            StrConstants::getNewUpdates(m_numberOfOutdatedPackages));
+#else
+      m_systemTrayIcon->setToolTip(StrConstants::getNewUpdates(m_numberOfOutdatedPackages));
+#endif
+    }
+  }
+  else if (m_numberOfOutdatedAURPackages > 0)
+  {
+    if (m_numberOfOutdatedAURPackages == 1)
+    {
+#ifdef KSTATUS
+      m_systemTrayIcon->setToolTipSubTitle(StrConstants::getOneNewUpdate() +
+                                           QLatin1String(" (") + StrConstants::getForeignRepositoryName() + QLatin1Char(')'));
+#else
+      m_systemTrayIcon->setToolTip(StrConstants::getOneNewUpdate() +
+                                   QLatin1String(" (") + StrConstants::getForeignRepositoryName() + QLatin1Char(')'));
+#endif
+    }
+    else if (m_numberOfOutdatedAURPackages > 1)
+    {
+#ifdef KSTATUS
+      m_systemTrayIcon->setToolTipSubTitle(
+            StrConstants::getNewUpdates(m_numberOfOutdatedAURPackages) +
+            QLatin1String(" (") + StrConstants::getForeignRepositoryName() + QLatin1Char(')'));
+#else
+      m_systemTrayIcon->setToolTip(StrConstants::getNewUpdates(m_numberOfOutdatedAURPackages) +
+                                   QLatin1String(" (") + StrConstants::getForeignRepositoryName() + QLatin1Char(')'));
+#endif
+    }
+  }
+}
+
+/*
  * If we have some outdated packages, let's put an angry red face icon in this app!
  */
 void MainWindow::refreshAppIcon()
@@ -997,58 +1066,7 @@ void MainWindow::refreshAppIcon()
   if (m_numberOfOutdatedPackages < m_numberOfCheckUpdatesPackages)
     m_numberOfOutdatedPackages=m_numberOfCheckUpdatesPackages;
 
-  if (m_numberOfOutdatedPackages == 0 && m_numberOfOutdatedAURPackages == 0)
-  {
-    #ifdef KSTATUS
-      m_systemTrayIcon->setToolTipSubTitle(QLatin1String("Octopi Notifier"));
-    #else
-      m_systemTrayIcon->setToolTip(QStringLiteral("Octopi Notifier"));
-    #endif
-  }
-  else if (m_numberOfOutdatedPackages > 0)
-  {
-    if (m_numberOfOutdatedPackages == 1)
-    {
-      #ifdef KSTATUS
-        m_systemTrayIcon->setToolTipSubTitle(StrConstants::getOneNewUpdate());
-      #else
-        m_systemTrayIcon->setToolTip(StrConstants::getOneNewUpdate());
-      #endif
-    }
-    else if (m_numberOfOutdatedPackages > 1)
-    {
-      #ifdef KSTATUS
-        m_systemTrayIcon->setToolTipSubTitle(
-              StrConstants::getNewUpdates(m_numberOfOutdatedPackages));
-      #else
-        m_systemTrayIcon->setToolTip(StrConstants::getNewUpdates(m_numberOfOutdatedPackages));
-      #endif
-    }
-  }
-  else if (m_numberOfOutdatedAURPackages > 0)
-  {
-    if (m_numberOfOutdatedAURPackages == 1)
-    {
-      #ifdef KSTATUS
-        m_systemTrayIcon->setToolTipSubTitle(StrConstants::getOneNewUpdate() +
-                                             QLatin1String(" (") + StrConstants::getForeignRepositoryName() + QLatin1Char(')'));
-      #else
-        m_systemTrayIcon->setToolTip(StrConstants::getOneNewUpdate() +
-                                     QLatin1String(" (") + StrConstants::getForeignRepositoryName() + QLatin1Char(')'));
-      #endif
-    }
-    else if (m_numberOfOutdatedAURPackages > 1)
-    {
-      #ifdef KSTATUS
-        m_systemTrayIcon->setToolTipSubTitle(
-              StrConstants::getNewUpdates(m_numberOfOutdatedAURPackages) +
-              QLatin1String(" (") + StrConstants::getForeignRepositoryName() + QLatin1Char(')'));
-      #else
-        m_systemTrayIcon->setToolTip(StrConstants::getNewUpdates(m_numberOfOutdatedAURPackages) +
-                                     QLatin1String(" (") + StrConstants::getForeignRepositoryName() + QLatin1Char(')'));
-      #endif
-    }
-  }
+  refreshOutdatedPkgsTooltip();
 
   if(m_numberOfOutdatedPackages > 0) //RED ICON!
   {

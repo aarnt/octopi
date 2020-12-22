@@ -54,6 +54,8 @@ private:
   SearchBar *m_searchBar;
   TermWidget *m_console;
   QString m_listOfAURPackagesToUpgrade;
+
+  int  m_exitCode;
   bool m_upgradeRunning;
   bool m_debugInfo;
   bool m_viewAsTextBrowser;

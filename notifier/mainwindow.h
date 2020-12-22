@@ -64,6 +64,7 @@ private slots:
   void execSystemTrayKF5();
 
   void checkUpdates(CheckUpdate check = ectn_USER_CHECK);
+  void refreshOutdatedPkgsTooltip();
   void refreshAppIcon();
   void runOctopi(ExecOpt execOptions = ectn_SYSUPGRADE_EXEC_OPT);
   void runOctopiCheckUpdates();
@@ -77,7 +78,7 @@ private slots:
   void exitNotifier();
   void doSystemUpgrade();
   void doAURUpgrade();
-  void doSystemUpgradeFinished();
+  void doSystemUpgradeFinished(int exitCode);
   void toggleEnableInterface(bool state);
   void showOptionsDialog();
   void onSendInfoToOctopiHelper();

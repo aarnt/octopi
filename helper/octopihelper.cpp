@@ -210,7 +210,8 @@ bool OctopiHelper::isOctoToolRunning(const QString &octoToolName)
     options << QStringLiteral("/usr/bin/octopi -sysupgrade");
     options << QStringLiteral("/usr/bin/octopi -sysupgrade-noconfirm");
 
-    QRegularExpression re(QStringLiteral("(/usr/bin/octopi-notifier -session )[a-fA-F0-9_]+"));
+    //QRegularExpression re(QStringLiteral("(/usr/bin/octopi-notifier -session )[a-fA-F0-9_]+"));
+    QRegularExpression re(QStringLiteral("(/usr/bin/octopi-notifier.*)"));
     QRegularExpressionMatch match = re.match(out);
     bool hasMatchInSession = match.capturedLength()==out.length();
 
