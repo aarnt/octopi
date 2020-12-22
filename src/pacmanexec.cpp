@@ -442,6 +442,7 @@ void PacmanExec::parsePacmanProcessOutput(const QString &output)
     msg.remove(QRegularExpression(QStringLiteral("qt.qpa.plugin:.+")));
     msg.remove(QRegularExpression(QStringLiteral("qt.qpa.xcb:.+")));
     msg.remove(QRegularExpression(QStringLiteral("Icon theme \".+")));
+    msg.remove(QRegularExpression(QStringLiteral("Gtk-Message:.+")));
     msg = msg.trimmed();
 
     if (m_debugMode) std::cout << "debug: " << msg.toLatin1().data() << std::endl;
