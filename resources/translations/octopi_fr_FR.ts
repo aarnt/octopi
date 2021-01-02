@@ -24,7 +24,7 @@
     <message>
         <location filename="../Projects/octopi/ui/mainwindow.ui" line="147"/>
         <source>&amp;Help</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Aide</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/ui/mainwindow.ui" line="156"/>
