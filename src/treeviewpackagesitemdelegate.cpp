@@ -56,9 +56,18 @@ bool TreeViewPackagesItemDelegate::helpEvent ( QHelpEvent *event, QAbstractItemV
     if (si != nullptr)
     {
       gPoint = tvPackages->mapToGlobal(event->pos());
+
+      const PackageRepository::PackageData*const package = MainWindow::returnMainWindow()->getFirstPackageFromRepo(si->name);
+      if (!package) return false;
+
       QFuture<QString> f;
+      PkgDesc pkgDesc;
+      pkgDesc.name = si->name;
+      pkgDesc.description = package->description;
+      pkgDesc.isForeign = (package->status == ectn_FOREIGN || package->status == ectn_FOREIGN_OUTDATED);
+
       disconnect(&g_fwToolTip, SIGNAL(finished()), this, SLOT(execToolTip()));
-      f = QtConcurrent::run(showPackageDescription, si->name);
+      f = QtConcurrent::run(showPackageDescriptionExt, pkgDesc);
       g_fwToolTip.setFuture(f);
       connect(&g_fwToolTip, SIGNAL(finished()), this, SLOT(execToolTip()));
     }
@@ -68,7 +77,6 @@ bool TreeViewPackagesItemDelegate::helpEvent ( QHelpEvent *event, QAbstractItemV
   {
     QTreeView* tvTransaction = qobject_cast<QTreeView*>(this->parent());
     QStandardItemModel *sim = qobject_cast<QStandardItemModel*>(tvTransaction->model());
-
     if (sim->rowCount() == 0) return false;
 
     QStandardItem *si = sim->itemFromIndex(index);
@@ -85,6 +93,15 @@ bool TreeViewPackagesItemDelegate::helpEvent ( QHelpEvent *event, QAbstractItemV
         pkgName = pkgName.mid(slash+1);
       }
 
+      const PackageRepository::PackageData*const package = MainWindow::returnMainWindow()->getFirstPackageFromRepo(pkgName);
+      if (!package) return false;
+
+      QFuture<QString> f;
+      PkgDesc pkgDesc;
+      pkgDesc.name = pkgName;
+      pkgDesc.description = package->description;
+      pkgDesc.isForeign = (package->status == ectn_FOREIGN || package->status == ectn_FOREIGN_OUTDATED);
+
       if (si->icon().pixmap(22, 22).toImage() ==
           IconHelper::getIconInstallItem().pixmap(22, 22).toImage() ||
           si->icon().pixmap(22, 22).toImage() ==
@@ -93,7 +110,7 @@ bool TreeViewPackagesItemDelegate::helpEvent ( QHelpEvent *event, QAbstractItemV
         gPoint = tvTransaction->mapToGlobal(event->pos());
         QFuture<QString> f;
         disconnect(&g_fwToolTip, SIGNAL(finished()), this, SLOT(execToolTip()));
-        f = QtConcurrent::run(showPackageDescription, pkgName);
+        f = QtConcurrent::run(showPackageDescriptionExt, pkgDesc);
         g_fwToolTip.setFuture(f);
         connect(&g_fwToolTip, SIGNAL(finished()), this, SLOT(execToolTip()));
       }

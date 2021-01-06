@@ -40,6 +40,7 @@
 #ifndef QTSINGLEAPPLICATION_H
 #define QTSINGLEAPPLICATION_H
 
+#include "../constants.h"
 #include <QApplication>
 
 class QtLocalPeer;
@@ -94,7 +95,11 @@ public Q_SLOTS:
 
 Q_SIGNALS:
     void messageReceived(const QString &message);
-
+    void options();
+    void checkUpdates();
+    void systemUpgrade(SystemUpgradeOptions);
+    void AURUpgrade();
+    void installLocalPackages(const QStringList &message);
 
 private:
     void sysInit(const QString &appId = QString());

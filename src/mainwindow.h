@@ -337,7 +337,6 @@ private:
   bool isNotifierBusy();
 
 private slots:
-
   void initTabTerminal();
   void removeTabTerminal();
   void onTerminalChanged();
@@ -347,6 +346,7 @@ private slots:
   void initToolButtonPacman();
   void initToolButtonAUR();
   void showToolButtonAUR();
+  void droppedLocalPackages(const QStringList&);
 
   //TreeView methods
   void copyFullPathToClipboard();
@@ -508,14 +508,16 @@ private slots:
   void refreshAppIcon();
   void onSendInfoToOctopiHelper();
 
-public slots:
-  bool startServer();
-  void show();
+  //Response from QtSingleApplication emitted signals
   void doCheckUpdates();
   void doSystemUpgrade(SystemUpgradeOptions sysUpgradeOption = ectn_NO_OPT);
   void doAURUpgrade();
   void doInstallLocalPackages();
   void onOptions(OptionsDialogTab tabToOpen=ectn_TAB_GENERAL);
+
+public slots:
+  bool startServer();
+  void show();
 
 public:
   explicit MainWindow(QWidget *parent = nullptr);

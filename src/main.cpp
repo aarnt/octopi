@@ -159,6 +159,12 @@ int main(int argc, char *argv[])
 
   MainWindow w;
 
+  QObject::connect(&app, SIGNAL(options()), &w, SLOT(onOptions()));
+  QObject::connect(&app, SIGNAL(checkUpdates()), &w, SLOT(doCheckUpdates()));
+  QObject::connect(&app, SIGNAL(AURUpgrade()), &w, SLOT(doAURUpgrade()));
+  QObject::connect(&app, SIGNAL(systemUpgrade(SystemUpgradeOptions)), &w, SLOT(doSystemUpgrade(SystemUpgradeOptions)));
+  QObject::connect(&app, SIGNAL(installLocalPackages(const QStringList&)), &w, SLOT(droppedLocalPackages(const QStringList&)));
+
   if (w.startServer())
   {
     app.setActivationWindow(&w);
@@ -177,14 +183,6 @@ int main(int argc, char *argv[])
     {
       //If user chooses to switch debug info on...
       w.turnDebugInfoOn();
-    }
-
-    if (!packagesToInstall.isEmpty())
-    {
-      QStringList packagesToInstallList =
-          packagesToInstall.split(QStringLiteral(","), Qt::SkipEmptyParts);
-
-      w.setPackagesToInstallList(packagesToInstallList);
     }
 
     w.setRemoveCommand(QStringLiteral("Rcs"));

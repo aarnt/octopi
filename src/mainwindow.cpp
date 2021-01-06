@@ -368,6 +368,18 @@ void MainWindow::dragEnterEvent(QDragEnterEvent *ev)
 }
 
 /*
+ * When user drags local pacman pkgs to Octopi's main window
+ */
+void MainWindow::droppedLocalPackages(const QStringList &packagesToInstallList)
+{
+  if (!isExecutingCommand())
+  {
+    setPackagesToInstallList(packagesToInstallList);
+    doInstallLocalPackages();
+  }
+}
+
+/*
  * Whenever there is a change in the pacman database...
  */
 void MainWindow::onPacmanDatabaseChanged()
@@ -471,11 +483,20 @@ void MainWindow::showAnchorDescription(const QUrl &link)
     QString pkgName = link.toString().mid(5);
     //Let's remove any "<" and "<=" symbol...
     pkgName.remove(QRegularExpression(QStringLiteral("%3C\\S*")));
+    pkgName.remove(QRegularExpression(QStringLiteral("\\=\\S*")));
 
     if (pkgName == QLatin1String("sh")) pkgName = QStringLiteral("bash");
     QFuture<QString> f;
     disconnect(&g_fwToolTipInfo, SIGNAL(finished()), this, SLOT(execToolTip()));
-    f = QtConcurrent::run(showPackageDescription, pkgName);
+    const PackageRepository::PackageData*const package = MainWindow::returnMainWindow()->getFirstPackageFromRepo(pkgName);
+    if (!package) return;
+
+    PkgDesc pkgDesc;
+    pkgDesc.name = pkgName;
+    pkgDesc.description = package->description;
+    pkgDesc.isForeign = (package->status == ectn_FOREIGN || package->status == ectn_FOREIGN_OUTDATED);
+
+    f = QtConcurrent::run(showPackageDescriptionExt, pkgDesc);
     g_fwToolTipInfo.setFuture(f);
     connect(&g_fwToolTipInfo, SIGNAL(finished()), this, SLOT(execToolTip()));
   }

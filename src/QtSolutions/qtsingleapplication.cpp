@@ -37,10 +37,6 @@
 **
 ****************************************************************************/
 
-#ifdef OCTOPI_EXTENSIONS
-  #include "../mainwindow.h"
-#endif
-
 #include "qtsingleapplication.h"
 #include "qtlocalpeer.h"
 #include <QWidget>
@@ -356,11 +352,8 @@ void QtSingleApplication::activateWindow(const QString &message)
       if (actWin->isHidden())
         actWin->show();
     }
-    MainWindow *mw = qobject_cast<MainWindow *>(actWin);
-    if (mw)
-    {
-      mw->onOptions();
-    }
+
+    emit options();
   }
   else if (actWin && ((message == QLatin1String("AURUPGRADE")) || (message == QLatin1String("SYSUPGRADE")) ||
                       (message == QLatin1String("CHECKUPDATES")) || (message == QLatin1String("SYSUPGRADE_NOCONFIRM"))))
@@ -372,29 +365,21 @@ void QtSingleApplication::activateWindow(const QString &message)
     else
       actWin->activateWindow();
 
-    MainWindow *mw = qobject_cast<MainWindow *>(actWin);
-
-    if (mw)
+    if (message == QLatin1String("CHECKUPDATES"))
     {
-      if (!mw->isExecutingCommand())
-      {
-        if (message == QLatin1String("CHECKUPDATES"))
-        {
-          mw->doCheckUpdates();
-        }
-        else if (message == QLatin1String("AURUPGRADE"))
-        {
-          mw->doAURUpgrade();
-        }
-        else if (message == QLatin1String("SYSUPGRADE"))
-        {
-          mw->doSystemUpgrade();
-        }
-        else
-        {
-          mw->doSystemUpgrade(ectn_NOCONFIRM_OPT);
-        }
-      }
+      emit checkUpdates();
+    }
+    else if (message == QLatin1String("AURUPGRADE"))
+    {
+      emit AURUpgrade();
+    }
+    else if (message == QLatin1String("SYSUPGRADE"))
+    {
+      emit systemUpgrade(ectn_NO_OPT);
+    }
+    else
+    {
+      emit systemUpgrade(ectn_NOCONFIRM_OPT);
     }
   }
   else if (actWin && message == QLatin1String("CLOSE")) {
@@ -417,19 +402,10 @@ void QtSingleApplication::activateWindow(const QString &message)
     else
       actWin->activateWindow();
 
-    QStringList packagesToInstallList =
+    const QStringList packagesToInstallList =
         message.split(QLatin1Char(','), Qt::SkipEmptyParts);
 
-    MainWindow *mw = qobject_cast<MainWindow *>(actWin);
-
-    if (mw)
-    {
-      if (!mw->isExecutingCommand())
-      {
-        mw->setPackagesToInstallList(packagesToInstallList);
-        mw->doInstallLocalPackages();
-      }
-    }
+    emit installLocalPackages(packagesToInstallList);
   }
 
 #else

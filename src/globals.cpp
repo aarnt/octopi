@@ -19,7 +19,7 @@
 */
 
 #include "globals.h"
-#include "mainwindow.h"
+#include "unixcommand.h"
 
 #include <QFutureWatcher>
 #include <QtConcurrent/QtConcurrentMap>
@@ -30,51 +30,13 @@
  * Global functions related to Octopi's multithread code
  */
 
-QFutureWatcher<QString> g_fwToolTip;
-QFutureWatcher<QString> g_fwToolTipInfo;
-QFutureWatcher<QList<PackageListData> *> g_fwPacman;
-QFutureWatcher<QList<PackageListData> *> g_fwForeignPacman;
-QFutureWatcher<GroupMemberPair>          g_fwPacmanGroup;
-QFutureWatcher<QList<PackageListData> *> g_fwAUR;
-QFutureWatcher<QList<PackageListData> *> g_fwAURMeta;
-QFutureWatcher<AUROutdatedPackages *> g_fwOutdatedAURPackages;
-QFutureWatcher<QString> g_fwDistroNews;
-QFutureWatcher<QString> g_fwPackageOwnsFile;
-QFutureWatcher<QList<PackageListData> *> g_fwMarkForeignPackages;
-QFutureWatcher<QSet<QString> *> g_fwUnrequiredPacman;
-QFutureWatcher<PackageInfoData> g_fwKCPInformation;
-QFutureWatcher<QStringList *> g_fwOutdatedPkgStringList;
-QFutureWatcher<QStringList *> g_fwOutdatedAURStringList;
-QFutureWatcher<QByteArray> g_fwCommandToExecute;
-QFutureWatcher<QString> g_fwGenerateSysInfo;
-QFutureWatcher<bool> g_fwInstallTempYayHelper;
-
 /*
- * Given a packageName, returns its description
+ * Given a packageName struct, returns a tooltip with description and size information
  */
-QString showPackageDescription(QString pkgName)
+QString showPackageDescriptionExt(PkgDesc pkgDesc)
 {
-  MainWindow *mw = MainWindow::returnMainWindow();
-  const PackageRepository::PackageData*const package = mw->getFirstPackageFromRepo(pkgName);
-
-  if (package == nullptr) {
-    return QLatin1String("");
-  }
-
-  bool isForeignPkg = (package->status == ectn_FOREIGN || package->status == ectn_FOREIGN_OUTDATED);
-  QString description = package->description;
-
-  /*if (description.trimmed().isEmpty())
-  {
-    if (isForeignPkg)
-    {
-      description = pkgName + " " + Package::getInformationDescription(pkgName, true);
-    }
-    else return "";
-  }*/
-
-  int space = description.indexOf(QLatin1String(" "));
-  QString desc = description.mid(space+1);
+  int space = pkgDesc.description.indexOf(QLatin1String(" "));
+  QString desc = pkgDesc.description.mid(space+1);
   int size = desc.size();
 
   if (desc.size() > 120)
@@ -83,7 +45,7 @@ QString showPackageDescription(QString pkgName)
     desc = desc + QLatin1String(" ...");
   }
 
-  QString installedSize = Package::getInformationInstalledSize(pkgName, isForeignPkg);
+  QString installedSize = Package::getInformationInstalledSize(pkgDesc.name, pkgDesc.isForeign);
 
   if (!installedSize.isEmpty() && installedSize != QLatin1String("0.00 Bytes"))
     return desc + QString::fromUtf8(" → ") + installedSize;
@@ -156,7 +118,6 @@ AUROutdatedPackages * getOutdatedAURPackages()
 {
   AUROutdatedPackages * res = new AUROutdatedPackages();
   res->content = Package::getAUROutdatedPackagesNameVersion();
-
   return res;
 }
 

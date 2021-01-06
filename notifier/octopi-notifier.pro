@@ -20,11 +20,11 @@ DEFINES += QT_USE_QSTRINGBUILDER \
 CONFIG += qt warn_on debug link_pkgconfig ALPM_BACKEND
 
 ALPM_BACKEND {
-  QMAKE_CXXFLAGS += -std=c++11
+  QMAKE_CXXFLAGS += -std=c++17
   PKGCONFIG += glib-2.0 libalpm
   LIBS += -lalpm_octopi_utils
 } else {
-  QMAKE_CXXFLAGS += -std=c++11
+  QMAKE_CXXFLAGS += -std=c++17
 }
 
 LIBS += -lqtermwidget5

@@ -27,6 +27,12 @@
 #include <QStandardItem>
 #include <QFutureWatcher>
 
+struct PkgDesc{
+  QString name;
+  QString description;
+  bool isForeign;
+};
+
 struct AUROutdatedPackages
 {
   public:
@@ -35,26 +41,27 @@ struct AUROutdatedPackages
 
 typedef std::pair<QString, QStringList*> GroupMemberPair;
 
-extern QFutureWatcher<QString> g_fwToolTip;
-extern QFutureWatcher<QString> g_fwToolTipInfo;
-extern QFutureWatcher<QList<PackageListData> *> g_fwPacman;
-extern QFutureWatcher<QList<PackageListData> *> g_fwForeignPacman;
-extern QFutureWatcher<QSet<QString> *> g_fwUnrequiredPacman;
-extern QFutureWatcher<GroupMemberPair>          g_fwPacmanGroup;
-extern QFutureWatcher<QList<PackageListData> *> g_fwAUR;
-extern QFutureWatcher<QList<PackageListData> *> g_fwAURMeta;
-extern QFutureWatcher<QList<PackageListData> *> g_fwMarkForeignPackages;
-extern QFutureWatcher<AUROutdatedPackages *> g_fwOutdatedAURPackages;
-extern QFutureWatcher<QString> g_fwDistroNews;
-extern QFutureWatcher<QString> g_fwPackageOwnsFile;
-extern QFutureWatcher<PackageInfoData> g_fwKCPInformation;
-extern QFutureWatcher<QStringList *> g_fwOutdatedPkgStringList;
-extern QFutureWatcher<QStringList *> g_fwOutdatedAURStringList;
-extern QFutureWatcher<QByteArray> g_fwCommandToExecute;
-extern QFutureWatcher<QString> g_fwGenerateSysInfo;
-extern QFutureWatcher<bool> g_fwInstallTempYayHelper;
+inline QFutureWatcher<QString> g_fwToolTip;
+inline QFutureWatcher<QString> g_fwToolTipInfo;
+inline QFutureWatcher<QList<PackageListData> *> g_fwPacman;
+inline QFutureWatcher<QList<PackageListData> *> g_fwForeignPacman;
+inline QFutureWatcher<GroupMemberPair>          g_fwPacmanGroup;
+inline QFutureWatcher<QList<PackageListData> *> g_fwAUR;
+inline QFutureWatcher<QList<PackageListData> *> g_fwAURMeta;
+inline QFutureWatcher<AUROutdatedPackages *> g_fwOutdatedAURPackages;
+inline QFutureWatcher<QString> g_fwDistroNews;
+inline QFutureWatcher<QString> g_fwPackageOwnsFile;
+inline QFutureWatcher<QList<PackageListData> *> g_fwMarkForeignPackages;
+inline QFutureWatcher<QSet<QString> *> g_fwUnrequiredPacman;
+inline QFutureWatcher<PackageInfoData> g_fwKCPInformation;
+inline QFutureWatcher<QStringList *> g_fwOutdatedPkgStringList;
+inline QFutureWatcher<QStringList *> g_fwOutdatedAURStringList;
+inline QFutureWatcher<QByteArray> g_fwCommandToExecute;
+inline QFutureWatcher<QString> g_fwGenerateSysInfo;
+inline QFutureWatcher<bool> g_fwInstallTempYayHelper;
 
-QString showPackageDescription(QString pkgName);
+//QString showPackageDescription(QString pkgName);
+QString showPackageDescriptionExt(PkgDesc pkgDesc); //const PackageRepository::PackageData*const package);
 QList<PackageListData> * searchPacmanPackages(const QHash<QString, QString> *checkUpdatesOutdatedPackages);
 QSet<QString> * searchUnrequiredPacmanPackages();
 QList<PackageListData> * searchForeignPackages();
