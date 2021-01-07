@@ -488,7 +488,7 @@ void MainWindow::showAnchorDescription(const QUrl &link)
     if (pkgName == QLatin1String("sh")) pkgName = QStringLiteral("bash");
     QFuture<QString> f;
     disconnect(&g_fwToolTipInfo, SIGNAL(finished()), this, SLOT(execToolTip()));
-    const PackageRepository::PackageData*const package = MainWindow::returnMainWindow()->getFirstPackageFromRepo(pkgName);
+    const PackageRepository::PackageData*const package = getFirstPackageFromRepo(pkgName);
     if (!package) return;
 
     PkgDesc pkgDesc;
