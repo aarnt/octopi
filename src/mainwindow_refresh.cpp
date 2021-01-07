@@ -1002,6 +1002,11 @@ void MainWindow::refreshOutdatedPackageList()
   refreshColumnSortSetup();
   refreshStatusBar();
   refreshAppIcon();
+
+  QModelIndex maux = m_packageModel->index(0, 0, QModelIndex());
+  ui->tvPackages->setCurrentIndex(maux);
+  ui->tvPackages->scrollTo(maux, QAbstractItemView::PositionAtCenter);
+  ui->tvPackages->setCurrentIndex(maux);
 }
 
 

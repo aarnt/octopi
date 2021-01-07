@@ -36,6 +36,8 @@
   BugFix: Updated "-help" output text.
   BugFix: Tab navigation improvements.
   BugFix: Statusbar showed a number of packages when the list was empty (the previous value).
+  BugFix: Clicking on printed outdated packages in Output tab did not send to corresponding 
+	package in the main list after a 'Check updates'.
   BugFix: WM detection now uses "ps -aux".
 
 0.10.0 (2020-07-19)
