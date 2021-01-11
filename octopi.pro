@@ -5,7 +5,6 @@
 #-------------------------------------------------
 
 QT += core gui network xml widgets
-#QT += core gui network xml dbus widgets
 DEFINES += OCTOPI_EXTENSIONS ALPM_BACKEND
 
 # Disable automatic string conversions
@@ -194,10 +193,6 @@ sources.files = $$SOURCES $$HEADERS $$RESOURCES $$FORMS *.pro
 sources.path = .
 
 bin.path = $$BINDIR
-#bin.files += speedup/speedup-octopi.sh
-
-#dbus.path = $$ETCDIR/dbus-1/system.d
-#dbus.files += notifier/pacmanhelper/polkit/org.octopi.pacmanhelper.conf
 
 desktop.path = $$DATADIR/applications
 desktop.files += octopi.desktop
@@ -213,20 +208,7 @@ icon.files += resources/images/octopi_green.png
 icon.files += resources/images/octopi_red.png
 icon.files += resources/images/octopi_yellow.png
 
-#interfaces.path = $$DATADIR/dbus-1/interfaces
-#interfaces.files += notifier/pacmanhelper/polkit/org.octopi.pacmanhelper.xml
-
 license.path = $$DATADIR/licenses/octopi
 license.files += LICENSE
 
-#polkit.path = $$DATADIR/polkit-1/actions
-#polkit.files += notifier/pacmanhelper/polkit/org.octopi.pacman.policy
-
-#service.path = $$LIBDIR/systemd/system
-#service.files += speedup/octopi.service
-
-#sys_service.path = $$DATADIR/dbus-1/system-services
-#sys_service.files += notifier/pacmanhelper/polkit/org.octopi.pacmanhelper.service
-
-#INSTALLS += target bin dbus desktop gnome icon interfaces license polkit service sys_service
 INSTALLS += target bin desktop gnome icon license
