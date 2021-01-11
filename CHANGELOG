@@ -1,4 +1,4 @@
-0.11 (dev)
+0.11.0 (2021-01-11)
   Added support for CMake build system (thanks to Tereius).
   Added support to build multiple foreign packages at once (they are first copied 
 	to the Actions' tree view just like official packages).
