@@ -38,7 +38,7 @@ PackageGroupModel::PackageGroupModel(QString optionsString,
                                      QSpinBox *spinner,
                                      QPushButton *refreshBtn,
                                      QPushButton *cleanBtn)
-                                        : QObject(NULL),
+                                        : QObject(nullptr),
                                         m_optionsString(optionsString), 
                                         m_listView(listView), 
                                         m_spinner(spinner), 
@@ -144,7 +144,7 @@ bool PackageGroupModel::isSUAvailable()
     return true;
   }
   else if (WMHelper::getSUCommand() == ctn_NO_SU_COMMAND){
-    QMessageBox::critical( 0, StrConstants::getApplicationName(),
+    QMessageBox::critical( nullptr, StrConstants::getApplicationName(),
                            StrConstants::getErrorNoSuCommand() +
                            QLatin1String("\n") + StrConstants::getYoullNeedSuFrontend());
     return false;

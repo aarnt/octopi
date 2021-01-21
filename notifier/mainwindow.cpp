@@ -295,7 +295,7 @@ void MainWindow::initSystemTrayIcon()
   m_outdatedStringList = new QStringList();
 
 #ifdef KSTATUS
-  m_systemTrayIcon = new KStatusNotifierItem(0);
+  m_systemTrayIcon = new KStatusNotifierItem(nullptr);
 #else
   m_systemTrayIcon = new QSystemTrayIcon(this);
 #endif

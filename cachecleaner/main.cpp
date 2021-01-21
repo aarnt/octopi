@@ -49,13 +49,13 @@ int main( int argc, char *argv[] )
   app.installTranslator(&appTranslator);
 
   if (UnixCommand::isRootRunning()){
-    QMessageBox::critical( 0, StrConstants::getApplicationName(), StrConstants::getErrorRunningWithRoot());
+    QMessageBox::critical( nullptr, StrConstants::getApplicationName(), StrConstants::getErrorRunningWithRoot());
     return (-2);
   }
 
   if (!UnixCommand::hasTheExecutable(QStringLiteral("paccache")))
   {
-    QMessageBox::critical( 0, StrConstants::getApplicationName(), StrConstants::getExecutableCouldNotBeFound().arg(QStringLiteral("\"paccache\"")));
+    QMessageBox::critical( nullptr, StrConstants::getApplicationName(), StrConstants::getExecutableCouldNotBeFound().arg(QStringLiteral("\"paccache\"")));
     return (-3);
   }
 
