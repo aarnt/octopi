@@ -251,7 +251,7 @@ void PackageGroupModel::processDryrunResult(QString output) {
     //process package list
     for(int i = 0; i < lines.length(); i++)
     {
-      QString line = lines.at(i);
+      const QString& line = lines.at(i);
 
       if(i == 0)
         //skip the first line ("==> Candidate packages:")

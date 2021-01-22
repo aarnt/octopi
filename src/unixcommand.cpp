@@ -622,7 +622,7 @@ bool UnixCommand::hasInternetConnection()
   bool result = false;
 
   for (int i = 0; i < ifaces.count(); i++){
-    QNetworkInterface iface = ifaces.at(i);
+    const QNetworkInterface& iface = ifaces.at(i);
 
     if ( iface.flags().testFlag(QNetworkInterface::IsUp)
          && !iface.flags().testFlag(QNetworkInterface::IsLoopBack) ){

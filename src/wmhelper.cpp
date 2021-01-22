@@ -297,7 +297,7 @@ QString WMHelper::getKDEOpenHelper()
  */
 void WMHelper::openFile(const QString& fileName)
 {
-  QString fileToOpen(fileName);
+  const QString& fileToOpen(fileName);
   bool isTextFile = UnixCommand::isTextFile(fileToOpen);
 
   if (!isTextFile){
