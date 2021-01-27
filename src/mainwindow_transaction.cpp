@@ -317,7 +317,7 @@ void MainWindow::insertIntoRemovePackage(QModelIndex *indexToInclude)
       {
         QStringList *targets = Package::getTargetRemovalList(package->name, removeCmd);
 
-        for(const QString& target: *targets)
+        for(const QString& target: qAsConst(*targets))
         {
           int separator = target.lastIndexOf(QLatin1String("-"));
           QString candidate = target.left(separator);
@@ -861,7 +861,7 @@ void MainWindow::doAURUpgrade()
   QString listOfTargets;
   QString auxPkg;
 
-  for(const QString& pkg: *m_outdatedAURStringList)
+  for(const QString& pkg: qAsConst(*m_outdatedAURStringList))
   {
     auxPkg = pkg;
     auxPkg.remove(QStringLiteral("[1;39m"));
@@ -1021,7 +1021,7 @@ void MainWindow::doSystemUpgrade(SystemUpgradeOptions systemUpgradeOptions)
         totalDownloadSize = UnixCommand::getCheckUpdatesSize();
 
         targets->clear();
-        for(const QString& name: *m_checkupdatesStringList)
+        for(const QString& name: qAsConst(*m_checkupdatesStringList))
         {
           PackageListData aux;
           aux = PackageListData(name, m_checkUpdatesNameNewVersion->value(name), QStringLiteral("0")); //size);
@@ -1034,7 +1034,7 @@ void MainWindow::doSystemUpgrade(SystemUpgradeOptions systemUpgradeOptions)
 
     if (totalDownloadSize == 0)
     {
-      for(const PackageListData& target: *targets)
+      for(const PackageListData& target: qAsConst(*targets))
       {
         totalDownloadSize += target.downloadSize;
         list = list + target.name + QLatin1Char('-') + target.version + QLatin1Char('\n');
@@ -1042,7 +1042,7 @@ void MainWindow::doSystemUpgrade(SystemUpgradeOptions systemUpgradeOptions)
     }
     else
     {
-      for(const PackageListData& target: *targets)
+      for(const PackageListData& target: qAsConst(*targets))
       {
         list = list + target.name + QLatin1Char('-') + target.version + QLatin1Char('\n');
       }
@@ -1180,7 +1180,7 @@ void MainWindow::doRemoveAndInstall()
   }
 
   double totalDownloadSize = 0;
-  for(const PackageListData& installTarget: *installTargets)
+  for(const PackageListData& installTarget: qAsConst(*installTargets))
   {
     totalDownloadSize += installTarget.downloadSize;
     installList.append(StrConstants::getInstall() + QLatin1Char(' ') +
@@ -1762,7 +1762,7 @@ void MainWindow::doInstall()
   }
 
   double totalDownloadSize = 0;
-  for(const PackageListData& target: *targets)
+  for(const PackageListData& target: qAsConst(*targets))
   {
     totalDownloadSize += target.downloadSize;
     pkgsToInstall.append(target.name);

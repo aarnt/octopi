@@ -119,7 +119,8 @@ inline std::string env_workarounds()
   // cleanup environment, because e.g.:
   // - pcmanfm-qt will not start if the DBUS_SESSION_BUS_ADDRESS is preserved
   // - Qt apps may change user's config files permissions if the XDG_* are preserved
-  for (auto const & key : QProcessEnvironment::systemEnvironment().keys())
+  const auto keys = QProcessEnvironment::systemEnvironment().keys();
+  for (auto const & key : keys)
   {
     auto const & i = std::lower_bound(ALLOWED_VARS, ALLOWED_END, key, [] (char const * const a, QString const & b) {
       return b > QString::fromUtf8(a);

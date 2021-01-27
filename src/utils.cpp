@@ -586,8 +586,8 @@ void utils::searchBarClosedInTextBrowser(QTextBrowser *tb, SearchBar *sb)
 void utils::positionWindowAtScreenCenter(QWidget *w)
 {
   QRect screen;
-
-  for(QScreen *s: QGuiApplication::screens())
+  const auto screens = QGuiApplication::screens();
+  for(QScreen *s: screens)
   {
     if (s->name() == QGuiApplication::primaryScreen()->name())
     {

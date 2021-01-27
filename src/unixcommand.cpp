@@ -1285,7 +1285,7 @@ QStringList UnixCommand::getIgnorePkgsFromPacmanConf()
       QStringList *packagesOfGroup = Package::getPackagesOfGroup(group);
       if (!packagesOfGroup->isEmpty())
       {
-        for (const QString& pkg: *packagesOfGroup)
+        for (const QString& pkg: qAsConst(*packagesOfGroup))
         {
           resPkgs.append(pkg);
         }

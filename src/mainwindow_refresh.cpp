@@ -1739,7 +1739,6 @@ void MainWindow::refreshTabFiles(bool clearContents, bool neverQuit)
   if (tvPkgFileList)
   {
     QString pkgName = package->name;
-    QStringList fileList;
     QStandardItemModel *fakeModelPkgFileList = new QStandardItemModel(this);
     QStandardItemModel *modelPkgFileList = qobject_cast<QStandardItemModel*>(tvPkgFileList->model());
     modelPkgFileList->clear();
@@ -1759,7 +1758,7 @@ void MainWindow::refreshTabFiles(bool clearContents, bool neverQuit)
 
     //Let's wait before we get the pkg file list from the other thread...
     el.exec();
-    fileList = fwPackageContents.result();
+    const QStringList fileList = fwPackageContents.result();
 
     QString fullPath;
     int counter = 0;
