@@ -45,7 +45,7 @@
 QString Package::getBasePkgName(const QString &p)
 {
   QString packageBaseName=QLatin1String("");
-  QString aux(p);
+  const QString& aux(p);
   int numberOfSegments = p.count(QLatin1Char('-'));
 
   if (numberOfSegments > 1)
@@ -1927,7 +1927,7 @@ QHash<QString, QString> Package::getAUROutdatedPackagesNameVersion()
       {
         line = line.remove(StrConstants::getForeignRepositoryTargetPrefix());
         QStringList nameVersion = line.split(QStringLiteral(" "), Qt::SkipEmptyParts);
-        QString pkgName = nameVersion.at(0);
+        const QString& pkgName = nameVersion.at(0);
 
         if (getForeignRepositoryToolName() == ctn_KCP_TOOL)
         {
@@ -1941,7 +1941,7 @@ QHash<QString, QString> Package::getAUROutdatedPackagesNameVersion()
       else if (getForeignRepositoryToolName() == ctn_PIKAUR_TOOL)
       {
         QStringList nameVersion = line.split(QStringLiteral(" "), Qt::SkipEmptyParts);
-        QString pkgName = nameVersion.at(0);
+        const QString& pkgName = nameVersion.at(0);
 
         //Let's ignore the "IgnorePkg" list of packages...
         if (!ignorePkgList.contains(pkgName))
@@ -1958,7 +1958,7 @@ QHash<QString, QString> Package::getAUROutdatedPackagesNameVersion()
                getForeignRepositoryToolName() == ctn_TRIZEN_TOOL)
       {
         QStringList nameVersion = line.split(QStringLiteral(" "), Qt::SkipEmptyParts);
-        QString pkgName = nameVersion.at(0);
+        const QString& pkgName = nameVersion.at(0);
 
         if (pkgName==QLatin1String("::")) continue;
 
