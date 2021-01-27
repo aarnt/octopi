@@ -330,7 +330,7 @@ void MainWindow::dropEvent(QDropEvent *ev)
 
   QList<QUrl> urls = ev->mimeData()->urls();
 
-  for(QUrl url: urls)
+  for(const QUrl& url: urls)
   {
     QString str = url.fileName();
     QFileInfo f(str);
@@ -352,7 +352,7 @@ void MainWindow::dragEnterEvent(QDragEnterEvent *ev)
   bool success = false;
   QList<QUrl> urls = ev->mimeData()->urls();
 
-  for(QUrl url: urls)
+  for(const QUrl& url: urls)
   {
     QString str = url.fileName();
     QFileInfo f(str);
@@ -751,7 +751,7 @@ void MainWindow::outputAURVotedPackageList()
     QStringList v=m_aurVote->getVotedPackages();
     v.sort();
     QString list=QStringLiteral("<ul>");
-    for(QString vote: v)
+    for(const QString& vote: v)
     {
       list += QLatin1String("<li>") + vote + QLatin1String("</li>");
     }

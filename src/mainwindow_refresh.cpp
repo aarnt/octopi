@@ -170,7 +170,7 @@ void MainWindow::refreshGroupsWidget()
   items.append(new QTreeWidgetItem(static_cast<QTreeWidget*>(nullptr), QStringList(QLatin1Char('<') + StrConstants::getDisplayAllGroups() + QLatin1Char('>'))));
   m_AllGroupsItem = items.at(0);
   const QStringList*const packageGroups = Package::getPackageGroups();
-  for(QString group: *packageGroups)
+  for(const QString& group: *packageGroups)
   {
     items.append(new QTreeWidgetItem(static_cast<QTreeWidget*>(nullptr), QStringList(group)));
   }
@@ -1767,7 +1767,7 @@ void MainWindow::refreshTabFiles(bool clearContents, bool neverQuit)
     m_progressWidget->setValue(0);
     m_progressWidget->show();
 
-    for (QString file: fileList)
+    for (const QString& file: fileList)
     {
       bool isDir = file.endsWith(QLatin1Char('/'));
       bool isSymLinkToDir = false;

@@ -311,7 +311,7 @@ void MainWindow::initMenuBar()
   RepoConf *repoConf = new RepoConf();
   QStringList repos = repoConf->getRepos();
 
-  for(QString repo: repos)
+  for(const QString& repo: repos)
   {
     QAction * createdAction = subMenu->addAction(repo);
     createdAction->setCheckable(true);

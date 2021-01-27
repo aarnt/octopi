@@ -565,7 +565,7 @@ QByteArray UnixCommand::getTargetUpgradeList(const QString &pkgName)
     args << QStringLiteral("--print-format") << QStringLiteral("%n %v %s") << QStringLiteral("-Sp");
     pkgs = pkgName.split(QStringLiteral(" "), Qt::SkipEmptyParts);
 
-    for (QString p: pkgs)
+    for (const QString& p: pkgs)
     {
       args << p;
     }
@@ -706,7 +706,7 @@ void UnixCommand::removeSharedMemFiles()
 
   QFileInfoList list = tempDir.entryInfoList(nameFilters, QDir::Dirs | QDir::Files | QDir::System | QDir::Hidden);
 
-  for(QFileInfo file: list){
+  for(const QFileInfo& file: list){
     QFile fileAux(file.filePath());
 
     if (!file.isDir()){
@@ -716,7 +716,7 @@ void UnixCommand::removeSharedMemFiles()
       QDir dir(file.filePath());
       QFileInfoList listd = dir.entryInfoList(QDir::Files | QDir::System);
 
-      for(QFileInfo filed: listd){
+      for(const QFileInfo& filed: listd){
         QFile fileAuxd(filed.filePath());
         fileAuxd.remove();
       }
@@ -740,7 +740,7 @@ void UnixCommand::removeTemporaryFiles()
               << QStringLiteral(".qt_temp_octopi*");
   QFileInfoList list = tempDir.entryInfoList(nameFilters, QDir::Dirs | QDir::Files | QDir::System | QDir::Hidden);
 
-  for(QFileInfo file: list){
+  for(const QFileInfo& file: list){
     QFile fileAux(file.filePath());
 
     if (!file.isDir()){
@@ -750,7 +750,7 @@ void UnixCommand::removeTemporaryFiles()
       QDir dir(file.filePath());
       QFileInfoList listd = dir.entryInfoList(QDir::Files | QDir::System);
 
-      for(QFileInfo filed: listd){
+      for(const QFileInfo& filed: listd){
         QFile fileAuxd(filed.filePath());
         fileAuxd.remove();
       }
@@ -1056,7 +1056,7 @@ void UnixCommand::buildOctopiHelperCommandWithSharedMem(const QString &pCommand,
   if (pCommand.contains(QLatin1String(";")))
   {
     commandList = pCommand.split(QStringLiteral(";"), Qt::SkipEmptyParts);
-    for(QString line: commandList)
+    for(const QString& line: commandList)
     {
       commands += line.trimmed() + QLatin1Char('\n');
     }
@@ -1280,12 +1280,12 @@ QStringList UnixCommand::getIgnorePkgsFromPacmanConf()
   if (!resGroups.isEmpty())
   {
     //Let's retrieve all pkgs that live inside each group
-    for (QString group: resGroups)
+    for (const QString& group: resGroups)
     {
       QStringList *packagesOfGroup = Package::getPackagesOfGroup(group);
       if (!packagesOfGroup->isEmpty())
       {
-        for (QString pkg: *packagesOfGroup)
+        for (const QString& pkg: *packagesOfGroup)
         {
           resPkgs.append(pkg);
         }

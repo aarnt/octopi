@@ -280,7 +280,7 @@ QSet<QString>* Package::getUnrequiredPackageList()
   {
     QStringList packageTuples = AlpmBackend::getUnrequiredList();
 
-    for(QString packageTuple: packageTuples)
+    for(const QString& packageTuple: packageTuples)
     {
       res->insert(packageTuple); //We only need the package name!
     }
@@ -303,7 +303,7 @@ QStringList *Package::getOutdatedStringList()
     QStringList packageTuples = outPkgList.split(QRegularExpression(QStringLiteral("\\n")), Qt::SkipEmptyParts);
     QStringList ignorePkgList = UnixCommand::getIgnorePkgsFromPacmanConf();
 
-    for(QString packageTuple: packageTuples)
+    for(const QString& packageTuple: packageTuples)
     {
       QStringList parts = packageTuple.split(QLatin1Char(' '));
       {
@@ -325,7 +325,7 @@ QStringList *Package::getOutdatedStringList()
   {
     QStringList packageTuples = AlpmBackend::getOutdatedList();
 
-    for(QString packageTuple: packageTuples)
+    for(const QString& packageTuple: packageTuples)
     {
       res->append(packageTuple);
     }
@@ -382,7 +382,7 @@ QStringList *Package::getOutdatedAURStringList()
   QStringList packageTuples = outPkgList.split(QRegularExpression(QStringLiteral("\\n")), Qt::SkipEmptyParts);
   QStringList ignorePkgList = UnixCommand::getIgnorePkgsFromPacmanConf();
 
-  for(QString packageTuple: packageTuples)
+  for(const QString& packageTuple: packageTuples)
   {
     QStringList parts = packageTuple.split(QLatin1Char(' '), Qt::SkipEmptyParts);
     {
@@ -474,7 +474,7 @@ QStringList *Package::getPackagesOfGroup(const QString &groupName)
   QStringList packageTuples = packagesFromGroup.split(QRegularExpression(QStringLiteral("\\n")), Qt::SkipEmptyParts);
   QStringList * res = new QStringList();
 
-  for(QString packageTuple: packageTuples)
+  for(const QString& packageTuple: packageTuples)
   {
     QStringList parts = packageTuple.split(QLatin1Char(' '));
     res->append(parts[1]); //We only need the package name!
@@ -494,7 +494,7 @@ QList<PackageListData> *Package::getTargetUpgradeList(const QString &pkgName)
   QList<PackageListData> *res = new QList<PackageListData>();
   packageTuples.sort();
 
-  for(QString packageTuple: packageTuples)
+  for(const QString& packageTuple: packageTuples)
   {
     //TODO: Need to handle when this list has "::" conflict items!
     if(packageTuple.indexOf(QLatin1String("::"))!=-1)
@@ -528,7 +528,7 @@ QStringList *Package::getTargetRemovalList(const QString &pkgName, const QString
   QStringList packageTuples = targets.split(QRegularExpression(QStringLiteral("\\n")), Qt::SkipEmptyParts);
   QStringList * res = new QStringList();
 
-  for(QString packageTuple: packageTuples)
+  for(const QString& packageTuple: packageTuples)
   {
     res->append(packageTuple);
   }
@@ -549,7 +549,7 @@ QList<PackageListData> *Package::getForeignPackageList()
     QString foreignPkgList = QString::fromUtf8(UnixCommand::getForeignPackageList());
     QStringList packageTuples = foreignPkgList.split(QRegularExpression(QStringLiteral("\\n")), Qt::SkipEmptyParts);
 
-    for(QString packageTuple: packageTuples)
+    for(const QString& packageTuple: packageTuples)
     {
       QStringList parts = packageTuple.split(QLatin1Char(' '));
       if (parts.size() == 2)
@@ -566,7 +566,7 @@ QList<PackageListData> *Package::getForeignPackageList()
     QString instSize, buildDate, installDate, license, installReason;
     QStringList packageTuples = AlpmBackend::getForeignList();
 
-    for(QString packageTuple: packageTuples)
+    for(const QString& packageTuple: packageTuples)
     {
       QStringList parts = packageTuple.split(QStringLiteral("<o'o>"));
       //NAME, REPO, VERSION, "NAME DESCRIPTION", FOREIGN
@@ -1974,7 +1974,7 @@ QHash<QString, QString> Package::getAUROutdatedPackagesNameVersion()
   }
   else if (getForeignRepositoryToolName() == ctn_PACAUR_TOOL)
   {
-    for (QString line: listOfPkgs)
+    for (const QString& line: listOfPkgs)
     {
       QStringList sl = line.split(QStringLiteral(" "), Qt::SkipEmptyParts);
 
@@ -2030,7 +2030,7 @@ QStringList Package::getContents(const QString& pkgName, bool isInstalled)
     else
     {
       QStringList rsl2;
-      for(QString line: rsl)
+      for(const QString& line: rsl)
       {
         QStringList slAux = line.split(QStringLiteral("\t"), Qt::SkipEmptyParts);
         rsl2.append(QString(slAux.at(1).trimmed()));
