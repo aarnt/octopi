@@ -305,7 +305,7 @@ void MainWindow::insertIntoRemovePackage(QModelIndex *indexToInclude)
       checkDependencies = true;
     }
 
-    for(QModelIndex item: selectedRows)
+    for(QModelIndex item: qAsConst(selectedRows))
     {
       const PackageRepository::PackageData*const package = m_packageModel->getData(item);
       if (package == nullptr) {
@@ -455,7 +455,7 @@ void MainWindow::insertIntoInstallPackage(QModelIndex *indexToInclude)
       }
     }
 
-    for(QModelIndex item: selectedRows)
+    for(QModelIndex item: qAsConst(selectedRows))
     {
       const PackageRepository::PackageData*const package = m_packageModel->getData(item);
       if (package == nullptr) {
@@ -547,7 +547,7 @@ void MainWindow::insertIntoInstallPackageOptDeps(const QString &packageName)
     {
       selectedPackages = msd->getSelectedPackages();
 
-      for(const QString& pkg: selectedPackages)
+      for(const QString& pkg: qAsConst(selectedPackages))
       {
         insertInstallPackageIntoTransaction(pkg, true);
       }
@@ -607,7 +607,7 @@ bool MainWindow::insertIntoRemovePackageDeps(const QStringList &dependencies)
     if (res == QMessageBox::Ok)
     {
       selectedPackages = msd->getSelectedPackages();
-      for(const QString& pkg: selectedPackages)
+      for(const QString& pkg: qAsConst(selectedPackages))
       {
         insertRemovePackageIntoTransaction(pkg);
       }
@@ -1846,13 +1846,13 @@ void MainWindow::doInstallLocalPackages()
   QString list;
   QFileInfo fi;
 
-  for(const QString& target: m_packagesToInstallList)
+  for(const QString& target: qAsConst(m_packagesToInstallList))
   {
     fi.setFile(target);
     list = list + fi.fileName() + QLatin1Char('\n');
   }
 
-  for(const QString& pkgToInstall: m_packagesToInstallList)
+  for(const QString& pkgToInstall: qAsConst(m_packagesToInstallList))
   {
     listOfTargets += pkgToInstall + QLatin1String("; ");
   }

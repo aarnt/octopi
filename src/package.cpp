@@ -171,7 +171,7 @@ QString Package::makeAnchorOfOptionalDep(const QString &optionalDeps)
   QString name;
   QStringList ldeps = optionalDeps.split(QStringLiteral("<br>"), Qt::SkipEmptyParts);
 
-  for(QString dep: ldeps)
+  for(const QString &dep: ldeps)
   {
     int colon = dep.indexOf(QLatin1String(":"));
     if (colon != -1)
@@ -267,7 +267,7 @@ QSet<QString>* Package::getUnrequiredPackageList()
     QString unrequiredPkgList = QString::fromUtf8(UnixCommand::getUnrequiredPackageList());
     QStringList packageTuples = unrequiredPkgList.split(QRegularExpression(QStringLiteral("\\n")), Qt::SkipEmptyParts);
 
-    for(QString packageTuple: packageTuples)
+    for(const QString &packageTuple: packageTuples)
     {
       QStringList parts = packageTuple.split(QLatin1Char(' '));
       {
@@ -853,7 +853,7 @@ QList<PackageListData> * Package::getAURPackageList(const QString &searchString)
   }
 
   pkgDescription = QLatin1String("");
-  for(QString packageTuple: packageTuples)
+  for(QString packageTuple: qAsConst(packageTuples))
   {
     if (packageTuple[0].isNumber())
     {
@@ -2030,7 +2030,7 @@ QStringList Package::getContents(const QString& pkgName, bool isInstalled)
     else
     {
       QStringList rsl2;
-      for(const QString& line: rsl)
+      for(const QString& line: qAsConst(rsl))
       {
         QStringList slAux = line.split(QStringLiteral("\t"), Qt::SkipEmptyParts);
         rsl2.append(QString(slAux.at(1).trimmed()));
