@@ -45,7 +45,6 @@
 QString Package::getBasePkgName(const QString &p)
 {
   QString packageBaseName=QLatin1String("");
-  const QString& aux(p);
   int numberOfSegments = p.count(QLatin1Char('-'));
 
   if (numberOfSegments > 1)
