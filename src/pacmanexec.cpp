@@ -131,7 +131,7 @@ bool PacmanExec::splitOutputStrings(QString output)
   QString msg = output.trimmed();
   QStringList msgs = msg.split(QRegularExpression(QStringLiteral("\\n")), Qt::SkipEmptyParts);
 
-  for (QString m: msgs)
+  for (const QString& m: msgs)
   {
     QStringList m2 = m.split(QRegularExpression(QStringLiteral("\\(\\s{0,3}[0-9]{1,4}/[0-9]{1,4}\\) ")), Qt::SkipEmptyParts);
 
@@ -167,7 +167,7 @@ bool PacmanExec::splitOutputStrings(QString output)
     }
     else if (m2.count() > 1)
     {
-      for (QString m3: m2)
+      for (const QString& m3: m2)
       {
         if (!m3.isEmpty())
         {
@@ -1045,7 +1045,7 @@ void PacmanExec::doInstallLocal(const QString &listOfPackages)
 
   packages=listOfPackages.split(QStringLiteral(";"), Qt::SkipEmptyParts);
 
-  for(QString p: packages)
+  for(const QString& p: qAsConst(packages))
   {
     if(p.trimmed().isEmpty()) continue;
     if (dontUseForce)
@@ -1061,7 +1061,7 @@ void PacmanExec::doInstallLocal(const QString &listOfPackages)
     m_lastCommandList.append(QLatin1String("rm ") + ctn_PACMAN_DATABASE_LOCK_FILE + QLatin1Char(';'));
   }
 
-  for(QString p: packages)
+  for(const QString& p: qAsConst(packages))
   {
     if(p.trimmed().isEmpty()) continue;
     if (dontUseForce)
@@ -1096,7 +1096,7 @@ void PacmanExec::doInstallLocalInTerminal(const QString &listOfPackages)
 
   packages=listOfPackages.split(QStringLiteral(";"), Qt::SkipEmptyParts);
 
-  for(QString p: packages)
+  for(const QString& p: qAsConst(packages))
   {
     if(p.trimmed().isEmpty()) continue;
 

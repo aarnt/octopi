@@ -527,7 +527,8 @@ public:
   {
     static MainWindow *w=nullptr;
     if (w != nullptr) return w;
-    for (QWidget *widget: QApplication::topLevelWidgets())
+    const auto widgets = QApplication::topLevelWidgets();
+    for (QWidget *widget: widgets)
     {
       if (widget->objectName() == QLatin1String("MainWindow"))
         w = dynamic_cast<MainWindow*>(widget);

@@ -97,7 +97,7 @@ QList<QModelIndex> * utils::findFileInTreeView(const QString& name, const QStand
   }
 
   foundItems = sim->findItems(Package::parseSearchString(name), Qt::MatchRegularExpression|Qt::MatchRecursive);
-  for(QStandardItem *item: foundItems)
+  for(QStandardItem *item: qAsConst(foundItems))
   {
     //if (item->accessibleDescription().contains("directory")) continue;
     res->append(item->index());
@@ -586,8 +586,8 @@ void utils::searchBarClosedInTextBrowser(QTextBrowser *tb, SearchBar *sb)
 void utils::positionWindowAtScreenCenter(QWidget *w)
 {
   QRect screen;
-
-  for(QScreen *s: QGuiApplication::screens())
+  const auto screens = QGuiApplication::screens();
+  for(QScreen *s: screens)
   {
     if (s->name() == QGuiApplication::primaryScreen()->name())
     {

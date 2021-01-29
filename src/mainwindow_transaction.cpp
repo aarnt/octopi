@@ -305,7 +305,7 @@ void MainWindow::insertIntoRemovePackage(QModelIndex *indexToInclude)
       checkDependencies = true;
     }
 
-    for(QModelIndex item: selectedRows)
+    for(QModelIndex item: qAsConst(selectedRows))
     {
       const PackageRepository::PackageData*const package = m_packageModel->getData(item);
       if (package == nullptr) {
@@ -317,7 +317,7 @@ void MainWindow::insertIntoRemovePackage(QModelIndex *indexToInclude)
       {
         QStringList *targets = Package::getTargetRemovalList(package->name, removeCmd);
 
-        for(QString target: *targets)
+        for(const QString& target: qAsConst(*targets))
         {
           int separator = target.lastIndexOf(QLatin1String("-"));
           QString candidate = target.left(separator);
@@ -455,7 +455,7 @@ void MainWindow::insertIntoInstallPackage(QModelIndex *indexToInclude)
       }
     }
 
-    for(QModelIndex item: selectedRows)
+    for(QModelIndex item: qAsConst(selectedRows))
     {
       const PackageRepository::PackageData*const package = m_packageModel->getData(item);
       if (package == nullptr) {
@@ -512,7 +512,7 @@ void MainWindow::insertIntoInstallPackageOptDeps(const QString &packageName)
   QStringList optDeps = Package::getOptionalDeps(packageName);
   QList<const PackageRepository::PackageData*> optionalPackages;
 
-  for(QString optDep: optDeps)
+  for(const QString& optDep: optDeps)
   {
     QString candidate = optDep;
     int points = candidate.indexOf(QLatin1String(":"));
@@ -547,7 +547,7 @@ void MainWindow::insertIntoInstallPackageOptDeps(const QString &packageName)
     {
       selectedPackages = msd->getSelectedPackages();
 
-      for(QString pkg: selectedPackages)
+      for(const QString& pkg: qAsConst(selectedPackages))
       {
         insertInstallPackageIntoTransaction(pkg, true);
       }
@@ -569,7 +569,7 @@ void MainWindow::insertIntoInstallPackageOptDeps(const QString &packageName)
 bool MainWindow::insertIntoRemovePackageDeps(const QStringList &dependencies)
 {
   QList<const PackageRepository::PackageData*> newDeps;
-  for(QString dep: dependencies)
+  for(const QString& dep: dependencies)
   {
     const PackageRepository::PackageData*const package = m_packageRepo.getFirstPackageByName(dep);
     if (package != nullptr && package->installed() && !isPackageInRemoveTransaction(dep))
@@ -607,7 +607,7 @@ bool MainWindow::insertIntoRemovePackageDeps(const QStringList &dependencies)
     if (res == QMessageBox::Ok)
     {
       selectedPackages = msd->getSelectedPackages();
-      for(QString pkg: selectedPackages)
+      for(const QString& pkg: qAsConst(selectedPackages))
       {
         insertRemovePackageIntoTransaction(pkg);
       }
@@ -861,7 +861,7 @@ void MainWindow::doAURUpgrade()
   QString listOfTargets;
   QString auxPkg;
 
-  for(QString pkg: *m_outdatedAURStringList)
+  for(const QString& pkg: qAsConst(*m_outdatedAURStringList))
   {
     auxPkg = pkg;
     auxPkg.remove(QStringLiteral("[1;39m"));
@@ -1021,7 +1021,7 @@ void MainWindow::doSystemUpgrade(SystemUpgradeOptions systemUpgradeOptions)
         totalDownloadSize = UnixCommand::getCheckUpdatesSize();
 
         targets->clear();
-        for(QString name: *m_checkupdatesStringList)
+        for(const QString& name: qAsConst(*m_checkupdatesStringList))
         {
           PackageListData aux;
           aux = PackageListData(name, m_checkUpdatesNameNewVersion->value(name), QStringLiteral("0")); //size);
@@ -1034,7 +1034,7 @@ void MainWindow::doSystemUpgrade(SystemUpgradeOptions systemUpgradeOptions)
 
     if (totalDownloadSize == 0)
     {
-      for(PackageListData target: *targets)
+      for(const PackageListData& target: qAsConst(*targets))
       {
         totalDownloadSize += target.downloadSize;
         list = list + target.name + QLatin1Char('-') + target.version + QLatin1Char('\n');
@@ -1042,7 +1042,7 @@ void MainWindow::doSystemUpgrade(SystemUpgradeOptions systemUpgradeOptions)
     }
     else
     {
-      for(PackageListData target: *targets)
+      for(const PackageListData& target: qAsConst(*targets))
       {
         list = list + target.name + QLatin1Char('-') + target.version + QLatin1Char('\n');
       }
@@ -1153,7 +1153,7 @@ void MainWindow::doRemoveAndInstall()
   QString dialogText;
 
   QStringList removeTargets = listOfRemoveTargets.split(QStringLiteral(" "), Qt::SkipEmptyParts);
-  for(QString target: removeTargets)
+  for(const QString& target: removeTargets)
   {
     removeList = removeList + StrConstants::getRemove() + QLatin1Char(' ')  + target + QLatin1Char('\n');
   }
@@ -1180,7 +1180,7 @@ void MainWindow::doRemoveAndInstall()
   }
 
   double totalDownloadSize = 0;
-  for(PackageListData installTarget: *installTargets)
+  for(const PackageListData& installTarget: qAsConst(*installTargets))
   {
     totalDownloadSize += installTarget.downloadSize;
     installList.append(StrConstants::getInstall() + QLatin1Char(' ') +
@@ -1291,7 +1291,7 @@ void MainWindow::doRemove()
   QString list;
 
   QStringList targets = listOfTargets.split(QStringLiteral(" "), Qt::SkipEmptyParts);
-  for(QString target: targets)
+  for(const QString& target: targets)
   {
     list = list + target + QLatin1Char('\n');
   }
@@ -1657,7 +1657,7 @@ bool MainWindow::hasPartialUpgrade(QStringList &pkgsToInstall)
 
   if (m_numberOfOutdatedPackages > 0 && m_numberOfOutdatedPackages > pkgsToInstall.count())
   {
-    for(QString n: pkgsToInstall)
+    for(const QString& n: pkgsToInstall)
     {
       if (m_outdatedStringList->contains(n))
       {
@@ -1669,7 +1669,7 @@ bool MainWindow::hasPartialUpgrade(QStringList &pkgsToInstall)
   {
     int found=0;
 
-    for(QString n: pkgsToInstall)
+    for(const QString& n: pkgsToInstall)
     {
       if (m_outdatedStringList->contains(n)) found++;
     }
@@ -1762,7 +1762,7 @@ void MainWindow::doInstall()
   }
 
   double totalDownloadSize = 0;
-  for(PackageListData target: *targets)
+  for(const PackageListData& target: qAsConst(*targets))
   {
     totalDownloadSize += target.downloadSize;
     pkgsToInstall.append(target.name);
@@ -1846,13 +1846,13 @@ void MainWindow::doInstallLocalPackages()
   QString list;
   QFileInfo fi;
 
-  for(QString target: m_packagesToInstallList)
+  for(const QString& target: qAsConst(m_packagesToInstallList))
   {
     fi.setFile(target);
     list = list + fi.fileName() + QLatin1Char('\n');
   }
 
-  for(QString pkgToInstall: m_packagesToInstallList)
+  for(const QString& pkgToInstall: qAsConst(m_packagesToInstallList))
   {
     listOfTargets += pkgToInstall + QLatin1String("; ");
   }
@@ -2192,7 +2192,7 @@ void MainWindow::pacmanProcessFinished(int exitCode, QProcess::ExitStatus exitSt
       m_checkupdatesStringList->clear();
       m_checkUpdatesNameNewVersion->clear();
 
-      for(QString pkg: pkgs)
+      for(const QString& pkg: pkgs)
       {
         QStringList names = pkg.split(QStringLiteral(" "), Qt::SkipEmptyParts);
         if (names.count() > 0)
@@ -2220,7 +2220,7 @@ void MainWindow::pacmanProcessFinished(int exitCode, QProcess::ExitStatus exitSt
     if (dotPacnewFiles.count() > 0)
     {
       writeToTabOutput(QStringLiteral("<br>"));
-      for(QString dotPacnewFile: dotPacnewFiles)
+      for(const QString& dotPacnewFile: dotPacnewFiles)
       {
         if (!dotPacnewFile.contains(QLatin1String("<br>")))
           writeToTabOutput( QLatin1String("<br>") + dotPacnewFile, ectn_DONT_TREAT_URL_LINK);

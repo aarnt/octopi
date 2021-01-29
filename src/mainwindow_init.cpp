@@ -311,7 +311,7 @@ void MainWindow::initMenuBar()
   RepoConf *repoConf = new RepoConf();
   QStringList repos = repoConf->getRepos();
 
-  for(QString repo: repos)
+  for(const QString& repo: repos)
   {
     QAction * createdAction = subMenu->addAction(repo);
     createdAction->setCheckable(true);
@@ -853,14 +853,16 @@ void MainWindow::initActions()
   if (WMHelper::isXFCERunning())
   {
     //Loop through all actions and set their icons (if any) visible to menus.
-    for(QAction* ac: this->findChildren<QAction*>(QRegularExpression(QLatin1String("(m_a|a)ction\\S*"))))
+    const auto actions = this->findChildren<QAction*>(QRegularExpression(QLatin1String("(m_a|a)ction\\S*")));
+    for(QAction* ac: actions)
     {
       if (ac) ac->setIconVisibleInMenu(true);
     }
   }
 
   QString text;
-  for(QAction* ac: this->findChildren<QAction*>(QRegularExpression(QLatin1String("(m_a|a)ction\\S*"))))
+  const auto acs = this->findChildren<QAction*>(QRegularExpression(QLatin1String("(m_a|a)ction\\S*")));
+  for(QAction* ac: acs)
   {
     //text = ac->text().remove("&");
     //ac->setText(qApp->translate("MainWindow", text.toUtf8(), 0));
