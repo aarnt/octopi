@@ -229,7 +229,7 @@ void OptionsDialog::initAURTab()
     lblAURWarning->setStyleSheet(QStringLiteral("QLabel{ border: 1px solid red; margin-left: 3px; background: white; color: red; }"));
     QStringList aurTools=UnixCommand::getAvailableAURTools();
 
-    connect(comboAUR, SIGNAL(currentTextChanged(const QString &)), this, SLOT(comboAURChanged(const QString &)));
+    connect(comboAUR, SIGNAL(currentTextChanged(QString)), this, SLOT(comboAURChanged(QString)));
     connect(bConnect, SIGNAL(clicked()), this, SLOT(onAURConnect()));
     connect(bRegister, SIGNAL(clicked()), this, SLOT(onAURRegister()));
     connect(bSelAURBuildDir, SIGNAL(clicked()), this, SLOT(onSelAURBuildDir()));
@@ -262,6 +262,12 @@ void OptionsDialog::initAURTab()
       cbDevel->setChecked(SettingsManager::getAURDevelParam());
       cbNoConfirm->setChecked(SettingsManager::getAURNoConfirmParam());
       cbNoEdit->setChecked(SettingsManager::getAURNoEditParam());
+    }
+    else if (comboAUR->currentText() == ctn_PARU_TOOL)
+    {
+      cbDevel->setChecked(SettingsManager::getAURDevelParam());
+      cbNoConfirm->setChecked(SettingsManager::getAURNoConfirmParam());
+      cbNoEdit->setChecked(false); //SettingsManager::getAURNoEditParam());
     }
 
     cbSearchOutdatedAURPackages->setChecked(SettingsManager::getSearchOutdatedAURPackages());
@@ -501,6 +507,11 @@ void OptionsDialog::accept()
       SettingsManager::setAURTool(ctn_YAY_TOOL);
       AURHasChanged = true;
     }
+    else if (comboAUR->currentText() == ctn_PARU_TOOL && SettingsManager::getAURToolName() != ctn_PARU_TOOL)
+    {
+      SettingsManager::setAURTool(ctn_PARU_TOOL);
+      AURHasChanged = true;
+    }
     else if (comboAUR->currentText() == ctn_NO_AUR_TOOL && SettingsManager::getAURToolName() != ctn_NO_AUR_TOOL)
     {
       SettingsManager::setAURTool(ctn_NO_AUR_TOOL);
@@ -565,6 +576,16 @@ void OptionsDialog::accept()
     if (comboAUR->currentText() == ctn_YAY_TOOL && cbNoEdit->isChecked() != SettingsManager::getAURNoEditParam())
     {
       SettingsManager::setAURNoEditParam(cbNoEdit->isChecked());
+      AURHasChanged = true;
+    }
+    if (comboAUR->currentText() == ctn_PARU_TOOL && cbDevel->isChecked() != SettingsManager::getAURDevelParam())
+    {
+      SettingsManager::setAURDevelParam(cbDevel->isChecked());
+      AURHasChanged = true;
+    }
+    if (comboAUR->currentText() == ctn_PARU_TOOL && cbNoConfirm->isChecked() != SettingsManager::getAURNoConfirmParam())
+    {
+      SettingsManager::setAURNoConfirmParam(cbNoConfirm->isChecked());
       AURHasChanged = true;
     }
 
@@ -845,6 +866,17 @@ void OptionsDialog::comboAURChanged(const QString &text)
     cbNoEdit->setChecked(SettingsManager::getAURNoEditParam());
     cbSearchOutdatedAURPackages->setChecked(SettingsManager::getSearchOutdatedAURPackages());
   }
+  else if (text == ctn_PARU_TOOL)
+  {
+    cbDevel->setEnabled(true);
+    cbDevel->setChecked(SettingsManager::getAURDevelParam());
+    cbNoConfirm->setEnabled(true);
+    cbNoEdit->setEnabled(false);
+    cbSearchOutdatedAURPackages->setEnabled(true);
+    cbNoConfirm->setChecked(SettingsManager::getAURNoConfirmParam());
+    cbNoEdit->setChecked(false);
+    cbSearchOutdatedAURPackages->setChecked(SettingsManager::getSearchOutdatedAURPackages());
+  }
 }
 
 /*
@@ -932,6 +964,6 @@ void OptionsDialog::onClearAURBuildDir()
 {
   if (!leAURBuildDir->text().isEmpty())
   {
-    leAURBuildDir->setText(QStringLiteral(""));
+    leAURBuildDir->setText(QLatin1String(""));
   }
 }

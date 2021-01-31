@@ -1017,7 +1017,7 @@ void MainWindow::horizontalSplitterMoved(int pos, int index)
 {
   Q_UNUSED(index)
 
-  QList<int> l, rl;
+  QList<int> rl;
   rl = ui->splitterHorizontal->sizes();
 
   if (pos == 0 && rl[0] == 0)

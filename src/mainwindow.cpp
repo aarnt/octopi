@@ -1406,7 +1406,7 @@ void MainWindow::onAURShowPKGBUILDDiff()
       QModelIndex item = selectedRows.at(0);
       const PackageRepository::PackageData*const package = m_packageModel->getData(item);
       QString pkglogSite(QStringLiteral("https://aur.archlinux.org/cgit/aur.git/log/PKGBUILD?h=%1"));
-      QString latestVersion, previousVersion;
+      //QString latestVersion, previousVersion;
 
       //Let's download LOG html page and find the two newest version commit hashes
       QNetworkAccessManager manager;

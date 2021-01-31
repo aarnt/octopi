@@ -1034,7 +1034,7 @@ void PacmanExec::doInstallInTerminal(const QString &listOfPackages, const QStrin
  */
 void PacmanExec::doInstallLocal(const QString &listOfPackages)
 {
-  QString command, commands;
+  QString command;
   QStringList packages;
   bool dontUseForce = UnixCommand::isPacmanFiveDotOneOrHigher();
 
@@ -1308,6 +1308,10 @@ void PacmanExec::doAURUpgrade(const QString &listOfPackages)
   {
     m_lastCommandList.append(Package::getForeignRepositoryToolNameParam() + QLatin1String(" -S ") + listOfPackages + QLatin1Char(';'));
   }
+  else if (Package::getForeignRepositoryToolName() == ctn_PARU_TOOL)
+  {
+    m_lastCommandList.append(Package::getForeignRepositoryToolNameParam() + QLatin1String(" ") + listOfPackages + QLatin1Char(';'));
+  }
 
   m_lastCommandList.append(QStringLiteral("echo -e;"));
   m_lastCommandList.append(QLatin1String("read -n 1 -p \"") + StrConstants::getPressAnyKey() + QLatin1Char('"'));
@@ -1335,6 +1339,8 @@ void PacmanExec::doAURRemoveAndInstallInTerminal(const QString &listOfPackagesto
     m_lastCommandList.append(Package::getForeignRepositoryToolNameParam() + QLatin1String(" -S --aur ") + listOfPackagestoInstall + QLatin1Char(';'));
   else if (Package::getForeignRepositoryToolName() == ctn_YAY_TOOL)
     m_lastCommandList.append(Package::getForeignRepositoryToolNameParam() + QLatin1String(" -S --aur ") + listOfPackagestoInstall + QLatin1Char(';'));
+  else if (Package::getForeignRepositoryToolName() == ctn_PARU_TOOL)
+    m_lastCommandList.append(Package::getForeignRepositoryToolNameParam() + QLatin1String(" ") + listOfPackagestoInstall + QLatin1Char(';'));
   else if (Package::getForeignRepositoryToolName() == ctn_CHASER_TOOL)
     m_lastCommandList.append(Package::getForeignRepositoryToolNameParam() + QLatin1String(" install ") + listOfPackagestoInstall + QLatin1Char(';'));
 
@@ -1362,6 +1368,8 @@ void PacmanExec::doAURInstall(const QString &listOfPackages)
     m_lastCommandList.append(Package::getForeignRepositoryToolNameParam() + QLatin1String(" -S --aur ") + listOfPackages + QLatin1Char(';'));
   else if (Package::getForeignRepositoryToolName() == ctn_YAY_TOOL)
     m_lastCommandList.append(Package::getForeignRepositoryToolNameParam() + QLatin1String(" -S --aur ") + listOfPackages + QLatin1Char(';'));
+  else if (Package::getForeignRepositoryToolName() == ctn_PARU_TOOL)
+    m_lastCommandList.append(Package::getForeignRepositoryToolNameParam() + QLatin1String(" ") + listOfPackages + QLatin1Char(';'));
   else if (Package::getForeignRepositoryToolName() == ctn_CHASER_TOOL)
     m_lastCommandList.append(Package::getForeignRepositoryToolNameParam() + QLatin1String(" install ") + listOfPackages + QLatin1Char(';'));
 

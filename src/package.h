@@ -178,14 +178,12 @@ class Package{
     static QStringList * getPackagesOfGroup(const QString &groupName);
     static QList<PackageListData> * getTargetUpgradeList(const QString &pkgName = QLatin1String(""));
     static QStringList * getTargetRemovalList(const QString &pkgName, const QString &removeCommand);
-
     static QList<PackageListData> *getForeignPackageList();
     static QList<PackageListData> *getPackageList(const QString &packageName, const QHash<QString, QString> *checkUpdatesOutdatedPackages);
 
-    //static QString getAURUrl(const QString& pkgName);
-    //static QString getAURLicenses(const QString& pkgName);
     static QList<PackageListData> * getAURPackageList(const QString &searchString);     //AUR methods
     static QList<PackageListData> * getYayPackageList(const QString &searchString, const QStringList &packageTuples);      //Yay specific AUR pkg list
+    static QList<PackageListData> * getParuPackageList(const QString &searchString, const QStringList &packageTuples);     //Paru specific AUR pkg list
     static QHash<QString, QString> getAUROutdatedPackagesNameVersion();    //AUR methods
 
     static PackageInfoData getKCPInformation(const QString &pkgName);

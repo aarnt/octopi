@@ -432,6 +432,12 @@ QString SettingsManager::getAURTool()
     if (getAURNoEditParam()) params += QLatin1String(" --noeditmenu ");
     ret += params;
   }
+  else if (ret == ctn_PARU_TOOL)
+  {
+    if (getAURNoConfirmParam()) params += QLatin1String(" --noconfirm ");
+    ret += params;
+  }
+
   //System does not have selected aurtool. Let's see if there are any other available...
   else if (ret.isEmpty() || !UnixCommand::hasTheExecutable(ret))
   {
@@ -470,6 +476,14 @@ QString SettingsManager::getAURTool()
       p_instance.setAURTool(ctn_PACAUR_TOOL);
       p_instance.getSYSsettings()->sync();
       ret = ctn_PACAUR_TOOL + params;
+    }
+    else if (UnixCommand::hasTheExecutable(ctn_PARU_TOOL))
+    {
+      if (getAURNoConfirmParam()) params += QLatin1String(" --noconfirm ");
+
+      p_instance.setAURTool(ctn_PARU_TOOL);
+      p_instance.getSYSsettings()->sync();
+      ret = ctn_PARU_TOOL + params;
     }
   }
 

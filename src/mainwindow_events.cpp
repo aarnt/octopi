@@ -395,10 +395,6 @@ void MainWindow::keyPressEvent(QKeyEvent* ke)
   }
   /*else if(ke->key() == Qt::Key_Z && ke->modifiers() == (Qt::ShiftModifier|Qt::ControlModifier))
   {
-    //QString passw=SettingsManager::getAURPassword();
-    //QMessageBox::warning(this, StrConstants::getApplicationName(),
-    //                      QStringLiteral("AURVote password: \"") + passw + QStringLiteral("\""));
-
     //THIS IS JUST A TEST CODE
     //testSharedMem();
   }*/
@@ -411,17 +407,6 @@ void MainWindow::keyPressEvent(QKeyEvent* ke)
  */
 void MainWindow::keyReleaseEvent(QKeyEvent* ke)
 {
-  /*if ((ui->tvPackages->hasFocus()) && (
-      ke->key() == Qt::Key_Up || ke->key() == Qt::Key_Down ||
-      ke->key() == Qt::Key_Home || ke->key() == Qt::Key_End ||
-      ke->key() == Qt::Key_PageUp || ke->key() == Qt::Key_PageDown))
-  {
-    if (ui->twProperties->currentIndex() == ctn_TABINDEX_INFORMATION)
-    {
-      refreshTabInfo(false, true);
-      ui->tvPackages->setFocus();
-    }
-  }*/
   if (ui->tvPackages->hasFocus() && ke->key() == Qt::Key_Space)
   {
     invalidateTabs();

@@ -850,6 +850,10 @@ QList<PackageListData> * Package::getAURPackageList(const QString &searchString)
   {
     return getYayPackageList(searchString, packageTuples);
   }
+  else if (aurTool == ctn_PARU_TOOL)
+  {
+    return getParuPackageList(searchString, packageTuples);
+  }
 
   pkgDescription = QLatin1String("");
   for(QString packageTuple: qAsConst(packageTuples))
@@ -1088,9 +1092,6 @@ QList<PackageListData> *Package::getYayPackageList(const QString& searchString, 
   PackageStatus pkgStatus;
   QList<PackageListData> * res = new QList<PackageListData>();
 
-  //QString pkgList = UnixCommand::getAURPackageList(searchString);
-  //QStringList packageTuples = pkgList.split(QRegularExpression("\\n"), QString::SkipEmptyParts);
-
   pkgDescription = QLatin1String("");
   for(QString packageTuple: packageTuples)
   {
@@ -1174,6 +1175,157 @@ QList<PackageListData> *Package::getYayPackageList(const QString& searchString, 
         pkgOutVersion = packageTuple.mid(i+11);
         pkgOutVersion = pkgOutVersion.remove(QStringLiteral("("));
         pkgOutVersion = pkgOutVersion.remove(QStringLiteral(")"));
+        pkgOutVersion = pkgOutVersion.remove(QRegularExpression(QStringLiteral("\\].*"))).trimmed();
+      }
+      else
+      {
+        //This is an uninstalled package
+        pkgStatus = ectn_NON_INSTALLED;
+        pkgOutVersion = QLatin1String("");
+      }
+    }
+    else
+    {
+      //This is a description!
+      //else
+      {
+        if (!packageTuple.trimmed().isEmpty())
+          pkgDescription += packageTuple.trimmed();
+        else
+        {
+          pkgDescription += QLatin1String(" ");
+        }
+      }
+    }
+  }
+
+  bool addLast=false;
+
+  //And adds the very last package...
+  if (packageTuples.count() > 1)
+  {
+    addLast=true;
+    //Tests if pkgName matches "^" or "$" criteria
+    if (searchString.at(0) == QLatin1Char('^') || searchString.at(searchString.length()-1) == QLatin1Char('$'))
+    {
+      QRegularExpression re(searchString);
+      QRegularExpressionMatch match = re.match(pkgName);
+
+      if (!match.hasMatch()) addLast = false;
+    }
+  }
+
+  if (addLast)
+  {
+    pkgDescription = pkgName + QLatin1String(" ") + pkgDescription;
+    PackageListData pld =
+        PackageListData(pkgName, pkgRepository, pkgVersion, pkgDescription, pkgStatus, pkgOutVersion);
+    pld.popularity = pkgVotes;
+
+    res->append(pld);
+  }
+
+  if (res->count() > 0 && res->at(0).repository !=
+      StrConstants::getForeignPkgRepositoryName().toUpper()) res->removeAt(0);
+
+  return res;
+}
+
+/*
+ * Retrieves the list of all AUR packages in the database using Paru (installed + non-installed)
+ * given the search parameter
+ */
+QList<PackageListData> *Package::getParuPackageList(const QString &searchString, const QStringList &packageTuples)
+{
+  QString pkgName, pkgRepository, pkgVersion, pkgDescription, pkgOutVersion;
+  bool addPkg;
+  int pkgVotes;
+  PackageStatus pkgStatus;
+  QList<PackageListData> * res = new QList<PackageListData>();
+
+  pkgDescription = QLatin1String("");
+  for(QString packageTuple: packageTuples)
+  {
+    if (packageTuple[0].isNumber())
+    {
+      int space=packageTuple.indexOf(QLatin1String(" "));
+      packageTuple = packageTuple.mid(space+1);
+    }
+
+    if (!packageTuple[0].isSpace())
+    {
+      addPkg=true;
+      //Do we already have a description?
+      if (pkgDescription != QLatin1String(""))
+      {
+        //Tests if pkgName matches "^" or "$" criteria
+        if (searchString.at(0) == QLatin1Char('^') || searchString.at(searchString.length()-1) == QLatin1Char('$'))
+        {
+          QRegularExpression re(searchString);
+          QRegularExpressionMatch match = re.match(pkgName);
+
+          if (!match.hasMatch()) addPkg=false;
+        }
+
+        pkgDescription = pkgName + QLatin1String(" ") + pkgDescription;
+
+        PackageListData pld =
+            PackageListData(pkgName, pkgRepository, pkgVersion, pkgDescription, pkgStatus, pkgOutVersion);
+
+        pld.popularity = pkgVotes;
+
+        if (addPkg) res->append(pld);
+        pkgDescription = QLatin1String("");
+      }
+
+      //First we get repository and name!
+      QStringList parts = packageTuple.split(QLatin1Char(' '));
+      QString repoName = parts[0];
+      int a = repoName.indexOf(QLatin1String("/"));
+      pkgRepository = repoName.left(a);
+
+      if (pkgRepository != StrConstants::getForeignPkgRepositoryName())
+      {
+        res->removeAt(res->count()-1);
+        continue;
+      }
+
+      pkgRepository = StrConstants::getForeignPkgRepositoryName().toUpper();
+      pkgName = repoName.mid(a+1);
+      pkgVersion = parts[1];
+
+      QStringList strVotes = parts.filter(QStringLiteral("[+"));
+
+      pkgVotes = 0;
+      if (strVotes.count() > 0)
+      {
+        if (!strVotes.first().isEmpty())
+        {
+          //[+65 ~1.69%]
+          strVotes.first().replace(QLatin1Char('['), QLatin1String("")).replace(QLatin1Char('+'), QLatin1String(""));
+          int space = strVotes.first().indexOf(QLatin1String(" "));
+          strVotes = strVotes.mid(0, space);
+          if (!strVotes.isEmpty()) pkgVotes = strVotes.first().toInt();
+        }
+        else
+          pkgVotes = 0;
+      }
+
+      if(packageTuple.indexOf(QLatin1String("[Installed]")) != -1)
+      {
+        //This is an installed package
+        pkgStatus = ectn_FOREIGN;
+        pkgOutVersion = QLatin1String("");
+      }
+      else if (packageTuple.indexOf(QLatin1String("[Installed:")) != -1)
+      {
+        //This is an outdated installed package
+        pkgStatus = ectn_FOREIGN_OUTDATED;
+
+        int i = packageTuple.indexOf(QLatin1String("[Installed:"));
+        pkgOutVersion = packageTuple.mid(i+11);
+        pkgOutVersion = pkgOutVersion.remove(QStringLiteral("["));
+        pkgOutVersion = pkgOutVersion.remove(QStringLiteral("["));
         pkgOutVersion = pkgOutVersion.remove(QRegularExpression(QStringLiteral("\\].*"))).trimmed();
       }
       else
@@ -1902,10 +2054,13 @@ QHash<QString, QString> Package::getAUROutdatedPackagesNameVersion()
       getForeignRepositoryToolName() != ctn_TRIZEN_TOOL &&
       getForeignRepositoryToolName() != ctn_PIKAUR_TOOL &&
       getForeignRepositoryToolName() != ctn_KCP_TOOL &&
-      getForeignRepositoryToolName() != ctn_YAY_TOOL))
+      getForeignRepositoryToolName() != ctn_YAY_TOOL &&
+      getForeignRepositoryToolName() != ctn_PARU_TOOL))
   {
     return hash;
   }
+
+  //TODO: Code PARU logic for outdated packages!
 
   QString res = removeColorCodesFromStr(QString::fromUtf8(UnixCommand::getOutdatedAURPackageList()));
   res = res.trimmed();

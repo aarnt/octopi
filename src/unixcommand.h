@@ -93,7 +93,6 @@ public:
   static QByteArray getKCPPackageInformation(const QString &pkgName);
   static QByteArray getPackageInformation(const QString &pkgName, bool foreignPackage);
   static QByteArray getPackageContentsUsingPacman(const QString &pkgName);
-  //static bool isPkgfileInstalled();
   static QByteArray getPackageContentsUsingPkgfile(const QString &pkgName);
 
   static QString getPackageByFilePath(const QString &filePath);
@@ -120,25 +119,6 @@ public:
   }
 
   static bool isUserInWheelGroup();
-
-  /*static QFile* generateTemporaryFile(){
-    quint32 gen = QRandomGenerator::global()->generate();
-    m_temporaryFile = new QFile(ctn_TEMP_ACTIONS_FILE + QString::number(gen));
-    m_temporaryFile->open(QIODevice::ReadWrite|QIODevice::Text);
-    m_temporaryFile->setPermissions(QFile::Permissions(QFile::ExeOwner|QFile::ReadOwner));
-
-    return m_temporaryFile;
-  }*/
-
-  /*static void removeTemporaryFile(){
-    if (m_temporaryFile != nullptr){
-      m_temporaryFile->close();
-      m_temporaryFile->remove();
-      delete m_temporaryFile;
-      m_temporaryFile = nullptr;
-    }
-  }*/
-
   static bool isPackageInstalled(const QString& pkgName);
   static void removeSharedMemFiles();
   static void removeTemporaryFiles();

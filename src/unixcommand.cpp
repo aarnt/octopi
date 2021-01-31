@@ -63,9 +63,9 @@ UnixCommand::UnixCommand(QObject *parent): QObject()
   QObject::connect(this, SIGNAL( readyReadStandardOutput() ), this,
                    SLOT( processReadyReadStandardOutput() ));
 
-  QObject::connect(m_process, SIGNAL( finished ( int, QProcess::ExitStatus )), this,
-                   SIGNAL( finished ( int, QProcess::ExitStatus )) );
-  QObject::connect(this, SIGNAL( finished ( int, QProcess::ExitStatus )), this,
+  QObject::connect(m_process, SIGNAL( finished(int,QProcess::ExitStatus)), this,
+                   SIGNAL( finished(int,QProcess::ExitStatus)) );
+  QObject::connect(this, SIGNAL(finished(int,QProcess::ExitStatus)), this,
                    SLOT( processReadyReadStandardOutput() ));
 
   QObject::connect(m_process, SIGNAL( readyReadStandardError() ), this,
@@ -76,8 +76,8 @@ UnixCommand::UnixCommand(QObject *parent): QObject()
   //Terminal signals
   QObject::connect(m_terminal, SIGNAL( started()), this,
                    SIGNAL( started()));
-  QObject::connect(m_terminal, SIGNAL( finished ( int, QProcess::ExitStatus )), this,
-                   SIGNAL( finished ( int, QProcess::ExitStatus )) );
+  QObject::connect(m_terminal, SIGNAL(finished(int,QProcess::ExitStatus)), this,
+                   SIGNAL(finished(int,QProcess::ExitStatus)) );
 
   QObject::connect(m_terminal, SIGNAL(commandToExecInQTermWidget(QString)), this,
                    SIGNAL(commandToExecInQTermWidget(QString)));
@@ -191,7 +191,6 @@ bool UnixCommand::hasPackage(const QString &pkgName)
  */
 QByteArray UnixCommand::getAURInformation(const QString &pkgName)
 {
-  QByteArray result("");
   QProcess aur;
   QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
   env.insert(QStringLiteral("LANG"), QStringLiteral("C"));
@@ -271,7 +270,9 @@ QByteArray UnixCommand::getAURPackageList(const QString &searchString)
       sl << searchString;
       aur.start(tool, sl);
     }
-    else if (Package::getForeignRepositoryToolName() == ctn_PIKAUR_TOOL || Package::getForeignRepositoryToolName() == ctn_YAY_TOOL)
+    else if (Package::getForeignRepositoryToolName() == ctn_PIKAUR_TOOL ||
+             Package::getForeignRepositoryToolName() == ctn_YAY_TOOL ||
+             Package::getForeignRepositoryToolName() == ctn_PARU_TOOL)
     {
       sl << QLatin1String("--color=never");
       sl << QLatin1String("--aur");
@@ -459,21 +460,6 @@ QByteArray UnixCommand::getPackageContentsUsingPacman(const QString& pkgName)
   QByteArray res = performQuery(args);
   return res;
 }
-
-/*
- * Check if pkgfile is installed on the system
- */
-/*bool UnixCommand::isPkgfileInstalled()
-{
-  QProcess pkgfile;
-
-  QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
-  pkgfile.setProcessEnvironment(env);
-  pkgfile.start(QStringLiteral("pkgfile"), QStringList() << QStringLiteral("-V"));
-  pkgfile.waitForFinished();
-
-  return pkgfile.exitStatus() == QProcess::NormalExit;
-}*/
 
 /*
  * Given a package name, which can be installed or uninstalled on system
@@ -831,6 +817,8 @@ QStringList UnixCommand::getAvailableAURTools()
       aurTools << ctn_PIKAUR_TOOL;
     if (UnixCommand::hasTheExecutable(ctn_YAY_TOOL))
       aurTools << ctn_YAY_TOOL;
+    if (UnixCommand::hasTheExecutable(ctn_PARU_TOOL))
+      aurTools << ctn_PARU_TOOL;
   }
 
   return aurTools;
@@ -848,7 +836,7 @@ double UnixCommand::getCheckUpdatesSize()
   //First we discover user's id
   QProcess p;
   params << QStringLiteral("-u");
-  params << qEnvironmentVariable("USER", QStringLiteral(""));
+  params << qEnvironmentVariable("USER", QLatin1String(""));
 
   if (params.at(1).isEmpty()) return totalSize;
 
@@ -945,8 +933,6 @@ void UnixCommand::runCommandInTerminalAsNormalUser(const QStringList &commandLis
  */
 void UnixCommand::executeCommand(const QString &pCommand)
 {
-  QString command;
-
   //COLUMNS variable code!
   QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
   env.remove(QStringLiteral("LANG"));
@@ -972,8 +958,6 @@ void UnixCommand::executeCommandWithSharedMemHelper(const QString &pCommand, QSh
 {
   //Checks if octopi-helper is running. If so, we exit!
   if (isOctopiHelperRunning()) return;
-
-  QString command;
 
   //COLUMNS variable code!
   QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
@@ -1047,7 +1031,6 @@ QString UnixCommand::errorString()
 
 void UnixCommand::buildOctopiHelperCommandWithSharedMem(const QString &pCommand, QSharedMemory *sharedMem)
 {
-  QString octopiHelperCommandParameter;
   QStringList commandList;
   QString commands;
   QByteArray sharedData;
@@ -1081,7 +1064,6 @@ int UnixCommand::cancelProcess(QSharedMemory *sharedMem)
 {
   QProcess pacman;
   QString pCommand = QLatin1String("killall pacman; rm ") + ctn_PACMAN_DATABASE_LOCK_FILE;
-  QString result;
 
   buildOctopiHelperCommandWithSharedMem(pCommand, sharedMem);
   QStringList sl;
@@ -1235,7 +1217,7 @@ QStringList UnixCommand::getFieldFromPacmanConf(const QString &fieldName)
     int end = contents.indexOf(fieldName, from, Qt::CaseInsensitive);
     if (end != -1)
     {
-      //Does it contains a # before it???
+      //Does it contain a # before it???
       int start = end;
       do{
         start--;
@@ -1469,7 +1451,7 @@ QProcessEnvironment UnixCommand::getProcessEnvironment()
 }
 
 /*
- * Checks if Octopi/Octopi-notifier, cache-cleaner, etc is being executed
+ * Checks if octphelper is being executed
  */
 bool UnixCommand::isOctopiHelperRunning()
 {

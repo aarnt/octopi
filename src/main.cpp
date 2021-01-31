@@ -163,7 +163,7 @@ int main(int argc, char *argv[])
   QObject::connect(&app, SIGNAL(checkUpdates()), &w, SLOT(doCheckUpdates()));
   QObject::connect(&app, SIGNAL(AURUpgrade()), &w, SLOT(doAURUpgrade()));
   QObject::connect(&app, SIGNAL(systemUpgrade(SystemUpgradeOptions)), &w, SLOT(doSystemUpgrade(SystemUpgradeOptions)));
-  QObject::connect(&app, SIGNAL(installLocalPackages(const QStringList&)), &w, SLOT(droppedLocalPackages(const QStringList&)));
+  QObject::connect(&app, SIGNAL(installLocalPackages(QStringList)), &w, SLOT(droppedLocalPackages(QStringList)));
 
   if (w.startServer())
   {

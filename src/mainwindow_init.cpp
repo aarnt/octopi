@@ -60,10 +60,6 @@ void MainWindow::loadSettings()
 
     ui->tvPackages->header()->setSortIndicator( packageListOrderedCol, packageListSortOrder );
     ui->tvPackages->sortByColumn( packageListOrderedCol, packageListSortOrder );
-
-    /*if (!SettingsManager::isValidSUToolSelected()){
-      SettingsManager::setSUTool(ctn_AUTOMATIC);
-    }*/
   }
   else assert(false);
 
@@ -484,7 +480,7 @@ void MainWindow::changeTabWidgetPropertiesIndex(const int newIndex)
  */
 void MainWindow::initTabWidgetPropertiesIndex()
 {
-  connect(ui->splitterHorizontal, SIGNAL(splitterMoved(int, int)), this, SLOT(horizontalSplitterMoved(int, int)));
+  connect(ui->splitterHorizontal, SIGNAL(splitterMoved(int,int)), this, SLOT(horizontalSplitterMoved(int,int)));
   ui->twProperties->setCurrentIndex(SettingsManager::getCurrentTabIndex());
 }
 
@@ -494,17 +490,15 @@ void MainWindow::initTabWidgetPropertiesIndex()
  */
 void MainWindow::initTabActions()
 {
-  //m_modelTransaction = new QStandardItemModel(this);
-  //ui->twProperties->setModelTransaction(m_modelTransaction);
   ui->twProperties->initTabActions();
 
   connect(ui->twProperties->getTvTransaction(), SIGNAL(customContextMenuRequested(QPoint)),
           this, SLOT(execContextMenuTransaction(QPoint)));
   connect(ui->twProperties->getTvTransaction()->selectionModel(), SIGNAL(selectionChanged(QItemSelection,QItemSelection)),
           this, SLOT(tvTransactionSelectionChanged(QItemSelection,QItemSelection)));
-  connect(ui->twProperties->getTvTransaction()->model(), SIGNAL(rowsInserted ( const QModelIndex , int, int )),
+  connect(ui->twProperties->getTvTransaction()->model(), SIGNAL(rowsInserted(QModelIndex,int,int)),
           this, SLOT(tvTransactionRowsInserted(QModelIndex,int,int)));
-  connect(ui->twProperties->getTvTransaction()->model(), SIGNAL(rowsRemoved ( const QModelIndex , int, int )),
+  connect(ui->twProperties->getTvTransaction()->model(), SIGNAL(rowsRemoved(QModelIndex,int,int)),
           this, SLOT(tvTransactionRowsRemoved(QModelIndex,int,int)));
 }
 
@@ -644,7 +638,7 @@ void MainWindow::initTabFiles()
 
   connect(ui->twProperties->getTvPkgFileList(), SIGNAL(customContextMenuRequested(QPoint)),
           this, SLOT(execContextMenuPkgFileList(QPoint)));
-  connect(ui->twProperties->getTvPkgFileList(), SIGNAL(doubleClicked (const QModelIndex&)),
+  connect(ui->twProperties->getTvPkgFileList(), SIGNAL(doubleClicked(QModelIndex)),
           this, SLOT(openFile()));
 }
 
@@ -723,6 +717,7 @@ void MainWindow::initActions()
 
   m_actionSwitchToForeignTool = new QAction(this);
   m_actionSwitchToForeignTool->setIcon(IconHelper::getIconForeignGreen());
+
   if (SettingsManager::getAURTool() != ctn_NO_AUR_TOOL)
   {
     m_actionSwitchToForeignTool->setToolTip(StrConstants::getUseForeignTool());
@@ -860,13 +855,9 @@ void MainWindow::initActions()
     }
   }
 
-  QString text;
   const auto acs = this->findChildren<QAction*>(QRegularExpression(QLatin1String("(m_a|a)ction\\S*")));
   for(QAction* ac: acs)
   {
-    //text = ac->text().remove("&");
-    //ac->setText(qApp->translate("MainWindow", text.toUtf8(), 0));
-
     if (!ac->shortcut().isEmpty())
     {
       ac->setToolTip(ac->toolTip() + QLatin1String("  (") + ac->shortcut().toString() + QLatin1String(")"));

@@ -171,7 +171,6 @@ bool MainWindow::hasInstallActions()
 void MainWindow::insertInstallPackageIntoTransaction(const QString &pkgName, bool isDep)
 {
   QTreeView *tvTransaction = ui->twProperties->getTvTransaction();
-
   QStandardItem * siInstallParent = getInstallTransactionParentItem();
   QStandardItem * siPackageToInstall = new QStandardItem(IconHelper::getIconInstallItem(), pkgName);
   if (isDep) siPackageToInstall->setStatusTip(QStringLiteral("isDep"));
@@ -289,7 +288,7 @@ void MainWindow::insertIntoRemovePackage(QModelIndex *indexToInclude)
     }
 
     //First, let's see if we are dealing with a package group
-    if(!isAllGroupsSelected())
+    if(!isAURGroupSelected() && !isAllGroupsSelected())
     {
       //If we are trying to remove all the group's packages, why not remove the entire group?
       if(selectedRows.count() == m_packageModel->getPackageCount())
@@ -412,7 +411,7 @@ void MainWindow::doChangeInstallReason(const QHash<QString, QString> &listOfTarg
   m_pacmanExec->setSharedMemory(m_sharedMemory);
   if (m_debugInfo) m_pacmanExec->setDebugMode(true);
 
-  QObject::connect(m_pacmanExec, SIGNAL( finished ( int, QProcess::ExitStatus )),
+  QObject::connect(m_pacmanExec, SIGNAL( finished (int, QProcess::ExitStatus)),
                    this, SLOT( pacmanProcessFinished(int, QProcess::ExitStatus) ));
 
   QObject::connect(m_pacmanExec, SIGNAL(percentage(int)), this, SLOT(incrementPercentage(int)));
@@ -444,8 +443,8 @@ void MainWindow::insertIntoInstallPackage(QModelIndex *indexToInclude)
       selectedRows.append(*indexToInclude);
     }
 
-    //First, let's see if we are dealing with a package group
-    if(!isAllGroupsSelected())
+    //First, let's see if we are dealing with a package group    
+    if(!isAURGroupSelected() && !isAllGroupsSelected())
     {
       //If we are trying to insert all the group's packages, why not insert the entire group?
       if(selectedRows.count() == m_packageModel->getPackageCount())
@@ -818,7 +817,7 @@ void MainWindow::doCheckUpdates()
   m_pacmanExec = new PacmanExec();
   if (m_debugInfo) m_pacmanExec->setDebugMode(true);
 
-  QObject::connect(m_pacmanExec, SIGNAL( finished ( int, QProcess::ExitStatus )),
+  QObject::connect(m_pacmanExec, SIGNAL( finished (int, QProcess::ExitStatus)),
                    this, SLOT( pacmanProcessFinished(int, QProcess::ExitStatus) ));
 
   QObject::connect(m_pacmanExec, SIGNAL(percentage(int)), this, SLOT(incrementPercentage(int)));
@@ -844,7 +843,7 @@ void MainWindow::doMirrorCheck()
   m_pacmanExec = new PacmanExec();
   if (m_debugInfo) m_pacmanExec->setDebugMode(true);
 
-  QObject::connect(m_pacmanExec, SIGNAL( finished ( int, QProcess::ExitStatus )),
+  QObject::connect(m_pacmanExec, SIGNAL( finished (int, QProcess::ExitStatus)),
                    this, SLOT( pacmanProcessFinished(int, QProcess::ExitStatus) ));
 
   QObject::connect(m_pacmanExec, SIGNAL(percentage(int)), this, SLOT(incrementPercentage(int)));
@@ -879,7 +878,7 @@ void MainWindow::doAURUpgrade()
   m_pacmanExec->setSharedMemory(m_sharedMemory);
   if (m_debugInfo) m_pacmanExec->setDebugMode(true);
 
-  QObject::connect(m_pacmanExec, SIGNAL( finished ( int, QProcess::ExitStatus )),
+  QObject::connect(m_pacmanExec, SIGNAL( finished (int, QProcess::ExitStatus)),
                    this, SLOT( pacmanProcessFinished(int, QProcess::ExitStatus) ));
 
   QObject::connect(m_pacmanExec, SIGNAL(percentage(int)), this, SLOT(incrementPercentage(int)));
@@ -908,8 +907,8 @@ bool MainWindow::prepareSystemUpgrade()
   m_pacmanExec->setSharedMemory(m_sharedMemory);
   if (m_debugInfo) m_pacmanExec->setDebugMode(true);
 
-  QObject::connect(m_pacmanExec, SIGNAL( finished ( int, QProcess::ExitStatus )),
-                   this, SLOT( pacmanProcessFinished(int, QProcess::ExitStatus) ));
+  QObject::connect(m_pacmanExec, SIGNAL(finished (int, QProcess::ExitStatus)),
+                   this, SLOT( pacmanProcessFinished(int, QProcess::ExitStatus)));
 
   QObject::connect(m_pacmanExec, SIGNAL(percentage(int)), this, SLOT(incrementPercentage(int)));
   QObject::connect(m_pacmanExec, SIGNAL(textToPrintExt(QString)), this, SLOT(outputText(QString)));
@@ -1109,10 +1108,10 @@ void MainWindow::doSystemUpgrade(SystemUpgradeOptions systemUpgradeOptions)
 void MainWindow::doRemoveAndInstallAUR()
 {
   QString listOfRemoveTargets = getTobeRemovedPackages();
-  listOfRemoveTargets.replace(StrConstants::getForeignRepositoryGroupName() + QLatin1Char('/'), QStringLiteral(""));
+  listOfRemoveTargets.replace(StrConstants::getForeignRepositoryGroupName() + QLatin1Char('/'), QLatin1String(""));
   QHash<QString, bool> listToBeInst = getTobeInstalledPackages();
   QString listOfInstallTargets = listToBeInst.keys().join(QStringLiteral(" "));
-  listOfInstallTargets.replace(StrConstants::getForeignRepositoryGroupName() + QLatin1Char('/'), QStringLiteral(""));
+  listOfInstallTargets.replace(StrConstants::getForeignRepositoryGroupName() + QLatin1Char('/'), QLatin1String(""));
 
   disableTransactionActions();
   m_progressWidget->setValue(0);
@@ -1123,7 +1122,7 @@ void MainWindow::doRemoveAndInstallAUR()
   m_pacmanExec->setSharedMemory(m_sharedMemory);
   if (m_debugInfo) m_pacmanExec->setDebugMode(true);
 
-  QObject::connect(m_pacmanExec, SIGNAL( finished ( int, QProcess::ExitStatus )),
+  QObject::connect(m_pacmanExec, SIGNAL(finished (int, QProcess::ExitStatus)),
                    this, SLOT( pacmanProcessFinished(int, QProcess::ExitStatus) ));
 
   QObject::connect(m_pacmanExec, SIGNAL(percentage(int)), this, SLOT(incrementPercentage(int)));
@@ -1260,7 +1259,7 @@ void MainWindow::doRemoveAndInstall()
     m_pacmanExec->setSharedMemory(m_sharedMemory);
     if (m_debugInfo) m_pacmanExec->setDebugMode(true);
 
-    QObject::connect(m_pacmanExec, SIGNAL( finished ( int, QProcess::ExitStatus )),
+    QObject::connect(m_pacmanExec, SIGNAL(finished(int, QProcess::ExitStatus)),
                      this, SLOT( pacmanProcessFinished(int, QProcess::ExitStatus) ));
 
     QObject::connect(m_pacmanExec, SIGNAL(percentage(int)), this, SLOT(incrementPercentage(int)));
@@ -1334,7 +1333,7 @@ void MainWindow::doRemove()
     m_pacmanExec->setSharedMemory(m_sharedMemory);
     if (m_debugInfo) m_pacmanExec->setDebugMode(true);
 
-    QObject::connect(m_pacmanExec, SIGNAL( finished ( int, QProcess::ExitStatus )),
+    QObject::connect(m_pacmanExec, SIGNAL(finished (int, QProcess::ExitStatus)),
                      this, SLOT( pacmanProcessFinished(int, QProcess::ExitStatus) ));
 
     QObject::connect(m_pacmanExec, SIGNAL(percentage(int)), this, SLOT(incrementPercentage(int)));
@@ -1403,7 +1402,7 @@ void MainWindow::doInstallAURPackage()
   m_pacmanExec->setSharedMemory(m_sharedMemory);
   if (m_debugInfo) m_pacmanExec->setDebugMode(true);
 
-  QObject::connect(m_pacmanExec, SIGNAL( finished ( int, QProcess::ExitStatus )),
+  QObject::connect(m_pacmanExec, SIGNAL(finished (int, QProcess::ExitStatus)),
                    this, SLOT( pacmanProcessFinished(int, QProcess::ExitStatus) ));
 
   QObject::connect(m_pacmanExec, SIGNAL(percentage(int)), this, SLOT(incrementPercentage(int)));
@@ -1454,7 +1453,7 @@ void MainWindow::doInstallYayPackage()
   m_pacmanExec = new PacmanExec();
   if (m_debugInfo) m_pacmanExec->setDebugMode(true);
 
-  QObject::connect(m_pacmanExec, SIGNAL( finished ( int, QProcess::ExitStatus )),
+  QObject::connect(m_pacmanExec, SIGNAL(finished(int, QProcess::ExitStatus)),
                    this, SLOT( pacmanProcessFinished(int, QProcess::ExitStatus) ));
 
   QObject::connect(m_pacmanExec, SIGNAL(percentage(int)), this, SLOT(incrementPercentage(int)));
@@ -1525,7 +1524,7 @@ void MainWindow::doRemoveAURPackage()
   m_pacmanExec->setSharedMemory(m_sharedMemory);
   if (m_debugInfo) m_pacmanExec->setDebugMode(true);
 
-  QObject::connect(m_pacmanExec, SIGNAL( finished ( int, QProcess::ExitStatus )),
+  QObject::connect(m_pacmanExec, SIGNAL(finished(int, QProcess::ExitStatus)),
                    this, SLOT( pacmanProcessFinished(int, QProcess::ExitStatus) ));
 
   QObject::connect(m_pacmanExec, SIGNAL(percentage(int)), this, SLOT(incrementPercentage(int)));
@@ -1718,7 +1717,7 @@ void MainWindow::doInstallAUR()
   m_pacmanExec->setSharedMemory(m_sharedMemory);
   if (m_debugInfo) m_pacmanExec->setDebugMode(true);
 
-  QObject::connect(m_pacmanExec, SIGNAL( finished ( int, QProcess::ExitStatus )),
+  QObject::connect(m_pacmanExec, SIGNAL(finished(int, QProcess::ExitStatus)),
                    this, SLOT( pacmanProcessFinished(int, QProcess::ExitStatus) ));
 
   QObject::connect(m_pacmanExec, SIGNAL(percentage(int)), this, SLOT(incrementPercentage(int)));
@@ -1816,7 +1815,7 @@ void MainWindow::doInstall()
     m_pacmanExec->setSharedMemory(m_sharedMemory);
     if (m_debugInfo) m_pacmanExec->setDebugMode(true);
 
-    QObject::connect(m_pacmanExec, SIGNAL( finished ( int, QProcess::ExitStatus )),
+    QObject::connect(m_pacmanExec, SIGNAL(finished(int, QProcess::ExitStatus)),
                      this, SLOT( pacmanProcessFinished(int, QProcess::ExitStatus) ));
 
     QObject::connect(m_pacmanExec, SIGNAL(percentage(int)), this, SLOT(incrementPercentage(int)));
@@ -1889,7 +1888,7 @@ void MainWindow::doInstallLocalPackages()
     m_pacmanExec = new PacmanExec();
     if (m_debugInfo) m_pacmanExec->setDebugMode(true);
 
-    QObject::connect(m_pacmanExec, SIGNAL( finished ( int, QProcess::ExitStatus )),
+    QObject::connect(m_pacmanExec, SIGNAL(finished(int, QProcess::ExitStatus)),
                      this, SLOT( pacmanProcessFinished(int, QProcess::ExitStatus) ));
 
     QObject::connect(m_pacmanExec, SIGNAL(percentage(int)), this, SLOT(incrementPercentage(int)));
@@ -1984,8 +1983,6 @@ void MainWindow::toggleTransactionActions(const bool value)
   ui->actionInstallAUR->setEnabled(value);
   m_actionInstallPacmanUpdates->setEnabled(value);
   m_actionInstallAURUpdates->setEnabled(value);
-  //m_actionAUROpenPKGBUILD->setEnabled(value);
-  //m_actionAURShowPKGBUILDDiff->setEnabled(value);
 
   ui->actionRemoveTransactionItem->setEnabled(value);
   ui->actionRemoveTransactionItems->setEnabled(value);
