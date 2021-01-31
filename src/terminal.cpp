@@ -40,12 +40,21 @@ Terminal::~Terminal()
 {
 }
 
+QString Terminal::getSudoProgram()
+{
+  if (QFile::exists(QStringLiteral("/usr/bin/doas")) &&
+      QFile::exists(QStringLiteral("/etc/doas.conf")))
+    return QLatin1String("doas");
+  else
+    return QLatin1String("sudo");
+}
+
 /*
  * Executes the given command list with root credentials
  */
 void Terminal::runCommandInTerminalWithSudo(const QString& command)
 {
-  QString cmd = QLatin1String("sudo ") + UnixCommand::getShell() + QLatin1String(" -c \"") + command + QLatin1Char('"');
+  QString cmd = getSudoProgram() + QLatin1String(" ") + UnixCommand::getShell() + QLatin1String(" -c \"") + command + QLatin1Char('"');
   emit commandToExecInQTermWidget(cmd);
 }
 
@@ -71,9 +80,8 @@ void Terminal::runOctopiHelperInTerminalWithSharedMem(const QStringList &command
   if (removedLines) out += QLatin1String("echo \"") + StrConstants::getPressAnyKey() + QLatin1String("\"");
   out.remove(QLatin1String(";"));
 
-  QString suCommand = WMHelper::getSUCommand();
   QString commandToRun = ctn_OCTOPI_HELPER_PATH + QLatin1String(" -ts");
-  QString cmd = QLatin1String("sudo ") + commandToRun;
+  QString cmd = getSudoProgram() + QLatin1String(" ") + commandToRun;
   QByteArray sharedData=out.toLatin1();
 
   sharedMem->create(sharedData.size());

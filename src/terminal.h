@@ -40,11 +40,9 @@ public:
 
   //Executes the given commandList creating a ROOT temp transaction file and calling "octopi-helper -ts"
   void runOctopiHelperInTerminalWithSharedMem(const QStringList& commandList, QSharedMemory *sharedMem);
-
-  //Executes the given commandList creating a temp transaction file and calling "octopi-helper -t"
-  //void runOctopiHelperInTerminal(const QStringList& commandList);
-
   void runCommandInTerminalAsNormalUser(const QStringList& commandList);
+
+  QString getSudoProgram();
 
 signals:
   void started();

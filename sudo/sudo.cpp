@@ -63,6 +63,7 @@ const QString octopihelper{QStringLiteral("/usr/lib/octopi/octphelper")};
 const QString octopihelper_params{QStringLiteral("-ts")};
 const QString su_prog{QStringLiteral("su")};
 const QString sudo_prog{QStringLiteral("sudo")};
+const QString doas_prog{QStringLiteral("doas")};
 const QString pwd_prompt_end{QStringLiteral(": ")};
 const QChar nl{QLatin1Char('\n')};
 
@@ -244,7 +245,12 @@ QString Sudo::backendName (backend_t backEnd)
   // Remove leading paths in case variables are set with full path
   switch (backEnd) {
   case BACK_SU   : rv = su_prog;   break;
-  case BACK_SUDO : rv = sudo_prog; break;
+  case BACK_SUDO :
+    if (QFile::exists(QStringLiteral("/usr/bin/doas")) &&
+        QFile::exists(QStringLiteral("/etc/doas.conf")))
+      rv = doas_prog;
+    else rv = sudo_prog;
+    break;
     //: shouldn't be actually used but keep as short as possible in translations just in case.
   case BACK_NONE : rv = tr("unset");
   }
@@ -265,11 +271,13 @@ void Sudo::child()
   switch (mBackend)
   {
   case BACK_SUDO:
-    preserve_env_param = "--preserve-env=";
+    if (program == sudo_prog.toStdString())
+    {
+      preserve_env_param = "--preserve-env=";
+      preserve_env_param += env_workarounds();
+      *(param_arg++) = preserve_env_param.c_str(); //preserve environment
+    }
 
-    preserve_env_param += env_workarounds();
-
-    *(param_arg++) = preserve_env_param.c_str(); //preserve environment
     *(param_arg++) = "/bin/sh";
     break;
   case BACK_SU:
