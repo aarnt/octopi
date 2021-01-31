@@ -526,7 +526,7 @@ bool SettingsManager::getAURNoEditParam()
 QString SettingsManager::getAURBuildDir()
 {
   SettingsManager p_instance;
-  return p_instance.getSYSsettings()->value(ctn_KEY_AUR_BUILDDIR, QStringLiteral("")).toString();
+  return p_instance.getSYSsettings()->value(ctn_KEY_AUR_BUILDDIR, QLatin1String("")).toString();
 }
 
 bool SettingsManager::getSearchOutdatedAURPackages()
