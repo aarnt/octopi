@@ -1387,8 +1387,8 @@ void MainWindow::refreshStatusBarToolButtons()
  */
 void MainWindow::refreshStatusBar()
 {
-  m_lblSelCounter->setVisible(true);
-  m_lblTotalCounters->setVisible(true);
+  //m_lblSelCounter->setVisible(true);
+  //m_lblTotalCounters->setVisible(true);
   QString text;
   ui->statusBar->removeWidget(m_toolButtonPacman);
   ui->statusBar->removeWidget(m_toolButtonAUR);
@@ -1405,17 +1405,11 @@ void MainWindow::refreshStatusBar()
   }
   else if (m_packageModel->getPackageCount() == 0)
   {
-    //if (isAURGroupSelected() && UnixCommand::getLinuxDistro() != ectn_KAOS)
-    {
-      //if (m_packageModel->getPackageCount() == 0)
-      {
-        m_lblSelCounter->setText(QLatin1String(""));
-        m_lblSelCounter->setVisible(false);
-        m_lblTotalCounters->setVisible(false);
-      }
-    }
-
-    text = StrConstants::getNumberInstalledPackages(0);
+    m_lblSelCounter->setText(QLatin1String(""));
+    m_lblTotalCounters->setText(QLatin1String(""));
+    //m_lblSelCounter->setVisible(false);
+    //m_lblTotalCounters->setVisible(false);
+    //text = StrConstants::getNumberInstalledPackages(0);
   }
 
   m_lblTotalCounters->setText(text);
