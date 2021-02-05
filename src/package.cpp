@@ -782,38 +782,6 @@ QList<PackageListData> * Package::getPackageList(const QString &packageName, con
 }
 
 /*
- * Helper method to get URL information from remote package
- */
-/*QString Package::getAURUrl(const QString &pkgName)
-{
-  QString url=QLatin1String("");
-
-  if (getForeignRepositoryToolName() != ctn_KCP_TOOL)
-  {
-    QString pkgInfo = QString::fromUtf8(UnixCommand::getAURInformation(pkgName));
-    url = getURL(pkgInfo);
-  }
-
-  return url;
-}*/
-
-/*
- * Helper method to get Licenses information from remote package
- */
-/*QString Package::getAURLicenses(const QString &pkgName)
-{
-  QString licenses=QLatin1String("");
-
-  if (getForeignRepositoryToolName() != ctn_KCP_TOOL)
-  {
-    QString pkgInfo = QString::fromUtf8(UnixCommand::getAURInformation(pkgName));
-    licenses = getLicense(pkgInfo);
-  }
-
-  return licenses;
-}*/
-
-/*
  * Retrieves the list of all AUR packages in the database (installed + non-installed)
  * given the search parameter
  */
@@ -839,7 +807,11 @@ QList<PackageListData> * Package::getAURPackageList(const QString &searchString)
   QString pkgList = QString::fromUtf8(UnixCommand::getAURPackageList(auxSearchString));
   QStringList packageTuples = pkgList.split(QRegularExpression(QStringLiteral("\\n")), Qt::SkipEmptyParts);
 
-  if (aurTool == ctn_YAY_TOOL)
+  if (aurTool == ctn_KCP_TOOL)
+  {
+    return getKcpPackageList(searchString, packageTuples);
+  }
+  else if (aurTool == ctn_YAY_TOOL)
   {
     return getYayPackageList(searchString, packageTuples);
   }
@@ -857,8 +829,9 @@ QList<PackageListData> * Package::getAURPackageList(const QString &searchString)
       packageTuple = packageTuple.mid(space+1);
     }
 
-    if ((UnixCommand::getLinuxDistro() != ectn_KAOS && !packageTuple[0].isSpace()) ||
-        (UnixCommand::getLinuxDistro() == ectn_KAOS && packageTuple[0] != QLatin1Char('\t')))
+    /*if ((UnixCommand::getLinuxDistro() != ectn_KAOS && !packageTuple[0].isSpace()) ||
+        (UnixCommand::getLinuxDistro() == ectn_KAOS && packageTuple[0] != QLatin1Char('\t')))*/
+    if (!packageTuple[0].isSpace())
     {
       addPkg=true;
       //Do we already have a description?
@@ -887,10 +860,10 @@ QList<PackageListData> * Package::getAURPackageList(const QString &searchString)
       //First we get repository and name!
       QStringList parts = packageTuple.split(QLatin1Char(' '));
 
-      if (UnixCommand::getLinuxDistro() == ectn_KAOS)
+      /*if (UnixCommand::getLinuxDistro() == ectn_KAOS)
       {
         parts[0] = parts[0].remove(QStringLiteral("[1;35m"));
-      }
+      }*/
 
       QString repoName = parts[0];
       int a = repoName.indexOf(QLatin1String("/"));
@@ -1021,7 +994,7 @@ QList<PackageListData> * Package::getAURPackageList(const QString &searchString)
     else
     {            
       //This is a description!
-      if (UnixCommand::getLinuxDistro() == ectn_KAOS)
+      /*if (UnixCommand::getLinuxDistro() == ectn_KAOS)
       {        
         pkgDescription = packageTuple;
         pkgDescription.remove(QStringLiteral("\t"));
@@ -1029,15 +1002,176 @@ QList<PackageListData> * Package::getAURPackageList(const QString &searchString)
         if (pkgDescription.isEmpty())
           pkgDescription += QLatin1String(" ");
       }
-      else
-      {
+      else*/
+      //{
         if (!packageTuple.trimmed().isEmpty())
           pkgDescription += packageTuple.trimmed();
         else
         {
           pkgDescription += QLatin1String(" ");
         }
+      //}
+    }
+  }
+
+  bool addLast=false;
+
+  //And adds the very last package...
+  if (packageTuples.count() > 1)
+  {
+    addLast=true;
+    //Tests if pkgName matches "^" or "$" criteria
+    if (!searchString.isEmpty() && (searchString.at(0) == QLatin1Char('^') || searchString.at(searchString.length()-1) == QLatin1Char('$')))
+    {
+      QRegularExpression re(searchString);
+      QRegularExpressionMatch match = re.match(pkgName);
+
+      if (!match.hasMatch()) addLast = false;
+    }
+  }
+
+  if (addLast)
+  {
+    pkgDescription = pkgName + QLatin1String(" ") + pkgDescription;
+    PackageListData pld =
+        PackageListData(pkgName, pkgRepository, pkgVersion, pkgDescription, pkgStatus, pkgOutVersion);
+    pld.popularity = pkgVotes;
+
+    res->append(pld);
+  }
+
+  if (res->count() > 0 && res->at(0).repository !=
+      StrConstants::getForeignPkgRepositoryName().toUpper()) res->removeAt(0);
+
+  return res;
+}
+
+/*
+ * Retrieves the list of all AUR packages in the database using Kcp (installed + non-installed)
+ * given the search parameter
+ */
+QList<PackageListData> *Package::getKcpPackageList(const QString &searchString, const QStringList &packageTuples)
+{
+  QString pkgName, pkgRepository, pkgVersion, pkgDescription, pkgOutVersion;
+  bool addPkg;
+  int pkgVotes;
+  PackageStatus pkgStatus;
+  QList<PackageListData> * res = new QList<PackageListData>();
+
+  pkgDescription = QLatin1String("");
+  for(QString packageTuple: packageTuples)
+  {
+    if (packageTuple[0].isNumber())
+    {
+      int space=packageTuple.indexOf(QLatin1String(" "));
+      packageTuple = packageTuple.mid(space+1);
+    }
+
+    if (packageTuple[0] != QLatin1Char('\t')) //!packageTuple[0].isSpace())
+    {
+      addPkg=true;
+      //Do we already have a description?
+      if (pkgDescription != QLatin1String(""))
+      {
+        //Tests if pkgName matches "^" or "$" criteria
+        if (!searchString.isEmpty() && (searchString.at(0) == QLatin1Char('^') || searchString.at(searchString.length()-1) == QLatin1Char('$')))
+        {
+          QRegularExpression re(searchString);
+          QRegularExpressionMatch match = re.match(pkgName);
+
+          if (!match.hasMatch()) addPkg=false;
+        }
+
+        pkgDescription = pkgName + QLatin1String(" ") + pkgDescription;
+
+        PackageListData pld =
+            PackageListData(pkgName, pkgRepository, pkgVersion, pkgDescription, pkgStatus, pkgOutVersion);
+
+        pld.popularity = pkgVotes;
+
+        if (addPkg) res->append(pld);
+        pkgDescription = QLatin1String("");
       }
+
+      //First we get repository and name!
+      QStringList parts = packageTuple.split(QLatin1Char(' '));
+      parts[0] = parts[0].remove(QStringLiteral("[1;35m"));
+
+      QString repoName = parts[0];
+      int a = repoName.indexOf(QLatin1String("/"));
+      pkgRepository = repoName.left(a);
+
+      if (pkgRepository != StrConstants::getForeignPkgRepositoryName())
+      {
+        res->removeAt(res->count()-1);
+        continue;
+      }
+
+      pkgRepository = StrConstants::getForeignPkgRepositoryName().toUpper();
+      pkgName = repoName.mid(a+1);
+      pkgVersion = parts[1];
+
+      QStringList strVotes = parts.filter(QStringLiteral("("));
+
+      if (strVotes.isEmpty())
+        strVotes = parts.filter(QStringLiteral("+]"));
+
+      pkgVotes = 0;
+
+      if (strVotes.count() > 0)
+      {
+        if (!strVotes.first().isEmpty())
+          pkgVotes = strVotes.first().replace(QLatin1Char('('), QLatin1String("")).replace(QLatin1Char(')'), QLatin1String("")).toInt();
+        else
+          pkgVotes = 0;
+      }
+
+      if(packageTuple.indexOf(QLatin1String("[installed]")) != -1)
+      {
+        //This is an installed package
+        pkgStatus = ectn_FOREIGN;
+        pkgOutVersion = QLatin1String("");
+      }
+      else if (packageTuple.indexOf(QLatin1String("[installed:")) != -1)
+      {
+        int i = packageTuple.indexOf(QLatin1String(": "));
+        pkgOutVersion = packageTuple.mid(i+2);
+        pkgOutVersion = pkgOutVersion.remove(QStringLiteral("("));
+        pkgOutVersion = pkgOutVersion.remove(QStringLiteral(")"));
+        pkgOutVersion = pkgOutVersion.remove(QRegularExpression(QStringLiteral("\\].*"))).trimmed();
+
+        //Compare actual and new version
+        char const * pkgOutVersion_temp = pkgOutVersion.toStdString().c_str();
+        char const * pkgVersion_temp = pkgVersion.toStdString().c_str();
+        int pkgIsUptodate = alpm_pkg_vercmp(pkgOutVersion_temp, pkgVersion_temp);
+
+        if (pkgIsUptodate == -1)
+        {
+          //This is an outdated installed package
+          pkgStatus = ectn_FOREIGN_OUTDATED;
+        }
+        else
+        {
+          //This is an installed package
+          pkgStatus = ectn_FOREIGN;
+          pkgOutVersion = QLatin1String("");
+        }
+      }
+      else
+      {
+        //This is an uninstalled package
+        pkgStatus = ectn_NON_INSTALLED;
+        pkgOutVersion = QLatin1String("");
+      }
+    }
+    else
+    {
+      //This is a description!
+      pkgDescription = packageTuple;
+      pkgDescription.remove(QStringLiteral("\t"));
+
+      if (pkgDescription.isEmpty())
+        pkgDescription += QLatin1String(" ");
     }
   }
 
