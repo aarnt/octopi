@@ -252,6 +252,7 @@ QStringList AurVote::getVotedPackages()
 {
   QString searchUrl=QStringLiteral("https://aur.archlinux.org/packages/?O=0&SeB=nd&SB=w&SO=d&PP=250&do_Search=Go");
   QEventLoop eventLoop;
+
   QNetworkRequest request(QUrl{searchUrl});
   request.setHeader(QNetworkRequest::ContentTypeHeader,QStringLiteral("application/x-www-form-urlencoded"));
   QNetworkReply *r = m_networkManager->get(request);

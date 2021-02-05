@@ -34,6 +34,12 @@
 #include <QList>
 #include <QFile>
 #include <QRegularExpression>
+#include <QEventLoop>
+#include <QtNetwork/QNetworkReply>
+#include <QJsonArray>
+#include <QJsonDocument>
+#include <QJsonObject>
+#include <QJsonValue>
 
 /*
  * This class abstracts all the relevant package information and services
@@ -817,6 +823,7 @@ QList<PackageListData> * Package::getForeignToolPackageList(const QString &searc
   }
   else if (aurTool == ctn_PARU_TOOL)
   {
+    //return getAURPackageList(searchString);
     return getParuPackageList(searchString, packageTuples);
   }
 
@@ -1027,7 +1034,70 @@ QList<PackageListData> * Package::getForeignToolPackageList(const QString &searc
 }
 
 /*
- * Retrieves the list of all AUR packages in the database using Kcp (installed + non-installed)
+ * Retrieves the list of all AUR packages in the database using Aur rcp (installed + non-installed)
+ * given the search parameter
+ */
+QList<PackageListData> *Package::getAURPackageList(const QString &searchString)
+{
+  QString pkgName, pkgVersion, pkgDescription, pkgOutVersion;
+  int pkgVotes;
+  PackageStatus pkgStatus;
+  QList<PackageListData> * res = new QList<PackageListData>();
+
+  QString searchUrl=QStringLiteral("https://aur.archlinux.org/rpc/?v=5&type=search&by=name-desc&arg=%1");
+  QEventLoop eventLoop;
+  QNetworkRequest request(QUrl{searchUrl.arg(searchString)});
+  QNetworkAccessManager nam;
+  QNetworkReply *r = nam.get(request);
+  QObject::connect(r, SIGNAL(finished()), &eventLoop, SLOT(quit()));
+  eventLoop.exec();
+  QObject::disconnect(r, SIGNAL(finished()), &eventLoop, SLOT(quit()));
+
+  QByteArray contents = r->readAll();
+  QJsonDocument doc = QJsonDocument::fromJson(contents);
+  QJsonObject root = doc.object();
+  QJsonArray results = root[QLatin1String("results")].toArray();
+
+  QStringList names;
+  for (int c=0; c<results.count(); ++c)
+  {
+    QJsonObject pkg = results[c].toObject();
+
+    pkgName = pkg[QLatin1String("Name")].toString();
+    pkgVersion = pkg[QLatin1String("Version")].toString();
+    pkgOutVersion.clear();
+    pkgDescription = pkg[QLatin1String("Description")].toString();
+    pkgVotes = pkg[QLatin1String("NumVotes")].toInt();
+    pkgStatus = ectn_NON_INSTALLED;
+
+    PackageListData pld =
+        PackageListData(pkgName, StrConstants::getForeignRepositoryName(), pkgVersion, pkgDescription, pkgStatus, pkgOutVersion);
+    pld.popularity = pkgVotes;
+
+    res->append(pld);
+  }
+
+  return res;
+
+  /*QJsonObject sett2 = d.object();
+  QJsonValue value = sett2.value(QString("appName"));
+  qWarning() << value;
+  QJsonObject item = value.toObject();
+  qWarning() << tr("QJsonObject of description: ") << item;
+
+  // in case of string value get value and convert into string
+  qWarning() << tr("QJsonObject[appName] of description: ") << item["description"];
+  QJsonValue subobj = item["description"];
+  qWarning() << subobj.toString();
+
+  // in case of array get array and convert into string
+  qWarning() << tr("QJsonObject[appName] of value: ") << item["imp"];
+  QJsonArray test = item["imp"].toArray();
+  qWarning() << test[1].toString();*/
+}
+
+/*
+ * Retrieves the list of all KCP packages in the database using Kcp (installed + non-installed)
  * given the search parameter
  */
 QList<PackageListData> *Package::getKcpPackageList(const QString &searchString, const QStringList &packageTuples)
