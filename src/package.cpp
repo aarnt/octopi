@@ -367,13 +367,12 @@ QStringList *Package::getOutdatedAURStringList()
 {
   QStringList * res = new QStringList();
 
-  if (//getForeignRepositoryToolName() != ctn_YAOURT_TOOL &&
-      getForeignRepositoryToolName() != ctn_PACAUR_TOOL &&
+  if (getForeignRepositoryToolName() != ctn_PACAUR_TOOL &&
       getForeignRepositoryToolName() != ctn_TRIZEN_TOOL &&
       getForeignRepositoryToolName() != ctn_PIKAUR_TOOL &&
       getForeignRepositoryToolName() != ctn_YAY_TOOL &&
-      getForeignRepositoryToolName() != ctn_KCP_TOOL)
-    return res;
+      getForeignRepositoryToolName() != ctn_PARU_TOOL &&
+      getForeignRepositoryToolName() != ctn_KCP_TOOL) return res;
 
   QString outPkgList = removeColorCodesFromStr(QString::fromUtf8(UnixCommand::getOutdatedAURPackageList()));
   outPkgList = outPkgList.trimmed();
@@ -385,20 +384,14 @@ QStringList *Package::getOutdatedAURStringList()
   {
     QStringList parts = packageTuple.split(QLatin1Char(' '), Qt::SkipEmptyParts);
     {
-      if (//getForeignRepositoryToolName() == ctn_YAOURT_TOOL ||
-          getForeignRepositoryToolName() == ctn_TRIZEN_TOOL ||
+      if (getForeignRepositoryToolName() == ctn_TRIZEN_TOOL ||
           getForeignRepositoryToolName() == ctn_PIKAUR_TOOL ||
           getForeignRepositoryToolName() == ctn_YAY_TOOL ||
+          getForeignRepositoryToolName() == ctn_PARU_TOOL ||
           getForeignRepositoryToolName() == ctn_KCP_TOOL)
       {
         QString pkgName;
         pkgName = parts[0];
-
-        /*if (getForeignRepositoryToolName() == ctn_YAOURT_TOOL)
-        {
-          if (!pkgName.startsWith(StrConstants::getForeignRepositoryTargetPrefix()))
-              continue;
-        }*/
 
         if (pkgName.contains(StrConstants::getForeignRepositoryTargetPrefix(), Qt::CaseInsensitive))
         {          
@@ -2060,8 +2053,6 @@ QHash<QString, QString> Package::getAUROutdatedPackagesNameVersion()
     return hash;
   }
 
-  //TODO: Code PARU logic for outdated packages!
-
   QString res = removeColorCodesFromStr(QString::fromUtf8(UnixCommand::getOutdatedAURPackageList()));
   res = res.trimmed();
 
@@ -2071,6 +2062,7 @@ QHash<QString, QString> Package::getAUROutdatedPackagesNameVersion()
   if ((getForeignRepositoryToolName() == ctn_TRIZEN_TOOL) ||
       (getForeignRepositoryToolName() == ctn_PIKAUR_TOOL) ||
       (getForeignRepositoryToolName() == ctn_YAY_TOOL) ||
+      (getForeignRepositoryToolName() == ctn_PARU_TOOL) ||
       (getForeignRepositoryToolName() == ctn_KCP_TOOL))
   {
     for (QString line: listOfPkgs)
@@ -2109,6 +2101,7 @@ QHash<QString, QString> Package::getAUROutdatedPackagesNameVersion()
         }
       }
       else if (getForeignRepositoryToolName() == ctn_YAY_TOOL ||
+               getForeignRepositoryToolName() == ctn_PARU_TOOL ||
                getForeignRepositoryToolName() == ctn_TRIZEN_TOOL)
       {
         QStringList nameVersion = line.split(QStringLiteral(" "), Qt::SkipEmptyParts);
