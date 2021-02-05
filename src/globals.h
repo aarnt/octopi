@@ -33,7 +33,7 @@ struct PkgDesc{
   bool isForeign;
 };
 
-struct AUROutdatedPackages
+struct FTOutdatedPackages //aka ForeignToolOutdatedPackages
 {
   public:
     QHash<QString, QString> content;
@@ -48,7 +48,7 @@ inline QFutureWatcher<QList<PackageListData> *> g_fwForeignPacman;
 inline QFutureWatcher<GroupMemberPair>          g_fwPacmanGroup;
 inline QFutureWatcher<QList<PackageListData> *> g_fwAUR;
 inline QFutureWatcher<QList<PackageListData> *> g_fwAURMeta;
-inline QFutureWatcher<AUROutdatedPackages *> g_fwOutdatedAURPackages;
+inline QFutureWatcher<FTOutdatedPackages *> g_fwOutdatedAURPackages;
 inline QFutureWatcher<QString> g_fwDistroNews;
 inline QFutureWatcher<QString> g_fwPackageOwnsFile;
 inline QFutureWatcher<QList<PackageListData> *> g_fwMarkForeignPackages;
@@ -66,10 +66,10 @@ QList<PackageListData> * searchPacmanPackages(const QHash<QString, QString> *che
 QSet<QString> * searchUnrequiredPacmanPackages();
 QList<PackageListData> * searchForeignPackages();
 QList<PackageListData> * markForeignPackagesInPkgList(bool hasAURTool, QStringList *outdatedAURStringList);
-QList<PackageListData> * searchAURPackages(QString searchString);
+QList<PackageListData> * searchForeignToolPackages(QString searchString);
 QString searchPacmanPackagesByFile(const QString &file);
 GroupMemberPair          searchPacmanPackagesFromGroup(QString groupName);
-AUROutdatedPackages * getOutdatedAURPackages();
+FTOutdatedPackages * getOutdatedForeignToolPackages();
 QString getLatestDistroNews();
 PackageInfoData getKCPInformation(QString pkgName);
 QByteArray execCommand(QString cmd);

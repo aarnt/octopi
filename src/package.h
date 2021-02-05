@@ -181,11 +181,11 @@ class Package{
     static QList<PackageListData> *getForeignPackageList();
     static QList<PackageListData> *getPackageList(const QString &packageName, const QHash<QString, QString> *checkUpdatesOutdatedPackages);
 
-    static QList<PackageListData> * getAURPackageList(const QString &searchString);     //AUR methods
+    static QList<PackageListData> * getForeignToolPackageList(const QString &searchString);                                //Foreign Tool methods
     static QList<PackageListData> * getKcpPackageList(const QString &searchString, const QStringList &packageTuples);      //Kcp specific AUR pkg list
     static QList<PackageListData> * getYayPackageList(const QString &searchString, const QStringList &packageTuples);      //Yay specific AUR pkg list
     static QList<PackageListData> * getParuPackageList(const QString &searchString, const QStringList &packageTuples);     //Paru specific AUR pkg list
-    static QHash<QString, QString> getAUROutdatedPackagesNameVersion();    //AUR methods
+    static QHash<QString, QString> getForeignToolOutdatedPackagesNameVersion();    //AUR methods
 
     static PackageInfoData getKCPInformation(const QString &pkgName);
     static PackageInfoData getInformation(const QString &pkgName, bool foreignPackage = false);

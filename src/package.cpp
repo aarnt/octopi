@@ -785,7 +785,7 @@ QList<PackageListData> * Package::getPackageList(const QString &packageName, con
  * Retrieves the list of all AUR packages in the database (installed + non-installed)
  * given the search parameter
  */
-QList<PackageListData> * Package::getAURPackageList(const QString &searchString)
+QList<PackageListData> * Package::getForeignToolPackageList(const QString &searchString)
 {
   //aur/yaourt 1.2.2-1 [installed]
   //    A pacman wrapper with extended features and AUR support
@@ -829,8 +829,6 @@ QList<PackageListData> * Package::getAURPackageList(const QString &searchString)
       packageTuple = packageTuple.mid(space+1);
     }
 
-    /*if ((UnixCommand::getLinuxDistro() != ectn_KAOS && !packageTuple[0].isSpace()) ||
-        (UnixCommand::getLinuxDistro() == ectn_KAOS && packageTuple[0] != QLatin1Char('\t')))*/
     if (!packageTuple[0].isSpace())
     {
       addPkg=true;
@@ -859,12 +857,6 @@ QList<PackageListData> * Package::getAURPackageList(const QString &searchString)
 
       //First we get repository and name!
       QStringList parts = packageTuple.split(QLatin1Char(' '));
-
-      /*if (UnixCommand::getLinuxDistro() == ectn_KAOS)
-      {
-        parts[0] = parts[0].remove(QStringLiteral("[1;35m"));
-      }*/
-
       QString repoName = parts[0];
       int a = repoName.indexOf(QLatin1String("/"));
       pkgRepository = repoName.left(a);
@@ -887,7 +879,6 @@ QList<PackageListData> * Package::getAURPackageList(const QString &searchString)
       pkgVotes = 0;
 
       //Chakra does not have popularity support in CCR
-      //QString aurTool = getForeignRepositoryToolName();
       if (aurTool == ctn_TRIZEN_TOOL)
       {
         if (!strVotes.first().isEmpty())
@@ -994,23 +985,12 @@ QList<PackageListData> * Package::getAURPackageList(const QString &searchString)
     else
     {            
       //This is a description!
-      /*if (UnixCommand::getLinuxDistro() == ectn_KAOS)
-      {        
-        pkgDescription = packageTuple;
-        pkgDescription.remove(QStringLiteral("\t"));
-
-        if (pkgDescription.isEmpty())
-          pkgDescription += QLatin1String(" ");
+      if (!packageTuple.trimmed().isEmpty())
+        pkgDescription += packageTuple.trimmed();
+      else
+      {
+        pkgDescription += QLatin1String(" ");
       }
-      else*/
-      //{
-        if (!packageTuple.trimmed().isEmpty())
-          pkgDescription += packageTuple.trimmed();
-        else
-        {
-          pkgDescription += QLatin1String(" ");
-        }
-      //}
     }
   }
 
@@ -2172,7 +2152,7 @@ QString Package::getInformationInstalledSize(const QString &pkgName, bool foreig
 /*
  * Helper to get only the Version field of AUR package information
  */
-QHash<QString, QString> Package::getAUROutdatedPackagesNameVersion()
+QHash<QString, QString> Package::getForeignToolOutdatedPackagesNameVersion()
 {
   QHash<QString, QString> hash;
 

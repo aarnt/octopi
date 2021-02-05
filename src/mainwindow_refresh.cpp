@@ -675,7 +675,7 @@ void MainWindow::metaBuildPackageList()
       QFuture<QList<PackageListData> *> f;
       disconnect(&g_fwAUR, SIGNAL(finished()), this, SLOT(preBuildAURPackageList()));
       m_cic = new CPUIntensiveComputing();
-      f = QtConcurrent::run(searchAURPackages, m_leFilterPackage->text());
+      f = QtConcurrent::run(searchForeignToolPackages, m_leFilterPackage->text());
       connect(&g_fwAUR, SIGNAL(finished()), this, SLOT(preBuildAURPackageList()));
       disconnect(this, SIGNAL(buildAURPackageListDone()), &el, SLOT(quit()));
       connect(this, SIGNAL(buildAURPackageListDone()), &el, SLOT(quit()));
@@ -705,7 +705,7 @@ void MainWindow::metaBuildPackageList()
       disconnect(&g_fwAUR, SIGNAL(finished()), this, SLOT(preBuildAURPackageList()));
 
       QFuture<QList<PackageListData> *> f;
-      f = QtConcurrent::run(searchAURPackages, m_leFilterPackage->text());
+      f = QtConcurrent::run(searchForeignToolPackages, m_leFilterPackage->text());
       //connect(&g_fwAURMeta, SIGNAL(finished()), this, SLOT(preBuildAURPackageListMeta()));
       connect(&g_fwAUR, SIGNAL(finished()), this, SLOT(preBuildAURPackageList()));
       //g_fwAURMeta.setFuture(f);
@@ -1372,8 +1372,8 @@ void MainWindow::refreshStatusBarToolButtons()
 
   if (m_hasForeignTool && SettingsManager::getSearchOutdatedAURPackages())
   {
-    QFuture<AUROutdatedPackages *> f;
-    f = QtConcurrent::run(getOutdatedAURPackages);
+    QFuture<FTOutdatedPackages *> f;
+    f = QtConcurrent::run(getOutdatedForeignToolPackages);
     g_fwOutdatedAURPackages.setFuture(f);
     connect(&g_fwOutdatedAURPackages, SIGNAL(finished()), this, SLOT(showToolButtonAUR()));
   }

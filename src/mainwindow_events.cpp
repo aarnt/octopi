@@ -182,7 +182,7 @@ void MainWindow::keyPressEvent(QKeyEvent* ke)
       QFuture<QList<PackageListData> *> f;
       disconnect(&g_fwAUR, SIGNAL(finished()), this, SLOT(preBuildAURPackageList()));
       m_cic = new CPUIntensiveComputing();
-      f = QtConcurrent::run(searchAURPackages, m_leFilterPackage->text());
+      f = QtConcurrent::run(searchForeignToolPackages, m_leFilterPackage->text());
       g_fwAUR.setFuture(f);
       connect(&g_fwAUR, SIGNAL(finished()), this, SLOT(preBuildAURPackageList()));
     }
@@ -387,8 +387,8 @@ void MainWindow::keyPressEvent(QKeyEvent* ke)
     {
       m_outdatedAURTimer->start();
 
-      QFuture<AUROutdatedPackages *> f;
-      f = QtConcurrent::run(getOutdatedAURPackages);
+      QFuture<FTOutdatedPackages *> f;
+      f = QtConcurrent::run(getOutdatedForeignToolPackages);
       g_fwOutdatedAURPackages.setFuture(f);
       connect(&g_fwOutdatedAURPackages, SIGNAL(finished()), this, SLOT(showToolButtonAUR()));
     }

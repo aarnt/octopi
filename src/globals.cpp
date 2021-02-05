@@ -105,19 +105,19 @@ GroupMemberPair searchPacmanPackagesFromGroup(QString groupName)
 /*
  * Starts the non blocking search for AUR packages...
  */
-QList<PackageListData> * searchAURPackages(QString searchString)
+QList<PackageListData> * searchForeignToolPackages(QString searchString)
 {
-  return Package::getAURPackageList(searchString);
+  return Package::getForeignToolPackageList(searchString);
 }
 
 /*
  * Starts the non blocking retrive of AUR outdated package versions...
  * Results in a hash: [key] AUR pkg name / [value] AUR pkg version available
  */
-AUROutdatedPackages * getOutdatedAURPackages()
+FTOutdatedPackages * getOutdatedForeignToolPackages()
 {
-  AUROutdatedPackages * res = new AUROutdatedPackages();
-  res->content = Package::getAUROutdatedPackagesNameVersion();
+  FTOutdatedPackages * res = new FTOutdatedPackages();
+  res->content = Package::getForeignToolOutdatedPackagesNameVersion();
   return res;
 }
 
