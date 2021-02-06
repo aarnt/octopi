@@ -322,6 +322,40 @@ double AlpmBackend::getPackageSize(const QString &pkgName)
   return pkgSize;
 }
 
+QString AlpmBackend::getPackageVersion(const QString &pkgName)
+{
+  // create AlpmUtils instance
+  AlpmUtils* alpm_utils = alpm_utils_new ("/etc/pacman.conf");
+  alpm_list_t* i;
+  QString pkgVersion;
+
+  std::string str = pkgName.toStdString();
+  const char* p = str.c_str();
+
+  alpm_list_t* founds = alpm_utils_search_all_dbs(alpm_utils, p);
+
+  for (i = founds; i; i = alpm_list_next(i))
+  {
+    alpm_pkg_t* pkg = (alpm_pkg_t*) i->data;
+    alpm_db_t* db = alpm_pkg_get_db(pkg);
+
+    const char* dbname = alpm_db_get_name(db);
+    if (!strcmp(dbname, "local")) continue;
+
+    if (pkg && strcmp(alpm_pkg_get_name(pkg),pkgName.toLatin1().constData())==0)
+    {
+      pkgVersion = QString::fromUtf8(alpm_pkg_get_version(pkg));
+      break;
+    }
+  }
+
+  // free
+  alpm_utils_free (alpm_utils); // this will free all alpm_pkgs but not the alpm_list
+  alpm_list_free (founds);
+
+  return pkgVersion;
+}
+
 /*
  * Retrieves package information a la "pacman -Qi/-Si"
  */

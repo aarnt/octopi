@@ -1058,7 +1058,7 @@ QList<PackageListData> *Package::getAURPackageList(const QString &searchString)
   QJsonObject root = doc.object();
   QJsonArray results = root[QLatin1String("results")].toArray();
 
-  QStringList names;
+  QString installedVersion;
   for (int c=0; c<results.count(); ++c)
   {
     QJsonObject pkg = results[c].toObject();
@@ -1066,9 +1066,23 @@ QList<PackageListData> *Package::getAURPackageList(const QString &searchString)
     pkgName = pkg[QLatin1String("Name")].toString();
     pkgVersion = pkg[QLatin1String("Version")].toString();
     pkgOutVersion.clear();
-    pkgDescription = pkg[QLatin1String("Description")].toString();
+    pkgDescription = pkgName + QLatin1String(" ") + pkg[QLatin1String("Description")].toString();
     pkgVotes = pkg[QLatin1String("NumVotes")].toInt();
-    pkgStatus = ectn_NON_INSTALLED;
+
+    installedVersion = AlpmBackend::getPackageVersion(pkgName);
+
+    if (installedVersion.isEmpty())
+    {
+      pkgStatus = ectn_NON_INSTALLED;
+    }
+    else if (installedVersion == pkgVersion)
+    {
+      pkgStatus = ectn_FOREIGN;
+    }
+    else
+    {
+      pkgStatus = ectn_FOREIGN_OUTDATED;
+    }
 
     PackageListData pld =
         PackageListData(pkgName, StrConstants::getForeignRepositoryName(), pkgVersion, pkgDescription, pkgStatus, pkgOutVersion);

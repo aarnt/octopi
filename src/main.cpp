@@ -143,10 +143,11 @@ int main(int argc, char *argv[])
     return (-5);
   }
 
-  if (UnixCommand::isRootRunning()){
+  if (UnixCommand::isRootRunning())
+  {
     QMessageBox::critical(nullptr, StrConstants::getApplicationName(), StrConstants::getErrorRunningWithRoot());
     return (-4);
-  }        
+  }
 
   setenv("COLORTERM", "truecolor", 1);
   setenv("TERM", "xterm-256color", 1);
@@ -158,7 +159,6 @@ int main(int argc, char *argv[])
   }
 
   MainWindow w;
-
   QObject::connect(&app, SIGNAL(options()), &w, SLOT(onOptions()));
   QObject::connect(&app, SIGNAL(checkUpdates()), &w, SLOT(doCheckUpdates()));
   QObject::connect(&app, SIGNAL(AURUpgrade()), &w, SLOT(doAURUpgrade()));
