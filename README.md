@@ -117,7 +117,7 @@ $ /usr/bin/octopi-notifier
 
 ### To enable AUR support (that "green alien" icon on toolbar)
 
-You'll need to install [pacaur](https://github.com/rmarquis/pacaur), 
+You'll need to install [pacaur](https://github.com/rmarquis/pacaur), [paru](https://github.com/morganamilo/paru), 
 [pikaur](https://github.com/actionless/pikaur), [trizen](https://github.com/trizen/trizen) or 
 [yay](https://github.com/Jguer/yay) in your system. 
 If neither of the previous tools are found Octopi will download latest "yay-bin" github binary.
