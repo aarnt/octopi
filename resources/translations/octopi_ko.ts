@@ -491,37 +491,37 @@
         <location filename="../Projects/octopi/ui/optionsdialog.ui" line="95"/>
         <location filename="../Projects/octopi/src/optionsdialog.cpp" line="181"/>
         <source>Package List</source>
-        <translation type="unfinished"/>
+        <translation>패키지 목록</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/ui/optionsdialog.ui" line="107"/>
         <source>Use alternating row colors</source>
-        <translation type="unfinished"/>
+        <translation>번갈아 가며 행 색상 사용</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/ui/optionsdialog.ui" line="120"/>
         <source>Show &quot;Licenses&quot; column</source>
-        <translation type="unfinished"/>
+        <translation>&quot;라이센스&quot; 열 표시</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/ui/optionsdialog.ui" line="133"/>
         <source>Show &quot;Installed Size&quot; column</source>
-        <translation type="unfinished"/>
+        <translation>&quot;설치된 크기&quot; 열 표시</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/ui/optionsdialog.ui" line="146"/>
         <source>Show &quot;Build Date&quot; column</source>
-        <translation type="unfinished"/>
+        <translation>&quot;빌드 날짜&quot; 열 표시</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/ui/optionsdialog.ui" line="159"/>
         <source>Show &quot;Install Date&quot; column</source>
-        <translation type="unfinished"/>
+        <translation>&quot;날짜 설치&quot; 열 표시</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/ui/optionsdialog.ui" line="172"/>
         <source>Show &quot;Install Reason&quot; column</source>
-        <translation type="unfinished"/>
+        <translation>&quot;설치 이유&quot; 열 표시</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/ui/optionsdialog.ui" line="209"/>
@@ -568,7 +568,7 @@ Any use of the provided files is at your own risk.</source>
     <message>
         <location filename="../Projects/octopi/ui/optionsdialog.ui" line="483"/>
         <source>Build directory</source>
-        <translation type="unfinished"/>
+        <translation>빌드 디렉토리</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/ui/optionsdialog.ui" line="518"/>
@@ -661,7 +661,7 @@ Any use of the provided files is at your own risk.</source>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="41"/>
         <source>force a system upgrade at startup, withou asking for confirmation.</source>
-        <translation type="unfinished"/>
+        <translation>확인을 요청하지 않고 시작시 시스템 업그레이드를 강제합니다.</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="49"/>
@@ -683,7 +683,7 @@ You may need to synchronize database!</source>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="139"/>
         <source>Artix Linux news</source>
-        <translation type="unfinished"/>
+        <translation>Arch Linux 뉴스</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="143"/>
@@ -733,7 +733,7 @@ You may need to synchronize database!</source>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="180"/>
         <source>Showing cached news.</source>
-        <translation type="unfinished"/>
+        <translation>캐시된 뉴스를 표시하는 중입니다.</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="184"/>
@@ -813,17 +813,17 @@ You may need to synchronize database!</source>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="252"/>
         <source>Maintainer</source>
-        <translation type="unfinished"/>
+        <translation>유지 관리자</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="256"/>
         <source>Last Modified</source>
-        <translation type="unfinished"/>
+        <translation>마지막 수정</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="260"/>
         <source>Out-of-date</source>
-        <translation type="unfinished"/>
+        <translation>오래됨</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="264"/>
@@ -848,7 +848,7 @@ You may need to synchronize database!</source>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="280"/>
         <source>Make Deps</source>
-        <translation type="unfinished"/>
+        <translation>종속 만들기</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="284"/>
@@ -863,7 +863,7 @@ You may need to synchronize database!</source>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="292"/>
         <source>Optional Deps</source>
-        <translation>선택적 종속성</translation>
+        <translation>선택적 종속</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="296"/>
@@ -903,22 +903,22 @@ You may need to synchronize database!</source>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="328"/>
         <source>Open PKGBUILD</source>
-        <translation type="unfinished"/>
+        <translation>PKGBUILD 열기</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="333"/>
         <source>Show PKGBUILD diff</source>
-        <translation type="unfinished"/>
+        <translation>PKGBUILD 차이 표시</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="338"/>
         <source>Open news in a browser</source>
-        <translation type="unfinished"/>
+        <translation>브라우저에서 뉴스 열기</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="343"/>
         <source>There is only one version available of &quot;%1&quot;</source>
-        <translation type="unfinished"/>
+        <translation>&quot;%1&quot;의 버전은 하나만 있습니다</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="347"/>
@@ -938,12 +938,12 @@ You may need to synchronize database!</source>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="359"/>
         <source>Explicitly</source>
-        <translation type="unfinished"/>
+        <translation>명시적</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="363"/>
         <source>As dependency</source>
-        <translation type="unfinished"/>
+        <translation>종속성으로</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="367"/>
@@ -973,7 +973,7 @@ You may need to synchronize database!</source>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="387"/>
         <source>Install Date</source>
-        <translation type="unfinished"/>
+        <translation>설치 날짜</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="391"/>
@@ -1078,7 +1078,7 @@ You may need to synchronize database!</source>
     <message numerus="yes">
         <location filename="../Projects/octopi/src/strconstants.cpp" line="472"/>
         <source>There are %n outdated packages in your system:</source>
-        <translation type="unfinished"><numerusform></numerusform></translation>
+        <translation><numerusform>시스템에는 %n개의 오래된 패키지가 있습니다.</numerusform></translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="476"/>
@@ -1088,7 +1088,7 @@ You may need to synchronize database!</source>
     <message numerus="yes">
         <location filename="../Projects/octopi/src/strconstants.cpp" line="480"/>
         <source>%n packages</source>
-        <translation type="unfinished"><numerusform></numerusform></translation>
+        <translation><numerusform>패키지 %n개</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="../Projects/octopi/src/strconstants.cpp" line="484"/>
@@ -1163,7 +1163,7 @@ You may need to synchronize database!</source>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="580"/>
         <source>Changing the install reason of selected packages...</source>
-        <translation type="unfinished"/>
+        <translation>선택한 패키지의 설치 이유 변경 중...</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="584"/>
@@ -1233,12 +1233,12 @@ You may need to synchronize database!</source>
     <message numerus="yes">
         <location filename="../Projects/octopi/src/strconstants.cpp" line="639"/>
         <source>The following %n packages need to be retrieved</source>
-        <translation type="unfinished"><numerusform></numerusform></translation>
+        <translation><numerusform>다음 %n개의 패키지를 검색해야 합니다</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="../Projects/octopi/src/strconstants.cpp" line="643"/>
         <source>The following %n packages will be removed</source>
-        <translation type="unfinished"><numerusform></numerusform></translation>
+        <translation><numerusform>다음 %n개의 패키지가 제거됩니다</numerusform></translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="647"/>
@@ -1258,7 +1258,7 @@ You may need to synchronize database!</source>
     <message numerus="yes">
         <location filename="../Projects/octopi/src/strconstants.cpp" line="659"/>
         <source>There are %n updates available!</source>
-        <translation type="unfinished"><numerusform></numerusform></translation>
+        <translation><numerusform>사용할 수 있는 %n개의 업데이트가 있습니다!</numerusform></translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="663"/>
@@ -1356,7 +1356,7 @@ You only need to accept and wait a few seconds.</source>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="747"/>
         <source>Select the build directory for the AUR packages</source>
-        <translation type="unfinished"/>
+        <translation>AUR 패키지의 빌드 디렉토리를 선택합니다</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="751"/>
@@ -1366,17 +1366,17 @@ You only need to accept and wait a few seconds.</source>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="755"/>
         <source>You must use &quot;/usr/bin/octopi&quot; to run Octopi</source>
-        <translation type="unfinished"/>
+        <translation>Octopi를 실행하려면 &quot;/usr/bin/octopi&quot;를 사용해야 합니다.</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="759"/>
         <source>You must use &quot;/usr/bin/octopi-notifier&quot; to run Octopi Notifier</source>
-        <translation type="unfinished"/>
+        <translation>Octopi Notifier를 실행하려면 &quot;/usr/bin/octopi-notifier&quot;를 사용해야 합니다.</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="763"/>
         <source>You must use &quot;/usr/bin/octopi-cachecleaner&quot; to run Octopi Cache Cleaner</source>
-        <translation type="unfinished"/>
+        <translation>Octopi Cache Cleaner를 실행하려면 &quot;/usr/bin/octopi-cachecleaner&quot;를 사용해야 합니다.</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="767"/>
@@ -1430,7 +1430,7 @@ and &quot;head --bytes=256K /var/log/pacman.log&quot;
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="800"/>
         <source>This change needs application restart to take effect</source>
-        <translation type="unfinished"/>
+        <translation>이 변경 사항을 적용하려면 응용 프로그램을 다시 시작해야 합니다.</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="804"/>
@@ -1477,7 +1477,7 @@ Are you sure you want to open it?</source>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="839"/>
         <source>Change Install Reason</source>
-        <translation type="unfinished"/>
+        <translation>설치 이유 변경</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="844"/>
