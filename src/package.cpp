@@ -1037,6 +1037,7 @@ QList<PackageListData> * Package::getForeignToolPackageList(const QString &searc
  * Retrieves the list of all AUR packages in the database using Aur rcp (installed + non-installed)
  * given the search parameter
  */
+#ifdef ALPM_BACKEND
 QList<PackageListData> *Package::getAURPackageList(const QString &searchString)
 {
   QString pkgName, pkgVersion, pkgDescription, pkgOutVersion;
@@ -1092,23 +1093,8 @@ QList<PackageListData> *Package::getAURPackageList(const QString &searchString)
   }
 
   return res;
-
-  /*QJsonObject sett2 = d.object();
-  QJsonValue value = sett2.value(QString("appName"));
-  qWarning() << value;
-  QJsonObject item = value.toObject();
-  qWarning() << tr("QJsonObject of description: ") << item;
-
-  // in case of string value get value and convert into string
-  qWarning() << tr("QJsonObject[appName] of description: ") << item["description"];
-  QJsonValue subobj = item["description"];
-  qWarning() << subobj.toString();
-
-  // in case of array get array and convert into string
-  qWarning() << tr("QJsonObject[appName] of value: ") << item["imp"];
-  QJsonArray test = item["imp"].toArray();
-  qWarning() << test[1].toString();*/
 }
+#endif
 
 /*
  * Retrieves the list of all KCP packages in the database using Kcp (installed + non-installed)
