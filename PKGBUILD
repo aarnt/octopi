@@ -1,5 +1,5 @@
 pkgname=octopi
-pkgver=0.11.0
+pkgver=0.12.0
 pkgrel=1
 pkgdesc="This is Octopi, a powerful Pacman frontend using Qt libs"
 url="https://tintaescura.com/projects/octopi/"
@@ -8,7 +8,6 @@ license=('GPL2')
 depends=('alpm_octopi_utils' 'pkgfile' 'qtermwidget' 'sudo')
 makedepends=('git')
 groups=('system')
-install=octopi.install
 source=("git+https://github.com/aarnt/octopi.git")
 md5sums=('SKIP')
 
