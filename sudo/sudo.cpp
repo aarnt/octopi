@@ -81,7 +81,7 @@ void usage(QString const & err = QString())
                      "    -s|--su        Use %3(1) as backend.\n"
                      "    -d|--sudo      Use %2(8) as backend.\n"
                      "  command          Command to run.\n"
-                     "  arguments        Optional arguments for command.\n\n").arg(app_master).arg(sudo_prog).arg(su_prog);
+                     "  arguments        Optional arguments for command.\n\n").arg(app_master, sudo_prog, su_prog);
   if (!err.isEmpty())
     QMessageBox(QMessageBox::Critical, app_master, err, QMessageBox::Ok).exec();
 }
@@ -89,7 +89,7 @@ void usage(QString const & err = QString())
 void version()
 {
   QTextStream(stdout)
-      << QObject::tr("%1 version %2\n").arg(app_master).arg(app_version);
+      << QObject::tr("%1 version %2\n").arg(app_master, app_version);
 }
 
 //Note: array must be sorted to allow usage of binary search
@@ -303,7 +303,7 @@ void Sudo::child()
     // for privileged execution via the LC_ALL
     if (nullptr != strchr(env_lc_all, '\''))
     {
-      QTextStream{stderr, QIODevice::WriteOnly} << tr("%1: Detected attempt to inject privileged command via LC_ALL env(%2). Exiting!\n").arg(app_master).arg(QString::fromUtf8(env_lc_all));
+      QTextStream{stderr, QIODevice::WriteOnly} << tr("%1: Detected attempt to inject privileged command via LC_ALL env(%2). Exiting!\n").arg(app_master, QString::fromUtf8(env_lc_all));
       exit(1);
     }
     command = "LC_ALL='";
@@ -322,7 +322,7 @@ void Sudo::child()
   execvp(params[0], const_cast<char **>(params.get()));
 
   //exec never returns in case of success
-  QTextStream{stderr, QIODevice::WriteOnly} << tr("%1: Failed to exec '%2': %3\n").arg(app_master).arg(QString::fromUtf8(params[0])).arg(QString::fromUtf8(strerror(errno)));
+  QTextStream{stderr, QIODevice::WriteOnly} << tr("%1: Failed to exec '%2': %3\n").arg(app_master, QString::fromUtf8(params[0]), QString::fromUtf8(strerror(errno)));
   exit(1);
 }
 
@@ -384,7 +384,7 @@ int Sudo::parent()
       if (last_line.startsWith(QStringLiteral("%1:").arg(prog)))
       {
         QMessageBox(QMessageBox::Critical, mDlg->windowTitle()
-                    , tr("Child '%1' process failed!\n%2").arg(prog).arg(last_line), QMessageBox::Ok).exec();
+                    , tr("Child '%1' process failed!\n%2").arg(prog, last_line), QMessageBox::Ok).exec();
       }
     } else
     {

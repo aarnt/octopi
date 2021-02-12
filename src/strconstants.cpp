@@ -700,10 +700,10 @@ QString StrConstants::getYoullNeedSuFrontend(){
 QString StrConstants::getYoullNeedToInstallAURTool()
 {
   return QObject::tr("You'll need one of those tools to use AUR:\n\n"
-                     "%1, %2, %3 %4 or %5").arg(QStringLiteral("pacaur")).arg(QStringLiteral("pikaur"),
-                                                                              QStringLiteral("trizen"),
-                                                                              QStringLiteral("yaourt"),
-                                                                              QStringLiteral("yay"));
+                     "%1, %2, %3 %4 or %5").arg(QStringLiteral("pacaur"), QStringLiteral("pikaur"),
+                                                                          QStringLiteral("trizen"),
+                                                                          QStringLiteral("yaourt"),
+                                                                          QStringLiteral("yay"));
 }
 
 QString StrConstants::getDoYouWantToInstallYayTool()
