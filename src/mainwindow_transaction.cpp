@@ -136,7 +136,7 @@ void MainWindow::insertRemovePackageIntoTransaction(const QString &pkgName)
   QString pkg = pkgName.mid(slash+1);
   siPackageToRemove->setText(pkg);
 
-  if (foundItems.size() == 0)
+  if (foundItems.empty())
   {
     slash = pkgName.indexOf(QLatin1String("/"));
     pkg = pkgName.mid(slash+1);
@@ -178,7 +178,7 @@ void MainWindow::insertInstallPackageIntoTransaction(const QString &pkgName, boo
   QStandardItemModel *sim = qobject_cast<QStandardItemModel *>(siInstallParent->model());
   QList<QStandardItem *> foundItems = sim->findItems(pkgName, Qt::MatchRecursive | Qt::MatchExactly);
 
-  if (foundItems.size() == 0)
+  if (foundItems.empty())
   {
     int slash = pkgName.indexOf(QLatin1String("/"));
     QString pkg = pkgName.mid(slash+1);
@@ -485,7 +485,7 @@ bool MainWindow::isPackageInInstallTransaction(const QString &pkgName)
   if (package != nullptr) repo = package->repository;
   QList<QStandardItem *> foundItems = sim->findItems(repo + QLatin1Char('/') + pkgName, Qt::MatchRecursive | Qt::MatchExactly);
 
-  return (foundItems.size() > 0);
+  return (!foundItems.empty());
 }
 
 /*
@@ -497,7 +497,7 @@ bool MainWindow::isPackageInRemoveTransaction(const QString &pkgName)
   QStandardItemModel *sim = qobject_cast<QStandardItemModel *>(siRemoveParent->model());
   QList<QStandardItem *> foundItems = sim->findItems(pkgName, Qt::MatchRecursive | Qt::MatchExactly);
 
-  return (foundItems.size() > 0);
+  return (!foundItems.empty());
 }
 
 /*
