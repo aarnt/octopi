@@ -441,7 +441,7 @@ QByteArray UnixCommand::getPackageInformation(const QString &pkgName, bool forei
   else
     args << QStringLiteral("-Si");
 
-  if (pkgName.isEmpty() == false) // enables get for all ("")
+  if (!pkgName.isEmpty()) // enables get for all ("")
     args << pkgName;
 
   QByteArray result = performQuery(args);
@@ -620,14 +620,14 @@ bool UnixCommand::hasInternetConnection()
          We will only enable this check on first positive,
          all later results are incorrect
         */
-        if (result == false)
+        if (!result)
           result = true;
       }
     }
   }
 
   //It seems to be alright, but let's make a ping to see the result
-  if (result == true)
+  if (result)
   {
     result = UnixCommand::doInternetPingTest();
   }
@@ -676,8 +676,7 @@ bool UnixCommand::hasTheExecutable( const QString& exeName )
   QString out = QString::fromUtf8(proc.readAllStandardOutput());
   proc.close();
 
-  if (out.isEmpty() || out.count(QStringLiteral("which")) > 0) return false;
-  else return true;
+  return !(out.isEmpty() || out.count(QStringLiteral("which")) > 0);
 }
 
 /*
@@ -1091,17 +1090,11 @@ bool UnixCommand::isAppRunning(const QString &appName, bool justOneInstance)
 
   if (justOneInstance)
   {
-    if (out.count(appName)>0)
-      return true;
-    else
-      return false;
+    return out.count(appName)>0;
   }
   else
   {
-    if (out.count(appName)>1)
-      return true;
-    else
-      return false;
+    return out.count(appName)>1;
   }
 }
 
@@ -1189,8 +1182,7 @@ bool UnixCommand::isILoveCandyEnabled()
 
     QString str = contents.mid(start+1, (end-start-1)).trimmed();
 
-    if (str.isEmpty()) res = true;
-    else res = false;
+    res = str.isEmpty();
   }
 
   file.close();

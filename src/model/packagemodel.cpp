@@ -429,7 +429,7 @@ struct TSort0 {
         return (a->name < b->name);
       }
 
-      if (a->outdated() == true && b->outdated() == true)
+      if (a->outdated() && b->outdated())
       {
         return (a->name < b->name);
       }

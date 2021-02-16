@@ -97,17 +97,11 @@ bool isAppRunning(const QString &appName, bool justOneInstance)
 
   if (justOneInstance)
   {
-    if (out.count(appName)>0)
-      return true;
-    else
-      return false;
+    return out.count(appName)>0;
   }
   else
   {
-    if (out.count(appName)>1)
-      return true;
-    else
-      return false;
+    return out.count(appName)>1;
   }
 }
 

@@ -61,10 +61,7 @@ bool WMHelper::isTDERunning()
   QString out = QString::fromUtf8(proc.readAll());
   proc.close();
 
-  if (out.count(ctn_TDE_DESKTOP)>0)
-    return true;
-  else
-    return false;
+  return out.count(ctn_TDE_DESKTOP)>0;
 }
 
 /*
@@ -83,10 +80,7 @@ bool WMHelper::isGNOMERunning()
   QString out = QString::fromUtf8(proc.readAll());
   proc.close();
 
-  if (out.count(ctn_GNOME_DESKTOP)>0)
-    return true;
-  else
-    return false;
+  return out.count(ctn_GNOME_DESKTOP)>0;
 }
 
 /*
@@ -105,10 +99,7 @@ bool WMHelper::isXFCERunning()
   QString out = QString::fromUtf8(proc.readAll());
   proc.close();
 
-  if (out.count(ctn_XFCE_DESKTOP)>0)
-    return true;
-  else
-    return false;
+  return out.count(ctn_XFCE_DESKTOP)>0;
 }
 
 /*
@@ -127,10 +118,7 @@ bool WMHelper::isLXDERunning()
   QString out = QString::fromUtf8(proc.readAll());
   proc.close();
 
-  if (out.count(ctn_LXDE_DESKTOP)>0)
-    return true;
-  else
-    return false;
+  return out.count(ctn_LXDE_DESKTOP)>0;
 }
 
 /*
@@ -157,10 +145,7 @@ bool WMHelper::isOPENBOXRunning()
   QString out = QString::fromUtf8(proc.readAll());
   proc.close();
 
-  if (out.count(ctn_OPENBOX_DESKTOP)>0)
-    return true;
-  else
-      return false;
+  return out.count(ctn_OPENBOX_DESKTOP)>0;
 }
 
 /*
@@ -179,10 +164,7 @@ bool WMHelper::isMATERunning()
   QString out = QString::fromUtf8(proc.readAll());
   proc.close();
 
-  if (out.count(ctn_MATE_DESKTOP)>0)
-    return true;
-  else
-    return false;
+  return out.count(ctn_MATE_DESKTOP)>0;
 }
 
 /*
@@ -201,10 +183,7 @@ bool WMHelper::isCinnamonRunning()
   QString out = QString::fromUtf8(proc.readAll());
   proc.close();
 
-  if (out.count(ctn_CINNAMON_DESKTOP)>0)
-    return true;
-  else
-    return false;
+  return out.count(ctn_CINNAMON_DESKTOP)>0;
 }
 
 /*
@@ -223,10 +202,7 @@ bool WMHelper::isLuminaRunning()
   QString out = QString::fromUtf8(proc.readAll());
   proc.close();
 
-  if (out.count(ctn_LUMINA_DESKTOP)>0)
-    return true;
-  else
-    return false;
+  return out.count(ctn_LUMINA_DESKTOP)>0;
 }
 
 /*

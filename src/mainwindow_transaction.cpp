@@ -63,9 +63,9 @@ void MainWindow::changeTransactionActionsState()
 
   if(m_hasForeignTool) m_actionSwitchToForeignTool->setEnabled(!state);
 
-  if (state == false && m_outdatedStringList->count() > 0)
+  if (!state && m_outdatedStringList->count() > 0)
     ui->actionSystemUpgrade->setEnabled(true);
-  else if (state == true)
+  else if (state)
     ui->actionSystemUpgrade->setEnabled(false);
 }
 
@@ -1166,7 +1166,7 @@ void MainWindow::doRemoveAndInstall()
   QHash<QString, bool>::const_iterator i = listToBeInst.constBegin();
   while (i != listToBeInst.constEnd())
   {
-    if (i.value() == true)
+    if (i.value())
     {
       listOfInstallDeps += i.key() + QLatin1Char(' ');
     }
@@ -1361,7 +1361,7 @@ void MainWindow::doRemove()
 void MainWindow::doInstallAURPackage()
 {
   const QItemSelectionModel*const selectionModel = ui->tvPackages->selectionModel();
-  if (selectionModel == nullptr || selectionModel->selectedRows().count() < 1 || m_hasForeignTool == false) {
+  if (selectionModel == nullptr || selectionModel->selectedRows().count() < 1 || !m_hasForeignTool) {
     std::cerr << "Octopi could not install selection using AUR tool" << std::endl;
     return;
   }
@@ -1673,23 +1673,15 @@ bool MainWindow::hasPartialUpgrade(QStringList &pkgsToInstall)
       if (m_outdatedStringList->contains(n)) found++;
     }
 
-    if (found > 0)
-    {
-      result = true;
-    }
-    else result = false;
+    result = found > 0;
   }
   else if (m_numberOfOutdatedPackages == pkgsToInstall.count())
   {
     //We have to compare the lists...
-    if (*m_outdatedStringList == pkgsToInstall)
-    {
-      result = true;
-    }
-    else result = false;
+    result = *m_outdatedStringList == pkgsToInstall;
   }
 
-  if (result == true)
+  if (result)
   {
     QMessageBox::warning(
           this, StrConstants::getAttention(), StrConstants::getPartialUpdatesNotSupported(), QMessageBox::Ok);
@@ -1748,7 +1740,7 @@ void MainWindow::doInstall()
   QHash<QString, bool>::const_iterator i = listToBeInst.constBegin();
   while (i != listToBeInst.constEnd())
   {
-    if (i.value() == true)
+    if (i.value())
     {
       listOfDeps += i.key() + QLatin1Char(' ');
     }
@@ -1933,7 +1925,7 @@ void MainWindow::toggleTransactionActions(const bool value)
 {
   bool pendingTransaction = areTherePendingActions();
 
-  if (value == true && pendingTransaction == true)
+  if (value && pendingTransaction)
   {
     ui->actionApply->setEnabled(true);
     ui->actionCancel->setEnabled(true);
@@ -1944,7 +1936,7 @@ void MainWindow::toggleTransactionActions(const bool value)
     ui->actionCheckUpdates->setEnabled(false);
     ui->actionSystemUpgrade->setEnabled(false);
   }
-  else if (value == true && pendingTransaction == false)
+  else if (value && !pendingTransaction)
   {
     ui->actionApply->setEnabled(false);
     ui->actionCancel->setEnabled(false);
@@ -1964,7 +1956,7 @@ void MainWindow::toggleTransactionActions(const bool value)
       ui->actionSystemUpgrade->setEnabled(false);
     }
   }
-  else if (value == false)
+  else if (!value)
   {
     ui->actionApply->setEnabled(false);
     ui->actionCancel->setEnabled(false);
@@ -1993,7 +1985,7 @@ void MainWindow::toggleTransactionActions(const bool value)
   ui->actionRepositoryEditor->setEnabled(value);
   m_actionSysInfo->setEnabled(value);
 
-  if (value == true && m_initializationCompleted) m_actionSwitchToForeignTool->setEnabled(value);
+  if (value && m_initializationCompleted) m_actionSwitchToForeignTool->setEnabled(value);
 
   //ui->actionGetNews->setEnabled(value);
 
@@ -2042,7 +2034,7 @@ void MainWindow::toggleTransactionActions(const bool value)
 
 void MainWindow::toggleSystemActions(const bool value)
 {
-  if (value == true && m_commandExecuting != ectn_NONE) return;
+  if (value && m_commandExecuting != ectn_NONE) return;
 
   if(m_hasMirrorCheck)
   {
@@ -2050,7 +2042,7 @@ void MainWindow::toggleSystemActions(const bool value)
       m_actionMenuMirrorCheck->setEnabled(value);
     else
     {
-      if (value==false) m_actionMenuMirrorCheck->setEnabled(false);
+      if (!value) m_actionMenuMirrorCheck->setEnabled(false);
     }
   }
 
@@ -2080,7 +2072,7 @@ void MainWindow::toggleSystemActions(const bool value)
   }
 
 
-  if (value == true && m_outdatedStringList->count() > 0)
+  if (value && m_outdatedStringList->count() > 0)
     ui->actionSystemUpgrade->setEnabled(true);
   else
     ui->actionSystemUpgrade->setEnabled(false);
@@ -2161,7 +2153,7 @@ bool MainWindow::stopTransaction()
  */
 void MainWindow::onCanStopTransaction(bool yesNo)
 {
-  if (yesNo == true && m_progressWidget->isHidden()) return;
+  if (yesNo && m_progressWidget->isHidden()) return;
   if (SettingsManager::getShowStopTransaction()) m_toolButtonStopTransaction->setVisible(yesNo);
 }
 
