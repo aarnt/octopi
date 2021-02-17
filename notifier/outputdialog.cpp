@@ -393,7 +393,7 @@ void OutputDialog::pacmanProcessFinished(int exitCode, QProcess::ExitStatus exit
  */
 void OutputDialog::onCanStopTransaction(bool yesNo)
 {
-  if (yesNo == true && m_progressBar->isHidden()) return;
+  if (yesNo && m_progressBar->isHidden()) return;
   if (SettingsManager::getShowStopTransaction()) m_toolButtonStopTransaction->setVisible(yesNo);
 }
 

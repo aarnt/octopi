@@ -650,10 +650,7 @@ bool UnixCommand::doInternetPingTest()
   {
     hostname = QStringLiteral("www.baidu.com");
     socket.connectToHost(hostname, 80);
-    if (socket.waitForConnected(5000))
-      return true;
-    else
-      return false;
+    return socket.waitForConnected(5000);
   }
 }
 
