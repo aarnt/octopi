@@ -491,37 +491,37 @@
         <location filename="../Projects/octopi/ui/optionsdialog.ui" line="95"/>
         <location filename="../Projects/octopi/src/optionsdialog.cpp" line="181"/>
         <source>Package List</source>
-        <translation type="unfinished"/>
+        <translation>Списък с пакети</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/ui/optionsdialog.ui" line="107"/>
         <source>Use alternating row colors</source>
-        <translation type="unfinished"/>
+        <translation>Използване на редове с различен цвят</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/ui/optionsdialog.ui" line="120"/>
         <source>Show &quot;Licenses&quot; column</source>
-        <translation type="unfinished"/>
+        <translation>Показване на колона &quot;Лицензи&quot;</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/ui/optionsdialog.ui" line="133"/>
         <source>Show &quot;Installed Size&quot; column</source>
-        <translation type="unfinished"/>
+        <translation>Показване на колона &quot;Инсталиран размер&quot;</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/ui/optionsdialog.ui" line="146"/>
         <source>Show &quot;Build Date&quot; column</source>
-        <translation type="unfinished"/>
+        <translation>Показване на колона &quot;Дата на изграждане&quot;</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/ui/optionsdialog.ui" line="159"/>
         <source>Show &quot;Install Date&quot; column</source>
-        <translation type="unfinished"/>
+        <translation>Показване на колона &quot;Дата на инсталиране&quot;</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/ui/optionsdialog.ui" line="172"/>
         <source>Show &quot;Install Reason&quot; column</source>
-        <translation type="unfinished"/>
+        <translation>Показване на колона &quot;Причина за инсталиране&quot;</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/ui/optionsdialog.ui" line="209"/>
@@ -568,7 +568,7 @@ Any use of the provided files is at your own risk.</source>
     <message>
         <location filename="../Projects/octopi/ui/optionsdialog.ui" line="483"/>
         <source>Build directory</source>
-        <translation type="unfinished"/>
+        <translation>Директория за изграждане</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/ui/optionsdialog.ui" line="518"/>
@@ -661,7 +661,7 @@ Any use of the provided files is at your own risk.</source>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="41"/>
         <source>force a system upgrade at startup, withou asking for confirmation.</source>
-        <translation type="unfinished"/>
+        <translation>Принудително надграждане на системата при стартиране, без да се иска потвърждение.</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="49"/>
@@ -683,7 +683,7 @@ You may need to synchronize database!</source>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="139"/>
         <source>Artix Linux news</source>
-        <translation type="unfinished"/>
+        <translation>Artix Linux новини.</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="143"/>
@@ -733,7 +733,7 @@ You may need to synchronize database!</source>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="180"/>
         <source>Showing cached news.</source>
-        <translation type="unfinished"/>
+        <translation>Показване на кеширани новини.</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="184"/>
@@ -813,17 +813,17 @@ You may need to synchronize database!</source>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="252"/>
         <source>Maintainer</source>
-        <translation type="unfinished"/>
+        <translation>Поддръжан от</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="256"/>
         <source>Last Modified</source>
-        <translation type="unfinished"/>
+        <translation>Последно модифициран</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="260"/>
         <source>Out-of-date</source>
-        <translation type="unfinished"/>
+        <translation>Out-of-date</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="264"/>
