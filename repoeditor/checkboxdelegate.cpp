@@ -56,5 +56,5 @@ bool CheckBoxDelegate::editorEvent( QEvent *event,
 
     model->setData( index, !index.data().toBool() );
 
-    return event->type() == QEvent::MouseButtonDblClick ? true : false;
+    return event->type() == QEvent::MouseButtonDblClick;
 }

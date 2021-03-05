@@ -2478,10 +2478,7 @@ bool Package::isAURBased()
   {
     QString ft=getForeignRepositoryToolName();
 
-    if (ft != QStringLiteral("chaser") && ft != QStringLiteral("kcp"))
-      ret=true;
-    else
-      ret=false;
+    ret = ft != QStringLiteral("chaser") && ft != QStringLiteral("kcp");
 
     firstTime=false;
   }

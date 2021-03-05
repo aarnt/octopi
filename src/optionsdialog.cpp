@@ -42,8 +42,7 @@
 OptionsDialog::OptionsDialog(QWidget *parent) :
   QDialog(parent)
 {
-  if (parent->windowTitle() == QLatin1String("Octopi")) m_calledByOctopi = true;
-  else m_calledByOctopi = false;
+  m_calledByOctopi = parent->windowTitle() == QLatin1String("Octopi");
 
   m_debugInfo = false;
   setupUi(this);

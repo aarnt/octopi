@@ -517,13 +517,11 @@ void PacmanExec::parsePacmanProcessOutput(const QString &output)
  */
 bool PacmanExec::criticalPhaseInTransaction(const QString &str)
 {
-  if (str.contains(QStringLiteral("checking keys in keyring")) ||
-      str.contains(QStringLiteral("checking package integrity")) ||
-      str.contains(QStringLiteral("checking for file conflicts")) ||
-      str.contains(QStringLiteral(":: Running pre-transaction hooks")) ||
-      str.contains(QStringLiteral(":: Processing package changes")))
-      return true;
-  else return false;
+  return str.contains(QStringLiteral("checking keys in keyring")) ||
+str.contains(QStringLiteral("checking package integrity")) ||
+str.contains(QStringLiteral("checking for file conflicts")) ||
+str.contains(QStringLiteral(":: Running pre-transaction hooks")) ||
+str.contains(QStringLiteral(":: Processing package changes"));
 }
 
 /*

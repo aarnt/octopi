@@ -123,16 +123,7 @@ bool MainWindow::isOctopiBusy()
     in >> octopiResponse;
   } while (!in.commitTransaction());
 
-  if (octopiResponse != QLatin1String("Octopi est occupatus"))
-  {
-    res=false;
-  }
-  else
-  {
-    res=true; //Octopi is executing an action!
-  }
-
-  return res;
+  return octopiResponse == QLatin1String("Octopi est occupatus");
 }
 
 /*
@@ -168,16 +159,7 @@ bool MainWindow::canOctopiUpgrade()
     in >> octopiResponse;
   } while (!in.commitTransaction());
 
-  if (octopiResponse != QLatin1String("Renovatio potest"))
-  {
-    res=false;
-  }
-  else
-  {
-    res=true; //Octopi has outdated packages!
-  }
-
-  return res;
+  return octopiResponse == QLatin1String("Renovatio potest");
 }
 
 /*
