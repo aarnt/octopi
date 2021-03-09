@@ -174,14 +174,7 @@ bool MainWindow::isNotifierBusy()
     in >> octopiResponse;
   } while (!in.commitTransaction());
 
-  if (octopiResponse == QLatin1String("Octopi est occupatus"))
-  {
-    res=true;
-  }
-  else
-  {
-    res=false;
-  }
+  res = octopiResponse == QLatin1String("Octopi est occupatus");
 
   return res;
 }
@@ -214,7 +207,7 @@ void MainWindow::show()
     std::cout << m_packageModel->getPackageCount() << " pkgs => " <<
                "Time elapsed at begining of show(): " << m_time->elapsed() << " mili seconds." << std::endl << std::endl;
 
-  if(m_initializationCompleted == false)
+  if(!m_initializationCompleted)
   {
     restoreGeometry(SettingsManager::getWindowSize());
     m_leFilterPackage = new SearchLineEdit(this, m_hasSLocate);
@@ -607,7 +600,7 @@ void MainWindow::outputTextBrowserAnchorClicked(const QUrl &link)
       m_listOfVisitedPackages.insert(m_indOfVisitedPackage+1, pkgName);
     }
 
-    if (indIncremented == false) m_indOfVisitedPackage++;
+    if (!indIncremented) m_indOfVisitedPackage++;
 
     if (!m_leFilterPackage->text().isEmpty()) m_leFilterPackage->clear();
     positionInPackageList(pkgName);
@@ -1177,7 +1170,7 @@ void MainWindow::execContextMenuPackages(QPoint point)
         numberOfAUR++;
       }
       if (package->outdated()) numberOfOutdated ++;
-      if (package->installed() == false)
+      if (!package->installed())
       {
         allRemovable = false;
       }
@@ -1186,15 +1179,15 @@ void MainWindow::execContextMenuPackages(QPoint point)
     if (allInstallable) // implicitly foreign packages == 0
     {
       if (!isAllGroupsSelected() && !isAURGroupSelected()) menu->addAction(ui->actionInstallGroup);
-      if (allRemovable == false && numberOfOutdated != numberOfSelPkgs)
+      if (!allRemovable && numberOfOutdated != numberOfSelPkgs)
       {
         ui->actionInstall->setText(StrConstants::getInstall());
       }
-      else if (allRemovable == true && numberOfOutdated == numberOfSelPkgs)
+      else if (allRemovable && numberOfOutdated == numberOfSelPkgs)
       {
         ui->actionInstall->setText(StrConstants::getUpdate());
       }
-      else if (allRemovable == true)
+      else if (allRemovable)
         ui->actionInstall->setText(StrConstants::getReinstall());
 
       menu->addAction(ui->actionInstall);
@@ -1210,7 +1203,7 @@ void MainWindow::execContextMenuPackages(QPoint point)
         }
       }
     }
-    else if (allInstallable == false && numberOfAUR == numberOfSelPkgs)
+    else if (!allInstallable && numberOfAUR == numberOfSelPkgs)
     {
       QString aurPkg;
       bool allInstalled=false;

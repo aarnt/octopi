@@ -1482,7 +1482,7 @@ void MainWindow::refreshTabInfo(QString pkgName)
  */
 void MainWindow::refreshTabInfo(bool clearContents, bool neverQuit)
 {
-  if(neverQuit == false &&
+  if(!neverQuit &&
      (ui->twProperties->currentIndex() != ctn_TABINDEX_INFORMATION || !isPropertiesTabWidgetVisible() || !m_initializationCompleted)) return;
 
   QItemSelectionModel*const selectionModel = ui->tvPackages->selectionModel();
@@ -1524,7 +1524,7 @@ void MainWindow::refreshTabInfo(bool clearContents, bool neverQuit)
   /* Appends all info from the selected package! */
   QString pkgName=package->name;
 
-  if (isAURGroupSelected() && package->installed() == false)
+  if (isAURGroupSelected() && !package->installed())
   {
     QString aux_desc = package->description;
     int space = aux_desc.indexOf(QLatin1Char(' '));
@@ -1668,7 +1668,7 @@ void MainWindow::refreshTabFiles(bool clearContents, bool neverQuit)
 {
   if (m_progressWidget->isVisible() || !m_initializationCompleted) return;
 
-  if(neverQuit == false &&
+  if(!neverQuit &&
      (ui->twProperties->currentIndex() != ctn_TABINDEX_FILES || !isPropertiesTabWidgetVisible()))
   {
     return;
@@ -1725,7 +1725,7 @@ void MainWindow::refreshTabFiles(bool clearContents, bool neverQuit)
   }
 
   //Maybe this is a non-installed package...
-  bool nonInstalled = (package->installed() == false);
+  bool nonInstalled = (!package->installed());
 
   QTreeView*const tvPkgFileList =
       ui->twProperties->getTvPkgFileList();
@@ -1779,7 +1779,7 @@ void MainWindow::refreshTabFiles(bool clearContents, bool neverQuit)
 
       if(isDir)
       {
-        if ( first == true )
+        if ( first )
         {
           item = new QStandardItem ( IconHelper::getIconFolder(), baseFileName );
           item->setAccessibleDescription(QLatin1String("directory ") + item->text());

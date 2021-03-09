@@ -78,7 +78,7 @@ void PackageRepository::setData(const QList<PackageListData>*const listOfPackage
   m_listOfPackages.clear();
 
   for (QList<PackageListData>::const_iterator it = listOfPackages->constBegin(); it != listOfPackages->constEnd(); ++it) {
-    m_listOfPackages.push_back(new PackageData(*it, unrequiredPackages.contains(it->name) == false, false));
+    m_listOfPackages.push_back(new PackageData(*it, !unrequiredPackages.contains(it->name), false));
   }
 
   std::sort(m_listOfPackages.begin(), m_listOfPackages.end(), TSort());
@@ -102,7 +102,7 @@ void PackageRepository::setAURData(const QList<PackageListData>*const listOfFore
   for (QList<PackageListData>::const_iterator it = listOfForeignPackages->begin();
        it != listOfForeignPackages->end(); ++it)
   {
-    PackageData*const pkg = new PackageData(*it, unrequiredPackages.contains(it->name) == false, true);
+    PackageData*const pkg = new PackageData(*it, !unrequiredPackages.contains(it->name), true);
     m_listOfPackages.push_back(pkg);
     m_listOfAURPackages.push_back(pkg);
   }
@@ -235,7 +235,7 @@ void PackageRepository::setAUROutdatedData(QList<PackageListData>*const listOfFo
  */
 void PackageRepository::checkAndSetGroups(const QStringList& listOfGroups)
 {
-  if (memberListOfGroupsEquals(listOfGroups) == false)
+  if (!memberListOfGroupsEquals(listOfGroups))
   {
     std::for_each(m_dependingModels.begin(), m_dependingModels.end(), BeginResetModel());
     for (QList<Group*>::const_iterator it = m_listOfGroups.constBegin(); it != m_listOfGroups.constEnd(); ++it)
@@ -280,7 +280,7 @@ void PackageRepository::checkAndSetMembersOfGroup(const QString& groupName, cons
   if (groupIt != m_listOfGroups.constEnd())
   {
     Group& group = **groupIt;
-    if (group.memberListEquals(members) == false)
+    if (!group.memberListEquals(members))
     {
 
       // invalidate and register all group members if lists are different
@@ -293,7 +293,7 @@ void PackageRepository::checkAndSetMembersOfGroup(const QString& groupName, cons
         std::pair<TIter, TIter> packageIt =  std::equal_range(m_listOfPackages.begin(), m_listOfPackages.end(), *it, TComp());
         for (TIter iter = packageIt.first; iter != packageIt.second; ++iter)
         {
-          if ((*iter)->managedByAUR == false)
+          if (!(*iter)->managedByAUR)
           {
             group.addPackage(**iter);
             break;

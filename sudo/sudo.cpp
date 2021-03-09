@@ -170,7 +170,7 @@ Sudo::~Sudo()
 
 int Sudo::main()
 {
-  if (0 < mArgs.size())
+  if (!mArgs.empty())
   {
     //simple option check
     QString const & arg1 = mArgs[0];
@@ -194,7 +194,7 @@ int Sudo::main()
   }
   //any other arguments we simply forward to su/sudo
 
-  if (1 > mArgs.size())
+  if (mArgs.empty())
   {
     usage(tr("%1: no command to run provided!").arg(app_master));
     return 1;
