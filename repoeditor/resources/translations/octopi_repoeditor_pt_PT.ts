@@ -24,7 +24,7 @@
     <message>
         <location filename="Projects/octopi/repoeditor/addrepo.cpp" line="86"/>
         <source>The repository name field can&apos;t be blank.</source>
-        <translation>O campo do nome do repositório não pode estar vazio.</translation>
+        <translation>O campo do nome do repositório não pode estar em branco.</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/addrepo.cpp" line="101"/>
@@ -34,7 +34,7 @@
     <message>
         <location filename="Projects/octopi/repoeditor/addrepo.cpp" line="104"/>
         <source>The repository name field is not valid.</source>
-        <translation>Campo de nome de repositório inválido.</translation>
+        <translation>O campo do nome do repositório não é válido.</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/addrepo.cpp" line="111"/>
@@ -44,7 +44,7 @@
     <message>
         <location filename="Projects/octopi/repoeditor/addrepo.cpp" line="115"/>
         <source>Path to mirrors list file</source>
-        <translation>Caminho para o ficheiro da lista de mirrors</translation>
+        <translation>Caminho para o ficheiro da lista de espelhos</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/addrepo.cpp" line="124"/>
@@ -54,17 +54,17 @@
     <message>
         <location filename="Projects/octopi/repoeditor/addrepo.cpp" line="125"/>
         <source>Can&apos;t add repository.</source>
-        <translation>Não posso adicionar repositório.</translation>
+        <translation>Não é possível adicionar repositório.</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/addrepo.cpp" line="136"/>
         <source>Select local repository</source>
-        <translation>Seleccionar repositório local</translation>
+        <translation>Selecionar repositório local</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/addrepo.cpp" line="149"/>
         <source>Select mirrors list</source>
-        <translation>Seleccionar lista de mirrors</translation>
+        <translation>Selecionar lista de espelhos</translation>
     </message>
 </context>
 <context>
@@ -72,7 +72,7 @@
     <message>
         <location filename="Projects/octopi/repoeditor/main.cpp" line="54"/>
         <source>You can not run Repository Editor with administrator&apos;s credentials.</source>
-        <translation>Não pode executar o Editor de Repositórios com credenciais de administrador.</translation>
+        <translation>Não pode executar o Editor de Repositórios como &apos;root&apos;.</translation>
     </message>
 </context>
 <context>
@@ -85,17 +85,17 @@
     <message>
         <location filename="Projects/octopi/repoeditor/repoconf.cpp" line="209"/>
         <source>Backup file already exists.</source>
-        <translation>Ficheiro de salvaguarda já existe.</translation>
+        <translation>O ficheiro de salvaguarda já existe.</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/repoconf.cpp" line="209"/>
         <source>Do you want to overwrite it?</source>
-        <translation>Deseja sobrepô-lo?</translation>
+        <translation>Deseja substituí-lo?</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/repoconf.cpp" line="282"/>
         <source>Active</source>
-        <translation>Activo</translation>
+        <translation>Ativo</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/repoconf.cpp" line="282"/>
@@ -113,7 +113,7 @@
     <message>
         <location filename="Projects/octopi/repoeditor/repoeditor.ui" line="14"/>
         <source>Repository Editor - Octopi</source>
-        <translation>Editor de repositórios - Octopi</translation>
+        <translation>Editor de Repositórios - Octopi</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/repoeditor.ui" line="27"/>
@@ -186,7 +186,7 @@
     <message>
         <location filename="Projects/octopi/repoeditor/repoeditor.cpp" line="160"/>
         <source>Can&apos;t load backup file</source>
-        <translation>Não consigo carregar ficheiro de salvaguarda</translation>
+        <translation>Não é possível carregar o ficheiro de salvaguarda</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/repoeditor.cpp" line="161"/>

@@ -242,7 +242,7 @@
     <message>
         <location filename="../Projects/octopi/src/mainwindow_help.cpp" line="76"/>
         <source>Ctrl+Shift+A to display AUR voted package list</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+Shift+A для відображення списку пакетів, проголосованих за AUR</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/mainwindow_help.cpp" line="81"/>
@@ -556,18 +556,18 @@
     <message>
         <location filename="../Projects/octopi/ui/optionsdialog.ui" line="401"/>
         <source>Enable AUR voting</source>
-        <translation type="unfinished"/>
+        <translation>Увімкнути AUR-голосування</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/ui/optionsdialog.ui" line="422"/>
         <source>AUR packages are user produced content. 
 Any use of the provided files is at your own risk.</source>
-        <translation type="unfinished"/>
+        <translation>Пакети AUR - це вміст, створений користувачем. Будь-яке використання наданих файлів відбувається на ваш страх і ризик. </translation>
     </message>
     <message>
         <location filename="../Projects/octopi/ui/optionsdialog.ui" line="483"/>
         <source>Build directory</source>
-        <translation type="unfinished"/>
+        <translation>Побудова дерикторії</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/ui/optionsdialog.ui" line="518"/>
@@ -666,7 +666,8 @@ Any use of the provided files is at your own risk.</source>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="49"/>
         <source>Pacman Database is missing!
 You may need to synchronize database!</source>
-        <translation type="unfinished"/>
+        <translation>База даних Pacman відсутня!
+Можливо, вам доведеться синхронізувати базу даних! </translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="53"/>
@@ -846,7 +847,7 @@ You may need to synchronize database!</source>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="280"/>
         <source>Make Deps</source>
-        <translation type="unfinished"/>
+        <translation>Зробити Deps</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="284"/>
@@ -876,7 +877,7 @@ You may need to synchronize database!</source>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="304"/>
         <source>Votes</source>
-        <translation type="unfinished"/>
+        <translation>Голоси</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="308"/>
@@ -886,17 +887,17 @@ You may need to synchronize database!</source>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="313"/>
         <source>Vote</source>
-        <translation type="unfinished"/>
+        <translation>Голосувати</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="318"/>
         <source>AUR voted package list</source>
-        <translation type="unfinished"/>
+        <translation>AUR проголосував список пакунків</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="323"/>
         <source>Unvote</source>
-        <translation type="unfinished"/>
+        <translation>Проголосувати</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="328"/>
@@ -936,7 +937,7 @@ You may need to synchronize database!</source>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="359"/>
         <source>Explicitly</source>
-        <translation type="unfinished"/>
+        <translation>Явно</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="363"/>
@@ -1151,7 +1152,7 @@ You may need to synchronize database!</source>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="572"/>
         <source>SysInfo file generated on: %1&lt;br&gt;If you wish, post the output in your distro&apos;s forum for help.</source>
-        <translation type="unfinished"/>
+        <translation>Файл SysInfo, створений: %1&lt;br&gt;Якщо ви бажаєте, опублікуйте вихідні дані на форумі дистрибутиву, щоб отримати допомогу. </translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="576"/>
@@ -1196,17 +1197,17 @@ You may need to synchronize database!</source>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="609"/>
         <source>Temporary &quot;yay-bin&quot; could not be downloaded!</source>
-        <translation type="unfinished"/>
+        <translation>Не вдалося завантажити тимчасовий &quot;yay-bin&quot;! </translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="614"/>
         <source>Temporary &quot;yay-bin&quot; downloaded.</source>
-        <translation type="unfinished"/>
+        <translation>Тимчасовий &quot;yay-bin&quot; завантажений. </translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="619"/>
         <source>Downloading temporary &quot;yay-bin&quot;...</source>
-        <translation type="unfinished"/>
+        <translation>Завантаження тимчасового &quot;yay-bin&quot;...</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="623"/>
@@ -1308,13 +1309,16 @@ You may need to synchronize database!</source>
         <source>You'll need one of those tools to use AUR:
 
 %1, %2, %3 %4 or %5</source>
-        <translation type="unfinished"/>
+        <translation>Для використання AUR вам знадобиться один із цих інструментів: 
+
+%1, %2, %3 %4 або %5</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="711"/>
         <source>You need a package in order to use AUR.
 Do you want to install it?</source>
-        <translation type="unfinished"/>
+        <translation>Вам потрібен пакунок, щоб використовувати AUR. 
+Бажаєте встановити його?</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="717"/>
@@ -1325,12 +1329,12 @@ Do you want to install it?</source>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="721"/>
         <source>Would you like to help this project by voting for it?
 You only need to accept and wait a few seconds.</source>
-        <translation type="unfinished"/>
+        <translation>Ви хотіли б допомогти цьому проекту, проголосувавши за нього? Вам потрібно лише прийняти і почекати кілька секунд. </translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="727"/>
         <source>Thank you for voting for Octopi!</source>
-        <translation type="unfinished"/>
+        <translation>Дякуємо, що проголосували за Octopi!</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="732"/>
