@@ -313,8 +313,8 @@ void MainWindow::initSystemTrayIcon()
   connect (m_systemTrayIcon, SIGNAL(activateRequested(bool,QPoint)),
            this, SLOT(execSystemTrayKF5()) );
 #else
-  connect ( m_systemTrayIcon , SIGNAL( activated( QSystemTrayIcon::ActivationReason ) ),
-            this, SLOT( execSystemTrayActivated ( QSystemTrayIcon::ActivationReason ) ) );
+  connect ( m_systemTrayIcon , SIGNAL( activated(QSystemTrayIcon::ActivationReason) ),
+            this, SLOT( execSystemTrayActivated (QSystemTrayIcon::ActivationReason) ) );
 #endif
 
   m_pacmanHelperTimer = new QTimer();
@@ -893,8 +893,8 @@ void MainWindow::checkUpdates(CheckUpdate check)
     if (SettingsManager::getEnableInternetChecking() && !isInternetAvailable()) return;
   }
 
-  disconnect(m_pacmanDatabaseSystemWatcher,
-          SIGNAL(directoryChanged(QString)), this, SLOT(refreshAppIcon()));
+  //disconnect(m_pacmanDatabaseSystemWatcher,
+  //        SIGNAL(directoryChanged(QString)), this, SLOT(refreshAppIcon()));
 
   QTime now;
   if (m_debugInfo)
@@ -932,7 +932,7 @@ void MainWindow::checkUpdates(CheckUpdate check)
   m_pacmanExec = new PacmanExec(this);
   m_commandExecuting = ectn_CHECK_UPDATES;
   m_pacmanExec->doCheckUpdates();
-  connect(m_pacmanExec, SIGNAL(finished(int, QProcess::ExitStatus)), this, SLOT(afterCheckUpdates(int, QProcess::ExitStatus)));
+  connect(m_pacmanExec, SIGNAL(finished(int,QProcess::ExitStatus)), this, SLOT(afterCheckUpdates(int,QProcess::ExitStatus)));
 }
 
 /*
