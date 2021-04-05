@@ -170,11 +170,11 @@ void OptionsDialog::initialize(){
   initIconTab();
   initUpdatesTab();
 
-  if (m_calledByOctopi)
+  if (m_calledByOctopi && !UnixCommand::isOctoToolRunning(QLatin1String("octopi-notifier")))
   {
     removeTabByName(tr("Updates"));
   }
-  else
+  else if (!UnixCommand::isOctoToolRunning(QLatin1String("octopi")))
   {
     removeTabByName(tr("Backend"));
     removeTabByName(tr("Package List"));
