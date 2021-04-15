@@ -6,12 +6,12 @@
     <message>
         <location filename="../passworddialog.ui" line="6"/>
         <source>LXQt sudo</source>
-        <translation>LXQt sudo</translation>
+        <translation>LXQt-sudo</translation>
     </message>
     <message>
         <location filename="../passworddialog.ui" line="42"/>
         <source>Copy command to clipboard</source>
-        <translation>Kopieer de opdracht naar het klembord</translation>
+        <translation>Opdracht kopiëren naar klembord</translation>
     </message>
     <message>
         <location filename="../passworddialog.ui" line="45"/>
@@ -21,17 +21,17 @@
     <message>
         <location filename="../passworddialog.ui" line="83"/>
         <source>The requested action needs administrative privileges.&lt;br&gt;Please enter your password.</source>
-        <translation>De gevraagde actie heeft beheerdersrechten nodig.&lt;br&gt;Voer uw wachtwoord in.</translation>
+        <translation>Deze actie vereist beheerdersrechten.&lt;br&gt;Voer uw wachtwoord in.</translation>
     </message>
     <message>
         <location filename="../passworddialog.ui" line="106"/>
         <source>LXQt sudo backend</source>
-        <translation>LXQt sudo backend</translation>
+        <translation>LXQt-sudo-backend</translation>
     </message>
     <message>
         <location filename="../passworddialog.ui" line="109"/>
         <source>A program LXQt sudo calls in background to elevate privileges.</source>
-        <translation>Het programma dat LXQt sudo in de achtergrond aanroept om meer rechten te geven.</translation>
+        <translation>Het programma dat LXQt-sudo op de achtergrond aanroept om meer rechten te verlenen.</translation>
     </message>
     <message>
         <location filename="../passworddialog.ui" line="119"/>
@@ -46,7 +46,7 @@
     <message>
         <location filename="../passworddialog.ui" line="133"/>
         <source>Enter password</source>
-        <translation>Voer wachtwoord in</translation>
+        <translation>Voer uw wachtwoord in</translation>
     </message>
     <message>
         <location filename="../passworddialog.cpp" line="60"/>
@@ -72,18 +72,18 @@ Arguments:
   arguments        Optional arguments for command.
 
 </source>
-        <translation>Gebruik: %1 optie [opdracht [argumenten...]]
+        <translation>Gebruik: %1 optie [opdracht [aanvullende opties…]]
 
-Grafische gebruikersschil voor %2/%3
+Grafisch programma voor %2/%3
 
-Argumenten:
+Aanvullende optie:
   optie:
-    -h|--help      Geef deze hulptekst weer.
-    -v|--version   Geef versie-informatie weer.
+    -h|--help      Toont deze hulptekst.
+    -v|--version   Toont de versie-informatie.
     -s|--su        Gebruik %3(1) als achtergronddienst.
     -d|--sudo      Gebruik %2(8) als achtergronddienst.
-  opdracht         Uit te voeren opdracht.
-  argumenten       Optionele argumenten voor opdracht.
+  opdracht         De uit te voeren opdracht.
+  argumenten       Aanvullende opties bij de opdracht (optioneel).
 
 </translation>
     </message>
@@ -110,7 +110,7 @@ Argumenten:
     <message>
         <location filename="../sudo.cpp" line="219"/>
         <source>Syscall error, failed to fork: %1</source>
-        <translation>Syscall-fout, kan niet worden geprepareerd: %1</translation>
+        <translation>Syscall-fout; kan niet worden geprepareerd: %1</translation>
     </message>
     <message>
         <location filename="../sudo.cpp" line="246"/>

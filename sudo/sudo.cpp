@@ -56,7 +56,7 @@
 namespace
 {
 const QString app_master{QStringLiteral("octopi-sudo")};
-const QString app_version{QStringLiteral("0.16.0")};
+const QString app_version{QStringLiteral("0.17.0")};
 const QString app_lxsu{QStringLiteral("su")};
 const QString app_lxsudo{QStringLiteral("sudo")};
 const QString octopihelper{QStringLiteral("/usr/lib/octopi/octphelper")};
@@ -403,7 +403,13 @@ int Sudo::parent()
       }
       QTextStream{stderr, QIODevice::WriteOnly} << line;
       //assuming text oriented output
+
+#if (QT_VERSION >= QT_VERSION_CHECK(5,15,0))
       QStringList lines = line.split(nl, Qt::SkipEmptyParts);
+#else
+      QStringList lines = line.split(nl, QString::SkipEmptyParts);
+#endif
+
       last_line = lines.isEmpty() ? QString() : lines.back();
     }
 

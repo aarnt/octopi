@@ -42,6 +42,7 @@ FORMS += passworddialog.ui
 TRANSLATIONS += translations/lxqt-sudo_arn.ts \
                 translations/lxqt-sudo_ar.ts \
                 translations/lxqt-sudo_ast.ts \
+                translations/lxqt-sudo_bg.ts \
                 translations/lxqt-sudo_ca.ts \
                 translations/lxqt-sudo_cs.ts \
                 translations/lxqt-sudo_cy.ts \
@@ -65,6 +66,7 @@ TRANSLATIONS += translations/lxqt-sudo_arn.ts \
                 translations/lxqt-sudo_pt_BR.ts \
                 translations/lxqt-sudo_pt.ts \
                 translations/lxqt-sudo_ru.ts \
+                translations/lxqt-sudo_si.ts \
                 translations/lxqt-sudo_sk.ts \
                 translations/lxqt-sudo_sl.ts \
                 translations/lxqt-sudo_tr.ts \

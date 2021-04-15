@@ -11,7 +11,7 @@
     <message>
         <location filename="../passworddialog.ui" line="42"/>
         <source>Copy command to clipboard</source>
-        <translation>クリップボードにコピーします</translation>
+        <translation>コマンドをクリップボードへコピーします</translation>
     </message>
     <message>
         <location filename="../passworddialog.ui" line="45"/>
@@ -31,7 +31,7 @@
     <message>
         <location filename="../passworddialog.ui" line="109"/>
         <source>A program LXQt sudo calls in background to elevate privileges.</source>
-        <translation>権限を上げるために、プログラム「LXQt sudo」がバックグラウンドで呼び出します。</translation>
+        <translation>LXQt sudo が特権を上げるためにバックグラウンドで呼び出すプログラムです。</translation>
     </message>
     <message>
         <location filename="../passworddialog.ui" line="119"/>
@@ -82,8 +82,8 @@ Arguments:
     -v|--version   バージョン情報を表示します。
     -s|--su        バックエンドに %3(1) を使用します。
     -d|--sudo      バックエンドに %2(8) を使用します｡
-  command          実行するコマンド。
-  arguments        コマンドのオプション引数。
+  command          実行するコマンドです。
+  arguments        コマンドのオプション引数です。
 
 </translation>
     </message>
@@ -100,12 +100,12 @@ Arguments:
     <message>
         <location filename="../sudo.cpp" line="195"/>
         <source>%1: no command to run provided!</source>
-        <translation>%1: 実行するコマンドが指定されてません!</translation>
+        <translation>%1: 実行するコマンドが指定されていません！</translation>
     </message>
     <message>
         <location filename="../sudo.cpp" line="202"/>
         <source>%1: no backend chosen!</source>
-        <translation>%1: バックエンドが選択されていません!</translation>
+        <translation>%1: バックエンドを選択していません！</translation>
     </message>
     <message>
         <location filename="../sudo.cpp" line="219"/>

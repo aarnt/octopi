@@ -11,7 +11,7 @@
     <message>
         <location filename="../passworddialog.ui" line="42"/>
         <source>Copy command to clipboard</source>
-        <translation>Copiar comando para área de trabalho</translation>
+        <translation>Copiar comando para a área de transferência</translation>
     </message>
     <message>
         <location filename="../passworddialog.ui" line="45"/>
