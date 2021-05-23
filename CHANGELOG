@@ -1,8 +1,9 @@
 0.12 (dev)
   Added support for Paru AUR tool.
-  Added support for opendoas tool (default)  
+  Added support for opendoas tool (default).
   BugFix: If there was only 1 result in AUR search, the pkg could not enter 
     the transaction with the right name.
+  BugFix: IgnorePkg pkgs are shown as outdated when using ALPM backend.
   BugFix: If user went from AUR to normal search with a not found pkg the statusbar
     counters would become invisible.
   BugFix: If options dialog was called while both notifier and octopi were running,
