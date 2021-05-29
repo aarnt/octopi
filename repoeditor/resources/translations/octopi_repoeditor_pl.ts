@@ -72,7 +72,7 @@
     <message>
         <location filename="Projects/octopi/repoeditor/main.cpp" line="54"/>
         <source>You can not run Repository Editor with administrator&apos;s credentials.</source>
-        <translation type="unfinished"/>
+        <translation>Nie można uruchomić Edytora repozytorium z poświadczeniami administratora.</translation>
     </message>
 </context>
 <context>

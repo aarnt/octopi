@@ -72,7 +72,7 @@
     <message>
         <location filename="Projects/octopi/repoeditor/main.cpp" line="54"/>
         <source>You can not run Repository Editor with administrator&apos;s credentials.</source>
-        <translation>관리자 자격 증명으로 저장소 편집기를 실행할 수 없습니다.</translation>
+        <translation>관리자 자격 증명으로 저장소 편집도구를 실행할 수 없습니다.</translation>
     </message>
 </context>
 <context>
@@ -113,7 +113,7 @@
     <message>
         <location filename="Projects/octopi/repoeditor/repoeditor.ui" line="14"/>
         <source>Repository Editor - Octopi</source>
-        <translation>저장소 편집기 - Octopi</translation>
+        <translation>저장소 편집도구 - Octopi</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/repoeditor.ui" line="27"/>

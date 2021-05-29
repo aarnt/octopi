@@ -49,17 +49,17 @@
     <message>
         <location filename="../Projects/octopi/ui/mainwindow.ui" line="224"/>
         <source>&amp;About</source>
-        <translation>프로그램 정보(&amp;A)</translation>
+        <translation>소개(&amp;A)</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/ui/mainwindow.ui" line="227"/>
         <source>About</source>
-        <translation>Octopi 정보</translation>
+        <translation>Octopi 소개</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/ui/mainwindow.ui" line="241"/>
         <source>Non installed</source>
-        <translation>설치되지 않음</translation>
+        <translation>설치안됨</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/ui/mainwindow.ui" line="250"/>
@@ -202,17 +202,17 @@
     <message>
         <location filename="../Projects/octopi/ui/mainwindow.ui" line="543"/>
         <source>Pacman Log Viewer</source>
-        <translation>팩맨 로그 뷰어</translation>
+        <translation>Pacman 로그 뷰어</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/ui/mainwindow.ui" line="558"/>
         <source>Repository Editor</source>
-        <translation>저장소 편집기</translation>
+        <translation>저장소 편집도구</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/ui/mainwindow.ui" line="570"/>
         <source>Cache Cleaner</source>
-        <translation>캐시 클리너</translation>
+        <translation>캐시 청소도구</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/ui/mainwindow.ui" line="581"/>
@@ -232,7 +232,7 @@
     <message>
         <location filename="../Projects/octopi/ui/mainwindow.ui" line="622"/>
         <source>Donate!</source>
-        <translation>기부!</translation>
+        <translation>기부하기!</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/mainwindow_help.cpp" line="68"/>
@@ -247,7 +247,7 @@
     <message>
         <location filename="../Projects/octopi/src/mainwindow_help.cpp" line="81"/>
         <source>For more information, visit:</source>
-        <translation>자세한 내용은 다음을 참조 하십시오:</translation>
+        <translation>자세한 내용은, 다음 사이트를 참조하십시오:</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/mainwindow_help.cpp" line="84"/>
@@ -257,7 +257,7 @@
     <message>
         <location filename="../Projects/octopi/src/mainwindow_help.cpp" line="85"/>
         <source>licensed under the terms of</source>
-        <translation>약관에 따라 사용 허가됨</translation>
+        <translation>다음 약관에 따라 라이선스가 부여됨:</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/mainwindow_help.cpp" line="92"/>
@@ -480,12 +480,12 @@
     <message>
         <location filename="../Projects/octopi/ui/optionsdialog.ui" line="76"/>
         <source>Enable confirmation dialog in system upgrade</source>
-        <translation>시스템 업그레이드 시 확인 대화 상자 사용</translation>
+        <translation>시스템 업그레이드 시 확인 대화 상자 활성화</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/ui/optionsdialog.ui" line="89"/>
         <source>Enable internet checking</source>
-        <translation>인터넷 확인 사용</translation>
+        <translation>인터넷 검사 활성화</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/ui/optionsdialog.ui" line="95"/>
@@ -516,7 +516,7 @@
     <message>
         <location filename="../Projects/octopi/ui/optionsdialog.ui" line="159"/>
         <source>Show &quot;Install Date&quot; column</source>
-        <translation>&quot;날짜 설치&quot; 열 표시</translation>
+        <translation>&quot;설치 날짜&quot; 열 표시</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/ui/optionsdialog.ui" line="172"/>
@@ -556,14 +556,14 @@
     <message>
         <location filename="../Projects/octopi/ui/optionsdialog.ui" line="401"/>
         <source>Enable AUR voting</source>
-        <translation>AUR 투표 사용</translation>
+        <translation>AUR 투표 활성화</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/ui/optionsdialog.ui" line="422"/>
         <source>AUR packages are user produced content. 
 Any use of the provided files is at your own risk.</source>
-        <translation>AUR 패키지는 사용자 제작 콘텐츠입니다.
-제공된 파일의 사용에 따른 위험은 사용자 본인이 감수해야합니다.</translation>
+        <translation>AUR 패키지는 사용자가 제작한 콘텐츠입니다. 
+제공된 파일의 모든 사용에 따른 위험은 사용자 본인이 감수해야 합니다.</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/ui/optionsdialog.ui" line="483"/>
@@ -758,7 +758,7 @@ You may need to synchronize database!</source>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="208"/>
         <source>About</source>
-        <translation>정보</translation>
+        <translation>소개</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="212"/>
@@ -948,7 +948,7 @@ You may need to synchronize database!</source>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="367"/>
         <source>Packager</source>
-        <translation>패키지 제작자</translation>
+        <translation>패키지 도구</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="371"/>
@@ -1088,7 +1088,7 @@ You may need to synchronize database!</source>
     <message numerus="yes">
         <location filename="../Projects/octopi/src/strconstants.cpp" line="480"/>
         <source>%n packages</source>
-        <translation><numerusform>패키지 %n개</numerusform></translation>
+        <translation><numerusform>%n개 패키지</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="../Projects/octopi/src/strconstants.cpp" line="484"/>
@@ -1108,7 +1108,7 @@ You may need to synchronize database!</source>
     <message numerus="yes">
         <location filename="../Projects/octopi/src/strconstants.cpp" line="496"/>
         <source>%n available</source>
-        <translation><numerusform>%n개 사용 가능함</numerusform></translation>
+        <translation><numerusform>%n개 사용 가능</numerusform></translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="500"/>
@@ -1118,7 +1118,7 @@ You may need to synchronize database!</source>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="504"/>
         <source>Removing Pacman&apos;s transaction lock file...</source>
-        <translation>팩맨의 트랜잭션 잠금 파일 제거중...</translation>
+        <translation>Pacman의 트랜잭션 잠금 파일 제거중...</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="536"/>
