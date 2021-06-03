@@ -1,4 +1,5 @@
 0.12 (dev)
+  Added support for pacman 6.0 (thanks to class101)
   Added support for Paru AUR tool.
   Added support for opendoas tool (default).
   BugFix: If there was only 1 result in AUR search, the pkg could not enter 

@@ -230,6 +230,11 @@ void PacmanExec::parsePacmanProcessOutput(const QString &output)
   msg.remove(QStringLiteral("[32m"));
   msg.remove(QStringLiteral("[33m"));
   msg.remove(QStringLiteral("(B[m"));
+  msg.remove(QStringLiteral("[?25l"));
+  msg.remove(QStringLiteral("[?25h"));
+  msg.remove(QStringLiteral("[2F"));
+  msg.remove(QStringLiteral("E "));
+  msg.remove(QStringLiteral("F "));
   msg.remove(QRegularExpression(QStringLiteral("^\\($")));
 
   if (storeMsgCache) msgCache+=msg;
@@ -391,11 +396,11 @@ void PacmanExec::parsePacmanProcessOutput(const QString &output)
                   prepareTextToPrint(QLatin1String("<b><font color=\"#FF8040\">") +
                                       StrConstants::getSyncing() + QLatin1Char(' ') + target + QLatin1String("</font></b>"));
                 }
-                else if (m_commandExecuting != ectn_SYNC_DATABASE)
+                /*else if (m_commandExecuting != ectn_SYNC_DATABASE)
                 {
                   prepareTextToPrint(QLatin1String("<b><font color=\"#b4ab58\">") +
                                       target + QLatin1String("</font></b>")); //#C9BE62
-                }
+                }*/
               }
             }
           }
@@ -444,6 +449,7 @@ void PacmanExec::parsePacmanProcessOutput(const QString &output)
     msg.remove(QRegularExpression(QStringLiteral("Icon theme \".+")));
     msg.remove(QRegularExpression(QStringLiteral("Gtk-Message:.+")));
     msg = msg.trimmed();
+    msg.remove(QRegularExpression(QStringLiteral("Total")));
 
     if (m_debugMode) std::cout << "debug: " << msg.toLatin1().data() << std::endl;
 
@@ -487,7 +493,7 @@ void PacmanExec::parsePacmanProcessOutput(const QString &output)
           if (m_debugMode) std::cout << "Print in black: " << msg.toLatin1().data() << std::endl;
 
           if (m_commandExecuting == ectn_SYNC_DATABASE &&
-              msg.contains(QLatin1String("is up to date")))
+              msg.contains(QLatin1String("is up to date")) && msg != QLatin1String("is up to date"))
           {
             emit percentage(100);
 
@@ -502,10 +508,22 @@ void PacmanExec::parsePacmanProcessOutput(const QString &output)
                 repo.contains(QLatin1String("reading"), Qt::CaseInsensitive)) return;
 
             altMsg = repo + QLatin1Char(' ') + StrConstants::getIsUpToDate();
+            altMsg = Package::removeColorCodesFromStr(altMsg);
+            prepareTextToPrint(altMsg); //BLACK
           }
-
-          altMsg = Package::removeColorCodesFromStr(altMsg);
-          prepareTextToPrint(altMsg); //BLACK
+          else if (m_commandExecuting == ectn_INSTALL || m_commandExecuting == ectn_SYSTEM_UPGRADE)
+          {
+            if (!altMsg.contains(QRegularExpression(QStringLiteral("\\s"))) && altMsg.contains(QStringLiteral("-")))
+            {
+              prepareTextToPrint(QLatin1String("<b><font color=\"#b4ab58\">") +
+                                altMsg + QLatin1String("</font></b>")); //#C9BE62
+            }
+            else if (altMsg != QStringLiteral("E"))
+            {
+              altMsg = Package::removeColorCodesFromStr(altMsg);
+              prepareTextToPrint(altMsg); //BLACK
+            }
+          }
         }
       }
     }
@@ -776,7 +794,7 @@ void PacmanExec::onReadOutput()
       }
     }
 
-    output.replace(QLatin1String("\n"), QLatin1String("<br>"));
+    output.replace(QLatin1String("\\n"), QLatin1String("<br>"));
     int i = output.lastIndexOf(QLatin1String("<"));
     if (i != -1) output.remove(i, 4);
     prepareTextToPrint(output, ectn_TREAT_STRING, ectn_DONT_TREAT_URL_LINK);
