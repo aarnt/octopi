@@ -448,8 +448,11 @@ void PacmanExec::parsePacmanProcessOutput(const QString &output)
     msg.remove(QRegularExpression(QStringLiteral("qt.qpa.xcb:.+")));
     msg.remove(QRegularExpression(QStringLiteral("Icon theme \".+")));
     msg.remove(QRegularExpression(QStringLiteral("Gtk-Message:.+")));
+    msg.remove(QRegularExpression(QStringLiteral("\\[K$")));
     msg = msg.trimmed();
     msg.remove(QRegularExpression(QStringLiteral("Total")));
+
+    msg.remove(QRegularExpression(QStringLiteral("\\[\\d"))); //when ParallelDownloads is enabled in pacman.conf
 
     if (m_debugMode) std::cout << "debug: " << msg.toLatin1().data() << std::endl;
 
