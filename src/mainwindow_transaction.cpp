@@ -2500,7 +2500,15 @@ void MainWindow::outputText(const QString &output)
   QTextBrowser *text = ui->twProperties->widget(ctn_TABINDEX_OUTPUT)->findChild<QTextBrowser*>(QStringLiteral("textBrowser"));
   if (text)
   {
-    if ((m_commandExecuting == ectn_RUN_IN_TERMINAL && SettingsManager::getTerminal() != ctn_QTERMWIDGET) ||
+    if (m_commandExecuting == ectn_CHECK_UPDATES)
+    {
+      QString newstr = output;
+      newstr.replace(QStringLiteral("\n"), QStringLiteral("<br>"));
+      text->insertHtml(newstr);
+      text->ensureCursorVisible();
+      return;
+    }
+    else if ((m_commandExecuting == ectn_RUN_IN_TERMINAL && SettingsManager::getTerminal() != ctn_QTERMWIDGET) ||
         (m_commandExecuting != ectn_RUN_IN_TERMINAL && SettingsManager::getTerminal() == ctn_QTERMWIDGET))
     {
       ensureTabVisible(ctn_TABINDEX_OUTPUT);
