@@ -1406,7 +1406,11 @@ bool UnixCommand::isPacmanFiveDotOneOrHigher()
     int ma = major.toInt();
     int mi = minor.toInt();
 
-    if (ma >=5)
+    if (ma > 5)
+    {
+      res = true;
+    }
+    else if (ma == 5)
     {
       if (mi >=1) res = true;
     }

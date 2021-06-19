@@ -514,7 +514,7 @@ void PacmanExec::parsePacmanProcessOutput(const QString &output)
             altMsg = Package::removeColorCodesFromStr(altMsg);
             prepareTextToPrint(altMsg); //BLACK
           }
-          else if (m_commandExecuting == ectn_INSTALL || m_commandExecuting == ectn_SYSTEM_UPGRADE)
+          else if (m_commandExecuting == ectn_INSTALL || m_commandExecuting == ectn_REMOVE || m_commandExecuting == ectn_SYSTEM_UPGRADE)
           {
             if (!altMsg.contains(QRegularExpression(QStringLiteral("\\s"))) && altMsg.contains(QStringLiteral("-")))
             {
