@@ -302,12 +302,12 @@
     <message>
         <location filename="../Projects/octopi/src/mainwindow_help.cpp" line="114"/>
         <source>Basic usage help:</source>
-        <translation>기본 사용법 도움말 :</translation>
+        <translation>기본 사용 도움말 :</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/mainwindow_help.cpp" line="116"/>
         <source>Position the mouse over a package to see its description</source>
-        <translation>설명을 보려면 패키지 위에 마우스를 놓으십시오</translation>
+        <translation>설명을 보려면 패키지 위에 마우스를 올려 놓습니다</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/mainwindow_help.cpp" line="118"/>
@@ -352,7 +352,7 @@
     <message>
         <location filename="../Projects/octopi/src/mainwindow_help.cpp" line="135"/>
         <source>Alt+6 or &apos;F1&apos; to show this help page</source>
-        <translation>Alt+6 또는 F1 : 사용법 페이지</translation>
+        <translation>Alt+6 또는 F1 : 이 도움말 페이지 표시</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/mainwindow_help.cpp" line="137"/>
@@ -432,7 +432,7 @@
     <message>
         <location filename="../Projects/octopi/src/mainwindow_help.cpp" line="175"/>
         <source>F1 to show this help page</source>
-        <translation>F1 : 사용법 페이지 표시</translation>
+        <translation>F1 : 이 도움말 페이지 표시</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/mainwindow_help.cpp" line="177"/>
@@ -447,12 +447,12 @@
     <message>
         <location filename="../Projects/octopi/src/mainwindow_help.cpp" line="181"/>
         <source>F10 to maximize/demaximize package list view</source>
-        <translation>F10을 사용하여 패키지 목록 보기 최대화/최소화</translation>
+        <translation>F10 : 패키지 목록 보기 최대화/최대화 해제</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/mainwindow_help.cpp" line="183"/>
         <source>F11 to maximize/demaximize Tab&apos;s view</source>
-        <translation>F11 : 탭 최대화/최소화 보기</translation>
+        <translation>F11 : 탭 보기 최대화/최대화 해제</translation>
     </message>
 </context>
 <context>
@@ -728,7 +728,7 @@ You may need to synchronize database!</source>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="175"/>
         <source>No news could be found! Press Ctrl+G to download the latest news.</source>
-        <translation>소식을 찾을 수 없습니다! 최신 뉴스를 다운로드하려면 Ctrl+G를 누릅니다.</translation>
+        <translation>소식을 찾을 수 없습니다! 최신 뉴스를 다운로드하려면 Ctrl+G를 누르십시오.</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="180"/>
@@ -1263,7 +1263,7 @@ You may need to synchronize database!</source>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="663"/>
         <source>Confirm?</source>
-        <translation>확인?</translation>
+        <translation>확인하시겠습니까?</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="667"/>
@@ -1457,7 +1457,7 @@ Are you sure you want to open it?</source>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="821"/>
         <source>To be removed</source>
-        <translation>제거할 항목 :</translation>
+        <translation>제거할 항목:</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="825"/>
