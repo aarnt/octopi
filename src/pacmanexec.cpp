@@ -387,7 +387,7 @@ void PacmanExec::parsePacmanProcessOutput(const QString &output)
             if (m_commandExecuting != ectn_SYNC_DATABASE &&
               (!target.contains(QLatin1String("-i686")) && !target.contains(QLatin1String("-x86_64")) && !target.contains(QLatin1String("-any")))) return; //WATCHOUT!
 
-            if(!target.isEmpty() && !m_textPrinted.contains(target))
+            if(!target.isEmpty() && !target.startsWith(QLatin1Char('[')) && !m_textPrinted.contains(target))
             {
               if (target.indexOf(QRegularExpression(QStringLiteral("[a-z]+"))) != -1)
               {
