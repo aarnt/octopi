@@ -348,6 +348,9 @@ void PacmanExec::parsePacmanProcessOutput(const QString &output)
             target = msg.left(pos);
             target = target.trimmed() + QLatin1Char(' ');
 
+            if (target.at(target.length()-1) == QLatin1String("%"))
+              target.remove(target.length()-1, 1);
+
             if (m_commandExecuting != ectn_SYNC_DATABASE &&
               (!target.contains(QLatin1String("-i686")) && !target.contains(QLatin1String("-x86_64")) && !target.contains(QLatin1String("-any")))) return; //WATCHOUT!
 
