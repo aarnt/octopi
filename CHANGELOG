@@ -2,6 +2,8 @@
   Added support for pacman 6.0 (thanks to class101)
   Added support for Paru AUR tool.
   Added support for opendoas tool (default).
+  Actions tab shows a counter feedback for inserts (with a plus signal) and 
+    removals (with a minus signal) and does not steal focus anymore.
   BugFix: If there was only 1 result in AUR search, the pkg could not enter 
     the transaction with the right name.
   BugFix: IgnorePkg pkgs are shown as outdated when using ALPM backend.

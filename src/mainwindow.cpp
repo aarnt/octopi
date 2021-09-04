@@ -2239,7 +2239,7 @@ void MainWindow::tvPackagesSelectionChanged(const QItemSelection&, const QItemSe
  */
 void MainWindow::launchPLV()
 {
-  QProcess *proc = new QProcess();
+  QProcess *proc = new QProcess(this);
   proc->startDetached(QStringLiteral("plv"), QStringList());
 }
 

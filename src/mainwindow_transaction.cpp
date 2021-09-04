@@ -150,7 +150,6 @@ void MainWindow::insertRemovePackageIntoTransaction(const QString &pkgName)
     siRemoveParent->appendRow(siPackageToRemove);
   }
 
-  ui->twProperties->setCurrentIndex(ctn_TABINDEX_ACTIONS);
   tvTransaction->expandAll();
   changeTransactionActionsState();
 }
@@ -193,7 +192,6 @@ void MainWindow::insertInstallPackageIntoTransaction(const QString &pkgName, boo
     siInstallParent->appendRow(siPackageToInstall);
   }
 
-  ui->twProperties->setCurrentIndex(ctn_TABINDEX_ACTIONS);
   tvTransaction->expandAll();
   changeTransactionActionsState();
 }
@@ -277,7 +275,7 @@ void MainWindow::insertIntoRemovePackage(QModelIndex *indexToInclude)
   //if (!isAURGroupSelected())
   {
     bool checkDependencies=false;
-    ensureTabVisible(ctn_TABINDEX_ACTIONS);
+    //ensureTabVisible(ctn_TABINDEX_ACTIONS);
     QModelIndexList selectedRows;
 
     if (indexToInclude == nullptr)
@@ -355,7 +353,7 @@ void MainWindow::insertIntoRemovePackage(QModelIndex *indexToInclude)
  */
 void MainWindow::insertGroupIntoRemovePackage()
 {
-  ensureTabVisible(ctn_TABINDEX_ACTIONS);
+  //ensureTabVisible(ctn_TABINDEX_ACTIONS);
   insertRemovePackageIntoTransaction(getSelectedGroup());
 }
 
@@ -433,7 +431,7 @@ void MainWindow::insertIntoInstallPackage(QModelIndex *indexToInclude)
 
   //if (!isAURGroupSelected())
   {
-    ensureTabVisible(ctn_TABINDEX_ACTIONS);
+    //ensureTabVisible(ctn_TABINDEX_ACTIONS);
     QModelIndexList selectedRows;
 
     if (indexToInclude == nullptr)
@@ -624,7 +622,7 @@ bool MainWindow::insertIntoRemovePackageDeps(const QStringList &dependencies)
  */
 void MainWindow::insertGroupIntoInstallPackage()
 {
-  ensureTabVisible(ctn_TABINDEX_ACTIONS);
+  //ensureTabVisible(ctn_TABINDEX_ACTIONS);
   insertInstallPackageIntoTransaction(getSelectedGroup());
 }
 
@@ -696,6 +694,26 @@ void MainWindow::tvTransactionRowsChanged(const QModelIndex& parent)
       tvTransactionAdjustItemText(itemInstall);
     }
     else itemInstall->setText(StrConstants::getTransactionInstallText());
+  }
+
+  int lToInstall=itemInstall->rowCount();
+  int lToRemove=itemRemove->rowCount();
+
+  if (lToInstall > 0 || lToRemove > 0)
+  {
+    QString newText=StrConstants::getActions() + QLatin1String(" (");
+
+    if (lToInstall > 0)
+      newText += QLatin1String("+") + QString::number(lToInstall);
+    if (lToRemove > 0)
+      newText += QLatin1String("-") + QString::number(lToRemove);
+
+    newText += QLatin1String(")");
+    ui->twProperties->setTabText(ctn_TABINDEX_ACTIONS, newText);
+  }
+  else
+  {
+    ui->twProperties->setTabText(ctn_TABINDEX_ACTIONS, StrConstants::getActions());
   }
 }
 
@@ -1402,8 +1420,8 @@ void MainWindow::doInstallAURPackage()
   m_pacmanExec->setSharedMemory(m_sharedMemory);
   if (m_debugInfo) m_pacmanExec->setDebugMode(true);
 
-  QObject::connect(m_pacmanExec, SIGNAL(finished (int, QProcess::ExitStatus)),
-                   this, SLOT( pacmanProcessFinished(int, QProcess::ExitStatus) ));
+  QObject::connect(m_pacmanExec, SIGNAL(finished (int,QProcess::ExitStatus)),
+                   this, SLOT( pacmanProcessFinished(int,QProcess::ExitStatus) ));
 
   QObject::connect(m_pacmanExec, SIGNAL(percentage(int)), this, SLOT(incrementPercentage(int)));
   QObject::connect(m_pacmanExec, SIGNAL(textToPrintExt(QString)), this, SLOT(outputText(QString)));
@@ -1483,8 +1501,8 @@ void MainWindow::doRemoveAUR()
   m_pacmanExec->setSharedMemory(m_sharedMemory);
   if (m_debugInfo) m_pacmanExec->setDebugMode(true);
 
-  QObject::connect(m_pacmanExec, SIGNAL( finished ( int, QProcess::ExitStatus )),
-                   this, SLOT( pacmanProcessFinished(int, QProcess::ExitStatus) ));
+  QObject::connect(m_pacmanExec, SIGNAL(finished(int,QProcess::ExitStatus)),
+                   this, SLOT(pacmanProcessFinished(int,QProcess::ExitStatus) ));
 
   QObject::connect(m_pacmanExec, SIGNAL(percentage(int)), this, SLOT(incrementPercentage(int)));
   QObject::connect(m_pacmanExec, SIGNAL(textToPrintExt(QString)), this, SLOT(outputText(QString)));
@@ -1524,8 +1542,8 @@ void MainWindow::doRemoveAURPackage()
   m_pacmanExec->setSharedMemory(m_sharedMemory);
   if (m_debugInfo) m_pacmanExec->setDebugMode(true);
 
-  QObject::connect(m_pacmanExec, SIGNAL(finished(int, QProcess::ExitStatus)),
-                   this, SLOT( pacmanProcessFinished(int, QProcess::ExitStatus) ));
+  QObject::connect(m_pacmanExec, SIGNAL(finished(int,QProcess::ExitStatus)),
+                   this, SLOT( pacmanProcessFinished(int,QProcess::ExitStatus) ));
 
   QObject::connect(m_pacmanExec, SIGNAL(percentage(int)), this, SLOT(incrementPercentage(int)));
   QObject::connect(m_pacmanExec, SIGNAL(textToPrintExt(QString)), this, SLOT(outputText(QString)));
@@ -1709,8 +1727,8 @@ void MainWindow::doInstallAUR()
   m_pacmanExec->setSharedMemory(m_sharedMemory);
   if (m_debugInfo) m_pacmanExec->setDebugMode(true);
 
-  QObject::connect(m_pacmanExec, SIGNAL(finished(int, QProcess::ExitStatus)),
-                   this, SLOT( pacmanProcessFinished(int, QProcess::ExitStatus) ));
+  QObject::connect(m_pacmanExec, SIGNAL(finished(int,QProcess::ExitStatus)),
+                   this, SLOT( pacmanProcessFinished(int,QProcess::ExitStatus) ));
 
   QObject::connect(m_pacmanExec, SIGNAL(percentage(int)), this, SLOT(incrementPercentage(int)));
   QObject::connect(m_pacmanExec, SIGNAL(textToPrintExt(QString)), this, SLOT(outputText(QString)));
