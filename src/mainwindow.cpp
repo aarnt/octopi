@@ -111,9 +111,9 @@ MainWindow::MainWindow(QWidget *parent) :
   //Here we try to speed up first pkg list build!
   m_time->start();
 
-  retrieveOutdatedPackageList();
+  /*retrieveOutdatedPackageList();
   retrieveUnrequiredPackageList();
-  retrieveForeignPackageList();
+  retrieveForeignPackageList();*/
 
   ui->setupUi(this);
   switchToViewAllPackages();  
@@ -253,9 +253,10 @@ void MainWindow::show()
 
     if (Package::hasPacmanDatabase())
     {
-      /*retrieveOutdatedPackageList();
+      m_cic = new CPUIntensiveComputing;
+      retrieveOutdatedPackageList();
       retrieveUnrequiredPackageList();
-      retrieveForeignPackageList();*/
+      retrieveForeignPackageList();
 
       metaBuildPackageList();
     }

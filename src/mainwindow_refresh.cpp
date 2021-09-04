@@ -638,6 +638,11 @@ void MainWindow::metaBuildPackageList()
       std::cout << m_packageModel->getPackageCount() << " pkgs => " <<
                  "Time elapsed before building pkgs from 'ALL group' list: " << m_time->elapsed() << " mili seconds." << std::endl << std::endl;
 
+    if (m_cic == nullptr)
+    {
+      m_cic = new CPUIntensiveComputing;
+    }
+
     QEventLoop el;
     QFuture<QList<PackageListData> *> f;
     f = QtConcurrent::run(searchPacmanPackages, m_checkUpdatesNameNewVersion);
@@ -788,7 +793,11 @@ void MainWindow::buildPackageList()
 {
   ui->tvPackages->setColumnHidden(PackageModel::ctn_PACKAGE_POPULARITY_COLUMN, true);
 
-  CPUIntensiveComputing cic;
+  /*if (m_cic == nullptr)
+  {
+    m_cic = new CPUIntensiveComputing;
+  }*/
+
   static bool firstTime = true;
   bool searchOutdatedPackages=SettingsManager::getSearchOutdatedAURPackages();
   if (!searchOutdatedPackages)
@@ -986,6 +995,12 @@ void MainWindow::buildPackageList()
   }
 
   if (!ui->twGroups->isEnabled()) ui->twGroups->setEnabled(true);
+
+  if (m_cic != nullptr)
+  {
+    delete m_cic;
+    m_cic = nullptr;
+  }
 }
 
 void MainWindow::refreshOutdatedPackageList()
