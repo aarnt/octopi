@@ -1313,6 +1313,10 @@ LinuxDistro UnixCommand::getLinuxDistro()
       {
         ret = ectn_ENDEAVOUROS;
       }
+      else if (contents.contains(QRegularExpression(QStringLiteral("Garuda"))))
+      {
+        ret = ectn_GARUDALINUX;
+      }
       else if (contents.contains(QRegularExpression(QStringLiteral("KaOS"))))
       {
         ret = ectn_KAOS;

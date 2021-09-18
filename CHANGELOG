@@ -2,6 +2,7 @@
   Added support for pacman 6.0 (thanks to class101)
   Added support for Paru AUR tool.
   Added support for opendoas tool (default).
+  Added support for Garuda Linux distro.
   Actions tab shows a counter feedback for inserts (with a plus signal) and 
     removals (with a minus signal) and does not steal focus anymore.
   BugFix: Initial database searches are executed after main interface is shown. 
