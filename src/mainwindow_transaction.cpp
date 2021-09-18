@@ -831,6 +831,7 @@ void MainWindow::doCheckUpdates()
   m_progressWidget->setValue(0);
   m_progressWidget->setMaximum(100);
   clearTabOutput();
+  ensureTabVisible(ctn_TABINDEX_OUTPUT);
 
   m_pacmanExec = new PacmanExec();
   if (m_debugInfo) m_pacmanExec->setDebugMode(true);
