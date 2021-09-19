@@ -28,6 +28,8 @@
  * Collection of Octopi constants and enums
  */
 
+const QString ctn_APPLICATION_VERSION(QStringLiteral("0.12 (dev)"));
+
 //MainWindow related
 enum SystemUpgradeOptions { ectn_NO_OPT, ectn_SYNC_DATABASE_OPT, ectn_NOCONFIRM_OPT };
 
@@ -71,8 +73,8 @@ enum CommandExecuting { ectn_NONE, ectn_CHECK_UPDATES, ectn_MIRROR_CHECK,
                         ectn_RUN_SYSTEM_UPGRADE_IN_TERMINAL, ectn_RUN_IN_TERMINAL,
                         ectn_INSTALL_YAY, ectn_SYSINFO };
 
-enum LinuxDistro { ectn_ARCHBANGLINUX, ectn_ARCHLINUX, ectn_ARTIXLINUX, ectn_CHAKRA, ectn_CONDRESOS, ectn_ENDEAVOUROS,
-                   ectn_GARUDALINUX, ectn_KAOS, ectn_MANJAROLINUX, ectn_PARABOLA, ectn_UNKNOWN };
+enum LinuxDistro { ectn_ARCHBANGLINUX, ectn_ARCHCRAFT, ectn_ARCHLINUX, ectn_ARTIXLINUX, ectn_CHAKRA, ectn_CONDRESOS,
+                   ectn_ENDEAVOUROS, ectn_GARUDALINUX, ectn_KAOS, ectn_MANJAROLINUX, ectn_PARABOLA, ectn_UNKNOWN };
 
 enum OptionsDialogTab { ectn_TAB_GENERAL, ectn_TAB_AUR };
 enum Language { ectn_LANG_ENGLISH, ectn_LANG_USER_DEFINED };
@@ -276,7 +278,7 @@ enum ExecOpt { ectn_NORMAL_EXEC_OPT, ectn_CHECKUPDATES_EXEC_OPT, ectn_SYSUPGRADE
 
 //Octopi-helper related ----------------------------------------------------------------------------------
 
-const QString ctn_OCTOPI_HELPER_VERSION = QStringLiteral("0.11 (dev)");
+//const QString ctn_OCTOPI_HELPER_VERSION = ctn_APPLICATION_VERSION;
 const QString ctn_OCTOPI_HELPER_NAME(QStringLiteral("octphelper"));
 const QString ctn_OCTOPI_HELPER_PATH(QStringLiteral("/usr/lib/octopi/octphelper"));
 

@@ -436,7 +436,7 @@ void MainWindow::aboutOctopiNotifier()
 
   QString aboutText = QStringLiteral("<b>Octopi Notifier</b><br>");
   aboutText += StrConstants::getVersion() + QLatin1String(": ") +
-      StrConstants::getApplicationVersion() + QLatin1String("</b>") +
+      ctn_APPLICATION_VERSION /*StrConstants::getApplicationVersion()*/ + QLatin1String("</b>") +
       QLatin1String(" - ") + StrConstants::getQtVersion() + QLatin1String("<br>");
   aboutText += StrConstants::getURL() + QLatin1String(": ") +
       QLatin1String("<a href=\"https://tintaescura.com/projects/octopi/\">https://tintaescura.com/projects/octopi</a><br>");

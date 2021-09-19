@@ -1296,6 +1296,10 @@ LinuxDistro UnixCommand::getLinuxDistro()
       {
         ret = ectn_ARCHBANGLINUX;
       }
+      if (contents.contains(QRegularExpression(QStringLiteral("Archcraft"))))
+      {
+        ret = ectn_ARCHCRAFT;
+      }
       else if (contents.contains(QRegularExpression(QStringLiteral("Arch Linux"))) ||
                (contents.contains(QRegularExpression(QStringLiteral("ArcoLinux")))))
       {

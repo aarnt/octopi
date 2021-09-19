@@ -134,7 +134,7 @@ QString utils::retrieveDistroNews(bool searchForLatestNews)
     QStringList curlParams;
     QString distroRSSUrl = SettingsManager::getDistroRSSUrl();
 
-    if (distro == ectn_ARCHLINUX || distro == ectn_ARCHBANGLINUX || distro == ectn_GARUDALINUX)
+    if (distro == ectn_ARCHLINUX || distro == ectn_ARCHBANGLINUX || distro == ectn_ARCHCRAFT || distro == ectn_GARUDALINUX)
     {
       curlCommand = curlCommand.arg(distroRSSUrl, tmpRssPath);
       curlParams = curlCommand.split(QLatin1Char(' '), Qt::SkipEmptyParts);
@@ -294,7 +294,7 @@ QString utils::parseDistroNews()
   QString html;
   LinuxDistro distro = UnixCommand::getLinuxDistro();
 
-  if (distro == ectn_ARCHLINUX || distro == ectn_ARCHBANGLINUX || distro == ectn_GARUDALINUX)
+  if (distro == ectn_ARCHLINUX || distro == ectn_ARCHBANGLINUX || distro == ectn_ARCHCRAFT || distro == ectn_GARUDALINUX)
   {
     html = QLatin1String("<p align=\"center\"><h2>") + StrConstants::getArchLinuxNews() + QLatin1String("</h2></p><ul>");
   }

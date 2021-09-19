@@ -133,7 +133,7 @@ int main(int argc, char *argv[])
   }
   else if (argList->getSwitch(QStringLiteral("-version"))){
     std::cout << "\n" << StrConstants::getApplicationName().toLatin1().data() <<
-                 " " << StrConstants::getApplicationVersion().toLatin1().data() << "\n" << std::endl;
+                 " " << ctn_APPLICATION_VERSION.toLatin1().data() << "\n" << std::endl;
     return(0);
   }
 

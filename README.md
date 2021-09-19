@@ -7,6 +7,7 @@ The project site is hosted on https://tintaescura.com/projects/octopi
 Currently, 11 Linux distros are compatible with it
 
  * [ArchBang](http://archbang.org/)
+ * [Archcraft](https://archcraft.io/)
  * [Arch Linux](https://www.archlinux.org/)
  * [ArcoLinux](https://arcolinux.info/)
  * [Artix Linux](https://artixlinux.org)

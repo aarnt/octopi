@@ -38,7 +38,7 @@ int main(int argc, char *argv[])
   if (argList->getSwitch(QStringLiteral("-version")))
   {
     QTextStream qout(stdout);
-    qout << "octopi-helper: version " << ctn_OCTOPI_HELPER_VERSION << Qt::endl;
+    qout << "octopi-helper: version " << ctn_APPLICATION_VERSION << Qt::endl;
     return 0;
   }
 

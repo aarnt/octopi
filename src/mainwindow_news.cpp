@@ -91,6 +91,7 @@ void MainWindow::refreshDistroNews(bool searchForLatestNews, bool gotoNewsTab)
 
     if (gotoNewsTab && (distro == ectn_ARCHLINUX ||
                         distro == ectn_ARCHBANGLINUX ||
+                        distro == ectn_ARCHCRAFT ||
                         distro == ectn_GARUDALINUX))
     {
       writeToTabOutput(QLatin1String("<b>") + StrConstants::getSearchingForDistroNews().arg(QStringLiteral("Arch Linux")) + QLatin1String("</b>"));

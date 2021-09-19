@@ -18,6 +18,7 @@
 *
 */
 
+#include "constants.h"
 #include "strconstants.h"
 #include "unixcommand.h"
 
@@ -25,16 +26,16 @@ QString StrConstants::getApplicationName(){
   return QStringLiteral("Octopi");
 }
 
-QString StrConstants::getApplicationVersion(){
+/*QString StrConstants::getApplicationVersion(){
   return QStringLiteral("0.12 (dev)");
-}
+}*/
 
 QString StrConstants::getQtVersion(){
   return QLatin1String("Qt ") + QStringLiteral(QT_VERSION_STR);
 }
 
 QString StrConstants::getApplicationCliHelp(){
- QString str = getApplicationName() + QLatin1String(" - ") + getApplicationVersion() + QLatin1String("\n") +
+ QString str = getApplicationName() + QLatin1String(" - ") + ctn_APPLICATION_VERSION /*getApplicationVersion()*/ + QLatin1String("\n") +
       QLatin1String("\n") + getHelpUsage() + QLatin1String("\n\n") +
       QLatin1String("\t-version: ") + QObject::tr("show application version.") + QLatin1String("\n") +
       QLatin1String("\t-sysupgrade: ") + QObject::tr("force a system upgrade at startup.") + QLatin1String("\n") +

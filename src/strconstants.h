@@ -26,7 +26,7 @@
 class StrConstants{
 public:
   static QString getApplicationName();
-  static QString getApplicationVersion();
+  //static QString getApplicationVersion();
   static QString getQtVersion();
   static QString getApplicationCliHelp();
   static QString getMissingPacmanDBFile();

@@ -225,7 +225,8 @@ void MainWindow::onHelpAbout()
   QString aboutText =
       QLatin1String("<b>") + StrConstants::getApplicationName() + QLatin1String("</b><br>");
 
-  aboutText += StrConstants::getVersion() + QLatin1String(": ") + StrConstants::getApplicationVersion() + QLatin1String(" - ") + StrConstants::getQtVersion() + QLatin1String("<br>");
+  aboutText += StrConstants::getVersion() + QLatin1String(": ") + ctn_APPLICATION_VERSION /*StrConstants::getApplicationVersion()*/ +
+      QLatin1String(" - ") + StrConstants::getQtVersion() + QLatin1String("<br>");
   aboutText += StrConstants::getURL() + QLatin1String(": ") +
       QStringLiteral("<a href=\"https://tintaescura.com/projects/octopi/\">https://tintaescura.com/projects/octopi</a><br>");
   aboutText += StrConstants::getLicenses() + QLatin1String(": ") + QStringLiteral("<a href=\"http://www.gnu.org/licenses/gpl-2.0.html\">GPL v2</a><br>");
