@@ -1332,7 +1332,7 @@ void PacmanExec::doAURUpgrade(const QString &listOfPackages)
   }
   else if (Package::getForeignRepositoryToolName() == ctn_PARU_TOOL)
   {
-    m_lastCommandList.append(Package::getForeignRepositoryToolNameParam() + QLatin1String(" ") + listOfPackages + QLatin1Char(';'));
+    m_lastCommandList.append(Package::getForeignRepositoryToolNameParam() + QLatin1String(" -S ") + listOfPackages + QLatin1Char(';'));
   }
 
   m_lastCommandList.append(QStringLiteral("echo -e;"));
@@ -1362,7 +1362,7 @@ void PacmanExec::doAURRemoveAndInstallInTerminal(const QString &listOfPackagesto
   else if (Package::getForeignRepositoryToolName() == ctn_YAY_TOOL)
     m_lastCommandList.append(Package::getForeignRepositoryToolNameParam() + QLatin1String(" -S --aur ") + listOfPackagestoInstall + QLatin1Char(';'));
   else if (Package::getForeignRepositoryToolName() == ctn_PARU_TOOL)
-    m_lastCommandList.append(Package::getForeignRepositoryToolNameParam() + QLatin1String(" ") + listOfPackagestoInstall + QLatin1Char(';'));
+    m_lastCommandList.append(Package::getForeignRepositoryToolNameParam() + QLatin1String(" -S ") + listOfPackagestoInstall + QLatin1Char(';'));
   else if (Package::getForeignRepositoryToolName() == ctn_CHASER_TOOL)
     m_lastCommandList.append(Package::getForeignRepositoryToolNameParam() + QLatin1String(" install ") + listOfPackagestoInstall + QLatin1Char(';'));
 
@@ -1391,7 +1391,7 @@ void PacmanExec::doAURInstall(const QString &listOfPackages)
   else if (Package::getForeignRepositoryToolName() == ctn_YAY_TOOL)
     m_lastCommandList.append(Package::getForeignRepositoryToolNameParam() + QLatin1String(" -S --aur ") + listOfPackages + QLatin1Char(';'));
   else if (Package::getForeignRepositoryToolName() == ctn_PARU_TOOL)
-    m_lastCommandList.append(Package::getForeignRepositoryToolNameParam() + QLatin1String(" ") + listOfPackages + QLatin1Char(';'));
+    m_lastCommandList.append(Package::getForeignRepositoryToolNameParam() + QLatin1String(" -S ") + listOfPackages + QLatin1Char(';'));
   else if (Package::getForeignRepositoryToolName() == ctn_CHASER_TOOL)
     m_lastCommandList.append(Package::getForeignRepositoryToolNameParam() + QLatin1String(" install ") + listOfPackages + QLatin1Char(';'));
 
