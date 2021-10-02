@@ -1317,7 +1317,7 @@ LinuxDistro UnixCommand::getLinuxDistro()
       {
         ret = ectn_ENDEAVOUROS;
       }
-      else if (contents.contains(QRegularExpression(QStringLiteral("Garuda"))))
+      else if (contents.contains(QRegularExpression(QStringLiteral("Garuda Linux"))))
       {
         ret = ectn_GARUDALINUX;
       }
