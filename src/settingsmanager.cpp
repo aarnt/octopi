@@ -342,6 +342,27 @@ bool SettingsManager::isDistroRSSUrlEmpty()
   return p_instance.getSYSsettings()->value(ctn_KEY_DISTRO_RSS_URL, QLatin1String("")).toString().isEmpty();
 }
 
+QString SettingsManager::getDistroRSSUrl(LinuxDistro d)
+{
+  if (d == ectn_ARCHLINUX || d == ectn_ARCHBANGLINUX || d == ectn_ARCHCRAFT || d == ectn_GARUDALINUX)
+    return QStringLiteral("https://archlinux.org/feeds/news/");
+  else if (d == ectn_ARTIXLINUX)
+    return QStringLiteral("https://artixlinux.org/feed.php");
+  else if (d == ectn_CHAKRA)
+    return QStringLiteral("https://community.chakralinux.org/c/news.rss");
+  else if (d == ectn_CONDRESOS)
+    return QStringLiteral("https://condresos.codelinsoft.it/index.php/blog?format=feed&amp;type=rss");
+  else if (d == ectn_ENDEAVOUROS)
+    return QStringLiteral("https://endeavouros.com/feed/");
+  else if (d == ectn_KAOS)
+    return QStringLiteral("https://kaosx.us/feed.xml");
+  else if (d == ectn_MANJAROLINUX)
+    return QStringLiteral("https://forum.manjaro.org/c/announcements/8.rss");
+  else if (d == ectn_PARABOLA)
+    return QStringLiteral("https://www.parabola.nu/feeds/news/");
+  else return QLatin1String("");
+}
+
 QString SettingsManager::getDistroRSSUrl()
 {
   SettingsManager p_instance;

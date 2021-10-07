@@ -97,7 +97,9 @@ MainWindow::MainWindow(QWidget *parent) :
 
   //Let's check if DistroRSSUrl is empty
   if (SettingsManager::isDistroRSSUrlEmpty())
-    SettingsManager::setDistroRSSUrl(SettingsManager::getDistroRSSUrl());
+  {
+    SettingsManager::setDistroRSSUrl(SettingsManager::getDistroRSSUrl(UnixCommand::getLinuxDistro()));
+  }
 
   m_time = new QElapsedTimer();
   m_unrequiredPackageList = nullptr;

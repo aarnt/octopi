@@ -26,6 +26,8 @@
 #include <QSettings>
 #include <QDir>
 
+#include "constants.h"
+
 class SettingsManager
 {
   private:
@@ -84,6 +86,7 @@ class SettingsManager
     static QString getOctopiYellowIconPath();
     static QString getOctopiGreenIconPath();
     static bool isDistroRSSUrlEmpty();
+    static QString getDistroRSSUrl(LinuxDistro d);
     static QString getDistroRSSUrl();
     static QString getDistroNewsSite();
 
