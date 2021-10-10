@@ -383,7 +383,7 @@ void MainWindow::keyPressEvent(QKeyEvent* ke)
     LinuxDistro ld=UnixCommand::getLinuxDistro();
     if((ld == ectn_KAOS || ld == ectn_CHAKRA) || (
        m_hasForeignTool && SettingsManager::getAURToolName() != ctn_NO_AUR_TOOL &&
-       !isAURGroupSelected() && !SettingsManager::getSearchOutdatedAURPackages()))
+       !isAURGroupSelected() /*&& !SettingsManager::getSearchOutdatedAURPackages()*/))
     {
       m_outdatedAURTimer->start();
 
