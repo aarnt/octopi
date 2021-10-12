@@ -340,6 +340,14 @@ void WMHelper::openFile(const QString& fileName)
     s << fileToOpen;
     p->startDetached( ctn_ARCHBANG_FILE_MANAGER, s );
   }  
+  else if (UnixCommand::hasTheExecutable(ctn_LXDE_FILE_MANAGER)){
+    s << fileToOpen;
+    p->startDetached( ctn_LXDE_FILE_MANAGER, s );
+  }
+  else if (UnixCommand::hasTheExecutable(ctn_LXQT_FILE_MANAGER)){
+    s << fileToOpen;
+    p->startDetached( ctn_LXQT_FILE_MANAGER, s );
+  }
   else if (UnixCommand::hasTheExecutable(ctn_XFCE_FILE_MANAGER))
   {
     if (!isTextFile)
@@ -352,10 +360,6 @@ void WMHelper::openFile(const QString& fileName)
       editFile(fileName, ectn_EDIT_AS_NORMAL_USER);
     }
   }
-  else if (UnixCommand::hasTheExecutable(ctn_LXDE_FILE_MANAGER)){
-    s << fileToOpen;
-    p->startDetached( ctn_LXDE_FILE_MANAGER, s );
-  }  
   else if (UnixCommand::hasTheExecutable(ctn_GNOME_FILE_MANAGER)){
     s << fileToOpen;
     if (isTextFile)
