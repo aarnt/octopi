@@ -134,8 +134,10 @@ In KaOS, [kcp](https://github.com/bvaudour/kcp) will be supported out of the box
  * You can follow author's twitter account on https://twitter.com/aaarnt
  * You can buy author's technical book (currently in portuguese) about Octopi and Qt5 on 
 http://www.amazon.com.br/Aprendendo-Qt-com-projeto-Octopi-ebook/dp/B015ICHKV6
+ * You can buy author's poem book (currently in portuguese) on meditation, Buddhism, cosmology and other subjects on
+https://www.amazon.com.br/Avidya-Alexandre-Arnt-ebook/dp/B0965LVWR3
  * You can write a review about it (text / video)
- * You can donate money to the project Paypal - http://sourceforge.net/donate/index.php?group_id=186459
+ * You can donate money to the author's Paypal - http://sourceforge.net/donate/index.php?group_id=186459
  * You can join the project ;-)
 
 
