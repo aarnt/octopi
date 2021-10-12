@@ -25,7 +25,7 @@ You'll need:
  * [Alpm_octopi_utils](https://github.com/aarnt/alpm_octopi_utils/) library
  * A helper to execute pacman commands called "octphelper", available on "./helper" dir
  * A privilege escalation tool called "octopi-sudo", available on "./sudo" dir
- * qtermwidget package in order to build Octopi with embedded terminal support
+ * qtermwidget package, in order to build Octopi with embedded terminal support
  
 ### To install Octopi using pacman
 
