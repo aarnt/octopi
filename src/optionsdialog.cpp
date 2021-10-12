@@ -264,7 +264,8 @@ void OptionsDialog::initAURTab()
     }
     else if (comboAUR->currentText() == ctn_PARU_TOOL)
     {
-      cbDevel->setChecked(SettingsManager::getAURDevelParam());
+      cbDevel->setChecked(false);
+      cbDevel->setVisible(false);
       cbNoConfirm->setChecked(SettingsManager::getAURNoConfirmParam());
       cbNoEdit->setChecked(false); //SettingsManager::getAURNoEditParam());
     }
@@ -577,11 +578,11 @@ void OptionsDialog::accept()
       SettingsManager::setAURNoEditParam(cbNoEdit->isChecked());
       AURHasChanged = true;
     }
-    if (comboAUR->currentText() == ctn_PARU_TOOL && cbDevel->isChecked() != SettingsManager::getAURDevelParam())
+    /*if (comboAUR->currentText() == ctn_PARU_TOOL && cbDevel->isChecked() != SettingsManager::getAURDevelParam())
     {
       SettingsManager::setAURDevelParam(cbDevel->isChecked());
       AURHasChanged = true;
-    }
+    }*/
     if (comboAUR->currentText() == ctn_PARU_TOOL && cbNoConfirm->isChecked() != SettingsManager::getAURNoConfirmParam())
     {
       SettingsManager::setAURNoConfirmParam(cbNoConfirm->isChecked());
@@ -867,8 +868,8 @@ void OptionsDialog::comboAURChanged(const QString &text)
   }
   else if (text == ctn_PARU_TOOL)
   {
-    cbDevel->setEnabled(true);
-    cbDevel->setChecked(SettingsManager::getAURDevelParam());
+    cbDevel->setEnabled(false);
+    //cbDevel->setChecked(SettingsManager::getAURDevelParam());*/
     cbNoConfirm->setEnabled(true);
     cbNoEdit->setEnabled(false);
     cbSearchOutdatedAURPackages->setEnabled(true);

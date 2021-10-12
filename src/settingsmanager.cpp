@@ -522,6 +522,9 @@ QString SettingsManager::getAURToolName()
  */
 bool SettingsManager::getAURDevelParam()
 {
+  if (getAURToolName()==ctn_PARU_TOOL)
+    return false;
+
   SettingsManager p_instance;
   return (p_instance.getSYSsettings()->value(ctn_KEY_AUR_DEVEL_PARAM, false)).toBool();
 }
