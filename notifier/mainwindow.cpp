@@ -1001,6 +1001,8 @@ void MainWindow::refreshAppIcon()
 {
   if (m_commandExecuting != ectn_NONE) return;
 
+  if (isOctopiBusy()) return;
+
   if (m_pacmanExec != nullptr)
   {
     delete m_pacmanExec;
