@@ -370,7 +370,7 @@ QString SettingsManager::getDistroRSSUrl()
   SettingsManager p_instance;
   LinuxDistro distro = UnixCommand::getLinuxDistro();
 
-  if (distro == ectn_ARCHLINUX || distro == ectn_ARCHBANGLINUX || distro == ectn_ARCHCRAFT || distro == ectn_GARUDALINUX)
+  if (distro == ectn_ARCHLINUX || distro == ectn_ARCHBANGLINUX || distro == ectn_ARCHCRAFT)
     return (p_instance.getSYSsettings()->value(ctn_KEY_DISTRO_RSS_URL, QStringLiteral("https://archlinux.org/feeds/news/"))).toString();
   else if (distro == ectn_ARTIXLINUX)
     return (p_instance.getSYSsettings()->value(ctn_KEY_DISTRO_RSS_URL, QStringLiteral("https://artixlinux.org/feed.php"))).toString();
@@ -380,6 +380,8 @@ QString SettingsManager::getDistroRSSUrl()
     return (p_instance.getSYSsettings()->value(ctn_KEY_DISTRO_RSS_URL, QStringLiteral("https://condresos.codelinsoft.it/index.php/blog?format=feed&amp;type=rss"))).toString();
   else if (distro == ectn_ENDEAVOUROS)
     return (p_instance.getSYSsettings()->value(ctn_KEY_DISTRO_RSS_URL, QStringLiteral("https://endeavouros.com/feed/"))).toString();
+  else if (distro == ectn_GARUDALINUX)
+    return (p_instance.getSYSsettings()->value(ctn_KEY_DISTRO_RSS_URL, QStringLiteral("https://forum.garudalinux.org/c/announcements/16.rss"))).toString();
   else if (distro == ectn_KAOS)
     return (p_instance.getSYSsettings()->value(ctn_KEY_DISTRO_RSS_URL, QStringLiteral("https://kaosx.us/feed.xml"))).toString();
   else if (distro == ectn_MANJAROLINUX)
