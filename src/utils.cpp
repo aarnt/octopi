@@ -168,6 +168,12 @@ QString utils::retrieveDistroNews(bool searchForLatestNews)
       curlCommand = curlCommand.arg(distroRSSUrl, tmpRssPath);
       curlParams = curlCommand.split(QLatin1Char(' '), Qt::SkipEmptyParts);
     }
+    else if (distro == ectn_OBARUN)
+    {
+      curlCommand = QStringLiteral("-k %1 -o %2");
+      curlCommand = curlCommand.arg(distroRSSUrl, tmpRssPath);
+      curlParams = curlCommand.split(QLatin1Char(' '), Qt::SkipEmptyParts);
+    }
     else if (distro == ectn_PARABOLA)
     {
       //Parabola has a certificate which is not "trusted" by default, so we use "curl -k"
@@ -321,6 +327,10 @@ QString utils::parseDistroNews()
   else if (distro == ectn_MANJAROLINUX)
   {
     html = QLatin1String("<p align=\"center\"><h2>") + StrConstants::getManjaroLinuxNews() + QLatin1String("</h2></p><ul>");
+  }
+  else if (distro == ectn_OBARUN)
+  {
+    html = QLatin1String("<p align=\"center\"><h2>") + StrConstants::getObarunLinuxNews() + QLatin1String("</h2></p><ul>");
   }
   else if (distro == ectn_PARABOLA)
   {

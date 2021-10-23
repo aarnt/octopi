@@ -4,7 +4,7 @@
 
 The project site is hosted on https://tintaescura.com/projects/octopi
 
-Currently, 12 Linux distros are compatible with it
+Currently, 13 Linux distros are compatible with it
 
  * [ArchBang](http://archbang.org/)
  * [Archcraft](https://archcraft.io/)
@@ -17,6 +17,7 @@ Currently, 12 Linux distros are compatible with it
  * [Garuda Linux](https://garudalinux.org/)
  * [KaOS](https://kaosx.us/)
  * [Manjaro](https://manjaro.org/)
+ * [Obarun Linux](https://web.obarun.org/index.php?id=1)
  * [Parabola GNU/Linux-libre](https://www.parabola.nu/)
 
 ### What you must install in order to have Octopi fully functional

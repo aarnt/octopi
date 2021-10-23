@@ -120,6 +120,10 @@ void MainWindow::refreshDistroNews(bool searchForLatestNews, bool gotoNewsTab)
     {
       writeToTabOutput(QLatin1String("<b>") + StrConstants::getSearchingForDistroNews().arg(QStringLiteral("Manjaro Linux")) + QLatin1String("</b>"));
     }
+    else if (gotoNewsTab && distro == ectn_OBARUN)
+    {
+      writeToTabOutput(QLatin1String("<b>") + StrConstants::getSearchingForDistroNews().arg(QStringLiteral("Obarun Linux")) + QLatin1String("</b>"));
+    }
     else if (gotoNewsTab && distro == ectn_PARABOLA)
     {
       writeToTabOutput(QLatin1String("<b>") + StrConstants::getSearchingForDistroNews().arg(QStringLiteral("Parabola GNU/Linux-libre")) + QLatin1String("</b>"));

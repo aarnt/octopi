@@ -4,6 +4,7 @@
   Added support for opendoas tool (default).
   Added support for Archcraft OS.
   Added support for Garuda Linux distro.
+  Added support for Obarun Linux distro.
   Actions tab shows a counter feedback for inserts (with a plus signal) and 
     removals (with a minus signal) and does not steal focus anymore.
   BugFix: Initial database searches are executed after main interface is shown. 

@@ -160,6 +160,10 @@ QString StrConstants::getManjaroLinuxNews(){
   return QObject::tr("Manjaro Linux news");
 }
 
+QString StrConstants::getObarunLinuxNews(){
+  return QObject::tr("Obarun Linux news");
+}
+
 QString StrConstants::getParabolaNews(){
   return QObject::tr("Parabola GNU/Linux-libre news");
 }

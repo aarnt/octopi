@@ -42,6 +42,7 @@ public:
   static QString getEndeavourOSNews();
   static QString getKaOSNews();
   static QString getManjaroLinuxNews();
+  static QString getObarunLinuxNews();
   static QString getParabolaNews();
   static QString getInformation();
   static QString getError();

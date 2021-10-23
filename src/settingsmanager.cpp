@@ -358,6 +358,8 @@ QString SettingsManager::getDistroRSSUrl(LinuxDistro d)
     return QStringLiteral("https://kaosx.us/feed.xml");
   else if (d == ectn_MANJAROLINUX)
     return QStringLiteral("https://forum.manjaro.org/c/announcements/8.rss");
+  else if (d == ectn_OBARUN)
+    return QStringLiteral("https://web.obarun.org/index.php?id=53");
   else if (d == ectn_PARABOLA)
     return QStringLiteral("https://www.parabola.nu/feeds/news/");
   else return QLatin1String("");
@@ -382,6 +384,8 @@ QString SettingsManager::getDistroRSSUrl()
     return (p_instance.getSYSsettings()->value(ctn_KEY_DISTRO_RSS_URL, QStringLiteral("https://kaosx.us/feed.xml"))).toString();
   else if (distro == ectn_MANJAROLINUX)
     return (p_instance.getSYSsettings()->value(ctn_KEY_DISTRO_RSS_URL, QStringLiteral("https://forum.manjaro.org/c/announcements/8.rss"))).toString();
+  else if (distro == ectn_OBARUN)
+    return (p_instance.getSYSsettings()->value(ctn_KEY_DISTRO_RSS_URL, QStringLiteral("https://web.obarun.org/index.php?id=53"))).toString();
   else if (distro == ectn_PARABOLA)
     return (p_instance.getSYSsettings()->value(ctn_KEY_DISTRO_RSS_URL, QStringLiteral("https://www.parabola.nu/feeds/news/"))).toString();
   else return QLatin1String("");
@@ -405,6 +409,8 @@ QString SettingsManager::getDistroNewsSite()
     return QStringLiteral("https://kaosx.us/news");
   else if (distro == ectn_MANJAROLINUX)
     return QStringLiteral("https://manjaro.org/news");
+  else if (distro == ectn_OBARUN)
+    return QStringLiteral("https://web.obarun.org/index.php?id=15");
   else if (distro == ectn_PARABOLA)
     return QStringLiteral("https://www.parabola.nu");
   else return QLatin1String("");

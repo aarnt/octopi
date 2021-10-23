@@ -1329,6 +1329,10 @@ LinuxDistro UnixCommand::getLinuxDistro()
       {
         ret = ectn_MANJAROLINUX;
       }
+      else if (contents.contains(QRegularExpression(QStringLiteral("Obarun Linux"))))
+      {
+        ret = ectn_OBARUN;
+      }
       else if (contents.contains(QRegularExpression(QStringLiteral("Parabola GNU/Linux-libre"))))
       {
         ret = ectn_PARABOLA;
