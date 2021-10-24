@@ -84,7 +84,7 @@ $ makepkg -f
 
 As an alternative to qmake, Octopi can also be built with CMake. Make sure that at least CMake 3.5 is installed.
 
-At first build and install alpm_octopi_utils.
+First, build and install alpm_octopi_utils:
 
 ```
 $ git clone https://github.com/aarnt/alpm_octopi_utils
@@ -95,7 +95,7 @@ $ make
 $ sudo make install
 ```
 
-After that build and install Octopi.
+Next, build and install Octopi:
 
 ```
 $ git clone https://github.com/aarnt/octopi
