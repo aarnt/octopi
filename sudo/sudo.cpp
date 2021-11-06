@@ -404,12 +404,7 @@ int Sudo::parent()
       QTextStream{stderr, QIODevice::WriteOnly} << line;
       //assuming text oriented output
 
-#if (QT_VERSION >= QT_VERSION_CHECK(5,15,0))
       QStringList lines = line.split(nl, Qt::SkipEmptyParts);
-#else
-      QStringList lines = line.split(nl, QString::SkipEmptyParts);
-#endif
-
       last_line = lines.isEmpty() ? QString() : lines.back();
     }
 

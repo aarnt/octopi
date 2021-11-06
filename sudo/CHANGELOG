@@ -1,3 +1,22 @@
+lxqt-sudo-1.0.0 / 2021-11-04
+=============================
+ * Updated AUTHORS.
+ * Bumped minimum required Qt version to 5.15.
+
+lxqt-sudo-0.17.0 / 2021-04-15
+=============================
+  * Handled Qt5.15's deprecations.
+
+lxqt-sudo-0.16.0 / 2020-11-01
+=============================
+  * Use QFlags default constructor.
+
+lxqt-sudo-0.15.0 / 2020-04-23
+=============================
+  * sudo: Fix (re)setting HOME with sudo backend.
+  * sudo: Add TERM to allowed/preserved env vars.
+  * Build on NetBSD.
+
 lxqt-sudo-0.14.1 / 2019-02-24
 =============================
 

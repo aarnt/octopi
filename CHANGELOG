@@ -7,6 +7,7 @@
   Added support for Obarun Linux distro.
   Actions tab shows a counter feedback for inserts (with a plus signal) and 
     removals (with a minus signal) and does not steal focus anymore.
+  Octopi-sudo code was synced to match project "lxqt-sudo" version 1.0.0.
   BugFix: Initial database searches are executed after main interface is shown. 
     This improves UI feedback on older cpus.
   BugFix: If there was only 1 result in AUR search, the pkg could not enter 
