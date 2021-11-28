@@ -708,6 +708,8 @@ void MainWindow::initActions()
   ui->actionOpenRootTerminal->setVisible(false);
 
   m_actionMenuOptions->setText(StrConstants::getOptions());
+  m_actionMenuOptions->setIcon(IconHelper::getIconOptions());
+  
   connect(m_actionMenuOptions, SIGNAL(triggered()), this, SLOT(onOptions()));
 
   m_actionStopTransaction = new QAction(this);
