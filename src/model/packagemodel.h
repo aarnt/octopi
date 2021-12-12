@@ -105,6 +105,7 @@ private:
   int           m_sortColumn;
   bool    m_filterPackagesInstalled;
   bool    m_filterPackagesNotInstalled;
+  bool    m_filterPackagesOutdated;
   QString m_filterPackagesNotInThisGroup;
   QString m_filterPackagesNotInThisRepo;
   int     m_filterColumn;

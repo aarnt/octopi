@@ -28,7 +28,7 @@
  * Collection of Octopi constants and enums
  */
 
-const QString ctn_APPLICATION_VERSION(QStringLiteral("0.12.0"));
+const QString ctn_APPLICATION_VERSION(QStringLiteral("0.13 (dev)"));
 
 //MainWindow related
 enum SystemUpgradeOptions { ectn_NO_OPT, ectn_SYNC_DATABASE_OPT, ectn_NOCONFIRM_OPT };
@@ -176,7 +176,7 @@ const QString ctn_PACMAN_SYSTEM_DB_FILE = QStringLiteral("/var/lib/pacman/sync/s
 enum PackageStatus { ectn_INSTALLED, ectn_NON_INSTALLED, ectn_OUTDATED, ectn_NEWER,
                      ectn_FOREIGN, ectn_FOREIGN_OUTDATED };
 
-enum ViewOptions { ectn_ALL_PKGS, ectn_INSTALLED_PKGS, ectn_NON_INSTALLED_PKGS };
+enum ViewOptions { ectn_ALL_PKGS, ectn_INSTALLED_PKGS, ectn_NON_INSTALLED_PKGS, ectn_OUTDATED_PKGS };
 
 //Supported AUR user base package tools
 const QString ctn_PACAUR_TOOL(QStringLiteral("pacaur"));

@@ -136,7 +136,7 @@
      <x>0</x>
      <y>0</y>
      <width>552</width>
-     <height>23</height>
+     <height>19</height>
     </rect>
    </property>
    <property name="contextMenuPolicy">
@@ -158,6 +158,7 @@
     <addaction name="actionViewAllPackages"/>
     <addaction name="actionViewInstalledPackages"/>
     <addaction name="actionViewNonInstalledPackages"/>
+    <addaction name="actionViewOutdated"/>
     <addaction name="separator"/>
    </widget>
    <widget class="QMenu" name="menuActions">
@@ -623,6 +624,14 @@
    </property>
    <property name="shortcut">
     <string notr="true"/>
+   </property>
+  </action>
+  <action name="actionViewOutdated">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Outdated</string>
    </property>
   </action>
  </widget>

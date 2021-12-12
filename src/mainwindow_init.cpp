@@ -293,6 +293,7 @@ void MainWindow::initMenuBar()
   actionGroupPackages->addAction(ui->actionViewAllPackages);
   actionGroupPackages->addAction(ui->actionViewInstalledPackages);
   actionGroupPackages->addAction(ui->actionViewNonInstalledPackages);
+  actionGroupPackages->addAction(ui->actionViewOutdated);
   actionGroupPackages->setExclusive(true);
 
   m_actionMenuRepository = ui->menuView->addAction(StrConstants::getRepository());
@@ -835,6 +836,7 @@ void MainWindow::initActions()
   connect(ui->actionViewAllPackages, SIGNAL(triggered()), this, SLOT(selectedAllPackagesMenu()));
   connect(ui->actionViewInstalledPackages, SIGNAL(triggered()), this, SLOT(selectedInstalledPackagesMenu()));
   connect(ui->actionViewNonInstalledPackages, SIGNAL(triggered()), this, SLOT(selectedNonInstalledPackagesMenu()));
+  connect(ui->actionViewOutdated, SIGNAL(triggered()), this, SLOT(selectedOutdatedPackagesMenu()));
 
   if (WMHelper::isKDERunning() && UnixCommand::getLinuxDistro() != ectn_KAOS)
   {

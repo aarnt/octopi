@@ -460,6 +460,7 @@ private slots:
   void selectedAllPackagesMenu();
   void selectedInstalledPackagesMenu();
   void selectedNonInstalledPackagesMenu();
+  void selectedOutdatedPackagesMenu();
   void selectedRepositoryMenu(QAction *actionRepoSelected);
 
   void hideGroupsWidget(bool pSaveSettings = true);

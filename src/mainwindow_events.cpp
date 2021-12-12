@@ -121,8 +121,6 @@ void testSharedMem()
   QSharedMemory *sharedMem=new QSharedMemory(QStringLiteral("org.arnt.test"));
   QByteArray sharedData="abracadabra -abcd\ncadabraabra -xyz";
 
-  //removeSharedMemFiles();
-
   sharedMem->create(sharedData.size());
   sharedMem->lock();
   memcpy(sharedMem->data(), sharedData.data(), sharedData.size());

@@ -26,10 +26,6 @@ QString StrConstants::getApplicationName(){
   return QStringLiteral("Octopi");
 }
 
-/*QString StrConstants::getApplicationVersion(){
-  return QStringLiteral("0.12 (dev)");
-}*/
-
 QString StrConstants::getQtVersion(){
   return QLatin1String("Qt ") + QStringLiteral(QT_VERSION_STR);
 }
@@ -227,6 +223,11 @@ QString StrConstants::getName(){
 
 QString StrConstants::getVersion(){
   return QObject::tr("Version");
+}
+
+QString StrConstants::getOutdated()
+{
+  return QObject::tr("Outdated");
 }
 
 QString StrConstants::getOutdatedVersion(){

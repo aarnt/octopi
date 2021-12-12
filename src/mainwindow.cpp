@@ -1081,11 +1081,11 @@ void MainWindow::execKeyActionOnPackage(CommandExecuting command)
             doInstallAURPackage();
           }*/
           //if (package->repository != StrConstants::getForeignRepositoryName())
-          if (UnixCommand::getLinuxDistro() != ectn_KAOS)
+          if (UnixCommand::getLinuxDistro() != ectn_KAOS && package->repository != StrConstants::getForeignRepositoryName())
           {
             insertIntoInstallPackage();
           }
-          else if (!hasInstallActions())
+          else if (UnixCommand::getLinuxDistro() == ectn_KAOS && !hasInstallActions())
           {
             insertIntoInstallPackage();
           }
@@ -1112,7 +1112,7 @@ void MainWindow::execKeyActionOnPackage(CommandExecuting command)
               insertIntoRemovePackage(&item);
           }
         }
-        if (command == ectn_INSTALL)
+        if (command == ectn_INSTALL && package->repository != StrConstants::getForeignRepositoryName())
         {
           insertIntoInstallPackage(&item);
         }

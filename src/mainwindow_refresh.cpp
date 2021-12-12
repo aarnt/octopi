@@ -2030,6 +2030,15 @@ void MainWindow::selectedNonInstalledPackagesMenu()
 }
 
 /*
+ * Whenever user selects View/Outdated we show him only the non installed packages
+ */
+void MainWindow::selectedOutdatedPackagesMenu()
+{
+  m_selectedViewOption = ectn_OUTDATED_PKGS;
+  changePackageListModel(ectn_OUTDATED_PKGS, m_selectedRepository);
+}
+
+/*
  * Whenever user selects any of the available repositories in View/Repository submenu,
  * we filter the packages from that chosen repo
  */

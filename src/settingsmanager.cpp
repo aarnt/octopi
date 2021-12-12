@@ -398,7 +398,7 @@ QString SettingsManager::getDistroNewsSite()
   LinuxDistro distro = UnixCommand::getLinuxDistro();
 
   if (distro == ectn_ARCHLINUX || distro == ectn_ARCHBANGLINUX || distro == ectn_ARCHCRAFT || distro == ectn_GARUDALINUX)
-    return QStringLiteral("https://archlinux.org");
+    return QStringLiteral("https://archlinux.org/news");
   else if (distro == ectn_ARTIXLINUX)
     return QStringLiteral("https://artixlinux.org/");
   else if (distro == ectn_CHAKRA)
