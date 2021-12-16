@@ -423,13 +423,13 @@ void WMHelper::editFile(const QString& fileName, EditOptions opt)
     p = getXFCEEditor() + QLatin1Char(' ') + fileName;
   }
 
-  if (opt == ectn_EDIT_AS_NORMAL_USER)
+  if (opt == ectn_EDIT_AS_NORMAL_USER && !p.isEmpty())
   {
     QStringList params = p.split(QStringLiteral(" "), Qt::SkipEmptyParts);
     QStringList fn;
     process->startDetached(params.at(0), fn << fileName);
   }
-  else
+  else if (!p.isEmpty())
   {
     QStringList params = p.split(QStringLiteral(" "), Qt::SkipEmptyParts);
     process->startDetached(getSUCommand(), params);

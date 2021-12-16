@@ -1,4 +1,6 @@
 0.13 (dev)
+  BugFix: editFile() caused a crash while in Mate desktop. Both "Open PKGBUILD" 
+    and "Show PKGBUILD diff" options were affected.
   BugFix: removed stylesheet from treeviews. It makes dark themes look better
     (thanks to buckmelanoma).
   BugFix: Pressing ENTER over an installed AUR pkg no longer sends it to the 

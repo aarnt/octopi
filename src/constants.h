@@ -255,7 +255,7 @@ const QString ctn_LXQT_FILE_MANAGER(QStringLiteral("pcmanfm-qt"));
 const QString ctn_LXQT_EDITOR(QStringLiteral("juffed"));
 
 const QString ctn_MATE_DESKTOP(QStringLiteral("mate-session"));
-const QString ctn_MATE_EDITOR(QStringLiteral("mate-open"));
+const QString ctn_MATE_EDITOR(QStringLiteral("pluma"));
 const QString ctn_MATE_FILE_MANAGER(QStringLiteral("caja"));
 const QString ctn_MATE_TERMINAL(QStringLiteral("mate-terminal"));
 
