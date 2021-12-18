@@ -44,7 +44,7 @@
     <message>
         <location filename="../Projects/octopi/ui/mainwindow.ui" line="194"/>
         <source>T&amp;ools</source>
-        <translation>H&amp;erramientas</translation>
+        <translation>&amp;Herramientas</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/ui/mainwindow.ui" line="224"/>
@@ -491,37 +491,37 @@
         <location filename="../Projects/octopi/ui/optionsdialog.ui" line="95"/>
         <location filename="../Projects/octopi/src/optionsdialog.cpp" line="181"/>
         <source>Package List</source>
-        <translation type="unfinished"/>
+        <translation>Listado del Paquete</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/ui/optionsdialog.ui" line="107"/>
         <source>Use alternating row colors</source>
-        <translation type="unfinished"/>
+        <translation>Utilizar colores de fila alternados</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/ui/optionsdialog.ui" line="120"/>
         <source>Show &quot;Licenses&quot; column</source>
-        <translation type="unfinished"/>
+        <translation>Muestra la columna «Licencias»</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/ui/optionsdialog.ui" line="133"/>
         <source>Show &quot;Installed Size&quot; column</source>
-        <translation type="unfinished"/>
+        <translation>Mostrar columna «Tamaño de Instalación»</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/ui/optionsdialog.ui" line="146"/>
         <source>Show &quot;Build Date&quot; column</source>
-        <translation type="unfinished"/>
+        <translation>Muestra la columna «Fecha de Instalación»</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/ui/optionsdialog.ui" line="159"/>
         <source>Show &quot;Install Date&quot; column</source>
-        <translation type="unfinished"/>
+        <translation>Mostrar columna «Fecha de Instalación»</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/ui/optionsdialog.ui" line="172"/>
         <source>Show &quot;Install Reason&quot; column</source>
-        <translation type="unfinished"/>
+        <translation>Muestra la columna «Razón a Instalar»</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/ui/optionsdialog.ui" line="209"/>
@@ -556,7 +556,7 @@
     <message>
         <location filename="../Projects/octopi/ui/optionsdialog.ui" line="401"/>
         <source>Enable AUR voting</source>
-        <translation>Habilitar votaciones en Aur</translation>
+        <translation>Habilitar votaciones en AUR</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/ui/optionsdialog.ui" line="422"/>
@@ -568,7 +568,7 @@ Cualquier uso de los archivos provistos son por su cuenta y riesgo.</translation
     <message>
         <location filename="../Projects/octopi/ui/optionsdialog.ui" line="483"/>
         <source>Build directory</source>
-        <translation type="unfinished"/>
+        <translation>Directorio del compilador</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/ui/optionsdialog.ui" line="518"/>
@@ -661,7 +661,7 @@ Cualquier uso de los archivos provistos son por su cuenta y riesgo.</translation
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="41"/>
         <source>force a system upgrade at startup, withou asking for confirmation.</source>
-        <translation type="unfinished"/>
+        <translation>fuerza una modernización del sistema al arrancar, sin solicitar confirmación.</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="49"/>
@@ -683,7 +683,7 @@ Puede que necesite sincronizar la base de datos!</translation>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="139"/>
         <source>Artix Linux news</source>
-        <translation type="unfinished"/>
+        <translation>Novedades Artix Linux</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="143"/>
@@ -733,7 +733,7 @@ Puede que necesite sincronizar la base de datos!</translation>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="180"/>
         <source>Showing cached news.</source>
-        <translation type="unfinished"/>
+        <translation>Mostrando caché de novedades.</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="184"/>
@@ -813,17 +813,17 @@ Puede que necesite sincronizar la base de datos!</translation>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="252"/>
         <source>Maintainer</source>
-        <translation type="unfinished"/>
+        <translation>Mantenimiento</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="256"/>
         <source>Last Modified</source>
-        <translation type="unfinished"/>
+        <translation>Última Modificación</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="260"/>
         <source>Out-of-date</source>
-        <translation type="unfinished"/>
+        <translation>Caducado</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="264"/>
@@ -848,7 +848,7 @@ Puede que necesite sincronizar la base de datos!</translation>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="280"/>
         <source>Make Deps</source>
-        <translation type="unfinished"/>
+        <translation>Generar Dependencias</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="284"/>
@@ -903,22 +903,22 @@ Puede que necesite sincronizar la base de datos!</translation>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="328"/>
         <source>Open PKGBUILD</source>
-        <translation type="unfinished"/>
+        <translation>Abrir PKGBUILD</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="333"/>
         <source>Show PKGBUILD diff</source>
-        <translation type="unfinished"/>
+        <translation>Mostrar diferencia PKGBUILD</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="338"/>
         <source>Open news in a browser</source>
-        <translation type="unfinished"/>
+        <translation>Abre novedades dentro de un explorador</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="343"/>
         <source>There is only one version available of &quot;%1&quot;</source>
-        <translation type="unfinished"/>
+        <translation>Solamente hay una versión disponible de «%1»</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="347"/>
@@ -938,12 +938,12 @@ Puede que necesite sincronizar la base de datos!</translation>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="359"/>
         <source>Explicitly</source>
-        <translation type="unfinished"/>
+        <translation>Explícitamente</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="363"/>
         <source>As dependency</source>
-        <translation type="unfinished"/>
+        <translation>Como dependencia</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="367"/>
@@ -973,7 +973,7 @@ Puede que necesite sincronizar la base de datos!</translation>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="387"/>
         <source>Install Date</source>
-        <translation type="unfinished"/>
+        <translation>Fecha de Instalación</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="391"/>
@@ -1078,7 +1078,7 @@ Puede que necesite sincronizar la base de datos!</translation>
     <message numerus="yes">
         <location filename="../Projects/octopi/src/strconstants.cpp" line="472"/>
         <source>There are %n outdated packages in your system:</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>Hay %n paquete obsoleto en su sistema:</numerusform><numerusform>Hay %n paquetes obsoletos en su sistema.</numerusform></translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="476"/>
@@ -1088,7 +1088,7 @@ Puede que necesite sincronizar la base de datos!</translation>
     <message numerus="yes">
         <location filename="../Projects/octopi/src/strconstants.cpp" line="480"/>
         <source>%n packages</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>%n paquete</numerusform><numerusform>%n paquetes</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="../Projects/octopi/src/strconstants.cpp" line="484"/>
@@ -1163,7 +1163,7 @@ Puede que necesite sincronizar la base de datos!</translation>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="580"/>
         <source>Changing the install reason of selected packages...</source>
-        <translation type="unfinished"/>
+        <translation>Modificando la razón de instalación de los paquetes seleccionados…</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="584"/>
@@ -1233,12 +1233,12 @@ Puede que necesite sincronizar la base de datos!</translation>
     <message numerus="yes">
         <location filename="../Projects/octopi/src/strconstants.cpp" line="639"/>
         <source>The following %n packages need to be retrieved</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>El siguiente paquete necesita ser descargado</numerusform><numerusform>Los siguientes %n paquetes necesitan ser descargados</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="../Projects/octopi/src/strconstants.cpp" line="643"/>
         <source>The following %n packages will be removed</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>El siguiente paquete será desinstalado</numerusform><numerusform>Los siguientes %n paquetes serán desinstalados</numerusform></translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="647"/>
@@ -1258,7 +1258,7 @@ Puede que necesite sincronizar la base de datos!</translation>
     <message numerus="yes">
         <location filename="../Projects/octopi/src/strconstants.cpp" line="659"/>
         <source>There are %n updates available!</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>Hay disponible %n actualización</numerusform><numerusform>Hay disponibles %n actualizaciones</numerusform></translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="663"/>
@@ -1356,7 +1356,7 @@ Sólo necesita aceptar y esperar unos segundos.</translation>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="747"/>
         <source>Select the build directory for the AUR packages</source>
-        <translation type="unfinished"/>
+        <translation>Seleccione el directorio de compilación para los paquetes AUR</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="751"/>
@@ -1366,17 +1366,17 @@ Sólo necesita aceptar y esperar unos segundos.</translation>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="755"/>
         <source>You must use &quot;/usr/bin/octopi&quot; to run Octopi</source>
-        <translation type="unfinished"/>
+        <translation>Debe utilizar &quot;/usr/bin/octopi&quot; para ejecutar Octopi</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="759"/>
         <source>You must use &quot;/usr/bin/octopi-notifier&quot; to run Octopi Notifier</source>
-        <translation type="unfinished"/>
+        <translation>Debe utilizar &quot;/usr/bin/octopi-notifier&quot; para ejecutar el Notificador Octopi</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="763"/>
         <source>You must use &quot;/usr/bin/octopi-cachecleaner&quot; to run Octopi Cache Cleaner</source>
-        <translation type="unfinished"/>
+        <translation>Debe utilizar &quot;/usr/bin/octopi-cachecleaner&quot; para ejecutar Limpiador de Caché Octopi</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="767"/>
@@ -1430,7 +1430,7 @@ y &quot;head --bytes=256k /var/log/pacman.log&quot;
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="800"/>
         <source>This change needs application restart to take effect</source>
-        <translation type="unfinished"/>
+        <translation>Este cambio requiere el reinicio de la aplicación para que tengan efecto</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="804"/>
@@ -1477,7 +1477,7 @@ Are you sure you want to open it?</source>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="839"/>
         <source>Change Install Reason</source>
-        <translation type="unfinished"/>
+        <translation>Cambiar Razón de Instalación</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="844"/>
@@ -1592,7 +1592,7 @@ Are you sure you want to open it?</source>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="941"/>
         <source>Upgrading...</source>
-        <translation>Actualizando...</translation>
+        <translation>Modernizando…</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="946"/>
