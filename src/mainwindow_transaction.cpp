@@ -2032,6 +2032,7 @@ void MainWindow::toggleTransactionActions(const bool value)
   ui->actionViewAllPackages->setEnabled(value);
   ui->actionViewInstalledPackages->setEnabled(value);
   ui->actionViewNonInstalledPackages->setEnabled(value);
+  ui->actionViewOutdated->setEnabled(value);
   m_actionMenuRepository->setEnabled(value);
 
   //Search menu
