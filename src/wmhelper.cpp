@@ -422,6 +422,10 @@ void WMHelper::editFile(const QString& fileName, EditOptions opt)
   else if (UnixCommand::hasTheExecutable(ctn_XFCE_EDITOR) || UnixCommand::hasTheExecutable(ctn_XFCE_EDITOR_ALT)){
     p = getXFCEEditor() + QLatin1Char(' ') + fileName;
   }
+  else if (UnixCommand::hasTheExecutable(ctn_XDG_OPEN))
+  {
+    p = ctn_XDG_OPEN + QLatin1Char(' ') + fileName;
+  }
 
   if (opt == ectn_EDIT_AS_NORMAL_USER && !p.isEmpty())
   {
