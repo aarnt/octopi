@@ -1278,7 +1278,7 @@ LinuxDistro UnixCommand::getLinuxDistro()
   static bool firstTime = true;
 
   if (firstTime)
-  {    
+  {
     if (QFile::exists(QStringLiteral("/etc/artix-release")))
     {
       ret = ectn_ARTIXLINUX;
@@ -1301,7 +1301,8 @@ LinuxDistro UnixCommand::getLinuxDistro()
         ret = ectn_ARCHCRAFT;
       }
       else if (contents.contains(QRegularExpression(QStringLiteral("Arch Linux"))) ||
-               (contents.contains(QRegularExpression(QStringLiteral("ArcoLinux")))))
+               contents.contains(QRegularExpression(QStringLiteral("ArcoLinux"))) ||
+               contents.contains(QRegularExpression(QStringLiteral("CachyOS"))))
       {
         ret = ectn_ARCHLINUX;
       }

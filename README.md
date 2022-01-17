@@ -4,13 +4,14 @@
 
 The project site is hosted on https://tintaescura.com/projects/octopi
 
-Currently, 13 Linux distros are compatible with it
+Currently, 14 Linux distros are compatible with it
 
  * [ArchBang](http://archbang.org/)
  * [Archcraft](https://archcraft.io/)
  * [Arch Linux](https://www.archlinux.org/)
  * [ArcoLinux](https://arcolinux.info/)
  * [Artix Linux](https://artixlinux.org)
+ * [CachyOS](https://cachyos.org/)
  * [Chakra](https://chakralinux.org/)
  * [CondresOS](https://condresos.codelinsoft.it/)
  * [EndeavourOS](https://endeavouros.com/)
@@ -27,7 +28,7 @@ You'll need:
  * A helper to execute pacman commands called "octphelper", available on "./helper" dir
  * A privilege escalation tool called "octopi-sudo", available on "./sudo" dir
  * qtermwidget package, in order to build Octopi with embedded terminal support
- 
+
 ### To install Octopi using pacman
 
 If Octopi package is available in your distro's repository, you can just type:
@@ -120,9 +121,9 @@ $ /usr/bin/octopi-notifier
 
 ### To enable AUR support (that "green alien" icon on toolbar)
 
-You'll need to install [pacaur](https://github.com/rmarquis/pacaur), [paru](https://github.com/morganamilo/paru), 
-[pikaur](https://github.com/actionless/pikaur), [trizen](https://github.com/trizen/trizen) or 
-[yay](https://github.com/Jguer/yay) in your system. 
+You'll need to install [pacaur](https://github.com/rmarquis/pacaur), [paru](https://github.com/morganamilo/paru),
+[pikaur](https://github.com/actionless/pikaur), [trizen](https://github.com/trizen/trizen) or
+[yay](https://github.com/Jguer/yay) in your system.
 If neither of the previous tools are found Octopi will download latest "yay-bin" github binary.
 In Chakra, [chaser](https://github.com/ccr-tools/chaser) will be supported out of the box.
 In KaOS, [kcp](https://github.com/bvaudour/kcp) will be supported out of the box.
@@ -133,7 +134,7 @@ In KaOS, [kcp](https://github.com/bvaudour/kcp) will be supported out of the box
  * You can vote in the AUR package available on https://aur.archlinux.org/packages/octopi/
  * You can translate it to your mother language on https://www.transifex.com/projects/p/octopi/
  * You can follow author's twitter account on https://twitter.com/aaarnt
- * You can buy author's technical book (currently in portuguese) about Octopi and Qt5 on 
+ * You can buy author's technical book (currently in portuguese) about Octopi and Qt5 on
 http://www.amazon.com.br/Aprendendo-Qt-com-projeto-Octopi-ebook/dp/B015ICHKV6
  * You can buy author's poem book (currently in portuguese) on meditation, Buddhism, cosmology and other subjects on
 https://www.amazon.com.br/Avidya-Alexandre-Arnt-ebook/dp/B0965LVWR3
