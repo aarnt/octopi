@@ -130,7 +130,7 @@ QString utils::retrieveDistroNews(bool searchForLatestNews)
 
   if(searchForLatestNews && UnixCommand::hasInternetConnection() && distro != ectn_UNKNOWN)
   {    
-    QString curlCommand = QStringLiteral("%1 -o %2");
+    QString curlCommand = QStringLiteral("%1 -o %2 -L");
     QStringList curlParams;
     QString distroRSSUrl = SettingsManager::getDistroRSSUrl();
 
