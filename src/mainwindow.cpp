@@ -1338,13 +1338,15 @@ QString MainWindow::getAURPackageBase(const QString& packageName)
   QString res;
   QString pkgAUR(QStringLiteral("https://aur.archlinux.org/packages/%1/"));
   QNetworkAccessManager manager;
+  manager.setRedirectPolicy(QNetworkRequest::NoLessSafeRedirectPolicy);
   QNetworkReply *response = manager.get(QNetworkRequest(QUrl(pkgAUR.arg(packageName))));
   QEventLoop event;
   connect(response, SIGNAL(finished()), &event, SLOT(quit()));
   event.exec();
 
   QString contents = QString::fromUtf8(response->readAll());
-  QRegularExpression re(QStringLiteral("a href=\"/pkgbase/(?<packageBase>\\S+)/\""));
+  //QRegularExpression re(QStringLiteral("a href=\"/pkgbase/(?<packageBase>\\S+)/\""));
+  QRegularExpression re(QStringLiteral("a href=\"/pkgbase/(?<packageBase>[\\w\\-_]+)\\\">"));
   QRegularExpressionMatch rem;
   if (contents.contains(re, &rem))
   {
@@ -1374,7 +1376,11 @@ void MainWindow::onAUROpenPKGBUILD()
 
       QProcess curl;
       QStringList params;
-      params << pkgbuildSite.arg(getAURPackageBase(package->name));
+
+      QString pkgBase = getAURPackageBase(package->name);
+      if (pkgBase.isEmpty()) return;
+
+      params << pkgbuildSite.arg(pkgBase);
       params << QStringLiteral("-o");
       params << QDir::tempPath() + QDir::separator() + tempFileName;
       curl.start(QStringLiteral("/usr/bin/curl"), params);
@@ -1405,8 +1411,16 @@ void MainWindow::onAURShowPKGBUILDDiff()
       //QString latestVersion, previousVersion;
 
       //Let's download LOG html page and find the two newest version commit hashes
+
+      QString pkgBase = getAURPackageBase(package->name);
+      if (pkgBase.isEmpty())
+      {
+        delete cic;
+        return;
+      }
+
       QNetworkAccessManager manager;
-      QNetworkReply *response = manager.get(QNetworkRequest(QUrl(pkglogSite.arg(getAURPackageBase(package->name)))));
+      QNetworkReply *response = manager.get(QNetworkRequest(QUrl(pkglogSite.arg(pkgBase))));
       QEventLoop event;
       connect(response, SIGNAL(finished()), &event, SLOT(quit()));
       event.exec();

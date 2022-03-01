@@ -32,13 +32,15 @@
  */
 
 AurVote::AurVote(QObject *parent) : QObject(parent),
-  m_loginUrl(QStringLiteral("https://aur.archlinux.org/login/")),
+  m_loginUrl(QStringLiteral("https://aur.archlinux.org/login?next=/")), //https://aur.archlinux.org/login/")),
   m_voteUrl(QStringLiteral("https://aur.archlinux.org/pkgbase/%1/vote/")),
   m_unvoteUrl(QStringLiteral("https://aur.archlinux.org/pkgbase/%1/unvote/")),
   m_pkgUrl(QStringLiteral("https://aur.archlinux.org/packages/%1/"))
 {
   m_debugInfo = false;
   m_networkManager = new QNetworkAccessManager(this);
+  //TESTING
+  m_networkManager->setRedirectPolicy(QNetworkRequest::NoLessSafeRedirectPolicy);
 }
 
 AurVote::~AurVote()
@@ -67,21 +69,23 @@ bool AurVote::login()
   QEventLoop eventLoop;
   if (m_userName.isEmpty() || m_password.isEmpty()) return false;
 
-  //if (m_debugInfo)
-  //  qDebug() << "AurVote::login(): Will try to connect using password: " << m_password << Qt::endl;
-
   QUrlQuery postData;
   postData.addQueryItem(QStringLiteral("user"), m_userName);
   postData.addQueryItem(QStringLiteral("passwd"), m_password);
   postData.addQueryItem(QStringLiteral("remember_me"), QStringLiteral("on"));
+  //postData.addQueryItem(QStringLiteral("referer"), QStringLiteral("https://aur.archlinux.org")); //new
+  //postData.addQueryItem(QStringLiteral("next"), QStringLiteral("/")); //new
 
   QNetworkRequest request{QUrl{m_loginUrl}};
   request.setHeader(QNetworkRequest::ContentTypeHeader, QStringLiteral("application/x-www-form-urlencoded"));
+  request.setHeader(QNetworkRequest::UserAgentHeader, QStringLiteral("Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.88 Safari/537.36"));
 
   QNetworkReply *r = m_networkManager->post(request, postData.query().toUtf8());
   connect(r, SIGNAL(finished()), &eventLoop, SLOT(quit()));
   eventLoop.exec();
   disconnect(r, SIGNAL(finished()), &eventLoop, SLOT(quit()));
+
+  //qDebug() << "AurVote::login(): First post replied with error: " << r->errorString();
 
   if (r->error() > 0)
   {
