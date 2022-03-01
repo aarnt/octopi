@@ -73,8 +73,8 @@ bool AurVote::login()
   postData.addQueryItem(QStringLiteral("user"), m_userName);
   postData.addQueryItem(QStringLiteral("passwd"), m_password);
   postData.addQueryItem(QStringLiteral("remember_me"), QStringLiteral("on"));
-  //postData.addQueryItem(QStringLiteral("referer"), QStringLiteral("https://aur.archlinux.org")); //new
-  //postData.addQueryItem(QStringLiteral("next"), QStringLiteral("/")); //new
+  postData.addQueryItem(QStringLiteral("referer"), QStringLiteral("https://aur.archlinux.org")); //new
+  postData.addQueryItem(QStringLiteral("next"), QStringLiteral("/")); //new
 
   QNetworkRequest request{QUrl{m_loginUrl}};
   request.setHeader(QNetworkRequest::ContentTypeHeader, QStringLiteral("application/x-www-form-urlencoded"));
