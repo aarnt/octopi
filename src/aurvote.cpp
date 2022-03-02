@@ -39,7 +39,6 @@ AurVote::AurVote(QObject *parent) : QObject(parent),
 {
   m_debugInfo = false;
   m_networkManager = new QNetworkAccessManager(this);
-  //TESTING
   m_networkManager->setRedirectPolicy(QNetworkRequest::NoLessSafeRedirectPolicy);
 }
 
@@ -78,14 +77,13 @@ bool AurVote::login()
 
   QNetworkRequest request{QUrl{m_loginUrl}};
   request.setHeader(QNetworkRequest::ContentTypeHeader, QStringLiteral("application/x-www-form-urlencoded"));
-  request.setHeader(QNetworkRequest::UserAgentHeader, QStringLiteral("Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.88 Safari/537.36"));
+  //request.setHeader(QNetworkRequest::UserAgentHeader, QStringLiteral("Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.88 Safari/537.36"));
+  request.setRawHeader(QByteArray("referer"), QByteArray("https://aur.archlinux.org/login?next=/"));
 
   QNetworkReply *r = m_networkManager->post(request, postData.query().toUtf8());
   connect(r, SIGNAL(finished()), &eventLoop, SLOT(quit()));
   eventLoop.exec();
   disconnect(r, SIGNAL(finished()), &eventLoop, SLOT(quit()));
-
-  //qDebug() << "AurVote::login(): First post replied with error: " << r->errorString();
 
   if (r->error() > 0)
   {
@@ -112,7 +110,8 @@ bool AurVote::login()
     }
     else
     {
-      qDebug() << "AurVote::login(): Second post replied with: " << res;
+      if (m_debugInfo)
+        qDebug() << "AurVote::login(): Second post replied with: " << res;
     }
   }
 
@@ -166,7 +165,8 @@ int AurVote::isPkgVoted(const QString &pkgName)
   QRegularExpression re(QStringLiteral("Page Not Found"));
   if (res.contains(re)) return -1;
 
-  QRegularExpression re1(QStringLiteral("name=\"do_Vote\" value=\"Vote for this package\""));
+  //QRegularExpression re1(QStringLiteral("name=\"do_Vote\"value=\"Vote for this package\""));
+  QRegularExpression re1(QStringLiteral("name=\"do_Vote\""));
   if (res.contains(re1))
   {
     ret = 1;
@@ -184,31 +184,25 @@ void AurVote::voteForPkg(const QString &pkgName)
   connect(r, SIGNAL(finished()), &eventLoop, SLOT(quit()));
   eventLoop.exec();
   disconnect(r, SIGNAL(finished()), &eventLoop, SLOT(quit()));
-  QString token;
 
   QString res = QString::fromUtf8(r->readAll());
-
-  //Get token
-  QRegularExpression re(QStringLiteral("name=\"token\" value=\"(?<token>\\w+)\""));
-  QRegularExpressionMatch rem;
-  if (res.contains(re, &rem))
-  {
-    token = rem.captured(QStringLiteral("token"));
-  }
-
-  QRegularExpression re1(QStringLiteral("name=\"do_Vote\" value=\"Vote for this package\""));
+  QRegularExpression re1(QStringLiteral("name=\"do_Vote\""));
   if (res.contains(re1))
   {
     QUrlQuery postData;
     postData.clear();
-    postData.addQueryItem(QStringLiteral("token"), token);
     postData.addQueryItem(QStringLiteral("do_Vote"), QStringLiteral("Vote+for+this+package"));
 
-    request.setUrl(QUrl{m_unvoteUrl.arg(pkgName)});
+    request.setUrl(QUrl{m_voteUrl.arg(pkgName)});
     r = m_networkManager->post(request, postData.query().toUtf8());
     connect(r, SIGNAL(finished()), &eventLoop, SLOT(quit()));
     eventLoop.exec();
     disconnect(r, SIGNAL(finished()), &eventLoop, SLOT(quit()));
+
+    QString res = QString::fromUtf8(r->readAll());
+
+    if (m_debugInfo)
+      qDebug() << "Voting post response: " << res;
   }
 }
 
@@ -221,24 +215,14 @@ void AurVote::unvoteForPkg(const QString &pkgName)
   connect(r, SIGNAL(finished()), &eventLoop, SLOT(quit()));
   eventLoop.exec();
   disconnect(r, SIGNAL(finished()), &eventLoop, SLOT(quit()));
-  QString token;
 
   QString res = QString::fromUtf8(r->readAll());
 
-  //Get token
-  QRegularExpression re(QStringLiteral("name=\"token\" value=\"(?<token>\\w+)\""));
-  QRegularExpressionMatch rem;
-  if (res.contains(re, &rem))
-  {
-    token = rem.captured(QStringLiteral("token"));
-  }
-
-  QRegularExpression re1(QStringLiteral("name=\"do_UnVote\" value=\"Remove vote\""));
+  QRegularExpression re1(QStringLiteral("name=\"do_UnVote\""));
   if (res.contains(re1))
   {
     QUrlQuery postData;
     postData.clear();
-    postData.addQueryItem(QStringLiteral("token"), token);
     postData.addQueryItem(QStringLiteral("do_UnVote"), QStringLiteral("Remove+vote"));
 
     request.setUrl(QUrl{m_unvoteUrl.arg(pkgName)});
@@ -246,6 +230,11 @@ void AurVote::unvoteForPkg(const QString &pkgName)
     connect(r, SIGNAL(finished()), &eventLoop, SLOT(quit()));
     eventLoop.exec();
     disconnect(r, SIGNAL(finished()), &eventLoop, SLOT(quit()));
+
+    QString res = QString::fromUtf8(r->readAll());
+
+    if (m_debugInfo)
+      qDebug() << "Unvoting post response: " << res;
   }
 }
 
@@ -256,7 +245,6 @@ QStringList AurVote::getVotedPackages()
 {
   QString searchUrl=QStringLiteral("https://aur.archlinux.org/packages/?O=0&SeB=nd&SB=w&SO=d&PP=250&do_Search=Go");
   QEventLoop eventLoop;
-
   QNetworkRequest request(QUrl{searchUrl});
   request.setHeader(QNetworkRequest::ContentTypeHeader,QStringLiteral("application/x-www-form-urlencoded"));
   QNetworkReply *r = m_networkManager->get(request);
@@ -265,18 +253,24 @@ QStringList AurVote::getVotedPackages()
   disconnect(r, SIGNAL(finished()), &eventLoop, SLOT(quit()));
 
   QString res = QString::fromUtf8(r->readAll());
+
+  if (m_debugInfo)
+    qDebug() << "Searching for voted packages: " << res;
+
   res = res.remove(QRegularExpression(QStringLiteral("\\t")));
   res = res.remove(QRegularExpression(QStringLiteral("\\n")));
 
-  QString packageToSearch=QStringLiteral("<td><a href=\"/packages/(.*)/\">(?<pkgName>\\S+)</a></td>");
-  QString blockToSearch=QStringLiteral("<tr class=\"(odd|even)\">(.*)</tr>");
+  //<td>\n                    <a href=\"/packages/zoneminder\">\n
+  //<td>                    <a href="/packages/yay-bin">                        yay-bin                    </a>                </td
+  QString packageToSearch=QStringLiteral("<a href=\"/packages/(?<pkgName>\\S+)\">");
+  QString blockToSearch=QStringLiteral("<tr>(.*)</tr>");
   QRegularExpression re(blockToSearch);
   QStringList votedPackages;
 
-  QStringList rows = res.split(QRegularExpression(QStringLiteral("<tr class=\"(even|odd)\">")));
+  QStringList rows = res.split(QRegularExpression(QStringLiteral("<tr>")));
   for(const QString& row: rows)
   {
-    if (row.contains(QLatin1String("<td>Yes</td>")))
+    if (row.contains(QRegularExpression(QStringLiteral("<td>\\s*Yes\\s*</td>"))))
     {
       QRegularExpression re(packageToSearch);
       QRegularExpressionMatch rem;

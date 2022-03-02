@@ -27,8 +27,6 @@ class QNetworkAccessManager;
 
 class AurVote : public QObject
 {
-  Q_OBJECT
-
 private:
   bool m_debugInfo;
   QString m_loginUrl;

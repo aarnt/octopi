@@ -5,6 +5,7 @@
     (thanks to buckmelanoma).
   BugFix: Pressing ENTER over an installed AUR pkg no longer sends it to the 
     install action treeview. 
+  BugFix: Made Octopi compatible with aurweb 6.x version (vote/unvote/list AUR).
   Added "Outdated" filter/option on menu "View".
  
 0.12.0 (2021-11-06)
