@@ -452,7 +452,7 @@
     <message>
         <location filename="../Projects/octopi/src/mainwindow_help.cpp" line="183"/>
         <source>F11 to maximize/demaximize Tab&apos;s view</source>
-        <translation>F11 para maximizar/demaximizar vista de pestañas</translation>
+        <translation>F11 para maximizar/des-maximizar vista de pestañas</translation>
     </message>
 </context>
 <context>
@@ -1258,7 +1258,7 @@ Puede que necesite sincronizar la base de datos!</translation>
     <message numerus="yes">
         <location filename="../Projects/octopi/src/strconstants.cpp" line="659"/>
         <source>There are %n updates available!</source>
-        <translation><numerusform>Hay disponible %n actualización</numerusform><numerusform>Hay disponibles %n actualizaciones</numerusform></translation>
+        <translation><numerusform>Hay disponible %n actualización</numerusform><numerusform>Hay disponibles %n actualizaciones.</numerusform></translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="663"/>
