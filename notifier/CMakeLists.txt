@@ -13,6 +13,8 @@ set(src
     main.cpp
     mainwindow.cpp
     outputdialog.cpp
+    ../src/QtSolutions/qtsingleapplication.cpp
+    ../src/QtSolutions/qtlocalpeer.cpp
     ../src/terminal.cpp
     ../src/unixcommand.cpp
     ../src/package.cpp
@@ -34,6 +36,8 @@ set(src
 set(header 
     mainwindow.h
     outputdialog.h
+    ../src/QtSolutions/qtsingleapplication.h
+    ../src/QtSolutions/qtlocalpeer.h
     ../src/uihelper.h
     ../src/terminal.h
     ../src/unixcommand.h
@@ -60,7 +64,7 @@ qt5_wrap_ui(src ${ui})
 qt5_add_resources(src ${qrc})
 
 add_executable(octopi-notifier ${src} ${header})
-target_compile_definitions(octopi-notifier PRIVATE ALPM_BACKEND QT_USE_QSTRINGBUILDER QT_NO_CAST_FROM_ASCII QT_NO_CAST_TO_ASCII QT_NO_URL_CAST_FROM_STRING QT_NO_CAST_FROM_BYTEARRAY)
+target_compile_definitions(octopi-notifier PRIVATE OCTOPI_EXTENSIONS ALPM_BACKEND QT_USE_QSTRINGBUILDER QT_NO_CAST_FROM_ASCII QT_NO_CAST_TO_ASCII QT_NO_URL_CAST_FROM_STRING QT_NO_CAST_FROM_BYTEARRAY)
 target_include_directories(octopi-notifier PRIVATE ${CMAKE_CURRENT_BINARY_DIR} ${Qt5Core_INCLUDE_DIRS} ${Qt5Xml_INCLUDE_DIRS} ${Qt5Gui_INCLUDE_DIRS} ${Qt5Network_INCLUDE_DIRS})
 target_link_libraries(octopi-notifier PRIVATE Qt5::Core Qt5::Xml Qt5::Gui Qt5::Widgets Qt5::Network qtermwidget5 alpm_octopi_utils)
 if(KF5Notifications_FOUND)

@@ -113,6 +113,10 @@ int main(int argc, char *argv[])
 
     return 0;
   }
+  else if (argList->getSwitch(QStringLiteral("-checkupdates")))
+  {
+    return -6; //We are not running, so nothing to check...
+  }
 
   //This sends a message just to enable the socket-based QtSingleApplication engine
   app.sendMessage(QStringLiteral("RAISE"));

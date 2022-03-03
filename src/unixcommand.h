@@ -45,7 +45,6 @@ private:
   QString m_errorString;
   Terminal *m_terminal;
   QProcess *m_process;
-
   static QFile *m_temporaryFile;
   void buildOctopiHelperCommandWithSharedMem(const QString &pCommand, QSharedMemory *sharedMem);
 
@@ -122,6 +121,7 @@ public:
   static bool isPackageInstalled(const QString& pkgName);
   static void removeSharedMemFiles();
   static void removeTemporaryFiles();
+  static void removeTemporaryNotifierFiles();
 
   void runCommandInTerminalWithSudo(const QString& command);
   void executeCommand(const QString &pCommand);

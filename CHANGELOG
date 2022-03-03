@@ -7,6 +7,8 @@
     install action treeview. 
   BugFix: Made Octopi compatible with aurweb 6.x version (vote/unvote/list AUR).
   Added "Outdated" filter/option on menu "View".
+  Added a "-checkupdates" parameter to Notifier, so users can update the status
+    of an already running Octopi Notifier.
  
 0.12.0 (2021-11-06)
   Added support for pacman 6.0 (thanks to class101)

@@ -8,7 +8,7 @@ QT += core xml gui network
 
 # This controls whether octopi-notifier uses KStatusNotifier lib
 # You SHOULD REALLY enable KSTATUS define in plasma 5 desktops!
-DEFINES += ALPM_BACKEND #KSTATUS
+DEFINES += OCTOPI_EXTENSIONS ALPM_BACKEND #KSTATUS
 
 # Disable automatic string conversions
 DEFINES += QT_USE_QSTRINGBUILDER \
@@ -47,6 +47,8 @@ UI_DIR += ./build
 HEADERS  += \
     mainwindow.h \
     outputdialog.h \
+    ../src/QtSolutions/qtsingleapplication.h \
+    ../src/QtSolutions/qtlocalpeer.h \
     ../src/uihelper.h \
     ../src/terminal.h \
     ../src/unixcommand.h \
@@ -71,6 +73,8 @@ ALPM_BACKEND{
 SOURCES += main.cpp \
     mainwindow.cpp \
     outputdialog.cpp \
+    ../src/QtSolutions/qtsingleapplication.cpp \
+    ../src/QtSolutions/qtlocalpeer.cpp \
     ../src/terminal.cpp \
     ../src/unixcommand.cpp \
     ../src/package.cpp \

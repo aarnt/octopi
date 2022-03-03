@@ -743,6 +743,37 @@ void UnixCommand::removeTemporaryFiles()
 }
 
 /*
+ * Does some garbage collection, removing uneeded files
+ */
+void UnixCommand::removeTemporaryNotifierFiles()
+{
+  QDir tempDir(QDir::tempPath());
+  QStringList nameFilters;
+  nameFilters << QStringLiteral("qtsingleapp-Notifi*");
+
+  QFileInfoList list = tempDir.entryInfoList(nameFilters, QDir::Dirs | QDir::Files | QDir::System | QDir::Hidden);
+
+  for(const QFileInfo& file: list){
+    QFile fileAux(file.filePath());
+
+    if (!file.isDir()){
+      fileAux.remove();
+    }
+    else{
+      QDir dir(file.filePath());
+      QFileInfoList listd = dir.entryInfoList(QDir::Files | QDir::System);
+
+      for(const QFileInfo& filed: listd){
+        QFile fileAuxd(filed.filePath());
+        fileAuxd.remove();
+      }
+
+      dir.rmdir(file.filePath());
+    }
+  }
+}
+
+/*
  * Runs a command AS NORMAL USER externaly with QProcess!
  */
 void UnixCommand::execCommandAsNormalUser(const QString pCommand, QStringList params)
@@ -1466,7 +1497,6 @@ bool UnixCommand::isOctopiHelperRunning()
   QProcess proc;
   proc.setProcessEnvironment(getProcessEnvironment());
   QString octoToolName = ctn_OCTOPI_HELPER_NAME;
-
   QStringList sl;
   sl << QStringLiteral("-C");
   sl << octoToolName;

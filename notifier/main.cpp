@@ -24,7 +24,8 @@
 #include "../src/argumentlist.h"
 #include "mainwindow.h"
 
-#include <QApplication>
+#include "../src/QtSolutions/qtsingleapplication.h"
+//#include <QApplication>
 #include <QtGui>
 #include <QMessageBox>
 #include <QDebug>
@@ -46,11 +47,11 @@ int main(int argc, char *argv[])
     qDebug() << QString(QLatin1String("Octopi Notifier - ") + ctn_APPLICATION_VERSION +
                   QLatin1String(" (") + StrConstants::getQtVersion() + QLatin1String(")"));
 
-  if (UnixCommand::isAppRunning(QStringLiteral("octopi-notifier")))
+  /*if (UnixCommand::isAppRunning(QStringLiteral("octopi-notifier")))
   {
     qDebug() << "Aborting notifier as another instance is already running!";
     return (-1);
-  }
+  }*/
 
   if (!QFile::exists(ctn_CHECKUPDATES_BINARY))
   {
@@ -70,7 +71,23 @@ int main(int argc, char *argv[])
     return (-4);
   }
 
-  QApplication a(argc, argv);
+  //QApplication a(argc, argv);
+  QtSingleApplication a(QLatin1String("NotifierOcto"), argc, argv);
+
+  if (a.isRunning())
+  {
+    if (argList->getSwitch(QStringLiteral("-checkupdates")))
+    {
+      a.sendMessage(QStringLiteral("NOTIFIER_CHECKUPDATES"));
+    }
+
+    return 0;
+  }
+  else if (argList->getSwitch(QStringLiteral("-checkupdates")))
+  {
+    return -7; //We are not running, so nothing to check...
+  }
+
   QTranslator appTranslator;
   appTranslator.load(QLatin1String(":/resources/translations/octopi_") +
                      QLocale::system().name());
@@ -100,6 +117,12 @@ int main(int argc, char *argv[])
   }
 
   MainWindow w;
+
+  QObject::connect(&a, SIGNAL(notifierCheckUpdates()), &w, SLOT(doCheckUpdates()));
+
+  a.setActivationWindow(&w);
+  a.setQuitOnLastWindowClosed(false);
+
   if (w.startServer())
   {
     QResource::registerResource(QStringLiteral("./resources.qrc"));

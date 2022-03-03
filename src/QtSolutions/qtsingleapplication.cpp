@@ -355,6 +355,10 @@ void QtSingleApplication::activateWindow(const QString &message)
 
     emit options();
   }
+  else if (actWin && message == QLatin1String("NOTIFIER_CHECKUPDATES"))
+  {
+    emit notifierCheckUpdates();
+  }
   else if (actWin && ((message == QLatin1String("AURUPGRADE")) || (message == QLatin1String("SYSUPGRADE")) ||
                       (message == QLatin1String("CHECKUPDATES")) || (message == QLatin1String("SYSUPGRADE_NOCONFIRM"))))
   {

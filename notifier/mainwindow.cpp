@@ -85,6 +85,8 @@ MainWindow::MainWindow(QWidget *parent) :
 
 MainWindow::~MainWindow()
 {
+  UnixCommand::removeTemporaryNotifierFiles();
+
 #ifdef KSTATUS
   delete m_systemTrayIcon;
 #endif
@@ -379,7 +381,7 @@ void MainWindow::pacmanHelperTimerTimeout()
            lastCheckTime.isNull() ||
            lastCheckTime.daysTo(now) >= 1)) || (checkUpdatesTime))
     {
-      checkUpdates(ectn_AUTO_CHECK);
+      doCheckUpdates(ectn_AUTO_CHECK);
       //Then we set new LastCheckTime...
       SettingsManager::setLastCheckUpdatesTime(now);
     }
@@ -388,7 +390,7 @@ void MainWindow::pacmanHelperTimerTimeout()
   {
     if (lastCheckTime.isNull() || now.addSecs(-(checkUpdatesInterval * 60)) >= lastCheckTime)
     {
-      checkUpdates(ectn_AUTO_CHECK);
+      doCheckUpdates(ectn_AUTO_CHECK);
       //Then we set new LastCheckTime...
       SettingsManager::setLastCheckUpdatesTime(now);
     }
@@ -882,7 +884,7 @@ bool MainWindow::isInternetAvailable()
 /*
  * Called every time user selects "Check updates..." menu option
  */
-void MainWindow::checkUpdates(CheckUpdate check)
+void MainWindow::doCheckUpdates(CheckUpdate check)
 {
   if (check == ectn_AUTO_CHECK)
   {
@@ -1235,7 +1237,7 @@ void MainWindow::runOctopi(ExecOpt execOptions)
   else if (execOptions == ectn_CHECKUPDATES_EXEC_OPT &&
            !UnixCommand::isAppRunning(QStringLiteral("octopi"), true))
   {
-    checkUpdates();
+    doCheckUpdates();
   }
   else if (execOptions == ectn_CHECKUPDATES_EXEC_OPT &&
            UnixCommand::isAppRunning(QStringLiteral("octopi"), true))

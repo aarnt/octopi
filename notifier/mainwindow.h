@@ -56,6 +56,9 @@ public:
   inline void turnDebugInfoOn() { m_debugInfo = true;}
   bool startServer();
 
+public slots:
+  void doCheckUpdates(CheckUpdate check = ectn_USER_CHECK);
+
 private slots:
   void pacmanHelperTimerTimeout();
   void afterCheckUpdates(int exitCode, QProcess::ExitStatus);
@@ -63,7 +66,6 @@ private slots:
   void execSystemTrayActivated(QSystemTrayIcon::ActivationReason);
   void execSystemTrayKF5();
 
-  void checkUpdates(CheckUpdate check = ectn_USER_CHECK);
   void refreshOutdatedPkgsTooltip();
   void refreshAppIcon();
   void runOctopi(ExecOpt execOptions = ectn_SYSUPGRADE_EXEC_OPT);
@@ -115,7 +117,6 @@ private:
   QTimer *m_callRefreshAppIcon;
   QMenu *m_systemTrayIconMenu;
   QFileSystemWatcher *m_pacmanDatabaseSystemWatcher;
-
   OutputDialog *m_outputDialog;
 
 #ifdef KSTATUS

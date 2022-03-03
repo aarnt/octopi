@@ -97,6 +97,7 @@ Q_SIGNALS:
     void messageReceived(const QString &message);
     void options();
     void checkUpdates();
+    void notifierCheckUpdates();
     void systemUpgrade(SystemUpgradeOptions);
     void AURUpgrade();
     void installLocalPackages(const QStringList &message);
