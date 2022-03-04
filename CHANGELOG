@@ -5,7 +5,8 @@
     (thanks to buckmelanoma).
   BugFix: Pressing ENTER over an installed AUR pkg no longer sends it to the 
     install action treeview. 
-  BugFix: Made Octopi compatible with aurweb 6.x version (vote/unvote/list AUR).
+  BugFix: Made Octopi compatible with aurweb 6.x version (view PKGBUILD,
+    diff PKGBUILD, vote, unvote and list voted AUR).
   Added "Outdated" filter/option on menu "View".
   Added a "-checkupdates" parameter to Notifier, so users can update the status
     of an already running Octopi Notifier.
