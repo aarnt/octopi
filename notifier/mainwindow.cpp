@@ -886,6 +886,8 @@ bool MainWindow::isInternetAvailable()
  */
 void MainWindow::doCheckUpdates(CheckUpdate check)
 {
+  if (m_commandExecuting != ectn_NONE) return;
+
   if (check == ectn_AUTO_CHECK)
   {
     if (SettingsManager::getEnableInternetChecking() && !UnixCommand::hasInternetConnection()) return;
@@ -1234,16 +1236,16 @@ void MainWindow::runOctopi(ExecOpt execOptions)
   {
     QProcess::startDetached(QStringLiteral("octopi"), QStringList() << QStringLiteral("-sysupgrade-noconfirm"));
   }
-  else if (execOptions == ectn_CHECKUPDATES_EXEC_OPT &&
-           !UnixCommand::isAppRunning(QStringLiteral("octopi"), true))
+  else if (execOptions == ectn_CHECKUPDATES_EXEC_OPT) //&&
+           //!UnixCommand::isAppRunning(QStringLiteral("octopi"), true))
   {
     doCheckUpdates();
   }
-  else if (execOptions == ectn_CHECKUPDATES_EXEC_OPT &&
+  /*else if (execOptions == ectn_CHECKUPDATES_EXEC_OPT &&
            UnixCommand::isAppRunning(QStringLiteral("octopi"), true))
   {
     QProcess::startDetached(QStringLiteral("octopi"), QStringList() << QStringLiteral("-checkupdates"));
-  }
+  }*/
   else if (execOptions == ectn_SYSUPGRADE_EXEC_OPT &&
       (!UnixCommand::isAppRunning(QStringLiteral("octopi"), true) ||
        !canOctopiUpgrade()) && (m_outdatedStringList->count() > 0 ||
