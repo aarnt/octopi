@@ -107,24 +107,6 @@ QString Package::makeURLClickable(const QString &s)
 		search = ini + (2*s1.length()) + 15;	
 	}
 
-  /*search = 0;
-	ini = 0;
-
-  //Now, we search for the 2nd pattern: rx1
-	while ( (ini = rx1.indexIn( sb, search )) != -1 ){
-		QString s1 = rx1.cap();
-		QString ns;
-    if (s1[0] == '\n')
-      ns += "\n";
-
-		int blanks = s1.count(	QRegularExpression("^|[\\s]+") );
-		for (int i=0; i<blanks; i++) ns += " ";
-
-    ns += "<a href=\"http://" + s1.trimmed() + "\">" + s1.trimmed() + "</a>";
-    sb.replace( ini, s1.length(), ns);
-		search = ini + (2*s1.length()) + 15;	
-  }*/
-
   return sb;
 }
 
@@ -1520,14 +1502,11 @@ QList<PackageListData> *Package::getParuPackageList(const QString &searchString,
     else
     {
       //This is a description!
-      //else
+      if (!packageTuple.trimmed().isEmpty())
+        pkgDescription += packageTuple.trimmed();
+      else
       {
-        if (!packageTuple.trimmed().isEmpty())
-          pkgDescription += packageTuple.trimmed();
-        else
-        {
-          pkgDescription += QLatin1String(" ");
-        }
+        pkgDescription += QLatin1String(" ");
       }
     }
   }
@@ -2167,7 +2146,6 @@ PackageInfoData Package::getKCPInformation(const QString &pkgName)
 PackageInfoData Package::getInformation(const QString &pkgName, bool foreignPackage)
 {
   PackageInfoData res;
-  //res = AlpmBackend::getPackageInfo(pkgName, foreignPackage);
 
   QString pkgInfo = QString::fromUtf8(UnixCommand::getPackageInformation(pkgName, foreignPackage));
 
