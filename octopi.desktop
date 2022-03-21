@@ -147,3 +147,5 @@ X-DBUS-ServiceName=
 X-DBUS-StartupType=
 X-KDE-SubstituteUID=false
 X-KDE-Username=
+Version=1.5
+SingleMainWindow=true
