@@ -1229,15 +1229,15 @@ void MainWindow::execContextMenuPackages(QPoint point)
 
       if (allInstalled && (numOutdated==numberOfSelPkgs))
       {
-        ui->actionInstall->setText(StrConstants::getUpdate()); //AUR
+        ui->actionInstall->setText(StrConstants::getUpdate());
       }
       else if (allInstalled)
       {
-        ui->actionInstall->setText(StrConstants::getReinstall()); //AUR
+        ui->actionInstall->setText(StrConstants::getReinstall());
       }
       else
       {
-        ui->actionInstall->setText(StrConstants::getInstall()); //AUR
+        ui->actionInstall->setText(StrConstants::getInstall());
       }
 
       if (selectedRows.count() == 1 && m_aurVote != nullptr)
@@ -1248,10 +1248,18 @@ void MainWindow::execContextMenuPackages(QPoint point)
           menu->addAction(m_actionAURVote);
       }
 
-      if (selectedRows.count() == 1 && Package::isAURBased())
+      if (selectedRows.count() >= 1 && Package::isAURBased())
       {
-        menu->addAction(m_actionAUROpenPKGBUILD);
-        menu->addAction(m_actionAURShowPKGBUILDDiff);
+        if (numOutdated == numberOfSelPkgs)
+        {
+          menu->addAction(m_actionUpdateAURPackage);
+        }
+
+        if (selectedRows.count() == 1)
+        {
+          menu->addAction(m_actionAUROpenPKGBUILD);
+          menu->addAction(m_actionAURShowPKGBUILDDiff);
+        }
       }
 
       if (isAURGroupSelected())

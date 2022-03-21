@@ -743,6 +743,12 @@ void MainWindow::initActions()
   m_actionInstallAURUpdates->setIconVisibleInMenu(true);
   connect(m_actionInstallAURUpdates, SIGNAL(triggered()), this, SLOT(doAURUpgrade()));
 
+  m_actionUpdateAURPackage = new QAction(this);
+  m_actionUpdateAURPackage->setIcon(IconHelper::getIconToInstall());
+  m_actionUpdateAURPackage->setText(StrConstants::getUpdate());
+  m_actionUpdateAURPackage->setIconVisibleInMenu(true);
+  connect(m_actionUpdateAURPackage, SIGNAL(triggered()), this, SLOT(doUpdateAURPackage()));
+
   m_actionShowGroups = new QAction(this);
   m_actionShowGroups->setIcon(IconHelper::getIconShowGroups());
   m_actionShowGroups->setText(StrConstants::getGroups());

@@ -195,6 +195,7 @@ private:
   QAction *m_actionPackageInfo;
   QAction *m_actionInstallPacmanUpdates;
   QAction *m_actionInstallAURUpdates;
+  QAction *m_actionUpdateAURPackage;
   QAction *m_actionShowGroups;
   QAction *m_actionMenuMirrorCheck;
   QAction *m_actionMenuRepository;
@@ -513,6 +514,7 @@ private slots:
   void doCheckUpdates();
   void doSystemUpgrade(SystemUpgradeOptions sysUpgradeOption = ectn_NO_OPT);
   void doAURUpgrade();
+  void doUpdateAURPackage();
   void doInstallLocalPackages();
   void onOptions(OptionsDialogTab tabToOpen=ectn_TAB_GENERAL);
 

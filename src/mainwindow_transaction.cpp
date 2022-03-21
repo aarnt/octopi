@@ -872,7 +872,7 @@ void MainWindow::doMirrorCheck()
 }
 
 /*
- * Updates the outdated AUR packages with "yaourt -S <list>"
+ * Updates ALL the outdated AUR packages with "yaourt -S <list>"
  */
 void MainWindow::doAURUpgrade()
 {
@@ -886,6 +886,43 @@ void MainWindow::doAURUpgrade()
     auxPkg.remove(QStringLiteral("[0m"));
     auxPkg.remove(QStringLiteral(""));
     listOfTargets += auxPkg + QLatin1Char(' ');
+  }
+
+  disableTransactionActions();
+  m_progressWidget->setValue(0);
+  m_progressWidget->setMaximum(100);
+  clearTabOutput();
+
+  m_pacmanExec = new PacmanExec();
+  m_pacmanExec->setSharedMemory(m_sharedMemory);
+  if (m_debugInfo) m_pacmanExec->setDebugMode(true);
+
+  QObject::connect(m_pacmanExec, SIGNAL( finished (int, QProcess::ExitStatus)),
+                   this, SLOT( pacmanProcessFinished(int, QProcess::ExitStatus) ));
+
+  QObject::connect(m_pacmanExec, SIGNAL(percentage(int)), this, SLOT(incrementPercentage(int)));
+  QObject::connect(m_pacmanExec, SIGNAL(textToPrintExt(QString)), this, SLOT(outputText(QString)));
+  QObject::connect(m_pacmanExec, SIGNAL(commandToExecInQTermWidget(QString)), this, SLOT(onExecCommandInTabTerminal(QString)));
+
+  m_commandExecuting = ectn_RUN_IN_TERMINAL;
+  m_pacmanExec->doAURUpgrade(listOfTargets);
+}
+
+/*
+ * Updates the selected AUR package with "yaourt -S pkg"
+ */
+void MainWindow::doUpdateAURPackage()
+{
+  const QItemSelectionModel*const selectionModel = ui->tvPackages->selectionModel();
+
+  if (selectionModel->selectedRows().count() <= 0) return;
+
+  QString listOfTargets;
+  QModelIndexList selectedRows = selectionModel->selectedRows();
+  for (QModelIndex item: selectedRows)
+  {
+    const PackageRepository::PackageData*const selectedPackage = m_packageModel->getData(item);
+    listOfTargets = listOfTargets + QStringLiteral(" ") + selectedPackage->name ;
   }
 
   disableTransactionActions();
@@ -1994,6 +2031,9 @@ void MainWindow::toggleTransactionActions(const bool value)
   ui->actionInstallAUR->setEnabled(value);
   m_actionInstallPacmanUpdates->setEnabled(value);
   m_actionInstallAURUpdates->setEnabled(value);
+  m_actionAUROpenPKGBUILD->setEnabled(value);
+  m_actionAURShowPKGBUILDDiff->setEnabled(value);
+  m_actionUpdateAURPackage->setEnabled(value);
 
   ui->actionRemoveTransactionItem->setEnabled(value);
   ui->actionRemoveTransactionItems->setEnabled(value);
@@ -2090,7 +2130,6 @@ void MainWindow::toggleSystemActions(const bool value)
     ui->actionCheckUpdates->setEnabled(false);
     m_actionChangeInstallReason->setEnabled(false);
   }
-
 
   if (value && m_outdatedStringList->count() > 0)
     ui->actionSystemUpgrade->setEnabled(true);
