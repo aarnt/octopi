@@ -49,12 +49,12 @@
     <message>
         <location filename="../Projects/octopi/ui/mainwindow.ui" line="224"/>
         <source>&amp;About</source>
-        <translation>소개(&amp;A)</translation>
+        <translation>정보(&amp;A)</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/ui/mainwindow.ui" line="227"/>
         <source>About</source>
-        <translation>Octopi 소개</translation>
+        <translation>Octopi 정보</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/ui/mainwindow.ui" line="241"/>
@@ -501,7 +501,7 @@
     <message>
         <location filename="../Projects/octopi/ui/optionsdialog.ui" line="120"/>
         <source>Show &quot;Licenses&quot; column</source>
-        <translation>&quot;라이센스&quot; 열 표시</translation>
+        <translation>&quot;라이선스&quot; 열 표시</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/ui/optionsdialog.ui" line="133"/>
@@ -758,7 +758,7 @@ You may need to synchronize database!</source>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="208"/>
         <source>About</source>
-        <translation>소개</translation>
+        <translation>정보</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="212"/>
@@ -808,7 +808,7 @@ You may need to synchronize database!</source>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="248"/>
         <source>Licenses</source>
-        <translation>라이센스</translation>
+        <translation>라이선스</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="252"/>

@@ -14,7 +14,7 @@
     <message>
         <location filename="../Projects/octopi/ui/mainwindow.ui" line="106"/>
         <source>Actions</source>
-        <translation type="unfinished"/>
+        <translation>Ενέργειες</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/ui/mainwindow.ui" line="111"/>
@@ -24,32 +24,32 @@
     <message>
         <location filename="../Projects/octopi/ui/mainwindow.ui" line="147"/>
         <source>&amp;Help</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Βοήθεια</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/ui/mainwindow.ui" line="156"/>
         <source>&amp;View</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Προβολή</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/ui/mainwindow.ui" line="172"/>
         <source>&amp;File</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Αρχείο</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/ui/mainwindow.ui" line="184"/>
         <source>&amp;Search</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Αναζήτηση</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/ui/mainwindow.ui" line="194"/>
         <source>T&amp;ools</source>
-        <translation type="unfinished"/>
+        <translation>Ε&amp;ργαλεία</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/ui/mainwindow.ui" line="224"/>
         <source>&amp;About</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Περί</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/ui/mainwindow.ui" line="227"/>
@@ -64,7 +64,7 @@
     <message>
         <location filename="../Projects/octopi/ui/mainwindow.ui" line="250"/>
         <source>Apply</source>
-        <translation type="unfinished"/>
+        <translation>Εφαρμογή</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/ui/mainwindow.ui" line="271"/>
@@ -74,12 +74,12 @@
     <message>
         <location filename="../Projects/octopi/ui/mainwindow.ui" line="283"/>
         <source>Check &amp;updates</source>
-        <translation type="unfinished"/>
+        <translation>Έλεγχος &amp;ενημερώσεων</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/ui/mainwindow.ui" line="291"/>
         <source>E&amp;xit</source>
-        <translation type="unfinished"/>
+        <translation>Έ&amp;ξοδος</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/ui/mainwindow.ui" line="306"/>
@@ -172,12 +172,12 @@
     <message>
         <location filename="../Projects/octopi/ui/mainwindow.ui" line="478"/>
         <source>By &amp;description</source>
-        <translation type="unfinished"/>
+        <translation>Ανά &amp;περιγραφή</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/ui/mainwindow.ui" line="489"/>
         <source>By &amp;name</source>
-        <translation type="unfinished"/>
+        <translation>Ανά ό&amp;νομα</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/ui/mainwindow.ui" line="501"/>
@@ -536,27 +536,27 @@
     <message>
         <location filename="../Projects/octopi/ui/optionsdialog.ui" line="348"/>
         <source>User name</source>
-        <translation type="unfinished"/>
+        <translation>Όνομα χρήστη</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/ui/optionsdialog.ui" line="361"/>
         <source>Password</source>
-        <translation type="unfinished"/>
+        <translation>Συνθηματικό</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/ui/optionsdialog.ui" line="374"/>
         <source>Register</source>
-        <translation type="unfinished"/>
+        <translation>Εγγραφή</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/ui/optionsdialog.ui" line="387"/>
         <source>Connect</source>
-        <translation type="unfinished"/>
+        <translation>Σύνδεση</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/ui/optionsdialog.ui" line="401"/>
         <source>Enable AUR voting</source>
-        <translation type="unfinished"/>
+        <translation>Ενεργοποίηση ψήφου AUR</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/ui/optionsdialog.ui" line="422"/>
@@ -616,7 +616,7 @@ Any use of the provided files is at your own risk.</source>
         <location filename="../Projects/octopi/ui/optionsdialog.ui" line="939"/>
         <location filename="../Projects/octopi/src/optionsdialog.cpp" line="176"/>
         <source>Updates</source>
-        <translation type="unfinished"/>
+        <translation>Ενημερώσεις</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/optionsdialog.cpp" line="99"/>
@@ -761,12 +761,12 @@ You may need to synchronize database!</source>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="212"/>
         <source>Help</source>
-        <translation type="unfinished"/>
+        <translation>Βοήθεια</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="216"/>
         <source>&amp;Options</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Επιλογές</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="220"/>
@@ -811,17 +811,17 @@ You may need to synchronize database!</source>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="252"/>
         <source>Maintainer</source>
-        <translation type="unfinished"/>
+        <translation>Συντηρητής</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="256"/>
         <source>Last Modified</source>
-        <translation type="unfinished"/>
+        <translation>Τελευταία τροποποίηση</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="260"/>
         <source>Out-of-date</source>
-        <translation type="unfinished"/>
+        <translation>Ξεπερασμένο</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="264"/>
@@ -876,7 +876,7 @@ You may need to synchronize database!</source>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="304"/>
         <source>Votes</source>
-        <translation type="unfinished"/>
+        <translation>Ψήφοι</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="308"/>
@@ -886,7 +886,7 @@ You may need to synchronize database!</source>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="313"/>
         <source>Vote</source>
-        <translation type="unfinished"/>
+        <translation>Ψήφος</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="318"/>
@@ -1016,7 +1016,7 @@ You may need to synchronize database!</source>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="423"/>
         <source>Actions</source>
-        <translation type="unfinished"/>
+        <translation>Ενέργειες</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="427"/>
@@ -1031,7 +1031,7 @@ You may need to synchronize database!</source>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="436"/>
         <source>Terminal</source>
-        <translation type="unfinished"/>
+        <translation>Τερματικό</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="440"/>
