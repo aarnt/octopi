@@ -12,6 +12,7 @@ notifier/bin/**
 notifier/build/**
 octopi.pro.user
 qrc_resources.cpp
+repoeditor/.qtc_clangd/**
 repoeditor/bin/**
 repoeditor/build/**
 sudo/*.o

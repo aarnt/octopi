@@ -1,7 +1,7 @@
 [Desktop Entry]
-Name=Octopi CacheCleaner
+Name=Octopi Repository Editor
 Icon=octopi
-Exec=/usr/bin/octopi-cachecleaner
+Exec=/usr/bin/octopi-repoeditor
 Terminal=false
 Type=Application
 Categories=GNOME;GTK;System;

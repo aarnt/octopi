@@ -8,3 +8,5 @@ Categories=GNOME;GTK;System;
 #NotShowIn=GNOME;XFCE;LXDE;KDE;
 StartupNotify=true
 X-LXQt-Need-Tray=true
+Version=1.5
+SingleMainWindow=true

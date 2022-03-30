@@ -576,6 +576,10 @@ QList<PackageListData> *Package::getForeignPackageList()
  */
 QList<PackageListData> * Package::getPackageList(const QString &packageName, const QHash<QString, QString> *checkUpdatesOutdatedPackages)
 {
+#ifndef ALPM_BACKEND
+  Q_UNUSED(checkUpdatesOutdatedPackages)
+#endif
+
   //archlinuxfr/yaourt 1.2.2-1 [installed]
   //    A pacman wrapper with extended features and AUR support
   //community/libfm 1.1.0-4 (lxde) [installed: 1.1.0-3]

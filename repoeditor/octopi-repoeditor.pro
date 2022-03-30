@@ -129,4 +129,7 @@ target.path = $$BINDIR
 sources.files = $$SOURCES $$HEADERS $$RESOURCES $$FORMS *.pro 
 sources.path = .
 
+desktop.path = $$DATADIR/applications
+desktop.files += repoeditor/octopi-repoeditor.desktop
+
 INSTALLS += target
