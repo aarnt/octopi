@@ -1,4 +1,4 @@
-0.13 (dev)
+0.13.0 (dev)
   BugFix: editFile() caused a crash while in Mate desktop. Both "Open PKGBUILD" 
     and "Show PKGBUILD diff" options were affected.
   BugFix: removed stylesheet from treeviews. It makes dark themes look better
@@ -10,7 +10,7 @@
   Added "Outdated" filter/option on menu "View".
   Added a "-checkupdates" parameter to Notifier, so users can update the status
     of an already running Octopi Notifier.
-  Added option to update the selected outdated AUR pkg directly from the main list.
+  Added option to update selected outdated AUR pkgs directly from the main list.
  
 0.12.0 (2021-11-06)
   Added support for pacman 6.0 (thanks to class101)

@@ -38,7 +38,8 @@ PackageModel::PackageModel(const PackageRepository& repo, QObject *parent)
   m_iconInstalledUnrequired(IconHelper::getIconUnrequired()),
   m_iconNewer(IconHelper::getIconNewer()), m_iconOutdated(IconHelper::getIconOutdated()),
   m_iconForeign(IconHelper::getIconForeignGreen()), m_iconForeignOutdated(IconHelper::getIconForeignRed()),
-  m_iconForeignNotInstalled(IconHelper::getIconForeignWhite())
+  m_iconForeignNotInstalled(IconHelper::getIconForeignWhite()),
+  m_iconError(IconHelper::getIconWindowClose())
 {
   m_showColumnPopularity = false;
 }
@@ -417,8 +418,10 @@ const QIcon& PackageModel::getIconFor(const PackageRepository::PackageData& pack
       if (package.managedByAUR)
         return m_iconForeignNotInstalled;
       else return m_iconNotInstalled;
+
     default:
       assert(false);
+      return m_iconError;
   }
 }
 

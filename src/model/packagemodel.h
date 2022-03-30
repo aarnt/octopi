@@ -96,6 +96,7 @@ private:
 private:
   int                                     m_installedPackagesCount;
   bool                                    m_showColumnPopularity;
+
   const PackageRepository&                m_packageRepo;
   QList<PackageRepository::PackageData*>  m_listOfPackages;             // should be provided sorted by name (by repo)
   QList<PackageRepository::PackageData*>  m_columnSortedlistOfPackages; // sorted by column
@@ -120,6 +121,7 @@ private:
   QIcon   m_iconForeign;
   QIcon   m_iconForeignOutdated;
   QIcon   m_iconForeignNotInstalled;
+  QIcon   m_iconError;
 };
 
 #endif // OCTOPI_PACKAGEMODEL_H

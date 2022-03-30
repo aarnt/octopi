@@ -141,6 +141,7 @@ public:
   static QIcon getIconStop(){ return QIcon(QStringLiteral(":/resources/images/stop_small_red.png")); }
   static QIcon getIconVote(){ return QIcon(QStringLiteral(":/resources/images/vote.png")); }
   static QIcon getIconUnvote(){ return QIcon(QStringLiteral(":/resources/images/un_vote.png")); }
+  static QIcon getIconWindowClose(){ return QIcon(QStringLiteral(":/resources/images/window_close.png")); }
 
   static QIcon getIconBinary(){
     if (WMHelper::isKDERunning() && (UnixCommand::getLinuxDistro() != ectn_KAOS))
