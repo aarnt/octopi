@@ -1,5 +1,6 @@
 *.user
 .qmake.stash
+.qtc_clangd/**
 Makefile
 bin/**
 build/**
@@ -8,8 +9,10 @@ helper/moc*.*
 helper/octphelper
 cachecleaner/bin/**
 cachecleaner/build/**
+cachecleaner/.qtc_clangd/**
 notifier/bin/**
 notifier/build/**
+notifier/.qtc_clangd/**
 octopi.pro.user
 qrc_resources.cpp
 repoeditor/.qtc_clangd/**
