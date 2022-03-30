@@ -62,3 +62,4 @@ target_compile_definitions(octopi-repoeditor PRIVATE QT_USE_QSTRINGBUILDER QT_NO
 target_include_directories(octopi-repoeditor PRIVATE ${CMAKE_CURRENT_BINARY_DIR} ${Qt5Core_INCLUDE_DIRS} ${Qt5Gui_INCLUDE_DIRS} ${Qt5Network_INCLUDE_DIRS} ${Qt5Xml_INCLUDE_DIRS} ${Qt5Widgets_INCLUDE_DIRS})
 target_link_libraries(octopi-repoeditor PRIVATE Threads::Threads Qt5::Core Qt5::Gui Qt5::Network Qt5::Xml Qt5::Widgets ${UTIL_LIBRARY})
 install(TARGETS octopi-repoeditor RUNTIME DESTINATION bin LIBRARY DESTINATION lib PUBLIC_HEADER DESTINATION include)
+install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/octopi-repoeditor.desktop" DESTINATION share/applications)
