@@ -242,7 +242,7 @@
     <message>
         <location filename="../Projects/octopi/src/mainwindow_help.cpp" line="76"/>
         <source>Ctrl+Shift+A to display AUR voted package list</source>
-        <translation>Ctrl+Shift+A를 사용하여 AUR 투표 패키지 목록 표시</translation>
+        <translation>Ctrl+Shift+A를 사용하여 AUR 투표된 패키지 목록 표시</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/mainwindow_help.cpp" line="81"/>
@@ -551,7 +551,7 @@
     <message>
         <location filename="../Projects/octopi/ui/optionsdialog.ui" line="387"/>
         <source>Connect</source>
-        <translation>접속</translation>
+        <translation>연결하기</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/ui/optionsdialog.ui" line="401"/>
@@ -683,7 +683,7 @@ You may need to synchronize database!</source>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="139"/>
         <source>Artix Linux news</source>
-        <translation>Arch Linux 뉴스</translation>
+        <translation>Artix Linux 뉴스</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="143"/>
@@ -893,7 +893,7 @@ You may need to synchronize database!</source>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="318"/>
         <source>AUR voted package list</source>
-        <translation>AUR 투표 패키지 목록</translation>
+        <translation>AUR 투표된 패키지 목록</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="323"/>
