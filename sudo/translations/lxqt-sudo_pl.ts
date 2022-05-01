@@ -139,7 +139,7 @@ Argumenty:
         <location filename="../sudo.cpp" line="314"/>
         <source>%1: Failed to exec &apos;%2&apos;: %3
 </source>
-        <translation>%1: Nie udało się wykonać  &apos;%2&apos;: %3
+        <translation>%1: Nie udało się wykonać &apos;%2&apos;: %3
 </translation>
     </message>
     <message>

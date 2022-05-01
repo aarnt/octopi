@@ -133,7 +133,7 @@ Arguments :
     <message>
         <location filename="../sudo.cpp" line="345"/>
         <source>Syscall error, failed to fdopen pty: %1</source>
-        <translation type="unfinished">Erreur d&apos;appel système, échec de fdopen pty : %1</translation>
+        <translation>Erreur d&apos;appel système, échec de fdopen pty : %1</translation>
     </message>
     <message>
         <location filename="../sudo.cpp" line="314"/>

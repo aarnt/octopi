@@ -103,8 +103,7 @@ Arguments:
     <message>
         <location filename="../sudo.cpp" line="202"/>
         <source>%1: no backend chosen!</source>
-        <translation>%1: не е избран бекенд!
-</translation>
+        <translation>%1: не е избран бекенд!</translation>
     </message>
     <message>
         <location filename="../sudo.cpp" line="219"/>
@@ -115,7 +114,7 @@ Arguments:
         <location filename="../sudo.cpp" line="246"/>
         <source>unset</source>
         <extracomment>shouldn&apos;t be actually used but keep as short as possible in translations just in case.</extracomment>
-        <translation>unset</translation>
+        <translation>не е зададено</translation>
     </message>
     <message>
         <location filename="../sudo.cpp" line="295"/>

@@ -16,7 +16,7 @@
     <message>
         <location filename="../passworddialog.ui" line="45"/>
         <source>&amp;Copy</source>
-        <translation>&amp;Kopírovat</translation>
+        <translation>&amp;ZKopírovat</translation>
     </message>
     <message>
         <location filename="../passworddialog.ui" line="83"/>
@@ -128,7 +128,7 @@ Argumenty:
     <message>
         <location filename="../sudo.cpp" line="337"/>
         <source>Syscall error, failed to bring pty to non-block mode: %1</source>
-        <translation>Chyba systémového volání, nepodařilo se přepnout pty do neblokovacího režimu: %1</translation>
+        <translation>Chyba systémového volání, nepodařilo se přepnout pty do neblokujího režimu: %1</translation>
     </message>
     <message>
         <location filename="../sudo.cpp" line="345"/>

@@ -21,7 +21,7 @@
     <message>
         <location filename="../passworddialog.ui" line="83"/>
         <source>The requested action needs administrative privileges.&lt;br&gt;Please enter your password.</source>
-        <translation>この操作は管理者権限が必要です。&lt;br&gt;あなたのパスワードを入力し下さい。</translation>
+        <translation>この操作は管理者権限が必要です。&lt;br&gt;あなたのパスワードを入力して下さい。</translation>
     </message>
     <message>
         <location filename="../passworddialog.ui" line="106"/>

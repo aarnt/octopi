@@ -6,7 +6,7 @@
     <message>
         <location filename="../passworddialog.ui" line="6"/>
         <source>LXQt sudo</source>
-        <translation>LXQt sudo</translation>
+        <translation>sudo LXQt</translation>
     </message>
     <message>
         <location filename="../passworddialog.ui" line="42"/>
@@ -26,12 +26,12 @@
     <message>
         <location filename="../passworddialog.ui" line="106"/>
         <source>LXQt sudo backend</source>
-        <translation>LXQt sudo backend</translation>
+        <translation>backend sudo LXQt</translation>
     </message>
     <message>
         <location filename="../passworddialog.ui" line="109"/>
         <source>A program LXQt sudo calls in background to elevate privileges.</source>
-        <translation type="unfinished"></translation>
+        <translation>Program sudo LXQt dipanggil di latar belakang untuk menaikkan hak akses.</translation>
     </message>
     <message>
         <location filename="../passworddialog.ui" line="119"/>

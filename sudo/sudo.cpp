@@ -56,7 +56,7 @@
 namespace
 {
 const QString app_master{QStringLiteral("octopi-sudo")};
-const QString app_version{QStringLiteral("0.17.0")};
+const QString app_version{QStringLiteral("1.1.0")};
 const QString app_lxsu{QStringLiteral("su")};
 const QString app_lxsudo{QStringLiteral("sudo")};
 const QString octopihelper{QStringLiteral("/usr/lib/octopi/octphelper")};
