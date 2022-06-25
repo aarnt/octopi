@@ -791,6 +791,11 @@ void MainWindow::showPackagesWithNoDescription()
  */
 void MainWindow::buildPackageList()
 {
+  disconnect(ui->tvPackages->selectionModel(), SIGNAL(selectionChanged(QItemSelection,QItemSelection)),
+            this, SLOT(invalidateTabs()));
+  connect(ui->tvPackages->selectionModel(), SIGNAL(selectionChanged(QItemSelection,QItemSelection)),
+            this, SLOT(invalidateTabs()));
+
   ui->tvPackages->setColumnHidden(PackageModel::ctn_PACKAGE_POPULARITY_COLUMN, true);
 
   /*if (m_cic == nullptr)
@@ -1070,37 +1075,6 @@ void MainWindow::postBuildPackageList()
   }
 
   refreshOutdatedAURStringList();
-
-  /*if (distro != ectn_KAOS && isAURGroupSelected()) return;
-
-  QModelIndex mi = ui->tvPackages->currentIndex();
-  m_packageRepo.setAUROutdatedData(m_foreignPackageList, *m_outdatedAURStringList);
-  ui->tvPackages->setCurrentIndex(mi);
-
-  if (m_outdatedStringList->count() == 0 && m_outdatedAURStringList->count() > 0)
-    refreshAppIcon();
-
-  refreshStatusBarToolButtons();
-
-  //if (reconnectSlot)
-  if (m_reconectSlotInvalidadeTabs)
-  {
-    connect(ui->tvPackages->selectionModel(), SIGNAL(selectionChanged(QItemSelection,QItemSelection)),
-            this, SLOT(invalidateTabs()));
-  }
-
-  if (m_commandExecuting == ectn_NONE && !m_actionSwitchToAURTool->isEnabled()) m_actionSwitchToAURTool->setEnabled(true);
-
-  if (m_groupWidgetNeedsFocus && ui->splitterVertical->sizes().at(1) != 0) //if group is not hidden...
-  {
-    ui->twGroups->setFocus();
-    m_groupWidgetNeedsFocus = false;
-  }
-  else
-  {
-    if (SettingsManager::getSearchOutdatedAURPackages())
-      m_leFilterPackage->setFocus();
-  }*/
 }
 
 /*
@@ -1919,6 +1893,10 @@ void MainWindow::refreshTabFiles(bool clearContents, bool neverQuit)
  */
 void MainWindow::reapplyPackageFilter()
 {
+  clearTabsInfoOrFiles();
+  //disconnect(ui->tvPackages->selectionModel(), &QItemSelectionModel::selectionChanged,
+  //          this, &MainWindow::invalidateTabs);
+
   //We are not in a search by filenames...
   if (!isSearchByFileSelected())
   {
@@ -1953,7 +1931,7 @@ void MainWindow::reapplyPackageFilter()
     QModelIndex mi = m_packageModel->index(0, PackageModel::ctn_PACKAGE_NAME_COLUMN, QModelIndex());
     ui->tvPackages->setCurrentIndex(mi);
     ui->tvPackages->scrollTo(mi);
-    clearTabsInfoOrFiles(); //invalidateTabs();
+    //clearTabsInfoOrFiles(); //invalidateTabs();
   }
   //If we are using "Search By file...
   else
@@ -1964,6 +1942,9 @@ void MainWindow::reapplyPackageFilter()
     if (!m_leFilterPackage->text().isEmpty())
       m_leFilterPackage->refreshCompleterData();
   }
+
+  //connect(ui->tvPackages->selectionModel(), &QItemSelectionModel::selectionChanged,
+  //          this, &MainWindow::invalidateTabs);
 }
 
 /*

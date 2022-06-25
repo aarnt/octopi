@@ -1,3 +1,8 @@
+0.14 (dev)
+  BugFix: Info/Files tab refresh was duplicated.
+  BugFix: Disable (another try) Info/Files tab refresh while typing in Filter/Search 
+    line edit.
+
 0.13.0 (2022-03-30)
   BugFix: editFile() caused a crash while in Mate desktop. Both "Open PKGBUILD" 
     and "Show PKGBUILD diff" options were affected.

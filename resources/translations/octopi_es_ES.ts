@@ -1078,7 +1078,7 @@ Puede que necesite sincronizar la base de datos!</translation>
     <message numerus="yes">
         <location filename="../Projects/octopi/src/strconstants.cpp" line="472"/>
         <source>There are %n outdated packages in your system:</source>
-        <translation><numerusform>Hay %n paquete obsoleto en su sistema:</numerusform><numerusform>Hay %n paquetes obsoletos en su sistema.</numerusform></translation>
+        <translation><numerusform>Hay %n paquete obsoleto en su sistema:</numerusform><numerusform>Hay %n paquetes obsoletos en su sistema.</numerusform><numerusform>Hay %n paquetes obsoletos en su sistema.</numerusform></translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="476"/>
@@ -1088,27 +1088,27 @@ Puede que necesite sincronizar la base de datos!</translation>
     <message numerus="yes">
         <location filename="../Projects/octopi/src/strconstants.cpp" line="480"/>
         <source>%n packages</source>
-        <translation><numerusform>%n paquete</numerusform><numerusform>%n paquetes</numerusform></translation>
+        <translation><numerusform>%n paquete</numerusform><numerusform>%n paquetes</numerusform><numerusform>%n paquetes</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="../Projects/octopi/src/strconstants.cpp" line="484"/>
         <source>%n selected</source>
-        <translation><numerusform>%n seleccionado</numerusform><numerusform>%n seleccionados</numerusform></translation>
+        <translation><numerusform>%n seleccionado</numerusform><numerusform>%n seleccionados</numerusform><numerusform>%n seleccionados</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="../Projects/octopi/src/strconstants.cpp" line="488"/>
         <source>%n installed</source>
-        <translation><numerusform>%n instalado</numerusform><numerusform>%n instalados</numerusform></translation>
+        <translation><numerusform>%n instalado</numerusform><numerusform>%n instalados</numerusform><numerusform>%n instalados</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="../Projects/octopi/src/strconstants.cpp" line="492"/>
         <source>%n outdated</source>
-        <translation><numerusform>%n obsoleto</numerusform><numerusform>%n obsoletos</numerusform></translation>
+        <translation><numerusform>%n obsoleto</numerusform><numerusform>%n obsoletos</numerusform><numerusform>%n obsoletos</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="../Projects/octopi/src/strconstants.cpp" line="496"/>
         <source>%n available</source>
-        <translation><numerusform>%disponible</numerusform><numerusform>%n disponibles</numerusform></translation>
+        <translation><numerusform>%disponible</numerusform><numerusform>%n disponibles</numerusform><numerusform>%n disponibles</numerusform></translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="500"/>
@@ -1233,12 +1233,12 @@ Puede que necesite sincronizar la base de datos!</translation>
     <message numerus="yes">
         <location filename="../Projects/octopi/src/strconstants.cpp" line="639"/>
         <source>The following %n packages need to be retrieved</source>
-        <translation><numerusform>El siguiente paquete necesita ser descargado</numerusform><numerusform>Los siguientes %n paquetes necesitan ser descargados</numerusform></translation>
+        <translation><numerusform>El siguiente paquete necesita ser descargado</numerusform><numerusform>Los siguientes %n paquetes necesitan ser descargados</numerusform><numerusform>Los siguientes %n paquetes necesitan ser descargados</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="../Projects/octopi/src/strconstants.cpp" line="643"/>
         <source>The following %n packages will be removed</source>
-        <translation><numerusform>El siguiente paquete será desinstalado</numerusform><numerusform>Los siguientes %n paquetes serán desinstalados</numerusform></translation>
+        <translation><numerusform>El siguiente paquete será desinstalado</numerusform><numerusform>Los siguientes %n paquetes serán desinstalados</numerusform><numerusform>Los siguientes %n paquetes serán desinstalados</numerusform></translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="647"/>
@@ -1258,7 +1258,7 @@ Puede que necesite sincronizar la base de datos!</translation>
     <message numerus="yes">
         <location filename="../Projects/octopi/src/strconstants.cpp" line="659"/>
         <source>There are %n updates available!</source>
-        <translation><numerusform>Hay disponible %n actualización</numerusform><numerusform>Hay disponibles %n actualizaciones.</numerusform></translation>
+        <translation><numerusform>Hay disponible %n actualización.</numerusform><numerusform>Hay disponibles %n actualizaciones.</numerusform><numerusform>Hay disponibles %n actualizaciones.</numerusform></translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="663"/>

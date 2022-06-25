@@ -1777,6 +1777,9 @@ void MainWindow::onDoubleClickPackageList()
  */
 void MainWindow::refreshInfoAndFileTabs()
 {
+  disconnect(ui->tvPackages->selectionModel(), SIGNAL(selectionChanged(QItemSelection,QItemSelection)),
+          this, SLOT(invalidateTabs()));
+
   if(ui->twProperties->currentIndex() == ctn_TABINDEX_INFORMATION)
     refreshTabInfo();
   else if (ui->twProperties->currentIndex() == ctn_TABINDEX_FILES)
@@ -1784,6 +1787,9 @@ void MainWindow::refreshInfoAndFileTabs()
 
   if(m_initializationCompleted)
     saveSettings(ectn_CURRENTTABINDEX);
+
+  //connect(ui->tvPackages->selectionModel(), SIGNAL(selectionChanged(QItemSelection,QItemSelection)),
+  //        this, SLOT(invalidateTabs()));
 }
 
 /*
@@ -1809,8 +1815,8 @@ void MainWindow::changedTabIndex()
  */
 void MainWindow::clearTabsInfoOrFiles()
 {
-  disconnect(ui->tvPackages->selectionModel(), SIGNAL(selectionChanged(QItemSelection,QItemSelection)),
-          this, SLOT(invalidateTabs()));
+  //disconnect(ui->tvPackages->selectionModel(), SIGNAL(selectionChanged(QItemSelection,QItemSelection)),
+  //        this, SLOT(invalidateTabs()));
 
   if(ui->twProperties->currentIndex() == ctn_TABINDEX_INFORMATION) //This is TabInfo
   {
@@ -1823,8 +1829,8 @@ void MainWindow::clearTabsInfoOrFiles()
     return;
   }
 
-  connect(ui->tvPackages->selectionModel(), SIGNAL(selectionChanged(QItemSelection,QItemSelection)),
-          this, SLOT(invalidateTabs()));
+  //connect(ui->tvPackages->selectionModel(), SIGNAL(selectionChanged(QItemSelection,QItemSelection)),
+  //        this, SLOT(invalidateTabs()));
 }
 
 /*
