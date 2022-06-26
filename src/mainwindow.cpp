@@ -1797,6 +1797,9 @@ void MainWindow::refreshInfoAndFileTabs()
  */
 void MainWindow::changedTabIndex()
 {
+  disconnect(ui->tvPackages->selectionModel(), SIGNAL(selectionChanged(QItemSelection,QItemSelection)),
+          this, SLOT(invalidateTabs()));
+
   if(ui->twProperties->currentIndex() == ctn_TABINDEX_INFORMATION)
     refreshTabInfo();
   else if (ui->twProperties->currentIndex() == ctn_TABINDEX_FILES)
