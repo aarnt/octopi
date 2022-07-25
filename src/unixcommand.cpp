@@ -378,9 +378,9 @@ QByteArray UnixCommand::getOutdatedAURPackageList()
   }
   else if (Package::getForeignRepositoryToolName() != ctn_KCP_TOOL)
   {
-    if (SettingsManager::getAUROverwriteParam())
-      result = performAURCommand(QStringLiteral("-Qua --devel --needed"));
-    else
+    /*if (SettingsManager::getAUROverwriteParam())
+      result = performAURCommand(QStringLiteral("-Qua --devel --needed"));*/
+    //else
       result = performAURCommand(QStringLiteral("-Qua"));
   }
 
