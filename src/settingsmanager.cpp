@@ -459,6 +459,7 @@ QString SettingsManager::getAURTool()
   {
     if (getAURNoConfirmParam()) params += QLatin1String(" --noconfirm ");
     if (getAURNoEditParam()) params += QLatin1String(" --noeditmenu ");
+    if (getAUROverwriteParam()) params += QLatin1String(" --overwrite=\"*\" ");
     ret += params;
   }
   else if (ret == ctn_PARU_TOOL)
@@ -492,6 +493,7 @@ QString SettingsManager::getAURTool()
     {
       if (getAURNoConfirmParam()) params += QLatin1String(" --noconfirm ");
       if (getAURNoEditParam()) params += QLatin1String(" --noeditmenu ");
+      if (getAUROverwriteParam()) params += QLatin1String(" --overwrite=\"*\" ");
 
       p_instance.setAURTool(ctn_YAY_TOOL);
       p_instance.getSYSsettings()->sync();
@@ -528,13 +530,13 @@ QString SettingsManager::getAURToolName()
 /*
  * Tests if AUR is using "--devel" parameter
  */
-bool SettingsManager::getAURDevelParam()
+bool SettingsManager::getAUROverwriteParam()
 {
-  if (getAURToolName()==ctn_PARU_TOOL)
+  if (getAURToolName()!=ctn_YAY_TOOL)
     return false;
 
   SettingsManager p_instance;
-  return (p_instance.getSYSsettings()->value(ctn_KEY_AUR_DEVEL_PARAM, false)).toBool();
+  return (p_instance.getSYSsettings()->value(ctn_KEY_AUR_OVERWRITE_PARAM, false)).toBool();
 }
 
 /*
@@ -945,9 +947,9 @@ void SettingsManager::setAURTool(const QString &newValue)
 /*
  * Sets if AUR tool will use "--devel" parameter
  */
-void SettingsManager::setAURDevelParam(bool newValue)
+void SettingsManager::setAUROverwriteParam(bool newValue)
 {
-  instance()->getSYSsettings()->setValue(ctn_KEY_AUR_DEVEL_PARAM, newValue);
+  instance()->getSYSsettings()->setValue(ctn_KEY_AUR_OVERWRITE_PARAM, newValue);
   instance()->getSYSsettings()->sync();
 }
 

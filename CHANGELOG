@@ -1,4 +1,5 @@
 0.14 (dev)
+  Added --overwrite="*" checkbox in AUR tab (Tools/Options) when using yay.
   BugFix: Info/Files tab refresh was duplicated.
   BugFix: Disable (another try) Info/Files tab refresh while typing in Filter/Search 
     line edit.

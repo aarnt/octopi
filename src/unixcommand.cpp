@@ -248,6 +248,12 @@ QByteArray UnixCommand::getAURPackageList(const QString &searchString)
     sl << QLatin1String("--noedit");
     tool = tool.trimmed();
   }
+  if (tool.contains(QLatin1String("--overwrite=\"*\"")))
+  {
+    tool.remove(QLatin1String("--overwrite=\"*\""));
+    sl << QLatin1String("--overwrite=\"*\"");
+    tool = tool.trimmed();
+  }
 
   QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
   env.insert(QStringLiteral("LANG"), QStringLiteral("C"));
@@ -372,7 +378,7 @@ QByteArray UnixCommand::getOutdatedAURPackageList()
   }
   else if (Package::getForeignRepositoryToolName() != ctn_KCP_TOOL)
   {
-    if (SettingsManager::getAURDevelParam())
+    if (SettingsManager::getAUROverwriteParam())
       result = performAURCommand(QStringLiteral("-Qua --devel --needed"));
     else
       result = performAURCommand(QStringLiteral("-Qua"));
