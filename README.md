@@ -4,7 +4,7 @@
 
 The project site is hosted on https://tintaescura.com/projects/octopi
 
-Currently, 14 Linux distros are compatible with it
+Currently, 12 Linux distros are compatible with it
 
  * [ArchBang](http://archbang.org/)
  * [Archcraft](https://archcraft.io/)
@@ -12,8 +12,6 @@ Currently, 14 Linux distros are compatible with it
  * [ArcoLinux](https://arcolinux.info/)
  * [Artix Linux](https://artixlinux.org)
  * [CachyOS](https://cachyos.org/)
- * [Chakra](https://chakralinux.org/)
- * [CondresOS](https://condresos.codelinsoft.it/)
  * [EndeavourOS](https://endeavouros.com/)
  * [Garuda Linux](https://garudalinux.org/)
  * [KaOS](https://kaosx.us/)
