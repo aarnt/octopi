@@ -4,12 +4,12 @@
     <message>
         <location filename="Projects/octopi/cachecleaner/ui/cachecleaner.ui" line="14"/>
         <source>Cache Cleaner - Octopi</source>
-        <translation>Чистач на кеш памет - Octopi</translation>
+        <translation>Почистване на кеша - „Octopi“</translation>
     </message>
     <message>
         <location filename="Projects/octopi/cachecleaner/ui/cachecleaner.ui" line="49"/>
         <source>Uninstalled packages</source>
-        <translation>Деинсталирани пакети</translation>
+        <translation>Премахнати пакети</translation>
     </message>
     <message>
         <location filename="Projects/octopi/cachecleaner/ui/cachecleaner.ui" line="75"/>
