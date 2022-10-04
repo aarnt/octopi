@@ -2405,6 +2405,7 @@ QString Package::parseSearchString(QString searchStr, bool exactMatch)
     else searchStr.append(QLatin1Char('$'));
   }
 
+  searchStr.replace(QLatin1String("+"), QLatin1String("\\+"));
   searchStr.replace(QLatin1String("?"), QLatin1String("."));
   return searchStr;
 }
