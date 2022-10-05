@@ -457,33 +457,6 @@ void MainWindow::preBuildAURPackageList()
 }
 
 /*
- * Helper method to deal with the QFutureWatcher result before calling
- * AUR package list building method
- */
-/*void MainWindow::preBuildAURPackageListMeta()
-{
-  m_listOfAURPackages = g_fwAURMeta.result();
-  buildAURPackageList();
-
-  if (m_cic) {
-    delete m_cic;
-    m_cic = nullptr;
-  }
-
-  if (m_packageModel->getPackageCount() == 0)
-  {
-    m_leFilterPackage->setFocus();
-  }
-
-  if (UnixCommand::getLinuxDistro() == ectn_KAOS)
-  {
-    disconnect(m_leFilterPackage, SIGNAL(textChanged(QString)), this, SLOT(reapplyPackageFilter()));
-    connect(m_leFilterPackage, SIGNAL(textChanged(QString)), this, SLOT(reapplyPackageFilter()));
-    reapplyPackageFilter();
-  }
-}*/
-
-/*
  * Executes QFuture to retrieve Foreign list of packages
  */
 void MainWindow::retrieveForeignPackageList()
@@ -798,11 +771,6 @@ void MainWindow::buildPackageList()
 
   ui->tvPackages->setColumnHidden(PackageModel::ctn_PACKAGE_POPULARITY_COLUMN, true);
 
-  /*if (m_cic == nullptr)
-  {
-    m_cic = new CPUIntensiveComputing;
-  }*/
-
   static bool firstTime = true;
   bool searchOutdatedPackages=SettingsManager::getSearchOutdatedAURPackages();
   if (!searchOutdatedPackages)
@@ -907,11 +875,6 @@ void MainWindow::buildPackageList()
 
   if (isAllGroupsSelected()) m_packageModel->applyFilter(m_selectedViewOption, m_selectedRepository, QLatin1String(""));
   if (m_leFilterPackage->text() != QLatin1String("")) reapplyPackageFilter();
-
-  /*QModelIndex maux = m_packageModel->index(0, 0, QModelIndex());
-  ui->tvPackages->setCurrentIndex(maux);
-  ui->tvPackages->scrollTo(maux, QAbstractItemView::PositionAtCenter);
-  ui->tvPackages->setCurrentIndex(maux);*/
 
   list->clear();
   delete list;
@@ -1082,18 +1045,9 @@ void MainWindow::postBuildPackageList()
  */
 void MainWindow::refreshOutdatedAURStringList()
 {
-  //QEventLoop el;
   QFuture<QStringList *> f = QtConcurrent::run(getOutdatedAURStringList);
-  //connect(&g_fwOutdatedAURStringList, SIGNAL(finished()), &el, SLOT(quit()));
   connect(&g_fwOutdatedAURStringList, SIGNAL(finished()), this, SLOT(postRefreshOutdatedAURStringList()));
   g_fwOutdatedAURStringList.setFuture(f);
-  //el.exec();
-
-  /*m_outdatedAURStringList = g_fwOutdatedAURStringList.result();
-  m_foreignPackageList->clear();
-  delete m_foreignPackageList;
-  m_foreignPackageList = nullptr;
-  m_foreignPackageList = markForeignPackagesInPkgList(m_hasAURTool, m_outdatedAURStringList);*/
 }
 
 void MainWindow::postRefreshOutdatedAURStringList()
@@ -1376,8 +1330,6 @@ void MainWindow::refreshStatusBarToolButtons()
  */
 void MainWindow::refreshStatusBar()
 {
-  //m_lblSelCounter->setVisible(true);
-  //m_lblTotalCounters->setVisible(true);
   QString text;
   ui->statusBar->removeWidget(m_toolButtonPacman);
   ui->statusBar->removeWidget(m_toolButtonAUR);
@@ -1396,9 +1348,6 @@ void MainWindow::refreshStatusBar()
   {
     m_lblSelCounter->setText(QLatin1String(""));
     m_lblTotalCounters->setText(QLatin1String(""));
-    //m_lblSelCounter->setVisible(false);
-    //m_lblTotalCounters->setVisible(false);
-    //text = StrConstants::getNumberInstalledPackages(0);
   }
 
   m_lblTotalCounters->setText(text);
@@ -1894,8 +1843,6 @@ void MainWindow::refreshTabFiles(bool clearContents, bool neverQuit)
 void MainWindow::reapplyPackageFilter()
 {
   clearTabsInfoOrFiles();
-  //disconnect(ui->tvPackages->selectionModel(), &QItemSelectionModel::selectionChanged,
-  //          this, &MainWindow::invalidateTabs);
 
   //We are not in a search by filenames...
   if (!isSearchByFileSelected())
@@ -1903,10 +1850,10 @@ void MainWindow::reapplyPackageFilter()
     bool isFilterPackageSelected = m_leFilterPackage->hasFocus();
     int numPkgs = m_packageModel->getPackageCount();
 
-    //QString search = Package::parseSearchString(m_leFilterPackage->text());
     if (m_leFilterPackage->text() != QLatin1String(""))
     {
       QString search = m_leFilterPackage->text();
+      search = search.replace(QLatin1String("+"), QLatin1String("\\+"));
       m_packageModel->applyFilter(search);
       numPkgs = m_packageModel->getPackageCount();
 
@@ -1931,7 +1878,6 @@ void MainWindow::reapplyPackageFilter()
     QModelIndex mi = m_packageModel->index(0, PackageModel::ctn_PACKAGE_NAME_COLUMN, QModelIndex());
     ui->tvPackages->setCurrentIndex(mi);
     ui->tvPackages->scrollTo(mi);
-    //clearTabsInfoOrFiles(); //invalidateTabs();
   }
   //If we are using "Search By file...
   else
@@ -1942,9 +1888,6 @@ void MainWindow::reapplyPackageFilter()
     if (!m_leFilterPackage->text().isEmpty())
       m_leFilterPackage->refreshCompleterData();
   }
-
-  //connect(ui->tvPackages->selectionModel(), &QItemSelectionModel::selectionChanged,
-  //          this, &MainWindow::invalidateTabs);
 }
 
 /*

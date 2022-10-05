@@ -1,7 +1,7 @@
 0.14 (dev)
   Added --overwrite="*" checkbox in AUR tab (Tools/Options) when using yay.
   Octopi-sudo code was synced to match project "lxqt-sudo" version 1.1.0.
-  BugFix: AUR search did not work correctly when query string contained a "+" sign.
+  BugFix: Package search did not work correctly when query string contained a "+" sign.
   BugFix: Info/Files tab refresh was duplicated.
   BugFix: Disable (another try) Info/Files tab refresh while typing in Filter/Search 
     line edit.
