@@ -28,7 +28,7 @@
  * Collection of Octopi constants and enums
  */
 
-const QString ctn_APPLICATION_VERSION(QStringLiteral("0.14 (dev)"));
+const QString ctn_APPLICATION_VERSION(QStringLiteral("0.14.0"));
 
 //MainWindow related
 enum SystemUpgradeOptions { ectn_NO_OPT, ectn_SYNC_DATABASE_OPT, ectn_NOCONFIRM_OPT };
@@ -278,7 +278,6 @@ enum ExecOpt { ectn_NORMAL_EXEC_OPT, ectn_CHECKUPDATES_EXEC_OPT, ectn_SYSUPGRADE
 
 //Octopi-helper related ----------------------------------------------------------------------------------
 
-//const QString ctn_OCTOPI_HELPER_VERSION = ctn_APPLICATION_VERSION;
 const QString ctn_OCTOPI_HELPER_NAME(QStringLiteral("octphelper"));
 const QString ctn_OCTOPI_HELPER_PATH(QStringLiteral("/usr/lib/octopi/octphelper"));
 

@@ -1,4 +1,4 @@
-0.14 (dev)
+0.14.0 (2022-10-05)
   Added --overwrite="*" checkbox in AUR tab (Tools/Options) when using yay.
   Octopi-sudo code was synced to match project "lxqt-sudo" version 1.1.0.
   BugFix: Package search did not work correctly when query string contained a "+" sign.
