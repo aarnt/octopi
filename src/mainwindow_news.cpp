@@ -27,8 +27,8 @@
 #include "mainwindow.h"
 #include "strconstants.h"
 #include "searchbar.h"
-#include "uihelper.h"
 #include "globals.h"
+#include "utils.h"
 
 #include <QMessageBox>
 #include <QTextBrowser>
@@ -50,7 +50,6 @@ void MainWindow::initTabNews()
           this, SLOT(searchBarFindNextInTextBrowser()));
   connect(ui->twProperties->getSearchBarNews(), SIGNAL(findPrevious()),
           this, SLOT(searchBarFindPreviousInTextBrowser()));
-
   connect(ui->twProperties->getTextNews(), SIGNAL(sourceChanged(QUrl)),
           this, SLOT(onTabNewsSourceChanged(QUrl)));
 }

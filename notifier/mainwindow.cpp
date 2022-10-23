@@ -25,6 +25,7 @@
 #include "../src/package.h"
 #include "../src/transactiondialog.h"
 #include "../src/optionsdialog.h"
+#include "../src/utils.h"
 
 #include <QTimer>
 #include <QSystemTrayIcon>
@@ -104,7 +105,6 @@ bool MainWindow::isOctopiBusy()
 
   QTcpSocket socket;
   socket.connectToHost(QStringLiteral("127.0.0.1"), 12701);
-
   if (!socket.waitForConnected(5000))
   {
     res=false;

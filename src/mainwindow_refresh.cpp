@@ -22,6 +22,8 @@
  * This is MainWindow's refresh UI components related code
  */
 
+#include <iostream>
+#include <cassert>
 #include "mainwindow.h"
 #include "src/ui/octopitabinfo.h"
 #include "searchlineedit.h"
@@ -29,9 +31,8 @@
 #include "strconstants.h"
 #include "uihelper.h"
 #include "globals.h"
-#include <iostream>
-#include <cassert>
 #include "aurvote.h"
+#include "utils.h"
 
 #include <QElapsedTimer>
 #include <QTimer>

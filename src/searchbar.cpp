@@ -21,6 +21,7 @@
 #include "searchbar.h"
 #include "searchlineedit.h"
 #include "uihelper.h"
+
 #include <QAction>
 #include <QHBoxLayout>
 #include <QToolButton>
@@ -81,7 +82,6 @@ void SearchBar::init()
   QToolButton *tbClose = new QToolButton();
   tbClose->setFocusPolicy(Qt::NoFocus);
   tbClose->setIcon(IconHelper::getIconClose());
-
   tbClose->setAutoRaise(true);
   tbClose->setStyleSheet(QLatin1String("QToolButton{ font-size: 16px; font-family: verdana; border-radius: 4px; } "
                          "QToolButton:hover{ background-color: palette(light); }"

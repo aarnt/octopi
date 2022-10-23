@@ -44,7 +44,6 @@ TransactionDialog::TransactionDialog(QWidget* parent) :
 
   QPushButton *yesButton = ui->buttonBox->button(QDialogButtonBox::Yes);
   QPushButton *noButton = ui->buttonBox->button(QDialogButtonBox::No);
-
   noButton->setFocus();
 
   connect(m_runInTerminalButton, SIGNAL(clicked()), this,

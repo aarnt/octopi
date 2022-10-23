@@ -21,9 +21,10 @@
 #ifndef PACMANEXEC_H
 #define PACMANEXEC_H
 
-#include <QObject>
 #include "constants.h"
 #include "unixcommand.h"
+
+#include <QObject>
 
 class QSharedMemory;
 

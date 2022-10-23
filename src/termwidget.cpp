@@ -31,7 +31,7 @@
 //#include <QDebug>
 
 /*
- * This class extends some features of QTermWidget and adds some customizations
+ * This class extends some features of QTermWidget (LXQt's QTerminal widget) and adds some customizations
  */
 
 TermWidget::TermWidget(QWidget *parent):

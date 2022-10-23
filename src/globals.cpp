@@ -20,6 +20,7 @@
 
 #include "globals.h"
 #include "unixcommand.h"
+#include "utils.h"
 
 #include <QFutureWatcher>
 #include <QtConcurrent/QtConcurrentMap>
@@ -269,7 +270,6 @@ bool installTempYayHelper()
 
   //Let's download latest version of yay-bin tarball
   curl = QStringLiteral("curl -L %1 --output %2");
-  //curl=curl.arg(yayUrl, octopiConfDir + QDir::separator() + yayTarball);
   sl.clear();
   sl << QStringLiteral("-L") << yayUrl << QStringLiteral("--output") << octopiConfDir + QDir::separator() + yayTarball;
   p.execute(QStringLiteral("/usr/bin/curl"), sl);

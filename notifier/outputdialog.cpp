@@ -22,6 +22,7 @@
 #include "../src/pacmanexec.h"
 #include "../src/searchbar.h"
 #include "../src/uihelper.h"
+#include "../src/utils.h"
 #include "../src/strconstants.h"
 #include "../src/termwidget.h"
 

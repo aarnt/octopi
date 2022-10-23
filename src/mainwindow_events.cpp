@@ -26,11 +26,11 @@
 #include "searchlineedit.h"
 #include "mainwindow.h"
 #include "strconstants.h"
-#include "wmhelper.h"
 #include "uihelper.h"
 #include "searchbar.h"
 #include "globals.h"
 #include "settingsmanager.h"
+#include "utils.h"
 
 #include <QCloseEvent>
 #include <QMessageBox>
@@ -393,28 +393,7 @@ void MainWindow::keyPressEvent(QKeyEvent* ke)
   }
   /*else if(ke->key() == Qt::Key_Z && ke->modifiers() == (Qt::ShiftModifier|Qt::ControlModifier))
   {
-    //Package::getAURPackageList(QLatin1String("inxi"));
-    //THIS IS JUST A TEST CODE
-    //testSharedMem();
-
-    clearTabOutput();
-    m_pacmanExec = new PacmanExec();
-    m_pacmanExec->setSharedMemory(m_sharedMemory);
-    if (m_debugInfo) m_pacmanExec->setDebugMode(true);
-
-    QObject::connect(m_pacmanExec, SIGNAL(finished (int, QProcess::ExitStatus)),
-                     this, SLOT( pacmanProcessFinished(int, QProcess::ExitStatus)));
-
-    QObject::connect(m_pacmanExec, SIGNAL(percentage(int)), this, SLOT(incrementPercentage(int)));
-    QObject::connect(m_pacmanExec, SIGNAL(textToPrintExt(QString)), this, SLOT(outputText(QString)));
-    QObject::connect(m_pacmanExec, SIGNAL(canStopTransaction(bool)), this, SLOT(onCanStopTransaction(bool)));
-    QObject::connect(m_pacmanExec, SIGNAL(commandToExecInQTermWidget(QString)), this, SLOT(onExecCommandInTabTerminal(QString)));
-
-    disableTransactionActions();
-
-    m_commandExecuting = ectn_SYSTEM_UPGRADE;
-    m_pacmanExec->doSystemUpgrade();
-    m_commandQueued = ectn_NONE;
+    //TEST CODE
   }*/
 
   else ke->ignore();

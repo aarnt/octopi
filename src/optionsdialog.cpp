@@ -21,9 +21,9 @@
 #include "optionsdialog.h"
 #include "settingsmanager.h"
 #include "unixcommand.h"
-#include "wmhelper.h"
+//#include "wmhelper.h"
 #include "strconstants.h"
-#include "terminal.h"
+//#include "terminal.h"
 #include "uihelper.h"
 #include "aurvote.h"
 

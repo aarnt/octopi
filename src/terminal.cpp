@@ -19,7 +19,6 @@
 */
 
 #include "terminal.h"
-#include "wmhelper.h"
 #include "unixcommand.h"
 #include "strconstants.h"
 

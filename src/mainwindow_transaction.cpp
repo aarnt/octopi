@@ -25,7 +25,6 @@
 #include "ui_mainwindow.h"
 #include "mainwindow.h"
 #include "uihelper.h"
-#include "wmhelper.h"
 #include "strconstants.h"
 #include "transactiondialog.h"
 #include "multiselectiondialog.h"
@@ -36,6 +35,7 @@
 #include "termwidget.h"
 #include "aurvote.h"
 #include "constants.h"
+#include "utils.h"
 
 #include <QComboBox>
 #include <QProgressBar>

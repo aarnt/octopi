@@ -21,7 +21,6 @@
 #ifndef TREEVIEWPACKAGESITEMDELEGATE_H
 #define TREEVIEWPACKAGESITEMDELEGATE_H
 
-#include "package.h"
 #include <QStyledItemDelegate>
 #include <QString>
 
@@ -35,9 +34,8 @@ class TreeViewPackagesItemDelegate : public QStyledItemDelegate
     TreeViewPackagesItemDelegate(QObject *parent);
 		
 	public slots:
-
-		bool helpEvent ( QHelpEvent * event, QAbstractItemView*, 
-			const QStyleOptionViewItem&, const QModelIndex &index );
+    bool helpEvent ( QHelpEvent * event, QAbstractItemView*,
+                     const QStyleOptionViewItem&, const QModelIndex &index );
 
 		void execToolTip();
 };

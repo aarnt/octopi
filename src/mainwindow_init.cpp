@@ -28,7 +28,6 @@
 #include "uihelper.h"
 #include "settingsmanager.h"
 #include "searchlineedit.h"
-#include "treeviewpackagesitemdelegate.h"
 #include "searchbar.h"
 #include "repoconf.h"
 #include <iostream>
@@ -46,7 +45,6 @@
 #include <QProgressBar>
 #include <QSystemTrayIcon>
 #include <QToolButton>
-#include <QDebug>
 
 /*
  * Loads various application settings configured in ~/.config/octopi/octopi.conf

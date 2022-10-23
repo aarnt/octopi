@@ -10,7 +10,6 @@
 #include "strconstants.h"
 #include "wmhelper.h"
 #include "uihelper.h"
-#include "iostream"
 
 #include <QApplication>
 #include <QToolButton>

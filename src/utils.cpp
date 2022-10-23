@@ -26,7 +26,8 @@
 #include <iostream>
 #include "utils.h"
 #include "strconstants.h"
-#include "pacmanexec.h"
+//#include "pacmanexec.h"
+#include "unixcommand.h"
 #include "searchbar.h"
 
 #include <QStandardItemModel>

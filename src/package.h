@@ -183,9 +183,9 @@ class Package{
 
     static QList<PackageListData> * getForeignToolPackageList(const QString &searchString);                                //Foreign Tool methods
 
-#ifdef ALPM_BACKEND
-    static QList<PackageListData> * getAURPackageList(const QString &searchString);                                        //AUR specific pkg list (using rcp)
-#endif
+//#ifdef ALPM_BACKEND
+//    static QList<PackageListData> * getAURPackageList(const QString &searchString);                                        //AUR specific pkg list (using rcp)
+//#endif
 
     static QList<PackageListData> * getKcpPackageList(const QString &searchString, const QStringList &packageTuples);      //Kcp specific pkg list
     static QList<PackageListData> * getYayPackageList(const QString &searchString, const QStringList &packageTuples);      //Yay specific pkg list

@@ -25,7 +25,6 @@
 
 #include "settingsmanager.h"
 #include "unixcommand.h"
-#include "uihelper.h"
 #include "qaesencryption.h"
 
 #include <QString>
@@ -1001,7 +1000,6 @@ void SettingsManager::setAURUserName(const QString &newValue)
 void SettingsManager::setAURPassword(const QString &newValue)
 {
   //We need to encrypt the given newValue
-
   QString aurUserName = getAURUserName();
   if (aurUserName.isEmpty()) return;
 

@@ -36,10 +36,10 @@
 #include <QRegularExpression>
 #include <QEventLoop>
 #include <QtNetwork/QNetworkReply>
-#include <QJsonArray>
-#include <QJsonDocument>
-#include <QJsonObject>
-#include <QJsonValue>
+//#include <QJsonArray>
+//#include <QJsonDocument>
+//#include <QJsonObject>
+//#include <QJsonValue>
 
 /*
  * This class abstracts all the relevant package information and services
@@ -1028,7 +1028,7 @@ QList<PackageListData> * Package::getForeignToolPackageList(const QString &searc
  * Retrieves the list of all AUR packages in the database using Aur rcp (installed + non-installed)
  * given the search parameter
  */
-#ifdef ALPM_BACKEND
+/*#ifdef ALPM_BACKEND
 QList<PackageListData> *Package::getAURPackageList(const QString &searchString)
 {
   QString pkgName, pkgVersion, pkgDescription, pkgOutVersion;
@@ -1086,6 +1086,7 @@ QList<PackageListData> *Package::getAURPackageList(const QString &searchString)
   return res;
 }
 #endif
+*/
 
 /*
  * Retrieves the list of all KCP packages in the database using Kcp (installed + non-installed)

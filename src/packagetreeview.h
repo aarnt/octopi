@@ -21,7 +21,6 @@
 #ifndef PACKAGETREEVIEW_H
 #define PACKAGETREEVIEW_H
 
-#include <QObject>
 #include <QTreeView>
 
 class PackageTreeView : public QTreeView

@@ -21,8 +21,6 @@
 #ifndef ALPMBACKEND_H
 #define ALPMBACKEND_H
 
-#include "package.h"
-
 #include <QStringList>
 
 class AlpmBackend

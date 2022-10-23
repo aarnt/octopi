@@ -25,6 +25,7 @@
 #include "ui_mainwindow.h"
 #include "mainwindow.h"
 #include "searchbar.h"
+#include "utils.h"
 
 #include <QTextBrowser>
 
@@ -35,7 +36,6 @@ void MainWindow::searchBarTextChangedInTextBrowser(const QString &textToSearch)
 {
   QTextBrowser *tb = ui->twProperties->currentWidget()->findChild<QTextBrowser*>(QStringLiteral("textBrowser"));
   SearchBar *sb = ui->twProperties->currentWidget()->findChild<SearchBar*>(QStringLiteral("searchbar"));
-
   utils::searchBarTextChangedInTextBrowser(tb, sb, textToSearch);
 }
 

@@ -25,7 +25,6 @@ class SearchLineEdit : public QLineEdit
 private:
   bool m_hasLocate;
   QStringListModel *m_completerModel;
-
   QCompleter *m_completer;
   ValidatorType m_validatorType;
   QValidator *m_defaultValidator;
