@@ -875,7 +875,13 @@ void MainWindow::buildPackageList()
   }
 
   if (isAllGroupsSelected()) m_packageModel->applyFilter(m_selectedViewOption, m_selectedRepository, QLatin1String(""));
-  if (m_leFilterPackage->text() != QLatin1String("")) reapplyPackageFilter();
+  //if (m_leFilterPackage->text() != QLatin1String("")) reapplyPackageFilter();
+
+  reapplyPackageFilter();
+  QModelIndex maux = m_packageModel->index(0, 0, QModelIndex());
+  ui->tvPackages->setCurrentIndex(maux);
+  ui->tvPackages->scrollTo(maux, QAbstractItemView::PositionAtCenter);
+  ui->tvPackages->setCurrentIndex(maux);
 
   list->clear();
   delete list;
@@ -938,12 +944,9 @@ void MainWindow::buildPackageList()
       QApplication::restoreOverrideCursor();
       doInstallLocalPackages();
     }
-  }
 
-  QModelIndex maux = m_packageModel->index(0, 0, QModelIndex());
-  ui->tvPackages->setCurrentIndex(maux);
-  ui->tvPackages->scrollTo(maux, QAbstractItemView::PositionAtCenter);
-  ui->tvPackages->setCurrentIndex(maux);
+    reapplyPackageFilter();
+  }// end of firstime
 
   resizePackageView();
 

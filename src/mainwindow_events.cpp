@@ -404,7 +404,14 @@ void MainWindow::keyPressEvent(QKeyEvent* ke)
  */
 void MainWindow::keyReleaseEvent(QKeyEvent* ke)
 {
-  if (ui->tvPackages->hasFocus() && ke->key() == Qt::Key_Space)
+  if(ui->tvPackages->hasFocus() && (ke->key() == Qt::Key_Up || ke->key() == Qt::Key_Down ||
+                                    ke->key() == Qt::Key_Home || ke->key() == Qt::Key_End ||
+                                    ke->key() == Qt::Key_PageUp || ke->key() == Qt::Key_PageDown))
+  {
+    clearTabsInfoOrFiles();
+    ui->tvPackages->setFocus();
+  }
+  else if (ui->tvPackages->hasFocus() && ke->key() == Qt::Key_Space)
   {
     invalidateTabs();
     ui->tvPackages->setFocus();
