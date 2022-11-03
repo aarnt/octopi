@@ -1,5 +1,6 @@
 0.15 (dev)
   BugFix: invalidate Info/File tabs when user is navigating packages using the keyboard.
+  BugFix: Better handle dependencies while staging packages for deletion.
 
 0.14.0 (2022-10-05)
   Added --overwrite="*" checkbox in AUR tab (Tools/Options) when using yay.

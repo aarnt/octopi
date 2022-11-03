@@ -453,7 +453,7 @@ private slots:
   void insertIntoRemovePackage(QModelIndex *indexToInclude = nullptr);
   void insertIntoInstallPackage(QModelIndex *indexToInclude = nullptr);
   void insertIntoInstallPackageOptDeps(const QString &packageName);
-  bool insertIntoRemovePackageDeps(const QStringList &dependencies);
+  int insertIntoRemovePackageDeps(const QStringList &dependencies);
   void insertGroupIntoRemovePackage();
   void insertGroupIntoInstallPackage();
 

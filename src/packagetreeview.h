@@ -34,7 +34,7 @@ public:
 
 protected:
   virtual void mouseReleaseEvent(QMouseEvent *event);
-  virtual void focusInEvent(QFocusEvent *event);
+  //virtual void focusInEvent(QFocusEvent *event);
 
 };
 

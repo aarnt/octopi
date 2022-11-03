@@ -390,7 +390,6 @@ void MainWindow::onPackageGroupChanged()
   if (isAllGroupsSelected())
   {
     if (m_commandExecuting == ectn_NONE && m_initializationCompleted) m_actionSwitchToForeignTool->setEnabled(true);
-    //ui->actionSearchByName->setChecked(true);
     m_actionLastSearchMethod->setChecked(true);
     tvPackagesSearchColumnChanged(ui->actionSearchByName);
   }
@@ -1064,22 +1063,13 @@ void MainWindow::execKeyActionOnPackage(CommandExecuting command)
       {
         if (package->installed() && command == ectn_REMOVE)
         {
-          /*if (package->repository == StrConstants::getForeignRepositoryName())
-          {
-            doRemoveAURPackage();
-          }*/
-          if (package->repository == StrConstants::getForeignRepositoryName())
-          {
+          //if (package->repository == StrConstants::getForeignRepositoryName())
+          {           
             insertIntoRemovePackage();
           }
         }
         else if (command == ectn_INSTALL)
         {
-          /*if (package->repository == StrConstants::getForeignRepositoryName())
-          {
-            doInstallAURPackage();
-          }*/
-          //if (package->repository != StrConstants::getForeignRepositoryName())
           if (UnixCommand::getLinuxDistro() != ectn_KAOS && package->repository != StrConstants::getForeignRepositoryName())
           {
             insertIntoInstallPackage();
@@ -1093,34 +1083,46 @@ void MainWindow::execKeyActionOnPackage(CommandExecuting command)
     }
     else //There are more than 1 package selected
     {
+      int countToInstall = 0;
+      int countToRemove = 0;
+
       for(QModelIndex item: selectedRows)
       {
         const PackageRepository::PackageData*const package = m_packageModel->getData(item);
 
-        if (package->repository == StrConstants::getForeignRepositoryName())
+        if (command == ectn_INSTALL && package->repository != StrConstants::getForeignRepositoryName())
+        {
+          countToInstall++;
+          //insertIntoInstallPackage();
+        }
+
+        else if (package->installed() && command == ectn_REMOVE && !package->required)
+        {
+          countToRemove++;
+          //insertIntoRemovePackage();
+        }
+
+        else if (package->repository == StrConstants::getForeignRepositoryName())
         {
           if (!isAURGroupSelected() && package->installed() && command == ectn_REMOVE)
           {
-            insertIntoRemovePackage(&item);
+            countToRemove++; //insertIntoRemovePackage();
           }
           else if (isAURGroupSelected())
           {
             if (command == ectn_INSTALL)
-              insertIntoInstallPackage(&item);
+              countToInstall++; //insertIntoInstallPackage();
             else if (package->installed() && command == ectn_REMOVE)
-              insertIntoRemovePackage(&item);
+              countToRemove++; //insertIntoRemovePackage();
           }
         }
-        if (command == ectn_INSTALL && package->repository != StrConstants::getForeignRepositoryName())
-        {
-          insertIntoInstallPackage(&item);
-        }
-        else if (package->installed() && command == ectn_REMOVE && !package->required)
-        {
-          insertIntoRemovePackage(&item);
-        }
       }
-    }
+
+      if (countToRemove == selectedRows.count())
+        insertIntoRemovePackage();
+      else if (countToInstall == selectedRows.count())
+        insertIntoInstallPackage();
+    } // End of 'more than 1 package selected'
   }
 }
 

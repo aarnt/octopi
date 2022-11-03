@@ -127,7 +127,7 @@ bool MultiSelectionDialog::eventFilter(QObject *obj, QEvent *evt)
     {
       QKeyEvent *ke = static_cast<QKeyEvent*>(evt);
       if (ke->key() == Qt::Key_A && ke->modifiers() == Qt::ControlModifier)
-      {        
+      {
         for(int row=0; row < ui->twDepPackages->rowCount(); row++)
         {
           if (m_actionIsToCheck)
@@ -143,7 +143,8 @@ bool MultiSelectionDialog::eventFilter(QObject *obj, QEvent *evt)
         m_actionIsToCheck = !m_actionIsToCheck;
 
         return true;
-      }      
+      }
+      else if (ke->key() == Qt::Key_Escape) reject();
     }
     else if (evt->type() == QEvent::Resize)
     {

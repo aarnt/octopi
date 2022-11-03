@@ -272,80 +272,76 @@ void MainWindow::insertIntoRemovePackage(QModelIndex *indexToInclude)
   qApp->processEvents();
   QStringList dependencies;
 
-  //if (!isAURGroupSelected())
+  bool checkDependencies=false;
+  //ensureTabVisible(ctn_TABINDEX_ACTIONS);
+  QModelIndexList selectedRows;
+
+  if (indexToInclude == nullptr)
+    selectedRows = ui->tvPackages->selectionModel()->selectedRows();
+  else
   {
-    bool checkDependencies=false;
-    //ensureTabVisible(ctn_TABINDEX_ACTIONS);
-    QModelIndexList selectedRows;
+    selectedRows.append(*indexToInclude);
+  }
 
-    if (indexToInclude == nullptr)
-      selectedRows = ui->tvPackages->selectionModel()->selectedRows();
-    else
+  //First, let's see if we are dealing with a package group
+  if(!isAURGroupSelected() && !isAllGroupsSelected())
+  {
+    //If we are trying to remove all the group's packages, why not remove the entire group?
+    if(selectedRows.count() == m_packageModel->getPackageCount())
     {
-      selectedRows.append(*indexToInclude);
-    }
-
-    //First, let's see if we are dealing with a package group
-    if(!isAURGroupSelected() && !isAllGroupsSelected())
-    {
-      //If we are trying to remove all the group's packages, why not remove the entire group?
-      if(selectedRows.count() == m_packageModel->getPackageCount())
-      {
-        insertRemovePackageIntoTransaction(getSelectedGroup());
-        return;
-      }
-    }
-
-    QString removeCmd = m_removeCommand;
-    if (removeCmd == QLatin1String("Rcs") )
-    {
-      checkDependencies = true;
-    }
-
-    for(QModelIndex item: qAsConst(selectedRows))
-    {
-      const PackageRepository::PackageData*const package = m_packageModel->getData(item);
-      if (package == nullptr) {
-        assert(false);
-        continue;
-      }
-
-      if(checkDependencies)
-      {
-        QStringList *targets = Package::getTargetRemovalList(package->name, removeCmd);
-
-        for(const QString& target: qAsConst(*targets))
-        {
-          int separator = target.lastIndexOf(QLatin1String("-"));
-          QString candidate = target.left(separator);
-          separator = candidate.lastIndexOf(QLatin1String("-"));
-          candidate = candidate.left(separator);
-
-          if (candidate != package->name)
-          {
-            dependencies.append(candidate);
-          }
-        }
-
-        if (dependencies.count() > 0)
-        {
-          if (!dependencies.at(0).contains(QLatin1String("HoldPkg was found in")))
-          {
-            if (!insertIntoRemovePackageDeps(dependencies))
-            {
-              return;
-            }
-          }
-        }
-      }
-
-      insertRemovePackageIntoTransaction(package->repository + QLatin1Char('/') + package->name);
+      insertRemovePackageIntoTransaction(getSelectedGroup());
+      return;
     }
   }
-  /*else
+
+  QString removeCmd = m_removeCommand;
+  if (removeCmd == QLatin1String("Rcs") )
   {
-    doRemoveAURPackage();
-  }*/
+    checkDependencies = true;
+  }
+
+  int res = 0;
+  for(QModelIndex item: qAsConst(selectedRows))
+  {
+    const PackageRepository::PackageData*const package = m_packageModel->getData(item);
+    if (package == nullptr) {
+      assert(false);
+      continue;
+    }
+
+    if(checkDependencies)
+    {
+      QStringList *targets = Package::getTargetRemovalList(package->name, removeCmd);
+
+      for(const QString& target: qAsConst(*targets))
+      {
+        int separator = target.lastIndexOf(QLatin1String("-"));
+        QString candidate = target.left(separator);
+        separator = candidate.lastIndexOf(QLatin1String("-"));
+        candidate = candidate.left(separator);
+
+        if (candidate != package->name)
+        {
+          dependencies.append(candidate);
+        }
+      }
+
+      if (dependencies.count() > 0)
+      {
+        if (!dependencies.at(0).contains(QLatin1String("HoldPkg was found in")))
+        {
+          res = insertIntoRemovePackageDeps(dependencies);
+          if (res == -1)
+          {
+            return;
+          }
+        }
+      }
+    }
+
+    insertRemovePackageIntoTransaction(package->repository + QLatin1Char('/') + package->name);
+    if (res == 0) checkDependencies = false;
+  }// end of FOR
 }
 
 /*
@@ -561,9 +557,10 @@ void MainWindow::insertIntoInstallPackageOptDeps(const QString &packageName)
 /*
  * Inserts all remove dependencies of the current select package into the Transaction Treeview
  * Returns TRUE if the user click OK or ENTER and number of selected packages > 0.
- * Returns FALSE otherwise.
+ * Return <NUMBER of dependencies selected> if the user click OK/ENTER
+ * Return -1 if the user click CANCEL
  */
-bool MainWindow::insertIntoRemovePackageDeps(const QStringList &dependencies)
+int MainWindow::insertIntoRemovePackageDeps(const QStringList &dependencies)
 {
   QList<const PackageRepository::PackageData*> newDeps;
   for(const QString& dep: dependencies)
@@ -588,12 +585,6 @@ bool MainWindow::insertIntoRemovePackageDeps(const QStringList &dependencies)
       QString desc = dep->description;
       int space = desc.indexOf(QLatin1String(" "));
       desc = desc.mid(space+1);
-
-      /*if(dep->repository == StrConstants::getForeignRepositoryName() && dep->description.isEmpty())
-      {
-        desc = Package::getInformationDescription(dep->name, true);
-      }*/
-
       msd->addPackageItem(dep->name, desc, dep->repository);
     }
 
@@ -612,9 +603,13 @@ bool MainWindow::insertIntoRemovePackageDeps(const QStringList &dependencies)
 
     delete msd;
 
-    return (res == QMessageBox::Ok && selectedPackages.count() >= 0);
+    if (res == QMessageBox::Ok)
+    {
+      return selectedPackages.count();
+    }
+    else return -1;
   }
-  else return true;
+  else return 0; //true
 }
 
 /*
