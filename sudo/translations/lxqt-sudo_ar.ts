@@ -116,23 +116,24 @@ Arguments:
         <location filename="../sudo.cpp" line="246"/>
         <source>unset</source>
         <extracomment>shouldn&apos;t be actually used but keep as short as possible in translations just in case.</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>غير محدد</translation>
     </message>
     <message>
         <location filename="../sudo.cpp" line="295"/>
         <source>%1: Detected attempt to inject privileged command via LC_ALL env(%2). Exiting!
 </source>
-        <translation type="unfinished"></translation>
+        <translation>%1: تم الكشف عن محاولة إدخال أمر ذي امتياز عبر LC_ALL env (%2). الخروج!
+</translation>
     </message>
     <message>
         <location filename="../sudo.cpp" line="337"/>
         <source>Syscall error, failed to bring pty to non-block mode: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>خطأ Syscall ، فشل في إحضار pty إلى الوضع غير المحظور:%1</translation>
     </message>
     <message>
         <location filename="../sudo.cpp" line="345"/>
         <source>Syscall error, failed to fdopen pty: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>خطأ Syscall ، فشل في fdopen pty:%1</translation>
     </message>
     <message>
         <location filename="../sudo.cpp" line="314"/>

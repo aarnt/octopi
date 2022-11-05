@@ -31,7 +31,7 @@
     <message>
         <location filename="../passworddialog.ui" line="109"/>
         <source>A program LXQt sudo calls in background to elevate privileges.</source>
-        <translation type="unfinished"></translation>
+        <translation>Chiamata in background da un programma LXQt sudo  per elevare i privilegi.</translation>
     </message>
     <message>
         <location filename="../passworddialog.ui" line="119"/>
@@ -116,7 +116,7 @@ Argomenti:
         <location filename="../sudo.cpp" line="246"/>
         <source>unset</source>
         <extracomment>shouldn&apos;t be actually used but keep as short as possible in translations just in case.</extracomment>
-        <translation>unset</translation>
+        <translation>non settato</translation>
     </message>
     <message>
         <location filename="../sudo.cpp" line="295"/>

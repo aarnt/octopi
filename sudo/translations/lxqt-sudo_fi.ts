@@ -36,12 +36,12 @@
     <message>
         <location filename="../passworddialog.ui" line="119"/>
         <source>Command:</source>
-        <translation></translation>
+        <translation>Komento:</translation>
     </message>
     <message>
         <location filename="../passworddialog.ui" line="126"/>
         <source>Password:</source>
-        <translation></translation>
+        <translation>Salasana:</translation>
     </message>
     <message>
         <location filename="../passworddialog.ui" line="133"/>
