@@ -951,7 +951,7 @@ QStringList PacmanExec::getDotPacnewFileList()
 }
 
 /*
- * Calls mirro-check to check mirrors and returns output to UI
+ * Calls mirror-check to check mirrors and returns output to UI
  */
 void PacmanExec::doMirrorCheck()
 {
