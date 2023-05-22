@@ -58,7 +58,7 @@ inline QFutureWatcher<QStringList *> g_fwOutdatedPkgStringList;
 inline QFutureWatcher<QStringList *> g_fwOutdatedAURStringList;
 inline QFutureWatcher<QByteArray> g_fwCommandToExecute;
 inline QFutureWatcher<QString> g_fwGenerateSysInfo;
-inline QFutureWatcher<bool> g_fwInstallTempYayHelper;
+inline QFutureWatcher<bool> g_fwDownloadTempYayHelper;
 
 //QString showPackageDescription(QString pkgName);
 QString showPackageDescriptionExt(PkgDesc pkgDesc); //const PackageRepository::PackageData*const package);
@@ -74,7 +74,7 @@ QString getLatestDistroNews();
 PackageInfoData getKCPInformation(QString pkgName);
 QByteArray execCommand(QString cmd);
 void execCommandInAnotherThread(QString cmd, QStringList &params);
-bool installTempYayHelper();
+bool downloadTempYayHelper();
 
 QStringList            * getOutdatedPkgStringList();
 QStringList            * getOutdatedAURStringList();

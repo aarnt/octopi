@@ -1480,9 +1480,9 @@ void MainWindow::doPreDownloadTempYay()
   //Here we start the download thread... and bind its finished state to doInstallYayPackage()
   QFuture<bool> f;
   QEventLoop el;
-  f = QtConcurrent::run(installTempYayHelper);
-  connect(&g_fwInstallTempYayHelper, SIGNAL(finished()), &el, SLOT(quit()));
-  g_fwInstallTempYayHelper.setFuture(f);
+  f = QtConcurrent::run(downloadTempYayHelper);
+  connect(&g_fwDownloadTempYayHelper, SIGNAL(finished()), &el, SLOT(quit()));
+  g_fwDownloadTempYayHelper.setFuture(f);
   el.exec();
   doInstallYayPackage();
 }
@@ -1492,7 +1492,7 @@ void MainWindow::doPreDownloadTempYay()
  */
 void MainWindow::doInstallYayPackage()
 {
-  bool downloadedYay = g_fwInstallTempYayHelper.result();
+  bool downloadedYay = g_fwDownloadTempYayHelper.result();
   if (!downloadedYay)
   {
     //We print a message saying the download did not go right

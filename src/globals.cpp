@@ -225,7 +225,7 @@ void execCommandInAnotherThread(QString cmd, QStringList &params)
  * Returns true if all went fine
  *
  */
-bool installTempYayHelper()
+bool downloadTempYayHelper()
 {
   bool res=true;
   QString url=QStringLiteral("https://github.com/Jguer/yay/releases/latest/");
@@ -249,20 +249,26 @@ bool installTempYayHelper()
 
   QString html = QString::fromUtf8(file.readAll());
   QString yayUrl;
+  QString yayVersion;
   QString yayTarball;
   QString yayFile;
 
   //We have to find this kind of string:
-  //<a href="/Jguer/yay/releases/download/v9.3.1/yay_9.3.1_x86_64.tar.gz"
-  QRegularExpression re(QStringLiteral("<a href=\"(?<site>\\S+/(?<file>yay\\S+_x86_64.tar.gz))\""));
+  //https://github.com/Jguer/yay/releases/expanded_assets/v12.0.4
+  QRegularExpression re(QStringLiteral("(?<site>/expanded_assets/(?<version>v\\S+))"));
   QRegularExpressionMatch rem;
   if (html.contains(re, &rem))
   {
-    yayUrl = rem.captured(QStringLiteral("site"));
-    yayTarball = rem.captured(QStringLiteral("file"));
+    //https://github.com/Jguer/yay/releases/download/v12.0.4/yay_12.0.4_x86_64.tar.gz
+    yayVersion = rem.captured(QStringLiteral("version"));
+    yayVersion = yayVersion.mid(0, yayVersion.length()-1);
+    yayTarball = QLatin1String("yay_") +
+                 yayVersion.mid(1, yayVersion.length()-1) +
+                 QLatin1String("_x86_64.tar.gz");
     yayFile = yayTarball + QDir::separator() + QLatin1String("yay");
-    yayFile = yayFile.remove(QStringLiteral(".tar.gz"));
-    yayUrl = QLatin1String("https://github.com") + yayUrl;
+    yayFile.remove(QStringLiteral(".tar.gz"));
+    yayUrl = QLatin1String("https://github.com/Jguer/yay/releases/download/") +
+             yayVersion + QLatin1String("/") + yayTarball;
     file.close();
     file.remove();
   }
