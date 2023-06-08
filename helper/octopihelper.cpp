@@ -280,8 +280,8 @@ int OctopiHelper::executePkgTransactionWithSharedMem()
     if ((line == QLatin1String("killall pacman")) ||
       (line == QLatin1String("rm ") + ctn_PACMAN_DATABASE_LOCK_FILE) ||
       (line == QLatin1String("echo -e")) ||
-      (line == QLatin1String("echo \"Press any key to continue...\"")) ||
-      (line == QLatin1String("read -n 1 -p \"Press any key to continue...\"")) ||
+      (line == QLatin1String("echo \"PressAnyKeyToContinue...\"")) ||
+      (line == QLatin1String("read -n 1 -p \"PressAnyKeyToContinue...\"")) ||
       (line == QLatin1String("pkgfile -u")) ||
       (line == QLatin1String("paccache -r -k 0")) ||
       (line == QLatin1String("paccache -r -k 1")) ||
