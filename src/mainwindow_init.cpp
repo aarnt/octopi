@@ -556,6 +556,7 @@ void MainWindow::resizePackageView()
  */
 void MainWindow::initTabInfo(){
   ui->twProperties->initTabInfo();
+  ui->twProperties->getTextInfo()->setOpenLinks(false);
 
   connect(ui->twProperties->getTextInfo(), SIGNAL(anchorClicked(QUrl)), this, SLOT(outputTextBrowserAnchorClicked(QUrl)));
   connect(ui->twProperties->getTextInfo(), SIGNAL(highlighted(QUrl)), this, SLOT(showAnchorDescription(QUrl)));

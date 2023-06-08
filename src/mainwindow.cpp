@@ -32,6 +32,7 @@
 #include "optionsdialog.h"
 #include "termwidget.h"
 #include "aurvote.h"
+#include "alpmbackend.h"
 
 #include <QDropEvent>
 #include <QMimeData>
@@ -527,6 +528,7 @@ void MainWindow::positionInPackageList(const QString &pkgName)
       ui->tvPackages->scrollTo(proxyIndex, QAbstractItemView::PositionAtCenter);
       ui->tvPackages->setCurrentIndex(proxyIndex);
       changeTabWidgetPropertiesIndex(ctn_TABINDEX_INFORMATION);
+      ui->tvPackages->setFocus();
     }
   }
   if (foundItems.count() == 0 || !proxyIndex.isValid())
@@ -535,9 +537,8 @@ void MainWindow::positionInPackageList(const QString &pkgName)
     disconnect(ui->twProperties, SIGNAL(currentChanged(int)), this, SLOT(changedTabIndex()));
     ensureTabVisible(ctn_TABINDEX_INFORMATION);
     connect(ui->twProperties, SIGNAL(currentChanged(int)), this, SLOT(changedTabIndex()));
+    ui->tvPackages->setFocus();
   }
-
-  ui->tvPackages->setFocus();
 }
 
 /*
@@ -549,6 +550,14 @@ void MainWindow::outputTextBrowserAnchorClicked(const QUrl &link)
   {
     QString pkgName = link.toString().mid(5);
     if (pkgName == QLatin1String("sh")) pkgName = QStringLiteral("bash");
+
+#ifdef ALPM_BACKEND
+    if (AlpmBackend::getPackageVersion(pkgName).isEmpty())
+    {
+      return;
+    }
+#endif
+
     bool indIncremented = false;
     const QItemSelectionModel*const selectionModel = ui->tvPackages->selectionModel();
 
@@ -604,6 +613,7 @@ void MainWindow::outputTextBrowserAnchorClicked(const QUrl &link)
     if (!indIncremented) m_indOfVisitedPackage++;
 
     if (!m_leFilterPackage->text().isEmpty()) m_leFilterPackage->clear();
+
     positionInPackageList(pkgName);
   }
   //Otherwise, it's a remote URL which needs to be opened outside Octopi

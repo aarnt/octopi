@@ -2,6 +2,7 @@
   BugFix: Invalidate Info/File tabs when user is navigating packages using the keyboard.
   BugFix: Better handle dependencies while staging packages for deletion.
   BugFix: First yay-bin download now works again.
+  BugFix: Polished navigation on Info tab dependencies
   Octopi-sudo code was synced to match project "lxqt-sudo" version 1.2.0.
 
 0.14.0 (2022-10-05)
