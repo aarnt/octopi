@@ -3,7 +3,7 @@
   BugFix: Better handle dependencies while staging packages for deletion.
   BugFix: First yay-bin download now works again.
   BugFix: Polished navigation on Info tab dependencies
-  Octopi-sudo code was synced to match project "lxqt-sudo" version 1.2.0.
+  Octopi-sudo code was synced to match project "lxqt-sudo" version 1.3.0.
 
 0.14.0 (2022-10-05)
   Added --overwrite="*" checkbox in AUR tab (Tools/Options) when using yay.

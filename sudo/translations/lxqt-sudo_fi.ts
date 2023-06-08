@@ -31,7 +31,7 @@
     <message>
         <location filename="../passworddialog.ui" line="109"/>
         <source>A program LXQt sudo calls in background to elevate privileges.</source>
-        <translation>Ohjelma jota LXQt sudo kutsuu taustalla käyttöoikeuksien kohottamiseksi.</translation>
+        <translation>Ohjelma, jota LXQt sudo kutsuu taustalla käyttöoikeuksien kohottamiseksi.</translation>
     </message>
     <message>
         <location filename="../passworddialog.ui" line="119"/>
@@ -72,18 +72,18 @@ Arguments:
   arguments        Optional arguments for command.
 
 </source>
-        <translation>Käyttö: %1 valitsin [komento [argumentit...]]
+        <translation>Käyttö: %1 valitsin [komento [parametrit...]]
 
 %2/%3 GUI front-end
 
-Argumentit:
+Parametrit:
   Valitsimet:
     -h|--help      Näyttää tämän ohjeen.
     -v|--version   Näyttää versiotiedot.
     -s|--su        Käytä %3(1) back-endinä.
     -d|--sudo      Käytä %2(8) back-endinä.
   command          Komento joka suoritetaan.
-  arguments        Valinnaiset argumentit komennolle.
+  arguments        Valinnaiset parametrit komennolle.
 
 </translation>
     </message>
