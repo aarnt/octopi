@@ -516,7 +516,7 @@ QString StrConstants::getSyncing(){
 
 QString StrConstants::getPressAnyKey(){
   //return QStringLiteral("Press any key to continue...");
-  return QStringLiteral("PressAnyKeyToContinue...");
+  return QStringLiteral("PAKtC");
 }
 
 QString StrConstants::getCouldNotAttachToParent()
