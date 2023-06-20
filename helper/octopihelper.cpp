@@ -230,24 +230,10 @@ int OctopiHelper::executePkgTransactionWithSharedMem()
   bool isNotifierRunning=isOctoToolRunning(QStringLiteral("octopi-notifier"));
   bool isCacheCleanerRunning=isOctoToolRunning(QStringLiteral("octopi-cachecle"));
 
-  if(!isOctopiRunning)
+  if (!isOctopiRunning && !isNotifierRunning && !isCacheCleanerRunning)
   {
     QTextStream qout(stdout);
-    qout << Qt::endl << "octopi-helper[aborted]: Suspicious execution method - /usr/bin/octopi is NOT running!" << Qt::endl;
-    return ctn_SUSPICIOUS_EXECUTION_METHOD;
-  }
-
-  if(!isNotifierRunning)
-  {
-    QTextStream qout(stdout);
-    qout << Qt::endl << "octopi-helper[aborted]: Suspicious execution method - /usr/bin/octopi-notifier is NOT running!" << Qt::endl;
-    return ctn_SUSPICIOUS_EXECUTION_METHOD;
-  }
-
-  if(!isCacheCleanerRunning)
-  {
-    QTextStream qout(stdout);
-    qout << Qt::endl << "octopi-helper[aborted]: Suspicious execution method - /usr/bin/octopi-cachecleaner is NOT running!" << Qt::endl;
+    qout << Qt::endl << "octopi-helper[aborted]: Suspicious execution method - NO [/usr/bin/octopi-cachecleaner] OR [/usr/bin/octopi-notifier] OR [/usr/bin/octopi] is running..." << Qt::endl;
     return ctn_SUSPICIOUS_EXECUTION_METHOD;
   }
 
