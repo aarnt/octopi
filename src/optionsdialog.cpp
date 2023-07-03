@@ -35,6 +35,8 @@
 #include <QFileDialog>
 #include <QDesktopServices>
 
+//#include <QDebug>
+
 /*
  * This is the Options Dialog called by Octopi and Notifier
  */
@@ -618,6 +620,8 @@ void OptionsDialog::accept()
         AurVote v;
         v.setUserName(leAurUserName->text());
         v.setPassword(leAurPassword->text());
+
+        //qDebug() << "Trying to connect with: " << leAurPassword->text();
 
         if (!v.login())
         {

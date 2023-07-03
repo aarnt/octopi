@@ -55,6 +55,8 @@ void AurVote::setUserName(const QString &userName)
 void AurVote::setPassword(const QString &password)
 {
   m_password = password;
+  // Let's change '+' chars in the passwd as they are auto encoded and the login always fail
+  m_password.replace(QLatin1Char('+'), QStringLiteral("%2B"));
 }
 
 void AurVote::turnDebugInfoOn()

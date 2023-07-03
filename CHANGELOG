@@ -3,6 +3,7 @@
   BugFix: Better handle dependencies while staging packages for deletion.
   BugFix: First yay-bin download now works again.
   BugFix: Polished navigation on Info tab dependencies
+  BugFix: AUR passwords that contain a "+" char failed to login at aur.archlinux.org.
   Octopi-sudo code was synced to match project "lxqt-sudo" version 1.3.0.
 
 0.14.0 (2022-10-05)
