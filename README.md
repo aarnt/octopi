@@ -123,7 +123,6 @@ You'll need to install [pacaur](https://github.com/rmarquis/pacaur), [paru](http
 [pikaur](https://github.com/actionless/pikaur), [trizen](https://github.com/trizen/trizen) or
 [yay](https://github.com/Jguer/yay) in your system.
 If neither of the previous tools are found Octopi will download latest "yay-bin" github binary.
-In Chakra, [chaser](https://github.com/ccr-tools/chaser) will be supported out of the box.
 In KaOS, [kcp](https://github.com/bvaudour/kcp) will be supported out of the box.
 
 ### Ways to help/support Octopi
