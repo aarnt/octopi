@@ -394,7 +394,7 @@ QByteArray UnixCommand::getOutdatedAURPackageList()
  */
 QByteArray UnixCommand::getForeignPackageList()
 {
-  QByteArray result = performQuery(QStringList(QStringLiteral("-Qem")));
+  QByteArray result = performQuery(QStringList(QStringLiteral("-Qm")));
   return result;
 }
 
