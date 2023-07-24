@@ -1288,11 +1288,11 @@ void MainWindow::runOctopiCheckUpdates()
  */
 void MainWindow::showOptionsDialog()
 {
-  /*if (m_optionsDialog == nullptr && UnixCommand::isAppRunning(QStringLiteral("octopi"), true))
+  if (m_optionsDialog == nullptr && UnixCommand::isAppRunning(QStringLiteral("octopi"), true))
   {
     QProcess::startDetached(QStringLiteral("octopi"), QStringList() << QStringLiteral("-options"));
-  }*/
-  if (m_optionsDialog == nullptr)
+  }
+  else if (m_optionsDialog == nullptr)
   {
     m_optionsDialog = new OptionsDialog(this);
     connect(m_optionsDialog, SIGNAL(AURToolChanged()), this, SLOT(refreshAppIcon()));

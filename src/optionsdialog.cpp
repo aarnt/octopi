@@ -704,7 +704,8 @@ void OptionsDialog::accept()
     m_iconHasChanged = true;
   }
 
-  if (!m_calledByOctopi)
+  //Set update interval...
+  if (!m_calledByOctopi || (m_calledByOctopi && UnixCommand::isOctoToolRunning(QLatin1String("octopi-notifier"))))
   {
     //Set Check Updates interval...
     if (rbOnceADay->isChecked())
