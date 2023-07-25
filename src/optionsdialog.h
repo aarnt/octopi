@@ -52,6 +52,7 @@ private:
   void initBackendTab();
   void initIconTab();
   void initUpdatesTab();
+  void initTerminalTab();
   void removeTabByName(const QString &tabName);
   void setCurrentIndexByTabName(const QString &tabName);
 
@@ -60,6 +61,7 @@ protected:
 
 public:
   explicit OptionsDialog(QWidget *parent = nullptr);
+
   void gotoAURTab();
   void turnDebugInfoOn();
 

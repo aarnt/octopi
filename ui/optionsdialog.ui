@@ -31,7 +31,7 @@
      <item>
       <widget class="QTabWidget" name="tabWidget">
        <property name="currentIndex">
-        <number>2</number>
+        <number>6</number>
        </property>
        <widget class="QWidget" name="tabGeneral">
         <attribute name="title">
@@ -1192,6 +1192,80 @@ Any use of the provided files is at your own risk.</string>
           </widget>
          </item>
         </layout>
+       </widget>
+       <widget class="QWidget" name="tabTerminal">
+        <attribute name="title">
+         <string>Terminal</string>
+        </attribute>
+        <widget class="QLabel" name="lblColorScheme">
+         <property name="geometry">
+          <rect>
+           <x>20</x>
+           <y>28</y>
+           <width>111</width>
+           <height>17</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Color Scheme</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="lblFontFamily">
+         <property name="geometry">
+          <rect>
+           <x>20</x>
+           <y>68</y>
+           <width>111</width>
+           <height>17</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Font Family</string>
+         </property>
+        </widget>
+        <widget class="QComboBox" name="cbColorScheme">
+         <property name="geometry">
+          <rect>
+           <x>140</x>
+           <y>26</y>
+           <width>211</width>
+           <height>25</height>
+          </rect>
+         </property>
+        </widget>
+        <widget class="QComboBox" name="cbFontFamily">
+         <property name="geometry">
+          <rect>
+           <x>140</x>
+           <y>65</y>
+           <width>321</width>
+           <height>25</height>
+          </rect>
+         </property>
+        </widget>
+        <widget class="QLabel" name="lblFontSize">
+         <property name="geometry">
+          <rect>
+           <x>20</x>
+           <y>108</y>
+           <width>52</width>
+           <height>17</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Font Size</string>
+         </property>
+        </widget>
+        <widget class="QSpinBox" name="sbFontSize">
+         <property name="geometry">
+          <rect>
+           <x>140</x>
+           <y>104</y>
+           <width>71</width>
+           <height>26</height>
+          </rect>
+         </property>
+        </widget>
        </widget>
       </widget>
      </item>

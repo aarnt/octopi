@@ -1058,4 +1058,22 @@ void SettingsManager::setConsoleFontSize(int newValue)
   instance()->getSYSsettings()->sync();
 }
 
+void SettingsManager::setTerminalColorScheme(const QString &newValue)
+{
+  instance()->getSYSsettings()->setValue(ctn_KEY_TERMINAL_COLOR_SCHEME, newValue);
+  instance()->getSYSsettings()->sync();
+}
+
+void SettingsManager::setTerminalFontFamily(const QString &newValue)
+{
+  instance()->getSYSsettings()->setValue(ctn_KEY_TERMINAL_FONT_FAMILY, newValue);
+  instance()->getSYSsettings()->sync();
+}
+
+void SettingsManager::setTerminalFontPointSize(qreal newValue)
+{
+  instance()->getSYSsettings()->setValue(ctn_KEY_TERMINAL_FONT_POINT_SIZE, newValue);
+  instance()->getSYSsettings()->sync();
+}
+
 //Octopi related --------------------------------------------------------------------

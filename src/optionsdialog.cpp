@@ -21,11 +21,10 @@
 #include "optionsdialog.h"
 #include "settingsmanager.h"
 #include "unixcommand.h"
-//#include "wmhelper.h"
 #include "strconstants.h"
-//#include "terminal.h"
 #include "uihelper.h"
 #include "aurvote.h"
+#include "termwidget.h"
 
 #include <QPushButton>
 #include <QFile>
@@ -34,6 +33,7 @@
 #include <QMessageBox>
 #include <QFileDialog>
 #include <QDesktopServices>
+#include <QFontDatabase>
 
 //#include <QDebug>
 
@@ -45,9 +45,9 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
   QDialog(parent)
 {
   m_calledByOctopi = parent->windowTitle() == QLatin1String("Octopi");
-
   m_debugInfo = false;
   setupUi(this);
+
   connect(buttonBox, SIGNAL(accepted()), this, SLOT(accept()));
   connect(buttonBox, SIGNAL(rejected()), this, SLOT(reject()));
 
@@ -142,6 +142,7 @@ void OptionsDialog::selBusyIconPath()
 {
   QDir qd;
   QString dir = QStringLiteral("/usr/share/icons");
+
   if (!leBusyIcon->text().isEmpty()) dir = qd.filePath(leBusyIcon->text());
 
   QString fileName =
@@ -171,6 +172,7 @@ void OptionsDialog::initialize(){
 
   initIconTab();
   initUpdatesTab();
+  initTerminalTab();
 
   if (m_calledByOctopi && !UnixCommand::isOctoToolRunning(QLatin1String("octopi-notifier")))
   {
@@ -180,6 +182,7 @@ void OptionsDialog::initialize(){
   {
     removeTabByName(tr("Backend"));
     removeTabByName(tr("Package List"));
+    removeTabByName(tr("Terminal"));
   }
 
   tabWidget->setCurrentIndex(0);
@@ -392,6 +395,27 @@ void OptionsDialog::initUpdatesTab()
   }
 }
 
+void OptionsDialog::initTerminalTab()
+{
+  QStringList acs = QTermWidget::availableColorSchemes();
+  acs.sort();
+  cbColorScheme->addItems(acs);
+  cbColorScheme->setCurrentText(SettingsManager::getTerminalColorScheme());
+
+  QFontDatabase database;
+  const QStringList fontFamilies = database.families();
+  for (const QString &family : fontFamilies){
+    const QStringList styles = database.styles(family);
+    if (styles.isEmpty())
+      continue;
+
+    cbFontFamily->addItem(family);
+  }
+
+  cbFontFamily->setCurrentText(SettingsManager::getTerminalFontFamily());
+  sbFontSize->setValue(SettingsManager::getTerminalFontPointSize());
+}
+
 /*
  * Change the active tabindex given the tabName
  */
@@ -417,6 +441,7 @@ void OptionsDialog::accept()
   bool AURHasChanged = false;
   bool AURVotingHasChanged = false;
   bool ColumnsChanged = false;
+  bool consoleChanged = false;
 
   if (m_calledByOctopi)
   {
@@ -728,6 +753,25 @@ void OptionsDialog::accept()
     }
   }
 
+  //Set terminal...
+  if (cbColorScheme->currentText() != SettingsManager::getTerminalColorScheme())
+  {
+    SettingsManager::setTerminalColorScheme(cbColorScheme->currentText());
+    consoleChanged = true;
+  }
+
+  if (cbFontFamily->currentText() != SettingsManager::getTerminalFontFamily())
+  {
+    SettingsManager::setTerminalFontFamily(cbFontFamily->currentText());
+    consoleChanged = true;
+  }
+
+  if (sbFontSize->value() != (int)SettingsManager::getTerminalFontPointSize())
+  {
+    SettingsManager::setTerminalFontPointSize(sbFontSize->value());
+    consoleChanged = true;
+  }
+
   Options::result res=0;
 
   if (m_iconHasChanged)
@@ -745,6 +789,7 @@ void OptionsDialog::accept()
   if (AURHasChanged) emit AURToolChanged();
   if (AURVotingHasChanged) emit AURVotingChanged();
   if (ColumnsChanged) emit columnsChanged();
+  if (consoleChanged) emit terminalChanged();
   delete cic;
 }
 

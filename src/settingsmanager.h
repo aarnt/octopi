@@ -202,6 +202,9 @@ class SettingsManager
     static void setSUTool(const QString& newValue);
     static void setInstantSearchSelected(bool newValue);
     static void setConsoleFontSize(int newValue);
+    static void setTerminalColorScheme(const QString& newValue);
+    static void setTerminalFontFamily(const QString& newValue);
+    static void setTerminalFontPointSize(qreal newValue);
 };
 
 #endif // SETTINGSMANAGER_H
