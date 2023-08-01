@@ -1244,7 +1244,7 @@ void MainWindow::doRemoveAndInstall()
 
   QString ds = Package::kbytesToSize(totalDownloadSize);
 
-  if (installList.count() == 0)
+  if (installList.length() == 0)
   {
     installTargets->append(PackageListData(listOfInstallTargets, QLatin1String(""), QString::number(0)));
     installList.append(StrConstants::getInstall() + QLatin1Char(' ') + listOfInstallTargets);
@@ -1817,7 +1817,7 @@ void MainWindow::doInstall()
 
   QString ds = Package::kbytesToSize(totalDownloadSize);
 
-  if (list.count() == 0)
+  if (list.length() == 0)
   {
     targets->append(PackageListData(listOfTargets, QLatin1String(""), QString::number(0)));
     list.append(listOfTargets);

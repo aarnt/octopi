@@ -164,7 +164,7 @@ void MainWindow::showDistroNews(QString distroRSSXML, bool searchForLatestNews)
 {
   QString html;
 
-  if (distroRSSXML.count() >= 200)
+  if (distroRSSXML.length() >= 200)
   {
     if (distroRSSXML.at(0)==QLatin1Char('*'))
     {

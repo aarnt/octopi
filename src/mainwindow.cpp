@@ -251,7 +251,7 @@ void MainWindow::show()
     QMainWindow::show();
 
     m_listOfVisitedPackages.clear();
-    m_indOfVisitedPackage = 0;
+    m_indOfVisitedPackage = -1;
 
     if (Package::hasPacmanDatabase())
     {

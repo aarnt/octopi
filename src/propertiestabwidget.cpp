@@ -87,10 +87,7 @@ void PropertiesTabWidget::initTabFiles()
   QWidget *tabPkgFileList = new QWidget(this);
   QGridLayout *gridLayoutX = new QGridLayout ( tabPkgFileList );
   gridLayoutX->setSpacing ( 0 );
-
-#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
-  gridLayoutX->setMargin(0);
-#endif
+  gridLayoutX->setContentsMargins(0, 0, 0, 0);
 
   QStandardItemModel *modelPkgFileList = new QStandardItemModel(this);
   m_tvPkgFileList = new QTreeView(tabPkgFileList);
@@ -128,10 +125,7 @@ void PropertiesTabWidget::initTabActions()
   QWidget *tabTransaction = new QWidget();
   QGridLayout *gridLayoutX = new QGridLayout(tabTransaction);
   gridLayoutX->setSpacing(0);
-
-#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
-  gridLayoutX->setMargin(0);
-#endif
+  gridLayoutX->setContentsMargins(0, 0, 0, 0);
 
   m_tvTransaction = new QTreeView(tabTransaction);
   m_tvTransaction->setObjectName(QStringLiteral("tvTransaction"));
@@ -180,10 +174,7 @@ void PropertiesTabWidget::initTabNews()
   QWidget *tabNews = new QWidget();
   QGridLayout *gridLayoutX = new QGridLayout(tabNews);
   gridLayoutX->setSpacing(0);
-
-#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
-  gridLayoutX->setMargin(0);
-#endif
+  gridLayoutX->setContentsMargins(0, 0, 0, 0);
 
   m_textNews = new QTextBrowser(tabNews);
   m_textNews->setObjectName(QStringLiteral("textBrowser"));
@@ -214,10 +205,7 @@ void PropertiesTabWidget::initTabOutput()
   QWidget *tabOutput = new QWidget();
   QGridLayout *gridLayoutX = new QGridLayout(tabOutput);
   gridLayoutX->setSpacing ( 0 );
-
-#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
-  gridLayoutX->setMargin(0);
-#endif
+  gridLayoutX->setContentsMargins(0, 0, 0, 0);
 
   m_textOutput = new QTextBrowser(tabOutput);
   m_textOutput->setObjectName(QStringLiteral("textBrowser"));
@@ -248,10 +236,7 @@ void PropertiesTabWidget::initTabHelpUsage()
   QWidget *tabHelpUsage = new QWidget();
   QGridLayout *gridLayoutX = new QGridLayout(tabHelpUsage);
   gridLayoutX->setSpacing(0);
-
-#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
-  gridLayoutX->setMargin(0);
-#endif
+  gridLayoutX->setContentsMargins(0, 0, 0, 0);
 
   QTextBrowser *text = new QTextBrowser(tabHelpUsage);
   text->setObjectName(QStringLiteral("textBrowser"));
@@ -282,9 +267,7 @@ void PropertiesTabWidget::initTabTerminal()
   QGridLayout *gridLayoutX = new QGridLayout(tabTerminal);
   gridLayoutX->setSpacing ( 0 );
 
-#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
-  gridLayoutX->setMargin(0);
-#endif
+  gridLayoutX->setContentsMargins(0, 0, 0, 0);
 
   gridLayoutX->addWidget(m_console, 0, 0, 1, 1);
   removeTab(ctn_TABINDEX_TERMINAL);

@@ -45,6 +45,7 @@
 #include <QProgressBar>
 #include <QSystemTrayIcon>
 #include <QToolButton>
+#include <QActionGroup>
 
 /*
  * Loads various application settings configured in ~/.config/octopi/octopi.conf
