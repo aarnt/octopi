@@ -465,12 +465,12 @@ void MainWindow::changeTabWidgetPropertiesIndex(const int newIndex)
       refreshTabFiles();
     }
 
-    ui->twProperties->currentWidget()->childAt(1,1)->setFocus();
+    //ui->twProperties->currentWidget()->childAt(1,1)->setFocus();
   }
   else
   {
     //For any other tab... just doing the following is enough
-    ui->twProperties->currentWidget()->childAt(1,1)->setFocus();
+    //ui->twProperties->currentWidget()->childAt(1,1)->setFocus();
   }
 }
 

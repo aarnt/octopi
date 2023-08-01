@@ -33,7 +33,7 @@
 #include "passworddialog.h"
 
 #include <QApplication>
-
+#include <QRegularExpression>
 #include <QTextStream>
 #include <QMessageBox>
 #include <QFileInfo>
@@ -142,8 +142,8 @@ inline QString quoteShellArg(const QString& arg, bool userFriendly)
     return rv;
   }
 
-  //^ check if thre are any bash special file characters  
-  if (!userFriendly || arg.contains(QRegExp(QLatin1String("(\\s|[][!\"#$&'()*,;<=>?\\^`{}|~])")))) {
+  //^ check if thre are any bash special file characters
+  if (!userFriendly || arg.contains(QRegularExpression(QLatin1String("(\\s|[][!\"#$&'()*,;<=>?\\^`{}|~])")))) {
     rv.replace(QStringLiteral("'"), QStringLiteral("'\\''"));
     rv.prepend (QLatin1Char('\'')).append(QLatin1Char('\''));
   }

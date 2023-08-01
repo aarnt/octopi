@@ -23,8 +23,9 @@
 
 #include <QAbstractItemModel>
 #include <QIcon>
+#include <QRegularExpression>
 
-#include "src/package.h"
+//#include "src/package.h"
 #include "src/packagerepository.h"
 
 class PackageModel : public QAbstractItemModel, public PackageRepository::IDependency
@@ -110,7 +111,7 @@ private:
   QString m_filterPackagesNotInThisGroup;
   QString m_filterPackagesNotInThisRepo;
   int     m_filterColumn;
-  QRegExp m_filterRegExp;
+  QRegularExpression m_filterRegExp;
 
   // Cache
   QIcon   m_iconNotInstalled;

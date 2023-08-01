@@ -22,7 +22,6 @@
 #include "argumentlist.h"
 #include "strconstants.h"
 #include "unixcommand.h"
-#include "wmhelper.h"
 #include <iostream>
 
 #include "QtSolutions/qtsingleapplication.h"
@@ -49,7 +48,9 @@ int main(int argc, char *argv[])
     return (-3);
   }
 
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
   QApplication::setAttribute(Qt::AA_UseHighDpiPixmaps);
+#endif
 
   ArgumentList *argList = new ArgumentList(argc, argv);
   QString packagesToInstall;
@@ -133,23 +134,27 @@ int main(int argc, char *argv[])
 
   if (argList->getSwitch(QStringLiteral("-help"))){
     std::cout << StrConstants::getApplicationCliHelp().toLatin1().data() << std::endl;
+    delete argList;
     return(0);
   }
   else if (argList->getSwitch(QStringLiteral("-version"))){
     std::cout << "\n" << StrConstants::getApplicationName().toLatin1().data() <<
                  " " << ctn_APPLICATION_VERSION.toLatin1().data() << "\n" << std::endl;
+    delete argList;
     return(0);
   }
 
   if (!UnixCommand::isOctoToolRunning(QStringLiteral("octopi")))
   {
     QMessageBox::critical(nullptr, StrConstants::getApplicationName(), StrConstants::getErrorRunOctopiAsUsrBin());
+    delete argList;
     return (-5);
   }
 
   if (UnixCommand::isRootRunning())
   {
     QMessageBox::critical(nullptr, StrConstants::getApplicationName(), StrConstants::getErrorRunningWithRoot());
+    delete argList;
     return (-4);
   }
 

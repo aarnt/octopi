@@ -44,6 +44,10 @@
 #include <QDataStream>
 #include <QRegularExpression>
 
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+#include <QByteArrayView>
+#endif
+
 #if defined(Q_OS_WIN)
 #include <QtCore/QLibrary>
 #include <QtCore/qt_windows.h>
@@ -81,9 +85,15 @@ QtLocalPeer::QtLocalPeer(QObject* parent, const QString &appId)
     prefix.truncate(6);
 
     QByteArray idc = id.toUtf8();
+
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+    quint16 idNum = qChecksum(QByteArrayView(idc.constData(), idc.size()), Qt::ChecksumIso3309);
+#else
     quint16 idNum = qChecksum(idc.constData(), idc.size());
-    socketName = QStringLiteral("qtsingleapp-") + prefix
-                 + QLatin1Char('-') + QString::number(idNum, 16);
+#endif
+
+    socketName = QLatin1String("qtsingleapp-") + prefix +
+                 QLatin1Char('-') + QString::number(idNum, 16);
 
 #if defined(Q_OS_WIN)
     if (!pProcessIdToSessionId) {

@@ -50,7 +50,10 @@ void SearchBar::init()
   setObjectName(QStringLiteral("searchbar"));
   QHBoxLayout *layout = new QHBoxLayout(this);
   layout->setSpacing(0);
+
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
   layout->setMargin(4);
+#endif
 
   setStyleSheet(QLatin1String("QWidget#searchbar{"
                 "border-top-width: .6px;"
@@ -132,7 +135,7 @@ void SearchBar::clear()
 void SearchBar::paintEvent(QPaintEvent *)
 {
   QStyleOption styleOption;
-  styleOption.init(this);
+  styleOption.initFrom(this);
   QPainter painter(this);
   style()->drawPrimitive(QStyle::PE_Widget, &styleOption, &painter, this);
 }

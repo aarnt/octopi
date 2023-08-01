@@ -90,21 +90,25 @@ QString Package::getBaseName(const QString& p)
 QString Package::makeURLClickable(const QString &s)
 {
   QString sb = s;
-  QRegExp rx(QStringLiteral("((ht|f)tp(s?))://(\\S)+[^\"|)|(|.|\\s|\\n]"));
-  //QRegExp rx1("^|[\\s]+(www\\.)(\\S)+[^\"|)|(|.|\\s|\\n]");
-  rx.setCaseSensitivity( Qt::CaseInsensitive );
-  //rx1.setCaseSensitivity( Qt::CaseInsensitive );
+  QRegularExpression rx(QStringLiteral("((ht|f)tp(s?))://(\\S)+[^\"|)|(|.|\\s|\\n]"));
+  rx.setPatternOptions(QRegularExpression::CaseInsensitiveOption);
 	int search = 0;
 	int ini = 0;
 
 	//First we search for the 1st pattern: rx
-	while ( (ini = rx.indexIn( sb, search )) != -1 ){
-		QString s1 = rx.cap();
+  //while ( (ini = rx.indexIn( sb, search )) != -1 ){
+  //	QString s1 = rx.cap();
+
+  QRegularExpressionMatch match = rx.match(sb);
+  while (match.hasMatch())
+  {
+    QString s1 = match.captured();
     QString ns;
 
     ns = QLatin1String("<a href=\"") + s1 + QLatin1String("\">") + s1 + QLatin1String("</a>");
     sb.replace( ini, s1.length(), ns);
-		search = ini + (2*s1.length()) + 15;	
+    search = ini + (2*s1.length()) + 15;
+    match = rx.match(sb, search);
 	}
 
   return sb;
