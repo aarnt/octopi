@@ -23,15 +23,16 @@
 
 #include <QObject>
 #include <QProcess>
+#include <QFile>
 //#include <QRandomGenerator>
 #include <QSharedMemory>
+#include <QStringList>
 #include <unistd.h>
 
 #include "package.h"
 
 //Forward class declarations.
 class QString;
-class QStringList;
 class Terminal;
 class QSharedMemory;
 

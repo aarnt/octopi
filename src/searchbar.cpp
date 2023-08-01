@@ -75,7 +75,7 @@ void SearchBar::init()
 
   m_previousAction->setText(QLatin1String("< ") + tr("Previous"));
   m_previousButton->setAutoRaise(true);
-  m_previousAction->setShortcut(QKeySequence(Qt::SHIFT + Qt::Key_F3));
+  m_previousAction->setShortcut(QKeySequence(Qt::SHIFT | Qt::Key_F3));
   m_nextAction->setText(tr("Next") + QLatin1String(" >"));
   m_nextButton->setAutoRaise(true);
   m_nextAction->setShortcut(Qt::Key_F3);

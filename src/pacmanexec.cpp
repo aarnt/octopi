@@ -146,7 +146,7 @@ bool PacmanExec::splitOutputStrings(QString output)
           aux = aux.trimmed();
           if (!aux.isEmpty())
           {
-            if (aux.at(aux.count()-1).isDigit())
+            if (aux.at(aux.length()-1).isDigit())
             {
               aux += QLatin1String("%");
             }
@@ -418,7 +418,7 @@ void PacmanExec::parsePacmanProcessOutput(const QString &output)
     //Here we print the transaction percentage updating
     if(!perc.isEmpty() && perc.indexOf(QLatin1String("%")) > 0)
     {
-      int ipercentage = perc.leftRef(perc.size()-1).toInt();
+      int ipercentage = perc.left(perc.size()-1).toInt();
       emit percentage(ipercentage);
     }
   }

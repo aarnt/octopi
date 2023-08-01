@@ -74,12 +74,12 @@ QString Package::getBaseName(const QString& p)
 
 	for (int i=1; i<= nameSegment; i++){
     int a=aux.indexOf(QLatin1String("-"));
-		packageBaseName += aux.leftRef(a);
+    packageBaseName += aux.left(a);
 		if (i<nameSegment) packageBaseName += QLatin1String("-");
 		aux = aux.mid(a+1);
 	}
 
-	if (packageBaseName == QLatin1String("")) packageBaseName += p.leftRef(p.indexOf(QLatin1String("-")));
+  if (packageBaseName == QLatin1String("")) packageBaseName += p.left(p.indexOf(QLatin1String("-")));
 	return packageBaseName;
 }
 
@@ -901,7 +901,7 @@ QList<PackageListData> * Package::getForeignToolPackageList(const QString &searc
         {
           QString str = strVotes.first();
           int comma = str.indexOf(QLatin1String(","));
-          pkgVotes = str.midRef(1, comma-1).toInt();
+          pkgVotes = str.mid(1, comma-1).toInt();
         }
         else pkgVotes = 0;
       }
