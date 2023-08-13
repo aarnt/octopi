@@ -6,20 +6,28 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_THREAD_PREFER_PTHREAD True)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}")
 
+option(USE_QTERMWIDGET6 "Build with qtermwidget6 instead of qtermwidget5" OFF)
+
 add_subdirectory(sudo)
 add_subdirectory(helper)
 add_subdirectory(notifier)
 add_subdirectory(cachecleaner)
 add_subdirectory(repoeditor)
 
-find_package(Qt5 5.14.0 REQUIRED COMPONENTS Core Gui Network Xml Widgets LinguistTools)
-find_package(qtermwidget5 REQUIRED)
+if (USE_QTERMWIDGET6)
+  find_package(Qt6 REQUIRED COMPONENTS Core Gui Network Xml Widgets LinguistTools)
+  find_package(qtermwidget6 REQUIRED)
+else()
+  find_package(Qt5 REQUIRED COMPONENTS Core Gui Network Xml Widgets LinguistTools)
+  find_package(qtermwidget5 REQUIRED)
+endif()
+
 find_package(alpm_octopi_utils REQUIRED)
 
 set(CMAKE_AUTOMOC ON)
 
 file(GLOB TS_FILES LIST_DIRECTORIES false "${CMAKE_CURRENT_LIST_DIR}/resources/translations/*.ts")
-qt5_add_translation(qmFiles ${TS_FILES})
+qt_add_translation(qmFiles ${TS_FILES})
 
 set(src
     src/QtSolutions/qtsingleapplication.cpp
@@ -99,8 +107,8 @@ set(ui ui/mainwindow.ui ui/transactiondialog.ui ui/multiselectiondialog.ui ui/op
 
 set(qrc resources.qrc)
 
-qt5_wrap_ui(src ${ui})
-qt5_add_resources(src ${qrc})
+qt_wrap_ui(src ${ui})
+qt_add_resources(src ${qrc})
 
 add_executable(octopi ${src} ${header} ${qmFiles})
 target_compile_definitions(octopi PRIVATE OCTOPI_EXTENSIONS ALPM_BACKEND QT_DEPRECATED_WARNINGS QT_USE_QSTRINGBUILDER QT_NO_CAST_FROM_ASCII QT_NO_CAST_TO_ASCII QT_NO_URL_CAST_FROM_STRING QT_NO_CAST_FROM_BYTEARRAY)

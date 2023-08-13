@@ -1,5 +1,13 @@
-find_package(Qt5 REQUIRED COMPONENTS Core Xml Gui Widgets Network)
-find_package(qtermwidget5 REQUIRED)
+option(USE_QTERMWIDGET6 "Build with qtermwidget6 instead of qtermwidget5" OFF)
+
+if (USE_QTERMWIDGET6)
+  find_package(Qt6 REQUIRED COMPONENTS Core Xml Gui Widgets Network)
+  find_package(qtermwidget6 REQUIRED)
+else()
+  find_package(Qt5 REQUIRED COMPONENTS Core Xml Gui Widgets Network)
+  find_package(qtermwidget5 REQUIRED)
+endif()
+
 find_package(alpm_octopi_utils REQUIRED)
 find_package(KF5Notifications QUIET)
 
@@ -60,8 +68,8 @@ set(ui ../ui/transactiondialog.ui ../ui/optionsdialog.ui)
 
 set(qrc ../resources.qrc)
 
-qt5_wrap_ui(src ${ui})
-qt5_add_resources(src ${qrc})
+qt_wrap_ui(src ${ui})
+qt_add_resources(src ${qrc})
 
 add_executable(octopi-notifier ${src} ${header})
 target_compile_definitions(octopi-notifier PRIVATE OCTOPI_EXTENSIONS ALPM_BACKEND QT_USE_QSTRINGBUILDER QT_NO_CAST_FROM_ASCII QT_NO_CAST_TO_ASCII QT_NO_URL_CAST_FROM_STRING QT_NO_CAST_FROM_BYTEARRAY)

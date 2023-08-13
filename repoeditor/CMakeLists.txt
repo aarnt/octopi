@@ -5,7 +5,7 @@ find_library(UTIL_LIBRARY NAMES util)
 set(CMAKE_AUTOMOC ON)
 
 file(GLOB TS_FILES LIST_DIRECTORIES false "${CMAKE_CURRENT_LIST_DIR}/resources/translations/*.ts")
-qt5_add_translation(qmFiles ${TS_FILES})
+qt_add_translation(qmFiles ${TS_FILES})
 
 set(src
     addrepo.cpp
@@ -54,8 +54,8 @@ set(ui addrepo.ui repoeditor.ui)
 
 set(qrc resources.qrc)
 
-qt5_wrap_ui(src ${ui})
-qt5_add_resources(src ${qrc})
+qt_wrap_ui(src ${ui})
+qt_add_resources(src ${qrc})
 
 add_executable(octopi-repoeditor ${src} ${header} ${qmFiles})
 target_compile_definitions(octopi-repoeditor PRIVATE QT_USE_QSTRINGBUILDER QT_NO_CAST_FROM_ASCII QT_NO_CAST_TO_ASCII QT_NO_URL_CAST_FROM_STRING QT_NO_CAST_FROM_BYTEARRAY)

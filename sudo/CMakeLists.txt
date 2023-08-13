@@ -5,7 +5,7 @@ find_library(UTIL_LIBRARY NAMES util)
 set(CMAKE_AUTOMOC ON)
 
 file(GLOB TS_FILES LIST_DIRECTORIES false "${CMAKE_CURRENT_LIST_DIR}/translations/*.ts")
-qt5_add_translation(qmFiles ${TS_FILES})
+qt_add_translation(qmFiles ${TS_FILES})
 
 set(src main.cpp passworddialog.cpp sudo.cpp)
 
@@ -13,7 +13,7 @@ set(header passworddialog.h sudo.h)
 
 set(ui passworddialog.ui)
 
-qt5_wrap_ui(src ${ui})
+qt_wrap_ui(src ${ui})
 
 add_executable(octopi-sudo ${src} ${header} ${qmFiles})
 target_compile_definitions(octopi-sudo PRIVATE QT_DEPRECATED_WARNINGS QT_USE_QSTRINGBUILDER QT_NO_CAST_FROM_ASCII QT_NO_CAST_TO_ASCII QT_NO_URL_CAST_FROM_STRING QT_NO_CAST_FROM_BYTEARRAY)

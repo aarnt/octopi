@@ -24,7 +24,11 @@ ALPM_BACKEND {
   QMAKE_CXXFLAGS += -std=c++17
 }
 
-LIBS += -lqtermwidget5
+USE_QTERMWIDGET6 {
+  LIBS += -lqtermwidget6
+} else {
+  LIBS += -lqtermwidget5
+}
 
 TEMPLATE = app
 DESTDIR += bin

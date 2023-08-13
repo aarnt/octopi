@@ -3,7 +3,7 @@ find_package(Qt5 REQUIRED COMPONENTS Core Network Xml Widgets LinguistTools)
 set(CMAKE_AUTOMOC ON)
 
 file(GLOB TS_FILES LIST_DIRECTORIES false "${CMAKE_CURRENT_LIST_DIR}/resources/translations/*.ts")
-qt5_add_translation(qmFiles ${TS_FILES})
+qt_add_translation(qmFiles ${TS_FILES})
 
 set(src 
     main.cpp
@@ -44,8 +44,8 @@ set(ui ui/cachecleaner.ui)
 
 set(qrc resources.qrc)
 
-qt5_wrap_ui(src ${ui})
-qt5_add_resources(src ${qrc})
+qt_wrap_ui(src ${ui})
+qt_add_resources(src ${qrc})
     
 add_executable(octopi-cachecleaner ${src} ${header} ${qmFiles})
 target_compile_definitions(octopi-cachecleaner PRIVATE QT_USE_QSTRINGBUILDER QT_NO_CAST_FROM_ASCII QT_NO_CAST_TO_ASCII QT_NO_URL_CAST_FROM_STRING QT_NO_CAST_FROM_BYTEARRAY)
