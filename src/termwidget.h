@@ -21,8 +21,13 @@
 #ifndef TERMWIDGET_H
 #define TERMWIDGET_H
 
-#include "qtermwidget5/qtermwidget.h"
 #include <QClipboard>
+
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
+#include "qtermwidget5/qtermwidget.h"
+#else
+#include "qtermwidget6/qtermwidget.h"
+#endif
 
 class QWidget;
 class QKeyEvent;
