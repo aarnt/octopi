@@ -15,7 +15,7 @@ add_subdirectory(cachecleaner)
 add_subdirectory(repoeditor)
 
 if (USE_QTERMWIDGET6)
-	find_package(Qt6 REQUIRED COMPONENTS Core Core5Compat Gui Network Xml Widgets LinguistTools)
+  find_package(Qt6 REQUIRED COMPONENTS Core Core5Compat Gui Network Xml Widgets LinguistTools)
   find_package(qtermwidget6 REQUIRED)
 else()
   find_package(Qt5 REQUIRED COMPONENTS Core Gui Network Xml Widgets LinguistTools)

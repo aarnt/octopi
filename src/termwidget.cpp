@@ -49,12 +49,12 @@ TermWidget::TermWidget(QWidget *parent):
 
   m_actionZoomIn = new QAction(this);
   m_actionZoomIn->setText(StrConstants::getZoomIn());
-  m_actionZoomIn->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_Plus));
+  m_actionZoomIn->setShortcut(QKeySequence(Qt::CTRL | Qt::Key_Plus));
   connect(m_actionZoomIn, &QAction::triggered, this, &TermWidget::onZoomIn);
 
   m_actionZoomOut = new QAction(this);
   m_actionZoomOut->setText(StrConstants::getZoomOut());
-  m_actionZoomOut->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_Minus));
+  m_actionZoomOut->setShortcut(QKeySequence(Qt::CTRL | Qt::Key_Minus));
   connect(m_actionZoomOut, &QAction::triggered, this, &TermWidget::onZoomOut);
 
   m_actionMaximize = new QAction(this);

@@ -188,13 +188,14 @@ void RepoEditor::editEntry()
   QString location = ui->tableView->model()->data(locationMI).toString();
 
   // take the type and address
-  QRegExp locationMatch(QLatin1String("^(Server|Include)\\s*=\\s*(.+)"));
-  locationMatch.indexIn(location);
-  location = locationMatch.cap(2);
+  QRegularExpression locationMatch(QLatin1String("^(Server|Include)\\s*=\\s*(.+)"));
+  //locationMatch.indexIn(location);
+  QRegularExpressionMatch rem = locationMatch.match(location);
+  location = rem.captured(2);
 
   // fill remaining fields
   addRepoDialog->setRepoLocation(location);
-  addRepoDialog->setLocationType(locationMatch.cap(1) == QLatin1String("Server") ? 1 : 0);
+  addRepoDialog->setLocationType(rem.captured(1) == QLatin1String("Server") ? 1 : 0);
 
   if( addRepoDialog->exec() == QDialog::Accepted ) {
     ui->tableView->model()->setData( repoMI, addRepoDialog->getRepoName() );
