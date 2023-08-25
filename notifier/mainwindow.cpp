@@ -111,7 +111,7 @@ bool MainWindow::isOctopiBusy()
   }
 
   QDataStream in(&socket);
-  in.setVersion(QDataStream::Qt_5_10);
+  in.setVersion(QDataStream::Qt_5_15);
   QString octopiResponse;
 
   do
@@ -147,7 +147,7 @@ bool MainWindow::canOctopiUpgrade()
   }
 
   QDataStream in(&socket);
-  in.setVersion(QDataStream::Qt_5_10);
+  in.setVersion(QDataStream::Qt_5_15);
   QString octopiResponse;
 
   do
@@ -230,7 +230,7 @@ void MainWindow::onSendInfoToOctopiHelper()
   QString msg;
   QByteArray block;
   QDataStream out(&block, QIODevice::WriteOnly);
-  out.setVersion(QDataStream::Qt_5_10);
+  out.setVersion(QDataStream::Qt_5_15);
 
   //Is octopi-helper running?
   bool isHelperExecuting=UnixCommand::isOctopiHelperRunning();

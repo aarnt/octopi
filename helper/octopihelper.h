@@ -37,6 +37,8 @@ private:
   QProcess *m_process;
   QProcessEnvironment getProcessEnvironment();
   QString m_suspiciousChars;
+  QFile m_logFile;
+
   static QFile *m_temporaryFile;
 
   static QString getProxySettings();

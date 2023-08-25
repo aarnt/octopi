@@ -98,7 +98,7 @@ void CacheCleaner::onSendInfoToOctopiHelper()
   QString msg;
   QByteArray block;
   QDataStream out(&block, QIODevice::WriteOnly);
-  out.setVersion(QDataStream::Qt_5_10);
+  out.setVersion(QDataStream::Qt_5_15);
 
   //Is octopi-helper running?
   bool isHelperExecuting=UnixCommand::isOctopiHelperRunning();

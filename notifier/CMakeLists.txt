@@ -1,4 +1,6 @@
 option(USE_QTERMWIDGET6 "Build with qtermwidget6 instead of qtermwidget5" OFF)
+option(USE_KF5NOTIFICATIONS "Build with KF5Notifications support" OFF)
+option(USE_KF6NOTIFICATIONS "Build with KF6Notifications support" OFF)
 
 if (USE_QTERMWIDGET6)
   find_package(Qt6 REQUIRED COMPONENTS Core Core5Compat Xml Gui Widgets Network)
@@ -9,9 +11,20 @@ else()
 endif()
 
 find_package(alpm_octopi_utils REQUIRED)
-find_package(KF5Notifications QUIET)
 
-if(NOT KF5Notifications_FOUND)
+if (USE_KF5NOTIFICATIONS)
+  find_package(KF5Notifications QUIET)
+endif()  
+
+if (USE_KF6NOTIFICATIONS)
+  find_package(KF6Notifications QUIET)
+endif()
+
+if(USE_KF5NOTIFICATIONS AND NOT KF5Notifications_FOUND)
+    message(WARNING "KNotifications not found. Skipping")
+endif()
+
+if(USE_KF6NOTIFICATIONS AND NOT KF6Notifications_FOUND)
     message(WARNING "KNotifications not found. Skipping")
 endif()
 
@@ -77,11 +90,18 @@ target_compile_definitions(octopi-notifier PRIVATE OCTOPI_EXTENSIONS ALPM_BACKEN
 if (USE_QTERMWIDGET6)
   target_include_directories(octopi-notifier PRIVATE ${CMAKE_CURRENT_BINARY_DIR} ${Qt6Core_INCLUDE_DIRS} ${Qt6Xml_INCLUDE_DIRS} ${Qt6Gui_INCLUDE_DIRS} ${Qt6Network_INCLUDE_DIRS})
   target_link_libraries(octopi-notifier PRIVATE Qt6::Core Qt6::Xml Qt6::Gui Qt6::Widgets Qt6::Network qtermwidget6 alpm_octopi_utils)
+
+  if(USE_KF6NOTIFICATIONS AND KF6Notifications_FOUND)
+    target_compile_definitions(octopi-notifier PRIVATE KSTATUS)
+    find_package(Qt6 REQUIRED COMPONENTS DBus)
+    target_include_directories(octopi-notifier PRIVATE ${Qt6DBus_INCLUDE_DIRS})
+    target_link_libraries(octopi-notifier PRIVATE Qt6::DBus KF6::Notifications)
+  endif()
 else()
   target_include_directories(octopi-notifier PRIVATE ${CMAKE_CURRENT_BINARY_DIR} ${Qt5Core_INCLUDE_DIRS} ${Qt5Xml_INCLUDE_DIRS} ${Qt5Gui_INCLUDE_DIRS} ${Qt5Network_INCLUDE_DIRS})
   target_link_libraries(octopi-notifier PRIVATE Qt5::Core Qt5::Xml Qt5::Gui Qt5::Widgets Qt5::Network qtermwidget5 alpm_octopi_utils)
 
-  if(KF5Notifications_FOUND)
+  if(USE_KF5NOTIFICATIONS AND KF5Notifications_FOUND)
     target_compile_definitions(octopi-notifier PRIVATE KSTATUS)
     find_package(Qt5 REQUIRED COMPONENTS DBus)
     target_include_directories(octopi-notifier PRIVATE ${Qt5DBus_INCLUDE_DIRS})
