@@ -36,10 +36,6 @@
 #include <QRegularExpression>
 #include <QEventLoop>
 #include <QtNetwork/QNetworkReply>
-//#include <QJsonArray>
-//#include <QJsonDocument>
-//#include <QJsonObject>
-//#include <QJsonValue>
 
 /*
  * This class abstracts all the relevant package information and services
@@ -1027,70 +1023,6 @@ QList<PackageListData> * Package::getForeignToolPackageList(const QString &searc
 
   return res;
 }
-
-/*
- * Retrieves the list of all AUR packages in the database using Aur rcp (installed + non-installed)
- * given the search parameter
- */
-/*#ifdef ALPM_BACKEND
-QList<PackageListData> *Package::getAURPackageList(const QString &searchString)
-{
-  QString pkgName, pkgVersion, pkgDescription, pkgOutVersion;
-  int pkgVotes;
-  PackageStatus pkgStatus;
-  QList<PackageListData> * res = new QList<PackageListData>();
-
-  QString searchUrl=QStringLiteral("https://aur.archlinux.org/rpc/?v=5&type=search&by=name-desc&arg=%1");
-  QEventLoop eventLoop;
-  QNetworkRequest request(QUrl{searchUrl.arg(searchString)});
-  QNetworkAccessManager nam;
-  QNetworkReply *r = nam.get(request);
-  QObject::connect(r, SIGNAL(finished()), &eventLoop, SLOT(quit()));
-  eventLoop.exec();
-  QObject::disconnect(r, SIGNAL(finished()), &eventLoop, SLOT(quit()));
-
-  QByteArray contents = r->readAll();
-  QJsonDocument doc = QJsonDocument::fromJson(contents);
-  QJsonObject root = doc.object();
-  QJsonArray results = root[QLatin1String("results")].toArray();
-
-  QString installedVersion;
-  for (int c=0; c<results.count(); ++c)
-  {
-    QJsonObject pkg = results[c].toObject();
-
-    pkgName = pkg[QLatin1String("Name")].toString();
-    pkgVersion = pkg[QLatin1String("Version")].toString();
-    pkgOutVersion.clear();
-    pkgDescription = pkgName + QLatin1String(" ") + pkg[QLatin1String("Description")].toString();
-    pkgVotes = pkg[QLatin1String("NumVotes")].toInt();
-
-    installedVersion = AlpmBackend::getPackageVersion(pkgName);
-
-    if (installedVersion.isEmpty())
-    {
-      pkgStatus = ectn_NON_INSTALLED;
-    }
-    else if (installedVersion == pkgVersion)
-    {
-      pkgStatus = ectn_FOREIGN;
-    }
-    else
-    {
-      pkgStatus = ectn_FOREIGN_OUTDATED;
-    }
-
-    PackageListData pld =
-        PackageListData(pkgName, StrConstants::getForeignRepositoryName(), pkgVersion, pkgDescription, pkgStatus, pkgOutVersion);
-    pld.popularity = pkgVotes;
-
-    res->append(pld);
-  }
-
-  return res;
-}
-#endif
-*/
 
 /*
  * Retrieves the list of all KCP packages in the database using Kcp (installed + non-installed)
