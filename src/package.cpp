@@ -1784,6 +1784,16 @@ QString Package::getInstallReason(const QString &pkgInfo)
 }
 
 /*
+ * Retrieves "Install Reason" field of the given package
+ */
+QString Package::getInstallReasonByPkgName(const QString &pkgName)
+{
+  QString pkgInfo = QString::fromUtf8(UnixCommand::getPackageInformation(pkgName, true));
+  QString instReason = getInstallReason(pkgInfo);
+  return getInstallReason(pkgInfo);
+}
+
+/*
  * Retrieves "Installed Size" field of the given package information string represented by pkgInfo
  */
 QString Package::getInstalledSizeAsString(const QString &pkgInfo)

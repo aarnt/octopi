@@ -369,7 +369,10 @@ void MainWindow::onChangeInstallReason()
       continue;
     }
 
-    pkgList.insert(package->name, package->installReason);
+    if (SettingsManager::hasPacmanBackend())
+      pkgList.insert(package->name, Package::getInstallReasonByPkgName(package->name));
+    else
+      pkgList.insert(package->name, package->installReason);
   }
 
   doChangeInstallReason(pkgList);

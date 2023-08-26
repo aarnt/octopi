@@ -366,7 +366,7 @@ QString StrConstants::getExplicitly(){
 }
 
 QString StrConstants::getAsDependency(){
-  return QObject::tr("As dependency");
+  return QObject::tr("As a dependency");
 }
 
 QString StrConstants::getPackager(){

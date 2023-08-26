@@ -222,6 +222,7 @@ class Package{
     static QDateTime getBuildDate(const QString &pkgInfo);
     static QDateTime getInstallDate(const QString &pkgInfo);
     static QString getInstallReason(const QString &pkgInfo);
+    static QString getInstallReasonByPkgName(const QString &pkgName);
     static double getDownloadSize(const QString &pkgInfo);
     static QString getDownloadSizeAsString(const QString &pkgInfo);
     static double getInstalledSize(const QString &pkgInfo);
@@ -236,7 +237,6 @@ class Package{
 
     static QString removeColorCodesFromStr(const QString &str);
     static bool hasPacmanDatabase();
-
     static bool isAURBased();
     static QString getForeignRepositoryToolNameParam();
     static QString getForeignRepositoryToolName();

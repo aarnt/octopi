@@ -977,11 +977,11 @@ void PacmanExec::doChangeInstallReason(const QHash<QString, QString> &listOfPack
   QHash<QString, QString>::const_iterator i = listOfPackages.constBegin();
   while(i != listOfPackages.constEnd())
   {
-    if (i.value()==StrConstants::getExplicitly())
+    if (i.value().contains(StrConstants::getExplicitly(), Qt::CaseInsensitive))
     {
       command += QLatin1String("pacman -D --asdeps ") + i.key() + QLatin1String("; ");
     }
-    else if (i.value()==StrConstants::getAsDependency())
+    else if (i.value().contains(StrConstants::getAsDependency(), Qt::CaseInsensitive))
     {
       command += QLatin1String("pacman -D --asexplicit ") + i.key() + QLatin1String("; ");
     }
