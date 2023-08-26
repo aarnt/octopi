@@ -146,7 +146,7 @@ void OctopiHelper::log(const QString &str)
   QDateTime bdt = QDateTime::currentDateTime();
 
   QTextStream out(&m_logFile);
-  out << bdt.toString(dateTimeFormat) << QLatin1String(": ") << str; //<< Qt::endl;
+  out << bdt.toString(dateTimeFormat) << QLatin1String(": ") << str << Qt::endl;
 
   m_logFile.flush();
 }
@@ -489,7 +489,9 @@ int OctopiHelper::executePkgTransactionWithSharedMem()
 
   out << QLatin1String("unalias -a\n") << contents;
 
-  log(QLatin1String("Exec as root: ") + contents);
+  QString aux = contents;
+  aux.remove(aux.length()-1, 1);
+  log(QLatin1String("Exec as root: ") + aux);
 
   out.flush();
   ftemp->close();
