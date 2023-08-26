@@ -489,9 +489,7 @@ int OctopiHelper::executePkgTransactionWithSharedMem()
 
   out << QLatin1String("unalias -a\n") << contents;
 
-  QString aux = contents;
-  aux.remove(aux.length()-1, 1);
-  log(QLatin1String("Exec as root: ") + aux);
+  log(QLatin1String("Exec as root: ") + contents.trimmed());
 
   out.flush();
   ftemp->close();
