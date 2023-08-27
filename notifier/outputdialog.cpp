@@ -490,6 +490,8 @@ void OutputDialog::closeEvent(QCloseEvent *event)
   {
     emit finished(m_exitCode);
     event->accept();
+    //Let's save window size...
+    reject();
   }
 }
 
