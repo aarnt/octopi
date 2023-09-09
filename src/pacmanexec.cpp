@@ -1282,6 +1282,7 @@ void PacmanExec::doSystemUpgrade()
     command += QLatin1String("rm ") + ctn_PACMAN_DATABASE_LOCK_FILE + QLatin1String("; ");
   }
 
+  command += QLatin1String("pacman -Fy; ");
   command += QLatin1String("pacman -Syu --noconfirm");
 
   m_lastCommandList.clear();
@@ -1291,6 +1292,7 @@ void PacmanExec::doSystemUpgrade()
     m_lastCommandList.append(QLatin1String("rm ") + ctn_PACMAN_DATABASE_LOCK_FILE + QLatin1Char(';'));
   }
 
+  m_lastCommandList.append(QStringLiteral("pacman -Fy;"));
   m_lastCommandList.append(QStringLiteral("pacman -Syu;"));
   m_lastCommandList.append(QStringLiteral("echo -e;"));
   m_lastCommandList.append(QLatin1String("read -n 1 -p \"") + StrConstants::getPressAnyKey() + QLatin1Char('"'));

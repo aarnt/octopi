@@ -287,6 +287,7 @@ int OctopiHelper::executePkgTransactionWithSharedMem()
       (line == QLatin1String("paccache -r -k 1")) ||
       (line == QLatin1String("paccache -r -k 2")) ||
       (line == QLatin1String("paccache -r -k 3")) ||
+      (line == QLatin1String("pacman -Fy")) ||
       (line == QLatin1String("pacman -Syu")) ||
       (line == QLatin1String("pacman -Syu --noconfirm")) ||
       (line.startsWith(QLatin1String("pacman -D --asexplicit "))) ||
@@ -328,6 +329,7 @@ int OctopiHelper::executePkgTransactionWithSharedMem()
   contents = contents.replace(QLatin1String("rm ") + ctn_PACMAN_DATABASE_LOCK_FILE, QLatin1String("/usr/bin/rm ") + ctn_PACMAN_DATABASE_LOCK_FILE);
   contents = contents.replace(QLatin1String("pkgfile -u"), QLatin1String("/usr/bin/pkgfile -u"));
   contents = contents.replace(QLatin1String("paccache -r"), QLatin1String("/usr/bin/paccache -r"));
+  contents = contents.replace(QLatin1String("pacman -Fy"), QLatin1String("/usr/bin/pacman -Fy"));
   contents = contents.replace(QLatin1String("pacman -Syu"), QLatin1String("/usr/bin/pacman -Syu"));
   contents = contents.replace(QLatin1String("pacman -D "), QLatin1String("/usr/bin/pacman -D "));
   contents = contents.replace(QLatin1String("pacman -S "), QLatin1String("/usr/bin/pacman -S "));

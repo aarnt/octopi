@@ -2264,9 +2264,10 @@ QStringList Package::getContents(const QString& pkgName, bool isInstalled)
   QStringList slResult;
   QByteArray result;
 
-  if (isInstalled)
+  //OLD pkgfile code:
+  /*if (isInstalled)
   {
-    result = UnixCommand::getPackageContentsUsingPacman(pkgName);
+    result = UnixCommand::getPackageContentsUsingPacman(pkgName, isInstalled);
   }
   else if (UnixCommand::getLinuxDistro() == ectn_ARCHBANGLINUX ||
            UnixCommand::getLinuxDistro() == ectn_ARCHLINUX ||
@@ -2275,7 +2276,9 @@ QStringList Package::getContents(const QString& pkgName, bool isInstalled)
            UnixCommand::getLinuxDistro() == ectn_PARABOLA)
   {
     result = UnixCommand::getPackageContentsUsingPkgfile(pkgName);
-  }
+  }*/
+
+  result = UnixCommand::getPackageContentsUsingPacman(pkgName, isInstalled);
 
   QString aux(QString::fromUtf8(result));
   QStringList rsl = aux.split(QStringLiteral("\n"), Qt::SkipEmptyParts);
@@ -2294,7 +2297,12 @@ QStringList Package::getContents(const QString& pkgName, bool isInstalled)
        apps/kdemultimedia-juk  /usr/share/doc/kde/html/en/juk/search-playlist.png */
     else
     {
-      QStringList rsl2;
+      rsl.replaceInStrings(QRegularExpression(pkgName + QLatin1Char(' ')), QLatin1String("/"));
+      rsl.sort();
+      slResult = rsl;
+
+      //OLD pkgfile code:
+      /*QStringList rsl2;
       for(auto line: qAsConst(rsl))
       {
         QStringList slAux = line.split(QStringLiteral("\t"), Qt::SkipEmptyParts);
@@ -2302,7 +2310,7 @@ QStringList Package::getContents(const QString& pkgName, bool isInstalled)
       }
 
       rsl2.sort();
-      slResult = rsl2;
+      slResult = rsl2;*/
     }
   }
 

@@ -1734,7 +1734,7 @@ void MainWindow::refreshTabFiles(bool clearContents, bool neverQuit)
 
       if(isDir)
       {
-        if ( first )
+        if (first)
         {
           item = new QStandardItem ( IconHelper::getIconFolder(), baseFileName );
           item->setAccessibleDescription(QLatin1String("directory ") + item->text());

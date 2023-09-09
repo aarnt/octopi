@@ -6,7 +6,8 @@
   BugFix: AUR passwords that contained a "+" char failed to login at aur.archlinux.org.
   BugFix: When using the pacman backend, call "pacman -Qm" to fetch ALL foreign packages.
   BugFix: Change install reason did not work with pacman backend.
-  Made the code a bit more Qt6 friendly.
+  Made the code Qt5/Qt6 compatible.
+  Using "pacman -Fl" to view contents of non installed packages (thanks to Zesko).
   Added a Terminal tab to options dialog to config its colors and fonts.
   Octopi-sudo code was synced to match project "lxqt-sudo" version 1.3.0.
 

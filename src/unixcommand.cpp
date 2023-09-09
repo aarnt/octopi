@@ -457,12 +457,16 @@ QByteArray UnixCommand::getPackageInformation(const QString &pkgName, bool forei
 /*
  * Given a package name, returns a string containing all the files inside it
  */
-QByteArray UnixCommand::getPackageContentsUsingPacman(const QString& pkgName)
+QByteArray UnixCommand::getPackageContentsUsingPacman(const QString& pkgName, bool isInstalled)
 {
   QStringList args;
-  args << QStringLiteral("-Ql");
-  args << pkgName;
 
+  if (isInstalled)
+    args << QStringLiteral("-Ql");
+  else
+    args << QStringLiteral("-Fl");
+
+  args << pkgName;
   QByteArray res = performQuery(args);
   return res;
 }
