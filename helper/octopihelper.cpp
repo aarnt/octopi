@@ -123,7 +123,7 @@ OctopiHelper::OctopiHelper()
 
   QString fname = QStringLiteral("/usr/lib/octopi/octphelper.log");
   m_logFile.setFileName(fname);
-  m_logFile.open(QIODevice::WriteOnly |  QIODevice::Append | QIODevice::Text);
+  m_logFile.open(QIODevice::WriteOnly | /*QIODevice::Append |*/ QIODevice::Text);
 }
 
 OctopiHelper::~OctopiHelper()
