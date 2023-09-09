@@ -663,9 +663,12 @@ bool UnixCommand::doInternetPingTest()
 /*
  * Checks if the given executable is available somewhere in the system
  */
-bool UnixCommand::hasTheExecutable( const QString& exeName )
+bool UnixCommand::hasTheExecutable(const QString& exeName)
 {
-  return (QFile::exists(QStringLiteral("/usr/bin/") + exeName));
+  if (exeName == ctn_OCTOPISUDO)
+    return (QFile::exists(ctn_OCTOPISUDO));
+  else
+    return (QFile::exists(QStringLiteral("/usr/bin/") + exeName));
 
   /*qDebug() << "Needed to test executable: " << exeName;
   QProcess proc;
