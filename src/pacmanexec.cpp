@@ -698,19 +698,19 @@ void PacmanExec::prepareTextToPrint(QString str, TreatString ts, TreatURLLinks t
   //Package counter code...
 
   if (newStr.contains(QLatin1String("Foreign/AUR package notification")))
-    newStr = QLatin1String("<br>--> Foreign/AUR packages:<br>");
+    newStr = QLatin1String("<br><b> Foreign/AUR packages:</b><br>");
 
   else if (newStr.contains(QLatin1String("Orphaned package notification...")))
-    newStr = QLatin1String("<br>--> Orphaned packages:<br>");
+    newStr = QLatin1String("<br><b> Orphaned packages:</b><br>");
 
   else if (newStr.contains(QLatin1String("Checking for .pacnew and .pacsave files...")))
-    newStr = QLatin1String("<br>--> Checking for .pacnew and .pacsave files...<br>");
+    newStr = QLatin1String("<br><b> Checking for .pacnew and .pacsave files...</b><br>");
 
-  else if (newStr.contains(QLatin1String("m.pac* files found:")))
-    newStr = QLatin1String("--> .pac* files found: <br>");
+  else if (newStr.contains(QLatin1String(".pac* files found:")))
+    newStr = QLatin1String("<b><font color=\"#FF8040\">.pac* files found:</font></b><br>");
 
-  else if (newStr.contains(QLatin1String("mPlease check and merge")))
-    newStr = QLatin1String("--> Please check and merge<br><br>");
+  else if (newStr.contains(QLatin1String("Please check and merge")))
+    newStr = QLatin1String("<b><font color=\"#FF8040\">Please check and merge</font></b><br><br>");
 
   //Let's insert in the ".pacnew" messages list if we found one!
   else if (newStr.contains(QRegularExpression(QStringLiteral("installed as \\S+.pacnew"))))
