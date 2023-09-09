@@ -665,6 +665,9 @@ bool UnixCommand::doInternetPingTest()
  */
 bool UnixCommand::hasTheExecutable( const QString& exeName )
 {
+  return (QFile::exists(QStringLiteral("/usr/bin/") + exeName));
+
+  /*qDebug() << "Needed to test executable: " << exeName;
   QProcess proc;
   proc.setProcessChannelMode(QProcess::MergedChannels);
   QString sParam = QLatin1String("which ") + exeName;
@@ -679,7 +682,7 @@ bool UnixCommand::hasTheExecutable( const QString& exeName )
   QString out = QString::fromUtf8(proc.readAllStandardOutput());
   proc.close();
 
-  return !(out.isEmpty() || out.count(QStringLiteral("which")) > 0);
+  return !(out.isEmpty() || out.count(QStringLiteral("which")) > 0);*/
 }
 
 /*

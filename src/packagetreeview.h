@@ -34,8 +34,6 @@ public:
 
 protected:
   virtual void mouseReleaseEvent(QMouseEvent *event);
-  //virtual void focusInEvent(QFocusEvent *event);
-
 };
 
 #endif // PACKAGETREEVIEW_H

@@ -225,6 +225,7 @@ void PacmanExec::parsePacmanProcessOutput(const QString &output)
   msg.remove(QStringLiteral(";31m"));
   msg.remove(QStringLiteral(";32m"));
   msg.remove(QStringLiteral(";37m"));
+  msg.remove(QStringLiteral("8;5;243m"));
   msg.remove(QStringLiteral("[c"));
   msg.remove(QStringLiteral("[mo"));
   msg.remove(QStringLiteral("[32m"));

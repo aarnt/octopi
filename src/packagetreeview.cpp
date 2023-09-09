@@ -131,15 +131,3 @@ void PackageTreeView::mouseReleaseEvent(QMouseEvent *event)
     emit customContextMenuRequested(event->pos());
   }
 }
-
-/*
- * Whenever focus enters this widget
- */
-/*void PackageTreeView::focusInEvent(QFocusEvent *event)
-{
-  Q_UNUSED(event)
-
-  QModelIndex maux = currentIndex();
-  scrollTo(maux, QAbstractItemView::PositionAtCenter);
-  setCurrentIndex(maux);
-}*/

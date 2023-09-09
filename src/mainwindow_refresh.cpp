@@ -877,7 +877,11 @@ void MainWindow::buildPackageList()
   if (isAllGroupsSelected()) m_packageModel->applyFilter(m_selectedViewOption, m_selectedRepository, QLatin1String(""));
   //if (m_leFilterPackage->text() != QLatin1String("")) reapplyPackageFilter();
 
-  reapplyPackageFilter();
+  //reapplyPackageFilter(); DANGER
+
+  if(m_debugInfo)
+    std::cout << "Time elapsed after applying filters to the treeview: " << m_time->elapsed() << " mili seconds." << std::endl;
+
   QModelIndex maux = m_packageModel->index(0, 0, QModelIndex());
   ui->tvPackages->setCurrentIndex(maux);
   ui->tvPackages->scrollTo(maux, QAbstractItemView::PositionAtCenter);
@@ -945,14 +949,18 @@ void MainWindow::buildPackageList()
       doInstallLocalPackages();
     }
 
-    reapplyPackageFilter();
+    //reapplyPackageFilter(); //DANGER
   }// end of firstime
 
+  reapplyPackageFilter();
   resizePackageView();
-
   refreshToolBar();
+
   m_refreshPackageLists = true;
   m_refreshForeignPackageList = true;
+
+  if(m_debugInfo)
+    std::cout << "Time elapsed after refreshToolBar(): " << m_time->elapsed() << " mili seconds." << std::endl;
 
   if (searchOutdatedPackages) m_outdatedAURTimer->start();
   else
@@ -961,8 +969,11 @@ void MainWindow::buildPackageList()
 
     QModelIndex mi = ui->tvPackages->currentIndex();
     m_packageRepo.setAUROutdatedData(m_foreignPackageList, *m_outdatedAURStringList);
-    //m_packageRepo.setForeignData(m_foreignPackageList, *m_outdatedAURStringList);
+    std::cout << "Time elapsed after setting AURoutdatedData: " << m_time->elapsed() << " mili seconds." << std::endl;
+
     ui->tvPackages->setCurrentIndex(mi);
+
+    //std::cout << "Time elapsed after setting current index: " << m_time->elapsed() << " mili seconds." << std::endl;
     m_leFilterPackage->setFocus();
   }
 
@@ -973,6 +984,8 @@ void MainWindow::buildPackageList()
     delete m_cic;
     m_cic = nullptr;
   }
+
+  //changePackageListModel(ectn_INSTALLED_PKGS, QStringLiteral("garuda"));
 }
 
 void MainWindow::refreshOutdatedPackageList()

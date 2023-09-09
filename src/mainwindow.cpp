@@ -474,8 +474,8 @@ QTextBrowser *MainWindow::getOutputTextBrowser()
 void MainWindow::showAnchorDescription(const QUrl &link)
 {
   if (link.toString().contains(QLatin1String("goto:")))
-  {            
-    QString pkgName = link.toString().mid(5);
+  {
+    QString pkgName = link.toString().mid(5).remove(QStringLiteral("[installed]"), Qt::CaseInsensitive).trimmed();
     //Let's remove any "<" and "<=" symbol...
     pkgName.remove(QRegularExpression(QStringLiteral("%3C\\S*")));
     pkgName.remove(QRegularExpression(QStringLiteral("\\=\\S*")));
@@ -488,6 +488,7 @@ void MainWindow::showAnchorDescription(const QUrl &link)
 
     PkgDesc pkgDesc;
     pkgDesc.name = pkgName;
+
     pkgDesc.description = package->description;
     pkgDesc.isForeign = (package->status == ectn_FOREIGN || package->status == ectn_FOREIGN_OUTDATED);
 
@@ -548,7 +549,7 @@ void MainWindow::outputTextBrowserAnchorClicked(const QUrl &link)
 {
   if (link.toString().contains(QLatin1String("goto:")))
   {
-    QString pkgName = link.toString().mid(5);
+    QString pkgName = link.toString().mid(5).remove(QStringLiteral("[installed]"), Qt::CaseInsensitive).trimmed();
     if (pkgName == QLatin1String("sh")) pkgName = QStringLiteral("bash");
 
 #ifdef ALPM_BACKEND
