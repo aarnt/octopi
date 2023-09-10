@@ -169,7 +169,8 @@ TRANSLATIONS += resources/translations/octopi_pt_BR.ts \
     resources/translations/octopi_hr.ts \
     resources/translations/octopi_zh-Hans.ts \
     resources/translations/octopi_zh_CN.ts \
-    resources/translations/octopi_ko.ts
+    resources/translations/octopi_ko.ts \
+    resources/translations/octopi_ko_KR.ts
     
 # install
 isEmpty(PREFIX) {

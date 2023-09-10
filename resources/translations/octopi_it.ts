@@ -1078,7 +1078,7 @@ Potresti dover sincronizzare il database!</translation>
     <message numerus="yes">
         <location filename="../Projects/octopi/src/strconstants.cpp" line="472"/>
         <source>There are %n outdated packages in your system:</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="476"/>
@@ -1088,27 +1088,27 @@ Potresti dover sincronizzare il database!</translation>
     <message numerus="yes">
         <location filename="../Projects/octopi/src/strconstants.cpp" line="480"/>
         <source>%n packages</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="../Projects/octopi/src/strconstants.cpp" line="484"/>
         <source>%n selected</source>
-        <translation><numerusform>uno selezionato</numerusform><numerusform>%n selezionati</numerusform></translation>
+        <translation><numerusform>uno selezionato</numerusform><numerusform>%n selezionati</numerusform><numerusform>%n selezionati</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="../Projects/octopi/src/strconstants.cpp" line="488"/>
         <source>%n installed</source>
-        <translation><numerusform>%n installati</numerusform><numerusform>%n installati</numerusform></translation>
+        <translation><numerusform>%n installati</numerusform><numerusform>%n installati</numerusform><numerusform>%n installati</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="../Projects/octopi/src/strconstants.cpp" line="492"/>
         <source>%n outdated</source>
-        <translation><numerusform>%n obsoleti</numerusform><numerusform>%n obsoleti</numerusform></translation>
+        <translation><numerusform>%n obsoleti</numerusform><numerusform>%n obsoleti</numerusform><numerusform>%n obsoleti</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="../Projects/octopi/src/strconstants.cpp" line="496"/>
         <source>%n available</source>
-        <translation><numerusform>%n disponibili</numerusform><numerusform>%n disponibili</numerusform></translation>
+        <translation><numerusform>%n disponibili</numerusform><numerusform>%n disponibili</numerusform><numerusform>%n disponibili</numerusform></translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="500"/>
@@ -1233,12 +1233,12 @@ Potresti dover sincronizzare il database!</translation>
     <message numerus="yes">
         <location filename="../Projects/octopi/src/strconstants.cpp" line="639"/>
         <source>The following %n packages need to be retrieved</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="../Projects/octopi/src/strconstants.cpp" line="643"/>
         <source>The following %n packages will be removed</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="647"/>
@@ -1258,7 +1258,7 @@ Potresti dover sincronizzare il database!</translation>
     <message numerus="yes">
         <location filename="../Projects/octopi/src/strconstants.cpp" line="659"/>
         <source>There are %n updates available!</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="663"/>

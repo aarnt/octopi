@@ -152,7 +152,7 @@
     <message>
         <location filename="../Projects/octopi/ui/mainwindow.ui" line="437"/>
         <source>Open directory</source>
-        <translation>디렉토리 열기</translation>
+        <translation>디렉터리 열기</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/ui/mainwindow.ui" line="446"/>
@@ -437,12 +437,12 @@
     <message>
         <location filename="../Projects/octopi/src/mainwindow_help.cpp" line="177"/>
         <source>F4 to open a Terminal whitin the selected directory at Files tab</source>
-        <translation>F4 : 파일 탭에서 선택한 디렉토리에 있는 터미널 열기</translation>
+        <translation>F4 : 파일 탭에서 선택한 디렉터리에 있는 터미널 열기</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/mainwindow_help.cpp" line="179"/>
         <source>F6 to open a File Manager whitin the selected directory at Files tab</source>
-        <translation>F6 : 파일 탭에서 선택한 디렉토리로 파일 관리자 열기</translation>
+        <translation>F6 : 파일 탭에서 선택한 디렉터리로 파일 관리자 열기</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/mainwindow_help.cpp" line="181"/>
@@ -496,7 +496,7 @@
     <message>
         <location filename="../Projects/octopi/ui/optionsdialog.ui" line="107"/>
         <source>Use alternating row colors</source>
-        <translation>번갈아 가며 행 색상 사용</translation>
+        <translation>행 색상 번갈아 사용</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/ui/optionsdialog.ui" line="120"/>
@@ -568,7 +568,7 @@ Any use of the provided files is at your own risk.</source>
     <message>
         <location filename="../Projects/octopi/ui/optionsdialog.ui" line="483"/>
         <source>Build directory</source>
-        <translation>빌드 디렉토리</translation>
+        <translation>빌드 디렉터리</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/ui/optionsdialog.ui" line="518"/>
@@ -1356,7 +1356,7 @@ You only need to accept and wait a few seconds.</source>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="747"/>
         <source>Select the build directory for the AUR packages</source>
-        <translation>AUR 패키지의 빌드 디렉토리를 선택합니다</translation>
+        <translation>AUR 패키지의 빌드 디렉터리를 선택합니다</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="751"/>
