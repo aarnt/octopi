@@ -1,4 +1,4 @@
-0.15 (dev)
+0.15.0 (2023-09-10)
   BugFix: Invalidate Info/File tabs when user is navigating packages using the keyboard.
   BugFix: Better handle dependencies while staging packages for deletion.
   BugFix: First yay-bin download now works again.
