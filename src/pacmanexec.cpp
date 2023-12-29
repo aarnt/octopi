@@ -1427,7 +1427,7 @@ void PacmanExec::doInstallYayUsingTempYay()
 {
   m_lastCommandList.clear();
   QString octopiConfDir = QDir::homePath() + QDir::separator() + QLatin1String(".config/octopi");
-  QString cmd = octopiConfDir + QDir::separator() + QLatin1String("yay --noconfirm --noeditmenu -S yay-bin;");
+  QString cmd = octopiConfDir + QDir::separator() + QLatin1String("yay --noconfirm --editmenu=false -S yay-bin;");
   m_lastCommandList.append(cmd);
   m_lastCommandList.append(QStringLiteral("echo -e;"));
   m_lastCommandList.append(QLatin1String("read -n 1 -p \"") + StrConstants::getPressAnyKey() + QLatin1Char('"'));

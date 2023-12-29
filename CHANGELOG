@@ -1,6 +1,7 @@
 0.16 (dev)
+  BugFix: '--noeditmenu' is deprecated. Use '--editmenu=false' instead (thanks to rbaruccojr).
   Octopi-sudo code was synced to match project "lxqt-sudo" version 1.4.0.
-  
+ 
 0.15.0 (2023-09-10)
   BugFix: Invalidate Info/File tabs when user is navigating packages using the keyboard.
   BugFix: Better handle dependencies while staging packages for deletion.

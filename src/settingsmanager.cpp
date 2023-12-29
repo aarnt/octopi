@@ -457,7 +457,7 @@ QString SettingsManager::getAURTool()
   else if (ret == ctn_YAY_TOOL)
   {
     if (getAURNoConfirmParam()) params += QLatin1String(" --noconfirm ");
-    if (getAURNoEditParam()) params += QLatin1String(" --noeditmenu ");
+    if (getAURNoEditParam()) params += QLatin1String(" --editmenu=false ");
     if (getAUROverwriteParam()) params += QLatin1String(" --overwrite=\"*\" ");
     ret += params;
   }
@@ -491,7 +491,7 @@ QString SettingsManager::getAURTool()
     else if (UnixCommand::hasTheExecutable(ctn_YAY_TOOL))
     {
       if (getAURNoConfirmParam()) params += QLatin1String(" --noconfirm ");
-      if (getAURNoEditParam()) params += QLatin1String(" --noeditmenu ");
+      if (getAURNoEditParam()) params += QLatin1String(" --editmenu=false ");
       if (getAUROverwriteParam()) params += QLatin1String(" --overwrite=\"*\" ");
 
       p_instance.setAURTool(ctn_YAY_TOOL);
