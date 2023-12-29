@@ -26,7 +26,7 @@
     <message>
         <location filename="../passworddialog.ui" line="106"/>
         <source>LXQt sudo backend</source>
-        <translation>LXQt sudo vidinė pusė</translation>
+        <translation>LXQt sudo vidinė sąsaja</translation>
     </message>
     <message>
         <location filename="../passworddialog.ui" line="109"/>
@@ -80,8 +80,8 @@ Argumentai:
   parametras:
     -h|--help      Išvesti šią pagalbą.
     -v|--version   Išvesti versijos informacija.
-    -s|--su        Naudoti %3(1) kaip vidinę pusę.
-    -d|--sudo      Naudoti %2(8) kaip vidinę pusę.
+    -s|--su        Naudoti %3(1) kaip vidinę sąsają.
+    -d|--sudo      Naudoti %2(8) kaip vidinę sąsają.
   command          Komanda, kurią vykdyti.
   arguments        Pasirinktini argumentai komandai.
 
@@ -105,7 +105,7 @@ Argumentai:
     <message>
         <location filename="../sudo.cpp" line="202"/>
         <source>%1: no backend chosen!</source>
-        <translation>%1: nepasirinkta vidinė pusė!</translation>
+        <translation>%1: nepasirinkta vidinė sąsaja!</translation>
     </message>
     <message>
         <location filename="../sudo.cpp" line="219"/>
@@ -139,14 +139,14 @@ Argumentai:
         <location filename="../sudo.cpp" line="314"/>
         <source>%1: Failed to exec &apos;%2&apos;: %3
 </source>
-        <translation>%1: Nepavyko įvykdyti &quot;%2&quot;: %3
+        <translation>%1: Nepavyko įvykdyti „%2“: %3
 </translation>
     </message>
     <message>
         <location filename="../sudo.cpp" line="376"/>
         <source>Child &apos;%1&apos; process failed!
 %2</source>
-        <translation>Vyksnis &quot;%1&quot; nepavyko!
+        <translation>Vyksnis „%1“ patyrė nesėkmę!
 %2</translation>
     </message>
 </context>
