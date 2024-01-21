@@ -158,7 +158,11 @@ bool PackageGroupModel::isSUAvailable()
  */
 void PackageGroupModel::cleanCache()
 {
-  if (isExecutingCommand || UnixCommand::isPacmanDbLocked()) return;
+  if (isExecutingCommand || UnixCommand::isPacmanDbLocked()){
+    QMessageBox::critical( nullptr, StrConstants::getApplicationName(),
+                           StrConstants::getErrorDbLock());
+    return;
+  }
 
   if (!isSUAvailable())
     return;

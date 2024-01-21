@@ -700,6 +700,11 @@ QString StrConstants::getErrorNoSuCommand(){
     QObject::tr("There are no means to get administrator's credentials.");
 }
 
+QString StrConstants::getErrorDbLock(){
+  return
+    QObject::tr("Pacman is running or didn't cleanly close (/var/lib/pacman/db.lck exists!)");
+}
+
 QString StrConstants::getYoullNeedSuFrontend(){
   return QObject::tr("You'll need to install \"octopi-sudo\" in order to use Octopi.");
 }
