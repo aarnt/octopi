@@ -173,6 +173,7 @@ public:
   static QString getCancelActionsConfirmation();
   static QString getEnterAdministratorsPassword();
   static QString getErrorNoSuCommand();
+  static QString getErrorDbLock();
   static QString getYoullNeedSuFrontend();
   static QString getYoullNeedToInstallAURTool();
   static QString getDoYouWantToInstallYayTool();
