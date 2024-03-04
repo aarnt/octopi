@@ -466,8 +466,8 @@ void MainWindow::aboutOctopiNotifier()
  * Hides Octopi
  */
 void MainWindow::hideOctopi()
-{  
-  QProcess::startDetached(QStringLiteral("octopi"), QStringList() << QStringLiteral("-hide"));
+{
+  QProcess::startDetached(QStringLiteral("/usr/bin/octopi"), QStringList() << QStringLiteral("-hide"));
 }
 
 /*
@@ -475,7 +475,7 @@ void MainWindow::hideOctopi()
  */
 void MainWindow::showOctopi()
 {
-  QProcess::startDetached(QStringLiteral("octopi"), QStringList() << QStringLiteral("-show"));
+  QProcess::startDetached(QStringLiteral("/usr/bin/octopi"), QStringList() << QStringLiteral("-show"));
 }
 
 /*
@@ -1234,7 +1234,7 @@ void MainWindow::runOctopi(ExecOpt execOptions)
 {
   if (execOptions == ectn_SYSUPGRADE_NOCONFIRM_EXEC_OPT && canOctopiUpgrade())
   {
-    QProcess::startDetached(QStringLiteral("octopi"), QStringList() << QStringLiteral("-sysupgrade-noconfirm"));
+    QProcess::startDetached(QStringLiteral("/usr/bin/octopi"), QStringList() << QStringLiteral("-sysupgrade-noconfirm"));
   }
   else if (execOptions == ectn_CHECKUPDATES_EXEC_OPT) //&&
            //!UnixCommand::isAppRunning(QStringLiteral("octopi"), true))
@@ -1244,7 +1244,7 @@ void MainWindow::runOctopi(ExecOpt execOptions)
   /*else if (execOptions == ectn_CHECKUPDATES_EXEC_OPT &&
            UnixCommand::isAppRunning(QStringLiteral("octopi"), true))
   {
-    QProcess::startDetached(QStringLiteral("octopi"), QStringList() << QStringLiteral("-checkupdates"));
+    QProcess::startDetached(QStringLiteral("/usr/bin/octopi"), QStringList() << QStringLiteral("-checkupdates"));
   }*/
   else if (execOptions == ectn_SYSUPGRADE_EXEC_OPT &&
       (!UnixCommand::isAppRunning(QStringLiteral("octopi"), true) ||
@@ -1257,7 +1257,7 @@ void MainWindow::runOctopi(ExecOpt execOptions)
       UnixCommand::isAppRunning(QStringLiteral("octopi"), true) &&
            (m_outdatedStringList->count() > 0 || m_checkUpdatesStringList.count() > 0))
   {
-    QProcess::startDetached(QStringLiteral("octopi"), QStringList() << QStringLiteral("-sysupgrade"));
+    QProcess::startDetached(QStringLiteral("/usr/bin/octopi"), QStringList() << QStringLiteral("-sysupgrade"));
   }
   else if (execOptions == ectn_AUR_UPGRADE_EXEC_OPT &&
       (!UnixCommand::isAppRunning(QStringLiteral("octopi"), true) || !canOctopiUpgrade()) && m_outdatedAURStringList->count() > 0)
@@ -1267,11 +1267,11 @@ void MainWindow::runOctopi(ExecOpt execOptions)
   else if (execOptions == ectn_AUR_UPGRADE_EXEC_OPT && canOctopiUpgrade() &&
       UnixCommand::isAppRunning(QStringLiteral("octopi"), true) && m_outdatedAURStringList->count() > 0)
   {
-    QProcess::startDetached(QStringLiteral("octopi"), QStringList() << QStringLiteral("-aurupgrade"));
+    QProcess::startDetached(QStringLiteral("/usr/bin/octopi"), QStringList() << QStringLiteral("-aurupgrade"));
   }
   else if (execOptions == ectn_NORMAL_EXEC_OPT)
   {
-    QProcess::startDetached(QStringLiteral("octopi"), QStringList());
+    QProcess::startDetached(QStringLiteral("/usr/bin/octopi"), QStringList());
   }
 }
 
@@ -1290,7 +1290,7 @@ void MainWindow::showOptionsDialog()
 {
   if (m_optionsDialog == nullptr && UnixCommand::isAppRunning(QStringLiteral("octopi"), true))
   {
-    QProcess::startDetached(QStringLiteral("octopi"), QStringList() << QStringLiteral("-options"));
+    QProcess::startDetached(QStringLiteral("/usr/bin/octopi"), QStringList() << QStringLiteral("-options"));
   }
   else if (m_optionsDialog == nullptr)
   {
