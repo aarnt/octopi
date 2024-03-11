@@ -8,7 +8,6 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}")
 
 option(USE_QTERMWIDGET6 "Build with qtermwidget6 instead of qtermwidget5" OFF)
 
-add_subdirectory(sudo)
 add_subdirectory(helper)
 add_subdirectory(notifier)
 add_subdirectory(cachecleaner)
