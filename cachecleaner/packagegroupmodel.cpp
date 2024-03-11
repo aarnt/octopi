@@ -199,7 +199,7 @@ void PackageGroupModel::finishedDryrun(int exitCode, QProcess::ExitStatus)
   if(exitCode > 1)
   {
     //process failed, provide info on errors
-    QMessageBox::critical(m_listView, QStringLiteral("Error whith the underlying process"), m_acc->getErrors());
+    QMessageBox::critical(m_listView, QStringLiteral("Error with the underlying process"), m_acc->getErrors());
   }
   else if (exitCode == 0)
   {
