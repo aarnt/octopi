@@ -26,7 +26,7 @@ build() {
    qmake-qt5 PREFIX=/usr QMAKE_CFLAGS="${CFLAGS}" QMAKE_CXXFLAGS="${CXXFLAGS}" QMAKE_LFLAGS="${LDFLAGS}" octopi.pro
    make
 
-   _subdirs="cachecleaner helper notifier repoeditor sudo"
+   _subdirs="cachecleaner helper notifier repoeditor"
 
    for _subdir in $_subdirs; do
      pushd $_subdir
@@ -41,7 +41,7 @@ package() {
    cd "${pkgname}"
    make INSTALL_ROOT="${pkgdir}" install
 
-   _subdirs="cachecleaner helper notifier repoeditor sudo"
+   _subdirs="cachecleaner helper notifier repoeditor"
 
    for _subdir in $_subdirs; do
      pushd $_subdir
