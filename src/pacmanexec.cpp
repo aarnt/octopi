@@ -447,7 +447,7 @@ void PacmanExec::parsePacmanProcessOutput(const QString &output)
     msg.remove(QRegularExpression(QStringLiteral(".+annot load library.+")));
     msg.remove(QRegularExpression(QStringLiteral("libGL error.+")));
     msg.remove(QRegularExpression(QStringLiteral("qt5ct:.+")));
-    msg.remove(QRegularExpression(QStringLiteral("(lxqt|octopi)-sudo:.+")));
+    msg.remove(QRegularExpression(QStringLiteral("(lxqt|octopi|qt)-sudo:.+")));
     msg.remove(QRegularExpression(QStringLiteral("qt.qpa.plugin:.+")));
     msg.remove(QRegularExpression(QStringLiteral("qt.qpa.xcb:.+")));
     msg.remove(QRegularExpression(QStringLiteral("Icon theme \".+")));
