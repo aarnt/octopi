@@ -1,7 +1,8 @@
-pkgname=octopi
-pkgver=0.15.0
+_pkgname=octopi
+pkgname=octopi-git
+pkgver=0.15.0.r15.g69e85dd
 pkgrel=1
-pkgdesc="This is Octopi, a powerful Pacman frontend using Qt libs"
+pkgdesc="This is Octopi, a powerful Pacman frontend using Qt libs (git checkout)"
 url="https://tintaescura.com/projects/octopi/"
 arch=('i686' 'x86_64')
 license=('GPL2')
@@ -12,16 +13,21 @@ source=("git+https://github.com/aarnt/octopi.git")
 md5sums=('SKIP')
 
 prepare() {
-   cd "${pkgname}"
+   cd "${_pkgname}"
    
    # enable the kstatus switch, disable if you wish to build without Plasma/knotifications support
    sed -e "s|DEFINES += OCTOPI_EXTENSIONS ALPM_BACKEND #KSTATUS|DEFINES += OCTOPI_EXTENSIONS ALPM_BACKEND KSTATUS|" -i notifier/octopi-notifier.pro
       
    cp resources/images/octopi_green.png resources/images/octopi.png
 }
+
+pkgver() {
+   cd "${_pkgname}"
+   git describe --long --tags --abbrev=7 | sed 's/\([^-]*-g\)/r\1/;s/-/./g;s/^v//'
+}
          
 build() {
-   cd "${pkgname}"
+   cd "${_pkgname}"
    echo "Starting build..."   
    qmake-qt5 PREFIX=/usr QMAKE_CFLAGS="${CFLAGS}" QMAKE_CXXFLAGS="${CXXFLAGS}" QMAKE_LFLAGS="${LDFLAGS}" octopi.pro
    make
@@ -38,7 +44,7 @@ build() {
 }
 
 package() {
-   cd "${pkgname}"
+   cd "${_pkgname}"
    make INSTALL_ROOT="${pkgdir}" install
 
    _subdirs="cachecleaner helper notifier repoeditor"
