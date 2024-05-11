@@ -401,7 +401,7 @@ void OutputDialog::onCanStopTransaction(bool yesNo)
 /*
  * Kills all pacman processes
  *
- * Returns octopi-sudo exit code
+ * Returns qt-sudo exit code
  */
 int OutputDialog::stopTransaction()
 {

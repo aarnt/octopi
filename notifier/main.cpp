@@ -67,7 +67,7 @@ int main(int argc, char *argv[])
 
   if (!QFile::exists(ctn_OCTOPISUDO))
   {
-    qDebug() << "Aborting notifier as 'octopi-sudo' binary could not be found! [" << ctn_OCTOPISUDO << "]";
+    qDebug() << "Aborting notifier as 'qt-sudo' binary could not be found! [" << ctn_OCTOPISUDO << "]";
     return (-4);
   }
 

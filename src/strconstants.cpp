@@ -706,7 +706,7 @@ QString StrConstants::getErrorDbLock(){
 }
 
 QString StrConstants::getYoullNeedSuFrontend(){
-  return QObject::tr("You'll need to install \"octopi-sudo\" in order to use Octopi.");
+  return QObject::tr("You'll need to install \"qt-sudo\" in order to use Octopi.");
 }
 
 QString StrConstants::getYoullNeedToInstallAURTool()

@@ -1107,7 +1107,7 @@ void UnixCommand::buildOctopiHelperCommandWithSharedMem(const QString &pCommand,
 }
 
 /*
- * Cancels the running process. Returns octopi-sudo exit code.
+ * Cancels the running process. Returns qt-sudo exit code.
  */
 int UnixCommand::cancelProcess(QSharedMemory *sharedMem)
 {

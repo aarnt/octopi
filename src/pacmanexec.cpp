@@ -94,7 +94,7 @@ bool PacmanExec::isDatabaseLocked()
 /*
  * Cancels the running pacman process using "killall pacman" and removing database lock file
  *
- * Returns octopi-sudo exit code
+ * Returns qt-sudo exit code
  */
 int PacmanExec::cancelProcess()
 {
