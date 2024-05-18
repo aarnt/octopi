@@ -17,7 +17,7 @@ DEFINES += QT_USE_QSTRINGBUILDER \
            QT_NO_URL_CAST_FROM_STRING \
            QT_NO_CAST_FROM_BYTEARRAY
 
-CONFIG += qt warn_on debug link_pkgconfig ALPM_BACKEND
+CONFIG += qt warn_on debug link_pkgconfig ALPM_BACKEND USE_QTERMWIDGET6
 
 ALPM_BACKEND {
   QMAKE_CXXFLAGS += -std=c++17
@@ -29,6 +29,7 @@ ALPM_BACKEND {
 
 USE_QTERMWIDGET6 {
   LIBS += -lqtermwidget6
+  QT += core5compat
 } else {
   LIBS += -lqtermwidget5
 }
@@ -40,7 +41,7 @@ contains(DEFINES, KSTATUS){
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 CONFIG += qt console warn_on debug
-QMAKE_CXXFLAGS += -std=c++11
+QMAKE_CXXFLAGS += -std=c++17
 TARGET = octopi-notifier
 TEMPLATE = app
 DESTDIR += ./bin
