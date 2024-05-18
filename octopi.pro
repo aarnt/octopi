@@ -14,7 +14,7 @@ DEFINES += QT_USE_QSTRINGBUILDER \
            QT_NO_URL_CAST_FROM_STRING \
            QT_NO_CAST_FROM_BYTEARRAY
 
-CONFIG += qt warn_on debug link_pkgconfig ALPM_BACKEND
+CONFIG += qt warn_on debug link_pkgconfig ALPM_BACKEND USE_QTERMWIDGET6
 
 ALPM_BACKEND {
   QMAKE_CXXFLAGS += -std=c++17
@@ -26,6 +26,7 @@ ALPM_BACKEND {
 
 USE_QTERMWIDGET6 {
   LIBS += -lqtermwidget6
+  QT += core5compat
 } else {
   LIBS += -lqtermwidget5
 }
