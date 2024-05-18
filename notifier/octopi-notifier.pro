@@ -6,9 +6,7 @@
 
 QT += core xml gui network
 
-# This controls whether octopi-notifier uses KStatusNotifier lib
-# You SHOULD REALLY enable KSTATUS define in plasma 5 desktops!
-DEFINES += OCTOPI_EXTENSIONS ALPM_BACKEND #KSTATUS
+DEFINES += OCTOPI_EXTENSIONS ALPM_BACKEND
 
 # Disable automatic string conversions
 DEFINES += QT_USE_QSTRINGBUILDER \
@@ -34,9 +32,9 @@ USE_QTERMWIDGET6 {
   LIBS += -lqtermwidget5
 }
 
-contains(DEFINES, KSTATUS){
-  QT += dbus KNotifications
-}
+#contains(DEFINES, KSTATUS){
+#  QT += dbus
+#}
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
