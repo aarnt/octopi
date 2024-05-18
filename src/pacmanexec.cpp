@@ -1083,7 +1083,7 @@ void PacmanExec::doInstallLocal(const QString &listOfPackages)
 
   packages=listOfPackages.split(QStringLiteral(";"), Qt::SkipEmptyParts);
 
-  for(const QString& p: qAsConst(packages))
+  for(const QString& p: std::as_const(packages))
   {
     if(p.trimmed().isEmpty()) continue;
     if (dontUseForce)
@@ -1099,7 +1099,7 @@ void PacmanExec::doInstallLocal(const QString &listOfPackages)
     m_lastCommandList.append(QLatin1String("rm ") + ctn_PACMAN_DATABASE_LOCK_FILE + QLatin1Char(';'));
   }
 
-  for(const QString& p: qAsConst(packages))
+  for(const QString& p: std::as_const(packages))
   {
     if(p.trimmed().isEmpty()) continue;
     if (dontUseForce)
@@ -1134,7 +1134,7 @@ void PacmanExec::doInstallLocalInTerminal(const QString &listOfPackages)
 
   packages=listOfPackages.split(QStringLiteral(";"), Qt::SkipEmptyParts);
 
-  for(const QString& p: qAsConst(packages))
+  for(const QString& p: std::as_const(packages))
   {
     if(p.trimmed().isEmpty()) continue;
 

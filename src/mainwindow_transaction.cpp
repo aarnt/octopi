@@ -301,7 +301,7 @@ void MainWindow::insertIntoRemovePackage(QModelIndex *indexToInclude)
   }
 
   int res = 0;
-  for(QModelIndex item: qAsConst(selectedRows))
+  for(QModelIndex item: std::as_const(selectedRows))
   {
     const PackageRepository::PackageData*const package = m_packageModel->getData(item);
     if (package == nullptr) {
@@ -313,7 +313,7 @@ void MainWindow::insertIntoRemovePackage(QModelIndex *indexToInclude)
     {
       QStringList *targets = Package::getTargetRemovalList(package->name, removeCmd);
 
-      for(const QString& target: qAsConst(*targets))
+      for(const QString& target: std::as_const(*targets))
       {
         int separator = target.lastIndexOf(QLatin1String("-"));
         QString candidate = target.left(separator);
@@ -433,7 +433,7 @@ void MainWindow::insertIntoInstallPackage(QModelIndex *indexToInclude)
       }
     }
 
-    for(QModelIndex item: qAsConst(selectedRows))
+    for(QModelIndex item: std::as_const(selectedRows))
     {
       const PackageRepository::PackageData*const package = m_packageModel->getData(item);
       if (package == nullptr) {
@@ -525,7 +525,7 @@ void MainWindow::insertIntoInstallPackageOptDeps(const QString &packageName)
     {
       selectedPackages = msd->getSelectedPackages();
 
-      for(const QString& pkg: qAsConst(selectedPackages))
+      for(const QString& pkg: std::as_const(selectedPackages))
       {
         insertInstallPackageIntoTransaction(pkg, true);
       }
@@ -580,7 +580,7 @@ int MainWindow::insertIntoRemovePackageDeps(const QStringList &dependencies)
     if (res == QMessageBox::Ok)
     {
       selectedPackages = msd->getSelectedPackages();
-      for(const QString& pkg: qAsConst(selectedPackages))
+      for(const QString& pkg: std::as_const(selectedPackages))
       {
         insertRemovePackageIntoTransaction(pkg);
       }
@@ -859,7 +859,7 @@ void MainWindow::doAURUpgrade()
   QString listOfTargets;
   QString auxPkg;
 
-  for(const QString& pkg: qAsConst(*m_outdatedAURStringList))
+  for(const QString& pkg: std::as_const(*m_outdatedAURStringList))
   {
     auxPkg = pkg;
     auxPkg.remove(QStringLiteral("[1;39m"));
@@ -1056,7 +1056,7 @@ void MainWindow::doSystemUpgrade(SystemUpgradeOptions systemUpgradeOptions)
         totalDownloadSize = UnixCommand::getCheckUpdatesSize();
 
         targets->clear();
-        for(const QString& name: qAsConst(*m_checkupdatesStringList))
+        for(const QString& name: std::as_const(*m_checkupdatesStringList))
         {
           PackageListData aux;
           aux = PackageListData(name, m_checkUpdatesNameNewVersion->value(name), QStringLiteral("0")); //size);
@@ -1069,7 +1069,7 @@ void MainWindow::doSystemUpgrade(SystemUpgradeOptions systemUpgradeOptions)
 
     if (totalDownloadSize == 0)
     {
-      for(const PackageListData& target: qAsConst(*targets))
+      for(const PackageListData& target: std::as_const(*targets))
       {
         totalDownloadSize += target.downloadSize;
         list = list + target.name + QLatin1Char('-') + target.version + QLatin1Char('\n');
@@ -1077,7 +1077,7 @@ void MainWindow::doSystemUpgrade(SystemUpgradeOptions systemUpgradeOptions)
     }
     else
     {
-      for(const PackageListData& target: qAsConst(*targets))
+      for(const PackageListData& target: std::as_const(*targets))
       {
         list = list + target.name + QLatin1Char('-') + target.version + QLatin1Char('\n');
       }
@@ -1215,7 +1215,7 @@ void MainWindow::doRemoveAndInstall()
   }
 
   double totalDownloadSize = 0;
-  for(const PackageListData& installTarget: qAsConst(*installTargets))
+  for(const PackageListData& installTarget: std::as_const(*installTargets))
   {
     totalDownloadSize += installTarget.downloadSize;
     installList.append(StrConstants::getInstall() + QLatin1Char(' ') +
@@ -1789,7 +1789,7 @@ void MainWindow::doInstall()
   }
 
   double totalDownloadSize = 0;
-  for(const PackageListData& target: qAsConst(*targets))
+  for(const PackageListData& target: std::as_const(*targets))
   {
     totalDownloadSize += target.downloadSize;
     pkgsToInstall.append(target.name);
@@ -1873,13 +1873,13 @@ void MainWindow::doInstallLocalPackages()
   QString list;
   QFileInfo fi;
 
-  for(const QString& target: qAsConst(m_packagesToInstallList))
+  for(const QString& target: std::as_const(m_packagesToInstallList))
   {
     fi.setFile(target);
     list = list + fi.fileName() + QLatin1Char('\n');
   }
 
-  for(const QString& pkgToInstall: qAsConst(m_packagesToInstallList))
+  for(const QString& pkgToInstall: std::as_const(m_packagesToInstallList))
   {
     listOfTargets += pkgToInstall + QLatin1String("; ");
   }

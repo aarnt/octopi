@@ -6,7 +6,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_THREAD_PREFER_PTHREAD True)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}")
 
-option(USE_QTERMWIDGET6 "Build with qtermwidget6 instead of qtermwidget5" OFF)
+option(USE_QTERMWIDGET6 "Build with qtermwidget6 instead of qtermwidget5" ON)
 
 add_subdirectory(helper)
 add_subdirectory(notifier)

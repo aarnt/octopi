@@ -590,7 +590,7 @@ void MainWindow::doSystemUpgrade()
     if (m_checkUpdatesStringList.count() > m_outdatedStringList->count())
     {
       targets->clear();
-      for(const auto &name : qAsConst(m_checkUpdatesStringList))
+      for(const auto &name : std::as_const(m_checkUpdatesStringList))
       {
         PackageListData aux;
         aux = PackageListData(name, m_checkUpdatesNameNewVersion->value(name), QStringLiteral("0"));
@@ -598,7 +598,7 @@ void MainWindow::doSystemUpgrade()
       }
     }
 
-    for(const auto &target : qAsConst(*targets))
+    for(const auto &target : std::as_const(*targets))
     {
       totalDownloadSize += target.downloadSize;
       list = list + target.name + QLatin1Char('-') + target.version + QLatin1Char('\n');
@@ -684,7 +684,7 @@ void MainWindow::doAURUpgrade()
   QString listOfTargets;
   QString auxPkg;
 
-  for(const QString &pkg : qAsConst(*m_outdatedAURStringList))
+  for(const QString &pkg : std::as_const(*m_outdatedAURStringList))
   {
     auxPkg = pkg;
     auxPkg.remove(QStringLiteral("[1;39m"));
@@ -780,7 +780,7 @@ void MainWindow::afterCheckUpdates(int exitCode, QProcess::ExitStatus)
 
   m_commandExecuting = ectn_NONE;
 
-  for(const QString &line : qAsConst(checkUpdatesList))
+  for(const QString &line : std::as_const(checkUpdatesList))
   {
     QStringList aux = line.split(QStringLiteral(" "), Qt::SkipEmptyParts);
 

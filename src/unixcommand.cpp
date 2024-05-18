@@ -567,7 +567,7 @@ QByteArray UnixCommand::getTargetUpgradeList(const QString &pkgName)
     args << QStringLiteral("--print-format") << QStringLiteral("%n %v %s") << QStringLiteral("-Sp");
     pkgs = pkgName.split(QStringLiteral(" "), Qt::SkipEmptyParts);
 
-    for (const QString& p: qAsConst(pkgs))
+    for (const QString& p: std::as_const(pkgs))
     {
       args << p;
     }
@@ -1088,7 +1088,7 @@ void UnixCommand::buildOctopiHelperCommandWithSharedMem(const QString &pCommand,
   if (pCommand.contains(QLatin1String(";")))
   {
     commandList = pCommand.split(QStringLiteral(";"), Qt::SkipEmptyParts);
-    for(const QString& line: qAsConst(commandList))
+    for(const QString& line: std::as_const(commandList))
     {
       commands += line.trimmed() + QLatin1Char('\n');
     }
@@ -1304,12 +1304,12 @@ QStringList UnixCommand::getIgnorePkgsFromPacmanConf()
   if (!resGroups.isEmpty())
   {
     //Let's retrieve all pkgs that live inside each group
-    for (const QString& group: qAsConst(resGroups))
+    for (const QString& group: std::as_const(resGroups))
     {
       QStringList *packagesOfGroup = Package::getPackagesOfGroup(group);
       if (!packagesOfGroup->isEmpty())
       {
-        for (const QString& pkg: qAsConst(*packagesOfGroup))
+        for (const QString& pkg: std::as_const(*packagesOfGroup))
         {
           resPkgs.append(pkg);
         }

@@ -98,7 +98,7 @@ QList<QModelIndex> * utils::findFileInTreeView(const QString& name, const QStand
   }
 
   foundItems = sim->findItems(Package::parseSearchString(name), Qt::MatchRegularExpression|Qt::MatchRecursive);
-  for(QStandardItem *item: qAsConst(foundItems))
+  for(QStandardItem *item: std::as_const(foundItems))
   {
     //if (item->accessibleDescription().contains("directory")) continue;
     res->append(item->index());

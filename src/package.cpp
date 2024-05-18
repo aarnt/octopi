@@ -819,7 +819,7 @@ QList<PackageListData> * Package::getForeignToolPackageList(const QString &searc
   }
 
   pkgDescription = QLatin1String("");
-  for(auto packageTuple: qAsConst(packageTuples))
+  for(auto packageTuple: std::as_const(packageTuples))
   {
     if (packageTuple[0].isNumber())
     {
@@ -2303,7 +2303,7 @@ QStringList Package::getContents(const QString& pkgName, bool isInstalled)
 
       //OLD pkgfile code:
       /*QStringList rsl2;
-      for(auto line: qAsConst(rsl))
+      for(auto line: std::as_const(rsl))
       {
         QStringList slAux = line.split(QStringLiteral("\t"), Qt::SkipEmptyParts);
         rsl2.append(QString(slAux.at(1).trimmed()));
