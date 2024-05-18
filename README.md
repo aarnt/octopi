@@ -37,7 +37,7 @@ If Octopi package is available in your distro's repository, you can just type:
 
 ### Steps to build Octopi source code (qmake)
 
-Assuming you have vala compiler and Qt5 libs properly installed, follow these steps:
+Assuming you have vala compiler and Qt6 libs properly installed, follow these steps:
 
 ```
 $ git clone https://github.com/aarnt/alpm_octopi_utils
@@ -47,29 +47,29 @@ $ make
 $ cd ..
 $ git clone https://github.com/aarnt/qt-sudo
 $ cd qt-sudo
-$ qmake-qt5
+$ qmake6
 $ make
 # make install
 $ cd ..
 $ git clone https://github.com/aarnt/octopi
 $ cd octopi/helper
-$ qmake-qt5
+$ qmake6
 $ make
 # make install
 $ cd ../notifier
-$ qmake-qt5
+$ qmake6
 $ make
 # make install
 $ cd ../cachecleaner
-$ qmake-qt5
+$ qmake6
 $ make
 # make install
 $ cd ../repoeditor
-$ qmake-qt5
+$ qmake6
 $ make
 # make install
 $ cd ..
-$ qmake-qt5
+$ qmake6
 $ make
 # make install
 ```

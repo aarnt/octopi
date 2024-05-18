@@ -13,10 +13,6 @@ md5sums=('SKIP')
 
 prepare() {
    cd "${pkgname}"
-   
-   # enable the kstatus switch, disable if you wish to build without Plasma/knotifications support
-   #sed -e "s|DEFINES += OCTOPI_EXTENSIONS ALPM_BACKEND #KSTATUS|DEFINES += OCTOPI_EXTENSIONS ALPM_BACKEND KSTATUS|" -i notifier/octopi-notifier.pro
-      
    cp resources/images/octopi_green.png resources/images/octopi.png
 }
          
