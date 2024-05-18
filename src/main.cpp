@@ -44,7 +44,7 @@ int main(int argc, char *argv[])
 
   if (!QFile::exists(ctn_OCTOPISUDO))
   {
-    qDebug() << "Aborting octopi as 'octopi-sudo' binary could not be found! [" << ctn_OCTOPISUDO << "]";
+    qDebug() << "Aborting octopi as 'qt-sudo' binary could not be found! [" << ctn_OCTOPISUDO << "]";
     return (-3);
   }
 
