@@ -661,7 +661,7 @@ Jakiekolwiek użycie dostarczonych plików odbywa się na własne ryzyko.</trans
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="41"/>
         <source>force a system upgrade at startup, withou asking for confirmation.</source>
-        <translation type="unfinished"/>
+        <translation>wymuś aktualizację systemu przy uruchomieniu, bez pytania o potwierdzenie.</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="49"/>
@@ -733,7 +733,7 @@ Być może trzeba będzie zsynchronizować bazę danych!</translation>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="180"/>
         <source>Showing cached news.</source>
-        <translation type="unfinished"/>
+        <translation>Wyświetlanie wiadomości zapisanych w pamięci podręcznej.</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="184"/>
@@ -813,7 +813,7 @@ Być może trzeba będzie zsynchronizować bazę danych!</translation>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="252"/>
         <source>Maintainer</source>
-        <translation type="unfinished"/>
+        <translation>Opiekun</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="256"/>
@@ -908,7 +908,7 @@ Być może trzeba będzie zsynchronizować bazę danych!</translation>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="333"/>
         <source>Show PKGBUILD diff</source>
-        <translation type="unfinished"/>
+        <translation>Pokaż różnicę PKGBUILD</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="338"/>
@@ -918,7 +918,7 @@ Być może trzeba będzie zsynchronizować bazę danych!</translation>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="343"/>
         <source>There is only one version available of &quot;%1&quot;</source>
-        <translation type="unfinished"/>
+        <translation>Dostępna jest tylko jedna wersja „%1”</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="347"/>
@@ -1153,7 +1153,7 @@ Być może trzeba będzie zsynchronizować bazę danych!</translation>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="572"/>
         <source>SysInfo file generated on: %1&lt;br&gt;If you wish, post the output in your distro&apos;s forum for help.</source>
-        <translation type="unfinished"/>
+        <translation>Plik SysInfo wygenerowany w: %1&lt;br&gt; Jeśli chcesz, opublikuj wyniki na forum swojej dystrybucji, aby uzyskać pomoc.</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="576"/>
@@ -1303,7 +1303,7 @@ Być może trzeba będzie zsynchronizować bazę danych!</translation>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="697"/>
         <source>You&apos;ll need to install &quot;octopi-sudo&quot; in order to use Octopi.</source>
-        <translation type="unfinished"/>
+        <translation>Aby móc korzystać z Octopi, musisz zainstalować „octopi-sudo”.</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="702"/>
@@ -1363,17 +1363,17 @@ You only need to accept and wait a few seconds.</source>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="755"/>
         <source>You must use &quot;/usr/bin/octopi&quot; to run Octopi</source>
-        <translation type="unfinished"/>
+        <translation>Aby uruchomić Octopi, musisz użyć „/usr/bin/octopi”.</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="759"/>
         <source>You must use &quot;/usr/bin/octopi-notifier&quot; to run Octopi Notifier</source>
-        <translation type="unfinished"/>
+        <translation>Aby uruchomić Octopi Notifier, musisz użyć „/usr/bin/octopi-notifier”.</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="763"/>
         <source>You must use &quot;/usr/bin/octopi-cachecleaner&quot; to run Octopi Cache Cleaner</source>
-        <translation type="unfinished"/>
+        <translation>Aby uruchomić Octopi Cache Cleaner, musisz użyć „/usr/bin/octopi-cachecleaner”</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="767"/>
@@ -1546,7 +1546,7 @@ Are you sure you want to open it?</source>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="906"/>
         <source>%1 could not be found in the system!</source>
-        <translation type="unfinished"/>
+        <translation>Nie można znaleźć %1 w systemie!</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="911"/>
