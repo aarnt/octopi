@@ -17,10 +17,10 @@ prepare() {
    cp resources/images/octopi_green.png resources/images/octopi.png
 }
 
-#pkgver() {
-#   cd "${_pkgname}"
-#   git describe --long --tags --abbrev=7 | sed 's/\([^-]*-g\)/r\1/;s/-/./g;s/^v//'
-#}
+pkgver() {
+   cd "${_pkgname}"
+   git describe --long --tags --abbrev=7 | sed 's/\([^-]*-g\)/r\1/;s/-/./g;s/^v//'
+}
 
 build() {
    cd "${_pkgname}"
