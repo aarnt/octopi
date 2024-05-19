@@ -1838,6 +1838,7 @@ void MainWindow::refreshTabFiles(bool clearContents, bool neverQuit)
     tvPkgFileList->setModel(modelPkgFileList);
     tvPkgFileList->header()->setDefaultAlignment( Qt::AlignCenter );
     modelPkgFileList->setHorizontalHeaderLabels( QStringList() << StrConstants::getContentsOf().arg(pkgName));
+    if (counter > 0) tvPkgFileList->expandAll();
   }
 
   m_cachedPackageInFiles = package->repository+QLatin1Char('#')+package->name+QLatin1Char('#')+package->version;

@@ -1,11 +1,13 @@
-0.16 (dev)
+0.16.0 (2024-05-19)
   BugFix: '--noeditmenu' is deprecated. Use '--editmenu=false' instead (thanks to rbaruccojr).
   BugFix: Fixed silent error when pacman's database is locked (thanks to  SloppyPuppy).
+  BugFix: Files tab expand all items by default.
+  BugFix: Updated translations.
   Now using the unified qt-sudo project (https://github.com/aarnt/qt-sudo) for privilege escalation.
   Default to Qt6 lib build (including qtermwidget6)
  
 0.15.0 (2023-09-10)
-  BugFix: Invalidate Info/File tabs when user is navigating packages using the keyboard.
+  BugFix: Invalidate Info/Files tabs when user is navigating packages using the keyboard.
   BugFix: Better handle dependencies while staging packages for deletion.
   BugFix: First yay-bin download now works again.
   BugFix: Polished navigation on Info tab dependencies

@@ -1342,12 +1342,12 @@ You only need to accept and wait a few seconds.</source>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="737"/>
         <source>AUR username is not set.</source>
-        <translation type="unfinished"/>
+        <translation>Používateľské meno repozitára AUR nie je nastavené.</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="742"/>
         <source>AUR password is not set.</source>
-        <translation type="unfinished"/>
+        <translation>Heslo repozitára AUR nie je nastavené.</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="747"/>

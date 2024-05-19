@@ -377,7 +377,7 @@
     <message>
         <location filename="../Projects/octopi/src/mainwindow_help.cpp" line="146"/>
         <source>Ctrl+G or &apos;File/Get latest distro news&apos; to retrieve the latest RSS based distro news</source>
-        <translation>Ctrl+G tai &apos;Tiedosto/Hae viimeisimmät jakelu-uutiset&apos; hakeaksesi viimeisimmät RSS-pohjaiset jakelu-uutiset</translation>
+        <translation>Ctrl+G tai &quot;Tiedosto/Hae viimeisimmät jakelu-uutiset&quot; noutaa uusimmat RSS-pohjaiset uutiset</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/mainwindow_help.cpp" line="148"/>
@@ -491,37 +491,37 @@
         <location filename="../Projects/octopi/ui/optionsdialog.ui" line="95"/>
         <location filename="../Projects/octopi/src/optionsdialog.cpp" line="181"/>
         <source>Package List</source>
-        <translation type="unfinished"/>
+        <translation>Pakettilista</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/ui/optionsdialog.ui" line="107"/>
         <source>Use alternating row colors</source>
-        <translation type="unfinished"/>
+        <translation>Käytä vuorotellen rivin värejä</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/ui/optionsdialog.ui" line="120"/>
         <source>Show &quot;Licenses&quot; column</source>
-        <translation type="unfinished"/>
+        <translation>Näytä &quot;Lisenssit&quot; sarake</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/ui/optionsdialog.ui" line="133"/>
         <source>Show &quot;Installed Size&quot; column</source>
-        <translation type="unfinished"/>
+        <translation>Näytä &quot;Asennuksen koko&quot; sarake</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/ui/optionsdialog.ui" line="146"/>
         <source>Show &quot;Build Date&quot; column</source>
-        <translation type="unfinished"/>
+        <translation>Näytä &quot;Koontipäivämäärä&quot; sarake</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/ui/optionsdialog.ui" line="159"/>
         <source>Show &quot;Install Date&quot; column</source>
-        <translation type="unfinished"/>
+        <translation>Näytä &quot;Asennuspäivä&quot; sarake</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/ui/optionsdialog.ui" line="172"/>
         <source>Show &quot;Install Reason&quot; column</source>
-        <translation type="unfinished"/>
+        <translation>Näytä &quot;Asennuksen syy&quot; sarake</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/ui/optionsdialog.ui" line="209"/>
@@ -568,7 +568,7 @@ Tarjolla olevien tiedostojen käyttö omalla vastuulla!</translation>
     <message>
         <location filename="../Projects/octopi/ui/optionsdialog.ui" line="483"/>
         <source>Build directory</source>
-        <translation type="unfinished"/>
+        <translation>Koontihakemisto</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/ui/optionsdialog.ui" line="518"/>
@@ -661,7 +661,7 @@ Tarjolla olevien tiedostojen käyttö omalla vastuulla!</translation>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="41"/>
         <source>force a system upgrade at startup, withou asking for confirmation.</source>
-        <translation type="unfinished"/>
+        <translation>pakottaa päivitykset käynnistyksen yhteydessä pyytämättä vahvistusta.</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="49"/>
@@ -678,42 +678,42 @@ Sinun täytyy mahdollisesti synkronoida tietokanta!</translation>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="135"/>
         <source>Arch Linux news</source>
-        <translation>Arch Linux -uutiset</translation>
+        <translation>Arch Linux uutiset</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="139"/>
         <source>Artix Linux news</source>
-        <translation type="unfinished"/>
+        <translation>Artix Linux uutiset</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="143"/>
         <source>Chakra news</source>
-        <translation>Chakra -uutiset</translation>
+        <translation>Chakra uutiset</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="147"/>
         <source>Condres OS news</source>
-        <translation>Condres OS -uutiset</translation>
+        <translation>Condres OS uutiset</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="151"/>
         <source>EndeavourOS news</source>
-        <translation>EndeavourOS -uutiset</translation>
+        <translation>EndeavourOS uutiset</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="155"/>
         <source>KaOS news</source>
-        <translation>KaOS -uutiset</translation>
+        <translation>KaOS uutiset</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="159"/>
         <source>Manjaro Linux news</source>
-        <translation>Manjaro Linux -uutiset</translation>
+        <translation>Manjaro Linux uutiset</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="163"/>
         <source>Parabola GNU/Linux-libre news</source>
-        <translation>Parabola GNU/Linux-libre -uutiset</translation>
+        <translation>Parabola GNU/Linux-libre uutiset</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="167"/>
@@ -733,7 +733,7 @@ Sinun täytyy mahdollisesti synkronoida tietokanta!</translation>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="180"/>
         <source>Showing cached news.</source>
-        <translation type="unfinished"/>
+        <translation>Näytetään välimuistissa olevat uutiset.</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="184"/>
@@ -813,17 +813,17 @@ Sinun täytyy mahdollisesti synkronoida tietokanta!</translation>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="252"/>
         <source>Maintainer</source>
-        <translation type="unfinished"/>
+        <translation>Ylläpitäjä</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="256"/>
         <source>Last Modified</source>
-        <translation type="unfinished"/>
+        <translation>Muokattu viimeksi</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="260"/>
         <source>Out-of-date</source>
-        <translation type="unfinished"/>
+        <translation>Vanhentunut</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="264"/>
@@ -848,7 +848,7 @@ Sinun täytyy mahdollisesti synkronoida tietokanta!</translation>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="280"/>
         <source>Make Deps</source>
-        <translation type="unfinished"/>
+        <translation>Tee riippuvuudet</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="284"/>
@@ -903,22 +903,22 @@ Sinun täytyy mahdollisesti synkronoida tietokanta!</translation>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="328"/>
         <source>Open PKGBUILD</source>
-        <translation type="unfinished"/>
+        <translation>Avaa PKGBUILD</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="333"/>
         <source>Show PKGBUILD diff</source>
-        <translation type="unfinished"/>
+        <translation>Näytä PKGBUILD diff</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="338"/>
         <source>Open news in a browser</source>
-        <translation type="unfinished"/>
+        <translation>Avaa uutiset selaimessa</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="343"/>
         <source>There is only one version available of &quot;%1&quot;</source>
-        <translation type="unfinished"/>
+        <translation>Saatavilla on vain yksi versio &quot;%1&quot;</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="347"/>
@@ -938,12 +938,12 @@ Sinun täytyy mahdollisesti synkronoida tietokanta!</translation>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="359"/>
         <source>Explicitly</source>
-        <translation type="unfinished"/>
+        <translation>Selkeästi</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="363"/>
         <source>As dependency</source>
-        <translation type="unfinished"/>
+        <translation>Riippuvuutena</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="367"/>
@@ -973,7 +973,7 @@ Sinun täytyy mahdollisesti synkronoida tietokanta!</translation>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="387"/>
         <source>Install Date</source>
-        <translation type="unfinished"/>
+        <translation>Asennuspäivä</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="391"/>
@@ -1068,7 +1068,7 @@ Sinun täytyy mahdollisesti synkronoida tietokanta!</translation>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="464"/>
         <source>Searching for %1 latest news...</source>
-        <translation>Etsitään uusimpia %1 -uutisia...</translation>
+        <translation>Etsitään uusimpia %1 uutisia...</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="468"/>
@@ -1078,7 +1078,7 @@ Sinun täytyy mahdollisesti synkronoida tietokanta!</translation>
     <message numerus="yes">
         <location filename="../Projects/octopi/src/strconstants.cpp" line="472"/>
         <source>There are %n outdated packages in your system:</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>Järjestelmässäsi on %n vanhentunutta pakettia:</numerusform><numerusform>Järjestelmässäsi on %n vanhentunutta pakettia:</numerusform></translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="476"/>
@@ -1088,7 +1088,7 @@ Sinun täytyy mahdollisesti synkronoida tietokanta!</translation>
     <message numerus="yes">
         <location filename="../Projects/octopi/src/strconstants.cpp" line="480"/>
         <source>%n packages</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>%n pakettia</numerusform><numerusform>%n pakettia</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="../Projects/octopi/src/strconstants.cpp" line="484"/>
@@ -1163,7 +1163,7 @@ Sinun täytyy mahdollisesti synkronoida tietokanta!</translation>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="580"/>
         <source>Changing the install reason of selected packages...</source>
-        <translation type="unfinished"/>
+        <translation>Vaihdetaan valittujen pakettien asennuksen syytä...</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="584"/>
@@ -1233,12 +1233,12 @@ Sinun täytyy mahdollisesti synkronoida tietokanta!</translation>
     <message numerus="yes">
         <location filename="../Projects/octopi/src/strconstants.cpp" line="639"/>
         <source>The following %n packages need to be retrieved</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>Seuraavat %n pakettia on haettava</numerusform><numerusform>Seuraavat %n pakettia on haettava</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="../Projects/octopi/src/strconstants.cpp" line="643"/>
         <source>The following %n packages will be removed</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>Seuraavat %n pakettia poistetaan</numerusform><numerusform>Seuraavat %n pakettia poistetaan</numerusform></translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="647"/>
@@ -1258,7 +1258,7 @@ Sinun täytyy mahdollisesti synkronoida tietokanta!</translation>
     <message numerus="yes">
         <location filename="../Projects/octopi/src/strconstants.cpp" line="659"/>
         <source>There are %n updates available!</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>%n päivitystä on saatavilla!</numerusform><numerusform>%n päivitystä on saatavilla!</numerusform></translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="663"/>
@@ -1356,7 +1356,7 @@ Sinun tarvitsee vain hyväksyä ja odottaa muutama sekunti.</translation>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="747"/>
         <source>Select the build directory for the AUR packages</source>
-        <translation type="unfinished"/>
+        <translation>Valitse AUR-pakettien koontihakemisto</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="751"/>
@@ -1366,17 +1366,17 @@ Sinun tarvitsee vain hyväksyä ja odottaa muutama sekunti.</translation>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="755"/>
         <source>You must use &quot;/usr/bin/octopi&quot; to run Octopi</source>
-        <translation type="unfinished"/>
+        <translation>Sinun on käytettävä &quot;/usr/bin/octopi&quot; suorittaaksesi Octopi</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="759"/>
         <source>You must use &quot;/usr/bin/octopi-notifier&quot; to run Octopi Notifier</source>
-        <translation type="unfinished"/>
+        <translation>Sinun on käytettävä &quot;/usr/bin/octopi-notifier&quot; suorittaaksesi Octopi Notifierin</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="763"/>
         <source>You must use &quot;/usr/bin/octopi-cachecleaner&quot; to run Octopi Cache Cleaner</source>
-        <translation type="unfinished"/>
+        <translation>Sinun on käytettävä &quot;/usr/bin/octopi-cachecleaner&quot; suorittaaksesi Octopi Cache Cleaner</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="767"/>
@@ -1430,7 +1430,7 @@ Haluatko jatkaa?
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="800"/>
         <source>This change needs application restart to take effect</source>
-        <translation type="unfinished"/>
+        <translation>Muutos edellyttää, että sovellus käynnistetään uudelleen</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="804"/>
@@ -1477,7 +1477,7 @@ Haluatko varmasti avata sen?</translation>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="839"/>
         <source>Change Install Reason</source>
-        <translation type="unfinished"/>
+        <translation>Muuta asennuksen syytä</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="844"/>

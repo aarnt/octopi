@@ -107,7 +107,7 @@
     <message>
         <location filename="../Projects/octopi/ui/mainwindow.ui" line="353"/>
         <source>&amp;Get latest distro news</source>
-        <translation>&amp;Dostat nejnovější distribuční zprávy</translation>
+        <translation>&amp;Získat nejnovější distribuční zprávy</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/ui/mainwindow.ui" line="365"/>
@@ -377,7 +377,7 @@
     <message>
         <location filename="../Projects/octopi/src/mainwindow_help.cpp" line="146"/>
         <source>Ctrl+G or &apos;File/Get latest distro news&apos; to retrieve the latest RSS based distro news</source>
-        <translation>Ctrl+G nebo &apos;Soubor/Dostat nejnovější distribuční zprávy&apos; pro získání nejnovějších distribučních zpráv založených na RSS</translation>
+        <translation>Ctrl+G nebo &apos;Soubor/Získat nejnovější distribuční zprávy&apos; pro získání nejnovějších distribučních zpráv založených na RSS</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/mainwindow_help.cpp" line="148"/>
@@ -678,7 +678,7 @@ Možná je potřeba synchronizovat databázi!</translation>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="135"/>
         <source>Arch Linux news</source>
-        <translation>Zprávy Arch Linuxu</translation>
+        <translation>Novinky v Arch Linuxu</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="139"/>
@@ -1153,7 +1153,7 @@ Možná je potřeba synchronizovat databázi!</translation>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="572"/>
         <source>SysInfo file generated on: %1&lt;br&gt;If you wish, post the output in your distro&apos;s forum for help.</source>
-        <translation>SysInfo soubor byl vytvořen ve složce: %1&lt;br&gt;Pokud potřebujete pomoc, sdílejte obsah souboru na fóru vaší distribuce.</translation>
+        <translation>SysInfo soubor byl vytvořen ve složce: %1&lt;br&gt;Pokud potřebujete pomoc, sdílejte obsah souboru ve fóru vaší distribuce.</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="576"/>
@@ -1163,7 +1163,7 @@ Možná je potřeba synchronizovat databázi!</translation>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="580"/>
         <source>Changing the install reason of selected packages...</source>
-        <translation>Měním důvod instalace pro vybrané balíčky...</translation>
+        <translation>Mění se důvod instalace pro vybrané balíčky...</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="584"/>
@@ -1208,7 +1208,7 @@ Možná je potřeba synchronizovat databázi!</translation>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="619"/>
         <source>Downloading temporary &quot;yay-bin&quot;...</source>
-        <translation>Stahuji dočasný &quot;yay-bin&quot;...</translation>
+        <translation>Stahuje se dočasný &quot;yay-bin&quot;...</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="623"/>
@@ -1366,17 +1366,17 @@ Stačí potvrdit a počkat pár sekund.</translation>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="755"/>
         <source>You must use &quot;/usr/bin/octopi&quot; to run Octopi</source>
-        <translation>Ke startu Octopi musíte použít &quot;/usr/bin/octopi&quot;</translation>
+        <translation>Ke spuštění Octopi musíte použít &quot;/usr/bin/octopi&quot;</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="759"/>
         <source>You must use &quot;/usr/bin/octopi-notifier&quot; to run Octopi Notifier</source>
-        <translation>Ke startu Octopi oznamování musíte použít &quot;/usr/bin/octopi-notifier&quot;</translation>
+        <translation>Ke spuštění oznamování Octopi musíte použít &quot;/usr/bin/octopi-notifier&quot;</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="763"/>
         <source>You must use &quot;/usr/bin/octopi-cachecleaner&quot; to run Octopi Cache Cleaner</source>
-        <translation>Ke startu Čističe vyrovnávací paměti musíte použít &quot;/usr/bin/octopi-cachecleaner&quot;</translation>
+        <translation>Ke spuštění čističe vyrovnávací paměti musíte použít &quot;/usr/bin/octopi-cachecleaner&quot;</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="767"/>
@@ -1557,7 +1557,7 @@ Opravdu jej chcete otevřít?</translation>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="906"/>
         <source>%1 could not be found in the system!</source>
-        <translation>%1 nemohl být v systému nalezen!</translation>
+        <translation>%1 se v systému nepodařilo nalézt!</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="911"/>
