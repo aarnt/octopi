@@ -1,4 +1,4 @@
-/*
+/*O
 * This file is part of Octopi, an open-source GUI for pacman.
 * Copyright (C) 2013 Alexandre Albuquerque Arnt
 *
@@ -28,7 +28,7 @@
  * Collection of Octopi constants and enums
  */
 
-const QString ctn_APPLICATION_VERSION(QStringLiteral("0.16.0"));
+const QString ctn_APPLICATION_VERSION(QStringLiteral("0.16.1 (dev)"));
 
 //MainWindow related
 enum SystemUpgradeOptions { ectn_NO_OPT, ectn_SYNC_DATABASE_OPT, ectn_NOCONFIRM_OPT };

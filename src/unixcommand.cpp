@@ -49,8 +49,8 @@ UnixCommand::UnixCommand(QObject *parent): QObject()
   m_terminal = new Terminal(parent);
 
   QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
-  env.insert(QStringLiteral("LANG"), QStringLiteral("C"));
-  env.insert(QStringLiteral("LC_MESSAGES"), QStringLiteral("C"));
+  env.insert(QStringLiteral("LANG"), QStringLiteral("C.UTF-8"));
+  env.insert(QStringLiteral("LC_MESSAGES"), QStringLiteral("C.UTF-8"));
   m_process->setProcessEnvironment(env);
 
   QObject::connect(m_process, SIGNAL( started() ), this,
@@ -89,8 +89,8 @@ UnixCommand::UnixCommand(QObject *parent): QObject()
 QString UnixCommand::runCurlCommand(QStringList& params){
   QProcess proc;
   QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
-  env.insert(QStringLiteral("LANG"), QStringLiteral("C"));
-  env.insert(QStringLiteral("LC_MESSAGES"), QStringLiteral("C"));
+  env.insert(QStringLiteral("LANG"), QStringLiteral("C.UTF-8"));
+  env.insert(QStringLiteral("LC_MESSAGES"), QStringLiteral("C.UTF-8"));
   proc.setProcessEnvironment(env);
 
   proc.start(QLatin1String("/usr/bin/curl"), params);
@@ -116,9 +116,9 @@ QByteArray UnixCommand::performQuery(const QStringList &args)
   QByteArray result("");
   QProcess pacman;
   QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
-  env.insert(QStringLiteral("LANG"), QStringLiteral("C"));
-  env.insert(QStringLiteral("LC_MESSAGES"), QStringLiteral("C"));
-  env.insert(QStringLiteral("LC_ALL"), QStringLiteral("C"));
+  env.insert(QStringLiteral("LANG"), QStringLiteral("C.UTF-8"));
+  env.insert(QStringLiteral("LC_MESSAGES"), QStringLiteral("C.UTF-8"));
+  env.insert(QStringLiteral("LC_ALL"), QStringLiteral("C.UTF-8"));
   pacman.setProcessEnvironment(env);
 
   pacman.start(QStringLiteral("pacman"), args);
@@ -138,9 +138,9 @@ QByteArray UnixCommand::performQuery(const QString &args)
   QByteArray result("");
   QProcess pacman;
   QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
-  env.insert(QStringLiteral("LANG"), QStringLiteral("C"));
-  env.insert(QStringLiteral("LC_MESSAGES"), QStringLiteral("C"));
-  env.insert(QStringLiteral("LC_ALL"), QStringLiteral("C"));
+  env.insert(QStringLiteral("LANG"), QStringLiteral("C.UTF-8"));
+  env.insert(QStringLiteral("LC_MESSAGES"), QStringLiteral("C.UTF-8"));
+  env.insert(QStringLiteral("LC_ALL"), QStringLiteral("C.UTF-8"));
   pacman.setProcessEnvironment(env);
 
   QStringList sl;
@@ -160,8 +160,8 @@ QByteArray UnixCommand::performAURCommand(const QString &args)
   QByteArray result("");
   QProcess aur;
   QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
-  env.insert(QStringLiteral("LANG"), QStringLiteral("C"));
-  env.insert(QStringLiteral("LC_MESSAGES"), QStringLiteral("C"));
+  env.insert(QStringLiteral("LANG"), QStringLiteral("C.UTF-8"));
+  env.insert(QStringLiteral("LC_MESSAGES"), QStringLiteral("C.UTF-8"));
   aur.setProcessEnvironment(env);
 
   QStringList slTool = Package::getForeignRepositoryToolNameParam().split(QLatin1Char(' '), Qt::SkipEmptyParts);
@@ -193,8 +193,8 @@ QByteArray UnixCommand::getAURInformation(const QString &pkgName)
 {
   QProcess aur;
   QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
-  env.insert(QStringLiteral("LANG"), QStringLiteral("C"));
-  env.insert(QStringLiteral("LC_MESSAGES"), QStringLiteral("C"));
+  env.insert(QStringLiteral("LANG"), QStringLiteral("C.UTF-8"));
+  env.insert(QStringLiteral("LC_MESSAGES"), QStringLiteral("C.UTF-8"));
 
   aur.setProcessEnvironment(env);
 
@@ -262,9 +262,9 @@ QByteArray UnixCommand::getAURPackageList(const QString &searchString)
   }
 
   QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
-  env.insert(QStringLiteral("LANG"), QStringLiteral("C"));
-  env.insert(QStringLiteral("LC_MESSAGES"), QStringLiteral("C"));
-  env.insert(QStringLiteral("LANGUAGE"), QStringLiteral("C"));
+  env.insert(QStringLiteral("LANG"), QStringLiteral("C.UTF-8"));
+  env.insert(QStringLiteral("LC_MESSAGES"), QStringLiteral("C.UTF-8"));
+  env.insert(QStringLiteral("LANGUAGE"), QStringLiteral("C.UTF-8"));
 
   aur.setProcessEnvironment(env);
 
@@ -487,8 +487,8 @@ QByteArray UnixCommand::getPackageContentsUsingPkgfile(const QString &pkgName)
   QByteArray result("");
   QProcess pkgfile;
   QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
-  env.insert(QStringLiteral("LANG"), QStringLiteral("C"));
-  env.insert(QStringLiteral("LC_MESSAGES"), QStringLiteral("C"));
+  env.insert(QStringLiteral("LANG"), QStringLiteral("C.UTF-8"));
+  env.insert(QStringLiteral("LC_MESSAGES"), QStringLiteral("C.UTF-8"));
   pkgfile.setProcessEnvironment(env);
 
   pkgfile.start(QLatin1String("pkgfile"), QStringList() << QStringLiteral("-l") << pkgName);
@@ -525,8 +525,8 @@ QStringList UnixCommand::getFilePathSuggestions(const QString &file)
 {
   QProcess slocate;
   QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
-  env.insert(QStringLiteral("LANG"), QStringLiteral("C"));
-  env.insert(QStringLiteral("LC_MESSAGES"), QStringLiteral("C"));
+  env.insert(QStringLiteral("LANG"), QStringLiteral("C.UTF-8"));
+  env.insert(QStringLiteral("LC_MESSAGES"), QStringLiteral("C.UTF-8"));
   slocate.setProcessEnvironment(env);
   slocate.start(QLatin1String("slocate"), QStringList() << QStringLiteral("-l") << QStringLiteral("8") << file);
   slocate.waitForFinished();
@@ -601,8 +601,8 @@ QString UnixCommand::getSystemArchitecture()
   QStringList slParam;
   QProcess proc;
   QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
-  env.insert(QStringLiteral("LANG"), QStringLiteral("C"));
-  env.insert(QStringLiteral("LC_MESSAGES"), QStringLiteral("C"));
+  env.insert(QStringLiteral("LANG"), QStringLiteral("C.UTF-8"));
+  env.insert(QStringLiteral("LC_MESSAGES"), QStringLiteral("C.UTF-8"));
   proc.setProcessEnvironment(env);
 
   slParam << QStringLiteral("-m");
@@ -812,8 +812,8 @@ QByteArray UnixCommand::execCommandAsNormalUserExt(const QString &pCommand)
   QByteArray res;
   QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
 
-  env.insert(QStringLiteral("LANG"), QStringLiteral("C"));
-  env.insert(QStringLiteral("LC_MESSAGES"), QStringLiteral("C"));
+  env.insert(QStringLiteral("LANG"), QStringLiteral("C.UTF-8"));
+  env.insert(QStringLiteral("LC_MESSAGES"), QStringLiteral("C.UTF-8"));
   p.setProcessEnvironment(env);
   QStringList sl;
   sl = pCommand.split(QLatin1Char(' '), Qt::SkipEmptyParts);
@@ -833,8 +833,8 @@ void UnixCommand::execCommand(const QString &pCommand)
 {
   QProcess p;
   QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
-  env.insert(QStringLiteral("LANG"), QStringLiteral("C"));
-  env.insert(QStringLiteral("LC_MESSAGES"), QStringLiteral("C"));
+  env.insert(QStringLiteral("LANG"), QStringLiteral("C.UTF-8"));
+  env.insert(QStringLiteral("LC_MESSAGES"), QStringLiteral("C.UTF-8"));
   p.setProcessEnvironment(env);
   QStringList sl;
   sl << getShell();
@@ -921,8 +921,8 @@ bool UnixCommand::isTextFile(QString fileName)
   init:
   QProcess *p = new QProcess();
   QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
-  env.insert(QStringLiteral("LANG"), QStringLiteral("C"));
-  env.insert(QStringLiteral("LC_MESSAGES"), QStringLiteral("C"));
+  env.insert(QStringLiteral("LANG"), QStringLiteral("C.UTF-8"));
+  env.insert(QStringLiteral("LC_MESSAGES"), QStringLiteral("C.UTF-8"));
   p->setProcessEnvironment(env);
 
   QStringList s(fileName);
@@ -986,8 +986,8 @@ void UnixCommand::executeCommand(const QString &pCommand)
   QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
   env.remove(QStringLiteral("LANG"));
   env.remove(QStringLiteral("LC_MESSAGES"));
-  env.insert(QStringLiteral("LANG"), QStringLiteral("C"));
-  env.insert(QStringLiteral("LC_MESSAGES"), QStringLiteral("C"));
+  env.insert(QStringLiteral("LANG"), QStringLiteral("C.UTF-8"));
+  env.insert(QStringLiteral("LC_MESSAGES"), QStringLiteral("C.UTF-8"));
   env.remove(QStringLiteral("COLUMNS"));
   env.insert(QStringLiteral("COLUMNS"), QStringLiteral("132"));
   m_process->setProcessEnvironment(env);
@@ -1012,8 +1012,8 @@ void UnixCommand::executeCommandWithSharedMemHelper(const QString &pCommand, QSh
   QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
   env.remove(QStringLiteral("LANG"));
   env.remove(QStringLiteral("LC_MESSAGES"));
-  env.insert(QStringLiteral("LANG"), QStringLiteral("C"));
-  env.insert(QStringLiteral("LC_MESSAGES"), QStringLiteral("C"));
+  env.insert(QStringLiteral("LANG"), QStringLiteral("C.UTF-8"));
+  env.insert(QStringLiteral("LC_MESSAGES"), QStringLiteral("C.UTF-8"));
   env.remove(QStringLiteral("COLUMNS"));
   env.insert(QStringLiteral("COLUMNS"), QStringLiteral("132"));
   m_process->setProcessEnvironment(env);
@@ -1501,8 +1501,8 @@ QProcessEnvironment UnixCommand::getProcessEnvironment()
   QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
   env.remove(QStringLiteral("LANG"));
   env.remove(QStringLiteral("LC_MESSAGES"));
-  env.insert(QStringLiteral("LANG"), QStringLiteral("C"));
-  env.insert(QStringLiteral("LC_MESSAGES"), QStringLiteral("C"));
+  env.insert(QStringLiteral("LANG"), QStringLiteral("C.UTF-8"));
+  env.insert(QStringLiteral("LC_MESSAGES"), QStringLiteral("C.UTF-8"));
   env.remove(QStringLiteral("COLUMNS"));
   env.insert(QStringLiteral("COLUMNS"), QStringLiteral("132"));
 

@@ -362,11 +362,11 @@ QString StrConstants::getInstallReason(){
 }
 
 QString StrConstants::getExplicitly(){
-  return QObject::tr("Explicitly");
+  return QStringLiteral("Explicitly");
 }
 
 QString StrConstants::getAsDependency(){
-  return QObject::tr("As a dependency");
+  return QStringLiteral("As a dependency");
 }
 
 QString StrConstants::getPackager(){

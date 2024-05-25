@@ -159,8 +159,8 @@ QProcessEnvironment OctopiHelper::getProcessEnvironment()
   QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
   env.remove(QStringLiteral("LANG"));
   env.remove(QStringLiteral("LC_MESSAGES"));
-  env.insert(QStringLiteral("LANG"), QStringLiteral("C"));
-  env.insert(QStringLiteral("LC_MESSAGES"), QStringLiteral("C"));
+  env.insert(QStringLiteral("LANG"), QStringLiteral("C.UTF-8"));
+  env.insert(QStringLiteral("LC_MESSAGES"), QStringLiteral("C.UTF-8"));
   env.remove(QStringLiteral("COLUMNS"));
   env.insert(QStringLiteral("COLUMNS"), QStringLiteral("132"));
   return env;
