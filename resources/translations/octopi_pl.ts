@@ -107,7 +107,7 @@
     <message>
         <location filename="../Projects/octopi/ui/mainwindow.ui" line="353"/>
         <source>&amp;Get latest distro news</source>
-        <translation type="unfinished"/>
+        <translation>Pobierz wiadomości o dystrybucji</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/ui/mainwindow.ui" line="365"/>
@@ -172,12 +172,12 @@
     <message>
         <location filename="../Projects/octopi/ui/mainwindow.ui" line="478"/>
         <source>By &amp;description</source>
-        <translation type="unfinished"/>
+        <translation>wg opisu</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/ui/mainwindow.ui" line="489"/>
         <source>By &amp;name</source>
-        <translation type="unfinished"/>
+        <translation>wg nazwy</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/ui/mainwindow.ui" line="501"/>
@@ -192,7 +192,7 @@
     <message>
         <location filename="../Projects/octopi/ui/mainwindow.ui" line="515"/>
         <source>Usage</source>
-        <translation>Używanie</translation>
+        <translation>Jak używać</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/ui/mainwindow.ui" line="526"/>
@@ -222,7 +222,7 @@
     <message>
         <location filename="../Projects/octopi/ui/mainwindow.ui" line="603"/>
         <source>By &amp;file</source>
-        <translation type="unfinished"/>
+        <translation>wg pliku</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/ui/mainwindow.ui" line="614"/>
@@ -237,12 +237,12 @@
     <message>
         <location filename="../Projects/octopi/src/mainwindow_help.cpp" line="68"/>
         <source>Ctrl+Shift+O to display outdated %1 packages</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+Shift+O - wyświetla przestarzałe %1 pakiety</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/mainwindow_help.cpp" line="76"/>
         <source>Ctrl+Shift+A to display AUR voted package list</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl + Shift + A - wyświetla listę pakietów przegłosowanych w AUR</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/mainwindow_help.cpp" line="81"/>
@@ -327,37 +327,37 @@
     <message>
         <location filename="../Projects/octopi/src/mainwindow_help.cpp" line="125"/>
         <source>Alt+1 to switch to &apos;Info&apos; tab</source>
-        <translation>Alt +1, aby przejść do zakładki &apos;Info&apos;</translation>
+        <translation>Alt+1 - aby przejść do zakładki &apos;Info&apos;</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/mainwindow_help.cpp" line="127"/>
         <source>Alt+2 to switch to &apos;Files&apos; tab</source>
-        <translation>Alt +2, aby przejść do zakładki &apos;Pliki&apos;</translation>
+        <translation>Alt+2 - aby przejść do zakładki &apos;Pliki&apos;</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/mainwindow_help.cpp" line="129"/>
         <source>Alt+3 to switch to &apos;Actions&apos; tab</source>
-        <translation type="unfinished"/>
+        <translation>Alt+3 - przejście do zakładki &apos;Akcje&apos;</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/mainwindow_help.cpp" line="131"/>
         <source>Alt+4 to switch to &apos;Output&apos; tab</source>
-        <translation>Alt +4 aby przejść  do zakładki &quot;Wynik&quot;</translation>
+        <translation>Alt+4 - aby przejść  do zakładki &quot;Wynik&quot;</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/mainwindow_help.cpp" line="133"/>
         <source>Alt+5 to switch to &apos;News&apos; tab</source>
-        <translation>Alt +5, aby przejść do zakładki &quot;Wiadomości&quot;</translation>
+        <translation>Alt+5 - aby przejść do zakładki &quot;Wiadomości&quot;</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/mainwindow_help.cpp" line="135"/>
         <source>Alt+6 or &apos;F1&apos; to show this help page</source>
-        <translation>Alt +6 lub &apos;F1&apos;, aby wyświetlić stronę pomocy</translation>
+        <translation>Alt+6 lub &apos;F1&apos; - aby wyświetlić stronę pomocy</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/mainwindow_help.cpp" line="137"/>
         <source>Alt+7 to switch to &apos;Terminal&apos; tab</source>
-        <translation type="unfinished"/>
+        <translation>Alt+7 - przejście do zakładki &apos;Terminal&apos;</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/mainwindow_help.cpp" line="140"/>
@@ -367,47 +367,47 @@
     <message>
         <location filename="../Projects/octopi/src/mainwindow_help.cpp" line="142"/>
         <source>Ctrl+E or &apos;Actions/Cancel&apos; to clear the selection of to be removed/installed packages</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+E lub &apos;Akcje/Anuluj&apos; - aby wyczyścić wybór pakietów do usunięcia/zainstalowania</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/mainwindow_help.cpp" line="144"/>
         <source>Ctrl+F to search for text inside tab Files, News and Usage</source>
-        <translation>Ctrl + F, aby wyszukać tekst wewnątrz zakładki Pliki, Wiadomości i Używanie</translation>
+        <translation>Ctrl+F - aby wyszukać tekst wewnątrz zakładki Pliki, Wiadomości i Używanie</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/mainwindow_help.cpp" line="146"/>
         <source>Ctrl+G or &apos;File/Get latest distro news&apos; to retrieve the latest RSS based distro news</source>
-        <translation>Ctrl+G lub &quot;Plik/Pobierz najnowsze wiadomości dystrybucji&quot; w celu pobrania najnowszych wiadomości dystrybucji w RSS</translation>
+        <translation>Ctrl+G lub &quot;Plik/Pobierz najnowsze wiadomości dystrybucji&quot; - w celu pobrania najnowszych wiadomości dystrybucji w RSS</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/mainwindow_help.cpp" line="148"/>
         <source>Ctrl+K or &apos;File/Check updates&apos; to check mirror for latest updates (checkupdates)</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+K lub &apos;Plik/Sprawdź aktualizacje&apos; - aby sprawdzić mirrory pod kątem najnowszych aktualizacji (checkupdates)</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/mainwindow_help.cpp" line="150"/>
         <source>Ctrl+L to find a package in the package list</source>
-        <translation>Ctrl+L, aby znaleźć pakiet w liście pakietów</translation>
+        <translation>Ctrl+L - aby znaleźć pakiet w liście pakietów</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/mainwindow_help.cpp" line="152"/>
         <source>Ctrl+P to go to package list</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+P - przejście na listę pakietów</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/mainwindow_help.cpp" line="154"/>
         <source>Ctrl+Q or &apos;File/Exit&apos; to exit the application</source>
-        <translation>Ctrl+Q lub &quot;Plik/Wyjście&quot;, aby zamknąć program</translation>
+        <translation>Ctrl+Q lub &quot;Plik/Wyjście&quot; - aby zamknąć program</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/mainwindow_help.cpp" line="156"/>
         <source>Ctrl+U or &apos;File/System upgrade&apos; to make a full system upgrade (pacman -Su)</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+U lub &apos;Plik/Aktualizacja systemu&apos; - pełna aktualizacja systemu (pacman -Su)</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/mainwindow_help.cpp" line="158"/>
         <source>Ctrl+Y or &apos;Actions/Apply&apos; to start installation/removal of selected packages</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+Y lub &apos;Akcje/Zastosuj&apos; - instalacja/usunięcie zaznaczonych pakietów</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/mainwindow_help.cpp" line="161"/>
@@ -417,12 +417,12 @@
     <message>
         <location filename="../Projects/octopi/src/mainwindow_help.cpp" line="165"/>
         <source>Ctrl+Shift+G to display all package groups</source>
-        <translation>Ctrl+Shift+G, aby wyświetlić wszystkie grupy pakietów</translation>
+        <translation>Ctrl+Shift+G - aby wyświetlić wszystkie grupy pakietów</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/mainwindow_help.cpp" line="170"/>
         <source>Ctrl+Shift+Y to display %1 group</source>
-        <translation>Ctrl+Shift+Y, aby wyświetlić grupę %1</translation>
+        <translation>Ctrl+Shift+Y - aby wyświetlić grupę %1</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/mainwindow_help.cpp" line="173"/>
@@ -432,27 +432,27 @@
     <message>
         <location filename="../Projects/octopi/src/mainwindow_help.cpp" line="175"/>
         <source>F1 to show this help page</source>
-        <translation>F1, aby wyświetlić stronę pomocy</translation>
+        <translation>F1 - aby wyświetlić stronę pomocy</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/mainwindow_help.cpp" line="177"/>
         <source>F4 to open a Terminal whitin the selected directory at Files tab</source>
-        <translation>F4, aby otworzyć Terminal w wybranym katalogu zakładki Pliki</translation>
+        <translation>F4 - aby otworzyć Terminal w wybranym katalogu zakładki Pliki</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/mainwindow_help.cpp" line="179"/>
         <source>F6 to open a File Manager whitin the selected directory at Files tab</source>
-        <translation>F6, aby otworzyć Menedżera plików w wybranym katalogu zakładki Pliki</translation>
+        <translation>F6 - aby otworzyć Menedżera plików w wybranym katalogu zakładki Pliki</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/mainwindow_help.cpp" line="181"/>
         <source>F10 to maximize/demaximize package list view</source>
-        <translation>F10, aby zmaksymalizować/odmaksymalizować widok listy pakietów</translation>
+        <translation>F10 - aby zmaksymalizować/odmaksymalizować widok listy pakietów</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/mainwindow_help.cpp" line="183"/>
         <source>F11 to maximize/demaximize Tab&apos;s view</source>
-        <translation>F11, aby zmaksymalizować/odmaksymalizować widok zakładek</translation>
+        <translation>F11 - aby zmaksymalizować/odmaksymalizować widok zakładek</translation>
     </message>
 </context>
 <context>
@@ -506,17 +506,17 @@
     <message>
         <location filename="../Projects/octopi/ui/optionsdialog.ui" line="133"/>
         <source>Show &quot;Installed Size&quot; column</source>
-        <translation type="unfinished"/>
+        <translation>Wyświetl kolumnę „Rozmiar po instalacji”</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/ui/optionsdialog.ui" line="146"/>
         <source>Show &quot;Build Date&quot; column</source>
-        <translation type="unfinished"/>
+        <translation>Wyświetl kolumnę „Data budowy”</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/ui/optionsdialog.ui" line="159"/>
         <source>Show &quot;Install Date&quot; column</source>
-        <translation type="unfinished"/>
+        <translation>Wyświetl kolumnę „Data instalacji”</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/ui/optionsdialog.ui" line="172"/>
@@ -753,7 +753,7 @@ Być może trzeba będzie zsynchronizować bazę danych!</translation>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="204"/>
         <source>Usage</source>
-        <translation>Używanie</translation>
+        <translation>Jak używać</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="208"/>
@@ -1078,7 +1078,7 @@ Być może trzeba będzie zsynchronizować bazę danych!</translation>
     <message numerus="yes">
         <location filename="../Projects/octopi/src/strconstants.cpp" line="472"/>
         <source>There are %n outdated packages in your system:</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>Jest %n przestarzały pakiet w systemie:</numerusform><numerusform>Są %n przestarzałe pakiet yw systemie:</numerusform><numerusform>Jest %n przestarzałych pakietów w systemie:</numerusform><numerusform>Jest %n przestarzałych pakietów w systemie:</numerusform></translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="476"/>
@@ -1088,7 +1088,7 @@ Być może trzeba będzie zsynchronizować bazę danych!</translation>
     <message numerus="yes">
         <location filename="../Projects/octopi/src/strconstants.cpp" line="480"/>
         <source>%n packages</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>%n pakiet</numerusform><numerusform>%n pakiety</numerusform><numerusform>%n pakietów</numerusform><numerusform>%n</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="../Projects/octopi/src/strconstants.cpp" line="484"/>
@@ -1198,7 +1198,7 @@ Być może trzeba będzie zsynchronizować bazę danych!</translation>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="609"/>
         <source>Temporary &quot;yay-bin&quot; could not be downloaded!</source>
-        <translation type="unfinished"/>
+        <translation>Tymczasowy &quot;yay-bin&quot; nie może zostać pobrany!</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="614"/>
@@ -1208,7 +1208,7 @@ Być może trzeba będzie zsynchronizować bazę danych!</translation>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="619"/>
         <source>Downloading temporary &quot;yay-bin&quot;...</source>
-        <translation type="unfinished"/>
+        <translation>Pobranie tymczasowy &quot;yay-bin&quot;...</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="623"/>
@@ -1233,12 +1233,12 @@ Być może trzeba będzie zsynchronizować bazę danych!</translation>
     <message numerus="yes">
         <location filename="../Projects/octopi/src/strconstants.cpp" line="639"/>
         <source>The following %n packages need to be retrieved</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>Następujący %n pakiet musi zostać odzyskany</numerusform><numerusform>Następujące %n pakiety muszą zostać odzyskane</numerusform><numerusform>Następujących %n pakietów musi zostać odzyskanych</numerusform><numerusform>Następujących %n pakietów musi zostać odzyskanych</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="../Projects/octopi/src/strconstants.cpp" line="643"/>
         <source>The following %n packages will be removed</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>Następujący %n pakiet zostanie usunięty</numerusform><numerusform>Następujące %n pakiety zostanią usunięte</numerusform><numerusform>Następujących %n pakiety zostanie usuniętych</numerusform><numerusform>Następujących %n pakiety zostanie usuniętych</numerusform></translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="647"/>
@@ -1258,7 +1258,7 @@ Być może trzeba będzie zsynchronizować bazę danych!</translation>
     <message numerus="yes">
         <location filename="../Projects/octopi/src/strconstants.cpp" line="659"/>
         <source>There are %n updates available!</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>Jest dostępnych %n aktualizacja</numerusform><numerusform>Jest dostępnych %n aktualizacje</numerusform><numerusform>Jest dostępnych %n aktualizacji</numerusform><numerusform>Jest dostępnych %n aktualizacji</numerusform></translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="663"/>
@@ -1310,7 +1310,9 @@ Być może trzeba będzie zsynchronizować bazę danych!</translation>
         <source>You'll need one of those tools to use AUR:
 
 %1, %2, %3 %4 or %5</source>
-        <translation type="unfinished"/>
+        <translation>Potrzebujesz następujących narzędzi aby móc używać AUR.
+
+%1, %2, %3 %4 or %5</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="711"/>
@@ -1328,7 +1330,8 @@ Czy chcesz go zainstalować?</translation>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="721"/>
         <source>Would you like to help this project by voting for it?
 You only need to accept and wait a few seconds.</source>
-        <translation type="unfinished"/>
+        <translation>Czy chcesz wesprzeć ten projekt oddając na niego swój głos?
+Wystarczy zaakceptować i poczekać kilka sekund.</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="727"/>
@@ -1405,7 +1408,14 @@ and &quot;head --bytes=256K /var/log/pacman.log&quot;
 
 Do you want to continue?
 </source>
-        <translation type="unfinished"/>
+        <translation>Zaraz wygenerujesz &amp;quot;octopi-sysinfo.log&amp;quot; w katalogu domowym z zawartością:
+
+&amp;quot;/etc/lsb-release&amp;quot;, &amp;quot;inxi -Fxz&amp;quot;, &amp;quot;uname -a&amp;quot;, &amp;quot;mhwd -li -d,&amp;quot;
+&amp;quot;journalctl -b -p err&amp;quot;, &amp;quot;cat /etc/pacman.conf&amp;quot;, &amp;quot;pacman -Qm&amp;quot;
+and &amp;quot;head --bytes=256K /var/log/pacman.log&amp;quot;
+
+Czy chcesz kontynuować?
+</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="792"/>
