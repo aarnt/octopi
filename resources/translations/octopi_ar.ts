@@ -14,7 +14,7 @@
     <message>
         <location filename="../Projects/octopi/ui/mainwindow.ui" line="106"/>
         <source>Actions</source>
-        <translation>الأفعال</translation>
+        <translation>الإجراءات</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/ui/mainwindow.ui" line="111"/>
@@ -24,32 +24,32 @@
     <message>
         <location filename="../Projects/octopi/ui/mainwindow.ui" line="147"/>
         <source>&amp;Help</source>
-        <translation>المساعدة</translation>
+        <translation>المساعدة&amp;</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/ui/mainwindow.ui" line="156"/>
         <source>&amp;View</source>
-        <translation>عرض</translation>
+        <translation>عرض&amp;</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/ui/mainwindow.ui" line="172"/>
         <source>&amp;File</source>
-        <translation>ملفات</translation>
+        <translation>ملف&amp;</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/ui/mainwindow.ui" line="184"/>
         <source>&amp;Search</source>
-        <translation>البحث</translation>
+        <translation>البحث&amp;</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/ui/mainwindow.ui" line="194"/>
         <source>T&amp;ools</source>
-        <translation>الأدوات</translation>
+        <translation>الأ&amp;دوات</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/ui/mainwindow.ui" line="224"/>
         <source>&amp;About</source>
-        <translation>حول</translation>
+        <translation>عن&amp;</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/ui/mainwindow.ui" line="227"/>
@@ -107,7 +107,7 @@
     <message>
         <location filename="../Projects/octopi/ui/mainwindow.ui" line="353"/>
         <source>&amp;Get latest distro news</source>
-        <translation>أظهر آخر تطورات التوزيعة</translation>
+        <translation>&amp;أظهر آخر تطورات التوزيعة</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/ui/mainwindow.ui" line="365"/>
@@ -172,12 +172,12 @@
     <message>
         <location filename="../Projects/octopi/ui/mainwindow.ui" line="478"/>
         <source>By &amp;description</source>
-        <translation>حسب الوصف</translation>
+        <translation>حسب &amp;الوصف</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/ui/mainwindow.ui" line="489"/>
         <source>By &amp;name</source>
-        <translation>حسب الاسم</translation>
+        <translation>حسب &amp;الاسم</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/ui/mainwindow.ui" line="501"/>
@@ -197,7 +197,7 @@
     <message>
         <location filename="../Projects/octopi/ui/mainwindow.ui" line="526"/>
         <source>&amp;Install local package...</source>
-        <translation>تثبيت حزمة محلية</translation>
+        <translation>&amp;تثبيت حزمة محلية</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/ui/mainwindow.ui" line="543"/>
@@ -222,27 +222,27 @@
     <message>
         <location filename="../Projects/octopi/ui/mainwindow.ui" line="603"/>
         <source>By &amp;file</source>
-        <translation type="unfinished"/>
+        <translation>بواسطة &amp;ملف</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/ui/mainwindow.ui" line="614"/>
         <source>Use Instant Search</source>
-        <translation type="unfinished"/>
+        <translation>استخدم البحث الفوري</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/ui/mainwindow.ui" line="622"/>
         <source>Donate!</source>
-        <translation type="unfinished"/>
+        <translation>تبرّع!</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/mainwindow_help.cpp" line="68"/>
         <source>Ctrl+Shift+O to display outdated %1 packages</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+Shift+O لعرض حزم %1 القديمة</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/mainwindow_help.cpp" line="76"/>
         <source>Ctrl+Shift+A to display AUR voted package list</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+Shift+A لعرض قائمة الحزم التي صُوِّتَ لها بواسطة AUR</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/mainwindow_help.cpp" line="81"/>
@@ -252,7 +252,7 @@
     <message>
         <location filename="../Projects/octopi/src/mainwindow_help.cpp" line="84"/>
         <source>A Qt-based Pacman frontend,</source>
-        <translation>واجهة رسومية Qt-based لبرنامج Pacman</translation>
+        <translation>واجهة رسومية مبنية على كيوت لبرنامج Pacman</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/mainwindow_help.cpp" line="85"/>
@@ -337,7 +337,7 @@
     <message>
         <location filename="../Projects/octopi/src/mainwindow_help.cpp" line="129"/>
         <source>Alt+3 to switch to &apos;Actions&apos; tab</source>
-        <translation type="unfinished"/>
+        <translation>Alt+3 للتبديل إلى علامة التبويب &quot;الإجراءات&quot;</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/mainwindow_help.cpp" line="131"/>
@@ -357,7 +357,7 @@
     <message>
         <location filename="../Projects/octopi/src/mainwindow_help.cpp" line="137"/>
         <source>Alt+7 to switch to &apos;Terminal&apos; tab</source>
-        <translation type="unfinished"/>
+        <translation>Alt+7 للتبديل إلى علامة التبويب &quot;الطرفية&quot;</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/mainwindow_help.cpp" line="140"/>
@@ -367,7 +367,7 @@
     <message>
         <location filename="../Projects/octopi/src/mainwindow_help.cpp" line="142"/>
         <source>Ctrl+E or &apos;Actions/Cancel&apos; to clear the selection of to be removed/installed packages</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+E أو &quot;الإجراءات/إلغاء&quot; لمسح تحديد الحزم المراد إزالتها/تثبيتها</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/mainwindow_help.cpp" line="144"/>
@@ -382,7 +382,7 @@
     <message>
         <location filename="../Projects/octopi/src/mainwindow_help.cpp" line="148"/>
         <source>Ctrl+K or &apos;File/Check updates&apos; to check mirror for latest updates (checkupdates)</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+K أو &quot;ملف/التحقق من التحديثات&quot; للتحقق من المرآة للحصول على آخر التحديثات (فحص التحديثات)</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/mainwindow_help.cpp" line="150"/>
@@ -392,7 +392,7 @@
     <message>
         <location filename="../Projects/octopi/src/mainwindow_help.cpp" line="152"/>
         <source>Ctrl+P to go to package list</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+P للانتقال إلى قائمة الحزم</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/mainwindow_help.cpp" line="154"/>
@@ -402,12 +402,12 @@
     <message>
         <location filename="../Projects/octopi/src/mainwindow_help.cpp" line="156"/>
         <source>Ctrl+U or &apos;File/System upgrade&apos; to make a full system upgrade (pacman -Su)</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+U أو &quot;الملف/ترقية النظام&quot; لإجراء ترقية كاملة للنظام (pacman -Su)</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/mainwindow_help.cpp" line="158"/>
         <source>Ctrl+Y or &apos;Actions/Apply&apos; to start installation/removal of selected packages</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+Y أو &quot;إجراءات/تطبيق&quot; لبدء تثبيت/إزالة الحزم المحددة</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/mainwindow_help.cpp" line="161"/>
@@ -452,7 +452,7 @@
     <message>
         <location filename="../Projects/octopi/src/mainwindow_help.cpp" line="183"/>
         <source>F11 to maximize/demaximize Tab&apos;s view</source>
-        <translation type="unfinished"/>
+        <translation>F11 لتكبير/تصغير عرض علامة التبويب</translation>
     </message>
 </context>
 <context>
@@ -460,163 +460,164 @@
     <message>
         <location filename="../Projects/octopi/ui/optionsdialog.ui" line="23"/>
         <source>Options</source>
-        <translation type="unfinished"/>
+        <translation>خيارات</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/ui/optionsdialog.ui" line="38"/>
         <source>General</source>
-        <translation type="unfinished"/>
+        <translation>عامّ</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/ui/optionsdialog.ui" line="50"/>
         <source>Show package numbers in output tab</source>
-        <translation type="unfinished"/>
+        <translation>أظهر أرقام الحزمة في خرج علامة التبويب</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/ui/optionsdialog.ui" line="63"/>
         <source>Show stop transaction button at statusbar</source>
-        <translation type="unfinished"/>
+        <translation>أظهر زر إيقاف المعاملة في شريط الحالة</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/ui/optionsdialog.ui" line="76"/>
         <source>Enable confirmation dialog in system upgrade</source>
-        <translation type="unfinished"/>
+        <translation>مكّن مربع حوار التأكيد في ترقية النظام</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/ui/optionsdialog.ui" line="89"/>
         <source>Enable internet checking</source>
-        <translation type="unfinished"/>
+        <translation>مكّن فحص الإنترنت</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/ui/optionsdialog.ui" line="95"/>
         <location filename="../Projects/octopi/src/optionsdialog.cpp" line="181"/>
         <source>Package List</source>
-        <translation type="unfinished"/>
+        <translation>قائمة الحزمة</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/ui/optionsdialog.ui" line="107"/>
         <source>Use alternating row colors</source>
-        <translation type="unfinished"/>
+        <translation>استخدم ألوان الصف بالتناوب</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/ui/optionsdialog.ui" line="120"/>
         <source>Show &quot;Licenses&quot; column</source>
-        <translation type="unfinished"/>
+        <translation>أظهر عمود &quot;التراخيص&quot;</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/ui/optionsdialog.ui" line="133"/>
         <source>Show &quot;Installed Size&quot; column</source>
-        <translation type="unfinished"/>
+        <translation>أظهر عمود &quot;الحجم المثبت&quot;</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/ui/optionsdialog.ui" line="146"/>
         <source>Show &quot;Build Date&quot; column</source>
-        <translation type="unfinished"/>
+        <translation>أظهر عمود &quot;تاريخ البناء&quot;</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/ui/optionsdialog.ui" line="159"/>
         <source>Show &quot;Install Date&quot; column</source>
-        <translation type="unfinished"/>
+        <translation>أظهر عمود &quot;تاريخ التثبيت&quot;</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/ui/optionsdialog.ui" line="172"/>
         <source>Show &quot;Install Reason&quot; column</source>
-        <translation type="unfinished"/>
+        <translation>أظهر عمود &quot;سبب التثبيت&quot;</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/ui/optionsdialog.ui" line="209"/>
         <source>Select the AUR tool Octopi should use</source>
-        <translation type="unfinished"/>
+        <translation>حدد أداة AUR التي يجب أن يستخدمها Octopi</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/ui/optionsdialog.ui" line="293"/>
         <source>Search for outdated AUR packages</source>
-        <translation type="unfinished"/>
+        <translation>ابحث عن حزم AUR القديمة</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/ui/optionsdialog.ui" line="348"/>
         <source>User name</source>
-        <translation type="unfinished"/>
+        <translation>اسم المستخدم</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/ui/optionsdialog.ui" line="361"/>
         <source>Password</source>
-        <translation type="unfinished"/>
+        <translation>كلمة السر</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/ui/optionsdialog.ui" line="374"/>
         <source>Register</source>
-        <translation type="unfinished"/>
+        <translation>سجّل</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/ui/optionsdialog.ui" line="387"/>
         <source>Connect</source>
-        <translation type="unfinished"/>
+        <translation>اتّصل</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/ui/optionsdialog.ui" line="401"/>
         <source>Enable AUR voting</source>
-        <translation type="unfinished"/>
+        <translation>مكّن تصويت AUR</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/ui/optionsdialog.ui" line="422"/>
         <source>AUR packages are user produced content. 
 Any use of the provided files is at your own risk.</source>
-        <translation type="unfinished"/>
+        <translation>حزم AUR هي محتوى من إنتاج المستخدم. 
+أي استخدام للملفات المقدمة هو على مسؤوليتك الخاصة.</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/ui/optionsdialog.ui" line="483"/>
         <source>Build directory</source>
-        <translation type="unfinished"/>
+        <translation>دليل البناء</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/ui/optionsdialog.ui" line="518"/>
         <location filename="../Projects/octopi/src/optionsdialog.cpp" line="168"/>
         <location filename="../Projects/octopi/src/optionsdialog.cpp" line="180"/>
         <source>Backend</source>
-        <translation type="unfinished"/>
+        <translation>الخلفية</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/ui/optionsdialog.ui" line="584"/>
         <source>Select the backend Octopi should use</source>
-        <translation type="unfinished"/>
+        <translation>حدد الواجهة الخلفية التي يجب أن يستخدمها Octopi</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/ui/optionsdialog.ui" line="608"/>
         <location filename="../Projects/octopi/src/optionsdialog.cpp" line="649"/>
         <source>Icon</source>
-        <translation type="unfinished"/>
+        <translation>أيقونة</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/ui/optionsdialog.ui" line="671"/>
         <source>Red icon</source>
-        <translation type="unfinished"/>
+        <translation>أيقونة حمراء</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/ui/optionsdialog.ui" line="749"/>
         <source>Yellow icon</source>
-        <translation type="unfinished"/>
+        <translation>أيقونة صفراء</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/ui/optionsdialog.ui" line="812"/>
         <source>Green icon</source>
-        <translation type="unfinished"/>
+        <translation>أيقونة خضراء</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/ui/optionsdialog.ui" line="875"/>
         <source>Busy icon</source>
-        <translation type="unfinished"/>
+        <translation>أيقونة المشغول</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/ui/optionsdialog.ui" line="928"/>
         <source>Use default notification icons</source>
-        <translation type="unfinished"/>
+        <translation>استخدم أيقونات الإشعارات الافتراضية</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/ui/optionsdialog.ui" line="939"/>
         <location filename="../Projects/octopi/src/optionsdialog.cpp" line="176"/>
         <source>Updates</source>
-        <translation type="unfinished"/>
+        <translation>التحديثات</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/optionsdialog.cpp" line="99"/>
@@ -624,7 +625,7 @@ Any use of the provided files is at your own risk.</source>
         <location filename="../Projects/octopi/src/optionsdialog.cpp" line="131"/>
         <location filename="../Projects/octopi/src/optionsdialog.cpp" line="147"/>
         <source>Open Image</source>
-        <translation type="unfinished"/>
+        <translation>افتح صورة</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/optionsdialog.cpp" line="99"/>
@@ -632,17 +633,17 @@ Any use of the provided files is at your own risk.</source>
         <location filename="../Projects/octopi/src/optionsdialog.cpp" line="131"/>
         <location filename="../Projects/octopi/src/optionsdialog.cpp" line="147"/>
         <source>Image Files</source>
-        <translation type="unfinished"/>
+        <translation>ملفات الصور</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/optionsdialog.cpp" line="188"/>
         <source>Ok</source>
-        <translation type="unfinished"/>
+        <translation>نعم</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/optionsdialog.cpp" line="189"/>
         <source>Cancel</source>
-        <translation type="unfinished"/>
+        <translation>ألغ</translation>
     </message>
 </context>
 <context>
@@ -660,13 +661,14 @@ Any use of the provided files is at your own risk.</source>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="41"/>
         <source>force a system upgrade at startup, withou asking for confirmation.</source>
-        <translation type="unfinished"/>
+        <translation>افرض ترقية النظام عند بدء التشغيل، دون طلب التأكيد.</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="49"/>
         <source>Pacman Database is missing!
 You may need to synchronize database!</source>
-        <translation type="unfinished"/>
+        <translation>قاعدة بيانات Pacman مفقودة!
+قد تحتاج إلى مزامنة قاعدة البيانات!</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="53"/>
@@ -681,7 +683,7 @@ You may need to synchronize database!</source>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="139"/>
         <source>Artix Linux news</source>
-        <translation type="unfinished"/>
+        <translation>أخبار أرتيكس لينكس</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="143"/>
@@ -691,12 +693,12 @@ You may need to synchronize database!</source>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="147"/>
         <source>Condres OS news</source>
-        <translation type="unfinished"/>
+        <translation>أخبار كوندريس أو إس</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="151"/>
         <source>EndeavourOS news</source>
-        <translation type="unfinished"/>
+        <translation>أخبار إنديفور أو إس</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="155"/>
@@ -716,12 +718,12 @@ You may need to synchronize database!</source>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="167"/>
         <source>Information</source>
-        <translation type="unfinished"/>
+        <translation>معلومة</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="171"/>
         <source>Error</source>
-        <translation type="unfinished"/>
+        <translation>خطأ</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="175"/>
@@ -731,7 +733,7 @@ You may need to synchronize database!</source>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="180"/>
         <source>Showing cached news.</source>
-        <translation type="unfinished"/>
+        <translation>اعرض الأخبار المخزنة مؤقتا.</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="184"/>
@@ -761,12 +763,12 @@ You may need to synchronize database!</source>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="212"/>
         <source>Help</source>
-        <translation type="unfinished"/>
+        <translation>مساعدة</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="216"/>
         <source>&amp;Options</source>
-        <translation type="unfinished"/>
+        <translation>&amp;خيارات</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="220"/>
@@ -811,17 +813,17 @@ You may need to synchronize database!</source>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="252"/>
         <source>Maintainer</source>
-        <translation type="unfinished"/>
+        <translation>المشرف</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="256"/>
         <source>Last Modified</source>
-        <translation type="unfinished"/>
+        <translation>آخر تعديل</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="260"/>
         <source>Out-of-date</source>
-        <translation type="unfinished"/>
+        <translation>انتهت صلاحيته</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="264"/>
@@ -846,7 +848,7 @@ You may need to synchronize database!</source>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="280"/>
         <source>Make Deps</source>
-        <translation type="unfinished"/>
+        <translation>اصنع اعتماديات</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="284"/>
@@ -876,7 +878,7 @@ You may need to synchronize database!</source>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="304"/>
         <source>Votes</source>
-        <translation type="unfinished"/>
+        <translation>الأصوات</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="308"/>
@@ -886,37 +888,37 @@ You may need to synchronize database!</source>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="313"/>
         <source>Vote</source>
-        <translation type="unfinished"/>
+        <translation>صوت</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="318"/>
         <source>AUR voted package list</source>
-        <translation type="unfinished"/>
+        <translation>قائمة حزم AUR صوّت عليها</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="323"/>
         <source>Unvote</source>
-        <translation type="unfinished"/>
+        <translation>تراجع عن التصويت</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="328"/>
         <source>Open PKGBUILD</source>
-        <translation type="unfinished"/>
+        <translation>افتح ملف PKGBUILD</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="333"/>
         <source>Show PKGBUILD diff</source>
-        <translation type="unfinished"/>
+        <translation>أظهر فروق PKGBUILD</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="338"/>
         <source>Open news in a browser</source>
-        <translation type="unfinished"/>
+        <translation>افتح الأخبار في المتصفح</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="343"/>
         <source>There is only one version available of &quot;%1&quot;</source>
-        <translation type="unfinished"/>
+        <translation>يوجد إصدار واحد فقط متوفر من &quot;%1&quot;</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="347"/>
@@ -931,17 +933,17 @@ You may need to synchronize database!</source>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="355"/>
         <source>Install Reason</source>
-        <translation type="unfinished"/>
+        <translation>سبب التثبيت</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="359"/>
         <source>Explicitly</source>
-        <translation type="unfinished"/>
+        <translation>بوضوح</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="363"/>
         <source>As dependency</source>
-        <translation type="unfinished"/>
+        <translation>كتبعية</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="367"/>
@@ -971,7 +973,7 @@ You may need to synchronize database!</source>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="387"/>
         <source>Install Date</source>
-        <translation type="unfinished"/>
+        <translation>تاريخ التثبيت</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="391"/>
@@ -986,7 +988,7 @@ You may need to synchronize database!</source>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="399"/>
         <source>Partial updates are not supported!</source>
-        <translation type="unfinished"/>
+        <translation>التحديثات الجزئية غير مدعومة!</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="403"/>
@@ -1016,7 +1018,7 @@ You may need to synchronize database!</source>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="423"/>
         <source>Actions</source>
-        <translation type="unfinished"/>
+        <translation>الإجراءات</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="427"/>
@@ -1031,7 +1033,7 @@ You may need to synchronize database!</source>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="436"/>
         <source>Terminal</source>
-        <translation type="unfinished"/>
+        <translation>الطرفية</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="440"/>
@@ -1076,7 +1078,7 @@ You may need to synchronize database!</source>
     <message numerus="yes">
         <location filename="../Projects/octopi/src/strconstants.cpp" line="472"/>
         <source>There are %n outdated packages in your system:</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>لا توجد حزمة قديمة في نظامك:</numerusform><numerusform>يوجد حزمة قديمة %n في نظامك:</numerusform><numerusform>يوجد حزمتان قديمتان %n في نظامك:</numerusform><numerusform>يوجد %n حزم قديمة في نظامك:</numerusform><numerusform>يوجد %n حزمة قديمة في نظامك:</numerusform><numerusform>يوجد %n حزمة قديمة في نظامك:</numerusform></translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="476"/>
@@ -1086,7 +1088,7 @@ You may need to synchronize database!</source>
     <message numerus="yes">
         <location filename="../Projects/octopi/src/strconstants.cpp" line="480"/>
         <source>%n packages</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>لا حزمة</numerusform><numerusform>حزمة واحدة %n</numerusform><numerusform>حزمتان %n</numerusform><numerusform>%n حزم</numerusform><numerusform>%n حزمة</numerusform><numerusform>%n حزمة</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="../Projects/octopi/src/strconstants.cpp" line="484"/>
@@ -1121,22 +1123,22 @@ You may need to synchronize database!</source>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="536"/>
         <source>Check updates</source>
-        <translation type="unfinished"/>
+        <translation>تفقد التحديثات</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="541"/>
         <source>System upgrade</source>
-        <translation type="unfinished"/>
+        <translation>ترقية النظام</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="546"/>
         <source>Checking for updates...</source>
-        <translation type="unfinished"/>
+        <translation>البحث عن التحديثات...</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="551"/>
         <source>No updates available</source>
-        <translation type="unfinished"/>
+        <translation>لا تحديثات متوفرة</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="559"/>
@@ -1151,7 +1153,7 @@ You may need to synchronize database!</source>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="572"/>
         <source>SysInfo file generated on: %1&lt;br&gt;If you wish, post the output in your distro&apos;s forum for help.</source>
-        <translation type="unfinished"/>
+        <translation>أنشئ ملف SysInfo في: %1&lt;br&gt;إذا كنت ترغب في ذلك، قم بنشر الخرج في منتدى التوزيعة الخاص بك للحصول على المساعدة.</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="576"/>
@@ -1161,7 +1163,7 @@ You may need to synchronize database!</source>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="580"/>
         <source>Changing the install reason of selected packages...</source>
-        <translation type="unfinished"/>
+        <translation>غيّر سبب تثبيت الحزم المحددة...</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="584"/>
@@ -1196,17 +1198,17 @@ You may need to synchronize database!</source>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="609"/>
         <source>Temporary &quot;yay-bin&quot; could not be downloaded!</source>
-        <translation type="unfinished"/>
+        <translation>تعذر تنزيل &quot;yay-bin&quot; المؤقت!</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="614"/>
         <source>Temporary &quot;yay-bin&quot; downloaded.</source>
-        <translation type="unfinished"/>
+        <translation>أُنزِل &quot;yay-bin&quot; مؤقت.</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="619"/>
         <source>Downloading temporary &quot;yay-bin&quot;...</source>
-        <translation type="unfinished"/>
+        <translation>جارٍ تنزيل &quot;yay-bin&quot; المؤقت...</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="623"/>
@@ -1231,12 +1233,12 @@ You may need to synchronize database!</source>
     <message numerus="yes">
         <location filename="../Projects/octopi/src/strconstants.cpp" line="639"/>
         <source>The following %n packages need to be retrieved</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>لا يجب استيراد أي حزمة</numerusform><numerusform>يجب استرداد الحزمة %n التالية</numerusform><numerusform>يجب استرداد الحزمتان %n التاليتان</numerusform><numerusform>يجب استرداد الحزم %n التالية</numerusform><numerusform>يجب استرداد الحزم %n التالية</numerusform><numerusform>يجب استرداد الحزم %n التالية</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="../Projects/octopi/src/strconstants.cpp" line="643"/>
         <source>The following %n packages will be removed</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>لن تزال أي حزمة</numerusform><numerusform>ستزال الحزمة %n التالية</numerusform><numerusform>ستزال الحزمتان %n التاليتان</numerusform><numerusform>ستزال الحزم %n التالية</numerusform><numerusform>ستزال الحزم %n التالية</numerusform><numerusform>ستزال الحزم %n التالية</numerusform></translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="647"/>
@@ -1256,7 +1258,7 @@ You may need to synchronize database!</source>
     <message numerus="yes">
         <location filename="../Projects/octopi/src/strconstants.cpp" line="659"/>
         <source>There are %n updates available!</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>ليس هناك تحديثات متاحة!</numerusform><numerusform>هناك %n تحديث متاح!</numerusform><numerusform>هناك %n تحديثان متاحان!</numerusform><numerusform>هناك %n تحديثات متاحة!</numerusform><numerusform>هناك %n تحديثات متاحة!</numerusform><numerusform>هناك %n تحديثات متاحة!</numerusform></translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="663"/>
@@ -1286,7 +1288,7 @@ You may need to synchronize database!</source>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="683"/>
         <source>Do you really want to cancel actions?</source>
-        <translation type="unfinished"/>
+        <translation>هل تريد حقًا إلغاء الإجراءات؟</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="687"/>
@@ -1301,76 +1303,80 @@ You may need to synchronize database!</source>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="697"/>
         <source>You&apos;ll need to install &quot;octopi-sudo&quot; in order to use Octopi.</source>
-        <translation type="unfinished"/>
+        <translation>ستحتاج إلى تثبيت &quot;octopi-sudo&quot; لتتمكن من استخدام Octopi.</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="702"/>
         <source>You'll need one of those tools to use AUR:
 
 %1, %2, %3 %4 or %5</source>
-        <translation type="unfinished"/>
+        <translation>ستحتاج إلى إحدى هذه الأدوات لاستخدام AUR:
+
+%1، %2، %3 %4 أو %5</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="711"/>
         <source>You need a package in order to use AUR.
 Do you want to install it?</source>
-        <translation type="unfinished"/>
+        <translation>أنت بحاجة إلى حزمة من أجل استخدام AUR.
+هل تريد تثبيتها؟</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="717"/>
         <source>Connection is OK!</source>
-        <translation type="unfinished"/>
+        <translation>الاتصال على ما يرام!</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="721"/>
         <source>Would you like to help this project by voting for it?
 You only need to accept and wait a few seconds.</source>
-        <translation type="unfinished"/>
+        <translation>هل ترغب في مساعدة هذا المشروع من خلال التصويت له؟
+ما عليك سوى القبول والانتظار لبضع ثوان.</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="727"/>
         <source>Thank you for voting for Octopi!</source>
-        <translation type="unfinished"/>
+        <translation>شكرا لتصويتك لـ Octopi!</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="732"/>
         <source>Username and/or password is/are incorrect.</source>
-        <translation type="unfinished"/>
+        <translation>اسم المستخدم و/أو كلمة السر غير صحيحـ ـة</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="737"/>
         <source>AUR username is not set.</source>
-        <translation type="unfinished"/>
+        <translation>لم يُعيّن اسم مستخدم AUR.</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="742"/>
         <source>AUR password is not set.</source>
-        <translation type="unfinished"/>
+        <translation>لم تُعيّن كلمة سر AUR.</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="747"/>
         <source>Select the build directory for the AUR packages</source>
-        <translation type="unfinished"/>
+        <translation>حدد دليل البناء لحزم AUR</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="751"/>
         <source>Icon path information is not set.</source>
-        <translation type="unfinished"/>
+        <translation>لم تُعيّن معلومات مسار الأيقونة.</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="755"/>
         <source>You must use &quot;/usr/bin/octopi&quot; to run Octopi</source>
-        <translation type="unfinished"/>
+        <translation>يجب عليك استخدام &quot;/usr/bin/octopi&quot; لتشغيل Octopi</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="759"/>
         <source>You must use &quot;/usr/bin/octopi-notifier&quot; to run Octopi Notifier</source>
-        <translation type="unfinished"/>
+        <translation>يجب عليك استخدام &quot;/usr/bin/octopi-notifier&quot; لتشغيل Octopi Notifier</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="763"/>
         <source>You must use &quot;/usr/bin/octopi-cachecleaner&quot; to run Octopi Cache Cleaner</source>
-        <translation type="unfinished"/>
+        <translation>يجب عليك استخدام &quot;/usr/bin/octopi-cachecleaner&quot; لتشغيل Octopi Cache Cleaner</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="767"/>
@@ -1380,12 +1386,12 @@ You only need to accept and wait a few seconds.</source>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="771"/>
         <source>Canceling the running transaction may damage your system!</source>
-        <translation type="unfinished"/>
+        <translation>قد يؤدي إلغاء المعاملة الجارية إلى الإضرار بنظامك!</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="775"/>
         <source>There are pending actions</source>
-        <translation type="unfinished"/>
+        <translation>هناك إجراءات معلقة</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="779"/>
@@ -1402,7 +1408,14 @@ and &quot;head --bytes=256K /var/log/pacman.log&quot;
 
 Do you want to continue?
 </source>
-        <translation type="unfinished"/>
+        <translation>أنت على وشك إنشاء &quot;octopi-sysinfo.log&quot; في مسار منزلك باستخدام محتويات:
+
+&quot;/etc/lsb-release&quot;، &quot;inxi -Fxz&quot;، &quot;uname -a&quot;، &quot;mhwd -li -d،&quot;
+&quot;journalctl -b -p err&quot;، &quot;cat /etc/pacman.conf&quot;، &quot;pacman -Qm&quot;
+و &quot;head --bytes=256K /var/log/pacman.log&quot;
+
+هل تريد الاستمرار؟
+</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="792"/>
@@ -1417,7 +1430,7 @@ Do you want to continue?
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="800"/>
         <source>This change needs application restart to take effect</source>
-        <translation type="unfinished"/>
+        <translation>يحتاج هذا التغيير إلى إعادة تشغيل التطبيق ليصبح ساري المفعول</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="804"/>
@@ -1449,27 +1462,27 @@ Are you sure you want to open it?</source>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="825"/>
         <source>Remove</source>
-        <translation type="unfinished"/>
+        <translation>احذف</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="829"/>
         <source>Install</source>
-        <translation type="unfinished"/>
+        <translation>ثبّت</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="834"/>
         <source>Reinstall</source>
-        <translation type="unfinished"/>
+        <translation>أعد التثبيت</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="839"/>
         <source>Change Install Reason</source>
-        <translation type="unfinished"/>
+        <translation>غيّر سبب التثبيت</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="844"/>
         <source>Update</source>
-        <translation type="unfinished"/>
+        <translation>حدّث</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="848"/>
@@ -1504,7 +1517,7 @@ Are you sure you want to open it?</source>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="872"/>
         <source>Check for package updates interval</source>
-        <translation type="unfinished"/>
+        <translation>تحقق من الفاصل الزمني لتحديثات الحزمة</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="876"/>
@@ -1539,52 +1552,52 @@ Are you sure you want to open it?</source>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="901"/>
         <source>Stop</source>
-        <translation type="unfinished"/>
+        <translation>أوقف</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="906"/>
         <source>%1 could not be found in the system!</source>
-        <translation type="unfinished"/>
+        <translation>تعذر العثور على %1 في النظام!</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="911"/>
         <source>Zoom in</source>
-        <translation type="unfinished"/>
+        <translation>كبّر</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="916"/>
         <source>Zoom out</source>
-        <translation type="unfinished"/>
+        <translation>صغّر</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="921"/>
         <source>Maximize</source>
-        <translation type="unfinished"/>
+        <translation>تكبير</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="926"/>
         <source>Copy</source>
-        <translation type="unfinished"/>
+        <translation>انسخ</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="931"/>
         <source>Paste</source>
-        <translation type="unfinished"/>
+        <translation>ألصق</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="936"/>
         <source>Never</source>
-        <translation type="unfinished"/>
+        <translation>أبدا</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="941"/>
         <source>Upgrading...</source>
-        <translation type="unfinished"/>
+        <translation>ترقية...</translation>
     </message>
     <message>
         <location filename="../Projects/octopi/src/strconstants.cpp" line="946"/>
         <source>Exit</source>
-        <translation type="unfinished"/>
+        <translation>اخرج</translation>
     </message>
 </context>
 <context>
