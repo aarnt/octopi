@@ -1709,6 +1709,8 @@ void MainWindow::refreshTabFiles(bool clearContents, bool neverQuit)
     el.exec();
     const QStringList fileList = fwPackageContents.result();
 
+    m_time->start();
+
     QString fullPath;
     int counter = 0;
     m_progressWidget->setRange(0, fileList.count());
@@ -1838,7 +1840,10 @@ void MainWindow::refreshTabFiles(bool clearContents, bool neverQuit)
     tvPkgFileList->setModel(modelPkgFileList);
     tvPkgFileList->header()->setDefaultAlignment( Qt::AlignCenter );
     modelPkgFileList->setHorizontalHeaderLabels( QStringList() << StrConstants::getContentsOf().arg(pkgName));
-    if (counter > 0) tvPkgFileList->expandAll();
+    if (counter > 0) tvPkgFileList->expandAll();      
+
+    if(m_debugInfo)
+      std::cout << "Time for contents of " << pkgName.toLatin1().data() << " (" << counter << "): " << m_time->elapsed() << " mili seconds." << std::endl;
   }
 
   m_cachedPackageInFiles = package->repository+QLatin1Char('#')+package->name+QLatin1Char('#')+package->version;

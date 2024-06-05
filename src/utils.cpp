@@ -26,7 +26,6 @@
 #include <iostream>
 #include "utils.h"
 #include "strconstants.h"
-//#include "pacmanexec.h"
 #include "unixcommand.h"
 #include "searchbar.h"
 
@@ -48,34 +47,23 @@ QString utils::showFullPathOfItem(const QModelIndex &index)
   QString str;
   if (!index.isValid()) return str;
 
-  const QStandardItemModel *sim = qobject_cast<const QStandardItemModel*>( index.model() );
-
+  const QStandardItemModel *sim = qobject_cast<const QStandardItemModel*>(index.model());
   if (sim)
   {
-    QStringList sl;
-    QModelIndex nindex;
-    sl << sim->itemFromIndex( index )->text();
-    nindex = index;
+    QModelIndex nindex = index;
+    QStandardItem *item;
 
-    while (true){
-      nindex = sim->parent( nindex );
-
-      if (nindex != sim->invisibleRootItem()->index())
-        sl << sim->itemFromIndex( nindex )->text();
-
-      else break;
-    }
-
-    str = QDir::separator() + str;
-
-    for ( int i=sl.count()-1; i>=0; i-- ){
-      if ( i < sl.count()-1 ) str += QDir::separator();
-      str += sl[i];
+    while (nindex.isValid())
+    {
+      item = sim->itemFromIndex(nindex);
+      if (item) {
+        str = QDir::separator() + item->text() + str;
+      }
+      nindex = sim->parent(nindex);
     }
 
     QFileInfo fileInfo(str);
-    if (fileInfo.isDir())
-    {
+    if (fileInfo.isDir()) {
       str += QDir::separator();
     }
   }

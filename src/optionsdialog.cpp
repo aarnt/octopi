@@ -953,9 +953,12 @@ void OptionsDialog::onAURConnect()
     bool octopiDevVoted=false;
     bool octopiVoted=false;
     bool alpmUtilsVoted=false;
+    bool qtsudoVoted=false;
+
     if (v.isPkgVoted(QStringLiteral("octopi-dev"))==0) octopiDevVoted=true;
     if (v.isPkgVoted(QStringLiteral("octopi"))==0) octopiVoted=true;
     if (v.isPkgVoted(QStringLiteral("alpm_octopi_utils"))==0) alpmUtilsVoted=true;
+    if (v.isPkgVoted(QStringLiteral("qt-sudo"))==0) alpmUtilsVoted=true;
 
     if (octopiDevVoted && octopiVoted && alpmUtilsVoted)
     {
@@ -974,6 +977,7 @@ void OptionsDialog::onAURConnect()
         if (!octopiDevVoted) v.voteForPkg(QStringLiteral("octopi-dev"));
         if (!octopiVoted) v.voteForPkg(QStringLiteral("octopi"));
         if (!alpmUtilsVoted) v.voteForPkg(QStringLiteral("alpm_octopi_utils"));
+        if (!qtsudoVoted) v.voteForPkg(QStringLiteral("qt-sudo"));
 
         //Let's thank user for voting!
         QMessageBox::information(this, StrConstants::getInformation(), StrConstants::getThankYouForVoting());
