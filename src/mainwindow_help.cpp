@@ -62,7 +62,7 @@ QString MainWindow::generateHelpUsageHtmlText()
       "<ul><li>/usr/lib/octopi/octopi-sudo -setnopasswd</li></ul><br>";*/
 
   QString strOutdatedAur;
-  if(m_hasForeignTool && UnixCommand::getLinuxDistro() != ectn_CHAKRA /*&& !SettingsManager::getSearchOutdatedAURPackages()*/)
+  if(m_hasForeignTool && UnixCommand::getLinuxDistro() != ectn_CHAKRA)
   {
     strOutdatedAur=QLatin1String("<li>") +
         tr("Ctrl+Shift+O to display outdated %1 packages").arg(StrConstants::getForeignRepositoryName()) + QLatin1String("</li>");
@@ -166,7 +166,9 @@ QString MainWindow::generateHelpUsageHtmlText()
   QStringLiteral("</li>") +
      strOutdatedAur + QLatin1String("<li>") +
      //tr("Ctrl+Shift+R to remove Pacman's transaction lock file") +
-  //QString("</li><li>") +
+  QStringLiteral("</li><li>") +
+     tr("Ctrl+Shift+U to upgrade outdated %1 packages").arg(StrConstants::getForeignRepositoryGroupName()) +
+  QStringLiteral("</li><li>") +
      tr("Ctrl+Shift+Y to display %1 group").arg(StrConstants::getForeignRepositoryGroupName()) +
   QStringLiteral("</li></ul>") +
 

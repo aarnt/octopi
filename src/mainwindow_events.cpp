@@ -353,6 +353,10 @@ void MainWindow::keyPressEvent(QKeyEvent* ke)
       ui->twGroups->setCurrentItem(m_AllGroupsItem);
     }
   }
+  else if(ke->key() == Qt::Key_U && ke->modifiers() == (Qt::ShiftModifier|Qt::ControlModifier))
+  {
+    if (!m_toolButtonAUR->isHidden()) doAURUpgrade();
+  }
   else if(ke->key() == Qt::Key_Y && ke->modifiers() == (Qt::ShiftModifier|Qt::ControlModifier)
           && m_hasForeignTool && m_actionSwitchToForeignTool->isEnabled())
   {
