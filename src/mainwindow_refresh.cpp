@@ -1865,7 +1865,7 @@ void MainWindow::refreshTabFiles(bool clearContents, bool neverQuit)
  */
 void MainWindow::reapplyPackageFilter()
 {
-  clearTabsInfoOrFiles();
+  clearTabsInfoOrFilesExt();
 
   //We are not in a search by filenames...
   if (!isSearchByFileSelected())
