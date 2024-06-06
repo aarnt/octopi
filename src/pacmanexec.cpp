@@ -453,6 +453,11 @@ void PacmanExec::parsePacmanProcessOutput(const QString &output)
     msg.remove(QRegularExpression(QStringLiteral("Icon theme \".+")));
     msg.remove(QRegularExpression(QStringLiteral("Gtk-Message:.+")));
     msg.remove(QRegularExpression(QStringLiteral("\\[K$")));
+    msg.remove(QRegularExpression(QStringLiteral("Detected locale \"C\".+")));
+    msg.remove(QRegularExpression(QStringLiteral("Qt depends on a UTF-8 locale.+")));
+    msg.remove(QRegularExpression(QStringLiteral("libEGL.*")));
+    msg.remove(QRegularExpression(QStringLiteral("MESA: error:.*")));
+
     msg = msg.trimmed();
     msg.remove(QRegularExpression(QStringLiteral("Total")));
 
