@@ -57,7 +57,7 @@ public:
   static QString getOptions();
   static QString getName();
   static QString getVersion();
-  static QString getOutdated();
+  //static QString getOutdated();
   static QString getOutdatedVersion();
   static QString getAvailableVersion();
   static QString getNoDescriptionAvailabe();

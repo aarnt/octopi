@@ -225,10 +225,10 @@ QString StrConstants::getVersion(){
   return QObject::tr("Version");
 }
 
-QString StrConstants::getOutdated()
+/*QString StrConstants::getOutdated()
 {
   return QObject::tr("Outdated");
-}
+}*/
 
 QString StrConstants::getOutdatedVersion(){
   return QObject::tr("Outdated version");
