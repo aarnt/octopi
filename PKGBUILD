@@ -1,6 +1,6 @@
 _pkgname=octopi
 pkgname=octopi-git
-pkgver=0.16.0.latest
+pkgver=0.16.1.latest
 pkgrel=1
 pkgdesc="This is Octopi, a powerful Pacman frontend using Qt libs (git checkout)"
 url="https://tintaescura.com/projects/octopi/"
