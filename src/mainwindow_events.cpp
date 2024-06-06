@@ -355,9 +355,11 @@ void MainWindow::keyPressEvent(QKeyEvent* ke)
   }
   else if(ke->key() == Qt::Key_U && ke->modifiers() == (Qt::ShiftModifier|Qt::ControlModifier))
   {
+    if (m_commandExecuting != ectn_NONE) return;
+
     if (!m_toolButtonAUR->isHidden()) doAURUpgrade();
   }
-  else if(ke->key() == Qt::Key_Y && ke->modifiers() == (Qt::ShiftModifier|Qt::ControlModifier)
+    else if(ke->key() == Qt::Key_Y && ke->modifiers() == (Qt::ShiftModifier|Qt::ControlModifier)
           && m_hasForeignTool && m_actionSwitchToForeignTool->isEnabled())
   {
     if (m_commandExecuting != ectn_NONE) return;
