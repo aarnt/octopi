@@ -727,6 +727,7 @@ void MainWindow::metaBuildPackageList()
                    " group' list: " << m_time->elapsed() << " mili seconds." << std::endl << std::endl;
   }
 
+  if (firstTime) clearTabsInfoOrFiles();
   firstTime = false;
 }
 
@@ -875,9 +876,6 @@ void MainWindow::buildPackageList()
   }
 
   if (isAllGroupsSelected()) m_packageModel->applyFilter(m_selectedViewOption, m_selectedRepository, QLatin1String(""));
-  //if (m_leFilterPackage->text() != QLatin1String("")) reapplyPackageFilter();
-
-  //reapplyPackageFilter(); DANGER
 
   if(m_debugInfo)
     std::cout << "Time elapsed after applying filters to the treeview: " << m_time->elapsed() << " mili seconds." << std::endl;
@@ -948,8 +946,6 @@ void MainWindow::buildPackageList()
       QApplication::restoreOverrideCursor();
       doInstallLocalPackages();
     }
-
-    //reapplyPackageFilter(); //DANGER
   }// end of firstime
 
   reapplyPackageFilter();
@@ -984,8 +980,6 @@ void MainWindow::buildPackageList()
     delete m_cic;
     m_cic = nullptr;
   }
-
-  //changePackageListModel(ectn_INSTALLED_PKGS, QStringLiteral("garuda"));
 }
 
 void MainWindow::refreshOutdatedPackageList()
