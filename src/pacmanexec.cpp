@@ -238,11 +238,6 @@ void PacmanExec::parsePacmanProcessOutput(const QString &output)
   msg.remove(QStringLiteral("F "));
   msg.remove(QRegularExpression(QStringLiteral("^\\($")));
 
-  msg.remove(QRegularExpression(QStringLiteral("Detected locale \"C\".+")));
-  msg.remove(QRegularExpression(QStringLiteral("Qt depends on a UTF-8 locale.+")));
-  msg.remove(QRegularExpression(QStringLiteral("libEGL warning.+")));
-  msg.remove(QRegularExpression(QStringLiteral("MESA: error:.*")));
-
   if (storeMsgCache) msgCache+=msg;
 
   if (msg.indexOf(QLatin1String(":: Synchronizing package databases...")) != -1)
