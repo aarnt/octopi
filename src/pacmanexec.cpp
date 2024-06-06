@@ -457,6 +457,7 @@ void PacmanExec::parsePacmanProcessOutput(const QString &output)
     msg.remove(QRegularExpression(QStringLiteral("Qt depends on a UTF-8 locale.+")));
     msg.remove(QRegularExpression(QStringLiteral("libEGL warning.+")));
     msg.remove(QRegularExpression(QStringLiteral("MESA: error:.*")));
+    msg.remove(QRegularExpression(QStringLiteral("^for more information\\.")));
 
     msg = msg.trimmed();
     msg.remove(QRegularExpression(QStringLiteral("Total")));
