@@ -585,7 +585,7 @@ void PacmanExec::prepareTextToPrint(QString str, TreatString ts, TreatURLLinks t
       return;
     }
 
-  if (str.endsWith(QLatin1String("%"))) str.removeLast();
+  if (str.endsWith(QLatin1String("%"))) str.remove(QLatin1String("%"));
 
   //If the str waiting to being print has not yet been printed...
   if(m_textPrinted.contains(str) && (!str.startsWith(QLatin1String("==>")) && !str.startsWith(QLatin1String("->"))))
