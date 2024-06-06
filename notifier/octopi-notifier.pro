@@ -126,10 +126,11 @@ target.path = $$BINDIR
 sources.files = $$SOURCES $$HEADERS $$RESOURCES $$FORMS *.pro 
 sources.path = .
 
-autostart.path = $$ETCDIR/xdg/autostart
-autostart.files += octopi-notifier.desktop
+#autostart.path = $$ETCDIR/xdg/autostart
+#autostart.files += octopi-notifier.desktop
 
 desktop.path = $$DATADIR/applications
 desktop.files += octopi-notifier.desktop
 
-INSTALLS += target autostart desktop
+#INSTALLS += target autostart desktop
+INSTALLS += target desktop

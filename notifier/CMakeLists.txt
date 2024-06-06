@@ -111,4 +111,4 @@ endif()
 
 install(TARGETS octopi-notifier RUNTIME DESTINATION bin LIBRARY DESTINATION lib PUBLIC_HEADER DESTINATION include)
 install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/octopi-notifier.desktop" DESTINATION share/applications)
-install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/octopi-notifier.desktop" DESTINATION /etc/xdg/autostart)
+#install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/octopi-notifier.desktop" DESTINATION /etc/xdg/autostart)
