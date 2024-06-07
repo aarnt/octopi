@@ -4,7 +4,7 @@
   BugFix: Do not install notifier's desktop file in /etc/xdg/autostart.
   Added shortcut key "Ctrl+Shift+U" to upgrade outdated AUR packages.
   Arrow keys navegation refresh Info and Files tabs again.
-  Updated arabic and polish translations.
+  Updated translations.
   
 0.16.0 (2024-05-19)
   BugFix: '--noeditmenu' is deprecated. Use '--editmenu=false' instead (thanks to rbaruccojr).
