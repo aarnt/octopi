@@ -2122,7 +2122,7 @@ void MainWindow::toggleSystemActions(const bool value)
  */
 void MainWindow::commitTransaction()
 {
-  if (!isInternetAvailable()) return;
+  if (getInstallTransactionParentItem()->rowCount() > 0 && !isInternetAvailable()) return;
 
   if (isNotifierBusy()) return;
 

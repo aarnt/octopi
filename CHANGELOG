@@ -2,6 +2,7 @@
   BugFix: Updated some LANG environment variables to C.UTF-8.
   BugFix: Info/Files tabs were always empty if they were selected at octopi's start.
   BugFix: Do not install notifier's desktop file in /etc/xdg/autostart.
+  BugFix: Could not remove packages when internet connection was down (thanks to Theluga).
   Added shortcut key "Ctrl+Shift+U" to upgrade outdated AUR packages.
   Arrow keys navegation refresh Info and Files tabs again.
   Updated translations.
