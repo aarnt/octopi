@@ -237,7 +237,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="634"/>
         <source>Outdated</source>
-        <translation type="unfinished"/>
+        <translation>Verouderd</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="68"/>
@@ -427,7 +427,7 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="170"/>
         <source>Ctrl+Shift+U to upgrade outdated %1 packages</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+Shift+U om %1 verouderde pakketten bij te werken</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="172"/>
@@ -506,32 +506,32 @@
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="107"/>
         <source>Use alternating row colors</source>
-        <translation type="unfinished"/>
+        <translation>Afwisselende rijkleuren gebruiken</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="120"/>
         <source>Show &quot;Licenses&quot; column</source>
-        <translation type="unfinished"/>
+        <translation>Licentiekolom tonen</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="133"/>
         <source>Show &quot;Installed Size&quot; column</source>
-        <translation type="unfinished"/>
+        <translation>Installatiegroottekolom tonen</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="146"/>
         <source>Show &quot;Build Date&quot; column</source>
-        <translation type="unfinished"/>
+        <translation>Bouwdatumkolom tonen</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="159"/>
         <source>Show &quot;Install Date&quot; column</source>
-        <translation type="unfinished"/>
+        <translation>Installatiedatumkolom tonen</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="172"/>
         <source>Show &quot;Install Reason&quot; column</source>
-        <translation type="unfinished"/>
+        <translation>Installatieredenkolom tonen</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="209"/>
@@ -578,7 +578,7 @@ Elk gebruik van de aangeboden bestanden is op eigen risico.</translation>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="483"/>
         <source>Build directory</source>
-        <translation type="unfinished"/>
+        <translation>Bouwmap</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="518"/>
@@ -632,22 +632,22 @@ Elk gebruik van de aangeboden bestanden is op eigen risico.</translation>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="1198"/>
         <source>Terminal</source>
-        <translation type="unfinished"/>
+        <translation>Terminal</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="1210"/>
         <source>Color Scheme</source>
-        <translation type="unfinished"/>
+        <translation>Thema</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="1223"/>
         <source>Font Family</source>
-        <translation type="unfinished"/>
+        <translation>Lettertype</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="1256"/>
         <source>Font Size</source>
-        <translation type="unfinished"/>
+        <translation>Tekstgrootte</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/optionsdialog.cpp" line="100"/>
@@ -691,7 +691,7 @@ Elk gebruik van de aangeboden bestanden is op eigen risico.</translation>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="38"/>
         <source>force a system upgrade at startup, withou asking for confirmation.</source>
-        <translation type="unfinished"/>
+        <translation>Dwing een systeemupgrade af na het opstarten zonder om bevestiging te vragen.</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="46"/>
@@ -713,7 +713,7 @@ Synchroniseer de databank.</translation>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="136"/>
         <source>Artix Linux news</source>
-        <translation type="unfinished"/>
+        <translation>Artix Linux-nieuws</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="140"/>
@@ -743,7 +743,7 @@ Synchroniseer de databank.</translation>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="160"/>
         <source>Obarun Linux news</source>
-        <translation type="unfinished"/>
+        <translation>Obarun Linux-nieuws</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="164"/>
@@ -768,7 +768,7 @@ Synchroniseer de databank.</translation>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="181"/>
         <source>Showing cached news.</source>
-        <translation type="unfinished"/>
+        <translation>Er wordt reeds opgehaald nieuws getoond.</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="185"/>
@@ -848,12 +848,12 @@ Synchroniseer de databank.</translation>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="258"/>
         <source>Maintainer</source>
-        <translation type="unfinished"/>
+        <translation>Beheerder</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="262"/>
         <source>Last Modified</source>
-        <translation type="unfinished"/>
+        <translation>Laatst bewerkt</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="266"/>
@@ -883,7 +883,7 @@ Synchroniseer de databank.</translation>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="286"/>
         <source>Make Deps</source>
-        <translation type="unfinished"/>
+        <translation>Make-afhankelijkheden</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="290"/>
@@ -938,22 +938,22 @@ Synchroniseer de databank.</translation>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="334"/>
         <source>Open PKGBUILD</source>
-        <translation type="unfinished"/>
+        <translation>PKGBUILD openen</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="339"/>
         <source>Show PKGBUILD diff</source>
-        <translation type="unfinished"/>
+        <translation>PKGBUILD-verschillen tonen</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="344"/>
         <source>Open news in a browser</source>
-        <translation type="unfinished"/>
+        <translation>Nieuws openen in webbrowser</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="349"/>
         <source>There is only one version available of &quot;%1&quot;</source>
-        <translation type="unfinished"/>
+        <translation>Er is slechts één versie beschikbaar van ‘%1’</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="353"/>
@@ -998,7 +998,7 @@ Synchroniseer de databank.</translation>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="393"/>
         <source>Install Date</source>
-        <translation type="unfinished"/>
+        <translation>Installatiedatum</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="397"/>
@@ -1103,7 +1103,7 @@ Synchroniseer de databank.</translation>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.cpp" line="478"/>
         <source>There are %n outdated packages in your system:</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>Er is %n verouderd pakket op het systeem:</numerusform><numerusform>Er zijn %n verouderde pakketten op het systeem:</numerusform></translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="482"/>
@@ -1113,7 +1113,7 @@ Synchroniseer de databank.</translation>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.cpp" line="486"/>
         <source>%n packages</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>%n pakket</numerusform><numerusform>%n pakketten</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.cpp" line="490"/>
@@ -1188,7 +1188,7 @@ Synchroniseer de databank.</translation>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="587"/>
         <source>Changing the install reason of selected packages...</source>
-        <translation type="unfinished"/>
+        <translation>Bezig met wĳzigen van installatiereden…</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="591"/>
@@ -1258,12 +1258,12 @@ Synchroniseer de databank.</translation>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.cpp" line="646"/>
         <source>The following %n packages need to be retrieved</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>Het volgende %n pakket dient te worden opgehaald</numerusform><numerusform>De volgende %n pakketten dienen te worden opgehaald</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.cpp" line="650"/>
         <source>The following %n packages will be removed</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>Het volgende %n pakket wordt verwijderd</numerusform><numerusform>De volgende %n pakketten worden verwijderd</numerusform></translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="654"/>
@@ -1283,7 +1283,7 @@ Synchroniseer de databank.</translation>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.cpp" line="666"/>
         <source>There are %n updates available!</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>Er is %n update beschikbaar!</numerusform><numerusform>Er zijn %n updates beschikbaar!</numerusform></translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="670"/>
@@ -1328,12 +1328,12 @@ Synchroniseer de databank.</translation>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="705"/>
         <source>Pacman is running or didn&apos;t cleanly close (/var/lib/pacman/db.lck exists!)</source>
-        <translation type="unfinished"/>
+        <translation>Pacman is actief of niet goed afgesloten (/var/lib/pacman/db.lck bestaat!)</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="709"/>
         <source>You&apos;ll need to install &quot;qt-sudo&quot; in order to use Octopi.</source>
-        <translation type="unfinished"/>
+        <translation>Installeer ‘qt-sudo’ om gebruik te kunnen maken van Octopi.</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="714"/>
@@ -1386,7 +1386,7 @@ Je hoeft alleen te accepteren en enkele seconden te wachten.</translation>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="759"/>
         <source>Select the build directory for the AUR packages</source>
-        <translation type="unfinished"/>
+        <translation>Kies de bouwmap van AUR-pakketten</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="763"/>
@@ -1396,17 +1396,17 @@ Je hoeft alleen te accepteren en enkele seconden te wachten.</translation>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="767"/>
         <source>You must use &quot;/usr/bin/octopi&quot; to run Octopi</source>
-        <translation type="unfinished"/>
+        <translation>Gebruik ‘/usr/bin/octopi’ om Octopi te starten</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="771"/>
         <source>You must use &quot;/usr/bin/octopi-notifier&quot; to run Octopi Notifier</source>
-        <translation type="unfinished"/>
+        <translation>Gebruik ‘/usr/bin/octopi-notifier’ om Octopi-melder te starten</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="775"/>
         <source>You must use &quot;/usr/bin/octopi-cachecleaner&quot; to run Octopi Cache Cleaner</source>
-        <translation type="unfinished"/>
+        <translation>Gebruik ‘/usr/bin/octopi-cachecleaner’ om Octopi-cacheopschoning te starten</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="779"/>
@@ -1460,7 +1460,7 @@ Wil je doorgaan?
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="812"/>
         <source>This change needs application restart to take effect</source>
-        <translation type="unfinished"/>
+        <translation>Herstart het programma om de wijzigingen toe te passen</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="816"/>
@@ -1507,7 +1507,7 @@ Weet u zeker dat u het wilt openen?</translation>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="851"/>
         <source>Change Install Reason</source>
-        <translation type="unfinished"/>
+        <translation>Installatiereden wijzigen</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="856"/>

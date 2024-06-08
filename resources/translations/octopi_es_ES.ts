@@ -237,7 +237,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="634"/>
         <source>Outdated</source>
-        <translation type="unfinished"/>
+        <translation>Obsoleto</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="68"/>
@@ -427,7 +427,7 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="170"/>
         <source>Ctrl+Shift+U to upgrade outdated %1 packages</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+Mayús+U para modernizar %1 paquetes antiguos</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="172"/>
@@ -632,22 +632,22 @@ Cualquier uso de los archivos provistos son por su cuenta y riesgo.</translation
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="1198"/>
         <source>Terminal</source>
-        <translation type="unfinished"/>
+        <translation>Terminal</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="1210"/>
         <source>Color Scheme</source>
-        <translation type="unfinished"/>
+        <translation>Esquema del Color</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="1223"/>
         <source>Font Family</source>
-        <translation type="unfinished"/>
+        <translation>Familia tipográfica</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="1256"/>
         <source>Font Size</source>
-        <translation type="unfinished"/>
+        <translation>Tamaño tipográfico</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/optionsdialog.cpp" line="100"/>
@@ -743,7 +743,7 @@ You may need to synchronize database!</source>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="160"/>
         <source>Obarun Linux news</source>
-        <translation type="unfinished"/>
+        <translation>Noticias de Obarun Linux</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="164"/>
@@ -928,7 +928,7 @@ You may need to synchronize database!</source>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="324"/>
         <source>AUR voted package list</source>
-        <translation>Lista de paquetes de AUR votados</translation>
+        <translation>Listado de paquetes de AUR votados</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="329"/>
@@ -1103,7 +1103,7 @@ You may need to synchronize database!</source>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.cpp" line="478"/>
         <source>There are %n outdated packages in your system:</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>Hay %n paquete antiguo en su sistema:</numerusform><numerusform>Hay %n paquetes antiguos en su sistema:</numerusform><numerusform>Hay %n paquetes antiguos en su sistema:</numerusform></translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="482"/>
@@ -1113,7 +1113,7 @@ You may need to synchronize database!</source>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.cpp" line="486"/>
         <source>%n packages</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>%n paquete</numerusform><numerusform>%n paquetes</numerusform><numerusform>%n paquetes</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.cpp" line="490"/>
@@ -1153,12 +1153,12 @@ You may need to synchronize database!</source>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="548"/>
         <source>System upgrade</source>
-        <translation>Actualización del Sistema</translation>
+        <translation>Modernización del Sistema</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="553"/>
         <source>Checking for updates...</source>
-        <translation>Comprobando por actualizaciones…</translation>
+        <translation>Comprobando actualizaciones…</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="558"/>
@@ -1223,7 +1223,7 @@ You may need to synchronize database!</source>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="616"/>
         <source>Temporary &quot;yay-bin&quot; could not be downloaded!</source>
-        <translation>¡&quot;yay-bin&quot; temporario podría no ser descargado!</translation>
+        <translation>¡&quot;yay-bin&quot; temporario no pudo ser descargado!</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="621"/>
@@ -1258,12 +1258,12 @@ You may need to synchronize database!</source>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.cpp" line="646"/>
         <source>The following %n packages need to be retrieved</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>Se necesita %n paquete para ser descargado</numerusform><numerusform>Los siguientes %n paquetes se necesitan ser descargados</numerusform><numerusform>Los siguientes %n paquetes necesitan ser descargados</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.cpp" line="650"/>
         <source>The following %n packages will be removed</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>El siguiente paquete será desinstalado</numerusform><numerusform>Los siguientes %n paquetes necesitarán ser desinstalados</numerusform><numerusform>Los siguientes %n paquetes serán desinstalados</numerusform></translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="654"/>
@@ -1283,7 +1283,7 @@ You may need to synchronize database!</source>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.cpp" line="666"/>
         <source>There are %n updates available!</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>Hay %n paquete disponible.</numerusform><numerusform>Hay %n paquete disponible.</numerusform><numerusform>Hay %n paquetes disponibles.</numerusform></translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="670"/>
@@ -1328,12 +1328,12 @@ You may need to synchronize database!</source>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="705"/>
         <source>Pacman is running or didn&apos;t cleanly close (/var/lib/pacman/db.lck exists!)</source>
-        <translation type="unfinished"/>
+        <translation>Está ejecutándose pacman o no se cerró correctamente (¿existe /var/lib/pacman/db.lck?)</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="709"/>
         <source>You&apos;ll need to install &quot;qt-sudo&quot; in order to use Octopi.</source>
-        <translation type="unfinished"/>
+        <translation>Necesitará instalar &quot;qt-sudo&quot; con el fin de utilizar Octopi.</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="714"/>
