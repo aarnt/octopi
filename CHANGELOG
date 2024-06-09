@@ -1,4 +1,4 @@
-0.16.1 (dev)
+0.16.1 (2024-06-09)
   BugFix: Updated some LANG environment variables to C.UTF-8.
   BugFix: Info/Files tabs were always empty if they were selected at octopi's start.
   BugFix: Do not install notifier's desktop file in /etc/xdg/autostart.
