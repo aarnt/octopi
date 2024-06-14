@@ -1113,7 +1113,7 @@ Será necessário sincronizar a base de dados!</translation>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.cpp" line="486"/>
         <source>%n packages</source>
-        <translation><numerusform>%1 pacote</numerusform><numerusform>%1 pacotes</numerusform><numerusform>%1 pacotes</numerusform></translation>
+        <translation><numerusform>%n pacote</numerusform><numerusform>%n pacotes</numerusform><numerusform>%n pacotes</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.cpp" line="490"/>
