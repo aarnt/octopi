@@ -4,7 +4,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="96"/>
         <source>Info</source>
-        <translation>Informações</translation>
+        <translation>Informação</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="101"/>
@@ -107,7 +107,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="354"/>
         <source>&amp;Get latest distro news</source>
-        <translation>&amp;Obter as últimas notícias da distro</translation>
+        <translation>&amp;Obter as últimas notícias da distribuição</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="366"/>
@@ -132,7 +132,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="402"/>
         <source>Collapse all items</source>
-        <translation>Colapsar todos os itens</translation>
+        <translation>Recolher todos os itens</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="411"/>
@@ -207,7 +207,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="559"/>
         <source>Repository Editor</source>
-        <translation>Editor de Repositório</translation>
+        <translation>Editor de Repositórios</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="571"/>
@@ -227,7 +227,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="615"/>
         <source>Use Instant Search</source>
-        <translation>Utilizar procura rápida</translation>
+        <translation>Usar pesquisa rápida</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="623"/>
@@ -252,7 +252,7 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="81"/>
         <source>For more information, visit:</source>
-        <translation>Para mais informação, visite:</translation>
+        <translation>Para mais informações, visite:</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="84"/>
