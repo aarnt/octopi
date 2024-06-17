@@ -1,4 +1,6 @@
-0.16.2 (dev)
+0.16.2 (2024-06-17)
+  BugFix: Increased width of Terminal tab labels on optionsdialog.
+  BugFix: Removed a debug msg when octopi was not being executed with "-d".
   Updated translations.
 
 0.16.1 (2024-06-09)

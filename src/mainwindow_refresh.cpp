@@ -221,7 +221,6 @@ void MainWindow::AURToolSelected()
 
   bool lightPackageFilterConnected = false;
   static QStandardItemModel emptyModel;
-  //if (UnixCommand::getLinuxDistro() != ectn_CHAKRA) savePackageColumnWidths();
   refreshTabInfo(true);
   refreshTabFiles(true);
 
@@ -965,7 +964,9 @@ void MainWindow::buildPackageList()
 
     QModelIndex mi = ui->tvPackages->currentIndex();
     m_packageRepo.setAUROutdatedData(m_foreignPackageList, *m_outdatedAURStringList);
-    std::cout << "Time elapsed after setting AURoutdatedData: " << m_time->elapsed() << " mili seconds." << std::endl;
+
+    if(m_debugInfo)
+      std::cout << "Time elapsed after setting AURoutdatedData: " << m_time->elapsed() << " mili seconds." << std::endl;
 
     ui->tvPackages->setCurrentIndex(mi);
 
