@@ -237,7 +237,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="634"/>
         <source>Outdated</source>
-        <translation type="unfinished"/>
+        <translation>Föråldrad</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="68"/>
@@ -427,7 +427,7 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="170"/>
         <source>Ctrl+Shift+U to upgrade outdated %1 packages</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+Shift+U för att uppgradera %1 föråldrade paket</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="172"/>
@@ -632,22 +632,22 @@ Allt användande sker på egen risk.</translation>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="1198"/>
         <source>Terminal</source>
-        <translation type="unfinished"/>
+        <translation>Terminal</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="1210"/>
         <source>Color Scheme</source>
-        <translation type="unfinished"/>
+        <translation>Färgschema</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="1223"/>
         <source>Font Family</source>
-        <translation type="unfinished"/>
+        <translation>Typsnittsfamilj</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="1256"/>
         <source>Font Size</source>
-        <translation type="unfinished"/>
+        <translation>Textstorlek</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/optionsdialog.cpp" line="100"/>
@@ -743,7 +743,7 @@ Du behöver nog synkronisera databasen!</translation>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="160"/>
         <source>Obarun Linux news</source>
-        <translation type="unfinished"/>
+        <translation>Obarun Linux-nyheter</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="164"/>
@@ -1103,7 +1103,7 @@ Du behöver nog synkronisera databasen!</translation>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.cpp" line="478"/>
         <source>There are %n outdated packages in your system:</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>Det finns %n föråldrade paket i ditt system:</numerusform><numerusform>Det finns %n föråldrade paket i ditt system:</numerusform></translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="482"/>
@@ -1113,7 +1113,7 @@ Du behöver nog synkronisera databasen!</translation>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.cpp" line="486"/>
         <source>%n packages</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>%n paket</numerusform><numerusform>%n paket</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.cpp" line="490"/>
@@ -1258,12 +1258,12 @@ Du behöver nog synkronisera databasen!</translation>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.cpp" line="646"/>
         <source>The following %n packages need to be retrieved</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>Följande %n paket måste hämtas</numerusform><numerusform>Följande %n paket måste hämtas</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.cpp" line="650"/>
         <source>The following %n packages will be removed</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>Följande %n paket kommer att tas bort</numerusform><numerusform>Följande %n paket kommer att tas bort</numerusform></translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="654"/>
@@ -1283,7 +1283,7 @@ Du behöver nog synkronisera databasen!</translation>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.cpp" line="666"/>
         <source>There are %n updates available!</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>Det finns %n ny uppdatering!</numerusform><numerusform>Det finns %n nya uppdateringar!</numerusform></translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="670"/>
@@ -1328,12 +1328,12 @@ Du behöver nog synkronisera databasen!</translation>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="705"/>
         <source>Pacman is running or didn&apos;t cleanly close (/var/lib/pacman/db.lck exists!)</source>
-        <translation type="unfinished"/>
+        <translation>Pacman körs eller avslutades inte korrekt (/var/lib/pacman/db.lck existerar!)</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="709"/>
         <source>You&apos;ll need to install &quot;qt-sudo&quot; in order to use Octopi.</source>
-        <translation type="unfinished"/>
+        <translation>Du behöver installera &quot;qt-sudo&quot; för att kunna använda Octopi.</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="714"/>
