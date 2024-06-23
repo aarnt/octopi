@@ -1,4 +1,6 @@
 0.17 (dev)
+  Improvement: Show a "Collecting transaction data..." msg before presenting the transaction 
+    dialog, as it can be quite slow on some systems (thanks to Valdir).
   Updated translations.
 
 0.16.2 (2024-06-17)

@@ -603,6 +603,11 @@ QString StrConstants::getRunningCommandInTerminal(){
   return QObject::tr("Running command in terminal...");
 }
 
+QString StrConstants::getCollectingTransactionData()
+{
+  return QObject::tr("Collecting transaction data...");
+}
+
 QString StrConstants::getCommandFinishedOK(){
   return QObject::tr("Command finished OK!");
 }

@@ -147,6 +147,7 @@ public:
   static QString getRemovingAndInstallingPackages();
   static QString getChooseATerminal();
   static QString getRunningCommandInTerminal();
+  static QString getCollectingTransactionData();
   static QString getCommandFinishedOK();
   static QString getCommandFinishedWithErrors();  
   static QString getTempYayDownloaded();

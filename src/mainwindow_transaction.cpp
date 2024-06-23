@@ -1008,6 +1008,11 @@ void MainWindow::doSystemUpgrade(SystemUpgradeOptions systemUpgradeOptions)
   }
   else
   {
+    clearTabOutput();
+    writeToTabOutput(QLatin1String("<b>") + StrConstants::getCollectingTransactionData() +
+                         QLatin1String("</b><br>"), ectn_DONT_TREAT_URL_LINK);
+    qApp->processEvents();
+
     //Shows a dialog indicating the targets needed to be retrieved and asks for the user's permission.
     QList<PackageListData> * targets = new QList<PackageListData>();
     if (m_checkupdatesStringList->count() == 0 || (m_checkupdatesStringList->count() == m_outdatedStringList->count()))
@@ -1029,6 +1034,9 @@ void MainWindow::doSystemUpgrade(SystemUpgradeOptions systemUpgradeOptions)
       {
         QString msg = StrConstants::getThereHasBeenATransactionError() + QLatin1Char('\n') +
             StrConstants::getConfirmExecuteTransactionInTerminal();
+
+        writeToTabOutput(QLatin1String("<b>") + StrConstants::getCommandFinishedOK() +
+                             QLatin1String("</b><br>"), ectn_DONT_TREAT_URL_LINK);
 
         int res = QMessageBox::question(this, StrConstants::getConfirmation(),
                                         msg,
@@ -1104,6 +1112,10 @@ void MainWindow::doSystemUpgrade(SystemUpgradeOptions systemUpgradeOptions)
     question.setDetailedText(list);
 
     m_systemUpgradeDialog = true;
+
+    writeToTabOutput(QLatin1String("<b>") + StrConstants::getCommandFinishedOK() +
+                         QLatin1String("</b><br>"), ectn_DONT_TREAT_URL_LINK);
+
     int result = question.exec();
 
     if(result == QDialogButtonBox::Yes || result == QDialogButtonBox::AcceptRole)
@@ -1176,6 +1188,11 @@ void MainWindow::doRemoveAndInstallAUR()
  */
 void MainWindow::doRemoveAndInstall()
 {
+  clearTabOutput();
+  writeToTabOutput(QLatin1String("<b>") + StrConstants::getCollectingTransactionData() +
+                       QLatin1String("</b><br>"), ectn_DONT_TREAT_URL_LINK);
+  qApp->processEvents();
+
   QString listOfRemoveTargets = getTobeRemovedPackages();
   QString listOfInstallTargets;
   QString listOfInstallDeps;
@@ -1280,6 +1297,10 @@ void MainWindow::doRemoveAndInstall()
   question.setWindowTitle(StrConstants::getConfirmation());
   question.setInformativeText(StrConstants::getConfirmationQuestion());
   question.setDetailedText(allLists);
+
+  writeToTabOutput(QLatin1String("<b>") + StrConstants::getCommandFinishedOK() +
+                       QLatin1String("</b><br>"), ectn_DONT_TREAT_URL_LINK);
+
   int result = question.exec();
 
   if(result == QDialogButtonBox::Yes || result == QDialogButtonBox::AcceptRole)
@@ -1321,6 +1342,11 @@ void MainWindow::doRemoveAndInstall()
  */
 void MainWindow::doRemove()
 {
+  clearTabOutput();
+  writeToTabOutput(QLatin1String("<b>") + StrConstants::getCollectingTransactionData() +
+                       QLatin1String("</b><br>"), ectn_DONT_TREAT_URL_LINK);
+  qApp->processEvents();
+
   QString listOfTargets = getTobeRemovedPackages();
   m_targets = Package::getTargetRemovalList(listOfTargets, m_removeCommand);
   QString list;
@@ -1351,6 +1377,9 @@ void MainWindow::doRemove()
     question.setWindowTitle(StrConstants::getWarning());
   else
     question.setWindowTitle(StrConstants::getConfirmation());
+
+  writeToTabOutput(QLatin1String("<b>") + StrConstants::getCommandFinishedOK() +
+                       QLatin1String("</b><br>"), ectn_DONT_TREAT_URL_LINK);
 
   question.setInformativeText(StrConstants::getConfirmationQuestion());
   question.setDetailedText(list);
@@ -1768,6 +1797,11 @@ void MainWindow::doInstall()
   QString list;
   QStringList pkgsToInstall;
 
+  clearTabOutput();
+  writeToTabOutput(QLatin1String("<b>") + StrConstants::getCollectingTransactionData() +
+                         QLatin1String("</b><br>"), ectn_DONT_TREAT_URL_LINK);
+  qApp->processEvents();
+
   QHash<QString, bool> listToBeInst = getTobeInstalledPackages();
   listOfTargets = listToBeInst.keys().join(QStringLiteral(" "));
   QList<PackageListData> *targets = Package::getTargetUpgradeList(listOfTargets);
@@ -1797,6 +1831,9 @@ void MainWindow::doInstall()
   }
 
   list.remove(list.size()-1, 1);
+
+  writeToTabOutput(QLatin1String("<b>") + StrConstants::getCommandFinishedOK() +
+                       QLatin1String("</b><br>"), ectn_DONT_TREAT_URL_LINK);
 
   if (hasPartialUpgrade(pkgsToInstall)) return;
 
