@@ -237,7 +237,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="634"/>
         <source>Outdated</source>
-        <translation type="unfinished"/>
+        <translation>Elavult</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="68"/>
@@ -427,7 +427,7 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="170"/>
         <source>Ctrl+Shift+U to upgrade outdated %1 packages</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+Shift+U az elavult %1 csomagok frissítéséhez</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="172"/>
@@ -637,17 +637,17 @@ A használatuk csak saját felelősségre.</translation>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="1210"/>
         <source>Color Scheme</source>
-        <translation type="unfinished"/>
+        <translation>Színösszeállítás</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="1223"/>
         <source>Font Family</source>
-        <translation type="unfinished"/>
+        <translation>Színösszeállítás</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="1256"/>
         <source>Font Size</source>
-        <translation type="unfinished"/>
+        <translation>Színösszeállítás</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/optionsdialog.cpp" line="100"/>
@@ -743,7 +743,7 @@ Szinkronizálnia kell az adatbázist!</translation>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="160"/>
         <source>Obarun Linux news</source>
-        <translation type="unfinished"/>
+        <translation>Obarun Linux hírek</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="164"/>
