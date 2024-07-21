@@ -123,7 +123,7 @@ QString utils::retrieveDistroNews(bool searchForLatestNews)
     QStringList curlParams;
     QString distroRSSUrl = SettingsManager::getDistroRSSUrl();
 
-    if (distro == ectn_ARCHLINUX || distro == ectn_ARCHBANGLINUX || distro == ectn_ARCHCRAFT || distro == ectn_GARUDALINUX)
+    if (distro == ectn_ARCHLINUX || distro == ectn_ARCHBANGLINUX || distro == ectn_ARCHCRAFT || distro == ectn_GARUDALINUX || distro == ectn_ENDEAVOUROS)
     {
       curlCommand = curlCommand.arg(distroRSSUrl, tmpRssPath);
       curlParams = curlCommand.split(QLatin1Char(' '), Qt::SkipEmptyParts);
