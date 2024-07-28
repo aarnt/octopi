@@ -526,7 +526,7 @@ void PacmanExec::parsePacmanProcessOutput(const QString &output)
           }
           else if (m_commandExecuting == ectn_INSTALL || m_commandExecuting == ectn_REMOVE || m_commandExecuting == ectn_SYSTEM_UPGRADE)
           {
-            if (!altMsg.contains(QRegularExpression(QStringLiteral("\\s"))) && altMsg.contains(QStringLiteral("-")))
+            if (!altMsg.contains(QRegularExpression(QStringLiteral("\\s"))) && !altMsg.contains(QStringLiteral("--")) && altMsg.contains(QStringLiteral("-")))
             {
               prepareTextToPrint(QLatin1String("<b><font color=\"#b4ab58\">") +
                                 altMsg + QLatin1String("</font></b>")); //#C9BE62
