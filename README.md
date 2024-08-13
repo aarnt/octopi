@@ -131,7 +131,7 @@ In KaOS, [kcp](https://github.com/bvaudour/kcp) will be supported out of the box
 
  * You can "Star" it on the Github page - https://github.com/aarnt/octopi/
  * You can vote in the AUR package available on https://aur.archlinux.org/packages/octopi/
- * You can translate it to your mother language on https://www.transifex.com/projects/p/octopi/
+ * You can translate it to your mother language on https://explore.transifex.com/arnt/octopi/
  * You can follow author's twitter account on https://twitter.com/aaarnt
  * You can buy author's technical book (currently in portuguese) about Octopi and Qt5 on
 http://www.amazon.com.br/Aprendendo-Qt-com-projeto-Octopi-ebook/dp/B015ICHKV6
