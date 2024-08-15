@@ -49,7 +49,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="225"/>
         <source>&amp;About</source>
-        <translation>Octopi について(&amp;A)</translation>
+        <translation>&amp;About</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="228"/>
@@ -102,7 +102,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="345"/>
         <source>Outdated packages</source>
-        <translation>失効したパッケージ</translation>
+        <translation>未更新のパッケージ</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="354"/>
@@ -132,12 +132,12 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="402"/>
         <source>Collapse all items</source>
-        <translation>全てのアイテムを畳む</translation>
+        <translation>すべてのアイテムを畳む</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="411"/>
         <source>Expand all items</source>
-        <translation>全てのアイテムを展開</translation>
+        <translation>すべてのアイテムを展開</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="420"/>
@@ -172,12 +172,12 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="479"/>
         <source>By &amp;description</source>
-        <translation>説明で(&amp;D)</translation>
+        <translation>説明から(&amp;D)</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="490"/>
         <source>By &amp;name</source>
-        <translation>名前で(&amp;N)</translation>
+        <translation>名前から(&amp;N)</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="502"/>
@@ -187,7 +187,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="511"/>
         <source>Open root terminal</source>
-        <translation>rootターミナルを開く</translation>
+        <translation>root ターミナルを開く</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="516"/>
@@ -202,7 +202,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="544"/>
         <source>Pacman Log Viewer</source>
-        <translation>Pacmanログビューワ</translation>
+        <translation>Pacman ログビューワ</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="559"/>
@@ -212,7 +212,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="571"/>
         <source>Cache Cleaner</source>
-        <translation>キャッシュクリーナ</translation>
+        <translation>キャッシュクリーナー</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="582"/>
@@ -222,12 +222,12 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="604"/>
         <source>By &amp;file</source>
-        <translation>ファイルで(&amp;F)</translation>
+        <translation>ファイルから(&amp;F)</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="615"/>
         <source>Use Instant Search</source>
-        <translation>インスタント検索を使う</translation>
+        <translation>インスタント検索を使用</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="623"/>
@@ -237,12 +237,12 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="634"/>
         <source>Outdated</source>
-        <translation type="unfinished"/>
+        <translation>未更新</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="68"/>
         <source>Ctrl+Shift+O to display outdated %1 packages</source>
-        <translation>Ctrl+Shift+O で古い %1 パッケージを表示</translation>
+        <translation>Ctrl+Shift+O で未更新の %1 パッケージを表示</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="76"/>
@@ -257,7 +257,7 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="84"/>
         <source>A Qt-based Pacman frontend,</source>
-        <translation>Qtベースの Pacman フロントエンド,</translation>
+        <translation>Qt ベースの Pacman フロントエンド、</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="85"/>
@@ -277,7 +277,7 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="97"/>
         <source>An installed package (not required by others)</source>
-        <translation>インストール済みパッケージ (他のものから必要とされていない)</translation>
+        <translation>インストール済みパッケージ（他からは不要）</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="100"/>
@@ -292,22 +292,22 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="106"/>
         <source>An outdated package</source>
-        <translation>失効したパッケージ</translation>
+        <translation>未更新のパッケージ</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="109"/>
         <source>An outdated foreign package</source>
-        <translation>失効した外部パッケージ</translation>
+        <translation>未更新の外部パッケージ</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="112"/>
         <source>A newer than repository package</source>
-        <translation>リポジトリのものより新しいパッケージ</translation>
+        <translation>リポジトリより新しいパッケージ</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="114"/>
         <source>Basic usage help:</source>
-        <translation>基本的な使い方:</translation>
+        <translation>基本的な使用方法:</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="116"/>
@@ -322,12 +322,12 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="120"/>
         <source>Right click package to install/reinstall or remove it</source>
-        <translation>パッケージを右クリックすると(再)インストール/削除</translation>
+        <translation>インストール/再インストール/削除をするには、パッケージを右クリック</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="123"/>
         <source>Alt+key sequences:</source>
-        <translation>Alt+キー の動作:</translation>
+        <translation>「Alt+キー」の動作:</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="125"/>
@@ -342,7 +342,7 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="129"/>
         <source>Alt+3 to switch to &apos;Actions&apos; tab</source>
-        <translation>Alt+3 で &apos;アクション&apos; タブに切り替え</translation>
+        <translation>Alt+3 で「アクション」タブに切り替え</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="131"/>
@@ -362,17 +362,17 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="137"/>
         <source>Alt+7 to switch to &apos;Terminal&apos; tab</source>
-        <translation>Alt+7 で &apos;ターミナル&apos; タブに切り替え</translation>
+        <translation>Alt+7 で「ターミナル」タブに切り替え</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="140"/>
         <source>Control+key sequences:</source>
-        <translation>Control+キー の動作:</translation>
+        <translation>「Ctrl+キー」の動作:</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="142"/>
         <source>Ctrl+E or &apos;Actions/Cancel&apos; to clear the selection of to be removed/installed packages</source>
-        <translation>Ctrl+E または &apos;アクション/キャンセル&apos; で削除/インストールするパッケージの選択をクリア</translation>
+        <translation>Ctrl+E または「アクション/キャンセル」で、削除/インストールするパッケージの選択をクリア</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="144"/>
@@ -382,17 +382,17 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="146"/>
         <source>Ctrl+G or &apos;File/Get latest distro news&apos; to retrieve the latest RSS based distro news</source>
-        <translation>Ctrl+G か「ファイル→ディストロの最新ニュースを取得」で RSS ベースの最新ディストロニュースを取得</translation>
+        <translation>Ctrl+G か「ファイル→ディストロの最新ニュースを取得」で、RSS ベースの最新ディストロニュースを取得</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="148"/>
         <source>Ctrl+K or &apos;File/Check updates&apos; to check mirror for latest updates (checkupdates)</source>
-        <translation>Ctrl+K または &apos;ファイル/アップデートを確認&apos; で最新のアップデートをミラーで確認 (checkupdates)</translation>
+        <translation>Ctrl+K または「ファイル→アップデートを確認」で、最新のアップデートをミラーで確認 (checkupdates)</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="150"/>
         <source>Ctrl+L to find a package in the package list</source>
-        <translation>Ctrl+L でパッケージリストにあるパッケージを検索</translation>
+        <translation>Ctrl+L でパッケージリストのパッケージを検索</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="152"/>
@@ -402,32 +402,32 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="154"/>
         <source>Ctrl+Q or &apos;File/Exit&apos; to exit the application</source>
-        <translation>Ctrl+Q か「ファイル→終了」でこのアプリケーションを終了</translation>
+        <translation>Ctrl+Q か「ファイル→終了」で、このアプリケーションを終了</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="156"/>
         <source>Ctrl+U or &apos;File/System upgrade&apos; to make a full system upgrade (pacman -Su)</source>
-        <translation>Ctrl+U または &apos;ファイル/システムアップグレード&apos; でシステム全体をアップグレード (pacman -Su)</translation>
+        <translation>Ctrl+U か「ファイル→システムアップグレード」で、システム全体をアップグレード (pacman -Su)</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="158"/>
         <source>Ctrl+Y or &apos;Actions/Apply&apos; to start installation/removal of selected packages</source>
-        <translation>Ctrl+Y または &apos;アクション/適用&apos; で選択したパッケージのインストール/削除を開始</translation>
+        <translation>Ctrl+Y か「アクション→適用」で、選択したパッケージのインストール/削除を開始</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="161"/>
         <source>Control+shift+key sequences:</source>
-        <translation>Control+Shift+キー の動作:</translation>
+        <translation>「Ctrl+Shift+キー」の動作:</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="165"/>
         <source>Ctrl+Shift+G to display all package groups</source>
-        <translation>Ctrl+Shift+G で全てのパッケージグループを表示</translation>
+        <translation>Ctrl+Shift+G ですべてのパッケージグループを表示</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="170"/>
         <source>Ctrl+Shift+U to upgrade outdated %1 packages</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+Shift+U で未更新の %1 パッケージをアップグレード</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="172"/>
@@ -437,7 +437,7 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="175"/>
         <source>F+key sequences:</source>
-        <translation>ファンクションキーの動作:</translation>
+        <translation>Fn+キー の動作:</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="177"/>
@@ -447,12 +447,12 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="179"/>
         <source>F4 to open a Terminal whitin the selected directory at Files tab</source>
-        <translation>F4 でターミナルをファイルタブで選択したディレクトリに開く</translation>
+        <translation>F4 でターミナルをファイルタブで選択したディレクトリで開く</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="181"/>
         <source>F6 to open a File Manager whitin the selected directory at Files tab</source>
-        <translation>F6 でファイルマネージャをファイルタブで選択したディレクトリに開く</translation>
+        <translation>F6 でファイルマネージャをファイルタブで選択したディレクトリで開く</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="183"/>
@@ -462,7 +462,7 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="185"/>
         <source>F11 to maximize/demaximize Tab&apos;s view</source>
-        <translation>F11 でタブビューを最大化/最大化解除</translation>
+        <translation>F11 でタブビューを最大化/元に戻す</translation>
     </message>
 </context>
 <context>
@@ -501,153 +501,153 @@
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="95"/>
         <location filename="Projects/octopi/src/optionsdialog.cpp" line="184"/>
         <source>Package List</source>
-        <translation type="unfinished"/>
+        <translation>パッケージリスト</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="107"/>
         <source>Use alternating row colors</source>
-        <translation type="unfinished"/>
+        <translation>行の色を交互に変える</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="120"/>
         <source>Show &quot;Licenses&quot; column</source>
-        <translation type="unfinished"/>
+        <translation>「ライセンス」列を表示</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="133"/>
         <source>Show &quot;Installed Size&quot; column</source>
-        <translation type="unfinished"/>
+        <translation>「インストールサイズ」列を表示</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="146"/>
         <source>Show &quot;Build Date&quot; column</source>
-        <translation type="unfinished"/>
+        <translation>「ビルド日」列を表示</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="159"/>
         <source>Show &quot;Install Date&quot; column</source>
-        <translation type="unfinished"/>
+        <translation>「インストール日」列を表示</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="172"/>
         <source>Show &quot;Install Reason&quot; column</source>
-        <translation type="unfinished"/>
+        <translation>「インストール理由」列を表示</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="209"/>
         <source>Select the AUR tool Octopi should use</source>
-        <translation>Octopiが使うAURツールを選択</translation>
+        <translation>Octopi が使用する AUR ツールを選択</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="293"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="290"/>
         <source>Search for outdated AUR packages</source>
-        <translation>失効した AUR パッケージを検索する</translation>
+        <translation>未更新の AUR パッケージを検索</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="348"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="345"/>
         <source>User name</source>
         <translation>ユーザー名</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="361"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="358"/>
         <source>Password</source>
         <translation>パスワード</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="374"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="371"/>
         <source>Register</source>
         <translation>登録</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="387"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="384"/>
         <source>Connect</source>
         <translation>接続</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="401"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="398"/>
         <source>Enable AUR voting</source>
         <translation>AUR への投票を有効にする</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="422"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="419"/>
         <source>AUR packages are user produced content. 
 Any use of the provided files is at your own risk.</source>
-        <translation>AURパッケージはユーザーが作成したコンテンツです。
-提供されたファイルの使用はご自身の責任で行ってください。</translation>
+        <translation>AUR パッケージはユーザーが作成したコンテンツです。
+提供されたファイルの使用は、自己責任で行ってください。</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="483"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="480"/>
         <source>Build directory</source>
-        <translation type="unfinished"/>
+        <translation>ビルドディレクトリ</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="518"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="515"/>
         <location filename="Projects/octopi/src/optionsdialog.cpp" line="170"/>
         <location filename="Projects/octopi/src/optionsdialog.cpp" line="183"/>
         <source>Backend</source>
         <translation>バックエンド</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="584"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="578"/>
         <source>Select the backend Octopi should use</source>
-        <translation>Octopiが使うバックエンドを選択</translation>
+        <translation>Octopiが使用するバックエンドを選択</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="608"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="602"/>
         <location filename="Projects/octopi/src/optionsdialog.cpp" line="697"/>
         <source>Icon</source>
         <translation>アイコン</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="671"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="665"/>
         <source>Red icon</source>
         <translation>赤アイコン</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="749"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="743"/>
         <source>Yellow icon</source>
         <translation>黄アイコン</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="812"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="806"/>
         <source>Green icon</source>
         <translation>緑アイコン</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="875"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="869"/>
         <source>Busy icon</source>
         <translation>ビジーアイコン</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="928"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="922"/>
         <source>Use default notification icons</source>
         <translation>デフォルトの通知アイコンを使用する</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="939"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="933"/>
         <location filename="Projects/octopi/src/optionsdialog.cpp" line="179"/>
         <source>Updates</source>
         <translation>アップデート</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1198"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1192"/>
         <source>Terminal</source>
-        <translation type="unfinished"/>
+        <translation>ターミナル</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1210"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1204"/>
         <source>Color Scheme</source>
-        <translation type="unfinished"/>
+        <translation>配色</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1223"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1217"/>
         <source>Font Family</source>
-        <translation type="unfinished"/>
+        <translation>フォントファミリー</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1256"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1250"/>
         <source>Font Size</source>
-        <translation type="unfinished"/>
+        <translation>フォントサイズ</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/optionsdialog.cpp" line="100"/>
@@ -691,19 +691,19 @@ Any use of the provided files is at your own risk.</source>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="38"/>
         <source>force a system upgrade at startup, withou asking for confirmation.</source>
-        <translation type="unfinished"/>
+        <translation>起動時に確認なしでシステムを強制的にアップグレード。</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="46"/>
         <source>Pacman Database is missing!
 You may need to synchronize database!</source>
-        <translation>Pacmanデータベースがありません！
+        <translation>Pacman データベースがありません！
 データベースを同期する必要があるかもしれません！</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="50"/>
         <source>All</source>
-        <translation>全て</translation>
+        <translation>すべて</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="132"/>
@@ -713,7 +713,7 @@ You may need to synchronize database!</source>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="136"/>
         <source>Artix Linux news</source>
-        <translation type="unfinished"/>
+        <translation>Artix Linux ニュース</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="140"/>
@@ -743,7 +743,7 @@ You may need to synchronize database!</source>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="160"/>
         <source>Obarun Linux news</source>
-        <translation type="unfinished"/>
+        <translation>Obarun Linux ニュース</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="164"/>
@@ -768,7 +768,7 @@ You may need to synchronize database!</source>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="181"/>
         <source>Showing cached news.</source>
-        <translation type="unfinished"/>
+        <translation>キャッシュされたニュースを表示しています。</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="185"/>
@@ -783,7 +783,7 @@ You may need to synchronize database!</source>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="193"/>
         <source>Display all groups</source>
-        <translation>全てのグループを表示</translation>
+        <translation>すべてのグループを表示</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="205"/>
@@ -818,7 +818,7 @@ You may need to synchronize database!</source>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="234"/>
         <source>Outdated version</source>
-        <translation>失効したバージョン</translation>
+        <translation>未更新のバージョン</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="238"/>
@@ -848,17 +848,17 @@ You may need to synchronize database!</source>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="258"/>
         <source>Maintainer</source>
-        <translation type="unfinished"/>
+        <translation>メンテナー</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="262"/>
         <source>Last Modified</source>
-        <translation type="unfinished"/>
+        <translation>最終更新日</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="266"/>
         <source>Out-of-date</source>
-        <translation type="unfinished"/>
+        <translation>未更新</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="270"/>
@@ -873,42 +873,42 @@ You may need to synchronize database!</source>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="278"/>
         <source>Provides</source>
-        <translation>このパッケージが提供するもの</translation>
+        <translation>次を提供</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="282"/>
         <source>Depends On</source>
-        <translation>このパッケージに必要なもの</translation>
+        <translation>次が必要</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="286"/>
         <source>Make Deps</source>
-        <translation type="unfinished"/>
+        <translation>次がビルドに必要</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="290"/>
         <source>Required By</source>
-        <translation>このパッケージを必要とするもの</translation>
+        <translation>次に必要</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="294"/>
         <source>Optional For</source>
-        <translation>このパッケージをオプションとするもの</translation>
+        <translation>次のオプション</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="298"/>
         <source>Optional Deps</source>
-        <translation>オプションとして必要なもの</translation>
+        <translation>オプション</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="302"/>
         <source>Conflicts With</source>
-        <translation>このパッケージと競合するもの</translation>
+        <translation>次と競合</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="306"/>
         <source>Replaces</source>
-        <translation>このパッケージが置き換えるもの</translation>
+        <translation>次を置換</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="310"/>
@@ -938,37 +938,37 @@ You may need to synchronize database!</source>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="334"/>
         <source>Open PKGBUILD</source>
-        <translation type="unfinished"/>
+        <translation>PKGBUILD を開く</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="339"/>
         <source>Show PKGBUILD diff</source>
-        <translation type="unfinished"/>
+        <translation>PKGBUILD の差分を表示</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="344"/>
         <source>Open news in a browser</source>
-        <translation type="unfinished"/>
+        <translation>ブラウザでニュースを開く</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="349"/>
         <source>There is only one version available of &quot;%1&quot;</source>
-        <translation type="unfinished"/>
+        <translation>「%1」には利用可能なバージョンが 1 つだけあります</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="353"/>
         <source>Download Size</source>
-        <translation>ダウンロード時のサイズ</translation>
+        <translation>ダウンロードサイズ</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="357"/>
         <source>Installed Size</source>
-        <translation>インストール時のサイズ</translation>
+        <translation>インストールサイズ</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="361"/>
         <source>Install Reason</source>
-        <translation>インストールした理由</translation>
+        <translation>インストール理由</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="373"/>
@@ -993,12 +993,12 @@ You may need to synchronize database!</source>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="389"/>
         <source>Build Date</source>
-        <translation>ビルドした日</translation>
+        <translation>ビルド日</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="393"/>
         <source>Install Date</source>
-        <translation type="unfinished"/>
+        <translation>インストール日</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="397"/>
@@ -1078,7 +1078,7 @@ You may need to synchronize database!</source>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="458"/>
         <source> (outdated installed version is %1)</source>
-        <translation> (失効したインストール済みのバージョンは %1)</translation>
+        <translation> (未更新のインストール済みのバージョンは %1)</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="462"/>
@@ -1098,12 +1098,12 @@ You may need to synchronize database!</source>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="474"/>
         <source>There is one outdated package in your system:</source>
-        <translation>失効したパッケージがシステムに 1 個あります:</translation>
+        <translation>未更新のパッケージがシステムに 1 個あります:</translation>
     </message>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.cpp" line="478"/>
         <source>There are %n outdated packages in your system:</source>
-        <translation type="unfinished"><numerusform></numerusform></translation>
+        <translation><numerusform>システムには %n 個の未更新のパッケージがあります:</numerusform></translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="482"/>
@@ -1113,7 +1113,7 @@ You may need to synchronize database!</source>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.cpp" line="486"/>
         <source>%n packages</source>
-        <translation type="unfinished"><numerusform></numerusform></translation>
+        <translation><numerusform>%n 個のパッケージ</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.cpp" line="490"/>
@@ -1128,7 +1128,7 @@ You may need to synchronize database!</source>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.cpp" line="498"/>
         <source>%n outdated</source>
-        <translation><numerusform>%n 個が失効</numerusform></translation>
+        <translation><numerusform>%n 個が未更新</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.cpp" line="502"/>
@@ -1143,7 +1143,7 @@ You may need to synchronize database!</source>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="510"/>
         <source>Removing Pacman&apos;s transaction lock file...</source>
-        <translation>Pacman のトランザクションロックファイルを削除...</translation>
+        <translation>Pacman のトランザクションロックファイルを削除しています...</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="543"/>
@@ -1173,263 +1173,268 @@ You may need to synchronize database!</source>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="570"/>
         <source>Synchronizing databases...</source>
-        <translation>データベースを同期中...</translation>
+        <translation>データベースを同期しています...</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="579"/>
         <source>SysInfo file generated on: %1&lt;br&gt;If you wish, post the output in your distro&apos;s forum for help.</source>
-        <translation>SysInfoファイルは次の場所に生成されました: %1 希望する場合は、ディストリビューションを支援するためフォーラムに出力を投稿してください。</translation>
+        <translation>SysInfo ファイルは次の場所に生成されました: %1&lt;br&gt;サポートが必要な場合は、ディストリビューションのフォーラムに出力を投稿してください。</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="583"/>
         <source>Starting full system upgrade...</source>
-        <translation>システムのフルアップグレードを開始...</translation>
+        <translation>システムのフルアップグレードを開始しています...</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="587"/>
         <source>Changing the install reason of selected packages...</source>
-        <translation type="unfinished"/>
+        <translation>選択したパッケージのインストール理由を変更しています...</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="591"/>
         <source>Installing selected packages...</source>
-        <translation>選択したパッケージをインストール...</translation>
+        <translation>選択したパッケージをインストールしています...</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="595"/>
         <source>Removing selected packages...</source>
-        <translation>選択したパッケージを削除...</translation>
+        <translation>選択したパッケージを削除しています...</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="599"/>
         <source>Removing/installing selected packages...</source>
-        <translation>選択したパッケージを削除/インストール...</translation>
+        <translation>選択したパッケージを削除/インストールしています...</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="603"/>
         <source>Running command in terminal...</source>
-        <translation>ターミナルでコマンドを実行...</translation>
+        <translation>ターミナルでコマンドを実行しています...</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="607"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="608"/>
+        <source>Collecting transaction data...</source>
+        <translation>トランザクションデータを収集しています...</translation>
+    </message>
+    <message>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="612"/>
         <source>Command finished OK!</source>
         <translation>コマンドは正常に終了しました！</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="611"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="616"/>
         <source>Command finished with errors!</source>
-        <translation>コマンドがエラーで終了！</translation>
+        <translation>コマンドがエラーで終了しました！</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="616"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="621"/>
         <source>Temporary &quot;yay-bin&quot; could not be downloaded!</source>
         <translation>&quot;yay-bin&quot; をダウンロードできませんでした！</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="621"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="626"/>
         <source>Temporary &quot;yay-bin&quot; downloaded.</source>
         <translation>&quot;yay-bin&quot; をダウンロードしました。</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="626"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="631"/>
         <source>Downloading temporary &quot;yay-bin&quot;...</source>
         <translation>&quot;yay-bin&quot; をダウンロードしています...</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="630"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="635"/>
         <source>Retrieving %1</source>
-        <translation>%1 を取得中</translation>
+        <translation>%1 を取得しています</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="634"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="639"/>
         <source>Total download size: %1 KB</source>
         <translation>トータルのダウンロードサイズ: %1 KB</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="638"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="643"/>
         <source>The following package needs to be retrieved</source>
-        <translation>次のパッケージを取得します</translation>
+        <translation>次のパッケージを取得する必要があります</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="642"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="647"/>
         <source>The following package will be removed</source>
-        <translation>次のパッケージを削除します</translation>
+        <translation>次のパッケージが削除されます</translation>
     </message>
     <message numerus="yes">
-        <location filename="Projects/octopi/src/strconstants.cpp" line="646"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="651"/>
         <source>The following %n packages need to be retrieved</source>
-        <translation type="unfinished"><numerusform></numerusform></translation>
+        <translation><numerusform>次の %n 個のパッケージを取得する必要があります</numerusform></translation>
     </message>
     <message numerus="yes">
-        <location filename="Projects/octopi/src/strconstants.cpp" line="650"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="655"/>
         <source>The following %n packages will be removed</source>
-        <translation type="unfinished"><numerusform></numerusform></translation>
+        <translation><numerusform>次の %n 個のパッケージが削除されます</numerusform></translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="654"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="659"/>
         <source>There are forbidden packages in the removal list!</source>
         <translation>削除リストに禁止されたパッケージがあります！</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="658"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="663"/>
         <source>There are no new updates available!</source>
         <translation>新しいアップデートはありません！</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="662"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="667"/>
         <source>There is an update available!</source>
         <translation>アップデートがあります！</translation>
     </message>
     <message numerus="yes">
-        <location filename="Projects/octopi/src/strconstants.cpp" line="666"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="671"/>
         <source>There are %n updates available!</source>
-        <translation type="unfinished"><numerusform></numerusform></translation>
+        <translation><numerusform>利用可能なアップデートが %n 個あります。</numerusform></translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="670"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="675"/>
         <source>Confirm?</source>
         <translation>よろしいですか？</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="674"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="679"/>
         <source>Warning!!!</source>
-        <translation>警告！！！</translation>
+        <translation>警告！！</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="678"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="683"/>
         <source>Confirmation</source>
         <translation>確認</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="682"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="687"/>
         <source>There has been a transaction error!</source>
-        <translation>トランザクションエラーが発生！</translation>
+        <translation>トランザクションエラーが発生しました！</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="686"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="691"/>
         <source>Do you want to execute this transaction in a Terminal?</source>
         <translation>このトランザクションをターミナルで実行しますか？</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="690"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="695"/>
         <source>Do you really want to cancel actions?</source>
         <translation>本当にアクションをキャンセルしますか？</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="694"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="699"/>
         <source>Please, enter the administrator&apos;s password</source>
         <translation>管理者のパスワードを入力してください</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="700"/>
-        <source>There are no means to get administrator&apos;s credentials.</source>
-        <translation>管理者権限を取得する方法がありません。</translation>
-    </message>
-    <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="705"/>
-        <source>Pacman is running or didn&apos;t cleanly close (/var/lib/pacman/db.lck exists!)</source>
-        <translation type="unfinished"/>
+        <source>There are no means to get administrator&apos;s credentials.</source>
+        <translation>管理者権限を取得する手段がありません。</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="709"/>
-        <source>You&apos;ll need to install &quot;qt-sudo&quot; in order to use Octopi.</source>
-        <translation type="unfinished"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="710"/>
+        <source>Pacman is running or didn&apos;t cleanly close (/var/lib/pacman/db.lck exists!)</source>
+        <translation>Pacman が実行中か、正常に終了しませんでした（/var/lib/pacman/db.lck が存在します）</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="714"/>
+        <source>You&apos;ll need to install &quot;qt-sudo&quot; in order to use Octopi.</source>
+        <translation>Octopi を使用するには、「qt-sudo」をインストールする必要があります。</translation>
+    </message>
+    <message>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="719"/>
         <source>You'll need one of those tools to use AUR:
 
 %1, %2, %3 %4 or %5</source>
-        <translation>AURを使用するには、これらのツールのいずれかが必要です。
+        <translation>AUR を使用するには、これらのツールのいずれかが必要です。
 
 %1, %2, %3 %4 or %5</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="723"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="728"/>
         <source>You need a package in order to use AUR.
 Do you want to install it?</source>
-        <translation>AURを使用するにはパッケージが必要です。
+        <translation>AUR を使用するにはパッケージが必要です。
 インストールしますか？</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="729"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="734"/>
         <source>Connection is OK!</source>
         <translation>接続はOKです！</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="733"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="738"/>
         <source>Would you like to help this project by voting for it?
 You only need to accept and wait a few seconds.</source>
         <translation>投票して、このプロジェクトを支援しませんか？
 了承して数秒待つだけです。</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="739"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="744"/>
         <source>Thank you for voting for Octopi!</source>
         <translation>Octopi に投票していただきありがとうございます！</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="744"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="749"/>
         <source>Username and/or password is/are incorrect.</source>
         <translation>ユーザー名かパスワードが間違っています。</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="749"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="754"/>
         <source>AUR username is not set.</source>
         <translation>AUR ユーザー名が設定されていません。</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="754"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="759"/>
         <source>AUR password is not set.</source>
         <translation>AUR パスワードが設定されていません。</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="759"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="764"/>
         <source>Select the build directory for the AUR packages</source>
-        <translation type="unfinished"/>
+        <translation>AUR パッケージのビルドディレクトリを選択</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="763"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="768"/>
         <source>Icon path information is not set.</source>
         <translation>アイコンのパス情報が設定されていません。</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="767"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="772"/>
         <source>You must use &quot;/usr/bin/octopi&quot; to run Octopi</source>
-        <translation type="unfinished"/>
+        <translation>Octopi を実行するには「/usr/bin/octopi」を使用する必要があります</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="771"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="776"/>
         <source>You must use &quot;/usr/bin/octopi-notifier&quot; to run Octopi Notifier</source>
-        <translation type="unfinished"/>
+        <translation>Octopi Notifier を実行するには、「/usr/bin/octopi-notifier」を使用する必要があります</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="775"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="780"/>
         <source>You must use &quot;/usr/bin/octopi-cachecleaner&quot; to run Octopi Cache Cleaner</source>
-        <translation type="unfinished"/>
+        <translation>Octopi キャッシュクリーナーを実行するには、「/usr/bin/octopi-cachecleaner」を使用する必要があります</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="779"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="784"/>
         <source>You can not run Octopi with administrator&apos;s credentials.</source>
-        <translation>Octopi を管理者権限で実行することはできません。</translation>
+        <translation>Octopi を管理者権限で実行することができません。</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="783"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="788"/>
         <source>Canceling the running transaction may damage your system!</source>
         <translation>実行中のトランザクションをキャンセルすると、システムに損傷を与える可能性があります！</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="787"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="792"/>
         <source>There are pending actions</source>
         <translation>保留中のアクションがあります</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="791"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="796"/>
         <source>Do you really want to quit?</source>
         <translation>本当に終了しますか？</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="796"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="801"/>
         <source>You are about to generate &quot;octopi-sysinfo.log&quot; in your home path with the contents of:
 
 &quot;/etc/lsb-release&quot;, &quot;inxi -Fxz&quot;, &quot;uname -a&quot;, &quot;mhwd -li -d,&quot;
@@ -1438,194 +1443,194 @@ and &quot;head --bytes=256K /var/log/pacman.log&quot;
 
 Do you want to continue?
 </source>
-        <translation>次の内容の &quot;octopi-sysinfo.log&quot; をホームパスに生成しようとしています:
+        <translation>次の内容を含む「octopi-sysinfo.log」をホームパスに生成しようとしています:
 
 &quot;/etc/lsb-release&quot;, &quot;inxi -Fxz&quot;, &quot;uname -a&quot;, &quot;mhwd -li -d,&quot;
 &quot;journalctl -b -p err&quot;, &quot;cat /etc/pacman.conf&quot;, &quot;pacman -Qm&quot;
 and &quot;head --bytes=256K /var/log/pacman.log&quot;
 
-続けますか？
+続行しますか？
 </translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="804"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="809"/>
         <source>Executing command</source>
         <translation>コマンドを実行</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="808"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="813"/>
         <source>Run in terminal</source>
         <translation>ターミナルで実行</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="812"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="817"/>
         <source>This change needs application restart to take effect</source>
-        <translation type="unfinished"/>
+        <translation>この変更を有効にするには、アプリケーションの再起動が必要です</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="816"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="821"/>
         <source>These changes need application restart to take effect!</source>
         <translation>変更の効果を反映させるにはアプリケーションの再起動が必要です！</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="820"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="825"/>
         <source>Select the packages you want to install</source>
         <translation>インストールするパッケージを選択</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="824"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="829"/>
         <source>This file does not appear to be a simple text.
 Are you sure you want to open it?</source>
         <translation>このファイルはシンプルなテキストではないようです。
 本当に開きますか？</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="829"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="834"/>
         <source>To be installed</source>
-        <translation>インストールされるもの</translation>
+        <translation>インストールされる</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="833"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="838"/>
         <source>To be removed</source>
-        <translation>削除されるもの</translation>
+        <translation>削除される</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="837"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="842"/>
         <source>Remove</source>
         <translation>削除</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="841"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="846"/>
         <source>Install</source>
         <translation>インストール</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="846"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="851"/>
         <source>Reinstall</source>
         <translation>再インストール</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="851"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="856"/>
         <source>Change Install Reason</source>
-        <translation type="unfinished"/>
+        <translation>インストール理由を変更</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="856"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="861"/>
         <source>Update</source>
         <translation>アップデート</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="860"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="865"/>
         <source>Remove item</source>
         <translation>アイテムを削除</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="864"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="869"/>
         <source>Remove items</source>
         <translation>アイテムを削除</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="868"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="873"/>
         <source>Press Ctrl+A to select/deselect all</source>
-        <translation>Ctrl+A で全て選択/解除</translation>
+        <translation>Ctrl+A ですべて選択/解除</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="872"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="877"/>
         <source>Use &quot;%1&quot; tool</source>
         <translation> &quot;%1&quot; ツールを使用</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="876"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="881"/>
         <source>Copy path to clipboard</source>
         <translation>パスをクリップボードにコピー</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="880"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="885"/>
         <source>Setup</source>
         <translation>セットアップ</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="884"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="889"/>
         <source>Check for package updates interval</source>
         <translation>パッケージアップデートの間隔を確認</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="888"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="893"/>
         <source>Once a day</source>
-        <translation>1日に1回</translation>
+        <translation>1日1回</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="892"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="897"/>
         <source>Once a day, at</source>
-        <translation>1日に1回（時刻指定）</translation>
+        <translation>1日1回、次の時刻に</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="896"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="901"/>
         <source>(value in 24-hour format: 0 to 23)</source>
         <translation>(24時間表記: 0から23の値を入力)</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="900"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="905"/>
         <source>Once every</source>
-        <translation>指定した時間ごとに1回</translation>
+        <translation>次の時間ごとに1回</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="904"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="909"/>
         <source>(value in minutes: %1 to %2)</source>
         <translation>(分: %1から%2の値を入力)</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="908"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="913"/>
         <source>Set interval...</source>
-        <translation>間隔の設定...</translation>
+        <translation>間隔を設定...</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="913"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="918"/>
         <source>Stop</source>
         <translation>停止</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="918"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="923"/>
         <source>%1 could not be found in the system!</source>
         <translation>%1 がシステムに見つかりませんでした！</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="923"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="928"/>
         <source>Zoom in</source>
         <translation>拡大</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="928"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="933"/>
         <source>Zoom out</source>
         <translation>縮小</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="933"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="938"/>
         <source>Maximize</source>
         <translation>最大化</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="938"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="943"/>
         <source>Copy</source>
         <translation>コピー</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="943"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="948"/>
         <source>Paste</source>
         <translation>貼り付け</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="948"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="953"/>
         <source>Never</source>
         <translation>決してしない</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="953"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="958"/>
         <source>Upgrading...</source>
         <translation>アップグレードしています...</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="958"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="963"/>
         <source>Exit</source>
         <translation>終了</translation>
     </message>
