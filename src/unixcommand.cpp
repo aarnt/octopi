@@ -652,21 +652,28 @@ bool UnixCommand::hasInternetConnection()
 }
 
 /*
- * Pings google site, to make sure internet is OK
+ * Pings ping.archlinux.org (or google.com, baidu.com if it's down), to make sure internet is OK
  */
 bool UnixCommand::doInternetPingTest()
 {
   QTcpSocket socket;
-  QString hostname = QStringLiteral("www.google.com");
+  QString hostname = QStringLiteral("ping.archlinux.org");
 
   socket.connectToHost(hostname, 80);
   if (socket.waitForConnected(5000))
     return true;
   else
   {
-    hostname = QStringLiteral("www.baidu.com");
+    hostname = QStringLiteral("www.google.com");
     socket.connectToHost(hostname, 80);
-    return socket.waitForConnected(5000);
+    if (socket.waitForConnected(5000))
+      return true;
+    else
+    {
+      hostname = QStringLiteral("www.baidu.com");
+      socket.connectToHost(hostname, 80);
+      return socket.waitForConnected(5000);
+    }
   }
 }
 
