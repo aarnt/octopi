@@ -240,227 +240,227 @@
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="68"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="64"/>
         <source>Ctrl+Shift+O to display outdated %1 packages</source>
         <translation>Ctrl+Shift+O для відображення застарілих пакетів %1</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="76"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="72"/>
         <source>Ctrl+Shift+A to display AUR voted package list</source>
         <translation>Ctrl+Shift+A для відображення списку пакетів, проголосованих за AUR</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="81"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="77"/>
         <source>For more information, visit:</source>
         <translation>Для отримання додаткової інформації відвідайте:</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="84"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="80"/>
         <source>A Qt-based Pacman frontend,</source>
         <translation>Інтерфейс Pacman на основі Qt,</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="85"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="81"/>
         <source>licensed under the terms of</source>
         <translation>ліцензія згідно умов</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="92"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="88"/>
         <source>Package classification:</source>
         <translation>Класифікація пакунків:</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="95"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="91"/>
         <source>An installed package</source>
         <translation>Встановлений пакунок</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="97"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="93"/>
         <source>An installed package (not required by others)</source>
         <translation>Встановлений пакунок (не потрібний іншим пакункам)</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="100"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="96"/>
         <source>A foreign package, installed from</source>
         <translation>Зовнішній пакунок, встановлений з</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="103"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="99"/>
         <source>A non installed package</source>
         <translation>Не встановлений пакунок</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="106"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="102"/>
         <source>An outdated package</source>
         <translation>Застарілий пакунок</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="109"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="105"/>
         <source>An outdated foreign package</source>
         <translation>Застарілий зовнішній пакунок</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="112"/>
-        <source>A newer than repository package</source>
-        <translation>Новіше за пакунок із сховища</translation>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="108"/>
+        <source>A newer version of this package is installed</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="114"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="110"/>
         <source>Basic usage help:</source>
         <translation>Допомога у початковому використанні:</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="116"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="112"/>
         <source>Position the mouse over a package to see its description</source>
         <translation>Розташуйте курсор на пакунку, щоб побачити його опис</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="118"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="114"/>
         <source>Double click an installed package to see its contents</source>
         <translation>Двічі клацніть по встановленому пакунку для перегляду його вмісту</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="120"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="116"/>
         <source>Right click package to install/reinstall or remove it</source>
         <translation>Натисніть правою кнопкою миші для встановлення/перевстановлення або видалення пакунку</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="123"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="119"/>
         <source>Alt+key sequences:</source>
         <translation>Комбінації Alt+key:</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="125"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="121"/>
         <source>Alt+1 to switch to &apos;Info&apos; tab</source>
         <translation>Alt+1 перейти на вкладку &apos;Інформація&apos;</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="127"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="123"/>
         <source>Alt+2 to switch to &apos;Files&apos; tab</source>
         <translation>Alt+2 перейти на вкладку &apos;Файли&apos;</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="129"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="125"/>
         <source>Alt+3 to switch to &apos;Actions&apos; tab</source>
         <translation>Alt+3 перейти на вкладку &quot;Дії&quot;</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="131"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="127"/>
         <source>Alt+4 to switch to &apos;Output&apos; tab</source>
         <translation>Alt+4 перейти на вкладку &apos;Вивід&apos;</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="133"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="129"/>
         <source>Alt+5 to switch to &apos;News&apos; tab</source>
         <translation>Alt+5 перейти на вкладку &apos;Новини&apos;</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="135"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="131"/>
         <source>Alt+6 or &apos;F1&apos; to show this help page</source>
         <translation>Alt +6 або &apos;F1&apos; щоб показати цю сторінку допомоги</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="137"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="133"/>
         <source>Alt+7 to switch to &apos;Terminal&apos; tab</source>
         <translation>Alt+7 перейти на вкладку &quot;Термінал&quot;</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="140"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="136"/>
         <source>Control+key sequences:</source>
         <translation>Комбінації Control+key:</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="142"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="138"/>
         <source>Ctrl+E or &apos;Actions/Cancel&apos; to clear the selection of to be removed/installed packages</source>
         <translation>Ctrl+E або &quot;Дії/Скасувати&quot;, щоб очистити виділений пакет, який потрібно видалити/встановити</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="144"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="140"/>
         <source>Ctrl+F to search for text inside tab Files, News and Usage</source>
         <translation>Ctrl+F для пошуку тексту всередині вкладок Файли, Новини та Використанні</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="146"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="142"/>
         <source>Ctrl+G or &apos;File/Get latest distro news&apos; to retrieve the latest RSS based distro news</source>
         <translation>Ctrl+G або &apos;Файл/Отримати останні новини дистрибутива&apos;, щоб отримати останні RSS новини про дистрибутив</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="148"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="144"/>
         <source>Ctrl+K or &apos;File/Check updates&apos; to check mirror for latest updates (checkupdates)</source>
         <translation>Ctrl+K або &quot;Файл/Перевірити оновлення&quot;, щоб перевірити дзеркало на наявність останніх оновлень (перевірити оновлення)</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="150"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="146"/>
         <source>Ctrl+L to find a package in the package list</source>
         <translation>Ctrl + L щоб знайти пакунок у списку пакунків</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="152"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="148"/>
         <source>Ctrl+P to go to package list</source>
         <translation>Ctrl+P, щоб перейти до списку пакунків</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="154"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="150"/>
         <source>Ctrl+Q or &apos;File/Exit&apos; to exit the application</source>
         <translation>Ctrl+Q або &apos;Файл/Вихід&apos; для виходу з програми</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="156"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="152"/>
         <source>Ctrl+U or &apos;File/System upgrade&apos; to make a full system upgrade (pacman -Su)</source>
         <translation>Ctrl+U або &apos;Файл/Оновлення системи&apos;, щоб виконати повне оновлення системи (pacman -Su)</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="158"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="154"/>
         <source>Ctrl+Y or &apos;Actions/Apply&apos; to start installation/removal of selected packages</source>
         <translation>Ctrl+Y або &quot;Дії/Застосувати&quot;, щоб розпочати встановлення/видалення вибраних пакунків</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="161"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="157"/>
         <source>Control+shift+key sequences:</source>
         <translation>Комбінація Control+shift+key:</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="165"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="161"/>
         <source>Ctrl+Shift+G to display all package groups</source>
         <translation>Ctrl + Shift + G щоб відобразити всі групи пакунків</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="170"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="166"/>
         <source>Ctrl+Shift+U to upgrade outdated %1 packages</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="172"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="168"/>
         <source>Ctrl+Shift+Y to display %1 group</source>
         <translation>Ctrl+Shift+Y щоб відобразити %1 групу</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="175"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="171"/>
         <source>F+key sequences:</source>
         <translation>Комбінації F+key:</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="177"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="173"/>
         <source>F1 to show this help page</source>
         <translation>F1 щоб показати цю сторінку допомоги</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="179"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="175"/>
         <source>F4 to open a Terminal whitin the selected directory at Files tab</source>
         <translation>F4 щоб відкрити термінал всередині обраної директорії на вкладці Файли</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="181"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="177"/>
         <source>F6 to open a File Manager whitin the selected directory at Files tab</source>
         <translation>F6 щоб відкрити файловий менеджер всередині обраної директорії на вкладці Файли</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="183"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="179"/>
         <source>F10 to maximize/demaximize package list view</source>
         <translation>F10 щоб максимізувати/мінімізувати перегляд списку пакунків</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="185"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="181"/>
         <source>F11 to maximize/demaximize Tab&apos;s view</source>
         <translation>F11 розвернути/відновити панель вкладок</translation>
     </message>
@@ -539,112 +539,112 @@
         <translation>Виберіть інструмент AUR, який повинен використовувати Octopi</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="293"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="290"/>
         <source>Search for outdated AUR packages</source>
         <translation>Пошук застарілих пакунків AUR</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="348"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="345"/>
         <source>User name</source>
         <translation>Ім&apos;я користувача</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="361"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="358"/>
         <source>Password</source>
         <translation>Пароль</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="374"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="371"/>
         <source>Register</source>
         <translation>Реєстрація</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="387"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="384"/>
         <source>Connect</source>
         <translation>Підключення</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="401"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="398"/>
         <source>Enable AUR voting</source>
         <translation>Увімкнути AUR-голосування</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="422"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="419"/>
         <source>AUR packages are user produced content. 
 Any use of the provided files is at your own risk.</source>
         <translation>Пакети AUR - це вміст, створений користувачем. Будь-яке використання наданих файлів відбувається на ваш страх і ризик. </translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="483"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="480"/>
         <source>Build directory</source>
         <translation>Побудова дерикторії</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="518"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="515"/>
         <location filename="Projects/octopi/src/optionsdialog.cpp" line="170"/>
         <location filename="Projects/octopi/src/optionsdialog.cpp" line="183"/>
         <source>Backend</source>
         <translation>Backend</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="584"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="578"/>
         <source>Select the backend Octopi should use</source>
         <translation>Виберіть backend, який повинен використовувати Octopi</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="608"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="602"/>
         <location filename="Projects/octopi/src/optionsdialog.cpp" line="697"/>
         <source>Icon</source>
         <translation>Піктограма</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="671"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="665"/>
         <source>Red icon</source>
         <translation>Червона піктограма</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="749"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="743"/>
         <source>Yellow icon</source>
         <translation>Жовта піктограма</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="812"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="806"/>
         <source>Green icon</source>
         <translation>Зелена піктограма</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="875"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="869"/>
         <source>Busy icon</source>
         <translation>Зайнята піктограма</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="928"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="922"/>
         <source>Use default notification icons</source>
         <translation>Використовувати типово піктограми сповіщень</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="939"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="933"/>
         <location filename="Projects/octopi/src/optionsdialog.cpp" line="179"/>
         <source>Updates</source>
         <translation>Оновлення</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1198"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1192"/>
         <source>Terminal</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1210"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1204"/>
         <source>Color Scheme</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1223"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1217"/>
         <source>Font Family</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1256"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1250"/>
         <source>Font Size</source>
         <translation type="unfinished"/>
     </message>
@@ -1210,132 +1210,137 @@ You may need to synchronize database!</source>
         <translation>Запуск команди в терміналі...</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="607"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="608"/>
+        <source>Collecting transaction data...</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="612"/>
         <source>Command finished OK!</source>
         <translation>Команда виконана вдало!</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="611"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="616"/>
         <source>Command finished with errors!</source>
         <translation>Команда виконана з помилками!</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="616"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="621"/>
         <source>Temporary &quot;yay-bin&quot; could not be downloaded!</source>
         <translation>Не вдалося завантажити тимчасовий &quot;yay-bin&quot;! </translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="621"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="626"/>
         <source>Temporary &quot;yay-bin&quot; downloaded.</source>
         <translation>Тимчасовий &quot;yay-bin&quot; завантажений. </translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="626"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="631"/>
         <source>Downloading temporary &quot;yay-bin&quot;...</source>
         <translation>Завантаження тимчасового &quot;yay-bin&quot;...</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="630"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="635"/>
         <source>Retrieving %1</source>
         <translation>Отримання %1</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="634"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="639"/>
         <source>Total download size: %1 KB</source>
         <translation>Загальний об’єм завантаження: %1 КБ</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="638"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="643"/>
         <source>The following package needs to be retrieved</source>
         <translation>Наступні пакунки мають бути встановлені</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="642"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="647"/>
         <source>The following package will be removed</source>
         <translation>Наступні пакунки буде видалено</translation>
     </message>
     <message numerus="yes">
-        <location filename="Projects/octopi/src/strconstants.cpp" line="646"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="651"/>
         <source>The following %n packages need to be retrieved</source>
         <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
     </message>
     <message numerus="yes">
-        <location filename="Projects/octopi/src/strconstants.cpp" line="650"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="655"/>
         <source>The following %n packages will be removed</source>
         <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="654"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="659"/>
         <source>There are forbidden packages in the removal list!</source>
         <translation>Заборонені пакунки в списку видалення!</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="658"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="663"/>
         <source>There are no new updates available!</source>
         <translation>Оновлень немає!</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="662"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="667"/>
         <source>There is an update available!</source>
         <translation>Є оновлення!</translation>
     </message>
     <message numerus="yes">
-        <location filename="Projects/octopi/src/strconstants.cpp" line="666"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="671"/>
         <source>There are %n updates available!</source>
         <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="670"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="675"/>
         <source>Confirm?</source>
         <translation>Підтверджуєте?</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="674"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="679"/>
         <source>Warning!!!</source>
         <translation>Попередження!!!</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="678"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="683"/>
         <source>Confirmation</source>
         <translation>Підтвердження</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="682"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="687"/>
         <source>There has been a transaction error!</source>
         <translation>Помилка транзакції!</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="686"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="691"/>
         <source>Do you want to execute this transaction in a Terminal?</source>
         <translation>Бажаєте виконати цю операцію в терміналі?</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="690"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="695"/>
         <source>Do you really want to cancel actions?</source>
         <translation>Ви дійсно бажаєте скасувати дії?</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="694"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="699"/>
         <source>Please, enter the administrator&apos;s password</source>
         <translation>Будь ласка, введіть пароль адміністратора</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="700"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="705"/>
         <source>There are no means to get administrator&apos;s credentials.</source>
         <translation>Неможливо отримати повноваження адміністратора.</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="705"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="710"/>
         <source>Pacman is running or didn&apos;t cleanly close (/var/lib/pacman/db.lck exists!)</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="709"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="714"/>
         <source>You&apos;ll need to install &quot;qt-sudo&quot; in order to use Octopi.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="714"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="719"/>
         <source>You'll need one of those tools to use AUR:
 
 %1, %2, %3 %4 or %5</source>
@@ -1344,90 +1349,90 @@ You may need to synchronize database!</source>
 %1, %2, %3 %4 або %5</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="723"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="728"/>
         <source>You need a package in order to use AUR.
 Do you want to install it?</source>
         <translation>Вам потрібен пакунок, щоб використовувати AUR. 
 Бажаєте встановити його?</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="729"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="734"/>
         <source>Connection is OK!</source>
         <translation>З’єднання в порядку!</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="733"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="738"/>
         <source>Would you like to help this project by voting for it?
 You only need to accept and wait a few seconds.</source>
         <translation>Ви хотіли б допомогти цьому проекту, проголосувавши за нього? Вам потрібно лише прийняти і почекати кілька секунд. </translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="739"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="744"/>
         <source>Thank you for voting for Octopi!</source>
         <translation>Дякуємо, що проголосували за Octopi!</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="744"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="749"/>
         <source>Username and/or password is/are incorrect.</source>
         <translation>Ім&apos;я користувача та/або пароль неправильні.</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="749"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="754"/>
         <source>AUR username is not set.</source>
         <translation>Ім&apos;я користувача AUR не встановлено.</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="754"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="759"/>
         <source>AUR password is not set.</source>
         <translation>Пароль AUR не встановлено.</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="759"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="764"/>
         <source>Select the build directory for the AUR packages</source>
         <translation>Виберіть каталог збірки для пакунків AUR</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="763"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="768"/>
         <source>Icon path information is not set.</source>
         <translation>Інформацію про шлях до піктограми не встановлено.</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="767"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="772"/>
         <source>You must use &quot;/usr/bin/octopi&quot; to run Octopi</source>
         <translation>Ви повинні використовувати &quot;/usr/bin/octopi&quot; для запуску Octopi</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="771"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="776"/>
         <source>You must use &quot;/usr/bin/octopi-notifier&quot; to run Octopi Notifier</source>
         <translation>Ви повинні використовувати &quot;/usr/bin/octopi-notifier&quot;, щоб запустити Octopi Notifier</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="775"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="780"/>
         <source>You must use &quot;/usr/bin/octopi-cachecleaner&quot; to run Octopi Cache Cleaner</source>
         <translation>Ви повинні використовувати &quot;/usr/bin/ ctopi-cachecleaner&quot;, щоб запустити Octopi Cache Cleaner</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="779"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="784"/>
         <source>You can not run Octopi with administrator&apos;s credentials.</source>
         <translation>Ви не можете запустити  Octopi з правами адміністратора.</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="783"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="788"/>
         <source>Canceling the running transaction may damage your system!</source>
         <translation>Скасування запущеної транзакції може пошкодити вашу систему!</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="787"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="792"/>
         <source>There are pending actions</source>
         <translation>Є дії, що очікують на розгляд</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="791"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="796"/>
         <source>Do you really want to quit?</source>
         <translation>Дійсно бажаєте вийти?</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="796"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="801"/>
         <source>You are about to generate &quot;octopi-sysinfo.log&quot; in your home path with the contents of:
 
 &quot;/etc/lsb-release&quot;, &quot;inxi -Fxz&quot;, &quot;uname -a&quot;, &quot;mhwd -li -d,&quot;
@@ -1446,183 +1451,183 @@ and &quot;head --bytes=256K /var/log/pacman.log&quot;
 </translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="804"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="809"/>
         <source>Executing command</source>
         <translation>Виконання команди</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="808"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="813"/>
         <source>Run in terminal</source>
         <translation>Запустити в терміналі</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="812"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="817"/>
         <source>This change needs application restart to take effect</source>
         <translation>Ця зміна потребує перезапуску програми для набуття чинності</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="816"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="821"/>
         <source>These changes need application restart to take effect!</source>
         <translation>Ці зміни вступлять в силу після перезапуску додатка!</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="820"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="825"/>
         <source>Select the packages you want to install</source>
         <translation>Оберіть пакунки, які ви бажаєте встановити</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="824"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="829"/>
         <source>This file does not appear to be a simple text.
 Are you sure you want to open it?</source>
         <translation>Цей файл не є простим текстом. Ви упевнені, що хочете відкрити його?</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="829"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="834"/>
         <source>To be installed</source>
         <translation>Для встановлення</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="833"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="838"/>
         <source>To be removed</source>
         <translation>Для видалення</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="837"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="842"/>
         <source>Remove</source>
         <translation>Видалити</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="841"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="846"/>
         <source>Install</source>
         <translation>Встановити</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="846"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="851"/>
         <source>Reinstall</source>
         <translation>Перевстановити</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="851"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="856"/>
         <source>Change Install Reason</source>
         <translation>Змінити причину встановлення</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="856"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="861"/>
         <source>Update</source>
         <translation>Оновлення</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="860"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="865"/>
         <source>Remove item</source>
         <translation>Вилучити елемент</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="864"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="869"/>
         <source>Remove items</source>
         <translation>Вилучити елементи</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="868"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="873"/>
         <source>Press Ctrl+A to select/deselect all</source>
         <translation>Натисніть Ctrl+A, щоб виборати/скасувати все</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="872"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="877"/>
         <source>Use &quot;%1&quot; tool</source>
         <translation>Використати &quot;1%&quot; інструмент</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="876"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="881"/>
         <source>Copy path to clipboard</source>
         <translation>Скопіювати шлях до буферу обміну</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="880"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="885"/>
         <source>Setup</source>
         <translation>Установка</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="884"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="889"/>
         <source>Check for package updates interval</source>
         <translation>Перевірте наявність інтервалу оновлення пакета</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="888"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="893"/>
         <source>Once a day</source>
         <translation>Раз на день</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="892"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="897"/>
         <source>Once a day, at</source>
         <translation>Раз на день, об</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="896"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="901"/>
         <source>(value in 24-hour format: 0 to 23)</source>
         <translation>(число у 24-х годинному форматі: від 0 до 23)</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="900"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="905"/>
         <source>Once every</source>
         <translation>Одноразово кожні</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="904"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="909"/>
         <source>(value in minutes: %1 to %2)</source>
         <translation>(значення у хвилинах: від %1 до %2)</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="908"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="913"/>
         <source>Set interval...</source>
         <translation>Визначити інтервал</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="913"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="918"/>
         <source>Stop</source>
         <translation>Стоп</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="918"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="923"/>
         <source>%1 could not be found in the system!</source>
         <translation>%1  не вдалося знайти в системі!</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="923"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="928"/>
         <source>Zoom in</source>
         <translation>Збільшення</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="928"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="933"/>
         <source>Zoom out</source>
         <translation>Зменшення</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="933"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="938"/>
         <source>Maximize</source>
         <translation>Розгорнути</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="938"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="943"/>
         <source>Copy</source>
         <translation>Копіювати</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="943"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="948"/>
         <source>Paste</source>
         <translation>Вставити</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="948"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="953"/>
         <source>Never</source>
         <translation>Ніколи</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="953"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="958"/>
         <source>Upgrading...</source>
         <translation>Оновлення...</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="958"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="963"/>
         <source>Exit</source>
         <translation>Вихід</translation>
     </message>

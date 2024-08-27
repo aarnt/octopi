@@ -240,227 +240,227 @@
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="68"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="64"/>
         <source>Ctrl+Shift+O to display outdated %1 packages</source>
         <translation>Ctrl+Skift+O for at vise forældede %1-pakker</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="76"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="72"/>
         <source>Ctrl+Shift+A to display AUR voted package list</source>
         <translation>Ctrl+Skift+A for at vise AUR-stemt pakkeliste</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="81"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="77"/>
         <source>For more information, visit:</source>
         <translation>For mere information, besøg:</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="84"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="80"/>
         <source>A Qt-based Pacman frontend,</source>
         <translation>En  Qt-baseret Pacman frontend,</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="85"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="81"/>
         <source>licensed under the terms of</source>
         <translation>licenseret under betingelserne af</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="92"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="88"/>
         <source>Package classification:</source>
         <translation>Pakkeklassifikation:</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="95"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="91"/>
         <source>An installed package</source>
         <translation>En installeret pakke</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="97"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="93"/>
         <source>An installed package (not required by others)</source>
         <translation>En installeret pakke (kræves ikke af andre)</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="100"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="96"/>
         <source>A foreign package, installed from</source>
         <translation>En fremmede pakke, installeret fra</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="103"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="99"/>
         <source>A non installed package</source>
         <translation>En ikke-installeret pakke</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="106"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="102"/>
         <source>An outdated package</source>
         <translation>En forældet pakke</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="109"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="105"/>
         <source>An outdated foreign package</source>
         <translation>En forældet fremmede pakke</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="112"/>
-        <source>A newer than repository package</source>
-        <translation>En nyere end arkivpakke</translation>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="108"/>
+        <source>A newer version of this package is installed</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="114"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="110"/>
         <source>Basic usage help:</source>
         <translation>Grundlæggende hjælp til anvendelse:</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="116"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="112"/>
         <source>Position the mouse over a package to see its description</source>
         <translation>Placer musen over en pakke for at se dens beskrivelse</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="118"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="114"/>
         <source>Double click an installed package to see its contents</source>
         <translation>Dobbeltklik på en installeret pakke for at se dens indhold</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="120"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="116"/>
         <source>Right click package to install/reinstall or remove it</source>
         <translation>Højreklik på en pakke for at installere/geninstallere eller fjerne den</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="123"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="119"/>
         <source>Alt+key sequences:</source>
         <translation>Alt+tastatur sekvenser:</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="125"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="121"/>
         <source>Alt+1 to switch to &apos;Info&apos; tab</source>
         <translation>Alt+1 for at skifte til &apos;Info&apos;-faneblad</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="127"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="123"/>
         <source>Alt+2 to switch to &apos;Files&apos; tab</source>
         <translation>Alt+2 for at skifte til &apos;Filer&apos;-faneblad</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="129"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="125"/>
         <source>Alt+3 to switch to &apos;Actions&apos; tab</source>
         <translation>Alt+3 for at skifte til &apos;Handlinger&apos;-faneblad</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="131"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="127"/>
         <source>Alt+4 to switch to &apos;Output&apos; tab</source>
         <translation>Alt+4 for at skifte til &apos;Output&apos;-faneblad</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="133"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="129"/>
         <source>Alt+5 to switch to &apos;News&apos; tab</source>
         <translation>Alt+5 for at skifte til &apos;Nyheder&apos;-faneblad</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="135"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="131"/>
         <source>Alt+6 or &apos;F1&apos; to show this help page</source>
         <translation>Alt+6 eller &apos;F1&apos; for at vise denne hjælpeside</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="137"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="133"/>
         <source>Alt+7 to switch to &apos;Terminal&apos; tab</source>
         <translation>Alt+7 for at skifte til &apos;Terminal&apos;-faneblad</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="140"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="136"/>
         <source>Control+key sequences:</source>
         <translation>Control+tastatur sekvenser:</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="142"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="138"/>
         <source>Ctrl+E or &apos;Actions/Cancel&apos; to clear the selection of to be removed/installed packages</source>
         <translation>Ctrl+E eller &apos;Handlinger/Annuller&apos; for at rydde markeringen af pakker som er sat til fjernelse/installation</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="144"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="140"/>
         <source>Ctrl+F to search for text inside tab Files, News and Usage</source>
         <translation>Ctrl+F for at søge efter tekst i Filer-faneblad, Nyheder og Anvendelse</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="146"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="142"/>
         <source>Ctrl+G or &apos;File/Get latest distro news&apos; to retrieve the latest RSS based distro news</source>
         <translation>Ctrl+G eller &apos;Fil/Få de seneste nyheder fra din distribution&apos; for at hente det seneste RSS baserede distronyt</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="148"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="144"/>
         <source>Ctrl+K or &apos;File/Check updates&apos; to check mirror for latest updates (checkupdates)</source>
         <translation>Ctrl+K eller &apos;Fil/Søg efter opdateringer&apos; for at tjekke spejlene for de seneste opdateringer (checkupdates)</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="150"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="146"/>
         <source>Ctrl+L to find a package in the package list</source>
         <translation>Ctrl+L for at finde en pakke i pakkelisten</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="152"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="148"/>
         <source>Ctrl+P to go to package list</source>
         <translation>Ctrl+P for at gå til pakkeliste</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="154"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="150"/>
         <source>Ctrl+Q or &apos;File/Exit&apos; to exit the application</source>
         <translation>Ctrl+Q eller &apos;Fil/Afslut&apos; for at forlade programmet</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="156"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="152"/>
         <source>Ctrl+U or &apos;File/System upgrade&apos; to make a full system upgrade (pacman -Su)</source>
         <translation>Ctrl+U eller &apos;Fil/Systemopgradering&apos; for at foretage en fuld systemopgradering (pacman -Su)</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="158"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="154"/>
         <source>Ctrl+Y or &apos;Actions/Apply&apos; to start installation/removal of selected packages</source>
         <translation>Ctrl+Y eller &apos;Handlinger/Anvend&apos; for at starte installation/fjernelse af de valgte pakker</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="161"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="157"/>
         <source>Control+shift+key sequences:</source>
         <translation>Control+skift+tast-sekvenser:</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="165"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="161"/>
         <source>Ctrl+Shift+G to display all package groups</source>
         <translation>Ctrl+Skift+G for at vise alle pakkegrupper</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="170"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="166"/>
         <source>Ctrl+Shift+U to upgrade outdated %1 packages</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="172"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="168"/>
         <source>Ctrl+Shift+Y to display %1 group</source>
         <translation>Ctrl+Skift+Y for at vise gruppen %1</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="175"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="171"/>
         <source>F+key sequences:</source>
         <translation>F+tastatur sekvenser:</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="177"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="173"/>
         <source>F1 to show this help page</source>
         <translation>F1 for at vise denne her hjælpeside</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="179"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="175"/>
         <source>F4 to open a Terminal whitin the selected directory at Files tab</source>
         <translation>F4 for at åbne en Terminal i den valgte mappe i Filer-faneblad</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="181"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="177"/>
         <source>F6 to open a File Manager whitin the selected directory at Files tab</source>
         <translation>F6 at åbne en filhåndterer indeni den valgte mappe i Filer-faneblad</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="183"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="179"/>
         <source>F10 to maximize/demaximize package list view</source>
         <translation>F10 for at maksimere/afmaksimere pakkelistevisning</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="185"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="181"/>
         <source>F11 to maximize/demaximize Tab&apos;s view</source>
         <translation>F11 for at maksimere/afmaksimere fanebladets visning</translation>
     </message>
@@ -539,113 +539,113 @@
         <translation>Vælg det AUR-værktøj som Octopi skal bruge</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="293"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="290"/>
         <source>Search for outdated AUR packages</source>
         <translation>Søg efter forældede AUR-pakker</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="348"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="345"/>
         <source>User name</source>
         <translation>Brugernavn</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="361"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="358"/>
         <source>Password</source>
         <translation>Adgangskode</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="374"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="371"/>
         <source>Register</source>
         <translation>Tilmeld</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="387"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="384"/>
         <source>Connect</source>
         <translation>Opret forbindelse</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="401"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="398"/>
         <source>Enable AUR voting</source>
         <translation>Aktivér AUR-stemning</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="422"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="419"/>
         <source>AUR packages are user produced content. 
 Any use of the provided files is at your own risk.</source>
         <translation>AUR-pakker er brugerproduceret indhold. 
 Brug af filerne sker på egen risiko.</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="483"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="480"/>
         <source>Build directory</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="518"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="515"/>
         <location filename="Projects/octopi/src/optionsdialog.cpp" line="170"/>
         <location filename="Projects/octopi/src/optionsdialog.cpp" line="183"/>
         <source>Backend</source>
         <translation>Backend</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="584"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="578"/>
         <source>Select the backend Octopi should use</source>
         <translation>Vælg den backend som Octopi skal bruge</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="608"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="602"/>
         <location filename="Projects/octopi/src/optionsdialog.cpp" line="697"/>
         <source>Icon</source>
         <translation>Ikon</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="671"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="665"/>
         <source>Red icon</source>
         <translation>Rødt ikon</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="749"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="743"/>
         <source>Yellow icon</source>
         <translation>Gult ikon</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="812"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="806"/>
         <source>Green icon</source>
         <translation>Grønt ikon</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="875"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="869"/>
         <source>Busy icon</source>
         <translation>Optaget ikon</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="928"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="922"/>
         <source>Use default notification icons</source>
         <translation>Brug standardunderretningsikoner</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="939"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="933"/>
         <location filename="Projects/octopi/src/optionsdialog.cpp" line="179"/>
         <source>Updates</source>
         <translation>Opdateringer</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1198"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1192"/>
         <source>Terminal</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1210"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1204"/>
         <source>Color Scheme</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1223"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1217"/>
         <source>Font Family</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1256"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1250"/>
         <source>Font Size</source>
         <translation type="unfinished"/>
     </message>
@@ -1211,132 +1211,137 @@ Det kan være nødvendigt at synkronisere databasen!</translation>
         <translation>Kører kommando i terminal ...</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="607"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="608"/>
+        <source>Collecting transaction data...</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="612"/>
         <source>Command finished OK!</source>
         <translation>Kommando blev færdig!</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="611"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="616"/>
         <source>Command finished with errors!</source>
         <translation>Kommando blev færdig med fejl!</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="616"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="621"/>
         <source>Temporary &quot;yay-bin&quot; could not be downloaded!</source>
         <translation>Midlertidig &quot;yay-bin&quot; kunne ikke downloades!</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="621"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="626"/>
         <source>Temporary &quot;yay-bin&quot; downloaded.</source>
         <translation>Midlertidig &quot;yay-bin&quot; downloadet.</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="626"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="631"/>
         <source>Downloading temporary &quot;yay-bin&quot;...</source>
         <translation>Downloader midlertidig &quot;yay-bin&quot; ...</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="630"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="635"/>
         <source>Retrieving %1</source>
         <translation>Henter %1</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="634"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="639"/>
         <source>Total download size: %1 KB</source>
         <translation>Samlet downloadstørrelse: %1 KB</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="638"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="643"/>
         <source>The following package needs to be retrieved</source>
         <translation>Følgende pakke vil blive hentet</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="642"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="647"/>
         <source>The following package will be removed</source>
         <translation>Følgende pakke vil blive fjernet</translation>
     </message>
     <message numerus="yes">
-        <location filename="Projects/octopi/src/strconstants.cpp" line="646"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="651"/>
         <source>The following %n packages need to be retrieved</source>
         <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
     </message>
     <message numerus="yes">
-        <location filename="Projects/octopi/src/strconstants.cpp" line="650"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="655"/>
         <source>The following %n packages will be removed</source>
         <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="654"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="659"/>
         <source>There are forbidden packages in the removal list!</source>
         <translation>Der er forbudte pakker i opdaterings-listen!</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="658"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="663"/>
         <source>There are no new updates available!</source>
         <translation>Der er ingen nye opdateringer til rådighed!</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="662"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="667"/>
         <source>There is an update available!</source>
         <translation>Der er en opdatering til rådighed!</translation>
     </message>
     <message numerus="yes">
-        <location filename="Projects/octopi/src/strconstants.cpp" line="666"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="671"/>
         <source>There are %n updates available!</source>
         <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="670"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="675"/>
         <source>Confirm?</source>
         <translation>Bekræft?</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="674"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="679"/>
         <source>Warning!!!</source>
         <translation>Advarsel!!!</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="678"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="683"/>
         <source>Confirmation</source>
         <translation>Bekræftelse</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="682"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="687"/>
         <source>There has been a transaction error!</source>
         <translation>Der har været en overførelsesfejl!</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="686"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="691"/>
         <source>Do you want to execute this transaction in a Terminal?</source>
         <translation>Vil du udføre denne overførsel i en terminal?</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="690"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="695"/>
         <source>Do you really want to cancel actions?</source>
         <translation>Vil du virkelig annullere handlingerne?</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="694"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="699"/>
         <source>Please, enter the administrator&apos;s password</source>
         <translation>Indtast venligst administrators kodeord</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="700"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="705"/>
         <source>There are no means to get administrator&apos;s credentials.</source>
         <translation>Der er ingen måde til at få administrators loginoplysninger.</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="705"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="710"/>
         <source>Pacman is running or didn&apos;t cleanly close (/var/lib/pacman/db.lck exists!)</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="709"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="714"/>
         <source>You&apos;ll need to install &quot;qt-sudo&quot; in order to use Octopi.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="714"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="719"/>
         <source>You'll need one of those tools to use AUR:
 
 %1, %2, %3 %4 or %5</source>
@@ -1345,91 +1350,91 @@ Det kan være nødvendigt at synkronisere databasen!</translation>
 %1, %2, %3 %4 eller %5</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="723"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="728"/>
         <source>You need a package in order to use AUR.
 Do you want to install it?</source>
         <translation>Du behøver en pakke for at bruge AUR.
 Vil du installere den?</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="729"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="734"/>
         <source>Connection is OK!</source>
         <translation>Forbindelsen er OK!</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="733"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="738"/>
         <source>Would you like to help this project by voting for it?
 You only need to accept and wait a few seconds.</source>
         <translation>Vil du hjælpe projektet ved at stemme på det?
 Det eneste du behøver gøre er at acceptere og vente nogle få sekunder.</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="739"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="744"/>
         <source>Thank you for voting for Octopi!</source>
         <translation>Tak fordi du stemte på Octopi!</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="744"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="749"/>
         <source>Username and/or password is/are incorrect.</source>
         <translation>Brugernavn og/eller adgangskode er forkert.</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="749"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="754"/>
         <source>AUR username is not set.</source>
         <translation>AUR-brugernavn er ikke indstillet.</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="754"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="759"/>
         <source>AUR password is not set.</source>
         <translation>AUR-adgangskode er ikke indstillet.</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="759"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="764"/>
         <source>Select the build directory for the AUR packages</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="763"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="768"/>
         <source>Icon path information is not set.</source>
         <translation>Information for ikonsti er ikke indstillet.</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="767"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="772"/>
         <source>You must use &quot;/usr/bin/octopi&quot; to run Octopi</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="771"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="776"/>
         <source>You must use &quot;/usr/bin/octopi-notifier&quot; to run Octopi Notifier</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="775"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="780"/>
         <source>You must use &quot;/usr/bin/octopi-cachecleaner&quot; to run Octopi Cache Cleaner</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="779"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="784"/>
         <source>You can not run Octopi with administrator&apos;s credentials.</source>
         <translation>Du kan ikke køre Octopi med administrators loginoplysninger.</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="783"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="788"/>
         <source>Canceling the running transaction may damage your system!</source>
         <translation>Annullering af den kørende transaktion kan gøre skade på dit system!</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="787"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="792"/>
         <source>There are pending actions</source>
         <translation>Der er afventende handlinger</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="791"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="796"/>
         <source>Do you really want to quit?</source>
         <translation>Vil du virkelig afslutte?</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="796"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="801"/>
         <source>You are about to generate &quot;octopi-sysinfo.log&quot; in your home path with the contents of:
 
 &quot;/etc/lsb-release&quot;, &quot;inxi -Fxz&quot;, &quot;uname -a&quot;, &quot;mhwd -li -d,&quot;
@@ -1448,184 +1453,184 @@ Vil du fortsætte?
 </translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="804"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="809"/>
         <source>Executing command</source>
         <translation>Udfører kommando</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="808"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="813"/>
         <source>Run in terminal</source>
         <translation>Kør i terminal</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="812"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="817"/>
         <source>This change needs application restart to take effect</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="816"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="821"/>
         <source>These changes need application restart to take effect!</source>
         <translation>Disse ændringer gør det nødvendigt at genstarte programmet for at de kan træde ikraft!</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="820"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="825"/>
         <source>Select the packages you want to install</source>
         <translation>Vælg pakkerne du ønsker at installere</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="824"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="829"/>
         <source>This file does not appear to be a simple text.
 Are you sure you want to open it?</source>
         <translation>Denne fil synes ikke at være en simpel tekst.
 Er du sikker du vil åbne det?</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="829"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="834"/>
         <source>To be installed</source>
         <translation>Vil blive installeret</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="833"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="838"/>
         <source>To be removed</source>
         <translation>Vil blive fjernet</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="837"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="842"/>
         <source>Remove</source>
         <translation>Fjern</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="841"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="846"/>
         <source>Install</source>
         <translation>Installer</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="846"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="851"/>
         <source>Reinstall</source>
         <translation>Geninstaller</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="851"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="856"/>
         <source>Change Install Reason</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="856"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="861"/>
         <source>Update</source>
         <translation>Opdater</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="860"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="865"/>
         <source>Remove item</source>
         <translation>Fjern emne</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="864"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="869"/>
         <source>Remove items</source>
         <translation>Fjern emner</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="868"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="873"/>
         <source>Press Ctrl+A to select/deselect all</source>
         <translation>Vælg Ctrl+A for at vælge/fravælge alt</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="872"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="877"/>
         <source>Use &quot;%1&quot; tool</source>
         <translation>Brug &quot;%1&quot; værktøj</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="876"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="881"/>
         <source>Copy path to clipboard</source>
         <translation>Kopiér sti til udklipsholder</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="880"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="885"/>
         <source>Setup</source>
         <translation>Installation</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="884"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="889"/>
         <source>Check for package updates interval</source>
         <translation>Interval for søg efter pakkeopdateringer</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="888"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="893"/>
         <source>Once a day</source>
         <translation>Én gang om dagen</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="892"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="897"/>
         <source>Once a day, at</source>
         <translation>Én gang om dagen, kl.</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="896"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="901"/>
         <source>(value in 24-hour format: 0 to 23)</source>
         <translation>(værdi i 24-timers format: 0 til 23)</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="900"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="905"/>
         <source>Once every</source>
         <translation>Én gang hver</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="904"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="909"/>
         <source>(value in minutes: %1 to %2)</source>
         <translation>(værdi i minutter: %1 til %2)</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="908"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="913"/>
         <source>Set interval...</source>
         <translation>Sæt interval ...</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="913"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="918"/>
         <source>Stop</source>
         <translation>Stop</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="918"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="923"/>
         <source>%1 could not be found in the system!</source>
         <translation>%1 blev ikke fundet i systemet!</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="923"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="928"/>
         <source>Zoom in</source>
         <translation>Zoom ind</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="928"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="933"/>
         <source>Zoom out</source>
         <translation>Zoom ud</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="933"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="938"/>
         <source>Maximize</source>
         <translation>Maksimer</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="938"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="943"/>
         <source>Copy</source>
         <translation>Kopiér</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="943"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="948"/>
         <source>Paste</source>
         <translation>Indsæt</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="948"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="953"/>
         <source>Never</source>
         <translation>Aldrig</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="953"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="958"/>
         <source>Upgrading...</source>
         <translation>Opgraderer ...</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="958"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="963"/>
         <source>Exit</source>
         <translation>Afslut</translation>
     </message>
