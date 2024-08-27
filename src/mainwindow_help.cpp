@@ -56,12 +56,8 @@ void MainWindow::initTabHelpUsage()
  */
 QString MainWindow::generateHelpUsageHtmlText()
 {
-  /*QString strNoPassword;
-  strNoPassword=tr("To use Octopi without a password your user need to be member of the \"wheel\" group") +
-      "<br>" + tr("and you must run the following command as root:") +
-      "<ul><li>/usr/lib/octopi/octopi-sudo -setnopasswd</li></ul><br>";*/
-
   QString strOutdatedAur;
+
   if(m_hasForeignTool && UnixCommand::getLinuxDistro() != ectn_CHAKRA)
   {
     strOutdatedAur=QLatin1String("<li>") +
@@ -109,7 +105,7 @@ QString MainWindow::generateHelpUsageHtmlText()
      tr("An outdated foreign package") +
   QStringLiteral("</li>") +
   QStringLiteral("<li>") + iconPath + QLatin1String("newer.png\"/> ") +
-           tr("A newer than repository package") +
+           tr("A newer version of this package is installed") +
   QStringLiteral("</li></ul>") +
      tr("Basic usage help:") +
   QStringLiteral("<ul><li>") +
@@ -184,8 +180,6 @@ QString MainWindow::generateHelpUsageHtmlText()
   QStringLiteral("</li><li>") +
      tr("F11 to maximize/demaximize Tab's view") +
   QStringLiteral("</li></ul><br>");
-
-  //html += "<br>" + strNoPassword;
 
   return html;
 }

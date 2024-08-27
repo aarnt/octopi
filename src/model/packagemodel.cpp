@@ -124,6 +124,8 @@ QVariant PackageModel::data(const QModelIndex &index, int role) const
             return QVariant(bdt.toString(dateTimeFormat));
           }
           case ctn_PACKAGE_IDATE_COLUMN: {
+            if (package->status == ectn_NEWER) return QVariant(QStringLiteral(""));
+
             off_t pkgIDate = package->installDate;
             if (pkgIDate <= 0) return QVariant(QStringLiteral(""));
 
