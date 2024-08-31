@@ -47,11 +47,13 @@ QString OctopiTabInfo::formatTabInfo(const PackageRepository::PackageData& packa
   PackageInfoData pid;
 
   if (package.repository != StrConstants::getForeignRepositoryName() &&
-      (!package.installed() || package.outdated())) {
+      (!package.installed() /*|| (package.outdated() && package.status != ectn_NEWER)*/)) {
+    //Using pacman -Si
     pid = Package::getInformation(package.name);
   }
   else
   {
+    //Using pacman -Qi
     pid = Package::getInformation(package.name, true); //This is a foreign package!!!
   }
 
