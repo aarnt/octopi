@@ -91,13 +91,13 @@
         <location filename="Projects/octopi/ui/mainwindow.ui" line="328"/>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="536"/>
         <source>Install</source>
-        <translation>Instal·la-ho</translation>
+        <translation>Instal·la&apos;l</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="337"/>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="340"/>
         <source>Remove</source>
-        <translation>Suprimeix-ho</translation>
+        <translation>Suprimeix-lo</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="345"/>
@@ -302,7 +302,7 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="108"/>
         <source>A newer version of this package is installed</source>
-        <translation type="unfinished"/>
+        <translation>Hi ha instal·lada una versió més nova d&apos;aquest paquet.</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="110"/>
