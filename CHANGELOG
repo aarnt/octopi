@@ -1,6 +1,7 @@
 0.17 (dev)
   BugFix: Code for EndeavourOS news was incomplete (thanks to LegitGreenBoi).
   BugFix: Help msg for newer packages was wrong because they're not installed.
+  Play a bell sound when the Terminal tab is asking for the user password.
   Improvement: Show a "Collecting transaction data..." msg before presenting the transaction 
     dialog, as it can be quite slow on some systems (thanks to Valdir).  
   Updated translations.

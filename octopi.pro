@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT += core gui network xml widgets
+QT += core gui network xml widgets multimedia
 DEFINES += OCTOPI_EXTENSIONS ALPM_BACKEND
 
 # Disable automatic string conversions

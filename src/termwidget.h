@@ -53,6 +53,7 @@ private slots:
 
 public:
   explicit TermWidget(QWidget *parent);
+  void playBellSound();
   void execute(QString command);
   void enter();
 

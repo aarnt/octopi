@@ -98,5 +98,6 @@
         <file>resources/translations/octopi_zh-Hans.qm</file>
         <file>resources/translations/octopi_zh_CN.qm</file>
         <file>resources/translations/octopi_ko.qm</file>
+        <file>resources/sounds/bell.wav</file>
     </qresource>
 </RCC>
