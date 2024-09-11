@@ -37,7 +37,7 @@
 #include <QScreen>
 #include <QTcpServer>
 #include <QTcpSocket>
-#include <QtConcurrent/QtConcurrentRun>
+#include <QThreadPool>
 
 #ifdef KSTATUS
   #include <kstatusnotifieritem.h>
@@ -1116,7 +1116,7 @@ void MainWindow::refreshAppIcon()
           SIGNAL(directoryChanged(QString)), this, SLOT(refreshAppIcon()));
 
   if (m_outdatedStringList->count() > 0)
-    QtConcurrent::run(UnixCommand::execCommandAsNormalUserExt, ctn_PACMAN_SUP_COMMAND);
+    QThreadPool::globalInstance()->start(new ExecCommandAsNormalUserExtTask());
 }
 
 /*

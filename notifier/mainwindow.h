@@ -29,6 +29,7 @@
 #include <QString>
 #include <QMainWindow>
 #include <QSystemTrayIcon>
+#include <QRunnable>
 
 class QIcon;
 class QMenu;
@@ -38,6 +39,14 @@ class OptionsDialog;
 class TransactionDialog;
 class QTcpServer;
 class OutputDialog;
+
+class ExecCommandAsNormalUserExtTask : public QRunnable
+{
+  void run() override
+  {
+    UnixCommand::execCommandAsNormalUserExt(ctn_PACMAN_SUP_COMMAND);
+  }
+};
 
 enum CheckUpdate { ectn_AUTO_CHECK, ectn_USER_CHECK};
 

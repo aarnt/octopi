@@ -89,8 +89,13 @@ int main(int argc, char *argv[])
   }
 
   QTranslator appTranslator;
-  appTranslator.load(QLatin1String(":/resources/translations/octopi_") +
+  bool success = appTranslator.load(QLatin1String(":/resources/translations/octopi_") +
                      QLocale::system().name());
+  if (!success)
+  {
+    success = appTranslator.load(QStringLiteral(":/resources/translations/octopi_en.qm"));
+  }
+
   a.installTranslator(&appTranslator);
   a.setQuitOnLastWindowClosed(false);
 

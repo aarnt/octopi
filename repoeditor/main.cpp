@@ -46,8 +46,14 @@ int main( int argc, char *argv[] )
   app.sendMessage(QStringLiteral("RAISE"));
 
   QTranslator appTranslator;
-  appTranslator.load(QLatin1String(":/resources/translations/octopi_repoeditor_") +
+
+  bool success = appTranslator.load(QLatin1String(":/resources/translations/octopi_repoeditor_") +
                      QLocale::system().name());
+  if (!success)
+  {
+    success = appTranslator.load(QStringLiteral(":/resources/translations/octopi_repoeditor_en.qm"));
+  }
+
   app.installTranslator(&appTranslator);
 
   if (UnixCommand::isRootRunning()){

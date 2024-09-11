@@ -127,7 +127,7 @@ int main(int argc, char *argv[])
                      QLocale::system().name());
   if (!success)
   {
-    appTranslator.load(QStringLiteral(":/resources/translations/octopi_en.qm"));
+    success = appTranslator.load(QStringLiteral(":/resources/translations/octopi_en.qm"));
   }
 
   app.installTranslator(&appTranslator);
