@@ -499,8 +499,8 @@
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="102"/>
-        <source>Play a bell sound on terminal password input</source>
-        <translation>Tocar um som de campainha ao digitar a senha no terminal</translation>
+        <source>Play a bell sound when prompting for the root password in the terminal</source>
+        <translation>Tocar um som de campainha ao requisitar a senha de root no terminal</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="108"/>

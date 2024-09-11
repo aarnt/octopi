@@ -99,7 +99,7 @@
           </rect>
          </property>
          <property name="text">
-          <string>Play a bell sound on terminal password input</string>
+          <string>Play a bell sound when prompting for the root password in the terminal</string>
          </property>
         </widget>
        </widget>
