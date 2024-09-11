@@ -224,12 +224,15 @@ void TermWidget::onZoomOut()
  */
 void TermWidget::playBellSound()
 {
-  QSoundEffect *se = new QSoundEffect(this);
-  se->setSource(QUrl::fromLocalFile(QLatin1String(":/resources/sounds/bell.wav")));
-  se->setLoopCount(3);
-  se->setMuted(false);
-  se->setVolume(1.0f);
-  se->play();
+  if (SettingsManager::getPlayBellSoundOnTerminalPasswordInput() == true)
+  {
+    QSoundEffect *se = new QSoundEffect(this);
+    se->setSource(QUrl::fromLocalFile(QLatin1String(":/resources/sounds/bell.wav")));
+    se->setLoopCount(3);
+    se->setMuted(false);
+    se->setVolume(1.0f);
+    se->play();
+  }
 }
 
 /*
