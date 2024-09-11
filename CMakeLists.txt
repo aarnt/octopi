@@ -14,10 +14,10 @@ add_subdirectory(cachecleaner)
 add_subdirectory(repoeditor)
 
 if (USE_QTERMWIDGET6)
-  find_package(Qt6 REQUIRED COMPONENTS Core Core5Compat Gui Network Xml Widgets LinguistTools)
+  find_package(Qt6 REQUIRED COMPONENTS Core Core5Compat Gui Network Xml Widgets LinguistTools Multimedia)
   find_package(qtermwidget6 REQUIRED)
 else()
-  find_package(Qt5 REQUIRED COMPONENTS Core Gui Network Xml Widgets LinguistTools)
+  find_package(Qt5 REQUIRED COMPONENTS Core Gui Network Xml Widgets LinguistTools Multimedia)
   find_package(qtermwidget5 REQUIRED)
 endif()
 
@@ -114,10 +114,10 @@ target_compile_definitions(octopi PRIVATE OCTOPI_EXTENSIONS ALPM_BACKEND QT_DEPR
 
 if (USE_QTERMWIDGET6)
   target_include_directories(octopi PRIVATE ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR} ${Qt6Core_INCLUDE_DIRS} ${Qt6Gui_INCLUDE_DIRS} ${Qt6Network_INCLUDE_DIRS} ${Qt6Xml_INCLUDE_DIRS} ${Qt6Widgets_INCLUDE_DIRS})
-  target_link_libraries(octopi PRIVATE Qt6::Core Qt6::Gui Qt6::Network Qt6::Xml Qt6::Widgets qtermwidget6 alpm_octopi_utils)
+  target_link_libraries(octopi PRIVATE Qt6::Core Qt6::Gui Qt6::Network Qt6::Xml Qt6::Widgets Qt6::Multimedia qtermwidget6 alpm_octopi_utils)
 else()
   target_include_directories(octopi PRIVATE ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR} ${Qt5Core_INCLUDE_DIRS} ${Qt5Gui_INCLUDE_DIRS} ${Qt5Network_INCLUDE_DIRS} ${Qt5Xml_INCLUDE_DIRS} ${Qt5Widgets_INCLUDE_DIRS})
-  target_link_libraries(octopi PRIVATE Qt5::Core Qt5::Gui Qt5::Network Qt5::Xml Qt5::Widgets qtermwidget5 alpm_octopi_utils)
+  target_link_libraries(octopi PRIVATE Qt5::Core Qt5::Gui Qt5::Network Qt5::Xml Qt5::Widgets Qt5::Multimedia qtermwidget5 alpm_octopi_utils)
 endif()
 
 file(COPY "${CMAKE_CURRENT_SOURCE_DIR}/resources/images/octopi_green.png" DESTINATION "${CMAKE_CURRENT_BINARY_DIR}")

@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT += core xml gui network
+QT += core xml gui network multimedia
 
 DEFINES += OCTOPI_EXTENSIONS ALPM_BACKEND
 

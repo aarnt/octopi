@@ -202,6 +202,7 @@ void OptionsDialog::initGeneralTab()
   cbShowStopTransaction->setChecked(SettingsManager::getShowStopTransaction());
   cbConfirmationDialogInSysUpgrade->setChecked(SettingsManager::getEnableConfirmationDialogInSysUpgrade());
   cbEnableInternetCheck->setChecked(SettingsManager::getEnableInternetChecking());
+  cbPlayBellSound->setChecked(SettingsManager::getPlayBellSoundOnTerminalPasswordInput());
 }
 
 /*
@@ -474,6 +475,10 @@ void OptionsDialog::accept()
   if (cbEnableInternetCheck->isChecked() != SettingsManager::getEnableInternetChecking())
   {
     SettingsManager::setEnableInternetChecking(cbEnableInternetCheck->isChecked());
+  }
+  if (cbPlayBellSound->isChecked() != SettingsManager::getPlayBellSoundOnTerminalPasswordInput())
+  {
+    SettingsManager::setPlayBellSoundOnTerminalPasswordInput(cbPlayBellSound->isChecked());
   }
 
   //Set Package List...

@@ -107,6 +107,7 @@ class SettingsManager
     static bool getUseAlternateRowColor();
     static bool getEnableConfirmationDialogInSysUpgrade();
     static bool getEnableInternetChecking();
+    static bool getPlayBellSoundOnTerminalPasswordInput();
 
     static int getConsoleFontSize();
     static QString readSUToolValue();
@@ -205,6 +206,7 @@ class SettingsManager
     static void setTerminalColorScheme(const QString& newValue);
     static void setTerminalFontFamily(const QString& newValue);
     static void setTerminalFontPointSize(qreal newValue);
+    static void setPlayBellSoundOnTerminalPasswordInput(bool newValue);
 };
 
 #endif // SETTINGSMANAGER_H

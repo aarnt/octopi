@@ -621,6 +621,12 @@ bool SettingsManager::getEnableInternetChecking()
   return (p_instance.getSYSsettings()->value(ctn_KEY_ENABLE_INTERNET_CHECKING, true)).toBool();
 }
 
+bool SettingsManager::getPlayBellSoundOnTerminalPasswordInput()
+{
+  SettingsManager p_instance;
+  return (p_instance.getSYSsettings()->value(ctn_KEY_PLAY_BELL_SOUND_ON_TERMINAL_PASSWORD_INPUT, false)).toBool();
+}
+
 int SettingsManager::getConsoleFontSize()
 {
   SettingsManager p_instance;
@@ -1073,6 +1079,12 @@ void SettingsManager::setTerminalFontFamily(const QString &newValue)
 void SettingsManager::setTerminalFontPointSize(qreal newValue)
 {
   instance()->getSYSsettings()->setValue(ctn_KEY_TERMINAL_FONT_POINT_SIZE, newValue);
+  instance()->getSYSsettings()->sync();
+}
+
+void SettingsManager::setPlayBellSoundOnTerminalPasswordInput(bool newValue)
+{
+  instance()->getSYSsettings()->setValue(ctn_KEY_PLAY_BELL_SOUND_ON_TERMINAL_PASSWORD_INPUT, newValue);
   instance()->getSYSsettings()->sync();
 }
 

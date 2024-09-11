@@ -31,7 +31,7 @@
      <item>
       <widget class="QTabWidget" name="tabWidget">
        <property name="currentIndex">
-        <number>6</number>
+        <number>0</number>
        </property>
        <widget class="QWidget" name="tabGeneral">
         <attribute name="title">
@@ -87,6 +87,19 @@
          </property>
          <property name="text">
           <string>Enable internet checking</string>
+         </property>
+        </widget>
+        <widget class="QCheckBox" name="cbPlayBellSound">
+         <property name="geometry">
+          <rect>
+           <x>20</x>
+           <y>148</y>
+           <width>611</width>
+           <height>23</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Play a bell sound on terminal password input</string>
          </property>
         </widget>
        </widget>
