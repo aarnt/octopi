@@ -498,154 +498,159 @@
         <translation>インターネットチェックを有効にする</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="95"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="102"/>
+        <source>Play a bell sound when prompting for the root password in the terminal</source>
+        <translation>ターミナルで root パスワードの入力を求められたときにベル音を鳴らす</translation>
+    </message>
+    <message>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="108"/>
         <location filename="Projects/octopi/src/optionsdialog.cpp" line="184"/>
         <source>Package List</source>
         <translation>パッケージリスト</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="107"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="120"/>
         <source>Use alternating row colors</source>
         <translation>行の色を交互に変える</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="120"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="133"/>
         <source>Show &quot;Licenses&quot; column</source>
         <translation>「ライセンス」列を表示</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="133"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="146"/>
         <source>Show &quot;Installed Size&quot; column</source>
         <translation>「インストールサイズ」列を表示</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="146"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="159"/>
         <source>Show &quot;Build Date&quot; column</source>
         <translation>「ビルド日」列を表示</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="159"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="172"/>
         <source>Show &quot;Install Date&quot; column</source>
         <translation>「インストール日」列を表示</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="172"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="185"/>
         <source>Show &quot;Install Reason&quot; column</source>
         <translation>「インストール理由」列を表示</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="209"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="222"/>
         <source>Select the AUR tool Octopi should use</source>
         <translation>Octopi が使用する AUR ツールを選択</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="290"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="303"/>
         <source>Search for outdated AUR packages</source>
         <translation>未更新の AUR パッケージを検索</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="345"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="358"/>
         <source>User name</source>
         <translation>ユーザー名</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="358"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="371"/>
         <source>Password</source>
         <translation>パスワード</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="371"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="384"/>
         <source>Register</source>
         <translation>登録</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="384"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="397"/>
         <source>Connect</source>
         <translation>接続</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="398"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="411"/>
         <source>Enable AUR voting</source>
         <translation>AUR への投票を有効にする</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="419"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="432"/>
         <source>AUR packages are user produced content. 
 Any use of the provided files is at your own risk.</source>
         <translation>AUR パッケージはユーザーが作成したコンテンツです。
 提供されたファイルの使用は、自己責任で行ってください。</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="480"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="493"/>
         <source>Build directory</source>
         <translation>ビルドディレクトリ</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="515"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="528"/>
         <location filename="Projects/octopi/src/optionsdialog.cpp" line="170"/>
         <location filename="Projects/octopi/src/optionsdialog.cpp" line="183"/>
         <source>Backend</source>
         <translation>バックエンド</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="578"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="591"/>
         <source>Select the backend Octopi should use</source>
         <translation>Octopiが使用するバックエンドを選択</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="602"/>
-        <location filename="Projects/octopi/src/optionsdialog.cpp" line="697"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="615"/>
+        <location filename="Projects/octopi/src/optionsdialog.cpp" line="702"/>
         <source>Icon</source>
         <translation>アイコン</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="665"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="678"/>
         <source>Red icon</source>
         <translation>赤アイコン</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="743"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="756"/>
         <source>Yellow icon</source>
         <translation>黄アイコン</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="806"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="819"/>
         <source>Green icon</source>
         <translation>緑アイコン</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="869"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="882"/>
         <source>Busy icon</source>
         <translation>ビジーアイコン</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="922"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="935"/>
         <source>Use default notification icons</source>
         <translation>デフォルトの通知アイコンを使用する</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="933"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="946"/>
         <location filename="Projects/octopi/src/optionsdialog.cpp" line="179"/>
         <source>Updates</source>
         <translation>アップデート</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1192"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1205"/>
         <source>Terminal</source>
         <translation>ターミナル</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1204"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1217"/>
         <source>Color Scheme</source>
         <translation>配色</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1217"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1230"/>
         <source>Font Family</source>
         <translation>フォントファミリー</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1250"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1263"/>
         <source>Font Size</source>
         <translation>フォントサイズ</translation>
     </message>

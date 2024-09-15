@@ -237,7 +237,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="634"/>
         <source>Outdated</source>
-        <translation type="unfinished"/>
+        <translation>Zastarjeli</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="64"/>
@@ -302,7 +302,7 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="108"/>
         <source>A newer version of this package is installed</source>
-        <translation type="unfinished"/>
+        <translation>Instalirana je novija verzija ovog paketa</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="110"/>
@@ -427,7 +427,7 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="166"/>
         <source>Ctrl+Shift+U to upgrade outdated %1 packages</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+Shift+U za nadogradnju zastarjelih %1 paketa</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="168"/>
@@ -498,156 +498,161 @@
         <translation>Omogući provjeru interneta</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="95"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="102"/>
+        <source>Play a bell sound when prompting for the root password in the terminal</source>
+        <translation>Pusti zvuk zvona kada se traži root lozinka u terminalu</translation>
+    </message>
+    <message>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="108"/>
         <location filename="Projects/octopi/src/optionsdialog.cpp" line="184"/>
         <source>Package List</source>
         <translation>Lista paketa</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="107"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="120"/>
         <source>Use alternating row colors</source>
         <translation>Upotrijebite naizmjenične boje retka</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="120"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="133"/>
         <source>Show &quot;Licenses&quot; column</source>
         <translation>Prikaži stupac &quot;Licence&quot;</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="133"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="146"/>
         <source>Show &quot;Installed Size&quot; column</source>
         <translation>Prikaži stupac &quot;Instalirana veličina&quot;</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="146"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="159"/>
         <source>Show &quot;Build Date&quot; column</source>
         <translation>Prikaži stupac &quot;Datum stvaranja&quot;</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="159"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="172"/>
         <source>Show &quot;Install Date&quot; column</source>
         <translation>Prikaži stupac &quot;Datum instalacije&quot;</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="172"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="185"/>
         <source>Show &quot;Install Reason&quot; column</source>
         <translation>Prikaži stupac &quot;Razlog instalacije&quot;</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="209"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="222"/>
         <source>Select the AUR tool Octopi should use</source>
         <translation>Odaberi AUR alat za Octopi</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="290"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="303"/>
         <source>Search for outdated AUR packages</source>
         <translation>Traži zastarjele AUR pakete</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="345"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="358"/>
         <source>User name</source>
         <translation>Korisničko ime</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="358"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="371"/>
         <source>Password</source>
         <translation>Lozinka</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="371"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="384"/>
         <source>Register</source>
         <translation>Registrirajte se</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="384"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="397"/>
         <source>Connect</source>
         <translation>Spoji</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="398"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="411"/>
         <source>Enable AUR voting</source>
         <translation>Omogući AUR glasovanje</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="419"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="432"/>
         <source>AUR packages are user produced content. 
 Any use of the provided files is at your own risk.</source>
         <translation>AUR paketi su sadržaj koji proizvodi korisnik.
 Svaka upotreba takvih paketa je na vlastitu odgovornost.</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="480"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="493"/>
         <source>Build directory</source>
         <translation>Direktorij za stvaranje paketa</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="515"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="528"/>
         <location filename="Projects/octopi/src/optionsdialog.cpp" line="170"/>
         <location filename="Projects/octopi/src/optionsdialog.cpp" line="183"/>
         <source>Backend</source>
         <translation>Pozadinski servis</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="578"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="591"/>
         <source>Select the backend Octopi should use</source>
         <translation>Odaberite pozadinski servis za Octopi</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="602"/>
-        <location filename="Projects/octopi/src/optionsdialog.cpp" line="697"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="615"/>
+        <location filename="Projects/octopi/src/optionsdialog.cpp" line="702"/>
         <source>Icon</source>
         <translation>Ikona</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="665"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="678"/>
         <source>Red icon</source>
         <translation>Crvena ikona</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="743"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="756"/>
         <source>Yellow icon</source>
         <translation>Žuta ikona</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="806"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="819"/>
         <source>Green icon</source>
         <translation>Zelena ikona</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="869"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="882"/>
         <source>Busy icon</source>
         <translation>Ikona zauzeća</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="922"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="935"/>
         <source>Use default notification icons</source>
         <translation>Koristi zadane ikone obavijesti</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="933"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="946"/>
         <location filename="Projects/octopi/src/optionsdialog.cpp" line="179"/>
         <source>Updates</source>
         <translation>Ažuriranja</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1192"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1205"/>
         <source>Terminal</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1204"/>
-        <source>Color Scheme</source>
-        <translation type="unfinished"/>
+        <translation>Terminal</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="1217"/>
-        <source>Font Family</source>
-        <translation type="unfinished"/>
+        <source>Color Scheme</source>
+        <translation>Shema boja</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1250"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1230"/>
+        <source>Font Family</source>
+        <translation>Obitelj fonta</translation>
+    </message>
+    <message>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1263"/>
         <source>Font Size</source>
-        <translation type="unfinished"/>
+        <translation>Veličina fonta</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/optionsdialog.cpp" line="100"/>
@@ -743,7 +748,7 @@ Morate sinkronizirati bazu podataka!</translation>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="160"/>
         <source>Obarun Linux news</source>
-        <translation type="unfinished"/>
+        <translation>Vijesti o Obarun Linux-u</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="164"/>
@@ -1103,7 +1108,7 @@ Morate sinkronizirati bazu podataka!</translation>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.cpp" line="478"/>
         <source>There are %n outdated packages in your system:</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>Imate %n zastarjeli paket u sustavu:</numerusform><numerusform>Imate %n zastarjelih paketa u sustavu:</numerusform><numerusform>Imate %n zastarjelih paketa u sustavu:</numerusform></translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="482"/>
@@ -1113,7 +1118,7 @@ Morate sinkronizirati bazu podataka!</translation>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.cpp" line="486"/>
         <source>%n packages</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>%n paket</numerusform><numerusform>%n paketa</numerusform><numerusform>%n paketa</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.cpp" line="490"/>
@@ -1213,7 +1218,7 @@ Morate sinkronizirati bazu podataka!</translation>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="608"/>
         <source>Collecting transaction data...</source>
-        <translation type="unfinished"/>
+        <translation>Prikupljanje podataka o transakciji...</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="612"/>
@@ -1263,12 +1268,12 @@ Morate sinkronizirati bazu podataka!</translation>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.cpp" line="651"/>
         <source>The following %n packages need to be retrieved</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>Sljedeći %n paket treba preuzeti</numerusform><numerusform>Sljedećih %n paketa treba preuzeti</numerusform><numerusform>Sljedećih %n paketa treba preuzeti</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.cpp" line="655"/>
         <source>The following %n packages will be removed</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>Sljedeći %n paket bit će uklonjen</numerusform><numerusform>Sljedećih %n bit će uklonjeno</numerusform><numerusform>Sljedećih %n paketa bit će uklonjeno</numerusform></translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="659"/>
@@ -1288,7 +1293,7 @@ Morate sinkronizirati bazu podataka!</translation>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.cpp" line="671"/>
         <source>There are %n updates available!</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>Postoji %n nadogradnja!</numerusform><numerusform>Postoji %n nadogradnji!</numerusform><numerusform>Postoji %n nadogradnji!</numerusform></translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="675"/>
@@ -1333,12 +1338,12 @@ Morate sinkronizirati bazu podataka!</translation>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="710"/>
         <source>Pacman is running or didn&apos;t cleanly close (/var/lib/pacman/db.lck exists!)</source>
-        <translation type="unfinished"/>
+        <translation>Pacman radi ili se nije dobro zatvorio (/var/lib/pacman/db.lck postoji!)</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="714"/>
         <source>You&apos;ll need to install &quot;qt-sudo&quot; in order to use Octopi.</source>
-        <translation type="unfinished"/>
+        <translation>Trebate instalirati &quot;qt-sudo&quot; da biste mogli koristiti Octopi.</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="719"/>
