@@ -98,6 +98,7 @@ class SettingsManager
     static bool getAUROverwriteParam();
     static bool getAURNoConfirmParam();
     static bool getAURNoEditParam();
+    static bool getAUREditMenuParam();
     static QString getAURBuildDir();
     static bool getSearchOutdatedAURPackages();
     static bool getEnableAURVoting();
@@ -191,6 +192,7 @@ class SettingsManager
     static void setAUROverwriteParam(bool newValue);
     static void setAURNoConfirmParam(bool newValue);
     static void setAURNoEditParam(bool newValue);
+    static void setAUREditMenuParam(bool newValue);
     static void setAURBuildDir(const QString &newValue);
     static void setSearchOutdatedAURPackages(bool newValue);
     static void setEnableAURVoting(bool newValue);

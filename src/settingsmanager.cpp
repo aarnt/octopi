@@ -458,6 +458,7 @@ QString SettingsManager::getAURTool()
   {
     if (getAURNoConfirmParam()) params += QLatin1String(" --noconfirm ");
     if (getAURNoEditParam()) params += QLatin1String(" --editmenu=false ");
+    if (getAUREditMenuParam()) params += QLatin1String(" --editmenu ");
     if (getAUROverwriteParam()) params += QLatin1String(" --overwrite=\"*\" ");
     ret += params;
   }
@@ -554,6 +555,12 @@ bool SettingsManager::getAURNoEditParam()
 {
   SettingsManager p_instance;
   return (p_instance.getSYSsettings()->value(ctn_KEY_AUR_NO_EDIT_PARAM, false)).toBool();
+}
+
+bool SettingsManager::getAUREditMenuParam()
+{
+  SettingsManager p_instance;
+  return (p_instance.getSYSsettings()->value(ctn_KEY_AUR_EDITMENU_PARAM, false)).toBool();
 }
 
 QString SettingsManager::getAURBuildDir()
@@ -973,6 +980,12 @@ void SettingsManager::setAURNoConfirmParam(bool newValue)
 void SettingsManager::setAURNoEditParam(bool newValue)
 {
   instance()->getSYSsettings()->setValue(ctn_KEY_AUR_NO_EDIT_PARAM, newValue);
+  instance()->getSYSsettings()->sync();
+}
+
+void SettingsManager::setAUREditMenuParam(bool newValue)
+{
+  instance()->getSYSsettings()->setValue(ctn_KEY_AUR_EDITMENU_PARAM, newValue);
   instance()->getSYSsettings()->sync();
 }
 

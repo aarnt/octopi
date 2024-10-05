@@ -25,7 +25,6 @@
 #include <QApplication>
 #include <QProcess>
 #include <QTextStream>
-#include <iostream>
 
 /*
  * This class abstracts all the relevant terminal related code
@@ -119,6 +118,6 @@ void Terminal::runCommandInTerminalAsNormalUser(const QStringList &commandList)
   if (removedLines) out += QLatin1String("echo '") + StrConstants::getPressAnyKey() + QLatin1Char('\'');
 
   QString cmd;
-  cmd = UnixCommand::getShell() + QLatin1String(" -c \"") + out /*ftemp->fileName()*/ + QLatin1Char('"');
+  cmd = UnixCommand::getShell() + QLatin1String(" -c \"") + out + QLatin1Char('"');
   emit commandToExecInQTermWidget(cmd);
 }

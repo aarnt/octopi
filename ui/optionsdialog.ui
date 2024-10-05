@@ -31,7 +31,7 @@
      <item>
       <widget class="QTabWidget" name="tabWidget">
        <property name="currentIndex">
-        <number>0</number>
+        <number>2</number>
        </property>
        <widget class="QWidget" name="tabGeneral">
         <attribute name="title">
@@ -266,7 +266,7 @@
              <rect>
               <x>20</x>
               <y>200</y>
-              <width>131</width>
+              <width>101</width>
               <height>22</height>
              </rect>
             </property>
@@ -517,6 +517,27 @@ Any use of the provided files is at your own risk.</string>
             </property>
             <property name="text">
              <string/>
+            </property>
+           </widget>
+           <widget class="QCheckBox" name="cbEditMenu">
+            <property name="geometry">
+             <rect>
+              <x>130</x>
+              <y>200</y>
+              <width>101</width>
+              <height>22</height>
+             </rect>
+            </property>
+            <property name="font">
+             <font>
+              <pointsize>8</pointsize>
+             </font>
+            </property>
+            <property name="toolTip">
+             <string notr="true"/>
+            </property>
+            <property name="text">
+             <string notr="true">--editmenu</string>
             </property>
            </widget>
           </widget>

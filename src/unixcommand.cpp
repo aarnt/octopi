@@ -242,6 +242,12 @@ QByteArray UnixCommand::getAURPackageList(const QString &searchString)
     sl << QLatin1String("--noeditmenu");
     tool = tool.trimmed();
   }
+  if (tool.contains(QLatin1String("--editmenu")))
+  {
+    tool.remove(QLatin1String("--editmenu"));
+    sl << QLatin1String("--editmenu");
+    tool = tool.trimmed();
+  }
   if (tool.contains(QLatin1String("--editmenu=false")))
   {
     tool.remove(QLatin1String("--editmenu=false"));

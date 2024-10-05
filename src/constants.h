@@ -97,6 +97,7 @@ const QString ctn_KEY_AUR_TOOL(QStringLiteral("Aur_Tool_Name"));
 const QString ctn_KEY_AUR_OVERWRITE_PARAM(QStringLiteral("Aur_Overwrite_Param"));
 const QString ctn_KEY_AUR_NO_CONFIRM_PARAM(QStringLiteral("Aur_No_Confirm_Param"));
 const QString ctn_KEY_AUR_NO_EDIT_PARAM(QStringLiteral("Aur_No_Edit_Param"));
+const QString ctn_KEY_AUR_EDITMENU_PARAM(QStringLiteral("Aur_EditMenu_Param"));
 const QString ctn_KEY_AUR_BUILDDIR(QStringLiteral("Aur_Builddir"));
 const QString ctn_KEY_SEARCH_OUTDATED_AUR_PACKAGES(QStringLiteral("Search_Outdated_Aur_Packages"));
 const QString ctn_KEY_ENABLE_AUR_VOTING(QStringLiteral("Enable_Aur_Voting"));
