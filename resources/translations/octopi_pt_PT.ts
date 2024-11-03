@@ -498,154 +498,159 @@
         <translation>Ativar a verificação de ligação à internet</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="95"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="102"/>
+        <source>Play a bell sound when prompting for the root password in the terminal</source>
+        <translation>Reproduzir um som de campainha quando for solicitada a palavra-passe de root no terminal</translation>
+    </message>
+    <message>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="108"/>
         <location filename="Projects/octopi/src/optionsdialog.cpp" line="184"/>
         <source>Package List</source>
         <translation>Lista de Pacotes</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="107"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="120"/>
         <source>Use alternating row colors</source>
         <translation>Usar cores de linha alternadas</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="120"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="133"/>
         <source>Show &quot;Licenses&quot; column</source>
         <translation>Mostrar a coluna &quot;Licenças&quot;</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="133"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="146"/>
         <source>Show &quot;Installed Size&quot; column</source>
         <translation>Mostrar a coluna &quot;Tamanho&quot;</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="146"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="159"/>
         <source>Show &quot;Build Date&quot; column</source>
         <translation>Mostrar a coluna &quot;Data de Compilação&quot;</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="159"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="172"/>
         <source>Show &quot;Install Date&quot; column</source>
         <translation>Mostrar a coluna &quot;Data da Instalação&quot;</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="172"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="185"/>
         <source>Show &quot;Install Reason&quot; column</source>
         <translation>Mostrar a coluna &quot;Motivo da Instalação&quot;</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="209"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="222"/>
         <source>Select the AUR tool Octopi should use</source>
         <translation>Selecione a ferramenta Octopi AUR a utilizar</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="290"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="303"/>
         <source>Search for outdated AUR packages</source>
         <translation>Pesquisar por pacotes AUR desatualizados</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="345"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="358"/>
         <source>User name</source>
         <translation>Nome de utilizador</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="358"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="371"/>
         <source>Password</source>
         <translation>Palavra-passe</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="371"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="384"/>
         <source>Register</source>
         <translation>Registar</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="384"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="397"/>
         <source>Connect</source>
         <translation>Ligar</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="398"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="411"/>
         <source>Enable AUR voting</source>
         <translation>Ativar votação no AUR</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="419"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="432"/>
         <source>AUR packages are user produced content. 
 Any use of the provided files is at your own risk.</source>
         <translation>Os pacotes AUR são conteúdo produzido pelos utilizadores. 
 Qualquer uso dos ficheiros fornecidos é por sua conta e risco.</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="480"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="493"/>
         <source>Build directory</source>
         <translation>Diretório de Compilação</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="515"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="528"/>
         <location filename="Projects/octopi/src/optionsdialog.cpp" line="170"/>
         <location filename="Projects/octopi/src/optionsdialog.cpp" line="183"/>
         <source>Backend</source>
         <translation>Backend</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="578"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="591"/>
         <source>Select the backend Octopi should use</source>
         <translation>Selecione o backend que o Octopi deve utilizar</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="602"/>
-        <location filename="Projects/octopi/src/optionsdialog.cpp" line="697"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="615"/>
+        <location filename="Projects/octopi/src/optionsdialog.cpp" line="702"/>
         <source>Icon</source>
         <translation>Ícone</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="665"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="678"/>
         <source>Red icon</source>
         <translation>Ícone vermelho</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="743"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="756"/>
         <source>Yellow icon</source>
         <translation>Ícone amarelo</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="806"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="819"/>
         <source>Green icon</source>
         <translation>Ícone verde</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="869"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="882"/>
         <source>Busy icon</source>
         <translation>Ícone de ocupado</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="922"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="935"/>
         <source>Use default notification icons</source>
         <translation>Utilize ícones de notificação padrão</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="933"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="946"/>
         <location filename="Projects/octopi/src/optionsdialog.cpp" line="179"/>
         <source>Updates</source>
         <translation>Atualizações</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1192"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1205"/>
         <source>Terminal</source>
         <translation>Terminal</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1204"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1217"/>
         <source>Color Scheme</source>
         <translation>Esquema de cores</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1217"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1230"/>
         <source>Font Family</source>
         <translation>Família dos tipos de letra</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1250"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1263"/>
         <source>Font Size</source>
         <translation>Tamanho do tipo de letra</translation>
     </message>
