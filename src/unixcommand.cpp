@@ -230,6 +230,8 @@ QByteArray UnixCommand::getAURPackageList(const QString &searchString)
   QStringList sl;
 
   QString tool = Package::getForeignRepositoryToolNameParam();
+  std::cout << "Tool incialmente: " << tool.toLatin1().data() << std::endl;
+
   if (tool.contains(QLatin1String("--noconfirm")))
   {
     tool.remove(QLatin1String("--noconfirm"));
@@ -242,16 +244,16 @@ QByteArray UnixCommand::getAURPackageList(const QString &searchString)
     sl << QLatin1String("--noeditmenu");
     tool = tool.trimmed();
   }
+  if (tool.contains(QLatin1String("--editmenu=false")))
+  {
+      tool.remove(QRegularExpression(QLatin1String("--editmenu=false")));
+      sl << QLatin1String("--editmenu=false");
+      tool = tool.trimmed();
+  }
   if (tool.contains(QLatin1String("--editmenu")))
   {
     tool.remove(QLatin1String("--editmenu"));
     sl << QLatin1String("--editmenu");
-    tool = tool.trimmed();
-  }
-  if (tool.contains(QLatin1String("--editmenu=false")))
-  {
-    tool.remove(QLatin1String("--editmenu=false"));
-    sl << QLatin1String("--editmenu=false");
     tool = tool.trimmed();
   }
   if (tool.contains(QLatin1String("--noedit")))
@@ -296,6 +298,9 @@ QByteArray UnixCommand::getAURPackageList(const QString &searchString)
       sl << QLatin1String("--aur");
       sl << QLatin1String("-Ss");
       sl << searchString;
+
+      //std::cout << "Tool value after: " << tool.toLatin1().data() << std::endl;
+      //std::cout << "Tool params: " << sl.join(QLatin1String(" ")).toLatin1().data() << std::endl;
 
       aur.start(tool, sl);
     }
