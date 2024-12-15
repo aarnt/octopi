@@ -3,6 +3,8 @@
   BugFix: Help msg for newer packages was wrong because they're not installed.
   Added "--editmenu" checkbox on Options dialog if you are using Yay tool.
   Play a bell sound when the Terminal tab is asking for the user password.
+  Improvement: Let user choose which domain is pinged when checking for internet access 
+    (if ping.archlinux.org is down).
   Improvement: Show a "Collecting transaction data..." msg before presenting the transaction 
     dialog, as it can be quite slow on some systems (thanks to Valdir).  
   Updated translations.

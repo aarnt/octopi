@@ -628,6 +628,12 @@ bool SettingsManager::getEnableInternetChecking()
   return (p_instance.getSYSsettings()->value(ctn_KEY_ENABLE_INTERNET_CHECKING, true)).toBool();
 }
 
+QString SettingsManager::getInternetCheckingDomain()
+{
+  SettingsManager p_instance;
+  return (p_instance.getSYSsettings()->value(ctn_KEY_INTERNET_CHECKING_DOMAIN, QLatin1String("www.google.com"))).toString();
+}
+
 bool SettingsManager::getPlayBellSoundOnTerminalPasswordInput()
 {
   SettingsManager p_instance;
@@ -1056,6 +1062,12 @@ void SettingsManager::setEnableConfirmationDialogInSysUpgrade(bool newValue)
 void SettingsManager::setEnableInternetChecking(bool newValue)
 {
   instance()->getSYSsettings()->setValue(ctn_KEY_ENABLE_INTERNET_CHECKING, newValue);
+  instance()->getSYSsettings()->sync();
+}
+
+void SettingsManager::setInternetCheckingDomain(const QString &newValue)
+{
+  instance()->getSYSsettings()->setValue(ctn_KEY_INTERNET_CHECKING_DOMAIN, newValue);
   instance()->getSYSsettings()->sync();
 }
 

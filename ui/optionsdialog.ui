@@ -31,7 +31,7 @@
      <item>
       <widget class="QTabWidget" name="tabWidget">
        <property name="currentIndex">
-        <number>2</number>
+        <number>0</number>
        </property>
        <widget class="QWidget" name="tabGeneral">
         <attribute name="title">
@@ -41,7 +41,7 @@
          <property name="geometry">
           <rect>
            <x>20</x>
-           <y>88</y>
+           <y>128</y>
            <width>581</width>
            <height>23</height>
           </rect>
@@ -54,7 +54,7 @@
          <property name="geometry">
           <rect>
            <x>20</x>
-           <y>118</y>
+           <y>158</y>
            <width>611</width>
            <height>23</height>
           </rect>
@@ -93,7 +93,7 @@
          <property name="geometry">
           <rect>
            <x>20</x>
-           <y>148</y>
+           <y>188</y>
            <width>611</width>
            <height>23</height>
           </rect>
@@ -101,6 +101,48 @@
          <property name="text">
           <string>Play a bell sound when prompting for the root password in the terminal</string>
          </property>
+        </widget>
+        <widget class="QGroupBox" name="gbInternetChecking">
+         <property name="geometry">
+          <rect>
+           <x>40</x>
+           <y>80</y>
+           <width>251</width>
+           <height>51</height>
+          </rect>
+         </property>
+         <property name="title">
+          <string/>
+         </property>
+         <property name="flat">
+          <bool>true</bool>
+         </property>
+         <widget class="QRadioButton" name="rbGoogle">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>10</y>
+            <width>107</width>
+            <height>26</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>google.com</string>
+          </property>
+         </widget>
+         <widget class="QRadioButton" name="rbBaidu">
+          <property name="geometry">
+           <rect>
+            <x>140</x>
+            <y>10</y>
+            <width>107</width>
+            <height>26</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>baidu.com</string>
+          </property>
+         </widget>
         </widget>
        </widget>
        <widget class="QWidget" name="tabPackageList">

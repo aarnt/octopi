@@ -667,25 +667,22 @@ bool UnixCommand::hasInternetConnection()
  */
 bool UnixCommand::doInternetPingTest()
 {
+  bool result = false;
   QTcpSocket socket;
   QString hostname = QStringLiteral("ping.archlinux.org");
 
   socket.connectToHost(hostname, 80);
   if (socket.waitForConnected(5000))
-    return true;
+    result = true;
   else
   {
-    hostname = QStringLiteral("www.google.com");
+    hostname = SettingsManager::getInternetCheckingDomain();
     socket.connectToHost(hostname, 80);
     if (socket.waitForConnected(5000))
-      return true;
-    else
-    {
-      hostname = QStringLiteral("www.baidu.com");
-      socket.connectToHost(hostname, 80);
-      return socket.waitForConnected(5000);
-    }
+      result = true;
   }
+
+  return result;
 }
 
 /*

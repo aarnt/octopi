@@ -92,6 +92,7 @@ const QString ctn_APPLICATION(QStringLiteral("octopi"));
 const QString ctn_KEY_SHOW_PACKAGE_NUMBERS_OUTPUT(QStringLiteral("Show_Package_Numbers_Output"));
 const QString ctn_KEY_ENABLE_TRANSACTION_DIALOG_IN_SYSTEM_UPGRADE(QStringLiteral("Enable_Transaction_Dialog_In_System_Upgrade"));
 const QString ctn_KEY_ENABLE_INTERNET_CHECKING(QStringLiteral("Enable_Internet_Checking"));
+const QString ctn_KEY_INTERNET_CHECKING_DOMAIN(QStringLiteral("Internet_Checking_Domain"));
 const QString ctn_KEY_SHOW_STOP_TRANSACTION(QStringLiteral("Show_Stop_Transaction"));
 const QString ctn_KEY_AUR_TOOL(QStringLiteral("Aur_Tool_Name"));
 const QString ctn_KEY_AUR_OVERWRITE_PARAM(QStringLiteral("Aur_Overwrite_Param"));

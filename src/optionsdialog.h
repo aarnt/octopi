@@ -90,6 +90,7 @@ private slots:
   void onAUREditMenu();
   void onSelAURBuildDir();
   void onClearAURBuildDir();
+  void enableDisableGroupBoxInternetCheck();
 };
 
 #endif // OptionsDialog_H

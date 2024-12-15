@@ -201,8 +201,32 @@ void OptionsDialog::initGeneralTab()
   cbShowPackageNumbersOutput->setChecked(SettingsManager::getShowPackageNumbersOutput());
   cbShowStopTransaction->setChecked(SettingsManager::getShowStopTransaction());
   cbConfirmationDialogInSysUpgrade->setChecked(SettingsManager::getEnableConfirmationDialogInSysUpgrade());
-  cbEnableInternetCheck->setChecked(SettingsManager::getEnableInternetChecking());
+  cbEnableInternetCheck->setChecked(SettingsManager::getEnableInternetChecking());  
   cbPlayBellSound->setChecked(SettingsManager::getPlayBellSoundOnTerminalPasswordInput());
+  gbInternetChecking->setStyleSheet(QLatin1String("border: 0;"));
+
+  if (SettingsManager::getInternetCheckingDomain().contains(QLatin1String("baidu")))
+  {
+    rbBaidu->setChecked(true);
+  }
+  else
+  {
+    rbGoogle->setChecked(true);
+  }
+
+  connect(cbEnableInternetCheck, SIGNAL(clicked(bool)), this, SLOT(enableDisableGroupBoxInternetCheck()));
+}
+
+void OptionsDialog::enableDisableGroupBoxInternetCheck()
+{
+  if (cbEnableInternetCheck->isChecked())
+  {
+    gbInternetChecking->setEnabled(true);
+  }
+  else
+  {
+    gbInternetChecking->setEnabled(false);
+  }
 }
 
 /*
@@ -484,6 +508,17 @@ void OptionsDialog::accept()
   if (cbPlayBellSound->isChecked() != SettingsManager::getPlayBellSoundOnTerminalPasswordInput())
   {
     SettingsManager::setPlayBellSoundOnTerminalPasswordInput(cbPlayBellSound->isChecked());
+  }
+  if (cbEnableInternetCheck->isChecked())
+  {
+    if (rbBaidu->isChecked())
+    {
+      SettingsManager::setInternetCheckingDomain(QLatin1String("www.baidu.com"));
+    }
+    else
+    {
+      SettingsManager::setInternetCheckingDomain(QLatin1String("www.google.com"));
+    }
   }
 
   //Set Package List...

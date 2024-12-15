@@ -108,6 +108,7 @@ class SettingsManager
     static bool getUseAlternateRowColor();
     static bool getEnableConfirmationDialogInSysUpgrade();
     static bool getEnableInternetChecking();
+    static QString getInternetCheckingDomain();
     static bool getPlayBellSoundOnTerminalPasswordInput();
 
     static int getConsoleFontSize();
@@ -202,6 +203,7 @@ class SettingsManager
     static void setUseAlternateRowColor(bool newValue);
     static void setEnableConfirmationDialogInSysUpgrade(bool newValue);
     static void setEnableInternetChecking(bool newValue);
+    static void setInternetCheckingDomain(const QString& newValue);
     static void setSUTool(const QString& newValue);
     static void setInstantSearchSelected(bool newValue);
     static void setConsoleFontSize(int newValue);
