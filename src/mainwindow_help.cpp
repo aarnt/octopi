@@ -92,7 +92,7 @@ QString MainWindow::generateHelpUsageHtmlText()
   QStringLiteral("<li>") + iconPath + QLatin1String("unrequired.png\"/> ") +
      tr("An installed package (not required by others)") +
   QStringLiteral("</li>") +
-  QString(QLatin1String("<li>") + iconPath + QLatin1String("foreign_green.png\"/> ")) +
+  QLatin1String("<li>") + iconPath + QLatin1String("foreign_green.png\"/> ") +
      tr("A foreign package, installed from") + QLatin1Char(' ') + StrConstants::getForeignRepositoryName() +
   QStringLiteral("</li>") +
   QStringLiteral("<li>") + iconPath + QLatin1String("noninstalled.png\"/> ") +

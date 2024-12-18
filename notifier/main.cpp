@@ -44,8 +44,8 @@ int main(int argc, char *argv[])
   }
 
   if (debugInfo)
-    qDebug() << QString(QLatin1String("Octopi Notifier - ") + ctn_APPLICATION_VERSION +
-                  QLatin1String(" (") + StrConstants::getQtVersion() + QLatin1String(")"));
+    qDebug() << QLatin1String("Octopi Notifier - ") + ctn_APPLICATION_VERSION +
+                  QLatin1String(" (") + StrConstants::getQtVersion() + QLatin1String(")");
 
   /*if (UnixCommand::isAppRunning(QStringLiteral("octopi-notifier")))
   {

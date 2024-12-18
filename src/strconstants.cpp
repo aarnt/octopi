@@ -966,45 +966,41 @@ QString StrConstants::getExit()
 //Style Sheets ---------------------------------
 
 QString StrConstants::getToolBarCSS(){
-  return QString(QStringLiteral("QToolBar { border: 5px; } "
-                 "QToolTip {}"));
+  return QStringLiteral("QToolBar { border: 5px; } "
+                 "QToolTip {}");
 }
 
 QString StrConstants::getFilterPackageNotFoundCSS(){
-  return QString(QStringLiteral("QLineEdit{ color: white; "
+  return QStringLiteral("QLineEdit{ color: white; "
                  "background-color: rgb(207, 135, 142);"
-                 "border-color: rgb(206, 204, 197);}")
-                 );
+                 "border-color: rgb(206, 204, 197);}");
 }
 
 QString StrConstants::getFilterPackageFoundCSS(){
-  return QString(QStringLiteral("QLineEdit, SearchLineEdit{ color: black; "
+  return QStringLiteral("QLineEdit, SearchLineEdit{ color: black; "
                  "background-color: rgb(255, 255, 200);"
-                 "border-color: rgb(206, 204, 197);}")
-                 );
+                 "border-color: rgb(206, 204, 197);}");
 }
 
 QString StrConstants::getDockWidgetTitleCSS(){
-  return QString(QStringLiteral("QDockWidget::title { "
+  return QStringLiteral("QDockWidget::title { "
                  "text-align: right;"
                  "background: transparent;"
-                 "padding-right: 5px;}")
-                 );
+                 "padding-right: 5px;}");
 }
 
 QString StrConstants::getTabBarCSS(){
-  return QString(QStringLiteral("QTabBar::close-button {"
+  return QStringLiteral("QTabBar::close-button {"
                  "image: url(:/resources/images/window-close.png);"
                  "border-radius: 4px}"
                  "QTabBar::close-button:hover {"
                  "background-color: palette(light)}"
                  "QTabBar::close-button:pressed {"
-                 "background-color: palette(mid)}")
-                 );
+                 "background-color: palette(mid)}");
 }
 
 QString StrConstants::getTreeViewCSS(){
-  return QString(QStringLiteral("QTreeView::branch:has-siblings:!adjoins-item {"
+  return QStringLiteral("QTreeView::branch:has-siblings:!adjoins-item {"
                  "   border-image: url(:/resources/styles/vline.png) 0;}"
                  "QTreeView::branch:has-siblings:adjoins-item {"
                  "    border-image: url(:/resources/styles/branch-more.png) 0;}"
@@ -1017,5 +1013,5 @@ QString StrConstants::getTreeViewCSS(){
                  "QTreeView::branch:open:has-children:!has-siblings,"
                  "QTreeView::branch:open:has-children:has-siblings  {"
                  "       border-image: none;"
-                 "       image: url(:/resources/styles/branch-open_BW.png);}"));
+                 "       image: url(:/resources/styles/branch-open_BW.png);}");
 }
