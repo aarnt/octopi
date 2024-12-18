@@ -633,7 +633,7 @@ void MainWindow::tvTransactionAdjustItemText(QStandardItem *item)
   }
 
   pos = itemText.indexOf(QLatin1String(")"));
-  itemText.insert(pos, QLatin1Char('/') + QString::number(countSelected));
+  itemText.insert(pos, QStringLiteral("/%1").arg(countSelected));
   item->setText(itemText);
 }
 
@@ -684,9 +684,9 @@ void MainWindow::tvTransactionRowsChanged(const QModelIndex& parent)
     QString newText=StrConstants::getActions() + QLatin1String(" (");
 
     if (lToInstall > 0)
-      newText += QLatin1String("+") + QString::number(lToInstall);
+      newText += QStringLiteral("+%1").arg(lToInstall);
     if (lToRemove > 0)
-      newText += QLatin1String("-") + QString::number(lToRemove);
+      newText += QStringLiteral("-%1").arg(lToRemove);
 
     newText += QLatin1String(")");
     ui->twProperties->setTabText(ctn_TABINDEX_ACTIONS, newText);
