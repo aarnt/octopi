@@ -2513,7 +2513,7 @@ void MainWindow::doSysInfo()
 
   m_commandExecuting = ectn_NONE;
   quint32 gen = QRandomGenerator::global()->generate();
-  QString fileName = homePath + QDir::separator() + QLatin1String("octopi-sysinfo-") + QString::number(gen) + QLatin1String(".log");
+  QString fileName = QStringLiteral("%1%2octopi-sysinfo-%3.log").arg(homePath, QDir::separator()).arg(gen);
   QFile *outFile = new QFile(fileName);
   outFile->open(QIODevice::ReadWrite|QIODevice::Text);
   outFile->setPermissions(QFile::Permissions(QFile::ExeOwner|QFile::ReadOwner));

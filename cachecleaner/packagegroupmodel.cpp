@@ -100,7 +100,7 @@ void PackageGroupModel::keepArchivesChanged()
  */
 QString PackageGroupModel::getOptions()
 {
-  return m_optionsString + QLatin1String("-k ") + QString::number(m_spinner->value());
+  return QStringLiteral("%1-k %2").arg(m_optionsString).arg(m_spinner->value());
 }
 
 /*

@@ -647,7 +647,8 @@ void PacmanExec::prepareTextToPrint(QString str, TreatString ts, TreatURLLinks t
       {
         if (SettingsManager::getShowPackageNumbersOutput())
         {
-          newStr = QLatin1Char('(') + QString::number(m_packageCounter) + QLatin1Char('/') + QString::number(m_numberOfPackages) + QLatin1String(") ") + newStr;
+          newStr.prepend(QStringLiteral("(%1/%2) ").arg(m_packageCounter).arg(m_numberOfPackages));
+
           if (m_packageCounter < m_numberOfPackages) m_packageCounter++;
         }
       }
@@ -694,14 +695,14 @@ void PacmanExec::prepareTextToPrint(QString str, TreatString ts, TreatURLLinks t
   if (SettingsManager::getShowPackageNumbersOutput() && m_commandExecuting != ectn_SYNC_DATABASE && newStr.contains(QLatin1String("#b4ab58")))
   {
     int c = newStr.indexOf(QLatin1String("#b4ab58\">")) + 9;
-    newStr.insert(c, QLatin1Char('(') + QString::number(m_packageCounter) + QLatin1Char('/') + QString::number(m_numberOfPackages) + QLatin1String(") "));
+    newStr.insert(c, QStringLiteral("(%1/%2) ").arg(m_packageCounter).arg(m_numberOfPackages));
     if (m_packageCounter < m_numberOfPackages) m_packageCounter++;
   }
 
   if (SettingsManager::getShowPackageNumbersOutput() && m_parsingAPackageChange)
   {
     int c = newStr.indexOf(QLatin1String("#E55451\">")) + 9;
-    newStr.insert(c, QStringLiteral("(") + QString::number(m_packageCounter) + QLatin1Char('/') + QString::number(m_numberOfPackages) + QLatin1String(") "));
+    newStr.insert(c, QStringLiteral("(%1/%2) ").arg(m_packageCounter).arg(m_numberOfPackages));
     if (m_packageCounter < m_numberOfPackages) m_packageCounter++;
   }
   //Package counter code...

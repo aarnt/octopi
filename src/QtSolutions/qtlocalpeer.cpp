@@ -92,8 +92,7 @@ QtLocalPeer::QtLocalPeer(QObject* parent, const QString &appId)
     quint16 idNum = qChecksum(idc.constData(), idc.size());
 #endif
 
-    socketName = QLatin1String("qtsingleapp-") + prefix +
-                 QLatin1Char('-') + QString::number(idNum, 16);
+    socketName = QStringLiteral("qtsingleapp-%1-%2").arg(prefix).arg(idNum, 0, 16);
 
 #if defined(Q_OS_WIN)
     if (!pProcessIdToSessionId) {
@@ -103,10 +102,10 @@ QtLocalPeer::QtLocalPeer(QObject* parent, const QString &appId)
     if (pProcessIdToSessionId) {
         DWORD sessionId = 0;
         pProcessIdToSessionId(GetCurrentProcessId(), &sessionId);
-        socketName += QLatin1Char('-') + QString::number(sessionId, 16);
+        socketName += QStringLiteral("-%1").arg(sessionId, 0, 16);
     }
 #else
-    socketName += QLatin1Char('-') + QString::number(::getuid(), 16);
+    socketName += QStringLiteral("-%1").arg(::getuid(), 0, 16);
 #endif
 
     server = new QLocalServer(this);
