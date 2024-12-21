@@ -237,7 +237,7 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="634"/>
         <source>Outdated</source>
-        <translation type="unfinished"/>
+        <translation>오래됨</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="64"/>
@@ -302,7 +302,7 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="108"/>
         <source>A newer version of this package is installed</source>
-        <translation type="unfinished"/>
+        <translation>이 패키지의 최신 버전이 설치되었습니다</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="110"/>
@@ -427,7 +427,7 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="166"/>
         <source>Ctrl+Shift+U to upgrade outdated %1 packages</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+Shift+O를 사용하여 오래된 %1 패키지 업그레이드</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="168"/>
@@ -498,156 +498,161 @@
         <translation>인터넷 검사 활성화</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="95"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="102"/>
+        <source>Play a bell sound when prompting for the root password in the terminal</source>
+        <translation>터미널에서 루트 비밀번호를 묻는 경우 종소리를 재생합니다</translation>
+    </message>
+    <message>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="108"/>
         <location filename="Projects/octopi/src/optionsdialog.cpp" line="184"/>
         <source>Package List</source>
         <translation>패키지 목록</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="107"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="120"/>
         <source>Use alternating row colors</source>
         <translation>행 색상 번갈아 사용</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="120"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="133"/>
         <source>Show &quot;Licenses&quot; column</source>
         <translation>&quot;라이선스&quot; 열 표시</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="133"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="146"/>
         <source>Show &quot;Installed Size&quot; column</source>
         <translation>&quot;설치된 크기&quot; 열 표시</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="146"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="159"/>
         <source>Show &quot;Build Date&quot; column</source>
         <translation>&quot;빌드 날짜&quot; 열 표시</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="159"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="172"/>
         <source>Show &quot;Install Date&quot; column</source>
         <translation>&quot;설치 날짜&quot; 열 표시</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="172"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="185"/>
         <source>Show &quot;Install Reason&quot; column</source>
         <translation>&quot;설치 이유&quot; 열 표시</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="209"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="222"/>
         <source>Select the AUR tool Octopi should use</source>
         <translation>Octopi가 사용할 AUR 도구 선택</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="290"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="303"/>
         <source>Search for outdated AUR packages</source>
         <translation>오래된 AUR 패키지 검색</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="345"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="358"/>
         <source>User name</source>
         <translation>사용자 이름</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="358"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="371"/>
         <source>Password</source>
         <translation>비밀번호</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="371"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="384"/>
         <source>Register</source>
         <translation>등록</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="384"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="397"/>
         <source>Connect</source>
         <translation>연결하기</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="398"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="411"/>
         <source>Enable AUR voting</source>
         <translation>AUR 투표 활성화</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="419"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="432"/>
         <source>AUR packages are user produced content. 
 Any use of the provided files is at your own risk.</source>
         <translation>AUR 패키지는 사용자가 제작한 콘텐츠입니다. 
 제공된 파일의 모든 사용에 따른 위험은 사용자 본인이 감수해야 합니다.</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="480"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="493"/>
         <source>Build directory</source>
         <translation>빌드 디렉터리</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="515"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="528"/>
         <location filename="Projects/octopi/src/optionsdialog.cpp" line="170"/>
         <location filename="Projects/octopi/src/optionsdialog.cpp" line="183"/>
         <source>Backend</source>
         <translation>백엔드</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="578"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="591"/>
         <source>Select the backend Octopi should use</source>
         <translation>Octopi가 사용할 백엔드 선택</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="602"/>
-        <location filename="Projects/octopi/src/optionsdialog.cpp" line="697"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="615"/>
+        <location filename="Projects/octopi/src/optionsdialog.cpp" line="702"/>
         <source>Icon</source>
         <translation>아이콘</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="665"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="678"/>
         <source>Red icon</source>
         <translation>빨간색 아이콘</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="743"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="756"/>
         <source>Yellow icon</source>
         <translation>노란색 아이콘</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="806"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="819"/>
         <source>Green icon</source>
         <translation>녹색 아이콘</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="869"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="882"/>
         <source>Busy icon</source>
         <translation>사용중 아이콘</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="922"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="935"/>
         <source>Use default notification icons</source>
         <translation>기본 알림 아이콘 사용</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="933"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="946"/>
         <location filename="Projects/octopi/src/optionsdialog.cpp" line="179"/>
         <source>Updates</source>
         <translation>업데이트</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1192"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1205"/>
         <source>Terminal</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1204"/>
-        <source>Color Scheme</source>
-        <translation type="unfinished"/>
+        <translation>터미널</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="1217"/>
-        <source>Font Family</source>
-        <translation type="unfinished"/>
+        <source>Color Scheme</source>
+        <translation>색상 구성표</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1250"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1230"/>
+        <source>Font Family</source>
+        <translation>글꼴 집합</translation>
+    </message>
+    <message>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1263"/>
         <source>Font Size</source>
-        <translation type="unfinished"/>
+        <translation>글꼴 크기</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/optionsdialog.cpp" line="100"/>
@@ -743,7 +748,7 @@ You may need to synchronize database!</source>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="160"/>
         <source>Obarun Linux news</source>
-        <translation type="unfinished"/>
+        <translation>Obarun Linux 뉴스</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="164"/>
@@ -1103,7 +1108,7 @@ You may need to synchronize database!</source>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.cpp" line="478"/>
         <source>There are %n outdated packages in your system:</source>
-        <translation type="unfinished"><numerusform></numerusform></translation>
+        <translation><numerusform>시스템에 %n개의 오래된 패키지가 있습니다:</numerusform></translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="482"/>
@@ -1113,7 +1118,7 @@ You may need to synchronize database!</source>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.cpp" line="486"/>
         <source>%n packages</source>
-        <translation type="unfinished"><numerusform></numerusform></translation>
+        <translation><numerusform>%n개 패키지</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.cpp" line="490"/>
@@ -1213,7 +1218,7 @@ You may need to synchronize database!</source>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="608"/>
         <source>Collecting transaction data...</source>
-        <translation type="unfinished"/>
+        <translation>트랜잭션 데이터 수집 중...</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="612"/>
@@ -1263,12 +1268,12 @@ You may need to synchronize database!</source>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.cpp" line="651"/>
         <source>The following %n packages need to be retrieved</source>
-        <translation type="unfinished"><numerusform></numerusform></translation>
+        <translation><numerusform>다음 %n개의 패키지를 검색해야 합니다</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.cpp" line="655"/>
         <source>The following %n packages will be removed</source>
-        <translation type="unfinished"><numerusform></numerusform></translation>
+        <translation><numerusform>다음 %n개의 패키지가 제거됩니다</numerusform></translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="659"/>
@@ -1288,7 +1293,7 @@ You may need to synchronize database!</source>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.cpp" line="671"/>
         <source>There are %n updates available!</source>
-        <translation type="unfinished"><numerusform></numerusform></translation>
+        <translation><numerusform>%n개의 업데이트가 있습니다!</numerusform></translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="675"/>
@@ -1333,12 +1338,12 @@ You may need to synchronize database!</source>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="710"/>
         <source>Pacman is running or didn&apos;t cleanly close (/var/lib/pacman/db.lck exists!)</source>
-        <translation type="unfinished"/>
+        <translation>Pacman이 실행 중이거나 정상적으로 종료되지 않았습니다(/var/lib/pacman/db.lck 존재함!)</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="714"/>
         <source>You&apos;ll need to install &quot;qt-sudo&quot; in order to use Octopi.</source>
-        <translation type="unfinished"/>
+        <translation>Octopi를 사용하려면 &quot;qt-sudo&quot;를 설치해야 합니다.</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="719"/>

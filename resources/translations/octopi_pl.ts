@@ -1108,7 +1108,7 @@ Być może trzeba będzie zsynchronizować bazę danych!</translation>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.cpp" line="478"/>
         <source>There are %n outdated packages in your system:</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>W Twoim systemie jest %n nieaktualny pakiet:</numerusform><numerusform>W Twoim systemie są %n nieaktualne pakiety:</numerusform><numerusform>W Twoim systemie jest %n nieaktualnych pakietów:</numerusform><numerusform>W Twoim systemie jest %n nieaktualnych pakietów:</numerusform></translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="482"/>
@@ -1118,7 +1118,7 @@ Być może trzeba będzie zsynchronizować bazę danych!</translation>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.cpp" line="486"/>
         <source>%n packages</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>%n pakiet</numerusform><numerusform>%n pakiety</numerusform><numerusform>%n pakietów</numerusform><numerusform>%n pakietów</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.cpp" line="490"/>
@@ -1268,12 +1268,12 @@ Być może trzeba będzie zsynchronizować bazę danych!</translation>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.cpp" line="651"/>
         <source>The following %n packages need to be retrieved</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>Należy pobrać następujący %n pakiet</numerusform><numerusform>Należy pobrać następujące %n pakiety</numerusform><numerusform>Należy pobrać następujących %n pakietów</numerusform><numerusform>Należy pobrać następujących %n pakietów</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.cpp" line="655"/>
         <source>The following %n packages will be removed</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>Następujący %n pakiet zostanie usunięty</numerusform><numerusform>Następujące %n pakiety zostaną usunięte</numerusform><numerusform>Następujących %n pakietów zostanie usuniętych</numerusform><numerusform>Następujących %n pakietów zostanie usuniętych</numerusform></translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="659"/>
@@ -1293,7 +1293,7 @@ Być może trzeba będzie zsynchronizować bazę danych!</translation>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.cpp" line="671"/>
         <source>There are %n updates available!</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>Dostępna jest %n aktualizacja!</numerusform><numerusform>Dostępne są %n aktualizacje!</numerusform><numerusform>Dostępnych jest %n aktualizacji!</numerusform><numerusform>Dostępnych jest %n aktualizacji!</numerusform></translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="675"/>
