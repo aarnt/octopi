@@ -1247,7 +1247,7 @@ void MainWindow::showToolButtonAUR()
     }
     else
     {
-      m_toolButtonAUR->setText(QLatin1Char('(') + QString::number(m_outdatedAURPackagesNameVersion->count()) + QLatin1Char(')'));
+      m_toolButtonAUR->setText(QStringLiteral("(%1)").arg(m_outdatedAURPackagesNameVersion->count()));
       m_toolButtonAUR->setToolTip(
           StrConstants::getNewUpdates(m_outdatedAURPackagesNameVersion->count()));
     }
@@ -1376,7 +1376,7 @@ void MainWindow::refreshStatusBar()
     }
     else
     {
-      m_toolButtonPacman->setText(QLatin1Char('(') + QString::number(m_numberOfOutdatedPackages) + QLatin1Char(')'));
+      m_toolButtonPacman->setText(QStringLiteral("(%1)").arg(m_numberOfOutdatedPackages));
       m_toolButtonPacman->setToolTip(StrConstants::getNewUpdates(m_numberOfOutdatedPackages));
     }
 
