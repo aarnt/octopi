@@ -1,6 +1,7 @@
 0.17 (dev)
   BugFix: Code for EndeavourOS news was incomplete (thanks to LegitGreenBoi).
   BugFix: Help msg for newer packages was wrong because they're not installed.
+  Prefer Bash shell (/usr/bin/bash) when executing package commands.
   Added "--editmenu" checkbox on Options dialog if you are using Yay tool.
   Play a bell sound when the Terminal tab is asking for the user password.
   Improvement: Let user choose which domain is pinged when checking for internet access 

@@ -354,15 +354,13 @@ QByteArray UnixCommand::getAURPackageList(const QString &searchString)
  */
 QString UnixCommand::getShell()
 {
+  const QString BASH_SHELL = QStringLiteral("/usr/bin/bash");
+
+  if (QFile::exists(BASH_SHELL))
+    return BASH_SHELL;
+
   QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
-  QString shell = env.value(QStringLiteral("SHELL"), QStringLiteral("/bin/bash"));
-
-  QFileInfo fi(shell);
-
-  if (fi.fileName() == QLatin1String("fish"))
-    return QStringLiteral("/bin/bash");
-  else
-    return shell;
+  return env.value(QStringLiteral("SHELL"), QStringLiteral("/usr/bin/bash"));
 }
 
 /*
