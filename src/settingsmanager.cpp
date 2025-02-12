@@ -527,6 +527,12 @@ QString SettingsManager::getAURToolName()
   return p_instance.getSYSsettings()->value(ctn_KEY_AUR_TOOL, ctn_NO_AUR_TOOL).toString();
 }
 
+bool SettingsManager::getAlwaysUseTheTerminal()
+{
+  SettingsManager p_instance;
+  return (p_instance.getSYSsettings()->value(ctn_KEY_ALWAYS_USE_THE_TERMINAL, false)).toBool();
+}
+
 /*
  * Tests if AUR is using "--devel" parameter
  */
@@ -959,6 +965,12 @@ void SettingsManager::setShowStopTransaction(bool newValue)
 void SettingsManager::setAURTool(const QString &newValue)
 {
   instance()->getSYSsettings()->setValue(ctn_KEY_AUR_TOOL, newValue);
+  instance()->getSYSsettings()->sync();
+}
+
+void SettingsManager::setAlwaysUseTheTerminal(bool newValue)
+{
+  instance()->getSYSsettings()->setValue(ctn_KEY_ALWAYS_USE_THE_TERMINAL, newValue);
   instance()->getSYSsettings()->sync();
 }
 

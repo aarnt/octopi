@@ -982,7 +982,7 @@ void MainWindow::doSystemUpgrade(SystemUpgradeOptions systemUpgradeOptions)
 
   if(!isInternetAvailable()) return;
 
-  if(!SettingsManager::getEnableConfirmationDialogInSysUpgrade())
+  if(SettingsManager::getAlwaysUseTheTerminal() || !SettingsManager::getEnableConfirmationDialogInSysUpgrade())
   {
     int res = prepareSystemUpgrade();
     if (!res)
@@ -992,7 +992,7 @@ void MainWindow::doSystemUpgrade(SystemUpgradeOptions systemUpgradeOptions)
       return;
     }
 
-    if( (m_checkupdatesStringList->count() != 0 && m_checkupdatesStringList->contains(QStringLiteral("pacman"))) ||
+    if( SettingsManager::getAlwaysUseTheTerminal() || (m_checkupdatesStringList->count() != 0 && m_checkupdatesStringList->contains(QStringLiteral("pacman"))) ||
         (m_outdatedStringList->count() != 0 && m_outdatedStringList->contains(QStringLiteral("pacman"))) )
     {
       m_commandExecuting = ectn_RUN_SYSTEM_UPGRADE_IN_TERMINAL;
@@ -1231,86 +1231,15 @@ void MainWindow::doRemoveAndInstall()
     ++i;
   }
 
-  double totalDownloadSize = 0;
-  for(const PackageListData& installTarget: std::as_const(*installTargets))
+  if (SettingsManager::getAlwaysUseTheTerminal())
   {
-    totalDownloadSize += installTarget.downloadSize;
-    installList.append(StrConstants::getInstall() + QLatin1Char(' ') +
-                       installTarget.name + QLatin1Char('-') + installTarget.version + QLatin1Char('\n'));
-    pkgsToInstall.append(installTarget.name);
-  }
-
-  installList.remove(installList.size()-1, 1);
-
-  if (hasPartialUpgrade(pkgsToInstall)) return;
-
-  QString ds = Package::kbytesToSize(totalDownloadSize);
-
-  if (installList.length() == 0)
-  {
-    installTargets->append(PackageListData(listOfInstallTargets, QLatin1String(""), QString::number(0)));
-    installList.append(StrConstants::getInstall() + QLatin1Char(' ') + listOfInstallTargets);
-  }
-
-  allLists.append(removeList);
-  allLists.append(installList);
-
-  if(removeTargets.count()==1)
-  {
-    if (pRemoveTargets->at(0).indexOf(QLatin1String("HoldPkg was found in")) != -1)
-    {
-      QMessageBox::warning(
-            this, StrConstants::getAttention(), StrConstants::getWarnHoldPkgFound(), QMessageBox::Ok);
-      return;
-    }
-  }
-  else if(installTargets->count()==1)
-  {
-    if (installTargets->at(0).name.indexOf(QLatin1String("HoldPkg was found in")) != -1)
-    {
-      QMessageBox::warning(
-            this, StrConstants::getAttention(), StrConstants::getWarnHoldPkgFound(), QMessageBox::Ok);
-      return;
-    }
-  }
-
-  if (removeTargets.count() == 1)
-  {
-    dialogText = StrConstants::getRemovePackage() + QLatin1Char('\n');
-  }
-  else if (removeTargets.count() > 1)
-  {
-    dialogText = StrConstants::getRemovePackages(removeTargets.count()) + QLatin1Char('\n');
-  }
-  if (installTargets->count() == 1)
-  {
-    dialogText += StrConstants::getRetrievePackage() +
-      QLatin1String("\n\n") + StrConstants::getTotalDownloadSize().arg(ds).remove(QStringLiteral(" KB"));
-  }
-  else if (installTargets->count() > 1)
-  {
-    dialogText += StrConstants::getRetrievePackages(installTargets->count()) +
-      QLatin1String("\n\n") + StrConstants::getTotalDownloadSize().arg(ds).remove(QStringLiteral(" KB"));
-  }
-
-  question.setText(dialogText);
-  question.setWindowTitle(StrConstants::getConfirmation());
-  question.setInformativeText(StrConstants::getConfirmationQuestion());
-  question.setDetailedText(allLists);
-
-  writeToTabOutput(QLatin1String("<b>") + StrConstants::getCommandFinishedOK() +
-                       QLatin1String("</b><br>"), ectn_DONT_TREAT_URL_LINK);
-
-  int result = question.exec();
-
-  if(result == QDialogButtonBox::Yes || result == QDialogButtonBox::AcceptRole)
-  {
-    if (!isSUAvailable()) return;
+    writeToTabOutput(QLatin1String("<b>") + StrConstants::getCommandFinishedOK() +
+                         QLatin1String("</b><br>"), ectn_DONT_TREAT_URL_LINK);
 
     disableTransactionActions();
-    m_progressWidget->setValue(0);
-    m_progressWidget->setMaximum(100);
-    clearTabOutput();
+    //m_progressWidget->setValue(0);
+    //m_progressWidget->setMaximum(100);
+    //clearTabOutput();
 
     m_pacmanExec = new PacmanExec();
     m_pacmanExec->setSharedMemory(m_sharedMemory);
@@ -1319,20 +1248,119 @@ void MainWindow::doRemoveAndInstall()
     QObject::connect(m_pacmanExec, SIGNAL(finished(int, QProcess::ExitStatus)),
                      this, SLOT( pacmanProcessFinished(int, QProcess::ExitStatus) ));
 
-    QObject::connect(m_pacmanExec, SIGNAL(percentage(int)), this, SLOT(incrementPercentage(int)));
-    QObject::connect(m_pacmanExec, SIGNAL(textToPrintExt(QString)), this, SLOT(outputText(QString)));
-    QObject::connect(m_pacmanExec, SIGNAL(canStopTransaction(bool)), this, SLOT(onCanStopTransaction(bool)));
+    //QObject::connect(m_pacmanExec, SIGNAL(percentage(int)), this, SLOT(incrementPercentage(int)));
+    //QObject::connect(m_pacmanExec, SIGNAL(textToPrintExt(QString)), this, SLOT(outputText(QString)));
+    //QObject::connect(m_pacmanExec, SIGNAL(canStopTransaction(bool)), this, SLOT(onCanStopTransaction(bool)));
     QObject::connect(m_pacmanExec, SIGNAL(commandToExecInQTermWidget(QString)), this, SLOT(onExecCommandInTabTerminal(QString)));
 
-    if (result == QDialogButtonBox::Yes)
+    m_commandExecuting = ectn_RUN_IN_TERMINAL;
+    m_pacmanExec->doRemoveAndInstallInTerminal(listOfRemoveTargets, listOfInstallTargets, listOfInstallDeps);
+  }
+  else
+  {
+    double totalDownloadSize = 0;
+    for(const PackageListData& installTarget: std::as_const(*installTargets))
     {
-      m_commandExecuting = ectn_REMOVE_INSTALL;
-      m_pacmanExec->doRemoveAndInstall(listOfRemoveTargets, listOfInstallTargets, listOfInstallDeps);
+      totalDownloadSize += installTarget.downloadSize;
+      installList.append(StrConstants::getInstall() + QLatin1Char(' ') +
+                         installTarget.name + QLatin1Char('-') + installTarget.version + QLatin1Char('\n'));
+      pkgsToInstall.append(installTarget.name);
     }
-    else if (result == QDialogButtonBox::AcceptRole)
+
+    installList.remove(installList.size()-1, 1);
+
+    if (hasPartialUpgrade(pkgsToInstall)) return;
+
+    QString ds = Package::kbytesToSize(totalDownloadSize);
+
+    if (installList.length() == 0)
     {
-      m_commandExecuting = ectn_RUN_IN_TERMINAL;
-      m_pacmanExec->doRemoveAndInstallInTerminal(listOfRemoveTargets, listOfInstallTargets, listOfInstallDeps);
+      installTargets->append(PackageListData(listOfInstallTargets, QLatin1String(""), QString::number(0)));
+      installList.append(StrConstants::getInstall() + QLatin1Char(' ') + listOfInstallTargets);
+    }
+
+    allLists.append(removeList);
+    allLists.append(installList);
+
+    if(removeTargets.count()==1)
+    {
+      if (pRemoveTargets->at(0).indexOf(QLatin1String("HoldPkg was found in")) != -1)
+      {
+        QMessageBox::warning(
+            this, StrConstants::getAttention(), StrConstants::getWarnHoldPkgFound(), QMessageBox::Ok);
+        return;
+      }
+    }
+    else if(installTargets->count()==1)
+    {
+      if (installTargets->at(0).name.indexOf(QLatin1String("HoldPkg was found in")) != -1)
+      {
+        QMessageBox::warning(
+            this, StrConstants::getAttention(), StrConstants::getWarnHoldPkgFound(), QMessageBox::Ok);
+        return;
+      }
+    }
+
+    if (removeTargets.count() == 1)
+    {
+      dialogText = StrConstants::getRemovePackage() + QLatin1Char('\n');
+    }
+    else if (removeTargets.count() > 1)
+    {
+      dialogText = StrConstants::getRemovePackages(removeTargets.count()) + QLatin1Char('\n');
+    }
+    if (installTargets->count() == 1)
+    {
+      dialogText += StrConstants::getRetrievePackage() +
+                    QLatin1String("\n\n") + StrConstants::getTotalDownloadSize().arg(ds).remove(QStringLiteral(" KB"));
+    }
+    else if (installTargets->count() > 1)
+    {
+      dialogText += StrConstants::getRetrievePackages(installTargets->count()) +
+                    QLatin1String("\n\n") + StrConstants::getTotalDownloadSize().arg(ds).remove(QStringLiteral(" KB"));
+    }
+
+    question.setText(dialogText);
+    question.setWindowTitle(StrConstants::getConfirmation());
+    question.setInformativeText(StrConstants::getConfirmationQuestion());
+    question.setDetailedText(allLists);
+
+    writeToTabOutput(QLatin1String("<b>") + StrConstants::getCommandFinishedOK() +
+                         QLatin1String("</b><br>"), ectn_DONT_TREAT_URL_LINK);
+
+    int result = question.exec();
+
+    if(result == QDialogButtonBox::Yes || result == QDialogButtonBox::AcceptRole)
+    {
+      if (!isSUAvailable()) return;
+
+      disableTransactionActions();
+      m_progressWidget->setValue(0);
+      m_progressWidget->setMaximum(100);
+      clearTabOutput();
+
+      m_pacmanExec = new PacmanExec();
+      m_pacmanExec->setSharedMemory(m_sharedMemory);
+      if (m_debugInfo) m_pacmanExec->setDebugMode(true);
+
+      QObject::connect(m_pacmanExec, SIGNAL(finished(int, QProcess::ExitStatus)),
+                       this, SLOT( pacmanProcessFinished(int, QProcess::ExitStatus) ));
+
+      QObject::connect(m_pacmanExec, SIGNAL(percentage(int)), this, SLOT(incrementPercentage(int)));
+      QObject::connect(m_pacmanExec, SIGNAL(textToPrintExt(QString)), this, SLOT(outputText(QString)));
+      QObject::connect(m_pacmanExec, SIGNAL(canStopTransaction(bool)), this, SLOT(onCanStopTransaction(bool)));
+      QObject::connect(m_pacmanExec, SIGNAL(commandToExecInQTermWidget(QString)), this, SLOT(onExecCommandInTabTerminal(QString)));
+
+      if (result == QDialogButtonBox::Yes)
+      {
+        m_commandExecuting = ectn_REMOVE_INSTALL;
+        m_pacmanExec->doRemoveAndInstall(listOfRemoveTargets, listOfInstallTargets, listOfInstallDeps);
+      }
+      else if (result == QDialogButtonBox::AcceptRole)
+      {
+        m_commandExecuting = ectn_RUN_IN_TERMINAL;
+        m_pacmanExec->doRemoveAndInstallInTerminal(listOfRemoveTargets, listOfInstallTargets, listOfInstallDeps);
+      }
     }
   }
 }
@@ -1357,42 +1385,13 @@ void MainWindow::doRemove()
     list = list + target + QLatin1Char('\n');
   }
 
-  TransactionDialog question(this);
-
-  //Shows a dialog indicating the targets which will be removed and asks for the user's permission.
-  if(targets.count()==1)
+  if (SettingsManager::getAlwaysUseTheTerminal())
   {
-    if (m_targets->at(0).indexOf(QLatin1String("HoldPkg was found in")) != -1)
-    {
-      QMessageBox::warning(
-            this, StrConstants::getAttention(), StrConstants::getWarnHoldPkgFound(), QMessageBox::Ok);
-      return;
-    }
-    else question.setText(StrConstants::getRemovePackage());
-  }
-  else
-    question.setText(StrConstants::getRemovePackages(targets.count()));
-
-  if (getNumberOfTobeRemovedPackages() < targets.count())
-    question.setWindowTitle(StrConstants::getWarning());
-  else
-    question.setWindowTitle(StrConstants::getConfirmation());
-
-  writeToTabOutput(QLatin1String("<b>") + StrConstants::getCommandFinishedOK() +
-                       QLatin1String("</b><br>"), ectn_DONT_TREAT_URL_LINK);
-
-  question.setInformativeText(StrConstants::getConfirmationQuestion());
-  question.setDetailedText(list);
-  int result = question.exec();
-
-  if(result == QDialogButtonBox::Yes || result == QDialogButtonBox::AcceptRole)
-  {
-    if (!isSUAvailable()) return;
+    writeToTabOutput(QLatin1String("<b>") + StrConstants::getCommandFinishedOK() +
+                         QLatin1String("</b><br>"), ectn_DONT_TREAT_URL_LINK);
 
     disableTransactionActions();
-    m_progressWidget->setValue(0);
-    m_progressWidget->setMaximum(100);
-    clearTabOutput();
+    //clearTabOutput();
 
     m_pacmanExec = new PacmanExec();
     m_pacmanExec->setSharedMemory(m_sharedMemory);
@@ -1401,21 +1400,76 @@ void MainWindow::doRemove()
     QObject::connect(m_pacmanExec, SIGNAL(finished (int, QProcess::ExitStatus)),
                      this, SLOT( pacmanProcessFinished(int, QProcess::ExitStatus) ));
 
-    QObject::connect(m_pacmanExec, SIGNAL(percentage(int)), this, SLOT(incrementPercentage(int)));
-    QObject::connect(m_pacmanExec, SIGNAL(textToPrintExt(QString)), this, SLOT(outputText(QString)));
-    QObject::connect(m_pacmanExec, SIGNAL(canStopTransaction(bool)), this, SLOT(onCanStopTransaction(bool)));
+    //QObject::connect(m_pacmanExec, SIGNAL(percentage(int)), this, SLOT(incrementPercentage(int)));
+    //QObject::connect(m_pacmanExec, SIGNAL(textToPrintExt(QString)), this, SLOT(outputText(QString)));
+    //QObject::connect(m_pacmanExec, SIGNAL(canStopTransaction(bool)), this, SLOT(onCanStopTransaction(bool)));
     QObject::connect(m_pacmanExec, SIGNAL(commandToExecInQTermWidget(QString)), this, SLOT(onExecCommandInTabTerminal(QString)));
 
-    if (result == QDialogButtonBox::Yes)
-    {
-      m_commandExecuting = ectn_REMOVE;
-      m_pacmanExec->doRemove(listOfTargets);
-    }
+    m_commandExecuting = ectn_RUN_IN_TERMINAL;
+    m_pacmanExec->doRemoveInTerminal(listOfTargets);
+  }
+  else
+  {
+    TransactionDialog question(this);
 
-    if (result == QDialogButtonBox::AcceptRole)
+    //Shows a dialog indicating the targets which will be removed and asks for the user's permission.
+    if(targets.count()==1)
     {
-      m_commandExecuting = ectn_RUN_IN_TERMINAL;
-      m_pacmanExec->doRemoveInTerminal(listOfTargets);
+      if (m_targets->at(0).indexOf(QLatin1String("HoldPkg was found in")) != -1)
+      {
+        QMessageBox::warning(
+            this, StrConstants::getAttention(), StrConstants::getWarnHoldPkgFound(), QMessageBox::Ok);
+        return;
+      }
+      else question.setText(StrConstants::getRemovePackage());
+    }
+    else
+      question.setText(StrConstants::getRemovePackages(targets.count()));
+
+    if (getNumberOfTobeRemovedPackages() < targets.count())
+      question.setWindowTitle(StrConstants::getWarning());
+    else
+      question.setWindowTitle(StrConstants::getConfirmation());
+
+    writeToTabOutput(QLatin1String("<b>") + StrConstants::getCommandFinishedOK() +
+                         QLatin1String("</b><br>"), ectn_DONT_TREAT_URL_LINK);
+
+    question.setInformativeText(StrConstants::getConfirmationQuestion());
+    question.setDetailedText(list);
+    int result = question.exec();
+
+    if(result == QDialogButtonBox::Yes || result == QDialogButtonBox::AcceptRole)
+    {
+      if (!isSUAvailable()) return;
+
+      disableTransactionActions();
+      m_progressWidget->setValue(0);
+      m_progressWidget->setMaximum(100);
+      clearTabOutput();
+
+      m_pacmanExec = new PacmanExec();
+      m_pacmanExec->setSharedMemory(m_sharedMemory);
+      if (m_debugInfo) m_pacmanExec->setDebugMode(true);
+
+      QObject::connect(m_pacmanExec, SIGNAL(finished (int, QProcess::ExitStatus)),
+                       this, SLOT( pacmanProcessFinished(int, QProcess::ExitStatus) ));
+
+      QObject::connect(m_pacmanExec, SIGNAL(percentage(int)), this, SLOT(incrementPercentage(int)));
+      QObject::connect(m_pacmanExec, SIGNAL(textToPrintExt(QString)), this, SLOT(outputText(QString)));
+      QObject::connect(m_pacmanExec, SIGNAL(canStopTransaction(bool)), this, SLOT(onCanStopTransaction(bool)));
+      QObject::connect(m_pacmanExec, SIGNAL(commandToExecInQTermWidget(QString)), this, SLOT(onExecCommandInTabTerminal(QString)));
+
+      if (result == QDialogButtonBox::Yes)
+      {
+        m_commandExecuting = ectn_REMOVE;
+        m_pacmanExec->doRemove(listOfTargets);
+      }
+
+      if (result == QDialogButtonBox::AcceptRole)
+      {
+        m_commandExecuting = ectn_RUN_IN_TERMINAL;
+        m_pacmanExec->doRemoveInTerminal(listOfTargets);
+      }
     }
   }
 }
@@ -1791,7 +1845,7 @@ void MainWindow::doInstallAUR()
  * Installs ALL the packages selected by the user with "pacman -S (INCLUDING DEPENDENCIES)" !
  */
 void MainWindow::doInstall()
-{
+{   
   QString listOfTargets;
   QString listOfDeps;
   QString list;
@@ -1822,59 +1876,14 @@ void MainWindow::doInstall()
     ++i;
   }
 
-  double totalDownloadSize = 0;
-  for(const PackageListData& target: std::as_const(*targets))
+  if (SettingsManager::getAlwaysUseTheTerminal())
   {
-    totalDownloadSize += target.downloadSize;
-    pkgsToInstall.append(target.name);
-    list += target.name + QLatin1Char('-') + target.version + QLatin1Char('\n');
-  }
-
-  list.remove(list.size()-1, 1);
-
-  writeToTabOutput(QLatin1String("<b>") + StrConstants::getCommandFinishedOK() +
-                       QLatin1String("</b><br>"), ectn_DONT_TREAT_URL_LINK);
-
-  if (hasPartialUpgrade(pkgsToInstall)) return;
-
-  QString ds = Package::kbytesToSize(totalDownloadSize);
-
-  if (list.length() == 0)
-  {
-    targets->append(PackageListData(listOfTargets, QLatin1String(""), QString::number(0)));
-    list.append(listOfTargets);
-  }
-
-  TransactionDialog question(this);
-
-  if(targets->count()==1)
-  {
-    if (targets->at(0).name.indexOf(QLatin1String("HoldPkg was found in")) != -1)
-    {
-      QMessageBox::warning(
-            this, StrConstants::getAttention(), StrConstants::getWarnHoldPkgFound(), QMessageBox::Ok);
-      return;
-    }
-    else question.setText(StrConstants::getRetrievePackage() +
-                          QLatin1String("\n\n") + StrConstants::getTotalDownloadSize().arg(ds).remove(QStringLiteral(" KB")));
-  }
-  else
-    question.setText(StrConstants::getRetrievePackages(targets->count()) +
-                     QLatin1String("\n\n") + StrConstants::getTotalDownloadSize().arg(ds).remove(QStringLiteral(" KB")));
-
-  question.setWindowTitle(StrConstants::getConfirmation());
-  question.setInformativeText(StrConstants::getConfirmationQuestion());
-  question.setDetailedText(list);
-  int result = question.exec();
-
-  if(result == QDialogButtonBox::Yes || result == QDialogButtonBox::AcceptRole)
-  {
-    if (!isSUAvailable()) return;
-
+    writeToTabOutput(QLatin1String("<b>") + StrConstants::getCommandFinishedOK() +
+                         QLatin1String("</b><br>"), ectn_DONT_TREAT_URL_LINK);
     disableTransactionActions();
-    m_progressWidget->setValue(0);
-    m_progressWidget->setMaximum(100);
-    clearTabOutput();
+    //m_progressWidget->setValue(0);
+    //m_progressWidget->setMaximum(100);
+    //clearTabOutput();
 
     m_pacmanExec = new PacmanExec();
     m_pacmanExec->setSharedMemory(m_sharedMemory);
@@ -1883,20 +1892,92 @@ void MainWindow::doInstall()
     QObject::connect(m_pacmanExec, SIGNAL(finished(int, QProcess::ExitStatus)),
                      this, SLOT( pacmanProcessFinished(int, QProcess::ExitStatus) ));
 
-    QObject::connect(m_pacmanExec, SIGNAL(percentage(int)), this, SLOT(incrementPercentage(int)));
-    QObject::connect(m_pacmanExec, SIGNAL(textToPrintExt(QString)), this, SLOT(outputText(QString)));
-    QObject::connect(m_pacmanExec, SIGNAL(canStopTransaction(bool)), this, SLOT(onCanStopTransaction(bool)));
+    //QObject::connect(m_pacmanExec, SIGNAL(percentage(int)), this, SLOT(incrementPercentage(int)));
+    //QObject::connect(m_pacmanExec, SIGNAL(textToPrintExt(QString)), this, SLOT(outputText(QString)));
+    //QObject::connect(m_pacmanExec, SIGNAL(canStopTransaction(bool)), this, SLOT(onCanStopTransaction(bool)));
     QObject::connect(m_pacmanExec, SIGNAL(commandToExecInQTermWidget(QString)), this, SLOT(onExecCommandInTabTerminal(QString)));
 
-    if (result == QDialogButtonBox::Yes)
+    m_commandExecuting = ectn_RUN_IN_TERMINAL;
+    m_pacmanExec->doInstallInTerminal(listOfTargets, listOfDeps);
+  }
+  else
+  {
+    double totalDownloadSize = 0;
+    for(const PackageListData& target: std::as_const(*targets))
     {
-      m_commandExecuting = ectn_INSTALL;
-      m_pacmanExec->doInstall(listOfTargets, listOfDeps);
+      totalDownloadSize += target.downloadSize;
+      pkgsToInstall.append(target.name);
+      list += target.name + QLatin1Char('-') + target.version + QLatin1Char('\n');
     }
-    else if (result == QDialogButtonBox::AcceptRole)
+
+    list.remove(list.size()-1, 1);
+
+    writeToTabOutput(QLatin1String("<b>") + StrConstants::getCommandFinishedOK() +
+                         QLatin1String("</b><br>"), ectn_DONT_TREAT_URL_LINK);
+
+    if (hasPartialUpgrade(pkgsToInstall)) return;
+
+    QString ds = Package::kbytesToSize(totalDownloadSize);
+
+    if (list.length() == 0)
     {
-      m_commandExecuting = ectn_RUN_IN_TERMINAL;
-      m_pacmanExec->doInstallInTerminal(listOfTargets, listOfDeps);
+      targets->append(PackageListData(listOfTargets, QLatin1String(""), QString::number(0)));
+      list.append(listOfTargets);
+    }
+
+    TransactionDialog question(this);
+
+    if(targets->count()==1)
+    {
+      if (targets->at(0).name.indexOf(QLatin1String("HoldPkg was found in")) != -1)
+      {
+        QMessageBox::warning(
+            this, StrConstants::getAttention(), StrConstants::getWarnHoldPkgFound(), QMessageBox::Ok);
+        return;
+      }
+      else question.setText(StrConstants::getRetrievePackage() +
+                         QLatin1String("\n\n") + StrConstants::getTotalDownloadSize().arg(ds).remove(QStringLiteral(" KB")));
+    }
+    else
+      question.setText(StrConstants::getRetrievePackages(targets->count()) +
+                       QLatin1String("\n\n") + StrConstants::getTotalDownloadSize().arg(ds).remove(QStringLiteral(" KB")));
+
+    question.setWindowTitle(StrConstants::getConfirmation());
+    question.setInformativeText(StrConstants::getConfirmationQuestion());
+    question.setDetailedText(list);
+    int result = question.exec();
+
+    if(result == QDialogButtonBox::Yes || result == QDialogButtonBox::AcceptRole)
+    {
+      if (!isSUAvailable()) return;
+
+      disableTransactionActions();
+      m_progressWidget->setValue(0);
+      m_progressWidget->setMaximum(100);
+      clearTabOutput();
+
+      m_pacmanExec = new PacmanExec();
+      m_pacmanExec->setSharedMemory(m_sharedMemory);
+      if (m_debugInfo) m_pacmanExec->setDebugMode(true);
+
+      QObject::connect(m_pacmanExec, SIGNAL(finished(int, QProcess::ExitStatus)),
+                       this, SLOT( pacmanProcessFinished(int, QProcess::ExitStatus) ));
+
+      QObject::connect(m_pacmanExec, SIGNAL(percentage(int)), this, SLOT(incrementPercentage(int)));
+      QObject::connect(m_pacmanExec, SIGNAL(textToPrintExt(QString)), this, SLOT(outputText(QString)));
+      QObject::connect(m_pacmanExec, SIGNAL(canStopTransaction(bool)), this, SLOT(onCanStopTransaction(bool)));
+      QObject::connect(m_pacmanExec, SIGNAL(commandToExecInQTermWidget(QString)), this, SLOT(onExecCommandInTabTerminal(QString)));
+
+      if (result == QDialogButtonBox::Yes)
+      {
+        m_commandExecuting = ectn_INSTALL;
+        m_pacmanExec->doInstall(listOfTargets, listOfDeps);
+      }
+      else if (result == QDialogButtonBox::AcceptRole)
+      {
+        m_commandExecuting = ectn_RUN_IN_TERMINAL;
+        m_pacmanExec->doInstallInTerminal(listOfTargets, listOfDeps);
+      }
     }
   }
 }

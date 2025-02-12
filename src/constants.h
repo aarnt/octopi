@@ -94,6 +94,7 @@ const QString ctn_KEY_ENABLE_TRANSACTION_DIALOG_IN_SYSTEM_UPGRADE(QStringLiteral
 const QString ctn_KEY_ENABLE_INTERNET_CHECKING(QStringLiteral("Enable_Internet_Checking"));
 const QString ctn_KEY_INTERNET_CHECKING_DOMAIN(QStringLiteral("Internet_Checking_Domain"));
 const QString ctn_KEY_SHOW_STOP_TRANSACTION(QStringLiteral("Show_Stop_Transaction"));
+const QString ctn_KEY_ALWAYS_USE_THE_TERMINAL(QStringLiteral("Always_Use_The_Terminal"));
 const QString ctn_KEY_AUR_TOOL(QStringLiteral("Aur_Tool_Name"));
 const QString ctn_KEY_AUR_OVERWRITE_PARAM(QStringLiteral("Aur_Overwrite_Param"));
 const QString ctn_KEY_AUR_NO_CONFIRM_PARAM(QStringLiteral("Aur_No_Confirm_Param"));

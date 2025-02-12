@@ -95,6 +95,7 @@ class SettingsManager
 
     static QString getAURTool();
     static QString getAURToolName();
+    static bool getAlwaysUseTheTerminal();
     static bool getAUROverwriteParam();
     static bool getAURNoConfirmParam();
     static bool getAURNoEditParam();
@@ -190,6 +191,7 @@ class SettingsManager
     static void setShowStopTransaction(bool newValue);
 
     static void setAURTool(const QString &newValue);
+    static void setAlwaysUseTheTerminal(bool newValue);
     static void setAUROverwriteParam(bool newValue);
     static void setAURNoConfirmParam(bool newValue);
     static void setAURNoEditParam(bool newValue);
