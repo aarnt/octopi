@@ -514,9 +514,9 @@ void MainWindow::doSystemUpgrade()
 
   if (isOctopiBusy()) return;
 
-  if(!SettingsManager::getEnableConfirmationDialogInSysUpgrade())
+  if(SettingsManager::getAlwaysUseTheTerminal() || !SettingsManager::getEnableConfirmationDialogInSysUpgrade())
   {
-    if( (m_checkUpdatesStringList.count() != 0 && m_checkUpdatesStringList.contains(QStringLiteral("pacman"))) ||
+    if( SettingsManager::getAlwaysUseTheTerminal() || (m_checkUpdatesStringList.count() != 0 && m_checkUpdatesStringList.contains(QStringLiteral("pacman"))) ||
         (m_outdatedStringList->count() != 0 && m_outdatedStringList->contains(QStringLiteral("pacman"))) )
     {
       m_systemUpgradeDialog = false;
