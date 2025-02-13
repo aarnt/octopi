@@ -127,7 +127,7 @@
            </rect>
           </property>
           <property name="text">
-           <string>google.com</string>
+           <string notr="true">google.com</string>
           </property>
          </widget>
          <widget class="QRadioButton" name="rbBaidu">
@@ -140,7 +140,7 @@
            </rect>
           </property>
           <property name="text">
-           <string>baidu.com</string>
+           <string notr="true">baidu.com</string>
           </property>
          </widget>
         </widget>
