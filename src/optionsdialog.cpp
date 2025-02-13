@@ -198,6 +198,11 @@ void OptionsDialog::initButtonBox(){
  */
 void OptionsDialog::initGeneralTab()
 {
+  connect(cbAlwaysUseTheTerminal, SIGNAL(clicked(bool)), this, SLOT(checkUncheckAlwaysUseTheTerminal()));
+  connect(cbConfirmationDialogInSysUpgrade, SIGNAL(clicked(bool)), this, SLOT(checkUncheckConfirmationDialogInSysUpgrade()));
+  connect(cbEnableInternetCheck, SIGNAL(clicked(bool)), this, SLOT(enableDisableGroupBoxInternetCheck()));
+
+  cbAlwaysUseTheTerminal->setChecked(SettingsManager::getAlwaysUseTheTerminal());
   cbShowPackageNumbersOutput->setChecked(SettingsManager::getShowPackageNumbersOutput());
   cbShowStopTransaction->setChecked(SettingsManager::getShowStopTransaction());
   cbConfirmationDialogInSysUpgrade->setChecked(SettingsManager::getEnableConfirmationDialogInSysUpgrade());
@@ -213,8 +218,6 @@ void OptionsDialog::initGeneralTab()
   {
     rbGoogle->setChecked(true);
   }
-
-  connect(cbEnableInternetCheck, SIGNAL(clicked(bool)), this, SLOT(enableDisableGroupBoxInternetCheck()));
 }
 
 void OptionsDialog::enableDisableGroupBoxInternetCheck()
@@ -489,6 +492,10 @@ void OptionsDialog::accept()
   }
 
   //Set General...
+  if (cbAlwaysUseTheTerminal->isChecked() != SettingsManager::getAlwaysUseTheTerminal())
+  {
+    SettingsManager::setAlwaysUseTheTerminal(cbAlwaysUseTheTerminal->isChecked());
+  }
   if (cbShowPackageNumbersOutput->isChecked() != SettingsManager::getShowPackageNumbersOutput())
   {
     SettingsManager::setShowPackageNumbersOutput(cbShowPackageNumbersOutput->isChecked());
@@ -1075,5 +1082,29 @@ void OptionsDialog::onClearAURBuildDir()
   if (!leAURBuildDir->text().isEmpty())
   {
     leAURBuildDir->setText(QLatin1String(""));
+  }
+}
+
+/*
+ * When user selects this option, let's deselect Confirmation Dialog in Sys Upgrade
+ */
+void OptionsDialog::checkUncheckAlwaysUseTheTerminal()
+{
+  if (cbAlwaysUseTheTerminal->isChecked())
+  {
+    if (cbConfirmationDialogInSysUpgrade->isChecked())
+      cbConfirmationDialogInSysUpgrade->setChecked(false);
+  }
+}
+
+/*
+ * When user selects this option, let's deselect Always use the terminal
+ */
+void OptionsDialog::checkUncheckConfirmationDialogInSysUpgrade()
+{
+  if (cbConfirmationDialogInSysUpgrade->isChecked())
+  {
+    if (cbAlwaysUseTheTerminal->isChecked())
+      cbAlwaysUseTheTerminal->setChecked(false);
   }
 }

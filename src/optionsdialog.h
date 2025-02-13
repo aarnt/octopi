@@ -90,6 +90,8 @@ private slots:
   void onAUREditMenu();
   void onSelAURBuildDir();
   void onClearAURBuildDir();
+  void checkUncheckAlwaysUseTheTerminal();
+  void checkUncheckConfirmationDialogInSysUpgrade();
   void enableDisableGroupBoxInternetCheck();
 };
 
