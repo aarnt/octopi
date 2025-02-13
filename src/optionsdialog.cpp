@@ -182,7 +182,6 @@ void OptionsDialog::initialize(){
   {
     removeTabByName(tr("Backend"));
     removeTabByName(tr("Package List"));
-    //removeTabByName(tr("Terminal"));
   }
 
   tabWidget->setCurrentIndex(0);

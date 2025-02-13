@@ -73,14 +73,14 @@
           </rect>
          </property>
          <property name="text">
-          <string>Always use the terminal when running pacman</string>
+          <string>Always use the terminal to install/upgrade/remove packages</string>
          </property>
         </widget>
         <widget class="QCheckBox" name="cbEnableInternetCheck">
          <property name="geometry">
           <rect>
            <x>20</x>
-           <y>80</y>
+           <y>88</y>
            <width>611</width>
            <height>23</height>
           </rect>
@@ -106,9 +106,9 @@
          <property name="geometry">
           <rect>
            <x>40</x>
-           <y>80</y>
+           <y>110</y>
            <width>251</width>
-           <height>51</height>
+           <height>31</height>
           </rect>
          </property>
          <property name="title">
@@ -121,7 +121,7 @@
           <property name="geometry">
            <rect>
             <x>10</x>
-            <y>30</y>
+            <y>5</y>
             <width>107</width>
             <height>26</height>
            </rect>
@@ -134,7 +134,7 @@
           <property name="geometry">
            <rect>
             <x>140</x>
-            <y>30</y>
+            <y>5</y>
             <width>107</width>
             <height>26</height>
            </rect>
@@ -148,7 +148,7 @@
          <property name="geometry">
           <rect>
            <x>20</x>
-           <y>54</y>
+           <y>58</y>
            <width>611</width>
            <height>23</height>
           </rect>
