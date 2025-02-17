@@ -9,7 +9,7 @@ TRANSLATIONS="./resources/translations/*"
 
 for f in $TRANSLATIONS
 do
-  lrelease-qt5 "$f"
+  lrelease "$f"
 done
 
 # Repeat for Cachecleaner
@@ -19,7 +19,7 @@ tx pull
 # And release each of them
 for f in $TRANSLATIONS
 do
-  lrelease-qt5 "$f"
+  lrelease "$f"
 done
 
 # Repeat for Repoeditor
@@ -29,6 +29,6 @@ tx pull
 # And release each of them
 for f in $TRANSLATIONS
 do
-  lrelease-qt5 "$f"
+  lrelease "$f"
 done
 

@@ -489,8 +489,8 @@
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="76"/>
-        <source>Enable confirmation dialog in system upgrade</source>
-        <translation>Ota käyttöön järjestelmäpäivityksen vahvistusdialogi</translation>
+        <source>Always use the terminal to install/upgrade/remove packages</source>
+        <translation>Käytä päätettä aina pakettien asentamiseen/päivitykseen/poistamiseen</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="89"/>
@@ -503,154 +503,159 @@
         <translation>Soita kelloa, kun kysytään päätteessä pääkäyttäjän salasanaa</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="108"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="157"/>
+        <source>Enable confirmation dialog in system upgrade</source>
+        <translation>Ota käyttöön järjestelmäpäivityksen vahvistusdialogi</translation>
+    </message>
+    <message>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="163"/>
         <location filename="Projects/octopi/src/optionsdialog.cpp" line="184"/>
         <source>Package List</source>
         <translation>Pakettilista</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="120"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="175"/>
         <source>Use alternating row colors</source>
         <translation>Käytä vuorotellen rivin värejä</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="133"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="188"/>
         <source>Show &quot;Licenses&quot; column</source>
         <translation>Näytä &quot;Lisenssit&quot; sarake</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="146"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="201"/>
         <source>Show &quot;Installed Size&quot; column</source>
         <translation>Näytä &quot;Asennuksen koko&quot; sarake</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="159"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="214"/>
         <source>Show &quot;Build Date&quot; column</source>
         <translation>Näytä &quot;Koontipäivämäärä&quot; sarake</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="172"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="227"/>
         <source>Show &quot;Install Date&quot; column</source>
         <translation>Näytä &quot;Asennuspäivä&quot; sarake</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="185"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="240"/>
         <source>Show &quot;Install Reason&quot; column</source>
         <translation>Näytä &quot;Asennuksen syy&quot; sarake</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="222"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="277"/>
         <source>Select the AUR tool Octopi should use</source>
         <translation>Valitse Octopin käyttämä AUR-työkalu</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="303"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="358"/>
         <source>Search for outdated AUR packages</source>
         <translation>Etsi vanhentuneita AUR-paketteja</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="358"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="413"/>
         <source>User name</source>
         <translation>Käyttäjänimi</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="371"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="426"/>
         <source>Password</source>
         <translation>Salasana</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="384"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="439"/>
         <source>Register</source>
         <translation>Rekisteröi</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="397"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="452"/>
         <source>Connect</source>
         <translation>Yhdistä</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="411"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="466"/>
         <source>Enable AUR voting</source>
         <translation>Ota käyttöön AUR-äänestys</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="432"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="487"/>
         <source>AUR packages are user produced content. 
 Any use of the provided files is at your own risk.</source>
         <translation>AUR-paketit ovat käyttäjien luomaa sisältöä.
 Tarjolla olevien tiedostojen käyttö omalla vastuulla!</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="493"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="548"/>
         <source>Build directory</source>
         <translation>Koontihakemisto</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="528"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="604"/>
         <location filename="Projects/octopi/src/optionsdialog.cpp" line="170"/>
         <location filename="Projects/octopi/src/optionsdialog.cpp" line="183"/>
         <source>Backend</source>
         <translation>Taustajärjestelmä</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="591"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="667"/>
         <source>Select the backend Octopi should use</source>
         <translation>Valitse Octopin käyttämä taustajärjestelmä</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="615"/>
-        <location filename="Projects/octopi/src/optionsdialog.cpp" line="702"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="691"/>
+        <location filename="Projects/octopi/src/optionsdialog.cpp" line="733"/>
         <source>Icon</source>
         <translation>Kuvake</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="678"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="754"/>
         <source>Red icon</source>
         <translation>Punainen kuvake</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="756"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="832"/>
         <source>Yellow icon</source>
         <translation> Keltainen kuvake</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="819"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="895"/>
         <source>Green icon</source>
         <translation>Vihreä kuvake</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="882"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="958"/>
         <source>Busy icon</source>
         <translation>Kiireinen kuvake</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="935"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1011"/>
         <source>Use default notification icons</source>
         <translation>Käytä ilmoitusten oletuskuvakkeita</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="946"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1022"/>
         <location filename="Projects/octopi/src/optionsdialog.cpp" line="179"/>
         <source>Updates</source>
         <translation>Päivitykset</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1205"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1281"/>
         <source>Terminal</source>
         <translation>Pääte</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1217"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1293"/>
         <source>Color Scheme</source>
         <translation>Värimalli</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1230"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1306"/>
         <source>Font Family</source>
         <translation>Fonttiperhe</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1263"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1339"/>
         <source>Font Size</source>
         <translation>Fonttikoko</translation>
     </message>
@@ -671,12 +676,12 @@ Tarjolla olevien tiedostojen käyttö omalla vastuulla!</translation>
         <translation>Kuvatiedostot</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/optionsdialog.cpp" line="192"/>
+        <location filename="Projects/octopi/src/optionsdialog.cpp" line="191"/>
         <source>Ok</source>
         <translation>Ok</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/optionsdialog.cpp" line="193"/>
+        <location filename="Projects/octopi/src/optionsdialog.cpp" line="192"/>
         <source>Cancel</source>
         <translation>Peruuta</translation>
     </message>
