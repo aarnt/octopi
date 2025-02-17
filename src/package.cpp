@@ -63,20 +63,20 @@ QString Package::getBasePkgName(const QString &p)
  */
 QString Package::getBaseName(const QString& p)
 {
-	QString packageBaseName=QLatin1String("");
-	QString aux(p);
+  QString packageBaseName=QLatin1String("");
+  QString aux(p);
   int numberOfSegments = p.count(QLatin1Char('-'))+1;
-	int nameSegment = numberOfSegments-3;
+  int nameSegment = numberOfSegments-3;
 
-	for (int i=1; i<= nameSegment; i++){
+  for (int i=1; i<= nameSegment; i++){
     int a=aux.indexOf(QLatin1String("-"));
     packageBaseName += aux.left(a);
-		if (i<nameSegment) packageBaseName += QLatin1String("-");
-		aux = aux.mid(a+1);
-	}
+    if (i<nameSegment) packageBaseName += QLatin1String("-");
+    aux = aux.mid(a+1);
+  }
 
   if (packageBaseName == QLatin1String("")) packageBaseName += p.left(p.indexOf(QLatin1String("-")));
-	return packageBaseName;
+  return packageBaseName;
 }
 
 /*
@@ -583,7 +583,6 @@ QList<PackageListData> * Package::getPackageList(const QString &packageName, con
   //archlinuxfr/yaourt 1.2.2-1 [installed]
   //    A pacman wrapper with extended features and AUR support
   //community/libfm 1.1.0-4 (lxde) [installed: 1.1.0-3]
-
   QList<PackageListData> * res = new QList<PackageListData>();
 
   if (SettingsManager::hasPacmanBackend())
@@ -2264,20 +2263,6 @@ QStringList Package::getContents(const QString& pkgName, bool isInstalled)
   QStringList slResult;
   QByteArray result;
 
-  //OLD pkgfile code:
-  /*if (isInstalled)
-  {
-    result = UnixCommand::getPackageContentsUsingPacman(pkgName, isInstalled);
-  }
-  else if (UnixCommand::getLinuxDistro() == ectn_ARCHBANGLINUX ||
-           UnixCommand::getLinuxDistro() == ectn_ARCHLINUX ||
-           UnixCommand::getLinuxDistro() == ectn_ARTIXLINUX ||
-           UnixCommand::getLinuxDistro() == ectn_KAOS ||
-           UnixCommand::getLinuxDistro() == ectn_PARABOLA)
-  {
-    result = UnixCommand::getPackageContentsUsingPkgfile(pkgName);
-  }*/
-
   result = UnixCommand::getPackageContentsUsingPacman(pkgName, isInstalled);
 
   QString aux(QString::fromUtf8(result));
@@ -2300,17 +2285,6 @@ QStringList Package::getContents(const QString& pkgName, bool isInstalled)
       rsl.replaceInStrings(QRegularExpression(pkgName + QLatin1Char(' ')), QLatin1String("/"));
       rsl.sort();
       slResult = rsl;
-
-      //OLD pkgfile code:
-      /*QStringList rsl2;
-      for(auto line: std::as_const(rsl))
-      {
-        QStringList slAux = line.split(QStringLiteral("\t"), Qt::SkipEmptyParts);
-        rsl2.append(QString(slAux.at(1).trimmed()));
-      }
-
-      rsl2.sort();
-      slResult = rsl2;*/
     }
   }
 
