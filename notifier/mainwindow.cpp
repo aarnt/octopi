@@ -304,6 +304,8 @@ void MainWindow::initSystemTrayIcon()
   m_systemTrayIconMenu->addAction(m_actionSystemUpgrade);
   m_systemTrayIconMenu->addSeparator();
   m_systemTrayIconMenu->addAction(m_actionOptions);
+  m_actionOptions->setText(m_actionOptions->text().remove(QLatin1String("&")));
+
   m_systemTrayIconMenu->addSeparator();
   m_systemTrayIconMenu->addAction(m_actionAbout);
   m_systemTrayIconMenu->addAction(m_actionExit);
