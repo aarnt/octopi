@@ -1,4 +1,4 @@
-0.17 (dev)
+0.17.0 (2025-02-18)
   BugFix: Code for EndeavourOS news was incomplete (thanks to LegitGreenBoi).
   BugFix: Help msg for newer packages was wrong because they're not installed.
   Prefer Bash shell (/usr/bin/bash) when executing package commands.
