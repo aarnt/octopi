@@ -489,8 +489,8 @@
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="76"/>
-        <source>Enable confirmation dialog in system upgrade</source>
-        <translation>Habilita el diàleg de confirmació per a l&apos;actualització del sistema.</translation>
+        <source>Always use the terminal to install/upgrade/remove packages</source>
+        <translation>Feu servir sempre el terminal per instal·lar / actualitzar / suprimir paquets.</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="89"/>
@@ -503,154 +503,159 @@
         <translation>Reprodueix un so de campana quan es demani la contrasenya d&apos;arrel al terminal.</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="108"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="157"/>
+        <source>Enable confirmation dialog in system upgrade</source>
+        <translation>Habilita el diàleg de confirmació per a l&apos;actualització del sistema.</translation>
+    </message>
+    <message>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="163"/>
         <location filename="Projects/octopi/src/optionsdialog.cpp" line="184"/>
         <source>Package List</source>
         <translation>Llista de paquets</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="120"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="175"/>
         <source>Use alternating row colors</source>
         <translation>Usa colors alterns a les files.</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="133"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="188"/>
         <source>Show &quot;Licenses&quot; column</source>
         <translation>Mostra la columna de llicències.</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="146"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="201"/>
         <source>Show &quot;Installed Size&quot; column</source>
         <translation>Mostra la columna de la mida de la instal·lació.</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="159"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="214"/>
         <source>Show &quot;Build Date&quot; column</source>
         <translation>Mostra la columna de la data de construcció.</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="172"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="227"/>
         <source>Show &quot;Install Date&quot; column</source>
         <translation>Mostra la columna de la data d&apos;instal·lació.</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="185"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="240"/>
         <source>Show &quot;Install Reason&quot; column</source>
         <translation>Mostra la columna de la raó d&apos;instal·lació.</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="222"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="277"/>
         <source>Select the AUR tool Octopi should use</source>
         <translation>Seleccioneu l&apos;eina de l&apos;AUR que hauria d&apos;usar l&apos;Octopi.</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="303"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="358"/>
         <source>Search for outdated AUR packages</source>
         <translation>Cerca paquets de l&apos;AUR no actualitzats.</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="358"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="413"/>
         <source>User name</source>
         <translation>Nom d&apos;usuari</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="371"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="426"/>
         <source>Password</source>
         <translation>Contrasenya</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="384"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="439"/>
         <source>Register</source>
         <translation>Registra</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="397"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="452"/>
         <source>Connect</source>
         <translation>Connecta</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="411"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="466"/>
         <source>Enable AUR voting</source>
         <translation>Habilita la votació de l&apos;AUR.</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="432"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="487"/>
         <source>AUR packages are user produced content. 
 Any use of the provided files is at your own risk.</source>
         <translation>Els paquets de l&apos;AUR són contingut produït pels usuaris.
 Qualsevol ús dels fitxers que s&apos;hi proporcionen depèn de la vostra responsabilitat.</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="493"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="548"/>
         <source>Build directory</source>
         <translation>Directori de construcció</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="528"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="604"/>
         <location filename="Projects/octopi/src/optionsdialog.cpp" line="170"/>
         <location filename="Projects/octopi/src/optionsdialog.cpp" line="183"/>
         <source>Backend</source>
         <translation>Rerefons</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="591"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="667"/>
         <source>Select the backend Octopi should use</source>
         <translation>Seleccioneu el rerefons que hauria d&apos;usar l&apos;Octopi.</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="615"/>
-        <location filename="Projects/octopi/src/optionsdialog.cpp" line="702"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="691"/>
+        <location filename="Projects/octopi/src/optionsdialog.cpp" line="733"/>
         <source>Icon</source>
         <translation>Icona</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="678"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="754"/>
         <source>Red icon</source>
         <translation>Icona vermella</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="756"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="832"/>
         <source>Yellow icon</source>
         <translation>Icona groga</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="819"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="895"/>
         <source>Green icon</source>
         <translation>Icona verda</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="882"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="958"/>
         <source>Busy icon</source>
         <translation>Icona d&apos;ocupat</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="935"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1011"/>
         <source>Use default notification icons</source>
         <translation>Usa les icones de notificació per defecte.</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="946"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1022"/>
         <location filename="Projects/octopi/src/optionsdialog.cpp" line="179"/>
         <source>Updates</source>
         <translation>Actualitzacions</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1205"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1281"/>
         <source>Terminal</source>
         <translation>Terminal</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1217"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1293"/>
         <source>Color Scheme</source>
         <translation>Esquema de colors</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1230"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1306"/>
         <source>Font Family</source>
         <translation>Família de la lletra</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1263"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1339"/>
         <source>Font Size</source>
         <translation>Mida de la lletra</translation>
     </message>
@@ -671,12 +676,12 @@ Qualsevol ús dels fitxers que s&apos;hi proporcionen depèn de la vostra respon
         <translation>Fitxers d&apos;imatges</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/optionsdialog.cpp" line="192"/>
+        <location filename="Projects/octopi/src/optionsdialog.cpp" line="191"/>
         <source>Ok</source>
         <translation>D&apos;acord</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/optionsdialog.cpp" line="193"/>
+        <location filename="Projects/octopi/src/optionsdialog.cpp" line="192"/>
         <source>Cancel</source>
         <translation>Cancel·la</translation>
     </message>

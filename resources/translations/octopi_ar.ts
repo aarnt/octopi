@@ -489,8 +489,8 @@
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="76"/>
-        <source>Enable confirmation dialog in system upgrade</source>
-        <translation>مكّن مربع حوار التأكيد في ترقية النظام</translation>
+        <source>Always use the terminal to install/upgrade/remove packages</source>
+        <translation>استخدم دائمًا الطرفية لتثبيت/ترقية/إزالة الحزم</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="89"/>
@@ -503,154 +503,159 @@
         <translation>شغّل صوت الجرس عند المطالبة بكلمة مرور الجذر في الجهاز</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="108"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="157"/>
+        <source>Enable confirmation dialog in system upgrade</source>
+        <translation>مكّن مربع حوار التأكيد في ترقية النظام</translation>
+    </message>
+    <message>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="163"/>
         <location filename="Projects/octopi/src/optionsdialog.cpp" line="184"/>
         <source>Package List</source>
         <translation>قائمة الحزمة</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="120"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="175"/>
         <source>Use alternating row colors</source>
         <translation>استخدم ألوان الصف بالتناوب</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="133"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="188"/>
         <source>Show &quot;Licenses&quot; column</source>
         <translation>أظهر عمود &quot;التراخيص&quot;</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="146"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="201"/>
         <source>Show &quot;Installed Size&quot; column</source>
         <translation>أظهر عمود &quot;الحجم المثبت&quot;</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="159"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="214"/>
         <source>Show &quot;Build Date&quot; column</source>
         <translation>أظهر عمود &quot;تاريخ البناء&quot;</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="172"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="227"/>
         <source>Show &quot;Install Date&quot; column</source>
         <translation>أظهر عمود &quot;تاريخ التثبيت&quot;</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="185"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="240"/>
         <source>Show &quot;Install Reason&quot; column</source>
         <translation>أظهر عمود &quot;سبب التثبيت&quot;</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="222"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="277"/>
         <source>Select the AUR tool Octopi should use</source>
         <translation>حدد أداة AUR التي يجب أن يستخدمها Octopi</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="303"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="358"/>
         <source>Search for outdated AUR packages</source>
         <translation>ابحث عن حزم AUR القديمة</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="358"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="413"/>
         <source>User name</source>
         <translation>اسم المستخدم</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="371"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="426"/>
         <source>Password</source>
         <translation>كلمة السر</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="384"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="439"/>
         <source>Register</source>
         <translation>سجّل</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="397"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="452"/>
         <source>Connect</source>
         <translation>اتّصل</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="411"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="466"/>
         <source>Enable AUR voting</source>
         <translation>مكّن تصويت AUR</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="432"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="487"/>
         <source>AUR packages are user produced content. 
 Any use of the provided files is at your own risk.</source>
         <translation>حزم AUR هي محتوى من إنتاج المستخدم. 
 أي استخدام للملفات المقدمة هو على مسؤوليتك الخاصة.</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="493"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="548"/>
         <source>Build directory</source>
         <translation>دليل البناء</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="528"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="604"/>
         <location filename="Projects/octopi/src/optionsdialog.cpp" line="170"/>
         <location filename="Projects/octopi/src/optionsdialog.cpp" line="183"/>
         <source>Backend</source>
         <translation>الخلفية</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="591"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="667"/>
         <source>Select the backend Octopi should use</source>
         <translation>حدد الواجهة الخلفية التي يجب أن يستخدمها Octopi</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="615"/>
-        <location filename="Projects/octopi/src/optionsdialog.cpp" line="702"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="691"/>
+        <location filename="Projects/octopi/src/optionsdialog.cpp" line="733"/>
         <source>Icon</source>
         <translation>أيقونة</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="678"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="754"/>
         <source>Red icon</source>
         <translation>أيقونة حمراء</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="756"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="832"/>
         <source>Yellow icon</source>
         <translation>أيقونة صفراء</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="819"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="895"/>
         <source>Green icon</source>
         <translation>أيقونة خضراء</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="882"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="958"/>
         <source>Busy icon</source>
         <translation>أيقونة المشغول</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="935"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1011"/>
         <source>Use default notification icons</source>
         <translation>استخدم أيقونات الإشعارات الافتراضية</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="946"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1022"/>
         <location filename="Projects/octopi/src/optionsdialog.cpp" line="179"/>
         <source>Updates</source>
         <translation>التحديثات</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1205"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1281"/>
         <source>Terminal</source>
         <translation>الطرفية</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1217"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1293"/>
         <source>Color Scheme</source>
         <translation>نظام الألوان</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1230"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1306"/>
         <source>Font Family</source>
         <translation>عائلة الخط</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1263"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1339"/>
         <source>Font Size</source>
         <translation>حجم الخط</translation>
     </message>
@@ -671,12 +676,12 @@ Any use of the provided files is at your own risk.</source>
         <translation>ملفات الصور</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/optionsdialog.cpp" line="192"/>
+        <location filename="Projects/octopi/src/optionsdialog.cpp" line="191"/>
         <source>Ok</source>
         <translation>نعم</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/optionsdialog.cpp" line="193"/>
+        <location filename="Projects/octopi/src/optionsdialog.cpp" line="192"/>
         <source>Cancel</source>
         <translation>ألغ</translation>
     </message>
