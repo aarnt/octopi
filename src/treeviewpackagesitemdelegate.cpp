@@ -29,7 +29,6 @@
 #include <QToolTip>
 #include <iostream>
 #include <QtConcurrent/QtConcurrentRun>
-
 #include <QDebug>
 
 QPoint gPoint;
@@ -112,17 +111,20 @@ bool TreeViewPackagesItemDelegate::helpEvent ( QHelpEvent *event, QAbstractItemV
       pkgDesc.description = package->description;
       pkgDesc.isForeign = (package->status == ectn_FOREIGN || package->status == ectn_FOREIGN_OUTDATED);
 
-      if (lastShownPackage != package->name && (si->icon().pixmap(22, 22).toImage() ==
+      if (si->icon().pixmap(22, 22).toImage() ==
           IconHelper::getIconInstallItem().pixmap(22, 22).toImage() ||
           si->icon().pixmap(22, 22).toImage() ==
-          IconHelper::getIconRemoveItem().pixmap(22, 22).toImage()))
+          IconHelper::getIconRemoveItem().pixmap(22, 22).toImage())
       {
-        gPoint = tvTransaction->mapToGlobal(event->pos());
-        QFuture<QString> f;
-        disconnect(&g_fwToolTip, SIGNAL(finished()), this, SLOT(execToolTip()));
-        f = QtConcurrent::run(showPackageDescriptionExt, pkgDesc);
-        g_fwToolTip.setFuture(f);
-        connect(&g_fwToolTip, SIGNAL(finished()), this, SLOT(execToolTip()));
+        if (lastShownPackage != package->name)
+        {
+          gPoint = tvTransaction->mapToGlobal(event->pos());
+          QFuture<QString> f;
+          disconnect(&g_fwToolTip, SIGNAL(finished()), this, SLOT(execToolTip()));
+          f = QtConcurrent::run(showPackageDescriptionExt, pkgDesc);
+          g_fwToolTip.setFuture(f);
+          connect(&g_fwToolTip, SIGNAL(finished()), this, SLOT(execToolTip()));
+        }
       }
       else
       {
