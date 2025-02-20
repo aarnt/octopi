@@ -30,6 +30,8 @@
 #include <iostream>
 #include <QtConcurrent/QtConcurrentRun>
 
+#include <QDebug>
+
 QPoint gPoint;
 
 TreeViewPackagesItemDelegate::TreeViewPackagesItemDelegate(QObject *parent):
@@ -43,6 +45,8 @@ TreeViewPackagesItemDelegate::TreeViewPackagesItemDelegate(QObject *parent):
 bool TreeViewPackagesItemDelegate::helpEvent ( QHelpEvent *event, QAbstractItemView*,
     const QStyleOptionViewItem&, const QModelIndex &index )
 {
+  static QString lastShownPackage;
+
   if (this->parent()->objectName() == QLatin1String("tvPackages"))
   {
     QTreeView* tvPackages = qobject_cast<QTreeView*>(this->parent());
@@ -64,10 +68,18 @@ bool TreeViewPackagesItemDelegate::helpEvent ( QHelpEvent *event, QAbstractItemV
       pkgDesc.description = package->description;
       pkgDesc.isForeign = (package->status == ectn_FOREIGN || package->status == ectn_FOREIGN_OUTDATED);
 
-      disconnect(&g_fwToolTip, SIGNAL(finished()), this, SLOT(execToolTip()));
-      f = QtConcurrent::run(showPackageDescriptionExt, pkgDesc);
-      g_fwToolTip.setFuture(f);
-      connect(&g_fwToolTip, SIGNAL(finished()), this, SLOT(execToolTip()));
+      if (lastShownPackage != package->name)
+      {
+        //QDateTime now = QDateTime::currentDateTime();
+        //qDebug() << now.time().toString(QLatin1String("hh:mm:ss.zzz")) << ": Tooltip for " << package->name;
+
+        disconnect(&g_fwToolTip, SIGNAL(finished()), this, SLOT(execToolTip()));
+        f = QtConcurrent::run(showPackageDescriptionExt, pkgDesc);
+        g_fwToolTip.setFuture(f);
+        connect(&g_fwToolTip, SIGNAL(finished()), this, SLOT(execToolTip()));
+      }
+
+      lastShownPackage = package->name;
     }
     else return false;
   }
@@ -100,10 +112,10 @@ bool TreeViewPackagesItemDelegate::helpEvent ( QHelpEvent *event, QAbstractItemV
       pkgDesc.description = package->description;
       pkgDesc.isForeign = (package->status == ectn_FOREIGN || package->status == ectn_FOREIGN_OUTDATED);
 
-      if (si->icon().pixmap(22, 22).toImage() ==
+      if (lastShownPackage != package->name && (si->icon().pixmap(22, 22).toImage() ==
           IconHelper::getIconInstallItem().pixmap(22, 22).toImage() ||
           si->icon().pixmap(22, 22).toImage() ==
-          IconHelper::getIconRemoveItem().pixmap(22, 22).toImage())
+          IconHelper::getIconRemoveItem().pixmap(22, 22).toImage()))
       {
         gPoint = tvTransaction->mapToGlobal(event->pos());
         QFuture<QString> f;
@@ -116,6 +128,8 @@ bool TreeViewPackagesItemDelegate::helpEvent ( QHelpEvent *event, QAbstractItemV
       {
         QToolTip::hideText();
       }
+
+      lastShownPackage = package->name;
     }
   }
 
