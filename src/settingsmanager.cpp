@@ -459,7 +459,7 @@ QString SettingsManager::getAURTool()
     if (getAURNoConfirmParam()) params += QLatin1String(" --noconfirm ");
     if (getAURNoEditParam()) params += QLatin1String(" --editmenu=false ");
     if (getAUREditMenuParam()) params += QLatin1String(" --editmenu ");
-    if (getAUROverwriteParam()) params += QLatin1String(" --overwrite=\"*\" ");
+    if (getAUROverwriteParam()) params += QLatin1String(" --overwrite=\\\"*\\\" ");
     ret += params;
   }
   else if (ret == ctn_PARU_TOOL)
@@ -493,7 +493,7 @@ QString SettingsManager::getAURTool()
     {
       if (getAURNoConfirmParam()) params += QLatin1String(" --noconfirm ");
       if (getAURNoEditParam()) params += QLatin1String(" --editmenu=false ");
-      if (getAUROverwriteParam()) params += QLatin1String(" --overwrite=\"*\" ");
+      if (getAUROverwriteParam()) params += QLatin1String(" --overwrite=\\\"*\\\" ");
 
       p_instance.setAURTool(ctn_YAY_TOOL);
       p_instance.getSYSsettings()->sync();

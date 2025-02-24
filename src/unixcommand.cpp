@@ -262,10 +262,10 @@ QByteArray UnixCommand::getAURPackageList(const QString &searchString)
     sl << QLatin1String("--noedit");
     tool = tool.trimmed();
   }
-  if (tool.contains(QLatin1String("--overwrite=\"*\"")))
+  if (tool.contains(QLatin1String("--overwrite=\\\"*\\\"")))
   {
-    tool.remove(QLatin1String("--overwrite=\"*\""));
-    sl << QLatin1String("--overwrite=\"*\"");
+    tool.remove(QLatin1String("--overwrite=\\\"*\\\""));
+    sl << QLatin1String("--overwrite=\\\"*\\\"");
     tool = tool.trimmed();
   }
 
