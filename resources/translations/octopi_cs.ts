@@ -500,7 +500,7 @@
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="102"/>
         <source>Play a bell sound when prompting for the root password in the terminal</source>
-        <translation>Přehrát upozornění když je v terminálu vyžadováno heslo uživatele root</translation>
+        <translation>Přehrát upozornění, když je v terminálu vyžadováno heslo uživatele root</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="157"/>
@@ -1113,7 +1113,7 @@ Možná je potřeba synchronizovat databázi!</translation>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.cpp" line="478"/>
         <source>There are %n outdated packages in your system:</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>Ve vašem systému je %n zastaralý balíček:</numerusform><numerusform>Ve vašem systému jsou %n zastaralé balíčky:</numerusform><numerusform>Ve vašem systému je %n zastaralých balíčků:</numerusform><numerusform>Ve vašem systému je %n zastaralých balíčků:</numerusform></translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="482"/>
@@ -1123,7 +1123,7 @@ Možná je potřeba synchronizovat databázi!</translation>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.cpp" line="486"/>
         <source>%n packages</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>%n balíček</numerusform><numerusform>%n balíčky</numerusform><numerusform>%n balíčků</numerusform><numerusform>%n balíčků</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.cpp" line="490"/>
@@ -1223,7 +1223,7 @@ Možná je potřeba synchronizovat databázi!</translation>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="608"/>
         <source>Collecting transaction data...</source>
-        <translation>Shromažďuji transakční data... </translation>
+        <translation>Shromažďují se transakční data... </translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="612"/>
@@ -1273,12 +1273,12 @@ Možná je potřeba synchronizovat databázi!</translation>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.cpp" line="651"/>
         <source>The following %n packages need to be retrieved</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>Je potřeba získat následující %n balíček</numerusform><numerusform>Je potřeba získat následující %n balíčky</numerusform><numerusform>Je potřeba získat následujících %n balíčků</numerusform><numerusform>Je potřeba získat následujících %n balíčků</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.cpp" line="655"/>
         <source>The following %n packages will be removed</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>Následující %n balíček bude odstraněn</numerusform><numerusform>Následující %n balíčky budou odstraněny</numerusform><numerusform>Následujících %n balíčků bude odstraněno</numerusform><numerusform>Následujících %n balíčků bude odstraněno</numerusform></translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="659"/>
@@ -1298,7 +1298,7 @@ Možná je potřeba synchronizovat databázi!</translation>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.cpp" line="671"/>
         <source>There are %n updates available!</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>Je dostupná %n aktualizace!</numerusform><numerusform>Jsou dostupné %n aktualizace!</numerusform><numerusform>Je dostupných %n aktualizací!</numerusform><numerusform>Je dostupných %n aktualizací!</numerusform></translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="675"/>
