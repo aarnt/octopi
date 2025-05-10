@@ -1,6 +1,7 @@
 0.17.1 (dev)
   BugFix: The act of moving the mouse over the package list was triggering many
     "pacman -Si" executions (thanks to RAZUMNO).
+  BugFix: Notifier did not fetch updates for the first time when using "once a day".
   Updated translations.
 
 0.17.0 (2025-02-18)
