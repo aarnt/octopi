@@ -489,8 +489,8 @@
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="76"/>
-        <source>Enable confirmation dialog in system upgrade</source>
-        <translation>Увімкнути діалогове вікно підтвердження під час оновлення системи</translation>
+        <source>Always use the terminal to install/upgrade/remove packages</source>
+        <translation>Завжди використовуйте термінал для встановлення/оновлення/видалення пакунків</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="89"/>
@@ -503,153 +503,158 @@
         <translation>Увімкнути звук дзвоника під час запиту пароля адміністратора в терміналі</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="108"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="157"/>
+        <source>Enable confirmation dialog in system upgrade</source>
+        <translation>Увімкнути діалогове вікно підтвердження під час оновлення системи</translation>
+    </message>
+    <message>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="163"/>
         <location filename="Projects/octopi/src/optionsdialog.cpp" line="184"/>
         <source>Package List</source>
         <translation>Список пакетів</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="120"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="175"/>
         <source>Use alternating row colors</source>
         <translation>Використовуйте кольори рядків, що чергуються</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="133"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="188"/>
         <source>Show &quot;Licenses&quot; column</source>
         <translation>Показати стовпець &quot;Ліцензії&quot;</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="146"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="201"/>
         <source>Show &quot;Installed Size&quot; column</source>
         <translation>Показати стовпець &quot;Встановлений розмір&quot;</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="159"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="214"/>
         <source>Show &quot;Build Date&quot; column</source>
         <translation>Показати стовпець &quot;Дата збірки&quot;</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="172"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="227"/>
         <source>Show &quot;Install Date&quot; column</source>
         <translation>Показати стовпець &quot;Дата встановлення&quot;</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="185"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="240"/>
         <source>Show &quot;Install Reason&quot; column</source>
         <translation>Показати стовпець &quot;Причина встановлення&quot;</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="222"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="277"/>
         <source>Select the AUR tool Octopi should use</source>
         <translation>Виберіть інструмент AUR, який повинен використовувати Octopi</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="303"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="358"/>
         <source>Search for outdated AUR packages</source>
         <translation>Пошук застарілих пакунків AUR</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="358"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="413"/>
         <source>User name</source>
         <translation>Ім&apos;я користувача</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="371"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="426"/>
         <source>Password</source>
         <translation>Пароль</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="384"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="439"/>
         <source>Register</source>
         <translation>Реєстрація</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="397"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="452"/>
         <source>Connect</source>
         <translation>Підключення</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="411"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="466"/>
         <source>Enable AUR voting</source>
         <translation>Увімкнути AUR-голосування</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="432"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="487"/>
         <source>AUR packages are user produced content. 
 Any use of the provided files is at your own risk.</source>
         <translation>Пакети AUR - це вміст, створений користувачем. Будь-яке використання наданих файлів відбувається на ваш страх і ризик. </translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="493"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="548"/>
         <source>Build directory</source>
         <translation>Побудова дерикторії</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="528"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="604"/>
         <location filename="Projects/octopi/src/optionsdialog.cpp" line="170"/>
         <location filename="Projects/octopi/src/optionsdialog.cpp" line="183"/>
         <source>Backend</source>
         <translation>Backend</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="591"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="667"/>
         <source>Select the backend Octopi should use</source>
         <translation>Виберіть backend, який повинен використовувати Octopi</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="615"/>
-        <location filename="Projects/octopi/src/optionsdialog.cpp" line="702"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="691"/>
+        <location filename="Projects/octopi/src/optionsdialog.cpp" line="733"/>
         <source>Icon</source>
         <translation>Піктограма</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="678"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="754"/>
         <source>Red icon</source>
         <translation>Червона піктограма</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="756"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="832"/>
         <source>Yellow icon</source>
         <translation>Жовта піктограма</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="819"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="895"/>
         <source>Green icon</source>
         <translation>Зелена піктограма</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="882"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="958"/>
         <source>Busy icon</source>
         <translation>Зайнята піктограма</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="935"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1011"/>
         <source>Use default notification icons</source>
         <translation>Використовувати типово піктограми сповіщень</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="946"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1022"/>
         <location filename="Projects/octopi/src/optionsdialog.cpp" line="179"/>
         <source>Updates</source>
         <translation>Оновлення</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1205"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1281"/>
         <source>Terminal</source>
         <translation>Термінал</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1217"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1293"/>
         <source>Color Scheme</source>
         <translation>Колірна схема</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1230"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1306"/>
         <source>Font Family</source>
         <translation>Сімейство шрифтів</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1263"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1339"/>
         <source>Font Size</source>
         <translation>Розмір шрифту</translation>
     </message>
@@ -670,12 +675,12 @@ Any use of the provided files is at your own risk.</source>
         <translation>Файли зображень</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/optionsdialog.cpp" line="192"/>
+        <location filename="Projects/octopi/src/optionsdialog.cpp" line="191"/>
         <source>Ok</source>
         <translation>Гаразд</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/optionsdialog.cpp" line="193"/>
+        <location filename="Projects/octopi/src/optionsdialog.cpp" line="192"/>
         <source>Cancel</source>
         <translation>Скасувати</translation>
     </message>
