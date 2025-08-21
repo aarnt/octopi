@@ -442,6 +442,7 @@ void PacmanExec::parsePacmanProcessOutput(const QString &output)
     msg.remove(QRegularExpression(QStringLiteral("org\\.kde\\.")));
     msg.remove(QRegularExpression(QStringLiteral("QCommandLineParser")));
     msg.remove(QRegularExpression(QStringLiteral("QCoreApplication.+")));
+    msg.remove(QRegularExpression(QStringLiteral("Detected locale.+")));
     msg.remove(QRegularExpression(QStringLiteral("Fontconfig warning.+")));
     msg.remove(QRegularExpression(QStringLiteral("reading configurations from.+")));
     msg.remove(QRegularExpression(QStringLiteral(".+annot load library.+")));
@@ -451,7 +452,7 @@ void PacmanExec::parsePacmanProcessOutput(const QString &output)
     msg.remove(QRegularExpression(QStringLiteral("qt.qpa.plugin:.+")));
     msg.remove(QRegularExpression(QStringLiteral("qt.qpa.xcb:.+")));
     msg.remove(QRegularExpression(QStringLiteral("qt.qpa.wayland.+")));
-    msg.remove(QRegularExpression(QStringLiteral("[sudo] password for.+")));
+    msg.remove(QRegularExpression(QStringLiteral("\\[sudo\\] password for.+")));
     msg.remove(QRegularExpression(QStringLiteral("Icon theme \".+")));
     msg.remove(QRegularExpression(QStringLiteral("Gtk-Message:.+")));
     msg.remove(QRegularExpression(QStringLiteral("\\[K$")));
@@ -1098,9 +1099,9 @@ void PacmanExec::doInstallLocal(const QString &listOfPackages)
   {
     if(p.trimmed().isEmpty()) continue;
     if (dontUseForce)
-      command += QLatin1String("pacman -U --noconfirm \"") + p.trimmed() + QLatin1String("\";");
+      command += QLatin1String("LANG=C.UTF-8 pacman -U --noconfirm \"") + p.trimmed() + QLatin1String("\";");
     else
-      command += QLatin1String("pacman -U --force --noconfirm \"") + p.trimmed() + QLatin1String("\";");
+      command += QLatin1String("LANG=C.UTF-8 pacman -U --force --noconfirm \"") + p.trimmed() + QLatin1String("\";");
   }
 
   m_lastCommandList.clear();
@@ -1114,9 +1115,9 @@ void PacmanExec::doInstallLocal(const QString &listOfPackages)
   {
     if(p.trimmed().isEmpty()) continue;
     if (dontUseForce)
-      m_lastCommandList.append(QLatin1String("pacman -U \"") + p.trimmed() + QLatin1String("\";"));
+      m_lastCommandList.append(QLatin1String("LANG=C.UTF-8 pacman -U \"") + p.trimmed() + QLatin1String("\";"));
     else
-      m_lastCommandList.append(QLatin1String("pacman -U --force \"") + p.trimmed() + QLatin1String("\";"));
+      m_lastCommandList.append(QLatin1String("LANG=C.UTF-8 pacman -U --force \"") + p.trimmed() + QLatin1String("\";"));
   }
 
   m_lastCommandList.append(QStringLiteral("echo -e;"));

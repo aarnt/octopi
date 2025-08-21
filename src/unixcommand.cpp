@@ -996,10 +996,10 @@ void UnixCommand::executeCommand(const QString &pCommand)
 {
   //COLUMNS variable code!
   QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
-  env.remove(QStringLiteral("LANG"));
+  /*env.remove(QStringLiteral("LANG"));
   env.remove(QStringLiteral("LC_MESSAGES"));
   env.insert(QStringLiteral("LANG"), QStringLiteral("C.UTF-8"));
-  env.insert(QStringLiteral("LC_MESSAGES"), QStringLiteral("C.UTF-8"));
+  env.insert(QStringLiteral("LC_MESSAGES"), QStringLiteral("C.UTF-8"));*/
   env.remove(QStringLiteral("COLUMNS"));
   env.insert(QStringLiteral("COLUMNS"), QStringLiteral("132"));
   m_process->setProcessEnvironment(env);
@@ -1022,10 +1022,10 @@ void UnixCommand::executeCommandWithSharedMemHelper(const QString &pCommand, QSh
 
   //COLUMNS variable code!
   QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
-  env.remove(QStringLiteral("LANG"));
+  /*env.remove(QStringLiteral("LANG"));
   env.remove(QStringLiteral("LC_MESSAGES"));
   env.insert(QStringLiteral("LANG"), QStringLiteral("C.UTF-8"));
-  env.insert(QStringLiteral("LC_MESSAGES"), QStringLiteral("C.UTF-8"));
+  env.insert(QStringLiteral("LC_MESSAGES"), QStringLiteral("C.UTF-8"));*/
   env.remove(QStringLiteral("COLUMNS"));
   env.insert(QStringLiteral("COLUMNS"), QStringLiteral("132"));
   m_process->setProcessEnvironment(env);
