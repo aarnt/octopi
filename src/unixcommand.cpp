@@ -1418,6 +1418,38 @@ LinuxDistro UnixCommand::getLinuxDistro()
 }
 
 /*
+ * Tests if Octopi is running a CachyOS system
+ */
+bool UnixCommand::isCachyOS()
+{
+  static bool ret = false;
+  static bool firstTime = true;
+
+  if (firstTime)
+  {
+    if (QFile::exists(QStringLiteral("/etc/os-release")))
+    {
+      QFile file(QStringLiteral("/etc/os-release"));
+
+      if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
+        ret = ectn_UNKNOWN;
+
+      QString contents = QString::fromUtf8(file.readAll());
+
+      if (contents.contains(QRegularExpression(QStringLiteral("CachyOS"))))
+      {
+        ret = true;
+      }
+      firstTime = false;
+
+      file.close();
+    }
+  }
+
+  return ret;
+}
+
+/*
  * Returns the PrettyName info from /etc/os-release
  */
 QString UnixCommand::getLinuxDistroPrettyName()

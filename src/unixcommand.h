@@ -24,7 +24,6 @@
 #include <QObject>
 #include <QProcess>
 #include <QFile>
-//#include <QRandomGenerator>
 #include <QSharedMemory>
 #include <QStringList>
 #include <unistd.h>
@@ -63,6 +62,8 @@ public:
 
   //Returns the Linux Distro where Octopi is running on
   static LinuxDistro getLinuxDistro();
+
+  static bool isCachyOS();
 
   //Returns the PrettyName info from /etc/os-release
   static QString getLinuxDistroPrettyName();

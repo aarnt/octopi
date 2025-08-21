@@ -590,7 +590,11 @@ bool SettingsManager::getEnableAURVoting()
 bool SettingsManager::getEnablePackageTooltips()
 {
   SettingsManager p_instance;
-  return (p_instance.getSYSsettings()->value(ctn_KEY_ENABLE_PACKAGE_TOOLTIPS, true)).toBool();
+
+  if (UnixCommand::isCachyOS())
+    return (p_instance.getSYSsettings()->value(ctn_KEY_ENABLE_PACKAGE_TOOLTIPS, false)).toBool();
+  else
+    return (p_instance.getSYSsettings()->value(ctn_KEY_ENABLE_PACKAGE_TOOLTIPS, true)).toBool();
 }
 
 QString SettingsManager::getAURUserName()
@@ -675,7 +679,10 @@ QString SettingsManager::getSUTool()
 bool SettingsManager::getShowGroupsPanel()
 {
   if (!instance()->getSYSsettings()->contains(ctn_KEY_SHOW_GROUPS_PANEL)){
-    instance()->getSYSsettings()->setValue(ctn_KEY_SHOW_GROUPS_PANEL, true);
+    if (UnixCommand::isCachyOS())
+      instance()->getSYSsettings()->setValue(ctn_KEY_SHOW_GROUPS_PANEL, false);
+    else
+      instance()->getSYSsettings()->setValue(ctn_KEY_SHOW_GROUPS_PANEL, true);
   }
 
   return (instance()->getSYSsettings()->value(ctn_KEY_SHOW_GROUPS_PANEL, false)).toBool();
@@ -726,7 +733,7 @@ qreal SettingsManager::getTerminalFontPointSize()
 
 bool SettingsManager::getTerminalForceBashShell()
 {
-  return (instance()->getSYSsettings()->value(ctn_KEY_TERMINAL_FORCE_BASH_SHELL, false)).toBool();
+  return (instance()->getSYSsettings()->value(ctn_KEY_TERMINAL_FORCE_BASH_SHELL, true)).toBool();
 }
 
 QByteArray SettingsManager::getWindowSize(){
@@ -755,7 +762,11 @@ QByteArray SettingsManager::getSplitterHorizontalState(){
 bool SettingsManager::isInstantSearchSelected()
 {
   SettingsManager p_instance;
-  return (p_instance.getSYSsettings()->value(ctn_KEY_INSTANT_SEARCH, true)).toBool();
+
+  if (UnixCommand::isCachyOS())
+    return (p_instance.getSYSsettings()->value(ctn_KEY_INSTANT_SEARCH, false)).toBool();
+  else
+    return (p_instance.getSYSsettings()->value(ctn_KEY_INSTANT_SEARCH, true)).toBool();
 }
 
 void SettingsManager::setCurrentTabIndex(int newValue){
