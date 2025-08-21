@@ -230,7 +230,6 @@ QByteArray UnixCommand::getAURPackageList(const QString &searchString)
   QStringList sl;
 
   QString tool = Package::getForeignRepositoryToolNameParam();
-  std::cout << "Tool incialmente: " << tool.toLatin1().data() << std::endl;
 
   if (tool.contains(QLatin1String("--noconfirm")))
   {
