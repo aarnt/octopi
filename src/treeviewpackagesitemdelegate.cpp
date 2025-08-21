@@ -44,6 +44,8 @@ TreeViewPackagesItemDelegate::TreeViewPackagesItemDelegate(QObject *parent):
 bool TreeViewPackagesItemDelegate::helpEvent ( QHelpEvent *event, QAbstractItemView*,
     const QStyleOptionViewItem&, const QModelIndex &index )
 {
+  if (!SettingsManager::getEnablePackageTooltips()) return false;
+
   static QString lastShownPackage;
 
   if (this->parent()->objectName() == QLatin1String("tvPackages"))
@@ -78,7 +80,7 @@ bool TreeViewPackagesItemDelegate::helpEvent ( QHelpEvent *event, QAbstractItemV
         connect(&g_fwToolTip, SIGNAL(finished()), this, SLOT(execToolTip()));
       }
 
-      lastShownPackage = package->name;
+      lastShownPackage = si->name;
     }
     else return false;
   }
@@ -131,7 +133,7 @@ bool TreeViewPackagesItemDelegate::helpEvent ( QHelpEvent *event, QAbstractItemV
         QToolTip::hideText();
       }
 
-      lastShownPackage = package->name;
+      lastShownPackage = pkgName;
     }
   }
 

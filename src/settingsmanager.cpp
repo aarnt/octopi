@@ -587,6 +587,12 @@ bool SettingsManager::getEnableAURVoting()
   return (p_instance.getSYSsettings()->value(ctn_KEY_ENABLE_AUR_VOTING, false)).toBool();
 }
 
+bool SettingsManager::getEnablePackageTooltips()
+{
+  SettingsManager p_instance;
+  return (p_instance.getSYSsettings()->value(ctn_KEY_ENABLE_PACKAGE_TOOLTIPS, true)).toBool();
+}
+
 QString SettingsManager::getAURUserName()
 {
   SettingsManager p_instance;
@@ -716,6 +722,11 @@ QString SettingsManager::getTerminalFontFamily()
 qreal SettingsManager::getTerminalFontPointSize()
 {
   return (instance()->getSYSsettings()->value(ctn_KEY_TERMINAL_FONT_POINT_SIZE, 10.0)).toReal();
+}
+
+bool SettingsManager::getTerminalForceBashShell()
+{
+  return (instance()->getSYSsettings()->value(ctn_KEY_TERMINAL_FORCE_BASH_SHELL, false)).toBool();
 }
 
 QByteArray SettingsManager::getWindowSize(){
@@ -1028,6 +1039,12 @@ void SettingsManager::setEnableAURVoting(bool newValue)
   instance()->getSYSsettings()->sync();
 }
 
+void SettingsManager::setEnablePackageTooltips(bool newValue)
+{
+  instance()->getSYSsettings()->setValue(ctn_KEY_ENABLE_PACKAGE_TOOLTIPS, newValue);
+  instance()->getSYSsettings()->sync();
+}
+
 void SettingsManager::setAURUserName(const QString &newValue)
 {
   instance()->getSYSsettings()->setValue(ctn_KEY_AUR_USERNAME, newValue);
@@ -1116,6 +1133,12 @@ void SettingsManager::setTerminalFontFamily(const QString &newValue)
 void SettingsManager::setTerminalFontPointSize(qreal newValue)
 {
   instance()->getSYSsettings()->setValue(ctn_KEY_TERMINAL_FONT_POINT_SIZE, newValue);
+  instance()->getSYSsettings()->sync();
+}
+
+void SettingsManager::setTerminalForceBashShell(bool newValue)
+{
+  instance()->getSYSsettings()->setValue(ctn_KEY_TERMINAL_FORCE_BASH_SHELL, newValue);
   instance()->getSYSsettings()->sync();
 }
 

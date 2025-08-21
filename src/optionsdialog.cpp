@@ -206,7 +206,6 @@ void OptionsDialog::initGeneralTab()
   cbShowStopTransaction->setChecked(SettingsManager::getShowStopTransaction());
   cbConfirmationDialogInSysUpgrade->setChecked(SettingsManager::getEnableConfirmationDialogInSysUpgrade());
   cbEnableInternetCheck->setChecked(SettingsManager::getEnableInternetChecking());  
-  cbPlayBellSound->setChecked(SettingsManager::getPlayBellSoundOnTerminalPasswordInput());
   gbInternetChecking->setStyleSheet(QLatin1String("border: 0;"));
 
   if (SettingsManager::getInternetCheckingDomain().contains(QLatin1String("baidu")))
@@ -237,6 +236,7 @@ void OptionsDialog::enableDisableGroupBoxInternetCheck()
 void OptionsDialog::initPackageListTab()
 {
   cbUseAlternateRowColor->setChecked(SettingsManager::getUseAlternateRowColor());
+  cbEnablePackageTooltips->setChecked(SettingsManager::getEnablePackageTooltips());
   cbShowLicensesColumn->setChecked(SettingsManager::getShowPackageLicensesColumn());
   cbShowInstalledSizeColumn->setChecked(SettingsManager::getShowPackageInstalledSizeColumn());
   cbShowBuildDateColumn->setChecked(SettingsManager::getShowPackageBuildDateColumn());
@@ -444,8 +444,18 @@ void OptionsDialog::initTerminalTab()
     cbFontFamily->addItem(family);
   }
 
+  if (QFile::exists(ctn_BASH_SHELL))
+  {
+    cbForceBashShell->setChecked(SettingsManager::getTerminalForceBashShell());
+  }
+  else
+  {
+    cbForceBashShell->setEnabled(false);
+  }
+
   cbFontFamily->setCurrentText(SettingsManager::getTerminalFontFamily());
   sbFontSize->setValue(SettingsManager::getTerminalFontPointSize());
+  cbPlayBellSound->setChecked(SettingsManager::getPlayBellSoundOnTerminalPasswordInput());
 }
 
 /*
@@ -511,10 +521,6 @@ void OptionsDialog::accept()
   {
     SettingsManager::setEnableInternetChecking(cbEnableInternetCheck->isChecked());
   }
-  if (cbPlayBellSound->isChecked() != SettingsManager::getPlayBellSoundOnTerminalPasswordInput())
-  {
-    SettingsManager::setPlayBellSoundOnTerminalPasswordInput(cbPlayBellSound->isChecked());
-  }
   if (cbEnableInternetCheck->isChecked())
   {
     if (rbBaidu->isChecked())
@@ -532,6 +538,10 @@ void OptionsDialog::accept()
   {
     SettingsManager::setUseAlternateRowColor(cbUseAlternateRowColor->isChecked());
     emit alternateRowColorsChanged();
+  }
+  if (cbEnablePackageTooltips->isChecked() != SettingsManager::getEnablePackageTooltips())
+  {
+    SettingsManager::setEnablePackageTooltips(cbEnablePackageTooltips->isChecked());
   }
   if (cbShowLicensesColumn->isChecked() != SettingsManager::getShowPackageLicensesColumn())
   {
@@ -796,6 +806,12 @@ void OptionsDialog::accept()
     consoleChanged = true;
   }
 
+  if (cbForceBashShell->isEnabled() && cbForceBashShell->isChecked() != SettingsManager::getTerminalForceBashShell())
+  {
+    SettingsManager::setTerminalForceBashShell(cbForceBashShell->isChecked());
+    consoleChanged = true;
+  }
+
   if (cbFontFamily->currentText() != SettingsManager::getTerminalFontFamily())
   {
     SettingsManager::setTerminalFontFamily(cbFontFamily->currentText());
@@ -806,6 +822,11 @@ void OptionsDialog::accept()
   {
     SettingsManager::setTerminalFontPointSize(sbFontSize->value());
     consoleChanged = true;
+  }
+
+  if (cbPlayBellSound->isChecked() != SettingsManager::getPlayBellSoundOnTerminalPasswordInput())
+  {
+    SettingsManager::setPlayBellSoundOnTerminalPasswordInput(cbPlayBellSound->isChecked());
   }
 
   Options::result res=0;

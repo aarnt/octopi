@@ -49,6 +49,7 @@ class SettingsManager
     static QString getTerminalColorScheme();
     static QString getTerminalFontFamily();
     static qreal getTerminalFontPointSize();
+    static bool getTerminalForceBashShell();
 
     static QString getOctopiConfPath()
     {
@@ -103,6 +104,7 @@ class SettingsManager
     static QString getAURBuildDir();
     static bool getSearchOutdatedAURPackages();
     static bool getEnableAURVoting();
+    static bool getEnablePackageTooltips();
     static QString getAURUserName();
     static QString getAURPassword();
     static QString getProxySettings();
@@ -199,6 +201,7 @@ class SettingsManager
     static void setAURBuildDir(const QString &newValue);
     static void setSearchOutdatedAURPackages(bool newValue);
     static void setEnableAURVoting(bool newValue);
+    static void setEnablePackageTooltips(bool newValue);
     static void setAURUserName(const QString& newValue);
     static void setAURPassword(const QString& newValue);
     static void setProxySettings(const QString& newValue);
@@ -212,6 +215,7 @@ class SettingsManager
     static void setTerminalColorScheme(const QString& newValue);
     static void setTerminalFontFamily(const QString& newValue);
     static void setTerminalFontPointSize(qreal newValue);
+    static void setTerminalForceBashShell(bool newValue);
     static void setPlayBellSoundOnTerminalPasswordInput(bool newValue);
 };
 

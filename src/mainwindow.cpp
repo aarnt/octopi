@@ -492,9 +492,12 @@ void MainWindow::showAnchorDescription(const QUrl &link)
     pkgDesc.description = package->description;
     pkgDesc.isForeign = (package->status == ectn_FOREIGN || package->status == ectn_FOREIGN_OUTDATED);
 
-    f = QtConcurrent::run(showPackageDescriptionExt, pkgDesc);
-    g_fwToolTipInfo.setFuture(f);
-    connect(&g_fwToolTipInfo, SIGNAL(finished()), this, SLOT(execToolTip()));
+    if (SettingsManager::getEnablePackageTooltips())
+    {
+      f = QtConcurrent::run(showPackageDescriptionExt, pkgDesc);
+      g_fwToolTipInfo.setFuture(f);
+      connect(&g_fwToolTipInfo, SIGNAL(finished()), this, SLOT(execToolTip()));
+    }
   }
 }
 

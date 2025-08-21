@@ -103,6 +103,7 @@ const QString ctn_KEY_AUR_EDITMENU_PARAM(QStringLiteral("Aur_EditMenu_Param"));
 const QString ctn_KEY_AUR_BUILDDIR(QStringLiteral("Aur_Builddir"));
 const QString ctn_KEY_SEARCH_OUTDATED_AUR_PACKAGES(QStringLiteral("Search_Outdated_Aur_Packages"));
 const QString ctn_KEY_ENABLE_AUR_VOTING(QStringLiteral("Enable_Aur_Voting"));
+const QString ctn_KEY_ENABLE_PACKAGE_TOOLTIPS(QStringLiteral("Enable_Package_Tooltips"));
 const QString ctn_KEY_AUR_USERNAME(QStringLiteral("Aur_Username"));
 const QString ctn_KEY_AUR_PASSWORD(QStringLiteral("Aur_Password"));
 const QString ctn_KEY_USE_ALTERNATE_ROW_COLOR(QStringLiteral("Use_Alternate_Row_Color"));
@@ -148,6 +149,7 @@ const QString ctn_KEY_TERMINAL(QStringLiteral("Terminal"));
 const QString ctn_KEY_TERMINAL_COLOR_SCHEME(QStringLiteral("Terminal_Color_Scheme"));
 const QString ctn_KEY_TERMINAL_FONT_FAMILY(QStringLiteral("Terminal_Font_Family"));
 const QString ctn_KEY_TERMINAL_FONT_POINT_SIZE(QStringLiteral("Terminal_Font_Point_Size"));
+const QString ctn_KEY_TERMINAL_FORCE_BASH_SHELL(QStringLiteral("Terminal_Force_Bash_Shell"));
 const QString ctn_KEY_INSTANT_SEARCH(QStringLiteral("Instant_Search"));
 const QString ctn_KEY_PROXY_SETTINGS(QStringLiteral("Proxy_Settings"));
 const QString ctn_AUTOMATIC(QStringLiteral("automatic"));
@@ -181,6 +183,8 @@ enum PackageStatus { ectn_INSTALLED, ectn_NON_INSTALLED, ectn_OUTDATED, ectn_NEW
                      ectn_FOREIGN, ectn_FOREIGN_OUTDATED };
 
 enum ViewOptions { ectn_ALL_PKGS, ectn_INSTALLED_PKGS, ectn_NON_INSTALLED_PKGS, ectn_OUTDATED_PKGS };
+
+const QString ctn_BASH_SHELL(QStringLiteral("/usr/bin/bash"));
 
 //Supported AUR user base package tools
 const QString ctn_PACAUR_TOOL(QStringLiteral("pacaur"));
