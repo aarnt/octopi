@@ -98,7 +98,7 @@ RepoEditor::~RepoEditor()
 
 void RepoEditor::closeEvent(QCloseEvent *event)
 {
-  if (repoConf->hasAnyChanges())
+  /*if (repoConf->hasAnyChanges())
   {
     int res = QMessageBox::question(this, tr("Confirmation"),
                                     tr("There are unsaved changes.") + QLatin1Char('\n') +
@@ -109,7 +109,7 @@ void RepoEditor::closeEvent(QCloseEvent *event)
     {
       apply();
     }
-  }
+  }*/
 
   event->accept();
   qApp->quit();
@@ -120,7 +120,7 @@ void RepoEditor::closeEvent(QCloseEvent *event)
  */
 void RepoEditor::reject()
 {
-  if (repoConf->hasAnyChanges())
+  /*if (repoConf->hasAnyChanges())
   {
     int res = QMessageBox::question(this, tr("Confirmation"),
                                     tr("There are unsaved changes.") + QLatin1Char('\n') +
@@ -131,7 +131,7 @@ void RepoEditor::reject()
     {
       apply();
     }
-  }
+  }*/
 
   QDialog::reject();
 }
