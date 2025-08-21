@@ -1432,7 +1432,7 @@ bool UnixCommand::isCachyOS()
       QFile file(QStringLiteral("/etc/os-release"));
 
       if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
-        ret = ectn_UNKNOWN;
+        ret = false;
 
       QString contents = QString::fromUtf8(file.readAll());
 
