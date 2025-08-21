@@ -498,50 +498,50 @@
         <translation>Habilitar a verificação de conexão à internet</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="102"/>
-        <source>Play a bell sound when prompting for the root password in the terminal</source>
-        <translation>Tocar um som de campainha ao requisitar a senha de root no terminal</translation>
-    </message>
-    <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="157"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="144"/>
         <source>Enable confirmation dialog in system upgrade</source>
         <translation>Habilitar o diálogo de confirmação na atualização do sistema</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="163"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="150"/>
         <location filename="Projects/octopi/src/optionsdialog.cpp" line="184"/>
         <source>Package List</source>
         <translation>Lista de Pacotes</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="175"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="162"/>
         <source>Use alternating row colors</source>
         <translation>Usar cores de linha alternadas</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="188"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="175"/>
         <source>Show &quot;Licenses&quot; column</source>
         <translation>Exibir a coluna &quot;Licenças&quot;</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="201"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="188"/>
         <source>Show &quot;Installed Size&quot; column</source>
         <translation>Exibir a coluna &quot;Tamanho&quot;</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="214"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="201"/>
         <source>Show &quot;Build Date&quot; column</source>
         <translation>Exibir a coluna &quot;Data da Criação&quot;</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="227"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="214"/>
         <source>Show &quot;Install Date&quot; column</source>
         <translation>Exibir a coluna &quot;Data da Instalação&quot;</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="240"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="227"/>
         <source>Show &quot;Install Reason&quot; column</source>
         <translation>Exibir a coluna &quot;Motivo da Instalação&quot;</translation>
+    </message>
+    <message>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="240"/>
+        <source>Enable package tooltips</source>
+        <translation>Habilitar as dicas para pacotes</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="277"/>
@@ -604,7 +604,7 @@ Qualquer uso dos arquivos fornecidos é por sua conta e risco.</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="691"/>
-        <location filename="Projects/octopi/src/optionsdialog.cpp" line="733"/>
+        <location filename="Projects/octopi/src/optionsdialog.cpp" line="743"/>
         <source>Icon</source>
         <translation>Ícone</translation>
     </message>
@@ -658,6 +658,16 @@ Qualquer uso dos arquivos fornecidos é por sua conta e risco.</translation>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="1339"/>
         <source>Font Size</source>
         <translation>Tamanho da Fonte</translation>
+    </message>
+    <message>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1362"/>
+        <source>Play a bell sound when prompting for the root password in the terminal</source>
+        <translation>Tocar um som de campainha ao requisitar a senha de root no terminal</translation>
+    </message>
+    <message>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1375"/>
+        <source>Force use of BASH shell</source>
+        <translation>Forçar o uso do shell BASH</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/optionsdialog.cpp" line="100"/>

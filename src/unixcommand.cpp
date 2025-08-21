@@ -844,10 +844,10 @@ QByteArray UnixCommand::execCommandAsNormalUserExt(const QString &pCommand)
 void UnixCommand::execCommand(const QString &pCommand)
 {
   QProcess p;
-  QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
+  /*QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
   env.insert(QStringLiteral("LANG"), QStringLiteral("C.UTF-8"));
   env.insert(QStringLiteral("LC_MESSAGES"), QStringLiteral("C.UTF-8"));
-  p.setProcessEnvironment(env);
+  p.setProcessEnvironment(env);*/
   QStringList sl;
   sl << getShell();
   sl << QLatin1String("-c");
