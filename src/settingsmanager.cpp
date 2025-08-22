@@ -181,7 +181,7 @@ void SettingsManager::setLastCheckUpdatesTime(QDateTime newValue)
 //Octopi related --------------------------------------------------------------------
 int SettingsManager::getCurrentTabIndex(){
   return instance()->getSYSsettings()->value(
-        ctn_KEY_CURRENT_TAB_INDEX, 0).toInt();
+        ctn_KEY_CURRENT_TAB_INDEX, 2).toInt();
 }
 
 int SettingsManager::getPanelOrganizing(){
@@ -189,7 +189,7 @@ int SettingsManager::getPanelOrganizing(){
 }
 
 int SettingsManager::getPackageListOrderedCol(){
-  return instance()->getSYSsettings()->value(ctn_KEY_PACKAGE_LIST_ORDERED_COL, 1 ).toInt();
+  return instance()->getSYSsettings()->value(ctn_KEY_PACKAGE_LIST_ORDERED_COL, 0 ).toInt();
 }
 
 int SettingsManager::getPackageListSortOrder(){
