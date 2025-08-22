@@ -208,7 +208,7 @@ gnome.path = $$DATADIR/icons/gnome/32x32/apps
 gnome.files += resources/images/octopi_green.png
 gnome.files += resources/images/octopi.png
 
-icon.path = $$DATADIR/icons
+icon.path = $$DATADIR/icons/hicolor/48x48/apps
 icon.files += resources/images/octopi.png
 icon.files += resources/images/octopi_green.png
 icon.files += resources/images/octopi_red.png

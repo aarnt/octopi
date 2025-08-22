@@ -124,7 +124,7 @@ file(COPY "${CMAKE_CURRENT_SOURCE_DIR}/resources/images/octopi_green.png" DESTIN
 file(RENAME "${CMAKE_CURRENT_BINARY_DIR}/octopi_green.png" "${CMAKE_CURRENT_BINARY_DIR}/octopi.png")
 install(TARGETS octopi RUNTIME DESTINATION bin LIBRARY DESTINATION lib PUBLIC_HEADER DESTINATION include)
 install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/octopi.desktop" DESTINATION share/applications)
-install(FILES "${CMAKE_CURRENT_BINARY_DIR}/octopi.png" "${CMAKE_CURRENT_SOURCE_DIR}/resources/images/octopi_green.png" DESTINATION share/icons/gnome/32x32/apps)
+install(FILES "${CMAKE_CURRENT_BINARY_DIR}/octopi.png" "${CMAKE_CURRENT_SOURCE_DIR}/resources/images/octopi_green.png" DESTINATION share/icons/hicolor/48x48/apps)
 install(FILES "${CMAKE_CURRENT_BINARY_DIR}/octopi.png" "${CMAKE_CURRENT_SOURCE_DIR}/resources/images/octopi_green.png"
-        "${CMAKE_CURRENT_SOURCE_DIR}/resources/images/octopi_red.png" "${CMAKE_CURRENT_SOURCE_DIR}/resources/images/octopi_yellow.png" DESTINATION share/icons)
+        "${CMAKE_CURRENT_SOURCE_DIR}/resources/images/octopi_red.png" "${CMAKE_CURRENT_SOURCE_DIR}/resources/images/octopi_yellow.png" DESTINATION share/icons/hicolor/48x48/apps)
 install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/LICENSE" DESTINATION share/licenses/octopi)
