@@ -6,6 +6,7 @@ bin/**
 build/**
 build_dir/**
 helper/*.o
+helper/.qtc_clangd/**
 helper/moc*.*
 helper/octphelper
 cachecleaner/bin/**

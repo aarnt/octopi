@@ -21,6 +21,11 @@
 #include "../src/constants.h"
 #include "octopihelper.h"
 
+#include <unistd.h>
+#include <sys/types.h>
+#include <dirent.h>
+#include <limits.h>
+
 #include <QProcess>
 #include <QDir>
 #include <QObject>
@@ -176,11 +181,66 @@ QString OctopiHelper::getProxySettings()
 }
 
 /*
+ * Retrieves the PID of the given process
+ */
+pid_t OctopiHelper::findPidByName(const QString &processName)
+{
+  DIR *dir = opendir("/proc");
+  if (!dir) {
+    //perror("opendir /proc");
+    return -1;
+  }
+
+  struct dirent *entry;
+  while ((entry = readdir(dir)) != nullptr) {
+    if (entry->d_type != DT_DIR)
+      continue;
+
+    bool ok;
+    //QString(entry->d_name).toLocal8Bit().constData();
+    pid_t pid = QString(entry->d_name).toInt(&ok);
+    if (!ok)
+      continue;
+
+    QString cmdPath = QStringLiteral("/proc/%1/comm").arg(pid);
+    QFile cmdFile(cmdPath);
+    if (cmdFile.open(QIODevice::ReadOnly | QIODevice::Text)) {
+      QString name = QString(cmdFile.readLine()).trimmed();
+      if (name == processName) {
+        closedir(dir);
+        return pid;
+      }
+    }
+  }
+
+  closedir(dir);
+  return -1;
+}
+
+/*
+ * Tests if the given process is running from the expected file path (/usr/bin)
+ */
+bool OctopiHelper::isProcessRunningFromPath(pid_t pid)
+{
+  QString exeLink = QString("/proc/%1/exe").arg(pid);
+  char actualPath[PATH_MAX];
+  ssize_t len = readlink(exeLink.toLocal8Bit().constData(), actualPath, sizeof(actualPath) - 1);
+  if (len == -1) {
+    perror("readlink");
+    return false;
+  }
+
+  actualPath[len] = '\0';
+  QString realPath = QFileInfo(QString::fromLocal8Bit(actualPath)).canonicalFilePath();
+  return realPath == QStringLiteral("/usr/bin");
+}
+
+/*
  * Checks if Octopi/Octopi-notifier, cache-cleaner, etc is being executed
  */
 bool OctopiHelper::isOctoToolRunning(const QString &octoToolName)
 {
-  bool res=false;
+  /*bool res=false;
 
   QProcess proc;
   proc.setProcessEnvironment(getProcessEnvironment());
@@ -197,34 +257,34 @@ bool OctopiHelper::isOctoToolRunning(const QString &octoToolName)
   out=out.remove(QStringLiteral("\n"));
   out=out.remove(QStringLiteral("COMMAND"));
 
-  /*if (octoToolName==QLatin1String("octopi-cachecle"))
-  {
-    if (out == QLatin1String("/usr/bin/octopi-cachecleaner")) res=true;
+  QStringList options;
+  options << QStringLiteral("/usr/bin/octopi-notifier -d");
+  options << QStringLiteral("/usr/bin/octopi -d");
+  options << QStringLiteral("/usr/bin/octopi -sysupgrade");
+  options << QStringLiteral("/usr/bin/octopi -sysupgrade-noconfirm");
+
+  //QRegularExpression re(QStringLiteral("(/usr/bin/octopi-notifier -session )[a-fA-F0-9_]+"));
+  QRegularExpression re(QStringLiteral("(/usr/bin/octopi-notifier.*)"));
+  QRegularExpressionMatch match = re.match(out);
+  bool hasMatchInSession = match.capturedLength()==out.length();
+
+  re=QRegularExpression(QStringLiteral("(/usr/bin/octopi -style )\\S+"));
+  match = re.match(out);
+  bool hasMatchInStyle = match.capturedLength()==out.length();
+
+  if (out == QLatin1String("/usr/bin/") + octoToolName ||
+      (options.indexOf(out)!=-1) ||
+      (hasMatchInSession) ||
+      (hasMatchInStyle)) res=true;
+
+  return res;*/
+
+  pid_t pid = findPidByName(octoToolName);
+  if (pid == -1) {
+    return false;
   }
-  else
-  {*/
-    QStringList options;
-    options << QStringLiteral("/usr/bin/octopi-notifier -d");
-    options << QStringLiteral("/usr/bin/octopi -d");
-    options << QStringLiteral("/usr/bin/octopi -sysupgrade");
-    options << QStringLiteral("/usr/bin/octopi -sysupgrade-noconfirm");
 
-    //QRegularExpression re(QStringLiteral("(/usr/bin/octopi-notifier -session )[a-fA-F0-9_]+"));
-    QRegularExpression re(QStringLiteral("(/usr/bin/octopi-notifier.*)"));
-    QRegularExpressionMatch match = re.match(out);
-    bool hasMatchInSession = match.capturedLength()==out.length();
-
-    re=QRegularExpression(QStringLiteral("(/usr/bin/octopi -style )\\S+"));
-    match = re.match(out);
-    bool hasMatchInStyle = match.capturedLength()==out.length();
-
-    if (out == QLatin1String("/usr/bin/") + octoToolName ||
-        (options.indexOf(out)!=-1) ||
-        (hasMatchInSession) ||
-        (hasMatchInStyle)) res=true;
-  //}
-
-  return res;
+  return isProcessRunningFromPath(pid);
 }
 
 /*

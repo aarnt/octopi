@@ -43,6 +43,10 @@ private:
 
   static QString getProxySettings();
 
+  static pid_t findPidByName(const QString &processName);
+
+  static bool isProcessRunningFromPath(pid_t pid);
+
   static QFile* generateTemporaryFile(){
     quint32 gen = QRandomGenerator::global()->generate();
     m_temporaryFile = new QFile(ctn_TEMP_ACTIONS_FILE + QString::number(gen));
@@ -50,7 +54,7 @@ private:
     m_temporaryFile->setPermissions(QFile::Permissions(QFile::ExeOwner|QFile::ReadOwner));
 
     return m_temporaryFile;
-  }
+  }  
 
 public:
   OctopiHelper();
