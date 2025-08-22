@@ -498,50 +498,50 @@
         <translation>Povolit internetovou kontrolu</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="102"/>
-        <source>Play a bell sound when prompting for the root password in the terminal</source>
-        <translation>Přehrát upozornění, když je v terminálu vyžadováno heslo uživatele root</translation>
-    </message>
-    <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="157"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="144"/>
         <source>Enable confirmation dialog in system upgrade</source>
         <translation>Povolit potvrzovací dialog při povýšení systému</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="163"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="150"/>
         <location filename="Projects/octopi/src/optionsdialog.cpp" line="184"/>
         <source>Package List</source>
         <translation>Seznam balíčků</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="175"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="162"/>
         <source>Use alternating row colors</source>
         <translation>Použití střídavých barev řádků</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="188"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="175"/>
         <source>Show &quot;Licenses&quot; column</source>
         <translation>Zobrazit sloupec &quot;Licence&quot;</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="201"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="188"/>
         <source>Show &quot;Installed Size&quot; column</source>
         <translation>Zobrazit sloupec &quot;Instalovaná velikost&quot;</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="214"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="201"/>
         <source>Show &quot;Build Date&quot; column</source>
         <translation>Zobrazit sloupec &quot;Datum sestavení&quot;</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="227"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="214"/>
         <source>Show &quot;Install Date&quot; column</source>
         <translation>Zobrazit sloupec &quot;Datum instalace&quot;</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="240"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="227"/>
         <source>Show &quot;Install Reason&quot; column</source>
         <translation>Zobrazit sloupec &quot;Důvod instalace&quot;</translation>
+    </message>
+    <message>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="240"/>
+        <source>Enable package tooltips</source>
+        <translation>Povolit popisky balíčků</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="277"/>
@@ -604,7 +604,7 @@ Jakékoli použití poskytnutých souborů je na vaše vlastní nebezpečí.</tr
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="691"/>
-        <location filename="Projects/octopi/src/optionsdialog.cpp" line="733"/>
+        <location filename="Projects/octopi/src/optionsdialog.cpp" line="743"/>
         <source>Icon</source>
         <translation>Ikona</translation>
     </message>
@@ -658,6 +658,16 @@ Jakékoli použití poskytnutých souborů je na vaše vlastní nebezpečí.</tr
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="1339"/>
         <source>Font Size</source>
         <translation>Velikost písma</translation>
+    </message>
+    <message>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1362"/>
+        <source>Play a bell sound when prompting for the root password in the terminal</source>
+        <translation>Přehrát upozornění, když je v terminálu vyžadováno heslo uživatele root</translation>
+    </message>
+    <message>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1375"/>
+        <source>Force use of BASH shell</source>
+        <translation>Vynutit použití shellu BASH</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/optionsdialog.cpp" line="100"/>
