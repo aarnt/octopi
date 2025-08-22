@@ -244,45 +244,6 @@ bool OctopiHelper::isProcessRunningFromPath(pid_t pid)
  */
 bool OctopiHelper::isOctoToolRunning(const QString &octoToolName)
 {
-  /*bool res=false;
-
-  QProcess proc;
-  proc.setProcessEnvironment(getProcessEnvironment());
-  QStringList sl;
-  sl << QStringLiteral("-C");
-  sl << octoToolName;
-  sl << QStringLiteral("-o");
-  sl << QStringLiteral("command");
-  proc.start(QStringLiteral("/usr/bin/ps"), sl);
-  proc.waitForFinished();
-
-  QString out = QString::fromUtf8(proc.readAll().trimmed());
-  if (out.contains(QLatin1String("|"))) return false;
-  out=out.remove(QStringLiteral("\n"));
-  out=out.remove(QStringLiteral("COMMAND"));
-
-  QStringList options;
-  options << QStringLiteral("/usr/bin/octopi-notifier -d");
-  options << QStringLiteral("/usr/bin/octopi -d");
-  options << QStringLiteral("/usr/bin/octopi -sysupgrade");
-  options << QStringLiteral("/usr/bin/octopi -sysupgrade-noconfirm");
-
-  //QRegularExpression re(QStringLiteral("(/usr/bin/octopi-notifier -session )[a-fA-F0-9_]+"));
-  QRegularExpression re(QStringLiteral("(/usr/bin/octopi-notifier.*)"));
-  QRegularExpressionMatch match = re.match(out);
-  bool hasMatchInSession = match.capturedLength()==out.length();
-
-  re=QRegularExpression(QStringLiteral("(/usr/bin/octopi -style )\\S+"));
-  match = re.match(out);
-  bool hasMatchInStyle = match.capturedLength()==out.length();
-
-  if (out == QLatin1String("/usr/bin/") + octoToolName ||
-      (options.indexOf(out)!=-1) ||
-      (hasMatchInSession) ||
-      (hasMatchInStyle)) res=true;
-
-  return res;*/
-
   pid_t pid = findPidByName(octoToolName);
   if (pid == -1) {
     return false;
