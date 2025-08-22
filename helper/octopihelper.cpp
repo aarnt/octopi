@@ -236,7 +236,7 @@ bool OctopiHelper::isProcessRunningFromPath(pid_t pid)
   QString realPath = QFileInfo(QString::fromLocal8Bit(actualPath)).canonicalFilePath();
 
   log(QStringLiteral("Path of PID %1 is %2").arg(pid).arg(realPath));
-  return realPath == QStringLiteral("/usr/bin");
+  return realPath.startsWith(QStringLiteral("/usr/bin"));
 }
 
 /*
