@@ -2288,6 +2288,8 @@ QStringList Package::getContents(const QString& pkgName, bool isInstalled)
     }
   }
 
+  //qDebug() << "... and QStringList number of lines of " << slResult.count();
+
   return slResult;
 }
 

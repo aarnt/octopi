@@ -484,6 +484,9 @@ QByteArray UnixCommand::getPackageContentsUsingPacman(const QString& pkgName, bo
 
   args << pkgName;
   QByteArray res = performQuery(args);
+
+  //qDebug() << pkgName << " has QByteArray size of " << res.size();
+  //if (res.size() > 100000) res = QByteArray();
   return res;
 }
 
