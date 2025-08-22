@@ -23,6 +23,8 @@
 #include "wmhelper.h"
 #include "terminal.h"
 #include <iostream>
+#include <unistd.h>
+#include "limits.h"
 
 #include <QProcess>
 #include <QRegularExpression>
@@ -1161,34 +1163,22 @@ bool UnixCommand::isAppRunning(const QString &appName, bool justOneInstance)
 }
 
 /*
- * Checks if Octopi/Octopi-notifier, cache-cleaner, etc is being executed
+ * Checks if Octopi/Octopi-notifier, cache-cleaner, etc is being executed from /usr/bin
  */
 bool UnixCommand::isOctoToolRunning(const QString &octoToolName)
-{
-  bool res=false;
-
-  QProcess proc;
-  QStringList sl;
-  proc.setProcessEnvironment(getProcessEnvironment());
-  sl << QLatin1String("-C");
-  sl << octoToolName;
-  sl << QLatin1String("-o");
-  sl << QLatin1String("command");
-
-  proc.start(QLatin1String("/usr/bin/ps"), sl);
-  proc.waitForFinished();
-  QString out = QString::fromUtf8(proc.readAll().trimmed());
-  if (out.contains(QLatin1String("|"))) return false;
-  out=out.remove(QStringLiteral("\n"));
-  out=out.remove(QStringLiteral("COMMAND"));
-
-  if (octoToolName==QLatin1String("octopi-cachecle"))
+{  
+  char exePath[PATH_MAX];
+  ssize_t count = readlink("/proc/self/exe", exePath, sizeof(exePath));
+  if (count == -1)
   {
-    if (out == QLatin1String("/usr/bin/octopi-cachecleaner")) res=true;
+    //perror("readlink");
+    return false;
   }
-  else if ((out == QLatin1String("/usr/bin/") + octoToolName) || out.contains(QLatin1String("/usr/bin/") + octoToolName + QLatin1Char(' '))) res=true;
 
-  return res;
+  QString path = QString::fromUtf8(exePath, count);
+  QFileInfo fi(path);
+
+  return (fi.absoluteFilePath() == QLatin1String("/usr/bin/") + octoToolName);
 }
 
 /*

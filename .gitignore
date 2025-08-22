@@ -4,6 +4,7 @@
 Makefile
 bin/**
 build/**
+build_dir/**
 helper/*.o
 helper/moc*.*
 helper/octphelper
@@ -13,6 +14,11 @@ cachecleaner/.qtc_clangd/**
 notifier/bin/**
 notifier/build/**
 notifier/.qtc_clangd/**
+notifier/.qtc/**
+notifier/.cmake/**
+notifier/CMakeCache*
+notifier/CMakeFiles*
+notifier/qtcsettings.cmake
 octopi.pro.user
 qrc_resources.cpp
 repoeditor/.qtc_clangd/**
