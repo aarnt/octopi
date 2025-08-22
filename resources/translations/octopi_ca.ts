@@ -490,7 +490,7 @@
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="76"/>
         <source>Always use the terminal to install/upgrade/remove packages</source>
-        <translation>Feu servir sempre el terminal per instal·lar / actualitzar / suprimir paquets.</translation>
+        <translation>Usa sempre el terminal per instal·lar / actualitzar / suprimir paquets.</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="89"/>
@@ -498,50 +498,50 @@
         <translation>Habilita la comprovació d&apos;Internet.</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="102"/>
-        <source>Play a bell sound when prompting for the root password in the terminal</source>
-        <translation>Reprodueix un so de campana quan es demani la contrasenya d&apos;arrel al terminal.</translation>
-    </message>
-    <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="157"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="144"/>
         <source>Enable confirmation dialog in system upgrade</source>
         <translation>Habilita el diàleg de confirmació per a l&apos;actualització del sistema.</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="163"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="150"/>
         <location filename="Projects/octopi/src/optionsdialog.cpp" line="184"/>
         <source>Package List</source>
         <translation>Llista de paquets</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="175"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="162"/>
         <source>Use alternating row colors</source>
         <translation>Usa colors alterns a les files.</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="188"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="175"/>
         <source>Show &quot;Licenses&quot; column</source>
         <translation>Mostra la columna de llicències.</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="201"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="188"/>
         <source>Show &quot;Installed Size&quot; column</source>
         <translation>Mostra la columna de la mida de la instal·lació.</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="214"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="201"/>
         <source>Show &quot;Build Date&quot; column</source>
         <translation>Mostra la columna de la data de construcció.</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="227"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="214"/>
         <source>Show &quot;Install Date&quot; column</source>
         <translation>Mostra la columna de la data d&apos;instal·lació.</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="240"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="227"/>
         <source>Show &quot;Install Reason&quot; column</source>
         <translation>Mostra la columna de la raó d&apos;instal·lació.</translation>
+    </message>
+    <message>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="240"/>
+        <source>Enable package tooltips</source>
+        <translation>Habilita les descripcions emergents del paquet.</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="277"/>
@@ -604,7 +604,7 @@ Qualsevol ús dels fitxers que s&apos;hi proporcionen depèn de la vostra respon
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="691"/>
-        <location filename="Projects/octopi/src/optionsdialog.cpp" line="733"/>
+        <location filename="Projects/octopi/src/optionsdialog.cpp" line="743"/>
         <source>Icon</source>
         <translation>Icona</translation>
     </message>
@@ -658,6 +658,16 @@ Qualsevol ús dels fitxers que s&apos;hi proporcionen depèn de la vostra respon
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="1339"/>
         <source>Font Size</source>
         <translation>Mida de la lletra</translation>
+    </message>
+    <message>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1362"/>
+        <source>Play a bell sound when prompting for the root password in the terminal</source>
+        <translation>Reprodueix un so de campana quan es demani la contrasenya d&apos;arrel al terminal.</translation>
+    </message>
+    <message>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1375"/>
+        <source>Force use of BASH shell</source>
+        <translation>Força l&apos;ús de l&apos;intèrpret d&apos;ordres BASH.</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/optionsdialog.cpp" line="100"/>

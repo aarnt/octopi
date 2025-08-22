@@ -498,50 +498,50 @@
         <translation>啟用網路檢查</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="102"/>
-        <source>Play a bell sound when prompting for the root password in the terminal</source>
-        <translation>在終端機中提示輸入 root 密碼時播放鈴聲</translation>
-    </message>
-    <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="157"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="144"/>
         <source>Enable confirmation dialog in system upgrade</source>
         <translation>在系統升級中啟用確認對話框</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="163"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="150"/>
         <location filename="Projects/octopi/src/optionsdialog.cpp" line="184"/>
         <source>Package List</source>
         <translation>軟體包清單</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="175"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="162"/>
         <source>Use alternating row colors</source>
         <translation>使用交替色彩</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="188"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="175"/>
         <source>Show &quot;Licenses&quot; column</source>
         <translation>顯示「授權條款」欄位</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="201"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="188"/>
         <source>Show &quot;Installed Size&quot; column</source>
         <translation>顯示「已安裝大小」欄位</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="214"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="201"/>
         <source>Show &quot;Build Date&quot; column</source>
         <translation>顯示「建構日期」欄位</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="227"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="214"/>
         <source>Show &quot;Install Date&quot; column</source>
         <translation>顯示「安裝日期」欄位</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="240"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="227"/>
         <source>Show &quot;Install Reason&quot; column</source>
         <translation>顯示「安裝理由」欄位</translation>
+    </message>
+    <message>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="240"/>
+        <source>Enable package tooltips</source>
+        <translation>啟用軟體包工具提示</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="277"/>
@@ -604,7 +604,7 @@ Any use of the provided files is at your own risk.</source>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="691"/>
-        <location filename="Projects/octopi/src/optionsdialog.cpp" line="733"/>
+        <location filename="Projects/octopi/src/optionsdialog.cpp" line="743"/>
         <source>Icon</source>
         <translation>圖示</translation>
     </message>
@@ -658,6 +658,16 @@ Any use of the provided files is at your own risk.</source>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="1339"/>
         <source>Font Size</source>
         <translation>字型大小</translation>
+    </message>
+    <message>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1362"/>
+        <source>Play a bell sound when prompting for the root password in the terminal</source>
+        <translation>在終端機中提示輸入 root 密碼時播放鈴聲</translation>
+    </message>
+    <message>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1375"/>
+        <source>Force use of BASH shell</source>
+        <translation>強制使用 BASH 殼層</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/optionsdialog.cpp" line="100"/>
