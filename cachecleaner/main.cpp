@@ -76,7 +76,7 @@ int main( int argc, char *argv[] )
     return (-5);
   }
 
-  if (!UnixCommand::isOctoToolRunning(QStringLiteral("octopi-cachecle")))
+  if (!UnixCommand::isOctoToolRunning(QStringLiteral("octopi-cachecleaner")))
   {
     QMessageBox::critical(nullptr, StrConstants::getApplicationName(), StrConstants::getErrorRunOctopiCacheCleanerAsUsrBin());
     return (-6);
