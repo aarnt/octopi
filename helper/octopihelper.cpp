@@ -197,12 +197,12 @@ bool OctopiHelper::isOctoToolRunning(const QString &octoToolName)
   out=out.remove(QStringLiteral("\n"));
   out=out.remove(QStringLiteral("COMMAND"));
 
-  if (octoToolName==QLatin1String("octopi-cachecle"))
+  /*if (octoToolName==QLatin1String("octopi-cachecle"))
   {
     if (out == QLatin1String("/usr/bin/octopi-cachecleaner")) res=true;
   }
   else
-  {
+  {*/
     QStringList options;
     options << QStringLiteral("/usr/bin/octopi-notifier -d");
     options << QStringLiteral("/usr/bin/octopi -d");
@@ -222,7 +222,8 @@ bool OctopiHelper::isOctoToolRunning(const QString &octoToolName)
         (options.indexOf(out)!=-1) ||
         (hasMatchInSession) ||
         (hasMatchInStyle)) res=true;
-  }
+  //}
+
   return res;
 }
 
