@@ -43,9 +43,9 @@ private:
 
   static QString getProxySettings();
 
-  static pid_t findPidByName(const QString &processName);
+  pid_t findPidByName(const QString &processName);
 
-  static bool isProcessRunningFromPath(pid_t pid);
+  bool isProcessRunningFromPath(pid_t pid);
 
   static QFile* generateTemporaryFile(){
     quint32 gen = QRandomGenerator::global()->generate();

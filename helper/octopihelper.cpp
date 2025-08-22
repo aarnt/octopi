@@ -208,6 +208,8 @@ pid_t OctopiHelper::findPidByName(const QString &processName)
       QString name = QString(cmdFile.readLine()).trimmed();
       if (name == processName) {
         closedir(dir);
+
+        log(QStringLiteral("Found PID %1 for process %2").arg(pid).arg(processName));
         return pid;
       }
     }
@@ -232,6 +234,8 @@ bool OctopiHelper::isProcessRunningFromPath(pid_t pid)
 
   actualPath[len] = '\0';
   QString realPath = QFileInfo(QString::fromLocal8Bit(actualPath)).canonicalFilePath();
+
+  log(QStringLiteral("Path of PID %1 is %2").arg(pid).arg(realPath));
   return realPath == QStringLiteral("/usr/bin");
 }
 
