@@ -294,7 +294,7 @@ int OctopiHelper::executePkgTransactionWithSharedMem()
 {
   bool isOctopiRunning=isOctoToolRunning(QStringLiteral("octopi"));
   bool isNotifierRunning=isOctoToolRunning(QStringLiteral("octopi-notifier"));
-  bool isCacheCleanerRunning=isOctoToolRunning(QStringLiteral("octopi-cachecleaner"));
+  bool isCacheCleanerRunning=isOctoToolRunning(QStringLiteral("octopi-cachecle"));
 
   if (!isOctopiRunning && !isNotifierRunning && !isCacheCleanerRunning)
   {
