@@ -7,6 +7,7 @@
   Added "Enable package tooltips" option, so users can disable the feature when needed.
   Added "Force use of BASH shell" option to ensure compatibility when the user 
     uses another SHELL.
+  Added Tools/pacman-key option to refresh pacman gpg keys.
   Modernization of Options dialog.
   Updated translations.
 

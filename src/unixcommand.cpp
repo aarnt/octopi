@@ -975,6 +975,10 @@ void UnixCommand::runCommandInTerminalWithSudo(const QString& command){
   m_terminal->runCommandInTerminalWithSudo(command);
 }
 
+void UnixCommand::runCommandInTerminalWithSudo(const QStringList& commandList){
+  m_terminal->runCommandInTerminalWithSudo(commandList);
+}
+
 /*
  * Executes given commandList as root inside a terminal using "octopi-helper -t" (passing cmds thru memory)
  */

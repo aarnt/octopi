@@ -57,41 +57,6 @@
        <property name="viewMode">
         <enum>QListView::ViewMode::ListMode</enum>
        </property>
-       <item>
-        <property name="text">
-         <string>General</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Backend</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Package List</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>AUR</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Icon</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Updates</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Terminal</string>
-        </property>
-       </item>
       </widget>
      </item>
      <item>

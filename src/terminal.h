@@ -37,6 +37,7 @@ public:
 
   //Executes the given command using sudo
   void runCommandInTerminalWithSudo(const QString& command);
+  void runCommandInTerminalWithSudo(const QStringList& commandList);
 
   //Executes the given commandList creating a ROOT temp transaction file and calling "octopi-helper -ts"
   void runOctopiHelperInTerminalWithSharedMem(const QStringList& commandList, QSharedMemory *sharedMem);

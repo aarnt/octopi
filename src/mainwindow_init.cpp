@@ -678,6 +678,11 @@ void MainWindow::initActions()
   m_actionPackageInfo = new QAction(this);
   m_actionPackageInfo->setText(StrConstants::getTabInfoName());
 
+  m_actionPacmanKey = new QAction(this);
+  m_actionPacmanKey->setIcon(IconHelper::getIconKeys());
+  m_actionPacmanKey->setText(QStringLiteral("Pacman-key..."));
+  connect(m_actionPacmanKey, SIGNAL(triggered(bool)), this, SLOT(doRefreshPacmanKeys()));
+
   m_actionAURVote = new QAction(this);
   m_actionAURVote->setText(StrConstants::getVote());
   m_actionAURVote->setIcon(IconHelper::getIconVote());

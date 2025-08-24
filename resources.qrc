@@ -103,5 +103,6 @@
         <file>resources/images/pacman.png</file>
         <file>resources/images/menu.png</file>
         <file>resources/images/terminal2.png</file>
+        <file>resources/images/keys.png</file>
     </qresource>
 </RCC>

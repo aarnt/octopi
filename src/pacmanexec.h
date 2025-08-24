@@ -106,7 +106,9 @@ public:
 
   void doChangeInstallReason(const QHash<QString, QString> &listOfPackages);
 
-  //AUR
+  void doRefreshPacmanKeys();
+
+  //AUR  
   void doAURUpgrade(const QString &listOfPackages);
   void doAURInstall(const QString &listOfPackages);
   void doInstallYayUsingTempYay();

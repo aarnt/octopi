@@ -193,25 +193,21 @@ void OptionsDialog::initialize(){
 
 void OptionsDialog::initListIcons()
 {
+  listIcons->addItem(tr("General"));
+  listIcons->addItem(tr("Backend"));
+  listIcons->addItem(tr("Package List"));
+  listIcons->addItem(QStringLiteral("AUR"));
+  listIcons->addItem(tr("Icon"));
+  listIcons->addItem(tr("Updates"));
+  listIcons->addItem(tr("Terminal"));
+
   listIcons->setIconSize(QSize(24, 24));
-  listIcons->item(0)->setText(tr("General"));
   listIcons->item(0)->setIcon(IconHelper::getIconWindow());
-
-  listIcons->item(1)->setText(tr("Backend"));
   listIcons->item(1)->setIcon(IconHelper::getIconPacman());
-
-  listIcons->item(2)->setText(tr("Package List"));
   listIcons->item(2)->setIcon(IconHelper::getIconMenu());
-
   listIcons->item(3)->setIcon(IconHelper::getIconForeignGreen());
-
-  listIcons->item(4)->setText(tr("Icon"));
   listIcons->item(4)->setIcon(IconHelper::getIconOctopi());
-
-  listIcons->item(5)->setText(tr("Updates"));
   listIcons->item(5)->setIcon(IconHelper::getIconCheckUpdates());
-
-  listIcons->item(6)->setText(tr("Terminal"));
   listIcons->item(6)->setIcon(IconHelper::getIconTerminal2());
 }
 
@@ -964,8 +960,6 @@ void OptionsDialog::accept()
 
 void OptionsDialog::removeTabByName(const QString &tabName)
 {
-  qDebug() << "Removing " << tabName << " item";
-
   if (tabName == QStringLiteral("General"))
   {
     for (int i=0; i < listIcons->count(); ++i)

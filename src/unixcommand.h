@@ -125,6 +125,7 @@ public:
   static void removeTemporaryNotifierFiles();
 
   void runCommandInTerminalWithSudo(const QString& command);
+  void runCommandInTerminalWithSudo(const QStringList& listOfCommands);
   void executeCommand(const QString &pCommand);
   void executeCommandWithSharedMemHelper(const QString &pCommand, QSharedMemory *sharedMem);
   void executeCommandAsNormalUser(const QString &pCommand, QStringList params);

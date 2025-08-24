@@ -651,7 +651,6 @@ void MainWindow::tvTransactionSelectionChanged(const QItemSelection&, const QIte
  */
 void MainWindow::tvTransactionRowsChanged(const QModelIndex& parent)
 {
-  //QStandardItem *item = m_modelTransaction->itemFromIndex(parent);
   QStandardItem *item = ui->twProperties->getModelTransaction()->itemFromIndex(parent);
   QString count = QString::number(item->rowCount());
   QStandardItem * itemRemove = getRemoveTransactionParentItem();
@@ -1237,9 +1236,6 @@ void MainWindow::doRemoveAndInstall()
                          QLatin1String("</b><br>"), ectn_DONT_TREAT_URL_LINK);
 
     disableTransactionActions();
-    //m_progressWidget->setValue(0);
-    //m_progressWidget->setMaximum(100);
-    //clearTabOutput();
 
     m_pacmanExec = new PacmanExec();
     m_pacmanExec->setSharedMemory(m_sharedMemory);
@@ -1248,9 +1244,6 @@ void MainWindow::doRemoveAndInstall()
     QObject::connect(m_pacmanExec, SIGNAL(finished(int, QProcess::ExitStatus)),
                      this, SLOT( pacmanProcessFinished(int, QProcess::ExitStatus) ));
 
-    //QObject::connect(m_pacmanExec, SIGNAL(percentage(int)), this, SLOT(incrementPercentage(int)));
-    //QObject::connect(m_pacmanExec, SIGNAL(textToPrintExt(QString)), this, SLOT(outputText(QString)));
-    //QObject::connect(m_pacmanExec, SIGNAL(canStopTransaction(bool)), this, SLOT(onCanStopTransaction(bool)));
     QObject::connect(m_pacmanExec, SIGNAL(commandToExecInQTermWidget(QString)), this, SLOT(onExecCommandInTabTerminal(QString)));
 
     m_commandExecuting = ectn_RUN_IN_TERMINAL;
@@ -1366,6 +1359,31 @@ void MainWindow::doRemoveAndInstall()
 }
 
 /*
+ * Calls pacman-key to refresh packager gpg keys
+ */
+void MainWindow::doRefreshPacmanKeys()
+{
+  disableTransactionActions();
+  m_progressWidget->setValue(0);
+  m_progressWidget->setMaximum(100);
+  clearTabOutput();
+
+  m_pacmanExec = new PacmanExec();
+  m_pacmanExec->setSharedMemory(m_sharedMemory);
+  if (m_debugInfo) m_pacmanExec->setDebugMode(true);
+
+  QObject::connect(m_pacmanExec, SIGNAL(finished (int,QProcess::ExitStatus)),
+                   this, SLOT( pacmanProcessFinished(int,QProcess::ExitStatus) ));
+
+  QObject::connect(m_pacmanExec, SIGNAL(percentage(int)), this, SLOT(incrementPercentage(int)));
+  QObject::connect(m_pacmanExec, SIGNAL(textToPrintExt(QString)), this, SLOT(outputText(QString)));
+  QObject::connect(m_pacmanExec, SIGNAL(commandToExecInQTermWidget(QString)), this, SLOT(onExecCommandInTabTerminal(QString)));
+
+  m_commandExecuting = ectn_RUN_IN_TERMINAL;
+  m_pacmanExec->doRefreshPacmanKeys();
+}
+
+/*
  * Removes ALL the packages selected by the user with "pacman -Rcs (CASCADE)" !
  */
 void MainWindow::doRemove()
@@ -1391,7 +1409,6 @@ void MainWindow::doRemove()
                          QLatin1String("</b><br>"), ectn_DONT_TREAT_URL_LINK);
 
     disableTransactionActions();
-    //clearTabOutput();
 
     m_pacmanExec = new PacmanExec();
     m_pacmanExec->setSharedMemory(m_sharedMemory);
@@ -1400,9 +1417,6 @@ void MainWindow::doRemove()
     QObject::connect(m_pacmanExec, SIGNAL(finished (int, QProcess::ExitStatus)),
                      this, SLOT( pacmanProcessFinished(int, QProcess::ExitStatus) ));
 
-    //QObject::connect(m_pacmanExec, SIGNAL(percentage(int)), this, SLOT(incrementPercentage(int)));
-    //QObject::connect(m_pacmanExec, SIGNAL(textToPrintExt(QString)), this, SLOT(outputText(QString)));
-    //QObject::connect(m_pacmanExec, SIGNAL(canStopTransaction(bool)), this, SLOT(onCanStopTransaction(bool)));
     QObject::connect(m_pacmanExec, SIGNAL(commandToExecInQTermWidget(QString)), this, SLOT(onExecCommandInTabTerminal(QString)));
 
     m_commandExecuting = ectn_RUN_IN_TERMINAL;
@@ -1590,7 +1604,6 @@ void MainWindow::doInstallYayPackage()
 void MainWindow::doRemoveAUR()
 {
   QString listOfTargets = getTobeRemovedPackages();
-  //listOfTargets = listToBeInst.keys().join(QStringLiteral(" "));
   listOfTargets.replace(StrConstants::getForeignRepositoryGroupName() + QLatin1Char('/'), QStringLiteral(""));
 
   disableTransactionActions();
@@ -1677,7 +1690,6 @@ void MainWindow::onAURToolChanged()
       static QStandardItemModel emptyModel;
       ui->tvPackages->setModel(&emptyModel);
       removePackageTreeViewConnections();
-      //m_actionSwitchToAURTool->setEnabled(false);
       m_refreshForeignPackageList = true;
       m_actionMenuRepository->setEnabled(true);
       ui->twGroups->setEnabled(true);
@@ -1711,7 +1723,6 @@ void MainWindow::onAURToolChanged()
     }
 
     m_hasForeignTool = false;
-    //m_actionSwitchToAURTool->setVisible(false);
     m_refreshForeignPackageList = false;
     m_outdatedAURPackagesNameVersion->clear();
     m_outdatedAURStringList->clear();
@@ -1727,7 +1738,6 @@ void MainWindow::onAURToolChanged()
 
     if (!isAURGroupSelected())
     {
-      //m_actionSwitchToAURTool->setVisible(true);
       m_actionSwitchToForeignTool->setCheckable(true);
       m_actionSwitchToForeignTool->setChecked(false);
     }
@@ -1837,8 +1847,6 @@ void MainWindow::doInstallAUR()
 
   m_commandExecuting = ectn_RUN_IN_TERMINAL;
   m_pacmanExec->doAURInstall(listOfTargets);
-
-  //QMessageBox::warning(this, StrConstants::getApplicationName(), listOfTargets);
 }
 
 /*
@@ -1881,9 +1889,6 @@ void MainWindow::doInstall()
     writeToTabOutput(QLatin1String("<b>") + StrConstants::getCommandFinishedOK() +
                          QLatin1String("</b><br>"), ectn_DONT_TREAT_URL_LINK);
     disableTransactionActions();
-    //m_progressWidget->setValue(0);
-    //m_progressWidget->setMaximum(100);
-    //clearTabOutput();
 
     m_pacmanExec = new PacmanExec();
     m_pacmanExec->setSharedMemory(m_sharedMemory);
@@ -1892,9 +1897,6 @@ void MainWindow::doInstall()
     QObject::connect(m_pacmanExec, SIGNAL(finished(int, QProcess::ExitStatus)),
                      this, SLOT( pacmanProcessFinished(int, QProcess::ExitStatus) ));
 
-    //QObject::connect(m_pacmanExec, SIGNAL(percentage(int)), this, SLOT(incrementPercentage(int)));
-    //QObject::connect(m_pacmanExec, SIGNAL(textToPrintExt(QString)), this, SLOT(outputText(QString)));
-    //QObject::connect(m_pacmanExec, SIGNAL(canStopTransaction(bool)), this, SLOT(onCanStopTransaction(bool)));
     QObject::connect(m_pacmanExec, SIGNAL(commandToExecInQTermWidget(QString)), this, SLOT(onExecCommandInTabTerminal(QString)));
 
     m_commandExecuting = ectn_RUN_IN_TERMINAL;
@@ -2204,14 +2206,6 @@ void MainWindow::toggleSystemActions(const bool value)
     }
   }
 
-  /*if (isAURGroupSelected() && Package::getForeignRepositoryToolName() == ctn_KCP_TOOL)
-  {
-    ui->actionCheckUpdates->setEnabled(true);
-  }*;
-  else if (Package::getForeignRepositoryToolName() != ctn_KCP_TOOL)
-  {
-    ui->actionCheckUpdates->setEnabled(value);
-  }*/
   if (!isAURGroupSelected())
   {
     m_actionMenuOptions->setEnabled(value);

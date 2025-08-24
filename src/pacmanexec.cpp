@@ -1404,6 +1404,20 @@ void PacmanExec::doAURRemoveAndInstallInTerminal(const QString &listOfPackagesto
 }
 
 /*
+ * Calls pacman-key to refresh packager gpg keys
+ */
+void PacmanExec::doRefreshPacmanKeys()
+{
+  m_lastCommandList.clear();
+  m_lastCommandList.append(QStringLiteral("/usr/bin/pacman-key --refresh-keys;"));
+  m_lastCommandList.append(QStringLiteral("echo -e;"));
+  m_lastCommandList.append(QLatin1String("read -n 1 -p \"") + StrConstants::getPressAnyKey() + QLatin1Char('"'));
+
+  m_commandExecuting = ectn_RUN_IN_TERMINAL;
+  m_unixCommand->runCommandInTerminalWithSudo(m_lastCommandList);
+}
+
+/*
  * Calls AUR tool to install given packages inside a terminal
  */
 void PacmanExec::doAURInstall(const QString &listOfPackages)

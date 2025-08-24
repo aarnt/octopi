@@ -139,6 +139,8 @@ void MainWindow::refreshMenuTools()
   {
     static bool connectorSysInfo=false;
 
+    ui->menuTools->addAction(m_actionPacmanKey);
+
     ui->menuTools->addSeparator();
     m_actionSysInfo->setText(QStringLiteral("SysInfo..."));
     ui->menuTools->addAction(m_actionSysInfo);

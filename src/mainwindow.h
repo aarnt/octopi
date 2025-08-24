@@ -209,6 +209,7 @@ private:
   QAction *m_actionAUROpenPKGBUILD;
   QAction *m_actionAURShowPKGBUILDDiff;
   QAction *m_actionChangeInstallReason;
+  QAction *m_actionPacmanKey;
   QToolButton *m_toolButtonStopTransaction;
 
   //Toggles use of AUR tool
@@ -432,6 +433,7 @@ private slots:
   void doInstallAURPackage();
   void doPreDownloadTempYay();
   void doInstallYayPackage();
+  void doRefreshPacmanKeys();
   void doRemoveAUR();
   void doRemoveAURPackage();
   void doRemoveAndInstallAUR();

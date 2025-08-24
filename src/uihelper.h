@@ -145,6 +145,7 @@ public:
   static QIcon getIconPacman(){ return QIcon(QStringLiteral(":/resources/images/pacman.png")); }
   static QIcon getIconMenu(){ return QIcon(QStringLiteral(":/resources/images/menu.png")); }
   static QIcon getIconWindowClose(){ return QIcon(QStringLiteral(":/resources/images/window_close.png")); }
+  static QIcon getIconKeys(){ return QIcon(QStringLiteral(":/resources/images/keys.png")); }
 
   static QIcon getIconBinary(){
     if (WMHelper::isKDERunning() && (UnixCommand::getLinuxDistro() != ectn_KAOS))

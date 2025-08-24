@@ -91,6 +91,33 @@ void Terminal::runOctopiHelperInTerminalWithSharedMem(const QStringList &command
 }
 
 /*
+ * Executes the given command list with root credentials
+ */
+void Terminal::runCommandInTerminalWithSudo(const QStringList& commandList)
+{
+  QString out;
+  bool removedLines = false;
+
+  for(QString line: commandList)
+  {
+    if ((line.contains(QLatin1String("echo -e")) || line.contains(QLatin1String("read -n 1"))))
+    {
+      removedLines = true;
+      continue;
+    }
+
+    out += line;
+  }
+
+  if (removedLines) out += QLatin1String("echo '") + StrConstants::getPressAnyKey() + QLatin1Char('\'');
+
+  QString cmd;
+  cmd = getSudoProgram() + QLatin1String(" ") + UnixCommand::getShell() + QLatin1String(" -c \"") + out + QLatin1Char('"');
+  //cmd = UnixCommand::getShell() + QLatin1String(" -c \"") + out + QLatin1Char('"');
+  emit commandToExecInQTermWidget(cmd);
+}
+
+/*
  * Executes the given command list as normal user
  */
 void Terminal::runCommandInTerminalAsNormalUser(const QStringList &commandList)
