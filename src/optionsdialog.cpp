@@ -189,8 +189,6 @@ void OptionsDialog::initialize(){
 
   connect(listIcons, &QListWidget::currentRowChanged, this, &OptionsDialog::setStackedWidgetIndex);
   listIcons->setCurrentRow(0);
-
-  //setCurrentIndexByTabName(QStringLiteral("Updates"));
 }
 
 void OptionsDialog::initListIcons()
@@ -369,7 +367,7 @@ void OptionsDialog::initAURTab()
     else if (comboAUR->currentText() == ctn_PARU_TOOL)
     {
       cbNoConfirm->setChecked(SettingsManager::getAURNoConfirmParam());
-      cbNoEdit->setChecked(false); //SettingsManager::getAURNoEditParam());
+      cbNoEdit->setChecked(false);
     }
 
     cbSearchOutdatedAURPackages->setChecked(SettingsManager::getSearchOutdatedAURPackages());
