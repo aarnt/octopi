@@ -1,4 +1,4 @@
-0.17.1 (dev)
+0.18.0 (dev)
   BugFix: The act of moving the mouse over the package list was triggering many
     "pacman -Si" executions (thanks to RAZUMNO).
   BugFix: Notifier did not fetch updates for the first time when using "once a day".
@@ -7,6 +7,7 @@
   Added "Enable package tooltips" option, so users can disable the feature when needed.
   Added "Force use of BASH shell" option to ensure compatibility when the user 
     uses another SHELL.
+  Modernization of Options dialog.
   Updated translations.
 
 0.17.0 (2025-02-18)

@@ -45,6 +45,7 @@ private:
   QString m_busyIconPath;
 
   void initialize();
+  void initListIcons();
   void initButtonBox();
   void initGeneralTab();
   void initPackageListTab();
@@ -93,6 +94,7 @@ private slots:
   void checkUncheckAlwaysUseTheTerminal();
   void checkUncheckConfirmationDialogInSysUpgrade();
   void enableDisableGroupBoxInternetCheck();
+  void setStackedWidgetIndex(int index);
 };
 
 #endif // OptionsDialog_H

@@ -99,5 +99,9 @@
         <file>resources/translations/octopi_zh_CN.qm</file>
         <file>resources/translations/octopi_ko.qm</file>
         <file>resources/sounds/bell.wav</file>
+        <file>resources/images/window.png</file>
+        <file>resources/images/pacman.png</file>
+        <file>resources/images/menu.png</file>
+        <file>resources/images/terminal2.png</file>
     </qresource>
 </RCC>

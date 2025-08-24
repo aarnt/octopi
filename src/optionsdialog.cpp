@@ -35,6 +35,8 @@
 #include <QDesktopServices>
 #include <QFontDatabase>
 
+#include <QDebug>
+
 //#include <QDebug>
 
 /*
@@ -159,6 +161,7 @@ void OptionsDialog::initialize(){
   m_backendHasChanged = false;
   m_iconHasChanged = false;
 
+  initListIcons();
   initButtonBox();
   initGeneralTab();
   initPackageListTab();
@@ -176,15 +179,42 @@ void OptionsDialog::initialize(){
 
   if (m_calledByOctopi && !UnixCommand::isOctoToolRunning(QLatin1String("octopi-notifier")))
   {
-    removeTabByName(tr("Updates"));
+    removeTabByName(QStringLiteral("Updates"));
   }
   else if (!UnixCommand::isOctoToolRunning(QLatin1String("octopi")))
   {
-    removeTabByName(tr("Backend"));
-    removeTabByName(tr("Package List"));
+    removeTabByName(QStringLiteral("Backend"));
+    removeTabByName(QStringLiteral("Package List"));
   }
 
-  tabWidget->setCurrentIndex(0);
+  connect(listIcons, &QListWidget::currentRowChanged, this, &OptionsDialog::setStackedWidgetIndex);
+  listIcons->setCurrentRow(0);
+
+  //setCurrentIndexByTabName(QStringLiteral("Updates"));
+}
+
+void OptionsDialog::initListIcons()
+{
+  listIcons->setIconSize(QSize(24, 24));
+  listIcons->item(0)->setText(tr("General"));
+  listIcons->item(0)->setIcon(IconHelper::getIconWindow());
+
+  listIcons->item(1)->setText(tr("Backend"));
+  listIcons->item(1)->setIcon(IconHelper::getIconPacman());
+
+  listIcons->item(2)->setText(tr("Package List"));
+  listIcons->item(2)->setIcon(IconHelper::getIconMenu());
+
+  listIcons->item(3)->setIcon(IconHelper::getIconForeignGreen());
+
+  listIcons->item(4)->setText(tr("Icon"));
+  listIcons->item(4)->setIcon(IconHelper::getIconOctopi());
+
+  listIcons->item(5)->setText(tr("Updates"));
+  listIcons->item(5)->setIcon(IconHelper::getIconCheckUpdates());
+
+  listIcons->item(6)->setText(tr("Terminal"));
+  listIcons->item(6)->setIcon(IconHelper::getIconTerminal2());
 }
 
 void OptionsDialog::initButtonBox(){
@@ -230,6 +260,40 @@ void OptionsDialog::enableDisableGroupBoxInternetCheck()
   }
 }
 
+void OptionsDialog::setStackedWidgetIndex(int index)
+{
+  QIcon icon = listIcons->item(index)->icon();
+
+  if (icon.pixmap(24,24).toImage() == IconHelper::getIconWindow().pixmap(24,24).toImage())
+  {
+    stackedWidget->setCurrentWidget(stackedWidget->widget(0));
+  }
+  else if (icon.pixmap(24,24).toImage() == IconHelper::getIconPacman().pixmap(24,24).toImage())
+  {
+    stackedWidget->setCurrentWidget(stackedWidget->widget(3));
+  }
+  else if (icon.pixmap(24,24).toImage() == IconHelper::getIconMenu().pixmap(24,24).toImage())
+  {
+    stackedWidget->setCurrentWidget(stackedWidget->widget(1));
+  }
+  else if (icon.pixmap(24,24).toImage() == IconHelper::getIconForeignGreen().pixmap(24,24).toImage())
+  {
+    stackedWidget->setCurrentWidget(stackedWidget->widget(2));
+  }
+  else if (icon.pixmap(24,24).toImage() == IconHelper::getIconOctopi().pixmap(24,24).toImage())
+  {
+    stackedWidget->setCurrentWidget(stackedWidget->widget(4));
+  }
+  else if (icon.pixmap(24,24).toImage() == IconHelper::getIconCheckUpdates().pixmap(24,24).toImage())
+  {
+    stackedWidget->setCurrentWidget(stackedWidget->widget(5));
+  }
+  else if (icon.pixmap(24,24).toImage() == IconHelper::getIconTerminal2().pixmap(24,24).toImage())
+  {
+    stackedWidget->setCurrentWidget(stackedWidget->widget(6));
+  }
+}
+
 /*
  * Initializes Package List tab
  */
@@ -249,6 +313,8 @@ void OptionsDialog::initPackageListTab()
  */
 void OptionsDialog::initAURTab()
 {
+  gbAURVoting->setStyleSheet(QStringLiteral("border:none"));
+
   cbEditMenu->setEnabled(false);
   cbOverwrite->setChecked(false);
   cbOverwrite->setEnabled(false);
@@ -463,12 +529,60 @@ void OptionsDialog::initTerminalTab()
  */
 void OptionsDialog::setCurrentIndexByTabName(const QString &tabName)
 {
-  for(int c=0; c<tabWidget->tabBar()->count(); c++)
+  if (tabName == QStringLiteral("General"))
   {
-    if (tabWidget->tabText(c) == tabName)
+    for (int i=0; i < listIcons->count(); ++i)
     {
-      tabWidget->setCurrentIndex(c);
-      break;
+      if (listIcons->item(i)->icon().pixmap(24,24).toImage() == IconHelper::getIconWindow().pixmap(24,24).toImage())
+        listIcons->setCurrentRow(i);
+    }
+  }
+  else if (tabName == QStringLiteral("Backend"))
+  {
+    for (int i=0; i < listIcons->count(); ++i)
+    {
+      if (listIcons->item(i)->icon().pixmap(24,24).toImage() == IconHelper::getIconPacman().pixmap(24,24).toImage())
+        listIcons->setCurrentRow(i);
+    }
+  }
+  else if (tabName == QStringLiteral("Package List"))
+  {
+    for (int i=0; i < listIcons->count(); ++i)
+    {
+      if (listIcons->item(i)->icon().pixmap(24,24).toImage() == IconHelper::getIconMenu().pixmap(24,24).toImage())
+        listIcons->setCurrentRow(i);
+    }
+  }
+  else if (tabName == QStringLiteral("AUR"))
+  {
+    for (int i=0; i < listIcons->count(); ++i)
+    {
+      if (listIcons->item(i)->icon().pixmap(24,24).toImage() == IconHelper::getIconForeignGreen().pixmap(24,24).toImage())
+        listIcons->setCurrentRow(i);
+    }
+  }
+  else if (tabName == QStringLiteral("Icon"))
+  {
+    for (int i=0; i < listIcons->count(); ++i)
+    {
+      if (listIcons->item(i)->icon().pixmap(24,24).toImage() == IconHelper::getIconOctopi().pixmap(24,24).toImage())
+        listIcons->setCurrentRow(i);
+    }
+  }
+  else if (tabName == QStringLiteral("Updates"))
+  {
+    for (int i=0; i < listIcons->count(); ++i)
+    {
+      if (listIcons->item(i)->icon().pixmap(24,24).toImage() == IconHelper::getIconCheckUpdates().pixmap(24,24).toImage())
+        listIcons->setCurrentRow(i);
+    }
+  }
+  else if (tabName == QStringLiteral("Terminal"))
+  {
+    for (int i=0; i < listIcons->count(); ++i)
+    {
+      if (listIcons->item(i)->icon().pixmap(24,24).toImage() == IconHelper::getIconTerminal2().pixmap(24,24).toImage())
+        listIcons->setCurrentRow(i);
     }
   }
 }
@@ -740,7 +854,7 @@ void OptionsDialog::accept()
   if (emptyIconPath)
   {
     delete cic;
-    setCurrentIndexByTabName(tr("Icon"));
+    setCurrentIndexByTabName(QStringLiteral("Icon"));
     QMessageBox::critical(this, StrConstants::getError(), StrConstants::getErrorIconPathInfoIsNotSet());
     return;
   }
@@ -852,10 +966,63 @@ void OptionsDialog::accept()
 
 void OptionsDialog::removeTabByName(const QString &tabName)
 {
-  for (int i=0; i < tabWidget->count(); ++i)
+  qDebug() << "Removing " << tabName << " item";
+
+  if (tabName == QStringLiteral("General"))
   {
-    if (tabWidget->tabText(i) == tabName)
-      tabWidget->removeTab(i);
+    for (int i=0; i < listIcons->count(); ++i)
+    {
+      if (listIcons->item(i)->icon().pixmap(24,24).toImage() == IconHelper::getIconWindow().pixmap(24,24).toImage())
+        listIcons->item(i)->setHidden(true);
+    }
+  }
+  else if (tabName == QStringLiteral("Backend"))
+  {
+    for (int i=0; i < listIcons->count(); ++i)
+    {
+      if (listIcons->item(i)->icon().pixmap(24,24).toImage() == IconHelper::getIconPacman().pixmap(24,24).toImage())
+        listIcons->item(i)->setHidden(true);
+    }
+  }
+  else if (tabName == QStringLiteral("Package List"))
+  {
+    for (int i=0; i < listIcons->count(); ++i)
+    {
+      if (listIcons->item(i)->icon().pixmap(24,24).toImage() == IconHelper::getIconMenu().pixmap(24,24).toImage())
+        listIcons->item(i)->setHidden(true);
+    }
+  }
+  else if (tabName == QStringLiteral("AUR"))
+  {
+    for (int i=0; i < listIcons->count(); ++i)
+    {
+      if (listIcons->item(i)->icon().pixmap(24,24).toImage() == IconHelper::getIconForeignGreen().pixmap(24,24).toImage())
+        listIcons->item(i)->setHidden(true);
+    }
+  }
+  else if (tabName == QStringLiteral("Icon"))
+  {
+    for (int i=0; i < listIcons->count(); ++i)
+    {
+      if (listIcons->item(i)->icon().pixmap(24,24).toImage() == IconHelper::getIconOctopi().pixmap(24,24).toImage())
+        listIcons->item(i)->setHidden(true);
+    }
+  }
+  else if (tabName == QStringLiteral("Updates"))
+  {
+    for (int i=0; i < listIcons->count(); ++i)
+    {
+      if (listIcons->item(i)->icon().pixmap(24,24).toImage() == IconHelper::getIconCheckUpdates().pixmap(24,24).toImage())
+        listIcons->item(i)->setHidden(true);
+    }
+  }
+  else if (tabName == QStringLiteral("Terminal"))
+  {
+    for (int i=0; i < listIcons->count(); ++i)
+    {
+      if (listIcons->item(i)->icon().pixmap(24,24).toImage() == IconHelper::getIconTerminal2().pixmap(24,24).toImage())
+        listIcons->item(i)->setHidden(true);
+    }
   }
 }
 

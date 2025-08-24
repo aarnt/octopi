@@ -111,7 +111,7 @@ public:
   static QIcon getIconOctopi(){
     if (WMHelper::isKDERunning())
       return QIcon::fromTheme(QStringLiteral("octopi"), QIcon());
-    else return QIcon();
+    else return QIcon::fromTheme(QStringLiteral(":/resources/images/octopi_green.png"));
   }
 
   static QIcon getIconOctopiBusy(){
@@ -141,6 +141,9 @@ public:
   static QIcon getIconStop(){ return QIcon(QStringLiteral(":/resources/images/stop_small_red.png")); }
   static QIcon getIconVote(){ return QIcon(QStringLiteral(":/resources/images/vote.png")); }
   static QIcon getIconUnvote(){ return QIcon(QStringLiteral(":/resources/images/un_vote.png")); }
+  static QIcon getIconWindow(){ return QIcon(QStringLiteral(":/resources/images/window.png")); }
+  static QIcon getIconPacman(){ return QIcon(QStringLiteral(":/resources/images/pacman.png")); }
+  static QIcon getIconMenu(){ return QIcon(QStringLiteral(":/resources/images/menu.png")); }
   static QIcon getIconWindowClose(){ return QIcon(QStringLiteral(":/resources/images/window_close.png")); }
 
   static QIcon getIconBinary(){
@@ -169,6 +172,10 @@ public:
       return QIcon::fromTheme(QStringLiteral("utilities-terminal"), QIcon(QStringLiteral(":/resources/images/terminal.png")));
     else
       return QIcon(QStringLiteral(":/resources/images/terminal.png"));
+  }
+
+  static QIcon getIconTerminal2(){
+    return QIcon(QStringLiteral(":/resources/images/terminal2.png"));
   }
 
   static QIcon getIconRemoveItem() {

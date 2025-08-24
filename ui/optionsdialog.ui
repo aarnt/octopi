@@ -9,13 +9,13 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>665</width>
+    <width>790</width>
     <height>444</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
-    <width>665</width>
+    <width>790</width>
     <height>444</height>
    </size>
   </property>
@@ -25,23 +25,98 @@
   <property name="modal">
    <bool>true</bool>
   </property>
-  <layout class="QGridLayout" name="gridLayout">
-   <item row="1" column="0">
-    <layout class="QVBoxLayout" name="verticalLayout">
+  <layout class="QGridLayout" name="gridLayout_1">
+   <item row="0" column="0">
+    <layout class="QHBoxLayout" name="horizontalLayout_7">
+     <property name="spacing">
+      <number>2</number>
+     </property>
+     <property name="sizeConstraint">
+      <enum>QLayout::SizeConstraint::SetDefaultConstraint</enum>
+     </property>
      <item>
-      <widget class="QTabWidget" name="tabWidget">
-       <property name="currentIndex">
-        <number>6</number>
+      <widget class="QListWidget" name="listIcons">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Fixed" vsizetype="Expanding">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
        </property>
-       <widget class="QWidget" name="tabGeneral">
-        <attribute name="title">
+       <property name="minimumSize">
+        <size>
+         <width>10</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>180</width>
+         <height>16777215</height>
+        </size>
+       </property>
+       <property name="viewMode">
+        <enum>QListView::ViewMode::ListMode</enum>
+       </property>
+       <item>
+        <property name="text">
          <string>General</string>
-        </attribute>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Backend</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Package List</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>AUR</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Icon</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Updates</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Terminal</string>
+        </property>
+       </item>
+      </widget>
+     </item>
+     <item>
+      <widget class="QStackedWidget" name="stackedWidget">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>10</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="currentIndex">
+        <number>2</number>
+       </property>
+       <widget class="QWidget" name="swGeneral">
         <widget class="QCheckBox" name="cbShowPackageNumbersOutput">
          <property name="geometry">
           <rect>
-           <x>20</x>
-           <y>150</y>
+           <x>9</x>
+           <y>140</y>
            <width>581</width>
            <height>23</height>
           </rect>
@@ -53,8 +128,8 @@
         <widget class="QCheckBox" name="cbShowStopTransaction">
          <property name="geometry">
           <rect>
-           <x>20</x>
-           <y>180</y>
+           <x>9</x>
+           <y>170</y>
            <width>611</width>
            <height>23</height>
           </rect>
@@ -66,8 +141,8 @@
         <widget class="QCheckBox" name="cbAlwaysUseTheTerminal">
          <property name="geometry">
           <rect>
-           <x>20</x>
-           <y>28</y>
+           <x>9</x>
+           <y>18</y>
            <width>611</width>
            <height>23</height>
           </rect>
@@ -79,8 +154,8 @@
         <widget class="QCheckBox" name="cbEnableInternetCheck">
          <property name="geometry">
           <rect>
-           <x>20</x>
-           <y>88</y>
+           <x>9</x>
+           <y>78</y>
            <width>611</width>
            <height>23</height>
           </rect>
@@ -107,8 +182,8 @@
          <widget class="QRadioButton" name="rbGoogle">
           <property name="geometry">
            <rect>
-            <x>10</x>
-            <y>5</y>
+            <x>-1</x>
+            <y>-5</y>
             <width>107</width>
             <height>26</height>
            </rect>
@@ -120,8 +195,8 @@
          <widget class="QRadioButton" name="rbBaidu">
           <property name="geometry">
            <rect>
-            <x>140</x>
-            <y>5</y>
+            <x>129</x>
+            <y>-5</y>
             <width>107</width>
             <height>26</height>
            </rect>
@@ -134,8 +209,8 @@
         <widget class="QCheckBox" name="cbConfirmationDialogInSysUpgrade">
          <property name="geometry">
           <rect>
-           <x>20</x>
-           <y>58</y>
+           <x>9</x>
+           <y>48</y>
            <width>611</width>
            <height>23</height>
           </rect>
@@ -145,15 +220,12 @@
          </property>
         </widget>
        </widget>
-       <widget class="QWidget" name="tabPackageList">
-        <attribute name="title">
-         <string>Package List</string>
-        </attribute>
+       <widget class="QWidget" name="swPackageList">
         <widget class="QCheckBox" name="cbUseAlternateRowColor">
          <property name="geometry">
           <rect>
-           <x>20</x>
-           <y>28</y>
+           <x>9</x>
+           <y>20</y>
            <width>611</width>
            <height>23</height>
           </rect>
@@ -165,8 +237,8 @@
         <widget class="QCheckBox" name="cbShowLicensesColumn">
          <property name="geometry">
           <rect>
-           <x>20</x>
-           <y>88</y>
+           <x>9</x>
+           <y>80</y>
            <width>611</width>
            <height>23</height>
           </rect>
@@ -178,8 +250,8 @@
         <widget class="QCheckBox" name="cbShowInstalledSizeColumn">
          <property name="geometry">
           <rect>
-           <x>20</x>
-           <y>118</y>
+           <x>9</x>
+           <y>110</y>
            <width>611</width>
            <height>23</height>
           </rect>
@@ -191,8 +263,8 @@
         <widget class="QCheckBox" name="cbShowBuildDateColumn">
          <property name="geometry">
           <rect>
-           <x>20</x>
-           <y>148</y>
+           <x>9</x>
+           <y>140</y>
            <width>611</width>
            <height>23</height>
           </rect>
@@ -204,8 +276,8 @@
         <widget class="QCheckBox" name="cbShowInstallDateColumn">
          <property name="geometry">
           <rect>
-           <x>20</x>
-           <y>178</y>
+           <x>9</x>
+           <y>170</y>
            <width>611</width>
            <height>23</height>
           </rect>
@@ -217,8 +289,8 @@
         <widget class="QCheckBox" name="cbShowInstallReasonColumn">
          <property name="geometry">
           <rect>
-           <x>20</x>
-           <y>208</y>
+           <x>9</x>
+           <y>200</y>
            <width>611</width>
            <height>23</height>
           </rect>
@@ -230,8 +302,8 @@
         <widget class="QCheckBox" name="cbEnablePackageTooltips">
          <property name="geometry">
           <rect>
-           <x>20</x>
-           <y>58</y>
+           <x>9</x>
+           <y>50</y>
            <width>611</width>
            <height>23</height>
           </rect>
@@ -241,10 +313,7 @@
          </property>
         </widget>
        </widget>
-       <widget class="QWidget" name="tabAUR">
-        <attribute name="title">
-         <string notr="true">AUR</string>
-        </attribute>
+       <widget class="QWidget" name="swAUR">
         <layout class="QGridLayout" name="gridLayout_7">
          <item row="0" column="0">
           <spacer name="verticalSpacer_4">
@@ -257,7 +326,7 @@
            <property name="sizeHint" stdset="0">
             <size>
              <width>20</width>
-             <height>13</height>
+             <height>5</height>
             </size>
            </property>
           </spacer>
@@ -371,21 +440,32 @@
            <widget class="QGroupBox" name="gbAURVoting">
             <property name="geometry">
              <rect>
-              <x>340</x>
+              <x>325</x>
               <y>96</y>
-              <width>271</width>
+              <width>241</width>
               <height>191</height>
              </rect>
             </property>
+            <property name="font">
+             <font>
+              <pointsize>10</pointsize>
+             </font>
+            </property>
             <property name="title">
              <string notr="true">aur.archlinux.org</string>
+            </property>
+            <property name="flat">
+             <bool>true</bool>
+            </property>
+            <property name="checkable">
+             <bool>false</bool>
             </property>
             <widget class="QLineEdit" name="leAurUserName">
              <property name="geometry">
               <rect>
                <x>10</x>
                <y>60</y>
-               <width>250</width>
+               <width>221</width>
                <height>26</height>
               </rect>
              </property>
@@ -395,7 +475,7 @@
               <rect>
                <x>10</x>
                <y>120</y>
-               <width>250</width>
+               <width>221</width>
                <height>26</height>
               </rect>
              </property>
@@ -429,11 +509,16 @@
             <widget class="QPushButton" name="bRegister">
              <property name="geometry">
               <rect>
-               <x>140</x>
+               <x>125</x>
                <y>160</y>
-               <width>121</width>
+               <width>105</width>
                <height>26</height>
               </rect>
+             </property>
+             <property name="font">
+              <font>
+               <pointsize>10</pointsize>
+              </font>
              </property>
              <property name="text">
               <string>Register</string>
@@ -444,9 +529,14 @@
               <rect>
                <x>10</x>
                <y>160</y>
-               <width>121</width>
+               <width>105</width>
                <height>26</height>
               </rect>
+             </property>
+             <property name="font">
+              <font>
+               <pointsize>10</pointsize>
+              </font>
              </property>
              <property name="text">
               <string>Connect</string>
@@ -456,11 +546,16 @@
            <widget class="QCheckBox" name="cbEnableAURVoting">
             <property name="geometry">
              <rect>
-              <x>330</x>
+              <x>319</x>
               <y>56</y>
-              <width>261</width>
+              <width>241</width>
               <height>24</height>
              </rect>
+            </property>
+            <property name="font">
+             <font>
+              <pointsize>10</pointsize>
+             </font>
             </property>
             <property name="text">
              <string>Enable AUR voting</string>
@@ -599,10 +694,7 @@ Any use of the provided files is at your own risk.</string>
          </item>
         </layout>
        </widget>
-       <widget class="QWidget" name="tabBackend">
-        <attribute name="title">
-         <string>Backend</string>
-        </attribute>
+       <widget class="QWidget" name="swBackend">
         <layout class="QGridLayout" name="gridLayout_5">
          <item row="2" column="0">
           <widget class="QGroupBox" name="gbBackend">
@@ -678,18 +770,15 @@ Any use of the provided files is at your own risk.</string>
            </property>
            <property name="sizeHint" stdset="0">
             <size>
-             <width>20</width>
-             <height>13</height>
+             <width>10</width>
+             <height>5</height>
             </size>
            </property>
           </spacer>
          </item>
         </layout>
        </widget>
-       <widget class="QWidget" name="tabIcon">
-        <attribute name="title">
-         <string>Icon</string>
-        </attribute>
+       <widget class="QWidget" name="swIcon">
         <layout class="QGridLayout" name="gridLayout_3">
          <item row="0" column="0">
           <spacer name="verticalSpacer_5">
@@ -701,16 +790,44 @@ Any use of the provided files is at your own risk.</string>
            </property>
            <property name="sizeHint" stdset="0">
             <size>
-             <width>498</width>
-             <height>13</height>
+             <width>5</width>
+             <height>10</height>
             </size>
            </property>
           </spacer>
+         </item>
+         <item row="1" column="0">
+          <widget class="QCheckBox" name="cbUseDefaultIcons">
+           <property name="text">
+            <string>Use default notification icons</string>
+           </property>
+           <property name="checked">
+            <bool>false</bool>
+           </property>
+          </widget>
          </item>
          <item row="2" column="0">
           <widget class="QGroupBox" name="groupBoxIcons">
            <property name="enabled">
             <bool>true</bool>
+           </property>
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>16777215</width>
+             <height>16777215</height>
+            </size>
+           </property>
+           <property name="contextMenuPolicy">
+            <enum>Qt::ContextMenuPolicy::NoContextMenu</enum>
+           </property>
+           <property name="toolTipDuration">
+            <number>0</number>
            </property>
            <property name="title">
             <string/>
@@ -723,13 +840,13 @@ Any use of the provided files is at your own risk.</string>
              <rect>
               <x>10</x>
               <y>10</y>
-              <width>611</width>
-              <height>268</height>
+              <width>491</width>
+              <height>216</height>
              </rect>
             </property>
             <layout class="QGridLayout" name="gridLayout_4">
              <property name="sizeConstraint">
-              <enum>QLayout::SizeConstraint::SetDefaultConstraint</enum>
+              <enum>QLayout::SizeConstraint::SetNoConstraint</enum>
              </property>
              <item row="0" column="0">
               <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -749,6 +866,12 @@ Any use of the provided files is at your own risk.</string>
                    <horstretch>0</horstretch>
                    <verstretch>0</verstretch>
                   </sizepolicy>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>700</width>
+                   <height>16777215</height>
+                  </size>
                  </property>
                  <property name="text">
                   <string>Red icon</string>
@@ -770,6 +893,12 @@ Any use of the provided files is at your own risk.</string>
                      <horstretch>0</horstretch>
                      <verstretch>0</verstretch>
                     </sizepolicy>
+                   </property>
+                   <property name="maximumSize">
+                    <size>
+                     <width>450</width>
+                     <height>16777215</height>
+                    </size>
                    </property>
                    <property name="readOnly">
                     <bool>true</bool>
@@ -795,137 +924,17 @@ Any use of the provided files is at your own risk.</string>
                  <item>
                   <widget class="QToolButton" name="tbSelRedIcon">
                    <property name="sizePolicy">
-                    <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                    <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
                      <horstretch>0</horstretch>
                      <verstretch>0</verstretch>
                     </sizepolicy>
                    </property>
-                   <property name="accessibleName">
-                    <string notr="true"/>
-                   </property>
-                   <property name="text">
-                    <string notr="true">...</string>
-                   </property>
-                  </widget>
-                 </item>
-                </layout>
-               </item>
-              </layout>
-             </item>
-             <item row="1" column="0">
-              <layout class="QVBoxLayout" name="verticalLayout_4">
-               <property name="spacing">
-                <number>1</number>
-               </property>
-               <property name="rightMargin">
-                <number>5</number>
-               </property>
-               <item>
-                <widget class="QLabel" name="lblYellowIcon">
-                 <property name="sizePolicy">
-                  <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-                   <horstretch>0</horstretch>
-                   <verstretch>0</verstretch>
-                  </sizepolicy>
-                 </property>
-                 <property name="text">
-                  <string>Yellow icon</string>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <layout class="QHBoxLayout" name="horizontalLayout_3">
-                 <property name="spacing">
-                  <number>2</number>
-                 </property>
-                 <item>
-                  <widget class="QLineEdit" name="leYellowIcon">
-                   <property name="readOnly">
-                    <bool>true</bool>
-                   </property>
-                  </widget>
-                 </item>
-                 <item>
-                  <spacer name="horizontalSpacer_2">
-                   <property name="orientation">
-                    <enum>Qt::Orientation::Vertical</enum>
-                   </property>
-                   <property name="sizeType">
-                    <enum>QSizePolicy::Policy::Fixed</enum>
-                   </property>
-                   <property name="sizeHint" stdset="0">
+                   <property name="minimumSize">
                     <size>
-                     <width>2</width>
-                     <height>20</height>
+                     <width>0</width>
+                     <height>0</height>
                     </size>
                    </property>
-                  </spacer>
-                 </item>
-                 <item>
-                  <widget class="QToolButton" name="tbSelYellowIcon">
-                   <property name="accessibleName">
-                    <string notr="true"/>
-                   </property>
-                   <property name="text">
-                    <string notr="true">...</string>
-                   </property>
-                  </widget>
-                 </item>
-                </layout>
-               </item>
-              </layout>
-             </item>
-             <item row="2" column="0">
-              <layout class="QVBoxLayout" name="verticalLayout_5">
-               <property name="spacing">
-                <number>1</number>
-               </property>
-               <property name="rightMargin">
-                <number>5</number>
-               </property>
-               <item>
-                <widget class="QLabel" name="lblGreenIcon">
-                 <property name="sizePolicy">
-                  <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-                   <horstretch>0</horstretch>
-                   <verstretch>0</verstretch>
-                  </sizepolicy>
-                 </property>
-                 <property name="text">
-                  <string>Green icon</string>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <layout class="QHBoxLayout" name="horizontalLayout_4">
-                 <property name="spacing">
-                  <number>2</number>
-                 </property>
-                 <item>
-                  <widget class="QLineEdit" name="leGreenIcon">
-                   <property name="readOnly">
-                    <bool>true</bool>
-                   </property>
-                  </widget>
-                 </item>
-                 <item>
-                  <spacer name="horizontalSpacer_3">
-                   <property name="orientation">
-                    <enum>Qt::Orientation::Vertical</enum>
-                   </property>
-                   <property name="sizeType">
-                    <enum>QSizePolicy::Policy::Fixed</enum>
-                   </property>
-                   <property name="sizeHint" stdset="0">
-                    <size>
-                     <width>2</width>
-                     <height>20</height>
-                    </size>
-                   </property>
-                  </spacer>
-                 </item>
-                 <item>
-                  <widget class="QToolButton" name="tbSelGreenIcon">
                    <property name="accessibleName">
                     <string notr="true"/>
                    </property>
@@ -966,6 +975,12 @@ Any use of the provided files is at your own risk.</string>
                  </property>
                  <item>
                   <widget class="QLineEdit" name="leBusyIcon">
+                   <property name="maximumSize">
+                    <size>
+                     <width>450</width>
+                     <height>16777215</height>
+                    </size>
+                   </property>
                    <property name="readOnly">
                     <bool>true</bool>
                    </property>
@@ -982,7 +997,7 @@ Any use of the provided files is at your own risk.</string>
                    <property name="sizeHint" stdset="0">
                     <size>
                      <width>2</width>
-                     <height>20</height>
+                     <height>2</height>
                     </size>
                    </property>
                   </spacer>
@@ -1001,26 +1016,166 @@ Any use of the provided files is at your own risk.</string>
                </item>
               </layout>
              </item>
+             <item row="1" column="0">
+              <layout class="QVBoxLayout" name="verticalLayout_4">
+               <property name="spacing">
+                <number>1</number>
+               </property>
+               <property name="rightMargin">
+                <number>5</number>
+               </property>
+               <item>
+                <widget class="QLabel" name="lblYellowIcon">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="text">
+                  <string>Yellow icon</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <layout class="QHBoxLayout" name="horizontalLayout_3">
+                 <property name="spacing">
+                  <number>2</number>
+                 </property>
+                 <property name="sizeConstraint">
+                  <enum>QLayout::SizeConstraint::SetDefaultConstraint</enum>
+                 </property>
+                 <item>
+                  <widget class="QLineEdit" name="leYellowIcon">
+                   <property name="maximumSize">
+                    <size>
+                     <width>450</width>
+                     <height>16777215</height>
+                    </size>
+                   </property>
+                   <property name="readOnly">
+                    <bool>true</bool>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <spacer name="horizontalSpacer_2">
+                   <property name="orientation">
+                    <enum>Qt::Orientation::Vertical</enum>
+                   </property>
+                   <property name="sizeType">
+                    <enum>QSizePolicy::Policy::Fixed</enum>
+                   </property>
+                   <property name="sizeHint" stdset="0">
+                    <size>
+                     <width>2</width>
+                     <height>2</height>
+                    </size>
+                   </property>
+                  </spacer>
+                 </item>
+                 <item>
+                  <widget class="QToolButton" name="tbSelYellowIcon">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="minimumSize">
+                    <size>
+                     <width>0</width>
+                     <height>0</height>
+                    </size>
+                   </property>
+                   <property name="accessibleName">
+                    <string notr="true"/>
+                   </property>
+                   <property name="text">
+                    <string notr="true">...</string>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </item>
+              </layout>
+             </item>
+             <item row="2" column="0">
+              <layout class="QVBoxLayout" name="verticalLayout_5">
+               <property name="spacing">
+                <number>1</number>
+               </property>
+               <property name="rightMargin">
+                <number>5</number>
+               </property>
+               <item>
+                <widget class="QLabel" name="lblGreenIcon">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="text">
+                  <string>Green icon</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <layout class="QHBoxLayout" name="horizontalLayout_4">
+                 <property name="spacing">
+                  <number>2</number>
+                 </property>
+                 <item>
+                  <widget class="QLineEdit" name="leGreenIcon">
+                   <property name="maximumSize">
+                    <size>
+                     <width>450</width>
+                     <height>16777215</height>
+                    </size>
+                   </property>
+                   <property name="readOnly">
+                    <bool>true</bool>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <spacer name="horizontalSpacer_3">
+                   <property name="orientation">
+                    <enum>Qt::Orientation::Vertical</enum>
+                   </property>
+                   <property name="sizeType">
+                    <enum>QSizePolicy::Policy::Fixed</enum>
+                   </property>
+                   <property name="sizeHint" stdset="0">
+                    <size>
+                     <width>2</width>
+                     <height>2</height>
+                    </size>
+                   </property>
+                  </spacer>
+                 </item>
+                 <item>
+                  <widget class="QToolButton" name="tbSelGreenIcon">
+                   <property name="accessibleName">
+                    <string notr="true"/>
+                   </property>
+                   <property name="text">
+                    <string notr="true">...</string>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </item>
+              </layout>
+             </item>
             </layout>
            </widget>
           </widget>
          </item>
-         <item row="1" column="0">
-          <widget class="QCheckBox" name="cbUseDefaultIcons">
-           <property name="text">
-            <string>Use default notification icons</string>
-           </property>
-           <property name="checked">
-            <bool>false</bool>
-           </property>
-          </widget>
-         </item>
         </layout>
        </widget>
-       <widget class="QWidget" name="tabSync">
-        <attribute name="title">
-         <string>Updates</string>
-        </attribute>
+       <widget class="QWidget" name="swUpdates">
         <layout class="QGridLayout" name="gridLayout_6">
          <item row="2" column="0">
           <widget class="QGroupBox" name="gbSync">
@@ -1253,7 +1408,7 @@ Any use of the provided files is at your own risk.</string>
            <property name="sizeHint" stdset="0">
             <size>
              <width>20</width>
-             <height>13</height>
+             <height>5</height>
             </size>
            </property>
           </spacer>
@@ -1276,15 +1431,12 @@ Any use of the provided files is at your own risk.</string>
          </item>
         </layout>
        </widget>
-       <widget class="QWidget" name="tabTerminal">
-        <attribute name="title">
-         <string>Terminal</string>
-        </attribute>
+       <widget class="QWidget" name="swTerminal">
         <widget class="QLabel" name="lblColorScheme">
          <property name="geometry">
           <rect>
-           <x>20</x>
-           <y>28</y>
+           <x>9</x>
+           <y>20</y>
            <width>321</width>
            <height>17</height>
           </rect>
@@ -1296,8 +1448,8 @@ Any use of the provided files is at your own risk.</string>
         <widget class="QLabel" name="lblFontFamily">
          <property name="geometry">
           <rect>
-           <x>20</x>
-           <y>84</y>
+           <x>9</x>
+           <y>76</y>
            <width>321</width>
            <height>17</height>
           </rect>
@@ -1309,8 +1461,8 @@ Any use of the provided files is at your own risk.</string>
         <widget class="QComboBox" name="cbColorScheme">
          <property name="geometry">
           <rect>
-           <x>30</x>
-           <y>52</y>
+           <x>19</x>
+           <y>44</y>
            <width>321</width>
            <height>25</height>
           </rect>
@@ -1319,8 +1471,8 @@ Any use of the provided files is at your own risk.</string>
         <widget class="QComboBox" name="cbFontFamily">
          <property name="geometry">
           <rect>
-           <x>30</x>
-           <y>108</y>
+           <x>19</x>
+           <y>100</y>
            <width>321</width>
            <height>25</height>
           </rect>
@@ -1329,8 +1481,8 @@ Any use of the provided files is at your own risk.</string>
         <widget class="QLabel" name="lblFontSize">
          <property name="geometry">
           <rect>
-           <x>20</x>
-           <y>140</y>
+           <x>9</x>
+           <y>132</y>
            <width>321</width>
            <height>17</height>
           </rect>
@@ -1342,8 +1494,8 @@ Any use of the provided files is at your own risk.</string>
         <widget class="QSpinBox" name="sbFontSize">
          <property name="geometry">
           <rect>
-           <x>30</x>
-           <y>165</y>
+           <x>19</x>
+           <y>157</y>
            <width>71</width>
            <height>26</height>
           </rect>
@@ -1352,8 +1504,8 @@ Any use of the provided files is at your own risk.</string>
         <widget class="QCheckBox" name="cbPlayBellSound">
          <property name="geometry">
           <rect>
-           <x>20</x>
-           <y>238</y>
+           <x>9</x>
+           <y>230</y>
            <width>611</width>
            <height>23</height>
           </rect>
@@ -1365,8 +1517,8 @@ Any use of the provided files is at your own risk.</string>
         <widget class="QCheckBox" name="cbForceBashShell">
          <property name="geometry">
           <rect>
-           <x>20</x>
-           <y>206</y>
+           <x>9</x>
+           <y>198</y>
            <width>611</width>
            <height>23</height>
           </rect>
@@ -1378,8 +1530,21 @@ Any use of the provided files is at your own risk.</string>
        </widget>
       </widget>
      </item>
+    </layout>
+   </item>
+   <item row="1" column="0">
+    <layout class="QHBoxLayout" name="horizontalLayout_8">
      <item>
       <widget class="QDialogButtonBox" name="buttonBox">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="layoutDirection">
+        <enum>Qt::LayoutDirection::LeftToRight</enum>
+       </property>
        <property name="standardButtons">
         <set>QDialogButtonBox::StandardButton::Cancel|QDialogButtonBox::StandardButton::Ok</set>
        </property>
@@ -1387,6 +1552,22 @@ Any use of the provided files is at your own risk.</string>
         <bool>false</bool>
        </property>
       </widget>
+     </item>
+     <item>
+      <spacer name="horizontalSpacer_7">
+       <property name="orientation">
+        <enum>Qt::Orientation::Horizontal</enum>
+       </property>
+       <property name="sizeType">
+        <enum>QSizePolicy::Policy::Maximum</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>10</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
      </item>
     </layout>
    </item>
@@ -1416,7 +1597,6 @@ Any use of the provided files is at your own risk.</string>
   <tabstop>leGreenIcon</tabstop>
   <tabstop>tbSelGreenIcon</tabstop>
   <tabstop>leBusyIcon</tabstop>
-  <tabstop>tbSelBusyIcon</tabstop>
   <tabstop>rbOnceADay</tabstop>
   <tabstop>rbOnceADayAt</tabstop>
   <tabstop>spinOnceADayAt</tabstop>
