@@ -774,6 +774,7 @@ void MainWindow::initActions()
   ui->actionSearchByName->setChecked(true);
   m_actionLastSearchMethod = ui->actionSearchByName;
   actionGroup->setExclusive(true);
+  m_savedSearchMethod = nullptr;
   connect(actionGroup, SIGNAL(triggered(QAction*)), this, SLOT(tvPackagesSearchColumnChanged(QAction*)));
 
   ui->actionInstallLocalPackage->setIcon(IconHelper::getIconFolder());

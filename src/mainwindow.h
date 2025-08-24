@@ -191,6 +191,7 @@ private:
   QTimer *m_outdatedAURTimer;
 
   QAction *m_dummyAction;
+  QAction *m_savedSearchMethod;
   QAction *m_actionLastSearchMethod;
   QAction *m_actionPackageInfo;
   QAction *m_actionInstallPacmanUpdates;

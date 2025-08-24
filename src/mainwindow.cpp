@@ -392,7 +392,10 @@ void MainWindow::onPackageGroupChanged()
   {
     if (m_commandExecuting == ectn_NONE && m_initializationCompleted) m_actionSwitchToForeignTool->setEnabled(true);
     m_actionLastSearchMethod->setChecked(true);
-    tvPackagesSearchColumnChanged(ui->actionSearchByName);
+    if (m_savedSearchMethod != nullptr)
+      tvPackagesSearchColumnChanged(m_savedSearchMethod);
+    else
+      tvPackagesSearchColumnChanged(ui->actionSearchByName);
   }
   else m_actionSwitchToForeignTool->setEnabled(false);
 }
@@ -967,7 +970,10 @@ bool MainWindow::isPackageInstalled(const QString &pkgName)
 void MainWindow::tvPackagesSearchColumnChanged(QAction *actionSelected)
 {
   if (!isAURGroupSelected())
+  {
     m_actionLastSearchMethod = actionSelected;
+    m_savedSearchMethod = m_actionLastSearchMethod;
+  }
 
   //We are in the realm of tradictional NAME search
   if (actionSelected->objectName() == ui->actionSearchByName->objectName())

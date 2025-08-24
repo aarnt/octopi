@@ -599,9 +599,10 @@ void MainWindow::metaBuildPackageList()
 
   //Here we build the list of all available packages
   if (ui->twGroups->topLevelItemCount() == 0 || isAllGroupsSelected())
-  {        
+  {
     ui->actionSearchByFile->setEnabled(true);
     //ui->actionSearchByName->setChecked(true);
+
     m_actionLastSearchMethod->setChecked(true);
     if (ui->actionSearchByFile->isChecked()) m_leFilterPackage->setRefreshValidator(ectn_FILE_VALIDATOR);
     else if (ui->actionSearchByName->isChecked()) m_leFilterPackage->setRefreshValidator(ectn_DEFAULT_VALIDATOR);
