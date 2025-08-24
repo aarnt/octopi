@@ -498,50 +498,50 @@
         <translation>インターネットチェックを有効にする</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="102"/>
-        <source>Play a bell sound when prompting for the root password in the terminal</source>
-        <translation>ターミナルで root パスワードの入力を求められたときにベル音を鳴らす</translation>
-    </message>
-    <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="157"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="144"/>
         <source>Enable confirmation dialog in system upgrade</source>
         <translation>システムアップグレードで確認ダイアログを有効にする</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="163"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="150"/>
         <location filename="Projects/octopi/src/optionsdialog.cpp" line="184"/>
         <source>Package List</source>
         <translation>パッケージリスト</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="175"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="162"/>
         <source>Use alternating row colors</source>
         <translation>行の色を交互に変える</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="188"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="175"/>
         <source>Show &quot;Licenses&quot; column</source>
         <translation>「ライセンス」列を表示</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="201"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="188"/>
         <source>Show &quot;Installed Size&quot; column</source>
         <translation>「インストールサイズ」列を表示</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="214"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="201"/>
         <source>Show &quot;Build Date&quot; column</source>
         <translation>「ビルド日」列を表示</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="227"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="214"/>
         <source>Show &quot;Install Date&quot; column</source>
         <translation>「インストール日」列を表示</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="240"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="227"/>
         <source>Show &quot;Install Reason&quot; column</source>
         <translation>「インストール理由」列を表示</translation>
+    </message>
+    <message>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="240"/>
+        <source>Enable package tooltips</source>
+        <translation>パッケージのツールチップを有効にする</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="277"/>
@@ -604,7 +604,7 @@ Any use of the provided files is at your own risk.</source>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="691"/>
-        <location filename="Projects/octopi/src/optionsdialog.cpp" line="733"/>
+        <location filename="Projects/octopi/src/optionsdialog.cpp" line="743"/>
         <source>Icon</source>
         <translation>アイコン</translation>
     </message>
@@ -658,6 +658,16 @@ Any use of the provided files is at your own risk.</source>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="1339"/>
         <source>Font Size</source>
         <translation>フォントサイズ</translation>
+    </message>
+    <message>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1362"/>
+        <source>Play a bell sound when prompting for the root password in the terminal</source>
+        <translation>ターミナルで root パスワードの入力を求められたときにベル音を鳴らす</translation>
+    </message>
+    <message>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1375"/>
+        <source>Force use of BASH shell</source>
+        <translation>Bash シェルの使用を強制する</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/optionsdialog.cpp" line="100"/>
