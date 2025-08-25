@@ -7,6 +7,8 @@
   BugFix: Use user-selected search option while octopi is running.
   BugFix: Select Help tab when Octopi runs for the first time.
   BugFix: Make Actions tab visible when a package is selected for insertion/removal.
+  BugFix: Use system theme folder icon in Files tab.
+  BugFix: Package list refresh was not running after a group install/removal.
   Added Apply and Cancel buttons also in the Actions tab.
   Added "Enable package tooltips" option, so users can disable the feature when needed.
   Added "Force use of BASH shell" option to ensure compatibility when the user 

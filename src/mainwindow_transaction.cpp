@@ -2448,8 +2448,15 @@ void MainWindow::pacmanProcessFinished(int exitCode, QProcess::ExitStatus exitSt
       }
       else if (m_commandExecuting != ectn_MIRROR_CHECK && m_commandExecuting != ectn_CHECK_UPDATES)
       {
+        //The user wants to go to "Display All groups"
+        if (!isAllGroupsSelected())
+        {
+          //disconnect(ui->twGroups, SIGNAL(itemSelectionChanged()), this, SLOT(onPackageGroupChanged()));
+          ui->twGroups->setCurrentItem(m_AllGroupsItem);
+          //connect(ui->twGroups, SIGNAL(itemSelectionChanged()), this, SLOT(onPackageGroupChanged()));
+        }
         //If we are in a package group, maybe we have installed/removed something, so...
-        if (!isAURGroupSelected())
+        else if (!isAURGroupSelected())
         {
           metaBuildPackageList();
         }

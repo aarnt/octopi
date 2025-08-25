@@ -173,9 +173,13 @@ void MainWindow::refreshGroupsWidget()
   items.append(new QTreeWidgetItem(static_cast<QTreeWidget*>(nullptr), QStringList(QLatin1Char('<') + StrConstants::getDisplayAllGroups() + QLatin1Char('>'))));
   m_AllGroupsItem = items.at(0);
   const QStringList*const packageGroups = Package::getPackageGroups();
+  QTreeWidgetItem *twi;
+
   for(const QString& group: *packageGroups)
   {
-    items.append(new QTreeWidgetItem(static_cast<QTreeWidget*>(nullptr), QStringList(group)));
+    twi = new QTreeWidgetItem(static_cast<QTreeWidget*>(nullptr), QStringList(group));
+    twi->setIcon(0, IconHelper::getIconGroup());
+    items.append(twi);
   }
   m_packageRepo.checkAndSetGroups(*packageGroups); // update Package Repository as well
   delete packageGroups;

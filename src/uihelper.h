@@ -146,6 +146,7 @@ public:
   static QIcon getIconMenu(){ return QIcon(QStringLiteral(":/resources/images/menu.png")); }
   static QIcon getIconWindowClose(){ return QIcon(QStringLiteral(":/resources/images/window_close.png")); }
   static QIcon getIconKeys(){ return QIcon(QStringLiteral(":/resources/images/keys.png")); }
+  static QIcon getIconGroup(){ return QIcon(QStringLiteral(":/resources/images/group2.png")); }
 
   static QIcon getIconBinary(){
     if (WMHelper::isKDERunning() && (UnixCommand::getLinuxDistro() != ectn_KAOS))
@@ -268,16 +269,7 @@ public:
     if (WMHelper::isKDERunning() && (UnixCommand::getLinuxDistro() != ectn_KAOS))
       return QIcon::fromTheme(QStringLiteral("document-open-folder"), QIcon(QStringLiteral(":/resources/images/folder.png")));
     else
-    {
-      if (WMHelper::isKDERunning() || WMHelper::isLuminaRunning() || WMHelper::isLXQTRunning())
-      {
-        return QIcon(QStringLiteral(":/resources/images/folder.png"));
-      }
-      else
-      {
-        return QIcon(QStringLiteral(":/resources/images/folder_gnome.png"));
-      }
-    }
+      return QIcon::fromTheme(QStringLiteral("folder"), QIcon(QStringLiteral(":/resources/images/folder.png")));
   }
 
   static QIcon getIconFindFileInPackage(){
