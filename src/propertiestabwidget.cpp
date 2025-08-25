@@ -101,7 +101,6 @@ void PropertiesTabWidget::initTabFiles()
   m_tvPkgFileList->setFrameShape(QFrame::NoFrame);
   m_tvPkgFileList->setFrameShadow(QFrame::Plain);
   m_tvPkgFileList->setObjectName(QStringLiteral("tvPkgFileList"));
-  //m_tvPkgFileList->setStyleSheet(StrConstants::getTreeViewCSS());
 
   modelPkgFileList->setSortRole(0);
   modelPkgFileList->setColumnCount(0);
@@ -141,7 +140,6 @@ void PropertiesTabWidget::initTabActions()
   m_tvTransaction->header()->setSectionResizeMode(QHeaderView::Fixed);
   m_tvTransaction->setFrameShape(QFrame::NoFrame);
   m_tvTransaction->setFrameShadow(QFrame::Plain);
-  //m_tvTransaction->setStyleSheet(StrConstants::getTreeViewCSS());
   m_tvTransaction->expandAll();
 
   m_modelTransaction->setSortRole(0);
