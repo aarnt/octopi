@@ -28,6 +28,7 @@ class QStandardItemModel;
 class QTextBrowser;
 class QTreeView;
 class SearchBar;
+class QAction;
 
 class PropertiesTabWidget : public QTabWidget
 {
@@ -64,6 +65,9 @@ public:
 
   inline SearchBar* getSearchBarHelpUsage() { return m_searchBarHelpUsage; };
 
+  inline void setActionApply(QAction *actionApply) { m_actionApply = actionApply; };
+  inline void setActionCancel(QAction *actionCancel) { m_actionCancel = actionCancel; };
+
 protected:
   bool eventFilter(QObject* obj, QEvent* event);
 
@@ -88,6 +92,8 @@ private:
 
   SearchBar* m_searchBarHelpUsage;
 
+  QAction *m_actionApply;
+  QAction *m_actionCancel;
 };
 
 #endif // PROPERTIESTABWIDGET_H

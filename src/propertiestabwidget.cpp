@@ -38,6 +38,7 @@
 #include <QMessageBox>
 #include <QMenu>
 #include <QDesktopServices>
+#include <QToolButton>
 
 /*
  * This class implements Octopi's tab bar that holds "Info", "Files", "Actions", "Output", "News", "Help" and "Terminal"
@@ -45,6 +46,30 @@
 
 PropertiesTabWidget::PropertiesTabWidget(QWidget *parent):QTabWidget(parent)
 {
+  /*QPalette palette = qApp->palette();
+  QColor bkgColor = palette.color(QPalette::AlternateBase);
+  //QColor selectionColor = palette.color(QPalette::Link);
+
+  QString s = QStringLiteral("QTabBar::tab {"
+                              "background: %1;"
+                              "border: 1px solid gray;"
+                              "border-radius: 1px;"
+                              "padding: 2px 8px;"
+                              "margin: 1px;}"
+                            "QTabBar::tab:selected {"
+                            //  "color: %2;"
+                              "font-weight: bold;}");
+  s = s.arg(bkgColor.name()); //.arg(selectionColor.name());
+  tabBar()->setStyleSheet(s);*/
+
+  //setTabToolTip(ctn_TABINDEX_ACTIONS, tr("Press Ctrl+Y to apply package actions"));
+  //setToolTipDuration(5000);
+
+  /*QString s = QStringLiteral("QTabBar::tab {"
+                             "height: 30px;"
+                             "}");
+  tabBar()->setStyleSheet(s);*/
+
   tabBar()->installEventFilter(this);
 }
 
@@ -164,6 +189,19 @@ void PropertiesTabWidget::initTabActions()
   removeTab(ctn_TABINDEX_ACTIONS);
   insertTab(ctn_TABINDEX_ACTIONS, tabTransaction, QApplication::translate (
                                 "MainWindow", aux.toUtf8().constData(), nullptr/*, QApplication::UnicodeUTF8*/ ));
+
+  QToolButton *btn1 = new QToolButton();
+  btn1->setIconSize(QSize(16, 16));
+  btn1->setDefaultAction(m_actionApply);
+  btn1->setAutoRaise(true);
+
+  QToolButton *btn2 = new QToolButton();
+  btn2->setIconSize(QSize(16, 16));
+  btn2->setAutoRaise(true);
+  btn2->setDefaultAction(m_actionCancel);
+
+  tabBar()->setTabButton(2, QTabBar::LeftSide, btn1);
+  tabBar()->setTabButton(2, QTabBar::RightSide, btn2);
 }
 
 void PropertiesTabWidget::initTabNews()
