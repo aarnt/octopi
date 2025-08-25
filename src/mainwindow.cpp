@@ -392,6 +392,7 @@ void MainWindow::onPackageGroupChanged()
   {
     if (m_commandExecuting == ectn_NONE && m_initializationCompleted) m_actionSwitchToForeignTool->setEnabled(true);
     m_actionLastSearchMethod->setChecked(true);
+
     if (m_savedSearchMethod != nullptr)
       tvPackagesSearchColumnChanged(m_savedSearchMethod);
     else

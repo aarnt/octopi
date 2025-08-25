@@ -5,6 +5,7 @@
   BugFix: qt-sudo now respects user locale settings (thanks to D10RUS).
   BugFix: Use better way to detect if user is running the tools from the right place.
   BugFix: Use user-selected search option while octopi is running.
+  BugFix: select Help tab when Octopi runs for the first time.
   Added "Enable package tooltips" option, so users can disable the feature when needed.
   Added "Force use of BASH shell" option to ensure compatibility when the user 
     uses another SHELL.

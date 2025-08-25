@@ -180,8 +180,9 @@ void SettingsManager::setLastCheckUpdatesTime(QDateTime newValue)
 
 //Octopi related --------------------------------------------------------------------
 int SettingsManager::getCurrentTabIndex(){
+  //Let Help tab be the first to be shown when Octopi runs for the 1st time
   return instance()->getSYSsettings()->value(
-        ctn_KEY_CURRENT_TAB_INDEX, 2).toInt();
+        ctn_KEY_CURRENT_TAB_INDEX, ctn_TABINDEX_HELPUSAGE).toInt();
 }
 
 int SettingsManager::getPanelOrganizing(){
