@@ -2142,11 +2142,10 @@ void MainWindow::toggleTransactionActions(const bool value)
   ui->actionPacmanLogViewer->setEnabled(value);
   ui->actionCacheCleaner->setEnabled(value);
   ui->actionRepositoryEditor->setEnabled(value);
+  m_actionPacmanKey->setEnabled(value);
   m_actionSysInfo->setEnabled(value);
 
   if (value && m_initializationCompleted) m_actionSwitchToForeignTool->setEnabled(value);
-
-  //ui->actionGetNews->setEnabled(value);
 
   if (!isAURGroupSelected())
   {
