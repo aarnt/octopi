@@ -33,6 +33,7 @@
 #include <QTextStream>
 #include <QList>
 #include <QFile>
+#include <QTemporaryFile>
 #include <QRegularExpression>
 #include <QEventLoop>
 #include <QtNetwork/QNetworkReply>
@@ -40,6 +41,118 @@
 /*
  * This class abstracts all the relevant package information and services
  */
+
+/*
+ * Return IgnorePkg list of packages from /etc/pacman.conf (if any)
+ */
+QStringList Package::extractIgnorePkgList() {
+  QStringList pkgList;
+  QFile file(QStringLiteral("/etc/pacman.conf"));
+
+  if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+    //qWarning() << "Error opening file";
+    return pkgList;
+  }
+
+  QTextStream in(&file);
+
+  while (!in.atEnd()) {
+    QString line = in.readLine().trimmed();
+
+    if (line.isEmpty())
+      continue;
+
+    if (line.startsWith(QStringLiteral("IgnorePkg")) || line.startsWith(QStringLiteral("#IgnorePkg")))
+    {
+      QStringList parts = line.split(QStringLiteral("="), Qt::SkipEmptyParts);
+      if (parts.size() < 2)
+        continue;
+
+      QString packages = parts[1].trimmed();
+      pkgList = packages.split(QStringLiteral(" "), Qt::SkipEmptyParts);
+      break;
+    }
+  }
+
+  file.close();
+  return pkgList;
+}
+
+bool Package::updateIgnorePkgSection(const QStringList& packages) {
+  QFile file(QStringLiteral("/etc/pacman.conf"));
+  QTemporaryFile fileAux;
+
+  if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+    //qWarning() << "Error opening file";
+    return false;
+  }
+
+  QStringList lines;
+  QTextStream in(&file);
+  bool ignorePkgFound = false;
+
+  while (!in.atEnd()) {
+    QString line = in.readLine();
+    QString trimmedLine = line.trimmed();
+
+    if (trimmedLine.startsWith(QStringLiteral("IgnorePkg")) || trimmedLine.startsWith(QStringLiteral("#IgnorePkg"))) {
+      ignorePkgFound = true;
+      QString newLine;
+
+      if (packages.isEmpty()) {
+        newLine = QStringLiteral("#IgnorePkg =");
+      } else {
+        newLine = QStringLiteral("IgnorePkg = ") + packages.join(QStringLiteral(" "));
+      }
+
+      // Preservar identação original
+      QString indent = line.left(line.indexOf(trimmedLine));
+      lines.append(indent + newLine);
+    } else {
+      lines.append(line);
+    }
+  }
+
+  file.close();
+
+  // Se não encontrou, adicionar ao final
+  if (!ignorePkgFound) {
+    QString newLine;
+    if (packages.isEmpty()) {
+      newLine = QStringLiteral("#IgnorePkg =");
+    } else {
+      newLine = QStringLiteral("IgnorePkg = ") + packages.join(QStringLiteral(" "));
+    }
+
+    lines.append(QStringLiteral(""));
+    lines.append(newLine);
+  }
+
+  QTextStream out(&fileAux);
+  if (fileAux.open())
+  {
+    for (const QString &l : lines) {
+      out << l << QStringLiteral("\n");
+      //qDebug() << QStringLiteral("Line: ") << l;
+    }
+
+    //qDebug() << fileAux.fileName();
+    fileAux.close();
+  }
+
+  //Overwrite /etc/pacman.conf file!
+  QString command =
+    QLatin1String("cp ") + fileAux.fileName() +
+      QLatin1String(" /etc/pacman.conf;") +
+      QLatin1String(" chown root /etc/pacman.conf;") +
+      QLatin1String(" chgrp root /etc/pacman.conf;") +
+      QLatin1String("chmod 644 /etc/pacman.conf");
+
+  UnixCommand unixC;
+  unixC.execCommand(command);
+
+  return true;
+}
 
 /*
  * Retrieves the basic package name, without latest "-" part

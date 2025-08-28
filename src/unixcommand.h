@@ -48,7 +48,7 @@ private:
   void buildOctopiHelperCommandWithSharedMem(const QString &pCommand, QSharedMemory *sharedMem);
 
 public:
-  explicit UnixCommand(QObject *parent);
+  explicit UnixCommand(QObject *parent = nullptr);
 
   inline QProcess * getProcess(){ return m_process; }
 
