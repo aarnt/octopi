@@ -529,9 +529,9 @@
            <widget class="QLabel" name="lblAURWarning">
             <property name="geometry">
              <rect>
-              <x>11</x>
+              <x>9</x>
               <y>8</y>
-              <width>601</width>
+              <width>550</width>
               <height>41</height>
              </rect>
             </property>

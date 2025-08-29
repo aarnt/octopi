@@ -1077,7 +1077,72 @@ void OptionsDialog::comboAURChanged(const QString &text)
 {
   cbEditMenu->setEnabled(false);
 
-  if (text == ctn_NO_AUR_TOOL)
+  if (text != ctn_NO_AUR_TOOL)
+  {
+    leAURBuildDir->setEnabled(true);
+    bSelAURBuildDir->setEnabled(true);
+    bClearAURBuildDir->setEnabled(true);
+
+    if (text == ctn_PACAUR_TOOL)
+    {
+      cbOverwrite->setChecked(false);
+      cbOverwrite->setEnabled(false);
+      cbNoConfirm->setEnabled(true);
+      cbNoEdit->setEnabled(true);
+      cbSearchOutdatedAURPackages->setEnabled(true);
+      cbNoConfirm->setChecked(SettingsManager::getAURNoConfirmParam());
+      cbNoEdit->setChecked(SettingsManager::getAURNoEditParam());
+      cbSearchOutdatedAURPackages->setChecked(SettingsManager::getSearchOutdatedAURPackages());
+    }
+    else if (text == ctn_PIKAUR_TOOL)
+    {
+      cbOverwrite->setChecked(false);
+      cbOverwrite->setEnabled(false);
+      cbNoConfirm->setEnabled(true);
+      cbNoEdit->setEnabled(true);
+      cbSearchOutdatedAURPackages->setEnabled(true);
+      cbNoConfirm->setChecked(SettingsManager::getAURNoConfirmParam());
+      cbNoEdit->setChecked(SettingsManager::getAURNoEditParam());
+      cbSearchOutdatedAURPackages->setChecked(SettingsManager::getSearchOutdatedAURPackages());
+    }
+    else if (text == ctn_TRIZEN_TOOL)
+    {
+      cbOverwrite->setChecked(false);
+      cbOverwrite->setEnabled(false);
+      cbNoConfirm->setEnabled(true);
+      cbNoEdit->setEnabled(true);
+      cbSearchOutdatedAURPackages->setEnabled(true);
+      cbNoConfirm->setChecked(SettingsManager::getAURNoConfirmParam());
+      cbNoEdit->setChecked(SettingsManager::getAURNoEditParam());
+      cbSearchOutdatedAURPackages->setChecked(SettingsManager::getSearchOutdatedAURPackages());
+    }
+    else if (text == ctn_YAY_TOOL)
+    {
+      cbEditMenu->setEnabled(true);
+      cbOverwrite->setEnabled(true);
+      cbOverwrite->setChecked(SettingsManager::getAUROverwriteParam());
+      cbNoConfirm->setEnabled(true);
+      cbNoEdit->setEnabled(true);
+      cbSearchOutdatedAURPackages->setEnabled(true);
+      cbNoConfirm->setChecked(SettingsManager::getAURNoConfirmParam());
+      cbNoEdit->setChecked(SettingsManager::getAURNoEditParam());
+      cbEditMenu->setChecked(SettingsManager::getAUREditMenuParam());
+
+      cbSearchOutdatedAURPackages->setChecked(SettingsManager::getSearchOutdatedAURPackages());
+    }
+    else if (text == ctn_PARU_TOOL)
+    {
+      cbOverwrite->setChecked(false);
+      cbOverwrite->setEnabled(false);
+      cbNoConfirm->setEnabled(true);
+      cbNoEdit->setEnabled(false);
+      cbSearchOutdatedAURPackages->setEnabled(true);
+      cbNoConfirm->setChecked(SettingsManager::getAURNoConfirmParam());
+      cbNoEdit->setChecked(false);
+      cbSearchOutdatedAURPackages->setChecked(SettingsManager::getSearchOutdatedAURPackages());
+    }
+  }
+  else
   {
     cbOverwrite->setChecked(false);
     cbOverwrite->setEnabled(false);
@@ -1087,64 +1152,9 @@ void OptionsDialog::comboAURChanged(const QString &text)
     cbNoEdit->setEnabled(false);
     cbSearchOutdatedAURPackages->setChecked(false);
     cbSearchOutdatedAURPackages->setEnabled(false);
-  }
-  else if (text == ctn_PACAUR_TOOL)
-  {
-    cbOverwrite->setChecked(false);
-    cbOverwrite->setEnabled(false);
-    cbNoConfirm->setEnabled(true);
-    cbNoEdit->setEnabled(true);
-    cbSearchOutdatedAURPackages->setEnabled(true);
-    cbNoConfirm->setChecked(SettingsManager::getAURNoConfirmParam());
-    cbNoEdit->setChecked(SettingsManager::getAURNoEditParam());
-    cbSearchOutdatedAURPackages->setChecked(SettingsManager::getSearchOutdatedAURPackages());
-  }
-  else if (text == ctn_PIKAUR_TOOL)
-  {
-    cbOverwrite->setChecked(false);
-    cbOverwrite->setEnabled(false);
-    cbNoConfirm->setEnabled(true);
-    cbNoEdit->setEnabled(true);
-    cbSearchOutdatedAURPackages->setEnabled(true);
-    cbNoConfirm->setChecked(SettingsManager::getAURNoConfirmParam());
-    cbNoEdit->setChecked(SettingsManager::getAURNoEditParam());
-    cbSearchOutdatedAURPackages->setChecked(SettingsManager::getSearchOutdatedAURPackages());
-  }
-  else if (text == ctn_TRIZEN_TOOL)
-  {
-    cbOverwrite->setChecked(false);
-    cbOverwrite->setEnabled(false);
-    cbNoConfirm->setEnabled(true);
-    cbNoEdit->setEnabled(true);
-    cbSearchOutdatedAURPackages->setEnabled(true);
-    cbNoConfirm->setChecked(SettingsManager::getAURNoConfirmParam());
-    cbNoEdit->setChecked(SettingsManager::getAURNoEditParam());
-    cbSearchOutdatedAURPackages->setChecked(SettingsManager::getSearchOutdatedAURPackages());
-  }
-  else if (text == ctn_YAY_TOOL)
-  {
-    cbEditMenu->setEnabled(true);
-    cbOverwrite->setEnabled(true);
-    cbOverwrite->setChecked(SettingsManager::getAUROverwriteParam());
-    cbNoConfirm->setEnabled(true);
-    cbNoEdit->setEnabled(true);
-    cbSearchOutdatedAURPackages->setEnabled(true);
-    cbNoConfirm->setChecked(SettingsManager::getAURNoConfirmParam());
-    cbNoEdit->setChecked(SettingsManager::getAURNoEditParam());
-    cbEditMenu->setChecked(SettingsManager::getAUREditMenuParam());
-
-    cbSearchOutdatedAURPackages->setChecked(SettingsManager::getSearchOutdatedAURPackages());
-  }
-  else if (text == ctn_PARU_TOOL)
-  {
-    cbOverwrite->setChecked(false);
-    cbOverwrite->setEnabled(false);
-    cbNoConfirm->setEnabled(true);
-    cbNoEdit->setEnabled(false);
-    cbSearchOutdatedAURPackages->setEnabled(true);
-    cbNoConfirm->setChecked(SettingsManager::getAURNoConfirmParam());
-    cbNoEdit->setChecked(false);
-    cbSearchOutdatedAURPackages->setChecked(SettingsManager::getSearchOutdatedAURPackages());
+    leAURBuildDir->setEnabled(false);
+    bSelAURBuildDir->setEnabled(false);
+    bClearAURBuildDir->setEnabled(false);
   }
 }
 
