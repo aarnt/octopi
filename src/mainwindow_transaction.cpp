@@ -402,11 +402,12 @@ void MainWindow::doChangeInstallReason(const QHash<QString, QString> &listOfTarg
   m_pacmanExec->doChangeInstallReason(listOfTargets);
 }
 
+/*
+ * Adds selected package to the IgnorePkg section of /etc/pacman.conf
+ */
 void MainWindow::onAddToIgnored()
 {
-  qApp->processEvents();
-  qDebug() << QStringLiteral("ENTERED HERE!");
-
+  qApp->processEvents(); 
   QModelIndexList selectedRows;
   selectedRows = ui->tvPackages->selectionModel()->selectedRows();
 
@@ -425,6 +426,9 @@ void MainWindow::onAddToIgnored()
   metaBuildPackageList();
 }
 
+/*
+ * Removes selected package from the IgnorePkg section of /etc/pacman.conf
+ */
 void MainWindow::onRemoveFromIgnored()
 {
   qApp->processEvents();
