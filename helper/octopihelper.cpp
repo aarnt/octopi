@@ -558,7 +558,7 @@ bool OctopiHelper::onlyAllowedCommands(const QString &filePath)
   QTextStream qout(stdout);
   QSet<QString> allowedCommands = {
       "echo", "checkupdates", "sudo", "timeshift", "if", "fi", "then", "grep",
-      "awk", "exit", "|", ">", "/dev/null", "[", "]", "rsync"
+      "awk", "exit", "|", ">", "/dev/null", "[", "]", "rsync", "snapper"
   };
 
   QFile file(filePath);
