@@ -76,6 +76,7 @@ MainWindow::MainWindow(QWidget *parent) :
   m_refreshPackageLists = false;
   m_refreshForeignPackageList = false;
   m_cic = nullptr;
+  m_ignoredStringList = Package::extractIgnorePkgList();
   m_outdatedStringList = new QStringList();
   m_checkupdatesStringList = new QStringList();
   m_checkUpdatesNameNewVersion = new QHash<QString, QString>();
@@ -112,11 +113,6 @@ MainWindow::MainWindow(QWidget *parent) :
 
   //Here we try to speed up first pkg list build!
   m_time->start();
-
-  /*retrieveOutdatedPackageList();
-  retrieveUnrequiredPackageList();
-  retrieveForeignPackageList();*/
-
   ui->setupUi(this);
   switchToViewAllPackages();  
 
@@ -1177,12 +1173,20 @@ void MainWindow::execContextMenuPackages(QPoint point)
         menu->addAction(ui->actionFindFileInPackage);
       }
       if (!menu->actions().isEmpty()) menu->addSeparator();
+
+      if (package->status == ectn_IGNORED)
+      {
+        menu->addSeparator();
+        menu->addAction(ui->actionRemoveFromIgnored);
+        menu->addAction(m_actionChangeInstallReason);
+      }
     }
 
     bool allInstallable = true;
     bool allRemovable = true;
     int numberOfSelPkgs = selectedRows.count();
     int numberOfAUR = 0;
+    int numberOfIgnored = 0;
     int numberOfOutdated = 0;
 
     for(QModelIndex item: selectedRows)
@@ -1195,8 +1199,16 @@ void MainWindow::execContextMenuPackages(QPoint point)
         numberOfAUR++;
       }
       if (package->outdated()) numberOfOutdated ++;
+
       if (!package->installed())
       {
+        allRemovable = false;
+      }
+
+      if (package->status == ectn_IGNORED)
+      {
+        numberOfIgnored++;
+        allInstallable = false;
         allRemovable = false;
       }
     }
@@ -1215,6 +1227,7 @@ void MainWindow::execContextMenuPackages(QPoint point)
       else if (allRemovable)
         ui->actionInstall->setText(StrConstants::getReinstall());
 
+      menu->addAction(ui->actionAddToIgnored);
       menu->addAction(ui->actionInstall);
 
       if (!isAllGroupsSelected() && !isAURGroupSelected()) //&& numberOfSelPkgs > 1)
@@ -1227,6 +1240,12 @@ void MainWindow::execContextMenuPackages(QPoint point)
           menu->removeAction(ui->actionInstall);
         }
       }
+    }
+    else if (!allInstallable && numberOfIgnored == numberOfSelPkgs)
+    {
+      //There are only ignored packages here
+      menu->addAction(ui->actionRemoveFromIgnored);
+      menu->addAction(m_actionChangeInstallReason);
     }
     else if (!allInstallable && numberOfAUR == numberOfSelPkgs)
     {
@@ -1251,14 +1270,17 @@ void MainWindow::execContextMenuPackages(QPoint point)
 
       if (allInstalled && (numOutdated==numberOfSelPkgs))
       {
+        menu->addAction(ui->actionAddToIgnored);
         ui->actionInstall->setText(StrConstants::getUpdate());
       }
       else if (allInstalled)
       {
+        menu->addAction(ui->actionAddToIgnored);
         ui->actionInstall->setText(StrConstants::getReinstall());
       }
       else
       {
+        menu->addAction(ui->actionAddToIgnored);
         ui->actionInstall->setText(StrConstants::getInstall());
       }
 

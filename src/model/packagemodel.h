@@ -114,6 +114,7 @@ private:
   QRegularExpression m_filterRegExp;
 
   // Cache
+  QIcon   m_iconIgnored;
   QIcon   m_iconNotInstalled;
   QIcon   m_iconInstalled;
   QIcon   m_iconInstalledUnrequired;

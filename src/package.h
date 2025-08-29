@@ -178,7 +178,7 @@ class Package{
     static QStringList * getPackagesOfGroup(const QString &groupName);
     static QList<PackageListData> * getTargetUpgradeList(const QString &pkgName = QLatin1String(""));
     static QStringList * getTargetRemovalList(const QString &pkgName, const QString &removeCommand);
-    static QList<PackageListData> *getForeignPackageList();
+    static QList<PackageListData> *getForeignPackageList(QSet<QString> *ignoredPackages);
     static QList<PackageListData> *getPackageList(const QString &packageName, const QHash<QString, QString> *checkUpdatesOutdatedPackages);
 
     static QList<PackageListData> * getForeignToolPackageList(const QString &searchString);                                //Foreign Tool methods
@@ -231,8 +231,8 @@ class Package{
     static QString makeAnchorOfOptionalDep(const QString &optionalDeps);
     static QString makeAnchorOfPackage(const QString &packages);
     static QString makeURLClickable(const QString &information);
-    static QStringList extractIgnorePkgList();
-    static bool updateIgnorePkgSection(const QStringList& packages);
+    static QSet<QString> *extractIgnorePkgList();
+    static bool updateIgnorePkgSection(const QSet<QString> *ignoredPackages);
     static QString getBasePkgName(const QString &p);
     static QString getBaseName(const QString& pkgName);
     static QString parseSearchString(QString searchStr, bool exactMatch = false);

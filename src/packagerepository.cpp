@@ -62,7 +62,7 @@ struct EndResetModel {
   }
 };
 
-void PackageRepository::setData(const QList<PackageListData>*const listOfPackages, const QSet<QString>& unrequiredPackages)
+void PackageRepository::setData(QList<PackageListData>*const listOfPackages, const QSet<QString>& unrequiredPackages, const QSet<QString>& ignoredPackages)
 {
   std::for_each(m_dependingModels.begin(), m_dependingModels.end(), BeginResetModel());
 
@@ -77,7 +77,11 @@ void PackageRepository::setData(const QList<PackageListData>*const listOfPackage
   m_listOfAURPackages.clear();
   m_listOfPackages.clear();
 
-  for (QList<PackageListData>::const_iterator it = listOfPackages->constBegin(); it != listOfPackages->constEnd(); ++it) {
+  for (QList<PackageListData>::iterator it = listOfPackages->begin(); it != listOfPackages->end(); ++it) {
+    if (ignoredPackages.contains(it->name))
+    {
+      it->status = ectn_IGNORED;
+    }
     m_listOfPackages.push_back(new PackageData(*it, !unrequiredPackages.contains(it->name), false));
   }
 
@@ -103,7 +107,7 @@ void PackageRepository::setAURData(const QList<PackageListData>*const listOfFore
        it != listOfForeignPackages->end(); ++it)
   {
     PackageData*const pkg = new PackageData(*it, !unrequiredPackages.contains(it->name), true);
-    m_listOfPackages.push_back(pkg);
+    m_listOfPackages.push_back(pkg);   
     m_listOfAURPackages.push_back(pkg);
   }
 

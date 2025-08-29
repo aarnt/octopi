@@ -469,7 +469,7 @@ void MainWindow::retrieveForeignPackageList()
 {
   QEventLoop el;
   QFuture<QList<PackageListData> *> f;
-  f = QtConcurrent::run(searchForeignPackages);
+  f = QtConcurrent::run(searchForeignPackages, m_ignoredStringList);
   connect(&g_fwForeignPacman, SIGNAL(finished()), this, SLOT(preBuildForeignPackageList()));
   connect(&g_fwForeignPacman, SIGNAL(finished()), &el, SLOT(quit()));
   g_fwForeignPacman.setFuture(f);
@@ -801,6 +801,12 @@ void MainWindow::buildPackageList()
     if (m_numberOfOutdatedPackages == 0 && m_checkupdatesStringList->count() > 0)
       m_numberOfOutdatedPackages = m_checkupdatesStringList->count();
 
+    m_ignoredStringList->clear();
+    delete m_ignoredStringList;
+    m_ignoredStringList = nullptr;
+
+    m_ignoredStringList = Package::extractIgnorePkgList();
+
     m_unrequiredPackageList->clear();
     delete m_unrequiredPackageList;
     m_unrequiredPackageList = nullptr;
@@ -829,7 +835,7 @@ void MainWindow::buildPackageList()
       delete m_foreignPackageList;
       m_foreignPackageList = nullptr;
 
-      m_foreignPackageList = markForeignPackagesInPkgList(m_hasForeignTool, m_outdatedAURStringList);
+      m_foreignPackageList = markForeignPackagesInPkgList(m_hasForeignTool, m_outdatedAURStringList, m_ignoredStringList);
 
       list->append(*m_foreignPackageList);
 
@@ -859,7 +865,7 @@ void MainWindow::buildPackageList()
   m_progressWidget->setValue(counter);
   m_progressWidget->close();
 
-  m_packageRepo.setData(list, *m_unrequiredPackageList);
+  m_packageRepo.setData(list, *m_unrequiredPackageList, *m_ignoredStringList);
 
   if (ui->tvPackages->model() != m_packageModel.get())
   {
@@ -1075,7 +1081,7 @@ void MainWindow::postRefreshOutdatedAURStringList()
   m_foreignPackageList->clear();
   delete m_foreignPackageList;
   m_foreignPackageList = nullptr;
-  m_foreignPackageList = markForeignPackagesInPkgList(m_hasForeignTool, m_outdatedAURStringList);
+  m_foreignPackageList = markForeignPackagesInPkgList(m_hasForeignTool, m_outdatedAURStringList, m_ignoredStringList);
 
   LinuxDistro distro = UnixCommand::getLinuxDistro();
   if (distro != ectn_KAOS && isAURGroupSelected()) return;

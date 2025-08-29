@@ -402,6 +402,51 @@ void MainWindow::doChangeInstallReason(const QHash<QString, QString> &listOfTarg
   m_pacmanExec->doChangeInstallReason(listOfTargets);
 }
 
+void MainWindow::onAddToIgnored()
+{
+  qApp->processEvents();
+  qDebug() << QStringLiteral("ENTERED HERE!");
+
+  QModelIndexList selectedRows;
+  selectedRows = ui->tvPackages->selectionModel()->selectedRows();
+
+  for(QModelIndex item: std::as_const(selectedRows))
+  {
+    const PackageRepository::PackageData*const package = m_packageModel->getData(item);
+    if (package == nullptr) {
+      assert(false);
+      continue;
+    }
+
+    m_ignoredStringList->insert(package->name);
+  }
+
+  Package::updateIgnorePkgSection(m_ignoredStringList);
+  metaBuildPackageList();
+}
+
+void MainWindow::onRemoveFromIgnored()
+{
+  qApp->processEvents();
+  QModelIndexList selectedRows;
+  selectedRows = ui->tvPackages->selectionModel()->selectedRows();
+
+  for(QModelIndex item: std::as_const(selectedRows))
+  {
+    const PackageRepository::PackageData*const package = m_packageModel->getData(item);
+    if (package == nullptr) {
+      assert(false);
+      continue;
+    }
+
+    if (m_ignoredStringList->contains(package->name))
+      m_ignoredStringList->remove(package->name);
+  }
+
+  Package::updateIgnorePkgSection(m_ignoredStringList);
+  metaBuildPackageList();
+}
+
 /*
  * Inserts the current selected packages for installation into the Transaction Treeview
  * This is the SLOT, it needs to call insertInstallPackageIntoTransaction(PackageName) to work!
@@ -410,45 +455,37 @@ void MainWindow::insertIntoInstallPackage(QModelIndex *indexToInclude)
 {
   qApp->processEvents();
 
-  //if (!isAURGroupSelected())
+  QModelIndexList selectedRows;
+
+  if (indexToInclude == nullptr)
+    selectedRows = ui->tvPackages->selectionModel()->selectedRows();
+  else
   {
-    //ensureTabVisible(ctn_TABINDEX_ACTIONS);
-    QModelIndexList selectedRows;
+    selectedRows.append(*indexToInclude);
+  }
 
-    if (indexToInclude == nullptr)
-      selectedRows = ui->tvPackages->selectionModel()->selectedRows();
-    else
+  //First, let's see if we are dealing with a package group
+  if(!isAURGroupSelected() && !isAllGroupsSelected())
+  {
+    //If we are trying to insert all the group's packages, why not insert the entire group?
+    if(selectedRows.count() == m_packageModel->getPackageCount())
     {
-      selectedRows.append(*indexToInclude);
-    }
-
-    //First, let's see if we are dealing with a package group    
-    if(!isAURGroupSelected() && !isAllGroupsSelected())
-    {
-      //If we are trying to insert all the group's packages, why not insert the entire group?
-      if(selectedRows.count() == m_packageModel->getPackageCount())
-      {
-        insertInstallPackageIntoTransaction(getSelectedGroup());
-        return;
-      }
-    }
-
-    for(QModelIndex item: std::as_const(selectedRows))
-    {
-      const PackageRepository::PackageData*const package = m_packageModel->getData(item);
-      if (package == nullptr) {
-        assert(false);
-        continue;
-      }
-
-      insertIntoInstallPackageOptDeps(package->name); //Do we have any deps???
-      insertInstallPackageIntoTransaction(package->repository + QLatin1Char('/') + package->name);
+      insertInstallPackageIntoTransaction(getSelectedGroup());
+      return;
     }
   }
-  /*else
+
+  for(QModelIndex item: std::as_const(selectedRows))
   {
-    doInstallAURPackage();
-  }*/
+    const PackageRepository::PackageData*const package = m_packageModel->getData(item);
+    if (package == nullptr) {
+      assert(false);
+      continue;
+    }
+
+    insertIntoInstallPackageOptDeps(package->name); //Do we have any deps???
+    insertInstallPackageIntoTransaction(package->repository + QLatin1Char('/') + package->name);
+  }
 }
 
 /*

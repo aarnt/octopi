@@ -87,7 +87,9 @@ QString MainWindow::generateHelpUsageHtmlText()
     html += QStringLiteral("<br>") +
       tr("Package classification:") +
 
-  QStringLiteral("<ul type=\"square\"><li>") + iconPath + QLatin1String("installed.png\"/> ") +
+  QStringLiteral("<ul type=\"square\"><li>") + iconPath + QLatin1String("ignored.png\"/> ") +
+     tr("An ignored package") + QStringLiteral("</li>") +
+  QStringLiteral("<li>") + iconPath + QLatin1String("installed.png\"/> ") +
      tr("An installed package") + QStringLiteral("</li>") +
   QStringLiteral("<li>") + iconPath + QLatin1String("unrequired.png\"/> ") +
      tr("An installed package (not required by others)") +

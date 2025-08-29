@@ -179,8 +179,8 @@ const QString ctn_PACMAN_CORE_DB_FILE = QStringLiteral("/var/lib/pacman/sync/cor
 //ARTIX MAIN DB FILE
 const QString ctn_PACMAN_SYSTEM_DB_FILE = QStringLiteral("/var/lib/pacman/sync/system.db");
 
-enum PackageStatus { ectn_INSTALLED, ectn_NON_INSTALLED, ectn_OUTDATED, ectn_NEWER,
-                     ectn_FOREIGN, ectn_FOREIGN_OUTDATED };
+enum PackageStatus { ectn_IGNORED, ectn_INSTALLED, ectn_NON_INSTALLED,
+                     ectn_OUTDATED, ectn_NEWER, ectn_FOREIGN, ectn_FOREIGN_OUTDATED };
 
 enum ViewOptions { ectn_ALL_PKGS, ectn_INSTALLED_PKGS, ectn_NON_INSTALLED_PKGS, ectn_OUTDATED_PKGS };
 

@@ -35,6 +35,7 @@ PackageModel::PackageModel(const PackageRepository& repo, QObject *parent)
   m_sortOrder(Qt::AscendingOrder), m_sortColumn(1), m_filterPackagesInstalled(false),
   m_filterPackagesNotInstalled(false), m_filterPackagesOutdated(false), m_filterPackagesNotInThisGroup(QLatin1String("")),
   m_filterColumn(-1), m_filterRegExp(QLatin1String(""), QRegularExpression::CaseInsensitiveOption),
+  m_iconIgnored(IconHelper::getIconIgnored()),
   m_iconNotInstalled(IconHelper::getIconNonInstalled()), m_iconInstalled(IconHelper::getIconInstalled()),
   m_iconInstalledUnrequired(IconHelper::getIconUnrequired()),
   m_iconNewer(IconHelper::getIconNewer()), m_iconOutdated(IconHelper::getIconOutdated()),
@@ -383,6 +384,8 @@ const QIcon& PackageModel::getIconFor(const PackageRepository::PackageData& pack
 {
   switch (package.status)
   {
+    case ectn_IGNORED:
+      return m_iconIgnored;
     case ectn_FOREIGN:
       return m_iconForeign;
     case ectn_FOREIGN_OUTDATED:

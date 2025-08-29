@@ -65,9 +65,9 @@ QList<PackageListData> * searchPacmanPackages(const QHash<QString, QString> *che
 /*
  * Starts the non blocking search for Pacman Foreign packages...
  */
-QList<PackageListData> * searchForeignPackages()
+QList<PackageListData> * searchForeignPackages(QSet<QString> *ignoredPackages)
 {
-  return Package::getForeignPackageList();
+  return Package::getForeignPackageList(ignoredPackages);
 }
 
 /*
@@ -133,10 +133,10 @@ QString getLatestDistroNews()
 /*
  * Marks the packages installed by AUR/KCP (alien icons in pkg list).
  */
-QList<PackageListData> * markForeignPackagesInPkgList(bool hasAURTool, QStringList *outdatedAURStringList)
+QList<PackageListData> * markForeignPackagesInPkgList(bool hasAURTool, QStringList *outdatedAURStringList, QSet<QString> *ignoredPackages)
 {
   QList<PackageListData> * result = new QList<PackageListData>();
-  std::unique_ptr<QList<PackageListData>> listForeign(Package::getForeignPackageList());
+  std::unique_ptr<QList<PackageListData>> listForeign(Package::getForeignPackageList(ignoredPackages));
   PackageListData pld;
 
   QList<PackageListData>::const_iterator itForeign = listForeign->cbegin();

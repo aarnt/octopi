@@ -166,6 +166,7 @@ private:
   CommandExecuting m_commandExecuting;
   CommandExecuting m_commandQueued;
 
+  QSet<QString> *m_ignoredStringList;
   QStringList m_lastCommandList; //This member holds the last command string executed by Octopi
   QStringList *m_outdatedStringList;
   QStringList *m_checkupdatesStringList; //This is the outdated pkg list retrieved by checkupdates
@@ -346,6 +347,8 @@ private slots:
   void onExecCommandInTabTerminal(QString command);
   void onPressAnyKeyToContinue();
   void onCancelControlKey();
+  void onAddToIgnored();
+  void onRemoveFromIgnored();
   void initToolButtonPacman();
   void initToolButtonAUR();
   void showToolButtonAUR();

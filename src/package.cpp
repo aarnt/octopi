@@ -45,8 +45,8 @@
 /*
  * Return IgnorePkg list of packages from /etc/pacman.conf (if any)
  */
-QStringList Package::extractIgnorePkgList() {
-  QStringList pkgList;
+QSet<QString> *Package::extractIgnorePkgList() {
+  QSet<QString> *pkgList = new QSet<QString>;
   QFile file(QStringLiteral("/etc/pacman.conf"));
 
   if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
@@ -69,7 +69,11 @@ QStringList Package::extractIgnorePkgList() {
         continue;
 
       QString packages = parts[1].trimmed();
-      pkgList = packages.split(QStringLiteral(" "), Qt::SkipEmptyParts);
+      QStringList pl = packages.split(QStringLiteral(" "), Qt::SkipEmptyParts);
+      for (QString &p: pl)
+      {
+        pkgList->insert(p);
+      }
       break;
     }
   }
@@ -78,7 +82,13 @@ QStringList Package::extractIgnorePkgList() {
   return pkgList;
 }
 
-bool Package::updateIgnorePkgSection(const QStringList& packages) {
+/*
+ * Overwrites pacman config to include given ignored package list
+ */
+bool Package::updateIgnorePkgSection(const QSet<QString> *ignoredPackages)
+{
+  QStringList ignored = ignoredPackages->values();
+  ignored.sort();
   QFile file(QStringLiteral("/etc/pacman.conf"));
   QTemporaryFile fileAux;
 
@@ -99,10 +109,10 @@ bool Package::updateIgnorePkgSection(const QStringList& packages) {
       ignorePkgFound = true;
       QString newLine;
 
-      if (packages.isEmpty()) {
+      if (ignoredPackages->isEmpty()) {
         newLine = QStringLiteral("#IgnorePkg =");
       } else {
-        newLine = QStringLiteral("IgnorePkg = ") + packages.join(QStringLiteral(" "));
+        newLine = QStringLiteral("IgnorePkg = ") + ignored.join(QStringLiteral(" "));
       }
 
       // Preservar identação original
@@ -118,10 +128,10 @@ bool Package::updateIgnorePkgSection(const QStringList& packages) {
   // Se não encontrou, adicionar ao final
   if (!ignorePkgFound) {
     QString newLine;
-    if (packages.isEmpty()) {
+    if (ignoredPackages->isEmpty()) {
       newLine = QStringLiteral("#IgnorePkg =");
     } else {
-      newLine = QStringLiteral("IgnorePkg = ") + packages.join(QStringLiteral(" "));
+      newLine = QStringLiteral("IgnorePkg = ") + ignored.join(QStringLiteral(" "));
     }
 
     lines.append(QStringLiteral(""));
@@ -638,7 +648,7 @@ QStringList *Package::getTargetRemovalList(const QString &pkgName, const QString
 /*
  *Retrieves the list of foreign packages (those installed from unknown repositories like AUR)
  */
-QList<PackageListData> *Package::getForeignPackageList()
+QList<PackageListData> *Package::getForeignPackageList(QSet<QString> *ignoredPackages)
 {
   QList<PackageListData> * res = new QList<PackageListData>();
 
@@ -653,7 +663,11 @@ QList<PackageListData> *Package::getForeignPackageList()
       if (parts.size() == 2)
       {
         QString desc=parts[0] + QLatin1String(" ") + Package::getInformationDescription(parts[0], true);
-        res->append(PackageListData(parts[0], QLatin1String(""), parts[1], desc, ectn_FOREIGN));
+
+        if (ignoredPackages->contains(parts[0]))
+          res->append(PackageListData(parts[0], QLatin1String(""), parts[1], desc, ectn_IGNORED));
+        else
+          res->append(PackageListData(parts[0], QLatin1String(""), parts[1], desc, ectn_FOREIGN));
       }
     }
   }
@@ -675,7 +689,11 @@ QList<PackageListData> *Package::getForeignPackageList()
       license=parts[6];
       installReason=parts[7];
 
-      res->append(PackageListData(parts[0], QLatin1String(""), parts[1], parts[0] + QLatin1Char(' ') + parts[2],
+      if (ignoredPackages->contains(parts[0]))
+        res->append(PackageListData(parts[0], QLatin1String(""), parts[1], parts[0] + QLatin1Char(' ') + parts[2],
+                                    instSize.toDouble(&ok), buildDate.toDouble(&ok), installDate.toDouble(&ok), license, installReason, ectn_IGNORED));
+      else
+        res->append(PackageListData(parts[0], QLatin1String(""), parts[1], parts[0] + QLatin1Char(' ') + parts[2],
           instSize.toDouble(&ok), buildDate.toDouble(&ok), installDate.toDouble(&ok), license, installReason, ectn_FOREIGN));
     }
   }

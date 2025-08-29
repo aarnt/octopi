@@ -110,7 +110,7 @@ public:
   PackageRepository();
 
   void registerDependency(IDependency& depends);
-  void setData(const QList<PackageListData>*const listOfPackages, const QSet<QString>& unrequiredPackages);
+  void setData(QList<PackageListData>*const listOfPackages, const QSet<QString>& unrequiredPackages, const QSet<QString>& ignoredPackages);
   void setAURData(const QList<PackageListData>*const listOfForeignPackages, const QSet<QString>& unrequiredPackages);
   void setForeignData(QList<PackageListData>*const listOfForeignPackages, const QStringList& outdatedAURPackages);
   void setOutdatedData(const QHash<QString, QString> &outdatedPackages);

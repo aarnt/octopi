@@ -9,6 +9,8 @@
   BugFix: Make Actions tab visible when a package is selected for insertion/removal.
   BugFix: Use system theme folder icon in Files tab.
   BugFix: Package list refresh was not running after a group install/removal.
+  Added support for pacman.conf's IgnorePkg option through "Add to Ignored" and 
+    "Remove from Ignored" actions from the context menu in the package list.
   Added Apply and Cancel buttons also in the Actions tab.
   Added "Enable package tooltips" option, so users can disable the feature when needed.
   Added "Force use of BASH shell" option to ensure compatibility when the user 
