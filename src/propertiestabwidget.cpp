@@ -339,6 +339,7 @@ bool PropertiesTabWidget::eventFilter(QObject *obj, QEvent *event)
       if (tabIndex == ctn_TABINDEX_NEWS)
       {
         QMenu* menu = new QMenu(this);
+        menu->addAction(m_actionNews);
         menu->addAction(StrConstants::getOpenNewsInBrowser(), []{
           QDesktopServices::openUrl(QUrl(SettingsManager::getDistroNewsSite()));
         });

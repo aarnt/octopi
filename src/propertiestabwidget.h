@@ -67,6 +67,7 @@ public:
 
   inline void setActionApply(QAction *actionApply) { m_actionApply = actionApply; };
   inline void setActionCancel(QAction *actionCancel) { m_actionCancel = actionCancel; };
+  inline void setActionGetNews(QAction *actionNews) { m_actionNews = actionNews; };
 
 protected:
   bool eventFilter(QObject* obj, QEvent* event);
@@ -94,6 +95,7 @@ private:
 
   QAction *m_actionApply;
   QAction *m_actionCancel;
+  QAction *m_actionNews;
 };
 
 #endif // PROPERTIESTABWIDGET_H

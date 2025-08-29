@@ -12,6 +12,7 @@
   Added support for pacman.conf's IgnorePkg option through "Add to Ignored" and 
     "Remove from Ignored" actions from the context menu in the package list.
   Added support for Plus and Minus keys to add and remove packages from the system.
+  Added "Get Latest distro news" menu item to the News tab context menu.
   Added Apply and Cancel buttons also in the Actions tab.
   Added "Enable package tooltips" option, so users can disable the feature when needed.
   Added "Force use of BASH shell" option to ensure compatibility when the user 

@@ -492,6 +492,7 @@ void MainWindow::initTabActions()
 {
   ui->twProperties->setActionApply(ui->actionApply);
   ui->twProperties->setActionCancel(ui->actionCancel);
+  ui->twProperties->setActionGetNews(ui->actionGetNews);
   ui->twProperties->initTabActions();
 
   connect(ui->twProperties->getTvTransaction(), SIGNAL(customContextMenuRequested(QPoint)),
