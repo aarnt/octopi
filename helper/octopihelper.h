@@ -34,6 +34,8 @@ Q_OBJECT
 
 private:
   int m_exitCode;
+
+  const QString ctn_PRE_SYSTEM_UPGRADE_SCRIPT = QStringLiteral("/usr/lib/octopi/pre-system-upgrade.sh");
   QProcess *m_process;
   QProcessEnvironment getProcessEnvironment();
   QString m_suspiciousChars;
@@ -54,7 +56,10 @@ private:
     m_temporaryFile->setPermissions(QFile::Permissions(QFile::ExeOwner|QFile::ReadOwner));
 
     return m_temporaryFile;
-  }  
+  }
+
+  bool isShellScript(const QString &filePath);
+  bool onlyAllowedCommands(const QString &filePath);
 
 public:
   OctopiHelper();
@@ -64,6 +69,8 @@ public:
   int executePkgTransactionWithSharedMem();
   inline int getExitCode() { return m_exitCode; }
   bool isOctoToolRunning(const QString &octoToolName);
+
+  bool validatePreUpgradeScript();
 };
 
 #endif // OCTOPIHELPER_H

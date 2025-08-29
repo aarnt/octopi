@@ -187,7 +187,6 @@ pid_t OctopiHelper::findPidByName(const QString &processName)
 {
   DIR *dir = opendir("/proc");
   if (!dir) {
-    //perror("opendir /proc");
     return -1;
   }
 
@@ -197,7 +196,6 @@ pid_t OctopiHelper::findPidByName(const QString &processName)
       continue;
 
     bool ok;
-    //QString(entry->d_name).toLocal8Bit().constData();
     pid_t pid = QString(entry->d_name).toInt(&ok);
     if (!ok)
       continue;
@@ -257,6 +255,7 @@ bool OctopiHelper::isOctoToolRunning(const QString &octoToolName)
  */
 int OctopiHelper::executePkgTransactionWithSharedMem()
 {
+  bool systemUpgradeCommand = false;
   bool isOctopiRunning=isOctoToolRunning(QStringLiteral("octopi"));
   bool isNotifierRunning=isOctoToolRunning(QStringLiteral("octopi-notifier"));
   bool isCacheCleanerRunning=isOctoToolRunning(QStringLiteral("octopi-cachecle"));
@@ -332,6 +331,7 @@ int OctopiHelper::executePkgTransactionWithSharedMem()
       {
         testCommandFromOctopi=true;
         testCommandFromNotifier=true;
+        systemUpgradeCommand=true;
       }
       else if (line.startsWith(QLatin1String("paccache -r -k")))
       {
@@ -504,6 +504,17 @@ int OctopiHelper::executePkgTransactionWithSharedMem()
   QFile *ftemp = generateTemporaryFile();
   QTextStream out(ftemp);
 
+  // If we are going to upgrade the system, let's check if we find /usr/lib/octopi/pre-system-upgrade.sh file
+  if (systemUpgradeCommand)
+  {
+    // If the file exists and is valid...
+    if (validatePreUpgradeScript())
+    {
+      // Let's put it inside the command list
+      out << ctn_PRE_SYSTEM_UPGRADE_SCRIPT + QLatin1Char('\n');
+    }
+  }
+
   QString proxySettings = getProxySettings();
   if (!proxySettings.isEmpty())
   {
@@ -528,4 +539,103 @@ int OctopiHelper::executePkgTransactionWithSharedMem()
   m_process->waitForFinished(-1);
 
   return m_process->exitCode();
+}
+
+bool OctopiHelper::isShellScript(const QString &filePath)
+{
+  QFile file(filePath);
+  if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
+    return false;
+
+  QTextStream in(&file);
+  QString firstLine = in.readLine().trimmed();
+
+  return firstLine.startsWith("#!") && firstLine.contains("sh");
+}
+
+bool OctopiHelper::onlyAllowedCommands(const QString &filePath)
+{
+  QTextStream qout(stdout);
+  QSet<QString> allowedCommands = {
+      "echo", "checkupdates", "sudo", "timeshift", "if", "fi", "then", "grep",
+      "awk", "exit", "|", ">", "/dev/null", "[", "]", "rsync"
+  };
+
+  QFile file(filePath);
+  if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
+    return false;
+
+  QTextStream in(&file);
+  while (!in.atEnd())
+  {
+    QString line = in.readLine().trimmed();
+
+    // Skip comments and empty lines
+    if (line.isEmpty() || line.startsWith(QLatin1Char('#')))
+      continue;
+
+    // Remove quoted strings (both "..." and '...')
+    QRegularExpression quoted(QStringLiteral("\"[^\"]*\"|'[^']*'"));
+    line.replace(quoted, QStringLiteral(""));  // Remove strings inside quotes
+
+    // Remove parentheses/braces/quotes to simplify parsing
+    line.replace(QRegularExpression(QStringLiteral("[`(){}]")), QStringLiteral(" "));
+
+    // Split into tokens
+    QStringList tokens = line.split(QRegularExpression(QStringLiteral("\\s+")), Qt::SkipEmptyParts);
+
+    for (const QString &token : tokens)
+    {
+      if (token == QStringLiteral("|"))
+        continue;
+
+      // Skip arguments and variables
+      if (token.startsWith(QLatin1Char('-')) || token.startsWith(QLatin1Char('$')) || token[0].isDigit() || token.endsWith(QLatin1Char('=')))
+        continue;
+
+      if (!allowedCommands.contains(token))
+      {
+        qout << "Forbidden command found: " << token << Qt::endl;
+        return false;
+      }
+    }
+  }
+
+  return true;
+}
+
+bool OctopiHelper::validatePreUpgradeScript()
+{
+  QTextStream qout(stdout);
+  QString path = ctn_PRE_SYSTEM_UPGRADE_SCRIPT;
+  QFileInfo fileInfo(path);
+
+  if (!fileInfo.exists())
+  {
+    return false;
+  }
+
+  // Is this a symbolic link?
+  if (fileInfo.isSymLink())
+    fileInfo = QFileInfo(fileInfo.symLinkTarget());
+
+  QString realPath = fileInfo.absoluteFilePath();
+
+  if (!fileInfo.isFile() || !fileInfo.isReadable())
+  {
+    return false;
+  }
+
+  if (!isShellScript(realPath)) {
+    qout << "File is not a shell script." << Qt::endl;
+    return false;
+  }
+
+  if (!onlyAllowedCommands(realPath))
+  {
+    qout << ctn_PRE_SYSTEM_UPGRADE_SCRIPT << " has forbidden commands." << Qt::endl;
+    return false;
+  }
+
+  return true;
 }

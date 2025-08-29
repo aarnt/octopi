@@ -58,6 +58,10 @@ int main(int argc, char *argv[])
   {
     return helper.executePkgTransactionWithSharedMem();
   }
+  else if (argList->getSwitch(QStringLiteral("-test-pre-system-upgrade-script")))
+  {
+    helper.validatePreUpgradeScript();
+  }
   else
   {
     QTextStream qout(stdout);
