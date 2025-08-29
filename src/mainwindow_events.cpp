@@ -460,4 +460,19 @@ void MainWindow::keyReleaseEvent(QKeyEvent* ke)
     if (!m_listOfVisitedPackages.isEmpty())
       positionInPackageList(m_listOfVisitedPackages.at(m_indOfVisitedPackage));
   }
+  else if (ke->key() == Qt::Key_Plus)
+  {
+    if (m_commandExecuting != ectn_NONE) return;
+
+    if (ui->tvPackages->hasFocus())
+    {
+      execKeyActionOnPackage(ectn_INSTALL);
+    }
+  }
+  else if(ke->key() == Qt::Key_Minus)
+  {
+    if (m_commandExecuting != ectn_NONE) return;
+
+    onPressDelete();
+  }
 }
