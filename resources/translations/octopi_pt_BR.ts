@@ -282,7 +282,7 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="91"/>
         <source>An ignored package</source>
-        <translation>Um pacote Ignorado</translation>
+        <translation>Pacote Ignorado</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="93"/>
