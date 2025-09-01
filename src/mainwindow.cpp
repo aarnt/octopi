@@ -1222,12 +1222,15 @@ void MainWindow::execContextMenuPackages(QPoint point)
       }
       else if (allRemovable && numberOfOutdated == numberOfSelPkgs)
       {
+        menu->addAction(ui->actionAddToIgnored);
         ui->actionInstall->setText(StrConstants::getUpdate());
       }
       else if (allRemovable)
+      {
+        menu->addAction(ui->actionAddToIgnored);
         ui->actionInstall->setText(StrConstants::getReinstall());
+      }
 
-      menu->addAction(ui->actionAddToIgnored);
       menu->addAction(ui->actionInstall);
 
       if (!isAllGroupsSelected() && !isAURGroupSelected()) //&& numberOfSelPkgs > 1)
