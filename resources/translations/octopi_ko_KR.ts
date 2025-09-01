@@ -240,6 +240,16 @@
         <translation>오래됨</translation>
     </message>
     <message>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="643"/>
+        <source>Add to Ignored</source>
+        <translation>무시됨에 추가하기</translation>
+    </message>
+    <message>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="655"/>
+        <source>Remove from Ignored</source>
+        <translation>무시에서 제거하기</translation>
+    </message>
+    <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="64"/>
         <source>Ctrl+Shift+O to display outdated %1 packages</source>
         <translation>Ctrl+Shift+O를 사용하여 오래된 %1 패키지 표시</translation>
@@ -271,196 +281,201 @@
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="91"/>
+        <source>An ignored package</source>
+        <translation>무시된 패키지</translation>
+    </message>
+    <message>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="93"/>
         <source>An installed package</source>
         <translation>설치된 패키지</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="93"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="95"/>
         <source>An installed package (not required by others)</source>
         <translation>설치된 패키지 (다른 패키지가 필요하지 않음)</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="96"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="98"/>
         <source>A foreign package, installed from</source>
         <translation>외부 패키지, 다음에서 설치됨:</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="99"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="101"/>
         <source>A non installed package</source>
         <translation>설치되지 않은 패키지</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="102"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="104"/>
         <source>An outdated package</source>
         <translation>오래된 패키지</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="105"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="107"/>
         <source>An outdated foreign package</source>
         <translation>오래된 외부 패키지</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="108"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="110"/>
         <source>A newer version of this package is installed</source>
         <translation>이 패키지의 최신 버전이 설치되었습니다</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="110"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="112"/>
         <source>Basic usage help:</source>
         <translation>기본 사용 도움말 :</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="112"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="114"/>
         <source>Position the mouse over a package to see its description</source>
         <translation>설명을 보려면 패키지 위에 마우스를 올려 놓습니다</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="114"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="116"/>
         <source>Double click an installed package to see its contents</source>
         <translation>설치된 패키지를 두 번 클릭하여 내용보기</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="116"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="118"/>
         <source>Right click package to install/reinstall or remove it</source>
         <translation>패키지를 마우스 오른쪽 단추로 클릭하여 설치/재설치 또는 제거</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="119"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="121"/>
         <source>Alt+key sequences:</source>
         <translation>Alt + 키 시퀀스 :</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="121"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="123"/>
         <source>Alt+1 to switch to &apos;Info&apos; tab</source>
         <translation>Alt+1 : 정보 탭</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="123"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="125"/>
         <source>Alt+2 to switch to &apos;Files&apos; tab</source>
         <translation>Alt+2 : 파일 탭</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="125"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="127"/>
         <source>Alt+3 to switch to &apos;Actions&apos; tab</source>
         <translation>Alt+3을 &apos;작업&apos; 탭으로 전환</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="127"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="129"/>
         <source>Alt+4 to switch to &apos;Output&apos; tab</source>
         <translation>Alt+4 : 출력 탭</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="129"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="131"/>
         <source>Alt+5 to switch to &apos;News&apos; tab</source>
         <translation>Alt+5 : 뉴스 탭</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="131"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="133"/>
         <source>Alt+6 or &apos;F1&apos; to show this help page</source>
         <translation>Alt+6 또는 F1 : 이 도움말 페이지 표시</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="133"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="135"/>
         <source>Alt+7 to switch to &apos;Terminal&apos; tab</source>
         <translation>Alt+7을 &apos;터미널&apos; 탭으로 전환</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="136"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="138"/>
         <source>Control+key sequences:</source>
         <translation>Control + 키 시퀀스 :</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="138"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="140"/>
         <source>Ctrl+E or &apos;Actions/Cancel&apos; to clear the selection of to be removed/installed packages</source>
         <translation>Ctrl+E 또는 &apos;작업/취소&apos;를 사용하여 제거/설치할 패키지 선택 지우기</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="140"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="142"/>
         <source>Ctrl+F to search for text inside tab Files, News and Usage</source>
         <translation>Ctrl+F를 사용하여 파일, 뉴스 및 사용 탭 내에서 텍스트 검색</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="142"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="144"/>
         <source>Ctrl+G or &apos;File/Get latest distro news&apos; to retrieve the latest RSS based distro news</source>
         <translation>Ctrl+G 또는 &apos;파일/최신 배포판 뉴스 받기&apos; : 최신 RSS 기반 배포판 뉴스 검색</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="144"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="146"/>
         <source>Ctrl+K or &apos;File/Check updates&apos; to check mirror for latest updates (checkupdates)</source>
         <translation>미러에서 최신 업데이트를 확인하는 Ctrl+K 또는 &apos;파일/업데이트 확인&apos; (업데이트확인)</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="146"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="148"/>
         <source>Ctrl+L to find a package in the package list</source>
         <translation>Ctrl + L : 패키지 목록에서 패키지를 찾기</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="148"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="150"/>
         <source>Ctrl+P to go to package list</source>
         <translation>패키지 목록으로 이동하려면 Ctrl+P</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="150"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="152"/>
         <source>Ctrl+Q or &apos;File/Exit&apos; to exit the application</source>
         <translation>Ctrl + Q 또는 &apos;파일/종료&apos; : 응용 프로그램 종료</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="152"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="154"/>
         <source>Ctrl+U or &apos;File/System upgrade&apos; to make a full system upgrade (pacman -Su)</source>
         <translation>Ctrl+U 또는 &apos;파일/시스템 업그레이드&apos;를 사용하여 전체 시스템 업그레이드 (pacman -Su)</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="154"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="156"/>
         <source>Ctrl+Y or &apos;Actions/Apply&apos; to start installation/removal of selected packages</source>
         <translation>Ctrl+Y 또는 &apos;작업/적용&apos;을 사용하여 선택한 패키지의 설치/제거 시작</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="157"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="159"/>
         <source>Control+shift+key sequences:</source>
         <translation>Control + shift + 키 시퀀스:</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="161"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="163"/>
         <source>Ctrl+Shift+G to display all package groups</source>
         <translation>Control + shift + G : 모든 패키지 그룹 표시</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="166"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="168"/>
         <source>Ctrl+Shift+U to upgrade outdated %1 packages</source>
         <translation>Ctrl+Shift+O를 사용하여 오래된 %1 패키지 업그레이드</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="168"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="170"/>
         <source>Ctrl+Shift+Y to display %1 group</source>
         <translation>Control + shift + Y : %1 그룹 표시</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="171"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="173"/>
         <source>F+key sequences:</source>
         <translation>기능키 + 키 시퀀스 :</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="173"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="175"/>
         <source>F1 to show this help page</source>
         <translation>F1 : 이 도움말 페이지 표시</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="175"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="177"/>
         <source>F4 to open a Terminal whitin the selected directory at Files tab</source>
         <translation>F4 : 파일 탭에서 선택한 디렉터리에 있는 터미널 열기</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="177"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="179"/>
         <source>F6 to open a File Manager whitin the selected directory at Files tab</source>
         <translation>F6 : 파일 탭에서 선택한 디렉터리로 파일 관리자 열기</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="179"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="181"/>
         <source>F10 to maximize/demaximize package list view</source>
         <translation>F10 : 패키지 목록 보기 최대화/최대화 해제</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="181"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="183"/>
         <source>F11 to maximize/demaximize Tab&apos;s view</source>
         <translation>F11 : 탭 보기 최대화/최대화 해제</translation>
     </message>
@@ -473,215 +488,221 @@
         <translation>옵션</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="38"/>
-        <source>General</source>
-        <translation>일반</translation>
-    </message>
-    <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="50"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="90"/>
         <source>Show package numbers in output tab</source>
         <translation>출력 탭에 패키지 번호 표시</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="63"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="103"/>
         <source>Show stop transaction button at statusbar</source>
         <translation>상태 표시줄에 트랜잭션 중지 버튼 표시</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="76"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="116"/>
         <source>Always use the terminal to install/upgrade/remove packages</source>
         <translation>항상 터미널을 사용하여 패키지 설치/업그레이드/제거</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="89"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="129"/>
         <source>Enable internet checking</source>
         <translation>인터넷 검사 활성화</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="102"/>
-        <source>Play a bell sound when prompting for the root password in the terminal</source>
-        <translation>터미널에서 루트 비밀번호를 묻는 경우 종소리를 재생합니다</translation>
-    </message>
-    <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="157"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="184"/>
         <source>Enable confirmation dialog in system upgrade</source>
         <translation>시스템 업그레이드 시 확인 대화 상자 활성화</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="163"/>
-        <location filename="Projects/octopi/src/optionsdialog.cpp" line="184"/>
-        <source>Package List</source>
-        <translation>패키지 목록</translation>
-    </message>
-    <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="175"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="199"/>
         <source>Use alternating row colors</source>
         <translation>행 색상 번갈아 사용</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="188"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="212"/>
         <source>Show &quot;Licenses&quot; column</source>
         <translation>&quot;라이선스&quot; 열 표시</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="201"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="225"/>
         <source>Show &quot;Installed Size&quot; column</source>
         <translation>&quot;설치된 크기&quot; 열 표시</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="214"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="238"/>
         <source>Show &quot;Build Date&quot; column</source>
         <translation>&quot;빌드 날짜&quot; 열 표시</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="227"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="251"/>
         <source>Show &quot;Install Date&quot; column</source>
         <translation>&quot;설치 날짜&quot; 열 표시</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="240"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="264"/>
         <source>Show &quot;Install Reason&quot; column</source>
         <translation>&quot;설치 이유&quot; 열 표시</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="277"/>
+        <source>Enable package tooltips</source>
+        <translation>패키지 툴팁 활성화</translation>
+    </message>
+    <message>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="311"/>
         <source>Select the AUR tool Octopi should use</source>
         <translation>Octopi가 사용할 AUR 도구 선택</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="358"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="392"/>
         <source>Search for outdated AUR packages</source>
         <translation>오래된 AUR 패키지 검색</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="413"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="458"/>
         <source>User name</source>
         <translation>사용자 이름</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="426"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="471"/>
         <source>Password</source>
         <translation>비밀번호</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="439"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="489"/>
         <source>Register</source>
         <translation>등록</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="452"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="507"/>
         <source>Connect</source>
         <translation>연결하기</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="466"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="526"/>
         <source>Enable AUR voting</source>
         <translation>AUR 투표 활성화</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="487"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="547"/>
         <source>AUR packages are user produced content. 
 Any use of the provided files is at your own risk.</source>
         <translation>AUR 패키지는 사용자가 제작한 콘텐츠입니다. 
 제공된 파일의 모든 사용에 따른 위험은 사용자 본인이 감수해야 합니다.</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="548"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="608"/>
         <source>Build directory</source>
         <translation>빌드 디렉터리</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="604"/>
-        <location filename="Projects/octopi/src/optionsdialog.cpp" line="170"/>
-        <location filename="Projects/octopi/src/optionsdialog.cpp" line="183"/>
-        <source>Backend</source>
-        <translation>백엔드</translation>
-    </message>
-    <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="667"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="724"/>
         <source>Select the backend Octopi should use</source>
         <translation>Octopi가 사용할 백엔드 선택</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="691"/>
-        <location filename="Projects/octopi/src/optionsdialog.cpp" line="733"/>
-        <source>Icon</source>
-        <translation>아이콘</translation>
-    </message>
-    <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="754"/>
-        <source>Red icon</source>
-        <translation>빨간색 아이콘</translation>
-    </message>
-    <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="832"/>
-        <source>Yellow icon</source>
-        <translation>노란색 아이콘</translation>
-    </message>
-    <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="895"/>
-        <source>Green icon</source>
-        <translation>녹색 아이콘</translation>
-    </message>
-    <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="958"/>
-        <source>Busy icon</source>
-        <translation>사용중 아이콘</translation>
-    </message>
-    <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1011"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="767"/>
         <source>Use default notification icons</source>
         <translation>기본 알림 아이콘 사용</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1022"/>
-        <location filename="Projects/octopi/src/optionsdialog.cpp" line="179"/>
-        <source>Updates</source>
-        <translation>업데이트</translation>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="842"/>
+        <source>Red icon</source>
+        <translation>빨간색 아이콘</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1281"/>
-        <source>Terminal</source>
-        <translation>터미널</translation>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="932"/>
+        <source>Busy icon</source>
+        <translation>사용중 아이콘</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1293"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1001"/>
+        <source>Yellow icon</source>
+        <translation>노란색 아이콘</translation>
+    </message>
+    <message>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1085"/>
+        <source>Green icon</source>
+        <translation>녹색 아이콘</translation>
+    </message>
+    <message>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1410"/>
         <source>Color Scheme</source>
         <translation>색상 구성표</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1306"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1423"/>
         <source>Font Family</source>
         <translation>글꼴 집합</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1339"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1456"/>
         <source>Font Size</source>
         <translation>글꼴 크기</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/optionsdialog.cpp" line="100"/>
-        <location filename="Projects/octopi/src/optionsdialog.cpp" line="116"/>
-        <location filename="Projects/octopi/src/optionsdialog.cpp" line="132"/>
-        <location filename="Projects/octopi/src/optionsdialog.cpp" line="149"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1479"/>
+        <source>Play a bell sound when prompting for the root password in the terminal</source>
+        <translation>터미널에서 루트 비밀번호를 묻는 경우 종소리를 재생합니다</translation>
+    </message>
+    <message>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1492"/>
+        <source>Force use of BASH shell</source>
+        <translation>BASH 쉘 강제 사용하기</translation>
+    </message>
+    <message>
+        <location filename="Projects/octopi/src/optionsdialog.cpp" line="102"/>
+        <location filename="Projects/octopi/src/optionsdialog.cpp" line="118"/>
+        <location filename="Projects/octopi/src/optionsdialog.cpp" line="134"/>
+        <location filename="Projects/octopi/src/optionsdialog.cpp" line="151"/>
         <source>Open Image</source>
         <translation>이미지 열기</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/optionsdialog.cpp" line="100"/>
-        <location filename="Projects/octopi/src/optionsdialog.cpp" line="116"/>
-        <location filename="Projects/octopi/src/optionsdialog.cpp" line="132"/>
-        <location filename="Projects/octopi/src/optionsdialog.cpp" line="149"/>
+        <location filename="Projects/octopi/src/optionsdialog.cpp" line="102"/>
+        <location filename="Projects/octopi/src/optionsdialog.cpp" line="118"/>
+        <location filename="Projects/octopi/src/optionsdialog.cpp" line="134"/>
+        <location filename="Projects/octopi/src/optionsdialog.cpp" line="151"/>
         <source>Image Files</source>
         <translation>이미지 파일</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/optionsdialog.cpp" line="191"/>
+        <location filename="Projects/octopi/src/optionsdialog.cpp" line="173"/>
+        <location filename="Projects/octopi/src/optionsdialog.cpp" line="197"/>
+        <source>Backend</source>
+        <translation>백엔드</translation>
+    </message>
+    <message>
+        <location filename="Projects/octopi/src/optionsdialog.cpp" line="196"/>
+        <source>General</source>
+        <translation>일반</translation>
+    </message>
+    <message>
+        <location filename="Projects/octopi/src/optionsdialog.cpp" line="198"/>
+        <source>Package List</source>
+        <translation>패키지 목록</translation>
+    </message>
+    <message>
+        <location filename="Projects/octopi/src/optionsdialog.cpp" line="200"/>
+        <source>Icon</source>
+        <translation>아이콘</translation>
+    </message>
+    <message>
+        <location filename="Projects/octopi/src/optionsdialog.cpp" line="201"/>
+        <source>Updates</source>
+        <translation>업데이트</translation>
+    </message>
+    <message>
+        <location filename="Projects/octopi/src/optionsdialog.cpp" line="202"/>
+        <source>Terminal</source>
+        <translation>터미널</translation>
+    </message>
+    <message>
+        <location filename="Projects/octopi/src/optionsdialog.cpp" line="215"/>
         <source>Ok</source>
         <translation>확인</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/optionsdialog.cpp" line="192"/>
+        <location filename="Projects/octopi/src/optionsdialog.cpp" line="216"/>
         <source>Cancel</source>
         <translation>취소</translation>
     </message>

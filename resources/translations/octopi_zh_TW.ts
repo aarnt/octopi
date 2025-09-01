@@ -240,6 +240,16 @@
         <translation>過期</translation>
     </message>
     <message>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="643"/>
+        <source>Add to Ignored</source>
+        <translation>新增至已忽略</translation>
+    </message>
+    <message>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="655"/>
+        <source>Remove from Ignored</source>
+        <translation>從已忽略移除</translation>
+    </message>
+    <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="64"/>
         <source>Ctrl+Shift+O to display outdated %1 packages</source>
         <translation>Ctrl+Shift+O 以顯示過期的 %1 軟體包</translation>
@@ -271,196 +281,201 @@
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="91"/>
+        <source>An ignored package</source>
+        <translation>已忽略的軟體包</translation>
+    </message>
+    <message>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="93"/>
         <source>An installed package</source>
         <translation>一個已安裝的套件</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="93"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="95"/>
         <source>An installed package (not required by others)</source>
         <translation>一個已安裝的套件(孤立的)</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="96"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="98"/>
         <source>A foreign package, installed from</source>
         <translation>一個外來的套件，安裝從</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="99"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="101"/>
         <source>A non installed package</source>
         <translation>一個未安裝的套件</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="102"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="104"/>
         <source>An outdated package</source>
         <translation>一個過期的套件</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="105"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="107"/>
         <source>An outdated foreign package</source>
         <translation>一個過期的外部套件</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="108"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="110"/>
         <source>A newer version of this package is installed</source>
         <translation>此軟體包的較新版本已安裝</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="110"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="112"/>
         <source>Basic usage help:</source>
         <translation>基本使用說明：</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="112"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="114"/>
         <source>Position the mouse over a package to see its description</source>
         <translation>移動滑鼠到套件上瀏覽套件說明</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="114"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="116"/>
         <source>Double click an installed package to see its contents</source>
         <translation>雙擊以安裝的套件以察看其安裝目錄</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="116"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="118"/>
         <source>Right click package to install/reinstall or remove it</source>
         <translation>右鍵點選套件以安裝/重新安裝或者移除之</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="119"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="121"/>
         <source>Alt+key sequences:</source>
         <translation>Alt+按鍵：</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="121"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="123"/>
         <source>Alt+1 to switch to &apos;Info&apos; tab</source>
         <translation>Alt+1 切換到「訊息」分頁</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="123"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="125"/>
         <source>Alt+2 to switch to &apos;Files&apos; tab</source>
         <translation>Alt+2 切換到「檔案」分頁</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="125"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="127"/>
         <source>Alt+3 to switch to &apos;Actions&apos; tab</source>
         <translation>Alt+3 以切換到「動作」分頁</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="127"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="129"/>
         <source>Alt+4 to switch to &apos;Output&apos; tab</source>
         <translation>Alt+4 切換到「輸出」分頁</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="129"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="131"/>
         <source>Alt+5 to switch to &apos;News&apos; tab</source>
         <translation>Alt+5 切換到「訊息」分頁</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="131"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="133"/>
         <source>Alt+6 or &apos;F1&apos; to show this help page</source>
         <translation>Alt+6 或 F1 以顯示這個幫助頁面</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="133"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="135"/>
         <source>Alt+7 to switch to &apos;Terminal&apos; tab</source>
         <translation>Alt+7 切換到「終端機」分頁</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="136"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="138"/>
         <source>Control+key sequences:</source>
         <translation>Ctrl+按鍵：</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="138"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="140"/>
         <source>Ctrl+E or &apos;Actions/Cancel&apos; to clear the selection of to be removed/installed packages</source>
         <translation>Ctrl+E 或 「動作／取消」 以取消選取即將移除／安裝的套件</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="140"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="142"/>
         <source>Ctrl+F to search for text inside tab Files, News and Usage</source>
         <translation>Ctrl+F 以搜尋在頁籤內的檔案，新聞以及使用方法</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="142"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="144"/>
         <source>Ctrl+G or &apos;File/Get latest distro news&apos; to retrieve the latest RSS based distro news</source>
         <translation>Ctrl+G 或者「檔案/獲得最新的發行版訊息」以取得最新的發行版訊息的 RSS 更新</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="144"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="146"/>
         <source>Ctrl+K or &apos;File/Check updates&apos; to check mirror for latest updates (checkupdates)</source>
         <translation>Ctrl+K 或「檔案／檢查更新」以檢查鏡像的最新更新 (checkupdates)</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="146"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="148"/>
         <source>Ctrl+L to find a package in the package list</source>
         <translation>Ctrl+L 以在套件清單中搜尋套件</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="148"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="150"/>
         <source>Ctrl+P to go to package list</source>
         <translation>Ctrl+P 轉到軟體包列表</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="150"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="152"/>
         <source>Ctrl+Q or &apos;File/Exit&apos; to exit the application</source>
         <translation>Ctrl+Q 或 「檔案/離開」 以結束程式</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="152"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="154"/>
         <source>Ctrl+U or &apos;File/System upgrade&apos; to make a full system upgrade (pacman -Su)</source>
         <translation>Ctrl+U 或「檔案／系統升級」 以執行全系統升級 (pacman -Su)</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="154"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="156"/>
         <source>Ctrl+Y or &apos;Actions/Apply&apos; to start installation/removal of selected packages</source>
         <translation>Ctrl+Y 或「動作／套用」以開始安裝／移除選取的套件</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="157"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="159"/>
         <source>Control+shift+key sequences:</source>
         <translation>Ctrl+Shift+按鍵：</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="161"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="163"/>
         <source>Ctrl+Shift+G to display all package groups</source>
         <translation>Ctrl+Shift+G 以顯示所有套件群組</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="166"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="168"/>
         <source>Ctrl+Shift+U to upgrade outdated %1 packages</source>
         <translation>Ctrl+Shift+U 以升級過期的 %1 軟體包</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="168"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="170"/>
         <source>Ctrl+Shift+Y to display %1 group</source>
         <translation>Ctrl+Shift+Y 以顯示 %1 群組</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="171"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="173"/>
         <source>F+key sequences:</source>
         <translation>F按鍵：</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="173"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="175"/>
         <source>F1 to show this help page</source>
         <translation>F1 以顯示這個說明頁</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="175"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="177"/>
         <source>F4 to open a Terminal whitin the selected directory at Files tab</source>
         <translation>F4 以在選取的目錄下開啟終端機</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="177"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="179"/>
         <source>F6 to open a File Manager whitin the selected directory at Files tab</source>
         <translation>F6 以在選取的目錄下開啟檔案管理員</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="179"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="181"/>
         <source>F10 to maximize/demaximize package list view</source>
         <translation>F10 以最大化/取消最大化檢視套件列表</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="181"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="183"/>
         <source>F11 to maximize/demaximize Tab&apos;s view</source>
         <translation>F11 以最大化/取消最大化分頁檢視</translation>
     </message>
@@ -473,225 +488,221 @@
         <translation>選項</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="38"/>
-        <source>General</source>
-        <translation>一般</translation>
-    </message>
-    <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="50"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="90"/>
         <source>Show package numbers in output tab</source>
         <translation>在輸出分頁中顯示軟體包數量</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="63"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="103"/>
         <source>Show stop transaction button at statusbar</source>
         <translation>在狀態列顯示停止事務處理按鈕</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="76"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="116"/>
         <source>Always use the terminal to install/upgrade/remove packages</source>
         <translation>一律使用終端機安裝/升級/移除軟體包</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="89"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="129"/>
         <source>Enable internet checking</source>
         <translation>啟用網路檢查</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="144"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="184"/>
         <source>Enable confirmation dialog in system upgrade</source>
         <translation>在系統升級中啟用確認對話框</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="150"/>
-        <location filename="Projects/octopi/src/optionsdialog.cpp" line="184"/>
-        <source>Package List</source>
-        <translation>軟體包清單</translation>
-    </message>
-    <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="162"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="199"/>
         <source>Use alternating row colors</source>
         <translation>使用交替色彩</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="175"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="212"/>
         <source>Show &quot;Licenses&quot; column</source>
         <translation>顯示「授權條款」欄位</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="188"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="225"/>
         <source>Show &quot;Installed Size&quot; column</source>
         <translation>顯示「已安裝大小」欄位</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="201"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="238"/>
         <source>Show &quot;Build Date&quot; column</source>
         <translation>顯示「建構日期」欄位</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="214"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="251"/>
         <source>Show &quot;Install Date&quot; column</source>
         <translation>顯示「安裝日期」欄位</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="227"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="264"/>
         <source>Show &quot;Install Reason&quot; column</source>
         <translation>顯示「安裝理由」欄位</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="240"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="277"/>
         <source>Enable package tooltips</source>
         <translation>啟用軟體包工具提示</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="277"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="311"/>
         <source>Select the AUR tool Octopi should use</source>
         <translation>選取 Octopi 應該使用的 AUR 工具</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="358"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="392"/>
         <source>Search for outdated AUR packages</source>
         <translation>搜尋過期的 AUR 軟體包</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="413"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="458"/>
         <source>User name</source>
         <translation>使用者名稱</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="426"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="471"/>
         <source>Password</source>
         <translation>密碼</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="439"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="489"/>
         <source>Register</source>
         <translation>註冊</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="452"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="507"/>
         <source>Connect</source>
         <translation>連線</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="466"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="526"/>
         <source>Enable AUR voting</source>
         <translation>啟用 AUR 投票</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="487"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="547"/>
         <source>AUR packages are user produced content. 
 Any use of the provided files is at your own risk.</source>
         <translation>AUR 軟體包是使用者產生的內容。
 任何使用檔案造成的風險由您自行承擔。</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="548"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="608"/>
         <source>Build directory</source>
         <translation>建構目錄</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="604"/>
-        <location filename="Projects/octopi/src/optionsdialog.cpp" line="170"/>
-        <location filename="Projects/octopi/src/optionsdialog.cpp" line="183"/>
-        <source>Backend</source>
-        <translation>後端</translation>
-    </message>
-    <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="667"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="724"/>
         <source>Select the backend Octopi should use</source>
         <translation>選取 Octopi 應該使用的後端</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="691"/>
-        <location filename="Projects/octopi/src/optionsdialog.cpp" line="743"/>
-        <source>Icon</source>
-        <translation>圖示</translation>
-    </message>
-    <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="754"/>
-        <source>Red icon</source>
-        <translation>紅色圖示</translation>
-    </message>
-    <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="832"/>
-        <source>Yellow icon</source>
-        <translation>黃色圖示</translation>
-    </message>
-    <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="895"/>
-        <source>Green icon</source>
-        <translation>綠色圖示</translation>
-    </message>
-    <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="958"/>
-        <source>Busy icon</source>
-        <translation>忙碌圖示</translation>
-    </message>
-    <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1011"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="767"/>
         <source>Use default notification icons</source>
         <translation>使用預設通知圖示</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1022"/>
-        <location filename="Projects/octopi/src/optionsdialog.cpp" line="179"/>
-        <source>Updates</source>
-        <translation>更新</translation>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="842"/>
+        <source>Red icon</source>
+        <translation>紅色圖示</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1281"/>
-        <source>Terminal</source>
-        <translation>終端機</translation>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="932"/>
+        <source>Busy icon</source>
+        <translation>忙碌圖示</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1293"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1001"/>
+        <source>Yellow icon</source>
+        <translation>黃色圖示</translation>
+    </message>
+    <message>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1085"/>
+        <source>Green icon</source>
+        <translation>綠色圖示</translation>
+    </message>
+    <message>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1410"/>
         <source>Color Scheme</source>
         <translation>配色方案</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1306"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1423"/>
         <source>Font Family</source>
         <translation>字型家族</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1339"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1456"/>
         <source>Font Size</source>
         <translation>字型大小</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1362"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1479"/>
         <source>Play a bell sound when prompting for the root password in the terminal</source>
         <translation>在終端機中提示輸入 root 密碼時播放鈴聲</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1375"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1492"/>
         <source>Force use of BASH shell</source>
         <translation>強制使用 BASH 殼層</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/optionsdialog.cpp" line="100"/>
-        <location filename="Projects/octopi/src/optionsdialog.cpp" line="116"/>
-        <location filename="Projects/octopi/src/optionsdialog.cpp" line="132"/>
-        <location filename="Projects/octopi/src/optionsdialog.cpp" line="149"/>
+        <location filename="Projects/octopi/src/optionsdialog.cpp" line="102"/>
+        <location filename="Projects/octopi/src/optionsdialog.cpp" line="118"/>
+        <location filename="Projects/octopi/src/optionsdialog.cpp" line="134"/>
+        <location filename="Projects/octopi/src/optionsdialog.cpp" line="151"/>
         <source>Open Image</source>
         <translation>開啟圖片</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/optionsdialog.cpp" line="100"/>
-        <location filename="Projects/octopi/src/optionsdialog.cpp" line="116"/>
-        <location filename="Projects/octopi/src/optionsdialog.cpp" line="132"/>
-        <location filename="Projects/octopi/src/optionsdialog.cpp" line="149"/>
+        <location filename="Projects/octopi/src/optionsdialog.cpp" line="102"/>
+        <location filename="Projects/octopi/src/optionsdialog.cpp" line="118"/>
+        <location filename="Projects/octopi/src/optionsdialog.cpp" line="134"/>
+        <location filename="Projects/octopi/src/optionsdialog.cpp" line="151"/>
         <source>Image Files</source>
         <translation>圖片檔</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/optionsdialog.cpp" line="191"/>
+        <location filename="Projects/octopi/src/optionsdialog.cpp" line="173"/>
+        <location filename="Projects/octopi/src/optionsdialog.cpp" line="197"/>
+        <source>Backend</source>
+        <translation>後端</translation>
+    </message>
+    <message>
+        <location filename="Projects/octopi/src/optionsdialog.cpp" line="196"/>
+        <source>General</source>
+        <translation>一般</translation>
+    </message>
+    <message>
+        <location filename="Projects/octopi/src/optionsdialog.cpp" line="198"/>
+        <source>Package List</source>
+        <translation>軟體包清單</translation>
+    </message>
+    <message>
+        <location filename="Projects/octopi/src/optionsdialog.cpp" line="200"/>
+        <source>Icon</source>
+        <translation>圖示</translation>
+    </message>
+    <message>
+        <location filename="Projects/octopi/src/optionsdialog.cpp" line="201"/>
+        <source>Updates</source>
+        <translation>更新</translation>
+    </message>
+    <message>
+        <location filename="Projects/octopi/src/optionsdialog.cpp" line="202"/>
+        <source>Terminal</source>
+        <translation>終端機</translation>
+    </message>
+    <message>
+        <location filename="Projects/octopi/src/optionsdialog.cpp" line="215"/>
         <source>Ok</source>
         <translation>確定</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/optionsdialog.cpp" line="192"/>
+        <location filename="Projects/octopi/src/optionsdialog.cpp" line="216"/>
         <source>Cancel</source>
         <translation>取消</translation>
     </message>
