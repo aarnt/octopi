@@ -355,7 +355,7 @@ QString SettingsManager::getDistroRSSUrl(LinuxDistro d)
   else if (d == ectn_ENDEAVOUROS)
     return QStringLiteral("https://endeavouros.com/feed/");
   else if (d == ectn_KAOS)
-    return QStringLiteral("https://kaosx.us/feed.xml");
+    return QStringLiteral("https://kaosx.us/rss.xml");
   else if (d == ectn_MANJAROLINUX)
     return QStringLiteral("https://forum.manjaro.org/c/announcements/8.rss");
   else if (d == ectn_OBARUN)
