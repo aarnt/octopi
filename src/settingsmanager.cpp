@@ -383,7 +383,7 @@ QString SettingsManager::getDistroRSSUrl()
   else if (distro == ectn_GARUDALINUX)
     return (p_instance.getSYSsettings()->value(ctn_KEY_DISTRO_RSS_URL, QStringLiteral("https://forum.garudalinux.org/c/announcements/16.rss"))).toString();
   else if (distro == ectn_KAOS)
-    return (p_instance.getSYSsettings()->value(ctn_KEY_DISTRO_RSS_URL, QStringLiteral("https://kaosx.us/feed.xml"))).toString();
+    return (p_instance.getSYSsettings()->value(ctn_KEY_DISTRO_RSS_URL, QStringLiteral("https://kaosx.us/rss.xml"))).toString();
   else if (distro == ectn_MANJAROLINUX)
     return (p_instance.getSYSsettings()->value(ctn_KEY_DISTRO_RSS_URL, QStringLiteral("https://forum.manjaro.org/c/announcements/8.rss"))).toString();
   else if (distro == ectn_OBARUN)
