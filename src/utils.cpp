@@ -123,7 +123,8 @@ QString utils::retrieveDistroNews(bool searchForLatestNews)
     QStringList curlParams;
     QString distroRSSUrl = SettingsManager::getDistroRSSUrl();
 
-    if (distro == ectn_ARCHLINUX || distro == ectn_ARCHBANGLINUX || distro == ectn_ARCHCRAFT || distro == ectn_GARUDALINUX || distro == ectn_ENDEAVOUROS)
+    if (distro == ectn_ARCHLINUX || distro == ectn_ARCHBANGLINUX || distro == ectn_ARCHCRAFT || distro == ectn_GARUDALINUX
+        || distro == ectn_ENDEAVOUROS || distro == ectn_KAOS)
     {
       curlCommand = curlCommand.arg(distroRSSUrl, tmpRssPath);
       curlParams = curlCommand.split(QLatin1Char(' '), Qt::SkipEmptyParts);
@@ -143,12 +144,6 @@ QString utils::retrieveDistroNews(bool searchForLatestNews)
     else if (distro == ectn_CONDRESOS)
     {
       curlCommand = QStringLiteral("-A \"Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0\" -k \"%1\" -o %2");
-      curlCommand = curlCommand.arg(distroRSSUrl, tmpRssPath);
-      curlParams = curlCommand.split(QLatin1Char(' '), Qt::SkipEmptyParts);
-    }
-    else if (distro == ectn_KAOS)
-    {
-      curlCommand = QStringLiteral("-k %1 -o %2");
       curlCommand = curlCommand.arg(distroRSSUrl, tmpRssPath);
       curlParams = curlCommand.split(QLatin1Char(' '), Qt::SkipEmptyParts);
     }
