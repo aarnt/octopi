@@ -189,6 +189,7 @@ public:
   static QString getErrorRunOctopiAsUsrBin();
   static QString getErrorRunOctopiNotifierAsUsrBin();
   static QString getErrorRunOctopiCacheCleanerAsUsrBin();
+  static QString getErrorRunOctopiRepoEditorAsUsrBin();
   static QString getErrorRunningWithRoot();
   static QString getThereIsARunningTransaction();
   static QString getThereArePendingActions();

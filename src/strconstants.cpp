@@ -780,6 +780,10 @@ QString StrConstants::getErrorRunOctopiCacheCleanerAsUsrBin(){
   return QObject::tr("You must use \"/usr/bin/octopi-cachecleaner\" to run Octopi Cache Cleaner");
 }
 
+QString StrConstants::getErrorRunOctopiRepoEditorAsUsrBin(){
+  return QObject::tr("You must use \"/usr/bin/octopi-repoeditor\" to run Octopi Repository Editor");
+}
+
 QString StrConstants::getErrorRunningWithRoot(){
   return QObject::tr("You can not run Octopi with administrator's credentials.");
 }

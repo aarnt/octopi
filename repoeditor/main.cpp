@@ -68,6 +68,12 @@ int main( int argc, char *argv[] )
     return (-3);
   }
 
+  if (!UnixCommand::isOctoToolRunning(QStringLiteral("octopi-repoeditor")))
+  {
+    QMessageBox::critical(nullptr, StrConstants::getApplicationName(), StrConstants::getErrorRunOctopiRepoEditorAsUsrBin());
+    return (-6);
+  }
+
   RepoEditor w;
   app.setActivationWindow(&w);
   w.show();
