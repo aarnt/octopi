@@ -196,14 +196,14 @@ pid_t OctopiHelper::findPidByName(const QString &processName)
       continue;
 
     bool ok;
-    pid_t pid = QString(entry->d_name).toInt(&ok);
+    pid_t pid = QLatin1String(entry->d_name).toInt(&ok);
     if (!ok)
       continue;
 
     QString cmdPath = QStringLiteral("/proc/%1/comm").arg(pid);
     QFile cmdFile(cmdPath);
     if (cmdFile.open(QIODevice::ReadOnly | QIODevice::Text)) {
-      QString name = QString(cmdFile.readLine()).trimmed();
+      QString name = QLatin1String(cmdFile.readLine()).trimmed();
       if (name == processName) {
         closedir(dir);
 
@@ -222,11 +222,11 @@ pid_t OctopiHelper::findPidByName(const QString &processName)
  */
 bool OctopiHelper::isProcessRunningFromPath(pid_t pid)
 {
-  QString exeLink = QString("/proc/%1/exe").arg(pid);
+  QString exeLink = QStringLiteral("/proc/%1/exe").arg(pid);
   char actualPath[PATH_MAX];
   ssize_t len = readlink(exeLink.toLocal8Bit().constData(), actualPath, sizeof(actualPath) - 1);
   if (len == -1) {
-    perror("readlink");
+    //perror("readlink");
     return false;
   }
 
@@ -550,15 +550,19 @@ bool OctopiHelper::isShellScript(const QString &filePath)
   QTextStream in(&file);
   QString firstLine = in.readLine().trimmed();
 
-  return firstLine.startsWith("#!") && firstLine.contains("sh");
+  return firstLine.startsWith(QStringLiteral("#!")) && firstLine.contains(QStringLiteral("sh"));
 }
 
 bool OctopiHelper::onlyAllowedCommands(const QString &filePath)
 {
   QTextStream qout(stdout);
   QSet<QString> allowedCommands = {
-      "echo", "checkupdates", "sudo", "timeshift", "if", "fi", "then", "grep",
-      "awk", "exit", "|", ">", "/dev/null", "[", "]", "rsync", "snapper"
+      QStringLiteral("echo"), QStringLiteral("checkupdates"), QStringLiteral("sudo"),
+      QStringLiteral("timeshift"), QStringLiteral("if"), QStringLiteral("fi"),
+      QStringLiteral("then"), QStringLiteral("grep"), QStringLiteral("awk"),
+      QStringLiteral("exit"), QStringLiteral("|"), QStringLiteral(">"),
+      QStringLiteral("/dev/null"), QStringLiteral("["), QStringLiteral("]"),
+      QStringLiteral("rsync"), QStringLiteral("snapper")
   };
 
   QFile file(filePath);
