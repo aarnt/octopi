@@ -562,7 +562,7 @@ bool OctopiHelper::onlyAllowedCommands(const QString &filePath)
       QStringLiteral("then"), QStringLiteral("grep"), QStringLiteral("awk"),
       QStringLiteral("exit"), QStringLiteral("|"), QStringLiteral(">"),
       QStringLiteral("/dev/null"), QStringLiteral("["), QStringLiteral("]"),
-      QStringLiteral("rsync"), QStringLiteral("snapper")
+      QStringLiteral("rsync"), QStringLiteral("snapper"), QStringLiteral("cp")
   };
 
   QFile file(filePath);
