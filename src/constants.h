@@ -182,7 +182,7 @@ const QString ctn_PACMAN_SYSTEM_DB_FILE = QStringLiteral("/var/lib/pacman/sync/s
 enum PackageStatus { ectn_IGNORED, ectn_INSTALLED, ectn_NON_INSTALLED,
                      ectn_OUTDATED, ectn_NEWER, ectn_FOREIGN, ectn_FOREIGN_OUTDATED };
 
-enum ViewOptions { ectn_ALL_PKGS, ectn_INSTALLED_PKGS, ectn_NON_INSTALLED_PKGS, ectn_OUTDATED_PKGS };
+enum ViewOptions { ectn_ALL_PKGS, ectn_IGNORED_PKGS, ectn_INSTALLED_PKGS, ectn_NON_INSTALLED_PKGS, ectn_OUTDATED_PKGS };
 
 const QString ctn_BASH_SHELL(QStringLiteral("/usr/bin/bash"));
 

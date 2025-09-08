@@ -32,7 +32,7 @@
 
 PackageModel::PackageModel(const PackageRepository& repo, QObject *parent)
 : QAbstractItemModel(parent), m_installedPackagesCount(0), m_showColumnPopularity(false), m_packageRepo(repo),
-  m_sortOrder(Qt::AscendingOrder), m_sortColumn(1), m_filterPackagesInstalled(false),
+    m_sortOrder(Qt::AscendingOrder), m_sortColumn(1), m_filterPackagesIgnored(false), m_filterPackagesInstalled(false),
   m_filterPackagesNotInstalled(false), m_filterPackagesOutdated(false), m_filterPackagesNotInThisGroup(QLatin1String("")),
   m_filterColumn(-1), m_filterRegExp(QLatin1String(""), QRegularExpression::CaseInsensitiveOption),
   m_iconIgnored(IconHelper::getIconIgnored()),
@@ -248,6 +248,8 @@ void PackageModel::endResetRepository()
     if (m_filterPackagesNotInstalled && (*it)->installed()) continue;
     else if (m_filterPackagesInstalled && !(*it)->installed()) continue;
 
+    if (m_filterPackagesIgnored && (*it)->status != ectn_IGNORED) continue;
+
     if (m_filterPackagesOutdated && !(*it)->outdated()) continue;
 
     if (!m_filterPackagesNotInThisRepo.isEmpty() && (*it)->repository != m_filterPackagesNotInThisRepo) continue;
@@ -332,6 +334,7 @@ void PackageModel::applyFilter(ViewOptions pkgViewOptions, const QString& repo, 
 {
   beginResetRepository();
   m_filterPackagesNotInstalled   = (pkgViewOptions == ectn_NON_INSTALLED_PKGS);
+  m_filterPackagesIgnored        = (pkgViewOptions == ectn_IGNORED_PKGS);
   m_filterPackagesInstalled      = (pkgViewOptions == ectn_INSTALLED_PKGS);
   m_filterPackagesOutdated       = (pkgViewOptions == ectn_OUTDATED_PKGS);
   m_filterPackagesNotInThisGroup = group;

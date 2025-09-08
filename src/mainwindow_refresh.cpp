@@ -1729,80 +1729,6 @@ void MainWindow::refreshTabFiles(bool clearContents, bool neverQuit)
     m_progressWidget->setValue(0);
     m_progressWidget->show();
 
-    /*QMap<QString, QStandardItem*> pathToItem;
-    pathToItem[QStringLiteral("/")] = root;
-
-    for (const QString &rawFile : fileList)
-    {
-      if (rawFile.contains(QStringLiteral("->")))
-        continue;
-
-      QString file = rawFile;
-      if (!file.startsWith(QStringLiteral("/")))
-        file.prepend(QStringLiteral("/"));
-
-      bool isDir = file.endsWith(QStringLiteral("/"));
-      bool isSymLinkToDir = false;
-
-      if (!isDir)
-      {
-        QFileInfo fi(file);
-        if (fi.isSymLink())
-        {
-          QFileInfo symTarget(fi.symLinkTarget());
-          isSymLinkToDir = symTarget.isDir();
-        }
-      }
-
-      // Divide o caminho em partes
-      QStringList parts = file.split(QStringLiteral("/"), Qt::SkipEmptyParts);
-      QString currentPath = QStringLiteral("/");
-      QStandardItem *parentItem = root;
-
-      // Caminha até o penúltimo segmento para criar diretórios
-      for (int i = 0; i < parts.size() - 1; ++i)
-      {
-        currentPath += parts[i] + QStringLiteral("/");
-        if (!pathToItem.contains(currentPath))
-        {
-          QStandardItem *dirItem = new QStandardItem(IconHelper::getIconFolder(), parts[i]);
-          dirItem->setAccessibleDescription(QStringLiteral("directory ") + parts[i]);
-          parentItem->appendRow(dirItem);
-          pathToItem[currentPath] = dirItem;
-          parentItem = dirItem;
-        }
-        else
-        {
-          parentItem = pathToItem[currentPath];
-        }
-      }
-
-      QString baseName = parts.isEmpty() ? QStringLiteral("") : parts.last();
-      if (baseName.isEmpty())
-        continue;
-
-      QStandardItem *item;
-      if (isDir || isSymLinkToDir)
-      {
-        currentPath += baseName + QStringLiteral("/");
-        if (pathToItem.contains(currentPath))
-          continue;
-
-        item = new QStandardItem(IconHelper::getIconFolder(), baseName);
-        item->setAccessibleDescription(QStringLiteral("directory ") + baseName);
-        pathToItem[currentPath] = item;
-      }
-      else
-      {
-        item = new QStandardItem(IconHelper::getIconBinary(), baseName);
-        item->setAccessibleDescription(QStringLiteral("file ") + baseName);
-      }
-
-      parentItem->appendRow(item);
-      counter++;
-      m_progressWidget->setValue(counter);
-    }*/
-
     for (const QString& file: fileList)
     {
       bool isDir = file.endsWith(QLatin1Char('/'));
@@ -1925,7 +1851,6 @@ void MainWindow::refreshTabFiles(bool clearContents, bool neverQuit)
     fakeModelPkgFileList->sort(0);
     modelPkgFileList = fakeModelPkgFileList;
 
-    //modelPkgFileList->sort(0);
     tvPkgFileList->setModel(modelPkgFileList);
     tvPkgFileList->header()->setDefaultAlignment( Qt::AlignCenter );
     modelPkgFileList->setHorizontalHeaderLabels( QStringList() << StrConstants::getContentsOf().arg(pkgName));
@@ -2039,12 +1964,21 @@ void MainWindow::lightPackageFilter()
 }
 
 /*
- * Whenever user selects View/All we show him all the available packages
+ * Whenever user selects View/All we show him all the ignored packages
  */
 void MainWindow::selectedAllPackagesMenu()
 {  
   m_selectedViewOption = ectn_ALL_PKGS;
   changePackageListModel(ectn_ALL_PKGS, m_selectedRepository);
+}
+
+/*
+ * Whenever user selects View/Installed we show him only the installed packages
+ */
+void MainWindow::selectedIgnoredPackagesMenu()
+{
+  m_selectedViewOption = ectn_IGNORED_PKGS;
+  changePackageListModel(ectn_IGNORED_PKGS, m_selectedRepository);
 }
 
 /*

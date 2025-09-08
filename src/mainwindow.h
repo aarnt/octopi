@@ -466,6 +466,7 @@ private slots:
 
   //View menu and submenu Repository actions...
   void selectedAllPackagesMenu();
+  void selectedIgnoredPackagesMenu();
   void selectedInstalledPackagesMenu();
   void selectedNonInstalledPackagesMenu();
   void selectedOutdatedPackagesMenu();

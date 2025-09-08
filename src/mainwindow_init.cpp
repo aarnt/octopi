@@ -290,6 +290,7 @@ void MainWindow::initMenuBar()
   ui->actionViewAllPackages->setText(StrConstants::getAll());
 
   actionGroupPackages->addAction(ui->actionViewAllPackages);
+  actionGroupPackages->addAction(ui->actionViewIgnoredPackages);
   actionGroupPackages->addAction(ui->actionViewInstalledPackages);
   actionGroupPackages->addAction(ui->actionViewNonInstalledPackages);
   actionGroupPackages->addAction(ui->actionViewOutdated);
@@ -851,6 +852,7 @@ void MainWindow::initActions()
 
   // Actions for the View menu
   connect(ui->actionViewAllPackages, SIGNAL(triggered()), this, SLOT(selectedAllPackagesMenu()));
+  connect(ui->actionViewIgnoredPackages, SIGNAL(triggered()), this, SLOT(selectedIgnoredPackagesMenu()));
   connect(ui->actionViewInstalledPackages, SIGNAL(triggered()), this, SLOT(selectedInstalledPackagesMenu()));
   connect(ui->actionViewNonInstalledPackages, SIGNAL(triggered()), this, SLOT(selectedNonInstalledPackagesMenu()));
   connect(ui->actionViewOutdated, SIGNAL(triggered()), this, SLOT(selectedOutdatedPackagesMenu()));

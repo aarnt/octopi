@@ -105,6 +105,7 @@ private:
   // Filter / Sort attributes
   Qt::SortOrder m_sortOrder;
   int           m_sortColumn;
+  bool    m_filterPackagesIgnored;
   bool    m_filterPackagesInstalled;
   bool    m_filterPackagesNotInstalled;
   bool    m_filterPackagesOutdated;

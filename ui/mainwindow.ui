@@ -156,6 +156,7 @@
      <string>&amp;View</string>
     </property>
     <addaction name="actionViewAllPackages"/>
+    <addaction name="actionViewIgnoredPackages"/>
     <addaction name="actionViewInstalledPackages"/>
     <addaction name="actionViewNonInstalledPackages"/>
     <addaction name="actionViewOutdated"/>
@@ -656,6 +657,14 @@
    </property>
    <property name="menuRole">
     <enum>QAction::MenuRole::NoRole</enum>
+   </property>
+  </action>
+  <action name="actionViewIgnoredPackages">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Ignored</string>
    </property>
   </action>
  </widget>
