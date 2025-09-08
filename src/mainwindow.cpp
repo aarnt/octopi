@@ -1188,6 +1188,7 @@ void MainWindow::execContextMenuPackages(QPoint point)
     int numberOfAUR = 0;
     int numberOfIgnored = 0;
     int numberOfOutdated = 0;
+    int numberOfIntalled = 0;
 
     for(QModelIndex item: selectedRows)
     {
@@ -1262,6 +1263,7 @@ void MainWindow::execContextMenuPackages(QPoint point)
 
         if (package->installed() || package->outdated())
         {
+          numberOfIntalled++;
           if (package->outdated()) ++numOutdated;
           allInstalled = true;
         }
@@ -1276,14 +1278,13 @@ void MainWindow::execContextMenuPackages(QPoint point)
         menu->addAction(ui->actionAddToIgnored);
         ui->actionInstall->setText(StrConstants::getUpdate());
       }
-      else if (allInstalled)
+      else if (numberOfIntalled==numberOfSelPkgs)
       {
         menu->addAction(ui->actionAddToIgnored);
         ui->actionInstall->setText(StrConstants::getReinstall());
       }
       else
       {
-        menu->addAction(ui->actionAddToIgnored);
         ui->actionInstall->setText(StrConstants::getInstall());
       }
 
