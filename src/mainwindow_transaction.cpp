@@ -2213,6 +2213,7 @@ void MainWindow::toggleTransactionActions(const bool value)
 
   //View menu
   ui->actionViewAllPackages->setEnabled(value);
+  ui->actionViewIgnoredPackages->setEnabled(value);
   ui->actionViewInstalledPackages->setEnabled(value);
   ui->actionViewNonInstalledPackages->setEnabled(value);
   ui->actionViewOutdated->setEnabled(value);
