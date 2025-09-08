@@ -1204,6 +1204,7 @@ QList<PackageListData> *Package::getKcpPackageList(const QString &searchString, 
       //First we get repository and name!
       QStringList parts = packageTuple.split(QLatin1Char(' '));
       parts[0] = parts[0].remove(QStringLiteral("[1;35m"));
+      parts[0] = parts[0].remove(QStringLiteral("[95m"));
 
       QString repoName = parts[0];
       int a = repoName.indexOf(QLatin1String("/"));
@@ -1217,6 +1218,8 @@ QList<PackageListData> *Package::getKcpPackageList(const QString &searchString, 
 
       pkgRepository = StrConstants::getForeignPkgRepositoryName().toUpper();
       pkgName = repoName.mid(a+1);
+      parts[1] = parts[1].remove(QStringLiteral("[92m"));
+      parts[1] = parts[1].remove(QStringLiteral("[94m"));
       pkgVersion = parts[1];
 
       QStringList strVotes = parts.filter(QStringLiteral("("));
