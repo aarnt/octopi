@@ -113,6 +113,7 @@ class SettingsManager
     static bool getEnableInternetChecking();
     static QString getInternetCheckingDomain();
     static bool getPlayBellSoundOnTerminalPasswordInput();
+    static uint getSearchMethod();
 
     static int getConsoleFontSize();
     static QString readSUToolValue();
@@ -217,6 +218,7 @@ class SettingsManager
     static void setTerminalFontPointSize(qreal newValue);
     static void setTerminalForceBashShell(bool newValue);
     static void setPlayBellSoundOnTerminalPasswordInput(bool newValue);
+    static void setSearchMethod(SearchMethod newValue);
 };
 
 #endif // SETTINGSMANAGER_H

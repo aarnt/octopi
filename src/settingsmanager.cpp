@@ -657,6 +657,12 @@ bool SettingsManager::getPlayBellSoundOnTerminalPasswordInput()
   return (p_instance.getSYSsettings()->value(ctn_KEY_PLAY_BELL_SOUND_ON_TERMINAL_PASSWORD_INPUT, false)).toBool();
 }
 
+uint SettingsManager::getSearchMethod()
+{
+  SettingsManager p_instance;
+  return (p_instance.getSYSsettings()->value(ctn_KEY_SEARCH_METHOD, ectn_SEARCH_BY_NAME)).toUInt();
+}
+
 int SettingsManager::getConsoleFontSize()
 {
   SettingsManager p_instance;
@@ -1157,6 +1163,12 @@ void SettingsManager::setTerminalForceBashShell(bool newValue)
 void SettingsManager::setPlayBellSoundOnTerminalPasswordInput(bool newValue)
 {
   instance()->getSYSsettings()->setValue(ctn_KEY_PLAY_BELL_SOUND_ON_TERMINAL_PASSWORD_INPUT, newValue);
+  instance()->getSYSsettings()->sync();
+}
+
+void SettingsManager::setSearchMethod(SearchMethod newValue)
+{
+  instance()->getSYSsettings()->setValue(ctn_KEY_SEARCH_METHOD, newValue);
   instance()->getSYSsettings()->sync();
 }
 

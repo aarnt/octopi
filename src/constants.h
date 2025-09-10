@@ -83,6 +83,8 @@ enum Language { ectn_LANG_ENGLISH, ectn_LANG_USER_DEFINED };
 enum TreatString { ectn_TREAT_STRING, ectn_DONT_TREAT_STRING };
 enum TreatURLLinks { ectn_TREAT_URL_LINK, ectn_DONT_TREAT_URL_LINK };
 
+enum SearchMethod { ectn_SEARCH_BY_NAME, ectn_SEARCH_BY_DESCRIPTION };
+
 //SettingsManager - Octopi related
 enum SaveSettingsReason { ectn_AUR_PACKAGELIST, ectn_PACKAGELIST, ectn_CURRENTTABINDEX, ectn_NORMAL=30,
                           ectn_MAXIMIZE_PACKAGES=40, ectn_MAXIMIZE_PROPERTIES=50, ectn_GROUPS=5, ectn_CONSOLE_FONT_SIZE };
@@ -139,6 +141,7 @@ const QString ctn_KEY_PACKAGE_BUILD_DATE_COLUMN_WITH(QStringLiteral("Package_Bui
 const QString ctn_KEY_PACKAGE_INSTALL_DATE_COLUMN_WITH(QStringLiteral("Package_Install_Date_Column_Width"));
 const QString ctn_KEY_PACKAGE_INSTALL_REASON_COLUMN_WITH(QStringLiteral("Package_Install_Reason_Column_Width"));
 const QString ctn_KEY_PLAY_BELL_SOUND_ON_TERMINAL_PASSWORD_INPUT(QStringLiteral("Play_Bell_Sound_On_Terminal_Password_Input"));
+const QString ctn_KEY_SEARCH_METHOD(QStringLiteral("Search_Method"));
 const QString ctn_KEY_SHOW_PACKAGE_LICENSES_COLUMN(QStringLiteral("Show_Package_Licenses_Column"));
 const QString ctn_KEY_SHOW_PACKAGE_INSTALLED_SIZE_COLUMN(QStringLiteral("Show_Package_Installed_Size_Column"));
 const QString ctn_KEY_SHOW_PACKAGE_BUILD_DATE_COLUMN(QStringLiteral("Show_Package_Build_Date_Column"));

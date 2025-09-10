@@ -131,6 +131,11 @@ MainWindow::MainWindow(QWidget *parent) :
  */
 MainWindow::~MainWindow()
 {
+  if (ui->actionSearchByName->isChecked())
+    SettingsManager::setSearchMethod(SearchMethod::ectn_SEARCH_BY_NAME);
+  else if (ui->actionSearchByDescription->isChecked())
+    SettingsManager::setSearchMethod(SearchMethod::ectn_SEARCH_BY_DESCRIPTION);
+
   savePackageColumnWidths();
   UnixCommand::removeTemporaryFiles();
 

@@ -775,10 +775,22 @@ void MainWindow::initActions()
   actionGroup->addAction(ui->actionSearchByDescription);
   actionGroup->addAction(ui->actionSearchByName);
   actionGroup->addAction(ui->actionSearchByFile);
-  ui->actionSearchByName->setChecked(true);
-  m_actionLastSearchMethod = ui->actionSearchByName;
   actionGroup->setExclusive(true);
-  m_savedSearchMethod = nullptr;
+
+  uint sm = SettingsManager::getSearchMethod();
+  if (sm == 0)
+  {
+    ui->actionSearchByName->setChecked(true);
+    m_actionLastSearchMethod = ui->actionSearchByName;
+  }
+  else if (sm == 1)
+  {
+    ui->actionSearchByDescription->setChecked(true);
+    m_actionLastSearchMethod = ui->actionSearchByDescription;
+  }
+
+  //m_savedSearchMethod = nullptr;
+  m_savedSearchMethod = m_actionLastSearchMethod;
   connect(actionGroup, SIGNAL(triggered(QAction*)), this, SLOT(tvPackagesSearchColumnChanged(QAction*)));
 
   ui->actionInstallLocalPackage->setIcon(IconHelper::getIconFolder());
