@@ -32,222 +32,227 @@
         <translation>檢視(&amp;V)</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="173"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="174"/>
         <source>&amp;File</source>
         <translation>檔案(&amp;F)</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="185"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="186"/>
         <source>&amp;Search</source>
         <translation>搜尋(&amp;S)</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="195"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="196"/>
         <source>T&amp;ools</source>
         <translation>工具(&amp;O)</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="225"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="226"/>
         <source>&amp;About</source>
         <translation>關於(&amp;A)</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="228"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="229"/>
         <source>About</source>
         <translation>關於</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="242"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="243"/>
         <source>Non installed</source>
         <translation>未安裝</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="251"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="252"/>
         <source>Apply</source>
         <translation>套用</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="272"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="273"/>
         <source>Cancel</source>
         <translation>取消</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="284"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="285"/>
         <source>Check &amp;updates</source>
         <translation>檢查更新(&amp;U)</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="292"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="293"/>
         <source>E&amp;xit</source>
         <translation>結束(&amp;X)</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="307"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="308"/>
         <source>System u&amp;pgrade</source>
         <translation>系統升級(&amp;P)</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="325"/>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="328"/>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="536"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="326"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="329"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="537"/>
         <source>Install</source>
         <translation>安裝</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="337"/>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="340"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="338"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="341"/>
         <source>Remove</source>
         <translation>移除</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="345"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="346"/>
         <source>Outdated packages</source>
         <translation>過期的套件</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="354"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="355"/>
         <source>&amp;Get latest distro news</source>
         <translation>取得最新散佈版新聞(&amp;G)</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="366"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="367"/>
         <source>Remove group</source>
         <translation>移除群組</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="375"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="376"/>
         <source>Install group</source>
         <translation>安裝群組</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="384"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="385"/>
         <source>Collapse item</source>
         <translation>摺疊項目</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="393"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="394"/>
         <source>Expand item</source>
         <translation>展開項目</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="402"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="403"/>
         <source>Collapse all items</source>
         <translation>摺疊所有項目</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="411"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="412"/>
         <source>Expand all items</source>
         <translation>展開所有項目</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="420"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="421"/>
         <source>Open file</source>
         <translation>開啟檔案</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="429"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="430"/>
         <source>Edit file</source>
         <translation>編輯檔案</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="438"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="439"/>
         <source>Open directory</source>
         <translation>開啟目錄</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="447"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="448"/>
         <source>Open terminal here</source>
         <translation>在這裡開啟終端機</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="456"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="457"/>
         <source>Remove item</source>
         <translation>移除項目</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="468"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="469"/>
         <source>Remove items</source>
         <translation>移除項目</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="479"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="480"/>
         <source>By &amp;description</source>
         <translation>依描述 (&amp;D)</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="490"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="491"/>
         <source>By &amp;name</source>
         <translation>依名稱 (&amp;N)</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="502"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="503"/>
         <source>Find a file</source>
         <translation>尋找檔案</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="511"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="512"/>
         <source>Open root terminal</source>
         <translation>以 root 身份開啟終端機</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="516"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="517"/>
         <source>Usage</source>
         <translation>使用方法</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="527"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="528"/>
         <source>&amp;Install local package...</source>
         <translation>安裝本機軟體包…… (&amp;I)</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="544"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="545"/>
         <source>Pacman Log Viewer</source>
         <translation>Pacman 日誌檢視器</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="559"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="560"/>
         <source>Repository Editor</source>
         <translation>套件庫編輯器</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="571"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="572"/>
         <source>Cache Cleaner</source>
         <translation>快取清除器</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="582"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="583"/>
         <source>Installed</source>
         <translation>已安裝</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="604"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="605"/>
         <source>By &amp;file</source>
         <translation>依檔案 (&amp;F)</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="615"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="616"/>
         <source>Use Instant Search</source>
         <translation>使用快速搜尋</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="623"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="624"/>
         <source>Donate!</source>
         <translation>捐款！</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="634"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="635"/>
         <source>Outdated</source>
         <translation>過期</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="643"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="644"/>
         <source>Add to Ignored</source>
         <translation>新增至已忽略</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="655"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="656"/>
         <source>Remove from Ignored</source>
         <translation>從已忽略移除</translation>
+    </message>
+    <message>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="667"/>
+        <source>Ignored</source>
+        <translation>已忽略</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="64"/>
@@ -1446,26 +1451,31 @@ You only need to accept and wait a few seconds.</source>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="784"/>
+        <source>You must use &quot;/usr/bin/octopi-repoeditor&quot; to run Octopi Repository Editor</source>
+        <translation>您必須使用「/usr/bin/octopi-repoeditor」執行 Octopi 軟體庫編輯器</translation>
+    </message>
+    <message>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="788"/>
         <source>You can not run Octopi with administrator&apos;s credentials.</source>
         <translation>您不能以超級使用者的權限執行 Octopi  。</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="788"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="792"/>
         <source>Canceling the running transaction may damage your system!</source>
         <translation>取消正在執行的處理項目可能會破壞您的系統！</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="792"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="796"/>
         <source>There are pending actions</source>
         <translation>有擱置中的動作</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="796"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="800"/>
         <source>Do you really want to quit?</source>
         <translation>確定要離開嗎？</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="801"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="805"/>
         <source>You are about to generate &quot;octopi-sysinfo.log&quot; in your home path with the contents of:
 
 &quot;/etc/lsb-release&quot;, &quot;inxi -Fxz&quot;, &quot;uname -a&quot;, &quot;mhwd -li -d,&quot;
@@ -1484,184 +1494,184 @@ Do you want to continue?
 </translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="809"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="813"/>
         <source>Executing command</source>
         <translation>正在執行指令</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="813"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="817"/>
         <source>Run in terminal</source>
         <translation>在終端機中執行</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="817"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="821"/>
         <source>This change needs application restart to take effect</source>
         <translation>此變更需要重新啟動應用程式才能生效</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="821"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="825"/>
         <source>These changes need application restart to take effect!</source>
         <translation>這些更動需要重新啟動程式才能生效！</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="825"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="829"/>
         <source>Select the packages you want to install</source>
         <translation>選擇您想要安裝的套件</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="829"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="833"/>
         <source>This file does not appear to be a simple text.
 Are you sure you want to open it?</source>
         <translation>這個檔案似乎不是一般的文字檔。
 您確定您要開啟它嗎？</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="834"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="838"/>
         <source>To be installed</source>
         <translation>將要安裝</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="838"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="842"/>
         <source>To be removed</source>
         <translation>將要移除</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="842"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="846"/>
         <source>Remove</source>
         <translation>移除</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="846"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="850"/>
         <source>Install</source>
         <translation>安裝</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="851"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="855"/>
         <source>Reinstall</source>
         <translation>重新安裝</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="856"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="860"/>
         <source>Change Install Reason</source>
         <translation>變更安裝理由</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="861"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="865"/>
         <source>Update</source>
         <translation>更新</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="865"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="869"/>
         <source>Remove item</source>
         <translation>移除項目</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="869"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="873"/>
         <source>Remove items</source>
         <translation>移除項目</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="873"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="877"/>
         <source>Press Ctrl+A to select/deselect all</source>
         <translation>按下 Ctrl+A 以選擇/取消選擇全部</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="877"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="881"/>
         <source>Use &quot;%1&quot; tool</source>
         <translation>使用「%1」工具</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="881"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="885"/>
         <source>Copy path to clipboard</source>
         <translation>複製路徑至剪貼簿</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="885"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="889"/>
         <source>Setup</source>
         <translation>設定</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="889"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="893"/>
         <source>Check for package updates interval</source>
         <translation>檢查軟體包更新間隔</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="893"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="897"/>
         <source>Once a day</source>
         <translation>一天一次</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="897"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="901"/>
         <source>Once a day, at</source>
         <translation>一天一次，在</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="901"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="905"/>
         <source>(value in 24-hour format: 0 to 23)</source>
         <translation>（24 小時格式的值：0 到 23）</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="905"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="909"/>
         <source>Once every</source>
         <translation>一次，每</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="909"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="913"/>
         <source>(value in minutes: %1 to %2)</source>
         <translation>（分鐘格式的值：%1 到 %2）</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="913"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="917"/>
         <source>Set interval...</source>
         <translation>設定間隔...</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="918"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="922"/>
         <source>Stop</source>
         <translation>停止</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="923"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="927"/>
         <source>%1 could not be found in the system!</source>
         <translation>在系統中找不到 %1！</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="928"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="932"/>
         <source>Zoom in</source>
         <translation>放大</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="933"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="937"/>
         <source>Zoom out</source>
         <translation>縮小</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="938"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="942"/>
         <source>Maximize</source>
         <translation>最大化</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="943"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="947"/>
         <source>Copy</source>
         <translation>複製</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="948"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="952"/>
         <source>Paste</source>
         <translation>貼上</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="953"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="957"/>
         <source>Never</source>
         <translation>從不</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="958"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="962"/>
         <source>Upgrading...</source>
         <translation>正在升級……</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="963"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="967"/>
         <source>Exit</source>
         <translation>離開</translation>
     </message>

@@ -32,222 +32,227 @@
         <translation>&amp;Beeld</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="173"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="174"/>
         <source>&amp;File</source>
         <translation>&amp;Bestand</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="185"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="186"/>
         <source>&amp;Search</source>
         <translation>&amp;Zoeken</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="195"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="196"/>
         <source>T&amp;ools</source>
         <translation>Hu&amp;lpmiddelen</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="225"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="226"/>
         <source>&amp;About</source>
         <translation>&amp;Over</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="228"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="229"/>
         <source>About</source>
         <translation>Over</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="242"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="243"/>
         <source>Non installed</source>
         <translation>Geen geïnstalleerd</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="251"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="252"/>
         <source>Apply</source>
         <translation>Toepassen</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="272"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="273"/>
         <source>Cancel</source>
         <translation>Cancel</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="284"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="285"/>
         <source>Check &amp;updates</source>
         <translation>Controleren op &amp;updates</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="292"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="293"/>
         <source>E&amp;xit</source>
         <translation>A&amp;fsluiten</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="307"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="308"/>
         <source>System u&amp;pgrade</source>
         <translation>Systeemu&amp;pgrade</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="325"/>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="328"/>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="536"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="326"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="329"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="537"/>
         <source>Install</source>
         <translation>Installeren</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="337"/>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="340"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="338"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="341"/>
         <source>Remove</source>
         <translation>Verwijderen</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="345"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="346"/>
         <source>Outdated packages</source>
         <translation>Verouderde pakketten</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="354"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="355"/>
         <source>&amp;Get latest distro news</source>
         <translation>&amp;Laatste distributienieuws ophalen</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="366"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="367"/>
         <source>Remove group</source>
         <translation>Verwijder groep</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="375"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="376"/>
         <source>Install group</source>
         <translation>Installeer groep</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="384"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="385"/>
         <source>Collapse item</source>
         <translation>Object invouwen</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="393"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="394"/>
         <source>Expand item</source>
         <translation>Object uitklappen</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="402"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="403"/>
         <source>Collapse all items</source>
         <translation>Alle objecten invouwen</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="411"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="412"/>
         <source>Expand all items</source>
         <translation>Alle objecten uitklappen</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="420"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="421"/>
         <source>Open file</source>
         <translation>Bestand openen</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="429"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="430"/>
         <source>Edit file</source>
         <translation>Bestand bewerken</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="438"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="439"/>
         <source>Open directory</source>
         <translation>Directory openen</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="447"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="448"/>
         <source>Open terminal here</source>
         <translation>Terminal hier openen</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="456"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="457"/>
         <source>Remove item</source>
         <translation>Verwijder object</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="468"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="469"/>
         <source>Remove items</source>
         <translation>Verwijder objecten</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="479"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="480"/>
         <source>By &amp;description</source>
         <translation>Op &amp;omschrijving</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="490"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="491"/>
         <source>By &amp;name</source>
         <translation>Op &amp;naam</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="502"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="503"/>
         <source>Find a file</source>
         <translation>Zoek een bestand</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="511"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="512"/>
         <source>Open root terminal</source>
         <translation>Open root terminal</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="516"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="517"/>
         <source>Usage</source>
         <translation>Gebruik</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="527"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="528"/>
         <source>&amp;Install local package...</source>
         <translation>Lokaal pakket &amp;installeren...</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="544"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="545"/>
         <source>Pacman Log Viewer</source>
         <translation>Pacman Log Viewer</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="559"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="560"/>
         <source>Repository Editor</source>
         <translation>Repository Bewerker</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="571"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="572"/>
         <source>Cache Cleaner</source>
         <translation>Cache opschonen</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="582"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="583"/>
         <source>Installed</source>
         <translation>Geïnstalleerd</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="604"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="605"/>
         <source>By &amp;file</source>
         <translation>Op &amp;bestand</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="615"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="616"/>
         <source>Use Instant Search</source>
         <translation>Gebruik Direct Zoeken</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="623"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="624"/>
         <source>Donate!</source>
         <translation>Doneren!</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="634"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="635"/>
         <source>Outdated</source>
         <translation>Verouderd</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="643"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="644"/>
         <source>Add to Ignored</source>
         <translation>Toevoegen aan negeerlijst</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="655"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="656"/>
         <source>Remove from Ignored</source>
         <translation>Verwijderen van negeerlijst</translation>
+    </message>
+    <message>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="667"/>
+        <source>Ignored</source>
+        <translation>Genegeerd</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="64"/>
@@ -1446,26 +1451,31 @@ Je hoeft alleen te accepteren en enkele seconden te wachten.</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="784"/>
+        <source>You must use &quot;/usr/bin/octopi-repoeditor&quot; to run Octopi Repository Editor</source>
+        <translation>Gebruik ‘/usr/bin/octopi-repoeditor’ om de Octopi-pakketbronbewerker te starten</translation>
+    </message>
+    <message>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="788"/>
         <source>You can not run Octopi with administrator&apos;s credentials.</source>
         <translation>U kunt Octopi niet uitvoeren met de verificatiegegevens van de beheerder.</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="788"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="792"/>
         <source>Canceling the running transaction may damage your system!</source>
         <translation>Annuleren van de lopende transactie kan uw systeem beschadigen!</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="792"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="796"/>
         <source>There are pending actions</source>
         <translation>Er zijn nog lopende acties</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="796"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="800"/>
         <source>Do you really want to quit?</source>
         <translation>Wilt u echt stoppen?</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="801"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="805"/>
         <source>You are about to generate &quot;octopi-sysinfo.log&quot; in your home path with the contents of:
 
 &quot;/etc/lsb-release&quot;, &quot;inxi -Fxz&quot;, &quot;uname -a&quot;, &quot;mhwd -li -d,&quot;
@@ -1484,184 +1494,184 @@ Wil je doorgaan?
 </translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="809"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="813"/>
         <source>Executing command</source>
         <translation>Uitvoeren van opdracht</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="813"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="817"/>
         <source>Run in terminal</source>
         <translation>Uitvoeren in terminal</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="817"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="821"/>
         <source>This change needs application restart to take effect</source>
         <translation>Herstart het programma om de wijzigingen toe te passen</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="821"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="825"/>
         <source>These changes need application restart to take effect!</source>
         <translation>Deze veranderingen worden pas doorgevoerd als u de toepassing herstart!</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="825"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="829"/>
         <source>Select the packages you want to install</source>
         <translation>Selecteer de pakketten die u wilt installeren</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="829"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="833"/>
         <source>This file does not appear to be a simple text.
 Are you sure you want to open it?</source>
         <translation>Dit bestand lijkt niet een ​​eenvoudige tekst te zijn.
 Weet u zeker dat u het wilt openen?</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="834"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="838"/>
         <source>To be installed</source>
         <translation>Wordt geïnstalleerd</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="838"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="842"/>
         <source>To be removed</source>
         <translation>Wordt verwijderd</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="842"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="846"/>
         <source>Remove</source>
         <translation>Verwijderen</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="846"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="850"/>
         <source>Install</source>
         <translation>Installeren</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="851"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="855"/>
         <source>Reinstall</source>
         <translation>Opnieuw installeren</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="856"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="860"/>
         <source>Change Install Reason</source>
         <translation>Installatiereden wijzigen</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="861"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="865"/>
         <source>Update</source>
         <translation>Updaten</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="865"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="869"/>
         <source>Remove item</source>
         <translation>Verwijder object</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="869"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="873"/>
         <source>Remove items</source>
         <translation>Verwijder objecten</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="873"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="877"/>
         <source>Press Ctrl+A to select/deselect all</source>
         <translation>Druk Ctrl+A om alles te selecteren of deselecteren</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="877"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="881"/>
         <source>Use &quot;%1&quot; tool</source>
         <translation>Gebruik &quot;%1&quot; tool</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="881"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="885"/>
         <source>Copy path to clipboard</source>
         <translation>Kopiëer pad naar klembord</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="885"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="889"/>
         <source>Setup</source>
         <translation>Setup</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="889"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="893"/>
         <source>Check for package updates interval</source>
         <translation>Controleer voor pakketupdates interval</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="893"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="897"/>
         <source>Once a day</source>
         <translation>Dagelijks</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="897"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="901"/>
         <source>Once a day, at</source>
         <translation>Dagelijks om</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="901"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="905"/>
         <source>(value in 24-hour format: 0 to 23)</source>
         <translation>(waarde in 24-uur formaat: 0 tot 23)</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="905"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="909"/>
         <source>Once every</source>
         <translation>Om de</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="909"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="913"/>
         <source>(value in minutes: %1 to %2)</source>
         <translation>(waarde in minuten: %1 tot %2)</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="913"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="917"/>
         <source>Set interval...</source>
         <translation>Stel interval in...</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="918"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="922"/>
         <source>Stop</source>
         <translation>Stoppen</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="923"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="927"/>
         <source>%1 could not be found in the system!</source>
         <translation>%1 is niet aangetroffen op het bestandssysteem!</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="928"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="932"/>
         <source>Zoom in</source>
         <translation>Inzoomen</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="933"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="937"/>
         <source>Zoom out</source>
         <translation>Uitzoomen</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="938"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="942"/>
         <source>Maximize</source>
         <translation>Maximaliseren</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="943"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="947"/>
         <source>Copy</source>
         <translation>Kopiëren</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="948"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="952"/>
         <source>Paste</source>
         <translation>Plakken</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="953"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="957"/>
         <source>Never</source>
         <translation>Nooit</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="958"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="962"/>
         <source>Upgrading...</source>
         <translation>Bezig met upgraden...</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="963"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="967"/>
         <source>Exit</source>
         <translation>Afsluiten</translation>
     </message>
