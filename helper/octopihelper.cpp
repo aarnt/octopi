@@ -307,6 +307,7 @@ int OctopiHelper::executePkgTransactionWithSharedMem()
       (line == QLatin1String("echo -e")) ||
       (line == QLatin1String("echo \"PAKtC\"")) ||
       (line == QLatin1String("read -n 1 -p \"PAKtC\"")) ||
+      (line == QLatin1String("garuda-update")) ||
       (line == QLatin1String("pkgfile -u")) ||
       (line == QLatin1String("paccache -r -k 0")) ||
       (line == QLatin1String("paccache -r -k 1")) ||
@@ -327,7 +328,7 @@ int OctopiHelper::executePkgTransactionWithSharedMem()
       {
         testCommandFromOctopi=true;
       }
-      else if (line.startsWith(QLatin1String("pacman -Syu")))
+      else if (line.startsWith(QLatin1String("pacman -Syu")) || line == QLatin1String("garuda-update"))
       {
         testCommandFromOctopi=true;
         testCommandFromNotifier=true;
@@ -354,6 +355,7 @@ int OctopiHelper::executePkgTransactionWithSharedMem()
   contents = contents.replace(QLatin1String("killall pacman"), QLatin1String("/usr/bin/killall pacman"));
   contents = contents.replace(QLatin1String("rm ") + ctn_PACMAN_DATABASE_LOCK_FILE, QLatin1String("/usr/bin/rm ") + ctn_PACMAN_DATABASE_LOCK_FILE);
   contents = contents.replace(QLatin1String("pkgfile -u"), QLatin1String("/usr/bin/pkgfile -u"));
+  contents = contents.replace(QLatin1String("garuda-update"), QLatin1String("/usr/bin/garuda-update"));
   contents = contents.replace(QLatin1String("paccache -r"), QLatin1String("/usr/bin/paccache -r"));
   contents = contents.replace(QLatin1String("pacman -Fy"), QLatin1String("/usr/bin/pacman -Fy"));
   contents = contents.replace(QLatin1String("pacman -Syu"), QLatin1String("/usr/bin/pacman -Syu"));

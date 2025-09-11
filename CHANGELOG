@@ -9,6 +9,7 @@
   BugFix: Use system theme folder icon in Files tab.
   BugFix: Package list refresh was not running after a group install/removal.
   Search option selected by the user is saved on close.
+  Added support for garuda-update command when running in Garuda Linux.
   Added support for a user specified backup shell script that needs to be placed at 
     "/usr/lib/octopi/pre-system-upgrade.sh" and executes before the system upgrades.
   Added support for pacman.conf's IgnorePkg option through "Add to Ignored" and 

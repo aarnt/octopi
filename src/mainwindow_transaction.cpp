@@ -1025,7 +1025,9 @@ void MainWindow::doSystemUpgrade(SystemUpgradeOptions systemUpgradeOptions)
 
   if(!isInternetAvailable()) return;
 
-  if(SettingsManager::getAlwaysUseTheTerminal() || !SettingsManager::getEnableConfirmationDialogInSysUpgrade())
+  bool isGarudaLinux = UnixCommand::getLinuxDistro() == ectn_GARUDALINUX;
+
+  if(isGarudaLinux || SettingsManager::getAlwaysUseTheTerminal() || !SettingsManager::getEnableConfirmationDialogInSysUpgrade())
   {
     int res = prepareSystemUpgrade();
     if (!res)
@@ -1035,7 +1037,7 @@ void MainWindow::doSystemUpgrade(SystemUpgradeOptions systemUpgradeOptions)
       return;
     }
 
-    if( SettingsManager::getAlwaysUseTheTerminal() || (m_checkupdatesStringList->count() != 0 && m_checkupdatesStringList->contains(QStringLiteral("pacman"))) ||
+    if(isGarudaLinux || SettingsManager::getAlwaysUseTheTerminal() || (m_checkupdatesStringList->count() != 0 && m_checkupdatesStringList->contains(QStringLiteral("pacman"))) ||
         (m_outdatedStringList->count() != 0 && m_outdatedStringList->contains(QStringLiteral("pacman"))) )
     {
       m_commandExecuting = ectn_RUN_SYSTEM_UPGRADE_IN_TERMINAL;

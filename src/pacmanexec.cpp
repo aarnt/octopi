@@ -1326,10 +1326,19 @@ void PacmanExec::doSystemUpgradeInTerminal(CommandExecuting additionalCommand)
     m_lastCommandList.append(QLatin1String("rm ") + ctn_PACMAN_DATABASE_LOCK_FILE);
   }
 
-  if (additionalCommand == ectn_NONE)
-    m_lastCommandList.append(QStringLiteral("pacman -Syu"));
-  else if (additionalCommand == ectn_SYNC_DATABASE)
-    m_lastCommandList.append(QStringLiteral("pacman -Syu"));
+  bool isGarudaLinux = UnixCommand::getLinuxDistro() == ectn_GARUDALINUX;
+  // If it is Garuda, we call garuda-update, instead of ordinary pacman -Syu
+  if (isGarudaLinux)
+  {
+    m_lastCommandList.append(QStringLiteral("garuda-update"));
+  }
+  else
+  {
+    if (additionalCommand == ectn_NONE)
+      m_lastCommandList.append(QStringLiteral("pacman -Syu"));
+    else if (additionalCommand == ectn_SYNC_DATABASE)
+      m_lastCommandList.append(QStringLiteral("pacman -Syu"));
+  }
 
   m_lastCommandList.append(QStringLiteral("echo -e"));
   m_lastCommandList.append(QLatin1String("read -n 1 -p \"") + StrConstants::getPressAnyKey() + QLatin1Char('"'));

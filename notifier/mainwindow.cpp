@@ -516,9 +516,11 @@ void MainWindow::doSystemUpgrade()
 
   if (isOctopiBusy()) return;
 
-  if(SettingsManager::getAlwaysUseTheTerminal() || !SettingsManager::getEnableConfirmationDialogInSysUpgrade())
+  bool isGarudaLinux = UnixCommand::getLinuxDistro() == ectn_GARUDALINUX;
+
+  if(isGarudaLinux || SettingsManager::getAlwaysUseTheTerminal() || !SettingsManager::getEnableConfirmationDialogInSysUpgrade())
   {
-    if( SettingsManager::getAlwaysUseTheTerminal() || (m_checkUpdatesStringList.count() != 0 && m_checkUpdatesStringList.contains(QStringLiteral("pacman"))) ||
+    if(isGarudaLinux || SettingsManager::getAlwaysUseTheTerminal() || (m_checkUpdatesStringList.count() != 0 && m_checkUpdatesStringList.contains(QStringLiteral("pacman"))) ||
         (m_outdatedStringList->count() != 0 && m_outdatedStringList->contains(QStringLiteral("pacman"))) )
     {
       m_systemUpgradeDialog = false;
