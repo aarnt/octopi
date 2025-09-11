@@ -685,10 +685,6 @@ QString SettingsManager::getSUTool()
 
 bool SettingsManager::getShowGroupsPanel()
 {
-  /*if (!instance()->getSYSsettings()->contains(ctn_KEY_SHOW_GROUPS_PANEL)){
-    instance()->getSYSsettings()->setValue(ctn_KEY_SHOW_GROUPS_PANEL, false);
-  }*/
-
   return (instance()->getSYSsettings()->value(ctn_KEY_SHOW_GROUPS_PANEL, false)).toBool();
 }
 
