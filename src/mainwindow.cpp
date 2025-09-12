@@ -131,10 +131,20 @@ MainWindow::MainWindow(QWidget *parent) :
  */
 MainWindow::~MainWindow()
 {
-  if (ui->actionSearchByName->isChecked())
-    SettingsManager::setSearchMethod(SearchMethod::ectn_SEARCH_BY_NAME);
-  else if (ui->actionSearchByDescription->isChecked())
-    SettingsManager::setSearchMethod(SearchMethod::ectn_SEARCH_BY_DESCRIPTION);
+  if (isAURGroupSelected())
+  {
+    if (m_savedSearchMethod->objectName() == QStringLiteral("actionSearchByName"))
+      SettingsManager::setSearchMethod(SearchMethod::ectn_SEARCH_BY_NAME);
+    else if (m_savedSearchMethod->objectName() == QStringLiteral("actionSearchByDescription"))
+      SettingsManager::setSearchMethod(SearchMethod::ectn_SEARCH_BY_DESCRIPTION);
+  }
+  else
+  {
+    if (ui->actionSearchByName->isChecked())
+      SettingsManager::setSearchMethod(SearchMethod::ectn_SEARCH_BY_NAME);
+    else if (ui->actionSearchByDescription->isChecked())
+      SettingsManager::setSearchMethod(SearchMethod::ectn_SEARCH_BY_DESCRIPTION);
+  }
 
   savePackageColumnWidths();
   UnixCommand::removeTemporaryFiles();
