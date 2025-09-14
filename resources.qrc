@@ -104,7 +104,7 @@
         <file>resources/images/menu.png</file>
         <file>resources/images/terminal2.png</file>
         <file>resources/images/keys.png</file>
-        <file>resources/images/group2.png</file>
+        <file>resources/images/group.png</file>
         <file>resources/images/ignored.png</file>
     </qresource>
 </RCC>
