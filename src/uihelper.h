@@ -146,7 +146,7 @@ public:
   static QIcon getIconMenu(){ return QIcon(QStringLiteral(":/resources/images/menu.png")); }
   static QIcon getIconWindowClose(){ return QIcon(QStringLiteral(":/resources/images/window_close.png")); }
   static QIcon getIconKeys(){ return QIcon(QStringLiteral(":/resources/images/keys.png")); }
-  static QIcon getIconGroup(){ return QIcon(QStringLiteral(":/resources/images/group2.png")); }
+  static QIcon getIconGroup(){ return QIcon(QStringLiteral(":/resources/images/group.png")); }
   static QIcon getIconIgnored(){ return QIcon(QStringLiteral(":/resources/images/ignored.png")); }
 
   static QIcon getIconBinary(){
