@@ -8,6 +8,7 @@
   BugFix: Make Actions tab visible when a package is selected for insertion/removal.
   BugFix: Use system theme folder icon in Files tab.
   BugFix: Package list refresh was not running after a group install/removal.
+  BugFix: ILoveCandy option was not working 100% in parser.
   Search option selected by the user is saved on close.
   Added support for garuda-update command when running in Garuda Linux.
   Added support for a user specified backup shell script that needs to be placed at 
