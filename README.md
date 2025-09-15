@@ -2,6 +2,7 @@
 
 ![Main window](https://raw.githubusercontent.com/aarnt/octopi/master/octopi-mainwindow.png)
 ![Options dialog](https://raw.githubusercontent.com/aarnt/octopi/master/octopi-optionsdialog.png)
+![Main window with qss](https://raw.githubusercontent.com/aarnt/octopi/master/octopi-mainwindow-with-qss.png)
 
 The project site is hosted on https://tintaescura.com/projects/octopi
 
