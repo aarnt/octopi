@@ -577,6 +577,8 @@ void PacmanExec::prepareTextToPrint(QString str, TreatString ts, TreatURLLinks t
     return;
   }
 
+  if (str.size() <= 3) return;
+
   //If the string waiting to be printed is from curl status OR any other unwanted string...
   if (!str.contains(QRegularExpression(QStringLiteral("<font color"))))
     if ((str.contains(QRegularExpression(QStringLiteral("\\(\\d"))) &&
