@@ -2171,6 +2171,8 @@ void MainWindow::toggleTransactionActions(const bool value)
   }
 
   m_actionPackageInfo->setEnabled(value);
+  ui->actionAddToIgnored->setEnabled(value);
+  ui->actionRemoveFromIgnored->setEnabled(value);
   ui->actionFindFileInPackage->setEnabled(value);
   ui->actionInstall->setEnabled(value);
   ui->actionInstallGroup->setEnabled(value);
