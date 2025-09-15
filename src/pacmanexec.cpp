@@ -592,6 +592,8 @@ void PacmanExec::prepareTextToPrint(QString str, TreatString ts, TreatURLLinks t
       return;
     }
 
+  if (str.indexOf(QLatin1String("o o")) != -1) return;
+
   if (str.indexOf(QLatin1String("%")) != -1) str.remove(QLatin1String("%"));
 
   //If the str waiting to being print has not yet been printed...
