@@ -506,6 +506,8 @@ int OctopiHelper::executePkgTransactionWithSharedMem()
   QFile *ftemp = generateTemporaryFile();
   QTextStream out(ftemp);
 
+  out << QLatin1String("unalias -a\n");
+
   // If we are going to upgrade the system, let's check if we find /usr/lib/octopi/pre-system-upgrade.sh file
   if (systemUpgradeCommand)
   {
@@ -526,9 +528,9 @@ int OctopiHelper::executePkgTransactionWithSharedMem()
       out << QLatin1String("export http_proxy=") + proxySettings + QLatin1Char('\n');
     else if (proxySettings.contains(QLatin1String("https://")))
       out << QLatin1String("export https_proxy=") + proxySettings + QLatin1Char('\n');
-  }
+  }    
 
-  out << QLatin1String("unalias -a\n") << contents;
+  out << contents;
 
   log(QLatin1String("Exec as root: ") + contents.trimmed());
 
