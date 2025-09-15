@@ -1190,7 +1190,7 @@ void OptionsDialog::onAURConnect()
     if (v.isPkgVoted(QStringLiteral("octopi-dev"))==0) octopiDevVoted=true;
     if (v.isPkgVoted(QStringLiteral("octopi"))==0) octopiVoted=true;
     if (v.isPkgVoted(QStringLiteral("alpm_octopi_utils"))==0) alpmUtilsVoted=true;
-    if (v.isPkgVoted(QStringLiteral("qt-sudo"))==0) alpmUtilsVoted=true;
+    if (v.isPkgVoted(QStringLiteral("qt-sudo"))==0) qtsudoVoted=true;
 
     if (octopiDevVoted && octopiVoted && alpmUtilsVoted)
     {

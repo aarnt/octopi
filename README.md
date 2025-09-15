@@ -1,6 +1,7 @@
 ## This is Octopi, a powerful Pacman/AUR front end using Qt libs.
 
 ![Main window](https://raw.githubusercontent.com/aarnt/octopi/master/octopi-mainwindow.png)
+![Options dialog](https://raw.githubusercontent.com/aarnt/octopi/master/octopi-optionsdialog.png)
 
 The project site is hosted on https://tintaescura.com/projects/octopi
 
