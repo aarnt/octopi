@@ -198,6 +198,7 @@ void PacmanExec::parsePacmanProcessOutput(const QString &output)
   }
 
   bool continueTesting = false;
+  int a;
   QString perc;
   QString msg = output;
   QString progressRun;
@@ -312,7 +313,9 @@ void PacmanExec::parsePacmanProcessOutput(const QString &output)
   if (msg.indexOf(progressRun) != -1 || continueTesting)
   {
     if (!continueTesting){
-      perc = msg.right(4).trimmed();
+      //perc = msg.right(4).trimmed();
+      a = msg.lastIndexOf(QLatin1String("%"));
+      perc = msg.mid(a-3, 3).trimmed() + QLatin1String("%");
       if (m_debugMode) std::cout << "percentage is: " << perc.toLatin1().data() << std::endl;
     }
 
