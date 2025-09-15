@@ -757,6 +757,7 @@ void MainWindow::toggleEnableInterface(bool state)
   m_actionOptions->setEnabled(state);
   m_actionSystemUpgrade->setEnabled(state);
   m_actionAURUpgrade->setEnabled(state);
+  m_actionAbout->setEnabled(state);
   m_actionExit->setEnabled(state);
 }
 
