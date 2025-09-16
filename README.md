@@ -6,7 +6,7 @@
 
 The project site is hosted on https://tintaescura.com/projects/octopi
 
-Currently, 12 Linux distros are compatible with it
+Currently, 11 Linux distros are compatible with it
 
  * [ArchBang](http://archbang.org/)
  * [Archcraft](https://archcraft.io/)
@@ -19,7 +19,6 @@ Currently, 12 Linux distros are compatible with it
  * [KaOS](https://kaosx.us/)
  * [Manjaro](https://manjaro.org/)
  * [Obarun Linux](https://web.obarun.org/index.php?id=1)
- * [Parabola GNU/Linux-libre](https://www.parabola.nu/)
 
 ### What you must install in order to have Octopi fully functional
 
@@ -127,7 +126,7 @@ You'll need to install [pacaur](https://github.com/rmarquis/pacaur), [paru](http
 [pikaur](https://github.com/actionless/pikaur), [trizen](https://github.com/trizen/trizen) or
 [yay](https://github.com/Jguer/yay) in your system.
 If neither of the previous tools are found Octopi will download latest "yay-bin" github binary.
-In KaOS, [kcp](https://github.com/bvaudour/kcp) will be supported out of the box.
+In KaOS, [kcp](https://codeberg.org/bvaudour/kcp) will be supported out of the box.
 
 ### Ways to help/support Octopi
 
