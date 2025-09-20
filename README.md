@@ -75,12 +75,14 @@ $ make
 # make install
 ```
 
-You can also use the available PKGBUILD script that helps you build Octopi with all its tools:
+You can also use the available PKGBUILD script that helps you build latest Octopi development version with all its tools(*):
 
 ```
 $ cd OCTOPI_PATH (where you git cloned the source code)
 $ makepkg -f
 ```
+
+(*) It may contain bugs. You have been warned.
 
 ### Steps to build Octopi source code (CMake)
 

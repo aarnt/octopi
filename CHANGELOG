@@ -1,4 +1,4 @@
-0.18.0 (dev)
+0.18.0 (2025-09-20)
   BugFix: The act of moving the mouse over the package list was triggering many
     "pacman -Si" executions (thanks to RAZUMNO).
   BugFix: Notifier did not fetch updates for the first time when using "once a day".
