@@ -471,6 +471,10 @@ QString Package::removeColorCodesFromStr(const QString &str)
   ret = ret.remove(QStringLiteral("[0m"));
   ret = ret.remove(QStringLiteral("[1m"));
   ret = ret.remove(QStringLiteral("\u001B"));
+  ret = ret.remove(QStringLiteral("[92m"));
+  ret = ret.remove(QStringLiteral("[94m"));
+  ret = ret.remove(QStringLiteral("[95m"));
+  ret = ret.remove(QStringLiteral("[96m"));
 
   return ret;
 }
