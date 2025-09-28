@@ -582,6 +582,7 @@ void PacmanExec::prepareTextToPrint(QString str, TreatString ts, TreatURLLinks t
 
   //If the string waiting to be printed is from curl status OR any other unwanted string...
   if (!str.contains(QRegularExpression(QStringLiteral("<font color"))))
+  {
     if ((str.contains(QRegularExpression(QStringLiteral("\\(\\d"))) &&
          (!str.contains(QLatin1String("target"), Qt::CaseInsensitive)) &&
          (!str.contains(QLatin1String("package"), Qt::CaseInsensitive))) ||
@@ -596,8 +597,12 @@ void PacmanExec::prepareTextToPrint(QString str, TreatString ts, TreatURLLinks t
     {
       return;
     }
-
-  if (str.indexOf(QLatin1String("o o")) != -1) return;
+  }
+  else if (str.indexOf(QLatin1String("o o")) != -1) return;
+  else if ((str.indexOf(QLatin1String("upgrading")) != -1 ||
+           str.indexOf(QLatin1String("installing")) != -1 ||
+           str.indexOf(QLatin1String("reinstalling")) != -1)
+           && str.indexOf(QLatin1String("[")) != -1) return;
 
   if (str.indexOf(QLatin1String("%")) != -1) str.remove(QLatin1String("%"));
 
