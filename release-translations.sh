@@ -2,7 +2,7 @@
 # Helper for Qt5 libs to generate all Octopi translations
 
 # First we get all translations from Transifex
-tx pull
+tx pull -a
 
 # Then we release each of them
 TRANSLATIONS="./resources/translations/*"
@@ -14,7 +14,7 @@ done
 
 # Repeat for Cachecleaner
 cd cachecleaner || exit
-tx pull
+tx pull -a
 
 # And release each of them
 for f in $TRANSLATIONS
@@ -24,7 +24,7 @@ done
 
 # Repeat for Repoeditor
 cd ../repoeditor || exit
-tx pull
+tx pull -a
 
 # And release each of them
 for f in $TRANSLATIONS
