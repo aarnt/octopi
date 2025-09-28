@@ -161,6 +161,11 @@ int main(int argc, char *argv[])
   setenv("COLORTERM", "truecolor", 1);
   setenv("TERM", "xterm-256color", 1);
 
+  if (SettingsManager::getTerminalForceBashShell() && QFile::exists(ctn_BASH_SHELL))
+  {
+    setenv("SHELL", ctn_BASH_SHELL.toLatin1().data(), 1);
+  }
+
   QString buildDir=SettingsManager::getAURBuildDir();
   if (!buildDir.isEmpty())
   {

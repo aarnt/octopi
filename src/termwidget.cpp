@@ -29,6 +29,7 @@
 #include <QAbstractButton>
 #include <QRegularExpression>
 #include <QSoundEffect>
+
 //#include <QDebug>
 
 /*
@@ -38,11 +39,6 @@
 TermWidget::TermWidget(QWidget *parent):
   QTermWidget(parent)
 {
-  if (SettingsManager::getTerminalForceBashShell() && QFile::exists(ctn_BASH_SHELL))
-  {
-    setShellProgram(ctn_BASH_SHELL);
-  }
-
   setHistorySize(6000);
   setScrollBarPosition(QTermWidget::ScrollBarRight);
   setContextMenuPolicy(Qt::CustomContextMenu);

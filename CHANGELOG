@@ -1,6 +1,7 @@
 0.18.1 (dev)
   BugFix: French translation was not working properly (thanks to roxfr).
   BugFix: Yay searches with version 12.5.2 crashed Octopi (thanks to nije-to-sve).
+  BugFix: Force use of BASH shell was not working (thanks to UnsaltedScholar).
   Updated translations.
 
 0.18.0 (2025-09-20)
