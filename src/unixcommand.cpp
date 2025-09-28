@@ -322,6 +322,19 @@ QByteArray UnixCommand::getAURPackageList(const QString &searchString)
   aur.waitForFinished(-1);
   result = aur.readAll();
 
+  if (Package::getForeignRepositoryToolName() == ctn_YAY_TOOL)
+  {
+    QString input = QString::fromUtf8(result);
+    QRegularExpression regex(QStringLiteral("\\\033(.*?)\\\033\\\\"));
+    QRegularExpressionMatch match = regex.match(input);
+
+    if (match.hasMatch())
+    {
+      input = input.replace(regex, QStringLiteral(""));
+      return input.toLatin1();
+    }
+  }
+
   if (UnixCommand::getLinuxDistro() == ectn_KAOS)
   {
     QString res = QString::fromUtf8(result);

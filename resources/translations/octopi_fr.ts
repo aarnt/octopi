@@ -242,17 +242,17 @@
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="644"/>
         <source>Add to Ignored</source>
-        <translation type="unfinished"/>
+        <translation>Ajouter aux ignorés</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="656"/>
         <source>Remove from Ignored</source>
-        <translation type="unfinished"/>
+        <translation>Retirer des ignorés</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/mainwindow.ui" line="667"/>
         <source>Ignored</source>
-        <translation type="unfinished"/>
+        <translation>Ignoré</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="64"/>
@@ -287,7 +287,7 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="91"/>
         <source>An ignored package</source>
-        <translation type="unfinished"/>
+        <translation>Un paquet ignoré</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="93"/>
@@ -505,7 +505,7 @@
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="116"/>
         <source>Always use the terminal to install/upgrade/remove packages</source>
-        <translation type="unfinished"/>
+        <translation>Toujours utiliser le terminal pour installer/mettre à jour/supprimer des paquets</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="129"/>
@@ -550,7 +550,7 @@
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="277"/>
         <source>Enable package tooltips</source>
-        <translation type="unfinished"/>
+        <translation>Activer les infobulles des paquets</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="311"/>
@@ -647,12 +647,12 @@ Toute utilisation des fichiers fournis est à vos propres risques.</translation>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="1479"/>
         <source>Play a bell sound when prompting for the root password in the terminal</source>
-        <translation>Jouer un son de cloche lors de la demande du mot de passe root dans la console</translation>
+        <translation>Jouer un son de cloche lors de la demande du mot de passe root dans le terminal</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="1492"/>
         <source>Force use of BASH shell</source>
-        <translation type="unfinished"/>
+        <translation>Forcer l&apos;utilisation du shell BASH</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/optionsdialog.cpp" line="102"/>
@@ -699,7 +699,7 @@ Toute utilisation des fichiers fournis est à vos propres risques.</translation>
     <message>
         <location filename="Projects/octopi/src/optionsdialog.cpp" line="202"/>
         <source>Terminal</source>
-        <translation>Console</translation>
+        <translation>Terminal</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/optionsdialog.cpp" line="215"/>
@@ -1452,7 +1452,7 @@ Il vous suffit d&apos;accepter et d&apos;attendre quelques secondes.</translatio
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="784"/>
         <source>You must use &quot;/usr/bin/octopi-repoeditor&quot; to run Octopi Repository Editor</source>
-        <translation type="unfinished"/>
+        <translation>Vous devez utiliser &quot;/usr/bin/octopi-repoeditor&quot; pour lancer l&apos;éditeur de dépôts Octopi</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="788"/>

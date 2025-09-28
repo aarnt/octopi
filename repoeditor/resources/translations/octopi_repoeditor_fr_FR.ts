@@ -9,7 +9,7 @@
     <message>
         <location filename="Projects/octopi/repoeditor/addrepo.ui" line="22"/>
         <source>Repository:</source>
-        <translation>Dépôt:</translation>
+        <translation>Dépôt :</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/addrepo.ui" line="32"/>
@@ -19,7 +19,7 @@
     <message>
         <location filename="Projects/octopi/repoeditor/addrepo.ui" line="39"/>
         <source>Location:</source>
-        <translation>Emplacement:</translation>
+        <translation>Emplacement :</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/addrepo.cpp" line="86"/>
@@ -44,7 +44,7 @@
     <message>
         <location filename="Projects/octopi/repoeditor/addrepo.cpp" line="115"/>
         <source>Path to mirrors list file</source>
-        <translation>Chemin vers le fichier liste de mirroirs </translation>
+        <translation>Chemin vers le fichier liste de miroirs</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/addrepo.cpp" line="124"/>
@@ -72,7 +72,7 @@
     <message>
         <location filename="Projects/octopi/repoeditor/main.cpp" line="54"/>
         <source>You can not run Repository Editor with administrator&apos;s credentials.</source>
-        <translation type="unfinished"/>
+        <translation>Vous ne pouvez pas exécuter l&apos;éditeur de dépôt en tant qu&apos;administrateur.</translation>
     </message>
 </context>
 <context>
@@ -90,7 +90,7 @@
     <message>
         <location filename="Projects/octopi/repoeditor/repoconf.cpp" line="209"/>
         <source>Do you want to overwrite it?</source>
-        <translation>Voulez-vous l&apos;écraser ?</translation>
+        <translation>Voulez-vous l&apos;écraser?</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/repoconf.cpp" line="282"/>
@@ -163,25 +163,25 @@
     <message>
         <location filename="Projects/octopi/repoeditor/repoeditor.ui" line="206"/>
         <source>Backup file:</source>
-        <translation>Fichier de sauvegarde:</translation>
+        <translation>Fichier de sauvegarde :</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/repoeditor.cpp" line="103"/>
         <location filename="Projects/octopi/repoeditor/repoeditor.cpp" line="125"/>
         <source>Confirmation</source>
-        <translation type="unfinished"/>
+        <translation>Confirmation</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/repoeditor.cpp" line="104"/>
         <location filename="Projects/octopi/repoeditor/repoeditor.cpp" line="126"/>
         <source>There are unsaved changes.</source>
-        <translation type="unfinished"/>
+        <translation>Il y a des modifications non enregistrées.</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/repoeditor.cpp" line="105"/>
         <location filename="Projects/octopi/repoeditor/repoeditor.cpp" line="127"/>
         <source>Do you want to save them?</source>
-        <translation type="unfinished"/>
+        <translation>Voulez-vous les enregistrer ?</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/repoeditor.cpp" line="160"/>
