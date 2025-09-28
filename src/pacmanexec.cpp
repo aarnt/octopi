@@ -456,6 +456,7 @@ void PacmanExec::parsePacmanProcessOutput(const QString &output)
     msg.remove(QRegularExpression(QStringLiteral("qt.qpa.plugin:.+")));
     msg.remove(QRegularExpression(QStringLiteral("qt.qpa.xcb:.+")));
     msg.remove(QRegularExpression(QStringLiteral("qt.qpa.wayland.+")));
+    msg.remove(QRegularExpression(QStringLiteral("qt.xkb.compose:.+")));
     msg.remove(QRegularExpression(QStringLiteral("\\[sudo\\] password for.+")));
     msg.remove(QRegularExpression(QStringLiteral("Icon theme \".+")));
     msg.remove(QRegularExpression(QStringLiteral("Gtk-Message:.+")));
