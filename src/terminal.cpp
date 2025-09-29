@@ -82,7 +82,15 @@ void Terminal::runOctopiHelperInTerminalWithSharedMem(const QStringList &command
   QString cmd = getSudoProgram() + QLatin1String(" ") + commandToRun;
   QByteArray sharedData=out.toLatin1();
 
-  sharedMem->create(sharedData.size());
+  bool created = sharedMem->create(sharedData.size());
+  if (!created)
+  {
+    sharedData.detach();
+    UnixCommand::removeSharedMemFiles();
+    sharedMem = new QSharedMemory(QStringLiteral("org.arnt.octopi"), this);
+    sharedMem->create(sharedData.size());
+  }
+
   sharedMem->lock();
   memcpy(sharedMem->data(), sharedData.data(), sharedData.size());
   sharedMem->unlock();

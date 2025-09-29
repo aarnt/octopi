@@ -386,7 +386,7 @@ void MainWindow::doChangeInstallReason(const QHash<QString, QString> &listOfTarg
   disableTransactionActions();
   clearTabOutput();
 
-  m_pacmanExec = new PacmanExec();
+  m_pacmanExec = new PacmanExec(this);
   m_pacmanExec->setSharedMemory(m_sharedMemory);
   if (m_debugInfo) m_pacmanExec->setDebugMode(true);
 
@@ -856,7 +856,7 @@ void MainWindow::doCheckUpdates()
   clearTabOutput();
   ensureTabVisible(ctn_TABINDEX_OUTPUT);
 
-  m_pacmanExec = new PacmanExec();
+  m_pacmanExec = new PacmanExec(this);
   if (m_debugInfo) m_pacmanExec->setDebugMode(true);
 
   QObject::connect(m_pacmanExec, SIGNAL( finished (int, QProcess::ExitStatus)),
@@ -882,7 +882,7 @@ void MainWindow::doMirrorCheck()
   m_progressWidget->setMaximum(100);
   clearTabOutput();
 
-  m_pacmanExec = new PacmanExec();
+  m_pacmanExec = new PacmanExec(this);
   if (m_debugInfo) m_pacmanExec->setDebugMode(true);
 
   QObject::connect(m_pacmanExec, SIGNAL( finished (int, QProcess::ExitStatus)),
@@ -916,7 +916,7 @@ void MainWindow::doAURUpgrade()
   m_progressWidget->setMaximum(100);
   clearTabOutput();
 
-  m_pacmanExec = new PacmanExec();
+  m_pacmanExec = new PacmanExec(this);
   m_pacmanExec->setSharedMemory(m_sharedMemory);
   if (m_debugInfo) m_pacmanExec->setDebugMode(true);
 
@@ -953,7 +953,7 @@ void MainWindow::doUpdateAURPackage()
   m_progressWidget->setMaximum(100);
   clearTabOutput();
 
-  m_pacmanExec = new PacmanExec();
+  m_pacmanExec = new PacmanExec(this);
   m_pacmanExec->setSharedMemory(m_sharedMemory);
   if (m_debugInfo) m_pacmanExec->setDebugMode(true);
 
@@ -982,7 +982,7 @@ bool MainWindow::prepareSystemUpgrade()
   m_progressWidget->setMaximum(100);
   clearTabOutput();
 
-  m_pacmanExec = new PacmanExec();
+  m_pacmanExec = new PacmanExec(this);
   m_pacmanExec->setSharedMemory(m_sharedMemory);
   if (m_debugInfo) m_pacmanExec->setDebugMode(true);
 
@@ -1211,7 +1211,7 @@ void MainWindow::doRemoveAndInstallAUR()
   m_progressWidget->setMaximum(100);
   clearTabOutput();
 
-  m_pacmanExec = new PacmanExec();
+  m_pacmanExec = new PacmanExec(this);
   m_pacmanExec->setSharedMemory(m_sharedMemory);
   if (m_debugInfo) m_pacmanExec->setDebugMode(true);
 
@@ -1283,7 +1283,7 @@ void MainWindow::doRemoveAndInstall()
 
     disableTransactionActions();
 
-    m_pacmanExec = new PacmanExec();
+    m_pacmanExec = new PacmanExec(this);
     m_pacmanExec->setSharedMemory(m_sharedMemory);
     if (m_debugInfo) m_pacmanExec->setDebugMode(true);
 
@@ -1378,7 +1378,7 @@ void MainWindow::doRemoveAndInstall()
       m_progressWidget->setMaximum(100);
       clearTabOutput();
 
-      m_pacmanExec = new PacmanExec();
+      m_pacmanExec = new PacmanExec(this);
       m_pacmanExec->setSharedMemory(m_sharedMemory);
       if (m_debugInfo) m_pacmanExec->setDebugMode(true);
 
@@ -1414,7 +1414,7 @@ void MainWindow::doRefreshPacmanKeys()
   m_progressWidget->setMaximum(100);
   clearTabOutput();
 
-  m_pacmanExec = new PacmanExec();
+  m_pacmanExec = new PacmanExec(this);
   m_pacmanExec->setSharedMemory(m_sharedMemory);
   if (m_debugInfo) m_pacmanExec->setDebugMode(true);
 
@@ -1456,7 +1456,7 @@ void MainWindow::doRemove()
 
     disableTransactionActions();
 
-    m_pacmanExec = new PacmanExec();
+    m_pacmanExec = new PacmanExec(this);
     m_pacmanExec->setSharedMemory(m_sharedMemory);
     if (m_debugInfo) m_pacmanExec->setDebugMode(true);
 
@@ -1507,7 +1507,7 @@ void MainWindow::doRemove()
       m_progressWidget->setMaximum(100);
       clearTabOutput();
 
-      m_pacmanExec = new PacmanExec();
+      m_pacmanExec = new PacmanExec(this);
       m_pacmanExec->setSharedMemory(m_sharedMemory);
       if (m_debugInfo) m_pacmanExec->setDebugMode(true);
 
@@ -1577,7 +1577,7 @@ void MainWindow::doInstallAURPackage()
   m_progressWidget->setMaximum(100);
   clearTabOutput();
 
-  m_pacmanExec = new PacmanExec();
+  m_pacmanExec = new PacmanExec(this);
   m_pacmanExec->setSharedMemory(m_sharedMemory);
   if (m_debugInfo) m_pacmanExec->setDebugMode(true);
 
@@ -1629,7 +1629,7 @@ void MainWindow::doInstallYayPackage()
   }
 
   writeToTabOutput(StrConstants::getTempYayDownloaded() + QLatin1String("<br>"));
-  m_pacmanExec = new PacmanExec();
+  m_pacmanExec = new PacmanExec(this);
   if (m_debugInfo) m_pacmanExec->setDebugMode(true);
 
   QObject::connect(m_pacmanExec, SIGNAL(finished(int, QProcess::ExitStatus)),
@@ -1657,7 +1657,7 @@ void MainWindow::doRemoveAUR()
   m_progressWidget->setMaximum(100);
   clearTabOutput();
 
-  m_pacmanExec = new PacmanExec();
+  m_pacmanExec = new PacmanExec(this);
   m_pacmanExec->setSharedMemory(m_sharedMemory);
   if (m_debugInfo) m_pacmanExec->setDebugMode(true);
 
@@ -1698,7 +1698,7 @@ void MainWindow::doRemoveAURPackage()
   m_progressWidget->setMaximum(100);
   clearTabOutput();
 
-  m_pacmanExec = new PacmanExec();
+  m_pacmanExec = new PacmanExec(this);
   m_pacmanExec->setSharedMemory(m_sharedMemory);
   if (m_debugInfo) m_pacmanExec->setDebugMode(true);
 
@@ -1880,7 +1880,7 @@ void MainWindow::doInstallAUR()
   m_progressWidget->setMaximum(100);
   clearTabOutput();
 
-  m_pacmanExec = new PacmanExec();
+  m_pacmanExec = new PacmanExec(this);
   m_pacmanExec->setSharedMemory(m_sharedMemory);
   if (m_debugInfo) m_pacmanExec->setDebugMode(true);
 
@@ -1936,7 +1936,7 @@ void MainWindow::doInstall()
                          QLatin1String("</b><br>"), ectn_DONT_TREAT_URL_LINK);
     disableTransactionActions();
 
-    m_pacmanExec = new PacmanExec();
+    m_pacmanExec = new PacmanExec(this);
     m_pacmanExec->setSharedMemory(m_sharedMemory);
     if (m_debugInfo) m_pacmanExec->setDebugMode(true);
 
@@ -2004,7 +2004,7 @@ void MainWindow::doInstall()
       m_progressWidget->setMaximum(100);
       clearTabOutput();
 
-      m_pacmanExec = new PacmanExec();
+      m_pacmanExec = new PacmanExec(this);
       m_pacmanExec->setSharedMemory(m_sharedMemory);
       if (m_debugInfo) m_pacmanExec->setDebugMode(true);
 
@@ -2079,7 +2079,7 @@ void MainWindow::doInstallLocalPackages()
     m_progressWidget->setMaximum(100);
     clearTabOutput();
 
-    m_pacmanExec = new PacmanExec();
+    m_pacmanExec = new PacmanExec(this);
     if (m_debugInfo) m_pacmanExec->setDebugMode(true);
 
     QObject::connect(m_pacmanExec, SIGNAL(finished(int, QProcess::ExitStatus)),

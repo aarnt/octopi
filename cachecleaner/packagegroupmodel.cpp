@@ -70,7 +70,7 @@ PackageGroupModel::PackageGroupModel(QString optionsString,
  */
 PackageGroupModel::~PackageGroupModel()
 {
-  UnixCommand::removeSharedMemFiles();
+  //UnixCommand::removeSharedMemFiles();
   delete m_acc;
   delete m_cmd;
 }

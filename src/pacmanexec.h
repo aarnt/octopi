@@ -52,6 +52,7 @@ private:
   QStringList m_listOfDotPacnewFiles; //contains the list of "blahblah installed as blahblah.pacnew" occurencies (if any)
 
   bool m_processWasCanceled;
+  bool m_retrievingPackages;
 
   QSharedMemory *m_sharedMemory;
 

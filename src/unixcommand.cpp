@@ -735,6 +735,7 @@ void UnixCommand::removeSharedMemFiles()
 {
   QDir tempDir(QDir::tempPath());
   QStringList nameFilters;
+
   nameFilters << QStringLiteral("qipc_sharedmemory_orgarntoctopi*")
               << QStringLiteral("qipc_systemsem_orgarntoctopi*");
 
@@ -862,10 +863,6 @@ QByteArray UnixCommand::execCommandAsNormalUserExt(const QString &pCommand)
 void UnixCommand::execCommand(const QString &pCommand)
 {
   QProcess p;
-  /*QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
-  env.insert(QStringLiteral("LANG"), QStringLiteral("C.UTF-8"));
-  env.insert(QStringLiteral("LC_MESSAGES"), QStringLiteral("C.UTF-8"));
-  p.setProcessEnvironment(env);*/
   QStringList sl;
   sl << getShell();
   sl << QLatin1String("-c");
@@ -1018,10 +1015,6 @@ void UnixCommand::executeCommand(const QString &pCommand)
 {
   //COLUMNS variable code!
   QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
-  /*env.remove(QStringLiteral("LANG"));
-  env.remove(QStringLiteral("LC_MESSAGES"));
-  env.insert(QStringLiteral("LANG"), QStringLiteral("C.UTF-8"));
-  env.insert(QStringLiteral("LC_MESSAGES"), QStringLiteral("C.UTF-8"));*/
   env.remove(QStringLiteral("COLUMNS"));
   env.insert(QStringLiteral("COLUMNS"), QStringLiteral("132"));
   m_process->setProcessEnvironment(env);
@@ -1044,15 +1037,19 @@ void UnixCommand::executeCommandWithSharedMemHelper(const QString &pCommand, QSh
 
   //COLUMNS variable code!
   QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
-  /*env.remove(QStringLiteral("LANG"));
-  env.remove(QStringLiteral("LC_MESSAGES"));
-  env.insert(QStringLiteral("LANG"), QStringLiteral("C.UTF-8"));
-  env.insert(QStringLiteral("LC_MESSAGES"), QStringLiteral("C.UTF-8"));*/
   env.remove(QStringLiteral("COLUMNS"));
   env.insert(QStringLiteral("COLUMNS"), QStringLiteral("132"));
   m_process->setProcessEnvironment(env);
 
+  /*if (!sharedMem->attach(QSharedMemory::ReadWrite))
+  {
+    qDebug() << "\nDetaching and creating new SharedMem...\n";
+    sharedMem->detach();
+    UnixCommand::removeSharedMemFiles();
+  }*/
+
   buildOctopiHelperCommandWithSharedMem(pCommand, sharedMem);
+
   QStringList sl;
   sl << ctn_OCTOPISUDO_PARAMS;
   sl << ctn_OCTOPI_HELPER_PATH << QStringLiteral("-ts");
@@ -1134,9 +1131,26 @@ void UnixCommand::buildOctopiHelperCommandWithSharedMem(const QString &pCommand,
   }
 
   sharedData=commands.toLatin1();
-  sharedMem->create(sharedData.size());
+
+  //qDebug() << "Trying sharedMem->create...";
+  bool created = sharedMem->create(sharedData.size());
+  if (!created)
+  {
+    //qDebug() << "SharedMem error: " << sharedMem->errorString();
+    sharedData.detach();
+    UnixCommand::removeSharedMemFiles();
+    sharedMem = new QSharedMemory(QStringLiteral("org.arnt.octopi"), this);
+    sharedMem->create(sharedData.size());
+  }
+
+  //qDebug() << "Trying sharedMem->lock...";
   sharedMem->lock();
+
+  //qDebug() << "Trying memcpy into sharedMem...";
   memcpy(sharedMem->data(), sharedData.data(), sharedData.size());
+  //qDebug() << "Text with " << sharedData.size() << " bytes and SharedMem with " << sizeof(sharedMem->data());
+
+  //qDebug() << "Trying sharedMem->unlock...";
   sharedMem->unlock();
 }
 

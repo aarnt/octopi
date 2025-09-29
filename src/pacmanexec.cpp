@@ -39,6 +39,7 @@ PacmanExec::PacmanExec(QObject *parent) : QObject(parent)
   m_iLoveCandy = UnixCommand::isILoveCandyEnabled();
   m_debugMode = false;
   m_processWasCanceled = false;
+  m_retrievingPackages = false;
   m_parsingAPackageChange = false;
   m_numberOfPackages = 0;
   m_packageCounter = 0;
@@ -252,6 +253,11 @@ void PacmanExec::parsePacmanProcessOutput(const QString &output)
     msg = QLatin1String("<br>") + msg;
   }
 
+  if (msg.indexOf(QLatin1String(":: Retrieving packages...")) != -1)
+  {
+    m_retrievingPackages = true;
+  }
+
   if (SettingsManager::getShowPackageNumbersOutput())
   {
     QRegularExpression re(QStringLiteral("Packages? \\(\\d+\\)"));
@@ -362,12 +368,12 @@ void PacmanExec::parsePacmanProcessOutput(const QString &output)
 
             if(!target.isEmpty())
             {
-              prepareTextToPrint(QLatin1String("<b><font color=\"#b4ab58\">") + target + QLatin1String("</font></b>")); //#C9BE62
+              prepareTextToPrint(QLatin1String("<b><font color=\"#b4ab58\">") + target + QLatin1String("</font></b>"));
             }
           }
           else
           {
-            prepareTextToPrint(QLatin1String("<b><font color=\"#b4ab58\">") + msg + QLatin1String("</font></b>")); //#C9BE62
+            prepareTextToPrint(QLatin1String("<b><font color=\"#b4ab58\">") + msg + QLatin1String("</font></b>"));
           }
         }
       }
@@ -403,11 +409,6 @@ void PacmanExec::parsePacmanProcessOutput(const QString &output)
                   prepareTextToPrint(QLatin1String("<b><font color=\"#FF8040\">") +
                                       StrConstants::getSyncing() + QLatin1Char(' ') + target + QLatin1String("</font></b>"));
                 }
-                /*else if (m_commandExecuting != ectn_SYNC_DATABASE)
-                {
-                  prepareTextToPrint(QLatin1String("<b><font color=\"#b4ab58\">") +
-                                      target + QLatin1String("</font></b>")); //#C9BE62
-                }*/
               }
             }
           }
@@ -536,10 +537,11 @@ void PacmanExec::parsePacmanProcessOutput(const QString &output)
           }
           else if (m_commandExecuting == ectn_INSTALL || m_commandExecuting == ectn_REMOVE || m_commandExecuting == ectn_SYSTEM_UPGRADE)
           {
-            if (!altMsg.contains(QRegularExpression(QStringLiteral("\\s"))) && !altMsg.contains(QStringLiteral("--")) && altMsg.contains(QStringLiteral("-")))
+            if (!altMsg.contains(QRegularExpression(QStringLiteral("\\s"))) && !altMsg.contains(QStringLiteral("--"))
+                && altMsg.contains(QStringLiteral("-")) && m_retrievingPackages)
             {
               prepareTextToPrint(QLatin1String("<b><font color=\"#b4ab58\">") +
-                                altMsg + QLatin1String("</font></b>")); //#C9BE62
+                                altMsg + QLatin1String("</font></b>"));
             }
             else if (altMsg != QStringLiteral("E"))
             {
@@ -953,6 +955,8 @@ void PacmanExec::onReadOutputError()
  */
 void PacmanExec::onFinished(int exitCode, QProcess::ExitStatus es)
 {
+  m_retrievingPackages = false;
+
   if (m_commandExecuting == ectn_REMOVE_KCP_PKG)
   {
     if (UnixCommand::getLinuxDistro() == ectn_KAOS &&
