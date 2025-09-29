@@ -188,6 +188,7 @@ enum PackageStatus { ectn_IGNORED, ectn_INSTALLED, ectn_NON_INSTALLED,
 enum ViewOptions { ectn_ALL_PKGS, ectn_IGNORED_PKGS, ectn_INSTALLED_PKGS, ectn_NON_INSTALLED_PKGS, ectn_OUTDATED_PKGS };
 
 const QString ctn_BASH_SHELL(QStringLiteral("/usr/bin/bash"));
+const QString ctn_BASH_SHELL2(QStringLiteral("/bin/bash"));
 
 //Supported AUR user base package tools
 const QString ctn_PACAUR_TOOL(QStringLiteral("pacaur"));

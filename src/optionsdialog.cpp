@@ -504,7 +504,7 @@ void OptionsDialog::initTerminalTab()
     cbFontFamily->addItem(family);
   }
 
-  if (QFile::exists(ctn_BASH_SHELL))
+  if (QFile::exists(ctn_BASH_SHELL) || QFile::exists(ctn_BASH_SHELL2))
   {
     cbForceBashShell->setChecked(SettingsManager::getTerminalForceBashShell());
   }
