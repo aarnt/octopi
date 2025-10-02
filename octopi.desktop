@@ -69,6 +69,7 @@ Comment[zh_TW]=加入或移除系統上安裝的軟體
 Exec=/usr/bin/octopi
 Name[en_US]=Octopi
 Name=Octopi
+Name=Octopi(软件管理)
 Icon=octopi
 MimeType=
 GenericName[en_US]=Add/Remove Software
