@@ -1055,7 +1055,7 @@ void MainWindow::doSystemUpgrade(SystemUpgradeOptions systemUpgradeOptions)
   {
     clearTabOutput();
     writeToTabOutput(QLatin1String("<b>") + StrConstants::getCollectingTransactionData() +
-                         QLatin1String("</b><br>"), ectn_DONT_TREAT_URL_LINK);
+                         QLatin1String("</b><br><br>"), ectn_DONT_TREAT_URL_LINK);
     qApp->processEvents();
 
     //Shows a dialog indicating the targets needed to be retrieved and asks for the user's permission.
@@ -1235,7 +1235,7 @@ void MainWindow::doRemoveAndInstall()
 {
   clearTabOutput();
   writeToTabOutput(QLatin1String("<b>") + StrConstants::getCollectingTransactionData() +
-                       QLatin1String("</b><br>"), ectn_DONT_TREAT_URL_LINK);
+                       QLatin1String("</b><br><br>"), ectn_DONT_TREAT_URL_LINK);
   qApp->processEvents();
 
   QString listOfRemoveTargets = getTobeRemovedPackages();
@@ -1436,7 +1436,7 @@ void MainWindow::doRemove()
 {
   clearTabOutput();
   writeToTabOutput(QLatin1String("<b>") + StrConstants::getCollectingTransactionData() +
-                       QLatin1String("</b><br>"), ectn_DONT_TREAT_URL_LINK);
+                       QLatin1String("</b><br><br>"), ectn_DONT_TREAT_URL_LINK);
   qApp->processEvents();
 
   QString listOfTargets = getTobeRemovedPackages();
@@ -1907,7 +1907,7 @@ void MainWindow::doInstall()
 
   clearTabOutput();
   writeToTabOutput(QLatin1String("<b>") + StrConstants::getCollectingTransactionData() +
-                         QLatin1String("</b><br>"), ectn_DONT_TREAT_URL_LINK);
+                         QLatin1String("</b><br><br>"), ectn_DONT_TREAT_URL_LINK);
   qApp->processEvents();
 
   QHash<QString, bool> listToBeInst = getTobeInstalledPackages();

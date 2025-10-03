@@ -670,7 +670,7 @@ void MainWindow::outputOutdatedPackageList()
           StrConstants::getOutdatedPackages(m_outdatedStringList->count()) + QLatin1String("</h3>");
     }
 
-    html += QLatin1String("<br><table border=\"0\">");
+    html += QLatin1String("<br><table cellpadding=\"5\" border=\"0\">");
     html += QLatin1String("<tr><th width=\"25%\" align=\"left\">") + StrConstants::getName() +
         QLatin1String("</th><th width=\"18%\" align=\"right\">") +
         StrConstants::getOutdatedVersion() +
@@ -720,7 +720,7 @@ void MainWindow::outputOutdatedPackageList()
           StrConstants::getOutdatedPackages(m_outdatedStringList->count()) + QLatin1String("</h3>");
     }
 
-    html += QLatin1String("<br><table border=\"0\">");
+    html += QLatin1String("<br><table cellpadding=\"5\" border=\"0\">");
     html += QLatin1String("<tr><th width=\"25%\" align=\"left\">") + StrConstants::getName() +
         QLatin1String("</th><th width=\"18%\" align=\"right\">") +
         StrConstants::getOutdatedVersion() +
@@ -816,7 +816,7 @@ void MainWindow::outputOutdatedAURPackageList()
         StrConstants::getOutdatedPackages(m_outdatedAURStringList->count()) + QLatin1String("</h3>");
   }
 
-  html += QLatin1String("<br><table border=\"0\">");
+  html += QLatin1String("<br><table cellpadding=\"5\" border=\"0\">");
   html += QLatin1String("<tr><th width=\"25%\" align=\"left\">") + StrConstants::getName() +
       QLatin1String("</th><th width=\"18%\" align=\"right\">") +
       StrConstants::getOutdatedVersion() +
@@ -2055,7 +2055,15 @@ void MainWindow::maxDemaxPropertiesTabWidget(bool pSaveSettings)
   if ( rl[0] != 0 ) //Maximize here
   {
     ui->splitterHorizontal->setSizes( l << 0 << ui->twProperties->maximumHeight());
-    ui->twProperties->currentWidget()->childAt(1,1)->setFocus();
+
+    if (ui->twProperties->currentIndex() == ctn_TABINDEX_INFORMATION)
+    {
+      QTextBrowser *tb = ui->twProperties->currentWidget()->findChild<QTextBrowser*>(QStringLiteral("textBrowser"));
+      if (tb) tb->setFocus();
+    }
+    else
+      ui->twProperties->currentWidget()->childAt(1,1)->setFocus();
+
     ui->twProperties->tabBar()->hide();
 
     if(pSaveSettings)

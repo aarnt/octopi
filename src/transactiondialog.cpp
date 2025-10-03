@@ -72,7 +72,9 @@ void TransactionDialog::setInformativeText(const QString &text)
 
 void TransactionDialog::setDetailedText(const QString &detailedtext)
 {
-  ui->detailedText->setText(detailedtext);
+  QString t = detailedtext;
+  t.replace(QLatin1String("\n"), QLatin1String("<br>"));
+  ui->detailedText->setText(QStringLiteral("<p style=\"line-height: 1.5;\">") + t + QStringLiteral("</p>"));
 
   //We must search for a 'pacman-version-number' pkg to force terminal upgrade use
   if (detailedtext.contains(QRegularExpression(QStringLiteral("pacman-[0-9]+"))))

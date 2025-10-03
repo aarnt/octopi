@@ -36,7 +36,7 @@ MultiSelectionDialog::MultiSelectionDialog(QWidget *parent) :
 {
   m_actionIsToCheck = true;
   QStringList hhl;
-  hhl << StrConstants::getName() << StrConstants::getDescription();
+  hhl << StrConstants::getName() << StrConstants::getDescription() << StrConstants::getRepository();
 
   ui->setupUi(this);
   ui->twDepPackages->setColumnCount(3);

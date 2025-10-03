@@ -60,16 +60,16 @@ QString MainWindow::generateHelpUsageHtmlText()
 
   if(m_hasForeignTool && UnixCommand::getLinuxDistro() != ectn_CHAKRA)
   {
-    strOutdatedAur=QLatin1String("<li>") +
-        tr("Ctrl+Shift+O to display outdated %1 packages").arg(StrConstants::getForeignRepositoryName()) + QLatin1String("</li>");
+    strOutdatedAur=QLatin1String("<li><p>") +
+        tr("Ctrl+Shift+O to display outdated %1 packages").arg(StrConstants::getForeignRepositoryName()) + QLatin1String("</p></li>");
   }
   else strOutdatedAur=QStringLiteral("<li></li>");
 
   QString strVote;
   if(m_aurVote != nullptr)
   {
-    strVote=QLatin1String("<li>") +
-       tr("Ctrl+Shift+A to display AUR voted package list") + QLatin1String("</li>");
+    strVote=QLatin1String("<li><p>") +
+       tr("Ctrl+Shift+A to display AUR voted package list") + QLatin1String("</p></li>");
   }
   else strVote=QStringLiteral("<li></li>");
 
@@ -82,106 +82,107 @@ QString MainWindow::generateHelpUsageHtmlText()
 
     html +=
       QStringLiteral("<a href=\"http://www.gnu.org/licenses/gpl-2.0.html\">GPL v2</a>.</p></h3>") +
-      QStringLiteral("<h4><p>") + strForMoreInfo + QLatin1Char(' ') +
+      QStringLiteral("<p>") + strForMoreInfo + QLatin1Char(' ') +
       QStringLiteral("<a href=\"https://tintaescura.com/projects/octopi/\">https://tintaescura.com/projects/octopi</a><br>");
-    html += QStringLiteral("<br>") +
+    html += QStringLiteral("<br><br>") +
       tr("Package classification:") +
 
-  QStringLiteral("<ul type=\"square\"><li>") + iconPath + QLatin1String("ignored.png\"/> ") +
-     tr("An ignored package") + QStringLiteral("</li>") +
-  QStringLiteral("<li>") + iconPath + QLatin1String("installed.png\"/> ") +
-     tr("An installed package") + QStringLiteral("</li>") +
-  QStringLiteral("<li>") + iconPath + QLatin1String("unrequired.png\"/> ") +
+  QStringLiteral("<ul type=\"square\"><li><p>") + iconPath + QLatin1String("ignored.png\"/> ") +
+     tr("An ignored package") + QStringLiteral("</p></li>") +
+  QStringLiteral("<li><p>") + iconPath + QLatin1String("installed.png\"/> ") +
+     tr("An installed package") + QStringLiteral("</p></li>") +
+  QStringLiteral("<li><p>") + iconPath + QLatin1String("unrequired.png\"/> ") +
      tr("An installed package (not required by others)") +
-  QStringLiteral("</li>") +
-  QLatin1String("<li>") + iconPath + QLatin1String("foreign_green.png\"/> ") +
+  QStringLiteral("</p></li>") +
+  QLatin1String("<li><p>") + iconPath + QLatin1String("foreign_green.png\"/> ") +
      tr("A foreign package, installed from") + QLatin1Char(' ') + StrConstants::getForeignRepositoryName() +
-  QStringLiteral("</li>") +
-  QStringLiteral("<li>") + iconPath + QLatin1String("noninstalled.png\"/> ") +
+  QStringLiteral("</p></li>") +
+  QStringLiteral("<li><p>") + iconPath + QLatin1String("noninstalled.png\"/> ") +
      tr("A non installed package") +
-  QStringLiteral("</li>") +
-  QStringLiteral("<li>") + iconPath + QLatin1String("outdated.png\"/> ") +
+  QStringLiteral("</p></li>") +
+  QStringLiteral("<li><p>") + iconPath + QLatin1String("outdated.png\"/> ") +
      tr("An outdated package") +
-  QStringLiteral("</li>") +
-  QStringLiteral("<li>") + iconPath + QLatin1String("foreign_red.png\"/> ") +
+  QStringLiteral("</p></li>") +
+  QStringLiteral("<li><p>") + iconPath + QLatin1String("foreign_red.png\"/> ") +
      tr("An outdated foreign package") +
-  QStringLiteral("</li>") +
-  QStringLiteral("<li>") + iconPath + QLatin1String("newer.png\"/> ") +
+  QStringLiteral("</p></li>") +
+  QStringLiteral("<li><p>") + iconPath + QLatin1String("newer.png\"/> ") +
            tr("A newer version of this package is installed") +
-  QStringLiteral("</li></ul>") +
+  QStringLiteral("</p></li></ul><br>") +
+
      tr("Basic usage help:") +
-  QStringLiteral("<ul><li>") +
+  QStringLiteral("<ul><li><p>") +
      tr("Position the mouse over a package to see its description") +
-  QStringLiteral("</li><li>") +
+  QStringLiteral("</p></li><li><p>") +
      tr("Double click an installed package to see its contents") +
-  QStringLiteral("</li><li>") +
+  QStringLiteral("</p></li><li><p>") +
      tr("Right click package to install/reinstall or remove it") +
-  QStringLiteral("</li></ul>") +
+  QStringLiteral("</p></li></ul><br>") +
 
      tr("Alt+key sequences:") +
-  QStringLiteral("<ul><li>") +
+  QStringLiteral("<ul><li><p>") +
      tr("Alt+1 to switch to 'Info' tab") +
-  QStringLiteral("</li><li>") +
+  QStringLiteral("</p></li><li><p>") +
      tr("Alt+2 to switch to 'Files' tab") +
-  QStringLiteral("</li><li>") +
+  QStringLiteral("</p></li><li><p>") +
      tr("Alt+3 to switch to 'Actions' tab") +
-  QStringLiteral("</li><li>") +
+  QStringLiteral("</p></li><li><p>") +
      tr("Alt+4 to switch to 'Output' tab") +
-  QStringLiteral("</li><li>") +
+  QStringLiteral("</p></li><li><p>") +
      tr("Alt+5 to switch to 'News' tab") +
-  QStringLiteral("</li><li>") +
+  QStringLiteral("</p></li><li><p>") +
      tr("Alt+6 or 'F1' to show this help page") +
-  QStringLiteral("</li><li>") +
+  QStringLiteral("</p></li><li><p>") +
      tr("Alt+7 to switch to 'Terminal' tab") +
-  QStringLiteral("</li></ul>") +
+  QStringLiteral("</p></li></ul><br>") +
 
      tr("Control+key sequences:") +
-  QStringLiteral("<ul><li>") +
+  QStringLiteral("<ul><li><p>") +
      tr("Ctrl+E or 'Actions/Cancel' to clear the selection of to be removed/installed packages") +
-  QStringLiteral("</li><li>") +
+  QStringLiteral("</p></li><li><p>") +
      tr("Ctrl+F to search for text inside tab Files, News and Usage") +
-  QStringLiteral("</li><li>") +
+  QStringLiteral("</p></li><li><p>") +
      tr("Ctrl+G or 'File/Get latest distro news' to retrieve the latest RSS based distro news") +
-  QStringLiteral("</li><li>") +
+  QStringLiteral("</p></li><li><p>") +
      tr("Ctrl+K or 'File/Check updates' to check mirror for latest updates (checkupdates)") +
-  QStringLiteral("</li><li>") +
+  QStringLiteral("</p></li><li><p>") +
      tr("Ctrl+L to find a package in the package list") +
-  QStringLiteral("</li><li>") +
+  QStringLiteral("</p></li><li><p>") +
      tr("Ctrl+P to go to package list") +
-  QStringLiteral("</li><li>") +
+  QStringLiteral("</p></li><li><p>") +
      tr("Ctrl+Q or 'File/Exit' to exit the application") +
-  QStringLiteral("</li><li>") +
+  QStringLiteral("</p></li><li><p>") +
      tr("Ctrl+U or 'File/System upgrade' to make a full system upgrade (pacman -Su)") +
-  QStringLiteral("</li><li>") +
+  QStringLiteral("</p></li><li><p>") +
      tr("Ctrl+Y or 'Actions/Apply' to start installation/removal of selected packages") +
-  QStringLiteral("</li></ul>") +
+  QStringLiteral("</p></li></ul><br>") +
 
      tr("Control+shift+key sequences:") +
   QStringLiteral("<ul>") +
   strVote +
-  QStringLiteral("<li>") +
+  QStringLiteral("<li><p>") +
      tr("Ctrl+Shift+G to display all package groups") +
-  QStringLiteral("</li>") +
+  QStringLiteral("</p></li><p>") +
      strOutdatedAur + QLatin1String("<li>") +
      //tr("Ctrl+Shift+R to remove Pacman's transaction lock file") +
-  QStringLiteral("</li><li>") +
+  QStringLiteral("</p></li><li><p>") +
      tr("Ctrl+Shift+U to upgrade outdated %1 packages").arg(StrConstants::getForeignRepositoryGroupName()) +
-  QStringLiteral("</li><li>") +
+  QStringLiteral("</p></li><li><p>") +
      tr("Ctrl+Shift+Y to display %1 group").arg(StrConstants::getForeignRepositoryGroupName()) +
-  QStringLiteral("</li></ul>") +
+  QStringLiteral("</p></li></ul><br>") +
 
      tr("F+key sequences:") +
-  QStringLiteral("<ul><li>") +
+  QStringLiteral("<ul><li><p>") +
      tr("F1 to show this help page") +
-  QStringLiteral("</li><li>") +
+  QStringLiteral("</p></li><li><p>") +
      tr("F4 to open a Terminal whitin the selected directory at Files tab") +
-  QStringLiteral("</li><li>") +
+  QStringLiteral("</p></li><li><p>") +
      tr("F6 to open a File Manager whitin the selected directory at Files tab") +
-  QStringLiteral("</li><li>") +
+  QStringLiteral("</p></li><li><p>") +
      tr("F10 to maximize/demaximize package list view") +
-  QStringLiteral("</li><li>") +
+  QStringLiteral("</p></li><li><p>") +
      tr("F11 to maximize/demaximize Tab's view") +
-  QStringLiteral("</li></ul><br>");
+  QStringLiteral("</p></li></ul><br>");
 
   return html;
 }

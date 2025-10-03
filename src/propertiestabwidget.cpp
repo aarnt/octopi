@@ -108,6 +108,9 @@ void PropertiesTabWidget::initTabFiles()
   m_tvPkgFileList->setFrameShadow(QFrame::Plain);
   m_tvPkgFileList->setObjectName(QStringLiteral("tvPkgFileList"));
 
+  //TODO Add Option to change...
+  m_tvPkgFileList->setStyleSheet(QStringLiteral("QTreeView::item { height: 30px; }"));
+
   modelPkgFileList->setSortRole(0);
   modelPkgFileList->setColumnCount(0);
   gridLayoutX->addWidget(m_tvPkgFileList, 0, 0, 1, 1);
@@ -146,7 +149,11 @@ void PropertiesTabWidget::initTabActions()
   m_tvTransaction->header()->setSectionResizeMode(QHeaderView::Fixed);
   m_tvTransaction->setFrameShape(QFrame::NoFrame);
   m_tvTransaction->setFrameShadow(QFrame::Plain);
-  m_tvTransaction->expandAll();
+
+  //TODO Add Option to change...
+  m_tvTransaction->setStyleSheet(QStringLiteral("QTreeView::item { height: 30px; }"));
+
+  m_tvTransaction->expandAll();    
 
   m_modelTransaction->setSortRole(0);
   m_modelTransaction->setColumnCount(0);
@@ -230,6 +237,11 @@ void PropertiesTabWidget::initTabOutput()
   m_textOutput->setOpenLinks(false);
   m_textOutput->setFrameShape(QFrame::NoFrame);
   m_textOutput->setFrameShadow(QFrame::Plain);
+
+  QFont f = QApplication::font();
+  f.setFamily(SettingsManager::getTerminalFontFamily());
+  f.setPointSizeF(SettingsManager::getTerminalFontPointSize() - 1.5);
+  m_textOutput->setFont(f);
 
   gridLayoutX->addWidget (m_textOutput, 0, 0, 1, 1);
 

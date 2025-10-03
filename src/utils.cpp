@@ -366,11 +366,11 @@ QString utils::parseDistroNews()
             else if (eText.tagName() == QLatin1String("link"))
             {
               itemLink = Package::makeURLClickable(eText.text());
-              if (UnixCommand::getLinuxDistro() == ectn_MANJAROLINUX) itemLink += QLatin1String("<br>");
+              /*if (UnixCommand::getLinuxDistro() == ectn_MANJAROLINUX)*/ itemLink += QLatin1String("<br>");
             }
             else if (eText.tagName() == QLatin1String("description"))
             {
-              itemDescription = eText.text();
+              itemDescription = QLatin1String("<p style=\"line-height: 1.5;\">") + eText.text() + QLatin1String("</p>");
               itemDescription += QLatin1String("<br>");
             }
             else if (eText.tagName() == QLatin1String("pubDate"))
@@ -389,8 +389,8 @@ QString utils::parseDistroNews()
           text = text.nextSibling();
         }
 
-        html += QLatin1String("<li><p>") + itemTitle + QLatin1Char(' ') + itemPubDate + QLatin1String("<br>") +
-            itemLink + itemDescription + QLatin1String("</p></li>");
+        html += QLatin1String("<li>") + itemTitle + QLatin1Char(' ') + itemPubDate + QLatin1String("<br>") +
+            itemLink + itemDescription + QLatin1String("</li>");
         itemCounter++;
       }
     }

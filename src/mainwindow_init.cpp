@@ -267,7 +267,7 @@ void MainWindow::initPackageGroups()
   ui->twGroups->header()->setSectionResizeMode(QHeaderView::Fixed);
   ui->twGroups->setFrameShape(QFrame::NoFrame);
   ui->twGroups->setFrameShadow(QFrame::Plain);
-  ui->twGroups->setStyleSheet(StrConstants::getTreeViewCSS());
+  ui->twGroups->setStyleSheet(QStringLiteral("QTreeView::item { height: 30px; }"));
   ui->twGroups->setSelectionMode(QAbstractItemView::SingleSelection);
   ui->twGroups->setFocusPolicy(Qt::NoFocus);
   connect(ui->twGroups, SIGNAL(itemSelectionChanged()), this, SLOT(onPackageGroupChanged()));

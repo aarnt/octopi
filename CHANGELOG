@@ -1,3 +1,9 @@
+0.19 (dev)
+  BugFix: Pressing F11 to maximize bottom panel crashed Octopi if Info tab was selected.
+  BugFix: Optional deps dialog had a column header named "3" instead of "Repository".
+  Make the whole interface text less condensed.
+  Added chinese description for the application name in desktop file.
+
 0.18.1 (2025-09-29)
   BugFix: French translation was not working properly (thanks to roxfr).
   BugFix: Yay searches with version 12.5.2 crashed Octopi (thanks to nije-to-sve).
