@@ -522,7 +522,7 @@ QStringList *Package::getOutdatedAURStringList()
             res->append(pkgName); //We only need the package name!
           }
         }
-        else //We have a TRIZEN output
+        else if (!pkgName.contains(QStringLiteral("\t"))) //We have a TRIZEN output
         {
           if (!ignorePkgList.contains(pkgName))
           {
