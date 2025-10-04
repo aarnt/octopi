@@ -1,6 +1,7 @@
 0.19 (dev)
   BugFix: Pressing F11 to maximize bottom panel crashed Octopi if Info tab was selected.
   BugFix: Optional deps dialog had a column header named "3" instead of "Repository".
+  BugFix: Some outdated AUR pkgs were not showing on notifier (thanks to urbenlegend).
   Make the whole interface text less condensed.
   Added chinese description for the application name in desktop file.
 
