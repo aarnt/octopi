@@ -32,222 +32,237 @@
         <translation>&amp;Nézet</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="173"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="174"/>
         <source>&amp;File</source>
         <translation>&amp;Fájl</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="185"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="186"/>
         <source>&amp;Search</source>
         <translation>&amp;Keresés</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="195"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="196"/>
         <source>T&amp;ools</source>
         <translation>&amp;Eszközök</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="225"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="226"/>
         <source>&amp;About</source>
         <translation>&amp;Névjegy</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="228"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="229"/>
         <source>About</source>
-        <translation>Rólam</translation>
+        <translation>Névjegy</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="242"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="243"/>
         <source>Non installed</source>
         <translation>Nem telepített</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="251"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="252"/>
         <source>Apply</source>
         <translation>Alkalmaz</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="272"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="273"/>
         <source>Cancel</source>
-        <translation>Mégsem</translation>
+        <translation>Mégse</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="284"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="285"/>
         <source>Check &amp;updates</source>
         <translation>&amp;Frissítések keresése</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="292"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="293"/>
         <source>E&amp;xit</source>
         <translation>Kilé&amp;pés</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="307"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="308"/>
         <source>System u&amp;pgrade</source>
         <translation>&amp;Rendszer frissítése</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="325"/>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="328"/>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="536"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="326"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="329"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="537"/>
         <source>Install</source>
-        <translation>Telepít</translation>
+        <translation>Telepítés</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="337"/>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="340"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="338"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="341"/>
         <source>Remove</source>
-        <translation>Eltávolít</translation>
+        <translation>Eltávolítás</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="345"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="346"/>
         <source>Outdated packages</source>
         <translation>Elavult csomagok</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="354"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="355"/>
         <source>&amp;Get latest distro news</source>
-        <translation>Legfrissebb disztró &amp;hírek letöltése</translation>
+        <translation>Legfrissebb &amp;hírek letöltése a disztribúcióról</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="366"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="367"/>
         <source>Remove group</source>
         <translation>Csoport eltávolítása</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="375"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="376"/>
         <source>Install group</source>
         <translation>Csoport telepítése</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="384"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="385"/>
         <source>Collapse item</source>
         <translation>Elem összecsukása</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="393"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="394"/>
         <source>Expand item</source>
         <translation>Elem kibontása</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="402"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="403"/>
         <source>Collapse all items</source>
         <translation>Összes elem összecsukása</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="411"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="412"/>
         <source>Expand all items</source>
         <translation>Összes elem kinyitása</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="420"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="421"/>
         <source>Open file</source>
         <translation>Fájl megnyitása</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="429"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="430"/>
         <source>Edit file</source>
         <translation>Fájl szerkesztése</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="438"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="439"/>
         <source>Open directory</source>
         <translation>Könyvtár megnyitása</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="447"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="448"/>
         <source>Open terminal here</source>
         <translation>Terminál megnyitása itt</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="456"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="457"/>
         <source>Remove item</source>
-        <translation>Elem eltávolítás</translation>
+        <translation>Elem eltávolítása</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="468"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="469"/>
         <source>Remove items</source>
         <translation>Elemek eltávolítása</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="479"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="480"/>
         <source>By &amp;description</source>
         <translation>&amp;Leírás szerint</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="490"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="491"/>
         <source>By &amp;name</source>
         <translation>&amp;Név szerint</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="502"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="503"/>
         <source>Find a file</source>
         <translation>Fájl keresése</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="511"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="512"/>
         <source>Open root terminal</source>
         <translation>Terminál megnyitása</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="516"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="517"/>
         <source>Usage</source>
         <translation>Használat</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="527"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="528"/>
         <source>&amp;Install local package...</source>
-        <translation>&amp;Helyi csomag telepítése...</translation>
+        <translation>&amp;Helyi csomag telepítése…</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="544"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="545"/>
         <source>Pacman Log Viewer</source>
-        <translation>Pacman napló olvasása</translation>
+        <translation>Pacman napló megjelenítése</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="559"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="560"/>
         <source>Repository Editor</source>
         <translation>Tárolók szerkesztése</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="571"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="572"/>
         <source>Cache Cleaner</source>
-        <translation>Gyorsítótár tisztító</translation>
+        <translation>Gyorsítótár tisztítása</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="582"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="583"/>
         <source>Installed</source>
         <translation>Telepített</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="604"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="605"/>
         <source>By &amp;file</source>
         <translation>&amp;Fájlok szerint</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="615"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="616"/>
         <source>Use Instant Search</source>
         <translation>Azonnali keresés használata</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="623"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="624"/>
         <source>Donate!</source>
         <translation>Adományozás!</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/mainwindow.ui" line="634"/>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="635"/>
         <source>Outdated</source>
         <translation>Elavult</translation>
     </message>
     <message>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="644"/>
+        <source>Add to Ignored</source>
+        <translation>Hozzáadás a mellőzött csomagokhoz</translation>
+    </message>
+    <message>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="656"/>
+        <source>Remove from Ignored</source>
+        <translation>Eltávolítás a mellőzött csomagokból</translation>
+    </message>
+    <message>
+        <location filename="Projects/octopi/ui/mainwindow.ui" line="667"/>
+        <source>Ignored</source>
+        <translation>Mellőzött csomagok</translation>
+    </message>
+    <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="64"/>
         <source>Ctrl+Shift+O to display outdated %1 packages</source>
-        <translation>Ctrl+Shift+O lejárt csomagok %1 megjelenítéséhez</translation>
+        <translation>Ctrl+Shift+O a(z) %1 elavult csomag megjelenítéséhez</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="72"/>
         <source>Ctrl+Shift+A to display AUR voted package list</source>
-        <translation>Ctrl+Shift+A az AUR csomagszavazás megjelenítéséhez</translation>
+        <translation>Ctrl+Shift+A a szavazás megjelenítéséhez az AUR-csomaghoz</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="77"/>
@@ -257,210 +272,215 @@
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="80"/>
         <source>A Qt-based Pacman frontend,</source>
-        <translation>Qt alapú grafikus felület Pacman-hez,</translation>
+        <translation>Qt-alapú grafikus felület Pacmanhez,</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="81"/>
         <source>licensed under the terms of</source>
-        <translation>feltételek alatt licenszelve</translation>
+        <translation>feltételek alatt licencelve</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="88"/>
         <source>Package classification:</source>
-        <translation>Csomag osztályozás:</translation>
+        <translation>Csomagosztályozás:</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="91"/>
+        <source>An ignored package</source>
+        <translation>Egy mellőzött csomag</translation>
+    </message>
+    <message>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="93"/>
         <source>An installed package</source>
         <translation>Egy telepített csomag</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="93"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="95"/>
         <source>An installed package (not required by others)</source>
         <translation>Egy telepített csomag (nem szükséges máshoz)</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="96"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="98"/>
         <source>A foreign package, installed from</source>
         <translation>Idegen csomag telepítve innen</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="99"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="101"/>
         <source>A non installed package</source>
         <translation>Nem telepített csomag</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="102"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="104"/>
         <source>An outdated package</source>
         <translation>Elavult csomag</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="105"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="107"/>
         <source>An outdated foreign package</source>
         <translation>Elavult idegen csomag</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="108"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="110"/>
         <source>A newer version of this package is installed</source>
-        <translation type="unfinished"/>
+        <translation>Ennek a csomagnak egy újabb verziója van telepítve</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="110"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="112"/>
         <source>Basic usage help:</source>
         <translation>Alap használati utasítás:</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="112"/>
-        <source>Position the mouse over a package to see its description</source>
-        <translation>Vidd az egérmutatót a csomag fölé, hogy lásd a leírását</translation>
-    </message>
-    <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="114"/>
-        <source>Double click an installed package to see its contents</source>
-        <translation>Dupla kattintás egy telepített csomagon a tartalma megtekintéséhez</translation>
+        <source>Position the mouse over a package to see its description</source>
+        <translation>Vigye az egérmutatót a csomag fölé, hogy megtekintse a leírását</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="116"/>
-        <source>Right click package to install/reinstall or remove it</source>
-        <translation>Jobb kattintás a csomagon telepíteni, újratelepíteni vagy eltávolítani</translation>
+        <source>Double click an installed package to see its contents</source>
+        <translation>Dupla kattintás egy telepített csomagon a tartalmának megtekintéséhez</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="119"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="118"/>
+        <source>Right click package to install/reinstall or remove it</source>
+        <translation>Jobb kattintás a csomagon a telepítéshez, újratelepítéshez vagy eltávolításhoz</translation>
+    </message>
+    <message>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="121"/>
         <source>Alt+key sequences:</source>
         <translation>Alt+billentyű kombinációk:</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="121"/>
-        <source>Alt+1 to switch to &apos;Info&apos; tab</source>
-        <translation>Alt+1 az &quot;Info&quot; fül-re váltáshoz</translation>
-    </message>
-    <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="123"/>
-        <source>Alt+2 to switch to &apos;Files&apos; tab</source>
-        <translation>Alt+2 a &quot;Fájlok&quot; fülre váltáshoz</translation>
+        <source>Alt+1 to switch to &apos;Info&apos; tab</source>
+        <translation>Alt+1 váltás az „Info” fülre</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="125"/>
-        <source>Alt+3 to switch to &apos;Actions&apos; tab</source>
-        <translation>Alt+3 a &quot;Műveletek&quot; fülre váltáshoz</translation>
+        <source>Alt+2 to switch to &apos;Files&apos; tab</source>
+        <translation>Alt+2 váltás a „Fájlok” fülre</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="127"/>
-        <source>Alt+4 to switch to &apos;Output&apos; tab</source>
-        <translation>Alt+4 a &quot;Kimenet&quot; fülre váltáshoz</translation>
+        <source>Alt+3 to switch to &apos;Actions&apos; tab</source>
+        <translation>Alt+3 váltás a „Műveletek” fülre</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="129"/>
-        <source>Alt+5 to switch to &apos;News&apos; tab</source>
-        <translation>Alt+5 a &quot;Hírek&quot; fülre váltáshoz</translation>
+        <source>Alt+4 to switch to &apos;Output&apos; tab</source>
+        <translation>oAlt+4 váltás a „Kimenet” fülre</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/mainwindow_help.cpp" line="131"/>
+        <source>Alt+5 to switch to &apos;News&apos; tab</source>
+        <translation>Alt+5 váltás a „Hírek” fülre</translation>
+    </message>
+    <message>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="133"/>
         <source>Alt+6 or &apos;F1&apos; to show this help page</source>
         <translation>Alt+6 vagy F1 a súgó megjelenítéséhez</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="133"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="135"/>
         <source>Alt+7 to switch to &apos;Terminal&apos; tab</source>
-        <translation>Alt+7 a &quot;Terminál&quot; fülre váltáshoz</translation>
+        <translation>Alt+7 váltás a „Terminál” fülre</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="136"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="138"/>
         <source>Control+key sequences:</source>
         <translation>CTRL+billentyű kombinációk:</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="138"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="140"/>
         <source>Ctrl+E or &apos;Actions/Cancel&apos; to clear the selection of to be removed/installed packages</source>
-        <translation>Crtrl+E vagy &apos;Műveletek/Mégse&apos; a telepítésre vagy eltávolításra kijelölt csomagok kijelölésének megszüntetéséhez</translation>
+        <translation>Crtrl+E vagy „Műveletek/Mégse” a telepítésre vagy eltávolításra megjelölt csomagok megjelölésének megszüntetéséhez</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="140"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="142"/>
         <source>Ctrl+F to search for text inside tab Files, News and Usage</source>
         <translation>Ctrl+F szöveg keresése tab fájlokban, Hírek és Használat</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="142"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="144"/>
         <source>Ctrl+G or &apos;File/Get latest distro news&apos; to retrieve the latest RSS based distro news</source>
         <translation>Ctrl+G vagy &quot;Fájl, Legfrissebb disztro hírek&quot; a legfrissebb RSS alapú disztro hírek lekérése</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="144"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="146"/>
         <source>Ctrl+K or &apos;File/Check updates&apos; to check mirror for latest updates (checkupdates)</source>
         <translation>Ctrl+K vagy &apos;Fájl/Frissítések keresése&apos;  a legutóbbi frissítések ellenőrzéséhez (checkupdates)</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="146"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="148"/>
         <source>Ctrl+L to find a package in the package list</source>
         <translation>Ctrl+L csomag keresése a csomag listában</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="148"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="150"/>
         <source>Ctrl+P to go to package list</source>
         <translation>Ctrl+P a csomaglistára való ugráshoz</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="150"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="152"/>
         <source>Ctrl+Q or &apos;File/Exit&apos; to exit the application</source>
         <translation>Ctrl+Q vagy &quot;Fájl, Kilépés&quot; kilépés az alkalmazásból</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="152"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="154"/>
         <source>Ctrl+U or &apos;File/System upgrade&apos; to make a full system upgrade (pacman -Su)</source>
         <translation>Ctrl+U vagy &apos;Fájl/ Rendszer frissítése&apos; a teljes rendszer frissítéséhez (pacman -Su)</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="154"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="156"/>
         <source>Ctrl+Y or &apos;Actions/Apply&apos; to start installation/removal of selected packages</source>
         <translation>Ctrl+Y vagy &apos;Műveletek/Alkalmaz&apos; a kiválasztott csomagok telepítésének vagy eltávolításának elkezdéséhez</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="157"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="159"/>
         <source>Control+shift+key sequences:</source>
         <translation>Control+shift+billentyű kombinációk:</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="161"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="163"/>
         <source>Ctrl+Shift+G to display all package groups</source>
         <translation>Ctrl+Shift+G csomag csoportok megjelenítése</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="166"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="168"/>
         <source>Ctrl+Shift+U to upgrade outdated %1 packages</source>
         <translation>Ctrl+Shift+U az elavult %1 csomagok frissítéséhez</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="168"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="170"/>
         <source>Ctrl+Shift+Y to display %1 group</source>
         <translation>Ctrl+Shift+Y megjelenítés %1 csoport</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="171"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="173"/>
         <source>F+key sequences:</source>
         <translation>Funkcióbillentyű kombinációk:</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="173"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="175"/>
         <source>F1 to show this help page</source>
         <translation>F1 súgó megjelenítése</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="175"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="177"/>
         <source>F4 to open a Terminal whitin the selected directory at Files tab</source>
         <translation>F4 Terminál megnyitása a Fájlok fülön kiválasztott könyvtárban</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="177"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="179"/>
         <source>F6 to open a File Manager whitin the selected directory at Files tab</source>
         <translation>F6 Fájlkezelő megnyitása a Fájlok fülön kiválasztott könyvtárban</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="179"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="181"/>
         <source>F10 to maximize/demaximize package list view</source>
         <translation>F10 maximalizálni vagy visszaállítani a csomaglista nézetet</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="181"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="183"/>
         <source>F11 to maximize/demaximize Tab&apos;s view</source>
         <translation>F11 a fül maximalizálásához/visszaállításához</translation>
     </message>
@@ -473,215 +493,221 @@
         <translation>Beállítások</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="38"/>
-        <source>General</source>
-        <translation>Általános</translation>
-    </message>
-    <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="50"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="90"/>
         <source>Show package numbers in output tab</source>
         <translation>Csomagok számának mejelenítése a kimenet fülön</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="63"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="103"/>
         <source>Show stop transaction button at statusbar</source>
         <translation>Tranzakció leállítása gomb megjelenítése az állapotsoron</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="76"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="116"/>
         <source>Always use the terminal to install/upgrade/remove packages</source>
-        <translation type="unfinished"/>
+        <translation>Mindig a terminál használata a csomagok telepítéséhez/frissítéséhez/eltávolításához</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="89"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="129"/>
         <source>Enable internet checking</source>
         <translation>Kapcsolat ellenőrzése</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="102"/>
-        <source>Play a bell sound when prompting for the root password in the terminal</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="157"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="184"/>
         <source>Enable confirmation dialog in system upgrade</source>
         <translation>Megerősítő párbeszédpanel bekapcsolása rendszerfrissítésnél</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="163"/>
-        <location filename="Projects/octopi/src/optionsdialog.cpp" line="184"/>
-        <source>Package List</source>
-        <translation>Csomaglista</translation>
-    </message>
-    <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="175"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="199"/>
         <source>Use alternating row colors</source>
         <translation>Alternatív sor színek használata</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="188"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="212"/>
         <source>Show &quot;Licenses&quot; column</source>
         <translation>A &quot;Licensz&quot; oszlop mutatása</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="201"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="225"/>
         <source>Show &quot;Installed Size&quot; column</source>
         <translation>Az &quot;Installált méret&quot; oszlop mutatása</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="214"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="238"/>
         <source>Show &quot;Build Date&quot; column</source>
         <translation>A &quot;Fordítás dátuma&quot; oszlop mutatása</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="227"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="251"/>
         <source>Show &quot;Install Date&quot; column</source>
         <translation>Az &quot;Installálás dátuma&quot; oszlop mutatása</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="240"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="264"/>
         <source>Show &quot;Install Reason&quot; column</source>
         <translation>Az &quot;Installálás oka&quot; oszlop mutatása</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="277"/>
+        <source>Enable package tooltips</source>
+        <translation>Buboréksúgó engedélyezése a csomagokhoz</translation>
+    </message>
+    <message>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="311"/>
         <source>Select the AUR tool Octopi should use</source>
         <translation>Válasszon AUR-kezelőt az Octopi-hoz</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="358"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="392"/>
         <source>Search for outdated AUR packages</source>
         <translation>Elavult AUR csomagok keresése</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="413"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="458"/>
         <source>User name</source>
         <translation>Felhasználónév</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="426"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="471"/>
         <source>Password</source>
         <translation>Jelszó</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="439"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="489"/>
         <source>Register</source>
         <translation>Regisztráció</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="452"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="507"/>
         <source>Connect</source>
         <translation>Bejelentkezés</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="466"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="526"/>
         <source>Enable AUR voting</source>
         <translation>AUR szavazás engedélyezése</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="487"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="547"/>
         <source>AUR packages are user produced content. 
 Any use of the provided files is at your own risk.</source>
         <translation>Az AUR csomagok felhasználók által vannak létrehozva.
 A használatuk csak saját felelősségre.</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="548"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="608"/>
         <source>Build directory</source>
         <translation>Fordítás mappája</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="604"/>
-        <location filename="Projects/octopi/src/optionsdialog.cpp" line="170"/>
-        <location filename="Projects/octopi/src/optionsdialog.cpp" line="183"/>
-        <source>Backend</source>
-        <translation>Backend</translation>
-    </message>
-    <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="667"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="724"/>
         <source>Select the backend Octopi should use</source>
         <translation>Válasszon Octopi backendet</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="691"/>
-        <location filename="Projects/octopi/src/optionsdialog.cpp" line="733"/>
-        <source>Icon</source>
-        <translation>Ikon</translation>
-    </message>
-    <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="754"/>
-        <source>Red icon</source>
-        <translation>Piros ikon</translation>
-    </message>
-    <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="832"/>
-        <source>Yellow icon</source>
-        <translation>Sárga ikon</translation>
-    </message>
-    <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="895"/>
-        <source>Green icon</source>
-        <translation>Zöld ikon</translation>
-    </message>
-    <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="958"/>
-        <source>Busy icon</source>
-        <translation>Elfoglalt ikon</translation>
-    </message>
-    <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1011"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="767"/>
         <source>Use default notification icons</source>
         <translation>Alapértelmezett ikonok használata</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1022"/>
-        <location filename="Projects/octopi/src/optionsdialog.cpp" line="179"/>
-        <source>Updates</source>
-        <translation>Frissítések</translation>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="842"/>
+        <source>Red icon</source>
+        <translation>Piros ikon</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1281"/>
-        <source>Terminal</source>
-        <translation>Terminál</translation>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="932"/>
+        <source>Busy icon</source>
+        <translation>Elfoglalt ikon</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1293"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1001"/>
+        <source>Yellow icon</source>
+        <translation>Sárga ikon</translation>
+    </message>
+    <message>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1085"/>
+        <source>Green icon</source>
+        <translation>Zöld ikon</translation>
+    </message>
+    <message>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1410"/>
         <source>Color Scheme</source>
         <translation>Színösszeállítás</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1306"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1423"/>
         <source>Font Family</source>
         <translation>Színösszeállítás</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1339"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1456"/>
         <source>Font Size</source>
         <translation>Színösszeállítás</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/optionsdialog.cpp" line="100"/>
-        <location filename="Projects/octopi/src/optionsdialog.cpp" line="116"/>
-        <location filename="Projects/octopi/src/optionsdialog.cpp" line="132"/>
-        <location filename="Projects/octopi/src/optionsdialog.cpp" line="149"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1479"/>
+        <source>Play a bell sound when prompting for the root password in the terminal</source>
+        <translation>Csengőhang lejátszása, amikor a terminálban, amikor a root-jelszót kéri</translation>
+    </message>
+    <message>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1492"/>
+        <source>Force use of BASH shell</source>
+        <translation>Bash parancshéj kényszerített használata</translation>
+    </message>
+    <message>
+        <location filename="Projects/octopi/src/optionsdialog.cpp" line="102"/>
+        <location filename="Projects/octopi/src/optionsdialog.cpp" line="118"/>
+        <location filename="Projects/octopi/src/optionsdialog.cpp" line="134"/>
+        <location filename="Projects/octopi/src/optionsdialog.cpp" line="151"/>
         <source>Open Image</source>
         <translation>Kép megnyitása</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/optionsdialog.cpp" line="100"/>
-        <location filename="Projects/octopi/src/optionsdialog.cpp" line="116"/>
-        <location filename="Projects/octopi/src/optionsdialog.cpp" line="132"/>
-        <location filename="Projects/octopi/src/optionsdialog.cpp" line="149"/>
+        <location filename="Projects/octopi/src/optionsdialog.cpp" line="102"/>
+        <location filename="Projects/octopi/src/optionsdialog.cpp" line="118"/>
+        <location filename="Projects/octopi/src/optionsdialog.cpp" line="134"/>
+        <location filename="Projects/octopi/src/optionsdialog.cpp" line="151"/>
         <source>Image Files</source>
         <translation>Képfájlok</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/optionsdialog.cpp" line="191"/>
+        <location filename="Projects/octopi/src/optionsdialog.cpp" line="173"/>
+        <location filename="Projects/octopi/src/optionsdialog.cpp" line="197"/>
+        <source>Backend</source>
+        <translation>Backend</translation>
+    </message>
+    <message>
+        <location filename="Projects/octopi/src/optionsdialog.cpp" line="196"/>
+        <source>General</source>
+        <translation>Általános</translation>
+    </message>
+    <message>
+        <location filename="Projects/octopi/src/optionsdialog.cpp" line="198"/>
+        <source>Package List</source>
+        <translation>Csomaglista</translation>
+    </message>
+    <message>
+        <location filename="Projects/octopi/src/optionsdialog.cpp" line="200"/>
+        <source>Icon</source>
+        <translation>Ikon</translation>
+    </message>
+    <message>
+        <location filename="Projects/octopi/src/optionsdialog.cpp" line="201"/>
+        <source>Updates</source>
+        <translation>Frissítések</translation>
+    </message>
+    <message>
+        <location filename="Projects/octopi/src/optionsdialog.cpp" line="202"/>
+        <source>Terminal</source>
+        <translation>Terminál</translation>
+    </message>
+    <message>
+        <location filename="Projects/octopi/src/optionsdialog.cpp" line="215"/>
         <source>Ok</source>
         <translation>Ok</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/optionsdialog.cpp" line="192"/>
+        <location filename="Projects/octopi/src/optionsdialog.cpp" line="216"/>
         <source>Cancel</source>
         <translation>Mégse</translation>
     </message>
@@ -1113,7 +1139,7 @@ Szinkronizálnia kell az adatbázist!</translation>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.cpp" line="478"/>
         <source>There are %n outdated packages in your system:</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>%n elavult csomag található a rendszeren:</numerusform><numerusform>%n elavult csomag található a rendszeren:</numerusform></translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="482"/>
@@ -1123,7 +1149,7 @@ Szinkronizálnia kell az adatbázist!</translation>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.cpp" line="486"/>
         <source>%n packages</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>%n csomag</numerusform><numerusform>%n csomag</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.cpp" line="490"/>
@@ -1223,7 +1249,7 @@ Szinkronizálnia kell az adatbázist!</translation>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="608"/>
         <source>Collecting transaction data...</source>
-        <translation type="unfinished"/>
+        <translation>Tranzakciós adatok gyűjtése…</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="612"/>
@@ -1273,12 +1299,12 @@ Szinkronizálnia kell az adatbázist!</translation>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.cpp" line="651"/>
         <source>The following %n packages need to be retrieved</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>A következő %n csomagot vissza kell állítani</numerusform><numerusform>A következő %n csomagot vissza kell állítani</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.cpp" line="655"/>
         <source>The following %n packages will be removed</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>A következő %n csomag el lesz távolítva</numerusform><numerusform>A következő %n csomag el lesz távolítva</numerusform></translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="659"/>
@@ -1298,7 +1324,7 @@ Szinkronizálnia kell az adatbázist!</translation>
     <message numerus="yes">
         <location filename="Projects/octopi/src/strconstants.cpp" line="671"/>
         <source>There are %n updates available!</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>%n frissítés érhető el!</numerusform><numerusform>%n frissítés érhető el!</numerusform></translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="675"/>
@@ -1343,7 +1369,7 @@ Szinkronizálnia kell az adatbázist!</translation>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="710"/>
         <source>Pacman is running or didn&apos;t cleanly close (/var/lib/pacman/db.lck exists!)</source>
-        <translation type="unfinished"/>
+        <translation>A pacman fut vagy nem lett megfelelően bezárva (a /var/lib/pacman/db.lck fájl létezik!)</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="714"/>
@@ -1423,26 +1449,31 @@ Csak pár másodperc.</translation>
     </message>
     <message>
         <location filename="Projects/octopi/src/strconstants.cpp" line="784"/>
+        <source>You must use &quot;/usr/bin/octopi-repoeditor&quot; to run Octopi Repository Editor</source>
+        <translation>Az Octopi Repository Editor futtatásához a „/usr/bin/octopi-repoeditor” parancsot kell használni</translation>
+    </message>
+    <message>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="788"/>
         <source>You can not run Octopi with administrator&apos;s credentials.</source>
         <translation>Nem futtathatja az Octopi-t adminisztrátor jogokkal.</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="788"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="792"/>
         <source>Canceling the running transaction may damage your system!</source>
         <translation>A futó tranzakció bezárása károsíthatja a rendszert!</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="792"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="796"/>
         <source>There are pending actions</source>
         <translation>Függőben levő műveletek vannak</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="796"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="800"/>
         <source>Do you really want to quit?</source>
         <translation>Valóban ki akar lépni?</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="801"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="805"/>
         <source>You are about to generate &quot;octopi-sysinfo.log&quot; in your home path with the contents of:
 
 &quot;/etc/lsb-release&quot;, &quot;inxi -Fxz&quot;, &quot;uname -a&quot;, &quot;mhwd -li -d,&quot;
@@ -1461,184 +1492,184 @@ Akarja folytatni?
 </translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="809"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="813"/>
         <source>Executing command</source>
         <translation>Parancs végrehajtása</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="813"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="817"/>
         <source>Run in terminal</source>
         <translation>Futtatás terminálban</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="817"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="821"/>
         <source>This change needs application restart to take effect</source>
         <translation>Újraindítás szükséges a változtatás használatához</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="821"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="825"/>
         <source>These changes need application restart to take effect!</source>
         <translation>Ezek a változtatások alkalmazás újraindítást igényelnek az érvényesítéshez!</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="825"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="829"/>
         <source>Select the packages you want to install</source>
         <translation>Válassza ki a telepíteni kívánt csomagokat</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="829"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="833"/>
         <source>This file does not appear to be a simple text.
 Are you sure you want to open it?</source>
         <translation>Ez a fájl úgy tűnik nem egyszerű szöveg.
 Biztos abban, hogy megnyitja?</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="834"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="838"/>
         <source>To be installed</source>
         <translation>Telepítésre</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="838"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="842"/>
         <source>To be removed</source>
         <translation>Eltávolításra</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="842"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="846"/>
         <source>Remove</source>
         <translation>Eltávolítás</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="846"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="850"/>
         <source>Install</source>
         <translation>Telepítés</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="851"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="855"/>
         <source>Reinstall</source>
         <translation>Újratelepítés</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="856"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="860"/>
         <source>Change Install Reason</source>
         <translation>Telepítés okának megváltoztatása</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="861"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="865"/>
         <source>Update</source>
         <translation>Frissítés</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="865"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="869"/>
         <source>Remove item</source>
         <translation>Elem eltávolítása</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="869"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="873"/>
         <source>Remove items</source>
         <translation>Elemek eltávolítása</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="873"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="877"/>
         <source>Press Ctrl+A to select/deselect all</source>
         <translation>Nyomja le a Ctrl+A az összes kiválasztásához vagy kiválasztások megszüntetéséhez</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="877"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="881"/>
         <source>Use &quot;%1&quot; tool</source>
         <translation>&quot;%1&quot; eszköz használata</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="881"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="885"/>
         <source>Copy path to clipboard</source>
         <translation>Útvonal vágólapra másolása</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="885"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="889"/>
         <source>Setup</source>
         <translation>Beállítások</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="889"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="893"/>
         <source>Check for package updates interval</source>
         <translation>Frissítések keresésének gyakorisága</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="893"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="897"/>
         <source>Once a day</source>
         <translation>Naponta egyszer</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="897"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="901"/>
         <source>Once a day, at</source>
         <translation>Naponta egyszer, ebben az időben</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="901"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="905"/>
         <source>(value in 24-hour format: 0 to 23)</source>
         <translation>(érték megadása 24 órás formátumban 0 és 23 között)</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="905"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="909"/>
         <source>Once every</source>
         <translation>Megadott időközönként</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="909"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="913"/>
         <source>(value in minutes: %1 to %2)</source>
         <translation>(érték megadása percben: %1 és %2 között)</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="913"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="917"/>
         <source>Set interval...</source>
         <translation>Időköz beállítása</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="918"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="922"/>
         <source>Stop</source>
         <translation>Tranzakció leállítása</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="923"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="927"/>
         <source>%1 could not be found in the system!</source>
         <translation>%1 nem található a rendszerben!</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="928"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="932"/>
         <source>Zoom in</source>
         <translation>Nagyítás</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="933"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="937"/>
         <source>Zoom out</source>
         <translation>Kicsinyítés</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="938"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="942"/>
         <source>Maximize</source>
         <translation>Maximalizálás</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="943"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="947"/>
         <source>Copy</source>
         <translation>Másolás</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="948"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="952"/>
         <source>Paste</source>
         <translation>Beillesztés</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="953"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="957"/>
         <source>Never</source>
         <translation>Soha</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="958"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="962"/>
         <source>Upgrading...</source>
         <translation>Frissítés...</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/strconstants.cpp" line="963"/>
+        <location filename="Projects/octopi/src/strconstants.cpp" line="967"/>
         <source>Exit</source>
         <translation>Kilépés</translation>
     </message>
