@@ -101,8 +101,13 @@ void OutputDialog::initAsTextBrowser()
   m_horizLayout->addWidget(m_progressBar);
   m_horizLayout->addSpacing(2);
   m_horizLayout->addWidget(m_toolButtonStopTransaction);
+
   m_textBrowser->setGeometry(QRect(0, 0, 650, 500));
   m_textBrowser->setFrameShape(QFrame::NoFrame);
+  QFont f = QApplication::font();
+  f.setFamily(SettingsManager::getTerminalFontFamily());
+  f.setPointSizeF(SettingsManager::getTerminalFontPointSize() - 1.0);
+  m_textBrowser->setFont(f);
 
   m_mainLayout->addWidget(m_textBrowser);
 
