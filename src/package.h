@@ -37,7 +37,7 @@ struct PackageListData{
   QString repository;
   QString version;
   QString description;
-  QString outatedVersion;
+  QString outdatedVersion;
   double  downloadSize;
   double installedSize;
   double buildDate;
@@ -61,11 +61,20 @@ struct PackageListData{
                                     status(ectn_NON_INSTALLED){
   }
 
+  PackageListData(QString n, QString outdatedVersion, QString v, QString dSize) 
+                                    : name(n),
+                                    version(v),
+                                    outdatedVersion(outdatedVersion.trimmed()),
+                                    downloadSize(QString(dSize).toDouble()),
+                                    popularity(0),
+                                    status(ectn_NON_INSTALLED){
+  }
+
   PackageListData(QString n, QString r, QString v, PackageStatus pkgStatus, QString outVersion=QLatin1String(""))
                                     : name(n),
                                     repository(r),
                                     version(v),
-                                    outatedVersion(outVersion.trimmed()),
+                                    outdatedVersion(outVersion.trimmed()),
                                     downloadSize(0.0),
                                     popularity(0),
                                     status(pkgStatus){
@@ -77,7 +86,7 @@ struct PackageListData{
                                     repository(r),
                                     version(v),
                                     description(d),
-                                    outatedVersion(outVersion.trimmed()),
+                                    outdatedVersion(outVersion.trimmed()),
                                     downloadSize(downSize),
                                     popularity(0),
                                     status(pkgStatus){
@@ -90,7 +99,7 @@ struct PackageListData{
                                     repository(r),
                                     version(v),
                                     description(d),
-                                    outatedVersion(outVersion.trimmed()),
+                                    outdatedVersion(outVersion.trimmed()),
                                     downloadSize(downSize),
                                     installedSize(instSize),
                                     buildDate(bDate),
@@ -106,7 +115,7 @@ struct PackageListData{
                                     repository(r),
                                     version(v),
                                     description(d),
-                                    outatedVersion(outVersion.trimmed()),
+                                    outdatedVersion(outVersion.trimmed()),
                                     downloadSize(0.0),
                                     popularity(0),
                                     status(pkgStatus){
@@ -118,7 +127,7 @@ struct PackageListData{
                                     repository(r),
                                     version(v),
                                     description(d),
-                                    outatedVersion(outVersion.trimmed()),
+                                    outdatedVersion(outVersion.trimmed()),
                                     downloadSize(0.0),
                                     installedSize(instSize),
                                     buildDate(bDate),

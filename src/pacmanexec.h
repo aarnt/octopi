@@ -48,7 +48,7 @@ private:
   CommandExecuting m_commandExecuting;
   QStringList m_lastCommandList; //run in terminal commands
   QStringList m_textPrinted;
-  QStringList m_listOfOutatedPackages;
+  QStringList m_listOfOutdatedPackages;
   QStringList m_listOfDotPacnewFiles; //contains the list of "blahblah installed as blahblah.pacnew" occurencies (if any)
 
   bool m_processWasCanceled;

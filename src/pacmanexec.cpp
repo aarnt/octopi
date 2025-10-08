@@ -819,12 +819,12 @@ void PacmanExec::onReadOutput()
     if (!output.isEmpty())
     {
       //checkupdates outputs outdated packages like this: "apr 1.6.5-1 -> 1.7.0-1"
-      if (m_listOfOutatedPackages.count() == 0)
-        m_listOfOutatedPackages = output.split(QStringLiteral("\n"), Qt::SkipEmptyParts);
+      if (m_listOfOutdatedPackages.count() == 0)
+        m_listOfOutdatedPackages = output.split(QStringLiteral("\n"), Qt::SkipEmptyParts);
       else
       {
         //checkupdates returned more than 1 time from the QProcess event, so we have to concatenate the list...
-        QString lastPackage = m_listOfOutatedPackages.last();
+        QString lastPackage = m_listOfOutdatedPackages.last();
         QStringList newList = output.split(QStringLiteral("\n"), Qt::SkipEmptyParts);
         QString firstPackage = newList.first();
         QStringList partsLast = lastPackage.split(QStringLiteral(" "), Qt::SkipEmptyParts);
@@ -832,16 +832,16 @@ void PacmanExec::onReadOutput()
 
         if (partsLast.count()<4 || partsFirst.count()<4)
         {
-          m_listOfOutatedPackages.removeLast();          
+          m_listOfOutdatedPackages.removeLast();          
           newList.removeFirst();
           lastPackage += firstPackage;
-          m_listOfOutatedPackages.append(lastPackage);
-          m_listOfOutatedPackages.append(newList);
+          m_listOfOutdatedPackages.append(lastPackage);
+          m_listOfOutdatedPackages.append(newList);
         }
         else
         {
           newList = output.split(QStringLiteral("\n"), Qt::SkipEmptyParts);
-          m_listOfOutatedPackages.append(newList);
+          m_listOfOutdatedPackages.append(newList);
         }
       }
     }
@@ -978,7 +978,7 @@ void PacmanExec::onFinished(int exitCode, QProcess::ExitStatus es)
 void PacmanExec::doCheckUpdates()
 {
   m_commandExecuting = ectn_CHECK_UPDATES;
-  m_listOfOutatedPackages.clear();
+  m_listOfOutdatedPackages.clear();
   m_unixCommand->executeCommandAsNormalUser(ctn_CHECKUPDATES_BINARY, QStringList());
 }
 
@@ -987,7 +987,7 @@ void PacmanExec::doCheckUpdates()
  */
 QStringList PacmanExec::getOutdatedPackages()
 {
-  return m_listOfOutatedPackages;
+  return m_listOfOutdatedPackages;
 }
 
 /*

@@ -58,6 +58,7 @@ MainWindow::MainWindow(QWidget *parent) :
   m_debugInfo = false;
   m_optionsDialog = nullptr;
   m_numberOfCheckUpdatesPackages = 0;
+  m_checkUpdatesNameCurrentVersion=new QHash<QString, QString>();
   m_checkUpdatesNameNewVersion=new QHash<QString, QString>();
 
   m_pacmanDatabaseSystemWatcher =
@@ -597,7 +598,9 @@ void MainWindow::doSystemUpgrade()
       for(const auto &name : std::as_const(m_checkUpdatesStringList))
       {
         PackageListData aux;
-        aux = PackageListData(name, m_checkUpdatesNameNewVersion->value(name), QStringLiteral("0"));
+        aux = PackageListData(
+            name, m_checkUpdatesNameCurrentVersion->value(name),
+            m_checkUpdatesNameNewVersion->value(name), QStringLiteral("0"));
         targets->append(aux);
       }
     }
@@ -605,7 +608,8 @@ void MainWindow::doSystemUpgrade()
     for(const auto &target : std::as_const(*targets))
     {
       totalDownloadSize += target.downloadSize;
-      list = list + target.name + QLatin1Char('-') + target.version + QLatin1Char('\n');
+      list = list + target.name + QLatin1String(" : ") + target.outdatedVersion +
+             QLatin1String(" -> ") + target.version + QLatin1Char('\n');
     }
     list.remove(list.size()-1, 1);
 
@@ -726,6 +730,7 @@ void MainWindow::doSystemUpgradeFinished(int exitCode)
   if (exitCode == 0)
   {
     m_checkUpdatesStringList.clear();
+    m_checkUpdatesNameCurrentVersion->clear();
     m_checkUpdatesNameNewVersion->clear();
     m_numberOfCheckUpdatesPackages=0;
     m_callRefreshAppIcon->start();
@@ -781,6 +786,7 @@ void MainWindow::afterCheckUpdates(int exitCode, QProcess::ExitStatus)
 
   QStringList checkUpdatesList = m_pacmanExec->getOutdatedPackages();
   m_checkUpdatesStringList.clear();
+  m_checkUpdatesNameCurrentVersion->clear();
   m_checkUpdatesNameNewVersion->clear();
 
   m_commandExecuting = ectn_NONE;
@@ -790,6 +796,7 @@ void MainWindow::afterCheckUpdates(int exitCode, QProcess::ExitStatus)
     QStringList aux = line.split(QStringLiteral(" "), Qt::SkipEmptyParts);
 
     m_checkUpdatesStringList.append(aux.at(0));
+    m_checkUpdatesNameCurrentVersion->insert(aux.at(0), aux.at(1));
     m_checkUpdatesNameNewVersion->insert(aux.at(0), aux.at(3));
   }
 

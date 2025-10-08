@@ -118,6 +118,7 @@ private:
   QAction *m_actionAbout;
   QAction *m_actionExit;
   QIcon m_icon;
+  QHash<QString, QString> *m_checkUpdatesNameCurrentVersion;
   QHash<QString, QString> *m_checkUpdatesNameNewVersion;
   QStringList m_checkUpdatesStringList;
   QStringList *m_outdatedStringList;
