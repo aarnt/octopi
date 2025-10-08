@@ -109,7 +109,7 @@ void PropertiesTabWidget::initTabFiles()
   m_tvPkgFileList->setObjectName(QStringLiteral("tvPkgFileList"));
 
   //TODO Add Option to change...
-  m_tvPkgFileList->setStyleSheet(QStringLiteral("QTreeView::item { height: 30px; }"));
+  m_tvPkgFileList->setStyleSheet(QStringLiteral("QTreeView::item { height: 25px; }"));
 
   modelPkgFileList->setSortRole(0);
   modelPkgFileList->setColumnCount(0);
@@ -151,7 +151,7 @@ void PropertiesTabWidget::initTabActions()
   m_tvTransaction->setFrameShadow(QFrame::Plain);
 
   //TODO Add Option to change...
-  m_tvTransaction->setStyleSheet(QStringLiteral("QTreeView::item { height: 30px; }"));
+  m_tvTransaction->setStyleSheet(QStringLiteral("QTreeView::item { height: 25px; }"));
 
   m_tvTransaction->expandAll();    
 
@@ -207,7 +207,6 @@ void PropertiesTabWidget::initTabNews()
   m_textNews->setFrameShadow(QFrame::Plain);
   m_textNews->setOpenExternalLinks(true);
   gridLayoutX->addWidget(m_textNews, 0, 0, 1, 1);
-  //m_textNews->show();
 
   int tindex = insertTab(ctn_TABINDEX_NEWS, tabNews, QApplication::translate (
       "MainWindow", aux.toUtf8().constData(), nullptr));
@@ -240,10 +239,10 @@ void PropertiesTabWidget::initTabOutput()
 
   QFont f = QApplication::font();
   f.setFamily(SettingsManager::getTerminalFontFamily());
-  f.setPointSizeF(SettingsManager::getTerminalFontPointSize() - 1.5);
+  f.setPointSizeF(SettingsManager::getTerminalFontPointSize() - 1.0);
   m_textOutput->setFont(f);
 
-  gridLayoutX->addWidget (m_textOutput, 0, 0, 1, 1);
+  gridLayoutX->addWidget(m_textOutput, 0, 0, 1, 1);
 
   QString aux(StrConstants::getTabOutputName());
   removeTab(ctn_TABINDEX_OUTPUT);
@@ -294,10 +293,8 @@ void PropertiesTabWidget::initTabTerminal()
 {
   QWidget *tabTerminal = new QWidget(this);
   QGridLayout *gridLayoutX = new QGridLayout(tabTerminal);
-  gridLayoutX->setSpacing ( 0 );
-
+  gridLayoutX->setSpacing(0);
   gridLayoutX->setContentsMargins(0, 0, 0, 0);
-
   gridLayoutX->addWidget(m_console, 0, 0, 1, 1);
   removeTab(ctn_TABINDEX_TERMINAL);
   QString aux(StrConstants::getTabTerminal());

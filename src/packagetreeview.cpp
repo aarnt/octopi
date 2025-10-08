@@ -58,7 +58,7 @@ void PackageTreeView::init()
 
   //TODO Add a setting...
   //setIconSize(QSize(32,32));
-  setStyleSheet(QStringLiteral("QTreeView::item { height: 30px; }"));
+  setStyleSheet(QStringLiteral("QTreeView::item { height: 28px; }"));
 }
 
 /*

@@ -670,7 +670,7 @@ void MainWindow::outputOutdatedPackageList()
           StrConstants::getOutdatedPackages(m_outdatedStringList->count()) + QLatin1String("</h3>");
     }
 
-    html += QLatin1String("<br><table cellpadding=\"5\" border=\"0\">");
+    html += QLatin1String("<br><table cellpadding=\"4\" border=\"0\">");
     html += QLatin1String("<tr><th width=\"25%\" align=\"left\">") + StrConstants::getName() +
         QLatin1String("</th><th width=\"18%\" align=\"right\">") +
         StrConstants::getOutdatedVersion() +
@@ -720,7 +720,7 @@ void MainWindow::outputOutdatedPackageList()
           StrConstants::getOutdatedPackages(m_outdatedStringList->count()) + QLatin1String("</h3>");
     }
 
-    html += QLatin1String("<br><table cellpadding=\"5\" border=\"0\">");
+    html += QLatin1String("<br><table cellpadding=\"4\" border=\"0\">");
     html += QLatin1String("<tr><th width=\"25%\" align=\"left\">") + StrConstants::getName() +
         QLatin1String("</th><th width=\"18%\" align=\"right\">") +
         StrConstants::getOutdatedVersion() +
@@ -816,7 +816,7 @@ void MainWindow::outputOutdatedAURPackageList()
         StrConstants::getOutdatedPackages(m_outdatedAURStringList->count()) + QLatin1String("</h3>");
   }
 
-  html += QLatin1String("<br><table cellpadding=\"5\" border=\"0\">");
+  html += QLatin1String("<br><table cellpadding=\"4\" border=\"0\">");
   html += QLatin1String("<tr><th width=\"25%\" align=\"left\">") + StrConstants::getName() +
       QLatin1String("</th><th width=\"18%\" align=\"right\">") +
       StrConstants::getOutdatedVersion() +

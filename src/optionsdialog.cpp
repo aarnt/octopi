@@ -209,6 +209,8 @@ void OptionsDialog::initListIcons()
   listIcons->item(4)->setIcon(IconHelper::getIconOctopi());
   listIcons->item(5)->setIcon(IconHelper::getIconCheckUpdates());
   listIcons->item(6)->setIcon(IconHelper::getIconTerminal2());
+
+  listIcons->setSpacing(2);
 }
 
 void OptionsDialog::initButtonBox(){

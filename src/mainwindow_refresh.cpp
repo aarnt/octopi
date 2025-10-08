@@ -1527,7 +1527,7 @@ void MainWindow::refreshTabInfo(bool clearContents, bool neverQuit)
       if (Package::getForeignRepositoryToolName() != ctn_KCP_TOOL)
       {
         html += QLatin1String("<a style=\"font-size:16px;\">") + pkgDescription + QLatin1String("</a>");
-        html += QLatin1String("<table cellpadding=\"5\" border=\"0\">");
+        html += QLatin1String("<table cellpadding=\"4\" border=\"0\">");
         html += QLatin1String("<tr><th width=\"20%\"></th><th width=\"80%\"></th></tr>");
         html += QLatin1String("<tr><td>") + version + QLatin1String("</td><td>") + package->version + QLatin1String("</td></tr>");
 
@@ -1580,7 +1580,7 @@ void MainWindow::refreshTabInfo(bool clearContents, bool neverQuit)
       else if (Package::getForeignRepositoryToolName() == ctn_KCP_TOOL)
       {
         html += QLatin1String("<a style=\"font-size:16px;\">") + kcp.description + QLatin1String("</a>");
-        html += QLatin1String("<table cellpadding=\"5\" border=\"0\">");
+        html += QLatin1String("<table cellpadding=\"4\" border=\"0\">");
         html += QLatin1String("<tr><th width=\"20%\"></th><th width=\"80%\"></th></tr>");
         html += QLatin1String("<tr><td>") + version + QLatin1String("</td><td>") + package->version + QLatin1String("</td></tr>");
 
