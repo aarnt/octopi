@@ -4,6 +4,7 @@
     in Output tab.
   BugFix: Optional deps dialog had a column header named "3" instead of "Repository".
   BugFix: Some outdated AUR pkgs were not showing on notifier (thanks to urbenlegend).
+  BugFix: There was a method called more than once every time distro news was checked.
   Make the whole interface text less condensed.
   Add the option to show/hide "Repository" and "Download Size" columns in package list.
   Add Repository field in Info tab.
