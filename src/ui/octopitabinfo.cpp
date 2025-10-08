@@ -108,7 +108,7 @@ QString OctopiTabInfo::formatTabInfo(const PackageRepository::PackageData& packa
             + StrConstants::getOutdatedInstalledVersion().arg(outdatedVersion) +
             QLatin1String("</b></font></td></tr>");
       }
-      else if (package.status == ectn_FOREIGN_OUTDATED && //NEW ELSE
+      else if (package.status == ectn_FOREIGN_OUTDATED &&
           outdatedAURPackagesNameVersion.count() > 0)
       {
         QString outdatedVersion = package.outdatedVersion;
@@ -165,6 +165,8 @@ QString OctopiTabInfo::formatTabInfo(const PackageRepository::PackageData& packa
   strConflictsWith = strConflictsWith.replace(QLatin1String("<"), QLatin1String("&lt;"));
   strConflictsWith = strConflictsWith.replace(QLatin1String(">"), QLatin1String("&gt;"));
   strConflictsWith = strConflictsWith.replace(QLatin1String("&lt;br&gt;"), QLatin1String("<br>"));
+
+  html += QLatin1String("<tr><td>") + StrConstants::getRepository() + QLatin1String("</td><td>") + package.repository + QLatin1String("</td></tr>");
 
   html += QLatin1String("<tr><td>") + licenses + QLatin1String("</td><td>") + pid.license + QLatin1String("</td></tr>");
 
