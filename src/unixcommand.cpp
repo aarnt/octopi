@@ -476,7 +476,7 @@ QByteArray UnixCommand::getPackageInformation(const QString &pkgName, bool forei
   else
     args << QStringLiteral("-Si");
 
-  if (!pkgName.isEmpty()) // enables get for all ("")
+  if (!pkgName.isEmpty())
     args << pkgName;
 
   QByteArray result = performQuery(args);
@@ -709,23 +709,6 @@ bool UnixCommand::hasTheExecutable(const QString& exeName)
     return (QFile::exists(ctn_OCTOPISUDO));
   else
     return (QFile::exists(QStringLiteral("/usr/bin/") + exeName));
-
-  /*qDebug() << "Needed to test executable: " << exeName;
-  QProcess proc;
-  proc.setProcessChannelMode(QProcess::MergedChannels);
-  QString sParam = QLatin1String("which ") + exeName;
-
-  QStringList sl;
-  sl << QLatin1String("-c");
-  sl << sParam;
-
-  proc.start(QLatin1String("/bin/sh"), sl);
-  proc.waitForFinished();
-
-  QString out = QString::fromUtf8(proc.readAllStandardOutput());
-  proc.close();
-
-  return !(out.isEmpty() || out.count(QStringLiteral("which")) > 0);*/
 }
 
 /*

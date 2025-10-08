@@ -308,7 +308,7 @@ void MainWindow::AURToolSelected()
 
   //Let's clear the list of visited packages (pkg anchors in Info tab)
   m_listOfVisitedPackages.clear();
-  m_indOfVisitedPackage = 0;
+  m_indOfVisitedPackage = -1;
 
   switchToViewAllPackages();
   m_selectedRepository = QLatin1String("");
