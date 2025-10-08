@@ -65,6 +65,9 @@ public:
 
   static bool isCachyOS();
 
+  //Returns the Name info from /etc/os-release
+  static QString getLinuxDistroName();
+
   //Returns the PrettyName info from /etc/os-release
   static QString getLinuxDistroPrettyName();
 

@@ -1457,6 +1457,38 @@ bool UnixCommand::isCachyOS()
 }
 
 /*
+ * Returns the Name info from /etc/os-release
+ */
+QString UnixCommand::getLinuxDistroName()
+{
+  static QString ret(QLatin1String(""));
+  static bool firstTime = true;
+
+  if (firstTime)
+  {
+    if (QFile::exists(QStringLiteral("/etc/os-release")))
+    {
+      QFile file(QStringLiteral("/etc/os-release"));
+      if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
+        ret = QLatin1String("");
+
+      QString contents = QString::fromUtf8(file.readAll());
+      int ind = contents.indexOf(QLatin1String("NAME"), Qt::CaseInsensitive);
+      int end = contents.indexOf(QLatin1String("\n"), ind);
+
+      if (ind != -1)
+      {
+        ret = contents.mid(ind+6, end-(ind+6)-1);
+      }
+    }
+
+    firstTime = false;
+  }
+
+  return ret;
+}
+
+/*
  * Returns the PrettyName info from /etc/os-release
  */
 QString UnixCommand::getLinuxDistroPrettyName()

@@ -212,9 +212,9 @@ void MainWindow::showDistroNews(QString distroRSSXML, bool searchForLatestNews)
   if (m_gotoNewsTab)
   {
     QTextBrowser *output = ui->twProperties->widget(ctn_TABINDEX_OUTPUT)->findChild<QTextBrowser*>(QStringLiteral("textBrowser"));
-    if (output->toHtml().contains(StrConstants::getSearchingForDistroNews().arg(UnixCommand::getLinuxDistroPrettyName())))
+    if (output->toHtml().contains(StrConstants::getSearchingForDistroNews().arg(UnixCommand::getLinuxDistroName())))
     {
-      if (distroRSSXML.length())
+      if (distroRSSXML.length() >= 200)
       {
         writeToTabOutput(QLatin1String("<br><br><b>") + StrConstants::getCommandFinishedOK() + QLatin1String("</b><br>"));
       }
