@@ -297,6 +297,8 @@ void OptionsDialog::initPackageListTab()
 {
   cbUseAlternateRowColor->setChecked(SettingsManager::getUseAlternateRowColor());
   cbEnablePackageTooltips->setChecked(SettingsManager::getEnablePackageTooltips());
+  cbShowRepositoryColumn->setChecked(SettingsManager::getShowPackageRepositoryColumn());
+  cbShowDownloadSizeColumn->setChecked(SettingsManager::getShowPackageDownloadSizeColumn());
   cbShowLicensesColumn->setChecked(SettingsManager::getShowPackageLicensesColumn());
   cbShowInstalledSizeColumn->setChecked(SettingsManager::getShowPackageInstalledSizeColumn());
   cbShowBuildDateColumn->setChecked(SettingsManager::getShowPackageBuildDateColumn());
@@ -652,6 +654,16 @@ void OptionsDialog::accept()
   if (cbEnablePackageTooltips->isChecked() != SettingsManager::getEnablePackageTooltips())
   {
     SettingsManager::setEnablePackageTooltips(cbEnablePackageTooltips->isChecked());
+  }
+  if (cbShowRepositoryColumn->isChecked() != SettingsManager::getShowPackageRepositoryColumn())
+  {
+    SettingsManager::setShowPackageRepositoryColumn(cbShowRepositoryColumn->isChecked());
+    ColumnsChanged = true;
+  }
+  if (cbShowDownloadSizeColumn->isChecked() != SettingsManager::getShowPackageDownloadSizeColumn())
+  {
+    SettingsManager::setShowPackageDownloadSizeColumn(cbShowDownloadSizeColumn->isChecked());
+    ColumnsChanged = true;
   }
   if (cbShowLicensesColumn->isChecked() != SettingsManager::getShowPackageLicensesColumn())
   {

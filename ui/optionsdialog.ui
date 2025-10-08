@@ -74,7 +74,7 @@
         </size>
        </property>
        <property name="currentIndex">
-        <number>2</number>
+        <number>1</number>
        </property>
        <widget class="QWidget" name="swGeneral">
         <widget class="QCheckBox" name="cbShowPackageNumbersOutput">
@@ -203,7 +203,7 @@
          <property name="geometry">
           <rect>
            <x>9</x>
-           <y>80</y>
+           <y>140</y>
            <width>611</width>
            <height>23</height>
           </rect>
@@ -216,7 +216,7 @@
          <property name="geometry">
           <rect>
            <x>9</x>
-           <y>110</y>
+           <y>170</y>
            <width>611</width>
            <height>23</height>
           </rect>
@@ -229,7 +229,7 @@
          <property name="geometry">
           <rect>
            <x>9</x>
-           <y>140</y>
+           <y>200</y>
            <width>611</width>
            <height>23</height>
           </rect>
@@ -242,7 +242,7 @@
          <property name="geometry">
           <rect>
            <x>9</x>
-           <y>170</y>
+           <y>230</y>
            <width>611</width>
            <height>23</height>
           </rect>
@@ -255,7 +255,7 @@
          <property name="geometry">
           <rect>
            <x>9</x>
-           <y>200</y>
+           <y>260</y>
            <width>611</width>
            <height>23</height>
           </rect>
@@ -275,6 +275,32 @@
          </property>
          <property name="text">
           <string>Enable package tooltips</string>
+         </property>
+        </widget>
+        <widget class="QCheckBox" name="cbShowRepositoryColumn">
+         <property name="geometry">
+          <rect>
+           <x>9</x>
+           <y>80</y>
+           <width>611</width>
+           <height>23</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Show &quot;Repository&quot; column</string>
+         </property>
+        </widget>
+        <widget class="QCheckBox" name="cbShowDownloadSizeColumn">
+         <property name="geometry">
+          <rect>
+           <x>9</x>
+           <y>110</y>
+           <width>611</width>
+           <height>23</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Show &quot;Download Size&quot; column</string>
          </property>
         </widget>
        </widget>

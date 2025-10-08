@@ -65,17 +65,31 @@ void PackageTreeView::init()
  * Here we get all column sizes from the current Octopi Settings store
  */
 void PackageTreeView::resizePackageView()
-{
+{  
   setColumnWidth(PackageModel::ctn_PACKAGE_ICON_COLUMN,
                  SettingsManager::getPackageIconColumnWidth());
   setColumnWidth(PackageModel::ctn_PACKAGE_NAME_COLUMN,
                  SettingsManager::getPackageNameColumnWidth());
   setColumnWidth(PackageModel::ctn_PACKAGE_VERSION_COLUMN,
                  SettingsManager::getPackageVersionColumnWidth());
-  setColumnWidth(PackageModel::ctn_PACKAGE_REPOSITORY_COLUMN,
-                 SettingsManager::getPackageRepositoryColumnWidth());
-  setColumnWidth(PackageModel::ctn_PACKAGE_SIZE_COLUMN,
-                 SettingsManager::getPackageDownloadSizeColumnWidth());
+
+  if (SettingsManager::getShowPackageRepositoryColumn())
+  {
+    showColumn(PackageModel::ctn_PACKAGE_REPOSITORY_COLUMN);
+    setColumnWidth(PackageModel::ctn_PACKAGE_REPOSITORY_COLUMN,
+                   SettingsManager::getPackageRepositoryColumnWidth());
+  }
+  else
+    hideColumn(PackageModel::ctn_PACKAGE_REPOSITORY_COLUMN);
+
+  if (SettingsManager::getShowPackageDownloadSizeColumn())
+  {
+    showColumn(PackageModel::ctn_PACKAGE_SIZE_COLUMN);
+    setColumnWidth(PackageModel::ctn_PACKAGE_SIZE_COLUMN,
+                   SettingsManager::getPackageDownloadSizeColumnWidth());
+  }
+  else
+    hideColumn(PackageModel::ctn_PACKAGE_SIZE_COLUMN);
 
   if (SettingsManager::getShowPackageLicensesColumn())
   {

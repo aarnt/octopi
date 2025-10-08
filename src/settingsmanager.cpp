@@ -269,6 +269,18 @@ int SettingsManager::getPackageInstallReasonColumnWidth()
         ctn_KEY_PACKAGE_INSTALL_REASON_COLUMN_WITH, 120).toInt();
 }
 
+bool SettingsManager::getShowPackageRepositoryColumn()
+{
+  SettingsManager p_instance;
+  return (p_instance.getSYSsettings()->value(ctn_KEY_SHOW_PACKAGE_REPOSITORY_COLUMN, true)).toBool();
+}
+
+bool SettingsManager::getShowPackageDownloadSizeColumn()
+{
+  SettingsManager p_instance;
+  return (p_instance.getSYSsettings()->value(ctn_KEY_SHOW_PACKAGE_DOWNLOAD_SIZE_COLUMN, true)).toBool();
+}
+
 bool SettingsManager::getShowPackageLicensesColumn()
 {
   SettingsManager p_instance;
@@ -939,6 +951,18 @@ void SettingsManager::setPackageInstallDateColumnWidth(int newValue)
 void SettingsManager::setPackageInstallReasonColumnWidth(int newValue)
 {
   instance()->getSYSsettings()->setValue(ctn_KEY_PACKAGE_INSTALL_REASON_COLUMN_WITH, newValue);
+  instance()->getSYSsettings()->sync();
+}
+
+void SettingsManager::setShowPackageRepositoryColumn(bool newValue)
+{
+  instance()->getSYSsettings()->setValue(ctn_KEY_SHOW_PACKAGE_REPOSITORY_COLUMN, newValue);
+  instance()->getSYSsettings()->sync();
+}
+
+void SettingsManager::setShowPackageDownloadSizeColumn(bool newValue)
+{
+  instance()->getSYSsettings()->setValue(ctn_KEY_SHOW_PACKAGE_DOWNLOAD_SIZE_COLUMN, newValue);
   instance()->getSYSsettings()->sync();
 }
 

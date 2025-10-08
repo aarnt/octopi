@@ -75,6 +75,8 @@ class SettingsManager
     static int getPackageInstallDateColumnWidth();
     static int getPackageInstallReasonColumnWidth();
 
+    static bool getShowPackageRepositoryColumn();
+    static bool getShowPackageDownloadSizeColumn();
     static bool getShowPackageLicensesColumn();
     static bool getShowPackageInstalledSizeColumn();
     static bool getShowPackageBuildDateColumn();
@@ -184,6 +186,8 @@ class SettingsManager
     static void setPackageInstallDateColumnWidth(int newValue);
     static void setPackageInstallReasonColumnWidth(int newValue);
 
+    static void setShowPackageRepositoryColumn(bool newValue);
+    static void setShowPackageDownloadSizeColumn(bool newValue);
     static void setShowPackageLicensesColumn(bool newValue);
     static void setShowPackageInstalledSizeColumn(bool newValue);
     static void setShowPackageBuildDateColumn(bool newValue);
