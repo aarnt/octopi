@@ -165,11 +165,11 @@ void PackageRepository::setOutdatedData(const QHash<QString, QString> &outdatedP
       pld->status=ectn_OUTDATED;
       pld->name=(*it)->name;
       pld->description=(*it)->description;
-      pld->outatedVersion=(*it)->version;
+      pld->outdatedVersion=(*it)->version;
       pld->version=outdatedPackages.value((*it)->name);
 
-      if (pld->version == pld->outatedVersion)
-        pld->outatedVersion=(*it)->outdatedVersion;
+      if (pld->version == pld->outdatedVersion)
+        pld->outdatedVersion=(*it)->outdatedVersion;
 
       pld->repository=(*it)->repository;
       pld->downloadSize=(*it)->downloadSize;
@@ -385,11 +385,11 @@ PackageRepository::PackageData::PackageData(const PackageListData& pkg, const bo
   : required(isRequired), managedByAUR(isManagedByAUR), name(pkg.name),
     repository(pkg.repository.isEmpty() ? StrConstants::getForeignRepositoryName() : pkg.repository),
     version(pkg.version), description(pkg.description), // octopi wants it converted to utf8
-    outdatedVersion(pkg.outatedVersion), downloadSize(pkg.downloadSize), installedSize(pkg.installedSize),
+    outdatedVersion(pkg.outdatedVersion), downloadSize(pkg.downloadSize), installedSize(pkg.installedSize),
     buildDate(pkg.buildDate), installDate(pkg.installDate), license(pkg.license), installReason(pkg.installReason),
     status(pkg.status != ectn_OUTDATED ?
            pkg.status :
-           (Package::alpm_pkg_vercmp(pkg.outatedVersion.toLatin1().data(), pkg.version.toLatin1().data()) == 1 ?
+           (Package::alpm_pkg_vercmp(pkg.outdatedVersion.toLatin1().data(), pkg.version.toLatin1().data()) == 1 ?
              ectn_NEWER : ectn_OUTDATED)),
     popularity(isManagedByAUR ? pkg.popularity : -1),
     popularityString(isManagedByAUR ? QString::number(pkg.popularity) : QString())
