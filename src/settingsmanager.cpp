@@ -195,7 +195,7 @@ int SettingsManager::getPackageListOrderedCol(){
 
 int SettingsManager::getPackageListSortOrder(){
   return instance()->getSYSsettings()->value(
-        ctn_KEY_PACKAGE_LIST_SORT_ORDER, Qt::AscendingOrder ).toInt();
+    ctn_KEY_PACKAGE_LIST_SORT_ORDER, Qt::AscendingOrder ).toInt();
 }
 
 int SettingsManager::getForeignPackageListOrderedCol()
@@ -206,67 +206,67 @@ int SettingsManager::getForeignPackageListOrderedCol()
 int SettingsManager::getForeignPackageListSortOrder()
 {
   return instance()->getSYSsettings()->value(
-        ctn_KEY_AUR_PACKAGE_LIST_SORT_ORDER, Qt::AscendingOrder ).toInt();
+    ctn_KEY_AUR_PACKAGE_LIST_SORT_ORDER, Qt::AscendingOrder ).toInt();
 }
 
 int SettingsManager::getPackageIconColumnWidth()
 {
   return instance()->getSYSsettings()->value(
-        ctn_KEY_PACKAGE_ICON_COLUMN_WIDTH, 24).toInt();
+    ctn_KEY_PACKAGE_ICON_COLUMN_WIDTH, 24).toInt();
 }
 
 int SettingsManager::getPackageNameColumnWidth()
 {
   return instance()->getSYSsettings()->value(
-        ctn_KEY_PACKAGE_NAME_COLUMN_WIDTH, 400).toInt();
+    ctn_KEY_PACKAGE_NAME_COLUMN_WIDTH, 400).toInt();
 }
 
 int SettingsManager::getPackageVersionColumnWidth()
 {
   return instance()->getSYSsettings()->value(
-        ctn_KEY_PACKAGE_VERSION_COLUMN_WIDTH, 260).toInt();
+    ctn_KEY_PACKAGE_VERSION_COLUMN_WIDTH, 260).toInt();
 }
 
 int SettingsManager::getPackageRepositoryColumnWidth()
 {
   return instance()->getSYSsettings()->value(
-        ctn_KEY_PACKAGE_REPOSITORY_COLUMN_WIDTH, 150).toInt();
+    ctn_KEY_PACKAGE_REPOSITORY_COLUMN_WIDTH, 150).toInt();
 }
 
 int SettingsManager::getPackageLicensesColumnWidth()
 {
   return instance()->getSYSsettings()->value(
-        ctn_KEY_PACKAGE_LICENSES_COLUMN_WIDTH, 250).toInt();
+    ctn_KEY_PACKAGE_LICENSES_COLUMN_WIDTH, 250).toInt();
 }
 
 int SettingsManager::getPackageDownloadSizeColumnWidth()
 {
   return instance()->getSYSsettings()->value(
-        ctn_KEY_PACKAGE_DOWNLOAD_SIZE_COLUMN_WITH, 120).toInt();
+    ctn_KEY_PACKAGE_DOWNLOAD_SIZE_COLUMN_WITH, 120).toInt();
 }
 
 int SettingsManager::getPackageInstalledSizeColumnWidth()
 {
   return instance()->getSYSsettings()->value(
-        ctn_KEY_PACKAGE_INSTALLED_SIZE_COLUMN_WITH, 120).toInt();
+    ctn_KEY_PACKAGE_INSTALLED_SIZE_COLUMN_WITH, 120).toInt();
 }
 
 int SettingsManager::getPackageBuildDateColumnWidth()
 {
   return instance()->getSYSsettings()->value(
-        ctn_KEY_PACKAGE_BUILD_DATE_COLUMN_WITH, 140).toInt();
+    ctn_KEY_PACKAGE_BUILD_DATE_COLUMN_WITH, 140).toInt();
 }
 
 int SettingsManager::getPackageInstallDateColumnWidth()
 {
   return instance()->getSYSsettings()->value(
-        ctn_KEY_PACKAGE_INSTALL_DATE_COLUMN_WITH, 140).toInt();
+    ctn_KEY_PACKAGE_INSTALL_DATE_COLUMN_WITH, 140).toInt();
 }
 
 int SettingsManager::getPackageInstallReasonColumnWidth()
 {
   return instance()->getSYSsettings()->value(
-        ctn_KEY_PACKAGE_INSTALL_REASON_COLUMN_WITH, 120).toInt();
+    ctn_KEY_PACKAGE_INSTALL_REASON_COLUMN_WITH, 120).toInt();
 }
 
 bool SettingsManager::getShowPackageRepositoryColumn()
@@ -311,9 +311,16 @@ bool SettingsManager::getShowPackageInstallReasonColumn()
   return (p_instance.getSYSsettings()->value(ctn_KEY_SHOW_PACKAGE_INSTALL_REASON_COLUMN, false)).toBool();
 }
 
+bool SettingsManager::getMakeInterfaceLessCondensed()
+{
+  SettingsManager p_instance;
+  return (p_instance.getSYSsettings()->value(ctn_KEY_MAKE_INTERFACE_LESS_CONDENSED, false)).toBool();
+}
+
 bool SettingsManager::getUseDefaultAppIcon()
 {
-  if (!instance()->getSYSsettings()->contains(ctn_KEY_USE_DEFAULT_APP_ICON)){
+  if (!instance()->getSYSsettings()->contains(ctn_KEY_USE_DEFAULT_APP_ICON))
+  {
     instance()->getSYSsettings()->setValue(ctn_KEY_USE_DEFAULT_APP_ICON, true);
     return true;
   }
@@ -1005,6 +1012,12 @@ void SettingsManager::setShowPackageNumbersOutput(bool newValue)
 void SettingsManager::setShowStopTransaction(bool newValue)
 {
   instance()->getSYSsettings()->setValue(ctn_KEY_SHOW_STOP_TRANSACTION, newValue);
+  instance()->getSYSsettings()->sync();
+}
+
+void SettingsManager::setMakeInterfaceLessCondensed(bool newValue)
+{
+  instance()->getSYSsettings()->setValue(ctn_KEY_MAKE_INTERFACE_LESS_CONDENSED, newValue);
   instance()->getSYSsettings()->sync();
 }
 

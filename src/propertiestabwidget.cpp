@@ -58,7 +58,7 @@ void PropertiesTabWidget::initTabInfo()
 {
   QWidget *tabInfo = new QWidget();
   QGridLayout *gridLayoutX = new QGridLayout ( tabInfo );
-  gridLayoutX->setSpacing ( 0 );
+  gridLayoutX->setSpacing(0);
 
 #if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
   gridLayoutX->setMargin(0);
@@ -92,7 +92,7 @@ void PropertiesTabWidget::initTabFiles()
 {
   QWidget *tabPkgFileList = new QWidget(this);
   QGridLayout *gridLayoutX = new QGridLayout ( tabPkgFileList );
-  gridLayoutX->setSpacing ( 0 );
+  gridLayoutX->setSpacing(0);
   gridLayoutX->setContentsMargins(0, 0, 0, 0);
 
   QStandardItemModel *modelPkgFileList = new QStandardItemModel(this);
@@ -108,8 +108,8 @@ void PropertiesTabWidget::initTabFiles()
   m_tvPkgFileList->setFrameShadow(QFrame::Plain);
   m_tvPkgFileList->setObjectName(QStringLiteral("tvPkgFileList"));
 
-  //TODO Add Option to change...
-  m_tvPkgFileList->setStyleSheet(QStringLiteral("QTreeView::item { height: 25px; }"));
+  if (SettingsManager::getMakeInterfaceLessCondensed())
+    m_tvPkgFileList->setStyleSheet(QStringLiteral("QTreeView::item { height: 25px; }"));
 
   modelPkgFileList->setSortRole(0);
   modelPkgFileList->setColumnCount(0);
@@ -150,8 +150,8 @@ void PropertiesTabWidget::initTabActions()
   m_tvTransaction->setFrameShape(QFrame::NoFrame);
   m_tvTransaction->setFrameShadow(QFrame::Plain);
 
-  //TODO Add Option to change...
-  m_tvTransaction->setStyleSheet(QStringLiteral("QTreeView::item { height: 25px; }"));
+  if (SettingsManager::getMakeInterfaceLessCondensed())
+    m_tvTransaction->setStyleSheet(QStringLiteral("QTreeView::item { height: 25px; }"));
 
   m_tvTransaction->expandAll();    
 
@@ -227,7 +227,7 @@ void PropertiesTabWidget::initTabOutput()
 {
   QWidget *tabOutput = new QWidget();
   QGridLayout *gridLayoutX = new QGridLayout(tabOutput);
-  gridLayoutX->setSpacing ( 0 );
+  gridLayoutX->setSpacing(0);
   gridLayoutX->setContentsMargins(0, 0, 0, 0);
 
   m_textOutput = new QTextBrowser(tabOutput);

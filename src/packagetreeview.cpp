@@ -56,9 +56,9 @@ void PackageTreeView::init()
   header()->setDefaultAlignment(Qt::AlignLeft);
   setUniformRowHeights(true);
 
-  //TODO Add a setting...
   //setIconSize(QSize(32,32));
-  setStyleSheet(QStringLiteral("QTreeView::item { height: 28px; }"));
+  if (SettingsManager::getMakeInterfaceLessCondensed())
+    setStyleSheet(QStringLiteral("QTreeView::item { height: 28px; }"));
 }
 
 /*

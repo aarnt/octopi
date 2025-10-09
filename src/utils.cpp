@@ -370,7 +370,11 @@ QString utils::parseDistroNews()
             }
             else if (eText.tagName() == QLatin1String("description"))
             {
-              itemDescription = QLatin1String("<p style=\"line-height: 1.5;\">") + eText.text() + QLatin1String("</p>");
+              if (SettingsManager::getMakeInterfaceLessCondensed())
+                itemDescription = QLatin1String("<p style=\"line-height: 1.5;\">") + eText.text() + QLatin1String("</p>");
+              else
+                itemDescription = QLatin1String("<p>") + eText.text() + QLatin1String("</p>");
+
               itemDescription += QLatin1String("<br>");
             }
             else if (eText.tagName() == QLatin1String("pubDate"))

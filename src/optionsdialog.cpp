@@ -210,7 +210,8 @@ void OptionsDialog::initListIcons()
   listIcons->item(5)->setIcon(IconHelper::getIconCheckUpdates());
   listIcons->item(6)->setIcon(IconHelper::getIconTerminal2());
 
-  listIcons->setSpacing(2);
+  if (SettingsManager::getMakeInterfaceLessCondensed())
+    listIcons->setSpacing(2);
 }
 
 void OptionsDialog::initButtonBox(){
@@ -233,6 +234,11 @@ void OptionsDialog::initGeneralTab()
   cbConfirmationDialogInSysUpgrade->setChecked(SettingsManager::getEnableConfirmationDialogInSysUpgrade());
   cbEnableInternetCheck->setChecked(SettingsManager::getEnableInternetChecking());  
   gbInternetChecking->setStyleSheet(QLatin1String("border: 0;"));
+
+  cbMakeInterfaceLessCondensed->setChecked(SettingsManager::getMakeInterfaceLessCondensed());
+  connect(cbMakeInterfaceLessCondensed, &QCheckBox::clicked, this, [=]() {
+      QMessageBox::warning(this, StrConstants::getWarning(), StrConstants::getNeedsAppRestart());
+  });
 
   if (SettingsManager::getInternetCheckingDomain().contains(QLatin1String("baidu")))
   {
@@ -498,10 +504,9 @@ void OptionsDialog::initTerminalTab()
   cbColorScheme->addItems(acs);
   cbColorScheme->setCurrentText(SettingsManager::getTerminalColorScheme());
 
-  QFontDatabase database;
-  const QStringList fontFamilies = database.families();
+  const QStringList fontFamilies = QFontDatabase::families();
   for (const QString &family : fontFamilies){
-    const QStringList styles = database.styles(family);
+    const QStringList styles = QFontDatabase::styles(family);
     if (styles.isEmpty())
       continue;
 
@@ -643,6 +648,10 @@ void OptionsDialog::accept()
     {
       SettingsManager::setInternetCheckingDomain(QLatin1String("www.google.com"));
     }
+  }
+  if (cbMakeInterfaceLessCondensed->isChecked() != SettingsManager::getMakeInterfaceLessCondensed())
+  {
+    SettingsManager::setMakeInterfaceLessCondensed(cbMakeInterfaceLessCondensed->isChecked());
   }
 
   //Set Package List...

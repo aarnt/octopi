@@ -74,14 +74,14 @@
         </size>
        </property>
        <property name="currentIndex">
-        <number>1</number>
+        <number>0</number>
        </property>
        <widget class="QWidget" name="swGeneral">
         <widget class="QCheckBox" name="cbShowPackageNumbersOutput">
          <property name="geometry">
           <rect>
            <x>9</x>
-           <y>140</y>
+           <y>170</y>
            <width>581</width>
            <height>23</height>
           </rect>
@@ -94,7 +94,7 @@
          <property name="geometry">
           <rect>
            <x>9</x>
-           <y>170</y>
+           <y>200</y>
            <width>611</width>
            <height>23</height>
           </rect>
@@ -182,6 +182,19 @@
          </property>
          <property name="text">
           <string>Enable confirmation dialog in system upgrade</string>
+         </property>
+        </widget>
+        <widget class="QCheckBox" name="cbMakeInterfaceLessCondensed">
+         <property name="geometry">
+          <rect>
+           <x>9</x>
+           <y>140</y>
+           <width>611</width>
+           <height>23</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Make interface text less condensed</string>
          </property>
         </widget>
        </widget>

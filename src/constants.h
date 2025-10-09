@@ -149,6 +149,7 @@ const QString ctn_KEY_SHOW_PACKAGE_INSTALLED_SIZE_COLUMN(QStringLiteral("Show_Pa
 const QString ctn_KEY_SHOW_PACKAGE_BUILD_DATE_COLUMN(QStringLiteral("Show_Package_Build_Date_Column"));
 const QString ctn_KEY_SHOW_PACKAGE_INSTALL_DATE_COLUMN(QStringLiteral("Show_Package_Install_Date_Column"));
 const QString ctn_KEY_SHOW_PACKAGE_INSTALL_REASON_COLUMN(QStringLiteral("Show_Package_Install_Reason_Column"));
+const QString ctn_KEY_MAKE_INTERFACE_LESS_CONDENSED(QStringLiteral("Make_Interface_Less_Condensed"));
 const QString ctn_KEY_SU_TOOL(QStringLiteral("SU_Tool_Name"));
 const QString ctn_KEY_TERMINAL(QStringLiteral("Terminal"));
 const QString ctn_KEY_TERMINAL_COLOR_SCHEME(QStringLiteral("Terminal_Color_Scheme"));

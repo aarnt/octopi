@@ -96,6 +96,7 @@ class SettingsManager
     static bool getShowPackageNumbersOutput();
     static bool getShowStopTransaction();
 
+    static bool getMakeInterfaceLessCondensed();
     static QString getAURTool();
     static QString getAURToolName();
     static bool getAlwaysUseTheTerminal();
@@ -197,6 +198,7 @@ class SettingsManager
     static void setShowPackageNumbersOutput(bool newValue);
     static void setShowStopTransaction(bool newValue);
 
+    static void setMakeInterfaceLessCondensed(bool newValue);
     static void setAURTool(const QString &newValue);
     static void setAlwaysUseTheTerminal(bool newValue);
     static void setAUROverwriteParam(bool newValue);
