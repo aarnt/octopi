@@ -11,6 +11,7 @@
   Show current version of the packages on Notifier's System Upgrade dialog 
     (thanks to valchx's code).
   Added chinese description for the application name in desktop file.
+  Updated translations.
 
 0.18.1 (2025-09-29)
   BugFix: French translation was not working properly (thanks to roxfr).
