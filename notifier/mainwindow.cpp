@@ -439,7 +439,14 @@ void MainWindow::aboutOctopiNotifier()
   QScreen *sc = QGuiApplication::primaryScreen();
   fake->setGeometry(sc->geometry());
 
-  QString aboutText = QStringLiteral("<b>Octopi Notifier</b><br>");
+  QString aboutText;
+
+  if (SettingsManager::getMakeInterfaceLessCondensed())
+  {
+    aboutText += QStringLiteral("<p style=\"line-height: 1.2;\">");
+  }
+
+  aboutText += QStringLiteral("<b>Octopi Notifier</b><br>");
   aboutText += StrConstants::getVersion() + QLatin1String(": ") +
       ctn_APPLICATION_VERSION /*StrConstants::getApplicationVersion()*/ + QLatin1String("</b>") +
       QLatin1String(" - ") + StrConstants::getQtVersion() + QLatin1String("<br>");

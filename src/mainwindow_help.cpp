@@ -62,7 +62,7 @@ QString MainWindow::generateHelpUsageHtmlText()
   {
     if (SettingsManager::getMakeInterfaceLessCondensed())
     {
-      strOutdatedAur=QLatin1String("<li><p>") +
+      strOutdatedAur=QLatin1String("<li><p style=\"line-height: 0.8;\">") +
         tr("Ctrl+Shift+O to display outdated %1 packages").arg(StrConstants::getForeignRepositoryName()) + QLatin1String("</p></li>");
     }
     else
@@ -78,7 +78,7 @@ QString MainWindow::generateHelpUsageHtmlText()
   {
     if (SettingsManager::getMakeInterfaceLessCondensed())
     {
-      strVote=QLatin1String("<li><p>") +
+      strVote=QLatin1String("<li><p style=\"line-height: 0.8;\">") +
         tr("Ctrl+Shift+A to display AUR voted package list") + QLatin1String("</p></li>");
     }
     else
@@ -107,100 +107,100 @@ QString MainWindow::generateHelpUsageHtmlText()
     html += QStringLiteral("<br><br>") +
         tr("Package classification:") +
 
-        QStringLiteral("<ul type=\"square\"><li><p>") + iconPath + QLatin1String("ignored.png\"/> ") +
+        QStringLiteral("<ul type=\"square\"><li><p style=\"line-height: 0.8;\">") + iconPath + QLatin1String("ignored.png\"/> ") +
         tr("An ignored package") + QStringLiteral("</p></li>") +
-        QStringLiteral("<li><p>") + iconPath + QLatin1String("installed.png\"/> ") +
+        QStringLiteral("<li><p style=\"line-height: 0.8;\">") + iconPath + QLatin1String("installed.png\"/> ") +
         tr("An installed package") + QStringLiteral("</p></li>") +
-        QStringLiteral("<li><p>") + iconPath + QLatin1String("unrequired.png\"/> ") +
+        QStringLiteral("<li><p style=\"line-height: 0.8;\">") + iconPath + QLatin1String("unrequired.png\"/> ") +
         tr("An installed package (not required by others)") +
         QStringLiteral("</p></li>") +
-        QLatin1String("<li><p>") + iconPath + QLatin1String("foreign_green.png\"/> ") +
+        QLatin1String("<li><p style=\"line-height: 0.8;\">") + iconPath + QLatin1String("foreign_green.png\"/> ") +
         tr("A foreign package, installed from") + QLatin1Char(' ') + StrConstants::getForeignRepositoryName() +
         QStringLiteral("</p></li>") +
-        QStringLiteral("<li><p>") + iconPath + QLatin1String("noninstalled.png\"/> ") +
+        QStringLiteral("<li><p style=\"line-height: 0.8;\">") + iconPath + QLatin1String("noninstalled.png\"/> ") +
         tr("A non installed package") +
         QStringLiteral("</p></li>") +
-        QStringLiteral("<li><p>") + iconPath + QLatin1String("outdated.png\"/> ") +
+        QStringLiteral("<li><p style=\"line-height: 0.8;\">") + iconPath + QLatin1String("outdated.png\"/> ") +
         tr("An outdated package") +
         QStringLiteral("</p></li>") +
-        QStringLiteral("<li><p>") + iconPath + QLatin1String("foreign_red.png\"/> ") +
+        QStringLiteral("<li><p style=\"line-height: 0.8;\">") + iconPath + QLatin1String("foreign_red.png\"/> ") +
         tr("An outdated foreign package") +
         QStringLiteral("</p></li>") +
-        QStringLiteral("<li><p>") + iconPath + QLatin1String("newer.png\"/> ") +
+        QStringLiteral("<li><p style=\"line-height: 0.8;\">") + iconPath + QLatin1String("newer.png\"/> ") +
         tr("A newer version of this package is installed") +
         QStringLiteral("</p></li></ul><br>") +
 
         tr("Basic usage help:") +
-        QStringLiteral("<ul><li><p>") +
+        QStringLiteral("<ul><li><p style=\"line-height: 0.8;\">") +
         tr("Position the mouse over a package to see its description") +
-        QStringLiteral("</p></li><li><p>") +
+        QStringLiteral("</p style=\"line-height: 0.8;\"></li><li><p>") +
         tr("Double click an installed package to see its contents") +
-        QStringLiteral("</p></li><li><p>") +
+        QStringLiteral("</p></li><li><p style=\"line-height: 0.8;\">") +
         tr("Right click package to install/reinstall or remove it") +
         QStringLiteral("</p></li></ul><br>") +
 
         tr("Alt+key sequences:") +
-        QStringLiteral("<ul><li><p>") +
+        QStringLiteral("<ul><li><p style=\"line-height: 0.8;\">") +
         tr("Alt+1 to switch to 'Info' tab") +
-        QStringLiteral("</p></li><li><p>") +
+        QStringLiteral("</p style=\"line-height: 0.8;\"></li><li><p>") +
         tr("Alt+2 to switch to 'Files' tab") +
-        QStringLiteral("</p></li><li><p>") +
+        QStringLiteral("</p></li><li><p style=\"line-height: 0.8;\">") +
         tr("Alt+3 to switch to 'Actions' tab") +
-        QStringLiteral("</p></li><li><p>") +
+        QStringLiteral("</p></li><li><p style=\"line-height: 0.8;\">") +
         tr("Alt+4 to switch to 'Output' tab") +
-        QStringLiteral("</p></li><li><p>") +
+        QStringLiteral("</p></li><li><p style=\"line-height: 0.8;\">") +
         tr("Alt+5 to switch to 'News' tab") +
-        QStringLiteral("</p></li><li><p>") +
+        QStringLiteral("</p></li><li><p style=\"line-height: 0.8;\">") +
         tr("Alt+6 or 'F1' to show this help page") +
-        QStringLiteral("</p></li><li><p>") +
+        QStringLiteral("</p></li><li><p style=\"line-height: 0.8;\">") +
         tr("Alt+7 to switch to 'Terminal' tab") +
         QStringLiteral("</p></li></ul><br>") +
 
         tr("Control+key sequences:") +
-        QStringLiteral("<ul><li><p>") +
+        QStringLiteral("<ul><li><p style=\"line-height: 0.8;\">") +
         tr("Ctrl+E or 'Actions/Cancel' to clear the selection of to be removed/installed packages") +
-        QStringLiteral("</p></li><li><p>") +
+        QStringLiteral("</p></li><li><p style=\"line-height: 0.8;\">") +
         tr("Ctrl+F to search for text inside tab Files, News and Usage") +
-        QStringLiteral("</p></li><li><p>") +
+        QStringLiteral("</p></li><li><p style=\"line-height: 0.8;\">") +
         tr("Ctrl+G or 'File/Get latest distro news' to retrieve the latest RSS based distro news") +
-        QStringLiteral("</p></li><li><p>") +
+        QStringLiteral("</p></li><li><p style=\"line-height: 0.8;\">") +
         tr("Ctrl+K or 'File/Check updates' to check mirror for latest updates (checkupdates)") +
-        QStringLiteral("</p></li><li><p>") +
+        QStringLiteral("</p></li><li><p style=\"line-height: 0.8;\">") +
         tr("Ctrl+L to find a package in the package list") +
-        QStringLiteral("</p></li><li><p>") +
+        QStringLiteral("</p></li><li><p style=\"line-height: 0.8;\">") +
         tr("Ctrl+P to go to package list") +
-        QStringLiteral("</p></li><li><p>") +
+        QStringLiteral("</p></li><li><p style=\"line-height: 0.8;\">") +
         tr("Ctrl+Q or 'File/Exit' to exit the application") +
-        QStringLiteral("</p></li><li><p>") +
+        QStringLiteral("</p></li><li><p style=\"line-height: 0.8;\">") +
         tr("Ctrl+U or 'File/System upgrade' to make a full system upgrade (pacman -Su)") +
-        QStringLiteral("</p></li><li><p>") +
+        QStringLiteral("</p></li><li><p style=\"line-height: 0.8;\">") +
         tr("Ctrl+Y or 'Actions/Apply' to start installation/removal of selected packages") +
         QStringLiteral("</p></li></ul><br>") +
 
         tr("Control+shift+key sequences:") +
         QStringLiteral("<ul>") +
         strVote +
-        QStringLiteral("<li><p>") +
+        QStringLiteral("<li><p style=\"line-height: 0.8;\">") +
         tr("Ctrl+Shift+G to display all package groups") +
-        QStringLiteral("</p></li><p>") +
+        QStringLiteral("</p></li><p style=\"line-height: 0.8;\">") +
         strOutdatedAur + QLatin1String("<li>") +
         //tr("Ctrl+Shift+R to remove Pacman's transaction lock file") +
-        QStringLiteral("</p></li><li><p>") +
+        QStringLiteral("</p></li><li><p style=\"line-height: 0.8;\">") +
         tr("Ctrl+Shift+U to upgrade outdated %1 packages").arg(StrConstants::getForeignRepositoryGroupName()) +
-        QStringLiteral("</p></li><li><p>") +
+        QStringLiteral("</p></li><li><p style=\"line-height: 0.8;\">") +
         tr("Ctrl+Shift+Y to display %1 group").arg(StrConstants::getForeignRepositoryGroupName()) +
         QStringLiteral("</p></li></ul><br>") +
 
         tr("F+key sequences:") +
-        QStringLiteral("<ul><li><p>") +
+        QStringLiteral("<ul><li><p style=\"line-height: 0.8;\">") +
         tr("F1 to show this help page") +
-        QStringLiteral("</p></li><li><p>") +
+        QStringLiteral("</p></li><li><p style=\"line-height: 0.8;\">") +
         tr("F4 to open a Terminal whitin the selected directory at Files tab") +
-        QStringLiteral("</p></li><li><p>") +
+        QStringLiteral("</p></li><li><p style=\"line-height: 0.8;\">") +
         tr("F6 to open a File Manager whitin the selected directory at Files tab") +
-        QStringLiteral("</p></li><li><p>") +
+        QStringLiteral("</p></li><li><p style=\"line-height: 0.8;\">") +
         tr("F10 to maximize/demaximize package list view") +
-        QStringLiteral("</p></li><li><p>") +
+        QStringLiteral("</p></li><li><p style=\"line-height: 0.8;\">") +
         tr("F11 to maximize/demaximize Tab's view") +
         QStringLiteral("</p></li></ul><br>");
   }
@@ -316,7 +316,6 @@ QString MainWindow::generateHelpUsageHtmlText()
         QStringLiteral("</li></ul><br>");
   }
 
-
   return html;
 }
 
@@ -354,7 +353,14 @@ void MainWindow::onHelpDonate()
  */
 void MainWindow::onHelpAbout()
 {
-  QString aboutText =
+  QString aboutText;
+
+  if (SettingsManager::getMakeInterfaceLessCondensed())
+  {
+    aboutText += QStringLiteral("<p style=\"line-height: 1.2;\">");
+  }
+
+  aboutText +=
       QLatin1String("<b>") + StrConstants::getApplicationName() + QLatin1String("</b><br>");
 
   aboutText += StrConstants::getVersion() + QLatin1String(": ") + ctn_APPLICATION_VERSION /*StrConstants::getApplicationVersion()*/ +

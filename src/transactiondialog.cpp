@@ -76,7 +76,7 @@ void TransactionDialog::setDetailedText(const QString &detailedtext)
   t.replace(QLatin1String("\n"), QLatin1String("<br>"));
 
   if (SettingsManager::getMakeInterfaceLessCondensed())
-    ui->detailedText->setText(QStringLiteral("<p style=\"line-height: 1.5;\">") + t + QStringLiteral("</p>"));
+    ui->detailedText->setText(QStringLiteral("<p style=\"line-height: 1.3;\">") + t + QStringLiteral("</p>"));
   else
     ui->detailedText->setText(QStringLiteral("<p>") + t + QStringLiteral("</p>"));
 

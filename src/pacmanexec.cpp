@@ -759,6 +759,9 @@ void PacmanExec::prepareTextToPrint(QString str, TreatString ts, TreatURLLinks t
  */
 void PacmanExec::onStarted()
 {
+  if (SettingsManager::getMakeInterfaceLessCondensed())
+    prepareTextToPrint(QLatin1String("<p style=\"line-height: 1.2;\">"));
+
   //First we output the name of action we are starting to execute!
   if (m_commandExecuting == ectn_CHECK_UPDATES)
   {

@@ -94,7 +94,7 @@ QString OctopiTabInfo::formatTabInfo(const PackageRepository::PackageData& packa
   html += pkgDescription;
 
   if (SettingsManager::getMakeInterfaceLessCondensed())
-    html += QLatin1String("<table cellpadding=\"4\" border=\"0\">");
+    html += QLatin1String("<table cellpadding=\"3\" border=\"0\">");
   else
     html += QLatin1String("<table border=\"0\">");
 

@@ -371,7 +371,7 @@ QString utils::parseDistroNews()
             else if (eText.tagName() == QLatin1String("description"))
             {
               if (SettingsManager::getMakeInterfaceLessCondensed())
-                itemDescription = QLatin1String("<p style=\"line-height: 1.5;\">") + eText.text() + QLatin1String("</p>");
+                itemDescription = QLatin1String("<p style=\"line-height: 1.3;\">") + eText.text() + QLatin1String("</p>");
               else
                 itemDescription = QLatin1String("<p>") + eText.text() + QLatin1String("</p>");
 

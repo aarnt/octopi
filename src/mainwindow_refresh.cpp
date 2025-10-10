@@ -1529,7 +1529,7 @@ void MainWindow::refreshTabInfo(bool clearContents, bool neverQuit)
         html += QLatin1String("<a style=\"font-size:16px;\">") + pkgDescription + QLatin1String("</a>");
 
         if (SettingsManager::getMakeInterfaceLessCondensed())
-          html += QLatin1String("<table cellpadding=\"4\" border=\"0\">");
+          html += QLatin1String("<table cellpadding=\"3\" border=\"0\">");
         else
           html += QLatin1String("<table border=\"0\">");
 
@@ -1587,7 +1587,7 @@ void MainWindow::refreshTabInfo(bool clearContents, bool neverQuit)
         html += QLatin1String("<a style=\"font-size:16px;\">") + kcp.description + QLatin1String("</a>");
 
         if (SettingsManager::getMakeInterfaceLessCondensed())
-          html += QLatin1String("<table cellpadding=\"4\" border=\"0\">");
+          html += QLatin1String("<table cellpadding=\"3\" border=\"0\">");
         else
           html += QLatin1String("<table border=\"0\">");
 

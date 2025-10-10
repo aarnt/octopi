@@ -671,7 +671,7 @@ void MainWindow::outputOutdatedPackageList()
     }
 
     if (SettingsManager::getMakeInterfaceLessCondensed())
-      html += QLatin1String("<br><table cellpadding=\"4\" border=\"0\">");
+      html += QLatin1String("<br><table cellpadding=\"3\" border=\"0\">");
     else
       html += QLatin1String("<br><table border=\"0\">");
 
@@ -725,7 +725,7 @@ void MainWindow::outputOutdatedPackageList()
     }
 
     if (SettingsManager::getMakeInterfaceLessCondensed())
-      html += QLatin1String("<br><table cellpadding=\"4\" border=\"0\">");
+      html += QLatin1String("<br><table cellpadding=\"3\" border=\"0\">");
     else
       html += QLatin1String("<br><table border=\"0\">");
 
@@ -825,7 +825,7 @@ void MainWindow::outputOutdatedAURPackageList()
   }
 
   if (SettingsManager::getMakeInterfaceLessCondensed())
-    html += QLatin1String("<br><table cellpadding=\"4\" border=\"0\">");
+    html += QLatin1String("<br><table cellpadding=\"3\" border=\"0\">");
   else
     html += QLatin1String("<br><table border=\"0\">");
 
