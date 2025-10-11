@@ -841,17 +841,19 @@ void MainWindow::outputOutdatedAURPackageList()
   for (i = m_outdatedAURPackagesNameVersion->constBegin(); i != m_outdatedAURPackagesNameVersion->constEnd(); ++i)
   {
     pkg = i.key();
+    pkgName = QLatin1String("<tr><td>") + pkg;
+
     const PackageRepository::PackageData*const package = m_packageRepo.getFirstPackageByName(pkg);
     if (package != nullptr) {
       availableVersion = package->version;
-      pkgName = QLatin1String("<tr><td><a href=\"goto:") + pkg + QLatin1String("\">") + pkg;
+      //pkgName = QLatin1String("<tr><td><a href=\"goto:") + pkg + QLatin1String("\">") + pkg;
     }
     else
     {
       if (SettingsManager::hasPacmanBackend())
       {
         QString pkgInfo = QString::fromUtf8(UnixCommand::getPackageInformation(pkg, true));
-        pkgName = QLatin1String("<tr><td>") + pkg;
+        //pkgName = QLatin1String("<tr><td>") + pkg;
         if (!pkgInfo.isEmpty())
           availableVersion = Package::getVersion(pkgInfo);
         else
@@ -860,7 +862,7 @@ void MainWindow::outputOutdatedAURPackageList()
 #ifdef ALPM_BACKEND
       else
       {
-        pkgName = QLatin1String("<tr><td>") + pkg;
+        //pkgName = QLatin1String("<tr><td>") + pkg;
         availableVersion = AlpmBackend::getPackageVersion(pkg, true);
       }
 #endif
