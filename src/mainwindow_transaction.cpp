@@ -2649,8 +2649,6 @@ void MainWindow::pacmanProcessFinished(int exitCode, QProcess::ExitStatus exitSt
 
   if (isAURGroupSelected())
   {
-    m_outdatedAURStringList->clear();
-    m_outdatedAURPackagesNameVersion->clear();
     toggleSystemActions(false);
   }
 
@@ -2660,7 +2658,7 @@ void MainWindow::pacmanProcessFinished(int exitCode, QProcess::ExitStatus exitSt
   refreshMenuTools(); //Maybe some of octopi tools were added/removed...
 
   QStringList aurTools = UnixCommand::getAvailableAURTools();
-  if(aurTools.count() > 1 && SettingsManager::getAURToolName() != ctn_NO_AUR_TOOL)
+  if (aurTools.count() > 1 && SettingsManager::getAURToolName() != ctn_NO_AUR_TOOL)
   {
     m_actionSwitchToForeignTool->setCheckable(true);
     m_actionSwitchToForeignTool->setChecked(false);
@@ -2732,13 +2730,15 @@ void MainWindow::onPressAnyKeyToContinue()
     m_leFilterPackage->clear();
   }
 
-  metaBuildPackageList();
-
   if (isAURGroupSelected())
   {
+    m_outdatedAURStringList->clear();
+    m_outdatedAURPackagesNameVersion->clear();
     toggleSystemActions(false);
     bRefreshGroups = false;
   }
+
+  metaBuildPackageList();
 
   if (m_commandExecuting != ectn_MIRROR_CHECK && bRefreshGroups)
     refreshGroupsWidget();
