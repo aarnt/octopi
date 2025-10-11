@@ -2257,7 +2257,16 @@ void MainWindow::toggleTransactionActions(const bool value)
     ui->actionGetNews->setEnabled(value);
     m_actionChangeInstallReason->setEnabled(value);
   }
-  else if (UnixCommand::getLinuxDistro() != ectn_KAOS)
+  else if (UnixCommand::getLinuxDistro() == ectn_KAOS)
+  {
+    ui->actionInstallLocalPackage->setEnabled(false);
+    m_actionMenuOptions->setEnabled(false);
+    ui->actionGetNews->setEnabled(false);
+    ui->actionCheckUpdates->setEnabled(false);
+    m_actionChangeInstallReason->setEnabled(false);
+
+  }
+  else
   {
     ui->actionInstallLocalPackage->setEnabled(false);
     m_actionMenuOptions->setEnabled(false);

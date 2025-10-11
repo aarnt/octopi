@@ -1243,7 +1243,7 @@ void MainWindow::buildAURPackageList()
   refreshStatusBarToolButtons();
 
   if (UnixCommand::getLinuxDistro() != ectn_KAOS)
-      ui->actionCheckUpdates->setEnabled(true);
+    ui->actionCheckUpdates->setEnabled(true);
 }
 
 /*
