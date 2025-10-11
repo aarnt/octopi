@@ -906,7 +906,7 @@ void MainWindow::doCheckUpdates()
     if (m_outdatedAURStringList->count() > 0)
       showToolButtonAUR();
     else
-      html += StrConstants::getNoNewUpdatesAvailable() + QStringLiteral("<br>");
+      html += StrConstants::getNoUpdatesAvailable() + QStringLiteral("<br>");
 
     writeToTabOutput(html + QStringLiteral("<br>"));
     writeToTabOutput(QLatin1String("<b>") + StrConstants::getCommandFinishedOK() + QLatin1String("</b>"), ectn_DONT_TREAT_URL_LINK);
