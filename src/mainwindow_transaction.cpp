@@ -2206,7 +2206,7 @@ void MainWindow::toggleTransactionActions(const bool value)
       if (m_outdatedStringList->count() > 0)
         ui->actionSystemUpgrade->setEnabled(true);
     }
-    else
+    else if (UnixCommand::getLinuxDistro() != ectn_KAOS)
     {
       ui->actionCheckUpdates->setEnabled(true);
       if (m_outdatedAURStringList->count() >0)
