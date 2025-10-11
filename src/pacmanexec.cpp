@@ -574,6 +574,8 @@ void PacmanExec::prepareTextToPrint(QString str, TreatString ts, TreatURLLinks t
 {
   if (m_debugMode) std::cout << "_print (begin): " << str.toLatin1().data() << std::endl;
 
+  //std::cout << "_print: " << str.toLatin1().data() << std::endl;
+
   if (ts == ectn_DONT_TREAT_STRING)
   {
     emit textToPrintExt(str);
@@ -759,45 +761,72 @@ void PacmanExec::prepareTextToPrint(QString str, TreatString ts, TreatURLLinks t
  */
 void PacmanExec::onStarted()
 {
-  if (SettingsManager::getMakeInterfaceLessCondensed())
-    prepareTextToPrint(QLatin1String("<p style=\"line-height: 1.2;\">"));
+  //if (SettingsManager::getMakeInterfaceLessCondensed())
+  //  prepareTextToPrint(QLatin1String("<p style=\"line-height: 1.2;\">"));
 
   //First we output the name of action we are starting to execute!
   if (m_commandExecuting == ectn_CHECK_UPDATES)
   {
-    prepareTextToPrint(QLatin1String("<b>") + StrConstants::getCheckingForUpdates() + QLatin1String("</b><br><br>"), ectn_DONT_TREAT_STRING, ectn_DONT_TREAT_URL_LINK);
+    if (SettingsManager::getMakeInterfaceLessCondensed())
+      prepareTextToPrint(QLatin1String("<p style=\"line-height: 1.2;\"><b>") + StrConstants::getCheckingForUpdates() + QLatin1String("</b><br><br>"), ectn_DONT_TREAT_STRING, ectn_DONT_TREAT_URL_LINK);
+    else
+      prepareTextToPrint(QLatin1String("<b>") + StrConstants::getCheckingForUpdates() + QLatin1String("</b><br><br>"), ectn_DONT_TREAT_STRING, ectn_DONT_TREAT_URL_LINK);
   }
   else if (m_commandExecuting == ectn_MIRROR_CHECK)
   {
-    prepareTextToPrint(QLatin1String("<b>") + StrConstants::getSyncMirror() + QLatin1String("</b><br><br>"), ectn_DONT_TREAT_STRING, ectn_DONT_TREAT_URL_LINK);
+    if (SettingsManager::getMakeInterfaceLessCondensed())
+      prepareTextToPrint(QLatin1String("<p style=\"line-height: 1.2;\"><b>") + StrConstants::getSyncMirror() + QLatin1String("</b><br><br>"), ectn_DONT_TREAT_STRING, ectn_DONT_TREAT_URL_LINK);
+    else
+      prepareTextToPrint(QLatin1String("<b>") + StrConstants::getSyncMirror() + QLatin1String("</b><br><br>"), ectn_DONT_TREAT_STRING, ectn_DONT_TREAT_URL_LINK);
   }
   else if (m_commandExecuting == ectn_SYNC_DATABASE)
   {
-    prepareTextToPrint(QLatin1String("<b>") + StrConstants::getSyncDatabases() + QLatin1String("</b><br><br>"), ectn_DONT_TREAT_STRING, ectn_DONT_TREAT_URL_LINK);
+    if (SettingsManager::getMakeInterfaceLessCondensed())
+      prepareTextToPrint(QLatin1String("<p style=\"line-height: 1.2;\"><b>") + StrConstants::getSyncDatabases() + QLatin1String("</b><br><br>"), ectn_DONT_TREAT_STRING, ectn_DONT_TREAT_URL_LINK);
+    else
+      prepareTextToPrint(QLatin1String("<b>") + StrConstants::getSyncDatabases() + QLatin1String("</b><br><br>"), ectn_DONT_TREAT_STRING, ectn_DONT_TREAT_URL_LINK);
   }
   else if (m_commandExecuting == ectn_SYSTEM_UPGRADE || m_commandExecuting == ectn_RUN_SYSTEM_UPGRADE_IN_TERMINAL)
   {
-    prepareTextToPrint(QLatin1String("<b>") + StrConstants::getSystemUpgradeMsg() + QLatin1String("</b><br><br>"), ectn_DONT_TREAT_STRING, ectn_DONT_TREAT_URL_LINK);
+    if (SettingsManager::getMakeInterfaceLessCondensed())
+      prepareTextToPrint(QLatin1String("<p style=\"line-height: 1.2;\"><b>") + StrConstants::getSystemUpgradeMsg() + QLatin1String("</b><br><br>"), ectn_DONT_TREAT_STRING, ectn_DONT_TREAT_URL_LINK);
+    else
+      prepareTextToPrint(QLatin1String("<b>") + StrConstants::getSystemUpgradeMsg() + QLatin1String("</b><br><br>"), ectn_DONT_TREAT_STRING, ectn_DONT_TREAT_URL_LINK);
   }
   else if (m_commandExecuting == ectn_REMOVE)
   {
-    prepareTextToPrint(QLatin1String("<b>") + StrConstants::getRemovingPackages() + QLatin1String("</b><br><br>"), ectn_DONT_TREAT_STRING, ectn_DONT_TREAT_URL_LINK);
+    if (SettingsManager::getMakeInterfaceLessCondensed())
+      prepareTextToPrint(QLatin1String("<p style=\"line-height: 1.2;\"><b>") + StrConstants::getRemovingPackages() + QLatin1String("</b><br><br>"), ectn_DONT_TREAT_STRING, ectn_DONT_TREAT_URL_LINK);
+    else
+      prepareTextToPrint(QLatin1String("<b>") + StrConstants::getRemovingPackages() + QLatin1String("</b><br><br>"), ectn_DONT_TREAT_STRING, ectn_DONT_TREAT_URL_LINK);
   }
   else if (m_commandExecuting == ectn_CHANGE_INSTALL_REASON)
   {
-    prepareTextToPrint(QLatin1String("<b>") + StrConstants::getChangingInstallReason() + QLatin1String("</b><br><br>"), ectn_DONT_TREAT_STRING, ectn_DONT_TREAT_URL_LINK);
+    if (SettingsManager::getMakeInterfaceLessCondensed())
+      prepareTextToPrint(QLatin1String("<p style=\"line-height: 1.2;\"><b>") + StrConstants::getChangingInstallReason() + QLatin1String("</b><br><br>"), ectn_DONT_TREAT_STRING, ectn_DONT_TREAT_URL_LINK);
+    else
+      prepareTextToPrint(QLatin1String("<b>") + StrConstants::getChangingInstallReason() + QLatin1String("</b><br><br>"), ectn_DONT_TREAT_STRING, ectn_DONT_TREAT_URL_LINK);
   }
   else if (m_commandExecuting == ectn_INSTALL)
   {
-    prepareTextToPrint(QLatin1String("<b>") + StrConstants::getInstallingPackages() + QLatin1String("</b><br><br>"), ectn_DONT_TREAT_STRING, ectn_DONT_TREAT_URL_LINK);
+    if (SettingsManager::getMakeInterfaceLessCondensed())
+      prepareTextToPrint(QLatin1String("<p style=\"line-height: 1.2;\"><b>") + StrConstants::getInstallingPackages() + QLatin1String("</b><br><br>"), ectn_DONT_TREAT_STRING, ectn_DONT_TREAT_URL_LINK);
+    else
+      prepareTextToPrint(QLatin1String("<b>") + StrConstants::getInstallingPackages() + QLatin1String("</b><br><br>"), ectn_DONT_TREAT_STRING, ectn_DONT_TREAT_URL_LINK);
   }
   else if (m_commandExecuting == ectn_REMOVE_INSTALL)
   {
-    prepareTextToPrint(QLatin1String("<b>") + StrConstants::getRemovingAndInstallingPackages() + QLatin1String("</b><br><br>"), ectn_DONT_TREAT_STRING, ectn_DONT_TREAT_URL_LINK);
+    if (SettingsManager::getMakeInterfaceLessCondensed())
+      prepareTextToPrint(QLatin1String("<p style=\"line-height: 1.2;\"><b>") + StrConstants::getRemovingAndInstallingPackages() + QLatin1String("</b><br><br>"), ectn_DONT_TREAT_STRING, ectn_DONT_TREAT_URL_LINK);
+    else
+      prepareTextToPrint(QLatin1String("<b>") + StrConstants::getRemovingAndInstallingPackages() + QLatin1String("</b><br><br>"), ectn_DONT_TREAT_STRING, ectn_DONT_TREAT_URL_LINK);
   }
   else if (m_commandExecuting == ectn_RUN_IN_TERMINAL)
   {
-    prepareTextToPrint(QLatin1String("<b>") + StrConstants::getRunningCommandInTerminal() + QLatin1String("</b><br><br>"), ectn_DONT_TREAT_STRING, ectn_DONT_TREAT_URL_LINK);
+    if (SettingsManager::getMakeInterfaceLessCondensed())
+      prepareTextToPrint(QLatin1String("<p style=\"line-height: 1.2;\"><b>") + StrConstants::getRunningCommandInTerminal() + QLatin1String("</b><br><br>"), ectn_DONT_TREAT_STRING, ectn_DONT_TREAT_URL_LINK);
+    else
+      prepareTextToPrint(QLatin1String("<b>") + StrConstants::getRunningCommandInTerminal() + QLatin1String("</b><br><br>"), ectn_DONT_TREAT_STRING, ectn_DONT_TREAT_URL_LINK);
   }
 
   QString output = m_unixCommand->readAllStandardOutput();

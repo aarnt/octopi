@@ -852,7 +852,15 @@ void MainWindow::doCheckUpdates()
     m_progressWidget->setValue(0);
     m_progressWidget->setMaximum(100);
     ensureTabVisible(ctn_TABINDEX_OUTPUT);
-    writeToTabOutput(QLatin1String("<b>") + StrConstants::getCheckingForUpdates() + QLatin1String("</b><br><br>"), ectn_DONT_TREAT_URL_LINK);
+
+    if (SettingsManager::getMakeInterfaceLessCondensed())
+    {
+      writeToTabOutput(QLatin1String("<p style=\"line-height: 1.2;\"><b>") + StrConstants::getCheckingForUpdates() + QLatin1String("</b><br><br>"),
+                       ectn_DONT_TREAT_URL_LINK);
+    }
+    else
+      writeToTabOutput(QLatin1String("<b>") + StrConstants::getCheckingForUpdates() + QLatin1String("</b><br><br>"), ectn_DONT_TREAT_URL_LINK);
+
     qApp->processEvents();
 
     QEventLoop el;
@@ -867,6 +875,7 @@ void MainWindow::doCheckUpdates()
 
     QString pkg, html, availableVersion;
     QHash<QString, QString>::const_iterator i;
+
     for (i = m_outdatedAURPackagesNameVersion->constBegin(); i != m_outdatedAURPackagesNameVersion->constEnd(); ++i)
     {
       pkg = i.key();
@@ -894,7 +903,11 @@ void MainWindow::doCheckUpdates()
       m_outdatedAURStringList->append(pkg);
     }
 
-    showToolButtonAUR();
+    if (m_outdatedAURStringList->count() > 0)
+      showToolButtonAUR();
+    else
+      html += StrConstants::getNoNewUpdatesAvailable() + QStringLiteral("<br>");
+
     writeToTabOutput(html + QStringLiteral("<br>"));
     writeToTabOutput(QLatin1String("<b>") + StrConstants::getCommandFinishedOK() + QLatin1String("</b>"), ectn_DONT_TREAT_URL_LINK);
     enableTransactionActions();
@@ -2636,6 +2649,8 @@ void MainWindow::pacmanProcessFinished(int exitCode, QProcess::ExitStatus exitSt
 
   if (isAURGroupSelected())
   {
+    m_outdatedAURStringList->clear();
+    m_outdatedAURPackagesNameVersion->clear();
     toggleSystemActions(false);
   }
 
