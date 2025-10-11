@@ -2264,7 +2264,6 @@ void MainWindow::toggleTransactionActions(const bool value)
     ui->actionGetNews->setEnabled(false);
     ui->actionCheckUpdates->setEnabled(false);
     m_actionChangeInstallReason->setEnabled(false);
-
   }
   else
   {
@@ -2328,7 +2327,15 @@ void MainWindow::toggleSystemActions(const bool value)
     ui->actionCheckUpdates->setEnabled(value);
     m_actionChangeInstallReason->setEnabled(value);
   }
-  else if (isAURGroupSelected() && UnixCommand::getLinuxDistro() != ectn_KAOS)
+  else if (UnixCommand::getLinuxDistro() == ectn_KAOS)
+  {
+    m_actionMenuOptions->setEnabled(false);
+    ui->actionGetNews->setEnabled(false);
+    ui->actionInstallLocalPackage->setEnabled(false);
+    ui->actionCheckUpdates->setEnabled(false);
+    m_actionChangeInstallReason->setEnabled(false);
+  }
+  else
   {
     m_actionMenuOptions->setEnabled(false);
     ui->actionGetNews->setEnabled(false);
