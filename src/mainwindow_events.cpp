@@ -171,6 +171,7 @@ void MainWindow::keyPressEvent(QKeyEvent* ke)
 
       if (!isInternetAvailable()) return;
 
+      toggleSystemActions(false);
       m_progressWidget->setMaximum(100);
       m_progressWidget->setValue(0);
       m_progressWidget->show();
@@ -387,7 +388,7 @@ void MainWindow::keyPressEvent(QKeyEvent* ke)
     LinuxDistro ld=UnixCommand::getLinuxDistro();
     if((ld == ectn_KAOS || ld == ectn_CHAKRA) || (
        m_hasForeignTool && SettingsManager::getAURToolName() != ctn_NO_AUR_TOOL &&
-       !isAURGroupSelected() /*&& !SettingsManager::getSearchOutdatedAURPackages()*/))
+       !isAURGroupSelected()))
     {
       m_outdatedAURTimer->start();
 

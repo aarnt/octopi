@@ -67,8 +67,8 @@ const QString ctn_OCTOPI_COPYRIGHT =
     "*/");
 
 enum CommandExecuting { ectn_NONE, ectn_CHECK_UPDATES, ectn_MIRROR_CHECK,
-                        ectn_SYNC_DATABASE, ectn_SYSTEM_UPGRADE, ectn_INSTALL, ectn_REMOVE,
-                        ectn_CHANGE_INSTALL_REASON,
+                        ectn_SYNC_DATABASE, ectn_SYSTEM_UPGRADE,
+                        ectn_INSTALL, ectn_REMOVE, ectn_CHANGE_INSTALL_REASON,
                         ectn_REMOVE_INSTALL, ectn_REMOVE_KCP_PKG,
                         ectn_RUN_SYSTEM_UPGRADE_IN_TERMINAL, ectn_RUN_IN_TERMINAL,
                         ectn_INSTALL_YAY, ectn_SYSINFO };

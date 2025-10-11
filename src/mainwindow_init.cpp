@@ -350,6 +350,8 @@ void MainWindow::initToolBar()
   ui->mainToolBar->addAction(ui->actionCheckUpdates);
   ui->mainToolBar->addAction(ui->actionSystemUpgrade);
 
+  ui->actionCheckUpdates->setEnabled(false);
+
   if (m_outdatedStringList->count() > 0)
     ui->actionSystemUpgrade->setEnabled(true);
   else

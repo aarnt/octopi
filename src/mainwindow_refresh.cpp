@@ -652,6 +652,7 @@ void MainWindow::metaBuildPackageList()
       ui->tvPackages->setSelectionMode(QAbstractItemView::SingleSelection);
 
       toggleSystemActions(false);
+
       m_listOfAURPackages = new QList<PackageListData>();
       m_leFilterPackage->setFocus();
       ui->twGroups->setEnabled(false);
@@ -678,6 +679,7 @@ void MainWindow::metaBuildPackageList()
     }
 
     toggleSystemActions(false);
+
     //disconnect(m_leFilterPackage, SIGNAL(textChanged(QString)), this, SLOT(reapplyPackageFilter())); //WATCH OUT!
     clearStatusBar();
 
@@ -1239,6 +1241,9 @@ void MainWindow::buildAURPackageList()
   refreshColumnSortSetup();
   refreshToolBar();
   refreshStatusBarToolButtons();
+
+  if (UnixCommand::getLinuxDistro() != ectn_KAOS)
+      ui->actionCheckUpdates->setEnabled(true);
 }
 
 /*

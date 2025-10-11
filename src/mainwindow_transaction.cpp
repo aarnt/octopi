@@ -841,31 +841,79 @@ void MainWindow::doCheckUpdates()
 
   if (!isInternetAvailable()) return;
 
+  clearTabOutput();
   m_toolButtonPacman->hide();
   m_toolButtonAUR->hide();
 
-  //Let's synchronize kcp database too...
-  if (UnixCommand::getLinuxDistro() == ectn_KAOS && UnixCommand::hasTheExecutable(ctn_KCP_TOOL))
-    UnixCommand::execCommandAsNormalUser(QStringLiteral("kcp"), QStringList() << QStringLiteral("-u"));
+  if (UnixCommand::getLinuxDistro() != ectn_KAOS && isAURGroupSelected())
+  {
+    disableTransactionActions();
+    m_progressWidget->setValue(0);
+    m_progressWidget->setMaximum(100);
+    ensureTabVisible(ctn_TABINDEX_OUTPUT);
+    writeToTabOutput(QLatin1String("<b>") + StrConstants::getCheckingForUpdates() + QLatin1String("</b><br><br>"), ectn_DONT_TREAT_URL_LINK);
+    qApp->processEvents();
 
-  m_commandExecuting = ectn_CHECK_UPDATES;
-  disableTransactionActions();
+    QEventLoop el;
+    QFuture<FTOutdatedPackages *> f;
+    f = QtConcurrent::run(getOutdatedForeignToolPackages);
+    g_fwOutdatedAURPackages.setFuture(f);
+    connect(&g_fwOutdatedAURPackages, SIGNAL(finished()), &el, SLOT(quit()));
 
-  m_progressWidget->setValue(0);
-  m_progressWidget->setMaximum(100);
-  clearTabOutput();
-  ensureTabVisible(ctn_TABINDEX_OUTPUT);
+    m_outdatedAURPackagesNameVersion->clear();
+    m_outdatedAURStringList->clear();
+    m_outdatedAURPackagesNameVersion->insert(f.result()->content);
 
-  m_pacmanExec = new PacmanExec(this);
-  if (m_debugInfo) m_pacmanExec->setDebugMode(true);
+    QString pkg, html, availableVersion;
+    QHash<QString, QString>::const_iterator i;
+    for (i = m_outdatedAURPackagesNameVersion->constBegin(); i != m_outdatedAURPackagesNameVersion->constEnd(); ++i)
+    {
+      pkg = i.key();
+      const PackageRepository::PackageData*const package = m_packageRepo.getFirstPackageByName(pkg);
+      if (package != nullptr) {
+        availableVersion = m_outdatedAURPackagesNameVersion->value(pkg);
 
-  QObject::connect(m_pacmanExec, SIGNAL( finished (int, QProcess::ExitStatus)),
-                   this, SLOT( pacmanProcessFinished(int, QProcess::ExitStatus) ));
+        html += pkg + QStringLiteral(" : ") + availableVersion + QStringLiteral(" -> ") + i.value();
 
-  QObject::connect(m_pacmanExec, SIGNAL(percentage(int)), this, SLOT(incrementPercentage(int)));
-  QObject::connect(m_pacmanExec, SIGNAL(textToPrintExt(QString)), this, SLOT(outputText(QString)));
+        m_outdatedAURStringList->append(pkg);
 
-  m_pacmanExec->doCheckUpdates();
+        /*html += QLatin1String("<tr><td><a href=\"goto:") + pkg + QLatin1String("\">") + pkg +
+              QLatin1String("</td><td align=\"right\"><b><font color=\"#E55451\">") +
+              package->version +
+              QLatin1String("</b></font></td><td align=\"right\">") +
+              availableVersion + QLatin1String("</td></tr>");*/
+      }
+    }
+
+    writeToTabOutput(html);
+    writeToTabOutput(QLatin1String("<b>") + StrConstants::getCommandFinishedOK() + QLatin1String("</b>"), ectn_DONT_TREAT_URL_LINK);
+    enableTransactionActions();
+  }
+  else
+  {
+    //Let's synchronize kcp database too...
+    if (UnixCommand::getLinuxDistro() == ectn_KAOS && UnixCommand::hasTheExecutable(ctn_KCP_TOOL))
+      UnixCommand::execCommandAsNormalUser(QStringLiteral("kcp"), QStringList() << QStringLiteral("-u"));
+
+    m_commandExecuting = ectn_CHECK_UPDATES;
+    disableTransactionActions();
+
+    m_progressWidget->setValue(0);
+    m_progressWidget->setMaximum(100);
+    clearTabOutput();
+    ensureTabVisible(ctn_TABINDEX_OUTPUT);
+
+    m_pacmanExec = new PacmanExec(this);
+    if (m_debugInfo) m_pacmanExec->setDebugMode(true);
+
+    QObject::connect(m_pacmanExec, SIGNAL( finished (int, QProcess::ExitStatus)),
+                     this, SLOT( pacmanProcessFinished(int, QProcess::ExitStatus) ));
+
+    QObject::connect(m_pacmanExec, SIGNAL(percentage(int)), this, SLOT(incrementPercentage(int)));
+    QObject::connect(m_pacmanExec, SIGNAL(textToPrintExt(QString)), this, SLOT(outputText(QString)));
+
+    m_pacmanExec->doCheckUpdates();
+  }
 }
 
 /*
@@ -1003,6 +1051,12 @@ bool MainWindow::prepareSystemUpgrade()
  */
 void MainWindow::doSystemUpgrade(SystemUpgradeOptions systemUpgradeOptions)
 {
+  if (isAURGroupSelected())
+  {
+    doAURUpgrade();
+    return;
+  }
+
   Q_UNUSED(systemUpgradeOptions)
   double totalDownloadSize = 0;
 
@@ -2154,8 +2208,9 @@ void MainWindow::toggleTransactionActions(const bool value)
     }
     else
     {
-      ui->actionCheckUpdates->setEnabled(false);
-      ui->actionSystemUpgrade->setEnabled(false);
+      ui->actionCheckUpdates->setEnabled(true);
+      if (m_outdatedAURStringList->count() >0)
+        ui->actionSystemUpgrade->setEnabled(true);
     }
   }
   else if (!value)
@@ -2202,12 +2257,14 @@ void MainWindow::toggleTransactionActions(const bool value)
     ui->actionGetNews->setEnabled(value);
     m_actionChangeInstallReason->setEnabled(value);
   }
-  else
+  else if (UnixCommand::getLinuxDistro() != ectn_KAOS)
   {
     ui->actionInstallLocalPackage->setEnabled(false);
     m_actionMenuOptions->setEnabled(false);
     ui->actionGetNews->setEnabled(false);
-    ui->actionCheckUpdates->setEnabled(false);
+
+    ui->actionCheckUpdates->setEnabled(value);
+
     m_actionChangeInstallReason->setEnabled(false);
   }
 
@@ -2262,12 +2319,12 @@ void MainWindow::toggleSystemActions(const bool value)
     ui->actionCheckUpdates->setEnabled(value);
     m_actionChangeInstallReason->setEnabled(value);
   }
-  else
+  else if (isAURGroupSelected() && UnixCommand::getLinuxDistro() != ectn_KAOS)
   {
     m_actionMenuOptions->setEnabled(false);
     ui->actionGetNews->setEnabled(false);
     ui->actionInstallLocalPackage->setEnabled(false);
-    ui->actionCheckUpdates->setEnabled(false);
+    ui->actionCheckUpdates->setEnabled(value);
     m_actionChangeInstallReason->setEnabled(false);
   }
 
