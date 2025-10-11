@@ -835,19 +835,41 @@ void MainWindow::outputOutdatedAURPackageList()
       QLatin1String("</th><th width=\"18%\" align=\"right\">") +
       StrConstants::getAvailableVersion() + QLatin1String("</th></tr>");
 
-  for (int c=0; c < m_outdatedAURStringList->count(); c++)
+  QString pkg, availableVersion, pkgName;
+  QHash<QString, QString>::const_iterator i;
+
+  for (i = m_outdatedAURPackagesNameVersion->constBegin(); i != m_outdatedAURPackagesNameVersion->constEnd(); ++i)
   {
-    QString pkg = m_outdatedAURStringList->at(c);
+    pkg = i.key();
     const PackageRepository::PackageData*const package = m_packageRepo.getFirstPackageByName(pkg);
     if (package != nullptr) {
-      QString availableVersion = m_outdatedAURPackagesNameVersion->value(m_outdatedAURStringList->at(c));
-  
-      html += QLatin1String("<tr><td><a href=\"goto:") + pkg + QLatin1String("\">") + pkg +
-          QLatin1String("</td><td align=\"right\"><b><font color=\"#E55451\">") +
-          package->version +
-          QLatin1String("</b></font></td><td align=\"right\">") +
-          availableVersion + QLatin1String("</td></tr>");
+      availableVersion = package->version;
+      pkgName = QLatin1String("<tr><td><a href=\"goto:") + pkg + QLatin1String("\">") + pkg;
     }
+    else
+    {
+      if (SettingsManager::hasPacmanBackend())
+      {
+        QString pkgInfo = QString::fromUtf8(UnixCommand::getPackageInformation(pkg, true));
+        pkgName = QLatin1String("<tr><td>") + pkg;
+        if (!pkgInfo.isEmpty())
+          availableVersion = Package::getVersion(pkgInfo);
+        else
+          availableVersion = QStringLiteral("");
+      }
+#ifdef ALPM_BACKEND
+      else
+      {
+        pkgName = QLatin1String("<tr><td>") + pkg;
+        availableVersion = AlpmBackend::getPackageVersion(pkg, true);
+      }
+#endif
+    }
+
+    html += pkgName + QLatin1String("</td><td align=\"right\"><b><font color=\"#E55451\">") +
+            availableVersion +
+            QLatin1String("</b></font></td><td align=\"right\">") +
+            i.value() + QLatin1String("</td></tr>");
   }
 
   html += QLatin1String("</table><br>");

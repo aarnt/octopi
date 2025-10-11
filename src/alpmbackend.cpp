@@ -322,7 +322,7 @@ double AlpmBackend::getPackageSize(const QString &pkgName)
   return pkgSize;
 }
 
-QString AlpmBackend::getPackageVersion(const QString &pkgName)
+QString AlpmBackend::getPackageVersion(const QString &pkgName, bool isForeign)
 {
   // create AlpmUtils instance
   AlpmUtils* alpm_utils = alpm_utils_new ("/etc/pacman.conf");
@@ -340,7 +340,9 @@ QString AlpmBackend::getPackageVersion(const QString &pkgName)
     alpm_db_t* db = alpm_pkg_get_db(pkg);
 
     const char* dbname = alpm_db_get_name(db);
-    if (!strcmp(dbname, "local")) continue;
+
+    if (!isForeign)
+      if (!strcmp(dbname, "local")) continue;
 
     if (pkg && strcmp(alpm_pkg_get_name(pkg),pkgName.toLatin1().constData())==0)
     {

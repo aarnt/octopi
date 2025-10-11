@@ -783,11 +783,15 @@ void MainWindow::buildPackageList()
 
   static bool firstTime = true;
   bool searchOutdatedPackages=SettingsManager::getSearchOutdatedAURPackages();
-  if (!searchOutdatedPackages)
+
+
+  // WARNING THIS WAS COMMENTED IN OCTOBER 2025
+  /*if (!searchOutdatedPackages)
   {
     m_outdatedAURStringList->clear();
     m_outdatedAURPackagesNameVersion->clear();
-  }
+  }*/
+
 
   if(m_refreshPackageLists) //If it's not the starting of the app...
   {
@@ -1243,7 +1247,11 @@ void MainWindow::buildAURPackageList()
   refreshStatusBarToolButtons();
 
   if (UnixCommand::getLinuxDistro() != ectn_KAOS)
+  {
     ui->actionCheckUpdates->setEnabled(true);
+    if (m_outdatedAURStringList->count() > 0)
+      ui->actionSystemUpgrade->setEnabled(true);
+  }
 }
 
 /*
@@ -1252,7 +1260,7 @@ void MainWindow::buildAURPackageList()
  */
 void MainWindow::showToolButtonAUR()
 {
-  if (isAURGroupSelected() && UnixCommand::getLinuxDistro() != ectn_KAOS) return;
+  //if (isAURGroupSelected() && UnixCommand::getLinuxDistro() != ectn_KAOS) return;
 
   m_outdatedAURPackagesNameVersion = &g_fwOutdatedAURPackages.result()->content;
 
@@ -1406,7 +1414,7 @@ void MainWindow::refreshStatusBar()
     m_toolButtonPacman->setText(QLatin1String(""));
     m_toolButtonPacman->setToolTip(QLatin1String(""));
   }
-  if (m_outdatedAURStringList->count() > 0 && !isAURGroupSelected())
+  if (m_outdatedAURStringList->count() > 0) // && !isAURGroupSelected())
   {
     m_toolButtonAUR->show();
     ui->statusBar->addWidget(m_toolButtonAUR);

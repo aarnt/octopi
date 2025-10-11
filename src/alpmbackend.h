@@ -33,7 +33,7 @@ public:
   static QStringList getForeignList();
   static QStringList getOutdatedList();
   static double getPackageSize(const QString &pkgName);
-  static QString getPackageVersion(const QString &pkgName);
+  static QString getPackageVersion(const QString &pkgName, bool isForeign=false);
 
   //static PackageInfoData getPackageInfo(const QString &pkgName, bool isForeign);
 };

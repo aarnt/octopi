@@ -36,6 +36,7 @@
 #include "aurvote.h"
 #include "constants.h"
 #include "utils.h"
+#include "alpmbackend.h"
 
 #include <QComboBox>
 #include <QProgressBar>
@@ -872,20 +873,29 @@ void MainWindow::doCheckUpdates()
       const PackageRepository::PackageData*const package = m_packageRepo.getFirstPackageByName(pkg);
       if (package != nullptr) {
         availableVersion = m_outdatedAURPackagesNameVersion->value(pkg);
-
-        html += pkg + QStringLiteral(" : ") + availableVersion + QStringLiteral(" -> ") + i.value();
-
-        m_outdatedAURStringList->append(pkg);
-
-        /*html += QLatin1String("<tr><td><a href=\"goto:") + pkg + QLatin1String("\">") + pkg +
-              QLatin1String("</td><td align=\"right\"><b><font color=\"#E55451\">") +
-              package->version +
-              QLatin1String("</b></font></td><td align=\"right\">") +
-              availableVersion + QLatin1String("</td></tr>");*/
       }
+      else
+      {
+        if (SettingsManager::hasPacmanBackend())
+        {
+          QString pkgInfo = QString::fromUtf8(UnixCommand::getPackageInformation(pkg, true));
+          if (!pkgInfo.isEmpty())
+            availableVersion = Package::getVersion(pkgInfo);
+          else
+            availableVersion = QStringLiteral("");
+        }
+#ifdef ALPM_BACKEND
+        else
+          availableVersion = AlpmBackend::getPackageVersion(pkg, true);
+#endif
+      }
+
+      html += pkg + QStringLiteral(" : ") + availableVersion + QStringLiteral(" -> ") + i.value() + QStringLiteral("<br>");
+      m_outdatedAURStringList->append(pkg);
     }
 
-    writeToTabOutput(html);
+    showToolButtonAUR();
+    writeToTabOutput(html + QStringLiteral("<br>"));
     writeToTabOutput(QLatin1String("<b>") + StrConstants::getCommandFinishedOK() + QLatin1String("</b>"), ectn_DONT_TREAT_URL_LINK);
     enableTransactionActions();
   }
@@ -2341,6 +2351,12 @@ void MainWindow::toggleSystemActions(const bool value)
     ui->actionGetNews->setEnabled(false);
     ui->actionInstallLocalPackage->setEnabled(false);
     ui->actionCheckUpdates->setEnabled(value);
+
+    if (value && m_outdatedAURStringList->count() > 0)
+      ui->actionSystemUpgrade->setEnabled(true);
+    else
+      ui->actionSystemUpgrade->setEnabled(false);
+
     m_actionChangeInstallReason->setEnabled(false);
   }
 
