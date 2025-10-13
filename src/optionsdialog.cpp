@@ -376,7 +376,6 @@ void OptionsDialog::initAURTab()
       cbNoEdit->setChecked(false);
     }
 
-    cbSearchOutdatedAURPackages->setChecked(SettingsManager::getSearchOutdatedAURPackages());
     leAurPassword->setEchoMode(QLineEdit::Password);
     cbEnableAURVoting->setChecked(SettingsManager::getEnableAURVoting());
 
@@ -439,6 +438,8 @@ void OptionsDialog::initIconTab()
 
 void OptionsDialog::initUpdatesTab()
 {
+  cbSearchOutdatedAURPackages->setChecked(SettingsManager::getSearchOutdatedAURPackages());
+
   lblCheck->setText(StrConstants::getNotiferSetupDialogGroupBoxTitle());
   rbOnceADay->setText(StrConstants::getOnceADay());
   rbOnceADayAt->setText(StrConstants::getOnceADayAt());
@@ -791,12 +792,6 @@ void OptionsDialog::accept()
       AURHasChanged = true;
     }
 
-    if (cbSearchOutdatedAURPackages->isChecked() != SettingsManager::getSearchOutdatedAURPackages())
-    {
-      SettingsManager::setSearchOutdatedAURPackages(cbSearchOutdatedAURPackages->isChecked());
-      AURHasChanged = true;
-    }
-
     if (cbEnableAURVoting->isChecked() != SettingsManager::getEnableAURVoting() ||
         leAurUserName->text() != SettingsManager::getAURUserName() ||
         leAurPassword->text() != SettingsManager::getAURPassword())
@@ -909,6 +904,11 @@ void OptionsDialog::accept()
   //Set update interval...
   if (!m_calledByOctopi || (m_calledByOctopi && UnixCommand::isOctoToolRunning(QLatin1String("octopi-notifier"))))
   {
+    if (cbSearchOutdatedAURPackages->isChecked() != SettingsManager::getSearchOutdatedAURPackages())
+    {
+      SettingsManager::setSearchOutdatedAURPackages(cbSearchOutdatedAURPackages->isChecked());
+    }
+
     //Set Check Updates interval...
     if (rbOnceADay->isChecked())
     {

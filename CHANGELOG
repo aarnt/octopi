@@ -8,6 +8,8 @@
   Add the option to make the whole interface text less condensed.
   Add the option to show/hide "Repository" and "Download Size" columns in package list.
   Add Repository field in Info tab.
+  Make "Search for outdated AUR packages" a notifier only option.
+  Enable Check updates and System upgrade tool buttons in AUR mode.
   Show current version of the packages on Notifier's System Upgrade dialog 
     (thanks to valchx's code).
   Added chinese description for the application name in desktop file.
