@@ -255,232 +255,277 @@
         <translation>Ignorado</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="64"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="66"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="71"/>
         <source>Ctrl+Shift+O to display outdated %1 packages</source>
         <translation>Ctrl+Shift+O para exibir os pacotes %1 desatualizados</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="72"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="82"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="87"/>
         <source>Ctrl+Shift+A to display AUR voted package list</source>
         <translation>Ctrl+Shift+A para exibir os pacotes AUR já votados</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="77"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="93"/>
         <source>For more information, visit:</source>
         <translation>Para maiores informações, visite:</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="80"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="100"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="211"/>
         <source>A Qt-based Pacman frontend,</source>
         <translation>Um frontend para o Pacman desenvolvido em Qt,</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="81"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="101"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="212"/>
         <source>licensed under the terms of</source>
         <translation>licenciado nos termos da</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="88"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="108"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="219"/>
         <source>Package classification:</source>
         <translation>Classificação do pacote:</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="91"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="111"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="222"/>
         <source>An ignored package</source>
         <translation>Pacote ignorado</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="93"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="113"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="224"/>
         <source>An installed package</source>
         <translation>Pacote instalado</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="95"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="115"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="226"/>
         <source>An installed package (not required by others)</source>
         <translation>Pacote instalado (não requerido por outros)</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="98"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="118"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="229"/>
         <source>A foreign package, installed from</source>
         <translation>Pacote estrangeiro, instalado de</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="101"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="121"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="232"/>
         <source>A non installed package</source>
         <translation>Pacote não instalado</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="104"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="124"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="235"/>
         <source>An outdated package</source>
         <translation>Pacote desatualizado</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="107"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="127"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="238"/>
         <source>An outdated foreign package</source>
         <translation>Pacote estrangeiro desatualizado</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="110"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="130"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="241"/>
         <source>A newer version of this package is installed</source>
         <translation>Uma versão mais recente deste pacote está instalada</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="112"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="133"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="244"/>
         <source>Basic usage help:</source>
         <translation>Guia de ajuda rápida:</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="114"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="135"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="246"/>
         <source>Position the mouse over a package to see its description</source>
         <translation>Posicione o mouse em cima de um pacote para ver sua descrição</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="116"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="137"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="248"/>
         <source>Double click an installed package to see its contents</source>
         <translation>Dê duplo clique em cima de um pacote instalado para ver seu conteúdo</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="118"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="139"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="250"/>
         <source>Right click package to install/reinstall or remove it</source>
         <translation>Dê um clique com o botão da direita em cima de um pacote para instala-lo, reinstala-lo ou removê-lo</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="121"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="142"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="253"/>
         <source>Alt+key sequences:</source>
         <translation>Sequências de tecla Alt:</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="123"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="144"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="255"/>
         <source>Alt+1 to switch to &apos;Info&apos; tab</source>
         <translation>Alt+1 para selecionar a guia &apos;Informações&apos;</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="125"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="146"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="257"/>
         <source>Alt+2 to switch to &apos;Files&apos; tab</source>
         <translation>Alt+2 para selecionar a guia &apos;Arquivos&apos;</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="127"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="148"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="259"/>
         <source>Alt+3 to switch to &apos;Actions&apos; tab</source>
         <translation>Alt+3 para selecionar a guia &apos;Ações&apos;</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="129"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="150"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="261"/>
         <source>Alt+4 to switch to &apos;Output&apos; tab</source>
         <translation>Alt+4 para selecionar a guia &apos;Saída&apos;</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="131"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="152"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="263"/>
         <source>Alt+5 to switch to &apos;News&apos; tab</source>
         <translation>Alt+5 para selecionar a guia &apos;Notícias&apos;</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="133"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="154"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="265"/>
         <source>Alt+6 or &apos;F1&apos; to show this help page</source>
         <translation>Alt+6 ou &apos;F1&apos; para exibir esta página de ajuda</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="135"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="156"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="267"/>
         <source>Alt+7 to switch to &apos;Terminal&apos; tab</source>
         <translation>Alt+7 para selecionar a guia &quot;Terminal&quot;</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="138"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="159"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="270"/>
         <source>Control+key sequences:</source>
         <translation>Sequências de tecla Control:</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="140"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="161"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="272"/>
         <source>Ctrl+E or &apos;Actions/Cancel&apos; to clear the selection of to be removed/installed packages</source>
         <translation>Ctrl+E ou &apos;Ações/Cancelar&apos; para limpar a seleção de pacotes a remover/instalar</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="142"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="163"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="274"/>
         <source>Ctrl+F to search for text inside tab Files, News and Usage</source>
         <translation>Ctrl+F para procurar um arquivo ou texto dentro da guia Arquivos, Notícias e Uso</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="144"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="165"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="276"/>
         <source>Ctrl+G or &apos;File/Get latest distro news&apos; to retrieve the latest RSS based distro news</source>
         <translation>Ctrl+G ou &apos;Arquivo/Baixar últimas notícias da distro&apos; para recuperar as últimas notícias da distro baseadas no padrão RSS</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="146"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="167"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="278"/>
         <source>Ctrl+K or &apos;File/Check updates&apos; to check mirror for latest updates (checkupdates)</source>
         <translation>Ctrl+K ou &quot;Arquivo/Verificar atualizações&quot; para consultar os espelhos em busca de atulizações (checkupdates)</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="148"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="169"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="280"/>
         <source>Ctrl+L to find a package in the package list</source>
         <translation>Ctrl+L para procurar um pacote na lista de pacotes</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="150"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="171"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="282"/>
         <source>Ctrl+P to go to package list</source>
         <translation>Ctrl+P para selecionar a lista de pacotes</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="152"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="173"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="284"/>
         <source>Ctrl+Q or &apos;File/Exit&apos; to exit the application</source>
         <translation>Ctrl+Q ou &apos;Arquivo/Sair&apos; para finalizar a aplicação</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="154"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="175"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="286"/>
         <source>Ctrl+U or &apos;File/System upgrade&apos; to make a full system upgrade (pacman -Su)</source>
         <translation>Ctrl+U ou &apos;Arquivo/Atualizar sistema&apos; para realizar uma atualização completa do sistema (pacman -Su)</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="156"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="177"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="288"/>
         <source>Ctrl+Y or &apos;Actions/Apply&apos; to start installation/removal of selected packages</source>
         <translation>Ctrl+M ou &apos;Ações/Aplicar&apos; para iniciar a instalação/remoção dos pacotes selecionados</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="159"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="180"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="291"/>
         <source>Control+shift+key sequences:</source>
         <translation>Sequências de tecla Control+shift:</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="163"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="184"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="295"/>
         <source>Ctrl+Shift+G to display all package groups</source>
         <translation>Ctrl+Shift+G para exibir todos os grupos de pacotes</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="168"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="189"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="300"/>
         <source>Ctrl+Shift+U to upgrade outdated %1 packages</source>
         <translation>Ctrl+Shift+U para atualizar os %1 pacotes desatualizados</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="170"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="191"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="302"/>
         <source>Ctrl+Shift+Y to display %1 group</source>
         <translation>Ctrl+Shift+Y para exibir o grupo %1</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="173"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="194"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="305"/>
         <source>F+key sequences:</source>
         <translation>Sequências de teclas de função F:</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="175"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="196"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="307"/>
         <source>F1 to show this help page</source>
         <translation>F1 para exibir esta página de ajuda</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="177"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="198"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="309"/>
         <source>F4 to open a Terminal whitin the selected directory at Files tab</source>
         <translation>F4 para abrir um Terminal no diretório que estiver selecionado na guia &apos;Arquivos&apos;</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="179"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="200"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="311"/>
         <source>F6 to open a File Manager whitin the selected directory at Files tab</source>
         <translation>F6 para abrir um Gerenciador de Arquivos no diretório que estiver selecionado na guia &apos;Arquivos&apos;</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="181"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="202"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="313"/>
         <source>F10 to maximize/demaximize package list view</source>
         <translation>F10 para maximizar/desmaximizar a lista de pacotes</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="183"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="204"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="315"/>
         <source>F11 to maximize/demaximize Tab&apos;s view</source>
         <translation>F11 para maximizar/desmaximizar a visão das guias</translation>
     </message>
@@ -518,139 +563,154 @@
         <translation>Habilitar o diálogo de confirmação na atualização do sistema</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="199"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="197"/>
+        <source>Make interface text less condensed</source>
+        <translation>Exibir o texto da interface de forma menos condensada</translation>
+    </message>
+    <message>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="212"/>
         <source>Use alternating row colors</source>
         <translation>Usar cores de linha alternadas</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="212"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="225"/>
         <source>Show &quot;Licenses&quot; column</source>
         <translation>Exibir a coluna &quot;Licenças&quot;</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="225"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="238"/>
         <source>Show &quot;Installed Size&quot; column</source>
         <translation>Exibir a coluna &quot;Tamanho&quot;</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="238"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="251"/>
         <source>Show &quot;Build Date&quot; column</source>
         <translation>Exibir a coluna &quot;Data da Criação&quot;</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="251"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="264"/>
         <source>Show &quot;Install Date&quot; column</source>
         <translation>Exibir a coluna &quot;Data da Instalação&quot;</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="264"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="277"/>
         <source>Show &quot;Install Reason&quot; column</source>
         <translation>Exibir a coluna &quot;Motivo da Instalação&quot;</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="277"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="290"/>
         <source>Enable package tooltips</source>
         <translation>Habilitar as dicas para pacotes</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="311"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="303"/>
+        <source>Show &quot;Repository&quot; column</source>
+        <translation>Exibir a coluna &quot;Respositório&quot;</translation>
+    </message>
+    <message>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="316"/>
+        <source>Show &quot;Download Size&quot; column</source>
+        <translation>Exibir a coluna &quot;Tamanho do Download&quot;</translation>
+    </message>
+    <message>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="350"/>
         <source>Select the AUR tool Octopi should use</source>
         <translation>Selecione a ferramenta AUR que o Octopi deve utilizar</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="392"/>
-        <source>Search for outdated AUR packages</source>
-        <translation>Pesquisar por pacotes AUR desatualizados</translation>
-    </message>
-    <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="458"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="476"/>
         <source>User name</source>
         <translation>Usuário</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="471"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="489"/>
         <source>Password</source>
         <translation>Senha</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="489"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="507"/>
         <source>Register</source>
         <translation>Registrar</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="507"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="525"/>
         <source>Connect</source>
         <translation>Conectar</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="526"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="544"/>
         <source>Enable AUR voting</source>
         <translation>Habilitar votação no AUR</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="547"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="565"/>
         <source>AUR packages are user produced content. 
 Any use of the provided files is at your own risk.</source>
         <translation>Pacotes AUR são conteúdo produzido pelos usuários. 
 Qualquer uso dos arquivos fornecidos é por sua conta e risco.</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="608"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="626"/>
         <source>Build directory</source>
         <translation>Diretório de Criação</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="724"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="742"/>
         <source>Select the backend Octopi should use</source>
         <translation>Selecione o backend que o Octopi deve utilizar</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="767"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="785"/>
         <source>Use default notification icons</source>
         <translation>Utilizar ícones de notificação padrão</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="842"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="860"/>
         <source>Red icon</source>
         <translation>Ícone vermelho</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="932"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="950"/>
         <source>Busy icon</source>
         <translation>Ícone ocupado</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1001"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1019"/>
         <source>Yellow icon</source>
         <translation>Ícone amarelo</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1085"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1103"/>
         <source>Green icon</source>
         <translation>Ícone verde</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1410"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1402"/>
+        <source>Search for outdated AUR packages</source>
+        <translation>Pesquisar por pacotes AUR desatualizados</translation>
+    </message>
+    <message>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1452"/>
         <source>Color Scheme</source>
         <translation>Esquema de Cores</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1423"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1465"/>
         <source>Font Family</source>
         <translation>Família da Fonte</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1456"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1498"/>
         <source>Font Size</source>
         <translation>Tamanho da Fonte</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1479"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1521"/>
         <source>Play a bell sound when prompting for the root password in the terminal</source>
         <translation>Tocar um som de campainha ao requisitar a senha de root no terminal</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1492"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1534"/>
         <source>Force use of BASH shell</source>
         <translation>Forçar o uso do shell BASH</translation>
     </message>
@@ -702,12 +762,12 @@ Qualquer uso dos arquivos fornecidos é por sua conta e risco.</translation>
         <translation>Terminal</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/optionsdialog.cpp" line="215"/>
+        <location filename="Projects/octopi/src/optionsdialog.cpp" line="218"/>
         <source>Ok</source>
         <translation>Ok</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/optionsdialog.cpp" line="216"/>
+        <location filename="Projects/octopi/src/optionsdialog.cpp" line="219"/>
         <source>Cancel</source>
         <translation>Cancel</translation>
     </message>
