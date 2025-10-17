@@ -235,8 +235,8 @@ void OptionsDialog::initGeneralTab()
   cbEnableInternetCheck->setChecked(SettingsManager::getEnableInternetChecking());  
   gbInternetChecking->setStyleSheet(QLatin1String("border: 0;"));
 
-  cbMakeInterfaceLessCondensed->setChecked(SettingsManager::getMakeInterfaceLessCondensed());
-  connect(cbMakeInterfaceLessCondensed, &QCheckBox::clicked, this, [=]() {
+  cbIncreaseTextSpacing->setChecked(SettingsManager::getMakeInterfaceLessCondensed());
+  connect(cbIncreaseTextSpacing, &QCheckBox::clicked, this, [=]() {
       QMessageBox::warning(this, StrConstants::getWarning(), StrConstants::getNeedsAppRestart());
   });
 
@@ -650,9 +650,9 @@ void OptionsDialog::accept()
       SettingsManager::setInternetCheckingDomain(QLatin1String("www.google.com"));
     }
   }
-  if (cbMakeInterfaceLessCondensed->isChecked() != SettingsManager::getMakeInterfaceLessCondensed())
+  if (cbIncreaseTextSpacing->isChecked() != SettingsManager::getMakeInterfaceLessCondensed())
   {
-    SettingsManager::setMakeInterfaceLessCondensed(cbMakeInterfaceLessCondensed->isChecked());
+    SettingsManager::setMakeInterfaceLessCondensed(cbIncreaseTextSpacing->isChecked());
   }
 
   //Set Package List...

@@ -74,7 +74,7 @@
         </size>
        </property>
        <property name="currentIndex">
-        <number>5</number>
+        <number>0</number>
        </property>
        <widget class="QWidget" name="swGeneral">
         <widget class="QCheckBox" name="cbShowPackageNumbersOutput">
@@ -184,7 +184,7 @@
           <string>Enable confirmation dialog in system upgrade</string>
          </property>
         </widget>
-        <widget class="QCheckBox" name="cbMakeInterfaceLessCondensed">
+        <widget class="QCheckBox" name="cbIncreaseTextSpacing">
          <property name="geometry">
           <rect>
            <x>9</x>
@@ -194,7 +194,7 @@
           </rect>
          </property>
          <property name="text">
-          <string>Make interface text less condensed</string>
+          <string>Increase text spacing in the main interface</string>
          </property>
         </widget>
        </widget>
