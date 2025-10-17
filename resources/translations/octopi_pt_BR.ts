@@ -564,8 +564,8 @@
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="197"/>
-        <source>Make interface text less condensed</source>
-        <translation>Exibir o texto da interface de forma menos condensada</translation>
+        <source>Increase text spacing in the main interface</source>
+        <translation>Aumentar o espaçamento do texto na interface principal</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="212"/>
