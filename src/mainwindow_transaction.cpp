@@ -2730,7 +2730,7 @@ void MainWindow::onPressAnyKeyToContinue()
     m_leFilterPackage->clear();
   }
 
-  if (isAURGroupSelected())
+  if (m_toolButtonAUR->isVisible())
   {
     m_outdatedAURStringList->clear();
     m_outdatedAURPackagesNameVersion->clear();
