@@ -19,7 +19,7 @@
     <message>
         <location filename="Projects/octopi/repoeditor/addrepo.ui" line="39"/>
         <source>Location:</source>
-        <translation>Hely</translation>
+        <translation>Hely:</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/addrepo.cpp" line="86"/>
@@ -29,27 +29,27 @@
     <message>
         <location filename="Projects/octopi/repoeditor/addrepo.cpp" line="101"/>
         <source>The repository location field is not valid.</source>
-        <translation>A tároló hely nem érvényes</translation>
+        <translation>Érvénytelen a tároló helye</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/addrepo.cpp" line="104"/>
         <source>The repository name field is not valid.</source>
-        <translation>A tároló neve nem érvényes</translation>
+        <translation>Érvénytelen a tároló neve</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/addrepo.cpp" line="111"/>
         <source>Address of remote or local packages repository</source>
-        <translation>Távoli, vagy helyi csomagok elérése</translation>
+        <translation>Távoli vagy helyi csomagtároló címe</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/addrepo.cpp" line="115"/>
         <source>Path to mirrors list file</source>
-        <translation>A szervertükrök listájának elérési útvonala</translation>
+        <translation>Tükrök listafájljának elérési útvonala</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/addrepo.cpp" line="124"/>
         <source>Error</source>
-        <translation>Hiba történt</translation>
+        <translation>Hiba</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/addrepo.cpp" line="125"/>
@@ -64,7 +64,7 @@
     <message>
         <location filename="Projects/octopi/repoeditor/addrepo.cpp" line="149"/>
         <source>Select mirrors list</source>
-        <translation>Szervertükrök listájának kiválasztása</translation>
+        <translation>Tükörlista kiválasztása</translation>
     </message>
 </context>
 <context>
@@ -72,7 +72,7 @@
     <message>
         <location filename="Projects/octopi/repoeditor/main.cpp" line="54"/>
         <source>You can not run Repository Editor with administrator&apos;s credentials.</source>
-        <translation>Nem futtathatja az Octopi Tárolószerkesztőt adminisztrátori jogokkal.</translation>
+        <translation>A Tárolószerkesztő nem futtatható adminisztrátor hitelesítési adataival.</translation>
     </message>
 </context>
 <context>
@@ -80,17 +80,17 @@
     <message>
         <location filename="Projects/octopi/repoeditor/repoconf.cpp" line="208"/>
         <source>Backup error</source>
-        <translation>Hiba a biztonsági mentés közben</translation>
+        <translation>Biztonsági mentési hiba</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/repoconf.cpp" line="209"/>
         <source>Backup file already exists.</source>
-        <translation>A biztonsági mentés fájl már létezik</translation>
+        <translation>A biztonsági mentési fájl már létezik.</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/repoconf.cpp" line="209"/>
         <source>Do you want to overwrite it?</source>
-        <translation>Felülírod?</translation>
+        <translation>Szeretné felülírni?</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/repoconf.cpp" line="282"/>
@@ -113,7 +113,7 @@
     <message>
         <location filename="Projects/octopi/repoeditor/repoeditor.ui" line="14"/>
         <source>Repository Editor - Octopi</source>
-        <translation>Octopi tárolók szerkesztése</translation>
+        <translation>Tárolószerkesztő - Octopi</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/repoeditor.ui" line="27"/>
@@ -123,27 +123,27 @@
     <message>
         <location filename="Projects/octopi/repoeditor/repoeditor.ui" line="75"/>
         <source>Edit</source>
-        <translation>Szerkeszt</translation>
+        <translation>Szerkesztés</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/repoeditor.ui" line="89"/>
         <source>Add</source>
-        <translation>Hozzáad</translation>
+        <translation>Hozzáadás</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/repoeditor.ui" line="103"/>
         <source>Remove</source>
-        <translation>Eltávolít</translation>
+        <translation>Eltávolítás</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/repoeditor.ui" line="130"/>
         <source>Move Up</source>
-        <translation>Felfele mozgat</translation>
+        <translation>Mozgatás felfelé</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/repoeditor.ui" line="144"/>
         <source>Move Down</source>
-        <translation>Lefele mozgat</translation>
+        <translation>Mozgatás lefelé</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/repoeditor.ui" line="160"/>
@@ -153,7 +153,7 @@
     <message>
         <location filename="Projects/octopi/repoeditor/repoeditor.ui" line="168"/>
         <source>Create backup on save</source>
-        <translation>Biztonsági másolat készítése mentéskor</translation>
+        <translation>Biztonsági mentés készítése mentéskor</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/repoeditor.ui" line="191"/>
@@ -163,7 +163,7 @@
     <message>
         <location filename="Projects/octopi/repoeditor/repoeditor.ui" line="206"/>
         <source>Backup file:</source>
-        <translation>Biztonsági mentés fájl:</translation>
+        <translation>Biztonsági mentési fájl:</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/repoeditor.cpp" line="103"/>
@@ -186,12 +186,12 @@
     <message>
         <location filename="Projects/octopi/repoeditor/repoeditor.cpp" line="160"/>
         <source>Can&apos;t load backup file</source>
-        <translation>Nem lehet betölteni a biztonsági másolatot</translation>
+        <translation>Nem sikerült betölteni a biztonsági mentési fájlt</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/repoeditor.cpp" line="161"/>
         <source>Selected file is not valid</source>
-        <translation>A kiválasztott fájl nem érvényes</translation>
+        <translation>Érvénytelen a kiválasztott fájl</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/repoeditor.cpp" line="209"/>
@@ -201,7 +201,7 @@
     <message>
         <location filename="Projects/octopi/repoeditor/repoeditor.cpp" line="210"/>
         <source>Repositories configuration successfully saved.</source>
-        <translation>A tárolók beállítása sikeresen mentve</translation>
+        <translation>A tárolók konfigurációja sikeresen mentve.</translation>
     </message>
     <message>
         <location filename="Projects/octopi/repoeditor/repoeditor.cpp" line="215"/>
@@ -211,7 +211,7 @@
     <message>
         <location filename="Projects/octopi/repoeditor/repoeditor.cpp" line="216"/>
         <source>Repositories configuration not saved.</source>
-        <translation>A tárolók beállítása nincs elmentve</translation>
+        <translation>Nincs mentve a tárolók konfigurációja.</translation>
     </message>
 </context>
 </TS>

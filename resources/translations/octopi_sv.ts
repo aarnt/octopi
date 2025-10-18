@@ -255,232 +255,277 @@
         <translation>Ignorerade</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="64"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="66"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="71"/>
         <source>Ctrl+Shift+O to display outdated %1 packages</source>
         <translation>Ctrl-Shift-O för att visa föråldrade %1-paket</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="72"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="82"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="87"/>
         <source>Ctrl+Shift+A to display AUR voted package list</source>
         <translation>Ctrl-Shift-A för att visa lista med röstade AUR-paket</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="77"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="93"/>
         <source>For more information, visit:</source>
         <translation>För mer information, besök:</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="80"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="100"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="211"/>
         <source>A Qt-based Pacman frontend,</source>
         <translation>Ett Qt-baserat grafiskt gränssnitt för pacman,</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="81"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="101"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="212"/>
         <source>licensed under the terms of</source>
         <translation>licensierat under</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="88"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="108"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="219"/>
         <source>Package classification:</source>
         <translation>Paketklassificering:</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="91"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="111"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="222"/>
         <source>An ignored package</source>
         <translation>Ett ignorerat paket</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="93"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="113"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="224"/>
         <source>An installed package</source>
         <translation>Ett installerat paket</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="95"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="115"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="226"/>
         <source>An installed package (not required by others)</source>
         <translation>Ett installerat paket (som inte krävs av andra)</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="98"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="118"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="229"/>
         <source>A foreign package, installed from</source>
         <translation>Ett utomstående paket, från</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="101"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="121"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="232"/>
         <source>A non installed package</source>
         <translation>Ett oinstallerat paket</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="104"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="124"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="235"/>
         <source>An outdated package</source>
         <translation>Ett föråldrat paket</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="107"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="127"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="238"/>
         <source>An outdated foreign package</source>
         <translation>Ett föråldrat utomstående paket</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="110"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="130"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="241"/>
         <source>A newer version of this package is installed</source>
         <translation>En nyare version av detta paket är redan installerat</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="112"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="133"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="244"/>
         <source>Basic usage help:</source>
         <translation>Grundläggande hjälp:</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="114"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="135"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="246"/>
         <source>Position the mouse over a package to see its description</source>
         <translation>Placera muspekaren över ett paket för att se dess beskrivning</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="116"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="137"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="248"/>
         <source>Double click an installed package to see its contents</source>
         <translation>Dubbelklicka på ett installerat paket för att se dess innehåll</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="118"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="139"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="250"/>
         <source>Right click package to install/reinstall or remove it</source>
         <translation>Högerklicka på ett paket för att (om)installera eller ta bort det</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="121"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="142"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="253"/>
         <source>Alt+key sequences:</source>
         <translation>Alt-tangentsekvenser:</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="123"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="144"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="255"/>
         <source>Alt+1 to switch to &apos;Info&apos; tab</source>
         <translation>Alt-1 för att byta till Infofliken</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="125"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="146"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="257"/>
         <source>Alt+2 to switch to &apos;Files&apos; tab</source>
         <translation>Alt-2 för att byta till Filfliken</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="127"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="148"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="259"/>
         <source>Alt+3 to switch to &apos;Actions&apos; tab</source>
         <translation>Alt-3 för att byta till Åtgärdsfliken</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="129"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="150"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="261"/>
         <source>Alt+4 to switch to &apos;Output&apos; tab</source>
         <translation>Alt-4 för att byta till Utdatafliken</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="131"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="152"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="263"/>
         <source>Alt+5 to switch to &apos;News&apos; tab</source>
         <translation>Alt-5 för att byta till Nyhetsfliken</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="133"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="154"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="265"/>
         <source>Alt+6 or &apos;F1&apos; to show this help page</source>
         <translation>Alt-6 eller F1 för att visa hjälpsidan</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="135"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="156"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="267"/>
         <source>Alt+7 to switch to &apos;Terminal&apos; tab</source>
         <translation>Alt-7 för att byta till Terminalfliken</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="138"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="159"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="270"/>
         <source>Control+key sequences:</source>
         <translation>Control-tangentsekvenser:</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="140"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="161"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="272"/>
         <source>Ctrl+E or &apos;Actions/Cancel&apos; to clear the selection of to be removed/installed packages</source>
         <translation>Ctrl-E eller &apos;Åtgärder/Avbryt&apos; för att rensa alla valda ändringar</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="142"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="163"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="274"/>
         <source>Ctrl+F to search for text inside tab Files, News and Usage</source>
         <translation>Ctrl-F för att söka efter text i Filer-, Nyhets- eller Användnings-filkarna</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="144"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="165"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="276"/>
         <source>Ctrl+G or &apos;File/Get latest distro news&apos; to retrieve the latest RSS based distro news</source>
         <translation>Ctrl-G eller &apos;Arkiv/Läs senaste nyheter&apos; för att hämta de senaste nyheterna från RSS-flödet</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="146"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="167"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="278"/>
         <source>Ctrl+K or &apos;File/Check updates&apos; to check mirror for latest updates (checkupdates)</source>
         <translation>Ctrl-K eller &apos;Arkiv/Sök efter uppdateringar&apos; för att söka efter de senaste uppdateringarna (checkupdates)</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="148"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="169"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="280"/>
         <source>Ctrl+L to find a package in the package list</source>
         <translation>Ctrl-L för att hitta ett paket i listan</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="150"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="171"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="282"/>
         <source>Ctrl+P to go to package list</source>
         <translation>Ctrl-P för att gå till paketlistan</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="152"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="173"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="284"/>
         <source>Ctrl+Q or &apos;File/Exit&apos; to exit the application</source>
         <translation>Ctrl-Q eller &apos;Arkiv/Avsluta&apos; för att avsluta programmet</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="154"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="175"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="286"/>
         <source>Ctrl+U or &apos;File/System upgrade&apos; to make a full system upgrade (pacman -Su)</source>
         <translation>Ctrl-U eller &apos;Arkiv/Systemuppgradering&apos; för att göra en hel systemuppgradering (pacman -Su)</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="156"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="177"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="288"/>
         <source>Ctrl+Y or &apos;Actions/Apply&apos; to start installation/removal of selected packages</source>
         <translation>Ctrl-Y eller &apos;Åtgärder/Verkställ&apos; för att påbörja installation/borttagning av valda paket</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="159"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="180"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="291"/>
         <source>Control+shift+key sequences:</source>
         <translation>Control-Shift-tangentsekvenser:</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="163"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="184"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="295"/>
         <source>Ctrl+Shift+G to display all package groups</source>
         <translation>Ctrl-Shift-G för att visa alla paketgrupper</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="168"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="189"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="300"/>
         <source>Ctrl+Shift+U to upgrade outdated %1 packages</source>
         <translation>Ctrl+Shift+U för att uppgradera %1 föråldrade paket</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="170"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="191"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="302"/>
         <source>Ctrl+Shift+Y to display %1 group</source>
         <translation>Ctrl-Shift-Y för att visa %1-grupp</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="173"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="194"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="305"/>
         <source>F+key sequences:</source>
         <translation>F-tangentsekvenser:</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="175"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="196"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="307"/>
         <source>F1 to show this help page</source>
         <translation>F1 för att visa hjälpen</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="177"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="198"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="309"/>
         <source>F4 to open a Terminal whitin the selected directory at Files tab</source>
         <translation>F4 för att öppna en terminal i den valda katalogen</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="179"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="200"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="311"/>
         <source>F6 to open a File Manager whitin the selected directory at Files tab</source>
         <translation>F6 för att öppna din filhanterare i den valda katalogen</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="181"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="202"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="313"/>
         <source>F10 to maximize/demaximize package list view</source>
         <translation>F10 för att maximera eller återställa paketlistvyn</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="183"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="204"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="315"/>
         <source>F11 to maximize/demaximize Tab&apos;s view</source>
         <translation>F11 för att maximera flikvy</translation>
     </message>
@@ -518,139 +563,154 @@
         <translation>Aktivera bekräftelsedialog innan systemuppgradering</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="199"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="197"/>
+        <source>Increase text spacing in the main interface</source>
+        <translation>Öka textavstånd i huvudfönstret</translation>
+    </message>
+    <message>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="212"/>
         <source>Use alternating row colors</source>
         <translation>Använd omväxlande färger i listan</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="212"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="225"/>
         <source>Show &quot;Licenses&quot; column</source>
         <translation>Visa kolumnen &quot;Licenser&quot;</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="225"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="238"/>
         <source>Show &quot;Installed Size&quot; column</source>
         <translation>Visa kolumnen &quot;Installerad storlek&quot;</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="238"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="251"/>
         <source>Show &quot;Build Date&quot; column</source>
         <translation>Visa kolumnen &quot;Byggdatum&quot;</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="251"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="264"/>
         <source>Show &quot;Install Date&quot; column</source>
         <translation>Visa kolumnen &quot;Installeringsdatum&quot;</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="264"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="277"/>
         <source>Show &quot;Install Reason&quot; column</source>
         <translation>Visa kolumnen &quot;Installeringsorsak&quot;</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="277"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="290"/>
         <source>Enable package tooltips</source>
         <translation>Aktivera verktygstips för paket</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="311"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="303"/>
+        <source>Show &quot;Repository&quot; column</source>
+        <translation>Vi kolumnen &quot;Förråd&quot;</translation>
+    </message>
+    <message>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="316"/>
+        <source>Show &quot;Download Size&quot; column</source>
+        <translation>Visa kolumnen &quot;Hämtningsstorlek&quot;</translation>
+    </message>
+    <message>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="350"/>
         <source>Select the AUR tool Octopi should use</source>
         <translation>Välj det AUR-verktyg Octopi ska använda</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="392"/>
-        <source>Search for outdated AUR packages</source>
-        <translation>Sök efter föråldrade AUR-paket</translation>
-    </message>
-    <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="458"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="476"/>
         <source>User name</source>
         <translation>Användarnamn</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="471"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="489"/>
         <source>Password</source>
         <translation>Lösenord</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="489"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="507"/>
         <source>Register</source>
         <translation>Registrera</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="507"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="525"/>
         <source>Connect</source>
         <translation>Anslut</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="526"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="544"/>
         <source>Enable AUR voting</source>
         <translation>Aktivera AUR-röstning</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="547"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="565"/>
         <source>AUR packages are user produced content. 
 Any use of the provided files is at your own risk.</source>
         <translation>AUR-paket är användarskapat innehåll. 
 Allt användande sker på egen risk.</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="608"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="626"/>
         <source>Build directory</source>
         <translation>Byggkatalog</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="724"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="742"/>
         <source>Select the backend Octopi should use</source>
         <translation>Välj det undersystem Octopi ska använda </translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="767"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="785"/>
         <source>Use default notification icons</source>
         <translation>Använd standardikoner</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="842"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="860"/>
         <source>Red icon</source>
         <translation>Röd ikon</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="932"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="950"/>
         <source>Busy icon</source>
         <translation>Upptagenikon</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1001"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1019"/>
         <source>Yellow icon</source>
         <translation>Gul ikon</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1085"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1103"/>
         <source>Green icon</source>
         <translation>Grön ikon</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1410"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1402"/>
+        <source>Search for outdated AUR packages</source>
+        <translation>Sök efter föråldrade AUR-paket</translation>
+    </message>
+    <message>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1452"/>
         <source>Color Scheme</source>
         <translation>Färgschema</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1423"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1465"/>
         <source>Font Family</source>
         <translation>Typsnittsfamilj</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1456"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1498"/>
         <source>Font Size</source>
         <translation>Textstorlek</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1479"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1521"/>
         <source>Play a bell sound when prompting for the root password in the terminal</source>
         <translation>Plinga när rootlösenordet efterfrågas i terminalen</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1492"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1534"/>
         <source>Force use of BASH shell</source>
         <translation>Tvinga användning av bash-skalet</translation>
     </message>
@@ -702,12 +762,12 @@ Allt användande sker på egen risk.</translation>
         <translation>Terminal</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/optionsdialog.cpp" line="215"/>
+        <location filename="Projects/octopi/src/optionsdialog.cpp" line="218"/>
         <source>Ok</source>
         <translation>OK</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/optionsdialog.cpp" line="216"/>
+        <location filename="Projects/octopi/src/optionsdialog.cpp" line="219"/>
         <source>Cancel</source>
         <translation>Avbryt</translation>
     </message>
