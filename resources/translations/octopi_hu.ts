@@ -565,7 +565,7 @@
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="197"/>
         <source>Increase text spacing in the main interface</source>
-        <translation type="unfinished"/>
+        <translation>Szövegtávolság növelése a fő felületen</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="212"/>
@@ -605,12 +605,12 @@
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="303"/>
         <source>Show &quot;Repository&quot; column</source>
-        <translation type="unfinished"/>
+        <translation>„Tároló” oszlopának megjelenítése</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="316"/>
         <source>Show &quot;Download Size&quot; column</source>
-        <translation type="unfinished"/>
+        <translation>„Letöltési méret” oszlopának megjelenítése</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="350"/>
