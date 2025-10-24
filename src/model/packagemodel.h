@@ -89,6 +89,7 @@ public:
   void applyFilter(const int filterColumn, const QString& filterExp);
 
   void setShowColumnPopularity(bool value);
+  void setHasPacmanBackend(bool value);
 
 private:
   const QIcon& getIconFor(const PackageRepository::PackageData& package) const;
@@ -97,6 +98,7 @@ private:
 private:
   int                                     m_installedPackagesCount;
   bool                                    m_showColumnPopularity;
+  bool                                    m_hasPacmanBackend;
 
   const PackageRepository&                m_packageRepo;
   QList<PackageRepository::PackageData*>  m_listOfPackages;             // should be provided sorted by name (by repo)

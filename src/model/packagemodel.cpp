@@ -44,6 +44,7 @@ PackageModel::PackageModel(const PackageRepository& repo, QObject *parent)
   m_iconError(IconHelper::getIconWindowClose())
 {
   m_showColumnPopularity = false;
+  m_hasPacmanBackend = false;
 }
 
 QModelIndex PackageModel::index(int row, int column, const QModelIndex &parent) const
@@ -75,9 +76,9 @@ int PackageModel::rowCount(const QModelIndex &parent) const
 int PackageModel::columnCount(const QModelIndex &parent) const
 {
   if (!parent.isValid()) {
-    if (UnixCommand::getLinuxDistro() == ectn_CHAKRA || !m_showColumnPopularity)
+    if (!m_showColumnPopularity)
     {
-      if (SettingsManager::hasPacmanBackend()) return 4;
+      if (m_hasPacmanBackend) return 4;
       else return 11;
     }
     else
@@ -248,13 +249,13 @@ void PackageModel::endResetRepository()
     if (m_filterPackagesNotInstalled && (*it)->installed()) continue;
     else if (m_filterPackagesInstalled && !(*it)->installed()) continue;
 
-    if (m_filterPackagesIgnored && (*it)->status != ectn_IGNORED) continue;
+    else if (m_filterPackagesIgnored && (*it)->status != ectn_IGNORED) continue;
 
-    if (m_filterPackagesOutdated && !(*it)->outdated()) continue;
+    else if (m_filterPackagesOutdated && !(*it)->outdated()) continue;
 
-    if (!m_filterPackagesNotInThisRepo.isEmpty() && (*it)->repository != m_filterPackagesNotInThisRepo) continue;
+    else if (!m_filterPackagesNotInThisRepo.isEmpty() && (*it)->repository != m_filterPackagesNotInThisRepo) continue;
 
-    if (m_filterRegExp.pattern().isEmpty()) {
+    else if (m_filterRegExp.pattern().isEmpty()) {
       m_listOfPackages.push_back(*it);
       if ((*it)->installed()) m_installedPackagesCount++;
     }
@@ -381,6 +382,11 @@ void PackageModel::applyFilter(const int filterColumn, const QString& filterExp)
 void PackageModel::setShowColumnPopularity(bool value)
 {
   m_showColumnPopularity = value;
+}
+
+void PackageModel::setHasPacmanBackend(bool value)
+{
+  m_hasPacmanBackend = value;
 }
 
 const QIcon& PackageModel::getIconFor(const PackageRepository::PackageData& package) const

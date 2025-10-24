@@ -451,6 +451,7 @@ void MainWindow::onOptions(OptionsDialogTab tabToOpen)
 
   if (res & Options::ectn_BACKEND)
   {
+    m_packageModel->setHasPacmanBackend(SettingsManager::hasPacmanBackend());
     AURToolSelected();
   }
 }

@@ -1907,10 +1907,12 @@ void MainWindow::reapplyPackageFilter()
   //We are not in a search by filenames...
   if (!isSearchByFileSelected())
   {
-    bool isFilterPackageSelected = m_leFilterPackage->hasFocus();
+    bool isFilterPackageSelected = m_leFilterPackage->hasFocus();   
+    QString search = Package::parseSearchString(m_leFilterPackage->text());
+    m_packageModel->applyFilter(search);
     int numPkgs = m_packageModel->getPackageCount();
 
-    if (m_leFilterPackage->text() != QLatin1String(""))
+    /*if (m_leFilterPackage->text() != QLatin1String(""))
     {
       QString search = m_leFilterPackage->text();
       search = search.replace(QLatin1String("+"), QLatin1String("\\+"));
@@ -1924,7 +1926,7 @@ void MainWindow::reapplyPackageFilter()
     {
       m_leFilterPackage->initStyleSheet();
       m_packageModel->applyFilter(QLatin1String(""));
-    }
+    }*/
 
     if (isFilterPackageSelected || numPkgs == 0)
     {
