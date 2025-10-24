@@ -780,12 +780,7 @@ QByteArray SettingsManager::getSplitterHorizontalState(){
 
 bool SettingsManager::isInstantSearchSelected()
 {
-  SettingsManager p_instance;
-
-  if (UnixCommand::isCachyOS())
-    return (p_instance.getSYSsettings()->value(ctn_KEY_INSTANT_SEARCH, false)).toBool();
-  else
-    return (p_instance.getSYSsettings()->value(ctn_KEY_INSTANT_SEARCH, true)).toBool();
+  return (instance()->getSYSsettings()->value(ctn_KEY_INSTANT_SEARCH, true)).toBool();
 }
 
 void SettingsManager::setCurrentTabIndex(int newValue){
