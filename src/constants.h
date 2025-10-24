@@ -246,6 +246,8 @@ const QString ctn_GNOME_EDITOR(QStringLiteral("gedit"));
 const QString ctn_GNOME_FILE_MANAGER(QStringLiteral("nautilus"));
 const QString ctn_GNOME_TERMINAL(QStringLiteral("gnome-terminal"));
 
+const QString ctn_COSMIC_FILE_MANAGER(QStringLiteral("cosmic-files"));
+
 const QString ctn_XDG_OPEN(QStringLiteral("xdg-open"));
 
 const QString ctn_XFCE_DESKTOP(QStringLiteral("xfdesktop"));
@@ -267,7 +269,7 @@ const QString ctn_LUMINA_OPEN(QStringLiteral("lumina-open"));
 const QString ctn_LXQT_DESKTOP(QStringLiteral("lxqt-session"));
 const QString ctn_LXQT_TERMINAL(QStringLiteral("qterminal"));
 const QString ctn_LXQT_FILE_MANAGER(QStringLiteral("pcmanfm-qt"));
-const QString ctn_LXQT_EDITOR(QStringLiteral("juffed"));
+const QString ctn_LXQT_EDITOR(QStringLiteral("featherpad"));
 
 const QString ctn_MATE_DESKTOP(QStringLiteral("mate-session"));
 const QString ctn_MATE_EDITOR(QStringLiteral("pluma"));

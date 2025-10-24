@@ -44,6 +44,11 @@ bool WMHelper::isKDERunning()
   return (qgetenv("XDG_CURRENT_DESKTOP").toLower() == QByteArray("kde"));
 }
 
+bool WMHelper::isCOSMICRunning()
+{
+  return (qgetenv("XDG_CURRENT_DESKTOP").toLower() == QByteArray("cosmic"));
+}
+
 /*
  * Checks if TDE is running
  */
@@ -390,6 +395,10 @@ void WMHelper::editFile(const QString& fileName, EditOptions opt)
   {
     p = ctn_GNOME_EDITOR + QLatin1Char(' ') + fileName;
   }
+  else if (isCOSMICRunning() && UnixCommand::hasTheExecutable(ctn_LXQT_EDITOR))
+  {
+    p = ctn_LXQT_EDITOR + QLatin1Char(' ') + fileName;
+  }
   else if (isXFCERunning() && (UnixCommand::hasTheExecutable(ctn_XFCE_EDITOR) ||
                                UnixCommand::hasTheExecutable(ctn_XFCE_EDITOR_ALT))){
     p = getXFCEEditor() + QLatin1Char(' ') + fileName;
@@ -412,7 +421,7 @@ void WMHelper::editFile(const QString& fileName, EditOptions opt)
   else if (isLuminaRunning() && UnixCommand::hasTheExecutable(ctn_LUMINA_EDITOR)){
     p += ctn_LUMINA_EDITOR + QLatin1Char(' ') + fileName;
   }
-  if (UnixCommand::hasTheExecutable(ctn_ARCHBANG_EDITOR))
+  else if (UnixCommand::hasTheExecutable(ctn_ARCHBANG_EDITOR))
   {
     p = ctn_ARCHBANG_EDITOR + QLatin1Char(' ') + fileName;
   }
@@ -470,6 +479,11 @@ void WMHelper::openDirectory(const QString& dirName)
     {
       s << dir;
       p->startDetached( ctn_GNOME_FILE_MANAGER, s );
+    }
+    else if (isCOSMICRunning() && UnixCommand::hasTheExecutable(ctn_COSMIC_FILE_MANAGER))
+    {
+      s << dir;
+      p->startDetached( ctn_COSMIC_FILE_MANAGER, s );
     }
     else if(isXFCERunning() && UnixCommand::hasTheExecutable(ctn_XFCE_FILE_MANAGER))
     {

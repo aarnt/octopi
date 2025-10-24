@@ -33,6 +33,7 @@ class WMHelper
 {
 public:
   static bool isKDERunning();
+  static bool isCOSMICRunning();
   static bool isTDERunning();
   static bool isGNOMERunning();
   static bool isXFCERunning();
