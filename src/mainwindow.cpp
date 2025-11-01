@@ -1861,6 +1861,8 @@ QString MainWindow::extractBaseFileName(const QString &fileName)
  */
 void MainWindow::onDoubleClickPackageList()
 {
+  if (m_commandExecuting != ectn_NONE) return;
+
   const PackageRepository::PackageData* package = m_packageModel->getData(ui->tvPackages->currentIndex());
   if (package != nullptr && package->installed())
   {
