@@ -605,7 +605,7 @@
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="303"/>
         <source>Show &quot;Repository&quot; column</source>
-        <translation>Exibir a coluna &quot;Respositório&quot;</translation>
+        <translation>Exibir a coluna &quot;Repositório&quot;</translation>
     </message>
     <message>
         <location filename="Projects/octopi/ui/optionsdialog.ui" line="316"/>
