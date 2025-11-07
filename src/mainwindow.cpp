@@ -568,6 +568,9 @@ void MainWindow::outputTextBrowserAnchorClicked(const QUrl &link)
 {
   if (link.toString().contains(QLatin1String("goto:")))
   {
+    if (!m_leFilterPackage->hasFocus())
+      m_leFilterPackage->setFocus();
+
     QString pkgName = link.toString().mid(5).remove(QStringLiteral("[installed]"), Qt::CaseInsensitive).trimmed();
     if (pkgName == QLatin1String("sh")) pkgName = QStringLiteral("bash");
 

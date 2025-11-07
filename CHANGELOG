@@ -2,13 +2,14 @@
   BugFix: Pressing F11 to maximize bottom panel crashed Octopi if Info tab was selected.
   BugFix: Octopi crashed after using AUR/KCP tool and clicking on a package anchor 
     in Output tab.
+  BugFix: Package anchor clicking was not working if filter pkg QLineEdit was not focused.
   BugFix: Optional deps dialog had a column header named "3" instead of "Repository".
   BugFix: Some outdated AUR pkgs were not showing on notifier (thanks to urbenlegend).
   BugFix: There was a method called more than once every time distro news was checked.
   BugFix: Prevent the user from double-clicking on a package while it is performing 
     an action.
-  Relevant performance improvement on instant search and package list building time.
-  Add support to COSMIC DE.  
+  *Relevant* performance improvement on instant search and package list building time.
+  Add support to COSMIC DE.
   Add the option to make the whole interface text less condensed.
   Add the option to show/hide "Repository" and "Download Size" columns in package list.
   Pressing Ctrl+M toggles the visibility of the menu bar.
