@@ -402,7 +402,7 @@ void MainWindow::keyPressEvent(QKeyEvent* ke)
   {
     //TEST CODE
   }*/
-  else if (ke->modifiers() == Qt::AltModifier)
+  else if (ke->key()  == Qt::Key_M && ke->modifiers() == (Qt::ControlModifier))
   {
     if (QApplication::focusWidget() != nullptr && QApplication::focusWidget() != ui->menuBar)
       m_lastFocusedWidget = QApplication::focusWidget();

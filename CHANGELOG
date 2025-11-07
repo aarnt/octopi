@@ -11,7 +11,7 @@
   Add support to COSMIC DE.  
   Add the option to make the whole interface text less condensed.
   Add the option to show/hide "Repository" and "Download Size" columns in package list.
-  Pressing the Alt key toggles the visibility of the menu bar.
+  Pressing Ctrl+M toggles the visibility of the menu bar.
   Add Repository field in Info tab.
   Make "Search for outdated AUR packages" a notifier only option.
   Enable Check updates and System upgrade tool buttons in AUR mode.
