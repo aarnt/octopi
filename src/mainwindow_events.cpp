@@ -212,49 +212,49 @@ void MainWindow::keyPressEvent(QKeyEvent* ke)
       }
     }
   }
-  else if(ke->key() == Qt::Key_Escape)
+  else if (ke->key() == Qt::Key_Escape)
   {
-    if(m_leFilterPackage->hasFocus())
+    if (m_leFilterPackage->hasFocus())
     {
       m_leFilterPackage->clear();
     }
   }
-  else if(ke->key() == Qt::Key_Delete)
+  else if (ke->key() == Qt::Key_Delete)
   {
     if (m_commandExecuting != ectn_NONE) return;
 
     onPressDelete();
   }
-  else if(ke->key() == Qt::Key_1 && ke->modifiers() == Qt::AltModifier)
+  else if (ke->key() == Qt::Key_1 && ke->modifiers() == Qt::AltModifier)
   {
     changeTabWidgetPropertiesIndex(ctn_TABINDEX_INFORMATION);
   }
-  else if(ke->key() == Qt::Key_2 && ke->modifiers() == Qt::AltModifier)
+  else if (ke->key() == Qt::Key_2 && ke->modifiers() == Qt::AltModifier)
   {
     ui->twProperties->setCurrentIndex(ctn_TABINDEX_FILES);
     refreshTabFiles(false, true);
   }
-  else if(ke->key() == Qt::Key_3 && ke->modifiers() == Qt::AltModifier)
+  else if (ke->key() == Qt::Key_3 && ke->modifiers() == Qt::AltModifier)
   {
     changeTabWidgetPropertiesIndex(ctn_TABINDEX_ACTIONS);
   }
-  else if(ke->key() == Qt::Key_4 && ke->modifiers() == Qt::AltModifier)
+  else if (ke->key() == Qt::Key_4 && ke->modifiers() == Qt::AltModifier)
   {
     changeTabWidgetPropertiesIndex(ctn_TABINDEX_OUTPUT);
   }
-  else if(ke->key() == Qt::Key_5 && ke->modifiers() == Qt::AltModifier)
+  else if (ke->key() == Qt::Key_5 && ke->modifiers() == Qt::AltModifier)
   {
     changeTabWidgetPropertiesIndex(ctn_TABINDEX_NEWS);
   }
-  else if(ke->key() == Qt::Key_6 && ke->modifiers() == Qt::AltModifier)
+  else if (ke->key() == Qt::Key_6 && ke->modifiers() == Qt::AltModifier)
   {
     changeTabWidgetPropertiesIndex(ctn_TABINDEX_HELPUSAGE);
   }
-  else if(ke->key() == Qt::Key_7 && ke->modifiers() == Qt::AltModifier)
+  else if (ke->key() == Qt::Key_7 && ke->modifiers() == Qt::AltModifier)
   {
     changeTabWidgetPropertiesIndex(ctn_TABINDEX_TERMINAL);
   }
-  else if(ke->key() == Qt::Key_F2)
+  else if (ke->key() == Qt::Key_F2)
   {
     if (isPackageTreeViewVisible())
     {
@@ -266,17 +266,17 @@ void MainWindow::keyPressEvent(QKeyEvent* ke)
       if (!ui->tvPackages->hasFocus()) ui->tvPackages->setFocus();
     }
   }
-  else if(ke->key() == Qt::Key_F4)
+  else if (ke->key() == Qt::Key_F4)
   {
     openTerminal();
   }
-  else if(ke->key() == Qt::Key_F5)
+  else if (ke->key() == Qt::Key_F5)
   {
     if (m_commandExecuting != ectn_NONE) return;
 
     metaBuildPackageList();
   }
-  else if(ke->key() == Qt::Key_F6)
+  else if (ke->key() == Qt::Key_F6)
   {
     openDirectory();
   }
@@ -288,16 +288,16 @@ void MainWindow::keyPressEvent(QKeyEvent* ke)
   {
     maxDemaxPropertiesTabWidget(true);
   }
-  else if(ke->key() == Qt::Key_C && ke->modifiers() == Qt::ControlModifier)
+  else if (ke->key() == Qt::Key_C && ke->modifiers() == Qt::ControlModifier)
   {
     copyFullPathToClipboard();
   }
-  else if(ke->key() == Qt::Key_L && ke->modifiers() == Qt::ControlModifier)
+  else if (ke->key() == Qt::Key_L && ke->modifiers() == Qt::ControlModifier)
   {
     m_leFilterPackage->setFocus();
     m_leFilterPackage->selectAll();
   }
-  else if(ke->key() == Qt::Key_F && ke->modifiers() == Qt::ControlModifier)
+  else if (ke->key() == Qt::Key_F && ke->modifiers() == Qt::ControlModifier)
   {
     if (m_commandExecuting != ectn_NONE) return;
 
@@ -337,14 +337,14 @@ void MainWindow::keyPressEvent(QKeyEvent* ke)
 
     if (ui->actionSystemUpgrade->isEnabled()) doSystemUpgrade();
   }
-  else if(ke->key() == Qt::Key_D && ke->modifiers() == (Qt::ShiftModifier|Qt::ControlModifier))
+  else if (ke->key() == Qt::Key_D && ke->modifiers() == (Qt::ShiftModifier|Qt::ControlModifier))
   {
     if (m_commandExecuting != ectn_NONE) return;
 
     //The user wants to know which packages have no description!
     showPackagesWithNoDescription();
   }
-  else if(ke->key() == Qt::Key_G && ke->modifiers() == (Qt::ShiftModifier|Qt::ControlModifier))
+  else if (ke->key() == Qt::Key_G && ke->modifiers() == (Qt::ShiftModifier|Qt::ControlModifier))
   {
     if (m_commandExecuting != ectn_NONE) return;
 
@@ -354,7 +354,7 @@ void MainWindow::keyPressEvent(QKeyEvent* ke)
       ui->twGroups->setCurrentItem(m_AllGroupsItem);
     }
   }
-  else if(ke->key() == Qt::Key_U && ke->modifiers() == (Qt::ShiftModifier|Qt::ControlModifier))
+  else if (ke->key() == Qt::Key_U && ke->modifiers() == (Qt::ShiftModifier|Qt::ControlModifier))
   {
     if (m_commandExecuting != ectn_NONE) return;
 
@@ -369,19 +369,19 @@ void MainWindow::keyPressEvent(QKeyEvent* ke)
     m_actionSwitchToForeignTool->trigger();
     m_leFilterPackage->setFocus();
   }
-  else if(ke->key() == Qt::Key_S && ke->modifiers() == (Qt::ShiftModifier|Qt::ControlModifier))
+  else if (ke->key() == Qt::Key_S && ke->modifiers() == (Qt::ShiftModifier|Qt::ControlModifier))
   {
     if (m_commandExecuting != ectn_NONE) return;
 
     doSysInfo();
   }
-  else if(ke->key() == Qt::Key_A && ke->modifiers() == (Qt::ShiftModifier|Qt::ControlModifier))
+  else if (ke->key() == Qt::Key_A && ke->modifiers() == (Qt::ShiftModifier|Qt::ControlModifier))
   {
     if (m_commandExecuting != ectn_NONE) return;
 
     outputAURVotedPackageList();
   }
-  else if(ke->key() == Qt::Key_O && ke->modifiers() == (Qt::ShiftModifier|Qt::ControlModifier))
+  else if (ke->key() == Qt::Key_O && ke->modifiers() == (Qt::ShiftModifier|Qt::ControlModifier))
   {
     if (m_commandExecuting != ectn_NONE) return;
 
@@ -402,6 +402,22 @@ void MainWindow::keyPressEvent(QKeyEvent* ke)
   {
     //TEST CODE
   }*/
+  else if (ke->modifiers() == Qt::AltModifier)
+  {
+    if (QApplication::focusWidget() != nullptr && QApplication::focusWidget() != ui->menuBar)
+      m_lastFocusedWidget = QApplication::focusWidget();
+
+    ui->menuBar->setVisible(!ui->menuBar->isVisible());
+
+    if (ui->menuBar->isVisible())
+    {
+      ui->menuBar->setFocus();
+    }
+    else
+    {
+      m_lastFocusedWidget->setFocus();
+    }
+  }
 
   else ke->ignore();
 }
@@ -470,10 +486,17 @@ void MainWindow::keyReleaseEvent(QKeyEvent* ke)
       execKeyActionOnPackage(ectn_INSTALL);
     }
   }
-  else if(ke->key() == Qt::Key_Minus)
+  else if (ke->key() == Qt::Key_Minus)
   {
     if (m_commandExecuting != ectn_NONE) return;
 
     onPressDelete();
+  }
+  else if (ke->key() == Qt::Key_Escape)
+  {
+    if (ui->menuBar->hasFocus())
+    {
+      m_lastFocusedWidget->setFocus();
+    }
   }
 }

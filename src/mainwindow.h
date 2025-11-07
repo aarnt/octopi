@@ -238,6 +238,8 @@ private:
   //Controls OptionsDialog exec
   OptionsDialog *m_optionsDialog;
 
+  QWidget *m_lastFocusedWidget;
+
   int selectTerminal(const int initialTerminalIndex);
 
   void loadSettings();

@@ -327,12 +327,17 @@ void MainWindow::initMenuBar()
   actionGroupRepositories->setExclusive(true);
   m_actionMenuRepository->setMenu(subMenu);
 
-  /*for (QAction * act,  ui->menuBar->actions())
+  /*for (QAction * act:  ui->menuBar->actions())
   {
     QString text = act->text();
     text = text.remove("&");
     act->setText(qApp->translate("MainWindow", text.toUtf8(), 0));
   }*/
+
+  for (QAction * act:  ui->menuBar->actions())
+  {
+    addAction(act);
+  }
 
 #ifdef OCTOPI_DEV_CODE
   ui->menuFile->insertAction(ui->actionExit, m_actionEditOctopiConf);
@@ -380,6 +385,7 @@ void MainWindow::initToolBar()
   m_leFilterPackage->setMinimumHeight(24);
   m_leFilterPackage->setPlaceholderText(m_leFilterPackage->placeholderText() + QLatin1String("  (Ctrl+L)"));
   ui->mainToolBar->addWidget(m_leFilterPackage);
+  m_lastFocusedWidget = m_leFilterPackage;
 
   QWidget * hSpacer = new QWidget(this);
   hSpacer->setMinimumHeight(22);
