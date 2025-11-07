@@ -602,6 +602,7 @@ void PacmanExec::prepareTextToPrint(QString str, TreatString ts, TreatURLLinks t
 
         str.indexOf(QLatin1String("Enter a selection"), Qt::CaseInsensitive) == 0 ||
         str.indexOf(QLatin1String(":: Proceed with"), Qt::CaseInsensitive) == 0 ||
+        str.indexOf(QLatin1String(":: Replace"), Qt::CaseInsensitive) == 0 ||
         str.indexOf(QLatin1String("%")) != -1 ||
         str.indexOf(QLatin1String("---")) != -1)
     {
