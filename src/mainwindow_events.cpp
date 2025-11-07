@@ -407,7 +407,10 @@ void MainWindow::keyPressEvent(QKeyEvent* ke)
     if (QApplication::focusWidget() != nullptr && QApplication::focusWidget() != ui->menuBar)
       m_lastFocusedWidget = QApplication::focusWidget();
 
-    ui->menuBar->setVisible(!ui->menuBar->isVisible());
+    if (ui->menuBar->isVisible())
+      ui->menuBar->hide();
+    else
+      ui->menuBar->setVisible(true);
 
     if (ui->menuBar->isVisible())
     {
