@@ -24,7 +24,7 @@
 #include <unistd.h>
 #include <sys/types.h>
 #include <dirent.h>
-#include <limits.h>
+//#include <limits.h>
 
 #include <QProcess>
 #include <QDir>
@@ -128,7 +128,8 @@ OctopiHelper::OctopiHelper()
 
   QString fname = QStringLiteral("/usr/lib/octopi/octphelper.log");
   m_logFile.setFileName(fname);
-  m_logFile.open(QIODevice::WriteOnly | /*QIODevice::Append |*/ QIODevice::Text);
+  bool opened = m_logFile.open(QIODevice::WriteOnly | QIODevice::Text);
+  Q_UNUSED(opened);
 }
 
 OctopiHelper::~OctopiHelper()
