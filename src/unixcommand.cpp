@@ -35,6 +35,7 @@
 #include <QtNetwork>
 #include <QFileInfo>
 #include <QtGlobal>
+#include <QStandardPaths>
 
 /*
  * Collection of methods to execute many Unix commands
@@ -701,14 +702,19 @@ bool UnixCommand::doInternetPingTest()
 }
 
 /*
- * Checks if the given executable is available somewhere in the system
+ * Finds the given executable in PATH
+ */
+QString UnixCommand::findExecutable(const QString& exeName)
+{
+  return QStandardPaths::findExecutable(exeName);
+}
+
+/*
+ * Checks if the given executable is available
  */
 bool UnixCommand::hasTheExecutable(const QString& exeName)
 {
-  if (exeName == ctn_OCTOPISUDO)
-    return (QFile::exists(ctn_OCTOPISUDO));
-  else
-    return (QFile::exists(QStringLiteral("/usr/bin/") + exeName));
+  return !findExecutable(exeName).isEmpty();
 }
 
 /*
@@ -1180,10 +1186,13 @@ bool UnixCommand::isAppRunning(const QString &appName, bool justOneInstance)
 }
 
 /*
- * Checks if Octopi/Octopi-notifier, cache-cleaner, etc is being executed from /usr/bin
+ * Checks if Octopi/Octopi-notifier, cache-cleaner, etc is being executed from allowed paths
+ * Allowed paths can be configured via OCTOPI_ALLOWED_PATHS environment variable (colon-separated)
+ * Default: /usr/bin only (security: only system-installed binaries are trusted)
+ * Development: set OCTOPI_ALLOWED_PATHS=/usr/bin:/path/to/your/build to allow running from build dir
  */
 bool UnixCommand::isOctoToolRunning(const QString &octoToolName)
-{  
+{
   char exePath[PATH_MAX];
   ssize_t count = readlink("/proc/self/exe", exePath, sizeof(exePath));
   if (count == -1)
@@ -1194,6 +1203,18 @@ bool UnixCommand::isOctoToolRunning(const QString &octoToolName)
 
   QString path = QString::fromUtf8(exePath, count);
   QFileInfo fi(path);
+
+  QByteArray allowedPathsEnv = qgetenv("OCTOPI_ALLOWED_PATHS");
+  if (!allowedPathsEnv.isEmpty())
+  {
+    QStringList allowedPaths = QString::fromUtf8(allowedPathsEnv).split(QLatin1Char(':'), Qt::SkipEmptyParts);
+    for (const QString &allowedPath : allowedPaths)
+    {
+      if (fi.absoluteFilePath() == allowedPath + QLatin1Char('/') + octoToolName)
+        return true;
+    }
+    return false;
+  }
 
   return (fi.absoluteFilePath() == QLatin1String("/usr/bin/") + octoToolName);
 }
