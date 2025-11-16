@@ -255,232 +255,277 @@
         <translation>Ignorované</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="64"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="66"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="71"/>
         <source>Ctrl+Shift+O to display outdated %1 packages</source>
         <translation>Ctrl+Shift+O pro zobrazení zastaralých %1 balíčků</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="72"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="82"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="87"/>
         <source>Ctrl+Shift+A to display AUR voted package list</source>
         <translation>Ctrl+Shift+A pro zobrazení voleného seznamu balíčků AUR</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="77"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="93"/>
         <source>For more information, visit:</source>
         <translation>Další informace najdete na:</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="80"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="100"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="211"/>
         <source>A Qt-based Pacman frontend,</source>
         <translation>Na Qt založené rozhraní pro Pacman,</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="81"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="101"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="212"/>
         <source>licensed under the terms of</source>
         <translation>licencováno za podmínek</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="88"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="108"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="219"/>
         <source>Package classification:</source>
         <translation>Zařazení balíčku:</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="91"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="111"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="222"/>
         <source>An ignored package</source>
         <translation>Ignorovaný balíček</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="93"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="113"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="224"/>
         <source>An installed package</source>
         <translation>Nainstalovaný balíček</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="95"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="115"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="226"/>
         <source>An installed package (not required by others)</source>
         <translation>Nainstalovaný balíček (nepožadovaný dalšími)</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="98"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="118"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="229"/>
         <source>A foreign package, installed from</source>
         <translation>Cizí balíček, instalován z</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="101"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="121"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="232"/>
         <source>A non installed package</source>
         <translation>Nenainstalovaný balíček</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="104"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="124"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="235"/>
         <source>An outdated package</source>
         <translation>Zastaralý balíček</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="107"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="127"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="238"/>
         <source>An outdated foreign package</source>
         <translation>Zastaralý cizí balíček</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="110"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="130"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="241"/>
         <source>A newer version of this package is installed</source>
         <translation>Je nainstalována novější verze tohoto balíčku</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="112"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="133"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="244"/>
         <source>Basic usage help:</source>
         <translation>Základní nápověda k používání:</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="114"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="135"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="246"/>
         <source>Position the mouse over a package to see its description</source>
         <translation>Umístěte myš nad balíček pro zobrazení jeho popisu</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="116"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="137"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="248"/>
         <source>Double click an installed package to see its contents</source>
         <translation>Dvakrát klepněte na nainstalovaný balíček pro zobrazení jeho obsahu</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="118"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="139"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="250"/>
         <source>Right click package to install/reinstall or remove it</source>
         <translation>Klepněte pravým tlačítkem myši na balíček pro jeho nainstalování/přeinstalování nebo odinstalování</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="121"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="142"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="253"/>
         <source>Alt+key sequences:</source>
         <translation>Alt+sled kláves:</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="123"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="144"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="255"/>
         <source>Alt+1 to switch to &apos;Info&apos; tab</source>
         <translation>Alt+1 pro přepnutí na kartu Informace</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="125"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="146"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="257"/>
         <source>Alt+2 to switch to &apos;Files&apos; tab</source>
         <translation>Alt+2 pro přepnutí na kartu Soubory</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="127"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="148"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="259"/>
         <source>Alt+3 to switch to &apos;Actions&apos; tab</source>
         <translation>Alt+3 pro přepnutí na kartu Činnosti</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="129"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="150"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="261"/>
         <source>Alt+4 to switch to &apos;Output&apos; tab</source>
         <translation>Alt+4 pro přepnutí na kartu Výstup</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="131"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="152"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="263"/>
         <source>Alt+5 to switch to &apos;News&apos; tab</source>
         <translation>Alt+5 pro přepnutí na kartu Zprávy</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="133"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="154"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="265"/>
         <source>Alt+6 or &apos;F1&apos; to show this help page</source>
         <translation>Alt+6 nebo F1 pro ukázání této stránky s nápovědou</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="135"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="156"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="267"/>
         <source>Alt+7 to switch to &apos;Terminal&apos; tab</source>
         <translation>Alt+7 pro přepnutí na kartu Terminál</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="138"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="159"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="270"/>
         <source>Control+key sequences:</source>
         <translation>Ctrl+sled kláves:</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="140"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="161"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="272"/>
         <source>Ctrl+E or &apos;Actions/Cancel&apos; to clear the selection of to be removed/installed packages</source>
         <translation>Ctrl+B nebo &apos;Činnosti/Zrušit&apos; pro smazání výběru balíčků určených k odstranění/instalaci</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="142"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="163"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="274"/>
         <source>Ctrl+F to search for text inside tab Files, News and Usage</source>
         <translation>Ctrl+F pro hledání textu v souborech, zprávách a používání</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="144"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="165"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="276"/>
         <source>Ctrl+G or &apos;File/Get latest distro news&apos; to retrieve the latest RSS based distro news</source>
         <translation>Ctrl+G nebo &apos;Soubor/Získat nejnovější distribuční zprávy&apos; pro získání nejnovějších distribučních zpráv založených na RSS</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="146"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="167"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="278"/>
         <source>Ctrl+K or &apos;File/Check updates&apos; to check mirror for latest updates (checkupdates)</source>
         <translation>Ctrl+K nebo &apos;Soubor/Zkontrolovat aktualizace&apos; pro kontrolu zrcadla na nejnovější aktualizace (checkupdates)</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="148"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="169"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="280"/>
         <source>Ctrl+L to find a package in the package list</source>
         <translation>Ctrl+L pro nalezení balíčku v seznamu balíčků</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="150"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="171"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="282"/>
         <source>Ctrl+P to go to package list</source>
         <translation>Ctrl+P pro přechod na seznam balíčků</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="152"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="173"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="284"/>
         <source>Ctrl+Q or &apos;File/Exit&apos; to exit the application</source>
         <translation>Ctrl+Q nebo &apos;Soubor/Ukončit&apos; pro ukončení programu</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="154"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="175"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="286"/>
         <source>Ctrl+U or &apos;File/System upgrade&apos; to make a full system upgrade (pacman -Su)</source>
         <translation>Ctrl+U nebo &apos;Soubor/Aktualizace systému&apos; pro provedení úplné aktualizace systému (pacman -Su)</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="156"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="177"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="288"/>
         <source>Ctrl+Y or &apos;Actions/Apply&apos; to start installation/removal of selected packages</source>
         <translation>Ctrl+M nebo &apos;Činnosti/Použít&apos; pro spuštění instalace/odstranění vybraných balíčků</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="159"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="180"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="291"/>
         <source>Control+shift+key sequences:</source>
         <translation>Ctrl+Shift+sled kláves:</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="163"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="184"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="295"/>
         <source>Ctrl+Shift+G to display all package groups</source>
         <translation>Ctrl+Shift+G pro zobrazení všech skupin balíčků</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="168"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="189"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="300"/>
         <source>Ctrl+Shift+U to upgrade outdated %1 packages</source>
         <translation>Ctrl+Shift+O pro aktualizaci zastaralých %1 balíčků</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="170"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="191"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="302"/>
         <source>Ctrl+Shift+Y to display %1 group</source>
         <translation>pro zobrazení skupiny %1</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="173"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="194"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="305"/>
         <source>F+key sequences:</source>
         <translation>F+sled kláves:</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="175"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="196"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="307"/>
         <source>F1 to show this help page</source>
         <translation>F1 pro ukázání této stránky s nápovědou</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="177"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="198"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="309"/>
         <source>F4 to open a Terminal whitin the selected directory at Files tab</source>
         <translation>F4 pro otevření terminálu ve vybraném adresáři na kartě Soubory</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="179"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="200"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="311"/>
         <source>F6 to open a File Manager whitin the selected directory at Files tab</source>
         <translation>F6 pro otevření správce souborů ve vybraném adresáři na kartě Soubory</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="181"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="202"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="313"/>
         <source>F10 to maximize/demaximize package list view</source>
         <translation>F10 pro zvětšení/zmenšení zobrazení seznamu balíčků</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="183"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="204"/>
+        <location filename="Projects/octopi/src/mainwindow_help.cpp" line="315"/>
         <source>F11 to maximize/demaximize Tab&apos;s view</source>
         <translation>F11 pro zvětšení/zmenšení zobrazení karet</translation>
     </message>
@@ -518,139 +563,154 @@
         <translation>Povolit potvrzovací dialog při povýšení systému</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="199"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="197"/>
+        <source>Increase text spacing in the main interface</source>
+        <translation>Zvětšit mezery textu v hlavním rozhraní</translation>
+    </message>
+    <message>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="212"/>
         <source>Use alternating row colors</source>
         <translation>Použití střídavých barev řádků</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="212"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="225"/>
         <source>Show &quot;Licenses&quot; column</source>
         <translation>Zobrazit sloupec &quot;Licence&quot;</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="225"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="238"/>
         <source>Show &quot;Installed Size&quot; column</source>
         <translation>Zobrazit sloupec &quot;Instalovaná velikost&quot;</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="238"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="251"/>
         <source>Show &quot;Build Date&quot; column</source>
         <translation>Zobrazit sloupec &quot;Datum sestavení&quot;</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="251"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="264"/>
         <source>Show &quot;Install Date&quot; column</source>
         <translation>Zobrazit sloupec &quot;Datum instalace&quot;</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="264"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="277"/>
         <source>Show &quot;Install Reason&quot; column</source>
         <translation>Zobrazit sloupec &quot;Důvod instalace&quot;</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="277"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="290"/>
         <source>Enable package tooltips</source>
         <translation>Povolit popisky balíčků</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="311"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="303"/>
+        <source>Show &quot;Repository&quot; column</source>
+        <translation>Zobrazit sloupec &quot;Úložiště&quot;</translation>
+    </message>
+    <message>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="316"/>
+        <source>Show &quot;Download Size&quot; column</source>
+        <translation>Zobrazit sloupec &quot;Stažená velikost&quot;</translation>
+    </message>
+    <message>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="350"/>
         <source>Select the AUR tool Octopi should use</source>
         <translation>Vyberte nástroj AUR, který má Octopi používat</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="392"/>
-        <source>Search for outdated AUR packages</source>
-        <translation>Hledat zastaralé balíčky AUR</translation>
-    </message>
-    <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="458"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="476"/>
         <source>User name</source>
         <translation>Uživatelské jméno</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="471"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="489"/>
         <source>Password</source>
         <translation>Heslo</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="489"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="507"/>
         <source>Register</source>
         <translation>Registrovat</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="507"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="525"/>
         <source>Connect</source>
         <translation>Spojit</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="526"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="544"/>
         <source>Enable AUR voting</source>
         <translation>Povolit hlasování AUR</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="547"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="565"/>
         <source>AUR packages are user produced content. 
 Any use of the provided files is at your own risk.</source>
         <translation>Balíčky AUR jsou obsahem vytvořeným uživateli. 
 Jakékoli použití poskytnutých souborů je na vaše vlastní nebezpečí.</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="608"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="626"/>
         <source>Build directory</source>
         <translation>Adresář sestavení</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="724"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="742"/>
         <source>Select the backend Octopi should use</source>
         <translation>Vyberte jádro (podpůrnou vrstvu), kterou má Octopi používat</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="767"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="785"/>
         <source>Use default notification icons</source>
         <translation>Používat výchozí ikony pro oznamování</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="842"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="860"/>
         <source>Red icon</source>
         <translation>Červená ikona</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="932"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="950"/>
         <source>Busy icon</source>
         <translation>Ikona pro zaneprázdněn</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1001"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1019"/>
         <source>Yellow icon</source>
         <translation>Žlutá ikona</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1085"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1103"/>
         <source>Green icon</source>
         <translation>Zelená ikona</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1410"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1402"/>
+        <source>Search for outdated AUR packages</source>
+        <translation>Hledat zastaralé balíčky AUR</translation>
+    </message>
+    <message>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1452"/>
         <source>Color Scheme</source>
         <translation>Barevné schéma</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1423"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1465"/>
         <source>Font Family</source>
         <translation>Písmo</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1456"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1498"/>
         <source>Font Size</source>
         <translation>Velikost písma</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1479"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1521"/>
         <source>Play a bell sound when prompting for the root password in the terminal</source>
         <translation>Přehrát upozornění, pokud je v terminálu vyžadováno heslo uživatele root</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1492"/>
+        <location filename="Projects/octopi/ui/optionsdialog.ui" line="1534"/>
         <source>Force use of BASH shell</source>
         <translation>Vynutit použití shellu BASH</translation>
     </message>
@@ -702,12 +762,12 @@ Jakékoli použití poskytnutých souborů je na vaše vlastní nebezpečí.</tr
         <translation>Terminál</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/optionsdialog.cpp" line="215"/>
+        <location filename="Projects/octopi/src/optionsdialog.cpp" line="218"/>
         <source>Ok</source>
         <translation>OK</translation>
     </message>
     <message>
-        <location filename="Projects/octopi/src/optionsdialog.cpp" line="216"/>
+        <location filename="Projects/octopi/src/optionsdialog.cpp" line="219"/>
         <source>Cancel</source>
         <translation>Zrušit</translation>
     </message>
