@@ -8,6 +8,8 @@
   BugFix: There was a method called more than once every time distro news was checked.
   BugFix: Prevent the user from double-clicking on a package while it is performing 
     an action.
+  BugFix: Searching for an AUR pkg with a preceeding dash ("-") crashed Octopi
+    (thanks to qumuq-til).
   *Relevant* performance improvement on instant search and package list building time.
   Add support to COSMIC DE.
   Add the option to make the whole interface text less condensed.
