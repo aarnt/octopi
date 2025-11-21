@@ -28,6 +28,8 @@
 #include <QApplication>
 #include <QProcess>
 #include <QMessageBox>
+#include <QStandardPaths>
+#include <QFile>
 
 /*
  * This class is a helper to abstract some Desktop Environments services for Octopi.
@@ -226,7 +228,8 @@ QString WMHelper::getXFCEEditor()
  */
 QString WMHelper::getOctopiSudoCommand()
 {
-  QString result = ctn_OCTOPISUDO;
+  QString result = UnixCommand::findExecutable(ctn_OCTOPISUDO);
+  result += QStringLiteral(" ");
   result += ctn_OCTOPISUDO_PARAMS;
 
   return result;
@@ -237,13 +240,13 @@ QString WMHelper::getOctopiSudoCommand()
  */
 QString WMHelper::getSUCommand()
 {
-  QString result(ctn_NO_SU_COMMAND);
+  QString qtSudoPath = UnixCommand::findExecutable(ctn_OCTOPISUDO);
 
-  if (QFile::exists(ctn_OCTOPISUDO)){
-    result = ctn_OCTOPISUDO;
+  if (!qtSudoPath.isEmpty() && QFile::exists(qtSudoPath)){
+    return qtSudoPath;
   }
 
-  return result;
+  return ctn_NO_SU_COMMAND;
 }
 
 /*
@@ -251,13 +254,13 @@ QString WMHelper::getSUCommand()
  */
 QString WMHelper::getSUTool()
 {
-  QString result(QLatin1String(""));
+  QString qtSudoPath = UnixCommand::findExecutable(ctn_OCTOPISUDO);
 
-  if (QFile::exists(ctn_OCTOPISUDO)){
-    return ctn_OCTOPISUDO;
+  if (!qtSudoPath.isEmpty() && QFile::exists(qtSudoPath)){
+    return qtSudoPath;
   }
 
-  return result;
+  return QLatin1String("");
 }
 
 /*

@@ -111,6 +111,7 @@ public:
   static bool doInternetPingTest();
   static bool isTextFile(QString fileName); //fileName is Path + Name
 
+  static QString findExecutable( const QString& exeName );
   static bool hasTheExecutable( const QString& exeName );
   static bool isAppRunning(const QString &appName, bool justOneInstance = false);
 

@@ -27,6 +27,7 @@
 #include "QtSolutions/qtsingleapplication.h"
 #include <QtGui>
 #include <QMessageBox>
+#include <QStandardPaths>
 
 int main(int argc, char *argv[])
 {
@@ -42,7 +43,7 @@ int main(int argc, char *argv[])
     return (-2);
   }
 
-  if (!QFile::exists(ctn_OCTOPISUDO))
+  if (QStandardPaths::findExecutable(QStringLiteral("qt-sudo")).isEmpty())
   {
     qDebug() << "Aborting octopi as 'qt-sudo' binary could not be found! [" << ctn_OCTOPISUDO << "]";
     return (-3);

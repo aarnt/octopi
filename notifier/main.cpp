@@ -29,6 +29,7 @@
 #include <QtGui>
 #include <QMessageBox>
 #include <QDebug>
+#include <QStandardPaths>
 
 #define NO_GTK_STYLE
 
@@ -65,7 +66,7 @@ int main(int argc, char *argv[])
     return (-3);
   }
 
-  if (!QFile::exists(ctn_OCTOPISUDO))
+  if (QStandardPaths::findExecutable(QStringLiteral("qt-sudo")).isEmpty())
   {
     qDebug() << "Aborting notifier as 'qt-sudo' binary could not be found! [" << ctn_OCTOPISUDO << "]";
     return (-4);

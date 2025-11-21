@@ -28,6 +28,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 #include <QLocale>
 #include <QLibraryInfo>
 #include <QtGui>
+#include <QStandardPaths>
 
 int main( int argc, char *argv[] )
 {
@@ -70,7 +71,7 @@ int main( int argc, char *argv[] )
     return (-4);
   }
 
-  if (!QFile::exists(ctn_OCTOPISUDO))
+  if (QStandardPaths::findExecutable(QStringLiteral("qt-sudo")).isEmpty())
   {
     qDebug() << "Aborting cache-cleaner as 'octopi-sudo' binary could not be found! [" << ctn_OCTOPISUDO << "]";
     return (-5);
