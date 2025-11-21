@@ -303,7 +303,7 @@ void PacmanExec::parsePacmanProcessOutput(const QString &output)
     progressRun = QStringLiteral("m]");
     progressEnd = QStringLiteral("100%");
   }
-  else
+  else if (m_iLoveCandy == false || msg.indexOf(progressRun) == -1)
   {
     progressRun = QStringLiteral("-]");
     progressEnd = QStringLiteral("#]");
