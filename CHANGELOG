@@ -11,6 +11,7 @@
   BugFix: Searching for an AUR pkg with a preceeding dash ("-") crashed Octopi
     (thanks to qumuq-til).
   BugFix: Parser did not print all downloaded packages when using iLoveCandy option.
+  BugFix: Use pacman-conf to retrieve repository names.
   *Relevant* performance improvement on instant search and package list building time.
   Add support to COSMIC DE.
   Add the option to make the whole interface text less condensed.

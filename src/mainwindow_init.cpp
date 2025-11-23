@@ -309,7 +309,7 @@ void MainWindow::initMenuBar()
   subMenu->addSeparator();
 
   RepoConf *repoConf = new RepoConf();
-  QStringList repos = repoConf->getRepos();
+  QStringList repos = repoConf->getReposFromPacmanConf();
 
   for(const QString& repo: repos)
   {

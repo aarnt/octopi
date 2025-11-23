@@ -21,6 +21,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
 #include "repoconf.h"
+#include "qprocess.h"
 
 #include <QApplication>
 #include <QFile>
@@ -125,7 +126,8 @@ void RepoConf::addEntry( const RepoEntry & entry )
   m_entries.push_back( entry );
 }
 
-QStringList RepoConf::getRepos(){
+QStringList RepoConf::getRepos()
+{
   QStringList res;
 
   for (int c=0; c<m_entries.count(); c++){
@@ -134,4 +136,20 @@ QStringList RepoConf::getRepos(){
   }
 
   return res;
+}
+
+QStringList RepoConf::getReposFromPacmanConf()
+{
+  QStringList res;
+  QProcess proc;
+  QStringList sl;
+  sl << QStringLiteral("-l");
+  proc.start(QStringLiteral("pacman-conf"), sl);
+  proc.waitForFinished();
+
+  QString out = QString::fromUtf8(proc.readAll().trimmed());
+  res = out.split(QRegularExpression(QStringLiteral("\\n")), Qt::SkipEmptyParts);
+
+  return res;
+
 }

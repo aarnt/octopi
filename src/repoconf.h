@@ -48,6 +48,7 @@ private:
 public:
   explicit RepoConf();
   QStringList getRepos();
+  QStringList getReposFromPacmanConf();
 };
 
 #endif // REPOCONF_H
