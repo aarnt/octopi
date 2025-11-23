@@ -74,7 +74,7 @@
         </size>
        </property>
        <property name="currentIndex">
-        <number>0</number>
+        <number>3</number>
        </property>
        <widget class="QWidget" name="swGeneral">
         <widget class="QCheckBox" name="cbShowPackageNumbersOutput">
@@ -694,7 +694,7 @@ Any use of the provided files is at your own risk.</string>
             <property name="geometry">
              <rect>
               <x>10</x>
-              <y>30</y>
+              <y>14</y>
               <width>151</width>
               <height>22</height>
              </rect>
@@ -713,7 +713,7 @@ Any use of the provided files is at your own risk.</string>
             <property name="geometry">
              <rect>
               <x>10</x>
-              <y>60</y>
+              <y>44</y>
               <width>105</width>
               <height>22</height>
              </rect>
