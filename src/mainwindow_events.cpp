@@ -404,6 +404,8 @@ void MainWindow::keyPressEvent(QKeyEvent* ke)
   }*/
   else if (ke->key()  == Qt::Key_M && ke->modifiers() == (Qt::ControlModifier))
   {
+    if (m_commandExecuting != ectn_NONE) return;
+
     if (QApplication::focusWidget() != nullptr && QApplication::focusWidget() != ui->menuBar)
       m_lastFocusedWidget = QApplication::focusWidget();
 
