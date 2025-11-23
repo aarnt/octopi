@@ -25,6 +25,8 @@ qrc_resources.cpp
 repoeditor/.qtc_clangd/**
 repoeditor/bin/**
 repoeditor/build/**
+result
+result/**
 sudo/*.o
 sudo/moc*.*
 sudo/octopi-sudo
