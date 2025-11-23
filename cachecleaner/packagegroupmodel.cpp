@@ -48,6 +48,14 @@ PackageGroupModel::PackageGroupModel(QString optionsString,
                                         m_acc(new ProcessOutputAccumulator(m_cmd)),
                                         m_oldKeepValue(spinner->value())
 {
+  if (SettingsManager::getMakeInterfaceLessCondensed())
+  {
+    m_listView->setStyleSheet(QLatin1String(
+    "QListWidget::item {"
+    "margin-top: 5px;"
+    "margin-bottom: 5px;}"));
+  }
+
   m_cleanButton->setText(tr("Clean"));
 
   m_sharedMemory=new QSharedMemory(QStringLiteral("org.arnt.octopi"), this);
@@ -70,7 +78,6 @@ PackageGroupModel::PackageGroupModel(QString optionsString,
  */
 PackageGroupModel::~PackageGroupModel()
 {
-  //UnixCommand::removeSharedMemFiles();
   delete m_acc;
   delete m_cmd;
 }

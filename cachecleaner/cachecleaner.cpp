@@ -130,9 +130,6 @@ void CacheCleaner::onSendInfoToOctopiHelper()
     clientConnection->write(block);
     clientConnection->disconnectFromHost();
   }
-
-  //m_installed->isExecutingCommand=false;
-  //m_uninstalled->isExecutingCommand=false;
 }
 
 /*
