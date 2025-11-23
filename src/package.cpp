@@ -934,10 +934,10 @@ QList<PackageListData> * Package::getForeignToolPackageList(const QString &searc
   QString aurTool = getForeignRepositoryToolName();
   QString auxSearchString=searchString;
 
-  if (auxSearchString.at(0) == QLatin1Char('-'))
+  if (!auxSearchString.isEmpty() && auxSearchString.at(0) == QLatin1Char('-'))
     auxSearchString.remove(0, 1);
 
-  if (auxSearchString.at(0) == QLatin1Char('+'))
+  if (!auxSearchString.isEmpty() && auxSearchString.at(0) == QLatin1Char('+'))
     auxSearchString.remove(0, 1);
 
   auxSearchString.remove(QLatin1Char('^'));
